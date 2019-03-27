@@ -22,10 +22,10 @@
 /datum/proc/vv_get_dropdown()
 	. = list()
 	VV_DROPDOWN_OPTION("", "---")
-	VV_DROPDOWN_OPTION("proc_call", "Call Proc")
-	VV_DROPDOWN_OPTION("mark_object", "Mark Object")
-	VV_DROPDOWN_OPTION("delete", "Delete")
-	VV_DROPDOWN_OPTION("expose", "Show VV To Player")
+	VV_DROPDOWN_OPTION(VV_HK_CALLPROC, "Call Proc")
+	VV_DROPDOWN_OPTION(VV_HK_MARK, "Mark Object")
+	VV_DROPDOWN_OPTION(VV_HK_DELETE, "Delete")
+	VV_DROPDOWN_OPTION(VV_HK_EXPOSE, "Show VV To Player")
 
 //This proc is only called if everything topic-wise is verified. The only verifications that should happen here is things like permission checks!
 //href_list is a reference, modifying it in these procs WILL change the rest of the proc in topic.dm of admin/view_variables!

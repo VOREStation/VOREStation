@@ -288,9 +288,6 @@
 		closest_grounding_rod.tesla_act(power, explosive, stun_mobs)
 
 	else if(closest_mob)
-<<<<<<< HEAD
-		var/shock_damage = Clamp(round(power/400), 10, 90) + rand(-5, 5)
-=======
 		var/shock_damage = CLAMP(round(power/400), 10, 90) + rand(-5, 5)
 		closest_mob.electrocute_act(shock_damage, source, 1 - closest_mob.get_shock_protection(), ran_zone())
 		log_game("TESLA([source.x],[source.y],[source.z]) Shocked [key_name(closest_mob)] for [shock_damage]dmg.")

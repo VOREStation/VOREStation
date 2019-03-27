@@ -187,10 +187,16 @@ GLOBAL_PROTECT(VVpixelmovement)
 		assoc_key = L[index]
 	var/default
 	var/variable
+	var/old_assoc_value		//EXPERIMENTAL - Keep old associated value while modifying key, if any
 	if (assoc)
 		variable = L[assoc_key]
 	else
 		variable = L[index]
+		//EXPERIMENTAL - Keep old associated value while modifying key, if any
+		var/found = L[variable]
+		if(!isnull(found))
+			old_assoc_value = found
+		//
 
 	default = vv_get_class(objectvar, variable)
 
@@ -257,6 +263,8 @@ GLOBAL_PROTECT(VVpixelmovement)
 		L[assoc_key] = new_var
 	else
 		L[index] = new_var
+		if(!isnull(old_assoc_value) && IS_VALID_ASSOC_KEY(new_var))
+			L[new_var] = old_assoc_value
 	if (O)
 		if (O.vv_edit_var(objectvar, L) == FALSE)
 			to_chat(src, "Your edit was rejected by the object.")

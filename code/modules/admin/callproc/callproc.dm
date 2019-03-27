@@ -12,26 +12,9 @@
 
 	switch(alert("Proc owned by something?",,"Yes","No"))
 		if("Yes")
-<<<<<<< HEAD
-			targetselected=1
-			switch(input("Proc owned by...", "Owner", null) as null|anything in list("Obj", "Mob", "Area or Turf", "Client"))
-				if("Obj")
-					target = input("Select target:", "Target") as null|obj in world
-				if("Mob")
-					target = input("Select target:", "Target", usr) as null|mob in world
-				if("Area or Turf")
-					target = input("Select target:", "Target", get_turf(usr)) as null|area|turf in world
-				if("Client")
-					target = input("Select target:", "Target", usr.client) as null|anything in GLOB.clients
-				else
-					return
-			if(!target)
-				usr << "Proc call cancelled."
-=======
 			targetselected = 1
 			var/list/value = vv_get_value(default_class = VV_ATOM_REFERENCE, classes = list(VV_ATOM_REFERENCE, VV_DATUM_REFERENCE, VV_MOB_REFERENCE, VV_CLIENT))
 			if (!value["class"] || !value["value"])
->>>>>>> b1860f9... Merge pull request #5829 from kevinz000/tg_vv
 				return
 			target = value["value"]
 		if("No")
@@ -73,13 +56,13 @@
 			return
 		var/msg = "[key_name(src)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"]."
 		log_admin(msg)
-		message_admins(msg)
+		//message_admins(msg)				//Proccall announce removed.
 		admin_ticket_log(target, msg)
 		returnval = WrapAdminProcCall(target, procname, lst) // Pass the lst as an argument list to the proc
 	else
 		//this currently has no hascall protection. wasn't able to get it working.
 		log_admin("[key_name(src)] called [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
-		message_admins("[key_name(src)] called [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
+		//message_admins("[key_name(src)] called [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")			//Proccall announce removed.
 		returnval = WrapAdminProcCall(GLOBAL_PROC, procname, lst) // Pass the lst as an argument list to the proc
 	. = get_callproc_returnval(returnval, procname)
 	if(.)
@@ -145,71 +128,6 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	return usr && usr.client && GLOB.AdminProcCaller == usr.client.ckey
 #endif
 
-<<<<<<< HEAD
-			if("finished")
-				done = 1
-
-			if("null")
-				current = null
-
-			if("text")
-				current = input("Enter text for [arguments.len+1]\th argument") as null|text
-				if(isnull(current)) return
-
-			if("num")
-				current = input("Enter number for [arguments.len+1]\th argument") as null|num
-				if(isnull(current)) return
-
-			if("type")
-				current = input("Select type for [arguments.len+1]\th argument") as null|anything in typesof(/obj, /mob, /area, /turf)
-				if(isnull(current)) return
-
-			if("obj reference")
-				current = input("Select object for [arguments.len+1]\th argument") as null|obj in world
-				if(isnull(current)) return
-
-			if("mob reference")
-				current = input("Select mob for [arguments.len+1]\th argument") as null|mob in world
-				if(isnull(current)) return
-
-			if("area/turf reference")
-				current = input("Select area/turf for [arguments.len+1]\th argument") as null|area|turf in world
-				if(isnull(current)) return
-
-			if("icon")
-				current = input("Provide icon for [arguments.len+1]\th argument") as null|icon
-				if(isnull(current)) return
-
-			if("client")
-				current = input("Select client for [arguments.len+1]\th argument") as null|anything in GLOB.clients
-				if(isnull(current)) return
-
-			if("mob's area")
-				var/mob/M = input("Select mob to take area for [arguments.len+1]\th argument") as null|mob in world
-				if(!M) return
-				current = get_area(M)
-				if(!current)
-					switch(alert("\The [M] appears to not have an area; do you want to pass null instead?",, "Yes", "Cancel"))
-						if("Yes")
-							; // do nothing
-						if("Cancel")
-							return
-
-			if("marked datum")
-				current = holder.marked_datum
-				if(!current)
-					switch(alert("You do not currently have a marked datum; do you want to pass null instead?",, "Yes", "Cancel"))
-						if("Yes")
-							; // do nothing
-						if("Cancel")
-							return
-		if(!done)
-			arguments += current
-
-	if(hastarget)
-		if(!target)
-			usr << "Your callproc target no longer exists."
-=======
 /client/proc/callproc_datum(datum/A as null|area|mob|obj|turf)
 	set category = "Debug"
 	set name = "Atom ProcCall"
@@ -245,22 +163,28 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 /client/proc/get_callproc_args()
 	var/argnum = input("Number of arguments","Number:",0) as num|null
 	if(isnull(argnum))
-		return
+		return null					//Cancel
 
 	. = list()
-	var/list/named_args = list()
+	//var/list/named_args = list()			//Named arguments are removed, due to them making proccalling take too long.
 	while(argnum--)
+		/*						//Named arguments are removed, due to them making proccalling take too long.
 		var/named_arg = input("Leave blank for positional argument. Positional arguments will be considered as if they were added first.", "Named argument") as text|null
+		if(isnull(named_arg))
+			return null				//Cancel
+		*/
 		var/value = vv_get_value(restricted_classes = list(VV_RESTORE_DEFAULT))
 		if (!value["class"])
->>>>>>> b1860f9... Merge pull request #5829 from kevinz000/tg_vv
-			return
+			return null				//Cancel
+		/*		
 		if(named_arg)
 			named_args[named_arg] = value["value"]
 		else
 			. += value["value"]
 	if(LAZYLEN(named_args))
 		. += named_args
+		*/
+		. += value["value"]
 
 /client/proc/get_callproc_returnval(returnval,procname)
 	. = ""

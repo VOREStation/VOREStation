@@ -6,9 +6,8 @@
 #define TICK_CHECK ( TICK_USAGE > GLOB.CURRENT_TICKLIMIT )
 #define CHECK_TICK if TICK_CHECK stoplag()
 
-<<<<<<< HEAD
 #define TICK_USAGE world.tick_usage
-=======
+
 #define TICK_CHECK_HIGH_PRIORITY ( TICK_USAGE > 95 )
 #define CHECK_TICK_HIGH_PRIORITY ( TICK_CHECK_HIGH_PRIORITY? stoplag() : 0 )
 

@@ -38,7 +38,7 @@
 	var/sprite_text
 	if(sprite)
 		sprite_text = "<img src='vv[hash].png'></td><td>"
-	var/list/header = islist(D)? "<b>/list</b>" : D.vv_get_header()
+	var/list/header = islist(D)? list("<b>/list</b>") : D.vv_get_header()
 
 	var/marked
 	if(holder && holder.marked_datum && holder.marked_datum == D)
@@ -176,10 +176,6 @@
 				last_filter = filter;
 				document.cookie="[refid][cookieoffset]search="+encodeURIComponent(filter);
 
-				var lis_new = vars_ol.getElementsByTagName("li");
-				for (var j = 0; j < lis_new.length; ++j) {
-					lis_new\[j].style.backgroundColor = (j == 0) ? "#ffee88" : "white";
-				}
 			}
 
 			// onkeydown
@@ -194,55 +190,7 @@
 
 			// onkeyup
 			function handle_keyup() {
-				if (event.keyCode == 13) {  //Enter / return
-					var vars_ol = document.getElementById('vars');
-					var lis = vars_ol.getElementsByTagName("li");
-					for (var i = 0; i < lis.length; ++i) {
-						try {
-							var li = lis\[i];
-							if (li.style.backgroundColor == "#ffee88") {
-								alist = lis\[i].getElementsByTagName("a");
-								if(alist.length > 0) {
-									location.href=alist\[0].href;
-								}
-							}
-						} catch(err) {}
-					}
-				} else if(event.keyCode == 38){  //Up arrow
-					var vars_ol = document.getElementById('vars');
-					var lis = vars_ol.getElementsByTagName("li");
-					for (var i = 0; i < lis.length; ++i) {
-						try {
-							var li = lis\[i];
-							if (li.style.backgroundColor == "#ffee88") {
-								if (i > 0) {
-									var li_new = lis\[i-1];
-									li.style.backgroundColor = "white";
-									li_new.style.backgroundColor = "#ffee88";
-									return
-								}
-							}
-						} catch(err) {}
-					}
-				} else if(event.keyCode == 40) {  //Down arrow
-					var vars_ol = document.getElementById('vars');
-					var lis = vars_ol.getElementsByTagName("li");
-					for (var i = 0; i < lis.length; ++i) {
-						try {
-							var li = lis\[i];
-							if (li.style.backgroundColor == "#ffee88") {
-								if ((i+1) < lis.length) {
-									var li_new = lis\[i+1];
-									li.style.backgroundColor = "white";
-									li_new.style.backgroundColor = "#ffee88";
-									return
-								}
-							}
-						} catch(err) {}
-					}
-				} else {
-					updateSearch();
-				}
+				updateSearch();
 			}
 
 			// onchange
@@ -289,8 +237,7 @@ datumrefresh=[refid]'>Refresh</a>
 							<form>
 								<select name="file" size="1"
 									onchange="handle_dropdown(this)"
-									onmouseclick="this.focus()"
-									style="background-color:#ffffff">
+									onmouseclick="this.focus()">
 									<option value selected>Select option</option>
 									[dropdownoptions_html.Join()]
 								</select>

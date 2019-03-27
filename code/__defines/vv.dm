@@ -27,6 +27,8 @@
 #define VV_NORMAL_LIST_NO_EXPAND_THRESHOLD 50
 #define VV_SPECIAL_LIST_NO_EXPAND_THRESHOLD 150
 
+#define IS_VALID_ASSOC_KEY(V) (istext(V) || isdatum(V) || islist(V))
+
 //Helpers for vv_get_dropdown()
 #define VV_DROPDOWN_OPTION(href_key, name) . += "<option value='?_src_=vars;[href_key]=TRUE;target=\ref[src]'>[name]</option>"
 

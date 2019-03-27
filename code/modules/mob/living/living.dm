@@ -1330,9 +1330,6 @@ default behaviour is:
 
 
 /mob/living/proc/dirties_floor()	// If we ever decide to add fancy conditionals for making dirty floors (floating, etc), here's the proc.
-<<<<<<< HEAD
-	return makes_dirt
-=======
 	return makes_dirt
 
 /mob/living/proc/needs_to_breathe()
@@ -1352,4 +1349,3 @@ default behaviour is:
 		BRAIN:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=brain'>[getBrainLoss()]</a>
 		</font>
 		"}
->>>>>>> b1860f9... Merge pull request #5829 from kevinz000/tg_vv

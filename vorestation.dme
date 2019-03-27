@@ -1436,9 +1436,6 @@
 #include "code\modules\admin\verbs\striketeam.dm"
 #include "code\modules\admin\verbs\ticklag.dm"
 #include "code\modules\admin\verbs\tripAI.dm"
-<<<<<<< HEAD:vorestation.dme
-#include "code\modules\admin\view_variables\helpers.dm"
-=======
 #include "code\modules\admin\verbs\SDQL2\SDQL_2.dm"
 #include "code\modules\admin\verbs\SDQL2\SDQL_2_parser.dm"
 #include "code\modules\admin\verbs\SDQL2\SDQL_2_wrappers.dm"
@@ -1448,7 +1445,6 @@
 #include "code\modules\admin\view_variables\helpers_deprecated.dm"
 #include "code\modules\admin\view_variables\mass_edit_variables.dm"
 #include "code\modules\admin\view_variables\modify_variables.dm"
->>>>>>> b1860f9... Merge pull request #5829 from kevinz000/tg_vv:polaris.dme
 #include "code\modules\admin\view_variables\topic.dm"
 #include "code\modules\admin\view_variables\view_variables.dm"
 #include "code\modules\ai\_defines.dm"
