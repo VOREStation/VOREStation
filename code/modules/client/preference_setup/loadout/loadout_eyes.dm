@@ -124,9 +124,6 @@
 
 /datum/gear/eyes/circuitry
 	display_name = "goggles, circuitry (empty)"
-<<<<<<< HEAD
-	path = /obj/item/clothing/glasses/circuitry
-=======
 	path = /obj/item/clothing/glasses/circuitry
 
 /datum/gear/eyes/glasses/rimless
@@ -144,4 +141,3 @@
 /datum/gear/eyes/glasses/prescriptionthin
 	display_name = "Glasses, prescription thin frame"
 	path = /obj/item/clothing/glasses/regular/thin
->>>>>>> e0d442b... Merge pull request #5838 from Cerebulon/glassesfix

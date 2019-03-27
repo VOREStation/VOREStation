@@ -232,8 +232,6 @@ BLIND     // can't see anything
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	body_parts_covered = 0
 
-<<<<<<< HEAD
-=======
 /obj/item/clothing/glasses/regular/rimless
 	name = "prescription rimless glasses"
 	desc = "Sleek modern glasses with a single sculpted lens."
@@ -258,7 +256,6 @@ BLIND     // can't see anything
 	prescription = 0
 
 
->>>>>>> e0d442b... Merge pull request #5838 from Cerebulon/glassesfix
 /obj/item/clothing/glasses/sunglasses
 	name = "sunglasses"
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."
