@@ -257,8 +257,6 @@
 			visible_message("<span class='danger'>\The [src] splatters a layer of web on \the [target]!</span>")
 			new /obj/effect/spider/stickyweb(target.loc)
 	..()
-<<<<<<< HEAD
-=======
 
 /obj/item/projectile/beam/tungsten
 	name = "core of molten tungsten"

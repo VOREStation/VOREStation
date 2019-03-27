@@ -49,7 +49,7 @@
 	equip_cooldown = 15
 	var/mode = 0 //0 - buckshot, 1 - beanbag, 2 - slug.
 	projectile = /obj/item/projectile/bullet/pellet/shotgun
-	fire_sound = 'sound/weapons/shotgun.ogg'
+	fire_sound = 'sound/weapons/Gunshot_shotgun.ogg'
 	fire_volume = 80
 	projectiles = 6
 	projectiles_per_shot = 1
