@@ -191,7 +191,7 @@
 	var/obj/machinery/power/circuit_io/IO = null // Dummy power machine to move energy in/out without a bunch of code duplication.
 	var/throughput = 10000 // Give/take up to 10kW.
 
-/obj/item/integrated_circuit/passive/power/powernet/initialize()
+/obj/item/integrated_circuit/passive/power/powernet/Initialize()
 	IO = new(src)
 	return ..()
 

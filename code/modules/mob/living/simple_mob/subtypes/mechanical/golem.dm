@@ -54,7 +54,7 @@
 		"haste"				= /obj/item/weapon/spell/modifier/haste
 		)
 
-/mob/living/simple_mob/mechanical/technomancer_golem/initialize()
+/mob/living/simple_mob/mechanical/technomancer_golem/Initialize()
 	core = new(src)
 	return ..()
 

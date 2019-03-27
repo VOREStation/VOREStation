@@ -23,7 +23,7 @@
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
 
-/obj/structure/railing/initialize()
+/obj/structure/railing/Initialize()
 	. = ..()
 	if(src.anchored)
 		update_icon(0)

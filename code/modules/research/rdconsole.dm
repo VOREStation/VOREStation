@@ -113,7 +113,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			S.update_connections()
 			break
 
-/obj/machinery/computer/rdconsole/initialize()
+/obj/machinery/computer/rdconsole/Initialize()
 	SyncRDevices()
 	. = ..()
 

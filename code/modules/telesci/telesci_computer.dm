@@ -40,7 +40,7 @@
 	..()
 	user << "There are [crystals.len ? crystals.len : "no"] bluespace crystal\s in the crystal slots."
 
-/obj/machinery/computer/telescience/initialize()
+/obj/machinery/computer/telescience/Initialize()
 	. = ..()
 	recalibrate()
 	for(var/i = 1; i <= starting_crystals; i++)

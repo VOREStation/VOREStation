@@ -50,7 +50,7 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 	var/frequency = 0
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/initialize()
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/Initialize()
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)
@@ -97,7 +97,7 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 /obj/machinery/embedded_controller/radio/airlock/phoron
 	var/tag_scrubber
 
-/obj/machinery/embedded_controller/radio/airlock/phoron/initialize()
+/obj/machinery/embedded_controller/radio/airlock/phoron/Initialize()
 	. = ..()
 	program = new/datum/computer/file/embedded_program/airlock/phoron(src)
 

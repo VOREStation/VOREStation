@@ -115,7 +115,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	var/path = pick(rare_loot)
 	return new path(src)
 
-/obj/structure/loot_pile/initialize()
+/obj/structure/loot_pile/Initialize()
 	if(icon_states_to_use && icon_states_to_use.len)
 		icon_state = pick(icon_states_to_use)
 	. = ..()

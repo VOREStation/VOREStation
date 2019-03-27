@@ -8,7 +8,7 @@
 	var/list/targets
 	var/list/datum/disease2/disease/viruses
 
-/obj/item/weapon/reagent_containers/syringe/initialize()
+/obj/item/weapon/reagent_containers/syringe/Initialize()
 	. = ..()
 	update_icon()
 

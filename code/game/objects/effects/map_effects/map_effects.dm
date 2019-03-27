@@ -27,7 +27,7 @@
 	var/interval_upper_bound = 5 SECONDS // Higher number for above.
 	var/halt = FALSE // Set to true to stop the loop when it reaches the next iteration.
 
-/obj/effect/map_effect/interval/initialize()
+/obj/effect/map_effect/interval/Initialize()
 	handle_interval_delay()
 	return ..()
 

@@ -14,7 +14,7 @@
 
 	var/apply_tape = FALSE
 
-/obj/item/taperoll/initialize()
+/obj/item/taperoll/Initialize()
 	. = ..()
 	if(apply_tape)
 		var/turf/T = get_turf(src)

@@ -20,7 +20,7 @@
 	var/detail_color = COLOR_ASSEMBLY_BLACK
 
 
-/obj/item/device/electronic_assembly/initialize()
+/obj/item/device/electronic_assembly/Initialize()
 	battery = new(src)
 	processing_objects |= src
 	return ..()
