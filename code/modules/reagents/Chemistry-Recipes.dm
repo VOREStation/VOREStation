@@ -2268,6 +2268,13 @@
 	required_reagents = list("cornoil" = 2, "honey" = 1)
 	result_amount = 3
 
+/datum/chemical_reaction/drinks/eggnog
+	name = "Eggnog"
+	id = "eggnog"
+	result = "eggnog"
+	required_reagents = list("milk" = 5, "cream" = 5, "sugar" = 5, "egg" = 3)
+	result_amount = 15
+
 /datum/chemical_reaction/drinks/nuclearwaste_radium
 	name = "Nuclear Waste"
 	id = "nuclearwasterad"
