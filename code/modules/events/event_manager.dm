@@ -9,53 +9,7 @@
 	var/row_options3 = " width='150px'"
 	var/datum/event_container/selected_event_container = null
 
-<<<<<<< HEAD
-	var/list/datum/event/active_events = list()
-	var/list/datum/event/finished_events = list()
-
-	var/list/datum/event/allEvents
-	var/list/datum/event_container/event_containers = list(
-			EVENT_LEVEL_MUNDANE 	= new/datum/event_container/mundane,
-			EVENT_LEVEL_MODERATE	= new/datum/event_container/moderate,
-			EVENT_LEVEL_MAJOR 		= new/datum/event_container/major
-		)
-
-	var/datum/event_meta/new_event = new
-
-/datum/event_manager/New()
-	allEvents = typesof(/datum/event) - /datum/event
-
-/datum/event_manager/process()
-	for(var/datum/event/E in event_manager.active_events)
-		E.process()
-
-	for(var/i = EVENT_LEVEL_MUNDANE to EVENT_LEVEL_MAJOR)
-		var/list/datum/event_container/EC = event_containers[i]
-		EC.process()
-
-/datum/event_manager/proc/event_complete(var/datum/event/E)
-	if(!E.event_meta || !E.severity)	// datum/event is used here and there for random reasons, maintaining "backwards compatibility"
-		log_debug("Event of '[E.type]' with missing meta-data has completed.")
-		return
-
-	finished_events += E
-
-	// Add the event back to the list of available events
-	var/datum/event_container/EC = event_containers[E.severity]
-	var/datum/event_meta/EM = E.event_meta
-	if(EM.add_to_queue)
-		EC.available_events += EM
-
-	log_debug("Event '[EM.name]' has completed at [worldtime2stationtime(world.time)].")
-
-/datum/event_manager/proc/delay_events(var/severity, var/delay)
-	var/list/datum/event_container/EC = event_containers[severity]
-	EC.next_event_time += delay
-
-/datum/event_manager/proc/Interact(var/mob/living/user)
-=======
 /datum/controller/subsystem/events/proc/Interact(var/mob/living/user)
->>>>>>> 46c79c7... [READY]Makes a bunch of processes subsystems instead (#5814
 
 	var/html = GetInteractWindow()
 

@@ -203,8 +203,6 @@
 #include "code\controllers\Processes\alarm.dm"
 #include "code\controllers\Processes\emergencyShuttle.dm"
 #include "code\controllers\Processes\game_master.dm"
-#include "code\controllers\Processes\nanoui.dm"
-#include "code\controllers\Processes\mob.dm"
 #include "code\controllers\Processes\radiation.dm"
 #include "code\controllers\Processes\supply.dm"
 #include "code\controllers\Processes\ticker.dm"
@@ -222,13 +220,9 @@
 #include "code\controllers\subsystems\inactivity.dm"
 #include "code\controllers\subsystems\lighting.dm"
 #include "code\controllers\subsystems\machines.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\controllers\subsystems\mapping_vr.dm"
 #include "code\controllers\subsystems\mobs.dm"
-=======
-#include "code\controllers\subsystems\mapping.dm"
 #include "code\controllers\subsystems\nanoui.dm"
->>>>>>> 46c79c7... [READY]Makes a bunch of processes subsystems instead (#5814:polaris.dme
 #include "code\controllers\subsystems\orbits.dm"
 #include "code\controllers\subsystems\overlays.dm"
 #include "code\controllers\subsystems\persist_vr.dm"

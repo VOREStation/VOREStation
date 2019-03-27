@@ -378,13 +378,7 @@
 	name = "Syringe (anabolic steroids)"
 	desc = "Contains drugs for muscle growth."
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/syringe/steroid/New()
+/obj/item/weapon/reagent_containers/syringe/steroid/Initialize()
 	..()
 	//reagents.add_reagent("adrenaline",5) //VOREStation Edit - No thanks.
-=======
-/obj/item/weapon/reagent_containers/syringe/steroid/Initialize()
-	. = ..()
-	reagents.add_reagent("adrenaline",5)
->>>>>>> 46c79c7... [READY]Makes a bunch of processes subsystems instead (#5814
 	reagents.add_reagent("hyperzine",10)

@@ -301,12 +301,6 @@
 	desc = "Guaranteed to get you slim!"
 	icon_state = "pill9"
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/pill/diet/New()
-	..()
-	reagents.add_reagent("lipozine", 15) //VOREStation Edit
-=======
 /obj/item/weapon/reagent_containers/pill/diet/Initialize()
 	. = ..()
-	reagents.add_reagent("lipozine", 2)
->>>>>>> 46c79c7... [READY]Makes a bunch of processes subsystems instead (#5814
+	reagents.add_reagent("lipozine", 15) //VOREStation Edit

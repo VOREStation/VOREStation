@@ -20,17 +20,10 @@
 	. = ..()
 	create_reagents(1000)
 
-<<<<<<< HEAD
-	Destroy()
-		QDEL_NULL(detonator)
-		QDEL_LIST_NULL(beakers)
-		return ..()
-=======
 /obj/item/weapon/grenade/chem_grenade/Destroy()
 	QDEL_NULL(detonator)
 	QDEL_LIST_NULL(beakers)
 	return ..()
->>>>>>> 46c79c7... [READY]Makes a bunch of processes subsystems instead (#5814
 
 /obj/item/weapon/grenade/chem_grenade/attack_self(mob/user as mob)
 	if(!stage || stage==1)

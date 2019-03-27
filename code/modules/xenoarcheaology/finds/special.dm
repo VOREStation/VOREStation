@@ -5,10 +5,6 @@
 /obj/item/weapon/reagent_containers/glass/replenishing
 	var/spawning_id
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/glass/replenishing/New()
-	..()
-=======
 /obj/item/weapon/reagent_containers/glass/replenishing/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
