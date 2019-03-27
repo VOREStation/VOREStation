@@ -129,16 +129,6 @@
 		return
 	if(ismouse(usr) || (isobserver(usr) && !config.ghost_interaction))
 		return
-<<<<<<< HEAD
-	else
-		if(ismouse(usr))
-			return
-		if(!usr || !isturf(usr.loc))
-			return
-		if(usr.stat || usr.restrained())
-			return
-=======
->>>>>>> 8ec3691... Merge pull request #5770 from Atermonera/standard_rotation
 
 	src.set_dir(turn(src.dir, 270))
 	return

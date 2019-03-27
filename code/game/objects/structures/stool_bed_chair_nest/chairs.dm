@@ -75,21 +75,9 @@
 
 	if(!usr || !isturf(usr.loc))
 		return
-<<<<<<< HEAD
-	else
-		if(istype(usr,/mob/living/simple_mob/animal/passive/mouse))
-			return
-		if(!usr || !isturf(usr.loc))
-			return
-		if(usr.stat || usr.restrained())
-			return
-
-		src.set_dir(turn(src.dir, 90))
-=======
 	if(usr.stat || usr.restrained())
 		return
 	if(ismouse(usr) || (isobserver(usr) && !config.ghost_interaction))
->>>>>>> 8ec3691... Merge pull request #5770 from Atermonera/standard_rotation
 		return
 
 	src.set_dir(turn(src.dir, 270))
