@@ -14,6 +14,9 @@
 	if(!orientation)
 		return
 
+	// Convert dir to degrees rotation
+	orientation = dir2angle(orientation)
+
 	var/turf/T = get_turf(mob)
 	if(!T)
 		return
@@ -50,7 +53,10 @@
 	if(!orientation)
 		return
 
-	if(((orientation & (NORTH|SOUTH) && template.width > world.maxx || template.height > world.maxy) || ((orientation & (EAST|WEST)) && template.width > world.maxy || template.height > world.maxx)))
+	// Convert dir to degrees rotation
+	orientation = dir2angle(orientation)
+
+	if((!(orientation%180) && template.width > world.maxx || template.height > world.maxy) || (orientation%180 && template.width > world.maxy || template.height > world.maxx))
 		if(alert(usr,"This template is larger than the existing z-levels. It will EXPAND ALL Z-LEVELS to match the size of the template. This may cause chaos. Are you sure you want to do this?","DANGER!!!","Cancel","Yes") == "Cancel")
 			to_chat(usr,"Template placement aborted.")
 			return

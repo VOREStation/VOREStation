@@ -63,9 +63,9 @@ var/global/use_preloader = FALSE
 	if(!z_offset)
 		z_offset = world.maxz + 1
 
-	// If it's not a single dir, default to north (Default orientation)
-	if(!orientation in cardinal)
-		orientation = SOUTH
+	// If it's not a single dir, default to 0 degrees rotation (Default orientation)
+	if(!(orientation in list(0, 90, 180, 270)))
+		orientation = 0
 
 	var/list/bounds = list(1.#INF, 1.#INF, 1.#INF, -1.#INF, -1.#INF, -1.#INF)
 	var/list/grid_models = list()
@@ -167,12 +167,12 @@ var/global/use_preloader = FALSE
 				key_list[++key_list.len] = line_keys
 
 			// Rotate the list according to orientation
-			if(orientation != SOUTH)
+			if(orientation != 0)
 				var/num_cols = key_list[1].len
 				var/num_rows = key_list.len
 				var/list/new_key_list = list()
 				// If it's rotated 180 degrees, the dimensions are the same
-				if(orientation == NORTH)
+				if(orientation == 180)
 					new_key_list.len = num_rows
 					for(var/i = 1 to new_key_list.len)
 						new_key_list[i] = list()
@@ -190,11 +190,11 @@ var/global/use_preloader = FALSE
 				for(var/i = 1 to new_key_list.len)
 					for(var/j = 1 to new_key_list[i].len)
 						switch(orientation)
-							if(NORTH)
+							if(180)
 								new_key_list[i][j] = key_list[num_rows - i][num_cols - j]
-							if(EAST)
+							if(270)
 								new_key_list[i][j] = key_list[num_rows - j][i]
-							if(WEST)
+							if(90)
 								new_key_list[i][j] = key_list[j][num_cols - i]
 
 				key_list = new_key_list
@@ -314,12 +314,6 @@ var/global/use_preloader = FALSE
 						if(istext(value))
 							fields[I] = apply_text_macros(value)
 
-			// Rotate dir if orientation isn't south (default)
-			if(fields["dir"])
-				fields["dir"] = turn(fields["dir"], dir2angle(orientation) + 180)
-			else
-				fields["dir"] = turn(SOUTH, dir2angle(orientation) + 180)
-
 			//then fill the members_attributes list with the corresponding variables
 			members_attributes.len++
 			members_attributes[index++] = fields
@@ -380,20 +374,20 @@ var/global/use_preloader = FALSE
 	//instanciate the first /turf
 	var/turf/T
 	if(members[first_turf_index] != /turf/template_noop)
-		T = instance_atom(members[first_turf_index],members_attributes[first_turf_index],crds,no_changeturf)
+		T = instance_atom(members[first_turf_index],members_attributes[first_turf_index],crds,no_changeturf,orientation)
 
 	if(T)
 		//if others /turf are presents, simulates the underlays piling effect
 		index = first_turf_index + 1
 		while(index <= members.len - 1) // Last item is an /area
 			var/underlay = T.appearance
-			T = instance_atom(members[index],members_attributes[index],crds,no_changeturf)//instance new turf
+			T = instance_atom(members[index],members_attributes[index],crds,no_changeturf,orientation)//instance new turf
 			T.underlays += underlay
 			index++
 
 	//finally instance all remainings objects/mobs
 	for(index in 1 to first_turf_index-1)
-		instance_atom(members[index],members_attributes[index],crds,no_changeturf)
+		instance_atom(members[index],members_attributes[index],crds,no_changeturf,orientation)
 	//Restore initialization to the previous value
 	SSatoms.map_loader_stop()
 
@@ -402,7 +396,7 @@ var/global/use_preloader = FALSE
 ////////////////
 
 //Instance an atom at (x,y,z) and gives it the variables in attributes
-/dmm_suite/proc/instance_atom(path,list/attributes, turf/crds, no_changeturf)
+/dmm_suite/proc/instance_atom(path,list/attributes, turf/crds, no_changeturf, orientation=0)
 	_preloader.setup(attributes, path)
 
 	if(crds)
@@ -419,6 +413,11 @@ var/global/use_preloader = FALSE
 		SSatoms.map_loader_stop()
 		stoplag()
 		SSatoms.map_loader_begin()
+
+	// Rotate the atom now that it exists, rather than changing its orientation beforehand through the fields["dir"]
+	if(orientation != 0) // 0 means no rotation
+		var/atom/A = .
+		A.set_dir(turn(A.dir, orientation))
 
 /dmm_suite/proc/create_atom(path, crds)
 	set waitfor = FALSE
