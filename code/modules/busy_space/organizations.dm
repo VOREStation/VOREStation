@@ -476,21 +476,12 @@
 
 // Governments
 
-<<<<<<< HEAD
-/datum/lore/organization/gov/sifgov
-	name = "Sif Governmental Authority"
-	short_name = "SifGov"
-	desc = "SifGov is the sole governing administration for the Vir system, based in New Reykjavik, Sif.  It is a representative \
-	democratic government, and a fully recognized member of the Solar Central Government.  Anyone operating inside of Vir must \
-	comply with SifGov's legislation and regulations." // Vorestation Edit. Confederate -> Central
-=======
 /datum/lore/organization/gov/virgov
 	name = "Vir Governmental Authority"
 	short_name = "VirGov"
 	desc = "VirGov is the sole governing administration for the Vir system, based in New Reykjavik, Sif.  It is a representative \
 	democratic government, and a fully recognized member of the Solar Confederate Government.  Anyone operating inside of Vir must \
 	comply with VirGov's legislation and regulations."
->>>>>>> 03ac1aa... Merge pull request #5795 from Cerebulon/virgov
 	history = "" // Todo like the rest of them
 	work = "governing body of Vir"
 	headquarters = "New Reykjavik, Sif, Vir"
