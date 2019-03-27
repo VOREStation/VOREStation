@@ -7,8 +7,9 @@ SUBSYSTEM_DEF(mapping)
 	init_order = INIT_ORDER_MAPPING
 	flags = SS_NO_FIRE
 
+	var/list/map_templates = list()
+	var/dmm_suite/maploader = null
 	var/obj/effect/landmark/engine_loader/engine_loader
-
 	var/list/shelter_templates = list()
 
 /datum/controller/subsystem/mapping/Recover()
@@ -16,6 +17,17 @@ SUBSYSTEM_DEF(mapping)
 	shelter_templates = SSmapping.shelter_templates
 
 /datum/controller/subsystem/mapping/Initialize(timeofday)
+	if(subsystem_initialized)
+		return
+	world.max_z_changed() // This is to set up the player z-level list, maxz hasn't actually changed (probably)
+	maploader = new()
+	load_map_templates()
+
+	if(config.generate_map)
+		// Map-gen is still very specific to the map, however putting it here should ensure it loads in the correct order.
+		if(using_map.perform_map_generation())
+			using_map.refresh_mining_turfs()
+
 	loadEngine()
 	preloadShelterTemplates()
 	// Mining generation probably should be here too
@@ -23,6 +35,15 @@ SUBSYSTEM_DEF(mapping)
 	if(using_map)
 		loadLateMaps()
 	..()
+
+/datum/controller/subsystem/mapping/proc/load_map_templates()
+	for(var/T in subtypesof(/datum/map_template))
+		var/datum/map_template/template = T
+		if(!(initial(template.mappath))) // If it's missing the actual path its probably a base type or being used for inheritence.
+			continue
+		template = new T()
+		map_templates[template.name] = template
+	return TRUE
 
 /datum/controller/subsystem/mapping/proc/loadEngine()
 	if(!engine_loader)

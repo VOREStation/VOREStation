@@ -42,6 +42,11 @@
 		pulledby = null
 	QDEL_NULL(riding_datum) //VOREStation Add
 
+/atom/movable/vv_edit_var(var_name, var_value)
+	if(GLOB.VVpixelmovement[var_name])			//Pixel movement is not yet implemented, changing this will break everything irreversibly.
+		return FALSE
+	return ..()
+
 /atom/movable/Bump(var/atom/A, yes)
 	if(src.throwing)
 		src.throw_impact(A)
@@ -121,7 +126,7 @@
 				// Special handling of windows, which are dense but block only from some directions
 				if(istype(A, /obj/structure/window))
 					var/obj/structure/window/W = A
-					if (!W.is_full_window() && !(turn(src.last_move, 180) & A.dir))
+					if (!W.is_fulltile() && !(turn(src.last_move, 180) & A.dir))
 						continue
 				// Same thing for (closed) windoors, which have the same problem
 				else if(istype(A, /obj/machinery/door/window) && !(turn(src.last_move, 180) & A.dir))
@@ -291,3 +296,14 @@
 /atom/movable/proc/adjust_rotation(new_rotation)
 	icon_rotation = new_rotation
 	update_transform()
+
+// Called when touching a lava tile.
+/atom/movable/proc/lava_act()
+	fire_act(null, 10000, 1000)
+
+// Called when something changes z-levels.
+/atom/movable/proc/on_z_change(old_z, new_z)
+	GLOB.z_moved_event.raise_event(src, old_z, new_z)
+	for(var/item in src) // Notify contents of Z-transition. This can be overriden IF we know the items contents do not care.
+		var/atom/movable/AM = item
+		AM.on_z_change(old_z, new_z)

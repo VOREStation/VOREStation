@@ -58,7 +58,10 @@ What is the naming convention for planes or layers?
 	#define ATMOS_LAYER			2.4 // Pipe-like atmos machinery that goes on the floor, like filters.
 	#define ABOVE_UTILITY		2.5 // Above stuff like pipes and wires
 #define TURF_PLANE				-45 // Turfs themselves, most flooring
-	#define ABOVE_TURF_LAYER	2.1	// Snow and wallmounted/floormounted equipment
+	#define WATER_FLOOR_LAYER	2.0 // The 'bottom' of water tiles.
+	#define UNDERWATER_LAYER	2.5 // Anything on this layer will render under the water layer.
+	#define WATER_LAYER			3.0 // Layer for water overlays.
+	#define ABOVE_TURF_LAYER	3.1	// Snow and wallmounted/floormounted equipment
 #define DECAL_PLANE				-44 // Permanent decals
 #define DIRTY_PLANE				-43 // Nonpermanent decals
 #define BLOOD_PLANE				-42 // Blood is really dirty, but we can do special stuff if we separate it
@@ -73,8 +76,8 @@ What is the naming convention for planes or layers?
 	#define ABOVE_JUNK_LAYER		3.1 // Things that want to be slightly above common objects
 	#define DOOR_CLOSED_LAYER		3.1	// Doors when closed
 	#define WINDOW_LAYER			3.2	// Windows
-	#define ABOVE_WINDOW_LAYER 		3.25 //Above full tile windows so wall items are clickable
 	#define ON_WINDOW_LAYER			3.3 // Ontop of a window
+	#define ABOVE_WINDOW_LAYER 		3.4 //Above full tile windows so wall items are clickable
 
 // Mob planes
 #define MOB_PLANE				-25

@@ -113,6 +113,7 @@ var/list/name_to_material
 
 	// Placeholder vars for the time being, todo properly integrate windows/light tiles/rods.
 	var/created_window
+	var/created_fulltile_window
 	var/rod_product
 	var/wire_product
 	var/list/window_options = list()
@@ -485,11 +486,12 @@ var/list/name_to_material
 	destruction_desc = "shatters"
 	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 2)
 	created_window = /obj/structure/window/basic
+	created_fulltile_window = /obj/structure/window/basic/full
 	rod_product = /obj/item/stack/material/glass/reinforced
 
 /material/glass/build_windows(var/mob/living/user, var/obj/item/stack/used_stack)
 
-	if(!user || !used_stack || !created_window || !window_options.len)
+	if(!user || !used_stack || !created_window || !created_fulltile_window || !window_options.len)
 		return 0
 
 	if(!user.IsAdvancedToolUser())
@@ -544,6 +546,8 @@ var/list/name_to_material
 	if(choice == "Windoor")
 		if(is_reinforced())
 			build_path = /obj/structure/windoor_assembly/secure
+	else if(choice == "Full Window")
+		build_path = created_fulltile_window
 	else
 		build_path = created_window
 
@@ -575,6 +579,7 @@ var/list/name_to_material
 	composite_material = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT / 2, "glass" = SHEET_MATERIAL_AMOUNT)
 	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 2)
 	created_window = /obj/structure/window/reinforced
+	created_fulltile_window = /obj/structure/window/reinforced/full
 	wire_product = null
 	rod_product = null
 
@@ -588,6 +593,7 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 4)
 	window_options = list("One Direction" = 1, "Full Window" = 4)
 	created_window = /obj/structure/window/phoronbasic
+	created_fulltile_window = /obj/structure/window/phoronbasic/full
 	wire_product = null
 	rod_product = /obj/item/stack/material/glass/phoronrglass
 
@@ -599,6 +605,7 @@ var/list/name_to_material
 	composite_material = list() //todo
 	window_options = list("One Direction" = 1, "Full Window" = 4)
 	created_window = /obj/structure/window/phoronreinforced
+	created_fulltile_window = /obj/structure/window/phoronreinforced/full
 	hardness = 40
 	weight = 30
 	stack_origin_tech = list(TECH_MATERIAL = 2)

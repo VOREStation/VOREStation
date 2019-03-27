@@ -15,7 +15,7 @@
 	S["media_player"]	<< pref.media_player
 
 /datum/category_item/player_setup_item/player_global/media/sanitize_preferences()
-	pref.media_volume = isnum(pref.media_volume) ? Clamp(pref.media_volume, 0, 1) : initial(pref.media_volume)
+	pref.media_volume = isnum(pref.media_volume) ? CLAMP(pref.media_volume, 0, 1) : initial(pref.media_volume)
 	pref.media_player = sanitize_inlist(pref.media_player, list(0, 1, 2), initial(pref.media_player))
 
 /datum/category_item/player_setup_item/player_global/media/content(var/mob/user)
@@ -35,7 +35,7 @@
 		if(CanUseTopic(user))
 			var/value = input("Choose your Jukebox volume (0-100%)", "Jukebox volume", round(pref.media_volume * 100))
 			if(isnum(value))
-				value = Clamp(value, 0, 100)
+				value = CLAMP(value, 0, 100)
 				pref.media_volume = value/100.0
 				if(user.client && user.client.media)
 					user.client.media.update_volume(pref.media_volume)

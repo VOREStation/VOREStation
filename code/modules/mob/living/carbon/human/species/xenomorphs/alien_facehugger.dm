@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
-//TODO: Make these simple_animals
+//TODO: Make these simple_mobs
 /*	//Commented out as reference for future reproduction methods, or addition later if needed. - Mech
 var/const/MIN_IMPREGNATION_TIME = 100 //time it takes to impregnate someone
 var/const/MAX_IMPREGNATION_TIME = 150

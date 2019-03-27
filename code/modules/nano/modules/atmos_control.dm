@@ -48,7 +48,7 @@
 	data["alarms"] = alarms
 	data["map_levels"] = using_map.get_map_levels(T.z)
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "atmos_control.tmpl", src.name, 625, 625, state = state)
 		// adding a template with the key "mapContent" enables the map ui functionality

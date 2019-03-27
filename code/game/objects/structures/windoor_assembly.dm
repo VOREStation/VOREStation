@@ -273,8 +273,8 @@ obj/structure/windoor_assembly/Destroy()
 	name += "[secure ? "secure " : ""]windoor assembly[created_name ? " ([created_name])" : ""]"
 
 //Rotates the windoor assembly clockwise
-/obj/structure/windoor_assembly/verb/revrotate()
-	set name = "Rotate Windoor Assembly"
+/obj/structure/windoor_assembly/verb/rotate_clockwise()
+	set name = "Rotate Windoor Assembly Clockwise"
 	set category = "Object"
 	set src in oview(1)
 

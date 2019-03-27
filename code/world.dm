@@ -19,8 +19,6 @@ var/global/datum/global_init/init = new ()
 	makeDatumRefLists()
 	load_configuration()
 
-	initialize_chemical_reagents()
-	initialize_chemical_reactions()
 	initialize_integrated_circuits_list()
 
 	qdel(src) //we're done
@@ -84,13 +82,6 @@ var/global/datum/global_init/init = new ()
 
 	// This is kinda important. Set up details of what the hell things are made of.
 	populate_material_list()
-
-	// Loads all the pre-made submap templates.
-	load_map_templates()
-
-	if(config.generate_map)
-		if(using_map.perform_map_generation())
-			using_map.refresh_mining_turfs()
 
 	// Create frame types.
 	populate_frame_types()
@@ -164,7 +155,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			var/list/players = list()
 			var/list/admins = list()
 
-			for(var/client/C in clients)
+			for(var/client/C in GLOB.clients)
 				if(C.holder)
 					if(C.holder.fakekey)
 						continue
@@ -182,7 +173,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			var/n = 0
 			var/admins = 0
 
-			for(var/client/C in clients)
+			for(var/client/C in GLOB.clients)
 				if(C.holder)
 					if(C.holder.fakekey)
 						continue	//so stealthmins aren't revealed by the hub
@@ -306,7 +297,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			info["hasbeenrev"] = M.mind ? M.mind.has_been_rev : "No mind"
 			info["stat"] = M.stat
 			info["type"] = M.type
-			if(isliving(M))
+			if(istype(M, /mob/living))
 				var/mob/living/L = M
 				info["damage"] = list2params(list(
 							oxy = L.getOxyLoss(),
@@ -353,7 +344,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		var/client/C
 		var/req_ckey = ckey(input["adminmsg"])
 
-		for(var/client/K in clients)
+		for(var/client/K in GLOB.clients)
 			if(K.ckey == req_ckey)
 				C = K
 				break
@@ -423,20 +414,28 @@ var/world_topic_spam_protect_time = world.timeofday
 			return "Database connection failed or not set up"
 
 
-/world/Reboot(var/reason)
+/world/Reboot(reason = 0, fast_track = FALSE)
 	/*spawn(0)
 		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
 		*/
 
-	processScheduler.stop()
-	Master.Shutdown()	//run SS shutdowns
+	if (reason || fast_track) //special reboot, do none of the normal stuff
+		if (usr)
+			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
+			message_admins("[key_name_admin(usr)] Has requested an immediate world restart via client side debugging tools")
+			world << "<span class='boldannounce'>[key_name_admin(usr)] has requested an immediate world restart via client side debugging tools</span>"
 
-	for(var/client/C in clients)
-		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
-			C << link("byond://[config.server]")
+		else
+			world << "<span class='boldannounce'>Rebooting world immediately due to host request</span>"
+	else
+		processScheduler.stop()
+		Master.Shutdown()	//run SS shutdowns
+		for(var/client/C in GLOB.clients)
+			if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
+				C << link("byond://[config.server]")
 
-	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
-	..(reason)
+	log_world("World rebooted at [time_stamp()]")
+	..()
 
 /hook/startup/proc/loadMode()
 	world.load_mode()
@@ -498,7 +497,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
-				D.associate(directory[ckey])
+				D.associate(GLOB.directory[ckey])
 
 /world/proc/load_mentors()
 	if(config.admin_legacy_system)
@@ -518,7 +517,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
-				D.associate(directory[ckey])
+				D.associate(GLOB.directory[ckey])
 
 /world/proc/update_status()
 	var/s = ""
@@ -665,5 +664,18 @@ proc/establish_old_db_connection()
 		return setup_old_database_connection()
 	else
 		return 1
+
+// Things to do when a new z-level was just made.
+/world/proc/max_z_changed()
+	if(!istype(GLOB.players_by_zlevel, /list))
+		GLOB.players_by_zlevel = new /list(world.maxz, 0)
+	while(GLOB.players_by_zlevel.len < world.maxz)
+		GLOB.players_by_zlevel.len++
+		GLOB.players_by_zlevel[GLOB.players_by_zlevel.len] = list()
+
+// Call this to make a new blank z-level, don't modify maxz directly.
+/world/proc/increment_max_z()
+	maxz++
+	max_z_changed()
 
 #undef FAILED_DB_CONNECTION_CUTOFF

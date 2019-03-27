@@ -12,7 +12,7 @@
 	var/does_skyfall = TRUE
 	var/list/skyfall_levels
 
-/turf/unsimulated/floor/sky/initialize()
+/turf/unsimulated/floor/sky/Initialize()
 	. = ..()
 	if(does_skyfall && !LAZYLEN(skyfall_levels))
 		error("[x],[y],[z], [get_area(src)] doesn't have skyfall_levels defined! Can't skyfall!")

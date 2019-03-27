@@ -41,6 +41,13 @@
 #define Z_LEVEL_AEROSTAT					17
 #define Z_LEVEL_AEROSTAT_SURFACE			18
 
+//Camera networks
+#define NETWORK_TETHER "Tether"
+#define NETWORK_TCOMMS "Telecommunications" //Using different from Polaris one for better name
+#define NETWORK_OUTSIDE "Outside"
+#define NETWORK_EXPLORATION "Exploration"
+#define NETWORK_XENOBIO "Xenobiology"
+
 /datum/map/tether
 	name = "Virgo"
 	full_name = "NSB Adephagia"
@@ -84,17 +91,17 @@
 							NETWORK_COMMAND,
 							NETWORK_ENGINE,
 							NETWORK_ENGINEERING,
-							NETWORK_ENGINEERING_OUTPOST,
-							NETWORK_DEFAULT,
+							NETWORK_EXPLORATION,
+							//NETWORK_DEFAULT,  //Is this even used for anything? Robots show up here, but they show up in ROBOTS network too
 							NETWORK_MEDICAL,
 							NETWORK_MINE,
-							NETWORK_NORTHERN_STAR,
+							NETWORK_OUTSIDE,
 							NETWORK_RESEARCH,
 							NETWORK_RESEARCH_OUTPOST,
 							NETWORK_ROBOTS,
-							NETWORK_PRISON,
 							NETWORK_SECURITY,
-							NETWORK_INTERROGATION
+							NETWORK_TCOMMS,
+							NETWORK_TETHER
 							)
 
 	allowed_spawns = list("Tram Station","Gateway","Cryogenic Storage","Cyborg Storage")
@@ -254,7 +261,7 @@
 	if(activated && isemptylist(frozen_mobs))
 		return
 	activated = 1
-	for(var/mob/living/simple_animal/M in frozen_mobs)
+	for(var/mob/living/simple_mob/M in frozen_mobs)
 		M.life_disabled = 0
 		frozen_mobs -= M
 	frozen_mobs.Cut()

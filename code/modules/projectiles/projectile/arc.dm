@@ -15,7 +15,7 @@
 	var/fired_dir = null		// Which direction was the projectile fired towards. Needed to invert the projectile turning based on if facing left or right.
 	var/obj/effect/projectile_shadow/shadow = null // Visual indicator for the projectile's 'true' position. Needed due to being bound to two dimensions in reality.
 
-/obj/item/projectile/arc/initialize()
+/obj/item/projectile/arc/Initialize()
 	shadow = new(get_turf(src))
 	return ..()
 

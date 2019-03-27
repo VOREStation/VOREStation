@@ -60,7 +60,7 @@
 				number_of_issues++
 
 		for(var/reagent_name in design.chemicals)
-			if(!(reagent_name in chemical_reagents_list))
+			if(!(reagent_name in SSchemistry.chemical_reagents))
 				log_unit_test("The entry [design_type] has invalid chemical type [reagent_name]")
 				number_of_issues++
 

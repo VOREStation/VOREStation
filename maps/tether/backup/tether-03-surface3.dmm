@@ -19917,7 +19917,7 @@
 /turf/simulated/floor/tiled,
 /area/rnd/rdoffice)
 "Ik" = (
-/mob/living/simple_animal/slime/rainbow/kendrick,
+/mob/living/simple_mob/slime/rainbow/kendrick,
 /turf/simulated/floor/tiled,
 /area/rnd/rdoffice)
 "Il" = (

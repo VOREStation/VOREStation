@@ -63,7 +63,7 @@
 // Must not sleep!
 // Other parameters are passed from New (excluding loc), this does not happen if mapload is TRUE
 // Must return an Initialize hint. Defined in code/__defines/subsystems.dm
-/atom/proc/initialize(mapload, ...)
+/atom/proc/Initialize(mapload, ...)
 	if(QDELETED(src))
 		crash_with("GC: -- [type] had initialize() called after qdel() --")
 	if(initialized)
@@ -96,9 +96,6 @@
 	if (istype(user, /mob/living/silicon/ai)) // WHYYYY
 		return 0
 	return -1
-
-/atom/proc/on_reagent_change()
-	return
 
 /atom/proc/Bumped(AM as mob|obj)
 	return
@@ -524,7 +521,7 @@
 	var/atom/L = loc
 	if(!L)
 		return null
-	return L.AllowDrop() ? L : get_turf(L)
+	return L.AllowDrop() ? L : L.drop_location()
 
 /atom/proc/AllowDrop()
 	return FALSE
@@ -534,3 +531,35 @@
 
 /atom/proc/get_nametag_desc(mob/user)
 	return "" //Desc itself is often too long to use
+
+/atom/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION(VV_HK_ATOM_EXPLODE, "Explosion")
+	VV_DROPDOWN_OPTION(VV_HK_ATOM_EMP, "Emp Pulse")
+
+/atom/vv_do_topic(list/href_list)
+	. = ..()
+	IF_VV_OPTION(VV_HK_ATOM_EXPLODE)
+		if(!check_rights(R_DEBUG|R_FUN))
+			return
+		usr.client.cmd_admin_explosion(src)
+		href_list["datumrefresh"] = "\ref[src]"
+	IF_VV_OPTION(VV_HK_ATOM_EMP)
+		if(!check_rights(R_DEBUG|R_FUN))
+			return
+		usr.client.cmd_admin_emp(src)
+		href_list["datumrefresh"] = "\ref[src]"
+
+/atom/vv_get_header()
+	. = ..()
+	var/custom_edit_name
+	if(!isliving(src))
+		custom_edit_name = "<a href='?_src_=vars;datumedit=\ref[src];varnameedit=name'><b>[src]</b></a>"
+	. += {"
+		[custom_edit_name]
+		<br><font size='1'>
+		<a href='?_src_=vars;rotatedatum=\ref[src];rotatedir=left'><<</a>
+		<a href='?_src_=vars;datumedit=\ref[src];varnameedit=dir'>[dir2text(dir)]</a>
+		<a href='?_src_=vars;rotatedatum=\ref[src];rotatedir=right'>>></a>
+		</font>
+		"}

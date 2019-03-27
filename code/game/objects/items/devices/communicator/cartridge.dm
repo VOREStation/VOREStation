@@ -379,7 +379,7 @@
 	..()
 	internal_devices |= new /obj/item/device/halogen_counter(src)
 
-/obj/item/weapon/commcard/engineering/initialize()
+/obj/item/weapon/commcard/engineering/Initialize()
 	internal_data["grid_sensors"] = find_powernet_sensors()
 	internal_data["powernet_target"] = ""
 
@@ -616,7 +616,7 @@
 	internal_data["stat_display_active2"] = null
 	internal_data["stat_display_special"] = null
 
-/obj/item/weapon/commcard/head/initialize()
+/obj/item/weapon/commcard/head/Initialize()
 	// Have to register the commcard with the Radio controller to receive updates to the status displays
 	radio_controller.add_object(src, 1435)
 	..()
@@ -793,7 +793,7 @@
 	internal_devices |= new /obj.item/device/analyzer(src)
 	internal_devices |= new /obj/item/device/halogen_counter(src)
 
-/obj/item/weapon/commcard/head/ce/initialize()
+/obj/item/weapon/commcard/head/ce/Initialize()
 	internal_data["grid_sensors"] = find_powernet_sensors()
 	internal_data["powernet_target"] = ""
 
@@ -904,7 +904,7 @@
 			list("name" = "Shuttle Blast Door Control", "template" = "merc_blast_door_control.tmpl")
 		)
 
-/obj/item/weapon/commcard/mercenary/initialize()
+/obj/item/weapon/commcard/mercenary/Initialize()
 	internal_data["shuttle_door_code"] = "smindicate" // Copied from PDA code
 	internal_data["shuttle_doors"] = find_blast_doors()
 

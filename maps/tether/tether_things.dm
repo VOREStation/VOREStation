@@ -1,8 +1,3 @@
-/obj/structure/window/reinforced/polarized/full
-	dir = SOUTHWEST
-	icon_state = "fwindow"
-	maxhealth = 80
-
 //Special map objects
 /obj/effect/landmark/map_data/virgo3b
     height = 7
@@ -80,7 +75,7 @@
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "stairs"
 	invisibility = 0
-/obj/effect/step_trigger/teleporter/to_underdark/initialize()
+/obj/effect/step_trigger/teleporter/to_underdark/Initialize()
 	. = ..()
 	teleport_x = x
 	teleport_y = y
@@ -93,7 +88,7 @@
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "stairs"
 	invisibility = 0
-/obj/effect/step_trigger/teleporter/from_underdark/initialize()
+/obj/effect/step_trigger/teleporter/from_underdark/Initialize()
 	. = ..()
 	teleport_x = x
 	teleport_y = y
@@ -102,7 +97,7 @@
 		if(Z.name == "Mining Outpost")
 			teleport_z = Z.z
 
-/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/initialize()
+/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/Initialize()
 	planet = planet_virgo3b
 	. = ..()
 
@@ -157,7 +152,7 @@
 
 	var/area/shock_area = /area/tether/surfacebase/tram
 
-/turf/simulated/floor/maglev/initialize()
+/turf/simulated/floor/maglev/Initialize()
 	. = ..()
 	shock_area = locate(shock_area)
 
@@ -197,7 +192,7 @@
 /obj/machinery/smartfridge/chemistry/chemvator/down
 	name = "\improper Smart Chemavator - Lower"
 
-/obj/machinery/smartfridge/chemistry/chemvator/down/initialize()
+/obj/machinery/smartfridge/chemistry/chemvator/down/Initialize()
 	. = ..()
 	var/obj/machinery/smartfridge/chemistry/chemvator/above = locate(/obj/machinery/smartfridge/chemistry/chemvator,get_zstep(src,UP))
 	if(istype(above))
@@ -319,22 +314,22 @@ var/global/list/latejoin_tram   = list()
 	"Beach" 			= new/datum/holodeck_program(/area/houseboat/holodeck/beach),
 	"Desert" 			= new/datum/holodeck_program(/area/houseboat/holodeck/desert,
 													list(
-														'sound/effects/wind/wind_2_1.ogg',
-											 			'sound/effects/wind/wind_2_2.ogg',
-											 			'sound/effects/wind/wind_3_1.ogg',
-											 			'sound/effects/wind/wind_4_1.ogg',
-											 			'sound/effects/wind/wind_4_2.ogg',
-											 			'sound/effects/wind/wind_5_1.ogg'
+														'sound/effects/weather/wind/wind_2_1.ogg',
+											 			'sound/effects/weather/wind/wind_2_2.ogg',
+											 			'sound/effects/weather/wind/wind_3_1.ogg',
+											 			'sound/effects/weather/wind/wind_4_1.ogg',
+											 			'sound/effects/weather/wind/wind_4_2.ogg',
+											 			'sound/effects/weather/wind/wind_5_1.ogg'
 												 		)
 		 											),
 	"Snowfield" 		= new/datum/holodeck_program(/area/houseboat/holodeck/snow,
 													list(
-														'sound/effects/wind/wind_2_1.ogg',
-											 			'sound/effects/wind/wind_2_2.ogg',
-											 			'sound/effects/wind/wind_3_1.ogg',
-											 			'sound/effects/wind/wind_4_1.ogg',
-											 			'sound/effects/wind/wind_4_2.ogg',
-											 			'sound/effects/wind/wind_5_1.ogg'
+														'sound/effects/weather/wind/wind_2_1.ogg',
+											 			'sound/effects/weather/wind/wind_2_2.ogg',
+											 			'sound/effects/weather/wind/wind_3_1.ogg',
+											 			'sound/effects/weather/wind/wind_4_1.ogg',
+											 			'sound/effects/weather/wind/wind_4_2.ogg',
+											 			'sound/effects/weather/wind/wind_5_1.ogg'
 												 		)
 		 											),
 	"Space" 			= new/datum/holodeck_program(/area/houseboat/holodeck/space,
@@ -406,10 +401,10 @@ var/global/list/latejoin_tram   = list()
 	prob_fall = 50
 	guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/hostile/jelly = 3,
-		/mob/living/simple_animal/hostile/giant_spider/hunter = 1,
-		/mob/living/simple_animal/hostile/giant_spider/phorogenic = 1,
-		/mob/living/simple_animal/hostile/giant_spider/lurker = 1,
+		/mob/living/simple_mob/hostile/jelly = 3,
+		/mob/living/simple_mob/animal/giant_spider/hunter = 1,
+		/mob/living/simple_mob/animal/giant_spider/phorogenic = 1,
+		/mob/living/simple_mob/animal/giant_spider/lurker = 1,
 	)
 
 /obj/tether_away_spawner/underdark_hard
@@ -420,9 +415,9 @@ var/global/list/latejoin_tram   = list()
 	prob_fall = 50
 	guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/hostile/corrupthound = 1,
-		/mob/living/simple_animal/hostile/rat = 1,
-		/mob/living/simple_animal/hostile/mimic = 1
+		/mob/living/simple_mob/vore/corrupthound = 1,
+		/mob/living/simple_mob/vore/rat = 1,
+		/mob/living/simple_mob/animal/space/mimic = 1
 	)
 
 /obj/tether_away_spawner/underdark_boss
@@ -433,12 +428,44 @@ var/global/list/latejoin_tram   = list()
 	prob_fall = 100
 	guard = 70
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/hostile/dragon = 1
+		/mob/living/simple_mob/vore/dragon = 1
 	)
 
 // Used at centcomm for the elevator
 /obj/machinery/cryopod/robot/door/dorms
 	spawnpoint_type = /datum/spawnpoint/tram
+
+//Tether-unique network cameras
+/obj/machinery/camera/network/tether
+	network = list(NETWORK_TETHER)
+
+/obj/machinery/camera/network/tcomms
+	network = list(NETWORK_TCOMMS)
+
+/obj/machinery/camera/network/outside
+	network = list(NETWORK_OUTSIDE)
+
+/obj/machinery/camera/network/exploration
+	network = list(NETWORK_EXPLORATION)
+
+/obj/machinery/camera/network/research/xenobio
+	network = list(NETWORK_RESEARCH, NETWORK_XENOBIO)
+
+//Camera monitors
+/obj/machinery/computer/security/xenobio
+	name = "xenobiology camera monitor"
+	desc = "Used to access the xenobiology cell cameras."
+	icon_keyboard = "mining_key"
+	icon_screen = "mining"
+	network = list(NETWORK_XENOBIO)
+	circuit = /obj/item/weapon/circuitboard/security/xenobio
+	light_color = "#F9BBFC"
+
+/obj/item/weapon/circuitboard/security/xenobio
+	name = T_BOARD("xenobiology camera monitor")
+	build_path = /obj/machinery/computer/security/xenobio
+	network = list(NETWORK_XENOBIO)
+	req_access = list()
 
 //
 // ### Wall Machines On Full Windows ###
