@@ -52,21 +52,21 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 // Subsystem init_order, from highest priority to lowest priority
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
-<<<<<<< HEAD
-#define INIT_ORDER_MAPPING	20  // VOREStation Edit
-#define INIT_ORDER_DECALS	16
-#define INIT_ORDER_ATOMS	15
-#define INIT_ORDER_MACHINES 10
-#define INIT_ORDER_SHUTTLES 3
-#define INIT_ORDER_DEFAULT	0
-#define INIT_ORDER_LIGHTING 0
-#define INIT_ORDER_AIR		-1
-#define INIT_ORDER_PLANETS	-4
-#define INIT_ORDER_HOLOMAPS	-5
-#define INIT_ORDER_OVERLAY	-6
-#define INIT_ORDER_XENOARCH	-20
-#define INIT_ORDER_CIRCUIT	-21
-#define INIT_ORDER_AI		-22
+#define INIT_ORDER_MAPPING		20  // VOREStation Edit
+#define INIT_ORDER_DECALS		16
+#define INIT_ORDER_ATOMS		15
+#define INIT_ORDER_MACHINES		10
+#define INIT_ORDER_SHUTTLES		3
+#define INIT_ORDER_TIMER		1
+#define INIT_ORDER_DEFAULT		0
+#define INIT_ORDER_LIGHTING		0
+#define INIT_ORDER_AIR			-1
+#define INIT_ORDER_PLANETS		-4
+#define INIT_ORDER_HOLOMAPS		-5
+#define INIT_ORDER_OVERLAY		-6
+#define INIT_ORDER_XENOARCH		-20
+#define INIT_ORDER_CIRCUIT		-21
+#define INIT_ORDER_AI			-22
 
 
 // Subsystem fire priority, from lowest to highest priority

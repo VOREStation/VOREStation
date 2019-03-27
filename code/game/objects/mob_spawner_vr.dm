@@ -24,11 +24,11 @@
 
 /obj/structure/mob_spawner/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	last_spawn = world.time + rand(0,spawn_delay)
 
 /obj/structure/mob_spawner/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	for(var/mob/living/L in spawned_mobs)
 		L.source_spawner = null
 	spawned_mobs.Cut()

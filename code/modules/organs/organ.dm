@@ -335,13 +335,8 @@ var/list/organ_cache = list()
 	var/obj/item/organ/external/affected = owner.get_organ(parent_organ)
 	if(affected) affected.internal_organs -= src
 
-<<<<<<< HEAD
-	loc = owner.drop_location()
-	processing_objects |= src
-=======
 	loc = get_turf(owner)
 	START_PROCESSING(SSobj, src)
->>>>>>> 2c4b5af... Merge pull request #5677 from kevinz000/PS_PORT_SCHEDULER
 	rejecting = null
 	var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list
 	if(!organ_blood || !organ_blood.data["blood_DNA"])
