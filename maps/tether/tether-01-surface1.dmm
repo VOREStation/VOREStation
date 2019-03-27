@@ -3667,6 +3667,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
+"agb" = (
+/turf/simulated/shuttle/wall/voidcraft/green{
+	hard_corner = 1
+	},
+/area/tether/elevator)
+"agc" = (
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/tether/elevator)
 "agd" = (
 /obj/random/trash_pile,
 /turf/simulated/floor/tiled/techfloor,
@@ -3691,6 +3699,18 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether/surfacebase/mining_main/ore)
+"agh" = (
+/obj/turbolift_map_holder/tether{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/tether/elevator)
+"agi" = (
+/obj/structure/sign/deck/first,
+/turf/simulated/shuttle/wall/voidcraft/green{
+	hard_corner = 1
+	},
+/area/tether/elevator)
 "agj" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
@@ -8222,6 +8242,9 @@
 "ati" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/lower/xenoflora)
+"atj" = (
+/turf/simulated/wall/r_wall,
+/area/tether/surfacebase/atrium_one)
 "atl" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/effect/floor_decal/industrial/outline,
@@ -37802,12 +37825,12 @@ alg
 alg
 aah
 ati
-afs
-afs
-afs
-afs
-afs
-afs
+agb
+agb
+agb
+agb
+agb
+agb
 aBe
 aAu
 azI
@@ -37944,12 +37967,12 @@ aah
 aah
 aah
 ati
-afs
-afx
-afx
-afx
-afz
-afs
+agb
+agc
+agc
+agc
+agh
+agb
 aBe
 aAu
 azI
@@ -38086,12 +38109,12 @@ aah
 aah
 aah
 ati
-afs
-afx
-afx
-afx
-afx
-afs
+agb
+agc
+agc
+agc
+agc
+agb
 aBe
 aci
 azI
@@ -38228,12 +38251,12 @@ aah
 aah
 aah
 ati
-afs
-afx
-afx
-afx
-afx
-afs
+agb
+agc
+agc
+agc
+agc
+agb
 aBe
 aAu
 azI
@@ -38370,12 +38393,12 @@ aah
 aah
 aah
 ati
-afs
-afx
-afx
-afx
-afx
-afs
+agb
+agc
+agc
+agc
+agc
+agb
 aBe
 aAu
 azI
@@ -38511,14 +38534,14 @@ alg
 aah
 aah
 aah
-ati
-afs
-afs
-afx
-afx
-afG
-afs
-aBe
+atj
+agb
+agb
+agc
+agc
+agi
+agb
+atj
 aAu
 azI
 aah

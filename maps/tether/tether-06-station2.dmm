@@ -3442,15 +3442,10 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/virologyaccess)
 "fq" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/turf/simulated/shuttle/wall/voidcraft/green{
+	hard_corner = 1
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/area/tether/elevator)
 "fr" = (
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/structure/window/reinforced{
@@ -3476,9 +3471,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
 "fu" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
-	},
+/turf/simulated/floor/holofloor/tiled/dark,
 /area/tether/elevator)
 "fv" = (
 /obj/effect/floor_decal/techfloor{
@@ -3490,15 +3483,11 @@
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
 "fw" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+/obj/structure/sign/deck2,
+/turf/simulated/shuttle/wall/voidcraft/green{
+	hard_corner = 1
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/area/tether/elevator)
 "fx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/rack{
@@ -3511,7 +3500,8 @@
 /area/engineering/shaft)
 "fy" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -3519,6 +3509,15 @@
 	base_turf = /turf/simulated/mineral/floor/vacuum
 	})
 "fz" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
+"fA" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_r"
@@ -28649,12 +28648,12 @@ fd
 LD
 jP
 kk
-fh
-fh
-fh
-fh
-fh
-fh
+fq
+fq
+fq
+fq
+fq
+fq
 jj
 pj
 kj
@@ -28791,12 +28790,12 @@ fd
 fN
 jQ
 kk
-fh
 fq
+fu
+fu
+fu
+fu
 fq
-fq
-fq
-fh
 jj
 kj
 pO
@@ -28933,12 +28932,12 @@ fd
 jl
 jR
 kk
-fh
 fq
+fu
+fu
+fu
+fu
 fq
-fq
-fq
-fh
 jL
 kj
 pP
@@ -29075,12 +29074,12 @@ fd
 Tj
 jS
 kk
-fh
 fq
+fu
+fu
+fu
+fu
 fq
-fq
-fq
-fh
 oR
 kj
 pQ
@@ -29217,12 +29216,12 @@ aN
 XM
 jS
 kk
-fh
 fq
+fu
+fu
+fu
+fu
 fq
-fq
-fq
-fh
 oS
 kj
 pR
@@ -29359,12 +29358,12 @@ SI
 SI
 RT
 kk
-fh
-fh
 fq
 fq
 fu
-fh
+fu
+fw
+fq
 kj
 kj
 pS
@@ -30102,11 +30101,11 @@ AN
 AN
 Bw
 yY
-fq
-fu
-fu
-fu
-fw
+fy
+fz
+fz
+fz
+fA
 yY
 ac
 ac

@@ -3445,10 +3445,11 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/station/excursion_dock)
 "agu" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/structure/sign/deck1,
+/turf/simulated/shuttle/wall/voidcraft/green{
+	hard_corner = 1
+	},
+/area/tether/elevator)
 "agv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -32437,7 +32438,7 @@ aeO
 aeO
 afy
 afy
-afW
+agu
 aeO
 afC
 afC
@@ -33699,7 +33700,7 @@ aeo
 aaq
 aaq
 aau
-agu
+aeq
 avK
 avN
 aad
@@ -33841,7 +33842,7 @@ amF
 avG
 adB
 aaq
-agu
+aeq
 avK
 avN
 aad
@@ -33983,7 +33984,7 @@ amF
 avG
 adB
 aaq
-agu
+aeq
 avK
 auH
 aad
@@ -34835,7 +34836,7 @@ aaD
 avG
 tIi
 aaq
-agu
+aeq
 avK
 auQ
 aad
@@ -34977,7 +34978,7 @@ amL
 aob
 dbI
 aaq
-agu
+aeq
 avK
 qgR
 aad
@@ -35119,7 +35120,7 @@ aep
 aeu
 aev
 aau
-agu
+aeq
 avK
 qgR
 aad
