@@ -56,11 +56,11 @@
 
 /obj/item/weapon/card/id/guest/Initialize()
 	. = ..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	update_icon()
 
 /obj/item/weapon/card/id/guest/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/weapon/card/id/guest/process()

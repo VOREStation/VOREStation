@@ -67,7 +67,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "cigoff"
 	name = "burnt match"
 	desc = "A match. This one has seen better days."
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 
 //////////////////
 //FINE SMOKABLES//
@@ -177,12 +177,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		T.visible_message(flavor_text)
 		update_icon()
 		set_light(2, 0.25, "#E38F46")
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/smokable/proc/die(var/nomessage = 0)
 	var/turf/T = get_turf(src)
 	set_light(0)
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	if (type_butt)
 		var/obj/item/butt = new type_butt(T)
 		transfer_fingerprints_to(butt)
@@ -215,7 +215,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/smokable/proc/quench()
 	lit = 0
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	update_icon()
 
 /obj/item/clothing/mask/smokable/attack(mob/living/carbon/human/H, mob/user, def_zone)
@@ -541,7 +541,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src], they however burn their finger in the process.</span>")
 
 		set_light(2)
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 	else
 		lit = 0
 		icon_state = "[base_state]"
@@ -552,7 +552,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			user.visible_message("<span class='notice'>[user] quietly shuts off the [src].</span>")
 
 		set_light(0)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	return
 
 

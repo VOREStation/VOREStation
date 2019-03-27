@@ -42,7 +42,7 @@
 	return ..()
 
 /obj/machinery/shield_gen/Destroy()
-	QDEL_NULL_LIST(field)
+	QDEL_LIST_NULL(field)
 	return ..()
 
 /obj/machinery/shield_gen/emag_act(var/remaining_charges, var/mob/user)

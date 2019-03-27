@@ -102,14 +102,14 @@
 	var/low_color = "#FF0000"			// Color the shield will drift towards as health is lowered.  Deep red.
 
 /obj/item/shield_projector/New()
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	if(always_on)
 		create_shields()
 	..()
 
 /obj/item/shield_projector/Destroy()
 	destroy_shields()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/shield_projector/proc/create_shield(var/newloc, var/new_dir)

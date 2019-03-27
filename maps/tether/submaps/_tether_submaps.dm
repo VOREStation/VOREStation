@@ -247,7 +247,7 @@
 		error("Mob spawner at [x],[y],[z] ([get_area(src)]) had no mobs_to_pick_from set on it!")
 		initialized = TRUE
 		return INITIALIZE_HINT_QDEL
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 /obj/tether_away_spawner/process()
 	if(my_mob && my_mob.stat != DEAD)
@@ -288,7 +288,7 @@
 */
 		return
 	else
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 		depleted = TRUE
 		return
 

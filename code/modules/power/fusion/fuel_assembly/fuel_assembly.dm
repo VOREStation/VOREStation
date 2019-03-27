@@ -28,7 +28,7 @@
 		if(material.radioactivity)
 			radioactivity = material.radioactivity
 			desc += " It is warm to the touch."
-			processing_objects += src
+			START_PROCESSING(SSobj, src)
 		if(material.luminescence)
 			set_light(material.luminescence, material.luminescence, material.icon_colour)
 	else
@@ -49,7 +49,7 @@
 		radiation_repository.radiate(src, max(1,CEILING(radioactivity/30, 1)))
 
 /obj/item/weapon/fuel_assembly/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 // Mapper shorthand.

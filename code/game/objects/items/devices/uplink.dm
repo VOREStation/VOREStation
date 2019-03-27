@@ -28,11 +28,11 @@
 		uses = owner.tcrystals
 	else
 		uses = telecrystals
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 
 /obj/item/device/uplink/Destroy()
 	world_uplinks -= src
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/device/uplink/get_item_cost(var/item_type, var/item_cost)

@@ -682,14 +682,18 @@
 				stat("Location:", "([x], [y], [z]) [loc]")
 				stat("CPU:","[world.cpu]")
 				stat("Instances:","[world.contents.len]")
+				stat(null, "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
 
 			if(statpanel("Processes"))
 				if(processScheduler)
 					processScheduler.statProcesses()
 
 			if(statpanel("MC"))
+				stat("Location:", "([x], [y], [z]) [loc]")
 				stat("CPU:","[world.cpu]")
 				stat("Instances:","[world.contents.len]")
+				stat("World Time:", world.time)
+				stat("Real time of day:", REALTIMEOFDAY)
 				stat(null)
 				if(Master)
 					Master.stat_entry()
@@ -703,10 +707,10 @@
 					stat(null)
 					for(var/datum/controller/subsystem/SS in Master.subsystems)
 						SS.stat_entry()
-						
+
 			if(statpanel("Tickets"))
 				GLOB.ahelp_tickets.stat_entry()
-				
+
 		if(listed_turf && client)
 			if(!TurfAdjacent(listed_turf))
 				listed_turf = null

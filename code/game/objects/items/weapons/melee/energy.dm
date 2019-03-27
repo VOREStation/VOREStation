@@ -268,11 +268,11 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	set_light(lrange, lpower, lcolor)
 
 /obj/item/weapon/melee/energy/blade/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/weapon/melee/energy/blade/attack_self(mob/user as mob)

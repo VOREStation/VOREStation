@@ -16,8 +16,8 @@
 #define TICK *world.tick_lag
 #define TICKS *world.tick_lag
 
-#define DS2TICKS(DS) (DS/world.tick_lag)	// Convert deciseconds to ticks
-#define TICKS2DS(T) (T TICKS) 				// Convert ticks to deciseconds
+#define DS2TICKS(DS) ((DS)/world.tick_lag)	// Convert deciseconds to ticks
+#define TICKS2DS(T) ((T) TICKS) 				// Convert ticks to deciseconds
 
 /proc/get_game_time()
 	var/global/time_offset = 0
@@ -140,7 +140,7 @@ var/round_start_time = 0
 		. += CEILING(i*DELTA_CALC, 1)
 		sleep(i*world.tick_lag*DELTA_CALC)
 		i *= 2
-	while (TICK_USAGE > min(TICK_LIMIT_TO_RUN, GLOB.CURRENT_TICKLIMIT))
+	while (TICK_USAGE > min(TICK_LIMIT_TO_RUN, Master.current_ticklimit))
 
 #undef DELTA_CALC
 

@@ -111,7 +111,7 @@
 			if(do_after(user, 30, trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
 				trashman.forceMove(src)
 				trashman.reset_view(src)
-				processing_objects |= src
+				START_PROCESSING(SSobj, src)
 				user.visible_message("<span class='warning'>[hound.name]'s [src.name] groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your [src.name] groans lightly as [trashman] slips inside.</span>")
 				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(hound, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
@@ -142,7 +142,7 @@
 				H.forceMove(src)
 				H.reset_view(src)
 				update_patient()
-				processing_objects |= src
+				START_PROCESSING(SSobj, src)
 				user.visible_message("<span class='warning'>[hound.name]'s [src.name] lights up as [H.name] slips inside.</span>", "<span class='notice'>Your [src] lights up as [H] slips inside. Life support functions engaged.</span>")
 				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(hound, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
@@ -311,7 +311,7 @@
 				else
 					cleaning = 1
 					drain(startdrain)
-					processing_objects |= src
+					START_PROCESSING(SSobj, src)
 					update_patient()
 					if(patient)
 						to_chat(patient, "<span class='danger'>[hound.name]'s [src.name] fills with caustic enzymes around you!</span>")
@@ -632,7 +632,7 @@
 
 	if(!patient && !cleaning) //We think we're done working.
 		if(!update_patient()) //One last try to find someone
-			processing_objects.Remove(src)
+			STOP_PROCESSING(SSobj, src)
 			return
 
 /obj/item/device/dogborg/sleeper/K9 //The K9 portabrig

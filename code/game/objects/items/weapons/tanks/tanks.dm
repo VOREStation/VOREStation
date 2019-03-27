@@ -65,14 +65,14 @@ var/list/global/tank_gauge_cache = list()
 	src.air_contents = new /datum/gas_mixture()
 	src.air_contents.volume = volume //liters
 	src.air_contents.temperature = T20C
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	update_gauge()
 	return
 
 /obj/item/weapon/tank/Destroy()
 	QDEL_NULL(air_contents)
 
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(src.proxyassembly)
 
 	if(istype(loc, /obj/item/device/transfer_valve))

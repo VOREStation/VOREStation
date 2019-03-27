@@ -16,11 +16,11 @@
 
 /obj/item/weapon/deadringer/New()
 	..()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/deadringer/Destroy() //just in case some smartass tries to stay invisible by destroying the watch
 	uncloak()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/weapon/deadringer/dropped()

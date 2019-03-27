@@ -9,14 +9,14 @@
 	desc = "The top of this twisted chunk of metal is faintly stamped with a five pointed star. 'Property of US Army, Pascal B - 1957'."
 
 /obj/item/poi/pascalb/New()
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/poi/pascalb/process()
 	radiation_repository.radiate(src, 5)
 
 /obj/item/poi/pascalb/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/structure/closet/crate/oldreactor
@@ -37,13 +37,13 @@
 	desc = "This broken hunk of machinery looks extremely dangerous."
 
 /obj/item/poi/brokenoldreactor/New()
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/poi/brokenoldreactor/process()
 	radiation_repository.radiate(src, 25)
 
 /obj/item/poi/brokenoldreactor/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 

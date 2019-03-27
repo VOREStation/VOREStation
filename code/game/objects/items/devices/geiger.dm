@@ -17,10 +17,10 @@
 	var/radiation_count = 0
 
 /obj/item/device/geiger/New()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 /obj/item/device/geiger/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/device/geiger/process()

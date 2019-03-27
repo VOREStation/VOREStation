@@ -145,11 +145,11 @@
 /obj/effect/ebeam/reactive
 
 /obj/effect/ebeam/reactive/Initialize()
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/effect/ebeam/reactive/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/effect/ebeam/reactive/on_drawn()
