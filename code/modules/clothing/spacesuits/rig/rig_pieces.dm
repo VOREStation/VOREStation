@@ -18,6 +18,8 @@
 		SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi'
 		)
 	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJ, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI) //vox, diona, and zaddat can't use hardsuits not designed for them
+	max_pressure_protection = null
+	min_pressure_protection = null
 
 /obj/item/clothing/gloves/gauntlets/rig
 	name = "gauntlets"
@@ -59,6 +61,8 @@
 	supporting_limbs = list()
 	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJ, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI) //vox, diona, and zaddat can't use hardsuits not designed for them
 	var/obj/item/weapon/material/knife/tacknife
+	max_pressure_protection = null
+	min_pressure_protection = null
 
 /obj/item/clothing/suit/space/rig/attack_hand(var/mob/living/M)
 	if(tacknife)
