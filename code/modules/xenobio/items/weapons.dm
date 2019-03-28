@@ -73,7 +73,7 @@
 	icon_state = "taserblue"
 	item_state = "taser"
 	projectile_type = /obj/item/projectile/beam/stun/xeno/weak
-	charge_cost = 240
+	charge_cost = 480
 	accuracy = 0 //Same accuracy as a normal Sec taser.
 	description_fluff = "An NT Mk30 NL retrofitted after the events that occurred aboard the NRS Prometheus."
 
