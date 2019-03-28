@@ -290,17 +290,10 @@ var/list/tape_roll_applications = list()
 	if(!lifted && ismob(mover))
 		var/mob/M = mover
 		add_fingerprint(M)
-<<<<<<< HEAD
-		if (!allowed(M))	//only select few learn art of not crumpling the tape
-			M << "<span class='warning'>You are not supposed to go past [src]...</span>"
-			if(M.a_intent == I_HELP && !(istype(M, /mob/living/simple_mob)))
-				return 0
-=======
 		if(!allowed(M))	//only select few learn art of not crumpling the tape
 			to_chat(M, span("warning", "You are not supposed to go past \the [src]..."))
 			if(M.a_intent == I_HELP && !(istype(M, /mob/living/simple_mob)))
 				return FALSE
->>>>>>> 4122c65... Merge pull request #5947 from Neerti/bump_fixes
 			crumple()
 	return ..()
 

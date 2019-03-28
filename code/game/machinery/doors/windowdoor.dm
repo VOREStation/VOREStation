@@ -84,18 +84,10 @@
 		open()
 		addtimer(CALLBACK(src, .proc/close), check_access(null)? 50 : 20)
 
-<<<<<<< HEAD
-/obj/machinery/door/window/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
-		return 1
-	if(get_dir(mover, loc) == turn(dir, 180)) //Make sure looking at appropriate border
-		if(air_group) return 0
-=======
 /obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return TRUE
 	if(get_dir(mover, loc) == turn(dir, 180)) //Make sure looking at appropriate border
->>>>>>> 4122c65... Merge pull request #5947 from Neerti/bump_fixes
 		return !density
 	return TRUE
 

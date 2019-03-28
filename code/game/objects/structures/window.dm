@@ -130,17 +130,7 @@
 /obj/structure/window/blob_act()
 	take_damage(50)
 
-<<<<<<< HEAD
-//TODO: Make full windows a separate type of window.
-//Once a full window, it will always be a full window, so there's no point
-//having the same type for both.
-/obj/structure/window/proc/is_full_window()
-	return (dir == SOUTHWEST || dir == SOUTHEAST || dir == NORTHWEST || dir == NORTHEAST)
-
-/obj/structure/window/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-=======
 /obj/structure/window/CanPass(atom/movable/mover, turf/target)
->>>>>>> 4122c65... Merge pull request #5947 from Neerti/bump_fixes
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return TRUE
 	if(is_fulltile())

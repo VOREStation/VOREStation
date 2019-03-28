@@ -1,10 +1,4 @@
-
-<<<<<<< HEAD
-/obj/structure/table/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
-=======
 /obj/structure/table/CanPass(atom/movable/mover, turf/target)
->>>>>>> 4122c65... Merge pull request #5947 from Neerti/bump_fixes
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
 	if (flipped == 1)

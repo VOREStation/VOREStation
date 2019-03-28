@@ -62,16 +62,9 @@
 		icon_state = "stickyweb2"
 	return ..()
 
-<<<<<<< HEAD
-/obj/effect/spider/stickyweb/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
-	if(istype(mover, /mob/living/simple_mob/animal/giant_spider))
-		return 1
-=======
 /obj/effect/spider/stickyweb/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /mob/living/simple_mob/animal/giant_spider))
 		return TRUE
->>>>>>> 4122c65... Merge pull request #5947 from Neerti/bump_fixes
 	else if(istype(mover, /mob/living))
 		if(prob(50))
 			to_chat(mover, span("warning", "You get stuck in \the [src] for a moment."))
