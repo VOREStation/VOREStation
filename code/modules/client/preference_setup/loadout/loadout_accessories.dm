@@ -243,9 +243,6 @@
 
 /datum/gear/accessory/locket
 	display_name = "locket"
-<<<<<<< HEAD
-	path = /obj/item/clothing/accessory/locket
-=======
 	path = /obj/item/clothing/accessory/locket
 
 /datum/gear/accessory/halfcape
@@ -280,4 +277,3 @@
 /datum/gear/accessory/cowledvest
 	display_name = "cowled vest"
 	path = /obj/item/clothing/accessory/cowledvest
->>>>>>> 3e9624c... Adds the Zaddat Race + Modifies pressure damage calculations (#5869)
