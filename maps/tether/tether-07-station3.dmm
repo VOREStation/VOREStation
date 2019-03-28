@@ -12278,7 +12278,7 @@
 /turf/simulated/shuttle/wall/voidcraft/green{
 	hard_corner = 1
 	},
-/area/hallway/station/upper)
+/area/tether/elevator)
 "to" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -12887,7 +12887,7 @@
 /area/maintenance/station/elevator)
 "ui" = (
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/hallway/station/upper)
+/area/tether/elevator)
 "uj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor/glass/hidden/steel{
@@ -14251,7 +14251,7 @@
 /turf/simulated/shuttle/wall/voidcraft/green{
 	hard_corner = 1
 	},
-/area/hallway/station/upper)
+/area/tether/elevator)
 "ww" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor/glass/hidden/steel{

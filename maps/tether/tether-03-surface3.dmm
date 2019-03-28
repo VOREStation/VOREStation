@@ -11519,7 +11519,7 @@
 /turf/simulated/shuttle/wall/voidcraft/green{
 	hard_corner = 1
 	},
-/area/hallway/lower/third_south)
+/area/tether/elevator)
 "ue" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -11714,7 +11714,7 @@
 /area/rnd/breakroom)
 "ux" = (
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/hallway/lower/third_south)
+/area/tether/elevator)
 "uy" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -12560,7 +12560,7 @@
 /turf/simulated/shuttle/wall/voidcraft/green{
 	hard_corner = 1
 	},
-/area/hallway/lower/third_south)
+/area/tether/elevator)
 "vZ" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1

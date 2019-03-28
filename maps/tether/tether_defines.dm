@@ -113,6 +113,7 @@
 
 	unit_test_exempt_areas = list(
 		/area/tether/surfacebase/outside/outside1,
+		/area/tether/elevator,
 		/area/vacant/vacant_site,
 		/area/vacant/vacant_site/east,
 		/area/crew_quarters/sleep/Dorm_1/holo,
