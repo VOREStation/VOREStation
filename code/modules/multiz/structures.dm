@@ -130,11 +130,7 @@
 	density = 0
 	opacity = 0
 	anchored = 1
-<<<<<<< HEAD
-	layer = 2.4 // Above turf, but they're sort of the floor, so below objects.
-=======
 	flags = ON_BORDER
->>>>>>> ca2dab5... Merge pull request #5924 from Atermonera/stairway_to_heaven
 
 /obj/structure/stairs/initialize()
 	. = ..()
