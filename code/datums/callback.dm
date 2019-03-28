@@ -166,7 +166,7 @@
 // Use sparingly
 /world/proc/PushUsr(mob/M, datum/callback/CB)
 	var/temp = usr
-	testing("PushUsr() in use")
+//	testing("PushUsr() in use")
 	usr = M
 	. = CB.Invoke()
 	usr = temp

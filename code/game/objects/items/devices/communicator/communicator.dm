@@ -82,7 +82,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	all_communicators += src
 	all_communicators = sortAtom(all_communicators)
 	node = get_exonet_node()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	camera = new(src)
 	camera.name = "[src] #[rand(100,999)]"
 	camera.c_tag = camera.name
@@ -234,7 +234,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		cartridge.forceMove(src)
 		to_chat(usr, "<span class='notice'>You slot \the [cartridge] into \the [src].</span>")
 		modules[++modules.len] = list("module" = "External Device", "icon" = "external64", "number" = EXTRTAB)
-		GLOB.nanomanager.update_uis(src) // update all UIs attached to src
+		SSnanoui.update_uis(src) // update all UIs attached to src
 	return
 
 // Proc: attack_self()
@@ -324,7 +324,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 	//Clean up references that might point at us
 	all_communicators -= src
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	listening_objects.Remove(src)
 	QDEL_NULL(camera)
 	QDEL_NULL(exonet)

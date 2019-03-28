@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/goose //hey are these even in the game
+/mob/living/simple_mob/hostile/goose //hey are these even in the game
 	name = "goose"
 	desc = "It looks pretty angry!"
 	tt_desc = "E Branta canadensis" //that iconstate is just a regular goose
@@ -51,10 +51,10 @@
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 
-/mob/living/simple_animal/hostile/goose/set_target()
+/mob/living/simple_mob/hostile/goose/set_target()
 	. = ..()
 	if(.)
 		custom_emote(1,"flaps and honks at [.]!")
 
-/mob/living/simple_animal/hostile/goose/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/hostile/goose/Process_Spacemove(var/check_drift = 0)
 	return 1 // VOREStation Edit No drifting in space!

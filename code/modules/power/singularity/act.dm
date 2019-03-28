@@ -75,7 +75,6 @@
 	return
 
 /obj/machinery/power/supermatter/shard/singularity_act()
-	src.forceMove(null)
 	qdel(src)
 	return 5000
 
@@ -90,7 +89,6 @@
 	SetUniversalState(/datum/universal_state/supermatter_cascade)
 	log_admin("New super singularity made by eating a SM crystal [prints]. Last touched by [src.fingerprintslast].")
 	message_admins("New super singularity made by eating a SM crystal [prints]. Last touched by [src.fingerprintslast].")
-	src.forceMove(null)
 	qdel(src)
 	return 50000
 
@@ -114,6 +112,15 @@
 				O.singularity_act(src, current_size)
 	ChangeTurf(get_base_turf_by_area(src))
 	return 2
+
+/turf/simulated/floor/singularity_pull(S, current_size)
+	if(flooring && current_size >= STAGE_THREE)
+		if(prob(current_size / 2))
+			var/leave_tile = TRUE
+			if(broken || burnt || flooring.flags & TURF_IS_FRAGILE)
+				leave_tile = FALSE
+			playsound(src, 'sound/items/crowbar.ogg', 50, 1)
+			make_plating(leave_tile)
 
 /turf/simulated/wall/singularity_pull(S, current_size)
 

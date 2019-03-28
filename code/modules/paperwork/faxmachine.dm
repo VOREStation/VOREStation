@@ -57,7 +57,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	data["cooldown"] = sendcooldown
 	data["destination"] = destination
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "fax.tmpl", src.name, 500, 500)
 		ui.set_initial_data(data)
@@ -116,7 +116,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	if(href_list["logout"])
 		authenticated = 0
 
-	GLOB.nanomanager.update_uis(src)
+	SSnanoui.update_uis(src)
 
 /obj/machinery/photocopier/faxmachine/proc/sendfax(var/destination)
 	if(stat & (BROKEN|NOPOWER))

@@ -106,6 +106,13 @@
 	check_bans = list("AI", "Cyborg", "Syndicate")
 	cutoff_number = 1
 
+/datum/ghost_query/borer
+	role_name = "Cortical Borer"
+	question = "A cortical borer has just been created on the facility.  Would you like to play as them?"
+	be_special_flag = BE_ALIEN
+	check_bans = list("Syndicate", "Borer")
+	cutoff_number = 1
+
 // Surface stuff.
 /datum/ghost_query/lost_drone
 	role_name = "Lost Drone"

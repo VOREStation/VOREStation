@@ -27,7 +27,7 @@
 		src << "<font color='red'>Only Admins may use this command.</font>"
 		return
 
-	var/client/target = input(src,"Choose somebody to grant access to the server's runtime logs (permissions expire at the end of each round):","Grant Permissions",null) as null|anything in clients
+	var/client/target = input(src,"Choose somebody to grant access to the server's runtime logs (permissions expire at the end of each round):","Grant Permissions",null) as null|anything in GLOB.clients
 	if(!istype(target,/client))
 		src << "<font color='red'>Error: giveruntimelog(): Client not found.</font>"
 		return
@@ -99,7 +99,7 @@
 	set category = "Admin"
 	set name = "Show Server Attack Log"
 	set desc = "Shows today's server attack log."
-	
+
 	to_chat(usr,"This verb doesn't actually do anything.")
 
 	/*
@@ -113,4 +113,3 @@
 	feedback_add_details("admin_verb","SSAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 	*/
-	

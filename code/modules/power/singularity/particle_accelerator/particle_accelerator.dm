@@ -89,24 +89,24 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	return
 
 
-/obj/structure/particle_accelerator/verb/rotate()
+/obj/structure/particle_accelerator/verb/rotate_clockwise()
 	set name = "Rotate Clockwise"
 	set category = "Object"
 	set src in oview(1)
 
 	if (src.anchored || usr:stat)
-		usr << "It is fastened to the floor!"
+		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 270))
 	return 1
 
-/obj/structure/particle_accelerator/verb/rotateccw()
+/obj/structure/particle_accelerator/verb/rotate_counterclockwise()
 	set name = "Rotate Counter Clockwise"
 	set category = "Object"
 	set src in oview(1)
 
 	if (src.anchored || usr:stat)
-		usr << "It is fastened to the floor!"
+		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 90))
 	return 1
@@ -269,24 +269,24 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	var/desc_holder = null
 
 
-/obj/machinery/particle_accelerator/verb/rotate()
+/obj/machinery/particle_accelerator/verb/rotate_clockwise()
 	set name = "Rotate Clockwise"
 	set category = "Object"
 	set src in oview(1)
 
 	if (src.anchored || usr:stat)
-		usr << "It is fastened to the floor!"
+		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 270))
 	return 1
 
-/obj/machinery/particle_accelerator/verb/rotateccw()
+/obj/machinery/particle_accelerator/verb/rotate_counterclockwise()
 	set name = "Rotate Counter-Clockwise"
 	set category = "Object"
 	set src in oview(1)
 
 	if (src.anchored || usr:stat)
-		usr << "It is fastened to the floor!"
+		to_chat(usr, "It is fastened to the floor!")
 		return 0
 	src.set_dir(turn(src.dir, 90))
 	return 1
@@ -333,10 +333,8 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 		else
 	return
 
-
 /obj/machinery/particle_accelerator/proc/update_state()
 	return 0
-
 
 /obj/machinery/particle_accelerator/proc/process_tool_hit(var/obj/item/O, var/mob/user)
 	if(!(O) || !(user))

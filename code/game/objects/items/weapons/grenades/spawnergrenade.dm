@@ -31,19 +31,25 @@
 
 /obj/item/weapon/grenade/spawnergrenade/manhacks
 	name = "manhack delivery grenade"
-	spawner_type = /mob/living/simple_animal/hostile/viscerator
+	spawner_type = /mob/living/simple_mob/mechanical/viscerator
 	deliveryamt = 5
 	origin_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 4, TECH_ILLEGAL = 4)
 
+/obj/item/weapon/grenade/spawnergrenade/manhacks/mercenary
+	spawner_type = /mob/living/simple_mob/mechanical/viscerator/mercenary
+
+/obj/item/weapon/grenade/spawnergrenade/manhacks/raider
+	spawner_type = /mob/living/simple_mob/mechanical/viscerator/raider
+
 /obj/item/weapon/grenade/spawnergrenade/spesscarp
 	name = "carp delivery grenade"
-	spawner_type = /mob/living/simple_animal/hostile/carp
+	spawner_type = /mob/living/simple_mob/animal/space/carp
 	deliveryamt = 5
 	origin_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 4, TECH_ILLEGAL = 4)
 
 /obj/item/weapon/grenade/spawnergrenade/spider
 	name = "spider delivery grenade"
-	spawner_type = /mob/living/simple_animal/hostile/giant_spider/hunter
+	spawner_type = /mob/living/simple_mob/animal/giant_spider/hunter
 	deliveryamt = 3
 	origin_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 4, TECH_ILLEGAL = 4)
 

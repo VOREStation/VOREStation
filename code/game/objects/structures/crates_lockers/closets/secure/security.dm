@@ -121,7 +121,7 @@
 		/obj/item/device/flashlight/maglight,
 		/obj/item/clothing/mask/gas/half)
 
-/obj/structure/closet/secure_closet/hos/initialize()
+/obj/structure/closet/secure_closet/hos/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/security
 	else
@@ -170,7 +170,7 @@
 		/obj/item/device/megaphone,
 		/obj/item/clothing/mask/gas/half)
 
-/obj/structure/closet/secure_closet/warden/initialize()
+/obj/structure/closet/secure_closet/warden/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/security
 	else
@@ -214,7 +214,7 @@
 		/obj/item/clothing/shoes/boots/winter/security,
 		/obj/item/device/flashlight/maglight)
 
-/obj/structure/closet/secure_closet/security/initialize()
+/obj/structure/closet/secure_closet/security/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/security
 	else
@@ -223,22 +223,22 @@
 		starts_with += /obj/item/weapon/storage/backpack/dufflebag/sec
 	return ..()
 
-/obj/structure/closet/secure_closet/security/cargo/initialize()
+/obj/structure/closet/secure_closet/security/cargo/Initialize()
 	starts_with += /obj/item/clothing/accessory/armband/cargo
 	starts_with += /obj/item/device/encryptionkey/headset_cargo
 	return ..()
 
-/obj/structure/closet/secure_closet/security/engine/initialize()
+/obj/structure/closet/secure_closet/security/engine/Initialize()
 	starts_with += /obj/item/clothing/accessory/armband/engine
 	starts_with += /obj/item/device/encryptionkey/headset_eng
 	return ..()
 
-/obj/structure/closet/secure_closet/security/science/initialize()
+/obj/structure/closet/secure_closet/security/science/Initialize()
 	starts_with += /obj/item/clothing/accessory/armband/science
 	starts_with += /obj/item/device/encryptionkey/headset_sci
 	return ..()
 
-/obj/structure/closet/secure_closet/security/med/initialize()
+/obj/structure/closet/secure_closet/security/med/Initialize()
 	starts_with += /obj/item/clothing/accessory/armband/medblue
 	starts_with += /obj/item/device/encryptionkey/headset_med
 	return ..()

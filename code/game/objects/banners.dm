@@ -32,4 +32,4 @@
 /obj/item/weapon/banner/virgov
 	name = "\improper VirGov banner"
 	icon_state = "banner-virgov"
-	desc = "A banner with the symbol of the local government, the Vir Governmental Authority, also known as SifGov."
+	desc = "A banner with the symbol of the local government, the Vir Governmental Authority, also known as VirGov."

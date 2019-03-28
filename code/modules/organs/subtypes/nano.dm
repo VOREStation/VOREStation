@@ -157,7 +157,7 @@
 	icon = 'icons/mob/species/protean/protean.dmi'
 	icon_state = "posi"
 
-/obj/item/device/mmi/digital/posibrain/nano/initialize()
+/obj/item/device/mmi/digital/posibrain/nano/Initialize()
 	. = ..()
 	icon_state = "posi"
 

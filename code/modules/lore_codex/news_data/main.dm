@@ -1,11 +1,9 @@
 /datum/lore/codex/category/main_news // The top-level categories for the news thing
 	name = "Index"
 	data = "Below you'll find a list of articles relevant to the current (as of 2562) political climate, especially concerning the Almach Rim \
-	region. Each is labled by date of publication and title. This list is self-updating, and from time to time the publisher will push new \
+	region. Each is labeled by date of publication and title. This list is self-updating, and from time to time the publisher will push new \
 	articles. You are encouraged to check back frequently."
 	children = list(
-<<<<<<< HEAD
-=======
 		/datum/lore/codex/page/article33,
 		/datum/lore/codex/page/article32,
 		/datum/lore/codex/page/bjornretirement,
@@ -27,7 +25,6 @@
 		/datum/lore/codex/page/article16,
 		/datum/lore/codex/page/article15,
 		/datum/lore/codex/page/article14,
->>>>>>> c68655c... January News Update (#5908)
 		/datum/lore/codex/page/article13,
 		/datum/lore/codex/page/article12,
 		/datum/lore/codex/page/article11,
@@ -79,7 +76,7 @@
 	<br><br>\
 	While neither Grayson Manufacturies nor Nanotrasen have made an official statement, Nanotrasen CEO Albary Moravec has called the \
 	incident \"shocking, if the allegations are to be believed\" and has assured shareholders that Nanotrasen will respond to the \
-	incident with as much force as it warrents.<br><br>Requests for a statement directed to the Board of Trustees or Dr. Harper were \
+	incident with as much force as it warrants.<br><br>Requests for a statement directed to the Board of Trustees or Dr. Harper were \
 	not responded to. Free Traders are recommended to stay clear of the region until the situation resolves itself."
 
 /datum/lore/codex/page/article3
@@ -127,7 +124,7 @@
 
 /datum/lore/codex/page/article8
 	name = "4/1/62 - Almach Cordon Breached by Unknown Organization"
-	data = "Early this morning, SolGov ships assigned to the Almach Cordon around the Rim territories reported that a number of bulk freighters had eluded apprehension and are now at large within the Golden Crescent. Centurio Volkov of the SCG-D Henri Capet reports that the blockade-runners were highly organized and determined, citing several lightly-manned ships left behind to tie up the SolGov forces long enough for the freighters to escape, detonating their reactors when they lost the ability to continue fighting. This resulted in three Fleet casualties and a significant degree of damage to the Henri Capet. The contents and location of the freighters are unknown at this time. In response, eight light-response vessels are being assigned to the Saint Columbia Fleet Base from Jahan's Post and Zhu Que. Residents and traffic officials in Vir, Oasis, and Gavel are to remain alert and notify police if any suspicious or unregistered craft enter their space.\
+	data = "Early this morning, SolGov ships assigned to the Almach Cordon around the Rim territories reported that a number of bulk freighters had eluded apprehension and are now at large within the Golden Crescent. Captain Volkov of the SCG-D Henri Capet reports that the blockade-runners were highly organized and determined, citing several lightly-manned ships left behind to tie up the SolGov forces long enoughfor the freighters to escape, detonating their reactors when they lost the ability to continue fighting. This resulted in three Fleet casualties and a significant degree of damage to the Henri Capet. The contents and location of the freighters are unknown at this time. In response, eight light-response vessels are being assigned to the Saint Columbia Fleet Base from Jahan's Post and Zhu Que. Residents and traffic officials in Vir, Oasis, and Gavel are to remain alert and notify police if any suspicious or unregistered craft enter their space.\
 	<br><br>\
 	A spokesperson for the Association claims that, while they make no attempts to stop aspiring blockade runners, the organization responsible for this most recent attack is unaffiliated with the Association as a whole and deny any knowledge of their identity or motives."
 
@@ -158,8 +155,6 @@
 	data = "As military vessels from the Almach Association continue to enter the Golden Crescent as part of a SolGov initiative to combat the Boiling Point terrorists believed to be hiding in the region, political unrest in the upstream portions of the region continue to grow. Many in the Republic of Saint Columbia, a small upstream nation, have responded to increasing militarization of their local Fleet base by taking to the streets, blocking pedestrian traffic in the capital of Barrueco and shutting down entire industries by destroying or disabling infrastructure. Quote rioter Luisa Tassis, \"we've been sick of the Fleeties squatting in our system and breathing down our neck, and now there's going to be even more of them? No, screw that. If there's going to be a war between the Rim and the Core, I know what side I'd rather be on.\"\
 	<br><br>\
 	Association leaders have refrained from officially supporting the rioters, though many suspect that Association propagandists have sparked the unrest. Solar officials, on the other hand, were quick to offer assurances that the unrest will be calmed long before it begins to affect the Fleet base in system."
-<<<<<<< HEAD
-=======
 
 /datum/lore/codex/page/article14
 	name = "5/25/62 - Harper's Aetolus Remains Shadowed"
@@ -406,4 +401,3 @@
 	Vani Jee is running on a platform of free access to education, Sivian self-determination, and isolationist foreign policy. She has refused to make any strong statements regarding hot-button issues such as the Five Points.\
 	<br><br>\
 	She intends to resume her scheduled tour after a three day break."
->>>>>>> c68655c... January News Update (#5908)

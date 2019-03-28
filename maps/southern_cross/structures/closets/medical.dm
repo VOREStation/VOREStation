@@ -25,7 +25,7 @@
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical,
 		/obj/item/clothing/shoes/white)
 
-/obj/structure/closet/secure_closet/CMO_wardrobe/initialize()
+/obj/structure/closet/secure_closet/CMO_wardrobe/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/medic
 	else

@@ -1,4 +1,4 @@
-/mob/living/simple_animal/fox
+/mob/living/simple_mob/fox
 	name = "fox"
 	desc = "It's a fox. I wonder what it says?"
 	tt_desc = "Vulpes vulpes"
@@ -39,7 +39,7 @@
 	var/turns_since_scan = 0
 	var/mob/flee_target
 
-/mob/living/simple_animal/fox/init_vore()
+/mob/living/simple_mob/fox/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
@@ -62,25 +62,25 @@
 		"With a loud glorp, the stomach spills more acids onto you.")
 
 // All them complicated fox procedures.
-/mob/living/simple_animal/fox/Life()
+/mob/living/simple_mob/fox/Life()
 	. = ..()
 	if(!.) return
 
 	handle_flee_target()
 
-/mob/living/simple_animal/fox/PunchTarget()
-	if(istype(target_mob,/mob/living/simple_animal/mouse))
-		var/mob/living/simple_animal/mouse/mouse = target_mob
+/mob/living/simple_mob/fox/PunchTarget()
+	if(istype(target_mob,/mob/living/simple_mob/mouse))
+		var/mob/living/simple_mob/mouse/mouse = target_mob
 		mouse.splat()
 		visible_emote(pick("bites \the [mouse]!","pounces on \the [mouse]!","chomps on \the [mouse]!"))
 	else
 		..()
 
-/mob/living/simple_animal/fox/Found(var/atom/found_atom)
-	if(istype(found_atom,/mob/living/simple_animal/mouse))
+/mob/living/simple_mob/fox/Found(var/atom/found_atom)
+	if(istype(found_atom,/mob/living/simple_mob/mouse))
 		return found_atom
 
-/mob/living/simple_animal/fox/proc/handle_flee_target()
+/mob/living/simple_mob/fox/proc/handle_flee_target()
 	//see if we should stop fleeing
 	if (flee_target && !(flee_target in ListTargets(view_range)))
 		flee_target = null
@@ -93,16 +93,16 @@
 		stop_automated_movement = 1
 		walk_away(src, flee_target, 7, 2)
 
-/mob/living/simple_animal/fox/react_to_attack(var/atom/A)
+/mob/living/simple_mob/fox/react_to_attack(var/atom/A)
 	if(A == src) return
 	flee_target = A
 	turns_since_scan = 5
 
-/mob/living/simple_animal/fox/ex_act()
+/mob/living/simple_mob/fox/ex_act()
 	. = ..()
 	react_to_attack(src.loc)
 
-/mob/living/simple_animal/fox/MouseDrop(atom/over_object)
+/mob/living/simple_mob/fox/MouseDrop(atom/over_object)
 	var/mob/living/carbon/H = over_object
 	if(!istype(H) || !Adjacent(H)) return ..()
 
@@ -112,17 +112,17 @@
 	else
 		return ..()
 
-/mob/living/simple_animal/fox/get_scooped(var/mob/living/carbon/grabber)
+/mob/living/simple_mob/fox/get_scooped(var/mob/living/carbon/grabber)
 	if (stat >= DEAD)
 		return //since the holder icon looks like a living cat
 	..()
 
 //Basic friend AI
-/mob/living/simple_animal/fox/fluff
+/mob/living/simple_mob/fox/fluff
 	var/mob/living/carbon/human/friend
 	var/befriend_job = null
 
-/mob/living/simple_animal/fox/fluff/Life()
+/mob/living/simple_mob/fox/fluff/Life()
 	. = ..()
 	if(!. || ai_inactive || !friend) return
 
@@ -149,7 +149,7 @@
 			var/verb = pick("yaps", "howls", "whines")
 			audible_emote("[verb] anxiously.")
 
-/mob/living/simple_animal/fox/fluff/verb/friend()
+/mob/living/simple_mob/fox/fluff/verb/friend()
 	set name = "Become Friends"
 	set category = "IC"
 	set src in view(1)
@@ -173,13 +173,13 @@
 	desc = "The fox doesn't say a goddamn thing, now."
 
 //Captain fox
-/mob/living/simple_animal/fox/fluff/Renault
+/mob/living/simple_mob/fox/fluff/Renault
 	name = "Renault"
 	desc = "Renault, the Colony Director's trustworthy fox. I wonder what it says?"
 	tt_desc = "Vulpes nobilis"
 	befriend_job = "Colony Director"
 
-/mob/living/simple_animal/fox/fluff/Renault/init_vore()
+/mob/living/simple_mob/fox/fluff/Renault/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
@@ -201,7 +201,7 @@
 		"A thick glob of acids drip down from above, adding to the pool of caustic fluids in Renault's belly.",
 		"There's a loud gurgle as the stomach declares the intent to make you a part of Renault.")
 
-/mob/living/simple_animal/fox/syndicate
+/mob/living/simple_mob/fox/syndicate
 	name = "syndi-fox"
 	desc = "It's a DASTARDLY fox! The horror! Call the shuttle!"
 	tt_desc = "Vulpes malus"

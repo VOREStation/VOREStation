@@ -118,7 +118,7 @@
 /area/awaymission/challenge/start)
 "ax" = (
 /obj/effect/decal/cleanable/oil,
-/mob/living/simple_animal/hostile/syndicate,
+/mob/living/simple_mob/hostile/syndicate,
 /turf/simulated/floor/plating,
 /area/awaymission/challenge/start)
 "ay" = (
@@ -858,7 +858,7 @@
 	},
 /area/awaymission/challenge/end)
 "ce" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/space{
+/mob/living/simple_mob/hostile/syndicate/ranged/space{
 	name = "Syndicate Officer"
 	},
 /turf/simulated/floor{
@@ -883,7 +883,7 @@
 /area/awaymission/challenge/end)
 "ch" = (
 /obj/structure/stool/bed/chair/comfy/black,
-/mob/living/simple_animal/hostile/syndicate{
+/mob/living/simple_mob/hostile/syndicate{
 	name = "Syndicate Commander"
 	},
 /turf/simulated/floor/carpet,
@@ -904,7 +904,7 @@
 /turf/simulated/floor/wood,
 /area/awaymission/challenge/end)
 "cl" = (
-/mob/living/simple_animal/hostile/syndicate/melee,
+/mob/living/simple_mob/hostile/syndicate/melee,
 /turf/simulated/floor{
 	icon_state = "dark"
 	},
@@ -961,7 +961,7 @@
 /turf/simulated/floor/wood,
 /area/awaymission/challenge/end)
 "cu" = (
-/mob/living/simple_animal/hostile/syndicate/melee,
+/mob/living/simple_mob/hostile/syndicate/melee,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor4"
 	},
@@ -1035,7 +1035,7 @@
 /turf/simulated/floor/bluegrid,
 /area/awaymission/challenge/end)
 "cF" = (
-/mob/living/simple_animal/hostile/syndicate/ranged,
+/mob/living/simple_mob/hostile/syndicate/ranged,
 /turf/simulated/floor{
 	icon_state = "dark"
 	},
@@ -1381,7 +1381,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/mob/living/simple_animal/hostile/syndicate{
+/mob/living/simple_mob/hostile/syndicate{
 	name = "Syndicate Technician"
 	},
 /turf/simulated/floor{

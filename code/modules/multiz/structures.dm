@@ -17,7 +17,7 @@
 
 	var/const/climb_time = 2 SECONDS
 
-/obj/structure/ladder/initialize()
+/obj/structure/ladder/Initialize()
 	. = ..()
 	// the upper will connect to the lower
 	if(allowed_directions & DOWN) //we only want to do the top one, as it will initialize the ones before it.
@@ -132,7 +132,7 @@
 	anchored = 1
 	layer = 2.4 // Above turf, but they're sort of the floor, so below objects.
 
-/obj/structure/stairs/initialize()
+/obj/structure/stairs/Initialize()
 	. = ..()
 	for(var/turf/turf in locs)
 		var/turf/simulated/open/above = GetAbove(turf)

@@ -20,7 +20,7 @@
 	maxcharge = 2400
 	charge_amount = 20
 
-/obj/item/weapon/cell/device/weapon/empty/initialize()
+/obj/item/weapon/cell/device/weapon/empty/Initialize()
 	. = ..()
 	charge = 0
 	update_icon()
