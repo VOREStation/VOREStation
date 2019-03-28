@@ -23,7 +23,7 @@
 	var/list/raw_images
 	var/last_status
 
-/obj/item/clothing/head/pilot/initialize()
+/obj/item/clothing/head/pilot/Initialize()
 	. = ..()
 
 	images = list()

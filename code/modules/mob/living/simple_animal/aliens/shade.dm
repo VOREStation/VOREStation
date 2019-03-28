@@ -1,4 +1,4 @@
-/mob/living/simple_animal/shade
+/mob/living/simple_mob/shade
 	name = "Shade"
 	real_name = "Shade"
 	desc = "A bound spirit"
@@ -40,17 +40,17 @@
 
 	loot_list = list(/obj/item/weapon/ectoplasm = 100)
 
-/mob/living/simple_animal/shade/cultify()
+/mob/living/simple_mob/shade/cultify()
 	return
 
-/mob/living/simple_animal/shade/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_mob/shade/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/device/soulstone))
 		var/obj/item/device/soulstone/S = O;
 		S.transfer_soul("SHADE", src, user)
 		return
 	..()
 
-/mob/living/simple_animal/shade/death()
+/mob/living/simple_mob/shade/death()
 	..()
 	for(var/mob/M in viewers(src, null))
 		if((M.client && !( M.blinded )))

@@ -125,7 +125,7 @@
 			// The value element is the actual data, and can take any form necessary for the template
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -261,7 +261,7 @@
 			notehtml = note
 
 	if(href_list["switch_template"])
-		var/datum/nanoui/ui = GLOB.nanomanager.get_open_ui(usr, src, "main")
+		var/datum/nanoui/ui = SSnanoui.get_open_ui(usr, src, "main")
 		if(ui)
 			ui.add_template("Body", href_list["switch_template"])
 
@@ -276,5 +276,5 @@
 	if(href_list["cartridge_topic"] && cartridge) // Has to have a cartridge to perform these functions
 		cartridge.Topic(href, href_list)
 
-	GLOB.nanomanager.update_uis(src)
+	SSnanoui.update_uis(src)
 	add_fingerprint(usr)

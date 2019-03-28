@@ -94,7 +94,7 @@
 	if(href_list["change_supplied_law_position"])
 		var/new_position = input(usr, "Enter new supplied law position between 1 and [MAX_SUPPLIED_LAW_NUMBER], inclusive. Inherent laws at the same index as a supplied law will not be stated.", "Law Position", supplied_law_position) as num|null
 		if(isnum(new_position) && can_still_topic())
-			supplied_law_position = Clamp(new_position, 1, MAX_SUPPLIED_LAW_NUMBER)
+			supplied_law_position = CLAMP(new_position, 1, MAX_SUPPLIED_LAW_NUMBER)
 		return 1
 
 	if(href_list["edit_law"])
@@ -176,7 +176,7 @@
 	data["channels"] = channels
 	data["law_sets"] = package_multiple_laws(data["isAdmin"] ? admin_laws : player_laws)
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "law_manager.tmpl", sanitize("[src] - [owner]"), 800, is_malf(user) ? 600 : 400, state = state)
 		ui.set_initial_data(data)

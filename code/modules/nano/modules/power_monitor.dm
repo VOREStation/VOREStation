@@ -28,7 +28,7 @@
 		data["focus"] = focus.return_reading_data()
 	data["map_levels"] = using_map.get_map_levels(T.z)
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "power_monitor.tmpl", "Power Monitoring Console", 800, 500, state = state)
 		// adding a template with the key "mapContent" enables the map ui functionality

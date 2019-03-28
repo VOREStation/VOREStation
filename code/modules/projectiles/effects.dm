@@ -289,3 +289,24 @@
 	light_range = 2
 	light_power = -2
 	light_color = "#FFFFFF"
+
+//----------------------------
+// Magnetohydronamic Howitzer
+//----------------------------
+/obj/effect/projectile/tungsten/tracer
+	icon_state = "mhd_laser"
+	light_range = 4
+	light_power = 3
+	light_color = "#3300ff"
+
+/obj/effect/projectile/tungsten/muzzle
+	icon_state = "muzzle_mhd_laser"
+	light_range = 4
+	light_power = 3
+	light_color = "#3300ff"
+
+/obj/effect/projectile/tungsten/impact
+	icon_state = "impact_mhd_laser"
+	light_range = 4
+	light_power = 3
+	light_color = "#3300ff"

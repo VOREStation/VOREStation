@@ -22,11 +22,11 @@
 
 /obj/item/weapon/spell/energy_siphon/New()
 	..()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/spell/energy_siphon/Destroy()
 	stop_siphoning()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/weapon/spell/energy_siphon/process()

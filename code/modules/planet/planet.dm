@@ -14,7 +14,7 @@
 	var/sun_position = 0 // 0 means midnight, 1 means noon.
 	var/list/sun = list("range","brightness","color","lum_r","lum_g","lum_b")
 	var/list/datum/lighting_corner/sunlit_corners = list()
-	var/expected_z_levels = list()
+	var/list/expected_z_levels = list()
 
 	var/turf/unsimulated/wall/planetary/planetary_wall_type = /turf/unsimulated/wall/planetary
 
@@ -45,7 +45,7 @@
 			))
 	update_sun()
 
-/datum/planet/proc/process(last_fire)
+/datum/planet/process(last_fire)
 	if(current_time)
 		var/difference = world.time - last_fire
 		current_time = current_time.add_seconds((difference / 10) * PLANET_TIME_MODIFIER)

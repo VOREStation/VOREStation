@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/panther
+/mob/living/simple_mob/hostile/panther
 	name = "panther"
 	desc = "Runtime's larger, less cuddly cousin."
 	tt_desc = "Panthera pardus"
@@ -34,7 +34,7 @@
 	mount_offset_y = 12
 
 // Activate Noms!
-/mob/living/simple_animal/hostile/panther
+/mob/living/simple_mob/hostile/panther
 	vore_active = 1
 	vore_capacity = 2
 	vore_pounce_chance = 10

@@ -31,7 +31,7 @@
 	maptext_height = 26
 	maptext_width = 32
 
-/obj/machinery/door_timer/initialize()
+/obj/machinery/door_timer/Initialize()
 	..()
 	//Doors need to go first, and can't rely on init order, so come back to me.
 	return INITIALIZE_HINT_LATELOAD

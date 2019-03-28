@@ -104,10 +104,10 @@
 		return
 
 	if(!istype(target))
-		if(istype(target, /mob/living/simple_animal/mouse))
+		if(istype(target, /mob/living/simple_mob/animal/passive/mouse))
 			new /obj/effect/decal/remains/mouse(get_turf(target))
 			qdel(target)
-		else if(istype(target, /mob/living/simple_animal/lizard))
+		else if(istype(target, /mob/living/simple_mob/animal/passive/lizard))
 			new /obj/effect/decal/remains/lizard(get_turf(target))
 			qdel(target)
 		return
@@ -437,7 +437,7 @@
 
 		for(var/x=1;x<=additional_chems;x++)
 
-			var/new_chem = pick(chemical_reagents_list)
+			var/new_chem = pick(SSchemistry.chemical_reagents)
 			if(new_chem in banned_chems)
 				continue
 			banned_chems += new_chem

@@ -16,7 +16,7 @@
 
 /obj/singularity/narsie/large/exit/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 /obj/singularity/narsie/large/exit/update_icon()
 	overlays = 0

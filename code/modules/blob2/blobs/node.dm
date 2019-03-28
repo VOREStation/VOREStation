@@ -12,12 +12,12 @@ var/list/blob_nodes = list()
 /obj/structure/blob/node/New(var/newloc)
 	..()
 	blob_nodes += src
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	update_icon()
 
 /obj/structure/blob/node/Destroy()
 	blob_nodes -= src
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/structure/blob/node/update_icon()

@@ -83,9 +83,9 @@
 					to_chat(user, "<span class='notice'>\The [target.name] added to cargo compartment slot: [delivery_tag].</span>")
 				update_patient()
 			return
-
-		if(istype(target, /mob/living/simple_animal/mouse)) //Edible mice, dead or alive whatever. Mostly for carcass picking you cruel bastard :v
-			var/mob/living/simple_animal/trashmouse = target
+/* //VORESTATION AI TEMPORARY REMOVAL
+		if(istype(target, /mob/living/simple_mob/mouse)) //Edible mice, dead or alive whatever. Mostly for carcass picking you cruel bastard :v
+			var/mob/living/simple_mob/trashmouse = target
 			user.visible_message("<span class='warning'>[hound.name] is ingesting [trashmouse] into their [src.name].</span>", "<span class='notice'>You start ingesting [trashmouse] into your [src.name]...</span>")
 			if(do_after(user, 30, trashmouse) && length(contents) < max_item_count)
 				trashmouse.forceMove(src)
@@ -98,7 +98,7 @@
 					to_chat(user, "<span class='notice'>\The [trashmouse] added to cargo compartment slot: [delivery_tag].</span>")
 				update_patient()
 			return
-
+*/
 		else if(ishuman(target))
 			var/mob/living/carbon/human/trashman = target
 			if(patient)
@@ -111,7 +111,7 @@
 			if(do_after(user, 30, trashman) && !patient && !trashman.buckled && length(contents) < max_item_count)
 				trashman.forceMove(src)
 				trashman.reset_view(src)
-				processing_objects |= src
+				START_PROCESSING(SSobj, src)
 				user.visible_message("<span class='warning'>[hound.name]'s [src.name] groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your [src.name] groans lightly as [trashman] slips inside.</span>")
 				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(hound, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
@@ -142,7 +142,7 @@
 				H.forceMove(src)
 				H.reset_view(src)
 				update_patient()
-				processing_objects |= src
+				START_PROCESSING(SSobj, src)
 				user.visible_message("<span class='warning'>[hound.name]'s [src.name] lights up as [H.name] slips inside.</span>", "<span class='notice'>Your [src] lights up as [H] slips inside. Life support functions engaged.</span>")
 				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(hound, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
@@ -184,12 +184,12 @@
 		dat += "<h3>Injector</h3>"
 		if(patient)// && patient.health > min_health) //Not necessary, leave the buttons on, but the feedback during injection will give more information.
 			for(var/re in injection_chems)
-				var/datum/reagent/C = chemical_reagents_list[re]
+				var/datum/reagent/C = SSchemistry.chemical_reagents[re]
 				if(C)
 					dat += "<A href='?src=\ref[src];inject=[C.id]'>Inject [C.name]</A><BR>"
 		else
 			for(var/re in injection_chems)
-				var/datum/reagent/C = chemical_reagents_list[re]
+				var/datum/reagent/C = SSchemistry.chemical_reagents[re]
 				if(C)
 					dat += "<span class='linkOff'>Inject [C.name]</span><BR>"
 
@@ -311,7 +311,7 @@
 				else
 					cleaning = 1
 					drain(startdrain)
-					processing_objects |= src
+					START_PROCESSING(SSobj, src)
 					update_patient()
 					if(patient)
 						to_chat(patient, "<span class='danger'>[hound.name]'s [src.name] fills with caustic enzymes around you!</span>")
@@ -393,7 +393,7 @@
 				patient.reagents.add_reagent(chem, inject_amount)
 				drain(750) //-750 charge per injection
 			var/units = round(patient.reagents.get_reagent_amount(chem))
-			to_chat(hound, "<span class='notice'>Injecting [units] unit\s of [chemical_reagents_list[chem]] into occupant.</span>") //If they were immersed, the reagents wouldn't leave with them.
+			to_chat(hound, "<span class='notice'>Injecting [units] unit\s of [SSchemistry.chemical_reagents[chem]] into occupant.</span>") //If they were immersed, the reagents wouldn't leave with them.
 
 //For if the dogborg's existing patient uh, doesn't make it.
 /obj/item/device/dogborg/sleeper/proc/update_patient()
@@ -620,19 +620,20 @@
 		clean_cycle()
 		return
 
-	if(patient)	//We're caring for the patient. Medical emergency! Or endo scene.
+	if(patient && !compactor) //We're caring for the patient. Medical emergency! Or endo scene.
 		update_patient()
 		if(patient.health < 0)
 			patient.adjustOxyLoss(-1) //Heal some oxygen damage if they're in critical condition
 			patient.updatehealth()
+			drain()
 		patient.AdjustStunned(-4)
 		patient.AdjustWeakened(-4)
-		drain()
+		drain(1)
 		return
 
 	if(!patient && !cleaning) //We think we're done working.
 		if(!update_patient()) //One last try to find someone
-			processing_objects.Remove(src)
+			STOP_PROCESSING(SSobj, src)
 			return
 
 /obj/item/device/dogborg/sleeper/K9 //The K9 portabrig

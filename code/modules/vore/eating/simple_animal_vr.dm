@@ -1,19 +1,19 @@
 ///////////////////// Simple Animal /////////////////////
-/mob/living/simple_animal
+/mob/living/simple_mob
 	var/swallowTime = 30 				//How long it takes to eat its prey in 1/10 of a second. The default is 3 seconds.
 	var/list/prey_excludes = list()		//For excluding people from being eaten.
 
 //
-// Simple nom proc for if you get ckey'd into a simple_animal mob! Avoids grabs.
+// Simple nom proc for if you get ckey'd into a simple_mob mob! Avoids grabs.
 //
-/mob/living/simple_animal/proc/animal_nom(var/mob/living/T in living_mobs(1))
+/mob/living/simple_mob/proc/animal_nom(var/mob/living/T in living_mobs(1))
 	set name = "Animal Nom"
 	set category = "IC"
 	set desc = "Since you can't grab, you get a verb!"
 
 	if (stat != CONSCIOUS)
 		return
-	if (istype(src,/mob/living/simple_animal/mouse) && T.ckey == null)
+	if (istype(src,/mob/living/simple_mob/mouse) && T.ckey == null)
 		return
 	if (client && IsAdvancedToolUser())
 		to_chat(src,"<span class='warning'>Put your hands to good use instead!</span>")
@@ -25,7 +25,8 @@
 //
 // Simple proc for animals to have their digestion toggled on/off externally
 //
-/mob/living/simple_animal/verb/toggle_digestion()
+
+/mob/living/simple_mob/verb/toggle_digestion()
 	set name = "Toggle Animal's Digestion"
 	set desc = "Enables digestion on this mob for 20 minutes."
 	set category = "OOC"
@@ -34,7 +35,7 @@
 	var/mob/living/carbon/human/user = usr
 	if(!istype(user) || user.stat) return
 
-	if(retaliate || (hostile && faction != user.faction))
+	if(ai_holder.retaliate || (ai_holder.hostile && faction != user.faction))
 		user << "<span class='warning'>This predator isn't friendly, and doesn't give a shit about your opinions of it digesting you.</span>"
 		return
 	if(vore_selected.digest_mode == DM_HOLD)
@@ -48,7 +49,8 @@
 		if(confirm == "Disable")
 			vore_selected.digest_mode = DM_HOLD
 
-/mob/living/simple_animal/attackby(var/obj/item/O, var/mob/user)
+/*
+/mob/living/simple_mob/attackby(var/obj/item/O, var/mob/user)
 	if (istype(O, /obj/item/weapon/newspaper) && !(ckey || (hostile && faction != user.faction)) && isturf(user.loc))
 		if (retaliate && prob(vore_pounce_chance/2)) // This is a gamble!
 			user.Weaken(5) //They get tackled anyway whether they're edible or not.
@@ -72,5 +74,5 @@
 						if(src && L)
 							prey_excludes -= L
 	else
-		..()
+		..() */ //VORESTATION AI TEMPORARY REMOVAL
 

@@ -27,9 +27,6 @@ proc/listgetindex(var/list/list,index)
 			return list[index]
 	return
 
-proc/islist(list/list)
-	return(istype(list))
-
 //Return either pick(list) or null if list is not of type /list or is empty
 proc/safepick(list/list)
 	if(!islist(list) || !list.len)
@@ -250,7 +247,7 @@ proc/listclearnulls(list/list)
 		else
 			L[key] = temp[key]
 
-			
+
 //Mergesort: divides up the list into halves to begin the sort
 /proc/sortKey(var/list/client/L, var/order = 1)
 	if(isnull(L) || L.len < 2)
@@ -753,3 +750,9 @@ proc/dd_sortedTextList(list/incoming)
 	for(var/i = 1 to l.len)
 		if(islist(.[i]))
 			.[i] = .(.[i])
+
+//Return a list with no duplicate entries
+/proc/uniqueList(list/L)
+	. = list()
+	for(var/i in L)
+		. |= i
