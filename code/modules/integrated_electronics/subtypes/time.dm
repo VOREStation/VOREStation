@@ -58,7 +58,6 @@
 	var/do_tick = get_pin_data(IC_INPUT, 1)
 	if(do_tick && !is_running)
 		is_running = TRUE
-		START_PROCESSING(SSobj, src)
 		tick()
 	else if(!do_tick && is_running)
 		is_running = FALSE
