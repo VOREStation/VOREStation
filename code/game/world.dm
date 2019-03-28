@@ -1,14 +1,15 @@
-
 #define RECOMMENDED_VERSION 501
 /world/New()
 	world.log << "Map Loading Complete"
 	//logs
+	//VOREStation Edit Start
 	log_path += time2text(world.realtime, "YYYY/MM-Month/DD-Day/round-hh-mm-ss")
-	diary = file("[log_path].log")
-	href_logfile = file("[log_path]-hrefs.htm")
-	error_log = file("[log_path]-error.log")
-	debug_log = file("[log_path]-debug.log")
-	debug_log << "[log_end]\n[log_end]\nStarting up. [time_stamp()][log_end]\n---------------------[log_end]"
+	diary = start_log("[log_path].log")
+	href_logfile = start_log("[log_path]-hrefs.htm")
+	error_log = start_log("[log_path]-error.log")
+	debug_log = start_log("[log_path]-debug.log")
+	//VOREStation Edit End
+
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)
@@ -20,8 +21,9 @@
 		// dumb and hardcoded but I don't care~
 		config.server_name += " #[(world.port % 1000) / 100]"
 
-	if(config && config.log_runtime)
-		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
+	// TODO - Figure out what this is. Can you assign to world.log?
+	// if(config && config.log_runtime)
+	// 	log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
 	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
 
@@ -54,6 +56,9 @@
 	// Create robolimbs for chargen.
 	populate_robolimb_list()
 
+	//Must be done now, otherwise ZAS zones and lighting overlays need to be recreated.
+	createRandomZlevel()
+	
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
 
@@ -79,7 +84,7 @@ var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
 
 /world/Topic(T, addr, master, key)
-	debug_log << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
+	log_topic("\"[T]\", from:[addr], master:[master], key:[key]")
 
 	if (T == "ping")
 		var/x = 1
@@ -256,7 +261,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			info["hasbeenrev"] = M.mind ? M.mind.has_been_rev : "No mind"
 			info["stat"] = M.stat
 			info["type"] = M.type
-			if(isliving(M))
+			if(istype(M, /mob/living))
 				var/mob/living/L = M
 				info["damage"] = list2params(list(
 							oxy = L.getOxyLoss(),
@@ -377,6 +382,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	/*spawn(0)
 		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
 		*/
+
 	if (reason || fast_track) //special reboot, do none of the normal stuff
 		if (usr)
 			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
@@ -625,7 +631,7 @@ proc/establish_old_db_connection()
 
 // Things to do when a new z-level was just made.
 /world/proc/max_z_changed()
-	if(!islist(GLOB.players_by_zlevel))
+	if(!istype(GLOB.players_by_zlevel, /list))
 		GLOB.players_by_zlevel = new /list(world.maxz, 0)
 	while(GLOB.players_by_zlevel.len < world.maxz)
 		GLOB.players_by_zlevel.len++

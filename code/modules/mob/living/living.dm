@@ -96,34 +96,9 @@ default behaviour is:
 					to_chat(src, "<span class='warning'>[tmob] is restrained, you cannot push past</span>")
 				now_pushing = 0
 				return
-<<<<<<< HEAD
-
-			if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && tmob.canmove && canmove && !tmob.buckled && !buckled && !dense && can_move_mob(tmob, 1, 0)) // mutual brohugs all around!
-				var/turf/oldloc = loc
-				forceMove(tmob.loc)
-
-				//VOREstation Edit - Begin
-				if (istype(tmob, /mob/living/simple_mob)) //check bumpnom chance, if it's a simplemob that's bumped
-					tmob.Bumped(src)
-				else if(istype(src, /mob/living/simple_mob)) //otherwise, if it's a simplemob doing the bumping. Simplemob on simplemob doesn't seem to trigger but that's fine.
-					Bumped(tmob)
-				if (tmob.loc == src) //check if they got ate, and if so skip the forcemove
-					now_pushing = 0
-					return
-
-				// In case of micros, we don't swap positions; instead occupying the same square!
-				if (handle_micro_bump_helping(tmob))
-					now_pushing = 0
-					return
-				// TODO - Check if we need to do something about the slime.UpdateFeed() we are skipping below.
-				// VOREStation Edit - End
-
-				tmob.forceMove(oldloc)
-=======
 			if( tmob.pulling == M && ( M.restrained() && !( tmob.restrained() ) && tmob.stat == 0) )
 				if ( !(world.time % 5) )
 					to_chat(src, "<span class='warning'>[tmob] is restraining [M], you cannot push past</span>")
->>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles
 				now_pushing = 0
 				return
 
@@ -151,6 +126,21 @@ default behaviour is:
 		if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && tmob.canmove && canmove && !tmob.buckled && !buckled && !dense && can_move_mob(tmob, 1, 0)) // mutual brohugs all around!
 			var/turf/oldloc = loc
 			forceMove(tmob.loc)
+			//VOREstation Edit - Begin
+			if (istype(tmob, /mob/living/simple_mob)) //check bumpnom chance, if it's a simplemob that's bumped
+				tmob.Bumped(src)
+			else if(istype(src, /mob/living/simple_mob)) //otherwise, if it's a simplemob doing the bumping. Simplemob on simplemob doesn't seem to trigger but that's fine.
+				Bumped(tmob)
+			if (tmob.loc == src) //check if they got ate, and if so skip the forcemove
+				now_pushing = 0
+				return
+
+			// In case of micros, we don't swap positions; instead occupying the same square!
+			if (handle_micro_bump_helping(tmob))
+				now_pushing = 0
+				return
+			// TODO - Check if we need to do something about the slime.UpdateFeed() we are skipping below.
+			// VOREStation Edit - End
 			tmob.forceMove(oldloc)
 			now_pushing = 0
 			return
@@ -161,6 +151,18 @@ default behaviour is:
 		if(a_intent == I_HELP || src.restrained())
 			now_pushing = 0
 			return
+		// VOREStation Edit - Begin
+		// Plow that nerd.
+		if(ishuman(tmob))
+			var/mob/living/carbon/human/H = tmob
+			if(H.species.lightweight == 1 && prob(50))
+				H.visible_message("<span class='warning'>[src] bumps into [H], knocking them off balance!</span>")
+				H.Weaken(5)
+				now_pushing = 0
+				return
+		// Handle grabbing, stomping, and such of micros!
+		if(handle_micro_bump_other(tmob)) return
+		// VOREStation Edit - End
 		if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
 			if(prob(40) && !(FAT in src.mutations))
 				to_chat(src, "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>")
@@ -170,39 +172,9 @@ default behaviour is:
 			if(prob(99))
 				now_pushing = 0
 				return
-<<<<<<< HEAD
 
-			// VOREStation Edit - Begin
-			// Plow that nerd.
-			if(ishuman(tmob))
-				var/mob/living/carbon/human/H = tmob
-				if(H.species.lightweight == 1 && prob(50))
-					H.visible_message("<span class='warning'>[src] bumps into [H], knocking them off balance!</span>")
-					H.Weaken(5)
-					now_pushing = 0
-					return
-			// Handle grabbing, stomping, and such of micros!
-			if(handle_micro_bump_other(tmob)) return
-			// VOREStation Edit - End
-
-			if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
-				if(prob(40) && !(FAT in src.mutations))
-					to_chat(src, "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>")
-					now_pushing = 0
-					return
-			if(tmob.r_hand && istype(tmob.r_hand, /obj/item/weapon/shield/riot))
-				if(prob(99))
-					now_pushing = 0
-					return
-			if(tmob.l_hand && istype(tmob.l_hand, /obj/item/weapon/shield/riot))
-				if(prob(99))
-					now_pushing = 0
-					return
-			if(!(tmob.status_flags & CANPUSH))
-=======
 		if(tmob.l_hand && istype(tmob.l_hand, /obj/item/weapon/shield/riot))
 			if(prob(99))
->>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles
 				now_pushing = 0
 				return
 		if(!(tmob.status_flags & CANPUSH))
@@ -211,39 +183,26 @@ default behaviour is:
 
 		tmob.LAssailant = src
 
-<<<<<<< HEAD
-		now_pushing = 0
-		spawn(0)
-			..()
-			if (!istype(AM, /atom/movable) || AM.anchored)
-				//VOREStation Edit - object-specific proc for running into things
-				if(((confused || is_blind()) && stat == CONSCIOUS && prob(50) && m_intent=="run") || flying)
-					AM.stumble_into(src)
-				//VOREStation Edit End
-				/* VOREStation Removal - See above
-					Weaken(2)
-					playsound(loc, "punch", 25, 1, -1)
-					visible_message("<span class='warning'>[src] [pick("ran", "slammed")] into \the [AM]!</span>")
-					src.apply_damage(5, BRUTE)
-					src << ("<span class='warning'>You just [pick("ran", "slammed")] into \the [AM]!</span>")
-					to_chat(src, "<span class='warning'>You just [pick("ran", "slammed")] into \the [AM]!</span>")
-					*/ // VOREStation Removal End
-=======
 	now_pushing = 0
 	. = ..()
 	if (!istype(AM, /atom/movable) || AM.anchored)
+		//VOREStation Edit - object-specific proc for running into things
+		if(((confused || is_blind()) && stat == CONSCIOUS && prob(50) && m_intent=="run") || flying)
+			AM.stumble_into(src)
+		//VOREStation Edit End
+		/* VOREStation Removal - See above
 		if(confused && prob(50) && m_intent=="run")
 			Weaken(2)
 			playsound(loc, "punch", 25, 1, -1)
 			visible_message("<span class='warning'>[src] [pick("ran", "slammed")] into \the [AM]!</span>")
 			src.apply_damage(5, BRUTE)
 			to_chat(src, "<span class='warning'>You just [pick("ran", "slammed")] into \the [AM]!</span>")
+			*/ // VOREStation Removal End
 		return
 	if (!now_pushing)
 		if(isobj(AM))
 			var/obj/I = AM
 			if(!can_pull_size || can_pull_size < I.w_class)
->>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles
 				return
 		now_pushing = 1
 

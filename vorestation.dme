@@ -16,11 +16,8 @@
 #include "code\_map_tests.dm"
 #include "code\_unit_tests.dm"
 #include "code\global.dm"
-<<<<<<< HEAD:vorestation.dme
-#include "code\global_vr.dm"
-=======
 #include "code\global_init.dm"
->>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles:polaris.dme
+#include "code\global_vr.dm"
 #include "code\hub.dm"
 #include "code\names.dm"
 #include "code\stylesheet.dm"
@@ -101,11 +98,7 @@
 #include "code\_helpers\global_lists.dm"
 #include "code\_helpers\global_lists_vr.dm"
 #include "code\_helpers\icons.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\_helpers\icons_vr.dm"
-#include "code\_helpers\lists.dm"
-=======
->>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles:polaris.dme
 #include "code\_helpers\logging.dm"
 #include "code\_helpers\logging_vr.dm"
 #include "code\_helpers\matrices.dm"
@@ -120,12 +113,8 @@
 #include "code\_helpers\type2type.dm"
 #include "code\_helpers\type2type_vr.dm"
 #include "code\_helpers\unsorted.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\_helpers\unsorted_vr.dm"
-#include "code\_helpers\vector.dm"
-=======
 #include "code\_helpers\view.dm"
->>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles:polaris.dme
 #include "code\_helpers\sorts\__main.dm"
 #include "code\_helpers\sorts\comparators.dm"
 #include "code\_helpers\sorts\TimSort.dm"

@@ -1194,8 +1194,6 @@ mob/proc/yank_out_object()
 	closeToolTip(usr) //No reason not to, really
 
 	..()
-<<<<<<< HEAD
-=======
 
 // Manages a global list of mobs with clients attached, indexed by z-level.
 /mob/proc/update_client_z(new_z) // +1 to register, null to unregister.
@@ -1212,4 +1210,3 @@ mob/proc/yank_out_object()
 /mob/onTransitZ(old_z, new_z)
 	..()
 	update_client_z(new_z)
->>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles

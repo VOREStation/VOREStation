@@ -45,6 +45,3 @@
 	. = B[STAT_ENTRY_TIME] - A[STAT_ENTRY_TIME]
 	if (!.)
 		. = B[STAT_ENTRY_COUNT] - A[STAT_ENTRY_COUNT]
-
-/proc/cmp_timer(datum/timedevent/a, datum/timedevent/b)
-	return a.timeToRun - b.timeToRun

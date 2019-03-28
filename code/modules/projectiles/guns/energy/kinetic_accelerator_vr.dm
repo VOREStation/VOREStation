@@ -100,7 +100,7 @@
 	damage = 32
 	damage_type = BRUTE
 	check_armour = "bomb"
-	kill_count = 3 // Our "range" var is named "kill_count". Yes it is.
+	range = 3 // Our "range" var is named "kill_count". Yes it is.
 
 	var/pressure_decrease = 0.25
 	var/turf_aoe = FALSE
@@ -219,7 +219,7 @@
 	cost = 24 //so you can fit four plus a tracer cosmetic
 
 /obj/item/borg/upgrade/modkit/range/modify_projectile(obj/item/projectile/kinetic/K)
-	K.kill_count += modifier
+	K.range += modifier
 
 
 //Damage

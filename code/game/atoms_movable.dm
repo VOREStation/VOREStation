@@ -169,6 +169,11 @@
 	set_dir(direct)
 	if(. && has_buckled_mobs() && !handle_buckled_mob_movement(loc,direct)) //movement failed due to buckled mob(s)
 		return FALSE
+	//VOREStation Add
+	else if(. && riding_datum)
+		riding_datum.handle_vehicle_layer()
+		riding_datum.handle_vehicle_offsets()
+	//VOREStation Add End
 
 //Called after a successful Move(). By this point, we've already moved
 /atom/movable/proc/Moved(atom/OldLoc, Dir, Forced = FALSE)
@@ -475,12 +480,8 @@
 
 /atom/movable/proc/adjust_rotation(new_rotation)
 	icon_rotation = new_rotation
-<<<<<<< HEAD
-	update_transform()
-=======
 	update_transform()
 
 // Called when touching a lava tile.
 /atom/movable/proc/lava_act()
 	fire_act(null, 10000, 1000)
->>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles

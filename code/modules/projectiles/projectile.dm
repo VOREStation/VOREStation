@@ -230,18 +230,6 @@
 	if(prob(50))
 		homing_offset_y = -homing_offset_y
 
-<<<<<<< HEAD
-//TODO: make it so this is called more reliably, instead of sometimes by bullet_act() and sometimes not
-/obj/item/projectile/proc/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
-	if(blocked >= 100)		return 0//Full block
-	if(!isliving(target))	return 0
-//	if(isanimal(target))	return 0
-	var/mob/living/L = target
-	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony, blocked, incendiary, flammability) // add in AGONY!
-	if(modifier_type_to_apply)
-		L.add_modifier(modifier_type_to_apply, modifier_duration)
-	return 1
-=======
 /obj/item/projectile/process()
 	last_process = world.time
 	if(!loc || !fired || !trajectory)
@@ -327,7 +315,6 @@
 /obj/item/projectile/proc/after_z_change(atom/olcloc, atom/newloc)
 
 /obj/item/projectile/proc/before_z_change(atom/oldloc, atom/newloc)
->>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles
 
 /obj/item/projectile/proc/before_move()
 	return
@@ -591,85 +578,9 @@
 
 	//hit messages
 	if(silenced)
-<<<<<<< HEAD
-		return
-
-	if(ispath(muzzle_type))
-		var/obj/effect/projectile/M = new muzzle_type(get_turf(src))
-
-		if(istype(M))
-			M.set_transform(T)
-			M.pixel_x = location.pixel_x
-			M.pixel_y = location.pixel_y
-			M.update_light()
-			M.activate()
-
-/obj/item/projectile/proc/tracer_effect(var/matrix/M)
-	if(ispath(tracer_type))
-		var/obj/effect/projectile/P = new tracer_type(location.loc)
-
-		if(istype(P))
-			P.set_transform(M)
-			P.pixel_x = location.pixel_x
-			P.pixel_y = location.pixel_y
-			P.update_light()
-			if(!hitscan)
-				P.activate(step_delay)	//if not a hitscan projectile, remove after a single delay
-			else
-				P.activate()
-
-/obj/item/projectile/proc/impact_effect(var/matrix/M)
-	if(ispath(tracer_type) && location)
-		var/obj/effect/projectile/P = new impact_type(location.loc)
-
-		if(istype(P))
-			P.set_transform(M)
-			P.pixel_x = location.pixel_x
-			P.pixel_y = location.pixel_y
-			P.update_light()
-			P.activate()
-
-//"Tracing" projectile
-/obj/item/projectile/test //Used to see if you can hit them.
-	invisibility = 101 //Nope!  Can't see me!
-	yo = null
-	xo = null
-	var/result = 0 //To pass the message back to the gun.
-	var/atom/movable/result_ref = null // The thing that got hit that made the check return true.
-
-/obj/item/projectile/test/Bump(atom/A as mob|obj|turf|area)
-	if(A == firer)
-		loc = A.loc
-		return //cannot shoot yourself
-	if(istype(A, /obj/item/projectile))
-		return
-	if(istype(A, /obj/structure/foamedmetal)) //Turrets can detect through foamed metal, but will have to blast through it. Similar to windows, if someone runs behind it, a person should probably just not shoot.
-		return
-	if(istype(A, /obj/structure/girder)) //They see you there.
-		return
-	if(istype(A, /obj/structure/door_assembly)) //And through there.
-		return
-	if(istype(A, /obj/structure)) //Unanchored things you can shove around will still keep the turret or other firing at your position. Aim intent still functions.
-		var/obj/structure/S = A
-		if(!S.anchored)
-			return
-	if(istype(A, /mob/living) || istype(A, /obj/mecha) || istype(A, /obj/vehicle))
-		result_ref = A
-		result = 2 //We hit someone, return 1!
-		return
-	result = 1
-	return
-
-/obj/item/projectile/test/launch(atom/target)
-	var/turf/curloc = get_turf(src)
-	var/turf/targloc = get_turf(target)
-	if(!curloc || !targloc)
-		return 0
-=======
 		to_chat(target_mob, "<span class='danger'>You've been hit in the [parse_zone(def_zone)] by \the [src]!</span>")
 	else
 		visible_message("<span class='danger'>\The [target_mob] is hit by \the [src] in the [parse_zone(def_zone)]!</span>")//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
->>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles
 
 	//admin logs
 	if(!no_attack_log)
@@ -680,17 +591,7 @@
 	if (result == PROJECTILE_CONTINUE)
 		return FALSE
 
-<<<<<<< HEAD
-/obj/item/projectile/test/process(var/turf/targloc)
-	while(src) //Loop on through!
-		if(result)
-			return result_ref
-		//	return (result - 1)
-		if((!( targloc ) || loc == targloc))
-			targloc = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z) //Finding the target turf at map edge
-=======
 	return TRUE
->>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles
 
 
 /obj/item/projectile/proc/launch_projectile(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
@@ -701,25 +602,8 @@
 	if(get_turf(target) == get_turf(src))
 		direct_target = target
 
-<<<<<<< HEAD
-		var/mob/living/M = locate() in get_turf(src)
-		if(istype(M)) //If there is someting living...
-			result_ref = M
-			return result_ref //Return 1
-		else
-			M = locate() in get_step(src,targloc)
-			if(istype(M))
-				result_ref = M
-				return result_ref
-
-//Helper proc to check if you can hit them or not.
-/proc/check_trajectory(atom/target as mob|obj, atom/firer as mob|obj, var/pass_flags=PASSTABLE|PASSGLASS|PASSGRILLE, flags=null)
-	if(!istype(target) || !istype(firer))
-		return 0
-=======
 	preparePixelProjectile(target, user? user : get_turf(src), params, forced_spread)
 	return fire(angle_override, direct_target)
->>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles
 
 //called to launch a projectile from a gun
 /obj/item/projectile/proc/launch_from_gun(atom/target, target_zone, mob/user, params, angle_override, forced_spread, obj/item/weapon/gun/launcher)

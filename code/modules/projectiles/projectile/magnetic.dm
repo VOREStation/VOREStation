@@ -116,9 +116,6 @@
 	return ..(target, blocked, def_zone)
 
 /obj/item/projectile/bullet/magnetic/fuelrod/supermatter/check_penetrate()
-<<<<<<< HEAD
-	return 1
-=======
 	return 1
 
 /obj/item/projectile/bullet/magnetic/bore
@@ -145,4 +142,3 @@
 		return 1
 	else
 		..()
->>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles

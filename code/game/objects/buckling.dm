@@ -195,16 +195,3 @@
 			else
 				L.set_dir(dir)
 	return TRUE
-<<<<<<< HEAD
-
-/atom/movable/Move(atom/newloc, direct = 0)
-	. = ..()
-	if(. && has_buckled_mobs() && !handle_buckled_mob_movement(newloc, direct)) //movement failed due to buckled mob(s)
-		. = 0
-	//VOREStation Add
-	else if(. && riding_datum)
-		riding_datum.handle_vehicle_layer()
-		riding_datum.handle_vehicle_offsets()
-	//VOREStation Add End
-=======
->>>>>>> 9ff8103... Merge pull request #5636 from kevinz000/pixel_projectiles
