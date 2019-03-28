@@ -273,3 +273,11 @@
 				for(var/A in value)
 					if(var_source.vars.Find(A))
 						. += A
+
+/proc/get_end_section_of_type(type)
+	var/strtype = "[type]"
+	var/delim_pos = findlasttext(strtype, "/")
+	if(delim_pos == 0)
+		return strtype
+	return copytext(strtype, delim_pos)
+
