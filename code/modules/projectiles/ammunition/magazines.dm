@@ -626,10 +626,10 @@
 
 /obj/item/ammo_magazine/m12gdrum
 	name = "magazine (12 gauge)"
-	icon_state = "12g"
+	icon_state = "ashot-mag"
 	mag_type = MAGAZINE
 	caliber = "12g"
-	matter = list(DEFAULT_WALL_MATERIAL = 13000) //did the math. now fixed the exploityness of this thing. Have fun!
+	matter = list(DEFAULT_WALL_MATERIAL = 13000)
 	ammo_type = /obj/item/ammo_casing/a12g
 	max_ammo = 24
 	multiple_sprites = 1
