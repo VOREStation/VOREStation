@@ -74,6 +74,7 @@
 	desc = "a small red candle, for more intimate candle occasions."
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "smallcandle"
+	icon_type = "smallcandle"
 	w_class = ITEMSIZE_SMALL
 
 /obj/item/weapon/flame/candle/white
@@ -81,6 +82,7 @@
 	desc = "a white pillar candle. Its specially-formulated fuel-oxidizer wax mixture allows continued combustion in airless environments."
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "whitecandle"
+	icon_type = "whitecandle"
 	w_class = ITEMSIZE_SMALL
 
 /obj/item/weapon/flame/candle/black
@@ -88,6 +90,7 @@
 	desc = "a black pillar candle. Ominous."
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "blackcandle"
+	icon_type = "blackcandle"
 	w_class = ITEMSIZE_SMALL
 
 /obj/item/weapon/flame/candle/candelabra
