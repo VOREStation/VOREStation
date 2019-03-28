@@ -58,7 +58,7 @@ var/list/global/tank_gauge_cache = list()
 	src.proxyassembly = proxy
 
 
-/obj/item/weapon/tank/New()
+/obj/item/weapon/tank/Initialize()
 	..()
 
 	src.init_proxy()
