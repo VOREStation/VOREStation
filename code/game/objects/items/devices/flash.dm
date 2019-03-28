@@ -13,11 +13,11 @@
 	var/times_used = 0 //Number of times it's been used.
 	var/broken = FALSE     //Is the flash burnt out?
 	var/last_used = 0 //last world.time it was used.
-	var/max_flashes = 20 // How many times the flash can be used before needing to self recharge. //VOREStation Edit
+	var/max_flashes = 10 // How many times the flash can be used before needing to self recharge.
 	var/halloss_per_flash = 30
 	var/break_mod = 3 // The percent to break increased by every use on the flash.
 
-	var/can_break = FALSE // Can the flash break? //VOREStation Edit
+	var/can_break = TRUE // Can the flash break?
 	var/can_repair = FALSE // Can you repair the flash?
 	var/repairing = FALSE // Are we repairing right now?
 
