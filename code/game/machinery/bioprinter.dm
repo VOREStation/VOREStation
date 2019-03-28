@@ -287,7 +287,7 @@
 
 /obj/machinery/organ_printer/robot/dismantle()
 	if(stored_matter >= matter_amount_per_sheet)
-		new /obj/item/stack/material/steel(get_turf(src), Floor(stored_matter/matter_amount_per_sheet))
+		new /obj/item/stack/material/steel(get_turf(src), FLOOR(stored_matter/matter_amount_per_sheet, 1))
 	return ..()
 
 /obj/machinery/organ_printer/robot/print_organ(var/choice)
@@ -305,7 +305,7 @@
 			return
 		var/obj/item/stack/S = W
 		var/space_left = max_stored_matter - stored_matter
-		var/sheets_to_take = min(S.amount, Floor(space_left/matter_amount_per_sheet))
+		var/sheets_to_take = min(S.amount, FLOOR(space_left/matter_amount_per_sheet, 1))
 		if(sheets_to_take <= 0)
 			to_chat(user, "<span class='warning'>\The [src] is too full.</span>")
 			return

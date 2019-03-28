@@ -9,7 +9,7 @@
 	density = 1
 	unacidable = 1
 
-/obj/effect/blocker/initialize() // For non-gateway maps.
+/obj/effect/blocker/Initialize() // For non-gateway maps.
 	. = ..()
 	icon = null
 	icon_state = null

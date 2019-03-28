@@ -68,7 +68,7 @@
 		id_card.forceMove(src)
 		modify = id_card
 
-	GLOB.nanomanager.update_uis(src)
+	SSnanoui.update_uis(src)
 	attack_hand(user)
 
 /obj/machinery/computer/card/attack_ai(var/mob/user as mob)
@@ -139,7 +139,7 @@
 
 		data["regions"] = regions
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "identification_computer.tmpl", src.name, 600, 700)
 		ui.set_initial_data(data)
@@ -235,7 +235,7 @@
 						modify.registered_name = temp_name
 					else
 						src.visible_message("<span class='notice'>[src] buzzes rudely.</span>")
-			GLOB.nanomanager.update_uis(src)
+			SSnanoui.update_uis(src)
 
 		if ("account")
 			if (is_authenticated())
@@ -243,7 +243,7 @@
 				if ((modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && istype(loc, /turf)))
 					var/account_num = text2num(href_list["account"])
 					modify.associated_account_number = account_num
-			GLOB.nanomanager.update_uis(src)
+			SSnanoui.update_uis(src)
 
 		if ("mode")
 			mode = text2num(href_list["mode_target"])
@@ -253,7 +253,7 @@
 				printing = 1
 				spawn(50)
 					printing = null
-					GLOB.nanomanager.update_uis(src)
+					SSnanoui.update_uis(src)
 
 					var/obj/item/weapon/paper/P = new(loc)
 					if (mode)

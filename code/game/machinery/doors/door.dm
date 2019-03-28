@@ -39,8 +39,8 @@
 
 /obj/machinery/door/attack_generic(var/mob/user, var/damage)
 	if(isanimal(user))
-		var/mob/living/simple_animal/S = user
-		if(damage >= 10)
+		var/mob/living/simple_mob/S = user
+		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
 			visible_message("<span class='danger'>\The [user] smashes into the [src]!</span>")
 			playsound(src, S.attack_sound, 75, 1)
 			take_damage(damage)
@@ -98,6 +98,7 @@
 	return 1
 
 /obj/machinery/door/Bumped(atom/AM)
+	. = ..()
 	if(p_open || operating)
 		return
 	if(ismob(AM))
@@ -133,9 +134,6 @@
 				open()
 			else
 				do_animate("deny")
-		return
-	return
-
 
 /obj/machinery/door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group) return !block_air_zones

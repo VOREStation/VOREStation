@@ -16,7 +16,7 @@
 
 /obj/item/weapon/mop_deploy/New()
 	create_reagents(5)
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 /turf/proc/clean_deploy(atom/source)
 	if(source.reagents.has_reagent("water", 1))
@@ -48,7 +48,7 @@
 	..()
 
 /obj/item/weapon/mop_deploy/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/item/weapon/mop_deploy/attack_self(mob/user as mob)

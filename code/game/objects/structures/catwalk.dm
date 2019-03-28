@@ -11,7 +11,7 @@
 	var/maxhealth = 100
 	anchored = 1.0
 
-/obj/structure/catwalk/initialize()
+/obj/structure/catwalk/Initialize()
 	. = ..()
 	for(var/obj/structure/catwalk/O in range(1))
 		O.update_icon()

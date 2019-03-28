@@ -87,7 +87,7 @@ Notes:
 
 /datum/tooltip/proc/hide()
 	if (queueHide)
-		schedule_task_with_source_in(1, src, .proc/do_hide)
+		addtimer(CALLBACK(src, .proc/do_hide), 1)
 	else
 		do_hide()
 

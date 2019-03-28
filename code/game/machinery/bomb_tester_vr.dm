@@ -201,7 +201,7 @@
 
 	if(href_list["set_can_pressure"])
 		var/change = text2num(href_list["set_can_pressure"])
-		sim_canister_output = Clamp(sim_canister_output+change, ONE_ATMOSPHERE/10, ONE_ATMOSPHERE*10)
+		sim_canister_output = CLAMP(sim_canister_output+change, ONE_ATMOSPHERE/10, ONE_ATMOSPHERE*10)
 
 	if(href_list["start_sim"])
 		start_simulating()

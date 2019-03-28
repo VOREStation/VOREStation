@@ -37,7 +37,7 @@ var/global/list/cached_icons = list()
 		else if (paint_type == "black")
 			reagents.add_reagent("carbon", volume/5)
 		else
-			reagents.add_reagent("crayon_dust_[paint_type]", volume/5)
+			reagents.add_reagent("marker_ink_[paint_type]", volume/5)
 		reagents.handle_reactions()
 
 	red

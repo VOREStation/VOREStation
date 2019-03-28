@@ -3,7 +3,8 @@
 /obj/effect/step_trigger
 	var/affect_ghosts = 0
 	var/stopper = 1 // stops throwers
-	invisibility = 101 // nope cant see this shit
+	invisibility = 99 // nope cant see this shit
+	plane = ABOVE_PLANE
 	anchored = 1
 
 /obj/effect/step_trigger/proc/Trigger(var/atom/movable/A)
@@ -93,7 +94,7 @@
 	var/teleport_y = 0
 	var/teleport_z = 0
 
-<<<<<<< HEAD
+  //VOREStation Edit Start
 	Trigger(var/atom/movable/A)
 		if(teleport_x && teleport_y && teleport_z)
 			var/turf/T = locate(teleport_x, teleport_y, teleport_z)
@@ -109,7 +110,8 @@
 					A.forceMove(T)
 			else
 				A.forceMove(T)
-=======
+  //VOREStation Edit End
+
 /obj/effect/step_trigger/teleporter/Trigger(atom/movable/AM)
 	if(teleport_x && teleport_y && teleport_z)
 		var/turf/T = locate(teleport_x, teleport_y, teleport_z)
@@ -160,7 +162,6 @@
 	move_object(AM, T)
 
 
->>>>>>> b2c2ef4... Merge pull request #5912 from Anewbe/mech_fix
 
 /* Random teleporter, teleports atoms to locations ranging from teleport_x - teleport_x_offset, etc */
 
@@ -181,7 +182,7 @@
 	var/obj/effect/landmark/the_landmark = null
 	var/landmark_id = null
 
-/obj/effect/step_trigger/teleporter/landmark/initialize()
+/obj/effect/step_trigger/teleporter/landmark/Initialize()
 	. = ..()
 	for(var/obj/effect/landmark/teleport_mark/mark in tele_landmarks)
 		if(mark.landmark_id == landmark_id)

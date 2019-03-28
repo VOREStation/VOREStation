@@ -169,6 +169,11 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	var/value
 	var/details
 
+/datum/feedback_variable/vv_edit_var(var_name, var_value)
+	if(var_name == NAMEOF(src, variable) || var_name == NAMEOF(src, value) || var_name == NAMEOF(src, details))
+		return FALSE
+	return ..()
+
 /datum/feedback_variable/New(var/param_variable,var/param_value = 0)
 	variable = param_variable
 	value = param_value
@@ -319,6 +324,15 @@ var/obj/machinery/blackbox_recorder/blackbox
 
 	feedback_set_details("round_end","[time2text(world.realtime)]") //This one MUST be the last one that gets set.
 
+/obj/machinery/blackbox_recorder/vv_edit_var(var_name, var_value)
+	var/static/list/blocked_vars		//hacky as fuck kill me
+	if(!blocked_vars)
+		var/obj/machinery/M = new
+		var/list/parent_vars = M.vars.Copy()
+		blocked_vars = vars.Copy() - parent_vars
+	if(var_name in blocked_vars)
+		return FALSE
+	return ..()
 
 //This proc is only to be called at round end.
 /obj/machinery/blackbox_recorder/proc/save_all_data_to_sql()

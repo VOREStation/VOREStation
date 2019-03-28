@@ -181,15 +181,15 @@
 
 /obj/random/outside_mob/item_to_spawn() // Special version for mobs to have the same faction.
 	return pick(
-				prob(50);/mob/living/simple_animal/retaliate/gaslamp,
-//				prob(50);/mob/living/simple_animal/otie/feral, // Removed until Otie code is unfucked.
-				prob(20);/mob/living/simple_animal/hostile/dino/virgo3b,
-				prob(1);/mob/living/simple_animal/hostile/dragon/virgo3b)
+				prob(50);/mob/living/simple_mob/animal/space/gaslamp,
+//				prob(50);/mob/living/simple_mob/otie/feral, // Removed until Otie code is unfucked.
+				prob(20);/mob/living/simple_mob/vore/dino/virgo3b,
+				prob(1);/mob/living/simple_mob/vore/dragon/virgo3b)
 
 /obj/random/outside_mob/spawn_item()
 	. = ..()
-	if(istype(., /mob/living/simple_animal))
-		var/mob/living/simple_animal/this_mob = .
+	if(istype(., /mob/living/simple_mob))
+		var/mob/living/simple_mob/this_mob = .
 		this_mob.faction = src.faction
 		if (this_mob.minbodytemp > 200) // Temporary hotfix. Eventually I'll add code to change all mob vars to fit the environment they are spawned in.
 			this_mob.minbodytemp = 200

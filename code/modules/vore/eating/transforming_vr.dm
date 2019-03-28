@@ -252,9 +252,9 @@
 	var/egg_path = /obj/structure/closet/secure_closet/egg
 	var/egg_name = "odd egg"
 
-	if(O.egg_type in tf_egg_types)
-		egg_path = tf_egg_types[O.egg_type]
-		egg_name = "[O.egg_type] egg"
+	if(O.vore_egg_type in tf_vore_egg_types)
+		egg_path = tf_vore_egg_types[O.vore_egg_type]
+		egg_name = "[O.vore_egg_type] egg"
 
 	var/obj/structure/closet/secure_closet/egg/egg = new egg_path(src)
 	M.forceMove(egg)

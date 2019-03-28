@@ -72,7 +72,7 @@
 			itemState += "[modifystate]"
 		*/
 	if(power_supply)
-		ratio = Ceiling((power_supply.charge / power_supply.maxcharge) * charge_sections)
+		ratio = CEILING(((power_supply.charge / power_supply.maxcharge) * charge_sections), 1)
 
 		if(power_supply.charge < charge_cost)
 			overlays += "[icon_state]_empty"
@@ -104,9 +104,9 @@
 	icon_state = "omnilaser" //A little more cyan
 	light_color = "#00C6FF"
 	agony = 50 //Normal is 40 when this was set
-	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
-	tracer_type = /obj/effect/projectile/laser_omni/tracer
-	impact_type = /obj/effect/projectile/laser_omni/impact
+	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+	tracer_type = /obj/effect/projectile/tracer/laser_omni
+	impact_type = /obj/effect/projectile/impact/laser_omni
 
 //R&D Design
 /datum/design/item/weapon/protector

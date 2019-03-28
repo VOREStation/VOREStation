@@ -73,7 +73,7 @@
 		if(!new_val)
 			to_chat(usr, "<span class='warning'>That's not a valid number.</span>")
 			return 1
-		G.mega_energy = Clamp(new_val, 1, 50)
+		G.mega_energy = CLAMP(new_val, 1, 50)
 		G.active_power_usage = G.mega_energy * 1500
 		updateUsrDialog()
 		return 1
@@ -83,7 +83,7 @@
 		if(!new_val)
 			to_chat(usr, "<span class='warning'>That's not a valid number.</span>")
 			return 1
-		G.rate = Clamp(new_val, 1, 10)
+		G.rate = CLAMP(new_val, 1, 10)
 		updateUsrDialog()
 		return 1
 
@@ -96,7 +96,7 @@
 
 /obj/machinery/computer/gyrotron_control/attackby(var/obj/item/W, var/mob/user)
 	..()
-	if(W.is_multitool()) //VOREStation Edit
+	if(istype(W, /obj/item/device/multitool))
 		var/new_ident = input("Enter a new ident tag.", "Gyrotron Control", id_tag) as null|text
 		if(new_ident && user.Adjacent(src))
 			id_tag = new_ident

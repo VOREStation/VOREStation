@@ -112,6 +112,13 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/storage)
+"av" = (
+/obj/structure/cable/ender{
+	icon_state = "1-2";
+	id = "surface-mining"
+	},
+/turf/simulated/floor/plating,
+/area/mine/explored)
 "aw" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -395,6 +402,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 8
 	},
+/obj/machinery/camera/network/mining{
+	dir = 1
+	},
 /obj/structure/closet/hydrant{
 	pixel_y = -32
 	},
@@ -428,7 +438,7 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/passage)
 "cu" = (
-/mob/living/simple_animal/retaliate/gaslamp,
+/mob/living/simple_mob/animal/space/gaslamp,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/mine/explored)
 "cv" = (
@@ -590,7 +600,7 @@
 	pressure_checks_default = 2;
 	use_power = 1
 	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "mH" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
@@ -982,13 +992,6 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
-"FG" = (
-/obj/structure/cable/ender{
-	icon_state = "1-2";
-	id = "surface-solars"
-	},
-/turf/simulated/floor/plating,
-/area/mine/explored)
 "FV" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "2-8"
@@ -1136,6 +1139,11 @@
 /obj/effect/floor_decal/techfloor,
 /turf/simulated/floor/tiled/techfloor,
 /area/outpost/mining_main/maintenance)
+"KL" = (
+/obj/machinery/telecomms/relay/preset/underdark,
+/obj/effect/floor_decal/techfloor,
+/turf/simulated/floor/tiled/techfloor,
+/area/outpost/mining_main/maintenance)
 "Ma" = (
 /obj/machinery/door/airlock/mining{
 	name = "Quarters"
@@ -1257,6 +1265,7 @@
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/mine/explored)
 "TC" = (
+/obj/machinery/camera/network/mining,
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 10
 	},
@@ -4158,7 +4167,7 @@ Kj
 Zg
 RB
 MV
-KJ
+KL
 SF
 ab
 Il
@@ -11555,7 +11564,7 @@ jh
 jh
 lb
 KF
-FG
+av
 aa
 "}
 (72,1,1) = {"

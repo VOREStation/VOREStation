@@ -37,7 +37,7 @@
 	icon = 'icons/turf/desert.dmi'
 	icon_state = "desert"
 
-/turf/simulated/floor/beach/sand/desert/initialize()
+/turf/simulated/floor/beach/sand/desert/Initialize()
 	. = ..()
 	if(prob(5))
 		icon_state = "desert[rand(0,4)]"
