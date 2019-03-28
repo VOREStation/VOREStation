@@ -196,6 +196,7 @@
 
 	var/mob/living/friend = null // Our best pal, who we'll follow. awoo.
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
+	makes_dirt = FALSE	// No more dirt
 
 /mob/living/simple_mob/animal/fox_vr/Renault/init_vore()
 	..()

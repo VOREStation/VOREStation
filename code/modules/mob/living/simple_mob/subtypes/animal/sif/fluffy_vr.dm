@@ -16,6 +16,7 @@
 
 	see_in_dark = 5
 	mob_size = MOB_TINY
+	makes_dirt = FALSE	// No more dirt
 
 	response_help  = "scritches"
 	response_disarm = "bops"

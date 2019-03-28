@@ -98,6 +98,7 @@
 	icon_living = "cat"
 	icon_dead = "cat_dead"
 	icon_rest = "cat_rest"
+	makes_dirt = FALSE	//VOREStation edit: no more dirt
 
 /mob/living/simple_mob/animal/passive/cat/kitten
 	name = "kitten"
