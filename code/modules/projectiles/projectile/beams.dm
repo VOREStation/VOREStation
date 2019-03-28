@@ -220,4 +220,4 @@
 /obj/item/projectile/beam/stun/med
 	name = "stun beam"
 	icon_state = "stun"
-	agony = 35
+	agony = 30
