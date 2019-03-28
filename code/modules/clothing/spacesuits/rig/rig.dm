@@ -214,11 +214,11 @@
 	if(seal == 1)
 		min_pressure_protection = rigsuit_min_pressure
 		max_pressure_protection = rigsuit_max_pressure
-		piece.item_flags &= ~AIRTIGHT
+		piece.item_flags |= AIRTIGHT
 	else
 		min_pressure_protection = null
 		max_pressure_protection = null
-		piece.item_flags |= AIRTIGHT
+		piece.item_flags &= ~AIRTIGHT
 	return
 
 
