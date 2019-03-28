@@ -285,16 +285,3 @@ Proc for attack log creation, because really why not
 	else
 		. = getCompoundIcon(desired)
 		cached_character_icons[cachekey] = .
-
-/proc/getviewsize(view)
-	var/viewX
-	var/viewY
-	if(isnum(view))
-		var/totalviewrange = 1 + 2 * view
-		viewX = totalviewrange
-		viewY = totalviewrange
-	else
-		var/list/viewrangelist = splittext(view,"x")
-		viewX = text2num(viewrangelist[1])
-		viewY = text2num(viewrangelist[2])
-	return list(viewX, viewY)

@@ -213,7 +213,7 @@
 	var/amount_to_take = min(I.reagents.get_reagent_amount(reagent_id), qty_need)
 	if(amount_to_take >= 1)
 		I.reagents.remove_reagent(reagent_id, amount_to_take, safety = 1)
-		qty_need = Ceiling(qty_need - amount_to_take)
+		qty_need = CEILING((qty_need - amount_to_take), 1)
 		return 1
 	else
 		log_debug("supply_demand event: not taking reagent '[reagent_id]': [amount_to_take]")
@@ -284,7 +284,7 @@
 	var/list/medicineReagents = list()
 	for(var/path in typesof(/datum/chemical_reaction) - /datum/chemical_reaction)
 		var/datum/chemical_reaction/CR = path // Stupid casting required for reading
-		var/datum/reagent/R = chemical_reagents_list[initial(CR.result)]
+		var/datum/reagent/R = SSchemistry.chemical_reagents[initial(CR.result)]
 		if(R && R.scannable)
 			medicineReagents += R
 	for(var/i in 1 to differentTypes)
@@ -298,7 +298,7 @@
 	var/list/drinkReagents = list()
 	for(var/path in typesof(/datum/chemical_reaction) - /datum/chemical_reaction)
 		var/datum/chemical_reaction/CR = path // Stupid casting required for reading
-		var/datum/reagent/R = chemical_reagents_list[initial(CR.result)]
+		var/datum/reagent/R = SSchemistry.chemical_reagents[initial(CR.result)]
 		if(istype(R, /datum/reagent/drink) || istype(R, /datum/reagent/ethanol))
 			drinkReagents += R
 	for(var/i in 1 to differentTypes)
@@ -342,6 +342,6 @@
 		var/datum/alloy/A = pick(types)
 		types -= A // Don't pick the same thing twice
 		var/chosen_path = initial(A.product)
-		var/chosen_qty = Floor(rand(5, 100) * initial(A.product_mod))
+		var/chosen_qty = FLOOR(rand(5, 100) * initial(A.product_mod), 1)
 		required_items += new /datum/supply_demand_order/thing(chosen_qty, chosen_path)
 	return

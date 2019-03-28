@@ -85,6 +85,7 @@
 	var/toxins_mod =    1									// Toxloss modifier
 	var/radiation_mod = 1									// Radiation modifier
 	var/flash_mod =     1									// Stun from blindness modifier.
+	var/flash_burn =    0									// how much damage to take from being flashed if light hypersensitive
 	var/sound_mod =     1									// Stun from sounds, I.E. flashbangs.
 	var/chemOD_mod =	1									// Damage modifier for overdose
 	var/vision_flags = SEE_SELF								// Same flags as glasses.
@@ -145,6 +146,7 @@
 	var/warning_high_pressure = WARNING_HIGH_PRESSURE		// High pressure warning.
 	var/warning_low_pressure = WARNING_LOW_PRESSURE			// Low pressure warning.
 	var/hazard_low_pressure = HAZARD_LOW_PRESSURE			// Dangerously low pressure.
+	var/safe_pressure = ONE_ATMOSPHERE
 	var/light_dam											// If set, mob will be damaged in light over this value and heal in light below its negative.
 	var/minimum_breath_pressure = 16						// Minimum required pressure for breath, in kPa
 

@@ -206,6 +206,10 @@
 	name = "\improper Weapons Testing Range"
 	icon_state = "firingrange"
 
+/area/rnd/research/researchdivision
+	name = "\improper Research Division"
+	icon_state = "research"
+
 /area/rnd/outpost
 	name = "\improper Research Outpost Hallway"
 	icon_state = "research"

@@ -29,7 +29,7 @@ Berserk is a somewhat rare modifier to obtain freely (and for good reason), howe
 - Red Slimes will berserk if they go rabid.
 - Red slime core reactions will berserk slimes that can see the user in addition to making them go rabid.
 - Red slime core reactions will berserk prometheans that can see the user.
-- Bears will berserk when losing a fight.
+- Saviks will berserk when losing a fight.
 - Changelings can evolve a 2 point ability to use a changeling-specific variant of Berserk, that replaces the text with a 'we' variant.
 Recursive Enhancement allows the changeling to instead used an improved variant that features less exhaustion time and less nutrition drain.
 - Xenoarch artifacts may have forced berserking as one of their effects. This is especially fun if an artifact that makes hostile mobs is nearby.
@@ -180,3 +180,91 @@ the artifact triggers the rage.
 	accuracy = -75				// Aiming requires focus.
 	accuracy_dispersion = 3		// Ditto.
 	evasion = -45				// Too angry to dodge.
+
+// Non-cult version of deep wounds.
+// Surprisingly, more dangerous.
+/datum/modifier/grievous_wounds
+	name = "grievous wounds"
+	desc = "Your wounds are not easily mended."
+
+	on_created_text = "<span class='critical'>Your wounds pain you greatly.</span>"
+	on_expired_text = "<span class='notice'>The pain lulls.</span>"
+
+	stacks = MODIFIER_STACK_EXTEND
+
+	incoming_healing_percent = 0.50	// 50% less healing.
+	disable_duration_percent = 1.22	// 22% longer disables.
+	bleeding_rate_percent = 1.20	// 20% more bleeding.
+
+	accuracy_dispersion = 2			// A combination of fear and immense pain or damage reults in a twitching firing arm. Flee.
+
+
+
+
+// Ignition, but confined to the modifier system.
+// This makes it more predictable and thus, easier to balance.
+/datum/modifier/fire
+	name = "on fire"
+	desc = "You are on fire! You will be harmed until the fire goes out or you extinguish it with water."
+	mob_overlay_state = "on_fire"
+
+	on_created_text = "<span class='danger'>You combust into flames!</span>"
+	on_expired_text = "<span class='warning'>The fire starts to fade.</span>"
+	stacks = MODIFIER_STACK_ALLOWED // Multiple instances will hurt a lot.
+	var/damage_per_tick = 5
+
+/datum/modifier/fire/intense
+	mob_overlay_state = "on_fire_intense"
+	damage_per_tick = 10
+
+/datum/modifier/fire/tick()
+	holder.inflict_heat_damage(damage_per_tick)
+
+
+// Applied when near something very cold.
+// Reduces mobility, attack speed.
+/datum/modifier/chilled
+	name = "chilled"
+	desc = "You feel yourself freezing up. Its hard to move."
+	mob_overlay_state = "chilled"
+
+	on_created_text = "<span class='danger'>You feel like you're going to freeze! It's hard to move.</span>"
+	on_expired_text = "<span class='warning'>You feel somewhat warmer and more mobile now.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+	slowdown = 2
+	evasion = -40
+	attack_speed_percent = 1.4
+	disable_duration_percent = 1.2
+
+
+// Similar to being on fire, except poison tends to be more long term.
+// Antitoxins will remove stacks over time.
+// Synthetics can't receive this.
+/datum/modifier/poisoned
+	name = "poisoned"
+	desc = "You have poison inside of you. It will cause harm over a long span of time if not cured."
+	mob_overlay_state = "poisoned"
+
+	on_created_text = "<span class='warning'>You feel sick...</span>"
+	on_expired_text = "<span class='notice'>You feel a bit better.</span>"
+	stacks = MODIFIER_STACK_ALLOWED // Multiple instances will hurt a lot.
+	var/damage_per_tick = 1
+
+/datum/modifier/poisoned/weak
+	damage_per_tick = 0.5
+
+/datum/modifier/poisoned/strong
+	damage_per_tick = 2
+
+/datum/modifier/poisoned/tick()
+	if(holder.stat == DEAD)
+		expire(silent = TRUE)
+	holder.inflict_poison_damage(damage_per_tick)
+
+/datum/modifier/poisoned/can_apply(mob/living/L)
+	if(L.isSynthetic())
+		return FALSE
+	if(L.get_poison_protection() >= 1)
+		return FALSE
+	return TRUE

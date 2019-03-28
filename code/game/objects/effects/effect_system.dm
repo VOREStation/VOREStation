@@ -103,9 +103,9 @@ steam.start() -- spawns the effect
 	if (istype(T, /turf))
 		T.hotspot_expose(1000,100)
 
-/obj/effect/effect/sparks/initialize()
+/obj/effect/effect/sparks/Initialize()
 	. = ..()
-	schedule_task_in(5 SECONDS, /proc/qdel, list(src))
+	QDEL_IN(src, 5 SECONDS)
 
 /obj/effect/effect/sparks/Destroy()
 	var/turf/T = src.loc
@@ -225,15 +225,16 @@ steam.start() -- spawns the effect
 
 /obj/effect/effect/smoke/bad/Move()
 	..()
-	for(var/mob/living/carbon/M in get_turf(src))
-		affect(M)
+	for(var/mob/living/L in get_turf(src))
+		affect(L)
 
-/obj/effect/effect/smoke/bad/affect(var/mob/living/carbon/M)
+/obj/effect/effect/smoke/bad/affect(var/mob/living/L)
 	if (!..())
 		return 0
-	M.adjustOxyLoss(1)
-	if(prob(25))
-		M.emote("cough")
+	if(L.needs_to_breathe())
+		L.adjustOxyLoss(1)
+		if(prob(25))
+			L.emote("cough")
 
 /* Not feasile until a later date
 /obj/effect/effect/smoke/bad/Crossed(atom/movable/M as mob|obj)
@@ -250,6 +251,72 @@ steam.start() -- spawns the effect
 /obj/effect/effect/smoke/bad/proc/on_projectile_delete(obj/item/projectile/beam/proj)
 	projectiles -= proj
 */
+
+/////////////////////////////////////////////
+// 'Elemental' smoke
+/////////////////////////////////////////////
+
+/obj/effect/effect/smoke/elemental
+	name = "cloud"
+	desc = "A cloud of some kind that seems really generic and boring."
+	opacity = FALSE
+	var/strength = 5 // How much damage to do inside each affect()
+
+/obj/effect/effect/smoke/elemental/Initialize()
+	START_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/effect/effect/smoke/elemental/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/effect/effect/smoke/elemental/Move()
+	..()
+	for(var/mob/living/L in range(1, src))
+		affect(L)
+
+/obj/effect/effect/smoke/elemental/process()
+	for(var/mob/living/L in range(1, src))
+		affect(L)
+
+
+/obj/effect/effect/smoke/elemental/fire
+	name = "burning cloud"
+	desc = "A cloud of something that is on fire."
+	color = "#FF9933"
+	light_color = "#FF0000"
+	light_range = 2
+	light_power = 5
+
+/obj/effect/effect/smoke/elemental/fire/affect(mob/living/L)
+	L.inflict_heat_damage(strength)
+	L.add_modifier(/datum/modifier/fire, 6 SECONDS) // Around 15 damage per stack.
+
+/obj/effect/effect/smoke/elemental/frost
+	name = "freezing cloud"
+	desc = "A cloud filled with brutally cold mist."
+	color = "#00CCFF"
+
+/obj/effect/effect/smoke/elemental/frost/affect(mob/living/L)
+	L.inflict_cold_damage(strength)
+
+/obj/effect/effect/smoke/elemental/shock
+	name = "charged cloud"
+	desc = "A cloud charged with electricity."
+	color = "#4D4D4D"
+
+/obj/effect/effect/smoke/elemental/shock/affect(mob/living/L)
+	L.inflict_shock_damage(strength)
+
+/obj/effect/effect/smoke/elemental/mist
+	name = "misty cloud"
+	desc = "A cloud filled with water vapor."
+	color = "#CCFFFF"
+	alpha = 128
+	strength = 1
+
+/obj/effect/effect/smoke/elemental/mist/affect(mob/living/L)
+	L.water_act(strength)
 
 /////////////////////////////////////////////
 // Smoke spread
@@ -282,7 +349,8 @@ steam.start() -- spawns the effect
 				src.location = get_turf(holder)
 			var/obj/effect/effect/smoke/smoke = new smoke_type(src.location)
 			src.total_smoke++
-			smoke.color = I
+			if(I)
+				smoke.color = I
 			var/direction = src.direction
 			if(!direction)
 				if(src.cardinals)
@@ -296,9 +364,20 @@ steam.start() -- spawns the effect
 				if (smoke) qdel(smoke)
 				src.total_smoke--
 
-
 /datum/effect/effect/system/smoke_spread/bad
 	smoke_type = /obj/effect/effect/smoke/bad
+
+/datum/effect/effect/system/smoke_spread/fire
+	smoke_type = /obj/effect/effect/smoke/elemental/fire
+
+/datum/effect/effect/system/smoke_spread/frost
+	smoke_type = /obj/effect/effect/smoke/elemental/frost
+
+/datum/effect/effect/system/smoke_spread/shock
+	smoke_type = /obj/effect/effect/smoke/elemental/shock
+
+/datum/effect/effect/system/smoke_spread/mist
+	smoke_type = /obj/effect/effect/smoke/elemental/mist
 
 /////////////////////////////////////////////
 //////// Attach an Ion trail to any object, that spawns when it moves (like for the jetpack)

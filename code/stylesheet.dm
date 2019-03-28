@@ -104,11 +104,19 @@ h1.alert, h2.alert		{color: #000000;}
 .daemon					{color: #5E339E; letter-spacing:-1pt; word-spacing:0pt; font-family: "Courier New", Courier, monospace;}
 .bug                                    {color: #9e9e39;}
 .vox					{color: #AA00AA;}
+.zaddat					{color: #941C1C;}
 .rough					{font-family: "Trebuchet MS", cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
 .terminus				{font-family: "Times New Roman", Times, serif, sans-serif}
 .interface				{color: #330033;}
 
 BIG IMG.icon 			{width: 32px; height: 32px;}
+
+/* Debug Logs */
+.debug_error					{color:#FF0000; font-weight:bold}
+.debug_warning					{color:#FF0000;}
+.debug_info						{}
+.debug_debug					{color:#0000FF;}
+.debug_trace					{color:#888888;}
 
 </style>"}

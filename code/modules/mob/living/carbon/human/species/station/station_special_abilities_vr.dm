@@ -142,7 +142,10 @@
 	new /obj/effect/gibspawner/human/xenochimera(T)
 
 	reviving = REVIVING_COOLDOWN
-	schedule_callback_in(1 HOUR, VARSET_CALLBACK(src, reviving, 0))
+	addtimer(CALLBACK(src, .proc/revivingreset), 36000)
+
+/mob/living/carbon/human/proc/revivingreset()
+		reviving = 0
 
 /obj/effect/gibspawner/human/xenochimera
 	fleshcolor = "#14AD8B"
@@ -260,9 +263,9 @@
 						if(8) src << 'sound/machines/windowdoor.ogg'
 						if(9)
 							//To make it more realistic, I added two gunshots (enough to kill)
-							src << 'sound/weapons/Gunshot.ogg'
+							src << 'sound/weapons/Gunshot1.ogg'
 							spawn(rand(10,30))
-								src << 'sound/weapons/Gunshot.ogg'
+								src << 'sound/weapons/Gunshot2.ogg'
 						if(10) src << 'sound/weapons/smash.ogg'
 						if(11)
 							//Same as above, but with tasers.
@@ -689,7 +692,7 @@
 
 	return ..(target)
 
-/mob/living/simple_animal/can_shred(var/mob/living/carbon/human/target)
+/mob/living/simple_mob/can_shred(var/mob/living/carbon/human/target)
 	if(!target)
 		var/list/choices = list()
 		for(var/mob/living/carbon/human/M in oviewers(1))

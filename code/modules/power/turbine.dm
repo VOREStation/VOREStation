@@ -85,7 +85,7 @@
 #define COMPFRICTION 5e5
 #define COMPSTARTERLOAD 2800
 
-/obj/machinery/compressor/initialize()
+/obj/machinery/compressor/Initialize()
 	. = ..()
 	default_apply_parts()
 	gas_contained = new()
@@ -194,7 +194,7 @@
 #define TURBGENQ 100000
 #define TURBGENG 0.8
 
-/obj/machinery/power/turbine/initialize()
+/obj/machinery/power/turbine/Initialize()
 	. = ..()
 	default_apply_parts()
 	// The outlet is pointed at the direction of the turbine component
@@ -318,7 +318,7 @@
 // Turbine Computer
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/obj/machinery/computer/turbine_computer/initialize()
+/obj/machinery/computer/turbine_computer/Initialize()
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -365,7 +365,7 @@
 		data["temp"] = compressor.gas_contained.temperature
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm

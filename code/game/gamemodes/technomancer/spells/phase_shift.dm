@@ -31,12 +31,12 @@
 /obj/effect/phase_shift/New()
 	..()
 	set_light(3, 5, l_color = "#FA58F4")
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 /obj/effect/phase_shift/Destroy()
 	for(var/atom/movable/AM in contents) //Eject everything out.
 		AM.forceMove(get_turf(src))
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/effect/phase_shift/process()

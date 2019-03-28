@@ -34,22 +34,20 @@
 	spray_particles = 3
 	sprite_name = "miniFE"
 
-/obj/item/weapon/extinguisher/New()
+/obj/item/weapon/extinguisher/Initialize()
 	create_reagents(max_water)
 	reagents.add_reagent("water", max_water)
-	..()
+	. = ..()
 
 /obj/item/weapon/extinguisher/examine(mob/user)
 	if(..(user, 0))
-		user << text("\icon[] [] contains [] units of water left!", src, src.name, src.reagents.total_volume)
-	return
+		to_chat(user, text("\icon[] [] contains [] units of water left!", src, src.name, src.reagents.total_volume))
 
 /obj/item/weapon/extinguisher/attack_self(mob/user as mob)
 	safety = !safety
-	src.icon_state = "[sprite_name][!safety]"
-	src.desc = "The safety is [safety ? "on" : "off"]."
-	user << "The safety is [safety ? "on" : "off"]."
-	return
+	icon_state = "[sprite_name][!safety]"
+	desc = "The safety is [safety ? "on" : "off"]."
+	to_chat(user, "The safety is [safety ? "on" : "off"].")
 
 /obj/item/weapon/extinguisher/proc/propel_object(var/obj/O, mob/user, movementdirection)
 	if(O.anchored) return

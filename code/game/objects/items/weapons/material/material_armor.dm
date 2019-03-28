@@ -41,7 +41,7 @@ Protectiveness | Armor %
 		set_material(material_key)
 
 /obj/item/clothing/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/clothing/get_material()
@@ -58,7 +58,7 @@ Protectiveness | Armor %
 		if(applies_material_color)
 			color = material.icon_colour
 		if(material.products_need_process())
-			processing_objects |= src
+			START_PROCESSING(SSobj, src)
 		update_armor()
 
 // This is called when someone wearing the object gets hit in some form (melee, bullet_act(), etc).

@@ -1,34 +1,10 @@
-/mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
-
-	if(ismob(mover))
-		var/mob/moving_mob = mover
-		if ((other_mobs && moving_mob.other_mobs))
-			return 1
-		return (!mover.density || !density || lying)
-	else
-		return (!mover.density || !density || lying)
-	return
-
 /mob/proc/setMoveCooldown(var/timeout)
-	if(client)
-		client.move_delay = max(world.time + timeout, client.move_delay)
+	move_delay = max(world.time + timeout, move_delay)
 
-/client/North()
-	..()
-
-
-/client/South()
-	..()
-
-
-/client/West()
-	..()
-
-
-/client/East()
-	..()
-
+/mob/proc/check_move_cooldown()
+	if(world.time < src.move_delay)
+		return FALSE // Need to wait more.
+	return TRUE
 
 /client/proc/client_dir(input, direction=-1)
 	return turn(input, direction*dir2angle(dir))
@@ -122,60 +98,6 @@
 	*/
 	return
 
-//This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
-/atom/movable/Move(newloc, direct)
-	if (direct & (direct - 1))
-		if (direct & 1)
-			if (direct & 4)
-				if (step(src, NORTH))
-					step(src, EAST)
-				else
-					if (step(src, EAST))
-						step(src, NORTH)
-			else
-				if (direct & 8)
-					if (step(src, NORTH))
-						step(src, WEST)
-					else
-						if (step(src, WEST))
-							step(src, NORTH)
-		else
-			if (direct & 2)
-				if (direct & 4)
-					if (step(src, SOUTH))
-						step(src, EAST)
-					else
-						if (step(src, EAST))
-							step(src, SOUTH)
-				else
-					if (direct & 8)
-						if (step(src, SOUTH))
-							step(src, WEST)
-						else
-							if (step(src, WEST))
-								step(src, SOUTH)
-	else
-		var/atom/A = src.loc
-
-		var/olddir = dir //we can't override this without sacrificing the rest of movable/New()
-		. = ..()
-		if(direct != olddir)
-			dir = olddir
-			set_dir(direct)
-
-		src.move_speed = world.time - src.l_move_time
-		src.l_move_time = world.time
-		src.m_flag = 1
-		if ((A != src.loc && A && A.z == src.z))
-			src.last_move = get_dir(A, src.loc)
-		if(.)
-			Moved(A, direct)
-	return
-
-// Called on a successful Move().
-/atom/movable/proc/Moved(atom/oldloc)
-	return
-
 /client/proc/Move_object(direct)
 	if(mob && mob.control_object)
 		if(mob.control_object.density)
@@ -199,7 +121,8 @@
 
 	if(moving)	return 0
 
-	if(world.time < move_delay)	return
+	if(!mob.check_move_cooldown())
+		return
 
 	if(locate(/obj/effect/stop/, mob.loc))
 		for(var/obj/effect/stop/S in mob.loc)
@@ -271,21 +194,21 @@
 			src << "<font color='blue'>You're pinned to a wall by [mob.pinned[1]]!</font>"
 			return 0
 
-		move_delay = world.time//set move delay
+		mob.move_delay = world.time//set move delay
 
 		switch(mob.m_intent)
 			if("run")
 				if(mob.drowsyness > 0)
-					move_delay += 6
-				move_delay += config.run_speed
+					mob.move_delay += 6
+				mob.move_delay += config.run_speed
 			if("walk")
-				move_delay += config.walk_speed
-		move_delay += mob.movement_delay()
+				mob.move_delay += config.walk_speed
+		mob.move_delay += mob.movement_delay()
 
 		if(istype(mob.buckled))// VOREStation Removal - , /obj/vehicle))
 			//manually set move_delay for vehicles so we don't inherit any mob movement penalties
 			//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
-			move_delay = world.time
+			mob.move_delay = world.time
 			//drunk driving
 			if(mob.confused && prob(20)) //vehicles tend to keep moving in the same direction
 				direct = turn(direct, pick(90, -90))
@@ -314,14 +237,14 @@
 							if(prob(50))	direct = turn(direct, pick(90, -90))
 						if("walk")
 							if(prob(25))	direct = turn(direct, pick(90, -90))
-				move_delay += 2
+				mob.move_delay += 2
 				return mob.buckled.relaymove(mob,direct)
 
 		//We are now going to move
 		moving = 1
 		//Something with pulling things
 		if(locate(/obj/item/weapon/grab, mob))
-			move_delay = max(move_delay, world.time + 7)
+			mob.move_delay = max(mob.move_delay, world.time + 7)
 			var/list/L = mob.ret_grab()
 			if(istype(L, /list))
 				if(L.len == 2)

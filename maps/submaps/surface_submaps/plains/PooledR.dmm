@@ -11,10 +11,10 @@
 "k" = (/obj/structure/flora/ausbushes,/turf/template_noop,/area/submap/PooledR)
 "l" = (/turf/simulated/floor/water,/area/submap/PooledR)
 "m" = (/obj/structure/flora/ausbushes/grassybush,/turf/template_noop,/area/submap/PooledR)
-"n" = (/mob/living/simple_animal/fish/trout,/turf/simulated/floor/water,/area/submap/PooledR)
-"o" = (/mob/living/simple_animal/fish/salmon,/turf/simulated/floor/water,/area/submap/PooledR)
+"n" = (/mob/living/simple_mob/animal/passive/fish/trout,/turf/simulated/floor/water,/area/submap/PooledR)
+"o" = (/mob/living/simple_mob/animal/passive/fish/salmon,/turf/simulated/floor/water,/area/submap/PooledR)
 "p" = (/turf/simulated/floor/water/deep,/area/submap/PooledR)
-"q" = (/mob/living/simple_animal/fish/bass,/turf/simulated/floor/water/deep,/area/submap/PooledR)
+"q" = (/mob/living/simple_mob/animal/passive/fish/bass,/turf/simulated/floor/water/deep,/area/submap/PooledR)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

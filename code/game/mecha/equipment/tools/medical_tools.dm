@@ -40,10 +40,9 @@
 	if(occupant)
 		occupant_message("The sleeper is already occupied")
 		return
-	for(var/mob/living/simple_animal/slime/M in range(1,target))
-		if(M.victim == target)
-			occupant_message("[target] will not fit into the sleeper because they have a slime latched onto their head.")
-			return
+	if(target.has_buckled_mobs())
+		occupant_message(span("warning", "\The [target] has other entities attached to it. Remove them first."))
+		return
 	occupant_message("You start putting [target] into [src].")
 	chassis.visible_message("[chassis] starts putting [target] into the [src].")
 	var/C = chassis.loc
@@ -452,7 +451,7 @@
 	create_reagents(max_volume)
 	synth = new (list(src),0)
 
-/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/initialize()
+/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/Initialize()
 	. = ..()
 	//Wow nice, firsties
 	if(LAZYLEN(allowed_reagents) && !istext(allowed_reagents[1]))

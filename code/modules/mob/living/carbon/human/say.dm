@@ -64,11 +64,11 @@
 			return 1
 		if (istype(other, /mob/living/carbon/brain))
 			return 1
-		if (istype(other, /mob/living/simple_animal/slime))
+		if (istype(other, /mob/living/simple_mob/slime))
 			return 1
 
 	//This is already covered by mob/say_understands()
-	//if (istype(other, /mob/living/simple_animal))
+	//if (istype(other, /mob/living/simple_mob))
 	//	if((other.universal_speak && !speaking) || src.universal_speak || src.universal_understand)
 	//		return 1
 	//	return 0
@@ -83,13 +83,16 @@
 		// todo: fix this shit
 		if(rig.speech && rig.speech.voice_holder && rig.speech.voice_holder.active && rig.speech.voice_holder.voice)
 			voice_sub = rig.speech.voice_holder.voice
-	else
+	if(!voice_sub)	// If the rig has a voice changer, then we use that. Otherwise, use this
 		for(var/obj/item/gear in list(wear_mask,wear_suit,head))
 			if(!gear)
 				continue
 			var/obj/item/voice_changer/changer = locate() in gear
-			if(changer && changer.active && changer.voice)
-				voice_sub = changer.voice
+			if(changer && changer.active)
+				if(changer.voice)
+					voice_sub = changer.voice
+				else
+					voice_sub = get_id_name()
 	if(voice_sub)
 		return voice_sub
 	if(mind && mind.changeling && mind.changeling.mimicing)

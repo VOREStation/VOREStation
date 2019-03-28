@@ -2,12 +2,12 @@
 	name = "energy gun"
 	desc = "A basic energy-based gun."
 	icon_state = "energy"
-	fire_sound = 'sound/weapons/Taser.ogg'
 	fire_sound_text = "laser blast"
 
 	var/obj/item/weapon/cell/power_supply //What type of power cell this uses
 	var/charge_cost = 240 //How much energy is needed to fire.
 
+	var/accept_cell_type = /obj/item/weapon/cell/device
 	var/cell_type = /obj/item/weapon/cell/device/weapon
 	projectile_type = /obj/item/projectile/beam/practice
 
@@ -27,7 +27,7 @@
 	..()
 	if(self_recharge)
 		power_supply = new /obj/item/weapon/cell/device/weapon(src)
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 	else
 		if(cell_type)
 			power_supply = new cell_type(src)
@@ -38,7 +38,7 @@
 
 /obj/item/weapon/gun/energy/Destroy()
 	if(self_recharge)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/weapon/gun/energy/get_cell()
@@ -89,13 +89,13 @@
 		if(self_recharge || battery_lock)
 			user << "<span class='notice'>[src] does not have a battery port.</span>"
 			return
-		if(istype(C, /obj/item/weapon/cell/device))
-			var/obj/item/weapon/cell/device/P = C
+		if(istype(C, accept_cell_type))
+			var/obj/item/weapon/cell/P = C
 			if(power_supply)
 				user << "<span class='notice'>[src] already has a power cell.</span>"
 			else
 				user.visible_message("[user] is reloading [src].", "<span class='notice'>You start to insert [P] into [src].</span>")
-				if(do_after(user, 10))
+				if(do_after(user, 5 * P.w_class))
 					user.remove_from_mob(P)
 					power_supply = P
 					P.loc = src
@@ -149,16 +149,11 @@
 /obj/item/weapon/gun/energy/examine(mob/user)
 	. = ..()
 	if(power_supply)
-<<<<<<< HEAD
-		var/shots_remaining = round(power_supply.charge / charge_cost)
-		user << "Has [shots_remaining] shot\s remaining."
-=======
 		if(charge_cost)
 			var/shots_remaining = round(power_supply.charge / max(1, charge_cost))	// Paranoia
 			to_chat(user, "Has [shots_remaining] shot\s remaining.")
 		else
 			to_chat(user, "Has infinite shots remaining.")
->>>>>>> 2ce4013... Merge pull request #5944 from Mechoid/Fix_DivZero
 	else
 		to_chat(user, "Does not have a power cell.")
 	return
@@ -183,13 +178,20 @@
 			icon_state = "[modifystate][ratio]"
 		else
 			icon_state = "[initial(icon_state)][ratio]"
+
+	else if(power_supply)
+		if(modifystate)
+			icon_state = "[modifystate]"
+		else
+			icon_state = "[initial(icon_state)]"
+
 	if(!ignore_inhands) update_held_icon()
 
 /obj/item/weapon/gun/energy/proc/start_recharge()
 	if(power_supply == null)
 		power_supply = new /obj/item/weapon/cell/device/weapon(src)
 	self_recharge = 1
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	update_icon()
 
 /obj/item/weapon/gun/energy/get_description_interaction()

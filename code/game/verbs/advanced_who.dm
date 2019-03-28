@@ -8,7 +8,7 @@
 	var/list/Lines = list()
 
 	if(holder && (R_ADMIN & holder.rights || R_MOD & holder.rights))
-		for(var/client/C in clients)
+		for(var/client/C in GLOB.clients)
 			var/entry = "\t[C.key]"
 			if(C.holder && C.holder.fakekey)
 				entry += " <i>(as [C.holder.fakekey])</i>"
@@ -52,7 +52,7 @@
 
 			Lines += entry
 	else
-		for(var/client/C in clients)
+		for(var/client/C in GLOB.clients)
 			var/entry = "\t"
 			if(C.holder && C.holder.fakekey)
 				entry += "[C.holder.fakekey]"

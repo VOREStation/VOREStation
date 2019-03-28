@@ -4,6 +4,7 @@
 	icon_state = "taser"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	projectile_type = /obj/item/projectile/beam/stun
+	charge_cost = 480
 
 /obj/item/weapon/gun/energy/taser/mounted
 	name = "mounted taser gun"
@@ -36,7 +37,6 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
 	slot_flags = SLOT_BELT | SLOT_HOLSTER
 	silenced = 1
-	fire_sound = 'sound/weapons/Genhit.ogg'
 	projectile_type = /obj/item/projectile/energy/bolt
 	charge_cost = 480
 	cell_type = /obj/item/weapon/cell/device/weapon/recharge

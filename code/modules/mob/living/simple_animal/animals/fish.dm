@@ -1,5 +1,5 @@
 // Different types of fish! They are all subtypes of this tho
-/mob/living/simple_animal/fish
+/mob/living/simple_mob/fish
 	name = "fish"
 	desc = "Its a fishy.  No touchy fishy."
 	icon = 'icons/mob/fish.dmi'
@@ -16,7 +16,7 @@
 	)
 
 // Don't swim out of the water
-/mob/living/simple_animal/fish/handle_wander_movement()
+/mob/living/simple_mob/fish/handle_wander_movement()
 	if(isturf(src.loc) && !resting && !buckled && canmove) //Physically capable of moving?
 		lifes_since_move++ //Increment turns since move (turns are life() cycles)
 		if(lifes_since_move >= turns_per_move)
@@ -30,49 +30,49 @@
 					lifes_since_move = 0
 
 // Take damage if we are not in water
-/mob/living/simple_animal/fish/handle_breathing()
+/mob/living/simple_mob/fish/handle_breathing()
 	var/turf/T = get_turf(src)
 	if(T && !is_type_in_list(T, suitable_turf_types))
 		if(prob(50))
 			say(pick("Blub", "Glub", "Burble"))
 		adjustBruteLoss(unsuitable_atoms_damage)
 
-/mob/living/simple_animal/fish/bass
+/mob/living/simple_mob/fish/bass
 	name = "bass"
 	tt_desc = "E Micropterus notius"
 	icon_state = "bass-swim"
 	icon_living = "bass-swim"
 	icon_dead = "bass-dead"
 
-/mob/living/simple_animal/fish/trout
+/mob/living/simple_mob/fish/trout
 	name = "trout"
 	tt_desc = "E Salmo trutta"
 	icon_state = "trout-swim"
 	icon_living = "trout-swim"
 	icon_dead = "trout-dead"
 
-/mob/living/simple_animal/fish/salmon
+/mob/living/simple_mob/fish/salmon
 	name = "salmon"
 	tt_desc = "E Oncorhynchus nerka"
 	icon_state = "salmon-swim"
 	icon_living = "salmon-swim"
 	icon_dead = "salmon-dead"
 
-/mob/living/simple_animal/fish/perch
+/mob/living/simple_mob/fish/perch
 	name = "perch"
 	tt_desc = "E Perca flavescens"
 	icon_state = "perch-swim"
 	icon_living = "perch-swim"
 	icon_dead = "perch-dead"
 
-/mob/living/simple_animal/fish/pike
+/mob/living/simple_mob/fish/pike
 	name = "pike"
 	tt_desc = "E Esox aquitanicus"
 	icon_state = "pike-swim"
 	icon_living = "pike-swim"
 	icon_dead = "pike-dead"
 
-/mob/living/simple_animal/fish/koi
+/mob/living/simple_mob/fish/koi
 	name = "koi"
 	tt_desc = "E Cyprinus rubrofuscus"
 	icon_state = "koi-swim"
