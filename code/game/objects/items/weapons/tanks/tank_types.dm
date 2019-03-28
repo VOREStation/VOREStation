@@ -16,14 +16,14 @@
 	icon_state = "oxygen"
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 
-/obj/item/weapon/tank/oxygen/New()
-		..()
-		air_contents.adjust_gas("oxygen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
-		return
+/obj/item/weapon/tank/oxygen/Initialize()
+	..()
+	air_contents.adjust_gas("oxygen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+	return
 
 /obj/item/weapon/tank/oxygen/examine(mob/user)
 	if(..(user, 0) && air_contents.gas["oxygen"] < 10)
-		user << text("<span class='warning'>The meter on \the [src] indicates you are almost out of oxygen!</span>")
+		to_chat(user, text("<span class='warning'>The meter on \the [src] indicates you are almost out of oxygen!</span>"))
 		//playsound(usr, 'sound/effects/alert.ogg', 50, 1)
 
 /obj/item/weapon/tank/oxygen/yellow
@@ -42,7 +42,7 @@
 	desc = "A tank with an N2O/O2 gas mix."
 	icon_state = "anesthetic"
 
-/obj/item/weapon/tank/anesthetic/New()
+/obj/item/weapon/tank/anesthetic/Initialize()
 	..()
 
 	air_contents.gas["oxygen"] = (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD
@@ -61,10 +61,10 @@
 
 /obj/item/weapon/tank/air/examine(mob/user)
 	if(..(user, 0) && air_contents.gas["oxygen"] < 1 && loc==user)
-		user << "<span class='danger'>The meter on the [src.name] indicates you are almost out of air!</span>"
+		to_chat(user, "<span class='danger'>The meter on the [src.name] indicates you are almost out of air!</span>")
 		user << sound('sound/effects/alert.ogg')
 
-/obj/item/weapon/tank/air/New()
+/obj/item/weapon/tank/air/Initialize()
 	..()
 
 	src.air_contents.adjust_multi("oxygen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD, "nitrogen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD)
@@ -82,7 +82,7 @@
 	flags = CONDUCT
 	slot_flags = null	//they have no straps!
 
-/obj/item/weapon/tank/phoron/New()
+/obj/item/weapon/tank/phoron/Initialize()
 	..()
 
 	src.air_contents.adjust_gas("phoron", (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
@@ -109,7 +109,7 @@
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	slot_flags = SLOT_BACK	//these ones have straps!
 
-/obj/item/weapon/tank/vox/New()
+/obj/item/weapon/tank/vox/Initialize()
 	..()
 
 	air_contents.adjust_gas("phoron", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
@@ -137,15 +137,14 @@
 	icon_state = "emergency"
 	gauge_icon = "indicator_emergency"
 
-/obj/item/weapon/tank/emergency/oxygen/New()
-		..()
-		src.air_contents.adjust_gas("oxygen", (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
-
-		return
+/obj/item/weapon/tank/emergency/oxygen/Initialize()
+	..()
+	src.air_contents.adjust_gas("oxygen", (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+	return
 
 /obj/item/weapon/tank/emergency/oxygen/examine(mob/user)
 	if(..(user, 0) && air_contents.gas["oxygen"] < 0.2 && loc==user)
-		user << text("<span class='danger'>The meter on the [src.name] indicates you are almost out of air!</span>")
+		to_chat(user, text("<span class='danger'>The meter on the [src.name] indicates you are almost out of air!</span>"))
 		user << sound('sound/effects/alert.ogg')
 
 /obj/item/weapon/tank/emergency/oxygen/engi
@@ -159,13 +158,25 @@
 	gauge_icon = "indicator_emergency_double"
 	volume = 10
 
+/obj/item/weapon/tank/stasis/oxygen // Stasis bags need to have initial pressure within safe bounds for human atmospheric pressure (NOT breath pressure)
+	name = "stasis oxygen tank"
+	desc = "Oxygen tank included in most stasis bag designs."
+	icon_state = "emergency_double"
+	gauge_icon = "indicator_emergency_double"
+	volume = 10
+
+/obj/item/weapon/tank/stasis/oxygen/Initialize()
+	..()
+	src.air_contents.adjust_gas("oxygen", (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+	return
+
 /obj/item/weapon/tank/emergency/nitrogen
 	name = "emergency nitrogen tank"
 	desc = "An emergency air tank hastily painted red."
 	icon_state = "emergency_nitro"
 	gauge_icon = "indicator_emergency"
 
-/obj/item/weapon/tank/emergency/nitrogen/New()
+/obj/item/weapon/tank/emergency/nitrogen/Initialize()
 	..()
 	src.air_contents.adjust_gas("nitrogen", (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
@@ -181,7 +192,7 @@
 	icon_state = "emergency_nitro"
 	gauge_icon = "indicator_emergency"
 
-/obj/item/weapon/tank/emergency/phoron/New()
+/obj/item/weapon/tank/emergency/phoron/Initialize()
 	..()
 	src.air_contents.adjust_gas("phoron", (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
@@ -200,7 +211,7 @@
 	icon_state = "oxygen_fr"
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 
-/obj/item/weapon/tank/nitrogen/New()
+/obj/item/weapon/tank/nitrogen/Initialize()
 	..()
 
 	src.air_contents.adjust_gas("nitrogen", (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C))
@@ -208,5 +219,5 @@
 
 /obj/item/weapon/tank/nitrogen/examine(mob/user)
 	if(..(user, 0) && air_contents.gas["nitrogen"] < 10)
-		user << text("<span class='danger'>The meter on \the [src] indicates you are almost out of nitrogen!</span>")
+		to_chat(user, text("<span class='danger'>The meter on \the [src] indicates you are almost out of nitrogen!</span>"))
 		//playsound(user, 'sound/effects/alert.ogg', 50, 1)

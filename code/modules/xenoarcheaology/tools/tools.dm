@@ -254,7 +254,7 @@
 			if(prob(scan_ticks * 10))
 				spawn(0)
 					set background = 1
-					if(is_processing)
+					if(datum_flags & DF_ISPROCESSING)
 						//scan radios in the world to try and find one
 						var/cur_dist = 999
 						for(var/obj/item/device/radio/beacon/R in all_beacons)

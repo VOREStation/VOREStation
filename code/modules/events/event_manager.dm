@@ -1,4 +1,5 @@
-/datum/event_manager
+//The UI portion. Should probably be made its own thing/made into a NanoUI thing later.
+/datum/controller/subsystem/events
 	var/window_x = 700
 	var/window_y = 600
 	var/report_at_round_end = 0
@@ -8,49 +9,7 @@
 	var/row_options3 = " width='150px'"
 	var/datum/event_container/selected_event_container = null
 
-	var/list/datum/event/active_events = list()
-	var/list/datum/event/finished_events = list()
-
-	var/list/datum/event/allEvents
-	var/list/datum/event_container/event_containers = list(
-			EVENT_LEVEL_MUNDANE 	= new/datum/event_container/mundane,
-			EVENT_LEVEL_MODERATE	= new/datum/event_container/moderate,
-			EVENT_LEVEL_MAJOR 		= new/datum/event_container/major
-		)
-
-	var/datum/event_meta/new_event = new
-
-/datum/event_manager/New()
-	allEvents = typesof(/datum/event) - /datum/event
-
-/datum/event_manager/process()
-	for(var/datum/event/E in event_manager.active_events)
-		E.process()
-
-	for(var/i = EVENT_LEVEL_MUNDANE to EVENT_LEVEL_MAJOR)
-		var/list/datum/event_container/EC = event_containers[i]
-		EC.process()
-
-/datum/event_manager/proc/event_complete(var/datum/event/E)
-	if(!E.event_meta || !E.severity)	// datum/event is used here and there for random reasons, maintaining "backwards compatibility"
-		log_debug("Event of '[E.type]' with missing meta-data has completed.")
-		return
-
-	finished_events += E
-
-	// Add the event back to the list of available events
-	var/datum/event_container/EC = event_containers[E.severity]
-	var/datum/event_meta/EM = E.event_meta
-	if(EM.add_to_queue)
-		EC.available_events += EM
-
-	log_debug("Event '[EM.name]' has completed at [worldtime2stationtime(world.time)].")
-
-/datum/event_manager/proc/delay_events(var/severity, var/delay)
-	var/list/datum/event_container/EC = event_containers[severity]
-	EC.next_event_time += delay
-
-/datum/event_manager/proc/Interact(var/mob/living/user)
+/datum/controller/subsystem/events/proc/Interact(var/mob/living/user)
 
 	var/html = GetInteractWindow()
 
@@ -58,27 +17,7 @@
 	popup.set_content(html)
 	popup.open()
 
-/datum/event_manager/proc/RoundEnd()
-	if(!report_at_round_end)
-		return
-
-	world << "<br><br><br><font size=3><b>Random Events This Round:</b></font>"
-	for(var/datum/event/E in active_events|finished_events)
-		var/datum/event_meta/EM = E.event_meta
-		if(EM.name == "Nothing")
-			continue
-		var/message = "'[EM.name]' began at [worldtime2stationtime(E.startedAt)] "
-		if(E.isRunning)
-			message += "and is still running."
-		else
-			if(E.endedAt - E.startedAt > MinutesToTicks(5)) // Only mention end time if the entire duration was more than 5 minutes
-				message += "and ended at [worldtime2stationtime(E.endedAt)]."
-			else
-				message += "and ran to completion."
-
-		world << message
-
-/datum/event_manager/proc/GetInteractWindow()
+/datum/controller/subsystem/events/proc/GetInteractWindow()
 	var/html = "<A align='right' href='?src=\ref[src];refresh=1'>Refresh</A>"
 	html += "<A align='right' href='?src=\ref[src];pause_all=[!config.allow_random_events]'>Pause All - [config.allow_random_events ? "Pause" : "Resume"]</A>"
 
@@ -187,10 +126,9 @@
 
 	return html
 
-/datum/event_manager/Topic(href, href_list)
+/datum/controller/subsystem/events/Topic(href, href_list)
 	if(..())
 		return
-
 
 	if(href_list["toggle_report"])
 		report_at_round_end = !report_at_round_end
@@ -284,7 +222,7 @@
 
 	Interact(usr)
 
-/client/proc/forceEvent(var/type in event_manager.allEvents)
+/client/proc/forceEvent(var/type in SSevents.allEvents)
 	set name = "Trigger Event (Debug Only)"
 	set category = "Debug"
 
@@ -298,7 +236,5 @@
 /client/proc/event_manager_panel()
 	set name = "Event Manager Panel"
 	set category = "Admin"
-	if(event_manager)
-		event_manager.Interact(usr)
+	SSevents.Interact(usr)
 	feedback_add_details("admin_verb","EMP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return

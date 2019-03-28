@@ -59,10 +59,21 @@ var/global/list/antag_visiblity_choices = list(
 
 var/global/list/religion_choices = list(
 	"Unitarianism",
-	"Hinduism",
-	"Buddhist",
+	"Neopaganism",
 	"Islam",
 	"Christianity",
+	"Judaism",
+	"Hinduism",
+	"Buddhism",
+	"Pleromanism",
+	"Spectralism",
+	"Phact Shintoism",
+	"Kishari Faith",
+	"Hauler Faith",
+	"Nock",
+	"Singulitarian Worship",
+	"Xilar Qall",
+	"Tajr-kii Rarkajar",
 	"Agnosticism",
 	"Deism"
 	)

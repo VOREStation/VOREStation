@@ -213,46 +213,49 @@
 	teleport_y = world.maxy - 1
 	teleport_z = Z_LEVEL_SURFACE_MINE
 
+/datum/planet/sif
+	expected_z_levels = list(
+		Z_LEVEL_SURFACE,
+		Z_LEVEL_SURFACE_MINE,
+		Z_LEVEL_SURFACE_WILD,
+		Z_LEVEL_TRANSIT
+	)
 
-/obj/effect/step_trigger/teleporter/bridge/east_to_west/New()
-	..()
+/obj/effect/step_trigger/teleporter/bridge/east_to_west/Initialize()
 	teleport_x = src.x - 4
 	teleport_y = src.y
 	teleport_z = src.z
+	return ..()
 
-/obj/effect/step_trigger/teleporter/bridge/east_to_west/small/New()
-	..()
+/obj/effect/step_trigger/teleporter/bridge/east_to_west/small/Initialize()
 	teleport_x = src.x - 3
 	teleport_y = src.y
 	teleport_z = src.z
+	return ..()
 
-
-/obj/effect/step_trigger/teleporter/bridge/west_to_east/New()
-	..()
+/obj/effect/step_trigger/teleporter/bridge/west_to_east/Initialize()
 	teleport_x = src.x + 4
 	teleport_y = src.y
 	teleport_z = src.z
+	return ..()
 
-/obj/effect/step_trigger/teleporter/bridge/west_to_east/small/New()
-	..()
+/obj/effect/step_trigger/teleporter/bridge/west_to_east/small/Initialize()
 	teleport_x = src.x + 3
 	teleport_y = src.y
 	teleport_z = src.z
+	return ..()
 
-
-/obj/effect/step_trigger/teleporter/bridge/north_to_south/New()
-	..()
+/obj/effect/step_trigger/teleporter/bridge/north_to_south/Initialize()
 	teleport_x = src.x
 	teleport_y = src.y - 4
 	teleport_z = src.z
+	return ..()
 
-
-/obj/effect/step_trigger/teleporter/bridge/south_to_north/New()
-	..()
+/obj/effect/step_trigger/teleporter/bridge/south_to_north/Initialize()
 	teleport_x = src.x
 	teleport_y = src.y + 4
 	teleport_z = src.z
-
+	return ..()
 
 /datum/planet/sif
 	expected_z_levels = list(

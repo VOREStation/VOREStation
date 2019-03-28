@@ -19,8 +19,6 @@ var/global/datum/global_init/init = new ()
 	makeDatumRefLists()
 	load_configuration()
 
-	initialize_chemical_reagents()
-	initialize_chemical_reactions()
 	initialize_integrated_circuits_list()
 
 	qdel(src) //we're done
@@ -157,7 +155,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			var/list/players = list()
 			var/list/admins = list()
 
-			for(var/client/C in clients)
+			for(var/client/C in GLOB.clients)
 				if(C.holder)
 					if(C.holder.fakekey)
 						continue
@@ -175,7 +173,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			var/n = 0
 			var/admins = 0
 
-			for(var/client/C in clients)
+			for(var/client/C in GLOB.clients)
 				if(C.holder)
 					if(C.holder.fakekey)
 						continue	//so stealthmins aren't revealed by the hub
@@ -299,7 +297,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			info["hasbeenrev"] = M.mind ? M.mind.has_been_rev : "No mind"
 			info["stat"] = M.stat
 			info["type"] = M.type
-			if(isliving(M))
+			if(istype(M, /mob/living))
 				var/mob/living/L = M
 				info["damage"] = list2params(list(
 							oxy = L.getOxyLoss(),
@@ -346,7 +344,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		var/client/C
 		var/req_ckey = ckey(input["adminmsg"])
 
-		for(var/client/K in clients)
+		for(var/client/K in GLOB.clients)
 			if(K.ckey == req_ckey)
 				C = K
 				break
@@ -432,7 +430,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	else
 		processScheduler.stop()
 		Master.Shutdown()	//run SS shutdowns
-		for(var/client/C in clients)
+		for(var/client/C in GLOB.clients)
 			if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 				C << link("byond://[config.server]")
 
@@ -499,7 +497,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
-				D.associate(directory[ckey])
+				D.associate(GLOB.directory[ckey])
 
 /world/proc/load_mentors()
 	if(config.admin_legacy_system)
@@ -519,7 +517,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)
-				D.associate(directory[ckey])
+				D.associate(GLOB.directory[ckey])
 
 /world/proc/update_status()
 	var/s = ""
@@ -669,7 +667,7 @@ proc/establish_old_db_connection()
 
 // Things to do when a new z-level was just made.
 /world/proc/max_z_changed()
-	if(!islist(GLOB.players_by_zlevel))
+	if(!istype(GLOB.players_by_zlevel, /list))
 		GLOB.players_by_zlevel = new /list(world.maxz, 0)
 	while(GLOB.players_by_zlevel.len < world.maxz)
 		GLOB.players_by_zlevel.len++

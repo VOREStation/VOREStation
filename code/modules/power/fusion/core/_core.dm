@@ -94,7 +94,7 @@ var/list/fusion_cores = list()
 		. = owned_field.bullet_act(Proj)
 
 /obj/machinery/power/fusion_core/proc/set_strength(var/value)
-	value = Clamp(value, MIN_FIELD_STR, MAX_FIELD_STR)
+	value = CLAMP(value, MIN_FIELD_STR, MAX_FIELD_STR)
 	field_strength = value
 	active_power_usage = 5 * value
 	if(owned_field)

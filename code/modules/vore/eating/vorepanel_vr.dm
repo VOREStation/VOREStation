@@ -2,7 +2,7 @@
 // Vore management panel for players
 //
 
-#define BELLIES_MAX 20
+#define BELLIES_MAX 30
 #define BELLIES_NAME_MIN 2
 #define BELLIES_NAME_MAX 12
 #define BELLIES_DESC_MAX 1024
@@ -654,14 +654,14 @@
 		var/new_damage = input(user, "Choose the amount of burn damage prey will take per tick. Ranges from 0 to 6.", "Set Belly Burn Damage.", selected.digest_burn) as num|null
 		if(new_damage == null)
 			return
-		var/new_new_damage = Clamp(new_damage, 0, 6)
+		var/new_new_damage = CLAMP(new_damage, 0, 6)
 		selected.digest_burn = new_new_damage
 
 	if(href_list["b_brute_dmg"])
 		var/new_damage = input(user, "Choose the amount of brute damage prey will take per tick. Ranges from 0 to 6", "Set Belly Brute Damage.", selected.digest_brute) as num|null
 		if(new_damage == null)
 			return
-		var/new_new_damage = Clamp(new_damage, 0, 6)
+		var/new_new_damage = CLAMP(new_damage, 0, 6)
 		selected.digest_brute = new_new_damage
 
 	if(href_list["b_escapable"])

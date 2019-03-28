@@ -17,8 +17,8 @@
 	var/list/spray_sizes = list(1,3)
 	volume = 250
 
-/obj/item/weapon/reagent_containers/spray/New()
-	..()
+/obj/item/weapon/reagent_containers/spray/Initialize()
+	. = ..()
 	src.verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
 
 /obj/item/weapon/reagent_containers/spray/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
@@ -102,16 +102,16 @@
 	desc = "BLAM!-brand non-foaming space cleaner!"
 	volume = 50
 
-/obj/item/weapon/reagent_containers/spray/cleaner/New()
-	..()
+/obj/item/weapon/reagent_containers/spray/cleaner/Initialize()
+	. = ..()
 	reagents.add_reagent("cleaner", volume)
 
 /obj/item/weapon/reagent_containers/spray/sterilizine
 	name = "sterilizine"
 	desc = "Great for hiding incriminating bloodstains and sterilizing scalpels."
 
-/obj/item/weapon/reagent_containers/spray/sterilizine/New()
-	..()
+/obj/item/weapon/reagent_containers/spray/sterilizine/Initialize()
+	. = ..()
 	reagents.add_reagent("sterilizine", volume)
 
 /obj/item/weapon/reagent_containers/spray/pepper
@@ -122,10 +122,10 @@
 	item_state = "pepperspray"
 	possible_transfer_amounts = null
 	volume = 40
-	var/safety = 1
+	var/safety = TRUE
 
-/obj/item/weapon/reagent_containers/spray/pepper/New()
-	..()
+/obj/item/weapon/reagent_containers/spray/pepper/Initialize()
+	. = ..()
 	reagents.add_reagent("condensedcapsaicin", 40)
 
 /obj/item/weapon/reagent_containers/spray/pepper/examine(mob/user)
@@ -140,7 +140,7 @@
 	if(safety)
 		usr << "<span class = 'warning'>The safety is on!</span>"
 		return
-	..()
+	. = ..()
 
 /obj/item/weapon/reagent_containers/spray/waterflower
 	name = "water flower"
@@ -152,8 +152,8 @@
 	possible_transfer_amounts = null
 	volume = 10
 
-/obj/item/weapon/reagent_containers/spray/waterflower/New()
-	..()
+/obj/item/weapon/reagent_containers/spray/waterflower/Initialize()
+	. = ..()
 	reagents.add_reagent("water", 10)
 
 /obj/item/weapon/reagent_containers/spray/chemsprayer
@@ -196,6 +196,6 @@
 	item_state = "plantbgone"
 	volume = 100
 
-/obj/item/weapon/reagent_containers/spray/plantbgone/New()
-	..()
+/obj/item/weapon/reagent_containers/spray/plantbgone/Initialize()
+	. = ..()
 	reagents.add_reagent("plantbgone", 100)

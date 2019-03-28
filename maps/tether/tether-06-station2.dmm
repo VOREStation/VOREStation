@@ -3367,15 +3367,14 @@
 /turf/simulated/floor/plating,
 /area/hallway/station/starboard)
 "fh" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/effect/floor_decal/techfloor{
+	dir = 8
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/obj/machinery/camera/network/command{
+	dir = 4
+	},
+/turf/simulated/floor/bluegrid,
+/area/ai_upload)
 "fi" = (
 /obj/machinery/alarm{
 	dir = 4;
@@ -3434,17 +3433,18 @@
 /turf/simulated/wall,
 /area/chapel/main)
 "fp" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 8
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 11;
+	pixel_y = 0
 	},
-/obj/machinery/camera/motion/security{
-	dir = 4
-	},
-/turf/simulated/floor/bluegrid,
-/area/ai_upload)
+/turf/simulated/floor/tiled/white,
+/area/medical/virologyaccess)
 "fq" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -3477,8 +3477,7 @@
 /area/ai_upload)
 "fu" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+	dir = 8
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -3494,6 +3493,16 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
+"fw" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "fx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/rack{
@@ -5838,7 +5847,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
 "la" = (
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -7094,7 +7103,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -7841,7 +7850,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
 "op" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/structure/cable{
@@ -7949,7 +7958,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
 "ow" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/effect/floor_decal/borderfloor,
@@ -9235,7 +9244,7 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -10066,7 +10075,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/effect/floor_decal/borderfloor,
@@ -12225,7 +12234,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/stairs_two)
 "vQ" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals6{
@@ -13939,18 +13948,6 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 5
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/virologyaccess)
-"yH" = (
-/obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
-	},
-/obj/machinery/camera/network/medbay{
-	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virologyaccess)
@@ -19403,11 +19400,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/alarm{
-	breach_detection = 0;
 	dir = 8;
 	pixel_x = 25;
-	pixel_y = 0;
-	report_danger_level = 0
+	pixel_y = 0
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/airless,
@@ -30106,11 +30101,11 @@ AN
 AN
 Bw
 yY
-fh
-fq
-fq
 fq
 fu
+fu
+fu
+fw
 yY
 ac
 ac
@@ -30522,7 +30517,7 @@ wF
 xn
 xE
 yd
-yH
+fp
 yX
 zv
 zW
@@ -31056,7 +31051,7 @@ bg
 db
 dE
 To
-fp
+fh
 eE
 gm
 dE

@@ -114,7 +114,8 @@
 	src.icon_state = src.icon_opened
 	src.opened = 1
 	playsound(src.loc, open_sound, 15, 1, -3)
-	density = !density
+	if(initial(density))
+		density = !density
 	return 1
 
 /obj/structure/closet/proc/close()
@@ -138,7 +139,8 @@
 	src.opened = 0
 
 	playsound(src.loc, close_sound, 15, 1, -3)
-	density = !density
+	if(initial(density))
+		density = !density
 	return 1
 
 //Cham Projector Exception

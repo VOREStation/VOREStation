@@ -216,6 +216,17 @@
 			ash()
 			return // No point deafening something that wont exist.
 
+// Lava
+/mob/living/simple_mob/lava_act()
+	..()
+	// Similar to lightning, the mob is turned to ash if the lava tick was fatal and it isn't a player.
+	// Unlike lightning, we don't add an additional damage spike (since lava already hurts a lot).
+	if(!client)
+		updatehealth()
+		if(health <= 0)
+			visible_message(span("critical", "\The [src] flashes into ash as the lava consumes them!"))
+			ash()
+
 // Injections.
 /mob/living/simple_mob/can_inject(mob/user, error_msg, target_zone, ignore_thickness)
 	if(ignore_thickness)

@@ -7,7 +7,7 @@
 	var/gc_destroyed //Time when this object was destroyed.
 	var/list/active_timers  //for SStimer
 	var/weakref/weakref // Holder of weakref instance pointing to this datum
-	var/is_processing		//If is processing, may or may not have the name of the list it's in.
+	var/datum_flags = NONE
 
 #ifdef TESTING
 	var/tmp/running_find_references
@@ -30,5 +30,5 @@
 
 	weakref = null // Clear this reference to ensure it's kept for as brief duration as possible.
 	tag = null
-	GLOB.nanomanager.close_uis(src)
+	SSnanoui.close_uis(src)
 	return QDEL_HINT_QUEUE

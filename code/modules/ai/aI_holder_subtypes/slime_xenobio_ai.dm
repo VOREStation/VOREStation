@@ -5,6 +5,7 @@
 	hostile = TRUE
 	cooperative = TRUE
 	firing_lanes = TRUE
+	mauling = TRUE // They need it to get the most out of monkeys.
 	var/rabid = FALSE	// Will attack regardless of discipline.
 	var/discipline = 0	// Beating slimes makes them less likely to lash out.  In theory.
 	var/resentment = 0	// 'Unjustified' beatings make this go up, and makes it more likely for abused slimes to go rabid.
@@ -33,9 +34,11 @@
 
 // Checks if disciplining the slime would be 'justified' right now.
 /datum/ai_holder/simple_mob/xenobio_slime/proc/is_justified_to_discipline()
+	if(!can_act())
+		return FALSE // The slime considers it abuse if they get stunned while already stunned.
 	if(rabid)
 		return TRUE
-	if(target)
+	if(target && can_attack(target))
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			if(istype(H.species, /datum/species/monkey))

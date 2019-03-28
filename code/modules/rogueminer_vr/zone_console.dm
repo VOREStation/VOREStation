@@ -79,7 +79,7 @@
 	// Permit emergency recall of the shuttle if its stranded in a zone with just dead people.
 	data["can_recall_shuttle"] = (shuttle_control && shuttle_control.z == BELT_Z && !curZoneOccupied)
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "zone_console.tmpl", src.name, 600, 400)
 		ui.set_initial_data(data)
@@ -100,7 +100,7 @@
 				failsafe_shuttle_recall()
 
 	src.add_fingerprint(usr)
-	GLOB.nanomanager.update_uis(src)
+	SSnanoui.update_uis(src)
 
 /obj/machinery/computer/roguezones/proc/scan_for_new_zone()
 	if(scanning) return

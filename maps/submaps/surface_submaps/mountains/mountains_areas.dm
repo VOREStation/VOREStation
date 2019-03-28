@@ -121,3 +121,12 @@
 /area/submap/deadspy
 	name = "Dead Spy"
 	ambience = AMBIENCE_FOREBODING
+
+/area/submap/lava_trench
+	name = "Lava Trench"
+	ambience = AMBIENCE_LAVA
+
+/area/submap/lava_trench/outpost
+	name = "Trench Outpost"
+	requires_power = FALSE
+	icon_state = "submap2"

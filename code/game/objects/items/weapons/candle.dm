@@ -1,11 +1,12 @@
 /obj/item/weapon/flame/candle
 	name = "red candle"
-	desc = "a small pillar candle. Its specially-formulated fuel-oxidizer wax mixture allows continued combustion in airless environments."
+	desc = "a red pillar candle. Its specially-formulated fuel-oxidizer wax mixture allows continued combustion in airless environments."
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle1"
 	w_class = ITEMSIZE_TINY
 	light_color = "#E09D37"
 	var/wax = 2000
+	var/icon_type = "candle"
 
 /obj/item/weapon/flame/candle/New()
 	wax -= rand(800, 1000) // Enough for 27-33 minutes. 30 minutes on average.
@@ -18,7 +19,7 @@
 	else if(wax > 800)
 		i = 2
 	else i = 3
-	icon_state = "candle[i][lit ? "_lit" : ""]"
+	icon_state = "[icon_type][i][lit ? "_lit" : ""]"
 
 
 /obj/item/weapon/flame/candle/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -67,6 +68,30 @@
 		lit = 0
 		update_icon()
 		set_light(0)
+
+/obj/item/weapon/flame/candle/small
+	name = "small red candle"
+	desc = "a small red candle, for more intimate candle occasions."
+	icon = 'icons/obj/candle.dmi'
+	icon_state = "smallcandle"
+	icon_type = "smallcandle"
+	w_class = ITEMSIZE_SMALL
+
+/obj/item/weapon/flame/candle/white
+	name = "white candle"
+	desc = "a white pillar candle. Its specially-formulated fuel-oxidizer wax mixture allows continued combustion in airless environments."
+	icon = 'icons/obj/candle.dmi'
+	icon_state = "whitecandle"
+	icon_type = "whitecandle"
+	w_class = ITEMSIZE_SMALL
+
+/obj/item/weapon/flame/candle/black
+	name = "black candle"
+	desc = "a black pillar candle. Ominous."
+	icon = 'icons/obj/candle.dmi'
+	icon_state = "blackcandle"
+	icon_type = "blackcandle"
+	w_class = ITEMSIZE_SMALL
 
 /obj/item/weapon/flame/candle/candelabra
 	name = "candelabra"

@@ -42,6 +42,11 @@
 		pulledby = null
 	QDEL_NULL(riding_datum) //VOREStation Add
 
+/atom/movable/vv_edit_var(var_name, var_value)
+	if(GLOB.VVpixelmovement[var_name])			//Pixel movement is not yet implemented, changing this will break everything irreversibly.
+		return FALSE
+	return ..()
+
 /atom/movable/Bump(var/atom/A, yes)
 	if(src.throwing)
 		src.throw_impact(A)
@@ -291,6 +296,10 @@
 /atom/movable/proc/adjust_rotation(new_rotation)
 	icon_rotation = new_rotation
 	update_transform()
+
+// Called when touching a lava tile.
+/atom/movable/proc/lava_act()
+	fire_act(null, 10000, 1000)
 
 // Called when something changes z-levels.
 /atom/movable/proc/on_z_change(old_z, new_z)

@@ -116,7 +116,7 @@
 			data["lastTeleData"]["distance"] = last_tele_data.distance
 			data["lastTeleData"]["time"] = last_tele_data.time
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "telescience_console.tmpl", src.name, 400, 450)
 		ui.set_initial_data(data)
@@ -173,7 +173,7 @@
 		return
 
 	if(telepad)
-		var/trueDistance = Clamp(distance + distance_off, 1, get_max_allowed_distance())
+		var/trueDistance = CLAMP(distance + distance_off, 1, get_max_allowed_distance())
 		var/trueRotation = rotation + rotation_off
 
 		var/datum/projectile_data/proj_data = simple_projectile_trajectory(telepad.x, telepad.y, trueRotation, trueDistance)
@@ -283,7 +283,7 @@
 			updateDialog()
 
 /obj/machinery/computer/telescience/proc/teleport(mob/user)
-	distance = Clamp(distance, 0, get_max_allowed_distance())
+	distance = CLAMP(distance, 0, get_max_allowed_distance())
 	if(rotation == null || distance == null || z_co == null)
 		temp_msg = "ERROR!<BR>Set a distance, rotation and sector."
 		return
@@ -320,14 +320,14 @@
 		var/new_rot = input("Please input desired bearing in degrees.", name, rotation) as num
 		if(..()) // Check after we input a value, as they could've moved after they entered something
 			return
-		rotation = Clamp(new_rot, -900, 900)
+		rotation = CLAMP(new_rot, -900, 900)
 		rotation = round(rotation, 0.01)
 
 	if(href_list["setdistance"])
 		var/new_pow = input("Please input desired distance in meters.", name, rotation) as num
 		if(..()) // Check after we input a value, as they could've moved after they entered something
 			return
-		distance = Clamp(new_pow, 1, get_max_allowed_distance())
+		distance = CLAMP(new_pow, 1, get_max_allowed_distance())
 		distance = FLOOR(distance, 1)
 
 	if(href_list["setz"])
