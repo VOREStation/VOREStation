@@ -13,28 +13,31 @@
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)))
 
-/obj/item/weapon/gun/projectile/automatic/saber //Fixed it
-	name = "prototype SMG"
-	desc = "A protoype lightweight, fast firing gun. Uses 9mm rounds."
+/obj/item/weapon/gun/projectile/automatic/advanced_smg
+	name = "advanced SMG"
+	desc = "An advanced submachine gun with a reflective laser optic that makes burst fire less inaccurate than other SMGs. Uses 9mm rounds."
 	icon = 'icons/obj/gun.dmi'
-	icon_state = "saber"//Still ugly
+	icon_state = "advanced_smg-empty"
 	w_class = ITEMSIZE_NORMAL
-	load_method = MAGAZINE  //This should fix it
-	max_shells = 22
+	load_method = MAGAZINE
 	caliber = "9mm"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
-	magazine_type = /obj/item/ammo_magazine/m9mmR/saber
-	allowed_magazines = list(/obj/item/ammo_magazine/m9mmR/saber, /obj/item/ammo_magazine/m9mmR/saber/ap)
-	projectile_type = /obj/item/projectile/bullet/pistol
-	multi_aim = 1
-	burst_delay = 2
+	magazine_type = null // R&D builds this. Starts unloaded.
+	allowed_magazines = list(/obj/item/ammo_magazine/m9mmAdvanced, /obj/item/ammo_magazine/m9mm)
 
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
-		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0))
-	//	list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15,-30,-30), dispersion=list(0.6, 1.0, 1.0, 1.0, 1.2)),
+		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-10,-10), dispersion=list(0.0, 0.3, 0.6))
 	)
+
+/obj/item/weapon/gun/projectile/automatic/advanced_smg/update_icon()
+	..()
+	icon_state = (ammo_magazine)? "advanced_smg" : "advanced_smg-empty"
+	return
+
+/obj/item/weapon/gun/projectile/automatic/advanced_smg/loaded
+	magazine_type = /obj/item/ammo_magazine/m9mmAdvanced
 
 /obj/item/weapon/gun/projectile/automatic/c20r
 	name = "submachine gun"
