@@ -740,11 +740,7 @@
 #include "code\game\machinery\transportpod.dm"
 #include "code\game\machinery\turret_control.dm"
 #include "code\game\machinery\vending.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\game\machinery\vending_vr.dm"
-#include "code\game\machinery\vr_console.dm"
-=======
->>>>>>> 83fc6b5... Adds Alien Reality pods, aka AR pods, for use in events or PoIs. (#5798):polaris.dme
 #include "code\game\machinery\wall_frames.dm"
 #include "code\game\machinery\washing_machine.dm"
 #include "code\game\machinery\wishgranter.dm"
@@ -2491,11 +2487,8 @@
 #include "code\modules\organs\subtypes\diona.dm"
 #include "code\modules\organs\subtypes\indestructible.dm"
 #include "code\modules\organs\subtypes\machine.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\organs\subtypes\nano.dm"
-=======
 #include "code\modules\organs\subtypes\replicant.dm"
->>>>>>> 83fc6b5... Adds Alien Reality pods, aka AR pods, for use in events or PoIs. (#5798):polaris.dme
 #include "code\modules\organs\subtypes\seromi.dm"
 #include "code\modules\organs\subtypes\slime.dm"
 #include "code\modules\organs\subtypes\slime_vr.dm"
