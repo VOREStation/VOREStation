@@ -81,7 +81,7 @@
 	name = "white candle"
 	desc = "a white pillar candle. Its specially-formulated fuel-oxidizer wax mixture allows continued combustion in airless environments."
 	icon = 'icons/obj/candle.dmi'
-	icon_state = "whitecandle
+	icon_state = "whitecandle"
 	icon_type = "whitecandle"
 	w_class = ITEMSIZE_SMALL
 
