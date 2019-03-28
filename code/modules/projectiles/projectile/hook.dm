@@ -9,7 +9,7 @@
 	var/beam_state = "b_beam"
 
 	damage = 5
-	step_delay = 2
+	speed = 2
 	damage_type = BURN
 	check_armour = "energy"
 	armor_penetration = 15
@@ -27,9 +27,9 @@
 	var/list/help_messages = list("slaps", "pokes", "nudges", "bumps", "pinches")
 	var/done_mob_unique = FALSE	// Has the projectile already done something to a mob?
 
-/obj/item/projectile/energy/hook/launch(atom/target, target_zone, x_offset=0, y_offset=0, angle_offset=0)
+/obj/item/projectile/energy/hook/launch_projectile(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
 	var/expected_distance = get_dist(target, loc)
-	kill_count = expected_distance // So the hook hits the ground if no mob is hit.
+	range = expected_distance // So the hook hits the ground if no mob is hit.
 	target_distance = expected_distance
 	if(firer)	// Needed to ensure later checks in impact and on hit function.
 		launcher_intent = firer.a_intent

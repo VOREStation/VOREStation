@@ -40,30 +40,6 @@
 
 #define ACCESSORY_SLOT_TORSO 	(ACCESSORY_SLOT_UTILITY|ACCESSORY_SLOT_WEAPON)
 
-// Flags bitmasks. - Used in /atom/var/flags
-#define NOBLUDGEON         0x1    // When an item has this it produces no "X has been hit by Y with Z" message with the default handler.
-#define CONDUCT            0x2   // Conducts electricity. (metal etc.)
-#define ON_BORDER          0x4   // Item has priority to check when entering or leaving.
-#define NOBLOODY           0x8   // Used for items if they don't want to get a blood overlay.
-#define OPENCONTAINER      0x10 // Is an open container for chemistry purposes.
-#define PHORONGUARD        0x20 // Does not get contaminated by phoron.
-#define	NOREACT            0x40 // Reagents don't react inside this container.
-#define PROXMOVE           0x80  // Does this object require proximity checking in Enter()?
-#define OVERLAY_QUEUED     0x100 // Atom queued to SSoverlay for COMPILE_OVERLAYS
-
-//Flags for items (equipment) - Used in /obj/item/var/item_flags
-#define THICKMATERIAL          0x1  // Prevents syringes, parapens and hyposprays if equipped to slot_suit or slot_head.
-#define AIRTIGHT               0x2  // Functions with internals.
-#define NOSLIP                 0x4  // Prevents from slipping on wet floors, in space, etc.
-#define BLOCK_GAS_SMOKE_EFFECT 0x8  // Blocks the effect that chemical clouds would have on a mob -- glasses, mask and helmets ONLY! (NOTE: flag shared with ONESIZEFITSALL)
-#define FLEXIBLEMATERIAL       0x10 // At the moment, masks with this flag will not prevent eating even if they are covering your face.
-
-// Flags for pass_flags. - Used in /atom/var/pass_flags
-#define PASSTABLE  0x1
-#define PASSGLASS  0x2
-#define PASSGRILLE 0x4
-#define PASSBLOB   0x8
-
 // Bitmasks for the /obj/item/var/flags_inv variable. These determine when a piece of clothing hides another, i.e. a helmet hiding glasses.
 // WARNING: The following flags apply only to the external suit!
 #define HIDEGLOVES      0x1
