@@ -209,7 +209,10 @@
 #define O_ACID     "acid gland"
 #define O_EGG      "egg sac"
 #define O_RESIN    "resin spinner"
-#define O_ALL list(O_STANDARD, O_MOUTH, O_CELL, O_PLASMA, O_HIVE, O_NUTRIENT, O_STRATA, O_RESPONSE, O_GBLADDER, O_POLYP, O_ANCHOR, O_ACID, O_EGG, O_RESIN)
+#define O_AREJECT  "immune hub"
+#define O_VENTC    "morphoplastic node"
+#define O_VRLINK   "virtual node"
+#define O_ALL list(O_STANDARD, O_MOUTH, O_CELL, O_PLASMA, O_HIVE, O_NUTRIENT, O_STRATA, O_RESPONSE, O_GBLADDER, O_POLYP, O_ANCHOR, O_ACID, O_EGG, O_RESIN, O_AREJECT, O_VENTC, O_VRLINK)
 
 // External organs, aka limbs
 #define BP_L_FOOT "l_foot"
@@ -276,6 +279,9 @@
 #define SPECIES_VR_SKRELL		"Virtual Reality Skrell"
 #define SPECIES_VR_TESHARI		"Virtual Reality Teshari"
 #define SPECIES_VR_DIONA		"Virtual Reality Diona"
+#define SPECIES_VR_MONKEY		"Virtual Reality Monkey"
+#define SPECIES_VR_SKELETON		"Virtual Reality Skeleton"
+#define SPECIES_VR_VOX			"Virtual Reality Vox"
 
 // Ayyy IDs.
 #define SPECIES_XENO			"Xenomorph"
@@ -289,6 +295,11 @@
 #define SPECIES_SKELETON		"Skeleton"
 #define SPECIES_GOLEM			"Golem"
 #define SPECIES_EVENT1			"X Occursus"
+
+// Replicant types. Currently only used for alien pods and events.
+#define SPECIES_REPLICANT		"Replicant"
+#define SPECIES_REPLICANT_ALPHA	"Alpha Replicant"
+#define SPECIES_REPLICANT_BETA	"Beta Replicant"
 
 // Used to seperate simple animals by ""intelligence"".
 #define SA_PLANT	1
