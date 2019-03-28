@@ -467,7 +467,7 @@
 		H.vent_gas(loc)
 		qdel(H)
 
-/obj/machinery/disposal/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/machinery/disposal/CanPass(atom/movable/mover, turf/target, height, air_group)
 	if(istype(mover, /obj/item/projectile))
 		return 1
 	if (istype(mover,/obj/item) && mover.throwing)

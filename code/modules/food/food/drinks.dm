@@ -117,8 +117,8 @@
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
 
-/obj/item/weapon/reagent_containers/food/drinks/milk/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/milk/Initialize()
+	. = ..()
 	reagents.add_reagent("milk", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/soymilk
@@ -127,8 +127,8 @@
 	icon_state = "soymilk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-/obj/item/weapon/reagent_containers/food/drinks/soymilk/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/soymilk/Initialize()
+	. = ..()
 	reagents.add_reagent("soymilk", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/smallmilk
@@ -138,8 +138,8 @@
 	icon_state = "mini-milk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-/obj/item/weapon/reagent_containers/food/drinks/smallmilk/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/smallmilk/Initialize()
+	. = ..()
 	reagents.add_reagent("milk", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/smallchocmilk
@@ -149,8 +149,8 @@
 	icon_state = "mini-milk_choco"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk/Initialize()
+	. = ..()
 	reagents.add_reagent("chocolate_milk", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/coffee
@@ -158,8 +158,8 @@
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
 	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
-/obj/item/weapon/reagent_containers/food/drinks/coffee/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/coffee/Initialize()
+	. = ..()
 	reagents.add_reagent("coffee", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/tea
@@ -169,8 +169,8 @@
 	item_state = "coffee"
 	center_of_mass = list("x"=16, "y"=14)
 
-/obj/item/weapon/reagent_containers/food/drinks/tea/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/tea/Initialize()
+	. = ..()
 	reagents.add_reagent("tea", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/ice
@@ -178,8 +178,8 @@
 	desc = "Careful, cold ice, do not chew."
 	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
-/obj/item/weapon/reagent_containers/food/drinks/ice/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/ice/Initialize()
+	. = ..()
 	reagents.add_reagent("ice", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/h_chocolate
@@ -210,8 +210,8 @@
 	volume = 10
 	center_of_mass = list("x"=16, "y"=12)
 
-/obj/item/weapon/reagent_containers/food/drinks/sillycup/New()
-	..()
+/obj/item/weapon/reagent_containers/food/drinks/sillycup/Initialize()
+	. = ..()
 
 /obj/item/weapon/reagent_containers/food/drinks/sillycup/on_reagent_change()
 	..()

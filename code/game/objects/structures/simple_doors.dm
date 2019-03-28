@@ -36,11 +36,11 @@
 	else
 		set_opacity(1)
 	if(material.products_need_process())
-		processing_objects |= src
+		START_PROCESSING(SSobj, src)
 	update_nearby_tiles(need_rebuild=1)
 
 /obj/structure/simple_door/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	update_nearby_tiles()
 	return ..()
 
@@ -206,6 +206,6 @@
 /obj/structure/simple_door/cult/TryToSwitchState(atom/user)
 	if(isliving(user))
 		var/mob/living/L = user
-		if(!iscultist(L) && !istype(L, /mob/living/simple_animal/construct))
+		if(!iscultist(L) && !istype(L, /mob/living/simple_mob/construct))
 			return
 	..()

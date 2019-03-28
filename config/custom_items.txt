@@ -486,6 +486,12 @@ character_name: Harmony Pretchl
 item_path: /obj/item/device/modkit_conversion/fluff/harmonyspace
 }
 
+{
+ckey: jwguy
+character_name: Koyo Akimomi
+item_path: /obj/item/weapon/storage/box/fluff/koyoakimomi
+}
+
 # ######## K CKEYS
 {
 ckey: kazkin

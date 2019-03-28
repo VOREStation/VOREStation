@@ -884,7 +884,7 @@
 	dir = 4
 	},
 /obj/structure/railing,
-/mob/living/simple_animal/fish/koi/poisonous,
+/mob/living/simple_mob/fish/koi/poisonous,
 /turf/simulated/floor/water/pool,
 /area/hallway/station/atrium)
 "acg" = (
@@ -1446,7 +1446,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/mob/living/simple_animal/fish/koi/poisonous,
+/mob/living/simple_mob/fish/koi/poisonous,
 /turf/simulated/floor/water/pool,
 /area/hallway/station/atrium)
 "adA" = (
@@ -8666,7 +8666,7 @@
 /turf/simulated/floor/tiled,
 /area/bridge_hallway)
 "azy" = (
-/mob/living/simple_animal/corgi/Ian,
+/mob/living/simple_mob/corgi/Ian,
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hop)
 "azz" = (
@@ -10732,7 +10732,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/mob/living/simple_animal/fox/fluff/Renault,
+/mob/living/simple_mob/fox/fluff/Renault,
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "aEu" = (
@@ -15893,7 +15893,7 @@
 /area/hallway/station/atrium)
 "bfT" = (
 /obj/structure/disposalpipe/segment,
-/mob/living/simple_animal/snake/Noodle,
+/mob/living/simple_mob/snake/Noodle,
 /turf/simulated/floor/carpet/oracarpet,
 /area/crew_quarters/heads/chief)
 "bfW" = (

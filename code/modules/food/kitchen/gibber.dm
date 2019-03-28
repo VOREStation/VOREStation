@@ -120,7 +120,7 @@
 		user << "<span class='danger'>The gibber is locked and running, wait for it to finish.</span>"
 		return
 
-	if(!(istype(victim, /mob/living/carbon)) && !(istype(victim, /mob/living/simple_animal)) )
+	if(!(istype(victim, /mob/living/carbon)) && !(istype(victim, /mob/living/simple_mob)) )
 		user << "<span class='danger'>This is not suitable for the gibber!</span>"
 		return
 
@@ -187,8 +187,8 @@
 	var/slab_nutrition = src.occupant.nutrition / 15
 
 	// Some mobs have specific meat item types.
-	if(istype(src.occupant,/mob/living/simple_animal))
-		var/mob/living/simple_animal/critter = src.occupant
+	if(istype(src.occupant,/mob/living/simple_mob))
+		var/mob/living/simple_mob/critter = src.occupant
 		if(critter.meat_amount)
 			slab_count = critter.meat_amount
 		if(critter.meat_type)

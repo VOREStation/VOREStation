@@ -569,7 +569,7 @@
 
 	update_icon()
 
-/obj/structure/frame/verb/rotate()
+/obj/structure/frame/verb/rotate_counterclockwise()
 	set name = "Rotate Frame Counter-Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -581,14 +581,14 @@
 		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
 		return 0
 
-	set_dir(turn(dir, 90))
+	src.set_dir(turn(src.dir, 90))
 
 	to_chat(usr, "<span class='notice'>You rotate the [src] to face [dir2text(dir)]!</span>")
 
 	return
 
 
-/obj/structure/frame/verb/revrotate()
+/obj/structure/frame/verb/rotate_clockwise()
 	set name = "Rotate Frame Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -600,7 +600,7 @@
 		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
 		return 0
 
-	set_dir(turn(dir, 270))
+	src.set_dir(turn(src.dir, 270))
 
 	to_chat(usr, "<span class='notice'>You rotate the [src] to face [dir2text(dir)]!</span>")
 

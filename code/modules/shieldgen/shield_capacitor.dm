@@ -28,7 +28,7 @@
 /obj/machinery/shield_capacitor/emag_act(var/remaining_charges, var/mob/user)
 	if(prob(75))
 		src.locked = !src.locked
-		user << "Controls are now [src.locked ? "locked." : "unlocked."]"
+		to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 		. = 1
 		updateDialog()
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -41,10 +41,10 @@
 		var/obj/item/weapon/card/id/C = W
 		if(access_captain in C.access || access_security in C.access || access_engine in C.access)
 			src.locked = !src.locked
-			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
+			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 			updateDialog()
 		else
-			user << "<font color='red'>Access denied.</font>"
+			to_chat(user, "<font color='red'>Access denied.</font>")
 	else if(W.is_wrench())
 		src.anchored = !src.anchored
 		playsound(src, W.usesound, 75, 1)
@@ -127,7 +127,7 @@
 		return
 	if( href_list["toggle"] )
 		if(!active && !anchored)
-			usr << "<font color='red'>The [src] needs to be firmly secured to the floor first.</font>"
+			to_chat(usr, "<font color='red'>The [src] needs to be firmly secured to the floor first.</font>")
 			return
 		active = !active
 	if( href_list["charge_rate"] )
@@ -141,13 +141,14 @@
 	else
 		..()
 
-/obj/machinery/shield_capacitor/verb/rotate()
-	set name = "Rotate capacitor clockwise"
+/obj/machinery/shield_capacitor/verb/rotate_clockwise()
+	set name = "Rotate Capacitor Clockwise"
 	set category = "Object"
 	set src in oview(1)
 
 	if (src.anchored)
-		usr << "It is fastened to the floor!"
+		to_chat(usr, "It is fastened to the floor!")
 		return
+
 	src.set_dir(turn(src.dir, 270))
 	return
