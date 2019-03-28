@@ -106,7 +106,7 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/m45tommy
-	name = "tommygun magazine (.45)"
+	name = "Tommy Gun magazine (.45)"
 	icon_state = "tommy-mag"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/a45
@@ -115,14 +115,14 @@
 	max_ammo = 20
 
 /obj/item/ammo_magazine/m45tommy/ap
-	name = "tommygun magazine (.45 AP)"
+	name = "Tommy Gun magazine (.45 AP)"
 	ammo_type = /obj/item/ammo_casing/a45/ap
 
 /obj/item/ammo_magazine/m45tommy/empty
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/m45tommydrum
-	name = "tommygun drum magazine (.45)"
+	name = "Tommy Gun drum magazine (.45)"
 	icon_state = "tommy-drum"
 	w_class = ITEMSIZE_NORMAL // Bulky ammo doesn't fit in your pockets!
 	mag_type = MAGAZINE
@@ -132,7 +132,7 @@
 	max_ammo = 50
 
 /obj/item/ammo_magazine/m45tommydrum/ap
-	name = "tommygun drum magazine (.45 AP)"
+	name = "Tommy Gun drum magazine (.45 AP)"
 	ammo_type = /obj/item/ammo_casing/a45/ap
 
 /obj/item/ammo_magazine/m45tommydrum/empty
