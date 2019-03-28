@@ -94,24 +94,6 @@
 	var/teleport_y = 0
 	var/teleport_z = 0
 
-  //VOREStation Edit Start
-	Trigger(var/atom/movable/A)
-		if(teleport_x && teleport_y && teleport_z)
-			var/turf/T = locate(teleport_x, teleport_y, teleport_z)
-			if(isliving(A))
-				var/mob/living/L = A
-				if(L.pulling)
-					var/atom/movable/P = L.pulling
-					L.stop_pulling()
-					P.forceMove(T)
-					L.forceMove(T)
-					L.start_pulling(P)
-				else
-					A.forceMove(T)
-			else
-				A.forceMove(T)
-  //VOREStation Edit End
-
 /obj/effect/step_trigger/teleporter/Trigger(atom/movable/AM)
 	if(teleport_x && teleport_y && teleport_z)
 		var/turf/T = locate(teleport_x, teleport_y, teleport_z)
