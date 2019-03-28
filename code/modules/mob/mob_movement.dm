@@ -1,14 +1,3 @@
-/mob/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
-
-	if(ismob(mover))
-		var/mob/moving_mob = mover
-		if ((other_mobs && moving_mob.other_mobs))
-			return 1
-		return (!mover.density || !density || lying)
-	else
-		return (!mover.density || !density || lying)
-
 /mob/proc/setMoveCooldown(var/timeout)
 	move_delay = max(world.time + timeout, move_delay)
 
