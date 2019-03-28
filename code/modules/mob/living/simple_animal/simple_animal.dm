@@ -1379,7 +1379,7 @@
 	return 0
 
 //Shoot a bullet at someone
-/mob/living/simple_mob/proc/Shoot(var/target, var/start, var/user, var/bullet = 0)
+/mob/living/simple_animal/proc/Shoot(atom/target, atom/start, mob/user, var/bullet = 0)
 	if(target == start)
 		return
 
