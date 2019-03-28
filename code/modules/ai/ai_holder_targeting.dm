@@ -105,7 +105,7 @@
 	if(isliving(the_target))
 		var/mob/living/L = the_target
 		if(ishuman(L) || issilicon(L))
-			if(!L.client)	// SSD players get a pass
+			if(L.key && !L.client)	// SSD players get a pass
 				return FALSE
 		if(L.stat)
 			if(L.stat == DEAD) // Leave dead things alone
