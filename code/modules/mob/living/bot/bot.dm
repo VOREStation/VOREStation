@@ -44,6 +44,8 @@
 	..()
 	update_icons()
 
+	default_language = all_languages[LANGUAGE_GALCOM]
+
 	botcard = new /obj/item/weapon/card/id(src)
 	botcard.access = botcard_access.Copy()
 
@@ -52,7 +54,7 @@
 	access_scanner.req_one_access = req_one_access.Copy()
 
 // Make sure mapped in units start turned on.
-/mob/living/bot/initialize()
+/mob/living/bot/Initialize()
 	. = ..()
 	if(on)
 		turn_on() // Update lights and other stuff

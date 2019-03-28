@@ -232,6 +232,31 @@ BLIND     // can't see anything
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	body_parts_covered = 0
 
+/obj/item/clothing/glasses/regular/rimless
+	name = "prescription rimless glasses"
+	desc = "Sleek modern glasses with a single sculpted lens."
+	icon_state = "glasses_rimless"
+	prescription = 1
+
+/obj/item/clothing/glasses/rimless
+	name = "rimless glasses"
+	desc = "Sleek modern glasses with a single sculpted lens."
+	icon_state = "glasses_rimless"
+	prescription = 0
+
+/obj/item/clothing/glasses/regular/thin
+	name = "prescription thin-rimmed glasses"
+	desc = "Glasses with frames are so last century."
+	icon_state = "glasses_thin"
+	prescription = 1
+
+/obj/item/clothing/glasses/thin
+	name = "thin-rimmed glasses"
+	desc = "Glasses with frames are so last century."
+	icon_state = "glasses_thin"
+	prescription = 0
+
+
 /obj/item/clothing/glasses/sunglasses
 	name = "sunglasses"
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."

@@ -1,3 +1,7 @@
+#define OFF 0
+#define FORWARDS 1
+#define BACKWARDS 2
+
 //conveyor2 is pretty much like the original, except it supports corners, but not diverters.
 //note that corner pieces transfer stuff clockwise when running forward, and anti-clockwise backwards.
 
@@ -10,7 +14,7 @@
 	layer = ABOVE_TURF_LAYER
 	anchored = 1
 	circuit = /obj/item/weapon/circuitboard/conveyor
-	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
+	var/operating = OFF	// 1 if running forward, -1 if backwards, 0 if off
 	var/operable = 1	// true if can operate (no broken segments in this belt run)
 	var/forwards		// this is the default (forward) direction, set by the map dir
 	var/backwards		// hopefully self-explanatory
@@ -23,7 +27,7 @@
 	id = "round_end_belt"
 
 	// create a conveyor
-/obj/machinery/conveyor/initialize(mapload, newdir, on = 0)
+/obj/machinery/conveyor/Initialize(mapload, newdir, on = 0)
 	. = ..()
 	if(newdir)
 		set_dir(newdir)
@@ -36,7 +40,7 @@
 		backwards = turn(dir, 180)
 
 	if(on)
-		operating = 1
+		operating = FORWARDS
 		setmove()
 
 	component_parts = list()
@@ -48,22 +52,23 @@
 	RefreshParts()
 
 /obj/machinery/conveyor/proc/setmove()
-	if(operating == 1)
+	if(operating == FORWARDS)
 		movedir = forwards
-	else if(operating == -1)
+	else if(operating == BACKWARDS)
 		movedir = backwards
-	else operating = 0
+	else
+		operating = OFF
 	update()
 
 /obj/machinery/conveyor/proc/update()
 	if(stat & BROKEN)
 		icon_state = "conveyor-broken"
-		operating = 0
+		operating = OFF
 		return
 	if(!operable)
-		operating = 0
+		operating = OFF
 	if(stat & NOPOWER)
-		operating = 0
+		operating = OFF
 	icon_state = "conveyor[operating]"
 
 	// machine process
@@ -183,7 +188,7 @@
 
 
 
-/obj/machinery/conveyor_switch/initialize()
+/obj/machinery/conveyor_switch/Initialize()
 	..()
 	update()
 	return INITIALIZE_HINT_LATELOAD

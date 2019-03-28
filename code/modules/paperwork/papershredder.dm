@@ -137,7 +137,7 @@
 	else
 		icon_state = "shredder-off"
 	// Fullness overlay
-	overlays += "shredder-[max(0,min(5,Floor(paperamount/max_paper*5)))]"
+	overlays += "shredder-[max(0,min(5,FLOOR(paperamount/max_paper*5, 1)))]"
 	if (panel_open)
 		overlays += "panel_open"
 

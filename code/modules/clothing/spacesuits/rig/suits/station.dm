@@ -74,6 +74,8 @@
 	offline_vision_restriction = 2
 	emp_protection = -20
 	siemens_coefficient= 0.75
+	rigsuit_max_pressure = 15 * ONE_ATMOSPHERE			  // Max pressure the rig protects against when sealed
+	rigsuit_min_pressure = 0							  // Min pressure the rig protects against when sealed
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/industrial
 
@@ -155,6 +157,8 @@
 	offline_slowdown = 0
 	offline_vision_restriction = 0
 	siemens_coefficient= 0.75
+	rigsuit_max_pressure = 20 * ONE_ATMOSPHERE			  // Max pressure the rig protects against when sealed
+	rigsuit_min_pressure = 0							  // Min pressure the rig protects against when sealed
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/ce
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/ce

@@ -25,7 +25,7 @@
 		"hot pink" = COLOR_ASSEMBLY_HOT_PINK
 		)
 
-/obj/item/device/integrated_electronics/detailer/initialize()
+/obj/item/device/integrated_electronics/detailer/Initialize()
 	update_icon()
 	return ..()
 

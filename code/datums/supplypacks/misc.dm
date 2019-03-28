@@ -23,6 +23,64 @@
 	containertype = /obj/structure/closet/crate
 	containername = "cards crate"
 
+/datum/supply_pack/randomised/misc/dnd
+	num_contained = 4
+	contains = list(
+			/obj/item/toy/character/alien,
+			/obj/item/toy/character/warrior,
+			/obj/item/toy/character/cleric,
+			/obj/item/toy/character/thief,
+			/obj/item/toy/character/wizard,
+			/obj/item/toy/character/voidone,
+			/obj/item/toy/character/lich
+			)
+	name = "Miniatures Crate"
+	cost = 200
+	containertype = /obj/structure/closet/crate
+	containername = "Miniature Crate"
+
+/datum/supply_pack/randomised/misc/plushies
+	num_contained = 5
+	contains = list(
+			/obj/item/toy/plushie/nymph,
+			/obj/item/toy/plushie/mouse,
+			/obj/item/toy/plushie/kitten,
+			/obj/item/toy/plushie/lizard,
+			/obj/item/toy/plushie/spider,
+			/obj/item/toy/plushie/farwa,
+			/obj/item/toy/plushie/corgi,
+			/obj/item/toy/plushie/girly_corgi,
+			/obj/item/toy/plushie/robo_corgi,
+			/obj/item/toy/plushie/octopus,
+			/obj/item/toy/plushie/face_hugger,
+			/obj/item/toy/plushie/red_fox,
+			/obj/item/toy/plushie/black_fox,
+			/obj/item/toy/plushie/marble_fox,
+			/obj/item/toy/plushie/blue_fox,
+			/obj/item/toy/plushie/coffee_fox,
+			/obj/item/toy/plushie/pink_fox,
+			/obj/item/toy/plushie/purple_fox,
+			/obj/item/toy/plushie/crimson_fox,
+			/obj/item/toy/plushie/deer,
+			/obj/item/toy/plushie/black_cat,
+			/obj/item/toy/plushie/grey_cat,
+			/obj/item/toy/plushie/white_cat,
+			/obj/item/toy/plushie/orange_cat,
+			/obj/item/toy/plushie/siamese_cat,
+			/obj/item/toy/plushie/tabby_cat,
+			/obj/item/toy/plushie/tuxedo_cat,
+			/obj/item/toy/plushie/squid/green,
+			/obj/item/toy/plushie/squid/mint,
+			/obj/item/toy/plushie/squid/blue,
+			/obj/item/toy/plushie/squid/orange,
+			/obj/item/toy/plushie/squid/yellow,
+			/obj/item/toy/plushie/squid/pink
+			)
+	name = "Plushies Crate"
+	cost = 15
+	containertype = /obj/structure/closet/crate
+	containername = "Plushies Crate"
+
 /datum/supply_pack/misc/eftpos
 	contains = list(/obj/item/device/eftpos)
 	name = "EFTPOS scanner"

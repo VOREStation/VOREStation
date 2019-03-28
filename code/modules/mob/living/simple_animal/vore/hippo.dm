@@ -1,4 +1,4 @@
-/mob/living/simple_animal/retaliate/hippo
+/mob/living/simple_mob/retaliate/hippo
 	name = "hippo"
 	desc = "Mostly know for the spectacular hit of the live action movie Hungry Hungry Hippos."
 	tt_desc = "Hippopotamus amphibius"
@@ -56,7 +56,7 @@
 	mount_offset_y = 20
 
 // Activate Noms!
-/mob/living/simple_animal/retaliate/hippo //I don't know why it's in a seperate line but everyone does it so i do it
+/mob/living/simple_mob/retaliate/hippo //I don't know why it's in a seperate line but everyone does it so i do it
 	vore_active = 1
 	vore_capacity = 1
 	vore_bump_chance = 15

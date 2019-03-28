@@ -16,13 +16,13 @@
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		return
 
-/obj/structure/reagent_dispensers/New()
+/obj/structure/reagent_dispensers/Initialize()
 	var/datum/reagents/R = new/datum/reagents(5000)
 	reagents = R
 	R.my_atom = src
 	if (!possible_transfer_amounts)
 		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
-	..()
+	. = ..()
 
 /obj/structure/reagent_dispensers/examine(mob/user)
 	if(!..(user, 2))
@@ -73,8 +73,8 @@
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 10
 
-/obj/structure/reagent_dispensers/watertank/New()
-	..()
+/obj/structure/reagent_dispensers/watertank/Initialize()
+	. = ..()
 	reagents.add_reagent("water", 1000)
 
 /obj/structure/reagent_dispensers/watertank/high
@@ -82,8 +82,8 @@
 	desc = "A highly-pressurized water tank made to hold vast amounts of water.."
 	icon_state = "watertank_high"
 
-/obj/structure/reagent_dispensers/watertank/high/New()
-	..()
+/obj/structure/reagent_dispensers/watertank/high/Initialize()
+	. = ..()
 	reagents.add_reagent("water", 4000)
 
 /obj/structure/reagent_dispensers/fueltank
@@ -95,8 +95,8 @@
 	var/modded = 0
 	var/obj/item/device/assembly_holder/rig = null
 
-/obj/structure/reagent_dispensers/fueltank/New()
-	..()
+/obj/structure/reagent_dispensers/fueltank/Initialize()
+	. = ..()
 	reagents.add_reagent("fuel",1000)
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
@@ -205,8 +205,8 @@
 	density = 0
 	amount_per_transfer_from_this = 45
 
-/obj/structure/reagent_dispensers/peppertank/New()
-	..()
+/obj/structure/reagent_dispensers/peppertank/Initialize()
+	. = ..()
 	reagents.add_reagent("condensedcapsaicin",1000)
 
 
@@ -227,8 +227,8 @@
 	cupholder = 1
 	cups = 10
 
-/obj/structure/reagent_dispensers/water_cooler/New()
-	..()
+/obj/structure/reagent_dispensers/water_cooler/Initialize()
+	. = ..()
 	if(bottle)
 		reagents.add_reagent("water",120)
 	update_icon()
@@ -352,8 +352,8 @@
 	icon_state = "beertankTEMP"
 	amount_per_transfer_from_this = 10
 
-/obj/structure/reagent_dispensers/beerkeg/New()
-	..()
+/obj/structure/reagent_dispensers/beerkeg/Initialize()
+	. = ..()
 	reagents.add_reagent("beer",1000)
 
 /obj/structure/reagent_dispensers/beerkeg/fakenuke
@@ -370,8 +370,8 @@
 	amount_per_transfer_from_this = 10
 	anchored = 1
 
-/obj/structure/reagent_dispensers/virusfood/New()
-	..()
+/obj/structure/reagent_dispensers/virusfood/Initialize()
+	. = ..()
 	reagents.add_reagent("virusfood", 1000)
 
 /obj/structure/reagent_dispensers/acid
@@ -382,6 +382,6 @@
 	amount_per_transfer_from_this = 10
 	anchored = 1
 
-/obj/structure/reagent_dispensers/acid/New()
-	..()
+/obj/structure/reagent_dispensers/acid/Initialize()
+	. = ..()
 	reagents.add_reagent("sacid", 1000)

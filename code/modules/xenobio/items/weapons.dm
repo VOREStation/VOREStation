@@ -1,6 +1,6 @@
 /obj/item/weapon/melee/baton/slime
 	name = "slimebaton"
-	desc = "A modified stun baton designed to stun slimes and other lesser xeno lifeforms for handling."
+	desc = "A modified stun baton designed to stun slimes and other lesser slimy xeno lifeforms for handling."
 	icon_state = "slimebaton"
 	item_state = "slimebaton"
 	slot_flags = SLOT_BELT
@@ -9,31 +9,29 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_BIO = 2)
 	agonyforce = 10	//It's not supposed to be great at stunning human beings.
 	hitcost = 48	//Less zap for less cost
-	description_info = "This baton will stun a slime or other lesser lifeform for about five seconds, if hit with it while on."
+	description_info = "This baton will stun a slime or other slime-based lifeform for about five seconds, if hit with it while on."
 
-/obj/item/weapon/melee/baton/slime/attack(mob/M, mob/user, hit_zone)
-	// Simple Animals.
-	if(istype(M, /mob/living/simple_animal/slime) && status)
-		var/mob/living/simple_animal/SA = M
-		if(SA.intelligence_level <= SA_ANIMAL) // So it doesn't stun hivebots or syndies.
-			SA.Weaken(5)
-			if(isslime(SA))
-				var/mob/living/simple_animal/slime/S = SA
-				S.adjust_discipline(3)
+/obj/item/weapon/melee/baton/slime/attack(mob/living/L, mob/user, hit_zone)
+	if(istype(L) && status) // Is it on?
+		if(L.mob_class & MOB_CLASS_SLIME) // Are they some kind of slime? (Prommies might pass this check someday).
+			if(isslime(L))
+				var/mob/living/simple_mob/slime/S = L
+				S.slimebatoned(user, 5) // Feral and xenobio slimes will react differently to this.
+			else
+				L.Weaken(5)
 
-	// Prometheans.
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.species && H.species.name == SPECIES_PROMETHEAN && status)
-			var/agony_to_apply = 60 - agonyforce
-			H.apply_damage(agony_to_apply, HALLOSS)
+		// Now for prommies.
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			if(H.species && H.species.name == SPECIES_PROMETHEAN)
+				var/agony_to_apply = 60 - agonyforce
+				H.apply_damage(agony_to_apply, HALLOSS)
+
 	..()
-
-/obj/item/weapon/melee/baton/slime/loaded/New()
-	..()
+/obj/item/weapon/melee/baton/slime/loaded/Initialize()
 	bcell = new/obj/item/weapon/cell/device(src)
 	update_icon()
-	return
+	return ..()
 
 
 // Research borg's version
@@ -61,9 +59,9 @@
 	charge_cost = 120 // Twice as many shots.
 	projectile_type = /obj/item/projectile/beam/stun/xeno
 	accuracy = 30 // Make it a bit easier to hit the slimes.
-	description_info = "This gun will stun a slime or other lesser lifeform for about two seconds, if hit with the projectile it fires."
+	description_info = "This gun will stun a slime or other lesser slimy lifeform for about two seconds, if hit with the projectile it fires."
 	description_fluff = "An easy to use weapon designed by NanoTrasen, for NanoTrasen.  This weapon is designed to subdue lesser \
-	xeno lifeforms at a distance.  It is ineffective at stunning larger lifeforms such as humanoids."
+	slime-based xeno lifeforms at a distance.  It is ineffective at stunning non-slimy lifeforms such as humanoids."
 
 /obj/item/weapon/gun/energy/taser/xeno/robot // Borg version
 	self_recharge = 1
@@ -71,7 +69,7 @@
 	recharge_time = 3
 
 /obj/item/weapon/gun/energy/taser/xeno/sec //NT's corner-cutting option for their on-station security.
-	desc = "An NT Mk30 NL retrofitted to fire beams for subduing non-humanoid xeno life forms."
+	desc = "An NT Mk30 NL retrofitted to fire beams for subduing non-humanoid slimy xeno life forms."
 	icon_state = "taserblue"
 	item_state = "taser"
 	projectile_type = /obj/item/projectile/beam/stun/xeno/weak
@@ -92,9 +90,9 @@
 	// Probably for the best so that it doesn't harm the slime.
 	taser_effect = FALSE
 
-	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
-	tracer_type = /obj/effect/projectile/laser_omni/tracer
-	impact_type = /obj/effect/projectile/laser_omni/impact
+	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+	tracer_type = /obj/effect/projectile/tracer/laser_omni
+	impact_type = /obj/effect/projectile/impact/laser_omni
 
 /obj/item/projectile/beam/stun/xeno/weak //Weaker variant for non-research equipment, turrets, or rapid fire types.
 	agony = 3
@@ -102,20 +100,17 @@
 /obj/item/projectile/beam/stun/xeno/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
 	if(istype(target, /mob/living))
 		var/mob/living/L = target
+		if(L.mob_class & MOB_CLASS_SLIME)
+			if(isslime(L))
+				var/mob/living/simple_mob/slime/S = L
+				S.slimebatoned(firer, round(agony/2))
+			else
+				L.Weaken(round(agony/2))
 
-		// Simple Animals.
-		if(istype(L, /mob/living/simple_animal/slime))
-			var/mob/living/simple_animal/SA = L
-			if(SA.intelligence_level <= SA_ANIMAL) // So it doesn't stun hivebots or syndies.
-				SA.Weaken(round(agony/2)) // Less powerful since its ranged, and therefore safer.
-				if(isslime(SA))
-					var/mob/living/simple_animal/slime/S = SA
-					S.adjust_discipline(round(agony/2))
-
-		// Prometheans.
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			if(H.species && H.species.name == SPECIES_PROMETHEAN)
-				if(agony == initial(agony))
+				if(agony == initial(agony)) // ??????
 					agony = round((14 * agony) - agony) //60-4 = 56, 56 / 4 = 14. Prior was flat 60 - agony of the beam to equate to 60.
+
 	..()

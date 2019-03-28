@@ -122,7 +122,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/unary/outlet_injector/initialize()
+/obj/machinery/atmospherics/unary/outlet_injector/Initialize()
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)

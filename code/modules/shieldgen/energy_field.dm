@@ -53,6 +53,12 @@
 		user.setClickCooldown(user.get_attack_speed(W))
 	..()
 
+/obj/effect/energy_field/attack_generic(mob/user, damage)
+	if(damage)
+		adjust_strength(-damage / 20)
+		user.do_attack_animation(src)
+		user.setClickCooldown(user.get_attack_speed())
+
 /obj/effect/energy_field/attack_hand(var/mob/living/user)
 	impact_effect(3) // Harmless, but still produces the 'impact' effect.
 	..()

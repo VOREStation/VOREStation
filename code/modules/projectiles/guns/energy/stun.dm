@@ -36,7 +36,6 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
 	slot_flags = SLOT_BELT | SLOT_HOLSTER
 	silenced = 1
-	fire_sound = 'sound/weapons/Genhit.ogg'
 	projectile_type = /obj/item/projectile/energy/bolt
 	charge_cost = 480
 	cell_type = /obj/item/weapon/cell/device/weapon/recharge

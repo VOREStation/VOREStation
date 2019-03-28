@@ -30,7 +30,6 @@
 	desc = "Lucky suit jacket."
 	icon_state = "checkered_jacket"
 
-
 /obj/item/clothing/accessory/chaps
 	name = "brown chaps"
 	desc = "A pair of loose, brown leather chaps."
@@ -342,3 +341,23 @@
 	name = "Christmas turtleneck"
 	desc = "A really cheesy holiday sweater, it actually kinda itches."
 	icon_state = "turtleneck_winterred"
+
+/obj/item/clothing/accessory/cowledvest
+	name = "cowled vest"
+	desc = "A body warmer for the 26th century."
+	icon_state = "cowled_vest"
+
+/obj/item/clothing/accessory/asymmetric
+	name = "blue asymmetrical jacket"
+	desc = "Insultingly avant-garde in prussian blue."
+	icon_state = "asym_blue"
+
+/obj/item/clothing/accessory/asymmetric/purple
+	name = "purple asymmetrical jacket"
+	desc = "Insultingly avant-garde in mauve."
+	icon_state = "asym_purple"
+
+/obj/item/clothing/accessory/asymmetric/green
+	name = "green asymmetrical jacket"
+	desc = "Insultingly avant-garde in aqua."
+	icon_state = "asym_green"

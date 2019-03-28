@@ -16,6 +16,7 @@
 	var/global/list/acceptable_items // List of the items you can put in
 	var/global/list/acceptable_reagents // List of the reagents you can put in
 	var/global/max_n_of_items = 0
+	var/datum/looping_sound/microwave/soundloop
 
 
 // see code/modules/food/recipes_microwave.dm for recipes
@@ -24,8 +25,7 @@
 *   Initialising
 ********************/
 
-/obj/machinery/microwave/New()
-	..()
+/obj/machinery/microwave/Initialize()
 	reagents = new/datum/reagents(100)
 	reagents.my_atom = src
 
@@ -54,6 +54,12 @@
 		acceptable_items |= /obj/item/weapon/reagent_containers/food/snacks/grown
 
 	RefreshParts()
+	soundloop = new(list(src), FALSE)
+	return ..()
+
+/obj/machinery/microwave/Destroy()
+	QDEL_NULL(soundloop)
+	return ..()
 
 /*******************
 *   Item Adding
@@ -243,7 +249,7 @@
 		if (!wzhzhzh(10))
 			abort()
 			return
-		stop()
+		abort()
 		return
 
 	var/datum/recipe/recipe = select_recipe(available_recipes,src)
@@ -272,7 +278,7 @@
 			if (!wzhzhzh(10))
 				abort()
 				return
-			stop()
+			abort()
 			cooked = fail()
 			cooked.loc = src.loc
 			return
@@ -287,7 +293,7 @@
 			cooked.loc = src.loc
 			return
 		cooked = recipe.make_food(src)
-		stop()
+		abort()
 		if(cooked)
 			cooked.loc = src.loc
 		return
@@ -311,20 +317,16 @@
 
 /obj/machinery/microwave/proc/start()
 	src.visible_message("<span class='notice'>The microwave turns on.</span>", "<span class='notice'>You hear a microwave.</span>")
-	src.operating = 1
+	soundloop.start()
+	src.operating = TRUE
 	src.icon_state = "mw1"
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/abort()
-	src.operating = 0 // Turn it off again aferwards
-	src.icon_state = "mw"
-	src.updateUsrDialog()
-
-/obj/machinery/microwave/proc/stop()
-	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
-	src.operating = 0 // Turn it off again aferwards
-	src.icon_state = "mw"
-	src.updateUsrDialog()
+	operating = FALSE // Turn it off again aferwards
+	icon_state = "mw"
+	updateUsrDialog()
+	soundloop.stop()
 
 /obj/machinery/microwave/proc/dispose()
 	for (var/obj/O in ((contents-component_parts)-circuit))
@@ -340,13 +342,14 @@
 	src.icon_state = "mwbloody1" // Make it look dirty!!
 
 /obj/machinery/microwave/proc/muck_finish()
-	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	src.visible_message("<span class='warning'>The microwave gets covered in muck!</span>")
 	src.dirty = 100 // Make it dirty so it can't be used util cleaned
 	src.flags = null //So you can't add condiments
 	src.icon_state = "mwbloody" // Make it look dirty too
 	src.operating = 0 // Turn it off again aferwards
 	src.updateUsrDialog()
+	soundloop.stop()
+
 
 /obj/machinery/microwave/proc/broke()
 	var/datum/effect/effect/system/spark_spread/s = new
@@ -358,6 +361,7 @@
 	src.flags = null //So you can't add condiments
 	src.operating = 0 // Turn it off again aferwards
 	src.updateUsrDialog()
+	soundloop.stop()
 
 /obj/machinery/microwave/proc/fail()
 	var/obj/item/weapon/reagent_containers/food/snacks/badrecipe/ffuu = new(src)

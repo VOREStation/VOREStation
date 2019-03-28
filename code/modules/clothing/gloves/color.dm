@@ -12,7 +12,7 @@
 	siemens_coefficient = 1			//Set to a default of 1, gets overridden in initialize()
 	permeability_coefficient = 0.05
 
-/obj/item/clothing/gloves/fyellow/initialize()
+/obj/item/clothing/gloves/fyellow/Initialize()
 	. = ..()
 	//Picks a value between 0 and 1.25, in 5% increments // VOREStation edit
 	var/shock_pick = rand(0,25) // VOREStation Edit

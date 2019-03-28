@@ -125,24 +125,24 @@
 		..()
 
 /obj/machinery/atmospherics/binary/circulator/verb/rotate_clockwise()
+	set name = "Rotate Circulator Clockwise"
 	set category = "Object"
-	set name = "Rotate Circulator (Clockwise)"
+	set src in view(1)
+
+	if (usr.stat || usr.restrained() || anchored)
+		return
+
+	src.set_dir(turn(src.dir, 270))
+	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
+
+
+/obj/machinery/atmospherics/binary/circulator/verb/rotate_counterclockwise()
+	set name = "Rotate Circulator Counterclockwise"
+	set category = "Object"
 	set src in view(1)
 
 	if (usr.stat || usr.restrained() || anchored)
 		return
 
 	src.set_dir(turn(src.dir, 90))
-	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
-
-
-/obj/machinery/atmospherics/binary/circulator/verb/rotate_anticlockwise()
-	set category = "Object"
-	set name = "Rotate Circulator (Counterclockwise)"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained() || anchored)
-		return
-
-	src.set_dir(turn(src.dir, -90))
 	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."

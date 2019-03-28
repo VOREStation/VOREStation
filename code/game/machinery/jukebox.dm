@@ -64,7 +64,7 @@
 	..()
 
 // On initialization, copy our tracks from the global list
-/obj/machinery/media/jukebox/initialize()
+/obj/machinery/media/jukebox/Initialize()
 	. = ..()
 	if(LAZYLEN(all_jukebox_tracks)) //Global list has tracks
 		tracks.Cut()
@@ -265,7 +265,7 @@
 		data["tracks"] = nano_tracks
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "jukebox.tmpl", title, 450, 600)
 		ui.set_initial_data(data)

@@ -317,7 +317,7 @@
 //		return ..()
 */
 
-/obj/mecha/proc/click_action(atom/target,mob/user)
+/obj/mecha/proc/click_action(atom/target,mob/user, params)
 	if(!src.occupant || src.occupant != user ) return
 	if(user.stat) return
 	if(state)
@@ -339,7 +339,7 @@
 		if(selected && selected.is_ranged())
 			selected.action(target)
 	else if(selected && selected.is_melee())
-		selected.action(target)
+		selected.action(target, params)
 	else
 		src.melee_action(target)
 	return
@@ -1154,10 +1154,12 @@
 		to_chat(usr,"<span class='warning'>Access denied</span>")
 		src.log_append_to_last("Permission denied.")
 		return
-	for(var/mob/living/simple_animal/slime/M in range(1,usr))
-		if(M.victim == usr)
-			to_chat(usr,"You're too busy getting your life sucked out of you.")
+	if(isliving(usr))
+		var/mob/living/L = usr
+		if(L.has_buckled_mobs())
+			to_chat(L, span("warning", "You have other entities attached to yourself. Remove them first."))
 			return
+
 //	usr << "You start climbing into [src.name]"
 
 	visible_message("<span class='notice'>\The [usr] starts to climb into [src.name]</span>")

@@ -59,6 +59,10 @@
 	return ..()
 
 /datum/beam/proc/Draw()
+	if(QDELETED(target) || QDELETED(origin))
+		qdel(src)
+		return
+
 	var/Angle = round(Get_Angle(origin,target))
 
 	var/matrix/rot_matrix = matrix()
@@ -102,16 +106,18 @@
 		//Position the effect so the beam is one continous line
 		var/a
 		if(abs(Pixel_x)>32)
-			a = Pixel_x > 0 ? round(Pixel_x/32) : Ceiling(Pixel_x/32)
+			a = Pixel_x > 0 ? round(Pixel_x/32) : CEILING(Pixel_x/32, 1)
 			X.x += a
 			Pixel_x %= 32
 		if(abs(Pixel_y)>32)
-			a = Pixel_y > 0 ? round(Pixel_y/32) : Ceiling(Pixel_y/32)
+			a = Pixel_y > 0 ? round(Pixel_y/32) : CEILING(Pixel_y/32, 1)
 			X.y += a
 			Pixel_y %= 32
 
 		X.pixel_x = Pixel_x
 		X.pixel_y = Pixel_y
+
+		X.on_drawn()
 
 /obj/effect/ebeam
 	mouse_opacity = 0
@@ -127,9 +133,52 @@
 /obj/effect/ebeam/singularity_act()
 	return
 
+// Called when the beam datum finishes drawing and the ebeam object is placed correctly.
+/obj/effect/ebeam/proc/on_drawn()
+	return
+
 /obj/effect/ebeam/deadly/Crossed(atom/A)
 	..()
 	A.ex_act(1)
+
+// 'Reactive' beam parts do something when touched or stood in.
+/obj/effect/ebeam/reactive
+
+/obj/effect/ebeam/reactive/Initialize()
+	START_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/effect/ebeam/reactive/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/effect/ebeam/reactive/on_drawn()
+	for(var/A in loc)
+		on_contact(A)
+
+/obj/effect/ebeam/reactive/Crossed(atom/A)
+	..()
+	on_contact(A)
+
+/obj/effect/ebeam/reactive/process()
+	for(var/A in loc)
+		on_contact(A)
+
+// Override for things to do when someone touches the beam.
+/obj/effect/ebeam/reactive/proc/on_contact(atom/movable/AM)
+	return
+
+
+// Shocks things that touch it.
+/obj/effect/ebeam/reactive/electric
+	var/shock_amount = 25 // Be aware that high numbers may stun and result in dying due to not being able to get out of the beam.
+
+/obj/effect/ebeam/reactive/electric/on_contact(atom/movable/AM)
+	if(isliving(AM))
+		var/mob/living/L = AM
+		L.inflict_shock_damage(shock_amount)
+
+
 
 /atom/proc/Beam(atom/BeamTarget,icon_state="b_beam",icon='icons/effects/beam.dmi',time=50, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time=3)
 	var/datum/beam/newbeam = new(src,BeamTarget,icon,icon_state,time,maxdistance,beam_type,beam_sleep_time)

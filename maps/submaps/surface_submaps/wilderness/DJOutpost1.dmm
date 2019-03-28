@@ -6,7 +6,7 @@
 "f" = (/obj/machinery/telecomms/relay/preset/ruskie,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
 "g" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
 "h" = (/obj/structure/sign/goldenplaque{desc = "An award given to Sif Free Radio for media excellency. It looks fake."; name = "Best Radio Station 2558"; pixel_y = 30},/turf/simulated/floor/wood,/area/submap/DJOutpost1)
-"i" = (/mob/living/simple_animal/hostile/giant_spider/frost{returns_home = 1},/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"i" = (/mob/living/simple_mob/animal/giant_spider/frost,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
 "j" = (/obj/effect/decal/remains,/obj/effect/decal/cleanable/blood,/obj/item/clothing/under/frontier,/obj/item/weapon/material/knife/tacknife/combatknife,/obj/random_multi/single_item/sfr_headset,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
 "k" = (/obj/machinery/door/airlock/glass,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
 "l" = (/obj/structure/table/steel_reinforced,/obj/item/device/radio/intercom{ icon_state = "intercom"; dir = 8},/turf/simulated/floor/wood,/area/submap/DJOutpost1)
