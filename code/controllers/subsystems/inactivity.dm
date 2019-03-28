@@ -27,6 +27,12 @@ SUBSYSTEM_DEF(inactivity)
 
 					else if(issilicon(C.mob))
 						information = " while a silicon."
+						if(isAI(C.mob))
+							var/mob/living/silicon/ai/A = C.mob
+							empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(A.loc)
+							global_announcer.autosay("[A] has been moved to intelligence storage.", "Artificial Intelligence Oversight")
+							A.clear_client()
+							information = " while an AI."
 
 				var/adminlinks
 				adminlinks = " (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[C.mob.x];Y=[C.mob.y];Z=[C.mob.z]'>JMP</a>|<A HREF='?_src_=holder;cryoplayer=\ref[C.mob]'>CRYO</a>)"
