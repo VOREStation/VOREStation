@@ -305,8 +305,6 @@
 	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 215)
 	if(prob(1))
 		M.emote("shiver")
-	if(istype(M, /mob/living/simple_animal/slime))
-		M.bodytemperature = max(M.bodytemperature - rand(10,20), 0)
 	holder.remove_reagent("capsaicin", 5)
 
 /datum/reagent/frostoil/cryotoxin //A longer lasting version of frost oil.
@@ -346,8 +344,6 @@
 		M.apply_effect(2, AGONY, 0)
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
-	if(istype(M, /mob/living/simple_animal/slime))
-		M.bodytemperature += rand(10, 25)
 	holder.remove_reagent("frostoil", 5)
 
 /datum/reagent/condensedcapsaicin
@@ -492,8 +488,6 @@
 		M.apply_effect(4, AGONY, 0)
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
-	if(istype(M, /mob/living/simple_animal/slime))
-		M.bodytemperature += rand(15, 30)
 	holder.remove_reagent("frostoil", 5)
 
 /* Drinks */
@@ -1491,7 +1485,7 @@
 	id = "lovepotion"
 	description = "Creamy strawberries and sugar, simple and sweet."
 	taste_description = "strawberries and cream"
-	color = "#fc8a8a" // rrgb(252, 138, 138)
+	color = "#fc8a8a" // rgb(252, 138, 138)
 
 	glass_name = "Love Potion"
 	glass_desc = "Love me tender, love me sweet."
@@ -1507,6 +1501,16 @@
 	glass_name = "Oil Slick"
 	glass_desc = "A concoction that should probably be in an engine, rather than your stomach."
 	glass_icon = DRINK_ICON_NOISY
+
+/datum/reagent/drink/eggnog
+	name = "Eggnog"
+	id = "eggnog"
+	description = "A creamy, rich beverage made out of whisked eggs, milk and sugar, for when you feel like celebrating the winter holidays."
+	taste_description = "thick cream and vanilla"
+	color = "#fff3c1" // rgb(255, 243, 193)
+
+	glass_name = "Eggnog"
+	glass_desc = "You can't egg-nore the holiday cheer all around you"
 
 /datum/reagent/drink/nuclearwaste
 	name = "Nuclear Waste"
@@ -2668,7 +2672,7 @@
 
 /datum/reagent/ethanol/saketini
 	name = "Saketini"
-	id = "sakitini"
+	id = "saketini"
 	description = "For when you're too weeb for a real martini."
 	taste_description = "dry alcohol"
 	color = "#0064C8"

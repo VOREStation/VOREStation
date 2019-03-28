@@ -37,12 +37,12 @@
 		wearer = null
 
 /obj/item/clothing/gloves/regen/New()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/clothing/gloves/regen/Destroy()
 	wearer = null
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/clothing/gloves/regen/process()

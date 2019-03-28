@@ -15,7 +15,7 @@
 	floor_type = /turf/simulated/floor/reinforced
 	var/list/supplied_drop_types = list()
 	var/door_type = /obj/structure/droppod_door
-	var/drop_type = /mob/living/simple_animal/parrot
+	var/drop_type = /mob/living/simple_mob/animal/passive/bird/parrot
 	var/auto_open_doors
 
 	var/placement_explosion_dev =   1
@@ -172,7 +172,7 @@
 			spawned_mobs |= M
 	else
 		var/list/candidates = list()
-		for(var/client/player in clients)
+		for(var/client/player in GLOB.clients)
 			if(player.mob && istype(player.mob, /mob/observer/dead))
 				candidates |= player
 

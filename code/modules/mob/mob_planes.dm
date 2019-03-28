@@ -44,7 +44,7 @@
 
 /datum/plane_holder/Destroy()
 	my_mob = null
-	QDEL_NULL_LIST(plane_masters) //Goodbye my children, be free
+	QDEL_LIST_NULL(plane_masters) //Goodbye my children, be free
 	return ..()
 
 /datum/plane_holder/proc/set_vis(var/which = null, var/state = FALSE)

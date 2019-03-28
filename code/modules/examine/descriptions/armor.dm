@@ -46,8 +46,13 @@
 	if(flags & AIRTIGHT)
 		armor_stats += "It is airtight. \n"
 
-	if(flags & STOPPRESSUREDAMAGE)
+	if(min_pressure_protection == 0)
 		armor_stats += "Wearing this will protect you from the vacuum of space. \n"
+	else if(min_pressure_protection != null)
+		armor_stats += "Wearing this will protect you from low pressures, but not the vacuum of space. \n"
+
+	if(max_pressure_protection != null)
+		armor_stats += "Wearing this will protect you from high pressures. \n"
 
 	if(flags & THICKMATERIAL)
 		armor_stats += "The material is exceptionally thick. \n"

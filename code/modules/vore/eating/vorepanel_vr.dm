@@ -2,7 +2,7 @@
 // Vore management panel for players
 //
 
-#define BELLIES_MAX 20
+#define BELLIES_MAX 30
 #define BELLIES_NAME_MIN 2
 #define BELLIES_NAME_MAX 12
 #define BELLIES_DESC_MAX 1024
@@ -634,7 +634,7 @@
 		if(new_bulge == 0) //Disable.
 			selected.bulge_size = 0
 			to_chat(user,"<span class='notice'>Your stomach will not be seen on examine.</span>")
-		else if (!IsInRange(new_bulge,25,200))
+		else if (!ISINRANGE(new_bulge,25,200))
 			selected.bulge_size = 0.25 //Set it to the default.
 			to_chat(user,"<span class='notice'>Invalid size.</span>")
 		else if(new_bulge)
@@ -644,7 +644,7 @@
 		var/new_grow = input(user, "Choose the size that prey will be grown/shrunk to, ranging from 25% to 200%", "Set Growth Shrink Size.", selected.shrink_grow_size) as num|null
 		if (new_grow == null)
 			return
-		if (!IsInRange(new_grow,25,200))
+		if (!ISINRANGE(new_grow,25,200))
 			selected.shrink_grow_size = 1 //Set it to the default
 			to_chat(user,"<span class='notice'>Invalid size.</span>")
 		else if(new_grow)
@@ -654,14 +654,14 @@
 		var/new_damage = input(user, "Choose the amount of burn damage prey will take per tick. Ranges from 0 to 6.", "Set Belly Burn Damage.", selected.digest_burn) as num|null
 		if(new_damage == null)
 			return
-		var/new_new_damage = Clamp(new_damage, 0, 6)
+		var/new_new_damage = CLAMP(new_damage, 0, 6)
 		selected.digest_burn = new_new_damage
 
 	if(href_list["b_brute_dmg"])
 		var/new_damage = input(user, "Choose the amount of brute damage prey will take per tick. Ranges from 0 to 6", "Set Belly Brute Damage.", selected.digest_brute) as num|null
 		if(new_damage == null)
 			return
-		var/new_new_damage = Clamp(new_damage, 0, 6)
+		var/new_new_damage = CLAMP(new_damage, 0, 6)
 		selected.digest_brute = new_new_damage
 
 	if(href_list["b_escapable"])

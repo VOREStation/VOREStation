@@ -39,11 +39,10 @@
 	if(!isnull(rmaterialtype))
 		reinf_material = get_material_by_name(rmaterialtype)
 	update_material()
-
-	processing_turfs |= src
+	START_PROCESSING(SSturfs, src)
 
 /turf/simulated/wall/Destroy()
-	processing_turfs -= src
+	STOP_PROCESSING(SSturfs, src)
 	dismantle_wall(null,null,1)
 	..()
 

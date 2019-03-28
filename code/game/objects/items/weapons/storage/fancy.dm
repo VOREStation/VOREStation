@@ -55,11 +55,11 @@
 	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/egg = 12)
 
 /*
- * Candle Box
+ * Candle Boxes
  */
 
 /obj/item/weapon/storage/fancy/candle_box
-	name = "candle pack"
+	name = "red candle pack"
 	desc = "A pack of red candles."
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candlebox5"
@@ -68,6 +68,29 @@
 	throwforce = 2
 	slot_flags = SLOT_BELT
 	starts_with = list(/obj/item/weapon/flame/candle = 5)
+
+/obj/item/weapon/storage/fancy/whitecandle_box
+	name = "white candle pack"
+	desc = "A pack of white candles."
+	icon = 'icons/obj/candle.dmi'
+	icon_state = "whitecandlebox5"
+	icon_type = "whitecandle"
+	item_state = "whitecandlebox5"
+	throwforce = 2
+	slot_flags = SLOT_BELT
+	starts_with = list(/obj/item/weapon/flame/candle/white = 5)
+
+/obj/item/weapon/storage/fancy/blackcandle_box
+	name = "black candle pack"
+	desc = "A pack of black candles."
+	icon = 'icons/obj/candle.dmi'
+	icon_state = "blackcandlebox5"
+	icon_type = "blackcandle"
+	item_state = "blackcandlebox5"
+	throwforce = 2
+	slot_flags = SLOT_BELT
+	starts_with = list(/obj/item/weapon/flame/candle/black = 5)
+
 
 /*
  * Crayon Box
@@ -92,7 +115,7 @@
 		/obj/item/weapon/pen/crayon/purple
 	)
 
-/obj/item/weapon/storage/fancy/crayons/initialize()
+/obj/item/weapon/storage/fancy/crayons/Initialize()
 	. = ..()
 	update_icon()
 
@@ -134,7 +157,7 @@
 		/obj/item/weapon/pen/crayon/marker/purple
 	)
 
-/obj/item/weapon/storage/fancy/markers/initialize()
+/obj/item/weapon/storage/fancy/markers/Initialize()
 	. = ..()
 	update_icon()
 
@@ -169,12 +192,12 @@
 	throwforce = 2
 	slot_flags = SLOT_BELT
 	storage_slots = 6
-	can_hold = list(/obj/item/clothing/mask/smokable/cigarette, /obj/item/weapon/flame/lighter)
+	can_hold = list(/obj/item/clothing/mask/smokable/cigarette, /obj/item/weapon/flame/lighter, /obj/item/weapon/cigbutt)
 	icon_type = "cigarette"
 	starts_with = list(/obj/item/clothing/mask/smokable/cigarette = 6)
 	var/brand = "\improper Trans-Stellar Duty-free"
 
-/obj/item/weapon/storage/fancy/cigarettes/initialize()
+/obj/item/weapon/storage/fancy/cigarettes/Initialize()
 	. = ..()
 	flags |= NOREACT
 	create_reagents(15 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
@@ -276,11 +299,11 @@
 	throwforce = 2
 	slot_flags = SLOT_BELT
 	storage_slots = 7
-	can_hold = list(/obj/item/clothing/mask/smokable/cigarette/cigar)
+	can_hold = list(/obj/item/clothing/mask/smokable/cigarette/cigar, /obj/item/weapon/cigbutt/cigarbutt)
 	icon_type = "cigar"
 	starts_with = list(/obj/item/clothing/mask/smokable/cigarette/cigar = 7)
 
-/obj/item/weapon/storage/fancy/cigar/initialize()
+/obj/item/weapon/storage/fancy/cigar/Initialize()
 	. = ..()
 	flags |= NOREACT
 	create_reagents(15 * storage_slots)
@@ -332,7 +355,7 @@
 	storage_slots = 6
 	req_access = list(access_virology)
 
-/obj/item/weapon/storage/lockbox/vials/initialize()
+/obj/item/weapon/storage/lockbox/vials/Initialize()
 	. = ..()
 	update_icon()
 
@@ -377,7 +400,7 @@
 		/obj/item/weapon/reagent_containers/food/snacks/chocolatepiece/truffle
 	)
 
-/obj/item/weapon/storage/fancy/heartbox/initialize()
+/obj/item/weapon/storage/fancy/heartbox/Initialize()
 	. = ..()
 	update_icon()
 

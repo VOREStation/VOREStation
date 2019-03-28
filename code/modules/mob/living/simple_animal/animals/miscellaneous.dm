@@ -1,4 +1,4 @@
-/mob/living/simple_animal/yithian
+/mob/living/simple_mob/yithian
 	name = "yithian"
 	desc = "A friendly creature vaguely resembling an oversized snail without a shell."
 	tt_desc = "J Escargot escargot" // a product of Jade, which is a planet that totally exists
@@ -9,7 +9,7 @@
 
 	faction = "yithian"
 
-/mob/living/simple_animal/tindalos
+/mob/living/simple_mob/tindalos
 	name = "tindalos"
 	desc = "It looks like a large, flightless grasshopper."
 	tt_desc = "J Locusta bruchus"

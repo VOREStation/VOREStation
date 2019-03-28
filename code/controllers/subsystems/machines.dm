@@ -109,7 +109,7 @@ SUBSYSTEM_DEF(machines)
 		else
 			global.pipe_networks.Remove(PN)
 			if(!QDELETED(PN))
-				PN.is_processing = null
+				DISABLE_BITFIELD(PN.datum_flags, DF_ISPROCESSING)
 		if(MC_TICK_CHECK)
 			return
 
@@ -127,7 +127,7 @@ SUBSYSTEM_DEF(machines)
 		else
 			global.processing_machines.Remove(M)
 			if(!QDELETED(M))
-				M.is_processing = null
+				DISABLE_BITFIELD(M.datum_flags, DF_ISPROCESSING)
 		if(MC_TICK_CHECK)
 			return
 
@@ -144,7 +144,7 @@ SUBSYSTEM_DEF(machines)
 		else
 			global.powernets.Remove(PN)
 			if(!QDELETED(PN))
-				PN.is_processing = null
+				DISABLE_BITFIELD(PN.datum_flags, DF_ISPROCESSING)
 		if(MC_TICK_CHECK)
 			return
 
@@ -160,7 +160,7 @@ SUBSYSTEM_DEF(machines)
 		current_run.len--
 		if(!I.pwr_drain(wait)) // 0 = Process Kill, remove from processing list.
 			global.processing_power_items.Remove(I)
-			I.is_processing = null
+			DISABLE_BITFIELD(I.datum_flags, DF_ISPROCESSING)
 		if(MC_TICK_CHECK)
 			return
 

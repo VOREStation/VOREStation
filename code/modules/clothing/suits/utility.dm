@@ -20,10 +20,13 @@
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/emergency/oxygen,/obj/item/weapon/extinguisher)
 	slowdown = 1.0
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
-	item_flags = STOPPRESSUREDAMAGE
+	item_flags = 0
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
+	min_pressure_protection = 0.2 * ONE_ATMOSPHERE
+	max_pressure_protection = 20  * ONE_ATMOSPHERE
+
 
 /obj/item/clothing/suit/fire/firefighter
 	icon_state = "firesuit"

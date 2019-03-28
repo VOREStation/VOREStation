@@ -21,7 +21,7 @@
 		/obj/item/clothing/suit/storage/hooded/wintercoat/hydro,
 		/obj/item/clothing/shoes/boots/winter/hydro)
 
-/obj/structure/closet/secure_closet/hydroponics/initialize()
+/obj/structure/closet/secure_closet/hydroponics/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/clothing/suit/storage/apron
 	else

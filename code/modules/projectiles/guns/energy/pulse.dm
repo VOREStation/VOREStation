@@ -22,7 +22,6 @@
 /obj/item/weapon/gun/energy/pulse_rifle/destroyer
 	name = "pulse destroyer"
 	desc = "A heavy-duty, pulse-based energy weapon. Because of its complexity and cost, it is rarely seen in use except by specialists."
-	fire_sound='sound/weapons/gauss_shoot.ogg'
 	projectile_type=/obj/item/projectile/beam/pulse
 	charge_cost = 120
 

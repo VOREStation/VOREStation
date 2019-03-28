@@ -16,8 +16,8 @@
 	if(N)
 		amount_per_transfer_from_this = N
 
-/obj/item/weapon/reagent_containers/New()
-	..()
+/obj/item/weapon/reagent_containers/Initialize()
+	. = ..()
 	if(!possible_transfer_amounts)
 		src.verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
 	create_reagents(volume)
@@ -100,7 +100,7 @@
 
 		user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
 		self_feed_message(user)
-		reagents.trans_to_mob(user, issmall(user) ? ceil(amount_per_transfer_from_this/2) : amount_per_transfer_from_this, CHEM_INGEST)
+		reagents.trans_to_mob(user, issmall(user) ? CEILING(amount_per_transfer_from_this/2, 1) : amount_per_transfer_from_this, CHEM_INGEST)
 		feed_sound(user)
 		return 1
 	else

@@ -139,7 +139,7 @@
 	path = /obj/item/weapon/storage/secure/briefcase/fuelrod
 
 /datum/uplink_item/item/visible_weapons/tommygun
-	name = "Tommygun (.45)" // We're keeping this because it's CLASSY. -Spades
+	name = "Tommy Gun (.45)" // We're keeping this because it's CLASSY. -Spades
 	item_cost = 60
 	path = /obj/item/weapon/gun/projectile/automatic/tommygun
 

@@ -27,7 +27,7 @@
 		/obj/item/clothing/head/beret/sec/corporate/hos,
 		/obj/item/clothing/mask/gas/half)
 
-/obj/structure/closet/secure_closet/hos_wardrobe/initialize()
+/obj/structure/closet/secure_closet/hos_wardrobe/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/security
 	else

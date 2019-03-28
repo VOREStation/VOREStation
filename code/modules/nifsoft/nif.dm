@@ -104,7 +104,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 //Destructor cleans up references
 /obj/item/device/nif/Destroy()
 	human = null
-	QDEL_NULL_LIST(nifsofts)
+	QDEL_LIST_NULL(nifsofts)
 	QDEL_NULL(comm)
 	nifsofts_life.Cut()
 	return ..()
@@ -154,7 +154,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 /obj/item/device/nif/proc/unimplant(var/mob/living/carbon/human/H)
 	var/datum/nifsoft/soulcatcher/SC = imp_check(NIF_SOULCATCHER)
 	if(SC) //Clean up stored people, this is dirty but the easiest way.
-		QDEL_NULL_LIST(SC.brainmobs)
+		QDEL_LIST_NULL(SC.brainmobs)
 		SC.brainmobs = list()
 	stat = NIF_PREINSTALL
 	vis_update()
@@ -190,11 +190,11 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	if(durability <= 0)
 		stat = NIF_TEMPFAIL
 		update_icon()
-		
+
 		if(human)
 			notify("Danger! General system insta#^!($",TRUE)
 			to_chat(human,"<span class='danger'>Your NIF vision overlays disappear and your head suddenly seems very quiet...</span>")
-		
+
 //Attackby proc, for maintenance
 /obj/item/device/nif/attackby(obj/item/weapon/W, mob/user as mob)
 	if(open == 0 && W.is_screwdriver())

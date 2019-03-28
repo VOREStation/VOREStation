@@ -36,6 +36,11 @@
 			adjustHalLoss(damage * blocked)
 		if(ELECTROCUTE)
 			electrocute_act(damage, used_weapon, 1.0, def_zone)
+		if(BIOACID)
+			if(isSynthetic())
+				adjustFireLoss(damage * blocked)
+			else
+				adjustToxLoss(damage * blocked)
 	flash_weak_pain()
 	updatehealth()
 	return 1

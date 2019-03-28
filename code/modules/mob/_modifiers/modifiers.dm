@@ -149,6 +149,13 @@
 /mob/living/proc/remove_specific_modifier(var/datum/modifier/M, var/silent = FALSE)
 	M.expire(silent)
 
+// Removes one modifier of a type
+/mob/living/proc/remove_a_modifier_of_type(var/modifier_type, var/silent = FALSE)
+	for(var/datum/modifier/M in modifiers)
+		if(ispath(M.type, modifier_type))
+			M.expire(silent)
+			break
+
 // Removes all modifiers of a type
 /mob/living/proc/remove_modifiers_of_type(var/modifier_type, var/silent = FALSE)
 	for(var/datum/modifier/M in modifiers)

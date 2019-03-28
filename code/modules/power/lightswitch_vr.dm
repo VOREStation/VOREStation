@@ -58,7 +58,7 @@
 	var/x_offset = 26
 	var/y_offset = 26
 
-/obj/structure/construction/initialize(var/mapload, var/ndir, var/building = FALSE)
+/obj/structure/construction/Initialize(var/mapload, var/ndir, var/building = FALSE)
 	. = ..()
 	if(ndir)
 		set_dir(ndir)
@@ -83,7 +83,7 @@
 
 /obj/structure/construction/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	add_fingerprint(user)
-	if(W.is_welder())
+	if(istype(W, /obj/item/weapon/weldingtool))
 		if(stage == FRAME_UNFASTENED)
 			var/obj/item/weapon/weldingtool/WT = W
 			if(!WT.remove_fuel(0, user))
@@ -117,7 +117,7 @@
 			update_icon()
 		return
 
-	else if(W.is_cable_coil())
+	else if(istype(W, /obj/item/stack/cable_coil))
 		if (stage == FRAME_FASTENED)
 			var/obj/item/stack/cable_coil/coil = W
 			if (coil.use(1))

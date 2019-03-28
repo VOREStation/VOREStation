@@ -31,7 +31,7 @@
 	cameras()	// Sets up both cameras and last alarm area.
 	set_source_data(source, duration, severity, hidden)
 
-/datum/alarm/proc/process()
+/datum/alarm/process()
 	// Has origin gone missing?
 	if(!origin && !end_time)
 		end_time = world.time + ALARM_RESET_DELAY

@@ -114,6 +114,13 @@
 	icon_state = "explorer"
 	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)
 
+// Allows the wearer to climb cliffs, which could allow for shortcuts or sequence-breaking.
+/obj/item/clothing/shoes/boots/winter/climbing
+	name = "climbing winter boots"
+	desc = "A pair of winter boots, with metal bracing attached to assist in climbing rocky terrain."
+	icon_state = "climbing_boots"
+	rock_climbing = TRUE
+
 /obj/item/clothing/shoes/boots/tactical
 	name = "tactical boots"
 	desc = "Tan boots with extra padding and armor."

@@ -164,6 +164,10 @@
 	..()
 	healthcheck()
 
+/obj/vehicle/proc/adjust_health(amount)
+	health = between(0, health + amount, maxhealth)
+	healthcheck()
+
 /obj/vehicle/ex_act(severity)
 	switch(severity)
 		if(1.0)
