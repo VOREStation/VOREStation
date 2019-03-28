@@ -242,8 +242,6 @@
 
 /proc/isLeap(y)
 	return ((y) % 4 == 0 && ((y) % 100 != 0 || (y) % 400 == 0))
-<<<<<<< HEAD
-=======
 
 //Takes a string and a datum
 //The string is well, obviously the string being checked
@@ -283,4 +281,3 @@
 		return strtype
 	return copytext(strtype, delim_pos)
 
->>>>>>> bfaaffb... Adds a better debug controller verb that can target all controllers/processes/mc/failsafe/config/etc (#5852)
