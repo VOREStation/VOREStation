@@ -398,8 +398,8 @@ STARLIGHT 0
 ## Uncomment to override default brain health.
 #DEFAULT_BRAIN_HEALTH 400
 
-## Default language prefix keys, separated with spaces. Only single character keys are supported. If unset, defaults to , # and - 
-# DEFAULT_LANGUAGE_PREFIXES , # -
+## Default language prefix keys, separated with spaces. Only single character keys are supported. If unset, defaults to , and # 
+# DEFAULT_LANGUAGE_PREFIXES , #
 
 # Control which submaps are loaded for the Dynamic Engine system
 ENGINE_MAP Supermatter Engine,Edison's Bane
