@@ -242,6 +242,11 @@
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. This one excels at treating damage to bones."
 	filled_reagents = list("inaprovaline" = 5, "osteodaxon" = 10)
 
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose
+	name = "glucose hypo"
+	desc = "A hypoinjector filled with glucose, used for critically malnourished patients and voidsuited workers."
+	filled_reagents = list("glucose" = 15)
+
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/stimm
 	name = "stimm injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \

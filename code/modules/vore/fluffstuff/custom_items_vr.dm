@@ -623,7 +623,7 @@
 /obj/item/weapon/storage/backpack/saddlebag/tempest/ui_action_click()
 	ambulance = !(ambulance)
 	if(ambulance)
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 		item_state = "tempestsaddlebag-amb"
 		icon_state = "tempestbag-amb"
 		if (ismob(loc))
@@ -644,7 +644,7 @@
 
 /obj/item/weapon/storage/backpack/saddlebag/tempest/process()
 	if(!ambulance)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return
 	if(world.time - ambulance_last_switch > 15)
 		ambulance_state = !(ambulance_state)
