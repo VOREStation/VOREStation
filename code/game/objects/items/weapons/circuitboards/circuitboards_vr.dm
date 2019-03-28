@@ -58,5 +58,5 @@
 /obj/item/weapon/circuitboard/id_restorer
 	name = T_BOARD("ID restoration console")
 	build_path = /obj/machinery/computer/id_restorer
-	board_type = new /datum/frame/frame_types/guest_pass_console
+	board_type = new /datum/frame/frame_types/id_restorer
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)

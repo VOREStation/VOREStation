@@ -1,12 +1,18 @@
 /obj/machinery/computer/id_restorer
 	name = "ID restoration terminal"
-	icon_state = "id-restorer"
-	plane = TURF_PLANE
-	layer = ABOVE_TURF_LAYER
+	desc = "A terminal for restoration of damaged IDs. Mostly used for aftermath of unfortunate falls into vats of acid."
+	icon_state = "restorer"
 	icon_keyboard = null
-	icon_screen = "restorer"
-	density = 0
-	circuit = /obj/item/weapon/circuitboard/guestpass
+	light_color = "#11cc00"
+	layer = ABOVE_WINDOW_LAYER
+	icon_keyboard = null
+	icon = 'icons/obj/machines/id_restorer_vr.dmi'
+	density = FALSE
+	clicksound = null
+	circuit = /obj/item/weapon/circuitboard/id_restorer
+
+	var/icon_success = "restorer_success"
+	var/icon_fail = "restorer_fail"
 
 	var/obj/item/weapon/card/id/inserted
 
@@ -35,23 +41,29 @@
 			var/mob/living/carbon/human/H = user
 			if(!(istype(H)))
 				to_chat(user, "<span class='warning'>Invalid user detected. Access denied.</span>")
+				flick(icon_fail, src)
 				return
 			else if((H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)))	//Face hiding bad
 				to_chat(user, "<span class='warning'>Facial recognition scan failed due to physical obstructions. Access denied.</span>")
+				flick(icon_fail, src)
 				return
 			else if(H.get_face_name() == "Unknown" || !(H.real_name == inserted.registered_name))
 				to_chat(user, "<span class='warning'>Facial recognition scan failed. Access denied.</span>")
+				flick(icon_fail, src)
 				return
 			else if(LAZYLEN(inserted.lost_access) && !(LAZYLEN(inserted.access)))
 				inserted.access = inserted.lost_access
 				inserted.lost_access = list()
+				inserted.desc = "A partially digested card that has seen better days. The damage to access codes, however, appears to have been mitigated."
 				to_chat(user, "<span class='notice'>ID access codes successfully restored.</span>")
+				flick(icon_success, src)
 				return
 			else if(!(LAZYLEN(inserted.lost_access)))
 				to_chat(user, "<span class='notice'>No recent access codes damage detected. Restoration cancelled.</span>")
 				return
 			else
 				to_chat(user, "<span class='warning'>Terminal encountered unknown error. Contact system administrator or try again.</span>")
+				flick(icon_fail, src)
 				return
 		if("Eject ID")
 			if(!inserted)
@@ -68,3 +80,17 @@
 			return
 		if("Cancel")
 			return
+
+
+//Frame
+/datum/frame/frame_types/id_restorer
+	name = "ID Restoration Terminal"
+	frame_class = FRAME_CLASS_DISPLAY
+	frame_size = 2
+	frame_style = FRAME_STYLE_WALL
+	x_offset = 30
+	y_offset = 30
+	icon_override = 'icons/obj/machines/id_restorer_vr.dmi'
+
+/datum/frame/frame_types/id_restorer/get_icon_state(var/state)
+	return "restorer_b[state]"
