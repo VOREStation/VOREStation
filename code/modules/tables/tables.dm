@@ -59,7 +59,7 @@ var/list/table_icon_cache = list()
 /obj/structure/table/blob_act()
 	take_damage(100)
 
-/obj/structure/table/initialize()
+/obj/structure/table/Initialize()
 	. = ..()
 
 	// One table per turf.

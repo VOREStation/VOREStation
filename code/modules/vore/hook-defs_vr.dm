@@ -11,7 +11,7 @@
 
 /hook/human_new
 
-/hook/simple_animal_new
+/hook/simple_mob_new
 
 //Hooks for interactions
 /hook/living_attackby

@@ -2,7 +2,7 @@
 //Weeping angels/SCP-173 hype
 //Horrible shitcoding and stolen code adaptations below. You have been warned.
 
-/mob/living/simple_animal/hostile/statue
+/mob/living/simple_mob/hostile/statue
 	name = "statue" // matches the name of the statue with the flesh-to-stone spell
 	desc = "An incredibly lifelike marble carving. Its eyes seems to follow you..." // same as an ordinary statue with the added "eye following you" description
 	icon = 'icons/obj/statue.dmi'
@@ -79,21 +79,21 @@
 
 // No movement while seen code.
 
-/mob/living/simple_animal/hostile/statue/New(loc)
+/mob/living/simple_mob/hostile/statue/New(loc)
 	..()
 	// Give spells
 	add_spell(new/spell/aoe_turf/flicker_lights)
 	add_spell(new/spell/aoe_turf/blindness)
 	add_spell(new/spell/aoe_turf/shatter)
 
-/mob/living/simple_animal/hostile/statue/DestroySurroundings()
+/mob/living/simple_mob/hostile/statue/DestroySurroundings()
 	if(can_be_seen(get_turf(loc)))
 		if(client)
 			to_chat(src, "<span class='warning'>You cannot move, there are eyes on you!</span>")
 		return 0
 	return ..()
 
-/mob/living/simple_animal/hostile/statue/attackby(var/obj/item/O as obj, var/mob/user as mob) //banishing the statue is a risky job
+/mob/living/simple_mob/hostile/statue/attackby(var/obj/item/O as obj, var/mob/user as mob) //banishing the statue is a risky job
 	if(istype(O, /obj/item/weapon/nullrod))
 		visible_message("<span class='warning'>[user] tries to banish [src] with [O]!</span>")
 		if(do_after(user, 15, src))
@@ -111,21 +111,21 @@
 			resistance = initial(resistance)
 	..()
 
-/mob/living/simple_animal/hostile/statue/death()
+/mob/living/simple_mob/hostile/statue/death()
 	var/chunks_to_spawn = rand(2,5)
 	for(var/I = 1 to chunks_to_spawn)
 		new /obj/item/stack/material/marble(get_turf(loc))
 	new /obj/item/cursed_marble(get_turf(loc))
 	..()
 
-/mob/living/simple_animal/hostile/statue/Move(turf/NewLoc)
+/mob/living/simple_mob/hostile/statue/Move(turf/NewLoc)
 	if(can_be_seen(NewLoc))
 		if(client)
 			to_chat(src, "<span class='warning'>You cannot move, there are eyes on you!</span>")
 		return 0
 	return ..()
 
-/mob/living/simple_animal/hostile/statue/Life()
+/mob/living/simple_mob/hostile/statue/Life()
 	..()
 	handle_target()
 	handleAnnoyance()
@@ -137,7 +137,7 @@
 	else if ((annoyance - 2) > 0)
 		annoyance -= 2
 
-/mob/living/simple_animal/hostile/statue/proc/handle_target()
+/mob/living/simple_mob/hostile/statue/proc/handle_target()
 	if(target_mob) // If we have a target and we're AI controlled
 		var/mob/watching = can_be_seen()
 		// If they're not our target
@@ -148,7 +148,7 @@
 				target_mob = watching
 
 
-/mob/living/simple_animal/hostile/statue/proc/handleAnnoyance()
+/mob/living/simple_mob/hostile/statue/proc/handleAnnoyance()
 	if(respond) //so it won't blind people 24/7
 		respond = 0
 		if (annoyance > 30)
@@ -163,7 +163,7 @@
 		respond = 1
 
 
-/mob/living/simple_animal/hostile/statue/proc/AI_blind()
+/mob/living/simple_mob/hostile/statue/proc/AI_blind()
 	for(var/mob/living/L in oviewers(12, src)) //the range is so big, because it tries to keep out of sight and can't reengage if you get too far
 		if (prob(70))
 			if(ishuman(L))
@@ -174,7 +174,7 @@
 			L.Blind(2)
 	return
 
-/mob/living/simple_animal/hostile/statue/proc/AI_flash()
+/mob/living/simple_mob/hostile/statue/proc/AI_flash()
 	if (prob(60))
 		visible_message("The statue slowly points at the light.")
 	for(var/obj/machinery/light/L in oview(12, src))
@@ -182,7 +182,7 @@
 	return
 
 
-/mob/living/simple_animal/hostile/statue/proc/AI_mirrorshmash()
+/mob/living/simple_mob/hostile/statue/proc/AI_mirrorshmash()
 	for(var/obj/structure/mirror/M in oview(4, src))
 		if ((!M.shattered )||(!M.glass))
 			visible_message("The statue slowly points at the mirror!")
@@ -192,7 +192,7 @@
 
 
 
-/mob/living/simple_animal/hostile/statue/AttackTarget()
+/mob/living/simple_mob/hostile/statue/AttackTarget()
 	if(can_be_seen(get_turf(loc)))
 		if(client)
 			to_chat(src, "<span class='warning'>You cannot attack, there are eyes on you!</span>")
@@ -203,7 +203,7 @@
 
 
 
-/mob/living/simple_animal/hostile/statue/DoPunch(var/atom/A) //had to redo that, since it's supposed to target only head and upper body
+/mob/living/simple_mob/hostile/statue/DoPunch(var/atom/A) //had to redo that, since it's supposed to target only head and upper body
 	if(!Adjacent(A)) // They could've moved in the meantime.
 		return FALSE
 
@@ -228,11 +228,11 @@
 
 
 
-/mob/living/simple_animal/hostile/statue/face_atom()
+/mob/living/simple_mob/hostile/statue/face_atom()
 	if(!can_be_seen(get_turf(loc)))
 		..()
 
-/mob/living/simple_animal/hostile/statue/proc/can_be_seen(turf/destination)
+/mob/living/simple_mob/hostile/statue/proc/can_be_seen(turf/destination)
 	if(!cannot_be_seen)
 		return null
 
@@ -275,18 +275,18 @@
 
 // Cannot talk
 
-/mob/living/simple_animal/hostile/statue/say()
+/mob/living/simple_mob/hostile/statue/say()
 	return 0
 
 // Turn to dust when gibbed
 
-/mob/living/simple_animal/hostile/statue/gib()
+/mob/living/simple_mob/hostile/statue/gib()
 	dust()
 
 
 // Stop attacking clientless mobs
 
-/mob/living/simple_animal/hostile/statue/proc/CanAttack(atom/the_target) //ignore clientless mobs
+/mob/living/simple_mob/hostile/statue/proc/CanAttack(atom/the_target) //ignore clientless mobs
 	if(isliving(the_target))
 		var/mob/living/L = the_target
 		if(!L.client && !L.ckey)
@@ -319,7 +319,7 @@
 	spell_flags = 0
 	range = 10
 
-/spell/aoe_turf/blindness/cast(list/targets, mob/living/simple_animal/hostile/statue/user = usr)
+/spell/aoe_turf/blindness/cast(list/targets, mob/living/simple_mob/hostile/statue/user = usr)
 	for(var/mob/living/L in targets)
 		if(L == user || L == user.creator)
 			continue
@@ -350,7 +350,7 @@
 
 
 
-/mob/living/simple_animal/hostile/statue/verb/toggle_darkness()
+/mob/living/simple_mob/hostile/statue/verb/toggle_darkness()
 	set name = "Toggle Darkness"
 	set desc = "You ARE the darkness."
 	set category = "Abilities"
@@ -360,13 +360,13 @@
 
 
 
-/mob/living/simple_animal/hostile/statue/restrained()
+/mob/living/simple_mob/hostile/statue/restrained()
 	. = ..()
 	if(can_be_seen(loc))
 		return 1
 
 
-/mob/living/simple_animal/hostile/statue/ListTargets(dist = view_range)
+/mob/living/simple_mob/hostile/statue/ListTargets(dist = view_range)
 	var/list/L = mobs_in_xray_view(dist, src)
 
 	for(var/obj/mecha/M in mechas_list)
@@ -430,7 +430,7 @@
 /obj/item/cursed_marble/proc/transfer_personality(var/mob/candidate, var/mob/user)
 	announce_ghost_joinleave(candidate, 0, "They are a statue now.")
 	src.searching = 2
-	var/mob/living/simple_animal/hostile/statue/S = new(get_turf(src))
+	var/mob/living/simple_mob/hostile/statue/S = new(get_turf(src))
 	S.client = candidate.client
 	if(user)
 		S.creator = user
@@ -451,7 +451,7 @@
 		var/choice = alert(user, "Are you sure you want to crush the marble? (this will spawn a clientless version of the statue, hostile to everyone, but you)", "Crush it?", "Yes", "No")
 		if(choice)
 			if(choice == "Yes")
-				var/mob/living/simple_animal/hostile/statue/S = new /mob/living/simple_animal/hostile/statue(get_turf(user))
+				var/mob/living/simple_mob/hostile/statue/S = new /mob/living/simple_mob/hostile/statue(get_turf(user))
 				visible_message("<span class='warning'>The slab suddenly takes the shape of a humanoid!</span>")
 				S.creator = user
 				qdel(src)

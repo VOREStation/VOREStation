@@ -131,7 +131,7 @@ var/global/datum/controller/plants/plant_controller // Set in New().
 		seed.set_trait(TRAIT_HIGHKPA_TOLERANCE,200)
 	return seed
 
-/datum/controller/plants/proc/process()
+/datum/controller/plants/process()
 	processing = 1
 	spawn(0)
 		set background = 1

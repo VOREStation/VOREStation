@@ -115,7 +115,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	var/path = pick(rare_loot)
 	return new path(src)
 
-/obj/structure/loot_pile/initialize()
+/obj/structure/loot_pile/Initialize()
 	if(icon_states_to_use && icon_states_to_use.len)
 		icon_state = pick(icon_states_to_use)
 	. = ..()
@@ -574,6 +574,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	icon = 'icons/mecha/mecha.dmi'
 	icon_state = "engineering_pod-broken"
 	density = TRUE
+	anchored = FALSE // In case a dead mecha-mob dies in a bad spot.
 
 	chance_uncommon = 20
 	chance_rare = 10
@@ -615,7 +616,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 /obj/structure/loot_pile/mecha/ripley
 	name = "ripley wreckage"
 	desc = "The ruins of some unfortunate ripley. Perhaps something is salvageable."
-	icon_states_to_use = list("ripley-broken", "firefighter-broken", "ripley-broken-old")
+	icon_state = "ripley-broken"
 
 	common_loot = list(
 		/obj/random/tool,
@@ -648,6 +649,12 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/mecha_equipment/tool/rcd,
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/flamer/rigged
 		)
+
+/obj/structure/loot_pile/mecha/ripley/firefighter
+	icon_state = "firefighter-broken"
+
+/obj/structure/loot_pile/mecha/ripley/random_sprite
+	icon_states_to_use = list("ripley-broken", "firefighter-broken", "ripley-broken-old")
 
 //Death-Ripley, same common, but more combat-exosuit-based
 /obj/structure/loot_pile/mecha/deathripley
@@ -719,6 +726,14 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/mecha_equipment/shocker
 		)
 
+/obj/structure/loot_pile/mecha/odysseus/murdysseus
+	icon_state = "murdysseus-broken"
+
+/obj/structure/loot_pile/mecha/hoverpod
+	name = "hoverpod wreckage"
+	desc = "The ruins of some unfortunate hoverpod. Perhaps something is salvageable."
+	icon_state = "engineering_pod"
+
 /obj/structure/loot_pile/mecha/gygax
 	name = "gygax wreckage"
 	desc = "The ruins of some unfortunate gygax. Perhaps something is salvageable."
@@ -759,6 +774,18 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
 		)
 
+/obj/structure/loot_pile/mecha/gygax/dark
+	icon_state = "darkgygax-broken"
+
+// Todo: Better loot.
+/obj/structure/loot_pile/mecha/gygax/dark/adv
+	icon_state = "darkgygax_adv-broken"
+	icon_scale = 1.5
+	pixel_y = 8
+
+/obj/structure/loot_pile/mecha/gygax/medgax
+	icon_state = "medgax-broken"
+
 /obj/structure/loot_pile/mecha/durand
 	name = "durand wreckage"
 	desc = "The ruins of some unfortunate durand. Perhaps something is salvageable."
@@ -798,6 +825,22 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/mecha_parts/mecha_equipment/repair_droid,
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
 		)
+
+/obj/structure/loot_pile/mecha/marauder
+	name = "marauder wreckage"
+	desc = "The ruins of some unfortunate marauder. Perhaps something is salvagable."
+	icon_state = "marauder-broken"
+	// Todo: Better loot.
+
+/obj/structure/loot_pile/mecha/marauder/seraph
+	name = "seraph wreckage"
+	desc = "The ruins of some unfortunate seraph. Perhaps something is salvagable."
+	icon_state = "seraph-broken"
+
+/obj/structure/loot_pile/mecha/marauder/mauler
+	name = "mauler wreckage"
+	desc = "The ruins of some unfortunate mauler. Perhaps something is salvagable."
+	icon_state = "mauler-broken"
 
 /obj/structure/loot_pile/mecha/phazon
 	name = "phazon wreckage"
@@ -869,3 +912,27 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/borg/upgrade/syndicate,
 		/obj/item/borg/upgrade/vtec
 		)
+
+// Contains old mediciation, most of it unidentified and has a good chance of being useless.
+/obj/structure/loot_pile/surface/medicine_cabinet
+	name = "abandoned medicine cabinet"
+	desc = "An old cabinet, it might still have something of use inside."
+	icon_state = "medicine_cabinet"
+	density = FALSE
+	chance_uncommon = 0
+	chance_rare = 0
+
+	common_loot = list(
+		/obj/random/unidentified_medicine/old_medicine
+	)
+
+// Like the above but has way better odds, in exchange for being in a place still inhabited (or was recently).
+/obj/structure/loot_pile/surface/medicine_cabinet/fresh
+	name = "medicine cabinet"
+	desc = "A cabinet designed to hold medicine, it might still have something of use inside."
+	icon_state = "medicine_cabinet"
+	density = FALSE
+
+	common_loot = list(
+		/obj/random/unidentified_medicine/fresh_medicine
+	)

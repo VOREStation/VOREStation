@@ -499,6 +499,17 @@
 /area/shuttle/excursion/virgo3b_sky
 	name = "\improper Excursion Shuttle - Virgo3b Sky"
 	base_turf = /turf/simulated/sky
+
+// Elevator area //
+
+/area/tether/elevator
+	name = "\improper Tether Elevator"
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "elevator"
+	dynamic_lighting = FALSE
+
+	requires_power = FALSE
+
 //////////////////////////////////
 
 /area/antag/antag_base

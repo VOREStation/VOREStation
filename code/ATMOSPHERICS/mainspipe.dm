@@ -571,7 +571,7 @@ obj/machinery/atmospherics/mains_pipe/valve
 		else
 			icon_state = "[hide?"h":""]mvalve[open]"
 
-	initialize()
+	Initialize()
 		normalize_dir()
 		var/node1_dir
 		var/node2_dir
@@ -609,7 +609,7 @@ obj/machinery/atmospherics/mains_pipe/valve
 		open = 1
 		update_icon()
 
-		initialize()
+		Initialize()
 
 		return 1
 
@@ -668,7 +668,7 @@ obj/machinery/atmospherics/mains_pipe/valve
 		var/id = null
 		var/datum/radio_frequency/radio_connection
 
-		initialize()
+		Initialize()
 			..()
 			if(frequency)
 				set_frequency(frequency)

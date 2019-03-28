@@ -3,7 +3,7 @@
 /datum/lore/codex/category/main_corp_regs // The top-level categories for SOP/Regs/Law/etc
 	name = "Index"
 	data = "This book is meant to act as a reference for both NanoTrasen regulations, Standard Operating Procedure, and important laws of both \
-	the Sif Governmental Authority and the Solar Confederate Government. The legal interactions between Nanotrasen corporate policy and SGA/SolGov \
+	the Sif Governmental Authority and the Solar Confederate Government. The legal interactions between Nanotrasen corporate policy and VGA/SolGov \
 	law can make for some confusing legalese.  This book was written by the Vir division of NanoTrasen in order for employees, visitors, and residents \
 	at NanoTrasen installations such as the Northen Star and the Southen Cross to know what isn't allowed, without needing to be a lawyer to read it.\
 	<br><br>\
@@ -14,8 +14,8 @@
 	Also contained inside are our Standard Operating Procedures, that all employees of NanoTrasen are expected to follow, and for the local facility's \
 	Command team and Internal Affairs to enforce.\
 	<br><br>\
-	It should be noted that by being on-board our facility, you agree to follow the rules of Corporate Regulations. By being within SGA space, \
-	you are also required to follow the laws of SifGov."
+	It should be noted that by being on-board our facility, you agree to follow the rules of Corporate Regulations. By being within VGA space, \
+	you are also required to follow the laws of VirGov."
 	children = list(
 		/datum/lore/codex/category/standard_operating_procedures,
 		/datum/lore/codex/category/corporate_regulations,
@@ -36,7 +36,7 @@
 	var/suggested_brig_time = null
 	var/suggested_fine = null
 	var/notes = null
-	var/mandated = FALSE // If true, changes 'suggested' to 'mandated' for punishments, used for sifgov laws and some high corporate regs.
+	var/mandated = FALSE // If true, changes 'suggested' to 'mandated' for punishments, used for virgov laws and some high corporate regs.
 
 /datum/lore/codex/page/law/add_content()
 	data = "<i>[definition]</i>\

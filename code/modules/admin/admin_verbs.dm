@@ -6,6 +6,7 @@ var/list/admin_verbs_default = list(
 	/client/proc/hide_verbs,			//hides all our adminverbs,
 	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs,
 	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify,
+	/client/proc/mark_datum_mapview,
 	/client/proc/cmd_check_new_players,	//allows us to see every new player
 //	/client/proc/check_antagonists,		//shows all antags,
 //	/client/proc/cmd_mod_say,
@@ -214,9 +215,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/show_plant_genes,
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
-	/client/proc/callproc_target,
-	/client/proc/debug_process,
-	/client/proc/SDQL_query,
+	/client/proc/callproc_datum,
+	/client/proc/debug_process,			//VOREStation Add,
 	/client/proc/SDQL2_query,
 	/client/proc/Jump,
 	/client/proc/debug_rogueminer,
@@ -235,8 +235,8 @@ var/list/admin_verbs_debug = list(
 
 var/list/admin_verbs_paranoid_debug = list(
 	/client/proc/callproc,
-	/client/proc/callproc_target,
-	/client/proc/debug_process,
+	/client/proc/callproc_datum,
+	/client/proc/debug_process,			//VOREStation Add,
 	/client/proc/debug_controller
 	)
 
@@ -304,8 +304,8 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/restart_controller,
 	/client/proc/cmd_admin_list_open_jobs,
 	/client/proc/callproc,
-	/client/proc/callproc_target,
-	/client/proc/debug_process,
+	/client/proc/callproc_datum,
+	/client/proc/debug_process,			//VOREStation Add,
 	/client/proc/Debug2,
 	/client/proc/reload_admins,
 	/client/proc/kill_air,
@@ -373,7 +373,7 @@ var/list/admin_verbs_event_manager = list(
 	/proc/possess,
 	/proc/release,
 	/client/proc/callproc,
-	/client/proc/callproc_target,
+	/client/proc/callproc_datum,
 	/client/proc/debug_controller,
 	/client/proc/show_gm_status,
 	/datum/admins/proc/change_weather,
@@ -645,7 +645,7 @@ var/list/admin_verbs_event_manager = list(
 		return
 
 	var/datum/preferences/D
-	var/client/C = directory[warned_ckey]
+	var/client/C = GLOB.directory[warned_ckey]
 	if(C)	D = C.prefs
 	else	D = preferences_datums[warned_ckey]
 

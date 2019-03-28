@@ -15,7 +15,7 @@
 
 		return 1
 
-/datum/disease2/disease/get_view_variables_header()
+/datum/disease2/disease/vv_get_header()
 	. = list()
 	for(var/datum/disease2/effectholder/E in effects)
 		. += "[E.stage]: [E.effect.name]"

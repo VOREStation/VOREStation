@@ -110,7 +110,7 @@
 /obj/item/ammo_casing/a9mm/practice
 	desc = "A 9mm practice bullet casing."
 	icon_state = "r-casing"
-	projectile_type = /obj/item/projectile/bullet/pistol/practice
+	projectile_type = /obj/item/projectile/bullet/practice
 
 /*
  * .45
@@ -130,7 +130,7 @@
 /obj/item/ammo_casing/a45/practice
 	desc = "A .45 practice bullet casing."
 	icon_state = "r-casing"
-	projectile_type = /obj/item/projectile/bullet/pistol/practice
+	projectile_type = /obj/item/projectile/bullet/practice
 	matter = list(DEFAULT_WALL_MATERIAL = 60)
 
 /obj/item/ammo_casing/a45/rubber
@@ -202,7 +202,7 @@
 	name = "shotgun shell"
 	desc = "A practice shell."
 	icon_state = "pshell"
-	projectile_type = /obj/item/projectile/bullet/shotgun/practice
+	projectile_type = /obj/item/projectile/bullet/practice
 	matter = list(DEFAULT_WALL_MATERIAL = 90)
 
 /obj/item/ammo_casing/a12g/beanbag
@@ -260,7 +260,7 @@
 /obj/item/ammo_casing/a762/practice
 	desc = "A 7.62mm practice bullet casing."
 	icon_state = "rifle-casing" // Need to make an icon for these
-	projectile_type = /obj/item/projectile/bullet/rifle/practice
+	projectile_type = /obj/item/projectile/bullet/practice
 	matter = list(DEFAULT_WALL_MATERIAL = 90)
 
 /obj/item/ammo_casing/a762/blank
@@ -306,7 +306,7 @@
 /obj/item/ammo_casing/a545/practice
 	desc = "A 5.45mm practice bullet casing."
 	icon_state = "rifle-casing" // Need to make an icon for these
-	projectile_type = /obj/item/projectile/bullet/rifle/practice
+	projectile_type = /obj/item/projectile/bullet/practice
 	matter = list(DEFAULT_WALL_MATERIAL = 90)
 
 /obj/item/ammo_casing/a545/blank

@@ -22,7 +22,7 @@
 		/obj/item/clothing/accessory/armband = 3,
 		/obj/item/clothing/accessory/holster/waist = 3)
 
-/obj/structure/closet/wardrobe/red/initialize()
+/obj/structure/closet/wardrobe/red/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/security
 	else
@@ -101,6 +101,9 @@
 		/obj/item/clothing/under/wedding/bride_white,
 		/obj/item/weapon/storage/backpack/cultpack,
 		/obj/item/weapon/storage/fancy/candle_box = 2,
+		/obj/item/weapon/storage/fancy/whitecandle_box,
+		/obj/item/weapon/storage/fancy/blackcandle_box,
+		/obj/item/godfig = 2,
 		/obj/item/weapon/deck/tarot)
 
 
@@ -188,7 +191,7 @@
 	name = "white wardrobe"
 	icon_state = "white"
 	icon_closed = "white"
-	
+
 	starts_with = list(
 		/obj/item/clothing/under/color/white = 3,
 		/obj/item/clothing/shoes/white = 3,
@@ -223,7 +226,7 @@
 		/obj/item/weapon/storage/backpack/toxins,
 		/obj/item/weapon/storage/backpack/satchel/tox)
 
-/obj/structure/closet/wardrobe/science_white/initialize()
+/obj/structure/closet/wardrobe/science_white/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/dufflebag/sci
 	else
@@ -249,12 +252,12 @@
 		/obj/item/weapon/storage/backpack/toxins,
 		/obj/item/weapon/storage/backpack/satchel/tox)
 
-/obj/structure/closet/wardrobe/robotics_black/initialize()
+/obj/structure/closet/wardrobe/robotics_black/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/dufflebag/sci
 	else
 		starts_with += /obj/item/weapon/storage/backpack/satchel/tox
-	
+
 	return ..()
 
 
@@ -340,12 +343,12 @@
 	name = "grey wardrobe"
 	icon_state = "grey"
 	icon_closed = "grey"
-	
+
 	starts_with = list(
 		/obj/item/clothing/under/color/grey = 3,
 		/obj/item/clothing/shoes/black = 3,
 		/obj/item/clothing/head/soft/grey = 3)
-		
+
 
 /obj/structure/closet/wardrobe/mixed
 	name = "mixed wardrobe"
@@ -401,7 +404,7 @@
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/under/pants/camo)
 
-/obj/structure/closet/wardrobe/tactical/initialize()
+/obj/structure/closet/wardrobe/tactical/Initialize()
 	if(prob(25))
 		starts_with += /obj/item/weapon/storage/belt/security/tactical/bandolier
 	else

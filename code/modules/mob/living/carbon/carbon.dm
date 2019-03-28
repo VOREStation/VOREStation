@@ -1,4 +1,5 @@
-/mob/living/carbon/New()
+/mob/living/carbon/Initialize()
+	. = ..()
 	//setup reagent holders
 	bloodstr = new/datum/reagents/metabolism/bloodstream(500, src)
 	ingested = new/datum/reagents/metabolism/ingested(500, src)
@@ -6,7 +7,6 @@
 	reagents = bloodstr
 	if (!default_language && species_language)
 		default_language = all_languages[species_language]
-	..()
 
 /mob/living/carbon/Life()
 	..()
@@ -364,7 +364,7 @@
 	stop_pulling()
 	src << "<span class='warning'>You slipped on [slipped_on]!</span>"
 	playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
-	Weaken(Floor(stun_duration/2))
+	Weaken(FLOOR(stun_duration/2, 1))
 	return 1
 
 /mob/living/carbon/proc/add_chemical_effect(var/effect, var/magnitude = 1)
@@ -374,11 +374,15 @@
 		chem_effects[effect] = magnitude
 
 /mob/living/carbon/get_default_language()
-	if(default_language && can_speak(default_language))
-		return default_language
+	if(default_language)
+		if(can_speak(default_language))
+			return default_language
+		else
+			return all_languages[LANGUAGE_GIBBERISH]
 
 	if(!species)
 		return null
+
 	return species.default_language ? all_languages[species.default_language] : null
 
 /mob/living/carbon/proc/should_have_organ(var/organ_check)
@@ -388,3 +392,8 @@
 	if(isSynthetic())
 		return 0
 	return !(species.flags & NO_PAIN)
+
+/mob/living/carbon/needs_to_breathe()
+	if(does_not_breathe)
+		return FALSE
+	return ..()

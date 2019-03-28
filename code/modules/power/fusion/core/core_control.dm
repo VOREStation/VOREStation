@@ -11,7 +11,7 @@
 
 /obj/machinery/computer/fusion_core_control/attackby(var/obj/item/thing, var/mob/user)
 	..()
-	if(thing.is_multitool()) //VOREStation Edit
+	if(istype(thing, /obj/item/device/multitool))
 		var/new_ident = input("Enter a new ident tag.", "Core Control", id_tag) as null|text
 		if(new_ident && user.Adjacent(src))
 			id_tag = new_ident
@@ -140,7 +140,7 @@
 		return
 
 	if(href_list["access_device"])
-		var/idx = Clamp(text2num(href_list["toggle_active"]), 1, connected_devices.len)
+		var/idx = CLAMP(text2num(href_list["toggle_active"]), 1, connected_devices.len)
 		cur_viewed_device = connected_devices[idx]
 		updateUsrDialog()
 		return 1

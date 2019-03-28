@@ -31,7 +31,7 @@
 	return
 
 /obj/item/weapon/implant/reagent_generator/post_implant(mob/living/carbon/source)
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	assigned_proc = new assigned_proc(source, verb_name, verb_desc)
 	return 1

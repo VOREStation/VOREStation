@@ -12,7 +12,7 @@
 	anchored = 1
 	circuit = /obj/item/weapon/circuitboard/slimeextractor
 	var/inuse
-	var/mob/living/simple_animal/xeno/slime/occupant = null
+	var/mob/living/simple_mob/xeno/slime/occupant = null
 	var/occupiedcolor = "#22FF22"
 	var/emptycolor = "#FF2222"
 	var/operatingcolor = "#FFFF22"
@@ -69,11 +69,11 @@
 		to_chat(user, "<span class='danger'>The core extractor is locked and running, wait for it to finish.</span>")
 		return
 
-	if(!(istype(victim, /mob/living/simple_animal/xeno/slime)))
+	if(!(istype(victim, /mob/living/simple_mob/xeno/slime)))
 		to_chat(user, "<span class='danger'>This is not a suitable subject for the core extractor!</span>")
 		return
 
-	var/mob/living/simple_animal/xeno/slime/S = victim
+	var/mob/living/simple_mob/xeno/slime/S = victim
 	if(S.is_child)
 		to_chat(user, "<span class='danger'>This subject is not developed enough for the core extractor!</span>")
 		return

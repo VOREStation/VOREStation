@@ -28,7 +28,7 @@
 	var/material_to_use = DEFAULT_WALL_MATERIAL // So badmins can make RCDs that print diamond walls.
 	var/make_rwalls = FALSE // If true, when building walls, they will be reinforced.
 
-/obj/item/weapon/rcd/initialize()
+/obj/item/weapon/rcd/Initialize()
 	src.spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -137,7 +137,7 @@
 // RCD variants.
 
 // This one starts full.
-/obj/item/weapon/rcd/loaded/initialize()
+/obj/item/weapon/rcd/loaded/Initialize()
 	stored_matter = max_stored_matter
 	return ..()
 
@@ -148,7 +148,7 @@
 	used in the construction of hulls for starships. Reload with compressed matter cartridges."
 	material_to_use = MAT_STEELHULL
 
-/obj/item/weapon/rcd/shipwright/loaded/initialize()
+/obj/item/weapon/rcd/shipwright/loaded/Initialize()
 	stored_matter = max_stored_matter
 	return ..()
 
@@ -162,7 +162,7 @@
 	toolspeed = 0.5 // Twice as fast.
 	max_stored_matter = RCD_MAX_CAPACITY * 3 // Three times capacity.
 
-/obj/item/weapon/rcd/advanced/loaded/initialize()
+/obj/item/weapon/rcd/advanced/loaded/Initialize()
 	stored_matter = max_stored_matter
 	return ..()
 
@@ -179,7 +179,7 @@
 	var/make_cell = TRUE // If false, initialize() won't spawn a cell for this.
 	var/electric_cost_coefficent = 83.33 // Higher numbers make it less efficent. 86.3... means it should matche the standard RCD capacity on a 10k cell.
 
-/obj/item/weapon/rcd/electric/initialize()
+/obj/item/weapon/rcd/electric/Initialize()
 	if(make_cell)
 		cell = new /obj/item/weapon/cell/high(src)
 	return ..()

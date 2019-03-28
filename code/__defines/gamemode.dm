@@ -45,8 +45,6 @@ var/list/be_special_flags = list(
 	"pAI"              = BE_PAI
 )
 
-#define IS_MODE_COMPILED(MODE) (ispath(text2path("/datum/game_mode/"+(MODE))))
-
 
 // Antagonist datum flags.
 #define ANTAG_OVERRIDE_JOB        0x1 // Assigned job is set to MODE when spawning.

@@ -38,15 +38,6 @@
 	complexity = 10
 	inputs = list("enable ticking" = IC_PINTYPE_BOOLEAN, "delay time" = IC_PINTYPE_NUMBER)
 	activators = list("outgoing pulse" = IC_PINTYPE_PULSE_OUT)
-<<<<<<< HEAD
-	spawn_flags = IC_SPAWN_RESEARCH
-	power_draw_per_use = 4
-
-/obj/item/integrated_circuit/time/ticker/Destroy()
-	if(is_running)
-		processing_objects -= src
-	. = ..()
-=======
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 5
 	var/delay = 2 SECONDS
@@ -56,7 +47,6 @@
 	// This, plus the fact it ticks more often will increase consumption non-linearly,
 	// and the circuit cooldown and will hopefully discourage stupidly fast ticking machines.
 	var/max_power_draw = 500
->>>>>>> dcc6cad... Fixes some circuit bugs. (#5897)
 
 /obj/item/integrated_circuit/time/ticker/on_data_written()
 	var/delay_input = get_pin_data(IC_INPUT, 2)
@@ -68,27 +58,10 @@
 	var/do_tick = get_pin_data(IC_INPUT, 1)
 	if(do_tick && !is_running)
 		is_running = TRUE
-<<<<<<< HEAD
-		processing_objects |= src
-	else if(is_running)
-		is_running = FALSE
-		processing_objects -= src
-		ticks_completed = 0
-
-/obj/item/integrated_circuit/time/ticker/process()
-	var/process_ticks = process_schedule_interval("obj")
-	ticks_completed += process_ticks
-	if(ticks_completed >= ticks_to_pulse)
-		if(ticks_to_pulse >= process_ticks)
-			ticks_completed -= ticks_to_pulse
-		else
-			ticks_completed = 0
-		activate_pin(1)
-=======
+		START_PROCESSING(SSobj, src)
 		tick()
 	else if(!do_tick && is_running)
 		is_running = FALSE
->>>>>>> dcc6cad... Fixes some circuit bugs. (#5897)
 
 
 /obj/item/integrated_circuit/time/ticker/proc/tick()

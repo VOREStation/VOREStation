@@ -17,11 +17,11 @@ obj/item/weapon/chainsaw/New()
 	reagents = R
 	R.my_atom = src
 	R.add_reagent("fuel", max_fuel)
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	..()
 
 obj/item/weapon/chainsaw/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	if(reagents)
 		qdel(reagents)
 	..()

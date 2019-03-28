@@ -11,8 +11,12 @@
 	return
 
 /mob/proc/setMoveCooldown(var/timeout)
-	if(client)
-		client.move_delay = max(world.time + timeout, client.move_delay)
+	move_delay = max(world.time + timeout, move_delay)
+
+/mob/proc/check_move_cooldown()
+	if(world.time < src.move_delay)
+		return FALSE // Need to wait more.
+	return TRUE
 
 /client/North()
 	..()
@@ -166,6 +170,8 @@
 		src.move_speed = world.time - src.l_move_time
 		src.l_move_time = world.time
 		src.m_flag = 1
+		if(A && A.z != src.z) // If we changed z-levels, tell the AM that.
+			on_z_change(A.z, src.z)
 		if ((A != src.loc && A && A.z == src.z))
 			src.last_move = get_dir(A, src.loc)
 		if(.)
@@ -199,7 +205,8 @@
 
 	if(moving)	return 0
 
-	if(world.time < move_delay)	return
+	if(!mob.check_move_cooldown())
+		return
 
 	if(locate(/obj/effect/stop/, mob.loc))
 		for(var/obj/effect/stop/S in mob.loc)
@@ -271,21 +278,21 @@
 			src << "<font color='blue'>You're pinned to a wall by [mob.pinned[1]]!</font>"
 			return 0
 
-		move_delay = world.time//set move delay
+		mob.move_delay = world.time//set move delay
 
 		switch(mob.m_intent)
 			if("run")
 				if(mob.drowsyness > 0)
-					move_delay += 6
-				move_delay += config.run_speed
+					mob.move_delay += 6
+				mob.move_delay += config.run_speed
 			if("walk")
-				move_delay += config.walk_speed
-		move_delay += mob.movement_delay()
+				mob.move_delay += config.walk_speed
+		mob.move_delay += mob.movement_delay()
 
 		if(istype(mob.buckled))// VOREStation Removal - , /obj/vehicle))
 			//manually set move_delay for vehicles so we don't inherit any mob movement penalties
 			//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
-			move_delay = world.time
+			mob.move_delay = world.time
 			//drunk driving
 			if(mob.confused && prob(20)) //vehicles tend to keep moving in the same direction
 				direct = turn(direct, pick(90, -90))
@@ -314,14 +321,14 @@
 							if(prob(50))	direct = turn(direct, pick(90, -90))
 						if("walk")
 							if(prob(25))	direct = turn(direct, pick(90, -90))
-				move_delay += 2
+				mob.move_delay += 2
 				return mob.buckled.relaymove(mob,direct)
 
 		//We are now going to move
 		moving = 1
 		//Something with pulling things
 		if(locate(/obj/item/weapon/grab, mob))
-			move_delay = max(move_delay, world.time + 7)
+			mob.move_delay = max(mob.move_delay, world.time + 7)
 			var/list/L = mob.ret_grab()
 			if(istype(L, /list))
 				if(L.len == 2)

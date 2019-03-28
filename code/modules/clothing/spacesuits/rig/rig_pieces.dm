@@ -14,7 +14,8 @@
 		SPECIES_TAJ = 'icons/mob/species/tajaran/helmet.dmi',
 		SPECIES_SKRELL = 'icons/mob/species/skrell/helmet.dmi',
 		SPECIES_UNATHI = 'icons/mob/species/unathi/helmet.dmi',
-		SPECIES_VOX = 'icons/mob/species/vox/head.dmi'
+		SPECIES_VOX = 'icons/mob/species/vox/head.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi'
 		)
 	species_restricted = null
 
@@ -40,10 +41,10 @@
 	name = "chestpiece"
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	heat_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	cold_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_inv =          HIDEJUMPSUIT|HIDETAIL
-	item_flags =              STOPPRESSUREDAMAGE | THICKMATERIAL | AIRTIGHT
+	heat_protection =	 UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	cold_protection =	 UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_inv =			 HIDEJUMPSUIT|HIDETAIL
+	item_flags =		 THICKMATERIAL | AIRTIGHT
 	slowdown = 0
 	//will reach 10 breach damage after 25 laser carbine blasts, 3 revolver hits, or ~1 PTR hit. Completely immune to smg or sts hits.
 	breach_threshold = 38
@@ -52,7 +53,8 @@
 	sprite_sheets = list(
 		SPECIES_TAJ = 'icons/mob/species/tajaran/suit.dmi',
 		SPECIES_UNATHI = 'icons/mob/species/unathi/suit.dmi',
-		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi'
+		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/seromi/suit.dmi'
 		)
 	supporting_limbs = list()
 	var/obj/item/weapon/material/knife/tacknife
