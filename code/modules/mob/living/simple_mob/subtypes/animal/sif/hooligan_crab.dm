@@ -90,6 +90,7 @@
 	retaliate = TRUE
 	returns_home = TRUE
 	max_home_distance = 12
+	mauling = TRUE
 	var/random_follow = TRUE // Turn off if you want to bus with crabs.
 
 /datum/ai_holder/simple_mob/melee/hooligan/handle_stance_strategical()
