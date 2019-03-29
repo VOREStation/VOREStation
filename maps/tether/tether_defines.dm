@@ -35,11 +35,13 @@
 #define Z_LEVEL_MISC						11
 #define Z_LEVEL_SHIPS						12
 #define Z_LEVEL_UNDERDARK					13
-#define Z_LEVEL_ALIENSHIP					14
-#define Z_LEVEL_BEACH						15
-#define Z_LEVEL_BEACH_CAVE					16
-#define Z_LEVEL_AEROSTAT					17
-#define Z_LEVEL_AEROSTAT_SURFACE			18
+#define Z_LEVEL_PLAINS						14
+#define Z_LEVEL_ALIENSHIP					15
+#define Z_LEVEL_BEACH						16
+#define Z_LEVEL_BEACH_CAVE					17
+#define Z_LEVEL_AEROSTAT					18
+#define Z_LEVEL_AEROSTAT_SURFACE			19
+#define Z_LEVEL_DEBRISFIELD					20
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -129,10 +131,11 @@
 		/area/tether/surfacebase/emergency_storage/atrium)
 
 	lateload_z_levels = list(
-		list("Tether - Misc","Tether - Ships","Tether - Underdark"), //Stock Tether lateload maps
+		list("Tether - Misc","Tether - Ships","Tether - Underdark","Tether - Plains"), //Stock Tether lateload maps
 		list("Alien Ship - Z1 Ship"),
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
-		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface")
+		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
+		list("Debris Field - Z1 Space")
 		)
 
 	lateload_single_pick = null //Nothing right now.

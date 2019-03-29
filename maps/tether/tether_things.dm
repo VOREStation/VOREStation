@@ -97,6 +97,18 @@
 		if(Z.name == "Mining Outpost")
 			teleport_z = Z.z
 
+/obj/effect/step_trigger/teleporter/to_plains/New()
+	..()
+	teleport_x = src.x
+	teleport_y = world.maxy - 1
+	teleport_z = Z_LEVEL_PLAINS
+
+/obj/effect/step_trigger/teleporter/from_plains/New()
+	..()
+	teleport_x = src.x
+	teleport_y = 2
+	teleport_z = Z_LEVEL_SURFACE_LOW
+
 /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/Initialize()
 	planet = planet_virgo3b
 	. = ..()

@@ -137,6 +137,12 @@
 /area/tether/outpost/solars_shed
 	name = "\improper Solar Farm Shed"
 
+// Exploration area - Plains
+/area/tether/outpost/exploration_plains
+	name = "\improper Plains Exploration Zone"
+	icon_state = "green"
+/area/tether/outpost/exploration_shed
+	name = "\improper Plains Entrance Shed"
 
 /area/maintenance/substation/medsec
 	name = "\improper MedSec Substation"
