@@ -440,7 +440,7 @@ var/list/organ_cache = list()
 		all_organs |= owner.internal_organs
 
 		for(var/obj/item/organ/O in all_organs)
-			if(O.status & ORGAN_DEAD && O.organ_verbs)
+			if(!(O.status & ORGAN_DEAD) && O.organ_verbs)
 				for(var/verb_type in O.organ_verbs)
 					if(verb_type in organ_verbs)
 						save_verbs |= verb_type
@@ -450,7 +450,8 @@ var/list/organ_cache = list()
 			owner.verbs |= verb_path
 	else if(organ_verbs)
 		for(var/verb_path in organ_verbs)
-			owner.verbs -= verb_path
+			if(!(verb_path in save_verbs))
+				owner.verbs -= verb_path
 	return
 
 /obj/item/organ/proc/handle_organ_proc_special()	// Called when processed.
