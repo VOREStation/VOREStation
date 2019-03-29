@@ -330,6 +330,11 @@
 	reagent_tag = null
 	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 
+/datum/species/zaddat
+	spawn_flags = SPECIES_CAN_JOIN
+	min_age = 18
+	gluttonous = 0
+
 /datum/species/diona
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	min_age = 18

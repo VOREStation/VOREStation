@@ -207,7 +207,7 @@
 	for(var/obj/effect/decal/cleanable/blood/B in linkedholodeck)
 		qdel(B)
 
-	for(var/mob/living/simple_animal/hostile/carp/C in linkedholodeck)
+	for(var/mob/living/simple_mob/animal/space/carp/C in linkedholodeck)
 		qdel(C)
 
 	holographic_items = A.copy_contents_to(linkedholodeck , 1)
@@ -228,7 +228,7 @@
 						T.temperature = 5000
 						T.hotspot_expose(50000,50000,1)
 			if(L.name=="Holocarp Spawn")
-				new /mob/living/simple_animal/hostile/carp(L.loc)
+				new /mob/living/simple_mob/animal/space/carp(L.loc)
 
 
 /datum/file/program/holodeck/proc/emergencyShutdown()

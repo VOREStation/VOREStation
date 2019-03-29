@@ -128,7 +128,7 @@
 	basestate = "pwindow"
 
 //The windows have diagonal versions, and will never be a full window
-/obj/structure/window/reinforced/survival_pod/is_full_window()
+/obj/structure/window/reinforced/survival_pod/is_fulltile()
 	return FALSE
 
 /obj/structure/window/reinforced/survival_pod/update_icon()
@@ -219,7 +219,7 @@
 	pixel_y = -4
 	max_n_of_items = 100
 
-/obj/machinery/smartfridge/survival_pod/initialize()
+/obj/machinery/smartfridge/survival_pod/Initialize()
 	. = ..()
 	for(var/obj/item/O in loc)
 		if(accept_check(O))

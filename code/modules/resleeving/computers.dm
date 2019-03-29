@@ -16,7 +16,7 @@
 	var/synthetic_capable = 1
 	var/obj/item/weapon/disk/transcore/disk
 
-/obj/machinery/computer/transhuman/resleeving/initialize()
+/obj/machinery/computer/transhuman/resleeving/Initialize()
 	. = ..()
 	updatemodules()
 
@@ -198,7 +198,7 @@
 	data["coredumped"] = SStranscore.core_dumped
 	data["emergency"] = disk ? 1 : 0
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "sleever.tmpl", "Resleeving Control Console", 400, 450)
 		ui.set_initial_data(data)
@@ -375,7 +375,7 @@
 		menu = href_list["menu"]
 		temp = ""
 
-	GLOB.nanomanager.update_uis(src)
+	SSnanoui.update_uis(src)
 	add_fingerprint(usr)
 
 // In here because only relevant to computer

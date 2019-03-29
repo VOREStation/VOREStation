@@ -4271,7 +4271,7 @@
 	name = "Beruang";
 	pixel_x = 32
 	},
-/mob/living/simple_animal/corgi/tamaskan/spice,
+/mob/living/simple_mob/corgi/tamaskan/spice,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/trade/centcom)
 "kz" = (
@@ -5640,7 +5640,7 @@
 	},
 /area/wizard_station)
 "nm" = (
-/mob/living/simple_animal/mouse/gray{
+/mob/living/simple_mob/mouse/gray{
 	desc = "He looks kingly.";
 	name = "Arthur"
 	},
@@ -8869,7 +8869,7 @@
 	},
 /area/antag/antag_base)
 "sM" = (
-/mob/living/simple_animal/fox/syndicate{
+/mob/living/simple_mob/fox/syndicate{
 	name = "Rick"
 	},
 /turf/unsimulated/floor{

@@ -26,7 +26,7 @@
 	var/species = SPECIES_HUMAN
 	delete_me = TRUE
 
-/obj/effect/landmark/corpse/initialize()
+/obj/effect/landmark/corpse/Initialize()
 	..()
 	createCorpse()
 	return INITIALIZE_HINT_QDEL

@@ -1,4 +1,4 @@
-/mob/living/simple_animal/retaliate/wolfgirl
+/mob/living/simple_mob/retaliate/wolfgirl
 	name = "wolfgirl"
 	desc = "AwooOOOOoooo!"
 	tt_desc = "Homo lupus"
@@ -48,7 +48,7 @@
 
 	var/loopstop = 0 //To prevent circular awoooos.
 
-/mob/living/simple_animal/retaliate/wolfgirl/hear_say()
+/mob/living/simple_mob/retaliate/wolfgirl/hear_say()
 	if(world.time - loopstop < 5 SECONDS)
 		return
 	else
@@ -56,7 +56,7 @@
 		..()
 
 // Activate Noms!
-/mob/living/simple_animal/retaliate/wolfgirl
+/mob/living/simple_mob/retaliate/wolfgirl
 	vore_active = 1
 	vore_pounce_chance = 40
 	vore_icons = SA_ICON_LIVING

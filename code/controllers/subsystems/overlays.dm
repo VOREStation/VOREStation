@@ -168,7 +168,7 @@ var/global/image/appearance_bro = new() // Temporarily super-global because of B
  * Adds specific overlay(s) to the atom.
  * It is designed so any of the types allowed to be added to /atom/overlays can be added here too. More details below.
  *
- * @param overlays The overlay(s) to add.  These may be 
+ * @param overlays The overlay(s) to add.  These may be
  *	- A string: In which case it is treated as an icon_state of the atom's icon.
  *	- An icon: It is treated as an icon.
  *	- An atom: Its own overlays are compiled and then it's appearance is added. (Meaning its current apperance is frozen).
@@ -205,7 +205,7 @@ var/global/image/appearance_bro = new() // Temporarily super-global because of B
 /**
  * Copy the overlays from another atom, either replacing all of ours or appending to our existing overlays.
  * Note: This copies only the normal overlays, not the "priority" overlays.
- * 
+ *
  * @param other The atom to copy overlays from.
  * @param cut_old If true, all of our overlays will be *replaced* by the other's. If other is null, that means cutting all ours.
  */

@@ -37,14 +37,14 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	energy = starting_energy
 
 	..()
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	for(var/obj/machinery/power/singularity_beacon/singubeacon in machines)
 		if(singubeacon.active)
 			target = singubeacon
 			break
 
 /obj/singularity/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/singularity/attack_hand(mob/user as mob)

@@ -436,7 +436,7 @@
 /obj/item/clothing/accessory/collar/khcrystal/process()
 	check_owner()
 	if((state > 1) || !owner)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 
 /obj/item/clothing/accessory/collar/khcrystal/attack_self(mob/user as mob)
 	if(state > 0) //Can't re-pair, one time only, for security reasons.
@@ -447,7 +447,7 @@
 	owner_c = user.client	//This is his client
 	update_state(1)
 	to_chat(user, "<span class='notice'>The [name] glows pleasantly blue.</span>")
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/accessory/collar/khcrystal/proc/check_owner()
 	//He's dead, jim
@@ -614,6 +614,48 @@
 	slowdown = 0
 	taurtype = /datum/sprite_accessory/tail/taur/feline/tempest
 	no_message = "These saddlebags seem to be fitted for someone else, and keep slipping off!"
+	action_button_name = "Toggle Mlembulance Mode"
+	var/ambulance = FALSE
+	var/ambulance_state = FALSE
+	var/ambulance_last_switch = 0
+	var/ambulance_volume = 25	//Allows for varediting, just in case
+
+/obj/item/weapon/storage/backpack/saddlebag/tempest/ui_action_click()
+	ambulance = !(ambulance)
+	if(ambulance)
+		START_PROCESSING(SSobj, src)
+		item_state = "tempestsaddlebag-amb"
+		icon_state = "tempestbag-amb"
+		if (ismob(loc))
+			var/mob/M = loc
+			M.update_inv_back()
+		ambulance_state = FALSE
+		set_light(2, 1, "#FF0000")
+		while(ambulance)
+			playsound(src.loc, 'sound/items/amulanceweeoo.ogg', ambulance_volume, 0)
+			sleep(20)
+	else
+		item_state = "tempestsaddlebag"
+		icon_state = "tempestbag"
+		if (ismob(loc))
+			var/mob/M = loc
+			M.update_inv_back()
+		set_light(0)
+
+/obj/item/weapon/storage/backpack/saddlebag/tempest/process()
+	if(!ambulance)
+		STOP_PROCESSING(SSobj, src)
+		return
+	if(world.time - ambulance_last_switch > 15)
+		ambulance_state = !(ambulance_state)
+		var/newlight = "#FF0000"
+		if(ambulance_state)
+			newlight = "#0000FF"
+		if (ismob(loc))
+			var/mob/M = loc
+			M.update_inv_back()
+		set_light(2, 1, newlight)
+		ambulance_last_switch = world.time
 
 //WickedTempest: Chakat Tempest
 /obj/item/weapon/implant/reagent_generator/tempest
@@ -726,7 +768,7 @@
 	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_roiz
 
 /obj/item/weapon/implant/reagent_generator/roiz/post_implant(mob/living/carbon/source)
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	source.verbs |= assigned_proc
 	return 1
@@ -794,7 +836,7 @@
 	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_jasmine
 
 /obj/item/weapon/implant/reagent_generator/jasmine/post_implant(mob/living/carbon/source)
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	source.verbs |= assigned_proc
 	return 1
@@ -862,7 +904,7 @@
 	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_yonra
 
 /obj/item/weapon/implant/reagent_generator/yonra/post_implant(mob/living/carbon/source)
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	source.verbs |= assigned_proc
 	return 1
@@ -946,7 +988,7 @@
 	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_rischi
 
 /obj/item/weapon/implant/reagent_generator/rischi/post_implant(mob/living/carbon/source)
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	source.verbs |= assigned_proc
 	return 1
@@ -1641,7 +1683,7 @@
 	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_evian
 
 /obj/item/weapon/implant/reagent_generator/evian/post_implant(mob/living/carbon/source)
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	source.verbs |= assigned_proc
 	return 1

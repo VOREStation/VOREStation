@@ -41,7 +41,7 @@
 /obj/structure/bookcase/manuals/xenoarchaeology
 	name = "Xenoarchaeology Manuals bookcase"
 
-/obj/structure/bookcase/manuals/xenoarchaeology/initialize()
+/obj/structure/bookcase/manuals/xenoarchaeology/Initialize()
 	. = ..()
 	new /obj/item/weapon/book/manual/excavation(src)
 	new /obj/item/weapon/book/manual/mass_spectrometry(src)
