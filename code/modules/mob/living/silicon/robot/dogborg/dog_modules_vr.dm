@@ -3,7 +3,6 @@
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "jaws"
 	desc = "The jaws of the law."
-	flags = CONDUCT
 	force = 10
 	throwforce = 0
 	hitsound = 'sound/weapons/bite.ogg'
@@ -15,7 +14,6 @@
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "smalljaws"
 	desc = "The jaws of a small dog."
-	flags = CONDUCT
 	force = 5
 	throwforce = 0
 	hitsound = 'sound/weapons/bite.ogg'
@@ -32,7 +30,6 @@
 			icon = 'icons/mob/dogborg_vr.dmi'
 			icon_state = "jaws"
 			desc = "The jaws of the law."
-			flags = CONDUCT
 			force = 10
 			throwforce = 0
 			hitsound = 'sound/weapons/bite.ogg'
@@ -43,7 +40,6 @@
 			icon = 'icons/mob/dogborg_vr.dmi'
 			icon_state = "smalljaws"
 			desc = "The jaws of a small dog."
-			flags = CONDUCT
 			force = 5
 			throwforce = 0
 			hitsound = 'sound/weapons/bite.ogg'
@@ -57,7 +53,6 @@
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "nose"
 	desc = "The BOOP module, a simple reagent and atmosphere sniffer."
-	flags = CONDUCT
 	force = 0
 	throwforce = 0
 	attack_verb = list("nuzzled", "nosed", "booped")
@@ -323,7 +318,6 @@
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "swordtail"
 	desc = "A glowing pink dagger normally attached to the end of a cyborg's tail. It appears to be extremely sharp."
-	flags = CONDUCT
 	force = 20 //Takes 5 hits to 100-0
 	sharp = 1
 	edge = 1

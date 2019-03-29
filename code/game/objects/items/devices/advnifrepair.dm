@@ -5,7 +5,6 @@
 	icon = 'icons/obj/device_alt.dmi'
 	icon_state = "hydro"
 	item_state = "gun"
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throwforce = 3
 	w_class = ITEMSIZE_SMALL
