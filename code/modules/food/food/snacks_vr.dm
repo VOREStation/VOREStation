@@ -510,7 +510,7 @@
 	filling_color = "#A8A8A8"
 	center_of_mass = list("x"=16, "y"=15)
 
-/obj/item/weapon/reagent_containers/food/snacks/liquidprotein/New()
+/obj/item/weapon/reagent_containers/food/snacks/liquidprotein/Initialize()
 	..()
 	reagents.add_reagent("protein", 20)
 	reagents.add_reagent("iron", 3)
