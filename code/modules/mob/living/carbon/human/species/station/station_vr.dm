@@ -32,7 +32,7 @@
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
-	inherent_verbs = list(/mob/living/proc/shred_limb)
+	inherent_verbs = list(/mob/living/proc/shred_limb, /mob/living/carbon/human/proc/lick_wounds)
 
 	flesh_color = "#AFA59E"
 	base_color = "#777777"
@@ -159,6 +159,7 @@
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_TERMINUS)
 	name_language = LANGUAGE_TERMINUS
+	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds)
 
 	min_age = 18
 	max_age = 80
@@ -198,6 +199,7 @@
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_TERMINUS)
 	name_language = LANGUAGE_TERMINUS
+	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds)
 
 	min_age = 18
 	max_age = 80
