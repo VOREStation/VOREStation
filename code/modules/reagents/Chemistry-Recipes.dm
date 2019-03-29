@@ -1873,7 +1873,7 @@
 	name = "Roy Rogers"
 	id = "roy_rogers"
 	result = "roy_rogers"
-	required_reagents = list("gingerale" = 4, "lemon_lime" = 2, "grenadine" = 1)
+	required_reagents = list("shirley_temple" = 5, "lemon_lime" = 2)
 	result_amount = 7
 
 /datum/chemical_reaction/drinks/collinsmix
@@ -2099,7 +2099,7 @@
 	name = "Screaming Viking"
 	id = "screamingviking"
 	result = "screamingviking"
-	required_reagents = list("vodka" = 1, "vermouth" = 1, "limejuice" = 1, "rum" = 1, "gin" = 1, "tonic" = 1)
+	required_reagents = list("martini" = 2, "vodkatonic" = 2, "limejuice" = 1, "rum" = 1)
 	result_amount = 6
 
 /datum/chemical_reaction/drinks/vilelemon
@@ -2320,6 +2320,13 @@
 	result = "sodaoil"
 	required_reagents = list("cornoil" = 4, "sodawater" = 1, "carbon" = 1, "tricordrazine" = 1)
 	result_amount = 6
+
+/datum/chemical_reaction/drinks/fusionnaire
+	name = "Fusionnaire"
+	id = "fusionnaire"
+	result = "fusionnaire"
+	required_reagents = list("lemonjuice" = 3, "vodka" = 2, "schnapps_pep" = 1, "schnapps_lem" = 1, "rum" = 1, "ice" = 1)
+	result_amount = 9
 
 //R-UST Port
 /datum/chemical_reaction/hyrdophoron
