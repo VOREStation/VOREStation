@@ -16,6 +16,7 @@
 
 	see_in_dark = 5
 	mob_size = MOB_TINY
+	makes_dirt = FALSE	// No more dirt
 
 	response_help  = "scritches"
 	response_disarm = "bops"
@@ -29,6 +30,7 @@
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 
 	say_list_type = /datum/say_list/fluffy_vr
+	ai_holder_type = /datum/ai_holder/simple_mob/passive
 
 /datum/say_list/fluffy_vr
 	speak = list("Squee","Arf arf","Awoo","Squeak")
