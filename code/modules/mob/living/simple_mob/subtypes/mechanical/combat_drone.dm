@@ -33,7 +33,7 @@
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail = null
 	var/obj/item/shield_projector/shields = null
 
-/mob/living/simple_mob/mechanical/combat_drone/initialize()
+/mob/living/simple_mob/mechanical/combat_drone/Initialize()
 	ion_trail = new
 	ion_trail.set_up(src)
 	ion_trail.start()

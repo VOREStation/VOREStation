@@ -3,7 +3,7 @@
 #    An explaination of the naming format for guns and ammo:
 #
 #    a = Ammo, as in individual rounds of ammunition.
-#    b = Box, intended to have ammo taken out one at a time by hand.
+#    b = Box, intended to have ammo taken out one at a time by hand. Really obsolete. Don't use this.
 #    c = Clips, intended to reload magazines or guns quickly.
 #    m = Magazine, intended to hold rounds of ammo.
 #    s = Speedloaders, intended to reload guns quickly.
@@ -106,7 +106,7 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/m45tommy
-	name = "tommygun magazine (.45)"
+	name = "Tommy Gun magazine (.45)"
 	icon_state = "tommy-mag"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/a45
@@ -115,14 +115,14 @@
 	max_ammo = 20
 
 /obj/item/ammo_magazine/m45tommy/ap
-	name = "tommygun magazine (.45 AP)"
+	name = "Tommy Gun magazine (.45 AP)"
 	ammo_type = /obj/item/ammo_casing/a45/ap
 
 /obj/item/ammo_magazine/m45tommy/empty
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/m45tommydrum
-	name = "tommygun drum magazine (.45)"
+	name = "Tommy Gun drum magazine (.45)"
 	icon_state = "tommy-drum"
 	w_class = ITEMSIZE_NORMAL // Bulky ammo doesn't fit in your pockets!
 	mag_type = MAGAZINE
@@ -132,7 +132,7 @@
 	max_ammo = 50
 
 /obj/item/ammo_magazine/m45tommydrum/ap
-	name = "tommygun drum magazine (.45 AP)"
+	name = "Tommy Gun drum magazine (.45 AP)"
 	ammo_type = /obj/item/ammo_casing/a45/ap
 
 /obj/item/ammo_magazine/m45tommydrum/empty
@@ -187,6 +187,21 @@
 /obj/item/ammo_magazine/s45/ap
 	name = "speedloader (.45 AP)"
 	ammo_type = /obj/item/ammo_casing/a45/ap
+
+///////// 5mm Caseless /////////
+
+/obj/item/ammo_magazine/m5mmcaseless
+	name = "prototype rifle magazine (5mm caseless)"
+	ammo_type = /obj/item/ammo_casing/a5mmcaseless
+	icon_state = "caseless-mag"
+	caliber = "5mm caseless"
+	mag_type = MAGAZINE
+	max_ammo = 30
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/m5mmcaseless/stun
+	icon_state = "caseless-mag-alt"
+	ammo_type = /obj/item/ammo_casing/a5mmcaseless/stun
 
 ///////// 9mm /////////
 
@@ -313,31 +328,19 @@
 	name = "ammo clip (.45 flash)"
 	ammo_type = /obj/item/ammo_casing/a9mm/flash
 
-/obj/item/ammo_magazine/box/c9mm // Made by RnD for Prototype SMG and should probably be removed because why does it require DIAMONDS to make bullets?
-	name = "ammunition Box (9mm)"
-	icon_state = "9mm"
-	origin_tech = list(TECH_COMBAT = 2)
-	matter = list(DEFAULT_WALL_MATERIAL = 1800)
-	caliber = "9mm"
-	ammo_type = /obj/item/ammo_casing/a9mm
-	max_ammo = 30
-
-/obj/item/ammo_magazine/box/c9mm/empty
-	initial_ammo = 0
-
-/obj/item/ammo_magazine/m9mmR/saber
-	desc = "A very high capacity double stack magazine made specially for the SABER SMG. Filled with 22 9mm bullets."
+/obj/item/ammo_magazine/m9mmAdvanced
+	desc = "A very high capacity double stack magazine made specially for the Advanced SMG. Filled with 21 9mm bullets."
 	icon_state = "S9mm"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/a9mm
 	matter = list(DEFAULT_WALL_MATERIAL = 1200)
 	caliber = "9mm"
-	max_ammo = 22
+	max_ammo = 21
 	origin_tech = list(TECH_COMBAT = 2, TECH_ILLEGAL = 1)
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/m9mmR/saber/ap
-	desc = "A high capacity double stack magazine made specially for the SABER SMG. Filled with 22 9mm armor piercing bullets."
+/obj/item/ammo_magazine/m9mmAdvanced/ap
+	desc = "A high capacity double stack magazine made specially for the Advanced SMG. Filled with 21 9mm armor piercing bullets."
 	icon_state = "S9mm"
 	ammo_type = /obj/item/ammo_casing/a9mm/ap
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
@@ -626,10 +629,10 @@
 
 /obj/item/ammo_magazine/m12gdrum
 	name = "magazine (12 gauge)"
-	icon_state = "12g"
+	icon_state = "ashot-mag"
 	mag_type = MAGAZINE
 	caliber = "12g"
-	matter = list(DEFAULT_WALL_MATERIAL = 13000) //did the math. now fixed the exploityness of this thing. Have fun!
+	matter = list(DEFAULT_WALL_MATERIAL = 13000)
 	ammo_type = /obj/item/ammo_casing/a12g
 	max_ammo = 24
 	multiple_sprites = 1

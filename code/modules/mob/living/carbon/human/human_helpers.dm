@@ -32,6 +32,28 @@
 		return list(HUMAN_EATING_BLOCKED_MOUTH, blocked)
 	return list(HUMAN_EATING_NO_ISSUE)
 
+/mob/living/carbon/human/proc/get_coverage()
+	var/list/coverage = list()
+	for(var/obj/item/clothing/C in src)
+		if(item_is_in_hands(C))
+			continue
+		if(C.body_parts_covered & HEAD)
+			coverage += list(organs_by_name[BP_HEAD])
+		if(C.body_parts_covered & UPPER_TORSO)
+			coverage += list(organs_by_name[BP_TORSO])
+		if(C.body_parts_covered & LOWER_TORSO)
+			coverage += list(organs_by_name[BP_GROIN])
+		if(C.body_parts_covered & LEGS)
+			coverage += list(organs_by_name[BP_L_LEG], organs_by_name[BP_R_LEG])
+		if(C.body_parts_covered & ARMS)
+			coverage += list(organs_by_name[BP_R_ARM], organs_by_name[BP_L_ARM])
+		if(C.body_parts_covered & FEET)
+			coverage += list(organs_by_name[BP_L_FOOT], organs_by_name[BP_R_FOOT])
+		if(C.body_parts_covered & HANDS)
+			coverage += list(organs_by_name[BP_L_HAND], organs_by_name[BP_R_HAND])
+	return coverage
+
+
 //This is called when we want different types of 'cloaks' to stop working, e.g. when attacking.
 /mob/living/carbon/human/break_cloak()
 	if(mind && mind.changeling) //Changeling visible camo

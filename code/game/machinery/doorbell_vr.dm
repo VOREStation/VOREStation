@@ -11,7 +11,7 @@
 	var/id_tag = null
 	var/chime_sound = 'sound/machines/doorbell.ogg'
 
-/obj/machinery/doorbell_chime/initialize()
+/obj/machinery/doorbell_chime/Initialize()
 	. = ..()
 	update_icon()
 
@@ -99,7 +99,7 @@
 		assign_uid()
 		id = num2text(uid)
 
-/obj/machinery/button/doorbell/initialize()
+/obj/machinery/button/doorbell/Initialize()
 	. = ..()
 	update_icon()
 

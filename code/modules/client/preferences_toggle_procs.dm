@@ -143,7 +143,7 @@
 
 	toggle_preference(pref_path)
 
-	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : " no longer"] hear MIDIs from admins.")
+	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear MIDIs from admins.")
 
 	prefs.save_preferences()
 
@@ -158,11 +158,41 @@
 
 	toggle_preference(pref_path)
 
-	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : " no longer"] hear ambient noise.")
+	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear ambient noise.")
 
 	prefs.save_preferences()
 
-	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb","TAmbience") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/verb/toggle_weather_sounds()
+	set name = "Toggle Weather Sounds"
+	set category = "Preferences"
+	set desc = "Toggles the ability to hear weather sounds while on a planet."
+
+	var/pref_path = /datum/client_preference/weather_sounds
+
+	toggle_preference(pref_path)
+
+	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear weather sounds.")
+
+	prefs.save_preferences()
+
+	feedback_add_details("admin_verb","TWeatherSounds") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/verb/toggle_supermatter_hum()
+	set name = "Toggle SM Hum" // Avoiding using the full 'Supermatter' name to not conflict with the Setup-Supermatter adminverb.
+	set category = "Preferences"
+	set desc = "Toggles the ability to hear supermatter hums."
+
+	var/pref_path = /datum/client_preference/supermatter_hum
+
+	toggle_preference(pref_path)
+
+	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear a hum from the supermatter.")
+
+	prefs.save_preferences()
+
+	feedback_add_details("admin_verb","TSupermatterHum") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_jukebox()
 	set name = "Toggle Jukebox"

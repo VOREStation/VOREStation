@@ -130,7 +130,8 @@
 				playsound(src, 'sound/weapons/rpg.ogg', 70, 1)
 				face_atom(T)
 				var/obj/item/projectile/arc/explosive_rocket/rocket = new(loc)
-				rocket.launch(T)
+				rocket.old_style_target(T, src)
+				rocket.fire()
 				sleep(1 SECOND)
 
 	visible_message(span("warning", "\The [src] retracts the missile rack."))
@@ -152,7 +153,8 @@
 	playsound(src, 'sound/weapons/Laser.ogg', 50, 1)
 	face_atom(T)
 	var/obj/item/projectile/arc/microsingulo/sphere = new(loc)
-	sphere.launch(T)
+	sphere.old_style_target(T, src)
+	sphere.fire()
 
 /obj/item/projectile/arc/microsingulo
 	name = "micro singularity"

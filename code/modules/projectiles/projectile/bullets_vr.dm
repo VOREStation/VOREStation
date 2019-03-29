@@ -9,7 +9,7 @@
 	name = "chemical shell"
 	icon_state = "bullet"
 	damage = 10
-	kill_count = 15 //if the shell hasn't hit anything after travelling this far it just explodes.
+	range = 15 //if the shell hasn't hit anything after travelling this far it just explodes.
 	flash_strength = 15
 	brightness = 15
 

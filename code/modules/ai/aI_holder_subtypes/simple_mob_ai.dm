@@ -3,6 +3,7 @@
 
 /datum/ai_holder/simple_mob
 	hostile = TRUE // The majority of simplemobs are hostile.
+	retaliate = TRUE	// The majority of simplemobs will fight back.
 	cooperative = TRUE
 	returns_home = FALSE
 	can_flee = FALSE
@@ -13,12 +14,13 @@
 // For non-hostile animals, and pets like Ian and Runtime.
 /datum/ai_holder/simple_mob/passive
 	hostile = FALSE
+	retaliate = FALSE
 	can_flee = TRUE
 	violent_breakthrough = FALSE
 
-// Won't wander away, ideal for event-spawned mobs like carp or drones.
+// Won't wander away as quickly, ideal for event-spawned mobs like carp or drones.
 /datum/ai_holder/simple_mob/event
-	wander = FALSE
+	base_wander_delay = 8
 
 // Doesn't really act until told to by something on the outside.
 /datum/ai_holder/simple_mob/inert
@@ -60,7 +62,7 @@
 
 // For event-spawned malf drones.
 /datum/ai_holder/simple_mob/ranged/kiting/threatening/event
-	wander = FALSE
+	base_wander_delay = 8
 
 /datum/ai_holder/simple_mob/ranged/kiting/no_moonwalk
 	moonwalk = FALSE
@@ -96,6 +98,11 @@
 /datum/ai_holder/simple_mob/restrained
 	violent_breakthrough = FALSE
 	conserve_ammo = TRUE
+	destructive = FALSE
+
+// This does the opposite of the above subtype.
+/datum/ai_holder/simple_mob/destructive
+	destructive = TRUE
 
 // Melee mobs.
 

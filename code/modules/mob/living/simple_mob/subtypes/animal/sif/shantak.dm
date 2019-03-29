@@ -60,7 +60,7 @@
 
 // Variant that automatically commands nearby allies to follow it when created.
 // Suggested to spawn last so it can rally up all the shantaks easily before hunting for tasty explorers.
-/mob/living/simple_mob/animal/sif/shantak/leader/autofollow/initialize()
+/mob/living/simple_mob/animal/sif/shantak/leader/autofollow/Initialize()
 	rally_pack()
 	return ..()
 

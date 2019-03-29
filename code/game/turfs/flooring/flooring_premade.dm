@@ -71,7 +71,7 @@
 /turf/simulated/floor/wood/broken
 	icon_state = "wood_broken0" // This gets changed when spawned.
 
-/turf/simulated/floor/wood/broken/initialize()
+/turf/simulated/floor/wood/broken/Initialize()
 	break_tile()
 	return ..()
 
@@ -84,7 +84,7 @@
 /turf/simulated/floor/wood/sif/broken
 	icon_state = "sifwood_broken0" // This gets changed when spawned.
 
-/turf/simulated/floor/wood/sif/broken/initialize()
+/turf/simulated/floor/wood/sif/broken/Initialize()
 	break_tile()
 	return ..()
 
@@ -244,7 +244,7 @@
 	oxygen = 0
 	nitrogen = 0
 
-/turf/simulated/floor/reinforced/n20/initialize()
+/turf/simulated/floor/reinforced/n20/Initialize()
 	. = ..()
 	if(!air) make_air()
 	air.adjust_gas("sleeping_agent", ATMOSTANK_NITROUSOXIDE)

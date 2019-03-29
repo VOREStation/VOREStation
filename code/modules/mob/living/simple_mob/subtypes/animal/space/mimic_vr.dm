@@ -85,7 +85,7 @@
 		O.forceMove(C)
 	..()
 
-/mob/living/simple_mob/animal/space/mimic/initialize()
+/mob/living/simple_mob/animal/space/mimic/Initialize()
 	. = ..()
 	for(var/obj/item/I in loc)
 		I.forceMove(src)
@@ -104,7 +104,7 @@
 	var/attempt_open = 0
 
 // Pickup loot
-/mob/living/simple_mob/animal/space/mimic/crate/initialize()
+/mob/living/simple_mob/animal/space/mimic/crate/Initialize()
 	. = ..()
 	for(var/obj/item/I in loc)
 		I.forceMove(src)

@@ -196,10 +196,10 @@ Nurse Family
 	spawn(1)
 		for(var/I = 1 to spiderling_count)
 			if(prob(10) && src)
-				var/mob/living/simple_mob/hostile/giant_spider/swarmling = new swarmling_type(src.loc)
-				var/swarm_health = Floor(swarmling.maxHealth * 0.4)
-				var/swarm_dam_lower = Floor(melee_damage_lower * 0.4)
-				var/swarm_dam_upper = Floor(melee_damage_upper * 0.4)
+				var/mob/living/simple_animal/hostile/giant_spider/swarmling = new swarmling_type(src.loc)
+				var/swarm_health = FLOOR(swarmling.maxHealth * 0.4, 1)
+				var/swarm_dam_lower = FLOOR(melee_damage_lower * 0.4, 1)
+				var/swarm_dam_upper = FLOOR(melee_damage_upper * 0.4, 1)
 				swarmling.name = "spiderling"
 				swarmling.maxHealth = swarm_health
 				swarmling.health = swarm_health

@@ -105,9 +105,9 @@
 				if(size_mult.Find(msg))
 					var/resizing_value = text2num(size_mult.match)
 					if(findtext(msg, "centimeter"))		//Because metric system rules
-						H.resize(Clamp(resizing_value/170 , 0.25, 2))		//170 cm is average crewmember, I think
+						H.resize(CLAMP(resizing_value/170 , 0.25, 2))		//170 cm is average crewmember, I think
 					else
-						H.resize(Clamp(resizing_value , 0.25, 2))
+						H.resize(CLAMP(resizing_value , 0.25, 2))
 
 
 

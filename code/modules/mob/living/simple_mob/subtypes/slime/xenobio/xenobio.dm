@@ -20,16 +20,39 @@
 	var/number = 0 // This is used to make the slime semi-unique for indentification.
 	var/harmless = FALSE // Set to true when pacified. Makes the slime harmless, not get hungry, and not be able to grow/reproduce.
 
-/mob/living/simple_mob/slime/xenobio/initialize()
+/mob/living/simple_mob/slime/xenobio/Initialize(mapload, var/mob/living/simple_mob/slime/xenobio/my_predecessor)
 	ASSERT(ispath(ai_holder_type, /datum/ai_holder/simple_mob/xenobio_slime))
 	number = rand(1, 1000)
 	update_name()
-	return ..()
+
+	. = ..() // This will make the AI and do the other mob constructor things. It will also return the default hint at the end.
+
+	if(my_predecessor)
+		inherit_information(my_predecessor)
+
 
 /mob/living/simple_mob/slime/xenobio/Destroy()
 	if(victim)
 		stop_consumption() // Unbuckle us from our victim.
 	return ..()
+
+// Called when a slime makes another slime by splitting. The predecessor slime will be deleted shortly afterwards.
+/mob/living/simple_mob/slime/xenobio/proc/inherit_information(var/mob/living/simple_mob/slime/xenobio/predecessor)
+	if(!predecessor)
+		return
+
+	var/datum/ai_holder/simple_mob/xenobio_slime/AI = ai_holder
+	var/datum/ai_holder/simple_mob/xenobio_slime/previous_AI = predecessor.ai_holder
+	ASSERT(istype(AI))
+	ASSERT(istype(previous_AI))
+
+	// Now to transfer the information.
+	// Newly made slimes are bit more rebellious than their predecessors, but they also somewhat forget the atrocities the xenobiologist may have done.
+	AI.discipline = max(previous_AI.discipline - 1, 0)
+	AI.obedience = max(previous_AI.obedience - 1, 0)
+	AI.resentment = max(previous_AI.resentment - 1, 0)
+	AI.rabid = previous_AI.rabid
+
 
 /mob/living/simple_mob/slime/xenobio/update_icon()
 	icon_living = "[icon_state_override ? "[icon_state_override] slime" : "slime"] [is_adult ? "adult" : "baby"][victim ? " eating" : ""]"
@@ -212,13 +235,11 @@
 		t = /mob/living/simple_mob/slime/xenobio/rainbow
 	else if(prob(mutation_chance) && slime_mutation.len)
 		t = slime_mutation[rand(1, slime_mutation.len)]
-	var/mob/living/simple_mob/slime/xenobio/baby = new t(loc)
+	var/mob/living/simple_mob/slime/xenobio/baby = new t(loc, src)
 
 	// Handle 'inheriting' from parent slime.
 	baby.mutation_chance = mutation_chance
 	baby.power_charge = round(power_charge / 4)
-
-	pass_on_data(baby) // Transfer the AI stuff slowly, sadly.
 
 	if(!istype(baby, /mob/living/simple_mob/slime/xenobio/rainbow))
 		baby.unity = unity
@@ -227,33 +248,6 @@
 
 	step_away(baby, src)
 	return baby
-
-/mob/living/simple_mob/slime/xenobio/proc/pass_on_data(mob/living/simple_mob/slime/xenobio/baby)
-	// This is superdumb but the AI datum won't exist until the new slime's initialize() finishes.
-	var/new_discipline = 0
-	var/new_obedience = 0
-	var/new_resentment = 0
-	var/new_rabid = FALSE
-
-	// First, get this slime's AI values since they are likely to be deleted in a moment.
-	if(src && src.has_AI())
-		var/datum/ai_holder/simple_mob/xenobio_slime/our_AI = ai_holder
-		new_discipline = max(our_AI.discipline - 1, 0)
-		new_obedience = max(our_AI.obedience - 1, 0)
-		new_resentment = max(our_AI.resentment - 1, 0)
-		new_rabid = our_AI.rabid
-
-		spawn(2) // Race conditions are fun, but with the first two letters capitalized.
-			if(istype(baby) && baby.has_AI())
-				var/datum/ai_holder/simple_mob/xenobio_slime/their_AI = baby.ai_holder
-
-				if(!istype(baby, /mob/living/simple_mob/slime/xenobio/light_pink))
-					their_AI.discipline = new_discipline
-					their_AI.obedience = new_obedience
-
-				their_AI.resentment = new_resentment
-
-				their_AI.rabid = new_rabid
 
 /mob/living/simple_mob/slime/xenobio/get_description_interaction()
 	var/list/results = list()

@@ -490,3 +490,20 @@
 	taste_description = "salty meat"
 	reagent_state = LIQUID
 	color = "#DF9FBF"
+
+// The opposite to healing nanites, exists to make unidentified hypos implied to have nanites not be 100% safe.
+/datum/reagent/defective_nanites
+	name = "Defective Nanites"
+	id = "defective_nanites"
+	description = "Miniature medical robots that are malfunctioning and cause bodily harm. Fortunately, they cannot self-replicate."
+	taste_description = "metal"
+	reagent_state = SOLID
+	color = "#333333"
+	metabolism = REM * 3 // Broken nanomachines go a bit slower.
+	scannable = 1
+
+/datum/reagent/defective_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.take_organ_damage(2 * removed, 2 * removed)
+	M.adjustOxyLoss(4 * removed)
+	M.adjustToxLoss(2 * removed)
+	M.adjustCloneLoss(2 * removed)

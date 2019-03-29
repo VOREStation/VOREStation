@@ -44,10 +44,10 @@
 /obj/item/weapon/spell/aura/New()
 	..()
 	set_light(7, 4, l_color = glow_color)
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/spell/aura/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/weapon/spell/aura/process()

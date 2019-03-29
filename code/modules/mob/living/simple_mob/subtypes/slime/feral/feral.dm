@@ -62,7 +62,7 @@
 	damage_type = BRUTE
 	check_armour = "melee"
 	armor_penetration = 30
-	step_delay = 2 // Make it a bit easier to dodge since its not a bullet.
+	speed = 2
 	icon_scale = 2 // It hits like a truck.
 	sharp = TRUE
 

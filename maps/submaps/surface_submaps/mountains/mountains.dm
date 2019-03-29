@@ -32,6 +32,7 @@
 #include "BlastMine1.dmm"
 #include "crashedcontainmentshuttle.dmm"
 #include "deadspy.dmm"
+#include "lava_trench.dmm"
 #endif
 
 // The 'mountains' is the mining z-level, and has a lot of caves.
@@ -279,3 +280,4 @@
 	desc = "A medical response shuttle that went missing some time ago. So this is where they went."
 	mappath = 'maps/submaps/surface_submaps/mountains/CrashedMedShuttle1.dmm'
 	cost = 20
+	fixed_orientation = TRUE

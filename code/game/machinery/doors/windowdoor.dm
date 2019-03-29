@@ -68,37 +68,35 @@
 		if(istype(bot))
 			if(density && src.check_access(bot.botcard))
 				open()
-				sleep(50)
-				close()
+				addtimer(CALLBACK(src, .proc/close), 50)
 		else if(istype(AM, /obj/mecha))
 			var/obj/mecha/mecha = AM
 			if(density)
 				if(mecha.occupant && src.allowed(mecha.occupant))
 					open()
-					sleep(50)
-					close()
+					addtimer(CALLBACK(src, .proc/close), 50)
 		return
 	if (!( ticker ))
 		return
 	if (src.operating)
 		return
-	if (src.density && src.allowed(AM))
+	if (density && allowed(AM))
 		open()
-		if(src.check_access(null))
-			sleep(50)
-		else //secure doors close faster
-			sleep(20)
-		close()
-	return
+		addtimer(CALLBACK(src, .proc/close), check_access(null)? 50 : 20)
 
-/obj/machinery/door/window/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
-		return 1
-	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
-		if(air_group) return 0
+		return TRUE
+	if(get_dir(mover, loc) == turn(dir, 180)) //Make sure looking at appropriate border
 		return !density
-	else
-		return 1
+	return TRUE
+
+/obj/machinery/door/window/CanZASPass(turf/T, is_zone)
+	if(get_dir(T, loc) == turn(dir, 180))
+		if(is_zone) // No merging allowed.
+			return ATMOS_PASS_NO
+		return ..() // Air can flow if open (density == FALSE).
+	return ATMOS_PASS_YES // Windoors don't block if not facing the right way.
 
 /obj/machinery/door/window/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
@@ -109,7 +107,7 @@
 		return 1
 
 /obj/machinery/door/window/open()
-	if (operating == 1) //doors can still open when emag-disabled
+	if (operating == 1 || !density) //doors can still open when emag-disabled
 		return 0
 	if (!ticker)
 		return 0
@@ -129,20 +127,20 @@
 	return 1
 
 /obj/machinery/door/window/close()
-	if (operating)
-		return 0
-	src.operating = 1
+	if(operating || density)
+		return FALSE
+	operating = TRUE
 	flick(text("[]closing", src.base_state), src)
 	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
 
-	density = 1
+	density = TRUE
 	update_icon()
 	explosion_resistance = initial(explosion_resistance)
 	update_nearby_tiles()
 
 	sleep(10)
-	operating = 0
-	return 1
+	operating = FALSE
+	return TRUE
 
 /obj/machinery/door/window/take_damage(var/damage)
 	src.health = max(0, src.health - damage)

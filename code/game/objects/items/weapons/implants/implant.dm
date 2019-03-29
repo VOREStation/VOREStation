@@ -110,10 +110,10 @@ GLOBAL_LIST_BOILERPLATE(all_tracking_implants, /obj/item/weapon/implant/tracking
 	..()
 
 /obj/item/weapon/implant/tracking/post_implant(var/mob/source)
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/implant/tracking/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/weapon/implant/tracking/process()
@@ -126,7 +126,7 @@ GLOBAL_LIST_BOILERPLATE(all_tracking_implants, /obj/item/weapon/implant/tracking
 				desc = "Charred circuit in melted plastic case. Wonder what that used to be..."
 				icon_state = "implant_melted"
 				malfunction = MALFUNCTION_PERMANENT
-				processing_objects.Remove(src)
+				STOP_PROCESSING(SSobj, src)
 	return 1
 
 /obj/item/weapon/implant/tracking/get_data()
@@ -529,7 +529,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 //				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Security")
 //				a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm", "Medical")
 			qdel(a)
-			processing_objects.Remove(src)
+			STOP_PROCESSING(SSobj, src)
 		if ("emp")
 			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
 			var/name = prob(50) ? t.name : pick(teleportlocs)
@@ -543,7 +543,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 //			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm", "Security")
 //			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm", "Medical")
 			qdel(a)
-			processing_objects.Remove(src)
+			STOP_PROCESSING(SSobj, src)
 
 /obj/item/weapon/implant/death_alarm/emp_act(severity)			//for some reason alarms stop going off in case they are emp'd, even without this
 	if (malfunction)		//so I'm just going to add a meltdown chance here
@@ -556,14 +556,14 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			meltdown()
 		else if (prob(60))	//but more likely it will just quietly die
 			malfunction = MALFUNCTION_PERMANENT
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 
 	spawn(20)
 		malfunction--
 
 /obj/item/weapon/implant/death_alarm/post_implant(mob/source as mob)
 	mobname = source.real_name
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 //////////////////////////////
 //	Compressed Matter Implant

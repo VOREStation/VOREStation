@@ -83,7 +83,7 @@
 /obj/effect/landmark/proc/delete()
 	delete_me = 1
 
-/obj/effect/landmark/initialize()
+/obj/effect/landmark/Initialize()
 	. = ..()
 	if(delete_me)
 		return INITIALIZE_HINT_QDEL

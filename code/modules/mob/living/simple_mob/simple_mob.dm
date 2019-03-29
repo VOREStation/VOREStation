@@ -150,7 +150,7 @@
 	var/supernatural = FALSE		// Ditto.
 
 
-/mob/living/simple_mob/initialize()
+/mob/living/simple_mob/Initialize()
 	verbs -= /mob/verb/observe
 	health = maxHealth
 

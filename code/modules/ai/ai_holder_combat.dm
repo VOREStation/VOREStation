@@ -1,7 +1,7 @@
 // This file is for actual fighting. Targeting is in a seperate file.
 
 /datum/ai_holder
-	var/firing_lanes = FALSE				// If ture, tries to refrain from shooting allies or the wall.
+	var/firing_lanes = TRUE					// If ture, tries to refrain from shooting allies or the wall.
 	var/conserve_ammo = FALSE				// If true, the mob will avoid shooting anything that does not have a chance to hit a mob. Requires firing_lanes to be true.
 	var/pointblank = FALSE					// If ranged is true, and this is true, people adjacent to the mob will suffer the ranged instead of using a melee attack.
 
@@ -70,8 +70,10 @@
 		on_engagement(target)
 		if(firing_lanes && !test_projectile_safety(target))
 			// Nudge them a bit, maybe they can shoot next time.
-			step_rand(holder)
-			holder.face_atom(target)
+			var/turf/T = get_step(holder, pick(cardinal))
+			if(T)
+				holder.IMove(T) // IMove() will respect movement cooldown.
+				holder.face_atom(target)
 			ai_log("engage_target() : Could not safely fire at target. Exiting.", AI_LOG_DEBUG)
 			return
 
@@ -130,23 +132,42 @@
 
 // Used to make sure projectiles will probably hit the target and not the wall or a friend.
 /datum/ai_holder/proc/test_projectile_safety(atom/movable/AM)
-	var/mob/living/L = check_trajectory(AM, holder) // This isn't always reliable but its better than the previous method.
-//	world << "Checked trajectory, would hit [L]."
+	ai_log("test_projectile_safety([AM]) : Entering.", AI_LOG_TRACE)
 
-	if(istype(L)) // Did we hit a mob?
-//		world << "Hit [L]."
-		if(holder.IIsAlly(L))
-//			world << "Would hit ally, canceling."
-			return FALSE // We would hit a friend!
-//		world << "Won't threaten ally, firing."
-		return TRUE // Otherwise we don't care, even if its not the intended target.
-	else
-		if(!isliving(AM)) // If the original target was an object, then let it happen if it doesn't threaten an ally.
-//			world << "Targeting object, ignoring and firing."
-			return TRUE
-//	world << "Not sure."
+	// If they're right next to us then lets just say yes. check_trajectory() tends to spaz out otherwise.
+	if(holder.Adjacent(AM))
+		ai_log("test_projectile_safety() : Adjacent to target. Exiting with TRUE.", AI_LOG_TRACE)
+		return TRUE
 
-	return !conserve_ammo // If we have infinite ammo than shooting the wall isn't so bad, but otherwise lets not.
+	// This will hold a list of all mobs in a line, even those behind the target, and possibly the wall.
+	// By default the test projectile goes through things like glass and grilles, which is desirable as otherwise the AI won't try to shoot through windows.
+	var/list/hit_things = check_trajectory(AM, holder) // This isn't always reliable but its better than the previous method.
+
+	// Test to see if the primary target actually has a chance to get hit.
+	// We'll fire anyways if not, if we have conserve_ammo turned off.
+	var/would_hit_primary_target = FALSE
+	if(AM in hit_things)
+		would_hit_primary_target = TRUE
+	ai_log("test_projectile_safety() : Test projectile did[!would_hit_primary_target ? " NOT " : " "]hit \the [AM]", AI_LOG_DEBUG)
+
+	// Make sure we don't have a chance to shoot our friends.
+	for(var/a in hit_things)
+		var/atom/A = a
+		ai_log("test_projectile_safety() : Evaluating \the [A] ([A.type]).", AI_LOG_TRACE)
+		if(isliving(A)) // Don't shoot at our friends, even if they're behind the target, as RNG can make them get hit.
+			var/mob/living/L = A
+			if(holder.IIsAlly(L))
+				ai_log("test_projectile_safety() : Would threaten ally, exiting with FALSE.", AI_LOG_DEBUG)
+				return FALSE
+
+	// Don't fire if we cannot hit the primary target, and we wish to be conservative with our projectiles.
+	// We make an exception for turf targets because manual commanded AIs targeting the floor are generally intending to fire blindly.
+	if(!would_hit_primary_target && !isturf(AM) && conserve_ammo)
+		ai_log("test_projectile_safety() : conserve_ammo is set, and test projectile failed to hit primary target. Exiting with FALSE.", AI_LOG_DEBUG)
+		return FALSE
+
+	ai_log("test_projectile_safety() : Passed other tests, exiting with TRUE.", AI_LOG_TRACE)
+	return TRUE
 
 // Test if we are within range to attempt an attack, melee or ranged.
 /datum/ai_holder/proc/within_range(atom/movable/AM)
