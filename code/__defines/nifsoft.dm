@@ -19,31 +19,30 @@
 #define NIF_BACKUP				14
 #define NIF_MEDMONITOR			15
 #define NIF_ENGMONITOR			16
-#define NIF_SECMONITOR			17
-#define NIF_ORGANIC_HEAL		18
-#define NIF_SYNTH_HEAL			19
-#define NIF_AUTOSTASIS			20 //These two are just part of
-#define NIF_MED_ALARM			21 //medichines right now
-#define NIF_TOXHEAL				22 //And this, for organics
-#define NIF_SPAREBREATH			23
+#define NIF_ORGANIC_HEAL		17
+#define NIF_SYNTH_HEAL			18
+#define NIF_AUTOSTASIS			19 //These two are just part of
+#define NIF_MED_ALARM			20 //medichines right now
+#define NIF_TOXHEAL				21 //And this, for organics
+#define NIF_SPAREBREATH			22
 //Combat Related
-#define NIF_BRUTEARMOR			24
-#define NIF_BURNARMOR			25
-#define NIF_PAINKILLERS			26
-#define NIF_HARDCLAWS			27
-#define NIF_HIDDENLASER			28
+#define NIF_BRUTEARMOR			23
+#define NIF_BURNARMOR			24
+#define NIF_PAINKILLERS			25
+#define NIF_HARDCLAWS			26
+#define NIF_HIDDENLASER			27
 //Other
-#define NIF_COMMLINK			29
-#define NIF_APCCHARGE			30
-#define NIF_PRESSURE			31
-#define NIF_HEATSINK			32
-#define NIF_COMPLIANCE			33
-#define NIF_SIZECHANGE			34
-#define NIF_SOULCATCHER			35
-#define NIF_WORLDBEND			36
+#define NIF_COMMLINK			28
+#define NIF_APCCHARGE			29
+#define NIF_PRESSURE			30
+#define NIF_HEATSINK			31
+#define NIF_COMPLIANCE			32
+#define NIF_SIZECHANGE			33
+#define NIF_SOULCATCHER			34
+#define NIF_WORLDBEND			35
 
 // Must be equal to the highest number above
-#define TOTAL_NIF_SOFTWARE		36
+#define TOTAL_NIF_SOFTWARE		35
 
 //////////////////////
 // NIF flag list hints

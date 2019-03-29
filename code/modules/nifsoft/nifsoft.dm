@@ -242,7 +242,7 @@
 	stored = /datum/nifsoft/package/security
 
 /datum/nifsoft/package/security
-	software = list(/datum/nifsoft/ar_sec,/datum/nifsoft/cameramonitor,/datum/nifsoft/flashprot)
+	software = list(/datum/nifsoft/ar_sec,/datum/nifsoft/flashprot)
 
 /obj/item/weapon/storage/box/nifsofts_security
 	name = "security nifsoft disks"
