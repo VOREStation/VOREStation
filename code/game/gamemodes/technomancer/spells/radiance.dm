@@ -19,11 +19,11 @@
 /obj/item/weapon/spell/radiance/New()
 	..()
 	set_light(7, 4, l_color = "#D9D900")
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	log_and_message_admins("has casted [src].")
 
 /obj/item/weapon/spell/radiance/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	log_and_message_admins("has stopped maintaining [src].")
 	return ..()
 

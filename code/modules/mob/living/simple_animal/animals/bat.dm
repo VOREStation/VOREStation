@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/scarybat
+/mob/living/simple_mob/hostile/scarybat
 	name = "space bats"
 	desc = "A swarm of cute little blood sucking bats that looks pretty upset."
 	tt_desc = "N Bestia gregaria" //Nispean swarm bats, because of course Nisp has swarm bats
@@ -47,25 +47,25 @@
 
 	var/mob/living/owner
 
-/mob/living/simple_animal/hostile/scarybat/New(loc, mob/living/L as mob)
+/mob/living/simple_mob/hostile/scarybat/New(loc, mob/living/L as mob)
 	..()
 	if(istype(L))
 		owner = L
 
-/mob/living/simple_animal/hostile/scarybat/Process_Spacemove(var/check_drift = 0)
+/mob/living/simple_mob/hostile/scarybat/Process_Spacemove(var/check_drift = 0)
 	return ..()
 
-/mob/living/simple_animal/hostile/scarybat/set_target()
+/mob/living/simple_mob/hostile/scarybat/set_target()
 	. = ..()
 	if(.)
 		emote("flutters towards [.]")
 
-/mob/living/simple_animal/hostile/scarybat/ListTargets()
+/mob/living/simple_mob/hostile/scarybat/ListTargets()
 	. = ..()
 	if(owner)
 		return . - owner
 
-/mob/living/simple_animal/hostile/scarybat/PunchTarget()
+/mob/living/simple_mob/hostile/scarybat/PunchTarget()
 	. =..()
 	var/mob/living/L = .
 	if(istype(L))
@@ -73,13 +73,13 @@
 			L.Stun(1)
 			L.visible_message("<span class='danger'>\the [src] scares \the [L]!</span>")
 
-/mob/living/simple_animal/hostile/scarybat/cult
+/mob/living/simple_mob/hostile/scarybat/cult
 	faction = "cult"
 	supernatural = 1
 
-/mob/living/simple_animal/hostile/scarybat/cult/cultify()
+/mob/living/simple_mob/hostile/scarybat/cult/cultify()
 	return
 
-/mob/living/simple_animal/hostile/scarybat/cult/Life()
+/mob/living/simple_mob/hostile/scarybat/cult/Life()
 	..()
 	check_horde()

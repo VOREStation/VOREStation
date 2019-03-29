@@ -244,3 +244,36 @@
 /datum/gear/accessory/locket
 	display_name = "locket"
 	path = /obj/item/clothing/accessory/locket
+
+/datum/gear/accessory/halfcape
+	display_name = "half cape"
+	path = /obj/item/clothing/accessory/halfcape
+
+/datum/gear/accessory/fullcape
+	display_name = "full cape"
+	path = /obj/item/clothing/accessory/fullcape
+
+/datum/gear/accessory/sash
+	display_name = "sash (colorable)"
+	path = /obj/item/clothing/accessory/sash
+
+/datum/gear/accessory/sash/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/accessory/asym
+	display_name = "asymmetric jacket selection"
+	path = /obj/item/clothing/accessory/asymmetric
+	cost = 1
+
+/datum/gear/accessory/asym/New()
+	..()
+	var/list/asyms = list()
+	for(var/asym in typesof(/obj/item/clothing/accessory/asymmetric))
+		var/obj/item/clothing/accessory/asymmetric_type = asym
+		asyms[initial(asymmetric_type.name)] = asymmetric_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(asyms))
+
+/datum/gear/accessory/cowledvest
+	display_name = "cowled vest"
+	path = /obj/item/clothing/accessory/cowledvest

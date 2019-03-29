@@ -60,6 +60,9 @@
 	..() //extend the zap
 	explode()
 
+/obj/mecha/tesla_act(power)
+	..()
+	take_damage(power / 200, "energy") // A surface lightning strike will do 100 damage.
 
 
 

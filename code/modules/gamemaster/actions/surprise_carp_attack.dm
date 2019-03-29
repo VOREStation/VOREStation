@@ -47,7 +47,5 @@
 			spawning_turf = space
 			break
 		if(spawning_turf)
-			var/mob/living/simple_animal/hostile/carp/C = new(spawning_turf)
-			C.target_mob = victim
-			C.stance = STANCE_ATTACK
+			new /mob/living/simple_mob/animal/space/carp(spawning_turf)
 		number_of_carp--

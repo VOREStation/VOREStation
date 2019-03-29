@@ -74,7 +74,6 @@ var/list/flooring_types
 		'sound/effects/footstep/snow4.ogg',
 		'sound/effects/footstep/snow5.ogg'))
 
-
 /decl/flooring/snow/snow2
 	name = "snow"
 	desc = "A layer of many tiny bits of frozen water. It's hard to tell how deep it is."

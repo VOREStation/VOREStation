@@ -3,14 +3,14 @@
 //Talky things
 #define try_say_list(L) if(L.len) say(pick(L))
 
-/mob/living/simple_animal
+/mob/living/simple_mob
 	name = "animal"
 	desc = ""
 	icon = 'icons/mob/animal.dmi'
 	health = 20
 	maxHealth = 20
 
-	mob_bump_flag = SIMPLE_ANIMAL
+	mob_bump_flag = simple_mob
 	mob_swap_flags = MONKEY|SLIME|HUMAN
 	mob_push_flags = MONKEY|SLIME|HUMAN
 
@@ -169,7 +169,7 @@
 	var/mob/living/target_mob		// Who I'm trying to attack
 	var/mob/living/follow_mob		// Who I'm recruited by
 	var/mob/living/list/friends = list() // People who are immune to my wrath, for now
-	var/mob/living/simple_animal/list/faction_friends = list() // Other simple mobs I am friends with
+	var/mob/living/simple_mob/list/faction_friends = list() // Other simple mobs I am friends with
 	var/turf/list/walk_list = list()// List of turfs to walk through to get somewhere
 	var/astarpathing = 0			// Am I currently pathing to somewhere?
 	var/stance_changed = 0			// When our stance last changed (world.time)
@@ -181,7 +181,7 @@
 	////// ////// //////
 	var/life_disabled = 0           //VOREStation Edit -- For performance reasons
 
-/mob/living/simple_animal/New()
+/mob/living/simple_mob/New()
 	..()
 	verbs -= /mob/verb/observe
 	home_turf = get_turf(src)
@@ -195,8 +195,8 @@
 		default_language = languages[1]
 
 	if(cooperative)
-		var/mob/living/simple_animal/first_friend
-		for(var/mob/living/simple_animal/M in living_mob_list)
+		var/mob/living/simple_mob/first_friend
+		for(var/mob/living/simple_mob/M in living_mob_list)
 			if(M.faction == src.faction)
 				first_friend = M
 				break
@@ -206,7 +206,7 @@
 		else
 			faction_friends |= src
 
-/mob/living/simple_animal/Destroy()
+/mob/living/simple_mob/Destroy()
 	home_turf = null
 	path_overlay = null
 	default_language = null
@@ -225,7 +225,7 @@
 	return ..()
 
 //Client attached
-/mob/living/simple_animal/Login()
+/mob/living/simple_mob/Login()
 	. = ..()
 	ai_inactive = 1
 	handle_stance(STANCE_IDLE)
@@ -233,19 +233,19 @@
 	to_chat(src,"<span class='notice'>Mob AI disabled while you are controlling the mob.</span><br><b>You are \the [src]. [player_msg]</b>")
 
 //Client detatched
-/mob/living/simple_animal/Logout()
+/mob/living/simple_mob/Logout()
 	spawn(15 SECONDS) //15 seconds to get back into the mob before it goes wild
 		if(src && !src.client)
 			ai_inactive = initial(ai_inactive) //So if they never have an AI, they stay that way.
 	..()
 
 //For debug purposes!
-/mob/living/simple_animal/proc/ai_log_output(var/msg = "missing message", var/ver = 1)
+/mob/living/simple_mob/proc/ai_log_output(var/msg = "missing message", var/ver = 1)
 	if(ver <= debug_ai)
 		log_debug("SA-AI: ([src]:[x],[y],[z])(@[world.time]): [msg] ")
 
 //Should we be dead?
-/mob/living/simple_animal/updatehealth()
+/mob/living/simple_mob/updatehealth()
 	health = getMaxHealth() - getToxLoss() - getFireLoss() - getBruteLoss()
 
 	//Alive, becoming dead
@@ -293,7 +293,7 @@
 			if(0 to 25)
 				nutrition_icon.icon_state = "nutrition4"
 
-/mob/living/simple_animal/update_icon()
+/mob/living/simple_mob/update_icon()
 	. = ..()
 	var/mutable_appearance/ma = new(src)
 	ma.layer = layer
@@ -332,7 +332,7 @@
 	appearance = ma
 
 // If your simple mob's update_icon() call calls overlays.Cut(), this needs to be called after this, or manually apply modifier_overly to overlays.
-/mob/living/simple_animal/update_modifier_visuals()
+/mob/living/simple_mob/update_modifier_visuals()
 	var/image/effects = null
 	if(modifier_overlay)
 		overlays -= modifier_overlay
@@ -351,7 +351,7 @@
 	overlays += modifier_overlay
 
 
-/mob/living/simple_animal/Life()
+/mob/living/simple_mob/Life()
 
 	//VOREStation Edit
 	if(life_disabled)
@@ -402,11 +402,11 @@
 
 // Resists out of things.
 // Sometimes there are times you want SAs to be buckled to something, so override this for when that is needed.
-/mob/living/simple_animal/proc/handle_resist()
+/mob/living/simple_mob/proc/handle_resist()
 	resist()
 
 // Peforms the random walk wandering
-/mob/living/simple_animal/proc/handle_wander_movement()
+/mob/living/simple_mob/proc/handle_wander_movement()
 	if(isturf(src.loc) && !resting && !buckled && canmove) //Physically capable of moving?
 		lifes_since_move++ //Increment turns since move (turns are life() cycles)
 		if(lifes_since_move >= turns_per_move)
@@ -421,7 +421,7 @@
 				lifes_since_move = 0
 
 // Checks to see if mob doesn't like this kind of turf
-/mob/living/simple_animal/proc/avoid_turf(var/turf/turf)
+/mob/living/simple_mob/proc/avoid_turf(var/turf/turf)
 	if(!turf)
 		return TRUE //Avoid the nothing, yes
 
@@ -431,7 +431,7 @@
 	return FALSE //Override it on stuff to adjust
 
 // Handles random chatter, called from Life() when stance = STANCE_IDLE
-/mob/living/simple_animal/proc/handle_idle_speaking()
+/mob/living/simple_mob/proc/handle_idle_speaking()
 	if(rand(0,200) < speak_chance)
 		if(speak && speak.len)
 			if((emote_hear && emote_hear.len) || (emote_see && emote_see.len))
@@ -466,7 +466,7 @@
 
 // Handle interacting with and taking damage from atmos
 // TODO - Refactor this to use handle_environment() like a good /mob/living
-/mob/living/simple_animal/proc/handle_atmos()
+/mob/living/simple_mob/proc/handle_atmos()
 	var/atmos_unsuitable = 0
 
 	var/atom/A = src.loc
@@ -531,13 +531,13 @@
 			oxygen.icon_state = "oxy0"
 
 // For setting the stance WITHOUT processing it
-/mob/living/simple_animal/proc/set_stance(var/new_stance)
+/mob/living/simple_mob/proc/set_stance(var/new_stance)
 	stance = new_stance
 	stance_changed = world.time
 	ai_log("set_stance() changing to [new_stance]",2)
 
 // For proccessing the current stance, or setting and processing a new one
-/mob/living/simple_animal/proc/handle_stance(var/new_stance)
+/mob/living/simple_mob/proc/handle_stance(var/new_stance)
 	if(ai_inactive)
 		stance = STANCE_IDLE
 		return
@@ -580,24 +580,18 @@
 			annoyed = 50
 			AttackTarget()
 
-/mob/living/simple_animal/proc/handle_supernatural()
+/mob/living/simple_mob/proc/handle_supernatural()
 	if(purge)
 		purge -= 1
 
-/mob/living/simple_animal/gib()
+/mob/living/simple_mob/gib()
 	..(icon_gib,1,icon) // we need to specify where the gib animation is stored
 
-/mob/living/simple_animal/emote(var/act, var/type, var/desc)
+/mob/living/simple_mob/emote(var/act, var/type, var/desc)
 	if(act)
 		..(act, type, desc)
 
-/mob/living/simple_animal/proc/visible_emote(var/act_desc)
-	custom_emote(1, act_desc)
-
-/mob/living/simple_animal/proc/audible_emote(var/act_desc)
-	custom_emote(2, act_desc)
-
-/mob/living/simple_animal/bullet_act(var/obj/item/projectile/Proj)
+/mob/living/simple_mob/bullet_act(var/obj/item/projectile/Proj)
 	ai_log("bullet_act() I was shot by: [Proj.firer]",2)
 
 	/* VOREStation Edit - Ace doesn't like bonus SA damage.
@@ -612,7 +606,7 @@
 		react_to_attack(Proj.firer)
 
 // When someone clicks us with an empty hand
-/mob/living/simple_animal/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/simple_mob/attack_hand(mob/living/carbon/human/M as mob)
 	..()
 
 	switch(M.a_intent)
@@ -659,7 +653,7 @@
 	return
 
 // When somoene clicks us with an item in hand
-/mob/living/simple_animal/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple_mob/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/stack/medical))
 		if(stat != DEAD)
 			var/obj/item/stack/medical/MED = O
@@ -685,7 +679,7 @@
 
 	return ..()
 
-/mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/simple_mob/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
 
 	//Animals can't be stunned(?)
 	if(O.damtype == HALLOSS)
@@ -703,18 +697,18 @@
 	. = ..()
 
 // When someone throws something at us
-/mob/living/simple_animal/hitby(atom/movable/AM)
+/mob/living/simple_mob/hitby(atom/movable/AM)
 	..()
 	if(AM.thrower)
 		react_to_attack(AM.thrower)
 
 //SA vs SA basically
-/mob/living/simple_animal/attack_generic(var/mob/attacker)
-	..()
+/mob/living/simple_mob/attack_generic(var/mob/attacker)
 	if(attacker)
 		react_to_attack(attacker)
+	return ..()
 
-/mob/living/simple_animal/movement_delay()
+/mob/living/simple_mob/movement_delay()
 	var/tally = 0 //Incase I need to add stuff other than "speed" later
 
 	tally = speed
@@ -738,13 +732,13 @@
 
 	return tally+config.animal_delay
 
-/mob/living/simple_animal/Stat()
+/mob/living/simple_mob/Stat()
 	..()
 
 	if(statpanel("Status") && show_stat_health)
 		stat(null, "Health: [round((health / getMaxHealth()) * 100)]%")
 
-/mob/living/simple_animal/lay_down()
+/mob/living/simple_mob/lay_down()
 	..()
 	if(resting && icon_rest)
 		icon_state = icon_rest
@@ -752,7 +746,7 @@
 		icon_state = icon_living
 	update_icon()
 
-/mob/living/simple_animal/death(gibbed, deathmessage = "dies!")
+/mob/living/simple_mob/death(gibbed, deathmessage = "dies!")
 	density = 0 //We don't block even if we did before
 	walk(src, 0) //We stop any background-processing walks
 	resting = 0 //We can rest in peace later.
@@ -770,7 +764,7 @@
 
 	return ..(gibbed,deathmessage)
 
-/mob/living/simple_animal/ex_act(severity)
+/mob/living/simple_mob/ex_act(severity)
 	if(!blinded)
 		flash_eyes()
 	var/armor = run_armor_check(def_zone = null, attack_flag = "bomb")
@@ -789,7 +783,7 @@
 		gib()
 
 // Check target_mob if worthy of attack (i.e. check if they are dead or empty mecha)
-/mob/living/simple_animal/proc/SA_attackable(target_mob)
+/mob/living/simple_mob/proc/SA_attackable(target_mob)
 	ai_log("SA_attackable([target_mob])",3)
 	if (isliving(target_mob))
 		var/mob/living/L = target_mob
@@ -802,7 +796,7 @@
 	ai_log("SA_attackable([target_mob]): no",3)
 	return 0
 
-/mob/living/simple_animal/say(var/message,var/datum/language/language)
+/mob/living/simple_mob/say(var/message,var/datum/language/language)
 	var/verb = "says"
 	if(speak_emote.len)
 		verb = pick(speak_emote)
@@ -811,10 +805,10 @@
 
 	..(message, null, verb)
 
-/mob/living/simple_animal/get_speech_ending(verb, var/ending)
+/mob/living/simple_mob/get_speech_ending(verb, var/ending)
 	return verb
 
-/mob/living/simple_animal/put_in_hands(var/obj/item/W) // No hands.
+/mob/living/simple_mob/put_in_hands(var/obj/item/W) // No hands.
 	if(has_hands)
 		put_in_active_hand(W)
 		return 1
@@ -822,7 +816,7 @@
 	return 1
 
 // Harvest an animal's delicious byproducts
-/mob/living/simple_animal/proc/harvest(var/mob/user)
+/mob/living/simple_mob/proc/harvest(var/mob/user)
 	var/actual_meat_amount = max(1,(meat_amount/2))
 	if(meat_type && actual_meat_amount>0 && (stat == DEAD))
 		for(var/i=0;i<actual_meat_amount;i++)
@@ -836,17 +830,17 @@
 			user.visible_message("<span class='danger'>[user] butchers \the [src] messily!</span>")
 			gib()
 
-/mob/living/simple_animal/handle_fire()
+/mob/living/simple_mob/handle_fire()
 	return
-/mob/living/simple_animal/update_fire()
+/mob/living/simple_mob/update_fire()
 	return
-/mob/living/simple_animal/IgniteMob()
+/mob/living/simple_mob/IgniteMob()
 	return
-/mob/living/simple_animal/ExtinguishMob()
+/mob/living/simple_mob/ExtinguishMob()
 	return
 
 //We got hit! Consider hitting them back!
-/mob/living/simple_animal/proc/react_to_attack(var/mob/living/M)
+/mob/living/simple_mob/proc/react_to_attack(var/mob/living/M)
 	if(ai_inactive || stat || M == target_mob) return //Not if we're dead or already hitting them
 	if(M in friends || M.faction == faction) return //I'll overlook it THIS time...
 	ai_log("react_to_attack([M])",1)
@@ -856,7 +850,7 @@
 
 	return 0
 
-/mob/living/simple_animal/proc/set_target(var/mob/M, forced = 0)
+/mob/living/simple_mob/proc/set_target(var/mob/M, forced = 0)
 	ai_log("SetTarget([M])",2)
 	if(!M || (world.time - last_target_time < 5 SECONDS) && target_mob)
 		ai_log("SetTarget() can't set it again so soon",3)
@@ -882,7 +876,7 @@
 	return 0
 
 // Set a follow target, with optional time for how long to follow them.
-/mob/living/simple_animal/proc/set_follow(var/mob/M, var/follow_for = 0)
+/mob/living/simple_mob/proc/set_follow(var/mob/M, var/follow_for = 0)
 	ai_log("SetFollow([M]) for=[follow_for]",2)
 	if(!M || (world.time - last_target_time < 4 SECONDS) && follow_mob)
 		ai_log("SetFollow() can't set it again so soon",3)
@@ -894,7 +888,7 @@
 	return 1
 
 //Scan surroundings for a valid target
-/mob/living/simple_animal/proc/FindTarget()
+/mob/living/simple_mob/proc/FindTarget()
 	var/atom/T = null
 	for(var/atom/A in ListTargets(view_range))
 
@@ -943,21 +937,21 @@
 	return T
 
 //Used for special targeting or reactions
-/mob/living/simple_animal/proc/Found(var/atom/A)
+/mob/living/simple_mob/proc/Found(var/atom/A)
 	return
 
 // Used for somewhat special targeting, but not to the extent of using Found()
-/mob/living/simple_animal/proc/special_target_check(var/atom/A)
+/mob/living/simple_mob/proc/special_target_check(var/atom/A)
 	return TRUE
 
 //Requesting help from like-minded individuals
-/mob/living/simple_animal/proc/RequestHelp()
+/mob/living/simple_mob/proc/RequestHelp()
 	if(!cooperative || ((world.time - last_helpask_time) < 10 SECONDS))
 		return
 
 	ai_log("RequestHelp() to [faction_friends.len] friends",2)
 	last_helpask_time = world.time
-	for(var/mob/living/simple_animal/F in faction_friends)
+	for(var/mob/living/simple_mob/F in faction_friends)
 		if(F == src) continue
 		if(get_dist(src,F) <= F.assist_distance)
 			spawn(0)
@@ -966,7 +960,7 @@
 					F.HelpRequested(src)
 
 //Someone wants help?
-/mob/living/simple_animal/proc/HelpRequested(var/mob/living/simple_animal/F)
+/mob/living/simple_mob/proc/HelpRequested(var/mob/living/simple_mob/F)
 	if(target_mob || stat)
 		ai_log("HelpRequested() by [F] but we're busy/dead",2)
 		return
@@ -985,11 +979,11 @@
 // Can be used to conditionally do a ranged or melee attack.
 // Note that the SA must be able to do an attack at the specified range or else it may get trapped in a loop of switching
 // between STANCE_ATTACK and STANCE_ATTACKING, due to being told by MoveToTarget() that they're in range but being told by AttackTarget() that they're not.
-/mob/living/simple_animal/proc/ClosestDistance()
+/mob/living/simple_mob/proc/ClosestDistance()
 	return ranged ? shoot_range - 1 : 1 // Shoot range -1 just because we don't want to constantly get kited
 
 //Move to a target (or near if we're ranged)
-/mob/living/simple_animal/proc/MoveToTarget()
+/mob/living/simple_mob/proc/MoveToTarget()
 	if(incapacitated(INCAPACITATION_DISABLED))
 		ai_log("MoveToTarget() Bailing because we're disabled",2)
 		return
@@ -1064,7 +1058,7 @@
 		LoseTarget() //Just forget it.
 
 //Follow a target (and don't attempt to murder it horribly)
-/mob/living/simple_animal/proc/FollowTarget()
+/mob/living/simple_mob/proc/FollowTarget()
 	ai_log("FollowTarget() [follow_mob]",1)
 	stop_automated_movement = 1
 	//If we were chasing someone and we can't anymore, give up.
@@ -1109,7 +1103,7 @@
 			LoseFollow()
 
 //Just try one time to go look at something. Don't really focus much on it.
-/mob/living/simple_animal/proc/WanderTowards(var/turf/T)
+/mob/living/simple_mob/proc/WanderTowards(var/turf/T)
 	if(!T) return
 	ai_log("WanderTowards() [T.x],[T.y]",1)
 
@@ -1126,7 +1120,7 @@
 				WalkPath(target_thing = T, target_dist = 1)
 
 //A* now, try to a path to a target
-/mob/living/simple_animal/proc/GetPath(var/turf/target,var/get_to = 1,var/max_distance = world.view*6)
+/mob/living/simple_mob/proc/GetPath(var/turf/target,var/get_to = 1,var/max_distance = world.view*6)
 	ai_log("GetPath([target],[get_to],[max_distance])",2)
 	ForgetPath()
 	var/list/new_path = AStar(get_turf(loc), target, astar_adjacent_proc, /turf/proc/Distance, min_target_dist = get_to, max_node_depth = max_distance, id = myid, exclude = obstacles)
@@ -1142,7 +1136,7 @@
 	return walk_list.len
 
 //Walk along our A* path, target_thing allows us to stop early if we're nearby
-/mob/living/simple_animal/proc/WalkPath(var/atom/target_thing, var/target_dist = 1, var/proc/steps_callback = null, var/every_steps = 4)
+/mob/living/simple_mob/proc/WalkPath(var/atom/target_thing, var/target_dist = 1, var/proc/steps_callback = null, var/every_steps = 4)
 	ai_log("WalkPath() (steps:[walk_list.len])",2)
 	if(!walk_list || !walk_list.len)
 		return
@@ -1189,7 +1183,7 @@
 		sleep(move_to_delay)
 
 //Take one step along a path
-/mob/living/simple_animal/proc/MoveOnce()
+/mob/living/simple_mob/proc/MoveOnce()
 	if(!walk_list.len)
 		return
 
@@ -1207,7 +1201,7 @@
 		return 1
 
 //Forget the path entirely
-/mob/living/simple_animal/proc/ForgetPath()
+/mob/living/simple_mob/proc/ForgetPath()
 	ai_log("ForgetPath()",2)
 	if(path_display)
 		for(var/turf/T in walk_list)
@@ -1216,14 +1210,14 @@
 	walk_list.Cut()
 
 //Giving up on moving
-/mob/living/simple_animal/proc/GiveUpMoving()
+/mob/living/simple_mob/proc/GiveUpMoving()
 	ai_log("GiveUpMoving()",1)
 	ForgetPath()
 	walk(src, 0)
 	stop_automated_movement = 0
 
 //Return home, all-in-one proc (though does target scan and drop out if they see one)
-/mob/living/simple_animal/proc/GoHome()
+/mob/living/simple_mob/proc/GoHome()
 	if(!home_turf) return
 	if(astarpathing) ForgetPath()
 	ai_log("GoHome()",1)
@@ -1237,7 +1231,7 @@
 				GiveUpMoving() //Go back to wandering
 
 //Get into attack mode on a target
-/mob/living/simple_animal/proc/AttackTarget()
+/mob/living/simple_mob/proc/AttackTarget()
 	stop_automated_movement = 1
 	if(incapacitated(INCAPACITATION_DISABLED))
 		ai_log("AttackTarget() Bailing because we're disabled",2)
@@ -1277,11 +1271,14 @@
 		return 0
 
 //Attack the target in melee
-/mob/living/simple_animal/proc/PunchTarget()
+/mob/living/simple_mob/proc/PunchTarget()
 	if(!Adjacent(target_mob))
 		return
-	if(!client)
-		sleep(rand(melee_attack_minDelay, melee_attack_maxDelay))
+	if(!canClick())
+		return
+	setClickCooldown(get_attack_speed())
+//	if(!client)
+//		sleep(rand(melee_attack_minDelay, melee_attack_maxDelay))
 	if(isliving(target_mob))
 		var/mob/living/L = target_mob
 
@@ -1299,7 +1296,7 @@
 		return M
 
 // This is the actual act of 'punching'.  Override for special behaviour.
-/mob/living/simple_animal/proc/DoPunch(var/atom/A)
+/mob/living/simple_mob/proc/DoPunch(var/atom/A)
 	if(!Adjacent(A) && !istype(A, /obj/structure/window) && !istype(A, /obj/machinery/door/window)) // They could've moved in the meantime. But a Window probably wouldn't have. This allows player simple-mobs to attack windows.
 		return FALSE
 
@@ -1321,14 +1318,19 @@
 	return TRUE
 
 //The actual top-level ranged attack proc
-/mob/living/simple_animal/proc/ShootTarget()
+/mob/living/simple_mob/proc/ShootTarget()
+	if(!canClick())
+		return FALSE
+
+	setClickCooldown(get_attack_speed())
+
 	var/target = target_mob
 	var/tturf = get_turf(target)
 
 	if((firing_lines && !client) && !CheckFiringLine(tturf))
 		step_rand(src)
 		face_atom(tturf)
-		return 0
+		return FALSE
 
 	visible_message("<span class='danger'><b>[src]</b> fires at [target]!</span>")
 	if(rapid)
@@ -1349,10 +1351,10 @@
 		if(casingtype)
 			new casingtype
 
-	return 1
+	return TRUE
 
 //Check firing lines for faction_friends (if we're not cooperative, we don't care)
-/mob/living/simple_animal/proc/CheckFiringLine(var/turf/tturf)
+/mob/living/simple_mob/proc/CheckFiringLine(var/turf/tturf)
 	if(!tturf) return
 
 	var/turf/list/crosses = list()
@@ -1373,40 +1375,38 @@
 	return 1
 
 //Special attacks, like grenades or blinding spit or whatever
-/mob/living/simple_animal/proc/SpecialAtkTarget()
+/mob/living/simple_mob/proc/SpecialAtkTarget()
 	return 0
 
 //Shoot a bullet at someone
-/mob/living/simple_animal/proc/Shoot(var/target, var/start, var/user, var/bullet = 0)
+/mob/living/simple_animal/proc/Shoot(atom/target, atom/start, mob/user, var/bullet = 0)
 	if(target == start)
 		return
 
-	var/obj/item/projectile/A = new projectiletype(user:loc)
+	var/obj/item/projectile/A = new projectiletype(user.loc)
 	playsound(user, projectilesound, 100, 1)
 	if(!A)	return
 
 //	if (!istype(target, /turf))
 //		qdel(A)
 //		return
-
-	A.firer = src
-	A.launch(target)
-	return
+	A.old_style_target(target)
+	A.fire()
 
 //We can't see the target
-/mob/living/simple_animal/proc/LoseTarget()
+/mob/living/simple_mob/proc/LoseTarget()
 	ai_log("LoseTarget() [target_mob]",2)
 	target_mob = null
 	handle_stance(STANCE_IDLE)
 	GiveUpMoving()
 
 //Target is no longer valid (?)
-/mob/living/simple_animal/proc/LostTarget()
+/mob/living/simple_mob/proc/LostTarget()
 	handle_stance(STANCE_IDLE)
 	GiveUpMoving()
 
 //Forget a follow mode
-/mob/living/simple_animal/proc/LoseFollow()
+/mob/living/simple_mob/proc/LoseFollow()
 	ai_log("LoseFollow() [target_mob]",2)
 	stop_automated_movement = 0
 	follow_mob = null
@@ -1414,44 +1414,44 @@
 	GiveUpMoving()
 
 // Makes the simple mob stop everything.  Useful for when it get stunned.
-/mob/living/simple_animal/proc/Disable()
+/mob/living/simple_mob/proc/Disable()
 	ai_log("Disable() [target_mob]",2)
 	spawn(0)
 		LoseTarget()
 		LoseFollow()
 
-/mob/living/simple_animal/Stun(amount)
+/mob/living/simple_mob/Stun(amount)
 	if(amount > 0)
 		Disable()
 	..(amount)
 
-/mob/living/simple_animal/AdjustStunned(amount)
+/mob/living/simple_mob/AdjustStunned(amount)
 	if(amount > 0)
 		Disable()
 	..(amount)
 
-/mob/living/simple_animal/Weaken(amount)
+/mob/living/simple_mob/Weaken(amount)
 	if(amount > 0)
 		Disable()
 	..(amount)
 
-/mob/living/simple_animal/AdjustWeakened(amount)
+/mob/living/simple_mob/AdjustWeakened(amount)
 	if(amount > 0)
 		Disable()
 	..(amount)
 
-/mob/living/simple_animal/Paralyse(amount)
+/mob/living/simple_mob/Paralyse(amount)
 	if(amount > 0)
 		Disable()
 	..(amount)
 
-/mob/living/simple_animal/AdjustParalysis(amount)
+/mob/living/simple_mob/AdjustParalysis(amount)
 	if(amount > 0)
 		Disable()
 	..(amount)
 
 //Find me some targets
-/mob/living/simple_animal/proc/ListTargets(var/dist = view_range)
+/mob/living/simple_mob/proc/ListTargets(var/dist = view_range)
 	var/list/L = hearers(src, dist)
 
 	for(var/obj/mecha/M in mechas_list)
@@ -1461,7 +1461,7 @@
 	return L
 
 //Break through windows/other things
-/mob/living/simple_animal/proc/DestroySurroundings(var/direction)
+/mob/living/simple_mob/proc/DestroySurroundings(var/direction)
 	if(!direction)
 		direction = pick(cardinal) //FLAIL WILDLY
 
@@ -1497,7 +1497,7 @@
 			return
 
 //Check for shuttle bumrush
-/mob/living/simple_animal/proc/check_horde()
+/mob/living/simple_mob/proc/check_horde()
 	return 0
 	if(emergency_shuttle.shuttle.location)
 		if(!enroute && !target_mob)	//The shuttle docked, all monsters rush for the escape hallway
@@ -1514,7 +1514,7 @@
 			stop_automated_movement = 0
 
 //Shuttle bumrush
-/mob/living/simple_animal/proc/horde()
+/mob/living/simple_mob/proc/horde()
 	var/turf/T = get_step_to(src, shuttletarget)
 	for(var/atom/A in T)
 		if(istype(A,/obj/machinery/door/airlock))
@@ -1536,7 +1536,7 @@
 				horde()
 
 //Touches a wire, etc
-/mob/living/simple_animal/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null)
+/mob/living/simple_mob/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null)
 	shock_damage *= max(siemens_coeff - shock_resistance, 0)
 	if (shock_damage < 1)
 		return 0
@@ -1549,7 +1549,7 @@
 	s.start()
 
 //Shot with taser/stunvolver
-/mob/living/simple_animal/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
+/mob/living/simple_mob/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
 	if(taser_kill)
 		var/stunDam = 0
 		var/agonyDam = 0
@@ -1563,7 +1563,7 @@
 			agonyDam += agony_amount * 0.5
 			apply_damage(damage = agonyDam, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, used_weapon = used_weapon, sharp = FALSE, edge = FALSE)
 
-/mob/living/simple_animal/emp_act(severity)
+/mob/living/simple_mob/emp_act(severity)
 	if(!isSynthetic())
 		return
 	switch(severity)
@@ -1576,24 +1576,24 @@
 		if(4)
 			adjustFireLoss(rand(1, 6))
 
-/mob/living/simple_animal/getarmor(def_zone, attack_flag)
+/mob/living/simple_mob/getarmor(def_zone, attack_flag)
 	var/armorval = armor[attack_flag]
 	if(!armorval)
 		return 0
 	else
 		return armorval
-
+/*
 // Force it to target something
-/mob/living/simple_animal/proc/taunt(var/mob/living/new_target, var/forced = FALSE)
+/mob/living/simple_mob/proc/taunt(var/mob/living/new_target, var/forced = FALSE)
 	if(intelligence_level == SA_HUMANOID && !forced)
 		return
 	set_target(new_target)
-
-/mob/living/simple_animal/is_sentient()
+*/
+/mob/living/simple_mob/is_sentient()
 	return intelligence_level != SA_PLANT && intelligence_level != SA_ROBOTIC
 
 // Hand procs for player-controlled SA's
-/mob/living/simple_animal/swap_hand()
+/mob/living/simple_mob/swap_hand()
 	src.hand = !( src.hand )
 	if(hud_used.l_hand_hud_object && hud_used.r_hand_hud_object)
 		if(hand)	//This being 1 means the left hand is in use
@@ -1604,17 +1604,17 @@
 			hud_used.r_hand_hud_object.icon_state = "r_hand_active"
 	return
 /*
-/mob/living/simple_animal/put_in_active_hand(var/obj/item/I)
+/mob/living/simple_mob/put_in_active_hand(var/obj/item/I)
 	if(!has_hands || !istype(I))
 		return
 */
 //Puts the item into our active hand if possible. returns 1 on success.
-/mob/living/simple_animal/put_in_active_hand(var/obj/item/W)
+/mob/living/simple_mob/put_in_active_hand(var/obj/item/W)
 	if(!has_hands)
 		return FALSE
 	return (hand ? put_in_l_hand(W) : put_in_r_hand(W))
 
-/mob/living/simple_animal/put_in_l_hand(var/obj/item/W)
+/mob/living/simple_mob/put_in_l_hand(var/obj/item/W)
 	if(!..() || l_hand)
 		return 0
 	W.forceMove(src)
@@ -1624,7 +1624,7 @@
 	update_inv_l_hand()
 	return TRUE
 
-/mob/living/simple_animal/put_in_r_hand(var/obj/item/W)
+/mob/living/simple_mob/put_in_r_hand(var/obj/item/W)
 	if(!..() || r_hand)
 		return 0
 	W.forceMove(src)
@@ -1634,7 +1634,7 @@
 	update_inv_r_hand()
 	return TRUE
 
-/mob/living/simple_animal/update_inv_r_hand()
+/mob/living/simple_mob/update_inv_r_hand()
 	if(QDESTROYING(src))
 		return
 
@@ -1671,7 +1671,7 @@
 
 	update_icon()
 
-/mob/living/simple_animal/update_inv_l_hand()
+/mob/living/simple_mob/update_inv_l_hand()
 	if(QDESTROYING(src))
 		return
 
@@ -1709,14 +1709,14 @@
 	update_icon()
 
 //Can insert extra huds into the hud holder here.
-/mob/living/simple_animal/proc/extra_huds(var/datum/hud/hud,var/icon/ui_style,var/list/hud_elements)
+/mob/living/simple_mob/proc/extra_huds(var/datum/hud/hud,var/icon/ui_style,var/list/hud_elements)
 	return
 
 //If they can or cannot use tools/machines/etc
-/mob/living/simple_animal/IsAdvancedToolUser()
+/mob/living/simple_mob/IsAdvancedToolUser()
 	return has_hands
 
-/mob/living/simple_animal/proc/IsHumanoidToolUser(var/atom/tool)
+/mob/living/simple_mob/proc/IsHumanoidToolUser(var/atom/tool)
 	if(!humanoid_hands)
 		var/display_name = null
 		if(tool)
@@ -1726,7 +1726,7 @@
 		to_chat(src, "<span class='danger'>Your [hand_form] are not fit for use of \the [display_name].</span>")
 	return humanoid_hands
 
-/mob/living/simple_animal/drop_from_inventory(var/obj/item/W, var/atom/target = null)
+/mob/living/simple_mob/drop_from_inventory(var/obj/item/W, var/atom/target = null)
 	. = ..(W, target)
 	if(!target)
 		target = src.loc
@@ -1734,7 +1734,7 @@
 		W.forceMove(src.loc)
 
 //Commands, reactions, etc
-/mob/living/simple_animal/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
+/mob/living/simple_mob/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
 	..()
 	if(!ai_inactive && reacts && speaker && (message in reactions) && (!hostile || isliving(speaker)) && say_understands(speaker,language))
 		var/mob/living/L = speaker
@@ -1744,16 +1744,16 @@
 				say(reactions[message])
 
 //Just some subpaths for easy searching
-/mob/living/simple_animal/hostile
+/mob/living/simple_mob/hostile
 	faction = "not yours"
 	hostile = 1
 	retaliate = 1
 	stop_when_pulled = 0
 	destroy_surroundings = 1
 
-/mob/living/simple_animal/retaliate
+/mob/living/simple_mob/retaliate
 	retaliate = 1
 	destroy_surroundings = 1
 
-/mob/living/simple_animal/get_nametag_desc(mob/user)
+/mob/living/simple_mob/get_nametag_desc(mob/user)
 	return "<i>[tt_desc]</i>"

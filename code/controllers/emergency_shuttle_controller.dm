@@ -26,7 +26,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	escape_pods = list()
 	..()
 
-/datum/emergency_shuttle_controller/proc/process()
+/datum/emergency_shuttle_controller/process()
 	if (wait_for_launch)
 		if (evac && auto_recall && world.time >= auto_recall_time)
 			recall()

@@ -38,7 +38,7 @@ Buildable meters
  * @param loc Location
  * @pipe_type
  */
-/obj/item/pipe/initialize(var/mapload, var/_pipe_type, var/_dir, var/obj/machinery/atmospherics/make_from)
+/obj/item/pipe/Initialize(var/mapload, var/_pipe_type, var/_dir, var/obj/machinery/atmospherics/make_from)
 	if(make_from)
 		make_from_existing(make_from)
 	else
@@ -115,15 +115,15 @@ Buildable meters
 	var/obj/machinery/atmospherics/fakeA = pipe_type
 	icon_state = "[initial(fakeA.pipe_state)][mirrored ? "m" : ""]"
 
-/obj/item/pipe/verb/rotate()
+/obj/item/pipe/verb/rotate_clockwise()
 	set category = "Object"
-	set name = "Rotate Pipe"
+	set name = "Rotate Pipe Clockwise"
 	set src in view(1)
 
 	if ( usr.stat || usr.restrained() || !usr.canmove )
 		return
 
-	set_dir(turn(src.dir, -90)) // Rotate clockwise
+	src.set_dir(turn(src.dir, 270))
 	fixdir()
 
 // If you want to disable pipe dir changing when pulled, uncomment this

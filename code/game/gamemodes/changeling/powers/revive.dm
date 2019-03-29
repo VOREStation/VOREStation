@@ -45,6 +45,34 @@
 		BITSET(H.hud_updateflag, STATUS_HUD)
 		BITSET(H.hud_updateflag, LIFE_HUD)
 
+		if(H.handcuffed)
+			var/obj/item/weapon/W = H.handcuffed
+			H.handcuffed = null
+			if(H.buckled && H.buckled.buckle_require_restraints)
+				H.buckled.unbuckle_mob()
+			H.update_inv_handcuffed()
+			if (H.client)
+				H.client.screen -= W
+			W.forceMove(H.loc)
+			W.dropped(H)
+			if(W)
+				W.layer = initial(W.layer)
+		if(H.legcuffed)
+			var/obj/item/weapon/W = H.legcuffed
+			H.legcuffed = null
+			H.update_inv_legcuffed()
+			if(H.client)
+				H.client.screen -= W
+			W.forceMove(H.loc)
+			W.dropped(H)
+			if(W)
+				W.layer = initial(W.layer)
+		if(istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket))
+			var/obj/item/clothing/suit/straight_jacket/SJ = H.wear_suit
+			SJ.forceMove(H.loc)
+			SJ.dropped(H)
+			H.wear_suit = null
+
 	C.halloss = 0
 	C.shock_stage = 0 //Pain
 	C << "<span class='notice'>We have regenerated.</span>"

@@ -71,7 +71,7 @@
 				return FALSE
 
 	stat_text()
-		return "[active ? "Active" : "Disabled"] (Stored Heat: [Floor(used/20)]%)"
+		return "[active ? "Active" : "Disabled"] (Stored Heat: [FLOOR((used/20), 1)]%)"
 
 	life()
 		if((. = ..()))
@@ -129,7 +129,7 @@
 		if((. = ..()))
 			var/new_size = input("Put the desired size (25-200%)", "Set Size", 200) as num
 
-			if (!IsInRange(new_size,25,200))
+			if (!ISINRANGE(new_size,25,200))
 				to_chat(nif.human,"<span class='notice'>The safety features of the NIF Program prevent you from choosing this size.</span>")
 				return
 			else

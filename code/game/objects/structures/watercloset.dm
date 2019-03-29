@@ -131,10 +131,16 @@
 	var/watertemp = "normal"	//freezing, normal, or boiling
 	var/is_washing = 0
 	var/list/temperature_settings = list("normal" = 310, "boiling" = T0C+100, "freezing" = T0C)
+	var/datum/looping_sound/showering/soundloop
 
-/obj/machinery/shower/New()
-	..()
+/obj/machinery/shower/Initialize()
 	create_reagents(50)
+	soundloop = new(list(src), FALSE)
+	return ..()
+
+/obj/machinery/shower/Destroy()
+	QDEL_NULL(soundloop)
+	return ..()
 
 //add heat controls? when emagged, you can freeze to death in it?
 
@@ -151,11 +157,14 @@
 	on = !on
 	update_icon()
 	if(on)
+		soundloop.start()
 		if (M.loc == loc)
 			wash(M)
 			process_heat(M)
 		for (var/atom/movable/G in src.loc)
 			G.clean_blood()
+	else
+		soundloop.stop()
 
 /obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.type == /obj/item/device/analyzer)

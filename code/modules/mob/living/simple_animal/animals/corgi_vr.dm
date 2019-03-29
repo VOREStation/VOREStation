@@ -1,4 +1,4 @@
-/mob/living/simple_animal/corgi/show_inv(mob/user as mob)
+/mob/living/simple_mob/corgi/show_inv(mob/user as mob)
 	user.set_machine(src)
 	if(user.stat) return
 
@@ -16,7 +16,7 @@
 	onclose(user, "mob[real_name]")
 	return
 
-/mob/living/simple_animal/corgi/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_mob/corgi/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(inventory_head && inventory_back)
 		//helmet and armor = 100% protection
 		if( istype(inventory_head,/obj/item/clothing/head/helmet) && istype(inventory_back,/obj/item/clothing/suit/armor) )
@@ -33,7 +33,7 @@
 			return
 	..()
 
-/mob/living/simple_animal/corgi/Topic(href, href_list)
+/mob/living/simple_mob/corgi/Topic(href, href_list)
 	if(usr.stat) return
 
 	//Removing from inventory
@@ -150,7 +150,7 @@
 	else
 		..()
 
-/mob/living/simple_animal/corgi/proc/place_on_head(obj/item/item_to_add)
+/mob/living/simple_mob/corgi/proc/place_on_head(obj/item/item_to_add)
 	item_to_add.loc = src
 	src.inventory_head = item_to_add
 	regenerate_icons()

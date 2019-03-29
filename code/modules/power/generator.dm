@@ -22,12 +22,18 @@
 	var/lastgen2 = 0
 	var/effective_gen = 0
 	var/lastgenlev = 0
+	var/datum/looping_sound/generator/soundloop
 
-/obj/machinery/power/generator/New()
-	..()
+/obj/machinery/power/generator/Initialize()
+	soundloop = new(list(src), FALSE)
 	desc = initial(desc) + " Rated for [round(max_power/1000)] kW."
 	spawn(1)
 		reconnect()
+	return ..()
+
+/obj/machinery/power/generator/Destroy()
+	QDEL_NULL(soundloop)
+	return ..()
 
 //generators connect in dir and reverse_dir(dir) directions
 //mnemonic to determine circulator/generator directions: the cirulators orbit clockwise around the generator
@@ -124,6 +130,13 @@
 	stored_energy -= lastgen1
 	effective_gen = (lastgen1 + lastgen2) / 2
 
+	// Sounds.
+	if(effective_gen > (max_power * 0.05)) // More than 5% and sounds start.
+		soundloop.start()
+		soundloop.volume = LERP(1, 40, effective_gen / max_power)
+	else
+		soundloop.stop()
+
 	// update icon overlays and power usage only if displayed level has changed
 	var/genlev = max(0, min( round(11*effective_gen / max_power), 11))
 	if(effective_gen > 100 && genlev == 0)
@@ -198,7 +211,7 @@
 
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -215,25 +228,25 @@
 	updateicon()
 
 
-/obj/machinery/power/generator/verb/rotate_clock()
+/obj/machinery/power/generator/verb/rotate_clockwise()
 	set category = "Object"
-	set name = "Rotate Generator (Clockwise)"
+	set name = "Rotate Generator Clockwise"
+	set src in view(1)
+
+	if (usr.stat || usr.restrained()  || anchored)
+		return
+
+	src.set_dir(turn(src.dir, 270))
+
+/obj/machinery/power/generator/verb/rotate_counterclockwise()
+	set category = "Object"
+	set name = "Rotate Generator Counterclockwise"
 	set src in view(1)
 
 	if (usr.stat || usr.restrained()  || anchored)
 		return
 
 	src.set_dir(turn(src.dir, 90))
-
-/obj/machinery/power/generator/verb/rotate_anticlock()
-	set category = "Object"
-	set name = "Rotate Generator (Counterclockwise)"
-	set src in view(1)
-
-	if (usr.stat || usr.restrained()  || anchored)
-		return
-
-	src.set_dir(turn(src.dir, -90))
 
 /obj/machinery/power/generator/power_spike()
 //	if(!effective_gen >= max_power / 2 && powernet) // Don't make a spike if we're not making a whole lot of power.

@@ -40,20 +40,20 @@
 	path = /obj/item/ammo_magazine/s45/ap
 
 /datum/uplink_item/item/ammo/tommymag
-	name = "Tommygun Magazine (.45)"
+	name = "Tommy Gun Magazine (.45)"
 	path = /obj/item/ammo_magazine/m45tommy
 
 /datum/uplink_item/item/ammo/tommymagap
-	name = "Tommygun Magazine (.45 AP)"
+	name = "Tommy Gun Magazine (.45 AP)"
 	path = /obj/item/ammo_magazine/m45tommy/ap
 
 /datum/uplink_item/item/ammo/tommydrum
-	name = "Tommygun Drum Magazine (.45)"
+	name = "Tommy Gun Drum Magazine (.45)"
 	path = /obj/item/ammo_magazine/m45tommydrum
 	item_cost = 40
 
 /datum/uplink_item/item/ammo/tommydrumap
-	name = "Tommygun Drum Magazine (.45 AP)"
+	name = "Tommy Gun Drum Magazine (.45 AP)"
 	path = /obj/item/ammo_magazine/m45tommydrum/ap
 
 /datum/uplink_item/item/ammo/darts

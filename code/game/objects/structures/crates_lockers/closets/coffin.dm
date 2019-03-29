@@ -39,7 +39,7 @@
 							"<span class='notice'>You stop climbing into \the [src.name].</span>")
 	return
 
-/obj/structure/closet/grave/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/structure/closet/grave/CanPass(atom/movable/mover, turf/target)
 	if(opened && ismob(mover))
 		var/mob/M = mover
 		add_fingerprint(M)

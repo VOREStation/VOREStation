@@ -177,7 +177,7 @@
 /obj/effect/step_trigger/zlevel_fall //Don't ever use this, only use subtypes.Define a new var/static/target_z on each
 	affect_ghosts = 1
 
-/obj/effect/step_trigger/zlevel_fall/initialize()
+/obj/effect/step_trigger/zlevel_fall/Initialize()
 	. = ..()
 
 	if(istype(get_turf(src), /turf/simulated/floor))
@@ -237,17 +237,17 @@
 	var/guard				//# will set the mobs to remain nearby their spawn point within this dist
 
 	//Internal use only
-	var/mob/living/simple_animal/my_mob
+	var/mob/living/simple_mob/my_mob
 	var/depleted = FALSE
 
-/obj/tether_away_spawner/initialize()
+/obj/tether_away_spawner/Initialize()
 	. = ..()
 
 	if(!LAZYLEN(mobs_to_pick_from))
 		error("Mob spawner at [x],[y],[z] ([get_area(src)]) had no mobs_to_pick_from set on it!")
 		initialized = TRUE
 		return INITIALIZE_HINT_QDEL
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 /obj/tether_away_spawner/process()
 	if(my_mob && my_mob.stat != DEAD)
@@ -281,14 +281,14 @@
 				my_mob.max_tox = gaslist["phoron"] * 1.2
 				my_mob.max_n2 = gaslist["nitrogen"] * 1.2
 				my_mob.max_co2 = gaslist["carbon_dioxide"] * 1.2
-
+/* //VORESTATION AI TEMPORARY REMOVAL
 		if(guard)
 			my_mob.returns_home = TRUE
 			my_mob.wander_distance = guard
-
+*/
 		return
 	else
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 		depleted = TRUE
 		return
 
@@ -304,5 +304,5 @@
 	prob_fall = 1
 	guard = 10 //Don't wander too far, to stay alive.
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/shadekin
+		// /mob/living/simple_mob/shadekin //VORESTATION AI TEMPORARY REMOVAL
 	)

@@ -85,8 +85,6 @@
 	feeding_port(user)
 	..()
 
-<<<<<<< HEAD
-=======
 /obj/item/clothing/mask/gas/zaddat
 	name = "Zaddat Veil"
 	desc = "A clear survival mask used by the Zaddat to filter out harmful nitrogen. Can be connected to an air supply and reconfigured to allow for safe eating."
@@ -97,7 +95,6 @@
 	flags_inv = HIDEEARS //semi-transparent
 	filtered_gases = list("phoron", "nitrogen", "sleeping_agent")
 
->>>>>>> 3c5bb87... Merge pull request #5972 from elgeonmb/patch-11
 /obj/item/clothing/mask/gas/syndicate
 	name = "tactical mask"
 	desc = "A close-fitting tactical mask that can be connected to an air supply."

@@ -68,14 +68,14 @@
 	//Reagents can be resolved to nicer names as well
 	for(var/Rp in food_recipes)
 		for(var/rid in food_recipes[Rp]["Reagents"])
-			var/datum/reagent/Rd = chemical_reagents_list[rid]
+			var/datum/reagent/Rd = SSchemistry.chemical_reagents[rid]
 			var/R_name = Rd.name
 			var/amt = food_recipes[Rp]["Reagents"][rid]
 			food_recipes[Rp]["Reagents"] -= rid
 			food_recipes[Rp]["Reagents"][R_name] = amt
 	for(var/Rp in drink_recipes)
 		for(var/rid in drink_recipes[Rp]["Reagents"])
-			var/datum/reagent/Rd = chemical_reagents_list[rid]
+			var/datum/reagent/Rd = SSchemistry.chemical_reagents[rid]
 			var/R_name = Rd.name
 			var/amt = drink_recipes[Rp]["Reagents"][rid]
 			drink_recipes[Rp]["Reagents"] -= rid

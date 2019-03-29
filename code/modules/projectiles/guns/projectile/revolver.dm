@@ -46,7 +46,6 @@
 	icon_state = "detective"
 	caliber = ".38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	fire_sound = 'sound/weapons/gunshot3.ogg'
 	ammo_type = /obj/item/ammo_casing/a38
 
 /obj/item/weapon/gun/projectile/revolver/detective/verb/rename_gun()
@@ -73,7 +72,6 @@
 	icon_state = "detective"
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	fire_sound = 'sound/weapons/gunshot_heavy.ogg'
 	ammo_type = /obj/item/ammo_casing/a45/rubber
 	max_shells = 7
 
@@ -125,7 +123,6 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 	icon_state = "deckard-empty"
 	caliber = ".38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	fire_sound = 'sound/weapons/gunshot3.ogg'
 	ammo_type = /obj/item/ammo_casing/a38
 
 /obj/item/weapon/gun/projectile/revolver/deckard/emp

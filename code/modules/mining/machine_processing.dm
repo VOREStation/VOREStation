@@ -16,7 +16,7 @@
 	var/obj/machinery/mineral/processing_unit/machine = null
 	var/show_all_ores = FALSE
 
-/obj/machinery/mineral/processing_unit_console/initialize()
+/obj/machinery/mineral/processing_unit_console/Initialize()
 	. = ..()
 	src.machine = locate(/obj/machinery/mineral/processing_unit) in range(5, src)
 	if (machine)
@@ -192,7 +192,7 @@
 			ores_processing[OD.name] = 0
 			ores_stored[OD.name] = 0
 
-/obj/machinery/mineral/processing_unit/initialize()
+/obj/machinery/mineral/processing_unit/Initialize()
 	. = ..()
 	// TODO - Eschew input/output machinery and just use dirs ~Leshana
 	//Locate our output and input machinery.
@@ -273,7 +273,7 @@
 
 			else if(ores_processing[metal] == PROCESS_COMPRESS && O.compresses_to) //Compressing.
 
-				var/can_make = Clamp(ores_stored[metal],0,sheets_per_tick-sheets)
+				var/can_make = CLAMP(ores_stored[metal],0,sheets_per_tick-sheets)
 				if(can_make%2>0) can_make--
 
 				var/material/M = get_material_by_name(O.compresses_to)
@@ -288,7 +288,7 @@
 
 			else if(ores_processing[metal] == PROCESS_SMELT && O.smelts_to) //Smelting.
 
-				var/can_make = Clamp(ores_stored[metal],0,sheets_per_tick-sheets)
+				var/can_make = CLAMP(ores_stored[metal],0,sheets_per_tick-sheets)
 
 				var/material/M = get_material_by_name(O.smelts_to)
 				if(!istype(M) || !can_make || ores_stored[metal] < 1)

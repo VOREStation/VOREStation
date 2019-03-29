@@ -42,7 +42,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	var/lifelike										 // If set, appears organic.
 	var/skin_tone										 // If set, applies skin tone rather than part color
 	var/blood_color = "#030303"
-	var/list/species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)	 //VOREStation Edit
+	var/list/species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_XENOCHIMERA)	 //VOREStation Edit
 	var/list/monitor_styles			 		 			 //If empty, the model of limbs offers a head compatible with monitors.
 	var/parts = BP_ALL						 			 //Defines what parts said brand can replace on a body.
 	var/health_hud_intensity = 1						 // Intensity modifier for the health GUI indicator.
