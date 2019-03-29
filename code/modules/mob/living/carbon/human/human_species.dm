@@ -36,7 +36,7 @@
 /mob/living/carbon/human/promethean/Initialize(var/new_loc)
 	return ..(new_loc, SPECIES_PROMETHEAN)
 
-/mob/living/carbon/human/zaddat/New(var/new_loc)
+/mob/living/carbon/human/zaddat/Initialize(var/new_loc) //VOREStation Edit - Fixes a Polaris bug
 	return ..(new_loc, SPECIES_ZADDAT)
 
 /mob/living/carbon/human/monkey/Initialize(var/new_loc)
