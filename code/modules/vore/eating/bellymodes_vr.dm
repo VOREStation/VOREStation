@@ -37,23 +37,26 @@
 		//Handle stray items
 		if(isitem(A) && !did_an_item)
 			var/obj/item/I = A
-			if(mode_flags & DM_FLAG_ITEMWEAK)
-				if(digest_mode == DM_HOLD)
-					if(istype(I,/obj/item/weapon/reagent_containers/food))
-						digest_item(I)
-					else
-						items_preserved |= I
+			if(contaminates || istype(I,/obj/item/weapon/card/id))
+				I.gurgle_contaminate(src, contamination_flavor, contamination_color)
+			if(item_digest_mode == IM_HOLD)
+				items_preserved |= I
+			else if(item_digest_mode == IM_DIGEST_FOOD)
+				if(istype(I,/obj/item/weapon/reagent_containers/food) || istype(I,/obj/item/organ))
+					digest_item(I)
 				else
-					I.gurgle_contaminate(src, cont_flavor)
 					items_preserved |= I
-			else
-				I.gurgle_contaminate(src, cont_flavor)
+				if(prob(25)) //Less often than with normal digestion
+					play_sound = pick(digestion_sounds)
+			else if(item_digest_mode == IM_DIGEST)
 				if(I.digest_stage && I.digest_stage > 0)
 					digest_item(I)
 				else
 					digest_item(I)
 					did_an_item = TRUE
 				to_update = TRUE
+				if(prob(25)) //Less often than with normal digestion
+					play_sound = pick(digestion_sounds)
 
 		//Handle eaten mobs
 		else if(isliving(A))
@@ -78,11 +81,21 @@
 						var/obj/item/I = H.get_equipped_item(slot = slot)
 						if(I)
 							H.unEquip(I,force = TRUE)
-							if(mode_flags & DM_FLAG_ITEMWEAK)
-								I.gurgle_contaminate(contents, cont_flavor)
+							if(contaminates || istype(I,/obj/item/weapon/card/id))
+								I.gurgle_contaminate(contents, contamination_flavor, contamination_color)
+							if(item_digest_mode == IM_HOLD)
 								items_preserved |= I
-							else
+							else if(item_digest_mode == IM_DIGEST_FOOD)
+								if(istype(I,/obj/item/weapon/reagent_containers/food) || istype(I,/obj/item/organ))
+									digest_item(I)
+								else
+									items_preserved |= I
+								if(prob(25)) //Less often than with normal digestion
+									play_sound = pick(digestion_sounds)
+							else if(item_digest_mode == IM_DIGEST)
 								digest_item(I)
+								if(prob(25)) //Less often than with normal digestion
+									play_sound = pick(digestion_sounds)
 							to_update = TRUE
 							break
 		//get rid of things like blood drops and gibs that end up in there
