@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/tomato
+/mob/living/simple_mob/hostile/tomato
 	name = "tomato"
 	desc = "It's a horrifyingly enormous beef tomato, and it's packing extra beef!"
 	tt_desc = "X Solanum abominable"

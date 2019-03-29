@@ -18,6 +18,7 @@
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
 	density = 0
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	var/obj/machinery/shield_gen/my_gen = null
 	var/strength = 0 // in Renwicks
 	var/ticks_recovering = 10
@@ -52,6 +53,12 @@
 		user.do_attack_animation(src)
 		user.setClickCooldown(user.get_attack_speed(W))
 	..()
+
+/obj/effect/energy_field/attack_generic(mob/user, damage)
+	if(damage)
+		adjust_strength(-damage / 20)
+		user.do_attack_animation(src)
+		user.setClickCooldown(user.get_attack_speed())
 
 /obj/effect/energy_field/attack_hand(var/mob/living/user)
 	impact_effect(3) // Harmless, but still produces the 'impact' effect.
@@ -96,15 +103,6 @@
 	if(density != old_density)
 		update_icon()
 		update_nearby_tiles()
-
-/obj/effect/energy_field/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
-	//Purpose: Determines if the object (or airflow) can pass this atom.
-	//Called by: Movement, airflow.
-	//Inputs: The moving atom (optional), target turf, "height" and air group
-	//Outputs: Boolean if can pass.
-
-	//return (!density || !height || air_group)
-	return !density
 
 /obj/effect/energy_field/update_icon(var/update_neightbors = 0)
 	overlays.Cut()

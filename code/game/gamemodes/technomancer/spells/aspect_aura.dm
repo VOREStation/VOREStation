@@ -44,10 +44,10 @@
 /obj/item/weapon/spell/aura/New()
 	..()
 	set_light(7, 4, l_color = glow_color)
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/spell/aura/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/weapon/spell/aura/process()
@@ -120,7 +120,7 @@
 			for(var/mob/living/carbon/human/H in nearby_mobs) //Heal our apprentices
 				if(H.mind && technomancers.is_antagonist(H.mind))
 					mobs_to_heal |= H
-			for(var/mob/living/simple_animal/hostile/SAH in nearby_mobs) //Heal our controlled mobs
+			for(var/mob/living/simple_mob/hostile/SAH in nearby_mobs) //Heal our controlled mobs
 				if(owner in SAH.friends)
 					mobs_to_heal |= SAH
 		else

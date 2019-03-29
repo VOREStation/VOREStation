@@ -1,5 +1,5 @@
 // Simple animal nanogoopeyness
-/mob/living/simple_animal/protean_blob
+/mob/living/simple_mob/protean_blob
 	name = "protean blob"
 	desc = "Some sort of big viscous pool of jelly."
 	tt_desc = "Animated nanogoop"
@@ -12,8 +12,9 @@
 	faction = "neutral"
 	maxHealth = 200
 	health = 200
+	say_list_type = /datum/say_list/protean_blob
 
-	ai_inactive = TRUE //Always off
+	// ai_inactive = TRUE //Always off //VORESTATION AI TEMPORARY REMOVAL
 	show_stat_health = FALSE //We will do it ourselves
 
 	response_help = "pats the"
@@ -36,11 +37,6 @@
 	minbodytemp = 0
 	maxbodytemp = 900
 
-	speak_chance = 1
-	speak = list("Blrb?","Sqrsh.","Glrsh!")
-	emote_hear = list("squishes softly","spluts quietly","makes wet noises")
-	emote_see = list("shifts wetly","undulates placidly")
-
 	var/mob/living/carbon/human/humanform
 	var/obj/item/organ/internal/nano/refactory/refactory
 	var/datum/modifier/healing
@@ -52,8 +48,13 @@
 
 	can_buckle = TRUE //Blobsurfing
 
+/datum/say_list/protean_blob
+	speak = list("Blrb?","Sqrsh.","Glrsh!")
+	emote_hear = list("squishes softly","spluts quietly","makes wet noises")
+	emote_see = list("shifts wetly","undulates placidly")
+
 //Constructor allows passing the human to sync damages
-/mob/living/simple_animal/protean_blob/New(var/newloc, var/mob/living/carbon/human/H)
+/mob/living/simple_mob/protean_blob/New(var/newloc, var/mob/living/carbon/human/H)
 	..()
 	if(H)
 		humanform = H
@@ -64,7 +65,7 @@
 	else
 		update_icon()
 
-/mob/living/simple_animal/protean_blob/Destroy()
+/mob/living/simple_mob/protean_blob/Destroy()
 	humanform = null
 	refactory = null
 	vore_organs = null
@@ -73,15 +74,15 @@
 		healing.expire()
 	return ..()
 
-/mob/living/simple_animal/protean_blob/init_vore()
+/mob/living/simple_mob/protean_blob/init_vore()
 	return //Don't make a random belly, don't waste your time
 
-/mob/living/simple_animal/protean_blob/Stat()
+/mob/living/simple_mob/protean_blob/Stat()
 	..()
 	if(humanform)
 		humanform.species.Stat(humanform)
 
-/mob/living/simple_animal/protean_blob/update_icon()
+/mob/living/simple_mob/protean_blob/update_icon()
 	if(humanform)
 		//Still have a refactory
 		if(istype(refactory))
@@ -97,7 +98,7 @@
 
 	..()
 
-/mob/living/simple_animal/protean_blob/updatehealth()
+/mob/living/simple_mob/protean_blob/updatehealth()
 	if(humanform)
 		//Set the max
 		maxHealth = humanform.getMaxHealth()*2 //HUMANS, and their 'double health', bleh.
@@ -136,19 +137,19 @@
 	else
 		..()
 
-/mob/living/simple_animal/protean_blob/adjustBruteLoss(var/amount)
+/mob/living/simple_mob/protean_blob/adjustBruteLoss(var/amount)
 	if(humanform)
 		humanform.adjustBruteLoss(amount)
 	else
 		..()
 
-/mob/living/simple_animal/protean_blob/adjustFireLoss(var/amount)
+/mob/living/simple_mob/protean_blob/adjustFireLoss(var/amount)
 	if(humanform)
 		humanform.adjustFireLoss(amount)
 	else
 		..()
 
-/mob/living/simple_animal/protean_blob/death(gibbed, deathmessage = "dissolves away, leaving only a few spare parts!")
+/mob/living/simple_mob/protean_blob/death(gibbed, deathmessage = "dissolves away, leaving only a few spare parts!")
 	if(humanform)
 		humanform.death(gibbed = gibbed)
 		for(var/organ in humanform.internal_organs)
@@ -168,7 +169,7 @@
 
 	..()
 
-/mob/living/simple_animal/protean_blob/Life()
+/mob/living/simple_mob/protean_blob/Life()
 	. = ..()
 	if(. && istype(refactory) && humanform)
 		if(!healing && health < maxHealth && refactory.get_stored_material(DEFAULT_WALL_MATERIAL) >= 100)
@@ -177,7 +178,7 @@
 			healing.expire()
 			healing = null
 
-/mob/living/simple_animal/protean_blob/lay_down()
+/mob/living/simple_mob/protean_blob/lay_down()
 	..()
 	if(resting)
 		animate(src,alpha = 40,time = 1 SECOND)
@@ -199,7 +200,7 @@
 					target.forceMove(vore_selected)
 					to_chat(target,"<span class='warning'>\The [src] quickly engulfs you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
 
-/mob/living/simple_animal/protean_blob/DoPunch(var/atom/A)
+/mob/living/simple_mob/protean_blob/attack_hand(var/atom/A) //VORESTATION AI TEMPORARY REMOVAL (Marking this as such even though it was an edit.)
 	if(refactory && istype(A,/obj/item/stack/material))
 		var/obj/item/stack/material/S = A
 		var/substance = S.material.name
@@ -214,7 +215,7 @@
 	else
 		return ..()
 
-/mob/living/simple_animal/protean_blob/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple_mob/protean_blob/attackby(var/obj/item/O, var/mob/user)
 	if(refactory && istype(O,/obj/item/stack/material))
 		var/obj/item/stack/material/S = O
 		var/substance = S.material.name
@@ -229,7 +230,7 @@
 	else
 		return ..()
 
-/mob/living/simple_animal/protean_blob/MouseEntered(location,control,params)
+/mob/living/simple_mob/protean_blob/MouseEntered(location,control,params)
 	if(resting)
 		return
 	..()
@@ -251,12 +252,12 @@
 	var/atom/creation_spot = drop_location()
 
 	//Create our new blob
-	var/mob/living/simple_animal/protean_blob/blob = new(creation_spot,src)
+	var/mob/living/simple_mob/protean_blob/blob = new(creation_spot,src)
 
 	//Drop all our things
 	var/list/things_to_drop = contents.Copy()
 	var/list/things_to_not_drop = list(w_uniform,nif,l_store,r_store,wear_id,l_ear,r_ear) //And whatever else we decide for balancing.
-	
+
 	/* No for now, because insta-pepperspray or flash on unblob
 	if(l_hand && l_hand.w_class <= ITEMSIZE_SMALL) //Hands but only if small or smaller
 		things_to_not_drop += l_hand
@@ -267,7 +268,7 @@
 	things_to_drop -= things_to_not_drop //Crunch the lists
 	things_to_drop -= organs //Mah armbs
 	things_to_drop -= internal_organs //Mah sqeedily spooch
-	
+
 	for(var/obj/item/I in things_to_drop) //rip hoarders
 		drop_from_inventory(I)
 
@@ -289,7 +290,7 @@
 	temporary_form = blob
 
 	//Mail them to nullspace
-	forceMove(null)
+	moveToNullspace()
 
 	//Message
 	blob.visible_message("<b>[src.name]</b> collapses into a gooey blob!")
@@ -316,7 +317,7 @@
 		if(istype(I, /obj/item/weapon/holder))
 			root.remove_from_mob(I)
 
-/mob/living/carbon/human/proc/nano_outofblob(var/mob/living/simple_animal/protean_blob/blob)
+/mob/living/carbon/human/proc/nano_outofblob(var/mob/living/simple_mob/protean_blob/blob)
 	if(!istype(blob))
 		return
 	if(buckled)

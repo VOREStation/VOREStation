@@ -3,7 +3,6 @@
 	icon = 'icons/obj/robot_parts.dmi'
 	item_state = "buildpipe"
 	icon_state = "blank"
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	var/list/part = null // Order of args is important for installing robolimbs.
 	var/sabotaged = 0 //Emagging limbs can have repercussions when installed as prosthetics.
@@ -275,13 +274,6 @@
 				add_flashes(W,user)
 		else
 			add_flashes(W,user)
-	else if(istype(W, /obj/item/weapon/stock_parts/manipulator))
-		to_chat(user, "<span class='notice'>You install some manipulators and modify the head, creating a functional spider-bot!</span>")
-		new /mob/living/simple_animal/spiderbot(get_turf(loc))
-		user.drop_item()
-		qdel(W)
-		qdel(src)
-		return
 	return
 
 /obj/item/robot_parts/head/proc/add_flashes(obj/item/W as obj, mob/user as mob) //Made into a seperate proc to avoid copypasta

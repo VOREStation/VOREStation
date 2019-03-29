@@ -149,7 +149,7 @@
 	if (url != targetURL || abs(targetStartTime - start_time) > 1 || abs(targetVolume - source_volume) > 0.1 /* 10% */)
 		url = targetURL
 		start_time = targetStartTime
-		source_volume = Clamp(targetVolume, 0, 1)
+		source_volume = CLAMP(targetVolume, 0, 1)
 		send_update()
 
 /datum/media_manager/proc/stop_music()

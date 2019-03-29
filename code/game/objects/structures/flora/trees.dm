@@ -13,6 +13,15 @@
 	var/obj/item/stack/material/product = null	// What you get when chopping this tree down.  Generally it will be a type of wood.
 	var/product_amount = 10 // How much of a stack you get, if the above is defined.
 	var/is_stump = FALSE // If true, suspends damage tracking and most other effects.
+	var/indestructable = FALSE // If true, the tree cannot die.
+
+/obj/structure/flora/tree/Initialize()
+	icon_state = choose_icon_state()
+	return ..()
+
+// Override this for special icons.
+/obj/structure/flora/tree/proc/choose_icon_state()
+	return icon_state
 
 /obj/structure/flora/tree/attackby(var/obj/item/weapon/W, var/mob/living/user)
 	if(!istype(W))
@@ -35,7 +44,7 @@
 			playsound(get_turf(src), 'sound/effects/woodcutting.ogg', 50, 1)
 		else
 			playsound(get_turf(src), W.hitsound, 50, 1)
-		if(damage_to_do > 5)
+		if(damage_to_do > 5 && !indestructable)
 			adjust_health(-damage_to_do)
 		else
 			to_chat(user, "<span class='warning'>\The [W] is ineffective at harming \the [src].</span>")
@@ -53,7 +62,7 @@
 
 // Used when the tree gets hurt.
 /obj/structure/flora/tree/proc/adjust_health(var/amount, var/damage_wood = FALSE)
-	if(is_stump)
+	if(is_stump || indestructable)
 		return
 
 	// Bullets and lasers ruin some of the wood
@@ -68,7 +77,7 @@
 
 // Called when the tree loses all health, for whatever reason.
 /obj/structure/flora/tree/proc/die()
-	if(is_stump)
+	if(is_stump || indestructable)
 		return
 
 	if(product && product_amount) // Make wooden logs.
@@ -122,9 +131,8 @@
 	product = /obj/item/stack/material/log
 	shake_animation_degrees = 3
 
-/obj/structure/flora/tree/pine/New()
-	..()
-	icon_state = "[base_state]_[rand(1, 3)]"
+/obj/structure/flora/tree/pine/choose_icon_state()
+	return "[base_state]_[rand(1, 3)]"
 
 
 /obj/structure/flora/tree/pine/xmas
@@ -132,9 +140,30 @@
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "pine_c"
 
-/obj/structure/flora/tree/pine/xmas/New()
-	..()
-	icon_state = "pine_c"
+/obj/structure/flora/tree/pine/xmas/presents
+	icon_state = "pinepresents"
+	desc = "A wondrous decorated Christmas tree. It has presents!"
+	indestructable = TRUE
+	var/gift_type = /obj/item/weapon/a_gift
+	var/list/ckeys_that_took = list()
+
+/obj/structure/flora/tree/pine/xmas/presents/choose_icon_state()
+	return "pinepresents"
+
+/obj/structure/flora/tree/pine/xmas/presents/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
+	if(!user.ckey)
+		return
+
+	if(ckeys_that_took[user.ckey])
+		to_chat(user, span("warning", "There are no presents with your name on."))
+		return
+	to_chat(user, span("notice", "After a bit of rummaging, you locate a gift with your name on it!"))
+	ckeys_that_took[user.ckey] = TRUE
+	var/obj/item/G = new gift_type(src)
+	user.put_in_hands(G)
 
 // Palm trees
 
@@ -148,9 +177,8 @@
 	max_health = 200
 	pixel_x = 0
 
-/obj/structure/flora/tree/palm/New()
-	..()
-	icon_state = "[base_state][rand(1, 2)]"
+/obj/structure/flora/tree/palm/choose_icon_state()
+	return "[base_state][rand(1, 2)]"
 
 
 // Dead trees
@@ -164,9 +192,8 @@
 	health = 200
 	max_health = 200
 
-/obj/structure/flora/tree/dead/New()
-	..()
-	icon_state = "[base_state]_[rand(1, 6)]"
+/obj/structure/flora/tree/dead/choose_icon_state()
+	return "[base_state]_[rand(1, 6)]"
 
 // Small jungle trees
 
@@ -180,9 +207,8 @@
 	max_health = 400
 	pixel_x = -32
 
-/obj/structure/flora/tree/jungle_small/New()
-	..()
-	icon_state = "[base_state][rand(1, 6)]"
+/obj/structure/flora/tree/jungle_small/choose_icon_state()
+	return "[base_state][rand(1, 6)]"
 
 // Big jungle trees
 
@@ -198,9 +224,8 @@
 	pixel_y = -16
 	shake_animation_degrees = 2
 
-/obj/structure/flora/tree/jungle/New()
-	..()
-	icon_state = "[base_state][rand(1, 6)]"
+/obj/structure/flora/tree/jungle/choose_icon_state()
+	return "[base_state][rand(1, 6)]"
 
 // Sif trees
 
@@ -212,11 +237,12 @@
 	base_state = "tree_sif"
 	product = /obj/item/stack/material/log/sif
 
-/obj/structure/flora/tree/sif/New()
+/obj/structure/flora/tree/sif/Initialize()
 	update_icon()
+	return ..()
 
 /obj/structure/flora/tree/sif/update_icon()
 	set_light(5, 1, "#33ccff")
-	var/image/glow = image(icon = 'icons/obj/flora/deadtrees.dmi', icon_state = "[icon_state]_glow")
+	var/image/glow = image(icon = 'icons/obj/flora/deadtrees.dmi', icon_state = "[base_state]_glow")
 	glow.plane = PLANE_LIGHTING_ABOVE
 	overlays = list(glow)

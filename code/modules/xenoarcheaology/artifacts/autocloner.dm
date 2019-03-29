@@ -21,25 +21,24 @@
 
 	//33% chance to spawn nasties
 	if(prob(33))
-		spawn_type = pick(\
-		/mob/living/simple_animal/hostile/giant_spider/nurse,\
-		/mob/living/simple_animal/hostile/alien,\
-		/mob/living/simple_animal/hostile/bear,\
-		/mob/living/simple_animal/hostile/carp,\
-		/mob/living/simple_animal/hostile/creature\
-		) // Vorestation Edits
+		spawn_type = pick(
+		/mob/living/simple_mob/animal/giant_spider/nurse,
+		/mob/living/simple_mob/animal/space/alien,
+		/mob/living/simple_mob/animal/space/bear,
+		/mob/living/simple_mob/creature,
+		/mob/living/simple_mob/slime/xenobio,
+		/mob/living/simple_mob/animal/space/carp)// Vorestation edit
 	else
 		spawn_type = pick(\
-		/mob/living/simple_animal/cat,
-		/mob/living/simple_animal/corgi,
-		/mob/living/simple_animal/corgi/puppy,
-		/mob/living/simple_animal/chicken,
-		/mob/living/simple_animal/cow,
-		/mob/living/simple_animal/parrot,
-		/mob/living/simple_animal/slime,
-		/mob/living/simple_animal/crab,
-		/mob/living/simple_animal/mouse,
-		/mob/living/simple_animal/retaliate/goat)
+		/mob/living/simple_mob/animal/passive/cat,
+		/mob/living/simple_mob/animal/passive/dog/corgi,
+		/mob/living/simple_mob/animal/passive/dog/corgi/puppy,
+		/mob/living/simple_mob/animal/passive/chicken,
+		/mob/living/simple_mob/animal/passive/cow,
+		/mob/living/simple_mob/animal/passive/bird/parrot,
+		/mob/living/simple_mob/animal/passive/crab,
+		/mob/living/simple_mob/animal/passive/mouse,
+		/mob/living/simple_mob/animal/goat)
 
 //todo: how the hell is the asteroid permanently powered?
 /obj/machinery/auto_cloner/process()

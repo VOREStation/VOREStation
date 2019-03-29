@@ -33,15 +33,16 @@
 	var/transferlocation					// Location that the prey is released if they struggle and get dropped off.
 	var/release_sound = TRUE				// Boolean for now, maybe replace with something else later
 	var/mode_flags = 0						// Stripping, numbing, etc.
-	var/cont_flavor = "Generic"				// Selected contamination mode.
 
 	//I don't think we've ever altered these lists. making them static until someone actually overrides them somewhere.
 	//Actual full digest modes
 	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ABSORB,DM_DRAIN,DM_UNABSORB,DM_HEAL,DM_SHRINK,DM_GROW,DM_SIZE_STEAL)
 	//Digest mode addon flags
-	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Itemweak" = DM_FLAG_ITEMWEAK, "Stripping" = DM_FLAG_STRIPPING)
+	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Stripping" = DM_FLAG_STRIPPING)
 	//Transformation modes
 	var/tmp/static/list/transform_modes = list(DM_TRANSFORM_MALE,DM_TRANSFORM_FEMALE,DM_TRANSFORM_KEEP_GENDER,DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR,DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG,DM_TRANSFORM_REPLICA,DM_TRANSFORM_REPLICA_EGG,DM_TRANSFORM_KEEP_GENDER_EGG,DM_TRANSFORM_MALE_EGG,DM_TRANSFORM_FEMALE_EGG, DM_EGG)
+	//Item related modes
+	var/tmp/static/list/item_digest_modes = list(IM_HOLD,IM_DIGEST_FOOD,IM_DIGEST)
 
 	//List of slots that stripping handles strips
 	var/tmp/static/list/slots = list(slot_back,slot_handcuffed,slot_l_store,slot_r_store,slot_wear_mask,slot_l_hand,slot_r_hand,slot_wear_id,slot_glasses,slot_gloves,slot_head,slot_shoes,slot_belt,slot_wear_suit,slot_w_uniform,slot_s_store,slot_l_ear,slot_r_ear)
@@ -103,6 +104,11 @@
 		"They have something solid in their %belly!",
 		"It looks like they have something in their %belly!")
 
+	var/item_digest_mode = IM_DIGEST_FOOD	// Current item-related mode from item_digest_modes
+	var/contaminates = TRUE					// Whether the belly will contaminate stuff
+	var/contamination_flavor = "Generic"	// Determines descriptions of contaminated items
+	var/contamination_color = "green"		// Color of contamination overlay
+
 	//Mostly for being overridden on precreated bellies on mobs. Could be VV'd into
 	//a carbon's belly if someone really wanted. No UI for carbons to adjust this.
 	//List has indexes that are the digestion mode strings, and keys that are lists of strings.
@@ -138,7 +144,10 @@
 		"examine_messages",
 		"emote_lists",
 		"mode_flags",
-		"cont_flavor"
+		"item_digest_mode",
+		"contaminates",
+		"contamination_flavor",
+		"contamination_color"
 		)
 
 /obj/belly/New(var/newloc)
@@ -373,8 +382,11 @@
 				var/obj/item/I = M.get_equipped_item(slot = slot)
 				if(I)
 					M.unEquip(I,force = TRUE)
-					I.gurgle_contaminate(contents, cont_flavor) //We do an initial contamination pass to get stuff like IDs wet.
-					if(mode_flags & DM_FLAG_ITEMWEAK)
+					if(contaminates || istype(I,/obj/item/weapon/card/id))
+						I.gurgle_contaminate(contents, contamination_flavor, contamination_color) //We do an initial contamination pass to get stuff like IDs wet.
+					if(item_digest_mode == IM_HOLD)
+						items_preserved |= I
+					else if(item_digest_mode == IM_DIGEST_FOOD && !(istype(I,/obj/item/weapon/reagent_containers/food) || istype(I,/obj/item/organ)))
 						items_preserved |= I
 
 	//Reagent transfer
@@ -580,9 +592,11 @@
 	content.forceMove(target)
 	if(isitem(content))
 		var/obj/item/I = content
-		if(I.gurgled && (target.mode_flags & DM_FLAG_ITEMWEAK))
+		if(istype(I,/obj/item/weapon/card/id))
+			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
+		if(I.gurgled && target.contaminates)
 			I.decontaminate()
-			I.gurgle_contaminate(target.contents, target.cont_flavor)
+			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
 	items_preserved -= content
 	if(!silent && target.vore_sound && !recent_sound)
 		var/soundfile = vore_sounds[target.vore_sound]
@@ -619,7 +633,10 @@
 	dupe.bulge_size = bulge_size
 	dupe.shrink_grow_size = shrink_grow_size
 	dupe.mode_flags = mode_flags
-	dupe.cont_flavor = cont_flavor
+	dupe.item_digest_mode = item_digest_mode
+	dupe.contaminates = contaminates
+	dupe.contamination_flavor = contamination_flavor
+	dupe.contamination_color = contamination_color
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings

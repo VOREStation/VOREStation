@@ -71,11 +71,16 @@
 			id = null
 	. = ..()
 
+/obj/item/weapon/card/id
+	var/lost_access = list()
+
 /obj/item/weapon/card/id/digest_act(var/atom/movable/item_storage = null)
 	desc = "A partially digested card that has seen better days. The damage appears to be only cosmetic, but the access codes need to be reprogrammed at the HoP office."
 	icon = 'icons/obj/card_vr.dmi'
 	icon_state = "[initial(icon_state)]_digested"
-	access = list() // No access
+	if(!(LAZYLEN(lost_access)) && LAZYLEN(access))
+		lost_access = access	//Do not forget what access we lose
+	access = list()			// Then lose it
 	return FALSE
 
 /obj/item/weapon/reagent_containers/food/digest_act(var/atom/movable/item_storage = null)

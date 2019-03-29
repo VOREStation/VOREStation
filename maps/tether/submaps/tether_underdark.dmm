@@ -13,9 +13,6 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/mine/explored/underdark)
 "b" = (
-/obj/tether_away_spawner/shadekin{
-	faction = "underdark"
-	},
 /turf/simulated/mineral/floor/virgo3b,
 /area/mine/explored/underdark)
 "c" = (

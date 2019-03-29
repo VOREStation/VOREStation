@@ -1,8 +1,8 @@
 /obj/item/voice_changer
 	name = "voice changer"
 	desc = "A voice scrambling module. If you can see this, report it as a bug on the tracker."
-	var/voice //If set and item is present in mask/suit, this name will be used for the wearer's speech.
-	var/active
+	var/voice = null //If set and item is present in mask/suit, this name will be used for the wearer's speech.
+	var/active = TRUE
 
 /obj/item/clothing/mask/gas/voice
 	name = "gas mask"
@@ -15,7 +15,7 @@
 	set src in usr
 
 	changer.active = !changer.active
-	usr << "<span class='notice'>You [changer.active ? "enable" : "disable"] the voice-changing module in \the [src].</span>"
+	to_chat(usr, "<span class='notice'>You [changer.active ? "enable" : "disable"] the voice-changing module in \the [src].</span>")
 
 /obj/item/clothing/mask/gas/voice/verb/Set_Voice(name as text)
 	set category = "Object"
@@ -24,7 +24,14 @@
 	var/voice = sanitize(name, MAX_NAME_LEN)
 	if(!voice || !length(voice)) return
 	changer.voice = voice
-	usr << "<span class='notice'>You are now mimicking <B>[changer.voice]</B>.</span>"
+	to_chat(usr, "<span class='notice'>You are now mimicking <B>[changer.voice]</B>.</span>")
+
+/obj/item/clothing/mask/gas/voice/verb/Reset_Voice()
+	set category = "Object"
+	set src in usr
+
+	changer.voice = null
+	to_chat(usr, "<span class='notice'>You have reset your voice changer's mimicry feature.</span>")
 
 /obj/item/clothing/mask/gas/voice/New()
 	..()

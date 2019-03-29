@@ -7,7 +7,7 @@
 
 	circuit = /obj/item/weapon/circuitboard/fusion_fuel_compressor
 
-/obj/machinery/fusion_fuel_compressor/initialize()
+/obj/machinery/fusion_fuel_compressor/Initialize()
 	. = ..()
 	default_apply_parts()
 

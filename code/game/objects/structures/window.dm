@@ -3,6 +3,7 @@
 	desc = "A window."
 	icon = 'icons/obj/structures_vr.dmi' // VOREStation Edit - New icons
 	density = 1
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	w_class = ITEMSIZE_NORMAL
 
 	layer = WINDOW_LAYER
@@ -21,29 +22,30 @@
 	var/shardtype = /obj/item/weapon/material/shard
 	var/glasstype = null // Set this in subtypes. Null is assumed strange or otherwise impossible to dismantle, such as for shuttle glass.
 	var/silicate = 0 // number of units of silicate
+	var/fulltile = FALSE // Set to true on full-tile variants.
 
 /obj/structure/window/examine(mob/user)
 	. = ..(user)
 
 	if(health == maxhealth)
-		user << "<span class='notice'>It looks fully intact.</span>"
+		to_chat(user, "<span class='notice'>It looks fully intact.</span>")
 	else
 		var/perc = health / maxhealth
 		if(perc > 0.75)
-			user << "<span class='notice'>It has a few cracks.</span>"
+			to_chat(user, "<span class='notice'>It has a few cracks.</span>")
 		else if(perc > 0.5)
-			user << "<span class='warning'>It looks slightly damaged.</span>"
+			to_chat(user, "<span class='warning'>It looks slightly damaged.</span>")
 		else if(perc > 0.25)
-			user << "<span class='warning'>It looks moderately damaged.</span>"
+			to_chat(user, "<span class='warning'>It looks moderately damaged.</span>")
 		else
-			user << "<span class='danger'>It looks heavily damaged.</span>"
+			to_chat(user, "<span class='danger'>It looks heavily damaged.</span>")
 	if(silicate)
 		if (silicate < 30)
-			user << "<span class='notice'>It has a thin layer of silicate.</span>"
+			to_chat(user, "<span class='notice'>It has a thin layer of silicate.</span>")
 		else if (silicate < 70)
-			user << "<span class='notice'>It is covered in silicate.</span>"
+			to_chat(user, "<span class='notice'>It is covered in silicate.</span>")
 		else
-			user << "<span class='notice'>There is a thick layer of silicate covering it.</span>"
+			to_chat(user, "<span class='notice'>There is a thick layer of silicate covering it.</span>")
 
 /obj/structure/window/proc/take_damage(var/damage = 0,  var/sound_effect = 1)
 	var/initialhealth = health
@@ -128,22 +130,21 @@
 /obj/structure/window/blob_act()
 	take_damage(50)
 
-//TODO: Make full windows a separate type of window.
-//Once a full window, it will always be a full window, so there's no point
-//having the same type for both.
-/obj/structure/window/proc/is_full_window()
-	return (dir == SOUTHWEST || dir == SOUTHEAST || dir == NORTHWEST || dir == NORTHEAST)
-
-/obj/structure/window/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/structure/window/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
-		return 1
-	if(is_full_window())
-		return 0	//full tile window, you can't move into it!
-	if(get_dir(loc, target) & dir)
+		return TRUE
+	if(is_fulltile())
+		return FALSE	//full tile window, you can't move into it!
+	if((get_dir(loc, target) & dir) || (get_dir(mover, target) == turn(dir, 180)))
 		return !density
 	else
-		return 1
+		return TRUE
 
+
+/obj/structure/window/CanZASPass(turf/T, is_zone)
+	if(is_fulltile() || get_dir(T, loc) == turn(dir, 180)) // Make sure we're handling the border correctly.
+		return anchored ? ATMOS_PASS_NO : ATMOS_PASS_YES // If it's anchored, it'll block air.
+	return ATMOS_PASS_YES // Don't stop airflow from the other sides.
 
 /obj/structure/window/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSGLASS))
@@ -151,7 +152,6 @@
 	if(get_dir(O.loc, target) == dir)
 		return 0
 	return 1
-
 
 /obj/structure/window/hitby(AM as mob|obj)
 	..()
@@ -206,7 +206,7 @@
 	user.setClickCooldown(user.get_attack_speed())
 	if(!damage)
 		return
-	if(damage >= 10)
+	if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
 		visible_message("<span class='danger'>[user] smashes into [src]!</span>")
 		if(reinf)
 			damage = damage / 2
@@ -267,26 +267,26 @@
 			state = 3 - state
 			update_nearby_icons()
 			playsound(src, W.usesound, 75, 1)
-			user << (state == 1 ? "<span class='notice'>You have unfastened the window from the frame.</span>" : "<span class='notice'>You have fastened the window to the frame.</span>")
+			to_chat(user, "<span class='notice'>You have [state ? "un" : ""]fastened the window [state ? "from" : "to"] the frame.</span>")
 		else if(reinf && state == 0)
 			anchored = !anchored
 			update_nearby_icons()
 			update_verbs()
 			playsound(src, W.usesound, 75, 1)
-			user << (anchored ? "<span class='notice'>You have fastened the frame to the floor.</span>" : "<span class='notice'>You have unfastened the frame from the floor.</span>")
+			to_chat(user, "<span class='notice'>You have [anchored ? "" : "un"]fastened the frame [anchored ? "to" : "from"] the floor.</span>")
 		else if(!reinf)
 			anchored = !anchored
 			update_nearby_icons()
 			update_verbs()
 			playsound(src, W.usesound, 75, 1)
-			user << (anchored ? "<span class='notice'>You have fastened the window to the floor.</span>" : "<span class='notice'>You have unfastened the window.</span>")
+			to_chat(user, "<span class='notice'>You have [anchored ? "" : "un"]fastened the window [anchored ? "to" : "from"] the floor.</span>")
 	else if(W.is_crowbar() && reinf && state <= 1)
 		state = 1 - state
 		playsound(src, W.usesound, 75, 1)
-		user << (state ? "<span class='notice'>You have pried the window into the frame.</span>" : "<span class='notice'>You have pried the window out of the frame.</span>")
+		to_chat(user, "<span class='notice'>You have pried the window [state ? "into" : "out of"] the frame.</span>")
 	else if(W.is_wrench() && !anchored && (!state || !reinf))
 		if(!glasstype)
-			user << "<span class='notice'>You're not sure how to dismantle \the [src] properly.</span>"
+			to_chat(user, "<span class='notice'>You're not sure how to dismantle \the [src] properly.</span>")
 		else
 			playsound(src, W.usesound, 75, 1)
 			visible_message("<span class='notice'>[user] dismantles \the [src].</span>")
@@ -305,6 +305,10 @@
 			if(do_after(user, 20 * C.toolspeed, src) && state == 0)
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				var/obj/structure/window/reinforced/polarized/P = new(loc, dir)
+				if(is_fulltile())
+					P.fulltile = TRUE
+					P.icon_state = "fwindow"
+				P.maxhealth = maxhealth
 				P.health = health
 				P.state = state
 				P.anchored = anchored
@@ -334,8 +338,8 @@
 	return
 
 
-/obj/structure/window/proc/rotate()
-	set name = "Rotate Window Counter-Clockwise"
+/obj/structure/window/verb/rotate_counterclockwise()
+	set name = "Rotate Window Counterclockwise"
 	set category = "Object"
 	set src in oview(1)
 
@@ -346,17 +350,17 @@
 		return 0
 
 	if(anchored)
-		usr << "It is fastened to the floor therefore you can't rotate it!"
+		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
 		return 0
 
 	update_nearby_tiles(need_rebuild=1) //Compel updates before
-	set_dir(turn(dir, 90))
+	src.set_dir(turn(src.dir, 90))
 	updateSilicate()
 	update_nearby_tiles(need_rebuild=1)
 	return
 
 
-/obj/structure/window/proc/revrotate()
+/obj/structure/window/verb/rotate_clockwise()
 	set name = "Rotate Window Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -368,11 +372,11 @@
 		return 0
 
 	if(anchored)
-		usr << "It is fastened to the floor therefore you can't rotate it!"
+		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
 		return 0
 
 	update_nearby_tiles(need_rebuild=1) //Compel updates before
-	set_dir(turn(dir, 270))
+	src.set_dir(turn(src.dir, 270))
 	updateSilicate()
 	update_nearby_tiles(need_rebuild=1)
 	return
@@ -388,8 +392,6 @@
 		anchored = 0
 		state = 0
 		update_verbs()
-		if(is_fulltile())
-			maxhealth *= 2
 
 	health = maxhealth
 
@@ -416,9 +418,7 @@
 
 //checks if this window is full-tile one
 /obj/structure/window/proc/is_fulltile()
-	if(dir & (dir - 1))
-		return 1
-	return 0
+	return fulltile
 
 //This proc is used to update the icons of nearby windows. It should not be confused with update_nearby_tiles(), which is an atmos proc!
 /obj/structure/window/proc/update_nearby_icons()
@@ -429,11 +429,11 @@
 //Updates the availabiliy of the rotation verbs
 /obj/structure/window/proc/update_verbs()
 	if(anchored || is_fulltile())
-		verbs -= /obj/structure/window/proc/rotate
-		verbs -= /obj/structure/window/proc/revrotate
+		verbs -= /obj/structure/window/verb/rotate_counterclockwise
+		verbs -= /obj/structure/window/verb/rotate_clockwise
 	else if(!is_fulltile())
-		verbs += /obj/structure/window/proc/rotate
-		verbs += /obj/structure/window/proc/revrotate
+		verbs += /obj/structure/window/verb/rotate_counterclockwise
+		verbs += /obj/structure/window/verb/rotate_clockwise
 
 //merges adjacent full-tile windows into one (blatant ripoff from game/smoothwall.dm)
 /obj/structure/window/update_icon()
@@ -458,7 +458,7 @@
 
 	// Damage overlays.
 	var/ratio = health / maxhealth
-	ratio = Ceiling(ratio * 4) * 25
+	ratio = CEILING(ratio * 4, 1) * 25
 
 	if(ratio > 75)
 		return
@@ -484,6 +484,10 @@
 	maxhealth = 12.0
 	force_threshold = 3
 
+/obj/structure/window/basic/full
+	maxhealth = 24
+	fulltile = TRUE
+
 /obj/structure/window/phoronbasic
 	name = "phoron window"
 	desc = "A borosilicate alloy window. It seems to be quite strong."
@@ -497,8 +501,8 @@
 	force_threshold = 5
 
 /obj/structure/window/phoronbasic/full
-	dir = SOUTHWEST
 	maxhealth = 80
+	fulltile = TRUE
 
 /obj/structure/window/phoronreinforced
 	name = "reinforced borosilicate window"
@@ -514,8 +518,8 @@
 	force_threshold = 10
 
 /obj/structure/window/phoronreinforced/full
-	dir = SOUTHWEST
 	maxhealth = 160
+	fulltile = TRUE
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
@@ -530,9 +534,9 @@
 	force_threshold = 6
 
 /obj/structure/window/reinforced/full
-	dir = SOUTHWEST
 	icon_state = "fwindow"
 	maxhealth = 80
+	fulltile = TRUE
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
@@ -567,9 +571,9 @@
 	var/id
 
 /obj/structure/window/reinforced/polarized/full
-	dir = SOUTHWEST
 	icon_state = "fwindow"
 	maxhealth = 80
+	fulltile = TRUE
 
 /obj/structure/window/reinforced/polarized/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/multitool) && !anchored) // Only allow programming if unanchored!

@@ -11,7 +11,7 @@
 	var/html = "<script> function togglesection(targetsection) { var targettext = document.getElementById(targetsection); if (targettext.style.display === 'none') { targettext.style.display = ''; } else { targettext.style.display = 'none'; } } </script>"
 
 	var/curID = 0
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		if(C.prefs && !C.prefs.show_in_directory)
 			continue
 		if(ishuman(C.mob))

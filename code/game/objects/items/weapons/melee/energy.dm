@@ -7,7 +7,7 @@
 	sharp = 0
 	edge = 0
 	armor_penetration = 50
-	flags = NOBLOODY
+	flags = NOCONDUCT | NOBLOODY
 	var/lrange = 2
 	var/lpower = 2
 	var/lcolor = "#0099FF"
@@ -82,7 +82,6 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
-	flags = CONDUCT | NOBLOODY
 	origin_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 4)
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	sharp = 1
@@ -233,11 +232,10 @@
 		playsound(get_turf(target), 'sound/weapons/blade1.ogg', 100, 1)
 
 		// Make lesser robots really mad at us.
-		if(istype(target, /mob/living/simple_animal))
-			var/mob/living/simple_animal/SA = target
-			if(SA.intelligence_level == SA_ROBOTIC)
-				SA.taunt(user)
-			SA.adjustFireLoss(force * 6) // 30 Burn, for 50 total.
+		if(target.mob_class & MOB_CLASS_SYNTHETIC)
+			if(target.has_AI())
+				target.taunt(user)
+			target.adjustFireLoss(force * 6) // 30 Burn, for 50 total.
 
 /*
  *Energy Blade
@@ -269,11 +267,11 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	set_light(lrange, lpower, lcolor)
 
 /obj/item/weapon/melee/energy/blade/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/weapon/melee/energy/blade/attack_self(mob/user as mob)

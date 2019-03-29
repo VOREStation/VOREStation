@@ -542,3 +542,7 @@ Drinks Data
 /datum/reagent/ethanol/ichor_mead
 	glass_icon_state = "ichor_meadglass"
 	glass_center_of_mass = list("x"=17, "y"=10)
+
+/datum/reagent/drink/eggnog
+	glass_icon_state = "eggnog"
+	glass_center_of_mass = list("x"=16, "y"=8)

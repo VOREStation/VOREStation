@@ -4,6 +4,7 @@
 	icon_state = "arcade"
 	icon_keyboard = null
 	icon_screen = "invaders"
+	clicksound = null	//Gets too spammy and makes no sense for arcade to have the console keyboard noise anyway
 	var/list/prizes = list(	/obj/item/weapon/storage/box/snappops			= 2,
 							/obj/item/toy/blink								= 2,
 							/obj/item/clothing/under/syndicate/tacticool	= 2,
@@ -139,7 +140,7 @@
 	data["enemyHP"] = enemy_hp
 	data["gameOver"] = gameover
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "arcade_battle.tmpl", src.name, 400, 300)
 		ui.set_initial_data(data)
@@ -201,7 +202,7 @@
 			emagged = 0
 
 	src.add_fingerprint(usr)
-	GLOB.nanomanager.update_uis(src)
+	SSnanoui.update_uis(src)
 	return
 
 /obj/machinery/computer/arcade/battle/proc/arcade_action()

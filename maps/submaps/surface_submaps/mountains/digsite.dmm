@@ -11,7 +11,7 @@
 "k" = (/obj/machinery/artifact,/obj/structure/anomaly_container,/turf/simulated/floor/tiled/kafel_full/yellow,/area/submap/cave/digsite)
 "l" = (/obj/structure/simple_door/sandstone,/turf/simulated/floor/tiled/kafel_full/yellow,/area/submap/cave/digsite)
 "m" = (/obj/structure/loot_pile/surface/alien,/turf/simulated/floor/tiled/kafel_full/yellow,/area/submap/cave/digsite)
-"n" = (/mob/living/simple_animal/tindalos,/turf/simulated/floor/tiled/kafel_full/yellow,/area/submap/cave/digsite)
+"n" = (/mob/living/simple_mob/animal/passive/tindalos,/turf/simulated/floor/tiled/kafel_full/yellow,/area/submap/cave/digsite)
 "o" = (/obj/structure/closet/crate/secure/loot,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/digsite)
 "p" = (/obj/item/weapon/ore,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/digsite)
 "q" = (/obj/effect/floor_decal/asteroid,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/digsite)
@@ -61,3 +61,4 @@ aaeeeeeeeeeeeeNeeeaa
 aaaaaeeeeeeeeeeeeaaa
 aaaaaaaaaaaaaaaaaaaa
 "}
+

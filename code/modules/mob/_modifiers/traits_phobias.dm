@@ -207,8 +207,8 @@
 		if(istype(thing, /obj/structure/snowman/spider)) //Snow spiders are also spooky so people can be assholes with those too.
 			fear_amount += 1
 
-		if(istype(thing, /mob/living/simple_animal/hostile/giant_spider)) // Actual giant spiders are the scariest of them all.
-			var/mob/living/simple_animal/hostile/giant_spider/S = thing
+		if(istype(thing, /mob/living/simple_mob/animal/giant_spider)) // Actual giant spiders are the scariest of them all.
+			var/mob/living/simple_mob/animal/giant_spider/S = thing
 			if(S.stat == DEAD) // Dead giant spiders are less scary than alive ones.
 				fear_amount += 4
 			else
@@ -425,14 +425,18 @@
 		if(istype(thing, /obj/item/clothing/head/collectable/slime)) // Some hats are spooky so people can be assholes with them.
 			fear_amount += 1
 
-		if(istype(thing, /mob/living/simple_animal/slime)) // An actual predatory specimen!
-			var/mob/living/simple_animal/slime/S = thing
+		if(istype(thing, /mob/living/simple_mob/slime)) // An actual predatory specimen!
+			var/mob/living/simple_mob/slime/S = thing
 			if(S.stat == DEAD) // Dead slimes are somewhat less spook.
 				fear_amount += 4
-			if(S.is_adult == TRUE) //big boy
-				fear_amount += 8
+			if(istype(S, /mob/living/simple_mob/slime/xenobio))
+				var/mob/living/simple_mob/slime/xenobio/X = S
+				if(X.is_adult == TRUE) //big boy
+					fear_amount += 8
+				else
+					fear_amount += 6
 			else
-				fear_amount += 6
+				fear_amount += 10 // It's huge and feral.
 
 		if(istype(thing, /mob/living/carbon/human))
 			var/mob/living/carbon/human/S = thing

@@ -8,7 +8,6 @@
 	name = "multitool"
 	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors."
 	icon_state = "multitool"
-	flags = CONDUCT
 	force = 5.0
 	w_class = ITEMSIZE_SMALL
 	throwforce = 5.0
@@ -18,20 +17,51 @@
 
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
 
+	var/mode_index = 1
+	var/toolmode = MULTITOOL_MODE_STANDARD
+	var/list/modes = list(MULTITOOL_MODE_STANDARD, MULTITOOL_MODE_INTCIRCUITS)
+
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 	var/obj/machinery/telecomms/buffer // simple machine buffer for device linkage
 	var/obj/machinery/clonepod/connecting //same for cryopod linkage
 	var/obj/machinery/connectable	//Used to connect machinery.
+	var/weakref_wiring //Used to store weak references for integrated circuitry. This is now the Omnitool.
 	toolspeed = 1
 
-/obj/item/device/multitool/attack_self(mob/user)
-	var/clear = alert("Do you want to clear the buffers on the [src]?",, "Yes", "No",)
-	if(clear == "Yes")
-		buffer = null
-		connecting = null
-		connectable = null
+/obj/item/device/multitool/attack_self(mob/living/user)
+	var/choice = alert("What do you want to do with \the [src]?","Multitool Menu", "Switch Mode", "Clear Buffers", "Cancel")
+	switch(choice)
+		if("Cancel")
+			to_chat(user,"<span class='notice'>You lower \the [src].</span>")
+			return
+		if("Clear Buffers")
+			to_chat(user,"<span class='notice'>You clear \the [src]'s memory.</span>")
+			buffer = null
+			connecting = null
+			connectable = null
+			weakref_wiring = null
+			accepting_refs = 0
+			if(toolmode == MULTITOOL_MODE_INTCIRCUITS)
+				accepting_refs = 1
+		if("Switch Mode")
+			mode_switch(user)
+
+	update_icon()
+
+	return ..()
+
+/obj/item/device/multitool/proc/mode_switch(mob/living/user)
+	if(++mode_index > modes.len) mode_index = 1
+
 	else
-		..()
+		mode_index++
+
+	toolmode = modes[mode_index]
+	to_chat(user,"<span class='notice'>\The [src] is now set to [toolmode].</span>")
+
+	accepting_refs = (toolmode == MULTITOOL_MODE_INTCIRCUITS)
+
+	return
 
 /obj/item/device/multitool/cyborg
 	name = "multitool"

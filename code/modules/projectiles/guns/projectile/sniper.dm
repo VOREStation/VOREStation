@@ -84,7 +84,7 @@
 	scoped_accuracy = 0
 //	requires_two_hands = 1
 //	one_handed_penalty = 60 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
-	fire_sound = 'sound/weapons/SVD_shot.ogg'
+	fire_sound = 'sound/weapons/Gunshot_SVD.ogg' // Has a very unique sound.
 	magazine_type = /obj/item/ammo_magazine/m762svd
 	allowed_magazines = list(/obj/item/ammo_magazine/m762svd)
 

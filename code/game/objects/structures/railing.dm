@@ -23,7 +23,7 @@
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
 
-/obj/structure/railing/initialize()
+/obj/structure/railing/Initialize()
 	. = ..()
 	if(src.anchored)
 		update_icon(0)
@@ -34,15 +34,12 @@
 	for(var/obj/structure/railing/R in orange(location, 1))
 		R.update_icon()
 
-/obj/structure/railing/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(!mover)
-		return 1
+/obj/structure/railing/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
-	if(get_dir(loc, target) == dir)
+		return TRUE
+	if(get_dir(mover, target) == turn(dir, 180))
 		return !density
-	else
-		return 1
+	return TRUE
 
 /obj/structure/railing/examine(mob/user)
 	. = ..()
@@ -126,7 +123,7 @@
 					if (WEST)
 						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_y = 32)
 
-/obj/structure/railing/verb/rotate()
+/obj/structure/railing/verb/rotate_counterclockwise()
 	set name = "Rotate Railing Counter-Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -141,11 +138,11 @@
 		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
 		return 0
 
-	set_dir(turn(dir, 90))
+	src.set_dir(turn(src.dir, 90))
 	update_icon()
 	return
 
-/obj/structure/railing/verb/revrotate()
+/obj/structure/railing/verb/rotate_clockwise()
 	set name = "Rotate Railing Clockwise"
 	set category = "Object"
 	set src in oview(1)
@@ -160,7 +157,7 @@
 		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
 		return 0
 
-	set_dir(turn(dir, -90))
+	src.set_dir(turn(src.dir, 270))
 	update_icon()
 	return
 

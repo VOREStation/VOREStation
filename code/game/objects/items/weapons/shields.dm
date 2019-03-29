@@ -58,7 +58,6 @@
 	desc = "A shield adept for close quarters engagement.  It's also capable of protecting from less powerful projectiles."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "riot"
-	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	force = 5.0
 	throwforce = 5.0
@@ -115,7 +114,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "eshield0" // eshield1 for expanded
 	slot_flags = SLOT_EARS
-	flags = CONDUCT
+	flags = NOCONDUCT
 	force = 3.0
 	throwforce = 5.0
 	throw_speed = 1

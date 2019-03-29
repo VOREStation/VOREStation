@@ -6,7 +6,7 @@
 	w_class = ITEMSIZE_SMALL
 	matter = list("glass" = 200)
 	flags = NOBLUDGEON
-	var/list/accept_mobs = list(/mob/living/simple_animal/lizard, /mob/living/simple_animal/mouse)
+	var/list/accept_mobs = list(/mob/living/simple_mob/animal/passive/lizard, /mob/living/simple_mob/animal/passive/mouse)
 	var/contains = 0 // 0 = nothing, 1 = money, 2 = animal, 3 = spiderling
 
 /obj/item/glass_jar/New()
@@ -34,7 +34,7 @@
 		var/obj/effect/spider/spiderling/S = A
 		user.visible_message("<span class='notice'>[user] scoops [S] into \the [src].</span>", "<span class='notice'>You scoop [S] into \the [src].</span>")
 		S.loc = src
-		processing_objects.Remove(S) // No growing inside jars
+		STOP_PROCESSING(SSobj, S) // No growing inside jars
 		contains = 3
 		update_icon()
 		return
@@ -59,7 +59,7 @@
 			for(var/obj/effect/spider/spiderling/S in src)
 				S.loc = user.loc
 				user.visible_message("<span class='notice'>[user] releases [S] from \the [src].</span>", "<span class='notice'>You release [S] from \the [src].</span>")
-				processing_objects.Add(S) // They can grow after being let out though
+				START_PROCESSING(SSobj, S) // They can grow after being let out though
 			contains = 0
 			update_icon()
 			return

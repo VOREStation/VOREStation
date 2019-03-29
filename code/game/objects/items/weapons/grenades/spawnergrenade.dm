@@ -31,19 +31,25 @@
 
 /obj/item/weapon/grenade/spawnergrenade/manhacks
 	name = "manhack delivery grenade"
-	spawner_type = /mob/living/simple_animal/hostile/viscerator
+	spawner_type = /mob/living/simple_mob/mechanical/viscerator
 	deliveryamt = 5
 	origin_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 4, TECH_ILLEGAL = 4)
 
+/obj/item/weapon/grenade/spawnergrenade/manhacks/mercenary
+	spawner_type = /mob/living/simple_mob/mechanical/viscerator/mercenary
+
+/obj/item/weapon/grenade/spawnergrenade/manhacks/raider
+	spawner_type = /mob/living/simple_mob/mechanical/viscerator/raider
+
 /obj/item/weapon/grenade/spawnergrenade/spesscarp
 	name = "carp delivery grenade"
-	spawner_type = /mob/living/simple_animal/hostile/carp
+	spawner_type = /mob/living/simple_mob/animal/space/carp
 	deliveryamt = 5
 	origin_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 4, TECH_ILLEGAL = 4)
 
 /obj/item/weapon/grenade/spawnergrenade/spider
 	name = "spider delivery grenade"
-	spawner_type = /mob/living/simple_animal/hostile/giant_spider/hunter
+	spawner_type = /mob/living/simple_mob/animal/giant_spider/hunter
 	deliveryamt = 3
 	origin_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 4, TECH_ILLEGAL = 4)
 
@@ -53,7 +59,6 @@
 	desc = "It's made of AUTHENTIC faux-leather and has a price-tag still attached. Its owner must be a real professional."
 	icon_state = "briefcase"
 	item_state = "briefcase"
-	flags = CONDUCT
 	force = 8.0
 	throw_speed = 1
 	throw_range = 4

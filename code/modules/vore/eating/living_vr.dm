@@ -9,7 +9,7 @@
 	var/weight = 137					// Weight for mobs for weightgain system
 	var/weight_gain = 1 				// How fast you gain weight
 	var/weight_loss = 0.5 				// How fast you lose weight
-	var/egg_type = "egg" 				// Default egg type.
+	var/vore_egg_type = "egg" 				// Default egg type.
 	var/feral = 0 						// How feral the mob is, if at all. Does nothing for non xenochimera at the moment.
 	var/reviving = 0					// Only used for creatures that have the xenochimera regen ability, so far.
 	var/metabolism = 0.0015
@@ -71,12 +71,12 @@
 //
 // Hide vore organs in contents
 //
-/mob/living/view_variables_filter_contents(list/L)
-	. = ..()
-	var/len_before = L.len
-	L -= vore_organs
-	. += len_before - L.len
-
+///mob/living/view_variables_filter_contents(list/L)
+//	. = ..()
+//	var/len_before = L.len
+//	L -= vore_organs
+//	. += len_before - L.len
+//
 //
 // Handle being clicked, perhaps with something to devour
 //
@@ -331,12 +331,12 @@
 			return
 		//Actual escaping
 		forceMove(get_turf(src)) //Just move me up to the turf, let's not cascade through bellies, there's been a problem, let's just leave.
-		for(var/mob/living/simple_animal/SA in range(10))
+		for(var/mob/living/simple_mob/SA in range(10))
 			SA.prey_excludes[src] = world.time
 		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(B.owner)] ([B.owner ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[B.owner.x];Y=[B.owner.y];Z=[B.owner.z]'>JMP</a>" : "null"])")
 
 		if(isanimal(B.owner))
-			var/mob/living/simple_animal/SA = B.owner
+			var/mob/living/simple_mob/SA = B.owner
 			SA.update_icons()
 
 	//You're in a dogborg!

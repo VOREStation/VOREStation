@@ -137,6 +137,12 @@
 /area/tether/outpost/solars_shed
 	name = "\improper Solar Farm Shed"
 
+// Exploration area - Plains
+/area/tether/outpost/exploration_plains
+	name = "\improper Plains Exploration Zone"
+	icon_state = "green"
+/area/tether/outpost/exploration_shed
+	name = "\improper Plains Entrance Shed"
 
 /area/maintenance/substation/medsec
 	name = "\improper MedSec Substation"
@@ -499,6 +505,17 @@
 /area/shuttle/excursion/virgo3b_sky
 	name = "\improper Excursion Shuttle - Virgo3b Sky"
 	base_turf = /turf/simulated/sky
+
+// Elevator area //
+
+/area/tether/elevator
+	name = "\improper Tether Elevator"
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "elevator"
+	dynamic_lighting = FALSE
+
+	requires_power = FALSE
+
 //////////////////////////////////
 
 /area/antag/antag_base

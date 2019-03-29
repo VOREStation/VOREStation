@@ -51,6 +51,8 @@
 #define LANGUAGE_EVENT1 "Occursus"
 #define LANGUAGE_AKHANI "Akhani"
 #define LANGUAGE_ALAI "Alai"
+#define LANGUAGE_ZADDAT "Vedahq"
+#define LANGUAGE_GIBBERISH "Babel"
 
 // Language flags.
 #define WHITELISTED  1   // Language is available if the speaker is whitelisted.

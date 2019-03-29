@@ -46,7 +46,7 @@
 	the exact circumstances involved.  For minor violations of Corp Regs, generally the Prisoner will have a choice of paying a Fine, or \
 	serving time within the brig.  For major violations, generally a demotion is recommended, however this is at the discretion of the Prisoner's \
 	Superior, and not the Arresting Officer.  For minor violations of Sif Law, the same rules generally apply as if it was a minor Corp Reg violation, however \
-	major Law violations generally require a long brig sentence, or Holding until Transfer, as well as a fax to the SGA.  See the specific violation contained \
+	major Law violations generally require a long brig sentence, or Holding until Transfer, as well as a fax to the VGA.  See the specific violation contained \
 	in this book for more details."
 
 /datum/lore/codex/page/sop_brigging

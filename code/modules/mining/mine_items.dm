@@ -13,7 +13,6 @@
 	name = "mining drill"
 	desc = "The most basic of mining drills, for short excavations and small mineral extractions."
 	icon = 'icons/obj/items.dmi'
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	force = 15.0
 	throwforce = 4.0
@@ -29,6 +28,7 @@
 	sharp = 1
 
 	var/excavation_amount = 200
+	var/destroy_artefacts = FALSE // some mining tools will destroy artefacts completely while avoiding side-effects.
 
 /obj/item/weapon/pickaxe/silver
 	name = "silver pickaxe"
@@ -112,7 +112,6 @@
 	desc = "A large tool for digging and moving dirt."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "shovel"
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	force = 8.0
 	throwforce = 4.0

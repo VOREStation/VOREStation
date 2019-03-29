@@ -221,11 +221,6 @@
 							new /obj/item/clothing/head/helmet/space/void/wizard(get_turf(H))
 							temp = "You have purchased a suit of wizard armor."
 							max_uses--
-						if("staffanimation")
-							feedback_add_details("wizard_spell_learned","SA") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							new /obj/item/weapon/gun/energy/staff/animate(get_turf(H))
-							temp = "You have purchased a staff of animation."
-							max_uses--
 						if("scrying")
 							feedback_add_details("wizard_spell_learned","SO") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
 							new /obj/item/weapon/scrying(get_turf(H))

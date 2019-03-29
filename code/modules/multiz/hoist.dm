@@ -100,7 +100,7 @@
 	var/obj/effect/hoist_hook/source_hook
 	description_info = "Click this to raise or lower the hoist, or to switch directions if it can't move any further. It can also be collapsed into a hoist kit."
 
-/obj/structure/hoist/initialize(mapload, ndir)
+/obj/structure/hoist/Initialize(mapload, ndir)
 	. = ..()
 	dir = ndir
 	var/turf/newloc = get_step(src, dir)

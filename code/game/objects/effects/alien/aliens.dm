@@ -26,6 +26,7 @@
 	density = 1
 	opacity = 1
 	anchored = 1
+	can_atmos_pass = ATMOS_PASS_NO
 	var/health = 200
 	//var/mob/living/affecting = null
 
@@ -128,8 +129,7 @@
 	..()
 	return
 
-/obj/effect/alien/resin/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group) return 0
+/obj/effect/alien/resin/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return !opacity
 	return !density
