@@ -15,7 +15,6 @@ var/list/global/tank_gauge_cache = list()
 	var/last_gauge_pressure
 	var/gauge_cap = 6
 
-	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	w_class = ITEMSIZE_NORMAL
 

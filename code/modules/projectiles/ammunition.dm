@@ -3,7 +3,6 @@
 	desc = "A bullet casing."
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "s-casing"
-	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throwforce = 1
 	w_class = ITEMSIZE_TINY
@@ -66,7 +65,6 @@
 	desc = "A magazine for some kind of gun."
 	icon_state = ".357"
 	icon = 'icons/obj/ammo.dmi'
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	item_state = "syringe_kit"
 	matter = list(DEFAULT_WALL_MATERIAL = 500)

@@ -7,7 +7,6 @@
 	anchored = 1.0
 	w_class = ITEMSIZE_NORMAL
 	plane = PLATING_PLANE
-	//	flags = CONDUCT
 
 /obj/structure/lattice/Initialize()
 	. = ..()

@@ -278,7 +278,7 @@
 	icon_override = 'icons/vore/custom_items_vr.dmi'
 	item_state = "holochain_mob"
 
-	flags = CONDUCT | NOBLOODY
+	flags = NOBLOODY
 	slot_flags = SLOT_BELT
 	force = 10
 	throwforce = 3
@@ -529,7 +529,6 @@
 	icon_state = "browncane"
 	item_icons = list (slot_r_hand_str = 'icons/vore/custom_items_vr.dmi', slot_l_hand_str = 'icons/vore/custom_items_vr.dmi')
 	item_state_slots = list(slot_r_hand_str = "browncanemob_r", slot_l_hand_str = "browncanemob_l")
-	flags = CONDUCT
 	force = 5.0
 	throwforce = 7.0
 	w_class = ITEMSIZE_SMALL
@@ -549,7 +548,6 @@
     icon_state = "alexiswand"
     item_icons = list (slot_r_hand_str = 'icons/vore/custom_items_vr.dmi', slot_l_hand_str = 'icons/vore/custom_items_vr.dmi')
     item_state_slots = list(slot_r_hand_str = "alexiswandmob_r", slot_l_hand_str = "alexiswandmob_l")
-    flags = CONDUCT
     force = 1.0
     throwforce = 2.0
     w_class = ITEMSIZE_SMALL

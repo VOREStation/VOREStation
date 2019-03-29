@@ -22,7 +22,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 
 // Flags bitmasks. - Used in /atom/var/flags
 #define NOBLUDGEON				(1<<0)	// When an item has this it produces no "X has been hit by Y with Z" message with the default handler.
-#define CONDUCT					(1<<1)	// Conducts electricity. (metal etc.)
+#define NOCONDUCT					(1<<1)	// Conducts electricity. (metal etc.)
 #define ON_BORDER				(1<<2)	// Item has priority to check when entering or leaving.
 #define NOBLOODY				(1<<3)	// Used for items if they don't want to get a blood overlay.
 #define OPENCONTAINER			(1<<4)	// Is an open container for chemistry purposes.

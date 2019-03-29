@@ -11,7 +11,6 @@ AI MODULES
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_mod"
 	desc = "An AI Module for transmitting encrypted instructions to the AI."
-	flags = CONDUCT
 	force = 5.0
 	w_class = ITEMSIZE_SMALL
 	throwforce = 5.0

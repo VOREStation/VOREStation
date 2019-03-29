@@ -4,7 +4,6 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "red"
 	item_state_slots = list(slot_r_hand_str = "toolbox_red", slot_l_hand_str = "toolbox_red")
-	flags = CONDUCT
 	force = 10
 	throwforce = 10
 	throw_speed = 1

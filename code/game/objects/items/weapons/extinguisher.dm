@@ -5,7 +5,6 @@
 	icon_state = "fire_extinguisher0"
 	item_state = "fire_extinguisher"
 	hitsound = 'sound/weapons/smash.ogg'
-	flags = CONDUCT
 	throwforce = 10
 	w_class = ITEMSIZE_NORMAL
 	throw_speed = 2

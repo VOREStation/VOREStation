@@ -13,7 +13,6 @@
 	desc = "This shouldn't be here, ahelp it."
 	icon = 'icons/obj/surgery.dmi'
 	w_class = ITEMSIZE_SMALL
-	flags = CONDUCT
 	var/helpforce = 0	//For help intent things
 
 /obj/item/weapon/surgical/attack(mob/M, mob/user)
@@ -92,7 +91,7 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 5000)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	
+
 	suicide_act(mob/user)
 		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 		viewers(user) << pick("<span class='danger'>\The [user] is slitting [TU.his] wrists with the [src.name]! It looks like [TU.hes] trying to commit suicide.</span>", \

@@ -5,7 +5,6 @@
 	icon_state = "grille"
 	density = 1
 	anchored = 1
-	flags = CONDUCT
 	pressure_resistance = 5*ONE_ATMOSPHERE
 	layer = TABLE_LAYER
 	explosion_resistance = 1
@@ -151,7 +150,7 @@
 		return
 //window placing end
 
-	else if(!(W.flags & CONDUCT) || !shock(user, 70))
+	else if((W.flags & NOCONDUCT) || !shock(user, 70))
 		user.setClickCooldown(user.get_attack_speed(W))
 		user.do_attack_animation(src)
 		playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)

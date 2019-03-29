@@ -502,7 +502,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "lighter-g"
 	w_class = ITEMSIZE_TINY
 	throwforce = 4
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	attack_verb = list("burnt", "singed")
 	var/base_state

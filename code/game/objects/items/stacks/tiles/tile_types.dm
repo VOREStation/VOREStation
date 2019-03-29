@@ -113,7 +113,6 @@
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	flags = CONDUCT
 	no_variants = FALSE
 
 /obj/item/stack/tile/floor/red
