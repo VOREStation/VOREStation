@@ -65,10 +65,10 @@ var/datum/species/shapeshifter/promethean/prometheans
 	heat_level_2 = 370 //Default 400
 	heat_level_3 = 600 //Default 1000
 
-	body_temperature =      310.15
+	body_temperature = T20C	// Room temperature
 
-	siemens_coefficient =   0.4
-	rarity_value =          5
+	rarity_value = 5
+	siemens_coefficient = 0.8
 
 	genders = list(MALE, FEMALE, NEUTER, PLURAL)
 
@@ -154,12 +154,16 @@ var/datum/species/shapeshifter/promethean/prometheans
 			H.gib()
 
 /datum/species/shapeshifter/promethean/handle_environment_special(var/mob/living/carbon/human/H)
-	var/regen_brute = 1
-	var/regen_burn = 1
-	var/regen_tox = 1
-	var/regen_oxy = 1
+	var/healing = TRUE	// Switches to FALSE if healing is not possible at all.
+	var/regen_brute = TRUE
+	var/regen_burn = TRUE
+	var/regen_tox = TRUE
+	var/regen_oxy = TRUE
+	if(H.fire_stacks < 0)	// If you're soaked, you're melting.
+		H.adjustToxLoss(3 * heal_rate)	// Tripled because 0.5 is miniscule, and fire_stacks are capped in both directions
+		healing = FALSE
 
-	var/turf/T = H.loc
+	var/turf/T = get_turf(H)
 	if(istype(T))
 		var/obj/effect/decal/cleanable/C = locate() in T
 		if(C && !(H.shoes || (H.wear_suit && (H.wear_suit.body_parts_covered & FEET))))
@@ -169,23 +173,29 @@ var/datum/species/shapeshifter/promethean/prometheans
 				S.dirt = 0
 			H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
 
-	T = get_turf(H) // Swap over to an actual turf, because we need to get the pressure.
-	if(istype(T)) // Make sure it exists, and is a turf again.
 		var/datum/gas_mixture/environment = T.return_air()
 		var/pressure = environment.return_pressure()
 		var/affecting_pressure = H.calculate_affecting_pressure(pressure)
 		if(affecting_pressure <= hazard_low_pressure) // Dangerous low pressure stops the regeneration of physical wounds. Body is focusing on keeping them intact rather than sealing.
-			regen_brute = 0
-			regen_burn = 0
+			regen_brute = FALSE
+			regen_burn = FALSE
+
+	if(world.time < H.l_move_time + 1 MINUTE)	// Need to stay still for a minute, before passive healing will activate.
+		healing = FALSE
+
+	if(H.bodytemperature > heat_level_1 || H.bodytemperature < cold_level_1)	// If you're too hot or cold, you can't heal.
+		healing = FALSE
 
 	// Heal remaining damage.
-	if(H.fire_stacks >= 0)
+	if(healing)
 		if(H.getBruteLoss() || H.getFireLoss() || H.getOxyLoss() || H.getToxLoss())
-			var/nutrition_cost = 0
-			var/nutrition_debt = 0
-			var/starve_mod = 1
-			if(H.nutrition <= 25)
+			var/nutrition_cost = 0		// The total amount of nutrition drained every tick, when healing
+			var/nutrition_debt = 0		// Holder variable used to store previous damage values prior to healing for use in the nutrition_cost equation.
+			var/starve_mod = 1			// Lowering this lowers healing and increases agony multiplicatively.
+			if(H.nutrition <= 150)	// This is when the icon goes red
 				starve_mod = 0.75
+				if(H.nutrition <= 50)	// Severe starvation. Damage repaired beyond this point will cause a stunlock if untreated.
+					starve_mod = 0.5
 
 			if(regen_brute)
 				nutrition_debt = H.getBruteLoss()
@@ -211,11 +221,9 @@ var/datum/species/shapeshifter/promethean/prometheans
 			H.nutrition = max(0, H.nutrition) //Ensure it's not below 0.
 
 			var/agony_to_apply = ((1 / starve_mod) * nutrition_cost) //Regenerating damage causes minor pain over time. Small injures will be no issue, large ones will cause problems.
-			if((H.getHalLoss() + agony_to_apply) <= 70) // Don't permalock, but make it far easier to knock them down.
-				H.apply_damage(agony_to_apply, HALLOSS)
 
-	//else//VOREStation Removal
-		//H.adjustToxLoss(2*heal_rate)	// Doubled because 0.5 is miniscule, and fire_stacks are capped in both directions
+			if((starve_mod <= 0.5 && (H.getHalLoss() + agony_to_apply) <= 90) || ((H.getHalLoss() + agony_to_apply) <= 70))	// Will max out at applying halloss at 70, unless they are starving; starvation regeneration will bring them up to a maximum of 120, the same amount of agony a human receives from three taser hits.
+				H.apply_damage(agony_to_apply, HALLOSS)
 
 /datum/species/shapeshifter/promethean/get_blood_colour(var/mob/living/carbon/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())

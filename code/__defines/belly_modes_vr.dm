@@ -30,10 +30,15 @@
 
 //Addon mode flags
 #define DM_FLAG_NUMBING		0x1
-#define DM_FLAG_ITEMWEAK	0x2
-#define DM_FLAG_STRIPPING	0x4
+#define DM_FLAG_STRIPPING	0x2
+//#define DM_FLAG_ITEMWEAK	0x4
 
-// Stance for hostile mobs to be in while devouring someone.
+//Item related modes
+#define IM_HOLD									"Hold"
+#define IM_DIGEST_FOOD							"Digest (Food Only)"
+#define IM_DIGEST								"Digest"
+
+//Stance for hostile mobs to be in while devouring someone.
 #define HOSTILE_STANCE_EATING	99
 
 // Defines for weight system

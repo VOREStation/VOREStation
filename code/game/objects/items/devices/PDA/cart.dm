@@ -572,6 +572,8 @@ var/list/civilian_cartridges = list(
 				active3 = S
 
 		if("Send Signal")
+			if(is_jammed(src))
+				return
 			spawn( 0 )
 				radio:send_signal("ACTIVATE")
 				return

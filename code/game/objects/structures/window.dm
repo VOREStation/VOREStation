@@ -3,6 +3,7 @@
 	desc = "A window."
 	icon = 'icons/obj/structures_vr.dmi' // VOREStation Edit - New icons
 	density = 1
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	w_class = ITEMSIZE_NORMAL
 
 	layer = WINDOW_LAYER
@@ -129,16 +130,21 @@
 /obj/structure/window/blob_act()
 	take_damage(50)
 
-/obj/structure/window/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/structure/window/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
-		return 1
+		return TRUE
 	if(is_fulltile())
-		return 0	//full tile window, you can't move into it!
-	if(get_dir(loc, target) & dir)
+		return FALSE	//full tile window, you can't move into it!
+	if((get_dir(loc, target) & dir) || (get_dir(mover, target) == turn(dir, 180)))
 		return !density
 	else
-		return 1
+		return TRUE
 
+
+/obj/structure/window/CanZASPass(turf/T, is_zone)
+	if(is_fulltile() || get_dir(T, loc) == turn(dir, 180)) // Make sure we're handling the border correctly.
+		return anchored ? ATMOS_PASS_NO : ATMOS_PASS_YES // If it's anchored, it'll block air.
+	return ATMOS_PASS_YES // Don't stop airflow from the other sides.
 
 /obj/structure/window/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSGLASS))
@@ -146,7 +152,6 @@
 	if(get_dir(O.loc, target) == dir)
 		return 0
 	return 1
-
 
 /obj/structure/window/hitby(AM as mob|obj)
 	..()
@@ -300,6 +305,10 @@
 			if(do_after(user, 20 * C.toolspeed, src) && state == 0)
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				var/obj/structure/window/reinforced/polarized/P = new(loc, dir)
+				if(is_fulltile())
+					P.fulltile = TRUE
+					P.icon_state = "fwindow"
+				P.maxhealth = maxhealth
 				P.health = health
 				P.state = state
 				P.anchored = anchored

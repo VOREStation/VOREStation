@@ -15,7 +15,7 @@ var/global/list/active_radio_jammers = list()
 
 /obj/item/device/radio_jammer
 	name = "subspace jammer"
-	desc = "Primarily for blocking subspace communications, preventing the use of headsets, PDAs, and communicators."
+	desc = "Primarily for blocking subspace communications, preventing the use of headsets, PDAs, and communicators. Also masks suit sensors."	// Added suit sensor jamming
 	icon = 'icons/obj/device.dmi'
 	icon_state = "jammer0"
 	var/active_state = "jammer1"

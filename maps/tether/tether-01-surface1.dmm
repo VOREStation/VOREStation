@@ -3667,6 +3667,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
+"agb" = (
+/turf/simulated/shuttle/wall/voidcraft/green{
+	hard_corner = 1
+	},
+/area/tether/elevator)
+"agc" = (
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/tether/elevator)
 "agd" = (
 /obj/random/trash_pile,
 /turf/simulated/floor/tiled/techfloor,
@@ -3691,6 +3699,18 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether/surfacebase/mining_main/ore)
+"agh" = (
+/obj/turbolift_map_holder/tether{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/tether/elevator)
+"agi" = (
+/obj/structure/sign/deck/first,
+/turf/simulated/shuttle/wall/voidcraft/green{
+	hard_corner = 1
+	},
+/area/tether/elevator)
 "agj" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
@@ -8550,11 +8570,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/storage/primary)
-"atW" = (
-/turf/simulated/shuttle/wall/voidcraft/green{
-	hard_corner = 1
-	},
-/area/tether/surfacebase/atrium_one)
 "atX" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -8838,9 +8853,6 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/xenoflora)
-"auF" = (
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/tether/surfacebase/atrium_one)
 "auG" = (
 /obj/structure/closet/firecloset/full/double,
 /turf/simulated/floor/tiled/techfloor,
@@ -10231,18 +10243,6 @@
 /obj/random/junk,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/xenoflora)
-"axD" = (
-/obj/turbolift_map_holder/tether{
-	dir = 4
-	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/tether/surfacebase/atrium_one)
-"axE" = (
-/obj/structure/sign/deck/first,
-/turf/simulated/shuttle/wall/voidcraft/green{
-	hard_corner = 1
-	},
-/area/tether/surfacebase/atrium_one)
 "axF" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
@@ -27981,6 +27981,10 @@
 /obj/structure/railing,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/outside/outside1)
+"jUH" = (
+/obj/effect/step_trigger/teleporter/to_plains,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/outside/outside1)
 "kcR" = (
 /obj/structure/window/reinforced,
 /turf/simulated/floor/tiled,
@@ -37547,7 +37551,7 @@ ati
 ati
 ati
 ati
-ati
+aBe
 aAt
 aBd
 aBV
@@ -37689,7 +37693,7 @@ avA
 avA
 avA
 ayJ
-ati
+aBe
 aAu
 aBd
 aBd
@@ -37824,14 +37828,14 @@ alg
 alg
 alg
 aah
-atj
-atW
-atW
-atW
-atW
-atW
-atW
-atj
+ati
+agb
+agb
+agb
+agb
+agb
+agb
+aBe
 aAu
 azI
 aah
@@ -37966,14 +37970,14 @@ alg
 aah
 aah
 aah
-atj
-atW
-auF
-auF
-auF
-axD
-atW
-atj
+ati
+agb
+agc
+agc
+agc
+agh
+agb
+aBe
 aAu
 azI
 aah
@@ -38108,14 +38112,14 @@ alg
 aah
 aah
 aah
-atj
-atW
-auF
-auF
-auF
-auF
-atW
-atj
+ati
+agb
+agc
+agc
+agc
+agc
+agb
+aBe
 aci
 azI
 aah
@@ -38186,7 +38190,7 @@ aad
 aad
 aLH
 aLH
-aaa
+jUH
 "}
 (67,1,1) = {"
 aaa
@@ -38250,14 +38254,14 @@ alg
 aah
 aah
 aah
-atj
-atW
-auF
-auF
-auF
-auF
-atW
-atj
+ati
+agb
+agc
+agc
+agc
+agc
+agb
+aBe
 aAu
 azI
 aah
@@ -38328,7 +38332,7 @@ aad
 aLH
 aLH
 aLH
-aaa
+jUH
 "}
 (68,1,1) = {"
 aaa
@@ -38392,14 +38396,14 @@ alg
 aah
 aah
 aah
-atj
-atW
-auF
-auF
-auF
-auF
-atW
-atj
+ati
+agb
+agc
+agc
+agc
+agc
+agb
+aBe
 aAu
 azI
 aah
@@ -38470,7 +38474,7 @@ aad
 aLH
 aLH
 aLH
-aaa
+jUH
 "}
 (69,1,1) = {"
 aaa
@@ -38535,12 +38539,12 @@ aah
 aah
 aah
 atj
-atW
-atW
-auF
-auF
-axE
-atW
+agb
+agb
+agc
+agc
+agi
+agb
 atj
 aAu
 azI
@@ -38612,7 +38616,7 @@ aLH
 aLH
 aLH
 aLH
-aaa
+jUH
 "}
 (70,1,1) = {"
 aaa
@@ -38754,7 +38758,7 @@ aLH
 aLH
 aLH
 aLH
-aaa
+jUH
 "}
 (71,1,1) = {"
 aaa
@@ -38896,7 +38900,7 @@ aLH
 aLH
 aLH
 aLH
-aaa
+jUH
 "}
 (72,1,1) = {"
 aaa
@@ -39038,7 +39042,7 @@ aLH
 aLH
 aLH
 aLH
-aaa
+jUH
 "}
 (73,1,1) = {"
 aaa
@@ -39180,7 +39184,7 @@ aad
 aLH
 aLH
 aLH
-aaa
+jUH
 "}
 (74,1,1) = {"
 aab
@@ -39322,7 +39326,7 @@ aad
 aLH
 aLH
 aLH
-aaa
+jUH
 "}
 (75,1,1) = {"
 aac

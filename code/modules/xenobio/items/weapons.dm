@@ -73,7 +73,7 @@
 	icon_state = "taserblue"
 	item_state = "taser"
 	projectile_type = /obj/item/projectile/beam/stun/xeno/weak
-	charge_cost = 240
+	charge_cost = 480
 	accuracy = 0 //Same accuracy as a normal Sec taser.
 	description_fluff = "An NT Mk30 NL retrofitted after the events that occurred aboard the NRS Prometheus."
 
@@ -90,9 +90,9 @@
 	// Probably for the best so that it doesn't harm the slime.
 	taser_effect = FALSE
 
-	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
-	tracer_type = /obj/effect/projectile/laser_omni/tracer
-	impact_type = /obj/effect/projectile/laser_omni/impact
+	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+	tracer_type = /obj/effect/projectile/tracer/laser_omni
+	impact_type = /obj/effect/projectile/impact/laser_omni
 
 /obj/item/projectile/beam/stun/xeno/weak //Weaker variant for non-research equipment, turrets, or rapid fire types.
 	agony = 3

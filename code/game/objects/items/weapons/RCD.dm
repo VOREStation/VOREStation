@@ -5,7 +5,7 @@
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "rcd"
 	item_state = "rcd"
-	flags = CONDUCT | NOBLUDGEON
+	flags = NOBLUDGEON
 	force = 10
 	throwforce = 10
 	throw_speed = 1

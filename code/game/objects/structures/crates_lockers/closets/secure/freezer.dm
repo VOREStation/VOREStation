@@ -49,7 +49,8 @@
 	starts_with = list(
 		/obj/item/weapon/reagent_containers/food/drinks/milk = 6,
 		/obj/item/weapon/reagent_containers/food/drinks/soymilk = 4,
-		/obj/item/weapon/storage/fancy/egg_box = 4)
+		/obj/item/weapon/storage/fancy/egg_box = 4,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 2)
 
 
 /obj/structure/closet/secure_closet/freezer/money

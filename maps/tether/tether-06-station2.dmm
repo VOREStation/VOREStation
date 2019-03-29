@@ -3442,15 +3442,10 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/virologyaccess)
 "fq" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/turf/simulated/shuttle/wall/voidcraft/green{
+	hard_corner = 1
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/area/tether/elevator)
 "fr" = (
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/structure/window/reinforced{
@@ -3476,14 +3471,8 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
 "fu" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/tether/elevator)
 "fv" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 4
@@ -3494,15 +3483,11 @@
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
 "fw" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+/obj/structure/sign/deck2,
+/turf/simulated/shuttle/wall/voidcraft/green{
+	hard_corner = 1
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/area/tether/elevator)
 "fx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/rack{
@@ -3513,6 +3498,35 @@
 /obj/random/maintenance/clean,
 /turf/simulated/floor/plating,
 /area/engineering/shaft)
+"fy" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
+"fz" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
+"fA" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "fB" = (
 /obj/structure/stairs/south,
 /turf/simulated/floor/tiled,
@@ -5816,11 +5830,6 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/open,
 /area/maintenance/station/eng_upper)
-"kY" = (
-/turf/simulated/shuttle/wall/voidcraft/green{
-	hard_corner = 1
-	},
-/area/hallway/station/starboard)
 "kZ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -6218,9 +6227,6 @@
 /obj/random/maintenance/clean,
 /turf/simulated/floor/plating,
 /area/maintenance/station/eng_upper)
-"lH" = (
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/hallway/station/starboard)
 "lI" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 2
@@ -7531,12 +7537,6 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/maintenance/station/eng_upper)
-"nI" = (
-/obj/structure/sign/deck2,
-/turf/simulated/shuttle/wall/voidcraft/green{
-	hard_corner = 1
-	},
-/area/hallway/station/starboard)
 "nJ" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
@@ -28648,12 +28648,12 @@ fd
 LD
 jP
 kk
-kY
-kY
-kY
-kY
-kY
-kY
+fq
+fq
+fq
+fq
+fq
+fq
 jj
 pj
 kj
@@ -28790,12 +28790,12 @@ fd
 fN
 jQ
 kk
-kY
-lH
-lH
-lH
-lH
-kY
+fq
+fu
+fu
+fu
+fu
+fq
 jj
 kj
 pO
@@ -28932,12 +28932,12 @@ fd
 jl
 jR
 kk
-kY
-lH
-lH
-lH
-lH
-kY
+fq
+fu
+fu
+fu
+fu
+fq
 jL
 kj
 pP
@@ -29074,12 +29074,12 @@ fd
 Tj
 jS
 kk
-kY
-lH
-lH
-lH
-lH
-kY
+fq
+fu
+fu
+fu
+fu
+fq
 oR
 kj
 pQ
@@ -29216,12 +29216,12 @@ aN
 XM
 jS
 kk
-kY
-lH
-lH
-lH
-lH
-kY
+fq
+fu
+fu
+fu
+fu
+fq
 oS
 kj
 pR
@@ -29358,12 +29358,12 @@ SI
 SI
 RT
 kk
-kY
-kY
-lH
-lH
-nI
-kY
+fq
+fq
+fu
+fu
+fw
+fq
 kj
 kj
 pS
@@ -30101,11 +30101,11 @@ AN
 AN
 Bw
 yY
-fq
-fu
-fu
-fu
-fw
+fy
+fz
+fz
+fz
+fA
 yY
 ac
 ac

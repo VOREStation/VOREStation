@@ -19,6 +19,10 @@
 	name = "Epod1"
 	ambience = AMBIENCE_FOREBODING
 
+/area/submap/Epod2
+	name = "Epod2"
+	ambience = AMBIENCE_FOREBODING
+
 /area/submap/Rocky2
 	name = "Rocky2"
 

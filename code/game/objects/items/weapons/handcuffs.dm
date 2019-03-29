@@ -4,7 +4,6 @@
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "handcuff"
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throwforce = 5
 	w_class = ITEMSIZE_SMALL
@@ -205,7 +204,6 @@ var/last_chew = 0
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "legcuff"
-	flags = CONDUCT
 	throwforce = 0
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1)

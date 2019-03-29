@@ -82,6 +82,8 @@
 	//Attack ranged settings
 	var/projectiletype				// The projectiles I shoot
 	var/projectilesound				// The sound I make when I do it
+	var/projectile_accuracy = 0		// Accuracy modifier to add onto the bullet when its fired.
+	var/projectile_dispersion = 0	// How many degrees to vary when I do it.
 	var/casingtype					// What to make the hugely laggy casings pile out of
 
 	// Reloading settings, part of ranged code

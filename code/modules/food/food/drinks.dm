@@ -100,7 +100,7 @@
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = null
 	volume = 150
-	flags = CONDUCT | OPENCONTAINER
+	flags = OPENCONTAINER
 
 /obj/item/weapon/reagent_containers/food/drinks/golden_cup/on_reagent_change()
 	..()

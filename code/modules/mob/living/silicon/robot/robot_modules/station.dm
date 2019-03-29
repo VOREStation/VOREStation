@@ -19,11 +19,10 @@ var/global/list/robot_modules = list(
 	icon_state = "std_module"
 	w_class = ITEMSIZE_NO_CONTAINER
 	item_state = "std_mod"
-	flags = CONDUCT
 	var/hide_on_manifest = 0
 	var/channels = list()
 	var/networks = list()
-	var/languages = list(LANGUAGE_SOL_COMMON = 1, LANGUAGE_TRADEBAND = 1, LANGUAGE_UNATHI = 0, LANGUAGE_SIIK = 0, LANGUAGE_AKHANI = 0, LANGUAGE_SKRELLIAN = 0, LANGUAGE_GUTTER = 0, LANGUAGE_SCHECHI = 0, LANGUAGE_SIGN = 0, LANGUAGE_TERMINUS = 1)
+	var/languages = list(LANGUAGE_SOL_COMMON = 1, LANGUAGE_TRADEBAND = 1, LANGUAGE_UNATHI = 0, LANGUAGE_SIIK = 0, LANGUAGE_AKHANI = 0, LANGUAGE_SKRELLIAN = 0, LANGUAGE_GUTTER = 0, LANGUAGE_SCHECHI = 0, LANGUAGE_SIGN = 0, LANGUAGE_TERMINUS = 1, LANGUAGE_ZADDAT = 0)
 	var/sprites = list()
 	var/can_be_pushed = 1
 	var/no_slip = 0
@@ -155,7 +154,7 @@ var/global/list/robot_modules = list(
 // Cyborgs (non-drones), default loadout. This will be given to every module.
 /obj/item/weapon/robot_module/robot/New()
 	..()
-	src.modules += new /obj/item/device/flash(src)
+	src.modules += new /obj/item/device/flash/robot(src)
 	src.modules += new /obj/item/weapon/tool/crowbar/cyborg(src)
 	src.modules += new /obj/item/weapon/extinguisher(src)
 	src.modules += new /obj/item/device/gps/robot(src)
@@ -588,7 +587,8 @@ var/global/list/robot_modules = list(
 					LANGUAGE_SCHECHI	= 1,
 					LANGUAGE_EAL		= 1,
 					LANGUAGE_TERMINUS	= 1,
-					LANGUAGE_SIGN		= 0
+					LANGUAGE_SIGN		= 0,
+					LANGUAGE_ZADDAT		= 1,
 					)
 
 /obj/item/weapon/robot_module/robot/clerical/butler

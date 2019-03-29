@@ -2069,10 +2069,10 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
 "aeq" = (
-/turf/simulated/shuttle/wall/voidcraft/green{
-	hard_corner = 1
-	},
-/area/hallway/station/atrium)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "aer" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -2410,8 +2410,10 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/excursion_dock)
 "aeO" = (
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/hallway/station/atrium)
+/turf/simulated/shuttle/wall/voidcraft/green{
+	hard_corner = 1
+	},
+/area/tether/elevator)
 "aeP" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 2
@@ -2911,11 +2913,8 @@
 /turf/simulated/floor/plating,
 /area/bridge)
 "afy" = (
-/obj/structure/sign/deck1,
-/turf/simulated/shuttle/wall/voidcraft/green{
-	hard_corner = 1
-	},
-/area/hallway/station/atrium)
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/tether/elevator)
 "afz" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
@@ -3446,10 +3445,11 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/station/excursion_dock)
 "agu" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/structure/sign/deck1,
+/turf/simulated/shuttle/wall/voidcraft/green{
+	hard_corner = 1
+	},
+/area/tether/elevator)
 "agv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -8538,6 +8538,9 @@
 /turf/simulated/floor/plating,
 /area/crew_quarters/heads/hop)
 "awH" = (
+/obj/machinery/light{
+	dir = 4
+	},
 /obj/effect/floor_decal/industrial/loading,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
@@ -16238,7 +16241,10 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 1
 	},
-/obj/machinery/light,
+/obj/machinery/computer/id_restorer{
+	dir = 1;
+	pixel_y = -28
+	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "beH" = (
@@ -31724,12 +31730,12 @@ alQ
 aBH
 aGP
 alQ
-aeq
-aeq
-aeq
-aeq
-aeq
-aeq
+aeO
+aeO
+aeO
+aeO
+aeO
+aeO
 afC
 afC
 afC
@@ -31866,12 +31872,12 @@ aDs
 aEW
 aGI
 alQ
-aeq
 aeO
+afy
+afy
+afy
+afy
 aeO
-aeO
-aeO
-aeq
 afC
 afE
 afn
@@ -32008,12 +32014,12 @@ aDM
 aEX
 aof
 alQ
-aeq
 aeO
+afy
+afy
+afy
+afy
 aeO
-aeO
-aeO
-aeq
 afC
 afJ
 age
@@ -32150,12 +32156,12 @@ alQ
 alQ
 alQ
 alQ
-aeq
 aeO
+afy
+afy
+afy
+afy
 aeO
-aeO
-aeO
-aeq
 afC
 afF
 age
@@ -32292,12 +32298,12 @@ asu
 aFc
 aog
 aoO
-aeq
 aeO
+afy
+afy
+afy
+afy
 aeO
-aeO
-aeO
-aeq
 afC
 afN
 agg
@@ -32434,12 +32440,12 @@ aDP
 aEZ
 avS
 aoO
-aeq
-aeq
 aeO
 aeO
 afy
-aeq
+afy
+agu
+aeO
 afC
 afC
 aYt
@@ -33700,7 +33706,7 @@ aeo
 aaq
 aaq
 aau
-agu
+aeq
 avK
 avN
 aad
@@ -33842,7 +33848,7 @@ amF
 avG
 adB
 aaq
-agu
+aeq
 avK
 avN
 aad
@@ -33984,7 +33990,7 @@ amF
 avG
 adB
 aaq
-agu
+aeq
 avK
 auH
 aad
@@ -34836,7 +34842,7 @@ aaD
 avG
 tIi
 aaq
-agu
+aeq
 avK
 auQ
 aad
@@ -34978,7 +34984,7 @@ amL
 aob
 dbI
 aaq
-agu
+aeq
 avK
 qgR
 aad
@@ -35120,7 +35126,7 @@ aep
 aeu
 aev
 aau
-agu
+aeq
 avK
 qgR
 aad

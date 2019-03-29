@@ -7,7 +7,6 @@
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
-	flags =  CONDUCT
 	slot_flags = 0
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 5)
 	fire_sound = 'sound/weapons/rpg.ogg'

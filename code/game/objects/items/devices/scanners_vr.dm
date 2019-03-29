@@ -7,7 +7,6 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	icon = 'icons/obj/device_alt.dmi'
 	icon_state = "sleevemate"
 	item_state = "healthanalyzer"
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throwforce = 3
 	w_class = ITEMSIZE_SMALL

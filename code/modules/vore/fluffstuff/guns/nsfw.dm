@@ -188,7 +188,6 @@
 	desc = "A miniature battery for an energy weapon."
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "nsfw_batt"
-	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throwforce = 1
 	w_class = ITEMSIZE_TINY
@@ -309,9 +308,9 @@
 	damage_type = HALLOSS
 	light_color = "#00CC33"
 
-	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
-	tracer_type = /obj/effect/projectile/laser_omni/tracer
-	impact_type = /obj/effect/projectile/laser_omni/impact
+	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+	tracer_type = /obj/effect/projectile/tracer/laser_omni
+	impact_type = /obj/effect/projectile/impact/laser_omni
 
 /obj/item/projectile/beam/final_option/on_hit(var/atom/impacted)
 	if(isliving(impacted))

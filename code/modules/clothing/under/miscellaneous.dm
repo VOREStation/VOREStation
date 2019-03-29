@@ -301,6 +301,26 @@
 	icon_state = "ascetic"
 	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
 
+/obj/item/clothing/under/robe
+	name = "black robe"
+	desc = "A black robe. It gives off uncomfortable cult vibes."
+	icon_state = "robe"
+
+/obj/item/clothing/under/whiterobe
+	name = "white robe"
+	desc = "A white robe. It gives off uncomfortable cult vibes."
+	icon_state = "whiterobe"
+
+/obj/item/clothing/under/goldrobe
+	name = "black gold-lined robe"
+	desc = "A gold-lined black robe. It gives off uncomfortable cult vibes, but fancy."
+	icon_state = "goldrobe"
+
+/obj/item/clothing/under/whitegoldrobe
+	name = "white gold-lined robe"
+	desc = "A gold-lined white robe. It gives off uncomfortable cult vibes, but fancy."
+	icon_state = "whitegoldrobe"
+
 /*
  * dress
  */

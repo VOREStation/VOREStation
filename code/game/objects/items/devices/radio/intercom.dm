@@ -8,7 +8,7 @@
 	anchored = 1
 	w_class = ITEMSIZE_LARGE
 	canhear_range = 2
-	flags = CONDUCT | NOBLOODY
+	flags = NOBLOODY
 	var/circuit = /obj/item/weapon/circuitboard/intercom
 	var/number = 0
 	var/last_tick //used to delay the powercheck

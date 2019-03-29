@@ -68,7 +68,7 @@
 	if(href_list["smes_out_set"])
 		var/obj/machinery/power/smes/buildable/SMES = GetSMESByTag(href_list["smes_out_set"])
 		if(SMES)
-			var/outputset = (input(usr, "Enter new output level (0-[SMES.output_level_max/1000] kW)", "SMES Input Power Control", SMES.output_level/1000) as num) * 1000
+			var/outputset = (input(usr, "Enter new output level (0-[SMES.output_level_max/1000] kW)", "SMES Output Power Control", SMES.output_level/1000) as num) * 1000
 			SMES.set_output(outputset)
 
 	if(href_list["toggle_breaker"])

@@ -79,7 +79,6 @@
 	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
 	icon_state = "phoron"
 	gauge_icon = null
-	flags = CONDUCT
 	slot_flags = null	//they have no straps!
 
 /obj/item/weapon/tank/phoron/Initialize()
@@ -105,7 +104,6 @@
 	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
 	icon_state = "phoron_vox"
 	gauge_icon = null
-	flags = CONDUCT
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	slot_flags = SLOT_BACK	//these ones have straps!
 
@@ -124,7 +122,6 @@
 	icon_state = "emergency"
 	gauge_icon = "indicator_emergency"
 	gauge_cap = 4
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_SMALL
 	force = 4

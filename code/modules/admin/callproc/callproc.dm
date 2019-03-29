@@ -149,9 +149,9 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!A || !IsValidSrc(A))
 		to_chat(usr, "<span class='warning'>Error: callproc_datum(): owner of proc no longer exists.</span>")
 		return
-	log_admin("[key_name(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
 	var/msg = "[key_name(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"]."
-	message_admins(msg)
+	log_admin(msg)
+	//message_admins(msg)
 	admin_ticket_log(A, msg)
 	feedback_add_details("admin_verb","TPC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -176,7 +176,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		var/value = vv_get_value(restricted_classes = list(VV_RESTORE_DEFAULT))
 		if (!value["class"])
 			return null				//Cancel
-		/*		
+		/*						//Named arguments are removed, due to them making proccalling take too long.
 		if(named_arg)
 			named_args[named_arg] = value["value"]
 		else

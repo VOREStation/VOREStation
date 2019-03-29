@@ -9,13 +9,15 @@
 	density = 1
 	opacity = 0
 	anchored = 1
+	can_atmos_pass = ATMOS_PASS_NO
 
 	var/window_flags = 0 // Bitflags to indicate connected windows
 	var/wall_flags = 0 // Bitflags to indicate connected walls
 
-/obj/structure/shuttle/window/CanPass(atom/movable/mover, turf/target, height, air_group)
-	if(!height || air_group) return 0
-	else return ..()
+/obj/structure/shuttle/window/CanPass(atom/movable/mover, turf/target)
+	if(istype(mover) && mover.checkpass(PASSGLASS))
+		return TRUE
+	return ..()
 
 /obj/structure/shuttle/window/Initialize()
 	. = ..()

@@ -12,6 +12,7 @@
 	starts_with = list(
 		/obj/item/clothing/under/rank/security = 3,
 		/obj/item/clothing/under/rank/security2 = 3,
+		/obj/item/clothing/under/rank/security/turtleneck = 3,
 		/obj/item/clothing/under/rank/security/skirt = 2,
 		/obj/item/clothing/shoes/boots/jackboots = 3,
 		/obj/item/clothing/head/soft/sec = 3,
@@ -178,6 +179,7 @@
 	starts_with = list(
 		/obj/item/clothing/under/rank/engineer = 3,
 		/obj/item/clothing/under/rank/engineer/skirt = 3,
+		/obj/item/clothing/under/rank/engineer/turtleneck = 3,
 		/obj/item/clothing/shoes/orange = 3,
 		/obj/item/clothing/head/hardhat = 3,
 		/obj/item/clothing/head/beret/engineering = 3,
@@ -218,6 +220,7 @@
 	starts_with = list(
 		/obj/item/clothing/under/rank/scientist = 3,
 		/obj/item/clothing/under/rank/scientist/skirt = 2,
+		/obj/item/clothing/under/rank/scientist/turtleneck = 3,
 		/obj/item/clothing/suit/storage/toggle/labcoat = 3,
 		/obj/item/clothing/shoes/white = 3,
 		/obj/item/clothing/shoes/slippers = 3,
@@ -313,6 +316,7 @@
 	starts_with = list(
 		/obj/item/clothing/under/rank/medical = 2,
 		/obj/item/clothing/under/rank/medical/skirt = 2,
+		/obj/item/clothing/under/rank/medical/turtleneck = 2,
 		/obj/item/clothing/under/rank/medical/scrubs,
 		/obj/item/clothing/under/rank/medical/scrubs/green,
 		/obj/item/clothing/under/rank/medical/scrubs/purple,

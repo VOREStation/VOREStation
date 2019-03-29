@@ -245,6 +245,22 @@
 	display_name = "locket"
 	path = /obj/item/clothing/accessory/locket
 
+/datum/gear/accessory/halfcape
+	display_name = "half cape"
+	path = /obj/item/clothing/accessory/halfcape
+
+/datum/gear/accessory/fullcape
+	display_name = "full cape"
+	path = /obj/item/clothing/accessory/fullcape
+
+/datum/gear/accessory/sash
+	display_name = "sash (colorable)"
+	path = /obj/item/clothing/accessory/sash
+
+/datum/gear/accessory/sash/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
 /datum/gear/accessory/asym
 	display_name = "asymmetric jacket selection"
 	path = /obj/item/clothing/accessory/asymmetric

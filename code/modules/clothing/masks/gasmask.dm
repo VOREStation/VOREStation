@@ -85,6 +85,16 @@
 	feeding_port(user)
 	..()
 
+/obj/item/clothing/mask/gas/zaddat
+	name = "Zaddat Veil"
+	desc = "A clear survival mask used by the Zaddat to filter out harmful nitrogen. Can be connected to an air supply and reconfigured to allow for safe eating."
+	icon_state = "zaddat_mask"
+	item_state = "vax_mask"
+	//body_parts_covered = 0
+	species_restricted = list(SPECIES_ZADDAT)
+	flags_inv = HIDEEARS //semi-transparent
+	filtered_gases = list("phoron", "nitrogen", "sleeping_agent")
+
 /obj/item/clothing/mask/gas/syndicate
 	name = "tactical mask"
 	desc = "A close-fitting tactical mask that can be connected to an air supply."

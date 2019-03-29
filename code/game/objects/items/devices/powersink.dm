@@ -5,7 +5,6 @@
 	desc = "A nulling power sink which drains energy from electrical systems."
 	icon_state = "powersink0"
 	w_class = ITEMSIZE_LARGE
-	flags = CONDUCT
 	throwforce = 5
 	throw_speed = 1
 	throw_range = 2
@@ -74,6 +73,7 @@
 			mode = 2
 			icon_state = "powersink1"
 			START_PROCESSING(SSobj, src)
+			datum_flags &= ~DF_ISPROCESSING // Have to reset this flag so that PROCESSING_POWER_OBJECT can re-add it. It fails if the flag is already present. - Ater
 			START_PROCESSING_POWER_OBJECT(src)
 		if(2)  //This switch option wasn't originally included. It exists now. --NeoFite
 			src.visible_message("<span class='notice'>[user] deactivates [src]!</span>")

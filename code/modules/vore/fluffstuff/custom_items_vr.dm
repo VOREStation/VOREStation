@@ -278,7 +278,7 @@
 	icon_override = 'icons/vore/custom_items_vr.dmi'
 	item_state = "holochain_mob"
 
-	flags = CONDUCT | NOBLOODY
+	flags = NOBLOODY
 	slot_flags = SLOT_BELT
 	force = 10
 	throwforce = 3
@@ -529,7 +529,6 @@
 	icon_state = "browncane"
 	item_icons = list (slot_r_hand_str = 'icons/vore/custom_items_vr.dmi', slot_l_hand_str = 'icons/vore/custom_items_vr.dmi')
 	item_state_slots = list(slot_r_hand_str = "browncanemob_r", slot_l_hand_str = "browncanemob_l")
-	flags = CONDUCT
 	force = 5.0
 	throwforce = 7.0
 	w_class = ITEMSIZE_SMALL
@@ -549,7 +548,6 @@
     icon_state = "alexiswand"
     item_icons = list (slot_r_hand_str = 'icons/vore/custom_items_vr.dmi', slot_l_hand_str = 'icons/vore/custom_items_vr.dmi')
     item_state_slots = list(slot_r_hand_str = "alexiswandmob_r", slot_l_hand_str = "alexiswandmob_l")
-    flags = CONDUCT
     force = 1.0
     throwforce = 2.0
     w_class = ITEMSIZE_SMALL
@@ -614,6 +612,48 @@
 	slowdown = 0
 	taurtype = /datum/sprite_accessory/tail/taur/feline/tempest
 	no_message = "These saddlebags seem to be fitted for someone else, and keep slipping off!"
+	action_button_name = "Toggle Mlembulance Mode"
+	var/ambulance = FALSE
+	var/ambulance_state = FALSE
+	var/ambulance_last_switch = 0
+	var/ambulance_volume = 25	//Allows for varediting, just in case
+
+/obj/item/weapon/storage/backpack/saddlebag/tempest/ui_action_click()
+	ambulance = !(ambulance)
+	if(ambulance)
+		START_PROCESSING(SSobj, src)
+		item_state = "tempestsaddlebag-amb"
+		icon_state = "tempestbag-amb"
+		if (ismob(loc))
+			var/mob/M = loc
+			M.update_inv_back()
+		ambulance_state = FALSE
+		set_light(2, 1, "#FF0000")
+		while(ambulance)
+			playsound(src.loc, 'sound/items/amulanceweeoo.ogg', ambulance_volume, 0)
+			sleep(20)
+	else
+		item_state = "tempestsaddlebag"
+		icon_state = "tempestbag"
+		if (ismob(loc))
+			var/mob/M = loc
+			M.update_inv_back()
+		set_light(0)
+
+/obj/item/weapon/storage/backpack/saddlebag/tempest/process()
+	if(!ambulance)
+		STOP_PROCESSING(SSobj, src)
+		return
+	if(world.time - ambulance_last_switch > 15)
+		ambulance_state = !(ambulance_state)
+		var/newlight = "#FF0000"
+		if(ambulance_state)
+			newlight = "#0000FF"
+		if (ismob(loc))
+			var/mob/M = loc
+			M.update_inv_back()
+		set_light(2, 1, newlight)
+		ambulance_last_switch = world.time
 
 //WickedTempest: Chakat Tempest
 /obj/item/weapon/implant/reagent_generator/tempest

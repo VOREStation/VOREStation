@@ -22,6 +22,14 @@
 /datum/ai_holder/simple_mob/event
 	base_wander_delay = 8
 
+// Will keep the mob within a limited radius of its home, useful for guarding an area
+/datum/ai_holder/simple_mob/guard
+	returns_home = TRUE
+
+// Won't return home while it's busy doing something else, like chasing a player
+/datum/ai_holder/simple_mob/guard/give_chase
+	home_low_priority = TRUE
+
 // Doesn't really act until told to by something on the outside.
 /datum/ai_holder/simple_mob/inert
 	hostile = FALSE
