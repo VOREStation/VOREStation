@@ -244,7 +244,7 @@
 //	gluttonous = 1
 	num_alternate_languages = 3
 	color_mult = 1
-	inherent_verbs = list(/mob/living/proc/shred_limb)
+	inherent_verbs = list(/mob/living/proc/shred_limb, /mob/living/carbon/human/proc/lick_wounds)
 
 	blurb = "Vulpkanin are a species of sharp-witted canine-pideds residing on the planet Altam just barely within the \
 	dual-star Vazzend system. Their politically de-centralized society and independent natures have led them to become a species and \
@@ -318,7 +318,7 @@
 	color_mult = 1
 	min_age = 18
 	gluttonous = 0 //Moving this here so I don't have to fix this conflict every time polaris glances at station.dm
-	inherent_verbs = list(/mob/living/proc/shred_limb)
+	inherent_verbs = list(/mob/living/proc/shred_limb, /mob/living/carbon/human/proc/lick_wounds)
 	heat_discomfort_level = 294 //Prevents heat discomfort spam at 20c
 
 /datum/species/skrell
