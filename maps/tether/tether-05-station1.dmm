@@ -8538,6 +8538,9 @@
 /turf/simulated/floor/plating,
 /area/crew_quarters/heads/hop)
 "awH" = (
+/obj/machinery/light{
+	dir = 4
+	},
 /obj/effect/floor_decal/industrial/loading,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
@@ -16238,7 +16241,10 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 1
 	},
-/obj/machinery/light,
+/obj/machinery/computer/id_restorer{
+	dir = 1;
+	pixel_y = -28
+	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "beH" = (
