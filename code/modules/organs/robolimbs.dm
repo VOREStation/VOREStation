@@ -4,7 +4,7 @@ var/list/chargen_robolimbs = list()
 var/datum/robolimb/basic_robolimb
 var/const/standard_monitor_styles = "blank=ipc_blank;\
 	pink=ipc_pink;\
-	green=ipc_green,\
+	green=ipc_green;\
 	red=ipc_red;\
 	blue=ipc_blue;\
 	shower=ipc_shower;\
