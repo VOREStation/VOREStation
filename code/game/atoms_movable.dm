@@ -230,8 +230,6 @@
 /atom/movable/proc/doMove(atom/destination)
 	. = FALSE
 	if(destination)
-		if(pulledby)
-			pulledby.stop_pulling()
 		var/atom/oldloc = loc
 		var/same_loc = oldloc == destination
 		var/area/old_area = get_area(oldloc)
@@ -261,6 +259,10 @@
 				if(AM == src)
 					continue
 				AM.Crossed(src, oldloc)
+
+		// Break pulling if we are too far to pull now.
+		if(pulledby && (pulledby.z != src.z || get_dist(pulledby, src) > 1))
+			pulledby.stop_pulling()
 
 		Moved(oldloc, NONE, TRUE)
 		. = TRUE
