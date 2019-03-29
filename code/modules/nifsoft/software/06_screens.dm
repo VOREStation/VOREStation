@@ -3,7 +3,7 @@
 	desc = "A link to the local crew monitor sensors. Useful for finding people in trouble."
 	list_pos = NIF_MEDMONITOR
 	access = access_medical
-	cost = 1250
+	cost = 625
 	p_drain = 0.025
 	var/datum/nano_module/crew_monitor/arscreen
 
@@ -32,7 +32,7 @@
 	desc = "A link to the local alarm monitors. Useful for detecting alarms in a pinch."
 	list_pos = NIF_ENGMONITOR
 	access = access_engine
-	cost = 1250
+	cost = 625
 	p_drain = 0.025
 	var/datum/nano_module/alarm_monitor/engineering/arscreen
 
