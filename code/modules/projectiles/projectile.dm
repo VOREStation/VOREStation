@@ -313,7 +313,7 @@
 	originalRange = range
 	fired = TRUE
 	if(hitscan)
-		process_hitscan()
+		. = process_hitscan()
 	START_PROCESSING(SSprojectiles, src)
 	pixel_move(1, FALSE)	//move it now!
 
