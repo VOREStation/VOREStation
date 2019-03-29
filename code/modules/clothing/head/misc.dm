@@ -413,9 +413,6 @@
 	name = "maid headband"
 	desc = "Keeps hair out of the way for important... jobs."
 	icon_state = "maid"
-<<<<<<< HEAD
-	body_parts_covered = 0
-=======
 	body_parts_covered = 0
 
 /obj/item/clothing/head/maangtikka
@@ -442,4 +439,3 @@
 	desc = "A gold-lined white cowl. It gives off uncomfortable cult vibes, but fancy."
 	icon_state = "whitecowl"
 	body_parts_covered = 0
->>>>>>> 8735e70... Merge pull request #5956 from kartagrafi/nockk
