@@ -48,7 +48,6 @@
 	update_icon()
 	if(always_process)
 		START_PROCESSING(SSobj, src)
-	..()
 
 /obj/item/weapon/weldingtool/Destroy()
 	if(welding || always_process)
