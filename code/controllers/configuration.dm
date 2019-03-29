@@ -130,6 +130,7 @@ var/list/gamemode_cache = list()
 	var/organ_regeneration_multiplier = 1
 	var/organs_decay
 	var/default_brain_health = 400
+	var/allow_headgibs = FALSE
 
 	//Paincrit knocks someone down once they hit 60 shock_stage, so by default make it so that close to 100 additional damage needs to be dealt,
 	//so that it's similar to HALLOSS. Lowered it a bit since hitting paincrit takes much longer to wear off than a halloss stun.
@@ -220,7 +221,7 @@ var/list/gamemode_cache = list()
 
 	var/aggressive_changelog = 0
 
-	var/list/language_prefixes = list(",","#","-")//Default language prefixes
+	var/list/language_prefixes = list(",","#")//Default language prefixes
 
 	var/show_human_death_message = 1
 
@@ -792,6 +793,8 @@ var/list/gamemode_cache = list()
 					config.bones_can_break = value
 				if("limbs_can_break")
 					config.limbs_can_break = value
+				if("allow_headgibs")
+					config.allow_headgibs = TRUE
 
 				if("run_speed")
 					config.run_speed = value

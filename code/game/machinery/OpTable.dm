@@ -48,13 +48,10 @@
 		qdel(src)
 	return
 
-/obj/machinery/optable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
-
+/obj/machinery/optable/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
-	else
-		return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/optable/MouseDrop_T(obj/O as obj, mob/user as mob)
 

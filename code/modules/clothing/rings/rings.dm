@@ -69,7 +69,7 @@
 	name = "signet ring"
 	desc = "A signet ring, for when you're too sophisticated to sign letters."
 	icon_state = "seal-signet"
-	var/nameset = 0
+	var/nameset = FALSE
 
 /obj/item/clothing/gloves/ring/seal/signet/attack_self(mob/user)
 	if(nameset)
@@ -78,7 +78,7 @@
 
 	to_chat(user, "<span class='notice'>You claim the [src] as your own!</span>")
 	change_name(user)
-	nameset = 1
+	nameset = TRUE
 
 /obj/item/clothing/gloves/ring/seal/signet/proc/change_name(var/signet_name = "Unknown")
 	name = "[signet_name]'s signet ring"

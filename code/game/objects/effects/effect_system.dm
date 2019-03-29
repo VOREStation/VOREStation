@@ -103,9 +103,9 @@ steam.start() -- spawns the effect
 	if (istype(T, /turf))
 		T.hotspot_expose(1000,100)
 
-/obj/effect/effect/sparks/initialize()
+/obj/effect/effect/sparks/Initialize()
 	. = ..()
-	schedule_task_in(5 SECONDS, /proc/qdel, list(src))
+	QDEL_IN(src, 5 SECONDS)
 
 /obj/effect/effect/sparks/Destroy()
 	var/turf/T = src.loc
@@ -262,12 +262,12 @@ steam.start() -- spawns the effect
 	opacity = FALSE
 	var/strength = 5 // How much damage to do inside each affect()
 
-/obj/effect/effect/smoke/elemental/initialize()
-	processing_objects += src
+/obj/effect/effect/smoke/elemental/Initialize()
+	START_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/effect/effect/smoke/elemental/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/effect/effect/smoke/elemental/Move()

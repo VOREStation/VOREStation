@@ -27,6 +27,7 @@
 	attacktext = list("mauled")
 
 	say_list_type = /datum/say_list/savik
+	ai_holder_type = /datum/ai_holder/simple_mob/savik
 
 /datum/say_list/savik
 	speak = list("Hruuugh!","Hrunnph")
@@ -38,6 +39,8 @@
 		if(health <= (maxHealth * 0.5)) // At half health, and fighting someone currently.
 			berserk()
 
+/datum/ai_holder/simple_mob/savik
+	mauling = TRUE
 
 // So players can use it too.
 /mob/living/simple_mob/animal/sif/savik/verb/berserk()

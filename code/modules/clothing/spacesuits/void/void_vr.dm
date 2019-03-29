@@ -94,7 +94,7 @@
 		SPECIES_ZORREN_FLAT,
 		SPECIES_ZORREN_HIGH
 	)
-/obj/item/clothing/suit/space/void/explorer/initialize()
+/obj/item/clothing/suit/space/void/explorer/Initialize()
 	. = ..()
 	sprite_sheets += sprite_sheets_refit
 
@@ -118,6 +118,6 @@
 		SPECIES_ZORREN_FLAT,
 		SPECIES_ZORREN_HIGH
 	)
-/obj/item/clothing/head/helmet/space/void/explorer/initialize()
+/obj/item/clothing/head/helmet/space/void/explorer/Initialize()
 	. = ..()
 	sprite_sheets += sprite_sheets_refit

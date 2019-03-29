@@ -9,7 +9,8 @@
 	var/obj/item/weapon/nozzle = null //Attached welder, or other spray device.
 	var/nozzle_attached = 0
 
-/obj/item/weapon/weldpack/New()
+/obj/item/weapon/weldpack/Initialize()
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
 	R.my_atom = src

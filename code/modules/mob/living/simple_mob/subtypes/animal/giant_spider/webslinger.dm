@@ -33,5 +33,6 @@
 	playsound(src, 'sound/weapons/thudswoosh.ogg', 100, 1)
 	if(!B)
 		return
-	B.launch(A)
+	B.old_style_target(A, src)
+	B.fire()
 	set_AI_busy(FALSE)

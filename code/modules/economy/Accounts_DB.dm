@@ -53,7 +53,7 @@
 		O.loc = src
 		held_card = O
 
-		GLOB.nanomanager.update_uis(src)
+		SSnanoui.update_uis(src)
 
 	attack_hand(user)
 
@@ -107,7 +107,7 @@
 	if (accounts.len > 0)
 		data["accounts"] = accounts
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "accounts_terminal.tmpl", src.name, 400, 640)
 		ui.set_initial_data(data)
@@ -117,7 +117,7 @@
 	if(..())
 		return 1
 
-	var/datum/nanoui/ui = GLOB.nanomanager.get_open_ui(usr, src, "main")
+	var/datum/nanoui/ui = SSnanoui.get_open_ui(usr, src, "main")
 
 	if(href_list["choice"])
 		switch(href_list["choice"])
@@ -143,7 +143,7 @@
 				var/account_name = href_list["holder_name"]
 				var/starting_funds = max(text2num(href_list["starting_funds"]), 0)
 
-				starting_funds = Clamp(starting_funds, 0, station_account.money)	// Not authorized to put the station in debt.
+				starting_funds = CLAMP(starting_funds, 0, station_account.money)	// Not authorized to put the station in debt.
 				starting_funds = min(starting_funds, fund_cap)						// Not authorized to give more than the fund cap.
 
 				create_account(account_name, starting_funds, src)

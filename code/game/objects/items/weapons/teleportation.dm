@@ -138,7 +138,16 @@ Frequency:
 		return
 	var/list/L = list(  )
 	for(var/obj/machinery/teleport/hub/R in machines)
-		var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(R.x - 2, R.y, R.z))
+		var/obj/machinery/computer/teleporter/com
+		var/obj/machinery/teleport/station/station
+		for(var/direction in cardinal)
+			station = locate(/obj/machinery/teleport/station, get_step(R, direction))
+			if(station)
+				for(direction in cardinal)
+					com = locate(/obj/machinery/computer/teleporter, get_step(station, direction))
+					if(com)
+						break
+				break
 		if (istype(com, /obj/machinery/computer/teleporter) && com.locked && !com.one_time_use)
 			if(R.icon_state == "tele1")
 				L["[com.id] (Active)"] = com.locked

@@ -140,7 +140,7 @@ var/list/all_maps = list()
 
 /datum/map/proc/get_empty_zlevel()
 	if(empty_levels == null)
-		world.maxz++
+		world.increment_max_z()
 		empty_levels = list(world.maxz)
 	return pick(empty_levels)
 

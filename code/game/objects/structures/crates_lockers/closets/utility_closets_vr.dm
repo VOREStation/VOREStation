@@ -1,4 +1,4 @@
-/obj/structure/closet/firecloset/initialize()
+/obj/structure/closet/firecloset/Initialize()
 	starts_with += /obj/item/weapon/storage/toolbox/emergency
 	return ..()
 

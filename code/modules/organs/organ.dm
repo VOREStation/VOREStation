@@ -35,8 +35,11 @@ var/list/organ_cache = list()
 	var/list/will_assist_languages = list()
 	var/list/datum/language/assists_languages = list()
 
+	var/list/organ_verbs	// Verbs added by the organ when present in the body.
+
 /obj/item/organ/Destroy()
 
+	handle_organ_mod_special(TRUE)
 	if(owner)           owner = null
 	if(transplant_data) transplant_data.Cut()
 	if(autopsy_data)    autopsy_data.Cut()
@@ -80,6 +83,8 @@ var/list/organ_cache = list()
 	else
 		species = all_species["Human"]
 
+	handle_organ_mod_special()
+
 /obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
 	if(new_dna)
 		dna = new_dna.Clone()
@@ -91,13 +96,14 @@ var/list/organ_cache = list()
 	if(robotic < ORGAN_ROBOT)
 		status |= ORGAN_DEAD
 	damage = max_damage
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
+	handle_organ_mod_special(TRUE)
 	if(owner && vital)
 		owner.death()
 		owner.can_defib = 0
 
 /obj/item/organ/proc/adjust_germ_level(var/amount)		// Unless you're setting germ level directly to 0, use this proc instead
-	germ_level = Clamp(germ_level + amount, 0, INFECTION_LEVEL_MAX)
+	germ_level = CLAMP(germ_level + amount, 0, INFECTION_LEVEL_MAX)
 
 /obj/item/organ/process()
 
@@ -116,6 +122,8 @@ var/list/organ_cache = list()
 	//check if we've hit max_damage
 	if(damage >= max_damage)
 		die()
+
+	handle_organ_proc_special()
 
 	//Process infections
 	if(robotic >= ORGAN_ROBOT || (owner && owner.species && (owner.species.flags & IS_PLANT || (owner.species.flags & NO_INFECT))))
@@ -233,6 +241,8 @@ var/list/organ_cache = list()
 	damage = 0
 	status = 0
 	germ_level = 0
+	if(owner)
+		handle_organ_mod_special()
 	if(!ignore_prosthetic_prefs && owner && owner.client && owner.client.prefs && owner.client.prefs.real_name == owner.real_name)
 		var/status = owner.client.prefs.organ_data[organ_tag]
 		if(status == "assisted")
@@ -335,8 +345,8 @@ var/list/organ_cache = list()
 	var/obj/item/organ/external/affected = owner.get_organ(parent_organ)
 	if(affected) affected.internal_organs -= src
 
-	loc = owner.drop_location()
-	processing_objects |= src
+	loc = get_turf(owner)
+	START_PROCESSING(SSobj, src)
 	rejecting = null
 	var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list
 	if(!organ_blood || !organ_blood.data["blood_DNA"])
@@ -348,7 +358,10 @@ var/list/organ_cache = list()
 		owner.death()
 		owner.can_defib = 0
 
+	handle_organ_mod_special(TRUE)
+
 	owner = null
+
 
 /obj/item/organ/proc/replaced(var/mob/living/carbon/human/target,var/obj/item/organ/external/affected)
 
@@ -367,10 +380,12 @@ var/list/organ_cache = list()
 
 	owner = target
 	loc = owner
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	target.internal_organs |= src
 	affected.internal_organs |= src
 	target.internal_organs_by_name[organ_tag] = src
+
+	handle_organ_mod_special()
 
 /obj/item/organ/proc/bitten(mob/user)
 
@@ -412,3 +427,32 @@ var/list/organ_cache = list()
 	if(robotic && robotic < ORGAN_LIFELIKE)	//Super fancy humanlike robotics probably have sensors, or something?
 		return 0
 	return 1
+
+/obj/item/organ/proc/handle_organ_mod_special(var/removed = FALSE)	// Called when created, transplanted, and removed.
+	if(!istype(owner))
+		return
+
+	var/list/save_verbs = list()
+
+	if(removed && organ_verbs)	// Do we share verbs with any other organs? Are they functioning?
+		var/list/all_organs = list()
+		all_organs |= owner.organs
+		all_organs |= owner.internal_organs
+
+		for(var/obj/item/organ/O in all_organs)
+			if(!(O.status & ORGAN_DEAD) && O.organ_verbs)
+				for(var/verb_type in O.organ_verbs)
+					if(verb_type in organ_verbs)
+						save_verbs |= verb_type
+
+	if(!removed && organ_verbs)
+		for(var/verb_path in organ_verbs)
+			owner.verbs |= verb_path
+	else if(organ_verbs)
+		for(var/verb_path in organ_verbs)
+			if(!(verb_path in save_verbs))
+				owner.verbs -= verb_path
+	return
+
+/obj/item/organ/proc/handle_organ_proc_special()	// Called when processed.
+	return

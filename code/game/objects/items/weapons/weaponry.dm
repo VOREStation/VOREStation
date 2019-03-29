@@ -106,7 +106,7 @@
 
 /obj/effect/energy_net/New()
 	..()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 /obj/effect/energy_net/Destroy()
 	if(has_buckled_mobs())
@@ -114,7 +114,7 @@
 			to_chat(A,"<span class='notice'>You are free of the net!</span>")
 			unbuckle_mob(A)
 
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/effect/energy_net/process()

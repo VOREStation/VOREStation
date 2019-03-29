@@ -177,7 +177,7 @@
 /obj/effect/step_trigger/zlevel_fall //Don't ever use this, only use subtypes.Define a new var/static/target_z on each
 	affect_ghosts = 1
 
-/obj/effect/step_trigger/zlevel_fall/initialize()
+/obj/effect/step_trigger/zlevel_fall/Initialize()
 	. = ..()
 
 	if(istype(get_turf(src), /turf/simulated/floor))
@@ -240,14 +240,14 @@
 	var/mob/living/simple_mob/my_mob
 	var/depleted = FALSE
 
-/obj/tether_away_spawner/initialize()
+/obj/tether_away_spawner/Initialize()
 	. = ..()
 
 	if(!LAZYLEN(mobs_to_pick_from))
 		error("Mob spawner at [x],[y],[z] ([get_area(src)]) had no mobs_to_pick_from set on it!")
 		initialized = TRUE
 		return INITIALIZE_HINT_QDEL
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 /obj/tether_away_spawner/process()
 	if(my_mob && my_mob.stat != DEAD)
@@ -288,7 +288,7 @@
 */
 		return
 	else
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 		depleted = TRUE
 		return
 

@@ -6,7 +6,7 @@
 	var/datum/ai_holder/ai_holder = null
 	var/ai_holder_type = null // Which ai_holder datum to give to the mob when initialized. If null, nothing happens.
 
-/mob/living/initialize()
+/mob/living/Initialize()
 	if(ai_holder_type)
 		ai_holder = new ai_holder_type(src)
 	return ..()

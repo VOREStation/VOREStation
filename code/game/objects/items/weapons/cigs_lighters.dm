@@ -67,7 +67,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "cigoff"
 	name = "burnt match"
 	desc = "A match. This one has seen better days."
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 
 //////////////////
 //FINE SMOKABLES//
@@ -91,8 +91,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/brand
 	blood_sprite_state = null //Can't bloody these
 
-/obj/item/clothing/mask/smokable/New()
-	..()
+/obj/item/clothing/mask/smokable/Initialize()
+	. = ..()
 	flags |= NOREACT // so it doesn't react until you light it
 	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
 	if(smoketime && !max_smoketime)
@@ -177,12 +177,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		T.visible_message(flavor_text)
 		update_icon()
 		set_light(2, 0.25, "#E38F46")
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/smokable/proc/die(var/nomessage = 0)
 	var/turf/T = get_turf(src)
 	set_light(0)
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	if (type_butt)
 		var/obj/item/butt = new type_butt(T)
 		transfer_fingerprints_to(butt)
@@ -215,7 +215,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/smokable/proc/quench()
 	lit = 0
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	update_icon()
 
 /obj/item/clothing/mask/smokable/attack(mob/living/carbon/human/H, mob/user, def_zone)
@@ -280,8 +280,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	weldermes = "<span class='notice'>USER casually lights the NAME with FLAME.</span>"
 	ignitermes = "<span class='notice'>USER fiddles with FLAME, and manages to light their NAME.</span>"
 
-/obj/item/clothing/mask/smokable/cigarette/New()
-	..()
+/obj/item/clothing/mask/smokable/cigarette/Initialize()
+	. = ..()
 	if(nicotine_amt)
 		reagents.add_reagent("nicotine", nicotine_amt)
 
@@ -363,8 +363,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	slot_flags = SLOT_EARS
 	throwforce = 1
 
-/obj/item/weapon/cigbutt/New()
-	..()
+/obj/item/weapon/cigbutt/Initialize()
+	. = ..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
 	transform = turn(transform,rand(0,360))
@@ -541,7 +541,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src], they however burn their finger in the process.</span>")
 
 		set_light(2)
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 	else
 		lit = 0
 		icon_state = "[base_state]"
@@ -552,7 +552,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			user.visible_message("<span class='notice'>[user] quietly shuts off the [src].</span>")
 
 		set_light(0)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	return
 
 

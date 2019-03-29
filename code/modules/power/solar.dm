@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 /obj/machinery/power/solar/drain_power()
 	return -1
 
-/obj/machinery/power/solar/initialize(mapload, obj/item/solar_assembly/S)
+/obj/machinery/power/solar/Initialize(mapload, obj/item/solar_assembly/S)
 	. = ..()
 	Make(S)
 	connect_to_network()
@@ -290,7 +290,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	var/lastgen = 0
 	var/track = 0			// 0= off  1=timed  2=auto (tracker)
 	var/trackrate = 600		// 300-900 seconds
-	var/nexttime = 0		// time for a panel to rotate of 1° in manual tracking
+	var/nexttime = 0		// time for a panel to rotate of 1ï¿½ in manual tracking
 	var/obj/machinery/power/tracker/connected_tracker = null
 	var/list/connected_panels = list()
 
@@ -347,7 +347,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	updateDialog()
 
 
-/obj/machinery/power/solar_control/initialize()
+/obj/machinery/power/solar_control/Initialize()
 	. = ..()
 	if(!powernet) return
 	set_panels(cdir)
@@ -445,9 +445,9 @@ GLOBAL_LIST_EMPTY(solars_list)
 			connected_tracker.unset_control()
 
 	if(track==1 && trackrate) //manual tracking and set a rotation speed
-		if(nexttime <= world.time) //every time we need to increase/decrease the angle by 1°...
+		if(nexttime <= world.time) //every time we need to increase/decrease the angle by 1ï¿½...
 			targetdir = (targetdir + trackrate/abs(trackrate) + 360) % 360 	//... do it
-			nexttime += 36000/abs(trackrate) //reset the counter for the next 1°
+			nexttime += 36000/abs(trackrate) //reset the counter for the next 1ï¿½
 
 	updateDialog()
 

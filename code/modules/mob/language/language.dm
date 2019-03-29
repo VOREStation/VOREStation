@@ -134,14 +134,15 @@
 
 /datum/language/proc/can_speak_special(var/mob/speaker)
 	. = TRUE
-	if(ishuman(speaker))
-		var/mob/living/carbon/human/H = speaker
-		if(src.name in H.species.assisted_langs)
-			. = FALSE
-			var/obj/item/organ/internal/voicebox/vox = locate() in H.internal_organs	// Only voiceboxes for now. Maybe someday it'll include other organs, but I'm not that clever
-			if(vox)
-				if(!vox.is_broken() && (src in vox.assists_languages))
-					. = TRUE
+	if(name != "Noise")	// Audible Emotes
+		if(ishuman(speaker))
+			var/mob/living/carbon/human/H = speaker
+			if(src.name in H.species.assisted_langs)
+				. = FALSE
+				var/obj/item/organ/internal/voicebox/vox = locate() in H.internal_organs	// Only voiceboxes for now. Maybe someday it'll include other organs, but I'm not that clever
+				if(vox)
+					if(!vox.is_broken() && (src in vox.assists_languages))
+						. = TRUE
 
 // Language handling.
 /mob/proc/add_language(var/language)
@@ -172,10 +173,20 @@
 		log_debug("[src] attempted to speak a null language.")
 		return 0
 
+	if(speaking == all_languages["Noise"])
+		return 1
+
 	if (only_species_language && speaking != all_languages[species_language])
 		return 0
 
-	return (speaking.can_speak_special(src) && (universal_speak || (speaking && (speaking.flags & INNATE)) || speaking in src.languages))
+	if(speaking.can_speak_special(src))
+		if(universal_speak)
+			return 1
+		if(speaking && (speaking.flags & INNATE))
+			return 1
+		if(speaking in src.languages)
+			return 1
+	return 0
 
 /mob/proc/get_language_prefix()
 	if(client && client.prefs.language_prefixes && client.prefs.language_prefixes.len)

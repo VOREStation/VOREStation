@@ -2199,7 +2199,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
 "fe" = (
@@ -2406,7 +2406,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
 "fr" = (
@@ -3177,7 +3177,7 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/north_staires_two)
 "hd" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 4
 	},
 /turf/simulated/open,
@@ -3219,7 +3219,7 @@
 /obj/effect/floor_decal/borderfloor/corner2{
 	dir = 10
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -3231,7 +3231,7 @@
 /obj/effect/floor_decal/borderfloor/corner2{
 	dir = 6
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 9
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -4603,7 +4603,7 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -4612,7 +4612,7 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 9
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -5159,7 +5159,7 @@
 /turf/simulated/shuttle/wall/voidcraft/green{
 	hard_corner = 1
 	},
-/area/tether/surfacebase/atrium_two)
+/area/tether/elevator)
 "lt" = (
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 4
@@ -5449,7 +5449,7 @@
 /area/maintenance/lower/rnd)
 "lQ" = (
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/tether/surfacebase/atrium_two)
+/area/tether/elevator)
 "lR" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -5652,7 +5652,7 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/machinery/firealarm{
 	dir = 2;
 	layer = 3.3;
@@ -6126,7 +6126,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -6302,7 +6302,7 @@
 /turf/simulated/shuttle/wall/voidcraft/green{
 	hard_corner = 1
 	},
-/area/tether/surfacebase/atrium_two)
+/area/tether/elevator)
 "nw" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
@@ -6371,7 +6371,7 @@
 /area/tether/surfacebase/atrium_two)
 "nG" = (
 /obj/effect/floor_decal/borderfloor,
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -15944,7 +15944,7 @@
 	name = "\improper Telecomms Lobby"
 	})
 "EX" = (
-/obj/machinery/camera/network/telecom,
+/obj/machinery/camera/network/tcomms,
 /turf/simulated/floor/tiled/dark,
 /area/tcomsat{
 	name = "\improper Telecomms Lobby"
@@ -16085,7 +16085,7 @@
 	name = "\improper Telecomms Lobby"
 	})
 "Fk" = (
-/obj/machinery/camera/network/telecom,
+/obj/machinery/camera/network/tcomms,
 /obj/structure/sign/electricshock{
 	pixel_y = 32
 	},
@@ -16142,7 +16142,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/obj/machinery/camera/network/telecom{
+/obj/machinery/camera/network/tcomms{
 	dir = 4
 	},
 /obj/item/device/radio/intercom{
@@ -16532,7 +16532,7 @@
 	name = "\improper Telecomms Entrance"
 	})
 "FW" = (
-/obj/machinery/camera/network/telecom{
+/obj/machinery/camera/network/tcomms{
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
@@ -17207,7 +17207,7 @@
 	name = "\improper Telecomms Storage"
 	})
 "Hc" = (
-/obj/machinery/camera/network/telecom{
+/obj/machinery/camera/network/tcomms{
 	dir = 4
 	},
 /turf/simulated/floor/bluegrid{
@@ -17229,7 +17229,7 @@
 	},
 /area/tcommsat/chamber)
 "He" = (
-/obj/machinery/camera/network/telecom{
+/obj/machinery/camera/network/tcomms{
 	dir = 8
 	},
 /turf/simulated/floor/bluegrid{
@@ -17262,7 +17262,7 @@
 /obj/item/weapon/stock_parts/subspace/sub_filter,
 /obj/item/weapon/stock_parts/subspace/sub_filter,
 /obj/item/weapon/stock_parts/subspace/sub_filter,
-/obj/machinery/camera/network/telecom{
+/obj/machinery/camera/network/tcomms{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -17518,7 +17518,7 @@
 	},
 /area/tcommsat/chamber)
 "HI" = (
-/obj/machinery/camera/network/telecom{
+/obj/machinery/camera/network/tcomms{
 	dir = 1
 	},
 /turf/simulated/floor/bluegrid{
@@ -17652,6 +17652,15 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled,
+/area/tcommsat/chamber)
+"HR" = (
+/obj/machinery/telecomms/relay/preset/tether/midpoint,
+/turf/simulated/floor/bluegrid{
+	name = "Mainframe Base";
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 80
+	},
 /area/tcommsat/chamber)
 "HT" = (
 /obj/item/weapon/storage/box/glasses/pint,
@@ -27420,7 +27429,7 @@ jN
 jN
 ky
 jy
-ld
+lc
 ls
 ls
 ls
@@ -27562,7 +27571,7 @@ jy
 jy
 jy
 jy
-ld
+lc
 ls
 lQ
 lQ
@@ -27704,7 +27713,7 @@ jy
 jy
 jy
 jy
-ld
+lc
 ls
 lQ
 lQ
@@ -27846,7 +27855,7 @@ jy
 jy
 jy
 jy
-ld
+lc
 ls
 lQ
 lQ
@@ -27988,7 +27997,7 @@ jy
 jy
 jy
 jy
-ld
+lc
 ls
 lQ
 lQ
@@ -28130,7 +28139,7 @@ jy
 jy
 jy
 jy
-ld
+lc
 ls
 ls
 lQ
@@ -28272,7 +28281,7 @@ jy
 jy
 jy
 jy
-dY
+ii
 dY
 lR
 ml
@@ -32865,7 +32874,7 @@ Gg
 Gq
 GD
 GP
-Gz
+HR
 Hd
 Hn
 Gz

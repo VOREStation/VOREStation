@@ -75,7 +75,7 @@
 
 	var/list/shadekin_abilities
 
-/mob/living/simple_mob/shadekin/initialize()
+/mob/living/simple_mob/shadekin/Initialize()
 	//You spawned the prototype, and want a totally random one.
 	if(type == /mob/living/simple_mob/shadekin)
 
@@ -129,7 +129,7 @@
 	return ..()
 
 /mob/living/simple_mob/shadekin/Destroy()
-	QDEL_NULL_LIST(shadekin_abilities)
+	QDEL_LIST_NULL(shadekin_abilities)
 	. = ..()
 
 /mob/living/simple_mob/shadekin/init_vore()

@@ -119,3 +119,63 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/diona/foot/right)
 		)
 
+/datum/species/shapeshifter/promethean/avatar/monkey
+	name = "Virtual Reality Monkey"
+	icobase = 'icons/mob/human_races/monkeys/r_monkey.dmi'
+	deform = 'icons/mob/human_races/monkeys/r_monkey.dmi'
+	damage_overlays = 'icons/mob/human_races/masks/dam_monkey.dmi'
+	damage_mask = 'icons/mob/human_races/masks/dam_mask_monkey.dmi'
+	blood_mask = 'icons/mob/human_races/masks/blood_monkey.dmi'
+	fire_icon_state = "monkey"
+	appearance_flags = 0
+	has_limbs = list(
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/no_eyes),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
+		)
+
+/datum/species/shapeshifter/promethean/avatar/vox
+	name = "Virtual Reality Vox"
+	icobase = 'icons/mob/human_races/r_vox.dmi'
+	deform = 'icons/mob/human_races/r_def_vox.dmi'
+	appearance_flags = HAS_EYE_COLOR | HAS_HAIR_COLOR
+	has_limbs = list(
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/vox),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
+		)
+
+/datum/species/shapeshifter/promethean/avatar/skeleton
+	name = "Virtual Reality Skeleton"
+	icobase = 'icons/mob/human_races/r_skeleton.dmi'
+	deform = 'icons/mob/human_races/r_skeleton.dmi'
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
+	has_limbs = list(
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
+		)

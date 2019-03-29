@@ -17,7 +17,7 @@ var/list/GPS_list = list()
 	var/hide_signal = FALSE		// If true, signal is not visible to other GPS devices.
 	var/can_hide_signal = FALSE	// If it can toggle the above var.
 
-/obj/item/device/gps/initialize()
+/obj/item/device/gps/Initialize()
 	. = ..()
 	GPS_list += src
 	name = "global positioning system ([gps_tag])"

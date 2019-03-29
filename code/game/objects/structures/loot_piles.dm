@@ -115,7 +115,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	var/path = pick(rare_loot)
 	return new path(src)
 
-/obj/structure/loot_pile/initialize()
+/obj/structure/loot_pile/Initialize()
 	if(icon_states_to_use && icon_states_to_use.len)
 		icon_state = pick(icon_states_to_use)
 	. = ..()
@@ -194,7 +194,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/device/camera,
 		/obj/item/device/pda,
 		/obj/item/device/radio/headset,
-		/obj/item/device/paicard
+		/obj/item/device/paicard,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose
 	)
 
 	uncommon_loot = list(
@@ -912,3 +913,27 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/borg/upgrade/syndicate,
 		/obj/item/borg/upgrade/vtec
 		)
+
+// Contains old mediciation, most of it unidentified and has a good chance of being useless.
+/obj/structure/loot_pile/surface/medicine_cabinet
+	name = "abandoned medicine cabinet"
+	desc = "An old cabinet, it might still have something of use inside."
+	icon_state = "medicine_cabinet"
+	density = FALSE
+	chance_uncommon = 0
+	chance_rare = 0
+
+	common_loot = list(
+		/obj/random/unidentified_medicine/old_medicine
+	)
+
+// Like the above but has way better odds, in exchange for being in a place still inhabited (or was recently).
+/obj/structure/loot_pile/surface/medicine_cabinet/fresh
+	name = "medicine cabinet"
+	desc = "A cabinet designed to hold medicine, it might still have something of use inside."
+	icon_state = "medicine_cabinet"
+	density = FALSE
+
+	common_loot = list(
+		/obj/random/unidentified_medicine/fresh_medicine
+	)

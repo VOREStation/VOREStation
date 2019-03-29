@@ -22,7 +22,7 @@
 	turbolifts += src
 	..()
 
-/obj/turbolift_map_holder/initialize()
+/obj/turbolift_map_holder/Initialize()
 	. = ..()
 	// Create our system controller.
 	var/datum/turbolift/lift = new()
@@ -32,7 +32,7 @@
 	var/uy = y
 	var/uz = z
 	var/udir = dir
-	forceMove(null)
+	moveToNullspace()
 
 	// These modifiers are used in relation to the origin
 	// to place the system control panels and doors.

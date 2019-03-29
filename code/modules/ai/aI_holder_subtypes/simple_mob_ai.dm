@@ -3,6 +3,7 @@
 
 /datum/ai_holder/simple_mob
 	hostile = TRUE // The majority of simplemobs are hostile.
+	retaliate = TRUE	// The majority of simplemobs will fight back.
 	cooperative = TRUE
 	returns_home = FALSE
 	can_flee = FALSE
@@ -13,6 +14,7 @@
 // For non-hostile animals, and pets like Ian and Runtime.
 /datum/ai_holder/simple_mob/passive
 	hostile = FALSE
+	retaliate = FALSE
 	can_flee = TRUE
 	violent_breakthrough = FALSE
 
