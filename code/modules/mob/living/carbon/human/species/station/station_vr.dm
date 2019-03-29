@@ -37,8 +37,6 @@
 	flesh_color = "#AFA59E"
 	base_color = "#777777"
 
-	//reagent_tag = IS_SERGAL
-
 	heat_discomfort_strings = list(
 		"Your fur prickles in the heat.",
 		"You feel uncomfortably warm.",
@@ -99,8 +97,6 @@
 	base_color = "#777777"
 	blood_color = "#1D2CBF"
 
-	//reagent_tag = IS_AKULA
-
 /datum/species/akula/can_breathe_water()
 	return TRUE // Surprise, SHERKS.
 
@@ -139,8 +135,6 @@
 
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
-
-	//reagent_tag = IS_SERGAL
 
 	heat_discomfort_strings = list(
 		"Your fur prickles in the heat.",
