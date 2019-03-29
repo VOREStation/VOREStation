@@ -108,6 +108,7 @@
 	var/reflected = 0 // This should be set to 1 if reflected by any means, to prevent infinite reflections.
 	var/modifier_type_to_apply = null // If set, will apply a modifier to mobs that are hit by this projectile.
 	var/modifier_duration = null // How long the above modifier should last for. Leave null to be permanent.
+	var/excavation_amount = 0 // How much, if anything, it drills from a mineral turf.
 
 	embed_chance = 0	//Base chance for a projectile to embed
 
@@ -207,14 +208,12 @@
 		animate(src, pixel_x = trajectory.return_px(), pixel_y = trajectory.return_py(), time = 1, flags = ANIMATION_END_NOW)
 	Range()
 
-//sets the click point of the projectile using mouse input params
-/obj/item/projectile/proc/set_clickpoint(var/params)
-	var/list/mouse_control = params2list(params)
-	if(mouse_control["icon-x"])
-		p_x = text2num(mouse_control["icon-x"])
-	if(mouse_control["icon-y"])
-		p_y = text2num(mouse_control["icon-y"])
-<<<<<<< HEAD
+/obj/item/projectile/Crossed(atom/movable/AM) //A mob moving on a tile with a projectile is hit by it.
+	..()
+	if(isliving(AM) && !(pass_flags & PASSMOB))
+		var/mob/living/L = AM
+		if(can_hit_target(L, permutated, (AM == original)))
+			Bump(AM)
 
 /obj/item/projectile/proc/process_homing()			//may need speeding up in the future performance wise.
 	if(!homing_target)
@@ -319,52 +318,21 @@
 	START_PROCESSING(SSprojectiles, src)
 	pixel_move(1, FALSE)	//move it now!
 
-=======
-	if(mouse_control["screen-loc"])
-		//Split screen-loc up into X+Pixel_X and Y+Pixel_Y
-		var/list/screen_loc_params = splittext(mouse_control["screen-loc"], ",")
-
-		//Split X+Pixel_X up into list(X, Pixel_X)
-		var/list/screen_loc_X = splittext(screen_loc_params[1],":")
-
-		//Split Y+Pixel_Y up into list(Y, Pixel_Y)
-		var/list/screen_loc_Y = splittext(screen_loc_params[2],":")
-		var/x = text2num(screen_loc_X[1]) * 32 + text2num(screen_loc_X[2]) - 32
-		var/y = text2num(screen_loc_Y[1]) * 32 + text2num(screen_loc_Y[2]) - 32
-
-		//Calculate the "resolution" of screen based on client's view and world's icon size. This will work if the user can view more tiles than average.
-		var/list/screenview = user.client? getviewsize(user.client.view) : world.view
-		var/screenviewX = screenview[1] * world.icon_size
-		var/screenviewY = screenview[2] * world.icon_size
-
-		var/ox = round(screenviewX/2) - user.client.pixel_x //"origin" x
-		var/oy = round(screenviewY/2) - user.client.pixel_y //"origin" y
-		angle = ATAN2(y - oy, x - ox)
-	return list(angle, p_x, p_y)
-
-/obj/item/projectile/proc/redirect(x, y, starting, source)
-	old_style_target(locate(x, y, z), starting? get_turf(starting) : get_turf(source))
-
-/obj/item/projectile/proc/old_style_target(atom/target, atom/source)
-	if(!source)
-		source = get_turf(src)
-	starting = get_turf(source)
->>>>>>> f083fba... Merge pull request #5977 from Neerti/btw_i_use_fixed_arc
-	original = target
-	def_zone = target_zone
+/obj/item/projectile/Move(atom/newloc, dir = NONE)
+	. = ..()
+	if(.)
+		if(temporary_unstoppable_movement)
+			temporary_unstoppable_movement = FALSE
+			DISABLE_BITFIELD(movement_type, UNSTOPPABLE)
+		if(fired && can_hit_target(original, permutated, TRUE))
+			Bump(original)
 
 /obj/item/projectile/proc/after_z_change(atom/olcloc, atom/newloc)
 
 /obj/item/projectile/proc/before_z_change(atom/oldloc, atom/newloc)
 
-<<<<<<< HEAD
-//called to launch a projectile from a gun
-/obj/item/projectile/proc/launch_from_gun(atom/target, mob/user, obj/item/weapon/gun/launcher, var/target_zone, var/x_offset=0, var/y_offset=0)
-	if(user == target) //Shooting yourself
-		user.bullet_act(src, target_zone)
-		on_impact(user)
-		qdel(src)
-		return 0
+/obj/item/projectile/proc/before_move()
+	return
 
 /obj/item/projectile/proc/after_move()
 	return
@@ -415,14 +383,8 @@
 		//Split screen-loc up into X+Pixel_X and Y+Pixel_Y
 		var/list/screen_loc_params = splittext(mouse_control["screen-loc"], ",")
 
-//Called when the projectile intercepts a mob. Returns 1 if the projectile hit the mob, 0 if it missed and should keep flying.
-/obj/item/projectile/proc/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier=0)
-	if(!istype(target_mob))
-=======
-/obj/item/projectile/proc/generate_hitscan_tracers(cleanup = TRUE, duration = 5, impacting = TRUE)
-	if(!length(beam_segments))
->>>>>>> f083fba... Merge pull request #5977 from Neerti/btw_i_use_fixed_arc
-		return
+		//Split X+Pixel_X up into list(X, Pixel_X)
+		var/list/screen_loc_X = splittext(screen_loc_params[1],":")
 
 		//Split Y+Pixel_Y up into list(Y, Pixel_Y)
 		var/list/screen_loc_Y = splittext(screen_loc_params[2],":")
@@ -445,7 +407,7 @@
 /obj/item/projectile/proc/old_style_target(atom/target, atom/source)
 	if(!source)
 		source = get_turf(src)
-	starting = source
+	starting = get_turf(source)
 	original = target
 	setAngle(Get_Angle(source, target))
 
@@ -474,7 +436,7 @@
 		beam_segments[beam_index] = pcache
 	generate_hitscan_tracers(null, null, impacting)
 
-/obj/item/projectile/proc/generate_hitscan_tracers(cleanup = TRUE, duration = 3, impacting = TRUE)
+/obj/item/projectile/proc/generate_hitscan_tracers(cleanup = TRUE, duration = 5, impacting = TRUE)
 	if(!length(beam_segments))
 		return
 	if(tracer_type)
