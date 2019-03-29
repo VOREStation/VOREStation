@@ -27,8 +27,12 @@
 /datum/map_template/proc/preload_size(path, orientation = 0)
 	var/bounds = SSmapping.maploader.load_map(file(path), 1, 1, 1, cropMap=FALSE, measureOnly=TRUE, orientation=orientation)
 	if(bounds)
-		width = bounds[MAP_MAXX] // Assumes all templates are rectangular, have a single Z level, and begin at 1,1,1
-		height = bounds[MAP_MAXY]
+		if(orientation & (90 | 270))
+			width = bounds[MAP_MAXY]
+			height = bounds[MAP_MAXX]
+		else
+			width = bounds[MAP_MAXX] // Assumes all templates are rectangular, have a single Z level, and begin at 1,1,1
+			height = bounds[MAP_MAXY]
 	return bounds
 
 /datum/map_template/proc/initTemplateBounds(var/list/bounds)
