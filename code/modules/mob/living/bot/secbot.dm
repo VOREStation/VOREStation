@@ -269,14 +269,8 @@
 					C.handcuffed = new /obj/item/weapon/handcuffs(C)
 					C.update_inv_handcuffed()
 			busy = 0
-<<<<<<< HEAD
-	else if(istype(M, /mob/living/simple_animal))
-		var/mob/living/simple_animal/S = M
-		S.Weaken(xeno_stun_strength)
-=======
 	else if(istype(M, /mob/living/simple_mob))
 		var/mob/living/simple_mob/S = M
->>>>>>> d598379... Fixes blast door issue, and slimesky being considered unjustified. (#5966)
 		S.adjustBruteLoss(xeno_harm_strength)
 		do_attack_animation(M)
 		playsound(loc, "swing_hit", 50, 1, -1)
@@ -291,15 +285,9 @@
 /mob/living/bot/secbot/slime/UnarmedAttack(var/mob/living/L, var/proximity)
 	..()
 
-<<<<<<< HEAD
-	if(istype(L, /mob/living/simple_animal/slime))
-		var/mob/living/simple_animal/slime/S = L
-		S.adjust_discipline(2)
-=======
 	if(istype(L, /mob/living/simple_mob/slime/xenobio))
 		var/mob/living/simple_mob/slime/xenobio/S = L
 		S.slimebatoned(src, xeno_stun_strength)
->>>>>>> d598379... Fixes blast door issue, and slimesky being considered unjustified. (#5966)
 
 
 
