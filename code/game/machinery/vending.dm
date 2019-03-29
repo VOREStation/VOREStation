@@ -794,6 +794,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 8,
 					/obj/item/weapon/reagent_containers/pill/diet = 8,
+					/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,
 					/obj/item/weapon/towel/random = 8)
 
 	prices = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 3,
