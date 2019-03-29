@@ -38,7 +38,7 @@
 		to_chat(M, "This Shroud has already been customized!")
 		return 0
 
-	suit_style = input(M, "Which suit style would you like?") in list("Engineer", "Spacer", "Knight", "Fashion", "Bishop", "Hegemony")
+	suit_style = input(M, "Which suit style would you like?") in list("Engineer", "Spacer", "Knight", "Fashion", "Bishop", "Hegemony", "Rugged")
 	switch(suit_style)
 		if("Engineer")
 			name = "\improper Engineer's Guild Shroud"
@@ -90,6 +90,16 @@
 				helmet.desc = "The Shroud helmet that inspired a dozen lawsuits."
 				helmet.icon_state = "zaddat_bishop"
 				helmet.item_state = "zaddat_bishop"
+		if("Rugged")
+			name = "rugged Shroud"
+			desc = "This Shroud was patterned after from First Contact era human voidsuits."
+			icon_state = "zaddat_rugged"
+			item_state = "zaddat_rugged"
+			if(helmet)
+				helmet.name = "rugged Shroud helmet"
+				helmet.desc = "Supposedly, this helmet should make humans more comfortable and familiar with the Zaddat."
+				helmet.icon_state = "zaddat_rugged"
+				helmet.item_state = "zaddat_rugged"
 
 	to_chat(M, "You finish customizing your Shroud. Looking good!")
 	has_been_customized = TRUE
