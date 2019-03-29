@@ -45,7 +45,7 @@
 			disconnect_from_network()
 			turn_off()
 		return
-	if(I.is_multitool())
+	if(istype(I, /obj/item/device/multitool))
 		var/new_temp = input("Input a new target temperature, in degrees C.","Target Temperature", 20) as num
 		if(!Adjacent(user) || user.incapacitated())
 			return

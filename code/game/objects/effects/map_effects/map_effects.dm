@@ -27,7 +27,7 @@
 	var/interval_upper_bound = 5 SECONDS // Higher number for above.
 	var/halt = FALSE // Set to true to stop the loop when it reaches the next iteration.
 
-/obj/effect/map_effect/interval/initialize()
+/obj/effect/map_effect/interval/Initialize()
 	handle_interval_delay()
 	return ..()
 
@@ -49,6 +49,7 @@
 		spawn(retry_delay) // Maybe someday we'll have fancy TG timers/schedulers.
 			if(!QDELETED(src))
 				.()
+		return
 
 	var/next_interval = rand(interval_lower_bound, interval_upper_bound)
 	spawn(next_interval)

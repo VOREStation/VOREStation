@@ -167,18 +167,13 @@ Code:
 
 /obj/item/device/assembly/signaler/process()
 	if(!deadman)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	var/mob/M = src.loc
 	if(!M || !ismob(M))
 		if(prob(5))
 			signal()
-<<<<<<< HEAD
-		deadman = 0
-		processing_objects.Remove(src)
-=======
 		deadman = FALSE
 		STOP_PROCESSING(SSobj, src)
->>>>>>> 5c5e67d... Merge pull request #5985 from Anewbe/jammer
 	else if(prob(5))
 		M.visible_message("[M]'s finger twitches a bit over [src]'s signal button!")
 	return
@@ -187,13 +182,8 @@ Code:
 	set src in usr
 	set name = "Threaten to push the button!"
 	set desc = "BOOOOM!"
-<<<<<<< HEAD
-	deadman = 1
-	processing_objects.Add(src)
-=======
 	deadman = TRUE
 	START_PROCESSING(SSobj, src)
->>>>>>> 5c5e67d... Merge pull request #5985 from Anewbe/jammer
 	log_and_message_admins("is threatening to trigger a signaler deadman's switch")
 	usr.visible_message("<font color='red'>[usr] moves their finger over [src]'s signal button...</font>")
 

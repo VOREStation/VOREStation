@@ -4,12 +4,14 @@
 /obj/item/integrated_circuit/output/screen
 	name = "small screen"
 	desc = "This small screen can display a single piece of data, when the machine is examined closely."
+	extended_desc = "This will show the data loaded into it when the machine is examined."
 	icon_state = "screen"
 	inputs = list("displayed data" = IC_PINTYPE_ANY)
 	outputs = list()
 	activators = list("load data" = IC_PINTYPE_PULSE_IN)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 10
+	cooldown_per_use = 0 // Can be updated frequently.
 	var/stuff_to_display = null
 
 
@@ -30,8 +32,9 @@
 		stuff_to_display = I.data
 
 /obj/item/integrated_circuit/output/screen/medium
-	name = "screen"
+	name = "medium screen"
 	desc = "This screen allows for people holding the device to see a piece of data."
+	extended_desc = "This will display a message to the user holding the assembly when activated."
 	icon_state = "screen_medium"
 	power_draw_per_use = 20
 
@@ -45,8 +48,10 @@
 /obj/item/integrated_circuit/output/screen/large
 	name = "large screen"
 	desc = "This screen allows for people able to see the device to see a piece of data."
+	extended_desc = "This will display a message to everyone who can see the assembly when activated."
 	icon_state = "screen_large"
 	power_draw_per_use = 40
+	cooldown_per_use = 1 SECOND // Because everyone will get the output instead of just the user/examiner.
 
 /obj/item/integrated_circuit/output/screen/large/do_work()
 	..()
@@ -103,7 +108,7 @@
 	var/brightness = get_pin_data(IC_INPUT, 2)
 
 	if(new_color && isnum(brightness))
-		brightness = Clamp(brightness, 0, 6)
+		brightness = CLAMP(brightness, 0, 6)
 		light_rgb = new_color
 		light_brightness = brightness
 
@@ -114,8 +119,8 @@
 
 /obj/item/integrated_circuit/output/text_to_speech
 	name = "text-to-speech circuit"
-	desc = "A miniature speaker is attached to this component."
-	extended_desc = "This unit is more advanced than the plain speaker circuit, able to transpose any valid text to speech."
+	desc = "A miniature speaker is attached to this component. It is able to transpose any valid text to speech."
+	extended_desc = "This will emit an audible message to anyone who can hear the assembly."
 	icon_state = "speaker"
 	complexity = 12
 	cooldown_per_use = 4 SECONDS
@@ -300,7 +305,7 @@
 		text_output += "\an [name]"
 	else
 		text_output += "\an ["\improper[initial_name]"] labeled '[name]'"
-	text_output += " which is currently [get_pin_data(IC_INPUT, 1) ? "lit <font color=[led_color]>¤</font>" : "unlit."]"
+	text_output += " which is currently [get_pin_data(IC_INPUT, 1) ? "lit <font color=[led_color]>Â¤</font>" : "unlit."]"
 	to_chat(user,jointext(text_output,null))
 
 /obj/item/integrated_circuit/output/led/red
@@ -462,8 +467,7 @@
 
 
 /obj/item/integrated_circuit/output/holographic_projector/proc/destroy_hologram()
-	hologram.forceMove(src)
-	qdel(hologram)
+	QDEL_NULL(hologram)
 
 //	holo_beam.End()
 //	QDEL_NULL(holo_beam)

@@ -64,15 +64,4 @@
 /obj/structure/plasticflaps/mining //A specific type for mining that doesn't allow airflow because of them damn crates
 	name = "airtight plastic flaps"
 	desc = "Heavy duty, airtight, plastic flaps."
-
-/obj/structure/plasticflaps/mining/New() //set the turf below the flaps to block air
-	var/turf/T = get_turf(loc)
-	if(T)
-		T.blocks_air = 1
-	..()
-
-/obj/structure/plasticflaps/mining/Destroy() //lazy hack to set the turf to allow air to pass if it's a simulated floor
-	var/turf/T = get_turf(loc)
-	if(T && istype(T, /turf/simulated/floor))
-		T.blocks_air = 0
-	..()
+	can_atmos_pass = ATMOS_PASS_NO

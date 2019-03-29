@@ -228,7 +228,7 @@
 		/obj/item/clothing/gloves/fluff/morsleeves,
 		/obj/item/clothing/under/fluff/morunder)
 
-// Mewchild: Phi Ahkeen
+// Mewchild: Phi Vietsi
 /obj/item/weapon/storage/box/fluff/phi
 	name = "Phi's Personal Items"
 	has_items = list(
@@ -241,6 +241,17 @@
 	desc = "Contains kitten."
 	spawner_type = /mob/living/simple_mob/animal/passive/cat/tabiranth
 	deliveryamt = 1
+
+// Jwguy: Koyo Akimomi
+/obj/item/weapon/storage/box/fluff/koyoakimomi
+	name = "Koyo's Cosplay Box"
+	desc = "One of many traditional wolfgirl clothing sets that Koyo owns. Awoo!"
+	has_items = list(
+		/obj/item/clothing/head/fluff/wolfgirl,
+		/obj/item/clothing/shoes/fluff/wolfgirl,
+		/obj/item/clothing/under/fluff/wolfgirl,
+		/obj/item/weapon/melee/fluffstuff/wolfgirlsword,
+		/obj/item/weapon/shield/fluff/wolfgirlshield)
 
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.

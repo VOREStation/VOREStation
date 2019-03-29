@@ -16,6 +16,6 @@
 	poison_per_bite = 5
 	poison_type = "condensedcapsaicin_v"
 
-/mob/living/simple_mob/animal/giant_spider/pepper/initialize()
+/mob/living/simple_mob/animal/giant_spider/pepper/Initialize()
 	adjust_scale(1.1)
 	return ..()

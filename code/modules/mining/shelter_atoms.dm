@@ -219,7 +219,7 @@
 	pixel_y = -4
 	max_n_of_items = 100
 
-/obj/machinery/smartfridge/survival_pod/initialize()
+/obj/machinery/smartfridge/survival_pod/Initialize()
 	. = ..()
 	for(var/obj/item/O in loc)
 		if(accept_check(O))

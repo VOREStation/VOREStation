@@ -2,6 +2,7 @@
 	name = "door"
 	density = 1
 	anchored = 1
+	can_atmos_pass = ATMOS_PASS_DENSITY
 
 	icon = 'icons/obj/doors/material_doors.dmi'
 	icon_state = "metal"
@@ -36,11 +37,11 @@
 	else
 		set_opacity(1)
 	if(material.products_need_process())
-		processing_objects |= src
+		START_PROCESSING(SSobj, src)
 	update_nearby_tiles(need_rebuild=1)
 
 /obj/structure/simple_door/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	update_nearby_tiles()
 	return ..()
 
@@ -63,8 +64,7 @@
 /obj/structure/simple_door/attack_hand(mob/user as mob)
 	return TryToSwitchState(user)
 
-/obj/structure/simple_door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group) return 0
+/obj/structure/simple_door/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
 	return !density

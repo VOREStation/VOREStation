@@ -69,11 +69,10 @@
 		name = "[material.display_name] [initial(name)]"
 		desc += " It's made of [material.use_name]."
 
-/obj/structure/bed/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/structure/bed/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
-	else
-		return ..()
+		return TRUE
+	return ..()
 
 /obj/structure/bed/ex_act(severity)
 	switch(severity)

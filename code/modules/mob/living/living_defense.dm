@@ -365,7 +365,7 @@
 	return
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-    fire_stacks = Clamp(fire_stacks + add_fire_stacks, FIRE_MIN_STACKS, FIRE_MAX_STACKS)
+    fire_stacks = CLAMP(fire_stacks + add_fire_stacks, FIRE_MIN_STACKS, FIRE_MAX_STACKS)
 
 /mob/living/proc/handle_fire()
 	if(fire_stacks < 0)
@@ -451,6 +451,13 @@
 	make_jittery(150)
 	emp_act(1)
 	to_chat(src, span("critical", "You've been struck by lightning!"))
+
+// Called when touching a lava tile.
+// Does roughly 100 damage to unprotected mobs, and 20 to fully protected mobs.
+/mob/living/lava_act()
+	add_modifier(/datum/modifier/fire/intense, 8 SECONDS) // Around 40 total if left to burn and without fire protection per stack.
+	inflict_heat_damage(40) // Another 40, however this is instantly applied to unprotected mobs.
+	adjustFireLoss(20) // Lava cannot be 100% resisted with fire protection.
 
 /mob/living/proc/reagent_permeability()
 	return 1

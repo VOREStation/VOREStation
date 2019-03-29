@@ -155,9 +155,25 @@
 
 /datum/reagent/toxin/mold/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	M.adjustToxLoss(strength * removed)
 	if(prob(5))
 		M.vomit()
+
+/datum/reagent/toxin/expired_medicine
+	name = "Expired Medicine"
+	id = "expired_medicine"
+	description = "Some form of liquid medicine that is well beyond its shelf date. Administering it now would cause illness."
+	taste_description = "bitterness"
+	reagent_state = LIQUID
+	strength = 5
+
+/datum/reagent/toxin/expired_medicine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(prob(5))
+		M.vomit()
+
+/datum/reagent/toxin/expired_medicine/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	affect_blood(M, alien, removed * 0.66)
+
 
 /datum/reagent/toxin/stimm	//Homemade Hyperzine
 	name = "Stimm"

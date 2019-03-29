@@ -39,7 +39,8 @@
 	var/always_process = FALSE // If true, keeps the welder on the process list even if it's off.  Used for when it needs to regenerate fuel.
 	toolspeed = 1
 
-/obj/item/weapon/weldingtool/New()
+/obj/item/weapon/weldingtool/Initialize()
+	. = ..()
 //	var/random_fuel = min(rand(10,20),max_fuel)
 	var/datum/reagents/R = new/datum/reagents(max_fuel)
 	reagents = R
@@ -47,12 +48,12 @@
 	R.add_reagent("fuel", max_fuel)
 	update_icon()
 	if(always_process)
-		processing_objects |= src
+		START_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/weapon/weldingtool/Destroy()
 	if(welding || always_process)
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/weapon/weldingtool/examine(mob/user)
@@ -60,7 +61,7 @@
 		if(max_fuel)
 			to_chat(user, text("\icon[] The [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel ))
 
-/obj/item/weapon/weldingtool/attack(var/atom/A, var/mob/living/user, var/def_zone)
+/obj/item/weapon/weldingtool/attack(atom/A, mob/living/user, def_zone)
 	if(ishuman(A) && user.a_intent == I_HELP)
 		var/mob/living/carbon/human/H = A
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
@@ -115,7 +116,6 @@
 	..()
 	return
 
-
 /obj/item/weapon/weldingtool/process()
 	if(welding)
 		++burned_fuel_for
@@ -123,7 +123,6 @@
 			remove_fuel(1)
 		if(get_fuel() < 1)
 			setWelding(0)
-
 	//I'm not sure what this does. I assume it has to do with starting fires...
 	//...but it doesnt check to see if the welder is on or not.
 	var/turf/location = src.loc
@@ -160,9 +159,8 @@
 			L.IgniteMob()
 		if (istype(location, /turf))
 			location.hotspot_expose(700, 50, 1)
-
-/obj/item/weapon/weldingtool/attack_self(mob/user as mob)
-	setWelding(!welding, usr)
+/obj/item/weapon/weldingtool/attack_self(mob/user)
+	setWelding(!welding, user)
 
 //Returns the amount of fuel in the welder
 /obj/item/weapon/weldingtool/proc/get_fuel()
@@ -276,7 +274,7 @@
 			welding = 1
 			update_icon()
 			if(!always_process)
-				processing_objects |= src
+				START_PROCESSING(SSobj, src)
 		else
 			if(M)
 				var/msg = max_fuel ? "welding fuel" : "charge"
@@ -285,7 +283,7 @@
 	//Otherwise
 	else if(!set_welding && welding)
 		if(!always_process)
-			processing_objects -= src
+			STOP_PROCESSING(SSobj, src)
 		if(M)
 			to_chat(M, "<span class='notice'>You switch \the [src] off.</span>")
 		else if(T)

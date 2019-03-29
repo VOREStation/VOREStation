@@ -10,7 +10,7 @@
 	w_class = ITEMSIZE_NORMAL
 	matter = list(DEFAULT_WALL_MATERIAL = 1000)
 	recoil = 1
-	projectile_type = /obj/item/projectile/bullet/pistol/strong	//Only used for Cham Guns
+	projectile_type = /obj/item/projectile/bullet/pistol/strong	//Only used for chameleon guns
 
 	var/caliber = ".357"		//determines which casings will fit
 	var/handle_casings = EJECT_CASINGS	//determines how spent casings should be handled
@@ -84,8 +84,12 @@
 
 	switch(handle_casings)
 		if(EJECT_CASINGS) //eject casing onto ground.
-			chambered.loc = get_turf(src)
-			playsound(src.loc, "casing", 50, 1)
+			if(chambered.caseless)
+				qdel(chambered)
+				return
+			else
+				chambered.loc = get_turf(src)
+				playsound(src.loc, "casing", 50, 1)
 		if(CYCLE_CASINGS) //cycle the casing back to the end.
 			if(ammo_magazine)
 				ammo_magazine.stored_ammo += chambered

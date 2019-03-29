@@ -19,10 +19,10 @@
 	var/tally = 0				//The counter referenced against total_creature_max, or just to see how many mobs it has spawned.
 	var/total_creature_max	//If set, it can spawn this many creatures, total, ever.
 
-/obj/structure/prop/nest/initialize()
+/obj/structure/prop/nest/Initialize()
 	..()
 	den_mobs = list()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	last_spawn = world.time
 	if(randomize_spawning) //Not the biggest shift in spawntime, but it's here.
 		var/delayshift_clamp = spawn_delay / 10
@@ -31,7 +31,7 @@
 
 /obj/structure/prop/nest/Destroy()
 	den_mobs = null
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/structure/prop/nest/attack_hand(mob/living/user) // Used to tell the player that this isn't useful for anything.

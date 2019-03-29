@@ -20,14 +20,14 @@
 	var/detail_color = COLOR_ASSEMBLY_BLACK
 
 
-/obj/item/device/electronic_assembly/initialize()
+/obj/item/device/electronic_assembly/Initialize()
 	battery = new(src)
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/device/electronic_assembly/Destroy()
 	battery = null // It will be qdel'd by ..() if still in our contents
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/device/electronic_assembly/process()
@@ -339,7 +339,7 @@
 	if(battery)
 		var/lost = battery.use(amount * CELLRATE)
 		net_power -= lost
-		return TRUE
+		return lost > 0
 	return FALSE
 
 // Ditto for giving.

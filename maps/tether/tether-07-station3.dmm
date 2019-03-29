@@ -1909,7 +1909,10 @@
 /turf/simulated/floor/plating,
 /area/maintenance/station/ai)
 "dd" = (
-/obj/machinery/recharge_station,
+/obj/structure/toilet,
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/security/security_bathroom)
 "de" = (
@@ -2626,7 +2629,7 @@
 /area/maintenance/station/ai)
 "en" = (
 /obj/machinery/camera/network/security{
-	c_tag = "SEC - Vault Exterior West";
+	icon_state = "camera";
 	dir = 8
 	},
 /turf/simulated/floor/wood,
@@ -8029,10 +8032,12 @@
 /turf/simulated/floor,
 /area/maintenance/cargo)
 "mW" = (
-/turf/simulated/wall{
-	can_open = 1
+/obj/machinery/recharge_station,
+/obj/machinery/light/small{
+	dir = 1
 	},
-/area/security/brig)
+/turf/simulated/floor/tiled/white,
+/area/security/security_bathroom)
 "mX" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
@@ -12273,7 +12278,7 @@
 /turf/simulated/shuttle/wall/voidcraft/green{
 	hard_corner = 1
 	},
-/area/hallway/station/upper)
+/area/tether/elevator)
 "to" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -12882,7 +12887,7 @@
 /area/maintenance/station/elevator)
 "ui" = (
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/hallway/station/upper)
+/area/tether/elevator)
 "uj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor/glass/hidden/steel{
@@ -13229,25 +13234,12 @@
 /turf/simulated/floor/plating,
 /area/crew_quarters/heads/cmo)
 "uL" = (
-/obj/effect/floor_decal/borderfloorwhite{
+/obj/machinery/washing_machine,
+/obj/machinery/light{
 	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/window/reinforced/polarized/full{
-	id = "patient_room_c"
-	},
-/obj/structure/window/reinforced/polarized/full{
-	id = "sec_processing"
 	},
 /turf/simulated/floor/tiled/white,
-/area/medical/surgery_hallway)
+/area/security/security_bathroom)
 "uM" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -13462,11 +13454,9 @@
 /obj/random/maintenance/cargo,
 /obj/random/maintenance/cargo,
 /obj/machinery/alarm{
-	breach_detection = 0;
 	dir = 8;
 	pixel_x = 25;
-	pixel_y = 0;
-	report_danger_level = 0
+	pixel_y = 0
 	},
 /obj/item/weapon/storage/box/lights/mixed,
 /obj/item/weapon/storage/box/lights/mixed,
@@ -14261,7 +14251,7 @@
 /turf/simulated/shuttle/wall/voidcraft/green{
 	hard_corner = 1
 	},
-/area/hallway/station/upper)
+/area/tether/elevator)
 "ww" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor/glass/hidden/steel{
@@ -14345,7 +14335,7 @@
 	pixel_x = -27;
 	pixel_y = 0
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 4
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -14431,11 +14421,10 @@
 /area/quartermaster/office)
 "wL" = (
 /obj/machinery/camera/network/security{
-	c_tag = "SEC - Vault Exterior North";
-	dir = 1
+	c_tag = "SEC - Vault Exterior South"
 	},
 /turf/simulated/mineral/floor/vacuum,
-/area/mine/explored/upper_level)
+/area/security/nuke_storage)
 "wM" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/table/reinforced,
@@ -14641,7 +14630,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -14938,12 +14927,22 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
 "xu" = (
-/obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+/obj/structure/table/glass,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
 	},
-/turf/space,
-/area/space)
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 6
+	},
+/obj/item/device/defib_kit/loaded,
+/turf/simulated/floor/tiled/white,
+/area/medical/sleeper)
 "xv" = (
 /obj/structure/sign/warning/secure_area,
 /turf/simulated/wall/r_wall,
@@ -14952,13 +14951,12 @@
 /turf/simulated/wall/r_wall,
 /area/security/nuke_storage)
 "xx" = (
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+/obj/machinery/camera/network/security{
+	c_tag = "SEC - Vault Exterior North";
+	dir = 1
 	},
 /turf/simulated/mineral/floor/vacuum,
-/area/mine/explored/upper_level)
+/area/security/nuke_storage)
 "xy" = (
 /obj/effect/floor_decal/spline/plain{
 	icon_state = "spline_plain";
@@ -15196,7 +15194,7 @@
 	pixel_x = -27;
 	pixel_y = 0
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 4
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -15675,7 +15673,7 @@
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 6
 	},
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/structure/table/bench/standard,
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 9
@@ -15938,7 +15936,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "yR" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/effect/floor_decal/borderfloor,
@@ -16677,7 +16675,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "zY" = (
@@ -16863,7 +16861,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "Aj" = (
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -17361,13 +17359,6 @@
 /area/supply/station{
 	dynamic_lighting = 0
 	})
-"AZ" = (
-/obj/machinery/camera/network/security{
-	c_tag = "SEC - Vault Exterior West";
-	dir = 8
-	},
-/turf/space,
-/area/space)
 "Ba" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -18057,7 +18048,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "Cg" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/effect/floor_decal/borderfloor,
@@ -19455,7 +19446,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 9
 	},
 /obj/effect/floor_decal/industrial/warning,
@@ -22586,6 +22577,14 @@
 /obj/machinery/status_display/supply_display,
 /turf/simulated/wall,
 /area/quartermaster/warehouse)
+"JM" = (
+/obj/machinery/alarm{
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/turf/simulated/floor/tiled,
+/area/security/hallway)
 "JN" = (
 /obj/structure/table/standard,
 /obj/machinery/cell_charger,
@@ -22662,6 +22661,21 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
+"JW" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/space,
+/area/security/nuke_storage)
+"JX" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
+/turf/simulated/mineral/floor/vacuum,
+/area/security/nuke_storage)
 "JY" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
@@ -22863,6 +22877,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
+"Kq" = (
+/obj/machinery/camera/network/security{
+	c_tag = "SEC - Vault Exterior West";
+	dir = 8
+	},
+/turf/space,
+/area/security/nuke_storage)
 "Kr" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/firstaid/surgery,
@@ -23398,23 +23419,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
-"Lo" = (
-/obj/structure/table/glass,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 6
-	},
-/obj/item/device/defib_kit/loaded,
-/turf/simulated/floor/tiled/white,
-/area/space)
 "Lp" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -27319,10 +27323,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
-"RT" = (
-/obj/structure/toilet,
-/turf/simulated/floor/tiled/white,
-/area/security/security_bathroom)
 "Sa" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -27640,10 +27640,6 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai/foyer)
-"VB" = (
-/obj/machinery/washing_machine,
-/turf/simulated/floor/tiled/white,
-/area/security/security_bathroom)
 "VJ" = (
 /obj/structure/cable/green{
 	d2 = 2;
@@ -31720,7 +31716,7 @@ aa
 aa
 ae
 aa
-AZ
+Kq
 aa
 ae
 aa
@@ -31858,7 +31854,7 @@ uG
 vs
 ae
 aa
-xu
+JW
 xv
 xw
 xw
@@ -31866,7 +31862,7 @@ xw
 xw
 xw
 xv
-xu
+JW
 aa
 ae
 aa
@@ -32283,7 +32279,7 @@ tJ
 qc
 vs
 vt
-wL
+xx
 xw
 xw
 zf
@@ -32293,7 +32289,7 @@ BW
 CU
 xw
 xw
-vt
+wL
 vt
 vt
 vt
@@ -32852,7 +32848,7 @@ qc
 vt
 vt
 vt
-xx
+JX
 xw
 zj
 xw
@@ -32860,7 +32856,7 @@ dG
 xw
 zj
 xw
-xx
+JX
 vt
 ab
 ab
@@ -34542,7 +34538,7 @@ lC
 lC
 lC
 nO
-nN
+JM
 oz
 fo
 pK
@@ -35098,7 +35094,7 @@ bK
 cf
 cT
 jy
-mW
+jk
 jk
 jk
 jk
@@ -35241,7 +35237,7 @@ cf
 cT
 jy
 jk
-mW
+jk
 jk
 jk
 jk
@@ -36135,7 +36131,7 @@ IC
 Jq
 Kf
 KL
-Lo
+xu
 LR
 Mj
 MG
@@ -37226,7 +37222,7 @@ bz
 bw
 cl
 dS
-RT
+dd
 SX
 ST
 VJ
@@ -37510,11 +37506,11 @@ bB
 by
 cz
 dS
-dd
+mW
 SX
 TX
 WB
-VB
+uL
 Uw
 UV
 fG
@@ -37560,7 +37556,7 @@ LX
 IH
 Jz
 No
-uL
+Kn
 Ok
 OD
 AA

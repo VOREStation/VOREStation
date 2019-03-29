@@ -1,4 +1,5 @@
-/mob/living/carbon/New()
+/mob/living/carbon/Initialize()
+	. = ..()
 	//setup reagent holders
 	bloodstr = new/datum/reagents/metabolism/bloodstream(500, src)
 	ingested = new/datum/reagents/metabolism/ingested(500, src)
@@ -6,7 +7,6 @@
 	reagents = bloodstr
 	if (!default_language && species_language)
 		default_language = all_languages[species_language]
-	..()
 
 /mob/living/carbon/Life()
 	..()
@@ -348,12 +348,12 @@
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
 		usr.sleeping = 20 //Short nap
 
-/mob/living/carbon/Bump(var/atom/movable/AM, yes)
-	if(now_pushing || !yes)
+/mob/living/carbon/Bump(atom/A)
+	if(now_pushing)
 		return
 	..()
-	if(istype(AM, /mob/living/carbon) && prob(10))
-		src.spread_disease_to(AM, "Contact")
+	if(istype(A, /mob/living/carbon) && prob(10))
+		spread_disease_to(A, "Contact")
 
 /mob/living/carbon/cannot_use_vents()
 	return
@@ -374,11 +374,15 @@
 		chem_effects[effect] = magnitude
 
 /mob/living/carbon/get_default_language()
-	if(default_language && can_speak(default_language))
-		return default_language
+	if(default_language)
+		if(can_speak(default_language))
+			return default_language
+		else
+			return all_languages[LANGUAGE_GIBBERISH]
 
 	if(!species)
 		return null
+
 	return species.default_language ? all_languages[species.default_language] : null
 
 /mob/living/carbon/proc/should_have_organ(var/organ_check)

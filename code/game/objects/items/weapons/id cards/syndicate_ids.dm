@@ -6,11 +6,11 @@
 	var/electronic_warfare = 1
 	var/mob/registered_user = null
 
-/obj/item/weapon/card/id/syndicate/initialize()
+/obj/item/weapon/card/id/syndicate/Initialize()
 	. = ..()
 	access = syndicate_access.Copy()
 
-/obj/item/weapon/card/id/syndicate/station_access/initialize()
+/obj/item/weapon/card/id/syndicate/station_access/Initialize()
 	. = ..() // Same as the normal Syndicate id, only already has all station access
 	access |= get_all_station_access()
 
@@ -58,7 +58,7 @@
 	data["electronic_warfare"] = electronic_warfare
 	data["entries"] = entries
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "agent_id_card.tmpl", "Fake ID", 600, 400)
 		ui.set_initial_data(data)
@@ -185,7 +185,7 @@
 					. = 1
 
 	// Always update the UI, or buttons will spin indefinitely
-	GLOB.nanomanager.update_uis(src)
+	SSnanoui.update_uis(src)
 
 /var/global/list/id_card_states
 /proc/id_card_states()

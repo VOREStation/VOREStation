@@ -172,7 +172,7 @@
 			spawned_mobs |= M
 	else
 		var/list/candidates = list()
-		for(var/client/player in clients)
+		for(var/client/player in GLOB.clients)
 			if(player.mob && istype(player.mob, /mob/observer/dead))
 				candidates |= player
 

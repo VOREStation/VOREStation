@@ -50,21 +50,17 @@
 	containertype = /obj/structure/closet/crate
 	containername = "Action figures crate"
 
-/datum/supply_pack/recreation/characters_vr
-	name = "Tabletop miniatures"
+/datum/supply_pack/recreation/collars
+	name = "Collar bundle"
 	contains = list(
-			/obj/item/weapon/storage/box/characters
+			/obj/item/clothing/accessory/collar/shock = 1,
+			/obj/item/clothing/accessory/collar/spike = 1,
+			/obj/item/clothing/accessory/collar/silver = 1,
+			/obj/item/clothing/accessory/collar/gold = 1,
+			/obj/item/clothing/accessory/collar/bell = 1,
+			/obj/item/clothing/accessory/collar/pink = 1,
+			/obj/item/clothing/accessory/collar/holo = 1
 			)
+	cost = 25
 	containertype = /obj/structure/closet/crate
-	containername = "Tabletop miniatures crate"
-	cost = 50
-
-/datum/supply_pack/randomised/recreation/plushies_vr
-	name = "Plushies crate"
-	num_contained = 3
-	contains = list(
-			/obj/random/plushie
-			)
-	cost = 60
-	containertype = /obj/structure/closet/crate
-	containername = "Plushies crate"
+	containername = "collar crate"

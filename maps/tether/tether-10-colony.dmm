@@ -689,11 +689,11 @@
 "bd" = (
 /obj/structure/table/rack,
 /obj/structure/window/reinforced,
-/obj/item/weapon/gun/projectile/automatic/saber,
-/obj/item/ammo_magazine/m9mmR/saber,
-/obj/item/ammo_magazine/m9mmR/saber,
-/obj/item/ammo_magazine/m9mmR/saber,
-/obj/item/ammo_magazine/m9mmR/saber,
+/obj/item/weapon/gun/projectile/automatic/advanced_smg,
+/obj/item/ammo_magazine/m9mmAdvanced,
+/obj/item/ammo_magazine/m9mmAdvanced,
+/obj/item/ammo_magazine/m9mmAdvanced,
+/obj/item/ammo_magazine/m9mmAdvanced,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},

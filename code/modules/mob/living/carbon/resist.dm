@@ -153,11 +153,6 @@
 		legcuffed = null
 		update_inv_legcuffed()
 
-/mob/living/carbon/human/can_break_cuffs()
-	if(species.can_shred(src,1))
-		return 1
-	return ..()
-
 /mob/living/carbon/escape_buckle()
 	if(!buckled) return
 

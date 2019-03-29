@@ -75,7 +75,6 @@
 	return
 
 /obj/machinery/power/supermatter/shard/singularity_act()
-	src.forceMove(null)
 	qdel(src)
 	return 5000
 
@@ -90,7 +89,6 @@
 	SetUniversalState(/datum/universal_state/supermatter_cascade)
 	log_admin("New super singularity made by eating a SM crystal [prints]. Last touched by [src.fingerprintslast].")
 	message_admins("New super singularity made by eating a SM crystal [prints]. Last touched by [src.fingerprintslast].")
-	src.forceMove(null)
 	qdel(src)
 	return 50000
 

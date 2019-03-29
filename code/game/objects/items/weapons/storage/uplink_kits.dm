@@ -1,4 +1,4 @@
-/obj/item/weapon/storage/box/syndicate/initialize()
+/obj/item/weapon/storage/box/syndicate/Initialize()
 	switch (pickweight(list("bloodyspai" = 1, "stealth" = 1, "screwed" = 1, "guns" = 1, "murder" = 1, "freedom" = 1, "hacker" = 1, "lordsingulo" = 1, "smoothoperator" = 1)))
 		if("bloodyspai")
 			new /obj/item/clothing/under/chameleon(src)
@@ -70,7 +70,7 @@
 /obj/item/weapon/storage/box/syndie_kit/imp_freedom
 	name = "boxed freedom implant (with injector)"
 
-/obj/item/weapon/storage/box/syndie_kit/imp_freedom/initialize()
+/obj/item/weapon/storage/box/syndie_kit/imp_freedom/Initialize()
 	var/obj/item/weapon/implanter/O = new(src)
 	O.imp = new /obj/item/weapon/implant/freedom(O)
 	O.update()
@@ -87,7 +87,7 @@
 /obj/item/weapon/storage/box/syndie_kit/imp_uplink
 	name = "boxed uplink implant (with injector)"
 
-/obj/item/weapon/storage/box/syndie_kit/imp_uplink/initialize()
+/obj/item/weapon/storage/box/syndie_kit/imp_uplink/Initialize()
 	var/obj/item/weapon/implanter/O = new(src)
 	O.imp = new /obj/item/weapon/implant/uplink(O)
 	O.update()
@@ -157,7 +157,7 @@
 	name = "\improper Tricky smokes"
 	desc = "Comes with the following brands of cigarettes, in this order: 2xFlash, 2xSmoke, 1xMindBreaker, 1xTricordrazine. Avoid mixing them up."
 
-/obj/item/weapon/storage/box/syndie_kit/cigarette/initialize()
+/obj/item/weapon/storage/box/syndie_kit/cigarette/Initialize()
 	. = ..()
 	var/obj/item/weapon/storage/fancy/cigarettes/pack
 
