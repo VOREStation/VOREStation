@@ -395,3 +395,21 @@
 	..(newloc, "glass")
 
 	..()
+
+/obj/item/clothing/accessory/halfcape
+	name = "half cape"
+	desc = "A tasteful half-cape, suitible for European nobles and retro anime protagonists."
+	icon_state = "halfcape"
+	slot = ACCESSORY_SLOT_DECOR
+
+/obj/item/clothing/accessory/fullcape
+	name = "full cape"
+	desc = "A gaudy full cape. You're thinking about wearing it, aren't you?"
+	icon_state = "fullcape"
+	slot = ACCESSORY_SLOT_DECOR
+
+/obj/item/clothing/accessory/sash
+	name = "sash"
+	desc = "A plain, unadorned sash."
+	icon_state = "sash"
+	slot = ACCESSORY_SLOT_OVER

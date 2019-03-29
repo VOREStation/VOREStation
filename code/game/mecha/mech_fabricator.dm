@@ -38,7 +38,7 @@
 	files = new /datum/research(src) //Setup the research data holder.
 	return
 
-/obj/machinery/mecha_part_fabricator/initialize()
+/obj/machinery/mecha_part_fabricator/Initialize()
 	update_categories()
 	. = ..()
 
@@ -103,7 +103,7 @@
 	if(current)
 		data["builtperc"] = round((progress / current.time) * 100)
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "mechfab.tmpl", "Exosuit Fabricator UI", 800, 600)
 		ui.set_initial_data(data)

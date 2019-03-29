@@ -65,9 +65,9 @@
 	check_armour = "laser"
 	var/set_size = 1 //Let's default to 100%
 
-	muzzle_type = /obj/effect/projectile/xray/muzzle
-	tracer_type = /obj/effect/projectile/xray/tracer
-	impact_type = /obj/effect/projectile/xray/impact
+	muzzle_type = /obj/effect/projectile/muzzle/xray
+	tracer_type = /obj/effect/projectile/tracer/xray
+	impact_type = /obj/effect/projectile/impact/xray
 
 	on_hit(var/atom/target)
 		var/mob/living/M = target

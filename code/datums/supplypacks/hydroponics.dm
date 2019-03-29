@@ -42,6 +42,13 @@
 	containertype = /obj/structure/largecrate/animal/corgi
 	containername = "Corgi Crate"
 
+/datum/supply_pack/hydro/cat
+	name = "Cat Crate"
+	contains = list()
+	cost = 45
+	containertype = /obj/structure/largecrate/animal/cat
+	containername = "Cat Crate"
+
 /datum/supply_pack/hydro/hydroponics
 	name = "Hydroponics Supply Crate"
 	contains = list(

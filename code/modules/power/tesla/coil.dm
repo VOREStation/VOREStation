@@ -25,7 +25,7 @@
 	..()
 	wires = new(src)
 
-/obj/machinery/power/tesla_coil/initialize()
+/obj/machinery/power/tesla_coil/Initialize()
 	. = ..()
 	default_apply_parts()
 

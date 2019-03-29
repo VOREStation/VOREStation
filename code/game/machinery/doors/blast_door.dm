@@ -23,7 +23,7 @@
 	var/icon_state_closed = null
 	var/icon_state_closing = null
 
-	closed_layer = 3.3 // Above airlocks when closed
+	closed_layer = ON_WINDOW_LAYER // Above airlocks when closed
 	var/id = 1.0
 	dir = 1
 	explosion_resistance = 25
@@ -32,7 +32,7 @@
 	//turning this off prevents awkward zone geometry in places like medbay lobby, for example.
 	block_air_zones = 0
 
-/obj/machinery/door/blast/initialize()
+/obj/machinery/door/blast/Initialize()
 	. = ..()
 	implicit_material = get_material_by_name("plasteel")
 
@@ -151,7 +151,7 @@
 				return
 
 	else if(istype(C, /obj/item/stack/material) && C.get_material_name() == "plasteel") // Repairing.
-		var/amt = Ceiling((maxhealth - health)/150)
+		var/amt = CEILING((maxhealth - health)/150, 1)
 		if(!amt)
 			to_chat(user, "<span class='notice'>\The [src] is already fully repaired.</span>")
 			return
@@ -259,12 +259,14 @@
 	if(stat & BROKEN)
 		stat &= ~BROKEN
 
-
-/obj/machinery/door/blast/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group) return 1
+/*
+// This replicates the old functionality coded into CanPass() for this object, however it appeared to have made blast doors not airtight.
+// If for some reason this is actually needed for something important, uncomment this.
+/obj/machinery/door/blast/CanZASPass(turf/T, is_zone)
+	if(is_zone)
+		return ATMOS_PASS_YES
 	return ..()
-
-
+*/
 
 // SUBTYPE: Regular
 // Your classical blast door, found almost everywhere.

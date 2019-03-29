@@ -19,13 +19,13 @@
 	var/power_usage
 	var/power_use = 1
 
-/obj/item/device/flashlight/initialize()
+/obj/item/device/flashlight/Initialize()
 	. = ..()
 	update_icon()
 
 /obj/item/device/flashlight/New()
 	if(power_use)
-		processing_objects |= src
+		START_PROCESSING(SSobj, src)
 
 		if(cell_type)
 			cell = new cell_type(src)
@@ -38,7 +38,7 @@
 
 /obj/item/device/flashlight/Destroy()
 	if(power_use)
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/device/flashlight/get_cell()
@@ -352,7 +352,7 @@
 		turn_off()
 		if(!fuel)
 			src.icon_state = "[initial(icon_state)]-empty"
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 
 /obj/item/device/flashlight/flare/proc/turn_off()
 	on = 0
@@ -375,14 +375,14 @@
 		user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You pull the cord on the flare, activating it!</span>")
 		src.force = on_damage
 		src.damtype = "fire"
-		processing_objects += src
+		START_PROCESSING(SSobj, src)
 
 /obj/item/device/flashlight/flare/proc/ignite() //Used for flare launchers.
 	on = !on
 	update_icon()
 	force = on_damage
 	damtype = "fire"
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	return 1
 
 //Glowsticks
@@ -409,7 +409,7 @@
 		turn_off()
 		if(!fuel)
 			src.icon_state = "[initial(icon_state)]-empty"
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 
 /obj/item/device/flashlight/glowstick/proc/turn_off()
 	on = 0
@@ -426,7 +426,7 @@
 	. = ..()
 	if(.)
 		user.visible_message("<span class='notice'>[user] cracks and shakes the glowstick.</span>", "<span class='notice'>You crack and shake the glowstick, turning it on!</span>")
-		processing_objects += src
+		START_PROCESSING(SSobj, src)
 
 /obj/item/device/flashlight/glowstick/red
 	name = "red glowstick"

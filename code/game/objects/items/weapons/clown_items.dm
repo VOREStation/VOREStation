@@ -15,11 +15,11 @@
 /*
  * Soap
  */
-/obj/item/weapon/soap/New()
-	..()
+/obj/item/weapon/soap/Initialize()
+	. = ..()
 	create_reagents(5)
 	wet()
- 
+
 /obj/item/weapon/soap/proc/wet()
 	reagents.add_reagent("cleaner", 5)
 

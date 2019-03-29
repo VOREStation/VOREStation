@@ -79,10 +79,9 @@
 			var/obj/item/weapon/grab/grab = G
 			if(!ismob(grab.affecting))
 				return
-			for(var/mob/living/simple_animal/slime/M in range(1,grab.affecting))
-				if(M.victim == grab.affecting)
-					usr << "[grab.affecting.name] will not fit into the [src.name] because they have a slime latched onto their head."
-					return
+			if(grab.affecting.has_buckled_mobs())
+				to_chat(user, span("warning", "\The [grab.affecting] has other entities attached to them. Remove them first."))
+				return
 			var/mob/M = grab.affecting
 			if(put_mob(M))
 				qdel(G)

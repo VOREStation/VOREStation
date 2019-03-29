@@ -107,21 +107,21 @@
 		var/obj/structure/ladder/L = new(get_turf(below))
 		L.allowed_directions = UP
 		if(below.created_name) L.name = below.created_name
-		L.initialize()
+		L.Initialize()
 		qdel(below)
 
 	if(me)
 		var/obj/structure/ladder/L = new(get_turf(me))
 		L.allowed_directions = (below ? DOWN : 0) | (above ? UP : 0)
 		if(me.created_name) L.name = me.created_name
-		L.initialize()
+		L.Initialize()
 		qdel(me)
 
 	if(above)
 		var/obj/structure/ladder/L = new(get_turf(above))
 		L.allowed_directions = DOWN
 		if(above.created_name) L.name = above.created_name
-		L.initialize()
+		L.Initialize()
 		qdel(above)
 
 // Make them constructable in hand

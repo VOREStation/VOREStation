@@ -213,3 +213,14 @@
 	containertype = "/obj/structure/closet/crate/secure"
 	containername = "Frontier Mining voidsuit crate"
 	access = access_mining
+
+/datum/supply_pack/voidsuits/zaddat
+	name = "Zaddat Shroud"
+	contains = list(
+		/obj/item/clothing/suit/space/void/zaddat = 1,
+		/obj/item/clothing/mask/gas/zaddat = 1
+		)
+	cost = 30
+	containertype = "/obj/structure/closet/crate"
+	containername = "Zaddat Shroud crate"
+	access = null

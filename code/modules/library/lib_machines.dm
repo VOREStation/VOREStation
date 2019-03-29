@@ -367,7 +367,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				V.show_message("<b>[src]</b>'s monitor flashes, \"Printer unavailable. Please allow a short time before attempting to print.\"")
 		else
 			bibledelay = 1
-			spawn(60)
+			spawn(6)
 				bibledelay = 0
 			var/DBQuery/query = dbcon_old.NewQuery("SELECT * FROM library WHERE id=[sqlid]")
 			query.Execute()

@@ -9,6 +9,7 @@
 	anchored = 1
 	opacity = 1
 	density = 1
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	layer = DOOR_OPEN_LAYER
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
@@ -39,8 +40,8 @@
 
 /obj/machinery/door/attack_generic(var/mob/user, var/damage)
 	if(isanimal(user))
-		var/mob/living/simple_animal/S = user
-		if(damage >= 10)
+		var/mob/living/simple_mob/S = user
+		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
 			visible_message("<span class='danger'>\The [user] smashes into the [src]!</span>")
 			playsound(src, S.attack_sound, 75, 1)
 			take_damage(damage)
@@ -98,6 +99,7 @@
 	return 1
 
 /obj/machinery/door/Bumped(atom/AM)
+	. = ..()
 	if(p_open || operating)
 		return
 	if(ismob(AM))
@@ -133,16 +135,16 @@
 				open()
 			else
 				do_animate("deny")
-		return
-	return
 
-
-/obj/machinery/door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group) return !block_air_zones
+/obj/machinery/door/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return !opacity
 	return !density
 
+/obj/machinery/door/CanZASPass(turf/T, is_zone)
+	if(is_zone)
+		return block_air_zones ? ATMOS_PASS_NO : ATMOS_PASS_YES
+	return ..()
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)	return

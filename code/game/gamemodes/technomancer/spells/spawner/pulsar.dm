@@ -11,7 +11,7 @@
 	icon_state = "radiance"
 	cast_methods = CAST_RANGED | CAST_THROW
 	aspect = ASPECT_EMP
-	spawner_type = /obj/effect/temporary_effect/pulsar
+	spawner_type = /obj/effect/temporary_effect/pulse/pulsar
 
 /obj/item/weapon/spell/spawner/pulsar/New()
 	..()
@@ -25,7 +25,29 @@
 /obj/item/weapon/spell/spawner/pulsar/on_throw_cast(atom/hit_atom, mob/user)
 	empulse(hit_atom, 1, 1, 1, 1, log=1)
 
-/obj/effect/temporary_effect/pulsar
+// Does something every so often. Deletes itself when pulses_remaining hits zero.
+/obj/effect/temporary_effect/pulse
+	var/pulses_remaining = 3
+	var/pulse_delay = 2 SECONDS
+
+/obj/effect/temporary_effect/pulse/Initialize()
+	spawn(0)
+		pulse_loop()
+	return ..()
+
+/obj/effect/temporary_effect/pulse/proc/pulse_loop()
+	while(pulses_remaining)
+		sleep(pulse_delay)
+		on_pulse()
+		pulses_remaining--
+	qdel(src)
+
+// Override for specific effects.
+/obj/effect/temporary_effect/pulse/proc/on_pulse()
+
+
+
+/obj/effect/temporary_effect/pulse/pulsar
 	name = "pulsar"
 	desc = "Not a real pulsar, but still emits loads of EMP."
 	icon_state = "shield2"
@@ -33,17 +55,14 @@
 	light_range = 4
 	light_power = 5
 	light_color = "#2ECCFA"
-	var/pulses_remaining = 3
+	pulses_remaining = 3
 
-/obj/effect/temporary_effect/pulsar/New()
-	..()
-	spawn(0)
-		pulse_loop()
+/obj/effect/temporary_effect/pulse/pulsar/on_pulse()
+	empulse(src, 1, 1, 2, 2, log = 1)
 
-/obj/effect/temporary_effect/pulsar/proc/pulse_loop()
-	while(pulses_remaining)
-		sleep(2 SECONDS)
-		empulse(src, 1, 1, 2, 2, log = 1)
-		pulses_remaining--
-	qdel(src)
+
+
+
+
+
 

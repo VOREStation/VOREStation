@@ -9,7 +9,7 @@
 	icon_opened = "base"
 	req_one_access = list(access_armory)
 
-/obj/structure/closet/secure_closet/guncabinet/initialize()
+/obj/structure/closet/secure_closet/guncabinet/Initialize()
 	. = ..()
 	update_icon()
 

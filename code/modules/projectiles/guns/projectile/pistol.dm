@@ -132,8 +132,8 @@
 	item_state = "deagle"
 	force = 14.0
 	caliber = ".44"
+	fire_sound = 'sound/weapons/Gunshot_deagle.ogg'
 	load_method = MAGAZINE
-	fire_sound = 'sound/weapons/deagle.ogg'
 	magazine_type = /obj/item/ammo_magazine/m44
 	allowed_magazines = list(/obj/item/ammo_magazine/m44)
 
@@ -154,33 +154,13 @@
 	icon_state = "deaglecamo"
 	item_state = "deagleg"
 
-/*
-/obj/item/weapon/gun/projectile/fiveseven
-	name = "\improper WT-AP57"
-	desc = "This tacticool pistol made by Ward-Takahashi trades stopping power for armor piercing and a large capacity. Uses 5mm rounds."
-	icon_state = "fnseven"
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
-	caliber = "5mm"
-	load_method = MAGAZINE
-	fire_sound = 'sound/weapons/semiauto.ogg'
-	magazine_type = /obj/item/ammo_magazine/c5mm
-	allowed_magazines = list(/obj/item/ammo_magazine/c5mm)
-
-/obj/item/weapon/gun/projectile/fiveseven/update_icon()
-	..()
-	if(ammo_magazine)
-		icon_state = "fnseven"
-	else
-		icon_state = "fnseven-empty"
-*/
-
 /obj/item/weapon/gun/projectile/gyropistol // Does this even appear anywhere outside of admin abuse?
 	name = "gyrojet pistol"
 	desc = "Speak softly, and carry a big gun. Fires rare .75 caliber self-propelled exploding bolts--because fuck you and everything around you."
 	icon_state = "gyropistol"
 	max_shells = 8
 	caliber = ".75"
-	fire_sound = 'sound/weapons/rpg.ogg'
+	fire_sound = 'sound/weapons/railgun.ogg'
 	origin_tech = list(TECH_COMBAT = 3)
 	ammo_type = "/obj/item/ammo_casing/a75"
 	load_method = MAGAZINE
@@ -331,7 +311,6 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	caliber = "9mm"
 	load_method = MAGAZINE
-	fire_sound = 'sound/weapons/gunshot3.ogg'
 	magazine_type = /obj/item/ammo_magazine/m9mm
 	allowed_magazines = list(/obj/item/ammo_magazine/m9mm) // Can accept illegal large capacity magazines, or compact magazines.
 

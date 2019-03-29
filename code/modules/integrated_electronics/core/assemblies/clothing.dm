@@ -108,7 +108,7 @@
 	icon_state = "circuitry"
 	worn_state = "circuitry"
 
-/obj/item/clothing/under/circuitry/initialize()
+/obj/item/clothing/under/circuitry/Initialize()
 	setup_integrated_circuit(/obj/item/device/electronic_assembly/clothing)
 	return ..()
 
@@ -121,7 +121,7 @@
 	icon_state = "circuitry"
 	item_state = "circuitry"
 
-/obj/item/clothing/gloves/circuitry/initialize()
+/obj/item/clothing/gloves/circuitry/Initialize()
 	setup_integrated_circuit(/obj/item/device/electronic_assembly/clothing/small)
 	return ..()
 
@@ -134,7 +134,7 @@
 	icon_state = "circuitry"
 	item_state = "night" // The on-mob sprite would be identical anyways.
 
-/obj/item/clothing/glasses/circuitry/initialize()
+/obj/item/clothing/glasses/circuitry/Initialize()
 	setup_integrated_circuit(/obj/item/device/electronic_assembly/clothing/small)
 	return ..()
 
@@ -146,7 +146,7 @@
 	icon_state = "circuitry"
 	item_state = "circuitry"
 
-/obj/item/clothing/shoes/circuitry/initialize()
+/obj/item/clothing/shoes/circuitry/Initialize()
 	setup_integrated_circuit(/obj/item/device/electronic_assembly/clothing/small)
 	return ..()
 
@@ -158,7 +158,7 @@
 	icon_state = "circuitry"
 	item_state = "circuitry"
 
-/obj/item/clothing/head/circuitry/initialize()
+/obj/item/clothing/head/circuitry/Initialize()
 	setup_integrated_circuit(/obj/item/device/electronic_assembly/clothing/small)
 	return ..()
 
@@ -170,7 +170,7 @@
 	icon_state = "circuitry"
 	item_state = "circuitry"
 
-/obj/item/clothing/ears/circuitry/initialize()
+/obj/item/clothing/ears/circuitry/Initialize()
 	setup_integrated_circuit(/obj/item/device/electronic_assembly/clothing/small)
 	return ..()
 
@@ -182,6 +182,6 @@
 	icon_state = "circuitry"
 	item_state = "circuitry"
 
-/obj/item/clothing/suit/circuitry/initialize()
+/obj/item/clothing/suit/circuitry/Initialize()
 	setup_integrated_circuit(/obj/item/device/electronic_assembly/clothing/large)
 	return ..()
