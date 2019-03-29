@@ -221,13 +221,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 			var/agony_to_apply = ((1 / starve_mod) * nutrition_cost) //Regenerating damage causes minor pain over time. Small injures will be no issue, large ones will cause problems.
 
-<<<<<<< HEAD
-	//else//VOREStation Removal
-		//H.adjustToxLoss(2*heal_rate)	// Doubled because 0.5 is miniscule, and fire_stacks are capped in both directions
-=======
 			if((starve_mod <= 0.5 && (H.getHalLoss() + agony_to_apply) <= 90) || ((H.getHalLoss() + agony_to_apply) <= 70))	// Will max out at applying halloss at 70, unless they are starving; starvation regeneration will bring them up to a maximum of 120, the same amount of agony a human receives from three taser hits.
 				H.apply_damage(agony_to_apply, HALLOSS)
->>>>>>> ed9404b... Merge pull request #5995 from Mechoid/master
 
 /datum/species/shapeshifter/promethean/get_blood_colour(var/mob/living/carbon/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())
