@@ -38,15 +38,12 @@
 		if(epitaph)
 			to_chat(user, epitaph)
 
-/obj/structure/gravemarker/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(!mover)
-		return 1
+/obj/structure/gravemarker/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
+		return TRUE
 	if(get_dir(loc, target) & dir)
 		return !density
-	else
-		return 1
+	return TRUE
 
 /obj/structure/gravemarker/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSTABLE))

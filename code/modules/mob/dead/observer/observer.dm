@@ -143,8 +143,8 @@
 		var/mob/observer/dead/M = src
 		M.manifest(user)
 
-/mob/observer/dead/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	return 1
+/mob/observer/dead/CanPass(atom/movable/mover, turf/target)
+	return TRUE
 /*
 Transfer_mind is there to check if mob is being deleted/not going to have a body.
 Works together with spawning an observer, noted above.

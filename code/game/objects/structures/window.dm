@@ -3,6 +3,7 @@
 	desc = "A window."
 	icon = 'icons/obj/structures_vr.dmi' // VOREStation Edit - New icons
 	density = 1
+	can_atmos_pass = ATMOS_PASS_DENSITY
 	w_class = ITEMSIZE_NORMAL
 
 	layer = WINDOW_LAYER
@@ -129,7 +130,7 @@
 /obj/structure/window/blob_act()
 	take_damage(50)
 
-/obj/structure/window/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/structure/window/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return TRUE
 	if(is_fulltile())
@@ -138,6 +139,12 @@
 		return !density
 	else
 		return TRUE
+
+
+/obj/structure/window/CanZASPass(turf/T, is_zone)
+	if(is_fulltile() || get_dir(T, loc) == turn(dir, 180)) // Make sure we're handling the border correctly.
+		return anchored ? ATMOS_PASS_NO : ATMOS_PASS_YES // If it's anchored, it'll block air.
+	return ATMOS_PASS_YES // Don't stop airflow from the other sides.
 
 /obj/structure/window/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSGLASS))

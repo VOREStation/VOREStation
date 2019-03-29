@@ -286,16 +286,16 @@ var/list/tape_roll_applications = list()
 		update_icon()
 		name = "crumpled [name]"
 
-/obj/item/tape/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/item/tape/CanPass(atom/movable/mover, turf/target)
 	if(!lifted && ismob(mover))
 		var/mob/M = mover
 		add_fingerprint(M)
-		if (!allowed(M))	//only select few learn art of not crumpling the tape
-			M << "<span class='warning'>You are not supposed to go past [src]...</span>"
+		if(!allowed(M))	//only select few learn art of not crumpling the tape
+			to_chat(M, span("warning", "You are not supposed to go past \the [src]..."))
 			if(M.a_intent == I_HELP && !(istype(M, /mob/living/simple_mob)))
-				return 0
+				return FALSE
 			crumple()
-	return ..(mover)
+	return ..()
 
 /obj/item/tape/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	breaktape(user)
