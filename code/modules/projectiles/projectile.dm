@@ -108,6 +108,7 @@
 	var/reflected = 0 // This should be set to 1 if reflected by any means, to prevent infinite reflections.
 	var/modifier_type_to_apply = null // If set, will apply a modifier to mobs that are hit by this projectile.
 	var/modifier_duration = null // How long the above modifier should last for. Leave null to be permanent.
+	var/excavation_amount = 0 // How much, if anything, it drills from a mineral turf.
 
 	embed_chance = 0	//Base chance for a projectile to embed
 
@@ -406,7 +407,7 @@
 /obj/item/projectile/proc/old_style_target(atom/target, atom/source)
 	if(!source)
 		source = get_turf(src)
-	starting = source
+	starting = get_turf(source)
 	original = target
 	setAngle(Get_Angle(source, target))
 
@@ -435,7 +436,7 @@
 		beam_segments[beam_index] = pcache
 	generate_hitscan_tracers(null, null, impacting)
 
-/obj/item/projectile/proc/generate_hitscan_tracers(cleanup = TRUE, duration = 3, impacting = TRUE)
+/obj/item/projectile/proc/generate_hitscan_tracers(cleanup = TRUE, duration = 5, impacting = TRUE)
 	if(!length(beam_segments))
 		return
 	if(tracer_type)

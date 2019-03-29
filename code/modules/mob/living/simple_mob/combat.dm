@@ -127,9 +127,12 @@
 	// Otherwise default to the mob's firing sound.
 	playsound(src, P.fire_sound ? P.fire_sound : projectilesound, 80, 1)
 
-	P.firer = src // So we can't shoot ourselves.
-	P.old_style_target(A, src)
-	P.fire()
+	// For some reason there isn't an argument for accuracy, so access the projectile directly instead.
+	// Also, placing dispersion here instead of in forced_spread will randomize the chosen angle between dispersion and -dispersion in fire() instead of having to do that here.
+	P.accuracy += calculate_accuracy()
+	P.dispersion += calculate_dispersion()
+
+	P.launch_projectile(target = A, target_zone = null, user = src, params = null, angle_override = null, forced_spread = 0)
 	if(needs_reload)
 		reload_count++
 
@@ -148,6 +151,25 @@
 	else
 		. = FALSE
 	set_AI_busy(FALSE)
+
+/mob/living/simple_mob/proc/calculate_dispersion()
+	. = projectile_dispersion // Start with the basic var.
+
+	// Some modifiers change dispersion. This makes simple_mobs respect that.
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.accuracy_dispersion))
+			. += M.accuracy_dispersion
+
+	// Make sure we don't go under zero dispersion.
+	. = max(., 0)
+
+/mob/living/simple_mob/proc/calculate_accuracy()
+	. = projectile_accuracy // Start with the basic var.
+
+	// Some modifiers make it harder or easier to hit things.
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.accuracy))
+			. += M.accuracy
 
 // Can we currently do a special attack?
 /mob/living/simple_mob/proc/can_special_attack(atom/A)
