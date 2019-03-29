@@ -341,8 +341,6 @@ datum/preferences
 /datum/preferences/proc/close_load_dialog(mob/user)
 	//user << browse(null, "window=saves")
 	panel.close()
-<<<<<<< HEAD
-=======
 
 /datum/preferences/proc/open_copy_dialog(mob/user)
 	var/dat = "<body>"
@@ -366,4 +364,3 @@ datum/preferences
 	panel = new(user, "Character Slots", "Character Slots", 300, 390, src)
 	panel.set_content(dat)
 	panel.open()
->>>>>>> 6927ca1... Merge pull request #5988 from PrismaticGynoid/charactercopy
