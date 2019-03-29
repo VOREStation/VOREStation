@@ -3,4 +3,4 @@ author: PrismaticGynoid
 delete-after: True
 
 changes: 
-  - rscadd: "Adds three new crashed escape pod PoIs."
+  - rscadd: "Adds three new crashed escape pod PoIs." 
