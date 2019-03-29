@@ -32,7 +32,7 @@
 	desc = "This snake is particularly chubby and demands nothing but the finest of treats."
 
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
-	makes_dirt = FALSE	//VOREStation edit: no more dirt
+	makes_dirt = FALSE
 
 	var/turns_since_scan = 0
 	var/obj/movement_target
