@@ -11,6 +11,9 @@
 	if(holder.incapacitated(INCAPACITATION_DISABLED)) // Stunned in some form.
 		ai_log("can_act() : Incapacited.", AI_LOG_TRACE)
 		return FALSE
+	if(holder.instasis()) // In a stasis field.
+		ai_log("can_act() : In a stasis field.", AI_LOG_TRACE)
+		return FALSE
 	return TRUE
 
 // Test if we should switch to STANCE_DISABLE.
