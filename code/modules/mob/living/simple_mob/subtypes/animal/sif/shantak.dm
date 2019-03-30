@@ -1,10 +1,29 @@
 // Shantaks are essentially sif wolves.
 
+/datum/category_item/catalogue/fauna/shantak
+	name = "Sivian Fauna - Shantak"
+	desc = "Classification: S Choeros shantak\
+	<br><br>\
+	The Shantak is easily recognized by its iridescent, crystaline mane. \
+	The creature's specially adapted hairs are hardened by a natural hard mineral coating, \
+	thickest in the mane but present across the whole body. \
+	As well as giving the Shantak a coat nigh-inpenetrable to all but the most specialized predator, \
+	their hard, almost metallic coat gives them a slightly musical accent as they move. \
+	The Shantak uses its powerful foreclaws for both den-building and foraging. \
+	<br><br>\
+	Observed to share several square-mile territories with a small number of other individuals, \
+	the Shantak will rotate between several dens dug deep into the hard earth throughout the year, \
+	while deftly avoiding others of its species outwith mating season. While other wildlife makes use of these dens, \
+	the Shantak is fiercely territorial and will defend itself against any creature it perceives as a threat with reckless abandon. \
+	Their diet consists primarily of fungi and insects found just below the permafrost."
+	value = CATALOGUER_REWARD_MEDIUM
+
 /mob/living/simple_mob/animal/sif/shantak
 	name = "shantak"
 	desc = "A piglike creature with a bright iridiscent mane that sparkles as though lit by an inner light. \
 	Don't be fooled by its beauty though."
 	tt_desc = "S Choeros shantak"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/shantak)
 
 	faction = "shantak"
 
@@ -14,6 +33,15 @@
 	icon = 'icons/jungle.dmi'
 
 	maxHealth = 75
+	armor_soak = list(
+				"melee" = 5,
+				"bullet" = 0,
+				"laser" = 0,
+				"energy" = 0,
+				"bomb" = 0,
+				"bio" = 0,
+				"rad" = 0
+				)
 
 	movement_cooldown = 5
 

@@ -229,6 +229,16 @@
 
 // Sif trees
 
+/datum/category_item/catalogue/flora/sif_tree
+	name = "Sivian Flora - Tree"
+	desc = "The damp, shaded environment of Sif's most common variety of tree provides an ideal environment for a wide \
+	variety of bioluminescent bacteria. The soft glow of the microscopic organisms in turn attracts several native microphagous \
+	animals which act as an effective dispersal method. By this mechanism, new trees and bacterial colonies often sprout in \
+	unison, having formed a symbiotic relationship over countless years of evolution.\
+	<br><br>\
+	Wood-like material can be obtained from this by cutting it down with a bladed tool."
+	value = CATALOGUER_REWARD_TRIVIAL
+
 /obj/structure/flora/tree/sif
 	name = "glowing tree"
 	desc = "It's a tree, except this one seems quite alien.  It glows a deep blue."
@@ -236,6 +246,7 @@
 	icon_state = "tree_sif"
 	base_state = "tree_sif"
 	product = /obj/item/stack/material/log/sif
+	catalogue_data = list(/datum/category_item/catalogue/flora/sif_tree)
 
 /obj/structure/flora/tree/sif/Initialize()
 	update_icon()

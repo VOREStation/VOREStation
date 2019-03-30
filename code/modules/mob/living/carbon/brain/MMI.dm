@@ -285,6 +285,7 @@
 /obj/item/device/mmi/digital/robot
 	name = "robotic intelligence circuit"
 	desc = "The pinnacle of artifical intelligence which can be achieved using classical computer science."
+	catalogue_data = list(/datum/category_item/catalogue/technology/drone/drones)
 	icon = 'icons/obj/module.dmi'
 	icon_state = "mainboard"
 	w_class = ITEMSIZE_NORMAL
@@ -306,6 +307,7 @@
 /obj/item/device/mmi/digital/posibrain
 	name = "positronic brain"
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves."
+	catalogue_data = list(/datum/category_item/catalogue/technology/positronics)
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain"
 	w_class = ITEMSIZE_NORMAL

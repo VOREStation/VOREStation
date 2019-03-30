@@ -8,6 +8,7 @@
 	var/name												// Species name.
 	var/name_plural											// Pluralized name (since "[name]s" is not always valid)
 	var/blurb = "A completely nondescript species."			// A brief lore summary for use in the chargen screen.
+	var/list/catalogue_data = null							// A list of /datum/category_item/catalogue datums, for the cataloguer, or null.
 
 	// Icon/appearance vars.
 	var/icobase = 'icons/mob/human_races/r_human.dmi'		// Normal icon set.
