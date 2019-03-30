@@ -348,21 +348,17 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	name = "TSC - Xion Manufacturing Group"
 	datum_to_copy = /datum/lore/organization/tsc/xion
 
-/* //VOREStation Edit - We have no Major Bills
 /datum/category_item/catalogue/information/organization/major_bills
 	name = "TSC - Major Bill's Transportation"
 	datum_to_copy = /datum/lore/organization/tsc/mbt
-*/
 
 /datum/category_item/catalogue/information/organization/solgov
 	name = "Government - Solar Confederate Government"
 	datum_to_copy = /datum/lore/organization/gov/solgov
 
-/* //VOREStation Edit - Nor do we have Virgov
 /datum/category_item/catalogue/information/organization/virgov
 	name = "Government - Vir Governmental Authority"
 	datum_to_copy = /datum/lore/organization/gov/virgov
-*/
 
 
 /datum/category_item/catalogue/anomalous
