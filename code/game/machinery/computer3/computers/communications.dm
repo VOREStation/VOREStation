@@ -106,6 +106,12 @@
 					switch(security_level)
 						if(SEC_LEVEL_GREEN)
 							feedback_inc("alert_comms_green",1)
+						if(SEC_LEVEL_YELLOW)
+							feedback_inc("alert_comms_yellow",1)
+						if(SEC_LEVEL_VIOLET)
+							feedback_inc("alert_comms_violet",1)
+						if(SEC_LEVEL_ORANGE)
+							feedback_inc("alert_comms_orange",1)
 						if(SEC_LEVEL_BLUE)
 							feedback_inc("alert_comms_blue",1)
 				tmp_alertlevel = 0
@@ -382,6 +388,9 @@
 				dat += "<font color='red'><b>The self-destruct mechanism is active. Find a way to deactivate the mechanism to lower the alert level or evacuate.</b></font>"
 			else
 				dat += "<A HREF='?src=\ref[src];securitylevel;newalertlevel=[SEC_LEVEL_BLUE]'>Blue</A><BR>"
+				dat += "<A HREF='?src=\ref[src];securitylevel;newalertlevel=[SEC_LEVEL_ORANGE]'>Orange</A><BR>"
+				dat += "<A HREF='?src=\ref[src];securitylevel;newalertlevel=[SEC_LEVEL_VIOLET]'>Violet</A><BR>"
+				dat += "<A HREF='?src=\ref[src];securitylevel;newalertlevel=[SEC_LEVEL_YELLOW]'>Yellow</A><BR>"
 				dat += "<A HREF='?src=\ref[src];securitylevel;newalertlevel=[SEC_LEVEL_GREEN]'>Green</A>"
 		if(STATE_CONFIRM_LEVEL)
 			dat += "Current alert level: [get_security_level()]<BR>"

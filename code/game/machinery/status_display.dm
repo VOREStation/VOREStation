@@ -49,6 +49,8 @@
 	var/const/STATUS_DISPLAY_TIME = 4
 	var/const/STATUS_DISPLAY_CUSTOM = 99
 
+	var/seclevel = "green"
+
 /obj/machinery/status_display/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src,frequency)
@@ -136,7 +138,7 @@
 			update_display(line1, line2)
 			return 1
 		if(STATUS_DISPLAY_ALERT)
-			set_picture(picture_state)
+			display_alert(seclevel)
 			return 1
 		if(STATUS_DISPLAY_TIME)
 			message1 = "TIME"
@@ -164,6 +166,20 @@
 	else
 		message2 = ""
 		index2 = 0
+
+/obj/machinery/status_display/proc/display_alert(var/newlevel)
+	remove_display()
+	if(seclevel != newlevel)
+		seclevel = newlevel
+	switch(seclevel)
+		if("green")	set_light(l_range = 2, l_power = 0.25, l_color = "#00ff00")
+		if("yellow")	set_light(l_range = 2, l_power = 0.25, l_color = "#ffff00")
+		if("violet")	set_light(l_range = 2, l_power = 0.25, l_color = "#9933ff")
+		if("orange")	set_light(l_range = 2, l_power = 0.25, l_color = "#ff9900")
+		if("blue")	set_light(l_range = 2, l_power = 0.25, l_color = "#1024A9")
+		if("red")	set_light(l_range = 4, l_power = 0.9, l_color = "#ff0000")
+		if("delta")	set_light(l_range = 4, l_power = 0.9, l_color = "#FF6633")
+	set_picture("status_display_[seclevel]")
 
 /obj/machinery/status_display/proc/set_picture(state)
 	remove_display()
