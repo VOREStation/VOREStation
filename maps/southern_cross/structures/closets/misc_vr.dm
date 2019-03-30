@@ -24,7 +24,9 @@
 		/obj/item/weapon/material/knife/tacknife/survival,
 		/obj/item/weapon/material/knife/machete,
 		/obj/item/clothing/accessory/holster/machete,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2)
+		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2,
+		/obj/item/device/cataloguer
+		)
 
 /obj/structure/closet/secure_closet/sar
 	name = "field medic locker"
@@ -111,7 +113,9 @@
 		/obj/item/weapon/material/knife/machete/deluxe,
 		/obj/item/weapon/gun/energy/frontier/locked/carbine,
 		/obj/item/clothing/accessory/holster/machete,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2)
+		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2,
+		/obj/item/device/cataloguer
+		)
 
 /obj/structure/closet/secure_closet/pathfinder/Initialize()
 	if(prob(50))
