@@ -34,19 +34,16 @@
 				data -= taste
 
 /datum/reagent/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	/* VOREStation Removal
-	if(!injectable && alien != IS_SLIME)
+	if(!injectable && alien != IS_SLIME && alien != IS_CHIMERA) //VOREStation Edit
 		M.adjustToxLoss(0.1 * removed)
 		return
-	affect_ingest(M, alien, removed) 
-	*/ //VOREStation Removal End
-	if(injectable) //vorestation addition/replacement
-		affect_ingest(M, alien, removed)
+	affect_ingest(M, alien, removed)
 
 /datum/reagent/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	switch(alien)
 		if(IS_DIONA) return
 		if(IS_UNATHI) removed *= 0.5
+		if(IS_CHIMERA) removed *= 0.25 //VOREStation Edit
 	if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
 	M.heal_organ_damage(0.5 * removed, 0)
 	if(M.species.gets_food_nutrition) //VOREStation edit. If this is set to 0, they don't get nutrition from food.
@@ -77,6 +74,10 @@
 			return
 		if(IS_UNATHI)
 			..(M, alien, removed*2.25) //Unathi get most of their nutrition from meat.
+		//VOREStation Edit Start
+		if(IS_CHIMERA)
+			..(M, alien, removed*4) //Xenochimera are obligate carnivores.
+		//VOREStation Edit End
 	..()
 
 /datum/reagent/nutriment/protein/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
