@@ -1,6 +1,24 @@
+// Webslingers do what their name implies, shoot web at enemies to slow them down.
+
+/datum/category_item/catalogue/fauna/giant_spider/webslinger_spider
+	name = "Giant Spider - Webslinger"
+	desc = "This specific spider has been catalogued as 'Webslinger', \
+	and it belongs to the 'Nurse' caste. \
+	The spider is green, with a 'cloak' of webs attached to it. It's eyes are also green. \
+	<br><br>\
+	Webslingers are more aggressive than some of the other spiders in their caste, spinning web to use \
+	as an offensive weapon, however they still serve a 'support' role to the other spiders. \
+	They sling balls of web at prey in order to slow them down, making it easier for other spiders to catch them. \
+	This makes them more dangerous when paired with others, as fleeing may stop being an option once webbed. \
+	<br><br>\
+	Their venom is known to make bitten prey hallucinate, greatly compromising their combat ability."
+	value = CATALOGUER_REWARD_MEDIUM
+
 /mob/living/simple_mob/animal/giant_spider/webslinger
 	desc = "Furry and green, it makes you shudder to look at it. This one has brilliant green eyes, and a cloak of web."
 	tt_desc = "X Brachypelma phorus balisticus"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/webslinger_spider)
+
 	icon_state = "webslinger"
 	icon_living = "webslinger"
 	icon_dead = "webslinger_dead"

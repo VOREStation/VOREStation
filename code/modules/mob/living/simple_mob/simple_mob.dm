@@ -14,7 +14,7 @@
 	mob_swap_flags = ~HEAVY
 	mob_push_flags = ~HEAVY
 
-	var/tt_desc = "Uncataloged Life Form" //Tooltip description
+	var/tt_desc = null //Tooltip description
 
 	//Settings for played mobs
 	var/show_stat_health = 1		// Does the percentage health show in the stat panel for the mob

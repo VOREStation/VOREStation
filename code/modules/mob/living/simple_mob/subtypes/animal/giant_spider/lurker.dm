@@ -3,8 +3,27 @@
 // They keep attacking until the stun ends, then retreat to cloak again and repeat the cycle.
 // Hitting the spider before it does its ambush attack will break the cloak and make the spider flee.
 
+/datum/category_item/catalogue/fauna/giant_spider/lurker_spider
+	name = "Giant Spider - Lurker"
+	desc = "This specific spider has been catalogued as 'Lurker', \
+	and it belongs to the 'Hunter' caste. \
+	The spider is colored white, however it is more often seen being translucent. It has red eyes. \
+	<br><br>\
+	Lurkers are well known for being able to become almost entirely transparent, making them difficult \
+	to see to those distracted or with poor sight. They primarily hunt by sneaking up to unsuspecting prey, \
+	then ambushing them with a single powerful strike to incapacitate, before going for the kill. \
+	Their translucent state appears to require some form of active management, as they become fully visible \
+	after their surprise strike, or if they are harmed while translucent. Lurkers have \
+	a conservative and opportunistic hunting style, fleeing into the shadows if their translucent cloak is compromised \
+	from observant prey, or if their prey is still alive after their initial ambush. \
+	<br><br>\
+	The venom from this spider can cause confusion to those afflicted."
+	value = CATALOGUER_REWARD_MEDIUM
+
 /mob/living/simple_mob/animal/giant_spider/lurker
 	desc = "Translucent and white, it makes you shudder to look at it. This one has incandescent red eyes."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/lurker_spider)
+
 	icon_state = "lurker"
 	icon_living = "lurker"
 	icon_dead = "lurker_dead"

@@ -918,14 +918,31 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 //Endless alien cable coil
 
+
+/datum/category_item/catalogue/anomalous/precursor_a/alien_wire
+	name = "Precursor Alpha Object - Recursive Spool"
+	desc = "Upon visual inspection, this merely appears to be a \
+	spool for silver-colored cable. If one were to use this for \
+	some time, however, it would become apparent that the cables \
+	inside the spool appear to coil around the spool endlessly, \
+	suggesting an infinite length of wire.\
+	<br><br>\
+	In reality, an infinite amount of something within a finite space \
+	would likely not be able to exist. Instead, the spool likely has \
+	some method of creating new wire as it is unspooled. How this is \
+	accomplished without an apparent source of material would require \
+	further study."
+	value = CATALOGUER_REWARD_EASY
+
 /obj/item/stack/cable_coil/alien
 	name = "alien spool"
+	desc = "A spool of cable. No matter how hard you try, you can never seem to get to the end."
+	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_wire)
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "coil"
 	amount = MAXCOIL
 	max_amount = MAXCOIL
 	color = COLOR_SILVER
-	desc = "A spool of cable. No matter how hard you try, you can never seem to get to the end."
 	throwforce = 10
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 2

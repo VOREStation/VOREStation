@@ -4,8 +4,30 @@
 // If the target moves fast enough, the tunneler can miss, causing it to overshoot.
 // If the tunneler hits a solid wall, the tunneler will suffer a stun.
 
+/datum/category_item/catalogue/fauna/giant_spider/tunneler_spider
+	name = "Giant Spider - Tunneler"
+	desc = "This specific spider has been catalogued as 'Tunneler', \
+	and it belongs to the 'Hunter' caste. \
+	The spider has a brown appearance, perhaps as camouflage. It also often has pieces of dirt, sand, or rock lying on it. \
+	Their eyes have a bright yellow shine.\
+	<br><br>\
+	Tunnelers generally reside in subterranean environments, as they are able to dig rapidly in soft materials.  \
+	They often use this ability as an offensive tactic against prey, burrowing into the ground and tunneling, \
+	towards their target, before striking them from below. This powerful tactic does have a notable flaw, \
+	in that the spider is unable to actually see where they are going while burrowing, instead checking for \
+	increased weight from above as a sign that their prey is above them. This flaw means that Tunnelers \
+	often overshoot if the prey happens to move while it is underground, and can result in a collision if \
+	the prey happened to be standing near something hard and dense. \
+	<br><br>\
+	Tunneler venom is also dangerous, as it is known to both promotes concentrated production of the \
+	serotonin neurotransmitter, as well as causing brain damage. The feeling of happiness a bite causes \
+	afterwards can delay seeking medical treatment, making it extra dangerous."
+	value = CATALOGUER_REWARD_MEDIUM
+
 /mob/living/simple_mob/animal/giant_spider/tunneler
 	desc = "Sandy and brown, it makes you shudder to look at it. This one has glittering yellow eyes."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/tunneler_spider)
+
 	icon_state = "tunneler"
 	icon_living = "tunneler"
 	icon_dead = "tunneler_dead"

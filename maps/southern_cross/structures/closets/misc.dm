@@ -51,7 +51,9 @@
 		/obj/item/device/geiger,
 		/obj/item/weapon/cell/device,
 		/obj/item/device/radio,
-		/obj/item/stack/marker_beacon/thirty)
+		/obj/item/stack/marker_beacon/thirty,
+		/obj/item/device/cataloguer
+		)
 
 /obj/structure/closet/secure_closet/explorer/Initialize()
 	if(prob(50))
