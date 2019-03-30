@@ -22152,7 +22152,7 @@
 	},
 /obj/machinery/airlock_sensor{
 	pixel_y = -44;
-	tag = "tether_dock_sensor"
+	id_tag = "tether_dock_sensor"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/excursion_dock)

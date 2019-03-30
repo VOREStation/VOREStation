@@ -335,15 +335,15 @@
 	icon_state = "Sleep"
 
 /area/crew_quarters/sleep/maintDorm2
-	name = "\improper Construction Dorm 1"
+	name = "\improper Construction Dorm 2"
 	icon_state = "Sleep"
 
 /area/crew_quarters/sleep/maintDorm3
-	name = "\improper Construction Dorm 1"
+	name = "\improper Construction Dorm 3"
 	icon_state = "Sleep"
 
 /area/crew_quarters/sleep/maintDorm4
-	name = "\improper Construction Dorm 1"
+	name = "\improper Construction Dorm 4"
 	icon_state = "Sleep"
 
 /area/crew_quarters/sleep/Dorm_1/holo
