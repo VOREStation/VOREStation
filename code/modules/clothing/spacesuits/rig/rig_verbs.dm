@@ -6,7 +6,7 @@
 	set category = "Hardsuit"
 	set src = usr.contents
 
-	if(wearer && wearer.back == src)
+	if(wearer && (wearer.back == src || wearer.belt == src))
 		ui_interact(usr)
 
 /obj/item/weapon/rig/verb/toggle_vision()
@@ -16,7 +16,7 @@
 	set category = "Hardsuit"
 	set src = usr.contents
 
-	if(!istype(wearer) || !wearer.back == src)
+	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
 		usr << "<span class='warning'>The hardsuit is not being worn.</span>"
 		return
 
@@ -46,7 +46,7 @@
 	set category = "Hardsuit"
 	set src = usr.contents
 
-	if(!istype(wearer) || !wearer.back == src)
+	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
 		usr << "<span class='warning'>The hardsuit is not being worn.</span>"
 		return
 
@@ -74,7 +74,7 @@
 	set category = "Hardsuit"
 	set src = usr.contents
 
-	if(!istype(wearer) || !wearer.back == src)
+	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
 		usr << "<span class='warning'>The hardsuit is not being worn.</span>"
 		return
 
@@ -90,7 +90,7 @@
 	set category = "Hardsuit"
 	set src = usr.contents
 
-	if(!istype(wearer) || !wearer.back == src)
+	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
 		usr << "<span class='warning'>The hardsuit is not being worn.</span>"
 		return
 
@@ -106,7 +106,7 @@
 	set category = "Hardsuit"
 	set src = usr.contents
 
-	if(!istype(wearer) || !wearer.back == src)
+	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
 		usr << "<span class='warning'>The hardsuit is not being worn.</span>"
 		return
 
@@ -125,7 +125,7 @@
 	set category = "Hardsuit"
 	set src = usr.contents
 
-	if(!istype(wearer) || !wearer.back == src)
+	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
 		usr << "<span class='warning'>The hardsuit is not being worn.</span>"
 		return
 
@@ -178,7 +178,7 @@
 		usr << "<span class='warning'>The suit is not active.</span>"
 		return
 
-	if(!istype(wearer) || !wearer.back == src)
+	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
 		usr << "<span class='warning'>The hardsuit is not being worn.</span>"
 		return
 
@@ -197,7 +197,7 @@
 
 	if(malfunction_check(usr))
 		return
-	
+
 	if(!check_power_cost(usr, 0, 0, 0, 0))
 		return
 
@@ -205,7 +205,7 @@
 		usr << "<span class='warning'>The suit is not active.</span>"
 		return
 
-	if(!istype(wearer) || !wearer.back == src)
+	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
 		usr << "<span class='warning'>The hardsuit is not being worn.</span>"
 		return
 
@@ -241,7 +241,7 @@
 		usr << "<span class='warning'>The suit is not active.</span>"
 		return
 
-	if(!istype(wearer) || !wearer.back == src)
+	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
 		usr << "<span class='warning'>The hardsuit is not being worn.</span>"
 		return
 
@@ -276,7 +276,7 @@
 		usr << "<span class='warning'>The suit is not active.</span>"
 		return
 
-	if(!istype(wearer) || !wearer.back == src)
+	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
 		usr << "<span class='warning'>The hardsuit is not being worn.</span>"
 		return
 
