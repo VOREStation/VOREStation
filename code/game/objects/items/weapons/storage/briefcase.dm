@@ -12,7 +12,7 @@
 /obj/item/weapon/storage/briefcase/clutch
 	name = "clutch purse"
 	desc = "A fashionable handheld bag typically used by women."
-	icon_state = "clutch"
+	icon_state = "lockbox" //VOREStation Edit - No clutch sprite
 	item_state_slots = list(slot_r_hand_str = "smpurse", slot_l_hand_str = "smpurse")
 	force = 0
 	w_class = ITEMSIZE_NORMAL
