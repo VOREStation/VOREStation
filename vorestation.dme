@@ -1522,15 +1522,11 @@
 #include "code\modules\blob2\overmind\types.dm"
 #include "code\modules\busy_space\air_traffic.dm"
 #include "code\modules\busy_space\loremaster.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\busy_space_vr\organizations.dm"
-=======
-#include "code\modules\busy_space\organizations.dm"
 #include "code\modules\catalogue\atoms.dm"
 #include "code\modules\catalogue\catalogue_data.dm"
 #include "code\modules\catalogue\cataloguer.dm"
 #include "code\modules\catalogue\cataloguer_visuals.dm"
->>>>>>> 1afbe8d... Explorer Update - Cataloguers (#6016):polaris.dme
 #include "code\modules\client\client defines.dm"
 #include "code\modules\client\client procs.dm"
 #include "code\modules\client\movement.dm"
