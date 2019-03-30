@@ -76,6 +76,9 @@
 /mob/living/simple_mob/proc/handle_atmos()
 	var/atmos_unsuitable = 0
 
+	if(in_stasis)
+		return 1 // return early to skip atmos checks
+
 	var/atom/A = src.loc
 
 	if(istype(A,/turf))

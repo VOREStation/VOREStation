@@ -151,6 +151,8 @@
 	var/purge = 0					// Cult stuff.
 	var/supernatural = FALSE		// Ditto.
 
+	// contained in a cage
+	var/in_stasis = 0
 
 /mob/living/simple_mob/Initialize()
 	verbs -= /mob/verb/observe
