@@ -36,7 +36,11 @@
 /mob/living/carbon/human/promethean/Initialize(var/new_loc)
 	return ..(new_loc, SPECIES_PROMETHEAN)
 
+<<<<<<< HEAD
 /mob/living/carbon/human/zaddat/Initialize(var/new_loc) //VOREStation Edit - Fixes a Polaris bug
+=======
+/mob/living/carbon/human/zaddat/Initialize(var/new_loc)
+>>>>>>> e57c96f... Merge pull request #6021 from Novacat/nova-runtimes
 	return ..(new_loc, SPECIES_ZADDAT)
 
 /mob/living/carbon/human/monkey/Initialize(var/new_loc)

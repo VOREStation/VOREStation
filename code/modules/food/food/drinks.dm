@@ -189,7 +189,11 @@
 	item_state = "coffee"
 	center_of_mass = list("x"=15, "y"=13)
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/drinks/h_chocolate/Initialize() //VOREStation Edit
+=======
+/obj/item/weapon/reagent_containers/food/drinks/h_chocolate/Initialize()
+>>>>>>> e57c96f... Merge pull request #6021 from Novacat/nova-runtimes
 	..()
 	reagents.add_reagent("hot_coco", 30)
 
@@ -198,7 +202,11 @@
 	desc = "Just add 10ml water, self heats! A taste that reminds you of your school years."
 	icon_state = "ramen"
 	center_of_mass = list("x"=16, "y"=11)
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/drinks/dry_ramen/Initialize() //VOREStation Edit
+=======
+/obj/item/weapon/reagent_containers/food/drinks/dry_ramen/Initialize()
+>>>>>>> e57c96f... Merge pull request #6021 from Novacat/nova-runtimes
 	..()
 	reagents.add_reagent("dry_ramen", 30)
 
