@@ -164,6 +164,7 @@
 	build_path = /obj/item/weapon/gun/energy/taser/xeno
 	sort_string = "TBAAC"
 
+/* //VOREStation Edit
 // Phase Weapons
 /datum/design/item/weapon/phase_pistol
 	id = "phasepistol"
@@ -192,3 +193,4 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 2000, "silver" = 1000, "diamond" = 750)
 	build_path = /obj/item/weapon/gun/energy/phasegun/cannon
 	sort_string = "TPAAD"
+*/
