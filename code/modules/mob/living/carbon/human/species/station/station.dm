@@ -8,6 +8,7 @@
 	While the central Sol government maintains control of its far-flung people, powerful corporate \
 	interests, rampant cyber and bio-augmentation and secretive factions make life on most human \
 	worlds tumultous at best."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/humans)
 	num_alternate_languages = 3
 	species_language = LANGUAGE_SOL_COMMON
 	secondary_langs = list(LANGUAGE_SOL_COMMON, LANGUAGE_TERMINUS)
@@ -67,6 +68,7 @@
 	planet, they mostly hold ideals of honesty, virtue, proficiency and bravery above all \
 	else, frequently even their own lives. They prefer warmer temperatures than most species and \
 	their native tongue is a heavy hissing laungage called Sinta'Unathi."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/unathi)
 
 	cold_level_1 = 280 //Default 260 - Lower is better
 	cold_level_2 = 220 //Default 200
@@ -178,6 +180,7 @@
 	and have accelerated the fledgling culture into the interstellar age. Their history is full of war and highly fractious \
 	governments, something that permeates even to today's times. They prefer colder, tundra-like climates, much like their \
 	home worlds and speak a variety of languages, especially Siik and Akhani."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/tajaran)
 
 	body_temperature = 320.15	//Even more cold resistant, even more flammable
 
@@ -244,6 +247,7 @@
 	of the Qerr'Katish, a caste within their society which keeps the empire of the Skrell running smoothly. Skrell are \
 	herbivores on the whole and tend to be co-operative with the other species of the galaxy, although they rarely reveal \
 	the secrets of their empire to their allies."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/skrell)
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_SKRELLIAN, LANGUAGE_SCHECHI)
 	name_language = LANGUAGE_SKRELLIAN
@@ -336,7 +340,12 @@
 	min_age = 16
 	max_age = 90
 
-	blurb = "The Zaddat are an Unathi client race only recently introduced to SolGov space. Having evolved on the high-pressure and post-apocalyptic world of Xohok, Zaddat require an environmental suit called a Shroud to survive in usual planetary and station atmospheres. Despite these restrictions, worsening conditions on Xohok and the blessing of the Moghes Hegemony have lead the Zaddat to enter human space in search of work and living space."
+	blurb = "The Zaddat are an Unathi client race only recently introduced to SolGov space. Having evolved on \
+	the high-pressure and post-apocalyptic world of Xohok, Zaddat require an environmental suit called a Shroud \
+	to survive in usual planetary and station atmospheres. Despite these restrictions, worsening conditions on \
+	Xohok and the blessing of the Moghes Hegemony have lead the Zaddat to enter human space in search of work \
+	and living space."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/zaddat)
 
 	hazard_high_pressure = HAZARD_HIGH_PRESSURE + 500  // Dangerously high pressure.
 	warning_high_pressure = WARNING_HIGH_PRESSURE + 500 // High pressure warning.
@@ -448,6 +457,7 @@
 	all known species, especially the Skrell. Their communal mind makes them slow to react, and they have difficulty understanding \
 	even the simplest concepts of other minds. Their alien physiology allows them survive happily off a diet of nothing but light, \
 	water and other radiation."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/dionaea)
 
 	has_organ = list(
 		O_NUTRIENT = /obj/item/organ/internal/diona/nutrients,

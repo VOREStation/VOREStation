@@ -2,8 +2,23 @@
 // The leaping attack is somewhat telegraphed and can be dodged if one is paying attention.
 // The AI would've followed up after a successful leap with dragging the downed victim away, but the dragging code was too janky.
 
+/datum/category_item/catalogue/fauna/giant_spider/hunter_spider
+	name = "Giant Spider - Hunter"
+	desc = "This specific spider has been catalogued as 'Hunter', \
+	and it belongs to the 'Hunter' caste. \
+	The spider is entirely black in color, with purple eyes. \
+	<br><br>\
+	The Hunter spider is noted for being one of the most agile types of spiders, being able \
+	to move quickly, and do a short leap in the air. Due to their considerable weight, being leaped on \
+	will often cause the victim to fall over, making this their main hunting tactic. \
+	<br><br>\
+	The venom inside these spiders has no special properties beyond being toxic."
+	value = CATALOGUER_REWARD_EASY
+
 /mob/living/simple_mob/animal/giant_spider/hunter
 	desc = "Furry and black, it makes you shudder to look at it. This one has sparkling purple eyes."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/hunter_spider)
+
 	icon_state = "hunter"
 	icon_living = "hunter"
 	icon_dead = "hunter_dead"

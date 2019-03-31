@@ -2,9 +2,22 @@
 // They also do this in melee.
 // Fortunately they're quite fragile and don't fire that fast.
 
+/datum/category_item/catalogue/technology/odysseus
+	name = "Exosuit - Odysseus"
+	desc = "A Vey-Medical innovation, the Odysseus was designed to incorporate some of their \
+	other inventions, such as the Sleeper, into a mobile frame. Due to its ability to safely \
+	rescue injured people in potentially hostile environments such as vacuum, as well as its \
+	agility compared to other civilian exosuits, the Odysseus dominates the market for \
+	medical exosuits."
+	value = CATALOGUER_REWARD_EASY
+
 /mob/living/simple_mob/mechanical/mecha/odysseus
 	name = "odysseus"
 	desc = "These exosuits are developed and produced by Vey-Med. This one has a syringe gun."
+	catalogue_data = list(
+		/datum/category_item/catalogue/technology/odysseus,
+		/datum/category_item/catalogue/information/organization/vey_med
+		)
 	icon_state = "odysseus"
 	wreckage = /obj/structure/loot_pile/mecha/odysseus
 

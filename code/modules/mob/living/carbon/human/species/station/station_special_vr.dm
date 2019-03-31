@@ -66,6 +66,7 @@
 	base_color 	= "#333333"
 	blood_color = "#14AD8B"
 
+	reagent_tag = IS_CHIMERA
 
 /datum/species/xenochimera/handle_environment_special(var/mob/living/carbon/human/H)
 	//If they're KO'd/dead, they're probably not thinking a lot about much of anything.

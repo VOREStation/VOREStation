@@ -186,7 +186,7 @@
 	return ..()
 
 /obj/item/weapon/rig/get_worn_icon_file(var/body_type,var/slot_name,var/default_icon,var/inhands)
-	if(!inhands && slot_name == slot_back_str)
+	if(!inhands && (slot_name == slot_back_str || slot_name == slot_belt_str))
 		if(icon_override)
 			return icon_override
 		else if(mob_icon)
@@ -195,7 +195,7 @@
 	return ..()
 
 /obj/item/weapon/rig/proc/suit_is_deployed()
-	if(!istype(wearer) || src.loc != wearer || wearer.back != src)
+	if(!istype(wearer) || src.loc != wearer || (wearer.back != src && wearer.belt != src))
 		return 0
 	if(helm_type && !(helmet && wearer.head == helmet))
 		return 0
@@ -289,7 +289,7 @@
 					failed_to_seal = 1
 					break
 
-				if(!failed_to_seal && M.back == src && piece == compare_piece)
+				if(!failed_to_seal && (M.back == src || M.belt == src) && piece == compare_piece)
 
 					if(seal_delay && !instant && !do_after(M,seal_delay,needhand=0))
 						failed_to_seal = 1
@@ -320,7 +320,7 @@
 				else
 					failed_to_seal = 1
 
-		if((M && !(istype(M) && M.back == src) && !istype(M,/mob/living/silicon)) || (!seal_target && !suit_is_deployed()))
+		if((M && !(istype(M) && (M.back == src || M.belt == src)) && !istype(M,/mob/living/silicon)) || (!seal_target && !suit_is_deployed()))
 			failed_to_seal = 1
 
 	sealing = null
@@ -413,13 +413,13 @@
 
 	return environment.temperature
 
-/obj/item/weapon/rig/proc/attached_to_back(mob/M)
+/obj/item/weapon/rig/proc/attached_to_user(mob/M)
 	if (!ishuman(M))
 		return 0
 
 	var/mob/living/carbon/human/H = M
 
-	if (!H.wear_suit || H.back != src)
+	if (!H.wear_suit || (H.back != src && H.belt != src))
 		return 0
 
 	return 1
@@ -431,7 +431,7 @@
 	if (!ismob(loc))
 		return
 
-	if (!attached_to_back(loc))		//make sure the rig's not just in their hands
+	if (!attached_to_user(loc))		//make sure the rig's not just in their hands
 		return
 
 	if (!suit_is_deployed())		//inbuilt systems only work on the suit they're designed to work on
@@ -469,7 +469,7 @@
 	// Run through cooling
 	coolingProcess()
 
-	if(!istype(wearer) || loc != wearer || wearer.back != src || canremove || !cell || cell.charge <= 0)
+	if(!istype(wearer) || loc != wearer || (wearer.back != src && wearer.belt != src) || canremove || !cell || cell.charge <= 0)
 		if(!cell || cell.charge <= 0)
 			if(electrified > 0)
 				electrified = 0
@@ -522,7 +522,7 @@
 
 	if(!user_is_ai)
 		var/mob/living/carbon/human/H = user
-		if(istype(H) && H.back != src)
+		if(istype(H) && (H.back != src && H.belt != src))
 			fail_msg = "<span class='warning'>You must be wearing \the [src] to do this.</span>"
 		else if(user.incorporeal_move)
 			fail_msg = "<span class='warning'>You must be solid to do this.</span>"
@@ -658,7 +658,7 @@
 			return 1
 		if(malfunction_check(user))
 			return 0
-		if(user.back != src)
+		if(user.back != src && user.belt != src)
 			return 0
 		else if(!src.allowed(user))
 			user << "<span class='danger'>Unauthorized user. Access denied.</span>"
@@ -717,16 +717,24 @@
 /obj/item/weapon/rig/equipped(mob/living/carbon/human/M)
 	..()
 
-	if(seal_delay > 0 && istype(M) && M.back == src)
+	if(istype(M.back, /obj/item/weapon/rig) && istype(M.belt, /obj/item/weapon/rig))
+		to_chat(M, "<span class='notice'>You try to put on the [src], but it won't fit.</span>")
+		if(M && (M.back == src || M.belt == src))
+			if(!M.unEquip(src))
+				return
+		src.forceMove(get_turf(src))
+		return
+
+	if(seal_delay > 0 && istype(M) && (M.back == src || M.belt == src))
 		M.visible_message("<font color='blue'>[M] starts putting on \the [src]...</font>", "<font color='blue'>You start putting on \the [src]...</font>")
 		if(!do_after(M,seal_delay))
-			if(M && M.back == src)
+			if(M && (M.back == src || M.belt == src))
 				if(!M.unEquip(src))
 					return
 			src.forceMove(get_turf(src))
 			return
 
-	if(istype(M) && M.back == src)
+	if(istype(M) && (M.back == src || M.belt == src))
 		M.visible_message("<font color='blue'><b>[M] struggles into \the [src].</b></font>", "<font color='blue'><b>You struggle into \the [src].</b></font>")
 		wearer = M
 		wearer.wearing_rig = src
@@ -737,7 +745,7 @@
 	if(sealing || !cell || !cell.charge)
 		return
 
-	if(!istype(wearer) || !wearer.back == src)
+	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
 		return
 
 	if(usr == wearer && (usr.stat||usr.paralysis||usr.stunned)) // If the usr isn't wearing the suit it's probably an AI.
@@ -806,7 +814,7 @@
 
 	if(!H || !istype(H)) return
 
-	if(H.back != src)
+	if(H.back != src && H.belt != src)
 		return
 
 	if(sealed)
@@ -950,7 +958,7 @@
 	if(offline || !cell || !cell.charge || locked_down)
 		if(user) user << "<span class='warning'>Your host rig is unpowered and unresponsive.</span>"
 		return 0
-	if(!wearer || wearer.back != src)
+	if(!wearer || (wearer.back != src && wearer.belt != src))
 		if(user) user << "<span class='warning'>Your host rig is not being worn.</span>"
 		return 0
 	if(!wearer.stat && !control_overridden && !ai_override_enabled)
@@ -1051,7 +1059,12 @@
 	return src
 
 /mob/living/carbon/human/get_rig()
-	return back
+	if(istype(back, /obj/item/weapon/rig))
+		return back
+	else if(istype(belt, /obj/item/weapon/rig))
+		return belt
+	else
+		return null
 
 //Boot animation screen objects
 /obj/screen/rig_booting

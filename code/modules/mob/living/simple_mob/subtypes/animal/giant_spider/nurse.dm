@@ -1,7 +1,31 @@
 // Nurses, they create webs and eggs.
 // They're fragile but their attacks can cause horrifying consequences.
+
+/datum/category_item/catalogue/fauna/giant_spider/nurse_spider
+	name = "Giant Spider - Nurse"
+	desc = "This specific spider has been catalogued as 'Nurse', \
+	and it belongs to the 'Nurse' caste. \
+	The spider has a beige coloration, with green eyes. \
+	<br><br>\
+	Nurses primarily spin webs and lay eggs for the other spiders, making them a critical role \
+	for the survival of their species in their local area. Despite this importance, they are \
+	(compared to the other spiders) rather frail and weak, thus requiring protection from the \
+	other spiders. Laying eggs requires considerable amounts of resources, meaning Nurses generally \
+	only lay eggs after they or another spider successfully hunts prey.\
+	<br><br>\
+	Unlike ordinary spiders, Nurses can create vast amounts of web in a short period of time, making \
+	their nest difficult and dangerous to move around in. Their webs also sometimes obscure what is \
+	behind them, giving an advantage to spiders defending their nest, and invoking paranoia in humans \
+	tasked with exterminating the spiders. \
+	<br><br>\
+	Nurse venom causes fatigue and tiredness. They are also able to directly inject spider eggs into \
+	those it bites, which can later hatch spiderlings, causing considerably physical and psychological trauma."
+	value = CATALOGUER_REWARD_EASY
+
 /mob/living/simple_mob/animal/giant_spider/nurse
 	desc = "Furry and beige, it makes you shudder to look at it. This one has brilliant green eyes."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_spider/nurse_spider)
+
 	icon_state = "nurse"
 	icon_living = "nurse"
 	icon_dead = "nurse_dead"

@@ -95,6 +95,7 @@
 	item_state_slots = list(slot_r_hand_str = "blacksoft", slot_l_hand_str = "blacksoft")
 
 /obj/item/clothing/head/soft/mbill
- 	name = "shipping cap"
- 	desc = "It's a ballcap bearing the colors of Major Bill's Shipping."
- 	icon_state = "mbillsoft"
+	name = "shipping cap"
+	desc = "It's a ballcap bearing the colors of Major Bill's Shipping."
+	icon_state = "mbillsoft"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/major_bills)

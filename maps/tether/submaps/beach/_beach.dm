@@ -95,7 +95,7 @@
 	prob_fall = 25 //Chance goes down by this much each time it spawns one (not defining and prob_spawn 100 means they spawn as soon as one dies)
 	guard = 40 //They'll stay within this range (not defining this disables them staying nearby and they will wander the map (and through step teleports))
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/giant_snake
+		/mob/living/simple_mob/animal/space/snake
 	)
 
 /obj/tether_away_spawner/beach_outside_friendly
@@ -164,6 +164,7 @@
 	//Not going to do sunlight simulations here like virgo3b
 	//So we just make the whole beach fullbright all the time
 	dynamic_lighting = 0
+	requires_power = 0
 
 /area/tether_away/beach/powershed
 	name = "\improper Away Mission - Virgo 4 Coast PS"

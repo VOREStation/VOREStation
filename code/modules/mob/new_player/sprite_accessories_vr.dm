@@ -209,6 +209,31 @@
 		icon_state = "hair_messy"
 		species_allowed = list(SPECIES_TAJ, SPECIES_XENOCHIMERA, SPECIES_PROTEAN)
 
+	taj_ears_curls
+		name = "Tajaran Curly"
+		icon_state = "hair_curly"
+		species_allowed = list(SPECIES_TAJ, SPECIES_XENOCHIMERA, SPECIES_PROTEAN)
+
+	taj_ears_wife
+		name = "Tajaran Housewife"
+		icon_state = "hair_wife"
+		species_allowed = list(SPECIES_TAJ, SPECIES_XENOCHIMERA, SPECIES_PROTEAN)
+
+	taj_ears_victory
+		name = "Tajaran Victory Curls"
+		icon_state = "hair_victory"
+		species_allowed = list(SPECIES_TAJ, SPECIES_XENOCHIMERA, SPECIES_PROTEAN)
+
+	taj_ears_bob
+		name = "Tajaran Bob"
+		icon_state = "hair_tbob"
+		species_allowed = list(SPECIES_TAJ, SPECIES_XENOCHIMERA, SPECIES_PROTEAN)
+
+	taj_ears_fingercurl
+		name = "Tajaran Finger Curls"
+		icon_state = "hair_fingerwave"
+		species_allowed = list(SPECIES_TAJ, SPECIES_XENOCHIMERA, SPECIES_PROTEAN)
+
 	teshari_fluffymohawk
 		name = "Teshari Fluffy Mohawk"
 		icon =  'icons/mob/human_face_vr.dmi'

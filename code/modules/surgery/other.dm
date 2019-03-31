@@ -201,21 +201,28 @@
 		var/obj/item/weapon/weldingtool/welder = tool
 		if(!welder.isOn() || !welder.remove_fuel(1,user))
 			return 0
-	return (target_zone == BP_TORSO) && istype(target.back, /obj/item/weapon/rig) && !(target.back.canremove)
+	return (target_zone == BP_TORSO) && ((istype(target.back, /obj/item/weapon/rig) && !(target.back.canremove)) || (istype(target.belt, /obj/item/weapon/rig) && !(target.belt.canremove)))
 
 /datum/surgery_step/hardsuit/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	user.visible_message("[user] starts cutting through the support systems of [target]'s [target.back] with \the [tool]." , \
-	"You start cutting through the support systems of [target]'s [target.back] with \the [tool].")
+	var/obj/item/weapon/rig/rig = target.back
+	if(!istype(rig))
+		rig = target.belt
+		if(!istype(rig))
+			return
+	user.visible_message("[user] starts cutting through the support systems of \the [rig] on [target] with \the [tool]." , \
+	"You start cutting through the support systems of \the [rig] on [target] with \the [tool].")
 	..()
 
 /datum/surgery_step/hardsuit/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/weapon/rig/rig = target.back
 	if(!istype(rig))
-		return
+		rig = target.belt
+		if(!istype(rig))
+			return
 	rig.reset()
-	user.visible_message("<span class='notice'>[user] has cut through the support systems of [target]'s [rig] with \the [tool].</span>", \
-		"<span class='notice'>You have cut through the support systems of [target]'s [rig] with \the [tool].</span>")
+	user.visible_message("<span class='notice'>[user] has cut through the support systems of \the [rig] on [target] with \the [tool].</span>", \
+		"<span class='notice'>You have cut through the support systems of \the [rig] on [target] with \the [tool].</span>")
 
 /datum/surgery_step/hardsuit/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='danger'>[user]'s [tool] can't quite seem to get through the metal...</span>", \
-	"<span class='danger'>Your [tool] can't quite seem to get through the metal. It's weakening, though - try again.</span>")
+	"<span class='danger'>\The [tool] can't quite seem to get through the metal. It's weakening, though - try again.</span>")
