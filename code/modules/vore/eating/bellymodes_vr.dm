@@ -270,7 +270,7 @@
 				M.adjustToxLoss(-5)
 				M.adjustOxyLoss(-5)
 				M.adjustCloneLoss(-1.25)
-				owner.nutrition -= 4
+				owner.nutrition -= 2
 				if(M.nutrition <= 400)
 					M.nutrition += 1
 			else if(owner.nutrition > 90 && (M.nutrition <= 400))
