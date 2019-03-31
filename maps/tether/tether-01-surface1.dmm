@@ -3611,6 +3611,9 @@
 	dir = 4
 	},
 /obj/machinery/vending/coffee,
+/obj/machinery/camera/network/civilian{
+	dir = 9
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "agb" = (
@@ -26769,6 +26772,10 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning/corner,
+/obj/effect/floor_decal/steeldecal/steel_decals_central6{
+	icon_state = "steel_decals_central6";
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
 "dDr" = (
@@ -26906,15 +26913,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/public_garden_one)
-"dTb" = (
-/obj/effect/floor_decal/steeldecal/steel_decals5{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals_central6{
-	pixel_y = 9
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/atrium_one)
 "dUk" = (
 /obj/machinery/alarm{
 	frequency = 1441;
@@ -27023,6 +27021,12 @@
 "epw" = (
 /turf/simulated/wall/r_wall,
 /area/crew_quarters/sleep/Dorm_3)
+"erR" = (
+/obj/machinery/camera/network/outside{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/engineering/atmos/intake)
 "euU" = (
 /obj/machinery/power/apc{
 	cell_type = /obj/item/weapon/cell/apc;
@@ -29454,6 +29458,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
+"mgz" = (
+/obj/machinery/atmospherics/omni/atmos_filter{
+	name = "N2O Filter";
+	tag_east = 2;
+	tag_south = 7;
+	tag_west = 1
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
 "mks" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
@@ -30541,19 +30554,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
-"pLX" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/structure/cable/cyan{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc/super{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 24
-	},
-/turf/simulated/floor/plating,
-/area/engineering/atmos/processing)
 "pMj" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	icon_state = "intact";
@@ -30720,6 +30720,10 @@
 /obj/item/weapon/stool,
 /turf/simulated/floor/plating,
 /area/vacant/vacant_bar)
+"qtf" = (
+/obj/machinery/camera/network/tether,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/atrium_one)
 "qvU" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/visible/black{
@@ -32033,11 +32037,6 @@
 /obj/machinery/atmospherics/pipe/simple/visible/purple,
 /obj/structure/cable/cyan{
 	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable/cyan{
-	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
@@ -32169,7 +32168,7 @@
 	dir = 9
 	},
 /obj/structure/undies_wardrobe,
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/civilian,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/showers)
 "vtZ" = (
@@ -41736,7 +41735,7 @@ mkK
 gXZ
 rab
 rab
-aJt
+erR
 aJt
 aJt
 aah
@@ -42156,7 +42155,7 @@ mAx
 jFL
 mAx
 mAx
-pLX
+mAx
 jrV
 rDY
 tIi
@@ -44281,7 +44280,7 @@ bUH
 bpQ
 rNz
 kwi
-aKC
+mgz
 cbO
 vtZ
 uiB
@@ -46394,7 +46393,7 @@ qLe
 qLe
 qLe
 agM
-dTb
+avB
 mDj
 hlg
 oON
@@ -46678,7 +46677,7 @@ aCI
 qLe
 qLe
 agM
-avB
+qtf
 yeV
 iYP
 fsN

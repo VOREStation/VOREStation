@@ -18094,6 +18094,10 @@
 	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
+"FK" = (
+/obj/machinery/camera/network/outside,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside3)
 "FM" = (
 /obj/structure/sink{
 	dir = 4;
@@ -19892,6 +19896,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/airlock/hatch,
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/shuttle_pad)
 "Kt" = (
@@ -20379,6 +20384,9 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals5,
+/obj/machinery/camera/network/tether{
+	dir = 9
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
 "Ns" = (
@@ -20620,6 +20628,9 @@
 /obj/machinery/alarm{
 	dir = 1;
 	pixel_y = -22
+	},
+/obj/machinery/camera/network/tether{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
@@ -21491,6 +21502,12 @@
 "Uj" = (
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
+"Ut" = (
+/obj/effect/floor_decal/borderfloorblack,
+/obj/effect/floor_decal/industrial/danger,
+/obj/machinery/camera/network/tether,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/shuttle_pad)
 "Uu" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/effect/floor_decal/borderfloor{
@@ -21792,6 +21809,9 @@
 /area/tether/surfacebase/public_garden_three)
 "WH" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -32645,7 +32665,7 @@ ac
 ac
 ac
 ac
-ac
+fF
 ac
 ac
 ac
@@ -33627,7 +33647,7 @@ Fl
 Ge
 GM
 ts
-Xa
+Ut
 IY
 IY
 IY
@@ -34926,7 +34946,7 @@ QA
 ML
 IR
 IR
-ac
+FK
 ac
 ac
 ac
@@ -37044,7 +37064,7 @@ ac
 ac
 ac
 ac
-ac
+kk
 ac
 ac
 ac

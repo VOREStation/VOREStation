@@ -4448,12 +4448,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
-"jP" = (
-/obj/item/weapon/storage/fancy/cigar/havana,
-/obj/effect/decal/cleanable/dirt,
-/obj/random/drinkbottle,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/rnd)
 "jQ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -5637,7 +5631,6 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/obj/machinery/camera/network/northern_star,
 /obj/machinery/status_display{
 	pixel_y = 30
 	},
@@ -6321,10 +6314,10 @@
 /area/tether/surfacebase/atrium_two)
 "nG" = (
 /obj/effect/floor_decal/borderfloor,
-/obj/machinery/camera/network/northern_star{
+/obj/effect/floor_decal/corner/yellow/border,
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/yellow/border,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
 "nH" = (
@@ -7503,7 +7496,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/item/weapon/storage/box/nifsofts_engineering,
 /turf/simulated/floor/carpet,
 /area/engineering/lower/breakroom)
 "qm" = (
@@ -8461,6 +8453,9 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/machinery/camera/network/tether{
+	dir = 9
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
@@ -10082,7 +10077,6 @@
 "vJ" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/thermoregulator,
 /turf/simulated/floor/plating,
 /area/engineering/atmos/storage)
 "vL" = (
@@ -10755,10 +10749,6 @@
 	icon_state = "bordercolor";
 	dir = 1
 	},
-/obj/machinery/alarm{
-	frequency = 1441;
-	pixel_y = 22
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 4;
 	icon_state = "intact"
@@ -10810,6 +10800,10 @@
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
+	},
+/obj/machinery/alarm{
+	frequency = 1441;
+	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
@@ -12760,7 +12754,6 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/random/trash_pile,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/atmos)
 "DE" = (
@@ -15989,17 +15982,8 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/rnd/research_storage)
-"LX" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/machinery/camera/network/northern_star{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/tether/surfacebase/atrium_two)
 "LY" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -16121,14 +16105,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/engineering/pumpstation)
-"MM" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/random/trash_pile,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/atmos)
 "MN" = (
 /obj/effect/floor_decal/borderfloor/shifted{
 	icon_state = "borderfloor_shifted";
@@ -16475,6 +16451,13 @@
 /obj/random/junk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
+"Ou" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/machinery/camera/network/tether{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/atrium_two)
 "Ov" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -17979,6 +17962,12 @@
 	},
 /turf/simulated/wall,
 /area/engineering/lower/lobby)
+"Vo" = (
+/obj/effect/landmark{
+	name = "lightsout"
+	},
+/turf/simulated/open,
+/area/engineering/atmos)
 "Vr" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -17996,12 +17985,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
-"Vs" = (
-/obj/random/trash_pile,
-/obj/structure/catwalk,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/atmos)
 "Vv" = (
 /obj/structure/closet,
 /obj/item/clothing/under/schoolgirl,
@@ -18595,18 +18578,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
-/obj/machinery/camera/network/northern_star{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
-"Xs" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/machinery/camera/network/northern_star{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/tether/surfacebase/atrium_two)
 "Xu" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -18693,6 +18666,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
+"XJ" = (
+/obj/item/weapon/storage/fancy/cigar/havana,
+/obj/effect/decal/cleanable/dirt,
+/obj/random/drinkbottle,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/atrium_two)
 "XN" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/yellow/border,
@@ -28394,8 +28373,8 @@ VA
 VA
 VA
 Nx
+Nx
 OT
-Vs
 JJ
 VA
 VA
@@ -29349,7 +29328,7 @@ dY
 hY
 Jk
 fG
-nz
+Ou
 Vn
 nX
 po
@@ -29366,7 +29345,7 @@ TQ
 Vj
 BQ
 BQ
-BQ
+Vo
 BQ
 BQ
 BQ
@@ -29764,7 +29743,7 @@ il
 iC
 il
 jf
-ii
+il
 ii
 ii
 dY
@@ -29810,7 +29789,7 @@ Nx
 Nx
 Dv
 XI
-MM
+XI
 ZW
 VA
 Ne
@@ -29906,10 +29885,10 @@ il
 iD
 il
 jf
+il
 ii
 jG
-jP
-dY
+XJ
 dY
 en
 dY
@@ -30190,11 +30169,11 @@ fV
 fV
 fV
 jm
+fV
 gG
 fB
 jQ
 kg
-LX
 kA
 gG
 fV
@@ -32331,7 +32310,7 @@ gw
 lV
 mv
 mX
-Xs
+nz
 dY
 oN
 rO
@@ -32473,7 +32452,7 @@ gw
 lV
 mv
 mX
-nz
+Ou
 dY
 oO
 rO
