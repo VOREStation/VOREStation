@@ -184,7 +184,6 @@
 	volume = 15
 	origin_tech = list(TECH_BIO = 4)
 	filled_reagents = list("inaprovaline" = 15)
-	flags = 0 // Removed OPENCONTAINER so you can't extract things to cheese the identification system in unidentified versions.
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/brute
 	name = "trauma hypo"
