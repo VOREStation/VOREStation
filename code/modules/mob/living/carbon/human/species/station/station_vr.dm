@@ -32,7 +32,7 @@
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
-	inherent_verbs = list(/mob/living/proc/shred_limb, /mob/living/carbon/human/proc/lick_wounds)
+	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 	flesh_color = "#AFA59E"
 	base_color = "#777777"
