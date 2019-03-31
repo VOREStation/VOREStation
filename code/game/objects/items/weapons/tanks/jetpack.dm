@@ -83,11 +83,7 @@
 	icon_state = "jetpack-void"
 	item_state_slots = list(slot_r_hand_str = "jetpack-void", slot_l_hand_str = "jetpack-void")
 
-<<<<<<< HEAD
-/obj/item/weapon/tank/jetpack/void/Initialize() //VOREStation Edit
-=======
 /obj/item/weapon/tank/jetpack/void/Initialize()
->>>>>>> e57c96f... Merge pull request #6021 from Novacat/nova-runtimes
 	..()
 	air_contents.adjust_gas("oxygen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 	return
@@ -98,11 +94,7 @@
 	icon_state = "jetpack"
 	item_state_slots = list(slot_r_hand_str = "jetpack", slot_l_hand_str = "jetpack")
 
-<<<<<<< HEAD
-/obj/item/weapon/tank/jetpack/oxygen/Initialize() //VOREStation Edit
-=======
 /obj/item/weapon/tank/jetpack/oxygen/Initialize()
->>>>>>> e57c96f... Merge pull request #6021 from Novacat/nova-runtimes
 	..()
 	air_contents.adjust_gas("oxygen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 	return
@@ -114,11 +106,7 @@
 	icon_state = "jetpack-black"
 	item_state_slots = list(slot_r_hand_str = "jetpack-black", slot_l_hand_str = "jetpack-black")
 
-<<<<<<< HEAD
-/obj/item/weapon/tank/jetpack/carbondioxide/Initialize() //VOREStation Edit
-=======
 /obj/item/weapon/tank/jetpack/carbondioxide/Initialize()
->>>>>>> e57c96f... Merge pull request #6021 from Novacat/nova-runtimes
 	..()
 	air_contents.adjust_gas("carbon_dioxide", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 	return

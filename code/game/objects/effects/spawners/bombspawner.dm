@@ -157,11 +157,7 @@
 	if(co != null) carbon_amt = co
 	..()
 
-<<<<<<< HEAD
-/obj/effect/spawner/newbomb/Initialize(newloc) //VOREStation Edit
-=======
 /obj/effect/spawner/newbomb/Initialize(newloc)
->>>>>>> e57c96f... Merge pull request #6021 from Novacat/nova-runtimes
 	..(newloc)
 
 	var/obj/item/device/transfer_valve/V = new(src.loc)
