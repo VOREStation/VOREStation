@@ -19804,19 +19804,11 @@
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/tether/surface)
-"Ju" = (
-/obj/structure/symbol/es,
-/turf/simulated/shuttle/wall,
-/area/shuttle/tether/surface)
 "Jz" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 1
 	},
 /turf/simulated/shuttle/floor/black,
-/area/shuttle/tether/surface)
-"JA" = (
-/obj/structure/symbol/da,
-/turf/simulated/shuttle/wall,
 /area/shuttle/tether/surface)
 "JE" = (
 /obj/structure/shuttle/engine/heater,
@@ -36635,9 +36627,9 @@ rJ
 IY
 Ji
 Ji
-Ju
-LD
-JA
+Ji
+Ji
+Ji
 Ji
 Ji
 IY
