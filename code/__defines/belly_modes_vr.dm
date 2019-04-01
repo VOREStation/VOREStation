@@ -29,9 +29,9 @@
 #define DM_TRANSFORM_FEMALE_EGG						"Transform (Female) (EGG)"
 
 //Addon mode flags
-#define DM_FLAG_NUMBING		0x1
-#define DM_FLAG_STRIPPING	0x2
-//#define DM_FLAG_ITEMWEAK	0x4
+#define DM_FLAG_NUMBING			0x1
+#define DM_FLAG_STRIPPING		0x2
+#define DM_FLAG_LEAVEREMAINS	0x4
 
 //Item related modes
 #define IM_HOLD									"Hold"

@@ -60,6 +60,8 @@
 	return FALSE //Sorta important to not digest your own beacons.
 /obj/item/organ/internal/brain/slime/digest_act(var/atom/movable/item_storage = null)
 	return FALSE //so prometheans can be recovered
+/obj/item/weapon/digestion_remains/digest_act(var/atom/movable/item_storage = null)
+	return FALSE //Don't digest stuff we intentionally made
 
 /////////////
 // Some special treatment
