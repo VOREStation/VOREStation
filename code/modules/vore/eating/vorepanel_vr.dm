@@ -564,7 +564,7 @@
 
 	if(href_list["b_contamination_flavor"])
 		var/list/menu_list = contamination_flavors.Copy()
-		var/new_flavor = input("Choose Contamination Mode (currently [selected.contamination_flavor])") as null|anything in menu_list
+		var/new_flavor = input("Choose Contamination Flavor Text Type (currently [selected.contamination_flavor])") as null|anything in menu_list
 		if(!new_flavor)
 			return 0
 		selected.contamination_flavor = new_flavor
