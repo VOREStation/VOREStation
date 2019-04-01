@@ -42,6 +42,7 @@
 		/obj/item/weapon/gun/energy/gun,
 		/obj/item/weapon/gun/energy/gun/martin, //VOREStation Add,
 		/obj/item/weapon/storage/box/commandkeys, //VOREStation Add,
+		/obj/item/weapon/storage/box/servicekeys, //VOREStation Add,
 		///obj/item/weapon/gun/projectile/sec/flash, //VOREStation Removal,
 		/obj/item/device/flash)
 
