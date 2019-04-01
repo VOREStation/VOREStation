@@ -97,7 +97,7 @@
 		return 0
 
 	var/mob/living/carbon/human/H = loc
-	if(!istype(H) || !H.back)
+	if(!istype(H) || (!H.back && !H.belt))
 		return 0
 
 	var/obj/item/weapon/rig/suit = H.back

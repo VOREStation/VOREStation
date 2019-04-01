@@ -19,7 +19,7 @@ var/global/ingredientLimit = 20
 	var/image/topping
 	var/image/filling
 
-/obj/item/weapon/reagent_containers/food/snacks/customizable/New(loc,ingredient)
+/obj/item/weapon/reagent_containers/food/snacks/customizable/Initialize(loc,ingredient)
 	. = ..()
 	topping = image(icon,,"[initial(icon_state)]_top")
 	filling = image(icon,,"[initial(icon_state)]_filling")

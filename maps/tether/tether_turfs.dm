@@ -163,9 +163,11 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 // Bluespace jump turf!
 /turf/space/bluespace
 	name = "bluespace"
+	icon = 'icons/turf/space_vr.dmi'
 	icon_state = "bluespace"
 /turf/space/bluespace/Initialize()
 	..()
+	icon = 'icons/turf/space_vr.dmi'
 	icon_state = "bluespace"
 
 // Desert jump turf!

@@ -821,6 +821,7 @@
 	desc = "A uniform belonging to Major Bill's Transportation, a shipping megacorporation."
 	icon_state = "mbill"
 	worn_state = "mbill"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/major_bills)
 
 /obj/item/clothing/under/confederacy
 	name = "\improper Confederacy uniform"

@@ -25,9 +25,26 @@
 	usesound = 'sound/items/drill_use.ogg'
 	toolspeed = 0.5
 
+
+/datum/category_item/catalogue/anomalous/precursor_a/alien_wrench
+	name = "Precursor Alpha Object - Fastener Torque Tool"
+	desc = "This is an object that has a distinctive tool shape. \
+	It has a handle on one end, with a simple mechanism attached to it. \
+	On the other end is the head of the tool, with two sides each glowing \
+	a different color. The head opens up towards the top, in a similar shape \
+	as a conventional wrench.\
+	<br><br>\
+	When an object is placed into the head section of the tool, the tool appears \
+	to force the object to be turned in a specific direction. The direction can be \
+	inverted by pressing down on the mechanism on the handle. It is not known if \
+	this tool was intended by its creators to tighten fasteners or if it has a less obvious \
+	purpose, however it is very well suited to act in a wrench's capacity regardless."
+	value = CATALOGUER_REWARD_EASY
+
 /obj/item/weapon/tool/wrench/alien
 	name = "alien wrench"
 	desc = "A polarized wrench. It causes anything placed between the jaws to turn."
+	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_wrench)
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "wrench"
 	usesound = 'sound/effects/empulse.ogg'

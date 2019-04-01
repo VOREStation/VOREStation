@@ -254,6 +254,12 @@
 #define FBP_POSI	"Positronic"
 #define FBP_DRONE	"Drone"
 
+// Similar to above but for borgs.
+// Seperate defines are unfortunately required since borgs display the brain differently for some reason.
+#define BORG_BRAINTYPE_CYBORG	"Cyborg"
+#define BORG_BRAINTYPE_POSI		"Robot"
+#define BORG_BRAINTYPE_DRONE	"Drone"
+
 // 'Regular' species.
 #define SPECIES_HUMAN			"Human"
 #define SPECIES_HUMAN_VATBORN	"Vatborn"

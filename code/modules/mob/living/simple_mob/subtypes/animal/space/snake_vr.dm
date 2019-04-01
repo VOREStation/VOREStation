@@ -32,6 +32,7 @@
 	desc = "This snake is particularly chubby and demands nothing but the finest of treats."
 
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
+	makes_dirt = FALSE
 
 	var/turns_since_scan = 0
 	var/obj/movement_target
@@ -139,7 +140,7 @@
 	nutriment_amt = 1
 	nutriment_desc = list("sugar" = 1)
 
-/obj/item/weapon/reagent_containers/food/snacks/snakesnack/New()
+/obj/item/weapon/reagent_containers/food/snacks/snakesnack/Initialize()
 	..()
 	if(!snack_colour)
 		snack_colour = pick( list("yellow","green","pink","blue") )

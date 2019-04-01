@@ -344,7 +344,7 @@
 	nutriment_amt = 4
 	nutriment_desc = list("candy corn" = 4)
 
-/obj/item/weapon/reagent_containers/food/snacks/candy_corn/New()
+/obj/item/weapon/reagent_containers/food/snacks/candy_corn/Initialize()
 	..()
 	reagents.add_reagent("sugar", 2)
 	bitesize = 2
@@ -1175,7 +1175,7 @@
 	nutriment_amt = 5
 	nutriment_desc = list("sweetness" = 3, "mushroom" = 3, "pie" = 2)
 
-/obj/item/weapon/reagent_containers/food/snacks/amanita_pie/New()
+/obj/item/weapon/reagent_containers/food/snacks/amanita_pie/Initialize()
 	..()
 	reagents.add_reagent("amatoxin", 3)
 	reagents.add_reagent("psilocybin", 1)
@@ -1190,7 +1190,7 @@
 	nutriment_amt = 8
 	nutriment_desc = list("heartiness" = 2, "mushroom" = 3, "pie" = 3)
 
-/obj/item/weapon/reagent_containers/food/snacks/plump_pie/New()
+/obj/item/weapon/reagent_containers/food/snacks/plump_pie/Initialize()
 	..()
 	if(prob(10))
 		name = "exceptional plump pie"
@@ -1316,7 +1316,7 @@
 	filling_color = "#631212"
 	center_of_mass = list("x"=15, "y"=9)
 
-/obj/item/weapon/reagent_containers/food/snacks/sosjerky/New()
+/obj/item/weapon/reagent_containers/food/snacks/sosjerky/Initialize()
 		..()
 		reagents.add_reagent("protein", 4)
 		bitesize = 2
@@ -1331,7 +1331,7 @@
 	nutriment_amt = 6
 	nutriment_desc = list("dried raisins" = 6)
 
-/obj/item/weapon/reagent_containers/food/snacks/no_raisin/New()
+/obj/item/weapon/reagent_containers/food/snacks/no_raisin/Initialize()
 	..()
 	reagents.add_reagent("nutriment", 6)
 
@@ -3611,7 +3611,7 @@
 	filling_color = "#631212"
 	center_of_mass = list("x"=15, "y"=9)
 
-/obj/item/weapon/reagent_containers/food/snacks/unajerky/New()
+/obj/item/weapon/reagent_containers/food/snacks/unajerky/Initialize()
 		..()
 		reagents.add_reagent("protein", 8)
 		reagents.add_reagent("capsaicin", 2)

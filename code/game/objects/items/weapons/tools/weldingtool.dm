@@ -48,7 +48,6 @@
 	update_icon()
 	if(always_process)
 		START_PROCESSING(SSobj, src)
-	..()
 
 /obj/item/weapon/weldingtool/Destroy()
 	if(welding || always_process)
@@ -376,9 +375,34 @@
 	toolspeed = 2
 	eye_safety_modifier = 1 // Safer on eyes.
 
+/datum/category_item/catalogue/anomalous/precursor_a/alien_welder
+	name = "Precursor Alpha Object - Self Refueling Exothermic Tool"
+	desc = "An unwieldly tool which somewhat resembles a weapon, due to \
+	having a prominent trigger attached to the part which would presumably \
+	have been held by whatever had created this object. When the trigger is \
+	held down, a small but very high temperature flame shoots out from the \
+	tip of the tool. The grip is able to be held by human hands, however the \
+	shape makes it somewhat awkward to hold.\
+	<br><br>\
+	The tool appears to utilize an unknown fuel to light and maintain the \
+	flame. What is more unusual, is that the fuel appears to replenish itself. \
+	How it does this is not known presently, however experimental human-made \
+	welders have been known to have a similar quality.\
+	<br><br>\
+	Interestingly, the flame is able to cut through a wide array of materials, \
+	such as iron, steel, stone, lead, plasteel, and even durasteel. Yet, it is unable \
+	to cut the unknown material that itself and many other objects made by this \
+	precursor civilization have made. This raises questions on the properties of \
+	that material, and how difficult it would have been to work with. This tool \
+	does demonstrate, however, that the alien fuel cannot melt precursor beams, walls, \
+	or other structual elements, making it rather limited for their \
+	deconstruction purposes."
+	value = CATALOGUER_REWARD_EASY
+
 /obj/item/weapon/weldingtool/alien
 	name = "alien welding tool"
 	desc = "An alien welding tool. Whatever fuel it uses, it never runs out."
+	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_welder)
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "welder"
 	toolspeed = 0.1

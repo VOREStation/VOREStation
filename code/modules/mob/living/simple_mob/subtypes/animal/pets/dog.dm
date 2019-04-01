@@ -115,6 +115,7 @@
 	desc = "It's a corgi."
 	var/turns_since_scan = 0
 	var/obj/movement_target
+	makes_dirt = FALSE	//VOREStation edit: no more dirt
 
 /mob/living/simple_mob/animal/passive/dog/corgi/Ian/Life()
 	..()

@@ -564,5 +564,3 @@ var/datum/planet/sif/planet_sif = null
 		return
 	if(T.outdoors)
 		radiation_repository.radiate(T, rand(fallout_rad_low, fallout_rad_high))
->>>>>>> 5fb77b3... Merge pull request #5791 from Neerti/looping_sounds
->>>>>>> Adds Various Sounds, Looping Sound System

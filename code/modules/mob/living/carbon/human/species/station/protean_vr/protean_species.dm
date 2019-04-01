@@ -116,7 +116,7 @@
 	var/obj/item/device/nif/saved_nif = H.nif
 	if(saved_nif)
 		H.nif.unimplant(H) //Needs reference to owner to unimplant right.
-		H.nif.forceMove(null)
+		H.nif.moveToNullspace()
 	..()
 	if(saved_nif)
 		saved_nif.quick_implant(H)

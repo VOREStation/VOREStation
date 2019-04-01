@@ -17,6 +17,7 @@
 	retaliate = FALSE
 	can_flee = TRUE
 	violent_breakthrough = FALSE
+	base_wander_delay = 8 //vorestation edit, to make pets slow.
 
 // Won't wander away as quickly, ideal for event-spawned mobs like carp or drones.
 /datum/ai_holder/simple_mob/event

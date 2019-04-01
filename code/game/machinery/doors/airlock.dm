@@ -457,9 +457,28 @@
 	icon = 'icons/obj/doors/shuttledoors_vertical.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_voidcraft/vertical
 
+
+/datum/category_item/catalogue/anomalous/precursor_a/alien_airlock
+	name = "Precursor Alpha Object - Doors"
+	desc = "This object appears to be used in order to restrict or allow access to \
+	rooms based on its physical state. In other words, a door. \
+	Despite being designed and created by unknown ancient alien hands, this door has \
+	a large number of similarities to the conventional airlock, such as being driven by \
+	electricity, opening and closing by physically moving, and being air tight. \
+	It also operates by responding to signals through internal electrical conduits. \
+	These characteristics make it possible for one with experience with a multitool \
+	to manipulate the door.\
+	<br><br>\
+	The symbol on the door does not match any living species' patterns, giving further \
+	implications that this door is very old, and yet it remains operational after \
+	thousands of years. It is unknown if that is due to superb construction, or \
+	unseen autonomous maintenance having been performed."
+	value = CATALOGUER_REWARD_EASY
+
 /obj/machinery/door/airlock/alien
 	name = "alien airlock"
 	desc = "You're fairly sure this is a door."
+	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_airlock)
 	icon = 'icons/obj/doors/Dooralien.dmi'
 	explosion_resistance = 20
 	secured_wires = TRUE

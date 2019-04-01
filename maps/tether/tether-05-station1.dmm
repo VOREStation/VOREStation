@@ -3130,7 +3130,6 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/engineering/engine_monitoring)
 "afT" = (
-/obj/structure/table/woodentable,
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
@@ -3138,7 +3137,7 @@
 	icon_state = "bordercolor";
 	dir = 4
 	},
-/obj/item/device/camera,
+/obj/machinery/chemical_analyzer,
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
 "afU" = (
@@ -21923,6 +21922,7 @@
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/purple/border,
 /obj/item/weapon/paper_bin,
+/obj/item/device/camera,
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
 "jDS" = (
