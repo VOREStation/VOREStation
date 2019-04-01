@@ -1,4 +1,4 @@
-/mob/living/simple_mob/vore/panther
+/mob/living/simple_mob/vore/aggresive/panther
 	name = "panther"
 	desc = "Runtime's larger, less cuddly cousin."
 	tt_desc = "Panthera pardus"
@@ -33,7 +33,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
 // Activate Noms!
-/mob/living/simple_mob/vore/panther
+/mob/living/simple_mob/vore/aggresive/panther
 	vore_active = 1
 	vore_capacity = 2
 	vore_pounce_chance = 10
@@ -45,10 +45,10 @@
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_animal(src)
 	verbs |= /mob/living/simple_animal/proc/animal_mount
-*/
 
 /mob/living/simple_animal/vore/panther/MouseDrop_T(mob/living/M, mob/living/user)
 	return
+*/
 
 /datum/say_list/panther
 	speak = list("RAWR!","Rawr!","GRR!","Growl!")

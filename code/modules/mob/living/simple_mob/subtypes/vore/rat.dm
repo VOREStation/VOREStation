@@ -1,4 +1,4 @@
-/mob/living/simple_mob/vore/rat
+/mob/living/simple_mob/vore/aggresive/rat
 	name = "giant rat"
 	desc = "In what passes for a hierarchy among verminous rodents, this one is king."
 	tt_desc = "Mus muscular"
@@ -45,7 +45,7 @@
 	say_list_type = /datum/say_list/ratte
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/rat
 
-/mob/living/simple_mob/vore/rat/passive
+/mob/living/simple_mob/vore/aggresive/rat/passive		//Yes it makes no sense. But for now it will work
 	name = "curious giant rat"
 	desc = "In what passes for a hierarchy among verminous rodents, this one is king. It seems to be more interested on scavenging."
 	var/mob/living/carbon/human/food
@@ -157,7 +157,7 @@
 			break
 	return T
 */
-/mob/living/simple_mob/vore/rat/death()
+/mob/living/simple_mob/vore/aggresive/rat/death()
 	playsound(src, 'sound/effects/mouse_squeak_loud.ogg', 50, 1)
 	..()
 
@@ -169,7 +169,7 @@
 	verbs |= /mob/living/simple_animal/proc/animal_mount
 */
 
-/mob/living/simple_mob/vore/rat/MouseDrop_T(mob/living/M, mob/living/user)
+/mob/living/simple_mob/vore/aggresive/rat/MouseDrop_T(mob/living/M, mob/living/user)
 	return
 
 /datum/say_list/ratte

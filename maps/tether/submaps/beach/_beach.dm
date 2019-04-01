@@ -95,7 +95,7 @@
 	prob_fall = 25 //Chance goes down by this much each time it spawns one (not defining and prob_spawn 100 means they spawn as soon as one dies)
 	guard = 40 //They'll stay within this range (not defining this disables them staying nearby and they will wander the map (and through step teleports))
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/snake
+		/mob/living/simple_mob/animal/passive/snake
 	)
 
 /obj/tether_away_spawner/beach_outside_friendly
@@ -106,7 +106,7 @@
 	prob_fall = 25
 	guard = 40
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/fennec
+		/mob/living/simple_mob/vore/fennec
 	)
 
 /obj/tether_away_spawner/beach_cave
@@ -117,10 +117,10 @@
 	prob_fall = 40
 	guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/frog = 3, //Frogs are 3x more likely to spawn than,
-		/mob/living/simple_mob/hostile/deathclaw = 1, //these deathclaws are, with these values,
+		/mob/living/simple_mob/vore/aggresive/frog = 3, //Frogs are 3x more likely to spawn than,
+		/mob/living/simple_mob/vore/aggresive/deathclaw = 1, //these deathclaws are, with these values,
 		/mob/living/simple_mob/animal/giant_spider = 3,
-		/mob/living/simple_mob/vore/giant_snake = 1,
+		/mob/living/simple_mob/vore/aggresive/giant_snake = 1,
 		/mob/living/simple_mob/animal/giant_spider/ion = 2
 	)
 
