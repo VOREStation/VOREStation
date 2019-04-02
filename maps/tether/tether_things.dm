@@ -426,8 +426,8 @@ var/global/list/latejoin_tram   = list()
 	prob_fall = 50
 	guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/aggresive/corrupthound = 1,
-		/mob/living/simple_mob/vore/aggresive/rat = 1,
+		/mob/living/simple_mob/vore/aggressive/corrupthound = 1,
+		/mob/living/simple_mob/vore/aggressive/rat = 1,
 		/mob/living/simple_mob/animal/space/mimic = 1
 	)
 
@@ -439,7 +439,7 @@ var/global/list/latejoin_tram   = list()
 	prob_fall = 100
 	guard = 70
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/aggresive/dragon = 1
+		/mob/living/simple_mob/vore/aggressive/dragon = 1
 	)
 
 // Used at centcomm for the elevator

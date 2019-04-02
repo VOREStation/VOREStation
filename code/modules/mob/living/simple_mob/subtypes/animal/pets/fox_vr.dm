@@ -137,7 +137,7 @@
 	var/mob/living/carbon/human/friend
 	var/befriend_job = null
 
-/mob/living/simple_mob/animalpassive/fox/fluff/Life()
+/mob/living/simple_mob/animal/passive/fox/fluff/Life()
 	. = ..()
 	if(!. || !friend) return
 

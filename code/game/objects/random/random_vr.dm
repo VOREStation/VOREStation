@@ -183,8 +183,8 @@
 	return pick(
 				prob(50);/mob/living/simple_mob/animal/passive/gaslamp,
 //				prob(50);/mob/living/simple_mob/otie/feral, // Removed until Otie code is unfucked.
-				prob(20);/mob/living/simple_mob/vore/aggresive/dino/virgo3b,
-				prob(1);/mob/living/simple_mob/vore/aggresive/dragon/virgo3b)
+				prob(20);/mob/living/simple_mob/vore/aggressive/dino/virgo3b,
+				prob(1);/mob/living/simple_mob/vore/aggressive/dragon/virgo3b)
 
 /obj/random/outside_mob/spawn_item()
 	. = ..()

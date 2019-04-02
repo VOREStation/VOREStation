@@ -158,8 +158,8 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	spawn_types = list(
 	/mob/living/simple_mob/animal/passive/gaslamp = 20,
 //	/mob/living/simple_mob/otie/feral = 10,
-	/mob/living/simple_mob/vore/aggresive/dino/virgo3b = 5,
-	/mob/living/simple_mob/vore/aggresive/dragon/virgo3b = 1
+	/mob/living/simple_mob/vore/aggressive/dino/virgo3b = 5,
+	/mob/living/simple_mob/vore/aggressive/dragon/virgo3b = 1
 	)
 
 /obj/structure/mob_spawner/scanner/xenos

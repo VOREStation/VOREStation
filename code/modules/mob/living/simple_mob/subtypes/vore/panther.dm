@@ -1,4 +1,4 @@
-/mob/living/simple_mob/vore/aggresive/panther
+/mob/living/simple_mob/vore/aggressive/panther
 	name = "panther"
 	desc = "Runtime's larger, less cuddly cousin."
 	tt_desc = "Panthera pardus"
@@ -33,7 +33,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
 // Activate Noms!
-/mob/living/simple_mob/vore/aggresive/panther
+/mob/living/simple_mob/vore/aggressive/panther
 	vore_active = 1
 	vore_capacity = 2
 	vore_pounce_chance = 10

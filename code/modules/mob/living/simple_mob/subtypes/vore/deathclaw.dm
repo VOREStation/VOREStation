@@ -1,4 +1,4 @@
-/mob/living/simple_mob/vore/aggresive/deathclaw
+/mob/living/simple_mob/vore/aggressive/deathclaw
 	name = "deathclaw"
 	desc = "Big! Big! The size of three men! Claws as long as my forearm! Ripped apart! Ripped apart!"
 
@@ -33,7 +33,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/deathclaw
 
 // Activate Noms!
-/mob/living/simple_mob/vore/aggresive/deathclaw
+/mob/living/simple_mob/vore/aggressive/deathclaw
 	vore_active = 1
 	vore_capacity = 2
 	vore_max_size = RESIZE_HUGE

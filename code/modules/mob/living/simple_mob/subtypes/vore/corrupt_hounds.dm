@@ -1,4 +1,4 @@
-/mob/living/simple_mob/vore/aggresive/corrupthound
+/mob/living/simple_mob/vore/aggressive/corrupthound
 	name = "corrupt hound"
 	desc = "Good boy machine broke. This is definitely no good news for the organic lifeforms in vicinity."
 
@@ -57,7 +57,7 @@
 
 	loot_list = list(/obj/item/borg/upgrade/syndicate = 6, /obj/item/borg/upgrade/vtec = 6, /obj/item/weapon/material/knife/ritual = 6, /obj/item/weapon/disk/nifsoft/compliance = 6)
 
-/mob/living/simple_mob/vore/aggresive/corrupthound/prettyboi
+/mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi
 	name = "corrupt corrupt hound"
 	desc = "Bad boy machine broke as well. Seems an attempt was made to achieve a less threatening look, and this one is definitely having some conflicting feelings about it."
 	icon_state = "prettyboi"
@@ -71,13 +71,13 @@
 
 	say_list_type = /datum/say_list/corrupthound_prettyboi
 
-/mob/living/simple_mob/vore/aggresive/corrupthound/isSynthetic()
+/mob/living/simple_mob/vore/aggressive/corrupthound/isSynthetic()
 	return TRUE
 
-/mob/living/simple_mob/vore/aggresive/corrupthound/speech_bubble_appearance()
+/mob/living/simple_mob/vore/aggressive/corrupthound/speech_bubble_appearance()
 	return "synthetic_evil"
 
-/mob/living/simple_mob/vore/aggresive/corrupthound/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/vore/aggressive/corrupthound/apply_melee_effects(var/atom/A)
 	if(ismouse(A))
 		var/mob/living/simple_mob/animal/passive/mouse/mouse = A
 		if(mouse.getMaxHealth() < 20) // In case a badmin makes giant mice or something.
@@ -87,38 +87,38 @@
 		..()
 
 
-/mob/living/simple_mob/vore/aggresive/corrupthound/add_eyes()
+/mob/living/simple_mob/vore/aggressive/corrupthound/add_eyes()
 	if(!eye_layer)
 		eye_layer = image(icon, "badboi-eyes")
 		eye_layer.plane = PLANE_LIGHTING_ABOVE
 	add_overlay(eye_layer)
 
-/mob/living/simple_mob/vore/aggresive/corrupthound/remove_eyes()
+/mob/living/simple_mob/vore/aggressive/corrupthound/remove_eyes()
 	cut_overlay(eye_layer)
 
-/mob/living/simple_mob/vore/aggresive/corrupthound/New()
+/mob/living/simple_mob/vore/aggressive/corrupthound/New()
 	add_eyes()
 	..()
 
-/mob/living/simple_mob/vore/aggresive/corrupthound/death(gibbed, deathmessage = "shudders and collapses!")
+/mob/living/simple_mob/vore/aggressive/corrupthound/death(gibbed, deathmessage = "shudders and collapses!")
 	.=..()
 	resting = 0
 	icon_state = icon_dead
 
-/mob/living/simple_mob/vore/aggresive/corrupthound/update_icon()
+/mob/living/simple_mob/vore/aggressive/corrupthound/update_icon()
 	. = ..()
 	remove_eyes()
 	if(stat == CONSCIOUS && !resting)
 		add_eyes()
 
 /* //VOREStation AI Temporary Removal
-/mob/living/simple_mob/vore/aggresive/corrupthound/Login()
+/mob/living/simple_mob/vore/aggressive/corrupthound/Login()
 	. = ..()
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_animal(src)
 	verbs |= /mob/living/simple_animal/proc/animal_mount
 
-/mob/living/simple_mob/vore/aggresive/corrupthound/MouseDrop_T(mob/living/M, mob/living/user)
+/mob/living/simple_mob/vore/aggressive/corrupthound/MouseDrop_T(mob/living/M, mob/living/user)
 	return
 */
 

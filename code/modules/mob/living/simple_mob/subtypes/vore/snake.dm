@@ -1,4 +1,4 @@
-/mob/living/simple_mob/vore/aggresive/giant_snake
+/mob/living/simple_mob/vore/aggressive/giant_snake
 	name = "giant snake"
 	desc = "Snakes. Why did it have to be snakes?"
 
@@ -24,7 +24,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
 // Activate Noms!
-/mob/living/simple_mob/vore/aggresive/giant_snake
+/mob/living/simple_mob/vore/aggressive/giant_snake
 	vore_active = 1
 	vore_pounce_chance = 25
 	vore_icons = SA_ICON_LIVING

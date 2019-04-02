@@ -1,4 +1,4 @@
-/mob/living/simple_mob/vore/aggresive/dino
+/mob/living/simple_mob/vore/aggressive/dino
 	name = "voracious lizard"
 	desc = "These gluttonous little bastards used to be regular lizards that were mutated by long-term exposure to phoron!"
 
@@ -36,10 +36,10 @@
 	max_n2 = 0
 
 // Activate Noms!
-/mob/living/simple_mob/vore/aggresive/dino
+/mob/living/simple_mob/vore/aggressive/dino
 	vore_active = 1
 	swallowTime = 1 SECOND // Hungry little bastards.
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/vore/aggresive/dino/virgo3b
+/mob/living/simple_mob/vore/aggressive/dino/virgo3b
 	faction = "virgo3b"
