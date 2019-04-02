@@ -43,16 +43,16 @@
 /obj/structure/largecrate/animal/pred/Initialize() //This is nessesary to get a random one each time.
 	starts_with = list(pick(/mob/living/simple_mob/vore/bee,
 						/mob/living/simple_mob/vore/catgirl;3,
-						/mob/living/simple_mob/vore/frog,
-						/mob/living/simple_mob/horse,
-						/mob/living/simple_mob/vore/panther,
-						/mob/living/simple_mob/vore/giant_snake,
-						/mob/living/simple_mob/vore/wolf,
+						/mob/living/simple_mob/vore/aggressive/frog,
+						/mob/living/simple_mob/vore/horse,
+						/mob/living/simple_mob/vore/aggressive/panther,
+						/mob/living/simple_mob/vore/aggressive/giant_snake,
+						/mob/living/simple_mob/animal/wolf,
 						/mob/living/simple_mob/animal/space/bear;0.5,
 						/mob/living/simple_mob/animal/space/carp,
 						/mob/living/simple_mob/animal/space/mimic,
-						/mob/living/simple_mob/vore/rat,
-						/mob/living/simple_mob/vore/rat/passive,
+						/mob/living/simple_mob/vore/aggressive/rat,
+						/mob/living/simple_mob/vore/aggressive/rat/tame,
 //						/mob/living/simple_mob/otie;0.5
 						))
 	return ..()
@@ -63,15 +63,15 @@
 
 /obj/structure/largecrate/animal/dangerous/Initialize()
 	starts_with = list(pick(/mob/living/simple_mob/animal/space/carp/large,
-						/mob/living/simple_mob/hostile/deathclaw,
-						/mob/living/simple_mob/vore/dino,
+						/mob/living/simple_mob/vore/aggressive/deathclaw,
+						/mob/living/simple_mob/vore/aggressive/dino,
 						/mob/living/simple_mob/animal/space/alien,
 						/mob/living/simple_mob/animal/space/alien/drone,
 						/mob/living/simple_mob/animal/space/alien/sentinel,
 						/mob/living/simple_mob/animal/space/alien/queen,
 //						/mob/living/simple_mob/otie/feral,
 //						/mob/living/simple_mob/otie/red,
-						/mob/living/simple_mob/vore/corrupthound))
+						/mob/living/simple_mob/vore/aggressive/corrupthound))
 	return ..()
 /*
 /obj/structure/largecrate/animal/guardbeast
@@ -127,9 +127,9 @@
 /obj/structure/largecrate/animal/fennec
 	name = "Fennec Crate"
 	desc = "Bounces around a lot. Looks messily packaged, were they in a hurry?"
-	starts_with = list(/mob/living/simple_mob/fennec)
+	starts_with = list(/mob/living/simple_mob/vore/fennec)
 
 /obj/structure/largecrate/animal/fennec/Initialize()
-	starts_with = list(pick(/mob/living/simple_mob/fennec,
+	starts_with = list(pick(/mob/living/simple_mob/vore/fennec,
 						/mob/living/simple_mob/vore/fennix;0.5))
 	return ..()

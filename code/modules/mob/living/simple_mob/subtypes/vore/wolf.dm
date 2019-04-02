@@ -1,4 +1,4 @@
-/mob/living/simple_mob/vore/wolf
+/mob/living/simple_mob/animal/wolf
 	name = "grey wolf"
 	desc = "My, what big jaws it has!"
 	tt_desc = "Canis lupus"
@@ -19,6 +19,6 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
 // Activate Noms!
-/mob/living/simple_mob/vore/wolf
+/mob/living/simple_mob/animal/wolf
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING

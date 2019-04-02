@@ -67,7 +67,7 @@
 		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/basic = 3,
 		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion = 3,
 		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser = 3,
-		/mob/living/simple_mob/vore/corrupthound = 1
+		/mob/living/simple_mob/vore/aggressive/corrupthound = 1
 	)
 
 /obj/tether_away_spawner/aerostat_surface
@@ -78,9 +78,9 @@
 	prob_fall = 50
 	guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/corrupthound = 3,
+		/mob/living/simple_mob/vore/aggressive/corrupthound = 3,
 		/mob/living/simple_mob/mechanical/viscerator = 2,
-		/mob/living/simple_mob/vore/corrupthound = 1
+		/mob/living/simple_mob/vore/aggressive/corrupthound = 1
 	)
 
 /obj/structure/old_roboprinter

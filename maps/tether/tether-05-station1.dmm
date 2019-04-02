@@ -11414,7 +11414,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/mob/living/simple_mob/animal/fox_vr/Renault,
+/mob/living/simple_mob/animal/passive/fox/renault,
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "aEu" = (
@@ -16440,7 +16440,7 @@
 /area/hallway/station/atrium)
 "bfT" = (
 /obj/structure/disposalpipe/segment,
-/mob/living/simple_mob/animal/space/snake/noodle,
+/mob/living/simple_mob/animal/passive/snake/noodle,
 /turf/simulated/floor/carpet/oracarpet,
 /area/crew_quarters/heads/chief)
 "bfW" = (
