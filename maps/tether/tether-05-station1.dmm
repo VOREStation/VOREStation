@@ -8863,6 +8863,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
+/obj/structure/stasis_cage,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
 "axM" = (
@@ -22454,6 +22455,11 @@
 /obj/item/device/binoculars,
 /turf/simulated/floor/tiled,
 /area/tether/station/pathfinder_office)
+"rje" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/stasis_cage,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/excursion/tether)
 "rlO" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
@@ -33988,7 +33994,7 @@ aaq
 aaq
 nYp
 amF
-avG
+rje
 adB
 aaq
 aeq
@@ -34130,7 +34136,7 @@ abK
 aaq
 aem
 amF
-avG
+rje
 adB
 aaq
 aeq
