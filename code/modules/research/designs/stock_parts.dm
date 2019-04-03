@@ -4,8 +4,8 @@
 
 /datum/design/item/stock_part
 	build_type = PROTOLATHE
-  	time = 3 //Vorestation edit, lowers time required to print
-	
+	time = 3 //Vorestation edit, lowers time required to print
+
 /datum/design/item/stock_part/AssembleDesignName()
 	..()
 	name = "Component design ([item_name])"
@@ -177,7 +177,7 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 15000, "glass" = 5000)
 	build_path = /obj/item/weapon/storage/part_replacer
 	sort_string = "CBAAA"
-	
+
 //Vorestation edit, advanced RPED
 
 /datum/design/item/stock_part/ARPED
