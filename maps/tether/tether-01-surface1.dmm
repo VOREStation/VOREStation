@@ -16602,10 +16602,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
-"aXJ" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/simulated/floor/plating,
-/area/vacant/vacant_site/east)
 "aXQ" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -24779,12 +24775,6 @@
 /obj/structure/bed/chair/wood,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
-"cfl" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/vacant/vacant_site/east)
 "cfp" = (
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 6
@@ -26758,6 +26748,19 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
+"dCs" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/blue/border{
+	dir = 4
+	},
+/obj/machinery/atmospherics/binary/passive_gate/on{
+	dir = 1;
+	target_pressure = 15000
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
 "dCw" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -26930,6 +26933,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/substation/surface_atmos)
+"dUT" = (
+/obj/machinery/atmospherics/pipe/manifold4w/visible/red,
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
 "dYj" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -27342,6 +27349,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
+"ftc" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/yellow/border,
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	icon_state = "intact";
+	dir = 5
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
 "fAq" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
@@ -28993,6 +29009,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/engineering/atmos/processing)
+"kXc" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/vacant/vacant_site/east)
 "kXi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -31238,11 +31260,11 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/vacant/vacant_site/east)
@@ -32191,6 +32213,9 @@
 /obj/effect/floor_decal/corner/yellow/bordercorner{
 	icon_state = "bordercolorcorner";
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
@@ -43559,8 +43584,8 @@ nHz
 pyO
 gaN
 uiD
-fQy
-uzQ
+dUT
+ftc
 drg
 bUy
 aIT
@@ -43844,7 +43869,7 @@ cKm
 nCo
 heb
 fQy
-kwi
+xKT
 xKT
 aIG
 kwi
@@ -43986,7 +44011,7 @@ frp
 vyB
 lvx
 fQy
-lyv
+wJy
 vfu
 bUM
 kwi
@@ -45408,7 +45433,7 @@ rfn
 lZz
 ylA
 wUq
-qpo
+dCs
 rtj
 qpo
 nij
@@ -46103,9 +46128,9 @@ bjw
 blS
 bnK
 avP
-aXJ
+aCI
 shl
-cfl
+aCI
 ijE
 aCI
 agM
@@ -46246,7 +46271,7 @@ avP
 avP
 avP
 qLe
-aCI
+kXc
 qLe
 qLe
 qLe
