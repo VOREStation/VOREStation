@@ -11153,7 +11153,9 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "tz" = (
-/obj/machinery/smartfridge,
+/obj/machinery/smartfridge{
+	req_access = list(28)
+	},
 /turf/simulated/wall,
 /area/crew_quarters/kitchen)
 "tA" = (

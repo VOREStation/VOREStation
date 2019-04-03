@@ -321,7 +321,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/pizza/margfrozen/Initialize()
 	..()
 	bitesize = 20
-	reagents.add_reagent("frostoil",3)
+	//reagents.add_reagent("frostoil",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margcargo
 	name = "Margherita"
@@ -339,7 +339,7 @@
 	reagents.add_reagent("protein", 2)
 	reagents.add_reagent("tomatojuice", 10)
 	bitesize = 2
-	reagents.remove_reagent("frostoil",3)
+	//reagents.remove_reagent("frostoil",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/slice/margcargo
 	name = "Margherita slice"
@@ -366,7 +366,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/pizza/meatfrozen/Initialize()
 	..()
 	bitesize = 20
-	reagents.add_reagent("frostoil",3)
+	//reagents.add_reagent("frostoil",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatcargo
 	name = "Meatpizza"
@@ -384,7 +384,7 @@
 	reagents.add_reagent("protein", 20)
 	reagents.add_reagent("tomatojuice", 6)
 	bitesize = 2
-	reagents.remove_reagent("frostoil",3)
+	//reagents.remove_reagent("frostoil",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/slice/meatcargo
 	name = "Meatpizza slice"
@@ -411,7 +411,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/pizza/mushfrozen/Initialize()
 	..()
 	bitesize = 20
-	reagents.add_reagent("frostoil",3)
+	//reagents.add_reagent("frostoil",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushcargo
 	name = "Mushroompizza"
@@ -428,7 +428,7 @@
 	..()
 	reagents.add_reagent("protein", 4)
 	bitesize = 2
-	reagents.remove_reagent("frostoil",3)
+	//reagents.remove_reagent("frostoil",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/slice/mushcargo
 	name = "Mushroompizza slice"
@@ -455,7 +455,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/pizza/vegfrozen/Initialize()
 	..()
 	bitesize = 20
-	reagents.add_reagent("frostoil",3)
+	//reagents.add_reagent("frostoil",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegcargo
 	name = "Vegetablepizza"
@@ -474,7 +474,7 @@
 	reagents.add_reagent("tomatojuice", 15)
 	reagents.add_reagent("imidazoline", 10)
 	bitesize = 2
-	reagents.remove_reagent("frostoil",3)
+	//reagents.remove_reagent("frostoil",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/slice/vegcargo
 	name = "Vegtablepizza slice"
