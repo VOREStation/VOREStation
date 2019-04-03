@@ -3133,7 +3133,8 @@
 	icon_state = "bordercolor";
 	dir = 4
 	},
-/obj/machinery/chemical_analyzer,
+/obj/structure/table/woodentable,
+/obj/item/device/camera,
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
 "afU" = (
@@ -21930,7 +21931,6 @@
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/purple/border,
 /obj/item/weapon/paper_bin,
-/obj/item/device/camera,
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
 "jys" = (

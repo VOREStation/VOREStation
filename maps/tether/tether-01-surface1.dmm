@@ -10082,6 +10082,7 @@
 /obj/machinery/light_switch{
 	pixel_y = 25
 	},
+/obj/machinery/chemical_analyzer,
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora)
 "axo" = (
@@ -18753,8 +18754,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/glass_research{
-	name = "Xenoflora Research";
-	req_access = list(55)
+	name = "Xenoflora Research"
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/xenobiology/xenoflora)
@@ -19285,8 +19285,7 @@
 "boG" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_research{
-	name = "Xenoflora Research";
-	req_access = list(55)
+	name = "Xenoflora Research"
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/xenobiology/xenoflora)
@@ -20175,8 +20174,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/glass_research{
-	name = "Xenoflora Research";
-	req_access = list(55)
+	name = "Xenoflora Research"
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/xenobiology/xenoflora)
