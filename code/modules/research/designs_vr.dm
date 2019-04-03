@@ -6,6 +6,9 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 7000, "glass" = 7000, "gold" = 2000, "diamond" = 3000)
 	build_path = /obj/item/weapon/implantcase/vrlanguage
 */
+/datum/design
+  time = 6 //drops research print time 
+
 /datum/design/item/implant/backup
 	name = "Backup implant"
 	id = "implant_backup"

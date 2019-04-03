@@ -7,7 +7,7 @@
 	idle_power_usage = 30
 	active_power_usage = 5000
 
-	var/max_material_storage = 100000
+	var/max_material_storage = 450000 //Vorestation Edit, ups maxcap
 
 	var/list/datum/design/queue = list()
 	var/progress = 0
@@ -67,7 +67,7 @@
 	create_reagents(T)
 	max_material_storage = 0
 	for(var/obj/item/weapon/stock_parts/matter_bin/M in component_parts)
-		max_material_storage += M.rating * 75000
+		max_material_storage += M.rating * 150000 //Vorestation edit, ups capacity in general, makes it scale harder.
 	T = 0
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		T += M.rating

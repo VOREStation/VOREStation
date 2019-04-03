@@ -4,7 +4,8 @@
 
 /datum/design/item/stock_part
 	build_type = PROTOLATHE
-
+  	time = 3 //Vorestation edit, lowers time required to print
+	
 /datum/design/item/stock_part/AssembleDesignName()
 	..()
 	name = "Component design ([item_name])"
@@ -176,3 +177,14 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 15000, "glass" = 5000)
 	build_path = /obj/item/weapon/storage/part_replacer
 	sort_string = "CBAAA"
+	
+//Vorestation edit, advanced RPED
+
+/datum/design/item/stock_part/ARPED
+	name = "Advanced Rapid Part Exchange Device"
+	desc = "Special mechanical module made to store, sort, and apply standard machine parts.  This one has a greatly upgraded storage capacity."
+	id = "arped"
+	req_tech = list(TECH_ENGINEERING = 5, TECH_MATERIAL = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 30000, "glass" = 10000)
+	build_path = /obj/item/weapon/storage/part_replacer/adv
+	sort_string = "CBAAB"

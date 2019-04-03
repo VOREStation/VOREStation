@@ -418,6 +418,7 @@
 #include "code\defines\gases.dm"
 #include "code\defines\obj.dm"
 #include "code\defines\obj\weapon.dm"
+#include "code\defines\obj\weapon_vr.dm"
 #include "code\defines\procs\announce.dm"
 #include "code\defines\procs\AStar.dm"
 #include "code\defines\procs\dbcore.dm"
