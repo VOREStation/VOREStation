@@ -177,7 +177,7 @@
 	..() // will_eat check is carried out before EatTarget is called, so prey on the prey_excludes list isn't a problem.
 */
 
-/mob/living/simple_mob/animal/fox_vr
+/mob/living/simple_mob/animal/passive/fox
 	vore_active = 1
 	// NO VORE SPRITES
 	vore_max_size = RESIZE_TINY

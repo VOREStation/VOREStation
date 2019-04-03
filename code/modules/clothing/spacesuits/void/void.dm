@@ -240,12 +240,12 @@
 				playsound(src, W.usesound, 50, 1)
 				src.cooler = null
 			else if(choice == helmet)
-				to_chat(user, "You detatch \the [helmet] from \the [src]'s helmet mount.")
+				to_chat(user, "You detach \the [helmet] from \the [src]'s helmet mount.")
 				helmet.forceMove(get_turf(src))
 				playsound(src, W.usesound, 50, 1)
 				src.helmet = null
 			else if(choice == boots)
-				to_chat(user, "You detatch \the [boots] from \the [src]'s boot mounts.")
+				to_chat(user, "You detach \the [boots] from \the [src]'s boot mounts.")
 				boots.forceMove(get_turf(src))
 				playsound(src, W.usesound, 50, 1)
 				src.boots = null

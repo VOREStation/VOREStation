@@ -1,4 +1,4 @@
-/mob/living/simple_mob/horse
+/mob/living/simple_mob/vore/horse
 	name = "horse"
 	desc = "Don't look it in the mouth."
 	tt_desc = "Equus ferus caballus"
@@ -36,7 +36,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
 // Activate Noms!
-/mob/living/simple_mob/horse
+/mob/living/simple_mob/vore/horse
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING
 
@@ -46,10 +46,10 @@
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_animal(src)
 	verbs |= /mob/living/simple_animal/proc/animal_mount
-*/
 
 /mob/living/simple_animal/horse/MouseDrop_T(mob/living/M, mob/living/user)
 	return
+*/
 
 /datum/say_list/horse
 	speak = list("NEHEHEHEHEH","Neh?")
