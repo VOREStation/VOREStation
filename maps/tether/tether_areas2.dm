@@ -81,6 +81,10 @@
 	icon_state = "dk_yellow"
 /area/vacant/vacant_site/east
 	name = "\improper East Base Vacant Site"
+/area/vacant/vacant_library
+	name = "\improper Atrium Construction Site"
+/area/vacant/vacant_bar
+	name = "\improper Vacant Bar"
 
 // /area/tether/surfacebase/east_stairs_three //This is just part of an upper hallway
 
@@ -202,6 +206,8 @@
 	name = "\improper Tether Lower Service Corridor"
 /area/engineering/lower/atmos_lockers
 	name = "\improper Engineering Atmos Locker Room"
+/area/engineering/lower/atmos_eva
+	name = "\improper Engineering Atmos EVA"
 
 /area/gateway/prep_room
 	name = "\improper Gateway Prep Room"
@@ -319,6 +325,26 @@
 /area/tether/station/dock_two
 	name = "\improper Dock Two"
 	icon_state = "dk_yellow"
+
+/area/crew_quarters/showers
+	name = "\improper Unisex Showers"
+	icon_state = "recreation_area_restroom"
+
+/area/crew_quarters/sleep/maintDorm1
+	name = "\improper Construction Dorm 1"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/maintDorm2
+	name = "\improper Construction Dorm 2"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/maintDorm3
+	name = "\improper Construction Dorm 3"
+	icon_state = "Sleep"
+
+/area/crew_quarters/sleep/maintDorm4
+	name = "\improper Construction Dorm 4"
+	icon_state = "Sleep"
 
 /area/crew_quarters/sleep/Dorm_1/holo
 	name = "\improper Dorm 1 Holodeck"
