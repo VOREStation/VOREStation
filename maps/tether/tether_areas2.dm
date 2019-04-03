@@ -269,6 +269,9 @@
 /area/rnd/xenoarch_storage
 	name = "\improper Xenoarch Storage"
 	icon_state = "research"
+/area/rnd/chemistry_lab
+	name = "\improper Research Chemistry Lab"
+	icon_state = "research"
 
 //Outpost areas
 /area/rnd/outpost/anomaly_lab
