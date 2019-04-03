@@ -266,17 +266,25 @@
 /area/rnd/hallway
 	name = "\improper Research Lower Hallway"
 	icon_state = "research"
-/area/rnd/anomaly_lab
-	name = "\improper Anomaly Lab"
-	icon_state = "research"
-/area/rnd/anomaly_lab/containment_one
-	name = "\improper Anomaly Lab - Containment One"
-	icon_state = "research"
-/area/rnd/anomaly_lab/containment_two
-	name = "\improper Anomaly Lab - Containment Two"
-	icon_state = "research"
 /area/rnd/xenoarch_storage
 	name = "\improper Xenoarch Storage"
+	icon_state = "research"
+
+//Outpost areas
+/area/rnd/outpost/anomaly_lab
+	name = "\improper Research Outpost Anomaly Lab"
+	icon_state = "research"
+/area/rnd/outpost/anomaly_lab/analysis
+	name = "\improper Anomaly Lab Analysis Chamber"
+	icon_state = "research"
+/area/rnd/outpost/anomaly_lab/testing
+	name = "\improper Anomaly Lab Testing Chamber"
+	icon_state = "research"
+/area/rnd/outpost/anomaly_lab/storage
+	name = "\improper Anomaly Storage"
+	icon_state = "research"
+/area/rnd/outpost/xenoarch_storage
+	name = "\improper Research Outpost Xenoarch Storage"
 	icon_state = "research"
 // Misc
 /area/hallway/lower/third_south
