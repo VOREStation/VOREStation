@@ -11,7 +11,7 @@
 	var/weight_loss = 0.5 				// How fast you lose weight
 	var/vore_egg_type = "egg" 				// Default egg type.
 	var/feral = 0 						// How feral the mob is, if at all. Does nothing for non xenochimera at the moment.
-	var/reviving = 0					// Only used for creatures that have the xenochimera regen ability, so far.
+	var/revive_ready = REVIVING_READY	// Only used for creatures that have the xenochimera regen ability, so far.
 	var/metabolism = 0.0015
 	var/vore_taste = null				// What the character tastes like
 	var/no_vore = 0 					// If the character/mob can vore.
