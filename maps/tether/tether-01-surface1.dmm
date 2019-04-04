@@ -26175,7 +26175,6 @@
 	},
 /obj/structure/closet/crate,
 /obj/machinery/alarm{
-	breach_detection = 0;
 	dir = 8;
 	pixel_x = 25;
 	pixel_y = 0;
