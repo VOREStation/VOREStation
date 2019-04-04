@@ -98,7 +98,7 @@ var/global/repository/radiation/radiation_repository = new()
 	add_source(S)
 
 // Irradiates a full Z-level. Hacky way of doing it, but not too expensive.
-/repository/radiation/proc/z_radiate(var/atom/source, power, var/respect_maint = FALSE)
+/repository/radiation/proc/z_radiate(var/atom/source, power, var/respect_maint = TRUE)	//VOREStation edit; Respect shielded areas by default please.
 	if(!(power && source))
 		return
 	var/turf/epicentre = locate(round(world.maxx / 2), round(world.maxy / 2), source.z)
