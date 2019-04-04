@@ -75,7 +75,7 @@
 		handle_feralness(H)
 
 	//While regenerating
-	if(H.reviving && H.reviving != REVIVING_COOLDOWN)
+	if(H.revive_ready == REVIVING_NOW || H.revive_ready == REVIVING_DONE)
 		H.weakened = 5
 		H.canmove = 0
 		H.does_not_breathe = TRUE
