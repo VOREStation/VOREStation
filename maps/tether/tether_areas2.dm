@@ -81,6 +81,7 @@
 	icon_state = "dk_yellow"
 /area/vacant/vacant_site/east
 	name = "\improper East Base Vacant Site"
+	flags = null
 /area/vacant/vacant_library
 	name = "\improper Atrium Construction Site"
 /area/vacant/vacant_bar
@@ -309,6 +310,7 @@
 	name = "\improper Reading Room"
 /area/tether/surfacebase/vacant_site
 	name = "\improper Vacant Site"
+	flags = null
 /area/crew_quarters/freezer
 	name = "\improper Kitchen Freezer"
 /area/crew_quarters/panic_shelter

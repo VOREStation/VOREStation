@@ -76,10 +76,12 @@
 /area/vacant/vacant_restaurant_upper
 	name = "\improper Vacant Restaurant"
 	icon_state = "vacant_site"
+	flags = null
 
 /area/vacant/vacant_restaurant_lower
 	name = "\improper Vacant Restaurant"
 	icon_state = "vacant_site"
+	flags = null
 
 /area/engineering/engineering_airlock
 	name = "\improper Engineering Airlock"
