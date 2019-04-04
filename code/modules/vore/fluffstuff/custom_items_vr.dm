@@ -788,10 +788,11 @@
 		return
 
 	var/obj/item/weapon/implant/reagent_generator/roiz/rimplant
-	for(var/I in contents)
-		if(istype(I, /obj/item/weapon/implant/reagent_generator))
-			rimplant = I
-			break
+	for(var/obj/item/organ/external/E in organs)
+		for(var/obj/item/weapon/implant/I in E.implants)
+			if(istype(I, /obj/item/weapon/implant/reagent_generator))
+				rimplant = I
+				break
 	if (rimplant)
 		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
 			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
@@ -856,10 +857,11 @@
 		return
 
 	var/obj/item/weapon/implant/reagent_generator/jasmine/rimplant
-	for(var/I in contents)
-		if(istype(I, /obj/item/weapon/implant/reagent_generator))
-			rimplant = I
-			break
+	for(var/obj/item/organ/external/E in organs)
+		for(var/obj/item/weapon/implant/I in E.implants)
+			if(istype(I, /obj/item/weapon/implant/reagent_generator))
+				rimplant = I
+				break
 	if (rimplant)
 		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
 			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
@@ -924,10 +926,11 @@
 		return
 
 	var/obj/item/weapon/implant/reagent_generator/yonra/rimplant
-	for(var/I in contents)
-		if(istype(I, /obj/item/weapon/implant/reagent_generator))
-			rimplant = I
-			break
+	for(var/obj/item/organ/external/E in organs)
+		for(var/obj/item/weapon/implant/I in E.implants)
+			if(istype(I, /obj/item/weapon/implant/reagent_generator))
+				rimplant = I
+				break
 	if (rimplant)
 		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
 			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
@@ -1008,10 +1011,11 @@
 		return
 
 	var/obj/item/weapon/implant/reagent_generator/rischi/rimplant
-	for(var/I in contents)
-		if(istype(I, /obj/item/weapon/implant/reagent_generator))
-			rimplant = I
-			break
+	for(var/obj/item/organ/external/E in organs)
+		for(var/obj/item/weapon/implant/I in E.implants)
+			if(istype(I, /obj/item/weapon/implant/reagent_generator))
+				rimplant = I
+				break
 	if (rimplant)
 		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
 			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
