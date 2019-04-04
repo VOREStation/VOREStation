@@ -86,7 +86,7 @@ var/global/repository/radiation/radiation_repository = new()
 	add_source(S)
 
 // Sets the radiation in a range to a constant value.
-/repository/radiation/proc/flat_radiate(source, power, range, var/respect_maint = FALSE)
+/repository/radiation/proc/flat_radiate(source, power, range, var/respect_maint = TRUE)	//VOREStation edit; Respect shielded areas by default please.
 	if(!(source && power && range))
 		return
 	var/datum/radiation_source/S = new()

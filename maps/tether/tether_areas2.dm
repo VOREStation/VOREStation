@@ -313,6 +313,7 @@
 	name = "\improper Kitchen Freezer"
 /area/crew_quarters/panic_shelter
 	name = "\improper Panic Shelter"
+	flags = RAD_SHIELDED	//It just makes sense
 
 
 
@@ -344,53 +345,70 @@
 /area/crew_quarters/sleep/maintDorm1
 	name = "\improper Construction Dorm 1"
 	icon_state = "Sleep"
+	flags = RAD_SHIELDED
 
 /area/crew_quarters/sleep/maintDorm2
 	name = "\improper Construction Dorm 2"
 	icon_state = "Sleep"
+	flags = RAD_SHIELDED
 
 /area/crew_quarters/sleep/maintDorm3
 	name = "\improper Construction Dorm 3"
 	icon_state = "Sleep"
+	flags = RAD_SHIELDED
 
 /area/crew_quarters/sleep/maintDorm4
 	name = "\improper Construction Dorm 4"
 	icon_state = "Sleep"
+	flags = RAD_SHIELDED
 
 /area/crew_quarters/sleep/Dorm_1/holo
 	name = "\improper Dorm 1 Holodeck"
 	icon_state = "dk_yellow"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/Dorm_3/holo
 	name = "\improper Dorm 3 Holodeck"
 	icon_state = "dk_yellow"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/Dorm_5/holo
 	name = "\improper Dorm 5 Holodeck"
 	icon_state = "dk_yellow"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/Dorm_7/holo
 	name = "\improper Dorm 7 Holodeck"
 	icon_state = "dk_yellow"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/holodeck/holodorm/source_basic
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_desert
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_seating
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_beach
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_garden
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_boxing
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_snow
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_space
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_off
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/ai/foyer
 	name = "\improper AI Core Access"
