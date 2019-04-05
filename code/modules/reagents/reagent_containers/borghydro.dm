@@ -39,7 +39,7 @@
 
 	for(var/T in reagent_ids)
 		reagent_volumes[T] = volume
-		var/datum/reagent/R = SSchemistry.chemical_reagents[T]
+		var/datum/reagent/R = chemical_reagents_list[T]
 		reagent_names += R.name
 
 	START_PROCESSING(SSobj, src)
@@ -112,14 +112,14 @@
 		if(t)
 			playsound(loc, 'sound/effects/pop.ogg', 50, 0)
 			mode = t
-			var/datum/reagent/R = SSchemistry.chemical_reagents[reagent_ids[mode]]
+			var/datum/reagent/R = chemical_reagents_list[reagent_ids[mode]]
 			usr << "<span class='notice'>Synthesizer is now producing '[R.name]'.</span>"
 
 /obj/item/weapon/reagent_containers/borghypo/examine(mob/user)
 	if(!..(user, 2))
 		return
 
-	var/datum/reagent/R = SSchemistry.chemical_reagents[reagent_ids[mode]]
+	var/datum/reagent/R = chemical_reagents_list[reagent_ids[mode]]
 
 	user << "<span class='notice'>It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.</span>"
 

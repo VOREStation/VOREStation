@@ -448,7 +448,7 @@
 			usr << "This can only be done on mobs with clients"
 			return
 
-		SSnanoui.send_resources(H.client)
+		GLOB.nanomanager.send_resources(H.client)
 
 		usr << "Resource files sent"
 		H << "Your NanoUI Resource files have been refreshed"

@@ -23,7 +23,7 @@
 
 /obj/item/clothing/glasses/omnihud/dropped()
 	if(arscreen)
-		SSnanoui.close_uis(src)
+		GLOB.nanomanager.close_uis(src)
 	..()
 
 /obj/item/clothing/glasses/omnihud/emp_act(var/severity)

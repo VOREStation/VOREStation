@@ -102,6 +102,8 @@
 	options["LEGACY: gas_data"] = gas_data
 	options["LEGACY: plant_controller"] = plant_controller
 	options["LEGACY: alarm_manager"] = alarm_manager
+	options["LEGACY: nanomanager"] = GLOB.nanomanager
+	options["LEGACY: chemistryProcess"] = chemistryProcess
 
 	var/pick = input(mob, "Choose a controller to debug/view variables of.", "VV controller:") as null|anything in options
 	if(!pick)
