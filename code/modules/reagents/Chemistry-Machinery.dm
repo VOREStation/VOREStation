@@ -32,7 +32,7 @@
 
 /obj/machinery/chem_master/New()
 	..()
-	var/datum/reagents/R = new/datum/reagents(900)	//Just a huge random number so the buffer should (probably) never dump your reagents. 
+	var/datum/reagents/R = new/datum/reagents(900)	//Just a huge random number so the buffer should (probably) never dump your reagents.
 	reagents = R	//There should be a nano ui thingy to warn of this.
 	R.my_atom = src
 
@@ -134,7 +134,7 @@
 
 	data["bottleSpritesAmount"] = list(1, 2, 3, 4) //how many bottle sprites there are. Sprites are taken from chemical.dmi and can be found in nano/images/pill.png
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "chem_master.tmpl", src.name, 575, 400)
 		ui.set_initial_data(data)
@@ -177,21 +177,21 @@
 
 			if(href_list["amount"])
 				var/id = href_list["add"]
-				var/amount = Clamp((text2num(href_list["amount"])), 0, 200)
+				var/amount = CLAMP((text2num(href_list["amount"])), 0, 200)
 				R.trans_id_to(src, id, amount)
 
 		else if (href_list["addcustom"])
 
 			var/id = href_list["addcustom"]
 			useramount = input("Select the amount to transfer.", 30, useramount) as num
-			useramount = Clamp(useramount, 0, 200)
+			useramount = CLAMP(useramount, 0, 200)
 			src.Topic(null, list("amount" = "[useramount]", "add" = "[id]"))
 
 		else if (href_list["remove"])
 
 			if(href_list["amount"])
 				var/id = href_list["remove"]
-				var/amount = Clamp((text2num(href_list["amount"])), 0, 200)
+				var/amount = CLAMP((text2num(href_list["amount"])), 0, 200)
 				if(mode)
 					reagents.trans_id_to(beaker, id, amount)
 				else
@@ -202,7 +202,7 @@
 
 			var/id = href_list["removecustom"]
 			useramount = input("Select the amount to transfer.", 30, useramount) as num
-			useramount = Clamp(useramount, 0, 200)
+			useramount = CLAMP(useramount, 0, 200)
 			src.Topic(null, list("amount" = "[useramount]", "remove" = "[id]"))
 
 		else if (href_list["toggle"])
@@ -224,7 +224,7 @@
 				count = input("Select the number of pills to make.", "Max [max_pill_count]", pillamount) as null|num
 				if(!count) //Covers 0 and cancel
 					return
-				count = Clamp(count, 1, max_pill_count)
+				count = CLAMP(count, 1, max_pill_count)
 
 			if(reagents.total_volume/count < 1) //Sanity checking.
 				return
@@ -282,7 +282,7 @@
 		else if(href_list["bottle_sprite"])
 			bottlesprite = href_list["bottle_sprite"]
 
-	GLOB.nanomanager.update_uis(src)
+	SSnanoui.update_uis(src)
 
 /obj/machinery/chem_master/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -550,3 +550,70 @@
 				qdel(O)
 			if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 				break
+
+
+///////////////
+///////////////
+// Detects reagents inside most containers, and acts as an infinite identification system for reagent-based unidentified objects.
+
+/obj/machinery/chemical_analyzer
+	name = "chem analyzer"
+	desc = "Used to precisely scan chemicals and other liquids inside various containers. \
+	It may also identify the liquid contents of unknown objects."
+	description_info = "This machine will try to tell you what reagents are inside of something capable of holding reagents. \
+	It is also used to 'identify' specific reagent-based objects with their properties obscured from inspection by normal means."
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "chem_analyzer"
+	density = TRUE
+	anchored = TRUE
+	use_power = TRUE
+	idle_power_usage = 20
+	clicksound = "button"
+	var/analyzing = FALSE
+
+/obj/machinery/chemical_analyzer/update_icon()
+	icon_state = "chem_analyzer[analyzing ? "-working":""]"
+
+/obj/machinery/chemical_analyzer/attackby(obj/item/I, mob/living/user)
+	if(!istype(I))
+		return ..()
+
+	if(default_deconstruction_screwdriver(user, I))
+		return
+	if(default_deconstruction_crowbar(user, I))
+		return
+
+	if(istype(I,/obj/item/weapon/reagent_containers))
+		analyzing = TRUE
+		update_icon()
+		to_chat(user, span("notice", "Analyzing \the [I], please stand by..."))
+
+		if(!do_after(user, 2 SECONDS, src))
+			to_chat(user, span("warning", "Sample moved outside of scan range, please try again and remain still."))
+			analyzing = FALSE
+			update_icon()
+			return
+
+		// First, identify it if it isn't already.
+		if(!I.is_identified(IDENTITY_FULL))
+			var/datum/identification/ID = I.identity
+			if(ID.identification_type == IDENTITY_TYPE_CHEMICAL) // This only solves chemical-based mysteries.
+				I.identify(IDENTITY_FULL, user)
+
+		// Now tell us everything that is inside.
+		if(I.reagents && I.reagents.reagent_list.len)
+			to_chat(user, "<br>") // To add padding between regular chat and the output.
+			for(var/datum/reagent/R in I.reagents.reagent_list)
+				if(!R.name)
+					continue
+				to_chat(user, span("notice", "Contains [R.volume]u of <b>[R.name]</b>.<br>[R.description]<br>"))
+
+		// Last, unseal it if it's an autoinjector.
+		if(istype(I,/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector) && !(I.flags & OPENCONTAINER))
+			I.flags |= OPENCONTAINER
+			to_chat(user, span("notice", "Sample container unsealed.<br>"))
+
+		to_chat(user, span("notice", "Scanning of \the [I] complete."))
+		analyzing = FALSE
+		update_icon()
+		return

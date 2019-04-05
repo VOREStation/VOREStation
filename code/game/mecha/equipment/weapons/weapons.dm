@@ -19,7 +19,7 @@
 		return 0
 	return ..()
 
-/obj/item/mecha_parts/mecha_equipment/weapon/action(atom/target)
+/obj/item/mecha_parts/mecha_equipment/weapon/action(atom/target, params)
 	if(!action_checks(target))
 		return
 	var/turf/curloc = chassis.loc
@@ -39,7 +39,7 @@
 		playsound(chassis, fire_sound, fire_volume, 1)
 		projectiles--
 		var/P = new projectile(curloc)
-		Fire(P, target)
+		Fire(P, target, params)
 		if(i == 1)
 			set_ready_state(0)
 		if(fire_cooldown)
@@ -60,11 +60,12 @@
 
 	return
 
-/obj/item/mecha_parts/mecha_equipment/weapon/proc/Fire(atom/A, atom/target)
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/Fire(atom/A, atom/target, params)
 	var/obj/item/projectile/P = A
 	P.dispersion = deviation
 	process_accuracy(P, chassis.occupant, target)
-	P.launch(target)
+	P.preparePixelProjectile(target, chassis.occupant, params)
+	P.fire()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/process_accuracy(obj/projectile, mob/living/user, atom/target)
 	var/obj/item/projectile/P = projectile
@@ -296,7 +297,7 @@
 	description_info = "This weapon cannot be fired indoors, underground, or on-station."
 	icon_state = "mecha_mortar"
 	equip_cooldown = 30
-	fire_sound = 'sound/weapons/cannon.ogg'
+	fire_sound = 'sound/weapons/Gunshot_cannon.ogg'
 	fire_volume = 100
 	projectiles = 3
 	deviation = 0.6
@@ -319,7 +320,7 @@
 	icon_state = "mecha_scatter"
 	equip_cooldown = 20
 	projectile = /obj/item/projectile/bullet/pellet/shotgun/flak
-	fire_sound = 'sound/weapons/gunshot/shotgun.ogg'
+	fire_sound = 'sound/weapons/Gunshot_shotgun.ogg'
 	fire_volume = 80
 	projectiles = 40
 	projectiles_per_shot = 4
@@ -345,7 +346,7 @@
 	icon_state = "mecha_uac2"
 	equip_cooldown = 10
 	projectile = /obj/item/projectile/bullet/pistol/medium
-	fire_sound = 'sound/weapons/machinegun.ogg'
+	fire_sound = 'sound/weapons/Gunshot_machinegun.ogg'
 	projectiles = 30 //10 bursts, matching the Scattershot's 10. Also, conveniently, doesn't eat your powercell when reloading like 300 bullets does.
 	projectiles_per_shot = 3
 	deviation = 0.3
@@ -523,7 +524,7 @@
 	icon_state = "mecha_drac3"
 	equip_cooldown = 20
 	projectile = /obj/item/projectile/bullet/incendiary
-	fire_sound = 'sound/weapons/machinegun.ogg'
+	fire_sound = 'sound/weapons/Gunshot_machinegun.ogg'
 	projectiles = 30
 	projectiles_per_shot = 2
 	deviation = 0.4

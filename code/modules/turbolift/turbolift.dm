@@ -154,12 +154,12 @@
 		return 0
 
 	for(var/turf/T in destination)
-		for(var/I in T)
-			if(istype(I, /mob/living))
-				var/mob/living/L = I
-				L.gib()
-			else if(istype(I,/obj))
-				qdel(I)
+		for(var/atom/movable/AM in T)
+			if(istype(AM, /mob/living))
+				var/mob/living/M = AM
+				M.gib()
+			else if(AM.simulated && !(istype(AM, /mob/observer)))
+				qdel(AM)
 
 	origin.move_contents_to(destination)
 

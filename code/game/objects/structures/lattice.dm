@@ -7,9 +7,8 @@
 	anchored = 1.0
 	w_class = ITEMSIZE_NORMAL
 	plane = PLATING_PLANE
-	//	flags = CONDUCT
 
-/obj/structure/lattice/initialize()
+/obj/structure/lattice/Initialize()
 	. = ..()
 
 	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/open) || istype(src.loc, /turf/simulated/mineral)))

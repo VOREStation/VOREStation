@@ -3,10 +3,78 @@
 // Second special attack fires a projectile that creates a short-lived microsingularity that pulls in everything nearby. Magboots can protect from this.
 // Third special attack creates a dangerous electric field that causes escalating electric damage, before emitting a tesla shock and blinding anyone looking at the mecha.
 // The AI will choose one every ten seconds.
+
+/datum/category_item/catalogue/technology/adv_dark_gygax
+	name = "Exosuit - Advanced Dark Gygax"
+	desc = "This exosuit is an experimental prototype, descended from the Dark Gygax. It retains the \
+	speed that is characteristic of the other models, yet outclasses all of them in durability, \
+	to the point of having a comparable amount of protection to models that placed a higher emphesis \
+	on armor, like the Durand and even the Marauder. It is also much larger in scale, and significantly \
+	heavier than most other exosuits developed by humans, which often causes shockwaves to be felt \
+	whenever it moves. This has been observed to have a demoralizing effect on hostile forces.\
+	<br><br>\
+	<b>Weapons & Power System</b><br>\
+	Attached to the exosuit's chassis are several newly invented mounted weapons, each unique in purpose and capability. \
+	These weapons are integral to the chassis as opposed to the modular equipment that more traditional exosuits utilize. \
+	It is unknown if that is due to simply being an early prototype, or if discarding the modular design is benefitial \
+	to the design of the model.\
+	<br><br>\
+	All the weapons utilize energy, as opposed to consumable projectiles. This appears to have been a conscious decision to \
+	allow for more staying power, by only being limited by availablity of electricity. \
+	In order to supply the needed energy for combat, the ADG contains a miniturized fusion reactor, which is also \
+	considered experimental due to its size. The reactor is powerful enough to power the actuators, electronics, \
+	and the primary weapon. The supplementary weapons, however, cannot be continiously fired and instead draw from \
+	a electrical buffer that is constantly replenished by the reactor.\
+	<br><br>\
+	<b>Homing Energy Bolts</b><br>\
+	The primary weapon is a projector that fires somewhat slow moving blue bolts of energy. The ADG is able to \
+	passively redirect the trajectory of the blue bolts towards the initial target, essentially acting as a \
+	homing projectile. The blue bolt itself is otherwise not very powerful compared to conventional photonic \
+	weaponry or ballistic shells, however the power required to fire the main gun is significantly less \
+	than the other available weapons, and so the ADG uses it as the main weapon.\
+	<br><br>\
+	<b>Self-Supplying Missile Launcher</b><br>\
+	The first supplementary weapon would appear to not be an energy weapon, as it is a missile launcher. \
+	What is not obvious is that the missiles are fabricated inside the exosuit, with the physical \
+	materials also being created from energy, similar to the newer models of Rapid Construction Devices. \
+	Therefore, the ADG does not need to concern itself with running out of missiles. The missiles themselves \
+	are optimized towards harming hard targets, such as other exosuits, but are also still dangerous to soft \
+	targets like infantry.\
+	<br><br>\
+	<b>Electric Defense</b><br>\
+	The second supplementary weapon is not a conventional gun. Instead, the ADG weaponizes its electrical \
+	systems by redirecting power output from its fusion reactor to its exterior shell, becoming a walking \
+	tesla coil. This generates a strong electric field that harms anything unprotected nearby. \
+	The electric field grows in power, until reaching a critical point, after which a blinding flash \
+	of light and arcs of lightning fly out from the exosuit towards its surroundings.\
+	<br><br>\
+	<b>Microsingularity Projector</b><br>\
+	Finally, the third supplementary weapon utilizes gravitation as a weapon, by firing a blue energetic orb \
+	that, upon hitting the ground, collapses and causes a 'microsingularity' to emerge briefly, pulling in \
+	anything unsecured, such as personnel or weapons. The microsingularity lacks the means to gain any energy, meaning it \
+	will dissipate in a few seconds, and so it is <u>probably</u> safe to use on a planetary body.\
+	<br><br>\
+	<b>Flaws</b><br>\
+	It would appear the ADG is poised to take the place of other exosuits like the Marauder, however several \
+	massive flaws exist to make that unlikely. Firstly, this exosuit is almost an order of magnitude more \
+	costly to produce than comparable alternatives, even accounting for being a prototype. \
+	Secondly, a number of weapons integrated into the ADG are dangerous both to enemies and \
+	allies, limiting the ability for a massed assault using ADGs. \
+	Finally, the nature of several weapons used could invoke technological fear, or otherwise \
+	be considered a war crime to utilize, primarily the electrical field and microsingularity \
+	projector.\
+	<br><br>\
+	All of these flaws appear to doom the ADG to becoming another technological marvel that was \
+	overly ambitious and unconstrained to the demands of reality. They will likely be really rare, \
+	and terrifying."
+	value = CATALOGUER_REWARD_SUPERHARD
+
+
 /mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced
 	name = "advanced dark gygax"
 	desc = "An experimental exosuit that utilizes advanced materials to allow for greater protection while still being lightweight and fast. \
 	It also is armed with an array of next-generation weaponry."
+	catalogue_data = list(/datum/category_item/catalogue/technology/adv_dark_gygax)
 	icon_state = "darkgygax_adv"
 	wreckage = /obj/structure/loot_pile/mecha/gygax/dark/adv
 	icon_scale = 1.5
@@ -28,8 +96,9 @@
 	special_attack_min_range = 1
 	special_attack_max_range = 7
 	special_attack_cooldown = 10 SECONDS
-	projectiletype = /obj/item/projectile/force_missile
+	projectiletype = /obj/item/projectile/energy/homing_bolt // We're now a bullet hell game.
 	projectilesound = 'sound/weapons/wave.ogg'
+	ai_holder_type = /datum/ai_holder/simple_mob/intentional/adv_dark_gygax
 	var/obj/effect/overlay/energy_ball/energy_ball = null
 
 /mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/Destroy()
@@ -39,7 +108,7 @@
 	return ..()
 
 /mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/do_special_attack(atom/A)
-	. = TRUE // So we don't fire a laser as well.
+	. = TRUE // So we don't fire a bolt as well.
 	switch(a_intent)
 		if(I_DISARM) // Side gun
 			electric_defense(A)
@@ -47,6 +116,22 @@
 			launch_rockets(A)
 		if(I_GRAB) // Micro-singulo
 			launch_microsingularity(A)
+
+/obj/item/projectile/energy/homing_bolt
+	name = "homing bolt"
+	icon_state = "force_missile"
+	damage = 20
+	damage_type = BURN
+	check_armour = "laser"
+
+/obj/item/projectile/energy/homing_bolt/launch_projectile(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
+	..()
+	if(target)
+		set_homing_target(target)
+
+/obj/item/projectile/energy/homing_bolt/fire(angle, atom/direct_target)
+	..()
+	set_pixel_speed(0.5)
 
 #define ELECTRIC_ZAP_POWER 20000
 
@@ -130,7 +215,8 @@
 				playsound(src, 'sound/weapons/rpg.ogg', 70, 1)
 				face_atom(T)
 				var/obj/item/projectile/arc/explosive_rocket/rocket = new(loc)
-				rocket.launch(T)
+				rocket.old_style_target(T, src)
+				rocket.fire()
 				sleep(1 SECOND)
 
 	visible_message(span("warning", "\The [src] retracts the missile rack."))
@@ -152,7 +238,8 @@
 	playsound(src, 'sound/weapons/Laser.ogg', 50, 1)
 	face_atom(T)
 	var/obj/item/projectile/arc/microsingulo/sphere = new(loc)
-	sphere.launch(T)
+	sphere.old_style_target(T, src)
+	sphere.fire()
 
 /obj/item/projectile/arc/microsingulo
 	name = "micro singularity"

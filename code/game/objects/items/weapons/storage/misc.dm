@@ -11,7 +11,7 @@
 	foldable = /obj/item/stack/material/cardboard
 	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donut/normal = 6)
 
-/obj/item/weapon/storage/box/donut/initialize()
+/obj/item/weapon/storage/box/donut/Initialize()
 	. = ..()
 	update_icon()
 

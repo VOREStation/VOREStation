@@ -161,6 +161,7 @@ var/list/ai_verbs_default = list(
 	add_language(LANGUAGE_SIGN, 1)
 	add_language(LANGUAGE_ROOTLOCAL, 1)
 	add_language(LANGUAGE_TERMINUS, 1)
+	add_language(LANGUAGE_ZADDAT, 1)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
@@ -810,7 +811,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/announcer/
 	is_dummy = 1
 
-/mob/living/silicon/ai/announcer/initialize()
+/mob/living/silicon/ai/announcer/Initialize()
 	. = ..()
 	mob_list -= src
 	living_mob_list -= src

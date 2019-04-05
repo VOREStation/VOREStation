@@ -307,11 +307,11 @@
 	var/last_flash = 0				//Stores the time of last flash
 
 /obj/item/borg/combat/shield/New()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/borg/combat/shield/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/borg/combat/shield/attack_self(var/mob/living/user)

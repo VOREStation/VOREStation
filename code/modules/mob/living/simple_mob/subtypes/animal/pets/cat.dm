@@ -98,6 +98,7 @@
 	icon_living = "cat"
 	icon_dead = "cat_dead"
 	icon_rest = "cat_rest"
+	makes_dirt = FALSE	//VOREStation edit: no more dirt
 
 /mob/living/simple_mob/animal/passive/cat/kitten
 	name = "kitten"
@@ -109,7 +110,7 @@
 	gender = NEUTER
 	holder_type = /obj/item/weapon/holder/cat/kitten //VOREStation Edit
 
-/mob/living/simple_mob/animal/passive/cat/kitten/initialize()
+/mob/living/simple_mob/animal/passive/cat/kitten/Initialize()
 	if(gender == NEUTER)
 		gender = pick(MALE, FEMALE)
 	return ..()

@@ -1,4 +1,4 @@
-/mob/living/simple_mob/animal/space/snake
+/mob/living/simple_mob/animal/passive/snake
 	name = "snake"
 	desc = "A big thick snake."
 
@@ -27,24 +27,17 @@
 	emote_hear = list("hisses")
 
 //NOODLE IS HERE! SQUEEEEEEEE~
-/mob/living/simple_mob/animal/space/snake/noodle
+/mob/living/simple_mob/animal/passive/snake/noodle
 	name = "Noodle"
 	desc = "This snake is particularly chubby and demands nothing but the finest of treats."
 
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
+	makes_dirt = FALSE
 
 	var/turns_since_scan = 0
 	var/obj/movement_target
 
-/datum/ai_holder/simple_mob/passive
-	base_wander_delay = 11 //Them pets better be slow to not push us around
-
-/datum/ai_holder/simple_mob/passive
-	hostile = FALSE
-	can_flee = TRUE
-	violent_breakthrough = FALSE
-
-/mob/living/simple_mob/animal/space/snake/noodle/Life()
+/mob/living/simple_mob/animal/passive/snake/noodle/Life()
 	..()
 
 	//Not replacing with SA FollowTarget mechanics because Ian behaves... very... specifically.
@@ -88,7 +81,7 @@
 						visible_emote("stares at the [movement_target] that [movement_target.loc] has with an unknowable reptilian gaze.")
 
 /* old eating code, couldn't figure out how to make the "swallows food" thing so I'm keeping this here incase someone wants legacy"
-/mob/living/simple_mob/animal/space/snake/noodle/Life() //stolen from Ian in corgi.dm
+/mob/living/simple_mob/animal/passive/snake/noodle/Life() //stolen from Ian in corgi.dm
 	if(!..())
 		return 0
 
@@ -121,7 +114,7 @@
 					visible_emote("stares at the [movement_target] that [movement_target.loc] has with an unknowable reptilian gaze.")
 */
 
-/mob/living/simple_mob/animal/space/snake/noodle/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/animal/passive/snake/noodle/apply_melee_effects(var/atom/A)
 	if(ismouse(A))
 		var/mob/living/simple_mob/animal/passive/mouse/mouse = A
 		if(mouse.getMaxHealth() < 20) // In case a badmin makes giant mice or something.
@@ -130,7 +123,7 @@
 	else
 		..()
 
-/mob/living/simple_mob/animal/space/snake/noodle/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple_mob/animal/passive/snake/noodle/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/snakesnack))
 		visible_message("<span class='notice'>[user] feeds \the [O] to [src].</span>")
 		qdel(O)
@@ -147,7 +140,7 @@
 	nutriment_amt = 1
 	nutriment_desc = list("sugar" = 1)
 
-/obj/item/weapon/reagent_containers/food/snacks/snakesnack/New()
+/obj/item/weapon/reagent_containers/food/snacks/snakesnack/Initialize()
 	..()
 	if(!snack_colour)
 		snack_colour = pick( list("yellow","green","pink","blue") )

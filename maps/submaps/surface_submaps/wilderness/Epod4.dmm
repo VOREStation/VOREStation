@@ -1,0 +1,35 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/Epod4)
+"c" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Epod4)
+"d" = (/obj/structure/flora/tree/pine,/turf/simulated/floor/outdoors/dirt,/area/submap/Epod4)
+"e" = (/obj/structure/flora/grass/green,/turf/simulated/floor/outdoors/dirt,/area/submap/Epod4)
+"f" = (/turf/simulated/floor/water,/area/submap/Epod4)
+"g" = (/obj/structure/flora/tree/dead,/turf/simulated/floor/outdoors/dirt,/area/submap/Epod4)
+"h" = (/turf/simulated/shuttle/wall,/area/submap/Epod4)
+"i" = (/obj/structure/shuttle/window,/obj/structure/grille,/turf/simulated/shuttle/plating,/area/submap/Epod4)
+"j" = (/obj/structure/flora/grass/both,/turf/simulated/floor/outdoors/dirt,/area/submap/Epod4)
+"k" = (/obj/structure/bed/chair{icon_state = "chair_preview"; dir = 1},/obj/machinery/status_display{density = 0; layer = 4; pixel_x = -32; pixel_y = 0},/obj/structure/loot_pile/maint/junk,/turf/simulated/floor/water,/area/submap/Epod4)
+"l" = (/turf/simulated/floor/water/deep,/area/submap/Epod4)
+"m" = (/obj/structure/bed/chair{icon_state = "chair_preview"; dir = 1},/obj/effect/decal/remains/posi,/obj/machinery/light{dir = 8; icon_state = "tube1"; pixel_y = 0},/obj/machinery/vending/wallmed1{layer = 3.3; name = "Emergency NanoMed"; pixel_x = 28; pixel_y = 0},/obj/item/clothing/shoes/brown,/obj/item/clothing/under/mbill,/obj/item/clothing/head/soft/mbill,/turf/simulated/floor/water,/area/submap/Epod4)
+"n" = (/obj/structure/bed/chair{icon_state = "chair_preview"; dir = 1},/obj/structure/closet/walllocker/emerglocker/east,/obj/item/device/radio/intercom{dir = 8; name = "Station Intercom (General)"; pixel_x = -28},/obj/structure/closet/crate/hydroponics{desc = "All you need to destroy that pesky planet."; name = "exotic seeds crate"; starts_with = list(/obj/item/seeds/random = 6, /obj/item/seeds/replicapod = 2, /obj/item/seeds/ambrosiavulgarisseed = 2, /obj/item/seeds/kudzuseed, /obj/item/seeds/libertymycelium, /obj/item/seeds/reishimycelium)},/turf/simulated/floor/water,/area/submap/Epod4)
+"o" = (/obj/structure/shuttle/engine/propulsion/burst,/turf/simulated/shuttle/wall,/area/submap/Epod4)
+"p" = (/obj/structure/door_assembly/door_assembly_ext{anchored = 1},/turf/simulated/floor/water,/area/submap/Epod4)
+"q" = (/obj/structure/flora/grass/brown,/turf/simulated/floor/outdoors/dirt,/area/submap/Epod4)
+
+(1,1,1) = {"
+aaaaaaaaaa
+abbbbbbbba
+abcccccbba
+acccdcccba
+acceffgcba
+adefhihjca
+acffhkhcja
+acflhmhfca
+aeflhnhfca
+acflopofca
+aecflllfja
+abcfllfcca
+adjcfffqca
+abccqcqcba
+aaaaaaaaaa
+"}

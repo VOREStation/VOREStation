@@ -1,8 +1,8 @@
-/mob/living/simple_mob/animal/fox_vr
+/mob/living/simple_mob/animal/passive/fox
 	name = "fox"
 	desc = "It's a fox. I wonder what it says?"
 	tt_desc = "Vulpes vulpes"
-	
+
 	icon_state = "fox2"
 	icon_living = "fox2"
 	icon_dead = "fox2_dead"
@@ -13,7 +13,7 @@
 	see_in_dark = 6
 	mob_size = MOB_SMALL //Foxes are not smaller than cats so bumping them up to small
 
-	faction = "fox_vr"
+	faction = "fox"
 
 	response_help = "scritches"
 	response_disarm = "gently pushes aside"
@@ -26,20 +26,20 @@
 	meat_amount = 1
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/fox
 
-	say_list_type = /datum/say_list/fox_vr
-	ai_holder_type = /datum/ai_holder/simple_mob/fox_vr
+	say_list_type = /datum/say_list/fox
+	ai_holder_type = /datum/ai_holder/simple_mob/fox
 
 	var/turns_since_scan = 0
 	var/mob/flee_target
 
-/datum/say_list/fox_vr
+/datum/say_list/fox
 	speak = list("Ack-Ack","Ack-Ack-Ack-Ackawoooo","Awoo","Tchoff")
 	emote_hear = list("howls","barks","geckers",)
 	emote_see = list("shakes its head", "shivers", "geckers")
 	say_maybe_target = list("Yip?","Yap?")
 	say_got_target = list("YAP!","YIP!")
 
-/datum/ai_holder/simple_mob/fox_vr
+/datum/ai_holder/simple_mob/fox
 	hostile = FALSE
 	cooperative = TRUE
 	returns_home = FALSE
@@ -49,7 +49,7 @@
 	wander = TRUE
 	base_wander_delay = 4
 
-/mob/living/simple_mob/animal/fox_vr/init_vore()
+/mob/living/simple_mob/animal/passive/fox/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
@@ -71,7 +71,7 @@
 		"The fox's stomach churns hungrily over your form, trying to take you.",
 		"With a loud glorp, the stomach spills more acids onto you.")
 
-/mob/living/simple_mob/animal/fox_vr/apply_melee_effects(var/atom/A)
+/mob/living/simple_mob/animal/passive/fox/apply_melee_effects(var/atom/A)
 	if(ismouse(A))
 		var/mob/living/simple_mob/animal/passive/mouse/mouse = A
 		if(mouse.getMaxHealth() < 20) // In case a badmin makes giant mice or something.
@@ -80,7 +80,7 @@
 	else
 		..()
 
-/mob/living/simple_mob/animal/fox_vr/MouseDrop(atom/over_object)
+/mob/living/simple_mob/animal/passive/fox/MouseDrop(atom/over_object)
 	var/mob/living/carbon/H = over_object
 	if(!istype(H) || !Adjacent(H)) return ..()
 
@@ -90,12 +90,12 @@
 	else
 		return ..()
 
-/mob/living/simple_mob/animal/fox_vr/get_scooped(var/mob/living/carbon/grabber)
+/mob/living/simple_mob/animal/passive/fox/get_scooped(var/mob/living/carbon/grabber)
 	if (stat >= DEAD)
 		return //since the holder icon looks like a living cat
 	..()
 
-/mob/living/simple_mob/animal/fox_vr/Renault/IIsAlly(mob/living/L)
+/mob/living/simple_mob/animal/passive/fox/renault/IIsAlly(mob/living/L)
 	if(L == friend) // Always be pals with our special friend.
 		return TRUE
 
@@ -105,7 +105,7 @@
 		if(ismouse(L))
 			return FALSE // Cats and mice can never get along.
 
-/mob/living/simple_mob/animal/fox_vr/Renault/verb/become_friends()
+/mob/living/simple_mob/animal/passive/fox/renault/verb/become_friends()
 	set name = "Become Friends"
 	set category = "IC"
 	set src in view(1)
@@ -133,11 +133,11 @@
 
 /* Old fox friend AI, I'm not sure how to add the fancy "friend is dead" stuff so I'm commenting it out for someone else to figure it out, this is just baseline stuff.
 //Basic friend AI
-/mob/living/simple_mob/animal/fox_vr/fluff
+/mob/living/simple_mob/animal/passive/fox/fluff
 	var/mob/living/carbon/human/friend
 	var/befriend_job = null
 
-/mob/living/simple_mob/animal/fox_vr/fluff/Life()
+/mob/living/simple_mob/animal/passive/fox/fluff/Life()
 	. = ..()
 	if(!. || !friend) return
 
@@ -164,7 +164,7 @@
 			var/verb = pick("yaps", "howls", "whines")
 			audible_emote("[verb] anxiously.")
 
-/mob/living/simple_mob/animal/fox_vr/fluff/verb/friend()
+/mob/living/simple_mob/animal/passive/fox/fluff/verb/friend()
 	set name = "Become Friends"
 	set category = "IC"
 	set src in view(1)
@@ -188,7 +188,7 @@
 	desc = "The fox doesn't say a goddamn thing, now."
 
 //Captain fox
-/mob/living/simple_mob/animal/fox_vr/Renault
+/mob/living/simple_mob/animal/passive/fox/renault
 	name = "Renault"
 	desc = "Renault, the Colony Director's trustworthy fox. I wonder what it says?"
 	tt_desc = "Vulpes nobilis"
@@ -196,15 +196,9 @@
 
 	var/mob/living/friend = null // Our best pal, who we'll follow. awoo.
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
+	makes_dirt = FALSE	// No more dirt
 
-/datum/ai_holder/simple_mob/passive
-	hostile = FALSE
-	can_flee = TRUE
-	violent_breakthrough = FALSE
-	base_wander_delay = 11
-	wander = TRUE
-
-/mob/living/simple_mob/animal/fox_vr/Renault/init_vore()
+/mob/living/simple_mob/animal/passive/fox/renault/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
@@ -226,7 +220,7 @@
 		"A thick glob of acids drip down from above, adding to the pool of caustic fluids in Renault's belly.",
 		"There's a loud gurgle as the stomach declares the intent to make you a part of Renault.")
 
-/mob/living/simple_mob/animal/fox_vr/syndicate
+/mob/living/simple_mob/animal/passive/fox/syndicate
 	name = "syndi-fox"
 	desc = "It's a DASTARDLY fox! The horror! Call the shuttle!"
 	tt_desc = "Vulpes malus"

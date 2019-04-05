@@ -39,7 +39,7 @@
 	files = new /datum/research(src) //Setup the research data holder.
 	return
 
-/obj/machinery/pros_fabricator/initialize()
+/obj/machinery/pros_fabricator/Initialize()
 	. = ..()
 	manufacturer = basic_robolimb.company
 	update_categories()
@@ -113,7 +113,7 @@
 	if(current)
 		data["builtperc"] = round((progress / current.time) * 100)
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "mechfab.tmpl", "Prosthetics Fab UI", 800, 600)
 		ui.set_initial_data(data)

@@ -189,7 +189,7 @@
 	icon_state = "syndicateranged_shotgun"
 	icon_living = "syndicateranged_shotgun"
 	projectiletype = /obj/item/projectile/bullet/pellet/shotgun		// Buckshot
-	projectilesound = 'sound/weapons/gunshot/shotgun.ogg'
+	projectilesound = 'sound/weapons/Gunshot_shotgun.ogg'
 
 	loot_list = list(/obj/item/weapon/gun/projectile/shotgun/pump = 100)
 

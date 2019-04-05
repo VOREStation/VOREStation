@@ -17,7 +17,7 @@
 	movement_sound = 'sound/effects/servostep.ogg'
 
 	attacktext = list("clawed")
-	projectilesound = 'sound/weapons/Gunshot.ogg'
+	projectilesound = 'sound/weapons/Gunshot_old.ogg'
 
 	ai_holder_type = /datum/ai_holder/simple_mob/hivebot
 	say_list_type = /datum/say_list/hivebot

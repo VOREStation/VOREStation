@@ -22,7 +22,7 @@
 	has a white glow, and a diameter that is about 34% larger than Sol. It has six major planets in its orbit.\
 	<br><br>\
 	Vir is mainly administered on [quick_link("Sif")] by the [quick_link("Sif Governmental Authority")], as Sif \
-	was the first planet to be colonized, however SGA lays claim to all planets orbiting Vir.  The planets \
+	was the first planet to be colonized, however VGA lays claim to all planets orbiting Vir.  The planets \
 	are named after figures in ancient human mythology (Norse), due to the original surveyor for the system deciding to do so. \
 	Some installations carry on this tradition."
 

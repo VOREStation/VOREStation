@@ -27,7 +27,7 @@
 	for(var/datum/nano_module/rcon/R in world)
 		R.FindDevices()
 
-/obj/machinery/power/breakerbox/initialize()
+/obj/machinery/power/breakerbox/Initialize()
 	. = ..()
 	default_apply_parts()
 
@@ -35,7 +35,7 @@
 	icon_state = "bbox_on"
 
 // Enabled on server startup. Used in substations to keep them in bypass mode.
-/obj/machinery/power/breakerbox/activated/initialize()
+/obj/machinery/power/breakerbox/activated/Initialize()
 	. = ..()
 	set_state(1)
 

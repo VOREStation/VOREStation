@@ -6,7 +6,6 @@
 	desc = "You can be totally screwwy with this."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver"
-	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
 	force = 6
 	w_class = ITEMSIZE_TINY
@@ -68,9 +67,24 @@
 /obj/item/weapon/tool/screwdriver/is_screwdriver()
 	return TRUE
 
+
+/datum/category_item/catalogue/anomalous/precursor_a/alien_screwdriver
+	name = "Precursor Alpha Object - Hard Light Torgue Tool"
+	desc = "This appears to be a tool, with a solid handle, and a thin hard light \
+	shaft, with a tip at the end. On the handle appears to be two mechanisms that \
+	causes the hard light section to spin at a high speed while held down, in a \
+	similar fashion as an electric drill. One makes it spin clockwise, the other \
+	counter-clockwise.\
+	<br><br>\
+	The hard light tip is able to shift its shape to a degree when pressed into \
+	a solid receptacle. This allows it to be able to function on many kinds of \
+	fastener, which includes the screws."
+	value = CATALOGUER_REWARD_EASY
+
 /obj/item/weapon/tool/screwdriver/alien
 	name = "alien screwdriver"
 	desc = "An ultrasonic screwdriver."
+	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_screwdriver)
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "screwdriver_a"
 	item_state = "screwdriver_black"

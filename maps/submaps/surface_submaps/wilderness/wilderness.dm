@@ -27,6 +27,8 @@
 #include "Drugden.dmm"
 #include "Musk.dmm"
 #include "Manor1.dmm"
+#include "Epod3.dmm"
+#include "Epod4.dmm"
 
 #endif
 
@@ -209,3 +211,15 @@
 	desc = "Whodunit"
 	mappath = 'maps/submaps/surface_submaps/wilderness/Manor1.dmm'
 	cost = 20
+
+/datum/map_template/surface/wilderness/deep/Epod3
+	name = "Emergency Pod 3"
+	desc = "A webbed Emergency pod in the middle of nowhere."
+	mappath = 'maps/submaps/surface_submaps/wilderness/Epod3.dmm'
+	cost = 5
+
+/datum/map_template/surface/wilderness/normal/Epod4
+	name = "Emergency Pod 4"
+	desc = "A flooded Emergency pod in the middle of nowhere."
+	mappath = 'maps/submaps/surface_submaps/wilderness/Epod4.dmm'
+	cost = 5

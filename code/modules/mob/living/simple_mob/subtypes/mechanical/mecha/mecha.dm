@@ -40,7 +40,7 @@
 	var/has_repair_droid = FALSE // If true, heals 2 damage every tick and gets a repair droid overlay.
 
 
-/mob/living/simple_mob/mechanical/mecha/initialize()
+/mob/living/simple_mob/mechanical/mecha/Initialize()
 	sparks = new (src)
 	sparks.set_up(3, 1, src)
 	sparks.attach(src)

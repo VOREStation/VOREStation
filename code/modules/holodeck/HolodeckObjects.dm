@@ -104,7 +104,7 @@
 	base_icon = 'icons/turf/flooring/asteroid.dmi'
 	initial_flooring = null
 
-/turf/simulated/floor/holofloor/desert/initialize()
+/turf/simulated/floor/holofloor/desert/Initialize()
 	. = ..()
 	if(prob(10))
 		add_overlay("asteroid[rand(0,9)]")
@@ -325,19 +325,18 @@
 		visible_message("<span class='notice'>[user] dunks [W] into the [src]!</span>", 3)
 		return
 
-/obj/structure/holohoop/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/structure/holohoop/CanPass(atom/movable/mover, turf/target)
 	if (istype(mover,/obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(istype(I, /obj/item/projectile))
-			return
+			return TRUE
 		if(prob(50))
-			I.loc = src.loc
-			visible_message("<span class='notice'>Swish! \the [I] lands in \the [src].</span>", 3)
+			I.forceMove(loc)
+			visible_message(span("notice", "Swish! \the [I] lands in \the [src]."), 3)
 		else
-			visible_message("<span class='warning'>\The [I] bounces off of \the [src]'s rim!</span>", 3)
-		return 0
-	else
-		return ..(mover, target, height, air_group)
+			visible_message(span("warning", "\The [I] bounces off of \the [src]'s rim!"), 3)
+		return FALSE
+	return ..()
 
 
 /obj/machinery/readybutton

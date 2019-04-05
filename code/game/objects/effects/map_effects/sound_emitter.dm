@@ -54,14 +54,18 @@
 	interval_upper_bound = 15 SECONDS
 
 /obj/effect/map_effect/interval/sound_emitter/geiger
-	sounds_to_play = list("geiger")
-	interval_lower_bound = 2 SECONDS
-	interval_upper_bound = 2 SECONDS
-
-/obj/effect/map_effect/interval/sound_emitter/geiger_weak
-	sounds_to_play = list("geiger_weak")
+	sounds_to_play = list('sound/items/geiger/low1.ogg', 'sound/items/geiger/low2.ogg', 'sound/items/geiger/low3.ogg', 'sound/items/geiger/low4.ogg')
 	interval_lower_bound = 1 SECOND
 	interval_upper_bound = 1 SECOND
+
+/obj/effect/map_effect/interval/sound_emitter/geiger/med
+	sounds_to_play = list('sound/items/geiger/med1.ogg', 'sound/items/geiger/med2.ogg', 'sound/items/geiger/med3.ogg', 'sound/items/geiger/med4.ogg')
+
+/obj/effect/map_effect/interval/sound_emitter/geiger/high
+	sounds_to_play = list('sound/items/geiger/high1.ogg', 'sound/items/geiger/high2.ogg', 'sound/items/geiger/high3.ogg', 'sound/items/geiger/high4.ogg')
+
+/obj/effect/map_effect/interval/sound_emitter/geiger/ext
+	sounds_to_play = list('sound/items/geiger/ext1.ogg', 'sound/items/geiger/ext2.ogg', 'sound/items/geiger/ext3.ogg', 'sound/items/geiger/ext4.ogg')
 
 /obj/effect/map_effect/interval/sound_emitter/punching
 	sounds_to_play = list("punch")
@@ -73,20 +77,18 @@
 	interval_lower_bound = 5 SECONDS
 	interval_upper_bound = 10 SECONDS
 
-/obj/effect/map_effect/interval/sound_emitter/distant_explosions
+/obj/effect/map_effect/interval/sound_emitter/explosions/distant
 	sounds_to_play = list('sound/effects/explosionfar.ogg')
-	interval_lower_bound = 5 SECONDS
-	interval_upper_bound = 10 SECONDS
 
 /obj/effect/map_effect/interval/sound_emitter/ballistic_gunfight
 	sounds_to_play = list(
-		'sound/weapons/gunshot.ogg',
-		'sound/weapons/deagle.ogg',
-		'sound/weapons/rifleshot.ogg',
-		'sound/weapons/sniper.ogg',
-		'sound/weapons/shotgun.ogg',
-		'sound/weapons/gunshot3.ogg',
-		'sound/weapons/machinegun.ogg'
+		'sound/weapons/Gunshot1.ogg',
+		'sound/weapons/Gunshot_deagle.ogg',
+		'sound/weapons/Gunshot_generic_rifle.ogg',
+		'sound/weapons/Gunshot_sniper.ogg',
+		'sound/weapons/Gunshot_shotgun.ogg',
+		'sound/weapons/Gunshot3.ogg',
+		'sound/weapons/Gunshot_machinegun.ogg'
 		)
 	interval_lower_bound = 5
 	interval_upper_bound = 2 SECONDS

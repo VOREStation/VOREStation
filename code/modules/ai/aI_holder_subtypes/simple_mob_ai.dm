@@ -3,6 +3,7 @@
 
 /datum/ai_holder/simple_mob
 	hostile = TRUE // The majority of simplemobs are hostile.
+	retaliate = TRUE	// The majority of simplemobs will fight back.
 	cooperative = TRUE
 	returns_home = FALSE
 	can_flee = FALSE
@@ -13,12 +14,22 @@
 // For non-hostile animals, and pets like Ian and Runtime.
 /datum/ai_holder/simple_mob/passive
 	hostile = FALSE
+	retaliate = FALSE
 	can_flee = TRUE
 	violent_breakthrough = FALSE
+	base_wander_delay = 8 //vorestation edit, to make pets slow.
 
 // Won't wander away as quickly, ideal for event-spawned mobs like carp or drones.
 /datum/ai_holder/simple_mob/event
 	base_wander_delay = 8
+
+// Will keep the mob within a limited radius of its home, useful for guarding an area
+/datum/ai_holder/simple_mob/guard
+	returns_home = TRUE
+
+// Won't return home while it's busy doing something else, like chasing a player
+/datum/ai_holder/simple_mob/guard/give_chase
+	home_low_priority = TRUE
 
 // Doesn't really act until told to by something on the outside.
 /datum/ai_holder/simple_mob/inert

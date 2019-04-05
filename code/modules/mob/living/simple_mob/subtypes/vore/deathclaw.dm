@@ -1,4 +1,4 @@
-/mob/living/simple_mob/hostile/deathclaw
+/mob/living/simple_mob/vore/aggressive/deathclaw
 	name = "deathclaw"
 	desc = "Big! Big! The size of three men! Claws as long as my forearm! Ripped apart! Ripped apart!"
 
@@ -33,7 +33,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/deathclaw
 
 // Activate Noms!
-/mob/living/simple_mob/hostile/deathclaw
+/mob/living/simple_mob/vore/aggressive/deathclaw
 	vore_active = 1
 	vore_capacity = 2
 	vore_max_size = RESIZE_HUGE
@@ -47,10 +47,10 @@
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_animal(src)
 	verbs |= /mob/living/simple_animal/proc/animal_mount
-*/
 
 /mob/living/simple_animal/hostile/deathclaw/MouseDrop_T(mob/living/M, mob/living/user)
 	return
+*/
 
 /datum/ai_holder/simple_mob/melee/deathclaw
 	can_breakthrough = TRUE

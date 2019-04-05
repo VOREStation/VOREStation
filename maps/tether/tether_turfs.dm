@@ -163,9 +163,11 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 // Bluespace jump turf!
 /turf/space/bluespace
 	name = "bluespace"
+	icon = 'icons/turf/space_vr.dmi'
 	icon_state = "bluespace"
-/turf/space/bluespace/initialize()
+/turf/space/bluespace/Initialize()
 	..()
+	icon = 'icons/turf/space_vr.dmi'
 	icon_state = "bluespace"
 
 // Desert jump turf!
@@ -173,7 +175,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	name = "sand transit"
 	icon = 'icons/turf/transit_vr.dmi'
 	icon_state = "desert_ns"
-/turf/space/sandyscroll/initialize()
+/turf/space/sandyscroll/Initialize()
 	..()
 	icon_state = "desert_ns"
 
@@ -182,7 +184,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 /turf/simulated/sky/virgo3b
 	color = "#FFBBBB"
 
-/turf/simulated/sky/virgo3b/initialize()
+/turf/simulated/sky/virgo3b/Initialize()
 	SSplanets.addTurf(src)
 	set_light(2, 2, "#FFBBBB")
 

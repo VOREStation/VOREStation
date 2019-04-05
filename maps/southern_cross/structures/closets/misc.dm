@@ -16,7 +16,7 @@
 		/obj/item/ammo_magazine/clip/c762/hunter = 9,
 		/obj/item/weapon/gun/projectile/shotgun/pump/rifle = 2)
 
-/obj/structure/closet/secure_closet/guncabinet/rifle/initialize()
+/obj/structure/closet/secure_closet/guncabinet/rifle/Initialize()
 	if(prob(85))
 		starts_with += /obj/item/weapon/gun/projectile/shotgun/pump/rifle
 	else
@@ -24,7 +24,7 @@
 	return ..()
 
 /obj/structure/closet/secure_closet/guncabinet/phase
-	name = "phase pistol cabinet"
+	name = "explorer weapon cabinet"
 	req_one_access = list(access_explorer,access_brig)
 
 	starts_with = list(
@@ -51,9 +51,11 @@
 		/obj/item/device/geiger,
 		/obj/item/weapon/cell/device,
 		/obj/item/device/radio,
-		/obj/item/stack/marker_beacon/thirty)
+		/obj/item/stack/marker_beacon/thirty,
+		/obj/item/device/cataloguer
+		)
 
-/obj/structure/closet/secure_closet/explorer/initialize()
+/obj/structure/closet/secure_closet/explorer/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack
 	else
@@ -129,7 +131,7 @@
 		/obj/item/weapon/cell/device,
 		/obj/item/device/radio)
 
-/obj/structure/closet/secure_closet/pilot/initialize()
+/obj/structure/closet/secure_closet/pilot/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack
 	else

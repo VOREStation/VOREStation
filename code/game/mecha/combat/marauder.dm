@@ -1,6 +1,7 @@
 /obj/mecha/combat/marauder
 	desc = "Heavy-duty, combat exosuit, developed after the Durand model. Rarely found among civilian populations."
 	name = "Marauder"
+	catalogue_data = list(/datum/category_item/catalogue/technology/marauder)
 	icon_state = "marauder"
 	initial_icon = "marauder"
 	step_in = 5
@@ -33,6 +34,7 @@
 /obj/mecha/combat/marauder/seraph
 	desc = "Heavy-duty, command-type exosuit. This is a custom model, utilized only by high-ranking military personnel."
 	name = "Seraph"
+	catalogue_data = list(/datum/category_item/catalogue/technology/seraph)
 	icon_state = "seraph"
 	initial_icon = "seraph"
 	operation_req_access = list(access_cent_creed)

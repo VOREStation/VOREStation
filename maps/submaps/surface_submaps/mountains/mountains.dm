@@ -32,6 +32,7 @@
 #include "BlastMine1.dmm"
 #include "crashedcontainmentshuttle.dmm"
 #include "deadspy.dmm"
+#include "lava_trench.dmm"
 #endif
 
 // The 'mountains' is the mining z-level, and has a lot of caves.
@@ -122,12 +123,6 @@
 	name = "Abandoned Temple"
 	desc = "An ancient temple, long since abandoned. Perhaps alien in origin?"
 	mappath = 'maps/submaps/surface_submaps/mountains/temple.dmm'
-	cost = 20
-
-/datum/map_template/surface/mountains/normal/crashedmedshuttle
-	name = "Crashed Med Shuttle"
-	desc = "A medical response shuttle that went missing some time ago. So this is where they went."
-	mappath = 'maps/submaps/surface_submaps/mountains/CrashedMedShuttle1.dmm'
 	cost = 20
 
 /datum/map_template/surface/mountains/normal/digsite
@@ -272,3 +267,17 @@
 	desc = "An abandoned blast mining site, seems that local wildlife has moved in."
 	mappath = 'maps/submaps/surface_submaps/mountains/BlastMine1.dmm'
 	cost = 20
+
+/datum/map_template/surface/mountains/deep/lava_trench
+	name = "lava trench"
+	desc = "A long stretch of lava underground, almost river-like, with a small crystal research outpost on the side."
+	mappath = 'maps/submaps/surface_submaps/mountains/lava_trench.dmm'
+	cost = 20
+	fixed_orientation = TRUE
+
+/datum/map_template/surface/mountains/deep/crashedmedshuttle
+	name = "Crashed Med Shuttle"
+	desc = "A medical response shuttle that went missing some time ago. So this is where they went."
+	mappath = 'maps/submaps/surface_submaps/mountains/CrashedMedShuttle1.dmm'
+	cost = 20
+	fixed_orientation = TRUE

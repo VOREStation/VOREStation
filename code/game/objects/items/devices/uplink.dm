@@ -28,11 +28,11 @@
 		uses = owner.tcrystals
 	else
 		uses = telecrystals
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 
 /obj/item/device/uplink/Destroy()
 	world_uplinks -= src
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/device/uplink/get_item_cost(var/item_type, var/item_cost)
@@ -72,7 +72,7 @@
 		discount_amount = pick(90;0.9, 80;0.8, 70;0.7, 60;0.6, 50;0.5, 40;0.4, 30;0.3, 20;0.2, 10;0.1)
 		next_offer_time = world.time + offer_time
 		update_nano_data()
-		GLOB.nanomanager.update_uis(src)
+		SSnanoui.update_uis(src)
 
 // Toggles the uplink on and off. Normally this will bypass the item's normal functions and go to the uplink menu, if activated.
 /obj/item/device/uplink/hidden/proc/toggle()
@@ -110,7 +110,7 @@
 	data += nanoui_data
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)	// No auto-refresh
 		ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state = inventory_state)
 		data["menu"] = 0
@@ -138,7 +138,7 @@
 		UI.buy(src, usr)
 	else if(href_list["lock"])
 		toggle()
-		var/datum/nanoui/ui = GLOB.nanomanager.get_open_ui(user, src, "main")
+		var/datum/nanoui/ui = SSnanoui.get_open_ui(user, src, "main")
 		ui.close()
 	else if(href_list["return"])
 		nanoui_menu = round(nanoui_menu/10)

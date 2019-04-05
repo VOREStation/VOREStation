@@ -235,6 +235,10 @@
 		var/obj/item/weapon/rig/R = back
 		SetupStat(R)
 
+	else if(. && istype(belt,/obj/item/weapon/rig))
+		var/obj/item/weapon/rig/R = belt
+		SetupStat(R)
+
 /mob/proc/SetupStat(var/obj/item/weapon/rig/R)
 	if(R && !R.canremove && R.installed_modules.len && statpanel("Hardsuit Modules"))
 		var/cell_status = R.cell ? "[R.cell.charge]/[R.cell.maxcharge]" : "ERROR"

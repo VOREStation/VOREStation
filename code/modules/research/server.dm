@@ -33,7 +33,7 @@
 		tot_rating += SP.rating
 	idle_power_usage /= max(1, tot_rating)
 
-/obj/machinery/r_n_d/server/initialize()
+/obj/machinery/r_n_d/server/Initialize()
 	. = ..()
 	if(!files)
 		files = new /datum/research(src)

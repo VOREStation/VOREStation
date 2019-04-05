@@ -36,7 +36,7 @@
 /datum/gear/eyes/security
 	display_name = "Security HUD (Security)"
 	path = /obj/item/clothing/glasses/hud/security
-	allowed_roles = list("Security Officer","Head of Security","Warden")
+	allowed_roles = list("Security Officer","Head of Security","Warden", "Detective")
 
 /datum/gear/eyes/security/prescriptionsec
 	display_name = "Security HUD, prescription (Security)"
@@ -72,12 +72,12 @@
 	path = /obj/item/clothing/glasses/hud/health/aviator/prescription
 
 /datum/gear/eyes/meson
-	display_name = "Optical Meson Scanners (Engineering, Science)"
+	display_name = "Optical Meson Scanners (Engineering, Science, Mining)"
 	path = /obj/item/clothing/glasses/meson
-	allowed_roles = list("Station Engineer","Chief Engineer","Atmospheric Technician", "Scientist", "Research Director")
+	allowed_roles = list("Station Engineer","Chief Engineer","Atmospheric Technician", "Scientist", "Research Director", "Shaft Miner")
 
 /datum/gear/eyes/meson/prescription
-	display_name = "Optical Meson Scanners, prescription (Engineering, Science)"
+	display_name = "Optical Meson Scanners, prescription (Engineering, Science, Mining)"
 	path = /obj/item/clothing/glasses/meson/prescription
 
 /datum/gear/eyes/material
@@ -90,11 +90,11 @@
 	path = /obj/item/clothing/glasses/material/prescription
 
 /datum/gear/eyes/meson/aviator
-	display_name = "Optical Meson Aviators, (Engineering, Science)"
+	display_name = "Optical Meson Aviators, (Engineering, Science, Mining)"
 	path = /obj/item/clothing/glasses/meson/aviator
 
 /datum/gear/eyes/meson/aviator/prescription
-	display_name = "Optical Meson Aviators, prescription (Engineering, Science)"
+	display_name = "Optical Meson Aviators, prescription (Engineering, Science, Mining)"
 	path = /obj/item/clothing/glasses/meson/aviator/prescription
 
 /datum/gear/eyes/glasses/fakesun
@@ -138,6 +138,6 @@
 	display_name = "Glasses, thin frame"
 	path = /obj/item/clothing/glasses/thin
 
-/datum/gear/eyes/glasses/prescriptionrimless
+/datum/gear/eyes/glasses/prescriptionthin
 	display_name = "Glasses, prescription thin frame"
 	path = /obj/item/clothing/glasses/regular/thin

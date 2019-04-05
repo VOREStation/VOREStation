@@ -2,7 +2,6 @@
 	name = "chain of command"
 	desc = "A tool used by great men to placate the frothing masses."
 	icon_state = "chain"
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	force = 10
 	throwforce = 7
@@ -21,7 +20,6 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "umbrella_closed"
 	addblends = "umbrella_closed_a"
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	force = 5
 	throwforce = 5

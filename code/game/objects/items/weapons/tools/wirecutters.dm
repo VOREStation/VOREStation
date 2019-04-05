@@ -6,7 +6,6 @@
 	desc = "This cuts wires."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters"
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	force = 6
 	throw_speed = 2
@@ -44,9 +43,24 @@
 /obj/item/weapon/tool/wirecutters/is_wirecutter()
 	return TRUE
 
+
+/datum/category_item/catalogue/anomalous/precursor_a/alien_wirecutters
+	name = "Precursor Alpha Object - Wire Seperator"
+	desc = "An object appearing to have a tool shape. It has two handles, and two \
+	sides which are attached to each other in the center. At the end on each side \
+	is a sharp cutting edge, made from a seperate material than the rest of the \
+	tool.\
+	<br><br>\
+	This tool appears to serve the same purpose as conventional wirecutters, due \
+	to how similar the shapes are. If so, this implies that the creators of this \
+	object also may utilize flexible cylindrical strands of metal to transmit \
+	energy and signals, just as humans do."
+	value = CATALOGUER_REWARD_EASY
+
 /obj/item/weapon/tool/wirecutters/alien
 	name = "alien wirecutters"
 	desc = "Extremely sharp wirecutters, made out of a silvery-green metal."
+	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_wirecutters)
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "cutters"
 	toolspeed = 0.1

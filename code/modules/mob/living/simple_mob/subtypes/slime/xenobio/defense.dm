@@ -50,5 +50,5 @@
 
 // Getting slimebatoned/xenotased.
 /mob/living/simple_mob/slime/xenobio/slimebatoned(mob/living/user, amount)
-	Weaken(amount)
 	adjust_discipline(round(amount/2))
+	Weaken(amount) // This needs to come afterwards or else it will always be considered abuse to the slime.

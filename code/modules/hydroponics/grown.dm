@@ -11,7 +11,7 @@
 	var/datum/seed/seed
 	var/potency = -1
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/New(newloc,planttype)
+/obj/item/weapon/reagent_containers/food/snacks/grown/Initialize(newloc,planttype)
 
 	..()
 	if(!dried_type)

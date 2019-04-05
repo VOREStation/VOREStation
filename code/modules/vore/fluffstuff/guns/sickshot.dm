@@ -32,7 +32,7 @@
 	check_armour = "melee"
 	embed_chance = 0
 	vacuum_traversal = 0
-	kill_count = 5 //Scary name, but just deletes the projectile after this range
+	range = 5 //Scary name, but just deletes the projectile after this range
 
 /obj/item/projectile/sickshot/on_hit(var/atom/movable/target, var/blocked = 0)
 	if(isliving(target))

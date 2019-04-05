@@ -93,3 +93,9 @@
 #define ATMOSTANK_CO2           25000 // CO2 and PH are not critically important for station, only for toxins and alternative coolants, no need to store a lot of those.
 #define ATMOSTANK_PHORON        25000
 #define ATMOSTANK_NITROUSOXIDE  10000 // N2O doesn't have a real useful use, i guess it's on station just to allow refilling of sec's riot control canisters?
+
+// Used for quickly making certain things allow airflow or not.
+// More complicated, conditional airflow should override CanZASPass().
+#define ATMOS_PASS_YES		1
+#define ATMOS_PASS_NO		0
+#define ATMOS_PASS_DENSITY	-1 // Just checks density.

@@ -8,7 +8,6 @@
 	name = "multitool"
 	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors."
 	icon_state = "multitool"
-	flags = CONDUCT
 	force = 5.0
 	w_class = ITEMSIZE_SMALL
 	throwforce = 5.0
@@ -69,9 +68,24 @@
 	desc = "Optimised and stripped-down version of a regular multitool."
 	toolspeed = 0.5
 
+
+
+/datum/category_item/catalogue/anomalous/precursor_a/alien_multitool
+	name = "Precursor Alpha Object - Pulse Tool"
+	desc = "This ancient object appears to be an electrical tool. \
+	It has a simple mechanism at the handle, which will cause a pulse of \
+	energy to be emitted from the head of the tool. This can be used on a \
+	conductive object such as a wire, in order to send a pulse signal through it.\
+	<br><br>\
+	These qualities make this object somewhat similar in purpose to the common \
+	multitool, and can probably be used for tasks such as direct interfacing with \
+	an airlock, if one knows how."
+	value = CATALOGUER_REWARD_EASY
+
 /obj/item/device/multitool/alien
 	name = "alien multitool"
 	desc = "An omni-technological interface."
+	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_multitool)
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "multitool"
 	toolspeed = 0.1

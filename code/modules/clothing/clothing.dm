@@ -306,6 +306,7 @@
 	glove_level = 1
 	fingerprint_chance = 100
 	punch_force = 2
+	body_parts_covered = 0
 
 ///////////////////////////////////////////////////////////////////////
 //Head
@@ -473,6 +474,7 @@
 
 	var/water_speed = 0		//Speed boost/decrease in water, lower/negative values mean more speed
 	var/snow_speed = 0		//Speed boost/decrease on snow, lower/negative values mean more speed
+	var/rock_climbing = FALSE // If true, allows climbing cliffs with clickdrag.
 
 	var/step_volume_mod = 1	//How quiet or loud footsteps in this shoe are
 

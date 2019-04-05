@@ -3,14 +3,40 @@
 		This code is slightly more documented than normal, as requested by XSI on IRC.
 */
 
+/datum/category_item/catalogue/technology/turret
+	name = "Turrets"
+	desc = "This imtimidating machine is essentially an automated gun. It is able to \
+	scan its immediate environment, and if it determines that a threat is nearby, it will \
+	open up, aim the barrel of the weapon at the threat, and engage it until the threat \
+	goes away, it dies (if using a lethal gun), or the turret is destroyed. This has made them \
+	well suited for long term defense for a static position, as electricity costs much \
+	less than hiring a person to stand around. Despite this, the lack of a sapient entity's \
+	judgement has sometimes lead to tragedy when turrets are poorly configured.\
+	<br><br>\
+	Early models generally had simple designs, and would shoot at anything that moved, with only \
+	the option to disable it remotely for maintenance or to let someone pass. More modern iterations \
+	of turrets have instead replaced those simple systems with intricate optical sensors and \
+	image recognition software that allow the turret to distinguish between several kinds of \
+	entities, and to only engage whatever their owners configured them to fight against.\
+	Some models also have the ability to switch between a lethal and non-lethal mode.\
+	<br><br>\
+	Today's cutting edge in static defense development has shifted away from improving the \
+	software of the turret, and instead towards the hardware. The newest solutions for \
+	automated protection includes new hardware capabilities such as thicker armor, more \
+	advanced integrated weapons, and some may even have been built with EM hardening in \
+	mind."
+	value = CATALOGUER_REWARD_MEDIUM
+
+
 #define TURRET_PRIORITY_TARGET 2
 #define TURRET_SECONDARY_TARGET 1
 #define TURRET_NOT_TARGET 0
 
 /obj/machinery/porta_turret
 	name = "turret"
+	catalogue_data = list(/datum/category_item/catalogue/technology/turret)
 	icon = 'icons/obj/turrets.dmi'
-	icon_state = "turretCover"
+	icon_state = "turret_cover"
 	anchored = 1
 
 	density = 0
@@ -18,6 +44,17 @@
 	idle_power_usage = 50		//when inactive, this turret takes up constant 50 Equipment power
 	active_power_usage = 300	//when active, this turret takes up constant 300 Equipment power
 	power_channel = EQUIP	//drains power from the EQUIPMENT channel
+	req_one_access = list(access_security, access_heads)
+
+	// icon_states for turrets.
+	// These are for the turret covers.
+	var/closed_state = "turret_cover"					// For when it is closed.
+	var/raising_state = "popup"							// When turret is opening.
+	var/opened_state = "open"							// When fully opened.
+	var/lowering_state = "popdown"						// When closing.
+	var/gun_active_state = "target_prism"				// The actual gun's icon_state when active.
+	var/gun_disabled_state = "grey_target_prism"		// Gun sprite when depowered/disabled.
+	var/gun_destroyed_state = "destroyed_target_prism"	// Turret sprite for when the turret dies.
 
 	var/raised = 0			//if the turret cover is "open" and the turret is raised
 	var/raising= 0			//if the turret is currently opening or closing its cover
@@ -66,6 +103,7 @@
 	var/can_salvage = TRUE	// If false, salvaging doesn't give you anything.
 
 /obj/machinery/porta_turret/crescent
+	req_one_access = list(access_cent_specops)
 	enabled = 0
 	ailock = 1
 	check_synth	 = 0
@@ -76,12 +114,19 @@
 	check_anomalies = 1
 	check_all = 0
 
+/obj/machinery/porta_turret/can_catalogue(mob/user) // Dead turrets can't be scanned.
+	if(stat & BROKEN)
+		to_chat(user, span("warning", "\The [src] was destroyed, so it cannot be scanned."))
+		return FALSE
+	return ..()
+
 /obj/machinery/porta_turret/stationary
 	ailock = 1
 	lethal = 1
 	installation = /obj/item/weapon/gun/energy/laser
 
 /obj/machinery/porta_turret/stationary/syndie // Generic turrets for POIs that need to not shoot their buddies.
+	req_one_access = list(access_syndicate)
 	enabled = TRUE
 	check_all = TRUE
 	faction = "syndicate" // Make sure this equals the faction that the mobs in the POI have or they will fight each other.
@@ -89,13 +134,30 @@
 /obj/machinery/porta_turret/ai_defense
 	name = "defense turret"
 	desc = "This variant appears to be much more durable."
+	req_one_access = list(access_synth) // Just in case.
 	installation = /obj/item/weapon/gun/energy/xray // For the armor pen.
 	health = 250 // Since lasers do 40 each.
 	maxhealth = 250
 
+
+/datum/category_item/catalogue/anomalous/precursor_a/alien_turret
+	name = "Precursor Alpha Object - Turrets"
+	desc = "An autonomous defense turret created by unknown ancient aliens. It utilizes an \
+	integrated laser projector to harm, firing a cyan beam at the target. The signal processing \
+	of this mechanism appears to be radically different to conventional electronics used by modern \
+	technology, which appears to be much less susceptible to external electromagnetic influences.\
+	<br><br>\
+	This makes the turret be very resistant to the effects of an EM pulse. It is unknown if whatever \
+	species that built the turret had intended for it to have that quality, or if it was an incidental \
+	quirk of how they designed their electronics."
+	value = CATALOGUER_REWARD_MEDIUM
+
 /obj/machinery/porta_turret/alien // The kind used on the UFO submap.
 	name = "interior anti-boarding turret"
 	desc = "A very tough looking turret made by alien hands."
+	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_turret)
+	icon_state = "alien_turret_cover"
+	req_one_access = list(access_alien)
 	installation = /obj/item/weapon/gun/energy/alien
 	enabled = TRUE
 	lethal = TRUE
@@ -104,10 +166,18 @@
 	health = 250 // Similar to the AI turrets.
 	maxhealth = 250
 
+	closed_state = "alien_turret_cover"
+	raising_state = "alien_popup"
+	opened_state = "alien_open"
+	lowering_state = "alien_popdown"
+	gun_active_state = "alien_gun"
+	gun_disabled_state = "alien_gun_disabled"
+	gun_destroyed_state = "alien_gun_destroyed"
+
 /obj/machinery/porta_turret/alien/destroyed // Turrets that are already dead, to act as a warning of what the rest of the submap contains.
 	name = "broken interior anti-boarding turret"
 	desc = "A very tough looking turret made by alien hands. This one looks destroyed, thankfully."
-	icon_state = "destroyed_target_prism"
+	icon_state = "alien_gun_destroyed"
 	stat = BROKEN
 	can_salvage = FALSE // So you need to actually kill a turret to get the alien gun.
 
@@ -118,11 +188,7 @@
 	check_all = TRUE
 	can_salvage = FALSE	// So you can't just twoshot a turret and get a fancy gun
 
-/obj/machinery/porta_turret/New()
-	..()
-	req_access.Cut()
-	req_one_access = list(access_security, access_heads)
-
+/obj/machinery/porta_turret/Initialize()
 	//Sets up a spark system
 	spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
@@ -130,20 +196,35 @@
 
 	setup()
 
-/obj/machinery/porta_turret/crescent/New()
-	..()
-	req_one_access.Cut()
-	req_access = list(access_cent_specops)
-
-/obj/machinery/porta_turret/alien/New()
-	..()
-	req_one_access.Cut()
-	req_access = list(access_alien)
+	// If turrets ever switch overlays, this will need to be cached and reapplied each time overlays_cut() is called.
+	var/image/turret_opened_overlay = image(icon, opened_state)
+	turret_opened_overlay.layer = layer-0.1
+	add_overlay(turret_opened_overlay)
+	return ..()
 
 /obj/machinery/porta_turret/Destroy()
 	qdel(spark_system)
 	spark_system = null
-	. = ..()
+	return ..()
+
+/obj/machinery/porta_turret/update_icon()
+	if(stat & BROKEN) // Turret is dead.
+		icon_state = gun_destroyed_state
+
+	else if(raised || raising)
+		// Turret is open.
+		if(powered() && enabled)
+			// Trying to shoot someone.
+			icon_state = gun_active_state
+
+		else
+			// Disabled.
+			icon_state = gun_disabled_state
+
+	else
+		// Its closed.
+		icon_state = closed_state
+
 
 /obj/machinery/porta_turret/proc/setup()
 	var/obj/item/weapon/gun/energy/E = installation	//All energy-based weapons are applicable
@@ -204,31 +285,6 @@
 			iconholder = 1
 			icon_color = "green"
 
-var/list/turret_icons
-
-/obj/machinery/porta_turret/update_icon()
-	if(!turret_icons)
-		turret_icons = list()
-		turret_icons["open"] = image(icon, "openTurretCover")
-
-	underlays.Cut()
-	underlays += turret_icons["open"]
-
-	if(stat & BROKEN)
-		icon_state = "destroyed_target_prism"
-	else if(raised || raising)
-		if(powered() && enabled)
-			if(iconholder)
-				//lasers have a orange icon
-				icon_state = "[icon_color]_target_prism"
-			else
-				//almost everything has a blue icon
-				icon_state = "target_prism"
-		else
-			icon_state = "grey_target_prism"
-	else
-		icon_state = "turretCover"
-
 /obj/machinery/porta_turret/proc/isLocked(mob/user)
 	if(ailock && issilicon(user))
 		to_chat(user, "<span class='notice'>There seems to be a firewall preventing you from accessing this device.</span>")
@@ -271,7 +327,7 @@ var/list/turret_icons
 		settings[++settings.len] = list("category" = "Neutralize All Entities", "setting" = "check_all", "value" = check_all)
 		data["settings"] = settings
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "turret_control.tmpl", "Turret Controls", 500, 300)
 		ui.set_initial_data(data)
@@ -570,7 +626,7 @@ var/list/turret_icons
 	if(get_dist(src, L) > 7)	//if it's too far away, why bother?
 		return TURRET_NOT_TARGET
 
-	if(!check_trajectory(L, src))	//check if we have true line of sight
+	if(!(L in check_trajectory(L, src)))	//check if we have true line of sight
 		return TURRET_NOT_TARGET
 
 	if(emagged)		// If emagged not even the dead get a rest
@@ -634,7 +690,7 @@ var/list/turret_icons
 
 	var/atom/flick_holder = new /atom/movable/porta_turret_cover(loc)
 	flick_holder.layer = layer + 0.1
-	flick("popup", flick_holder)
+	flick(raising_state, flick_holder)
 	sleep(10)
 	qdel(flick_holder)
 
@@ -655,7 +711,7 @@ var/list/turret_icons
 
 	var/atom/flick_holder = new /atom/movable/porta_turret_cover(loc)
 	flick_holder.layer = layer + 0.1
-	flick("popdown", flick_holder)
+	flick(lowering_state, flick_holder)
 	sleep(10)
 	qdel(flick_holder)
 
@@ -722,7 +778,10 @@ var/list/turret_icons
 		def_zone = pick(BP_TORSO, BP_GROIN)
 
 	//Shooting Code:
-	A.launch(target, def_zone)
+	A.firer = src
+	A.old_style_target(target)
+	A.def_zone = def_zone
+	A.fire()
 
 	// Reset the time needed to go back down, since we just tried to shoot at someone.
 	timeout = 10

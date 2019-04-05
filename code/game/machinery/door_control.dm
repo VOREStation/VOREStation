@@ -4,6 +4,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "doorctrl0"
 	power_channel = ENVIRON
+	layer = ABOVE_WINDOW_LAYER
 	var/desiredstate = 0
 	var/exposedwires = 0
 	var/wires = 3

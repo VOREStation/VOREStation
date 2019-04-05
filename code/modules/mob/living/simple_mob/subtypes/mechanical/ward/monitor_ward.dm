@@ -4,8 +4,23 @@
 	If AI controlled, they will also warn their faction if they see a hostile entity, acting as floating cameras.
 */
 
+/datum/category_item/catalogue/technology/drone/ward
+	name = "Drone - Monitor Ward"
+	desc = "This is a small drone that appears to have been designed for a singular purpose, \
+	with little autonomous capability, common among the 'ward' models. This specific ward's \
+	purpose is simply to observe the environment around it, reacting when it detects entities \
+	it judges to be unfriendly. It presumably relays information about what it sees back to \
+	whoever owns the drone.\
+	<br><br>\
+	The sensors onboard the ward are much more advanced than what is typical for drones, \
+	allowing it to detect entities that might otherwise go unnoticed by inferior \
+	observers. If this ward sees such a thing, it fires a beam of energy at the hidden \
+	entity, which exposes them."
+	value = CATALOGUER_REWARD_EASY
+
 /mob/living/simple_mob/mechanical/ward/monitor
 	desc = "It's a little flying drone. This one seems to be watching you..."
+	catalogue_data = list(/datum/category_item/catalogue/technology/drone/ward)
 	icon_state = "ward"
 	glow_color = "#00FF00"
 	see_invisible = SEE_INVISIBLE_LEVEL_TWO

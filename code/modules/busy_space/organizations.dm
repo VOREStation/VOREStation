@@ -237,7 +237,7 @@
 		)
 
 /datum/lore/organization/tsc/zeng_hu
-	name = "Zeng-Hu pharmaceuticals"
+	name = "Zeng-Hu Pharmaceuticals"
 	short_name = "Zeng-Hu"
 	acronym = "ZH"
 	desc = "Zeng-Hu is an old TSC, based in the Sol system. Until the discovery of Phoron, Zeng-Hu maintained a stranglehold \
@@ -453,11 +453,14 @@
 /datum/lore/organization/tsc/mbt
 	name = "Major Bill's Transportation"
 	short_name = "Major Bill's"
-	desc = "The most popular courier service and starliner, Major Bill's is an unassuming corporation whose greatest asset is their low cost and brand recognition. Major Bill’s is known, perhaps unfavorably, for its mascot, Major Bill, a cartoonish military figure that spouts quotable slogans. Their motto is \"With Major Bill's, you won't pay major bills!\", an earworm much of the galaxy longs to forget."
+	desc = "The most popular courier service and starliner, Major Bill's is an unassuming corporation whose greatest asset \
+	is their low cost and brand recognition. Major Bill's is known, perhaps unfavorably, for its mascot, Major Bill, \
+	a cartoonish military figure that spouts quotable slogans. Their motto is \"With Major Bill's, you won't pay major bills!\", \
+	an earworm much of the galaxy longs to forget."
 	history = ""
 	work = "courier and passenger transit"
 	headquarters = "Mars, Sol"
-	motto = ""
+	motto = "With Major Bill's, you won't pay major bills!"
 
 	ship_prefixes = list("TTV" = "transport", "TTV" = "luxury transit")
 	destination_names = list()
@@ -476,19 +479,24 @@
 
 // Governments
 
-/datum/lore/organization/gov/sifgov
-	name = "Sif Governmental Authority"
-	short_name = "SifGov"
-	desc = "SifGov is the sole governing administration for the Vir system, based in New Reykjavik, Sif.  It is a representative \
-	democratic government, and a fully recognized member of the Solar Central Government.  Anyone operating inside of Vir must \
-	comply with SifGov's legislation and regulations." // Vorestation Edit. Confederate -> Central
+/datum/lore/organization/gov/virgov
+	name = "Vir Governmental Authority"
+	short_name = "VirGov"
+	desc = "The aptly named Vir Governmental Authority is the sole governing administration for the Vir system, based \
+	out of New Reykjavik on Sif. It is a representative democratic government, and a fully recognised member of the \
+	Confederation.\
+	<br><br>\
+	Corporate entities such as Nanotrasen which operate on Sif, in Vir space, or on other bodies in the Vir system must \
+	all comply with legislation as determined by the VGA and SolGov. As a result, any serious criminal offences, \
+	industrial accidents, or concerning events should be forwarded to the VGA in the event that assistance or \
+	communication is required from the Vir Police, Vir Defence Force, Vir Interior Ministry, or other important groups."
 	history = "" // Todo like the rest of them
-	work = "governing body of Sif"
+	work = "governing body of Vir"
 	headquarters = "New Reykjavik, Sif, Vir"
 	motto = ""
 	autogenerate_destination_names = FALSE
 
-	ship_prefixes = list("SGA" = "hauling", "SGA" = "energy relay")
+	ship_prefixes = list("VGA" = "hauling", "VGA" = "energy relay")
 	destination_names = list(
 						"New Reykjavik on Sif",
 						"Radiance Energy Chain",
@@ -501,10 +509,18 @@
 	name = "Solar Confederate Government"
 	short_name = "SolGov"
 	acronym = "SCG"
-	desc = "SolGov is a decentralized confederation of human governmental entities based on Luna, Sol, which defines top-level law for their member states.  \
-	Member states receive various benefits such as defensive pacts, trade agreements, social support and funding, and being able to participate \
-	in the Colonial Assembly.  The majority, but not all human territories are members of SolGov.  As such, SolGov is a major power and \
-	defacto represents humanity on the galactic stage."
+	desc = "The Solar Confederate Government, or SolGov, is a mostly-human governmental entity based on Luna and \
+	extending throughout most of the local bubble.\
+	<br><br>\
+	SolGov defines top-level law (such as sapient rights and transgressive \
+	technology) and acts as an intermediary council for problems involving member states, but leaves most other law for \
+	states to define themselves. The member states of SolGov obey these laws, pay confederate taxes, and provide each \
+	other with military aid, in exchange for membership in the largest free trade, customs, and military union in the \
+	known galaxy. Each state appoints two representatives to the Colonial Assembly where issues are voted upon. \
+	The vast majority of human states are members of SolGov.\
+	<br><br>\
+	Sol's military forces are divided between central confederate forces and local defense forces, although it reserves \
+	the right to nationalize the defense forces in the event of a major crisis, such as the SolGov-Hegemony War."
 	history = "" // Todo
 	work = "governing polity of humanity's Confederation"
 	headquarters = "Luna, Sol"
@@ -544,7 +560,7 @@
 						"Firnir orbit",
 						"Tyr orbit",
 						"Magni orbit",
-						"a wreck in SifGov territory",
+						"a wreck in VirGov territory",
 						"a military outpost",
 						)
 */

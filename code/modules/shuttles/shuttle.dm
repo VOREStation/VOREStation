@@ -37,7 +37,7 @@
 		supply_controller.shuttle = null
 	. = ..()
 
-/datum/shuttle/proc/process()
+/datum/shuttle/process()
 	return
 
 /datum/shuttle/proc/init_docking_controllers()
