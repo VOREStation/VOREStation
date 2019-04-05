@@ -32075,7 +32075,7 @@
 /obj/structure/table/standard,
 /obj/fiftyspawner/steel,
 /obj/fiftyspawner/steel,
-/obj/fiftyspawner/steel},
+/obj/fiftyspawner/glass,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "vad" = (
