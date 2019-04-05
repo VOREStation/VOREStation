@@ -11781,6 +11781,10 @@
 	icon_state = "0-8"
 	},
 /obj/structure/closet/crate/freezer,
+/obj/item/weapon/virusdish,
+/obj/item/weapon/virusdish,
+/obj/item/weapon/virusdish,
+/obj/item/weapon/virusdish,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "vc" = (
