@@ -19,7 +19,7 @@
 	melee_damage_lower = 6
 	melee_damage_upper = 9
 	light_color = "#8a0707"
-	attacktext = "mauled"
+	attacktext = "drugged"
 	attack_sound = 'sound/weapons/bite.ogg'
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
