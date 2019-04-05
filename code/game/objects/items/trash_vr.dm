@@ -25,3 +25,8 @@
 			R.visible_message("<span class='warning'>[user] feeds [R] with [src]!</span>")
 			return
 	..()
+
+/obj/item/trash/liquidprotein
+	name = "\improper \"LiquidProtein\" ration"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "liquidprotein"
