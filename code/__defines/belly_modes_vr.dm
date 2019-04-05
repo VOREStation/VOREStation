@@ -8,6 +8,7 @@
 #define DM_GROW									"Grow"
 #define DM_SIZE_STEAL							"Size Steal"
 #define DM_HEAL									"Heal"
+#define DM_NOURISH								"Nourish"
 #define DM_EGG 									"Encase In Egg"
 #define DM_TRANSFORM							"Transform"
 

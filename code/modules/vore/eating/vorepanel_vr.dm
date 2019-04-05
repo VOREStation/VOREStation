@@ -116,6 +116,8 @@
 				spanstyle = "color:purple;"
 			if(DM_HEAL)
 				spanstyle = "color:green;"
+			if(DM_NOURISH)
+				spanstyle = "color:green;"
 			if(DM_SHRINK)
 				spanstyle = "color:purple;"
 			if(DM_GROW)

@@ -284,11 +284,25 @@
 				M.adjustOxyLoss(-5)
 				M.adjustCloneLoss(-1.25)
 				owner.nutrition -= 2
-				if(M.nutrition <= 400)
-					M.nutrition += 1
-			else if(owner.nutrition > 90 && (M.nutrition <= 400))
-				owner.nutrition -= 1
-				M.nutrition += 1
+
+///////////////////////////// DM_NOURISH /////////////////////////////
+	else if(digest_mode == DM_NOURISH)
+
+		for (var/target in touchable_mobs)
+			var/mob/living/M = target
+
+			if(M.stat == DEAD)
+				continue
+
+			if((owner.nutrition > 100) && (M.nutrition <= 250))			//Feed rapidly if they are hungry
+				owner.nutrition -=2
+				M.nutrition +=2
+			else if((owner.nutrition > 100) && (M.nutrition <= 500))	//Slow down once not starving
+				owner.nutrition -=1
+				M.nutrition +=1
+			else if(owner.nutrition > 150)								//Need to be fuller to actually start stuffing them up, and not as effective
+				owner.nutrition -=1.25
+				M.nutrition +=1
 
 /////////////////////////// DM_TRANSFORM ///////////////////////////
 	else if(digest_mode == DM_TRANSFORM)
