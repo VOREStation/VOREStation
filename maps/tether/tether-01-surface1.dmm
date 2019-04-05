@@ -7948,9 +7948,7 @@
 	icon_state = "bordercolor";
 	dir = 5
 	},
-/obj/item/stack/material/steel{
-	amount = 50
-	},
+/obj/fiftyspawner/steel,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos)
 "asp" = (
@@ -32075,15 +32073,9 @@
 	pixel_y = 30
 	},
 /obj/structure/table/standard,
-/obj/item/stack/material/steel{
-	amount = 50
-	},
-/obj/item/stack/material/steel{
-	amount = 50
-	},
-/obj/item/stack/material/glass{
-	amount = 50
-	},
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "vad" = (
