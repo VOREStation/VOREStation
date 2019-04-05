@@ -81,6 +81,7 @@
 	icon_state = "dk_yellow"
 /area/vacant/vacant_site/east
 	name = "\improper East Base Vacant Site"
+	flags = null
 /area/vacant/vacant_library
 	name = "\improper Atrium Construction Site"
 /area/vacant/vacant_bar
@@ -266,17 +267,28 @@
 /area/rnd/hallway
 	name = "\improper Research Lower Hallway"
 	icon_state = "research"
-/area/rnd/anomaly_lab
-	name = "\improper Anomaly Lab"
-	icon_state = "research"
-/area/rnd/anomaly_lab/containment_one
-	name = "\improper Anomaly Lab - Containment One"
-	icon_state = "research"
-/area/rnd/anomaly_lab/containment_two
-	name = "\improper Anomaly Lab - Containment Two"
-	icon_state = "research"
 /area/rnd/xenoarch_storage
 	name = "\improper Xenoarch Storage"
+	icon_state = "research"
+/area/rnd/chemistry_lab
+	name = "\improper Research Chemistry Lab"
+	icon_state = "research"
+
+//Outpost areas
+/area/rnd/outpost/anomaly_lab
+	name = "\improper Research Outpost Anomaly Lab"
+	icon_state = "research"
+/area/rnd/outpost/anomaly_lab/analysis
+	name = "\improper Anomaly Lab Analysis Chamber"
+	icon_state = "research"
+/area/rnd/outpost/anomaly_lab/testing
+	name = "\improper Anomaly Lab Testing Chamber"
+	icon_state = "research"
+/area/rnd/outpost/anomaly_lab/storage
+	name = "\improper Anomaly Storage"
+	icon_state = "research"
+/area/rnd/outpost/xenoarch_storage
+	name = "\improper Research Outpost Xenoarch Storage"
 	icon_state = "research"
 // Misc
 /area/hallway/lower/third_south
@@ -298,10 +310,12 @@
 	name = "\improper Reading Room"
 /area/tether/surfacebase/vacant_site
 	name = "\improper Vacant Site"
+	flags = null
 /area/crew_quarters/freezer
 	name = "\improper Kitchen Freezer"
 /area/crew_quarters/panic_shelter
 	name = "\improper Panic Shelter"
+	flags = RAD_SHIELDED	//It just makes sense
 
 
 
@@ -333,53 +347,70 @@
 /area/crew_quarters/sleep/maintDorm1
 	name = "\improper Construction Dorm 1"
 	icon_state = "Sleep"
+	flags = RAD_SHIELDED
 
 /area/crew_quarters/sleep/maintDorm2
 	name = "\improper Construction Dorm 2"
 	icon_state = "Sleep"
+	flags = RAD_SHIELDED
 
 /area/crew_quarters/sleep/maintDorm3
 	name = "\improper Construction Dorm 3"
 	icon_state = "Sleep"
+	flags = RAD_SHIELDED
 
 /area/crew_quarters/sleep/maintDorm4
 	name = "\improper Construction Dorm 4"
 	icon_state = "Sleep"
+	flags = RAD_SHIELDED
 
 /area/crew_quarters/sleep/Dorm_1/holo
 	name = "\improper Dorm 1 Holodeck"
 	icon_state = "dk_yellow"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/Dorm_3/holo
 	name = "\improper Dorm 3 Holodeck"
 	icon_state = "dk_yellow"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/Dorm_5/holo
 	name = "\improper Dorm 5 Holodeck"
 	icon_state = "dk_yellow"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/Dorm_7/holo
 	name = "\improper Dorm 7 Holodeck"
 	icon_state = "dk_yellow"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/holodeck/holodorm/source_basic
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_desert
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_seating
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_beach
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_garden
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_boxing
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_snow
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_space
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_off
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/ai/foyer
 	name = "\improper AI Core Access"

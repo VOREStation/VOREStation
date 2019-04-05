@@ -4448,6 +4448,26 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
+"jP" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24;
+	pixel_y = 0
+	},
+/obj/structure/table/reinforced,
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 8
+	},
+/obj/item/weapon/paper{
+	desc = "";
+	info = "This is a direct notice to anyone using firing range: All tests involving destruction of testing facilities MUST be run through Research Director or Central Command before anyone even so much as thinks about going through with this, or be moved outside to where test cannot affect any existing facility. This is both to maintain a professional environment, and ensure nobody else is harmed during these experiments. Nobody wants another 'two SM shards going nuclear in the firing range' incident again, especially not the people handling your paychecks.";
+	name = "note to science staff"
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/research/testingrange)
 "jQ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -5755,21 +5775,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/asmaint2)
-"mF" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24;
-	pixel_y = 0
-	},
-/obj/structure/table/reinforced,
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/mauve/border{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/research/testingrange)
 "mG" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -25777,7 +25782,7 @@ kW
 li
 lC
 lZ
-mF
+jP
 Fn
 nP
 ol
