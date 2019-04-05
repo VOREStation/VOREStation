@@ -31,9 +31,9 @@
 
 /datum/say_list/disbot
 	speak = list("ATTEMPTING TO CONTACT A.R.K, ATTEMPT 1e26+3","DIRT SAMPLE COLLECTED, DIRT QUOTA 124871/155 CONFIRMED.")
-	emote_see = list("Scans the dirt around it","Beeps as it scans a rock nearby")
+	emote_see = list("scans the dirt around it","beeps as it scans a rock nearby")
 	say_maybe_target = list("BIOLOGICAL TRACES FOUND, ATTEMTPTING TO LOCATE SOURCE.","TRACE SOURCES FOUND, POWERING SCANNERS.",)
-	say_got_target = list("LIFEFORM LOCATED, ATTEMPTING TO COLLECT SAMPLE","CREATURE SPOTTED, PHERMONE GENERATORS DAMAGED, ATTEMPTING TO COLLECT GENETIC SAMPLE.")
+	say_got_target = list("LIFEFORM LOCATED, ATTEMPTING TO COLLECT SAMPLE","CREATURE SPOTTED, PHEROMONE GENERATORS DAMAGED, ATTEMPTING TO COLLECT GENETIC SAMPLE.")
 
 /mob/living/simple_mob/mechanical/infectionbot/apply_melee_effects(var/atom/A)
 	if(isliving(A))
