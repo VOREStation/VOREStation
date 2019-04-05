@@ -284,7 +284,7 @@
 	var/list/medicineReagents = list()
 	for(var/path in typesof(/datum/chemical_reaction) - /datum/chemical_reaction)
 		var/datum/chemical_reaction/CR = path // Stupid casting required for reading
-		var/datum/reagent/R = SSchemistry.chemical_reagents[initial(CR.result)]
+		var/datum/reagent/R = chemical_reagents_list[initial(CR.result)]
 		if(R && R.scannable)
 			medicineReagents += R
 	for(var/i in 1 to differentTypes)
@@ -298,7 +298,7 @@
 	var/list/drinkReagents = list()
 	for(var/path in typesof(/datum/chemical_reaction) - /datum/chemical_reaction)
 		var/datum/chemical_reaction/CR = path // Stupid casting required for reading
-		var/datum/reagent/R = SSchemistry.chemical_reagents[initial(CR.result)]
+		var/datum/reagent/R = chemical_reagents_list[initial(CR.result)]
 		if(istype(R, /datum/reagent/drink) || istype(R, /datum/reagent/ethanol))
 			drinkReagents += R
 	for(var/i in 1 to differentTypes)

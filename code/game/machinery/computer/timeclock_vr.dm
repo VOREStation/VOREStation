@@ -48,7 +48,7 @@
 		if(!card && user.unEquip(I))
 			I.forceMove(src)
 			card = I
-			SSnanoui.update_uis(src)
+			GLOB.nanomanager.update_uis(src)
 			update_icon()
 		else if(card)
 			to_chat(user, "<span class='warning'>There is already ID card inside.</span>")
@@ -88,7 +88,7 @@
 		// if(job && job.timeoff_factor < 0) // Currently are Off Duty, so gotta lookup what on-duty jobs are open
 		// 	data["job_choices"] = getOpenOnDutyJobs(user, job.department)
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "timeclock_vr.tmpl", capitalize(src.name), 500, 520)
 		ui.set_initial_data(data)
