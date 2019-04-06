@@ -421,3 +421,13 @@ ENGINE_MAP Supermatter Engine,Edison's Bane
 ## Submap rotation is an experimental feature and can cause bugs and weirdness if certain objects inside the submap are coded poorly.
 ## Submaps can still be rotated when loading manually with the admin verbs, if desired.
 # RANDOM_SUBMAP_ORIENTATION
+
+## Uncomment to allow the AI job to use 'AI Shells', a new type of borg that lets the AI hop into and out of them at will.
+## This has some balance implications, and so it might not be desirable for all servers.
+# ALLOW_AI_SHELLS
+
+## Uncomment to provide the AI with one free AI Shell at roundstart. Requires ALLOW_AI_SHELLS to also be uncommented.
+## This is intended for low-pop servers, where robotics might rarely be staffed.
+## Note that this will make it possible for the AI to 'bootstrap' more AI Shells on their own by using the science module. If this is not acceptable for your server, you should not uncomment this.
+## The landmark object that spawns the shell will also need to be mapped in for this to work.
+# GIVE_FREE_AI_SHELL
