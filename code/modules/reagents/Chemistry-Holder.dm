@@ -12,24 +12,27 @@
 	my_atom = A
 
 	//I dislike having these here but map-objects are initialised before world/New() is called. >_>
-	if(!SSchemistry.chemical_reagents)
+	if(!chemical_reagents_list)
 		//Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
 		var/paths = typesof(/datum/reagent) - /datum/reagent
-		SSchemistry.chemical_reagents = list()
+		chemical_reagents_list = list()
 		for(var/path in paths)
 			var/datum/reagent/D = new path()
 			if(!D.name)
 				continue
-			SSchemistry.chemical_reagents[D.id] = D
+			chemical_reagents_list[D.id] = D
 
 /datum/reagents/Destroy()
-	STOP_PROCESSING(SSchemistry, src)
+	. = ..()
+	if(chemistryProcess)
+		chemistryProcess.active_holders -= src
+
 	for(var/datum/reagent/R in reagent_list)
 		qdel(R)
+	reagent_list.Cut()
 	reagent_list = null
 	if(my_atom && my_atom.reagents == src)
 		my_atom.reagents = null
-	return ..()
 
 /* Internal procs */
 
@@ -77,14 +80,15 @@
 	return
 
 /datum/reagents/proc/handle_reactions()
-	START_PROCESSING(SSchemistry, src)
+	if(chemistryProcess)
+		chemistryProcess.mark_for_update(src)
 
 //returns 1 if the holder should continue reactiong, 0 otherwise.
-/datum/reagents/process()
+/datum/reagents/proc/process_reactions()
 	if(QDELETED(my_atom))		//No container, no reaction.
-		return PROCESS_KILL
+		return 0
 	if(my_atom.flags & NOREACT) // No reactions here
-		return PROCESS_KILL
+		return 0
 
 	var/reaction_occured
 	var/list/effect_reactions = list()
@@ -94,7 +98,7 @@
 
 		//need to rebuild this to account for chain reactions
 		for(var/datum/reagent/R in reagent_list)
-			eligible_reactions |= SSchemistry.chemical_reactions[R.id]
+			eligible_reactions |= chemical_reactions_list[R.id]
 
 		for(var/datum/chemical_reaction/C in eligible_reactions)
 			if(C.can_happen(src) && C.process(src))
@@ -110,8 +114,7 @@
 		C.post_reaction(src)
 
 	update_total()
-	if(!reaction_occured)
-		return PROCESS_KILL
+	return reaction_occured
 
 /* Holder-to-chemical */
 
@@ -133,7 +136,7 @@
 			if(my_atom)
 				my_atom.on_reagent_change()
 			return 1
-	var/datum/reagent/D = SSchemistry.chemical_reagents[id]
+	var/datum/reagent/D = chemical_reagents_list[id]
 	if(D)
 		var/datum/reagent/R = new D.type()
 		reagent_list += R

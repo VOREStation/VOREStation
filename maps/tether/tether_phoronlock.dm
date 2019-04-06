@@ -116,7 +116,7 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 		"processing" = program.memory["processing"]
 	)
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "phoron_airlock_console.tmpl", name, 470, 290)
 		ui.set_initial_data(data)
