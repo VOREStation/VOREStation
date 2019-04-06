@@ -635,7 +635,7 @@ item_path: /obj/item/weapon/storage/belt/utility/fluff/vulpine
 ckey: mr_signmeup
 character_name: Reshskakskakss Seekiseekis
 item_path: /obj/item/clothing/suit/security/navyhos
-req_titles: Head of Security
+req_access: 58
 }
 
 # ######## N CKEYS
