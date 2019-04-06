@@ -10,64 +10,64 @@
 			var/bones_amount = rand(2,3) //some random variety in amount of bones left
 
 			if(prob(20))	//ribcage surviving whole is some luck
-				new /obj/item/weapon/digestion_remains/ribcage(src)
+				new /obj/item/weapon/digestion_remains/ribcage(src,owner)
 				bones_amount--
 
 			while(bones_amount)	//throw in the rest
-				new /obj/item/weapon/digestion_remains(src)
+				new /obj/item/weapon/digestion_remains(src,owner)
 				bones_amount--
 
 			var/skull_amount = 1
 			switch(H.species.name)	//oh boy here we go, finding us a right skull
 				if(SPECIES_HUMAN)
-					new /obj/item/weapon/digestion_remains/skull(src)
+					new /obj/item/weapon/digestion_remains/skull(src,owner)
 					skull_amount--
 				if(SPECIES_TAJ)
-					new /obj/item/weapon/digestion_remains/skull/tajaran(src)
+					new /obj/item/weapon/digestion_remains/skull/tajaran(src,owner)
 					skull_amount--
 				if(SPECIES_UNATHI)
-					new /obj/item/weapon/digestion_remains/skull/unathi(src)
+					new /obj/item/weapon/digestion_remains/skull/unathi(src,owner)
 					skull_amount--
 				if(SPECIES_SKRELL)
-					new /obj/item/weapon/digestion_remains/skull/skrell(src)
+					new /obj/item/weapon/digestion_remains/skull/skrell(src,owner)
 					skull_amount--
 				if(SPECIES_VASILISSAN)
-					new /obj/item/weapon/digestion_remains/skull/vasilissan(src)
+					new /obj/item/weapon/digestion_remains/skull/vasilissan(src,owner)
 					skull_amount--
 				if(SPECIES_AKULA)
-					new /obj/item/weapon/digestion_remains/skull/akula(src)
+					new /obj/item/weapon/digestion_remains/skull/akula(src,owner)
 					skull_amount--
 				if(SPECIES_RAPALA)
-					new /obj/item/weapon/digestion_remains/skull/rapala(src)
+					new /obj/item/weapon/digestion_remains/skull/rapala(src,owner)
 					skull_amount--
 				if(SPECIES_VULPKANIN)
-					new /obj/item/weapon/digestion_remains/skull/vulpkanin(src)
+					new /obj/item/weapon/digestion_remains/skull/vulpkanin(src,owner)
 					skull_amount--
 				if(SPECIES_SERGAL)
-					new /obj/item/weapon/digestion_remains/skull/sergal(src)
+					new /obj/item/weapon/digestion_remains/skull/sergal(src,owner)
 					skull_amount--
 				if(SPECIES_ZORREN_FLAT || SPECIES_ZORREN_HIGH)
-					new /obj/item/weapon/digestion_remains/skull/zorren(src)
+					new /obj/item/weapon/digestion_remains/skull/zorren(src,owner)
 					skull_amount--
 				if(SPECIES_NEVREAN)
-					new /obj/item/weapon/digestion_remains/skull/nevrean(src)
+					new /obj/item/weapon/digestion_remains/skull/nevrean(src,owner)
 					skull_amount--
 				if(SPECIES_TESHARI)
-					new /obj/item/weapon/digestion_remains/skull/teshari(src)
+					new /obj/item/weapon/digestion_remains/skull/teshari(src,owner)
 					skull_amount--
 				if(SPECIES_VOX)
-					new /obj/item/weapon/digestion_remains/skull/vox(src)
+					new /obj/item/weapon/digestion_remains/skull/vox(src,owner)
 					skull_amount--
 				if(SPECIES_XENOHYBRID)
-					new /obj/item/weapon/digestion_remains/skull/xenohybrid(src)
+					new /obj/item/weapon/digestion_remains/skull/xenohybrid(src,owner)
 					skull_amount--
 			if(skull_amount && H.species.selects_bodytype)	//We still haven't found correct skull...
 				if(H.species.base_species == SPECIES_HUMAN)
-					new /obj/item/weapon/digestion_remains/skull/unknown(src)
+					new /obj/item/weapon/digestion_remains/skull/unknown(src,owner)
 				else
-					new /obj/item/weapon/digestion_remains/skull/unknown/anthro(src)
+					new /obj/item/weapon/digestion_remains/skull/unknown/anthro(src,owner)
 			else if(skull_amount)		//Something entirely different...
-				new /obj/item/weapon/digestion_remains/skull/unknown(src)
+				new /obj/item/weapon/digestion_remains/skull/unknown(src,owner)
 	else
 		return
 
@@ -80,6 +80,13 @@
 	throwforce = 0
 	item_state = "bone"
 	w_class = ITEMSIZE_SMALL
+	var/pred_ckey
+	var/pred_name
+
+/obj/item/weapon/digestion_remains/New(var/newloc,var/mob/living/pred)
+	..(newloc)
+	pred_ckey = pred.ckey
+	pred_name = pred.name
 
 /obj/item/weapon/digestion_remains/attack_self(mob/user)
 	if(user.a_intent == I_HURT)
@@ -152,5 +159,5 @@
 	icon_state = "skull_taj"
 
 /obj/item/weapon/digestion_remains/skull/xenohybrid
-	desc = "A bleached skull. It looks very weakened. Seems like it belonged to something with prolonged head."
+	desc = "A bleached skull. It looks very weakened. Seems like it belonged to something with an elongated head."
 	icon_state = "skull_xenohybrid"
