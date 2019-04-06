@@ -144,6 +144,7 @@
 #include "code\_onclick\hud\robot.dm"
 #include "code\_onclick\hud\robot_vr.dm"
 #include "code\_onclick\hud\screen_objects.dm"
+#include "code\_onclick\hud\screen_objects_vr.dm"
 #include "code\_onclick\hud\spell_screen_objects.dm"
 #include "code\ATMOSPHERICS\_atmos_setup.dm"
 #include "code\ATMOSPHERICS\_atmospherics_helpers.dm"
