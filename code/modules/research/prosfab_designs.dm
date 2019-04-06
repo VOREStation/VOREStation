@@ -295,6 +295,10 @@
 	id = "armour"
 	build_path = /obj/item/robot_parts/robot_component/armour
 
+/datum/design/item/prosfab/cyborg/component/ai_shell
+	name = "AI Remote Interface"
+	id = "mmi_ai_shell"
+	build_path = /obj/item/device/mmi/inert/ai_remote
 
 //////////////////// Cyborg Modules ////////////////////
 /datum/design/item/prosfab/robot_upgrade

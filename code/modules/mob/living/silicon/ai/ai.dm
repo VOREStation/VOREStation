@@ -49,10 +49,10 @@ var/list/ai_verbs_default = list(
 	shouldnt_see = list(/obj/effect/rune)
 	var/list/network = list(NETWORK_DEFAULT)
 	var/obj/machinery/camera/camera = null
-	var/list/connected_robots = list()
 	var/aiRestorePowerRoutine = 0
 	var/viewalerts = 0
 	var/icon/holo_icon//Default is assigned when AI is created.
+	var/list/connected_robots = list()
 	var/obj/item/device/pda/ai/aiPDA = null
 	var/obj/item/device/communicator/aiCommunicator = null
 	var/obj/item/device/multitool/aiMulti = null
@@ -226,6 +226,28 @@ var/list/ai_verbs_default = list(
 	hack = null
 
 	return ..()
+
+/mob/living/silicon/ai/Stat()
+	..()
+	if(statpanel("Status"))
+		if(!stat) // Make sure we're not unconscious/dead.
+			stat(null, text("System integrity: [(health+100)/2]%"))
+			stat(null, text("Connected synthetics: [connected_robots.len]"))
+			for(var/mob/living/silicon/robot/R in connected_robots)
+				var/robot_status = "Nominal"
+				if(R.shell)
+					robot_status = "AI SHELL"
+				else if(R.stat || !R.client)
+					robot_status = "OFFLINE"
+				else if(!R.cell || R.cell.charge <= 0)
+					robot_status = "DEPOWERED"
+				//Name, Health, Battery, Module, Area, and Status! Everything an AI wants to know about its borgies!
+				stat(null, text("[R.name] | S.Integrity: [R.health]% | Cell: [R.cell ? "[R.cell.charge]/[R.cell.maxcharge]" : "Empty"] | \
+				Module: [R.modtype] | Loc: [get_area_name(R, TRUE)] | Status: [robot_status]"))
+			stat(null, text("AI shell beacons detected: [LAZYLEN(GLOB.available_ai_shells)]")) //Count of total AI shells
+		else
+			stat(null, text("Systems nonfunctional"))
+
 
 /mob/living/silicon/ai/proc/setup_icon()
 	var/file = file2text("config/custom_sprites.txt")
@@ -411,6 +433,7 @@ var/list/ai_verbs_default = list(
 	return 0
 
 /mob/living/silicon/ai/emp_act(severity)
+	disconnect_shell("Disconnected from remote shell due to ionic interfe%*@$^___")
 	if (prob(30))
 		view_core()
 	..()
@@ -696,8 +719,8 @@ var/list/ai_verbs_default = list(
 		card.grab_ai(src, user)
 
 	else if(W.is_wrench())
-		if(user == controlling_drone)
-			to_chat(user, "<span class='notice'>The drone's subsystems resist your efforts to tamper with your bolts.</span>")
+		if(user == deployed_shell)
+			to_chat(user, "<span class='notice'>The shell's subsystems resist your efforts to tamper with your bolts.</span>")
 			return
 		if(anchored)
 			playsound(src, W.usesound, 50, 1)
