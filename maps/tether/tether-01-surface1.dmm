@@ -5409,6 +5409,39 @@
 /obj/item/weapon/storage/box/nifsofts_mining,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/storage)
+"ajf" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/alarm{
+	breach_detection = 0;
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 25;
+	rcon_setting = 3;
+	report_danger_level = 0
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/engineering/atmos/intake)
+"ajg" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/engineering/atmos/intake)
+"ajh" = (
+/obj/machinery/atmospherics/unary/vent_scrubber{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/engineering/atmos/intake)
 "aji" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
@@ -25344,8 +25377,7 @@
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 25;
-	pixel_y = 0;
-	report_danger_level = 0
+	pixel_y = 0
 	},
 /obj/machinery/light{
 	dir = 4;
@@ -26975,24 +27007,6 @@
 "gXh" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/public_garden)
-"gXZ" = (
-/obj/machinery/atmospherics/unary/vent_pump{
-	dir = 4;
-	external_pressure_bound = 0;
-	external_pressure_bound_default = 0;
-	frequency = 1441;
-	icon_state = "map_vent_in";
-	id_tag = "atmos_in";
-	initialize_directions = 1;
-	internal_pressure_bound = 4000;
-	internal_pressure_bound_default = 4000;
-	pressure_checks = 2;
-	pressure_checks_default = 2;
-	pump_direction = 0;
-	use_power = 1
-	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
 "gZC" = (
 /obj/structure/closet,
 /turf/simulated/floor/wood,
@@ -27366,14 +27380,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/mining_main/airlock)
-"iCb" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
 "iDf" = (
 /obj/machinery/atmospherics/pipe/simple/visible/purple{
 	icon_state = "intact";
@@ -28659,29 +28665,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
-"mkK" = (
-/obj/machinery/atmospherics/unary/vent_pump{
-	dir = 4;
-	external_pressure_bound = 0;
-	external_pressure_bound_default = 0;
-	frequency = 1441;
-	icon_state = "map_vent_in";
-	id_tag = "atmos_in";
-	initialize_directions = 1;
-	internal_pressure_bound = 4000;
-	internal_pressure_bound_default = 4000;
-	pressure_checks = 2;
-	pressure_checks_default = 2;
-	pump_direction = 0;
-	use_power = 1
-	},
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
 "mnZ" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/blue/border,
@@ -40919,9 +40902,9 @@ eyS
 aIv
 aJt
 dFd
-iCb
-mkK
-gXZ
+ajf
+ajg
+ajh
 rab
 rab
 erR
