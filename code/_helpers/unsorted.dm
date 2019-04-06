@@ -1549,9 +1549,6 @@ var/mob/dview/dview_mob = new
 /proc/IsValidSrc(datum/D)
 	if(istype(D))
 		return !QDELETED(D)
-<<<<<<< HEAD
-	return FALSE
-=======
 	return FALSE
 
 //gives us the stack trace from CRASH() without ending the current proc.
@@ -1574,4 +1571,3 @@ var/mob/dview/dview_mob = new
 			else
 				return "\[[url_encode(thing.tag)]\]"
 	return "\ref[input]"
->>>>>>> 6a2cd30... Replaces AI-controlled Maint Drones with AI-controlled Borg Shells (#6025)

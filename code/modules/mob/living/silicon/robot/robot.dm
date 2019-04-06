@@ -665,6 +665,7 @@
 		return ..()
 
 /mob/living/silicon/robot/proc/module_reset()
+	transform_with_anim() //VOREStation edit: sprite animation
 	uneq_all()
 	modtype = initial(modtype)
 	hands.icon_state = initial(hands.icon_state)
@@ -991,20 +992,17 @@
 			icontype = module_sprites[1]
 	else
 		icontype = input("Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot Icon", icontype, null) in module_sprites
-<<<<<<< HEAD
 		if(notransform)				//VOREStation edit start: sprite animation
 			to_chat(src, "Your current transformation has not finished yet!")
 			choose_icon(icon_selection_tries, module_sprites)
 			return
 		else
 			transform_with_anim()	//VOREStation edit end: sprite animation
-=======
 
 	if(icontype == "Custom")
 		icon = CUSTOM_ITEM_SYNTH
 	else // This is to fix an issue where someone with a custom borg sprite chooses a non-custom sprite and turns invisible.
 		icon = 'icons/mob/robots.dmi'
->>>>>>> 6a2cd30... Replaces AI-controlled Maint Drones with AI-controlled Borg Shells (#6025)
 	icon_state = module_sprites[icontype]
 	updateicon()
 

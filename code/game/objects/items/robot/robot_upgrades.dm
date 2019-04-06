@@ -25,24 +25,9 @@
 	require_module = 1
 
 /obj/item/borg/upgrade/reset/action(var/mob/living/silicon/robot/R)
-<<<<<<< HEAD
-	if(..()) return 0
-	R.transform_with_anim() //VOREStation edit: sprite animation
-	R.uneq_all()
-	R.modtype = initial(R.modtype)
-	R.hands.icon_state = initial(R.hands.icon_state)
-
-	R.notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, R.module.name)
-	R.module.Reset(R)
-	qdel(R.module)
-	R.module = null
-	R.updatename("Default")
-
-=======
 	if(..())
 		return 0
 	R.module_reset()
->>>>>>> 6a2cd30... Replaces AI-controlled Maint Drones with AI-controlled Borg Shells (#6025)
 	return 1
 
 /obj/item/borg/upgrade/rename
