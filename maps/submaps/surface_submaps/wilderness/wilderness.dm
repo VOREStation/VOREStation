@@ -29,6 +29,7 @@
 #include "Manor1.dmm"
 #include "Epod3.dmm"
 #include "Epod4.dmm"
+#include "ButcherShack.dmm"
 
 #endif
 
@@ -222,4 +223,10 @@
 	name = "Emergency Pod 4"
 	desc = "A flooded Emergency pod in the middle of nowhere."
 	mappath = 'maps/submaps/surface_submaps/wilderness/Epod4.dmm'
+	cost = 5
+
+/datum/map_template/surface/wilderness/normal/ButcherShack
+	name = "Butcher Shack"
+	desc = "An old, bloody butcher's shack. Get your meat here!"
+	mappath = 'maps/submaps/surface_submaps/wilderness/ButcherShack.dmm'
 	cost = 5
