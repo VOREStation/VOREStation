@@ -13,7 +13,7 @@
 	if(my_vehicle)
 		to_chat(user, "<span class='notice'>It seems to contain \the [my_vehicle].</span>")
 
-/obj/structure/vehiclecage/initialize()
+/obj/structure/vehiclecage/Initialize()
 	. = ..()
 	if(my_vehicle_type)
 		my_vehicle = new my_vehicle_type(src)

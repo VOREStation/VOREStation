@@ -9,10 +9,26 @@
 	hopefully prevent chainstuns forever.
 */
 
+/datum/category_item/catalogue/fauna/hooligan_crab
+	name = "Sivian Fauna - Hooligan Crab"
+	desc = "A very large, grey crustacean-like creature. They display remarkable curiosity, \
+	often following people around, and occasionally stealing man-made objects, hence their name. \
+	They generally reside at the shoreline in small groups, situated between two sources of food for it, \
+	small marine life in the ocean, and small plant matter near the shore. Larger lifeforms such as humans \
+	are left alone, however they will not hesitate to fight back if provoked.\
+	<br><br>\
+	Hooligans have a characteristic grey shell that is very thick and protective, allowing them to \
+	shrug off nearby attacks from both predators and reckless humans. It pairs its excellent defense with slow, but \
+	powerful offensive, utilizing its weight and size to crush and throw threats. As such, predators generally avoid \
+	Hooligan shorelines."
+	value = CATALOGUER_REWARD_EASY
+
 /mob/living/simple_mob/animal/sif/hooligan_crab
 	name = "hooligan crab"
 	desc = "A large, hard-shelled crustacean. This one is mostly grey. \
 	You probably shouldn't mess with it."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/hooligan_crab)
+
 	icon_state = "sif_crab"
 	icon_living = "sif_crab"
 	icon_dead = "sif_crab_dead"
@@ -90,6 +106,7 @@
 	retaliate = TRUE
 	returns_home = TRUE
 	max_home_distance = 12
+	mauling = TRUE
 	var/random_follow = TRUE // Turn off if you want to bus with crabs.
 
 /datum/ai_holder/simple_mob/melee/hooligan/handle_stance_strategical()

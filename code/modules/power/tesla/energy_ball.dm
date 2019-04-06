@@ -27,7 +27,7 @@
 	..()
 	miniball = is_miniball
 
-/obj/singularity/energy_ball/initialize()
+/obj/singularity/energy_ball/Initialize()
 	. = ..()
 	if(!miniball)
 		set_light(10, 7, "#EEEEFF")
@@ -65,7 +65,7 @@
 		set_dir(tesla_zap(src, 7, TESLA_DEFAULT_POWER, TRUE))
 
 		for (var/ball in orbiting_balls)
-			var/range = rand(1, Clamp(orbiting_balls.len, 3, 7))
+			var/range = rand(1, CLAMP(orbiting_balls.len, 3, 7))
 			tesla_zap(ball, range, TESLA_MINI_POWER/7*range, TRUE)
 	else
 		energy = 0 // ensure we dont have miniballs of miniballs
@@ -288,7 +288,7 @@
 		closest_grounding_rod.tesla_act(power, explosive, stun_mobs)
 
 	else if(closest_mob)
-		var/shock_damage = Clamp(round(power/400), 10, 90) + rand(-5, 5)
+		var/shock_damage = CLAMP(round(power/400), 10, 90) + rand(-5, 5)
 		closest_mob.electrocute_act(shock_damage, source, 1 - closest_mob.get_shock_protection(), ran_zone())
 		log_game("TESLA([source.x],[source.y],[source.z]) Shocked [key_name(closest_mob)] for [shock_damage]dmg.")
 		message_admins("Tesla zapped [key_name_admin(closest_mob)]!")

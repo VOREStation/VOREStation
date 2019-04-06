@@ -1,9 +1,34 @@
 // Space carp show up as a random event to wreck hapless people in space or near windows.
 // They generally fit the archetype of 'fast but fragile'.
 // This is compensated by being in groups (usually).
+
+/datum/category_item/catalogue/fauna/carp
+	name = "Voidborne Fauna - Space Carp"
+	desc = "A strange descendant of some form of voidborne life, they are the most \
+	common naturally void-faring lifeform found in human territory. They've been named \
+	'Space Carp' by various groups of spacers due to resembling the fish from Earth.\
+	<br><br>\
+	Their lifecycle begins as a fungus-like growth, sometimes found on the walls of spacecraft \
+	and space stations, before growing into a form which allows for independent travel. Even \
+	when fully grown, they can sometimes be found to stow away on the hulls of spaceborne objects, \
+	which might explain how they became widespread across many star systems.\
+	<br><br>\
+	Carp have a special gas bladder inside of them, which they utilize as a means of movement in \
+	space by stategically releasing the gas to propel themselves in a process that resembles \
+	thrusters on a spacecraft. The gas contained inside the carp also allows them \
+	to float when inside an atmosphere. The carp might also spray 'spores' using a similar method.\
+	<br><br>\
+	They are hypercarnivorous to the point of cannibalism, consuming their own dead in order to \
+	sustain themselves during hard times, which are rather frequent due to their prey being \
+	vastly technologically advanced. For human habitats that are well secured, carp are generally \
+	an annoyance. For those unable to adequately protect themselves, however, they can be \
+	rather dangerous, especially if a mass migration of carp arrives."
+	value = CATALOGUER_REWARD_EASY
+
 /mob/living/simple_mob/animal/space/carp
 	name = "space carp"
 	desc = "A ferocious, fang-bearing creature that resembles a fish."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/carp)
 	icon_state = "carp"
 	icon_living = "carp"
 	icon_dead = "carp_dead"
@@ -102,7 +127,7 @@
 
 	mob_class = MOB_CLASS_PHOTONIC // Xeno-taser won't work on this as its not a 'real' carp.
 
-/mob/living/simple_mob/animal/space/carp/holographic/initialize()
+/mob/living/simple_mob/animal/space/carp/holographic/Initialize()
 	set_light(2) // Hologram lighting.
 	return ..()
 

@@ -113,3 +113,14 @@
 	name = "Manor1"
 	ambience = AMBIENCE_FOREBODING
 
+/area/submap/Epod3
+	name = "Epod3"
+	ambience = AMBIENCE_FOREBODING
+
+/area/submap/Epod4
+	name = "Epod4"
+	ambience = AMBIENCE_FOREBODING
+
+/area/submap/ButcherShack
+	name = "ButcherShack"
+	ambience = AMBIENCE_RUINS

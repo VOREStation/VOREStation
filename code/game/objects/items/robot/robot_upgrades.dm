@@ -218,5 +218,6 @@
 	R.add_language(LANGUAGE_SCHECHI, 1)
 	R.add_language(LANGUAGE_ROOTLOCAL, 1)
 	R.add_language(LANGUAGE_TERMINUS, 1)
+	R.add_language(LANGUAGE_ZADDAT, 1)
 
 	return 1

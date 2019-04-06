@@ -186,6 +186,7 @@
 	name = "mysterious potted bulbs"
 	desc = "This is a mysterious looking plant. Touching the bulbs cause them to shrink."
 	icon_state = "plant-07"
+	catalogue_data = list(/datum/category_item/catalogue/flora/eyebulbs)
 
 /obj/structure/flora/pottedplant/smalltree
 	name = "small potted tree"
@@ -199,6 +200,7 @@
 	light_range = 2
 	light_power = 0.6
 	light_color = "#33CCFF"
+	catalogue_data = list(/datum/category_item/catalogue/flora/sif_tree)
 
 /obj/structure/flora/pottedplant/orientaltree
 	name = "potted oriental tree"
@@ -296,6 +298,19 @@
 /obj/structure/flora/sif
 	icon = 'icons/obj/flora/sifflora.dmi'
 
+/datum/category_item/catalogue/flora/subterranean_bulbs
+	name = "Sivian Flora - Subterranean Bulbs"
+	desc = "A plant which is native to Sif, it continues the trend of being a bioluminescent specimen. These plants \
+	are generally suited for conditions experienced in caverns, which are generally dark and cold. It is not \
+	known why this plant evolved to be bioluminescent, however this property has, unintentionally, allowed for \
+	it to spread much farther than before, with the assistance of humans.\
+	<br><br>\
+	In Sif's early history, Sivian settlers found this plant while they were establishing mines. Their ability \
+	to emit low, but consistant amounts of light made them desirable to the settlers. They would often cultivate \
+	this plant inside man-made tunnels and mines to act as a backup source of light that would not need \
+	electricity. This technique has saved many lost miners, and this practice continues to this day."
+	value = CATALOGUER_REWARD_EASY
+
 /obj/structure/flora/sif/subterranean
 	name = "subterranean plant"
 	desc = "This is a subterranean plant. It's bulbous ends glow faintly."
@@ -303,16 +318,26 @@
 	light_range = 2
 	light_power = 0.6
 	light_color = "#FF6633"
+	catalogue_data = list(/datum/category_item/catalogue/flora/subterranean_bulbs)
 
-/obj/structure/flora/sif/subterranean/initialize()
+/obj/structure/flora/sif/subterranean/Initialize()
 	icon_state = "[initial(icon_state)][rand(1,2)]"
 	. = ..()
+
+
+/datum/category_item/catalogue/flora/eyebulbs
+	name = "Sivian Flora - Eyebulbs"
+	desc = "A plant native to Sif. On the end of its stems are bulbs which visually resemble \
+	eyes, which shrink when touched. One theory is that the bulbs are a result of mimicry, appearing as eyeballs to protect from predators.<br><br>\
+	These plants have no known use."
+	value = CATALOGUER_REWARD_EASY
 
 /obj/structure/flora/sif/eyes
 	name = "mysterious bulbs"
 	desc = "This is a mysterious looking plant. They kind of look like eyeballs. Creepy."
 	icon_state = "eyeplant"
+	catalogue_data = list(/datum/category_item/catalogue/flora/eyebulbs)
 
-/obj/structure/flora/sif/eyes/initialize()
+/obj/structure/flora/sif/eyes/Initialize()
 	icon_state = "[initial(icon_state)][rand(1,3)]"
 	. = ..()

@@ -8,7 +8,7 @@
 	var/list/engines = list()
 	var/obj/effect/map/ship/linked
 
-/obj/machinery/computer/engines/initialize()
+/obj/machinery/computer/engines/Initialize()
 	. = ..()
 	linked = map_sectors["[z]"]
 	if (linked)
@@ -70,13 +70,13 @@
 		if(href_list["set_limit"])
 			var/datum/ship_engine/E = locate(href_list["engine"])
 			var/newlim = input("Input new thrust limit (0..100)", "Thrust limit", E.get_thrust_limit()) as num
-			var/limit = Clamp(newlim/100, 0, 1)
+			var/limit = CLAMP(newlim/100, 0, 1)
 			if(E)
 				E.set_thrust_limit(limit)
 
 		if(href_list["limit"])
 			var/datum/ship_engine/E = locate(href_list["engine"])
-			var/limit = Clamp(E.get_thrust_limit() + text2num(href_list["limit"]), 0, 1)
+			var/limit = CLAMP(E.get_thrust_limit() + text2num(href_list["limit"]), 0, 1)
 			if(E)
 				E.set_thrust_limit(limit)
 

@@ -15,7 +15,8 @@
 	var/spore_cooldown = 8 SECONDS
 
 /obj/structure/blob/factory/Destroy()
-	for(var/mob/living/simple_mob/blob/spore/spore in spores)
+	for(var/mob/living/L in spores)
+		var/mob/living/simple_mob/blob/spore/spore = L
 		if(istype(spore) && spore.factory == src)
 			spore.factory = null
 		else

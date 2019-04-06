@@ -104,9 +104,9 @@
 	icon_state = "omnilaser" //A little more cyan
 	light_color = "#00C6FF"
 	agony = 50 //Normal is 40 when this was set
-	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
-	tracer_type = /obj/effect/projectile/laser_omni/tracer
-	impact_type = /obj/effect/projectile/laser_omni/impact
+	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+	tracer_type = /obj/effect/projectile/tracer/laser_omni
+	impact_type = /obj/effect/projectile/impact/laser_omni
 
 //R&D Design
 /datum/design/item/weapon/protector

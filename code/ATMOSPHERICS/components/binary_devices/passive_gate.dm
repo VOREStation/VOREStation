@@ -129,7 +129,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/binary/passive_gate/initialize()
+/obj/machinery/atmospherics/binary/passive_gate/Initialize()
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)

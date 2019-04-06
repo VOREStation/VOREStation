@@ -60,7 +60,7 @@
 		/obj/item/clothing/head/nursehat,
 		/obj/item/weapon/storage/box/freezer = 3)
 
-/obj/structure/closet/secure_closet/medical3/initialize()
+/obj/structure/closet/secure_closet/medical3/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/medic
 	else
@@ -170,7 +170,7 @@
 		/obj/item/clothing/shoes/white,
 		/obj/item/weapon/reagent_containers/glass/beaker/vial) //VOREStation Add
 
-/obj/structure/closet/secure_closet/CMO/initialize()
+/obj/structure/closet/secure_closet/CMO/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/medic
 	else

@@ -7,6 +7,7 @@
 	var/threaten_timeout = 1 MINUTE		// If the mob threatens someone, they leave, and then come back before this timeout period, the mob escalates to fighting immediately.
 	var/last_conflict_time = null		// Last occurance of fighting being used, in world.time.
 	var/last_threaten_time = null		// Ditto but only for threats.
+	var/last_target_time = null			// Ditto for when we last switched targets, used to stop retaliate from gimping mobs
 
 	var/speak_chance = 0				// Probability that the mob talks (this is 'X in 200' chance since even 1/100 is pretty noisy)
 
@@ -41,8 +42,6 @@
 
 			if(threaten_delay && last_threaten_time + threaten_delay < world.time) // Waited too long.
 				should_escalate = TRUE
-			else if(last_conflict_time + threaten_timeout > world.time) // We got attacked while threatening them.
-				should_escalate = TRUE
 
 			if(should_escalate)
 				threatening = FALSE
@@ -53,7 +52,8 @@
 				return // Wait a bit.
 
 		else // They left, or so we think.
-			threatening = FALSE
+			if(last_threaten_time + threaten_timeout < world.time)	// They've been gone long enough, probably safe to stand down
+				threatening = FALSE
 			set_stance(STANCE_IDLE)
 			if(holder.say_list)
 				holder.ISay(safepick(holder.say_list.say_stand_down))

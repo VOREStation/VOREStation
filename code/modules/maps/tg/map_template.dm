@@ -1,15 +1,3 @@
-var/list/global/map_templates = list()
-
-// Called when the world starts, in world.dm
-/proc/load_map_templates()
-	for(var/T in subtypesof(/datum/map_template))
-		var/datum/map_template/template = T
-		if(!(initial(template.mappath))) // If it's missing the actual path its probably a base type or being used for inheritence.
-			continue
-		template = new T()
-		map_templates[template.name] = template
-	return TRUE
-
 /datum/map_template
 	var/name = "Default Template Name"
 	var/desc = "Some text should go here. Maybe."
@@ -27,8 +15,6 @@ var/list/global/map_templates = list()
 	var/allow_duplicates = FALSE // If false, only one map template will be spawned by the game. Doesn't affect admins spawning then manually.
 	var/discard_prob = 0 // If non-zero, there is a chance that the map seeding algorithm will skip this template when selecting potential templates to use.
 
-	var/static/dmm_suite/maploader = new
-
 /datum/map_template/New(path = null, rename = null)
 	if(path)
 		mappath = path
@@ -38,11 +24,15 @@ var/list/global/map_templates = list()
 	if(rename)
 		name = rename
 
-/datum/map_template/proc/preload_size(path, orientation = SOUTH)
-	var/bounds = maploader.load_map(file(path), 1, 1, 1, cropMap=FALSE, measureOnly=TRUE, orientation=orientation)
+/datum/map_template/proc/preload_size(path, orientation = 0)
+	var/bounds = SSmapping.maploader.load_map(file(path), 1, 1, 1, cropMap=FALSE, measureOnly=TRUE, orientation=orientation)
 	if(bounds)
-		width = bounds[MAP_MAXX] // Assumes all templates are rectangular, have a single Z level, and begin at 1,1,1
-		height = bounds[MAP_MAXY]
+		if(orientation & (90 | 270))
+			width = bounds[MAP_MAXY]
+			height = bounds[MAP_MAXX]
+		else
+			width = bounds[MAP_MAXX] // Assumes all templates are rectangular, have a single Z level, and begin at 1,1,1
+			height = bounds[MAP_MAXY]
 	return bounds
 
 /datum/map_template/proc/initTemplateBounds(var/list/bounds)
@@ -83,7 +73,7 @@ var/list/global/map_templates = list()
 
 	admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
 
-/datum/map_template/proc/load_new_z(var/centered = FALSE, var/orientation = SOUTH)
+/datum/map_template/proc/load_new_z(var/centered = FALSE, var/orientation = 0)
 	var/x = 1
 	var/y = 1
 
@@ -91,7 +81,7 @@ var/list/global/map_templates = list()
 		x = round((world.maxx - width)/2)
 		y = round((world.maxy - height)/2)
 
-	var/list/bounds = maploader.load_map(file(mappath), x, y, no_changeturf = TRUE, orientation=orientation)
+	var/list/bounds = SSmapping.maploader.load_map(file(mappath), x, y, no_changeturf = TRUE, orientation=orientation)
 	if(!bounds)
 		return FALSE
 
@@ -103,10 +93,10 @@ var/list/global/map_templates = list()
 	on_map_loaded(world.maxz) //VOREStation Edit
 	return TRUE
 
-/datum/map_template/proc/load(turf/T, centered = FALSE, orientation = SOUTH)
+/datum/map_template/proc/load(turf/T, centered = FALSE, orientation = 0)
 	var/old_T = T
 	if(centered)
-		T = locate(T.x - round(((orientation & NORTH|SOUTH) ? width : height)/2) , T.y - round(((orientation & NORTH|SOUTH) ? height : width)/2) , T.z)
+		T = locate(T.x - round(((orientation%180) ? height : width)/2) , T.y - round(((orientation%180) ? width : height)/2) , T.z) // %180 catches East/West (90,270) rotations on true, North/South (0,180) rotations on false
 	if(!T)
 		return
 	if(T.x+width > world.maxx)
@@ -117,7 +107,7 @@ var/list/global/map_templates = list()
 	if(annihilate)
 		annihilate_bounds(old_T, centered, orientation)
 
-	var/list/bounds = maploader.load_map(file(mappath), T.x, T.y, T.z, cropMap=TRUE, orientation = orientation)
+	var/list/bounds = SSmapping.maploader.load_map(file(mappath), T.x, T.y, T.z, cropMap=TRUE, orientation = orientation)
 	if(!bounds)
 		return
 
@@ -131,15 +121,15 @@ var/list/global/map_templates = list()
 	loaded++
 	return TRUE
 
-/datum/map_template/proc/get_affected_turfs(turf/T, centered = FALSE, orientation = SOUTH)
+/datum/map_template/proc/get_affected_turfs(turf/T, centered = FALSE, orientation = 0)
 	var/turf/placement = T
 	if(centered)
-		var/turf/corner = locate(placement.x - round(((orientation & NORTH|SOUTH) ? width : height)/2), placement.y - round(((orientation & NORTH|SOUTH) ? height : width)/2), placement.z)
+		var/turf/corner = locate(placement.x - round(((orientation%180) ? height : width)/2), placement.y - round(((orientation%180) ? width : height)/2), placement.z) // %180 catches East/West (90,270) rotations on true, North/South (0,180) rotations on false
 		if(corner)
 			placement = corner
-	return block(placement, locate(placement.x+((orientation & NORTH|SOUTH) ? width : height)-1, placement.y+((orientation & NORTH|SOUTH) ? height : width)-1, placement.z))
+	return block(placement, locate(placement.x+((orientation%180) ? height : width)-1, placement.y+((orientation%180) ? width : height)-1, placement.z))
 
-/datum/map_template/proc/annihilate_bounds(turf/origin, centered = FALSE, orientation = SOUTH)
+/datum/map_template/proc/annihilate_bounds(turf/origin, centered = FALSE, orientation = 0)
 	var/deleted_atoms = 0
 	admin_notice("<span class='danger'>Annihilating objects in submap loading locatation.</span>", R_DEBUG)
 	var/list/turfs_to_clean = get_affected_turfs(origin, centered, orientation)
@@ -153,7 +143,7 @@ var/list/global/map_templates = list()
 
 //for your ever biggening badminnery kevinz000
 //❤ - Cyberboss
-/proc/load_new_z_level(var/file, var/name, var/orientation = SOUTH)
+/proc/load_new_z_level(var/file, var/name, var/orientation = 0)
 	var/datum/map_template/template = new(file, name)
 	template.load_new_z(orientation)
 
@@ -176,8 +166,8 @@ var/list/global/map_templates = list()
 	var/list/priority_submaps = list() // Submaps that will always be placed.
 
 	// Lets go find some submaps to make.
-	for(var/map in map_templates)
-		var/datum/map_template/MT = map_templates[map]
+	for(var/map in SSmapping.map_templates)
+		var/datum/map_template/MT = SSmapping.map_templates[map]
 		if(!MT.allow_duplicates && MT.loaded > 0) // This probably won't be an issue but we might as well.
 			continue
 		if(!istype(MT, desired_map_template_type)) // Not the type wanted.
@@ -230,13 +220,13 @@ var/list/global/map_templates = list()
 
 			var/orientation
 			if(chosen_template.fixed_orientation || !config.random_submap_orientation)
-				orientation = SOUTH
+				orientation = 0
 			else
-				orientation = pick(cardinal)
+				orientation = pick(list(0, 90, 180, 270))
 
 			chosen_template.preload_size(chosen_template.mappath, orientation)
-			var/width_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation & NORTH|SOUTH) ? chosen_template.width : chosen_template.height) / 2)
-			var/height_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation & NORTH|SOUTH) ? chosen_template.height : chosen_template.width) / 2)
+			var/width_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation%180) ? chosen_template.height : chosen_template.width) / 2) // %180 catches East/West (90,270) rotations on true, North/South (0,180) rotations on false
+			var/height_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation%180) ? chosen_template.width : chosen_template.height) / 2)
 			var/z_level = pick(z_levels)
 			var/turf/T = locate(rand(width_border, world.maxx - width_border), rand(height_border, world.maxy - height_border), z_level)
 			var/valid = TRUE

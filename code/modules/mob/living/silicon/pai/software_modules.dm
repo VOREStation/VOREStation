@@ -480,12 +480,14 @@
 			user.add_language(LANGUAGE_SIIK)
 			user.add_language(LANGUAGE_AKHANI)
 			user.add_language(LANGUAGE_SKRELLIAN)
+			user.add_language(LANGUAGE_ZADDAT)
 			user.add_language(LANGUAGE_SCHECHI)
 		else
 			user.remove_language(LANGUAGE_UNATHI)
 			user.remove_language(LANGUAGE_SIIK)
 			user.remove_language(LANGUAGE_AKHANI)
 			user.remove_language(LANGUAGE_SKRELLIAN)
+			user.remove_language(LANGUAGE_ZADDAT)
 			user.remove_language(LANGUAGE_SCHECHI)
 
 	is_active(mob/living/silicon/pai/user)

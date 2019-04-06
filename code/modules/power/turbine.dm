@@ -85,7 +85,7 @@
 #define COMPFRICTION 5e5
 #define COMPSTARTERLOAD 2800
 
-/obj/machinery/compressor/initialize()
+/obj/machinery/compressor/Initialize()
 	. = ..()
 	default_apply_parts()
 	gas_contained = new()
@@ -95,10 +95,8 @@
 		stat |= BROKEN
 
 // When anchored, don't let air past us.
-/obj/machinery/compressor/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
-	if(!height || air_group)
-		return !anchored
-	return !density
+/obj/machinery/compressor/CanZASPass(turf/T, is_zone)
+	return anchored ? ATMOS_PASS_NO : ATMOS_PASS_YES
 
 /obj/machinery/compressor/proc/locate_machinery()
 	if(turbine)
@@ -194,7 +192,7 @@
 #define TURBGENQ 100000
 #define TURBGENG 0.8
 
-/obj/machinery/power/turbine/initialize()
+/obj/machinery/power/turbine/Initialize()
 	. = ..()
 	default_apply_parts()
 	// The outlet is pointed at the direction of the turbine component
@@ -318,7 +316,7 @@
 // Turbine Computer
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/obj/machinery/computer/turbine_computer/initialize()
+/obj/machinery/computer/turbine_computer/Initialize()
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 

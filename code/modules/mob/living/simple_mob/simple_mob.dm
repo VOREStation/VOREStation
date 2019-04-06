@@ -14,7 +14,7 @@
 	mob_swap_flags = ~HEAVY
 	mob_push_flags = ~HEAVY
 
-	var/tt_desc = "Uncataloged Life Form" //Tooltip description
+	var/tt_desc = null //Tooltip description
 
 	//Settings for played mobs
 	var/show_stat_health = 1		// Does the percentage health show in the stat panel for the mob
@@ -82,6 +82,8 @@
 	//Attack ranged settings
 	var/projectiletype				// The projectiles I shoot
 	var/projectilesound				// The sound I make when I do it
+	var/projectile_accuracy = 0		// Accuracy modifier to add onto the bullet when its fired.
+	var/projectile_dispersion = 0	// How many degrees to vary when I do it.
 	var/casingtype					// What to make the hugely laggy casings pile out of
 
 	// Reloading settings, part of ranged code
@@ -149,8 +151,10 @@
 	var/purge = 0					// Cult stuff.
 	var/supernatural = FALSE		// Ditto.
 
+	// contained in a cage
+	var/in_stasis = 0
 
-/mob/living/simple_mob/initialize()
+/mob/living/simple_mob/Initialize()
 	verbs -= /mob/verb/observe
 	health = maxHealth
 

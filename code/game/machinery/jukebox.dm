@@ -64,7 +64,7 @@
 	..()
 
 // On initialization, copy our tracks from the global list
-/obj/machinery/media/jukebox/initialize()
+/obj/machinery/media/jukebox/Initialize()
 	. = ..()
 	if(LAZYLEN(all_jukebox_tracks)) //Global list has tracks
 		tracks.Cut()

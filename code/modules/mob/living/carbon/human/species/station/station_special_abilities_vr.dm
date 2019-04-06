@@ -10,16 +10,16 @@
 
 /mob/living/carbon/human/proc/chimera_regenerate()
 	//If they're already regenerating
-	switch(reviving)
+	switch(revive_ready)
 		if(REVIVING_NOW)
 			to_chat(src, "You are already reconstructing, just wait for the reconstruction to finish!")
 			return
 		if(REVIVING_DONE)
 			to_chat(src, "Your reconstruction is done, but you need to hatch now.")
 			return
-		if(REVIVING_COOLDOWN)
-			to_chat(src, "You can't use that ability again so soon!")
-			return
+	if(revive_ready > world.time)
+		to_chat(src, "You can't use that ability again so soon!")
+		return
 
 	var/nutrition_used = nutrition * 0.5
 	var/time = (240+960/(1 + nutrition_used/75))
@@ -32,18 +32,18 @@
 			to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
 
 			//Scary spawnerization.
-			reviving = REVIVING_NOW
+			revive_ready = REVIVING_NOW
 			spawn(time SECONDS)
 				// Was dead, now not dead.
 				if(stat != DEAD)
 					to_chat(src, "<span class='notice'>Your body has recovered from its ordeal, ready to regenerate itself again.</span>")
-					reviving = 0 //Not bool
+					revive_ready = REVIVING_READY //reset their cooldown
 
 				// Was dead, still dead.
 				else
 					to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch.</span>")
 					verbs |= /mob/living/carbon/human/proc/hatch
-					reviving = REVIVING_DONE
+					revive_ready = REVIVING_DONE
 
 		//Dead until nutrition injected.
 		else
@@ -54,25 +54,25 @@
 		to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
 
 		//Waiting for regen after being alive
-		reviving = REVIVING_NOW
+		revive_ready = REVIVING_NOW
 		spawn(time SECONDS)
 
 			//If they're still alive after regenning.
 			if(stat != DEAD)
 				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
 				verbs |= /mob/living/carbon/human/proc/hatch
-				reviving = REVIVING_DONE
+				revive_ready = REVIVING_DONE
 
 			//Was alive, now dead
 			else if(hasnutriment())
 				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
 				verbs |= /mob/living/carbon/human/proc/hatch
-				reviving = REVIVING_DONE
+				revive_ready = REVIVING_DONE
 
 			//Dead until nutrition injected.
 			else
 				to_chat(src, "<span class='warning'>Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.</span>")
-				reviving = 0 //Not boolean
+				revive_ready = REVIVING_READY //reset their cooldown
 
 /mob/living/carbon/human/proc/hasnutriment()
 	if (bloodstr.has_reagent("nutriment", 30) || src.bloodstr.has_reagent("protein", 15)) //protein needs half as much. For reference, a steak contains 9u protein.
@@ -86,7 +86,7 @@
 	set name = "Hatch"
 	set category = "Abilities"
 
-	if(reviving != REVIVING_DONE)
+	if(revive_ready != REVIVING_DONE)
 		//Hwhat?
 		verbs -= /mob/living/carbon/human/proc/hatch
 		return
@@ -107,7 +107,7 @@
 			else
 				to_chat(src, "Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.")
 				verbs -= /mob/living/carbon/human/proc/hatch
-				reviving = 0 //So they can try again when they're given a kickstart
+				revive_ready = REVIVING_READY //reset their cooldown they can try again when they're given a kickstart
 
 		//Alive when hatching
 		else
@@ -141,8 +141,10 @@
 	var/T = get_turf(src)
 	new /obj/effect/gibspawner/human/xenochimera(T)
 
-	reviving = REVIVING_COOLDOWN
-	schedule_callback_in(1 HOUR, VARSET_CALLBACK(src, reviving, 0))
+	revive_ready = world.time + 1 HOUR //set the cooldown
+
+/mob/living/carbon/human/proc/revivingreset() // keep this as a debug proc or potential future use
+		revive_ready = REVIVING_READY
 
 /obj/effect/gibspawner/human/xenochimera
 	fleshcolor = "#14AD8B"
@@ -260,9 +262,9 @@
 						if(8) src << 'sound/machines/windowdoor.ogg'
 						if(9)
 							//To make it more realistic, I added two gunshots (enough to kill)
-							src << 'sound/weapons/Gunshot.ogg'
+							src << 'sound/weapons/Gunshot1.ogg'
 							spawn(rand(10,30))
-								src << 'sound/weapons/Gunshot.ogg'
+								src << 'sound/weapons/Gunshot2.ogg'
 						if(10) src << 'sound/weapons/smash.ogg'
 						if(11)
 							//Same as above, but with tasers.

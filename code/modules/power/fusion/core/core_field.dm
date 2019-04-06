@@ -117,7 +117,7 @@
 	catcher.SetSize(7)
 	particle_catchers.Add(catcher)
 
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 /obj/effect/fusion_em_field/process()
 	//make sure the field generator is still intact
@@ -496,7 +496,7 @@
 	if(owned_core)
 		owned_core.owned_field = null
 		owned_core = null
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/effect/fusion_em_field/bullet_act(var/obj/item/projectile/Proj)

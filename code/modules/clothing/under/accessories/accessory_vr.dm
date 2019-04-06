@@ -40,8 +40,11 @@
 	if(!jingled)
 		usr.audible_message("[usr] jingles the [src]'s bell.")
 		jingled = 1
-		schedule_callback_in(5 SECONDS, VARSET_CALLBACK(src, jingled, 0))
+		addtimer(CALLBACK(src, .proc/jingledreset), 50)
 	return
+
+/obj/item/clothing/accessory/collar/bell/proc/jingledreset()
+		jingled = 0
 
 /obj/item/clothing/accessory/collar/shock
 	name = "Shock collar"
@@ -54,7 +57,7 @@
 	var/code = 2
 	var/datum/radio_frequency/radio_connection
 
-/obj/item/clothing/accessory/collar/shock/New()
+/obj/item/clothing/accessory/collar/shock/Initialize()
 	..()
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT) // Makes it so you don't need to change the frequency off of default for it to work.
 
@@ -178,6 +181,8 @@
 	icon_state = "collar_holo"
 	item_state = "collar_holo_overlay"
 	overlay_state = "collar_holo_overlay"
+	matter = list(DEFAULT_WALL_MATERIAL = 50)
+
 
 /obj/item/clothing/accessory/collar/attack_self(mob/user as mob)
 	if(istype(src,/obj/item/clothing/accessory/collar/holo))

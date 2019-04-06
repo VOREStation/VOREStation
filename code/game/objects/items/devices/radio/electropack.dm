@@ -8,7 +8,6 @@
 			)
 	item_state = "electropack"
 	frequency = 1449
-	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	w_class = ITEMSIZE_HUGE
 

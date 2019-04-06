@@ -286,6 +286,7 @@
 
 	if (modify)
 		modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
+		modify.lost_access = list()	//VOREStation addition: reset the lost access upon any modifications
 
 	return 1
 

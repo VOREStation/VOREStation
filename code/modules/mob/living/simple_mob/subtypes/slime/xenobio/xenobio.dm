@@ -20,7 +20,7 @@
 	var/number = 0 // This is used to make the slime semi-unique for indentification.
 	var/harmless = FALSE // Set to true when pacified. Makes the slime harmless, not get hungry, and not be able to grow/reproduce.
 
-/mob/living/simple_mob/slime/xenobio/initialize(mapload, var/mob/living/simple_mob/slime/xenobio/my_predecessor)
+/mob/living/simple_mob/slime/xenobio/Initialize(mapload, var/mob/living/simple_mob/slime/xenobio/my_predecessor)
 	ASSERT(ispath(ai_holder_type, /datum/ai_holder/simple_mob/xenobio_slime))
 	number = rand(1, 1000)
 	update_name()
@@ -29,6 +29,7 @@
 
 	if(my_predecessor)
 		inherit_information(my_predecessor)
+
 
 /mob/living/simple_mob/slime/xenobio/Destroy()
 	if(victim)
@@ -51,6 +52,7 @@
 	AI.obedience = max(previous_AI.obedience - 1, 0)
 	AI.resentment = max(previous_AI.resentment - 1, 0)
 	AI.rabid = previous_AI.rabid
+
 
 /mob/living/simple_mob/slime/xenobio/update_icon()
 	icon_living = "[icon_state_override ? "[icon_state_override] slime" : "slime"] [is_adult ? "adult" : "baby"][victim ? " eating" : ""]"

@@ -4,12 +4,12 @@
 	icon_state = "radiation_emitter"
 	var/radiation_power = 30 // Bigger numbers means more radiation.
 
-/obj/effect/map_effect/radiation_emitter/initialize()
-	processing_objects += src
+/obj/effect/map_effect/radiation_emitter/Initialize()
+	START_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/effect/map_effect/radiation_emitter/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/effect/map_effect/radiation_emitter/process()

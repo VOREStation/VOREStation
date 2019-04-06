@@ -152,7 +152,7 @@
 		return TRUE
 
 	if(Process_Spacemove()) //Checks for active jetpack
-		return FALSE
+		return TRUE
 
 	for(var/turf/simulated/T in trange(1,src)) //Robots get "magboots"
 		if(T.density)

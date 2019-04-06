@@ -162,7 +162,7 @@
 	var/list/my_doors //Should be list("id_tag" = "Pretty Door Name", ...)
 	var/list/my_sensors //Should be list("id_tag" = "Pretty Sensor Name", ...)
 
-/obj/machinery/computer/shuttle_control/web/initialize()
+/obj/machinery/computer/shuttle_control/web/Initialize()
 	. = ..()
 	var/area/my_area = get_area(src)
 	if(my_doors)
@@ -472,7 +472,7 @@
 	var/shuttle_name					//Text name of the shuttle to connect to
 	var/list/destinations				//Make sure this STARTS with a destination that builds a route to one that always exists as an anchor.
 
-/obj/shuttle_connector/initialize()
+/obj/shuttle_connector/Initialize()
 	. = ..()
 	SSshuttles.OnDocksInitialized(CALLBACK(src, .proc/setup_routes))
 

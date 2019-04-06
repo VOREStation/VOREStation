@@ -6,6 +6,7 @@
 	desc = "A solid wall of slightly twitching tendrils."
 	max_integrity = 100
 	point_return = 4
+	can_atmos_pass = ATMOS_PASS_NO
 
 /obj/structure/blob/shield/core
 	point_return = 0

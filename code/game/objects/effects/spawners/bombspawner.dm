@@ -157,7 +157,7 @@
 	if(co != null) carbon_amt = co
 	..()
 
-/obj/effect/spawner/newbomb/New(newloc)
+/obj/effect/spawner/newbomb/Initialize(newloc)
 	..(newloc)
 
 	var/obj/item/device/transfer_valve/V = new(src.loc)

@@ -400,7 +400,7 @@
 		/mob/living/simple_mob/slime/xenobio/ruby
 	)
 
-/mob/living/simple_mob/slime/xenobio/ruby/initialize()
+/mob/living/simple_mob/slime/xenobio/ruby/Initialize()
 	add_modifier(/datum/modifier/slime_strength, null, src) // Slime is always swole.
 	return ..()
 
@@ -766,7 +766,7 @@
 		/mob/living/simple_mob/slime/xenobio/rainbow
 	)
 
-/mob/living/simple_mob/slime/xenobio/rainbow/initialize()
+/mob/living/simple_mob/slime/xenobio/rainbow/Initialize()
 	unify()
 	return ..()
 
@@ -779,6 +779,6 @@
 	// Instead lets just give them an ai_holder that does that for us.
 	ai_holder_type = /datum/ai_holder/simple_mob/xenobio_slime/passive
 
-/mob/living/simple_mob/slime/xenobio/rainbow/kendrick/initialize()
+/mob/living/simple_mob/slime/xenobio/rainbow/kendrick/Initialize()
 	pacify() // So the physical mob also gets made harmless.
 	return ..()

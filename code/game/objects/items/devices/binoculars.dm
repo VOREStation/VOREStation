@@ -1,10 +1,7 @@
 /obj/item/device/binoculars
-
 	name = "binoculars"
 	desc = "A pair of binoculars."
 	icon_state = "binoculars"
-
-	flags = CONDUCT
 	force = 5.0
 	w_class = ITEMSIZE_SMALL
 	throwforce = 5.0

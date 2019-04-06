@@ -29,6 +29,7 @@
 		/mob/living/carbon/human/proc/succubus_drain_finalize,
 		/mob/living/carbon/human/proc/succubus_drain_lethal,
 		/mob/living/carbon/human/proc/bloodsuck,
+		/mob/living/carbon/human/proc/tie_hair,
 		/mob/living/proc/shred_limb,
 		/mob/living/proc/flying_toggle,
 		/mob/living/proc/start_wings_hovering) //Xenochimera get all the special verbs since they can't select traits.
@@ -66,6 +67,7 @@
 	base_color 	= "#333333"
 	blood_color = "#14AD8B"
 
+	reagent_tag = IS_CHIMERA
 
 /datum/species/xenochimera/handle_environment_special(var/mob/living/carbon/human/H)
 	//If they're KO'd/dead, they're probably not thinking a lot about much of anything.
@@ -73,7 +75,7 @@
 		handle_feralness(H)
 
 	//While regenerating
-	if(H.reviving && H.reviving != REVIVING_COOLDOWN)
+	if(H.revive_ready == REVIVING_NOW || H.revive_ready == REVIVING_DONE)
 		H.weakened = 5
 		H.canmove = 0
 		H.does_not_breathe = TRUE

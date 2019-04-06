@@ -209,6 +209,31 @@
 		icon_state = "hair_messy"
 		species_allowed = list(SPECIES_TAJ, SPECIES_XENOCHIMERA, SPECIES_PROTEAN)
 
+	taj_ears_curls
+		name = "Tajaran Curly"
+		icon_state = "hair_curly"
+		species_allowed = list(SPECIES_TAJ, SPECIES_XENOCHIMERA, SPECIES_PROTEAN)
+
+	taj_ears_wife
+		name = "Tajaran Housewife"
+		icon_state = "hair_wife"
+		species_allowed = list(SPECIES_TAJ, SPECIES_XENOCHIMERA, SPECIES_PROTEAN)
+
+	taj_ears_victory
+		name = "Tajaran Victory Curls"
+		icon_state = "hair_victory"
+		species_allowed = list(SPECIES_TAJ, SPECIES_XENOCHIMERA, SPECIES_PROTEAN)
+
+	taj_ears_bob
+		name = "Tajaran Bob"
+		icon_state = "hair_tbob"
+		species_allowed = list(SPECIES_TAJ, SPECIES_XENOCHIMERA, SPECIES_PROTEAN)
+
+	taj_ears_fingercurl
+		name = "Tajaran Finger Curls"
+		icon_state = "hair_fingerwave"
+		species_allowed = list(SPECIES_TAJ, SPECIES_XENOCHIMERA, SPECIES_PROTEAN)
+
 	teshari_fluffymohawk
 		name = "Teshari Fluffy Mohawk"
 		icon =  'icons/mob/human_face_vr.dmi'
@@ -1011,6 +1036,32 @@
 		icon_state = "panels"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
+
+	tentacle_head
+		name = "Squid Head"
+		icon_state = "tentaclehead"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
+	tentacle_mouth
+		name = "Tentacle Mouth"
+		icon_state = "tentaclemouth"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
+	/*
+	rosette
+		name = "Rosettes"
+		icon_state = "rosette"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+
+	rosette_color
+		name = "Rosettes (Colorable)"
+		icon_state = "rosette_color"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+	*/
 
 	heterochromia
 		name = "Heterochromia"

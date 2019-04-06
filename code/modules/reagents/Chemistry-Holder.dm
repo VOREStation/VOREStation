@@ -85,9 +85,7 @@
 
 //returns 1 if the holder should continue reactiong, 0 otherwise.
 /datum/reagents/proc/process_reactions()
-	if(!my_atom) // No reactions in temporary holders
-		return 0
-	if(!my_atom.loc) //No reactions inside GC'd containers
+	if(QDELETED(my_atom))		//No container, no reaction.
 		return 0
 	if(my_atom.flags & NOREACT) // No reactions here
 		return 0
@@ -152,7 +150,7 @@
 			my_atom.on_reagent_change()
 		return 1
 	else
-		warning("[my_atom] attempted to add a reagent called '[id]' which doesn't exist. ([usr])")
+		crash_with("[my_atom] attempted to add a reagent called '[id]' which doesn't exist. ([usr])")
 	return 0
 
 /datum/reagents/proc/remove_reagent(var/id, var/amount, var/safety = 0)

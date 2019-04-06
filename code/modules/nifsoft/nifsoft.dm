@@ -265,7 +265,7 @@
 	stored = /datum/nifsoft/package/engineering
 
 /datum/nifsoft/package/engineering
-	software = list(/datum/nifsoft/ar_eng,/datum/nifsoft/uvblocker)
+	software = list(/datum/nifsoft/ar_eng,/datum/nifsoft/alarmmonitor,/datum/nifsoft/uvblocker)
 
 /obj/item/weapon/storage/box/nifsofts_engineering
 	name = "engineering nifsoft disks"

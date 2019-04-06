@@ -33,6 +33,8 @@
 	appearance = thing_to_copy.appearance
 	copying = thing_to_copy
 	density = thing_to_copy.density // So you can't bump into objects that aren't supposed to be dense.
+	catalogue_data = thing_to_copy.catalogue_data.Copy()
+	catalogue_delay = thing_to_copy.catalogue_delay
 	return TRUE
 
 // Because we can't perfectly duplicate some examine() output, we directly examine the AM it is copying.  It's messy but
@@ -99,3 +101,16 @@
 /mob/living/simple_mob/illusion/get_nametag_desc(mob/user)
 	if(copying)
 		return copying.get_nametag_desc(user)
+
+// Cataloguer stuff. I don't think this will actually come up but better safe than sorry.
+/mob/living/simple_mob/illusion/get_catalogue_data()
+	if(copying)
+		return copying.get_catalogue_data()
+
+/mob/living/simple_mob/illusion/can_catalogue()
+	if(copying)
+		return copying.can_catalogue()
+
+/mob/living/simple_mob/illusion/get_catalogue_delay()
+	if(copying)
+		return copying.get_catalogue_delay()

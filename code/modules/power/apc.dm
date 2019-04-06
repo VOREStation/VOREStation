@@ -199,6 +199,17 @@
 
 	return ..()
 
+// APCs are pixel-shifted, so they need to be updated.
+/obj/machinery/power/apc/set_dir(new_dir)
+	..()
+	pixel_x = (src.dir & 3)? 0 : (src.dir == 4 ? 24 : -24)
+	pixel_y = (src.dir & 3)? (src.dir ==1 ? 24 : -24) : 0
+	if(terminal)
+		terminal.disconnect_from_network()
+		terminal.set_dir(src.dir) // Terminal has same dir as master
+		terminal.connect_to_network() // Refresh the network the terminal is connected to.
+	return
+
 /obj/machinery/power/apc/proc/energy_fail(var/duration)
 	failure_timer = max(failure_timer, round(duration))
 

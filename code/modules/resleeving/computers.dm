@@ -16,7 +16,7 @@
 	var/synthetic_capable = 1
 	var/obj/item/weapon/disk/transcore/disk
 
-/obj/machinery/computer/transhuman/resleeving/initialize()
+/obj/machinery/computer/transhuman/resleeving/Initialize()
 	. = ..()
 	updatemodules()
 
