@@ -828,15 +828,25 @@ proc/GaussRandRound(var/sigma,var/roundto)
 						SX.air.copy_from(ST.zone.air)
 						ST.zone.remove(ST)
 
+					var/z_level_change = FALSE
+					if(T.z != X.z)
+						z_level_change = TRUE
+
 					//Move the objects. Not forceMove because the object isn't "moving" really, it's supposed to be on the "same" turf.
 					for(var/obj/O in T)
 						O.loc = X
 						O.update_light()
+						if(z_level_change) // The objects still need to know if their z-level changed.
+							O.onTransitZ(T.z, X.z)
 
 					//Move the mobs unless it's an AI eye or other eye type.
 					for(var/mob/M in T)
 						if(istype(M, /mob/observer/eye)) continue // If we need to check for more mobs, I'll add a variable
 						M.loc = X
+
+						if(z_level_change) // Same goes for mobs.
+							M.onTransitZ(T.z, X.z)
+
 						if(istype(M, /mob/living))
 							var/mob/living/LM = M
 							LM.check_shadow() // Need to check their Z-shadow, which is normally done in forceMove().
