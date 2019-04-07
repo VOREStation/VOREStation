@@ -217,13 +217,13 @@
 
 	spawn(gib_time)
 
-		src.operating = 0
-		src.occupant.gib()
-		qdel(src.occupant)
+		operating = 0
+		occupant.gib()
+		occupant = null
 
 		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 		operating = 0
-		for (var/obj/item/thing in contents)
+		for (var/obj/thing in contents)
 			// There's a chance that the gibber will fail to destroy some evidence.
 			if(istype(thing,/obj/item/organ) && prob(80))
 				qdel(thing)
