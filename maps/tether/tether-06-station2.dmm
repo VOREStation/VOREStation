@@ -9933,15 +9933,9 @@
 /area/ai_monitored/storage/eva)
 "rK" = (
 /obj/structure/table/reinforced,
-/obj/item/stack/material/glass{
-	amount = 50
-	},
-/obj/item/stack/material/glass{
-	amount = 50
-	},
-/obj/item/stack/material/glass{
-	amount = 50
-	},
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
@@ -10304,12 +10298,8 @@
 /obj/machinery/camera/network/security{
 	dir = 8
 	},
-/obj/item/stack/material/glass/reinforced{
-	amount = 50
-	},
-/obj/item/stack/rods{
-	amount = 50
-	},
+/obj/fiftyspawner/rglass,
+/obj/fiftyspawner/rods,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
@@ -10560,15 +10550,9 @@
 /obj/item/stack/material/plasteel{
 	amount = 10
 	},
-/obj/item/stack/material/steel{
-	amount = 50
-	},
-/obj/item/stack/material/steel{
-	amount = 50
-	},
-/obj/item/stack/material/steel{
-	amount = 50
-	},
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},

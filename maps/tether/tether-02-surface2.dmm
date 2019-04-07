@@ -6552,11 +6552,7 @@
 	dir = 5
 	},
 /obj/structure/table/steel,
-/obj/item/stack/material/glass{
-	amount = 50;
-	pixel_x = 3;
-	pixel_y = 3
-	},
+/obj/fiftyspawner/glass,
 /turf/simulated/floor/tiled/techfloor,
 /area/rnd/workshop)
 "oo" = (
@@ -7326,14 +7322,8 @@
 /obj/structure/table/standard{
 	name = "plastic table frame"
 	},
-/obj/item/stack/material/glass{
-	amount = 50;
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/stack/material/steel{
-	amount = 50
-	},
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/steel,
 /obj/item/clothing/glasses/welding,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -9815,11 +9805,7 @@
 	dir = 10
 	},
 /obj/structure/table/steel,
-/obj/item/stack/material/glass{
-	amount = 50;
-	pixel_x = 3;
-	pixel_y = 3
-	},
+/obj/fiftyspawner/glass,
 /turf/simulated/floor/tiled/techfloor,
 /area/rnd/workshop)
 "vh" = (
