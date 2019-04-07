@@ -1,6 +1,6 @@
 #define OFF 0
 #define FORWARDS 1
-#define BACKWARDS 2
+#define BACKWARDS -1
 
 //conveyor2 is pretty much like the original, except it supports corners, but not diverters.
 //note that corner pieces transfer stuff clockwise when running forward, and anti-clockwise backwards.
