@@ -131,6 +131,7 @@
 	opacity = 0
 	anchored = 1
 	flags = ON_BORDER
+	layer = STAIRS_LAYER
 
 /obj/structure/stairs/Initialize()
 	. = ..()
