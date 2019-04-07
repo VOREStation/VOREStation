@@ -55,7 +55,6 @@
 	origin_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
 	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
 	drill_verb = "hammering"
-	destroy_artefacts = TRUE
 
 /obj/item/weapon/pickaxe/gold
 	name = "golden pickaxe"
@@ -105,7 +104,6 @@
 	digspeed = 15
 	desc = "Cracks rocks with sonic blasts. This one seems like an improved design."
 	drill_verb = "hammering"
-	destroy_artefacts = TRUE
 
 /*****************************Shovel********************************/
 
