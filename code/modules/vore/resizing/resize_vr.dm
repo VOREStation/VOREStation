@@ -155,6 +155,20 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  * @return false if normal code should continue, true to prevent normal code.
  */
 /mob/living/proc/handle_micro_bump_helping(var/mob/living/tmob)
+	//Make sure we would be able to step there in the first place:
+	var/can_move_into = 1
+	if(tmob.loc.density)
+		can_move_into = 0
+	if(can_move_into)
+		for(var/atom/movable/A in tmob.loc)
+			if(A == src)
+				continue
+			if(!A.CanPass(src, tmob.loc))
+				can_move_into = 0
+			if(!can_move_into) break
+
+	if(!can_move_into)
+		return FALSE
 
 	//Both small! Go ahead and go.
 	if(src.get_effective_size() <= RESIZE_A_SMALLTINY && tmob.get_effective_size() <= RESIZE_A_SMALLTINY)
@@ -197,6 +211,21 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  */
 /mob/living/proc/handle_micro_bump_other(var/mob/living/tmob)
 	ASSERT(istype(tmob))
+
+	//Can we even step on their tile normally?
+	var/can_move_into = 1
+	if(tmob.loc.density)
+		can_move_into = 0
+	if(can_move_into)
+		for(var/atom/movable/A in tmob.loc)
+			if(A == src)
+				continue
+			if(!A.CanPass(src, tmob.loc))
+				can_move_into = 0
+			if(!can_move_into) break
+
+	if(!can_move_into)
+		return FALSE
 
 	//If they're flying, don't do any special interactions.
 	if(ishuman(src))
