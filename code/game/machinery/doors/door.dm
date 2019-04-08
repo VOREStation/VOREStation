@@ -27,7 +27,7 @@
 	var/destroy_hits = 10 //How many strong hits it takes to destroy the door
 	var/min_force = 10 //minimum amount of force needed to damage the door with a melee weapon
 	var/hitsound = 'sound/weapons/smash.ogg' //sound door makes when hit with a weapon
-	var/obj/item/stack/material/steel/repairing
+	var/repairing
 	var/block_air_zones = 1 //If set, air zones cannot merge across the door even when it is opened.
 	var/close_door_at = 0 //When to automatically close the door, if possible
 
@@ -209,18 +209,18 @@
 /obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
 	src.add_fingerprint(user)
 
-	if (attempt_vr(src,"attackby_vr",list(I, user))) return
-
 	if(istype(I))
+		if(attackby_vr(I, user))	//VOREStation begin: Fireproofing
+			return					//VOREStation begin: Fireproofing
 		if(istype(I, /obj/item/stack/material) && I.get_material_name() == src.get_material_name())
 			if(stat & BROKEN)
-				user << "<span class='notice'>It looks like \the [src] is pretty busted. It's going to need more than just patching up now.</span>"
+				to_chat(user, "<span class='notice'>It looks like \the [src] is pretty busted. It's going to need more than just patching up now.</span>")
 				return
 			if(health >= maxhealth)
-				user << "<span class='notice'>Nothing to fix!</span>"
+				to_chat(user, "<span class='notice'>Nothing to fix!</span>")
 				return
 			if(!density)
-				user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
+				to_chat(user, "<span class='warning'>\The [src] must be closed before you can repair it.</span>")
 				return
 
 			//figure out how much metal we need
@@ -228,44 +228,45 @@
 			amount_needed = (round(amount_needed) == amount_needed)? amount_needed : round(amount_needed) + 1 //Why does BYOND not have a ceiling proc?
 
 			var/obj/item/stack/stack = I
-			var/transfer
-			if (repairing)
-				transfer = stack.transfer_to(repairing, amount_needed - repairing.amount)
-				if (!transfer)
-					user << "<span class='warning'>You must weld or remove \the [repairing] from \the [src] before you can add anything else.</span>"
+			var/amount_given = amount_needed - repairing
+			var/mats_given = stack.get_amount()
+			if(repairing && amount_given <= 0)
+				to_chat(user, "<span class='warning'>You must weld or remove \the [get_material_name()] from \the [src] before you can add anything else.</span>")
 			else
-				repairing = stack.split(amount_needed)
-				if (repairing)
-					repairing.loc = src
-					transfer = repairing.amount
-
-			if (transfer)
-				user << "<span class='notice'>You fit [transfer] [stack.singular_name]\s to damaged and broken parts on \the [src].</span>"
+				if(mats_given >= amount_given)
+					if(stack.use(amount_given))
+						repairing += amount_given
+				else
+					if(stack.use(mats_given))
+						repairing += mats_given
+						amount_given = mats_given
+			if(amount_given)
+				to_chat(user, "<span class='notice'>You fit [amount_given] [stack.singular_name]\s to damaged and broken parts on \the [src].</span>")
 
 			return
 
 		if(repairing && istype(I, /obj/item/weapon/weldingtool))
 			if(!density)
-				user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
+				to_chat(user, "<span class='warning'>\The [src] must be closed before you can repair it.</span>")
 				return
 
 			var/obj/item/weapon/weldingtool/welder = I
 			if(welder.remove_fuel(0,user))
-				user << "<span class='notice'>You start to fix dents and weld \the [repairing] into place.</span>"
+				to_chat(user, "<span class='notice'>You start to fix dents and weld \the [repairing] into place.</span>")
 				playsound(src, welder.usesound, 50, 1)
-				if(do_after(user, (5 * repairing.amount) * welder.toolspeed) && welder && welder.isOn())
-					user << "<span class='notice'>You finish repairing the damage to \the [src].</span>"
-					health = between(health, health + repairing.amount*DOOR_REPAIR_AMOUNT, maxhealth)
+				if(do_after(user, (5 * repairing) * welder.toolspeed) && welder && welder.isOn())
+					to_chat(user, "<span class='notice'>You finish repairing the damage to \the [src].</span>")
+					health = between(health, health + repairing*DOOR_REPAIR_AMOUNT, maxhealth)
 					update_icon()
-					qdel(repairing)
-					repairing = null
+					repairing = 0
 			return
 
 		if(repairing && I.is_crowbar())
-			user << "<span class='notice'>You remove \the [repairing].</span>"
+			var/obj/item/stack/material/repairing_sheet = get_material().place_sheet(loc)
+			repairing_sheet.amount += repairing-1
+			repairing = 0
+			to_chat(user, "<span class='notice'>You remove \the [repairing_sheet].</span>")
 			playsound(src, I.usesound, 100, 1)
-			repairing.loc = user.loc
-			repairing = null
 			return
 
 		//psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.
@@ -325,13 +326,13 @@
 /obj/machinery/door/examine(mob/user)
 	. = ..()
 	if(src.health <= 0)
-		user << "\The [src] is broken!"
+		to_chat(user, "\The [src] is broken!")
 	if(src.health < src.maxhealth / 4)
-		user << "\The [src] looks like it's about to break!"
+		to_chat(user, "\The [src] looks like it's about to break!")
 	else if(src.health < src.maxhealth / 2)
-		user << "\The [src] looks seriously damaged!"
+		to_chat(user, "\The [src] looks seriously damaged!")
 	else if(src.health < src.maxhealth * 3/4)
-		user << "\The [src] shows signs of damage!"
+		to_chat(user, "\The [src] shows signs of damage!")
 
 
 /obj/machinery/door/proc/set_broken()
