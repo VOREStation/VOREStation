@@ -1810,14 +1810,3 @@ Departamental Swimsuits, for general use
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	w_class = ITEMSIZE_NORMAL
 	slot = ACCESSORY_SLOT_OVER
-
-//Mr_Signmeup: Reshskakskakss Seekiseekis
-/obj/item/clothing/suit/security/navyhos
-	name = "head of security's jacket"
-	desc = "This piece of clothing was specifically designed for asserting superior authority."
-	
-	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "hosbluejacket"
-	
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "hosbluejacket"

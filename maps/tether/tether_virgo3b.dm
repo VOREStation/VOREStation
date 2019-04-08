@@ -14,7 +14,8 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 						Z_LEVEL_SURFACE_MID,
 						Z_LEVEL_SURFACE_HIGH,
 						Z_LEVEL_SURFACE_MINE,
-						Z_LEVEL_SOLARS
+						Z_LEVEL_SOLARS,
+						Z_LEVEL_PLAINS
 						)
 	planetary_wall_type = /turf/unsimulated/wall/planetary/virgo3b
 

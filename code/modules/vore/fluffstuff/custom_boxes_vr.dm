@@ -284,6 +284,18 @@ Swimsuits, for general use, to avoid arriving to work with your swimsuit.
 	name = "Red Swimsuit capsule"
 	has_items = list(/obj/item/clothing/under/swimsuit/red)
 
+/obj/item/weapon/storage/box/fluff/swimsuit/white
+	name = "White Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/white)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/blue
+	name = "Striped Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/striped)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/earth
+	name = "Earthen Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/earth)
+
 /obj/item/weapon/storage/box/fluff/swimsuit/engineering
 	name = "Engineering Swimsuit capsule"
 	has_items = list(/obj/item/clothing/under/swimsuit/fluff/engineering)

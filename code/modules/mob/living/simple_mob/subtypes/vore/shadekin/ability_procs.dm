@@ -1,7 +1,7 @@
 // Phase shifting procs (and related procs)
 /mob/living/simple_mob/shadekin/proc/phase_shift()
 	var/turf/T = get_turf(src)
-	if(!T.CanPass(null,T) || loc != T)
+	if(!T.CanPass(src,T) || loc != T)
 		to_chat(src,"<span class='warning'>You can't use that here!</span>")
 		return FALSE
 

@@ -437,7 +437,7 @@
 
 		for(var/x=1;x<=additional_chems;x++)
 
-			var/new_chem = pick(SSchemistry.chemical_reagents)
+			var/new_chem = pick(chemical_reagents_list)
 			if(new_chem in banned_chems)
 				continue
 			banned_chems += new_chem

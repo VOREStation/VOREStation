@@ -1,6 +1,7 @@
 /mob/Logout()
-	SSnanoui.user_logout(src) // this is used to clean up (remove) this user's Nano UIs
+	GLOB.nanomanager.user_logout(src) // this is used to clean up (remove) this user's Nano UIs
 	player_list -= src
+	disconnect_time = world.realtime	//VOREStation Addition: logging when we disappear.
 	update_client_z(null)
 	log_access_out(src)
 	if(admin_datums[src.ckey])

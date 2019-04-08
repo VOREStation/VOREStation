@@ -30,6 +30,8 @@
 	wreckage = /obj/effect/decal/mecha_wreckage/micro/sec/polecat
 	internal_damage_threshold = 35
 	max_equip = 3
+	max_micro_utility_equip = 0
+	max_micro_weapon_equip = 3
 
 /obj/effect/decal/mecha_wreckage/micro/sec/polecat
 	name = "Polecat wreckage"
@@ -52,6 +54,8 @@
 	wreckage = /obj/effect/decal/mecha_wreckage/micro/sec/weasel
 	internal_damage_threshold = 20
 	max_equip = 2
+	max_micro_utility_equip = 0
+	max_micro_weapon_equip = 2
 
 /obj/effect/decal/mecha_wreckage/micro/sec/weasel
 	name = "Weasel wreckage"

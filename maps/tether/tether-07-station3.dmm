@@ -17359,6 +17359,30 @@
 /area/supply/station{
 	dynamic_lighting = 0
 	})
+"AZ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/window/westleft,
+/obj/machinery/door/window/eastleft{
+	req_one_access = list(33)
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/door/blast/shutters{
+	dir = 8;
+	id = "chemistry";
+	layer = 3.1;
+	name = "Chemistry Shutters"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/monotile,
+/area/medical/chemistry)
 "Ba" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -20457,29 +20481,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/reception)
-"Gu" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/door/window/westleft,
-/obj/machinery/door/window/eastleft{
-	req_one_access = list(33)
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/door/blast/shutters{
-	dir = 8;
-	id = "chemistry";
-	layer = 3.1;
-	name = "Chemistry Shutters"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/medical/chemistry)
 "Gv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -27274,7 +27275,6 @@
 	dir = 6
 	},
 /obj/machinery/suit_cycler/security,
-/obj/machinery/meter,
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "Rn" = (
@@ -36266,7 +36266,7 @@ Do
 Dp
 EP
 FE
-Gu
+AZ
 EP
 Dp
 ID

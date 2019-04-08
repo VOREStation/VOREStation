@@ -149,12 +149,14 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	var/list/contributers = list()
 	var/list/contributer_names = list()
 	for(var/thing in player_list)
-		var/mob/M = thing
-		if(M == user)
+		var/mob/living/L = thing
+		if(L == user)
 			continue
-		if(get_dist(M, user) <= credit_sharing_range)
-			contributers += M
-			contributer_names += M.name
+		if(!istype(L))
+			continue
+		if(get_dist(L, user) <= credit_sharing_range)
+			contributers += L
+			contributer_names += L.name
 
 	var/points_gained = 0
 

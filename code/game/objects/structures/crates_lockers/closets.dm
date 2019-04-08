@@ -33,6 +33,11 @@
 	var/list/starts_with
 
 /obj/structure/closet/Initialize()
+	..()
+	// Closets need to come later because of spawners potentially creating objects during init.
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/structure/closet/LateInitialize()
 	. = ..()
 	if(starts_with)
 		create_objects_in_loc(src, starts_with)

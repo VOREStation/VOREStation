@@ -121,6 +121,8 @@
 			return EatTarget(L)
 		else
 			return ..()
+	else
+		return ..()
 
 
 /mob/living/simple_mob/proc/CanPounceTarget(var/mob/living/M) //returns either FALSE or a %chance of success
