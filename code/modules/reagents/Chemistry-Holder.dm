@@ -94,7 +94,6 @@
 			var/datum/chemical_reaction/C = i
 			if(C.can_happen(src) && C.process(src))
 				effect_reactions |= C
-
 				reaction_occurred = TRUE
 		eligible_reactions.len = 0
 	while(reaction_occurred)
