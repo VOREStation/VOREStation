@@ -5,7 +5,7 @@
 
 	icon_state = "lizard"
 	icon_living = "lizard"
-	icon_dead = "lizard-dead"
+	icon_dead = "lizard_dead"
 
 	health = 5
 	maxHealth = 5
