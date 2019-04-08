@@ -216,7 +216,7 @@
 // Tram departure cryo doors that turn into ordinary airlock doors at round end
 /obj/machinery/cryopod/robot/door/tram
 	name = "\improper Tram Station"
-	icon = 'icons/obj/doors/Doorext.dmi'
+	icon = 'icons/obj/doors/Doorextglass.dmi'
 	icon_state = "door_closed"
 	base_icon_state = "door_closed"
 	occupied_icon_state = "door_locked"
@@ -235,7 +235,7 @@
 		time_till_despawn = 0
 		..()
 		var/turf/T = get_turf(src)
-		var/obj/machinery/door/airlock/external/door = new(T)
+		var/obj/machinery/door/airlock/glass_external/door = new(T)
 		door.req_access = null
 		door.req_one_access = null
 		qdel(src)
