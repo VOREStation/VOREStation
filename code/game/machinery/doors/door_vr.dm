@@ -3,7 +3,7 @@
 		D.fire_act(adj_air, adj_temp, adj_volume)
 
 /obj/machinery/door
-	var/obj/item/stack/material/plasteel/reinforcing //vorestation addition
+	var/reinforcing = 0	//vorestation addition
 
 /obj/machinery/door/firedoor
 	heat_proof = 1
@@ -33,6 +33,9 @@
 
 	return ..()
 
+
+
+/*
 /obj/machinery/door/proc/attackby_vr(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == "plasteel") // Add heat shielding if it isn't already.
 		if(!heat_proof)
@@ -140,6 +143,7 @@
 		reinforcing = null
 		return 1
 	return 0
+*/
 
 /obj/machinery/door/blast/regular/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	return // blast doors are immune to fire completely.
