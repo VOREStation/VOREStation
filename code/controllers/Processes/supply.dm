@@ -78,6 +78,8 @@ var/datum/controller/supply/supply_controller = new()
 		return 1
 	if(istype(A,/obj/item/device/radio/beacon))
 		return 1
+	if(istype(A,/obj/item/device/perfect_tele_beacon))	//VOREStation Addition: Translocator beacons
+		return 1										//VOREStation Addition: Translocator beacons
 
 	for(var/atom/B in A.contents)
 		if(.(B))
