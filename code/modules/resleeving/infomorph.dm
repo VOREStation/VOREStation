@@ -187,7 +187,7 @@ var/list/infomorph_emotions = list(
 	medicalActive1 = null
 	medicalActive2 = null
 	medical_cannotfind = 0
-	GLOB.nanomanager.update_uis(src)
+	SSnanoui.update_uis(src)
 	usr << "<span class='notice'>You reset your record-viewing software.</span>"
 
 /*
@@ -509,7 +509,7 @@ var/global/list/default_infomorph_software = list()
 	data["emotions"] = emotions
 	data["current_emotion"] = card.current_emotion
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open, key_state)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open, key_state)
 	if (!ui)
 		ui = new(user, src, ui_key, "pai_interface.tmpl", "Card Software Interface", 450, 600, state = key_state)
 		ui.set_initial_data(data)
