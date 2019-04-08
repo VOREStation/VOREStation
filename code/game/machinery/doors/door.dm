@@ -209,55 +209,9 @@
 /obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
 	src.add_fingerprint(user)
 
-	//if (attempt_vr(src,"attackby_vr",list(I, user))) return
-
 	if(istype(I))
-		//VOREStation addition begin: Fireproofing
-		if(istype(I, /obj/item/stack/material) && I.get_material_name() == plasteel")
-			if((stat & BROKEN) || (health >= maxhealth))
-				to_chat(user, "<span class='notice'>It looks like \the [src] broken. Repair it before reinforcing it.</span>")
-				return
-			if(!density)
-				to_chat(user, "<span class='warning'>\The [src] must be closed before you can reinforce it.</span>")
-				return
-
-			var/amount_needed = 2
-
-			var/obj/item/stack/stack = I
-			var/amount_given = amount_needed - reinforcing
-			var/mats_given = stack.get_amount()
-			if(reinforcing && amount_given <= 0)
-				to_chat(user, "<span class='warning'>You must weld or remove \the plasteel from \the [src] before you can add anything else.</span>")
-			else
-				if(mats_given >= amount_given)
-					if(stack.use(amount_given))
-						reinforcing += amount_given
-				else
-					if(stack.use(mats_given))
-						reinforcing += mats_given
-						amount_given = mats_given
-			if(amount_given)
-				to_chat(user, "<span class='notice'>You fit [amount_given] [stack.singular_name]\s on \the [src].</span>")
-
-			return
-
-		if(reinforcing && istype(I, /obj/item/weapon/weldingtool))
-			if(!density)
-				to_chat(user, "<span class='warning'>\The [src] must be closed before you can reinforce it.</span>")
-				return
-
-			var/obj/item/weapon/weldingtool/welder = I
-			if(welder.remove_fuel(0,user))
-				to_chat(user, "<span class='notice'>You start weld \the [repairing] into place.</span>")
-				playsound(src, welder.usesound, 50, 1)
-				if(do_after(user, (5 * repairing) * welder.toolspeed) && welder && welder.isOn())
-					to_chat(user, "<span class='notice'>You finish repairing the damage to \the [src].</span>")
-					health = between(health, health + repairing*DOOR_REPAIR_AMOUNT, maxhealth)
-					update_icon()
-					repairing = 0
-			return
-		//VOREStation addition begin: Fireproofing
-
+		if(attackby_vr(I, user))	//VOREStation begin: Fireproofing
+			return					//VOREStation begin: Fireproofing
 		if(istype(I, /obj/item/stack/material) && I.get_material_name() == src.get_material_name())
 			if(stat & BROKEN)
 				to_chat(user, "<span class='notice'>It looks like \the [src] is pretty busted. It's going to need more than just patching up now.</span>")
