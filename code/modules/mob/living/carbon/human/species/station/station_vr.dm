@@ -305,6 +305,7 @@
 	min_age = 18
 	gluttonous = 0
 	inherent_verbs = list(/mob/living/proc/shred_limb)
+	descriptors = list()
 
 /datum/species/tajaran
 	spawn_flags = SPECIES_CAN_JOIN
@@ -330,6 +331,7 @@
 	spawn_flags = SPECIES_CAN_JOIN
 	min_age = 18
 	gluttonous = 0
+	descriptors = list()
 
 /datum/species/diona
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
@@ -345,6 +347,7 @@
 	push_flags = ~HEAVY //Allows them to use micro step code.
 	swap_flags = ~HEAVY
 	gluttonous = 0
+	descriptors = list()
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/sonar_ping,
@@ -371,6 +374,9 @@
 	icobase = 'icons/mob/human_races/r_vox_old.dmi'
 	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
 	inherent_verbs = list(/mob/living/proc/shred_limb, /mob/living/proc/eat_trash)
+	descriptors = list(
+		/datum/mob_descriptor/vox_markings = 0
+		)
 
 datum/species/harpy
 	name = SPECIES_RAPALA
