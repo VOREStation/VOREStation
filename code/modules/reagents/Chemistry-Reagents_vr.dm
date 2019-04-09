@@ -28,13 +28,6 @@
 					BI.forceMove(torso)
 					torso.implants += BI
 
-/obj/item/weapon/reagent_containers/pill/amt
-	name = "amt pill"
-
-/obj/item/weapon/reagent_containers/pill/amt/Initialize()
-	. = ..()
-	reagents.add_reagent("advmutationtoxin", 1)
-
 /datum/chemical_reaction/slime/sapphire_mutation
 	name = "Slime Mutation Toxins"
 	id = "slime_mutation_tox"
