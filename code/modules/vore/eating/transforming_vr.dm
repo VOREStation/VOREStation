@@ -210,7 +210,7 @@
 		return 1
 	return 0
 
-/obj/belly/proc/change_species(var/mob/living/carbon/human/M, message=0)
+/obj/belly/proc/change_species(var/mob/living/carbon/human/M, message=0, color_action = 0)	//color_action: 0 for default species, 1 to preserve, 2 to transfer from pred
 	var/mob/living/carbon/human/O = owner
 	if(!istype(M) || !istype(O))
 		return
@@ -224,17 +224,14 @@
 	if(backup_implants.len)
 		for(var/obj/item/weapon/implant/backup/BI in backup_implants)
 			BI.forceMove(src)
-
-	M.species = O.species
+	if(color_action == 1)
+		M.set_species(O.species.name,0,1,M)
+	else if(color_action == 2)
+		M.set_species(O.species.name,0,1,O)
+	else
+		M.set_species(O.species.name)
 	M.custom_species = O.custom_species
-	M.species.create_organs(M) //This is the only way to make it so Unathi TF doesn't result in people dying from organ rejection.
-	for(var/obj/item/organ/I in M.organs) //This prevents organ rejection
-		I.species = O.species
-	for(var/obj/item/organ/I in M.internal_organs) //This prevents organ rejection
-		I.species = O.species
-	for(var/obj/item/organ/external/Z in M.organs)//Just in case.
-		Z.sync_colour_to_human(M)
-	M.fixblood()
+
 	M.update_icons_body()
 	M.update_tail_showing()
 
@@ -248,7 +245,6 @@
 	if(message)
 		to_chat(M, "<span class='notice'>You lose sensation of your body, feeling only the warmth of everything around you... </span>")
 		to_chat(O, "<span class='notice'>Your body shifts as you make dramatic changes to your captive's body.</span>")
-	M.verbs += M.species.inherent_verbs	//Give new unique stuff
 
 /obj/belly/proc/put_in_egg(var/atom/movable/M, message=0)
 	var/mob/living/carbon/human/O = owner
