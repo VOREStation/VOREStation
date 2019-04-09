@@ -2518,7 +2518,6 @@
 #include "code\modules\organs\subtypes\replicant.dm"
 #include "code\modules\organs\subtypes\seromi.dm"
 #include "code\modules\organs\subtypes\slime.dm"
-#include "code\modules\organs\subtypes\slime_vr.dm"
 #include "code\modules\organs\subtypes\standard.dm"
 #include "code\modules\organs\subtypes\standard_vr.dm"
 #include "code\modules\organs\subtypes\unathi.dm"
