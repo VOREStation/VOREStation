@@ -272,8 +272,8 @@
 	//Alright, we've done our loop, now lets see if was anything interesting in range
 	if(closest_atom)
 		//common stuff
-		var/atom/srcLoc = get_turf(source) // VOREStation Edit - Makes beams look nicer
-		srcLoc.Beam(closest_atom, icon_state="lightning[rand(1,12)]", time=5, maxdistance = INFINITY)  // VOREStation Edit - Makes beams look nicer
+		//var/atom/srcLoc = get_turf(source) // VOREStation Edit - Makes beams look nicer
+		//srcLoc.Beam(closest_atom, icon_state="lightning[rand(1,12)]", time=5, maxdistance = INFINITY)  // VOREStation Edit - Makes beams look nicer
 		var/zapdir = get_dir(source, closest_atom)
 		if(zapdir)
 			. = zapdir
