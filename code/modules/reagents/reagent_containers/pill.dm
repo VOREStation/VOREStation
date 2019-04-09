@@ -293,9 +293,8 @@
 /obj/item/weapon/reagent_containers/pill/zoom/Initialize()
 	. = ..()
 	if(prob(50))						//VOREStation edit begin: Zoom pill adjustments
-		reagents.add_reagent("expired_medicine", 5)
-	else
-		reagents.add_reagent("mold", 5)
+		reagents.add_reagent("mold", 2)	//Chance to be more dangerous
+	reagents.add_reagent("expired_medicine", 5)
 	reagents.add_reagent("fertilizer", 5)
 	reagents.add_reagent("stimm", 5)	//VOREStation edit end: Zoom pill adjustments
 
