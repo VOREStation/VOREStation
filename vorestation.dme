@@ -50,6 +50,7 @@
 #include "code\__defines\lighting.dm"
 #include "code\__defines\machinery.dm"
 #include "code\__defines\map.dm"
+#include "code\__defines\map_vr.dm"
 #include "code\__defines\math.dm"
 #include "code\__defines\math_physics.dm"
 #include "code\__defines\MC.dm"
@@ -3109,4 +3110,5 @@
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
 #include "maps\tether\tether.dm"
 #include "maps\~map_system\maps.dm"
+#include "maps\~map_system\maps_vr.dm"
 // END_INCLUDE
