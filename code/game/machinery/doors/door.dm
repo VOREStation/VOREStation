@@ -27,11 +27,7 @@
 	var/destroy_hits = 10 //How many strong hits it takes to destroy the door
 	var/min_force = 10 //minimum amount of force needed to damage the door with a melee weapon
 	var/hitsound = 'sound/weapons/smash.ogg' //sound door makes when hit with a weapon
-<<<<<<< HEAD
-	var/repairing
-=======
 	var/repairing = 0
->>>>>>> 79455bc... Merge pull request #6061 from Heroman3003/auto-dooring
 	var/block_air_zones = 1 //If set, air zones cannot merge across the door even when it is opened.
 	var/close_door_at = 0 //When to automatically close the door, if possible
 
@@ -256,11 +252,7 @@
 
 			var/obj/item/weapon/weldingtool/welder = I
 			if(welder.remove_fuel(0,user))
-<<<<<<< HEAD
-				to_chat(user, "<span class='notice'>You start to fix dents and weld \the [repairing] into place.</span>")
-=======
 				to_chat(user, "<span class='notice'>You start to fix dents and weld \the [get_material_name()] into place.</span>")
->>>>>>> 79455bc... Merge pull request #6061 from Heroman3003/auto-dooring
 				playsound(src, welder.usesound, 50, 1)
 				if(do_after(user, (5 * repairing) * welder.toolspeed) && welder && welder.isOn())
 					to_chat(user, "<span class='notice'>You finish repairing the damage to \the [src].</span>")
