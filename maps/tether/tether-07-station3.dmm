@@ -16541,8 +16541,10 @@
 /area/quartermaster/qm)
 "zK" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "qm_office"
+	},
 /turf/simulated/floor/plating,
 /area/quartermaster/qm)
 "zL" = (
@@ -17874,6 +17876,11 @@
 	},
 /obj/effect/landmark/start{
 	name = "Quartermaster"
+	},
+/obj/machinery/button/windowtint{
+	id = "qm_office";
+	pixel_x = 26;
+	pixel_y = 8
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/qm)
