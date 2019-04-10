@@ -16551,7 +16551,7 @@
 /turf/simulated/wall,
 /area/quartermaster/qm)
 "zM" = (
-/obj/machinery/door/airlock/glass_mining{
+/obj/machinery/door/airlock/mining{
 	name = "Quartermaster";
 	req_access = list(41);
 	req_one_access = list()
@@ -18398,7 +18398,7 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/qm)
 "CH" = (
-/obj/machinery/door/airlock/glass_mining{
+/obj/machinery/door/airlock/mining{
 	name = "Quartermaster";
 	req_access = list(41);
 	req_one_access = list()
