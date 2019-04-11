@@ -8287,7 +8287,7 @@
 /obj/structure/kitchenspike,
 /obj/machinery/alarm{
 	pixel_y = 22;
-	target_temperature = 293.15
+	target_temperature = 274.15
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/freezer)
