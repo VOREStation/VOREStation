@@ -103,18 +103,23 @@ default behaviour is:
 				return
 
 		//BubbleWrap: people in handcuffs are always switched around as if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-		var/dense = 0
-		if(loc.density)
-			dense = 1
-		for(var/atom/movable/A in loc)
-			if(A == src)
-				continue
-			if(A.density)
-				if(A.flags&ON_BORDER)
-					dense = !A.CanPass(src, src.loc)
-				else
-					dense = 1
-			if(dense) break
+		var/can_swap = 1
+		if(loc.density || tmob.loc.density)
+			can_swap = 0
+		if(can_swap)
+			for(var/atom/movable/A in loc)
+				if(A == src)
+					continue
+				if(!A.CanPass(tmob, loc))
+					can_swap = 0
+				if(!can_swap) break
+		if(can_swap)
+			for(var/atom/movable/A in tmob.loc)
+				if(A == tmob)
+					continue
+				if(!A.CanPass(src, tmob.loc))
+					can_swap = 0
+				if(!can_swap) break
 
 		//Leaping mobs just land on the tile, no pushing, no anything.
 		if(status_flags & LEAPING)
@@ -123,7 +128,7 @@ default behaviour is:
 			now_pushing = 0
 			return
 
-		if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && tmob.canmove && canmove && !tmob.buckled && !buckled && !dense && can_move_mob(tmob, 1, 0)) // mutual brohugs all around!
+		if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && tmob.canmove && canmove && !tmob.buckled && !buckled && can_swap && can_move_mob(tmob, 1, 0)) // mutual brohugs all around!
 			var/turf/oldloc = loc
 			forceMove(tmob.loc)
 			//VOREstation Edit - Begin

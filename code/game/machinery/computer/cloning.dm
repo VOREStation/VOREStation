@@ -146,7 +146,7 @@
 	data["diskette"] = diskette
 	data["temp"] = temp
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "cloning.tmpl", src.name, 400, 450)
 		ui.set_initial_data(data)
@@ -284,7 +284,7 @@
 		temp = ""
 		scantemp = ""
 
-	GLOB.nanomanager.update_uis(src)
+	SSnanoui.update_uis(src)
 	add_fingerprint(usr)
 
 /obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject as mob)

@@ -112,7 +112,7 @@
 	else
 		data["gravity"] = null
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "holodeck.tmpl", src.name, 400, 550)
 		ui.set_initial_data(data)
@@ -152,7 +152,7 @@
 
 		src.add_fingerprint(usr)
 
-	GLOB.nanomanager.update_uis(src)
+	SSnanoui.update_uis(src)
 
 /obj/machinery/computer/HolodeckControl/emag_act(var/remaining_charges, var/mob/user as mob)
 	playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)

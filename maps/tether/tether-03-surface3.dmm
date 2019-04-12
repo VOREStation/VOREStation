@@ -16919,6 +16919,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "DW" = (
+/obj/machinery/computer/timeclock/premade/east,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -19192,41 +19193,15 @@
 /obj/structure/closet{
 	name = "materials"
 	},
-/obj/item/stack/material/steel{
-	amount = 50
-	},
-/obj/item/stack/material/steel{
-	amount = 50
-	},
-/obj/item/stack/material/steel{
-	amount = 50
-	},
-/obj/item/stack/material/steel{
-	amount = 50
-	},
-/obj/item/stack/material/steel{
-	amount = 50
-	},
-/obj/item/stack/material/glass{
-	amount = 50;
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/stack/material/glass{
-	amount = 50;
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/stack/material/glass{
-	amount = 50;
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/obj/item/stack/material/glass{
-	amount = 50;
-	pixel_x = -2;
-	pixel_y = 2
-	},
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
 /obj/item/stack/material/plasteel{
 	amount = 10
 	},

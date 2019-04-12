@@ -316,3 +316,13 @@
 	id = "rigmod_orescanner"
 	build_path = /obj/item/rig_module/device/orescanner
 	sort_string = "HCAAI"
+
+//Prosfab stuff for borgs and such
+
+/datum/design/item/robot_upgrade/sizeshift
+	name = "Size Alteration Module"
+	desc = "Used to allow robot to freely alter their size."
+	id = "borg_sizeshift_module"
+	req_tech = list(TECH_BLUESPACE = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
+	build_path = /obj/item/borg/upgrade/sizeshift

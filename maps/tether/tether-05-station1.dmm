@@ -5777,12 +5777,8 @@
 /area/holodeck_control)
 "aoX" = (
 /obj/structure/table/reinforced,
-/obj/item/stack/material/steel{
-	amount = 50
-	},
-/obj/item/stack/material/glass{
-	amount = 50
-	},
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/glass,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/backup)
 "aoZ" = (
@@ -8877,21 +8873,11 @@
 /area/maintenance/station/bridge)
 "axO" = (
 /obj/structure/table/reinforced,
-/obj/item/stack/material/glass{
-	amount = 50
-	},
-/obj/item/stack/material/glass{
-	amount = 50
-	},
-/obj/item/stack/material/glass{
-	amount = 50
-	},
-/obj/item/stack/material/glass{
-	amount = 50
-	},
-/obj/item/stack/material/glass{
-	amount = 50
-	},
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
 /obj/machinery/alarm{
 	dir = 1;
 	icon_state = "alarm0";
@@ -8902,21 +8888,11 @@
 /area/engineering/workshop)
 "axP" = (
 /obj/structure/table/reinforced,
-/obj/item/stack/material/steel{
-	amount = 50
-	},
-/obj/item/stack/material/steel{
-	amount = 50
-	},
-/obj/item/stack/material/steel{
-	amount = 50
-	},
-/obj/item/stack/material/steel{
-	amount = 50
-	},
-/obj/item/stack/material/steel{
-	amount = 50
-	},
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -24
@@ -12422,7 +12398,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/engineering/engineering_airlock)
 "aHU" = (
-/obj/machinery/teleport/station,
+/obj/machinery/teleport/station{
+	dir = 2
+	},
 /turf/simulated/floor/tiled/dark,
 /area/teleporter)
 "aHW" = (
@@ -12501,7 +12479,9 @@
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
 "aIj" = (
-/obj/machinery/teleport/hub,
+/obj/machinery/teleport/hub{
+	dir = 2
+	},
 /turf/simulated/floor/tiled/dark,
 /area/teleporter)
 "aIl" = (
@@ -17034,20 +17014,10 @@
 "bkx" = (
 /obj/structure/table/reinforced,
 /obj/item/stack/material/plasteel{
-	amount = 10
+	amount = 30
 	},
-/obj/item/stack/material/plasteel{
-	amount = 10
-	},
-/obj/item/stack/material/plasteel{
-	amount = 10
-	},
-/obj/item/stack/material/plastic{
-	amount = 50
-	},
-/obj/item/stack/material/plastic{
-	amount = 50
-	},
+/obj/fiftyspawner/plastic,
+/obj/fiftyspawner/plastic,
 /turf/simulated/floor/tiled,
 /area/engineering/workshop)
 "bky" = (
@@ -21381,18 +21351,12 @@
 /area/vacant/vacant_restaurant_lower)
 "bZc" = (
 /obj/structure/table/reinforced,
-/obj/item/stack/rods{
-	amount = 50
-	},
-/obj/item/stack/rods{
-	amount = 50
-	},
+/obj/fiftyspawner/rods,
+/obj/fiftyspawner/rods,
 /obj/item/stack/material/glass/phoronrglass{
 	amount = 20
 	},
-/obj/item/stack/material/wood{
-	amount = 50
-	},
+/obj/fiftyspawner/wood,
 /obj/machinery/camera/network/engineering{
 	dir = 1
 	},

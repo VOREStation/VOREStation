@@ -195,6 +195,8 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 //returns 1 if the shuttle is not idle at centcom
 /datum/emergency_shuttle_controller/proc/online()
+	if(!shuttle)
+		return FALSE
 	if (!shuttle.location)	//not at centcom
 		return 1
 	if (wait_for_launch || shuttle.moving_status != SHUTTLE_IDLE)

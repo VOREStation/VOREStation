@@ -68,6 +68,7 @@ What is the naming convention for planes or layers?
 
 // Obj planes
 #define OBJ_PLANE				-35
+	#define STAIRS_LAYER			2.5 // Layer for stairs
 	#define HIDING_LAYER			2.6 // Layer at which mobs hide to be under things like tables
 	#define DOOR_OPEN_LAYER			2.7 // Under all objects if opened. 2.7 due to tables being at 2.6
 	#define TABLE_LAYER				2.8 // Just under stuff that wants to be slightly below common objects.

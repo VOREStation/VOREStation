@@ -210,42 +210,41 @@
 		return 1
 	return 0
 
-/obj/belly/proc/change_species(var/mob/living/carbon/human/M, message=0)
+/obj/belly/proc/change_species(var/mob/living/carbon/human/M, message=0, color_action = 0)	//color_action: 0 for default species, 1 to preserve, 2 to transfer from pred
 	var/mob/living/carbon/human/O = owner
 	if(!istype(M) || !istype(O))
 		return
 
-	if (M.species == "Promethean" && O.species != "Promethean") //If the person was a promethean before TF, remove all their verbs!
-		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_shape
-		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_colour
-		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_hair
-		M.verbs -=  /mob/living/carbon/human/proc/shapeshifter_select_gender
-		M.verbs -=  /mob/living/carbon/human/proc/regenerate
-		M.verbs -=  /mob/living/proc/set_size
+	M.verbs -=  M.species.inherent_verbs	//Take away their unique stuff
 
-	M.species = O.species
+	var/list/backup_implants = list()
+	for(var/obj/item/organ/I in M.organs)
+		for(var/obj/item/weapon/implant/backup/BI in I.contents)
+			backup_implants += BI
+	if(backup_implants.len)
+		for(var/obj/item/weapon/implant/backup/BI in backup_implants)
+			BI.forceMove(src)
+	if(color_action == 1)
+		M.set_species(O.species.name,0,1,M)
+	else if(color_action == 2)
+		M.set_species(O.species.name,0,1,O)
+	else
+		M.set_species(O.species.name)
 	M.custom_species = O.custom_species
-	M.species.create_organs(M) //This is the only way to make it so Unathi TF doesn't result in people dying from organ rejection.
-	for(var/obj/item/organ/I in M.organs) //This prevents organ rejection
-		I.species = O.species
-	for(var/obj/item/organ/I in M.internal_organs) //This prevents organ rejection
-		I.species = O.species
-	for(var/obj/item/organ/external/Z in M.organs)//Just in case.
-		Z.sync_colour_to_human(M)
-	M.fixblood()
+
 	M.update_icons_body()
 	M.update_tail_showing()
+
+	if(backup_implants.len)
+		var/obj/item/organ/external/torso = M.get_organ(BP_TORSO)
+		for(var/obj/item/weapon/implant/backup/BI in backup_implants)
+			BI.forceMove(torso)
+			torso.implants += BI
+
+
 	if(message)
 		to_chat(M, "<span class='notice'>You lose sensation of your body, feeling only the warmth of everything around you... </span>")
 		to_chat(O, "<span class='notice'>Your body shifts as you make dramatic changes to your captive's body.</span>")
-	if (M.species == "Promethean") //Did they get TF'd into a promethean?
-		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_shape
-		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_colour
-		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_hair
-		M.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_gender
-		M.verbs +=  /mob/living/carbon/human/proc/regenerate
-		M.verbs +=  /mob/living/proc/set_size
-		M.shapeshifter_select_shape()
 
 /obj/belly/proc/put_in_egg(var/atom/movable/M, message=0)
 	var/mob/living/carbon/human/O = owner

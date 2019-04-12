@@ -56,7 +56,7 @@ SUBSYSTEM_DEF(transcore)
 			implants -= imp
 			continue
 
-		//In a human	
+		//In a human
 		BITSET(H.hud_updateflag, BACKUP_HUD)
 
 		if(H == imp.imp_in && H.mind && H.stat < DEAD)
@@ -93,6 +93,7 @@ SUBSYSTEM_DEF(transcore)
 		else
 			if(curr_MR.dead_state != MR_DEAD) //First time switching to dead
 				notify(name)
+				curr_MR.last_notification = world.time
 			curr_MR.dead_state = MR_DEAD
 
 		if(MC_TICK_CHECK)
@@ -158,9 +159,12 @@ SUBSYSTEM_DEF(transcore)
 	return 1
 
 // Send a past-due notification to the medical radio channel.
-/datum/controller/subsystem/transcore/proc/notify(var/name)
+/datum/controller/subsystem/transcore/proc/notify(var/name, var/repeated = FALSE)
 	ASSERT(name)
-	global_announcer.autosay("[name] is past-due for a mind backup. This will be the only notification.", "TransCore Oversight", "Medical")
+	if(repeated)
+		global_announcer.autosay("This is a repeat notification that [name] is past-due for a mind backup.", "TransCore Oversight", "Medical")
+	else
+		global_announcer.autosay("[name] is past-due for a mind backup.", "TransCore Oversight", "Medical")
 
 // Called from mind_record to add itself to the transcore.
 /datum/controller/subsystem/transcore/proc/add_backup(var/datum/transhuman/mind_record/MR)
