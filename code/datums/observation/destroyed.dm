@@ -10,5 +10,6 @@
 	name = "Destroyed"
 
 /datum/Destroy()
-	GLOB.destroyed_event.raise_event(src)
+	if(GLOB.destroyed_event)
+		GLOB.destroyed_event.raise_event(src)
 	. = ..()
