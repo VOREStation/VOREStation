@@ -11,7 +11,7 @@
 	rim_pos = null // no fruit slices
 	var/lid_color = "black"
 
-/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/New()
+/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/Initialize()
 	..()
 	lid_color = pick("black", "red", "blue")
 	update_icon()
