@@ -23,9 +23,9 @@ SUBSYSTEM_DEF(nanoui)
 			if(copytext(filename, length(filename)) != "/") // filenames which end in "/" are actually directories, which we want to ignore
 				if(fexists(path + filename))
 					asset_files.Add(fcopy_rsc(path + filename)) // add this file to asset_files for sending to clients when they connect
+	.=..()					//VOREStation Edit start: fixing some kevinzing
 	for(var/i in GLOB.clients)
-		addtimer(CALLBACK(src, .proc/send_resources, i), 10)
-	return ..()
+		send_resources(i)	//VOREStation Edit end: fixing some kevinzing
 
 /datum/controller/subsystem/nanoui/Recover()
 	if(SSnanoui.open_uis)
