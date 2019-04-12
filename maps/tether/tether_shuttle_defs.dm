@@ -86,7 +86,6 @@
 	//These seem backwards because they are written from the perspective of the merc and vox ships
 	departure_message = "Attention. The away mission vessel is approaching the colony."
 	arrival_message = "Attention. The away mission vessel is now leaving from the colony."
-*/
 
 /datum/shuttle/multi_shuttle/awaymission/New()
 	..()
@@ -94,9 +93,11 @@
 	if(awaym_dest && awaym_dest.contents.len) // Otherwise this is an empty imaginary area
 		destinations["Unknown Location [rand(1000,9999)]"] = awaym_dest
 
+*/
+
 //////////////////////////////////////////////////////////////
 // Tether Shuttle
-/datum/shuttle/ferry/tether_backup/goodluckmcgee
+/datum/shuttle/ferry/tether_backup
 	name = "Tether Backup"
 	location = 1 // At offsite
 	warmup_time = 5
