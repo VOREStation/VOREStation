@@ -1003,7 +1003,7 @@
 	if(icontype == "Custom")
 		icon = CUSTOM_ITEM_SYNTH
 	else // This is to fix an issue where someone with a custom borg sprite chooses a non-custom sprite and turns invisible.
-		icon = 'icons/mob/robots.dmi'
+		vr_sprite_check() //VOREStation Edit
 	icon_state = module_sprites[icontype]
 	updateicon()
 
