@@ -2958,6 +2958,7 @@
 #include "code\modules\vore\eating\bellymodes_vr.dm"
 #include "code\modules\vore\eating\contaminate_vr.dm"
 #include "code\modules\vore\eating\digest_act_vr.dm"
+#include "code\modules\vore\eating\leave_remains_vr.dm"
 #include "code\modules\vore\eating\living_vr.dm"
 #include "code\modules\vore\eating\silicon_vr.dm"
 #include "code\modules\vore\eating\simple_animal_vr.dm"
