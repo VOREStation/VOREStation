@@ -139,35 +139,44 @@
 		for(var/mob in player_list) //This is extreme, but it's very hard to find people hiding in things, and this is pretty cheap.
 			try
 				if(isliving(mob) && get_area(mob) == src)
-					var/mob/living/L = mob
-
-					//Situations to get the mob out of
-					if(L.buckled)
-						L.buckled.unbuckle_mob()
-					if(istype(L.loc,/obj/mecha))
-						var/obj/mecha/M = L.loc
-						M.go_out()
-					else if(istype(L.loc,/obj/machinery/sleeper))
-						var/obj/machinery/sleeper/SL = L.loc
-						SL.go_out()
-					else if(istype(L.loc,/obj/machinery/recharge_station))
-						var/obj/machinery/recharge_station/RS = L.loc
-						RS.go_out()
-
-					L.forceMove(pick(get_area_turfs(dump_area)))
-					if(!issilicon(L)) //Don't drop borg modules...
-						for(var/obj/item/I in L)
-							if(istype(I,/obj/item/weapon/implant) || istype(I,/obj/item/device/nif))
-								continue
-							L.drop_from_inventory(I, loc)
-					L.Paralyse(10)
-					L.forceMove(get_turf(pick(teleport_to)))
-					L << 'sound/effects/bamf.ogg'
-					to_chat(L,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
+					abduct(mob)
 			catch
 				log_debug("Problem doing [mob] for Alienship arrival teleport!")
 
 		did_entry = TRUE
+
+/area/shuttle/excursion/away_alienship/proc/abduct(var/mob/living/mob)
+	if(isliving(mob))
+		var/mob/living/L = mob
+
+		//Situations to get the mob out of
+		if(L.buckled)
+			L.buckled.unbuckle_mob()
+		if(istype(L.loc,/obj/mecha))
+			var/obj/mecha/M = L.loc
+			M.go_out()
+		else if(istype(L.loc,/obj/machinery/sleeper))
+			var/obj/machinery/sleeper/SL = L.loc
+			SL.go_out()
+		else if(istype(L.loc,/obj/machinery/recharge_station))
+			var/obj/machinery/recharge_station/RS = L.loc
+			RS.go_out()
+
+		L.forceMove(pick(get_area_turfs(dump_area)))
+		if(!issilicon(L)) //Don't drop borg modules...
+			for(var/obj/item/I in L)
+				if(istype(I,/obj/item/weapon/implant) || istype(I,/obj/item/device/nif))
+					continue
+				if(istype(I,/obj/item/weapon/holder))
+					var/obj/item/weapon/holder/H = I
+					var/mob/living/M = H.held_mob
+					M.forceMove(get_turf(H))
+					abduct(M)
+				L.drop_from_inventory(I, loc)
+		L.Paralyse(10)
+		L.forceMove(get_turf(pick(teleport_to)))
+		L << 'sound/effects/bamf.ogg'
+		to_chat(L,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
 
 /area/tether_away/alienship
 	name = "\improper Away Mission - Unknown Vessel"
