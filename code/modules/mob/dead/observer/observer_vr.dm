@@ -62,9 +62,7 @@
 	set name = "Notify Transcore"
 	set desc = "If your past-due backup notification was missed or ignored, you can use this to send a new one."
 
-	var/record_found = FALSE
 	if(src.mind.name in SStranscore.backed_up)
-		record_found = TRUE
 		var/datum/transhuman/mind_record/record = SStranscore.backed_up[src.mind.name]
 		if(!(record.dead_state == MR_DEAD))
 			to_chat(src, "<span class='warning'>Your backup is not past-due yet.</span>")
@@ -74,6 +72,5 @@
 			SStranscore.notify(record.mindname, TRUE)
 			record.last_notification = world.time
 			to_chat(src, "<span class='notice'>New notification has been sent.</span>")
-
-	if(!record_found)
+	else
 		to_chat(src, "<span class='warning'>No mind record found!</span>")
