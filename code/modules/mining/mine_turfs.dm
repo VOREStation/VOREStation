@@ -48,7 +48,8 @@ var/list/mining_overlay_cache = list()
 		"silicates" = /obj/item/weapon/ore/glass,
 		"carbon" = /obj/item/weapon/ore/coal,
 		"verdantium" = /obj/item/weapon/ore/verdantium,
-		"marble" = /obj/item/weapon/ore/marble
+		"marble" = /obj/item/weapon/ore/marble,
+		"lead" = /obj/item/weapon/ore/lead
 	)
 
 	has_resources = 1
