@@ -3499,38 +3499,56 @@
 /turf/simulated/floor/plating,
 /area/engineering/shaft)
 "fy" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/obj/structure/cable/cyan{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/effect/landmark/free_ai_shell,
+/turf/simulated/floor/tiled/techfloor,
+/area/ai_upload_foyer)
 "fz" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/effect/landmark/start{
+	name = "Cyborg"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ai_cyborg_station)
 "fA" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+/obj/machinery/hologram/holopad,
+/obj/effect/landmark/start{
+	name = "Cyborg"
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/turf/simulated/floor/tiled/techfloor,
+/area/ai_cyborg_station)
 "fB" = (
 /obj/structure/stairs/south,
 /turf/simulated/floor/tiled,
 /area/security/brig/visitation)
+"fC" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/obj/effect/landmark{
+	name = "JoinLateCyborg"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ai_cyborg_station)
 "fD" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/machinery/cryopod{
@@ -3542,6 +3560,45 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/brig)
+"fE" = (
+/obj/machinery/cryopod/robot,
+/turf/simulated/floor/tiled/techfloor,
+/area/ai_cyborg_station)
+"fF" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled,
+/area/hallway/station/starboard)
+"fG" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
+"fH" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "fI" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -3562,6 +3619,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
+"fJ" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "fK" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/bed/chair,
@@ -5625,18 +5692,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload_foyer)
-"ku" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
-/obj/structure/cable/cyan{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/ai_upload_foyer)
 "kv" = (
 /obj/structure/cable/cyan{
 	d2 = 2;
@@ -6026,32 +6081,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_cyborg_station)
-"lo" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/ai_cyborg_station)
-"lp" = (
-/obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled/techfloor,
-/area/ai_cyborg_station)
-"lq" = (
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
-	},
-/obj/effect/landmark/free_ai_shell,
-/turf/simulated/floor/tiled/techfloor,
-/area/ai_cyborg_station)
 "ls" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor,
@@ -6338,10 +6367,6 @@
 /obj/machinery/camera/network/command{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/ai_cyborg_station)
-"lV" = (
-/obj/machinery/recharge_station,
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_cyborg_station)
 "ma" = (
@@ -7637,25 +7662,6 @@
 "nU" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/hallway/station/starboard)
-"nV" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 25;
-	pixel_y = 0
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 9
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 10
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
@@ -30090,11 +30096,11 @@ AN
 AN
 Bw
 yY
-fy
-fz
-fz
-fz
-fA
+fG
+fH
+fH
+fH
+fJ
 yY
 ac
 ac
@@ -31618,7 +31624,7 @@ in
 iU
 jr
 ka
-ku
+fy
 ll
 lS
 mx
@@ -31903,7 +31909,7 @@ dE
 dE
 kb
 kv
-lo
+fz
 lT
 kb
 WG
@@ -32045,7 +32051,7 @@ iW
 dE
 kb
 kw
-lp
+fA
 lU
 kb
 nh
@@ -32187,8 +32193,8 @@ iX
 dE
 kb
 kx
-lq
-lV
+fC
+fE
 kb
 ni
 nQ
@@ -33754,7 +33760,7 @@ Nh
 fg
 nl
 nU
-ot
+ou
 oY
 pE
 qc
@@ -33895,7 +33901,7 @@ jx
 js
 fg
 nr
-nV
+fF
 oF
 oY
 pE
