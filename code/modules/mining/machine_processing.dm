@@ -174,7 +174,8 @@
 		"uranium" = 30,
 		"diamond" = 50,
 		"platinum" = 40,
-		"mhydrogen" = 40)
+		"mhydrogen" = 40,
+		"verdantium" = 60)
 
 /obj/machinery/mineral/processing_unit/New()
 	..()

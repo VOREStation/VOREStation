@@ -115,3 +115,11 @@
 		var/new_tech = pick(techs)
 		techs -= new_tech
 		origin_tech[new_tech] = rand(5, 9)
+
+	origin_tech[TECH_PRECURSOR] = rand(0,2)
+
+/obj/item/prop/alien/phasecoil
+	name = "reverberating device"
+	desc = "A device pulsing with an ominous energy."
+	icon_state = "circuit_phase"
+	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_PHORON = 3, TECH_POWER = 5, TECH_MAGNET = 5, TECH_DATA = 5, TECH_PRECURSOR = 2, TECH_ARCANE = 1)

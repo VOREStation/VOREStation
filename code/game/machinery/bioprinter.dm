@@ -19,6 +19,7 @@
 	var/base_print_delay = 100	// For Adminbus reasons
 	var/printing
 	var/loaded_dna //Blood sample for DNA hashing.
+	var/malfunctioning = FALSE	// May cause rejection, or the printing of some alien limb instead!
 
 	// These should be subtypes of /obj/item/organ
 	// Costs roughly 20u Phoron (1 sheet) per internal organ, limbs are 60u for limb and extremity
@@ -76,9 +77,18 @@
 /obj/machinery/organ_printer/RefreshParts()
 	// Print Delay updating
 	print_delay = base_print_delay
+	var/manip_rating = 0
 	for(var/obj/item/weapon/stock_parts/manipulator/manip in component_parts)
+		manip_rating += manip.rating
 		print_delay -= (manip.rating-1)*10
 	print_delay = max(0,print_delay)
+
+	manip_rating = round(manip_rating / 2)
+
+	if(manip_rating >= 5)
+		malfunctioning = TRUE
+	else
+		malfunctioning = initial(malfunctioning)
 
 	. = ..()
 
@@ -182,7 +192,17 @@
 	O.set_dna(C.dna)
 	O.species = C.species
 
-	if(istype(O, /obj/item/organ/external))
+	var/malfunctioned = FALSE
+
+	if(malfunctioning && prob(30)) // Alien Tech is a hell of a drug.
+		malfunctioned = TRUE
+		var/possible_species = list(SPECIES_HUMAN, SPECIES_VOX, SPECIES_SKRELL, SPECIES_ZADDAT, SPECIES_UNATHI, SPECIES_GOLEM, SPECIES_SHADOW)
+		var/new_species = pick(possible_species)
+		if(!all_species[new_species])
+			new_species = SPECIES_HUMAN
+		O.species = all_species[new_species]
+
+	if(istype(O, /obj/item/organ/external) && !malfunctioned)
 		var/obj/item/organ/external/E = O
 		E.sync_colour_to_human(C)
 
