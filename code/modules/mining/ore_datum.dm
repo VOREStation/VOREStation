@@ -158,8 +158,8 @@ var/global/list/ore_data = list()
 /ore/lead
 	name = MAT_LEAD
 	display_name = "lead glance"
-	compresses_to = "marble"
-	result_amount = 1
-	spread_chance = 10
-	ore = /obj/item/weapon/ore/marble
+	smelts_to = "lead"
+	result_amount = 3
+	spread_chance = 20
+	ore = /obj/item/weapon/ore/lead
 	scan_icon = "mineral_rare"

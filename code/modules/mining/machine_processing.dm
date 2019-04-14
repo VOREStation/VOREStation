@@ -171,9 +171,11 @@
 		"phoron" = 15,
 		"silver" = 16,
 		"gold" = 18,
+		"marble" = 20,
 		"uranium" = 30,
 		"diamond" = 50,
 		"platinum" = 40,
+		"lead" = 40,
 		"mhydrogen" = 40,
 		"verdantium" = 60)
 
