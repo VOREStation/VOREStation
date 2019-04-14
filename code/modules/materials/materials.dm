@@ -359,11 +359,7 @@ var/list/name_to_material
 	name = "marble"
 	icon_colour = "#AAAAAA"
 	weight = 26
-<<<<<<< HEAD
 	hardness = 30 //VOREStation Edit - Please.
-=======
-	hardness = 70
->>>>>>> 4ff3ee1... Merge pull request #6023 from Mechoid/Precursotech_Baseline
 	integrity = 201 //hack to stop kitchen benches being flippable, todo: refactor into weight system
 	stack_type = /obj/item/stack/material/marble
 
