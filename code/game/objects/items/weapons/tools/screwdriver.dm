@@ -92,6 +92,27 @@
 	toolspeed = 0.1
 	random_color = FALSE
 
+/obj/item/weapon/tool/screwdriver/hybrid
+	name = "strange screwdriver"
+	desc = "A strange conglomerate of a screwdriver."
+	icon_state = "hybscrewdriver"
+	item_state = "screwdriver_black"
+	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3)
+	slowdown = 0.1
+	w_class = ITEMSIZE_NORMAL
+	usesound = 'sound/effects/uncloak.ogg'
+	toolspeed = 0.4
+	random_color = FALSE
+	reach = 2
+
+/obj/item/weapon/tool/screwdriver/hybrid/is_screwdriver()
+	if(prob(10))
+		var/turf/T = get_turf(src)
+		radiation_repository.radiate(get_turf(src), 5)
+		T.visible_message("<span class='alien'>\The [src] shudders!</span>")
+		return FALSE
+	return TRUE
+
 /obj/item/weapon/tool/screwdriver/cyborg
 	name = "powered screwdriver"
 	desc = "An electrical screwdriver, designed to be both precise and quick."
