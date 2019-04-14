@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(xenoarch)
 
 /datum/controller/subsystem/xenoarch/proc/SetupXenoarch()
 	for(var/turf/simulated/mineral/M in turfs)
-		if(!M.density || M.z in using_map.xenoarch_exempt_levels)	//VOREStation Edit: exclude some Z-levels from xenoarch spawns
+		if(!M.density || M.z in using_map.xenoarch_exempt_levels)
 			continue
 
 		if(isnull(M.geologic_data))
