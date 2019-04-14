@@ -17,7 +17,7 @@
 	var/list/resource_field = list()
 	var/obj/item/device/radio/intercom/faultreporter = new /obj/item/device/radio/intercom{channels=list("Supply")}(null)
 
-	var/ore_types = list(
+	var/list/ore_types = list(
 		"hematite" = /obj/item/weapon/ore/iron,
 		"uranium" = /obj/item/weapon/ore/uranium,
 		"gold" = /obj/item/weapon/ore/gold,
@@ -34,7 +34,19 @@
 	var/harvest_speed
 	var/capacity
 	var/charge_use
+	var/exotic_drilling
 	var/obj/item/weapon/cell/cell = null
+
+	// Found with an advanced laser. exotic_drilling >= 1
+	var/list/ore_types_uncommon = list(
+		MAT_MARBLE = /obj/item/weapon/ore/marble,
+		MAT_LEAD = /obj/item/weapon/ore/lead
+		)
+
+	// Found with an ultra laser. exotic_drilling >= 2
+	var/list/ore_types_rare = list(
+		MAT_VERDANTIUM = /obj/item/weapon/ore/verdantium
+		)
 
 	//Flags
 	var/need_update_field = 0
@@ -127,7 +139,7 @@
 					var/oretype = ore_types[metal]
 					new oretype(src)
 
-		if(!found_resource)
+		if(!found_resource)	// If a drill can't see an advanced material, it will destroy it while going through.
 			harvesting.has_resources = 0
 			harvesting.resources = null
 			resource_field -= harvesting
@@ -219,6 +231,14 @@
 	for(var/obj/item/weapon/stock_parts/P in component_parts)
 		if(istype(P, /obj/item/weapon/stock_parts/micro_laser))
 			harvest_speed = P.rating
+			exotic_drilling = P.rating - 1
+			if(exotic_drilling >= 1)
+				ore_types |= ore_types_uncommon
+				if(exotic_drilling >= 2)
+					ore_types |= ore_types_rare
+			else
+				ore_types -= ore_types_uncommon
+				ore_types -= ore_types_rare
 		if(istype(P, /obj/item/weapon/stock_parts/matter_bin))
 			capacity = 200 * P.rating
 		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
