@@ -101,6 +101,7 @@ var/datum/controller/supply/supply_controller = new()
 		EC.name = "\proper[MA.name]"
 		EC.value = 0
 		EC.contents = list()
+		var/base_value = 0
 
 		// Must be in a crate!
 		if(istype(MA,/obj/structure/closet/crate))
@@ -108,6 +109,8 @@ var/datum/controller/supply/supply_controller = new()
 			callHook("sell_crate", list(CR, area_shuttle))
 
 			points += CR.points_per_crate
+			if(CR.points_per_crate)
+				base_value = CR.points_per_crate
 			var/find_slip = 1
 
 			for(var/atom/A in CR)
@@ -151,6 +154,7 @@ var/datum/controller/supply/supply_controller = new()
 
 		exported_crates += EC
 		points += EC.value
+		EC.value += base_value
 
 		// Duplicate the receipt for the admin-side log
 		var/datum/exported_crate/adm = new()
