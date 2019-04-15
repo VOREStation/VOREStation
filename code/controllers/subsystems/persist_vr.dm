@@ -92,3 +92,4 @@ SUBSYSTEM_DEF(persist)
 	LAZYINITLIST(C.department_hours)
 	if(C.department_hours["Command"])
 		C.department_hours["Command"] = null
+		C.department_hours.Remove("Command")
