@@ -179,7 +179,7 @@
 /turf/simulated/floor/wood,
 /area/submap/Oldhouse)
 "aN" = (
-/mob/living/simple_animal/hostile/giant_spider{
+/mob/living/simple_mob/animal/giant_spider{
 	attack_armor_pen = 100;
 	attacktext = list("lightly bonked");
 	desc = "Furry and brown, this spider is so goddamn fat you're surprised it even moves around.";
@@ -188,7 +188,7 @@
 	melee_damage_lower = 1;
 	melee_damage_upper = 3;
 	melee_miss_chance = 30;
-	move_speed = 5;
+	movement_cooldown = 8;
 	name = "Mr. Tuddly"
 	},
 /turf/simulated/floor/carpet/turcarpet,
