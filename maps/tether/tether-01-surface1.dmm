@@ -5463,6 +5463,27 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/eva)
+"ajj" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/blue/border{
+	dir = 4
+	},
+/obj/machinery/atmospherics/binary/pump/high_power/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
+"ajk" = (
+/obj/machinery/atmospherics/pipe/simple/visible/black{
+	dir = 4
+	},
+/obj/machinery/atmospherics/binary/pump/high_power/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
 "ajl" = (
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
@@ -5484,6 +5505,15 @@
 /obj/structure/cable/green,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
+"ajn" = (
+/obj/machinery/atmospherics/pipe/simple/visible/green{
+	dir = 4
+	},
+/obj/machinery/atmospherics/binary/pump{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos/processing)
 "ajo" = (
 /obj/machinery/door/airlock/maintenance/common,
 /obj/machinery/atmospherics/pipe/simple/hidden,
@@ -5521,6 +5551,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
+"ajr" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 4
+	},
+/obj/machinery/atmospherics/binary/pump/high_power/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
 "ajs" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -5593,6 +5635,24 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
+"ajw" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/black/border,
+/obj/machinery/atmospherics/binary/pump/high_power/on,
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
+"ajx" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/orange/border,
+/obj/machinery/atmospherics/binary/pump/high_power/on,
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
+"ajy" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/white/border,
+/obj/machinery/atmospherics/binary/pump/high_power/on,
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
 "ajN" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
@@ -14947,25 +15007,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
-"aKv" = (
-/obj/machinery/atmospherics/pipe/simple/visible/black{
-	dir = 4
-	},
-/obj/machinery/atmospherics/binary/passive_gate/on{
-	dir = 1;
-	target_pressure = 15000
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/atmos)
-"aKw" = (
-/obj/machinery/atmospherics/pipe/simple/visible/green{
-	dir = 4
-	},
-/obj/machinery/atmospherics/binary/passive_gate{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/atmos/processing)
 "aKy" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 4
@@ -15005,14 +15046,6 @@
 	tag_south = 2;
 	tag_west = 1
 	},
-/turf/simulated/floor/tiled,
-/area/engineering/atmos)
-"aKM" = (
-/obj/machinery/atmospherics/binary/passive_gate/on{
-	target_pressure = 15000
-	},
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/orange/border,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "aKP" = (
@@ -23365,14 +23398,6 @@
 /obj/effect/floor_decal/corner/black/border,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
-"cbE" = (
-/obj/machinery/atmospherics/binary/passive_gate/on{
-	target_pressure = 15000
-	},
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/black/border,
-/turf/simulated/floor/tiled,
-/area/engineering/atmos)
 "cbH" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/orange/border,
@@ -23387,14 +23412,6 @@
 "cbN" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
-/turf/simulated/floor/tiled,
-/area/engineering/atmos)
-"cbO" = (
-/obj/machinery/atmospherics/binary/passive_gate/on{
-	target_pressure = 15000
-	},
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/white/border,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "cbP" = (
@@ -25942,19 +25959,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
-"dCs" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/blue/border{
-	dir = 4
-	},
-/obj/machinery/atmospherics/binary/passive_gate/on{
-	dir = 1;
-	target_pressure = 15000
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/atmos)
 "dCw" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -27320,19 +27324,6 @@
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/showers)
-"iwn" = (
-/obj/machinery/atmospherics/binary/passive_gate/on{
-	dir = 4;
-	target_pressure = 15000
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/atmos)
 "iwJ" = (
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 10
@@ -40888,7 +40879,7 @@ aJs
 aJT
 nuR
 oRG
-aKw
+ajn
 vXn
 eyS
 aIv
@@ -42309,7 +42300,7 @@ kaj
 bZe
 cLz
 caH
-cbE
+ajw
 vtZ
 uiB
 cet
@@ -42877,7 +42868,7 @@ mks
 rNz
 kwi
 toY
-aKM
+ajx
 vtZ
 uiB
 cet
@@ -43445,7 +43436,7 @@ bpQ
 rNz
 kwi
 mgz
-cbO
+ajy
 vtZ
 uiB
 cet
@@ -44437,7 +44428,7 @@ aJI
 aJQ
 aJQ
 aJQ
-aKv
+ajk
 aKC
 sfF
 ccS
@@ -44572,7 +44563,7 @@ rfn
 lZz
 ylA
 wUq
-dCs
+ajj
 rtj
 qpo
 nij
@@ -44580,7 +44571,7 @@ qpo
 tfC
 grU
 tiP
-iwn
+ajr
 rpg
 lZz
 bEX
