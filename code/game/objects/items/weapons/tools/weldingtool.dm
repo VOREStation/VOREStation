@@ -121,15 +121,14 @@
 			remove_fuel(1)
 		if(get_fuel() < 1)
 			setWelding(0)
-	//I'm not sure what this does. I assume it has to do with starting fires...
-	//...but it doesnt check to see if the welder is on or not.
-	var/turf/location = src.loc
-	if(istype(location, /mob/living))
-		var/mob/living/M = location
-		if(M.item_is_in_hands(src))
-			location = get_turf(M)
-	if (istype(location, /turf))
-		location.hotspot_expose(700, 5)
+		else			//Only start fires when its on and has enough fuel to actually keep working
+			var/turf/location = src.loc
+			if(istype(location, /mob/living))
+				var/mob/living/M = location
+				if(M.item_is_in_hands(src))
+					location = get_turf(M)
+			if (istype(location, /turf))
+				location.hotspot_expose(700, 5)
 
 /obj/item/weapon/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity) return
