@@ -2620,7 +2620,7 @@
 /area/awaymission/spacebattle/syndicate7)
 "hB" = (
 /obj/structure/largecrate,
-/mob/living/simple_mob/corgi/puppy,
+/mob/living/simple_mob/animal/passive/dog/corgi/puppy,
 /turf/simulated/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "hC" = (

@@ -21,7 +21,7 @@
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
 "af" = (
-/mob/living/simple_mob/hostile/malf_drone{
+/mob/living/simple_mob/mechanical/combat_drone{
 	desc = "An automated combat drone with an aged apperance.";
 	faction = "syndicate";
 	maxbodytemp = 900;
@@ -357,7 +357,7 @@
 /turf/simulated/floor/tiled,
 /area/submap/virgo2/Rockybase)
 "bl" = (
-/mob/living/simple_mob/hostile/malf_drone{
+/mob/living/simple_mob/mechanical/combat_drone{
 	desc = "An automated combat drone with an aged apperance.";
 	faction = "syndicate";
 	maxbodytemp = 900;
