@@ -298,6 +298,12 @@
 		if(0)
 			dat += "<a href='?src=\ref[src];toggledg=1'><span style='color:green;'>Toggle Digestable</span></a>"
 
+	switch(user.digest_leave_remains)
+		if(1)
+			dat += "<a href='?src=\ref[src];toggledlm=1'><span style='color:red;'>Toggle Leaving Remains</span></a>"
+		if(0)
+			dat += "<a href='?src=\ref[src];toggledlm=1'>Toggle Leaving Remains</a>"
+
 	switch(user.allowmobvore)
 		if(1)
 			dat += "<a href='?src=\ref[src];togglemv=1'>Toggle Mob Vore</a>"
@@ -836,6 +842,19 @@
 
 		if(user.client.prefs_vr)
 			user.client.prefs_vr.digestable = user.digestable
+
+	if(href_list["toggledlm"])
+		var/choice = alert(user, "This button allows preds to have your remains be left in their belly after you are digested. This will only happen if pred sets their belly to do so. Remains consist of skeletal parts. Currently you are [user.digest_leave_remains? "" : "not"] leaving remains.", "", "Allow Post-digestion Remains", "Cancel", "Disallow Post-digestion Remains")
+		switch(choice)
+			if("Cancel")
+				return 0
+			if("Allow Post-digestion Remains")
+				user.digest_leave_remains = TRUE
+			if("Disallow Post-digestion Remains")
+				user.digest_leave_remains = FALSE
+
+		if(user.client.prefs_vr)
+			user.client.prefs_vr.digest_leave_remains = user.digest_leave_remains
 
 	if(href_list["togglemv"])
 		var/choice = alert(user, "This button is for those who don't like being eaten by mobs. Messages admins when changed, so don't try to use it for mechanical benefit. Set it once and save it. Mobs are currently: [user.allowmobvore ? "Allowed to eat" : "Prevented from eating"] you.", "", "Allow Mob Predation", "Cancel", "Prevent Mob Predation")

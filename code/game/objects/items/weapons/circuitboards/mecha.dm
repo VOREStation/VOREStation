@@ -79,5 +79,28 @@
 		name = T_BOARD_MECHA("Odysseus central control")
 		icon_state = "mainboard"
 
+/obj/item/weapon/circuitboard/mecha/imperion
+		name = "Alien Circuit"
+		origin_tech = list(TECH_DATA = 5, TECH_BLUESPACE = 3, TECH_PRECURSOR = 1)
+		icon = 'icons/obj/abductor.dmi'
+		icon_state = "circuit"
+
+/obj/item/weapon/circuitboard/mecha/imperion/main
+		desc = "It is marked with a <span class='alien'>strange glyph</span>."
+
+/obj/item/weapon/circuitboard/mecha/imperion/peripherals
+		desc = "It is marked with a <span class='alien'>pulsing glyph</span>."
+
+/obj/item/weapon/circuitboard/mecha/imperion/targeting
+		desc = "It is marked with an <span class='alien'>ominous glyph</span>."
+
+/obj/item/weapon/circuitboard/mecha/imperion/phasing
+		desc = "It is marked with a <span class='alien'>disturbing glyph</span>."
+
+/obj/item/weapon/circuitboard/mecha/imperion/damaged
+		name = "Damaged Alien Circuit"
+		desc = "It is marked with a <span class='alien'>constantly shifting glyph</span>."
+		origin_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 1, TECH_PRECURSOR = 2)
+
 //Undef the macro, shouldn't be needed anywhere else
 #undef T_BOARD_MECHA

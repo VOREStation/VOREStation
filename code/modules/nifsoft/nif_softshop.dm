@@ -167,7 +167,7 @@
 			shut_up = !shut_up
 
 		add_fingerprint(usr)
-		GLOB.nanomanager.update_uis(src)
+		SSnanoui.update_uis(src)
 
 // Also special treatment!
 /obj/machinery/vending/nifsoft_shop/vend(datum/stored_item/vending_product/R, mob/user)
@@ -179,7 +179,7 @@
 	vend_ready = 0 //One thing at a time!!
 	status_message = "Installing..."
 	status_error = 0
-	GLOB.nanomanager.update_uis(src)
+	SSnanoui.update_uis(src)
 
 	if(R.category & CAT_COIN)
 		if(!coin)
@@ -215,5 +215,5 @@
 		status_error = 0
 		vend_ready = 1
 		currently_vending = null
-		GLOB.nanomanager.update_uis(src)
+		SSnanoui.update_uis(src)
 	return 1

@@ -3,7 +3,7 @@
 		D.fire_act(adj_air, adj_temp, adj_volume)
 
 /obj/machinery/door
-	var/obj/item/stack/material/plasteel/reinforcing //vorestation addition
+	var/reinforcing = 0	//vorestation addition
 
 /obj/machinery/door/firedoor
 	heat_proof = 1
@@ -33,113 +33,68 @@
 
 	return ..()
 
+// Returns true only if one of the actions unique to reinforcing is done, otherwise false and continuing normal attackby
 /obj/machinery/door/proc/attackby_vr(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/stack/material) && I.get_material_name() == "plasteel") // Add heat shielding if it isn't already.
-		if(!heat_proof)
-			var/obj/item/stack/stack = I
-			var/transfer
-			var/amount_needed = 2
-			if(stat & BROKEN)
-				user << "<span class='notice'>It looks like \the [src] is pretty busted.</span>"
-			if (reinforcing)
-				transfer = stack.transfer_to(reinforcing, amount_needed - reinforcing.amount)
-				if (!transfer)
-					user << "<span class='warning'>You must weld or remove \the [reinforcing] from \the [src] before you can add anything else.</span>"
-					return 1
+	if(istype(I, /obj/item/stack/material) && I.get_material_name() == "plasteel")
+		if(heat_proof)
+			to_chat(user, "<span class='warning'>\The [src] is already reinforced.</span>")
+			return TRUE
+		if((stat & BROKEN) || (health < maxhealth))
+			to_chat(user, "<span class='notice'>It looks like \the [src] broken. Repair it before reinforcing it.</span>")
+			return TRUE
+		if(!density)
+			to_chat(user, "<span class='warning'>\The [src] must be closed before you can reinforce it.</span>")
+			return TRUE
+
+		var/amount_needed = 2
+
+		var/obj/item/stack/stack = I
+		var/amount_given = amount_needed - reinforcing
+		var/mats_given = stack.get_amount()
+		if(reinforcing && amount_given <= 0)
+			to_chat(user, "<span class='warning'>You must weld or remove \the plasteel from \the [src] before you can add anything else.</span>")
+		else
+			if(mats_given >= amount_given)
+				if(stack.use(amount_given))
+					reinforcing += amount_given
 			else
-				reinforcing = stack.split(amount_needed)
-				if (reinforcing)
-					reinforcing.loc = src
-					transfer = reinforcing.amount
+				if(stack.use(mats_given))
+					reinforcing += mats_given
+					amount_given = mats_given
+		if(amount_given)
+			to_chat(user, "<span class='notice'>You fit [amount_given] [stack.singular_name]\s on \the [src].</span>")
 
-			if (transfer)
-				user << "<span class='notice'>You fit [transfer] [stack.singular_name]\s to \the [src].</span>"
-				return 1
-
-	if(istype(I, /obj/item/stack/material) && I.get_material_name() == src.get_material_name())
-		if(stat & BROKEN)
-			if(health >= maxhealth && destroy_hits >= 10)
-				user << "<span class='notice'>The [src] is about as shored up as it's going to get.</span>"
-				return 1
-			if(!density)
-				user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
-				return 1
-
-			//figure out how much metal we need
-			var/amount_needed = (maxhealth - health) / DOOR_REPAIR_AMOUNT
-			if (destroy_hits < 10)
-				amount_needed += (20*(10 - destroy_hits) / DOOR_REPAIR_AMOUNT)
-			amount_needed = (round(amount_needed) == amount_needed)? amount_needed : round(amount_needed) + 1 //Why does BYOND not have a ceiling proc?
-
-			var/obj/item/stack/stack = I
-			var/transfer
-			if (repairing)
-				transfer = stack.transfer_to(repairing, amount_needed - repairing.amount)
-				if (!transfer)
-					user << "<span class='warning'>You must weld or remove \the [repairing] from \the [src] before you can add anything else.</span>"
-			else
-				repairing = stack.split(amount_needed)
-				if (repairing)
-					repairing.loc = src
-					transfer = repairing.amount
-
-			if (transfer)
-				user << "<span class='notice'>\The [src] is completely broken inside, but you manage to fit [transfer] [stack.singular_name]\s to shore it up.</span>"
-
-			return 1
-
-		return 0
-
+		return TRUE
 
 	if(reinforcing && istype(I, /obj/item/weapon/weldingtool))
-		var/amount_needed = 2
 		if(!density)
-			user << "<span class='warning'>\The [src] must be closed before you can repair it.</span>"
-			return 1
-		if (reinforcing.amount < amount_needed)
-			user << "<span class='notice'>You need [amount_needed] [reinforcing.singular_name]\s to reinforce \the [src].</span>"
-			return 1
+			to_chat(user, "<span class='warning'>\The [src] must be closed before you can reinforce it.</span>")
+			return TRUE
+
+		if(reinforcing < 2)
+			to_chat(user, "<span class='warning'>You will need more plasteel to reinforce \the [src].</span>")
+			return TRUE
+
 		var/obj/item/weapon/weldingtool/welder = I
 		if(welder.remove_fuel(0,user))
-			user << "<span class='notice'>You start to weld \the [reinforcing] into place.</span>"
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			if(do_after(user, 5 * reinforcing.amount) && welder && welder.isOn())
-				user << "<span class='notice'>You finish reinforcing \the [src].</span>"
+			to_chat(user, "<span class='notice'>You start weld \the plasteel into place.</span>")
+			playsound(src, welder.usesound, 50, 1)
+			if(do_after(user, 10 * welder.toolspeed) && welder && welder.isOn())
+				to_chat(user, "<span class='notice'>You finish reinforcing \the [src].</span>")
 				heat_proof = 1
 				update_icon()
-				qdel(reinforcing)
-				reinforcing = null
-		return 1
-
-	if(repairing && istype(I, /obj/item/weapon/weldingtool) && (stat & BROKEN))
-		if(!density)
-			user << "<span class='warning'>\The [src] must be closed before you can shore it up.</span>"
-			return 1
-
-		var/obj/item/weapon/weldingtool/welder = I
-		if(welder.remove_fuel(0,user))
-			user << "<span class='notice'>You start to weld \the [repairing] into place.</span>"
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			if(do_after(user, 5 * repairing.amount) && welder && welder.isOn())
-				user << "<span class='notice'>You finish shoring up \the [src]. It'll hold for at least a little while.</span>"
-				var/damagerepaired = repairing.amount*DOOR_REPAIR_AMOUNT
-				if (destroy_hits < 10)
-					var/severedamage = 10 - destroy_hits
-					destroy_hits = between(destroy_hits, destroy_hits + (damagerepaired)/20, 10)
-					damagerepaired -= 20 * severedamage
-				health = between(health, health + damagerepaired, maxhealth)
-				update_icon()
-				qdel(repairing)
-				repairing = null
-		return 1
+				reinforcing = 0
+		return TRUE
 
 	if(reinforcing && I.is_crowbar())
-		user << "<span class='notice'>You remove \the [reinforcing].</span>"
-		playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
-		reinforcing.loc = user.loc
-		reinforcing = null
-		return 1
-	return 0
+		var/obj/item/stack/material/plasteel/reinforcing_sheet = new /obj/item/stack/material/plasteel(src.loc)
+		reinforcing_sheet.amount = reinforcing
+		reinforcing = 0
+		to_chat(user, "<span class='notice'>You remove \the [reinforcing_sheet].</span>")
+		playsound(src, I.usesound, 100, 1)
+		return TRUE
+
+	return FALSE
 
 /obj/machinery/door/blast/regular/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	return // blast doors are immune to fire completely.

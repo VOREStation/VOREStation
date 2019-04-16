@@ -234,7 +234,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		cartridge.forceMove(src)
 		to_chat(usr, "<span class='notice'>You slot \the [cartridge] into \the [src].</span>")
 		modules[++modules.len] = list("module" = "External Device", "icon" = "external64", "number" = EXTRTAB)
-		GLOB.nanomanager.update_uis(src) // update all UIs attached to src
+		SSnanoui.update_uis(src) // update all UIs attached to src
 	return
 
 // Proc: attack_self()

@@ -6049,6 +6049,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
+/obj/effect/landmark/free_ai_shell,
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_cyborg_station)
 "ls" = (

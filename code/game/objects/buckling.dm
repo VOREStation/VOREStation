@@ -51,20 +51,10 @@
 
 
 /atom/movable/proc/buckle_mob(mob/living/M, forced = FALSE, check_loc = TRUE)
-	if(!buckled_mobs)
-		buckled_mobs = list()
-
-	if(!istype(M))
-		return FALSE
-
 	if(check_loc && M.loc != loc)
 		return FALSE
 
-	if((!can_buckle && !forced) || M.buckled || M.pinned.len || (buckled_mobs.len >= max_buckled_mobs) || (buckle_require_restraints && !M.restrained()))
-		return FALSE
-
-	if(has_buckled_mobs() && buckled_mobs.len >= max_buckled_mobs) //Handles trying to buckle yourself to the chair when someone is on it
-		to_chat(M, "<span class='notice'>\The [src] can't buckle anymore people.</span>")
+	if(!can_buckle_check(M, forced))
 		return FALSE
 
 	M.buckled = src
@@ -130,6 +120,8 @@
 	if(M in buckled_mobs)
 		to_chat(user, "<span class='warning'>\The [M] is already buckled to \the [src].</span>")
 		return FALSE
+	if(!can_buckle_check(M, forced))
+		return FALSE
 
 	add_fingerprint(user)
 //	unbuckle_mob()
@@ -194,4 +186,20 @@
 				return FALSE
 			else
 				L.set_dir(dir)
+	return TRUE
+
+/atom/movable/proc/can_buckle_check(mob/living/M, forced = FALSE)
+	if(!buckled_mobs)
+		buckled_mobs = list()
+
+	if(!istype(M))
+		return FALSE
+
+	if((!can_buckle && !forced) || M.buckled || M.pinned.len || (buckled_mobs.len >= max_buckled_mobs) || (buckle_require_restraints && !M.restrained()))
+		return FALSE
+
+	if(has_buckled_mobs() && buckled_mobs.len >= max_buckled_mobs) //Handles trying to buckle yourself to the chair when someone is on it
+		to_chat(M, "<span class='notice'>\The [src] can't buckle anymore people.</span>")
+		return FALSE
+
 	return TRUE

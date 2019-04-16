@@ -21,7 +21,7 @@
 		if(prob(75))
 			secondary_effect.ToggleActivate(0)
 
-	icon_num = rand(0, 11)
+	icon_num = rand(0, 14)
 
 	icon_state = "ano[icon_num]0"
 	if(icon_num == 7 || icon_num == 8)
@@ -47,6 +47,11 @@
 		desc = "A strange alien device."
 		if(prob(25))
 			my_effect.trigger = pick(TRIGGER_WATER, TRIGGER_ACID, TRIGGER_VOLATILE, TRIGGER_TOXIN)
+	else if(icon_num == 12 || icon_num == 14)
+		name = "intricately carved statue"
+		desc = "A strange statue."
+		if(prob(60))
+			my_effect.trigger = pick(TRIGGER_TOUCH, TRIGGER_HEAT, TRIGGER_COLD, TRIGGER_PHORON, TRIGGER_OXY, TRIGGER_CO2, TRIGGER_NITRO)
 
 /obj/machinery/artifact/proc/choose_effect()
 	var/effect_type = input(usr, "What type do you want?", "Effect Type") as null|anything in typesof(/datum/artifact_effect) - /datum/artifact_effect

@@ -32,12 +32,7 @@
 	if(newdir)
 		set_dir(newdir)
 
-	if(dir & (dir-1)) // Diagonal. Forwards is *away* from dir, curving to the right.
-		forwards = turn(dir, 135)
-		backwards = turn(dir, 45)
-	else
-		forwards = dir
-		backwards = turn(dir, 180)
+	update_dir()
 
 	if(on)
 		operating = FORWARDS
@@ -59,6 +54,18 @@
 	else
 		operating = OFF
 	update()
+
+/obj/machinery/conveyor/set_dir()
+	.=..()
+	update_dir()
+
+/obj/machinery/conveyor/proc/update_dir()
+	if(!(dir in cardinal)) // Diagonal. Forwards is *away* from dir, curving to the right.
+		forwards = turn(dir, 135)
+		backwards = turn(dir, 45)
+	else
+		forwards = dir
+		backwards = turn(dir, 180)
 
 /obj/machinery/conveyor/proc/update()
 	if(stat & BROKEN)

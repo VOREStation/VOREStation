@@ -118,7 +118,7 @@
 	},
 /area/submap/Thiefc)
 "q" = (
-/mob/living/simple_animal/hostile/bear,
+/mob/living/simple_mob/animal/space/bear,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},

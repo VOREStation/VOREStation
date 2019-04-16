@@ -25,7 +25,7 @@
 	for(var/z in (data["map_levels"] | T.z))  // Always show crew from the current Z even if we can't show a map
 		data["crewmembers"] += crew_repository.health_data(z)
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "crew_monitor.tmpl", "Crew Monitoring Computer", 900, 800, state = state)
 

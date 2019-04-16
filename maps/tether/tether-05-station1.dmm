@@ -12398,7 +12398,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/engineering/engineering_airlock)
 "aHU" = (
-/obj/machinery/teleport/station,
+/obj/machinery/teleport/station{
+	dir = 2
+	},
 /turf/simulated/floor/tiled/dark,
 /area/teleporter)
 "aHW" = (
@@ -12477,7 +12479,9 @@
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
 "aIj" = (
-/obj/machinery/teleport/hub,
+/obj/machinery/teleport/hub{
+	dir = 2
+	},
 /turf/simulated/floor/tiled/dark,
 /area/teleporter)
 "aIl" = (

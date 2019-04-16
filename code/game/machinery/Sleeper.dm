@@ -15,6 +15,11 @@
 	..()
 	findsleeper()
 
+/obj/machinery/sleep_console/Destroy()
+	if(sleeper)
+		sleeper.console = null
+	return ..()
+
 /obj/machinery/sleep_console/proc/findsleeper()
 	spawn(5)
 		var/obj/machinery/sleeper/sleepernew = null
@@ -34,16 +39,18 @@
 	if(..())
 		return 1
 
+	if(!sleeper)
+		findsleeper()
+		if(!sleeper)
+			to_chat(user, "<span class='notice'>Sleeper not found!</span>")
+			return
+
 	if(sleeper.panel_open)
 		to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
 		return
 
-	if(!sleeper)
-		findsleeper()
 	if(sleeper)
 		return ui_interact(user)
-	else
-		to_chat(user, "<span class='warning'>Sleeper not found!</span>")
 
 /obj/machinery/sleep_console/attackby(var/obj/item/I, var/mob/user)
 	if(computer_deconstruction_screwdriver(user, I))
@@ -109,7 +116,7 @@
 			break
 	data["stasis"] = stasis_level_name
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "sleeper.tmpl", "Sleeper UI", 600, 600, state = state)
 		ui.set_initial_data(data)
@@ -155,7 +162,8 @@
 	anchored = 1
 	circuit = /obj/item/weapon/circuitboard/sleeper
 	var/mob/living/carbon/human/occupant = null
-	var/list/available_chemicals = list("inaprovaline" = "Inaprovaline", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
+	var/list/available_chemicals = list()
+	var/list/base_chemicals = list("inaprovaline" = "Inaprovaline", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
 	var/obj/item/weapon/reagent_containers/glass/beaker = null
 	var/filtering = 0
 	var/obj/machinery/sleep_console/console
@@ -170,6 +178,7 @@
 	..()
 	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 	component_parts = list()
+	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
 	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
@@ -180,6 +189,55 @@
 	component_parts += new /obj/item/stack/material/glass/reinforced(src, 2)
 
 	RefreshParts()
+
+/obj/machinery/sleeper/Destroy()
+	if(console)
+		console.sleeper = null
+	return ..()
+
+/obj/machinery/sleeper/RefreshParts(var/limited = 0)
+	var/man_rating = 0
+	var/cap_rating = 0
+
+	available_chemicals.Cut()
+	available_chemicals = base_chemicals.Copy()
+	idle_power_usage = initial(idle_power_usage)
+	active_power_usage = initial(active_power_usage)
+
+	for(var/obj/item/weapon/stock_parts/P in component_parts)
+		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
+			cap_rating += P.rating
+
+	cap_rating = max(1, round(cap_rating / 2))
+
+	idle_power_usage /= cap_rating
+	active_power_usage /= cap_rating
+
+	if(!limited)
+		for(var/obj/item/weapon/stock_parts/P in component_parts)
+			if(istype(P, /obj/item/weapon/stock_parts/manipulator))
+				man_rating += P.rating - 1
+
+		var/list/new_chemicals = list()
+
+		if(man_rating >= 4) // Alien tech.
+			var/reag_ID = pickweight(list(
+				"healing_nanites" = 10,
+				"shredding_nanites" = 5,
+				"irradiated_nanites" = 5,
+				"neurophage_nanites" = 2)
+				)
+			new_chemicals[reag_ID] = "Nanite"
+		if(man_rating >= 3) // Anomalous tech.
+			new_chemicals["immunosuprizine"] = "Immunosuprizine"
+		if(man_rating >= 2) // Tier 3.
+			new_chemicals["spaceacillin"] = "Spaceacillin"
+		if(man_rating >= 1) // Tier 2.
+			new_chemicals["leporazine"] = "Leporazine"
+
+		if(new_chemicals.len)
+			available_chemicals += new_chemicals
+		return
 
 /obj/machinery/sleeper/Initialize()
 	. = ..()
@@ -215,11 +273,8 @@
 		var/obj/item/weapon/grab/G = I
 		if(G.affecting)
 			go_in(G.affecting, user)
-	else if(default_deconstruction_screwdriver(user, I))
 		return
-	else if(default_deconstruction_crowbar(user, I))
-		return
-	else if(istype(I, /obj/item/weapon/reagent_containers/glass))
+	if(istype(I, /obj/item/weapon/reagent_containers/glass))
 		if(!beaker)
 			beaker = I
 			user.drop_item()
@@ -228,6 +283,13 @@
 		else
 			to_chat(user, "<span class='warning'>\The [src] has a beaker already.</span>")
 		return
+	if(!occupant)
+		if(default_deconstruction_screwdriver(user, I))
+			return
+		if(default_deconstruction_crowbar(user, I))
+			return
+		if(default_part_replacement(user, I))
+			return
 
 /obj/machinery/sleeper/verb/move_eject()
 	set name = "Eject occupant"
@@ -351,3 +413,7 @@
 	desc = "A limited functionality sleeper, all it can do is put patients into stasis. It lacks the medication and configuration of the larger units."
 	icon_state = "sleeper"
 	stasis_level = 100 //Just one setting
+
+/obj/machinery/sleeper/survival_pod/Initialize()
+	..()
+	RefreshParts(1)

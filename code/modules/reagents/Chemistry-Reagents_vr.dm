@@ -9,15 +9,24 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name != "Promethean")
-			M << "<span class='danger'>Your flesh rapidly mutates!</span>"
+			to_chat(M, "<span class='danger'>Your flesh rapidly mutates!</span>")
+
+			var/list/backup_implants = list()
+			for(var/obj/item/organ/I in H.organs)
+				for(var/obj/item/weapon/implant/backup/BI in I.contents)
+					backup_implants += BI
+			if(backup_implants.len)
+				for(var/obj/item/weapon/implant/backup/BI in backup_implants)
+					BI.forceMove(src)
+
 			H.set_species("Promethean")
-			H.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_shape
-			H.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_colour
-			H.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_hair
-			H.verbs +=  /mob/living/carbon/human/proc/shapeshifter_select_gender
-			H.verbs +=  /mob/living/carbon/human/proc/regenerate
-			H.verbs +=  /mob/living/proc/set_size
 			H.shapeshifter_set_colour("#05FF9B") //They can still change their color.
+
+			if(backup_implants.len)
+				var/obj/item/organ/external/torso = H.get_organ(BP_TORSO)
+				for(var/obj/item/weapon/implant/backup/BI in backup_implants)
+					BI.forceMove(torso)
+					torso.implants += BI
 
 /datum/chemical_reaction/slime/sapphire_mutation
 	name = "Slime Mutation Toxins"

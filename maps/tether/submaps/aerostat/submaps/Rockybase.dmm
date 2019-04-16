@@ -2,7 +2,7 @@
 "aa" = (
 /mob/living/simple_mob/mechanical/viscerator{
 	maxbodytemp = 900;
-	returns_home = 1
+	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/returnhome
 	},
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/template_noop)
@@ -25,7 +25,7 @@
 	desc = "An automated combat drone with an aged apperance.";
 	faction = "syndicate";
 	maxbodytemp = 900;
-	returns_home = 1
+	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting/threatening/returnhome
 	},
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/Rockybase)
@@ -361,7 +361,7 @@
 	desc = "An automated combat drone with an aged apperance.";
 	faction = "syndicate";
 	maxbodytemp = 900;
-	returns_home = 1
+	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting/threatening/returnhome
 	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)

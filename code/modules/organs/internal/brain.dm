@@ -152,6 +152,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	name = "slime core"
 	desc = "A complex, organic knot of jelly and crystalline particles."
 	icon_state = "core"
+	decays = FALSE
 	parent_organ = BP_TORSO
 	clone_source = TRUE
 	flags = OPENCONTAINER
