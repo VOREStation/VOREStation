@@ -612,6 +612,8 @@
 	name = "moth antenna and wings, colorable"
 	desc = ""
 	icon_state = "moth_full_gray"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/kerena
 	name = "wingwolf wings (Kerena)"
