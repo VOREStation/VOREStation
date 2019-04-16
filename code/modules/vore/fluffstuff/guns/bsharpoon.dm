@@ -43,6 +43,9 @@
 	if(get_area(A).flags & BLUE_SHIELDED)
 		to_chat(user, "<span class='warning'>The target area protected by bluespace shielding!</span>")
 		return
+	if(!(A in view(user, world.view)))
+		to_chat(user, "<span class='warning'>Harpoon fails to lock on the obstructed target!</span>")
+		return
 
 	last_fire = current_fire
 	playsound(user, 'sound/weapons/wave.ogg', 60, 1)
