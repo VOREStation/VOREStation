@@ -215,24 +215,23 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	if(computer_deconstruction_screwdriver(user, O))
 		return
 	if(istype(O, /obj/item/device/multitool))
-		if(panel_open)
-			var/input = sanitize(input(usr, "What Department ID would you like to give this request console?", "Multitool-Request Console Interface", department))
-			if(!input)
-				to_chat(usr, "No input found. Please hang up and try your call again.")
-				return
-			department = input
-			announcement.title = "[department] announcement"
-			announcement.newscast = 1
-
-			name = "[department] Requests Console"
-			allConsoles += src
-			if(departmentType & RC_ASSIST)
-				req_console_assistance |= department
-			if(departmentType & RC_SUPPLY)
-				req_console_supplies |= department
-			if(departmentType & RC_INFO)
-				req_console_information |= department
+		var/input = sanitize(input(usr, "What Department ID would you like to give this request console?", "Multitool-Request Console Interface", department))
+		if(!input)
+			to_chat(usr, "No input found. Please hang up and try your call again.")
 			return
+		department = input
+		announcement.title = "[department] announcement"
+		announcement.newscast = 1
+
+		name = "[department] Requests Console"
+		allConsoles += src
+		if(departmentType & RC_ASSIST)
+			req_console_assistance |= department
+		if(departmentType & RC_SUPPLY)
+			req_console_supplies |= department
+		if(departmentType & RC_INFO)
+			req_console_information |= department
+		return
 
 	if(istype(O, /obj/item/weapon/card/id))
 		if(inoperable(MAINT)) return

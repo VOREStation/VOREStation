@@ -828,15 +828,25 @@ proc/GaussRandRound(var/sigma,var/roundto)
 						SX.air.copy_from(ST.zone.air)
 						ST.zone.remove(ST)
 
+					var/z_level_change = FALSE
+					if(T.z != X.z)
+						z_level_change = TRUE
+
 					//Move the objects. Not forceMove because the object isn't "moving" really, it's supposed to be on the "same" turf.
 					for(var/obj/O in T)
 						O.loc = X
 						O.update_light()
+						if(z_level_change) // The objects still need to know if their z-level changed.
+							O.onTransitZ(T.z, X.z)
 
 					//Move the mobs unless it's an AI eye or other eye type.
 					for(var/mob/M in T)
 						if(istype(M, /mob/observer/eye)) continue // If we need to check for more mobs, I'll add a variable
 						M.loc = X
+
+						if(z_level_change) // Same goes for mobs.
+							M.onTransitZ(T.z, X.z)
+
 						if(istype(M, /mob/living))
 							var/mob/living/LM = M
 							LM.check_shadow() // Need to check their Z-shadow, which is normally done in forceMove().
@@ -1550,3 +1560,24 @@ var/mob/dview/dview_mob = new
 	if(istype(D))
 		return !QDELETED(D)
 	return FALSE
+
+//gives us the stack trace from CRASH() without ending the current proc.
+/proc/stack_trace(msg)
+	CRASH(msg)
+
+/datum/proc/stack_trace(msg)
+	CRASH(msg)
+
+// \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
+// If it ever becomes necesary to get a more performant REF(), this lies here in wait
+// #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
+/proc/REF(input)
+	if(istype(input, /datum))
+		var/datum/thing = input
+		if(thing.datum_flags & DF_USE_TAG)
+			if(!thing.tag)
+				thing.datum_flags &= ~DF_USE_TAG
+				stack_trace("A ref was requested of an object with DF_USE_TAG set but no tag: [thing]")
+			else
+				return "\[[url_encode(thing.tag)]\]"
+	return "\ref[input]"

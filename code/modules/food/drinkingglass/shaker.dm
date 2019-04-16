@@ -11,7 +11,7 @@
 	rim_pos = null // no fruit slices
 	var/lid_color = "black"
 
-/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/New()
+/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/Initialize()
 	..()
 	lid_color = pick("black", "red", "blue")
 	update_icon()
@@ -23,7 +23,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake
 	name = "protein shake"
 
-/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake/New()
+/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake/Initialize()
 	..()
 	reagents.add_reagent("nutriment", 30)
 	reagents.add_reagent("iron", 10)

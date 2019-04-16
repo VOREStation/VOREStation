@@ -240,13 +240,9 @@
 	desc = "A large machine releasing a constant gust of air."
 	anchored = TRUE
 	density = TRUE
+	can_atmos_pass = ATMOS_PASS_NO
 	var/buildstacktype = /obj/item/stack/material/steel
 	var/buildstackamount = 5
-
-/obj/structure/fans/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(!height)
-		return FALSE
-	return TRUE
 
 /obj/structure/fans/proc/deconstruct()
 	new buildstacktype(loc,buildstackamount)

@@ -17,3 +17,10 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 500)
 	build_path = /obj/item/weapon/storage/box/syndie_kit/chameleon
 	sort_string = "VASBA"
+
+/datum/design/item/weapon/esword
+	id = "chargesword"
+	req_tech = list(TECH_COMBAT = 6, TECH_MAGNET = 4, TECH_ENGINEERING = 5, TECH_ILLEGAL = 4, TECH_ANOMALY = 1)
+	materials = list(MAT_PLASTEEL = 3500, "glass" = 1000, MAT_LEAD = 2250, MAT_METALHYDROGEN = 500)
+	build_path = /obj/item/weapon/melee/energy/sword/charge
+	sort_string = "VASCA"

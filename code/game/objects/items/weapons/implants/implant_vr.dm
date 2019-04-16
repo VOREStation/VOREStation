@@ -104,10 +104,7 @@
 				var/static/regex/size_mult = new/regex("\\d+")
 				if(size_mult.Find(msg))
 					var/resizing_value = text2num(size_mult.match)
-					if(findtext(msg, "centimeter"))		//Because metric system rules
-						H.resize(CLAMP(resizing_value/170 , 0.25, 2))		//170 cm is average crewmember, I think
-					else
-						H.resize(CLAMP(resizing_value , 0.25, 2))
+					H.resize(CLAMP(resizing_value/100 , 0.25, 2))
 
 
 
@@ -128,7 +125,7 @@
 	description_info = {"Only accessable by those who implanted the victim. Self-implanting allows everyone to change host size. The following special commands are available:
 'Shrink' - host size decreases.
 'Grow' - host size increases.
-'Resize (NUMBER)' or 'Resize (NUMBER) centimeter(s)' - for accurate size control.
+'Resize (NUMBER)' - for accurate size control.
 'Ignore' - keywords in the speech won't have any effect.
 'Implant-toggle' - toggles implant."}
 

@@ -660,6 +660,13 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<UL>"
 			for(var/M in linked_lathe.materials)
 				var/amount = linked_lathe.materials[M]
+				var/hidden_mat = FALSE
+				for(var/HM in linked_lathe.hidden_materials)
+					if(M == HM && amount == 0)
+						hidden_mat = TRUE
+						break
+				if(hidden_mat)
+					continue
 				dat += "<LI><B>[capitalize(M)]</B>: [amount] cm<sup>3</sup>"
 				if(amount >= SHEET_MATERIAL_AMOUNT)
 					dat += " || Eject "
@@ -745,6 +752,13 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<UL>"
 			for(var/M in linked_imprinter.materials)
 				var/amount = linked_imprinter.materials[M]
+				var/hidden_mat = FALSE
+				for(var/HM in linked_imprinter.hidden_materials)
+					if(M == HM && amount == 0)
+						hidden_mat = TRUE
+						break
+				if(hidden_mat)
+					continue
 				dat += "<LI><B>[capitalize(M)]</B>: [amount] cm<sup>3</sup>"
 				if(amount >= SHEET_MATERIAL_AMOUNT)
 					dat += " || Eject: "

@@ -44,7 +44,7 @@ obj/machinery/recharger
 			if(E.self_recharge)
 				to_chat(user, "<span class='notice'>Your gun has no recharge port.</span>")
 				return
-		if(!G.get_cell())
+		if(!G.get_cell() && !istype(G, /obj/item/ammo_casing/nsfw_batt))	//VOREStation Edit: NSFW charging
 			to_chat(user, "This device does not have a battery installed.")
 			return
 

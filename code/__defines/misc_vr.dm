@@ -21,9 +21,9 @@
 #define MAX_SPECIES_TRAITS 5
 
 // Xenochimera thing mostly
-#define REVIVING_NOW		1
-#define REVIVING_DONE		2
-#define REVIVING_COOLDOWN	3
+#define REVIVING_NOW		-1
+#define REVIVING_DONE		0
+#define REVIVING_READY		1
 
 // Resleeving Mind Record Status
 #define MR_NORMAL 0

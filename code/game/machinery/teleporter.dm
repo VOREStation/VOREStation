@@ -14,7 +14,7 @@
 	id = "[rand(1000, 9999)]"
 	..()
 	underlays.Cut()
-	underlays += image('icons/obj/stationobjs.dmi', icon_state = "telecomp-wires")
+	underlays += image('icons/obj/stationobjs_vr.dmi', icon_state = "telecomp-wires")	//VOREStation Edit: different direction for wires to account for dirs
 	return
 
 /obj/machinery/computer/teleporter/Initialize()

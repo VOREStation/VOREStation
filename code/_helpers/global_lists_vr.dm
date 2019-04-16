@@ -137,6 +137,7 @@ var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/stack/material/cardboard,
 				/obj/item/toy,
 				/obj/item/trash,
+				/obj/item/weapon/digestion_remains,
 				/obj/item/weapon/bananapeel,
 				/obj/item/weapon/bone,
 				/obj/item/weapon/broken_bottle,
@@ -393,6 +394,27 @@ var/global/list/contamination_colors = list("green",
 				"cyan",
 				"beige",
 				"pink")
+
+//For the mechanic of leaving remains. Ones listed below are basically ones that got no bones.
+var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
+				SPECIES_DIONA,
+				SPECIES_ALRAUNE,
+				SPECIES_PROTEAN,
+				SPECIES_MONKEY,					//Exclude all monkey subtypes, to prevent abuse of it. They aren't,
+				SPECIES_MONKEY_TAJ,				//set to have remains anyway, but making double sure,
+				SPECIES_MONKEY_SKRELL,
+				SPECIES_MONKEY_UNATHI,
+				SPECIES_MONKEY_AKULA,
+				SPECIES_MONKEY_NEVREAN,
+				SPECIES_MONKEY_SERGAL,
+				SPECIES_MONKEY_VULPKANIN,
+				SPECIES_XENO,					//Same for xenos,
+				SPECIES_XENO_DRONE,
+				SPECIES_XENO_HUNTER,
+				SPECIES_XENO_SENTINEL,
+				SPECIES_XENO_QUEEN,
+				SPECIES_SHADOW,
+				SPECIES_GOLEM)					//Some special species that may or may not be ever used in event too
 
 /hook/startup/proc/init_vore_datum_ref_lists()
 	var/paths

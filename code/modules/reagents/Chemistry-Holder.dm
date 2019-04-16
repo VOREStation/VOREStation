@@ -77,41 +77,31 @@
 	return
 
 /datum/reagents/proc/handle_reactions()
-	START_PROCESSING(SSchemistry, src)
-
-//returns 1 if the holder should continue reactiong, 0 otherwise.
-/datum/reagents/process()
-	if(QDELETED(my_atom))		//No container, no reaction.
-		return PROCESS_KILL
-	if(my_atom.flags & NOREACT) // No reactions here
-		return PROCESS_KILL
-
-	var/reaction_occured
-	var/list/effect_reactions = list()
+	if(QDELETED(my_atom))
+		return FALSE
+	if(my_atom.flags & NOREACT)
+		return FALSE
+	var/reaction_occurred
 	var/list/eligible_reactions = list()
-	for(var/i in 1 to PROCESS_REACTION_ITER)
-		reaction_occured = 0
+	var/list/effect_reactions = list()
+	do
+		reaction_occurred = FALSE
+		for(var/i in reagent_list)
+			var/datum/reagent/R = i
+			if(SSchemistry.chemical_reactions_by_reagent[R.id])							//VOREStation Edit: unruntiming chems
+				eligible_reactions |= SSchemistry.chemical_reactions_by_reagent[R.id]	//VOREStation Edit: unruntiming chems
 
-		//need to rebuild this to account for chain reactions
-		for(var/datum/reagent/R in reagent_list)
-			eligible_reactions |= SSchemistry.chemical_reactions[R.id]
-
-		for(var/datum/chemical_reaction/C in eligible_reactions)
+		for(var/i in eligible_reactions)
+			var/datum/chemical_reaction/C = i
 			if(C.can_happen(src) && C.process(src))
 				effect_reactions |= C
-				reaction_occured = 1
-
-		eligible_reactions.Cut()
-
-		if(!reaction_occured)
-			break
-
-	for(var/datum/chemical_reaction/C in effect_reactions)
+				reaction_occurred = TRUE
+		eligible_reactions.len = 0
+	while(reaction_occurred)
+	for(var/i in effect_reactions)
+		var/datum/chemical_reaction/C = i
 		C.post_reaction(src)
-
 	update_total()
-	if(!reaction_occured)
-		return PROCESS_KILL
 
 /* Holder-to-chemical */
 

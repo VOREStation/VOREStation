@@ -153,6 +153,7 @@
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_TERMINUS)
 	name_language = LANGUAGE_TERMINUS
+	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds)
 
 	min_age = 18
 	max_age = 80
@@ -192,6 +193,7 @@
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_TERMINUS)
 	name_language = LANGUAGE_TERMINUS
+	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds)
 
 	min_age = 18
 	max_age = 80
@@ -238,7 +240,7 @@
 //	gluttonous = 1
 	num_alternate_languages = 3
 	color_mult = 1
-	inherent_verbs = list(/mob/living/proc/shred_limb)
+	inherent_verbs = list(/mob/living/proc/shred_limb, /mob/living/carbon/human/proc/lick_wounds)
 
 	blurb = "Vulpkanin are a species of sharp-witted canine-pideds residing on the planet Altam just barely within the \
 	dual-star Vazzend system. Their politically de-centralized society and independent natures have led them to become a species and \
@@ -303,6 +305,7 @@
 	min_age = 18
 	gluttonous = 0
 	inherent_verbs = list(/mob/living/proc/shred_limb)
+	descriptors = list()
 
 /datum/species/tajaran
 	spawn_flags = SPECIES_CAN_JOIN
@@ -312,7 +315,7 @@
 	color_mult = 1
 	min_age = 18
 	gluttonous = 0 //Moving this here so I don't have to fix this conflict every time polaris glances at station.dm
-	inherent_verbs = list(/mob/living/proc/shred_limb)
+	inherent_verbs = list(/mob/living/proc/shred_limb, /mob/living/carbon/human/proc/lick_wounds)
 	heat_discomfort_level = 295 //Prevents heat discomfort spam at 20c
 
 /datum/species/skrell
@@ -328,6 +331,7 @@
 	spawn_flags = SPECIES_CAN_JOIN
 	min_age = 18
 	gluttonous = 0
+	descriptors = list()
 
 /datum/species/diona
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
@@ -342,6 +346,8 @@
 	min_age = 18
 	push_flags = ~HEAVY //Allows them to use micro step code.
 	swap_flags = ~HEAVY
+	gluttonous = 0
+	descriptors = list()
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/sonar_ping,
@@ -368,6 +374,9 @@
 	icobase = 'icons/mob/human_races/r_vox_old.dmi'
 	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
 	inherent_verbs = list(/mob/living/proc/shred_limb, /mob/living/proc/eat_trash)
+	descriptors = list(
+		/datum/mob_descriptor/vox_markings = 0
+		)
 
 datum/species/harpy
 	name = SPECIES_RAPALA

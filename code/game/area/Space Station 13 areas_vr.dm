@@ -34,6 +34,36 @@
 /area/crew_quarters/sleep/vistor_room_12
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 
+/area/crew_quarters/sleep/Dorm_1
+	flags = RAD_SHIELDED | BLUE_SHIELDED
+
+/area/crew_quarters/sleep/Dorm_2
+	flags = RAD_SHIELDED | BLUE_SHIELDED
+
+/area/crew_quarters/sleep/Dorm_3
+	flags = RAD_SHIELDED | BLUE_SHIELDED
+
+/area/crew_quarters/sleep/Dorm_4
+	flags = RAD_SHIELDED | BLUE_SHIELDED
+
+/area/crew_quarters/sleep/Dorm_5
+	flags = RAD_SHIELDED | BLUE_SHIELDED
+
+/area/crew_quarters/sleep/Dorm_6
+	flags = RAD_SHIELDED | BLUE_SHIELDED
+
+/area/crew_quarters/sleep/Dorm_7
+	flags = RAD_SHIELDED | BLUE_SHIELDED
+
+/area/crew_quarters/sleep/Dorm_8
+	flags = RAD_SHIELDED | BLUE_SHIELDED
+
+/area/crew_quarters/sleep/Dorm_9
+	flags = RAD_SHIELDED | BLUE_SHIELDED
+
+/area/crew_quarters/sleep/Dorm_10
+	flags = RAD_SHIELDED | BLUE_SHIELDED
+
 /area/teleporter/departing
 	name = "\improper Long-Range Teleporter"
 	icon_state = "teleporter"
@@ -48,6 +78,19 @@
 
 /area/security/nuke_storage
 	flags = BLUE_SHIELDED
+
+/area/supply
+	flags = BLUE_SHIELDED
+
+// Add rad shielding to maintenance and construction sites
+/area/vacant
+	flags = RAD_SHIELDED
+
+/area/maintenance
+	flags = RAD_SHIELDED
+
+/area/rnd/research_storage	//Located entirely in maint under public access, so why not that too
+	flags = RAD_SHIELDED
 
 // New shuttles
 /area/shuttle/administration/transit

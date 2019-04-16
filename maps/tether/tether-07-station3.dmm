@@ -16541,15 +16541,17 @@
 /area/quartermaster/qm)
 "zK" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "qm_office"
+	},
 /turf/simulated/floor/plating,
 /area/quartermaster/qm)
 "zL" = (
 /turf/simulated/wall,
 /area/quartermaster/qm)
 "zM" = (
-/obj/machinery/door/airlock/glass_mining{
+/obj/machinery/door/airlock/mining{
 	name = "Quartermaster";
 	req_access = list(41);
 	req_one_access = list()
@@ -17359,6 +17361,30 @@
 /area/supply/station{
 	dynamic_lighting = 0
 	})
+"AZ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/window/westleft,
+/obj/machinery/door/window/eastleft{
+	req_one_access = list(33)
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/door/blast/shutters{
+	dir = 8;
+	id = "chemistry";
+	layer = 3.1;
+	name = "Chemistry Shutters"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/monotile,
+/area/medical/chemistry)
 "Ba" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -17850,6 +17876,11 @@
 	},
 /obj/effect/landmark/start{
 	name = "Quartermaster"
+	},
+/obj/machinery/button/windowtint{
+	id = "qm_office";
+	pixel_x = 26;
+	pixel_y = 8
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/qm)
@@ -18367,7 +18398,7 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/qm)
 "CH" = (
-/obj/machinery/door/airlock/glass_mining{
+/obj/machinery/door/airlock/mining{
 	name = "Quartermaster";
 	req_access = list(41);
 	req_one_access = list()
@@ -20457,29 +20488,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/reception)
-"Gu" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/door/window/westleft,
-/obj/machinery/door/window/eastleft{
-	req_one_access = list(33)
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/door/blast/shutters{
-	dir = 8;
-	id = "chemistry";
-	layer = 3.1;
-	name = "Chemistry Shutters"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/medical/chemistry)
 "Gv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -27274,7 +27282,6 @@
 	dir = 6
 	},
 /obj/machinery/suit_cycler/security,
-/obj/machinery/meter,
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "Rn" = (
@@ -36266,7 +36273,7 @@ Do
 Dp
 EP
 FE
-Gu
+AZ
 EP
 Dp
 ID

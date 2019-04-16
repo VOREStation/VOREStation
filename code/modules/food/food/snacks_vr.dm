@@ -308,7 +308,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/wolpincube
 	name = "wolpin cube"
 	monkey_type = "Wolpin"
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/pizza/margfrozen
 	name = "frozen margherita pizza"
 	desc = "It's frozen rock solid, better thaw it in a microwave."
@@ -317,11 +317,11 @@
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_amt = 15
 	nutriment_desc = list("ice" = 5, "toothache" = 1, "frozen cheese" = 5, "frozen tomato" = 5)
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/pizza/margfrozen/Initialize()
 	..()
 	bitesize = 20
-	reagents.add_reagent("frostoil",3)
+	//reagents.add_reagent("frostoil",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margcargo
 	name = "Margherita"
@@ -339,7 +339,7 @@
 	reagents.add_reagent("protein", 2)
 	reagents.add_reagent("tomatojuice", 10)
 	bitesize = 2
-	reagents.remove_reagent("frostoil",3)
+	//reagents.remove_reagent("frostoil",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/slice/margcargo
 	name = "Margherita slice"
@@ -353,7 +353,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/slice/margcargo/filled
 	filled = TRUE
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/pizza/meatfrozen
 	name = "frozen meat pizza"
 	desc = "It's frozen rock solid, better thaw it in a microwave."
@@ -362,11 +362,11 @@
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_amt = 15
 	nutriment_desc = list("ice" = 5, "toothache" = 1, "frozen meat" = 5, "frozen cow screams" = 5)
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/pizza/meatfrozen/Initialize()
 	..()
 	bitesize = 20
-	reagents.add_reagent("frostoil",3)
+	//reagents.add_reagent("frostoil",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatcargo
 	name = "Meatpizza"
@@ -384,7 +384,7 @@
 	reagents.add_reagent("protein", 20)
 	reagents.add_reagent("tomatojuice", 6)
 	bitesize = 2
-	reagents.remove_reagent("frostoil",3)
+	//reagents.remove_reagent("frostoil",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/slice/meatcargo
 	name = "Meatpizza slice"
@@ -398,7 +398,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/slice/meatcargo/filled
 	filled = TRUE
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/pizza/mushfrozen
 	name = "frozen mushroom pizza"
 	desc = "It's frozen rock solid, better thaw it in a microwave."
@@ -407,11 +407,11 @@
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_amt = 15
 	nutriment_desc = list("ice" = 5, "toothache" = 1, "frozen mushrooms" = 5, "frozen cream" = 5)
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/pizza/mushfrozen/Initialize()
 	..()
 	bitesize = 20
-	reagents.add_reagent("frostoil",3)
+	//reagents.add_reagent("frostoil",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushcargo
 	name = "Mushroompizza"
@@ -428,7 +428,7 @@
 	..()
 	reagents.add_reagent("protein", 4)
 	bitesize = 2
-	reagents.remove_reagent("frostoil",3)
+	//reagents.remove_reagent("frostoil",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/slice/mushcargo
 	name = "Mushroompizza slice"
@@ -451,11 +451,11 @@
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_amt = 15
 	nutriment_desc = list("ice" = 5, "toothache" = 1, "frozen vegtable chunks" = 5)
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/pizza/vegfrozen/Initialize()
 	..()
 	bitesize = 20
-	reagents.add_reagent("frostoil",3)
+	//reagents.add_reagent("frostoil",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegcargo
 	name = "Vegetablepizza"
@@ -474,7 +474,7 @@
 	reagents.add_reagent("tomatojuice", 15)
 	reagents.add_reagent("imidazoline", 10)
 	bitesize = 2
-	reagents.remove_reagent("frostoil",3)
+	//reagents.remove_reagent("frostoil",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/slice/vegcargo
 	name = "Vegtablepizza slice"
@@ -500,3 +500,18 @@
 
 /obj/item/pizzabox/meat/Initialize()
 	pizza = new /obj/item/weapon/reagent_containers/food/snacks/pizza/meatfrozen(src)
+
+/obj/item/weapon/reagent_containers/food/snacks/liquidprotein
+	name = "\improper LiquidProtein Ration"
+	desc = "A variant of the liquidfood ration, designed for obligate carnivore species. Only barely more appealing than regular liquidfood. Should this be crunchy?"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "liquidprotein"
+	trash = /obj/item/trash/liquidprotein
+	filling_color = "#A8A8A8"
+	center_of_mass = list("x"=16, "y"=15)
+
+/obj/item/weapon/reagent_containers/food/snacks/liquidprotein/Initialize()
+	..()
+	reagents.add_reagent("protein", 20)
+	reagents.add_reagent("iron", 3)
+	bitesize = 4
