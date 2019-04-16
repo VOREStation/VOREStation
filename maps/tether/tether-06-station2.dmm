@@ -3995,6 +3995,13 @@
 "gw" = (
 /turf/simulated/open,
 /area/engineering/locker_room)
+"gx" = (
+/obj/random/tool,
+/obj/random/maintenance/clean,
+/obj/random/maintenance/clean,
+/obj/structure/closet,
+/turf/simulated/floor,
+/area/medical/virology)
 "gy" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
@@ -31912,7 +31919,7 @@ WG
 nP
 ot
 oW
-fy
+gx
 pZ
 qP
 rD
