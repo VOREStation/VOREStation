@@ -6588,6 +6588,7 @@
 "amI" = (
 /obj/machinery/power/smes/buildable{
 	charge = 0;
+	output_attempt = 0;
 	RCon_tag = "Substation - Mining"
 	},
 /obj/structure/cable/green,
@@ -15490,6 +15491,7 @@
 "aSM" = (
 /obj/machinery/power/smes/buildable{
 	charge = 0;
+	output_attempt = 0;
 	RCon_tag = "Substation - Civ West"
 	},
 /obj/structure/cable/green{

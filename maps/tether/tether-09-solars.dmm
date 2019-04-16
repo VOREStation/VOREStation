@@ -353,6 +353,7 @@
 "aM" = (
 /obj/machinery/power/smes/buildable{
 	charge = 0;
+	output_attempt = 0;
 	RCon_tag = "Solar Farm - SMES 1"
 	},
 /obj/structure/cable/heavyduty,
@@ -361,6 +362,7 @@
 "aN" = (
 /obj/machinery/power/smes/buildable{
 	charge = 0;
+	output_attempt = 0;
 	RCon_tag = "Solar Farm - SMES 2"
 	},
 /obj/structure/cable/heavyduty,
@@ -370,6 +372,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/smes/buildable{
 	charge = 0;
+	output_attempt = 0;
 	RCon_tag = "Solar Farm - SMES 3"
 	},
 /obj/structure/cable/heavyduty,
@@ -2622,6 +2625,8 @@
 /area/maintenance/substation/outpost)
 "ff" = (
 /obj/machinery/power/smes/buildable{
+	charge = 0;
+	output_attempt = 0;
 	RCon_tag = "Substation - Science Outpost"
 	},
 /obj/structure/cable/green,

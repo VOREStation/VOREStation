@@ -1247,6 +1247,7 @@
 "acO" = (
 /obj/machinery/power/smes/buildable{
 	charge = 0;
+	output_attempt = 0;
 	RCon_tag = "Substation - Engineering"
 	},
 /obj/structure/cable/green{
@@ -11594,6 +11595,7 @@
 "aEX" = (
 /obj/machinery/power/smes/buildable{
 	charge = 0;
+	output_attempt = 0;
 	RCon_tag = "Substation - Civilian"
 	},
 /obj/structure/cable/green{
@@ -19625,6 +19627,7 @@
 "bFg" = (
 /obj/machinery/power/smes/buildable{
 	charge = 0;
+	output_attempt = 0;
 	RCon_tag = "Substation - Command"
 	},
 /obj/structure/cable/green{
