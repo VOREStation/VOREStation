@@ -1023,6 +1023,11 @@
 "ack" = (
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
+"acl" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "acm" = (
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
@@ -2066,10 +2071,17 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
 "aeq" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/machinery/computer/cryopod{
+	pixel_y = 32
+	},
+/obj/effect/floor_decal/techfloor{
+	dir = 5
+	},
+/obj/effect/landmark{
+	name = "JoinLateCyborg"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/crew_quarters/sleep/cryo)
 "aer" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -3499,6 +3511,20 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
+"agz" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 6
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -24
+	},
+/obj/effect/landmark{
+	name = "JoinLateCyborg"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/crew_quarters/sleep/cryo)
 "agF" = (
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
@@ -8125,15 +8151,6 @@
 	},
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/crew_quarters/sleep/cryo)
-"avb" = (
-/obj/machinery/computer/cryopod{
-	pixel_y = 32
-	},
-/obj/effect/floor_decal/techfloor{
-	dir = 5
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/sleep/cryo)
@@ -16331,17 +16348,6 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/techfloor,
-/turf/simulated/floor/tiled/techfloor,
-/area/crew_quarters/sleep/cryo)
-"bff" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 6
-	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -24
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/sleep/cryo)
 "bfk" = (
@@ -33821,7 +33827,7 @@ aeo
 aaq
 aaq
 aau
-aeq
+acl
 avK
 avN
 aad
@@ -33963,7 +33969,7 @@ amF
 rje
 adB
 aaq
-aeq
+acl
 avK
 avN
 aad
@@ -34105,7 +34111,7 @@ amF
 rje
 adB
 aaq
-aeq
+acl
 avK
 auH
 aad
@@ -34957,7 +34963,7 @@ aaD
 avG
 tIi
 aaq
-aeq
+acl
 avK
 auQ
 aad
@@ -35099,7 +35105,7 @@ amL
 aob
 dbI
 aaq
-aeq
+acl
 avK
 qgR
 aad
@@ -35241,7 +35247,7 @@ aep
 aeu
 aev
 aau
-aeq
+acl
 avK
 qgR
 aad
@@ -36541,8 +36547,8 @@ asN
 asN
 asN
 asI
-avb
-bff
+aeq
+agz
 asI
 bhL
 aus

@@ -5039,6 +5039,10 @@
 "lc" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/lower/rnd)
+"ld" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/drone_fabrication)
 "le" = (
 /obj/structure/railing{
 	dir = 4
@@ -12253,13 +12257,6 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
-/area/engineering/drone_fabrication)
-"AO" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/effect/landmark{
-	name = "JoinLateCyborg"
-	},
-/turf/simulated/floor/tiled/techmaint,
 /area/engineering/drone_fabrication)
 "AZ" = (
 /obj/structure/catwalk,
@@ -28633,7 +28630,7 @@ Xm
 zk
 zR
 As
-AO
+ld
 Bd
 Tn
 BK
