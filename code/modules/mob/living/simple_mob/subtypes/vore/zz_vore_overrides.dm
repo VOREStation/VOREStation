@@ -91,10 +91,10 @@
 	icon_gib = "bear-gib"
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/hostile/bear/hudson
+/mob/living/simple_mob/animal/space/bear/hudson
 	name = "Hudson"
 
-/mob/living/simple_mob/hostile/bear/brown
+/mob/living/simple_mob/animal/space/bear/brown
 	vore_active = 1
 	icon = 'icons/mob/vore.dmi'
 	name = "brown bear"
@@ -138,29 +138,29 @@
 	vore_max_size = RESIZE_TINY
 
 /* //VOREStation AI Temporary removal
-/mob/living/simple_mob/cat/PunchTarget()
-	if(istype(target_mob,/mob/living/simple_mob/mouse))
+/mob/living/simple_mob/animal/passive/cat/PunchTarget()
+	if(istype(target_mob,/mob/living/simple_mob/animal/passive/mouse))
 		visible_message("<span class='warning'>\The [src] pounces on \the [target_mob]!]</span>")
 		target_mob.Stun(5)
 		return EatTarget()
 	else ..()
 
-/mob/living/simple_mob/cat/Found(var/atom/found_atom)
+/mob/living/simple_mob/animal/passive/cat/Found(var/atom/found_atom)
 	if(!SA_attackable(found_atom))
 		return null
-	if(istype(found_atom,/mob/living/simple_mob/mouse))
+	if(istype(found_atom,/mob/living/simple_mob/animal/passive/mouse))
 		return found_atom
 	if(found_atom in friends)
 		return null
 	if(will_eat(found_atom))
 		return found_atom
 
-/mob/living/simple_mob/cat/fluff/Found(var/atom/found_atom)
+/mob/living/simple_mob/animal/passive/cat/fluff/Found(var/atom/found_atom)
 	if (friend == found_atom)
 		return null
 	return ..()
 */
-/mob/living/simple_mob/cat/fluff
+/mob/living/simple_mob/animal/passive/cat/fluff
 	vore_ignores_undigestable = 0
 	vore_pounce_chance = 100
 	vore_digest_chance = 0 // just use the toggle
@@ -168,7 +168,7 @@
 	vore_standing_too = TRUE //gonna get pounced
 
 /* //VOREStation AI Temporary Removal
-/mob/living/simple_mob/cat/fluff/EatTarget()
+/mob/living/simple_mob/animal/passive/cat/fluff/EatTarget()
 	var/mob/living/TM = target_mob
 	prey_excludes += TM //so they won't immediately re-eat someone who struggles out (or gets newspapered out) as soon as they're ate
 	spawn(3600) // but if they hang around and get comfortable, they might get ate again
@@ -184,14 +184,14 @@
 
 /* //VOREStation AI Temporary Removal
 /mob/living/simple_mob/fox/PunchTarget()
-	if(istype(target_mob,/mob/living/simple_mob/mouse))
+	if(istype(target_mob,/mob/living/simple_mob/animal/passive/mouse))
 		return EatTarget()
 	else ..()
 
 /mob/living/simple_mob/fox/Found(var/atom/found_atom)
 	if(!SA_attackable(found_atom))
 		return null
-	if(istype(found_atom,/mob/living/simple_mob/mouse))
+	if(istype(found_atom,/mob/living/simple_mob/animal/passive/mouse))
 		return found_atom
 	if(found_atom in friends)
 		return null
@@ -255,5 +255,5 @@
 		var/obj/belly/B = belly
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode
 
-/mob/living/simple_mob/mouse
+/mob/living/simple_mob/animal/passive/mouse
 	faction = "mouse" //Giving mice a faction so certain mobs can get along with them.

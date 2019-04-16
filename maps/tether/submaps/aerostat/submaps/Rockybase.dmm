@@ -664,7 +664,7 @@
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
 "co" = (
-/mob/living/simple_mob/hostile/mecha/malf_drone{
+/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced{
 	faction = "syndicate"
 	},
 /turf/simulated/floor/tiled/techfloor/virgo2,

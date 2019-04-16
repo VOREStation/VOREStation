@@ -84,7 +84,7 @@
 				update_patient()
 			return
 /* //VORESTATION AI TEMPORARY REMOVAL
-		if(istype(target, /mob/living/simple_mob/mouse)) //Edible mice, dead or alive whatever. Mostly for carcass picking you cruel bastard :v
+		if(istype(target, /mob/living/simple_mob/animal/passive/mouse)) //Edible mice, dead or alive whatever. Mostly for carcass picking you cruel bastard :v
 			var/mob/living/simple_mob/trashmouse = target
 			user.visible_message("<span class='warning'>[hound.name] is ingesting [trashmouse] into their [src.name].</span>", "<span class='notice'>You start ingesting [trashmouse] into your [src.name]...</span>")
 			if(do_after(user, 30, trashmouse) && length(contents) < max_item_count)

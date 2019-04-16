@@ -1,4 +1,4 @@
-/obj/random
+|/obj/random
 	name = "random object"
 	desc = "This item type is used to spawn random objects at round-start"
 	icon = 'icons/misc/mark.dmi'
@@ -1531,23 +1531,23 @@ var/list/multi_point_spawns
 	icon_state = "chicken_white"
 
 /obj/random/mob/item_to_spawn()
-	return pick(prob(10);/mob/living/simple_mob/lizard,
-				prob(6);/mob/living/simple_mob/retaliate/diyaab,
-				prob(10);/mob/living/simple_mob/cat/fluff,
-				prob(6);/mob/living/simple_mob/cat/kitten,
-				prob(10);/mob/living/simple_mob/corgi,
-				prob(6);/mob/living/simple_mob/corgi/puppy,
-				prob(10);/mob/living/simple_mob/crab,
-				prob(10);/mob/living/simple_mob/chicken,
-				prob(6);/mob/living/simple_mob/chick,
-				prob(10);/mob/living/simple_mob/cow,
-				prob(6);/mob/living/simple_mob/retaliate/goat,
-				prob(10);/mob/living/simple_mob/penguin,
-				prob(10);/mob/living/simple_mob/mouse,
-				prob(10);/mob/living/simple_mob/yithian,
-				prob(10);/mob/living/simple_mob/tindalos,
-				prob(10);/mob/living/simple_mob/corgi/tamaskan,
-				prob(3);/mob/living/simple_mob/parrot,
+	return pick(prob(10);/mob/living/simple_mob/animal/passive/lizard,
+				prob(6);/mob/living/simple_mob/animal/sif/diyaab,
+				prob(10);/mob/living/simple_mob/animal/passive/cat,
+				prob(6);/mob/living/simple_mob/animal/passive/cat/kitten,
+				prob(10);/mob/living/simple_mob/animal/passive/dog/corgi,
+				prob(6);/mob/living/simple_mob/animal/passive/dog/corgi/puppy,
+				prob(10);/mob/living/simple_mob/animal/passive/crab,
+				prob(10);/mob/living/simple_mob/animal/passive/chicken,
+				prob(6);/mob/living/simple_mob/animal/passive/chick,
+				prob(10);/mob/living/simple_mob/animal/passive/cow,
+				prob(6);/mob/living/simple_mob/animal/goat,
+				prob(10);/mob/living/simple_mob/animal/passive/penguin,
+				prob(10);/mob/living/simple_mob/animal/passive/mouse,
+				prob(10);/mob/living/simple_mob/animal/passive/yithian,
+				prob(10);/mob/living/simple_mob/animal/passive/tindalos,
+				prob(10);/mob/living/simple_mob/animal/passive/dog/tamaskan,
+				prob(3);/mob/living/simple_mob/animal/passive/bird/parrot,
 				prob(1);/mob/living/simple_mob/giant_crab)
 
 /obj/random/mob/sif
@@ -1556,13 +1556,13 @@ var/list/multi_point_spawns
 	icon_state = "penguin"
 
 /obj/random/mob/sif/item_to_spawn()
-	return pick(prob(30);/mob/living/simple_mob/retaliate/diyaab,
-				prob(15);/mob/living/simple_mob/crab,
-				prob(15);/mob/living/simple_mob/penguin,
-				prob(15);/mob/living/simple_mob/mouse,
-				prob(15);/mob/living/simple_mob/corgi/tamaskan,
-				prob(2);/mob/living/simple_mob/hostile/giant_spider/frost,
-				prob(1);/mob/living/simple_mob/hostile/goose,
+	return pick(prob(30);/mob/living/simple_mob/animal/sif/diyaab,
+				prob(15);/mob/living/simple_mob/animal/passive/crab,
+				prob(15);/mob/living/simple_mob/animal/passive/penguin,
+				prob(15);/mob/living/simple_mob/animal/passive/mouse,
+				prob(15);/mob/living/simple_mob/animal/passive/dog/tamaskan,
+				prob(2);/mob/living/simple_mob/animal/giant_spider/frost,
+				prob(1);/mob/living/simple_mob/animal/space/goose,
 				prob(20);/mob/living/simple_mob/giant_crab)
 
 /obj/random/mob/sif/hostile
@@ -1572,7 +1572,7 @@ var/list/multi_point_spawns
 
 /obj/random/mob/sif/hostile/item_to_spawn()
 	return pick(prob(22);/mob/living/simple_mob/hostile/savik,
-				prob(33);/mob/living/simple_mob/hostile/giant_spider/frost,
+				prob(33);/mob/living/simple_mob/animal/giant_spider/frost,
 				prob(45);/mob/living/simple_mob/hostile/shantak)
 
 /obj/random/mob/spider
@@ -1581,9 +1581,9 @@ var/list/multi_point_spawns
 	icon_state = "guard"
 
 /obj/random/mob/spider/item_to_spawn()
-	return pick(prob(22);/mob/living/simple_mob/hostile/giant_spider/nurse,
-				prob(33);/mob/living/simple_mob/hostile/giant_spider/hunter,
-				prob(45);/mob/living/simple_mob/hostile/giant_spider)
+	return pick(prob(22);/mob/living/simple_mob/animal/giant_spider/nurse,
+				prob(33);/mob/living/simple_mob/animal/giant_spider/hunter,
+				prob(45);/mob/living/simple_mob/animal/giant_spider)
 
 /obj/random/mob/spider/mutant
 	name = "Random Mutant Spider"
@@ -1592,15 +1592,15 @@ var/list/multi_point_spawns
 
 /obj/random/mob/spider/mutant/item_to_spawn()
 	return pick(prob(5);/obj/random/mob/spider,
-				prob(10);/mob/living/simple_mob/hostile/giant_spider/webslinger,
-				prob(10);/mob/living/simple_mob/hostile/giant_spider/carrier,
-				prob(33);/mob/living/simple_mob/hostile/giant_spider/lurker,
-				prob(33);/mob/living/simple_mob/hostile/giant_spider/tunneler,
-				prob(40);/mob/living/simple_mob/hostile/giant_spider/pepper,
-				prob(20);/mob/living/simple_mob/hostile/giant_spider/thermic,
-				prob(40);/mob/living/simple_mob/hostile/giant_spider/electric,
-				prob(1);/mob/living/simple_mob/hostile/giant_spider/phorogenic,
-				prob(40);/mob/living/simple_mob/hostile/giant_spider/frost)
+				prob(10);/mob/living/simple_mob/animal/giant_spider/webslinger,
+				prob(10);/mob/living/simple_mob/animal/giant_spider/carrier,
+				prob(33);/mob/living/simple_mob/animal/giant_spider/lurker,
+				prob(33);/mob/living/simple_mob/animal/giant_spider/tunneler,
+				prob(40);/mob/living/simple_mob/animal/giant_spider/pepper,
+				prob(20);/mob/living/simple_mob/animal/giant_spider/thermic,
+				prob(40);/mob/living/simple_mob/animal/giant_spider/electric,
+				prob(1);/mob/living/simple_mob/animal/giant_spider/phorogenic,
+				prob(40);/mob/living/simple_mob/animal/giant_spider/frost)
 
 /obj/random/mob/robotic
 	name = "Random Robot Mob"
@@ -1608,17 +1608,17 @@ var/list/multi_point_spawns
 	icon_state = "drone_dead"
 
 /obj/random/mob/robotic/item_to_spawn() //Hivebots have a total number of 'lots' equal to the lesser drone, at 60.
-	return pick(prob(60);/mob/living/simple_mob/hostile/malf_drone/lesser,
-				prob(50);/mob/living/simple_mob/hostile/malf_drone,
-				prob(15);/mob/living/simple_mob/hostile/mecha/malf_drone,
-				prob(10);/mob/living/simple_mob/hostile/hivebot,
-				prob(15);/mob/living/simple_mob/hostile/hivebot/swarm,
-				prob(10);/mob/living/simple_mob/hostile/hivebot/range,
-				prob(5);/mob/living/simple_mob/hostile/hivebot/range/rapid,
-				prob(5);/mob/living/simple_mob/hostile/hivebot/range/ion,
-				prob(5);/mob/living/simple_mob/hostile/hivebot/range/laser,
-				prob(5);/mob/living/simple_mob/hostile/hivebot/range/strong,
-				prob(5);/mob/living/simple_mob/hostile/hivebot/range/guard)
+	return pick(prob(60);/mob/living/simple_mob/mechanical/combat_drone/lesser,
+				prob(50);/mob/living/simple_mob/mechanical/combat_drone,
+				prob(15);/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced,
+				prob(10);/mob/living/simple_mob/mechanical/hivebot,
+				prob(15);/mob/living/simple_mob/mechanical/hivebot/swarm,
+				prob(10);/mob/living/simple_mob/mechanical/hivebot/ranged_damage,
+				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/rapid,
+				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion,
+				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser,
+				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/strong,
+				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/guard)
 
 /obj/random/mob/robotic/hivebot
 	name = "Random Hivebot"
@@ -1626,11 +1626,11 @@ var/list/multi_point_spawns
 	icon_state = "drone3"
 
 /obj/random/mob/robotic/hivebot/item_to_spawn()
-	return pick(prob(10);/mob/living/simple_mob/hostile/hivebot,
-				prob(15);/mob/living/simple_mob/hostile/hivebot/swarm,
-				prob(10);/mob/living/simple_mob/hostile/hivebot/range,
-				prob(5);/mob/living/simple_mob/hostile/hivebot/range/rapid,
-				prob(5);/mob/living/simple_mob/hostile/hivebot/range/ion,
-				prob(5);/mob/living/simple_mob/hostile/hivebot/range/laser,
-				prob(5);/mob/living/simple_mob/hostile/hivebot/range/strong,
-				prob(5);/mob/living/simple_mob/hostile/hivebot/range/guard)
+	return pick(prob(10);/mob/living/simple_mob/mechanical/hivebot,
+				prob(15);/mob/living/simple_mob/mechanical/hivebot/swarm,
+				prob(10);/mob/living/simple_mob/mechanical/hivebot/ranged_damage,
+				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/rapid,
+				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion,
+				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser,
+				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/strong,
+				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/guard)
