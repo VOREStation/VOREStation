@@ -966,6 +966,7 @@
 "bA" = (
 /obj/machinery/power/smes/buildable{
 	charge = 0;
+	output_attempt = 0;
 	RCon_tag = "Substation - Security"
 	},
 /obj/structure/cable/green{
@@ -21968,6 +21969,7 @@
 "IP" = (
 /obj/machinery/power/smes/buildable{
 	charge = 0;
+	output_attempt = 0;
 	RCon_tag = "Substation - Cargo"
 	},
 /obj/structure/cable/green{

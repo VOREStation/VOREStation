@@ -1023,6 +1023,11 @@
 "ack" = (
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
+"acl" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "acm" = (
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
@@ -1247,6 +1252,7 @@
 "acO" = (
 /obj/machinery/power/smes/buildable{
 	charge = 0;
+	output_attempt = 0;
 	RCon_tag = "Substation - Engineering"
 	},
 /obj/structure/cable/green{
@@ -2065,10 +2071,17 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/excursion/tether)
 "aeq" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/machinery/computer/cryopod{
+	pixel_y = 32
+	},
+/obj/effect/floor_decal/techfloor{
+	dir = 5
+	},
+/obj/effect/landmark{
+	name = "JoinLateCyborg"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/crew_quarters/sleep/cryo)
 "aer" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -3498,6 +3511,20 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/explorer_meeting)
+"agz" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 6
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -24
+	},
+/obj/effect/landmark{
+	name = "JoinLateCyborg"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/crew_quarters/sleep/cryo)
 "agF" = (
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
@@ -8127,15 +8154,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/sleep/cryo)
-"avb" = (
-/obj/machinery/computer/cryopod{
-	pixel_y = 32
-	},
-/obj/effect/floor_decal/techfloor{
-	dir = 5
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/crew_quarters/sleep/cryo)
 "avc" = (
 /obj/machinery/cryopod/robot,
 /obj/effect/floor_decal/corner_techfloor_grid{
@@ -11594,6 +11612,7 @@
 "aEX" = (
 /obj/machinery/power/smes/buildable{
 	charge = 0;
+	output_attempt = 0;
 	RCon_tag = "Substation - Civilian"
 	},
 /obj/structure/cable/green{
@@ -16331,17 +16350,6 @@
 /obj/effect/floor_decal/techfloor,
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/sleep/cryo)
-"bff" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 6
-	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -24
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/crew_quarters/sleep/cryo)
 "bfk" = (
 /obj/structure/table/rack{
 	dir = 8;
@@ -19625,6 +19633,7 @@
 "bFg" = (
 /obj/machinery/power/smes/buildable{
 	charge = 0;
+	output_attempt = 0;
 	RCon_tag = "Substation - Command"
 	},
 /obj/structure/cable/green{
@@ -33818,7 +33827,7 @@ aeo
 aaq
 aaq
 aau
-aeq
+acl
 avK
 avN
 aad
@@ -33960,7 +33969,7 @@ amF
 rje
 adB
 aaq
-aeq
+acl
 avK
 avN
 aad
@@ -34102,7 +34111,7 @@ amF
 rje
 adB
 aaq
-aeq
+acl
 avK
 auH
 aad
@@ -34954,7 +34963,7 @@ aaD
 avG
 tIi
 aaq
-aeq
+acl
 avK
 auQ
 aad
@@ -35096,7 +35105,7 @@ amL
 aob
 dbI
 aaq
-aeq
+acl
 avK
 qgR
 aad
@@ -35238,7 +35247,7 @@ aep
 aeu
 aev
 aau
-aeq
+acl
 avK
 qgR
 aad
@@ -36538,8 +36547,8 @@ asN
 asN
 asN
 asI
-avb
-bff
+aeq
+agz
 asI
 bhL
 aus
