@@ -16541,15 +16541,17 @@
 /area/quartermaster/qm)
 "zK" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "qm_office"
+	},
 /turf/simulated/floor/plating,
 /area/quartermaster/qm)
 "zL" = (
 /turf/simulated/wall,
 /area/quartermaster/qm)
 "zM" = (
-/obj/machinery/door/airlock/glass_mining{
+/obj/machinery/door/airlock/mining{
 	name = "Quartermaster";
 	req_access = list(41);
 	req_one_access = list()
@@ -17875,6 +17877,11 @@
 /obj/effect/landmark/start{
 	name = "Quartermaster"
 	},
+/obj/machinery/button/windowtint{
+	id = "qm_office";
+	pixel_x = 26;
+	pixel_y = 8
+	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/qm)
 "BN" = (
@@ -18391,7 +18398,7 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/qm)
 "CH" = (
-/obj/machinery/door/airlock/glass_mining{
+/obj/machinery/door/airlock/mining{
 	name = "Quartermaster";
 	req_access = list(41);
 	req_one_access = list()

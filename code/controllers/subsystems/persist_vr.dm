@@ -41,24 +41,30 @@ SUBSYSTEM_DEF(persist)
 				return
 			continue
 
+		// Do not collect useless PTO
+		var/department_earning = J.department
+		if(J.department == "Command")
+			department_earning = "Civilian"
+		clear_unused_pto(M)
+
 		// Update client whatever
 		var/client/C = M.client
 		var/wait_in_hours = (wait / (1 HOUR)) * J.timeoff_factor
 		LAZYINITLIST(C.department_hours)
 		var/dept_hours = C.department_hours
-		if(isnum(C.department_hours[J.department]))
-			dept_hours[J.department] += wait_in_hours
+		if(isnum(C.department_hours[department_earning]))
+			dept_hours[department_earning] += wait_in_hours
 		else
-			dept_hours[J.department] = wait_in_hours
+			dept_hours[department_earning] = wait_in_hours
 
 		//Cap it
-		dept_hours[J.department] = min(config.pto_cap, dept_hours[J.department])
+		dept_hours[department_earning] = min(config.pto_cap, dept_hours[department_earning])
 
 
 		// Okay we figured it out, lets update database!
 		var/sql_ckey = sql_sanitize_text(C.ckey)
-		var/sql_dpt = sql_sanitize_text(J.department)
-		var/sql_bal = text2num("[C.department_hours[J.department]]")
+		var/sql_dpt = sql_sanitize_text(department_earning)
+		var/sql_bal = text2num("[C.department_hours[department_earning]]")
 		var/DBQuery/query = dbcon.NewQuery("INSERT INTO vr_player_hours (ckey, department, hours) VALUES ('[sql_ckey]', '[sql_dpt]', [sql_bal]) ON DUPLICATE KEY UPDATE hours = VALUES(hours)")
 		query.Execute()
 
@@ -79,3 +85,11 @@ SUBSYSTEM_DEF(persist)
 	// Let's check the mind.
 	if(M.mind && M.mind.assigned_role)
 		. = job_master.GetJob(M.mind.assigned_role)
+
+// This proc tries makes sure old Command PTO doesn't linger
+/datum/controller/subsystem/persist/proc/clear_unused_pto(var/mob/M)
+	var/client/C = M.client
+	LAZYINITLIST(C.department_hours)
+	if(C.department_hours["Command"])
+		C.department_hours["Command"] = null
+		C.department_hours.Remove("Command")

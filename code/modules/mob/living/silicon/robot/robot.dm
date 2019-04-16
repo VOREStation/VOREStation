@@ -628,7 +628,7 @@
 		else
 			to_chat(user, "Unable to locate a radio.")
 
-	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda)||istype(W, /obj/item/weapon/card/robot))			// trying to unlock the interface with an ID card
+	else if (W.GetID())			// trying to unlock the interface with an ID card
 		if(emagged)//still allow them to open the cover
 			to_chat(user, "The interface seems slightly damaged")
 		if(opened)
@@ -729,7 +729,7 @@
 	var/list/L = req_access
 	if(!L.len) //no requirements
 		return 1
-	if(!I || !(istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/device/pda))) //not ID or PDA
+	if(!I) //nothing to check with..?
 		return 0
 	var/access_found = I.GetAccess()
 	for(var/req in req_access)
@@ -1003,7 +1003,7 @@
 	if(icontype == "Custom")
 		icon = CUSTOM_ITEM_SYNTH
 	else // This is to fix an issue where someone with a custom borg sprite chooses a non-custom sprite and turns invisible.
-		icon = 'icons/mob/robots.dmi'
+		vr_sprite_check() //VOREStation Edit
 	icon_state = module_sprites[icontype]
 	updateicon()
 

@@ -97,7 +97,7 @@
 				change_ears(P)
 				change_tail_nocolor(P)
 				change_wing_nocolor(P)
-				change_species(P,1)
+				change_species(P,1,1)
 
 ///////////////////////////// DM_TRANSFORM_REPLICA /////////////////////////////
 	else if(mode == DM_TRANSFORM_REPLICA)
@@ -122,7 +122,7 @@
 				change_ears(P)
 				change_tail(P)
 				change_wing(P)
-				change_species(P,1)
+				change_species(P,1,2)
 
 ///////////////////////////// DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG /////////////////////////////
 	else if(mode == DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG)
@@ -134,7 +134,7 @@
 				change_ears(P)
 				change_tail_nocolor(P)
 				change_wing_nocolor(P)
-				change_species(P,1)
+				change_species(P,1,1)
 				continue
 
 			if(!P.absorbed)
@@ -177,7 +177,7 @@
 				change_ears(P)
 				change_tail(P)
 				change_wing(P)
-				change_species(P,1)
+				change_species(P,1,2)
 				continue
 
 			if(!P.absorbed)

@@ -42,6 +42,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 /datum/vore_preferences
 	//Actual preferences
 	var/digestable = TRUE
+	var/digest_leave_remains = FALSE
 	var/allowmobvore = TRUE
 	var/list/belly_prefs = list()
 	var/vore_taste = "nothing in particular"
@@ -92,9 +93,9 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		return 0 //Need to know what character to load!
 
 	slot = client.prefs.default_slot
-	
+
 	load_path(client_ckey,slot)
-	
+
 	if(!path) return 0 //Path couldn't be set?
 	if(!fexists(path)) //Never saved before
 		save_vore() //Make the file first
@@ -108,6 +109,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	json_from_file = patch_version(json_from_file,version)
 
 	digestable = json_from_file["digestable"]
+	digest_leave_remains = json_from_file["digest_leave_remains"]
 	allowmobvore = json_from_file["allowmobvore"]
 	vore_taste = json_from_file["vore_taste"]
 	can_be_drop_prey = json_from_file["can_be_drop_prey"]
@@ -117,6 +119,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	//Quick sanitize
 	if(isnull(digestable))
 		digestable = TRUE
+	if(isnull(digest_leave_remains))
+		digest_leave_remains = FALSE
 	if(isnull(allowmobvore))
 		allowmobvore = TRUE
 	if(isnull(can_be_drop_prey))
@@ -130,11 +134,12 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 /datum/vore_preferences/proc/save_vore()
 	if(!path)				return 0
-	
+
 	var/version = 1	//For "good times" use in the future
 	var/list/settings_list = list(
 			"version"				= version,
 			"digestable"			= digestable,
+			"digest_leave_remains"	= digest_leave_remains,
 			"allowmobvore"			= allowmobvore,
 			"vore_taste"			= vore_taste,
 			"can_be_drop_prey"		= can_be_drop_prey,
@@ -147,7 +152,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	if(!json_to_file)
 		log_debug("Saving: [path] failed jsonencode")
 		return 0
-	
+
 	//Write it out
 #ifdef RUST_G
 	call(RUST_G, "file_write")(json_to_file, path)

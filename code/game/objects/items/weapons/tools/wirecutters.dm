@@ -73,6 +73,26 @@
 	usesound = 'sound/items/jaws_cut.ogg'
 	toolspeed = 0.5
 
+/obj/item/weapon/tool/wirecutters/hybrid
+	name = "strange wirecutters"
+	desc = "This cuts wires.  With <span class='alien'>Science!</span>"
+	icon_state = "hybcutters"
+	w_class = ITEMSIZE_NORMAL
+	slowdown = 0.1
+	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_PHORON = 2)
+	attack_verb = list("pinched", "nipped", "warped", "blasted")
+	usesound = 'sound/effects/stealthoff.ogg'
+	toolspeed = 0.4
+	reach = 2
+
+/obj/item/weapon/tool/wirecutters/hybrid/is_wirecutter()
+	if(prob(10))
+		var/turf/T = get_turf(src)
+		radiation_repository.radiate(get_turf(src), 5)
+		T.visible_message("<span class='alien'>\The [src] shudders!</span>")
+		return FALSE
+	return TRUE
+
 /obj/item/weapon/tool/wirecutters/power
 	name = "jaws of life"
 	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a cutting head."

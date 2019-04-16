@@ -6,6 +6,7 @@
 SUBSYSTEM_DEF(timer)
 	name = "Timer"
 	wait = 1 //SS_TICKER subsystem, so wait is in ticks
+	priority = FIRE_PRIORITY_TIMERS //VOREStation Emergency Edit
 	init_order = INIT_ORDER_TIMER
 
 	flags = SS_TICKER|SS_NO_INIT

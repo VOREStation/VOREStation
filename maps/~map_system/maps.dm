@@ -30,6 +30,7 @@ var/list/all_maps = list()
 	var/list/contact_levels = list() // Z-levels that can be contacted from the station, for eg announcements
 	var/list/player_levels = list()  // Z-levels a character can typically reach
 	var/list/sealed_levels = list()  // Z-levels that don't allow random transit at edge
+	var/list/xenoarch_exempt_levels = list()	//Z-levels exempt from xenoarch finds and digsites spawning.
 	var/list/empty_levels = null     // Empty Z-levels that may be used for various things (currently used by bluespace jump)
 
 	var/list/map_levels              // Z-levels available to various consoles, such as the crew monitor (when that gets coded in). Defaults to station_levels if unset.
@@ -185,6 +186,7 @@ var/list/all_maps = list()
 	if(flags & MAP_LEVEL_CONTACT) map.contact_levels += z
 	if(flags & MAP_LEVEL_PLAYER) map.player_levels += z
 	if(flags & MAP_LEVEL_SEALED) map.sealed_levels += z
+	if(flags & MAP_LEVEL_XENOARCH_EXEMPT) map.xenoarch_exempt_levels += z
 	if(flags & MAP_LEVEL_EMPTY)
 		if(!map.empty_levels) map.empty_levels = list()
 		map.empty_levels += z

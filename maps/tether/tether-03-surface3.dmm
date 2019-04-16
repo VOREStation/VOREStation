@@ -16919,6 +16919,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "DW" = (
+/obj/machinery/computer/timeclock/premade/east,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;

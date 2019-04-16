@@ -6,7 +6,7 @@
 /turf/simulated/floor/outdoors/snow,
 /area/submap/RationCache)
 "c" = (
-/mob/living/simple_animal/otie/feral,
+/mob/living/simple_mob/vore/aggressive/dino,
 /turf/simulated/floor/outdoors/snow,
 /area/submap/RationCache)
 "d" = (
