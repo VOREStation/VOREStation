@@ -31050,7 +31050,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/closet/fireaxecabinet{
+/obj/structure/fireaxecabinet{
 	pixel_y = 32
 	},
 /obj/structure/table/standard,
