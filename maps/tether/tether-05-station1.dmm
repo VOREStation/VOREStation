@@ -17702,7 +17702,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/obj/structure/closet/fireaxecabinet{
+/obj/structure/fireaxecabinet{
 	pixel_x = 32;
 	pixel_y = 0
 	},
