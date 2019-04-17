@@ -3995,6 +3995,13 @@
 "gw" = (
 /turf/simulated/open,
 /area/engineering/locker_room)
+"gx" = (
+/obj/random/tool,
+/obj/random/maintenance/clean,
+/obj/random/maintenance/clean,
+/obj/structure/closet,
+/turf/simulated/floor,
+/area/medical/virology)
 "gy" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
@@ -8583,11 +8590,6 @@
 /area/medical/virology)
 "pt" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor,
-/area/medical/virology)
-"pu" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/random/trash_pile,
 /turf/simulated/floor,
 /area/medical/virology)
 "pv" = (
@@ -31917,7 +31919,7 @@ WG
 nP
 ot
 oW
-pu
+gx
 pZ
 qP
 rD

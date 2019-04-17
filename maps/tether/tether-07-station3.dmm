@@ -20489,6 +20489,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/reception)
+"Gu" = (
+/obj/structure/catwalk,
+/obj/structure/closet/crate,
+/obj/random/maintenance/clean,
+/obj/random/maintenance/cargo,
+/obj/random/maintenance/engineering,
+/turf/simulated/floor,
+/area/maintenance/security_starboard)
 "Gv" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -21236,11 +21244,6 @@
 "HK" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
-/turf/simulated/floor,
-/area/maintenance/security_starboard)
-"HL" = (
-/obj/structure/catwalk,
-/obj/random/trash_pile,
 /turf/simulated/floor,
 /area/maintenance/security_starboard)
 "HM" = (
@@ -34289,7 +34292,7 @@ ED
 Fs
 Gj
 GT
-HL
+Gu
 Ix
 Je
 JV
