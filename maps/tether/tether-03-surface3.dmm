@@ -4861,6 +4861,14 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
+"iF" = (
+/obj/machinery/portable_atmospherics/hydroponics/soil,
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "iG" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -12123,6 +12131,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
+"vj" = (
+/obj/machinery/light_construct{
+	icon_state = "tube-construct-stage1";
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/turf/simulated/floor/wood/broken,
+/area/vacant/vacant_library)
 "vk" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -12327,6 +12343,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
+"vF" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/turf/simulated/floor/wood/broken,
+/area/vacant/vacant_library)
 "vG" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -12690,6 +12711,14 @@
 /obj/effect/floor_decal/corner/lightgrey/border,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
+"wm" = (
+/obj/item/stack/material/wood{
+	amount = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/broken,
+/area/vacant/vacant_library)
 "wn" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -12708,6 +12737,11 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
+"wo" = (
+/obj/machinery/light_construct,
+/turf/simulated/floor/plating,
+/turf/simulated/floor/wood/broken,
+/area/vacant/vacant_library)
 "wp" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lime/border,
@@ -12931,6 +12965,31 @@
 "wJ" = (
 /turf/simulated/wall,
 /area/maintenance/lower/atrium)
+"wK" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/mauve/bordercorner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/assembly/robotics)
+"wL" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
 "wN" = (
 /obj/structure/sign/directions/medical{
 	dir = 4;
@@ -13123,14 +13182,6 @@
 "xi" = (
 /obj/structure/bed/chair/comfy/beige,
 /turf/simulated/floor/carpet,
-/area/vacant/vacant_library)
-"xj" = (
-/obj/machinery/light_construct{
-	icon_state = "tube-construct-stage1";
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/turf/simulated/floor/wood/broken,
 /area/vacant/vacant_library)
 "xk" = (
 /obj/structure/bookcase,
@@ -15826,14 +15877,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
-"Cc" = (
-/obj/item/stack/material/wood{
-	amount = 10
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/wood,
-/turf/simulated/floor/wood/broken,
-/area/vacant/vacant_library)
 "Ch" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -16808,11 +16851,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
-"DJ" = (
-/obj/machinery/light_construct,
-/turf/simulated/floor/plating,
-/turf/simulated/floor/wood/broken,
-/area/vacant/vacant_library)
 "DN" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
@@ -17116,26 +17154,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/steel_grid,
-/area/assembly/robotics)
-"En" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/mauve/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/mauve/bordercorner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/industrial/warning/corner,
-/obj/item/device/radio/intercom{
-	dir = 8;
-	pixel_x = 24
-	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
 "Eo" = (
@@ -20958,11 +20976,6 @@
 "Qr" = (
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
-"Qs" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
-/turf/simulated/floor/wood/broken,
-/area/vacant/vacant_library)
 "Qx" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/public_garden_three)
@@ -21646,11 +21659,6 @@
 /obj/machinery/door/airlock/glass_external/public,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
-"VB" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
 "VF" = (
 /obj/machinery/light{
 	dir = 1
@@ -22103,17 +22111,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
-"Yz" = (
-/obj/item/device/radio/intercom{
-	dir = 8;
-	listening = 1;
-	name = "Common Channel";
-	pixel_x = -21;
-	pixel_y = 0
-	},
-/obj/machinery/portable_atmospherics/hydroponics/soil,
-/turf/simulated/floor/grass,
-/area/tether/surfacebase/public_garden_three)
 "YA" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -27177,7 +27174,7 @@ QC
 VN
 Zq
 Zq
-Yz
+iF
 QC
 Op
 ac
@@ -31198,7 +31195,7 @@ BO
 jI
 Da
 DC
-En
+wK
 EU
 FU
 FU
@@ -33459,9 +33456,9 @@ vh
 vE
 wh
 Zv
-xj
+vj
 Lm
-Qs
+vF
 Wc
 zR
 Az
@@ -33469,7 +33466,7 @@ Az
 LM
 CJ
 Dk
-DJ
+wo
 Zv
 Fk
 Gb
@@ -33892,7 +33889,7 @@ xV
 zT
 Yh
 Br
-Cc
+wm
 Lm
 xW
 VX
@@ -36183,7 +36180,7 @@ Jr
 Js
 Wh
 JE
-VB
+wL
 IY
 bg
 RO
@@ -36325,7 +36322,7 @@ Js
 Js
 Jz
 JE
-VB
+wL
 IY
 bg
 RO
@@ -36467,7 +36464,7 @@ Jt
 Js
 Jz
 JE
-VB
+wL
 IY
 bg
 RO
