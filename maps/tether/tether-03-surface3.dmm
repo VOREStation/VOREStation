@@ -312,7 +312,7 @@
 	dir = 8
 	},
 /obj/item/device/radio/intercom{
-	dir = 8;
+	dir = 4;
 	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/white,
@@ -564,6 +564,10 @@
 	dir = 8
 	},
 /obj/item/device/sleevemate,
+/obj/item/device/radio/intercom/department/medbay{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "bq" = (
@@ -1649,6 +1653,12 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/item/device/radio/intercom/department/security{
+	dir = 4;
+	icon_state = "secintercom";
+	pixel_x = 24;
+	pixel_y = 0
+	},
 /turf/simulated/floor/carpet/blue,
 /area/tether/surfacebase/security/breakroom)
 "dq" = (
@@ -2017,7 +2027,7 @@
 /area/tether/surfacebase/security/breakroom)
 "dZ" = (
 /obj/item/device/radio/intercom{
-	dir = 8;
+	dir = 4;
 	pixel_x = 24
 	},
 /turf/simulated/floor/carpet/blue,
@@ -6881,7 +6891,7 @@
 /obj/structure/table/glass,
 /obj/item/weapon/material/ashtray/plastic,
 /obj/item/device/radio/intercom{
-	dir = 8;
+	dir = 4;
 	pixel_x = 24
 	},
 /turf/simulated/floor/wood,
@@ -10513,7 +10523,7 @@
 	dir = 9
 	},
 /obj/item/device/radio/intercom{
-	dir = 8;
+	dir = 4;
 	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/white,
