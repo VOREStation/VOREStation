@@ -4,6 +4,7 @@
 
 /datum/design/item/stock_part
 	build_type = PROTOLATHE
+	time = 3 //Sets an independent time for stock parts, currently one third normal print time.
 
 /datum/design/item/stock_part/AssembleDesignName()
 	..()
@@ -237,7 +238,7 @@
 	build_path = /obj/item/weapon/stock_parts/subspace/transmitter
 	sort_string = "UAAAG"
 
-// RPED lives here because it handles stock parts
+// RPEDs live here because they handle stock parts
 /datum/design/item/stock_part/RPED
 	name = "Rapid Part Exchange Device"
 	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
@@ -246,3 +247,12 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 15000, "glass" = 5000)
 	build_path = /obj/item/weapon/storage/part_replacer
 	sort_string = "CBAAA"
+
+/datum/design/item/stock_part/ARPED
+	name = "Advanced Rapid Part Exchange Device"
+	desc = "Special mechanical module made to store, sort, and apply standard machine parts.  This one has a greatly upgraded storage capacity."
+	id = "arped"
+	req_tech = list(TECH_ENGINEERING = 5, TECH_MATERIAL = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 30000, "glass" = 10000)
+	build_path = /obj/item/weapon/storage/part_replacer/adv
+	sort_string = "CBAAB"
