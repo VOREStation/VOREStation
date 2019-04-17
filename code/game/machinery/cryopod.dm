@@ -229,7 +229,7 @@
 
 	var/obj/machinery/computer/cryopod/control_computer
 	var/last_no_computer_message = 0
-	var/applies_stasis = 1
+	var/applies_stasis = 0	//VOREStation Edit: allow people to change their mind
 
 /obj/machinery/cryopod/robot
 	name = "robotic storage unit"
