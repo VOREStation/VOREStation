@@ -268,3 +268,17 @@ the artifact triggers the rage.
 	if(L.get_poison_protection() >= 1)
 		return FALSE
 	return TRUE
+<<<<<<< HEAD
+=======
+
+// Pulse modifier.
+/datum/modifier/false_pulse
+	name = "false pulse"
+	desc = "Your blood flows, despite all other factors."
+
+	on_created_text = "<span class='notice'>You feel alive.</span>"
+	on_expired_text = "<span class='notice'>You feel.. different.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+	pulse_set_level = PULSE_NORM
+>>>>>>> 3661d6f... Merge pull request #6081 from Mechoid/PulseBasedReagentProcessing

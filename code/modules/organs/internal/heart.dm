@@ -7,6 +7,8 @@
 	parent_organ = BP_TORSO
 	dead_icon = "heart-off"
 
+	var/standard_pulse_level = PULSE_NORM	// We run on a normal clock. This is NOT CONNECTED to species heart-rate modifier.
+
 
 /obj/item/organ/internal/heart/handle_germ_effects()
 	. = ..() //Up should return an infection level as an integer
