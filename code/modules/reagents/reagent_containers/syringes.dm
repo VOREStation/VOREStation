@@ -171,6 +171,7 @@
 					to_chat(user, "<span class='danger'>You cannot inject a robotic limb.</span>")
 					return
 
+			var/cycle_time = injtime*0.33 //33% of the time slept between 5u doses
 			var/warmup_time = 0	//0 for containers
 			if(ismob(target))
 				warmup_time = cycle_time //If the target is another mob, this gets overwritten
