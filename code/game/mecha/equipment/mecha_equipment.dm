@@ -1,20 +1,13 @@
 //DO NOT ADD MECHA PARTS TO THE GAME WITH THE DEFAULT "SPRITE ME" SPRITE!
 //I'm annoyed I even have to tell you this! SPRITE FIRST, then commit.
-<<<<<<< HEAD
-#define EQUIP_HULL 1
-#define EQUIP_WEAPON 2
-#define EQUIP_UTILITY 3
-#define EQUIP_SPECIAL 4
-//VOREStation Addition begin: MICROMECHS
-#define EQUIP_MICRO_UTILITY 5
-#define EQUIP_MICRO_WEAPON 6
-//VOREStation Addition end: MICROMECHS
-=======
 #define EQUIP_HULL		"hull"
 #define EQUIP_WEAPON	"weapon"
 #define EQUIP_UTILITY	"utility"
 #define EQUIP_SPECIAL	"core"
->>>>>>> 24b2df4... Merge pull request #6026 from Mechoid/Precursotech_Janus
+//VOREStation Addition begin: MICROMECHS
+#define EQUIP_MICRO_UTILITY	"micro_utility"
+#define EQUIP_MICRO_WEAPON	"micro_weapon"
+//VOREStation Addition end: MICROMECHS
 
 /obj/item/mecha_parts/mecha_equipment
 	name = "mecha equipment"
