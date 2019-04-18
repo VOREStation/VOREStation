@@ -118,6 +118,27 @@
 		to_chat(user, "<span class='notice'>You fill the [src].</span>")
 	else if(!silent)
 		to_chat(user, "<span class='notice'>You fail to pick anything up with \the [src].</span>")
+	if(istype(user.pulling, /obj/structure/ore_box/)) //Bit of a crappy way to do this, as it doubles spam for the user, but it works.
+		var/obj/structure/ore_box/O = user.pulling
+		O.attackby(src, user)
+
+/obj/item/weapon/storage/bag/ore/equipped(mob/user)
+	..()
+	if(user.get_inventory_slot(src) == slot_wear_suit || slot_l_hand || slot_l_hand || slot_belt) //Basically every place they can go. Makes sure it doesn't unregister if moved to other slots.
+		GLOB.moved_event.register(user, src, /obj/item/weapon/storage/bag/ore/proc/autoload, user)
+
+/obj/item/weapon/storage/bag/ore/dropped(mob/user)
+	..()
+	if(user.get_inventory_slot(src) == slot_wear_suit || slot_l_hand || slot_l_hand || slot_belt) //See above. This should really be a define.
+		GLOB.moved_event.register(user, src, /obj/item/weapon/storage/bag/ore/proc/autoload, user)
+	else
+		GLOB.moved_event.unregister(user, src)
+
+/obj/item/weapon/storage/bag/ore/proc/autoload(mob/user)
+	var/obj/item/weapon/ore/O = locate() in get_turf(src)
+	if(O)
+		gather_all(get_turf(src), user)
+
 
 /obj/item/weapon/storage/bag/ore/examine(mob/user)
 	..()
