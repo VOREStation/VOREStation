@@ -85,8 +85,8 @@
 				"timeoff_factor" = job.timeoff_factor
 			)
 		// TODO - Once job changing is implemented, we will want to list jobs to change into.
-		// if(job && job.timeoff_factor < 0) // Currently are Off Duty, so gotta lookup what on-duty jobs are open
-		// 	data["job_choices"] = getOpenOnDutyJobs(user, job.department)
+		if(job && job.timeoff_factor < 0) // Currently are Off Duty, so gotta lookup what on-duty jobs are open
+			data["job_choices"] = getOpenOnDutyJobs(user, job.department)
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -101,7 +101,7 @@
 	src.add_fingerprint(usr)
 
 	if (href_list["id"])
-		if (card)
+		if(card)
 			usr.put_in_hands(card)
 			card = null
 		else
@@ -110,7 +110,26 @@
 				I.forceMove(src)
 				card = I
 		update_icon()
+		return
+	if(href_list["switch-to-onduty"])
+		if(card)
+			makeOnDuty(href_list["switch-to-onduty"])
+			usr.put_in_hands(card)
 	return 1 // Return 1 to update UI
+
+/obj/machinery/computer/timeclock/proc/getOpenOnDutyJobs(var/mob/user, var/department)
+	var/list/available_jobs = list()
+	for(var/datum/job/job in job_master.occupations)
+		if(job && job.is_position_available() && !job.whitelist_only)	// && job.player_old_enough(user.client) && !jobban_isbanned(user,job.title)
+			if(job.department == department && !job.head_position && job.timeoff_factor > 0 && !(job.title == "Internal Affairs Agent"))
+				available_jobs += job.title
+				if(job.alt_titles)
+					for(var/alt_job in job.alt_titles)
+						available_jobs += alt_job
+	return available_jobs
+
+/obj/machinery/computer/timeclock/proc/makeOnDuty(var/newjob)
+	return
 
 //
 // Frame type for construction
@@ -145,3 +164,12 @@
 /obj/machinery/computer/timeclock/premade/west
 	dir = 4
 	pixel_x = -26
+
+/mob/verb/gain_pto()
+	set name = "Gain PTO"
+	set category = "Debug"
+
+	if(!client)
+		return FALSE
+	else
+		client.department_hours += list("Security" = 30)
