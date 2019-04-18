@@ -310,6 +310,7 @@
 /turf/simulated/floor/beach/sand/desert,
 /area/tether_away/beach/jungle)
 "TU" = (
+/obj/tether_away_spawner/beach_outside,
 /turf/simulated/floor/beach/sand/desert,
 /area/tether_away/beach/jungle)
 "UZ" = (
