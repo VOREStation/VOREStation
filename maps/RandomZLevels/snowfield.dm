@@ -19,7 +19,7 @@
 	floracountmax = 7000
 	/*
 	valid_mobs = list(/mob/living/simple_mob/hostile/samak/polar, /mob/living/simple_mob/hostile/diyaab/polar,
-					/mob/living/simple_mob/hostile/shantak/polar, /mob/living/simple_mob/hostile/bear/polar,
+					/mob/living/simple_mob/hostile/shantak/polar, /mob/living/simple_mob/animal/space/bear/polar,
 					/mob/living/simple_mob/hostile/wolf)*/ //VORESTATION AI TEMPORARY REMOVAL
 	valid_flora = list(/obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine,
 					/obj/structure/flora/tree/dead, /obj/structure/flora/grass/brown, /obj/structure/flora/grass/green,
@@ -44,7 +44,7 @@
 
 // -- Mobs -- //
 
-/mob/living/simple_mob/hostile/bear/polar // More aggressive than normal bears so none of that fancy life() stuff.
+/mob/living/simple_mob/animal/space/bear/polar // More aggressive than normal bears so none of that fancy life() stuff.
 	name = "polar bear"
 	desc = "The real question is, why are you examining it, instead of running away?"
 	icon = 'icons/mob/vore.dmi'
@@ -82,7 +82,7 @@
 
 
 
-/mob/living/simple_mob/hostile/bear/polar/death()
+/mob/living/simple_mob/animal/space/bear/polar/death()
 	desc = "This bastard sure isn't drinking Space Cola anymore."
 	..()
 

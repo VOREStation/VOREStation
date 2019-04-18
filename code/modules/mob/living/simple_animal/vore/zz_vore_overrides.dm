@@ -23,7 +23,7 @@
 // Okay! Here we go!
 //
 
-/mob/living/simple_mob/hostile/alien
+/mob/living/simple_mob/animal/space/alien
 	vore_active = 1
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "xenohunter"
@@ -32,7 +32,7 @@
 	icon_gib = "gibbed-a"
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/hostile/alien/drone
+/mob/living/simple_mob/animal/space/alien/drone
 	vore_active = 1
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "xenodrone"
@@ -41,7 +41,7 @@
 	icon_gib = "gibbed-a"
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/hostile/alien/sentinel
+/mob/living/simple_mob/animal/space/alien/sentinel
 	vore_active = 1
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "xenosentinel"
@@ -50,7 +50,7 @@
 	icon_gib = "gibbed-a"
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/hostile/alien/queen
+/mob/living/simple_mob/animal/space/alien/queen
 	vore_active = 1
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "xenoqueen"
@@ -59,7 +59,7 @@
 	icon_gib = "gibbed-a"
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/hostile/alien/queen/empress
+/mob/living/simple_mob/animal/space/alien/queen/empress
 	vore_active = 1
 	icon = 'icons/mob/vore64x64.dmi'
 	icon_state = "queen_s"
@@ -75,14 +75,14 @@
 	vore_capacity = 3
 	vore_pounce_chance = 75
 
-/mob/living/simple_mob/hostile/alien/sentinel/praetorian
+/mob/living/simple_mob/animal/space/alien/sentinel/praetorian
 	icon = 'icons/mob/vore64x64.dmi'
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
-/mob/living/simple_mob/hostile/alien/queen/empress/mother
+/mob/living/simple_mob/animal/space/alien/queen/empress/mother
 	vore_icons = 0 // NO VORE SPRITES
 
-/mob/living/simple_mob/hostile/bear
+/mob/living/simple_mob/animal/space/bear
 	vore_active = 1
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "spacebear"
@@ -91,10 +91,10 @@
 	icon_gib = "bear-gib"
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/hostile/bear/hudson
+/mob/living/simple_mob/animal/space/bear/hudson
 	name = "Hudson"
 
-/mob/living/simple_mob/hostile/bear/brown
+/mob/living/simple_mob/animal/space/bear/brown
 	vore_active = 1
 	icon = 'icons/mob/vore.dmi'
 	name = "brown bear"
@@ -104,7 +104,7 @@
 	icon_gib = "bear-gib"
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_mob/hostile/carp
+/mob/living/simple_mob/animal/space/carp
 	icon = 'icons/mob/vore.dmi'
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING
@@ -129,42 +129,42 @@
 	maxHealth = 60
 	health = 60
 
-/mob/living/simple_mob/cat
+/mob/living/simple_mob/animal/passive/cat
 	vore_active = 1
 	// NO VORE SPRITES
 	specific_targets = 0 // Targeting UNLOCKED
 	vore_max_size = RESIZE_TINY
 
-/mob/living/simple_mob/cat/PunchTarget()
-	if(istype(target_mob,/mob/living/simple_mob/mouse))
+/mob/living/simple_mob/animal/passive/cat/PunchTarget()
+	if(istype(target_mob,/mob/living/simple_mob/animal/passive/mouse))
 		visible_message("<span class='warning'>\The [src] pounces on \the [target_mob]!]</span>")
 		target_mob.Stun(5)
 		return EatTarget()
 	else ..()
 
-/mob/living/simple_mob/cat/Found(var/atom/found_atom)
+/mob/living/simple_mob/animal/passive/cat/Found(var/atom/found_atom)
 	if(!SA_attackable(found_atom))
 		return null
-	if(istype(found_atom,/mob/living/simple_mob/mouse))
+	if(istype(found_atom,/mob/living/simple_mob/animal/passive/mouse))
 		return found_atom
 	if(found_atom in friends)
 		return null
 	if(will_eat(found_atom))
 		return found_atom
 
-/mob/living/simple_mob/cat/fluff/Found(var/atom/found_atom)
+/mob/living/simple_mob/animal/passive/cat/fluff/Found(var/atom/found_atom)
 	if (friend == found_atom)
 		return null
 	return ..()
 
-/mob/living/simple_mob/cat/fluff
+/mob/living/simple_mob/animal/passive/cat/fluff
 	vore_ignores_undigestable = 0
 	vore_pounce_chance = 100
 	vore_digest_chance = 0 // just use the toggle
 	vore_default_mode = DM_HOLD //can use the toggle if you wanna be catfood
 	vore_standing_too = TRUE //gonna get pounced
 
-/mob/living/simple_mob/cat/fluff/EatTarget()
+/mob/living/simple_mob/animal/passive/cat/fluff/EatTarget()
 	var/mob/living/TM = target_mob
 	prey_excludes += TM //so they won't immediately re-eat someone who struggles out (or gets newspapered out) as soon as they're ate
 	spawn(3600) // but if they hang around and get comfortable, they might get ate again
@@ -178,14 +178,14 @@
 	vore_max_size = RESIZE_TINY
 
 /mob/living/simple_mob/fox/PunchTarget()
-	if(istype(target_mob,/mob/living/simple_mob/mouse))
+	if(istype(target_mob,/mob/living/simple_mob/animal/passive/mouse))
 		return EatTarget()
 	else ..()
 
 /mob/living/simple_mob/fox/Found(var/atom/found_atom)
 	if(!SA_attackable(found_atom))
 		return null
-	if(istype(found_atom,/mob/living/simple_mob/mouse))
+	if(istype(found_atom,/mob/living/simple_mob/animal/passive/mouse))
 		return found_atom
 	if(found_atom in friends)
 		return null
@@ -212,39 +212,39 @@
 			prey_excludes -= TM
 	..() // will_eat check is carried out before EatTarget is called, so prey on the prey_excludes list isn't a problem.
 
-/mob/living/simple_mob/hostile/goose
+/mob/living/simple_mob/animal/space/goose
 	vore_active = 1
 	// NO VORE SPRITES
 	vore_max_size = RESIZE_SMALL
 
-/mob/living/simple_mob/penguin
+/mob/living/simple_mob/animal/passive/penguin
 	vore_active = 1
 	// NO VORE SPRITES
 	vore_max_size = RESIZE_SMALL
 
 
-/mob/living/simple_mob/hostile/carp/pike
+/mob/living/simple_mob/animal/space/carp/pike
 	vore_active = 1
 	// NO VORE SPRITES
 
-/mob/living/simple_mob/hostile/carp/holodeck
+/mob/living/simple_mob/animal/space/carp/holodeck
 	vore_icons = 0 // NO VORE SPRITES
 	vore_digest_chance = 0
 	vore_absorb_chance = 0
 
 // Override stuff for holodeck carp to make them not digest when set to safe!
-/mob/living/simple_mob/hostile/carp/holodeck/init_vore()
+/mob/living/simple_mob/animal/space/carp/holodeck/init_vore()
 	. = ..()
 	var/safe = (faction == "neutral")
 	for(var/belly in vore_organs)
 		var/obj/belly/B = belly
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode
 
-/mob/living/simple_mob/hostile/carp/holodeck/set_safety(var/safe)
+/mob/living/simple_mob/animal/space/carp/holodeck/set_safety(var/safe)
 	. = ..()
 	for(var/belly in vore_organs)
 		var/obj/belly/B = belly
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode
 
-/mob/living/simple_mob/mouse
+/mob/living/simple_mob/animal/passive/mouse
 	faction = "mouse" //Giving mice a faction so certain mobs can get along with them.
