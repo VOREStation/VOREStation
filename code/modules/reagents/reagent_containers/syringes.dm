@@ -173,6 +173,13 @@
 
 			var/warmup_time = 0 //None if we're using this on ourselves.
 			var/cycle_time = injtime*0.33 //33% of the time slept between 5u doses
+<<<<<<< HEAD
+=======
+			var/warmup_time = 0	//0 for containers
+			if(ismob(target))
+				warmup_time = cycle_time //If the target is another mob, this gets overwritten
+
+>>>>>>> 2af21a1... Merge pull request #6096 from Heroman3003/syringe-beaker-interactions
 			if(ismob(target) && target != user)
 				warmup_time = injtime*0.66 //66% of the time is warmup
 
@@ -201,6 +208,7 @@
 
 			var/trans = 0
 			var/contained = reagentlist()
+<<<<<<< HEAD
 			while(reagents.total_volume)
 				if(ismob(target))
 					trans += reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)	
@@ -210,6 +218,17 @@
 				if(!reagents.total_volume || !do_after(user,cycle_time,target))
 					break
 			
+=======
+			if(ismob(target))
+				while(reagents.total_volume)
+					trans += reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)
+					update_icon()
+					if(!reagents.total_volume || !do_after(user,cycle_time,target))
+						break
+			else
+				trans += reagents.trans_to_obj(target, amount_per_transfer_from_this)
+
+>>>>>>> 2af21a1... Merge pull request #6096 from Heroman3003/syringe-beaker-interactions
 			if (reagents.total_volume <= 0 && mode == SYRINGE_INJECT)
 				mode = SYRINGE_DRAW
 				update_icon()
