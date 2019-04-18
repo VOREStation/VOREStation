@@ -56,7 +56,7 @@
 	{{/if}}
 </div>
 
-{{if data.job_datum && data.job_datum.timeoff_factor != 0 }}
+{{if data.job_datum && data.job_datum.timeoff_factor != 0 && !(data.assignment == "Terminated")}}
 <h3>Employment Actions</h3>
 <div class='itemGroup'>
 	<div class='item'>

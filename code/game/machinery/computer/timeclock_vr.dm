@@ -18,6 +18,12 @@
 	clicksound = null
 
 	var/obj/item/weapon/card/id/card // Inserted Id card
+	var/obj/item/device/radio/intercom/announce	// Integreated announcer
+
+
+/obj/machinery/computer/timeclock/New()
+	announce = new /obj/item/device/radio/intercom(src)
+	..()
 
 /obj/machinery/computer/timeclock/Destroy()
 	if(card)
@@ -115,6 +121,7 @@
 		if(card)
 			makeOnDuty(href_list["switch-to-onduty"])
 			usr.put_in_hands(card)
+			card = null
 	return 1 // Return 1 to update UI
 
 /obj/machinery/computer/timeclock/proc/getOpenOnDutyJobs(var/mob/user, var/department)
@@ -129,6 +136,19 @@
 	return available_jobs
 
 /obj/machinery/computer/timeclock/proc/makeOnDuty(var/newjob)
+	var/datum/job/foundjob = null
+	for(var/datum/job/job in job_master.occupations)
+		if(job.title == newjob || newjob in job.alt_titles)
+			foundjob = job
+			break
+	if(foundjob)
+		card.access = foundjob.get_access()
+		card.rank = foundjob.title
+		card.assignment = newjob
+		card.name = text("[card.registered_name]'s ID Card ([card.assignment])")
+		data_core.manifest_modify(card.registered_name, card.assignment)
+		callHook("reassign_employee", list(card))
+		announce.autosay("[card.registered_name] has moved On-Duty as [card.assignment]", "Employee Oversight")
 	return
 
 //
