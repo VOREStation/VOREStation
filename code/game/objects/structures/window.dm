@@ -83,8 +83,9 @@
 /obj/structure/window/proc/updateSilicate()
 	if (overlays)
 		overlays.Cut()
+	update_icon()
 
-	var/image/img = image(src.icon, src.icon_state)
+	var/image/img = image(src)
 	img.color = "#ffffff"
 	img.alpha = silicate * 255 / 100
 	overlays += img
