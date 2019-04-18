@@ -83,7 +83,6 @@
 					to_chat(user, "<span class='notice'>\The [target.name] added to cargo compartment slot: [delivery_tag].</span>")
 				update_patient()
 			return
-/* //VORESTATION AI TEMPORARY REMOVAL
 		if(istype(target, /mob/living/simple_mob/animal/passive/mouse)) //Edible mice, dead or alive whatever. Mostly for carcass picking you cruel bastard :v
 			var/mob/living/simple_mob/trashmouse = target
 			user.visible_message("<span class='warning'>[hound.name] is ingesting [trashmouse] into their [src.name].</span>", "<span class='notice'>You start ingesting [trashmouse] into your [src.name]...</span>")
@@ -98,7 +97,6 @@
 					to_chat(user, "<span class='notice'>\The [trashmouse] added to cargo compartment slot: [delivery_tag].</span>")
 				update_patient()
 			return
-*/
 		else if(ishuman(target))
 			var/mob/living/carbon/human/trashman = target
 			if(patient)
