@@ -1550,20 +1550,67 @@
 /mob/living/carbon/human/proc/handle_pulse()
 	if(life_tick % 5) return pulse	//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
 
-	if(!internal_organs_by_name[O_HEART])
-		return PULSE_NONE //No blood, no pulse.
-
-	if(stat == DEAD)
-		return PULSE_NONE	//that's it, you're dead, nothing can influence your pulse
-
 	var/temp = PULSE_NORM
 
+	var/modifier_shift = 0
+	var/modifier_set
+
+	if(modifiers && modifiers.len)
+		for(var/datum/modifier/mod in modifiers)
+			if(isnull(modifier_set) && !isnull(mod.pulse_set_level))
+				modifier_set = round(mod.pulse_set_level)	// Should be a whole number, but let's not take chances.
+			else if(mod.pulse_set_level > modifier_set)
+				modifier_set = round(mod.pulse_set_level)
+
+			modifier_set = max(0, modifier_set)	// No setting to negatives.
+
+			if(mod.pulse_modifier)
+				modifier_shift += mod.pulse_modifier
+
+	modifier_shift = round(modifier_shift)
+
+	if(!internal_organs_by_name[O_HEART])
+		temp = PULSE_NONE
+		if(!isnull(modifier_set))
+			temp = modifier_set
+		return temp //No blood, no pulse.
+
+	if(stat == DEAD)
+		temp = PULSE_NONE
+		if(!isnull(modifier_set))
+			temp = modifier_set
+		return temp	//that's it, you're dead, nothing can influence your pulse, aside from outside means.
+
+	var/obj/item/organ/internal/heart/Pump = internal_organs_by_name[O_HEART]
+
+	if(Pump)
+		temp += Pump.standard_pulse_level - PULSE_NORM
+
 	if(round(vessel.get_reagent_amount("blood")) <= BLOOD_VOLUME_BAD)	//how much blood do we have
-		temp = PULSE_THREADY	//not enough :(
+		temp = temp + 3	//not enough :(
 
 	if(status_flags & FAKEDEATH)
 		temp = PULSE_NONE		//pretend that we're dead. unlike actual death, can be inflienced by meds
 
+	if(!isnull(modifier_set))
+		temp = modifier_set
+
+	temp = max(0, temp + modifier_shift)	// No negative pulses.
+
+	if(Pump)
+		for(var/datum/reagent/R in reagents.reagent_list)
+			if(R.id in bradycardics)
+				if(temp <= Pump.standard_pulse_level + 3 && temp >= Pump.standard_pulse_level)
+					temp--
+			if(R.id in tachycardics)
+				if(temp <= Pump.standard_pulse_level + 1 && temp >= PULSE_NONE)
+					temp++
+			if(R.id in heartstopper) //To avoid using fakedeath
+				temp = PULSE_NONE
+			if(R.id in cheartstopper) //Conditional heart-stoppage
+				if(R.volume >= R.overdose)
+					temp = PULSE_NONE
+		return temp
 	//handles different chems' influence on pulse
 	for(var/datum/reagent/R in reagents.reagent_list)
 		if(R.id in bradycardics)
