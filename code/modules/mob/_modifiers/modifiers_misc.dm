@@ -268,8 +268,6 @@ the artifact triggers the rage.
 	if(L.get_poison_protection() >= 1)
 		return FALSE
 	return TRUE
-<<<<<<< HEAD
-=======
 
 // Pulse modifier.
 /datum/modifier/false_pulse
@@ -281,4 +279,3 @@ the artifact triggers the rage.
 	stacks = MODIFIER_STACK_EXTEND
 
 	pulse_set_level = PULSE_NORM
->>>>>>> 3661d6f... Merge pull request #6081 from Mechoid/PulseBasedReagentProcessing
