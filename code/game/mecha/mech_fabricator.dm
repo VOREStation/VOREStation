@@ -137,7 +137,7 @@
 
 /obj/machinery/mecha_part_fabricator/attackby(var/obj/item/I, var/mob/user)
 	if(busy)
-		user << "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>"
+		to_chat(user, "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>")
 		return 1
 	if(default_deconstruction_screwdriver(user, I))
 		return
@@ -149,25 +149,25 @@
 	if(istype(I,/obj/item/stack/material))
 		var/obj/item/stack/material/S = I
 		if(!(S.material.name in materials))
-			user << "<span class='warning'>The [src] doesn't accept [S.material]!</span>"
+			to_chat(user, "<span class='warning'>The [src] doesn't accept [S.material]!</span>")
 			return
 
 		var/sname = "[S.name]"
 		var/amnt = S.perunit
 		if(materials[S.material.name] + amnt <= res_max_amount)
-			if(S && S.amount >= 1)
+			if(S && S.get_amount() >= 1)
 				var/count = 0
 				overlays += "mechfab-load-metal"
 				spawn(10)
 					overlays -= "mechfab-load-metal"
-				while(materials[S.material.name] + amnt <= res_max_amount && S.amount >= 1)
+				while(materials[S.material.name] + amnt <= res_max_amount && S.get_amount() >= 1)
 					materials[S.material.name] += amnt
 					S.use(1)
 					count++
-				user << "You insert [count] [sname] into the fabricator."
+				to_chat(user, "You insert [count] [sname] into the fabricator.")
 				update_busy()
 		else
-			user << "The fabricator cannot hold more [sname]."
+			to_chat(user, "The fabricator cannot hold more [sname].")
 
 		return
 
