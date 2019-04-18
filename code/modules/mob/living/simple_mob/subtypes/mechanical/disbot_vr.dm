@@ -1,20 +1,20 @@
 
 /datum/category_item/catalogue/technology/drone/infectionbot
 	name = "Drone - Injection Drone"
-	desc = "A strange and aged drone, this model appears to be made for gathering of genetic samples, /
-	sacrificing both power and durability for storage space and advanced scanners./
-	The drone has clear dents and scratches all over it's casing bulging inwards in multiple areas, /
-	some even penetrated showing the advanced and headache inducing parts inside./
-	<br><br>/
-	This model in particular has a collection of hostile and spinetingeling parts on the underside, /
-	small advanced anti-gravity generators located between giant syringes made for injecting and extracting all manners of fluids /
-	and samples of soil or other biological matter./
-	Most interesting is the syringe it uses after taking a sample of any creature, the dry, flakey substance /
-	it injects has traces of bicardine and innaprovaline, now no more than rotten and expired toxins however./
-	The container housing the substance as well as the fabricator showing great blunt trauma as well as environmental damage, /
-	neither part salvageable./
+	desc = "A strange and aged drone, this model appears to be made for gathering of genetic samples,\
+	sacrificing both power and durability for storage space and advanced scanners.\
+	The drone has clear dents and scratches all over it's casing bulging inwards in multiple areas,\
+	some even penetrated showing the advanced and headache inducing parts inside.\
 	<br><br>\
-	The drone's frame extremily light weight but robust, unbendable by hand, is barren of any markings or ID, /
+	This model in particular has a collection of hostile and spinetingeling parts on the underside,\
+	small advanced anti-gravity generators located between giant syringes made for injecting and extracting all manners of fluids\
+	and samples of soil or other biological matter.\
+	Most interesting is the syringe it uses after taking a sample of any creature, the dry, flakey substance\
+	it injects has traces of bicardine and innaprovaline, now no more than rotten and expired toxins however.\
+	The container housing the substance as well as the fabricator showing great blunt trauma as well as environmental damage,\
+	neither part salvageable.\
+	<br><br>\
+	The drone's frame extremily light weight but robust, unbendable by hand, is barren of any markings or ID,\
 	no traces of paint visible and any 'writing' visible is uncomprehendable, short term scan unable to translate."
 	value = CATALOGUER_REWARD_MEDIUM
 
