@@ -278,6 +278,10 @@
 "bb" = (
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/Boathouse)
+"LX" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/wood,
+/area/submap/Boathouse)
 
 (1,1,1) = {"
 aa
@@ -642,7 +646,7 @@ am
 am
 am
 am
-ak
+LX
 ai
 ai
 ai

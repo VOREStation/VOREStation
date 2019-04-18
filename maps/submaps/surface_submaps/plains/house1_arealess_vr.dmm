@@ -285,6 +285,10 @@
 	},
 /turf/simulated/wall/wood,
 /area/template_noop)
+"zt" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/wood,
+/area/template_noop)
 
 (1,1,1) = {"
 aa
@@ -408,7 +412,7 @@ as
 ax
 ap
 ap
-ap
+zt
 ap
 ap
 ap
