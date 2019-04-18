@@ -218,3 +218,15 @@
 	if(..(user, 0) && air_contents.gas["nitrogen"] < 10)
 		to_chat(user, text("<span class='danger'>The meter on \the [src] indicates you are almost out of nitrogen!</span>"))
 		//playsound(user, 'sound/effects/alert.ogg', 50, 1)
+
+/obj/item/weapon/tank/stasis/nitro_cryo // Synthmorph bags need to have initial pressure within safe bounds for human atmospheric pressure, but low temperature to stop unwanted degredation.
+	name = "stasis cryogenic nitrogen tank"
+	desc = "Cryogenic Nitrogen tank included in most synthmorph bag designs."
+	icon_state = "emergency_double_nitro"
+	gauge_icon = "indicator_emergency_double"
+	volume = 10
+
+/obj/item/weapon/tank/stasis/nitro_cryo/Initialize()
+	..()
+	src.air_contents.adjust_gas_temp("nitrogen", (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*TN60C), TN60C)
+	return

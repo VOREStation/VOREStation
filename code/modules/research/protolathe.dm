@@ -133,12 +133,12 @@
 		max_res_amount -= materials[mat]
 
 	if(materials[S.material.name] + amnt <= max_res_amount)
-		if(S && S.amount >= 1)
+		if(S && S.get_amount() >= 1)
 			var/count = 0
 			overlays += "fab-load-metal"
 			spawn(10)
 				overlays -= "fab-load-metal"
-			while(materials[S.material.name] + amnt <= max_res_amount && S.amount >= 1)
+			while(materials[S.material.name] + amnt <= max_res_amount && S.get_amount() >= 1)
 				materials[S.material.name] += amnt
 				S.use(1)
 				count++

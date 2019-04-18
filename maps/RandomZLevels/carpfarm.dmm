@@ -18,11 +18,11 @@
 /turf/space,
 /area/space)
 "ae" = (
-/mob/living/simple_mob/hostile/carp,
+/mob/living/simple_mob/animal/space/carp,
 /turf/space,
 /area/space)
 "af" = (
-/mob/living/simple_mob/hostile/carp/large,
+/mob/living/simple_mob/animal/space/carp/large,
 /turf/space,
 /area/space)
 "ag" = (

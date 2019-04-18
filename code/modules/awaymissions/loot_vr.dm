@@ -276,23 +276,23 @@
 			/obj/item/weapon/reagent_containers/food/snacks/liquidfood)
 			for(var/i=0,i<num,i++)
 				new new_type(C)
-		/*if("alien")
+		if("alien")
 			//ancient aliens
 			var/obj/structure/closet/acloset/C = new(src.loc)
 			if(prob(33))
 				if(live_cargo) // Carp! Since Facehuggers got removed.
 					var/num = rand(1,3)
 					for(var/i=0,i<num,i++)
-						new /mob/living/simple_mob/hostile/carp(C)
+						new /mob/living/simple_mob/animal/space/carp(C)
 				else // Just a costume.
 					new /obj/item/clothing/suit/storage/hooded/carp_costume(C)
 			else if(prob(50))
 				if(live_cargo) // Something else very much alive and angry.
-					/*var/spawn_type = pick(/mob/living/simple_mob/hostile/alien, /mob/living/simple_mob/hostile/alien/drone, /mob/living/simple_mob/hostile/alien/sentinel)
-					new spawn_type(C) */ //VORESTATION AI TEMPORARY REMOVAL
+					var/spawn_type = pick(/mob/living/simple_mob/animal/space/alien, /mob/living/simple_mob/animal/space/alien/drone, /mob/living/simple_mob/animal/space/alien/sentinel)
+					new spawn_type(C) 
 				else // Just a costume.
 					new /obj/item/clothing/head/xenos(C)
-					new /obj/item/clothing/suit/xenos(C)*/ //VORESTATION AI TEMPORARY REMOVAL
+					new /obj/item/clothing/suit/xenos(C)
 
 			//33% chance of nothing
 

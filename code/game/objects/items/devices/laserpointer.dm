@@ -71,6 +71,8 @@
 /obj/item/device/laser_pointer/proc/laser_act(var/atom/target, var/mob/living/user)
 	if(!(user in (viewers(world.view,target))))
 		return
+	if(!(target in view(user, world.view)))
+		return
 	if(!(world.time - last_used_time >= cooldown))
 		return
 	if (!diode)

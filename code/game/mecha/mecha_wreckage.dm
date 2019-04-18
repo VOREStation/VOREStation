@@ -212,3 +212,8 @@
 /obj/effect/decal/mecha_wreckage/hoverpod
 	name = "Hover pod wreckage"
 	icon_state = "engineering_pod-broken"
+
+/obj/effect/decal/mecha_wreckage/janus
+	name = "Janus wreckage"
+	icon_state = "janus-broken"
+	description_info = "Due to the incredibly intricate design of this exosuit, it is impossible to salvage components from it."

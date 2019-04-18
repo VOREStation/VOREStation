@@ -116,10 +116,18 @@ var/datum/species/shapeshifter/promethean/prometheans
 	prometheans = src
 
 /datum/species/shapeshifter/promethean/equip_survival_gear(var/mob/living/carbon/human/H)
-	var/boxtype = pick(typesof(/obj/item/weapon/storage/toolbox/lunchbox))
+	var/boxtype = pick(list(/obj/item/weapon/storage/toolbox/lunchbox,
+							/obj/item/weapon/storage/toolbox/lunchbox/heart,
+							/obj/item/weapon/storage/toolbox/lunchbox/cat,
+							/obj/item/weapon/storage/toolbox/lunchbox/nt,
+							/obj/item/weapon/storage/toolbox/lunchbox/mars,
+							/obj/item/weapon/storage/toolbox/lunchbox/cti,
+							/obj/item/weapon/storage/toolbox/lunchbox/nymph,
+							/obj/item/weapon/storage/toolbox/lunchbox/syndicate))	//Only pick the empty types
 	var/obj/item/weapon/storage/toolbox/lunchbox/L = new boxtype(get_turf(H))
 	var/mob/living/simple_mob/animal/passive/mouse/mouse = new (L)
 	var/obj/item/weapon/holder/holder = new (L)
+	holder.held_mob = mouse
 	mouse.forceMove(holder)
 	holder.sync(mouse)
 	if(H.backbag == 1)

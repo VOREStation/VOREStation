@@ -64,7 +64,6 @@
 		/obj/structure/closet/cabinet,
 		/obj/structure/closet/crate,
 		/obj/structure/closet/coffin,
-		/obj/structure/closet/fireaxecabinet,
 		/obj/structure/closet/hydrant,
 		/obj/structure/closet/medical_wall,
 		/obj/structure/closet/statue,

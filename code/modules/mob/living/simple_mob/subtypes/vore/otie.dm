@@ -196,14 +196,14 @@
 	eyetype = "sotie"
 
 /mob/living/simple_mob/otie/PunchTarget()
-	if(istype(target_mob,/mob/living/simple_mob/mouse))
+	if(istype(target_mob,/mob/living/simple_mob/animal/passive/mouse))
 		return EatTarget()
 	else ..()
 
 /mob/living/simple_mob/otie/Found(var/atom/found_atom)
 	if(!SA_attackable(found_atom))
 		return null
-	if(istype(found_atom,/mob/living/simple_mob/mouse))
+	if(istype(found_atom,/mob/living/simple_mob/animal/passive/mouse))
 		return found_atom
 	else if(ismob(found_atom))
 		var/mob/found_mob = found_atom
@@ -249,7 +249,7 @@
 		vore_selected.digest_mode = DM_HOLD
 		if(check_threat(prey) >= 4)
 			global_announcer.autosay("[src] has detained suspect <b>[target_name(prey)]</b> in <b>[get_area(src)]</b>.", "SmartCollar oversight", "Security")
-	if(istype(prey,/mob/living/simple_mob/mouse))
+	if(istype(prey,/mob/living/simple_mob/animal/passive/mouse))
 		vore_selected.digest_mode = DM_DIGEST
 	. = ..()
 

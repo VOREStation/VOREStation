@@ -9,6 +9,7 @@
 	reagent_state = LIQUID
 	color = "#CF3600"
 	metabolism = REM * 0.25 // 0.05 by default. Hopefully enough to get some help, or die horribly, whatever floats your boat
+	filtered_organs = list(O_LIVER, O_KIDNEYS)
 	var/strength = 4 // How much damage it deals per unit
 
 /datum/reagent/toxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -253,6 +254,7 @@
 	color = "#669900"
 	metabolism = REM
 	strength = 3
+	mrate_static = TRUE
 
 /datum/reagent/toxin/zombiepowder/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
