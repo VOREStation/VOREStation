@@ -5653,6 +5653,52 @@
 /obj/machinery/atmospherics/binary/pump/high_power/on,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
+"ajz" = (
+/obj/structure/table/woodentable,
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden)
+"ajA" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/atrium_one)
+"ajB" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 4
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/xenobiology)
 "ajN" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
@@ -14568,25 +14614,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
-"aIe" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 10
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 9
-	},
-/obj/item/device/radio/intercom{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/atrium_one)
 "aIh" = (
 /obj/structure/grille,
 /obj/structure/railing{
@@ -16316,20 +16343,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
-"baY" = (
-/obj/structure/table/woodentable,
-/obj/item/device/radio/intercom{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/public_garden)
 "bbn" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -21140,19 +21153,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled,
-/area/rnd/xenobiology)
-"bMl" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/mauve/border{
-	dir = 4
-	},
-/obj/item/device/radio/intercom{
-	dir = 8;
-	pixel_x = 24
-	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology)
 "bMm" = (
@@ -37176,7 +37176,7 @@ aFJ
 aAO
 aGt
 aGL
-bMl
+ajB
 bOi
 bQB
 bSI
@@ -38976,7 +38976,7 @@ fWK
 gDo
 gXh
 oOc
-baY
+ajz
 tPq
 gXh
 gXh
@@ -45808,7 +45808,7 @@ akF
 amv
 akF
 ann
-aIe
+ajA
 gek
 aov
 aoD

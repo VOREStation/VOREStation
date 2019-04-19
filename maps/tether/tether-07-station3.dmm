@@ -21033,7 +21033,7 @@
 /obj/item/device/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
-	pixel_y = 21
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
@@ -23713,7 +23713,7 @@
 /obj/item/device/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
-	pixel_y = 21
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
