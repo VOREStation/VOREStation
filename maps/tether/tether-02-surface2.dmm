@@ -5653,6 +5653,22 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
+"mo" = (
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_two)
 "mp" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -17425,22 +17441,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/rnd/research_storage)
-"SS" = (
-/obj/structure/table/standard{
-	name = "plastic table frame"
-	},
-/obj/item/device/radio/intercom{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/lime/border{
-	dir = 10
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/public_garden_two)
 "SV" = (
 /obj/structure/bed/chair,
 /obj/effect/floor_decal/rust,
@@ -23890,7 +23890,7 @@ ac
 Kt
 Kt
 MX
-SS
+mo
 Kt
 Kt
 ac
