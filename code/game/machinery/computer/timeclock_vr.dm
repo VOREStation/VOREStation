@@ -156,6 +156,8 @@
 		if(newjob in job.alt_titles)
 			foundjob = job
 			break
+	if(!newjob in getOpenOnDutyJobs(usr, job_master.GetJob(card.rank).department))
+		return
 	if(foundjob && card)
 		card.access = foundjob.get_access()
 		card.rank = foundjob.title
