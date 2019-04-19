@@ -90,9 +90,10 @@
 				"head_position" = job.head_position,
 				"timeoff_factor" = job.timeoff_factor
 			)
-		// TODO - Once job changing is implemented, we will want to list jobs to change into.
-		if(job && job.timeoff_factor < 0) // Currently are Off Duty, so gotta lookup what on-duty jobs are open
-			data["job_choices"] = getOpenOnDutyJobs(user, job.department)
+		if(config.time_off && config.pto_job_change)
+			data["allow_change_job"] = TRUE
+			if(job && job.timeoff_factor < 0) // Currently are Off Duty, so gotta lookup what on-duty jobs are open
+				data["job_choices"] = getOpenOnDutyJobs(user, job.department)
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -116,18 +117,29 @@
 				I.forceMove(src)
 				card = I
 		update_icon()
-		return
+		return 1
 	if(href_list["switch-to-onduty"])
 		if(card)
-			makeOnDuty(href_list["switch-to-onduty"])
-			usr.put_in_hands(card)
-			card = null
+			if(checkCardCooldown())
+				makeOnDuty(href_list["switch-to-onduty"])
+				usr.put_in_hands(card)
+				card = null
+		update_icon()
+		return 1
+	if(href_list["switch-to-offduty"])
+		if(card)
+			if(checkCardCooldown())
+				makeOffDuty()
+				usr.put_in_hands(card)
+				card = null
+		update_icon()
+		return 1
 	return 1 // Return 1 to update UI
 
 /obj/machinery/computer/timeclock/proc/getOpenOnDutyJobs(var/mob/user, var/department)
 	var/list/available_jobs = list()
 	for(var/datum/job/job in job_master.occupations)
-		if(job && job.is_position_available() && !job.whitelist_only)	// && job.player_old_enough(user.client) && !jobban_isbanned(user,job.title)
+		if(job && job.is_position_available() && !job.whitelist_only && !jobban_isbanned(user,job.title) && job.player_old_enough(user.client))
 			if(job.department == department && !job.head_position && job.timeoff_factor > 0 && !(job.title == "Internal Affairs Agent"))
 				available_jobs += job.title
 				if(job.alt_titles)
@@ -138,18 +150,67 @@
 /obj/machinery/computer/timeclock/proc/makeOnDuty(var/newjob)
 	var/datum/job/foundjob = null
 	for(var/datum/job/job in job_master.occupations)
-		if(job.title == newjob || newjob in job.alt_titles)
+		if(newjob == job.title)
 			foundjob = job
 			break
-	if(foundjob)
+		if(newjob in job.alt_titles)
+			foundjob = job
+			break
+	if(foundjob && card)
 		card.access = foundjob.get_access()
 		card.rank = foundjob.title
 		card.assignment = newjob
 		card.name = text("[card.registered_name]'s ID Card ([card.assignment])")
 		data_core.manifest_modify(card.registered_name, card.assignment)
+		card.last_job_switch = world.time
 		callHook("reassign_employee", list(card))
-		announce.autosay("[card.registered_name] has moved On-Duty as [card.assignment]", "Employee Oversight")
+		foundjob.current_positions++
+		announce.autosay("[card.registered_name] has moved On-Duty as [card.assignment].", "Employee Oversight")
 	return
+
+/obj/machinery/computer/timeclock/proc/makeOffDuty()
+	var/datum/job/foundjob = null
+	for(var/datum/job/job in job_master.occupations)
+		if(card.rank == job.title)
+			foundjob = job
+			break
+	if(!foundjob)
+		return
+	var/real_dept = foundjob.department
+	if(real_dept && real_dept == "Command")
+		real_dept = "Civilian"
+	var/datum/job/ptojob = null
+	for(var/datum/job/job in job_master.occupations)
+		if(job.department == real_dept && job.timeoff_factor < 0)
+			ptojob = job
+			break
+	if(ptojob && card)
+		var/oldtitle = card.assignment
+		card.access = ptojob.get_access()
+		card.rank = ptojob.title
+		card.assignment = ptojob.title
+		card.name = text("[card.registered_name]'s ID Card ([card.assignment])")
+		data_core.manifest_modify(card.registered_name, card.assignment)
+		card.last_job_switch = world.time
+		callHook("reassign_employee", list(card))
+		foundjob.current_positions--
+		announce.autosay("[card.registered_name], [oldtitle], has moved Off-Duty.", "Employee Oversight")
+	return
+
+/obj/machinery/computer/timeclock/proc/checkCardCooldown()
+	if(!card)
+		return FALSE
+	if((world.time - card.last_job_switch) < 15 MINUTES)
+		to_chat(usr, "You need to wait at least 15 minutes after last duty switch.")
+		return FALSE
+	return TRUE
+
+/obj/item/weapon/card/id
+	var/last_job_switch
+
+/obj/item/weapon/card/id/New()
+	.=..()
+	last_job_switch = world.time
 
 //
 // Frame type for construction
@@ -184,12 +245,3 @@
 /obj/machinery/computer/timeclock/premade/west
 	dir = 4
 	pixel_x = -26
-
-/mob/verb/gain_pto()
-	set name = "Gain PTO"
-	set category = "Debug"
-
-	if(!client)
-		return FALSE
-	else
-		client.department_hours += list("Security" = 30)

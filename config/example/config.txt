@@ -407,6 +407,9 @@ ENGINE_MAP Supermatter Engine,Edison's Bane
 # Controls if the 'time off' system is used for determining if players can play 'Off-Duty' jobs (requires SQL)
 # TIME_OFF
 
+# If 'time off' system is on, controls whether or not players can switch on/off duty midround using timeclocks
+# PTO_JOB_CHANGE
+
 # Applies a limit to the number of assistants and visitors respectively
 # LIMIT_INTERNS 6
 # LIMIT_VISITORS 6
