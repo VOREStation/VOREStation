@@ -431,3 +431,7 @@ ENGINE_MAP Supermatter Engine,Edison's Bane
 ## Note that this will make it possible for the AI to 'bootstrap' more AI Shells on their own by using the science module. If this is not acceptable for your server, you should not uncomment this.
 ## The landmark object that spawns the shell will also need to be mapped in for this to work.
 # GIVE_FREE_AI_SHELL
+
+## Uncomment to allow specific solar control computers to set themselves up.
+## This requires solar controller computers in the map to be set up to use it, with the auto_start variable.
+# AUTOSTART_SOLARS
