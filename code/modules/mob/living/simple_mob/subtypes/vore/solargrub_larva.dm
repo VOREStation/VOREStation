@@ -26,7 +26,7 @@ var/global/list/grub_machine_overlays = list()
 	can_pull_mobs = MOB_PULL_NONE
 	density = 0
 
-	stop_when_pulled = 0
+	//stop_when_pulled = 0
 
 	var/static/list/ignored_machine_types = list(
 		/obj/machinery/atmospherics/unary/vent_pump,
@@ -69,7 +69,7 @@ var/global/list/grub_machine_overlays = list()
 	if(machine_effect && !istype(loc, /obj/machinery))
 		QDEL_NULL(machine_effect)
 
-	if(!. || ai_inactive)
+	if(!.)	// || ai_inactive
 		return
 
 	if(power_drained >= 7 MEGAWATTS && prob(5))
@@ -86,7 +86,7 @@ var/global/list/grub_machine_overlays = list()
 
 	if(stance == STANCE_IDLE)
 		if(forced_out)
-			forced_out = Clamp(0, forced_out--, forced_out)
+			forced_out = CLAMP(0, forced_out--, forced_out)
 			return
 
 		if(target_vent)

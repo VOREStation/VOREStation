@@ -25,7 +25,7 @@ List of things solar grubs should be able to do:
 	melee_damage_lower = 1
 	melee_damage_upper = 5
 
-	speed = 2
+	movement_cooldown = 8
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
 
