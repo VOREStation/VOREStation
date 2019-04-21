@@ -34,7 +34,7 @@ var/global/list/grub_machine_overlays = list()
 		/obj/machinery/door/firedoor
 		)
 
-	var/obj/machinery/atmospherics/unary/vent_pump/target_vent
+	//var/obj/machinery/atmospherics/unary/vent_pump/target_vent
 
 	var/datum/effect/effect/system/spark_spread/sparks
 	var/image/machine_effect
@@ -60,7 +60,7 @@ var/global/list/grub_machine_overlays = list()
 	QDEL_NULL(powermachine)
 	QDEL_NULL(sparks)
 	QDEL_NULL(machine_effect)
-	target_vent = null
+	//target_vent = null
 	return ..()
 
 /mob/living/simple_mob/solargrub_larva/Life()
@@ -206,6 +206,9 @@ var/global/list/grub_machine_overlays = list()
 	var/list/idle_power_usages = list(1 KILOWATTS, 1 KILOWATTS, 1 KILOWATTS)
 	var/draining = 1
 	var/mob/living/simple_mob/solargrub_larva/grub
+
+/datum/ai_holder/simple_mob/melee/solargrub_larva
+
 
 /obj/machinery/abstract_grub_machine/New()
 	..()
