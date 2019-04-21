@@ -8,7 +8,7 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 	siemens_coefficient = 0.9
-	item_flags = THICKMATERIAL | PHORONGUARD
+	item_flags = THICKMATERIAL | PHORONGUARD | ALLOW_SURVIVALFOOD	//VOREStation Edit
 
 /obj/item/clothing/suit/bio_suit
 	name = "bio suit"

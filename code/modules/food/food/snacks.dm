@@ -64,7 +64,13 @@
 				if(!H.check_has_mouth())
 					user << "Where do you intend to put \the [src]? You don't have a mouth!"
 					return
-				var/obj/item/blocked = H.check_mouth_coverage()
+				//VOREStation Edit begin: allow eating special food in suits
+				var/obj/item/blocked = null
+				if(survivalfood)
+					blocked = H.check_mouth_coverage_survival()
+				else
+					blocked = H.check_mouth_coverage()
+				//VOREStation Edit end: allow eating special food in suits
 				if(blocked)
 					user << "<span class='warning'>\The [blocked] is in the way!</span>"
 					return
@@ -106,7 +112,13 @@
 				if(!H.check_has_mouth())
 					user << "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!"
 					return
-				var/obj/item/blocked = H.check_mouth_coverage()
+				//VOREStation Edit begin: allow eating special food in suits
+				var/obj/item/blocked = null
+				if(survivalfood)
+					blocked = H.check_mouth_coverage_survival()
+				else
+					blocked = H.check_mouth_coverage()
+				//VOREStation Edit end: allow eating special food in suits
 				if(blocked)
 					user << "<span class='warning'>\The [blocked] is in the way!</span>"
 					return

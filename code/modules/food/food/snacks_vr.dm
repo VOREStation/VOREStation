@@ -1,3 +1,6 @@
+/obj/item/weapon/reagent_containers/food/snacks
+	var/survivalfood = FALSE
+
 //I guess we're not always eating PEOPLE.
 /*
 /obj/item/weapon/reagent_containers/food/snacks/my_new_food
@@ -501,6 +504,9 @@
 /obj/item/pizzabox/meat/Initialize()
 	pizza = new /obj/item/weapon/reagent_containers/food/snacks/pizza/meatfrozen(src)
 
+/obj/item/weapon/reagent_containers/food/snacks/liquidfood
+	survivalfood = TRUE
+
 /obj/item/weapon/reagent_containers/food/snacks/liquidprotein
 	name = "\improper LiquidProtein Ration"
 	desc = "A variant of the liquidfood ration, designed for obligate carnivore species. Only barely more appealing than regular liquidfood. Should this be crunchy?"
@@ -509,6 +515,7 @@
 	trash = /obj/item/trash/liquidprotein
 	filling_color = "#A8A8A8"
 	center_of_mass = list("x"=16, "y"=15)
+	survivalfood = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/liquidprotein/Initialize()
 	..()
