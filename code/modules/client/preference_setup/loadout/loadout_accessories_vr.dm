@@ -59,8 +59,6 @@
 	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic")
 
 /datum/gear/accessory/webbing
-	display_name = "webbing, simple"
-	path = /obj/item/clothing/accessory/storage/webbing
 	cost = 1
 
 /datum/gear/accessory/stethoscope
