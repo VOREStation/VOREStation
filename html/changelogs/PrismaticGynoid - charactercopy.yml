@@ -1,6 +1,0 @@
-author: PrismaticGynoid
-
-delete-after: True
-
-changes: 
-  - rscadd: "Adds the ability to copy a character slot onto another one, allowing for easier rearranging of characters, or wiping characters by copying empty slots."
