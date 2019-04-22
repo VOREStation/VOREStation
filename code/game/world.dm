@@ -186,7 +186,9 @@ var/world_topic_spam_protect_time = world.timeofday
 				positions["bot"] = list()
 			positions["bot"][ai.name] = "Artificial Intelligence"
 		for(var/mob/living/silicon/robot/robot in mob_list)
-			// No combat/syndicate cyborgs, no drones.
+			// No combat/syndicate cyborgs, no drones, and no AI shells.
+			if(robot.shell)
+				continue
 			if(robot.module && robot.module.hide_on_manifest)
 				continue
 			if(!positions["bot"])

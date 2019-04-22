@@ -57,6 +57,8 @@ var/list/gamemode_cache = list()
 	var/list/modes = list()				// allowed modes
 	var/list/votable_modes = list()		// votable modes
 	var/list/probabilities = list()		// relative probability of each mode
+	var/list/player_requirements = list() // Overrides for how many players readied up a gamemode needs to start.
+	var/list/player_requirements_secret = list() // Same as above, but for the secret gamemode.
 	var/humans_need_surnames = 0
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
 	var/allow_ai = 1					// allow ai job
@@ -249,9 +251,11 @@ var/list/gamemode_cache = list()
 			gamemode_cache[M.config_tag] = M // So we don't instantiate them repeatedly.
 			if(!(M.config_tag in modes))		// ensure each mode is added only once
 				log_misc("Adding game mode [M.name] ([M.config_tag]) to configuration.")
-				src.modes += M.config_tag
-				src.mode_names[M.config_tag] = M.name
-				src.probabilities[M.config_tag] = M.probability
+				modes += M.config_tag
+				mode_names[M.config_tag] = M.name
+				probabilities[M.config_tag] = M.probability
+				player_requirements[M.config_tag] = M.required_players
+				player_requirements_secret[M.config_tag] = M.required_players_secret
 				if (M.votable)
 					src.votable_modes += M.config_tag
 	src.votable_modes += "secret"
@@ -522,6 +526,25 @@ var/list/gamemode_cache = list()
 							log_misc("Unknown game mode probability configuration definition: [prob_name].")
 					else
 						log_misc("Incorrect probability configuration definition: [prob_name]  [prob_value].")
+
+				if ("required_players", "required_players_secret")
+					var/req_pos = findtext(value, " ")
+					var/req_name = null
+					var/req_value = null
+					var/is_secret_override = findtext(name, "required_players_secret") // Being extra sure we're not picking up an override for Secret by accident.
+
+					if(req_pos)
+						req_name = lowertext(copytext(value, 1, req_pos))
+						req_value = copytext(value, req_pos + 1)
+						if(req_name in config.modes)
+							if(is_secret_override)
+								config.player_requirements_secret[req_name] = text2num(req_value)
+							else
+								config.player_requirements[req_name] = text2num(req_value)
+						else
+							log_misc("Unknown game mode player requirement configuration definition: [req_name].")
+					else
+						log_misc("Incorrect player requirement configuration definition: [req_name]  [req_value].")
 
 				if("allow_random_events")
 					config.allow_random_events = 1
