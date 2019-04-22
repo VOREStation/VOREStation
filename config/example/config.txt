@@ -124,6 +124,12 @@ PROBABILITY LIZARD 1
 PROBABILITY INTRIGUE 1
 PROBABILITY VISITORS 1
 
+## Overrides for required number of readied up players for a gamemode to be able to start can be defined here.
+## If it is unset, it will default to the requirement set by the gamemode datum.
+## Note that this does not control the required amount of antags for a gamemode, and so a lower number may still fail to start if not enough people want to be antags.
+## By default, this overrides the voted gamemode requirement. To override the requirement for Secret, append '_SECRET' to the end of the first word.
+## The format to use is REQUIRED_PLAYERS[_SECRET] [gamemode tag] [number of readies needed], for example, "REQUIRED_PLAYERS TRAITOR 1", or "REQUIRED_PLAYERS_SECRET MERCENARY 10".
+
 ## Hash out to disable random events during the round.
 ALLOW_RANDOM_EVENTS
 
