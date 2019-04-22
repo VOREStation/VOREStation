@@ -79,3 +79,16 @@
 	access = list(access_maint_tunnels)
 	minimal_access = list(access_maint_tunnels)
 	outfit_type = /decl/hierarchy/outfit/job/assistant
+
+/datum/job/offduty_exploration
+	title = "Off-duty Explorer"
+	latejoin_only = TRUE
+	timeoff_factor = -1
+	total_positions = -1
+	faction = "Station"
+	department = "Exploration"
+	supervisors = "nobody! Enjoy your time off"
+	selection_color = "#999440"
+	access = list(access_maint_tunnels, access_external_airlocks)
+	minimal_access = list(access_maint_tunnels, access_external_airlocks)
+	outfit_type = /decl/hierarchy/outfit/job/assistant
