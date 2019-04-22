@@ -876,6 +876,11 @@ FIRE ALARM
 /obj/machinery/firealarm/attackby(obj/item/W as obj, mob/user as mob)
 	add_fingerprint(user)
 
+	if(alarm_deconstruction_screwdriver(user, W))
+		return
+	if(alarm_deconstruction_wirecutters(user, W))
+		return
+
 	if(panel_open)
 		if(istype(W, /obj/item/device/multitool))
 			detecting = !(detecting)
