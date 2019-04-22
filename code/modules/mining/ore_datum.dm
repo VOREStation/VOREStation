@@ -140,6 +140,7 @@ var/global/list/ore_data = list()
 	compresses_to = MAT_VERDANTIUM
 	result_amount = 2
 	spread_chance = 5
+	ore = /obj/item/weapon/ore/verdantium
 	scan_icon = "mineral_rare"
 	xarch_ages = list(
 		"billion" = 13,
