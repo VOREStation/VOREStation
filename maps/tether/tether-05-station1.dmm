@@ -1692,8 +1692,8 @@
 	dir = 4
 	},
 /obj/item/device/flashlight/lamp{
-	step_x = 2;
-	step_y = 7
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /turf/simulated/floor/lino,
 /area/chapel/office)
@@ -1703,12 +1703,12 @@
 	dir = 4
 	},
 /obj/item/weapon/paper_bin{
-	step_x = -2;
-	step_y = 8
+	pixel_x = -2;
+	pixel_y = 8
 	},
 /obj/item/weapon/pen/blue{
-	step_x = 2;
-	step_y = 1
+	pixel_x = 2;
+	pixel_y = 1
 	},
 /turf/simulated/floor/lino,
 /area/chapel/office)
