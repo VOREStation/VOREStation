@@ -11,8 +11,8 @@
 	movement_cooldown = 4 //fast as fucc boie.
 
 	harm_intent_damage = 5
-	melee_damage_lower = 10
-	melee_damage_upper = 25
+	melee_damage_lower = 5
+	melee_damage_upper = 14
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 

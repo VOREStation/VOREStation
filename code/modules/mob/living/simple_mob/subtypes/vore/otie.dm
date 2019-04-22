@@ -32,8 +32,8 @@
 	emote_see = list("stares ferociously", "snarls", "licks their chops", "stretches", "yawns")
 	say_maybe_target = list("Ruh?", "Waf?")
 	say_got_target = list("Rurrr!", "ROAR!", "MARR!", "RERR!", "RAHH!", "RAH!", "WARF!")
-	melee_damage_lower = 5
-	melee_damage_upper = 15 //Don't break my bones bro
+	melee_damage_lower = 2
+	melee_damage_upper = 7 //Don't break my bones bro
 	response_help = "pets the"
 	response_disarm = "bops the"
 	response_harm = "hits the"
@@ -77,8 +77,8 @@
 	icon_rest = "siftusian_rest"
 	faction = "virgo3b"
 	tame_chance = 5 // Only a 1 in 20 chance of success. It's feral. What do you expect?
-	melee_damage_lower = 10
-	melee_damage_upper = 25
+	melee_damage_lower = 5
+	melee_damage_upper = 14
 	// Lazy way of making sure this otie survives outside.
 	min_oxy = 0
 	max_oxy = 0
@@ -101,8 +101,8 @@
 	icon_rest = "hotie_rest"
 	faction = "cult"
 	tame_chance = 20
-	melee_damage_lower = 10
-	melee_damage_upper = 25
+	melee_damage_lower = 5
+	melee_damage_upper = 14
 	// Lazy way of making sure this otie survives outside.
 	min_oxy = 0
 	max_oxy = 0
@@ -182,8 +182,8 @@
 	icon_living = "sifguard"
 	icon_rest = "sifguard_rest"
 	icon_dead = "sifguard-dead"
-	melee_damage_lower = 10
-	melee_damage_upper = 25
+	melee_damage_lower = 5
+	melee_damage_upper = 14
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0
