@@ -143,8 +143,8 @@ var/global/list/PDA_Manifest = list()
 		bot[++bot.len] = list("name" = ai.real_name, "rank" = "Artificial Intelligence", "active" = "Active")
 
 	for(var/mob/living/silicon/robot/robot in mob_list)
-		// No combat/syndicate cyborgs, no drones.
-		if(robot.scrambledcodes || (robot.module && robot.module.hide_on_manifest))
+		// No combat/syndicate cyborgs, no drones, and no AI shells.
+		if(robot.scrambledcodes || robot.shell || (robot.module && robot.module.hide_on_manifest))
 			continue
 
 		bot[++bot.len] = list("name" = robot.real_name, "rank" = "[robot.modtype] [robot.braintype]", "active" = "Active")
