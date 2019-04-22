@@ -295,3 +295,7 @@
 /area/engineering/engine_gas
 	name = "\improper Engine Gas Storage"
 	icon_state = "engine_waste"
+
+/area/chapel/observation
+	name = "\improper Chapel Observation"
+	icon_state = "chapel"
