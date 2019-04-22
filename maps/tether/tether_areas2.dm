@@ -86,6 +86,10 @@
 	name = "\improper Atrium Construction Site"
 /area/vacant/vacant_bar
 	name = "\improper Vacant Bar"
+/area/vacant/vacant_site/gateway
+	name = "\improper Vacant Prep Area"
+/area/vacant/vacant_site/gateway/lower
+	name = "\improper Lower Vacant Prep Area"
 
 // /area/tether/surfacebase/east_stairs_three //This is just part of an upper hallway
 
@@ -250,6 +254,8 @@
 	name = "\improper Mining EVA Maintenance"
 /area/maintenance/lower/public_garden_maintenence
 	name = "\improper Public Garden Maintenence"
+/area/maintenance/lower/public_garden_maintenence/upper
+	name = "\improper Upper Public Garden Maintenence"
 
 // Research
 /area/rnd/xenobiology/xenoflora/lab_atmos
