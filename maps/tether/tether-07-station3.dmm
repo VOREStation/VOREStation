@@ -28111,6 +28111,17 @@
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
+"SK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	frequency = 1380;
+	id_tag = "expshuttle_dock";
+	pixel_x = 32;
+	req_one_access = list(19,43,67)
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/tether/exploration)
 "SP" = (
 /obj/structure/table/woodentable,
 /obj/item/device/taperecorder{
@@ -41477,7 +41488,7 @@ cC
 dc
 dH
 dl
-cC
+SK
 cC
 cC
 em
