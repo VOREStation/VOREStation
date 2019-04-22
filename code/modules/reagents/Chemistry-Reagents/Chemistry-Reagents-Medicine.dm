@@ -967,6 +967,14 @@
 	for(var/obj/effect/decal/cleanable/blood/B in T)
 		qdel(B)
 
+/datum/reagent/sterilizine/touch_mob(var/mob/living/L, var/amount)
+	if(istype(L))
+		if(istype(L, /mob/living/simple_mob/slime))
+			var/mob/living/simple_mob/slime/S = L
+			S.adjustToxLoss(rand(15, 25) * amount)	// Does more damage than water.
+			S.visible_message("<span class='warning'>[S]'s flesh sizzles where the fluid touches it!</span>", "<span class='danger'>Your flesh burns in the fluid!</span>")
+		remove_self(amount)
+
 /datum/reagent/leporazine
 	name = "Leporazine"
 	id = "leporazine"
