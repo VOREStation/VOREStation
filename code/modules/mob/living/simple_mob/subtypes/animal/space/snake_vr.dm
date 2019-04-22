@@ -16,8 +16,8 @@
 	response_disarm = "shoos"
 	response_harm   = "kicks"
 
-	melee_damage_lower = 3
-	melee_damage_upper = 5
+	melee_damage_lower = 2
+	melee_damage_upper = 3
 	attacktext = list("bitten")
 
 	say_list_type = /datum/say_list/snake
