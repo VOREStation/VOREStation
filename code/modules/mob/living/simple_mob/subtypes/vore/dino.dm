@@ -16,7 +16,7 @@
 	movement_cooldown = 4
 	harm_intent_damage = 5
 	melee_damage_lower = 5
-	melee_damage_upper = 14
+	melee_damage_upper = 12
 	attacktext = list("bitten")
 	attack_sound = 'sound/weapons/bite.ogg'
 	minbodytemp = 200
