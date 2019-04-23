@@ -907,6 +907,7 @@
 /obj/item/clothing/under/rank/khi
 	name = "Delete Me"
 	desc = "Why did you spawn this one? Dork."
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi)
 	sensor_mode = 3
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'

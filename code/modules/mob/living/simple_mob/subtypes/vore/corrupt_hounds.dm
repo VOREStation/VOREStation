@@ -1,6 +1,12 @@
+/datum/category_item/catalogue/technology/drone/corrupt_hound		//TODO: VIRGO_LORE_WRITING_WIP
+	name = "Drone - Corrupt Hound"
+	desc = ""
+	value = CATALOGUER_REWARD_MEDIUM
+
 /mob/living/simple_mob/vore/aggressive/corrupthound
 	name = "corrupt hound"
 	desc = "Good boy machine broke. This is definitely no good news for the organic lifeforms in vicinity."
+	catalogue_data = list(/datum/category_item/catalogue/technology/drone/corrupt_hound)
 
 	icon_state = "badboi"
 	icon_living = "badboi"

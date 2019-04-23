@@ -1529,6 +1529,7 @@
 #include "code\modules\busy_space_vr\organizations.dm"
 #include "code\modules\catalogue\atoms.dm"
 #include "code\modules\catalogue\catalogue_data.dm"
+#include "code\modules\catalogue\catalogue_data_vr.dm"
 #include "code\modules\catalogue\cataloguer.dm"
 #include "code\modules\catalogue\cataloguer_visuals.dm"
 #include "code\modules\client\client defines.dm"

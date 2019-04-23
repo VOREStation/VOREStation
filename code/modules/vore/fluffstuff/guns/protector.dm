@@ -3,6 +3,7 @@
 	name = "small energy gun"
 	desc = "The KHI-98a 'Protector' is the first firearm custom-designed for Nanotrasen by KHI. It features a powerful stun mode, and \
 	an alert-level-locked lethal mode, only usable on code blue and higher. It also features an integrated flashlight!"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi)
 
 	description_info = "This gun can only be fired in lethal mode while on higher security alert levels. It is legal for sec to carry for this reason, since it cannot be used for lethal force until SOP allows it, in essence."
 	description_fluff = "The first 'commission' from a Kitsuhana citizen for NanoTrasen, this gun has a wireless connection to the computer's datacore to ensure it can't be used without authorization from heads of staff who have raised the alert level. Until then, *click*!"

@@ -1,6 +1,12 @@
+/datum/category_item/catalogue/fauna/shadekin		//TODO: VIRGO_LORE_WRITING_WIP
+	name = "Sapients - Shadekin"
+	desc = ""
+	value = CATALOGUER_REWARD_EASY
+
 /mob/living/simple_mob/shadekin //Spawning the prototype spawns a random one, see initialize()
 	name = "shadekin"
 	desc = "Some sort of fluffer. Big ears, long tail."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/shadekin)
 	icon = 'icons/mob/vore_shadekin.dmi'
 	icon_state = "map_example"
 	icon_living = "map_example"
