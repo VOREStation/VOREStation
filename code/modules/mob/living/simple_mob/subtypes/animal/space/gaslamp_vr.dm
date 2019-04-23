@@ -30,8 +30,8 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 
 	//speed = 2 not sure what this is, guessing animation, but it conflicts with new system.
 
-	melee_damage_lower = 30 // Because fuck anyone who hurts this sweet, innocent creature.
-	melee_damage_upper = 30
+	melee_damage_lower = 15 // Because fuck anyone who hurts this sweet, innocent creature.
+	melee_damage_upper = 15
 	attacktext = list("thrashed")
 	friendly = "caressed"
 

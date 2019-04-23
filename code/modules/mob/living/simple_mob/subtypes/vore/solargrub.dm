@@ -23,7 +23,7 @@ List of things solar grubs should be able to do:
 	health = 50
 
 	melee_damage_lower = 1
-	melee_damage_upper = 5
+	melee_damage_upper = 3
 
 	speed = 2
 

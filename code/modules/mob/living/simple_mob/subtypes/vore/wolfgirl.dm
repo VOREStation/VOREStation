@@ -17,8 +17,8 @@
 	response_harm = "hits the"
 
 	harm_intent_damage = 8
-	melee_damage_lower = 15
-	melee_damage_upper = 15
+	melee_damage_lower = 7
+	melee_damage_upper = 7
 	attacktext = list("slashed")
 
 	say_list_type = /datum/say_list/wolfgirl

@@ -11,8 +11,8 @@
 	maxHealth = 500 // Boss
 	health = 500
 
-	melee_damage_lower = 10
-	melee_damage_upper = 60
+	melee_damage_lower = 5
+	melee_damage_upper = 30
 
 	//Space dragons aren't affected by atmos.
 	min_oxy = 0

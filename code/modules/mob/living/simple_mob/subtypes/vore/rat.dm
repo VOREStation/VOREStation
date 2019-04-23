@@ -13,8 +13,8 @@
 	maxHealth = 150
 	health = 150
 
-	melee_damage_lower = 5
-	melee_damage_upper = 15
+	melee_damage_lower = 2
+	melee_damage_upper = 7
 	grab_resist = 100
 
 	response_help = "pets the"
