@@ -83,7 +83,7 @@ var/global/list/grub_machine_overlays = list()
 		if(prob(10))
 			sparks.start()
 		return
-
+	/*
 	if(stance == STANCE_IDLE)
 		if(forced_out)
 			forced_out = CLAMP(0, forced_out--, forced_out)
@@ -128,6 +128,7 @@ var/global/list/grub_machine_overlays = list()
 				target_vent = picked
 				WanderTowards(get_turf(picked))
 				return
+	*/
 
 /mob/living/simple_mob/solargrub_larva/proc/enter_machine(var/obj/machinery/M)
 	if(!istype(M))
@@ -187,7 +188,7 @@ var/global/list/grub_machine_overlays = list()
 /mob/living/simple_mob/solargrub_larva/proc/expand_grub()
 	eject_from_machine()
 	visible_message("<span class='warning'>\The [src] suddenly balloons in size!</span>")
-	new /mob/living/simple_mob/animal/solargrub(get_turf(src))
+//	new /mob/living/simple_mob/animal/solargrub(get_turf(src))
 //	var/mob/living/simple_mob/animal/solargrub/grub = new(get_turf(src))
 //	grub.power_drained = power_drained //TODO
 	qdel(src)
