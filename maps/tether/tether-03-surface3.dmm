@@ -619,9 +619,8 @@
 /turf/simulated/floor/plating,
 /area/vacant/vacant_site/gateway)
 "bx" = (
-/obj/structure/flora/tree/sif,
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/surfacebase/outside/outside3)
+/turf/simulated/wall,
+/area/tether/surfacebase/security/armory)
 "by" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/broken,
@@ -2346,18 +2345,15 @@
 	},
 /area/tether/surfacebase/atrium_three)
 "ep" = (
-/obj/machinery/light_construct{
-	icon_state = "tube-construct-stage1";
-	dir = 1
-	},
+/obj/effect/decal/cleanable/dirt,
+/obj/random/trash,
 /turf/simulated/floor/plating,
-/turf/simulated/floor/wood/broken,
-/area/vacant/vacant_library)
+/area/tether/surfacebase/security/armory)
 "eq" = (
 /obj/effect/decal/cleanable/dirt,
+/mob/living/simple_mob/animal/space/mimic,
 /turf/simulated/floor/plating,
-/turf/simulated/floor/wood/broken,
-/area/vacant/vacant_library)
+/area/tether/surfacebase/security/armory)
 "er" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -2765,19 +2761,45 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/surfacebase/outside/outside3)
 "eZ" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/security/armory)
+"fa" = (
+/obj/item/weapon/tool/screwdriver,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/security/armory)
+"fb" = (
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/atrium_three)
+"fc" = (
+/obj/structure/flora/tree/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/atrium_three)
+"fd" = (
+/obj/machinery/light_construct{
+	icon_state = "tube-construct-stage1";
+	dir = 1
+	},
+/turf/simulated/floor/wood/broken,
+/area/vacant/vacant_library)
+"fe" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/wood/broken,
+/area/vacant/vacant_library)
+"ff" = (
 /obj/item/stack/material/wood{
 	amount = 10
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/wood,
 /turf/simulated/floor/wood/broken,
 /area/vacant/vacant_library)
-"fa" = (
+"fg" = (
 /obj/machinery/light_construct,
-/turf/simulated/floor/plating,
 /turf/simulated/floor/wood/broken,
 /area/vacant/vacant_library)
-"fb" = (
+"fh" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
@@ -13977,7 +13999,6 @@
 /turf/simulated/floor/plating,
 /area/vacant/vacant_library)
 "zm" = (
-/turf/simulated/floor/plating,
 /turf/simulated/floor/wood/broken,
 /area/vacant/vacant_library)
 "zn" = (
@@ -30082,10 +30103,10 @@ bh
 bh
 bh
 bh
-bh
-bh
-bh
-bh
+bw
+bw
+bw
+bw
 gw
 cY
 jG
@@ -30218,16 +30239,16 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+bx
+ep
+eq
+eZ
+fa
+bx
+bw
+bw
+bw
+bw
 gw
 hs
 jH
@@ -30366,10 +30387,10 @@ bi
 bi
 bi
 bi
-ac
-ac
-ac
-ac
+bh
+bh
+bh
+bh
 gw
 ht
 pS
@@ -30508,10 +30529,10 @@ co
 da
 dL
 bi
-ac
-ac
-ac
-ac
+fb
+fb
+fb
+fb
 gw
 hV
 jJ
@@ -30650,10 +30671,10 @@ cp
 cp
 dM
 bi
-ac
-ac
-bx
-ac
+fb
+fb
+fc
+fb
 gG
 ix
 jM
@@ -30792,10 +30813,10 @@ cq
 db
 dN
 bi
-ac
-ac
-ac
-ac
+fb
+fb
+fb
+fb
 gG
 ix
 jz
@@ -30934,10 +30955,10 @@ cr
 dc
 dO
 bi
-ac
-bx
-ac
-ac
+fb
+fc
+fb
+fb
 gG
 ix
 jz
@@ -31076,10 +31097,10 @@ cs
 dd
 dP
 bi
-ac
-ac
-ac
-ac
+fb
+fb
+fb
+fb
 gw
 iK
 jz
@@ -33097,9 +33118,9 @@ vh
 vE
 wh
 Zv
-ep
+fd
 Lm
-eq
+fe
 Wc
 zR
 Az
@@ -33107,7 +33128,7 @@ Az
 LM
 CJ
 Dk
-fa
+fg
 Zv
 Fk
 Gb
@@ -33530,7 +33551,7 @@ xV
 zT
 Yh
 Br
-eZ
+ff
 Lm
 xW
 VX
@@ -35821,7 +35842,7 @@ Jr
 Js
 Wh
 JE
-fb
+fh
 IY
 bg
 RO
@@ -35963,7 +35984,7 @@ Js
 Js
 Jz
 JE
-fb
+fh
 IY
 bg
 RO
@@ -36105,7 +36126,7 @@ Jt
 Js
 Jz
 JE
-fb
+fh
 IY
 bg
 RO
