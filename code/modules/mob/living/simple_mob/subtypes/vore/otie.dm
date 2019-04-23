@@ -78,7 +78,7 @@
 	faction = "virgo3b"
 	tame_chance = 5 // Only a 1 in 20 chance of success. It's feral. What do you expect?
 	melee_damage_lower = 5
-	melee_damage_upper = 14
+	melee_damage_upper = 12
 	// Lazy way of making sure this otie survives outside.
 	min_oxy = 0
 	max_oxy = 0
@@ -102,7 +102,7 @@
 	faction = "cult"
 	tame_chance = 20
 	melee_damage_lower = 5
-	melee_damage_upper = 14
+	melee_damage_upper = 12
 	// Lazy way of making sure this otie survives outside.
 	min_oxy = 0
 	max_oxy = 0
@@ -183,7 +183,7 @@
 	icon_rest = "sifguard_rest"
 	icon_dead = "sifguard-dead"
 	melee_damage_lower = 5
-	melee_damage_upper = 14
+	melee_damage_upper = 12
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0
