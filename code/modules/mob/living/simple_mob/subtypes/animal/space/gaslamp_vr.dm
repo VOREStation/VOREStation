@@ -10,10 +10,16 @@ kills them.
 TODO: Make them light up and heat the air when exposed to oxygen.
 */
 
+/datum/category_item/catalogue/fauna/gaslamp		//TODO: VIRGO_LORE_WRITING_WIP
+	name = "Virgo 3b Fauna - Gaslamp"
+	desc = ""
+	value = CATALOGUER_REWARD_TRIVIAL
+
 /mob/living/simple_mob/animal/passive/gaslamp
 	name = "gaslamp"
 	desc = "Some sort of floaty alien with a warm glow. This creature is endemic to Virgo-3B."
 	tt_desc = "Semaeostomeae virginus"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/gaslamp)
 
 	icon_state = "gaslamp"
 	icon_living = "gaslamp"

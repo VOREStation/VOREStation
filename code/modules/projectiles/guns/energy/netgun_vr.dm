@@ -2,6 +2,7 @@
 	name = "energy net gun"
 	desc = "A Kitsuhana-designed, usually dubbed 'Hunter' or 'non-lethal capture device' stunner and energy net launcher, \
 			for when you want criminals to stop acting like they're on a 20th century British comedy sketch show."
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi)
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "hunter"
 	item_state = "gun" // Placeholder

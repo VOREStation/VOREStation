@@ -1,5 +1,7 @@
 /obj/machinery/computer/transhuman/resleeving
 	name = "resleeving control console"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi,
+						/datum/category_item/catalogue/technology/resleeving)
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
 	light_color = "#315ab4"
@@ -382,6 +384,7 @@
 /obj/item/weapon/cmo_disk_holder
 	name = "cmo emergency packet"
 	desc = "A small paper packet with printing on one side. \"Tear open in case of Code Delta or Emergency Evacuation ONLY. Use in any other case is UNLAWFUL.\""
+	catalogue_data = list(/datum/category_item/catalogue/technology/resleeving)
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "cmoemergency"
 	item_state = "card-id"
@@ -400,6 +403,7 @@
 	\"1.INSERT DISK INTO RESLEEVING CONSOLE\n\
 	2. BEGIN CORE DUMP PROCEDURE\n\
 	3. ENSURE DISK SAFETY WHEN EJECTED\""
+	catalogue_data = list(/datum/category_item/catalogue/technology/resleeving)
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "harddisk"
 	item_state = "card-id"
