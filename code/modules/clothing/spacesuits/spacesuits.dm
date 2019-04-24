@@ -58,7 +58,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
 	flags = PHORONGUARD
-	item_flags = THICKMATERIAL | PHORONGUARD
+	item_flags = THICKMATERIAL
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/emergency/oxygen,/obj/item/device/suit_cooling_unit)
 	slowdown = 3
