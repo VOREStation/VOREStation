@@ -35,6 +35,16 @@
 /mob/living/simple_mob/shadekin/red/brown
 	icon_state = "brown"
 
+/mob/living/simple_mob/shadekin/red/ai
+	ai_holder_type = /datum/ai_holder/simple_mob/melee
+
+/mob/living/simple_mob/shadekin/red/ai/white
+	icon_state = "white"
+/mob/living/simple_mob/shadekin/red/ai/dark
+	icon_state = "dark"
+/mob/living/simple_mob/shadekin/red/ai/brown
+	icon_state = "brown"
+
 /////////////////////////////////////////////////////////////////
 /mob/living/simple_mob/shadekin/blue
 	name = "blue-eyed shadekin"
@@ -239,6 +249,16 @@
 /mob/living/simple_mob/shadekin/orange/dark
 	icon_state = "dark"
 /mob/living/simple_mob/shadekin/orange/brown
+	icon_state = "brown"
+
+/mob/living/simple_mob/shadekin/orange/ai
+	ai_holder_type = /datum/ai_holder/simple_mob/melee
+
+/mob/living/simple_mob/shadekin/orange/ai/white
+	icon_state = "white"
+/mob/living/simple_mob/shadekin/orange/ai/dark
+	icon_state = "dark"
+/mob/living/simple_mob/shadekin/orange/ai/brown
 	icon_state = "brown"
 
 /////////////////////////////////////////////////////////////////
