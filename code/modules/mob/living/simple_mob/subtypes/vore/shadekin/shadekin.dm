@@ -250,6 +250,12 @@
 	if((. = ..()))
 		handle_shade()
 
+/mob/living/simple_mob/shadekin/handle_atmos()
+	if(ability_flags & AB_PHASE_SHIFTED)
+		return
+	else
+		return .=..()
+
 /mob/living/simple_mob/shadekin/proc/handle_shade()
 	//Shifted kin don't gain/lose energy (and save time if we're at the cap)
 	var/darkness = 1
