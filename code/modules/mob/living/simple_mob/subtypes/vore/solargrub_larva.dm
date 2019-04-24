@@ -23,6 +23,7 @@ var/global/list/grub_machine_overlays = list()
 	response_disarm = "nudges"
 	response_harm = "stomps on"
 
+
 	mob_size = MOB_MINISCULE
 	pass_flags = PASSTABLE
 	can_pull_size = ITEMSIZE_TINY
@@ -44,7 +45,6 @@ var/global/list/grub_machine_overlays = list()
 
 	var/obj/machinery/abstract_grub_machine/powermachine
 	var/power_drained = 0
-	var/forced_out = 0
 
 	ai_holder_type = /datum/ai_holder/simple_mob/solargrub_larva
 
@@ -149,6 +149,7 @@ var/global/list/grub_machine_overlays = list()
 		var/obj/machinery/atmospherics/unary/vent_pump/V = A
 		if(V.welded)
 			return
+		//ai_holder.fleeing = FALSE
 		do_ventcrawl(V)
 		return
 
@@ -157,6 +158,7 @@ var/global/list/grub_machine_overlays = list()
 /mob/living/simple_mob/solargrub_larva/proc/enter_machine(var/obj/machinery/M)
 	if(!istype(M))
 		return
+	set_AI_busy(TRUE)
 	forceMove(M)
 	powermachine.draining = 2
 	visible_message("<span class='warning'>\The [src] finds an opening and crawls inside \the [M].</span>")
@@ -182,7 +184,8 @@ var/global/list/grub_machine_overlays = list()
 	sparks.start()
 	if(machine_effect)
 		QDEL_NULL(machine_effect)
-	forced_out += rand(5,15)
+	set_AI_busy(FALSE)
+	//ai_holder.fleeing = TRUE
 	powermachine.draining = 1
 
 /mob/living/simple_mob/solargrub_larva/proc/do_ventcrawl(var/obj/machinery/atmospherics/unary/vent_pump/vent)
@@ -234,8 +237,51 @@ var/global/list/grub_machine_overlays = list()
 
 
 /datum/ai_holder/simple_mob/solargrub_larva
+	//var/fleeing
+	var/static/list/ignored_machine_types = list(
+		/obj/machinery/atmospherics/unary/vent_pump,
+		/obj/machinery/atmospherics/unary/vent_scrubber,
+		/obj/machinery/door/firedoor
+		)
 
 
+/datum/ai_holder/simple_mob/solargrub_larva/list_targets()
+	var/static/potential_targets = typecacheof(list(/obj/machinery))
+	var/list/actual_targets = list()
+
+	for(var/AT in typecache_filter_list(range(vision_range, holder), potential_targets))
+		var/obj/machinery/M = AT
+		if(istype(M, /obj/machinery/atmospherics/unary/vent_pump))
+			var/obj/machinery/atmospherics/unary/vent_pump/V = M
+			if(!V.welded && prob(33))
+				actual_targets += M
+			continue
+		if(is_type_in_list(M, ignored_machine_types))
+			continue
+		if(!M.idle_power_usage && !M.active_power_usage && !(istype(M, /obj/machinery/power/apc) || istype(M, /obj/machinery/power/smes)))
+			continue
+		actual_targets += M
+	return actual_targets
+/*
+// Select an obj if no mobs are around.
+/datum/ai_holder/simple_mob/solargrub_larva/pick_target(list/targets)
+	var/mobs_only = locate(/mob/living) in targets // If a mob is in the list of targets, then ignore objects.
+	if(mobs_only)
+		for(var/A in targets)
+			if(!isliving(A))
+				targets -= A
+
+	return ..(targets)
+
+/datum/ai_holder/simple_mob/solargrub_larva/can_attack(atom/movable/the_target)
+	. = ..()
+	if(!.) // Parent returned FALSE.
+		if(istype(the_target, /obj))
+			var/obj/O = the_target
+			if(!O.anchored)
+				return TRUE
+
+*/
 /obj/machinery/abstract_grub_machine/New()
 	..()
 	shuffle_power_usages()
