@@ -11,6 +11,9 @@ var/global/list/grub_machine_overlays = list()
 	health = 5
 	maxHealth = 5
 
+	melee_damage_lower = 1	// This is a tiny worm. It will nibble and thats about it.
+	melee_damage_upper = 1
+
 	meat_amount = 2
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
 
@@ -42,6 +45,8 @@ var/global/list/grub_machine_overlays = list()
 	var/obj/machinery/abstract_grub_machine/powermachine
 	var/power_drained = 0
 	var/forced_out = 0
+
+	ai_holder_type = /datum/ai_holder/simple_mob/solargrub_larva
 
 /mob/living/simple_mob/solargrub_larva/New()
 	..()
@@ -130,6 +135,25 @@ var/global/list/grub_machine_overlays = list()
 				return
 	*/
 
+/mob/living/simple_mob/solargrub_larva/attack_target(atom/A)
+	if(istype(A, /obj/machinery) && !istype(A, /obj/machinery/atmospherics/unary/vent_pump))
+		var/obj/machinery/M = A
+		if(is_type_in_list(M, ignored_machine_types))
+			return
+		if(!M.idle_power_usage && !M.active_power_usage && !(istype(M, /obj/machinery/power/apc) || istype(M, /obj/machinery/power/smes)))
+			return
+		enter_machine(M)
+		return
+
+	if(istype(A, /obj/machinery/atmospherics/unary/vent_pump))
+		var/obj/machinery/atmospherics/unary/vent_pump/V = A
+		if(V.welded)
+			return
+		do_ventcrawl(V)
+		return
+
+	return
+
 /mob/living/simple_mob/solargrub_larva/proc/enter_machine(var/obj/machinery/M)
 	if(!istype(M))
 		return
@@ -208,7 +232,8 @@ var/global/list/grub_machine_overlays = list()
 	var/draining = 1
 	var/mob/living/simple_mob/solargrub_larva/grub
 
-/datum/ai_holder/simple_mob/melee/solargrub_larva
+
+/datum/ai_holder/simple_mob/solargrub_larva
 
 
 /obj/machinery/abstract_grub_machine/New()
