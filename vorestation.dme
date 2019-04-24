@@ -329,6 +329,7 @@
 #include "code\datums\outfits\costumes\halloween.dm"
 #include "code\datums\outfits\jobs\cargo.dm"
 #include "code\datums\outfits\jobs\civilian.dm"
+#include "code\datums\outfits\jobs\civilian_vr.dm"
 #include "code\datums\outfits\jobs\command.dm"
 #include "code\datums\outfits\jobs\engineering.dm"
 #include "code\datums\outfits\jobs\job.dm"
