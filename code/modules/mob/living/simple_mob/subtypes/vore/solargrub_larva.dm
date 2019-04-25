@@ -36,7 +36,8 @@ var/global/list/grub_machine_overlays = list()
 
 	var/static/list/ignored_machine_types = list(
 		/obj/machinery/atmospherics/unary/vent_scrubber,
-		/obj/machinery/door/firedoor
+		/obj/machinery/door/firedoor,
+		/obj/machinery/button/windowtint
 		)
 
 	var/datum/effect/effect/system/spark_spread/sparks
@@ -192,7 +193,8 @@ var/global/list/grub_machine_overlays = list()
 	//var/fleeing
 	var/static/list/ignored_machine_types = list(
 		/obj/machinery/atmospherics/unary/vent_scrubber,
-		/obj/machinery/door/firedoor
+		/obj/machinery/door/firedoor,
+		/obj/machinery/button/windowtint
 		)
 	var/list/ignored_targets = list()
 
