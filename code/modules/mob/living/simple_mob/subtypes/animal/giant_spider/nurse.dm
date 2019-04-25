@@ -243,7 +243,7 @@
 			. += O
 
 // Select an obj if no mobs are around.
-/datum/ai_holder/melee/nurse_spider/pick_target(list/targets)
+/datum/ai_holder/simple_mob/melee/nurse_spider/pick_target(list/targets)
 	var/mobs_only = locate(/mob/living) in targets // If a mob is in the list of targets, then ignore objects.
 	if(mobs_only)
 		for(var/A in targets)
