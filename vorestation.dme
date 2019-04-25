@@ -2457,6 +2457,7 @@
 #include "code\modules\multiz\open_space_controller.dm"
 #include "code\modules\multiz\pipes.dm"
 #include "code\modules\multiz\structures.dm"
+#include "code\modules\multiz\structures_vr.dm"
 #include "code\modules\multiz\turf.dm"
 #include "code\modules\multiz\zshadow.dm"
 #include "code\modules\nano\nanoexternal.dm"
