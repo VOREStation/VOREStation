@@ -26,6 +26,7 @@
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED
 
 #include "underdark_pois/_templates.dm"
+#include "underdark_pois/underdark_things.dm"
 /datum/map_template/tether_lateload/tether_underdark
 	name = "Tether - Underdark"
 	desc = "Mining, but harder."
@@ -269,7 +270,7 @@
 	//Settings to help mappers/coders have their mobs do what they want in this case
 	var/faction				//To prevent infighting if it spawns various mobs, set a faction
 	var/atmos_comp			//TRUE will set all their survivability to be within 20% of the current air
-	var/guard				//# will set the mobs to remain nearby their spawn point within this dist
+	//var/guard				//# will set the mobs to remain nearby their spawn point within this dist
 
 	//Internal use only
 	var/mob/living/simple_mob/my_mob
@@ -337,7 +338,7 @@
 	faction = "shadekin"
 	prob_spawn = 1
 	prob_fall = 1
-	guard = 10 //Don't wander too far, to stay alive.
+	//guard = 10 //Don't wander too far, to stay alive.
 	mobs_to_pick_from = list(
-		// /mob/living/simple_mob/shadekin //VORESTATION AI TEMPORARY REMOVAL
+		/mob/living/simple_mob/shadekin
 	)

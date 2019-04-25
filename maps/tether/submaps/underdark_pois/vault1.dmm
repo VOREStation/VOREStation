@@ -1,0 +1,15 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/wall/iron,/area/mine/explored/underdark)
+"c" = (/turf/template_noop,/area/mine/explored/underdark)
+"d" = (/turf/simulated/mineral/floor/virgo3b,/area/mine/explored/underdark)
+
+(1,1,1) = {"
+aaaaaaaa
+abbbbcca
+abdddcca
+abddddca
+abddddba
+abddddba
+abbbbbba
+aaaaaaaa
+"}
