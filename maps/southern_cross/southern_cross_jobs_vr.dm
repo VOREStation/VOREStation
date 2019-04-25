@@ -14,9 +14,9 @@ var/const/SAR 				=(1<<14)
 /obj/item/weapon/card/id/explorer
 	name = "identification card"
 	desc = "A card issued to station exploration staff."
-	icon_state = "green"
-	primary_color = rgb(47,189,0)
-	secondary_color = rgb(127,223,95)
+	icon_state = "cyan"
+	primary_color = rgb(47,189,189)
+	secondary_color = rgb(127,223,223)
 
 /obj/item/weapon/card/id/explorer/pilot
 	assignment = "Pilot"
@@ -31,9 +31,9 @@ var/const/SAR 				=(1<<14)
 /obj/item/weapon/card/id/explorer/head/
 	name = "identification card"
 	desc = "A card which represents discovery of the unknown."
-	icon_state = "greenGold"
-	primary_color = rgb(47,189,0)
-	secondary_color = rgb(127,223,95)
+	icon_state = "cyanGold"
+	primary_color = rgb(47,189,189)
+	secondary_color = rgb(127,223,223)
 
 /obj/item/weapon/card/id/explorer/head/pathfinder
 	assignment = "Pathfinder"
@@ -108,3 +108,16 @@ var/const/SAR 				=(1<<14)
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_eva, access_maint_tunnels, access_external_airlocks, access_pilot)
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_pilot)
 	outfit_type = /decl/hierarchy/outfit/job/medical/sar
+
+/datum/job/offduty_exploration
+	title = "Off-duty Explorer"
+	latejoin_only = TRUE
+	timeoff_factor = -1
+	total_positions = -1
+	faction = "Station"
+	department = "Exploration"
+	supervisors = "nobody! Enjoy your time off"
+	selection_color = "#999440"
+	access = list(access_maint_tunnels, access_external_airlocks)
+	minimal_access = list(access_maint_tunnels, access_external_airlocks)
+	outfit_type = /decl/hierarchy/outfit/job/assistant/explorer
