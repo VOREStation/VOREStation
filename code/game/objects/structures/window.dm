@@ -268,7 +268,7 @@
 			state = 3 - state
 			update_nearby_icons()
 			playsound(src, W.usesound, 75, 1)
-			to_chat(user, "<span class='notice'>You have [state ? "un" : ""]fastened the window [state ? "from" : "to"] the frame.</span>")
+			to_chat(user, "<span class='notice'>You have [state == 1 ? "un" : ""]fastened the window [state ? "from" : "to"] the frame.</span>")
 		else if(reinf && state == 0)
 			anchored = !anchored
 			update_nearby_icons()

@@ -12,8 +12,8 @@
 	health = 10
 
 	harm_intent_damage = 2
-	melee_damage_lower = 5
-	melee_damage_upper = 10
+	melee_damage_lower = 2
+	melee_damage_upper = 5
 
 	say_list_type = /datum/say_list/cookiegirl
 	ai_holder_type = /datum/ai_holder/simple_mob/passive/cookiegirl

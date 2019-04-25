@@ -137,6 +137,8 @@
 	if(large_cocoon)
 		C.icon_state = pick("cocoon_large1","cocoon_large2","cocoon_large3")
 
+	ai_holder.target = null
+
 	return TRUE
 
 /mob/living/simple_mob/animal/giant_spider/nurse/handle_special()

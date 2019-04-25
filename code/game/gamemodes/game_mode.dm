@@ -146,10 +146,10 @@ var/global/list/additional_antag_types = list()
 			playerC++
 
 	if(master_mode=="secret")
-		if(playerC < required_players_secret)
+		if(playerC < config.player_requirements_secret[config_tag])
 			return 0
 	else
-		if(playerC < required_players)
+		if(playerC < config.player_requirements[config_tag])
 			return 0
 
 	if(!(antag_templates && antag_templates.len))

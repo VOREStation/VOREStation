@@ -22,8 +22,8 @@
 	response_harm = "hits"
 
 	harm_intent_damage = 5
-	melee_damage_lower = 8
-	melee_damage_upper = 12
+	melee_damage_lower = 4
+	melee_damage_upper = 6
 	attacktext = list("attacked")
 	attack_sound = 'sound/weapons/bite.ogg'
 

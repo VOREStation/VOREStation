@@ -28,7 +28,7 @@
 	name = "recrystallized carbonate"
 	icon_state = "ore_marble"
 	origin_tech = list(TECH_MATERIAL = 1)
-	material = "carbon"
+	material = "marble"
 
 /obj/item/weapon/ore/glass
 	name = "sand"
