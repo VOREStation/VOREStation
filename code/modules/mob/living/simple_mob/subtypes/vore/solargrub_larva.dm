@@ -1,6 +1,6 @@
 var/global/list/grub_machine_overlays = list()
 
-/mob/living/simple_mob/solargrub_larva
+/mob/living/simple_mob/animal/solargrub_larva
 	name = "solargrub larva"
 	desc = "A tiny wormy thing that can grow to massive sizes under the right conditions."
 	icon = 'icons/mob/vore.dmi'
@@ -10,6 +10,7 @@ var/global/list/grub_machine_overlays = list()
 
 	health = 5
 	maxHealth = 5
+	movement_cooldown = 3
 
 	melee_damage_lower = 1	// This is a tiny worm. It will nibble and thats about it.
 	melee_damage_upper = 1
@@ -33,12 +34,9 @@ var/global/list/grub_machine_overlays = list()
 	//stop_when_pulled = 0
 
 	var/static/list/ignored_machine_types = list(
-		/obj/machinery/atmospherics/unary/vent_pump,
 		/obj/machinery/atmospherics/unary/vent_scrubber,
 		/obj/machinery/door/firedoor
 		)
-
-	//var/obj/machinery/atmospherics/unary/vent_pump/target_vent
 
 	var/datum/effect/effect/system/spark_spread/sparks
 	var/image/machine_effect
@@ -48,7 +46,7 @@ var/global/list/grub_machine_overlays = list()
 
 	ai_holder_type = /datum/ai_holder/simple_mob/solargrub_larva
 
-/mob/living/simple_mob/solargrub_larva/New()
+/mob/living/simple_mob/animal/solargrub_larva/New()
 	..()
 	powermachine = new(src)
 	sparks = new(src)
@@ -56,19 +54,18 @@ var/global/list/grub_machine_overlays = list()
 	sparks.attach(src)
 	verbs += /mob/living/proc/ventcrawl
 
-/mob/living/simple_mob/solargrub_larva/death()
+/mob/living/simple_mob/animal/solargrub_larva/death()
 	powermachine.draining = 0
 	set_light(0)
 	return ..()
 
-/mob/living/simple_mob/solargrub_larva/Destroy()
+/mob/living/simple_mob/animal/solargrub_larva/Destroy()
 	QDEL_NULL(powermachine)
 	QDEL_NULL(sparks)
 	QDEL_NULL(machine_effect)
-	//target_vent = null
 	return ..()
 
-/mob/living/simple_mob/solargrub_larva/Life()
+/mob/living/simple_mob/animal/solargrub_larva/Life()
 	. = ..()
 
 	if(machine_effect && !istype(loc, /obj/machinery))
@@ -88,74 +85,29 @@ var/global/list/grub_machine_overlays = list()
 		if(prob(10))
 			sparks.start()
 		return
-	/*
-	if(stance == STANCE_IDLE)
-		if(forced_out)
-			forced_out = CLAMP(0, forced_out--, forced_out)
-			return
 
-		if(target_vent)
-			if(Adjacent(target_vent))
-				spawn()
-					do_ventcrawl(target_vent)
-					target_vent = null
-			else
-				target_vent = null
-			stop_automated_movement = 0
-			walk(src, 0)
-			return
-
-		if(prob(20))
-			var/list/possible_machines = list()
-			for(var/obj/machinery/M in orange(1,src))
-				if(!Adjacent(M))
-					continue
-				if(istype(M, /obj/machinery/power/apc) || istype(M, /obj/machinery/power/smes)) //APCs and SMES units don't actually use power, but it's too thematic to ignore them
-					possible_machines += M
-					continue
-				if(is_type_in_list(M, ignored_machine_types))
-					continue
-				if(!M.idle_power_usage && !M.active_power_usage) //If it can't use power at all, ignore it
-					continue
-				possible_machines += M
-			if(possible_machines.len)
-				enter_machine(pick(possible_machines))
-				return
-
-		if(prob(10))
-			var/list/vents = list()
-			for(var/obj/machinery/atmospherics/unary/vent_pump/vent in view(7,src))
-				if(vent.welded)
-					continue
-				vents += vent
-			if(vents.len)
-				var/picked = pick(vents)
-				target_vent = picked
-				WanderTowards(get_turf(picked))
-				return
-	*/
-
-/mob/living/simple_mob/solargrub_larva/attack_target(atom/A)
+/mob/living/simple_mob/animal/solargrub_larva/attack_target(atom/A)
 	if(istype(A, /obj/machinery) && !istype(A, /obj/machinery/atmospherics/unary/vent_pump))
 		var/obj/machinery/M = A
 		if(is_type_in_list(M, ignored_machine_types))
 			return
 		if(!M.idle_power_usage && !M.active_power_usage && !(istype(M, /obj/machinery/power/apc) || istype(M, /obj/machinery/power/smes)))
 			return
+		if(locate(/mob/living/simple_mob/animal/solargrub_larva) in M)
+			return
 		enter_machine(M)
-		return
+		return TRUE
 
 	if(istype(A, /obj/machinery/atmospherics/unary/vent_pump))
 		var/obj/machinery/atmospherics/unary/vent_pump/V = A
 		if(V.welded)
 			return
-		//ai_holder.fleeing = FALSE
 		do_ventcrawl(V)
-		return
+		return TRUE
 
-	return
+	return FALSE
 
-/mob/living/simple_mob/solargrub_larva/proc/enter_machine(var/obj/machinery/M)
+/mob/living/simple_mob/animal/solargrub_larva/proc/enter_machine(var/obj/machinery/M)
 	if(!istype(M))
 		return
 	set_AI_busy(TRUE)
@@ -168,13 +120,13 @@ var/global/list/grub_machine_overlays = list()
 	for(var/mob/L in player_list)				//because nearly every machine updates its icon by removing all overlays first
 		L << machine_effect
 
-/mob/living/simple_mob/solargrub_larva/proc/generate_machine_effect(var/obj/machinery/M)
+/mob/living/simple_mob/animal/solargrub_larva/proc/generate_machine_effect(var/obj/machinery/M)
 	var/icon/I = new /icon(M.icon, M.icon_state)
 	I.Blend(new /icon('icons/effects/blood.dmi', rgb(255,255,255)),ICON_ADD)
 	I.Blend(new /icon('icons/effects/alert.dmi', "_red"),ICON_MULTIPLY)
 	grub_machine_overlays[M.type] = I
 
-/mob/living/simple_mob/solargrub_larva/proc/eject_from_machine(var/obj/machinery/M)
+/mob/living/simple_mob/animal/solargrub_larva/proc/eject_from_machine(var/obj/machinery/M)
 	if(!M)
 		if(istype(loc, /obj/machinery))
 			M = loc
@@ -185,10 +137,10 @@ var/global/list/grub_machine_overlays = list()
 	if(machine_effect)
 		QDEL_NULL(machine_effect)
 	set_AI_busy(FALSE)
-	//ai_holder.fleeing = TRUE
+	ai_holder.target = null
 	powermachine.draining = 1
 
-/mob/living/simple_mob/solargrub_larva/proc/do_ventcrawl(var/obj/machinery/atmospherics/unary/vent_pump/vent)
+/mob/living/simple_mob/animal/solargrub_larva/proc/do_ventcrawl(var/obj/machinery/atmospherics/unary/vent_pump/vent)
 	if(!vent)
 		return
 	var/obj/machinery/atmospherics/unary/vent_pump/end_vent = get_safe_ventcrawl_target(vent)
@@ -212,15 +164,14 @@ var/global/list/grub_machine_overlays = list()
 	playsound(end_vent, 'sound/machines/ventcrawl.ogg', 50, 1, -3)
 	forceMove(get_turf(end_vent))
 
-/mob/living/simple_mob/solargrub_larva/proc/expand_grub()
+/mob/living/simple_mob/animal/solargrub_larva/proc/expand_grub()
 	eject_from_machine()
 	visible_message("<span class='warning'>\The [src] suddenly balloons in size!</span>")
-//	new /mob/living/simple_mob/animal/solargrub(get_turf(src))
-//	var/mob/living/simple_mob/animal/solargrub/grub = new(get_turf(src))
+	new /mob/living/simple_mob/vore/solargrub(get_turf(src))
 //	grub.power_drained = power_drained //TODO
 	qdel(src)
 
-/mob/living/simple_mob/solargrub_larva/handle_light()
+/mob/living/simple_mob/animal/solargrub_larva/handle_light()
 	. = ..()
 	if(. == 0 && !is_dead())
 		set_light(1.5, 1, COLOR_YELLOW)
@@ -233,17 +184,16 @@ var/global/list/grub_machine_overlays = list()
 	var/total_idle_power_usage = 3 KILOWATTS
 	var/list/idle_power_usages = list(1 KILOWATTS, 1 KILOWATTS, 1 KILOWATTS)
 	var/draining = 1
-	var/mob/living/simple_mob/solargrub_larva/grub
+	var/mob/living/simple_mob/animal/solargrub_larva/grub
 
 
 /datum/ai_holder/simple_mob/solargrub_larva
 	//var/fleeing
 	var/static/list/ignored_machine_types = list(
-		/obj/machinery/atmospherics/unary/vent_pump,
 		/obj/machinery/atmospherics/unary/vent_scrubber,
 		/obj/machinery/door/firedoor
 		)
-
+	var/list/ignored_targets = list()
 
 /datum/ai_holder/simple_mob/solargrub_larva/list_targets()
 	var/static/potential_targets = typecacheof(list(/obj/machinery))
@@ -253,35 +203,42 @@ var/global/list/grub_machine_overlays = list()
 		var/obj/machinery/M = AT
 		if(istype(M, /obj/machinery/atmospherics/unary/vent_pump))
 			var/obj/machinery/atmospherics/unary/vent_pump/V = M
-			if(!V.welded && prob(33))
+			if(!V.welded && prob(50))
 				actual_targets += M
 			continue
 		if(is_type_in_list(M, ignored_machine_types))
 			continue
 		if(!M.idle_power_usage && !M.active_power_usage && !(istype(M, /obj/machinery/power/apc) || istype(M, /obj/machinery/power/smes)))
 			continue
+		if(locate(/mob/living/simple_mob/animal/solargrub_larva) in M)
+			continue
+		if(M in ignored_targets)
+			continue
 		actual_targets += M
 	return actual_targets
-/*
-// Select an obj if no mobs are around.
-/datum/ai_holder/simple_mob/solargrub_larva/pick_target(list/targets)
-	var/mobs_only = locate(/mob/living) in targets // If a mob is in the list of targets, then ignore objects.
-	if(mobs_only)
-		for(var/A in targets)
-			if(!isliving(A))
-				targets -= A
-
-	return ..(targets)
 
 /datum/ai_holder/simple_mob/solargrub_larva/can_attack(atom/movable/the_target)
-	. = ..()
-	if(!.) // Parent returned FALSE.
-		if(istype(the_target, /obj))
-			var/obj/O = the_target
-			if(!O.anchored)
-				return TRUE
+	.=..()
+	var/obj/machinery/M = the_target
+	if(!istype(M))
+		return FALSE
+	if(is_type_in_list(M, ignored_machine_types))
+		return FALSE
+	if(!M.idle_power_usage && !M.active_power_usage && !(istype(M, /obj/machinery/power/apc) || istype(M, /obj/machinery/power/smes)))
+		return FALSE
+	if(locate(/mob/living/simple_mob/animal/solargrub_larva) in M)
+		return FALSE
+	if(M in ignored_targets)
+		return FALSE
+	return
 
-*/
+/datum/ai_holder/simple_mob/solargrub_larva/post_melee_attack(atom/A)
+	if(istype(A, /obj/machinery) && !istype(A, /obj/machinery/atmospherics/unary/vent_pump))
+		if(ignored_targets.len > 3)
+			ignored_targets.Cut(1,1)
+		ignored_targets += A
+
+
 /obj/machinery/abstract_grub_machine/New()
 	..()
 	shuffle_power_usages()
@@ -323,7 +280,7 @@ var/global/list/grub_machine_overlays = list()
 /obj/item/device/multitool/afterattack(obj/O, mob/user, proximity)
 	if(proximity)
 		if(istype(O, /obj/machinery))
-			var/mob/living/simple_mob/solargrub_larva/grub = locate() in O
+			var/mob/living/simple_mob/animal/solargrub_larva/grub = locate() in O
 			if(grub)
 				grub.eject_from_machine(O)
 				to_chat(user, "<span class='warning'>You disturb a grub nesting in \the [O]!</span>")
