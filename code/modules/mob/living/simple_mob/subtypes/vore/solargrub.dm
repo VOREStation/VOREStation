@@ -8,11 +8,17 @@ List of things solar grubs should be able to do:
 6. add glow?
 */
 
+/datum/category_item/catalogue/fauna/solargrub		//TODO: VIRGO_LORE_WRITING_WIP
+	name = "Solargrub"
+	desc = ""
+	value = CATALOGUER_REWARD_EASY
+
 #define SINK_POWER 1
 
 /mob/living/simple_mob/vore/solargrub
 	name = "juvenile solargrub"
 	desc = "A young sparkling solargrub"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/solargrub)
 	icon = 'icons/mob/vore.dmi' //all of these are placeholders
 	icon_state = "solargrub"
 	icon_living = "solargrub"

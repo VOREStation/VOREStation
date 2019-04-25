@@ -3,6 +3,7 @@ var/global/list/grub_machine_overlays = list()
 /mob/living/simple_mob/animal/solargrub_larva
 	name = "solargrub larva"
 	desc = "A tiny wormy thing that can grow to massive sizes under the right conditions."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/solargrub)
 	icon = 'icons/mob/vore.dmi'
 	icon_state = "grublarva"
 	icon_living = "grublarva"
