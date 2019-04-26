@@ -1,6 +1,6 @@
 #define HUMAN_LOWEST_SLOWDOWN -3
 
-/mob/living/carbon/human/movement_delay()
+/mob/living/carbon/human/movement_delay(oldloc, direct)
 
 	var/tally = 0
 
@@ -84,7 +84,7 @@
 
 	// Turf related slowdown
 	var/turf/T = get_turf(src)
-	tally += calculate_turf_slowdown(T)
+	tally += calculate_turf_slowdown(T, direct)
 
 	// Item related slowdown.
 	var/item_tally = calculate_item_encumbrance()
@@ -133,8 +133,11 @@
 		. += max(I.slowdown, 0)
 
 // Similar to above, but for turf slowdown.
-/mob/living/carbon/human/proc/calculate_turf_slowdown(turf/T)
-	if(T && T.movement_cost)
+/mob/living/carbon/human/proc/calculate_turf_slowdown(turf/T, direct)
+	if(!T)
+		return 0
+
+	if(T.movement_cost)
 		var/turf_move_cost = T.movement_cost
 		if(istype(T, /turf/simulated/floor/water))
 			if(species.water_movement)
@@ -144,6 +147,7 @@
 				if(feet.water_speed)
 					turf_move_cost = CLAMP(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + feet.water_speed, 15)
 			. += turf_move_cost
+
 		if(istype(T, /turf/simulated/floor/outdoors/snow))
 			if(species.snow_movement)
 				turf_move_cost = CLAMP(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + species.snow_movement, 15)
@@ -152,6 +156,19 @@
 				if(feet.water_speed)
 					turf_move_cost = CLAMP(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + feet.snow_speed, 15)
 			. += turf_move_cost
+
+	// Wind makes it easier or harder to move, depending on if you're with or against the wind.
+	if(T.outdoors)
+		var/datum/planet/P = SSplanets.z_to_planet[z]
+		if(P)
+			var/datum/weather_holder/WH = P.weather_holder
+			if(WH && WH.wind_speed) // Is there any wind?
+				// With the wind.
+				if(direct & WH.wind_dir)
+					. = max(. - WH.wind_speed, -1) // Wind speedup is capped to prevent supersonic speeds from a storm.
+				// Against it.
+				else if(direct & reverse_dir[WH.wind_dir])
+					. += WH.wind_speed
 
 #undef HUMAN_LOWEST_SLOWDOWN
 
