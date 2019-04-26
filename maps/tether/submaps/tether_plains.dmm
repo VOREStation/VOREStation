@@ -78,6 +78,14 @@
 "bF" = (
 /turf/simulated/mineral/virgo3b,
 /area/mine/unexplored)
+"BE" = (
+/mob/living/simple_mob/animal/space/goose/virgo3b,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/outpost/exploration_plains)
+"Em" = (
+/mob/living/simple_mob/animal/passive/gaslamp,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/outpost/exploration_plains)
 
 (1,1,1) = {"
 aa
@@ -1768,7 +1776,7 @@ ab
 ab
 ab
 ab
-ab
+BE
 ab
 ab
 ab
@@ -2613,7 +2621,7 @@ ab
 ab
 ab
 ab
-ab
+Em
 ab
 ab
 ab
@@ -2711,7 +2719,7 @@ ab
 ab
 ab
 ab
-ab
+BE
 ab
 ab
 ab
@@ -2950,6 +2958,7 @@ ab
 ab
 ab
 ab
+BE
 ab
 ab
 ab
@@ -2971,8 +2980,7 @@ ab
 ab
 ab
 ab
-ab
-ab
+Em
 ab
 ab
 ab
@@ -3210,6 +3218,7 @@ ab
 ab
 ab
 ab
+BE
 ab
 ab
 ab
@@ -3293,8 +3302,7 @@ ab
 ab
 ab
 ab
-ab
-ab
+BE
 ab
 ab
 ab
@@ -5197,7 +5205,7 @@ ab
 ab
 ab
 ab
-ab
+Em
 ab
 ab
 ab
@@ -7297,7 +7305,7 @@ ab
 ab
 ab
 ab
-ab
+BE
 ab
 ab
 ab
@@ -7330,7 +7338,7 @@ ab
 ab
 ab
 ab
-ab
+BE
 ab
 ab
 ab
@@ -8379,7 +8387,7 @@ ab
 ab
 ab
 ab
-ab
+BE
 ab
 ab
 ab
@@ -9186,7 +9194,7 @@ ab
 ab
 ab
 ab
-ab
+BE
 ab
 ab
 ab
@@ -9357,7 +9365,7 @@ ab
 ab
 ab
 ab
-ab
+BE
 ab
 ab
 ab
@@ -10743,7 +10751,7 @@ ab
 ab
 ab
 ab
-ab
+Em
 ab
 ab
 ab
@@ -11666,7 +11674,7 @@ ab
 ab
 ab
 ab
-ab
+Em
 ab
 ab
 ab
@@ -14073,7 +14081,7 @@ ab
 ab
 ab
 ab
-ab
+BE
 ab
 ab
 ab
@@ -14588,7 +14596,7 @@ ab
 ab
 ab
 ab
-ab
+BE
 ab
 ab
 ab
@@ -14816,7 +14824,7 @@ ab
 ab
 ab
 ab
-ab
+BE
 ab
 ab
 ab
@@ -15845,6 +15853,7 @@ ac
 aa
 ab
 ab
+BE
 ab
 ab
 ab
@@ -15867,8 +15876,7 @@ ab
 ab
 ab
 ab
-ab
-ab
+Em
 ab
 ab
 ab
@@ -16192,7 +16200,7 @@ ab
 ab
 ab
 ab
-ab
+BE
 ab
 ab
 ab
@@ -17531,7 +17539,7 @@ ab
 ab
 ab
 ab
-ab
+Em
 ab
 ab
 ab
@@ -17550,7 +17558,7 @@ aa
 ab
 ab
 ab
-ab
+Em
 ab
 ab
 ab

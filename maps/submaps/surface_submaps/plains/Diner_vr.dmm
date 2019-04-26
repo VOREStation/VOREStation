@@ -466,6 +466,16 @@
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/hydro,
 /area/submap/Diner)
+"gw" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/tiled,
+/area/submap/Diner)
+"lT" = (
+/obj/effect/floor_decal/corner/red/diagonal,
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
 
 (1,1,1) = {"
 aa
@@ -615,7 +625,7 @@ ac
 ac
 ac
 ac
-ac
+aZ
 ac
 ac
 ac
@@ -639,10 +649,10 @@ ab
 ab
 ab
 ab
-ab
-ac
-ac
-aZ
+ad
+ad
+az
+ad
 ab
 ab
 ab
@@ -667,8 +677,8 @@ ae
 ae
 ae
 ad
-ad
-az
+aS
+ap
 ad
 ae
 ae
@@ -798,7 +808,7 @@ af
 ao
 as
 ax
-af
+lT
 aE
 aE
 aE
@@ -967,7 +977,7 @@ ad
 ad
 ad
 bc
-bc
+gw
 ad
 ad
 ad

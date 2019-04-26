@@ -2359,6 +2359,7 @@
 #include "code\modules\mob\living\simple_mob\subtypes\animal\space\carp.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\animal\space\gaslamp_vr.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\animal\space\goose.dm"
+#include "code\modules\mob\living\simple_mob\subtypes\animal\space\goose_vr.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\animal\space\mimic_vr.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\animal\space\snake_vr.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\animal\space\space.dm"

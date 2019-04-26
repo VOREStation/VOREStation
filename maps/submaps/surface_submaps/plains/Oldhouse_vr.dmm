@@ -259,6 +259,10 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram,
 /turf/simulated/floor/wood,
 /area/submap/Oldhouse)
+"Uw" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
 
 (1,1,1) = {"
 aa
@@ -672,7 +676,7 @@ ac
 ac
 ac
 ai
-ai
+Uw
 ac
 ab
 ab
