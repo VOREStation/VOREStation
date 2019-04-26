@@ -3467,6 +3467,7 @@
 	center_of_mass = list("x"=21, "y"=12)
 	nutriment_amt = 4
 	nutriment_desc = list("cheese" = 2,"taco shell" = 2)
+
 /obj/item/weapon/reagent_containers/food/snacks/taco/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 3)
