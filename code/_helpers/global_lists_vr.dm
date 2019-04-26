@@ -414,7 +414,14 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 				SPECIES_XENO_SENTINEL,
 				SPECIES_XENO_QUEEN,
 				SPECIES_SHADOW,
-				SPECIES_GOLEM)					//Some special species that may or may not be ever used in event too
+				SPECIES_GOLEM,					//Some special species that may or may not be ever used in event too,
+				SPECIES_SHADEKIN,
+				SPECIES_SHADEKIN_BLUE,
+				SPECIES_SHADEKIN_RED,
+				SPECIES_SHADEKIN_YELLOW,
+				SPECIES_SHADEKIN_PURPLE,
+				SPECIES_SHADEKIN_ORANGE,
+				SPECIES_SHADEKIN_GREEN)			//Shadefluffers just poof away
 
 /hook/startup/proc/init_vore_datum_ref_lists()
 	var/paths

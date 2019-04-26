@@ -2198,6 +2198,7 @@
 #include "code\modules\mob\living\carbon\human\species\outsider\shadow.dm"
 #include "code\modules\mob\living\carbon\human\species\outsider\skeleton.dm"
 #include "code\modules\mob\living\carbon\human\species\outsider\vox.dm"
+#include "code\modules\mob\living\carbon\human\species\shadekin\shadekin.dm"
 #include "code\modules\mob\living\carbon\human\species\station\alraune.dm"
 #include "code\modules\mob\living\carbon\human\species\station\blank_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\station\golem.dm"
