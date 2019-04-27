@@ -9,7 +9,7 @@
 	body_parts_covered = HEAD|FACE|EYES
 	siemens_coefficient = 0.9
 	flags = PHORONGUARD
-	item_flags = THICKMATERIAL
+	item_flags = THICKMATERIAL | ALLOW_SURVIVALFOOD
 
 /obj/item/clothing/suit/bio_suit
 	name = "bio suit"
