@@ -132,3 +132,7 @@
 		standing.pixel_x = -16
 		standing.layer = BODY_LAYER + 15 // 15 is above tail layer, so will not be covered by taurbody.
 	return standing
+
+//Underclothes
+/obj/item/clothing/under
+	species_restricted = list("exclude", SPECIES_SHADEKIN)

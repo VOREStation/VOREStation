@@ -283,6 +283,12 @@
 		if(core)
 			return
 
+		//VOREStation Addition start: shadekin
+		var/obj/item/organ/internal/brain/shadekin/s_brain = locate() in internal_organs
+		if(s_brain)
+			return
+		//VOREStation Addition end: shadekin
+
 		var/damage = 0
 		radiation -= 1 * RADIATION_SPEED_COEFFICIENT
 		if(prob(25))
