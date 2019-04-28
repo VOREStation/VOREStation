@@ -83,7 +83,6 @@
 			if (fullness > 150 && fullness <= 350)
 				to_chat(M, "<span class='notice'>You take a bite of [src].</span>")
 			if (fullness > 350 && fullness <= 550)
-<<<<<<< HEAD
 				M << "<span class='notice'>You unwillingly chew a bit of [src].</span>"
 			if (fullness > 550 && fullness <= 650)
 				M << "<span class='notice'>You swallow some more of the [src], causing your belly to swell out a little.</span>"
@@ -97,11 +96,6 @@
 				M << "<span class='danger'>You barely glug down the bite of [src], causing undigested food to force into your intestines. You can't take much more of this!</span>"
 			if (fullness > 6000) // There has to be a limit eventually.
 				M << "<span class='danger'>Your stomach blorts and aches, prompting you to stop. You literally cannot force any more of [src] to go down your throat.</span>"
-=======
-				to_chat(M, "<span class='notice'>You unwillingly chew a bit of [src].</span>")
-			if (fullness > (550 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
-				to_chat(M, "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>")
->>>>>>> 8d3a72a... Merge pull request #6129 from Heroman3003/mask-helmet-eating
 				return 0
 			/*if (fullness > (550 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
 				M << "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>"
