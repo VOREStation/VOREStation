@@ -183,5 +183,5 @@
 /datum/map_template/virgo2/ButcherShack
 	name = "Butcher Shack"
 	desc = "An old, bloody butcher's shack. Get your meat here!"
-	mappath = 'ButcherShack.dmm'
+	mappath = 'butchershack.dmm'
 	cost = 5
