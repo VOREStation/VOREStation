@@ -825,7 +825,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				dat += "</br><b>Unheard of on human stations.</b>"
 			else
 				dat += "</br><b>May be present on human stations.</b>"
-	if(current_species.spawn_flags & SPECIES_IS_WHITELISTED)
+	if((current_species.spawn_flags & SPECIES_IS_WHITELISTED) || (current_species.spawn_flags & SPECIES_WHITELIST_SELECTABLE))	//VOREStation Edit
 		dat += "</br><b>Whitelist restricted.</b>"
 	if(!current_species.has_organ[O_HEART])
 		dat += "</br><b>Does not have a circulatory system.</b>"
@@ -853,7 +853,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	var/restricted = 0
 
-	if(!(current_species.spawn_flags & SPECIES_CAN_JOIN))
+
+	//VOREStation Addition begin
+	if(current_species.spawn_flags & SPECIES_WHITELIST_SELECTABLE)
+		restricted = 3
+	//VOREStation Addition end
+	else if(!(current_species.spawn_flags & SPECIES_CAN_JOIN))		//VOREStation Edit
 		restricted = 2
 	else if(!is_alien_whitelisted(preference_mob(),current_species))
 		restricted = 1
@@ -863,6 +868,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			dat += "<font color='red'><b>You cannot play as this species.</br><small>If you wish to be whitelisted, you can make an application post on <a href='?src=\ref[user];preference=open_whitelist_forum'>the forums</a>.</small></b></font></br>"
 		else if(restricted == 2)
 			dat += "<font color='red'><b>You cannot play as this species.</br><small>This species is not available for play as a station race..</small></b></font></br>"
+		//VOREStation Addition begin
+		else if(restricted == 3)
+			dat += "<font color='red'><b>You cannot play as this species.</br><small>You can however select it and set it up in case admin approves spawning you in.</small></b></font></br>"
+			restricted = 0
+		//VOREStation Addition end
 	if(!restricted || check_rights(R_ADMIN, 0))
 		dat += "\[<a href='?src=\ref[src];set_species=[pref.species_preview]'>select</a>\]"
 	dat += "</center></body>"

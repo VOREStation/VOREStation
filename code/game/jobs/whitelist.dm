@@ -40,7 +40,7 @@ var/list/whitelist = list()
 		return 0
 
 	//The species isn't even whitelisted
-	if(!(species.spawn_flags & SPECIES_IS_WHITELISTED))
+	if(!(species.spawn_flags & SPECIES_IS_WHITELISTED) && !(species.spawn_flags & SPECIES_WHITELIST_SELECTABLE))	//VOREStation Edit
 		return 1
 
 	//If we have a loaded file, search it

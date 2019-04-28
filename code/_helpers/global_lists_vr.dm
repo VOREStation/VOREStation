@@ -467,7 +467,7 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 		if(species_name in blacklisted_icons)
 			continue
 		var/datum/species/S = all_species[species_name]
-		if(S.spawn_flags & SPECIES_IS_WHITELISTED)
+		if((S.spawn_flags & SPECIES_IS_WHITELISTED) || (S.spawn_flags & SPECIES_WHITELIST_SELECTABLE))
 			continue
 		custom_species_bases += species_name
 
