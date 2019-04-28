@@ -6,19 +6,11 @@
 	name = OUTFIT_JOB_NAME("Visitor")
 	id_pda_assignment = "Visitor"
 	uniform = /obj/item/clothing/under/assistantformal
-
-<<<<<<< HEAD
-/decl/hierarchy/outfit/job/assistant/resident
-	name = OUTFIT_JOB_NAME("Resident")
-	id_pda_assignment = "Resident"
-	uniform = /obj/item/clothing/under/color/white
 //VOREStation Add - Interns
 /decl/hierarchy/outfit/job/assistant/intern
 	name = OUTFIT_JOB_NAME("Intern")
 	id_type = /obj/item/weapon/card/id/civilian
 //VOREStation Add End - Interns
-=======
->>>>>>> 1e71944... Merge pull request #6137 from Neerti/it's_time_to_stop
 /decl/hierarchy/outfit/job/service
 	l_ear = /obj/item/device/radio/headset/headset_service
 	hierarchy_type = /decl/hierarchy/outfit/job/service
