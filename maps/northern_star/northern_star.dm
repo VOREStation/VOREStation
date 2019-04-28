@@ -9,6 +9,8 @@
 	#include "northern_star_defines.dm"
 	#include "northern_star_areas.dm"
 	#include "northern_star_shuttles.dm"
+	#include "northern_star_jobs.dm"
+	#include "job/outfits.dm"
 
 	#define USING_MAP_DATUM /datum/map/northern_star
 
