@@ -138,7 +138,7 @@
 
 /datum/map_template/tether_lateload/away_aerostat_surface/on_map_loaded(z)
 	. = ..()
-	seed_submaps(list(Z_LEVEL_AEROSTAT_SURFACE), 70, /area/tether_away/aerostat/surface/unexplored, /datum/map_template/virgo2)
+	seed_submaps(list(Z_LEVEL_AEROSTAT_SURFACE), 120, /area/tether_away/aerostat/surface/unexplored, /datum/map_template/virgo2)
 	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_AEROSTAT_SURFACE, world.maxx - 4, world.maxy - 4)
 	new /datum/random_map/noise/ore/virgo2(null, 1, 1, Z_LEVEL_AEROSTAT_SURFACE, 64, 64)
 
