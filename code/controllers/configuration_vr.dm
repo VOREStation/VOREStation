@@ -5,6 +5,7 @@
 /datum/configuration
 	var/list/engine_map	// Comma separated list of engines to choose from.  Blank means fully random.
 	var/time_off = FALSE
+	var/pto_job_change = FALSE
 	var/limit_interns = -1 //Unlimited by default
 	var/limit_visitors = -1 //Unlimited by default
 	var/pto_cap = 100 //Hours
@@ -52,5 +53,7 @@
 				config.pto_cap = text2num(value)
 			if ("time_off")
 				config.time_off = TRUE
+			if ("pto_job_change")
+				config.pto_job_change = TRUE
 
 	return 1

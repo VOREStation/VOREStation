@@ -203,7 +203,7 @@
 				mob.move_delay += config.run_speed
 			if("walk")
 				mob.move_delay += config.walk_speed
-		mob.move_delay += mob.movement_delay()
+		mob.move_delay += mob.movement_delay(n, direct)
 
 		if(istype(mob.buckled, /obj/vehicle) || istype(mob.buckled, /mob))	//VOREStation Edit: taur riding. I think.
 			//manually set move_delay for vehicles so we don't inherit any mob movement penalties
