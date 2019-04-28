@@ -2201,6 +2201,8 @@
 #include "code\modules\mob\living\carbon\human\species\outsider\vox.dm"
 #include "code\modules\mob\living\carbon\human\species\shadekin\_defines.dm"
 #include "code\modules\mob\living\carbon\human\species\shadekin\shadekin.dm"
+#include "code\modules\mob\living\carbon\human\species\shadekin\shadekin_abilities.dm"
+#include "code\modules\mob\living\carbon\human\species\shadekin\shadekin_hud.dm"
 #include "code\modules\mob\living\carbon\human\species\station\alraune.dm"
 #include "code\modules\mob\living\carbon\human\species\station\blank_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\station\golem.dm"

@@ -44,3 +44,28 @@
 					user.visible_message("<span class='danger'>[user]'s fangs sink deep into [target]'s [affecting.name], one of their veins bulging outwards from the sudden fluid pumped into it!</span>")
 					to_chat(target, "<font color='red'><b>Your [affecting.name] feels like it's going to burst! Moments later, you simply can't feel your [affecting.name] any longer, the numbness slowly spreading throughout your body!</b></font>")
 					target.bloodstr.add_reagent("numbenzyme",attack_damage)
+
+/datum/unarmed_attack/claws/shadekin
+	var/energy_gain = 0
+
+/datum/unarmed_attack/claws/shadekin/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+	..()
+	user.shadekin_adjust_energy(energy_gain)
+
+/datum/unarmed_attack/claws/shadekin/blue
+	energy_gain = 1
+
+/datum/unarmed_attack/claws/shadekin/red
+	energy_gain = 8
+
+/datum/unarmed_attack/claws/shadekin/yellow
+	energy_gain = 3
+
+/datum/unarmed_attack/claws/shadekin/purple
+	energy_gain = 4
+
+/datum/unarmed_attack/claws/shadekin/orange
+	energy_gain = 5
+
+/datum/unarmed_attack/claws/shadekin/green
+	energy_gain = 1

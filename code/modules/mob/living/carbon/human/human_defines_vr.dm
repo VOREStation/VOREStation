@@ -9,6 +9,14 @@
 	var/impersonate_bodytype //For impersonating a bodytype
 	var/ability_flags = 0	//Shadekin stoof
 
+/mob/living/carbon/human/proc/shadekin_get_eye_color()
+	var/datum/species/shadekin/SK = species
+
+	if(!istype(SK))
+		return 0
+
+	return SK.get_shadekin_eyecolor()
+
 /mob/living/carbon/human/proc/shadekin_get_energy()
 	var/datum/species/shadekin/SK = species
 

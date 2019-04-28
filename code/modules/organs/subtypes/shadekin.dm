@@ -3,5 +3,3 @@
 
 	var/dark_energy = 100
 	var/max_dark_energy = 100
-
-	organ_verbs = list()

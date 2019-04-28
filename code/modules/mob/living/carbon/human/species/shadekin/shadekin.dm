@@ -4,17 +4,21 @@
 	blurb = "Waow! A shaadefluffer!"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/shadekin)
 
-	//default_language = "Xenomorph"
 	language = LANGUAGE_SHADEKIN
 	assisted_langs = list()
-	unarmed_types = list()	//TODO: shadekin-unique pawbings
+	unarmed_types = list(/datum/unarmed_attack/claws/shadekin/red)
 	hud_type = /datum/hud_data/shadekin
 	rarity_value = 15	//INTERDIMENSIONAL FLUFFERS
 
+	tail = "shadekintail"
+	tail_animation = 'icons/mob/species/shadekin/tail.dmi'
+	longtail = TRUE
+
 	has_fine_manipulation = 0
 	siemens_coefficient = 0
+	darksight = 10
 
-	slowdown = -1
+	slowdown = -0.5
 	item_slowdown_mod = 0.5
 
 	brute_mod = 0.7	// Naturally sturdy.
@@ -37,7 +41,7 @@
 	flags =  NO_SCAN | NO_PAIN | NO_SLIP | NO_MINOR_CUT | NO_INFECT
 	spawn_flags = SPECIES_IS_RESTRICTED
 
-	//reagent_tag = IS_SHADEKIN
+	reagent_tag = IS_SHADEKIN		//TODO: shadekin-unqiue chem interactions
 
 	flesh_color = "#34AF10"		//TODO: set colors
 	blood_color = "#b3cbc3"
@@ -46,14 +50,10 @@
 	has_glowing_eyes = TRUE
 
 	death_message = "lets out a waning guttural screech, green blood bubbling from its maw."
-	//death_sound = 'sound/voice/hiss6.ogg'
 	male_cough_sounds = null
 	female_cough_sounds = null
 	male_sneeze_sound = null
 	female_sneeze_sound = null
-
-	//speech_sounds = list('sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg')
-	//speech_chance = 100
 
 	speech_bubble_appearance = "ghost"
 
@@ -72,7 +72,6 @@
 
 	has_organ = list(
 		O_HEART =		/obj/item/organ/internal/heart,
-		O_LUNGS =		/obj/item/organ/internal/lungs,
 		O_VOICE = 		/obj/item/organ/internal/voicebox,
 		O_LIVER =		/obj/item/organ/internal/liver,
 		O_KIDNEYS =		/obj/item/organ/internal/kidneys,
@@ -82,6 +81,10 @@
 
 	//SHADEKIN-UNIQUE STUFF GOES HERE
 	var/shadekin_eye_color = BLUE_EYES
+	var/list/shadekin_abilities = list(/datum/power/shadekin/phase_shift,
+									   /datum/power/shadekin/regenerate_other,
+									   /datum/power/shadekin/create_shade)
+	var/list/shadekin_ability_datums = list()
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
@@ -97,6 +100,18 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
 
+/datum/species/shadekin/New()
+	..()
+	for(var/power in shadekin_abilities)
+		var/datum/power/shadekin/SKP = new power(src)
+		shadekin_ability_datums.Add(SKP)
+
+/datum/species/shadekin/handle_death(var/mob/living/carbon/human/H)
+	spawn(1)
+		for(var/obj/item/W in H)
+			H.drop_from_inventory(W)
+		qdel(H)
+
 /datum/species/shadekin/get_bodytype()
 	return SPECIES_SHADEKIN
 
@@ -108,6 +123,25 @@
 
 /datum/species/shadekin/can_breathe_water()
 	return TRUE	//they dont quite breathe
+
+/datum/species/shadekin/add_inherent_verbs(var/mob/living/carbon/human/H)
+	..()
+	add_shadekin_abilities(H)
+
+/datum/species/shadekin/proc/add_shadekin_abilities(var/mob/living/carbon/human/H)
+	if(!H.ability_master || !istype(H.ability_master, /obj/screen/movable/ability_master/shadekin))
+		H.ability_master = null
+		H.ability_master = new /obj/screen/movable/ability_master/shadekin(H)
+	for(var/datum/power/shadekin/P in shadekin_ability_datums)
+		if(!(P.verbpath in H.verbs))
+			H.verbs += P.verbpath
+			H.ability_master.add_shadekin_ability(
+					object_given = H,
+					verb_given = P.verbpath,
+					name_given = P.name,
+					ability_icon_given = P.ability_icon_state,
+					arguments = list()
+					)
 
 /datum/species/shadekin/proc/get_shadekin_eyecolor()
 	return shadekin_eye_color
@@ -160,7 +194,7 @@
 	set_energy(H, get_energy(H) + dark_gains)
 
 	//Update huds
-	update_shadekin_hud()
+	update_shadekin_hud(H)
 
 /datum/species/shadekin/proc/get_energy(var/mob/living/carbon/human/H)
 	var/obj/item/organ/internal/brain/shadekin/shade_organ = H.internal_organs_by_name[O_BRAIN]
@@ -194,43 +228,36 @@
 
 	shade_organ.max_dark_energy = new_max_energy
 
-/datum/species/shadekin/proc/update_shadekin_hud()
+/datum/species/shadekin/proc/update_shadekin_hud(var/mob/living/carbon/human/H)
+	var/turf/T = get_turf(H)
+	if(!T)
+		return
+	if(H.shadekin_energy_display)
+		H.shadekin_energy_display.invisibility = 0
+		switch(get_energy(H))
+			if(80 to INFINITY)
+				H.shadekin_energy_display.icon_state = "energy0"
+			if(60 to 80)
+				H.shadekin_energy_display.icon_state = "energy1"
+			if(40 to 60)
+				H.shadekin_energy_display.icon_state = "energy2"
+			if(20 to 40)
+				H.shadekin_energy_display.icon_state = "energy3"
+			if(0 to 20)
+				H.shadekin_energy_display.icon_state = "energy4"
+	if(H.shadekin_dark_display)
+		H.shadekin_dark_display.invisibility = 0
+		var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
+		var/darkness = 1-brightness //Invert
+		switch(darkness)
+			if(0.80 to 1.00)
+				H.shadekin_dark_display.icon_state = "dark2"
+			if(0.60 to 0.80)
+				H.shadekin_dark_display.icon_state = "dark1"
+			if(0.40 to 0.60)
+				H.shadekin_dark_display.icon_state = "dark"
+			if(0.20 to 0.40)
+				H.shadekin_dark_display.icon_state = "dark-1"
+			if(0.00 to 0.20)
+				H.shadekin_dark_display.icon_state = "dark-2"
 	return
-
-/datum/hud_data/shadekin
-	icon = 'icons/mob/shadekin_hud.dmi'
-	has_a_intent =  1
-	has_m_intent =  1
-	has_warnings =  1
-	has_hands =     1
-	has_drop =      1
-	has_throw =     1
-	has_resist =    1
-	has_pressure =  1
-	has_nutrition = 1
-	has_bodytemp =  1
-	has_internals = 0
-
-	gear = list(
-		"head" =			list("loc" = ui_shoes,     "name" = "Hat",        "slot" = slot_head,     "state" = "hair",   "toggle" = 1),
-		"suit storage" =	list("loc" = ui_sstore1,   "name" = "Uniform", "slot" = slot_w_uniform,   "state" = "center",   "toggle" = 1),
-		"id" =				list("loc" = ui_id,        "name" = "ID",          "slot" = slot_wear_id,      "state" = "id"),
-		"belt" =			list("loc" = ui_belt,      "name" = "Belt",         "slot" = slot_belt, "state" = "belt"),
-		"back" =			list("loc" = ui_back,      "name" = "Back",         "slot" = slot_back,      "state" = "back"),
-		"storage1" =		list("loc" = ui_storage1,  "name" = "Left Pocket",  "slot" = slot_l_store,   "state" = "pocket"),
-		"storage2" =		list("loc" = ui_storage2,  "name" = "Right Pocket", "slot" = slot_r_store,   "state" = "pocket")
-		)
-
-/obj/screen/shadekin
-	icon = 'icons/mob/shadekin_hud.dmi'
-	invisibility = 101
-
-/obj/screen/shadekin/darkness
-	name = "darkness"
-	icon_state = "dark"
-	alpha = 150
-
-/obj/screen/shadekin/energy
-	name = "energy"
-	icon_state = "energy0"
-	alpha = 150

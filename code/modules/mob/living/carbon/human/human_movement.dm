@@ -207,6 +207,10 @@
 
 // Handle footstep sounds
 /mob/living/carbon/human/handle_footstep(var/turf/T)
+	//VOREStation Edit begin: SHADEKIN
+	if(shadekin_phasing_check())
+		return
+	//VOREStation Edit end: SHADEKIN
 	if(!config.footstep_volume || !T.footstep_sounds || !T.footstep_sounds.len)
 		return
 	// Future Upgrades - Multi species support
