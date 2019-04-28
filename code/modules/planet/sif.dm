@@ -197,6 +197,8 @@ var/datum/planet/sif/planet_sif = null
 	icon_state = "snowfall_med"
 	temp_high = T0C		// 0c
 	temp_low = 243.15	// -30c
+	wind_high = 2
+	wind_low = 0
 	light_modifier = 0.5
 	flight_failure_modifier = 5
 	transition_chances = list(
@@ -229,6 +231,8 @@ var/datum/planet/sif/planet_sif = null
 	icon_state = "snowfall_heavy"
 	temp_high = 243.15 // -30c
 	temp_low = 233.15  // -40c
+	wind_high = 4
+	wind_low = 2
 	light_modifier = 0.3
 	flight_failure_modifier = 10
 	transition_chances = list(
@@ -258,6 +262,8 @@ var/datum/planet/sif/planet_sif = null
 /datum/weather/sif/rain
 	name = "rain"
 	icon_state = "rain"
+	wind_high = 2
+	wind_low = 1
 	light_modifier = 0.5
 	effect_message = "<span class='warning'>Rain falls on you.</span>"
 
@@ -306,6 +312,8 @@ var/datum/planet/sif/planet_sif = null
 	icon_state = "storm"
 	temp_high = 243.15 // -30c
 	temp_low = 233.15  // -40c
+	wind_high = 4
+	wind_low = 2
 	light_modifier = 0.3
 	flight_failure_modifier = 10
 	effect_message = "<span class='warning'>Rain falls on you, drenching you in water.</span>"
@@ -337,24 +345,6 @@ var/datum/planet/sif/planet_sif = null
 			var/turf/T = get_turf(L)
 			if(!T.outdoors)
 				continue // They're indoors, so no need to rain on them.
-
-			// Lazy wind code
-			if(prob(10))
-				if(istype(L.get_active_hand(), /obj/item/weapon/melee/umbrella))
-					var/obj/item/weapon/melee/umbrella/U = L.get_active_hand()
-					if(U.open)
-						to_chat(L, "<span class='danger'>You struggle to keep hold of your umbrella!</span>")
-						L.Stun(20)	// This is not nearly as long as it seems
-						playsound(L, 'sound/effects/rustle1.ogg', 100, 1)	// Closest sound I've got to "Umbrella in the wind"
-				else if(istype(L.get_inactive_hand(), /obj/item/weapon/melee/umbrella))
-					var/obj/item/weapon/melee/umbrella/U = L.get_inactive_hand()
-					if(U.open)
-						to_chat(L, "<span class='danger'>A gust of wind yanks the umbrella from your hand!</span>")
-						playsound(L, 'sound/effects/rustle1.ogg', 100, 1)
-						L.drop_from_inventory(U)
-						U.toggle_umbrella()
-						U.throw_at(get_edge_target_turf(U, pick(alldirs)), 8, 1, L)
-
 			// If they have an open umbrella, it'll guard from rain
 			if(istype(L.get_active_hand(), /obj/item/weapon/melee/umbrella))
 				var/obj/item/weapon/melee/umbrella/U = L.get_active_hand()
@@ -492,6 +482,8 @@ var/datum/planet/sif/planet_sif = null
 	light_color = "#FF0000"
 	temp_high = 323.15	// 50c
 	temp_low = 313.15	// 40c
+	wind_high = 6
+	wind_low = 3
 	flight_failure_modifier = 50
 	transition_chances = list(
 		WEATHER_ASH_STORM = 100
