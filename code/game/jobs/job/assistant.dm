@@ -39,12 +39,22 @@
 	access = list()
 	minimal_access = list()
 	outfit_type = /decl/hierarchy/outfit/job/assistant
+<<<<<<< HEAD
 	timeoff_factor = 0
 /datum/job/assistant/New()
 	..()
 	if(config)
 		total_positions = config.limit_visitors
 		spawn_positions = config.limit_visitors
+=======
+	alt_titles = list(
+		"Technical Assistant",
+		"Medical Intern",
+		"Research Assistant",
+		"Visitor" = /decl/hierarchy/outfit/job/assistant/visitor
+	)
+
+>>>>>>> 1e71944... Merge pull request #6137 from Neerti/it's_time_to_stop
 /datum/job/assistant/get_access()
 	if(config.assistant_maint)
 		return list(access_maint_tunnels)
