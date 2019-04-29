@@ -167,7 +167,7 @@
 /turf/simulated/wall/r_wall,
 /area/outpost/mining_main/break_room)
 "aI" = (
-/obj/structure/reagent_dispensers/water_cooler,
+/obj/structure/reagent_dispensers/water_cooler/full,
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
 	},
