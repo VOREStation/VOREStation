@@ -10,10 +10,16 @@ kills them.
 TODO: Make them light up and heat the air when exposed to oxygen.
 */
 
+/datum/category_item/catalogue/fauna/gaslamp		//TODO: VIRGO_LORE_WRITING_WIP
+	name = "Virgo 3b Fauna - Gaslamp"
+	desc = ""
+	value = CATALOGUER_REWARD_TRIVIAL
+
 /mob/living/simple_mob/animal/passive/gaslamp
 	name = "gaslamp"
 	desc = "Some sort of floaty alien with a warm glow. This creature is endemic to Virgo-3B."
 	tt_desc = "Semaeostomeae virginus"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/gaslamp)
 
 	icon_state = "gaslamp"
 	icon_living = "gaslamp"
@@ -30,8 +36,8 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 
 	//speed = 2 not sure what this is, guessing animation, but it conflicts with new system.
 
-	melee_damage_lower = 30 // Because fuck anyone who hurts this sweet, innocent creature.
-	melee_damage_upper = 30
+	melee_damage_lower = 15 // Because fuck anyone who hurts this sweet, innocent creature.
+	melee_damage_upper = 15
 	attacktext = list("thrashed")
 	friendly = "caressed"
 

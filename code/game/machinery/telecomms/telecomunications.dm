@@ -371,17 +371,9 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	var/broadcasting = 1
 	var/receiving = 1
 
-// VOREStation Edit - Make sure constructed relays keep relaying for their current Z when moved by shuttles.
-/obj/machinery/telecomms/relay/proc/update_z()
-	if (initial(listening_level) == 0)
-		var/turf/T = get_turf(src)
-		listening_level = T.z
-
-/area/shuttle_arrived()
-	. = ..()
-	for(var/obj/machinery/telecomms/relay/R in contents)
-		R.update_z()
-// VOREStation Edit End
+/obj/machinery/telecomms/relay/forceMove(var/newloc)
+	. = ..(newloc)
+	listening_level = z
 
 /obj/machinery/telecomms/relay/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 

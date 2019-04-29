@@ -67,6 +67,7 @@
 	\
 	However, after their discovery by the angels of Sanctum, many alraunes succumbed to their curiosity, and took the offer\
 	to learn of the world and venture out, whether it's to Sanctum, or elsewhere in the galaxy."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/alraune)
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),

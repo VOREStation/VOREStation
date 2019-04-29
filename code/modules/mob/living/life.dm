@@ -9,6 +9,10 @@
 	handle_modifiers() //VOREStation Edit - Needs to be done even if in nullspace.
 	if(!loc)
 		return
+
+	if(machine && !CanMouseDrop(machine, src))
+		machine = null
+
 	var/datum/gas_mixture/environment = loc.return_air()
 
 	//handle_modifiers() // Do this early since it might affect other things later. //VOREStation Edit

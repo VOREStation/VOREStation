@@ -140,7 +140,7 @@
 "cJ" = (/obj/machinery/shower{icon_state = "shower"; dir = 8},/obj/structure/curtain/open/shower,/obj/random/soap,/turf/simulated/floor/tiled/hydro,/area/submap/Manor1)
 "cK" = (/obj/structure/table/standard,/turf/simulated/floor/tiled/hydro,/area/submap/Manor1)
 "cL" = (/obj/structure/toilet{icon_state = "toilet00"; dir = 1},/turf/simulated/floor/tiled/hydro,/area/submap/Manor1)
-"cM" = (/obj/structure/table/woodentable,/obj/item/device/laptop,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cM" = (/obj/structure/table/woodentable,/obj/item/modular_computer/laptop/preset/custom_loadout/cheap,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
 "cN" = (/turf/template_noop,/area/template_noop)
 "cO" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Manor1)
 

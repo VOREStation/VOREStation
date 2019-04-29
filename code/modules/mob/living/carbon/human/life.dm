@@ -1316,6 +1316,11 @@
 			if(found_welder)
 				client.screen |= global_hud.darkMask
 
+/mob/living/carbon/human/reset_view(atom/A)
+	..()
+	if(machine_visual && machine_visual != A)
+		machine_visual.remove_visual(src)
+
 /mob/living/carbon/human/handle_vision()
 	if(stat == DEAD)
 		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
@@ -1377,6 +1382,7 @@
 
 		if(machine)
 			var/viewflags = machine.check_eye(src)
+			machine.apply_visual(src)
 			if(viewflags < 0)
 				reset_view(null, 0)
 			else if(viewflags && !looking_elsewhere)
@@ -1784,12 +1790,6 @@
 	attempt_vr(src,"handle_hud_list_vr",list()) //VOREStation Add - Custom HUDs.
 
 	hud_updateflag = 0
-
-/mob/living/carbon/human/handle_stunned()
-	if(!can_feel_pain())
-		stunned = 0
-		return 0
-	return ..()
 
 /mob/living/carbon/human/handle_fire()
 	if(..())

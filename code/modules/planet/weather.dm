@@ -2,8 +2,8 @@
 	var/datum/planet/our_planet = null // Reference to the planet datum that holds this datum.
 	var/datum/weather/current_weather = null // The current weather that is affecting the planet.
 	var/temperature = T20C // The temperature to set planetary walls to.
-	var/wind_dir = 0 // Not implemented.
-	var/wind_speed = 0 // Not implemented.
+	var/wind_dir = 0 // The direction the wind is blowing. Moving against the wind slows you down, while moving with it speeds you up.
+	var/wind_speed = 0 // How fast or slow a mob can be due to wind acting on them.
 	var/list/allowed_weather_types = list() // Assoc list of weather identifiers, containing the actual weather datum.
 	var/list/roundstart_weather_chances = list() // Assoc list of weather identifiers and their odds of being picked to happen at roundstart.
 	var/next_weather_shift = null // world.time when the weather subsystem will advance the forecast.
@@ -42,6 +42,7 @@
 
 	update_icon_effects()
 	update_temperature()
+	update_wind()
 	if(old_light_modifier && current_weather.light_modifier != old_light_modifier) // Updating the sun should be done sparingly.
 		our_planet.update_sun()
 	log_debug("[our_planet.name]'s weather is now [new_weather], with a temperature of [temperature]&deg;K ([temperature - T0C]&deg;C | [temperature * 1.8 - 459.67]&deg;F).")
@@ -107,6 +108,25 @@
 	temperature = LERP(current_weather.temp_low, current_weather.temp_high, our_planet.sun_position)
 	our_planet.needs_work |= PLANET_PROCESS_TEMP
 
+/datum/weather_holder/proc/update_wind()
+	var/new_wind_speed = rand(current_weather.wind_low, current_weather.wind_high)
+	if(!new_wind_speed)
+		wind_speed = 0
+		wind_dir = 0
+		return
+	wind_speed = new_wind_speed
+	wind_dir = pick(alldirs)
+	var/message = "You feel the wind blowing [wind_speed > 2 ? "strongly ": ""]towards the <b>[dir2text(wind_dir)]</b>."
+	message_all_outdoor_players(span("warning", message))
+
+/datum/weather_holder/proc/message_all_outdoor_players(message)
+	for(var/mob/M in player_list) // Don't need to care about clientless mobs.
+		if(M.z in our_planet.expected_z_levels)
+			var/turf/T = get_turf(M)
+			if(!T.outdoors)
+				continue
+			to_chat(M, message)
+
 /datum/weather_holder/proc/get_weather_datum(desired_type)
 	return allowed_weather_types[desired_type]
 
@@ -116,12 +136,7 @@
 		return
 
 	var/message = pick(current_weather.transition_messages) // So everyone gets the same message.
-	for(var/mob/M in player_list) // Don't need to care about clientless mobs.
-		if(M.z in our_planet.expected_z_levels)
-			var/turf/T = get_turf(M)
-			if(!T.outdoors)
-				continue
-			to_chat(M, message)
+	message_all_outdoor_players(message)
 
 /datum/weather
 	var/name = "weather base"
@@ -129,6 +144,8 @@
 	var/icon_state = null // Icon to apply to turf undergoing weather.
 	var/temp_high = T20C // Temperature to apply when at noon.
 	var/temp_low = T0C // Temperature to apply when at midnight.
+	var/wind_high = 0 // Upper bound for mob slowdown when walking against the wind, and speedup when walking with it. Randomized between this and wind_low.
+	var/wind_low = 0 // Lower bound for above.
 	var/light_modifier = 1.0 // Lower numbers means more darkness.
 	var/light_color = null // If set, changes how the day/night light looks.
 	var/flight_failure_modifier = 0 // Some types of weather make flying harder, and therefore make crashes more likely. (This is not implemented)

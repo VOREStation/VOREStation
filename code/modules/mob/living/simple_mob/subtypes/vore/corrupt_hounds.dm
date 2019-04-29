@@ -1,6 +1,12 @@
+/datum/category_item/catalogue/technology/drone/corrupt_hound		//TODO: VIRGO_LORE_WRITING_WIP
+	name = "Drone - Corrupt Hound"
+	desc = ""
+	value = CATALOGUER_REWARD_MEDIUM
+
 /mob/living/simple_mob/vore/aggressive/corrupthound
 	name = "corrupt hound"
 	desc = "Good boy machine broke. This is definitely no good news for the organic lifeforms in vicinity."
+	catalogue_data = list(/datum/category_item/catalogue/technology/drone/corrupt_hound)
 
 	icon_state = "badboi"
 	icon_living = "badboi"
@@ -13,8 +19,8 @@
 	maxHealth = 200
 	health = 200
 
-	melee_damage_lower = 10
-	melee_damage_upper = 20 //makes it so 4 max dmg hits don't instakill you.
+	melee_damage_lower = 5
+	melee_damage_upper = 10 //makes it so 4 max dmg hits don't instakill you.
 	grab_resist = 100
 
 	response_help = "pets the"

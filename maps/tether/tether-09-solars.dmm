@@ -1058,6 +1058,7 @@
 /area/rnd/outpost/mixing)
 "cr" = (
 /obj/item/device/radio/intercom{
+	dir = 1;
 	pixel_y = 24;
 	req_access = list()
 	},
@@ -1301,6 +1302,7 @@
 	dir = 4
 	},
 /obj/item/device/radio/intercom{
+	dir = 1;
 	pixel_y = 24;
 	req_access = list()
 	},
@@ -2150,7 +2152,7 @@
 	dir = 4
 	},
 /obj/item/device/radio/intercom{
-	dir = 8;
+	dir = 4;
 	pixel_x = 24
 	},
 /turf/simulated/floor/tiled,
@@ -2932,7 +2934,7 @@
 	dir = 4
 	},
 /obj/item/device/radio/intercom{
-	dir = 1;
+	dir = 2;
 	pixel_y = -24
 	},
 /obj/effect/floor_decal/corner/purple{
@@ -3472,6 +3474,7 @@
 	dir = 5
 	},
 /obj/item/device/radio/intercom{
+	dir = 1;
 	pixel_y = 24;
 	req_access = list()
 	},
@@ -3522,7 +3525,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/item/device/radio/intercom{
-	dir = 4;
+	dir = 8;
 	pixel_x = -24
 	},
 /obj/machinery/door/firedoor/glass/hidden/steel{
@@ -5439,6 +5442,10 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 4
 	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "ko" = (
@@ -5665,11 +5672,22 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
 "kL" = (
-/obj/structure/table/rack,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	icon_state = "borderfloor";
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24;
+	req_access = list()
+	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/xenoarch_storage)
+/area/rnd/outpost)
 "kM" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
@@ -5887,14 +5905,15 @@
 /area/rnd/outpost/anomaly_lab)
 "lk" = (
 /obj/structure/table/rack,
-/obj/item/clothing/suit/bio_suit/anomaly,
-/obj/item/clothing/head/bio_hood/anomaly,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/gloves/sterile/latex,
-/obj/item/clothing/glasses/science,
-/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24;
+	req_access = list()
+	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/anomaly_lab)
+/area/rnd/outpost/xenoarch_storage)
 "ll" = (
 /obj/machinery/suspension_gen,
 /turf/simulated/floor/tiled,
@@ -5927,17 +5946,20 @@
 /turf/simulated/floor,
 /area/rnd/outpost/anomaly_lab/testing)
 "lq" = (
-/obj/effect/floor_decal/borderfloor{
+/obj/structure/table/rack,
+/obj/item/clothing/suit/bio_suit/anomaly,
+/obj/item/clothing/head/bio_hood/anomaly,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/gloves/sterile/latex,
+/obj/item/clothing/glasses/science,
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/item/device/radio/intercom{
 	dir = 1;
-	icon_state = "borderfloor";
-	pixel_y = 0
+	pixel_y = 24;
+	req_access = list()
 	},
-/obj/effect/floor_decal/corner/purple/border{
-	dir = 1
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled,
-/area/rnd/outpost)
+/area/rnd/outpost/anomaly_lab)
 "lr" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -6949,12 +6971,15 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "nn" = (
-/obj/structure/table/standard,
-/obj/item/weapon/folder/white,
-/obj/item/weapon/pen,
-/obj/machinery/light,
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/anomaly_lab)
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	dir = 2;
+	pixel_y = -24
+	},
+/turf/simulated/floor,
+/area/rnd/outpost/anomaly_lab/storage)
 "no" = (
 /obj/structure/table/standard,
 /obj/item/weapon/paper_bin,
@@ -7055,6 +7080,24 @@
 	name = "Panic Chamber Vent";
 	pixel_x = 6;
 	pixel_y = 26
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/anomaly_lab)
+"ny" = (
+/obj/item/device/radio/intercom{
+	dir = 2;
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/anomaly_lab)
+"nz" = (
+/obj/structure/table/standard,
+/obj/item/weapon/folder/white,
+/obj/item/weapon/pen,
+/obj/machinery/light,
+/obj/item/device/radio/intercom{
+	dir = 2;
+	pixel_y = -24
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
@@ -20542,7 +20585,7 @@ lU
 mh
 mB
 mQ
-kZ
+ny
 jx
 ab
 ab
@@ -21673,7 +21716,7 @@ jT
 kk
 kE
 kk
-lI
+nn
 jE
 mn
 mG
@@ -22104,7 +22147,7 @@ jE
 mp
 mH
 mU
-nn
+nz
 jx
 ab
 ab
@@ -22946,7 +22989,7 @@ id
 if
 ih
 hr
-lq
+kL
 ns
 lE
 kJ
@@ -23234,7 +23277,7 @@ kT
 ls
 nu
 jx
-lk
+lq
 lP
 md
 mt
@@ -23659,7 +23702,7 @@ jY
 lF
 lv
 kr
-kL
+lk
 lm
 lm
 lm

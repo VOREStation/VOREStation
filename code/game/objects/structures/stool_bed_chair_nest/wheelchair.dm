@@ -5,7 +5,6 @@
 	anchored = 0
 	buckle_movable = 1
 
-	var/move_delay = null
 	var/driving = 0
 	var/mob/living/pulling = null
 	var/bloodiness
@@ -30,13 +29,6 @@
 
 /obj/structure/bed/chair/wheelchair/relaymove(mob/user, direction)
 	// Redundant check?
- 	
-	var/calculated_move_delay
-	calculated_move_delay += 2 //TheFurryFeline: nerfs speed so you don't go like Sonic. >W>
-
-	if(world.time < move_delay)
-		return
-
 	if(user.stat || user.stunned || user.weakened || user.paralysis || user.lying || user.restrained())
 		if(user==pulling)
 			pulling = null
@@ -64,11 +56,6 @@
 	if(pulling && has_buckled_mobs() && (user in buckled_mobs))
 		user << "<span class='warning'>You cannot drive while being pushed.</span>"
 		return
-
-
- 	move_delay = world.time
-	move_delay += calculated_move_delay
-
 
 	// Let's roll
 	driving = 1

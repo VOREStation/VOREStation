@@ -21,6 +21,7 @@
 /obj/item/device/subspaceradio
 	name = "subspace radio"
 	desc = "A powerful new radio recently gifted to Nanotrasen from KHI, this communications device has the ability to send and recieve transmissions from anywhere."
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi)
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
 	icon_state = "radiopack"

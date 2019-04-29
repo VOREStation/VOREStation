@@ -5,10 +5,6 @@
 "b" = (
 /turf/simulated/floor/outdoors/snow,
 /area/submap/RationCache)
-"c" = (
-/mob/living/simple_mob/vore/aggressive/dino,
-/turf/simulated/floor/outdoors/snow,
-/area/submap/RationCache)
 "d" = (
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/RationCache)
@@ -23,6 +19,10 @@
 /area/submap/RationCache)
 "f" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/RationCache)
+"x" = (
+/mob/living/simple_mob/vore/aggressive/dino,
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/RationCache)
 
@@ -54,7 +54,7 @@ a
 a
 b
 b
-c
+b
 b
 b
 b
@@ -68,9 +68,9 @@ b
 b
 b
 d
-d
+x
 b
-c
+b
 b
 b
 "}
@@ -115,7 +115,7 @@ a
 b
 b
 b
-c
+b
 b
 b
 b
