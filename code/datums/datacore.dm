@@ -19,6 +19,7 @@
 	var/list/med = new()
 	var/list/sci = new()
 	var/list/car = new()
+	var/list/pla = new() //VOREStation Edit
 	var/list/civ = new()
 	var/list/bot = new()
 	var/list/misc = new()
@@ -72,6 +73,11 @@
 		if(real_rank in cargo_positions)
 			car[name] = rank
 			department = 1
+		//VOREStation Edit Begin
+		if(real_rank in planet_positions)
+			pla[name] = rank
+			department = 1
+		//VOREStation Edit End
 		if(real_rank in civilian_positions)
 			civ[name] = rank
 			department = 1
@@ -118,6 +124,13 @@
 		for(name in car)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[car[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
+	//VOREStation Edit Begin
+	if(pla.len > 0)
+		dat += "<tr><th colspan=3>Exploration</th></tr>"
+		for(name in pla)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[pla[name]]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	//VOREStation Edit End
 	if(civ.len > 0)
 		dat += "<tr><th colspan=3>Civilian</th></tr>"
 		for(name in civ)
