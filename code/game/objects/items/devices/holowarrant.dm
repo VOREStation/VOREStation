@@ -14,7 +14,7 @@
 	. = ..()
 	if(active)
 		to_chat(user, "It's a holographic warrant for '[active.fields["namewarrant"]]'.")
-	if(in_range(user, src) || isghost(user))
+	if(in_range(user, src) || istype(user, /mob/observer/dead))
 		show_content(user)
 	else
 		to_chat(user, "<span class='notice'>You have to go closer if you want to read it.</span>")
@@ -68,7 +68,7 @@
 		<HTML><HEAD><TITLE>[active.fields["namewarrant"]]</TITLE></HEAD>
 		<BODY bgcolor='#FFFFFF'><center><large><b>Sol Central Government Colonial Marshal Bureau</b></large></br>
 		in the jurisdiction of the</br>
-		[using_map.boss_name] in [using_map.system_name]</br>
+		[using_map.boss_name] in [using_map.station_name]</br>
 		</br>
 		<b>ARREST WARRANT</b></center></br>
 		</br>
@@ -85,7 +85,7 @@
 		var/output= {"
 		<HTML><HEAD><TITLE>Search Warrant: [active.fields["namewarrant"]]</TITLE></HEAD>
 		<BODY bgcolor='#FFFFFF'><center>in the jurisdiction of the</br>
-		[using_map.boss_name] in [using_map.system_name]</br>
+		[using_map.boss_name] in [using_map.station_name]</br>
 		</br>
 		<b>SEARCH WARRANT</b></center></br>
 		</br>
