@@ -2,7 +2,7 @@
 	name = "exploration point card"
 	desc = "A small card preloaded with exploration points. Swipe your Cataloguer over it to transfer the points, then discard."
 	icon_state = "data"
-	var/points = 500
+	var/points = 50
 
 /obj/item/weapon/card/exploration_point_card/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/device/cataloguer))
