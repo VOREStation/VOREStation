@@ -1,0 +1,14 @@
+"a" = (/turf/template_noop,/area/mine/explored/underdark)
+"b" = (/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
+"c" = (/obj/random/bomb_supply,/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
+"d" = (/obj/tether_away_spawner/underdark_normal,/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
+"e" = (/obj/item/clothing/head/bomb_hood,/obj/item/clothing/suit/bomb_suit,/obj/effect/decal/remains,/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
+"f" = (/obj/effect/spawner/newbomb/timer,/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
+
+(1,1,1) = {"
+aabba
+abcca
+bbdec
+bfbca
+abbaa
+"}

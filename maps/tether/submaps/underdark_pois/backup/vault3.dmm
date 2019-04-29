@@ -1,5 +1,5 @@
 "a" = (/turf/template_noop,/area/mine/explored/underdark)
-"b" = (/turf/simulated/mineral/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
+"b" = (/turf/simulated/mineral/ignore_mapgen/virgo3b,/area/mine/explored/underdark)
 "c" = (/turf/simulated/wall/r_wall,/area/mine/explored/underdark)
 "d" = (/turf/simulated/floor/tiled/steel_dirty/virgo3b,/area/mine/explored/underdark)
 "e" = (/obj/structure/closet/crate/mimic/cointoss,/obj/random/underdark,/turf/simulated/floor/tiled/steel_dirty/virgo3b,/area/mine/explored/underdark)

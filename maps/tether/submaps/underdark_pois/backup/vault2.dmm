@@ -1,5 +1,5 @@
 "a" = (/turf/simulated/wall/titanium,/area/mine/explored/underdark)
-"b" = (/turf/simulated/mineral/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
+"b" = (/turf/simulated/mineral/ignore_mapgen/virgo3b,/area/mine/explored/underdark)
 "c" = (/obj/structure/closet/crate/mimic/dangerous,/obj/random/multiple/underdark/treasure,/turf/simulated/floor/tiled/freezer/virgo3b,/area/mine/explored/underdark)
 "d" = (/turf/simulated/floor/tiled/freezer/virgo3b,/area/mine/explored/underdark)
 "e" = (/obj/structure/closet/crate/mimic,/obj/random/underdark,/turf/simulated/floor/tiled/freezer/virgo3b,/area/mine/explored/underdark)

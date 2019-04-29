@@ -38,16 +38,15 @@
 	mappath = 'guardedloot_hard.dmm'
 	cost = 20
 
+/datum/map_template/underdark/blaster
+	name = "Underdark Blaster"
+	mappath = 'blaster.dmm'
+	cost = 10
+
 /datum/map_template/underdark/mechwreck
 	name = "Underdark Mech Wreck"
 	mappath = 'mechwreck.dmm'
 	cost = 15
-	allow_duplicates = FALSE
-
-/datum/map_template/underdark/underhall
-	name = "Underdark Golden Hall"
-	mappath = 'goldhall.dmm'
-	cost = 20
 	allow_duplicates = FALSE
 
 /datum/map_template/underdark/abandonedshelter
@@ -60,6 +59,24 @@
 	name = "Underdark Dead Miner"
 	mappath = 'deadminer.dmm'
 	cost = 15
+	allow_duplicates = FALSE
+
+/datum/map_template/underdark/underhall
+	name = "Underdark Golden Hall"
+	mappath = 'goldhall.dmm'
+	cost = 20
+	allow_duplicates = FALSE
+
+/datum/map_template/underdark/mechbay
+	name = "Underdark Mech Bay"
+	mappath = 'mechbay.dmm'
+	cost = 25
+	allow_duplicates = FALSE
+
+/datum/map_template/underdark/testsite
+	name = "Underdark Test Site"
+	mappath = 'testsite.dmm'
+	cost = 20
 	allow_duplicates = FALSE
 
 /*
