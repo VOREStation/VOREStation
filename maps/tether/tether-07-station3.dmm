@@ -2720,6 +2720,7 @@
 	icon_state = "tube1";
 	dir = 8
 	},
+/obj/item/device/holowarrant,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "ev" = (
@@ -7565,6 +7566,10 @@
 	pixel_x = 4;
 	pixel_y = 20
 	},
+/obj/item/device/holowarrant,
+/obj/item/device/holowarrant,
+/obj/item/device/holowarrant,
+/obj/item/device/holowarrant,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "mf" = (
@@ -8216,6 +8221,7 @@
 	icon_state = "alarm0";
 	pixel_x = 24
 	},
+/obj/item/device/holowarrant,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "nm" = (
@@ -8507,6 +8513,7 @@
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/item/device/holowarrant,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "nI" = (
@@ -8565,6 +8572,7 @@
 	dir = 8
 	},
 /obj/structure/closet/secure_closet/security,
+/obj/item/device/holowarrant,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "nN" = (
@@ -8736,6 +8744,7 @@
 	pixel_x = -28;
 	pixel_y = 0
 	},
+/obj/item/device/holowarrant,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "oc" = (
@@ -8776,6 +8785,7 @@
 /obj/effect/floor_decal/borderfloorblack/corner2,
 /obj/effect/floor_decal/corner/red/bordercorner2,
 /obj/structure/closet/secure_closet/security,
+/obj/item/device/holowarrant,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "of" = (

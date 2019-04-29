@@ -718,7 +718,7 @@
 /area/submap/Manor1)
 "cM" = (
 /obj/structure/table/woodentable,
-/obj/item/device/laptop,
+/obj/item/modular_computer/laptop/preset/custom_loadout/standard,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/Manor1)
 "cN" = (
