@@ -13,9 +13,52 @@
 	mappath = 'hard_mob.dmm'
 	cost = 15
 
+/datum/map_template/underdark/vault1
+	name = "Underdark Vault 1"
+	mappath = 'vault1.dmm'
+	cost = 10
+
+/datum/map_template/underdark/vault2
+	name = "Underdark Vault 2"
+	mappath = 'vault2.dmm'
+	cost = 15
+
+/datum/map_template/underdark/vault3
+	name = "Underdark Vault 3"
+	mappath = 'vault3.dmm'
+	cost = 10
+
+/datum/map_template/underdark/guardedloot_normal
+	name = "Underdark Guarded Loot Normal"
+	mappath = 'guardedloot_normal.dmm'
+	cost = 10
+
+/datum/map_template/underdark/guardedloot_hard
+	name = "Underdark Guarded Loot Hard"
+	mappath = 'guardedloot_hard.dmm'
+	cost = 20
+
+/datum/map_template/underdark/mechwreck
+	name = "Underdark Mech Wreck"
+	mappath = 'mechwreck.dmm'
+	cost = 15
+	allow_duplicates = FALSE
+
 /datum/map_template/underdark/underhall
 	name = "Underdark Golden Hall"
 	mappath = 'goldhall.dmm'
+	cost = 20
+	allow_duplicates = FALSE
+
+/datum/map_template/underdark/abandonedshelter
+	name = "Underdark Abandoned Shelter"
+	mappath = 'abandonedshelter.dmm'
+	cost = 15
+	allow_duplicates = FALSE
+
+/datum/map_template/underdark/deadminer
+	name = "Underdark Dead Miner"
+	mappath = 'deadminer.dmm'
 	cost = 15
 	allow_duplicates = FALSE
 

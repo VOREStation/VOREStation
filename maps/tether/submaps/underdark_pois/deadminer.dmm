@@ -1,0 +1,15 @@
+"a" = (/turf/simulated/mineral/floor/ignore_mapgen/virgo3b,/area/mine/explored/underdark)
+"b" = (/turf/simulated/mineral/ignore_mapgen/virgo3b,/area/mine/explored/underdark)
+"c" = (/turf/template_noop,/area/mine/explored/underdark)
+"d" = (/obj/effect/decal/remains,/turf/simulated/mineral/floor/ignore_mapgen/virgo3b,/area/mine/explored/underdark)
+"e" = (/obj/structure/closet/crate/mimic/guaranteed,/obj/random/multiple/underdark/ores,/obj/random/multiple/underdark/miningdrills,/obj/item/clothing/head/helmet/space/void/mining,/obj/item/clothing/suit/space/void/mining,/obj/item/clothing/accessory/poncho/roles/cloak/mining,/turf/simulated/mineral/floor/ignore_mapgen/virgo3b,/area/mine/explored/underdark)
+
+(1,1,1) = {"
+aabbccc
+aaabbbc
+baaabbb
+bbdaabb
+bbbaebb
+cbbbbbb
+cccbbbc
+"}

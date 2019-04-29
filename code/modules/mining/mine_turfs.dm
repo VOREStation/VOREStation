@@ -606,7 +606,7 @@ var/list/mining_overlay_cache = list()
 				new /obj/item/stack/material/uranium(src, rand(5,25))
 
 /turf/simulated/mineral/proc/make_ore(var/rare_ore)
-	if(mineral || ignore_mapgen) //VOREStation Edit - Makes sense, doesn't it?
+	if(mineral || ignore_mapgen || ignore_oregen) //VOREStation Edit - Makes sense, doesn't it?
 		return
 
 	var/mineral_name
