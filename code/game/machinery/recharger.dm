@@ -8,11 +8,7 @@ obj/machinery/recharger
 	idle_power_usage = 4
 	active_power_usage = 40000	//40 kW
 	var/obj/item/charging = null
-<<<<<<< HEAD
-	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/device/laptop, /obj/item/weapon/cell, /obj/item/device/flashlight, /obj/item/device/electronic_assembly, /obj/item/weapon/weldingtool/electric, /obj/item/ammo_magazine/smart, /obj/item/device/flash, /obj/item/ammo_casing/nsfw_batt) //VOREStation Add - NSFW Batteries
-=======
-	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/modular_computer, /obj/item/weapon/computer_hardware/battery_module, /obj/item/weapon/cell, /obj/item/device/flashlight, /obj/item/device/electronic_assembly, /obj/item/weapon/weldingtool/electric, /obj/item/ammo_magazine/smart, /obj/item/device/flash)
->>>>>>> 2baef09... Merge pull request #6031 from Novacat/spriteadd
+	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/modular_computer, /obj/item/weapon/computer_hardware/battery_module, /obj/item/weapon/cell, /obj/item/device/flashlight, /obj/item/device/electronic_assembly, /obj/item/weapon/weldingtool/electric, /obj/item/ammo_magazine/smart, /obj/item/device/flash, /obj/item/ammo_casing/nsfw_batt) //VOREStation Add - NSFW Batteries
 	var/icon_state_charged = "recharger2"
 	var/icon_state_charging = "recharger1"
 	var/icon_state_idle = "recharger0" //also when unpowered
@@ -48,16 +44,13 @@ obj/machinery/recharger
 			if(E.self_recharge)
 				to_chat(user, "<span class='notice'>Your gun has no recharge port.</span>")
 				return
-<<<<<<< HEAD
 		if(!G.get_cell() && !istype(G, /obj/item/ammo_casing/nsfw_batt))	//VOREStation Edit: NSFW charging
-=======
 		if(istype(G, /obj/item/modular_computer))
 			var/obj/item/modular_computer/C = G
 			if(!C.battery_module)
 				to_chat(user, "This device does not have a battery installed.")
 				return
 		else if(!G.get_cell())
->>>>>>> 2baef09... Merge pull request #6031 from Novacat/spriteadd
 			to_chat(user, "This device does not have a battery installed.")
 			return
 
