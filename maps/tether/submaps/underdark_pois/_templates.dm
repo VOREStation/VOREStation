@@ -12,6 +12,13 @@
 	name = "Underdark Hard Mob Spawn"
 	mappath = 'hard_mob.dmm'
 	cost = 15
+
+/datum/map_template/underdark/underhall
+	name = "Underdark Golden Hall"
+	mappath = 'goldhall.dmm'
+	cost = 15
+	allow_duplicates = FALSE
+
 /*
 /datum/map_template/underdark/boss_mob
 	name = "Underdark Boss Mob Spawn"

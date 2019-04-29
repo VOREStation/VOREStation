@@ -1,0 +1,20 @@
+"a" = (/turf/simulated/wall/gold,/area/mine/explored/underdark)
+"b" = (/turf/template_noop,/area/mine/explored/underdark)
+"c" = (/obj/structure/window/basic/full,/turf/simulated/floor/tiled/kafel_full/yellow/virgo3b,/area/mine/explored/underdark)
+"d" = (/turf/simulated/floor/tiled/kafel_full/yellow/virgo3b,/area/mine/explored/underdark)
+"e" = (/obj/item/weapon/reagent_containers/food/condiment/ketchup,/turf/simulated/floor/tiled/kafel_full/yellow/virgo3b,/area/mine/explored/underdark)
+"f" = (/obj/item/clothing/suit/storage/toggle/hoodie/blue,/obj/item/clothing/shoes/slippers_worn,/turf/simulated/floor/tiled/kafel_full/yellow/virgo3b,/area/mine/explored/underdark)
+"g" = (/obj/effect/decal/remains,/obj/item/weapon/ore/bluespace_crystal,/turf/simulated/floor/tiled/kafel_full/yellow/virgo3b,/area/mine/explored/underdark)
+
+(1,1,1) = {"
+aabbaaaccaaabba
+bbbbbbddddbbbbb
+abbbdaddddadbbb
+bbbbdddddddddbb
+bbbddddddedddbb
+bbbdddddfgdddbb
+bbddddbbddddddb
+bddddabbbdadddd
+bbdddddbbdddddb
+bbbbaaabbaaabbb
+"}

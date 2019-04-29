@@ -9,8 +9,6 @@
 
 	poison_chance = 20
 
-
-
 // Underdark mob spawners
 /obj/tether_away_spawner/underdark_normal
 	name = "Underdark Normal Spawner"
@@ -47,3 +45,16 @@
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/vore/aggressive/dragon = 1
 	)
+
+
+
+//POI STUFF
+
+//Goldhall
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/kafel_full/yellow)
+
+/obj/item/weapon/reagent_containers/food/condiment/ketchup/Initialize()
+	. = ..()
+	reagents.add_reagent("ketchup", 50)
+
+//
