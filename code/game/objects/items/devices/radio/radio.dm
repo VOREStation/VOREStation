@@ -481,7 +481,6 @@ var/global/list/default_medbay_channels = list(
 
 	//THIS IS TEMPORARY. YEAH RIGHT
 	if(!connection)	return 0	//~Carn
-<<<<<<< HEAD
 
 //VOREStation Add Start
 	if(bluespace_radio)
@@ -490,8 +489,6 @@ var/global/list/default_medbay_channels = list(
 					  0, signal.data["compression"], list(0), connection.frequency,verb,speaking)
 //VOREStation Add End
 
-=======
->>>>>>> 2c20c12... Merge pull request #6136 from Novacat/nova-alerts
 	return Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
 					  src, message, displayname, jobname, real_name, M.voice_name,
 					  filter_type, signal.data["compression"], GetConnectedZlevels(position.z), connection.frequency,verb,speaking)
