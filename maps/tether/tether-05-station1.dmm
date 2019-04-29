@@ -5046,9 +5046,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/maintenance/common{
+/obj/machinery/door/airlock/maintenance/command{
 	name = "Gateway Electrical Shaft";
-	req_access = list(62)
+	req_access = list(62);
+	req_one_access = list()
 	},
 /turf/simulated/floor,
 /area/gateway)
