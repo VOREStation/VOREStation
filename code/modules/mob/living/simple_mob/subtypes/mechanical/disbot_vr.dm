@@ -10,7 +10,7 @@
 	small advanced anti-gravity generators located between giant syringes made for injecting and extracting all manners of fluids\
 	and samples of soil or other biological matter.\
 	Most interesting is the syringe it uses after taking a sample of any creature, the dry, flakey substance\
-	it injects has traces of bicardine and innaprovaline, now no more than rotten and expired toxins however.\
+	it injects has traces of bicaridine and inaprovaline, now no more than rotten and expired toxins however.\
 	The container housing the substance as well as the fabricator showing great blunt trauma as well as environmental damage,\
 	neither part salvageable.\
 	<br><br>\
