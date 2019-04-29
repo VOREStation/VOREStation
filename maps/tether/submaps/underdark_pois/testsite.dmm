@@ -11,16 +11,17 @@
 "k" = (/obj/structure/closet/crate/mimic/safe,/obj/item/stack/cable_coil/brown,/obj/item/stack/material/lead{amount = 10},/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
 "l" = (/obj/machinery/power/port_gen/pacman/super,/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
 "m" = (/obj/structure/closet/crate/mimic,/obj/item/stack/material/uranium{amount = 5},/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
+"n" = (/obj/effect/decal/remains,/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
 
 (1,1,1) = {"
 aaacbbbbbbbbbba
 aabbbbbdeeeeeba
 abbfbgbbebbbebb
 bbgbggbbebhbebb
-bbbbbibbbbbbejb
+bbbbnibbbbbbejb
 bbbbbbbbkeejjjj
 bbbbbbbbjjjjjjj
-ablmbbbbjjjjjjj
+ablmbbbijjjjjjj
 aabbbbbbcjjjjja
 aaaaaabbbbjjaaa
 "}
