@@ -100,7 +100,7 @@
 		return
 
 	generate_data(check_whitelist, whitelist, blacklist)
-	var/data[0]
+	var/list/data = host.initial_data()
 
 	data["specimen"] = owner.species.name
 	data["gender"] = owner.gender

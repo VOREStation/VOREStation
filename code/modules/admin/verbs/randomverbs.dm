@@ -575,15 +575,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 	if(!customname)
 		customname = "[using_map.company_name] Update"
-	for (var/obj/machinery/computer/communications/C in machines)
-		if(! (C.stat & (BROKEN|NOPOWER) ) )
-			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( C.loc )
-			P.name = "'[command_name()] Update.'"
-			P.info = replacetext(input, "\n", "<br/>")
-			P.update_space(P.info)
-			P.update_icon()
-			C.messagetitle.Add("[command_name()] Update")
-			C.messagetext.Add(P.info)
+
+	//New message handling
+	post_comm_message(customname, replacetext(input, "\n", "<br/>"))
 
 	switch(alert("Should this be announced to the general population?",,"Yes","No"))
 		if("Yes")
