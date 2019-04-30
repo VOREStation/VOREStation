@@ -86,6 +86,10 @@
 	name = "\improper Atrium Construction Site"
 /area/vacant/vacant_bar
 	name = "\improper Vacant Bar"
+/area/vacant/vacant_site/gateway
+	name = "\improper Vacant Prep Area"
+/area/vacant/vacant_site/gateway/lower
+	name = "\improper Lower Vacant Prep Area"
 
 // /area/tether/surfacebase/east_stairs_three //This is just part of an upper hallway
 
@@ -159,6 +163,8 @@
 	name = "\improper Surface Atmos Substation"
 /area/maintenance/substation/civ_west
 	name = "\improper Civilian West Substation"
+/area/maintenance/substation/exploration
+	name = "\improper Exploration Substation"
 
 
 /area/tether/surfacebase/medical
@@ -248,6 +254,8 @@
 	name = "\improper Mining EVA Maintenance"
 /area/maintenance/lower/public_garden_maintenence
 	name = "\improper Public Garden Maintenence"
+/area/maintenance/lower/public_garden_maintenence/upper
+	name = "\improper Upper Public Garden Maintenence"
 
 // Research
 /area/rnd/xenobiology/xenoflora/lab_atmos
@@ -501,6 +509,8 @@
 /area/maintenance/station/ai
 	name = "\improper AI Maintenance"
 	sound_env = SEWER_PIPE
+/area/maintenance/station/exploration
+	name = "\improper Exploration Maintenance"
 
 /area/tether/station/public_meeting_room
 	name = "Public Meeting Room"
@@ -517,17 +527,28 @@
 	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
 
 // Exploration Shuttle stuff //
-/area/tether/station/excursion_dock
+/area/tether/exploration
 	name = "\improper Excursion Shuttle Dock"
+	icon_state = "yellow"
+	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
 
-/area/tether/station/explorer_prep
-	name = "\improper Explorer Prep Room"
+/area/tether/exploration/equipment
+	name = "\improper Exploration Equipment Storage"
 
-/area/tether/station/explorer_meeting
-	name = "\improper Explorer Meeting Room"
+/area/tether/exploration/crew
+	name = "\improper Exploration Crew Area"
 
-/area/tether/station/pathfinder_office
+/area/tether/exploration/pathfinder_office
 	name = "\improper Pathfinder's Office"
+
+/area/tether/exploration/hallway
+	name = "\improper Exploration Hallway"
+
+/area/tether/exploration/staircase
+	name = "\improper Exploration Staircase"
+
+/area/tether/exploration/showers
+	name = "\improper Exploration Showers"
 
 /area/shuttle/excursion
 	name = "\improper Excursion Shuttle"
