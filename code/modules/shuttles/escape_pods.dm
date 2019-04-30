@@ -150,8 +150,10 @@
 /datum/computer/file/embedded_program/docking/simple/escape_pod/ready_for_docking()
 	return 1
 
+/* VOREStation Removal
 /datum/computer/file/embedded_program/docking/simple/escape_pod/finish_docking()
 	return		//don't do anything - the doors only open when the pod is armed.
+*/
 
 /datum/computer/file/embedded_program/docking/simple/escape_pod/prepare_for_undocking()
 	eject_time = world.time + eject_delay*10

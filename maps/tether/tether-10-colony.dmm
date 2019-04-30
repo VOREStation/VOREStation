@@ -16894,6 +16894,10 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"QB" = (
+/obj/machinery/washing_machine,
+/turf/unsimulated/floor/steel,
+/area/centcom/evac)
 "Rc" = (
 /obj/structure/table/glass,
 /obj/item/device/defib_kit/compact/loaded,
@@ -23127,8 +23131,8 @@ mQ
 no
 no
 mQ
-oN
-oN
+QB
+QB
 mQ
 no
 no

@@ -18564,17 +18564,31 @@
 	base_turf = /turf/simulated/mineral/floor/vacuum
 	})
 "Cq" = (
-/obj/structure/bed/roller,
-/obj/structure/closet/walllocker/emerglocker{
-	pixel_x = 0;
-	pixel_y = 32
+/obj/structure/table/standard,
+/obj/random/medical/lite,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = -4;
+	pixel_y = 0
 	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/large_escape_pod1/station{
 	base_turf = /turf/simulated/mineral/floor/vacuum
 	})
 "Cr" = (
-/obj/structure/bed/roller,
+/obj/structure/table/rack,
+/obj/item/weapon/tank/emergency/oxygen,
+/obj/item/weapon/tank/emergency/oxygen,
+/obj/item/weapon/tank/emergency/oxygen,
+/obj/item/weapon/tank/emergency/oxygen,
+/obj/item/weapon/tank/emergency/oxygen,
+/obj/item/weapon/tank/emergency/oxygen,
+/obj/item/clothing/glasses/goggles,
+/obj/item/clothing/glasses/goggles,
+/obj/item/clothing/glasses/goggles,
+/obj/item/clothing/glasses/goggles,
+/obj/item/clothing/glasses/goggles,
+/obj/item/clothing/glasses/goggles,
 /turf/simulated/shuttle/floor,
 /area/shuttle/large_escape_pod1/station{
 	base_turf = /turf/simulated/mineral/floor/vacuum
@@ -18619,10 +18633,7 @@
 	pixel_x = 28;
 	pixel_y = 0
 	},
-/obj/structure/closet/walllocker/emerglocker{
-	pixel_x = 0;
-	pixel_y = 32
-	},
+/obj/structure/closet/walllocker/emerglocker/north,
 /turf/simulated/shuttle/floor,
 /area/shuttle/large_escape_pod1/station{
 	base_turf = /turf/simulated/mineral/floor/vacuum
@@ -18731,7 +18742,9 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/visible,
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 8
+	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/large_escape_pod1/station{
 	base_turf = /turf/simulated/mineral/floor/vacuum
@@ -18836,13 +18849,11 @@
 	base_turf = /turf/simulated/mineral/floor/vacuum
 	})
 "CX" = (
-/obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = -4;
-	pixel_y = 0
+/obj/machinery/atmospherics/unary/freezer{
+	dir = 1;
+	icon_state = "freezer_1";
+	use_power = 1
 	},
-/obj/item/weapon/tool/wrench,
-/obj/random/medical/lite,
 /turf/simulated/shuttle/floor,
 /area/shuttle/large_escape_pod1/station{
 	base_turf = /turf/simulated/mineral/floor/vacuum
@@ -18885,11 +18896,6 @@
 /obj/item/weapon/storage/firstaid/adv{
 	pixel_x = -2
 	},
-/obj/item/weapon/reagent_containers/blood/empty,
-/obj/item/weapon/reagent_containers/blood/empty,
-/obj/item/weapon/reagent_containers/blood/empty,
-/obj/item/weapon/reagent_containers/blood/empty,
-/obj/item/weapon/reagent_containers/blood/empty,
 /obj/machinery/status_display{
 	density = 0;
 	layer = 4;
@@ -21202,6 +21208,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/security/brig)
+"Uz" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/structure/closet/walllocker/emerglocker/south,
+/turf/simulated/shuttle/floor,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "UE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -21537,6 +21552,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/monotile,
 /area/security/brig)
+"Xv" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 10
+	},
+/turf/simulated/shuttle/floor,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "Xx" = (
 /obj/structure/railing{
 	dir = 8
@@ -32814,7 +32837,7 @@ ac
 yY
 BW
 Cq
-Ct
+Xv
 CX
 BW
 yY
@@ -33667,7 +33690,7 @@ yY
 BW
 Cw
 Ct
-Dc
+Uz
 BW
 yY
 ac
