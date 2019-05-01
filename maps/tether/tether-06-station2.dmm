@@ -19518,6 +19518,10 @@
 /obj/structure/catwalk,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
+"El" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/tether/exploration/equipment)
 "Em" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled,
@@ -21935,6 +21939,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/brig)
+"ZT" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/tether/exploration/crew)
 "ZW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -32224,7 +32232,7 @@ cE
 dg
 dH
 eD
-eG
+ZT
 fU
 eG
 gQ
@@ -33653,7 +33661,7 @@ ix
 jv
 ks
 lk
-lk
+El
 pF
 As
 kp
