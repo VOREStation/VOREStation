@@ -204,6 +204,16 @@
 /mob/living/simple_mob/shadekin/yellow/ai/brown
 	icon_state = "brown"
 
+/mob/living/simple_mob/shadekin/yellow/ai/retaliate
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+
+/mob/living/simple_mob/shadekin/yellow/ai/retaliate/white
+	icon_state = "white"
+/mob/living/simple_mob/shadekin/yellow/ai/retaliate/dark
+	icon_state = "dark"
+/mob/living/simple_mob/shadekin/yellow/ai/retaliate/brown
+	icon_state = "brown"
+
 /////////////////////////////////////////////////////////////////
 /mob/living/simple_mob/shadekin/green
 	name = "green-eyed shadekin"
