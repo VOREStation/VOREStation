@@ -1201,7 +1201,7 @@
 "xe" = (/obj/structure/disposalpipe/segment,/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/floor_decal/corner/lightgrey/border{dir = 4},/obj/effect/floor_decal/steeldecal/steel_decals7{dir = 10},/obj/effect/floor_decal/steeldecal/steel_decals7{dir = 9},/obj/machinery/door/firedoor/glass,/obj/machinery/door/airlock/glass,/turf/simulated/floor/tiled,/area/hallway/lower/third_south)
 "xf" = (/obj/structure/reagent_dispensers/fueltank,/turf/simulated/floor/plating,/area/vacant/vacant_library)
 "xg" = (/obj/effect/decal/cleanable/dirt,/obj/structure/reagent_dispensers/watertank,/turf/simulated/floor/plating,/area/vacant/vacant_library)
-"xh" = (/obj/machinery/r_n_d/circuit_imprinter,/turf/simulated/floor/tiled/steel_grid,/area/assembly/chargebay)
+"xh" = (/obj/machinery/r_n_d/circuit_imprinter,/obj/item/weapon/reagent_containers/glass/beaker/sulphuric,/turf/simulated/floor/tiled/steel_grid,/area/assembly/chargebay)
 "xi" = (/obj/structure/bed/chair/comfy/beige,/turf/simulated/floor/carpet,/area/vacant/vacant_library)
 "xj" = (/obj/machinery/alarm{pixel_y = 22},/obj/effect/floor_decal/industrial/warning,/obj/effect/floor_decal/borderfloor{dir = 1; icon_state = "borderfloor"; pixel_y = 0},/obj/effect/floor_decal/corner/mauve/border{dir = 1},/turf/simulated/floor/tiled/steel_grid,/area/rnd/reception_desk)
 "xk" = (/obj/structure/bookcase,/obj/item/weapon/book/manual/engineering_guide,/obj/effect/decal/cleanable/cobweb{icon_state = "cobweb2"},/turf/simulated/floor/wood,/area/vacant/vacant_library)
