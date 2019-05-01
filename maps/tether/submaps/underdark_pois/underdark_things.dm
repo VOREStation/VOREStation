@@ -248,8 +248,4 @@ VIRGO3B_TURF_CREATE(/turf/simulated/shuttle/floor/voidcraft)
 //Goldhall
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/kafel_full/yellow)
 
-/obj/item/weapon/reagent_containers/food/condiment/ketchup/Initialize()
-	. = ..()
-	reagents.add_reagent("ketchup", 50)
-
 //
