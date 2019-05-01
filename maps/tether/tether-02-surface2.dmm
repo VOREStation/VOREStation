@@ -133,16 +133,16 @@
 "cC" = (/obj/structure/reagent_dispensers/watertank,/turf/simulated/floor/plating,/area/maintenance/lower/mining)
 "cD" = (/turf/simulated/wall,/area/tether/surfacebase/outside/outside2)
 "cE" = (/turf/simulated/floor/plating,/area/rnd/workshop)
-"cF" = (/turf/simulated/floor/plating,/area/rnd/lockers)
+"cF" = (/obj/machinery/door/firedoor/glass,/turf/simulated/floor/plating,/area/maintenance/asmaint2)
 "cG" = (/obj/structure/catwalk,/obj/machinery/light/small{dir = 4; pixel_y = 0},/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,/obj/machinery/atmospherics/pipe/simple/visible/supply,/turf/simulated/floor/tiled/techfloor,/area/maintenance/lower/north)
 "cH" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/structure/closet/crate,/obj/random/medical/lite,/obj/random/maintenance/clean,/obj/random/maintenance/clean,/obj/random/maintenance/cargo,/turf/simulated/floor/tiled/techfloor,/area/maintenance/lower/north)
 "cI" = (/obj/structure/railing{dir = 4},/turf/simulated/open/virgo3b,/area/tether/surfacebase/outside/outside2)
 "cJ" = (/obj/structure/catwalk,/turf/simulated/open/virgo3b,/area/tether/surfacebase/outside/outside2)
 "cK" = (/turf/simulated/floor/virgo3b,/area/tether/surfacebase/outside/outside2)
 "cL" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/virgo3b,/area/tether/surfacebase/outside/outside2)
-"cM" = (/turf/simulated/floor/plating,/area/rnd/research)
+"cM" = (/obj/machinery/door/firedoor/glass,/turf/simulated/floor/plating,/area/rnd/research/testingrange)
 "cN" = (/turf/simulated/mineral,/area/rnd/research)
-"cO" = (/obj/machinery/door/firedoor/glass,/obj/machinery/door/airlock/maintenance/rnd{name = "Research Maintenance Access"},/turf/simulated/floor/tiled/techfloor,/area/maintenance/asmaint2)
+"cO" = (/turf/simulated/floor/tiled,/area/rnd/research/testingrange)
 "cP" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/structure/closet/crate,/obj/random/maintenance/clean,/obj/random/maintenance/clean,/obj/random/maintenance/cargo,/obj/random/junk,/turf/simulated/floor/tiled/techfloor,/area/maintenance/lower/north)
 "cQ" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/techfloor,/area/maintenance/lower/north)
 "cR" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/door/firedoor/glass,/turf/simulated/floor/tiled/techfloor/grid,/area/maintenance/lower/mining)
@@ -195,7 +195,7 @@
 "dM" = (/obj/structure/catwalk,/obj/structure/disposalpipe/segment{dir = 4},/obj/random/junk,/turf/simulated/floor/tiled/techfloor,/area/maintenance/lower/bar)
 "dN" = (/obj/structure/catwalk,/obj/structure/disposalpipe/segment{dir = 2; icon_state = "pipe-c"},/obj/structure/closet/crate,/obj/random/maintenance/clean,/obj/random/maintenance/clean,/obj/random/maintenance/cargo,/obj/random/drinkbottle,/turf/simulated/floor/tiled/techfloor,/area/maintenance/lower/bar)
 "dO" = (/obj/structure/catwalk,/obj/structure/railing{dir = 1},/turf/simulated/open/virgo3b,/area/tether/surfacebase/outside/outside2)
-"dP" = (/obj/structure/stairs/south,/turf/simulated/floor/plating,/area/rnd/lockers)
+"dP" = (/turf/simulated/floor/tiled/techfloor,/area/rnd/research/testingrange)
 "dQ" = (/obj/effect/floor_decal/rust,/obj/effect/decal/cleanable/dirt,/obj/item/clothing/glasses/welding,/turf/simulated/floor,/area/maintenance/lower/north)
 "dR" = (/obj/effect/decal/cleanable/dirt,/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/maintenance/lower/north)
 "dS" = (/obj/structure/lattice,/turf/simulated/open,/area/maintenance/lower/north)
@@ -529,14 +529,14 @@
 "ki" = (/obj/structure/catwalk,/obj/machinery/atmospherics/pipe/simple/visible/supply,/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,/turf/simulated/floor/tiled/techfloor,/area/maintenance/lower/bar)
 "kj" = (/obj/structure/railing{dir = 8},/obj/structure/railing{dir = 1},/obj/effect/decal/cleanable/dirt,/obj/structure/cable{icon_state = "1-2"},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/techfloor,/area/maintenance/lower/bar)
 "kk" = (/obj/structure/railing{dir = 1},/obj/structure/disposalpipe/segment,/turf/simulated/floor/tiled/techfloor,/area/maintenance/lower/bar)
-"kl" = (/obj/machinery/door/airlock/maintenance/common,/turf/simulated/floor/plating,/area/rnd/workshop)
+"kl" = (/obj/machinery/door/firedoor/glass,/turf/simulated/floor/tiled,/area/rnd/research/testingrange)
 "km" = (/obj/item/toy/plushie/kitten{desc = "An odd appearing, cryptic plush of a cat."; name = "Pablo"},/obj/effect/floor_decal/rust,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/plating,/area/maintenance/lower/bar)
 "kn" = (/obj/item/clothing/under/batter,/obj/effect/floor_decal/rust,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/plating,/area/maintenance/lower/bar)
 "ko" = (/obj/structure/catwalk,/obj/machinery/alarm{dir = 8; icon_state = "alarm0"; pixel_x = 24},/turf/simulated/floor/tiled/techfloor,/area/maintenance/lower/bar)
 "kp" = (/obj/effect/floor_decal/techfloor{dir = 8},/obj/effect/decal/cleanable/dirt,/obj/structure/closet,/obj/random/maintenance/research,/obj/random/maintenance/clean,/obj/random/tool,/turf/simulated/floor/tiled/techfloor,/area/maintenance/asmaint2)
 "kq" = (/obj/structure/railing{dir = 8},/obj/structure/railing{dir = 1},/turf/simulated/open,/area/rnd/lockers)
 "kr" = (/obj/structure/railing{dir = 8},/obj/effect/floor_decal/techfloor{dir = 4},/obj/effect/decal/cleanable/dirt,/obj/machinery/atmospherics/pipe/simple/visible/black{dir = 1},/obj/effect/floor_decal/industrial/danger{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/maintenance/asmaint2)
-"ks" = (/obj/machinery/door/firedoor/glass,/obj/machinery/door/airlock/maintenance/rnd{name = "Research Maintenance Access"},/turf/simulated/floor/tiled/techfloor,/area/rnd/research/testingrange)
+"ks" = (/turf/simulated/floor/tiled/techfloor,/area/rnd/workshop)
 "kt" = (/obj/effect/decal/cleanable/dirt,/obj/effect/floor_decal/industrial/danger{icon_state = "danger"; dir = 8},/obj/structure/sign/warning/caution{name = "\improper CAUTION - FIRING RANGE"; pixel_x = 0; pixel_y = 32},/turf/simulated/floor/plating,/area/maintenance/lower/rnd)
 "ku" = (/obj/random/junk,/turf/simulated/floor/plating,/area/maintenance/lower/rnd)
 "kv" = (/obj/structure/cable{icon_state = "2-4"},/obj/structure/disposalpipe/segment{dir = 4; icon_state = "pipe-c"},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/plating,/area/maintenance/lower/rnd)
@@ -568,6 +568,9 @@
 "kV" = (/obj/structure/railing{dir = 8},/obj/effect/floor_decal/techfloor{dir = 4},/obj/effect/decal/cleanable/dirt,/obj/machinery/atmospherics/pipe/simple/visible/black{dir = 1},/turf/simulated/floor/tiled/techfloor,/area/maintenance/asmaint2)
 "kW" = (/obj/structure/railing{dir = 1},/turf/simulated/open,/area/rnd/lockers)
 "kX" = (/obj/structure/railing{dir = 8},/turf/simulated/open,/area/rnd/lockers)
+"kY" = (/turf/simulated/floor/tiled,/area/rnd/lockers)
+"kZ" = (/obj/structure/closet/secure_closet/scientist,/obj/effect/floor_decal/industrial/outline,/turf/simulated/floor/tiled/dark,/area/rnd/lockers)
+"la" = (/obj/effect/floor_decal/industrial/outline,/obj/structure/closet/wardrobe/science_white,/turf/simulated/floor/tiled/dark,/area/rnd/research)
 "lb" = (/obj/structure/cable{icon_state = "1-2"},/obj/effect/decal/cleanable/dirt,/obj/structure/disposalpipe/segment,/turf/simulated/floor/plating,/area/maintenance/lower/rnd)
 "lc" = (/turf/simulated/wall/r_wall,/area/maintenance/lower/rnd)
 "ld" = (/obj/machinery/atmospherics/unary/vent_scrubber/on,/turf/simulated/floor/tiled/techmaint,/area/engineering/drone_fabrication)
@@ -575,6 +578,11 @@
 "lf" = (/obj/structure/catwalk,/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor/tiled/techfloor,/area/maintenance/lower/bar)
 "lg" = (/obj/structure/railing{dir = 4},/obj/effect/floor_decal/rust,/obj/effect/floor_decal/techfloor{dir = 8},/obj/machinery/atmospherics/pipe/simple/visible/purple{dir = 1},/turf/simulated/floor/tiled/techfloor,/area/maintenance/asmaint2)
 "lh" = (/obj/effect/floor_decal/techfloor{dir = 4},/obj/effect/decal/cleanable/dirt,/obj/effect/floor_decal/rust,/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/obj/random/trash_pile,/turf/simulated/floor/tiled/techfloor,/area/maintenance/asmaint2)
+"li" = (/obj/structure/closet/secure_closet/scientist,/obj/effect/floor_decal/industrial/outline,/turf/simulated/floor/tiled/dark,/area/rnd/research)
+"lj" = (/turf/simulated/floor/tiled,/area/rnd/research)
+"lk" = (/obj/machinery/door/firedoor/glass,/turf/simulated/floor/tiled,/area/rnd/lockers)
+"ll" = (/obj/effect/floor_decal/industrial/outline,/obj/structure/closet/wardrobe/robotics_black,/turf/simulated/floor/tiled/dark,/area/rnd/research)
+"lm" = (/obj/machinery/door/firedoor/glass,/turf/simulated/floor/tiled,/area/rnd/workshop)
 "ln" = (/turf/simulated/wall,/area/maintenance/substation/research)
 "lo" = (/obj/structure/sign/securearea{desc = "A warning sign which reads 'HIGH VOLTAGE'"; icon_state = "shock"; name = "HIGH VOLTAGE"},/turf/simulated/wall,/area/maintenance/substation/research)
 "lp" = (/obj/effect/floor_decal/industrial/warning/corner,/obj/structure/cable{icon_state = "1-2"},/obj/structure/disposalpipe/segment,/turf/simulated/floor/plating,/area/maintenance/lower/rnd)
@@ -590,9 +598,17 @@
 "lz" = (/obj/structure/catwalk,/obj/effect/decal/cleanable/dirt,/obj/structure/cable/green{icon_state = "0-4"},/turf/simulated/floor/tiled/techfloor,/area/maintenance/asmaint2)
 "lA" = (/obj/structure/catwalk,/obj/effect/decal/cleanable/dirt,/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled/techfloor,/area/maintenance/asmaint2)
 "lB" = (/obj/structure/railing{dir = 8},/obj/effect/floor_decal/techfloor{dir = 4},/obj/effect/decal/cleanable/dirt,/obj/structure/cable/green{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/machinery/atmospherics/pipe/simple/visible/black{dir = 1},/obj/random/trash_pile,/turf/simulated/floor/tiled/techfloor,/area/maintenance/asmaint2)
+"lC" = (/obj/machinery/door/firedoor/glass,/turf/simulated/floor/tiled,/area/rnd/research)
+"lD" = (/obj/structure/bed/chair/comfy,/turf/simulated/floor/wood,/area/rnd/lockers)
+"lE" = (/turf/simulated/floor/wood,/area/rnd/research)
+"lF" = (/obj/structure/table/glass,/turf/simulated/floor/wood,/area/rnd/lockers)
+"lG" = (/obj/structure/bed/chair/comfy{dir = 8},/turf/simulated/floor/wood,/area/rnd/research)
+"lH" = (/obj/structure/bed/chair{dir = 4},/turf/simulated/floor/wood,/area/rnd/research)
+"lI" = (/obj/structure/table/glass,/turf/simulated/floor/wood,/area/rnd/research)
 "lJ" = (/obj/machinery/power/breakerbox/activated{RCon_tag = "Research Substation Bypass"},/turf/simulated/floor,/area/maintenance/substation/research)
 "lK" = (/obj/effect/floor_decal/industrial/warning{dir = 8},/obj/structure/cable{icon_state = "4-8"},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/machinery/light/small{dir = 1},/turf/simulated/floor,/area/maintenance/substation/research)
 "lL" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/alarm{pixel_y = 22},/turf/simulated/floor,/area/maintenance/substation/research)
+"lM" = (/obj/structure/bed/chair{dir = 8},/turf/simulated/floor/wood,/area/rnd/research)
 "lN" = (/obj/machinery/atmospherics/pipe/simple/visible/supply{dir = 6},/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{dir = 6},/obj/effect/floor_decal/industrial/warning{dir = 4},/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/obj/structure/cable{icon_state = "4-8"},/obj/structure/disposalpipe/segment{dir = 1; icon_state = "pipe-c"},/turf/simulated/floor/plating,/area/maintenance/lower/rnd)
 "lO" = (/obj/machinery/door/airlock/maintenance/engi,/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{dir = 4},/obj/machinery/atmospherics/pipe/simple/visible/supply{dir = 4},/obj/machinery/door/firedoor/glass,/obj/structure/cable{icon_state = "4-8"},/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor/plating,/area/maintenance/lower/rnd)
 "lP" = (/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{dir = 4},/obj/machinery/atmospherics/pipe/manifold/visible/supply{dir = 4},/obj/structure/cable{icon_state = "1-2"},/obj/structure/cable{icon_state = "2-8"},/obj/structure/disposalpipe/segment{dir = 8; icon_state = "pipe-c"},/turf/simulated/floor/plating,/area/maintenance/lower/rnd)
@@ -605,6 +621,13 @@
 "lW" = (/obj/structure/railing{dir = 4},/obj/structure/railing,/turf/simulated/open,/area/tether/surfacebase/atrium_two)
 "lX" = (/obj/structure/catwalk,/obj/machinery/atmospherics/pipe/simple/visible/supply,/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,/obj/structure/cable{icon_state = "1-2"},/obj/structure/disposalpipe/segment,/turf/simulated/floor/tiled/techfloor,/area/maintenance/lower/bar)
 "lY" = (/obj/structure/catwalk,/obj/effect/decal/cleanable/dirt,/obj/random/junk,/turf/simulated/floor/tiled/techfloor,/area/maintenance/asmaint2)
+"lZ" = (/obj/structure/stairs/south,/turf/simulated/floor/tiled,/area/rnd/lockers)
+"ma" = (/obj/structure/bed/chair/comfy{dir = 1},/turf/simulated/floor/wood,/area/rnd/lockers)
+"mb" = (/turf/simulated/floor/wood,/area/rnd/lockers)
+"mc" = (/obj/machinery/door/firedoor/glass,/turf/simulated/floor/plating,/area/rnd/lockers)
+"md" = (/obj/effect/decal/cleanable/dirt,/obj/structure/catwalk,/turf/simulated/floor/tiled/techfloor,/area/rnd/lockers)
+"me" = (/obj/effect/decal/cleanable/dirt,/obj/structure/catwalk,/obj/effect/floor_decal/rust,/turf/simulated/floor/tiled/techfloor,/area/rnd/lockers)
+"mf" = (/obj/effect/decal/cleanable/dirt,/obj/structure/railing{dir = 8},/obj/structure/railing{dir = 1},/obj/effect/floor_decal/techfloor/corner,/obj/effect/floor_decal/rust,/turf/simulated/floor/tiled/techfloor,/area/rnd/lockers)
 "mg" = (/obj/machinery/power/smes/buildable{charge = 0; output_attempt = 0; RCon_tag = "Substation - Research"},/obj/structure/cable/green,/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/turf/simulated/floor,/area/maintenance/substation/research)
 "mh" = (/obj/effect/floor_decal/industrial/warning{dir = 8},/obj/machinery/power/terminal{dir = 8},/obj/structure/cable,/turf/simulated/floor,/area/maintenance/substation/research)
 "mi" = (/obj/machinery/power/apc{dir = 4; name = "east bump"; pixel_x = 28},/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/turf/simulated/floor,/area/maintenance/substation/research)
@@ -630,6 +653,10 @@
 "mC" = (/obj/structure/catwalk,/obj/machinery/status_display{pixel_y = 30},/turf/simulated/floor/tiled/techfloor,/area/maintenance/lower/bar)
 "mD" = (/obj/machinery/door/firedoor/glass,/obj/structure/catwalk,/turf/simulated/floor/tiled/techfloor/grid,/area/maintenance/lower/bar)
 "mE" = (/obj/structure/railing{dir = 8},/obj/effect/floor_decal/techfloor{dir = 4},/obj/structure/railing,/obj/effect/decal/cleanable/dirt,/obj/effect/floor_decal/rust,/turf/simulated/floor/tiled/techfloor,/area/maintenance/asmaint2)
+"mF" = (/obj/effect/decal/cleanable/dirt,/obj/effect/floor_decal/techfloor,/obj/structure/railing{dir = 1},/obj/effect/floor_decal/techfloor/hole,/turf/simulated/floor/tiled/techfloor,/area/rnd/lockers)
+"mG" = (/obj/effect/decal/cleanable/dirt,/obj/effect/floor_decal/techfloor,/obj/structure/railing{dir = 1},/obj/effect/floor_decal/rust,/turf/simulated/floor/tiled/techfloor,/area/rnd/lockers)
+"mH" = (/obj/effect/decal/cleanable/dirt,/obj/effect/floor_decal/techfloor{dir = 6},/obj/structure/railing{dir = 1},/obj/effect/floor_decal/rust,/turf/simulated/floor/tiled/techfloor,/area/rnd/lockers)
+"mI" = (/obj/structure/table/glass,/obj/item/weapon/storage/box/donkpockets,/turf/simulated/floor/wood,/area/rnd/research)
 "mJ" = (/obj/machinery/power/sensor{name = "Powernet Sensor - Research Subgrid"; name_tag = "Research Subgrid"},/obj/effect/floor_decal/industrial/warning{dir = 1},/obj/structure/cable/green,/obj/structure/cable/green{icon_state = "0-4"},/turf/simulated/floor,/area/maintenance/substation/research)
 "mK" = (/obj/effect/floor_decal/industrial/warning/corner{dir = 1},/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/camera/network/engineering{dir = 1},/turf/simulated/floor,/area/maintenance/substation/research)
 "mL" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/cable/green{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor,/area/maintenance/substation/research)
@@ -641,6 +668,7 @@
 "mR" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 6},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 5},/turf/simulated/floor/tiled/techmaint,/area/tether/surfacebase/atrium_two)
 "mS" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/turf/simulated/floor/tiled/techmaint,/area/tether/surfacebase/atrium_two)
 "mT" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/machinery/door/firedoor/glass,/obj/machinery/door/airlock/glass,/turf/simulated/floor/tiled/techmaint,/area/tether/surfacebase/atrium_two)
+"mU" = (/obj/structure/table/glass,/obj/machinery/microwave,/turf/simulated/floor/wood,/area/rnd/research)
 "mV" = (/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,/turf/simulated/floor/tiled/techmaint,/area/tether/surfacebase/atrium_two)
 "mW" = (/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{dir = 1},/obj/machinery/atmospherics/pipe/manifold/hidden/supply{dir = 1},/obj/structure/disposalpipe/segment{dir = 4; icon_state = "pipe-c"},/turf/simulated/floor/tiled/techmaint,/area/tether/surfacebase/atrium_two)
 "mX" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor/tiled/techmaint,/area/tether/surfacebase/atrium_two)
@@ -656,10 +684,17 @@
 "nh" = (/obj/structure/catwalk,/obj/effect/decal/cleanable/dirt,/obj/effect/floor_decal/rust,/turf/simulated/floor/tiled/techfloor,/area/maintenance/asmaint2)
 "ni" = (/obj/effect/floor_decal/techfloor{dir = 4},/obj/structure/catwalk,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/techfloor,/area/maintenance/asmaint2)
 "nj" = (/obj/structure/railing{dir = 1},/obj/effect/floor_decal/techfloor{dir = 4},/obj/effect/floor_decal/rust,/obj/machinery/alarm{dir = 8; icon_state = "alarm0"; pixel_x = 24},/turf/simulated/floor/tiled/techfloor,/area/maintenance/lower/bar)
+"nk" = (/obj/machinery/door/airlock/maintenance/common,/obj/machinery/door/firedoor/glass,/turf/simulated/floor/plating,/area/rnd/workshop)
+"nl" = (/obj/effect/decal/cleanable/dirt,/obj/effect/floor_decal/techfloor{dir = 4},/obj/structure/railing{dir = 8},/turf/simulated/floor/tiled/techfloor,/area/rnd/lockers)
+"nm" = (/obj/structure/bookcase/manuals/research_and_development,/turf/simulated/floor/wood,/area/rnd/research)
+"nn" = (/obj/effect/floor_decal/steeldecal/steel_decals9,/obj/effect/floor_decal/steeldecal/steel_decals9{dir = 4},/obj/effect/floor_decal/steeldecal/steel_decals9{dir = 1},/obj/effect/floor_decal/steeldecal/steel_decals9{dir = 8},/obj/machinery/vending/cigarette,/turf/simulated/floor/tiled/monotile,/area/rnd/research)
+"no" = (/obj/effect/floor_decal/steeldecal/steel_decals9,/obj/effect/floor_decal/steeldecal/steel_decals9{dir = 4},/obj/effect/floor_decal/steeldecal/steel_decals9{dir = 1},/obj/effect/floor_decal/steeldecal/steel_decals9{dir = 8},/obj/machinery/vending/coffee,/turf/simulated/floor/tiled/monotile,/area/rnd/research)
+"np" = (/obj/effect/floor_decal/steeldecal/steel_decals9,/obj/effect/floor_decal/steeldecal/steel_decals9{dir = 4},/obj/effect/floor_decal/steeldecal/steel_decals9{dir = 1},/obj/effect/floor_decal/steeldecal/steel_decals9{dir = 8},/obj/machinery/vending/snack,/turf/simulated/floor/tiled/monotile,/area/rnd/research)
 "nq" = (/turf/simulated/wall,/area/rnd/lockers)
 "nr" = (/turf/simulated/wall,/area/rnd/research)
 "ns" = (/obj/machinery/door/airlock/maintenance/rnd{name = "Research and Development Maintenance"; req_access = list(7)},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/door/firedoor/glass,/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/disposalpipe/segment,/turf/simulated/floor/plating,/area/rnd/research)
 "nt" = (/turf/simulated/wall/r_wall,/area/rnd/research)
+"nu" = (/obj/effect/floor_decal/techfloor{dir = 4},/obj/structure/railing{dir = 8},/obj/effect/decal/cleanable/dirt,/obj/effect/floor_decal/techfloor/hole{dir = 4},/turf/simulated/floor/tiled/techfloor,/area/maintenance/asmaint2)
 "nv" = (/obj/structure/sign/deck/second,/turf/simulated/shuttle/wall/voidcraft/green{hard_corner = 1},/area/tether/elevator)
 "nw" = (/obj/machinery/door/firedoor/glass/hidden/steel{dir = 1},/turf/simulated/floor/tiled/techmaint,/area/tether/surfacebase/atrium_two)
 "nx" = (/obj/effect/floor_decal/borderfloor/corner,/turf/simulated/floor/tiled/techmaint,/area/tether/surfacebase/atrium_two)
@@ -1758,28 +1793,28 @@ aaababababababababababababababababababababacacacacacacacacacacacacacacacacacacac
 aaababababababababababababababababababababacacacacacacacacacacacacacacacacacacacacacacacacbzbzbzbzbzbzbzbzbzbzbzacacacacacaciijwjxjyjyjyjyjyjyjyiiiliiiidYgGjBiagvgwgwgwgwgwgwgwgwgwgwgwgwgwgwgwgxgljojHdYjIdujJjKeeeejqefjLeeeeeeeeduacacjMjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
 aaababababababababababababababababababababacacacacacacacacacacacacacacacacacacacacacacacacbzbzbzcocococococococoaciiiiiiiiaciijNjyjyjyjyjyjyjyjyiijOiijGdYfBjBiagvgwgwgwgwgwgwgwgwgwgwgwgwgwgwgwgxgljRjSdYjTdujUjVjWjXjYjZdudududujKduacacjMjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
 aaababababababababababababababababababababacacacacacacacacacacacacacacacacacaccDkbacacaccDcqcqcqcqcqcqcqcqcqcqcoiiiikekfiiiiiijNjyjyjyjyjyjyjyjyiiildYXJdYjQjBiagvgwgwgwgwgwgwgwgwgwgwgwgwgwgwgwgxglfGkhdYiddujUkigYkjkknjdukmkndukoduacacjMjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
-aaababababababababababababababababababababacacacacacacacacacacacacacacacacacaccDkpkbcpkrcOcqcqcqcqcqcqcqcqcqcqksktililkukvkwkxkyjyjyjyjyjyjyjyjyiiildYdYdYkgjBiagvgwgwgwgwgwgwgwgwgwgwgwgwgwgwgwgxglkBfMdYiddukCkieekDkEiddukFkGdukHduacacjMjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
+aaababababababababababababababababababababacacacacacacacacacacacacacacacacacaccDkpkbcpkrcFcqcqcqcqcqcqcqcqcqcqcMktililkukvkwkxkyjyjyjyjyjyjyjyjyiiildYdYdYkgjBiagvgwgwgwgwgwgwgwgwgwgwgwgwgwgwgwgxglkBfMdYiddukCkieekDkEiddukFkGdukHduacacjMjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
 aaababababababababababababababababababacacacacacacacacacacacacacacacacacacacaccDkIkJkJkKkacqcqcqcqcococococococokLilililjNjxjxjyjyjyjyjyjyjyjyiiiiildYenkzkAjBiagvgwgwgwgwgwgwgwgwgwgwgwgwgwgwgwgxglkMibdYiddukNkieekOkPkQdukRkSdueeduacacjMjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
-aaababababababababababababababababababacacacacacacacacacacacacacacacacacacacaccDkTkUkJkVkacqcqcqcqcocqcqcqcqcqcoilililillblclclclclclclclcdYjyiiilildYdYdYgGjBiagvgwgwgwgwgwgwgwgwgwgwgwgwgwgwgwgxglkMfMdYiddulekieelfhBeedukRkRdueeduacacjMjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
-aaabababababababababababababababababababacacacacacacacacacacacacacacacacacacaccDlgkUkJlhkacqcqcqcqcocqcqcqcqcqcolnlnlnlolplqlrlslslslslslsdYdYdYilildYendYfVjBiagvgwgwgwgwgwgwgwgwgwgwgwgwgwgwgwgxglkMfMdYltlulvlwjblxlyeedudududueeduacacjMjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
-aaababababababababababababababababababacacacacacacacacacacacacacacacacacacacaccDkTlzlAlBkacocococococqcqcqcqcqcolJlKlLoXlNlOlPlslQlQlQlQlslRlShYlTdYdYeKdYfVjBialUlVlVlVlVlVlVlVlVlVlVlVlVlVlVlVlWglkMiEdYdudududududulXeejLeeeeeeeeduacVRjMjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
-aaababababababababababababababababababacacacacacacacacacacacacacacacacacacacaccDkTkJlYkVkacqcqcqcqcocqcqcqcqcqcomgmhmilnmjlqmklslQlQlQlQlQmlmmJkmnmpmqmrmsmtjBmumvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmwkMmxmymzmAmBmCeemDlXeedududuNYdududuVRIYLILIjMjMjMjMjMjMjMjMjMababababababababababaa
-aaabababababababababababababababababababacacacacacacacacacacacacacacacacacacaccDkTkJkJmEkacqcqcqcqcocqcqcqcqcqcomJmKmLExmNmOmPlslQlQlQlQlQmlmQfGfGfGmRmSmTmSmVmWmXmXmXmXmXmXmXmXmXmXmXmXmXmXmYmZmZmZnanbncndndnendndnfngeeduLMLMPyLMLMPIIYLILILIjMjMjMjMjMjMjMjMjMababababababababababaa
-aaabababababababababababababababababababacacacacacacacacacacacacacacacacacacaccDkTnhkJnikacqcqcqcqcqcqcqcqcqcqcolnnqnrnrnsntntlslQlQlQlQnvnwnxOuPjNgnBNgnCfGOjnEnFnGnHNgNgNgNgNgnynInAnznzOuYxnxnznLnznMdYdudududududunNeeduXcJxiuJxOZduIYLILILIjMjMjMjMjMjMjMjMjMababababababababababaa
-aaabababababababababababababababababababacacacacacacacacacacacacacacacacacacaccDkTkJkJnOkacEcEcEcEokcqcqcFcFcFnqnqcFcMcMcMcMntlslslslslslsnUnVVnnXMGMGMGnXnYMGoanXobobobRKRKRKobobobnWdYdYdYMqXVrOdYdYdYrOofogmAeeohdunNeeduYeYeMvLpPyPIIYLILIjMjMjMjMjMjMjMjMjMjMababababababababababaa
-aaabababababababababababababababababababacacacacacacacacacacacacacacacacacacaccDoikJkJojkacEcEcEcEokcococFnqnqnqnqcFcMcMcMcMntntntntntoyoyoyoynXMNMNMNozoApuoCoDoERKoGoHoIoJoKoLoMobendYoNoOoPoQrOacacacrgoVoWeejKeeFynNeeduUJPdMvLpVxPIIYLILIjMjMjMjMjMjMjMjMjMjMababababababababababaa
-aaabababababababababababababababababababacacacacacacacacacacacacacacacacacacaccDoYkJkJkVkacEcEcEcEcEcFcFcFcFcFcFcFcFcMcMcMcMnrcNcNcNnrplpmpnoypoTULmWEppppppppptJaRKPmpxOppyOpoKpAobdYdYrOrOVroQrOacacacrgpGoWeeeeeedunNeeduPLZsiuZsZsduLILILIjMjMjMjMjMjMjMjMjMjMababababababababababaa
-aaababababababababababababababababababacacacacacacacacacacacacacacacacacacacaccDoYlYnhkVkacEcEcEcEokcFcFcFcFcFcFnqnqnrcMnrnrnrnrnrnrnrpZqaqbQQLaQHQHQHQHQHqdqeqfqgqhpwqiqjqkqjpzqmobacacacrOOEoQrOacacacrgpGoWgYeeeedunNeeduLMLMONLMLMPILILIjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
-aaababababababababababababababababababacacacacacacacacacacacacacacacacacacacaccDkTkJkJqtkaokokokokokcFcFkqkWrsrsnqcFcMcMcMcMcMcMcMcMnrqNqOTvoyWMPiXyXPqPqPqQpuqSOiRKYYqUrKrKrKoKqVobacacacrOqYoQrOacacacrgrerfgYgYrgrgrhrirgrgdududududuIYLILIjMjMjMjMjMjMjMjMjMjMababababababababababaa
-aaabababababababababababababababababababacacacacacacacacacacacacacacacacacacaccDrjkJkJkVkacEcEcEcEokcFcFkXrsrsrsnqcFcMcMcMcMcMcMcMcMntrCrCrCrCRZORPzORrErFrGLBrHRfRKVdrJPVIfIRoKrMobacacacrOXuJdrOacacacrgrgrgdudurgrPrQrRqsrgacacIYIYIYIYLILIjMjMjMjMjMjMjMjMjMjMababababababababababaa
-aaabababababababababababababababababababacacacacacacacacacacacacacacacacacacaccDkTrTlArUkacEcEcEcEokdPdPkXrsrsrsnqcFcMcMcMcMcMcMcMcMntsisjWWrCJiJiJiJiJiJislMGsnJispspspspspspspspspsxsxacrOXrsArOacacacacrgsFsGsHsHsIsJsKsLrgacacacIYIYLILILIjMjMjMjMjMjMjMjMjMjMababababababababababaa
-aaababababababababababababababababababababacacacacacacacacacacacacacacacacacaccDsMnhkJkVkacEcEcEcEoknqnqnqnqnqnqnqcFcMcMcMcMcMcMcMcMnttetfOXtgLHKHHWSaKRthtitjtktltmNztntntptltrtsMLKbsxacrOVlLjrOacacacacrgtxtyqWqWtztAsKtBrgacacVRIYacacacjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
-aaababababababababababababababababababababacacacacacacacacacacacacacacacacacaccDtCkJlAtDkacEcEcEcEcEcFcFcFcFcFcFcFcFcMcMcMcMcMcMcMcMnttSKePltgtTxYUfJWWxthtitVtWWKQoKvtXtXtZtlWbWNTkuasxacrOudZkrOacacacacrgufugqWuhtzuiujtBrgacVRVRacacacacjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
-aaababababababababababababababababababababababacacacacacacacacacacacacacacacaccDkTkJkJukkacEcEcEcEcEnqcFcFcFcFcFnqcFcMcMcMcMcMcMcMcMntuCuDrSuFuGuGuIuJuKuLuMuNuOuPuQLvuRuSuTtluVuWuXQdsxacrOSPQFococococococufvavbvcvduisKtBrgacacacacacacacjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
-aaababababababababababababababababababababababacacacacacacacacacacacacacacacaccDvekJkJvfkaokklokokoknqcFcFegegegegegcMnrnrcMcMcMcMcMntvrvsvttgvvvwvxvyvzthtivCvDtlvFvGvHvIvJtltrvLYJQdsxacrOSPoQocvPVyVEYkocvQZEvRvSvSvTsKtBrgacacacacacacacabababababababababababababababababababababaa
+aaababababababababababababababababababacacacacacacacacacacacacacacacacacacacaccDkTkUkJkVkacqcqcqcqcocOcOcOcOcOcoilililillblclclclclclclclcdYjyiiilildYdYdYgGjBiagvgwgwgwgwgwgwgwgwgwgwgwgwgwgwgwgxglkMfMdYiddulekieelfhBeedukRkRdueeduacacjMjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
+aaabababababababababababababababababababacacacacacacacacacacacacacacacacacacaccDlgkUkJlhkacqcqcqcqcocOcOcOcOcOcolnlnlnlolplqlrlslslslslslsdYdYdYilildYendYfVjBiagvgwgwgwgwgwgwgwgwgwgwgwgwgwgwgwgxglkMfMdYltlulvlwjblxlyeedudududueeduacacjMjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
+aaababababababababababababababababababacacacacacacacacacacacacacacacacacacacaccDkTlzlAlBkacocococococOcOcOcOcOcolJlKlLoXlNlOlPlslQlQlQlQlslRlShYlTdYdYeKdYfVjBialUlVlVlVlVlVlVlVlVlVlVlVlVlVlVlVlWglkMiEdYdudududududulXeejLeeeeeeeeduacVRjMjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
+aaababababababababababababababababababacacacacacacacacacacacacacacacacacacacaccDkTkJlYkVkadPdPdPdPcocOcOcOcOcOcomgmhmilnmjlqmklslQlQlQlQlQmlmmJkmnmpmqmrmsmtjBmumvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmvmwkMmxmymzmAmBmCeemDlXeedududuNYdududuVRIYLILIjMjMjMjMjMjMjMjMjMababababababababababaa
+aaabababababababababababababababababababacacacacacacacacacacacacacacacacacacaccDkTkJkJmEkadPdPdPdPcocOcOcOcOcOcomJmKmLExmNmOmPlslQlQlQlQlQmlmQfGfGfGmRmSmTmSmVmWmXmXmXmXmXmXmXmXmXmXmXmXmXmXmYmZmZmZnanbncndndnendndnfngeeduLMLMPyLMLMPIIYLILILIjMjMjMjMjMjMjMjMjMababababababababababaa
+aaabababababababababababababababababababacacacacacacacacacacacacacacacacacacaccDkTnhkJnikadPdPdPdPklcOcOcOcOcOcolnnqnrnrnsntntlslQlQlQlQnvnwnxOuPjNgnBNgnCfGOjnEnFnGnHNgNgNgNgNgnynInAnznzOuYxnxnznLnznMdYdudududududunNeeduXcJxiuJxOZduIYLILILIjMjMjMjMjMjMjMjMjMababababababababababaa
+aaabababababababababababababababababababacacacacacacacacacacacacacacacacacacaccDkTkJkJnOkaksksksksokcOcOkYkYkYnqnqkZlaliljlintlslslslslslsnUnVVnnXMGMGMGnXnYMGoanXobobobRKRKRKobobobnWdYdYdYMqXVrOdYdYdYrOofogmAeeohdunNeeduYeYeMvLpPyPIIYLILIjMjMjMjMjMjMjMjMjMjMababababababababababaa
+aaabababababababababababababababababababacacacacacacacacacacacacacacacacacacaccDoikJkJojkaksksksksokcocolknqnqnqnqkYljljljllntntntntntoyoyoyoynXMNMNMNozoApuoCoDoERKoGoHoIoJoKoLoMobendYoNoOoPoQrOacacacrgoVoWeejKeeFynNeeduUJPdMvLpVxPIIYLILIjMjMjMjMjMjMjMjMjMjMababababababababababaa
+aaabababababababababababababababababababacacacacacacacacacacacacacacacacacacaccDoYkJkJkVkakskskskslmkYkYkYkYkYkYlkkYljljljlinrcNcNcNnrplpmpnoypoTULmWEppppppppptJaRKPmpxOppyOpoKpAobdYdYrOrOVroQrOacacacrgpGoWeeeeeedunNeeduPLZsiuZsZsduLILILIjMjMjMjMjMjMjMjMjMjMababababababababababaa
+aaababababababababababababababababababacacacacacacacacacacacacacacacacacacacaccDoYlYnhkVkaksksksksokkYkYkYkYkYkYnqnqnrlCnrnrnrnrnrnrnrpZqaqbQQLaQHQHQHQHQHqdqeqfqgqhpwqiqjqkqjpzqmobacacacrOOEoQrOacacacrgpGoWgYeeeedunNeeduLMLMONLMLMPILILIjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
+aaababababababababababababababababababacacacacacacacacacacacacacacacacacacacaccDkTkJkJqtkaokokokokokkYkYkqkWrsrsnqlDlElElElElElElElEnrqNqOTvoyWMPiXyXPqPqPqQpuqSOiRKYYqUrKrKrKoKqVobacacacrOqYoQrOacacacrgrerfgYgYrgrgrhrirgrgdududududuIYLILIjMjMjMjMjMjMjMjMjMjMababababababababababaa
+aaabababababababababababababababababababacacacacacacacacacacacacacacacacacacaccDrjkJkJkVkacEcEcEcEokkYkYkXrsrsrsnqlFlGlElElElHlIlIlMntrCrCrCrCRZORPzORrErFrGLBrHRfRKVdrJPVIfIRoKrMobacacacrOXuJdrOacacacrgrgrgdudurgrPrQrRqsrgacacIYIYIYIYLILIjMjMjMjMjMjMjMjMjMjMababababababababababaa
+aaabababababababababababababababababababacacacacacacacacacacacacacacacacacacaccDkTrTlArUkacEcEcEcEoklZlZkXrsrsrsnqmalElElElElHlIlIlMntsisjWWrCJiJiJiJiJiJislMGsnJispspspspspspspspspsxsxacrOXrsArOacacacacrgsFsGsHsHsIsJsKsLrgacacacIYIYLILILIjMjMjMjMjMjMjMjMjMjMababababababababababaa
+aaababababababababababababababababababababacacacacacacacacacacacacacacacacacaccDsMnhkJkVkacEcEcEcEoknqnqnqnqnqnqnqmblElElElElHlIlIlMnttetfOXtgLHKHHWSaKRthtitjtktltmNztntntptltrtsMLKbsxacrOVlLjrOacacacacrgtxtyqWqWtztAsKtBrgacacVRIYacacacjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
+aaababababababababababababababababababababacacacacacacacacacacacacacacacacacaccDtCkJlAtDkacEcEcEcEcEmcmdmememdmemcmblElElElElHlIlIlMnttSKePltgtTxYUfJWWxthtitVtWWKQoKvtXtXtZtlWbWNTkuasxacrOudZkrOacacacacrgufugqWuhtzuiujtBrgacVRVRacacacacjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
+aaababababababababababababababababababababababacacacacacacacacacacacacacacacaccDkTkJkJukkacEcEcEcEcEnqmemfmFmGmHnqmblEmImUlElElElElEntuCuDrSuFuGuGuIuJuKuLuMuNuOuPuQLvuRuSuTtluVuWuXQdsxacrOSPQFococococococufvavbvcvduisKtBrgacacacacacacacjMjMjMjMjMjMjMjMjMjMjMababababababababababaa
+aaababababababababababababababababababababababacacacacacacacacacacacacacacacaccDvekJkJvfkaoknkokokoknqmdnlegegegegeglCnrnrnmlEnnnonpntvrvsvttgvvvwvxvyvzthtivCvDtlvFvGvHvIvJtltrvLYJQdsxacrOSPoQocvPVyVEYkocvQZEvRvSvSvTsKtBrgacacacacacacacabababababababababababababababababababababaa
 aaabababababababababababababababababababababacacacacacacacacacacacacacacacacaccDkTkJkJvUkaokfQiwjvjEwxwywzegjFjFjFjFjFjFegnrvZnrntntnttgwbtgTWthththththwcwgwhwitltltltltltltlwmwpQmwmMQrOrORxXVocQhpDRdUlXwPQwqwrsKujsKsKtBrgacacacacacacacabababababababababababababababababababababaa
 aaabababababababababababababababababababababacacacacacacacacacacacacacacacacaccDkTkJkJwskakajPkakakakavVwzegjFjFjFjFjFjFegwBJPwDIqZCOkwGwHRpwITQTQTQwLSpOvRgwMwNwOwPXjwQwQwQwTwUwVKlwWMQtutuwYoQOxNtFCpDxbocxcxdxesKxfxgxhxirgacacacacacacacabababababababababababababababababababababaa
-aaabababababababababababababababababababababacacacacacacacacacacacacacacacacaccDkTlYnhkJxjkdxkkakbkbkavVxlegjFjFjFjFjFjFegRUUtWyNGIVTyxsxtLzxuVjVjxwxxxyxzTpxAxBTaxCWvPFtYtYXNWUSlKxxDMQtutuwYIDocQRpDpCWRocrgrgxExFxGxHxIrgrgacacacacacacacabababababababababababababababababababababaa
+aaabababababababababababababababababababababacacacacacacacacacacacacacacacacaccDkTlYnhkJxjkdxkkakbkbkavVnuegjFjFjFjFjFjFegRUUtWyNGIVTyxsxtLzxuVjVjxwxxxyxzTpxAxBTaxCWvPFtYtYXNWUSlKxxDMQtutuwYIDocQRpDpCWRocrgrgxExFxGxHxIrgrgacacacacacacacabababababababababababababababababababababaa
 aaababababababababababababababababababababababacacacacacacacacacacacacacacacaccDxJkJkJxKkakakakaacackaxLxMegjFjFjFjFjFjFegYcYlwBTnZdZdxTZdZdxUBQBRBwxXttttyaybyattttyfBwBPBQxUIqIqyiIqMQtutuymKYUwTDPvSZKXocacrgynrirgrgrgrgacacacacacacabababababababababababababababababababababababaa
 aaababababababababababababababababababababababacacacacacacacacacacacacacacacaccDyoypyqyqkakbacacacackavVxlegjFjFjFjFjFjFegQeNWTnTnUHTZyxyyZdBQBQBRyByCttyEVayFyGyHttyJMoBPBQBQIqyLyMyNrOyPyPyRTtocVzKUJzIrocacrgySsKrgacacacacacacacacacabababababababababababababababababababababababaa
 aaababababababababababababababababababababababacacacacacacacacacacacacacacacaccDkakakakakakbacacacackavVxlegegegegegegegegQDYlTnYuWHXmyUyVyWBQVoBQxUxUyaKfWTUSyXyYyaxUxUBQBQBQIqYKLuVSzaIUyQIWVTococococococacrgySrgrgacacacacacacacacacabababababababababababababababababababababababaa
