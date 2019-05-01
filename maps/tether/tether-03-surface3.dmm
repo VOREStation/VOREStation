@@ -14270,27 +14270,28 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "yu" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/borderfloor{
-	dir = 1;
+	dir = 8;
 	icon_state = "borderfloor";
-	pixel_y = 0
+	pixel_x = 0
 	},
 /obj/effect/floor_decal/corner/mauve/border{
-	dir = 1
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/mauve/bordercorner2{
+	dir = 8
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
+	dir = 5
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel,
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "yv" = (
@@ -14510,34 +14511,6 @@
 /area/rnd/staircase/thirdfloor)
 "yQ" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 8;
-	icon_state = "borderfloor";
-	pixel_x = 0
-	},
-/obj/effect/floor_decal/corner/mauve/border{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/mauve/bordercorner2{
-	dir = 8
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 6
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/research/researchdivision)
-"yR" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/glass/hidden/steel,
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
@@ -14549,6 +14522,33 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/research/researchdivision)
+"yR" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	icon_state = "borderfloor";
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 2
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
@@ -15117,15 +15117,15 @@
 /turf/simulated/wall,
 /area/assembly/robotics)
 "zF" = (
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 2
-	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/mauve/border,
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 8
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
@@ -31097,7 +31097,7 @@ fK
 zG
 fK
 fK
-yu
+yR
 zc
 zF
 zL
@@ -31237,7 +31237,7 @@ wW
 xG
 xP
 Ar
-yQ
+yu
 HH
 yv
 zd
@@ -31521,7 +31521,7 @@ xD
 xH
 yi
 wB
-yR
+yQ
 AM
 yS
 zf
