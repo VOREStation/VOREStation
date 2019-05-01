@@ -1510,7 +1510,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/virgo3b,
 /area/tether/surfacebase/outside/outside1)
 "acO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -5699,6 +5699,76 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology)
+"ajC" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"ajD" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
+	},
+/obj/structure/catwalk,
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/simulated/floor/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"ajE" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"ajF" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
+	},
+/obj/structure/catwalk,
+/obj/structure/railing,
+/turf/simulated/floor/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"ajG" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "1-4"
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"ajH" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "4-8"
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/simulated/floor/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"ajI" = (
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/heavyduty{
+	icon_state = "0-8"
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/floor/virgo3b,
+/area/tether/surfacebase/outside/outside1)
 "ajN" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
@@ -25675,13 +25745,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden)
-"cGe" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-2"
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside1)
 "cHO" = (
 /obj/machinery/alarm{
 	dir = 8;
@@ -26262,16 +26325,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/processing)
-"ezH" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-2"
-	},
-/obj/structure/catwalk,
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside1)
 "eAn" = (
 /obj/machinery/atmospherics/pipe/simple/visible/purple{
 	dir = 6
@@ -26505,18 +26558,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
-"frA" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-2"
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside1)
 "frE" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 6
@@ -26558,18 +26599,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
-"fAq" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-2"
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside1)
 "fEe" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -27856,14 +27885,6 @@
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/showers)
-"jRG" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-2"
-	},
-/obj/structure/catwalk,
-/obj/structure/railing,
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside1)
 "jRT" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
@@ -29321,15 +29342,6 @@
 /obj/effect/floor_decal/corner/lightgrey/bordercorner,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
-"ozS" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "4-8"
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside1)
 "oAC" = (
 /obj/structure/railing{
 	dir = 4
@@ -30923,21 +30935,6 @@
 /obj/structure/closet/crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/public_garden_one)
-"tMg" = (
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/structure/cable/heavyduty{
-	icon_state = "0-8"
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside1)
 "tNq" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
@@ -31228,15 +31225,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
-"vbd" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-4"
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside1)
 "vbQ" = (
 /obj/structure/table,
 /obj/item/frame,
@@ -42066,23 +42054,23 @@ jUH
 (71,1,1) = {"
 aaa
 acN
-fAq
-frA
-frA
-frA
-frA
-frA
-frA
-ezH
-cGe
-cGe
-cGe
-cGe
-cGe
-cGe
-jRG
-frA
-vbd
+aDx
+ajC
+ajC
+ajC
+ajC
+ajC
+ajC
+ajD
+ajE
+ajE
+ajE
+ajE
+ajE
+ajE
+ajF
+ajC
+ajG
 aah
 aah
 aah
@@ -42224,7 +42212,7 @@ aad
 aad
 aad
 aad
-ozS
+ajH
 aah
 aah
 aah
@@ -42366,7 +42354,7 @@ aad
 aad
 aad
 aad
-ozS
+ajH
 aah
 aah
 aah
@@ -42508,7 +42496,7 @@ aad
 aFv
 aad
 aad
-tMg
+ajI
 aah
 aao
 aao

@@ -66,6 +66,7 @@
 							NETWORK_TELECOM
 							)
 
+	usable_email_tlds = list("freemail.nt")
 	allowed_spawns = list("Arrivals Shuttle","Gateway", "Cryogenic Storage", "Cyborg Storage")
 	unit_test_exempt_areas = list(/area/ninja_dojo, /area/ninja_dojo/firstdeck, /area/ninja_dojo/arrivals_dock)
 

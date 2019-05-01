@@ -104,6 +104,31 @@
 	desc = "A circuit grafted onto the bottom of an ID card.  It is used to transmit access codes into other robot chassis, \
 	allowing you to lock and unlock other robots' panels."
 
+	var/dummy_card = null
+	var/dummy_card_type = /obj/item/weapon/card/id/science/roboticist/dummy_cyborg
+
+/obj/item/weapon/card/robot/Initialize()
+	..()
+	dummy_card = new dummy_card_type(src)
+
+/obj/item/weapon/card/robot/Destroy()
+	qdel(dummy_card)
+	dummy_card = null
+	..()
+
+/obj/item/weapon/card/robot/GetID()
+	return dummy_card
+
+/obj/item/weapon/card/robot/syndi
+	dummy_card_type = /obj/item/weapon/card/id/syndicate/dummy_cyborg
+
+/obj/item/weapon/card/id/science/roboticist/dummy_cyborg
+	access = list(access_robotics)
+
+/obj/item/weapon/card/id/syndicate/dummy_cyborg/Initialize()
+	..()
+	access |= access_robotics
+
 //A harvest item for serviceborgs.
 /obj/item/weapon/robot_harvester
 	name = "auto harvester"

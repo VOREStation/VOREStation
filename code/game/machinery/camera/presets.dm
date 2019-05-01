@@ -26,9 +26,9 @@ var/global/list/engineering_networks = list(
 										NETWORK_ENGINE,
 										NETWORK_ENGINEERING,
 										NETWORK_ENGINEERING_OUTPOST,
-										"Atmosphere Alarms",
-										"Fire Alarms",
-										"Power Alarms")
+										NETWORK_ALARM_ATMOS,
+										NETWORK_ALARM_FIRE,
+										NETWORK_ALARM_POWER)
 /obj/machinery/camera/network/crescent
 	network = list(NETWORK_CRESCENT)
 

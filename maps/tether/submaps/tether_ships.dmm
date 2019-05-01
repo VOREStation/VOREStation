@@ -1575,7 +1575,7 @@
 /area/houseboat)
 "ec" = (
 /obj/structure/table/woodentable,
-/obj/item/device/laptop,
+/obj/item/modular_computer/laptop/preset/custom_loadout/elite,
 /turf/simulated/floor/wood,
 /area/houseboat)
 "ed" = (

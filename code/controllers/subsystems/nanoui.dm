@@ -12,6 +12,8 @@ SUBSYSTEM_DEF(nanoui)
 	var/list/nano_asset_dirs = list(\
 		"nano/css/",\
 		"nano/images/",\
+		"nano/images/status_icons/",\
+		"nano/images/modular_computers/",
 		"nano/js/",\
 		"nano/templates/"\
 	)
