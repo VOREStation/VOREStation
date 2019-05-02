@@ -1,83 +1,83 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "burst_l"
 	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry{
 	dir = 1
 	},
 /area/supply/dock)
 "ab" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion,
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry{
 	dir = 1
 	},
 /area/supply/dock)
 "ac" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "burst_r"
 	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry{
 	dir = 1
 	},
 /area/supply/dock)
 "ad" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "propulsion_r";
 	dir = 4
 	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/trade/centcom)
 "ae" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion{
 	dir = 4
 	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/trade/centcom)
 "af" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "propulsion_l";
 	dir = 4
 	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/trade/centcom)
 "ag" = (
-/turf/space,
 /obj/machinery/power/emitter/gyrotron/anchored{
 	desc = "It is a heavy duty pulse laser emitter.";
 	dir = 8;
 	icon_state = "emitter-off";
 	name = "pulse laser"
 	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/syndicate_station/start)
 "ah" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "propulsion_r";
 	dir = 4
 	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/syndicate_station/start)
 "ai" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion{
 	dir = 4
 	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/syndicate_station/start)
 "aj" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "propulsion_l";
 	dir = 4
 	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/syndicate_station/start)
 "ak" = (
@@ -5000,7 +5000,7 @@
 /area/shuttle/trade/centcom)
 "lW" = (
 /obj/structure/table/woodentable,
-/obj/item/device/laptop,
+/obj/item/modular_computer/laptop/preset/custom_loadout/standard,
 /turf/simulated/floor/carpet,
 /area/shuttle/trade/centcom)
 "lX" = (

@@ -3,7 +3,7 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/turf/simulated/wall/log_sif,
+/turf/simulated/wall/virgo2,
 /area/submap/virgo2/Shack1)
 "c" = (
 /turf/template_noop,
@@ -46,7 +46,7 @@
 	},
 /area/submap/virgo2/Shack1)
 "m" = (
-/obj/structure/simple_door/wood,
+/obj/machinery/door/airlock/external,
 /turf/simulated/floor/wood,
 /area/submap/virgo2/Shack1)
 "n" = (
@@ -88,6 +88,11 @@
 "v" = (
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/template_noop)
+"O" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/random/multiple/voidsuit,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/Shack1)
 
 (1,1,1) = {"
 a
@@ -152,7 +157,7 @@ a
 (6,1,1) = {"
 a
 b
-h
+O
 h
 i
 i
@@ -164,7 +169,7 @@ a
 (7,1,1) = {"
 a
 b
-h
+O
 k
 i
 i

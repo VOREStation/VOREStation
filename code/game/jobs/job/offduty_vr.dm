@@ -13,7 +13,7 @@
 	selection_color = "#9b633e"
 	access = list(access_maint_tunnels)
 	minimal_access = list(access_maint_tunnels)
-	outfit_type = /decl/hierarchy/outfit/job/assistant
+	outfit_type = /decl/hierarchy/outfit/job/assistant/worker
 
 /datum/job/offduty_cargo
 	title = "Off-duty Cargo"
@@ -26,7 +26,7 @@
 	selection_color = "#9b633e"
 	access = list(access_maint_tunnels)
 	minimal_access = list(access_maint_tunnels)
-	outfit_type = /decl/hierarchy/outfit/job/assistant
+	outfit_type = /decl/hierarchy/outfit/job/assistant/cargo
 
 /datum/job/offduty_engineering
 	title = "Off-duty Engineer"
@@ -39,7 +39,7 @@
 	selection_color = "#5B4D20"
 	access = list(access_maint_tunnels, access_external_airlocks, access_construction)
 	minimal_access = list(access_maint_tunnels, access_external_airlocks)
-	outfit_type = /decl/hierarchy/outfit/job/assistant
+	outfit_type = /decl/hierarchy/outfit/job/assistant/engineer
 
 /datum/job/offduty_medical
 	title = "Off-duty Medic"
@@ -52,7 +52,7 @@
 	selection_color = "#013D3B"
 	access = list(access_maint_tunnels, access_external_airlocks)
 	minimal_access = list(access_maint_tunnels, access_external_airlocks)
-	outfit_type = /decl/hierarchy/outfit/job/assistant
+	outfit_type = /decl/hierarchy/outfit/job/assistant/medic
 
 /datum/job/offduty_science
 	title = "Off-duty Scientist"
@@ -65,7 +65,7 @@
 	selection_color = "#633D63"
 	access = list(access_maint_tunnels)
 	minimal_access = list(access_maint_tunnels)
-	outfit_type = /decl/hierarchy/outfit/job/assistant
+	outfit_type = /decl/hierarchy/outfit/job/assistant/scientist
 
 /datum/job/offduty_security
 	title = "Off-duty Officer"
@@ -78,4 +78,4 @@
 	selection_color = "#601C1C"
 	access = list(access_maint_tunnels)
 	minimal_access = list(access_maint_tunnels)
-	outfit_type = /decl/hierarchy/outfit/job/assistant
+	outfit_type = /decl/hierarchy/outfit/job/assistant/officer

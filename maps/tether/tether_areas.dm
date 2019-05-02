@@ -58,13 +58,13 @@
 /area/turbolift/t_station/level1
 	name = "asteroid (level 1)"
 	lift_floor_label = "Asteroid 1"
-	lift_floor_name = "Eng, Bridge, Park, Cryo"
+	lift_floor_name = "Eng, Bridge, Chapel, Park, Cryo"
 	lift_announce_str = "Arriving at Station Level 1."
 
 /area/turbolift/t_station/level2
 	name = "asteroid (level 2)"
 	lift_floor_label = "Asteroid 2"
-	lift_floor_name = "Chapel, AI Core, EVA Gear"
+	lift_floor_name = "Exploration, AI Core, EVA Gear"
 	lift_announce_str = "Arriving at Station Level 2."
 
 /area/turbolift/t_station/level3

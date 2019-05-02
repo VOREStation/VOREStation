@@ -157,7 +157,7 @@ var/global/list/PDA_Manifest = list()
 		list("cat" = "Medical", "elems" = med),
 		list("cat" = "Science", "elems" = sci),
 		list("cat" = "Cargo", "elems" = car),
-		// list("cat" = "Planetside", "elems" = pla), // VOREStation Edit - Don't show empty dpt in PDA
+		list("cat" = "Exploration", "elems" = pla), // VOREStation Edit
 		list("cat" = "Civilian", "elems" = civ),
 		list("cat" = "Silicon", "elems" = bot),
 		list("cat" = "Miscellaneous", "elems" = misc)

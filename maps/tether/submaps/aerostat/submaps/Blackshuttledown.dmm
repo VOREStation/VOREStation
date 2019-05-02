@@ -241,14 +241,6 @@
 /obj/item/weapon/material/knife,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
-"aT" = (
-/mob/living/simple_mob/humanoid/merc/ranged{
-	name = "Unknown Individual";
-	desc = "Dosen't look friendly in the slightest.";
-	say_list_type = /datum/say_list/merc/unknown_ind
-	},
-/turf/simulated/floor/tiled/steel,
-/area/submap/virgo2/Blackshuttledown)
 "aU" = (
 /obj/structure/table/steel,
 /obj/random/toolbox,
@@ -795,7 +787,7 @@ aq
 aq
 aq
 aq
-aT
+aD
 bk
 aF
 aj

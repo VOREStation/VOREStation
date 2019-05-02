@@ -93,7 +93,7 @@
 	src.modules += new /obj/item/weapon/gripper/no_use/organ/robotics(src)
 
 	// Hacking other things.
-	src.modules += new /obj/item/weapon/card/robot(src)
+	src.modules += new /obj/item/weapon/card/robot/syndi(src)
 	src.modules += new /obj/item/weapon/card/emag(src)
 
 	// Materials.
