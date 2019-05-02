@@ -168,6 +168,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	affects_dead = 1 //This can even heal dead people.
+	metabolism = 0.1
 	mrate_static = TRUE //Just in case
 
 	glass_name = "liquid gold"

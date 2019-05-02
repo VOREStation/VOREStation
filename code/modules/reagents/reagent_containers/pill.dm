@@ -126,7 +126,7 @@
 
 /obj/item/weapon/reagent_containers/pill/adminordrazine/Initialize()
 	. = ..()
-	reagents.add_reagent("adminordrazine", 50)
+	reagents.add_reagent("adminordrazine", 5)
 
 /obj/item/weapon/reagent_containers/pill/stox
 	name = "Sleeping pill"
