@@ -180,8 +180,8 @@
 	M.setCloneLoss(0)
 	M.setOxyLoss(0)
 	M.radiation = 0
-	M.heal_organ_damage(5,5)
-	M.adjustToxLoss(-5)
+	M.heal_organ_damage(20,20) //VOREStation Edit
+	M.adjustToxLoss(-20) //VOREstation Edit
 	M.hallucination = 0
 	M.setBrainLoss(0)
 	M.disabilities = 0
@@ -198,6 +198,30 @@
 	M.SetConfused(0)
 	M.sleeping = 0
 	M.jitteriness = 0
+	//VOREStation Add Begin
+	M.radiation = 0
+	M.ExtinguishMob()
+	M.fire_stacks = 0
+	if(M.bodytemperature > 310)
+		M.bodytemperature = max(310, M.bodytemperature - (40 * TEMPERATURE_DAMAGE_COEFFICIENT))
+	else if(M.bodytemperature < 311)
+		M.bodytemperature = min(310, M.bodytemperature + (40 * TEMPERATURE_DAMAGE_COEFFICIENT))
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/wound_heal = 5
+		for(var/obj/item/organ/external/O in H.bad_external_organs)
+			if(O.status & ORGAN_BROKEN)
+				O.mend_fracture()		//Only works if the bone won't rebreak, as usual
+			for(var/datum/wound/W in O.wounds)
+				if(W.bleeding())
+					W.damage = max(W.damage - wound_heal, 0)
+					if(W.damage <= 0)
+						O.wounds -= W
+				if(W.internal)
+					W.damage = max(W.damage - wound_heal, 0)
+					if(W.damage <= 0)
+						O.wounds -= W
+	//VOREStation Add End
 
 /datum/reagent/gold
 	name = "Gold"
