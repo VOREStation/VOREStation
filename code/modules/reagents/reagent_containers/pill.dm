@@ -122,7 +122,7 @@
 /obj/item/weapon/reagent_containers/pill/adminordrazine
 	name = "Adminordrazine pill"
 	desc = "It's magic. We don't have to explain it." //it's space magic you don't need the quantity
-	icon_state = "pill16"
+	icon_state = "pill15"
 
 /obj/item/weapon/reagent_containers/pill/adminordrazine/Initialize()
 	. = ..()
