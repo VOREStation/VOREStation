@@ -2097,8 +2097,9 @@
 /turf/simulated/floor,
 /area/security/brig/visitation)
 "cY" = (
-/turf/simulated/wall,
-/area/chapel/office)
+/obj/random/junk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
 "cZ" = (
 /turf/simulated/wall/r_wall,
 /area/tether/exploration/staircase)
@@ -3693,7 +3694,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 5
 	},
-/obj/machinery/photocopier,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
 "fs" = (
@@ -4039,14 +4039,13 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 5
 	},
-/obj/structure/table/woodentable,
-/obj/item/device/camera,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
 /obj/machinery/camera/network/exploration{
 	dir = 4
 	},
+/obj/machinery/photocopier,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
 "fU" = (
@@ -4447,6 +4446,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/item/device/camera,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
 "gD" = (
@@ -19057,9 +19057,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/public_meeting_room)
 "Dp" = (
-/obj/item/weapon/paper,
+/obj/random/junk,
+/obj/random/junk,
 /turf/simulated/floor,
-/area/chapel/office)
+/area/maintenance/station/sec_lower)
 "Dq" = (
 /obj/machinery/camera/network/security{
 	icon_state = "camera";
@@ -19486,40 +19487,46 @@
 /turf/simulated/floor,
 /area/maintenance/station/exploration)
 "Ed" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/obj/effect/decal/cleanable/blood,
+/obj/item/weapon/paperplane,
+/obj/random/maintenance/engineering,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
 "Ee" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/obj/effect/decal/cleanable/blood,
+/obj/item/weapon/paper,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
 "Ef" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/obj/item/weapon/paper,
+/obj/effect/rune,
+/obj/effect/decal/cleanable/blood,
+/obj/random/maintenance/engineering,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Eg" = (
+/obj/item/weapon/paper,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Eh" = (
+/obj/item/weapon/paper_bin,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Ei" = (
+/obj/item/weapon/reagent_containers/blood,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
 "Ej" = (
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
 /obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"Ek" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/weapon/reagent_containers/blood,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
 "El" = (
@@ -19537,6 +19544,35 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/interrogation)
+"Eo" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
+"Ep" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
+"Eq" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "Er" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
@@ -19673,11 +19709,6 @@
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/freezer,
 /area/security/brig/bathroom)
-"Fr" = (
-/obj/effect/decal/cleanable/blood,
-/obj/item/weapon/reagent_containers/blood,
-/turf/simulated/floor,
-/area/chapel/office)
 "Fs" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 1
@@ -20595,10 +20626,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
-"PC" = (
-/obj/item/weapon/reagent_containers/blood,
-/turf/simulated/floor,
-/area/chapel/office)
 "PE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -20765,13 +20792,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/brig)
-"Qz" = (
-/obj/item/weapon/paper,
-/obj/effect/rune,
-/obj/effect/decal/cleanable/blood,
-/obj/random/maintenance/engineering,
-/turf/simulated/floor,
-/area/chapel/office)
 "QD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -20952,11 +20972,6 @@
 /obj/item/weapon/folder,
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/station/public_meeting_room)
-"RO" = (
-/obj/effect/decal/cleanable/blood,
-/obj/item/weapon/paper,
-/turf/simulated/floor,
-/area/chapel/office)
 "RQ" = (
 /obj/structure/table/steel,
 /obj/machinery/microwave{
@@ -20989,11 +21004,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
-"RY" = (
-/obj/random/junk,
-/obj/random/junk,
-/turf/simulated/floor,
-/area/chapel/office)
 "Sb" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8;
@@ -21524,9 +21534,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/maintenance/station/sec_lower)
-"Xj" = (
-/turf/simulated/floor,
-/area/chapel/office)
 "Xk" = (
 /obj/structure/table/steel,
 /obj/item/device/flashlight/lamp{
@@ -21630,10 +21637,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
-"XI" = (
-/obj/random/junk,
-/turf/simulated/floor,
-/area/chapel/office)
 "XJ" = (
 /obj/random/maintenance/engineering,
 /obj/structure/table/rack{
@@ -21646,10 +21649,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
-"XN" = (
-/obj/item/weapon/paper_bin,
-/turf/simulated/floor,
-/area/chapel/office)
 "XR" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -21829,12 +21828,6 @@
 /obj/random/trash_pile,
 /turf/simulated/floor/plating,
 /area/maintenance/station/sec_lower)
-"YV" = (
-/obj/effect/decal/cleanable/blood,
-/obj/item/weapon/paperplane,
-/obj/random/maintenance/engineering,
-/turf/simulated/floor,
-/area/chapel/office)
 "Za" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -27879,11 +27872,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+ab
+ab
+ab
+ab
+ab
 aa
 aa
 aa
@@ -28023,9 +28016,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+ab
+ab
+ab
 aa
 aa
 aa
@@ -32082,13 +32075,13 @@ Kn
 RS
 RS
 Qs
+at
 cY
-XI
-RO
-Xj
-XI
-XI
-Fr
+Ee
+RS
+cY
+cY
+Ek
 bA
 cj
 df
@@ -32224,13 +32217,13 @@ Jr
 RS
 RS
 Qs
-cY
-RY
-Xj
+at
 Dp
-Xj
-Dp
-Xj
+RS
+Eg
+RS
+Eg
+RS
 bA
 cE
 dg
@@ -32366,13 +32359,13 @@ Jr
 RS
 RS
 Qs
-cY
-Xj
-Qz
-XN
-Xj
-Xj
-Xj
+at
+RS
+Ef
+Eh
+RS
+RS
+RS
 bA
 cF
 dm
@@ -32421,11 +32414,11 @@ AN
 AN
 Bw
 yY
-Ed
-Ee
-Ee
-Ee
-Ef
+Eo
+Ep
+Ep
+Ep
+Eq
 yY
 ac
 ac
@@ -32508,13 +32501,13 @@ UZ
 RS
 Qs
 Qs
+at
+Ed
+RS
+Ei
+RS
+Ee
 cY
-YV
-Xj
-PC
-Xj
-RO
-XI
 bA
 cG
 dy
@@ -32650,13 +32643,13 @@ Qs
 Kn
 Qs
 Qs
-cY
-cY
-cY
-cY
-cY
-cY
-cY
+at
+at
+at
+at
+at
+at
+at
 bA
 cH
 dz
