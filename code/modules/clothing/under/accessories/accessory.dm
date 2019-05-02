@@ -13,7 +13,7 @@
 	var/overlay_state = null
 	var/concealed_holster = 0
 	var/mob/living/carbon/human/wearer = null //To check if the wearer changes, so species spritesheets change properly.
-
+	var/list/on_rolled = list()	//used when jumpsuit sleevels are rolled ("rolled" entry) or it's rolled down ("down"). Set to "none" to hide in those states.
 	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/ties.dmi') //Teshari can into webbing, too!
 
 /obj/item/clothing/accessory/Destroy()
@@ -38,6 +38,13 @@
 			wearer = has_suit.loc
 		else
 			wearer = null
+
+		if(istype(loc,/obj/item/clothing/under))
+			var/obj/item/clothing/under/C = loc
+			if(on_rolled["down"] && C.rolled_down > 0)
+				tmp_icon_state = on_rolled["down"]
+			else if(on_rolled["rolled"] && C.rolled_sleeves > 0)
+				tmp_icon_state = on_rolled["rolled"]
 
 		if(icon_override)
 			if("[tmp_icon_state]_mob" in icon_states(icon_override))
