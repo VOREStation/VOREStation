@@ -42,7 +42,7 @@
 
 	var/life_since_foodscan = 0
 
-	say_list_type = /datum/say_list/ratte
+	say_list_type = /datum/say_list/rat
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/rat
 
 /mob/living/simple_mob/vore/aggressive/rat/tame		//not quite tame but does not attack on sight
@@ -167,12 +167,28 @@
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_animal(src)
 	verbs |= /mob/living/simple_animal/proc/animal_mount
-*/
 
 /mob/living/simple_mob/vore/aggressive/rat/MouseDrop_T(mob/living/M, mob/living/user)
 	return
+*/
 
-/datum/say_list/ratte
+/mob/living/simple_mob/vore/aggressive/rat/phoron
+	name = "phoron rat"
+	desc = "In what passes for a hierarchy among verminous rodents, this one is alien overlord."
+	tt_desc = "Mus muscular phoronis"
+
+	icon_state = "phorous"		//TODO: proper phoron rat sprites
+	icon_living = "phorous"
+	icon_dead = "phorous-dead"
+	icon_rest = "phorous_rest"
+
+	maxHealth = 175
+	health = 175
+
+	melee_damage_lower = 8
+	melee_damage_upper = 16
+
+/datum/say_list/rat
 	speak = list("Squeek!","SQUEEK!","Squeek?")
 	emote_hear = list("squeeks","squeaks","squiks")
 	emote_see = list("runs in a circle", "shakes", "scritches at something")

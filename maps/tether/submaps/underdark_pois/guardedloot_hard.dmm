@@ -9,124 +9,34 @@
 /obj/tether_away_spawner/underdark_hard,
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
+"d" = (
+/obj/structure/closet/crate/mimic/safe,
+/obj/random/underdark,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
 
 (1,1,1) = {"
 a
 a
-a
 b
-b
-b
-b
-a
-a
-a
 "}
 (2,1,1) = {"
-a
-a
 b
 b
-b
-b
-b
-b
-a
-a
+d
 "}
 (3,1,1) = {"
-a
 b
 b
 b
-b
-b
-b
-b
-b
-a
 "}
 (4,1,1) = {"
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-"}
-(5,1,1) = {"
-b
-b
-b
-b
-b
-b
 c
 b
-b
-b
-"}
-(6,1,1) = {"
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-"}
-(7,1,1) = {"
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-"}
-(8,1,1) = {"
-a
-b
-b
-b
-b
-b
-b
-b
-b
 a
 "}
-(9,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-a
-a
-"}
-(10,1,1) = {"
-a
-a
+(5,1,1) = {"
 a
 b
-b
-b
-b
-a
-a
 a
 "}

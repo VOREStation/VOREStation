@@ -62,7 +62,7 @@
 	atmos_comp = TRUE
 	prob_spawn = 100
 	prob_fall = 50
-	guard = 20
+	//guard = 20
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/basic = 3,
 		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion = 3,
@@ -76,7 +76,7 @@
 	atmos_comp = TRUE
 	prob_spawn = 100
 	prob_fall = 50
-	guard = 20
+	//guard = 20
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/vore/aggressive/corrupthound = 3,
 		/mob/living/simple_mob/mechanical/viscerator = 2,

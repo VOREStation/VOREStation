@@ -3,48 +3,43 @@
 /turf/template_noop,
 /area/mine/explored/underdark)
 "b" = (
-/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/turf/simulated/mineral/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
 "c" = (
-/obj/tether_away_spawner/underdark_hard,
-/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/turf/simulated/wall/r_wall,
+/area/mine/explored/underdark)
+"d" = (
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"e" = (
+/obj/structure/closet/crate/mimic/cointoss,
+/obj/random/underdark,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored/underdark)
 
 (1,1,1) = {"
 a
 a
-a
 b
 b
-b
-b
-a
 a
 a
 "}
 (2,1,1) = {"
 a
-a
 b
 b
 b
 b
-b
-b
-a
 a
 "}
 (3,1,1) = {"
-a
 b
 b
 b
 b
 b
 b
-b
-b
-a
 "}
 (4,1,1) = {"
 b
@@ -52,81 +47,29 @@ b
 b
 b
 b
-b
-b
-b
-b
-b
+c
 "}
 (5,1,1) = {"
 b
 b
 b
 b
-b
-b
+d
 c
-b
-b
-b
 "}
 (6,1,1) = {"
 b
 b
 b
 b
-b
-b
-b
-b
-b
-b
+e
+c
 "}
 (7,1,1) = {"
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-"}
-(8,1,1) = {"
 a
 b
 b
-b
-b
-b
-b
-b
-b
-a
-"}
-(9,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-a
-a
-"}
-(10,1,1) = {"
-a
-a
-a
-b
-b
-b
-b
-a
-a
-a
+c
+c
+c
 "}

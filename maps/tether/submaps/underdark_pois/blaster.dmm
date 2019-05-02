@@ -6,127 +6,56 @@
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
 "c" = (
+/obj/random/bomb_supply,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"d" = (
 /obj/tether_away_spawner/underdark_normal,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"e" = (
+/obj/item/clothing/head/bomb_hood,
+/obj/item/clothing/suit/bomb_suit,
+/obj/effect/decal/remains,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"f" = (
+/obj/effect/spawner/newbomb/timer,
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
 
 (1,1,1) = {"
 a
 a
-a
 b
 b
-b
-b
-a
-a
 a
 "}
 (2,1,1) = {"
 a
-a
 b
 b
+f
 b
-b
-b
-b
-a
-a
 "}
 (3,1,1) = {"
-a
+b
+c
+d
 b
 b
-b
-b
-b
-b
-b
-b
-a
 "}
 (4,1,1) = {"
 b
-b
-b
-b
-b
-b
-b
-b
-b
-b
+c
+e
+c
+a
 "}
 (5,1,1) = {"
-b
-b
-b
-b
-b
+a
+a
 c
-b
-b
-b
-b
-"}
-(6,1,1) = {"
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-"}
-(7,1,1) = {"
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-"}
-(8,1,1) = {"
-a
-b
-b
-b
-b
-b
-b
-b
-b
-a
-"}
-(9,1,1) = {"
-a
-a
-b
-b
-b
-b
-b
-b
-a
-a
-"}
-(10,1,1) = {"
-a
-a
-a
-b
-b
-b
-b
-a
 a
 a
 "}
