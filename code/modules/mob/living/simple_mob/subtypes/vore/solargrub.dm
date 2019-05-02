@@ -8,11 +8,17 @@ List of things solar grubs should be able to do:
 6. add glow?
 */
 
+/datum/category_item/catalogue/fauna/solargrub		//TODO: VIRGO_LORE_WRITING_WIP
+	name = "Solargrub"
+	desc = ""
+	value = CATALOGUER_REWARD_EASY
+
 #define SINK_POWER 1
 
-/mob/living/simple_mob/animal/space/solargrub
+/mob/living/simple_mob/vore/solargrub
 	name = "juvenile solargrub"
 	desc = "A young sparkling solargrub"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/solargrub)
 	icon = 'icons/mob/vore.dmi' //all of these are placeholders
 	icon_state = "solargrub"
 	icon_living = "solargrub"
@@ -23,9 +29,9 @@ List of things solar grubs should be able to do:
 	health = 50
 
 	melee_damage_lower = 1
-	melee_damage_upper = 3
+	melee_damage_upper = 3	//low damage, but poison and stuns are strong
 
-	speed = 2
+	movement_cooldown = 8
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
 
@@ -33,31 +39,29 @@ List of things solar grubs should be able to do:
 	response_disarm = "pushes"
 	response_harm = "roughly pushes"
 
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/solargrub
+	say_list_type = /datum/say_list/solargrub
+
 	var/poison_per_bite = 5 //grubs cause a shock when they bite someone
 	var/poison_type = "shockchem"
 	var/poison_chance = 50
 	var/datum/powernet/PN            // Our powernet
 	var/obj/structure/cable/attached        // the attached cable
-	var/emp_chance = 20 // Beware synths
+	var/shock_chance = 10 // Beware
 
 /datum/say_list/solargrub
 	emote_see = list("squelches", "squishes")
-/* //Commented out pending reworks - 2/2/19
-/mob/living/simple_mob/animal/solargrub/PunchTarget()
-	if(target_mob&& prob(emp_chance))
-		target_mob.emp_act(4) //The weakest strength of EMP
-		visible_message("<span class='danger'>The grub releases a powerful shock!</span>")
-	..()
 
-/mob/living/simple_mob/animal/solargrub/Life()
+/mob/living/simple_mob/vore/solargrub/Life()
 	. = ..()
-	if(!. || ai_inactive) return
+	if(!.) return
 
-	if(stance == STANCE_IDLE)
+	if(!ai_holder.target)
 			//first, check for potential cables nearby to powersink
 		var/turf/S = loc
-		attached = locate() in S
+		attached = locate(/obj/structure/cable) in S
 		if(attached)
+			set_AI_busy(TRUE)
 			if(prob(2))
 				src.visible_message("<span class='notice'>\The [src] begins to sink power from the net.</span>")
 			if(prob(5))
@@ -78,31 +82,52 @@ List of things solar grubs should be able to do:
 		else if(!attached && anchored)
 			anchored = 0
 			PN = null
-*/
-/mob/living/simple_mob/animal/solargrub //active noms
+
+/mob/living/simple_mob/vore/solargrub //active noms
 	vore_bump_chance = 50
 	vore_bump_emote = "applies minimal effort to try and slurp up"
 	vore_active = 1
 	vore_capacity = 1
 	vore_pounce_chance = 0 //grubs only eat incapacitated targets
 	vore_default_mode = DM_DIGEST
-/*
-/mob/living/simple_mob/animal/solargrub/PunchTarget()
-	. = ..()
-	if(isliving(.))
-		var/mob/living/L = .
-		if(L.reagents)
-			if(prob(poison_chance))
-				L << "<span class='warning'>You feel a shock rushing through your veins.</span>"
-				L.reagents.add_reagent(poison_type, poison_per_bite) */
 
-/mob/living/simple_mob/animal/solargrub/death()
+/mob/living/simple_mob/vore/solargrub/apply_melee_effects(var/atom/A)
+	if(isliving(A))
+		var/mob/living/L = A
+		if(prob(shock_chance))
+			A.emp_act(4) //The weakest strength of EMP
+			playsound(src, 'sound/weapons/Egloves.ogg', 75, 1)
+			L.Weaken(4)
+			L.Stun(4)
+			L.stuttering = max(L.stuttering, 4)
+			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			s.set_up(5, 1, L)
+			s.start()
+			visible_message("<span class='danger'>The grub releases a powerful shock!</span>")
+		else
+			if(L.reagents)
+				var/target_zone = pick(BP_TORSO,BP_TORSO,BP_TORSO,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_HEAD)
+				if(L.can_inject(src, null, target_zone))
+					inject_poison(L, target_zone)
+
+// Does actual poison injection, after all checks passed.
+/mob/living/simple_mob/vore/solargrub/proc/inject_poison(mob/living/L, target_zone)
+	if(prob(poison_chance))
+		to_chat(L, "<span class='warning'>You feel a small shock rushing through your veins.</span>")
+		L.reagents.add_reagent(poison_type, poison_per_bite)
+
+/mob/living/simple_mob/vore/solargrub/death()
 	src.anchored = 0
 	set_light(0)
 	..()
 
-/mob/living/simple_mob/animal/solargrub/handle_light()
+/mob/living/simple_mob/vore/solargrub/handle_light()
 	. = ..()
 	if(. == 0 && !is_dead())
 		set_light(2.5, 1, COLOR_YELLOW)
 		return 1
+
+/datum/ai_holder/simple_mob/retaliate/solargrub/react_to_attack(atom/movable/attacker)
+	holder.anchored = 0
+	holder.set_AI_busy(FALSE)
+	..()
