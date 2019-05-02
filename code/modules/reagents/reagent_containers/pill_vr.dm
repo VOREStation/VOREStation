@@ -107,7 +107,7 @@
 	reagents.add_reagent("corophizine", 5)
 
 /obj/item/weapon/reagent_containers/pill/healing_nanites
-	name = "Healing nanites pill"
+	name = "Healing nanites capsule"
 	desc = "Miniature medical robots that swiftly restore bodily damage."
 	icon_state = "pill5"
 

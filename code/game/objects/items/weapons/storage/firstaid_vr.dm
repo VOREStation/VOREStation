@@ -59,6 +59,6 @@
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/corophizine = 7)
 
 /obj/item/weapon/storage/pill_bottle/healing_nanites
-	name = "bottle of Healing nanites pills"
+	name = "bottle of Healing nanites capsules"
 	desc = "Miniature medical robots that swiftly restore bodily damage."
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/healing_nanites = 7)

@@ -180,8 +180,8 @@
 	M.setCloneLoss(0)
 	M.setOxyLoss(0)
 	M.radiation = 0
-	M.heal_organ_damage(20,20) //VOREStation Edit
-	M.adjustToxLoss(-20) //VOREstation Edit
+	M.heal_organ_damage(20,20)
+	M.adjustToxLoss(-20)
 	M.hallucination = 0
 	M.setBrainLoss(0)
 	M.disabilities = 0
@@ -198,7 +198,6 @@
 	M.SetConfused(0)
 	M.sleeping = 0
 	M.jitteriness = 0
-	//VOREStation Add Begin
 	M.radiation = 0
 	M.ExtinguishMob()
 	M.fire_stacks = 0
@@ -221,7 +220,6 @@
 					W.damage = max(W.damage - wound_heal, 0)
 					if(W.damage <= 0)
 						O.wounds -= W
-	//VOREStation Add End
 
 /datum/reagent/gold
 	name = "Gold"
