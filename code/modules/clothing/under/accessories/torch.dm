@@ -60,14 +60,14 @@ medals
 	name = "\improper Torch mission patch"
 	desc = "A fire resistant shoulder patch, worn by the personnel involved in the Torch Project."
 	icon_state = "torchpatch"
-	//on_rolled = list("down" = "none")
+	on_rolled = list("down" = "none")
 	slot = ACCESSORY_SLOT_INSIGNIA
 
 /obj/item/clothing/accessory/solgov/ec_patch
 	name = "\improper Observatory patch"
 	desc = "A laminated shoulder patch, carrying the symbol of the Sol Central Government Expeditionary Corpss Observatory, or SCGEO for short, the eyes and ears of the Expeditionary Corps' missions."
 	icon_state = "ecpatch1"
-	//on_rolled = list("down" = "none")
+	on_rolled = list("down" = "none")
 	slot = ACCESSORY_SLOT_INSIGNIA
 
 /obj/item/clothing/accessory/solgov/ec_patch/fieldops
@@ -85,7 +85,7 @@ medals
 	name = "\improper First Fleet patch"
 	desc = "A fancy shoulder patch carrying insignia of First Fleet, the Sol Guard, stationed in Sol."
 	icon_state = "fleetpatch1"
-	//on_rolled = list("down" = "none")
+	on_rolled = list("down" = "none")
 	slot = ACCESSORY_SLOT_INSIGNIA
 
 /obj/item/clothing/accessory/solgov/fleet_patch/second
@@ -115,7 +115,7 @@ ribbons
 	name = "ribbon"
 	desc = "A simple military decoration."
 	icon_state = "ribbon_marksman"
-	//on_rolled = list("down" = "none")
+	on_rolled = list("down" = "none")
 	slot = ACCESSORY_SLOT_MEDAL
 
 /obj/item/clothing/accessory/ribbon/solgov/marksman
@@ -293,7 +293,7 @@ department tags
 	name = "department insignia"
 	desc = "Insignia denoting assignment to a department. These appear blank."
 	icon_state = "dept_exped"
-	//on_rolled = list("down" = "none", "rolled" = "dept_exped_sleeves")
+	on_rolled = list("down" = "none", "rolled" = "dept_exped_sleeves")
 	slot = ACCESSORY_SLOT_DECOR
 	//removable = FALSE
 
@@ -308,12 +308,12 @@ department tags
 /obj/item/clothing/accessory/solgov/department/command/fleet
 	icon_state = "dept_fleet"
 	desc = "Insignia denoting assignment to the command department. These fit Fleet uniforms."
-	//on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
+	on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/command/army
 	icon_state = "dept_army"
 	desc = "Insignia denoting assignment to the command department. These fit Army uniforms."
-	//on_rolled = list("down" = "none")
+	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/engineering
 	name = "engineering insignia"
@@ -326,12 +326,12 @@ department tags
 /obj/item/clothing/accessory/solgov/department/engineering/fleet
 	icon_state = "dept_fleet"
 	desc = "Insignia denoting assignment to the engineering department. These fit Fleet uniforms."
-	//on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
+	on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/engineering/army
 	icon_state = "dept_army"
 	desc = "Insignia denoting assignment to the engineering department. These fit Army uniforms."
-	//on_rolled = list("down" = "none")
+	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/security
 	name = "security insignia"
@@ -344,12 +344,12 @@ department tags
 /obj/item/clothing/accessory/solgov/department/security/fleet
 	icon_state = "dept_fleet"
 	desc = "Insignia denoting assignment to the security department. These fit Fleet uniforms."
-	//on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
+	on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/security/army
 	icon_state = "dept_army"
 	desc = "Insignia denoting assignment to the security department. These fit Army uniforms."
-	//on_rolled = list("down" = "none")
+	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/medical
 	name = "medical insignia"
@@ -362,12 +362,12 @@ department tags
 /obj/item/clothing/accessory/solgov/department/medical/fleet
 	icon_state = "dept_fleet"
 	desc = "Insignia denoting assignment to the medical department. These fit Fleet uniforms."
-	//on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
+	on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/medical/army
 	icon_state = "dept_army"
 	desc = "Insignia denoting assignment to the medical department. These fit Army uniforms."
-	//on_rolled = list("down" = "none")
+	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/supply
 	name = "supply insignia"
@@ -380,12 +380,12 @@ department tags
 /obj/item/clothing/accessory/solgov/department/supply/fleet
 	icon_state = "dept_fleet"
 	desc = "Insignia denoting assignment to the supply department. These fit Fleet uniforms."
-	//on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
+	on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/supply/army
 	icon_state = "dept_army"
 	desc = "Insignia denoting assignment to the supply department. These fit Army uniforms."
-	//on_rolled = list("down" = "none")
+	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/service
 	name = "service insignia"
@@ -398,12 +398,12 @@ department tags
 /obj/item/clothing/accessory/solgov/department/service/fleet
 	icon_state = "dept_fleet"
 	desc = "Insignia denoting assignment to the service department. These fit Fleet uniforms."
-	//on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
+	on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/service/army
 	icon_state = "dept_army"
 	desc = "Insignia denoting assignment to the service department. These fit Army uniforms."
-	//on_rolled = list("down" = "none")
+	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/exploration
 	name = "exploration insignia"
@@ -416,12 +416,12 @@ department tags
 /obj/item/clothing/accessory/solgov/department/exploration/fleet
 	icon_state = "dept_fleet"
 	desc = "Insignia denoting assignment to the exploration department. These fit Fleet uniforms."
-	//on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
+	on_rolled = list("rolled" = "dept_fleet_sleeves", "down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/exploration/army
 	icon_state = "dept_army"
 	desc = "Insignia denoting assignment to the exploration department. These fit Army uniforms."
-	//on_rolled = list("down" = "none")
+	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/solgov/department/research
 	name = "research insignia"
@@ -439,7 +439,7 @@ ranks - ec
 	name = "ranks"
 	desc = "Insignia denoting rank of some kind. These appear blank."
 	icon_state = "fleetrank"
-	//on_rolled = list("down" = "none")
+	on_rolled = list("down" = "none")
 	slot = ACCESSORY_SLOT_DECOR
 	gender = PLURAL
 	//high_visibility = 1
@@ -448,7 +448,7 @@ ranks - ec
 	name = "explorer ranks"
 	desc = "Insignia denoting rank of some kind. These appear blank."
 	icon_state = "ecrank_e1"
-	//on_rolled = list("down" = "none")
+	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/solgov/rank/ec/enlisted
 	name = "ranks (E-1 apprentice explorer)"
@@ -502,7 +502,7 @@ ranks - fleet
 	name = "naval ranks"
 	desc = "Insignia denoting naval rank of some kind. These appear blank."
 	icon_state = "fleetrank"
-	//on_rolled = list("down" = "none")
+	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/solgov/rank/fleet/enlisted
 	name = "ranks (E-1 crewman recruit)"
@@ -615,7 +615,7 @@ ranks - marines
 	name = "army ranks"
 	desc = "Insignia denoting marine rank of some kind. These appear blank."
 	icon_state = "armyrank_enlisted"
-	//on_rolled = list("down" = "none")
+	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/solgov/rank/army/enlisted
 	name = "ranks (E-1 private)"
