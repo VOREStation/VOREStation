@@ -18030,7 +18030,7 @@
 	},
 /obj/machinery/button/remote/blast_door{
 	id = "mechbay";
-	name = "Blast Doors";
+	name = "Mech Bay Access";
 	pixel_x = -30;
 	pixel_y = 30
 	},
@@ -18351,6 +18351,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/machinery/door/blast/regular{
+	id = "mechbay-inner";
+	name = "Mech Bay"
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/chargebay)
 "Em" = (
@@ -18657,6 +18661,10 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/door/blast/regular{
+	id = "mechbay-inner";
+	name = "Mech Bay"
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/chargebay)
 "EP" = (
@@ -18717,12 +18725,22 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "EW" = (
-/obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "mechbay-inner";
+	name = "Mech Bay";
+	pixel_x = 26;
+	pixel_y = -26;
+	req_access = list(29,47);
+	req_one_access = list(47)
+	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/assembly/chargebay)
+/area/assembly/robotics)
 "EX" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
@@ -18735,12 +18753,13 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
 "EY" = (
+/obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 8
+/obj/machinery/door/blast/regular{
+	id = "mechbay-inner";
+	name = "Mech Bay"
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/chargebay)
@@ -20244,10 +20263,19 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning{
-	dir = 4
+	icon_state = "warning";
+	dir = 8
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "mechbay-inner";
+	name = "Mech Bay";
+	pixel_x = -26;
+	pixel_y = -26;
+	req_access = list(29,47);
+	req_one_access = list(47)
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/assembly/robotics)
+/area/assembly/chargebay)
 "Hn" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -32385,7 +32413,7 @@ Fb
 Gd
 GE
 GN
-Hm
+EW
 Hs
 Gh
 Gy
@@ -32527,7 +32555,7 @@ zD
 zD
 El
 EO
-EW
+EY
 zD
 zD
 zE
@@ -32669,7 +32697,7 @@ zD
 DJ
 En
 EP
-EY
+Hm
 Fc
 zD
 ac
