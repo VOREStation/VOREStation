@@ -32,37 +32,38 @@
 	return inv_overlay
 
 /obj/item/clothing/accessory/proc/get_mob_overlay()
-	if(!mob_overlay || has_suit.loc != wearer)
-		var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
-		if(ishuman(has_suit.loc))
-			wearer = has_suit.loc
-		else
-			wearer = null
+	if(!istype(loc,/obj/item/clothing/))	//don't need special handling if it's worn as normal item.
+		return ..()
+	var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
+	if(ishuman(has_suit.loc))
+		wearer = has_suit.loc
+	else
+		wearer = null
 
-		if(istype(loc,/obj/item/clothing/under))
-			var/obj/item/clothing/under/C = loc
-			if(on_rolled["down"] && C.rolled_down > 0)
-				tmp_icon_state = on_rolled["down"]
-			else if(on_rolled["rolled"] && C.rolled_sleeves > 0)
-				tmp_icon_state = on_rolled["rolled"]
+	if(istype(loc,/obj/item/clothing/under))
+		var/obj/item/clothing/under/C = loc
+		if(on_rolled["down"] && C.rolled_down > 0)
+			tmp_icon_state = on_rolled["down"]
+		else if(on_rolled["rolled"] && C.rolled_sleeves > 0)
+			tmp_icon_state = on_rolled["rolled"]
 
-		if(icon_override)
-			if("[tmp_icon_state]_mob" in icon_states(icon_override))
-				tmp_icon_state = "[tmp_icon_state]_mob"
-			mob_overlay = image("icon" = icon_override, "icon_state" = "[tmp_icon_state]")
-		else if(wearer && sprite_sheets[wearer.species.get_bodytype(wearer)]) //Teshari can finally into webbing, too!
-			mob_overlay = image("icon" = sprite_sheets[wearer.species.get_bodytype(wearer)], "icon_state" = "[tmp_icon_state]")
-		else
-			mob_overlay = image("icon" = INV_ACCESSORIES_DEF_ICON, "icon_state" = "[tmp_icon_state]")
-		if(addblends)
-			var/icon/base = new/icon("icon" = mob_overlay.icon, "icon_state" = mob_overlay.icon_state)
-			var/addblend_icon = new/icon("icon" = mob_overlay.icon, "icon_state" = src.addblends)
-			if(color)
-				base.Blend(src.color, ICON_MULTIPLY)
-			base.Blend(addblend_icon, ICON_ADD)
-			mob_overlay = image(base)
-		else
-			mob_overlay.color = src.color
+	if(icon_override)
+		if("[tmp_icon_state]_mob" in icon_states(icon_override))
+			tmp_icon_state = "[tmp_icon_state]_mob"
+		mob_overlay = image("icon" = icon_override, "icon_state" = "[tmp_icon_state]")
+	else if(wearer && sprite_sheets[wearer.species.get_bodytype(wearer)]) //Teshari can finally into webbing, too!
+		mob_overlay = image("icon" = sprite_sheets[wearer.species.get_bodytype(wearer)], "icon_state" = "[tmp_icon_state]")
+	else
+		mob_overlay = image("icon" = INV_ACCESSORIES_DEF_ICON, "icon_state" = "[tmp_icon_state]")
+	if(addblends)
+		var/icon/base = new/icon("icon" = mob_overlay.icon, "icon_state" = mob_overlay.icon_state)
+		var/addblend_icon = new/icon("icon" = mob_overlay.icon, "icon_state" = src.addblends)
+		if(color)
+			base.Blend(src.color, ICON_MULTIPLY)
+		base.Blend(addblend_icon, ICON_ADD)
+		mob_overlay = image(base)
+	else
+		mob_overlay.color = src.color
 
 	return mob_overlay
 
