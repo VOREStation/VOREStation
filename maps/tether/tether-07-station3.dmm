@@ -28425,6 +28425,10 @@
 "VM" = (
 /turf/simulated/open,
 /area/ai/foyer)
+"VX" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/monotile,
+/area/tether/exploration)
 "WB" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -40230,7 +40234,7 @@ cK
 cK
 cK
 ms
-mq
+VX
 Ox
 Ox
 Sp

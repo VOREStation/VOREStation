@@ -3,6 +3,7 @@
 	desc = "A fancy red armband!"
 	icon_state = "red"
 	slot = ACCESSORY_SLOT_ARMBAND
+	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/armband/cargo
 	name = "cargo armband"
