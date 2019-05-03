@@ -3,12 +3,13 @@
 /obj/machinery/equipment_vendor/exploration
 	name = "exploration equipment vendor"
 	desc = "An equipment vendor for explorers, points collected with cataloguers can be spent here."
-	icon = 'icons/obj/machines/mining_machines.dmi'
-	icon_state = "mining"
+	icon = 'icons/obj/machines/mining_machines_vr.dmi'
+	icon_state = "exploration"
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/exploration_equipment_vendor
-	var/icon_deny = "mining-deny"
+	var/icon_deny = "exploration-deny"
+	var/icon_vend = "exploration-vend"
 	var/obj/item/device/cataloguer/inserted_cataloguer
 	var/list/prize_list = list(
 		new /datum/data/exploration_equipment("1 Marker Beacon",				/obj/item/stack/marker_beacon,										1),
@@ -116,6 +117,7 @@
 			else
 				inserted_cataloguer.points_stored -= prize.cost
 				to_chat(usr, "<span class='notice'>[src] clanks to life briefly before vending [prize.equipment_name]!</span>")
+				flick(icon_vend, src)
 				new prize.equipment_path(drop_location())
 		else
 			to_chat(usr, "<span class='warning'>Error: Please insert a valid ID!</span>")

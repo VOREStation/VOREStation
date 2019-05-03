@@ -76,7 +76,7 @@
 	has_suit.overlays += get_inv_overlay()
 
 	if(user)
-		user << "<span class='notice'>You attach \the [src] to \the [has_suit].</span>"
+		to_chat(user, "<span class='notice'>You attach \the [src] to \the [has_suit].</span>")
 		add_fingerprint(user)
 
 /obj/item/clothing/accessory/proc/on_removed(var/mob/user)
@@ -87,7 +87,7 @@
 	if(user)
 		usr.put_in_hands(src)
 		add_fingerprint(user)
-	else
+	else if(get_turf(src))		//We actually exist in space
 		forceMove(get_turf(src))
 
 //default attackby behaviour
