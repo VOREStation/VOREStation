@@ -46,3 +46,6 @@
 		/obj/item/clothing/mask/breath,
 		/obj/item/weapon/tank/emergency/oxygen/double
 	)
+
+/obj/item/weapon/storage/secure/briefcase/trashmoney
+	starts_with = list(/obj/item/weapon/spacecash/c200 = 10)
