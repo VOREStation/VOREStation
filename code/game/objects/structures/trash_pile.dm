@@ -242,7 +242,6 @@
 					prob(1);/obj/item/weapon/material/knife/tacknife,
 					prob(1);/obj/item/weapon/storage/box/survival/space,
 					prob(1);/obj/item/weapon/storage/secure/briefcase/money,
-					prob(1);/obj/item/device/perfect_tele/one_beacon,
 					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
 
 	var/obj/item/I = new path()
