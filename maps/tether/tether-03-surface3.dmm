@@ -2351,7 +2351,7 @@
 /area/tether/surfacebase/security/armory)
 "eq" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_mob/animal/space/mimic,
+/mob/living/simple_mob/vore/aggressive/mimic,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/security/armory)
 "er" = (

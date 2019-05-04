@@ -7676,7 +7676,6 @@
 /turf/simulated/floor,
 /area/maintenance/station/exploration)
 "lo" = (
-/obj/machinery/portable_atmospherics/canister/empty/oxygen,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
 	icon_state = "borderfloor";
@@ -7703,6 +7702,7 @@
 	pixel_y = 24;
 	req_access = list()
 	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
 "lp" = (
