@@ -2828,6 +2828,7 @@
 #include "code\modules\research\designs\medical.dm"
 #include "code\modules\research\designs\mining_toys.dm"
 #include "code\modules\research\designs\misc.dm"
+#include "code\modules\research\designs\modular_computer.dm"
 #include "code\modules\research\designs\pdas.dm"
 #include "code\modules\research\designs\powercells.dm"
 #include "code\modules\research\designs\precursor.dm"
