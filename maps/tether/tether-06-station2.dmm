@@ -8025,15 +8025,15 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 4
 	},
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
 /obj/machinery/light_switch{
 	dir = 2;
 	name = "light switch ";
 	pixel_x = 0;
 	pixel_y = 26
+	},
+/obj/machinery/photocopier,
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
@@ -8044,7 +8044,10 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 5
 	},
-/obj/structure/filingcabinet/filingcabinet,
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
 "lP" = (
@@ -8511,10 +8514,16 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
 	},
-/obj/machinery/photocopier,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/tank/oxygen,
+/obj/item/device/suit_cooling_unit,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/suit/space/void/exploration,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/head/helmet/space/void/exploration,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
 "mA" = (
@@ -18944,13 +18953,6 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 6
 	},
-/obj/structure/table/rack/shelf,
-/obj/item/weapon/tank/oxygen,
-/obj/item/device/suit_cooling_unit,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/exploration,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/exploration,
 /obj/item/device/radio/intercom{
 	dir = 4;
 	pixel_x = 24
@@ -18958,6 +18960,7 @@
 /obj/machinery/camera/network/exploration{
 	dir = 1
 	},
+/obj/structure/filingcabinet/filingcabinet,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
 "Di" = (
