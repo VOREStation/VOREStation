@@ -16,9 +16,9 @@
 	maxHealth = 25
 	health = 25
 
-	harm_intent_damage = 8
-	melee_damage_lower = 4
-	melee_damage_upper = 8
+	harm_intent_damage = 4
+	melee_damage_lower = 2
+	melee_damage_upper = 4
 	attacktext = list("stung")
 
 	say_list_type = /datum/say_list/bee

@@ -18,7 +18,7 @@
 
 	harm_intent_damage = 20
 	melee_damage_lower = 1
-	melee_damage_upper = 5
+	melee_damage_upper = 3
 	attacktext = list("Bites")
 
 	say_list_type = /datum/say_list/fennix

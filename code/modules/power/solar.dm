@@ -1,4 +1,7 @@
 #define SOLAR_MAX_DIST 40
+#define SOLAR_AUTO_START_NO     0 // Will never start itself.
+#define SOLAR_AUTO_START_YES    1 // Will always start itself.
+#define SOLAR_AUTO_START_CONFIG 2 // Will start itself if config allows it (default is no).
 
 GLOBAL_VAR_INIT(solar_gen_rate, 1500)
 GLOBAL_LIST_EMPTY(solars_list)
@@ -293,9 +296,23 @@ GLOBAL_LIST_EMPTY(solars_list)
 	var/nexttime = 0		// time for a panel to rotate of 1� in manual tracking
 	var/obj/machinery/power/tracker/connected_tracker = null
 	var/list/connected_panels = list()
+	var/auto_start = SOLAR_AUTO_START_NO
 
-/obj/machinery/power/solar_control/drain_power()
-	return -1
+// Used for mapping in solar arrays which automatically start itself.
+// Generally intended for far away and remote locations, where player intervention is rare.
+// In the interest of backwards compatability, this isn't named auto_start, as doing so might break downstream maps.
+/obj/machinery/power/solar_control/autostart
+	auto_start = SOLAR_AUTO_START_YES
+
+// Similar to above but controlled by the configuration file.
+// Intended to be used for the main solar arrays, so individual servers can choose to have them start automatically or require manual intervention.
+/obj/machinery/power/solar_control/config_start
+	auto_start = SOLAR_AUTO_START_CONFIG
+
+/obj/machinery/power/solar_control/Initialize()
+	. = ..()
+	connect_to_network()
+	set_panels(cdir)
 
 /obj/machinery/power/solar_control/Destroy()
 	for(var/obj/machinery/power/solar/M in connected_panels)
@@ -303,6 +320,25 @@ GLOBAL_LIST_EMPTY(solars_list)
 	if(connected_tracker)
 		connected_tracker.unset_control()
 	return ..()
+
+/obj/machinery/power/solar_control/proc/auto_start(forced = FALSE)
+	// Automatically sets the solars, if allowed.
+	if(forced || auto_start == SOLAR_AUTO_START_YES || (auto_start == SOLAR_AUTO_START_CONFIG && config.autostart_solars) )
+		track = 2 // Auto tracking mode.
+		search_for_connected()
+		if(connected_tracker)
+			connected_tracker.set_angle(SSsun.sun.angle)
+		set_panels(cdir)
+
+// This would use LateInitialize(), however the powernet does not appear to exist during that time.
+/hook/roundstart/proc/auto_start_solars()
+	for(var/a in GLOB.solars_list)
+		var/obj/machinery/power/solar_control/SC = a
+		SC.auto_start()
+	return TRUE
+
+/obj/machinery/power/solar_control/drain_power()
+	return -1
 
 /obj/machinery/power/solar_control/disconnect_from_network()
 	..()
@@ -345,13 +381,6 @@ GLOBAL_LIST_EMPTY(solars_list)
 
 	set_panels(cdir)
 	updateDialog()
-
-
-/obj/machinery/power/solar_control/Initialize()
-	. = ..()
-	if(!powernet) return
-	set_panels(cdir)
-	connect_to_network()
 
 /obj/machinery/power/solar_control/update_icon()
 	if(stat & BROKEN)
@@ -527,18 +556,6 @@ GLOBAL_LIST_EMPTY(solars_list)
 			if (prob(25))
 				broken()
 	return
-
-// Used for mapping in solar array which automatically starts itself (telecomms, for example)
-/obj/machinery/power/solar_control/autostart
-	track = 2 // Auto tracking mode
-
-/obj/machinery/power/solar_control/autostart/New()
-	..()
-	spawn(150) // Wait 15 seconds to ensure everything was set up properly (such as, powernets, solar panels, etc.
-		src.search_for_connected()
-		if(connected_tracker && track == 2)
-			connected_tracker.set_angle(SSsun.sun.angle)
-		src.set_panels(cdir)
 
 //
 // MISC

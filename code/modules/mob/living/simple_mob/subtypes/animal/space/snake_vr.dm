@@ -16,12 +16,12 @@
 	response_disarm = "shoos"
 	response_harm   = "kicks"
 
-	melee_damage_lower = 3
-	melee_damage_upper = 5
+	melee_damage_lower = 2
+	melee_damage_upper = 3
 	attacktext = list("bitten")
 
 	say_list_type = /datum/say_list/snake
-	ai_holder_type = /datum/ai_holder/simple_mob/melee
+	ai_holder_type = /datum/ai_holder/simple_mob/passive
 
 /datum/say_list/snake
 	emote_hear = list("hisses")
@@ -31,7 +31,6 @@
 	name = "Noodle"
 	desc = "This snake is particularly chubby and demands nothing but the finest of treats."
 
-	ai_holder_type = /datum/ai_holder/simple_mob/passive
 	makes_dirt = FALSE
 
 	var/turns_since_scan = 0

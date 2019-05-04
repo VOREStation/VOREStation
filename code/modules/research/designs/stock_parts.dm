@@ -4,6 +4,7 @@
 
 /datum/design/item/stock_part
 	build_type = PROTOLATHE
+	time = 3 //Sets an independent time for stock parts, currently one third normal print time.
 
 /datum/design/item/stock_part/AssembleDesignName()
 	..()
@@ -34,6 +35,20 @@
 	build_path = /obj/item/weapon/stock_parts/capacitor/super
 	sort_string = "CAAAC"
 
+/datum/design/item/stock_part/hyper_capacitor
+	id = "hyper_capacitor"
+	req_tech = list(TECH_POWER = 6, TECH_MATERIAL = 5, TECH_BLUESPACE = 1, TECH_ARCANE = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 200, MAT_GLASS = 100, MAT_VERDANTIUM = 30, MAT_DURASTEEL = 25)
+	build_path = /obj/item/weapon/stock_parts/capacitor/hyper
+	sort_string = "CAAAD"
+
+/datum/design/item/stock_part/omni_capacitor
+	id = "omni_capacitor"
+	req_tech = list(TECH_POWER = 7, TECH_MATERIAL = 6, TECH_BLUESPACE = 3, TECH_PRECURSOR = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, MAT_DIAMOND = 1000, MAT_GLASS = 1000, MAT_MORPHIUM = 100, MAT_DURASTEEL = 100)
+	build_path = /obj/item/weapon/stock_parts/capacitor/omni
+	sort_string = "CAAAE"
+
 /datum/design/item/stock_part/micro_mani
 	id = "micro_mani"
 	req_tech = list(TECH_MATERIAL = 1, TECH_DATA = 1)
@@ -54,6 +69,20 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 30)
 	build_path = /obj/item/weapon/stock_parts/manipulator/pico
 	sort_string = "CAABC"
+
+/datum/design/item/stock_part/hyper_mani
+	id = "hyper_mani"
+	req_tech = list(TECH_MATERIAL = 6, TECH_DATA = 3, TECH_ARCANE = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 200, MAT_VERDANTIUM = 50, MAT_DURASTEEL = 50)
+	build_path = /obj/item/weapon/stock_parts/manipulator/hyper
+	sort_string = "CAABD"
+
+/datum/design/item/stock_part/omni_mani
+	id = "omni_mani"
+	req_tech = list(TECH_MATERIAL = 7, TECH_DATA = 4, TECH_PRECURSOR = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, MAT_PLASTEEL = 500, MAT_MORPHIUM = 100, MAT_DURASTEEL = 100)
+	build_path = /obj/item/weapon/stock_parts/manipulator/omni
+	sort_string = "CAABE"
 
 /datum/design/item/stock_part/basic_matter_bin
 	id = "basic_matter_bin"
@@ -76,6 +105,20 @@
 	build_path = /obj/item/weapon/stock_parts/matter_bin/super
 	sort_string = "CAACC"
 
+/datum/design/item/stock_part/hyper_matter_bin
+	id = "hyper_matter_bin"
+	req_tech = list(TECH_MATERIAL = 6, TECH_ARCANE = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 200, MAT_VERDANTIUM = 60, MAT_DURASTEEL = 75)
+	build_path = /obj/item/weapon/stock_parts/matter_bin/hyper
+	sort_string = "CAACD"
+
+/datum/design/item/stock_part/omni_matter_bin
+	id = "omni_matter_bin"
+	req_tech = list(TECH_MATERIAL = 7, TECH_PRECURSOR = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, MAT_PLASTEEL = 100, MAT_MORPHIUM = 100, MAT_DURASTEEL = 100)
+	build_path = /obj/item/weapon/stock_parts/matter_bin/omni
+	sort_string = "CAACE"
+
 /datum/design/item/stock_part/basic_micro_laser
 	id = "basic_micro_laser"
 	req_tech = list(TECH_MAGNET = 1)
@@ -97,6 +140,20 @@
 	build_path = /obj/item/weapon/stock_parts/micro_laser/ultra
 	sort_string = "CAADC"
 
+/datum/design/item/stock_part/hyper_micro_laser
+	id = "hyper_micro_laser"
+	req_tech = list(TECH_MAGNET = 6, TECH_MATERIAL = 6, TECH_ARCANE = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 200, MAT_GLASS = 20, MAT_URANIUM = 30, MAT_VERDANTIUM = 50, MAT_DURASTEEL = 100)
+	build_path = /obj/item/weapon/stock_parts/micro_laser/hyper
+	sort_string = "CAADD"
+
+/datum/design/item/stock_part/omni_micro_laser
+	id = "omni_micro_laser"
+	req_tech = list(TECH_MAGNET = 7, TECH_MATERIAL = 7, TECH_PRECURSOR = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, MAT_GLASS = 500, MAT_URANIUM = 2000, MAT_MORPHIUM = 50, MAT_DURASTEEL = 100)
+	build_path = /obj/item/weapon/stock_parts/micro_laser/omni
+	sort_string = "CAADE"
+
 /datum/design/item/stock_part/basic_sensor
 	id = "basic_sensor"
 	req_tech = list(TECH_MAGNET = 1)
@@ -117,6 +174,20 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 20, "silver" = 10)
 	build_path = /obj/item/weapon/stock_parts/scanning_module/phasic
 	sort_string = "CAAEC"
+
+/datum/design/item/stock_part/hyper_sensor
+	id = "hyper_sensor"
+	req_tech = list(TECH_MAGNET = 6, TECH_MATERIAL = 4, TECH_ARCANE = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 50, MAT_GLASS = 20, MAT_SILVER = 50, MAT_VERDANTIUM = 40, MAT_DURASTEEL = 50)
+	build_path = /obj/item/weapon/stock_parts/scanning_module/hyper
+	sort_string = "CAAED"
+
+/datum/design/item/stock_part/omni_sensor
+	id = "omni_sensor"
+	req_tech = list(TECH_MAGNET = 7, TECH_MATERIAL = 5, TECH_PRECURSOR = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 1000, MAT_PLASTEEL = 500, MAT_GLASS = 750, MAT_SILVER = 500, MAT_MORPHIUM = 60, MAT_DURASTEEL = 100)
+	build_path = /obj/item/weapon/stock_parts/scanning_module/omni
+	sort_string = "CAAEE"
 
 /datum/design/item/stock_part/subspace_ansible
 	id = "s-ansible"
@@ -167,7 +238,7 @@
 	build_path = /obj/item/weapon/stock_parts/subspace/transmitter
 	sort_string = "UAAAG"
 
-// RPED lives here because it handles stock parts
+// RPEDs live here because they handle stock parts
 /datum/design/item/stock_part/RPED
 	name = "Rapid Part Exchange Device"
 	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
@@ -176,3 +247,12 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 15000, "glass" = 5000)
 	build_path = /obj/item/weapon/storage/part_replacer
 	sort_string = "CBAAA"
+
+/datum/design/item/stock_part/ARPED
+	name = "Advanced Rapid Part Exchange Device"
+	desc = "Special mechanical module made to store, sort, and apply standard machine parts.  This one has a greatly upgraded storage capacity."
+	id = "arped"
+	req_tech = list(TECH_ENGINEERING = 5, TECH_MATERIAL = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 30000, "glass" = 10000)
+	build_path = /obj/item/weapon/storage/part_replacer/adv
+	sort_string = "CBAAB"

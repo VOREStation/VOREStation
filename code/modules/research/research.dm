@@ -208,9 +208,15 @@ research holder datum.
 	level = 0
 
 /datum/tech/arcane
-	name = "Arcane Research"
-	desc = "Research into the occult and arcane field for use in practical science"
+	name = "Anomalous Research"
+	desc = "Study of phenomena that disobey the fundamental laws of this universe."
 	id = TECH_ARCANE
+	level = 0
+
+/datum/tech/precursor
+	name = "Precursor Research"
+	desc = "The applied study of Precursor Technology, for modern applications."
+	id = TECH_PRECURSOR
 	level = 0
 
 /obj/item/weapon/disk/tech_disk

@@ -148,9 +148,9 @@
 	},
 /area/submap/virgo2/Blackshuttledown)
 "aB" = (
-/mob/living/simple_mob/hostile/viscerator,
-/mob/living/simple_mob/hostile/viscerator,
-/mob/living/simple_mob/hostile/viscerator,
+/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple_mob/mechanical/viscerator,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aC" = (
@@ -163,7 +163,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aD" = (
-/mob/living/simple_mob/hostile/syndicate/ranged/space,
+/mob/living/simple_mob/humanoid/merc/ranged/space,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aE" = (
@@ -239,15 +239,6 @@
 "aS" = (
 /obj/structure/table/steel,
 /obj/item/weapon/material/knife,
-/turf/simulated/floor/tiled/steel,
-/area/submap/virgo2/Blackshuttledown)
-"aT" = (
-/mob/living/simple_mob/hostile/syndicate/ranged{
-	desc = "Dosen't look friendly in the slightest.";
-	name = "Unknown Individual";
-	say_got_target = list("Looks like trouble!","Contact!","We've got company!","Perimeter Breached!!");
-	speak = list("One day the'll fix that damn engine..","Next time, We're hidding on the tropical beach planet.","Wish I had better equipment...","I knew I should have been a line chef...","Fuckin' helmet keeps fogging up.","Hate this blocky ass ship.")
-	},
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aU" = (
@@ -374,7 +365,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "bn" = (
-/mob/living/simple_mob/hostile/viscerator,
+/mob/living/simple_mob/mechanical/viscerator,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "bo" = (
@@ -393,8 +384,8 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "bq" = (
-/mob/living/simple_mob/hostile/viscerator,
-/mob/living/simple_mob/hostile/viscerator,
+/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple_mob/mechanical/viscerator,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "br" = (
@@ -439,7 +430,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/Blackshuttledown)
 "bz" = (
-/mob/living/simple_mob/hostile/syndicate/ranged/space,
+/mob/living/simple_mob/humanoid/merc/ranged/space,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/Blackshuttledown)
 
@@ -796,7 +787,7 @@ aq
 aq
 aq
 aq
-aT
+aD
 bk
 aF
 aj

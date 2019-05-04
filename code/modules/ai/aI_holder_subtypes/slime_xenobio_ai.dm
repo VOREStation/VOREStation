@@ -16,6 +16,12 @@
 	var/last_discipline_decay = null // Last world.time discipline was reduced from decay.
 	var/discipline_decay_time = 5 SECONDS // Earliest that one discipline can decay.
 
+	var/list/grudges = list() // List of Prometheans who are jerks.
+
+/datum/ai_holder/simple_mob/xenobio_slime/Destroy()
+	grudges.Cut()
+	..()
+
 /datum/ai_holder/simple_mob/xenobio_slime/sapphire
 	always_stun = TRUE // They know that stuns are godly.
 	intelligence_level = AI_SMART // Also knows not to walk while confused if it risks death.
@@ -168,10 +174,20 @@
 			var/mob/living/carbon/human/H = AM
 			if(istype(H.species, /datum/species/monkey)) // istype() is so they'll eat the alien monkeys too.
 				return TRUE // Monkeys are always food (sorry Pun Pun).
-			else if(H.species && H.species.name == SPECIES_PROMETHEAN)
-				return FALSE // Prometheans are always our friends.
+			else if(H.species && H.species.name == SPECIES_PROMETHEAN) // Prometheans are always our friends.
+				if(H in grudges) // Unless they're an ass.
+					return TRUE
+				return FALSE
 		if(discipline && !rabid)
 			return FALSE // We're a good slime.
+
+/datum/ai_holder/simple_mob/xenobio_slime/react_to_attack(atom/movable/attacker)
+	. = ..(attacker)
+
+	if(ishuman(attacker))
+		var/mob/living/carbon/human/H = attacker
+		if(H.species && H.species.name == SPECIES_PROMETHEAN)	// They're a jerk.
+			grudges |= H
 
 // Commands, reactions, etc
 /datum/ai_holder/simple_mob/xenobio_slime/on_hear_say(mob/living/speaker, message)

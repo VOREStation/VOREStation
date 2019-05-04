@@ -18,7 +18,7 @@
 	},
 /area/awaymission/wwvault)
 "af" = (
-/mob/living/simple_mob/hostile/faithless,
+/mob/living/simple_mob/faithless,
 /turf/simulated/floor/engine/cult,
 /area/awaymission/wwvault)
 "ag" = (
@@ -52,7 +52,7 @@
 /turf/simulated/floor/engine/cult,
 /area/awaymission/wwvault)
 "am" = (
-/mob/living/simple_mob/hostile/faithless,
+/mob/living/simple_mob/faithless,
 /turf/simulated/shuttle/plating{
 	 icon_state = "bcircuitoff"
 	},
@@ -173,7 +173,7 @@
 /turf/simulated/floor/carpet,
 /area/awaymission/wwvault)
 "aE" = (
-/mob/living/simple_mob/hostile/faithless,
+/mob/living/simple_mob/faithless,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwvault)
 "aF" = (

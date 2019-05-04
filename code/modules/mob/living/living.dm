@@ -149,6 +149,12 @@ default behaviour is:
 			tmob.forceMove(oldloc)
 			now_pushing = 0
 			return
+		//VOREStation Edit - Begin
+		else if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && canmove && can_swap && handle_micro_bump_helping(tmob))
+			forceMove(tmob.loc)
+			now_pushing = 0
+			return
+		//VOREStation Edit - End
 
 		if(!can_move_mob(tmob, 0, 0))
 			now_pushing = 0
@@ -944,7 +950,11 @@ default behaviour is:
 
 /mob/living/proc/escape_buckle()
 	if(buckled)
-		buckled.user_unbuckle_mob(src, src)
+		if(istype(buckled, /obj/vehicle))
+			var/obj/vehicle/vehicle = buckled
+			vehicle.unload()
+		else
+			buckled.user_unbuckle_mob(src, src)
 
 /mob/living/proc/resist_grab()
 	var/resisting = 0

@@ -6,6 +6,8 @@
 /////// Grower Pod ///////
 /obj/machinery/clonepod/transhuman
 	name = "grower pod"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi,
+						/datum/category_item/catalogue/technology/resleeving)
 	circuit = /obj/item/weapon/circuitboard/transhuman_clonepod
 
 //A full version of the pod
@@ -170,6 +172,8 @@
 /obj/machinery/transhuman/synthprinter
 	name = "SynthFab 3000"
 	desc = "A rapid fabricator for synthetic bodies."
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi,
+						/datum/category_item/catalogue/technology/resleeving)
 	icon = 'icons/obj/machines/synthpod.dmi'
 	icon_state = "pod_0"
 	circuit = /obj/item/weapon/circuitboard/transhuman_synthprinter
@@ -395,6 +399,8 @@
 /obj/machinery/transhuman/resleever
 	name = "resleeving pod"
 	desc = "Used to combine mind and body into one unit."
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi,
+						/datum/category_item/catalogue/technology/resleeving)
 	icon = 'icons/obj/machines/implantchair.dmi'
 	icon_state = "implantchair"
 	circuit = /obj/item/weapon/circuitboard/transhuman_resleever

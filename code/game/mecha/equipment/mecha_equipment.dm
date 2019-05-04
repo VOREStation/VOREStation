@@ -1,12 +1,12 @@
 //DO NOT ADD MECHA PARTS TO THE GAME WITH THE DEFAULT "SPRITE ME" SPRITE!
 //I'm annoyed I even have to tell you this! SPRITE FIRST, then commit.
-#define EQUIP_HULL 1
-#define EQUIP_WEAPON 2
-#define EQUIP_UTILITY 3
-#define EQUIP_SPECIAL 4
+#define EQUIP_HULL		"hull"
+#define EQUIP_WEAPON	"weapon"
+#define EQUIP_UTILITY	"utility"
+#define EQUIP_SPECIAL	"core"
 //VOREStation Addition begin: MICROMECHS
-#define EQUIP_MICRO_UTILITY 5
-#define EQUIP_MICRO_WEAPON 6
+#define EQUIP_MICRO_UTILITY	"micro_utility"
+#define EQUIP_MICRO_WEAPON	"micro_weapon"
 //VOREStation Addition end: MICROMECHS
 
 /obj/item/mecha_parts/mecha_equipment
@@ -35,6 +35,9 @@
 		return 1
 	return 0
 
+/obj/item/mecha_parts/mecha_equipment/examine(mob/user)
+	..()
+	to_chat(user, "<span class='notice'>\The [src] will fill [equip_type?"a [equip_type]":"any"] slot.</span>")
 
 /obj/item/mecha_parts/mecha_equipment/New()
 	..()

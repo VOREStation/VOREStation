@@ -273,6 +273,14 @@ datum/gear/suit/duster
 	display_name = "cloak, medical"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/medical
 
+/datum/gear/suit/roles/poncho/cloak/custom //A colorable cloak
+	display_name = "cloak (colorable)"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/custom
+
+/datum/gear/suit/roles/poncho/cloak/custom/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
 /datum/gear/suit/unathi_robe
 	display_name = "roughspun robe"
 	path = /obj/item/clothing/suit/unathi/robe

@@ -23,6 +23,8 @@
 	stored_name = new_name
 	name = "[initial(name)] ([stored_name])"
 
+/obj/item/clothing/accessory/badge/proc/set_desc(var/mob/living/carbon/human/H)
+
 /obj/item/clothing/accessory/badge/attack_self(mob/user as mob)
 
 	if(!stored_name)
@@ -148,3 +150,66 @@
 		new /obj/item/clothing/accessory/badge/holo/cord(src)
 		..()
 		return
+
+// Synthmorph bag / Corporation badges. Primarily used on the robobag, but can be worn. Default is NT.
+
+/obj/item/clothing/accessory/badge/corporate_tag
+	name = "NanoTrasen Badge"
+	desc = "A plain metallic plate that might denote the wearer as a member of NanoTrasen."
+	icon_state = "tag_nt"
+	item_state = "badge"
+	badge_string = "NanoTrasen"
+
+/obj/item/clothing/accessory/badge/corporate_tag/morpheus
+	name = "Morpheus Badge"
+	desc = "A plain metallic plate that might denote the wearer as a member of Morpheus Cyberkinetics."
+	icon_state = "tag_blank"
+	badge_string = "Morpheus"
+
+/obj/item/clothing/accessory/badge/corporate_tag/wardtaka
+	name = "Ward-Takahashi Badge"
+	desc = "A plain metallic plate that might denote the wearer as a member of Ward-Takahashi."
+	icon_state = "tag_ward"
+	badge_string = "Ward-Takahashi"
+
+/obj/item/clothing/accessory/badge/corporate_tag/zenghu
+	name = "Zeng-Hu Badge"
+	desc = "A plain metallic plate that might denote the wearer as a member of Zeng-Hu."
+	icon_state = "tag_zeng"
+	badge_string = "Zeng-Hu"
+
+/obj/item/clothing/accessory/badge/corporate_tag/gilthari
+	name = "Gilthari Badge"
+	desc = "An opulent metallic plate that might denote the wearer as a member of Gilthari."
+	icon_state = "tag_gil"
+	badge_string = "Gilthari"
+
+/obj/item/clothing/accessory/badge/corporate_tag/veymed
+	name = "Vey-Medical Badge"
+	desc = "A plain metallic plate that might denote the wearer as a member of Vey-Medical."
+	icon_state = "tag_vey"
+	badge_string = "Vey-Medical"
+
+/obj/item/clothing/accessory/badge/corporate_tag/hephaestus
+	name = "Hephaestus Badge"
+	desc = "A rugged metallic plate that might denote the wearer as a member of Hephaestus."
+	icon_state = "tag_heph"
+	badge_string = "Hephaestus"
+
+/obj/item/clothing/accessory/badge/corporate_tag/grayson
+	name = "Grayson Badge"
+	desc = "A rugged metallic plate that might denote the wearer as a member of Grayson."
+	icon_state = "tag_grayson"
+	badge_string = "Grayson"
+
+/obj/item/clothing/accessory/badge/corporate_tag/xion
+	name = "Xion Badge"
+	desc = "A rugged metallic plate that might denote the wearer as a member of Xion."
+	icon_state = "tag_xion"
+	badge_string = "Xion"
+
+/obj/item/clothing/accessory/badge/corporate_tag/bishop
+	name = "Bishop Badge"
+	desc = "A sleek metallic plate that might denote the wearer as a member of Bishop."
+	icon_state = "tag_bishop"
+	badge_string = "Bishop"

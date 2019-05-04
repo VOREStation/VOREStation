@@ -88,13 +88,6 @@ character_name: Aronai Kadigan
 item_path: /obj/item/weapon/card/id/centcom/station/fluff/aronai
 }
 
-Weapon Box. Permit Expired
-{
-ckey: aerowing
-character_name: Sebastian Aji
-item_path: /obj/item/weapon/storage/box/fluff/sebastian_aji
-}
-
 # ######## B CKEYS
 {
 ckey: benemuel
@@ -202,19 +195,6 @@ character_name: Dhaeleena M'iar
 item_path: /obj/item/clothing/accessory/medal/silver/security/fluff/dhael
 }
 
-#Permit Expired
-#{
-#ckey: dhaeleena
-#character_name: Dhaeleena M'iar
-#item_path: /obj/item/weapon/gun/projectile/revolver/mateba/fluff/dhael
-#}
-#
-#{
-#ckey: dhaeleena
-#character_name: Dhaeleena M'iar
-#item_path: /obj/item/clothing/accessory/permit/gun/fluff/dhaeleena_miar
-#}
-
 {
 ckey: dickfreedomjohnson
 character_name: Elliot Richards
@@ -248,20 +228,6 @@ item_path: /obj/item/weapon/storage/box/fluff/yonra
 }
 
 # ######## E CKEYS
-
-# Permit Expired
-#{
-#ckey: eekasqueak
-#character_name: Serkii Miishy
-#item_path: /obj/item/clothing/accessory/permit/gun/fluff/serkiimiishy
-#}
-#
-#{
-#ckey: eekasqueak
-#character_name: Serkii Miishy
-#item_path: /obj/item/weapon/gun/energy/stunrevolver
-#}
-
 {
 ckey: eekasqueak
 character_name: Serkii Miishy
@@ -287,8 +253,8 @@ item_path: /obj/item/clothing/accessory/medal/bronze_heart
 }
 
 # ######## F CKEYS
-# ######## G CKEYS
 
+# ######## G CKEYS
 {
 ckey:Gowst
 character_name: Eldi Moljir
@@ -296,7 +262,6 @@ item_path: /obj/item/weapon/implanter/reagent_generator/eldi
 }
 
 # ######## H CKEYS
-
 {
 ckey: hottokeeki
 character_name: Belle Day
@@ -315,26 +280,7 @@ character_name: Belle Day
 item_path: /obj/item/weapon/implanter/reagent_generator/belle
 }
 
-#{
-#ckey: hzdonut
-#character_name: Jesse Soemmer
-#item_path: /obj/item/weapon/gun/projectile/revolver/fluff/jesselemat
-#}
-#
-#{
-#ckey: hzdonut
-#character_name: Jesse Soemmer
-#item_path: /obj/item/clothing/accessory/permit/gun/fluff/JesseSoemmer
-#}
-#
-#{
-#ckey: hzdonut
-#character_name: Jesse Soemmer
-#item_path: /obj/item/clothing/accessory/holster/hip
-#}
-
 # ######## I CKEYS
-
 {
 ckey: interrolouis
 character_name:  Ruda Lizden
@@ -354,7 +300,6 @@ item_path: /obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo
 }
 
 # ######## J CKEYS
-
 {
 ckey: jacknoir413
 character_name: Mor Xaina
@@ -541,12 +486,6 @@ character_name: Chakat Taiga
 item_path: /obj/item/clothing/under/fluff/taiga
 }
 
-#{
-#ckey: kligor
-#character_name: Andy Gettemy
-#item_path: /obj/item/device/pda_mod/fluff/kligor
-#}
-
 {
 ckey: konabird
 character_name: Rischi
@@ -560,20 +499,12 @@ item_path: /obj/item/clothing/accessory/medal/nobel_science/fluff/ashley
 }
 
 # ######## L CKEYS
-
 {
 ckey: lm40
 character_name: Kenzie Houser
 item_path: /obj/item/weapon/reagent_containers/hypospray/vial/kenzie
 req_access: 5
 }
-
-#Weapon Box. Permit Expired
-#{
-#ckey: luminescentring
-#character_name: Briana Moore
-#item_path: /obj/item/weapon/storage/box/fluff/briana_moore
-#}
 
 {
 ckey: luminescentring
@@ -612,19 +543,6 @@ character_name: Giliana Gamish
 item_path: /obj/item/clothing/head/fluff/molenar2
 }
 
-# Permit Expired
-#{
-#ckey: molenar
-#character_name: Kari Akiren
-#item_path: /obj/item/weapon/gun/projectile/shotgun/pump/rifle/fluff/kari_akiren
-#}
-#
-#{
-#ckey: molenar
-#character_name: Kari Akiren
-#item_path: /obj/item/clothing/accessory/permit/gun/fluff/kari_akiren
-#}
-
 {
 ckey: myryan
 character_name: Myryan Karnage-Cunningham
@@ -639,7 +557,6 @@ req_access: 58
 }
 
 # ######## N CKEYS
-
 {
 ckey: natje
 character_name: Awen Henry
@@ -678,20 +595,6 @@ item_path: /obj/item/weapon/melee/fluff/holochain
 }
 
 # ######## P CKEYS
-
-#{
-#ckey: pawoverlord
-#character_name: Sorrel Cavalet
-#item_path: /obj/item/clothing/accessory/permit/gun/fluff/sorrel_cavalet
-#}
-
-#{
-#ckey: pawoverlord
-#character_name: Sorrel Cavalet
-#item_path: /obj/item/weapon/gun/projectile/colt
-#item_desc: "A cheap Martian knock-off of a Colt M1911. It has the word 'Cavalet' etched on the side. Uses .45 rounds."
-#}
-
 {
 ckey: phoaly
 character_name: Lily Maximus
@@ -703,6 +606,7 @@ ckey: pontifexminimus
 character_name: Lucius Null
 item_path: /obj/item/weapon/fluff/dragor_dot
 }
+
 {
 ckey: pontifexminimus
 character_name: Lucia Null
@@ -712,19 +616,6 @@ item_path: /obj/item/weapon/fluff/dragor_dot
 # ######## Q CKEYS
 
 # ######## R CKEYS
-
-# Permit Expired
-#{
-#ckey: Razerwing
-#character_name: Archer Maximus
-#item_path: /obj/item/clothing/accessory/permit/gun/fluff/archermaximus
-#}
-#
-#{
-#ckey: Razerwing
-#character_name: Archer Maximus
-#item_path: /obj/item/weapon/gun/projectile/colt/fluff/archercolt
-#}
 
 # ######## S CKEYS
 {
@@ -774,27 +665,6 @@ ckey: seiga
 character_name: Alfonso Oak Telanor
 item_path: /obj/item/clothing/glasses/sunglasses/fluff/alfonso
 }
-
-#{
-#ckey: silencedmp5a5
-#character_name: Serdykov Antoz
-#item_path: /obj/item/clothing/head/helmet/serdy
-#req_access = 1
-#}
-
-#{
-#ckey: silencedmp5a5
-#character_name: Serdykov Antoz
-#item_path: /obj/item/clothing/suit/armor/vest/wolftaur/serdy
-#req_access = 1
-#}
-#
-#{
-#ckey: silencedmp5a5
-#character_name: Serdykov Antoz
-#item_path: /obj/item/weapon/storage/box/fluff/serdykov_antoz
-#req_access = 1
-#}
 
 {
 ckey: silencedmp5a5
@@ -901,36 +771,43 @@ item_path: /obj/item/clothing/head/fluff/runac
 }
 
 # ######## U CKEYS
+
 # ######## V CKEYS
 {
 ckey: vailthewolf
 character_name: Vakashi
 item_path: /obj/item/clothing/accessory/permit/gun/fluff/Vakashi
 }
+
 {
 ckey: vailthewolf
 character_name: Vakashi
 item_path: /obj/item/weapon/reagent_containers/spray/pepper
 }
+
 ckey: verkister
 character_name: Cameron Eggbert
 item_path: /obj/item/clothing/glasses/fluff/science_proper
 }
+
 {
 ckey: verkister
 character_name: Cameron Eggbert
 item_path: /obj/item/weapon/disk/limb/eggnerdltd
 }
+
 {
 ckey: verkister
 character_name: Opie Eggbert
 item_path: /obj/item/clothing/glasses/fluff/spiffygogs
 }
+
 {
 ckey: virgo113
 character_name: Verin Raharra
 item_path: /obj/item/clothing/suit/storage/hazardvest/fluff/verin
 }
+
 {
 ckey: vorrarkul
 character_name: Lucina Dakarim
@@ -992,12 +869,6 @@ item_path: /obj/item/clothing/mask/gas/sexymime
 }
 
 # ######## W CKEYS
-#{
-#ckey: warbrand2
-#character_name: Brandy draca
-#item_path: /obj/item/device/pda_mod/fluff/warbrand2
-#}
-
 {
 ckey: werebear
 character_name: Silas Newton
@@ -1035,7 +906,6 @@ item_path: /obj/item/weapon/implanter/reagent_generator/tempest
 }
 
 # ######## X CKEYS
-
 {
 ckey: Xsdew
 character_name: Penelope Allen
@@ -1055,6 +925,7 @@ item_path: /obj/item/clothing/accessory/medal/silver/unity
 }
 
 # ######## Y CKEYS
+
 # ######## Z CKEYS
 {
 ckey: zekesturm

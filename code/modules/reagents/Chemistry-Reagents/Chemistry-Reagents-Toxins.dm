@@ -9,6 +9,7 @@
 	reagent_state = LIQUID
 	color = "#CF3600"
 	metabolism = REM * 0.25 // 0.05 by default. Hopefully enough to get some help, or die horribly, whatever floats your boat
+	filtered_organs = list(O_LIVER, O_KIDNEYS)
 	var/strength = 4 // How much damage it deals per unit
 
 /datum/reagent/toxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -253,6 +254,7 @@
 	color = "#669900"
 	metabolism = REM
 	strength = 3
+	mrate_static = TRUE
 
 /datum/reagent/toxin/zombiepowder/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -879,3 +881,47 @@ datum/reagent/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/re
 			randmuti(M)
 			M << "<span class='warning'>You feel odd!</span>"
 	M.apply_effect(6 * removed, IRRADIATE, 0)
+
+/*
+ * Hostile nanomachines.
+ * Unscannable, and commonly all look the same.
+ */
+
+/datum/reagent/shredding_nanites
+	name = "Restorative Nanites"
+	id = "shredding_nanites"
+	description = "Miniature medical robots that swiftly restore bodily damage. These ones seem to be malfunctioning."
+	taste_description = "metal"
+	reagent_state = SOLID
+	color = "#555555"
+	metabolism = REM * 4 // Nanomachines. Fast.
+
+/datum/reagent/shredding_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.adjustBruteLoss(4 * removed)
+	M.adjustOxyLoss(4 * removed)
+
+/datum/reagent/irradiated_nanites
+	name = "Restorative Nanites"
+	id = "irradiated_nanites"
+	description = "Miniature medical robots that swiftly restore bodily damage. These ones seem to be malfunctioning."
+	taste_description = "metal"
+	reagent_state = SOLID
+	color = "#555555"
+	metabolism = REM * 4
+
+/datum/reagent/irradiated_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	radiation_repository.radiate(get_turf(M), 20)	// Irradiate people around you.
+	M.radiation = max(M.radiation + 5 * removed, 0)	// Irradiate you. Because it's inside you.
+
+/datum/reagent/neurophage_nanites
+	name = "Restorative Nanites"
+	id = "neurophage_nanites"
+	description = "Miniature medical robots that swiftly restore bodily damage. These ones seem to be completely hostile."
+	taste_description = "metal"
+	reagent_state = SOLID
+	color = "#555555"
+	metabolism = REM * 4
+
+/datum/reagent/neurophage_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.adjustBrainLoss(2 * removed)	// Their job is to give you a bad time.
+	M.adjustBruteLoss(2 * removed)

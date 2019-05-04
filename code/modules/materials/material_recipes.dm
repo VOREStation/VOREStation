@@ -89,6 +89,12 @@
 	recipes += new/datum/stack_recipe("small light fixture frame", /obj/item/frame/light/small, 1)
 	recipes += new/datum/stack_recipe("floor lamp fixture frame", /obj/machinery/light_construct/flamp, 2)
 	recipes += new/datum/stack_recipe("apc frame", /obj/item/frame/apc, 2)
+	recipes += new/datum/stack_recipe_list("modular computer frames", list( \
+		new/datum/stack_recipe("modular console frame", /obj/item/modular_computer/console, 20),\
+		new/datum/stack_recipe("modular telescreen frame", /obj/item/modular_computer/telescreen, 10),\
+		new/datum/stack_recipe("modular laptop frame", /obj/item/modular_computer/laptop, 10),\
+		new/datum/stack_recipe("modular tablet frame", /obj/item/modular_computer/tablet, 5),\
+	))
 	recipes += new/datum/stack_recipe_list("filing cabinets", list( \
 		new/datum/stack_recipe("filing cabinet", /obj/structure/filingcabinet, 4, time = 20, one_per_turf = 1, on_floor = 1), \
 		new/datum/stack_recipe("tall filing cabinet", /obj/structure/filingcabinet/filingcabinet, 4, time = 20, one_per_turf = 1, on_floor = 1), \
@@ -190,3 +196,7 @@
 	recipes += new/datum/stack_recipe("alien wood floor tile", /obj/item/stack/tile/wood/sif, 1, 4, 20)
 	recipes -= new/datum/stack_recipe("wood floor tile", /obj/item/stack/tile/wood, 1, 4, 20)
 	recipes -= new/datum/stack_recipe("wooden chair", /obj/structure/bed/chair/wood, 3, time = 10, one_per_turf = 1, on_floor = 1)
+
+/material/supermatter/generate_recipes()
+	recipes = list()
+	recipes += new/datum/stack_recipe("supermatter shard", /obj/machinery/power/supermatter/shard, 30 , one_per_turf = 1, time = 600, on_floor = 1)

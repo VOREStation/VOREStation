@@ -756,3 +756,5 @@ proc/dd_sortedTextList(list/incoming)
 	. = list()
 	for(var/i in L)
 		. |= i
+
+#define listequal(A, B) (A.len == B.len && !length(A^B))

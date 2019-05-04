@@ -11,6 +11,7 @@
 #define log_world(message) world.log << message
 #define to_file(file_entry, source_var) file_entry << source_var
 #define from_file(file_entry, target_var) file_entry >> target_var
+#define show_browser(target, browser_content, browser_name) target << browse(browser_content, browser_name)
 
 // From TG, might be useful to have.
 // Didn't port SEND_TEXT() since to_chat() appears to serve the same purpose.
@@ -19,5 +20,9 @@
 #define SEND_SOUND(target, sound) DIRECT_OUTPUT(target, sound)
 
 #define CanInteract(user, state) (CanUseTopic(user, state) == STATUS_INTERACTIVE)
+
+#define qdel_null(x) if(x) { qdel(x) ; x = null }
+
+#define random_id(key,min_id,max_id) uniqueness_repository.Generate(/datum/uniqueness_generator/id_random, key, min_id, max_id)
 
 #define ARGS_DEBUG log_debug("[__FILE__] - [__LINE__]") ; for(var/arg in args) { log_debug("\t[log_info_line(arg)]") }

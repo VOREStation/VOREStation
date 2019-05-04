@@ -45,6 +45,7 @@
 	if(config)
 		total_positions = config.limit_visitors
 		spawn_positions = config.limit_visitors
+
 /datum/job/assistant/get_access()
 	if(config.assistant_maint)
 		return list(access_maint_tunnels)

@@ -8,10 +8,6 @@
 "c" = (
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/MilitaryCamp1)
-"d" = (
-/obj/structure/flora/bush,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/MilitaryCamp1)
 "e" = (
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
@@ -196,7 +192,7 @@ c
 c
 c
 c
-d
+c
 c
 c
 c
@@ -222,7 +218,7 @@ c
 c
 c
 k
-d
+c
 a
 "}
 (6,1,1) = {"
@@ -271,7 +267,7 @@ a
 "}
 (8,1,1) = {"
 a
-d
+c
 c
 c
 j
@@ -496,7 +492,7 @@ b
 c
 c
 c
-d
+c
 c
 k
 c

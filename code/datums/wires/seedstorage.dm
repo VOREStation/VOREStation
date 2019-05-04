@@ -10,10 +10,6 @@
 
 /datum/wires/seedstorage/CanUse(var/mob/living/L)
 	var/obj/machinery/seed_storage/V = holder
-	if(!istype(L, /mob/living/silicon))
-		if(V.seconds_electrified)
-			if(V.shock(L, 100))
-				return 0
 	if(V.panel_open)
 		return 1
 	return 0
