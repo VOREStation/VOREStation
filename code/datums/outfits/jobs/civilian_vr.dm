@@ -6,7 +6,7 @@
 
 /decl/hierarchy/outfit/job/assistant/engineer
 	id_type = /obj/item/weapon/card/id/engineering
-	flags = OUTFIT_EXTENDED_SURVIVAL
+	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
 
 /decl/hierarchy/outfit/job/assistant/medic
 	id_type = /obj/item/weapon/card/id/medical
