@@ -1,0 +1,27 @@
+"a" = (/turf/template_noop,/area/tether_away/debrisfield/explored)
+"b" = (/turf/simulated/mineral/vacuum,/area/tether_away/debrisfield/explored)
+"c" = (/turf/simulated/mineral/floor/vacuum,/area/tether_away/debrisfield/explored)
+"d" = (/turf/simulated/wall/wood,/area/tether_away/debrisfield/explored)
+"e" = (/obj/structure/closet/secure_closet/freezer/meat,/obj/item/weapon/reagent_containers/food/snacks/carpmeat,/obj/item/weapon/reagent_containers/food/snacks/carpmeat,/obj/item/weapon/reagent_containers/food/snacks/carpmeat,/turf/simulated/floor/wood,/area/tether_away/debrisfield/explored)
+"f" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/condiment/coldsauce,/obj/item/weapon/reagent_containers/food/condiment/ketchup,/obj/item/weapon/reagent_containers/food/condiment/hotsauce,/obj/item/weapon/reagent_containers/food/condiment/soysauce,/turf/simulated/floor/wood,/area/tether_away/debrisfield/explored)
+"g" = (/obj/structure/table/woodentable,/obj/machinery/microwave,/turf/simulated/floor/wood,/area/tether_away/debrisfield/explored)
+"h" = (/obj/structure/simple_door/wood,/turf/simulated/floor/wood,/area/tether_away/debrisfield/explored)
+"i" = (/turf/simulated/floor/wood,/area/tether_away/debrisfield/explored)
+"j" = (/obj/structure/closet/crate/freezer,/obj/item/weapon/reagent_containers/food/snacks/taco,/obj/item/weapon/reagent_containers/food/snacks/taco,/obj/item/weapon/reagent_containers/food/snacks/taco,/obj/item/weapon/reagent_containers/food/snacks/hotdog,/obj/item/weapon/reagent_containers/food/snacks/hotdog,/obj/item/weapon/reagent_containers/food/snacks/cheeseburrito,/obj/item/weapon/reagent_containers/food/snacks/cheeseburrito,/turf/simulated/floor/wood,/area/tether_away/debrisfield/explored)
+"k" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/tether_away/debrisfield/explored)
+"l" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/snacks/taco,/turf/simulated/floor/wood,/area/tether_away/debrisfield/explored)
+"m" = (/obj/structure/table/woodentable,/obj/machinery/cash_register{dir = 1},/turf/simulated/floor/wood,/area/tether_away/debrisfield/explored)
+
+(1,1,1) = {"
+aabbbbaaaaaaa
+abbbbbbccaaaa
+bbbbbcccccaaa
+bbbccccccccaa
+cbccdddddccaa
+ccccdefgdccca
+cccchiijdcccc
+acccdmlkdcccc
+accccccccccca
+aacccccccccaa
+aaaaacccccaaa
+"}
