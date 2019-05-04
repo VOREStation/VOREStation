@@ -16,7 +16,7 @@
 	var/list/nutriment_desc = list("food" = 1)
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = ITEMSIZE_SMALL
-	force = 1
+	force = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/Initialize()
 	. = ..()
