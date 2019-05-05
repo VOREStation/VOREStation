@@ -88,13 +88,8 @@
 		reaction_occurred = FALSE
 		for(var/i in reagent_list)
 			var/datum/reagent/R = i
-<<<<<<< HEAD
-			if(SSchemistry.chemical_reactions_by_reagent[R.id])							//VOREStation Edit: unruntiming chems
-				eligible_reactions |= SSchemistry.chemical_reactions_by_reagent[R.id]	//VOREStation Edit: unruntiming chems
-=======
 			if(SSchemistry.chemical_reactions_by_reagent[R.id])
 				eligible_reactions |= SSchemistry.chemical_reactions_by_reagent[R.id]
->>>>>>> 2358af9... Merge pull request #6151 from Novacat/nova-runtimes
 
 		for(var/i in eligible_reactions)
 			var/datum/chemical_reaction/C = i
