@@ -150,6 +150,7 @@
 
 #include "space/_debrisfield.dm"
 #include "space/pois/_templates.dm"
+#include "space/pois/debrisfield_things.dm"
 /datum/map_template/tether_lateload/away_debrisfield
 	name = "Debris Field - Z1 Space"
 	desc = "The Virgo 3 Debris Field away mission."
