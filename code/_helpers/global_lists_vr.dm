@@ -30,15 +30,7 @@ var/global/list/vantag_choices_list = list(
 
 //Blacklist to exclude items from object ingestion. Digestion blacklist located in digest_act_vr.dm
 var/global/list/item_vore_blacklist = list(
-		/obj/item/weapon/hand_tele,
-		/obj/item/weapon/card/id/gold/captain/spare,
-		/obj/item/weapon/gun,
-		/obj/item/weapon/pinpointer,
-		/obj/item/clothing/shoes/magboots,
-		/obj/item/blueprints,
-		/obj/item/clothing/head/helmet/space,
-		/obj/item/weapon/disk/nuclear,
-		/obj/item/clothing/suit/storage/hooded/wintercoat/roiz)
+		)
 
 var/global/list/digestion_sounds = list(
 		'sound/vore/digest1.ogg',
@@ -121,54 +113,7 @@ var/global/list/tf_vore_egg_types = list(
 	"Xenomorph"		= /obj/structure/closet/secure_closet/egg/xenomorph)
 
 var/global/list/edible_trash = list(/obj/item/broken_device,
-				/obj/item/clothing/mask,
-				/obj/item/clothing/glasses,
-				/obj/item/clothing/gloves,
-				/obj/item/clothing/head,
-				/obj/item/clothing/shoes,
-				/obj/item/device/aicard,
-				/obj/item/device/flashlight,
-				/obj/item/device/mmi/digital/posibrain,
-				/obj/item/device/paicard,
-				/obj/item/device/pda,
-				/obj/item/device/radio/headset,
-				/obj/item/inflatable/torn,
-				/obj/item/organ,
-				/obj/item/stack/material/cardboard,
-				/obj/item/toy,
-				/obj/item/trash,
-				/obj/item/weapon/digestion_remains,
-				/obj/item/weapon/bananapeel,
-				/obj/item/weapon/bone,
-				/obj/item/weapon/broken_bottle,
-				/obj/item/weapon/card/emag_broken,
-				/obj/item/weapon/cigbutt,
-				/obj/item/weapon/circuitboard/broken,
-				/obj/item/weapon/clipboard,
-				/obj/item/weapon/corncob,
-				/obj/item/weapon/dice,
-				/obj/item/weapon/flame,
-				/obj/item/weapon/light,
-				/obj/item/weapon/lipstick,
-				/obj/item/weapon/material/shard,
-				/obj/item/weapon/newspaper,
-				/obj/item/weapon/paper,
-				/obj/item/weapon/paperplane,
-				/obj/item/weapon/pen,
-				/obj/item/weapon/photo,
-				/obj/item/weapon/reagent_containers/food,
-				/obj/item/weapon/reagent_containers/glass/bottle,
-				/obj/item/weapon/reagent_containers/glass/rag,
-				/obj/item/weapon/soap,
-				/obj/item/weapon/spacecash,
-				/obj/item/weapon/storage/box/khcrystal,
-				/obj/item/weapon/storage/box/matches,
-				/obj/item/weapon/storage/box/wings,
-				/obj/item/weapon/storage/fancy/candle_box,
-				/obj/item/weapon/storage/fancy/cigarettes,
-				/obj/item/weapon/storage/fancy/crayons,
-				/obj/item/weapon/storage/fancy/egg_box,
-				/obj/item/weapon/storage/wallet)
+				/obj/item/)
 
 var/global/list/contamination_flavors = list(
 				"Generic" = contamination_flavors_generic,
