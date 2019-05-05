@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(nanoui)
 		"nano/css/",\
 		"nano/images/",\
 		"nano/images/status_icons/",\
-		"nano/images/modular_computers/",
+		"nano/images/modular_computers/",\
 		"nano/js/",\
 		"nano/templates/"\
 	)
@@ -25,9 +25,9 @@ SUBSYSTEM_DEF(nanoui)
 			if(copytext(filename, length(filename)) != "/") // filenames which end in "/" are actually directories, which we want to ignore
 				if(fexists(path + filename))
 					asset_files.Add(fcopy_rsc(path + filename)) // add this file to asset_files for sending to clients when they connect
-	.=..()					//VOREStation Edit start: fixing some kevinzing
+	.=..()
 	for(var/i in GLOB.clients)
-		send_resources(i)	//VOREStation Edit end: fixing some kevinzing
+		send_resources(i)
 
 /datum/controller/subsystem/nanoui/Recover()
 	if(SSnanoui.open_uis)
