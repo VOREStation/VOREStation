@@ -4831,13 +4831,13 @@
 /area/rnd/workshop)
 "iz" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/vending,
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -24
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
+/obj/machinery/vending/assist,
 /turf/simulated/floor/plating,
 /area/rnd/research_storage)
 "iA" = (
