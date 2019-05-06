@@ -1,0 +1,14 @@
+"a" = (/turf/simulated/mineral/vacuum,/area/tether_away/debrisfield/explored)
+"b" = (/turf/template_noop,/area/tether_away/debrisfield/explored)
+
+(1,1,1) = {"
+aabbbbaabbb
+aabbaaaaabb
+bbbaaaaaabb
+bbbbaaaaaab
+babbbaaaaab
+aaabbbaaabb
+aaaabbbbbbb
+baabbbbabbb
+bbbbbbaabba
+"}

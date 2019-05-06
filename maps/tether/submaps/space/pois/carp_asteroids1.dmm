@@ -1,0 +1,17 @@
+"a" = (/turf/template_noop,/area/space)
+"b" = (/turf/simulated/mineral/vacuum,/area/space)
+"c" = (/obj/tether_away_spawner/debrisfield/carp,/turf/template_noop,/area/space)
+
+(1,1,1) = {"
+aaaaaabbbba
+abaaabbbbba
+bbbaabbbbaa
+bbbbaabbaaa
+abbaaaaaabb
+aabaacaabbb
+aaaaaaaabbb
+aaabbbaaaab
+abbbbbbaaaa
+abbbbbbaaaa
+aabbbbaaaaa
+"}
