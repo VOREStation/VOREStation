@@ -1,0 +1,58 @@
+"a" = (/turf/template_noop,/area/tether_away/debrisfield/explored)
+"b" = (/turf/simulated/shuttle/wall,/area/tether_away/debrisfield/explored)
+"c" = (/obj/structure/shuttle/engine/propulsion{dir = 1},/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"d" = (/obj/structure/girder,/turf/simulated/shuttle/plating,/area/tether_away/debrisfield/explored)
+"e" = (/turf/simulated/shuttle/plating,/area/tether_away/debrisfield/explored)
+"f" = (/obj/structure/lattice,/obj/structure/girder/displaced,/turf/template_noop,/area/tether_away/debrisfield/explored)
+"g" = (/obj/structure/girder/displaced,/turf/simulated/shuttle/plating,/area/tether_away/debrisfield/explored)
+"h" = (/obj/structure/lattice,/turf/template_noop,/area/tether_away/debrisfield/explored)
+"i" = (/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"j" = (/turf/simulated/shuttle/floor/white/airless,/area/tether_away/debrisfield/explored)
+"k" = (/obj/structure/girder,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"l" = (/obj/structure/girder/displaced,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"m" = (/obj/item/stack/material/steel,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"n" = (/obj/structure/girder/displaced,/turf/template_noop,/area/tether_away/debrisfield/explored)
+"o" = (/obj/structure/girder/displaced,/turf/simulated/shuttle/floor/white/airless,/area/tether_away/debrisfield/explored)
+"p" = (/obj/structure/grille,/obj/item/weapon/material/shard,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"q" = (/obj/item/weapon/material/shard,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"r" = (/obj/item/inflatable/torn,/turf/simulated/shuttle/floor/white/airless,/area/tether_away/debrisfield/explored)
+"s" = (/obj/structure/shuttle/window,/obj/structure/grille,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"t" = (/obj/item/inflatable/door/torn,/turf/simulated/shuttle/floor/white/airless,/area/tether_away/debrisfield/explored)
+"u" = (/obj/structure/inflatable,/turf/simulated/shuttle/floor/white/airless,/area/tether_away/debrisfield/explored)
+"v" = (/obj/structure/door_assembly/door_assembly_fre,/turf/simulated/shuttle/floor/white/airless,/area/tether_away/debrisfield/explored)
+"w" = (/obj/structure/lattice,/obj/item/stack/material/steel,/turf/template_noop,/area/tether_away/debrisfield/explored)
+"x" = (/obj/structure/lattice,/obj/structure/lattice,/obj/item/stack/material/steel,/turf/template_noop,/area/tether_away/debrisfield/explored)
+"y" = (/obj/item/stack/rods,/turf/template_noop,/area/tether_away/debrisfield/explored)
+"z" = (/obj/structure/girder,/turf/simulated/shuttle/floor/white/airless,/area/tether_away/debrisfield/explored)
+"A" = (/turf/simulated/shuttle/floor/airless,/area/tether_away/debrisfield/explored)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaa
+abcaaaaaaaaaaaa
+abbdacaaaccccba
+abeefbbgbbbbbba
+abeeaeehhimAAka
+aeehahwahhilAka
+aehxaahaaahhila
+aaahawhaaaaaeea
+aaaaaaaaaaayhea
+aahaaaaaaaaahka
+ahhaaanaaaaiika
+ahhaaahhhhiiika
+ahhhyhhhiimiiba
+ahhhhhiiiiibbba
+akihiiiijoojAba
+apqikirjrjjjAsa
+asAjbrrturzjAsa
+abAjbuutuubjAba
+abbbbbbvbbbbbba
+asAjjjjjjjjjAsa
+asAjjjjjjjjjAsa
+abbAjjjjjjjAbba
+aabbAjjjjjAbbaa
+aaabbAjjjAbbaaa
+aaaasAAAAAsaaaa
+aaaabsssssbaaaa
+aaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaa
+"}

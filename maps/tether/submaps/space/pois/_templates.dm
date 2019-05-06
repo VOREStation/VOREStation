@@ -48,3 +48,8 @@
 	name = "Debris 1"
 	mappath = 'debris1.dmm'
 	cost = 2
+
+/datum/map_template/debrisfield/ship_exploded
+	name = "Exploded Ship"
+	mappath = 'ship_exploded.dmm'
+	cost = 35
