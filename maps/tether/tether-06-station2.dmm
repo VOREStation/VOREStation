@@ -18669,16 +18669,14 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
 "CE" = (
-/obj/structure/bed/chair{
-	dir = 4
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
 	},
-/obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/landmark/start{
-	name = "Field Medic"
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/medbreak)
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "CF" = (
 /obj/structure/table/glass,
 /obj/item/device/universal_translator,
@@ -18803,11 +18801,12 @@
 /area/crew_quarters/medbreak)
 "CS" = (
 /obj/structure/bed/chair{
-	dir = 1
+	dir = 4
 	},
 /obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/landmark/start{
-	name = "Field Medic"
+	name = "Paramedic"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
@@ -19583,24 +19582,25 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
 "Ep" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/effect/landmark/start{
+	name = "Paramedic"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/medbreak)
+"Eq" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	dir = 8;
+	icon_state = "propulsion_r"
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1/station{
 	base_turf = /turf/simulated/mineral/floor/vacuum
 	})
-"Eq" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/effect/landmark/start{
-	name = "Pathfinder"
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/medbreak)
 "Er" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
@@ -19611,16 +19611,6 @@
 /obj/machinery/vending/coffee,
 /turf/simulated/floor/tiled,
 /area/engineering/foyer_mezzenine)
-"Es" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
 "Et" = (
 /obj/structure/railing,
 /obj/effect/floor_decal/techfloor{
@@ -30892,7 +30882,7 @@ Bp
 BF
 BQ
 CR
-CE
+CS
 CQ
 AX
 Di
@@ -31035,7 +31025,7 @@ BG
 BR
 Cj
 CF
-Eq
+Ep
 De
 AG
 aP
@@ -31177,7 +31167,7 @@ BG
 BR
 Ck
 CG
-CS
+Ep
 Df
 AG
 aP
@@ -32453,10 +32443,10 @@ Ci
 Bw
 yY
 Cl
-Ep
-Ep
-Ep
-Es
+CE
+CE
+CE
+Eq
 yY
 ac
 ac
