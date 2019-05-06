@@ -6467,6 +6467,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
+"alM" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/landmark/start{
+	name = "Librarian"
+	},
+/turf/simulated/floor/carpet,
+/area/library)
 "alN" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/extinguisher_cabinet{
@@ -6477,6 +6489,25 @@
 /obj/vehicle/train/trolley,
 /turf/simulated/floor/tiled/monotile,
 /area/engineering/hallway)
+"alO" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/effect/landmark/start,
+/turf/simulated/floor/tiled,
+/area/storage/tools)
+"alP" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/effect/landmark/start{
+	name = "Assistant"
+	},
+/turf/simulated/floor/tiled,
+/area/storage/tools)
 "alQ" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/substation/civilian)
@@ -6491,6 +6522,12 @@
 /obj/vehicle/train/trolley,
 /turf/simulated/floor/tiled/monotile,
 /area/engineering/hallway)
+"alS" = (
+/obj/effect/landmark/start{
+	name = "Assistant"
+	},
+/turf/simulated/floor/tiled,
+/area/storage/tools)
 "alT" = (
 /turf/simulated/wall,
 /area/storage/emergency_storage/emergency4)
@@ -10082,12 +10119,6 @@
 "axR" = (
 /turf/simulated/floor/tiled,
 /area/tether/station/stairs_one)
-"axT" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/simulated/floor/tiled,
-/area/storage/tools)
 "axU" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	icon_state = "warningcorner";
@@ -10243,9 +10274,6 @@
 /obj/structure/stairs/south,
 /turf/simulated/floor/tiled,
 /area/tether/station/stairs_one)
-"ayA" = (
-/turf/simulated/floor/tiled,
-/area/storage/tools)
 "ayB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -17521,18 +17549,6 @@
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled,
 /area/tether/station/stairs_one)
-"biE" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
-	},
-/obj/effect/landmark/start{
-	name = "Assistant"
-	},
-/turf/simulated/floor/tiled,
-/area/storage/tools)
 "biK" = (
 /obj/structure/table/standard,
 /obj/random/tech_supply,
@@ -30188,10 +30204,10 @@ acp
 bdx
 awt
 bgO
-biE
-axT
-ayA
-ayA
+alO
+alP
+alS
+alS
 azO
 awt
 bsv
@@ -35739,7 +35755,7 @@ bFh
 aBx
 aEh
 bSN
-aFi
+alM
 aEL
 aGo
 bWQ

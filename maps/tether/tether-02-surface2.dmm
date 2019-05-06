@@ -4811,6 +4811,9 @@
 	pixel_x = -30;
 	pixel_y = -18
 	},
+/obj/effect/landmark/start{
+	name = "Research Director"
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/rdoffice)
 "kr" = (
@@ -7821,6 +7824,9 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/effect/landmark/start{
+	name = "Roboticist"
+	},
 /turf/simulated/floor/wood,
 /area/rnd/breakroom)
 "pU" = (
@@ -7849,6 +7855,9 @@
 "pW" = (
 /obj/structure/bed/chair{
 	dir = 8
+	},
+/obj/effect/landmark/start{
+	name = "Scientist"
 	},
 /turf/simulated/floor/wood,
 /area/rnd/breakroom)
@@ -8034,6 +8043,9 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
+/obj/effect/landmark/start{
+	name = "Scientist"
+	},
 /turf/simulated/floor/wood,
 /area/rnd/breakroom)
 "qo" = (
@@ -8062,11 +8074,10 @@
 /area/rnd/breakroom)
 "qr" = (
 /obj/structure/bed/chair{
-	dir = 4
+	dir = 8
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/effect/landmark/start{
+	name = "Roboticist"
 	},
 /turf/simulated/floor/wood,
 /area/rnd/breakroom)
@@ -8305,12 +8316,12 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/effect/landmark/start{
+	name = "Scientist"
 	},
 /turf/simulated/floor/wood,
 /area/rnd/breakroom)
@@ -9423,6 +9434,49 @@
 	},
 /turf/simulated/open,
 /area/rnd/staircase/secondfloor)
+"sY" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/effect/landmark/start{
+	name = "Xenobiologist"
+	},
+/turf/simulated/floor/wood,
+/area/rnd/breakroom)
+"sZ" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/landmark/start{
+	name = "Atmospheric Technician"
+	},
+/turf/simulated/floor/carpet,
+/area/engineering/lower/breakroom)
+"ta" = (
+/obj/effect/landmark/start{
+	name = "Atmospheric Technician"
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/lower/atmos_lockers)
+"tb" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 8
+	},
+/obj/effect/landmark/start{
+	name = "Janitor"
+	},
+/turf/simulated/floor/tiled,
+/area/janitor)
 "te" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -11304,9 +11358,6 @@
 /obj/structure/railing,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos)
-"xY" = (
-/turf/simulated/floor/tiled,
-/area/engineering/lower/atmos_lockers)
 "ya" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -15933,15 +15984,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
-"Nt" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/purple/border{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/janitor)
 "Nw" = (
 /obj/structure/table/rack,
 /obj/random/maintenance/clean,
@@ -27447,8 +27489,8 @@ nq
 pF
 pT
 qn
-qr
 qL
+sY
 rm
 rm
 sb
@@ -27872,7 +27914,7 @@ oZ
 nr
 pL
 pW
-pW
+qr
 pW
 pW
 rn
@@ -28868,7 +28910,7 @@ Pi
 OR
 Ji
 KH
-xY
+ta
 uG
 vw
 th
@@ -30710,7 +30752,7 @@ RK
 oJ
 py
 qk
-rK
+sZ
 If
 sp
 tp
@@ -32422,7 +32464,7 @@ ac
 oc
 vP
 Qh
-Nt
+tb
 QR
 TD
 Vz
