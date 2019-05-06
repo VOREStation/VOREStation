@@ -40,22 +40,6 @@
 /////////////
 // Some indigestible stuff
 /////////////
-/obj/item/weapon/hand_tele/digest_act(var/atom/movable/item_storage = null)
-	return FALSE
-/obj/item/weapon/card/id/gold/captain/spare/digest_act(var/atom/movable/item_storage = null)
-	return FALSE
-/obj/item/device/aicard/digest_act(var/atom/movable/item_storage = null)
-	return FALSE
-/obj/item/device/paicard/digest_act(var/atom/movable/item_storage = null)
-	return FALSE
-/obj/item/weapon/gun/digest_act(var/atom/movable/item_storage = null)
-	return FALSE
-/obj/item/weapon/pinpointer/digest_act(var/atom/movable/item_storage = null)
-	return FALSE
-/obj/item/blueprints/digest_act(var/atom/movable/item_storage = null)
-	return FALSE
-/obj/item/weapon/disk/nuclear/digest_act(var/atom/movable/item_storage = null)
-	return FALSE
 /obj/item/device/perfect_tele_beacon/digest_act(var/atom/movable/item_storage = null)
 	return FALSE //Sorta important to not digest your own beacons.
 /obj/item/organ/internal/brain/slime/digest_act(var/atom/movable/item_storage = null)
