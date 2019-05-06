@@ -92,6 +92,12 @@
 	taste_description = "egg"
 	color = "#FFFFAA"
 
+/datum/reagent/nutriment/protein/murk
+	name = "murkfin protein"
+	id = "murk_protein"
+	taste_description = "mud"
+	color = "#664330"
+
 /datum/reagent/nutriment/honey
 	name = "Honey"
 	id = "honey"

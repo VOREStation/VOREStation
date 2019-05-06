@@ -2378,4 +2378,17 @@
 	id = "biomass"
 	result = "biomass"
 	required_reagents = list("protein" = 1, "sugar" = 1, "phoron" = 1)
+<<<<<<< HEAD
 	result_amount = 6	// Roughly 120u per phoron sheet //VOREStation Edit
+=======
+	result_amount = 1	// Roughly 20u per phoron sheet
+
+// Neutralization.
+
+/datum/chemical_reaction/neutralize_neurotoxic_protein
+	name = "Neutralize Toxic Proteins"
+	id = "neurotoxic_protein_neutral"
+	result = "protein"
+	required_reagents = list("anti_toxin" = 1, "neurotoxic_protein" = 2)
+	result_amount = 2
+>>>>>>> a033ac4... Merge pull request #6113 from Mechoid/FishingFtWorldServer
