@@ -33,7 +33,6 @@
 		new /datum/data/mining_equipment("Resonator",					/obj/item/resonator,												900),
 		new /datum/data/mining_equipment("Fulton Pack",					/obj/item/extraction_pack,											1200),
 		new /datum/data/mining_equipment("Silver Pickaxe",				/obj/item/weapon/pickaxe/silver,									1200),
-<<<<<<< HEAD
 		//new /datum/data/mining_equipment("Mining Conscription Kit",	/obj/item/storage/backpack/duffelbag/mining_conscript,				1000),
 		new /datum/data/mining_equipment("Space Cash",					/obj/item/weapon/spacecash/c100,									1000),
 		new /datum/data/mining_equipment("Industrial Hardsuit - Control Module",	/obj/item/weapon/rig/industrial,						2000),
@@ -55,18 +54,8 @@
 		new /datum/data/mining_equipment("KA Efficiency Increase",		/obj/item/borg/upgrade/modkit/efficiency,							1200),
 		new /datum/data/mining_equipment("KA AoE Damage",				/obj/item/borg/upgrade/modkit/aoe/mobs,								2000),
 		new /datum/data/mining_equipment("KA Holster",				/obj/item/clothing/accessory/holster/waist/kinetic_accelerator,			350)
-=======
-//		new /datum/data/mining_equipment("Space Cash",					/obj/item/weapon/spacecash/c1000,									2000),
-//		new /datum/data/mining_equipment("Industrial Hardsuit - Control Module",	/obj/item/weapon/rig/industrial,						2000),
-//		new /datum/data/mining_equipment("Industrial Hardsuit - Plasma Cutter",		/obj/item/rig_module/device/plasmacutter,				800),
-//		new /datum/data/mining_equipment("Industrial Hardsuit - Drill",				/obj/item/rig_module/device/drill,						2000),
-//		new /datum/data/mining_equipment("Industrial Hardsuit - Ore Scanner",		/obj/item/rig_module/device/orescanner,					1000),
-//		new /datum/data/mining_equipment("Industrial Hardsuit - Material Scanner",	/obj/item/rig_module/vision/material,					500),
-//		new /datum/data/mining_equipment("Industrial Hardsuit - Maneuvering Jets",	/obj/item/rig_module/maneuvering_jets,					1250),
-//		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/weapon/pickaxe/diamond,									2000),
 		new /datum/data/mining_equipment("Fishing Net",					/obj/item/weapon/material/fishing_net,								500),
 		new /datum/data/mining_equipment("Titanium Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern,						1000)
->>>>>>> a033ac4... Merge pull request #6113 from Mechoid/FishingFtWorldServer
 		)
 	//VOREStation Edit End
 
