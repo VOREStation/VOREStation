@@ -50,7 +50,13 @@
 	cost = 2
 
 /datum/map_template/debrisfield/ship_exploded
-	name = "Exploded Ship"
+	name = "Exploded Cargo Ship"
 	mappath = 'ship_exploded.dmm'
+	cost = 35
+	allow_duplicates = FALSE
+
+/datum/map_template/debrisfield/ship_crashed
+	name = "Crashed Medical Ship"
+	mappath = 'ship_crashed.dmm'
 	cost = 35
 	allow_duplicates = FALSE

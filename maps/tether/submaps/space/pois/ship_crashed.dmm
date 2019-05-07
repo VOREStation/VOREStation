@@ -1,0 +1,60 @@
+"a" = (/turf/template_noop,/area/tether_away/debrisfield/explored)
+"b" = (/turf/simulated/mineral/vacuum,/area/tether_away/debrisfield/explored)
+"c" = (/turf/simulated/shuttle/wall,/area/tether_away/debrisfield/explored)
+"d" = (/turf/simulated/mineral/floor/vacuum,/area/tether_away/debrisfield/explored)
+"e" = (/obj/structure/shuttle/window,/obj/structure/grille,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"f" = (/turf/simulated/shuttle/floor/airless,/area/tether_away/debrisfield/explored)
+"g" = (/obj/effect/decal/cleanable/generic,/turf/simulated/mineral/floor/vacuum,/area/tether_away/debrisfield/explored)
+"h" = (/obj/effect/decal/cleanable/dirt,/obj/structure/frame,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"i" = (/obj/structure/frame,/turf/simulated/shuttle/floor/airless,/area/tether_away/debrisfield/explored)
+"j" = (/obj/structure/closet/secure_closet/sar{name = "sar locker"; req_access = list()},/turf/simulated/shuttle/floor/airless,/area/tether_away/debrisfield/explored)
+"k" = (/obj/structure/shuttle/engine/propulsion{dir = 4},/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"l" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"m" = (/obj/structure/table/standard,/obj/random/unidentified_medicine/fresh_medicine,/obj/random/unidentified_medicine/fresh_medicine,/obj/random/unidentified_medicine/old_medicine,/turf/simulated/shuttle/floor/airless,/area/tether_away/debrisfield/explored)
+"n" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/generic,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"o" = (/obj/structure/table/standard,/obj/random/unidentified_medicine/fresh_medicine,/obj/random/unidentified_medicine/fresh_medicine,/obj/random/unidentified_medicine/viral,/turf/simulated/shuttle/floor/airless,/area/tether_away/debrisfield/explored)
+"p" = (/obj/structure/closet/secure_closet/medical3{name = "medical locker"; req_access = list()},/turf/simulated/shuttle/floor/airless,/area/tether_away/debrisfield/explored)
+"q" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/molten_item,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"r" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood/oil,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"s" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/remains/posi,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"t" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated/shuttle/floor/airless,/area/tether_away/debrisfield/explored)
+"u" = (/obj/structure/closet/emcloset,/turf/simulated/shuttle/floor/airless,/area/tether_away/debrisfield/explored)
+"v" = (/obj/structure/table/rack,/turf/simulated/shuttle/floor/airless,/area/tether_away/debrisfield/explored)
+"w" = (/obj/effect/decal/cleanable/generic,/turf/simulated/shuttle/floor/airless,/area/tether_away/debrisfield/explored)
+"x" = (/obj/structure/dispenser/oxygen{oxygentanks = 7},/turf/simulated/shuttle/floor/airless,/area/tether_away/debrisfield/explored)
+"y" = (/obj/effect/decal/cleanable/blood/oil,/turf/simulated/shuttle/floor/airless,/area/tether_away/debrisfield/explored)
+"z" = (/obj/structure/frame/computer{dir = 1},/turf/simulated/shuttle/floor/airless,/area/tether_away/debrisfield/explored)
+"A" = (/obj/machinery/suit_cycler/medical,/turf/simulated/shuttle/floor/airless,/area/tether_away/debrisfield/explored)
+"B" = (/mob/living/bot/medbot{name = "Dr. Crusty"},/turf/simulated/shuttle/floor/airless,/area/tether_away/debrisfield/explored)
+"C" = (/obj/effect/decal/cleanable/dirt,/obj/random/firstaid,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"D" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/storage/firstaid/adv,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"E" = (/obj/item/weapon/material/shard/shrapnel,/turf/simulated/mineral/floor/vacuum,/area/tether_away/debrisfield/explored)
+"F" = (/obj/item/stack/material/steel,/turf/simulated/mineral/floor/vacuum,/area/tether_away/debrisfield/explored)
+"G" = (/obj/item/stack/rods,/turf/simulated/mineral/floor/vacuum,/area/tether_away/debrisfield/explored)
+"H" = (/obj/effect/decal/cleanable/dirt,/obj/item/stack/material/steel,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"I" = (/obj/effect/decal/cleanable/dirt,/obj/item/stack/rods,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"J" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/material/shard/shrapnel,/turf/simulated/shuttle/plating/airless,/area/tether_away/debrisfield/explored)
+"K" = (/obj/item/weapon/material/shard/shrapnel,/turf/simulated/shuttle/floor/airless,/area/tether_away/debrisfield/explored)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaa
+aaaabbbbbbbbbaaaaaaaaaaaa
+aaabbbbbbbbbbbaaaaaaaaaaa
+aaabbbbbbbbbbbaaaaaaaaaaa
+aabbbbbbbbbbbccccceecccaa
+aabbbbbbbbbbbghcifBfjckaa
+aabbbbbbbbbbbElcmfffjckaa
+abbbbbbbbbbbFnCcofffpckaa
+abbbbbbbbbbbGqHccfcccccaa
+abbbbbbbbbbbErsffffftftaa
+abbbbbbbbbbbEHnfffffcccaa
+abbbbbbbbbbbGDIfcuffvckaa
+abbbbbbbbbbbdJwKcxffvckaa
+abbbbbbbbbbbbgyzcAffvckaa
+abbbbbbbbbbbbccccceecccaa
+aabbbbbbbbbbbbaaaaaaaaaaa
+aabbbbbbbbbbbaaaaaaaaaaaa
+aabbbbbbbbbbbaaaaaaaaaaaa
+aaabbbbbbbbbaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaa
+"}
