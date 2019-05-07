@@ -53,3 +53,4 @@
 	name = "Exploded Ship"
 	mappath = 'ship_exploded.dmm'
 	cost = 35
+	allow_duplicates = FALSE
