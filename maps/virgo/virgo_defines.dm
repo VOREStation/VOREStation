@@ -13,7 +13,7 @@
 	path = "virgo"
 
 	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("title")
+	lobby_screens = list("furryburner")
 
 	station_levels = list(
 		Z_LEVEL_MAIN_VIRGO,
