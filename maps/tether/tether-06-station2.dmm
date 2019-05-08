@@ -7263,6 +7263,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Exploration"
 	},
 /obj/structure/cable{
@@ -13081,6 +13082,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Medical"
 	},
 /obj/structure/cable/green,

@@ -6823,6 +6823,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Mining"
 	},
 /obj/structure/cable/green,
@@ -15618,6 +15619,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Civ West"
 	},
 /obj/structure/cable/green{

@@ -267,6 +267,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - MedSec"
 	},
 /turf/simulated/floor,
@@ -5779,6 +5780,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Research"
 	},
 /obj/structure/cable/green,
@@ -13168,6 +13170,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 100000;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Telecomms"
 	},
 /obj/structure/cable/green{

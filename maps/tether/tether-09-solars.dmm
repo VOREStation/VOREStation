@@ -354,6 +354,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Solar Farm - SMES 1"
 	},
 /obj/structure/cable/heavyduty,
@@ -363,6 +364,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Solar Farm - SMES 2"
 	},
 /obj/structure/cable/heavyduty,
@@ -373,6 +375,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Solar Farm - SMES 3"
 	},
 /obj/structure/cable/heavyduty,
@@ -2629,6 +2632,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Science Outpost"
 	},
 /obj/structure/cable/green,
