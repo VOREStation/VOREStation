@@ -22612,6 +22612,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Surface Civilian"
 	},
 /turf/simulated/floor/plating,
