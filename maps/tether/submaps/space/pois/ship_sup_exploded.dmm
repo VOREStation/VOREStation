@@ -53,12 +53,13 @@
 "ba" = (/obj/effect/decal/cleanable/dirt,/obj/item/weapon/material/shard/shrapnel,/turf/simulated/shuttle/plating,/area/tether_away/debrisfield/explored)
 "bb" = (/obj/structure/lattice,/obj/item/weapon/material/shard/shrapnel,/turf/template_noop,/area/tether_away/debrisfield/explored)
 "bc" = (/obj/structure/lattice,/obj/effect/decal/cleanable/molten_item,/obj/item/weapon/material/shard/shrapnel,/turf/template_noop,/area/tether_away/debrisfield/explored)
+"bd" = (/turf/simulated/shuttle/wall/hard_corner,/area/tether_away/debrisfield/explored)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaabacaaaaaaaaaaaaaaaaaaaaaaaa
-aaababadaaacaeaaaaacacacacabaa
-aaabagagafababakababababababaa
+aaabbdadaaacaeaaaaacacacacabaa
+aaabagagafbdabakabababababbdaa
 aaabalamaaamamahahapaqaAaAaBaa
 aaagamahaaahaxaaahahaCaDaAaBaa
 aababbawaaaaahaaaaaGbbahaCaDaa
