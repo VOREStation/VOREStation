@@ -10,9 +10,9 @@
 	small advanced anti-gravity generators located between giant syringes made for injecting and extracting all manners of fluids\
 	and samples of soil or other biological matter.\
 	Most interesting is the syringe it uses after taking a sample of any creature, the dry, flakey substance\
-	it injects has traces of bicaridine and inaprovaline, now no more than rotten and expired toxins however.\
+	it injects is rotten and expired toxins, seemingly once intended to heal damage from samples taken.\
 	The container housing the substance as well as the fabricator showing great blunt trauma as well as environmental damage,\
-	neither part salvageable.\
+	neither part salvageable but still operational, outputting near 0% efficiency making it near impossible to refill the housing unit this century.\
 	<br><br>\
 	The drone's frame extremily light weight but robust, unbendable by hand, is barren of any markings or ID,\
 	no traces of paint visible and any 'writing' visible is uncomprehendable, short term scan unable to translate."
