@@ -1,6 +1,11 @@
 /mob/new_player/proc/spawn_checks_vr()
 	var/pass = TRUE
 
+	//No Flavor Text
+	if (config.require_flavor && client && client.prefs && client.prefs.flavor_texts && !client.prefs.flavor_texts["general"])
+		to_chat(src,"<span class='warning'>Please set your general flavor text to give a basic description of your character. Set it using the 'Set Flavor text' button on the 'General' tab in character setup, and choosing 'General' category.</span>")
+		pass = FALSE
+
 	//No OOC notes
 	if (config.allow_Metadata && client && client.prefs && (isnull(client.prefs.metadata) || length(client.prefs.metadata) < 15))
 		to_chat(src,"<span class='warning'>Please set informative OOC notes related to ERP preferences. Set them using the 'OOC Notes' button on the 'General' tab in character setup.</span>")

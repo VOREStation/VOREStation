@@ -20,6 +20,7 @@
 	var/global/list/unique_gamma = list(
 		/obj/item/device/perfect_tele,
 		/obj/item/weapon/bluespace_harpoon,
+		/obj/item/clothing/glasses/thermal/syndi,
 		/obj/item/weapon/gun/energy/netgun,
 		/obj/item/weapon/gun/projectile/pirate,
 		/obj/item/clothing/accessory/permit/gun,
@@ -221,13 +222,13 @@
 					prob(4);/obj/item/weapon/storage/pill_bottle/happy,
 					prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
 					prob(4);/obj/item/weapon/gun/energy/sizegun,
-					prob(3);/obj/item/weapon/implanter/sizecontrol,
 					prob(3);/obj/item/weapon/material/butterfly,
 					prob(3);/obj/item/weapon/material/butterfly/switchblade,
 					prob(3);/obj/item/clothing/gloves/knuckledusters,
 					prob(3);/obj/item/weapon/reagent_containers/syringe/drugs,
+					prob(2);/obj/item/weapon/implanter/sizecontrol,
 					prob(2);/obj/item/weapon/handcuffs/fuzzy,
-				//	prob(2);/obj/item/weapon/legcuffs,
+					prob(2);/obj/item/weapon/handcuffs/legcuffs/fuzzy,
 					prob(2);/obj/item/weapon/storage/box/syndie_kit/spy,
 					prob(2);/obj/item/weapon/grenade/anti_photon,
 					prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
@@ -239,6 +240,8 @@
 					prob(1);/obj/item/weapon/cell/hyper/empty,
 					prob(1);/obj/item/weapon/disk/nifsoft/compliance,
 					prob(1);/obj/item/weapon/material/knife/tacknife,
+					prob(1);/obj/item/weapon/storage/box/survival/space,
+					prob(1);/obj/item/weapon/storage/secure/briefcase/trashmoney,
 					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
 
 	var/obj/item/I = new path()

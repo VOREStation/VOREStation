@@ -404,45 +404,6 @@ var/global/list/latejoin_tram   = list()
 	for(var/i = 1 to 3)
 		new /obj/item/weapon/gun/energy/frontier/locked(src)
 
-// Underdark mob spawners
-/obj/tether_away_spawner/underdark_normal
-	name = "Underdark Normal Spawner"
-	faction = "underdark"
-	atmos_comp = TRUE
-	prob_spawn = 100
-	prob_fall = 50
-	guard = 20
-	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/jelly = 3,
-		/mob/living/simple_mob/animal/giant_spider/hunter = 1,
-		/mob/living/simple_mob/animal/giant_spider/phorogenic = 1,
-		/mob/living/simple_mob/animal/giant_spider/lurker = 1,
-	)
-
-/obj/tether_away_spawner/underdark_hard
-	name = "Underdark Hard Spawner"
-	faction = "underdark"
-	atmos_comp = TRUE
-	prob_spawn = 100
-	prob_fall = 50
-	guard = 20
-	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/aggressive/corrupthound = 1,
-		/mob/living/simple_mob/vore/aggressive/rat = 1,
-		/mob/living/simple_mob/animal/space/mimic = 1
-	)
-
-/obj/tether_away_spawner/underdark_boss
-	name = "Underdark Boss Spawner"
-	faction = "underdark"
-	atmos_comp = TRUE
-	prob_spawn = 100
-	prob_fall = 100
-	guard = 70
-	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/aggressive/dragon = 1
-	)
-
 // Used at centcomm for the elevator
 /obj/machinery/cryopod/robot/door/dorms
 	spawnpoint_type = /datum/spawnpoint/tram

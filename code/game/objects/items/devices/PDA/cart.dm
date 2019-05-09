@@ -4,6 +4,7 @@ var/list/command_cartridges = list(
 	/obj/item/weapon/cartridge/hos,
 	/obj/item/weapon/cartridge/ce,
 	/obj/item/weapon/cartridge/rd,
+	/obj/item/weapon/cartridge/cmo,
 	/obj/item/weapon/cartridge/head,
 	/obj/item/weapon/cartridge/lawyer // Internal Affaris,
 	)
@@ -149,7 +150,7 @@ var/list/civilian_cartridges = list(
 */
 
 /obj/item/weapon/cartridge/service
-	name = "\improper Serv-U Pro"
+	name = "\improper Serv-U Pro cartridge"
 	desc = "A data cartridge designed to serve YOU!"
 
 /obj/item/weapon/cartridge/signal
@@ -175,12 +176,12 @@ var/list/civilian_cartridges = list(
 	access_quartermaster = 1
 
 /obj/item/weapon/cartridge/miner
-	name = "\improper Drill-Jockey 4.5"
+	name = "\improper Drill-Jockey 4.5 cartridge"
 	desc = "It's covered in some sort of sand."
 	icon_state = "cart-q"
 
 /obj/item/weapon/cartridge/head
-	name = "\improper Easy-Record DELUXE"
+	name = "\improper Easy-Record DELUXE cartridge"
 	icon_state = "cart-h"
 	access_status_display = 1
 
@@ -193,7 +194,7 @@ var/list/civilian_cartridges = list(
 	access_security = 1
 
 /obj/item/weapon/cartridge/hos
-	name = "\improper R.O.B.U.S.T. DELUXE"
+	name = "\improper R.O.B.U.S.T. DELUXE cartridge"
 	icon_state = "cart-hos"
 	access_status_display = 1
 	access_security = 1
@@ -203,21 +204,21 @@ var/list/civilian_cartridges = list(
 	. = ..()
 
 /obj/item/weapon/cartridge/ce
-	name = "\improper Power-On DELUXE"
+	name = "\improper Power-On DELUXE cartridge"
 	icon_state = "cart-ce"
 	access_status_display = 1
 	access_engine = 1
 	access_atmos = 1
 
 /obj/item/weapon/cartridge/cmo
-	name = "\improper Med-U DELUXE"
+	name = "\improper Med-U DELUXE cartridge"
 	icon_state = "cart-cmo"
 	access_status_display = 1
 	access_reagent_scanner = 1
 	access_medical = 1
 
 /obj/item/weapon/cartridge/rd
-	name = "\improper Signal Ace DELUXE"
+	name = "\improper Signal Ace DELUXE cartridge"
 	icon_state = "cart-rd"
 	access_status_display = 1
 	access_reagent_scanner = 1
