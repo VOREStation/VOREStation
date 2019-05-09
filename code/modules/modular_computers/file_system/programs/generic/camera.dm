@@ -9,8 +9,9 @@
 	switch(network)
 		if(NETWORK_THUNDER)
 			return 0
-		if(NETWORK_ENGINE,NETWORK_ENGINEERING,NETWORK_ENGINEERING_OUTPOST,NETWORK_ALARM_ATMOS,NETWORK_ALARM_FIRE,NETWORK_ALARM_POWER)
+		if(NETWORK_ENGINE,NETWORK_ALARM_ATMOS,NETWORK_ALARM_FIRE,NETWORK_ALARM_POWER)		//VOREStation Edit
 			return access_engine
+		/*
 		if(NETWORK_MEDICAL)
 			return access_medical
 		if(NETWORK_RESEARCH,NETWORK_RESEARCH_OUTPOST)
@@ -19,6 +20,7 @@
 			return access_mailsorting // Cargo office - all cargo staff should have access here.
 		if(NETWORK_COMMAND,NETWORK_TELECOM)
 			return access_heads
+		*/		//VOREStation Removal
 		if(NETWORK_ERT)
 			return access_cent_specops
 
@@ -80,7 +82,7 @@
 	if(!network_access)
 		return 1
 
-	return check_access(user, access_security) || check_access(user, network_access)
+	return check_access(user, access_security) || check_access(user, access_heads) || check_access(user, network_access)	//VOREStation Edit
 
 /datum/nano_module/camera_monitor/Topic(href, href_list)
 	if(..())

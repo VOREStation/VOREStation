@@ -979,6 +979,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Security"
 	},
 /obj/structure/cable/green{
@@ -1627,8 +1628,11 @@
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
 "cy" = (
-/obj/structure/railing{
-	dir = 4
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
 	},
 /turf/simulated/floor,
 /area/maintenance/station/ai)
@@ -2073,15 +2077,10 @@
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
 "ds" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8
+/obj/structure/bed/chair/office/dark,
+/obj/effect/landmark/start{
+	name = "Security Officer"
 	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/carpet,
 /area/security/breakroom)
 "dt" = (
@@ -5891,6 +5890,9 @@
 /area/security/breakroom)
 "jC" = (
 /obj/structure/bed/chair/office/dark,
+/obj/effect/landmark/start{
+	name = "Detective"
+	},
 /turf/simulated/floor/carpet,
 /area/security/breakroom)
 "jD" = (
@@ -6139,16 +6141,8 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/effect/landmark/start{
+	name = "Security Officer"
 	},
 /turf/simulated/floor/carpet,
 /area/security/breakroom)
@@ -6747,15 +6741,16 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
 "kV" = (
-/obj/structure/railing{
-	icon_state = "railing0";
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 4
+/obj/structure/catwalk,
+/obj/random/junk,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/ai)
 "kW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -8055,15 +8050,20 @@
 /turf/simulated/floor,
 /area/maintenance/station/ai)
 "mU" = (
-/obj/structure/railing,
-/obj/structure/table/rack{
-	dir = 8;
-	layer = 2.9
+/obj/structure/bed/chair/office/dark{
+	dir = 8
 	},
-/obj/random/maintenance/clean,
-/obj/random/maintenance/clean,
-/turf/simulated/floor,
-/area/maintenance/cargo)
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/landmark/start{
+	name = "Detective"
+	},
+/turf/simulated/floor/carpet,
+/area/security/breakroom)
 "mV" = (
 /obj/structure/railing,
 /obj/structure/railing{
@@ -8574,18 +8574,25 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "nK" = (
-/obj/effect/floor_decal/borderfloorblack{
-	dir = 8
+/obj/structure/bed/chair/office/dark{
+	dir = 4
 	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 8
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/structure/table/bench/steel,
-/obj/structure/window/reinforced{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/dark,
-/area/security/security_lockerroom)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/landmark/start{
+	name = "Security Officer"
+	},
+/turf/simulated/floor/carpet,
+/area/security/breakroom)
 "nL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -9577,14 +9584,30 @@
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "pm" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
 /obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/security/security_processing)
+/obj/effect/landmark/start{
+	name = "Security Officer"
+	},
+/turf/simulated/floor/carpet,
+/area/security/breakroom)
 "pn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -19509,17 +19532,11 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/reception)
 "EI" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
+/obj/effect/landmark/start{
+	name = "Cargo Technician"
 	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/structure/bed/chair/office/light{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/reception)
+/turf/simulated/floor/tiled,
+/area/quartermaster/office)
 "EJ" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -19937,17 +19954,16 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/reception)
 "Fx" = (
-/obj/structure/bed/chair/office/light{
-	dir = 4
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/effect/landmark/start{
+	name = "Cargo Technician"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/reception)
+/turf/simulated/floor/tiled,
+/area/quartermaster/office)
 "Fy" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -20922,11 +20938,20 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/chemistry)
 "He" = (
-/obj/structure/bed/chair/office/dark{
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/structure/bed/chair/office/light{
 	dir = 4
 	},
+/obj/effect/landmark/start{
+	name = "Medical Doctor"
+	},
 /turf/simulated/floor/tiled/white,
-/area/medical/chemistry)
+/area/medical/reception)
 "Hf" = (
 /obj/machinery/chem_master,
 /obj/effect/floor_decal/borderfloorwhite{
@@ -22008,6 +22033,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Cargo"
 	},
 /obj/structure/cable/green{
@@ -26341,10 +26367,21 @@
 /turf/simulated/wall,
 /area/medical/patient_c)
 "Pk" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/structure/catwalk,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	layer = 3.3;
+	pixel_x = 26
+	},
+/turf/simulated/floor,
+/area/maintenance/station/ai)
 "Pl" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -26435,16 +26472,20 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/ward)
 "Ps" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/bed/chair/office/light{
-	dir = 8
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/landmark/start{
+	name = "Medical Doctor"
 	},
 /turf/simulated/floor/tiled/white,
-/area/medical/ward)
+/area/medical/reception)
 "Pt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -26515,12 +26556,14 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/exam_room)
 "Py" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/obj/structure/bed/chair/office/light,
+/obj/effect/landmark/start{
+	name = "Chemist"
+	},
 /turf/simulated/floor/tiled/white,
-/area/medical/exam_room)
+/area/medical/chemistry)
 "Pz" = (
 /obj/structure/table/glass,
 /obj/machinery/computer/med_data/laptop{
@@ -27753,13 +27796,17 @@
 /turf/simulated/floor,
 /area/maintenance/station/ai)
 "Ry" = (
-/obj/structure/catwalk,
-/obj/random/junk,
+/obj/structure/railing{
+	dir = 4
+	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
 	},
 /turf/simulated/floor,
 /area/maintenance/station/ai)
@@ -27828,6 +27875,19 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
+"RF" = (
+/obj/structure/catwalk,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor,
+/area/maintenance/station/ai)
 "RG" = (
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
@@ -28115,6 +28175,106 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
+"Sr" = (
+/obj/structure/railing,
+/obj/structure/table/rack{
+	dir = 8;
+	layer = 2.9
+	},
+/obj/random/maintenance/clean,
+/obj/random/maintenance/clean,
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/turf/simulated/floor,
+/area/maintenance/cargo)
+"Ss" = (
+/obj/effect/floor_decal/rust,
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_y = 0
+	},
+/turf/simulated/floor,
+/area/maintenance/station/ai)
+"St" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_upper)
+"Su" = (
+/obj/structure/catwalk,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_upper)
+"Sv" = (
+/obj/structure/catwalk,
+/obj/effect/floor_decal/rust,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -24
+	},
+/turf/simulated/floor,
+/area/maintenance/cargo)
+"Sw" = (
+/obj/structure/catwalk,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/maintenance/common,
+/turf/simulated/floor,
+/area/maintenance/cargo)
+"Sx" = (
+/obj/structure/catwalk,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/alarm{
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/turf/simulated/floor,
+/area/maintenance/station/ai)
+"Sy" = (
+/obj/effect/landmark/start{
+	name = "Cargo Technician"
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/storage)
 "Sz" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -28123,6 +28283,89 @@
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
+"SA" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/obj/effect/landmark/start{
+	name = "Medical Doctor"
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/ward)
+"SB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/bed/chair/office/light,
+/obj/effect/landmark/start{
+	name = "Medical Doctor"
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/exam_room)
+"SC" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/effect/landmark/start{
+	name = "Security Officer"
+	},
+/turf/simulated/floor/carpet,
+/area/security/breakroom)
+"SD" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
+"SE" = (
+/obj/effect/floor_decal/borderfloorblack{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 8
+	},
+/obj/structure/table/bench/steel,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/landmark/start{
+	name = "Security Officer"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/security/security_lockerroom)
+"SF" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/landmark/start{
+	name = "Security Officer"
+	},
+/turf/simulated/floor/tiled,
+/area/security/briefing_room)
+"SG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/effect/landmark/start{
+	name = "Security Officer"
+	},
+/turf/simulated/floor/tiled,
+/area/security/security_processing)
+"SH" = (
+/turf/simulated/wall,
+/area/storage/emergency_storage/emergency3)
 "SK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -28170,12 +28413,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
-	},
-/turf/simulated/floor/carpet,
-/area/security/breakroom)
-"Th" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 4
 	},
 /turf/simulated/floor/carpet,
 /area/security/breakroom)
@@ -28484,28 +28721,6 @@
 /obj/structure/closet/secure_closet/hos2,
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
-"YF" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/carpet,
-/area/security/breakroom)
 "YH" = (
 /obj/structure/table/woodentable,
 /obj/machinery/microwave,
@@ -34133,7 +34348,7 @@ eT
 me
 mB
 ev
-nK
+SE
 od
 mh
 pd
@@ -35840,7 +36055,7 @@ jk
 jk
 lv
 oC
-pm
+SG
 Rs
 qi
 qN
@@ -36001,9 +36216,9 @@ Ah
 Bt
 Cc
 Dk
-EI
+He
 nc
-Fx
+Ps
 GS
 GW
 HO
@@ -36588,7 +36803,7 @@ NF
 NZ
 yl
 OV
-Ps
+SA
 PM
 Ql
 Pu
@@ -37104,8 +37319,8 @@ iR
 YT
 jn
 jB
-Th
 jW
+nK
 ey
 eJ
 kF
@@ -37245,10 +37460,10 @@ iG
 iS
 YT
 jo
-jC
+ds
 jN
 jX
-da
+SC
 eJ
 kG
 YT
@@ -37530,8 +37745,8 @@ iR
 YT
 Uq
 dt
-ds
-YF
+mU
+pm
 Td
 eY
 TQ
@@ -37542,7 +37757,7 @@ mm
 mO
 ns
 mm
-ol
+SF
 oL
 le
 iq
@@ -37567,14 +37782,14 @@ DW
 ER
 FI
 Gy
-He
+Py
 HY
 ID
 Jv
 Kj
 Kh
 Lt
-Kh
+LT
 Mn
 Lp
 Nj
@@ -37582,7 +37797,7 @@ KI
 Of
 tt
 Pb
-Py
+SB
 PS
 Qr
 uN
@@ -38532,7 +38747,7 @@ ku
 kJ
 aI
 mR
-kV
+St
 aI
 aI
 aI
@@ -38674,7 +38889,7 @@ RH
 RH
 RH
 RH
-RO
+Su
 eU
 aI
 ab
@@ -39100,7 +39315,7 @@ cJ
 mr
 nz
 be
-mU
+Sr
 RS
 iV
 ab
@@ -39520,7 +39735,7 @@ it
 di
 di
 dy
-Pk
+SD
 cK
 cK
 ms
@@ -39662,7 +39877,7 @@ iK
 jY
 kn
 di
-Pk
+SD
 cK
 cK
 ms
@@ -39671,7 +39886,7 @@ be
 os
 oV
 RY
-Sf
+Sv
 iV
 oO
 ps
@@ -39684,7 +39899,7 @@ eL
 up
 vc
 vS
-sq
+SH
 xe
 xU
 yO
@@ -39804,7 +40019,7 @@ iK
 jY
 kn
 di
-Pk
+SD
 cK
 cK
 ms
@@ -39826,7 +40041,7 @@ iV
 uq
 vd
 vT
-sq
+SH
 xf
 xV
 yP
@@ -40239,7 +40454,7 @@ Ox
 Ox
 Sp
 be
-Sg
+Sw
 iV
 iV
 pw
@@ -40656,7 +40871,7 @@ eb
 ka
 ky
 di
-Pk
+SD
 cK
 cK
 ms
@@ -40798,7 +41013,7 @@ jf
 kj
 kQ
 di
-Pk
+SD
 cK
 cK
 ms
@@ -40940,7 +41155,7 @@ jr
 kk
 kR
 dy
-Pk
+SD
 cK
 cK
 ms
@@ -41233,7 +41448,7 @@ be
 be
 be
 be
-Si
+Sx
 gy
 Sn
 Sl
@@ -41687,7 +41902,7 @@ BU
 GL
 HB
 Is
-BU
+Sy
 JN
 zO
 ab
@@ -41784,22 +41999,22 @@ aa
 aa
 dV
 bV
-gK
+cy
 lt
 dV
 Rw
-Ry
+kV
 RA
 RC
 RD
-RG
+Pk
 RA
 RA
 RG
 RL
-cy
+Ry
 RR
-RX
+Ss
 Sd
 Si
 Sk
@@ -41939,7 +42154,7 @@ eI
 RJ
 RK
 RM
-RA
+RF
 RA
 RA
 RA
@@ -42383,8 +42598,8 @@ sJ
 vq
 sJ
 sJ
-sJ
-yg
+EI
+Fx
 zc
 zR
 AU

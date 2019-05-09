@@ -281,6 +281,15 @@
 /area/rnd/chemistry_lab
 	name = "\improper Research Chemistry Lab"
 	icon_state = "research"
+/area/rnd/staircase/secondfloor
+	name = "\improper Research Staircase Second Floor"
+	icon_state = "research"
+/area/rnd/staircase/thirdfloor
+	name = "\improper Research Staircase Third Floor"
+	icon_state = "research"
+/area/rnd/breakroom/bathroom
+	name = "\improper Research Bathroom"
+	icon_state = "research"
 
 //Outpost areas
 /area/rnd/outpost/anomaly_lab

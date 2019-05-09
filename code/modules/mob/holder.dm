@@ -104,6 +104,22 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/weapon/holder/borer
 	origin_tech = list(TECH_BIO = 6)
 
+/obj/item/weapon/holder/fish
+	attack_verb = list("fished", "disrespected", "smacked", "smackereled")
+	hitsound = 'sound/effects/slime_squish.ogg'
+	slot_flags = SLOT_HOLSTER
+	origin_tech = list(TECH_BIO = 3)
+
+/obj/item/weapon/holder/fish/afterattack(var/atom/target, var/mob/living/user, proximity)
+	if(!target)
+		return
+	if(!proximity)
+		return
+	if(isliving(target))
+		var/mob/living/L = target
+		if(prob(10))
+			L.Stun(2)
+
 /obj/item/weapon/holder/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	for(var/mob/M in src.contents)
 		M.attackby(W,user)

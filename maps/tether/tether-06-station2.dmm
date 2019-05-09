@@ -7263,6 +7263,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Exploration"
 	},
 /obj/structure/cable{
@@ -7676,7 +7677,6 @@
 /turf/simulated/floor,
 /area/maintenance/station/exploration)
 "lo" = (
-/obj/machinery/portable_atmospherics/canister/empty/oxygen,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
 	icon_state = "borderfloor";
@@ -7703,6 +7703,7 @@
 	pixel_y = 24;
 	req_access = list()
 	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
 "lp" = (
@@ -8025,15 +8026,15 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 4
 	},
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
 /obj/machinery/light_switch{
 	dir = 2;
 	name = "light switch ";
 	pixel_x = 0;
 	pixel_y = 26
+	},
+/obj/machinery/photocopier,
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
@@ -8044,7 +8045,10 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 5
 	},
-/obj/structure/filingcabinet/filingcabinet,
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
 "lP" = (
@@ -8511,10 +8515,16 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
 	},
-/obj/machinery/photocopier,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/tank/oxygen,
+/obj/item/device/suit_cooling_unit,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/suit/space/void/exploration,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/head/helmet/space/void/exploration,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
 "mA" = (
@@ -12435,6 +12445,9 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
+/obj/effect/landmark/start{
+	name = "Medical Doctor"
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "sJ" = (
@@ -13069,6 +13082,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Medical"
 	},
 /obj/structure/cable/green,
@@ -15617,6 +15631,9 @@
 "xY" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
+	},
+/obj/effect/landmark/start{
+	name = "Medical Doctor"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
@@ -18237,10 +18254,17 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
 "BS" = (
-/obj/structure/bed/chair,
-/obj/effect/floor_decal/corner/paleblue/diagonal,
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/medbreak)
+/obj/effect/floor_decal/borderfloorblack{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 8
+	},
+/obj/effect/landmark/start{
+	name = "Pathfinder"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/medical/medbay_emt_bay)
 "BT" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -18412,23 +18436,17 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
 "Ci" = (
-/obj/structure/bed/chair{
+/obj/effect/floor_decal/borderfloorblack{
 	dir = 4
 	},
-/obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
+/obj/effect/landmark/start{
+	name = "Pathfinder"
 	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/medbreak)
+/turf/simulated/floor/tiled/dark,
+/area/medical/medbay_emt_bay)
 "Cj" = (
 /obj/structure/table/glass,
 /obj/item/weapon/deck/cards,
@@ -18454,19 +18472,15 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
 "Cl" = (
-/obj/structure/bed/chair{
-	dir = 8
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
-/obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/medbreak)
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "Cm" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/purple/border,
@@ -18657,16 +18671,14 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
 "CE" = (
-/obj/structure/bed/chair{
-	dir = 4
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
 	},
-/obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/landmark/start{
-	name = "Field Medic"
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/medbreak)
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "CF" = (
 /obj/structure/table/glass,
 /obj/item/device/universal_translator,
@@ -18770,18 +18782,33 @@
 /area/crew_quarters/medbreak)
 "CR" = (
 /obj/structure/bed/chair{
-	dir = 1
+	dir = 4
 	},
 /obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/effect/landmark/start{
+	name = "Medical Doctor"
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
 "CS" = (
 /obj/structure/bed/chair{
-	dir = 1
+	dir = 4
 	},
 /obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/landmark/start{
-	name = "Field Medic"
+	name = "Paramedic"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
@@ -18944,13 +18971,6 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 6
 	},
-/obj/structure/table/rack/shelf,
-/obj/item/weapon/tank/oxygen,
-/obj/item/device/suit_cooling_unit,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/exploration,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/exploration,
 /obj/item/device/radio/intercom{
 	dir = 4;
 	pixel_x = 24
@@ -18958,6 +18978,7 @@
 /obj/machinery/camera/network/exploration{
 	dir = 1
 	},
+/obj/structure/filingcabinet/filingcabinet,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
 "Di" = (
@@ -19546,24 +19567,32 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/interrogation)
 "Eo" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
-"Ep" = (
-/obj/structure/shuttle/engine/propulsion{
+/obj/structure/bed/chair{
 	dir = 8
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9;
+	pixel_y = 0
+	},
+/obj/effect/landmark/start{
+	name = "Medical Doctor"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/medbreak)
+"Ep" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/effect/landmark/start{
+	name = "Paramedic"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/medbreak)
 "Eq" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
@@ -30854,8 +30883,8 @@ AX
 Bp
 BF
 BQ
-Ci
-CE
+CR
+CS
 CQ
 AX
 Di
@@ -30998,7 +31027,7 @@ BG
 BR
 Cj
 CF
-CR
+Ep
 De
 AG
 aP
@@ -31137,10 +31166,10 @@ AH
 AX
 Bp
 BG
-BS
+BR
 Ck
 CG
-CS
+Ep
 Df
 AG
 aP
@@ -31280,7 +31309,7 @@ AZ
 Bq
 BH
 BT
-Cl
+Eo
 CH
 CT
 AX
@@ -31986,7 +32015,7 @@ zQ
 Aj
 Ay
 AK
-AK
+BS
 fO
 BK
 ac
@@ -32412,13 +32441,13 @@ zT
 Ai
 AB
 AN
-AN
+Ci
 Bw
 yY
-Eo
-Ep
-Ep
-Ep
+Cl
+CE
+CE
+CE
 Eq
 yY
 ac
