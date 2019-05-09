@@ -199,7 +199,7 @@ modular computers
 /datum/gear/utility/customlaptop
 	display_name = "laptop computer, custom"
 	path = /obj/item/modular_computer/laptop/preset/
-	cost = 7
+	cost = 6 //VOREStation Edit
 
 /datum/gear/utility/customlaptop/New()
 	..()
