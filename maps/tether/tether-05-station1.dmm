@@ -6542,6 +6542,25 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
+"alV" = (
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "tether_dock";
+	name = "interior access button";
+	pixel_x = -28;
+	pixel_y = 26;
+	req_one_access = list(13)
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 4;
+	icon_state = "map"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/dock_two)
 "alW" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/effect/floor_decal/steeldecal/steel_decals_central6{
@@ -21466,25 +21485,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_two)
-"bPA" = (
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	frequency = 1380;
-	master_tag = "tether_dock";
-	name = "interior access button";
-	pixel_x = 28;
-	pixel_y = 26;
-	req_one_access = list(13)
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 4;
-	icon_state = "map"
-	},
-/turf/simulated/floor/tiled,
-/area/tether/station/dock_two)
 "bPD" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -30667,7 +30667,7 @@ aDJ
 aDJ
 aDJ
 aGa
-bPA
+alV
 bPN
 aJa
 aFZ
