@@ -289,6 +289,7 @@
 	if(ValidTeslaLinks[metadata[7]])
 		var/t = ValidTeslaLinks[metadata[7]]
 		I.tesla_link = new t(I)
+	I.update_verbs()
 
 /datum/gear_tweak/laptop
 	var/list/ValidProcessors = list(/obj/item/weapon/computer_hardware/processor_unit/small, /obj/item/weapon/computer_hardware/processor_unit)
@@ -437,3 +438,4 @@
 	if(ValidTeslaLinks[metadata[7]])
 		var/t = ValidTeslaLinks[metadata[7]]
 		I.tesla_link = new t(I)
+	I.update_verbs()

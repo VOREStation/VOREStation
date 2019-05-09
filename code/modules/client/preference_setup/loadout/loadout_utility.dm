@@ -199,7 +199,7 @@ modular computers
 /datum/gear/utility/customlaptop
 	display_name = "laptop computer, custom"
 	path = /obj/item/modular_computer/laptop/preset/
-	cost = 6
+	cost = 7
 
 /datum/gear/utility/customlaptop/New()
 	..()

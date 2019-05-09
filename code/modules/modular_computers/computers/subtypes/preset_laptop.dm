@@ -31,7 +31,10 @@
 	battery_module = new/obj/item/weapon/computer_hardware/battery_module/advanced(src)
 	battery_module.charge_to_full()
 
+<<<<<<< HEAD
 	//VOREstation Add Begin
+=======
+>>>>>>> b3a875b... Merge pull request #6158 from Novacat/nova-alerts
 /obj/item/modular_computer/laptop/preset/custom_loadout/elite/install_default_hardware()
 	..()
 	processor_unit = new/obj/item/weapon/computer_hardware/processor_unit(src)
@@ -42,4 +45,7 @@
 	card_slot = new/obj/item/weapon/computer_hardware/card_slot(src)
 	battery_module = new/obj/item/weapon/computer_hardware/battery_module/super(src)
 	battery_module.charge_to_full()
+<<<<<<< HEAD
 	//VOREstation Add End
+=======
+>>>>>>> b3a875b... Merge pull request #6158 from Novacat/nova-alerts
