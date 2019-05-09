@@ -13093,6 +13093,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "wE" = (
@@ -14671,6 +14677,12 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 6
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/research_foyer)
 "yY" = (
@@ -14730,6 +14742,10 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research_foyer)
@@ -20410,6 +20426,16 @@
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/bar_backroom)
 "Hx" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/lower/third_south)
+"Hy" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
@@ -21738,16 +21764,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
-"QE" = (
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 1
-	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/hallway/lower/third_south)
 "QI" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -36872,7 +36888,7 @@ Jr
 Js
 Wh
 JE
-Hx
+Hy
 IY
 bg
 RO
@@ -37004,7 +37020,7 @@ FB
 Gl
 Sh
 PT
-QE
+Hx
 Pr
 Sz
 IY
@@ -37014,7 +37030,7 @@ Js
 Js
 Jz
 JE
-Hx
+Hy
 IY
 bg
 RO
@@ -37156,7 +37172,7 @@ Jt
 Js
 Jz
 JE
-Hx
+Hy
 IY
 bg
 RO

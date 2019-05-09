@@ -528,14 +528,25 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "abg" = (
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 10
+/obj/machinery/light{
+	dir = 1
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals4,
-/obj/machinery/alarm{
-	pixel_y = 22;
-	target_temperature = 293.15
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
 	},
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/mauve/bordercorner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "abh" = (
@@ -5974,6 +5985,26 @@
 	},
 /turf/simulated/floor/tiled,
 /area/storage/surface_eva)
+"akh" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/machinery/alarm{
+	pixel_y = 22;
+	target_temperature = 293.15
+	},
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/mauve/bordercorner{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/hallway)
 "akj" = (
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
@@ -8375,12 +8406,6 @@
 /area/shuttle/escape/station{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
 	})
-"asi" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/hallway)
 "asl" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
@@ -37289,7 +37314,7 @@ aps
 aps
 agw
 arA
-asi
+abg
 aXj
 aZd
 bbn
@@ -37431,7 +37456,7 @@ ags
 agt
 aSt
 arA
-abg
+akh
 asU
 ahT
 arG
