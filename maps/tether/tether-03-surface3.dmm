@@ -20436,10 +20436,22 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "Hy" = (
+/obj/structure/closet/hydrant{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/tether/surfacebase/shuttle_pad)
+"Hz" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
 /area/shuttle/tether/surface)
+"HA" = (
+/obj/structure/closet/hydrant{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/tether/surfacebase/shuttle_pad)
 "HH" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/borderfloor{
@@ -22528,10 +22540,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
-"WN" = (
-/obj/structure/closet/hydrant,
-/turf/simulated/wall,
-/area/tether/surfacebase/shuttle_pad)
 "WZ" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -35611,8 +35619,8 @@ Uj
 NB
 NB
 Uj
-KW
-WN
+HA
+IR
 KW
 Uj
 Uj
@@ -36173,8 +36181,8 @@ IR
 IR
 Rf
 XZ
-WN
-KW
+IR
+Hy
 Gt
 Mq
 OL
@@ -36888,7 +36896,7 @@ Jr
 Js
 Wh
 JE
-Hy
+Hz
 IY
 bg
 RO
@@ -37030,7 +37038,7 @@ Js
 Js
 Jz
 JE
-Hy
+Hz
 IY
 bg
 RO
@@ -37172,7 +37180,7 @@ Jt
 Js
 Jz
 JE
-Hy
+Hz
 IY
 bg
 RO
