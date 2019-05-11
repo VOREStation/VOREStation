@@ -23,7 +23,5 @@
 	req_access = list(access_explorer)
 	departments = list("Exploration")
 
-// Pilot Blue is still missing a few sprites on polaris end
 /obj/machinery/suit_cycler/pilot
 	req_access = list(access_pilot)
-	departments = list("Pilot")
