@@ -1,0 +1,32 @@
+"a" = (/turf/template_noop,/area/tether_away/debrisfield/explored)
+"b" = (/turf/simulated/wall/thull,/area/tether_away/debrisfield/explored)
+"c" = (/turf/simulated/floor/airless,/area/tether_away/debrisfield/explored)
+"d" = (/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaabbbbbbbbbbbbbbbbbbbbbbbbbbaaaaaa
+aaacbcccccbddbddddbdddddddddbaaaaaa
+aaacbcccccbddbddddbdddddddddbaaaaaa
+aaabbccccccddbddddbdddddddddbaaaaaa
+aaabbcccccbddbddddbdddddddddbaaaaaa
+aaacbcccccbdddddddbdddddddddbbbbbba
+aaacbcccccbddbddddbdddddddddbddddba
+aaabbbbbbbbddbbbbbbbbbbdbbbbbddddba
+aaaaaaacbdbdddddddddddddddddbddddba
+aaaaaaacdddddddddddddddddddddddddba
+aaaaaaacbdbdddddddddddddddddbddddba
+aaabbbbbbbbddbbbbbbbddbbbbbbbddddba
+aaacbcccccbddbddddddddddddddbddddba
+aaacbcccccbddbddddddddddddddbbbbbba
+aaabbcccccbddbddddddddddddddbaaaaaa
+aaabbccccccddbddddddddddddddbaaaaaa
+aaacbcccccbddbddddddddddddddbaaaaaa
+aaacbcccccbddbddddddddddddddbaaaaaa
+aaabbbbbbbbbbbbbbbbbbbbbbbbbbaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}
