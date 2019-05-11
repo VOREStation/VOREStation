@@ -12992,7 +12992,8 @@
 /obj/item/weapon/pen,
 /obj/machinery/door/window/brigdoor/westright{
 	name = "Research Desk";
-	req_access = list(47)
+	req_access = list(7);
+	req_one_access = list(47)
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/rnd/research)
