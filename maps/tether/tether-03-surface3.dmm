@@ -18689,6 +18689,8 @@
 /obj/effect/floor_decal/corner/mauve/bordercorner2{
 	dir = 10
 	},
+/obj/item/weapon/book/manual/resleeving,
+/obj/item/weapon/storage/box/backup_kit,
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
 "EO" = (
