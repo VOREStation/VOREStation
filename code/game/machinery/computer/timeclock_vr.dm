@@ -87,7 +87,6 @@
 				"department" = job.department,
 				"selection_color" = job.selection_color,
 				"economic_modifier" = job.economic_modifier,
-				"head_position" = job.head_position,
 				"timeoff_factor" = job.timeoff_factor
 			)
 		if(config.time_off && config.pto_job_change)
@@ -166,7 +165,6 @@
 		data_core.manifest_modify(card.registered_name, card.assignment)
 		card.last_job_switch = world.time
 		callHook("reassign_employee", list(card))
-		foundjob.current_positions++
 		announce.autosay("[card.registered_name] has moved On-Duty as [card.assignment].", "Employee Oversight")
 	return
 
@@ -195,7 +193,6 @@
 		data_core.manifest_modify(card.registered_name, card.assignment)
 		card.last_job_switch = world.time
 		callHook("reassign_employee", list(card))
-		foundjob.current_positions--
 		announce.autosay("[card.registered_name], [oldtitle], has moved Off-Duty.", "Employee Oversight")
 	return
 
