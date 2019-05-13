@@ -429,7 +429,7 @@
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 
-/area/ai/foyer
+/area/ai_core_foyer
 	name = "\improper AI Core Access"
 
 /area/medical/virologyisolation
