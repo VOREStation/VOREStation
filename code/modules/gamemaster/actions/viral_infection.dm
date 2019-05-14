@@ -1,11 +1,17 @@
-//var/global/list/event_viruses = list() // so that event viruses are kept around for admin logs, rather than being GCed
+/var/global/list/event_viruses = list() // so that event viruses are kept around for admin logs, rather than being GCed
 
-datum/event/viral_infection
+/datum/gm_action/viral_infection
+	name = "viral infection"
+	departments = list(ROLE_MEDICAL)
+	chaotic = 5
 	var/list/viruses = list()
+	var/severity = 1
 
-datum/event/viral_infection/setup()
-	announceWhen = rand(0, 3000)
-	endWhen = announceWhen + 1
+/datum/gm_action/viral_infection/set_up()
+	severity = pickweight(EVENT_LEVEL_MUNDANE = 20,
+		EVENT_LEVEL_MODERATE = 10,
+		EVENT_LEVEL_MAJOR = 3
+		)
 
 	//generate 1-3 viruses. This way there's an upper limit on how many individual diseases need to be cured if many people are initially infected
 	var/num_diseases = rand(1,3)
@@ -18,7 +24,7 @@ datum/event/viral_infection/setup()
 		D.makerandom(strength)
 		viruses += D
 
-datum/event/viral_infection/announce()
+/datum/gm_action/viral_infection/announce()
 	var/level
 	if (severity == EVENT_LEVEL_MUNDANE)
 		return
@@ -27,11 +33,14 @@ datum/event/viral_infection/announce()
 	else
 		level = "five"
 
-	if (severity == EVENT_LEVEL_MAJOR || prob(60))
-		command_announcement.Announce("Confirmed outbreak of level [level] biohazard aboard \the [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak5.ogg')
+	spawn(rand(0, 3000))
+		if(severity == EVENT_LEVEL_MAJOR || prob(60))
+			command_announcement.Announce("Confirmed outbreak of level [level] biohazard aboard \the [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak5.ogg')
 
-datum/event/viral_infection/start()
+/datum/gm_action/viral_infection/start()
 	if(!viruses.len) return
+
+	..()
 
 	var/list/candidates = list()	//list of candidate keys
 	for(var/mob/living/carbon/human/G in player_list)
@@ -69,3 +78,6 @@ datum/event/viral_infection/start()
 
 	log_admin("Virus event affecting [english_list(used_candidates_text)] started; Viruses: [english_list(used_viruses_text)]")
 	message_admins("Virus event affecting [english_list(used_candidates_links)] started; Viruses: [english_list(used_viruses_links)]")
+
+/datum/gm_action/viral_infection/get_weight()
+	return (metric.count_people_in_department(ROLE_MEDICAL) * 20)
