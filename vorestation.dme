@@ -218,7 +218,10 @@
 #include "code\controllers\subsystems\air.dm"
 #include "code\controllers\subsystems\airflow.dm"
 #include "code\controllers\subsystems\atoms.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\controllers\subsystems\bellies_vr.dm"
+=======
+>>>>>>> 59c8446... Merge pull request #6164 from Novacat/nova-runtimes:polaris.dme
 #include "code\controllers\subsystems\character_setup.dm"
 #include "code\controllers\subsystems\circuits.dm"
 #include "code\controllers\subsystems\events.dm"
