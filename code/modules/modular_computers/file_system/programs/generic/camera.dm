@@ -9,6 +9,7 @@
 	switch(network)
 		if(NETWORK_THUNDER)
 			return 0
+<<<<<<< HEAD
 		if(NETWORK_ENGINE,NETWORK_ALARM_ATMOS,NETWORK_ALARM_FIRE,NETWORK_ALARM_POWER)		//VOREStation Edit
 			return access_engine
 		/*
@@ -21,6 +22,10 @@
 		if(NETWORK_COMMAND,NETWORK_TELECOM)
 			return access_heads
 		*/		//VOREStation Removal
+=======
+		if(NETWORK_ENGINE,NETWORK_ALARM_ATMOS,NETWORK_ALARM_FIRE,NETWORK_ALARM_POWER)
+			return access_engine
+>>>>>>> 1232e68... Merge pull request #6153 from Heroman3003/camera-access-changes
 		if(NETWORK_ERT)
 			return access_cent_specops
 
@@ -33,7 +38,7 @@
 	program_icon_state = "cameras"
 	program_key_state = "generic_key"
 	program_menu_icon = "search"
-	extended_desc = "This program allows remote access to the camera system. Some camera networks may have additional access requirements."
+	extended_desc = "This program allows remote access to the camera system. Most camera networks may have additional access requirements."
 	size = 12
 	available_on_ntnet = 1
 	requires_ntnet = 1
@@ -82,7 +87,11 @@
 	if(!network_access)
 		return 1
 
+<<<<<<< HEAD
 	return check_access(user, access_security) || check_access(user, access_heads) || check_access(user, network_access)	//VOREStation Edit
+=======
+	return check_access(user, access_security) || check_access(user, access_heads) || check_access(user, network_access)
+>>>>>>> 1232e68... Merge pull request #6153 from Heroman3003/camera-access-changes
 
 /datum/nano_module/camera_monitor/Topic(href, href_list)
 	if(..())
