@@ -219,6 +219,7 @@
 #include "code\controllers\subsystems\airflow.dm"
 #include "code\controllers\subsystems\atoms.dm"
 #include "code\controllers\subsystems\bellies_vr.dm"
+#include "code\controllers\subsystems\character_setup.dm"
 #include "code\controllers\subsystems\circuits.dm"
 #include "code\controllers\subsystems\events.dm"
 #include "code\controllers\subsystems\garbage.dm"
