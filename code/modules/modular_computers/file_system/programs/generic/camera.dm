@@ -72,11 +72,7 @@
 	if(!network_access)
 		return 1
 
-<<<<<<< HEAD
-	return check_access(user, access_security) || check_access(user, access_heads) || check_access(user, network_access)	//VOREStation Edit
-=======
 	return check_access(user, access_security) || check_access(user, access_heads) || check_access(user, network_access)
->>>>>>> 1232e68... Merge pull request #6153 from Heroman3003/camera-access-changes
 
 /datum/nano_module/camera_monitor/Topic(href, href_list)
 	if(..())
