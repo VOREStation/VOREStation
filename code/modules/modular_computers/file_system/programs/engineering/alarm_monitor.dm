@@ -7,7 +7,11 @@
 	program_key_state = "atmos_key"
 	program_menu_icon = "alert"
 	extended_desc = "This program provides visual interface for the alarm system."
+<<<<<<< HEAD
 	required_access = access_engine	//VOREStation Addition
+=======
+	required_access = access_engine
+>>>>>>> c07de0a... Merge pull request #6152 from Heroman3003/alarm-acces-restriction
 	requires_ntnet = 1
 	network_destination = "alarm monitoring network"
 	size = 5
