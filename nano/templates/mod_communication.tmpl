@@ -1,11 +1,13 @@
 {{if data.authenticated}}
 	{{if data.state === 1}}
-		<div class=item>{{:helper.link('Make An Announcement', null, {'action' : 'announce'}, data.isAI || !data.net_comms ? 'disabled' : null)}} </div>
-		<div class=item>{{if data.emagged}}
-			{{:helper.link('Send an emergency message to [UNKNOWN]', null, {'action' : 'message', 'target' : 'emagged'}, data.isAI || !data.net_comms ? 'disabled' : null)}}
-		{{else}}
-			{{:helper.link('Send an emergency message to Centcom', null, {'action' : 'message', 'target' : 'regular'}, data.isAI || !data.net_comms ? 'disabled' : null)}}
-		{{/if}} </div>
+		{{if data.authenticated == 2}}
+			<div class=item>{{:helper.link('Make An Announcement', null, {'action' : 'announce'}, data.isAI || !data.net_comms ? 'disabled' : null)}} </div>
+			<div class=item>{{if data.emagged}}
+				{{:helper.link('Send an emergency message to [UNKNOWN]', null, {'action' : 'message', 'target' : 'emagged'}, data.isAI || !data.net_comms ? 'disabled' : null)}}
+			{{else}}
+				{{:helper.link('Send an emergency message to Centcom', null, {'action' : 'message', 'target' : 'regular'}, data.isAI || !data.net_comms ? 'disabled' : null)}}
+			{{/if}} </div>
+		{{/if}}
 		<div class=item>{{:helper.link('Change alert level', null, {'action' : 'sw_menu', 'target' : 5}, data.isAI || !data.net_syscont || !data.net_comms ? 'disabled' : null)}} </div>
 		<div class=item>{{if data.have_shuttle && data.have_shuttle_called}}
 			{{:helper.link('Cancel Shuttle Call', null, {'action' : 'shuttle', 'target' : 'cancel'}, data.isAI || !data.net_syscont ? 'disabled' : null)}}
