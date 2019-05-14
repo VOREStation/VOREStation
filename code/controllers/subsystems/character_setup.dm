@@ -29,11 +29,7 @@ SUBSYSTEM_DEF(character_setup)
 		save_queue.len--
 
 		if(!QDELETED(prefs))
-<<<<<<< HEAD
 			prefs.save_preferences()
-=======
-			SScharacter_setup.queue_preferences_save(prefs)
->>>>>>> 59c8446... Merge pull request #6164 from Novacat/nova-runtimes
 
 		if(MC_TICK_CHECK)
 			return
