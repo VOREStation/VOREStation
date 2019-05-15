@@ -9,18 +9,8 @@
 	switch(network)
 		if(NETWORK_THUNDER)
 			return 0
-		if(NETWORK_ENGINE,NETWORK_ALARM_ATMOS,NETWORK_ALARM_FIRE,NETWORK_ALARM_POWER)		//VOREStation Edit
+		if(NETWORK_ENGINE,NETWORK_ALARM_ATMOS,NETWORK_ALARM_FIRE,NETWORK_ALARM_POWER)
 			return access_engine
-		/*
-		if(NETWORK_MEDICAL)
-			return access_medical
-		if(NETWORK_RESEARCH,NETWORK_RESEARCH_OUTPOST)
-			return access_research
-		if(NETWORK_MINE,NETWORK_CARGO )
-			return access_mailsorting // Cargo office - all cargo staff should have access here.
-		if(NETWORK_COMMAND,NETWORK_TELECOM)
-			return access_heads
-		*/		//VOREStation Removal
 		if(NETWORK_ERT)
 			return access_cent_specops
 
@@ -33,7 +23,7 @@
 	program_icon_state = "cameras"
 	program_key_state = "generic_key"
 	program_menu_icon = "search"
-	extended_desc = "This program allows remote access to the camera system. Some camera networks may have additional access requirements."
+	extended_desc = "This program allows remote access to the camera system. Most camera networks may have additional access requirements."
 	size = 12
 	available_on_ntnet = 1
 	requires_ntnet = 1
@@ -82,7 +72,7 @@
 	if(!network_access)
 		return 1
 
-	return check_access(user, access_security) || check_access(user, access_heads) || check_access(user, network_access)	//VOREStation Edit
+	return check_access(user, access_security) || check_access(user, access_heads) || check_access(user, network_access)
 
 /datum/nano_module/camera_monitor/Topic(href, href_list)
 	if(..())

@@ -3132,7 +3132,7 @@
 /obj/machinery/atmospherics/pipe/zpipe/up/scrubbers,
 /obj/machinery/atmospherics/pipe/zpipe/up/supply,
 /obj/machinery/turretid/stun{
-	control_area = /area/ai/foyer;
+	control_area = /area/ai_core_foyer;
 	name = "AI Core Access turret control";
 	pixel_y = 30
 	},
