@@ -488,7 +488,8 @@ emp_act
 	catch_chance = between(1, catch_chance, 100)
 
 	if(prob(catch_chance))
-		return TRUE
+		if(istype(O,/obj/item) || size_multiplier >= RESIZE_BIG)		//VOREstation edit
+			return TRUE
 	return FALSE
 
 /mob/living/carbon/human/embed(var/obj/O, var/def_zone=null)
