@@ -560,19 +560,19 @@ req_access: 58
 {
 ckey: natje
 character_name: Awen Henry
-item_path: /obj/item/clothing/head/fluff/awoo
+item_path: /obj/item/clothing/head/fluff/wolfgirl
 }
 
 {
 ckey: natje
 character_name: Awen Henry
-item_path: /obj/item/clothing/shoes/fluff/awoo
+item_path: /obj/item/clothing/shoes/fluff/wolfgirl
 }
 
 {
 ckey: natje
 character_name: Awen Henry
-item_path: /obj/item/clothing/under/fluff/awoo
+item_path: /obj/item/clothing/under/fluff/wolfgirl
 }
 
 {
