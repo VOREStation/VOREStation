@@ -119,18 +119,20 @@
 		return 1
 	if(href_list["switch-to-onduty"])
 		if(card)
-			if(checkCardCooldown())
-				makeOnDuty(href_list["switch-to-onduty"])
-				usr.put_in_hands(card)
-				card = null
+			if(checkFace())
+				if(checkCardCooldown())
+					makeOffDuty()
+					usr.put_in_hands(card)
+					card = null
 		update_icon()
 		return 1
 	if(href_list["switch-to-offduty"])
 		if(card)
-			if(checkCardCooldown())
-				makeOffDuty()
-				usr.put_in_hands(card)
-				card = null
+			if(checkFace())
+				if(checkCardCooldown())
+					makeOffDuty()
+					usr.put_in_hands(card)
+					card = null
 		update_icon()
 		return 1
 	return 1 // Return 1 to update UI
@@ -165,6 +167,9 @@
 		data_core.manifest_modify(card.registered_name, card.assignment)
 		card.last_job_switch = world.time
 		callHook("reassign_employee", list(card))
+		foundjob.current_positions++
+		var/mob/living/carbon/human/H = usr
+		H.mind.assigned_role = foundjob.title
 		announce.autosay("[card.registered_name] has moved On-Duty as [card.assignment].", "Employee Oversight")
 	return
 
@@ -193,6 +198,9 @@
 		data_core.manifest_modify(card.registered_name, card.assignment)
 		card.last_job_switch = world.time
 		callHook("reassign_employee", list(card))
+		var/mob/living/carbon/human/H = usr
+		H.mind.assigned_role = ptojob.title
+		foundjob.current_positions--
 		announce.autosay("[card.registered_name], [oldtitle], has moved Off-Duty.", "Employee Oversight")
 	return
 
@@ -203,6 +211,23 @@
 		to_chat(usr, "You need to wait at least 15 minutes after last duty switch.")
 		return FALSE
 	return TRUE
+
+/obj/machinery/computer/timeclock/proc/checkFace()
+	if(!card)
+		to_chat(usr, "<span class='notice'>No ID is inserted.</span>")
+		return FALSE
+	var/mob/living/carbon/human/H = usr
+	if(!(istype(H)))
+		to_chat(usr, "<span class='warning'>Invalid user detected. Access denied.</span>")
+		return FALSE
+	else if((H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)))	//Face hiding bad
+		to_chat(usr, "<span class='warning'>Facial recognition scan failed due to physical obstructions. Access denied.</span>")
+		return FALSE
+	else if(H.get_face_name() == "Unknown" || !(H.real_name == card.registered_name))
+		to_chat(usr, "<span class='warning'>Facial recognition scan failed. Access denied.</span>")
+		return FALSE
+	else
+		return TRUE
 
 /obj/item/weapon/card/id
 	var/last_job_switch
