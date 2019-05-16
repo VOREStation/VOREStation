@@ -168,6 +168,8 @@
 		card.last_job_switch = world.time
 		callHook("reassign_employee", list(card))
 		foundjob.current_positions++
+		var/mob/living/carbon/human/H = usr
+		H.mind.assigned_role = foundjob.title
 		announce.autosay("[card.registered_name] has moved On-Duty as [card.assignment].", "Employee Oversight")
 	return
 
@@ -196,6 +198,8 @@
 		data_core.manifest_modify(card.registered_name, card.assignment)
 		card.last_job_switch = world.time
 		callHook("reassign_employee", list(card))
+		var/mob/living/carbon/human/H = usr
+		H.mind.assigned_role = ptojob.title
 		foundjob.current_positions--
 		announce.autosay("[card.registered_name], [oldtitle], has moved Off-Duty.", "Employee Oversight")
 	return
