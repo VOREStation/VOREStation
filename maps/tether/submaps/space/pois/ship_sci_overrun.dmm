@@ -1,32 +1,88 @@
-"a" = (/turf/template_noop,/area/tether_away/debrisfield/explored)
-"b" = (/turf/simulated/wall/thull,/area/tether_away/debrisfield/explored)
-"c" = (/turf/simulated/floor/airless,/area/tether_away/debrisfield/explored)
-"d" = (/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aa" = (/turf/template_noop,/area/tether_away/debrisfield/explored)
+"ab" = (/turf/simulated/wall/thull,/area/tether_away/debrisfield/explored)
+"ac" = (/turf/simulated/floor/airless,/area/tether_away/debrisfield/explored)
+"ad" = (/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"ae" = (/obj/machinery/portable_atmospherics/hydroponics,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"af" = (/obj/machinery/botany/editor,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"ag" = (/obj/machinery/vending/hydronutrients,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"ah" = (/obj/machinery/seed_extractor,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"ai" = (/obj/machinery/seed_storage/xenobotany,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aj" = (/obj/machinery/botany/extractor,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"ak" = (/obj/item/seeds/killertomatoseed,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"al" = (/obj/structure/railing,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"am" = (/obj/structure/railing{dir = 4},/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"an" = (/obj/structure/reagent_dispensers/watertank/high,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"ao" = (/obj/structure/railing{dir = 8},/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"ap" = (/obj/structure/table/rack,/obj/item/weapon/shovel/spade,/obj/item/weapon/shovel/spade,/obj/item/weapon/material/minihoe,/obj/item/weapon/material/minihoe,/obj/item/weapon/material/knife/machete/hatchet,/obj/item/weapon/material/knife/machete/hatchet,/obj/item/weapon/reagent_containers/glass/bucket,/obj/item/weapon/reagent_containers/glass/bucket,/obj/item/device/analyzer/plant_analyzer,/obj/item/device/analyzer/plant_analyzer,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aq" = (/obj/structure/railing{dir = 1},/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"ar" = (/mob/living/simple_mob/tomato/space,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"as" = (/obj/machinery/door/airlock/maintenance/rnd{req_one_access = list(0)},/turf/simulated/floor/airless,/area/tether_away/debrisfield/explored)
+"at" = (/obj/machinery/door/airlock/science{req_one_access = list(0)},/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"au" = (/obj/item/clothing/head/collectable/slime,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"av" = (/obj/structure/sign/hydro,/turf/simulated/wall/thull,/area/tether_away/debrisfield/explored)
+"aw" = (/obj/structure/closet/firecloset,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"ax" = (/obj/machinery/door/airlock/command{req_one_access = list(0)},/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"ay" = (/obj/structure/sign/xenobio,/turf/simulated/wall/thull,/area/tether_away/debrisfield/explored)
+"az" = (/obj/item/device/slime_scanner,/obj/item/device/slime_scanner,/obj/structure/table/reinforced,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aA" = (/obj/structure/table/reinforced,/obj/item/weapon/gun/energy/taser/xeno,/obj/item/weapon/melee/baton/slime/loaded,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aB" = (/obj/structure/table/reinforced,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aC" = (/obj/structure/table/reinforced,/obj/item/weapon/reagent_containers/food/snacks/monkeycube,/obj/item/weapon/reagent_containers/food/snacks/monkeycube/farwacube,/obj/item/weapon/reagent_containers/food/snacks/monkeycube/neaeracube,/obj/item/weapon/reagent_containers/food/snacks/monkeycube/sarucube,/obj/item/weapon/reagent_containers/food/snacks/monkeycube/sobakacube,/obj/item/weapon/reagent_containers/food/snacks/monkeycube/sparracube,/obj/item/weapon/reagent_containers/food/snacks/monkeycube/stokcube,/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wolpincube,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aD" = (/obj/machinery/processor,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aE" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/turf/simulated/floor/airless,/area/tether_away/debrisfield/explored)
+"aF" = (/obj/item/weapon/reagent_containers/spray/plantbgone,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aG" = (/obj/item/weapon/reagent_containers/spray/chemsprayer,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aH" = (/obj/tether_away_spawner/debrisfield/carp,/turf/template_noop,/area/tether_away/debrisfield/explored)
+"aI" = (/obj/effect/decal/remains,/obj/item/clothing/under/rank/hydroponics,/obj/item/clothing/suit/storage/toggle/labcoat/green,/obj/item/clothing/head/greenbandana,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aJ" = (/obj/structure/table/rack,/obj/item/slime_extract/rainbow,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aK" = (/obj/item/weapon/gun/energy/temperature,/obj/structure/table/rack,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aL" = (/obj/structure/window/reinforced/full,/obj/structure/grille,/turf/simulated/floor/airless,/area/tether_away/debrisfield/explored)
+"aM" = (/obj/machinery/computer/shuttle{dir = 8},/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aN" = (/obj/structure/bed/chair/comfy/purp{dir = 4},/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aO" = (/obj/item/weapon/gun/energy/decloner,/obj/structure/table/rack,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aP" = (/obj/structure/filingcabinet/filingcabinet,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aQ" = (/obj/structure/table/reinforced,/obj/item/stack/material/phoron{amount = 10},/obj/item/device/flashlight/pen,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aR" = (/obj/structure/table/reinforced,/obj/item/weapon/paper_bin,/obj/item/weapon/pen/blue,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aS" = (/obj/structure/table/reinforced,/obj/item/weapon/folder/white,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aT" = (/mob/living/simple_mob/slime/feral/dark_blue,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aU" = (/obj/structure/table/rack,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/item/weapon/material/shard,/obj/item/clothing/mask/breath,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aV" = (/obj/structure/bed/chair/office/light{dir = 1},/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aW" = (/obj/item/weapon/airlock_electronics,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aX" = (/obj/item/weapon/material/shard,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aY" = (/obj/structure/closet/emcloset,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"aZ" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"ba" = (/obj/item/clothing/suit/storage/toggle/labcoat/purple,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"bb" = (/obj/effect/decal/remains,/obj/item/clothing/under/rank/scientist,/obj/item/clothing/suit/storage/toggle/labcoat/blue,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"bc" = (/obj/structure/closet/secure_closet/scientist{name = "scientist locker"; req_access = list(0)},/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"bd" = (/obj/structure/bed,/obj/item/weapon/bedsheet/blue,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"be" = (/obj/structure/bed,/obj/item/weapon/bedsheet/green,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"bf" = (/obj/structure/bed,/obj/item/weapon/bedsheet/rd,/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"bg" = (/obj/structure/sink{dir = 8; pixel_x = -12},/turf/simulated/floor/tiled/white/airless,/area/tether_away/debrisfield/explored)
+"bh" = (/obj/structure/shuttle/engine/propulsion{dir = 8},/turf/simulated/floor/airless,/area/tether_away/debrisfield/explored)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaabbbbbbbbbbbbbbbbbbbbbbbbbbaaaaaa
-aaacbcccccbddbddddbdddddddddbaaaaaa
-aaacbcccccbddbddddbdddddddddbaaaaaa
-aaabbccccccddbddddbdddddddddbaaaaaa
-aaabbcccccbddbddddbdddddddddbaaaaaa
-aaacbcccccbdddddddbdddddddddbbbbbba
-aaacbcccccbddbddddbdddddddddbddddba
-aaabbbbbbbbddbbbbbbbbbbdbbbbbddddba
-aaaaaaacbdbdddddddddddddddddbddddba
-aaaaaaacdddddddddddddddddddddddddba
-aaaaaaacbdbdddddddddddddddddbddddba
-aaabbbbbbbbddbbbbbbbddbbbbbbbddddba
-aaacbcccccbddbddddddddddddddbddddba
-aaacbcccccbddbddddddddddddddbbbbbba
-aaabbcccccbddbddddddddddddddbaaaaaa
-aaabbccccccddbddbddbddbdddddbaaaaaa
-aaacbcccccbddbddbddbddbdddddbaaaaaa
-aaacbcccccbddbddbddbddbdddddbaaaaaa
-aaabbbbbbbbbbbbbbbbbbbbbbbbbbaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaababababababababababababaEaEababababababababababababaaaaaaaaaaaa
+aaaaaabhabacacacacacabadadabbcadadbdabaeadafagahaiajaFaeabaaaaaaaaaaaa
+aaaaaabhabacacacacacabadadabbcadadadabaeakaradaladaFaGaeabaaaaaaaHaaaa
+aaaaaaababacacacacacasadadabbcadadbeabaeadadamanaoaraIaeabaaaaaaaaaaaa
+aaaaaaababacacacacacabadadabadadadadabaeadadamapaoadadaeabaaaaaaaaaaaa
+aaaaaabhabacacacacacabadadatadauadadabaearadadaqadadaraeababaEaEababaa
+aaaaaabhabacacacacacabadadabbgadadbfabaeadadaradadadakaeabadadaJadabaa
+aaaaaaababababababababadadabababababababababavatabababababaKadadadaLaa
+aaaaaaaaaaaaaaacabaYabadadadadadadadadadadadadadadadadawabadadadaMaEaa
+aaaaaaaaaaaaaaacaZadaZadadadadadadadadadadadadadadadadadaxadadaNaMaEaa
+aaaaaaaaaaaaaaacabaYabadadadadadadadadadadadadadadadadawabadadadaMaEaa
+aaaaaaababababababababadadabababababababababababayatabababaOadbaadaEaa
+aaaaaabhabacacacacacabadadabaPaQaRaSaBadaTadadadadadadazabadadaUadabaa
+aaaaaabhabacacacacacabadadabadadaVadadadadadadadbbadadaAababaEaEababaa
+aaaaaaababacacacacacabadadabadaWadadadadaXaWadadadadadaBabaaaaaaaaaaaa
+aaaaaaababacacacacacasadadababaXababaXababadabawadadadaBabaaaaaaaaaaaa
+aaaaaabhabacacacacacabadadabadadabadadabadadabawadadaTaCabaaaaaaaaaaaa
+aaaaaabhabacacacacacabadadabaTadabadadabadadabawadadadaDabaaaaaaaaaaaa
+aaaaaaababababababababababababababababababababababababababaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
