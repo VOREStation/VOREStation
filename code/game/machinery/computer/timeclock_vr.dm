@@ -121,7 +121,7 @@
 		if(card)
 			if(checkFace())
 				if(checkCardCooldown())
-					makeOffDuty()
+					makeOnDuty(href_list["switch-to-onduty"])
 					usr.put_in_hands(card)
 					card = null
 		update_icon()
