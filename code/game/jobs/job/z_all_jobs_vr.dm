@@ -19,9 +19,6 @@
 /datum/job/rd
 	disallow_jobhop = TRUE
 
-/datum/job/secretary
-	disallow_jobhop = TRUE
-
 /datum/job/lawyer
 	disallow_jobhop = TRUE
 

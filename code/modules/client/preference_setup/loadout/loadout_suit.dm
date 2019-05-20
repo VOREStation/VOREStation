@@ -467,7 +467,7 @@ datum/gear/suit/duster
 /datum/gear/suit/snowsuit/command
 	display_name = "snowsuit, command"
 	path = /obj/item/clothing/suit/storage/snowsuit/command
-	allowed_roles = list("Colony Director","Research Director","Head of Personnel","Head of Security","Chief Engineer","Command Secretary")
+	allowed_roles = list("Colony Director","Research Director","Head of Personnel","Head of Security","Chief Engineer")
 
 /datum/gear/suit/snowsuit/security
 	display_name = "snowsuit, security"

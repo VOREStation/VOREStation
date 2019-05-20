@@ -133,11 +133,6 @@
 	icon_state = "silver"
 	item_state = "silver_id"
 
-/obj/item/weapon/card/id/silver/secretary
-	assignment = "Command Secretary"
-	rank = "Command Secretary"
-	job_access_type = /datum/job/secretary
-
 /obj/item/weapon/card/id/silver/hop
 	assignment = "Head of Personnel"
 	rank = "Head of Personnel"
