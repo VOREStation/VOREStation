@@ -1519,3 +1519,11 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "buggofirefly_vass_markings"
 	extra_overlay_w = "buggofatfirefly_vass_markings"
+
+/datum/sprite_accessory/tail/tail_smooth
+	name = "Smooth Lizard Tail, Colorable"
+	desc = ""
+	icon_state = "tail_smooth"
+	ani_state = "tail_smooth_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
