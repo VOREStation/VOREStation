@@ -24,7 +24,7 @@
 
 // Step 1, find out what we can see.
 /datum/ai_holder/proc/list_targets()
-	. = hearers(vision_range, holder) - src // Remove ourselves to prevent suicidal decisions.
+	. = hearers(vision_range, holder) - holder // Remove ourselves to prevent suicidal decisions. ~ SRC is the ai_holder.
 
 	var/static/hostile_machines = typecacheof(list(/obj/machinery/porta_turret, /obj/mecha))
 
