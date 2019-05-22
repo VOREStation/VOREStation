@@ -104,6 +104,10 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/weapon/holder/borer
 	origin_tech = list(TECH_BIO = 6)
 
+/obj/item/weapon/holder/leech
+	color = "#003366"
+	origin_tech = list(TECH_BIO = 5, TECH_PHORON = 2)
+
 /obj/item/weapon/holder/fish
 	attack_verb = list("fished", "disrespected", "smacked", "smackereled")
 	hitsound = 'sound/effects/slime_squish.ogg'

@@ -6,7 +6,7 @@
 	w_class = ITEMSIZE_SMALL
 	matter = list("glass" = 200)
 	flags = NOBLUDGEON
-	var/list/accept_mobs = list(/mob/living/simple_mob/animal/passive/lizard, /mob/living/simple_mob/animal/passive/mouse)
+	var/list/accept_mobs = list(/mob/living/simple_mob/animal/passive/lizard, /mob/living/simple_mob/animal/passive/mouse, /mob/living/simple_mob/animal/sif/leech, /mob/living/simple_mob/animal/sif/frostfly, /mob/living/simple_mob/animal/sif/glitterfly)
 	var/contains = 0 // 0 = nothing, 1 = money, 2 = animal, 3 = spiderling
 
 /obj/item/glass_jar/New()
@@ -96,6 +96,12 @@
 			for(var/mob/M in src)
 				var/image/victim = image(M.icon, M.icon_state)
 				victim.pixel_y = 6
+				victim.color = M.color
+				if(M.plane == PLANE_LIGHTING_ABOVE)	// This will only show up on the ground sprite, due to the HuD being over it, so we need both images.
+					var/image/victim_glow = image(M.icon, M.icon_state)
+					victim_glow.pixel_y = 6
+					victim_glow.color = M.color
+					underlays += victim_glow
 				underlays += victim
 				name = "glass jar with [M]"
 				desc = "A small jar with [M] inside."
