@@ -553,4 +553,5 @@
 	icon_state = "laptop"
 	icon_keyboard = "laptop_key"
 	icon_screen = "medlaptop"
+	circuit = /obj/item/weapon/circuitboard/med_data/laptop
 	density = 0

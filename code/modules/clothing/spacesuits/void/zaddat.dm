@@ -42,6 +42,7 @@
 	switch(suit_style)
 		if("Engineer")
 			name = "\improper Engineer's Guild Shroud"
+			base_name = "\improper Engineer's Guild Shroud"
 			desc = "This rugged Shroud was created by the Xozi Engineering Guild."
 			icon_state = "zaddat_engie"
 			item_state = "zaddat_engie"
@@ -52,6 +53,7 @@
 				helmet.item_state = "zaddat_engie"
 		if("Spacer")
 			name = "\improper Spacer's Guild Shroud"
+			base_name = "\improper Spacer's Guild Shroud"
 			desc = "The blue plastic Shroud worn by members of the Zaddat Spacer's Guild."
 			icon_state = "zaddat_spacer"
 			item_state = "zaddat_spacer"
@@ -62,6 +64,7 @@
 				helmet.item_state = "zaddat_spacer"
 		if("Knight")
 			name = "\improper Knight's Shroud"
+			base_name = "\improper Knight's Shroud"
 			desc = "This distinctive steel-plated Shroud was popularized by the Noble Guild."
 			icon_state = "zaddat_knight"
 			item_state = "zaddat_knight"
@@ -72,6 +75,7 @@
 				helmet.item_state = "zaddat_knight"
 		if("Fashion")
 			name = "\improper Avazi House Shroud"
+			base_name = "\improper Avazi House Shroud"
 			desc = "The designers of the Avazi Fashion House are among the most renowned in Zaddat society, and their Shroud designs second to none."
 			icon_state = "zaddat_fashion"
 			item_state = "zaddat_fashion"
@@ -82,6 +86,7 @@
 				helmet.item_state = "zaddat_fashion"
 		if("Bishop")
 			name = "\improper Bishop-patterned Shroud"
+			base_name = "\improper Bishop-patterned Shroud"
 			desc = "The bold designers of the Dzaz Fashion House chose to make this Bishop-themed Shroud design as a commentary on the symbiotic nature of Vanax and human culture. Allegedly."
 			icon_state = "zaddat_bishop"
 			item_state = "zaddat_bishop"
@@ -92,6 +97,7 @@
 				helmet.item_state = "zaddat_bishop"
 		if("Rugged")
 			name = "rugged Shroud"
+			base_name = "rugged Shroud"
 			desc = "This Shroud was patterned after from First Contact era human voidsuits."
 			icon_state = "zaddat_rugged"
 			item_state = "zaddat_rugged"
