@@ -553,8 +553,5 @@
 	icon_state = "laptop"
 	icon_keyboard = "laptop_key"
 	icon_screen = "medlaptop"
-<<<<<<< HEAD
-=======
 	circuit = /obj/item/weapon/circuitboard/med_data/laptop
->>>>>>> 209cb36... Big Bugfix Bonanza (#6170)
 	density = 0
