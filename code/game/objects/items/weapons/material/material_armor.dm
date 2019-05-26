@@ -105,6 +105,31 @@ Protectiveness | Armor %
 	if(!material) // No point checking for reflection.
 		return ..()
 
+	if(material.negation && prob(material.negation)) // Strange and Alien materials, or just really strong materials.
+		user.visible_message("<span class='danger'>\The [src] completely absorbs [attack_text]!</span>")
+		return TRUE
+
+	if(material.spatial_instability && prob(material.spatial_instability))
+		user.visible_message("<span class='danger'>\The [src] flashes [user] clear of [attack_text]!</span>")
+		var/list/turfs = new/list()
+		for(var/turf/T in orange(round(material.spatial_instability / 10) + 1, user))
+			if(istype(T,/turf/space)) continue
+			if(T.density) continue
+			if(T.x>world.maxx-6 || T.x<6)	continue
+			if(T.y>world.maxy-6 || T.y<6)	continue
+			turfs += T
+		if(!turfs.len) turfs += pick(/turf in orange(6))
+		var/turf/picked = pick(turfs)
+		if(!isturf(picked)) return
+
+		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+		spark_system.set_up(5, 0, user.loc)
+		spark_system.start()
+		playsound(user.loc, 'sound/effects/teleport.ogg', 50, 1)
+
+		user.loc = picked
+		return PROJECTILE_FORCE_MISS
+
 	if(material.reflectivity)
 		if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
 			var/obj/item/projectile/P = damage_source

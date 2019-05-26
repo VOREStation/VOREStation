@@ -6,7 +6,7 @@
 		. = 0
 		return
 
-	if(!M.mind || !M.client) // Logged out.  They might come back but we can't do any meaningful assessments for now.
+	if(!M.client) // Logged out.  They might come back but we can't do any meaningful assessments for now.
 		. = 0
 		return
 

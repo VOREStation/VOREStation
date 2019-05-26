@@ -280,7 +280,7 @@
 		recipies_ui[++recipies_ui.len] = list("name" = R.name, "type" = "[T]")
 	data["recipies"] = recipies_ui
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "partslathe.tmpl", "Parts Lathe UI", 500, 450)
 		ui.set_initial_data(data)

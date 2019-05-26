@@ -216,6 +216,13 @@
 	icon_state = "medcloak"
 	item_state = "medcloak"
 
+
+/obj/item/clothing/accessory/poncho/roles/cloak/custom //A colorable cloak
+	name = "cloak"
+	desc = "A simple, bland cloak."
+	icon_state = "colorcloak"
+	item_state = "colorcloak"
+
 /obj/item/clothing/accessory/hawaii
 	name = "flower-pattern shirt"
 	desc = "You probably need some welder googles to look at this."

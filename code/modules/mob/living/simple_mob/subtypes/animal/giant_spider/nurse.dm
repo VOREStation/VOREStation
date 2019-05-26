@@ -137,6 +137,8 @@
 	if(large_cocoon)
 		C.icon_state = pick("cocoon_large1","cocoon_large2","cocoon_large3")
 
+	ai_holder.target = null
+
 	return TRUE
 
 /mob/living/simple_mob/animal/giant_spider/nurse/handle_special()
@@ -241,7 +243,7 @@
 			. += O
 
 // Select an obj if no mobs are around.
-/datum/ai_holder/melee/nurse_spider/pick_target(list/targets)
+/datum/ai_holder/simple_mob/melee/nurse_spider/pick_target(list/targets)
 	var/mobs_only = locate(/mob/living) in targets // If a mob is in the list of targets, then ignore objects.
 	if(mobs_only)
 		for(var/A in targets)

@@ -79,6 +79,9 @@
 /area/security/nuke_storage
 	flags = BLUE_SHIELDED
 
+/area/supply
+	flags = BLUE_SHIELDED
+
 // Add rad shielding to maintenance and construction sites
 /area/vacant
 	flags = RAD_SHIELDED
@@ -292,3 +295,7 @@
 /area/engineering/engine_gas
 	name = "\improper Engine Gas Storage"
 	icon_state = "engine_waste"
+
+/area/chapel/observation
+	name = "\improper Chapel Observation"
+	icon_state = "chapel"

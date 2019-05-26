@@ -61,32 +61,37 @@
 	build_path = /obj/item/weapon/cartridge/quartermaster
 	sort_string = "VBAAI"
 
+/datum/design/item/pda_cartridge/head
+	id = "cart_head"
+	build_path = /obj/item/weapon/cartridge/head
+	sort_string = "VBAAJ"
+
 /datum/design/item/pda_cartridge/hop
 	id = "cart_hop"
 	build_path = /obj/item/weapon/cartridge/hop
-	sort_string = "VBAAJ"
+	sort_string = "VBAAK"
 
 /datum/design/item/pda_cartridge/hos
 	id = "cart_hos"
 	build_path = /obj/item/weapon/cartridge/hos
-	sort_string = "VBAAK"
+	sort_string = "VBAAL"
 
 /datum/design/item/pda_cartridge/ce
 	id = "cart_ce"
 	build_path = /obj/item/weapon/cartridge/ce
-	sort_string = "VBAAL"
+	sort_string = "VBAAM"
 
 /datum/design/item/pda_cartridge/cmo
 	id = "cart_cmo"
 	build_path = /obj/item/weapon/cartridge/cmo
-	sort_string = "VBAAM"
+	sort_string = "VBAAN"
 
 /datum/design/item/pda_cartridge/rd
 	id = "cart_rd"
 	build_path = /obj/item/weapon/cartridge/rd
-	sort_string = "VBAAN"
+	sort_string = "VBAAO"
 
 /datum/design/item/pda_cartridge/captain
 	id = "cart_captain"
 	build_path = /obj/item/weapon/cartridge/captain
-	sort_string = "VBAAO"
+	sort_string = "VBAAP"

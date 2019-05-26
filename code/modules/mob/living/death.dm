@@ -1,4 +1,4 @@
-/mob/living/death()
+/mob/living/death(gibbed)
 	clear_fullscreens()
 	if(ai_holder)
 		ai_holder.go_sleep()
@@ -11,4 +11,12 @@
 			var/obj/structure/blob/factory/F = nest
 			F.spores -= src
 		nest = null
+
+	for(var/s in owned_soul_links)
+		var/datum/soul_link/S = s
+		S.owner_died(gibbed)
+	for(var/s in shared_soul_links)
+		var/datum/soul_link/S = s
+		S.sharer_died(gibbed)
+
 	. = ..()

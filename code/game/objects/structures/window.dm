@@ -83,8 +83,9 @@
 /obj/structure/window/proc/updateSilicate()
 	if (overlays)
 		overlays.Cut()
+	update_icon()
 
-	var/image/img = image(src.icon, src.icon_state)
+	var/image/img = image(src)
 	img.color = "#ffffff"
 	img.alpha = silicate * 255 / 100
 	overlays += img
@@ -267,7 +268,7 @@
 			state = 3 - state
 			update_nearby_icons()
 			playsound(src, W.usesound, 75, 1)
-			to_chat(user, "<span class='notice'>You have [state ? "un" : ""]fastened the window [state ? "from" : "to"] the frame.</span>")
+			to_chat(user, "<span class='notice'>You have [state == 1 ? "un" : ""]fastened the window [state ? "from" : "to"] the frame.</span>")
 		else if(reinf && state == 0)
 			anchored = !anchored
 			update_nearby_icons()
@@ -485,6 +486,7 @@
 	force_threshold = 3
 
 /obj/structure/window/basic/full
+	icon_state = "window-full"
 	maxhealth = 24
 	fulltile = TRUE
 
@@ -501,6 +503,7 @@
 	force_threshold = 5
 
 /obj/structure/window/phoronbasic/full
+	icon_state = "phoronwindow-full"
 	maxhealth = 80
 	fulltile = TRUE
 
@@ -518,6 +521,7 @@
 	force_threshold = 10
 
 /obj/structure/window/phoronreinforced/full
+	icon_state = "phoronrwindow-full"
 	maxhealth = 160
 	fulltile = TRUE
 
@@ -534,7 +538,7 @@
 	force_threshold = 6
 
 /obj/structure/window/reinforced/full
-	icon_state = "fwindow"
+	icon_state = "rwindow-full"
 	maxhealth = 80
 	fulltile = TRUE
 
@@ -571,7 +575,7 @@
 	var/id
 
 /obj/structure/window/reinforced/polarized/full
-	icon_state = "fwindow"
+	icon_state = "rwindow-full"
 	maxhealth = 80
 	fulltile = TRUE
 

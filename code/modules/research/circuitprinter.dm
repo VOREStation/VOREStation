@@ -16,7 +16,9 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	var/mat_efficiency = 1
 	var/speed = 1
 
-	materials = list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0, "plastic" = 0, "gold" = 0, "silver" = 0, "osmium" = 0, "phoron" = 0, "uranium" = 0, "diamond" = 0)
+	materials = list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0, MAT_PLASTEEL = 0, "plastic" = 0, "gold" = 0, "silver" = 0, "osmium" = 0, MAT_LEAD = 0, "phoron" = 0, "uranium" = 0, "diamond" = 0, MAT_DURASTEEL = 0, MAT_VERDANTIUM = 0, MAT_MORPHIUM = 0, MAT_METALHYDROGEN = 0, MAT_SUPERMATTER = 0)
+
+	hidden_materials = list(MAT_PLASTEEL, MAT_DURASTEEL, MAT_VERDANTIUM, MAT_MORPHIUM, MAT_METALHYDROGEN, MAT_SUPERMATTER)
 
 	use_power = 1
 	idle_power_usage = 30
@@ -68,7 +70,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	T = 0
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		T += M.rating
-	mat_efficiency = 1 - (T - 1) / 4
+	mat_efficiency = max(1 - (T - 1) / 4, 0.2)
 	speed = T
 
 /obj/machinery/r_n_d/circuit_imprinter/update_icon()
@@ -143,12 +145,12 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		max_res_amount -= materials[mat]
 
 	if(materials[S.material.name] + amnt <= max_res_amount)
-		if(S && S.amount >= 1)
+		if(S && S.get_amount() >= 1)
 			var/count = 0
 			overlays += "fab-load-metal"
 			spawn(10)
 				overlays -= "fab-load-metal"
-			while(materials[S.material.name] + amnt <= max_res_amount && S.amount >= 1)
+			while(materials[S.material.name] + amnt <= max_res_amount && S.get_amount() >= 1)
 				materials[S.material.name] += amnt
 				S.use(1)
 				count++

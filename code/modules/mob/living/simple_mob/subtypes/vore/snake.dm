@@ -11,8 +11,8 @@
 	maxHealth = 200
 	health = 200
 
-	melee_damage_lower = 10
-	melee_damage_upper = 25
+	melee_damage_lower = 5
+	melee_damage_upper = 12
 
 	old_x = -16
 	old_y = -16

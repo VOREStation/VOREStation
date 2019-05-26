@@ -35,7 +35,12 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 			if (!shuttle.location)	//leaving from the station
 				//launch the pods!
-				for (var/datum/shuttle/ferry/escape_pod/pod in escape_pods)
+				for (var/EP in escape_pods)
+					var/datum/shuttle/ferry/escape_pod/pod
+					if(istype(escape_pods[EP], /datum/shuttle/ferry/escape_pod))
+						pod = escape_pods[EP]
+					else
+						continue
 					if (!pod.arming_controller || pod.arming_controller.armed)
 						pod.launch(src)
 
@@ -57,7 +62,12 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 		//arm the escape pods
 		if (evac)
-			for (var/datum/shuttle/ferry/escape_pod/pod in escape_pods)
+			for (var/EP in escape_pods)
+				var/datum/shuttle/ferry/escape_pod/pod
+				if(istype(escape_pods[EP], /datum/shuttle/ferry/escape_pod))
+					pod = escape_pods[EP]
+				else
+					continue
 				if (pod.arming_controller)
 					pod.arming_controller.arm()
 
@@ -195,6 +205,8 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 //returns 1 if the shuttle is not idle at centcom
 /datum/emergency_shuttle_controller/proc/online()
+	if(!shuttle)
+		return FALSE
 	if (!shuttle.location)	//not at centcom
 		return 1
 	if (wait_for_launch || shuttle.moving_status != SHUTTLE_IDLE)

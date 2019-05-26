@@ -275,6 +275,8 @@
 	var/final_message = "[part_a][speaker_name][part_b][formatted]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
 		final_message = "[time]<font size='3'><b>[final_message]</b></font>"
+	else
+		final_message = "[time][final_message]"
 	to_chat(src, final_message)
 
 /mob/living/silicon/ai/on_hear_radio(part_a, speaker_name, track, part_b, formatted)
@@ -282,6 +284,8 @@
 	var/final_message = "[part_a][track][part_b][formatted]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
 		final_message = "[time]<font size='3'><b>[final_message]</b></font>"
+	else
+		final_message = "[time][final_message]"
 	to_chat(src, final_message)
 
 /mob/proc/hear_signlang(var/message, var/verb = "gestures", var/datum/language/language, var/mob/speaker = null)

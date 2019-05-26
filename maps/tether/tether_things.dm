@@ -216,7 +216,7 @@
 // Tram departure cryo doors that turn into ordinary airlock doors at round end
 /obj/machinery/cryopod/robot/door/tram
 	name = "\improper Tram Station"
-	icon = 'icons/obj/doors/Doorext.dmi'
+	icon = 'icons/obj/doors/Doorextglass.dmi'
 	icon_state = "door_closed"
 	base_icon_state = "door_closed"
 	occupied_icon_state = "door_locked"
@@ -235,7 +235,7 @@
 		time_till_despawn = 0
 		..()
 		var/turf/T = get_turf(src)
-		var/obj/machinery/door/airlock/external/door = new(T)
+		var/obj/machinery/door/airlock/glass_external/door = new(T)
 		door.req_access = null
 		door.req_one_access = null
 		qdel(src)
@@ -250,7 +250,8 @@
 
 	var/choice = alert("Do you want to depart via the tram? Your character will leave the round.","Departure","Yes","No")
 	if(user && Adjacent(user) && choice == "Yes")
-		user.ghostize()
+		var/mob/observer/dead/newghost = user.ghostize()
+		newghost.timeofdeath = world.time
 		despawn_occupant(user)
 
 // Tram arrival point landmarks and datum
@@ -402,45 +403,6 @@ var/global/list/latejoin_tram   = list()
 	..()
 	for(var/i = 1 to 3)
 		new /obj/item/weapon/gun/energy/frontier/locked(src)
-
-// Underdark mob spawners
-/obj/tether_away_spawner/underdark_normal
-	name = "Underdark Normal Spawner"
-	faction = "underdark"
-	atmos_comp = TRUE
-	prob_spawn = 100
-	prob_fall = 50
-	guard = 20
-	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/jelly = 3,
-		/mob/living/simple_mob/animal/giant_spider/hunter = 1,
-		/mob/living/simple_mob/animal/giant_spider/phorogenic = 1,
-		/mob/living/simple_mob/animal/giant_spider/lurker = 1,
-	)
-
-/obj/tether_away_spawner/underdark_hard
-	name = "Underdark Hard Spawner"
-	faction = "underdark"
-	atmos_comp = TRUE
-	prob_spawn = 100
-	prob_fall = 50
-	guard = 20
-	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/aggressive/corrupthound = 1,
-		/mob/living/simple_mob/vore/aggressive/rat = 1,
-		/mob/living/simple_mob/animal/space/mimic = 1
-	)
-
-/obj/tether_away_spawner/underdark_boss
-	name = "Underdark Boss Spawner"
-	faction = "underdark"
-	atmos_comp = TRUE
-	prob_spawn = 100
-	prob_fall = 100
-	guard = 70
-	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/aggressive/dragon = 1
-	)
 
 // Used at centcomm for the elevator
 /obj/machinery/cryopod/robot/door/dorms

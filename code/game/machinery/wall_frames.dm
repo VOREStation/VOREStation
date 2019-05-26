@@ -145,4 +145,4 @@
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "fireaxe0101"
 	refund_amt = 4
-	build_machine_type = /obj/structure/closet/fireaxecabinet
+	build_machine_type = /obj/structure/fireaxecabinet

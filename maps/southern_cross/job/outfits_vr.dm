@@ -15,3 +15,7 @@
 	..()
 	for(var/obj/item/clothing/accessory/permit/gun/planetside/permit in H.back.contents)
 		permit.set_name(H.real_name)
+
+/decl/hierarchy/outfit/job/assistant/explorer
+	id_type = /obj/item/weapon/card/id/explorer
+	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL

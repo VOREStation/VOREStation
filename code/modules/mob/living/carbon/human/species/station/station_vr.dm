@@ -27,6 +27,7 @@
 	racial tensions which has resulted in more than a number of wars and outright attempts at genocide. Sergals have an incredibly long \
 	lifespan, but due to their lust for violence, only a handful have ever survived beyond the age of 80, such as the infamous and \
 	legendary General Rain Silves who is claimed to have lived to 5000."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/sergal)
 
 	primitive_form = "Saru"
 
@@ -87,6 +88,7 @@
 	allies over the next few hundred years. With the help of Skrellean technology, the Akula had their genome modified to be capable of \
 	surviving in open air for long periods of time. However, Akula even today still require a high humidity environment to avoid drying out \
 	after a few days, which would make life on an arid world like Virgo-Prime nearly impossible if it were not for Skrellean technology to aid them."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/akula)
 
 	primitive_form = "Sobaka"
 
@@ -127,6 +129,7 @@
 	intelligence and very skillful hands that are put use for constructing precision instruments, but tire-out fast when repeatedly working \
 	over and over again. Consequently, they struggle to make copies of same things. Both genders have a voice that echoes a lot. Their natural \
 	tone oscillates between tenor and soprano. They are excessively noisy when they quarrel in their native language."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/nevrean)
 
 	primitive_form = "Sparra"
 
@@ -165,6 +168,8 @@
 	mountainous areas, they have a differing societal structure than the Flatland Zorren having a more feudal social structure, like the Flatland Zorren, \
 	the Highland Zorren have also only recently been hired by the Trans-Stellar Corporations, but thanks to the different social structure they seem to \
 	have adjusted better to their new lives. Though similar fox-like beings have been seen they are different than the Zorren."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/zorren,
+						/datum/category_item/catalogue/fauna/highzorren)
 
 	//primitive_form = "" //We don't have fox-monkey sprites.
 
@@ -205,6 +210,8 @@
 	mountainous areas, they have a differing societal structure than the Flatland Zorren having a more feudal social structure, like the Flatland Zorren, \
 	the Highland Zorren have also only recently been hired by the Trans-Stellar Corporations, but thanks to the different social structure they \
 	seem to have adjusted better to their new lives. Though similar fox-like beings have been seen they are different than the Zorren."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/zorren,
+						/datum/category_item/catalogue/fauna/flatzorren)
 
 	//primitive_form = "" //We don't have fennec-monkey sprites.
 	spawn_flags = SPECIES_CAN_JOIN
@@ -247,6 +254,7 @@
 	culture both feared and respected for their scientific breakthroughs. Discovery, loyalty, and utilitarianism dominates their lifestyles \
 	to the degree it can cause conflict with more rigorous and strict authorities. They speak a guttural language known as 'Canilunzt' \
     which has a heavy emphasis on utilizing tail positioning and ear twitches to communicate intent."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/vulpkanin)
 
 	primitive_form = "Wolpin"
 
@@ -279,6 +287,7 @@
 	although there are some exceptions, such as when they are harmed. Most xenomorph hybrids are female, due to their natural xenomorph genes, \
 	but there are multiple exceptions. All xenomorph hybrids have had their ability to lay eggs containing facehuggers \
 	removed if they had the ability to, although hybrids that previously contained this ability is extremely rare."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/xenohybrid)
 
 	//primitive_form = "" //None for these guys
 
@@ -305,6 +314,7 @@
 	min_age = 18
 	gluttonous = 0
 	inherent_verbs = list(/mob/living/proc/shred_limb)
+	descriptors = list()
 
 /datum/species/tajaran
 	spawn_flags = SPECIES_CAN_JOIN
@@ -330,6 +340,15 @@
 	spawn_flags = SPECIES_CAN_JOIN
 	min_age = 18
 	gluttonous = 0
+	descriptors = list()
+
+/datum/species/zaddat/equip_survival_gear(var/mob/living/carbon/human/H)
+	.=..()
+	var/obj/item/weapon/storage/toolbox/lunchbox/survival/zaddat/L = new(get_turf(H))
+	if(H.backbag == 1)
+		H.equip_to_slot_or_del(L, slot_r_hand)
+	else
+		H.equip_to_slot_or_del(L, slot_in_backpack)
 
 /datum/species/diona
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
@@ -345,6 +364,7 @@
 	push_flags = ~HEAVY //Allows them to use micro step code.
 	swap_flags = ~HEAVY
 	gluttonous = 0
+	descriptors = list()
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/sonar_ping,
@@ -371,6 +391,9 @@
 	icobase = 'icons/mob/human_races/r_vox_old.dmi'
 	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
 	inherent_verbs = list(/mob/living/proc/shred_limb, /mob/living/proc/eat_trash)
+	descriptors = list(
+		/datum/mob_descriptor/vox_markings = 0
+		)
 
 datum/species/harpy
 	name = SPECIES_RAPALA
@@ -393,6 +416,7 @@ datum/species/harpy
 	Sol researchers have commented on them having a very close resemblance to the mythical race called 'Harpies',\
 	who are known for having massive winged arms and talons as feet. They've been clocked at speeds of over 35 miler per hour chasing the planet's many fish-like fauna.\
 	The Rapalan's home-world 'Verita' is a strangely habitable gas giant, while no physical earth exists, there are fertile floating islands orbiting around the planet from past asteroid activity."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/rapala)
 
 	//primitive_form = "Saru"
 

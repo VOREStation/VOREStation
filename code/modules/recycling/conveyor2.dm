@@ -1,6 +1,6 @@
 #define OFF 0
 #define FORWARDS 1
-#define BACKWARDS 2
+#define BACKWARDS -1
 
 //conveyor2 is pretty much like the original, except it supports corners, but not diverters.
 //note that corner pieces transfer stuff clockwise when running forward, and anti-clockwise backwards.
@@ -32,12 +32,7 @@
 	if(newdir)
 		set_dir(newdir)
 
-	if(dir & (dir-1)) // Diagonal. Forwards is *away* from dir, curving to the right.
-		forwards = turn(dir, 135)
-		backwards = turn(dir, 45)
-	else
-		forwards = dir
-		backwards = turn(dir, 180)
+	update_dir()
 
 	if(on)
 		operating = FORWARDS
@@ -59,6 +54,18 @@
 	else
 		operating = OFF
 	update()
+
+/obj/machinery/conveyor/set_dir()
+	.=..()
+	update_dir()
+
+/obj/machinery/conveyor/proc/update_dir()
+	if(!(dir in cardinal)) // Diagonal. Forwards is *away* from dir, curving to the right.
+		forwards = turn(dir, 135)
+		backwards = turn(dir, 45)
+	else
+		forwards = dir
+		backwards = turn(dir, 180)
 
 /obj/machinery/conveyor/proc/update()
 	if(stat & BROKEN)

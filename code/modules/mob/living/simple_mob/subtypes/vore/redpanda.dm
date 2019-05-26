@@ -17,9 +17,9 @@
 	response_disarm = "gently pushes aside the"
 	response_harm = "hits the"
 
-	harm_intent_damage = 5
-	melee_damage_lower = 5
-	melee_damage_upper = 2
+	harm_intent_damage = 3
+	melee_damage_lower = 3
+	melee_damage_upper = 1
 	attacktext = list("bapped")
 
 	say_list_type = /datum/say_list/redpanda

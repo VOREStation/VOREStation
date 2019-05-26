@@ -152,7 +152,7 @@
 	log_client_to_db()
 
 	send_resources()
-	GLOB.nanomanager.send_resources(src)
+	SSnanoui.send_resources(src)
 
 	if(!void)
 		void = new()
@@ -166,7 +166,7 @@
 			src.changes()
 
 	hook_vr("client_new",list(src)) //VOREStation Code
-
+	
 	if(config.paranoia_logging)
 		if(isnum(player_age) && player_age == 0)
 			log_and_message_admins("PARANOIA: [key_name(src)] has connected here for the first time.")

@@ -395,6 +395,21 @@
 	display_contents_with_number = 1
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = 100
+	
+/obj/item/weapon/storage/part_replacer/adv
+	name = "advanced rapid part exchange device"
+	desc = "Special mechanical module made to store, sort, and apply standard machine parts.  This one has a greatly upgraded storage capacity"
+	icon_state = "RPED"
+	w_class = ITEMSIZE_HUGE
+	can_hold = list(/obj/item/weapon/stock_parts)
+	storage_slots = 200
+	use_to_pickup = 1
+	allow_quick_gather = 1
+	allow_quick_empty = 1
+	collection_mode = 1
+	display_contents_with_number = 1
+	max_w_class = ITEMSIZE_NORMAL
+	max_storage_space = 400
 
 /obj/item/weapon/stock_parts
 	name = "stock part"
@@ -554,6 +569,91 @@
 	origin_tech = list(TECH_MATERIAL = 5)
 	rating = 3
 	matter = list(DEFAULT_WALL_MATERIAL = 80)
+
+// Rating 4 - Anomaly
+
+/obj/item/weapon/stock_parts/capacitor/hyper
+	name = "hyper capacitor"
+	desc = "A hyper-capacity capacitor used in the construction of a variety of devices."
+	icon_state = "capacitor_hyper"
+	origin_tech = list(TECH_POWER = 6, TECH_MATERIAL = 5, TECH_BLUESPACE = 1, TECH_ARCANE = 1)
+	rating = 4
+	matter = list(DEFAULT_WALL_MATERIAL = 80, MAT_GLASS = 40)
+
+/obj/item/weapon/stock_parts/scanning_module/hyper
+	name = "quantum scanning module"
+	desc = "A compact, near-perfect resolution quantum scanning module used in the construction of certain devices."
+	icon_state = "scan_module_hyper"
+	origin_tech = list(TECH_MAGNET = 6, TECH_BLUESPACE = 1, TECH_ARCANE = 1)
+	rating = 4
+	matter = list(DEFAULT_WALL_MATERIAL = 100,"glass" = 40)
+
+/obj/item/weapon/stock_parts/manipulator/hyper
+	name = "planck-manipulator"
+	desc = "A miniscule manipulator used in the construction of certain devices."
+	icon_state = "hyper_mani"
+	origin_tech = list(TECH_MATERIAL = 6, TECH_DATA = 3, TECH_ARCANE = 1)
+	rating = 4
+	matter = list(DEFAULT_WALL_MATERIAL = 30)
+
+/obj/item/weapon/stock_parts/micro_laser/hyper
+	name = "hyper-power micro-laser"
+	icon_state = "hyper_micro_laser"
+	desc = "A tiny laser used in certain devices."
+	origin_tech = list(TECH_MAGNET = 6, TECH_ARCANE = 1)
+	rating = 4
+	matter = list(DEFAULT_WALL_MATERIAL = 30, MAT_GLASS = 40)
+
+/obj/item/weapon/stock_parts/matter_bin/hyper
+	name = "hyper matter bin"
+	desc = "A container for holding compressed matter awaiting re-construction."
+	icon_state = "hyper_matter_bin"
+	origin_tech = list(TECH_MATERIAL = 6, TECH_ARCANE = 1)
+	rating = 4
+	matter = list(DEFAULT_WALL_MATERIAL = 100)
+
+// Rating 5 - Precursor
+
+/obj/item/weapon/stock_parts/capacitor/omni
+	name = "omni-capacitor"
+	desc = "A capacitor of immense capacity used in the construction of a variety of devices."
+	icon_state = "capacitor_omni"
+	origin_tech = list(TECH_POWER = 7, TECH_MATERIAL = 6, TECH_BLUESPACE = 3, TECH_PRECURSOR  = 1)
+	rating = 5
+	matter = list(DEFAULT_WALL_MATERIAL = 80, MAT_GLASS = 40)
+
+/obj/item/weapon/stock_parts/scanning_module/omni
+	name = "omni-scanning module"
+	desc = "A compact, perfect resolution temporospatial scanning module used in the construction of certain devices."
+	icon_state = "scan_module_omni"
+	origin_tech = list(TECH_MAGNET = 7, TECH_BLUESPACE = 3, TECH_PRECURSOR = 1)
+	rating = 5
+	matter = list(DEFAULT_WALL_MATERIAL = 100,"glass" = 40)
+
+/obj/item/weapon/stock_parts/manipulator/omni
+	name = "omni-manipulator"
+	desc = "A strange, infinitesimal manipulator used in the construction of certain devices."
+	icon_state = "omni_mani"
+	origin_tech = list(TECH_MATERIAL = 7, TECH_DATA = 4, TECH_PRECURSOR  = 1)
+	rating = 5
+	matter = list(DEFAULT_WALL_MATERIAL = 30)
+
+/obj/item/weapon/stock_parts/micro_laser/omni
+	name = "omni-power micro-laser"
+	icon_state = "omni_micro_laser"
+	desc = "A strange laser used in certain devices."
+	origin_tech = list(TECH_MAGNET = 7, TECH_PRECURSOR  = 1)
+	rating = 5
+	matter = list(DEFAULT_WALL_MATERIAL = 30, MAT_GLASS = 40)
+
+/obj/item/weapon/stock_parts/matter_bin/omni
+	name = "omni-matter bin"
+	desc = "A strange container for holding compressed matter awaiting re-construction."
+	icon_state = "omni_matter_bin"
+	origin_tech = list(TECH_MATERIAL = 7, TECH_PRECURSOR  = 1)
+	rating = 5
+	matter = list(DEFAULT_WALL_MATERIAL = 100)
+
 
 // Subspace stock parts
 

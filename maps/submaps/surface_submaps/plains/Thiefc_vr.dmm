@@ -117,8 +117,8 @@
 	outdoors = 0
 	},
 /area/submap/Thiefc)
-"q" = (
-/mob/living/simple_animal/hostile/bear,
+"I" = (
+/mob/living/simple_mob/humanoid/merc/melee/sword/space,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
@@ -268,7 +268,7 @@ c
 c
 c
 c
-h
+c
 h
 c
 c
@@ -290,7 +290,7 @@ c
 c
 c
 c
-h
+c
 h
 c
 c
@@ -371,7 +371,7 @@ a
 c
 e
 h
-h
+I
 h
 h
 h
@@ -396,7 +396,7 @@ c
 i
 h
 h
-q
+h
 h
 c
 c

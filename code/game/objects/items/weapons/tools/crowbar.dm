@@ -51,6 +51,24 @@
 	toolspeed = 0.1
 	origin_tech = list(TECH_COMBAT = 4, TECH_ENGINEERING = 4)
 
+/obj/item/weapon/tool/crowbar/hybrid
+	name = "strange crowbar"
+	desc = "A crowbar whose head seems to phase in and out of view."
+	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_crowbar)
+	icon_state = "hybcrowbar"
+	usesound = 'sound/weapons/sonic_jackhammer.ogg'
+	toolspeed = 0.4
+	origin_tech = list(TECH_COMBAT = 4, TECH_ENGINEERING = 3)
+	reach = 2
+
+/obj/item/weapon/tool/crowbar/hybrid/is_crowbar()
+	if(prob(10))
+		var/turf/T = get_turf(src)
+		radiation_repository.radiate(get_turf(src), 5)
+		T.visible_message("<span class='alien'>\The [src] shudders!</span>")
+		return FALSE
+	return TRUE
+
 /obj/item/weapon/tool/crowbar/cyborg
 	name = "hydraulic crowbar"
 	desc = "A hydraulic prying tool, compact but powerful. Designed to replace crowbars in industrial synthetics."

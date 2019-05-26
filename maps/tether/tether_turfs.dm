@@ -61,23 +61,28 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	var/mineral_name
 	if(rare_ore)
 		mineral_name = pickweight(list(
-			"uranium" = 10, 
-			"platinum" = 10, 
-			"hematite" = 20, 
-			"carbon" = 20, 
-			"diamond" = 1, 
-			"gold" = 8, 
-			"silver" = 8, 
-			"phoron" = 18))
+			"marble" = 3,
+			"uranium" = 10,
+			"platinum" = 10,
+			"hematite" = 20,
+			"carbon" = 20,
+			"diamond" = 1,
+			"gold" = 8,
+			"silver" = 8,
+			"phoron" = 18,
+			"lead" = 2,
+			"verdantium" = 1))
 	else
 		mineral_name = pickweight(list(
-			"uranium" = 5, 
-			"platinum" = 5, 
-			"hematite" = 35, 
-			"carbon" = 35, 
-			"gold" = 3, 
-			"silver" = 3, 
-			"phoron" = 25))
+			"marble" = 2,
+			"uranium" = 5,
+			"platinum" = 5,
+			"hematite" = 35,
+			"carbon" = 35,
+			"gold" = 3,
+			"silver" = 3,
+			"phoron" = 25,
+			"lead" = 1))
 	if(mineral_name && (mineral_name in ore_data))
 		mineral = ore_data[mineral_name]
 		UpdateMineral()
@@ -89,22 +94,28 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	var/mineral_name
 	if(rare_ore)
 		mineral_name = pickweight(list(
-			"uranium" = 10, 
-			"platinum" = 10, 
-			"hematite" = 10, 
-			"carbon" = 10, 
-			"diamond" = 4, 
-			"gold" = 15, 
-			"silver" = 15))
+			"marble" = 7,
+			"uranium" = 10,
+			"platinum" = 10,
+			"hematite" = 10,
+			"carbon" = 10,
+			"diamond" = 4,
+			"gold" = 15,
+			"silver" = 15,
+			"lead" = 5,
+			"verdantium" = 2))
 	else
 		mineral_name = pickweight(list(
-			"uranium" = 7, 
-			"platinum" = 7, 
-			"hematite" = 28, 
-			"carbon" = 28, 
-			"diamond" = 2, 
-			"gold" = 7, 
-			"silver" = 7))
+			"marble" = 5,
+			"uranium" = 7,
+			"platinum" = 7,
+			"hematite" = 28,
+			"carbon" = 28,
+			"diamond" = 2,
+			"gold" = 7,
+			"silver" = 7,
+			"lead" = 4,
+			"verdantium" = 1))
 	if(mineral_name && (mineral_name in ore_data))
 		mineral = ore_data[mineral_name]
 		UpdateMineral()

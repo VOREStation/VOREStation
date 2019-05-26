@@ -35,6 +35,16 @@
 /mob/living/simple_mob/shadekin/red/brown
 	icon_state = "brown"
 
+/mob/living/simple_mob/shadekin/red/ai
+	ai_holder_type = /datum/ai_holder/simple_mob/melee
+
+/mob/living/simple_mob/shadekin/red/ai/white
+	icon_state = "white"
+/mob/living/simple_mob/shadekin/red/ai/dark
+	icon_state = "dark"
+/mob/living/simple_mob/shadekin/red/ai/brown
+	icon_state = "brown"
+
 /////////////////////////////////////////////////////////////////
 /mob/living/simple_mob/shadekin/blue
 	name = "blue-eyed shadekin"
@@ -82,6 +92,16 @@
 /mob/living/simple_mob/shadekin/blue/brown
 	icon_state = "brown"
 
+/mob/living/simple_mob/shadekin/blue/ai
+	ai_holder_type = /datum/ai_holder/simple_mob/passive
+
+/mob/living/simple_mob/shadekin/blue/ai/white
+	icon_state = "white"
+/mob/living/simple_mob/shadekin/blue/ai/dark
+	icon_state = "dark"
+/mob/living/simple_mob/shadekin/blue/ai/brown
+	icon_state = "brown"
+
 /////////////////////////////////////////////////////////////////
 /mob/living/simple_mob/shadekin/purple
 	name = "purple-eyed shadekin"
@@ -124,6 +144,16 @@
 /mob/living/simple_mob/shadekin/purple/brown
 	icon_state = "brown"
 
+/mob/living/simple_mob/shadekin/purple/ai
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+
+/mob/living/simple_mob/shadekin/purple/ai/white
+	icon_state = "white"
+/mob/living/simple_mob/shadekin/purple/ai/dark
+	icon_state = "dark"
+/mob/living/simple_mob/shadekin/purple/ai/brown
+	icon_state = "brown"
+
 /////////////////////////////////////////////////////////////////
 /mob/living/simple_mob/shadekin/yellow
 	name = "yellow-eyed shadekin"
@@ -162,6 +192,26 @@
 /mob/living/simple_mob/shadekin/yellow/dark
 	icon_state = "dark"
 /mob/living/simple_mob/shadekin/yellow/brown
+	icon_state = "brown"
+
+/mob/living/simple_mob/shadekin/yellow/ai
+	ai_holder_type = /datum/ai_holder/simple_mob/melee/hit_and_run
+
+/mob/living/simple_mob/shadekin/yellow/ai/white
+	icon_state = "white"
+/mob/living/simple_mob/shadekin/yellow/ai/dark
+	icon_state = "dark"
+/mob/living/simple_mob/shadekin/yellow/ai/brown
+	icon_state = "brown"
+
+/mob/living/simple_mob/shadekin/yellow/ai/retaliate
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+
+/mob/living/simple_mob/shadekin/yellow/ai/retaliate/white
+	icon_state = "white"
+/mob/living/simple_mob/shadekin/yellow/ai/retaliate/dark
+	icon_state = "dark"
+/mob/living/simple_mob/shadekin/yellow/ai/retaliate/brown
 	icon_state = "brown"
 
 /////////////////////////////////////////////////////////////////
@@ -204,6 +254,16 @@
 /mob/living/simple_mob/shadekin/green/brown
 	icon_state = "brown"
 
+/mob/living/simple_mob/shadekin/green/ai
+	ai_holder_type = /datum/ai_holder/simple_mob/passive
+
+/mob/living/simple_mob/shadekin/green/ai/white
+	icon_state = "white"
+/mob/living/simple_mob/shadekin/green/ai/dark
+	icon_state = "dark"
+/mob/living/simple_mob/shadekin/green/ai/brown
+	icon_state = "brown"
+
 /////////////////////////////////////////////////////////////////
 /mob/living/simple_mob/shadekin/orange
 	name = "orange-eyed shadekin"
@@ -239,6 +299,16 @@
 /mob/living/simple_mob/shadekin/orange/dark
 	icon_state = "dark"
 /mob/living/simple_mob/shadekin/orange/brown
+	icon_state = "brown"
+
+/mob/living/simple_mob/shadekin/orange/ai
+	ai_holder_type = /datum/ai_holder/simple_mob/melee
+
+/mob/living/simple_mob/shadekin/orange/ai/white
+	icon_state = "white"
+/mob/living/simple_mob/shadekin/orange/ai/dark
+	icon_state = "dark"
+/mob/living/simple_mob/shadekin/orange/ai/brown
 	icon_state = "brown"
 
 /////////////////////////////////////////////////////////////////

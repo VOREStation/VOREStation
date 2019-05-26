@@ -124,6 +124,12 @@ PROBABILITY LIZARD 1
 PROBABILITY INTRIGUE 1
 PROBABILITY VISITORS 1
 
+## Overrides for required number of readied up players for a gamemode to be able to start can be defined here.
+## If it is unset, it will default to the requirement set by the gamemode datum.
+## Note that this does not control the required amount of antags for a gamemode, and so a lower number may still fail to start if not enough people want to be antags.
+## By default, this overrides the voted gamemode requirement. To override the requirement for Secret, append '_SECRET' to the end of the first word.
+## The format to use is REQUIRED_PLAYERS[_SECRET] [gamemode tag] [number of readies needed], for example, "REQUIRED_PLAYERS TRAITOR 1", or "REQUIRED_PLAYERS_SECRET MERCENARY 10".
+
 ## Hash out to disable random events during the round.
 ALLOW_RANDOM_EVENTS
 
@@ -407,6 +413,12 @@ ENGINE_MAP Supermatter Engine,Edison's Bane
 # Controls if the 'time off' system is used for determining if players can play 'Off-Duty' jobs (requires SQL)
 # TIME_OFF
 
+# If 'time off' system is on, controls whether or not players can switch on/off duty midround using timeclocks
+# PTO_JOB_CHANGE
+
+# Forbids players from joining if they have no set General flavor text
+# REQUIRE_FLAVOR
+
 # Applies a limit to the number of assistants and visitors respectively
 # LIMIT_INTERNS 6
 # LIMIT_VISITORS 6
@@ -421,3 +433,17 @@ ENGINE_MAP Supermatter Engine,Edison's Bane
 ## Submap rotation is an experimental feature and can cause bugs and weirdness if certain objects inside the submap are coded poorly.
 ## Submaps can still be rotated when loading manually with the admin verbs, if desired.
 # RANDOM_SUBMAP_ORIENTATION
+
+## Uncomment to allow the AI job to use 'AI Shells', a new type of borg that lets the AI hop into and out of them at will.
+## This has some balance implications, and so it might not be desirable for all servers.
+# ALLOW_AI_SHELLS
+
+## Uncomment to provide the AI with one free AI Shell at roundstart. Requires ALLOW_AI_SHELLS to also be uncommented.
+## This is intended for low-pop servers, where robotics might rarely be staffed.
+## Note that this will make it possible for the AI to 'bootstrap' more AI Shells on their own by using the science module. If this is not acceptable for your server, you should not uncomment this.
+## The landmark object that spawns the shell will also need to be mapped in for this to work.
+# GIVE_FREE_AI_SHELL
+
+## Uncomment to allow specific solar control computers to set themselves up.
+## This requires solar controller computers in the map to be set up to use it, with the auto_start variable.
+# AUTOSTART_SOLARS

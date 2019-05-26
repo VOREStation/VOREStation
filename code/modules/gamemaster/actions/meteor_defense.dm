@@ -34,10 +34,10 @@
 /datum/gm_action/meteor_defense/start()
 	..()
 	spawn(0)
-	//	sleep(5 MINUTES)
+		sleep(5 MINUTES)
 		var/announcement = "The incoming debris are expected to approach from the [dir_text] side.  ETA to arrival is approximately 5 minutes."
 		command_announcement.Announce(announcement, "Meteor Alert - Update")
-	//	sleep(5 MINUTES)
+		sleep(5 MINUTES)
 		announcement = "Incoming debris approaches from the [dir_text] side!"
 		command_announcement.Announce(announcement, "Meteor Alert - Update")
 		while(waves)

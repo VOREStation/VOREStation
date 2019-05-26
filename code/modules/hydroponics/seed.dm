@@ -437,7 +437,7 @@
 
 		for(var/x=1;x<=additional_chems;x++)
 
-			var/new_chem = pick(chemical_reagents_list)
+			var/new_chem = pick(SSchemistry.chemical_reagents)
 			if(new_chem in banned_chems)
 				continue
 			banned_chems += new_chem
@@ -727,6 +727,9 @@
 				if(get_trait(TRAIT_BIOLUM_COLOUR))
 					clr = get_trait(TRAIT_BIOLUM_COLOUR)
 				product.set_light(get_trait(TRAIT_BIOLUM), l_color = clr)
+
+			if(get_trait(TRAIT_STINGS))
+				product.force = 1
 
 			//Handle spawning in living, mobile products (like dionaea).
 			if(istype(product,/mob/living))

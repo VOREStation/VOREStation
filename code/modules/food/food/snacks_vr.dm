@@ -308,7 +308,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/wolpincube
 	name = "wolpin cube"
 	monkey_type = "Wolpin"
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/pizza/margfrozen
 	name = "frozen margherita pizza"
 	desc = "It's frozen rock solid, better thaw it in a microwave."
@@ -317,7 +317,7 @@
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_amt = 15
 	nutriment_desc = list("ice" = 5, "toothache" = 1, "frozen cheese" = 5, "frozen tomato" = 5)
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/pizza/margfrozen/Initialize()
 	..()
 	bitesize = 20
@@ -353,7 +353,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/slice/margcargo/filled
 	filled = TRUE
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/pizza/meatfrozen
 	name = "frozen meat pizza"
 	desc = "It's frozen rock solid, better thaw it in a microwave."
@@ -362,7 +362,7 @@
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_amt = 15
 	nutriment_desc = list("ice" = 5, "toothache" = 1, "frozen meat" = 5, "frozen cow screams" = 5)
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/pizza/meatfrozen/Initialize()
 	..()
 	bitesize = 20
@@ -398,7 +398,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/slice/meatcargo/filled
 	filled = TRUE
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/pizza/mushfrozen
 	name = "frozen mushroom pizza"
 	desc = "It's frozen rock solid, better thaw it in a microwave."
@@ -407,7 +407,7 @@
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_amt = 15
 	nutriment_desc = list("ice" = 5, "toothache" = 1, "frozen mushrooms" = 5, "frozen cream" = 5)
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/pizza/mushfrozen/Initialize()
 	..()
 	bitesize = 20
@@ -451,7 +451,7 @@
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_amt = 15
 	nutriment_desc = list("ice" = 5, "toothache" = 1, "frozen vegtable chunks" = 5)
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/pizza/vegfrozen/Initialize()
 	..()
 	bitesize = 20

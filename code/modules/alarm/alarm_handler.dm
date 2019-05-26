@@ -50,6 +50,11 @@
 /datum/alarm_handler/proc/major_alarms()
 	return visible_alarms()
 
+/datum/alarm_handler/proc/has_major_alarms()
+	if(alarms && alarms.len)
+		return 1
+	return 0
+
 /datum/alarm_handler/proc/minor_alarms()
 	return visible_alarms()
 

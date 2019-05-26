@@ -67,6 +67,7 @@
 	\
 	However, after their discovery by the angels of Sanctum, many alraunes succumbed to their curiosity, and took the offer\
 	to learn of the world and venture out, whether it's to Sanctum, or elsewhere in the galaxy."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/alraune)
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
@@ -389,7 +390,7 @@
 /mob/living/carbon/human/proc/alraune_fruit_select() //So if someone doesn't want fruit/vegetables, they don't have to select one.
 	set name = "Select fruit"
 	set desc = "Select what fruit/vegetable you wish to grow."
-	set category = "Object"
+	set category = "Abilities"
 	var/obj/item/organ/internal/fruitgland/fruit_gland
 	for(var/F in contents)
 		if(istype(F, /obj/item/organ/internal/fruitgland))
