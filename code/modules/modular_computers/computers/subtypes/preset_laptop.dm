@@ -49,13 +49,17 @@
 
 //VOREStation Add Start
 /obj/item/modular_computer/laptop/preset/custom_loadout/rugged
+	name = "rugged laptop computer"
+	desc = "A rugged portable computer."
 	icon = 'icons/obj/modular_laptop_vr.dmi'
+	max_damage = 300
+	broken_damage = 200
 
 /obj/item/modular_computer/laptop/preset/custom_loadout/rugged/install_default_hardware()
 	..()
-	processor_unit = new/obj/item/weapon/computer_hardware/processor_unit(src)
+	processor_unit = new/obj/item/weapon/computer_hardware/processor_unit/small(src)
 	tesla_link = new/obj/item/weapon/computer_hardware/tesla_link(src)
-	hard_drive = new/obj/item/weapon/computer_hardware/hard_drive/super(src)
+	hard_drive = new/obj/item/weapon/computer_hardware/hard_drive/advanced(src)
 	network_card = new/obj/item/weapon/computer_hardware/network_card/advanced(src)
 	nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(src)
 	card_slot = new/obj/item/weapon/computer_hardware/card_slot(src)
