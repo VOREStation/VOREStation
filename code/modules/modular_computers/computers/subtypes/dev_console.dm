@@ -1,7 +1,7 @@
 /obj/item/modular_computer/console
 	name = "console"
 	desc = "A stationary computer."
-	icon = 'icons/obj/modular_console.dmi'
+	icon = 'icons/obj/modular_console_vr.dmi' //VOREStation Edit
 	icon_state = "console"
 	icon_state_unpowered = "console"
 	icon_state_screensaver = "standby"
