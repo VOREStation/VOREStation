@@ -515,7 +515,8 @@
 				if(M)
 					S.icon_state = initial(S.icon_state)
 					S.icon = initial(S.icon)
-					S.reagents.trans_to_mob(M, S.reagents.total_volume, CHEM_BLOOD)
+					if(M.can_inject())
+						S.reagents.trans_to_mob(M, S.reagents.total_volume, CHEM_BLOOD)
 					M.take_organ_damage(2)
 					S.visible_message("<span class=\"attack\"> [M] was hit by the syringe!</span>")
 					break
@@ -661,6 +662,7 @@
 		occupant_message("<span class=\"alert\">No reagent info gained from [A].</span>")
 		return 0
 	occupant_message("Analyzing reagents...")
+	//VOREStation Block Edit - Start
 	for(var/datum/reagent/R in A.reagents.reagent_list)
 		if(R.id in known_reagents)
 			occupant_message("Reagent \"[R.name]\" already present in database, skipping.")
@@ -669,7 +671,8 @@
 			send_byjax(chassis.occupant,"msyringegun.browser","reagents_form",get_reagents_form())
 		else
 			occupant_message("Reagent \"[R.name]\" unable to be scanned, skipping.")
-	occupant_message("Analyzis complete.")
+	//VOREstation Block Edit - End
+	occupant_message("Analysis complete.")
 	return 1
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/proc/add_known_reagent(r_id,r_name)

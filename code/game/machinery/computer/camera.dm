@@ -248,7 +248,7 @@
 	icon_state = "television"
 	icon_keyboard = null
 	icon_screen = "detective_tv"
-	circuit = null
+	circuit = /obj/item/weapon/circuitboard/security/tv
 	light_color = "#3848B3"
 	light_power_on = 0.5
 

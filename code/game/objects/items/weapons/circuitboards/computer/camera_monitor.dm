@@ -14,6 +14,10 @@
 	..()
 	network = using_map.station_networks
 
+/obj/item/weapon/circuitboard/security/tv
+	name = T_BOARD("security camera monitor - television")
+	build_path = /obj/machinery/computer/security/wooden_tv
+
 /obj/item/weapon/circuitboard/security/engineering
 	name = T_BOARD("engineering camera monitor")
 	build_path = /obj/machinery/computer/security/engineering

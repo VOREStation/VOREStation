@@ -27,6 +27,7 @@
 	ai_holder_type = null // This is player-controlled, always.
 
 	var/chemicals = 10							// A resource used for reproduction and powers.
+	var/max_chemicals = 250						// Max of said resource.
 	var/mob/living/carbon/human/host = null		// The humanoid host for the brain worm.
 	var/true_name = null						// String used when speaking among other worms.
 	var/mob/living/captive_brain/host_brain		// Used for swapping control of the body back and forth.
@@ -74,7 +75,7 @@
 			docile = FALSE
 
 		// Chem regen.
-		if(chemicals < 250)
+		if(chemicals < max_chemicals)
 			chemicals++
 
 		// Control stuff.
@@ -166,6 +167,12 @@
 	reset_view(null)
 	machine = null
 
+	if(istype(host, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = host
+		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
+		if(head)
+			head.implants -= src
+
 	host.reset_view(null)
 	host.machine = null
 	host = null
@@ -223,8 +230,25 @@
 		return
 
 	if(!host)
-		//TODO: have this pick a random mob within 3 tiles to speak for the borer.
-		to_chat(src, span("warning", "You have no host to speak to."))
+		if(chemicals >= 30)
+			to_chat(src, span("alien", "..You emit a psionic pulse with an encoded message.."))
+			var/list/nearby_mobs = list()
+			for(var/mob/living/LM in view(src, 1 + round(6 * (chemicals / max_chemicals))))
+				if(LM == src)
+					continue
+				if(!LM.stat)
+					nearby_mobs += LM
+			var/mob/living/speaker
+			if(nearby_mobs.len)
+				speaker = input("Choose a target speaker.") as null|anything in nearby_mobs
+			if(speaker)
+				log_admin("[src.ckey]/([src]) tried to force [speaker] to say: [message]")
+				message_admins("[src.ckey]/([src]) tried to force [speaker] to say: [message]")
+				speaker.say("[message]")
+				return
+			to_chat(src, span("alien", "..But nothing heard it.."))
+		else
+			to_chat(src, span("warning", "You have no host to speak to."))
 		return //No host, no audible speech.
 
 	to_chat(src, "You drop words into [host]'s mind: \"[message]\"")
