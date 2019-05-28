@@ -67,7 +67,8 @@
 	name = "big shantak"
 	desc = "A piglike creature with a bright iridiscent mane that sparkles as though lit by an inner light. \
 	This one seems bigger than the others, and has a commanding presence."
-	icon_scale = 1.5
+	icon_scale_x = 1.5
+	icon_scale_y = 1.5
 	maxHealth = 125
 	player_msg = "You have the ability to <b>command other shantaks to follow you</b>."
 

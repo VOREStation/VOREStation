@@ -1139,8 +1139,13 @@
 	if(species.default_language)
 		add_language(species.default_language)
 
+<<<<<<< HEAD
 	//if(species.icon_scale != 1)	//VOREStation Removal
 	//	update_transform()			//VOREStation Removal
+=======
+	if(species.icon_scale_x != 1 || species.icon_scale_y != 1)
+		update_transform()
+>>>>>>> ef7568a... Merge pull request #6154 from Mechoid/Sif_Tree_Expansion
 
 	if(example)						//VOREStation Edit begin
 		if(!(example == src))

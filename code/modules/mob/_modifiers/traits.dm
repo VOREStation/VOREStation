@@ -64,25 +64,29 @@
 	name = "Larger"
 	desc = "Your body is larger than average."
 
-	icon_scale_percent = 1.1
+	icon_scale_x_percent = 1.1
+	icon_scale_y_percent = 1.1
 
 /datum/modifier/trait/large
 	name = "Large"
 	desc = "Your body is a bit larger than average."
 
-	icon_scale_percent = 1.05
+	icon_scale_x_percent = 1.05
+	icon_scale_y_percent = 1.05
 
 /datum/modifier/trait/small
 	name = "Small"
 	desc = "Your body is a bit smaller than average."
 
-	icon_scale_percent = 0.95
+	icon_scale_x_percent = 0.95
+	icon_scale_y_percent = 0.95
 
 /datum/modifier/trait/smaller
 	name = "Smaller"
 	desc = "Your body is smaller than average."
 
-	icon_scale_percent = 0.9
+	icon_scale_x_percent = 0.9
+	icon_scale_y_percent = 0.9
 
 /datum/modifier/trait/colorblind_protanopia
 	name = "Protanopia"
