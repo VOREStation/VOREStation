@@ -31,7 +31,7 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "Armor crate"
-	access_armory //VOREStation Add - Armor is for the armory.
+	access = access_armory //VOREStation Add - Armor is for the armory.
 
 /datum/supply_pack/security/riot_gear
 	name = "Gear - Riot"
