@@ -88,8 +88,8 @@
 		reaction_occurred = FALSE
 		for(var/i in reagent_list)
 			var/datum/reagent/R = i
-			if(SSchemistry.chemical_reactions_by_reagent[R.id])							//VOREStation Edit: unruntiming chems
-				eligible_reactions |= SSchemistry.chemical_reactions_by_reagent[R.id]	//VOREStation Edit: unruntiming chems
+			if(SSchemistry.chemical_reactions_by_reagent[R.id])
+				eligible_reactions |= SSchemistry.chemical_reactions_by_reagent[R.id]
 
 		for(var/i in eligible_reactions)
 			var/datum/chemical_reaction/C = i

@@ -528,14 +528,25 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "abg" = (
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 10
+/obj/machinery/light{
+	dir = 1
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals4,
-/obj/machinery/alarm{
-	pixel_y = 22;
-	target_temperature = 293.15
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
 	},
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/mauve/bordercorner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "abh" = (
@@ -1408,11 +1419,17 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/landmark/start{
+	name = "Shaft Miner"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/eva)
 "acF" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/effect/landmark/start{
+	name = "Shaft Miner"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/eva)
@@ -5071,6 +5088,9 @@
 /obj/structure/bed/chair/office/light{
 	dir = 4
 	},
+/obj/effect/landmark/start{
+	name = "Scientist"
+	},
 /turf/simulated/floor/tiled/white,
 /area/rnd/chemistry_lab)
 "aiI" = (
@@ -5822,6 +5842,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
+"ajP" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/landmark/start{
+	name = "Xenobiologist"
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/xenobiology)
 "ajQ" = (
 /obj/machinery/door/airlock/glass_mining{
 	name = "Warehouse"
@@ -5834,6 +5864,37 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/mining_main/ore)
+"ajR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/landmark/start{
+	name = "Xenobiologist"
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/xenobiology)
+"ajS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/effect/landmark/start{
+	name = "Bartender"
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/visitor_dining)
+"ajT" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/effect/landmark/start{
+	name = "Security Officer"
+	},
+/turf/simulated/floor/tiled,
+/area/security/checkpoint)
 "ajU" = (
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/atrium_one)
@@ -5859,6 +5920,19 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
+"ajX" = (
+/obj/effect/landmark/start{
+	name = "Atmospheric Technician"
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
+"ajY" = (
+/obj/item/weapon/stool,
+/obj/effect/landmark/start{
+	name = "Atmospheric Technician"
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
 "ajZ" = (
 /obj/structure/table/standard,
 /obj/item/device/t_scanner,
@@ -5880,6 +5954,19 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/storage/surface_eva/external)
+"akd" = (
+/obj/effect/landmark/start{
+	name = "Assistant"
+	},
+/turf/simulated/floor/tiled,
+/area/storage/primary)
+"ake" = (
+/obj/item/weapon/stool,
+/obj/effect/landmark/start{
+	name = "Assistant"
+	},
+/turf/simulated/floor/tiled,
+/area/storage/primary)
 "akf" = (
 /obj/machinery/washing_machine,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -5898,6 +5985,26 @@
 	},
 /turf/simulated/floor/tiled,
 /area/storage/surface_eva)
+"akh" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/machinery/alarm{
+	pixel_y = 22;
+	target_temperature = 293.15
+	},
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/mauve/bordercorner{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/hallway)
 "akj" = (
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
@@ -6747,6 +6854,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Mining"
 	},
 /obj/structure/cable/green,
@@ -7331,10 +7439,6 @@
 	icon_state = "tube1";
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled,
-/area/storage/primary)
-"aoB" = (
-/obj/item/weapon/stool,
 /turf/simulated/floor/tiled,
 /area/storage/primary)
 "aoC" = (
@@ -8302,12 +8406,6 @@
 /area/shuttle/escape/station{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
 	})
-"asi" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/hallway)
 "asl" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
@@ -13495,13 +13593,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
-"aEA" = (
-/obj/structure/bed/chair/office/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/rnd/xenobiology)
 "aEC" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
@@ -14139,12 +14230,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology)
-"aGv" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/xenobiology)
 "aGw" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/box/monkeycubes,
@@ -14430,10 +14515,6 @@
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/pipedispenser,
-/turf/simulated/floor/tiled,
-/area/engineering/atmos)
-"aHr" = (
-/obj/item/weapon/stool,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "aHv" = (
@@ -15319,13 +15400,6 @@
 /obj/machinery/disposal,
 /turf/simulated/floor/tiled,
 /area/security/checkpoint)
-"aMy" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/bed/chair/office/dark{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/security/checkpoint)
 "aND" = (
 /obj/structure/table/standard,
 /obj/random/tech_supply,
@@ -15570,6 +15644,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Civ West"
 	},
 /obj/structure/cable/green{
@@ -23970,15 +24045,6 @@
 	dir = 4
 	},
 /turf/simulated/floor/lino,
-/area/crew_quarters/visitor_dining)
-"cfd" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_dining)
 "cfg" = (
 /obj/structure/grille,
@@ -36696,7 +36762,7 @@ bqm
 aAO
 aAO
 aDP
-aEA
+ajP
 aFh
 aFE
 aFE
@@ -37248,7 +37314,7 @@ aps
 aps
 agw
 arA
-asi
+abg
 aXj
 aZd
 bbn
@@ -37390,7 +37456,7 @@ ags
 agt
 aSt
 arA
-abg
+akh
 asU
 ahT
 arG
@@ -37410,7 +37476,7 @@ aEE
 aFk
 aGr
 aGh
-aGv
+ajR
 aZe
 aHe
 bOo
@@ -40917,10 +40983,10 @@ aah
 aah
 aeW
 aft
-afT
+akd
 afr
 afr
-afT
+akd
 agX
 ahn
 ahU
@@ -41059,10 +41125,10 @@ aah
 aah
 aeW
 amq
-aoB
+ake
 afr
 agA
-aoB
+ake
 agY
 ahn
 ahL
@@ -41201,10 +41267,10 @@ aah
 aah
 aeW
 afv
-afT
+akd
 afr
 aND
-afT
+akd
 agX
 ahn
 ahS
@@ -41814,7 +41880,7 @@ aFs
 aFs
 bEX
 ugE
-aHr
+ajY
 aHO
 kwi
 kwi
@@ -43238,7 +43304,7 @@ kwi
 kwi
 xKT
 iLm
-kwi
+ajX
 kwi
 kwi
 kwi
@@ -47190,7 +47256,7 @@ asF
 atp
 auW
 awR
-aMy
+ajT
 aTf
 atp
 bfv
@@ -47485,7 +47551,7 @@ agM
 aFc
 bqg
 bXu
-cfd
+ajS
 cfw
 bXu
 bAT

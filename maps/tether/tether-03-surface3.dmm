@@ -2351,7 +2351,7 @@
 /area/tether/surfacebase/security/armory)
 "eq" = (
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_mob/animal/space/mimic,
+/mob/living/simple_mob/vore/aggressive/mimic,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/security/armory)
 "er" = (
@@ -4831,13 +4831,13 @@
 /area/rnd/workshop)
 "iz" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/vending,
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -24
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
+/obj/machinery/vending/assist,
 /turf/simulated/floor/plating,
 /area/rnd/research_storage)
 "iA" = (
@@ -11094,6 +11094,9 @@
 /area/crew_quarters/kitchen)
 "tp" = (
 /obj/structure/bed/chair/office/dark,
+/obj/effect/landmark/start{
+	name = "Scientist"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/rnd/workshop)
 "tq" = (
@@ -11201,6 +11204,9 @@
 "tC" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
+	},
+/obj/effect/landmark/start{
+	name = "Scientist"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/rnd/workshop)
@@ -12621,6 +12627,9 @@
 	dir = 4
 	},
 /obj/machinery/hologram/holopad,
+/obj/effect/landmark/start{
+	name = "Scientist"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/research)
 "vW" = (
@@ -12983,7 +12992,8 @@
 /obj/item/weapon/pen,
 /obj/machinery/door/window/brigdoor/westright{
 	name = "Research Desk";
-	req_access = list(47)
+	req_access = list(7);
+	req_one_access = list(47)
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/rnd/research)
@@ -13083,6 +13093,12 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
@@ -14031,6 +14047,9 @@
 	pixel_x = -12;
 	pixel_y = 8
 	},
+/obj/effect/landmark/start{
+	name = "Gardener"
+	},
 /turf/simulated/floor/tiled,
 /area/hydroponics)
 "xZ" = (
@@ -14659,6 +14678,12 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 6
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/research_foyer)
 "yY" = (
@@ -14718,6 +14743,10 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research_foyer)
@@ -17243,11 +17272,23 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/testingrange)
 "Cz" = (
-/obj/machinery/hologram/holopad,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled,
-/area/rnd/research/testingrange)
+/obj/effect/landmark/start{
+	name = "Roboticist"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/assembly/robotics)
 "CA" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -17707,6 +17748,9 @@
 	icon_state = "sink";
 	pixel_x = -12;
 	pixel_y = 8
+	},
+/obj/effect/landmark/start{
+	name = "Gardener"
 	},
 /turf/simulated/floor/tiled,
 /area/hydroponics)
@@ -18386,20 +18430,14 @@
 /turf/simulated/floor/bluegrid,
 /area/assembly/chargebay)
 "Eq" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
-	},
+/obj/machinery/hologram/holopad,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/steel_grid,
-/area/assembly/robotics)
+/obj/effect/landmark/start{
+	name = "Scientist"
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/research/testingrange)
 "Er" = (
 /turf/simulated/floor/bluegrid,
 /area/assembly/chargebay)
@@ -18652,6 +18690,8 @@
 /obj/effect/floor_decal/corner/mauve/bordercorner2{
 	dir = 10
 	},
+/obj/item/weapon/book/manual/resleeving,
+/obj/item/weapon/storage/box/backup_kit,
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
 "EO" = (
@@ -19802,6 +19842,9 @@
 /area/assembly/robotics)
 "Gx" = (
 /obj/structure/bed/chair/office/dark,
+/obj/effect/landmark/start{
+	name = "Roboticist"
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
 "Gy" = (
@@ -20303,10 +20346,18 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
 "Hp" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
+/obj/effect/floor_decal/corner/grey/diagonal,
+/obj/effect/landmark/start{
+	name = "Chef"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/kitchen)
+"Hq" = (
+/obj/effect/landmark/start{
+	name = "Medical Doctor"
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/triage)
 "Hr" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_external/public,
@@ -20336,6 +20387,25 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
+"Ht" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/landmark/start{
+	name = "Security Officer"
+	},
+/turf/simulated/floor/carpet/blue,
+/area/tether/surfacebase/security/breakroom)
+"Hu" = (
+/obj/item/weapon/storage/secure/safe{
+	pixel_x = 30;
+	pixel_z = 0
+	},
+/obj/effect/landmark/start{
+	name = "Bartender"
+	},
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/bar_backroom)
 "Hv" = (
 /obj/structure/railing{
 	dir = 1
@@ -20358,6 +20428,33 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/bar_backroom)
+"Hx" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/lower/third_south)
+"Hy" = (
+/obj/structure/closet/hydrant{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/tether/surfacebase/shuttle_pad)
+"Hz" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
+"HA" = (
+/obj/structure/closet/hydrant{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/tether/surfacebase/shuttle_pad)
 "HH" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/borderfloor{
@@ -21682,16 +21779,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
-"QE" = (
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 1
-	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/hallway/lower/third_south)
 "QI" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -22335,13 +22422,6 @@
 /obj/machinery/portable_atmospherics/hydroponics/soil,
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
-"VS" = (
-/obj/item/weapon/storage/secure/safe{
-	pixel_x = 30;
-	pixel_z = 0
-	},
-/turf/simulated/floor/wood,
-/area/tether/surfacebase/bar_backroom)
 "VV" = (
 /obj/structure/bookcase,
 /obj/item/weapon/book/manual/nuclear,
@@ -22463,10 +22543,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
-"WN" = (
-/obj/structure/closet/hydrant,
-/turf/simulated/wall,
-/area/tether/surfacebase/shuttle_pad)
 "WZ" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -22563,6 +22639,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Surface Civilian"
 	},
 /turf/simulated/floor/plating,
@@ -30421,7 +30498,7 @@ Em
 Al
 Bd
 Ca
-Cz
+Eq
 DB
 Ei
 EA
@@ -31982,7 +32059,7 @@ zw
 CA
 GJ
 Eb
-Eq
+Cz
 EK
 EX
 Fq
@@ -34063,7 +34140,7 @@ bl
 bS
 cG
 cF
-dY
+Ht
 eA
 fs
 gd
@@ -35339,7 +35416,7 @@ aQ
 aZ
 aZ
 ca
-aZ
+Hq
 dv
 ag
 eI
@@ -35545,8 +35622,8 @@ Uj
 NB
 NB
 Uj
-KW
-WN
+HA
+IR
 KW
 Uj
 Uj
@@ -36107,8 +36184,8 @@ IR
 IR
 Rf
 XZ
-WN
-KW
+IR
+Hy
 Gt
 Mq
 OL
@@ -36822,7 +36899,7 @@ Jr
 Js
 Wh
 JE
-Hp
+Hz
 IY
 bg
 RO
@@ -36954,7 +37031,7 @@ FB
 Gl
 Sh
 PT
-QE
+Hx
 Pr
 Sz
 IY
@@ -36964,7 +37041,7 @@ Js
 Js
 Jz
 JE
-Hp
+Hz
 IY
 bg
 RO
@@ -37106,7 +37183,7 @@ Jt
 Js
 Jz
 JE
-Hp
+Hz
 IY
 bg
 RO
@@ -38375,7 +38452,7 @@ Qr
 Hc
 RB
 QB
-VS
+Hu
 Vi
 RB
 ac
@@ -38915,7 +38992,7 @@ ra
 rt
 rS
 sq
-sO
+Hp
 sO
 sO
 sO

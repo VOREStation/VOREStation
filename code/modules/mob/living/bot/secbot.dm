@@ -137,7 +137,7 @@
 /mob/living/bot/secbot/attackby(var/obj/item/O, var/mob/user)
 	var/curhealth = health
 	. = ..()
-	if(health < curhealth)
+	if(health < curhealth && on == 1)
 		react_to_attack(user)
 
 /mob/living/bot/secbot/bullet_act(var/obj/item/projectile/P)

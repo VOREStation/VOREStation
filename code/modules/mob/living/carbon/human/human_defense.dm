@@ -477,6 +477,9 @@ emp_act
 		if(temp && !temp.is_usable())
 			return FALSE	// The hand isn't working in the first place
 
+	if(!O.catchable)
+		return FALSE
+
 	// Alright, our hand works? Time to try the catching.
 	var/catch_chance = 90	// Default 90% catch rate
 

@@ -147,6 +147,12 @@
 	name = "Unknown Shuttle"
 	},
 /area/submap/virgo2/Blackshuttledown)
+"aA" = (
+/obj/machinery/computer/communications{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
 "aB" = (
 /mob/living/simple_mob/mechanical/viscerator,
 /mob/living/simple_mob/mechanical/viscerator,
@@ -228,8 +234,19 @@
 /obj/machinery/door/airlock/glass,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
+"aP" = (
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/hyper;
+	dir = 4;
+	name = "Unknown APC";
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
 "aQ" = (
-/obj/machinery/computer/communications,
+/obj/machinery/computer/area_atmos{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aR" = (
@@ -300,22 +317,6 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/submap/virgo2/Blackshuttledown)
-"bc" = (
-/obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/hyper;
-	dir = 4;
-	name = "Unknown APC";
-	pixel_x = 24
-	},
-/turf/simulated/shuttle/wall/dark{
-	icon_state = "dark0";
-	name = "Unknown Shuttle"
-	},
-/area/submap/virgo2/Blackshuttledown)
-"bd" = (
-/obj/machinery/computer/area_atmos,
-/turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "be" = (
 /obj/structure/table/steel,
@@ -708,12 +709,12 @@ af
 af
 ai
 aj
+aA
+aF
+aF
+aF
+aF
 aQ
-aF
-aF
-aF
-aF
-bd
 aj
 au
 af
@@ -1341,7 +1342,7 @@ aj
 aj
 ba
 ba
-bc
+aj
 aj
 aj
 aq
@@ -1378,7 +1379,7 @@ aU
 aF
 aq
 aq
-aq
+aP
 bh
 aj
 ba

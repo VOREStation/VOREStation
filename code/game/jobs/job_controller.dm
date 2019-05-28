@@ -342,11 +342,13 @@ var/global/datum/controller/occupations/job_master
 
 		if(!joined_late)
 			var/obj/S = null
+			var/list/possible_spawns = list()
 			for(var/obj/effect/landmark/start/sloc in landmarks_list)
 				if(sloc.name != rank)	continue
 				if(locate(/mob/living) in sloc.loc)	continue
-				S = sloc
-				break
+				possible_spawns.Add(sloc)
+			if(possible_spawns.len)
+				S = pick(possible_spawns)
 			if(!S)
 				S = locate("start*[rank]") // use old stype
 			if(istype(S, /obj/effect/landmark/start) && istype(S.loc, /turf))

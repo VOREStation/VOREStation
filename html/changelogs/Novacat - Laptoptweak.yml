@@ -33,7 +33,5 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - rscadd: "Ports initial infrastructure for modular computers from Baystation."
-  - rscadd: "Cameras now have a slight static when viewing through them."
-  - rscadd: "Adds Digital Warrant Program, to set warrants. Comes with a device."
-  - rscadd: "Adds Supermatter Monitor program."
+  - tweak: "Fixes bug with custom laptops."
+  - tweak: "Raises cost of the elite model to 7 loadout points."

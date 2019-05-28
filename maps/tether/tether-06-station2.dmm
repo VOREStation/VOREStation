@@ -3132,7 +3132,7 @@
 /obj/machinery/atmospherics/pipe/zpipe/up/scrubbers,
 /obj/machinery/atmospherics/pipe/zpipe/up/supply,
 /obj/machinery/turretid/stun{
-	control_area = /area/ai/foyer;
+	control_area = /area/ai_core_foyer;
 	name = "AI Core Access turret control";
 	pixel_y = 30
 	},
@@ -3958,6 +3958,9 @@
 /obj/item/device/radio/intercom/department/medbay{
 	pixel_y = -24
 	},
+/obj/effect/landmark/start{
+	name = "Paramedic"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/medical/medbay_emt_bay)
 "fP" = (
@@ -4171,12 +4174,12 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/hallway)
 "gf" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
 	},
 /turf/simulated/floor/tiled,
-/area/tether/exploration/hallway)
+/area/tether/exploration/crew)
 "gg" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_science{
@@ -4189,11 +4192,14 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/staircase)
 "gh" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 6
 	},
 /turf/simulated/floor/tiled,
-/area/tether/exploration/staircase)
+/area/tether/exploration/hallway)
 "gi" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -4850,15 +4856,16 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/staircase)
 "hk" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
+	},
 /turf/simulated/floor/tiled,
-/area/tether/exploration/staircase)
+/area/tether/exploration/hallway)
 "hl" = (
 /turf/simulated/wall/r_wall,
 /area/ai_cyborg_station)
@@ -5601,15 +5608,17 @@
 /turf/simulated/floor/tiled,
 /area/engineering/foyer_mezzenine)
 "ix" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 6
+	},
 /turf/simulated/floor/tiled,
-/area/tether/exploration/hallway)
+/area/tether/exploration/staircase)
 "iy" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
@@ -6464,27 +6473,21 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/hallway)
 "jt" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
 	},
 /turf/simulated/floor/tiled,
-/area/tether/exploration/hallway)
+/area/tether/exploration/crew)
 "ju" = (
 /obj/machinery/light/small{
 	icon_state = "bulb1";
@@ -6494,23 +6497,21 @@
 /turf/simulated/floor,
 /area/maintenance/station/exploration)
 "jv" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/cable/green{
 	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
+	},
 /turf/simulated/floor/tiled,
-/area/tether/exploration/hallway)
+/area/tether/exploration/staircase)
 "jw" = (
 /obj/structure/railing,
 /obj/structure/railing{
@@ -6772,20 +6773,18 @@
 /turf/simulated/floor/plating,
 /area/maintenance/station/eng_upper)
 "jO" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/hallway)
@@ -7263,6 +7262,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Exploration"
 	},
 /obj/structure/cable{
@@ -7538,15 +7538,30 @@
 /turf/simulated/floor,
 /area/maintenance/substation/exploration)
 "ld" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
-/area/tether/exploration/equipment)
+/area/tether/exploration/hallway)
 "le" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
@@ -7676,7 +7691,6 @@
 /turf/simulated/floor,
 /area/maintenance/station/exploration)
 "lo" = (
-/obj/machinery/portable_atmospherics/canister/empty/oxygen,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
 	icon_state = "borderfloor";
@@ -7703,6 +7717,7 @@
 	pixel_y = 24;
 	req_access = list()
 	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
 "lp" = (
@@ -7968,18 +7983,23 @@
 /area/hallway/station/starboard)
 "lL" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /obj/structure/cable/green{
 	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	d2 = 4;
+	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/effect/floor_decal/steeldecal/steel_decals6,
 /turf/simulated/floor/tiled,
-/area/tether/exploration/pathfinder_office)
+/area/tether/exploration/hallway)
 "lM" = (
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -8025,15 +8045,15 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 4
 	},
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
 /obj/machinery/light_switch{
 	dir = 2;
 	name = "light switch ";
 	pixel_x = 0;
 	pixel_y = 26
+	},
+/obj/machinery/photocopier,
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
@@ -8044,7 +8064,10 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 5
 	},
-/obj/structure/filingcabinet/filingcabinet,
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
 "lP" = (
@@ -8511,10 +8534,16 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
 	},
-/obj/machinery/photocopier,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/tank/oxygen,
+/obj/item/device/suit_cooling_unit,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/suit/space/void/exploration,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/head/helmet/space/void/exploration,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
 "mA" = (
@@ -10583,11 +10612,6 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/machinery/alarm{
-	dir = 8;
-	icon_state = "alarm0";
-	pixel_x = 24
-	},
 /turf/simulated/floor/tiled,
 /area/ai_monitored/storage/eva)
 "pD" = (
@@ -11464,13 +11488,14 @@
 	icon_state = "warning";
 	dir = 4
 	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 25;
-	pixel_y = 0
-	},
 /obj/structure/table/rack,
 /obj/item/device/suit_cooling_unit,
 /obj/item/device/suit_cooling_unit,
+/obj/machinery/alarm{
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled,
 /area/ai_monitored/storage/eva)
 "qV" = (
@@ -12435,6 +12460,9 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
+/obj/effect/landmark/start{
+	name = "Medical Doctor"
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "sJ" = (
@@ -13069,6 +13097,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Medical"
 	},
 /obj/structure/cable/green,
@@ -14214,6 +14243,11 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/industrial/warning,
+/obj/structure/extinguisher_cabinet{
+	dir = 1;
+	icon_state = "extinguisher_closed";
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled,
 /area/ai_monitored/storage/eva)
 "vJ" = (
@@ -15617,6 +15651,9 @@
 "xY" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
+	},
+/obj/effect/landmark/start{
+	name = "Medical Doctor"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
@@ -18029,6 +18066,9 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 6
 	},
+/obj/effect/landmark/start{
+	name = "Paramedic"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/medical/medbay_emt_bay)
 "Bx" = (
@@ -18237,10 +18277,17 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
 "BS" = (
-/obj/structure/bed/chair,
-/obj/effect/floor_decal/corner/paleblue/diagonal,
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/medbreak)
+/obj/effect/floor_decal/borderfloorblack{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 8
+	},
+/obj/effect/landmark/start{
+	name = "Paramedic"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/medical/medbay_emt_bay)
 "BT" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -18412,23 +18459,17 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
 "Ci" = (
-/obj/structure/bed/chair{
+/obj/effect/floor_decal/borderfloorblack{
 	dir = 4
 	},
-/obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
+/obj/effect/landmark/start{
+	name = "Paramedic"
 	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/medbreak)
+/turf/simulated/floor/tiled/dark,
+/area/medical/medbay_emt_bay)
 "Cj" = (
 /obj/structure/table/glass,
 /obj/item/weapon/deck/cards,
@@ -18454,19 +18495,29 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
 "Cl" = (
-/obj/structure/bed/chair{
-	dir = 8
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
-/obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+	dir = 10
 	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/medbreak)
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
+	},
+/turf/simulated/floor/tiled,
+/area/tether/exploration/hallway)
 "Cm" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/purple/border,
@@ -18657,16 +18708,17 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
 "CE" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/landmark/start{
-	name = "Field Medic"
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/medbreak)
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
+	},
+/turf/simulated/floor/tiled,
+/area/tether/exploration/hallway)
 "CF" = (
 /obj/structure/table/glass,
 /obj/item/device/universal_translator,
@@ -18770,18 +18822,33 @@
 /area/crew_quarters/medbreak)
 "CR" = (
 /obj/structure/bed/chair{
-	dir = 1
+	dir = 4
 	},
 /obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/effect/landmark/start{
+	name = "Medical Doctor"
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
 "CS" = (
 /obj/structure/bed/chair{
-	dir = 1
+	dir = 4
 	},
 /obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/landmark/start{
-	name = "Field Medic"
+	name = "Paramedic"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
@@ -18944,13 +19011,6 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 6
 	},
-/obj/structure/table/rack/shelf,
-/obj/item/weapon/tank/oxygen,
-/obj/item/device/suit_cooling_unit,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/exploration,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/exploration,
 /obj/item/device/radio/intercom{
 	dir = 4;
 	pixel_x = 24
@@ -18958,6 +19018,7 @@
 /obj/machinery/camera/network/exploration{
 	dir = 1
 	},
+/obj/structure/filingcabinet/filingcabinet,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
 "Di" = (
@@ -19546,34 +19607,45 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/interrogation)
 "Eo" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
-"Ep" = (
-/obj/structure/shuttle/engine/propulsion{
+/obj/structure/bed/chair{
 	dir = 8
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
-"Eq" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+/obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9;
+	pixel_y = 0
+	},
+/obj/effect/landmark/start{
+	name = "Medical Doctor"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/medbreak)
+"Ep" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/effect/landmark/start{
+	name = "Paramedic"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/medbreak)
+"Eq" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/tether/exploration/equipment)
 "Er" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
@@ -19584,6 +19656,12 @@
 /obj/machinery/vending/coffee,
 /turf/simulated/floor/tiled,
 /area/engineering/foyer_mezzenine)
+"Es" = (
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/exploration/equipment)
 "Et" = (
 /obj/structure/railing,
 /obj/effect/floor_decal/techfloor{
@@ -19634,9 +19712,70 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/brig)
+"Ex" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/exploration/pathfinder_office)
 "Ey" = (
 /turf/simulated/floor/reinforced/airless,
 /area/space)
+"Ez" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/starboard)
+"EA" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
+"EB" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
+"EC" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "ED" = (
 /obj/structure/table/rack{
 	dir = 8;
@@ -30854,8 +30993,8 @@ AX
 Bp
 BF
 BQ
-Ci
-CE
+CR
+CS
 CQ
 AX
 Di
@@ -30998,7 +31137,7 @@ BG
 BR
 Cj
 CF
-CR
+Ep
 De
 AG
 aP
@@ -31137,10 +31276,10 @@ AH
 AX
 Bp
 BG
-BS
+BR
 Ck
 CG
-CS
+Ep
 Df
 AG
 aP
@@ -31280,7 +31419,7 @@ AZ
 Bq
 BH
 BT
-Cl
+Eo
 CH
 CT
 AX
@@ -31986,7 +32125,7 @@ zQ
 Aj
 Ay
 AK
-AK
+BS
 fO
 BK
 ac
@@ -32238,9 +32377,9 @@ bA
 io
 ji
 kl
-kl
+CE
 lT
-hy
+Ez
 hy
 hy
 hC
@@ -32375,9 +32514,9 @@ eE
 fs
 fV
 gB
-fs
+jt
 hK
-ix
+jO
 jk
 km
 kA
@@ -32412,14 +32551,14 @@ zT
 Ai
 AB
 AN
-AN
+Ci
 Bw
 yY
-Eo
-Ep
-Ep
-Ep
-Eq
+EA
+EB
+EB
+EB
+EC
 yY
 ac
 ac
@@ -32798,7 +32937,7 @@ cI
 dA
 dY
 eH
-eG
+gf
 gd
 gF
 he
@@ -33082,7 +33221,7 @@ ac
 ac
 ea
 eI
-fv
+gh
 ge
 gH
 hf
@@ -33225,7 +33364,7 @@ ac
 ea
 eK
 fy
-gf
+hk
 gI
 hi
 hS
@@ -33509,14 +33648,14 @@ dB
 eb
 eL
 fz
-gh
+ix
 gJ
 hj
 cZ
 iI
-jt
-kq
 ld
+kq
+Eq
 lX
 pu
 zA
@@ -33653,12 +33792,12 @@ eR
 fA
 gi
 gK
-hk
-hT
-ix
 jv
+hT
+jO
+lL
 ks
-lk
+Es
 El
 pF
 As
@@ -34508,9 +34647,9 @@ lP
 DP
 ea
 iO
-jO
+Cl
 ku
-lL
+Ex
 mb
 qj
 Cm

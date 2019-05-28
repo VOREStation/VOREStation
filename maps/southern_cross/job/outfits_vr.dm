@@ -18,4 +18,4 @@
 
 /decl/hierarchy/outfit/job/assistant/explorer
 	id_type = /obj/item/weapon/card/id/explorer
-	flags = OUTFIT_COMPREHENSIVE_SURVIVAL
+	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
