@@ -35,7 +35,8 @@
 		/obj/item/weapon/tool/screwdriver,
 		/obj/item/weapon/stamp,
 		/obj/item/clothing/accessory/permit,
-		/obj/item/clothing/accessory/badge
+		/obj/item/clothing/accessory/badge,
+		/obj/item/weapon/makeover
 		)
 	cant_hold = list(/obj/item/weapon/tool/screwdriver/power)
 	slot_flags = SLOT_ID
