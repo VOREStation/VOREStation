@@ -277,6 +277,57 @@
 	reagents.add_reagent("shockchem", 6)
 	bitesize = 7
 
+/obj/item/weapon/reagent_containers/food/snacks/lobster
+	name = "raw lobster"
+	desc = "a shifty lobster. You can try eating it, but its shell is extremely tough."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "lobster_raw"
+	nutriment_amt = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/lobster/Initialize()
+	..()
+	bitesize = 0.1
+
+/obj/item/weapon/reagent_containers/food/snacks/lobstercooked
+	name = "cooked lobster"
+	desc = "a luxurious plate of cooked lobster, its taste accentuated by lemon juice. Reinvigorating!"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "lobster_cooked"
+	trash = /obj/item/trash/plate
+	nutriment_amt = 20
+	nutriment_desc = list("lemon" = 2, "lobster" = 5, "salad" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/lobstercooked/Initialize()
+	..()
+	bitesize = 5
+	reagents.add_reagent("protein", 20)
+	reagents.add_reagent("tricordrazine", 5)
+	reagents.add_reagent("iron", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/cuttlefish
+	name = "raw cuttlefish"
+	desc = "it's an adorable squid! you can't possible be thinking about eating this right?"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "cuttlefish_raw"
+	nutriment_amt = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/cuttlefish/Initialize()
+	..()
+	bitesize = 10
+
+/obj/item/weapon/reagent_containers/food/snacks/cuttlefishcooked
+	name = "cooked cuttlefish"
+	desc = "it's a roasted cuttlefish. rubbery, squishy, an acquired taste."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "cuttlefish_cooked"
+	nutriment_amt = 20
+	nutriment_desc = list("cuttlefish" = 5, "rubber" = 5, "grease" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/cuttlefishcooked/Initialize()
+	..()
+	bitesize = 5
+	reagents.add_reagent("protein", 10)
+
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/sobakacube
 	name = "sobaka cube"
 	monkey_type = "Sobaka"
