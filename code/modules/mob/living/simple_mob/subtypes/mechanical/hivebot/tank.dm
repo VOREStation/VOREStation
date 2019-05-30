@@ -39,7 +39,8 @@
 	desc = "A large robot."
 	maxHealth = 10 LASERS_TO_KILL // 300 health
 	health = 10 LASERS_TO_KILL
-	icon_scale = 2
+	icon_scale_x = 2
+	icon_scale_y = 2
 	player_msg = "You have a very large amount of health."
 
 
@@ -49,7 +50,8 @@
 	desc = "A robot clad in heavy armor."
 	maxHealth = 5 LASERS_TO_KILL // 150 health.
 	health = 5 LASERS_TO_KILL
-	icon_scale = 1.5
+	icon_scale_x = 1.5
+	icon_scale_y = 1.5
 	player_msg = "You are heavily armored."
 	// Note that armor effectively makes lasers do about 9 damage instead of 30,
 	// so it has an effective health of ~16.6 LASERS_TO_KILL if regular lasers are used.

@@ -57,7 +57,8 @@
 	icon_state = "commonblackbird"
 	icon_dead = "commonblackbird-dead"
 	tt_desc = "E Turdus merula"
-	icon_scale = 0.5
+	icon_scale_x = 0.5
+	icon_scale_y = 0.5
 
 /mob/living/simple_mob/animal/passive/bird/azure_tit
 	name = "azure tit"
@@ -65,7 +66,8 @@
 	icon_state = "azuretit"
 	icon_dead = "azuretit-dead"
 	tt_desc = "E Cyanistes cyanus"
-	icon_scale = 0.5
+	icon_scale_x = 0.5
+	icon_scale_y = 0.5
 
 /mob/living/simple_mob/animal/passive/bird/european_robin
 	name = "european robin"
@@ -73,7 +75,8 @@
 	icon_state = "europeanrobin"
 	icon_dead = "europeanrobin-dead"
 	tt_desc = "E Erithacus rubecula"
-	icon_scale = 0.5
+	icon_scale_x = 0.5
+	icon_scale_y = 0.5
 
 /mob/living/simple_mob/animal/passive/bird/goldcrest
 	name = "goldcrest"
@@ -82,7 +85,8 @@
 	icon_state = "goldcrest"
 	icon_dead = "goldcrest-dead"
 	tt_desc = "E Regulus regulus"
-	icon_scale = 0.5
+	icon_scale_x = 0.5
+	icon_scale_y = 0.5
 
 /mob/living/simple_mob/animal/passive/bird/ringneck_dove
 	name = "ringneck dove"
@@ -90,4 +94,5 @@
 	icon_state = "ringneckdove"
 	icon_dead = "ringneckdove-dead"
 	tt_desc = "E Streptopelia risoria" // This is actually disputed IRL but since we can't tell the future it'll stay the same for 500+ years.
-	icon_scale = 0.5
+	icon_scale_x = 0.5
+	icon_scale_y = 0.5
