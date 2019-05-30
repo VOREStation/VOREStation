@@ -1174,12 +1174,8 @@ default behaviour is:
 
 /mob/living/update_transform()
 	// First, get the correct size.
-<<<<<<< HEAD
-	var/desired_scale = size_multiplier //VOREStation edit
-=======
-	var/desired_scale_x = icon_scale_x
-	var/desired_scale_y = icon_scale_y
->>>>>>> ef7568a... Merge pull request #6154 from Mechoid/Sif_Tree_Expansion
+	var/desired_scale_x = size_multiplier //VOREStation edit
+	var/desired_scale_y = size_multiplier //VOREStation edit
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.icon_scale_x_percent))
 			desired_scale_x *= M.icon_scale_x_percent
@@ -1188,17 +1184,9 @@ default behaviour is:
 
 	// Now for the regular stuff.
 	var/matrix/M = matrix()
-<<<<<<< HEAD
-	M.Scale(desired_scale)
-	M.Translate(0, 16*(desired_scale-1))
-	src.transform = M
-	//animate(src, transform = M, time = 10) //VOREStation edit
-
-=======
 	M.Scale(desired_scale_x, desired_scale_y)
 	M.Translate(0, 16*(desired_scale_y-1))
-	animate(src, transform = M, time = 10)
->>>>>>> ef7568a... Merge pull request #6154 from Mechoid/Sif_Tree_Expansion
+	//animate(src, transform = M, time = 10) //VOREStation edit
 
 // This handles setting the client's color variable, which makes everything look a specific color.
 // This proc is here so it can be called without needing to check if the client exists, or if the client relogs.

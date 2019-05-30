@@ -131,18 +131,14 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	desired_scale_y *= species.icon_scale_y
 
 	for(var/datum/modifier/M in modifiers)
-<<<<<<< HEAD
-		if(!isnull(M.icon_scale_percent))
-			desired_scale *= M.icon_scale_percent
-	*/
-	var/desired_scale = size_multiplier
-	//VOREStation Edit End
-=======
 		if(!isnull(M.icon_scale_x_percent))
 			desired_scale_x *= M.icon_scale_x_percent
 		if(!isnull(M.icon_scale_y_percent))
 			desired_scale_y *= M.icon_scale_y_percent
->>>>>>> ef7568a... Merge pull request #6154 from Mechoid/Sif_Tree_Expansion
+	*/
+	var/desired_scale_x = size_multiplier
+	var/desired_scale_y = size_multiplier
+	//VOREStation Edit End
 
 	// Regular stuff again.
 	var/matrix/M = matrix()
