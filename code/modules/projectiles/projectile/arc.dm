@@ -162,7 +162,8 @@
 /obj/item/projectile/arc/radioactive
 	name = "radiation blast"
 	icon_state = "green_pellet"
-	icon_scale = 2
+	icon_scale_x = 2
+	icon_scale_y = 2
 	var/rad_power = 50
 
 /obj/item/projectile/arc/radioactive/on_impact(turf/T)

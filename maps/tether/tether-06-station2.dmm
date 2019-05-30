@@ -3958,6 +3958,9 @@
 /obj/item/device/radio/intercom/department/medbay{
 	pixel_y = -24
 	},
+/obj/effect/landmark/start{
+	name = "Paramedic"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/medical/medbay_emt_bay)
 "fP" = (
@@ -18063,6 +18066,9 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 6
 	},
+/obj/effect/landmark/start{
+	name = "Paramedic"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/medical/medbay_emt_bay)
 "Bx" = (
@@ -18278,7 +18284,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/start{
-	name = "Pathfinder"
+	name = "Paramedic"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/medical/medbay_emt_bay)
@@ -18460,7 +18466,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start{
-	name = "Pathfinder"
+	name = "Paramedic"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/medical/medbay_emt_bay)
