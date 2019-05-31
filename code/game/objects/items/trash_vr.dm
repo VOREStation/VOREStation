@@ -35,3 +35,10 @@
 	name = "dirty fancy plate"
 	icon = 'icons/obj/trash_vr.dmi'
 	icon_state = "fancyplate"
+
+/obj/item/trash/monkfishremains
+	name = "monkfish remains"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "monkfishremains"
+	desc = "the work of a madman."
+	w_class = ITEMSIZE_LARGE
