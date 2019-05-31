@@ -301,8 +301,6 @@
 	..()
 	bitesize = 5
 	reagents.add_reagent("protein", 20)
-	reagents.add_reagent("tricordrazine", 5)
-	reagents.add_reagent("iron", 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/cuttlefish
 	name = "raw cuttlefish"
