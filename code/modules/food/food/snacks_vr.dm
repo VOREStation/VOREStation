@@ -328,6 +328,46 @@
 	bitesize = 5
 	reagents.add_reagent("protein", 10)
 
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfish
+	name = "extra large monkfish"
+	desc = "it's a huge monkfish. better clean it first, you can't possibly eat it like this."
+	icon = 'icons/obj/food48x48_vr.dmi'
+	icon_state = "monkfish_raw"
+	nutriment_amt = 30
+	w_class = ITEMSIZE_HUGE //Is that a monkfish in your pocket, or are you just happy to see me?
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/monkfishfillet
+	slices_num = 6
+
+/obj/item/weapon/reagent_containers/food/snacks/monkfishraw/Initialize()
+	..()
+	bitesize = 0.5
+
+/obj/item/weapon/reagent_containers/food/snacks/monkfishfillet
+	name = "monkfish fillet"
+	desc = "it's a fillet sliced from a monkfish."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "monkfish_fillet"
+	nutriment_amt = 0.5
+
+/obj/item/weapon/reagent_containers/food/snacks/cuttlefishcooked/Initialize()
+	..()
+	bitesize = 3
+	reagents.add_reagent("protein", 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/monkfishcooked
+	name = "seasoned monkfish"
+	desc = "a delicious slice of monkfish prepared with sweet chili and spring onion."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "monkfish_cooked"
+	nutriment_amt = 10
+	nutriment_desc = list("fish" = 3, "oil" = 1, "sweet chili" = 3, "spring onion" = 2)
+	trash = /obj/item/trash/fancyplate
+
+/obj/item/weapon/reagent_containers/food/snacks/cuttlefishcooked/Initialize()
+	..()
+	bitesize = 4
+	reagents.add_reagent("protein", 5)
+
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/sobakacube
 	name = "sobaka cube"
 	monkey_type = "Sobaka"

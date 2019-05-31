@@ -166,6 +166,13 @@
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/cuttlefishcooked
 
+/datum/recipe/monkfish
+	fruit = list("chili" = 1, "onion" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/monkfishfillet
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/monkfishcooked
+
 /datum/recipe/margheritapizzacargo
 	reagents = list()
 	items = list(

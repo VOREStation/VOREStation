@@ -43,7 +43,8 @@
 	name = "Fish supply crate"
 	contains = list(
 			/obj/item/weapon/reagent_containers/food/snacks/lobster = 6,
-			/obj/item/weapon/reagent_containers/food/snacks/cuttlefish = 8
+			/obj/item/weapon/reagent_containers/food/snacks/cuttlefish = 8,
+			/obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfish = 1
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
