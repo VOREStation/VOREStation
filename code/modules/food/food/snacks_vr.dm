@@ -376,7 +376,7 @@
 	desc = "the work of a madman."
 	w_class = ITEMSIZE_LARGE
 	nutriment_amt = 10
-	slice_path = /obj/item/clothing/head/helmet/fish
+	slice_path = /obj/item/clothing/head/fish
 	slices_num = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfishremains/Initialize()
