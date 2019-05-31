@@ -348,9 +348,9 @@
 	desc = "it's a fillet sliced from a monkfish."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "monkfish_fillet"
-	nutriment_amt = 0.5
+	nutriment_amt = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/cuttlefishcooked/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/monkfishfillet/Initialize()
 	..()
 	bitesize = 3
 	reagents.add_reagent("protein", 1)
@@ -364,7 +364,7 @@
 	nutriment_desc = list("fish" = 3, "oil" = 1, "sweet chili" = 3, "spring onion" = 2)
 	trash = /obj/item/trash/fancyplate
 
-/obj/item/weapon/reagent_containers/food/snacks/cuttlefishcooked/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/monkfishcooked/Initialize()
 	..()
 	bitesize = 4
 	reagents.add_reagent("protein", 5)

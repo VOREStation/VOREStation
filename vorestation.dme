@@ -1604,6 +1604,7 @@
 #include "code\modules\clothing\head\jobs.dm"
 #include "code\modules\clothing\head\misc.dm"
 #include "code\modules\clothing\head\misc_special.dm"
+#include "code\modules\clothing\head\misc_vr.dm"
 #include "code\modules\clothing\head\pilot_helmet.dm"
 #include "code\modules\clothing\head\soft_caps.dm"
 #include "code\modules\clothing\head\solgov.dm"
