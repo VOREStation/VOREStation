@@ -27,3 +27,12 @@
 	icon_state = "ge_helmcent"
 	icon = 'icons/obj/clothing/hats_vr.dmi'
 	icon_override = 'icons/mob/head_vr.dmi'
+
+/obj/item/clothing/head/helmet/fish
+	name = "fish skull"
+	desc = "You... you're not actually going to wear that, right?"
+	icon_state = "fishskull"
+	icon = 'icons/obj/clothing/hats_vr.dmi'
+	icon_override = 'icons/mob/head_vr.dmi'
+	flags_inv = HIDEEARS|BLOCKHAIR
+	item_state_slots = list(slot_r_hand_str = "fishk", slot_l_hand_str = "fisk")

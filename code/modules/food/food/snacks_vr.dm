@@ -337,10 +337,11 @@
 	w_class = ITEMSIZE_HUGE //Is that a monkfish in your pocket, or are you just happy to see me?
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/monkfishfillet
 	slices_num = 6
+	trash = /obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfishremains
 
-/obj/item/weapon/reagent_containers/food/snacks/monkfishraw/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfish/Initialize()
 	..()
-	bitesize = 1.5
+	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/monkfishfillet
 	name = "monkfish fillet"
@@ -367,6 +368,21 @@
 	..()
 	bitesize = 4
 	reagents.add_reagent("protein", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfishremains
+	name = "monkfish remains"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "monkfish_remains"
+	desc = "the work of a madman."
+	w_class = ITEMSIZE_LARGE
+	nutriment_amt = 10
+	slice_path = /obj/item/clothing/head/helmet/fish
+	slices_num = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfishremains/Initialize()
+	..()
+	bitesize = 0.01 //impossible to eat
+	reagents.add_reagent("carbon", 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/sobakacube
 	name = "sobaka cube"
