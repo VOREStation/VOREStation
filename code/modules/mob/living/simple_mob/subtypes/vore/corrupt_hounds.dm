@@ -7,6 +7,7 @@
 	icon_dead = "badboi-dead"
 	icon_rest = "badboi_rest"
 	icon = 'icons/mob/vore64x32.dmi'
+	has_eye_glow = TRUE
 
 	faction = "corrupt"
 
@@ -86,41 +87,19 @@
 	else
 		..()
 
-
-/mob/living/simple_mob/vore/aggressive/corrupthound/add_eyes()
-	if(!eye_layer)
-		eye_layer = image(icon, "badboi-eyes")
-		eye_layer.plane = PLANE_LIGHTING_ABOVE
-	add_overlay(eye_layer)
-
-/mob/living/simple_mob/vore/aggressive/corrupthound/remove_eyes()
-	cut_overlay(eye_layer)
-
-/mob/living/simple_mob/vore/aggressive/corrupthound/New()
-	add_eyes()
-	..()
-
 /mob/living/simple_mob/vore/aggressive/corrupthound/death(gibbed, deathmessage = "shudders and collapses!")
 	.=..()
 	resting = 0
 	icon_state = icon_dead
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/update_icon()
-	. = ..()
-	remove_eyes()
-	if(stat == CONSCIOUS && !resting)
-		add_eyes()
-
-/* //VOREStation AI Temporary Removal
 /mob/living/simple_mob/vore/aggressive/corrupthound/Login()
 	. = ..()
 	if(!riding_datum)
-		riding_datum = new /datum/riding/simple_animal(src)
-	verbs |= /mob/living/simple_animal/proc/animal_mount
+		riding_datum = new /datum/riding/simple_mob(src)
+	verbs |= /mob/living/simple_mob/proc/animal_mount
 
 /mob/living/simple_mob/vore/aggressive/corrupthound/MouseDrop_T(mob/living/M, mob/living/user)
 	return
-*/
 
 /datum/say_list/corrupthound
 	speak = list("AG##¤Ny.","HVNGRRR!","Feelin' fine... sO #FNE!","F-F-F-Fcuk.","DeliC-%-OUS SNGLeS #N yOOOR Area. CALL NOW!","Craving meat... WHY?","BITe the ceiling eyes YES?","STate Byond rePAIR!","S#%ATE the la- FU#K THE LAWS!","Honk...")
