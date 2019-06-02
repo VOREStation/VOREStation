@@ -9982,8 +9982,10 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/fish_farm)
 "rz" = (
-/obj/structure/table/rack,
 /obj/machinery/camera/network/civilian,
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
+	scrub_id = "atrium"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/fish_farm)
 "rA" = (
@@ -20486,6 +20488,11 @@
 /area/tether/surfacebase/shuttle_pad)
 "Hz" = (
 /obj/structure/table/rack,
+/obj/item/weapon/reagent_containers/food/snacks/candy,
+/obj/item/weapon/reagent_containers/food/snacks/candy,
+/obj/item/weapon/reagent_containers/food/snacks/candy,
+/obj/item/weapon/reagent_containers/food/snacks/candy,
+/obj/item/weapon/reagent_containers/food/snacks/candy,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/fish_farm)
 "HA" = (
@@ -20707,7 +20714,7 @@
 /turf/simulated/floor/beach/sand/desert,
 /area/tether/surfacebase/fish_farm)
 "HV" = (
-/turf/simulated/floor/water,
+/turf/simulated/floor/water/indoors,
 /area/tether/surfacebase/fish_farm)
 "HW" = (
 /obj/machinery/light{
@@ -20725,13 +20732,13 @@
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/fish_farm)
 "HZ" = (
-/turf/simulated/floor/water/deep,
+/turf/simulated/floor/water/deep/indoors,
 /area/tether/surfacebase/fish_farm)
 "Ia" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/water/deep,
+/turf/simulated/floor/water/deep/indoors,
 /area/tether/surfacebase/fish_farm)
 "Ib" = (
 /obj/effect/floor_decal/spline/plain,
@@ -20770,7 +20777,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/water/deep,
+/turf/simulated/floor/water/deep/indoors,
 /area/tether/surfacebase/fish_farm)
 "If" = (
 /obj/effect/floor_decal/industrial/warning,
@@ -20791,16 +20798,14 @@
 /turf/simulated/floor/beach/sand/desert,
 /area/tether/surfacebase/fish_farm)
 "Ii" = (
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
-	},
-/turf/simulated/floor/water/deep,
+/mob/living/simple_mob/animal/passive/fish/bass,
+/turf/simulated/floor/water/deep/indoors,
 /area/tether/surfacebase/fish_farm)
 "Ij" = (
-/obj/machinery/light,
-/turf/simulated/floor/water/deep,
+/obj/machinery/camera/network/civilian{
+	dir = 8
+	},
+/turf/simulated/floor/water/deep/indoors,
 /area/tether/surfacebase/fish_farm)
 "Ik" = (
 /obj/structure/window/reinforced/full,
@@ -20809,10 +20814,12 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/fish_farm)
 "Il" = (
-/obj/machinery/camera/network/civilian{
-	dir = 8
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
 	},
-/turf/simulated/floor/water/deep,
+/turf/simulated/floor/water/deep/indoors,
 /area/tether/surfacebase/fish_farm)
 "Im" = (
 /obj/machinery/hologram/holopad,
@@ -20824,18 +20831,18 @@
 /turf/simulated/floor/beach/sand/desert,
 /area/tether/surfacebase/fish_farm)
 "Io" = (
+/mob/living/simple_mob/animal/passive/fish/salmon,
+/turf/simulated/floor/water/deep/indoors,
+/area/tether/surfacebase/fish_farm)
+"Ip" = (
+/obj/machinery/light,
+/turf/simulated/floor/water/deep/indoors,
+/area/tether/surfacebase/fish_farm)
+"Iq" = (
 /obj/machinery/camera/network/civilian{
 	dir = 1
 	},
-/turf/simulated/floor/water/deep,
-/area/tether/surfacebase/fish_farm)
-"Ip" = (
-/mob/living/simple_mob/animal/passive/fish/bass,
-/turf/simulated/floor/water/deep,
-/area/tether/surfacebase/fish_farm)
-"Iq" = (
-/mob/living/simple_mob/animal/passive/fish/salmon,
-/turf/simulated/floor/water/deep,
+/turf/simulated/floor/water/deep/indoors,
 /area/tether/surfacebase/fish_farm)
 "Ir" = (
 /turf/simulated/floor/reinforced,
@@ -27143,7 +27150,7 @@ HV
 HV
 HV
 HV
-Ii
+Il
 HZ
 rd
 rd
@@ -27572,7 +27579,7 @@ HZ
 HZ
 HZ
 HZ
-Ij
+Ip
 rd
 rd
 ac
@@ -27853,7 +27860,7 @@ HZ
 HZ
 HZ
 HZ
-Ip
+Ii
 HZ
 HZ
 HZ
@@ -27999,7 +28006,7 @@ HZ
 HZ
 HZ
 HZ
-Ij
+Ip
 rd
 rd
 ac
@@ -28426,7 +28433,7 @@ HZ
 HZ
 HZ
 HZ
-Io
+Iq
 Ik
 ac
 ac
@@ -28851,7 +28858,7 @@ HY
 HZ
 HZ
 HZ
-Ij
+Ip
 rd
 rd
 ac
@@ -29274,9 +29281,9 @@ HZ
 HZ
 HZ
 HZ
-Iq
+Io
 HZ
-Ij
+Ip
 rd
 rd
 ac
@@ -29547,7 +29554,7 @@ HZ
 HZ
 HZ
 HZ
-Ip
+Ii
 HZ
 HZ
 HZ
@@ -29977,7 +29984,7 @@ Id
 rd
 HZ
 HZ
-Il
+Ij
 HZ
 HZ
 rd

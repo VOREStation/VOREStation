@@ -1315,6 +1315,7 @@
 #include "code\game\turfs\simulated\wall_types_vr.dm"
 #include "code\game\turfs\simulated\walls.dm"
 #include "code\game\turfs\simulated\water.dm"
+#include "code\game\turfs\simulated\water_vr.dm"
 #include "code\game\turfs\simulated\dungeon\floor.dm"
 #include "code\game\turfs\simulated\dungeon\wall.dm"
 #include "code\game\turfs\simulated\outdoors\atmoscaves_vr.dm"
