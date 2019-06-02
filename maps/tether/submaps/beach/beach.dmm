@@ -285,6 +285,9 @@
 /obj/item/clothing/head/collectable/paper,
 /turf/simulated/floor/beach/sand,
 /area/tether_away/beach)
+"bf" = (
+/turf/simulated/floor/water/indoors,
+/area/tether_away/beach)
 "bg" = (
 /turf/unsimulated/wall/planetary/normal,
 /area/tether_away/beach/coast)
@@ -583,7 +586,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -725,7 +728,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -867,7 +870,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -1009,7 +1012,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -1151,7 +1154,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -1293,7 +1296,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -1435,7 +1438,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -1577,7 +1580,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -1719,7 +1722,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -1861,7 +1864,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -2003,7 +2006,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -2145,7 +2148,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -2287,7 +2290,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -2429,7 +2432,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -2571,7 +2574,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -2713,7 +2716,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -2855,7 +2858,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -2997,7 +3000,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -3139,7 +3142,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -3281,7 +3284,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -3423,7 +3426,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -3565,7 +3568,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -3707,7 +3710,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -3849,7 +3852,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -3991,7 +3994,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -4133,7 +4136,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -4275,7 +4278,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -4417,7 +4420,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -4559,7 +4562,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -4701,7 +4704,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -4843,7 +4846,7 @@ aa
 aa
 aa
 bb
-ad
+bf
 aj
 ak
 ak
@@ -4985,7 +4988,7 @@ aa
 aa
 aa
 bc
-ad
+bf
 aj
 ak
 ak
@@ -5127,7 +5130,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -5269,7 +5272,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -5411,7 +5414,7 @@ aa
 aa
 aa
 bb
-ad
+bf
 aj
 ak
 ak
@@ -5553,7 +5556,7 @@ aa
 aa
 aa
 bc
-ad
+bf
 aj
 ak
 ak
@@ -5695,7 +5698,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -5837,7 +5840,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -5979,7 +5982,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -6121,7 +6124,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -6263,7 +6266,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -6405,7 +6408,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -6547,7 +6550,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -6689,7 +6692,7 @@ aa
 aa
 aa
 bb
-ad
+bf
 aj
 ak
 ak
@@ -6831,7 +6834,7 @@ aa
 aa
 aa
 bc
-ad
+bf
 aj
 ak
 ak
@@ -6973,7 +6976,7 @@ aa
 aa
 aa
 bb
-ad
+bf
 aj
 ak
 ak
@@ -7115,7 +7118,7 @@ aa
 aa
 aa
 bc
-ad
+bf
 aj
 ak
 ak
@@ -7257,7 +7260,7 @@ aa
 aa
 aa
 bd
-ad
+bf
 aj
 ak
 ak
@@ -7399,7 +7402,7 @@ aa
 aa
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -7541,7 +7544,7 @@ ad
 ad
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -7683,7 +7686,7 @@ ad
 ad
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -7825,7 +7828,7 @@ ad
 ad
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -7967,7 +7970,7 @@ ad
 ad
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -8109,7 +8112,7 @@ ad
 ad
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -8251,7 +8254,7 @@ ad
 ad
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -8393,7 +8396,7 @@ ad
 ad
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -8535,7 +8538,7 @@ ad
 ad
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -8677,7 +8680,7 @@ ad
 ad
 ad
 bb
-ad
+bf
 aj
 ak
 ak
@@ -8819,7 +8822,7 @@ ad
 ad
 ad
 bc
-ad
+bf
 aj
 ak
 ak
@@ -8961,7 +8964,7 @@ ad
 ad
 ad
 bb
-ad
+bf
 aj
 ak
 ak
@@ -9103,7 +9106,7 @@ ad
 ad
 ad
 bc
-ad
+bf
 aj
 ak
 ak
@@ -9245,7 +9248,7 @@ ad
 ad
 ad
 bb
-ad
+bf
 aj
 ak
 ak
@@ -9387,7 +9390,7 @@ ad
 ad
 ad
 bc
-ad
+bf
 aj
 ak
 ak
@@ -9529,7 +9532,7 @@ ad
 ad
 ad
 bb
-ad
+bf
 aj
 ak
 ak
@@ -9671,7 +9674,7 @@ ad
 ad
 ad
 bc
-ad
+bf
 aj
 ak
 ak
@@ -9813,7 +9816,7 @@ ad
 UZ
 ad
 bb
-ad
+bf
 aj
 ak
 ak
@@ -9955,7 +9958,7 @@ ad
 ad
 ad
 bc
-ad
+bf
 aj
 ak
 ak
@@ -10097,7 +10100,7 @@ ad
 ad
 ad
 bb
-ad
+bf
 aj
 ak
 ak
@@ -10239,7 +10242,7 @@ ad
 ad
 ad
 bc
-ad
+bf
 aj
 ak
 ak
@@ -10381,7 +10384,7 @@ ad
 ad
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -10523,7 +10526,7 @@ ad
 ad
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -10665,7 +10668,7 @@ ad
 ad
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -10807,7 +10810,7 @@ ad
 ad
 ai
 ad
-ad
+bf
 aj
 ak
 ak
@@ -10949,7 +10952,7 @@ ad
 ad
 aZ
 ad
-ad
+bf
 aj
 ak
 ak
@@ -11091,7 +11094,7 @@ ad
 ad
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -11233,7 +11236,7 @@ ad
 ad
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -11375,7 +11378,7 @@ ad
 ad
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -11517,7 +11520,7 @@ ad
 ad
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -11659,7 +11662,7 @@ ad
 ad
 ad
 bb
-ad
+bf
 aj
 ak
 ak
@@ -11801,7 +11804,7 @@ ad
 ad
 ad
 bc
-ad
+bf
 aj
 ak
 ak
@@ -11943,7 +11946,7 @@ aa
 ad
 ad
 bb
-ad
+bf
 aj
 ak
 ak
@@ -12085,7 +12088,7 @@ aa
 ad
 ad
 bc
-ad
+bf
 aj
 ak
 ak
@@ -12227,7 +12230,7 @@ aa
 ad
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -12369,7 +12372,7 @@ aa
 aa
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -12511,7 +12514,7 @@ aa
 aa
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -12653,7 +12656,7 @@ aa
 aa
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -12795,7 +12798,7 @@ aa
 aa
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -12937,7 +12940,7 @@ aa
 aa
 ad
 ad
-ad
+bf
 aj
 ak
 ak
@@ -13079,7 +13082,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -13221,7 +13224,7 @@ aa
 aa
 aa
 be
-ad
+bf
 aj
 ak
 ak
@@ -13363,7 +13366,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -13505,7 +13508,7 @@ aa
 aa
 aa
 bb
-ad
+bf
 aj
 ak
 ak
@@ -13647,7 +13650,7 @@ aa
 aa
 aa
 bc
-ad
+bf
 aj
 ak
 ak
@@ -13789,7 +13792,7 @@ aa
 aa
 aa
 bb
-ad
+bf
 aj
 ak
 ak
@@ -13931,7 +13934,7 @@ aa
 aa
 aa
 bc
-ad
+bf
 aj
 ak
 ak
@@ -14073,7 +14076,7 @@ aa
 aa
 aa
 bb
-ad
+bf
 aj
 ak
 ak
@@ -14215,7 +14218,7 @@ aa
 aa
 aa
 bc
-ad
+bf
 aj
 ak
 ak
@@ -14357,7 +14360,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -14499,7 +14502,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -14641,7 +14644,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -14783,7 +14786,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -14925,7 +14928,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -15067,7 +15070,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -15209,7 +15212,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -15351,7 +15354,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -15493,7 +15496,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -15635,7 +15638,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -15777,7 +15780,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -15919,7 +15922,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -16061,7 +16064,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -16203,7 +16206,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -16345,7 +16348,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -16487,7 +16490,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -16629,7 +16632,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -16771,7 +16774,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -16913,7 +16916,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -17055,7 +17058,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -17197,7 +17200,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -17339,7 +17342,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -17481,7 +17484,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -17623,7 +17626,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -17765,7 +17768,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -17907,7 +17910,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -18049,7 +18052,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -18191,7 +18194,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -18333,7 +18336,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -18475,7 +18478,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -18617,7 +18620,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -18759,7 +18762,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -18901,7 +18904,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -19043,7 +19046,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -19185,7 +19188,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -19327,7 +19330,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -19469,7 +19472,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -19611,7 +19614,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -19753,7 +19756,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -19895,7 +19898,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
@@ -20037,7 +20040,7 @@ aa
 aa
 aa
 ad
-ad
+bf
 aj
 ak
 ak
