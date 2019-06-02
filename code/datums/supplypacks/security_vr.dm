@@ -17,6 +17,9 @@
 			access_xenobiology)
 */
 
+/datum/supply_pack/randomised/security/armor
+	access = access_armory
+
 /datum/supply_pack/security/biosuit
 	contains = list(
 			/obj/item/clothing/head/bio_hood/security = 3,

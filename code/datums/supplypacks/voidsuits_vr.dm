@@ -62,7 +62,6 @@
 			)
 
 /datum/supply_pack/voidsuits/supply
-	name = "Mining voidsuits"
 	contains = list(
 			/obj/item/clothing/suit/space/void/mining = 3,
 			/obj/item/clothing/head/helmet/space/void/mining = 3,
