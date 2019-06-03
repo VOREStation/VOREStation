@@ -9733,32 +9733,40 @@
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/pool)
 "rd" = (
-/turf/simulated/floor/reinforced,
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
-"rf" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/pool)
-"rg" = (
+"re" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/pool)
-"rh" = (
+"rf" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/pool)
-"ri" = (
+"rg" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/freezer,
+/area/crew_quarters/pool)
+"rh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/pool)
+"ri" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 27
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/pool)
 "rj" = (
@@ -9908,32 +9916,34 @@
 /turf/simulated/wall,
 /area/crew_quarters/kitchen)
 "rv" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 27
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/crew_quarters/pool)
-"rw" = (
 /obj/structure/bed/chair{
 	dir = 4
 	},
+/obj/effect/floor_decal/spline/plain{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/freezer,
+/area/crew_quarters/pool)
+"rw" = (
+/obj/effect/floor_decal/spline/plain,
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/pool)
 "rx" = (
 /obj/effect/floor_decal/spline/plain,
-/obj/structure/flora/pottedplant/stoutbush,
+/obj/machinery/camera/network/civilian{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/pool)
 "ry" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
+/obj/effect/floor_decal/spline/plain,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/freezer,
+/area/crew_quarters/pool)
+"rz" = (
+/obj/effect/floor_decal/spline/plain,
+/obj/structure/flora/pottedplant/stoutbush,
+/turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/pool)
 "rA" = (
 /obj/effect/floor_decal/spline/plain{
@@ -10166,6 +10176,16 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
+"rU" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/pool)
 "rV" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -20424,6 +20444,11 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
+"Hz" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
 "HA" = (
 /obj/structure/closet/hydrant{
 	pixel_y = -32
@@ -28883,8 +28908,8 @@ lw
 lw
 kS
 kS
-lw
-ry
+kS
+rU
 ac
 ac
 ac
@@ -29025,7 +29050,7 @@ pm
 mM
 qr
 rc
-rw
+rv
 rV
 ac
 ac
@@ -29166,8 +29191,8 @@ mN
 pn
 pI
 pI
-rf
-mN
+rd
+rw
 kS
 ac
 ac
@@ -29308,8 +29333,8 @@ nw
 nw
 nw
 qs
-rg
-mN
+re
+rw
 kS
 ac
 ac
@@ -29450,8 +29475,8 @@ nx
 nx
 nx
 qt
-rg
-mN
+re
+rw
 kS
 ac
 ac
@@ -29592,8 +29617,8 @@ nx
 nx
 nx
 qt
-rg
-mN
+re
+rw
 rV
 ac
 ac
@@ -29734,8 +29759,8 @@ oS
 nx
 nx
 qt
-rg
-mN
+re
+rx
 rV
 ac
 ac
@@ -29876,8 +29901,8 @@ oT
 nx
 nx
 qt
-rg
-mN
+re
+rw
 rV
 ac
 ac
@@ -30018,8 +30043,8 @@ oU
 nx
 nx
 qt
-rg
-mN
+re
+rw
 kS
 ac
 ac
@@ -30160,8 +30185,8 @@ ny
 ny
 ny
 qu
-rg
-mN
+re
+rw
 kS
 FK
 ac
@@ -30302,8 +30327,8 @@ ny
 ny
 ny
 qu
-rg
-mN
+re
+ry
 kS
 ac
 ac
@@ -30444,8 +30469,8 @@ nz
 nz
 nz
 qv
-rg
-mN
+re
+rw
 rV
 ac
 ac
@@ -30586,8 +30611,8 @@ nA
 nA
 pJ
 qw
-rh
-rx
+rf
+rz
 rV
 ac
 ac
@@ -30728,7 +30753,7 @@ mu
 mu
 pK
 qx
-mN
+rg
 rA
 rV
 ac
@@ -30870,7 +30895,7 @@ mv
 mv
 pL
 qy
-ri
+rh
 rB
 kS
 ac
@@ -31012,7 +31037,7 @@ oa
 mv
 pM
 qz
-rv
+ri
 rC
 kS
 ac
@@ -36874,7 +36899,7 @@ Jr
 Js
 Wh
 JE
-rd
+Hz
 IY
 bg
 RO
@@ -37016,7 +37041,7 @@ Js
 Js
 Jz
 JE
-rd
+Hz
 IY
 bg
 RO
@@ -37158,7 +37183,7 @@ Jt
 Js
 Jz
 JE
-rd
+Hz
 IY
 bg
 RO
