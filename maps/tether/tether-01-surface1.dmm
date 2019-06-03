@@ -6005,6 +6005,21 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
+"aki" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/catwalk,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/research)
 "akj" = (
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
@@ -6014,6 +6029,17 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
+"akk" = (
+/obj/structure/catwalk,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/supply{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/research)
 "akm" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -13834,14 +13860,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/storage/art)
-"aEZ" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/structure/catwalk,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/research)
 "aFb" = (
 /obj/structure/bed/chair/wood{
 	dir = 4
@@ -43152,7 +43170,7 @@ aBW
 aDl
 aDI
 aEp
-aEZ
+aki
 lVl
 bEX
 qaO
@@ -43294,7 +43312,7 @@ aCB
 aDm
 aDJ
 aDL
-jRT
+akk
 jso
 xJz
 xoJ
