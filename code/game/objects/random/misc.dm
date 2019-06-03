@@ -520,3 +520,12 @@
 				/obj/item/weapon/cigbutt,
 				/obj/item/weapon/cigbutt/cigarbutt,
 				/obj/effect/decal/remains/mouse)
+
+/obj/random/janusmodule
+	name = "random janus circuit"
+	desc = "A random (possibly broken) Janus module."
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "circuit_damaged"
+
+/obj/random/janusmodule/item_to_spawn()
+	return pick(subtypesof(/obj/item/weapon/circuitboard/mecha/imperion))
