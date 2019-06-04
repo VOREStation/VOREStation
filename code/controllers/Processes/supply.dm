@@ -224,9 +224,17 @@ var/datum/controller/supply/supply_controller = new()
 		if(SP.access)
 			if(isnum(SP.access))
 				A.req_access = list(SP.access)
-			else if(islist(SP.access))
+			else if(islist(SP.access) && SP.one_access)
 				var/list/L = SP.access // access var is a plain var, we need a list
+<<<<<<< HEAD
 				A.req_one_access = L.Copy()		//VOREStation Edit: Lets make sense
+=======
+				A.req_one_access = L.Copy()
+				A.req_access.Cut()
+			else if(islist(SP.access) && !SP.one_access)
+				var/list/L = SP.access
+				A.req_access = L.Copy()
+>>>>>>> 995b581... Merge pull request #6190 from Heroman3003/modularizationofspaccess
 			else
 				log_debug("<span class='danger'>Supply pack with invalid access restriction [SP.access] encountered!</span>")
 
