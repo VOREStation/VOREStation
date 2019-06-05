@@ -12014,7 +12014,7 @@
 	},
 /obj/machinery/computer/area_atmos/tag{
 	dir = 4;
-	scrub_id = "rnd_can_store"
+	scrub_id = "atrium"
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/monitoring)

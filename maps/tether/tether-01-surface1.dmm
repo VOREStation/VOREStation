@@ -857,14 +857,14 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 8
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/refinery)
@@ -912,8 +912,11 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/refinery)
@@ -926,21 +929,25 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 8
-	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/refinery)
 "abP" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/mining_main/uxstorage)
 "abQ" = (
+/obj/machinery/light,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/mining_main/refinery)
+"abR" = (
 /obj/machinery/newscaster{
 	pixel_x = 0;
 	pixel_y = -30
@@ -950,54 +957,35 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/mining_main/refinery)
-"abR" = (
-/obj/structure/catwalk,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
 "abS" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 4
+/obj/machinery/camera/network/cargo{
+	dir = 1;
+	name = "security camera"
 	},
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/random/junk,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
-"abT" = (
-/turf/simulated/wall,
-/area/maintenance/lower/mining_eva)
-"abU" = (
-/obj/machinery/light,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /turf/simulated/floor/tiled,
+/area/tether/surfacebase/mining_main/refinery)
+"abT" = (
+/turf/simulated/wall,
+/area/maintenance/lower/mining_eva)
+"abU" = (
+/obj/machinery/door/airlock/maintenance/common{
+	name = "Trash Pit Access";
+	req_one_access = list(48)
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/mining_main/refinery)
 "abV" = (
 /obj/effect/floor_decal/borderfloor/corner{
@@ -1012,42 +1000,22 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/storage)
 "abW" = (
-/obj/machinery/door/airlock/maintenance/common{
-	name = "Trash Pit Access";
-	req_one_access = list(48)
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/structure/railing{
+	dir = 8
 	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/tether/surfacebase/mining_main/refinery)
+/obj/effect/decal/cleanable/dirt,
+/obj/random/junk,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/trash_pit)
 "abX" = (
-/obj/machinery/camera/network/cargo{
-	dir = 1;
-	name = "security camera"
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/mining_main/refinery)
+/obj/structure/catwalk,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/trash_pit)
 "abY" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -1085,20 +1053,16 @@
 /area/tether/surfacebase/mining_main/storage)
 "acb" = (
 /obj/structure/catwalk,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
+/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/visible/supply,
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/xenoflora)
 "acc" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -1262,11 +1226,19 @@
 /area/maintenance/lower/research)
 "acp" = (
 /obj/structure/catwalk,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/floor_decal/rust,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/junction,
+/obj/random/junk,
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/xenoflora)
 "acq" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 4
@@ -1619,22 +1591,16 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
 "acW" = (
-/obj/structure/catwalk,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/floor_decal/rust,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
 /turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
+/area/maintenance/lower/xenoflora)
 "acX" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -1889,11 +1855,16 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "adn" = (
-/obj/structure/catwalk,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
+	},
+/obj/machinery/computer/area_atmos/tag{
+	dir = 4;
+	scrub_id = "atrium"
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/xenobiology/xenoflora_storage)
 "ado" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
 /turf/simulated/floor/plating,
@@ -2471,18 +2442,6 @@
 /obj/random/maintenance/cargo,
 /obj/random/maintenance/cargo,
 /obj/random/maintenance/clean,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
-"aej" = (
-/obj/effect/floor_decal/techfloor,
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/floor_decal/rust,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "aek" = (
@@ -5023,17 +4982,6 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/plating,
 /area/storage/surface_eva)
-"aiB" = (
-/obj/structure/catwalk,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
 "aiC" = (
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
@@ -10542,31 +10490,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_stairs_one)
-"axB" = (
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/supply{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 9
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/xenoflora)
-"axC" = (
-/obj/structure/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/junction,
-/obj/random/junk,
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/xenoflora)
 "axF" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
@@ -11104,15 +11027,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora/lab_atmos)
-"ayI" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/maintenance/common,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/xenoflora)
 "ayJ" = (
 /obj/structure/closet/crate,
 /obj/random/maintenance/engineering,
@@ -20669,17 +20583,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
-"bEv" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 8
-	},
-/obj/machinery/computer/area_atmos/tag{
-	dir = 4;
-	scrub_id = "rnd_can_store"
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/xenobiology/xenoflora_storage)
 "bED" = (
 /obj/machinery/light/small{
 	dir = 4;
@@ -39054,7 +38957,7 @@ aAS
 bwi
 aEM
 aFn
-bEv
+adn
 aFn
 aGE
 bKm
@@ -40604,7 +40507,7 @@ aZz
 auB
 avy
 awv
-axB
+acb
 alg
 wRT
 crL
@@ -40746,8 +40649,8 @@ aZw
 bbQ
 avz
 avz
-axC
-ayI
+acp
+acW
 azD
 blA
 aBd
@@ -45676,7 +45579,7 @@ aar
 aaI
 aaC
 abs
-abO
+abN
 acP
 ack
 acK
@@ -45818,7 +45721,7 @@ aar
 aaI
 aaC
 abh
-abN
+abO
 abM
 acl
 acL
@@ -45960,7 +45863,7 @@ aar
 aaJ
 aaC
 abi
-abU
+abQ
 abL
 abL
 abM
@@ -46102,7 +46005,7 @@ aar
 aaM
 aaC
 abt
-abQ
+abR
 abP
 acm
 acM
@@ -46244,7 +46147,7 @@ aar
 aaN
 aaX
 abk
-abX
+abS
 abP
 acn
 adY
@@ -46386,7 +46289,7 @@ aar
 aar
 aar
 aar
-abW
+abU
 abP
 abP
 abP
@@ -46528,8 +46431,8 @@ aah
 aah
 aaU
 abl
-acb
-acW
+aiG
+adg
 adg
 aef
 aef
@@ -46671,12 +46574,12 @@ aah
 aaU
 abl
 abH
-abR
-acp
-acp
-adn
-aiB
-aej
+abH
+abX
+abX
+abH
+aiF
+aek
 aaU
 aah
 aah
@@ -46813,7 +46716,7 @@ aah
 aaU
 abm
 ace
-abS
+abW
 acq
 aen
 abH
