@@ -69,6 +69,9 @@
 /area/tether/surfacebase/public_garden
 	name = "\improper Public Garden"
 	icon_state = "purple"
+/area/tether/surfacebase/fish_farm
+	name = "\improper Fish Farm"
+	icon_state = "red"
 /area/tether/surfacebase/bar_backroom
 	name = "\improper Bar Backroom"
 	icon_state = "red"
