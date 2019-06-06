@@ -16,6 +16,8 @@
 
 	var/list/logs = list() // Gets written to by exonet's send_message() function.
 
+//TFF 3/6/19 - Port Cit RP fix for infinite frames
+	circuit = /obj/item/weapon/circuitboard/telecomms/exonet_node
 // Proc: New()
 // Parameters: None
 // Description: Adds components to the machine for deconstruction.
@@ -23,7 +25,6 @@
 	..()
 
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/telecomms/exonet_node(src)
 	component_parts += new /obj/item/weapon/stock_parts/subspace/ansible(src)
 	component_parts += new /obj/item/weapon/stock_parts/subspace/sub_filter(src)
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
