@@ -408,7 +408,7 @@ Class Procs:
 
 /obj/machinery/proc/dismantle()
 	playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
-	//TFF 3/6/19 - port Cit RP fix of infinite frames.
+	//TFF 3/6/19 - port Cit RP fix of infinite frames. If it doesn't have a circuit board, don't create a frame. Return a smack instead. BONK!
 	if(!circuit)
 		return 0
 	var/obj/structure/frame/A = new /obj/structure/frame(src.loc)
