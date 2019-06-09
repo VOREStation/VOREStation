@@ -561,7 +561,8 @@ var/list/mining_overlay_cache = list()
 	else
 		X = new /obj/item/weapon/ore/strangerock(src, inside_item_type = F.find_type)
 		geologic_data.UpdateNearbyArtifactInfo(src)
-		X:geologic_data = geologic_data
+		var/obj/item/weapon/ore/strangerock/SR = X
+		SR.geologic_data = geologic_data
 
 	//some find types delete the /obj/item/weapon/archaeological_find and replace it with something else, this handles when that happens
 	//yuck
