@@ -90,6 +90,7 @@
 	max_co2 = 0
 	min_n2 = 0
 	max_n2 = 0
+	maxbodytemp = 1000
 	has_eye_glow = TRUE
 
 /mob/living/simple_mob/otie/red/friendly //gets the pet2tame feature and doesn't kill you right away
@@ -151,7 +152,7 @@
 
 /mob/living/simple_mob/otie/security/phoron
 	name = "mutated guard otie"
-	desc = "An extra rare phoron resistant version of the VARMAcorp trained snowflake guard dogs."
+	desc = "An extra rare phoron resistant version of the VARMAcorp trained snowflake guard dogs for infernal environments."
 	tt_desc = "Otus phoronis"
 	icon_state = "secphotie"
 	icon_living = "secphotie"
@@ -167,7 +168,16 @@
 	max_co2 = 0
 	min_n2 = 0
 	max_n2 = 0
-	has_eye_glow = TRUE
+
+/mob/living/simple_mob/otie/security/phoron/red
+	name = "red guard otie"
+	desc = "An ominous looking version of the VARMAcorp trained snowflake guard dogs."
+	tt_desc = "Otus infernalis"
+	icon_state = "sechotie"
+	icon_living = "sechotie"
+	icon_rest = "sechotie_rest"
+	icon_dead = "sechotie-dead"
+	maxbodytemp = 1000
 
 /mob/living/simple_mob/otie/attackby(var/obj/item/O, var/mob/user) // Trade donuts for bellybrig victims.
 	if(istype(O, /obj/item/weapon/reagent_containers/food))
@@ -216,6 +226,7 @@
 					var/datum/ai_holder/AI = ai_holder
 					AI.set_stance(STANCE_IDLE)
 					if(prob(tame_chance))
+						AI.hostile = FALSE
 						friend = M
 						AI.set_follow(friend)
 						if(tamed != 1)
@@ -260,3 +271,8 @@
 	say_got_target = list("Rurrr!", "ROAR!", "MARR!", "RERR!", "RAHH!", "RAH!", "WARF!")
 
 /datum/ai_holder/simple_mob/melee/evasive/otie
+
+/datum/ai_holder/simple_mob/melee/evasive/otie/New(var/mob/living/simple_mob/otie/new_holder)
+	.=..()
+	if(new_holder.tamed)
+		hostile = FALSE
