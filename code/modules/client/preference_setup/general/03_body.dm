@@ -383,6 +383,16 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		if(!pref.species_preview || !(pref.species_preview in all_species))
 			return TOPIC_NOACTION
 
+		var/datum/species/setting_species
+
+		if(all_species[href_list["set_species"]])
+			setting_species = all_species[href_list["set_species"]]
+		else
+			return TOPIC_NOACTION
+
+		if(((!(setting_species.spawn_flags & SPECIES_CAN_JOIN)) || (!is_alien_whitelisted(preference_mob(),setting_species))) && !check_rights(R_ADMIN, 0))
+			return TOPIC_NOACTION
+
 		var/prev_species = pref.species
 		pref.species = href_list["set_species"]
 		if(prev_species != pref.species)

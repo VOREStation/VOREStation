@@ -531,6 +531,13 @@
 		message_admins("[key_name_admin(user)] has recalled the shuttle.", 1)
 	return
 
+
+/proc/is_relay_online()
+    for(var/obj/machinery/telecomms/relay/M in world)
+        if(M.stat == 0)
+            return 1
+    return 0
+
 /obj/machinery/computer/communications/proc/post_status(var/command, var/data1, var/data2)
 
 	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)

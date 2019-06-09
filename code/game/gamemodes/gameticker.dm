@@ -101,7 +101,7 @@ var/global/datum/controller/gameticker/ticker
 	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
 	if(!src.mode.can_start())
-		world << "<B>Unable to start [mode.name].</B> Not enough players readied, [mode.required_players] players needed. Reverting to pregame lobby."
+		world << "<B>Unable to start [mode.name].</B> Not enough players readied, [config.player_requirements[mode.config_tag]] players needed. Reverting to pregame lobby."
 		current_state = GAME_STATE_PREGAME
 		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		mode.fail_setup()

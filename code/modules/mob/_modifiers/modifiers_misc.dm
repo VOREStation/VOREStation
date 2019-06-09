@@ -56,7 +56,8 @@ the artifact triggers the rage.
 	outgoing_melee_damage_percent = 1.5		// 50% more damage from melee.
 	max_health_percent = 1.5				// More health as a buffer, however the holder might fall into crit after this expires if they're mortally wounded.
 	disable_duration_percent = 0.25			// Disables only last 25% as long.
-	icon_scale_percent = 1.2				// Look scarier.
+	icon_scale_x_percent = 1.2				// Look scarier.
+	icon_scale_y_percent = 1.2
 	pain_immunity = TRUE					// Avoid falling over from shock (at least until it expires).
 
 	// The less good stuff.
@@ -268,6 +269,20 @@ the artifact triggers the rage.
 	if(L.get_poison_protection() >= 1)
 		return FALSE
 	return TRUE
+
+/datum/modifier/poisoned/paralysis
+	desc = "You have poison inside of you. It will cause harm over a long span of time if not cured, and may cause temporary paralysis."
+	on_created_text = "<span class='warning'>You feel incredibly weak...</span>"
+	damage_per_tick = 0.75
+
+/datum/modifier/poisoned/paralysis/tick()
+	..()
+	if(prob(5))
+		holder.Paralyse(3)
+
+/datum/modifier/poisoned/paralysis/on_applied()
+	..()
+	holder.Paralyse(4)
 
 // Pulse modifier.
 /datum/modifier/false_pulse

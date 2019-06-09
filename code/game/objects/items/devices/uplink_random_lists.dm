@@ -74,7 +74,6 @@ var/datum/uplink_random_selection/all_uplink_selection = new/datum/uplink_random
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealth_items/chameleon_kit)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealth_items/chameleon_projector)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealth_items/voice)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealth_items/camera_floppy, 10, 0)
 
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/armor/heavy_vest)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/armor/combat)

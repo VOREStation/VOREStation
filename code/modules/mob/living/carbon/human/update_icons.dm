@@ -124,15 +124,20 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 /mob/living/carbon/human/update_transform()
 	/* VOREStation Edit START - TODO - Consider switching to icon_scale
 	// First, get the correct size.
-	var/desired_scale = icon_scale
+	var/desired_scale_x = icon_scale_x
+	var/desired_scale_y = icon_scale_y
 
-	desired_scale *= species.icon_scale
+	desired_scale_x *= species.icon_scale_x
+	desired_scale_y *= species.icon_scale_y
 
 	for(var/datum/modifier/M in modifiers)
-		if(!isnull(M.icon_scale_percent))
-			desired_scale *= M.icon_scale_percent
+		if(!isnull(M.icon_scale_x_percent))
+			desired_scale_x *= M.icon_scale_x_percent
+		if(!isnull(M.icon_scale_y_percent))
+			desired_scale_y *= M.icon_scale_y_percent
 	*/
-	var/desired_scale = size_multiplier
+	var/desired_scale_x = size_multiplier
+	var/desired_scale_y = size_multiplier
 	//VOREStation Edit End
 
 	// Regular stuff again.
@@ -145,12 +150,12 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
 		M.Turn(90)
-		M.Scale(desired_scale)
+		M.Scale(desired_scale_x, desired_scale_y)
 		M.Translate(1,-6)
 		layer = MOB_LAYER -0.01 // Fix for a byond bug where turf entry order no longer matters
 	else
-		M.Scale(desired_scale)
-		M.Translate(0, 16*(desired_scale-1))
+		M.Scale(desired_scale_x, desired_scale_y)
+		M.Translate(0, 16*(desired_scale_y-1))
 		layer = MOB_LAYER // Fix for a byond bug where turf entry order no longer matters
 
 	animate(src, transform = M, time = anim_time)

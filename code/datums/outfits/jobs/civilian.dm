@@ -6,11 +6,6 @@
 	name = OUTFIT_JOB_NAME("Visitor")
 	id_pda_assignment = "Visitor"
 	uniform = /obj/item/clothing/under/assistantformal
-
-/decl/hierarchy/outfit/job/assistant/resident
-	name = OUTFIT_JOB_NAME("Resident")
-	id_pda_assignment = "Resident"
-	uniform = /obj/item/clothing/under/color/white
 //VOREStation Add - Interns
 /decl/hierarchy/outfit/job/assistant/intern
 	name = OUTFIT_JOB_NAME("Intern")

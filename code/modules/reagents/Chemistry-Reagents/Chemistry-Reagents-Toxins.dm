@@ -50,6 +50,25 @@
 	color = "#003333"
 	strength = 10
 
+/datum/reagent/toxin/neurotoxic_protein
+	name = "toxic protein"
+	id = "neurotoxic_protein"
+	description = "A weak neurotoxic chemical commonly found in Sivian fish meat."
+	taste_description = "fish"
+	reagent_state = LIQUID
+	color = "#005555"
+	strength = 8
+
+/datum/reagent/toxin/neurotoxic_protein/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien != IS_DIONA)
+		if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
+			step(M, pick(cardinal))
+		if(prob(5))
+			M.emote(pick("twitch", "drool", "moan"))
+		if(prob(20))
+			M.adjustBrainLoss(0.1)
+
 //R-UST port
 // Produced during deuterium synthesis. Super poisonous, SUPER flammable (doesn't need oxygen to burn).
 /datum/reagent/toxin/hydrophoron

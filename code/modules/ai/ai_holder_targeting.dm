@@ -24,7 +24,7 @@
 
 // Step 1, find out what we can see.
 /datum/ai_holder/proc/list_targets()
-	. = hearers(vision_range, holder) - src // Remove ourselves to prevent suicidal decisions.
+	. = hearers(vision_range, holder) - holder // Remove ourselves to prevent suicidal decisions. ~ SRC is the ai_holder.
 
 	var/static/hostile_machines = typecacheof(list(/obj/machinery/porta_turret, /obj/mecha))
 
@@ -56,12 +56,8 @@
 /datum/ai_holder/proc/pick_target(list/targets)
 	if(target != null) // If we already have a target, but are told to pick again, calculate the lowest distance between all possible, and pick from the lowest distance targets.
 		targets = target_filter_distance(targets)
-//		for(var/possible_target in targets)
-//			var/atom/A = possible_target
-//			var/target_dist = get_dist(holder, target)
-//			var/possible_target_distance = get_dist(holder, A)
-//			if(target_dist < possible_target_distance)
-//				targets -= A
+	else
+		targets = target_filter_closest(targets)
 	if(!targets.len) // We found nothing.
 		return
 
@@ -94,6 +90,23 @@
 		if(target_dist < possible_target_distance)
 			targets -= A
 	return targets
+
+/datum/ai_holder/proc/target_filter_closest(list/targets)
+	var/lowest_distance = -1
+	var/list/sorted_targets = list()
+	for(var/possible_target in targets)
+		var/atom/A = possible_target
+		var/current_distance = get_dist(holder, A)
+		if(lowest_distance == -1)
+			lowest_distance = current_distance
+			sorted_targets += A
+		else if(current_distance < lowest_distance)
+			targets.Cut()
+			lowest_distance = current_distance
+			sorted_targets += A
+		else if(current_distance == lowest_distance)
+			sorted_targets += A
+	return sorted_targets
 
 /datum/ai_holder/proc/can_attack(atom/movable/the_target)
 	if(!can_see_target(the_target))

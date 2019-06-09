@@ -19,6 +19,7 @@
 /turf/simulated/floor/water/Initialize()
 	. = ..()
 	update_icon()
+	handle_fish()
 
 /turf/simulated/floor/water/update_icon()
 	..() // To get the edges.

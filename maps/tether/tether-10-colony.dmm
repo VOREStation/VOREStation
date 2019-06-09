@@ -778,21 +778,11 @@
 	})
 "bj" = (
 /obj/structure/table/rack,
-/obj/item/clothing/gloves/swat{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 80, "rad" = 80)
-	},
-/obj/item/clothing/gloves/swat{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 80, "rad" = 80)
-	},
-/obj/item/clothing/gloves/swat{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 80, "rad" = 80)
-	},
-/obj/item/clothing/gloves/swat{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 80, "rad" = 80)
-	},
-/obj/item/clothing/gloves/swat{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 80, "rad" = 80)
-	},
+/obj/item/clothing/gloves/swat,
+/obj/item/clothing/gloves/swat,
+/obj/item/clothing/gloves/swat,
+/obj/item/clothing/gloves/swat,
+/obj/item/clothing/gloves/swat,
 /obj/item/clothing/shoes/boots/swat,
 /obj/item/clothing/shoes/boots/swat,
 /obj/item/clothing/shoes/boots/swat,
@@ -806,47 +796,36 @@
 /obj/item/clothing/suit/armor/swat,
 /obj/item/clothing/suit/armor/swat,
 /obj/item/clothing/mask/gas/commando{
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 75, "rad" = 0);
 	name = "Commando Mask"
 	},
 /obj/item/clothing/mask/gas/commando{
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 75, "rad" = 0);
 	name = "Commando Mask"
 	},
 /obj/item/clothing/mask/gas/commando{
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 75, "rad" = 0);
 	name = "Commando Mask"
 	},
 /obj/item/clothing/mask/gas/commando{
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 75, "rad" = 0);
 	name = "Commando Mask"
 	},
 /obj/item/clothing/mask/gas/commando{
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 75, "rad" = 0);
 	name = "Commando Mask"
 	},
 /obj/item/clothing/head/helmet/space/deathsquad{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 60, "energy" = 70, "bomb" = 50, "bio" = 100, "rad" = 60);
 	name = "swat helmet"
 	},
 /obj/item/clothing/head/helmet/space/deathsquad{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 60, "energy" = 70, "bomb" = 50, "bio" = 100, "rad" = 60);
 	name = "swat helmet"
 	},
 /obj/item/clothing/head/helmet/space/deathsquad{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 60, "energy" = 70, "bomb" = 50, "bio" = 100, "rad" = 60);
 	name = "swat helmet"
 	},
 /obj/item/clothing/head/helmet/space/deathsquad{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 60, "energy" = 70, "bomb" = 50, "bio" = 100, "rad" = 60);
 	name = "swat helmet"
 	},
 /obj/item/clothing/head/helmet/space/deathsquad{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 60, "energy" = 70, "bomb" = 50, "bio" = 100, "rad" = 60);
 	name = "swat helmet"
 	},
 /obj/item/clothing/head/helmet/space/deathsquad{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 60, "energy" = 70, "bomb" = 50, "bio" = 100, "rad" = 60);
 	name = "swat helmet"
 	},
 /turf/unsimulated/floor{
@@ -10902,7 +10881,6 @@
 "tO" = (
 /obj/structure/table/steel,
 /obj/item/clothing/shoes/boots/jackboots{
-	armor = list("melee" = 69, "bullet" = 69, "laser" = 69, "energy" = 69, "bomb" = 69, "bio" = 69, "rad" = 69);
 	desc = "This pair of Jackboots look worn and freshly used. They have several claw markings inside and you can read the initials D and M at the bottom";
 	name = "Dhaeleena's Jackboots"
 	},
@@ -16894,6 +16872,10 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"QB" = (
+/obj/machinery/washing_machine,
+/turf/unsimulated/floor/steel,
+/area/centcom/evac)
 "Rc" = (
 /obj/structure/table/glass,
 /obj/item/device/defib_kit/compact/loaded,
@@ -23127,8 +23109,8 @@ mQ
 no
 no
 mQ
-oN
-oN
+QB
+QB
 mQ
 no
 no

@@ -14,7 +14,8 @@
 	icon_dead = "slime adult dead"
 	glow_range = 5
 	glow_intensity = 4
-	icon_scale = 2 // Twice as big as the xenobio variant.
+	icon_scale_x = 2 // Twice as big as the xenobio variant.
+	icon_scale_y = 2
 	pixel_y = -10 // Since the base sprite isn't centered properly, the pixel auto-adjustment needs some help.
 	default_pixel_y = -10 // To prevent resetting above var.
 
@@ -63,7 +64,8 @@
 	check_armour = "melee"
 	armor_penetration = 30
 	speed = 2
-	icon_scale = 2 // It hits like a truck.
+	icon_scale_x = 2 // It hits like a truck.
+	icon_scale_y = 2
 	sharp = TRUE
 
 /obj/item/projectile/icicle/on_impact(atom/A)

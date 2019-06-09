@@ -11,11 +11,12 @@
 	var/slices_num
 	var/dried_type = null
 	var/dry = 0
+	var/survivalfood = FALSE
 	var/nutriment_amt = 0
 	var/list/nutriment_desc = list("food" = 1)
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = ITEMSIZE_SMALL
-	force = 1
+	force = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/Initialize()
 	. = ..()
@@ -49,7 +50,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/attack(mob/M as mob, mob/user as mob, def_zone)
 	if(reagents && !reagents.total_volume)
-		user << "<span class='danger'>None of [src] left!</span>"
+		to_chat(user, "<span class='danger'>None of [src] left!</span>")
 		user.drop_from_inventory(src)
 		qdel(src)
 		return 0
@@ -62,38 +63,42 @@
 			if(istype(M,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
 				if(!H.check_has_mouth())
-					user << "Where do you intend to put \the [src]? You don't have a mouth!"
+					to_chat(user, "Where do you intend to put \the [src]? You don't have a mouth!")
 					return
-				var/obj/item/blocked = H.check_mouth_coverage()
+				var/obj/item/blocked = null
+				if(survivalfood)
+					blocked = H.check_mouth_coverage_survival()
+				else
+					blocked = H.check_mouth_coverage()
 				if(blocked)
-					user << "<span class='warning'>\The [blocked] is in the way!</span>"
+					to_chat(user, "<span class='warning'>\The [blocked] is in the way!</span>")
 					return
 
 			user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
 			//VOREStation Edit Begin
 			if (fullness <= 50)
-				M << "<span class='danger'>You hungrily chew out a piece of [src] and gobble it!</span>"
+				to_chat(M, "<span class='danger'>You hungrily chew out a piece of [src] and gobble it!</span>")
 			if (fullness > 50 && fullness <= 150)
-				M << "<span class='notice'>You hungrily begin to eat [src].</span>"
+				to_chat(M, "<span class='notice'>You hungrily begin to eat [src].</span>")
 			if (fullness > 150 && fullness <= 350)
-				M << "<span class='notice'>You take a bite of [src].</span>"
+				to_chat(M, "<span class='notice'>You take a bite of [src].</span>")
 			if (fullness > 350 && fullness <= 550)
-				M << "<span class='notice'>You unwillingly chew a bit of [src].</span>"
+				to_chat(M, "<span class='notice'>You unwillingly chew a bit of [src].</span>")
 			if (fullness > 550 && fullness <= 650)
-				M << "<span class='notice'>You swallow some more of the [src], causing your belly to swell out a little.</span>"
+				to_chat(M, "<span class='notice'>You swallow some more of the [src], causing your belly to swell out a little.</span>")
 			if (fullness > 650 && fullness <= 1000)
-				M << "<span class='notice'>You stuff yourself with the [src]. Your stomach feels very heavy.</span>"
+				to_chat(M, "<span class='notice'>You stuff yourself with the [src]. Your stomach feels very heavy.</span>")
 			if (fullness > 1000 && fullness <= 3000)
-				M << "<span class='notice'>You gluttonously swallow down the hunk of [src]. You're so gorged, it's hard to stand.</span>"
+				to_chat(M, "<span class='notice'>You gluttonously swallow down the hunk of [src]. You're so gorged, it's hard to stand.</span>")
 			if (fullness > 3000 && fullness <= 5500)
-				M << "<span class='danger'>You force the piece of [src] down your throat. You can feel your stomach getting firm as it reaches its limits.</span>"
+				to_chat(M, "<span class='danger'>You force the piece of [src] down your throat. You can feel your stomach getting firm as it reaches its limits.</span>")
 			if (fullness > 5500 && fullness <= 6000)
-				M << "<span class='danger'>You barely glug down the bite of [src], causing undigested food to force into your intestines. You can't take much more of this!</span>"
+				to_chat(M, "<span class='danger'>You barely glug down the bite of [src], causing undigested food to force into your intestines. You can't take much more of this!</span>")
 			if (fullness > 6000) // There has to be a limit eventually.
-				M << "<span class='danger'>Your stomach blorts and aches, prompting you to stop. You literally cannot force any more of [src] to go down your throat.</span>"
+				to_chat(M, "<span class='danger'>Your stomach blorts and aches, prompting you to stop. You literally cannot force any more of [src] to go down your throat.</span>")
 				return 0
 			/*if (fullness > (550 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
-				M << "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>"
+				to_chat(M, "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>")
 				return 0*/
 			//VOREStation Edit End
 
@@ -104,11 +109,23 @@
 			if(istype(M,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
 				if(!H.check_has_mouth())
-					user << "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!"
+					to_chat(user, "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!")
 					return
-				var/obj/item/blocked = H.check_mouth_coverage()
+				var/obj/item/blocked = null
+				var/unconcious = FALSE
+				blocked = H.check_mouth_coverage()
+				if(survivalfood)
+					blocked = H.check_mouth_coverage_survival()
+					if(H.stat && H.check_mouth_coverage())
+						unconcious = TRUE
+						blocked = H.check_mouth_coverage()
+
+				if(unconcious)
+					to_chat(user, "<span class='warning'>You can't feed [H] through \the [blocked] while they are unconcious!</span>")
+					return
+
 				if(blocked)
-					user << "<span class='warning'>\The [blocked] is in the way!</span>"
+					to_chat(user, "<span class='warning'>\The [blocked] is in the way!</span>")
 					return
 
 				/*if (fullness <= (550 * (1 + M.overeatduration / 1000))) // Vorestation edit
@@ -127,7 +144,7 @@
 				user.visible_message("<span class='danger'>[user] feeds [M] [src].</span>")
 
 			else
-				user << "This creature does not seem to have a mouth!"
+				to_chat(user, "This creature does not seem to have a mouth!")
 				return
 
 		if(reagents)								//Handle ingestion of the reagent.
@@ -149,11 +166,11 @@
 	if (bitecount==0)
 		return
 	else if (bitecount==1)
-		user << "<font color='blue'>\The [src] was bitten by someone!</font>"
+		to_chat(user, "<font color='blue'>\The [src] was bitten by someone!</font>")
 	else if (bitecount<=3)
-		user << "<font color='blue'>\The [src] was bitten [bitecount] times!</font>"
+		to_chat(user, "<font color='blue'>\The [src] was bitten [bitecount] times!</font>")
 	else
-		user << "<font color='blue'>\The [src] was bitten multiple times!</font>"
+		to_chat(user, "<font color='blue'>\The [src] was bitten multiple times!</font>")
 
 /obj/item/weapon/reagent_containers/food/snacks/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/storage))
@@ -168,7 +185,7 @@
 				U.create_reagents(5)
 
 			if (U.reagents.total_volume > 0)
-				user << "<font color='red'>You already have something on your [U].</font>"
+				to_chat(user, "<font color='red'>You already have something on your [U].</font>")
 				return
 
 			user.visible_message( \
@@ -698,17 +715,35 @@
 	bitesize = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/carpmeat
-	name = "carp fillet"
-	desc = "A fillet of spess carp meat"
+	name = "fillet"
+	desc = "A fillet of carp meat"
 	icon_state = "fishfillet"
 	filling_color = "#FFDEFE"
 	center_of_mass = list("x"=17, "y"=13)
 
+	var/toxin_type = "carpotoxin"
+	var/toxin_amount = 3
+
 /obj/item/weapon/reagent_containers/food/snacks/carpmeat/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 3)
-	reagents.add_reagent("carpotoxin", 3)
+	reagents.add_reagent(toxin_type, toxin_amount)
 	src.bitesize = 6
+
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif
+	desc = "A fillet of sivian fish meat."
+	filling_color = "#2c2cff"
+	color = "#2c2cff"
+	toxin_type = "neurotoxic_protein"
+	toxin_amount = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif/murkfish
+	toxin_type = "murk_protein"
+
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish
+	desc = "A fillet of fish meat."
+	toxin_type = "neurotoxic_protein"
+	toxin_amount = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/fishfingers
 	name = "Fish Fingers"
@@ -3467,6 +3502,7 @@
 	center_of_mass = list("x"=21, "y"=12)
 	nutriment_amt = 4
 	nutriment_desc = list("cheese" = 2,"taco shell" = 2)
+
 /obj/item/weapon/reagent_containers/food/snacks/taco/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 3)
@@ -3567,6 +3603,7 @@
 	icon_state = "liquidfood"
 	trash = /obj/item/trash/liquidfood
 	filling_color = "#A8A8A8"
+	survivalfood = TRUE
 	center_of_mass = list("x"=16, "y"=15)
 	nutriment_amt = 20
 	nutriment_desc = list("chalk" = 6)

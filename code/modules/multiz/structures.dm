@@ -68,6 +68,10 @@
 	if(target_ladder)
 		M.forceMove(get_turf(target_ladder))
 
+/obj/structure/ladder/attack_robot(var/mob/M)
+	attack_hand(M)
+	return
+
 /obj/structure/ladder/proc/getTargetLadder(var/mob/M)
 	if((!target_up && !target_down) || (target_up && !istype(target_up.loc, /turf) || (target_down && !istype(target_down.loc,/turf))))
 		to_chat(M, "<span class='notice'>\The [src] is incomplete and can't be climbed.</span>")

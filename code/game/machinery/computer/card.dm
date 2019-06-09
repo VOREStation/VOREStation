@@ -108,7 +108,7 @@
 				list("cat" = "Science", "jobs" = format_jobs(science_positions)),
 				list("cat" = "Security", "jobs" = format_jobs(security_positions)),
 				list("cat" = "Cargo", "jobs" = format_jobs(cargo_positions)),
-				list("cat" = "Planetside", "jobs" = format_jobs(planet_positions)),
+				list("cat" = "Exploration", "jobs" = format_jobs(planet_positions)), //VOREStation Edit
 				list("cat" = "Civilian", "jobs" = format_jobs(civilian_positions)),
 				list("cat" = "CentCom", "jobs" = format_jobs(get_all_centcom_jobs()))
 			)

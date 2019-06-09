@@ -8,6 +8,7 @@
 	var/slots = 5
 	var/obj/item/weapon/storage/internal/hold
 	w_class = ITEMSIZE_NORMAL
+	on_rolled = list("down" = "none")
 
 /obj/item/clothing/accessory/storage/New()
 	..()

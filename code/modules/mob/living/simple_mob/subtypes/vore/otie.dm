@@ -11,8 +11,28 @@
 	maxHealth = 150
 	health = 150
 	minbodytemp = 200
+<<<<<<< HEAD
 	melee_damage_lower = 5
 	melee_damage_upper = 15 //Don't break my bones bro
+=======
+	move_to_delay = 4
+	hostile = 1
+	investigates = 1
+	reacts = 1
+	animal = 1
+	specific_targets = 1
+	run_at_them = 0
+	attack_same = 0
+	speak_chance = 4
+	speak = list("Boof.","Waaf!","Prurr.","Bork!","Rurrr..","Arf.")
+	speak_emote = list("growls", "roars", "yaps", "Awoos")
+	emote_hear = list("rurrs", "rumbles", "rowls", "groans softly", "murrs", "sounds hungry", "yawns")
+	emote_see = list("stares ferociously", "snarls", "licks their chops", "stretches", "yawns")
+	say_maybe_target = list("Ruh?", "Waf?")
+	say_got_target = list("Rurrr!", "ROAR!", "MARR!", "RERR!", "RAHH!", "RAH!", "WARF!")
+	melee_damage_lower = 2
+	melee_damage_upper = 7 //Don't break my bones bro
+>>>>>>> f28098c0f2a90a17fb32a2ad31b61b453fa034f1
 	response_help = "pets the"
 	response_disarm = "bops the"
 	response_harm = "hits the"
@@ -56,8 +76,8 @@
 	icon_rest = "photie_rest"
 	faction = "virgo3b"
 	tame_chance = 5 // Only a 1 in 20 chance of success. It's feral. What do you expect?
-	melee_damage_lower = 10
-	melee_damage_upper = 25
+	melee_damage_lower = 5
+	melee_damage_upper = 12
 	// Lazy way of making sure this otie survives outside.
 	min_oxy = 0
 	max_oxy = 0
@@ -79,8 +99,8 @@
 	icon_rest = "hotie_rest"
 	faction = "cult"
 	tame_chance = 20
-	melee_damage_lower = 10
-	melee_damage_upper = 25
+	melee_damage_lower = 5
+	melee_damage_upper = 12
 	// Lazy way of making sure this otie survives outside.
 	min_oxy = 0
 	max_oxy = 0
@@ -154,12 +174,21 @@
 	name = "mutated guard otie"
 	desc = "An extra rare phoron resistant version of the VARMAcorp trained snowflake guard dogs for infernal environments."
 	tt_desc = "Otus phoronis"
+<<<<<<< HEAD
 	icon_state = "secphotie"
 	icon_living = "secphotie"
 	icon_rest = "secphotie_rest"
 	icon_dead = "secphotie-dead"
 	melee_damage_lower = 10
 	melee_damage_upper = 25
+=======
+	icon_state = "sifguard"
+	icon_living = "sifguard"
+	icon_rest = "sifguard_rest"
+	icon_dead = "sifguard-dead"
+	melee_damage_lower = 5
+	melee_damage_upper = 12
+>>>>>>> f28098c0f2a90a17fb32a2ad31b61b453fa034f1
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0
@@ -263,6 +292,7 @@
 /mob/living/simple_mob/otie/MouseDrop_T(mob/living/M, mob/living/user)
 	return
 
+<<<<<<< HEAD
 /datum/say_list/otie
 	speak = list("Boof.","Waaf!","Prurr.","Bork!","Rurrr..","Arf.")
 	emote_hear = list("rurrs", "rumbles", "rowls", "groans softly", "murrs", "yawns")
@@ -276,3 +306,7 @@
 	.=..()
 	if(new_holder.tamed)
 		hostile = FALSE
+=======
+/mob/living/simple_animal/otie/MouseDrop_T(mob/living/M, mob/living/user)
+	return
+>>>>>>> f28098c0f2a90a17fb32a2ad31b61b453fa034f1

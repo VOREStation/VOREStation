@@ -275,6 +275,8 @@
 	return
 
 /obj/item/stack/material/supermatter/attack_hand(mob/user)
+	. = ..()
+
 	update_mass()
 	radiation_repository.radiate(src, 5 + amount)
 	var/mob/living/M = user

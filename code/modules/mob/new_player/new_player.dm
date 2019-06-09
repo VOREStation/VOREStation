@@ -169,7 +169,7 @@
 		ViewManifest()
 
 	if(href_list["SelectedJob"])
-	
+
 		//Prevents people rejoining as same character.
 		for (var/mob/living/carbon/human/C in mob_list)
 			var/char_name = client.prefs.real_name
@@ -309,7 +309,7 @@
 	var/savefile/F = get_server_news()
 	if(F)
 		client.prefs.lastnews = md5(F["body"])
-		client.prefs.save_preferences()
+		SScharacter_setup.queue_preferences_save(client.prefs)
 
 		var/dat = "<html><body><center>"
 		dat += "<h1>[F["title"]]</h1>"

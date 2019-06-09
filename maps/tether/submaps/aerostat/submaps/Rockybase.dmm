@@ -137,7 +137,7 @@
 /area/submap/virgo2/Rockybase)
 "aA" = (
 /obj/structure/table/standard,
-/obj/item/device/laptop,
+/obj/item/modular_computer/laptop/preset/custom_loadout/advanced,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
 "aB" = (

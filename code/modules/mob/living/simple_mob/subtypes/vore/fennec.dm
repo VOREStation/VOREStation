@@ -18,8 +18,8 @@
 	response_harm = "hits the"
 
 	harm_intent_damage = 5
-	melee_damage_lower = 5
-	melee_damage_upper = 2
+	melee_damage_lower = 1
+	melee_damage_upper = 3
 	attacktext = list("bapped")
 
 	say_list_type = /datum/say_list/fennec

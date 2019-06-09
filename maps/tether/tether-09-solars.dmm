@@ -354,6 +354,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Solar Farm - SMES 1"
 	},
 /obj/structure/cable/heavyduty,
@@ -363,6 +364,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Solar Farm - SMES 2"
 	},
 /obj/structure/cable/heavyduty,
@@ -373,6 +375,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Solar Farm - SMES 3"
 	},
 /obj/structure/cable/heavyduty,
@@ -2629,6 +2632,7 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	output_attempt = 0;
+	outputting = 0;
 	RCon_tag = "Substation - Science Outpost"
 	},
 /obj/structure/cable/green,
@@ -4442,6 +4446,10 @@
 	dir = 1
 	},
 /obj/machinery/recharge_station,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "if" = (
@@ -4995,6 +5003,10 @@
 /obj/effect/floor_decal/corner/purple/bordercorner2{
 	dir = 1
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "jo" = (
@@ -5379,6 +5391,12 @@
 	dir = 8;
 	icon_state = "tube1"
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "kf" = (
@@ -5388,13 +5406,6 @@
 "kg" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
-	},
-/obj/machinery/alarm{
-	alarm_id = "anomaly_testing";
-	dir = 8;
-	frequency = 1439;
-	pixel_x = 22;
-	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/anomaly_lab/testing)
@@ -5445,6 +5456,12 @@
 /obj/item/device/radio/intercom{
 	dir = 4;
 	pixel_x = 24
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
@@ -5522,6 +5539,12 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 8
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "kv" = (
@@ -5542,6 +5565,12 @@
 	dir = 8;
 	pixel_x = 25;
 	pixel_y = 0
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
@@ -5577,6 +5606,12 @@
 	dir = 8;
 	pixel_x = -26
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "kB" = (
@@ -5591,6 +5626,12 @@
 	},
 /obj/effect/floor_decal/corner/purple/bordercorner2{
 	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
@@ -5680,12 +5721,11 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 1
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/item/device/radio/intercom{
-	dir = 1;
-	pixel_y = 24;
-	req_access = list()
+/obj/machinery/vending/coffee,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "kM" = (
@@ -5712,11 +5752,15 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/xenoarch_storage)
+/area/rnd/outpost)
 "kP" = (
 /obj/structure/closet/excavation,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -5733,7 +5777,11 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 1
 	},
-/obj/machinery/vending/coffee,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "kR" = (
@@ -5751,11 +5799,16 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 1
 	},
-/obj/structure/extinguisher_cabinet{
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/item/device/radio/intercom{
 	dir = 1;
-	icon_state = "extinguisher_closed";
-	pixel_y = 32
+	pixel_y = 24;
+	req_access = list()
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "kT" = (
@@ -5767,9 +5820,15 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 1
 	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 1
+/obj/structure/extinguisher_cabinet{
+	dir = 1;
+	icon_state = "extinguisher_closed";
+	pixel_y = 32
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "kU" = (
@@ -5800,13 +5859,21 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab/testing)
 "kX" = (
-/obj/effect/floor_decal/borderfloor/corner{
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	icon_state = "borderfloor";
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/purple/border{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/purple/bordercorner{
+/obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
 	},
-/obj/machinery/door/firedoor/glass/hidden/steel,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "kY" = (
@@ -5856,27 +5923,39 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "lg" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1;
-	icon_state = "borderfloor";
-	pixel_y = 0
-	},
-/obj/effect/floor_decal/corner/purple/border{
+/obj/effect/floor_decal/borderfloor/corner{
 	dir = 1
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "lh" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
 	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/anomaly_lab)
+/area/rnd/outpost)
 "li" = (
 /obj/structure/table/rack,
 /obj/structure/window/reinforced{
@@ -5988,6 +6067,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "lt" = (
@@ -6005,6 +6090,12 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/glass/hidden/steel,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "lu" = (
@@ -6020,6 +6111,12 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
@@ -6044,6 +6141,12 @@
 	dir = 4
 	},
 /obj/machinery/light,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "lw" = (
@@ -6063,6 +6166,12 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
@@ -6145,8 +6254,30 @@
 "lE" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/purple/border,
-/obj/effect/floor_decal/borderfloor/corner2,
-/obj/effect/floor_decal/corner/purple/bordercorner2,
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/purple/bordercorner2{
+	dir = 9
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/light,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "lF" = (
@@ -7023,11 +7154,14 @@
 "nt" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/purple/border,
-/obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -25
+/obj/effect/floor_decal/borderfloor/corner2,
+/obj/effect/floor_decal/corner/purple/bordercorner2,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
 	},
-/obj/structure/closet/firecloset,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "nu" = (
@@ -7098,6 +7232,56 @@
 /obj/item/device/radio/intercom{
 	dir = 2;
 	pixel_y = -24
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/anomaly_lab)
+"nA" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/purple/border,
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -25
+	},
+/obj/structure/closet/firecloset,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost)
+"nB" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/xenoarch_storage)
+"nC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
@@ -22705,9 +22889,9 @@ ib
 iv
 iQ
 hr
-kQ
+kL
 ft
-lv
+lE
 jx
 kY
 lN
@@ -22847,11 +23031,11 @@ ia
 iu
 iP
 hr
-lg
+kQ
 ng
 lw
 kI
-lh
+nC
 lO
 mb
 mt
@@ -22989,9 +23173,9 @@ id
 if
 ih
 hr
-kL
+kS
 ns
-lE
+nt
 kJ
 li
 kZ
@@ -23131,9 +23315,9 @@ ic
 ig
 ii
 hr
-kS
+kT
 lr
-nt
+nA
 jx
 lj
 kZ
@@ -23273,7 +23457,7 @@ hr
 hr
 hr
 hr
-kT
+kX
 ls
 nu
 jx
@@ -23415,7 +23599,7 @@ hO
 ke
 ku
 kA
-kX
+lg
 lt
 kr
 kr
@@ -23837,14 +24021,14 @@ gE
 ha
 hw
 hN
-jy
+kO
 lc
 jy
 jy
 lG
 lw
 ks
-kO
+nB
 ln
 lR
 lm
@@ -23983,7 +24167,7 @@ jz
 kn
 kw
 kB
-lr
+lh
 lx
 kr
 kP

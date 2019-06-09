@@ -13,8 +13,8 @@
 	health = 200
 	movement_cooldown = 4
 
-	melee_damage_lower = 10
-	melee_damage_upper = 30
+	melee_damage_lower = 5
+	melee_damage_upper = 15
 	attack_sharp = TRUE
 
 	old_x = -16

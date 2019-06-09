@@ -411,6 +411,7 @@
 	icon_state = "missile"
 	var/primed = null
 	throwforce = 15
+	catchable = 0
 	var/devastation = 0
 	var/heavy_blast = 1
 	var/light_blast = 2

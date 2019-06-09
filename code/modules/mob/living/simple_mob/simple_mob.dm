@@ -47,6 +47,7 @@
 	var/movement_sound = null			// If set, will play this sound when it moves on its own will.
 	var/turn_sound = null				// If set, plays the sound when the mob's dir changes in most cases.
 	var/movement_shake_radius = 0		// If set, moving will shake the camera of all living mobs within this radius slightly.
+	var/aquatic_movement = 0			// If set, the mob will move through fluids with no hinderance.
 
 	//Mob interaction
 	var/response_help   = "tries to help"	// If clicked on help intent
@@ -230,8 +231,11 @@
 
 	// Turf related slowdown
 	var/turf/T = get_turf(src)
-	if(T && T.movement_cost && !hovering) // Flying mobs ignore turf-based slowdown.
-		tally += T.movement_cost
+	if(T && T.movement_cost && !hovering) // Flying mobs ignore turf-based slowdown. Aquatic mobs ignore water slowdown, and can gain bonus speed in it.
+		if(istype(T,/turf/simulated/floor/water) && aquatic_movement)
+			tally -= aquatic_movement - 1
+		else
+			tally += T.movement_cost
 
 	if(purge)//Purged creatures will move more slowly. The more time before their purge stops, the slower they'll move.
 		if(tally <= 0)
