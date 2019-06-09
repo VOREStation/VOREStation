@@ -61,6 +61,12 @@ item_path: /obj/item/clothing/head/helmet/hos/fluff/lethe
 }
 
 {
+ckey: aegisoa
+character_name: Xander Bevin
+item_path: /obj/item/clothing/accessory/bracer/fluff/xander_sthasha
+}
+
+{
 ckey: argobargsoup
 character_name: Lynn Shady
 item_path: /obj/item/device/flashlight/pen/fluff/lynn
@@ -262,6 +268,18 @@ item_path: /obj/item/weapon/implanter/reagent_generator/eldi
 }
 
 # ######## H CKEYS
+{
+ckey: heroman3003
+character_name: Lauren Zackson
+item_path: /obj/item/clothing/accessory/medal/conduct
+}
+
+{
+ckey: heroman3003
+character_name: Lauren Zackson
+item_path: /obj/item/clothing/accessory/collar/fluff/goldenstring
+}
+
 {
 ckey: hottokeeki
 character_name: Belle Day
@@ -556,6 +574,12 @@ item_path: /obj/item/clothing/suit/security/navyhos
 req_access: 58
 }
 
+{
+ckey: mr_signmeup
+character_name: Daniel Fisher
+item_path: /obj/item/clothing/accessory/medal/conduct
+}
+
 # ######## N CKEYS
 {
 ckey: natje
@@ -646,6 +670,12 @@ item_path: /obj/item/clothing/accessory/medal/ERTservice
 ckey: sasoperative
 character_name: Joseph Skinner
 item_path: /obj/item/clothing/under/rank/security/fluff/formalsec
+}
+
+{
+ckey: semaun
+character_name: Viktor Solothurn
+item_path: /obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor
 }
 
 {
@@ -869,6 +899,12 @@ item_path: /obj/item/clothing/mask/gas/sexymime
 }
 
 # ######## W CKEYS
+{
+ckey: wanderingdeviant
+character_name: S'thasha Tavakdavi
+item_path: /obj/item/clothing/accessory/bracer/fluff/xander_sthasha
+}
+
 {
 ckey: werebear
 character_name: Silas Newton
