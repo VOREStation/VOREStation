@@ -3888,7 +3888,7 @@
 /turf/simulated/shuttle/plating,
 /area/shuttle/trade/centcom)
 "jG" = (
-/obj/structure/sign/department/engine,
+/obj/vehicle/train/cargo/engine,
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
@@ -3987,7 +3987,7 @@
 /turf/simulated/shuttle/plating,
 /area/shuttle/trade/centcom)
 "jU" = (
-/obj/vehicle/train/trolley,
+/obj/vehicle/train/cargo/trolley,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
 "jV" = (
@@ -8869,7 +8869,7 @@
 	},
 /area/antag/antag_base)
 "sM" = (
-/obj/item/borg/upgrade/syndicate{
+/mob/living/simple_mob/fox/syndicate{
 	name = "Rick"
 	},
 /turf/unsimulated/floor{
