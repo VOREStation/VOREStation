@@ -1999,3 +1999,12 @@
 	desc = "A gold-trimmed MKII hypospray. The name 'Kenzie Houser' is engraved on the side."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "kenziehypo"
+
+//Semaun - Viktor Solothurn
+/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor
+	name = "flask of expensive alcohol"
+	desc = "A standard vacuum-flask filled with good and expensive drink."
+
+/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor/Initialize()
+	..()
+	reagents.add_reagent("pwine", 60)
