@@ -412,21 +412,17 @@ datum/species/harpy
 	min_age = 18
 	max_age = 80
 
+	base_color = "#EECEB3"
+
 	blurb = "An Avian species, coming from a distant planet, the Rapalas are the very proud race.\
 	Sol researchers have commented on them having a very close resemblance to the mythical race called 'Harpies',\
 	who are known for having massive winged arms and talons as feet. They've been clocked at speeds of over 35 miler per hour chasing the planet's many fish-like fauna.\
 	The Rapalan's home-world 'Verita' is a strangely habitable gas giant, while no physical earth exists, there are fertile floating islands orbiting around the planet from past asteroid activity."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/rapala)
 
-	//primitive_form = "Saru"
-
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
-	//flesh_color = "#AFA59E"
-	//base_color = "#777777"
-	//tail_hair = "feathers"
-	//reagent_tag = IS_SERGAL
 
 	heat_discomfort_strings = list(
 		"Your feathers prickle in the heat.",
