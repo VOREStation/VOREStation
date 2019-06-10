@@ -27,8 +27,13 @@
 /turf/simulated/wall/r_wall,
 /area/tether/outpost/exploration_shed)
 "ai" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait{
-	dir = 4
+/obj/effect/floor_decal/rust,
+/obj/machinery/button/remote/blast_door{
+	dir = 1;
+	id = "wilderness";
+	name = "Anti-Fauna shutters";
+	pixel_x = 0;
+	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/exploration_shed)
@@ -68,9 +73,38 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/exploration_shed)
 "an" = (
-/obj/effect/floor_decal/rust,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/tether/outpost/exploration_shed)
+"ao" = (
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "wilderness";
+	name = "Anti-Fauna Shutters"
+	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/exploration_plains)
+/area/tether/outpost/exploration_shed)
+"ap" = (
+/obj/effect/floor_decal/rust,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "wilderness";
+	name = "Anti-Fauna Shutters"
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/outpost/exploration_shed)
+"aq" = (
+/obj/machinery/button/remote/blast_door{
+	dir = 2;
+	id = "wilderness";
+	name = "Anti-Fauna shutters";
+	pixel_x = -1;
+	pixel_y = 25
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/tether/outpost/exploration_shed)
+"ar" = (
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/outpost/exploration_shed)
 "bj" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -9035,12 +9069,12 @@ ac
 "}
 (64,1,1) = {"
 aa
-ad
-ad
-ad
-ad
-ad
-ad
+an
+an
+an
+an
+an
+an
 ab
 ab
 ab
@@ -9182,7 +9216,7 @@ ag
 ag
 ag
 ag
-ad
+an
 ad
 ad
 ab
@@ -9324,7 +9358,7 @@ aj
 bj
 bj
 ag
-ad
+an
 ad
 ad
 ab
@@ -9466,7 +9500,7 @@ bj
 bj
 bj
 ah
-ad
+an
 ad
 ad
 ab
@@ -9607,8 +9641,8 @@ bj
 bj
 bj
 bj
-ai
-an
+ao
+bj
 ad
 ad
 ad
@@ -9749,8 +9783,8 @@ bj
 bj
 bj
 bj
+ap
 bj
-an
 ad
 ad
 ab
@@ -9890,9 +9924,9 @@ af
 bj
 bj
 bj
-bj
-ah
-ad
+ai
+ag
+aq
 ad
 ab
 ab
@@ -10033,8 +10067,8 @@ bj
 bj
 bj
 bj
-ai
-an
+ao
+bj
 ad
 ab
 ab
@@ -10175,8 +10209,8 @@ bj
 bj
 bj
 bj
+ap
 bj
-an
 ad
 ad
 ab
@@ -10318,7 +10352,7 @@ bj
 bj
 bj
 ah
-ad
+an
 ad
 ad
 ab
@@ -10460,7 +10494,7 @@ ak
 al
 am
 ag
-ad
+an
 ad
 ab
 ab
@@ -10602,7 +10636,7 @@ ag
 ag
 ag
 ag
-ad
+an
 ab
 ab
 ab
@@ -10739,12 +10773,12 @@ ac
 "}
 (76,1,1) = {"
 aa
-ad
-ad
-ad
-ad
-ad
-ab
+an
+an
+an
+an
+an
+ar
 ab
 ab
 ab
