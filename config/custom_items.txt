@@ -190,12 +190,6 @@ item_path: /obj/item/weapon/disk/limb/eggnerdltd
 
 # ######## D CKEYS
 {
-ckey: deepindigo
-character_name: Amina Dae-Kouri
-item_path: /obj/item/weapon/storage/bible/fluff/amina
-}
-
-{
 ckey: dhaeleena
 character_name: Dhaeleena M'iar
 item_path: /obj/item/clothing/accessory/medal/silver/security/fluff/dhael
@@ -456,12 +450,6 @@ item_path: /obj/item/weapon/storage/box/fluff/koyoakimomi
 }
 
 # ######## K CKEYS
-{
-ckey: kazkin
-character_name: Ahzrukhal Ahkeen
-item_path: /obj/item/clothing/accessory/medal/silver/unity
-}
-
 {
 ckey: keekenox
 character_name: SMU-453
