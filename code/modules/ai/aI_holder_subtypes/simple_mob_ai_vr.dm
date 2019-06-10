@@ -2,4 +2,3 @@
 
 VIRGO_AI_NORETURN_CREATE(/datum/ai_holder/simple_mob/melee/evasive)
 VIRGO_AI_NORETURN_CREATE(/datum/ai_holder/simple_mob/ranged/kiting/threatening)
-VIRGO_AI_NORETURN_CREATE(/datum/ai_holder/simple_mob/melee)
