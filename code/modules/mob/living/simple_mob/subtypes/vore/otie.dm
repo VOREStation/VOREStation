@@ -11,8 +11,8 @@
 	maxHealth = 150
 	health = 150
 	minbodytemp = 200
-	melee_damage_lower = 5
-	melee_damage_upper = 15 //Don't break my bones bro
+	melee_damage_lower = 2
+	melee_damage_upper = 7 //Don't break my bones bro
 	response_help = "pets the"
 	response_disarm = "bops the"
 	response_harm = "hits the"
@@ -56,8 +56,6 @@
 	icon_rest = "photie_rest"
 	faction = "virgo3b"
 	tame_chance = 5 // Only a 1 in 20 chance of success. It's feral. What do you expect?
-	melee_damage_lower = 5
-	melee_damage_upper = 12
 	// Lazy way of making sure this otie survives outside.
 	min_oxy = 0
 	max_oxy = 0
@@ -79,8 +77,6 @@
 	icon_rest = "hotie_rest"
 	faction = "cult"
 	tame_chance = 20
-	melee_damage_lower = 5
-	melee_damage_upper = 12
 	// Lazy way of making sure this otie survives outside.
 	min_oxy = 0
 	max_oxy = 0
@@ -158,8 +154,6 @@
 	icon_living = "secphotie"
 	icon_rest = "secphotie_rest"
 	icon_dead = "secphotie-dead"
-	melee_damage_lower = 10
-	melee_damage_upper = 25
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0
