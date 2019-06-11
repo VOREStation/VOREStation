@@ -68,3 +68,23 @@
 			/obj/item/device/floor_painter = 2,
 			/obj/item/device/closet_painter = 2
 			)
+
+/datum/supply_pack/recreation/cheapbait
+	name = "Cheap Fishing Bait"
+	cost = 10
+	containername = "cheap bait crate"
+	containertype = /obj/structure/closet/crate/freezer
+	contains = list(
+			/obj/item/weapon/storage/box/wormcan/sickly = 5
+			)
+
+/datum/supply_pack/randomised/recreation/cheapbait
+	name = "Deluxe Fishing Bait"
+	cost = 40
+	containername = "deluxe bait crate"
+	containertype = /obj/structure/closet/crate/freezer
+	num_contained = 8
+	contains = list(
+			/obj/item/weapon/storage/box/wormcan,
+			/obj/item/weapon/storage/box/wormcan/deluxe
+			)
