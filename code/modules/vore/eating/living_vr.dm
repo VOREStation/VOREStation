@@ -667,6 +667,11 @@
 	if(!user)
 		CRASH("display_voreprefs() was called without an associated user.")
 	var/dispvoreprefs = "<b>[src]'s vore preferences</b><br><br><br>"
+	if(client && client.prefs)
+		if("CHAT_OOC" in client.prefs.preferences_disabled)
+			dispvoreprefs += "<font color='red'><b>OOC DISABLED</b></font><br>"
+		if("CHAT_LOOC" in client.prefs.preferences_disabled)
+			dispvoreprefs += "<font color='red'><b>LOOC DISABLED</b></font><br>"
 	dispvoreprefs += "<b>Digestable:</b> [digestable ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Leaves Remains:</b> [digest_leave_remains ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Mob Vore:</b> [allowmobvore ? "Enabled" : "Disabled"]<br>"
