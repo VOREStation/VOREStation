@@ -12,6 +12,8 @@
 	var/notransform
 	var/original_icon = 'icons/mob/robots.dmi'
 	var/ui_style_vr = FALSE //Do we use our hud icons?
+	var/sitting = FALSE
+	var/bellyup = FALSE
 	does_spin = FALSE
 	var/vr_icons = list(
 					   "handy-hydro",
@@ -50,6 +52,21 @@
 		return
 	return feed_grabbed_to_self(src,T)
 
+/mob/living/silicon/robot/proc/rest_style()
+	set name = "Switch Rest Style"
+	set category = "IC"
+	set desc = "Select your resting pose."
+	sitting = FALSE
+	bellyup = FALSE
+	var/choice = alert(src, "Select resting pose", "", "Resting", "Sitting", "Belly up")
+	switch(choice)
+		if("Resting")
+			return 0
+		if("Sitting")
+			sitting = TRUE
+		if("Belly up")
+			bellyup = TRUE
+
 /mob/living/silicon/robot/updateicon()
 	vr_sprite_check()
 	..()
@@ -66,7 +83,12 @@
 			add_overlay("eyes-[module_sprites[icontype]]-lights")
 		if(resting)
 			cut_overlays() // Hide that gut for it has no ground sprite yo.
-			icon_state = "[module_sprites[icontype]]-rest"
+			if(sitting)
+				icon_state = "[module_sprites[icontype]]-sit"
+			if(bellyup)
+				icon_state = "[module_sprites[icontype]]-bellyup"
+			else if(!sitting && !bellyup)
+				icon_state = "[module_sprites[icontype]]-rest"
 		else
 			icon_state = "[module_sprites[icontype]]"
 	if(dogborg == TRUE && stat == DEAD)
