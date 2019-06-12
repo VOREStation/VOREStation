@@ -292,9 +292,10 @@
 
 /obj/item/weapon/reagent_containers/pill/zoom/Initialize()
 	. = ..()
-	reagents.add_reagent("impedrezene", 10)
-	reagents.add_reagent("synaptizine", 5)
-	reagents.add_reagent("hyperzine", 5)
+	if(prob(50))						//VOREStation edit begin: Zoom pill adjustments
+		reagents.add_reagent("mold", 2)	//Chance to be more dangerous
+	reagents.add_reagent("expired_medicine", 5)
+	reagents.add_reagent("stimm", 5)	//VOREStation edit end: Zoom pill adjustments
 
 /obj/item/weapon/reagent_containers/pill/diet
 	name = "diet pill"
