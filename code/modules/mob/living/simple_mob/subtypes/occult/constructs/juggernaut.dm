@@ -106,7 +106,8 @@
 	friendly = list("pokes") //Anything nice the Behemoth would do would still Kill the Human. Leave it at poke.
 	attack_sound = 'sound/weapons/heavysmash.ogg'
 	resistance = 10
-	icon_scale = 2
+	icon_scale_x = 2
+	icon_scale_y = 2
 	var/energy = 0
 	var/max_energy = 1000
 	armor = list(

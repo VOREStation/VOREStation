@@ -32,7 +32,8 @@
 	icon_state = "sif_crab"
 	icon_living = "sif_crab"
 	icon_dead = "sif_crab_dead"
-	icon_scale = 1.5
+	icon_scale_x = 1.5
+	icon_scale_y = 1.5
 
 	faction = "crabs"
 

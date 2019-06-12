@@ -12,6 +12,7 @@
 	var/notransform
 	var/original_icon = 'icons/mob/robots.dmi'
 	var/ui_style_vr = FALSE //Do we use our hud icons?
+	does_spin = FALSE
 	var/vr_icons = list(
 					   "handy-hydro",
 					   "handy-service",

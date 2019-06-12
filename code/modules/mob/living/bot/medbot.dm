@@ -204,8 +204,8 @@
 	else if((href_list["adj_threshold"]) && (!locked || issilicon(usr)))
 		var/adjust_num = text2num(href_list["adj_threshold"])
 		heal_threshold += adjust_num
-		if(heal_threshold < 5)
-			heal_threshold = 5
+		if(heal_threshold <= 0)
+			heal_threshold = 0.1
 		if(heal_threshold > 75)
 			heal_threshold = 75
 

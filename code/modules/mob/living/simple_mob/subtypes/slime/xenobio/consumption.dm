@@ -1,7 +1,7 @@
 // Handles hunger, starvation, growth, and eatting humans.
 
 // Might be best to make this a /mob/living proc and override.
-/mob/living/simple_mob/slime/xenobio/proc/adjust_nutrition(input)
+/mob/living/simple_mob/slime/xenobio/proc/adjust_nutrition(input, var/heal = 1)
 	nutrition = between(0, nutrition + input, get_max_nutrition())
 
 	if(input > 0)
@@ -12,11 +12,12 @@
 				adjustToxLoss(-10)
 
 		// Heal 1 point of damage per 5 nutrition coming in.
-		adjustBruteLoss(-input * 0.2)
-		adjustFireLoss(-input * 0.2)
-		adjustToxLoss(-input * 0.2)
-		adjustOxyLoss(-input * 0.2)
-		adjustCloneLoss(-input * 0.2)
+		if(heal)
+			adjustBruteLoss(-input * 0.2)
+			adjustFireLoss(-input * 0.2)
+			adjustToxLoss(-input * 0.2)
+			adjustOxyLoss(-input * 0.2)
+			adjustCloneLoss(-input * 0.2)
 
 
 /mob/living/simple_mob/slime/xenobio/proc/get_max_nutrition() // Can't go above it

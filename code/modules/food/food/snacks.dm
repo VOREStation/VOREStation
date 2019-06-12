@@ -3913,3 +3913,55 @@
 	reagents.add_reagent("nutriment", 6)
 	reagents.add_reagent("protein", 4)
 	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/piginblanket
+	name = "pig in a blanket"
+	desc = "A sausage embedded in soft, fluffy pastry. Free this pig from its blanket prison by eating it."
+	icon_state = "piginblanket"
+	nutriment_amt = 6
+	nutriment_desc = list("meat" = 3, "pastry" = 3)
+
+/obj/item/weapon/reagent_containers/food/snacks/piginblanket/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 6)
+	reagents.add_reagent("protein", 4)
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/wormsickly
+	name = "sickly worm"
+	desc = "A worm, it doesn't look particularily healthy, but it will still serve as good fishing bait."
+	icon_state = "worm_sickly"
+	nutriment_amt = 1
+	nutriment_desc = list("bugflesh" = 1)
+	w_class = ITEMSIZE_TINY
+
+/obj/item/weapon/reagent_containers/food/snacks/wormsickly/Initialize()
+	. = ..()
+	reagents.add_reagent("fishbait", 10)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/worm
+	name = "strange worm"
+	desc = "A peculiar worm, freshly plucked from the earth."
+	icon_state = "worm"
+	nutriment_amt = 1
+	nutriment_desc = list("bugflesh" = 1)
+	w_class = ITEMSIZE_TINY
+
+/obj/item/weapon/reagent_containers/food/snacks/worm/Initialize()
+	. = ..()
+	reagents.add_reagent("fishbait", 20)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/wormdeluxe
+	name = "deluxe worm"
+	desc = "A fancy worm, genetically engineered to appeal to fish."
+	icon_state = "worm_deluxe"
+	nutriment_amt = 5
+	nutriment_desc = list("bugflesh" = 1)
+	w_class = ITEMSIZE_TINY
+
+/obj/item/weapon/reagent_containers/food/snacks/wormdeluxe/Initialize()
+	. = ..()
+	reagents.add_reagent("fishbait", 40)
+	bitesize = 5

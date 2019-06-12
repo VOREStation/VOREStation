@@ -14,7 +14,8 @@
 
 	disable_duration_percent = 0.25			// Disables only last 25% as long.
 	incoming_damage_percent = 0.5			// 50% incoming damage.
-	icon_scale_percent = 1.2				// Become a bigger target.
+	icon_scale_x_percent = 1.2				// Become a bigger target.
+	icon_scale_y_percent = 1.2
 	pain_immunity = TRUE
 
 	slowdown = 2
