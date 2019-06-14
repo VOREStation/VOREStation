@@ -2444,6 +2444,16 @@
 /obj/random/maintenance/clean,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
+"aej" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/maintenance/engi{
+	name = "Atmospherics Substation"
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/maintenance/substation/surface_atmos)
 "aek" = (
 /obj/effect/floor_decal/techfloor,
 /obj/structure/railing{
@@ -4982,6 +4992,17 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/plating,
 /area/storage/surface_eva)
+"aiB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/catwalk,
+/obj/machinery/door/airlock/maintenance/engi{
+	name = "Atmospherics";
+	req_access = list(24)
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/engineering/atmos)
 "aiC" = (
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
@@ -5988,6 +6009,19 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
+"akl" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/atmos{
+	name = "Atmospherics Substation";
+	req_access = list(24)
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/engineering/atmos)
 "akm" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -14042,15 +14076,6 @@
 	icon_state = "1-8"
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
-/area/maintenance/substation/surface_atmos)
-"aFZ" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/maintenance/engi{
-	name = "Atmospherics Substation"
-	},
 /turf/simulated/floor/plating,
 /area/maintenance/substation/surface_atmos)
 "aGb" = (
@@ -28472,18 +28497,6 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos)
-"lUR" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/atmos{
-	name = "Atmospherics Substation";
-	req_access = list(24)
-	},
-/turf/simulated/floor/plating,
-/area/engineering/atmos)
 "lVl" = (
 /obj/structure/railing{
 	icon_state = "railing0";
@@ -31913,16 +31926,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm1)
-"xJz" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/catwalk,
-/obj/machinery/door/airlock/maintenance/engi{
-	name = "Atmospherics";
-	req_access = list(24)
-	},
-/turf/simulated/floor/plating,
-/area/engineering/atmos)
 "xKT" = (
 /obj/machinery/atmospherics/binary/pump{
 	dir = 8
@@ -42080,10 +42083,10 @@ aah
 aah
 aEU
 bzG
-aFZ
+aej
 aFY
 laN
-lUR
+akl
 lSd
 gts
 bPw
@@ -43217,7 +43220,7 @@ aDJ
 aDL
 akk
 jso
-xJz
+aiB
 xoJ
 xXP
 qDb
