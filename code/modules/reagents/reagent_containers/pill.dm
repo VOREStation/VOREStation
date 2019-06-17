@@ -300,17 +300,11 @@
 
 /obj/item/weapon/reagent_containers/pill/zoom/Initialize()
 	. = ..()
-<<<<<<< HEAD
 	if(prob(50))						//VOREStation edit begin: Zoom pill adjustments
 		reagents.add_reagent("mold", 2)	//Chance to be more dangerous
 	reagents.add_reagent("expired_medicine", 5)
 	reagents.add_reagent("stimm", 5)	//VOREStation edit end: Zoom pill adjustments
-=======
-	reagents.add_reagent("impedrezene", 10)
-	reagents.add_reagent("synaptizine", 5)
-	reagents.add_reagent("hyperzine", 5)
 	color = reagents.get_color()
->>>>>>> 5b18382... Grey scale pills and colored pillbottles (#6199)
 
 /obj/item/weapon/reagent_containers/pill/diet
 	name = "diet pill"
@@ -319,9 +313,5 @@
 
 /obj/item/weapon/reagent_containers/pill/diet/Initialize()
 	. = ..()
-<<<<<<< HEAD
 	reagents.add_reagent("lipozine", 15) //VOREStation Edit
-=======
-	reagents.add_reagent("lipozine", 2)
 	color = reagents.get_color()
->>>>>>> 5b18382... Grey scale pills and colored pillbottles (#6199)
