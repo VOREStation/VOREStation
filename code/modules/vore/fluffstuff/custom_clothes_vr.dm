@@ -1849,15 +1849,3 @@ Departamental Swimsuits, for general use
 	item_state = "goldenstring"
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_TIE
-
-//TFF 17/6/19 - public loadout addition: Indigestible Holocollar
-/obj/item/clothing/accessory/collar/holo/indigestible
-	name = "Holo-collar"
-	desc = "A special variety of the holo-collar that seems to be made of a very durable fabric that fits around the neck."
-	icon_state = "collar_holo"
-	item_state = "collar_holo_overlay"
-	overlay_state = "collar_holo_overlay"
-	matter = list(DEFAULT_WALL_MATERIAL = 50)
-//Make indigestible
-/obj/item/clothing/accessory/collar/holo/indigestible/digest_act(var/atom/movable/item_storage = null)
-	return FALSE
