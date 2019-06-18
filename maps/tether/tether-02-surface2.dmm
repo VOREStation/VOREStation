@@ -9972,13 +9972,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/fish_farm)
 "tR" = (
-/obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/food/snacks/candy,
-/obj/item/weapon/reagent_containers/food/snacks/candy,
-/obj/item/weapon/reagent_containers/food/snacks/candy,
-/obj/item/weapon/reagent_containers/food/snacks/candy,
-/obj/item/weapon/reagent_containers/food/snacks/candy,
-/obj/item/weapon/reagent_containers/food/snacks/candy,
+/obj/machinery/vending/fishing,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/fish_farm)
 "tS" = (
