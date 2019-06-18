@@ -127,6 +127,8 @@
 	var/random_color = TRUE
 	var/active_state = "sword"
 
+	projectile_parry_chance = 65
+
 /obj/item/weapon/melee/energy/sword/dropped(var/mob/user)
 	..()
 	if(!istype(loc,/mob))
@@ -173,7 +175,7 @@
 	icon_state = initial(icon_state)
 
 /obj/item/weapon/melee/energy/sword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
-	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
+	if(active && default_parry_check(user, attacker, damage_source) && prob(60))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
 
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
@@ -181,7 +183,26 @@
 		spark_system.start()
 		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
 		return 1
+	if(active && unique_parry_check(user, attacker, damage_source) && prob(projectile_parry_chance))
+		user.visible_message("<span class='danger'>\The [user] deflects [attack_text] with \the [src]!</span>")
+
+		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+		spark_system.set_up(5, 0, user.loc)
+		spark_system.start()
+		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+		return 1
+
 	return 0
+
+/obj/item/weapon/melee/energy/sword/unique_parry_check(mob/user, mob/attacker, atom/damage_source)
+	if(user.incapacitated() || !istype(damage_source, /obj/item/projectile/))
+		return 0
+
+	var/bad_arc = reverse_direction(user.dir)
+	if(!check_shield_arc(user, bad_arc, damage_source, attacker))
+		return 0
+
+	return 1
 
 /obj/item/weapon/melee/energy/sword/pirate
 	name = "energy cutlass"
@@ -215,6 +236,7 @@
 	lpower = 2
 	lcolor = "#0000FF"
 	active_state = "ionic_rapier"
+	projectile_parry_chance = 30	// It's not specifically designed for cutting and slashing, but it can still, maybe, save your life.
 
 /obj/item/weapon/melee/energy/sword/ionic_rapier/afterattack(var/atom/movable/AM, var/mob/living/user, var/proximity)
 	if(istype(AM, /obj) && proximity && active)
@@ -250,6 +272,7 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 	active_force = 25
 	armor_penetration = 25
+	projectile_parry_chance = 40
 
 	var/hitcost = 75
 	var/obj/item/weapon/cell/bcell = null
@@ -336,6 +359,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/mob/living/creator
 	var/datum/effect/effect/system/spark_spread/spark_system
+	projectile_parry_chance = 60
 	lcolor = "#00FF00"
 
 /obj/item/weapon/melee/energy/blade/New()
@@ -372,6 +396,37 @@
 			host.embedded -= src
 			host.drop_from_inventory(src)
 		spawn(1) if(src) qdel(src)
+
+/obj/item/weapon/melee/energy/blade/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	if(default_parry_check(user, attacker, damage_source) && prob(60))
+		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+
+		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+		spark_system.set_up(5, 0, user.loc)
+		spark_system.start()
+		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+		return 1
+	if(unique_parry_check(user, attacker, damage_source) && prob(projectile_parry_chance))
+		user.visible_message("<span class='danger'>\The [user] deflects [attack_text] with \the [src]!</span>")
+
+		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+		spark_system.set_up(5, 0, user.loc)
+		spark_system.start()
+		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+		return 1
+
+	return 0
+
+/obj/item/weapon/melee/energy/blade/unique_parry_check(mob/user, mob/attacker, atom/damage_source)
+
+	if(user.incapacitated() || !istype(damage_source, /obj/item/projectile/))
+		return 0
+
+	var/bad_arc = reverse_direction(user.dir)
+	if(!check_shield_arc(user, bad_arc, damage_source, attacker))
+		return 0
+
+	return 1
 
 /*
  *Energy Spear
