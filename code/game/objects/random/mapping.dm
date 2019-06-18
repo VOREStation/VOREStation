@@ -70,6 +70,11 @@
 	id = "Captain's spare id"
 	item_path = /obj/item/weapon/card/id/gold/captain/spare
 
+/obj/random_multi/single_item/hand_tele
+	name = "Multi Point - Hand Teleporter"
+	id = "hand tele"
+	item_path = /obj/item/weapon/hand_tele
+
 /obj/random_multi/single_item/sfr_headset
 	name = "Multi Point - headset"
 	id = "SFR headset"

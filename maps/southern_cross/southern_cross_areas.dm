@@ -153,6 +153,11 @@
 /area/surface/outpost
 	ambience = AMBIENCE_GENERIC
 
+//Wilderness Shuttle Shelter
+
+/area/surface/outpost/shelter
+	name = "Wilderness Shelter"
+
 // Main mining outpost
 /area/surface/outpost/mining_main
 	name = "North Mining Outpost"
