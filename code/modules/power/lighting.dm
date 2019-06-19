@@ -171,15 +171,9 @@ var/global/list/light_type_cache = list()
 	active_power_usage = 20 // VOREStation Edit - Keep lights at 20 power
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = 0					// 1 if on, 0 if off
-<<<<<<< HEAD
-	var/brightness_range = 10	// luminosity when on, also used in power calculation //VOREStation Edit - 8->10
-	var/brightness_power = 0.8
-	var/brightness_color = LIGHT_COLOR_FLUORESCENT_TUBE //VOREStation Edit - Our tubes are whiter
-=======
 	var/brightness_range
 	var/brightness_power
 	var/brightness_color
->>>>>>> 584a9a4... An assortment of Lighting Stuff (#6196)
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = 0
 	var/light_type = /obj/item/weapon/light/tube		// the type of light item
@@ -202,18 +196,9 @@ var/global/list/light_type_cache = list()
 /obj/machinery/light/small
 	icon_state = "bulb1"
 	base_state = "bulb"
-<<<<<<< HEAD
-	fitting = "bulb"
-	brightness_range = 5 //VOREStation Edit - 4->5
-	brightness_color = LIGHT_COLOR_INCANDESCENT_BULB
-	desc = "A small lighting fixture."
-	light_type = /obj/item/weapon/light/bulb
-	shows_alerts = FALSE
-=======
 	desc = "A small lighting fixture."
 	light_type = /obj/item/weapon/light/bulb
 	construct_type = /obj/machinery/light_construct/small
->>>>>>> 584a9a4... An assortment of Lighting Stuff (#6196)
 
 /obj/machinery/light/small/flicker
 	auto_flicker = TRUE
@@ -222,25 +207,15 @@ var/global/list/light_type_cache = list()
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flamp1"
 	base_state = "flamp"
-<<<<<<< HEAD
-	fitting = "bulb"
-	brightness_range = 8 //VOREStation Edit - 4->8
-=======
->>>>>>> 584a9a4... An assortment of Lighting Stuff (#6196)
 	plane = OBJ_PLANE
 	layer = OBJ_LAYER
 	desc = "A floor lamp."
 	light_type = /obj/item/weapon/light/bulb
-<<<<<<< HEAD
-	shows_alerts = FALSE
-=======
 	construct_type = /obj/machinery/light_construct/flamp
->>>>>>> 584a9a4... An assortment of Lighting Stuff (#6196)
 	var/lamp_shade = 1
 
 /obj/machinery/light/flamp/flicker
 	auto_flicker = TRUE
-
 
 /obj/machinery/light/small/emergency
 	light_type = /obj/item/weapon/light/bulb/red
@@ -248,45 +223,20 @@ var/global/list/light_type_cache = list()
 /obj/machinery/light/small/emergency/flicker
 	auto_flicker = TRUE
 
-
 /obj/machinery/light/spot
 	name = "spotlight"
 	light_type = /obj/item/weapon/light/tube/large
-<<<<<<< HEAD
-	shows_alerts = FALSE
-	brightness_range = 12
-	brightness_power = 0.9
-=======
->>>>>>> 584a9a4... An assortment of Lighting Stuff (#6196)
 
 /obj/machinery/light/spot/flicker
 	auto_flicker = TRUE
 
-<<<<<<< HEAD
-
-/obj/machinery/light/built/New()
-	status = LIGHT_EMPTY
-	update(0)
-	..()
-
-/obj/machinery/light/small/built/New()
-	status = LIGHT_EMPTY
-	update(0)
-	..()
-
-/obj/machinery/light/flamp/built/New()
-	status = LIGHT_EMPTY
-	lamp_shade = 0
-	update(0)
-	..()
 //VOREStation Add - Shadeless!
 /obj/machinery/light/flamp/noshade/New()
 	lamp_shade = 0
 	update(0)
 	..()
 //VOREStation Add End
-=======
->>>>>>> 584a9a4... An assortment of Lighting Stuff (#6196)
+
 // create a new lighting fixture
 /obj/machinery/light/New(atom/newloc, obj/machinery/light_construct/construct = null)
 	..(newloc)
