@@ -159,7 +159,7 @@ var/global/list/light_type_cache = list()
 // the standard tube light fixture
 /obj/machinery/light
 	name = "light fixture"
-	icon = 'icons/obj/lighting_vr.dmi'
+	icon = 'icons/obj/lighting_vr.dmi' //VOREStation Edit
 	var/base_state = "tube"		// base description and icon_state
 	icon_state = "tube1"
 	desc = "A lighting fixture."
@@ -182,9 +182,11 @@ var/global/list/light_type_cache = list()
 								// this is used to calc the probability the light burns out
 
 	var/rigged = 0				// true if rigged to explode
+	//VOREStation Edit Start
 	var/needsound = FALSE		// Flag to prevent playing turn-on sound multiple times, and from playing at roundstart
 	var/shows_alerts = TRUE		// Flag for if this fixture should show alerts.  Make sure icon states exist!
 	var/current_alert = null	// Which alert are we showing right now?
+	//VOREStation Edit End
 
 	var/auto_flicker = FALSE // If true, will constantly flicker, so long as someone is around to see it (otherwise its a waste of CPU).
 
@@ -199,12 +201,13 @@ var/global/list/light_type_cache = list()
 	desc = "A small lighting fixture."
 	light_type = /obj/item/weapon/light/bulb
 	construct_type = /obj/machinery/light_construct/small
+	shows_alerts = FALSE	//VOREStation Edit
 
 /obj/machinery/light/small/flicker
 	auto_flicker = TRUE
 
 /obj/machinery/light/flamp
-	icon = 'icons/obj/lighting.dmi'
+	icon = 'icons/obj/lighting.dmi' //VOREStation Edit
 	icon_state = "flamp1"
 	base_state = "flamp"
 	plane = OBJ_PLANE
@@ -212,6 +215,7 @@ var/global/list/light_type_cache = list()
 	desc = "A floor lamp."
 	light_type = /obj/item/weapon/light/bulb
 	construct_type = /obj/machinery/light_construct/flamp
+	shows_alerts = FALSE	//VOREStation Edit
 	var/lamp_shade = 1
 
 /obj/machinery/light/flamp/flicker
@@ -226,6 +230,7 @@ var/global/list/light_type_cache = list()
 /obj/machinery/light/spot
 	name = "spotlight"
 	light_type = /obj/item/weapon/light/tube/large
+	shows_alerts = FALSE	//VOREStation Edit
 
 /obj/machinery/light/spot/flicker
 	auto_flicker = TRUE
@@ -266,10 +271,12 @@ var/global/list/light_type_cache = list()
 
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
+			//VOREStation Edit Start
 			if(shows_alerts && current_alert && on)
 				icon_state = "[base_state]-alert-[current_alert]"
 			else
 				icon_state = "[base_state][on]"
+			//VOREStation Edit End
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
 			on = 0
@@ -300,7 +307,7 @@ var/global/list/light_type_cache = list()
 	else
 		base_state = "flamp"
 		..()
-
+//VOREStation Edit Start
 /obj/machinery/light/proc/set_alert_atmos()
 	if(shows_alerts)
 		current_alert = "atmos"
@@ -321,15 +328,17 @@ var/global/list/light_type_cache = list()
 		brightness_color = initial(brightness_color) || "" // Workaround for BYOND stupidity. Can't set it to null or it won't clear.
 		if(on)
 			update()
-
+//VOREstation Edit End
 // update lighting
 /obj/machinery/light/proc/update(var/trigger = 1)
 	update_icon()
+	//VOREStation Edit Start
 	if(!on)
 		needsound = TRUE // Play sound next time we turn on
 	else if(needsound)
 		playsound(src.loc, 'sound/effects/lighton.ogg', 65, 1)
 		needsound = FALSE // Don't play sound again until we've been turned off
+	//VOREStation Edit End
 
 	if(on)
 		if(light_range != brightness_range || light_power != brightness_power || light_color != brightness_color)
