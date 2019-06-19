@@ -546,3 +546,7 @@ Drinks Data
 /datum/reagent/drink/eggnog
 	glass_icon_state = "eggnog"
 	glass_center_of_mass = list("x"=16, "y"=8)
+
+/datum/reagent/drink/cider
+	glass_icon_state = "ciderglass"
+	glass_center_of_mass = list("x"=16, "y"=8)

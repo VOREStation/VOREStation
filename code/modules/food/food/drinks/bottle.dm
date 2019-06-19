@@ -520,6 +520,17 @@
 	. = ..()
 	reagents.add_reagent("beer", 30)
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/small/cider
+	name = "Crisp's Cider"
+	desc = "Fermented apples never tasted this good."
+	icon_state = "cider"
+	center_of_mass = list("x"=16, "y"=12)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/small/cider/Initialize()
+	. = ..()
+	reagents.add_reagent("cider", 30)
+
+
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale
 	name = "\improper Magm-Ale"
 	desc = "A true dorf's drink of choice."

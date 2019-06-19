@@ -1854,6 +1854,7 @@
 
 	glass_name = "cider"
 	glass_desc = "The second most Irish drink."
+	glass_special = list(DRINK_FIZZ)
 
 // Cocktails
 
