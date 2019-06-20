@@ -355,4 +355,4 @@ var/global/list/##LIST_NAME = list();\
 //https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
 #define MOUSE_OPACITY_TRANSPARENT 0
 #define MOUSE_OPACITY_ICON 1
-#define MOUSE_OPACITY_OPAQUE 2 
+#define MOUSE_OPACITY_OPAQUE 2

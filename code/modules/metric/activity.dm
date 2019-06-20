@@ -80,3 +80,14 @@
 		num++
 	if(num)
 		. = round(. / num, 0.1)
+
+/datum/metric/proc/assess_all_outdoor_mobs()
+	. = 0
+	var/num = 0
+	for(var/mob/living/L in player_list)
+		var/turf/T = get_turf(L)
+		if(istype(T) && !istype(T, /turf/space) && T.outdoors)
+			. += assess_player_activity(L)
+			num++
+	if(num)
+		. = round(. / num, 0.1)
