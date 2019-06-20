@@ -2050,7 +2050,7 @@
 "Nv" = (/obj/machinery/light/small{dir = 4},/obj/structure/bed/chair{dir = 1},/turf/simulated/shuttle/floor/darkred,/area/skipjack_station/start)
 "Nw" = (/obj/machinery/button/remote/blast_door{id = "skipjackshutters"; name = "remote shutter control"; req_access = list(150)},/turf/simulated/wall/skipjack,/area/skipjack_station/start)
 "Nx" = (/obj/machinery/door/airlock/hatch{frequency = 1331; icon_state = "door_closed"; id_tag = "vox_southeast_lock"; locked = 0; req_access = list(150)},/obj/machinery/atmospherics/pipe/simple/visible,/turf/simulated/shuttle/plating,/area/skipjack_station/start)
-"Ny" = (/obj/machinery/porta_turret/ai_defense,/turf/simulated/shuttle/floor/voidcraft,/area/syndicate_station/start)
+"Ny" = (/obj/machinery/porta_turret/ai_defense{req_one_access = list(150)},/turf/simulated/shuttle/floor/voidcraft,/area/syndicate_station/start)
 "Nz" = (/obj/machinery/atmospherics/pipe/simple/visible{icon_state = "intact"; dir = 5},/turf/simulated/shuttle/wall/voidcraft/red,/area/syndicate_station/start)
 "NA" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced,/obj/structure/window/reinforced/full,/obj/machinery/atmospherics/pipe/simple/visible{dir = 4},/turf/simulated/shuttle/plating,/area/syndicate_station/start)
 "NB" = (/obj/machinery/atmospherics/pipe/simple/visible{icon_state = "intact"; dir = 9},/turf/simulated/shuttle/wall/voidcraft/red,/area/syndicate_station/start)
