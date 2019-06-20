@@ -737,11 +737,7 @@ var/global/list/light_type_cache = list()
 	base_state = "ltube"
 	item_state = "c_tube"
 	matter = list("glass" = 100)
-<<<<<<< HEAD
 	brightness_range = 10	// luminosity when on, also used in power calculation //VOREStation Edit
-=======
-	brightness_range = 7	// luminosity when on, also used in power calculation
->>>>>>> 4824c3e... Merge pull request #6223 from Woodratt/06192019_Maptweakv2
 	brightness_power = 6
 
 /obj/item/weapon/light/tube/large
