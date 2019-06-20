@@ -318,11 +318,11 @@
 	sound_env = MEDIUM_SOFTFLOOR
 
 /area/surface/outpost/main/telecomms
-	name = "Main Outpost Telecommunications"
+	name = "\improper Main Outpost Telecommunications"
 	music = "signal"
 
 /area/surface/outpost/main/teleporter
-	name = "Main Outpost Teleporter"
+	name = "\improper Main Outpost Teleporter"
 	icon_state = "teleporter"
 
 /area/surface/outpost/main/first_aid
