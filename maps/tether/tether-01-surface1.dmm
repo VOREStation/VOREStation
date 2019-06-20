@@ -2607,21 +2607,16 @@
 /turf/simulated/wall,
 /area/maintenance/substation/mining)
 "aey" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals_central1,
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 1;
-	name = "West Hallway"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/monofloor,
+/obj/effect/floor_decal/steeldecal/steel_decals_central1{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/monofloor{
+	dir = 1
+	},
 /area/tether/surfacebase/north_stairs_one)
 "aez" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -5139,15 +5134,22 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
 "aiP" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals_central1,
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 1;
+	name = "West Hallway"
+	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals_central1{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/monofloor{
-	dir = 1
-	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/monofloor,
 /area/tether/surfacebase/north_stairs_one)
 "aiQ" = (
 /obj/structure/disposalpipe/segment{
@@ -6054,6 +6056,15 @@
 "ako" = (
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
+"akp" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/pipedispenser,
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
 "akq" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -14460,19 +14471,6 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/engineering/atmos)
-"aHp" = (
-/obj/item/device/radio/intercom{
-	broadcasting = 1;
-	dir = 8;
-	listening = 1;
-	name = "Common Channel";
-	pixel_x = -21;
-	pixel_y = 0
-	},
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/machinery/pipedispenser,
-/turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "aHv" = (
 /obj/structure/table/standard,
@@ -41520,7 +41518,7 @@ tkX
 nOV
 bEX
 aGZ
-aHp
+akp
 aHM
 mwy
 aIk
@@ -41766,8 +41764,8 @@ abT
 abT
 abT
 ahX
-aiP
 aey
+aiP
 akw
 alg
 alg

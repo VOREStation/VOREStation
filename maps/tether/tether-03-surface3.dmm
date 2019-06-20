@@ -19818,7 +19818,9 @@
 /area/crew_quarters/barrestroom)
 "Gv" = (
 /obj/structure/closet/secure_closet/medical_wall/anesthetics{
-	pixel_x = -32
+	pixel_x = -32;
+	req_access = list();
+	req_one_access = list(29,45)
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 8;
