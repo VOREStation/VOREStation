@@ -43,6 +43,9 @@
 		set_flooring(get_flooring_data(floortype))
 	else
 		footstep_sounds = base_footstep_sounds
+	if(can_dirty)
+		if(prob(2))
+			new /obj/effect/decal/cleanable/dirt(src) //5% chance to start with dirt on a floor tile- give the janitor something to do
 
 /turf/simulated/floor/proc/set_flooring(var/decl/flooring/newflooring)
 	make_plating(defer_icon_update = 1)
