@@ -6,7 +6,8 @@ var/datum/category_collection/autolathe/autolathe_recipes
 	if(I.matter && !resources)
 		resources = list()
 		for(var/material in I.matter)
-			resources[material] = I.matter[material]*1.25 // More expensive to produce than they are to recycle.
+			var/coeff = (no_scale ? 1 : 1.25) //most objects are more expensive to produce than to recycle
+			resources[material] = I.matter[material]*coeff // but if it's a sheet or RCD cartridge, it's 1:1
 	if(is_stack && istype(I, /obj/item/stack))
 		var/obj/item/stack/IS = I
 		max_stack = IS.max_amount
@@ -66,6 +67,7 @@ var/datum/category_collection/autolathe/autolathe_recipes
 	var/power_use = 0
 	var/is_stack
 	var/max_stack
+	var/no_scale
 
 /datum/category_item/autolathe/dd_SortValue()
 	return name
