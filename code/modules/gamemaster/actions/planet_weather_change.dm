@@ -5,13 +5,13 @@
 	reusable = TRUE
 	var/datum/planet/target_planet
 
-//VOREStation Edit Start
+/* //VOREStation Removal Start
 	var/list/banned_weathers = list(
-		/datum/weather/virgo3b/ash_storm,
-		/datum/weather/virgo3b/emberfall,
-		/datum/weather/virgo3b/blood_moon,
-		/datum/weather/virgo3b/fallout)
-//VOREStation Edit End
+		/datum/weather/sif/ash_storm,
+		/datum/weather/sif/emberfall,
+		/datum/weather/sif/blood_moon,
+		/datum/weather/sif/fallout)
+*/ //VOREStation Removal End
 	var/list/possible_weathers = list()
 
 /datum/gm_action/planet_weather_shift/set_up()
