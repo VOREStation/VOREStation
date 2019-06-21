@@ -5,8 +5,8 @@
 	reusable = TRUE
 	var/datum/planet/target_planet
 
+	var/list/banned_weathers = list() //VOREStation Edit
 /* //VOREStation Removal Start
-	var/list/banned_weathers = list(
 		/datum/weather/sif/ash_storm,
 		/datum/weather/sif/emberfall,
 		/datum/weather/sif/blood_moon,
