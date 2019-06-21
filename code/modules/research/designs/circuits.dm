@@ -467,14 +467,14 @@ CIRCUITS BELOW
 	req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
 	build_path = /obj/item/weapon/circuitboard/mecha/gygax/targeting
 	sort_string = "NAACC"
-/*							//Uncomment me to allow Serenity construction
+
 /datum/design/circuit/mecha/gygax_medical
 	name = "'Serenity' medical control"
 	id = "gygax_medical"
 	req_tech = list(TECH_DATA = 4, TECH_BIO = 2)
 	build_path = /obj/item/weapon/circuitboard/mecha/gygax/medical
 	sort_string = "NAACD"
-*/
+
 /datum/design/circuit/mecha/durand_main
 	name = "'Durand' central control"
 	id = "durand_main"
