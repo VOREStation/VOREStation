@@ -107,7 +107,7 @@
 
 /datum/design/item/mechfab/gygax
 	category = "Gygax"
-						
+//VOREStation Edit to make Serenity Constructable						
 /datum/design/item/mechfab/gygax/chassis/serenity
 	name = "Serenity Chassis"
 	id = "serenity_chassis"
