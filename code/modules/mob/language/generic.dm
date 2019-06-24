@@ -64,12 +64,8 @@
 	exclaim_verb = "insinuates"
 	colour = "terminus"
 	key = "4"
-<<<<<<< HEAD
 	// flags = WHITELISTED (VOREstation edit)
-=======
-	flags = WHITELISTED
-	partial_understanding = list(LANGUAGE_SOL_COMMON = 20)
->>>>>>> 1efb235... Merge pull request #5842 from Anewbe/language_buffs
+	// partial_understanding = list(LANGUAGE_SOL_COMMON = 20) (VOREStation Edit: It is a Zorren language now)
 	syllables = list (".a", "spa", "pan", "blaif", "stra", "!u", "!ei", "!am", "by", ".y", "gry", "zbly", "!y", "fl",
  	"sm", "rn", "cpi", "ku", "koi", "pr", "glau", "stu", "ved", "ki", "tsa", "xau", "jbu", "sny", "stro", "nu",
  	"uan", "ju", "!i", "ge", "luk", "an", "ar", "at", "es", "et", "bel", "ki", "jaa", "ch", "ki", "gh", "ll", "uu", "wat")
