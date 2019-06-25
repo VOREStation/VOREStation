@@ -14068,7 +14068,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
-/turf/unsimulated/floor/techfloor_grid,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/medical/morgue)
 "vz" = (
 /obj/structure/morgue{
@@ -14083,7 +14083,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
-/turf/unsimulated/floor/techfloor_grid,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/medical/morgue)
 "vA" = (
 /obj/machinery/door/airlock/glass_medical{
@@ -14399,7 +14399,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/unsimulated/floor/techfloor_grid,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/medical/morgue)
 "wb" = (
 /obj/structure/sign/nosmoking_1,
@@ -14771,7 +14771,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 1
 	},
-/turf/unsimulated/floor/techfloor_grid,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/medical/morgue)
 "wD" = (
 /obj/machinery/camera/network/medbay{
