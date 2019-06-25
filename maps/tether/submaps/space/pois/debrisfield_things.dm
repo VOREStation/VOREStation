@@ -29,3 +29,33 @@
 
 /mob/living/simple_mob/tomato/space/Process_Spacemove(var/check_drift = 0)
 	return TRUE
+
+/obj/random/slimecore
+	name = "random slime core"
+	desc = "Random slime core."
+	icon = 'icons/mob/slimes.dmi'
+	icon_state = "rainbow slime extract"
+
+/obj/random/underdark/item_to_spawn()
+	return pick(prob(3);/obj/item/slime_extract/metal,
+				prob(3);/obj/item/slime_extract/blue,
+				prob(3);/obj/item/slime_extract/purple,
+				prob(3);/obj/item/slime_extract/orange,
+				prob(3);/obj/item/slime_extract/yellow,
+				prob(3);/obj/item/slime_extract/gold,
+				prob(3);/obj/item/slime_extract/silver,
+				prob(3);/obj/item/slime_extract/dark_purple,
+				prob(3);/obj/item/slime_extract/dark_blue,
+				prob(3);/obj/item/slime_extract/red,
+				prob(3);/obj/item/slime_extract/green,
+				prob(3);/obj/item/slime_extract/pink,
+				prob(2);/obj/item/slime_extract/oil,
+				prob(2);/obj/item/slime_extract/bluespace,
+				prob(2);/obj/item/slime_extract/cerulean,
+				prob(2);/obj/item/slime_extract/amber,
+				prob(2);/obj/item/slime_extract/sapphire,
+				prob(2);/obj/item/slime_extract/ruby,
+				prob(2);/obj/item/slime_extract/emerald,
+				prob(2);/obj/item/slime_extract/light_pink,
+				prob(1);/obj/item/slime_extract/grey,
+				prob(1);/obj/item/slime_extract/rainbow)
