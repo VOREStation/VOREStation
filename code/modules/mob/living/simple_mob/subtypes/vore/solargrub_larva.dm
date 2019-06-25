@@ -138,9 +138,10 @@ var/global/list/grub_machine_overlays = list()
 	sparks.start()
 	if(machine_effect)
 		QDEL_NULL(machine_effect)
-	set_AI_busy(FALSE)
 	ai_holder.target = null
 	powermachine.draining = 1
+	spawn(30)
+		set_AI_busy(FALSE)
 
 /mob/living/simple_mob/animal/solargrub_larva/proc/do_ventcrawl(var/obj/machinery/atmospherics/unary/vent_pump/vent)
 	if(!vent)
