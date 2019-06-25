@@ -36,7 +36,7 @@
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "rainbow slime extract"
 
-/obj/random/underdark/item_to_spawn()
+/obj/random/slimecore/item_to_spawn()
 	return pick(prob(3);/obj/item/slime_extract/metal,
 				prob(3);/obj/item/slime_extract/blue,
 				prob(3);/obj/item/slime_extract/purple,
