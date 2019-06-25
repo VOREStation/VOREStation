@@ -11826,7 +11826,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/item/device/radio/intercom{
 	dir = 1;
 	pixel_y = 24;
@@ -12768,7 +12768,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "wh" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/effect/floor_decal/borderfloor,
@@ -14334,7 +14334,7 @@
 /area/rnd/research/researchdivision)
 "yw" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 9
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -15647,7 +15647,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "At" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -19122,7 +19122,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "Fs" = (
-/obj/machinery/camera/network/northern_star,
+/obj/machinery/camera/network/tether,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -20129,7 +20129,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
 "GU" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/effect/floor_decal/borderfloor,
@@ -21609,7 +21609,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/shuttle_pad)
 "PJ" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 9
 	},
 /turf/simulated/floor/tiled,
@@ -21712,7 +21712,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "Ql" = (
-/obj/machinery/camera/network/northern_star{
+/obj/machinery/camera/network/tether{
 	dir = 1
 	},
 /obj/effect/floor_decal/borderfloor,
@@ -32236,9 +32236,9 @@ ac
 ac
 ac
 ac
-ab
-ab
-ab
+ac
+ac
+ac
 ab
 ab
 ab
