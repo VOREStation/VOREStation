@@ -12,9 +12,13 @@
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/debrisfield/explored)
 "ad" = (
-/obj/structure/girder,
+/obj/structure/closet/crate/secure/engineering,
+/obj/item/weapon/tool/screwdriver/power,
+/obj/item/weapon/tool/crowbar/power,
+/obj/item/weapon/tool/screwdriver/power,
+/obj/item/weapon/tool/crowbar/power,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/shuttle/plating,
+/turf/simulated/shuttle/plating/airless,
 /area/tether_away/debrisfield/explored)
 "ae" = (
 /obj/structure/closet/crate/trashcart,
@@ -27,7 +31,7 @@
 /area/tether_away/debrisfield/explored)
 "ag" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/shuttle/plating,
+/turf/simulated/shuttle/plating/airless,
 /area/tether_away/debrisfield/explored)
 "ah" = (
 /obj/structure/lattice,
@@ -40,23 +44,14 @@
 /turf/simulated/shuttle/floor/white/airless,
 /area/tether_away/debrisfield/explored)
 "ak" = (
-/obj/structure/girder/displaced,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/shuttle/plating,
-/area/tether_away/debrisfield/explored)
-"al" = (
-/obj/structure/closet/crate/secure/engineering,
-/obj/item/weapon/tool/screwdriver/power,
-/obj/item/weapon/tool/crowbar/power,
-/obj/item/weapon/tool/screwdriver/power,
-/obj/item/weapon/tool/crowbar/power,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/shuttle/plating,
+/obj/item/weapon/material/shard/shrapnel,
+/turf/simulated/shuttle/plating/airless,
 /area/tether_away/debrisfield/explored)
 "am" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/oil,
-/turf/simulated/shuttle/plating,
+/turf/simulated/shuttle/plating/airless,
 /area/tether_away/debrisfield/explored)
 "an" = (
 /obj/structure/girder/displaced,
@@ -124,10 +119,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/debrisfield/explored)
-"aC" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/shuttle/plating/airless,
-/area/tether_away/debrisfield/explored)
 "aD" = (
 /obj/structure/girder/displaced,
 /obj/effect/decal/cleanable/dirt,
@@ -154,11 +145,6 @@
 /obj/structure/closet/crate/secure/engineering,
 /obj/fiftyspawner/plasteel,
 /turf/template_noop,
-/area/tether_away/debrisfield/explored)
-"aI" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/oil,
-/turf/simulated/shuttle/plating/airless,
 /area/tether_away/debrisfield/explored)
 "aJ" = (
 /obj/structure/grille,
@@ -257,11 +243,6 @@
 	},
 /turf/simulated/shuttle/floor/airless,
 /area/tether_away/debrisfield/explored)
-"ba" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/weapon/material/shard/shrapnel,
-/turf/simulated/shuttle/plating,
-/area/tether_away/debrisfield/explored)
 "bb" = (
 /obj/structure/lattice,
 /obj/item/weapon/material/shard/shrapnel,
@@ -314,7 +295,7 @@ ab
 ab
 ab
 ag
-ba
+ak
 aa
 aa
 aa
@@ -342,7 +323,7 @@ aa
 ac
 bd
 ag
-al
+ad
 am
 bb
 aa
@@ -370,7 +351,7 @@ aa
 (4,1,1) = {"
 aa
 aa
-ad
+aB
 ag
 am
 ah
@@ -412,7 +393,7 @@ aG
 aa
 ay
 ah
-aC
+ag
 aB
 ab
 ab
@@ -442,8 +423,8 @@ aa
 aa
 bb
 ah
-aC
-aC
+ag
+ag
 ar
 au
 ab
@@ -471,8 +452,8 @@ aa
 an
 ah
 ah
-aI
-aC
+am
+ag
 ar
 aL
 au
@@ -491,7 +472,7 @@ aa
 aa
 aa
 aa
-ak
+aD
 ah
 aa
 aa
@@ -501,7 +482,7 @@ aa
 aa
 ah
 ah
-aC
+ag
 ap
 aj
 at
@@ -530,8 +511,8 @@ aa
 aa
 aa
 ah
-aC
-aC
+ag
+ag
 aj
 ar
 au
@@ -561,7 +542,7 @@ aa
 aG
 aE
 ap
-aC
+ag
 ao
 aj
 ar
@@ -583,15 +564,15 @@ aa
 ac
 ab
 aq
-aC
+ag
 bb
 aa
 aa
 aa
 aG
-aC
+ag
 aq
-aC
+ag
 ao
 aj
 az
@@ -618,9 +599,9 @@ ah
 aa
 ay
 aa
-aC
-aC
-aC
+ag
+ag
+ag
 ab
 aj
 aj
@@ -644,13 +625,13 @@ ac
 ab
 aA
 aA
-aC
+ag
 ag
 ah
 ah
-aC
-aC
-aI
+ag
+ag
+am
 ab
 aA
 aA
