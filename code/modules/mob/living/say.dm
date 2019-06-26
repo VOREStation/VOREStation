@@ -275,6 +275,19 @@ proc/get_radio_key_from_channel(var/channel)
 		message_range = 1
 		sound_vol *= 0.5
 
+	//VOREStation edit - allows for custom say verbs, overriding all other say-verb types- e.g. "says loudly" instead of "shouts"
+	//You'll still stammer if injured or slur if drunk, but it won't have those specific words
+	var/ending = copytext(message, length(message))
+
+	if(custom_whisper && whispering)
+		verb = "[custom_whisper]"
+	else if(custom_exclaim && ending=="!")
+		verb = "[custom_exclaim]"
+	else if(custom_ask && ending=="?")
+		verb = "[custom_ask]"
+	else if(custom_say)
+		verb = "[custom_say]"
+
 	//Handle nonverbal and sign languages here
 	if (speaking)
 		if (speaking.flags & SIGNLANG)
