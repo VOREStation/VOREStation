@@ -1389,3 +1389,4 @@ default behaviour is:
 			custom_exclaim =  sanitize(input(usr, "This word or phrase will appear instead of 'exclaims', 'shouts' or 'yells': [src] exclaims, \"Hi!\"", "Custom Exclaim", null)  as text)
 		else
 			return
+	//VOREStation edit ends

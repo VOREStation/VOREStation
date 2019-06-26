@@ -287,6 +287,7 @@ proc/get_radio_key_from_channel(var/channel)
 		verb = "[custom_ask]"
 	else if(custom_say)
 		verb = "[custom_say]"
+	//VOREStation edit ends
 
 	//Handle nonverbal and sign languages here
 	if (speaking)
