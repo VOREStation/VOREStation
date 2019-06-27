@@ -205,7 +205,7 @@
 				if(telemob.can_be_drop_prey && telenommer.can_be_drop_pred)
 					return 1
 		obstructed = 1
-	else if(!isturf(destination.loc) || !destination.x || !destination.y || !destination.z)	//If we're inside something or outside universe
+	else if(!((isturf(destination) && !destination.density) || isturf(destination.loc)) || !destination.x || !destination.y || !destination.z)	//If we're inside something or outside universe
 		obstructed = 1
 		to_chat(teleatom, "<span class='warning'>Something is blocking way on the other side!</span>")
 	if(obstructed)
