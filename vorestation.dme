@@ -972,6 +972,7 @@
 #include "code\game\objects\items\devices\laserpointer.dm"
 #include "code\game\objects\items\devices\lightreplacer.dm"
 #include "code\game\objects\items\devices\locker_painter.dm"
+#include "code\game\objects\items\devices\medbeam.dm"
 #include "code\game\objects\items\devices\megaphone.dm"
 #include "code\game\objects\items\devices\modkit.dm"
 #include "code\game\objects\items\devices\multitool.dm"
