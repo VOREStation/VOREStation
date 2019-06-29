@@ -103,7 +103,7 @@
 			/obj/item/weapon/storage/fancy/candle_box = 3
 			)
 	cost = 10
-	containertype = "/obj/structure/closet/crate"
+	containertype = /obj/structure/closet/crate
 	containername = "Chaplain equipment crate"
 
 /datum/supply_pack/misc/hoverpod
@@ -126,7 +126,7 @@
 			/obj/item/clothing/accessory/storage/webbing
 			)
 	cost = 10
-	containertype = "/obj/structure/closet/crate"
+	containertype = /obj/structure/closet/crate
 	containername = "Webbing crate"
 
 /datum/supply_pack/misc/holoplant
@@ -142,5 +142,5 @@
 			/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5
 			)
 	cost = 25
-	containertype = "obj/structure/closet/crate"
+	containertype = /obj/structure/closet/crate
 	containername = "Glucose Hypo Crate"

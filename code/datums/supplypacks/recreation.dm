@@ -55,7 +55,7 @@
 			/obj/item/weapon/wrapping_paper = 3
 			)
 	cost = 10
-	containertype = "/obj/structure/closet/crate"
+	containertype = /obj/structure/closet/crate
 	containername = "Arts and Crafts crate"
 
 /datum/supply_pack/recreation/painters
