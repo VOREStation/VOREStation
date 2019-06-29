@@ -74,7 +74,7 @@
 	var/egun = null			//holder to handle certain guns switching bullettypes
 
 	var/last_fired = 0		//1: if the turret is cooling down from a shot, 0: turret is ready to fire
-	var/shot_delay = 15		//1.5 seconds between each shot
+	var/shot_delay = 1.5 SECONDS	//1.5 seconds between each shot
 
 	var/check_arrest = 1	//checks if the perp is set to arrest
 	var/check_records = 1	//checks if a security record exists at all
@@ -139,7 +139,6 @@
 	health = 250 // Since lasers do 40 each.
 	maxhealth = 250
 
-
 /datum/category_item/catalogue/anomalous/precursor_a/alien_turret
 	name = "Precursor Alpha Object - Turrets"
 	desc = "An autonomous defense turret created by unknown ancient aliens. It utilizes an \
@@ -180,6 +179,49 @@
 	icon_state = "alien_gun_destroyed"
 	stat = BROKEN
 	can_salvage = FALSE // So you need to actually kill a turret to get the alien gun.
+
+/obj/machinery/porta_turret/industrial
+	name = "industrial turret"
+	desc = "This variant appears to be much more rugged."
+	req_one_access = list(access_heads)
+	installation = /obj/item/weapon/gun/energy/phasegun
+	health = 200
+	maxhealth = 200
+
+	icon_state = "turret_cover_industrial"
+	closed_state = "turret_cover_industrial"
+	raising_state = "popup_industrial"
+	opened_state = "open_industrial"
+	lowering_state = "popdown_industrial"
+	gun_active_state = "target_prism_industrial"
+	gun_disabled_state = "grey_target_prism_industrial"
+	gun_destroyed_state = "destroyed_target_prism_industrial"
+
+/obj/machinery/porta_turret/industrial/bullet_act(obj/item/projectile/Proj)
+	var/damage = round(Proj.get_structure_damage() * 1.33)
+
+	if(!damage)
+		return
+
+	if(enabled)
+		if(!attacked && !emagged)
+			attacked = 1
+			spawn()
+				sleep(60)
+				attacked = 0
+
+	take_damage(damage)
+
+/obj/machinery/porta_turret/industrial/attack_generic(mob/living/L, damage)
+	return ..(L, damage * 0.8)
+
+/obj/machinery/porta_turret/industrial/teleport_defense
+	name = "defense turret"
+	desc = "This variant appears to be much more durable, with a rugged outer coating."
+	req_one_access = list(access_heads)
+	installation = /obj/item/weapon/gun/energy/gun/burst
+	health = 250
+	maxhealth = 250
 
 /obj/machinery/porta_turret/poi	//These are always angry
 	enabled = TRUE
@@ -246,6 +288,24 @@
 //			if(/obj/item/weapon/gun/energy/laser/practice/sc_laser)
 //				iconholder = 1
 //				eprojectile = /obj/item/projectile/beam
+
+		if(/obj/item/weapon/gun/energy/gun/burst)
+			iconholder = 1
+			eprojectile = /obj/item/projectile/beam/burstlaser
+			eshot_sound = 'sound/weapons/Laser.ogg'
+			icon_color = "red"
+			projectile = /obj/item/projectile/beam/stun/weak
+			shot_sound = 'sound/weapons/Taser.ogg'
+			shot_delay = 1 SECOND
+
+		if(/obj/item/weapon/gun/energy/phasegun)
+			iconholder = 1
+			eprojectile = /obj/item/projectile/energy/phase/heavy
+			eshot_sound = 'sound/weapons/gunshot_pathetic.ogg'
+			icon_color = "orange"
+			projectile = /obj/item/projectile/energy/phase
+			shot_sound = 'sound/weapons/gunshot_pathetic.ogg'
+			shot_delay = 1 SECOND
 
 		if(/obj/item/weapon/gun/energy/retro)
 			iconholder = 1
