@@ -6,6 +6,7 @@
 	species_restricted = null	//Unathi and Taj can wear leg armor now
 	w_class = ITEMSIZE_NORMAL
 	step_volume_mod = 1.3
+	can_hold_knife = TRUE
 
 /obj/item/clothing/shoes/leg_guard/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(..()) //This will only run if no other problems occured when equiping.
@@ -46,3 +47,14 @@
 	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
 	siemens_coefficient = 0.6
 	armor = list(melee = 50, bullet = 50, laser = 50, energy = 30, bomb = 30, bio = 0, rad = 0)
+
+/obj/item/clothing/shoes/leg_guard/flexitac
+	name = "tactical leg guards"
+	desc = "These will protect your legs and feet from a variety of weapons while still allowing mobility."
+	icon_state = "leg_guards_flexitac"
+	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
+	siemens_coefficient = 0.6
+	slowdown = SHOES_SLOWDOWN+0.2
+	armor = list(melee = 40, bullet = 40, laser = 60, energy = 35, bomb = 30, bio = 0, rad = 0)
+	min_cold_protection_temperature = T0C - 20
+	cold_protection = LEGS
