@@ -109,6 +109,8 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 	options["H&K PT"] = "detective_panther"
 	options["Vintage LeMat"] = "lemat_old"
 	options["Webley MKVI "] = "webley"
+	options["Lombardi Buzzard"] = "detective_buzzard"
+	options["Constable Deluxe 2502"] = "detective_constable"
 	var/choice = input(M,"Choose your sprite!","Resprite Gun") in options
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]
