@@ -154,18 +154,28 @@
 /datum/map/tether/get_map_levels(var/srcz, var/long_range = TRUE)
 	if (long_range && (srcz in map_levels))
 		return map_levels
-	else if (srcz == Z_LEVEL_TRANSIT)
-		return list() // Nothing on transit!
-	else if (srcz >= Z_LEVEL_SURFACE_LOW && srcz <= Z_LEVEL_SPACE_HIGH)
+	else if (srcz == Z_LEVEL_TRANSIT) //Z4
+		return list() // Nothing on these z-levels- sensors won't show, and GPSes won't see each other.
+	else if (srcz >= Z_LEVEL_SURFACE_LOW && srcz <= Z_LEVEL_SOLARS) //Zs 1-3, 5-9
 		return list(
 			Z_LEVEL_SURFACE_LOW,
 			Z_LEVEL_SURFACE_MID,
 			Z_LEVEL_SURFACE_HIGH,
 			Z_LEVEL_SPACE_LOW,
 			Z_LEVEL_SPACE_MID,
-			Z_LEVEL_SPACE_HIGH)
+			Z_LEVEL_SPACE_HIGH,
+			Z_LEVEL_SURFACE_MINE,
+			Z_LEVEL_SOLARS)
+	else if(srcz >= Z_LEVEL_BEACH && srcz <= Z_LEVEL_BEACH_CAVE) //Zs 16-17
+		return list(
+			Z_LEVEL_BEACH,
+			Z_LEVEL_BEACH_CAVE)
+	else if(srcz >= Z_LEVEL_AEROSTAT && srcz <= Z_LEVEL_AEROSTAT_SURFACE) //Zs 18-19
+		return list(
+			Z_LEVEL_AEROSTAT,
+			Z_LEVEL_AEROSTAT_SURFACE)
 	else
-		return ..()
+		return list(srcz) //prevents runtimes when using CMC. any Z-level not defined above will be 'isolated' and only show to GPSes/CMCs on that same Z (e.g. CentCom).
 
 // For making the 6-in-1 holomap, we calculate some offsets
 #define TETHER_MAP_SIZE 140 // Width and height of compiled in tether z levels.
