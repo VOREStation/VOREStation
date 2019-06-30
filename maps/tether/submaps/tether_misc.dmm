@@ -48,6 +48,19 @@
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/trade/centcom)
 "ag" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
+/obj/structure/closet/crate/secure,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade/centcom)
+"ah" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/closet/crate/secure,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade/centcom)
+"ai" = (
 /obj/machinery/power/emitter/gyrotron/anchored{
 	desc = "It is a heavy duty pulse laser emitter.";
 	dir = 8;
@@ -57,24 +70,9 @@
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/syndicate_station/start)
-"ah" = (
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion_r";
-	dir = 4
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/syndicate_station/start)
-"ai" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 4
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/syndicate_station/start)
 "aj" = (
 /obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion_l";
+	icon_state = "propulsion_r";
 	dir = 4
 	},
 /turf/space,
@@ -92,6 +90,13 @@
 	icon_state = "steel"
 	},
 /area/antag/antag_base)
+"al" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/syndicate_station/start)
 "am" = (
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
@@ -1619,6 +1624,14 @@
 "dY" = (
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source_boxingcourt)
+"dZ" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_l";
+	dir = 4
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/syndicate_station/start)
 "ec" = (
 /obj/effect/landmark{
 	name = "Holocarp Spawn Random"
@@ -3888,7 +3901,7 @@
 /turf/simulated/shuttle/plating,
 /area/shuttle/trade/centcom)
 "jG" = (
-/obj/vehicle/train/cargo/engine,
+/obj/vehicle/train/engine,
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
@@ -3987,7 +4000,7 @@
 /turf/simulated/shuttle/plating,
 /area/shuttle/trade/centcom)
 "jU" = (
-/obj/vehicle/train/cargo/trolley,
+/obj/vehicle/train/trolley,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
 "jV" = (
@@ -4333,14 +4346,6 @@
 /obj/item/device/kit/paint/ripley,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
-"kH" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 1
-	},
-/obj/structure/closet/crate/secure/loot,
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/trade/centcom)
 "kI" = (
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
@@ -4450,11 +4455,6 @@
 /obj/item/device/kit/paint/durand,
 /obj/item/device/kit/paint/durand/phazon,
 /obj/item/device/kit/paint/durand/seraph,
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/trade/centcom)
-"kV" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/structure/closet/crate/secure/loot,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
 "kW" = (
@@ -5132,7 +5132,7 @@
 /area/shuttle/trade/centcom)
 "mh" = (
 /obj/structure/table/glass,
-/obj/machinery/computer3/wall_comp/telescreen/entertainment{
+/obj/machinery/computer/security/telescreen/entertainment{
 	pixel_y = -35
 	},
 /turf/simulated/shuttle/floor/black,
@@ -8869,7 +8869,7 @@
 	},
 /area/antag/antag_base)
 "sM" = (
-/mob/living/simple_mob/fox/syndicate{
+/mob/living/simple_mob/animal/passive/fox/syndicate{
 	name = "Rick"
 	},
 /turf/unsimulated/floor{
@@ -25295,7 +25295,7 @@ ap
 ap
 ap
 aC
-ag
+ai
 aC
 ap
 hb
@@ -25304,7 +25304,7 @@ gL
 ik
 ap
 aC
-ag
+ai
 aC
 ap
 ap
@@ -27352,8 +27352,8 @@ jQ
 kb
 jg
 jH
-kH
-kV
+ag
+ah
 jH
 jg
 lr
@@ -29132,10 +29132,10 @@ aC
 aC
 cJ
 fk
-ah
-ai
-ai
 aj
+al
+al
+dZ
 fk
 cJ
 aC
@@ -29273,12 +29273,12 @@ aC
 aC
 cJ
 fk
-ah
-ap
-ap
-ap
-ap
 aj
+ap
+ap
+ap
+ap
+dZ
 fk
 cJ
 aC
@@ -29414,14 +29414,14 @@ aC
 aC
 aC
 fk
-ah
-ap
-ap
-ap
-ap
-ap
-ap
 aj
+ap
+ap
+ap
+ap
+ap
+ap
+dZ
 fk
 aC
 aC
@@ -29555,16 +29555,16 @@ ap
 ap
 aC
 cJ
-ah
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
 aj
+ap
+ap
+ap
+ap
+ap
+ap
+ap
+ap
+dZ
 cJ
 aC
 ap
