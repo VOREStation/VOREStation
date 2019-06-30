@@ -576,7 +576,13 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return //Wearing a suit that prevents uniform rendering
 
 	//Build a uniform sprite
-	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = INV_W_UNIFORM_DEF_ICON, default_layer = UNIFORM_LAYER)
+	//VOREStation Edit start.
+	var/icon/c_mask = null
+	if((tail_style && tail_style.clip_mask_icon && tail_style.clip_mask_state) && !(wear_suit && (wear_suit.flags_inv & HIDETAIL))) //Clip the lower half of the suit off using the tail's clip mask.
+		c_mask = new /icon(tail_style.clip_mask_icon, tail_style.clip_mask_state)
+	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = INV_W_UNIFORM_DEF_ICON, default_layer = UNIFORM_LAYER, clip_mask = c_mask)
+	//VOREStation Edit end.
+
 	apply_layer(UNIFORM_LAYER)
 
 /mob/living/carbon/human/update_inv_wear_id()
@@ -657,6 +663,12 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	if(!shoes || (wear_suit && wear_suit.flags_inv & HIDESHOES) || (w_uniform && w_uniform.flags_inv & HIDESHOES))
 		return //Either nothing to draw, or it'd be hidden.
+
+	//VOREStation Edit
+	for(var/f in list(BP_L_FOOT, BP_R_FOOT))
+		var/obj/item/organ/external/foot/foot = get_organ(f)
+		if(istype(foot) && foot.is_hidden_by_tail()) //If either foot is hidden by the tail, don't render footwear.
+			return
 
 	//Allow for shoe layer toggle nonsense
 	var/shoe_layer = SHOES_LAYER
@@ -741,12 +753,18 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	// Part of splitting the suit sprites up
 	var/iconFile = INV_SUIT_DEF_ICON
+	var/obj/item/clothing/suit/S //VOREStation edit - break this var out a level for use below.
 	if(istype(wear_suit, /obj/item/clothing/suit))
-		var/obj/item/clothing/suit/S = wear_suit
+		S = wear_suit
 		if(S.update_icon_define)
 			iconFile = S.update_icon_define
 
-	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_suit_str, default_icon = iconFile, default_layer = SUIT_LAYER)
+	//VOREStation Edit start.
+	var/icon/c_mask = null
+	if((tail_style && tail_style.clip_mask_icon && tail_style.clip_mask_state) && !(wear_suit.flags_inv & HIDETAIL) && !(S && S.taurized)) //Clip the lower half of the suit off using the tail's clip mask.
+		c_mask = new /icon(tail_style.clip_mask_icon, tail_style.clip_mask_state)
+	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_suit_str, default_icon = iconFile, default_layer = SUIT_LAYER, clip_mask = c_mask)
+	//VOREStation Edit end.
 
 	apply_layer(SUIT_LAYER)
 
