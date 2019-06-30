@@ -123,9 +123,7 @@
 			/obj/item/clothing/shoes/boots/jackboots,
 			/obj/item/clothing/gloves/black
 			)
-<<<<<<< HEAD
 */
-=======
 
 /datum/supply_pack/security/flexitac
 	name = "Armor - Tactical Light"
@@ -150,7 +148,6 @@
 				/obj/item/weapon/storage/belt/security/tactical
 				)
 
->>>>>>> 2ec54f0... Adds two new Cargo crates! (#6194)
 /datum/supply_pack/security/securitybarriers
 	name = "Misc - Security Barriers"
 	contains = list(/obj/machinery/deployable/barrier = 4)
