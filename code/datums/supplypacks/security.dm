@@ -124,6 +124,30 @@
 			/obj/item/clothing/gloves/black
 			)
 */
+
+/datum/supply_pack/security/flexitac
+	name = "Armor - Tactical Light"
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Tactical Light armor crate"
+	cost = 75
+	access = access_armory
+	contains = list(
+				/obj/item/clothing/suit/storage/vest/heavy/flexitac,
+				/obj/item/clothing/head/helmet/flexitac,
+				/obj/item/clothing/shoes/leg_guard/flexitac,
+				/obj/item/clothing/gloves/arm_guard/flexitac,
+				/obj/item/clothing/mask/balaclava/tactical,
+				/obj/item/clothing/glasses/sunglasses/sechud/tactical,
+				/obj/item/weapon/storage/belt/security/tactical,
+				/obj/item/clothing/suit/storage/vest/heavy/flexitac,
+				/obj/item/clothing/head/helmet/flexitac,
+				/obj/item/clothing/shoes/leg_guard/flexitac,
+				/obj/item/clothing/gloves/arm_guard/flexitac,
+				/obj/item/clothing/mask/balaclava/tactical,
+				/obj/item/clothing/glasses/sunglasses/sechud/tactical,
+				/obj/item/weapon/storage/belt/security/tactical
+				)
+
 /datum/supply_pack/security/securitybarriers
 	name = "Misc - Security Barriers"
 	contains = list(/obj/machinery/deployable/barrier = 4)

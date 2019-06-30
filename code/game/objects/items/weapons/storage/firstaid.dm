@@ -160,6 +160,12 @@
 	max_storage_space = ITEMSIZE_COST_SMALL * 7
 	starts_with = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting = 8)
 
+/obj/item/weapon/storage/firstaid/bonemed
+	name = "bone repair kit"
+	desc = "Contains chemicals to mend broken bones."
+	max_storage_space = ITEMSIZE_COST_SMALL * 7
+	starts_with = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed = 8)
+
 /*
  * Pill Bottles
  */
