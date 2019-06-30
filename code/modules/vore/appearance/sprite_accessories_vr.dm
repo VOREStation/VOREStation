@@ -653,6 +653,7 @@
 	var/desc = "You should not see this..."
 	var/ani_state // State when wagging/animated
 	var/extra_overlay_w // Wagging state for extra overlay
+	var/list/hide_body_parts = list() //Uses organ tag defines. Bodyparts in this list do not have their icons rendered, allowing for more spriter freedom when doing taur/digitigrade stuff.
 
 /datum/sprite_accessory/tail/invisible
 	name = "hide species-sprite tail"
@@ -950,6 +951,7 @@
 	icon_state = "satyr"
 	color_blend_mode = ICON_MULTIPLY
 	do_colouration = 1
+	hide_body_parts = list(BP_L_LEG, BP_L_FOOT, BP_R_LEG, BP_R_FOOT) //Exclude pelvis just in case.
 
 /datum/sprite_accessory/tail/tailmaw
 	name = "tailmaw, colorable"

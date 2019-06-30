@@ -246,7 +246,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	for(var/organ_tag in species.has_limbs)
 		var/obj/item/organ/external/part = organs_by_name[organ_tag]
-		if(isnull(part) || part.is_stump())
+		if(isnull(part) || part.is_stump() || part.is_hidden_by_tail()) //VOREStation Edit allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
 			icon_key += "0"
 			continue
 		if(part)
@@ -289,7 +289,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		base_icon = chest.get_icon()
 
 		for(var/obj/item/organ/external/part in organs)
-			if(isnull(part) || part.is_stump())
+			if(isnull(part) || part.is_stump() || part.is_hidden_by_tail()) //VOREStation Edit allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
 				continue
 			var/icon/temp = part.get_icon(skeleton)
 			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
@@ -921,7 +921,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	var/t_state = "[species.get_tail(src)]_once"
 	var/used_tail_layer = tail_alt ? TAIL_LAYER_ALT : TAIL_LAYER // VOREStation Edit - Alt Tail Layer
-	
+
 	var/image/tail_overlay = overlays_standing[used_tail_layer] // VOREStation Edit - Alt Tail Layer
 	if(tail_overlay && tail_overlay.icon_state == t_state)
 		return //let the existing animation finish
@@ -931,7 +931,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		spawn(20)
 			//check that the animation hasn't changed in the meantime
 			if(overlays_standing[used_tail_layer] == tail_overlay && tail_overlay.icon_state == t_state) // VOREStation Edit - Alt Tail Layer
-				animate_tail_stop()	
+				animate_tail_stop()
 
 /mob/living/carbon/human/proc/animate_tail_start()
 	if(QDESTROYING(src))
@@ -972,7 +972,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(vr_wing_image)
 		vr_wing_image.layer = BODY_LAYER+WING_LAYER
 		overlays_standing[WING_LAYER] = vr_wing_image
-	
+
 	apply_layer(WING_LAYER)
 // VOREStation Edit end
 
