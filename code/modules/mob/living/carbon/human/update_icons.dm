@@ -578,8 +578,10 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	//Build a uniform sprite
 	//VOREStation Edit start.
 	var/icon/c_mask = null
-	if((tail_style && tail_style.clip_mask_icon && tail_style.clip_mask_state) && !(wear_suit && (wear_suit.flags_inv & HIDETAIL))) //Clip the lower half of the suit off using the tail's clip mask.
-		c_mask = new /icon(tail_style.clip_mask_icon, tail_style.clip_mask_state)
+	if(tail_style && tail_style.clip_mask_icon && tail_style.clip_mask_state)
+		var/obj/item/clothing/suit/S = wear_suit
+		if(!(wear_suit && ((wear_suit.flags_inv & HIDETAIL) || (istype(S) && S.taurized)))) //Clip the lower half of the suit off using the tail's clip mask.
+			c_mask = new /icon(tail_style.clip_mask_icon, tail_style.clip_mask_state)
 	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = INV_W_UNIFORM_DEF_ICON, default_layer = UNIFORM_LAYER, clip_mask = c_mask)
 	//VOREStation Edit end.
 
