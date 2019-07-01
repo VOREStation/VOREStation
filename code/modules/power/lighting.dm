@@ -30,13 +30,15 @@ var/global/list/light_type_cache = list()
 	var/fixture_type = /obj/machinery/light
 	var/sheets_refunded = 2
 
-/obj/machinery/light_construct/New(atom/newloc, obj/machinery/light/fixture = null)
+/obj/machinery/light_construct/New(var/atom/newloc, var/newdir, var/building = 0, var/datum/frame/frame_types/frame_type, var/obj/machinery/light/fixture = null)
 	..(newloc)
 	if(fixture)
 		fixture_type = fixture.type
 		fixture.transfer_fingerprints_to(src)
 		set_dir(fixture.dir)
 		stage = 2
+	else if(newdir)
+		set_dir(newdir)
 	update_icon()
 
 /obj/machinery/light_construct/update_icon()
@@ -217,6 +219,13 @@ var/global/list/light_type_cache = list()
 	construct_type = /obj/machinery/light_construct/flamp
 	shows_alerts = FALSE	//VOREStation Edit
 	var/lamp_shade = 1
+
+/obj/machinery/light/flamp/New(atom/newloc, obj/machinery/light_construct/construct = null)
+	..(newloc, construct)
+
+	if(construct)
+		lamp_shade = 0
+		update_icon()
 
 /obj/machinery/light/flamp/flicker
 	auto_flicker = TRUE
@@ -488,7 +497,7 @@ var/global/list/light_type_cache = list()
 			playsound(src, W.usesound, 75, 1)
 			user.visible_message("[user.name] opens [src]'s casing.", \
 				"You open [src]'s casing.", "You hear a noise.")
-			new construct_type(src.loc, src)
+			new construct_type(src.loc, fixture = src)
 			qdel(src)
 			return
 
