@@ -1431,7 +1431,6 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/machinery/light/flamp/noshade,
 /turf/simulated/floor/grass,
 /area/hallway/station/atrium)
 "acZ" = (
@@ -1448,11 +1447,8 @@
 /turf/simulated/floor/wood,
 /area/hallway/station/atrium)
 "adb" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/machinery/light/flamp/noshade,
-/turf/simulated/floor/grass,
+/obj/machinery/light/flamp,
+/turf/simulated/floor/wood,
 /area/hallway/station/atrium)
 "adc" = (
 /obj/structure/bed/chair/wood{
@@ -6579,6 +6575,29 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engineering_monitoring)
+"alY" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/hallway/station/atrium)
 "alZ" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -6595,6 +6614,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
+"ama" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/grass,
+/area/hallway/station/atrium)
 "amb" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -32902,10 +32927,10 @@ acy
 acy
 acy
 acy
-acy
+acT
 acm
 acm
-acy
+acT
 acy
 acy
 acy
@@ -33323,7 +33348,7 @@ ahL
 abh
 agv
 acp
-acy
+acT
 acy
 acy
 acy
@@ -33336,7 +33361,7 @@ acG
 acy
 acy
 acy
-acy
+acT
 aCx
 bem
 bfY
@@ -33608,7 +33633,7 @@ abh
 agC
 acp
 acy
-acT
+acy
 acy
 acE
 acH
@@ -33619,7 +33644,7 @@ acH
 acH
 ady
 acy
-acT
+acy
 acy
 bbT
 ber
@@ -33754,10 +33779,10 @@ acy
 acy
 acD
 acH
-acH
+adb
 adc
 adc
-acH
+adb
 acH
 adx
 acy
@@ -34180,10 +34205,10 @@ acy
 acy
 acD
 acH
-acH
+adb
 adl
 adl
-acH
+adb
 acH
 adx
 acy
@@ -34318,7 +34343,7 @@ afC
 ajr
 acp
 acy
-acT
+acy
 acy
 acE
 acH
@@ -34329,7 +34354,7 @@ acH
 acH
 ady
 acy
-acT
+acy
 acy
 acp
 beH
@@ -34601,20 +34626,20 @@ acm
 afC
 afe
 acp
-acy
+acT
 acy
 acy
 acy
 acK
-adb
+ama
 acm
 acm
-adb
+ama
 acK
 acy
 acy
 acy
-acy
+acT
 acp
 beK
 awJ
@@ -35032,10 +35057,10 @@ acy
 acy
 acy
 acy
-acy
+acT
 acm
 acm
-acy
+acT
 acy
 acy
 acy
@@ -35758,7 +35783,7 @@ bhJ
 aus
 ats
 acm
-bpi
+alY
 aAg
 aAJ
 aBx

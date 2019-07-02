@@ -1072,27 +1072,11 @@
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "ci" = (
-/obj/effect/floor_decal/borderfloor{
+/obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/atrium_three)
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/reading_room)
 "cj" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -1958,9 +1942,11 @@
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "dC" = (
+/obj/structure/table/glass,
+/obj/item/weapon/book/codex,
+/obj/machinery/recharger,
 /obj/machinery/newscaster{
-	pixel_x = 0;
-	pixel_y = 30
+	pixel_y = -28
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
@@ -2720,11 +2706,27 @@
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "eU" = (
-/obj/structure/table/glass,
-/obj/item/weapon/book/codex,
-/obj/machinery/recharger,
-/turf/simulated/floor/wood,
-/area/tether/surfacebase/reading_room)
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/atrium_three)
 "eV" = (
 /obj/structure/table/glass,
 /obj/item/device/flashlight/lamp/green,
@@ -8051,10 +8053,13 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/recreation_area)
 "of" = (
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
 /obj/machinery/light{
-	dir = 4;
 	icon_state = "tube1";
-	pixel_x = 0
+	dir = 8
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/recreation_area)
@@ -8178,9 +8183,15 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/pool)
 "ou" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
+/obj/structure/reagent_dispensers/water_cooler/full,
+/obj/item/device/radio/intercom{
+	dir = 2;
+	pixel_y = -24
+	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	pixel_x = 0
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/recreation_area)
@@ -8218,13 +8229,24 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/recreation_area)
 "oz" = (
-/obj/structure/reagent_dispensers/water_cooler/full,
-/obj/item/device/radio/intercom{
-	dir = 2;
-	pixel_y = -24
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
 	},
-/turf/simulated/floor/wood,
-/area/crew_quarters/recreation_area)
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/atrium_three)
 "oA" = (
 /obj/machinery/light_switch{
 	pixel_y = -25
@@ -12516,8 +12538,8 @@
 /area/crew_quarters/bar)
 "vL" = (
 /obj/structure/table/bench/wooden,
-/obj/machinery/light{
-	dir = 1
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
@@ -13313,10 +13335,10 @@
 /area/hallway/lower/third_south)
 "wV" = (
 /obj/structure/table/bench/wooden,
-/obj/structure/extinguisher_cabinet{
-	dir = 4;
-	icon_state = "extinguisher_closed";
-	pixel_x = -30
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
@@ -15526,10 +15548,7 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "Aj" = (
-/obj/effect/landmark{
-	name = "Observer-Start"
-	},
-/obj/machinery/hologram/holopad,
+/obj/machinery/light/flamp,
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "Ak" = (
@@ -20447,15 +20466,66 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
 "Hz" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "HA" = (
 /obj/structure/closet/hydrant{
 	pixel_y = -32
 	},
 /turf/simulated/floor/tiled/monotile,
+/area/tether/surfacebase/shuttle_pad)
+"HB" = (
+/obj/effect/landmark{
+	name = "Observer-Start"
+	},
+/obj/machinery/light/flamp,
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
+"HC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/light/flamp,
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
+"HD" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/hallway/lower/third_south)
+"HE" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
+"HF" = (
+/obj/effect/floor_decal/borderfloorblack{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
 "HH" = (
 /obj/structure/disposalpipe/segment,
@@ -29747,7 +29817,7 @@ ac
 gw
 bz
 bB
-ci
+eU
 cZ
 kn
 kS
@@ -31318,7 +31388,7 @@ mw
 mX
 mw
 ob
-ou
+of
 kY
 po
 pO
@@ -32169,8 +32239,8 @@ lO
 mx
 na
 nF
-of
-oz
+mw
+ou
 kY
 iK
 ka
@@ -34022,7 +34092,7 @@ pB
 qa
 qP
 rn
-pB
+oz
 se
 jR
 sS
@@ -34776,7 +34846,7 @@ IY
 IY
 IY
 IY
-Vu
+HF
 IR
 ac
 ac
@@ -36321,7 +36391,7 @@ DS
 wR
 Fx
 TR
-GO
+HD
 ts
 Va
 NF
@@ -36901,7 +36971,7 @@ Jr
 Js
 Wh
 JE
-Hz
+HE
 IY
 bg
 RO
@@ -37043,7 +37113,7 @@ Js
 Js
 Jz
 JE
-Hz
+HE
 IY
 bg
 RO
@@ -37185,7 +37255,7 @@ Jt
 Js
 Jz
 JE
-Hz
+HE
 IY
 bg
 RO
@@ -37691,7 +37761,7 @@ be
 be
 be
 be
-dC
+ci
 eh
 eQ
 fG
@@ -38157,7 +38227,7 @@ sX
 yg
 yJ
 sX
-sX
+Hz
 sX
 yg
 yJ
@@ -38261,7 +38331,7 @@ cg
 cU
 cg
 ej
-eU
+dC
 be
 ac
 ac
@@ -38436,17 +38506,17 @@ uS
 vr
 vO
 ww
-sX
+Aj
 wu
 sk
 yL
 wu
-Aj
+HB
 wu
 BF
 uO
 wu
-XN
+HC
 sX
 EF
 FI

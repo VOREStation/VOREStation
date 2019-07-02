@@ -16049,17 +16049,10 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/foyer)
 "yW" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/brown/border,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled,
-/area/quartermaster/foyer)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "yX" = (
 /obj/structure/cable/green{
 	d2 = 4;
@@ -17296,12 +17289,18 @@
 /turf/simulated/wall,
 /area/quartermaster/qm)
 "AO" = (
-/obj/machinery/navbeacon/delivery/south{
-	location = "QM #1"
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/brown/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/light,
 /turf/simulated/floor/tiled,
-/area/quartermaster/storage)
+/area/quartermaster/foyer)
 "AP" = (
 /obj/machinery/navbeacon/delivery/south{
 	location = "QM #2"
@@ -28317,10 +28316,15 @@
 /turf/simulated/floor/carpet,
 /area/security/breakroom)
 "SD" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/machinery/navbeacon/delivery/south{
+	location = "QM #1"
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/storage)
 "SE" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8
@@ -28366,6 +28370,18 @@
 "SH" = (
 /turf/simulated/wall,
 /area/storage/emergency_storage/emergency3)
+"SI" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/hallway/station/upper)
 "SK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -34652,7 +34668,7 @@ yk
 og
 Aa
 Bl
-Ca
+SI
 Da
 DF
 EB
@@ -39735,7 +39751,7 @@ it
 di
 di
 dy
-SD
+yW
 cK
 cK
 ms
@@ -39877,7 +39893,7 @@ iK
 jY
 kn
 di
-SD
+yW
 cK
 cK
 ms
@@ -40019,7 +40035,7 @@ iK
 jY
 kn
 di
-SD
+yW
 cK
 cK
 ms
@@ -40871,7 +40887,7 @@ eb
 ka
 ky
 di
-SD
+yW
 cK
 cK
 ms
@@ -41013,7 +41029,7 @@ jf
 kj
 kQ
 di
-SD
+yW
 cK
 cK
 ms
@@ -41155,7 +41171,7 @@ jr
 kk
 kR
 dy
-SD
+yW
 cK
 cK
 ms
@@ -41606,7 +41622,7 @@ vl
 wH
 vl
 xZ
-yW
+AO
 zN
 AN
 zL
@@ -41750,7 +41766,7 @@ vk
 ya
 yX
 zO
-AO
+SD
 BQ
 CI
 Dx
