@@ -415,10 +415,14 @@ Class Procs:
 	var/obj/item/weapon/circuitboard/M = circuit
 	A.circuit = M
 	A.anchored = 1
-	A.density = 1
 	A.frame_type = M.board_type
 	if(A.frame_type.circuit)
 		A.need_circuit = 0
+
+	if(A.frame_type.frame_class == FRAME_CLASS_ALARM || A.frame_type.frame_class == FRAME_CLASS_DISPLAY)
+		A.density = 0
+	else
+		A.density = 1
 
 	if(A.frame_type.frame_class == FRAME_CLASS_MACHINE)
 		for(var/obj/D in component_parts)
