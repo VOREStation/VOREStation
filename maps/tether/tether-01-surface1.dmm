@@ -1214,6 +1214,11 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 5
 	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	pixel_x = 0
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/uxstorage)
 "aco" = (
@@ -6083,6 +6088,13 @@
 	dir = 8
 	},
 /area/hallway/lower/first_west)
+"aks" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/atrium_one)
 "akt" = (
 /turf/simulated/wall,
 /area/storage/art)
@@ -6168,6 +6180,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
+"akC" = (
+/obj/machinery/light/small,
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/atrium_one)
 "akD" = (
 /obj/machinery/light/flamp/noshade,
 /turf/simulated/floor/grass,
@@ -6191,6 +6208,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
+"akG" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 1
+	},
+/turf/simulated/floor/water/pool,
+/area/tether/surfacebase/atrium_one)
 "akH" = (
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/storage/surface_eva/external)
@@ -6203,6 +6227,12 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether/surfacebase/mining_main/ore)
+"akJ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/lino,
+/area/crew_quarters/visitor_dining)
 "akK" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
@@ -6229,6 +6259,65 @@
 /obj/structure/closet/firecloset,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/lobby)
+"akL" = (
+/obj/effect/floor_decal/rust,
+/obj/machinery/portable_atmospherics/canister/phoron,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/rnd/xenobiology/xenoflora_storage)
+"akM" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/effect/floor_decal/industrial/warning,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/surface_atmos)
+"akN" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	pixel_x = 0
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
+"akO" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/industrial/danger,
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "xenobio6";
+	name = "Containment Blast Doors";
+	pixel_x = 8;
+	pixel_y = -30;
+	req_access = list(55)
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "xenobio5";
+	name = "Containment Blast Doors";
+	pixel_x = -8;
+	pixel_y = -30;
+	req_access = list(55)
+	},
+/obj/machinery/computer/area_atmos/tag{
+	dir = 1;
+	scrub_id = "rnd_xeno_vent"
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/rnd/xenobiology)
+"akP" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/rnd/external)
 "akQ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -6244,6 +6333,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/lobby)
+"akR" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	pixel_x = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/atmos)
 "akS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -6256,6 +6355,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/lobby)
+"akT" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/atmos)
 "akV" = (
 /turf/simulated/mineral,
 /area/vacant/vacant_site)
@@ -7139,11 +7246,6 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether/surfacebase/mining_main/ore)
 "anF" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/simulated/floor/grass,
-/area/tether/surfacebase/atrium_one)
-"anG" = (
-/obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/atrium_one)
@@ -11222,9 +11324,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker/laundry_arrival)
-"ayV" = (
-/turf/simulated/floor/tiled/techfloor,
-/area/tether/surfacebase/outside/outside1)
 "ayW" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -14726,9 +14825,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
-"aIp" = (
-/turf/simulated/mineral,
-/area/rnd/external)
 "aIq" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 10
@@ -20641,14 +20737,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
-"bEV" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/effect/floor_decal/industrial/warning,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
-/area/maintenance/substation/surface_atmos)
 "bEX" = (
 /turf/simulated/wall/r_wall,
 /area/engineering/atmos)
@@ -21328,31 +21416,6 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/rnd/xenobiology)
-"bNS" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/industrial/danger,
-/obj/machinery/button/remote/blast_door{
-	dir = 4;
-	id = "xenobio6";
-	name = "Containment Blast Doors";
-	pixel_x = 8;
-	pixel_y = -30;
-	req_access = list(55)
-	},
-/obj/machinery/button/remote/blast_door{
-	dir = 4;
-	id = "xenobio5";
-	name = "Containment Blast Doors";
-	pixel_x = -8;
-	pixel_y = -30;
-	req_access = list(55)
-	},
-/obj/machinery/computer/area_atmos/tag{
-	dir = 1;
-	scrub_id = "rnd_xeno_vent"
-	},
-/turf/simulated/floor/tiled,
 /area/rnd/xenobiology)
 "bNU" = (
 /obj/effect/floor_decal/borderfloor,
@@ -36691,7 +36754,7 @@ aFE
 aGs
 aAO
 bmv
-bNS
+akO
 azr
 azr
 azr
@@ -37688,7 +37751,7 @@ aHe
 bOI
 bQT
 aHh
-aIp
+akP
 akb
 aad
 aad
@@ -39384,7 +39447,7 @@ aBN
 bwx
 aEO
 aFn
-aFV
+akL
 aFV
 aGH
 aGW
@@ -42366,7 +42429,7 @@ aah
 aEU
 bzL
 aFs
-bEV
+akM
 bGF
 bEX
 pbE
@@ -43045,7 +43108,7 @@ ahX
 aiY
 afa
 ahX
-ayV
+aah
 agM
 agM
 agM
@@ -43095,7 +43158,7 @@ rNz
 kwi
 vAU
 uzQ
-aIL
+akT
 bEX
 bEX
 bEX
@@ -43187,7 +43250,7 @@ ahX
 aiZ
 afc
 ahX
-ayV
+aah
 agM
 ahc
 agM
@@ -43900,13 +43963,13 @@ akD
 alm
 alm
 alm
+akD
 amO
 amO
 amO
 amO
 amO
-amO
-amO
+akD
 alm
 alm
 alm
@@ -44327,11 +44390,11 @@ alo
 alS
 alS
 alS
-alS
 alT
 alT
 alT
-alS
+alT
+alT
 alS
 alS
 alS
@@ -44468,13 +44531,13 @@ akE
 alo
 alS
 alS
-alS
 anm
 anF
+anF
 aKB
-anG
-alo
-alS
+anF
+anF
+akG
 alS
 alS
 anm
@@ -44500,7 +44563,7 @@ aCC
 aPU
 bEX
 vNJ
-kwi
+akN
 rfn
 lZz
 ylA
@@ -44610,13 +44673,13 @@ akE
 alo
 alS
 alS
-alS
 anm
+aks
 anF
 akD
 anF
-alo
-alS
+akC
+akG
 alS
 alS
 anm
@@ -44648,7 +44711,7 @@ gSV
 xgc
 ttd
 vJa
-gSV
+akR
 xgc
 sQh
 vJa
@@ -44752,13 +44815,13 @@ akE
 alo
 alS
 alS
-alS
 anm
-anG
+anF
+anF
 cdL
-anG
-alo
-alS
+anF
+anF
+akG
 alS
 alS
 anm
@@ -44895,11 +44958,11 @@ alo
 alS
 alS
 alS
-alS
 alR
 alR
 alR
-alS
+alR
+alR
 alS
 alS
 alS
@@ -45320,13 +45383,13 @@ akD
 alm
 alm
 alm
+akD
 amO
 amO
 amO
 amO
 amO
-amO
-amO
+akD
 alm
 alm
 alm
@@ -48187,7 +48250,7 @@ cfk
 cfy
 byp
 aFc
-bdk
+akJ
 cgv
 cgH
 cgN
