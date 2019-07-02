@@ -85,22 +85,65 @@ datum/design/item/laserpointer
 	build_path = /obj/item/device/communicator
 	sort_string = "VABAJ"
 
+/datum/design/item/gps
+	req_tech = list(TECH_MATERIAL = 2, TECH_DATA = 2, TECH_BLUESPACE = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 500)
+
+/datum/design/item/gps/generic
+	name = "Triangulating device design (GEN)"
+	id = "gps_gen"
+	build_path = /obj/item/device/gps
+	sort_string = "VADAA"
+
+/datum/design/item/gps/comand
+	name = "Triangulating device design (COM)"
+	id = "gps_com"
+	build_path = /obj/item/device/gps/command
+	sort_string = "VADAB"
+
+/datum/design/item/gps/security
+	name = "Triangulating device design (SEC)"
+	id = "gps_sec"
+	build_path = /obj/item/device/gps/security
+	sort_string = "VADAC"
+
+/datum/design/item/gps/medical
+	name = "Triangulating device design (MED)"
+	id = "gps_med"
+	build_path = /obj/item/device/gps/medical
+	sort_string = "VADAD"
+
+/datum/design/item/gps/engineering
+	name = "Triangulating device design (ENG)"
+	id = "gps_eng"
+	build_path = /obj/item/device/gps/engineering
+	sort_string = "VADAE"
+
+/datum/design/item/gps/science
+	name = "Triangulating device design (SCI)"
+	id = "gps_sci"
+	build_path = /obj/item/device/gps/science
+	sort_string = "VADAF"
+
+/datum/design/item/gps/mining
+	name = "Triangulating device design (MINE)"
+	id = "gps_mine"
+	build_path = /obj/item/device/gps/mining
+	sort_string = "VADAG"
+
+/datum/design/item/gps/explorer
+	name = "Triangulating device design (EXP)"
+	id = "gps_exp"
+	build_path = /obj/item/device/gps/explorer
+	sort_string = "VADAH"
+
 /datum/design/item/beacon
 	name = "Bluespace tracking beacon design"
 	id = "beacon"
 	req_tech = list(TECH_BLUESPACE = 1)
 	materials = list (DEFAULT_WALL_MATERIAL = 20, "glass" = 10)
 	build_path = /obj/item/device/radio/beacon
-	sort_string = "VADAA"
-
-/datum/design/item/gps
-	name = "Triangulating device design"
-	desc = "Triangulates approximate co-ordinates using a nearby satellite network."
-	id = "gps"
-	req_tech = list(TECH_MATERIAL = 2, TECH_DATA = 2, TECH_BLUESPACE = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 500)
-	build_path = /obj/item/device/gps
-	sort_string = "VADAB"
+	sort_string = "VADBA"
 
 /datum/design/item/beacon_locator
 	name = "Beacon tracking pinpointer"
@@ -109,7 +152,7 @@ datum/design/item/laserpointer
 	req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 2, TECH_BLUESPACE = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 1000,"glass" = 500)
 	build_path = /obj/item/device/beacon_locator
-	sort_string = "VADAC"
+	sort_string = "VADBB"
 
 /datum/design/item/bag_holding
 	name = "'Bag of Holding', an infinite capacity bag prototype"
