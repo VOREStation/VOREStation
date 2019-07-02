@@ -1297,15 +1297,49 @@
 /turf/simulated/wall/r_wall,
 /area/engineering/shaft)
 "bX" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/structure/table/rack/shelf,
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station{
-	base_turf = /turf/simulated/mineral/floor/vacuum
-	})
+/obj/effect/floor_decal/corner/purple/border{
+	icon_state = "bordercolor";
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/item/stack/marker_beacon/thirty{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/item/stack/marker_beacon/thirty{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/device/gps{
+	pixel_x = -6;
+	pixel_y = -4
+	},
+/obj/item/device/gps{
+	pixel_x = -6;
+	pixel_y = -4
+	},
+/obj/item/device/gps{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/device/gps{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/exploration/crew)
 "bY" = (
 /obj/effect/floor_decal/borderfloor/shifted{
 	icon_state = "borderfloor_shifted";
@@ -2494,41 +2528,41 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
 "dA" = (
-/obj/structure/table/rack/shelf,
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
+/obj/structure/table/rack,
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 6
 	},
-/obj/effect/floor_decal/corner/purple/border{
-	icon_state = "bordercolor";
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 10
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
+/obj/effect/floor_decal/corner/paleblue{
 	dir = 9
 	},
-/obj/item/device/gps/explorer{
-	pixel_x = -6;
-	pixel_y = -4
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 8
 	},
-/obj/item/device/gps/explorer{
-	pixel_x = 6;
-	pixel_y = -4
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 1
 	},
-/obj/item/stack/marker_beacon/thirty{
-	pixel_x = 5;
-	pixel_y = 4
-	},
-/obj/item/stack/marker_beacon/thirty{
-	pixel_x = -5;
-	pixel_y = 4
-	},
-/obj/machinery/light{
+/obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/tether/exploration/crew)
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/item/device/multitool,
+/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/device/radio{
+	pixel_x = -4;
+	pixel_y = 1
+	},
+/obj/item/device/radio{
+	pixel_x = 4;
+	pixel_y = -1
+	},
+/obj/item/device/gps/medical{
+	pixel_y = 3
+	},
+/obj/item/device/gps/medical{
+	pixel_x = -3
+	},
+/turf/simulated/floor/tiled/dark,
+/area/medical/medbay_emt_bay)
 "dB" = (
 /obj/structure/stairs/north,
 /turf/simulated/floor/tiled,
@@ -17505,10 +17539,14 @@
 "AC" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/corner/paleblue{
-	dir = 6
+	dir = 9
 	},
 /obj/effect/floor_decal/corner/paleblue{
-	dir = 9
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
@@ -17516,21 +17554,13 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 1
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9,
-/obj/item/device/multitool,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/device/radio{
-	pixel_x = -4;
-	pixel_y = 1
-	},
-/obj/item/device/radio{
-	pixel_x = 4;
-	pixel_y = -1
+/obj/machinery/firealarm{
+	dir = 4;
+	layer = 3.3;
+	pixel_x = 26
 	},
 /obj/item/device/defib_kit/compact/loaded,
+/obj/item/weapon/rig/medical/equipped,
 /turf/simulated/floor/tiled/dark,
 /area/medical/medbay_emt_bay)
 "AD" = (
@@ -17658,31 +17688,15 @@
 /turf/simulated/floor/tiled/dark,
 /area/medical/medbay_emt_bay)
 "AO" = (
-/obj/structure/table/rack,
-/obj/item/weapon/rig/medical/equipped,
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 9
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 6
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9,
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 8
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 1
-	},
-/obj/machinery/firealarm{
-	dir = 4;
-	layer = 3.3;
-	pixel_x = 26
-	},
-/turf/simulated/floor/tiled/dark,
-/area/medical/medbay_emt_bay)
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station{
+	base_turf = /turf/simulated/mineral/floor/vacuum
+	})
 "AP" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -32585,7 +32599,7 @@ AN
 Ci
 Bw
 yY
-bX
+AO
 EF
 EF
 EF
@@ -32722,8 +32736,8 @@ ve
 zt
 zU
 Ai
+dA
 AC
-AO
 Be
 Be
 yY
@@ -32965,7 +32979,7 @@ ac
 ac
 bA
 cI
-dA
+bX
 dY
 eH
 gf

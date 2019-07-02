@@ -4073,6 +4073,12 @@
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
+/obj/item/device/gps/security{
+	pixel_y = 3
+	},
+/obj/item/device/gps/security{
+	pixel_x = -3
+	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "gX" = (

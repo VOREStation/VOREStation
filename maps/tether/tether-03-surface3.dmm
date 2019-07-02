@@ -5549,10 +5549,10 @@
 	icon_state = "pipe-c"
 	},
 /obj/structure/table/steel,
-/obj/random/tech_supply,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
+/obj/item/device/gps/science,
 /turf/simulated/floor/plating,
 /area/rnd/research_storage)
 "jz" = (
