@@ -17,6 +17,9 @@
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail
 	var/stabilization_enabled = 1
 
+	stomp_sound = 'sound/machines/hiss.ogg'
+	swivel_sound = null
+
 	max_hull_equip = 2
 	max_weapon_equip = 0
 	max_utility_equip = 2
@@ -49,7 +52,7 @@
 	output += ..()
 	return output
 
-//No space drifting
+// No space drifting
 /obj/mecha/working/hoverpod/check_for_support()
 	//does the hoverpod have enough charge left to stabilize itself?
 	if (!has_charge(step_energy_drain))
@@ -62,6 +65,11 @@
 
 	return ..()
 
+// No falling if we've got our boosters on
+/obj/mecha/working/hoverpod/can_fall()
+	return (stabilization_enabled && has_charge(step_energy_drain))
+
+/*	// One horrific bastardization of glorious inheritence dead. A billion to go. ~Mech
 //these three procs overriden to play different sounds
 /obj/mecha/working/hoverpod/mechturn(direction)
 	set_dir(direction)
@@ -80,7 +88,7 @@
 	if(result)
 		playsound(src,'sound/machines/hiss.ogg',40,1)
 	return result
-
+*/
 
 //Hoverpod variants
 /obj/mecha/working/hoverpod/combatpod

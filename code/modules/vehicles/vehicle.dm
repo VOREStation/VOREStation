@@ -81,7 +81,6 @@
 	if(riding_datum)
 		riding_datum.handle_ride(user, direction)
 
-
 /obj/vehicle/Moved()
 	. = ..()
 	if(riding_datum)

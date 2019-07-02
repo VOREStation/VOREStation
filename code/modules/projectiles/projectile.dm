@@ -346,10 +346,18 @@
 /obj/item/projectile/proc/preparePixelProjectile(atom/target, atom/source, params, spread = 0)
 	var/turf/curloc = get_turf(source)
 	var/turf/targloc = get_turf(target)
+
+	if(istype(source, /atom/movable))
+		var/atom/movable/MT = source
+		if(MT.locs && MT.locs.len)	// Multi tile!
+			for(var/turf/T in MT.locs)
+				if(get_dist(T, target) < get_turf(curloc))
+					curloc = get_turf(T)
+
 	trajectory_ignore_forcemove = TRUE
 	forceMove(get_turf(source))
 	trajectory_ignore_forcemove = FALSE
-	starting = get_turf(source)
+	starting = curloc
 	original = target
 	if(targloc || !params)
 		yo = targloc.y - curloc.y
@@ -651,3 +659,14 @@
 	silenced = launcher.silenced
 
 	return launch_projectile(target, target_zone, user, params, angle_override, forced_spread)
+
+/obj/item/projectile/proc/launch_projectile_from_turf(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
+	original = target
+	def_zone = check_zone(target_zone)
+	firer = user
+	var/direct_target
+	if(get_turf(target) == get_turf(src))
+		direct_target = target
+
+	preparePixelProjectile(target, get_turf(src), params, forced_spread)
+	return fire(angle_override, direct_target)

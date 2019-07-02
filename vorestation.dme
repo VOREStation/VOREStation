@@ -863,6 +863,7 @@
 #include "code\game\mecha\equipment\weapons\weapons.dm"
 #include "code\game\mecha\medical\medical.dm"
 #include "code\game\mecha\medical\odysseus.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\game\mecha\micro\mecha_construction_paths_vr.dm"
 #include "code\game\mecha\micro\mecha_parts_vr.dm"
 #include "code\game\mecha\micro\mecha_vr.dm"
@@ -872,6 +873,10 @@
 #include "code\game\mecha\micro\security.dm"
 #include "code\game\mecha\micro\utility.dm"
 #include "code\game\mecha\working\hoverpod.dm"
+=======
+#include "code\game\mecha\space\hoverpod.dm"
+#include "code\game\mecha\space\shuttle.dm"
+>>>>>>> c8b2c08... Merge pull request #6120 from Mechoid/MultiTile:polaris.dme
 #include "code\game\mecha\working\ripley.dm"
 #include "code\game\mecha\working\working.dm"
 #include "code\game\objects\banners.dm"
@@ -2539,6 +2544,7 @@
 #include "code\modules\modular_computers\NTNet\emails\email_account.dm"
 #include "code\modules\modular_computers\NTNet\emails\email_message.dm"
 #include "code\modules\modular_computers\NTNet\NTNRC\conversation.dm"
+#include "code\modules\multi-tile\multi-tile.dm"
 #include "code\modules\multiz\_stubs.dm"
 #include "code\modules\multiz\basic.dm"
 #include "code\modules\multiz\hoist.dm"

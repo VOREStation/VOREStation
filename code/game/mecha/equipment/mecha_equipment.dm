@@ -237,12 +237,10 @@
 		set_ready_state(1)
 	return
 
-
 /obj/item/mecha_parts/mecha_equipment/Topic(href,href_list)
 	if(href_list["detach"])
 		src.detach()
 	return
-
 
 /obj/item/mecha_parts/mecha_equipment/proc/set_ready_state(state)
 	equip_ready = state
