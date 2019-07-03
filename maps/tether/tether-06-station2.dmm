@@ -3897,7 +3897,7 @@
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
 "fF" = (
-/obj/machinery/porta_turret/ai_defense,
+/obj/machinery/porta_turret,
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
 "fG" = (
@@ -5130,7 +5130,7 @@
 	pixel_x = -32;
 	pixel_y = 0
 	},
-/obj/machinery/porta_turret/ai_defense,
+/obj/machinery/porta_turret,
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
 "hE" = (
@@ -5191,7 +5191,7 @@
 	pixel_x = 32;
 	pixel_y = 0
 	},
-/obj/machinery/porta_turret/ai_defense,
+/obj/machinery/porta_turret,
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
 "hI" = (
