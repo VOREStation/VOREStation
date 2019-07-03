@@ -7761,12 +7761,10 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "mv" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 9
-	},
-/obj/machinery/porta_turret/ai_defense,
-/turf/simulated/floor/bluegrid,
-/area/ai_core_foyer)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "mw" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 1
@@ -8424,9 +8422,9 @@
 /area/maintenance/cargo)
 "ny" = (
 /obj/effect/floor_decal/techfloor{
-	dir = 5
+	dir = 9
 	},
-/obj/machinery/porta_turret/ai_defense,
+/obj/machinery/porta_turret,
 /turf/simulated/floor/bluegrid,
 /area/ai_core_foyer)
 "nz" = (
@@ -16055,10 +16053,12 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/foyer)
 "yW" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/effect/floor_decal/techfloor{
+	dir = 5
+	},
+/obj/machinery/porta_turret,
+/turf/simulated/floor/bluegrid,
+/area/ai_core_foyer)
 "yX" = (
 /obj/structure/cable/green{
 	d2 = 4;
@@ -39757,7 +39757,7 @@ it
 di
 di
 dy
-yW
+mv
 cK
 cK
 ms
@@ -39899,7 +39899,7 @@ iK
 jY
 kn
 di
-yW
+mv
 cK
 cK
 ms
@@ -40041,7 +40041,7 @@ iK
 jY
 kn
 di
-yW
+mv
 cK
 cK
 ms
@@ -40893,7 +40893,7 @@ eb
 ka
 ky
 di
-yW
+mv
 cK
 cK
 ms
@@ -41035,7 +41035,7 @@ jf
 kj
 kQ
 di
-yW
+mv
 cK
 cK
 ms
@@ -41177,7 +41177,7 @@ jr
 kk
 kR
 dy
-yW
+mv
 cK
 cK
 ms
@@ -42600,7 +42600,7 @@ jt
 js
 is
 fy
-mv
+ny
 nC
 OX
 VM
@@ -43452,7 +43452,7 @@ jt
 jQ
 is
 fy
-ny
+yW
 Ov
 PF
 VM
