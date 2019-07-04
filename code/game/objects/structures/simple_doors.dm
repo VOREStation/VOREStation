@@ -131,7 +131,7 @@
 			user << "You finished digging."
 			Dismantle()
 	else if(istype(W,/obj/item/weapon)) //not sure, can't not just weapons get passed to this proc?
-		hardness -= W.force/100
+		hardness -= W.force/10
 		user << "You hit the [name] with your [W.name]!"
 		CheckHardness()
 	else if(istype(W,/obj/item/weapon/weldingtool))
@@ -141,6 +141,10 @@
 	else
 		attack_hand(user)
 	return
+
+/obj/structure/simple_door/bullet_act(var/obj/item/projectile/Proj)
+	hardness -= Proj.force/10
+	CheckHardness()
 
 /obj/structure/simple_door/proc/CheckHardness()
 	if(hardness <= 0)
