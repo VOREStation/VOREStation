@@ -65,6 +65,8 @@
 	..()
 	var/list/skirts = list()
 	for(var/skirt in (typesof(/obj/item/clothing/under/skirt)))
+		if(skirt in typesof(/obj/item/clothing/under/skirt/fluff))	//VOREStation addition
+			continue												//VOREStation addition
 		var/obj/item/clothing/under/skirt/skirt_type = skirt
 		skirts[initial(skirt_type.name)] = skirt_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(skirts))
@@ -223,6 +225,8 @@
 	..()
 	var/list/msuits = list()
 	for(var/msuit in typesof(/obj/item/clothing/under/suit_jacket))
+		if(msuit in typesof(/obj/item/clothing/under/suit_jacket/female/fluff))	//VOREStation addition
+			continue															//VOREStation addition
 		var/obj/item/clothing/suit/msuit_type = msuit
 		msuits[initial(msuit_type.name)] = msuit_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(msuits))
