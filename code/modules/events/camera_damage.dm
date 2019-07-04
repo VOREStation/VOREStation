@@ -33,6 +33,6 @@
 	return acquire_random_camera(remaining_attempts--)
 
 /datum/event/camera_damage/proc/is_valid_camera(var/obj/machinery/camera/C)
-	// Only return a functional camera, not installed in a silicon, and that exists somewhere players have access
+	// Only return a functional camera, not installed in a silicon/hardsuit/circuit/etc, and that exists somewhere players have access
 	var/turf/T = get_turf(C)
-	return T && C.can_use() && !istype(C.loc, /mob/living/silicon) && (T.z in using_map.player_levels)
+	return T && C.can_use() && istype(C.loc, /turf) && (T.z in using_map.player_levels)
