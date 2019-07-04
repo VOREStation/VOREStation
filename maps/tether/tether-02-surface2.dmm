@@ -11573,6 +11573,23 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/engineering/drone_fabrication)
+"wK" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Telecomms Access";
+	req_access = list(61);
+	req_one_access = list(12)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled,
+/area/tcommsat/entrance{
+	name = "\improper Telecomms Entrance"
+	})
 "wL" = (
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -11646,6 +11663,37 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
+"wN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/glass{
+	req_access = list(61);
+	req_one_access = list(12)
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled,
+/area/tcomsat{
+	name = "\improper Telecomms Lobby"
+	})
 "wO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 4
@@ -11735,6 +11783,24 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
+"wR" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/glass{
+	name = "Telecomms Storage";
+	req_access = list(61);
+	req_one_access = list(12)
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tcomfoyer{
+	name = "\improper Telecomms Storage"
+	})
 "wT" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
@@ -14527,36 +14593,6 @@
 /area/tcomsat{
 	name = "\improper Telecomms Lobby"
 	})
-"FH" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/glass{
-	req_access = list(61)
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/tiled,
-/area/tcomsat{
-	name = "\improper Telecomms Lobby"
-	})
 "FI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -15024,24 +15060,6 @@
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
-/area/tcomfoyer{
-	name = "\improper Telecomms Storage"
-	})
-"Gy" = (
-/obj/machinery/door/airlock/glass{
-	name = "Telecomms Storage";
-	req_access = list(61);
-	req_one_access = newlist()
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/dark,
 /area/tcomfoyer{
 	name = "\improper Telecomms Storage"
 	})
@@ -15770,22 +15788,6 @@
 /turf/simulated/floor/plating,
 /area/tcomsat{
 	name = "\improper Telecomms Lobby"
-	})
-"HO" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Telecomms Access";
-	req_one_access = list(61)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled,
-/area/tcommsat/entrance{
-	name = "\improper Telecomms Entrance"
 	})
 "HP" = (
 /obj/structure/cable/green{
@@ -31610,7 +31612,7 @@ rg
 rg
 ET
 Ff
-HO
+wK
 FU
 ET
 ac
@@ -32607,7 +32609,7 @@ Fl
 FF
 FZ
 Gn
-Gy
+wR
 GM
 GS
 Ha
@@ -32888,7 +32890,7 @@ Ez
 EL
 EM
 HN
-FH
+wN
 Ga
 FR
 FR
