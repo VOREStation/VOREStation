@@ -14559,7 +14559,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/glass{
-	req_access = list(61)
+	req_access = list(61);
+	req_one_access = list(12)
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -14630,7 +14631,8 @@
 "FL" = (
 /obj/machinery/door/airlock/hatch{
 	name = "Telecoms Control Room";
-	req_access = list(61)
+	req_access = list(61);
+	req_one_access = list(12)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -15024,7 +15026,8 @@
 	id_tag = "server_access_inner";
 	locked = 1;
 	name = "Telecoms Server Access";
-	req_access = list(61)
+	req_access = list(61);
+	req_one_access = list(12)
 	},
 /turf/simulated/floor/tiled/dark{
 	nitrogen = 100;
@@ -15049,7 +15052,7 @@
 /obj/machinery/door/airlock/glass{
 	name = "Telecomms Storage";
 	req_access = list(61);
-	req_one_access = newlist()
+	req_one_access = list(12)
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -15776,7 +15779,8 @@
 "HO" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Telecomms Access";
-	req_one_access = list(61)
+	req_access = list(61);
+	req_one_access = list(12)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -15818,7 +15822,8 @@
 	id_tag = "server_access_outer";
 	locked = 1;
 	name = "Telecoms Server Access";
-	req_access = list(61)
+	req_access = list(61);
+	req_one_access = list(12)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
