@@ -106,6 +106,8 @@ datum/gear/suit/duster
 	..()
 	var/list/hazards = list()
 	for(var/hazard_style in typesof(/obj/item/clothing/suit/storage/hazardvest))
+		if(hazard_style in typesof(/obj/item/clothing/suit/storage/hazardvest/fluff))	//VOREStation addition
+			continue																	//VOREStation addition
 		var/obj/item/clothing/suit/storage/hazardvest/hazardvest = hazard_style
 		hazards[initial(hazardvest.name)] = hazardvest
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(hazards))
