@@ -1243,7 +1243,7 @@
 	name = "Syntiflesh"
 	id = "syntiflesh"
 	result = null
-	required_reagents = list("blood" = 5, "clonexadone" = 5)
+	required_reagents = list("blood" = 5, "clonexadone" = 1) //VOREStation Edit
 	result_amount = 1
 
 /datum/chemical_reaction/food/syntiflesh/on_reaction(var/datum/reagents/holder, var/created_volume)
