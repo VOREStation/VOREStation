@@ -246,7 +246,7 @@
 		return
 	start()
 	if (reagents.total_volume==0 && !(locate(/obj) in ((contents - component_parts) - circuit))) //dry run
-		if (!wzhzhzh(2.5)) //VOREStation Edit - Quicker Microwaves
+		if (!wzhzhzh(5)) //VOREStation Edit - Quicker Microwaves
 			abort()
 			return
 		abort()
@@ -256,18 +256,18 @@
 	var/obj/cooked
 	if (!recipe)
 		dirty += 1
-		if (prob(max(2.5,dirty*5))) //VOREStation Edit - Quicker Microwaves
-			if (!wzhzhzh(1)) //VOREStation Edit - Quicker Microwaves
+		if (prob(max(10,dirty*5)))
+			if (!wzhzhzh(2)) //VOREStation Edit - Quicker Microwaves
 				abort()
 				return
 			muck_start()
-			wzhzhzh(1) //VOREStation Edit - Quicker Microwaves
+			wzhzhzh(2) //VOREStation Edit - Quicker Microwaves
 			muck_finish()
 			cooked = fail()
 			cooked.loc = src.loc
 			return
 		else if (has_extra_item())
-			if (!wzhzhzh(1)) //VOREStation Edit - Quicker Microwaves
+			if (!wzhzhzh(2)) //VOREStation Edit - Quicker Microwaves
 				abort()
 				return
 			broke()
@@ -275,7 +275,7 @@
 			cooked.loc = src.loc
 			return
 		else
-			if (!wzhzhzh(2.5)) //VOREStation Edit - Quicker Microwaves
+			if (!wzhzhzh(5)) //VOREStation Edit - Quicker Microwaves
 				abort()
 				return
 			abort()
@@ -283,7 +283,7 @@
 			cooked.loc = src.loc
 			return
 	else
-		var/halftime = round(recipe.time/40/2) //VOREStation Edit - Quicker Microwaves
+		var/halftime = round(recipe.time/20/2) //VOREStation Edit - Quicker Microwaves
 		if (!wzhzhzh(halftime))
 			abort()
 			return
@@ -303,7 +303,7 @@
 		if (stat & (NOPOWER|BROKEN))
 			return 0
 		use_power(500)
-		sleep(2.5) //VOREStation Edit - Quicker Microwaves
+		sleep(5) //VOREStation Edit - Quicker Microwaves
 	return 1
 
 /obj/machinery/microwave/proc/has_extra_item()
