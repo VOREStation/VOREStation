@@ -19808,9 +19808,6 @@
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
 "EE" = (
-/turf/simulated/floor/tiled,
-/area/tether/elevator)
-"EF" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
@@ -19819,7 +19816,7 @@
 /area/shuttle/large_escape_pod1/station{
 	base_turf = /turf/simulated/mineral/floor/vacuum
 	})
-"EG" = (
+"EF" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_r"
@@ -31719,7 +31716,7 @@ fu
 fu
 fu
 fu
-EE
+fq
 oS
 kj
 eN
@@ -32600,10 +32597,10 @@ Ci
 Bw
 yY
 AO
+EE
+EE
+EE
 EF
-EF
-EF
-EG
 yY
 ac
 ac
