@@ -170,6 +170,7 @@
 		foundjob.current_positions++
 		var/mob/living/carbon/human/H = usr
 		H.mind.assigned_role = foundjob.title
+		H.mind.role_alt_title = newjob
 		announce.autosay("[card.registered_name] has moved On-Duty as [card.assignment].", "Employee Oversight")
 	return
 
@@ -200,6 +201,7 @@
 		callHook("reassign_employee", list(card))
 		var/mob/living/carbon/human/H = usr
 		H.mind.assigned_role = ptojob.title
+		H.mind.role_alt_title = ptojob.title
 		foundjob.current_positions--
 		announce.autosay("[card.registered_name], [oldtitle], has moved Off-Duty.", "Employee Oversight")
 	return
