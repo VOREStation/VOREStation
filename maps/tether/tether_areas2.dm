@@ -201,6 +201,10 @@
 	icon_state = "atmos"
 	sound_env = LARGE_ENCLOSED
 
+/area/engineering/atmos/gas_storage
+	name = "Atmospherics Gas Storage"
+	icon_state = "atmos"
+
 /area/engineering/atmos/intake
 	name = "\improper Atmospherics Intake"
 	icon_state = "atmos"
