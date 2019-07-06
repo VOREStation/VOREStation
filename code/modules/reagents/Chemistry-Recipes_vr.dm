@@ -101,7 +101,7 @@
 	name = "Vermicetol"
 	id = "vermicetol"
 	result = "vermicetol"
-	required_reagents = list("bicaridine" = 1, "shockchem" = 1, "phoron" = 0.1)
+	required_reagents = list("bicaridine" = 2, "shockchem" = 1, "phoron" = 0.1)
 	catalysts = list("phoron" = 5)
 	result_amount = 3
 
