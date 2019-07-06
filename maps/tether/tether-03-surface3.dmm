@@ -6446,6 +6446,7 @@
 /area/tether/surfacebase/north_stairs_three)
 "ld" = (
 /obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_stairs_three)
 "le" = (
