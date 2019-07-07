@@ -6,7 +6,7 @@
 	origin_tech = list(TECH_DATA = 2, TECH_BIO = 3)
 	energy_drain = 20
 	range = MELEE
-	equip_cooldown = 50
+	equip_cooldown = 30
 	var/mob/living/carbon/human/occupant = null
 	var/datum/global_iterator/pr_mech_sleeper
 	var/inject_amount = 5
@@ -515,8 +515,7 @@
 				if(M)
 					S.icon_state = initial(S.icon_state)
 					S.icon = initial(S.icon)
-					if(M.can_inject())
-						S.reagents.trans_to_mob(M, S.reagents.total_volume, CHEM_BLOOD)
+					S.reagents.trans_to_mob(M, S.reagents.total_volume, CHEM_BLOOD)
 					M.take_organ_damage(2)
 					S.visible_message("<span class=\"attack\"> [M] was hit by the syringe!</span>")
 					break
