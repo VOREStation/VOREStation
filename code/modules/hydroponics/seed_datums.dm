@@ -459,6 +459,7 @@
 	display_name = "tower caps"
 	chems = list("woodpulp" = list(10,1))
 	mutants = null
+	has_item_product = /obj/item/stack/material/log
 
 /datum/seed/mushroom/towercap/New()
 	..()
