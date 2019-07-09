@@ -55,7 +55,7 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define NETWORK_SECURITY "Security"
 #define NETWORK_INTERROGATION "Interrogation"
 #define NETWORK_TELECOM "Tcomms"
-#define NETWORK_THUNDER "Thunderdome"
+#define NETWORK_THUNDER "Entertainment"		//VOREStation Edit: broader definition
 #define NETWORK_COMMUNICATORS "Communicators"
 #define NETWORK_ALARM_ATMOS "Atmosphere Alarms"
 #define NETWORK_ALARM_POWER "Power Alarms"
