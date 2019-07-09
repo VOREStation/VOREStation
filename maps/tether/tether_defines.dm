@@ -89,12 +89,13 @@
 
 	station_networks = list(
 							NETWORK_CARGO,
+							NETWORK_CIRCUITS,
 							NETWORK_CIVILIAN,
 							NETWORK_COMMAND,
 							NETWORK_ENGINE,
 							NETWORK_ENGINEERING,
 							NETWORK_EXPLORATION,
-							//NETWORK_DEFAULT,  //Is this even used for anything? Robots show up here, but they show up in ROBOTS network too
+							//NETWORK_DEFAULT,  //Is this even used for anything? Robots show up here, but they show up in ROBOTS network too,
 							NETWORK_MEDICAL,
 							NETWORK_MINE,
 							NETWORK_OUTSIDE,
@@ -104,6 +105,15 @@
 							NETWORK_SECURITY,
 							NETWORK_TCOMMS,
 							NETWORK_TETHER
+							)
+	secondary_networks = list(
+							NETWORK_ERT,
+							NETWORK_MERCENARY,
+							NETWORK_THUNDER,
+							NETWORK_COMMUNICATORS,
+							NETWORK_ALARM_ATMOS,
+							NETWORK_ALARM_POWER,
+							NETWORK_ALARM_FIRE
 							)
 
 	allowed_spawns = list("Tram Station","Gateway","Cryogenic Storage","Cyborg Storage")

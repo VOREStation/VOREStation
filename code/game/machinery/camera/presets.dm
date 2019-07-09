@@ -25,7 +25,7 @@ var/global/list/station_networks = list(
 var/global/list/engineering_networks = list(
 										NETWORK_ENGINE,
 										NETWORK_ENGINEERING,
-										NETWORK_ENGINEERING_OUTPOST,
+										//NETWORK_ENGINEERING_OUTPOST,	//VOREStation Edit: Tether has no Engineering Outpost,
 										NETWORK_ALARM_ATMOS,
 										NETWORK_ALARM_FIRE,
 										NETWORK_ALARM_POWER)
