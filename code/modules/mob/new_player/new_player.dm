@@ -183,21 +183,9 @@
 		else if(ticker && ticker.mode && ticker.mode.explosion_in_progress)
 			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
 			return
-<<<<<<< HEAD
-/*
-		if(!is_alien_whitelisted(src, all_species[client.prefs.species]))
-			src << alert("You are currently not whitelisted to play [client.prefs.species].")
-			return 0
-*/
-		var/datum/species/S = all_species[client.prefs.species]
-		if(!(S.spawn_flags & SPECIES_CAN_JOIN))
-			src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
-			return 0
-=======
 
 		if(!can_enter_round())
 			return
->>>>>>> 75511aa... Merge pull request #6275 from Neerti/skill_system
 
 		AttemptLateSpawn(href_list["SelectedJob"],client.prefs.spawnpoint)
 		return
@@ -528,16 +516,12 @@
 		//	new_character.real_name = pick(clown_names)	//I hate this being here of all places but unfortunately dna is based on real_name!
 		//	new_character.rename_self("clown")
 		mind.original = new_character
-<<<<<<< HEAD
 		// VOREStation
 		mind.loaded_from_ckey = client.ckey
 		mind.loaded_from_slot = client.prefs.default_slot
 		// VOREStation
 		//mind.traits = client.prefs.traits.Copy() // VOREStation conflict
-=======
-		mind.traits = client.prefs.traits.Copy()
 		mind.skills = client.prefs.skill_list.Copy()
->>>>>>> 75511aa... Merge pull request #6275 from Neerti/skill_system
 		mind.transfer_to(new_character)					//won't transfer key since the mind is not active
 
 	new_character.name = real_name
