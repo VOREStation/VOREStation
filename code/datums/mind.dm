@@ -71,6 +71,10 @@
 	//used to store what traits the player had picked out in their preferences before joining, in text form.
 	var/list/traits = list()
 
+	// Assoc list of skills this mind knows. Stored in the mind since it would be strange for someone to forget their skills if shoved in a new body.
+	// Format is '[skill_id] = [level]', e.g. 'SKILL_EXOSUITS = 2'.
+	var/list/skills = list()
+
 /datum/mind/New(var/key)
 	src.key = key
 

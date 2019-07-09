@@ -24,6 +24,14 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	outfit_type = /decl/hierarchy/outfit/job/captain
 	alt_titles = list("Site Manager", "Overseer")
 
+	// WIP
+	skill_templates = list(
+		"Colony Director" = list(
+			SKILL_EVA = SKILL_LEVEL_ONE,
+			SKILL_EXOSUITS = SKILL_LEVEL_ONE
+			)
+	)
+
 /*
 /datum/job/captain/equip(var/mob/living/carbon/human/H)
 	. = ..()

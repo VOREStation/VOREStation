@@ -129,6 +129,11 @@
 		/datum/mob_descriptor/build = -3
 		)
 
+	skill_curve_lowest_age = 12
+	skill_curve_highest_age = 30
+	skill_curve_minimum_points = SKILL_POINT_FLOOR
+	skill_curve_maximum_points = SKILL_POINT_CEILING
+
 /datum/species/teshari/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)

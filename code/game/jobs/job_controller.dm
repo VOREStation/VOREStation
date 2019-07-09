@@ -224,7 +224,7 @@ var/global/datum/controller/occupations/job_master
 
 		//Get the players who are ready
 		for(var/mob/new_player/player in player_list)
-			if(player.ready && player.mind && !player.mind.assigned_role)
+			if(player.ready && player.mind && !player.mind.assigned_role && player.can_enter_round())
 				unassigned += player
 
 		Debug("DO, Len: [unassigned.len]")

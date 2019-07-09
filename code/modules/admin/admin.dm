@@ -1282,22 +1282,27 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if(!ai_number)
 		usr << "<b>No AIs located</b>" //Just so you know the thing is actually working and not just ignoring you.
 
-/datum/admins/proc/show_skills()
-	set category = "Admin"
-	set name = "Show Skills"
+/client
+	var/datum/skill_manager/in_game/admin_viewer/admin_skill_viewer = null // Skill manager object for admins to view and modify other characters' skills.
 
-	if (!istype(src,/datum/admins))
-		src = usr.client.holder
-	if (!istype(src,/datum/admins))
-		usr << "Error: you are not an admin!"
+/client/proc/manage_skills(var/mob/living/L in player_list)
+	set name = "Manage Skills"
+	set desc = "Opens a window to view or modify another player's skillset."
+	set category = "Admin"
+
+	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
 		return
 
-	var/mob/living/carbon/human/M = input("Select mob.", "Select mob.") as null|anything in human_mob_list
-	if(!M) return
+	if(!L || !L.mind)
+		to_chat(usr, span("warning", "The mob you selected does not appear to exist, or lacks a mind datum. Therefore there are no skills to manage."))
+		return FALSE
 
-	show_skill_window(usr, M)
+	if(!admin_skill_viewer)
+		admin_skill_viewer = new(src, L.mind.skills, L.mind)
+	else
+		admin_skill_viewer.change_skill_list(L.mind.skills)
 
-	return
+	admin_skill_viewer.make_window()
 
 /client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
 	set category = "Admin"

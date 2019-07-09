@@ -27,6 +27,8 @@
 
 	var/outfit_type
 
+	var/skill_templates
+
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
 	var/decl/hierarchy/outfit/outfit = get_outfit(H, alt_title)
 	if(!outfit)

@@ -265,6 +265,14 @@
 #define BORG_BRAINTYPE_DRONE	"Drone"
 #define BORG_BRAINTYPE_AI_SHELL	"AI Shell"
 
+// Age defines.
+#define MMI_LIFE_EXTENSION		20 // How many years past the maximum can someone in an MMI achieve.
+
+// Max age defines for posibrains and drones.
+// It's here because they're not a real species, and these numbers are referenced in multiple places.
+#define MAX_AGE_POSI	220
+#define MAX_AGE_DRONE	150
+
 // 'Regular' species.
 #define SPECIES_HUMAN			"Human"
 #define SPECIES_HUMAN_VATBORN	"Vatborn"

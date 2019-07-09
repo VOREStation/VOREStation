@@ -34,7 +34,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	pref.age                = sanitize_integer(pref.age, get_min_age(), get_max_age(), initial(pref.age))
 	pref.biological_gender  = sanitize_inlist(pref.biological_gender, get_genders(), pick(get_genders()))
 	pref.identifying_gender = (pref.identifying_gender in all_genders_define_list) ? pref.identifying_gender : pref.biological_gender
-	pref.real_name		= sanitize_name(pref.real_name, pref.species, is_FBP())
+	pref.real_name		= sanitize_name(pref.real_name, pref.species, pref.is_FBP())
 	if(!pref.real_name)
 		pref.real_name      = random_name(pref.identifying_gender, pref.species)
 	pref.nickname		= sanitize_name(pref.nickname)
@@ -83,7 +83,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	if(href_list["rename"])
 		var/raw_name = input(user, "Choose your character's name:", "Character Name")  as text|null
 		if (!isnull(raw_name) && CanUseTopic(user))
-			var/new_name = sanitize_name(raw_name, pref.species, is_FBP())
+			var/new_name = sanitize_name(raw_name, pref.species, pref.is_FBP())
 			if(new_name)
 				pref.real_name = new_name
 				return TOPIC_REFRESH
@@ -102,7 +102,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 	else if(href_list["nickname"])
 		var/raw_nickname = input(user, "Choose your character's nickname:", "Character Nickname")  as text|null
 		if (!isnull(raw_nickname) && CanUseTopic(user))
-			var/new_nickname = sanitize_name(raw_nickname, pref.species, is_FBP())
+			var/new_nickname = sanitize_name(raw_nickname, pref.species, pref.is_FBP())
 			if(new_nickname)
 				pref.nickname = new_nickname
 				return TOPIC_REFRESH
