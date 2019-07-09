@@ -79,6 +79,7 @@ var/list/all_maps = list()
 	var/emergency_shuttle_recall_message
 
 	var/list/station_networks = list() 		// Camera networks that will show up on the console.
+	var/list/secondary_networks = list()	// Camera networks that exist, but don't show on regular camera monitors.
 
 	var/allowed_spawns = list("Arrivals Shuttle","Gateway", "Cryogenic Storage", "Cyborg Storage")
 

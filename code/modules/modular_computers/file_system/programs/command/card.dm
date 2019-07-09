@@ -168,7 +168,7 @@
 		if("terminate")
 			if(computer && can_run(user, 1))
 				id_card.assignment = "Terminated"
-				remove_nt_access(id_card)
+				id_card.access = list()
 				callHook("terminate_employee", list(id_card))
 		if("edit")
 			if(computer && can_run(user, 1))
@@ -206,8 +206,7 @@
 
 						access = jobdatum.get_access()
 
-					remove_nt_access(id_card)
-					apply_access(id_card, access)
+					id_card.access = access
 					id_card.assignment = t1
 					id_card.rank = t1
 
@@ -225,9 +224,3 @@
 
 	SSnanoui.update_uis(NM)
 	return 1
-
-/datum/computer_file/program/card_mod/proc/remove_nt_access(var/obj/item/weapon/card/id/id_card)
-	id_card.access -= get_access_ids(ACCESS_TYPE_STATION|ACCESS_TYPE_CENTCOM)
-
-/datum/computer_file/program/card_mod/proc/apply_access(var/obj/item/weapon/card/id/id_card, var/list/accesses)
-	id_card.access |= accesses

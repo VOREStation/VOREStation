@@ -34,6 +34,7 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define NETWORK_CRESCENT "Spaceport"
 // #define NETWORK_CAFE_DOCK "Cafe Dock"
 #define NETWORK_CARGO "Cargo"
+#define NETWORK_CIRCUITS "Circuits"
 #define NETWORK_CIVILIAN "Civilian"
 // #define NETWORK_CIVILIAN_EAST "Civilian East"
 // #define NETWORK_CIVILIAN_WEST "Civilian West"
@@ -109,7 +110,7 @@ var/list/restricted_camera_networks = list(NETWORK_ERT,NETWORK_MERCENARY,"Secret
 #define SUPERMATTER_WARNING 3		// Ambient temp > CRITICAL_TEMPERATURE OR integrity damaged
 #define SUPERMATTER_DANGER 4		// Integrity < 50%
 #define SUPERMATTER_EMERGENCY 5		// Integrity < 25%
-#define SUPERMATTER_DELAMINATING 6	// Pretty obvious. 
+#define SUPERMATTER_DELAMINATING 6	// Pretty obvious.
 
 //wIP - PORT ALL OF THESE TO SUBSYSTEMS AND GET RID OF THE WHOLE LIST PROCESS THING
 // Fancy-pants START/STOP_PROCESSING() macros that lets us custom define what the list is.
