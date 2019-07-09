@@ -1579,7 +1579,6 @@
 #include "code\modules\client\preference_setup\loadout\loadout_xeno.dm"
 #include "code\modules\client\preference_setup\loadout\loadout_xeno_vr.dm"
 #include "code\modules\client\preference_setup\occupation\occupation.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\client\preference_setup\skills\skills.dm"
 #include "code\modules\client\preference_setup\vore\01_ears.dm"
 #include "code\modules\client\preference_setup\vore\02_size.dm"
@@ -1590,11 +1589,9 @@
 #include "code\modules\client\preference_setup\vore\07_traits.dm"
 #include "code\modules\client\preference_setup\vore\08_nif.dm"
 #include "code\modules\client\preference_setup\vore\09_misc.dm"
-=======
 #include "code\modules\client\preference_setup\skills\skills3.dm"
 #include "code\modules\client\preference_setup\traits\trait_defines.dm"
 #include "code\modules\client\preference_setup\traits\traits.dm"
->>>>>>> 75511aa... Merge pull request #6275 from Neerti/skill_system:polaris.dme
 #include "code\modules\clothing\chameleon.dm"
 #include "code\modules\clothing\clothing.dm"
 #include "code\modules\clothing\clothing_accessories.dm"
