@@ -280,11 +280,7 @@ var/global/datum/controller/gameticker/ticker
 				else if(!player.mind.assigned_role)
 					continue
 				else
-<<<<<<< HEAD
-					if (player.create_character()) // VOREStation Edit
-=======
 					if(player.create_character())
->>>>>>> 75511aa... Merge pull request #6275 from Neerti/skill_system
 						qdel(player)
 
 
