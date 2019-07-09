@@ -65,11 +65,8 @@
 #include "code\__defines\process_scheduler.dm"
 #include "code\__defines\qdel.dm"
 #include "code\__defines\research.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\__defines\roguemining_vr.dm"
-=======
 #include "code\__defines\skills.dm"
->>>>>>> 75511aa... Merge pull request #6275 from Neerti/skill_system:polaris.dme
 #include "code\__defines\sound.dm"
 #include "code\__defines\species_languages.dm"
 #include "code\__defines\species_languages_vr.dm"
@@ -2495,11 +2492,7 @@
 #include "code\modules\mob\new_player\new_player_vr.dm"
 #include "code\modules\mob\new_player\poll.dm"
 #include "code\modules\mob\new_player\preferences_setup.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\mob\new_player\preferences_setup_vr.dm"
-#include "code\modules\mob\new_player\skill.dm"
-=======
->>>>>>> 75511aa... Merge pull request #6275 from Neerti/skill_system:polaris.dme
 #include "code\modules\mob\new_player\sprite_accessories.dm"
 #include "code\modules\mob\new_player\sprite_accessories_vr.dm"
 #include "code\modules\modular_computers\laptop_vendor.dm"
@@ -3206,7 +3199,6 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-<<<<<<< HEAD:vorestation.dme
 #include "maps\RandomZLevels\blackmarketpackers.dm"
 #include "maps\RandomZLevels\carpfarm.dm"
 #include "maps\RandomZLevels\listeningpost.dm"
@@ -3230,9 +3222,6 @@
 #include "maps\submaps\_readme.dm"
 #include "maps\submaps\engine_submaps\engine.dm"
 #include "maps\submaps\engine_submaps\engine_areas.dm"
-=======
-#include "maps\example\example.dm"
->>>>>>> 75511aa... Merge pull request #6275 from Neerti/skill_system:polaris.dme
 #include "maps\submaps\space_submaps\space.dm"
 #include "maps\submaps\space_submaps\debrisfield\debrisfield.dm"
 #include "maps\submaps\surface_submaps\mountains\mountains.dm"
