@@ -313,3 +313,12 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 
 /obj/item/seeds/durian
 	seed_type = "durian"
+
+/obj/item/seeds/vanilla
+	seed_type = "vanilla"
+
+/obj/item/seeds/rose
+	seed_type = "rose"
+
+/obj/item/seeds/rose/blood
+	seed_type = "bloodrose"
