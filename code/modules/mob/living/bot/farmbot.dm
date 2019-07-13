@@ -10,7 +10,7 @@
 	icon_state = "farmbot0"
 	health = 50
 	maxHealth = 50
-	req_one_access = list(access_robotics, access_hydroponics)
+	req_one_access = list(access_robotics, access_hydroponics, access_xenobiology)	//TFF 13/7/19 - Doing a test here... See if Travis screams at me about silicon/robot/robot.dm 959 again.
 
 	var/action = "" // Used to update icon
 	var/waters_trays = 1
