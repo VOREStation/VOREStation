@@ -616,6 +616,46 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 7500, "diamond" = 4875)
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill
 
+/datum/design/item/mecha/ground_drill
+	name = "Surface Bore"
+	desc = "A heavy duty bore. Bigger, better, stronger than the core sampler, but not quite as good as a large drill."
+	id = "mech_ground_drill"
+	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 2, TECH_PHORON = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 7000, "silver" = 3000, "phoron" = 2000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/drill/bore
+
+/datum/design/item/mecha/orescanner
+	name = "Ore Scanner"
+	desc = "A hefty device used to scan for subterranean veins of ore."
+	id = "mech_ore_scanner"
+	req_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 2, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 1000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/orescanner
+
+/datum/design/item/mecha/advorescanner
+	name = "Advanced Ore Scanner"
+	desc = "A hefty device used to scan for the exact volumes of subterranean veins of ore."
+	id = "mech_ore_scanner_adv"
+	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 4, TECH_POWER = 4, TECH_BLUESPACE = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "osmium" = 3000, "silver" = 1000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/orescanner/advanced
+
+/datum/design/item/mecha/powerwrench
+	name = "hydraulic wrench"
+	desc = "A large, hydraulic wrench."
+	id = "mech_wrench"
+	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "plastic" = 2000, "glass" = 1250)
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/powertool
+
+/datum/design/item/mecha/powercrowbar
+	name = "hydraulic prybar"
+	desc = "A large, hydraulic prybar."
+	id = "mech_crowbar"
+	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "osmium" = 3000, "glass" = 1000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/powertool/prybar
+
 /datum/design/item/mecha/generator_nuclear
 	name = "Nuclear Reactor"
 	desc = "Exosuit-held nuclear reactor. Converts uranium and everyone's health to energy."
