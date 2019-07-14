@@ -115,11 +115,7 @@
 
 	name = "hardsuit material scanner"
 	desc = "A layered, translucent visor system for a hardsuit."
-<<<<<<< HEAD
-	icon_state = "material"
-=======
-	icon_state = "meson"
->>>>>>> f094e43... Merge pull request #6272 from Mechoid/Mining_Expansion_The_Diggening
+	icon_state = "material" //VOREStation Edit
 
 	usable = 0
 
@@ -128,8 +124,6 @@
 
 	vision_modes = list(/datum/rig_vision/material)
 
-<<<<<<< HEAD
-=======
 /obj/item/rig_module/vision/mining
 
 	name = "hardsuit mining scanners"
@@ -144,7 +138,6 @@
 	vision_modes = list(/datum/rig_vision/material,
 						/datum/rig_vision/meson)
 
->>>>>>> f094e43... Merge pull request #6272 from Mechoid/Mining_Expansion_The_Diggening
 /obj/item/rig_module/vision/thermal
 
 	name = "hardsuit thermal scanner"
