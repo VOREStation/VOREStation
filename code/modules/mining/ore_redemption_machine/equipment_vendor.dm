@@ -22,16 +22,12 @@
 		new /datum/data/mining_equipment("Laser Pointer",				/obj/item/device/laser_pointer,										900),
 		new /datum/data/mining_equipment("Geiger Counter",				/obj/item/device/geiger,											750),
 		new /datum/data/mining_equipment("Plush Toy",					/obj/random/plushie,												300),
-<<<<<<< HEAD
 		new /datum/data/mining_equipment("GPS Device",					/obj/item/device/gps/mining,										100),
 		// TODO new /datum/data/mining_equipment("Advanced Scanner",	/obj/item/device/t_scanner/adv_mining_scanner,						800),
 		new /datum/data/mining_equipment("Fulton Beacon",				/obj/item/fulton_core,												500),
 		new /datum/data/mining_equipment("Shelter Capsule",				/obj/item/device/survivalcapsule,									500),
 		// TODO new /datum/data/mining_equipment("Explorer's Webbing",	/obj/item/storage/belt/mining,										500),
-=======
 		new /datum/data/mining_equipment("Umbrella",					/obj/item/weapon/melee/umbrella/random,								200),
-//		new /datum/data/mining_equipment("Fulton Beacon",				/obj/item/fulton_core,												500),
->>>>>>> f094e43... Merge pull request #6272 from Mechoid/Mining_Expansion_The_Diggening
 		new /datum/data/mining_equipment("Point Transfer Card",			/obj/item/weapon/card/mining_point_card,							500),
 		new /datum/data/mining_equipment("Survival Medipen",			/obj/item/weapon/reagent_containers/hypospray/autoinjector/miner,	500),
 		new /datum/data/mining_equipment("Mini-Translocator",			/obj/item/device/perfect_tele/one_beacon,							1200),
@@ -40,7 +36,6 @@
 		new /datum/data/mining_equipment("Resonator",					/obj/item/resonator,												900),
 		new /datum/data/mining_equipment("Fulton Pack",					/obj/item/extraction_pack,											1200),
 		new /datum/data/mining_equipment("Silver Pickaxe",				/obj/item/weapon/pickaxe/silver,									1200),
-<<<<<<< HEAD
 		//new /datum/data/mining_equipment("Mining Conscription Kit",	/obj/item/storage/backpack/duffelbag/mining_conscript,				1000),
 		new /datum/data/mining_equipment("Space Cash",					/obj/item/weapon/spacecash/c100,									1000),
 		new /datum/data/mining_equipment("Industrial Hardsuit - Control Module",	/obj/item/weapon/rig/industrial,						2000),
@@ -49,6 +44,12 @@
 		new /datum/data/mining_equipment("Industrial Hardsuit - Ore Scanner",		/obj/item/rig_module/device/orescanner,					1000),
 		new /datum/data/mining_equipment("Industrial Hardsuit - Material Scanner",	/obj/item/rig_module/vision/material,					500),
 		new /datum/data/mining_equipment("Industrial Hardsuit - Maneuvering Jets",	/obj/item/rig_module/maneuvering_jets,					1250),
+		new /datum/data/mining_equipment("Hardsuit - Intelligence Storage",	/obj/item/rig_module/ai_container,								2500),
+		new /datum/data/mining_equipment("Hardsuit - Smoke Bomb Deployer",	/obj/item/rig_module/grenade_launcher/smoke,					2000),
+		new /datum/data/mining_equipment("Industrial Equipment - Sheet-Snatcher",	/obj/item/weapon/gun/magnetic/matfed,					3000),
+		new /datum/data/mining_equipment("Industrial Equipment - Phoron Bore",/obj/item/weapon/storage/bag/sheetsnatcher,					500),
+		new /datum/data/mining_equipment("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,	500),
+		new /datum/data/mining_equipment("Digital Tablet - Advanced",	/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,	1000),
 		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/weapon/pickaxe/diamond,									2000),
 		new /datum/data/mining_equipment("Super Resonator",				/obj/item/resonator/upgraded,										2500),
 		new /datum/data/mining_equipment("Jump Boots",					/obj/item/clothing/shoes/bhop,										2500),
@@ -62,26 +63,6 @@
 		new /datum/data/mining_equipment("KA Efficiency Increase",		/obj/item/borg/upgrade/modkit/efficiency,							1200),
 		new /datum/data/mining_equipment("KA AoE Damage",				/obj/item/borg/upgrade/modkit/aoe/mobs,								2000),
 		new /datum/data/mining_equipment("KA Holster",				/obj/item/clothing/accessory/holster/waist/kinetic_accelerator,			350),
-		new /datum/data/mining_equipment("Fishing Net",					/obj/item/weapon/material/fishing_net,								500),
-		new /datum/data/mining_equipment("Titanium Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern,						1000),
-		new /datum/data/mining_equipment("Durasteel Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern/strong,				7500)
-=======
-		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/weapon/pickaxe/diamond,									2000),
-		new /datum/data/mining_equipment("Fishing Net",					/obj/item/weapon/material/fishing_net,								500),
-		new /datum/data/mining_equipment("Titanium Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern,						1000),
-//		new /datum/data/mining_equipment("Space Cash",					/obj/item/weapon/spacecash/c1000,									2000),
-		new /datum/data/mining_equipment("Industrial Hardsuit - Control Module",	/obj/item/weapon/rig/industrial,						10000),
-		new /datum/data/mining_equipment("Industrial Hardsuit - Plasma Cutter",		/obj/item/rig_module/device/plasmacutter,				800),
-		new /datum/data/mining_equipment("Industrial Hardsuit - Drill",				/obj/item/rig_module/device/drill,						2000),
-		new /datum/data/mining_equipment("Industrial Hardsuit - Ore Scanner",		/obj/item/rig_module/device/orescanner,					1000),
-		new /datum/data/mining_equipment("Industrial Hardsuit - Advanced Optics",	/obj/item/rig_module/vision/mining,						1250),
-		new /datum/data/mining_equipment("Industrial Hardsuit - Maneuvering Jets",	/obj/item/rig_module/maneuvering_jets,					1250),
-		new /datum/data/mining_equipment("Hardsuit - Intelligence Storage",	/obj/item/rig_module/ai_container,								2500),
-		new /datum/data/mining_equipment("Hardsuit - Smoke Bomb Deployer",	/obj/item/rig_module/grenade_launcher/smoke,					2000),
-		new /datum/data/mining_equipment("Industrial Equipment - Sheet-Snatcher",	/obj/item/weapon/gun/magnetic/matfed,					3000),
-		new /datum/data/mining_equipment("Industrial Equipment - Phoron Bore",/obj/item/weapon/storage/bag/sheetsnatcher,					500),
-		new /datum/data/mining_equipment("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,	500),
-		new /datum/data/mining_equipment("Digital Tablet - Advanced",	/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,	1000),
 		new /datum/data/mining_equipment("Fine Excavation Kit - Chisels",/obj/item/weapon/storage/excavation,								500),
 		new /datum/data/mining_equipment("Fine Excavation Kit - Measuring Tape",/obj/item/device/measuring_tape,							125),
 		new /datum/data/mining_equipment("Fine Excavation Kit - Hand Pick",/obj/item/weapon/pickaxe/hand,									375),
@@ -95,8 +76,10 @@
 		new /datum/data/mining_equipment("Defense Equipment - Smoke Bomb",/obj/item/weapon/grenade/smokebomb,								100),
 		new /datum/data/mining_equipment("Defense Equipment - Razor Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/manhacks/station,	1000),
 		new /datum/data/mining_equipment("Defense Equipment - Sentry Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/ward,			1500),
-		new /datum/data/mining_equipment("Defense Equipment - Steel Machete",	/obj/item/weapon/material/knife/machete,					500)
->>>>>>> f094e43... Merge pull request #6272 from Mechoid/Mining_Expansion_The_Diggening
+		new /datum/data/mining_equipment("Defense Equipment - Steel Machete",	/obj/item/weapon/material/knife/machete,					500),
+		new /datum/data/mining_equipment("Fishing Net",					/obj/item/weapon/material/fishing_net,								500),
+		new /datum/data/mining_equipment("Titanium Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern,						1000),
+		new /datum/data/mining_equipment("Durasteel Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern/strong,				7500)
 		)
 	//VOREStation Edit End
 
