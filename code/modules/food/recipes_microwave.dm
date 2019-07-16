@@ -35,7 +35,7 @@ I said no!
 
 /datum/recipe/devilledegg
 	fruit = list("chili" = 1)
-	reagents = list("salt" = 2, "mayo" = 5)
+	reagents = list("sodiumchloride" = 2, "mayo" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/egg,
 		/obj/item/weapon/reagent_containers/food/snacks/egg
@@ -902,7 +902,7 @@ I said no!
 
 /datum/recipe/zestfish
 	fruit = list("lemon" = 1)
-	reagents = list("salt" = 3)
+	reagents = list("sodiumchloride" = 3)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/carpmeat
 	)
@@ -910,7 +910,7 @@ I said no!
 
 /datum/recipe/limezestfish
 	fruit = list("lime" = 1)
-	reagents = list("salt" = 3)
+	reagents = list("sodiumchloride" = 3)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/carpmeat
 	)
@@ -1084,14 +1084,14 @@ I said no!
 	result = /obj/item/weapon/reagent_containers/food/snacks/fries
 
 /datum/recipe/roastedsunflowerseeds
-	reagents = list("salt" = 1, "cornoil" = 1)
+	reagents = list("sodiumchloride" = 1, "cornoil" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/rawsunflower
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/roastedsunflower
 
 /datum/recipe/roastedpeanutsunflowerseeds
-	reagents = list("salt" = 1, "peanutoil" = 1)
+	reagents = list("sodiumchloride" = 1, "peanutoil" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/rawsunflower
 	)
@@ -1099,7 +1099,7 @@ I said no!
 
 /datum/recipe/roastedpeanuts
 	fruit = list("peanut" = 2)
-	reagents = list("salt" = 2, "cornoil" = 1)
+	reagents = list("sodiumchloride" = 2, "cornoil" = 1)
 	result = /obj/item/weapon/reagent_containers/food/snacks/roastedpeanuts
 
 /datum/recipe/mint

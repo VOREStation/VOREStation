@@ -1203,7 +1203,7 @@
 	name = "Peanut Butter"
 	id = "peanutbutter"
 	result = "peanutbutter"
-	required_reagents = list("peanutoil" = 2, "sugar" = 1, "salt" = 1)
+	required_reagents = list("peanutoil" = 2, "sugar" = 1, "sodiumchloride" = 1)
 	catalysts = list("enzyme" = 5)
 	result_amount = 3
 
@@ -1211,7 +1211,7 @@
 	name = "mayonnaise"
 	id = "mayo"
 	result = "mayo"
-	required_reagents = list("egg" = 9, "cornoil" = 5, "lemonjuice" = 5, "salt" = 1)
+	required_reagents = list("egg" = 9, "cornoil" = 5, "lemonjuice" = 5, "sodiumchloride" = 1)
 	result_amount = 15
 
 /datum/chemical_reaction/food/cheesewheel
