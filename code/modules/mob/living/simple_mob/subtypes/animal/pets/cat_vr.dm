@@ -44,8 +44,6 @@
 	icon = 'icons/mob/custom_items_mob.dmi'
 	icon_state = "kitten"
 	item_state = "kitten"
-	icon_living = "kitten"
-	icon_dead = "kitten" //Teleports out
 	gender = MALE
 	holder_type = /obj/item/weapon/holder/cat/fluff/tabiranth
 	friend_name = "Ascian"

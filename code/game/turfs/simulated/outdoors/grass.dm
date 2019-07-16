@@ -29,7 +29,7 @@ var/list/grass_types = list(
 	name = "growth"
 	icon_state = "grass_sif"
 	edge_blending_priority = 4
-	grass_chance = 0
+	grass_chance = 5
 	var/tree_chance = 2
 
 	grass_types = list(

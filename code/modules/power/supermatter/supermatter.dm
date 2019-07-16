@@ -99,6 +99,7 @@
 	return ..()
 
 /obj/machinery/power/supermatter/Destroy()
+	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(soundloop)
 	return ..()
 
@@ -150,6 +151,8 @@
 				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
 	spawn(pull_time)
 		explosion(get_turf(src), explosion_power, explosion_power * 2, explosion_power * 3, explosion_power * 4, 1)
+		spawn(5) //to allow the explosion to finish
+		new /obj/item/broken_sm(TS)
 		qdel(src)
 		return
 
@@ -447,3 +450,21 @@
 
 /obj/machinery/power/supermatter/shard/announce_warning() //Shards don't get announcements
 	return
+
+/obj/item/broken_sm
+	name = "shattered supermatter plinth"
+	desc = "The shattered remains of a supermatter shard plinth. It doesn't look safe to be around."
+	icon = 'icons/obj/engine.dmi'
+	icon_state = "darkmatter_broken"
+
+/obj/item/broken_sm/New()
+	message_admins("Broken SM shard created at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
+	START_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/broken_sm/process()
+	radiation_repository.radiate(src, 50)
+
+/obj/item/broken_sm/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()

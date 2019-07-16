@@ -46,6 +46,7 @@
 	character.weight_loss		= pref.weight_loss
 	character.fuzzy				= pref.fuzzy
 	character.appearance_flags	-= pref.fuzzy*PIXEL_SCALE
+	character.appearance_flags	|= KEEP_TOGETHER
 	character.resize(pref.size_multiplier, animate = FALSE)
 
 /datum/category_item/player_setup_item/vore/size/content(var/mob/user)

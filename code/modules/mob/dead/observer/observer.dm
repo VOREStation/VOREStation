@@ -399,7 +399,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if (!target)//Make sure we actually have a target
 			return
 		else
-			var/mob/M = getmobs()[target] //Destination mob
+			var/mob/M = target //Destination mob
 			var/turf/T = get_turf(M) //Turf of the destination mob
 
 			if(T && isturf(T))	//Make sure the turf exists, then move the source to that destination.

@@ -29,6 +29,9 @@
 
 	return 1
 
+/obj/item/proc/unique_parry_check(mob/user, mob/attacker, atom/damage_source)	// An overrideable version of the above proc.
+	return default_parry_check(user, attacker, damage_source)
+
 /obj/item/weapon/shield
 	name = "shield"
 	var/base_block_chance = 50

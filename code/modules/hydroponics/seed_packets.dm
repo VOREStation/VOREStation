@@ -283,3 +283,42 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 
 /obj/item/seeds/thaadra
 	seed_type = "thaadra"
+
+/obj/item/seeds/celery
+	seed_type = "celery"
+
+/obj/item/seeds/rhubarb
+	seed_type = "rhubarb"
+
+/obj/item/seeds/wabback
+	seed_type = "whitewabback"
+
+/obj/item/seeds/blackwabback
+	seed_type = "blackwabback"
+
+/obj/item/seeds/wildwabback
+	seed_type = "wildwabback"
+
+/obj/item/seeds/lettuce
+	seed_type = "lettuce"
+
+/obj/item/seeds/siflettuce
+	seed_type = "siflettuce"
+
+/obj/item/seeds/eggyplant
+	seed_type = "egg-plant"
+
+/obj/item/seeds/spineapple
+	seed_type = "spineapple"
+
+/obj/item/seeds/durian
+	seed_type = "durian"
+
+/obj/item/seeds/vanilla
+	seed_type = "vanilla"
+
+/obj/item/seeds/rose
+	seed_type = "rose"
+
+/obj/item/seeds/rose/blood
+	seed_type = "bloodrose"

@@ -1199,6 +1199,21 @@
 	required_reagents = list("tomatojuice" = 2, "water" = 1, "sugar" = 1)
 	result_amount = 4
 
+/datum/chemical_reaction/food/peanutbutter
+	name = "Peanut Butter"
+	id = "peanutbutter"
+	result = "peanutbutter"
+	required_reagents = list("peanutoil" = 2, "sugar" = 1, "sodiumchloride" = 1)
+	catalysts = list("enzyme" = 5)
+	result_amount = 3
+
+/datum/chemical_reaction/food/mayonnaise
+	name = "mayonnaise"
+	id = "mayo"
+	result = "mayo"
+	required_reagents = list("egg" = 9, "cornoil" = 5, "lemonjuice" = 5, "sodiumchloride" = 1)
+	result_amount = 15
+
 /datum/chemical_reaction/food/cheesewheel
 	name = "Cheesewheel"
 	id = "cheesewheel"
@@ -1827,6 +1842,79 @@
 	required_reagents = list("lemonjuice" = 1, "sugar" = 1, "water" = 1)
 	result_amount = 3
 
+/datum/chemical_reaction/drinks/melonade
+	name = "Melonade"
+	id = "melonade"
+	result = "melonade"
+	required_reagents = list("watermelonjuice" = 1, "sugar" = 1, "sodawater" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/appleade
+	name = "Appleade"
+	id = "appleade"
+	result = "appleade"
+	required_reagents = list("applejuice" = 1, "sugar" = 1, "sodawater" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/pineappleade
+	name = "Pineappleade"
+	id = "pineappleade"
+	result = "pineappleade"
+	required_reagents = list("pineapplejuice" = 2, "limejuice" = 1, "sodawater" = 2, "honey" = 1)
+	result_amount = 5
+
+/datum/chemical_reaction/drinks/driverspunch
+	name = "Driver`s Punch"
+	id = "driverspunch"
+	result = "driverspunch"
+	required_reagents = list("appleade" = 2, "orangejuice" = 1, "mint" = 1, "sodawater" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/mintapplesparkle
+	name = "Mint Apple Sparkle"
+	id = "mintapplesparkle"
+	result = "mintapplesparkle"
+	required_reagents = list("appleade" = 2, "mint" = 1)
+	inhibitors = list("sodawater" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/berrycordial
+	name = "Berry Cordial"
+	id = "berrycordial"
+	result = "berrycordial"
+	required_reagents = list("berryjuice" = 4, "sugar" = 1, "lemonjuice" = 1)
+	result_amount = 5
+
+/datum/chemical_reaction/drinks/tropicalfizz
+	name = "Tropical Fizz"
+	id = "tropicalfizz"
+	result = "tropicalfizz"
+	required_reagents = list("sodawater" = 6, "berryjuice" = 1, "mint" = 1, "limejuice" = 1, "lemonjuice" = 1, "pineapplejuice" = 1)
+	inhibitors = list("sugar" = 1)
+	result_amount = 8
+
+/datum/chemical_reaction/drinks/melonspritzer
+	name = "Melon Spritzer"
+	id = "melonspritzer"
+	result = "melonspritzer"
+	required_reagents = list("watermelonjuice" = 2, "wine" = 2, "applejuice" = 1, "limejuice" = 1)
+	result_amount = 6
+
+/datum/chemical_reaction/drinks/fauxfizz
+	name = "Faux Fizz"
+	id = "fauxfizz"
+	result = "fauxfizz"
+	required_reagents = list("sodawater" = 2, "berryjuice" = 1, "applejuice" = 1, "limejuice" = 1, "honey" = 1)
+	inhibitors = list("sugar" = 1)
+	result_amount = 6
+
+/datum/chemical_reaction/drinks/firepunch
+	name = "Fire Punch"
+	id = "firepunch"
+	result = "firepunch"
+	required_reagents = list("sugar" = 1, "rum" = 2)
+	result_amount = 3
+
 /datum/chemical_reaction/drinks/kiraspecial
 	name = "Kira Special"
 	id = "kiraspecial"
@@ -1846,6 +1934,13 @@
 	id = "milkshake"
 	result = "milkshake"
 	required_reagents = list("cream" = 1, "ice" = 2, "milk" = 2)
+	result_amount = 5
+
+/datum/chemical_reaction/drinks/peanutmilkshake
+	name = "Peanutbutter Milkshake"
+	id = "peanutmilkshake"
+	result = "peanutmilkshake"
+	required_reagents = list("cream" = 1, "ice" = 1, "peanutbutter" = 2, "milk" = 1)
 	result_amount = 5
 
 /datum/chemical_reaction/drinks/rewriter
@@ -2221,6 +2316,13 @@
 	required_reagents = list("rum" = 3, "limejuice" = 1, "mint" = 1)
 	result_amount = 5
 
+/datum/chemical_reaction/drinks/virginmojito
+	name = "Mojito"
+	id = "virginmojito"
+	result = "virginmojito"
+	required_reagents = list("sodawater" = 3, "limejuice" = 1, "mint" = 1, "sugar" = 1)
+	result_amount = 5
+
 /datum/chemical_reaction/drinks/piscosour
 	name = "Pisco Sour"
 	id = "piscosour"
@@ -2292,6 +2394,27 @@
 	result = "oilslick"
 	required_reagents = list("cornoil" = 2, "honey" = 1)
 	result_amount = 3
+
+/datum/chemical_reaction/drinks/slimeslam
+	name = "Slick Slime Slammer"
+	id = "slimeslammer"
+	result = "slimeslammer"
+	required_reagents = list("cornoil" = 2, "peanutbutter" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/virginsexonthebeach
+	name = "Virgin Sex On The Beach"
+	id = "virginsexonthebeach"
+	result = "virginsexonthebeach"
+	required_reagents = list("orangejuice" = 3, "grenadine" = 2)
+	result_amount = 4
+
+/datum/chemical_reaction/drinks/sexonthebeach
+	name = "Sex On The Beach"
+	id = "sexonthebeach"
+	result = "sexonthebeach"
+	required_reagents = list("orangejuice" = 3, "grenadine" = 2, "vodka" = 1)
+	result_amount = 6
 
 /datum/chemical_reaction/drinks/eggnog
 	name = "Eggnog"

@@ -211,7 +211,7 @@ HALOGEN COUNTER	- Radcount on mobs
 				continue
 			// Broken limbs
 			if(e.status & ORGAN_BROKEN)
-				if((e.name in list("l_arm", "r_arm", "l_leg", "r_leg")) && (!e.splinted))
+				if((e.name in list("l_arm", "r_arm", "l_leg", "r_leg", "head", "chest", "groin")) && (!e.splinted))
 					fracture_dat += "<span class='warning'>Unsecured fracture in subject [e.name]. Splinting recommended for transport.</span><br>"
 				else if(advscan >= 1 && showadvscan == 1)
 					fracture_dat += "<span class='warning'>Bone fractures detected in subject [e.name].</span><br>"

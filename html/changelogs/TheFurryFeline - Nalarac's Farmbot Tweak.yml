@@ -33,5 +33,4 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - bugfix: "Fixes infinite frame production for some machinery objects such as grounding rods or exonet nodes. If there's no available circuit board to get, then don't return anything when attempting deconstruction. Ported from Cit RP. Eliminates 'Cannot read null.board_type' runtimes where they apply."
-  - tweak: "Allows hydroponic machines to be unwrenched."
+  - tweak: "Add access_xenobiology to farmbots."

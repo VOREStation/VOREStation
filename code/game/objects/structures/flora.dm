@@ -122,7 +122,7 @@
 
 /obj/structure/flora/ausbushes/ppflowers/New()
 	..()
-	icon_state = "ppflowers_[rand(1, 4)]"
+	icon_state = "ppflowers_[rand(1, 3)]"
 
 /obj/structure/flora/ausbushes/sparsegrass
 	icon_state = "sparsegrass_1"
@@ -297,6 +297,14 @@
 
 /obj/structure/flora/sif
 	icon = 'icons/obj/flora/sifflora.dmi'
+
+/obj/structure/flora/sif/attack_hand(mob/user)
+	if (user.a_intent == I_HURT)
+		if(do_after(user, 5 SECONDS))
+			user.visible_message("\The [user] digs up \the [src.name].", "You dig up \the [src.name].")
+			qdel(src)
+	else
+		user.visible_message("\The [user] pokes \the [src.name].", "You poke \the [src.name].")
 
 /datum/category_item/catalogue/flora/subterranean_bulbs
 	name = "Sivian Flora - Subterranean Bulbs"

@@ -200,6 +200,24 @@ BLIND     // can't see anything
 	name = "prescription optical material scanner"
 	prescription = 1
 
+/obj/item/clothing/glasses/graviton
+	name = "graviton goggles"
+	desc = "The secrets of space travel are.. not quite yours."
+	icon_state = "grav"
+	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
+	origin_tech = list(TECH_MAGNET = 2, TECH_BLUESPACE = 1)
+	darkness_view = 5
+	toggleable = 1
+	action_button_name = "Toggle Goggles"
+	off_state = "denight"
+	vision_flags = SEE_OBJS | SEE_TURFS
+	flash_protection = FLASH_PROTECTION_REDUCED
+	enables_planes = list(VIS_FULLBRIGHT, VIS_MESONS)
+
+/obj/item/clothing/glasses/graviton/New()
+	..()
+	overlay = global_hud.material
+
 /obj/item/clothing/glasses/regular
 	name = "prescription glasses"
 	desc = "Made by Nerd. Co."
@@ -236,7 +254,6 @@ BLIND     // can't see anything
 	name = "prescription rimless glasses"
 	desc = "Sleek modern glasses with a single sculpted lens."
 	icon_state = "glasses_rimless"
-	prescription = 1
 
 /obj/item/clothing/glasses/rimless
 	name = "rimless glasses"

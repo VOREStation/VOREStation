@@ -17,5 +17,7 @@
 	user.face_atom(A)
 	if(ismob(A) && user.aiming)
 		user.aiming.aim_at(A, src)
+		if(!isliving(A))
+			return 0
 		return 1
 	return 0

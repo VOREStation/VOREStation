@@ -218,6 +218,7 @@
 	name = "\improper Tram Station"
 	icon = 'icons/obj/doors/Doorextglass.dmi'
 	icon_state = "door_closed"
+	can_atmos_pass = ATMOS_PASS_NO
 	base_icon_state = "door_closed"
 	occupied_icon_state = "door_locked"
 	desc = "The tram station you might've came in from.  You could leave the base easily using this."
@@ -228,7 +229,6 @@
 	on_store_visible_message_2 = "to the colony"
 	time_till_despawn = 10 SECONDS
 	spawnpoint_type = /datum/spawnpoint/tram
-
 /obj/machinery/cryopod/robot/door/tram/process()
 	if(emergency_shuttle.online() || emergency_shuttle.returned())
 		// Transform into a door!  But first despawn anyone inside

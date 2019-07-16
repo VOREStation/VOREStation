@@ -11,10 +11,15 @@
 			return 0
 		if(NETWORK_ENGINE,NETWORK_ALARM_ATMOS,NETWORK_ALARM_FIRE,NETWORK_ALARM_POWER)
 			return access_engine
+		if(NETWORK_CIRCUITS)
+			return access_research
 		if(NETWORK_ERT)
 			return access_cent_specops
 
-	return access_security // Default for all other networks
+	if(network in using_map.station_networks)
+		return access_security // Default for all other station networks
+	else
+		return 999	//Inaccessible if not a station network and not mentioned above
 
 /datum/computer_file/program/camera_monitor
 	filename = "cammon"
@@ -41,10 +46,17 @@
 
 	var/list/all_networks[0]
 	for(var/network in using_map.station_networks)
-		all_networks.Add(list(list(
-							"tag" = network,
-							"has_access" = can_access_network(user, get_camera_access(network))
-							)))
+		if(can_access_network(user, get_camera_access(network), 1))
+			all_networks.Add(list(list(
+								"tag" = network,
+								"has_access" = 1
+								)))
+	for(var/network in using_map.secondary_networks)
+		if(can_access_network(user, get_camera_access(network), 0))
+			all_networks.Add(list(list(
+								"tag" = network,
+								"has_access" = 1
+								)))
 
 	all_networks = modify_networks_list(all_networks)
 
@@ -67,12 +79,15 @@
 /datum/nano_module/camera_monitor/proc/modify_networks_list(var/list/networks)
 	return networks
 
-/datum/nano_module/camera_monitor/proc/can_access_network(var/mob/user, var/network_access)
+/datum/nano_module/camera_monitor/proc/can_access_network(var/mob/user, var/network_access, var/station_network = 0)
 	// No access passed, or 0 which is considered no access requirement. Allow it.
 	if(!network_access)
 		return 1
 
-	return check_access(user, access_security) || check_access(user, access_heads) || check_access(user, network_access)
+	if(station_network)
+		return check_access(user, network_access) || check_access(user, access_security) || check_access(user, access_heads)
+	else
+		return check_access(user, network_access)
 
 /datum/nano_module/camera_monitor/Topic(href, href_list)
 	if(..())
@@ -90,7 +105,7 @@
 
 	else if(href_list["switch_network"])
 		// Either security access, or access to the specific camera network's department is required in order to access the network.
-		if(can_access_network(usr, get_camera_access(href_list["switch_network"])))
+		if(can_access_network(usr, get_camera_access(href_list["switch_network"]), (href_list["switch_network"] in using_map.station_networks)))
 			current_network = href_list["switch_network"]
 		else
 			to_chat(usr, "\The [nano_host()] shows an \"Network Access Denied\" error message.")
