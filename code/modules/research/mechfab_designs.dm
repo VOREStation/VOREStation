@@ -107,13 +107,13 @@
 
 /datum/design/item/mechfab/gygax
 	category = "Gygax"
-/*						//uncomment me to make the Serenity produceable in Robotics
+//VOREStation Edit to make Serenity Constructable						
 /datum/design/item/mechfab/gygax/chassis/serenity
 	name = "Serenity Chassis"
 	id = "serenity_chassis"
 	build_path = /obj/item/mecha_parts/chassis/serenity
 	materials = list(DEFAULT_WALL_MATERIAL = 18750, "phoron" = 4000)
-*/
+	
 /datum/design/item/mechfab/gygax/chassis
 	name = "Gygax Chassis"
 	id = "gygax_chassis"
