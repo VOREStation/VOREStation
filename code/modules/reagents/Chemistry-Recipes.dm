@@ -737,9 +737,12 @@
 		var/mob/living/L = holder.my_atom
 		if(L.stat != DEAD)
 			e.amount *= 0.5
+	//VOREStation Add Start
 	else
 		holder.clear_reagents() //No more powergaming by creating a tiny amount of this
+	//VORESTation Add End
 	e.start()
+	//holder.clear_reagents() //VOREStation Removal
 	return
 
 /datum/chemical_reaction/flash_powder
@@ -784,8 +787,10 @@
 	// 100 created volume = 4 heavy range & 7 light range. A few tiles smaller than traitor EMP grandes.
 	// 200 created volume = 8 heavy range & 14 light range. 4 tiles larger than traitor EMP grenades.
 	empulse(location, round(created_volume / 24), round(created_volume / 20), round(created_volume / 18), round(created_volume / 14), 1)
+	//VOREStation Edit Start
 	if(!isliving(holder.my_atom)) //No more powergaming by creating a tiny amount of this
 		holder.clear_reagents()
+	//VOREStation Edit End
 	return
 
 /datum/chemical_reaction/nitroglycerin
@@ -804,10 +809,13 @@
 		var/mob/living/L = holder.my_atom
 		if(L.stat!=DEAD)
 			e.amount *= 0.5
+	//VOREStation Add Start
 	else
 		holder.clear_reagents() //No more powergaming by creating a tiny amount of this
+	//VOREStation Add End
 	e.start()
 
+	//holder.clear_reagents() //VOREStation Removal
 	return
 
 /datum/chemical_reaction/napalm
@@ -840,8 +848,10 @@
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 	spawn(0)
 		S.start()
+	//VOREStation Edit Start
 	if(!isliving(holder.my_atom)) //No more powergaming by creating a tiny amount of this
 		holder.clear_reagents()
+	//VOREStation Edit End
 	return
 
 /datum/chemical_reaction/foam
@@ -861,8 +871,10 @@
 	var/datum/effect/effect/system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 0)
 	s.start()
+	//VOREStation Edit Start
 	if(!isliving(holder.my_atom)) //No more powergaming by creating a tiny amount of this
 		holder.clear_reagents()
+	//VOREStation Edit End
 	return
 
 /datum/chemical_reaction/metalfoam
@@ -2501,7 +2513,7 @@
 	id = "biomass"
 	result = "biomass"
 	required_reagents = list("protein" = 1, "sugar" = 1, "phoron" = 1)
-	result_amount = 6	// Roughly 120u per phoron sheet //VOREStation Edit
+	result_amount = 1	// Roughly 20u per phoron sheet
 
 // Neutralization.
 

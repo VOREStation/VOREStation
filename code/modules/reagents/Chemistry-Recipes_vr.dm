@@ -101,7 +101,7 @@
 	name = "Vermicetol"
 	id = "vermicetol"
 	result = "vermicetol"
-	required_reagents = list("kelotane" = 1, "dermaline" = 1, "shockchem" = 1, "phoron" = 0.1)
+	required_reagents = list("bicaridine" = 2, "shockchem" = 1, "phoron" = 0.1)
 	catalysts = list("phoron" = 5)
 	result_amount = 3
 
@@ -341,3 +341,9 @@
 				for(var/j = 1, j <= rand(1, 3), j++)
 					step(C, pick(NORTH,SOUTH,EAST,WEST))
 */
+
+/datum/chemical_reaction/food/syntiflesh
+	required_reagents = list("blood" = 5, "clonexadone" = 1)
+
+/datum/chemical_reaction/biomass
+	result_amount = 6	// Roughly 120u per phoron sheet
