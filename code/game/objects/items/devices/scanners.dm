@@ -1,4 +1,4 @@
-#define DEFIB_TIME_LIMIT (10 MINUTES) //past this many seconds, defib is useless.
+#define DEFIB_TIME_LIMIT (10 MINUTES) //VOREStation addition- past this many seconds, defib is useless.
 /*
 CONTAINS:
 T-RAY
@@ -84,9 +84,11 @@ HALOGEN COUNTER	- Radcount on mobs
 	dat +=		"Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)</span><br>"
 	if(M.timeofdeath && (M.stat == DEAD || (M.status_flags & FAKEDEATH)))
 		dat += 	"<span class='notice'>Time of Death: [worldtime2stationtime(M.timeofdeath)]</span><br>"
+		//VOREStation addition starts
 		var/tdelta = round(world.time - M.timeofdeath)
 		if(tdelta < (DEFIB_TIME_LIMIT * 10))
 			dat += "<span class='notice'><b>Subject died [DisplayTimeText(tdelta)] ago - resuscitation may be possible!</b></span><br>"
+		//VOREStation addition ends
 	if(istype(M, /mob/living/carbon/human) && mode == 1)
 		var/mob/living/carbon/human/H = M
 		var/list/damaged = H.get_damaged_organs(1,1)
@@ -506,4 +508,4 @@ HALOGEN COUNTER	- Radcount on mobs
 		to_chat(user, "<span class='notice'>No radiation detected.</span>")
 	return
 
-#undef DEFIB_TIME_LIMIT
+#undef DEFIB_TIME_LIMIT //VOREStation addition
