@@ -83,4 +83,4 @@
 	if(!.)
 		if(isrobot(L)) // They ignore synths.
 			return TRUE
-		return L.assess_perp(src, FALSE, FALSE, TRUE, FALSE) <= 4
+		return L.assess_perp(src, FALSE, FALSE, TRUE, FALSE) <= 3
