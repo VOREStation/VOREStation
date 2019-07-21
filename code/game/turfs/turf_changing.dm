@@ -28,7 +28,7 @@
 
 	if(N == /turf/space)
 		var/turf/below = GetBelow(src)
-		if(istype(below) && (air_master.has_valid_zone(below) || air_master.has_valid_zone(src)))
+		if(istype(below) && (air_master.has_valid_zone(below) || air_master.has_valid_zone(src)) && !istype(below, /turf/unsimulated/wall))	// VOREStation Edit: Weird open space
 			N = /turf/simulated/open
 
 	var/obj/fire/old_fire = fire
