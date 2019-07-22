@@ -23,7 +23,7 @@
 
 /obj/item/clothing/gloves/gauntlets/rig
 	name = "gauntlets"
-	item_flags = THICKMATERIAL
+	item_flags = THICKMATERIAL|PHORONGUARD
 	body_parts_covered = HANDS
 	heat_protection =    HANDS
 	cold_protection =    HANDS
