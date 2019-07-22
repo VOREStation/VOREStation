@@ -105,10 +105,12 @@
 /datum/category_item/autolathe/general/tube
 	name = "light tube"
 	path =/obj/item/weapon/light/tube
+	is_stack = TRUE
 
 /datum/category_item/autolathe/general/bulb
 	name = "light bulb"
 	path =/obj/item/weapon/light/bulb
+	is_stack = TRUE
 
 /datum/category_item/autolathe/general/ashtray_glass
 	name = "glass ashtray"
