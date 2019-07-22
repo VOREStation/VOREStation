@@ -7763,10 +7763,12 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "mv" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/turf/simulated/floor/tiled,
+/area/security/hallwayaux)
 "mw" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 1
@@ -12854,36 +12856,10 @@
 /turf/simulated/floor/tiled,
 /area/security/hallway)
 "ue" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4;
-	pixel_x = -16
-	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 4;
-	pixel_x = -16
-	},
-/obj/effect/floor_decal/corner/red{
-	icon_state = "corner_white";
-	dir = 6
-	},
-/obj/structure/table/steel,
-/obj/item/bodybag/cryobag{
-	pixel_x = 6
-	},
-/obj/item/weapon/storage/firstaid/regular{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/machinery/recharger/wallcharger{
-	pixel_x = 32;
-	pixel_y = -9
-	},
-/obj/machinery/recharger/wallcharger{
-	pixel_x = 32;
-	pixel_y = 2
-	},
-/turf/simulated/floor/tiled,
-/area/security/hallway)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "uf" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -28390,6 +28366,38 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
+"SJ" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4;
+	pixel_x = -16
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 4;
+	pixel_x = -16
+	},
+/obj/effect/floor_decal/corner/red{
+	icon_state = "corner_white";
+	dir = 6
+	},
+/obj/structure/table/steel,
+/obj/item/bodybag/cryobag{
+	pixel_x = 6
+	},
+/obj/item/weapon/storage/firstaid/regular{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 32;
+	pixel_y = -9
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 32;
+	pixel_y = 2
+	},
+/obj/item/weapon/reagent_containers/spray/cleaner,
+/turf/simulated/floor/tiled,
+/area/security/hallway)
 "SK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -35212,7 +35220,7 @@ bq
 bq
 cd
 dI
-dp
+mv
 dM
 ej
 cP
@@ -37080,7 +37088,7 @@ mH
 rB
 mH
 tj
-ue
+SJ
 mH
 uP
 uP
@@ -39759,7 +39767,7 @@ it
 di
 di
 dy
-mv
+ue
 cK
 cK
 ms
@@ -39901,7 +39909,7 @@ iK
 jY
 kn
 di
-mv
+ue
 cK
 cK
 ms
@@ -40043,7 +40051,7 @@ iK
 jY
 kn
 di
-mv
+ue
 cK
 cK
 ms
@@ -40895,7 +40903,7 @@ eb
 ka
 ky
 di
-mv
+ue
 cK
 cK
 ms
@@ -41037,7 +41045,7 @@ jf
 kj
 kQ
 di
-mv
+ue
 cK
 cK
 ms
@@ -41179,7 +41187,7 @@ jr
 kk
 kR
 dy
-mv
+ue
 cK
 cK
 ms
