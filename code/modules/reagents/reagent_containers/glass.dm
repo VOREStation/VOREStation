@@ -135,8 +135,8 @@
 /obj/item/weapon/reagent_containers/glass/proc/update_name_label()
 	if(label_text == "")
 		name = base_name
-	else if(length(label_text) > 10)
-		var/short_label_text = copytext(label_text, 1, 11)
+	else if(length(label_text) > 20)
+		var/short_label_text = copytext(label_text, 1, 21)
 		name = "[base_name] ([short_label_text]...)"
 	else
 		name = "[base_name] ([label_text])"
