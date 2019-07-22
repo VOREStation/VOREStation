@@ -125,11 +125,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 							/obj/item/weapon/storage/toolbox/lunchbox/nymph,
 							/obj/item/weapon/storage/toolbox/lunchbox/syndicate))	//Only pick the empty types
 	var/obj/item/weapon/storage/toolbox/lunchbox/L = new boxtype(get_turf(H))
-	var/mob/living/simple_mob/animal/passive/mouse/mouse = new (L)
-	var/obj/item/weapon/holder/holder = new (L)
-	holder.held_mob = mouse
-	mouse.forceMove(holder)
-	holder.sync(mouse)
+	new /obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar(L)
 	if(H.backbag == 1)
 		H.equip_to_slot_or_del(L, slot_r_hand)
 	else

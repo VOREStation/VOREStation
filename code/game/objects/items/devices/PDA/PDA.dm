@@ -577,31 +577,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 
 	if(mode==3)
-		var/turf/T = get_turf(user.loc)
-		if(!isnull(T))
-			var/datum/gas_mixture/environment = T.return_air()
-
-			var/pressure = environment.return_pressure()
-			var/total_moles = environment.total_moles
-
-			if (total_moles)
-				var/o2_level = environment.gas["oxygen"]/total_moles
-				var/n2_level = environment.gas["nitrogen"]/total_moles
-				var/co2_level = environment.gas["carbon_dioxide"]/total_moles
-				var/phoron_level = environment.gas["phoron"]/total_moles
-				var/unknown_level =  1-(o2_level+n2_level+co2_level+phoron_level)
-				data["aircontents"] = list(\
-					"pressure" = "[round(pressure,0.1)]",\
-					"nitrogen" = "[round(n2_level*100,0.1)]",\
-					"oxygen" = "[round(o2_level*100,0.1)]",\
-					"carbon_dioxide" = "[round(co2_level*100,0.1)]",\
-					"phoron" = "[round(phoron_level*100,0.01)]",\
-					"other" = "[round(unknown_level, 0.01)]",\
-					"temp" = "[round(environment.temperature-T0C,0.1)]",\
-					"reading" = 1\
-					)
-		if(isnull(data["aircontents"]))
-			data["aircontents"] = list("reading" = 0)
+		data["aircontents"] = src.analyze_air()
 	if(mode==6)
 		if(has_reception)
 			feeds.Cut()
@@ -1544,3 +1520,37 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /obj/item/device/pda/emp_act(severity)
 	for(var/atom/A in src)
 		A.emp_act(severity)
+
+/obj/item/device/pda/proc/analyze_air()
+	var/list/results = list()
+	var/turf/T = get_turf(src.loc)
+	if(!isnull(T))
+		var/datum/gas_mixture/environment = T.return_air()
+		var/pressure = environment.return_pressure()
+		var/total_moles = environment.total_moles
+		if (total_moles)
+			var/o2_level = environment.gas["oxygen"]/total_moles
+			var/n2_level = environment.gas["nitrogen"]/total_moles
+			var/co2_level = environment.gas["carbon_dioxide"]/total_moles
+			var/phoron_level = environment.gas["phoron"]/total_moles
+			var/unknown_level =  1-(o2_level+n2_level+co2_level+phoron_level)
+
+			// entry is what the element is describing
+			// Type identifies which unit or other special characters to use
+			// Val is the information reported
+			// Bad_high/_low are the values outside of which the entry reports as dangerous
+			// Poor_high/_low are the values outside of which the entry reports as unideal
+			// Values were extracted from the template itself
+			results = list(
+						list("entry" = "Pressure", "units" = "kPa", "val" = "[round(pressure,0.1)]", "bad_high" = 120, "poor_high" = 110, "poor_low" = 95, "bad_low" = 80),
+						list("entry" = "Temperature", "units" = "&degC", "val" = "[round(environment.temperature-T0C,0.1)]", "bad_high" = 35, "poor_high" = 25, "poor_low" = 15, "bad_low" = 5),
+						list("entry" = "Oxygen", "units" = "kPa", "val" = "[round(o2_level*100,0.1)]", "bad_high" = 140, "poor_high" = 135, "poor_low" = 19, "bad_low" = 17),
+						list("entry" = "Nitrogen", "units" = "kPa", "val" = "[round(n2_level*100,0.1)]", "bad_high" = 105, "poor_high" = 85, "poor_low" = 50, "bad_low" = 40),
+						list("entry" = "Carbon Dioxide", "units" = "kPa", "val" = "[round(co2_level*100,0.1)]", "bad_high" = 10, "poor_high" = 5, "poor_low" = 0, "bad_low" = 0),
+						list("entry" = "Phoron", "units" = "kPa", "val" = "[round(phoron_level*100,0.01)]", "bad_high" = 0.5, "poor_high" = 0, "poor_low" = 0, "bad_low" = 0),
+						list("entry" = "Other", "units" = "kPa", "val" = "[round(unknown_level, 0.01)]", "bad_high" = 1, "poor_high" = 0.5, "poor_low" = 0, "bad_low" = 0)
+						)
+
+	if(isnull(results))
+		results = list(list("entry" = "pressure", "units" = "kPa", "val" = "0", "bad_high" = 120, "poor_high" = 110, "poor_low" = 95, "bad_low" = 80))
+	return results
