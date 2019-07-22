@@ -55,3 +55,8 @@
     display_name = "science dufflebag"
     path = /obj/item/weapon/storage/backpack/dufflebag/sci
     allowed_roles = list("Research Director","Scientist","Roboticist","Xenobiologist","Explorer","Pathfinder")
+
+/datum/gear/utility/translator
+	display_name = "handheld translator"
+	path = /obj/item/device/universal_translator
+	cost = 3
