@@ -600,6 +600,8 @@
 		I.forceMove(vore_selected)
 		updateVRPanel()
 
+		log_admin("VORE: [src] used Eat Trash to swallow [I].")
+
 		if(istype(I,/obj/item/device/flashlight/flare) || istype(I,/obj/item/weapon/flame/match) || istype(I,/obj/item/weapon/storage/box/matches))
 			to_chat(src, "<span class='notice'>You can taste the flavor of spicy cardboard.</span>")
 		else if(istype(I,/obj/item/device/flashlight/glowstick))
