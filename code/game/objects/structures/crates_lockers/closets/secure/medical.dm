@@ -114,6 +114,7 @@
 	req_access = list(access_medical_equip)
 
 	starts_with = list(
+		/obj/item/weapon/storage/briefcase/ml3m_pack_med, //VOREStation Addition,
 		/obj/item/weapon/storage/backpack/dufflebag/emt,
 		/obj/item/weapon/storage/box/autoinjectors,
 		/obj/item/weapon/storage/box/syringes,
@@ -149,6 +150,7 @@
 	icon_off = "cmosecureoff"
 
 	starts_with = list(
+		/obj/item/weapon/storage/briefcase/ml3m_pack_cmo, //VOREStation Addition,
 		/obj/item/clothing/under/rank/chief_medical_officer,
 		/obj/item/clothing/under/rank/chief_medical_officer/skirt,
 		/obj/item/clothing/suit/storage/toggle/labcoat/cmo,

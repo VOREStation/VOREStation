@@ -158,10 +158,19 @@
 	healing beams can be configured at once. Ammo not included."
 	catalogue_data = list(/datum/category_item/catalogue/information/organization/vey_med)
 
+	icon_state = "ml3m"
 	description_info = "This is a ranged healing device that uses interchangable nanite discharge cells in a magazine. Each cell is a different healing beam type, and up to three can be loaded in the magazine. Each battery usually provides four discharges of that beam type, and multiple from the same type may be loaded to increase the number of shots for that type."
 	description_fluff = "The Vey-Med ML-3 'Medigun' allows one to customize their loadout in the field, or before deploying, to allow emergency response personnel to deliver a variety of ranged healing options."
 	description_antag = ""
 	allowed_magazines = list(/obj/item/ammo_magazine/nsfw_mag/medical)
+
+/obj/item/weapon/gun/projectile/nsfw/medical/cmo
+	name = "\improper Advanced ML-3 \'Medigun\'"
+	desc = "This is a variation on the ML-3 'Medigun', a powerful cell-based ranged healing device based on the KHI-102b NSFW. \
+	It has an extended sight for increased accuracy, and is capable of holding large magazines. Ammo not included."
+
+	icon_state = "ml3m_cmo"
+
 
 // The Magazine //
 /obj/item/ammo_magazine/nsfw_mag
@@ -379,8 +388,8 @@
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack
 	name = "\improper KHI-102b \'NSFW\' gun kit"
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
-	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_NORMAL
+	max_w_class = ITEMSIZE_NORMAL
 
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack/New()
 	..()
@@ -392,8 +401,8 @@
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hos
 	name = "\improper KHI-102b \'NSFW\' gun kit"
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
-	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_NORMAL
+	max_w_class = ITEMSIZE_NORMAL
 
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hos/New()
 	..()
@@ -405,6 +414,39 @@
 	new /obj/item/ammo_casing/nsfw_batt/combat/stun(src)
 	new /obj/item/ammo_casing/nsfw_batt/combat/net(src)
 	new /obj/item/ammo_casing/nsfw_batt/combat/ion(src)
+
+/obj/item/weapon/storage/briefcase/ml3m_pack_med
+	name = "\improper ML-3 \'Medigun\' ML3M gun kit"
+	desc = "A storage case for a multi-purpose healing gun. Variety hour!"
+	w_class = ITEMSIZE_NORMAL
+	max_w_class = ITEMSIZE_NORMAL
+	icon_state = "purplefirstaid"
+
+/obj/item/weapon/storage/secure/briefcase/ml3m_pack_med/New()
+	..()
+	new /obj/item/weapon/gun/projectile/nsfw/medical(src)
+	new /obj/item/ammo_magazine/nsfw_mag/medical(src)
+	new /obj/item/ammo_casing/nsfw_batt/medical/brute(src)
+	new /obj/item/ammo_casing/nsfw_batt/medical/burn(src)
+	new /obj/item/ammo_casing/nsfw_batt/medical/stabilize(src)
+
+/obj/item/weapon/storage/briefcase/ml3m_pack_cmo
+	name = "\improper Advanced ML-3 \'Medigun\' ML3M gun kit"
+	desc = "A storage case for a multi-purpose healing gun. Variety hour!"
+	w_class = ITEMSIZE_NORMAL
+	max_w_class = ITEMSIZE_NORMAL
+	icon_state = "purplefirstaid"
+
+/obj/item/weapon/storage/secure/briefcase/ml3m_pack_cmo/New()
+	..()
+	new /obj/item/weapon/gun/projectile/nsfw/medical/cmo(src)
+	new /obj/item/ammo_magazine/nsfw_mag/medical/advanced(src)
+	new /obj/item/ammo_casing/nsfw_batt/medical/brute2(src)
+	new /obj/item/ammo_casing/nsfw_batt/medical/brute2(src)
+	new /obj/item/ammo_casing/nsfw_batt/medical/burn2(src)
+	new /obj/item/ammo_casing/nsfw_batt/medical/burn2(src)
+	new /obj/item/ammo_casing/nsfw_batt/medical/stabilize2(src)
+	new /obj/item/ammo_casing/nsfw_batt/medical/stabilize2(src)
 
 
 // Medical //
@@ -507,7 +549,7 @@
 		target.adjustBruteLoss(-5)
 		target.adjustFireLoss(-5)
 		target.adjustToxLoss(-5)
-		target.adjustOxyLoss(-5)
+		target.adjustOxyLoss(-15)
 	else
 		return 1
 
@@ -583,7 +625,7 @@
 		target.adjustBruteLoss(-10)
 		target.adjustFireLoss(-10)
 		target.adjustToxLoss(-10)
-		target.adjustOxyLoss(-10)
+		target.adjustOxyLoss(-30)
 	else
 		return 1
 
@@ -643,7 +685,7 @@
 	name = "\'ML-3/M\' nanite cell - REVIVAL"
 	type_color = "#669900"
 	type_name = "<span style='color:#669900;font-weight:bold;'>REVIVAL</span>"
-	projectile_type = /obj/item/projectile/beam/ML3M/resistance
+	projectile_type = /obj/item/projectile/beam/ML3M/revival
 
 /obj/item/projectile/beam/ML3M/revival/on_hit(var/mob/living/carbon/human/target)
 	if(istype(target, /mob/living/carbon/human))

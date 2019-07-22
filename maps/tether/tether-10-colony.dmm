@@ -1281,14 +1281,14 @@
 /area/centcom/specops)
 "bW" = (
 /obj/structure/table/reinforced,
-/obj/item/ammo_casing/nsfw_batt/stun,
-/obj/item/ammo_casing/nsfw_batt/stun,
-/obj/item/ammo_casing/nsfw_batt/stun,
-/obj/item/ammo_casing/nsfw_batt,
-/obj/item/ammo_casing/nsfw_batt,
-/obj/item/ammo_casing/nsfw_batt,
-/obj/item/ammo_casing/nsfw_batt/net,
-/obj/item/ammo_casing/nsfw_batt/net,
+/obj/item/ammo_casing/nsfw_batt/combat/stun,
+/obj/item/ammo_casing/nsfw_batt/combat/stun,
+/obj/item/ammo_casing/nsfw_batt/combat/stun,
+/obj/item/ammo_casing/nsfw_batt/medical/brute2,
+/obj/item/ammo_casing/nsfw_batt/medical/burn2,
+/obj/item/ammo_casing/nsfw_batt/medical/stabilize2,
+/obj/item/ammo_casing/nsfw_batt/combat/net,
+/obj/item/ammo_casing/nsfw_batt/combat/net,
 /obj/item/ammo_magazine/nsfw_mag,
 /obj/item/weapon/gun/projectile/nsfw,
 /turf/unsimulated/floor/steel{
