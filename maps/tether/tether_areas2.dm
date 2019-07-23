@@ -89,6 +89,8 @@
 	name = "\improper Atrium Construction Site"
 /area/vacant/vacant_bar
 	name = "\improper Vacant Bar"
+/area/vacant/vacant_bar_upper
+	name = "\improper Upper Vacant Bar"
 /area/vacant/vacant_site/gateway
 	name = "\improper Vacant Prep Area"
 /area/vacant/vacant_site/gateway/lower
