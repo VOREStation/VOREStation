@@ -16737,6 +16737,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
+"Mz" = (
+/obj/machinery/alarm{
+	frequency = 1441;
+	pixel_y = 22
+	},
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "MA" = (
 /obj/structure/table/steel,
 /obj/item/device/nif/bad,
@@ -30574,7 +30581,7 @@ Ud
 Eu
 JU
 Ih
-Eu
+Mz
 JU
 Ud
 Eu

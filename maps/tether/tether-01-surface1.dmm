@@ -25894,6 +25894,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/simulated/floor/plating,
 /area/vacant/vacant_bar)
 "crL" = (
@@ -26297,6 +26302,12 @@
 /area/engineering/atmos/processing)
 "dRx" = (
 /obj/machinery/vending/cigarette,
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/apc;
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm3)
 "dSz" = (
@@ -27196,6 +27207,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden)
+"hxf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar)
 "hAF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/freezer,
@@ -27535,6 +27555,9 @@
 	pixel_x = -24
 	},
 /obj/structure/table,
+/obj/item/stack/material/wood{
+	amount = 10
+	},
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
 "iNX" = (
@@ -27736,9 +27759,7 @@
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/processing)
 "jmP" = (
-/obj/structure/table/alien{
-	name = "sleek table"
-	},
+/obj/structure/table/borosilicate,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
 "jod" = (
@@ -28085,6 +28106,14 @@
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
+"kuB" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/material/wood{
+	amount = 10
+	},
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar)
 "kuC" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
@@ -28149,6 +28178,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_one)
+"kOq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
 "kOB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
@@ -28787,14 +28828,12 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/maintenance/lower/atmos)
 "mDm" = (
-/obj/structure/table/alien{
-	name = "sleek table"
-	},
 /obj/effect/immovablerod{
 	density = 0;
 	desc = "Engineered for your entertainment.";
 	name = "Dance Pole"
 	},
+/obj/structure/table/borosilicate,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
 "mEg" = (
@@ -28833,6 +28872,16 @@
 /obj/machinery/atmospherics/pipe/tank/air,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos)
+"mUc" = (
+/obj/machinery/door/airlock/maintenance/common,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
 "mUG" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -29215,6 +29264,14 @@
 	},
 /turf/simulated/floor/plating,
 /area/engineering/atmos/processing)
+"ocj" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
 "ocQ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green,
 /obj/effect/floor_decal/borderfloor{
@@ -42642,8 +42699,8 @@ aLC
 gtV
 cyE
 pGN
-cyE
-aLC
+kOq
+ocj
 aLC
 mMD
 azI
@@ -42785,7 +42842,7 @@ azI
 azI
 azI
 azI
-azI
+mUc
 azI
 azI
 azI
@@ -42927,7 +42984,7 @@ iMg
 eLg
 fLT
 foy
-taf
+hxf
 jBQ
 kMh
 nsF
@@ -44211,7 +44268,7 @@ jiZ
 uvM
 nsF
 sHx
-sHx
+kuB
 mos
 mqx
 mqx
@@ -44487,7 +44544,7 @@ eUB
 aLE
 wOg
 wle
-adK
+jiZ
 jiZ
 jiZ
 jiZ
