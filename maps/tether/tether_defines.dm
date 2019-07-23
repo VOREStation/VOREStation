@@ -164,7 +164,7 @@
 /datum/map/tether/get_map_levels(var/srcz, var/long_range = TRUE)
 	if (long_range && (srcz in map_levels))
 		return map_levels
-	else if (srcz == Z_LEVEL_TRANSIT) //Z4
+	else if (srcz == Z_LEVEL_TRANSIT || srcz == Z_LEVEL_MISC || srcz == Z_LEVEL_SHIPS) //Z4 and technical levels
 		return list() // Nothing on these z-levels- sensors won't show, and GPSes won't see each other.
 	else if (srcz >= Z_LEVEL_SURFACE_LOW && srcz <= Z_LEVEL_SOLARS) //Zs 1-3, 5-9
 		return list(
