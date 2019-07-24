@@ -223,3 +223,16 @@
 	name = "stun beam"
 	icon_state = "stun"
 	agony = 30
+
+/obj/item/projectile/beam/shock
+	name = "shock beam"
+	icon_state = "lightning"
+	damage_type = ELECTROCUTE
+
+	muzzle_type = /obj/effect/projectile/muzzle/lightning
+	tracer_type = /obj/effect/projectile/tracer/lightning
+	impact_type = /obj/effect/projectile/impact/lightning
+
+	damage = 30
+	agony = 15
+	eyeblur = 2
