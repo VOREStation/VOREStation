@@ -2791,6 +2791,7 @@
 #include "code\modules\projectiles\projectile\hook.dm"
 #include "code\modules\projectiles\projectile\magnetic.dm"
 #include "code\modules\projectiles\projectile\pellets.dm"
+#include "code\modules\projectiles\projectile\scatter.dm"
 #include "code\modules\projectiles\projectile\special.dm"
 #include "code\modules\projectiles\projectile\trace.dm"
 #include "code\modules\projectiles\targeting\targeting_client.dm"

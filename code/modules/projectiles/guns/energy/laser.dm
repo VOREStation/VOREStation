@@ -245,3 +245,17 @@
 	item_state = "redtag"
 	projectile_type = /obj/item/projectile/beam/lastertag/red
 	required_vest = /obj/item/clothing/suit/redtag
+
+/*
+ * Laser scattergun, proof of concept.
+ */
+
+/obj/item/weapon/gun/energy/lasershotgun
+	name = "laser scattergun"
+	icon = 'icons/obj/energygun.dmi'
+	item_state = "laser"
+	icon_state = "scatter"
+	desc = "A strange Almachi weapon, utilizing a refracting prism to turn a single laser blast into a diverging cluster."
+	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 1, TECH_MATERIAL = 4)
+
+	projectile_type = /obj/item/projectile/scatter/laser
