@@ -281,3 +281,8 @@
 			return TRUE
 	return FALSE
 
+/obj/structure/grille/take_damage(var/damage)
+	health -= damage
+	spawn(1) healthcheck()
+	return 1
+
