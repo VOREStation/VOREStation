@@ -840,8 +840,7 @@
 	//Shooting Code:
 	A.firer = src
 	A.old_style_target(target)
-	A.def_zone = def_zone
-	A.fire()
+	A.launch_projectile_from_turf(target, def_zone, src)
 
 	// Reset the time needed to go back down, since we just tried to shoot at someone.
 	timeout = 10

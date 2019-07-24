@@ -180,15 +180,15 @@
 	if(dna_lock && attached_lock.stored_dna)
 		if(!authorized_user(user))
 			if(attached_lock.safety_level == 0)
-				to_chat(M, "<span class='danger'>\The [src] buzzes in dissapoint and displays an invalid DNA symbol.</span>")
+				to_chat(M, "<span class='danger'>\The [src] buzzes in dissapointment and displays an invalid DNA symbol.</span>")
 				return 0
 			if(!attached_lock.exploding)
 				if(attached_lock.safety_level == 1)
 					to_chat(M, "<span class='danger'>\The [src] hisses in dissapointment.</span>")
 					visible_message("<span class='game say'><span class='name'>\The [src]</span> announces, \"Self-destruct occurring in ten seconds.\"</span>", "<span class='game say'><span class='name'>\The [src]</span> announces, \"Self-destruct occurring in ten seconds.\"</span>")
+					attached_lock.exploding = 1
 					spawn(100)
 						explosion(src, 0, 0, 3, 4)
-						attached_lock.exploding = 1
 						sleep(1)
 						qdel(src)
 					return 0
