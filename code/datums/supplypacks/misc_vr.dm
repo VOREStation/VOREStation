@@ -43,6 +43,7 @@
 				  access_eva,
 				  access_explorer,
 				  access_pilot)
+	one_access = TRUE
 
 /datum/supply_pack/misc/mining_rig
 	name = "industrial hardsuit (empty)"
@@ -54,3 +55,4 @@
 	containername = "industrial hardsuit crate"
 	access = list(access_mining,
 				  access_eva)
+	one_access = TRUE

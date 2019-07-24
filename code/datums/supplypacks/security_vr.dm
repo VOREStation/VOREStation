@@ -6,6 +6,7 @@
 	access = list(
 			access_security,
 			access_xenobiology)
+	one_access = TRUE
 
 /datum/supply_pack/security/guardmutant
 	name = "VARMAcorp autoNOMous security solution for hostile environments"
@@ -15,6 +16,7 @@
 	access = list(
 			access_security,
 			access_xenobiology)
+	one_access = TRUE
 */
 
 /datum/supply_pack/randomised/security/armor
