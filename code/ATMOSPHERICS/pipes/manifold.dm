@@ -71,6 +71,23 @@
 
 	..()
 
+<<<<<<< HEAD
+=======
+/obj/machinery/atmospherics/pipe/manifold/handle_leaking()
+	if(node1 && node2 && node3)
+		set_leaking(FALSE)
+	else
+		set_leaking(TRUE)
+
+/obj/machinery/atmospherics/pipe/manifold/process()
+	if(!parent)
+		..()
+	else if(leaking)
+		parent.mingle_with_turf(loc, volume)
+	else
+		. = PROCESS_KILL
+
+>>>>>>> 31518fe... Merge pull request #6344 from Mechoid/ManifoldLeaking
 /obj/machinery/atmospherics/pipe/manifold/change_color(var/new_color)
 	..()
 	//for updating connected atmos device pipes (i.e. vents, manifolds, etc)
