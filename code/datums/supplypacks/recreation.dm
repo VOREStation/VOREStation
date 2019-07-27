@@ -88,3 +88,13 @@
 			/obj/item/weapon/storage/box/wormcan,
 			/obj/item/weapon/storage/box/wormcan/deluxe
 			)
+
+/datum/supply_pack/recreation/ltagturrets
+	name = "Laser Tag Turrets"
+	cost = 40
+	containername = "laser tag turret crate"
+	containertype = /obj/structure/closet/crate
+	contains = list(
+			/obj/machinery/porta_turret/lasertag/blue,
+			/obj/machinery/porta_turret/lasertag/red
+			)
