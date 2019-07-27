@@ -1027,6 +1027,7 @@
 #include "code\game\objects\items\stacks\marker_beacons.dm"
 #include "code\game\objects\items\stacks\matter_synth.dm"
 #include "code\game\objects\items\stacks\medical.dm"
+#include "code\game\objects\items\stacks\medical_vr.dm"
 #include "code\game\objects\items\stacks\nanopaste.dm"
 #include "code\game\objects\items\stacks\rods.dm"
 #include "code\game\objects\items\stacks\stack.dm"
