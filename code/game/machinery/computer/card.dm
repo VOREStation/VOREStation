@@ -279,7 +279,7 @@
 
 		if ("terminate")
 			if (is_authenticated())
-				modify.assignment = "Terminated"
+				modify.assignment = "Demoted"
 				modify.access = list()
 
 				callHook("terminate_employee", list(modify))

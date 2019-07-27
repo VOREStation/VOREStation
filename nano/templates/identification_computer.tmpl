@@ -125,11 +125,13 @@
 
 				<div class='item'>
 					<div class='itemLabel'>
-						Terminations:
+					<!-- VOREStation Edit Start -->
+						Demotions:
 					</div>
 					<div class='itemContent'>
-						{{:helper.link('Terminate ' + data.target_owner, 'gear', {'choice' : 'terminate'}, data.target_rank == "Terminated" ? 'disabled' : null, data.target_rank == "Terminated" ? 'disabled' : 'linkDanger')}}
+						{{:helper.link('Demote ' + data.target_owner, 'gear', {'choice' : 'terminate'}, data.target_rank == "Demoted" ? 'disabled' : null, data.target_rank == "Demoted" ? 'disabled' : 'linkDanger')}}
 					</div>
+					<!-- VOREStation Edit End -->
 				</div>
 
 				<div class='item'>
