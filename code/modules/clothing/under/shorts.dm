@@ -130,6 +130,12 @@
 	desc = "A piece of cloth wrapped around the waist."
 	icon_state = "loincloth"
 
+/obj/item/clothing/under/skirt/pleated
+	name = "pleated skirt"
+	desc = "A simple pleated skirt. It's like high school all over again."
+	icon_state = "pleated"
+	addblends = "pleated_a"
+
 /obj/item/clothing/under/skirt/outfit
 	name = "black skirt"
 	desc = "A black skirt, very fancy!"
