@@ -32,5 +32,5 @@
 
 	//if they requested spice, then remove spice verb temporarily to prevent spamming
 	usr.verbs -= /client/verb/adminspice
-	spawn(1200)
-		usr.verbs += /client/verb/adminspice	// 2 minute cool-down for spice request
+	spawn(6000)
+		usr.verbs += /client/verb/adminspice	// 10 minute cool-down for spice request
