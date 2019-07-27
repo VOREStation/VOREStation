@@ -32,7 +32,7 @@
 	name = "field medic locker"
 
 	starts_with = list(
-		/obj/item/weapon/storage/briefcase/ml3m_pack_med,
+		/obj/item/weapon/storage/firstaid/ml3m_pack_med,
 		/obj/item/weapon/storage/backpack/dufflebag/emt,
 		/obj/item/weapon/storage/box/autoinjectors,
 		/obj/item/weapon/storage/box/syringes,

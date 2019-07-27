@@ -82,7 +82,7 @@
 	req_access = list(access_medical_equip)
 
 	starts_with = list(
-		obj/item/weapon/storage/briefcase/ml3m_pack_med, //VOREStation addition,
+		/obj/item/weapon/storage/firstaid/ml3m_pack_med, //VOREStation addition,
 		/obj/item/weapon/storage/backpack/dufflebag/emt,
 		/obj/item/weapon/storage/box/autoinjectors,
 		/obj/item/weapon/storage/box/syringes,

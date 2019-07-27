@@ -415,14 +415,14 @@
 	new /obj/item/ammo_casing/nsfw_batt/combat/net(src)
 	new /obj/item/ammo_casing/nsfw_batt/combat/ion(src)
 
-/obj/item/weapon/storage/briefcase/ml3m_pack_med
-	name = "\improper ML-3 \'Medigun\' ML3M gun kit"
+/obj/item/weapon/storage/firstaid/ml3m_pack_med
+	name = "\improper ML-3 \'Medigun\' kit"
 	desc = "A storage case for a multi-purpose healing gun. Variety hour!"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
-	icon_state = "purplefirstaid"
+	icon_state = "pinky"
 
-/obj/item/weapon/storage/secure/briefcase/ml3m_pack_med/New()
+/obj/item/weapon/storage/firstaid/ml3m_pack_med/New()
 	..()
 	new /obj/item/weapon/gun/projectile/nsfw/medical(src)
 	new /obj/item/ammo_magazine/nsfw_mag/medical(src)
@@ -430,14 +430,14 @@
 	new /obj/item/ammo_casing/nsfw_batt/medical/burn(src)
 	new /obj/item/ammo_casing/nsfw_batt/medical/stabilize(src)
 
-/obj/item/weapon/storage/briefcase/ml3m_pack_cmo
-	name = "\improper Advanced ML-3 \'Medigun\' ML3M gun kit"
+/obj/item/weapon/storage/firstaid/ml3m_pack_cmo
+	name = "\improper Advanced ML-3 \'Medigun\' kit"
 	desc = "A storage case for a multi-purpose healing gun. Variety hour!"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
-	icon_state = "purplefirstaid"
+	icon_state = "clottingkit"
 
-/obj/item/weapon/storage/secure/briefcase/ml3m_pack_cmo/New()
+/obj/item/weapon/storage/firstaid/ml3m_pack_cmo/New()
 	..()
 	new /obj/item/weapon/gun/projectile/nsfw/medical/cmo(src)
 	new /obj/item/ammo_magazine/nsfw_mag/medical/advanced(src)
