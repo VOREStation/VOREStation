@@ -80,7 +80,7 @@
 	if(C == user)
 		user.visible_message("[user] climbs on \the [src].","You climb on \the [src].")
 	else
-		visible_message("<span class='notice'>\The [C] has been laid on \the [src] by [user].</span>", "<span class='notice'>You have been laid on \the [src] by [user].</span>")	//VOREStation Edit
+		visible_message("<span class='notice'>\The [C] has been laid on \the [src] by [user].</span>")	//VOREStation Edit
 	if(C.client)
 		C.client.perspective = EYE_PERSPECTIVE
 		C.client.eye = src
