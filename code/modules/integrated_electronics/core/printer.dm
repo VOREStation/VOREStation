@@ -44,7 +44,7 @@
 			if(num < 1)
 				to_chat(user, span("warning", "\The [src] is too full to add more metal."))
 				return
-			if(stack.use(num))
+			if(stack.use(max(1, round(num)))) // We don't want to create stacks that aren't whole numbers
 				to_chat(user, span("notice", "You add [num] sheet\s to \the [src]."))
 				metal += num * metal_per_sheet
 				interact(user)
