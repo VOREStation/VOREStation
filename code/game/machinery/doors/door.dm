@@ -308,7 +308,7 @@
 		operating = -1
 		return 1
 
-/obj/machinery/door/proc/take_damage(var/damage)
+/obj/machinery/door/take_damage(var/damage)
 	var/initialhealth = src.health
 	src.health = max(0, src.health - damage)
 	if(src.health <= 0 && initialhealth > 0)
