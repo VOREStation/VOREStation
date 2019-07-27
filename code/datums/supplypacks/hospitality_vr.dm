@@ -79,6 +79,3 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Chinese takeout crate"
-
-/datum/supply_pack/randomised/hospitality/pizza
-	cost = 25

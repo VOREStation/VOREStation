@@ -81,7 +81,6 @@
 	if(riding_datum)
 		riding_datum.handle_ride(user, direction)
 
-
 /obj/vehicle/Moved()
 	. = ..()
 	if(riding_datum)
@@ -162,6 +161,10 @@
 /obj/vehicle/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.get_structure_damage()
 	..()
+	healthcheck()
+
+/obj/vehicle/proc/adjust_health(amount)
+	health = between(0, health + amount, maxhealth)
 	healthcheck()
 
 /obj/vehicle/ex_act(severity)

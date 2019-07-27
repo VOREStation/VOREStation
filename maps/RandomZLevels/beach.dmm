@@ -210,7 +210,7 @@
 /turf/unsimulated/beach/sand,
 /area/awaymission/beach)
 "L" = (
-/mob/living/simple_animal/crab,
+/mob/living/simple_mob/animal/passive/crab,
 /turf/unsimulated/beach/sand,
 /area/awaymission/beach)
 "M" = (
@@ -218,7 +218,7 @@
 /turf/unsimulated/beach/sand,
 /area/awaymission/beach)
 "N" = (
-/mob/living/simple_animal/crab/Coffee,
+/mob/living/simple_mob/animal/passive/crab/Coffee,
 /turf/unsimulated/beach/sand,
 /area/awaymission/beach)
 "O" = (

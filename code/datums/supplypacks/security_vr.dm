@@ -1,4 +1,4 @@
-/datum/supply_pack/security/guardbeast
+/*/datum/supply_pack/security/guardbeast //VORESTATION AI TEMPORARY REMOVAL
 	name = "VARMAcorp autoNOMous security solution"
 	cost = 150
 	containertype = /obj/structure/largecrate/animal/guardbeast
@@ -15,6 +15,10 @@
 	access = list(
 			access_security,
 			access_xenobiology)
+*/
+
+/datum/supply_pack/randomised/security/armor
+	access = access_armory
 
 /datum/supply_pack/security/biosuit
 	contains = list(

@@ -26,7 +26,7 @@
 		load_settings()
 
 	Destroy()
-		QDEL_NULL_LIST(brainmobs)
+		QDEL_LIST_NULL(brainmobs)
 		return ..()
 
 	activate()
@@ -49,7 +49,7 @@
 			nif.human.verbs |= /mob/living/carbon/human/proc/nme
 
 	uninstall()
-		QDEL_NULL_LIST(brainmobs)
+		QDEL_LIST_NULL(brainmobs)
 		if((. = ..()) && nif && nif.human) //Sometimes NIFs are deleted outside of a human
 			nif.human.verbs -= /mob/living/carbon/human/proc/nsay
 			nif.human.verbs -= /mob/living/carbon/human/proc/nme

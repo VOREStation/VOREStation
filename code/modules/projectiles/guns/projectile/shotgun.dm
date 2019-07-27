@@ -6,7 +6,6 @@
 	max_shells = 4
 	w_class = ITEMSIZE_LARGE
 	force = 10
-	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = "12g"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
@@ -41,14 +40,14 @@
 		loaded -= AC //Remove casing from loaded list.
 		chambered = AC
 
-	if(animated_pump)//This affects all bolt action and shotguns. 
+	if(animated_pump)//This affects all bolt action and shotguns.
 		flick("[icon_state]-cycling", src)//This plays any pumping
 
 	update_icon()
 
 /obj/item/weapon/gun/projectile/shotgun/pump/update_icon()//This adds empty sprite capability for shotguns.
 	..()
-	if(!empty_sprite)//Just a dirty check 
+	if(!empty_sprite)//Just a dirty check
 		return
 	if((loaded.len) || (chambered))
 		icon_state = "[icon_state]"
@@ -80,7 +79,6 @@
 	max_shells = 2
 	w_class = ITEMSIZE_LARGE
 	force = 10
-	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = "12g"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1)

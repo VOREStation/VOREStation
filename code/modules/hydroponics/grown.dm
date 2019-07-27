@@ -11,7 +11,7 @@
 	var/datum/seed/seed
 	var/potency = -1
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/New(newloc,planttype)
+/obj/item/weapon/reagent_containers/food/snacks/grown/Initialize(newloc,planttype)
 
 	..()
 	if(!dried_type)
@@ -62,6 +62,8 @@
 	update_desc()
 	if(reagents.total_volume > 0)
 		bitesize = 1+round(reagents.total_volume / 2, 1)
+	if(seed.get_trait(TRAIT_STINGS))
+		force = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/proc/update_desc()
 

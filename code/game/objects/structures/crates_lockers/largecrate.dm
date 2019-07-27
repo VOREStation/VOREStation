@@ -6,7 +6,7 @@
 	density = 1
 	var/list/starts_with
 
-/obj/structure/largecrate/initialize()
+/obj/structure/largecrate/Initialize()
 	. = ..()
 	if(starts_with)
 		create_objects_in_loc(src, starts_with)
@@ -63,7 +63,7 @@
 	desc = "It comes in a box for the consumer's sake. ..How is this lighter?"
 	icon_state = "vehiclecrate"
 
-/obj/structure/largecrate/vehicle/initialize()
+/obj/structure/largecrate/vehicle/Initialize()
 	..()
 	spawn(1)
 		for(var/obj/O in contents)
@@ -90,23 +90,23 @@
 
 /obj/structure/largecrate/animal/corgi
 	name = "corgi carrier"
-	starts_with = list(/mob/living/simple_animal/corgi)
+	starts_with = list(/mob/living/simple_mob/animal/passive/dog/corgi)
 
 /obj/structure/largecrate/animal/cow
 	name = "cow crate"
-	starts_with = list(/mob/living/simple_animal/cow)
+	starts_with = list(/mob/living/simple_mob/animal/passive/cow)
 
 /obj/structure/largecrate/animal/goat
 	name = "goat crate"
-	starts_with = list(/mob/living/simple_animal/retaliate/goat)
+	starts_with = list(/mob/living/simple_mob/animal/goat)
 
 /obj/structure/largecrate/animal/cat
 	name = "cat carrier"
-	starts_with = list(/mob/living/simple_animal/cat)
+	starts_with = list(/mob/living/simple_mob/animal/passive/cat)
 
 /obj/structure/largecrate/animal/cat/bones
-	starts_with = list(/mob/living/simple_animal/cat/fluff/bones)
+	starts_with = list(/mob/living/simple_mob/animal/passive/cat/bones)
 
 /obj/structure/largecrate/animal/chick
 	name = "chicken crate"
-	starts_with = list(/mob/living/simple_animal/chick = 5)
+	starts_with = list(/mob/living/simple_mob/animal/passive/chick = 5)

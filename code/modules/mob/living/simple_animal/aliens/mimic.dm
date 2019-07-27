@@ -2,7 +2,7 @@
 // Abstract Class
 //
 
-/mob/living/simple_animal/hostile/mimic
+/mob/living/simple_mob/hostile/mimic
 	name = "crate"
 	desc = "A rectangular steel crate."
 	icon = 'icons/obj/storage.dmi'
@@ -41,16 +41,16 @@
 
 	showvoreprefs = 0 //VOREStation Edit - Hides mechanical vore prefs for mimics. You can't see their gaping maws when they're just sitting idle.
 
-/mob/living/simple_animal/hostile/mimic/set_target()
+/mob/living/simple_mob/hostile/mimic/set_target()
 	. = ..()
 	if(.)
 		audible_emote("growls at [.]")
 
-/mob/living/simple_animal/hostile/mimic/death()
+/mob/living/simple_mob/hostile/mimic/death()
 	..()
 	qdel(src)
 
-/mob/living/simple_animal/hostile/mimic/will_show_tooltip()
+/mob/living/simple_mob/hostile/mimic/will_show_tooltip()
 	return FALSE
 
 
@@ -59,7 +59,7 @@
 //
 
 // Aggro when you try to open them. Will also pickup loot when spawns and drop it when dies.
-/mob/living/simple_animal/hostile/mimic/crate
+/mob/living/simple_mob/hostile/mimic/crate
 
 	attacktext = list("bitten")
 
@@ -68,52 +68,52 @@
 	var/attempt_open = 0
 
 // Pickup loot
-/mob/living/simple_animal/hostile/mimic/crate/initialize()
+/mob/living/simple_animal/hostile/mimic/crate/Initialize()
 	. = ..()
 	for(var/obj/item/I in loc)
 		I.forceMove(src)
 
-/mob/living/simple_animal/hostile/mimic/crate/DestroySurroundings()
+/mob/living/simple_mob/hostile/mimic/crate/DestroySurroundings()
 	..()
 	if(prob(90))
 		icon_state = "[initial(icon_state)]open"
 	else
 		icon_state = initial(icon_state)
 
-/mob/living/simple_animal/hostile/mimic/crate/ListTargets()
+/mob/living/simple_mob/hostile/mimic/crate/ListTargets()
 	if(attempt_open)
 		return ..()
 	else
 		return ..(1)
 
-/mob/living/simple_animal/hostile/mimic/crate/set_target()
+/mob/living/simple_mob/hostile/mimic/crate/set_target()
 	. = ..()
 	if(.)
 		trigger()
 
-/mob/living/simple_animal/hostile/mimic/crate/PunchTarget()
+/mob/living/simple_mob/hostile/mimic/crate/PunchTarget()
 	. = ..()
 	if(.)
 		icon_state = initial(icon_state)
 
-/mob/living/simple_animal/hostile/mimic/crate/proc/trigger()
+/mob/living/simple_mob/hostile/mimic/crate/proc/trigger()
 	if(!attempt_open)
 		visible_message("<b>[src]</b> starts to move!")
 		attempt_open = 1
 
-/mob/living/simple_animal/hostile/mimic/crate/adjustBruteLoss(var/damage)
+/mob/living/simple_mob/hostile/mimic/crate/adjustBruteLoss(var/damage)
 	trigger()
 	..(damage)
 
-/mob/living/simple_animal/hostile/mimic/crate/LoseTarget()
+/mob/living/simple_mob/hostile/mimic/crate/LoseTarget()
 	..()
 	icon_state = initial(icon_state)
 
-/mob/living/simple_animal/hostile/mimic/crate/LostTarget()
+/mob/living/simple_mob/hostile/mimic/crate/LostTarget()
 	..()
 	icon_state = initial(icon_state)
 
-/mob/living/simple_animal/hostile/mimic/crate/death()
+/mob/living/simple_mob/hostile/mimic/crate/death()
 	var/obj/structure/closet/crate/C = new(get_turf(src))
 	// Put loot in crate
 	for(var/obj/O in src)
@@ -122,7 +122,7 @@
 		O.forceMove(C)
 	..()
 
-/mob/living/simple_animal/hostile/mimic/crate/PunchTarget()
+/mob/living/simple_mob/hostile/mimic/crate/PunchTarget()
 	. =..()
 	var/mob/living/L = .
 	if(istype(L))
@@ -136,7 +136,7 @@
 
 var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/cable, /obj/structure/window, /obj/item/projectile/animate)
 
-/mob/living/simple_animal/hostile/mimic/copy
+/mob/living/simple_mob/hostile/mimic/copy
 
 	health = 100
 	maxHealth = 100
@@ -144,11 +144,11 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 	var/destroy_objects = 0
 	var/knockdown_people = 0
 
-/mob/living/simple_animal/hostile/mimic/copy/New(loc, var/obj/copy, var/mob/living/creator)
+/mob/living/simple_mob/hostile/mimic/copy/New(loc, var/obj/copy, var/mob/living/creator)
 	..(loc)
 	CopyObject(copy, creator)
 
-/mob/living/simple_animal/hostile/mimic/copy/death()
+/mob/living/simple_mob/hostile/mimic/copy/death()
 
 	for(var/atom/movable/M in src)
 		if(isbelly(M)) //VOREStation edit
@@ -156,12 +156,12 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 		M.forceMove(get_turf(src))
 	..()
 
-/mob/living/simple_animal/hostile/mimic/copy/ListTargets()
+/mob/living/simple_mob/hostile/mimic/copy/ListTargets()
 	// Return a list of targets that isn't the creator
 	. = ..()
 	return . - creator
 
-/mob/living/simple_animal/hostile/mimic/copy/proc/CopyObject(var/obj/O, var/mob/living/creator)
+/mob/living/simple_mob/hostile/mimic/copy/proc/CopyObject(var/obj/O, var/mob/living/creator)
 
 	if((istype(O, /obj/item) || istype(O, /obj/structure)) && !is_type_in_list(O, protected_objects))
 
@@ -193,11 +193,11 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 		return 1
 	return
 
-/mob/living/simple_animal/hostile/mimic/copy/DestroySurroundings()
+/mob/living/simple_mob/hostile/mimic/copy/DestroySurroundings()
 	if(destroy_objects)
 		..()
 
-/mob/living/simple_animal/hostile/mimic/copy/PunchTarget()
+/mob/living/simple_mob/hostile/mimic/copy/PunchTarget()
 	. =..()
 	if(knockdown_people)
 		var/mob/living/L = .

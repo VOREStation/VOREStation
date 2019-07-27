@@ -72,7 +72,7 @@
 	name = "away mission initializer - beachcave"
 
 //In our case, it initializes the ores and random submaps in the beach's cave, then deletes itself
-/obj/away_mission_init/beachcave/initialize()
+/obj/away_mission_init/beachcave/Initialize()
 	// Cave submaps are first.
 	/*seed_submaps(list(z), 50, /area/tether_away/cave/unexplored/normal, /datum/map_template/surface/mountains/normal)
 	seed_submaps(list(z), 50, /area/tether_away/cave/unexplored/deep, /datum/map_template/surface/mountains/deep)
@@ -93,9 +93,9 @@
 	atmos_comp = TRUE //Sets up their atmos tolerances to work in this setting, even if they don't normally (20% up/down tolerance for each gas, and heat)
 	prob_spawn = 50 //Chance of this spawner spawning a mob (once this is missed, the spawner is 'depleted' and won't spawn anymore)
 	prob_fall = 25 //Chance goes down by this much each time it spawns one (not defining and prob_spawn 100 means they spawn as soon as one dies)
-	guard = 40 //They'll stay within this range (not defining this disables them staying nearby and they will wander the map (and through step teleports))
+	//guard = 40 //They'll stay within this range (not defining this disables them staying nearby and they will wander the map (and through step teleports))
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/snake
+		/mob/living/simple_mob/animal/passive/snake
 	)
 
 /obj/tether_away_spawner/beach_outside_friendly
@@ -104,9 +104,9 @@
 	atmos_comp = TRUE
 	prob_spawn = 100
 	prob_fall = 25
-	guard = 40
+	//guard = 40
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/fennec
+		/mob/living/simple_mob/vore/fennec
 	)
 
 /obj/tether_away_spawner/beach_cave
@@ -115,13 +115,13 @@
 	atmos_comp = TRUE
 	prob_spawn = 100
 	prob_fall = 40
-	guard = 20
+	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/hostile/frog = 3, //Frogs are 3x more likely to spawn than,
-		/mob/living/simple_animal/hostile/deathclaw = 1, //these deathclaws are, with these values,
-		/mob/living/simple_animal/hostile/giant_spider = 3,
-		/mob/living/simple_animal/hostile/giant_snake = 1,
-		/mob/living/simple_animal/hostile/giant_spider/ion = 2
+		/mob/living/simple_mob/vore/aggressive/frog = 3, //Frogs are 3x more likely to spawn than,
+		/mob/living/simple_mob/vore/aggressive/deathclaw = 1, //these deathclaws are, with these values,
+		/mob/living/simple_mob/animal/giant_spider = 3,
+		/mob/living/simple_mob/vore/aggressive/giant_snake = 1,
+		/mob/living/simple_mob/animal/giant_spider/ion = 2
 	)
 
 // These are step-teleporters, for map edge transitions
@@ -164,6 +164,7 @@
 	//Not going to do sunlight simulations here like virgo3b
 	//So we just make the whole beach fullbright all the time
 	dynamic_lighting = 0
+	requires_power = 0
 
 /area/tether_away/beach/powershed
 	name = "\improper Away Mission - Virgo 4 Coast PS"

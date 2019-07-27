@@ -25,3 +25,13 @@
 			R.visible_message("<span class='warning'>[user] feeds [R] with [src]!</span>")
 			return
 	..()
+
+/obj/item/trash/liquidprotein
+	name = "\improper \"LiquidProtein\" ration"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "liquidprotein"
+
+/obj/item/trash/fancyplate
+	name = "dirty fancy plate"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "fancyplate"

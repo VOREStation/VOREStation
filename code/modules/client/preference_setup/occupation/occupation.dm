@@ -54,7 +54,7 @@
 		if(alt_title && !(alt_title in job.alt_titles))
 			pref.player_alt_titles -= job.title
 
-/datum/category_item/player_setup_item/occupation/content(mob/user, limit = 19, list/splitJobs = list("Chief Engineer"))  //VOREStation Edit
+/datum/category_item/player_setup_item/occupation/content(mob/user, limit = 20, list/splitJobs = list("Pathfinder"))  //VOREStation Edit
 	if(!job_master)
 		return
 

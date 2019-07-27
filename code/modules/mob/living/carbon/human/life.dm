@@ -104,15 +104,27 @@
 	if(!inStasisNow())
 		..()
 
-// Calculate how vulnerable the human is to under- and overpressure.
-// Returns 0 (equals 0 %) if sealed in an undamaged suit, 1 if unprotected (equals 100%).
+// Calculate how vulnerable the human is to the current pressure.
+// Returns 0 (equals 0 %) if sealed in an undamaged suit that's rated for the pressure, 1 if unprotected (equals 100%).
 // Suitdamage can modifiy this in 10% steps.
-/mob/living/carbon/human/proc/get_pressure_weakness()
+// Protection scales down from 100% at the boundary to 0% at 10% in excess of the boundary
+/mob/living/carbon/human/proc/get_pressure_weakness(pressure)
+	if(pressure == null)
+		return 1 // No protection if someone forgot to give a pressure
 
 	var/pressure_adjustment_coefficient = 1 // Assume no protection at first.
 
-	if(wear_suit && (wear_suit.item_flags & STOPPRESSUREDAMAGE) && head && (head.item_flags & STOPPRESSUREDAMAGE)) // Complete set of pressure-proof suit worn, assume fully sealed.
+	// Check suit
+	if(wear_suit && wear_suit.max_pressure_protection != null && wear_suit.min_pressure_protection != null)
 		pressure_adjustment_coefficient = 0
+		// Pressure is too high
+		if(wear_suit.max_pressure_protection < pressure)
+			// Protection scales down from 100% at the boundary to 0% at 10% in excess of the boundary
+			pressure_adjustment_coefficient += round((pressure - wear_suit.max_pressure_protection) / (wear_suit.max_pressure_protection/10))
+
+		// Pressure is too low
+		if(wear_suit.min_pressure_protection > pressure)
+			pressure_adjustment_coefficient += round((wear_suit.min_pressure_protection - pressure) / (wear_suit.min_pressure_protection/10))
 
 		// Handles breaches in your space suit. 10 suit damage equals a 100% loss of pressure protection.
 		if(istype(wear_suit,/obj/item/clothing/suit/space))
@@ -120,8 +132,26 @@
 			if(S.can_breach && S.damage)
 				pressure_adjustment_coefficient += S.damage * 0.1
 
-	pressure_adjustment_coefficient = min(1,max(pressure_adjustment_coefficient,0)) // So it isn't less than 0 or larger than 1.
+	else
+		// Missing key protection
+		pressure_adjustment_coefficient = 1
 
+	// Check hat
+	if(head && head.max_pressure_protection != null && head.min_pressure_protection != null)
+		// Pressure is too high
+		if(head.max_pressure_protection < pressure)
+			// Protection scales down from 100% at the boundary to 0% at 20% in excess of the boundary
+			pressure_adjustment_coefficient += round((pressure - head.max_pressure_protection) / (head.max_pressure_protection/20))
+
+		// Pressure is too low
+		if(head.min_pressure_protection > pressure)
+			pressure_adjustment_coefficient += round((head.min_pressure_protection - pressure) / (head.min_pressure_protection/20))
+
+	else
+		// Missing key protection
+		pressure_adjustment_coefficient = 1
+
+	pressure_adjustment_coefficient = min(pressure_adjustment_coefficient, 1)
 	return pressure_adjustment_coefficient
 
 // Calculate how much of the enviroment pressure-difference affects the human.
@@ -129,11 +159,11 @@
 	var/pressure_difference
 
 	// First get the absolute pressure difference.
-	if(pressure < ONE_ATMOSPHERE) // We are in an underpressure.
-		pressure_difference = ONE_ATMOSPHERE - pressure
+	if(pressure < species.safe_pressure) // We are in an underpressure.
+		pressure_difference = species.safe_pressure - pressure
 
 	else //We are in an overpressure or standard atmosphere.
-		pressure_difference = pressure - ONE_ATMOSPHERE
+		pressure_difference = pressure - species.safe_pressure
 
 	if(pressure_difference < 5) // If the difference is small, don't bother calculating the fraction.
 		pressure_difference = 0
@@ -141,15 +171,15 @@
 	else
 		// Otherwise calculate how much of that absolute pressure difference affects us, can be 0 to 1 (equals 0% to 100%).
 		// This is our relative difference.
-		pressure_difference *= get_pressure_weakness()
+		pressure_difference *= get_pressure_weakness(pressure)
 
 	// The difference is always positive to avoid extra calculations.
 	// Apply the relative difference on a standard atmosphere to get the final result.
 	// The return value will be the adjusted_pressure of the human that is the basis of pressure warnings and damage.
-	if(pressure < ONE_ATMOSPHERE)
-		return ONE_ATMOSPHERE - pressure_difference
+	if(pressure < species.safe_pressure)
+		return species.safe_pressure - pressure_difference
 	else
-		return ONE_ATMOSPHERE + pressure_difference
+		return species.safe_pressure + pressure_difference
 
 /mob/living/carbon/human/handle_disabilities()
 	..()
@@ -227,7 +257,7 @@
 			if(gene.is_active(src))
 				gene.OnMobLife(src)
 
-	radiation = Clamp(radiation,0,250)
+	radiation = CLAMP(radiation,0,250)
 
 	if(!radiation)
 		if(species.appearance_flags & RADIATION_GLOWS)
@@ -486,7 +516,7 @@
 	if(toxins_pp > safe_toxins_max)
 		var/ratio = (poison/safe_toxins_max) * 10
 		if(reagents)
-			reagents.add_reagent("toxin", Clamp(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
+			reagents.add_reagent("toxin", CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
 			breath.adjust_gas(poison_type, -poison/6, update = 0) //update after
 		phoron_alert = max(phoron_alert, 1)
 	else
@@ -674,7 +704,8 @@
 
 	// Account for massive pressure differences.  Done by Polymorph
 	// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
-	if(status_flags & GODMODE)	return 1	//godmode
+	if(status_flags & GODMODE)
+		return 1	//godmode
 
 	if(adjusted_pressure >= species.hazard_high_pressure)
 		var/pressure_damage = min( ( (adjusted_pressure / species.hazard_high_pressure) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE)
@@ -690,8 +721,19 @@
 		if( !(COLD_RESISTANCE in mutations))
 			if(!isSynthetic() || !nif || !nif.flag_check(NIF_O_PRESSURESEAL,NIF_FLAGS_OTHER)) //VOREStation Edit - NIF pressure seals
 				take_overall_damage(brute=LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
-			if(getOxyLoss() < 55) // 11 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a minute
-				adjustOxyLoss(4)  // 16 OxyLoss per 4 ticks when no internals present; unconsciousness in 13 ticks, roughly twenty seconds
+			if(getOxyLoss() < 55) 		// 12 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a minute
+				var/pressure_dam = 3	// 16 OxyLoss per 4 ticks when no internals present; unconsciousness in 13 ticks, roughly twenty seconds
+										// (Extra 1 oxyloss from failed breath)
+										// Being in higher pressure decreases the damage taken, down to a minimum of (species.hazard_low_pressure / ONE_ATMOSPHERE) at species.hazard_low_pressure
+				pressure_dam *= (ONE_ATMOSPHERE - adjusted_pressure) / ONE_ATMOSPHERE
+
+				if(wear_suit && wear_suit.min_pressure_protection && head && head.min_pressure_protection)
+					var/protection = max(wear_suit.min_pressure_protection, head.min_pressure_protection) // Take the weakest protection
+					pressure_dam *= (protection) / (ONE_ATMOSPHERE) 	// Divide by ONE_ATMOSPHERE to get a fractional protection
+																		// Stronger protection (Closer to 0) results in a smaller fraction
+																		// Firesuits (Min protection = 0.2 atmospheres) decrease oxyloss to 1/5
+
+				adjustOxyLoss(pressure_dam)
 			pressure_alert = -2
 		else
 			pressure_alert = -1
@@ -1047,8 +1089,6 @@
 				sleeping += 1
 				Paralyse(5)
 
-		confused = max(0, confused - 1)
-
 		// If you're dirty, your gloves will become dirty, too.
 		if(gloves && germ_level > gloves.germ_level && prob(10))
 			gloves.germ_level += 1
@@ -1276,6 +1316,11 @@
 			if(found_welder)
 				client.screen |= global_hud.darkMask
 
+/mob/living/carbon/human/reset_view(atom/A)
+	..()
+	if(machine_visual && machine_visual != A)
+		machine_visual.remove_visual(src)
+
 /mob/living/carbon/human/handle_vision()
 	if(stat == DEAD)
 		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
@@ -1337,6 +1382,7 @@
 
 		if(machine)
 			var/viewflags = machine.check_eye(src)
+			machine.apply_visual(src)
 			if(viewflags < 0)
 				reset_view(null, 0)
 			else if(viewflags && !looking_elsewhere)
@@ -1358,7 +1404,7 @@
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)
 	if(G && G.active)
 		see_in_dark += G.darkness_view
-		if(G.overlay)
+		if(G.overlay && client)
 			client.screen |= G.overlay
 		if(G.vision_flags)
 			sight |= G.vision_flags
@@ -1510,20 +1556,67 @@
 /mob/living/carbon/human/proc/handle_pulse()
 	if(life_tick % 5) return pulse	//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
 
-	if(!internal_organs_by_name[O_HEART])
-		return PULSE_NONE //No blood, no pulse.
-
-	if(stat == DEAD)
-		return PULSE_NONE	//that's it, you're dead, nothing can influence your pulse
-
 	var/temp = PULSE_NORM
 
+	var/modifier_shift = 0
+	var/modifier_set
+
+	if(modifiers && modifiers.len)
+		for(var/datum/modifier/mod in modifiers)
+			if(isnull(modifier_set) && !isnull(mod.pulse_set_level))
+				modifier_set = round(mod.pulse_set_level)	// Should be a whole number, but let's not take chances.
+			else if(mod.pulse_set_level > modifier_set)
+				modifier_set = round(mod.pulse_set_level)
+
+			modifier_set = max(0, modifier_set)	// No setting to negatives.
+
+			if(mod.pulse_modifier)
+				modifier_shift += mod.pulse_modifier
+
+	modifier_shift = round(modifier_shift)
+
+	if(!internal_organs_by_name[O_HEART])
+		temp = PULSE_NONE
+		if(!isnull(modifier_set))
+			temp = modifier_set
+		return temp //No blood, no pulse.
+
+	if(stat == DEAD)
+		temp = PULSE_NONE
+		if(!isnull(modifier_set))
+			temp = modifier_set
+		return temp	//that's it, you're dead, nothing can influence your pulse, aside from outside means.
+
+	var/obj/item/organ/internal/heart/Pump = internal_organs_by_name[O_HEART]
+
+	if(Pump)
+		temp += Pump.standard_pulse_level - PULSE_NORM
+
 	if(round(vessel.get_reagent_amount("blood")) <= BLOOD_VOLUME_BAD)	//how much blood do we have
-		temp = PULSE_THREADY	//not enough :(
+		temp = temp + 3	//not enough :(
 
 	if(status_flags & FAKEDEATH)
 		temp = PULSE_NONE		//pretend that we're dead. unlike actual death, can be inflienced by meds
 
+	if(!isnull(modifier_set))
+		temp = modifier_set
+
+	temp = max(0, temp + modifier_shift)	// No negative pulses.
+
+	if(Pump)
+		for(var/datum/reagent/R in reagents.reagent_list)
+			if(R.id in bradycardics)
+				if(temp <= Pump.standard_pulse_level + 3 && temp >= Pump.standard_pulse_level)
+					temp--
+			if(R.id in tachycardics)
+				if(temp <= Pump.standard_pulse_level + 1 && temp >= PULSE_NONE)
+					temp++
+			if(R.id in heartstopper) //To avoid using fakedeath
+				temp = PULSE_NONE
+			if(R.id in cheartstopper) //Conditional heart-stoppage
+				if(R.volume >= R.overdose)
+					temp = PULSE_NONE
+		return temp
 	//handles different chems' influence on pulse
 	for(var/datum/reagent/R in reagents.reagent_list)
 		if(R.id in bradycardics)
@@ -1549,7 +1642,7 @@
 	if(!H || (H.robotic >= ORGAN_ROBOT))
 		return
 
-	if(pulse >= PULSE_2FAST || shock_stage >= 10 || istype(get_turf(src), /turf/space))
+	if(pulse >= PULSE_2FAST || shock_stage >= 10 || (istype(get_turf(src), /turf/space) && is_preference_enabled(/datum/client_preference/play_ambiance)))
 		//PULSE_THREADY - maximum value for pulse, currently it 5.
 		//High pulse value corresponds to a fast rate of heartbeat.
 		//Divided by 2, otherwise it is too slow.
@@ -1602,7 +1695,7 @@
 		else if(foundVirus)
 			holder.icon_state = "hudill"
 		else if(has_brain_worms())
-			var/mob/living/simple_animal/borer/B = has_brain_worms()
+			var/mob/living/simple_mob/animal/borer/B = has_brain_worms()
 			if(B.controlling)
 				holder.icon_state = "hudbrainworm"
 			else
@@ -1697,12 +1790,6 @@
 	attempt_vr(src,"handle_hud_list_vr",list()) //VOREStation Add - Custom HUDs.
 
 	hud_updateflag = 0
-
-/mob/living/carbon/human/handle_stunned()
-	if(!can_feel_pain())
-		stunned = 0
-		return 0
-	return ..()
 
 /mob/living/carbon/human/handle_fire()
 	if(..())

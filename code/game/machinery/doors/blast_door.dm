@@ -23,7 +23,7 @@
 	var/icon_state_closed = null
 	var/icon_state_closing = null
 
-	closed_layer = 3.3 // Above airlocks when closed
+	closed_layer = ON_WINDOW_LAYER // Above airlocks when closed
 	var/id = 1.0
 	dir = 1
 	explosion_resistance = 25
@@ -32,7 +32,7 @@
 	//turning this off prevents awkward zone geometry in places like medbay lobby, for example.
 	block_air_zones = 0
 
-/obj/machinery/door/blast/initialize()
+/obj/machinery/door/blast/Initialize()
 	. = ..()
 	implicit_material = get_material_by_name("plasteel")
 
@@ -62,6 +62,10 @@
 // Has to be in here, comment at the top is older than the emag_act code on doors proper
 /obj/machinery/door/blast/emag_act()
 	return -1
+
+// Blast doors are triggered remotely, so nobody is allowed to physically influence it.
+/obj/machinery/door/blast/allowed(mob/M)
+	return FALSE
 
 // Proc: force_open()
 // Parameters: None
@@ -151,7 +155,7 @@
 				return
 
 	else if(istype(C, /obj/item/stack/material) && C.get_material_name() == "plasteel") // Repairing.
-		var/amt = Ceiling((maxhealth - health)/150)
+		var/amt = CEILING((maxhealth - health)/150, 1)
 		if(!amt)
 			to_chat(user, "<span class='notice'>\The [src] is already fully repaired.</span>")
 			return
@@ -207,9 +211,10 @@
 // Proc: attack_generic()
 // Parameters: Attacking simple mob, incoming damage.
 // Description: Checks the power or integrity of the blast door, if either have failed, chekcs the damage to determine if the creature would be able to open the door by force. Otherwise, super.
-/obj/machinery/door/blast/attack_generic(var/mob/user, var/damage)
+/obj/machinery/door/blast/attack_generic(mob/living/user, damage)
 	if(stat & (BROKEN|NOPOWER))
-		if(damage >= 10)
+		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
+			user.set_AI_busy(TRUE) // If the mob doesn't have an AI attached, this won't do anything.
 			if(src.density)
 				visible_message("<span class='danger'>\The [user] starts forcing \the [src] open!</span>")
 				if(do_after(user, 5 SECONDS, src))
@@ -220,6 +225,7 @@
 				if(do_after(user, 2 SECONDS, src))
 					visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
 					force_close(1)
+			user.set_AI_busy(FALSE)
 		else
 			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
 		return
@@ -259,12 +265,14 @@
 	if(stat & BROKEN)
 		stat &= ~BROKEN
 
-
-/obj/machinery/door/blast/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group) return 1
+/*
+// This replicates the old functionality coded into CanPass() for this object, however it appeared to have made blast doors not airtight.
+// If for some reason this is actually needed for something important, uncomment this.
+/obj/machinery/door/blast/CanZASPass(turf/T, is_zone)
+	if(is_zone)
+		return ATMOS_PASS_YES
 	return ..()
-
-
+*/
 
 // SUBTYPE: Regular
 // Your classical blast door, found almost everywhere.

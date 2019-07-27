@@ -11,6 +11,7 @@
 #define TECH_DATA "programming"
 #define TECH_ILLEGAL "syndicate"
 #define TECH_ARCANE "arcane"
+#define TECH_PRECURSOR "precursor"
 
 #define IMPRINTER	0x0001	//For circuits. Uses glass/chemicals.
 #define PROTOLATHE	0x0002	//New stuff. Uses glass/metal/chemicals

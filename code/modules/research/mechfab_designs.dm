@@ -107,7 +107,13 @@
 
 /datum/design/item/mechfab/gygax
 	category = "Gygax"
-
+//VOREStation Edit to make Serenity Constructable						
+/datum/design/item/mechfab/gygax/chassis/serenity
+	name = "Serenity Chassis"
+	id = "serenity_chassis"
+	build_path = /obj/item/mecha_parts/chassis/serenity
+	materials = list(DEFAULT_WALL_MATERIAL = 18750, "phoron" = 4000)
+	
 /datum/design/item/mechfab/gygax/chassis
 	name = "Gygax Chassis"
 	id = "gygax_chassis"
@@ -222,6 +228,67 @@
 	build_path = /obj/item/mecha_parts/part/durand_armour
 	time = 60
 	materials = list(DEFAULT_WALL_MATERIAL = 37500, "uranium" = 7500)
+
+/datum/design/item/mechfab/janus
+	category = "Janus"
+	req_tech = list(TECH_MATERIAL = 7, TECH_BLUESPACE = 5, TECH_MAGNET = 6, TECH_PHORON = 3, TECH_ARCANE = 1, TECH_PRECURSOR = 2)
+
+/datum/design/item/mechfab/janus/chassis
+	name = "Janus Chassis"
+	id = "janus_chassis"
+	build_path = /obj/item/mecha_parts/chassis/janus
+	time = 100
+	materials = list(MAT_DURASTEEL = 19000, MAT_MORPHIUM = 10500, MAT_PLASTEEL = 5500, MAT_LEAD = 2500)
+	req_tech = list(TECH_MATERIAL = 7, TECH_BLUESPACE = 5, TECH_MAGNET = 6, TECH_PHORON = 3, TECH_ARCANE = 1, TECH_PRECURSOR = 3)
+
+/datum/design/item/mechfab/janus/torso
+	name = "Imperion Torso"
+	id = "janus_torso"
+	build_path = /obj/item/mecha_parts/part/janus_torso
+	time = 300
+	materials = list(DEFAULT_WALL_MATERIAL = 30000, MAT_DURASTEEL = 8000, MAT_MORPHIUM = 10000, MAT_GOLD = 5000, MAT_VERDANTIUM = 5000)
+
+/datum/design/item/mechfab/janus/head
+	name = "Imperion Head"
+	id = "janus_head"
+	build_path = /obj/item/mecha_parts/part/janus_head
+	time = 200
+	materials = list(DEFAULT_WALL_MATERIAL = 30000, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 6000, MAT_GOLD = 5000)
+
+/datum/design/item/mechfab/janus/left_arm
+	name = "Prototype Gygax Left Arm"
+	id = "janus_left_arm"
+	build_path = /obj/item/mecha_parts/part/janus_left_arm
+	time = 200
+	materials = list(DEFAULT_WALL_MATERIAL = 30000, MAT_METALHYDROGEN = 3000, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_GOLD = 5000, MAT_DIAMOND = 7000)
+
+/datum/design/item/mechfab/janus/right_arm
+	name = "Prototype Gygax Right Arm"
+	id = "janus_right_arm"
+	build_path = /obj/item/mecha_parts/part/janus_right_arm
+	time = 200
+	materials = list(DEFAULT_WALL_MATERIAL = 30000, MAT_METALHYDROGEN = 3000, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_GOLD = 5000, MAT_DIAMOND = 7000)
+
+/datum/design/item/mechfab/janus/left_leg
+	name = "Prototype Durand Left Leg"
+	id = "janus_left_leg"
+	build_path = /obj/item/mecha_parts/part/janus_left_leg
+	time = 200
+	materials = list(DEFAULT_WALL_MATERIAL = 30000, MAT_METALHYDROGEN = 3000, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_GOLD = 5000, MAT_URANIUM = 7000)
+
+/datum/design/item/mechfab/janus/right_leg
+	name = "Prototype Durand Right Leg"
+	id = "janus_right_leg"
+	build_path = /obj/item/mecha_parts/part/janus_right_leg
+	time = 200
+	materials = list(DEFAULT_WALL_MATERIAL = 30000, MAT_METALHYDROGEN = 3000, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_GOLD = 5000, MAT_URANIUM = 7000)
+
+/datum/design/item/mechfab/janus/phase_coil
+	name = "Janus Phase Coil"
+	id = "janus_coil"
+	build_path = /obj/item/prop/alien/phasecoil
+	time = 600
+	materials = list(MAT_SUPERMATTER = 2000, MAT_PLASTEEL = 60000, MAT_URANIUM = 3250, MAT_DURASTEEL = 2000, MAT_MORPHIUM = 3000, MAT_GOLD = 5000, MAT_VERDANTIUM = 5000, MAT_DIAMOND = 10000, MAT_LEAD = 15000)
 
 /datum/design/item/mecha
 	build_type = MECHFAB
@@ -548,6 +615,46 @@
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 7500, "diamond" = 4875)
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill
+
+/datum/design/item/mecha/ground_drill
+	name = "Surface Bore"
+	desc = "A heavy duty bore. Bigger, better, stronger than the core sampler, but not quite as good as a large drill."
+	id = "mech_ground_drill"
+	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 2, TECH_PHORON = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 7000, "silver" = 3000, "phoron" = 2000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/drill/bore
+
+/datum/design/item/mecha/orescanner
+	name = "Ore Scanner"
+	desc = "A hefty device used to scan for subterranean veins of ore."
+	id = "mech_ore_scanner"
+	req_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 2, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 1000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/orescanner
+
+/datum/design/item/mecha/advorescanner
+	name = "Advanced Ore Scanner"
+	desc = "A hefty device used to scan for the exact volumes of subterranean veins of ore."
+	id = "mech_ore_scanner_adv"
+	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 4, TECH_POWER = 4, TECH_BLUESPACE = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "osmium" = 3000, "silver" = 1000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/orescanner/advanced
+
+/datum/design/item/mecha/powerwrench
+	name = "hydraulic wrench"
+	desc = "A large, hydraulic wrench."
+	id = "mech_wrench"
+	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "plastic" = 2000, "glass" = 1250)
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/powertool
+
+/datum/design/item/mecha/powercrowbar
+	name = "hydraulic prybar"
+	desc = "A large, hydraulic prybar."
+	id = "mech_crowbar"
+	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "osmium" = 3000, "glass" = 1000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/powertool/prybar
 
 /datum/design/item/mecha/generator_nuclear
 	name = "Nuclear Reactor"

@@ -88,7 +88,7 @@
 				if(autopilot_delay % 10 == 0) // Every ten ticks.
 					var/seconds_left = autopilot_delay * 2
 					if(seconds_left >= 60) // A minute
-						var/minutes_left = Floor(seconds_left / 60)
+						var/minutes_left = FLOOR(seconds_left / 60, 1)
 						seconds_left = seconds_left % 60
 						autopilot_say("Departing in [minutes_left] minute\s[seconds_left ? ", [seconds_left] seconds":""].")
 					else
@@ -147,7 +147,7 @@
 	var/new_name = input(user, "Please enter a new name for this vessel. Note that you can only set its name once, so choose wisely.", "Rename Shuttle", visible_name) as null|text
 	var/sanitized_name = sanitizeName(new_name, MAX_NAME_LEN, TRUE)
 	if(sanitized_name)
-		can_rename = FALSE
+		//can_rename = FALSE //VOREStation Removal
 		to_chat(user, "<span class='notice'>You've renamed the vessel to '[sanitized_name]'.</span>")
 		message_admins("[key_name_admin(user)] renamed shuttle '[visible_name]' to '[sanitized_name]'.")
 		visible_name = sanitized_name
@@ -162,7 +162,7 @@
 	var/list/my_doors //Should be list("id_tag" = "Pretty Door Name", ...)
 	var/list/my_sensors //Should be list("id_tag" = "Pretty Sensor Name", ...)
 
-/obj/machinery/computer/shuttle_control/web/initialize()
+/obj/machinery/computer/shuttle_control/web/Initialize()
 	. = ..()
 	var/area/my_area = get_area(src)
 	if(my_doors)
@@ -350,7 +350,7 @@
 		"sensors" = sensors
 	)
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if(!ui)
 		ui = new(user, src, ui_key, "flight.tmpl", "[shuttle.visible_name] Flight Computer", 500, 500)
@@ -472,7 +472,7 @@
 	var/shuttle_name					//Text name of the shuttle to connect to
 	var/list/destinations				//Make sure this STARTS with a destination that builds a route to one that always exists as an anchor.
 
-/obj/shuttle_connector/initialize()
+/obj/shuttle_connector/Initialize()
 	. = ..()
 	SSshuttles.OnDocksInitialized(CALLBACK(src, .proc/setup_routes))
 

@@ -216,22 +216,26 @@
 			return
 	..()
 
-/obj/machinery/door/firedoor/attack_generic(var/mob/user, var/damage)
+/obj/machinery/door/firedoor/attack_generic(var/mob/living/user, var/damage)
 	if(stat & (BROKEN|NOPOWER))
-		if(damage >= 10)
+		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
 			var/time_to_force = (2 + (2 * blocked)) * 5
 			if(src.density)
 				visible_message("<span class='danger'>\The [user] starts forcing \the [src] open!</span>")
+				user.set_AI_busy(TRUE) // If the mob doesn't have an AI attached, this won't do anything.
 				if(do_after(user, time_to_force, src))
 					visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
 					src.blocked = 0
 					open(1)
+				user.set_AI_busy(FALSE)
 			else
 				time_to_force = (time_to_force / 2)
 				visible_message("<span class='danger'>\The [user] starts forcing \the [src] closed!</span>")
+				user.set_AI_busy(TRUE) // If the mob doesn't have an AI attached, this won't do anything.
 				if(do_after(user, time_to_force, src))
 					visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
 					close(1)
+				user.set_AI_busy(FALSE)
 		else
 			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
 		return
@@ -467,11 +471,10 @@
 	heat_proof = 1
 	air_properties_vary_with_direction = 1
 
-	CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	CanPass(atom/movable/mover, turf/target)
 		if(istype(mover) && mover.checkpass(PASSGLASS))
 			return 1
 		if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
-			if(air_group) return 0
 			return !density
 		else
 			return 1

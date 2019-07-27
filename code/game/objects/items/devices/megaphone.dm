@@ -3,7 +3,6 @@
 	desc = "A device used to project your voice. Loudly."
 	icon_state = "megaphone"
 	w_class = ITEMSIZE_SMALL
-	flags = CONDUCT
 
 	var/spamcheck = 0
 	var/emagged = 0

@@ -3,8 +3,8 @@
 	if(stat == DEAD)
 		return
 
-	if(controlling_drone)
-		controlling_drone.release_ai_control("<b>WARNING: Primary control loop failure.</b> Session terminated.")
+	if(deployed_shell)
+		disconnect_shell("Disconnecting from remote shell due to critical system failure.")
 	. = ..(gibbed)
 
 	if(src.eyeobj)

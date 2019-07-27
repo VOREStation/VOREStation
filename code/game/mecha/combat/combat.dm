@@ -63,6 +63,8 @@
 									H.reagents.add_reagent("carpotoxin", force)
 								if(H.reagents.get_reagent_amount("cryptobiolin") + force < force*2)
 									H.reagents.add_reagent("cryptobiolin", force)
+						if("halloss")
+							H.stun_effect_act(1, force / 2, BP_TORSO, src)
 						else
 							return
 					if(update)	H.UpdateDamageIcon()

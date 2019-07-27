@@ -52,7 +52,6 @@
 	name = "cyborg suit"
 	desc = "Suit for a cyborg costume."
 	icon_state = "death"
-	flags = CONDUCT
 	fire_resist = T0C+5200
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
@@ -224,6 +223,8 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 
+	var/resist_time = 4800	// Eight minutes.
+
 /obj/item/clothing/suit/straight_jacket/attack_hand(mob/living/user as mob)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -254,6 +255,11 @@ obj/item/clothing/suit/kimono
 	desc = "A traditional Japanese kimono."
 	icon_state = "kimono"
 	addblends = "kimono_a"
+
+obj/item/clothing/suit/kamishimo
+	name = "kamishimo"
+	desc = "Traditional Japanese menswear."
+	icon_state = "kamishimo"
 
 /*
  * coats

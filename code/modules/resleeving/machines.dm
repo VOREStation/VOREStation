@@ -6,10 +6,12 @@
 /////// Grower Pod ///////
 /obj/machinery/clonepod/transhuman
 	name = "grower pod"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi,
+						/datum/category_item/catalogue/technology/resleeving)
 	circuit = /obj/item/weapon/circuitboard/transhuman_clonepod
 
 //A full version of the pod
-/obj/machinery/clonepod/transhuman/full/initialize()
+/obj/machinery/clonepod/transhuman/full/Initialize()
 	. = ..()
 	for(var/i = 1 to container_limit)
 		containers += new /obj/item/weapon/reagent_containers/glass/bottle/biomass(src)
@@ -138,7 +140,7 @@
 			occupant.adjustCloneLoss(-2 * heal_rate)
 
 			//Premature clones may have brain damage.
-			occupant.adjustBrainLoss(-(ceil(0.5*heal_rate)))
+			occupant.adjustBrainLoss(-(CEILING((0.5*heal_rate), 1)))
 
 			//So clones don't die of oxyloss in a running pod.
 			if(occupant.reagents.get_reagent_amount("inaprovaline") < 30)
@@ -170,6 +172,8 @@
 /obj/machinery/transhuman/synthprinter
 	name = "SynthFab 3000"
 	desc = "A rapid fabricator for synthetic bodies."
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi,
+						/datum/category_item/catalogue/technology/resleeving)
 	icon = 'icons/obj/machines/synthpod.dmi'
 	icon_state = "pod_0"
 	circuit = /obj/item/weapon/circuitboard/transhuman_synthprinter
@@ -395,6 +399,8 @@
 /obj/machinery/transhuman/resleever
 	name = "resleeving pod"
 	desc = "Used to combine mind and body into one unit."
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi,
+						/datum/category_item/catalogue/technology/resleeving)
 	icon = 'icons/obj/machines/implantchair.dmi'
 	icon_state = "implantchair"
 	circuit = /obj/item/weapon/circuitboard/transhuman_resleever
@@ -487,6 +493,37 @@
 		return
 
 	return ..()
+
+/obj/machinery/transhuman/resleever/MouseDrop_T(mob/living/carbon/O, mob/user as mob)
+	if(!istype(O))
+		return 0 //not a mob
+	if(user.incapacitated())
+		return 0 //user shouldn't be doing things
+	if(O.anchored)
+		return 0 //mob is anchored???
+	if(get_dist(user, src) > 1 || get_dist(user, O) > 1)
+		return 0 //doesn't use adjacent() to allow for non-cardinal (fuck my life)
+	if(!ishuman(user) && !isrobot(user))
+		return 0 //not a borg or human
+	if(panel_open)
+		to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
+		return 0 //panel open
+
+	if(O.buckled)
+		return 0
+	if(O.has_buckled_mobs())
+		to_chat(user, span("warning", "\The [O] has other entities attached to it. Remove them first."))
+		return
+
+	if(put_mob(O))
+		if(O == user)
+			src.updateUsrDialog()
+			visible_message("[user] climbs into \the [src].")
+		else
+			src.updateUsrDialog()
+			visible_message("[user] puts [O] into \the [src].")
+
+	add_fingerprint(user)
 
 /obj/machinery/transhuman/resleever/proc/putmind(var/datum/transhuman/mind_record/MR, mode = 1, var/mob/living/carbon/human/override = null)
 	if((!occupant || !istype(occupant) || occupant.stat >= DEAD) && mode == 1)

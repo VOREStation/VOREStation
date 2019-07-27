@@ -3,7 +3,7 @@
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = "holder"
 	item_state = "assembly"
-	flags = CONDUCT | PROXMOVE
+	flags = PROXMOVE
 	throwforce = 5
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 3
@@ -233,7 +233,7 @@
 		tmr.time=5
 		tmr.secured = 1
 		tmr.holder = src
-		processing_objects.Add(tmr)
+		START_PROCESSING(SSobj, tmr)
 		a_left = tmr
 		a_right = ign
 		secured = 1

@@ -3,7 +3,7 @@
 	desc = "Swipe your ID card to make purchases electronically."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "retail_idle"
-	flags = NOBLUDGEON|CONDUCT
+	flags = NOBLUDGEON
 	slot_flags = SLOT_BELT
 	req_access = list(access_heads)
 	w_class = ITEMSIZE_SMALL
@@ -120,7 +120,7 @@
 			if("set_amount")
 				var/item_name = locate(href_list["item"])
 				var/n_amount = round(input("Enter amount", "New amount") as num)
-				n_amount = Clamp(n_amount, 0, 20)
+				n_amount = CLAMP(n_amount, 0, 20)
 				if (!item_list[item_name] || !Adjacent(usr)) return
 				transaction_amount += (n_amount - item_list[item_name]) * price_list[item_name]
 				if(!n_amount)

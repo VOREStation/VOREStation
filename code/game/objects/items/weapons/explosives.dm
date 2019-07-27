@@ -13,6 +13,10 @@
 	var/atom/target = null
 	var/open_panel = 0
 	var/image_overlay = null
+	var/blast_dev = -1
+	var/blast_heavy = -1
+	var/blast_light = 2
+	var/blast_flash = 3
 
 /obj/item/weapon/plastique/New()
 	wires = new(src)
@@ -37,7 +41,7 @@
 /obj/item/weapon/plastique/attack_self(mob/user as mob)
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
 	if(user.get_active_hand() == src)
-		newtime = Clamp(newtime, 10, 60000)
+		newtime = CLAMP(newtime, 10, 60000)
 		timer = newtime
 		user << "Timer set for [timer] seconds."
 
@@ -72,7 +76,7 @@
 	if(!target)
 		target = src
 	if(location)
-		explosion(location, -1, -1, 2, 3)
+		explosion(location, blast_dev, blast_heavy, blast_light, blast_flash)
 
 	if(target)
 		if (istype(target, /turf/simulated/wall))
@@ -88,3 +92,11 @@
 
 /obj/item/weapon/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
+
+/obj/item/weapon/plastique/seismic
+	name = "seismic charge"
+	desc = "Used to dig holes in specific areas without too much extra hole."
+
+	blast_heavy = 3
+	blast_light = 5
+	blast_flash = 8

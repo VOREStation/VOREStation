@@ -1,0 +1,665 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/submap/house1)
+"ab" = (
+/obj/structure/railing,
+/turf/template_noop,
+/area/submap/house1)
+"ac" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/template_noop,
+/area/submap/house1)
+"ad" = (
+/turf/simulated/floor/outdoors/grass/sif,
+/area/submap/house1)
+"ae" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/template_noop,
+/area/submap/house1)
+"af" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/grass/sif,
+/area/submap/house1)
+"ag" = (
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/house1)
+"ah" = (
+/obj/structure/table/bench/wooden,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/house1)
+"ai" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/grass/sif,
+/area/submap/house1)
+"aj" = (
+/obj/structure/target_stake,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/house1)
+"ak" = (
+/obj/item/target,
+/turf/simulated/floor/outdoors/grass/sif,
+/area/submap/house1)
+"al" = (
+/obj/item/target/syndicate,
+/turf/simulated/floor/outdoors/grass/sif,
+/area/submap/house1)
+"am" = (
+/turf/simulated/wall/wood,
+/area/submap/house1)
+"an" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"ao" = (
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"ap" = (
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"aq" = (
+/obj/structure/table/marble,
+/obj/item/weapon/material/kitchen/rollingpin,
+/turf/simulated/floor/tiled,
+/area/submap/house1)
+"ar" = (
+/obj/structure/table/marble,
+/obj/item/weapon/material/knife,
+/turf/simulated/floor/tiled,
+/area/submap/house1)
+"as" = (
+/obj/structure/grille/rustic,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
+/area/submap/house1)
+"at" = (
+/obj/structure/table/standard,
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/brute,
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/burn,
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/purity,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/house1)
+"au" = (
+/obj/structure/toilet,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/house1)
+"av" = (
+/obj/structure/table/marble,
+/obj/random/drinkbottle,
+/turf/simulated/floor/tiled,
+/area/submap/house1)
+"aw" = (
+/obj/item/device/flashlight/lantern,
+/turf/simulated/floor/tiled,
+/area/submap/house1)
+"ax" = (
+/obj/structure/table/glass,
+/obj/structure/window/reinforced,
+/obj/item/weapon/coin/phoron,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"ay" = (
+/obj/item/clothing/head/bearpelt{
+	pixel_y = 6
+	},
+/obj/structure/table/glass,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"az" = (
+/obj/item/weapon/material/harpoon,
+/obj/structure/table/glass,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"aA" = (
+/obj/structure/table/glass,
+/obj/structure/window/reinforced,
+/obj/item/clothing/accessory/medal/conduct{
+	pixel_y = 6
+	},
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"aB" = (
+/obj/structure/sink{
+	icon_state = "sink";
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = -28;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/freezer,
+/area/submap/house1)
+"aC" = (
+/obj/item/weapon/towel,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/house1)
+"aD" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/simulated/floor/tiled,
+/area/submap/house1)
+"aE" = (
+/turf/simulated/floor/tiled,
+/area/submap/house1)
+"aF" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/tiled,
+/area/submap/house1)
+"aG" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/house1)
+"aH" = (
+/obj/item/device/flashlight/lantern,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/house1)
+"aI" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 8;
+	icon_state = "twindow"
+	},
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/random/soap,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/house1)
+"aJ" = (
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/house1)
+"aK" = (
+/obj/structure/bed/chair/wood,
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/house1)
+"aL" = (
+/obj/structure/bed/chair/wood{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/house1)
+"aM" = (
+/obj/structure/table/wooden_reinforced,
+/obj/item/weapon/storage/fancy/candle_box,
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/house1)
+"aN" = (
+/obj/structure/table/wooden_reinforced,
+/obj/item/device/binoculars/spyglass,
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/house1)
+"aO" = (
+/obj/structure/table/wooden_reinforced,
+/obj/item/device/flashlight/lantern,
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/house1)
+"aP" = (
+/obj/structure/bed/chair/wood{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/house1)
+"aQ" = (
+/obj/structure/table/rack,
+/obj/item/device/gps/explorer,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"aR" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/submap/house1)
+"aS" = (
+/turf/simulated/floor/carpet/sblucarpet,
+/area/submap/house1)
+"aT" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/submap/house1)
+"aU" = (
+/obj/structure/table/rack,
+/obj/item/clothing/under/explorer,
+/obj/item/weapon/cell/device,
+/obj/item/weapon/cell/device,
+/obj/item/weapon/cell/device,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"aV" = (
+/obj/item/device/flashlight/lantern,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"aW" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"aX" = (
+/obj/structure/coatrack,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"aY" = (
+/obj/structure/table/rack,
+/obj/item/clothing/suit/storage/hooded/explorer,
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/weapon/material/knife/tacknife/survival,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"aZ" = (
+/obj/item/clothing/shoes/boots/winter/explorer,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"ba" = (
+/obj/structure/table/woodentable,
+/obj/random/action_figure,
+/obj/item/device/flashlight/lantern,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/submap/house1)
+"bb" = (
+/obj/item/weapon/bedsheet/hopdouble,
+/obj/structure/bed/double/padded,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/submap/house1)
+"bc" = (
+/obj/structure/loot_pile/maint/trash,
+/turf/simulated/floor/outdoors/grass/sif,
+/area/submap/house1)
+"bd" = (
+/obj/structure/loot_pile/maint/junk,
+/turf/simulated/floor/outdoors/grass/sif,
+/area/submap/house1)
+"be" = (
+/obj/structure/sign/kiddieplaque{
+	desc = "To anyone reading this, you'll note that I'm not home right now, and unfortunately due to reassignment, I won't be for a very long time. Exploring somewhere really far and dangerous now. You can stay if you want, but please try to keep my home in good condition.";
+	name = "read me visitors"
+	},
+/turf/simulated/wall/wood,
+/area/submap/house1)
+"GN" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+
+(1,1,1) = {"
+aa
+ac
+af
+af
+af
+af
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+"}
+(2,1,1) = {"
+ab
+ad
+ad
+ag
+ad
+ak
+am
+am
+as
+am
+am
+ad
+am
+am
+as
+am
+am
+bc
+ag
+ag
+"}
+(3,1,1) = {"
+ab
+ad
+ag
+aj
+ag
+al
+am
+aq
+av
+aD
+am
+ad
+am
+aQ
+aU
+aY
+am
+bc
+ag
+ag
+"}
+(4,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+ak
+am
+ar
+aw
+aE
+am
+ad
+am
+ap
+aV
+aZ
+am
+bc
+ag
+ag
+"}
+(5,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+ad
+am
+am
+am
+aF
+am
+am
+am
+an
+am
+am
+am
+bd
+ag
+ag
+"}
+(6,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+ad
+ad
+as
+ax
+ap
+ap
+GN
+ap
+ap
+ap
+as
+ad
+ad
+ag
+ag
+"}
+(7,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+am
+am
+am
+ay
+ap
+aJ
+aL
+aJ
+ap
+aW
+am
+am
+am
+ag
+ag
+"}
+(8,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+am
+ao
+am
+am
+ap
+aK
+aM
+aP
+ap
+am
+am
+ao
+am
+ag
+ag
+"}
+(9,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+an
+ap
+ap
+an
+ap
+aK
+aN
+aP
+ap
+an
+ap
+ap
+an
+ag
+ag
+"}
+(10,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+am
+ao
+am
+am
+ap
+aK
+aO
+aP
+ap
+am
+am
+ao
+be
+ag
+ag
+"}
+(11,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+am
+am
+am
+az
+ap
+aJ
+aP
+aJ
+ap
+aX
+am
+am
+am
+ag
+ag
+"}
+(12,1,1) = {"
+ab
+ad
+ah
+ag
+ah
+ad
+ad
+as
+aA
+ap
+ap
+ap
+ap
+ap
+ap
+as
+ad
+ad
+ag
+ag
+"}
+(13,1,1) = {"
+ab
+ad
+ah
+ag
+ah
+ad
+am
+am
+am
+aG
+am
+am
+am
+aR
+am
+am
+am
+ad
+ag
+ag
+"}
+(14,1,1) = {"
+ab
+ad
+ah
+ag
+ah
+ad
+am
+at
+aB
+aH
+am
+ad
+am
+aS
+aS
+ba
+am
+ad
+ag
+ag
+"}
+(15,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+ad
+am
+au
+aC
+aI
+am
+ad
+am
+aT
+aS
+bb
+am
+ad
+ag
+ag
+"}
+(16,1,1) = {"
+ab
+ad
+ad
+ag
+ad
+ad
+am
+am
+am
+am
+am
+ad
+am
+am
+as
+am
+am
+ad
+ag
+ag
+"}
+(17,1,1) = {"
+aa
+ae
+ai
+ai
+ai
+ai
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+"}

@@ -27,6 +27,8 @@
 	..()
 	var/list/zippos = list()
 	for(var/zippo in typesof(/obj/item/weapon/flame/lighter/zippo))
+		if(zippo in typesof(/obj/item/weapon/flame/lighter/zippo/fluff))	//VOREStation addition
+			continue														//VOREStation addition
 		var/obj/item/weapon/flame/lighter/zippo/zippo_type = zippo
 		zippos[initial(zippo_type.name)] = zippo_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(zippos))

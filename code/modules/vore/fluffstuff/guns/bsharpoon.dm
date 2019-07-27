@@ -33,12 +33,18 @@
 		playsound(user, 'sound/weapons/wave.ogg', 60, 1)
 		return
 	var/turf/T = get_turf(A)
-	if(!T || T.check_density())
+	if(!T || (T.check_density() && mode == 1))
 		to_chat(user,"<span class = 'warning'>That's a little too solid to harpoon into!</span>")
 		return
 	var/turf/ownturf = get_turf(src)
 	if(ownturf.z != T.z || get_dist(T,ownturf) > world.view)
 		to_chat(user, "<span class='warning'>The target is out of range!</span>")
+		return
+	if(get_area(A).flags & BLUE_SHIELDED)
+		to_chat(user, "<span class='warning'>The target area protected by bluespace shielding!</span>")
+		return
+	if(!(A in view(user, world.view)))
+		to_chat(user, "<span class='warning'>Harpoon fails to lock on the obstructed target!</span>")
 		return
 
 	last_fire = current_fire

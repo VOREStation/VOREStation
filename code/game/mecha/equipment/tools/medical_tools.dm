@@ -6,7 +6,7 @@
 	origin_tech = list(TECH_DATA = 2, TECH_BIO = 3)
 	energy_drain = 20
 	range = MELEE
-	equip_cooldown = 50
+	equip_cooldown = 30
 	var/mob/living/carbon/human/occupant = null
 	var/datum/global_iterator/pr_mech_sleeper
 	var/inject_amount = 5
@@ -40,10 +40,9 @@
 	if(occupant)
 		occupant_message("The sleeper is already occupied")
 		return
-	for(var/mob/living/simple_animal/slime/M in range(1,target))
-		if(M.victim == target)
-			occupant_message("[target] will not fit into the sleeper because they have a slime latched onto their head.")
-			return
+	if(target.has_buckled_mobs())
+		occupant_message(span("warning", "\The [target] has other entities attached to it. Remove them first."))
+		return
 	occupant_message("You start putting [target] into [src].")
 	chassis.visible_message("[chassis] starts putting [target] into the [src].")
 	var/C = chassis.loc
@@ -452,7 +451,7 @@
 	create_reagents(max_volume)
 	synth = new (list(src),0)
 
-/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/initialize()
+/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/Initialize()
 	. = ..()
 	//Wow nice, firsties
 	if(LAZYLEN(allowed_reagents) && !istext(allowed_reagents[1]))
@@ -662,6 +661,7 @@
 		occupant_message("<span class=\"alert\">No reagent info gained from [A].</span>")
 		return 0
 	occupant_message("Analyzing reagents...")
+	//VOREStation Block Edit - Start
 	for(var/datum/reagent/R in A.reagents.reagent_list)
 		if(R.id in known_reagents)
 			occupant_message("Reagent \"[R.name]\" already present in database, skipping.")
@@ -670,7 +670,8 @@
 			send_byjax(chassis.occupant,"msyringegun.browser","reagents_form",get_reagents_form())
 		else
 			occupant_message("Reagent \"[R.name]\" unable to be scanned, skipping.")
-	occupant_message("Analyzis complete.")
+	//VOREstation Block Edit - End
+	occupant_message("Analysis complete.")
 	return 1
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/proc/add_known_reagent(r_id,r_name)

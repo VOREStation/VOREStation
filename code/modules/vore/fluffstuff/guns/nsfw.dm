@@ -4,6 +4,7 @@
 	desc = "Variety is the spice of life! The KHI-102b 'Nanotech Selectable-Fire Weapon', or NSFW for short, is an unholy hybrid of an ammo-driven  \
 	energy weapon that allows the user to mix and match their own fire modes. Up to three combinations of \
 	energy beams can be configured at once. Ammo not included."
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi)
 
 	description_info = "This gun is an energy weapon that uses interchangable microbatteries in a magazine. Each battery is a different beam type, and up to three can be loaded in the magazine. Each battery usually provides four discharges of that beam type, and multiple from the same type may be loaded to increase the number of shots for that type."
 	description_fluff = "The Kitsuhana 'Nanotech Selectable Fire Weapon' allows one to customize their loadout in the field, or before deploying, to achieve various results in a weapon they are already familiar with wielding."
@@ -134,7 +135,7 @@
 	add_overlay(barrel_color)
 
 	//Charge bar
-	var/ratio = Ceiling((charge_left / max_charge) * charge_sections)
+	var/ratio = CEILING(((charge_left / max_charge) * charge_sections), 1)
 	for(var/i = 0, i < ratio, i++)
 		var/image/charge_bar = image(icon, icon_state = "[initial(icon_state)]_charge")
 		charge_bar.pixel_x = i
@@ -145,6 +146,7 @@
 /obj/item/ammo_magazine/nsfw_mag
 	name = "microbattery magazine"
 	desc = "A microbattery holder for the \'NSFW\'"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi)
 
 	description_info = "This magazine holds NSFW microbatteries to power the NSFW handgun. Up to three can be loaded at once, and each provides four shots of their respective energy type. Loading multiple of the same type will provide additional shots of that type. The batteries can be recharged in a normal recharger."
 
@@ -174,7 +176,7 @@
 		add_overlay(cap)
 
 		if(batt.shots_left)
-			var/ratio = Ceiling((batt.shots_left / initial(batt.shots_left)) * 4) //4 is how many lights we have a sprite for
+			var/ratio = CEILING(((batt.shots_left / initial(batt.shots_left)) * 4), 1) //4 is how many lights we have a sprite for
 			var/image/charge = image(icon, icon_state = "[initial(icon_state)]_charge-[ratio]")
 			charge.color = "#29EAF4" //Could use battery color but eh.
 			charge.pixel_x = current * x_offset
@@ -186,9 +188,9 @@
 /obj/item/ammo_casing/nsfw_batt
 	name = "\'NSFW\' microbattery - UNKNOWN"
 	desc = "A miniature battery for an energy weapon."
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi)
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "nsfw_batt"
-	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throwforce = 1
 	w_class = ITEMSIZE_TINY
@@ -200,7 +202,7 @@
 	var/type_name = null
 	projectile_type = /obj/item/projectile/beam
 
-/obj/item/ammo_casing/nsfw_batt/initialize()
+/obj/item/ammo_casing/nsfw_batt/Initialize()
 	. = ..()
 	pixel_x = rand(-10, 10)
 	pixel_y = rand(-10, 10)
@@ -309,9 +311,9 @@
 	damage_type = HALLOSS
 	light_color = "#00CC33"
 
-	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
-	tracer_type = /obj/effect/projectile/laser_omni/tracer
-	impact_type = /obj/effect/projectile/laser_omni/impact
+	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+	tracer_type = /obj/effect/projectile/tracer/laser_omni
+	impact_type = /obj/effect/projectile/impact/laser_omni
 
 /obj/item/projectile/beam/final_option/on_hit(var/atom/impacted)
 	if(isliving(impacted))

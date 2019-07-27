@@ -57,13 +57,11 @@
 // bwoincognito:Tasald Corlethian
 /obj/item/weapon/storage/box/fluff/tasald
 	name = "Tasald's Kit"
-	desc = "A kit containing Talsald's equipment."
+	desc = "A kit containing Tasald's equipment."
 	has_items = list(
 		/obj/item/clothing/suit/storage/det_suit/fluff/tasald,
 		/obj/item/clothing/suit/storage/det_suit/fluff/tas_coat,
 		/obj/item/clothing/under/det/fluff/tasald,
-		//	/obj/item/clothing/accessory/permit/gun/fluff/tasald_corlethian,
-		//	/obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian,
 		/obj/item/weapon/implanter/loyalty)
 
 //bwoincognito:Octavious Ward
@@ -150,10 +148,7 @@
 		new /obj/item/clothing/suit/storage/fluff/modernfedcoat(src)
 		new /obj/item/clothing/head/caphat/formal/fedcover(src)
 		new /obj/item/weapon/card/id/centcom/station/fluff/joanbadge(src)
-//		new /obj/item/weapon/gun/energy/gun/fluff/dominator(src)
 		new /obj/item/clothing/suit/armor/det_suit(src)
-//		new /obj/item/clothing/accessory/permit/gun/fluff/joanrisu(src)
-//		new /obj/item/weapon/sword/fluff/joanaria(src)
 		new /obj/item/weapon/flame/lighter/zippo/fluff/joan(src)
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 		new /obj/item/clothing/head/helmet/space/fluff/joan(src)
@@ -169,7 +164,6 @@
 		..()
 		new /obj/item/clothing/accessory/holster/hip(src)
 		new /obj/item/clothing/suit/storage/fluff/fedcoat(src)
-//		new /obj/item/weapon/gun/energy/gun/fluff/dominator(src)
 		new /obj/item/clothing/suit/armor/det_suit(src)
 		new /obj/item/clothing/accessory/storage/black_vest(src)
 		new /obj/item/weapon/material/knife/tacknife/combatknife/fluff/katarina(src)
@@ -193,32 +187,6 @@
 	can_hold = list(/obj/item/clothing/under/swimsuit/)
 	has_items = list(/obj/item/clothing/under/swimsuit/fluff/penelope)
 
-// Aerowing:Sebastian Aji
-/obj/item/weapon/storage/box/fluff/sebastian_aji
-	name = "Sebastian's Lumoco Arms P3 Box"
-	has_items = list(
-		/obj/item/weapon/gun/projectile/pistol,
-		/obj/item/ammo_magazine/m9mm/compact/flash,
-		/obj/item/ammo_magazine/m9mm/compact/flash,
-		/obj/item/clothing/accessory/permit/gun/fluff/sebastian_aji)
-
-/*
-/obj/item/weapon/storage/box/fluff/briana_moore
-	name = "Briana's Derringer Box"
-	has_items = list(
-		/obj/item/weapon/gun/projectile/derringer/fluff/briana,
-		/obj/item/clothing/accessory/permit/gun/fluff/briana_moore)
-*/
-
-/*
-//SilencedMP5A5:Serdykov Antoz
-/obj/item/weapon/storage/box/fluff/serdykov_antoz
-	name = "Serdy's Weapon Box"
-	has_items = list(
-		/obj/item/clothing/accessory/permit/gun/fluff/silencedmp5a5,
-		/obj/item/weapon/gun/projectile/colt/fluff/serdy)
-*/
-
 // JackNoir413: Mor Xaina
 /obj/item/weapon/storage/box/fluff/morxaina
 	name = "Fashionable clothes set"
@@ -228,7 +196,7 @@
 		/obj/item/clothing/gloves/fluff/morsleeves,
 		/obj/item/clothing/under/fluff/morunder)
 
-// Mewchild: Phi Ahkeen
+// Mewchild: Phi Vietsi
 /obj/item/weapon/storage/box/fluff/phi
 	name = "Phi's Personal Items"
 	has_items = list(
@@ -239,8 +207,19 @@
 /obj/item/weapon/grenade/spawnergrenade/spirit
 	name = "spirit's pet carrier"
 	desc = "Contains kitten."
-	spawner_type = /mob/living/simple_animal/cat/fluff/tabiranth
+	spawner_type = /mob/living/simple_mob/animal/passive/cat/tabiranth
 	deliveryamt = 1
+
+// Jwguy: Koyo Akimomi
+/obj/item/weapon/storage/box/fluff/koyoakimomi
+	name = "Koyo's Cosplay Box"
+	desc = "One of many traditional wolfgirl clothing sets that Koyo owns. Awoo!"
+	has_items = list(
+		/obj/item/clothing/head/fluff/wolfgirl,
+		/obj/item/clothing/shoes/fluff/wolfgirl,
+		/obj/item/clothing/under/fluff/wolfgirl,
+		/obj/item/weapon/melee/fluffstuff/wolfgirlsword,
+		/obj/item/weapon/shield/fluff/wolfgirlshield)
 
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.
@@ -272,6 +251,18 @@ Swimsuits, for general use, to avoid arriving to work with your swimsuit.
 /obj/item/weapon/storage/box/fluff/swimsuit/red
 	name = "Red Swimsuit capsule"
 	has_items = list(/obj/item/clothing/under/swimsuit/red)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/white
+	name = "White Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/white)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/blue
+	name = "Striped Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/striped)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/earth
+	name = "Earthen Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/earth)
 
 /obj/item/weapon/storage/box/fluff/swimsuit/engineering
 	name = "Engineering Swimsuit capsule"

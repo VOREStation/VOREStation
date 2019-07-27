@@ -19,6 +19,7 @@
 	var/list/syllables                // Used when scrambling text for a non-speaker.
 	var/list/space_chance = 55        // Likelihood of getting a space in the random scramble string
 	var/machine_understands = 1		  // Whether machines can parse and understand this language
+	var/list/partial_understanding	  // List of languages that can /somehwat/ understand it, format is: name = chance of understanding a word
 
 /datum/language/proc/get_random_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	if(!syllables || !syllables.len)
@@ -32,7 +33,7 @@
 
 	for(var/i = 0;i<name_count;i++)
 		new_name = ""
-		for(var/x = rand(Floor(syllable_count/syllable_divisor),syllable_count);x>0;x--)
+		for(var/x = rand(FLOOR(syllable_count/syllable_divisor, 1),syllable_count);x>0;x--)
 			new_name += pick(syllables)
 		full_name += " [capitalize(lowertext(new_name))]"
 
@@ -41,8 +42,42 @@
 /datum/language
 	var/list/scramble_cache = list()
 
-/datum/language/proc/scramble(var/input)
+/datum/language/proc/scramble(var/input, var/list/known_languages)
+	var/understand_chance = 0
+	for(var/datum/language/L in known_languages)
+		if(partial_understanding && partial_understanding[L.name])
+			understand_chance += partial_understanding[L.name]
+		if(L.partial_understanding && L.partial_understanding[name])
+			understand_chance += L.partial_understanding[name] * 0.5
+	var/scrambled_text = ""
+	var/list/words = splittext(input, " ")
+	for(var/w in words)
+		if(prob(understand_chance))
+			scrambled_text += " [w] "
+		else
+			var/nword = scramble_word(w)
+			var/ending = copytext(scrambled_text, length(scrambled_text)-1)
+			if(findtext(ending,"."))
+				nword = capitalize(nword)
+			else if(findtext(ending,"!"))
+				nword = capitalize(nword)
+			else if(findtext(ending,"?"))
+				nword = capitalize(nword)
+			scrambled_text += nword
+	scrambled_text = replacetext(scrambled_text,"  "," ")
+	scrambled_text = capitalize(scrambled_text)
+	scrambled_text = trim(scrambled_text)
+	var/ending = copytext(scrambled_text, length(scrambled_text))
+	if(ending == ".")
+		scrambled_text = copytext(scrambled_text,1,length(scrambled_text)-1)
 
+	var/input_ending = copytext(input, length(input))
+	if(input_ending in list("!","?","."))
+		scrambled_text += input_ending
+
+	return scrambled_text
+
+/datum/language/proc/scramble_word(var/input)
 	if(!syllables || !syllables.len)
 		return stars(input)
 
@@ -55,7 +90,7 @@
 
 	var/input_size = length(input)
 	var/scrambled_text = ""
-	var/capitalize = 1
+	var/capitalize = 0
 
 	while(length(scrambled_text) < input_size)
 		var/next = pick(syllables)
@@ -69,14 +104,6 @@
 			capitalize = 1
 		else if(chance > 5 && chance <= space_chance)
 			scrambled_text += " "
-
-	scrambled_text = trim(scrambled_text)
-	var/ending = copytext(scrambled_text, length(scrambled_text))
-	if(ending == ".")
-		scrambled_text = copytext(scrambled_text,1,length(scrambled_text)-1)
-	var/input_ending = copytext(input, input_size)
-	if(input_ending in list("!","?","."))
-		scrambled_text += input_ending
 
 	// Add it to cache, cutting old entries if the list is too long
 	scramble_cache[input] = scrambled_text
@@ -134,14 +161,15 @@
 
 /datum/language/proc/can_speak_special(var/mob/speaker)
 	. = TRUE
-	if(ishuman(speaker))
-		var/mob/living/carbon/human/H = speaker
-		if(src.name in H.species.assisted_langs)
-			. = FALSE
-			var/obj/item/organ/internal/voicebox/vox = locate() in H.internal_organs	// Only voiceboxes for now. Maybe someday it'll include other organs, but I'm not that clever
-			if(vox)
-				if(!vox.is_broken() && (src in vox.assists_languages))
-					. = TRUE
+	if(name != "Noise")	// Audible Emotes
+		if(ishuman(speaker))
+			var/mob/living/carbon/human/H = speaker
+			if(src.name in H.species.assisted_langs)
+				. = FALSE
+				var/obj/item/organ/internal/voicebox/vox = locate() in H.internal_organs	// Only voiceboxes for now. Maybe someday it'll include other organs, but I'm not that clever
+				if(vox)
+					if(!vox.is_broken() && (src in vox.assists_languages))
+						. = TRUE
 
 // Language handling.
 /mob/proc/add_language(var/language)
@@ -172,10 +200,20 @@
 		log_debug("[src] attempted to speak a null language.")
 		return 0
 
+	if(speaking == all_languages["Noise"])
+		return 1
+
 	if (only_species_language && speaking != all_languages[species_language])
 		return 0
 
-	return (speaking.can_speak_special(src) && (universal_speak || (speaking && (speaking.flags & INNATE)) || speaking in src.languages))
+	if(speaking.can_speak_special(src))
+		if(universal_speak)
+			return 1
+		if(speaking && (speaking.flags & INNATE))
+			return 1
+		if(speaking in src.languages)
+			return 1
+	return 0
 
 /mob/proc/get_language_prefix()
 	if(client && client.prefs.language_prefixes && client.prefs.language_prefixes.len)

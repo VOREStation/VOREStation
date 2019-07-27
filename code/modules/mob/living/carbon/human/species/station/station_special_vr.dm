@@ -29,6 +29,7 @@
 		/mob/living/carbon/human/proc/succubus_drain_finalize,
 		/mob/living/carbon/human/proc/succubus_drain_lethal,
 		/mob/living/carbon/human/proc/bloodsuck,
+		/mob/living/carbon/human/proc/tie_hair,
 		/mob/living/proc/shred_limb,
 		/mob/living/proc/flying_toggle,
 		/mob/living/proc/start_wings_hovering) //Xenochimera get all the special verbs since they can't select traits.
@@ -40,6 +41,7 @@
 	blurb = "Some amalgamation of different species from across the universe,with extremely unstable DNA, making them unfit for regular cloners. \
 	Widely known for their voracious nature and violent tendencies when stressed or left unfed for long periods of time. \
 	Most, if not all chimeras possess the ability to undergo some type of regeneration process, at the cost of energy."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/xenochimera)
 
 	hazard_low_pressure = -1 //Prevents them from dying normally in space. Special code handled below.
 	cold_level_1 = -1     // All cold debuffs are handled below in handle_environment_special
@@ -66,6 +68,7 @@
 	base_color 	= "#333333"
 	blood_color = "#14AD8B"
 
+	reagent_tag = IS_CHIMERA
 
 /datum/species/xenochimera/handle_environment_special(var/mob/living/carbon/human/H)
 	//If they're KO'd/dead, they're probably not thinking a lot about much of anything.
@@ -73,7 +76,7 @@
 		handle_feralness(H)
 
 	//While regenerating
-	if(H.reviving && H.reviving != REVIVING_COOLDOWN)
+	if(H.revive_ready == REVIVING_NOW || H.revive_ready == REVIVING_DONE)
 		H.weakened = 5
 		H.canmove = 0
 		H.does_not_breathe = TRUE
@@ -339,6 +342,7 @@
 	from their mandible lined mouths.  They are a recent discovery by Nanotrasen, only being discovered roughly seven years ago.  \
 	Before they were found they built great cities out of their silk, being united and subjugated in warring factions under great Star Queens  \
 	Who forced the working class to build huge, towering cities to attempt to reach the stars, which they worship as gems of great spiritual and magical significance."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/vasilissan)
 
 	hazard_low_pressure = 20 //Prevents them from dying normally in space. Special code handled below.
 	cold_level_1 = -1    // All cold debuffs are handled below in handle_environment_special

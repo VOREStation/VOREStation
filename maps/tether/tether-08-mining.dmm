@@ -112,6 +112,17 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/storage)
+"av" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	icon_state = "map_vent_out";
+	name = "Large Waste Vent";
+	pressure_checks = 2;
+	pressure_checks_default = 2;
+	use_power = 1
+	},
+/turf/simulated/floor/virgo3b,
+/area/outpost/mining_main/maintenance)
 "aw" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -131,6 +142,22 @@
 "az" = (
 /turf/simulated/wall/r_wall,
 /area/outpost/mining_main/break_room)
+"aA" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/virgo3b,
+/area/mine/explored)
+"aB" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "1-4"
+	},
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/virgo3b,
+/area/mine/explored)
 "aC" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -159,8 +186,35 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/outpost/mining_main/break_room)
+"aF" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "4-8"
+	},
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/simulated/floor/virgo3b,
+/area/mine/explored)
+"aG" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "4-8"
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/virgo3b,
+/area/mine/explored)
+"aH" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "4-8"
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/virgo3b,
+/area/mine/explored)
 "aI" = (
-/obj/structure/reagent_dispensers/water_cooler,
+/obj/structure/reagent_dispensers/water_cooler/full,
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
 	},
@@ -175,6 +229,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
+"aJ" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "4-8"
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/virgo3b,
+/area/mine/explored)
 "aK" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -202,6 +266,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
+"aL" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "2-8"
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/simulated/floor/virgo3b,
+/area/mine/explored)
 "aM" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -218,6 +294,25 @@
 /obj/item/weapon/storage/belt,
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
+"aN" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/virgo3b,
+/area/mine/explored)
+"aO" = (
+/obj/structure/cable/ender{
+	icon_state = "1-2";
+	id = "surface-mining"
+	},
+/turf/simulated/floor/virgo3b,
+/area/mine/explored)
 "aR" = (
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
@@ -395,6 +490,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 8
 	},
+/obj/machinery/camera/network/mining{
+	dir = 1
+	},
 /obj/structure/closet/hydrant{
 	pixel_y = -32
 	},
@@ -428,7 +526,7 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/passage)
 "cu" = (
-/mob/living/simple_animal/retaliate/gaslamp,
+/mob/living/simple_mob/animal/passive/gaslamp,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/mine/explored)
 "cv" = (
@@ -480,16 +578,6 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/outpost/mining_main/airlock)
-"el" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "4-8"
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating,
-/area/mine/explored)
 "hK" = (
 /turf/simulated/wall/r_wall,
 /area/outpost/mining_main/dorms)
@@ -514,18 +602,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
-"jh" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-2"
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
-/area/mine/explored)
 "jq" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -568,30 +644,6 @@
 /obj/machinery/vending/cola,
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
-"lb" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-2"
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/railing,
-/turf/simulated/floor/plating,
-/area/mine/explored)
-"ld" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4;
-	icon_state = "map_vent_out";
-	name = "Large Waste Vent";
-	pressure_checks = 2;
-	pressure_checks_default = 2;
-	use_power = 1
-	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/outpost/mining_main/maintenance)
 "mH" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4
@@ -599,18 +651,6 @@
 /obj/machinery/atmospherics/pipe/simple/visible/red,
 /turf/simulated/floor/tiled/techfloor,
 /area/outpost/mining_main/maintenance)
-"ng" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-2"
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/mine/explored)
 "ol" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -777,16 +817,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/outpost/mining_main/airlock)
-"wN" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "4-8"
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating,
-/area/mine/explored)
 "xA" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 10
@@ -889,16 +919,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/outpost/mining_main/airlock)
-"Eu" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-4"
-	},
-/obj/structure/railing,
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
-/area/mine/explored)
 "Ex" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -919,13 +939,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/outpost/mining_main/maintenance)
-"EH" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "4-8"
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating,
-/area/mine/explored)
 "Fa" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -982,25 +995,6 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
-"FG" = (
-/obj/structure/cable/ender{
-	icon_state = "1-2";
-	id = "surface-solars"
-	},
-/turf/simulated/floor/plating,
-/area/mine/explored)
-"FV" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "2-8"
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/mine/explored)
 "Gs" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -1055,16 +1049,6 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan,
 /turf/simulated/floor/tiled/techfloor,
 /area/outpost/mining_main/maintenance)
-"Il" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "4-8"
-	},
-/obj/structure/railing,
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/mine/explored)
 "Ir" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -1126,13 +1110,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/outpost/mining_main/maintenance)
-"KF" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/plating,
-/area/mine/explored)
 "KJ" = (
+/obj/effect/floor_decal/techfloor,
+/turf/simulated/floor/tiled/techfloor,
+/area/outpost/mining_main/maintenance)
+"KL" = (
+/obj/machinery/telecomms/relay/preset/underdark,
 /obj/effect/floor_decal/techfloor,
 /turf/simulated/floor/tiled/techfloor,
 /area/outpost/mining_main/maintenance)
@@ -1257,6 +1240,7 @@
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/mine/explored)
 "TC" = (
+/obj/machinery/camera/network/mining,
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 10
 	},
@@ -3304,7 +3288,7 @@ ab
 ab
 ab
 ab
-ld
+av
 ab
 ab
 ab
@@ -3592,8 +3576,8 @@ so
 jq
 xA
 aR
-ng
-Eu
+aA
+aB
 ab
 ab
 ab
@@ -3735,7 +3719,7 @@ MV
 KJ
 SF
 ab
-Il
+aF
 ab
 ab
 ab
@@ -3877,7 +3861,7 @@ MV
 KJ
 SF
 ab
-Il
+aF
 ab
 ab
 ab
@@ -4019,7 +4003,7 @@ MV
 KJ
 SF
 ab
-Il
+aF
 ab
 ab
 ab
@@ -4158,10 +4142,10 @@ Kj
 Zg
 RB
 MV
-KJ
+KL
 SF
 ab
-Il
+aF
 ab
 ab
 ab
@@ -4303,7 +4287,7 @@ XA
 Vk
 po
 ab
-Il
+aF
 ab
 ab
 ab
@@ -4445,7 +4429,7 @@ ay
 ay
 ay
 ab
-Il
+aF
 ab
 ab
 ab
@@ -4587,7 +4571,7 @@ WK
 JA
 hK
 ab
-Il
+aF
 ab
 ab
 ab
@@ -4729,7 +4713,7 @@ Fa
 uE
 hK
 ab
-Il
+aF
 ab
 ab
 ab
@@ -4871,7 +4855,7 @@ Ma
 hK
 hK
 ab
-Il
+aF
 ab
 ab
 ab
@@ -5013,7 +4997,7 @@ Fn
 kB
 az
 ab
-Il
+aF
 ab
 ab
 ab
@@ -5155,7 +5139,7 @@ by
 DV
 az
 ab
-Il
+aF
 ab
 ab
 ab
@@ -5297,7 +5281,7 @@ by
 US
 az
 ab
-Il
+aF
 ab
 ab
 ab
@@ -5439,7 +5423,7 @@ ef
 Px
 Px
 ab
-Il
+aF
 ab
 ab
 ab
@@ -5581,7 +5565,7 @@ VG
 om
 Px
 ab
-Il
+aF
 ab
 ab
 ab
@@ -5723,7 +5707,7 @@ DX
 om
 Px
 ab
-Il
+aF
 ab
 ab
 ab
@@ -5865,7 +5849,7 @@ QZ
 BD
 Px
 ab
-Il
+aF
 ab
 ab
 ab
@@ -6007,7 +5991,7 @@ Zn
 vx
 Px
 ab
-Il
+aF
 ab
 ab
 ab
@@ -6149,7 +6133,7 @@ vG
 rp
 Px
 ab
-Il
+aF
 ab
 ab
 ab
@@ -6291,7 +6275,7 @@ di
 GU
 Px
 ab
-Il
+aF
 ab
 ab
 ab
@@ -6433,7 +6417,7 @@ rH
 HP
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -6575,7 +6559,7 @@ al
 al
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -6717,7 +6701,7 @@ af
 al
 ab
 af
-el
+aG
 ab
 ab
 ab
@@ -6859,7 +6843,7 @@ al
 al
 ab
 af
-EH
+aH
 ab
 ab
 ab
@@ -7001,7 +6985,7 @@ al
 ck
 al
 af
-EH
+aH
 ab
 ab
 ab
@@ -7143,7 +7127,7 @@ al
 cl
 al
 af
-EH
+aH
 ab
 ab
 ab
@@ -7285,7 +7269,7 @@ al
 al
 ab
 af
-EH
+aH
 ab
 ab
 ab
@@ -7427,7 +7411,7 @@ al
 al
 ab
 al
-EH
+aH
 ab
 ab
 ab
@@ -7569,7 +7553,7 @@ al
 af
 ab
 al
-EH
+aH
 ab
 ab
 ab
@@ -7711,7 +7695,7 @@ af
 al
 al
 al
-EH
+aH
 ab
 ab
 ab
@@ -7853,7 +7837,7 @@ af
 al
 al
 al
-wN
+aJ
 ab
 ab
 ab
@@ -7995,7 +7979,7 @@ al
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -8137,7 +8121,7 @@ al
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -8279,7 +8263,7 @@ ab
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -8421,7 +8405,7 @@ ab
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -8563,7 +8547,7 @@ af
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -8705,7 +8689,7 @@ ab
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -8847,7 +8831,7 @@ af
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -8989,7 +8973,7 @@ ab
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -9131,7 +9115,7 @@ ab
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -9273,7 +9257,7 @@ ab
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -9415,7 +9399,7 @@ ab
 af
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -9557,7 +9541,7 @@ af
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -9699,7 +9683,7 @@ ab
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -9841,7 +9825,7 @@ ab
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -9983,7 +9967,7 @@ ab
 af
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -10125,7 +10109,7 @@ ab
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -10267,7 +10251,7 @@ af
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -10409,7 +10393,7 @@ ab
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -10551,7 +10535,7 @@ af
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -10693,7 +10677,7 @@ af
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -10835,7 +10819,7 @@ ab
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -10977,7 +10961,7 @@ af
 ab
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -11119,7 +11103,7 @@ af
 af
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -11261,7 +11245,7 @@ ab
 af
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -11403,7 +11387,7 @@ ab
 af
 ab
 ab
-Il
+aF
 ab
 ab
 ab
@@ -11545,17 +11529,17 @@ ab
 af
 ab
 ab
-FV
-jh
-jh
-jh
-jh
-jh
-jh
-jh
-lb
-KF
-FG
+aL
+aN
+aN
+aN
+aN
+aN
+aN
+aN
+aN
+aA
+aO
 aa
 "}
 (72,1,1) = {"

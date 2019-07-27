@@ -93,6 +93,12 @@
 					switch(security_level)
 						if(SEC_LEVEL_GREEN)
 							feedback_inc("alert_comms_green",1)
+						if(SEC_LEVEL_YELLOW)
+							feedback_inc("alert_comms_yellow",1)
+						if(SEC_LEVEL_VIOLET)
+							feedback_inc("alert_comms_violet",1)
+						if(SEC_LEVEL_ORANGE)
+							feedback_inc("alert_comms_orange",1)
 						if(SEC_LEVEL_BLUE)
 							feedback_inc("alert_comms_blue",1)
 				tmp_alertlevel = 0
@@ -358,6 +364,9 @@
 				dat += "<font color='red'><b>The self-destruct mechanism is active. Find a way to deactivate the mechanism to lower the alert level or evacuate.</b></font>"
 			else
 				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_BLUE]'>Blue</A><BR>"
+				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_ORANGE]'>Orange</A><BR>"
+				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_VIOLET]'>Violet</A><BR>"
+				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_YELLOW]'>Yellow</A><BR>"
 				dat += "<A HREF='?src=\ref[src];operation=securitylevel;newalertlevel=[SEC_LEVEL_GREEN]'>Green</A>"
 		if(STATE_CONFIRM_LEVEL)
 			dat += "Current alert level: [get_security_level()]<BR>"
@@ -501,8 +510,8 @@
 
 	//delay events in case of an autotransfer
 	if (isnull(user))
-		event_manager.delay_events(EVENT_LEVEL_MODERATE, 9000) //15 minutes
-		event_manager.delay_events(EVENT_LEVEL_MAJOR, 9000)
+		SSevents.delay_events(EVENT_LEVEL_MODERATE, 9000) //15 minutes
+		SSevents.delay_events(EVENT_LEVEL_MAJOR, 9000)
 
 	log_game("[user? key_name(user) : "Autotransfer"] has called the shuttle.")
 	message_admins("[user? key_name_admin(user) : "Autotransfer"] has called the shuttle.", 1)
@@ -521,6 +530,13 @@
 		log_game("[key_name(user)] has recalled the shuttle.")
 		message_admins("[key_name_admin(user)] has recalled the shuttle.", 1)
 	return
+
+
+/proc/is_relay_online()
+    for(var/obj/machinery/telecomms/relay/M in world)
+        if(M.stat == 0)
+            return 1
+    return 0
 
 /obj/machinery/computer/communications/proc/post_status(var/command, var/data1, var/data2)
 

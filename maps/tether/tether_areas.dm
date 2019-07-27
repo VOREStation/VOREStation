@@ -27,6 +27,8 @@
 	forced_ambience = list('sound/music/elevator.ogg')
 	dynamic_lighting = FALSE //Temporary fix for elevator lighting
 
+	requires_power = FALSE
+
 /area/turbolift/tether/transit
 	name = "tether (midway)"
 	lift_floor_label = "Tether Midpoint"
@@ -56,13 +58,13 @@
 /area/turbolift/t_station/level1
 	name = "asteroid (level 1)"
 	lift_floor_label = "Asteroid 1"
-	lift_floor_name = "Eng, Bridge, Park, Cryo"
+	lift_floor_name = "Eng, Bridge, Chapel, Park, Cryo"
 	lift_announce_str = "Arriving at Station Level 1."
 
 /area/turbolift/t_station/level2
 	name = "asteroid (level 2)"
 	lift_floor_label = "Asteroid 2"
-	lift_floor_name = "Chapel, AI Core, EVA Gear"
+	lift_floor_name = "Exploration, AI Core, EVA Gear"
 	lift_announce_str = "Arriving at Station Level 2."
 
 /area/turbolift/t_station/level3
@@ -74,10 +76,12 @@
 /area/vacant/vacant_restaurant_upper
 	name = "\improper Vacant Restaurant"
 	icon_state = "vacant_site"
+	flags = null
 
 /area/vacant/vacant_restaurant_lower
 	name = "\improper Vacant Restaurant"
 	icon_state = "vacant_site"
+	flags = null
 
 /area/engineering/engineering_airlock
 	name = "\improper Engineering Airlock"

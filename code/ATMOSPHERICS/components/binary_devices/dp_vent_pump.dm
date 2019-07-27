@@ -194,7 +194,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/binary/dp_vent_pump/initialize()
+/obj/machinery/atmospherics/binary/dp_vent_pump/Initialize()
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)

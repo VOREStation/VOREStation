@@ -147,10 +147,16 @@
 	name = "Unknown Shuttle"
 	},
 /area/submap/virgo2/Blackshuttledown)
+"aA" = (
+/obj/machinery/computer/communications{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
 "aB" = (
-/mob/living/simple_animal/hostile/viscerator,
-/mob/living/simple_animal/hostile/viscerator,
-/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple_mob/mechanical/viscerator,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aC" = (
@@ -163,7 +169,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aD" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/space,
+/mob/living/simple_mob/humanoid/merc/ranged/space,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aE" = (
@@ -228,8 +234,19 @@
 /obj/machinery/door/airlock/glass,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
+"aP" = (
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/hyper;
+	dir = 4;
+	name = "Unknown APC";
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
 "aQ" = (
-/obj/machinery/computer/communications,
+/obj/machinery/computer/area_atmos{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aR" = (
@@ -239,15 +256,6 @@
 "aS" = (
 /obj/structure/table/steel,
 /obj/item/weapon/material/knife,
-/turf/simulated/floor/tiled/steel,
-/area/submap/virgo2/Blackshuttledown)
-"aT" = (
-/mob/living/simple_animal/hostile/syndicate/ranged{
-	desc = "Dosen't look friendly in the slightest.";
-	name = "Unknown Individual";
-	say_got_target = list("Looks like trouble!","Contact!","We've got company!","Perimeter Breached!!");
-	speak = list("One day the'll fix that damn engine..","Next time, We're hidding on the tropical beach planet.","Wish I had better equipment...","I knew I should have been a line chef...","Fuckin' helmet keeps fogging up.","Hate this blocky ass ship.")
-	},
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "aU" = (
@@ -310,22 +318,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/submap/virgo2/Blackshuttledown)
-"bc" = (
-/obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/hyper;
-	dir = 4;
-	name = "Unknown APC";
-	pixel_x = 24
-	},
-/turf/simulated/shuttle/wall/dark{
-	icon_state = "dark0";
-	name = "Unknown Shuttle"
-	},
-/area/submap/virgo2/Blackshuttledown)
-"bd" = (
-/obj/machinery/computer/area_atmos,
-/turf/simulated/floor/tiled/steel,
-/area/submap/virgo2/Blackshuttledown)
 "be" = (
 /obj/structure/table/steel,
 /obj/item/weapon/paper{
@@ -374,7 +366,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "bn" = (
-/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_mob/mechanical/viscerator,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "bo" = (
@@ -393,8 +385,8 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "bq" = (
-/mob/living/simple_animal/hostile/viscerator,
-/mob/living/simple_animal/hostile/viscerator,
+/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple_mob/mechanical/viscerator,
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "br" = (
@@ -439,7 +431,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/Blackshuttledown)
 "bz" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/space,
+/mob/living/simple_mob/humanoid/merc/ranged/space,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/Blackshuttledown)
 
@@ -717,12 +709,12 @@ af
 af
 ai
 aj
+aA
+aF
+aF
+aF
+aF
 aQ
-aF
-aF
-aF
-aF
-bd
 aj
 au
 af
@@ -796,7 +788,7 @@ aq
 aq
 aq
 aq
-aT
+aD
 bk
 aF
 aj
@@ -1350,7 +1342,7 @@ aj
 aj
 ba
 ba
-bc
+aj
 aj
 aj
 aq
@@ -1387,7 +1379,7 @@ aU
 aF
 aq
 aq
-aq
+aP
 bh
 aj
 ba

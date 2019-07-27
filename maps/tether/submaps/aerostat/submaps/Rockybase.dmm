@@ -1,8 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/mob/living/simple_animal/hostile/viscerator{
+/mob/living/simple_mob/mechanical/viscerator{
 	maxbodytemp = 900;
-	returns_home = 1
+	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/returnhome
 	},
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/template_noop)
@@ -21,11 +21,11 @@
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
 "af" = (
-/mob/living/simple_animal/hostile/malf_drone{
+/mob/living/simple_mob/mechanical/combat_drone{
 	desc = "An automated combat drone with an aged apperance.";
 	faction = "syndicate";
 	maxbodytemp = 900;
-	returns_home = 1
+	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting/threatening/returnhome
 	},
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/Rockybase)
@@ -137,7 +137,7 @@
 /area/submap/virgo2/Rockybase)
 "aA" = (
 /obj/structure/table/standard,
-/obj/item/device/laptop,
+/obj/item/modular_computer/laptop/preset/custom_loadout/advanced,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
 "aB" = (
@@ -357,11 +357,11 @@
 /turf/simulated/floor/tiled,
 /area/submap/virgo2/Rockybase)
 "bl" = (
-/mob/living/simple_animal/hostile/malf_drone{
+/mob/living/simple_mob/mechanical/combat_drone{
 	desc = "An automated combat drone with an aged apperance.";
 	faction = "syndicate";
 	maxbodytemp = 900;
-	returns_home = 1
+	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting/threatening/returnhome
 	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
@@ -664,7 +664,7 @@
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
 "co" = (
-/mob/living/simple_animal/hostile/mecha/malf_drone{
+/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced{
 	faction = "syndicate"
 	},
 /turf/simulated/floor/tiled/techfloor/virgo2,

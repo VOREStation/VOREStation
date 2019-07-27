@@ -15,11 +15,11 @@
 	access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
 			            access_tox_storage, access_teleporter, access_sec_doors,
 			            access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
-			            access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_eva) //VOREStation Edit
+			            access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_eva, access_network) //VOREStation Edit
 	minimal_access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
 			            access_tox_storage, access_teleporter, access_sec_doors,
 			            access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
-			            access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_eva) //VOREStation Edit
+			            access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_eva, access_network) //VOREStation Edit
 	alt_titles = list("Research Supervisor")
 
 	minimum_character_age = 25

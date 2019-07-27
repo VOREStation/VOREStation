@@ -18,20 +18,24 @@
 	var/checkrange_mult = 1
 
 /obj/machinery/door/blast/puzzle/proc/check_locks()
+	if(!locks || locks.len <= 0)	// Puzzle doors with no locks will only listen to boring buttons.
+		return 0
+
 	for(var/obj/structure/prop/lock/L in locks)
 		if(!L.enabled)
 			return 0
 	return 1
 
 /obj/machinery/door/blast/puzzle/bullet_act(var/obj/item/projectile/Proj)
-	visible_message("<span class='cult'>\The [src] is completely unaffected by \the [Proj].</span>")
+	if(!istype(Proj, /obj/item/projectile/test))
+		visible_message("<span class='cult'>\The [src] is completely unaffected by \the [Proj].</span>")
 	qdel(Proj) //No piercing. No.
 
 /obj/machinery/door/blast/puzzle/ex_act(severity)
 	visible_message("<span class='cult'>\The [src] is completely unaffected by the blast.</span>")
 	return
 
-/obj/machinery/door/blast/puzzle/initialize()
+/obj/machinery/door/blast/puzzle/Initialize()
 	. = ..()
 	implicit_material = get_material_by_name("dungeonium")
 	if(locks.len)

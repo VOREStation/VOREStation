@@ -15,8 +15,15 @@
 	layer = ABOVE_WINDOW_LAYER
 	density = FALSE
 	circuit = /obj/item/weapon/circuitboard/timeclock
+	clicksound = null
 
 	var/obj/item/weapon/card/id/card // Inserted Id card
+	var/obj/item/device/radio/intercom/announce	// Integreated announcer
+
+
+/obj/machinery/computer/timeclock/New()
+	announce = new /obj/item/device/radio/intercom(src)
+	..()
 
 /obj/machinery/computer/timeclock/Destroy()
 	if(card)
@@ -47,7 +54,7 @@
 		if(!card && user.unEquip(I))
 			I.forceMove(src)
 			card = I
-			GLOB.nanomanager.update_uis(src)
+			SSnanoui.update_uis(src)
 			update_icon()
 		else if(card)
 			to_chat(user, "<span class='warning'>There is already ID card inside.</span>")
@@ -80,14 +87,14 @@
 				"department" = job.department,
 				"selection_color" = job.selection_color,
 				"economic_modifier" = job.economic_modifier,
-				"head_position" = job.head_position,
 				"timeoff_factor" = job.timeoff_factor
 			)
-		// TODO - Once job changing is implemented, we will want to list jobs to change into.
-		// if(job && job.timeoff_factor < 0) // Currently are Off Duty, so gotta lookup what on-duty jobs are open
-		// 	data["job_choices"] = getOpenOnDutyJobs(user, job.department)
+		if(config.time_off && config.pto_job_change)
+			data["allow_change_job"] = TRUE
+			if(job && job.timeoff_factor < 0) // Currently are Off Duty, so gotta lookup what on-duty jobs are open
+				data["job_choices"] = getOpenOnDutyJobs(user, job.department)
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "timeclock_vr.tmpl", capitalize(src.name), 500, 520)
 		ui.set_initial_data(data)
@@ -100,7 +107,7 @@
 	src.add_fingerprint(usr)
 
 	if (href_list["id"])
-		if (card)
+		if(card)
 			usr.put_in_hands(card)
 			card = null
 		else
@@ -109,7 +116,127 @@
 				I.forceMove(src)
 				card = I
 		update_icon()
+		return 1
+	if(href_list["switch-to-onduty"])
+		if(card)
+			if(checkFace())
+				if(checkCardCooldown())
+					makeOnDuty(href_list["switch-to-onduty"])
+					usr.put_in_hands(card)
+					card = null
+		update_icon()
+		return 1
+	if(href_list["switch-to-offduty"])
+		if(card)
+			if(checkFace())
+				if(checkCardCooldown())
+					makeOffDuty()
+					usr.put_in_hands(card)
+					card = null
+		update_icon()
+		return 1
 	return 1 // Return 1 to update UI
+
+/obj/machinery/computer/timeclock/proc/getOpenOnDutyJobs(var/mob/user, var/department)
+	var/list/available_jobs = list()
+	for(var/datum/job/job in job_master.occupations)
+		if(job && job.is_position_available() && !job.whitelist_only && !jobban_isbanned(user,job.title) && job.player_old_enough(user.client))
+			if(job.department == department && !job.disallow_jobhop && job.timeoff_factor > 0)
+				available_jobs += job.title
+				if(job.alt_titles)
+					for(var/alt_job in job.alt_titles)
+						available_jobs += alt_job
+	return available_jobs
+
+/obj/machinery/computer/timeclock/proc/makeOnDuty(var/newjob)
+	var/datum/job/foundjob = null
+	for(var/datum/job/job in job_master.occupations)
+		if(newjob == job.title)
+			foundjob = job
+			break
+		if(newjob in job.alt_titles)
+			foundjob = job
+			break
+	if(!newjob in getOpenOnDutyJobs(usr, job_master.GetJob(card.rank).department))
+		return
+	if(foundjob && card)
+		card.access = foundjob.get_access()
+		card.rank = foundjob.title
+		card.assignment = newjob
+		card.name = text("[card.registered_name]'s ID Card ([card.assignment])")
+		data_core.manifest_modify(card.registered_name, card.assignment)
+		card.last_job_switch = world.time
+		callHook("reassign_employee", list(card))
+		foundjob.current_positions++
+		var/mob/living/carbon/human/H = usr
+		H.mind.assigned_role = foundjob.title
+		H.mind.role_alt_title = newjob
+		announce.autosay("[card.registered_name] has moved On-Duty as [card.assignment].", "Employee Oversight")
+	return
+
+/obj/machinery/computer/timeclock/proc/makeOffDuty()
+	var/datum/job/foundjob = null
+	for(var/datum/job/job in job_master.occupations)
+		if(card.rank == job.title)
+			foundjob = job
+			break
+	if(!foundjob)
+		return
+	var/real_dept = foundjob.department
+	if(real_dept && real_dept == "Command")
+		real_dept = "Civilian"
+	var/datum/job/ptojob = null
+	for(var/datum/job/job in job_master.occupations)
+		if(job.department == real_dept && job.timeoff_factor < 0)
+			ptojob = job
+			break
+	if(ptojob && card)
+		var/oldtitle = card.assignment
+		card.access = ptojob.get_access()
+		card.rank = ptojob.title
+		card.assignment = ptojob.title
+		card.name = text("[card.registered_name]'s ID Card ([card.assignment])")
+		data_core.manifest_modify(card.registered_name, card.assignment)
+		card.last_job_switch = world.time
+		callHook("reassign_employee", list(card))
+		var/mob/living/carbon/human/H = usr
+		H.mind.assigned_role = ptojob.title
+		H.mind.role_alt_title = ptojob.title
+		foundjob.current_positions--
+		announce.autosay("[card.registered_name], [oldtitle], has moved Off-Duty.", "Employee Oversight")
+	return
+
+/obj/machinery/computer/timeclock/proc/checkCardCooldown()
+	if(!card)
+		return FALSE
+	if((world.time - card.last_job_switch) < 15 MINUTES)
+		to_chat(usr, "You need to wait at least 15 minutes after last duty switch.")
+		return FALSE
+	return TRUE
+
+/obj/machinery/computer/timeclock/proc/checkFace()
+	if(!card)
+		to_chat(usr, "<span class='notice'>No ID is inserted.</span>")
+		return FALSE
+	var/mob/living/carbon/human/H = usr
+	if(!(istype(H)))
+		to_chat(usr, "<span class='warning'>Invalid user detected. Access denied.</span>")
+		return FALSE
+	else if((H.wear_mask && (H.wear_mask.flags_inv & HIDEFACE)) || (H.head && (H.head.flags_inv & HIDEFACE)))	//Face hiding bad
+		to_chat(usr, "<span class='warning'>Facial recognition scan failed due to physical obstructions. Access denied.</span>")
+		return FALSE
+	else if(H.get_face_name() == "Unknown" || !(H.real_name == card.registered_name))
+		to_chat(usr, "<span class='warning'>Facial recognition scan failed. Access denied.</span>")
+		return FALSE
+	else
+		return TRUE
+
+/obj/item/weapon/card/id
+	var/last_job_switch
+
+/obj/item/weapon/card/id/New()
+	.=..()
+	last_job_switch = world.time
 
 //
 // Frame type for construction

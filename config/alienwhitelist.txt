@@ -1,5 +1,6 @@
 some~user - Species
 
+911earlyarther - Xenomorph Hybrid
 admiraldragon - Vox
 aether_elemental - Daemon
 arokha - Protean
@@ -21,6 +22,8 @@ natje - Xenochimera
 oreganovulgaris - Xenochimera
 paradoxspace - Xenochimera
 rapidvalj - Vox
+rapidvalj - Common Skrellian
+rapidvalj - High Skrellian
 rikaru19xjenkins  - Xenomorph Hybrid
 rikaru19xjenkins - Xenochimera
 rixunie - Diona

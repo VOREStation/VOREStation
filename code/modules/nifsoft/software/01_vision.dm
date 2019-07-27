@@ -4,7 +4,7 @@
 	name = "AR Overlay (Civ)"
 	desc = "Provides a general identification and health status overlay on your vision with no frills."
 	list_pos = NIF_CIVILIAN_AR
-	cost = 500
+	cost = 250
 	a_drain = 0.01
 	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_AUGMENTED)
 	vision_flags = (NIF_V_AR_CIVILIAN)
@@ -14,7 +14,7 @@
 	name = "AR Overlay (Med)"
 	desc = "Like the civilian model, but provides medical records access and virus database lookup."
 	list_pos = NIF_MEDICAL_AR
-	cost = 750
+	cost = 375
 	access = access_medical
 	a_drain = 0.01
 	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_AUGMENTED)
@@ -25,7 +25,7 @@
 	name = "AR Overlay (Sec)"
 	desc = "Like the civilian model, but provides access to arrest status and security records."
 	list_pos = NIF_SECURITY_AR
-	cost = 750
+	cost = 375
 	access = access_security
 	a_drain = 0.01
 	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED,VIS_AUGMENTED)
@@ -36,7 +36,7 @@
 	name = "AR Overlay (Eng)"
 	desc = "Like the civilian model, but provides station alert notices."
 	list_pos = NIF_ENGINE_AR
-	cost = 750
+	cost = 375
 	access = access_engine
 	a_drain = 0.01
 	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_AUGMENTED)
@@ -47,7 +47,7 @@
 	name = "AR Overlay (Sci)"
 	desc = "Like the civilian model, but provides ... well, nothing. For now."
 	list_pos = NIF_SCIENCE_AR
-	cost = 750
+	cost = 375
 	access = access_research
 	a_drain = 0.01
 	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_AUGMENTED)
@@ -58,7 +58,7 @@
 	name = "AR Overlay (Omni)"
 	desc = "Like the civilian model, but provides most of the features of the medical and security overlays as well."
 	list_pos = NIF_OMNI_AR
-	cost = 750
+	cost = 375
 	access = access_captain
 	a_drain = 0.01
 	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED,VIS_AUGMENTED)
@@ -71,7 +71,7 @@
 	name = "Corrective AR"
 	desc = "Subtly alters perception to compensate for cataracts and retinal misalignment, among other common disabilities."
 	list_pos = NIF_CORRECTIVE_GLASS
-	cost = 200
+	cost = 100
 	a_drain = 0.025
 	vision_flags = (NIF_V_CORRECTIVE)
 
@@ -79,7 +79,7 @@
 	name = "Nictating Membrane"
 	desc = "A synthetic nictating membrane (aka 'third eyelid') that protects the eyes from UV or hostile atmospheres. Does not protect from photonic stun weapons."
 	list_pos = NIF_UVFILTER
-	cost = 450
+	cost = 225
 	a_drain = 0.2
 	vision_flags = (NIF_V_UVFILTER)
 
@@ -87,7 +87,7 @@
 	name = "Responsive Filter"
 	desc = "Enables a high-speed shielding response to intense light, such as flashes, to block them."
 	list_pos = NIF_FLASHPROT
-	cost = 600
+	cost = 300
 	access = access_security
 	a_drain = 0.05
 	vision_flags = (NIF_V_FLASHPROT)
@@ -98,7 +98,7 @@
 	name = "Meson Scanner"
 	desc = "Similar to the worn Optical Meson Scanner Goggles, these allow you to see the base structure and terrain through walls."
 	list_pos = NIF_MESONS
-	cost = 1000
+	cost = 500
 	a_drain = 0.1
 	access = access_engine
 	tick_flags = NIF_ACTIVETICK
@@ -117,7 +117,7 @@
 	name = "Material Scanner"
 	desc = "Similar to the worn Optical Material Scanner Goggles, these allow you to see objects through walls."
 	list_pos = NIF_MATERIAL
-	cost = 1000
+	cost = 500
 	a_drain = 0.1
 	access = access_research
 	tick_flags = NIF_ACTIVETICK
@@ -156,7 +156,7 @@
 	name = "Low-Light Amp"
 	desc = "Similar to the worn Night Vision Goggles, these allow you to see in complete darkness."
 	list_pos = NIF_NIGHTVIS
-	cost = 1000
+	cost = 500
 	a_drain = 0.1
 	access = access_security
 	tick_flags = NIF_ACTIVETICK

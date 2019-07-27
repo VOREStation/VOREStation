@@ -20,7 +20,6 @@
 //		var/maxshieldload = 200
 		var/obj/structure/cable/attached		// the attached cable
 		var/storedpower = 0
-		flags = CONDUCT
 		//There have to be at least two posts, so these are effectively doubled
 		var/power_draw = 30000 //30 kW. How much power is drawn from powernet. Increase this to allow the generator to sustain longer shields, at the cost of more power draw.
 		var/max_stored_power = 50000 //50 kW
@@ -317,13 +316,9 @@
 	return
 
 
-/obj/machinery/shieldwall/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
-
+/obj/machinery/shieldwall/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return prob(20)
-	else
-		if (istype(mover, /obj/item/projectile))
-			return prob(10)
-		else
-			return !src.density
+	if(istype(mover, /obj/item/projectile))
+		return prob(10)
+	return !density

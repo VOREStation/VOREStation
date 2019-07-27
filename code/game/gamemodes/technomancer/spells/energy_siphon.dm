@@ -22,11 +22,11 @@
 
 /obj/item/weapon/spell/energy_siphon/New()
 	..()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/spell/energy_siphon/Destroy()
 	stop_siphoning()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/weapon/spell/energy_siphon/process()
@@ -165,14 +165,15 @@
 			while(i)
 				var/obj/item/projectile/beam/lightning/energy_siphon/lightning = new(get_turf(source))
 				lightning.firer = user
-				lightning.launch(user)
+				lightning.old_style_target(user)
+				lightning.fire()
 				i--
 				sleep(3)
 
 /obj/item/projectile/beam/lightning/energy_siphon
 	name = "energy stream"
 	icon_state = "lightning"
-	kill_count = 6 // Backup plan in-case the effect somehow misses the Technomancer.
+	range = 6 // Backup plan in-case the effect somehow misses the Technomancer.
 	power = 5 // This fires really fast, so this may add up if someone keeps standing in the beam.
 	penetrating = 5
 

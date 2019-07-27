@@ -20,14 +20,14 @@
 	var/detail_color = COLOR_ASSEMBLY_BLACK
 
 
-/obj/item/device/electronic_assembly/initialize()
+/obj/item/device/electronic_assembly/Initialize()
 	battery = new(src)
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/device/electronic_assembly/Destroy()
 	battery = null // It will be qdel'd by ..() if still in our contents
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/device/electronic_assembly/process()
@@ -247,7 +247,7 @@
 		return TRUE
 
 	else if(istype(I, /obj/item/integrated_circuit))
-		if(!user.unEquip(I))
+		if(!user.unEquip(I) && !istype(user, /mob/living/silicon/robot)) //Robots cannot de-equip items in grippers.
 			return FALSE
 		if(add_circuit(I, user))
 			to_chat(user, "<span class='notice'>You slide \the [I] inside \the [src].</span>")
@@ -323,6 +323,12 @@
 	if(choice)
 		choice.ask_for_input(user)
 
+/obj/item/device/electronic_assembly/attack_robot(mob/user as mob)
+	if(Adjacent(user))
+		return attack_self(user)
+	else
+		return ..()
+
 /obj/item/device/electronic_assembly/emp_act(severity)
 	..()
 	for(var/atom/movable/AM in contents)
@@ -333,7 +339,7 @@
 	if(battery)
 		var/lost = battery.use(amount * CELLRATE)
 		net_power -= lost
-		return TRUE
+		return lost > 0
 	return FALSE
 
 // Ditto for giving.

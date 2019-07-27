@@ -113,6 +113,7 @@
 #define MAX_RECORD_LENGTH	  24576
 #define MAX_LNAME_LEN         64
 #define MAX_NAME_LEN          52
+#define MAX_TEXTFILE_LENGTH 128000		// 512GQ file
 
 // Event defines.
 #define EVENT_LEVEL_MUNDANE  1
@@ -145,7 +146,10 @@
 #define DEFAULT_TABLE_MATERIAL "plastic"
 #define DEFAULT_WALL_MATERIAL "steel"
 
+#define MAT_IRON			"iron"
+#define MAT_MARBLE			"marble"
 #define MAT_STEEL			"steel"
+#define MAT_PLASTIC			"plastic"
 #define MAT_GLASS			"glass"
 #define MAT_SILVER			"silver"
 #define MAT_GOLD			"gold"
@@ -164,6 +168,13 @@
 #define MAT_DURASTEEL		"durasteel"
 #define MAT_DURASTEELHULL	"durasteel hull"
 #define MAT_TITANIUMHULL	"titanium hull"
+#define MAT_VERDANTIUM		"verdantium"
+#define MAT_MORPHIUM		"morphium"
+#define MAT_MORPHIUMHULL	"morphium hull"
+#define MAT_VALHOLLIDE		"valhollide"
+#define MAT_LEAD			"lead"
+#define MAT_SUPERMATTER		"supermatter"
+#define MAT_METALHYDROGEN	"mhydrogen"
 
 #define SHARD_SHARD "shard"
 #define SHARD_SHRAPNEL "shrapnel"
@@ -181,6 +192,33 @@
 #define BOMBCAP_HEAVY_RADIUS (max_explosion_range/2)
 #define BOMBCAP_LIGHT_RADIUS max_explosion_range
 #define BOMBCAP_FLASH_RADIUS (max_explosion_range*1.5)
+									// NTNet module-configuration values. Do not change these. If you need to add another use larger number (5..6..7 etc)
+#define NTNET_SOFTWAREDOWNLOAD 1 	// Downloads of software from NTNet
+#define NTNET_PEERTOPEER 2			// P2P transfers of files between devices
+#define NTNET_COMMUNICATION 3		// Communication (messaging)
+#define NTNET_SYSTEMCONTROL 4		// Control of various systems, RCon, air alarm control, etc.
+
+// NTNet transfer speeds, used when downloading/uploading a file/program.
+#define NTNETSPEED_LOWSIGNAL 0.25	// GQ/s transfer speed when the device is wirelessly connected and on Low signal
+#define NTNETSPEED_HIGHSIGNAL 0.5	// GQ/s transfer speed when the device is wirelessly connected and on High signal
+#define NTNETSPEED_ETHERNET 1.0		// GQ/s transfer speed when the device is using wired connection
+#define NTNETSPEED_DOS_AMPLIFICATION 5	// Multiplier for Denial of Service program. Resulting load on NTNet relay is this multiplied by NTNETSPEED of the device
+
+// Program bitflags
+#define PROGRAM_ALL 15
+#define PROGRAM_CONSOLE 1
+#define PROGRAM_LAPTOP 2
+#define PROGRAM_TABLET 4
+#define PROGRAM_TELESCREEN 8
+
+#define PROGRAM_STATE_KILLED 0
+#define PROGRAM_STATE_BACKGROUND 1
+#define PROGRAM_STATE_ACTIVE 2
+
+// Caps for NTNet logging. Less than 10 would make logging useless anyway, more than 500 may make the log browser too laggy. Defaults to 100 unless user changes it.
+#define MAX_NTNET_LOGS 500
+#define MIN_NTNET_LOGS 10
+
 
 // Special return values from bullet_act(). Positive return values are already used to indicate the blocked level of the projectile.
 #define PROJECTILE_CONTINUE   -1 //if the projectile should continue flying after calling bullet_act()
@@ -258,7 +296,7 @@
 // If the GLOB system is ever ported, you can change this macro in one place and have less work to do than you otherwise would.
 #define GLOBAL_LIST_BOILERPLATE(LIST_NAME, PATH)\
 var/global/list/##LIST_NAME = list();\
-##PATH/initialize(mapload, ...)\
+##PATH/Initialize(mapload, ...)\
 	{\
 	##LIST_NAME += src;\
 	return ..();\
@@ -290,6 +328,11 @@ var/global/list/##LIST_NAME = list();\
 #define IS_WIRECUTTER		"wirecutter"
 #define IS_WRENCH			"wrench"
 
+
+// Diagonal movement
+#define FIRST_DIAG_STEP 1
+#define SECOND_DIAG_STEP 2
+
 // RCD modes. Used on the RCD, and gets passed to an object's rcd_act() when an RCD is used on it, to determine what happens.
 #define RCD_FLOORWALL		"Floor / Wall"		// Builds plating on space/ground/open tiles. Builds a wall when on floors. Finishes walls when used on girders.
 #define RCD_AIRLOCK			"Airlock"			// Builds an airlock on the tile if one isn't already there.
@@ -300,6 +343,16 @@ var/global/list/##LIST_NAME = list();\
 #define RCD_VALUE_DELAY		"delay"
 #define RCD_VALUE_COST		"cost"
 
-
 #define RCD_SHEETS_PER_MATTER_UNIT	4	// Each physical material sheet is worth four matter units.
 #define RCD_MAX_CAPACITY			30 * RCD_SHEETS_PER_MATTER_UNIT
+
+// Radiation 'levels'. Used for the geiger counter, for visuals and sound. They are in different files so this goes here.
+#define RAD_LEVEL_LOW 0.01 // Around the level at which radiation starts to become harmful
+#define RAD_LEVEL_MODERATE 10
+#define RAD_LEVEL_HIGH 25
+#define RAD_LEVEL_VERY_HIGH 50
+
+//https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
+#define MOUSE_OPACITY_TRANSPARENT 0
+#define MOUSE_OPACITY_ICON 1
+#define MOUSE_OPACITY_OPAQUE 2

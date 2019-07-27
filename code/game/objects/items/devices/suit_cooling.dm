@@ -7,7 +7,6 @@
 	slot_flags = SLOT_BACK
 
 	//copied from tank.dm
-	flags = CONDUCT
 	force = 5.0
 	throwforce = 10.0
 	throw_speed = 1
@@ -30,7 +29,7 @@
 	toggle(usr)
 
 /obj/item/device/suit_cooling_unit/New()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 	cell = new/obj/item/weapon/cell/high()	//comes not with the crappy default power cell - because this is dedicated EVA equipment
 	cell.loc = src
 
@@ -46,7 +45,9 @@
 
 	var/mob/living/carbon/human/H = loc
 
-	var/efficiency = 1 - H.get_pressure_weakness()			// You need to have a good seal for effective cooling
+	var/turf/T = get_turf(src)
+	var/datum/gas_mixture/environment = T.return_air()
+	var/efficiency = 1 - H.get_pressure_weakness(environment.return_pressure())	// You need to have a good seal for effective cooling
 	var/temp_adj = 0										// How much the unit cools you. Adjusted later on.
 	var/env_temp = get_environment_temperature()			// This won't save you from a fire
 	var/thermal_protection = H.get_heat_protection(env_temp)	// ... unless you've got a good suit.

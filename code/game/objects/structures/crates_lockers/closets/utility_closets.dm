@@ -19,7 +19,7 @@
 	icon_closed = "emergency"
 	icon_opened = "emergencyopen"
 
-/obj/structure/closet/emcloset/initialize()
+/obj/structure/closet/emcloset/Initialize()
 	switch (pickweight(list("small" = 55, "aid" = 25, "tank" = 10, "both" = 10)))
 		if ("small")
 			starts_with = list(
@@ -106,7 +106,7 @@
 	icon_closed = "toolcloset"
 	icon_opened = "toolclosetopen"
 
-/obj/structure/closet/toolcloset/initialize()
+/obj/structure/closet/toolcloset/Initialize()
 	starts_with = list()
 	if(prob(40))
 		starts_with += /obj/item/clothing/suit/storage/hazardvest

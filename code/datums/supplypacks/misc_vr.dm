@@ -13,6 +13,24 @@
 	containername = "Belt-miner gear crate"
 	access = access_mining
 
+/datum/supply_pack/misc/rations
+	name = "Emergency rations"
+	contains = list(
+			/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 4,
+			)
+	cost = 20
+	containertype = /obj/structure/closet/crate/freezer
+	containername = "emergency rations"
+
+/datum/supply_pack/misc/proteinrations
+	name = "Emergency meat rations"
+	contains = list(
+			/obj/item/weapon/reagent_containers/food/snacks/liquidprotein = 4,
+			)
+	cost = 30
+	containertype = /obj/structure/closet/crate/freezer
+	containername = "emergency meat rations"
+
 /datum/supply_pack/misc/eva_rig
 	name = "eva hardsuit (empty)"
 	contains = list(
@@ -21,7 +39,10 @@
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "eva hardsuit crate"
-	access = access_mining
+	access = list(access_mining,
+				  access_eva,
+				  access_explorer,
+				  access_pilot)
 
 /datum/supply_pack/misc/mining_rig
 	name = "industrial hardsuit (empty)"
@@ -31,4 +52,5 @@
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "industrial hardsuit crate"
-	access = access_mining
+	access = list(access_mining,
+				  access_eva)

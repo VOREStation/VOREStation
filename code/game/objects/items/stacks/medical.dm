@@ -270,12 +270,12 @@
 /obj/item/stack/medical/splint
 	name = "medical splints"
 	singular_name = "medical splint"
-	desc = "Modular splints capable of supporting and immobilizing bones in both limbs and appendages."
+	desc = "Modular splints capable of supporting and immobilizing bones in all areas of the body."
 	icon_state = "splint"
 	amount = 5
 	max_amount = 5
 
-	var/list/splintable_organs = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT)	//List of organs you can splint, natch.
+	var/list/splintable_organs = list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO)	//List of organs you can splint, natch.
 
 /obj/item/stack/medical/splint/attack(mob/living/carbon/M as mob, mob/living/user as mob)
 	if(..())

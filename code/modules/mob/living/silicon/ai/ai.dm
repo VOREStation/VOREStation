@@ -49,10 +49,10 @@ var/list/ai_verbs_default = list(
 	shouldnt_see = list(/obj/effect/rune)
 	var/list/network = list(NETWORK_DEFAULT)
 	var/obj/machinery/camera/camera = null
-	var/list/connected_robots = list()
 	var/aiRestorePowerRoutine = 0
 	var/viewalerts = 0
 	var/icon/holo_icon//Default is assigned when AI is created.
+	var/list/connected_robots = list()
 	var/obj/item/device/pda/ai/aiPDA = null
 	var/obj/item/device/communicator/aiCommunicator = null
 	var/obj/item/device/multitool/aiMulti = null
@@ -161,6 +161,7 @@ var/list/ai_verbs_default = list(
 	add_language(LANGUAGE_SIGN, 1)
 	add_language(LANGUAGE_ROOTLOCAL, 1)
 	add_language(LANGUAGE_TERMINUS, 1)
+	add_language(LANGUAGE_ZADDAT, 1)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
@@ -226,6 +227,28 @@ var/list/ai_verbs_default = list(
 
 	return ..()
 
+/mob/living/silicon/ai/Stat()
+	..()
+	if(statpanel("Status"))
+		if(!stat) // Make sure we're not unconscious/dead.
+			stat(null, text("System integrity: [(health+100)/2]%"))
+			stat(null, text("Connected synthetics: [connected_robots.len]"))
+			for(var/mob/living/silicon/robot/R in connected_robots)
+				var/robot_status = "Nominal"
+				if(R.shell)
+					robot_status = "AI SHELL"
+				else if(R.stat || !R.client)
+					robot_status = "OFFLINE"
+				else if(!R.cell || R.cell.charge <= 0)
+					robot_status = "DEPOWERED"
+				//Name, Health, Battery, Module, Area, and Status! Everything an AI wants to know about its borgies!
+				stat(null, text("[R.name] | S.Integrity: [R.health]% | Cell: [R.cell ? "[R.cell.charge]/[R.cell.maxcharge]" : "Empty"] | \
+				Module: [R.modtype] | Loc: [get_area_name(R, TRUE)] | Status: [robot_status]"))
+			stat(null, text("AI shell beacons detected: [LAZYLEN(GLOB.available_ai_shells)]")) //Count of total AI shells
+		else
+			stat(null, text("Systems nonfunctional"))
+
+
 /mob/living/silicon/ai/proc/setup_icon()
 	var/file = file2text("config/custom_sprites.txt")
 	var/lines = splittext(file, "\n")
@@ -282,7 +305,10 @@ var/list/ai_verbs_default = list(
 /obj/machinery/ai_powersupply/New(var/mob/living/silicon/ai/ai=null)
 	powered_ai = ai
 	powered_ai.psupply = src
-	forceMove(powered_ai.loc)
+	if(istype(powered_ai,/mob/living/silicon/ai/announcer))	//Don't try to get a loc for a nullspace announcer mob, just put it into it
+		forceMove(powered_ai)
+	else
+		forceMove(powered_ai.loc)
 
 	..()
 	use_power(1) // Just incase we need to wake up the power system.
@@ -410,6 +436,7 @@ var/list/ai_verbs_default = list(
 	return 0
 
 /mob/living/silicon/ai/emp_act(severity)
+	disconnect_shell("Disconnected from remote shell due to ionic interfe%*@$^___")
 	if (prob(30))
 		view_core()
 	..()
@@ -419,7 +446,7 @@ var/list/ai_verbs_default = list(
 		return
 	if(usr != src)
 		return
-	/*if(..()) // <------ MOVED FROM HERE 
+	/*if(..()) // <------ MOVED FROM HERE
 		return*/
 	if (href_list["mach_close"])
 		if (href_list["mach_close"] == "aialerts")
@@ -695,8 +722,8 @@ var/list/ai_verbs_default = list(
 		card.grab_ai(src, user)
 
 	else if(W.is_wrench())
-		if(user == controlling_drone)
-			to_chat(user, "<span class='notice'>The drone's subsystems resist your efforts to tamper with your bolts.</span>")
+		if(user == deployed_shell)
+			to_chat(user, "<span class='notice'>The shell's subsystems resist your efforts to tamper with your bolts.</span>")
 			return
 		if(anchored)
 			playsound(src, W.usesound, 50, 1)
@@ -810,7 +837,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/announcer/
 	is_dummy = 1
 
-/mob/living/silicon/ai/announcer/initialize()
+/mob/living/silicon/ai/announcer/Initialize()
 	. = ..()
 	mob_list -= src
 	living_mob_list -= src

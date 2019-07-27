@@ -1,5 +1,5 @@
 /**
- * Stuff having to do with inter-round persistence.
+ * Stuff having to do with inter-round persistence. 
  */
 
 // Minds represent IC characters.
@@ -58,7 +58,7 @@
 
 		// For now as a safety measure we will only save if the name matches.
 		if(prefs.real_name != persister.real_name)
-			log_debug("Persist (P4P): Skipping [persister] becuase ORIG:[persister.real_name] != CURR:[prefs.real_name].")
+			log_debug("Persist (P4P): Skipping [persister] because ORIG:[persister.real_name] != CURR:[prefs.real_name].")
 			return
 
 		return prefs

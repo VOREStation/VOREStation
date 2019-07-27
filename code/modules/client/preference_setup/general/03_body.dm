@@ -182,7 +182,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				if(isnull(last_descriptors[entry]))
 					pref.body_descriptors[entry] = descriptor.default_value // Species datums have initial default value.
 				else
-					pref.body_descriptors[entry] = Clamp(last_descriptors[entry], 1, LAZYLEN(descriptor.standalone_value_descriptors))
+					pref.body_descriptors[entry] = CLAMP(last_descriptors[entry], 1, LAZYLEN(descriptor.standalone_value_descriptors))
 
 	return
 
@@ -381,6 +381,16 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["set_species"])
 		user << browse(null, "window=species")
 		if(!pref.species_preview || !(pref.species_preview in all_species))
+			return TOPIC_NOACTION
+
+		var/datum/species/setting_species
+
+		if(all_species[href_list["set_species"]])
+			setting_species = all_species[href_list["set_species"]]
+		else
+			return TOPIC_NOACTION
+
+		if(((!(setting_species.spawn_flags & SPECIES_CAN_JOIN)) || (!is_alien_whitelisted(preference_mob(),setting_species))) && !check_rights(R_ADMIN, 0))
 			return TOPIC_NOACTION
 
 		var/prev_species = pref.species

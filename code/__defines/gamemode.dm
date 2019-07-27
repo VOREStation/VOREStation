@@ -5,9 +5,12 @@
 
 // Security levels.
 #define SEC_LEVEL_GREEN 0
-#define SEC_LEVEL_BLUE  1
-#define SEC_LEVEL_RED   2
-#define SEC_LEVEL_DELTA 3
+#define SEC_LEVEL_YELLOW  1
+#define SEC_LEVEL_VIOLET  2
+#define SEC_LEVEL_ORANGE  3
+#define SEC_LEVEL_BLUE  4
+#define SEC_LEVEL_RED   5
+#define SEC_LEVEL_DELTA 6
 
 #define BE_TRAITOR    0x1
 #define BE_OPERATIVE  0x2
@@ -44,8 +47,6 @@ var/list/be_special_flags = list(
 	"Mutineer"         = BE_MUTINEER,
 	"pAI"              = BE_PAI
 )
-
-#define IS_MODE_COMPILED(MODE) (ispath(text2path("/datum/game_mode/"+(MODE))))
 
 
 // Antagonist datum flags.

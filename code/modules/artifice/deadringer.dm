@@ -16,11 +16,11 @@
 
 /obj/item/weapon/deadringer/New()
 	..()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/deadringer/Destroy() //just in case some smartass tries to stay invisible by destroying the watch
 	uncloak()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/weapon/deadringer/dropped()
@@ -76,13 +76,14 @@
 	return
 
 /obj/item/weapon/deadringer/proc/deathprevent()
-	for(var/mob/living/simple_animal/D in oviewers(7, src))
-		D.LoseTarget()
+	for(var/mob/living/simple_mob/D in oviewers(7, src))
+		if(!D.has_AI())
+			continue
+		D.ai_holder.lose_target()
+
 	watchowner.emote("deathgasp")
 	watchowner.alpha = 15
 	makeacorpse(watchowner)
-	for(var/mob/living/simple_animal/D in oviewers(7, src))
-		D.LoseTarget()
 	return
 
 /obj/item/weapon/deadringer/proc/uncloak()

@@ -65,7 +65,7 @@
 	},
 /area/awaymission/spacebattle/syndicate2)
 "al" = (
-/mob/living/simple_animal/hostile/syndicate/ranged,
+/mob/living/simple_mob/hostile/syndicate/ranged,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor4"
 	},
@@ -99,7 +99,7 @@
 	},
 /area/awaymission/spacebattle/syndicate2)
 "aq" = (
-/mob/living/simple_animal/hostile/syndicate/melee,
+/mob/living/simple_mob/hostile/syndicate/melee,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor4"
 	},
@@ -213,7 +213,7 @@
 /area/awaymission/spacebattle/syndicate2)
 "aH" = (
 /obj/structure/stool/bed/chair,
-/mob/living/simple_animal/hostile/syndicate,
+/mob/living/simple_mob/hostile/syndicate,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor4"
 	},
@@ -492,7 +492,7 @@
 /area/awaymission/spacebattle/syndicate3)
 "bu" = (
 /obj/structure/stool/bed/chair,
-/mob/living/simple_animal/hostile/syndicate,
+/mob/living/simple_mob/hostile/syndicate,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor4"
 	},
@@ -558,7 +558,7 @@
 /area/awaymission/spacebattle/syndicate1)
 "bD" = (
 /obj/structure/stool/bed/chair,
-/mob/living/simple_animal/hostile/syndicate,
+/mob/living/simple_mob/hostile/syndicate,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor4"
 	},
@@ -804,7 +804,7 @@
 	},
 /area/awaymission/spacebattle/cruiser)
 "cm" = (
-/mob/living/simple_animal/hostile/syndicate/melee/space,
+/mob/living/simple_mob/hostile/syndicate/melee/space,
 /turf/simulated/floor,
 /area/awaymission/spacebattle/cruiser)
 "cn" = (
@@ -1044,7 +1044,7 @@
 	},
 /area/awaymission/spacebattle/cruiser)
 "cZ" = (
-/mob/living/simple_animal/hostile/syndicate/melee,
+/mob/living/simple_mob/hostile/syndicate/melee,
 /turf/simulated/floor,
 /area/awaymission/spacebattle/cruiser)
 "da" = (
@@ -1069,7 +1069,7 @@
 	},
 /area/awaymission/spacebattle/cruiser)
 "dd" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/space,
+/mob/living/simple_mob/hostile/syndicate/ranged/space,
 /turf/simulated/floor,
 /area/awaymission/spacebattle/cruiser)
 "de" = (
@@ -1475,7 +1475,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "ek" = (
-/mob/living/simple_animal/hostile/syndicate/melee,
+/mob/living/simple_mob/hostile/syndicate/melee,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -1570,7 +1570,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "ez" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/space,
+/mob/living/simple_mob/hostile/syndicate/ranged/space,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -1640,7 +1640,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "eJ" = (
-/mob/living/simple_animal/hostile/syndicate/melee/space,
+/mob/living/simple_mob/hostile/syndicate/melee/space,
 /turf/simulated/floor/plating/airless,
 /area/awaymission/spacebattle/cruiser)
 "eK" = (
@@ -1725,7 +1725,7 @@
 /obj/structure/stool/bed/chair{
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/syndicate,
+/mob/living/simple_mob/hostile/syndicate,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor4"
 	},
@@ -1822,7 +1822,7 @@
 /turf/simulated/floor,
 /area/awaymission/spacebattle/cruiser)
 "fm" = (
-/mob/living/simple_animal/hostile/syndicate/ranged,
+/mob/living/simple_mob/hostile/syndicate/ranged,
 /turf/simulated/floor{
 	icon_state = "blue";
 	dir = 8
@@ -2344,7 +2344,7 @@
 /turf/simulated/floor/wood,
 /area/awaymission/spacebattle/cruiser)
 "gO" = (
-/mob/living/simple_animal/hostile/syndicate/melee/space,
+/mob/living/simple_mob/hostile/syndicate/melee/space,
 /turf/simulated/floor/wood,
 /area/awaymission/spacebattle/cruiser)
 "gP" = (
@@ -2620,7 +2620,7 @@
 /area/awaymission/spacebattle/syndicate7)
 "hB" = (
 /obj/structure/largecrate,
-/mob/living/simple_animal/corgi/puppy,
+/mob/living/simple_mob/animal/passive/dog/corgi/puppy,
 /turf/simulated/floor/plating,
 /area/awaymission/spacebattle/cruiser)
 "hC" = (
@@ -2646,7 +2646,7 @@
 	},
 /area/awaymission/spacebattle/cruiser)
 "hG" = (
-/mob/living/simple_animal/hostile/syndicate/melee,
+/mob/living/simple_mob/hostile/syndicate/melee,
 /turf/simulated/floor{
 	icon_state = "white"
 	},
@@ -2762,7 +2762,7 @@
 /obj/structure/stool/bed/chair{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/syndicate,
+/mob/living/simple_mob/hostile/syndicate,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor4"
 	},
@@ -2861,7 +2861,7 @@
 	},
 /area/awaymission/spacebattle/cruiser)
 "il" = (
-/mob/living/simple_animal/hostile/syndicate/ranged/space,
+/mob/living/simple_mob/hostile/syndicate/ranged/space,
 /turf/simulated/floor{
 	icon_state = "freezerfloor"
 	},
@@ -2954,7 +2954,7 @@
 /turf/simulated/floor,
 /area/awaymission/spacebattle/cruiser)
 "ix" = (
-/mob/living/simple_animal/hostile/syndicate/ranged,
+/mob/living/simple_mob/hostile/syndicate/ranged,
 /turf/simulated/floor,
 /area/awaymission/spacebattle/cruiser)
 "iy" = (
@@ -3093,7 +3093,7 @@
 /obj/structure/stool/bed/chair{
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/syndicate,
+/mob/living/simple_mob/hostile/syndicate,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor4"
 	},
@@ -3179,7 +3179,7 @@
 /obj/structure/stool/bed/chair{
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/syndicate,
+/mob/living/simple_mob/hostile/syndicate,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor4"
 	},

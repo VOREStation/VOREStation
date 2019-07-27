@@ -94,7 +94,7 @@ var/global/list/struggle_sounds = list(
 		"Squish4" = 'sound/vore/squish4.ogg')
 
 
-var/global/list/global_egg_types = list(
+var/global/list/global_vore_egg_types = list(
 		"Unathi" 		= UNATHI_EGG,
 		"Tajaran" 		= TAJARAN_EGG,
 		"Akula" 		= AKULA_EGG,
@@ -107,7 +107,7 @@ var/global/list/global_egg_types = list(
 		"Xenochimera" 		= XENOCHIMERA_EGG,
 		"Xenomorph"		= XENOMORPH_EGG)
 
-var/global/list/tf_egg_types = list(
+var/global/list/tf_vore_egg_types = list(
 	"Unathi" 		= /obj/structure/closet/secure_closet/egg/unathi,
 	"Tajara" 		= /obj/structure/closet/secure_closet/egg/tajaran,
 	"Akula" 		= /obj/structure/closet/secure_closet/egg/shark,
@@ -121,6 +121,7 @@ var/global/list/tf_egg_types = list(
 	"Xenomorph"		= /obj/structure/closet/secure_closet/egg/xenomorph)
 
 var/global/list/edible_trash = list(/obj/item/broken_device,
+				/obj/item/clothing/accessory/collar,	//TFF 10/7/19 - add option to nom collars,
 				/obj/item/clothing/mask,
 				/obj/item/clothing/glasses,
 				/obj/item/clothing/gloves,
@@ -137,6 +138,7 @@ var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/stack/material/cardboard,
 				/obj/item/toy,
 				/obj/item/trash,
+				/obj/item/weapon/digestion_remains,
 				/obj/item/weapon/bananapeel,
 				/obj/item/weapon/bone,
 				/obj/item/weapon/broken_bottle,
@@ -169,15 +171,15 @@ var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/weapon/storage/fancy/egg_box,
 				/obj/item/weapon/storage/wallet)
 
-var/global/list/cont_flavors = list(
-				"Generic" = cont_flavors_generic,
-				"Acrid" = cont_flavors_acrid,
-				"Dirty" = cont_flavors_dirty,
-				"Musky" = cont_flavors_musky,
-				"Smelly" = cont_flavors_smelly,
-				"Wet" = cont_flavors_wet)
+var/global/list/contamination_flavors = list(
+				"Generic" = contamination_flavors_generic,
+				"Acrid" = contamination_flavors_acrid,
+				"Dirty" = contamination_flavors_dirty,
+				"Musky" = contamination_flavors_musky,
+				"Smelly" = contamination_flavors_smelly,
+				"Wet" = contamination_flavors_wet)
 
-var/global/list/cont_flavors_generic = list("acrid",
+var/global/list/contamination_flavors_generic = list("acrid",
 				"bedraggled",
 				"begrimed",
 				"churned",
@@ -235,7 +237,7 @@ var/global/list/cont_flavors_generic = list("acrid",
 				"unsavory",
 				"yucky")
 
-var/global/list/cont_flavors_wet = list("damp",
+var/global/list/contamination_flavors_wet = list("damp",
 				"drenched",
 				"drippy",
 				"gloppy",
@@ -256,7 +258,7 @@ var/global/list/cont_flavors_wet = list("damp",
 				"squishy",
 				"sticky")
 
-var/global/list/cont_flavors_smelly = list("disgusting",
+var/global/list/contamination_flavors_smelly = list("disgusting",
 				"filthy",
 				"foul",
 				"funky",
@@ -279,7 +281,7 @@ var/global/list/cont_flavors_smelly = list("disgusting",
 				"whiffy",
 				"yucky")
 
-var/global/list/cont_flavors_acrid = list("acrid",
+var/global/list/contamination_flavors_acrid = list("acrid",
 				"caustic",
 				"churned",
 				"chymous",
@@ -320,7 +322,7 @@ var/global/list/cont_flavors_acrid = list("acrid",
 				"unsavory",
 				"yucky")
 
-var/global/list/cont_flavors_dirty = list("bedraggled",
+var/global/list/contamination_flavors_dirty = list("bedraggled",
 				"begrimed",
 				"besmirched",
 				"blemished",
@@ -356,7 +358,7 @@ var/global/list/cont_flavors_dirty = list("bedraggled",
 				"unsanitary",
 				"unsavory")
 
-var/global/list/cont_flavors_musky = list("drenched",
+var/global/list/contamination_flavors_musky = list("drenched",
 				"drippy",
 				"funky",
 				"gooey",
@@ -377,6 +379,43 @@ var/global/list/cont_flavors_musky = list("drenched",
 				"squishy",
 				"sticky",
 				"tainted")
+
+var/global/list/contamination_colors = list("green",
+				"white",
+				"black",
+				"grey",
+				"yellow",
+				"red",
+				"blue",
+				"orange",
+				"purple",
+				"lime",
+				"brown",
+				"darkred",
+				"cyan",
+				"beige",
+				"pink")
+
+//For the mechanic of leaving remains. Ones listed below are basically ones that got no bones.
+var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
+				SPECIES_DIONA,
+				SPECIES_ALRAUNE,
+				SPECIES_PROTEAN,
+				SPECIES_MONKEY,					//Exclude all monkey subtypes, to prevent abuse of it. They aren't,
+				SPECIES_MONKEY_TAJ,				//set to have remains anyway, but making double sure,
+				SPECIES_MONKEY_SKRELL,
+				SPECIES_MONKEY_UNATHI,
+				SPECIES_MONKEY_AKULA,
+				SPECIES_MONKEY_NEVREAN,
+				SPECIES_MONKEY_SERGAL,
+				SPECIES_MONKEY_VULPKANIN,
+				SPECIES_XENO,					//Same for xenos,
+				SPECIES_XENO_DRONE,
+				SPECIES_XENO_HUNTER,
+				SPECIES_XENO_SENTINEL,
+				SPECIES_XENO_QUEEN,
+				SPECIES_SHADOW,
+				SPECIES_GOLEM)					//Some special species that may or may not be ever used in event too
 
 /hook/startup/proc/init_vore_datum_ref_lists()
 	var/paths

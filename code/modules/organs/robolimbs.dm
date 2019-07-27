@@ -4,7 +4,7 @@ var/list/chargen_robolimbs = list()
 var/datum/robolimb/basic_robolimb
 var/const/standard_monitor_styles = "blank=ipc_blank;\
 	pink=ipc_pink;\
-	green=ipc_green,\
+	green=ipc_green;\
 	red=ipc_red;\
 	blue=ipc_blue;\
 	shower=ipc_shower;\
@@ -42,7 +42,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	var/lifelike										 // If set, appears organic.
 	var/skin_tone										 // If set, applies skin tone rather than part color
 	var/blood_color = "#030303"
-	var/list/species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)	 //VOREStation Edit
+	var/list/species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_XENOCHIMERA)	 //VOREStation Edit
 	var/list/monitor_styles			 		 			 //If empty, the model of limbs offers a head compatible with monitors.
 	var/parts = BP_ALL						 			 //Defines what parts said brand can replace on a body.
 	var/health_hud_intensity = 1						 // Intensity modifier for the health GUI indicator.
@@ -129,7 +129,9 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon = 'icons/mob/human_races/cyberlimbs/grayson/grayson_main.dmi'
 	unavailable_to_build = 1
 	monitor_styles = "blank=grayson_off;\
+		red=grayson_red;\
 		green=grayson_green;\
+		blue=grayson_blue;\
 		rgb=grayson_rgb"
 
 /datum/robolimb/grayson_alt1
@@ -177,7 +179,8 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	desc = "This rather thick limb has a militaristic green plating."
 	icon = 'icons/mob/human_races/cyberlimbs/hephaestus/hephaestus_alt2.dmi'
 	unavailable_to_build = 1
-
+	monitor_styles = "red=athena_red;\
+		blank=athena_off"
 
 /datum/robolimb/hephaestus_monitor
 	company = "Hephaestus Monitor"
@@ -266,7 +269,9 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon = 'icons/mob/human_races/cyberlimbs/xion/xion_alt2.dmi'
 	unavailable_to_build = 1
 	monitor_styles = "blank=xion_off;\
+		red=xion_red;\
 		green=xion_green;\
+		blue=xion_blue;\
 		rgb=xion_rgb"
 
 /datum/robolimb/xion_alt3
@@ -312,6 +317,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 
 /obj/item/weapon/disk/limb/bishop
 	company = "Bishop"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/bishop)
 
 /obj/item/weapon/disk/limb/cybersolutions
 	company = "Cyber Solutions"
@@ -321,21 +327,28 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 
 /obj/item/weapon/disk/limb/hephaestus
 	company = "Hephaestus"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/hephaestus)
 
 /obj/item/weapon/disk/limb/morpheus
 	company = "Morpheus"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/morpheus)
 
 /obj/item/weapon/disk/limb/veymed
 	company = "Vey-Med"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/vey_med)
 
 /obj/item/weapon/disk/limb/wardtakahashi
 	company = "Ward-Takahashi"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/ward_takahashi)
 
 /obj/item/weapon/disk/limb/xion
 	company = "Xion"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/xion)
 
 /obj/item/weapon/disk/limb/zenghu
 	company = "Zeng-Hu"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/zeng_hu)
 
 /obj/item/weapon/disk/limb/nanotrasen
 	company = "NanoTrasen"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/nanotrasen)

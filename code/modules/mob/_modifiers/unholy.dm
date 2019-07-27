@@ -14,7 +14,8 @@
 
 	disable_duration_percent = 0.25			// Disables only last 25% as long.
 	incoming_damage_percent = 0.5			// 50% incoming damage.
-	icon_scale_percent = 1.2				// Become a bigger target.
+	icon_scale_x_percent = 1.2				// Become a bigger target.
+	icon_scale_y_percent = 1.2
 	pain_immunity = TRUE
 
 	slowdown = 2
@@ -71,7 +72,7 @@
 
 /datum/modifier/repair_aura/tick()
 	spawn()
-		for(var/mob/living/simple_animal/construct/T in view(4,holder))
+		for(var/mob/living/simple_mob/construct/T in view(4,holder))
 			T.adjustBruteLoss(rand(-10,-15))
 			T.adjustFireLoss(rand(-10,-15))
 
@@ -110,7 +111,7 @@
 	spawn()
 		if(isliving(holder))
 			var/mob/living/L = holder
-			if(istype(L, /mob/living/simple_animal/construct))
+			if(istype(L, /mob/living/simple_mob/construct))
 				L.adjustBruteLoss(rand(-5,-10))
 				L.adjustFireLoss(rand(-5,-10))
 			else

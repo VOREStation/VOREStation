@@ -3,7 +3,6 @@
 	desc = "Used for building frames."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "frame_bitem"
-	flags = CONDUCT
 	var/build_machine_type
 	var/refund_amt = 5
 	var/refund_type = /obj/item/stack/material/steel
@@ -146,4 +145,4 @@
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "fireaxe0101"
 	refund_amt = 4
-	build_machine_type = /obj/structure/closet/fireaxecabinet
+	build_machine_type = /obj/structure/fireaxecabinet

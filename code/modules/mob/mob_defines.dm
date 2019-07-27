@@ -7,6 +7,8 @@
 	var/datum/mind/mind
 
 	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
+	var/move_delay = null // For movement speed delays.
+	var/next_move = null // For click delay, despite the misleading name.
 
 	//Not in use yet
 	var/obj/effect/organstructure/organStructure = null
@@ -62,7 +64,6 @@
 	var/sdisabilities = 0	//Carbon
 	var/disabilities = 0	//Carbon
 	var/atom/movable/pulling = null
-	var/next_move = null
 	var/transforming = null	//Carbon
 	var/other = 0.0
 	var/eye_blind = null	//Carbon
@@ -214,7 +215,6 @@
 
 	var/list/active_genes=list()
 	var/mob_size = MOB_MEDIUM
-	var/disconnect_time = null		//Time of client loss, set by Logout(), for timekeeping
 	var/forbid_seeing_deadchat = FALSE // Used for lings to not see deadchat, and to have ghosting behave as if they were not really dead.
 
 	var/seedarkness = 1	//Determines mob's ability to see shadows. 1 = Normal vision, 0 = darkvision
@@ -231,3 +231,5 @@
 
 	var/attack_icon //Icon to use when attacking w/o anything in-hand
 	var/attack_icon_state //State for above
+
+	var/registered_z

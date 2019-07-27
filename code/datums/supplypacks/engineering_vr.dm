@@ -4,6 +4,7 @@
 	cost = 30
 	containertype = /obj/structure/closet/crate/large
 	containername = "thermal regulator crate"
+	access = access_atmospherics
 
 /datum/supply_pack/eng/radsuit
 	contains = list(

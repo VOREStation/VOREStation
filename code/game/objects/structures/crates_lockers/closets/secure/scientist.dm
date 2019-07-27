@@ -18,7 +18,7 @@
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science,
 		/obj/item/clothing/shoes/boots/winter/science)
 
-/obj/structure/closet/secure_closet/scientist/initialize()
+/obj/structure/closet/secure_closet/scientist/Initialize()
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/dufflebag/sci
 	else

@@ -15,7 +15,7 @@
 			return
 
 		prefs.ignored_players |= key_to_ignore
-		prefs.save_preferences()
+		SScharacter_setup.queue_preferences_save(prefs)
 		usr << "<span class='notice'>Now ignoring <b>[key_to_ignore]</b>.</span>"
 
 /client/verb/unignore(key_to_unignore as text)
@@ -31,7 +31,7 @@
 			usr << "<span class='warning'>[key_to_unignore] isn't being ignored.</span>"
 			return
 		prefs.ignored_players -= key_to_unignore
-		prefs.save_preferences()
+		SScharacter_setup.queue_preferences_save(prefs)
 		usr << "<span class='notice'>Reverted ignore on <b>[key_to_unignore]</b>.</span>"
 
 /mob/proc/is_key_ignored(var/key_to_check)
@@ -42,7 +42,7 @@
 /client/proc/is_key_ignored(var/key_to_check)
 	key_to_check = ckey(key_to_check)
 	if(key_to_check in prefs.ignored_players)
-		if(directory[key_to_check] in admins) // This is here so this is only evaluated if someone is actually being blocked.
+		if(GLOB.directory[key_to_check] in admins) // This is here so this is only evaluated if someone is actually being blocked.
 			return 0
 		return 1
 	return 0

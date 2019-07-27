@@ -401,6 +401,33 @@
 	ship_prefixes = list("XTV" = "hauling")
 	destination_names = list()
 
+/datum/lore/organization/tsc/mbt
+	name = "Major Bill's Transportation"
+	short_name = "Major Bill's"
+	desc = "The most popular courier service and starliner, Major Bill's is an unassuming corporation whose greatest asset \
+	is their low cost and brand recognition. Major Bill's is known, perhaps unfavorably, for its mascot, Major Bill, \
+	a cartoonish military figure that spouts quotable slogans. Their motto is \"With Major Bill's, you won't pay major bills!\", \
+	an earworm much of the galaxy longs to forget."
+	history = ""
+	work = "courier and passenger transit"
+	headquarters = "Mars, Sol"
+	motto = "With Major Bill's, you won't pay major bills!"
+
+	ship_prefixes = list("TTV" = "transport", "TTV" = "luxury transit")
+	destination_names = list()
+
+/datum/lore/organization/tsc/independent
+	name = "Free Traders"
+	short_name = "Free Trader"
+	desc = "Though less common now than they were in the decades before the Sol Economic Organization took power, independent traders remain an important part of the galactic economy, owing in no small part to protective tarrifs established by the Free Trade Union in the late twenty-forth century."
+	history = ""
+	work = "trade and transit"
+	headquarters = "N/A"
+	motto = "N/A"
+
+	ship_prefixes = list("IEV" = "prospecting", "IEC" = "prospecting", "IFV" = "bulk freight", "ITV" = "passenger transport", "ITC" = "just-in-time delivery")
+	destination_names = list()
+
 /datum/lore/organization/gov/solgov
 	name = "Solar Central Government"
 	short_name = "SolGov"
@@ -437,7 +464,7 @@
 						"the SolGov embassy in Vilous"
 						)// autogen will add a lot of other places as well.
 
-/datum/lore/organization/gov/sifgov // Overrides Polaris stuff
+/datum/lore/organization/gov/virgov // Overrides Polaris stuff
 	name = "Virgo-Erigone Governmental Authority"
 	short_name = ""
 	desc = "Existing far outside the reach of SolGov space, the only governing body of the Virgo-Erigone system is the Virgo-Prime Governmental \

@@ -907,6 +907,7 @@
 /obj/item/clothing/under/rank/khi
 	name = "Delete Me"
 	desc = "Why did you spawn this one? Dork."
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi)
 	sensor_mode = 3
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
@@ -1689,7 +1690,7 @@ Departamental Swimsuits, for general use
 	icon_state = "kilanosuit_p"
 	item_state = "kilanosuit_p"
 
-//Mewchild: Phi Ahkeen
+//Mewchild: Phi Vietsi
 /obj/item/clothing/gloves/ring/seal/signet/fluff/phi
 	name = "Phi's Bone Signet Ring"
 	desc = "A signet ring belonging to Phi, carved from the bones of something long extinct, as a ward against bad luck."
@@ -1810,3 +1811,41 @@ Departamental Swimsuits, for general use
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	w_class = ITEMSIZE_NORMAL
 	slot = ACCESSORY_SLOT_OVER
+
+//General definition for bracer items. No icons.
+/obj/item/clothing/accessory/bracer
+	name = "bracer"
+	desc = "A bracer."
+	icon_state = null
+	item_state = null
+	icon_override = null
+	slot_flags = SLOT_GLOVES | SLOT_TIE
+	w_class = ITEMSIZE_SMALL
+	slot = ACCESSORY_SLOT_ARMBAND
+
+//AegisOA:Xander Bevin
+//WanderingDeviant:S'thasha Tavakdavi
+/obj/item/clothing/accessory/bracer/fluff/xander_sthasha
+	name = "Plasteel Bracer"
+	desc = "A sturdy arm-guard of polished plasteel that sports gold trimming, silver tribal-looping etchings, and a single cut diamond set into its side. Attached to one's forearm with a small, magnetic clasp."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "bracer_xander_sthasha"
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "bracer_xander_sthasha"
+
+/obj/item/clothing/accessory/bracer/fluff/xander_sthasha/digest_act(var/atom/movable/item_storage = null)
+	return FALSE
+
+/obj/item/clothing/accessory/bracer/fluff/xander_sthasha/gurgle_contaminate(var/atom/movable/item_storage = null)
+	return FALSE
+
+//Heroman3003:Lauren Zackson
+/obj/item/clothing/accessory/collar/fluff/goldenstring
+	name = "golden string"
+	desc = "It appears to just be a length of gold-colored string attached to a simple plastic clasp, meant to be worn around the neck"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	icon_state = "goldenstring"
+	item_state = "goldenstring"
+	w_class = ITEMSIZE_TINY
+	slot_flags = SLOT_TIE

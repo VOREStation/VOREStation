@@ -1,6 +1,7 @@
 ///////////////////// Mob Living /////////////////////
 /mob/living
 	var/digestable = 1					// Can the mob be digested inside a belly?
+	var/digest_leave_remains = 0		// Will this mob leave bones/skull/etc after the melty demise?
 	var/allowmobvore = 1				// Will simplemobs attempt to eat the mob?
 	var/showvoreprefs = 1				// Determines if the mechanical vore preferences button will be displayed on the mob or not.
 	var/obj/belly/vore_selected			// Default to no vore capability.
@@ -9,9 +10,9 @@
 	var/weight = 137					// Weight for mobs for weightgain system
 	var/weight_gain = 1 				// How fast you gain weight
 	var/weight_loss = 0.5 				// How fast you lose weight
-	var/egg_type = "egg" 				// Default egg type.
+	var/vore_egg_type = "egg" 				// Default egg type.
 	var/feral = 0 						// How feral the mob is, if at all. Does nothing for non xenochimera at the moment.
-	var/reviving = 0					// Only used for creatures that have the xenochimera regen ability, so far.
+	var/revive_ready = REVIVING_READY	// Only used for creatures that have the xenochimera regen ability, so far.
 	var/metabolism = 0.0015
 	var/vore_taste = null				// What the character tastes like
 	var/no_vore = 0 					// If the character/mob can vore.
@@ -71,12 +72,12 @@
 //
 // Hide vore organs in contents
 //
-/mob/living/view_variables_filter_contents(list/L)
-	. = ..()
-	var/len_before = L.len
-	L -= vore_organs
-	. += len_before - L.len
-
+///mob/living/view_variables_filter_contents(list/L)
+//	. = ..()
+//	var/len_before = L.len
+//	L -= vore_organs
+//	. += len_before - L.len
+//
 //
 // Handle being clicked, perhaps with something to devour
 //
@@ -195,6 +196,7 @@
 	var/datum/vore_preferences/P = client.prefs_vr
 
 	P.digestable = src.digestable
+	P.digest_leave_remains = src.digest_leave_remains
 	P.allowmobvore = src.allowmobvore
 	P.vore_taste = src.vore_taste
 	P.can_be_drop_prey = src.can_be_drop_prey
@@ -220,6 +222,7 @@
 	var/datum/vore_preferences/P = client.prefs_vr
 
 	digestable = P.digestable
+	digest_leave_remains = P.digest_leave_remains
 	allowmobvore = P.allowmobvore
 	vore_taste = P.vore_taste
 	can_be_drop_prey = P.can_be_drop_prey
@@ -330,13 +333,14 @@
 		if(!confirm == "Okay" || loc != B)
 			return
 		//Actual escaping
+		absorbed = 0	//Make sure we're not absorbed
 		forceMove(get_turf(src)) //Just move me up to the turf, let's not cascade through bellies, there's been a problem, let's just leave.
-		for(var/mob/living/simple_animal/SA in range(10))
+		for(var/mob/living/simple_mob/SA in range(10))
 			SA.prey_excludes[src] = world.time
 		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(B.owner)] ([B.owner ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[B.owner.x];Y=[B.owner.y];Z=[B.owner.z]'>JMP</a>" : "null"])")
 
 		if(isanimal(B.owner))
-			var/mob/living/simple_animal/SA = B.owner
+			var/mob/living/simple_mob/SA = B.owner
 			SA.update_icons()
 
 	//You're in a dogborg!
@@ -637,6 +641,10 @@
 				to_chat(src, "<span class='notice'>You can taste the flavor of garbage and leftovers. Delicious?</span>")
 			else
 				to_chat(src, "<span class='notice'>You can taste the flavor of gluttonous waste of food.</span>")
+		//TFF 10/7/19 - Add custom flavour for collars for trash can trait.
+		else if (istype(I,/obj/item/clothing/accessory/collar))
+			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
+			to_chat(src, "<span class='notice'>You can taste the submissiveness in the wearer of [I]!</span>")
 		else
 			to_chat(src, "<span class='notice'>You can taste the flavor of garbage. Delicious.</span>")
 		return
@@ -648,6 +656,7 @@
 	set category = "Preferences"
 	set desc = "Switch sharp/fuzzy scaling for current mob."
 	appearance_flags ^= PIXEL_SCALE
+	appearance_flags ^= KEEP_TOGETHER
 
 /mob/living/examine(mob/user, distance, infix, suffix)
 	. = ..(user, distance, infix, suffix)
@@ -663,7 +672,13 @@
 	if(!user)
 		CRASH("display_voreprefs() was called without an associated user.")
 	var/dispvoreprefs = "<b>[src]'s vore preferences</b><br><br><br>"
+	if(client && client.prefs)
+		if("CHAT_OOC" in client.prefs.preferences_disabled)
+			dispvoreprefs += "<font color='red'><b>OOC DISABLED</b></font><br>"
+		if("CHAT_LOOC" in client.prefs.preferences_disabled)
+			dispvoreprefs += "<font color='red'><b>LOOC DISABLED</b></font><br>"
 	dispvoreprefs += "<b>Digestable:</b> [digestable ? "Enabled" : "Disabled"]<br>"
+	dispvoreprefs += "<b>Leaves Remains:</b> [digest_leave_remains ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Mob Vore:</b> [allowmobvore ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Drop-nom prey:</b> [can_be_drop_prey ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Drop-nom pred:</b> [can_be_drop_pred ? "Enabled" : "Disabled"]<br>"

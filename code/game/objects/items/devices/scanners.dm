@@ -15,7 +15,6 @@ HALOGEN COUNTER	- Radcount on mobs
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
 	icon_state = "health"
 	item_state = "healthanalyzer"
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throwforce = 3
 	w_class = ITEMSIZE_SMALL
@@ -212,7 +211,7 @@ HALOGEN COUNTER	- Radcount on mobs
 				continue
 			// Broken limbs
 			if(e.status & ORGAN_BROKEN)
-				if((e.name in list("l_arm", "r_arm", "l_leg", "r_leg")) && (!e.splinted))
+				if((e.name in list("l_arm", "r_arm", "l_leg", "r_leg", "head", "chest", "groin")) && (!e.splinted))
 					fracture_dat += "<span class='warning'>Unsecured fracture in subject [e.name]. Splinting recommended for transport.</span><br>"
 				else if(advscan >= 1 && showadvscan == 1)
 					fracture_dat += "<span class='warning'>Bone fractures detected in subject [e.name].</span><br>"
@@ -299,7 +298,6 @@ HALOGEN COUNTER	- Radcount on mobs
 	icon_state = "atmos"
 	item_state = "analyzer"
 	w_class = ITEMSIZE_SMALL
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throwforce = 5
 	throw_speed = 4
@@ -337,7 +335,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
 	icon_state = "spectrometer"
 	w_class = ITEMSIZE_SMALL
-	flags = CONDUCT | OPENCONTAINER
+	flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 	throwforce = 5
 	throw_speed = 4
@@ -399,7 +397,6 @@ HALOGEN COUNTER	- Radcount on mobs
 	icon_state = "spectrometer"
 	item_state = "analyzer"
 	w_class = ITEMSIZE_SMALL
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throwforce = 5
 	throw_speed = 4
@@ -410,25 +407,28 @@ HALOGEN COUNTER	- Radcount on mobs
 	var/details = 0
 	var/recent_fail = 0
 
-/obj/item/device/reagent_scanner/afterattack(obj/O, mob/user as mob, proximity)
+/obj/item/device/reagent_scanner/afterattack(obj/O, mob/living/user, proximity)
 	if(!proximity || user.stat || !istype(O))
 		return
-	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+	if(!istype(user))
 		return
 
 	if(!isnull(O.reagents))
+		if(!(O.flags & OPENCONTAINER)) // The idea is that the scanner has to touch the reagents somehow. This is done to prevent cheesing unidentified autoinjectors.
+			to_chat(user, span("warning", "\The [O] is sealed, and cannot be scanned by \the [src] until unsealed."))
+			return
+
 		var/dat = ""
 		if(O.reagents.reagent_list.len > 0)
 			var/one_percent = O.reagents.total_volume / 100
 			for (var/datum/reagent/R in O.reagents.reagent_list)
-				dat += "\n \t <span class='notice'>[R][details ? ": [R.volume / one_percent]%" : ""]</span>"
+				dat += "\n \t " + span("notice", "[R][details ? ": [R.volume / one_percent]%" : ""]")
 		if(dat)
-			to_chat(user, "<span class='notice'>Chemicals found: [dat]</span>")
+			to_chat(user, span("notice", "Chemicals found: [dat]"))
 		else
-			to_chat(user, "<span class='notice'>No active chemical agents found in [O].</span>")
+			to_chat(user, span("notice", "No active chemical agents found in [O]."))
 	else
-		to_chat(user, "<span class='notice'>No significant chemical agents found in [O].</span>")
+		to_chat(user, span("notice", "No significant chemical agents found in [O]."))
 
 	return
 
@@ -444,22 +444,21 @@ HALOGEN COUNTER	- Radcount on mobs
 	item_state = "xenobio"
 	origin_tech = list(TECH_BIO = 1)
 	w_class = ITEMSIZE_SMALL
-	flags = CONDUCT
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
 	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
 
 /obj/item/device/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
-	if(!isslime(M))
-		to_chat(user, "<B>This device can only scan slimes!</B>")
+	if(!istype(M, /mob/living/simple_mob/slime/xenobio))
+		to_chat(user, "<B>This device can only scan lab-grown slimes!</B>")
 		return
-	var/mob/living/simple_animal/slime/S = M
+	var/mob/living/simple_mob/slime/xenobio/S = M
 	user.show_message("Slime scan results:<br>[S.slime_color] [S.is_adult ? "adult" : "baby"] slime<br>Health: [S.health]<br>Mutation Probability: [S.mutation_chance]")
 
 	var/list/mutations = list()
 	for(var/potential_color in S.slime_mutation)
-		var/mob/living/simple_animal/slime/slime = potential_color
+		var/mob/living/simple_mob/slime/xenobio/slime = potential_color
 		mutations.Add(initial(slime.slime_color))
 	user.show_message("Potental to mutate into [english_list(mutations)] colors.<br>Extract potential: [S.cores]<br>Nutrition: [S.nutrition]/[S.get_max_nutrition()]")
 
@@ -469,12 +468,14 @@ HALOGEN COUNTER	- Radcount on mobs
 		user.show_message("<span class='warning'>Warning: Subject is hungry.</span>")
 	user.show_message("Electric change strength: [S.power_charge]")
 
-	if(S.resentment)
-		user.show_message("<span class='warning'>Warning: Subject is harboring resentment.</span>")
-	if(S.docile)
+	if(S.has_AI())
+		var/datum/ai_holder/simple_mob/xenobio_slime/AI = S.ai_holder
+		if(AI.resentment)
+			user.show_message("<span class='warning'>Warning: Subject is harboring resentment.</span>")
+		if(AI.rabid)
+			user.show_message("<span class='danger'>Subject is enraged and extremely dangerous!</span>")
+	if(S.harmless)
 		user.show_message("Subject has been pacified.")
-	if(S.rabid)
-		user.show_message("<span class='danger'>Subject is enraged and extremely dangerous!</span>")
 	if(S.unity)
 		user.show_message("Subject is friendly to other slime colors.")
 
@@ -485,7 +486,6 @@ HALOGEN COUNTER	- Radcount on mobs
 	icon_state = "eftpos"
 	desc = "A hand-held halogen counter, used to detect the level of irradiation of living beings."
 	w_class = ITEMSIZE_SMALL
-	flags = CONDUCT
 	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 2)
 	throwforce = 0
 	throw_speed = 3

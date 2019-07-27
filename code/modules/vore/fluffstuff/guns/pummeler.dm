@@ -34,7 +34,7 @@
 	check_armour = "melee"
 	embed_chance = 0
 	vacuum_traversal = 0
-	kill_count = 6 //Scary name, but just deletes the projectile after this range
+	range = 6 //Scary name, but just deletes the projectile after this range
 
 /obj/item/projectile/pummel/on_hit(var/atom/movable/target, var/blocked = 0)
 	if(isliving(target))

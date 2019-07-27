@@ -72,7 +72,7 @@
 "bt" = (/obj/structure/grille,/obj/structure/window/phoronreinforced,/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 1},/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 8},/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 4},/obj/machinery/door/blast/regular{dir = 4; id = "SupermatterPort"; layer = 3.3; name = "Reactor Blast Door"},/turf/simulated/floor,/area/engineering/engine_room)
 "bu" = (/obj/machinery/atmospherics/pipe/simple/visible/yellow{dir = 6},/obj/effect/floor_decal/industrial/warning{dir = 8},/obj/machinery/button/remote/blast_door{desc = "A remote control-switch for the engine control room blast doors."; id = "EngineBlast"; name = "Engine Monitoring Room Blast Doors"; pixel_x = -25; pixel_y = 5; req_access = list(10)},/obj/machinery/button/remote/blast_door{desc = "A remote control-switch for the engine charging port."; id = "SupermatterPort"; name = "Reactor Blast Doors"; pixel_x = -25; pixel_y = -5; req_access = list(10)},/obj/machinery/light{dir = 8; icon_state = "tube1"; pixel_y = 0},/turf/simulated/floor,/area/engineering/engine_room)
 "bv" = (/obj/machinery/atmospherics/pipe/manifold/visible/yellow{dir = 1},/turf/simulated/floor,/area/engineering/engine_room)
-"bw" = (/obj/machinery/atmospherics/omni/atmos_filter,/turf/simulated/floor,/area/engineering/engine_room)
+"bw" = (/obj/machinery/atmospherics/trinary/atmos_filter/m_filter{dir = 1; use_power = 0},/turf/simulated/floor,/area/engineering/engine_room)
 "bx" = (/obj/machinery/atmospherics/pipe/simple/visible/yellow{dir = 10},/turf/simulated/floor,/area/engineering/engine_room)
 "by" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor,/area/engineering/engine_room)
 "bz" = (/turf/simulated/floor,/area/template_noop)
@@ -99,12 +99,13 @@
 "bU" = (/obj/machinery/atmospherics/pipe/manifold/visible/green,/turf/simulated/floor,/area/engineering/engine_room)
 "bV" = (/obj/machinery/atmospherics/pipe/simple/visible/green{dir = 4},/turf/simulated/floor,/area/engineering/engine_room)
 "bW" = (/obj/machinery/atmospherics/pipe/manifold/visible/green{dir = 1},/obj/effect/floor_decal/industrial/warning/corner,/turf/simulated/floor,/area/engineering/engine_room)
-"bX" = (/obj/machinery/atmospherics/pipe/simple/visible/green{dir = 10; icon_state = "intact";},/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor,/area/engineering/engine_room)
+"bX" = (/obj/machinery/atmospherics/pipe/simple/visible/green{dir = 10; icon_state = "intact"},/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor,/area/engineering/engine_room)
 "bY" = (/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor,/area/engineering/engine_room)
 "bZ" = (/obj/machinery/atmospherics/pipe/simple/visible/red{icon_state = "intact"; dir = 6},/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor,/area/engineering/engine_room)
 "ca" = (/obj/machinery/atmospherics/pipe/manifold/visible/red{icon_state = "map"; dir = 4},/obj/effect/floor_decal/industrial/warning/corner{dir = 8},/turf/simulated/floor,/area/engineering/engine_room)
 "cb" = (/obj/machinery/atmospherics/pipe/simple/visible/yellow,/turf/simulated/floor,/area/engineering/engine_room)
 "cc" = (/obj/structure/cable/yellow{d2 = 2; icon_state = "0-2"},/obj/structure/cable/yellow,/obj/machinery/power/sensor{name = "Powernet Sensor - Engine Output"; name_tag = "Engine Output"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 6},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 5},/turf/simulated/floor,/area/engineering/engine_room)
+"cd" = (/obj/machinery/atmospherics/trinary/atmos_filter{dir = 1; use_power = 0},/turf/simulated/floor,/area/engineering/engine_room)
 "ce" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/obj/structure/window/reinforced{dir = 8; health = 1e+006},/obj/machinery/door/blast/regular{density = 0; icon_state = "pdoor0"; id = "EngineRadiatorViewport"; name = "Engine Radiator Viewport Shutter"; opacity = 0},/obj/machinery/door/firedoor/glass,/obj/machinery/atmospherics/pipe/simple/visible/cyan{dir = 4},/turf/simulated/floor,/area/engineering/engine_room)
 "cf" = (/obj/machinery/atmospherics/pipe/simple/visible/cyan{dir = 10},/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor,/area/engineering/engine_room)
 "cg" = (/obj/machinery/atmospherics/binary/pump,/turf/simulated/floor,/area/engineering/engine_room)
@@ -153,7 +154,7 @@
 "cX" = (/turf/simulated/floor/plating,/area/template_noop)
 "cY" = (/obj/effect/floor_decal/industrial/outline/blue,/obj/machinery/portable_atmospherics/canister/nitrogen,/turf/simulated/floor,/area/engineering/engine_gas)
 "cZ" = (/obj/effect/floor_decal/industrial/outline/blue,/obj/machinery/portable_atmospherics/canister/nitrogen,/obj/machinery/button/remote/blast_door{desc = "A remote control-switch for the engine control room blast doors."; id = "EngineEmitterPortWest"; name = "Engine Room Blast Doors"; pixel_x = 0; pixel_y = 25; req_access = null; req_one_access = list(11,24)},/turf/simulated/floor,/area/engineering/engine_gas)
-"da" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/machinery/portable_atmospherics/canister/carbon_dioxide,/obj/structure/extinguisher_cabinet{dir = 1; icon_state = "extinguisher_closed"; pixel_y = 32;},/turf/simulated/floor,/area/engineering/engine_gas)
+"da" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/machinery/portable_atmospherics/canister/carbon_dioxide,/obj/structure/extinguisher_cabinet{dir = 1; icon_state = "extinguisher_closed"; pixel_y = 32},/turf/simulated/floor,/area/engineering/engine_gas)
 "db" = (/obj/effect/floor_decal/industrial/warning/corner,/turf/simulated/floor,/area/engineering/engine_room)
 "dc" = (/obj/machinery/button/remote/blast_door{id = "EngineVent"; name = "Reactor Ventillatory Control"; pixel_x = 0; pixel_y = -25; req_access = list(10)},/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor,/area/engineering/engine_room)
 "dd" = (/obj/machinery/atmospherics/pipe/simple/visible/cyan{dir = 5},/obj/effect/floor_decal/industrial/warning/corner{dir = 8},/turf/simulated/floor,/area/engineering/engine_room)
@@ -195,7 +196,7 @@ aaacabaraoafagafafahadatasaFasasaGaCaHazaAaIaJaDaKavaaaaaaaa
 aaacadalamagagagaganadasaLaMaNaOaPaQaRaSaSaSaTaEaUaVaaaaaaaa
 aaacabaraoafagafafahadasaWaXaYaZbabbbcbdbdbdbebfbgaVaaaaaaaa
 aaacadalamagagagaganadasbhbibjbkblbmbnboaEaEbpaEbqavavavaaaa
-aaacabaraoafagafafahasasbrbsbtasbubvbwbwbxaEbpaEbybzbAbBaaaa
+aaacabaraoafagafafahasasbrbsbtasbubvbwcdbxaEbpaEbybzbAbBaaaa
 aaadadalamagagagaganasbCbDbEbFbGbHbIbIbIbIbJbKbxbLbzaaaaaaaa
 aaadadalbNagagagagbObPbQbRbRbSbTbUbVbWbXbYbZcacbccaaaabMaaaa
 aaacabaraeafagafafaicecfcgchchcgaEaEcicjckclcmcbcnbzaaaaaaaa

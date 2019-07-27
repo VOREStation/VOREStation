@@ -35,11 +35,20 @@
 #define Z_LEVEL_MISC						11
 #define Z_LEVEL_SHIPS						12
 #define Z_LEVEL_UNDERDARK					13
-#define Z_LEVEL_ALIENSHIP					14
-#define Z_LEVEL_BEACH						15
-#define Z_LEVEL_BEACH_CAVE					16
-#define Z_LEVEL_AEROSTAT					17
-#define Z_LEVEL_AEROSTAT_SURFACE			18
+#define Z_LEVEL_PLAINS						14
+#define Z_LEVEL_ALIENSHIP					15
+#define Z_LEVEL_BEACH						16
+#define Z_LEVEL_BEACH_CAVE					17
+#define Z_LEVEL_AEROSTAT					18
+#define Z_LEVEL_AEROSTAT_SURFACE			19
+#define Z_LEVEL_DEBRISFIELD					20
+
+//Camera networks
+#define NETWORK_TETHER "Tether"
+#define NETWORK_TCOMMS "Telecommunications" //Using different from Polaris one for better name
+#define NETWORK_OUTSIDE "Outside"
+#define NETWORK_EXPLORATION "Exploration"
+#define NETWORK_XENOBIO "Xenobiology"
 
 /datum/map/tether
 	name = "Virgo"
@@ -80,21 +89,31 @@
 
 	station_networks = list(
 							NETWORK_CARGO,
+							NETWORK_CIRCUITS,
 							NETWORK_CIVILIAN,
 							NETWORK_COMMAND,
 							NETWORK_ENGINE,
 							NETWORK_ENGINEERING,
-							NETWORK_ENGINEERING_OUTPOST,
-							NETWORK_DEFAULT,
+							NETWORK_EXPLORATION,
+							//NETWORK_DEFAULT,  //Is this even used for anything? Robots show up here, but they show up in ROBOTS network too,
 							NETWORK_MEDICAL,
 							NETWORK_MINE,
-							NETWORK_NORTHERN_STAR,
+							NETWORK_OUTSIDE,
 							NETWORK_RESEARCH,
 							NETWORK_RESEARCH_OUTPOST,
 							NETWORK_ROBOTS,
-							NETWORK_PRISON,
 							NETWORK_SECURITY,
-							NETWORK_INTERROGATION
+							NETWORK_TCOMMS,
+							NETWORK_TETHER
+							)
+	secondary_networks = list(
+							NETWORK_ERT,
+							NETWORK_MERCENARY,
+							NETWORK_THUNDER,
+							NETWORK_COMMUNICATORS,
+							NETWORK_ALARM_ATMOS,
+							NETWORK_ALARM_POWER,
+							NETWORK_ALARM_FIRE
 							)
 
 	allowed_spawns = list("Tram Station","Gateway","Cryogenic Storage","Cyborg Storage")
@@ -106,6 +125,7 @@
 
 	unit_test_exempt_areas = list(
 		/area/tether/surfacebase/outside/outside1,
+		/area/tether/elevator,
 		/area/vacant/vacant_site,
 		/area/vacant/vacant_site/east,
 		/area/crew_quarters/sleep/Dorm_1/holo,
@@ -121,10 +141,11 @@
 		/area/tether/surfacebase/emergency_storage/atrium)
 
 	lateload_z_levels = list(
-		list("Tether - Misc","Tether - Ships","Tether - Underdark"), //Stock Tether lateload maps
+		list("Tether - Misc","Tether - Ships","Tether - Underdark","Tether - Plains"), //Stock Tether lateload maps
 		list("Alien Ship - Z1 Ship"),
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
-		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface")
+		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
+		list("Debris Field - Z1 Space")
 		)
 
 	lateload_single_pick = null //Nothing right now.
@@ -143,18 +164,28 @@
 /datum/map/tether/get_map_levels(var/srcz, var/long_range = TRUE)
 	if (long_range && (srcz in map_levels))
 		return map_levels
-	else if (srcz == Z_LEVEL_TRANSIT)
-		return list() // Nothing on transit!
-	else if (srcz >= Z_LEVEL_SURFACE_LOW && srcz <= Z_LEVEL_SPACE_HIGH)
+	else if (srcz == Z_LEVEL_TRANSIT) //Z4
+		return list() // Nothing on these z-levels- sensors won't show, and GPSes won't see each other.
+	else if (srcz >= Z_LEVEL_SURFACE_LOW && srcz <= Z_LEVEL_SOLARS) //Zs 1-3, 5-9
 		return list(
 			Z_LEVEL_SURFACE_LOW,
 			Z_LEVEL_SURFACE_MID,
 			Z_LEVEL_SURFACE_HIGH,
 			Z_LEVEL_SPACE_LOW,
 			Z_LEVEL_SPACE_MID,
-			Z_LEVEL_SPACE_HIGH)
+			Z_LEVEL_SPACE_HIGH,
+			Z_LEVEL_SURFACE_MINE,
+			Z_LEVEL_SOLARS)
+	else if(srcz >= Z_LEVEL_BEACH && srcz <= Z_LEVEL_BEACH_CAVE) //Zs 16-17
+		return list(
+			Z_LEVEL_BEACH,
+			Z_LEVEL_BEACH_CAVE)
+	else if(srcz >= Z_LEVEL_AEROSTAT && srcz <= Z_LEVEL_AEROSTAT_SURFACE) //Zs 18-19
+		return list(
+			Z_LEVEL_AEROSTAT,
+			Z_LEVEL_AEROSTAT_SURFACE)
 	else
-		return ..()
+		return list(srcz) //prevents runtimes when using CMC. any Z-level not defined above will be 'isolated' and only show to GPSes/CMCs on that same Z (e.g. CentCom).
 
 // For making the 6-in-1 holomap, we calculate some offsets
 #define TETHER_MAP_SIZE 140 // Width and height of compiled in tether z levels.
@@ -164,14 +195,14 @@
 
 // We have a bunch of stuff common to the station z levels
 /datum/map_z_level/tether/station
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_XENOARCH_EXEMPT
 	holomap_legend_x = 220
 	holomap_legend_y = 160
 
 /datum/map_z_level/tether/station/surface_low
 	z = Z_LEVEL_SURFACE_LOW
 	name = "Surface 1"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT
 	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
 	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*0
@@ -179,7 +210,7 @@
 /datum/map_z_level/tether/station/surface_mid
 	z = Z_LEVEL_SURFACE_MID
 	name = "Surface 2"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT
 	base_turf = /turf/simulated/open
 	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*1
@@ -187,7 +218,7 @@
 /datum/map_z_level/tether/station/surface_high
 	z = Z_LEVEL_SURFACE_HIGH
 	name = "Surface 3"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT
 	base_turf = /turf/simulated/open
 	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*2
@@ -195,7 +226,7 @@
 /datum/map_z_level/tether/transit
 	z = Z_LEVEL_TRANSIT
 	name = "Transit"
-	flags = MAP_LEVEL_SEALED|MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT
+	flags = MAP_LEVEL_SEALED|MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 
 /datum/map_z_level/tether/station/space_low
 	z = Z_LEVEL_SPACE_LOW
@@ -236,12 +267,12 @@
 /datum/map_z_level/tether/colony
 	z = Z_LEVEL_CENTCOM
 	name = "Colony"
-	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_CONTACT
+	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 
 /datum/map_z_level/tether/misc
 	z = Z_LEVEL_MISC
 	name = "Misc"
-	flags = MAP_LEVEL_ADMIN
+	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_XENOARCH_EXEMPT
 
 /*
 /datum/map_z_level/tether/wilderness
@@ -254,7 +285,7 @@
 	if(activated && isemptylist(frozen_mobs))
 		return
 	activated = 1
-	for(var/mob/living/simple_animal/M in frozen_mobs)
+	for(var/mob/living/simple_mob/M in frozen_mobs)
 		M.life_disabled = 0
 		frozen_mobs -= M
 	frozen_mobs.Cut()

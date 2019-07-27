@@ -8,7 +8,6 @@ var/global/datum/datacore/data_core = null
 var/global/list/all_areas                = list()
 var/global/list/machines                 = list()	// ALL Machines, wether processing or not.
 var/global/list/processing_machines      = list()	// TODO - Move into SSmachines
-var/global/list/processing_objects       = list()
 var/global/list/processing_power_items   = list()	// TODO - Move into SSmachines
 var/global/list/active_diseases          = list()
 var/global/list/hud_icon_reference       = list()
@@ -91,7 +90,6 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 )
 
 var/datum/configuration/config      = null
-var/datum/sun/sun                   = null
 
 var/list/combatlog = list()
 var/list/IClog     = list()
@@ -109,7 +107,6 @@ var/gravity_is_on = 1
 
 var/join_motd = null
 
-var/datum/event_manager/event_manager	= new() // Event Manager, the manager for events.
 var/datum/game_master/game_master = new() // Game Master, an AI for choosing events.
 var/datum/metric/metric = new() // Metric datum, used to keep track of the round.
 
@@ -176,7 +173,7 @@ var/max_explosion_range = 14
 // Announcer intercom, because too much stuff creates an intercom for one message then hard del()s it.
 var/global/obj/item/device/radio/intercom/omni/global_announcer = new /obj/item/device/radio/intercom/omni(null)
 
-var/list/station_departments = list("Command", "Medical", "Engineering", "Science", "Security", "Cargo", "Civilian")
+var/list/station_departments = list("Command", "Medical", "Engineering", "Science", "Security", "Cargo", "Exploration", "Civilian") //VOREStation Edit
 
 //Icons for in-game HUD glasses. Why don't we just share these a little bit?
 var/static/icon/ingame_hud = icon('icons/mob/hud.dmi')

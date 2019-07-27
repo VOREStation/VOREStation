@@ -242,6 +242,11 @@
 	icon_state = "overalls"
 	item_state_slots = list(slot_r_hand_str = "cargo", slot_l_hand_str = "cargo")
 
+/obj/item/clothing/under/overalls/sleek
+	name = "sleek overalls"
+	desc = "A set of modern pleather reinforced overalls."
+	icon_state = "overalls_sleek"
+
 /obj/item/clothing/under/pirate
 	name = "pirate outfit"
 	desc = "Yarr."
@@ -282,6 +287,39 @@
 	icon_state = "gladiator"
 	item_state_slots = list(slot_r_hand_str = "yellow", slot_l_hand_str = "yellow")
 	body_parts_covered = LOWER_TORSO
+
+/obj/item/clothing/under/moderncoat
+	name = "modern wrapped coat"
+	desc = "The cutting edge of fashion."
+	icon_state = "moderncoat"
+	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+
+/obj/item/clothing/under/ascetic
+	name = "plain ascetic garb"
+	desc = "Popular with freshly grown vatborn and new age cultists alike."
+	icon_state = "ascetic"
+	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
+
+/obj/item/clothing/under/robe
+	name = "black robe"
+	desc = "A black robe. It gives off uncomfortable cult vibes."
+	icon_state = "robe"
+
+/obj/item/clothing/under/whiterobe
+	name = "white robe"
+	desc = "A white robe. It gives off uncomfortable cult vibes."
+	icon_state = "whiterobe"
+
+/obj/item/clothing/under/goldrobe
+	name = "black gold-lined robe"
+	desc = "A gold-lined black robe. It gives off uncomfortable cult vibes, but fancy."
+	icon_state = "goldrobe"
+
+/obj/item/clothing/under/whitegoldrobe
+	name = "white gold-lined robe"
+	desc = "A gold-lined white robe. It gives off uncomfortable cult vibes, but fancy."
+	icon_state = "whitegoldrobe"
 
 /*
  * dress
@@ -403,6 +441,18 @@
 	name = "western bustle"
 	desc = "A western bustle dress from Earth's late 1800's."
 	icon_state = "westernbustle"
+
+/obj/item/clothing/under/dress/sari
+	name = "red sari"
+	desc = "A colorful traditional dress originating from India."
+	icon_state = "sari_red"
+	item_state_slots = list(slot_r_hand_str = "darkreddress", slot_l_hand_str = "darkreddress")
+
+/obj/item/clothing/under/dress/sari/green
+	name = "green sari"
+	icon_state = "sari_green"
+	item_state_slots = list(slot_r_hand_str = "dress_green", slot_l_hand_str = "dress_green")
+
 
 /*
  * wedding stuff
@@ -771,6 +821,7 @@
 	desc = "A uniform belonging to Major Bill's Transportation, a shipping megacorporation."
 	icon_state = "mbill"
 	worn_state = "mbill"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/major_bills)
 
 /obj/item/clothing/under/confederacy
 	name = "\improper Confederacy uniform"

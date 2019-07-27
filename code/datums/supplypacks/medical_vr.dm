@@ -25,6 +25,14 @@
 			/obj/item/weapon/storage/box/gloves
 			)
 	cost = 40
-	containertype = "/obj/structure/closet/crate/secure"
+	containertype = /obj/structure/closet/crate/secure
 	containername = "Virology biohazard equipment"
+	access = access_medical_equip
+
+/datum/supply_pack/med/virus
+	name = "Virus sample crate"
+	contains = list(/obj/item/weapon/virusdish/random = 4)
+	cost = 25
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Virus sample crate"
 	access = access_medical_equip

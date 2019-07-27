@@ -144,11 +144,6 @@
 		charge -= output_used*SMESRATE		// reduce the storage (may be recovered in /restore() if excessive)
 
 		add_avail(output_used)				// add output to powernet (smes side)
-
-		if(output_used < 0.0001)			// either from no charge or set to 0
-			outputting(0)
-			investigate_log("lost power and turned <font color='red'>off</font>","singulo")
-			log_game("SMES([x],[y],[z]) Power depleted.")
 	else if(output_attempt && output_level > 0)
 		outputting = 1
 	else
@@ -328,7 +323,7 @@
 		data["outputting"] = 0			// smes is not outputting
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm

@@ -200,8 +200,8 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 	if(!istype(transfer) || locate(/mob/living/silicon/ai) in src)
 		return
 
-	if(transfer.controlling_drone)
-		transfer.controlling_drone.release_ai_control("Unit control lost. Core transfer completed.")
+	if(transfer.deployed_shell)
+		transfer.disconnect_shell("Disconnected from remote shell due to core intelligence transfer.")
 	transfer.aiRestorePowerRoutine = 0
 	transfer.control_disabled = 0
 	transfer.aiRadio.disabledAi = 0

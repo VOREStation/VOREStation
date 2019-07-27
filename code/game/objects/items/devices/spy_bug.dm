@@ -4,7 +4,6 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "camgrenade"
 	item_state = "empgrenade"
-	flags = CONDUCT
 	w_class = ITEMSIZE_SMALL
 	force = 0
 	throwforce = 5.0
@@ -50,7 +49,6 @@
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "camgrenadebroken"
 	item_state = "empgrenade"
-	flags = CONDUCT
 	force = 5.0
 	w_class = ITEMSIZE_SMALL
 	throwforce = 5.0
@@ -68,7 +66,6 @@
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
 	origin_tech = list(TECH_ENGINEERING = 1, TECH_ILLEGAL = 3) //crush it and you lose the data
-	flags = CONDUCT
 	force = 0
 	throwforce = 5.0
 	throw_range = 15

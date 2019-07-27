@@ -27,6 +27,12 @@
 	can_clone = TRUE
 	debug = TRUE
 
+/obj/item/device/integrated_circuit_printer/attack_robot(mob/user as mob)
+	if(Adjacent(user))
+		return interact(user)
+	else
+		return ..()
+
 /obj/item/device/integrated_circuit_printer/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O,/obj/item/stack/material))
 		var/obj/item/stack/material/stack = O
@@ -146,6 +152,8 @@
 			return
 
 		if(!debug)
+			if(!Adjacent(usr))
+				to_chat(usr, "<span class='notice'>You are too far away from \the [src].</span>")
 			if(metal - cost < 0)
 				to_chat(usr, "<span class='warning'>You need [cost] metal to build that!.</span>")
 				return 1

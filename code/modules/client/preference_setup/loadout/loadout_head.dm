@@ -34,7 +34,7 @@
 /datum/gear/head/beret/csec
 	display_name = "beret, corporate (officer)"
 	path = /obj/item/clothing/head/beret/sec/corporate/officer
-	allowed_roles = list("Security Officer","Head of Security","Warden")
+	allowed_roles = list("Security Officer","Head of Security","Warden", "Detective")
 
 /datum/gear/head/beret/csec_warden
 	display_name = "beret, corporate (warden)"
@@ -57,7 +57,7 @@
 /datum/gear/head/beret/sec
 	display_name = "beret, red (security)"
 	path = /obj/item/clothing/head/beret/sec
-	allowed_roles = list("Security Officer","Head of Security","Warden")
+	allowed_roles = list("Security Officer","Head of Security","Warden", "Detective")
 
 /datum/gear/head/cap
 	display_name = "cap, black"
@@ -324,22 +324,18 @@
 /datum/gear/head/welding/demon
 	display_name = "welding, demon (engineering/robotics)"
 	path = /obj/item/clothing/head/welding/demon
-	allowed_roles = list("Chief Engineer","Station Engineer","Atmospheric Technician","Research Director","Roboticist")
 
 /datum/gear/head/welding/knight
 	display_name = "welding, knight (engineering/robotics)"
 	path = /obj/item/clothing/head/welding/knight
-	allowed_roles = list("Chief Engineer","Station Engineer","Atmospheric Technician","Research Director","Roboticist")
 
 /datum/gear/head/welding/fancy
 	display_name = "welding, fancy (engineering/robotics)"
 	path = /obj/item/clothing/head/welding/fancy
-	allowed_roles = list("Chief Engineer","Station Engineer","Atmospheric Technician","Research Director","Roboticist")
 
 /datum/gear/head/welding/engie
 	display_name = "welding, engie (engineering/robotics)"
 	path = /obj/item/clothing/head/welding/engie
-	allowed_roles = list("Chief Engineer","Station Engineer","Atmospheric Technician","Research Director","Roboticist")
 
 /*/datum/gear/head/beret/sol
 	display_name = "beret sol, selection"
@@ -371,3 +367,11 @@
 /datum/gear/head/circuitry
 	display_name = "headwear, circuitry (empty)"
 	path = /obj/item/clothing/head/circuitry
+
+/datum/gear/head/maangtikka
+	display_name = "maang tikka"
+	path = /obj/item/clothing/head/maangtikka
+
+/datum/gear/head/jingasa
+	display_name = "jingasa"
+	path = /obj/item/clothing/head/jingasa
