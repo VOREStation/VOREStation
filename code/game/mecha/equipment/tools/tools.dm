@@ -166,7 +166,8 @@
 					if(ore_box)
 						for(var/obj/item/weapon/ore/ore in range(chassis,1))
 							if(get_dir(chassis,ore)&chassis.dir)
-								ore.Move(ore_box)
+								ore.forceMove(ore_box)	//VOREStation Edit
+				/*	//VOREStation Removal: redundant repeat code
 				log_message("Drilled through [target]")
 				if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
 					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
@@ -174,6 +175,7 @@
 						for(var/obj/item/weapon/ore/ore in range(chassis,1))
 							if(get_dir(chassis,ore)&chassis.dir)
 								ore.Move(ore_box)
+				*/
 			else if(target.loc == C)
 				log_message("Drilled through [target]")
 				target.ex_act(2)
@@ -219,7 +221,7 @@
 					if(ore_box)
 						for(var/obj/item/weapon/ore/ore in range(chassis,1))
 							if(get_dir(chassis,ore)&chassis.dir)
-								ore.Move(ore_box)
+								ore.forceMove(ore_box)	//VOREStation Edit
 			else if(target.loc == C)
 				log_message("Drilled through [target]")
 				target.ex_act(2)
@@ -267,13 +269,15 @@
 					if(ore_box)
 						for(var/obj/item/weapon/ore/ore in range(chassis,1))
 							if(get_dir(chassis,ore)&chassis.dir)
-								ore.Move(ore_box)
+								ore.forceMove(ore_box)	//VOREStation Edit
+				/*	//VOREStation Removal: redundant repeat code
 				if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
 					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
 					if(ore_box)
 						for(var/obj/item/weapon/ore/ore in range(chassis,1))
 							if(get_dir(chassis,ore)&chassis.dir)
 								ore.Move(ore_box)
+				*/
 			else if(target.loc == C)
 				log_message("Drilled through [target]")
 				target.ex_act(2)
