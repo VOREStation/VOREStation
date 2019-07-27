@@ -2,7 +2,7 @@
 	icon = 'icons/obj/stacks_vr.dmi'
 
 /obj/item/stack/medical/advanced/Initialize()
-	..()
+	. = ..()
 	update_icon()
 
 /obj/item/stack/medical/advanced/update_icon()
