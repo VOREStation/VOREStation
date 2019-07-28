@@ -11982,6 +11982,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/asmaint2)
+"xn" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/sake,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/patron,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/specialwhiskey,
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "xs" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -13223,6 +13235,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
+"Cc" = (
+/obj/structure/simple_door/wood,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "Cg" = (
 /obj/structure/railing,
 /obj/machinery/light{
@@ -13514,6 +13535,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
+"Dw" = (
+/obj/structure/cable/green{
+	icon_state = "32-1"
+	},
+/obj/structure/ladder,
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "Dy" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 10
@@ -13921,6 +13949,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
+"Eu" = (
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "Ev" = (
 /obj/structure/railing{
 	dir = 8
@@ -15901,6 +15932,11 @@
 /obj/machinery/light,
 /turf/simulated/floor/wood,
 /area/engineering/lower/breakroom)
+"Ih" = (
+/turf/simulated/wall{
+	can_open = 1
+	},
+/area/vacant/vacant_bar_upper)
 "Ij" = (
 /obj/machinery/alarm{
 	dir = 4;
@@ -15932,10 +15968,11 @@
 /turf/simulated/floor/tiled,
 /area/janitor)
 "Iu" = (
-/obj/structure/table/steel,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/atmos)
+/obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/space_mountain_wind,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cola,
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "Iw" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 8
@@ -16141,9 +16178,12 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "JG" = (
-/obj/structure/lattice,
-/turf/simulated/open,
-/area/maintenance/lower/atmos)
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/double,
+/obj/structure/curtain/open/privacy,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "JJ" = (
 /obj/structure/closet,
 /obj/structure/catwalk,
@@ -16170,10 +16210,9 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "JU" = (
-/obj/random/obstruction,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/wood,
-/area/maintenance/lower/atmos)
+/turf/simulated/floor/plating,
+/area/vacant/vacant_bar_upper)
 "JV" = (
 /obj/structure/railing{
 	dir = 4
@@ -16325,14 +16364,12 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/atmos)
 "KG" = (
-/obj/structure/table/steel,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/lemonjuice,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/limejuice,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/atmos)
+/obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/vermouth,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/rum,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac,
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "KH" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
@@ -16364,6 +16401,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"KM" = (
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/double,
+/obj/structure/curtain/open/privacy,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "KR" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
@@ -16611,10 +16655,8 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "LN" = (
-/obj/item/weapon/contraband/poster,
-/obj/structure/table/steel,
-/turf/simulated/floor/wood,
-/area/maintenance/lower/atmos)
+/turf/simulated/floor/plating,
+/area/vacant/vacant_bar_upper)
 "LP" = (
 /obj/structure/table/rack,
 /obj/random/maintenance/clean,
@@ -16628,11 +16670,6 @@
 /obj/item/device/flashlight/lamp,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
-"LR" = (
-/obj/structure/ladder_assembly,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/atmos)
 "LY" = (
 /obj/machinery/camera/network/tether{
 	dir = 4
@@ -16644,11 +16681,6 @@
 /obj/item/weapon/hand_labeler,
 /obj/item/weapon/storage/fancy/candle_box,
 /turf/simulated/floor/plating,
-/area/maintenance/lower/atmos)
-"Mk" = (
-/obj/structure/ladder_assembly,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/wood,
 /area/maintenance/lower/atmos)
 "Mn" = (
 /obj/structure/catwalk,
@@ -16705,6 +16737,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
+"Mz" = (
+/obj/machinery/alarm{
+	frequency = 1441;
+	pixel_y = 22
+	},
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "MA" = (
 /obj/structure/table/steel,
 /obj/item/device/nif/bad,
@@ -16723,13 +16762,16 @@
 /area/engineering/lower/lobby)
 "MH" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/patron,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/sake,
-/obj/effect/decal/cleanable/dirt,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/limejuice,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/lemonjuice,
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
 /turf/simulated/floor/wood,
-/area/maintenance/lower/atmos)
+/area/vacant/vacant_bar_upper)
 "MI" = (
 /obj/structure/table/steel,
 /obj/item/clothing/head/welding/demon,
@@ -16797,6 +16839,14 @@
 /obj/machinery/camera/network/civilian,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"Nc" = (
+/obj/machinery/light_construct{
+	icon_state = "tube-construct-stage1";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/vacant/vacant_bar_upper)
 "Ne" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
@@ -16966,9 +17016,13 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "Ob" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/wood,
-/area/maintenance/lower/atmos)
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/vacant/vacant_bar_upper)
 "Od" = (
 /obj/structure/table/steel,
 /obj/item/stack/medical/splint/ghetto,
@@ -17148,6 +17202,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"OI" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "OL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -17204,10 +17266,6 @@
 /obj/machinery/portable_atmospherics/powered/pump/filled,
 /turf/simulated/floor/tiled,
 /area/engineering/lower/lobby)
-"OS" = (
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/atmos)
 "OT" = (
 /obj/structure/table/rack,
 /obj/item/device/flashlight,
@@ -17438,9 +17496,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
 "PT" = (
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/atmos)
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/double,
+/obj/structure/curtain/open/privacy,
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "PV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -17479,6 +17539,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/janitor)
+"Qj" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "Qm" = (
 /obj/machinery/door/airlock/maintenance/engi{
 	name = "Pump Station"
@@ -17817,6 +17885,14 @@
 /obj/machinery/vending/assist,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
+"Sj" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "Sl" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/yellow/border,
@@ -18032,6 +18108,14 @@
 /obj/random/maintenance/clean,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
+"TH" = (
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/plating,
+/area/vacant/vacant_bar_upper)
 "TN" = (
 /obj/structure/table/steel,
 /obj/item/weapon/paper_bin,
@@ -18112,12 +18196,9 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "Ud" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/vermouth,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/rum,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac,
+/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood,
-/area/maintenance/lower/atmos)
+/area/vacant/vacant_bar_upper)
 "Uf" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
@@ -18462,10 +18543,13 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/atmos)
 "VD" = (
-/obj/structure/closet/crate,
-/obj/random/contraband,
+/obj/machinery/alarm{
+	frequency = 1441;
+	pixel_y = 22
+	},
+/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood,
-/area/maintenance/lower/atmos)
+/area/vacant/vacant_bar_upper)
 "VE" = (
 /obj/structure/cable{
 	d2 = 2;
@@ -18524,9 +18608,14 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "VQ" = (
-/obj/item/weapon/contraband/poster,
-/turf/simulated/floor/wood,
-/area/maintenance/lower/atmos)
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/vacant/vacant_bar_upper)
 "VR" = (
 /turf/simulated/floor/outdoors/rocks/virgo3b,
 /area/tether/surfacebase/outside/outside2)
@@ -19239,12 +19328,9 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
 "YU" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/specialwhiskey,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/atmos)
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "YX" = (
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
@@ -19276,11 +19362,18 @@
 /turf/simulated/floor/carpet,
 /area/maintenance/lower/atmos)
 "Zj" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/space_mountain_wind,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cola,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/atmos)
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "Zk" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -19290,10 +19383,9 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
-"Zn" = (
-/obj/item/weapon/reagent_containers/food/drinks/bottle/gin,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/atmos)
+"Zl" = (
+/turf/simulated/wall,
+/area/vacant/vacant_bar_upper)
 "Zo" = (
 /obj/structure/table/bench/steel,
 /obj/effect/floor_decal/borderfloor/corner{
@@ -19349,11 +19441,13 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "ZB" = (
-/obj/machinery/light/small{
+/obj/machinery/light_construct{
+	icon_state = "tube-construct-stage1";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/atmos)
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "ZC" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
@@ -30197,18 +30291,18 @@ Nx
 Tx
 VA
 UN
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
-VA
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 VA
 ac
 ac
@@ -30339,18 +30433,18 @@ VA
 VA
 VA
 Ne
-VA
+Zl
 YU
-Ne
+YU
 ZB
-Jt
-VA
+YU
+Zl
 PT
-Ne
-UN
-VA
-ac
-ac
+Eu
+JG
+JU
+PT
+Zl
 ac
 ac
 ac
@@ -30481,18 +30575,18 @@ Yy
 UN
 ZY
 UN
-VA
+Zl
 Ud
-Ob
-Ob
+Ud
+Eu
 JU
-ZY
-Ne
-OS
-Zn
-RF
-ac
-ac
+Ih
+Mz
+JU
+Ud
+Eu
+Eu
+Zl
 ac
 ab
 ab
@@ -30623,18 +30717,18 @@ Kz
 TN
 VA
 VA
-VA
+Zl
 Zj
 Ob
 VQ
-Jt
-VA
+Sj
+Zl
 JG
-UN
-Ne
-VA
-ac
-ac
+Eu
+PT
+Eu
+KM
+Zl
 ac
 ab
 ab
@@ -30765,18 +30859,18 @@ No
 LQ
 VA
 RF
-VA
+Zl
 VD
-Mk
-Ob
-Ne
-VA
-QV
-JG
-UN
-RF
-ac
-ac
+LN
+Eu
+Qj
+Zl
+Eu
+Eu
+JU
+JU
+Eu
+Zl
 ac
 ab
 ab
@@ -30907,18 +31001,18 @@ Yb
 Ne
 VA
 RF
-VA
+Zl
 LN
-UN
-Yy
-Ob
-VA
-UW
-LR
-UN
-VA
-ac
-ac
+Eu
+Eu
+TH
+Cc
+OI
+OI
+VQ
+OI
+Dw
+Zl
 ac
 ab
 ab
@@ -31049,18 +31143,18 @@ UN
 UN
 VA
 RF
-VA
+Zl
 KG
 Iu
 MH
-Jt
-VA
-VA
-VA
-RF
-RF
-ac
-ac
+xn
+Zl
+Eu
+Ud
+Nc
+Eu
+LN
+Zl
 ac
 ac
 ac
@@ -31191,18 +31285,18 @@ VA
 VA
 VA
 VA
-VA
-VA
-VA
-VA
-VA
-VA
-ac
-ac
-ac
-ac
-ac
-ac
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
+Zl
 ac
 ac
 ac

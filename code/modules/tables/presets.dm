@@ -75,6 +75,15 @@
 	material = get_material_by_name("glass")
 	..()
 
+/obj/structure/table/borosilicate
+	icon_state = "plain_preview"
+	color = "#4D3EAC"
+	alpha = 77
+
+/obj/structure/table/borosilicate/New()
+	material = get_material_by_name("borosilicate glass")
+	..()
+
 /obj/structure/table/holotable
 	icon_state = "holo_preview"
 	color = "#EEEEEE"
