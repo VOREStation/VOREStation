@@ -6987,6 +6987,9 @@
 "amm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/cap/visible/supply{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/vacant/vacant_site)
 "amn" = (
@@ -7397,6 +7400,27 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining_eva)
+"ani" = (
+/obj/machinery/atmospherics/pipe/cap/visible/scrubbers{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/vacant/vacant_site)
+"anj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/cap/visible/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/vacant/vacant_site/east)
+"ank" = (
+/obj/machinery/atmospherics/pipe/cap/visible/supply{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/vacant/vacant_site/east)
 "anl" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -28315,12 +28339,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/engineering/atmos/processing)
-"kXc" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/vacant/vacant_site/east)
 "kYa" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -38719,7 +38737,7 @@ akr
 akY
 alK
 amm
-akX
+ani
 akX
 akX
 akX
@@ -45416,7 +45434,7 @@ avP
 avP
 avP
 qLe
-kXc
+anj
 qLe
 qLe
 qLe
@@ -45558,7 +45576,7 @@ aCI
 aCI
 qLe
 aCI
-aCI
+ank
 qLe
 qLe
 qLe

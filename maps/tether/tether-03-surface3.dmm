@@ -622,13 +622,7 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/security/armory)
 "by" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/disposalpipe/broken,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
-	},
+/obj/machinery/atmospherics/pipe/cap/visible/supply,
 /turf/simulated/floor/plating,
 /area/vacant/vacant_site/gateway)
 "bz" = (
@@ -20514,10 +20508,16 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "HE" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/broken,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2";
+	pixel_y = 0
+	},
+/obj/machinery/atmospherics/pipe/cap/visible/scrubbers,
+/turf/simulated/floor/plating,
+/area/vacant/vacant_site/gateway)
 "HF" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
@@ -20528,6 +20528,11 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
+"HG" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
 "HH" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/borderfloor{
@@ -30950,8 +30955,8 @@ bw
 bw
 bw
 bw
-bw
 by
+HE
 bA
 bC
 cX
@@ -36972,7 +36977,7 @@ Jr
 Js
 Wh
 JE
-HE
+HG
 IY
 bg
 RO
@@ -37114,7 +37119,7 @@ Js
 Js
 Jz
 JE
-HE
+HG
 IY
 bg
 RO
@@ -37256,7 +37261,7 @@ Jt
 Js
 Jz
 JE
-HE
+HG
 IY
 bg
 RO
