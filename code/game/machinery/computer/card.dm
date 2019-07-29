@@ -279,7 +279,7 @@
 
 		if ("terminate")
 			if (is_authenticated())
-				modify.assignment = "Demoted"
+				modify.assignment = "Demoted"	//VOREStation Edit
 				modify.access = list()
 
 				callHook("terminate_employee", list(modify))
