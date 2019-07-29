@@ -158,7 +158,7 @@
 
 	can_hold = list(
 		/obj/item/organ,
-		/obj/item/device/nif
+		/obj/item/device/nif //VOREStation edit
 		)
 
 /obj/item/weapon/gripper/no_use/organ/Entered(var/atom/movable/AM)
@@ -187,7 +187,7 @@
 		/obj/item/organ/internal/brain, //to insert into MMIs,
 		/obj/item/organ/internal/cell,
 		/obj/item/organ/internal/eyes/robot,
-		/obj/item/device/nif
+		/obj/item/device/nif //VOREStation edit
 		)
 
 /obj/item/weapon/gripper/no_use/mech
