@@ -20,8 +20,8 @@
 	icon_living = "carrier"
 	icon_dead = "carrier_dead"
 
-	maxHealth = 100
-	health = 100
+	maxHealth = 60 //VOREStation edit
+	health = 60 //VOREStation edit
 
 	melee_damage_lower = 8
 	melee_damage_upper = 25

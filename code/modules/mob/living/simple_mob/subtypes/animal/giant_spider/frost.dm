@@ -23,8 +23,8 @@
 	icon_living = "frost"
 	icon_dead = "frost_dead"
 
-	maxHealth = 175
-	health = 175
+	maxHealth = 110 //VOREStation edit
+	health = 110 //VOREStation edit
 
 	poison_per_bite = 5
 	poison_type = "cryotoxin"

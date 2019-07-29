@@ -30,8 +30,8 @@
 	icon_living = "nurse"
 	icon_dead = "nurse_dead"
 
-	maxHealth = 40
-	health = 40
+	maxHealth = 30 //VOREStation edit
+	health = 30 //VOREStation edit
 
 	movement_cooldown = 5	// A bit faster so that they can inject the eggs easier.
 

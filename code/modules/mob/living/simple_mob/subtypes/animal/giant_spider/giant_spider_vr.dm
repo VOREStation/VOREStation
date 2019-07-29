@@ -1,17 +1,17 @@
 // Slightly placeholder, mostly to replace ion hivebots on V4
-/mob/living/simple_mob/animal/giant_spider/ion
-	desc = "Furry and green, it makes you shudder to look at it. This one has brilliant green eyes and a hint of static discharge."
-	tt_desc = "X Brachypelma phorus ionus"
+/mob/living/simple_mob/animal/giant_spider/ion //Used to shoot ions, now shoots lasers.
+	desc = "Furry and green, it makes you shudder to look at it. This one has brilliant green eyes and a hint of photonic discharge."
+	tt_desc = "X Brachypelma phorus photonus"
 	icon_state = "webslinger"
 	icon_living = "webslinger"
 	icon_dead = "webslinger_dead"
 
-	maxHealth = 90
-	health = 90
+	maxHealth = 60
+	health = 60
 
 	base_attack_cooldown = 10
 	projectilesound = 'sound/weapons/taser2.ogg'
-	projectiletype = /obj/item/projectile/ion/small
+	projectiletype = /obj/item/projectile/beam/weaklaser
 
 	melee_damage_lower = 8
 	melee_damage_upper = 15
@@ -32,8 +32,8 @@
 	icon_living = "spider_queen"
 	icon_dead = "spider_queen_dead"
 
-	maxHealth = 320
-	health = 320
+	maxHealth = 250
+	health = 250
 
 	melee_damage_lower = 20
 	melee_damage_upper = 30

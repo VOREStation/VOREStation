@@ -25,8 +25,8 @@
 	icon_living = "spark"
 	icon_dead = "spark_dead"
 
-	maxHealth = 210
-	health = 210
+	maxHealth = 120 //VOREStation edit
+	health = 120 //VOREStation edit
 
 	taser_kill = 0 //It -is- the taser.
 

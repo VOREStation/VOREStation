@@ -22,8 +22,8 @@
 	icon_state = "webslinger"
 	icon_living = "webslinger"
 	icon_dead = "webslinger_dead"
-	maxHealth = 90
-	health = 90
+	maxHealth = 60 //VOREStation edit
+	health = 60 //VOREStation edit
 	projectilesound = 'sound/weapons/thudswoosh.ogg'
 	projectiletype = /obj/item/projectile/webball
 	base_attack_cooldown = 10

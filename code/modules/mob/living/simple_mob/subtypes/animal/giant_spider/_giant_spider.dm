@@ -70,8 +70,8 @@
 	has_eye_glow = TRUE
 
 	faction = "spiders"
-	maxHealth = 200
-	health = 200
+	maxHealth = 120 //VOREStation edit
+	health = 120 //VOREStation edit
 	pass_flags = PASSTABLE
 	movement_cooldown = 10
 	poison_resist = 0.5

@@ -23,8 +23,8 @@
 	icon_living = "pit"
 	icon_dead = "pit_dead"
 
-	maxHealth = 175
-	health = 175
+	maxHealth = 110 //VOREStation edit
+	health = 110 //VOREStation edit
 
 	melee_damage_lower = 10
 	melee_damage_upper = 25

@@ -23,8 +23,8 @@
 	icon_living = "hunter"
 	icon_dead = "hunter_dead"
 
-	maxHealth = 120
-	health = 120
+	maxHealth = 75 //VOREStation edit
+	health = 75 //VOREStation edit
 
 	poison_per_bite = 5
 	melee_damage_lower = 9

@@ -28,8 +28,8 @@
 	icon_living = "lurker"
 	icon_dead = "lurker_dead"
 
-	maxHealth = 100
-	health = 100
+	maxHealth = 60 //VOREStation edit
+	health = 60 //VOREStation edit
 
 	poison_per_bite = 5
 

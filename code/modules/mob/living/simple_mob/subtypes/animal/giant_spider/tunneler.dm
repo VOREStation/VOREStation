@@ -32,8 +32,8 @@
 	icon_living = "tunneler"
 	icon_dead = "tunneler_dead"
 
-	maxHealth = 120
-	health = 120
+	maxHealth = 75 //VOREStation edit
+	health = 75 //VOREStation edit
 
 	melee_damage_lower = 10
 	melee_damage_upper = 10
