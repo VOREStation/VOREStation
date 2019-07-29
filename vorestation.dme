@@ -1295,6 +1295,7 @@
 #include "code\game\objects\structures\stool_bed_chair_nest\stools.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\wheelchair.dm"
 #include "code\game\turfs\simulated.dm"
+#include "code\game\turfs\simulated_vr.dm"
 #include "code\game\turfs\turf.dm"
 #include "code\game\turfs\turf_changing.dm"
 #include "code\game\turfs\turf_flick_animations.dm"
