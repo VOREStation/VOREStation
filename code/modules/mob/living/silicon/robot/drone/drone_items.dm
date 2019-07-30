@@ -157,7 +157,6 @@
 	desc = "A specialized grasping tool used to preserve and manipulate organic material."
 
 	can_hold = list(
-		/obj/item/device/nif, //VOREStation edit,
 		/obj/item/organ
 		)
 
@@ -183,7 +182,6 @@
 	desc = "A specialized grasping tool used in robotics work."
 
 	can_hold = list(
-		/obj/item/device/nif, //VOREStation edit,
 		/obj/item/organ/external,
 		/obj/item/organ/internal/brain, //to insert into MMIs,
 		/obj/item/organ/internal/cell,
