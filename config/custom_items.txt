@@ -974,3 +974,10 @@ ckey: zodiacshadow
 character_name: Nehi Maximus
 item_path: /obj/item/device/radio/headset/fluff/zodiacshadow
 }
+
+{
+ckey: chaoko99
+character_name: Aika Hisakawa
+item_path: /obj/item/clothing/suit/fluff/blue_trimmed_coat
+}
+

@@ -68,11 +68,10 @@
 		node3 = null
 
 	update_icon()
+	handle_leaking()
 
 	..()
 
-<<<<<<< HEAD
-=======
 /obj/machinery/atmospherics/pipe/manifold/handle_leaking()
 	if(node1 && node2 && node3)
 		set_leaking(FALSE)
@@ -87,7 +86,6 @@
 	else
 		. = PROCESS_KILL
 
->>>>>>> 31518fe... Merge pull request #6344 from Mechoid/ManifoldLeaking
 /obj/machinery/atmospherics/pipe/manifold/change_color(var/new_color)
 	..()
 	//for updating connected atmos device pipes (i.e. vents, manifolds, etc)
@@ -171,6 +169,7 @@
 	var/turf/T = get_turf(src)
 	if(level == 1 && !T.is_plating()) hide(1)
 	update_icon()
+	handle_leaking()
 
 /obj/machinery/atmospherics/pipe/manifold/visible
 	icon_state = "map"

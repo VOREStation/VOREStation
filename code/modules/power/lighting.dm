@@ -389,6 +389,16 @@ var/global/list/light_type_cache = list()
 	broken()
 	return 1
 
+/obj/machinery/light/take_damage(var/damage)
+	if(!damage)
+		return
+	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
+		return
+	if(!(status == LIGHT_OK||status == LIGHT_BURNED))
+		return
+	broken()
+	return 1
+
 /obj/machinery/light/blob_act()
 	broken()
 

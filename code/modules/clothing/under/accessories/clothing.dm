@@ -349,6 +349,25 @@
 	desc = "A really cheesy holiday sweater, it actually kinda itches."
 	icon_state = "turtleneck_winterred"
 
+/obj/item/clothing/accessory/sweater/uglyxmas
+	name = "ugly Christmas sweater"
+	desc = "A gift that probably should've stayed in the back of the closet."
+	icon_state = "uglyxmas"
+
+/obj/item/clothing/accessory/sweater/flowersweater
+	name = "flowery sweater"
+	desc =  "An oversized and flowery pink sweater."
+	icon_state = "flowersweater"
+
+/obj/item/clothing/accessory/sweater/redneck
+	name = "red turtleneck"
+	desc = "A comfortable turtleneck in a dark red."
+	icon_state = "turtleneck_red"
+
+//***
+// End of sweaters
+//***
+
 /obj/item/clothing/accessory/cowledvest
 	name = "cowled vest"
 	desc = "A body warmer for the 26th century."

@@ -1849,3 +1849,14 @@ Departamental Swimsuits, for general use
 	item_state = "goldenstring"
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_TIE
+
+//Chaoko99: Aika Hisakawa
+/obj/item/clothing/suit/fluff/blue_trimmed_coat
+	name = "blue-trimmed greatcoat"
+	desc = "A heavy, form-obscuring coat with gilded buttons and azure trim."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "aika_coat"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "aika_coat"
+	flags_inv = HIDEJUMPSUIT | HIDETIE

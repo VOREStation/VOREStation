@@ -134,6 +134,9 @@
 	else
 		return ..()
 
+/obj/effect/step_trigger/lost_in_space/tram
+	deathmessage = "You fly down the tunnel of the tram at high speed for a few moments before impact kills you with sheer concussive force."
+
 
 // Invisible object that blocks z transfer to/from its turf and the turf above.
 /obj/effect/ceiling
