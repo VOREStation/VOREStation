@@ -68,8 +68,15 @@
 		node3 = null
 
 	update_icon()
+	handle_leaking()
 
 	..()
+
+/obj/machinery/atmospherics/pipe/manifold/handle_leaking()
+	if(node1 && node2 && node3)
+		set_leaking(FALSE)
+	else
+		set_leaking(TRUE)
 
 /obj/machinery/atmospherics/pipe/manifold/change_color(var/new_color)
 	..()
@@ -154,6 +161,7 @@
 	var/turf/T = get_turf(src)
 	if(level == 1 && !T.is_plating()) hide(1)
 	update_icon()
+	handle_leaking()
 
 /obj/machinery/atmospherics/pipe/manifold/visible
 	icon_state = "map"

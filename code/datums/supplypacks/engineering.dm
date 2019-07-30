@@ -21,6 +21,20 @@
 	containertype = /obj/structure/closet/crate/engineering
 	containername = "Superconducting Magnetic Coil crate"
 
+/datum/supply_pack/eng/smescoil/super_capacity
+	name = "Superconducting Capacitance Coil"
+	contains = list(/obj/item/weapon/smes_coil/super_capacity)
+	cost = 90
+	containertype = /obj/structure/closet/crate/engineering
+	containername = "Superconducting Capacitance Coil crate"
+
+/datum/supply_pack/eng/smescoil/super_io
+	name = "Superconducting Transmission Coil"
+	contains = list(/obj/item/weapon/smes_coil/super_io)
+	cost = 90
+	containertype = /obj/structure/closet/crate/engineering
+	containername = "Superconducting Transmission Coil crate"
+
 /datum/supply_pack/eng/shield_capacitor
 	name = "Shield Capacitor"
 	contains = list(/obj/machinery/shield_capacitor)

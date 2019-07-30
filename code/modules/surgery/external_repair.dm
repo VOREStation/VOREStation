@@ -9,8 +9,10 @@
 	req_open = 1
 
 /datum/surgery_step/repairflesh/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if (target.stat == DEAD) // Sorry defibs, your subjects need to have pumping fluids for these to work.
-		return 0
+/*    VOREStation Removal for Mlem Reasons(TM)
+    if (target.stat == DEAD) // Sorry defibs, your subjects need to have pumping fluids for these to work.
+        return 0
+*/
 	if (isslime(target))
 		return 0
 	if (target_zone == O_EYES || target_zone == O_MOUTH)
