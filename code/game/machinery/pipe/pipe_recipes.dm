@@ -27,7 +27,7 @@ var/global/list/atmos_pipe_recipes = null
 			new /datum/pipe_recipe/pipe("Gas Pump",			/obj/machinery/atmospherics/binary/pump),
 			new /datum/pipe_recipe/pipe("Pressure Regulator",	/obj/machinery/atmospherics/binary/passive_gate),
 			new /datum/pipe_recipe/pipe("High Power Gas Pump",/obj/machinery/atmospherics/binary/pump/high_power),
-			new /datum/pipe_recipe/pipe("Automatic Shutoff Valve",/obj/machinery/atmospherics/valve/shutoff),
+			//new /datum/pipe_recipe/pipe("Automatic Shutoff Valve",/obj/machinery/atmospherics/valve/shutoff),	//VOREStation Removal: Without leaks, those are just regular valves,
 			new /datum/pipe_recipe/pipe("Scrubber",			/obj/machinery/atmospherics/unary/vent_scrubber),
 			new /datum/pipe_recipe/meter("Meter"),
 			new /datum/pipe_recipe/pipe("Gas Filter",			/obj/machinery/atmospherics/trinary/atmos_filter),
