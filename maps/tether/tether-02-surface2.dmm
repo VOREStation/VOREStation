@@ -121,6 +121,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/cap/visible/supply{
+	dir = 8
+	},
 /turf/simulated/floor/plating,
 /area/vacant/vacant_site/gateway/lower)
 "av" = (
@@ -11664,6 +11667,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
+"wN" = (
+/obj/machinery/atmospherics/pipe/cap/visible/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/vacant/vacant_site/gateway/lower)
 "wO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 4
@@ -26807,7 +26816,7 @@ am
 am
 am
 am
-am
+wN
 am
 am
 ae

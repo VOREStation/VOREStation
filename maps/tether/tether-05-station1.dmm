@@ -1221,14 +1221,10 @@
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
 "acv" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/cap/visible/scrubbers{
 	dir = 4
 	},
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor,
 /area/vacant/vacant_restaurant_lower)
 "acw" = (
@@ -6703,6 +6699,20 @@
 	name = "Holodeck Projector Floor"
 	},
 /area/holodeck/alphadeck)
+"amh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/cap/visible/supply{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/vacant/vacant_restaurant_lower)
 "amj" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -28547,7 +28557,7 @@ aIO
 aVK
 alv
 bYk
-bYl
+acv
 bYj
 bYj
 bYj
@@ -28689,7 +28699,7 @@ aIO
 aVW
 alv
 bYm
-acv
+amh
 bYj
 bZz
 bYj
