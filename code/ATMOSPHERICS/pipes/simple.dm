@@ -1,6 +1,6 @@
 //
 // Simple Pipes - Just a tube, maybe bent
-// 
+//
 /obj/machinery/atmospherics/pipe/simple
 	icon = 'icons/atmos/pipes.dmi'
 	icon_state = ""
@@ -33,6 +33,14 @@
 	//  be null. For mapping purposes color is defined in the object definitions.
 	icon = null
 	alpha = 255
+
+/obj/machinery/atmospherics/pipe/simple/process()
+	if(!parent)
+		..()
+	else if(leaking)
+		parent.mingle_with_turf(loc, volume)
+	else
+		. = PROCESS_KILL
 
 /obj/machinery/atmospherics/pipe/simple/check_pressure(pressure)
 	var/datum/gas_mixture/environment = loc.return_air()
@@ -147,6 +155,7 @@
 	var/turf/T = loc
 	if(level == 1 && !T.is_plating()) hide(1)
 	update_icon()
+	handle_leaking()
 
 /obj/machinery/atmospherics/pipe/simple/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
@@ -160,8 +169,15 @@
 		node2 = null
 
 	update_icon()
+	handle_leaking()
 
 	return null
+
+/obj/machinery/atmospherics/pipe/simple/handle_leaking()
+	if(node1 && node2)
+		set_leaking(FALSE)
+	else
+		set_leaking(TRUE)
 
 /obj/machinery/atmospherics/pipe/simple/visible
 	icon_state = "intact"
