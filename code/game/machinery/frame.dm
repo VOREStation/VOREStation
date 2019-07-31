@@ -90,6 +90,12 @@
 	circuit = /obj/item/weapon/circuitboard/recharger
 	frame_size = 3
 
+/datum/frame/frame_types/cell_charger
+	name = "Heavy-Duty Cell Charger"
+	frame_class = FRAME_CLASS_MACHINE
+	circuit = /obj/item/weapon/circuitboard/cell_charger
+	frame_size = 3
+
 /datum/frame/frame_types/grinder
 	name = "Grinder"
 	frame_class = FRAME_CLASS_MACHINE
