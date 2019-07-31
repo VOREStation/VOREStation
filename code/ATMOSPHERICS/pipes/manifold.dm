@@ -78,6 +78,14 @@
 	else
 		set_leaking(TRUE)
 
+/obj/machinery/atmospherics/pipe/manifold/process()
+	if(!parent)
+		..()
+	else if(leaking)
+		parent.mingle_with_turf(loc, volume)
+	else
+		. = PROCESS_KILL
+
 /obj/machinery/atmospherics/pipe/manifold/change_color(var/new_color)
 	..()
 	//for updating connected atmos device pipes (i.e. vents, manifolds, etc)
