@@ -287,6 +287,13 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/solar_control
 	sort_string = "JAAAF"
 
+/datum/design/circuit/shutoff_monitor
+	name = "Automatic shutoff valve monitor"
+	id = "shutoff_monitor"
+	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3)
+	build_path = /obj/item/weapon/circuitboard/shutoff_monitor
+	sort_string = "JAAAG"
+
 /datum/design/circuit/pacman
 	name = "PACMAN-type generator"
 	id = "pacman"
