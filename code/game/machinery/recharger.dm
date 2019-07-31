@@ -72,13 +72,8 @@
 			if(EW.use_external_power)
 				to_chat(user, "<span class='notice'>\The [EW] has no recharge port.</span>")
 				return
-<<<<<<< HEAD
 		else if(!G.get_cell() && !istype(G, /obj/item/ammo_casing/nsfw_batt))	//VOREStation Edit: NSFW charging
-			to_chat(user, "This device does not have a battery installed.")
-=======
-		else if(!G.get_cell())
 			to_chat(user, "\The [G] does not have a battery installed.")
->>>>>>> da7ced3... Merge pull request #6328 from Nalarac/recharger
 			return
 
 		user.drop_item()
