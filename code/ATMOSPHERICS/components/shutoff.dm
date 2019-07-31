@@ -1,12 +1,12 @@
 /obj/machinery/atmospherics/valve/shutoff
 	icon = 'icons/atmos/clamp.dmi'
 	icon_state = "map_vclamp0"
+	pipe_state = "vclamp"
 
 	name = "automatic shutoff valve"
 	desc = "An automatic valve with control circuitry and pipe integrity sensor, capable of automatically isolating damaged segments of the pipe network."
 	var/close_on_leaks = TRUE	// If false it will be always open
 	level = 1
-	connect_types = CONNECT_TYPE_SCRUBBER | CONNECT_TYPE_SUPPLY | CONNECT_TYPE_REGULAR
 
 /obj/machinery/atmospherics/valve/shutoff/update_icon()
 	icon_state = "vclamp[open]"
