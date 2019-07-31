@@ -144,6 +144,14 @@
 	build_path = /obj/machinery/recharger/wallcharger
 	board_type = new /datum/frame/frame_types/wall_charger
 
+/obj/item/weapon/circuitboard/cell_charger
+	name = T_BOARD("heavy-duty cell charger")
+	build_path = /obj/machinery/cell_charger
+	board_type = new /datum/frame/frame_types/cell_charger
+	req_components = list(
+							/obj/item/weapon/stock_parts/capacitor = 1,
+							/obj/item/stack/cable_coil = 5)
+
 /obj/item/weapon/circuitboard/washing
 	name = T_BOARD("washing machine")
 	build_path = /obj/machinery/washing_machine
