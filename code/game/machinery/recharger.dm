@@ -1,12 +1,8 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 /obj/machinery/recharger
 	name = "recharger"
-<<<<<<< HEAD
-	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Edit
-=======
 	desc = "A standard recharger for all devices that use power."
-	icon = 'icons/obj/stationobjs.dmi'
->>>>>>> da7ced3... Merge pull request #6328 from Nalarac/recharger
+	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Edit
 	icon_state = "recharger0"
 	anchored = 1
 	use_power = 1
