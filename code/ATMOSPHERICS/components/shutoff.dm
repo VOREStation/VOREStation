@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(shutoff_valves)
+
 /obj/machinery/atmospherics/valve/shutoff
 	icon = 'icons/atmos/clamp.dmi'
 	icon_state = "map_vclamp0"
@@ -18,7 +20,12 @@
 /obj/machinery/atmospherics/valve/shutoff/Initialize()
 	. = ..()
 	open()
+	GLOB.shutoff_valves += src
 	hide(1)
+
+/obj/machinery/atmospherics/valve/shutoff/Destroy()
+	GLOB.shutoff_valves -= src
+	..()
 
 /obj/machinery/atmospherics/valve/shutoff/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
