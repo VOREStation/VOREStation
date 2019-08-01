@@ -615,6 +615,7 @@
 	icon_state = "liquidprotein"
 	trash = /obj/item/trash/liquidprotein
 	filling_color = "#A8A8A8"
+	survivalfood = TRUE
 	center_of_mass = list("x"=16, "y"=15)
 
 /obj/item/weapon/reagent_containers/food/snacks/liquidprotein/Initialize()
