@@ -1,4 +1,0 @@
-author: Atermonera
-delete-after: True
-changes: 
-  - rscadd: "Added a shutoff monitoring console, which displays the status and location of all automatic shutoff valves. Currently mapped into the atmos monitoring room and the auxiliary engineering room on deck 1."
