@@ -818,7 +818,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	dat += "<center><h2>[current_species.name] \[<a href='?src=\ref[src];show_species=1'>change</a>\]</h2></center><hr/>"
 	dat += "<table padding='8px'>"
 	dat += "<tr>"
-	dat += "<td width = 400>[current_species.blurb]</td>"
+	//vorestation edit begin
+	if(current_species.wikilink)
+		dat += "<td width = 400>[current_species.blurb]<br><br>See <a href=[current_species.wikilink]>the wiki</a> for more details.</td>"
+	else
+		dat += "<td width = 400>[current_species.blurb]</td>"
+	//vorestation edit end
 	dat += "<td width = 200 align='center'>"
 	if("preview" in icon_states(current_species.icobase))
 		usr << browse_rsc(icon(current_species.icobase,"preview"), "species_preview_[current_species.name].png")
