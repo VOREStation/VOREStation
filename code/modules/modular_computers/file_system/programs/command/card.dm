@@ -167,7 +167,7 @@
 				computer.proc_eject_id(user)
 		if("terminate")
 			if(computer && can_run(user, 1))
-				id_card.assignment = "Demoted"	//VOREStation Edit: setting adjustment
+				id_card.assignment = "Dismissed"	//VOREStation Edit: setting adjustment
 				id_card.access = list()
 				callHook("terminate_employee", list(id_card))
 		if("edit")
