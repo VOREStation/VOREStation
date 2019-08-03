@@ -220,6 +220,7 @@
 				W.heal_damage(heal_brute)
 				playsound(src, pick(apply_sounds), 25)
 				used = 1 //VOREStation Edit
+				update_icon() // VOREStation Edit - Support for stack icons
 			affecting.update_damages()
 			if(used == amount)
 				if(affecting.is_bandaged())
@@ -266,6 +267,7 @@
 			use(1)
 			affecting.salve()
 			playsound(src, pick(apply_sounds), 25)
+			update_icon() // VOREStation Edit - Support for stack icons
 
 /obj/item/stack/medical/splint
 	name = "medical splints"
