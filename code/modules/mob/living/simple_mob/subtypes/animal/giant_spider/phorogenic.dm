@@ -31,8 +31,8 @@
 	icon_living = "phoron"
 	icon_dead = "phoron_dead"
 
-	maxHealth = 135 //VOREStation edit
-	health = 135 //VOREStation edit
+	maxHealth = 120 //VOREStation edit
+	health = 120 //VOREStation edit
 	taser_kill = FALSE //You will need more than a peashooter to kill the juggernaut.
 
 	melee_damage_lower = 25
