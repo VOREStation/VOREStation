@@ -1,3 +1,4 @@
+#define DEFIB_TIME_LIMIT (10 MINUTES) //VOREStation addition- past this many seconds, defib is useless.
 /*
 CONTAINS:
 T-RAY
@@ -81,8 +82,13 @@ HALOGEN COUNTER	- Radcount on mobs
 	dat += 		"\tKey: <font color='cyan'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font><br>"
 	dat += 		"\tDamage Specifics: <font color='cyan'>[OX]</font> - <font color='green'>[TX]</font> - <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</font><br>"
 	dat +=		"Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)</span><br>"
-	if(M.tod && (M.stat == DEAD || (M.status_flags & FAKEDEATH)))
-		dat += 	"<span class='notice'>Time of Death: [M.tod]</span><br>"
+	//VOREStation edit/addition starts
+	if(M.timeofdeath && (M.stat == DEAD || (M.status_flags & FAKEDEATH)))
+		dat += 	"<span class='notice'>Time of Death: [worldtime2stationtime(M.timeofdeath)]</span><br>"
+		var/tdelta = round(world.time - M.timeofdeath)
+		if(tdelta < (DEFIB_TIME_LIMIT * 10))
+			dat += "<span class='notice'><b>Subject died [DisplayTimeText(tdelta)] ago - resuscitation may be possible!</b></span><br>"
+	//VOREStation edit/addition ends
 	if(istype(M, /mob/living/carbon/human) && mode == 1)
 		var/mob/living/carbon/human/H = M
 		var/list/damaged = H.get_damaged_organs(1,1)
@@ -501,3 +507,5 @@ HALOGEN COUNTER	- Radcount on mobs
 	else
 		to_chat(user, "<span class='notice'>No radiation detected.</span>")
 	return
+
+#undef DEFIB_TIME_LIMIT //VOREStation addition
