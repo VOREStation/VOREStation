@@ -36,7 +36,6 @@
 /datum/surgery_step/repairflesh/scan_injury
 	allowed_tools = list(
 	/obj/item/weapon/autopsy_scanner = 100,
-	/obj/item/device/healthanalyzer = 80,
 	/obj/item/device/analyzer = 10
 	)
 
@@ -87,8 +86,6 @@
 /datum/surgery_step/repairflesh/repair_burns
 	allowed_tools = list(
 	/obj/item/stack/medical/advanced/ointment = 100,
-	/obj/item/weapon/surgical/FixOVein = 100,
-	/obj/item/weapon/surgical/hemostat = 60,
 	/obj/item/stack/medical/ointment = 50,
 	/obj/item/weapon/tape_roll = 30,
 	/obj/item/taperoll = 10
@@ -155,8 +152,6 @@
 /datum/surgery_step/repairflesh/repair_brute
 	allowed_tools = list(
 	/obj/item/stack/medical/advanced/bruise_pack = 100,
-	/obj/item/weapon/surgical/cautery = 100,
-	/obj/item/weapon/surgical/bonesetter = 60,
 	/obj/item/stack/medical/bruise_pack = 50,
 	/obj/item/weapon/tape_roll = 40,
 	/obj/item/taperoll = 10
