@@ -173,6 +173,9 @@
 		*/
 	return
 
+/obj/proc/hear_signlang(mob/M as mob, text, verb, datum/language/speaking) // Saycode gets worse every day.
+	return FALSE
+
 /obj/proc/see_emote(mob/M as mob, text, var/emote_type)
 	return
 
