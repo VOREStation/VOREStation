@@ -11,6 +11,8 @@ var/global/list/positive_traits = list()	// Positive custom species traits, inde
 var/global/list/traits_costs = list()		// Just path = cost list, saves time in char setup
 var/global/list/all_traits = list()			// All of 'em at once (same instances)
 
+var/global/list/sensorpreflist = list("Off", "Binary", "Vitals", "Tracking", "No Preference")	//TFF 5/8/19 - Suit Sensors global list
+
 var/global/list/custom_species_bases = list() // Species that can be used for a Custom Species icon base
 
 //stores numeric player size options indexed by name
