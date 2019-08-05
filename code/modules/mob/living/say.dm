@@ -413,6 +413,10 @@ proc/get_radio_key_from_channel(var/channel)
 		for(var/hearer in mobs)
 			var/mob/M = hearer
 			M.hear_signlang(message, verb, language, src)
+		var/list/objs = potentials["objs"]
+		for(var/hearer in objs)
+			var/obj/O = hearer
+			O.hear_signlang(message, verb, language, src)
 	return 1
 
 /obj/effect/speech_bubble
