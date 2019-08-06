@@ -1,11 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 29/05/2012 15:03:04
 
 /datum/event/ionstorm
-<<<<<<< HEAD
 	var/botEmagChance = 0 //VOREStation Edit
-=======
-	var/botEmagChance = 0.05
->>>>>>> 543ecb4... Merge pull request #6378 from Nalarac/IonStormBots
 	var/list/players = list()
 
 /datum/event/ionstorm/announce()
