@@ -18366,7 +18366,10 @@
 /area/hallway/lower/third_south)
 "Eg" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/machinery/door/window/brigdoor/southleft,
+/obj/machinery/door/window/brigdoor/southleft{
+	req_access = list(47);
+	req_one_access = list(47)
+	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/research/testingrange)
 "Eh" = (
