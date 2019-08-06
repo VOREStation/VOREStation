@@ -3,7 +3,7 @@
 	departments = list(ROLE_ENGINEERING)
 	reusable = TRUE
 	var/turf/simulated/wall/center
-	var/severity = 1
+	severity = 1
 
 /datum/gm_action/wallrot/set_up()
 	severity = rand(1,3)

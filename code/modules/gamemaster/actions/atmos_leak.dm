@@ -13,7 +13,7 @@
 		/area/engineering/engine_room
 	)
 
-	var/severity
+	severity
 
 // Decide which area will be targeted!
 /datum/gm_action/atmos_leak/set_up()

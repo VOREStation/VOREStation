@@ -7,6 +7,7 @@
 	var/observers_used = FALSE			// Determines if the GM should check if ghosts are available before using this.
 	var/length = 0						// Determines how long the event lasts, until end() is called.
 	var/datum/game_master/gm = null
+	var/severity = 1					// The severity of the action. This is here to prevent continued future defining of this var on actions, un-used.
 
 /datum/gm_action/proc/set_up()
 	return

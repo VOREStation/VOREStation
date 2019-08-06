@@ -5,7 +5,7 @@
 	departments = list(ROLE_MEDICAL)
 	chaotic = 5
 	var/list/viruses = list()
-	var/severity = 1
+	severity = 1
 
 /datum/gm_action/viral_infection/set_up()
 	severity = pickweight(EVENT_LEVEL_MUNDANE = 20,
