@@ -3,7 +3,7 @@
 	departments = list(ROLE_SECURITY, ROLE_MEDICAL, ROLE_EVERYONE)
 	chaotic = 30
 
-	var/severity = 1
+	severity = 1
 
 	var/spawncount = 1
 

@@ -10,7 +10,7 @@
 	..()
 
 	var/severity_range = 0
-	var/severity = pickweight(EVENT_LEVEL_MUNDANE = 10,
+	severity = pickweight(EVENT_LEVEL_MUNDANE = 10,
 		EVENT_LEVEL_MODERATE = 5,
 		EVENT_LEVEL_MAJOR = 1
 		)
