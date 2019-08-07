@@ -18,6 +18,7 @@
 	var/filled = 0
 	var/list/filled_reagents = list()
 	var/hyposound	// What sound do we play on use?
+	var/prototype = 0 //VOREStation Add - Prototype Hypospray
 
 /obj/item/weapon/reagent_containers/hypospray/Initialize()
 	. = ..()
