@@ -51,7 +51,7 @@
 			if(!do_after(user, 30, H))
 				return
 		//VOREstation Add End
-		else if(!H.stat)
+		if(!H.stat)
 			if(H != user)
 				if(H.a_intent != I_HELP)
 					to_chat(user, "<span class='notice'>[H] is resisting your attempt to inject them with \the [src].</span>")
