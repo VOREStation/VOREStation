@@ -474,7 +474,11 @@ CIRCUITS BELOW
 	req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
 	build_path = /obj/item/weapon/circuitboard/mecha/gygax/targeting
 	sort_string = "NAACC"
+<<<<<<< HEAD
 //VOREStation Edit to make Serenity Constructable
+=======
+
+>>>>>>> fcc8242... Allows Construction of Serenity in Robotics (#6380)
 /datum/design/circuit/mecha/gygax_medical
 	name = "'Serenity' medical control"
 	id = "gygax_medical"
