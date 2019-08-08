@@ -1091,7 +1091,4 @@ var/list/name_to_material
 	hardness = 1
 	weight = 1
 	protectiveness = 0 // 0%
-<<<<<<< HEAD
-=======
 	conductive = 0
->>>>>>> 8316113... Merge pull request #6393 from Nalarac/Conductivity
