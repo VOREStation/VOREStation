@@ -490,6 +490,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if(alert(usr, "You already have a ticket open. Is this for the same issue?",,"Yes","No") != "No")
 			if(current_ticket)
 				current_ticket.MessageNoRecipient(msg)
+				to_chat(usr, "<span class='adminnotice'>PM to-<b>Admins</b>: [msg]</span>")
 				return
 			else
 				to_chat(usr, "<span class='warning'>Ticket not found, creating new one...</span>")
