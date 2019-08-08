@@ -14,7 +14,7 @@
 	possible_transfer_amounts = list(5,10,15,25,30,60)
 	volume = 60
 	w_class = ITEMSIZE_SMALL
-	flags = OPENCONTAINER
+	flags = OPENCONTAINER | NOCONDUCT
 	unacidable = 1 //glass doesn't dissolve in acid
 
 	var/label_text = ""

@@ -178,6 +178,7 @@
 	throw_speed = 3
 	throw_range = 5
 	item_state = "beer"
+	flags = NOCONDUCT
 	attack_verb = list("stabbed", "slashed", "attacked")
 	sharp = 1
 	edge = 0

@@ -9,6 +9,7 @@
 	sharp = 0
 	edge = 0
 	throwforce = 7
+	flags = NOCONDUCT
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")

@@ -29,6 +29,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "soap"
+	flags = NOCONDUCT
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_HOLSTER
 	throwforce = 0
@@ -395,7 +396,7 @@
 	display_contents_with_number = 1
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = 100
-	
+
 /obj/item/weapon/storage/part_replacer/adv
 	name = "advanced rapid part exchange device"
 	desc = "Special mechanical module made to store, sort, and apply standard machine parts.  This one has a greatly upgraded storage capacity"
