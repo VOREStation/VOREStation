@@ -96,7 +96,7 @@
 			log_game("TRAITS [pref.client_ckey]/([character]) with: [english_traits]") //Terrible 'fake' key_name()... but they aren't in the same entity yet
 
 /datum/category_item/player_setup_item/vore/traits/content(var/mob/user)
-	. += "<b>Custom Species</b> "
+	. += "<b>Custom Species Name:</b> "
 	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
 
 	var/datum/species/selected_species = all_species[pref.species]
