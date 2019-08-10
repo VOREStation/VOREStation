@@ -75,20 +75,20 @@
 	description = "A small necklace device that will notify an offsite cloning facility should you expire after activating it."
 
 /datum/gear/accessory/tronket
-    display_name = "metal necklace"
-    description = "A shiny steel chain with a vague metallic object dangling off it."
-    path = /obj/item/clothing/accessory/tronket
+	display_name = "metal necklace"
+	description = "A shiny steel chain with a vague metallic object dangling off it."
+	path = /obj/item/clothing/accessory/tronket
 
 /datum/gear/accessory/pilotpin
-    display_name = "pilot qualification pin"
-    description = "An iron pin denoting the qualification to fly SCG spacecraft."
-    path = /obj/item/clothing/accessory/solgov/specialty/pilot
+	display_name = "pilot qualification pin"
+	description = "An iron pin denoting the qualification to fly SCG spacecraft."
+	path = /obj/item/clothing/accessory/solgov/specialty/pilot
 	allowed_roles = list("Pathfinder", "Pilot", "Field Medic")
 
 /datum/gear/accessory/flops
-    display_name = "drop straps"
-    description = "Wearing suspenders over shoulders? That's been so out for centuries and you know better."
-    path = /obj/item/clothing/accessory/flops
+	display_name = "drop straps"
+	description = "Wearing suspenders over shoulders? That's been so out for centuries and you know better."
+	path = /obj/item/clothing/accessory/flops
 
 /datum/gear/accessory/flops/New()
 	..()
