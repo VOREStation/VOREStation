@@ -541,13 +541,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		chosen = input("Select a mob type", "Select Mob", matches[1]) as null|anything in matches
 		if(!chosen)
 			return
-		src << "[chosen]"
-
-	src << "YEET 1"
 
 	var/char_name = alert(src, "Spawn mob with their character name?", "Mob name", "Yes", "No", "Cancel")
 	var/name = 0
-	src << "YEET 2"
 	if(char_name == "Cancel")
 		return
 	if(char_name == "Yes")
@@ -561,8 +557,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(vorgans == "No")
 		organs = 0
 
-	src << "YEET 3"
-
 	var/spawnloc
 	if(!src.mob)
 		src << "Can't spawn them in unless you're in a valid spawn location!"
@@ -570,7 +564,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	spawnloc = get_turf(src.mob)
 
 	var/mob/living/new_mob = new chosen(spawnloc)
-	src << "[new_mob]"
 
 	if(!new_mob)
 		src << "Spawning failed, try again or bully coders"
