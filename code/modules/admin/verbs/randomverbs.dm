@@ -584,6 +584,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	new_mob << "You've been spawned as a mob! Have fun."
 
+	feedback_add_details("admin_verb","SCAM") //heh
+
 	return new_mob
 
 /client/proc/cmd_admin_add_freeform_ai_law()
