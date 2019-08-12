@@ -2073,6 +2073,7 @@
 #include "code\modules\mob\mob_defines_vr.dm"
 #include "code\modules\mob\mob_grab.dm"
 #include "code\modules\mob\mob_grab_specials.dm"
+#include "code\modules\mob\mob_grab_vr.dm"
 #include "code\modules\mob\mob_helpers.dm"
 #include "code\modules\mob\mob_movement.dm"
 #include "code\modules\mob\mob_planes.dm"
