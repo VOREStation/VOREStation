@@ -117,6 +117,15 @@
 	build_path = /obj/item/device/nifrepairer
 	sort_string = "HABBE" //Changed String from HABBD to HABBE
 
+/datum/design/item/medical/protohypospray
+	name = "prototype hypospray"
+	desc = "This prototype hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients."
+	id = "protohypospray"
+	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_POWER = 2, TECH_BIO = 4, TECH_ILLEGAL = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 1500, "silver" = 2000, "gold" = 1500, "uranium" = 1000)
+	build_path = /obj/item/weapon/reagent_containers/hypospray/science
+	sort_string = "MBBAH"
+
 // Resleeving Circuitboards
 
 /datum/design/circuit/transhuman_clonepod
