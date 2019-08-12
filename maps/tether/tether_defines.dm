@@ -116,6 +116,8 @@
 							NETWORK_ALARM_FIRE
 							)
 
+	bot_patrolling = FALSE
+
 	allowed_spawns = list("Tram Station","Gateway","Cryogenic Storage","Cyborg Storage")
 	spawnpoint_died = /datum/spawnpoint/tram
 	spawnpoint_left = /datum/spawnpoint/tram
