@@ -273,3 +273,6 @@
 	if(chassis)
 		chassis.log_message("<i>[src]:</i> [message]")
 	return
+
+/obj/item/mecha_parts/mecha_equipment/proc/MoveAction() //Allows mech equipment to do an action upon the mech moving
+	return
