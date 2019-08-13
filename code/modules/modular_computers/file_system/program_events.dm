@@ -13,6 +13,6 @@
 /datum/computer_file/program/proc/event_networkfailure(var/background)
 	kill_program(1)
 	if(background)
-		computer.visible_message("<span class='warning'>\The [computer]'s screen displays an error: \"Network connectivity lost - process [filename].[filetype] (PID [rand(100,999)]) terminated.\"</span>", 1)
+		computer.visible_message("<span class='warning'>\The [computer]'s screen displays an error: \"Network connectivity lost - process [filename].[filetype] (PID [rand(100,999)]) terminated.\"</span>")
 	else
-		computer.visible_message("<span class='warning'>\The [computer]'s screen briefly freezes and then shows: \"FATAL NETWORK ERROR - NTNet connection lost. Please try again later. If problem persists, please contact your system administrator.\"</span>", 1)
+		computer.visible_message("<span class='warning'>\The [computer]'s screen briefly freezes and then shows: \"FATAL NETWORK ERROR - NTNet connection lost. Please try again later. If problem persists, please contact your system administrator.\"</span>")

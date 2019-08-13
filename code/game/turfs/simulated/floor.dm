@@ -43,6 +43,10 @@
 		set_flooring(get_flooring_data(floortype))
 	else
 		footstep_sounds = base_footstep_sounds
+	if(can_dirty && can_start_dirty)
+		if(prob(dirty_prob))
+			dirt += rand(50,100)
+			update_dirt() //5% chance to start with dirt on a floor tile- give the janitor something to do
 
 /turf/simulated/floor/proc/set_flooring(var/decl/flooring/newflooring)
 	make_plating(defer_icon_update = 1)

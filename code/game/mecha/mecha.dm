@@ -49,6 +49,8 @@
 	var/mech_faction = null
 	var/firstactivation = 0 //It's simple. If it's 0, no one entered it yet. Otherwise someone entered it at least once.
 
+	var/stomp_sound = 'sound/mecha/mechstep.ogg'
+	var/swivel_sound = 'sound/mecha/mechturn.ogg'
 
 	//inner atmos
 	var/use_internal_tank = 0
@@ -382,8 +384,15 @@
 /obj/mecha/Move()
 	. = ..()
 	if(.)
-		events.fireEvent("onMove",get_turf(src))
+		MoveAction()
 	return
+
+/obj/mecha/proc/MoveAction() //Allows mech equipment to do an action once the mech moves
+	if(!equipment.len)
+		return
+
+	for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
+		ME.MoveAction()
 
 /obj/mecha/relaymove(mob/user,direction)
 	if(user != src.occupant) //While not "realistic", this piece is player friendly.
@@ -441,21 +450,24 @@
 
 /obj/mecha/proc/mechturn(direction)
 	set_dir(direction)
-	playsound(src,'sound/mecha/mechturn.ogg',40,1)
+	if(swivel_sound)
+		playsound(src,swivel_sound,40,1)
 	return 1
 
 /obj/mecha/proc/mechstep(direction)
-	var/result = step(src,direction)
-	if(result)
-		playsound(src,"mechstep",40,1)
+	var/result = get_step(src,direction)
+	if(result && Move(result))
+		if(stomp_sound)
+			playsound(src,stomp_sound,40,1)
 		handle_equipment_movement()
 	return result
 
 
 /obj/mecha/proc/mechsteprand()
-	var/result = step_rand(src)
-	if(result)
-		playsound(src,"mechstep",40,1)
+	var/result = get_step_rand(src)
+	if(result && Move(result))
+		if(stomp_sound)
+			playsound(src,stomp_sound,40,1)
 		handle_equipment_movement()
 	return result
 
@@ -473,9 +485,10 @@
 		else //I have no idea why I disabled this
 			obstacle.Bumped(src)
 	else if(istype(obstacle, /mob))
-		step(obstacle,src.dir)
+		var/mob/M = obstacle
+		M.Move(get_step(obstacle,src.dir))
 	else
-		obstacle.Bumped(src)
+		. = ..(obstacle)
 	return
 
 ///////////////////////////////////
@@ -529,7 +542,7 @@
 ////////  Health related procs  ////////
 ////////////////////////////////////////
 
-/obj/mecha/proc/take_damage(amount, type="brute")
+/obj/mecha/take_damage(amount, type="brute")
 	if(amount)
 		var/damage = absorbDamage(amount,type)
 		health -= damage

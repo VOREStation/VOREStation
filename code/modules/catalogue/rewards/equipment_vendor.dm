@@ -12,22 +12,35 @@
 	var/icon_vend = "exploration-vend"
 	var/obj/item/device/cataloguer/inserted_cataloguer
 	var/list/prize_list = list(
-		new /datum/data/exploration_equipment("1 Marker Beacon",				/obj/item/stack/marker_beacon,										1),
+		new /datum/data/exploration_equipment("1 Marker Beacon",			/obj/item/stack/marker_beacon,										1),
 		new /datum/data/exploration_equipment("10 Marker Beacons",			/obj/item/stack/marker_beacon/ten,									10),
 		new /datum/data/exploration_equipment("30 Marker Beacons",			/obj/item/stack/marker_beacon/thirty,								30),
-		new /datum/data/exploration_equipment("Whiskey",						/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,		10),
+		new /datum/data/exploration_equipment("GPS Device",					/obj/item/device/gps/explorer,										10),
+		new /datum/data/exploration_equipment("Whiskey",					/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,		10),
 		new /datum/data/exploration_equipment("Absinthe",					/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,	10),
 		new /datum/data/exploration_equipment("Cigar",						/obj/item/clothing/mask/smokable/cigarette/cigar/havana,			15),
 		new /datum/data/exploration_equipment("Soap",						/obj/item/weapon/soap/nanotrasen,									20),
 		new /datum/data/exploration_equipment("Laser Pointer",				/obj/item/device/laser_pointer,										90),
 		new /datum/data/exploration_equipment("Plush Toy",					/obj/random/plushie,												30),
-		new /datum/data/exploration_equipment("Shelter Capsule",				/obj/item/device/survivalcapsule,									50),
-		new /datum/data/exploration_equipment("Point Transfer Card",			/obj/item/weapon/card/exploration_point_card,							50),
+		new /datum/data/exploration_equipment("Shelter Capsule",			/obj/item/device/survivalcapsule,									50),
+		new /datum/data/exploration_equipment("Point Transfer Card",		/obj/item/weapon/card/exploration_point_card,						50),
 		new /datum/data/exploration_equipment("Survival Medipen",			/obj/item/weapon/reagent_containers/hypospray/autoinjector/miner,	50),
+		new /datum/data/exploration_equipment("Injector (L) - Glucose",/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose,	50),
+		new /datum/data/exploration_equipment("Injector (L) - Panacea",/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/purity,	50),
+		new /datum/data/exploration_equipment("Injector (L) - Trauma",/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/brute,	50),
+		new /datum/data/exploration_equipment("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,	50),
+		new /datum/data/exploration_equipment("Digital Tablet - Advanced",	/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,	100),
+		new /datum/data/exploration_equipment("Nanopaste Tube",				/obj/item/stack/nanopaste,											100),
 		new /datum/data/exploration_equipment("Mini-Translocator",			/obj/item/device/perfect_tele/one_beacon,							120),
 		new /datum/data/exploration_equipment("Space Cash",					/obj/item/weapon/spacecash/c100,									100),
 		new /datum/data/exploration_equipment("Jump Boots",					/obj/item/clothing/shoes/bhop,										250),
-		new /datum/data/exploration_equipment("Luxury Shelter Capsule",		/obj/item/device/survivalcapsule/luxury,							310)
+		new /datum/data/exploration_equipment("Luxury Shelter Capsule",		/obj/item/device/survivalcapsule/luxury,							310),
+		new /datum/data/exploration_equipment("Defense Equipment - Smoke Bomb",/obj/item/weapon/grenade/smokebomb,								10),
+		new /datum/data/exploration_equipment("Defense Equipment - Razor Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/manhacks/station,	100),
+		new /datum/data/exploration_equipment("Defense Equipment - Sentry Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/ward,			150),
+		new /datum/data/exploration_equipment("Fishing Net",					/obj/item/weapon/material/fishing_net,								50),
+		new /datum/data/exploration_equipment("Titanium Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern,						100),
+		new /datum/data/exploration_equipment("Durasteel Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern/strong,				750)
 		)
 
 /datum/data/exploration_equipment

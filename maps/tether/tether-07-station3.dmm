@@ -4073,6 +4073,12 @@
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
+/obj/item/device/gps/security{
+	pixel_y = 3
+	},
+/obj/item/device/gps/security{
+	pixel_x = -3
+	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "gX" = (
@@ -5383,6 +5389,8 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/item/weapon/storage/box/trackimp,
+/obj/item/weapon/storage/box/trackimp,
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/blue)
 "iM" = (
@@ -7755,12 +7763,12 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "mv" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 9
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/alarm{
+	pixel_y = 22
 	},
-/obj/machinery/porta_turret/ai_defense,
-/turf/simulated/floor/bluegrid,
-/area/ai_core_foyer)
+/turf/simulated/floor/tiled,
+/area/security/hallwayaux)
 "mw" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 1
@@ -8418,9 +8426,9 @@
 /area/maintenance/cargo)
 "ny" = (
 /obj/effect/floor_decal/techfloor{
-	dir = 5
+	dir = 9
 	},
-/obj/machinery/porta_turret/ai_defense,
+/obj/machinery/porta_turret,
 /turf/simulated/floor/bluegrid,
 /area/ai_core_foyer)
 "nz" = (
@@ -11389,11 +11397,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
 /obj/machinery/computer/secure_data{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/forensics)
@@ -12848,36 +12856,10 @@
 /turf/simulated/floor/tiled,
 /area/security/hallway)
 "ue" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4;
-	pixel_x = -16
-	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 4;
-	pixel_x = -16
-	},
-/obj/effect/floor_decal/corner/red{
-	icon_state = "corner_white";
-	dir = 6
-	},
-/obj/structure/table/steel,
-/obj/item/bodybag/cryobag{
-	pixel_x = 6
-	},
-/obj/item/weapon/storage/firstaid/regular{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/machinery/recharger/wallcharger{
-	pixel_x = 32;
-	pixel_y = -9
-	},
-/obj/machinery/recharger/wallcharger{
-	pixel_x = 32;
-	pixel_y = 2
-	},
-/turf/simulated/floor/tiled,
-/area/security/hallway)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "uf" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -16049,17 +16031,12 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/foyer)
 "yW" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/brown/border,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 1
+/obj/effect/floor_decal/techfloor{
+	dir = 5
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled,
-/area/quartermaster/foyer)
+/obj/machinery/porta_turret,
+/turf/simulated/floor/bluegrid,
+/area/ai_core_foyer)
 "yX" = (
 /obj/structure/cable/green{
 	d2 = 4;
@@ -17296,12 +17273,18 @@
 /turf/simulated/wall,
 /area/quartermaster/qm)
 "AO" = (
-/obj/machinery/navbeacon/delivery/south{
-	location = "QM #1"
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/brown/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/light,
 /turf/simulated/floor/tiled,
-/area/quartermaster/storage)
+/area/quartermaster/foyer)
 "AP" = (
 /obj/machinery/navbeacon/delivery/south{
 	location = "QM #2"
@@ -28317,10 +28300,15 @@
 /turf/simulated/floor/carpet,
 /area/security/breakroom)
 "SD" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/machinery/navbeacon/delivery/south{
+	location = "QM #1"
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/storage)
 "SE" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8
@@ -28366,6 +28354,50 @@
 "SH" = (
 /turf/simulated/wall,
 /area/storage/emergency_storage/emergency3)
+"SI" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/hallway/station/upper)
+"SJ" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4;
+	pixel_x = -16
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 4;
+	pixel_x = -16
+	},
+/obj/effect/floor_decal/corner/red{
+	icon_state = "corner_white";
+	dir = 6
+	},
+/obj/structure/table/steel,
+/obj/item/bodybag/cryobag{
+	pixel_x = 6
+	},
+/obj/item/weapon/storage/firstaid/regular{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 32;
+	pixel_y = -9
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 32;
+	pixel_y = 2
+	},
+/obj/item/weapon/reagent_containers/spray/cleaner,
+/turf/simulated/floor/tiled,
+/area/security/hallway)
 "SK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -34652,7 +34684,7 @@ yk
 og
 Aa
 Bl
-Ca
+SI
 Da
 DF
 EB
@@ -35188,7 +35220,7 @@ bq
 bq
 cd
 dI
-dp
+mv
 dM
 ej
 cP
@@ -37056,7 +37088,7 @@ mH
 rB
 mH
 tj
-ue
+SJ
 mH
 uP
 uP
@@ -39735,7 +39767,7 @@ it
 di
 di
 dy
-SD
+ue
 cK
 cK
 ms
@@ -39877,7 +39909,7 @@ iK
 jY
 kn
 di
-SD
+ue
 cK
 cK
 ms
@@ -40019,7 +40051,7 @@ iK
 jY
 kn
 di
-SD
+ue
 cK
 cK
 ms
@@ -40871,7 +40903,7 @@ eb
 ka
 ky
 di
-SD
+ue
 cK
 cK
 ms
@@ -41013,7 +41045,7 @@ jf
 kj
 kQ
 di
-SD
+ue
 cK
 cK
 ms
@@ -41155,7 +41187,7 @@ jr
 kk
 kR
 dy
-SD
+ue
 cK
 cK
 ms
@@ -41606,7 +41638,7 @@ vl
 wH
 vl
 xZ
-yW
+AO
 zN
 AN
 zL
@@ -41750,7 +41782,7 @@ vk
 ya
 yX
 zO
-AO
+SD
 BQ
 CI
 Dx
@@ -42578,7 +42610,7 @@ jt
 js
 is
 fy
-mv
+ny
 nC
 OX
 VM
@@ -43430,7 +43462,7 @@ jt
 jQ
 is
 fy
-ny
+yW
 Ov
 PF
 VM

@@ -34,7 +34,7 @@
 	display_name = "wallet, polychromic"
 	path = /obj/item/weapon/storage/wallet/poly
 	cost = 0 //VOREStation Edit
-	
+
 
 /datum/gear/accessory/wallet/womens
 	display_name = "wallet, womens"
@@ -209,6 +209,8 @@
 	..()
 	var/list/sweaters = list()
 	for(var/sweater in typesof(/obj/item/clothing/accessory/sweater))
+		if(sweater in typesof(/obj/item/clothing/accessory/sweater/fluff))	//VOREStation addition
+			continue														//VOREStation addition
 		var/obj/item/clothing/suit/sweater_type = sweater
 		sweaters[initial(sweater_type.name)] = sweater_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(sweaters))

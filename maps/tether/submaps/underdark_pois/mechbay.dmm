@@ -37,7 +37,7 @@
 /turf/simulated/floor/virgo3b,
 /area/mine/explored/underdark)
 "k" = (
-/obj/mecha/working/ripley,
+/obj/mecha/working/ripley/abandoned,
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
 "l" = (

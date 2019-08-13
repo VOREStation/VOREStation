@@ -146,7 +146,7 @@
 									occupant_message("<span class='warning'>The ore compartment is full.</span>")
 									return 1
 								else
-									ore.Move(ore_box)
+									ore.forceMove(ore_box)
 				else if(target.loc == C)
 					log_message("Drilled through [target]")
 					target.ex_act(2)

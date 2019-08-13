@@ -30,6 +30,11 @@
 	display_name = "collar, holo"
 	path = /obj/item/clothing/accessory/collar/holo
 
+//TFF 17/6/19 - public loadout addition: Indigestible Holocollar
+/datum/gear/collar/holo/indigestible
+	display_name = "collar, holo (indigestible)"
+	path = /obj/item/clothing/accessory/collar/holo/indigestible
+
 /datum/gear/accessory/holster
 	display_name = "holster selection (Security, CD, HoP, Exploration)"
 	allowed_roles = list("Colony Director", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective","Explorer","Pathfinder")
@@ -70,14 +75,20 @@
 	description = "A small necklace device that will notify an offsite cloning facility should you expire after activating it."
 
 /datum/gear/accessory/tronket
-    display_name = "metal necklace"
-    description = "A shiny steel chain with a vague metallic object dangling off it."
-    path = /obj/item/clothing/accessory/tronket
+	display_name = "metal necklace"
+	description = "A shiny steel chain with a vague metallic object dangling off it."
+	path = /obj/item/clothing/accessory/tronket
+
+/datum/gear/accessory/pilotpin
+	display_name = "pilot qualification pin"
+	description = "An iron pin denoting the qualification to fly SCG spacecraft."
+	path = /obj/item/clothing/accessory/solgov/specialty/pilot
+	allowed_roles = list("Pathfinder", "Pilot", "Field Medic")
 
 /datum/gear/accessory/flops
-    display_name = "drop straps"
-    description = "Wearing suspenders over shoulders? That's been so out for centuries and you know better."
-    path = /obj/item/clothing/accessory/flops
+	display_name = "drop straps"
+	description = "Wearing suspenders over shoulders? That's been so out for centuries and you know better."
+	path = /obj/item/clothing/accessory/flops
 
 /datum/gear/accessory/flops/New()
 	..()

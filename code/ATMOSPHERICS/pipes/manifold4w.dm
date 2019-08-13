@@ -66,8 +66,23 @@
 		node4 = null
 
 	update_icon()
+	handle_leaking()
 
 	..()
+
+/obj/machinery/atmospherics/pipe/manifold4w/handle_leaking()
+	if(node1 && node2 && node3 && node4)
+		set_leaking(FALSE)
+	else
+		set_leaking(TRUE)
+
+/obj/machinery/atmospherics/pipe/manifold4w/process()
+	if(!parent)
+		..()
+	else if(leaking)
+		parent.mingle_with_turf(loc, volume)
+	else
+		. = PROCESS_KILL
 
 /obj/machinery/atmospherics/pipe/manifold4w/change_color(var/new_color)
 	..()
@@ -156,6 +171,7 @@
 	var/turf/T = get_turf(src)
 	if(level == 1 && !T.is_plating()) hide(1)
 	update_icon()
+	handle_leaking()
 
 /obj/machinery/atmospherics/pipe/manifold4w/visible
 	icon_state = "map_4way"

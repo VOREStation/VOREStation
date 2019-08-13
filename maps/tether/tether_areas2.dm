@@ -69,6 +69,9 @@
 /area/tether/surfacebase/public_garden
 	name = "\improper Public Garden"
 	icon_state = "purple"
+/area/tether/surfacebase/fish_farm
+	name = "\improper Fish Farm"
+	icon_state = "red"
 /area/tether/surfacebase/bar_backroom
 	name = "\improper Bar Backroom"
 	icon_state = "red"
@@ -86,6 +89,8 @@
 	name = "\improper Atrium Construction Site"
 /area/vacant/vacant_bar
 	name = "\improper Vacant Bar"
+/area/vacant/vacant_bar_upper
+	name = "\improper Upper Vacant Bar"
 /area/vacant/vacant_site/gateway
 	name = "\improper Vacant Prep Area"
 /area/vacant/vacant_site/gateway/lower
@@ -197,6 +202,10 @@
 	name = "Atmospherics Processing"
 	icon_state = "atmos"
 	sound_env = LARGE_ENCLOSED
+
+/area/engineering/atmos/gas_storage
+	name = "Atmospherics Gas Storage"
+	icon_state = "atmos"
 
 /area/engineering/atmos/intake
 	name = "\improper Atmospherics Intake"

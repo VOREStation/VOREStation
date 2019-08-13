@@ -1076,6 +1076,16 @@ menu "menu"
 		is-disabled = false
 		saved-params = "is-checked"
 	elem 
+		name = "&Reconnect"
+		command = ".reconnect"
+		category = "&File"
+		saved-params = "is-checked"
+	elem 
+		name = "&Check ping"
+		command = ".ping"
+		category = "&File"
+		saved-params = "is-checked"
+	elem 
 		name = ""
 		command = ""
 		category = "&File"

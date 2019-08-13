@@ -89,6 +89,19 @@
 	new_grenade.activate(H)
 	new_grenade.throw_at(target,fire_force,fire_distance)
 
+/obj/item/rig_module/grenade_launcher/smoke
+	name = "mounted smoke-bomb launcher"
+	desc = "A shoulder-mounted smoke-bomb dispenser."
+
+	interface_name = "integrated smoke-bomb launcher"
+	interface_desc = "Discharges loaded smoke-bombs against the wearer's location."
+
+	fire_force = 15
+
+	charges = list(
+		list("smoke bomb",  "smoke bomb",  /obj/item/weapon/grenade/smokebomb,  6)
+		)
+
 /obj/item/rig_module/mounted
 
 	name = "mounted laser cannon"

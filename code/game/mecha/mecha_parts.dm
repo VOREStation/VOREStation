@@ -1,4 +1,4 @@
-/////////////////////////
+ /////////////////////////
 ////// Mecha Parts //////
 /////////////////////////
 
@@ -112,6 +112,14 @@
 	icon_state = "gygax_armour"
 	origin_tech = list(TECH_MATERIAL = 6, TECH_COMBAT = 4, TECH_ENGINEERING = 5)
 
+////////// Serenity
+
+/obj/item/mecha_parts/chassis/serenity
+	name = "Serenity Chassis"
+
+	New()
+		..()
+		construct = new /datum/construction/mecha/serenity_chassis(src)
 
 //////////// Durand
 

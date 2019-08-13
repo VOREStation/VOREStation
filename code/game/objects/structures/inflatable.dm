@@ -137,6 +137,13 @@
 		user.visible_message("<span class='danger'>[user] [attack_verb] at [src]!</span>")
 	return 1
 
+/obj/structure/inflatable/take_damage(var/damage)
+	health -= damage
+	if(health <= 0)
+		visible_message("<span class='danger'>The [src] deflates!</span>")
+		spawn(1) puncture()
+	return 1
+
 /obj/item/inflatable/door/
 	name = "inflatable door"
 	desc = "A folded membrane which rapidly expands into a simple door on activation."

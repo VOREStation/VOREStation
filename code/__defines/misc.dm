@@ -351,3 +351,8 @@ var/global/list/##LIST_NAME = list();\
 #define RAD_LEVEL_MODERATE 10
 #define RAD_LEVEL_HIGH 25
 #define RAD_LEVEL_VERY_HIGH 50
+
+//https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
+#define MOUSE_OPACITY_TRANSPARENT 0
+#define MOUSE_OPACITY_ICON 1
+#define MOUSE_OPACITY_OPAQUE 2

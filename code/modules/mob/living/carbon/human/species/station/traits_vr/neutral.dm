@@ -59,6 +59,16 @@
 	autohiss_exempt = list("Siik"))
 	excludes = list(/datum/trait/autohiss_unathi)
 
+/datum/trait/autohiss_awootism
+	name = "Autohiss (Disability)"
+	desc = "You can't speak r's and l's properly."
+	cost = 0
+	var_changes = list(
+	autohiss_basic_map = list(
+			"l" = list("w", "ww"),
+			"r" = list("w", "ww")
+		))
+
 /datum/trait/bloodsucker
 	name = "Bloodsucker"
 	desc = "Makes you unable to gain nutrition from anything but blood. To compenstate, you get fangs that can be used to drain blood from prey."

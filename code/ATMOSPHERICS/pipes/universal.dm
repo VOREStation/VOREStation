@@ -48,7 +48,7 @@
 	construction_type = /obj/item/pipe/binary
 	pipe_state = "universal"
 
-/obj/machinery/atmospherics/pipe/simple/hidden/universal/update_icon(var/safety = 0)
+/obj/machinery/atmospherics/pipe/simple/hidden/universal/update_icon(var/safety = 0)	// Doesn't leak. It's a special pipe.
 	if(!check_icon_cache())
 		return
 

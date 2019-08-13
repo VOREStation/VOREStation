@@ -3,11 +3,12 @@
 	departments = list(ROLE_ENGINEERING, ROLE_MEDICAL)
 	chaotic = 10
 	var/obj/machinery/door/airlock/chosen_door
+	var/area/target_area
 	var/list/area/excluded = list(
+		/area/submap,
 		/area/shuttle,
 		/area/crew_quarters
 	)
-	var/severity
 
 /datum/gm_action/electrified_door/set_up()
 	var/list/area/grand_list_of_areas = get_station_areas(excluded)
@@ -19,9 +20,9 @@
 
 	//try 10 times
 	for(var/i in 1 to 10)
-		var/area/A = pick(grand_list_of_areas)
+		target_area = pick(grand_list_of_areas)
 		var/list/obj/machinery/door/airlock/target_doors = list()
-		for(var/obj/machinery/door/airlock/target_door in A.contents)
+		for(var/obj/machinery/door/airlock/target_door in target_area.contents)
 			target_doors += target_door
 		target_doors = shuffle(target_doors)
 
@@ -34,11 +35,15 @@
 	..()
 	if(!chosen_door)
 		return
-	if(prob(33))
-		chosen_door.visible_message("<span class='danger'>\The [chosen_door]'s panel sparks!</span>")
+	command_announcement.Announce("An electrical issue has been detected in your area, please repair potential electronic overloads.", "Electrical Alert")
+	chosen_door.visible_message("<span class='danger'>\The [chosen_door]'s panel sparks!</span>")
 	chosen_door.set_safeties(0)
+	playsound(get_turf(chosen_door), 'sound/machines/buzz-sigh.ogg', 50, 1)
 	if(severity >= EVENT_LEVEL_MODERATE)
 		chosen_door.electrify(-1)
+		spawn(rand(10 SECONDS, 2 MINUTES))
+			if(chosen_door && chosen_door.arePowerSystemsOn() && prob(25 + 25 * severity))
+				command_announcement.Announce("Overload has been localized to \the [target_area].", "Electrical Alert")
 
 	if(severity >= EVENT_LEVEL_MAJOR)	// New Major effect. Hydraulic boom.
 		spawn()

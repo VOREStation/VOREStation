@@ -6,13 +6,14 @@
 	var/gas_type			// Chosen gas to release
 	// Exclude these types and sub-types from targeting eligibilty
 	var/list/area/excluded = list(
+		/area/submap,
 		/area/shuttle,
 		/area/crew_quarters,
 		/area/holodeck,
 		/area/engineering/engine_room
 	)
 
-	var/severity
+	severity
 
 // Decide which area will be targeted!
 /datum/gm_action/atmos_leak/set_up()

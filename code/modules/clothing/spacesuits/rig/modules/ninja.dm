@@ -192,8 +192,6 @@
 	smoke = null
 	return ..()
 
-
-
 /obj/item/rig_module/self_destruct/activate()
 	return
 

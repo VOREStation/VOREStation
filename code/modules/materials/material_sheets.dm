@@ -99,7 +99,7 @@
 	icon_state = "sheet-adamantine"
 	default_type = "lead"
 	apply_colour = 1
-	no_variants = TRUE
+	no_variants = FALSE
 
 /obj/item/stack/material/sandstone
 	name = "sandstone brick"
@@ -275,6 +275,8 @@
 	return
 
 /obj/item/stack/material/supermatter/attack_hand(mob/user)
+	. = ..()
+
 	update_mass()
 	radiation_repository.radiate(src, 5 + amount)
 	var/mob/living/M = user

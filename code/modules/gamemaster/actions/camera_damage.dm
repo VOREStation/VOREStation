@@ -10,7 +10,7 @@
 	..()
 
 	var/severity_range = 0
-	var/severity = pickweight(EVENT_LEVEL_MUNDANE = 10,
+	severity = pickweight(EVENT_LEVEL_MUNDANE = 10,
 		EVENT_LEVEL_MODERATE = 5,
 		EVENT_LEVEL_MAJOR = 1
 		)
@@ -44,9 +44,9 @@
 	return acquire_random_camera(remaining_attempts--)
 
 /datum/gm_action/camera_damage/proc/is_valid_camera(var/obj/machinery/camera/C)
-	// Only return a functional camera, not installed in a silicon, and that exists somewhere players have access
+	// Only return a functional camera, not installed in a silicon/hardsuit/circuit/etc, and that exists somewhere players have access
 	var/turf/T = get_turf(C)
-	return T && C.can_use() && !istype(C.loc, /mob/living/silicon) && (T.z in using_map.player_levels)
+	return T && C.can_use() && istype(C.loc, /turf) && (T.z in using_map.player_levels)
 
 /datum/gm_action/camera_damage/get_weight()
 	return 40 + (metric.count_people_in_department(ROLE_ENGINEERING) * 20) + (metric.count_people_in_department(ROLE_SYNTHETIC) * 40)

@@ -94,10 +94,16 @@
 			to_chat(user, "You load [W] into [src].")
 		return
 
+//TFF 3/6/19 - fix infinite frame creation, ported from Cit RP - also allow movement of hydroponic-related machines.
 	if(default_deconstruction_screwdriver(user, W))
 		return
-	if(default_deconstruction_crowbar(user, W))
+	if(W.is_wrench())
+		playsound(src, W.usesound, 100, 1)
+		to_chat(user, "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
+		anchored = !anchored
 		return
+//	if(default_deconstruction_crowbar(user, W))	//No circuit boards to give.
+//		return
 	if(istype(W,/obj/item/weapon/disk/botany))
 		if(loaded_disk)
 			to_chat(user, "There is already a data disk loaded.")

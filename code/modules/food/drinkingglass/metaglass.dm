@@ -312,7 +312,7 @@ Drinks Data
 	glass_icon_state = "atomicbombglass"
 	glass_center_of_mass = list("x"=15, "y"=7)
 
-/datum/reagent/ethanol/b52
+/datum/reagent/ethanol/coffee/b52
 	glass_icon_state = "b52glass"
 
 /datum/reagent/ethanol/bahama_mama
@@ -545,4 +545,8 @@ Drinks Data
 
 /datum/reagent/drink/eggnog
 	glass_icon_state = "eggnog"
+	glass_center_of_mass = list("x"=16, "y"=8)
+
+/datum/reagent/drink/cider
+	glass_icon_state = "ciderglass"
 	glass_center_of_mass = list("x"=16, "y"=8)

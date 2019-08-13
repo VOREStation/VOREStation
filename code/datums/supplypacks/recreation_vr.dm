@@ -40,11 +40,11 @@
 	containertype = /obj/structure/closet/crate
 	containername = "wolfgirl cosplay crate"
 
-/datum/supply_pack/randomised/recreation/figures_vr
+/datum/supply_pack/randomised/recreation/figures
 	name = "Action figures crate"
 	num_contained = 5
 	contains = list(
-			/obj/random/action_figure
+			/obj/random/action_figure/supplypack
 			)
 	cost = 200
 	containertype = /obj/structure/closet/crate

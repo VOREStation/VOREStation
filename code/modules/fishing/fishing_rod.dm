@@ -87,7 +87,7 @@
 	if(istype(Bait, bait_type))
 		var/foodvolume
 		for(var/datum/reagent/re in Bait.reagents.reagent_list)
-			if(re.id == "nutriment" || re.id == "protein" || re.id == "glucose")
+			if(re.id == "nutriment" || re.id == "protein" || re.id == "glucose" || re.id == "fishbait")
 				foodvolume += re.volume
 
 		toolspeed = initial(toolspeed) * min(0.75, (0.5 / max(0.5, (foodvolume / Bait.reagents.maximum_volume))))
@@ -122,3 +122,10 @@
 
 /obj/item/weapon/material/fishing_rod/modern/built
 	strung = FALSE
+
+/obj/item/weapon/material/fishing_rod/modern/cheap //A rod sold by the fishing vendor. Done so that the rod sold by mining reward vendors doesn't loose its value.
+	name = "cheap fishing rod"
+	desc = "Mass produced, but somewhat reliable."
+	default_material = "plastic"
+
+	toolspeed = 0.9

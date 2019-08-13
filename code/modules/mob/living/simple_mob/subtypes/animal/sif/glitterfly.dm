@@ -7,7 +7,9 @@
 	An herbivorous insectoid beloved for its glittering wings. \
 	<br>\
 	The creature has four wings mirrored laterally, which reflect \
-	the ambient light to provide a measure of camouflage."
+	the ambient light to provide a measure of camouflage. \
+	Their wings appearance does not come free, causing them to \
+	produce large amounts of reflective flake-like dandruff."
 	value = CATALOGUER_REWARD_TRIVIAL
 
 /datum/category_item/catalogue/fauna/glitterfly_rare
@@ -21,7 +23,8 @@
 
 /mob/living/simple_mob/animal/sif/glitterfly
 	name = "glitterfly"
-	desc = "A shiny butterfly!"
+	desc = "A large, shiny butterfly!"
+	description_info = "Glitterflies tend to have a wingspan equivalent to the length of an average human head."
 	tt_desc = "S Lepidoptera adamas"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/glitterfly)
 
@@ -60,9 +63,11 @@
 	default_pixel_y = rand(5,12)
 	pixel_y = default_pixel_y
 
+	adjust_scale(round(rand(90, 105) / 100))
+
 /mob/living/simple_mob/animal/sif/glitterfly/rare
 	name = "sparkling glitterfly"
-	desc = "An incredibly shiny butterfly!"
+	desc = "A large, incredibly shiny butterfly!"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/glitterfly, /datum/category_item/catalogue/fauna/glitterfly_rare)
 	maxHealth = 30
 	health = 30
@@ -99,4 +104,5 @@
 		if(friendly_animal_corpse)
 			hostile = TRUE
 			return
-	hostile = initial(hostile)
+	else if(prob(1))
+		hostile = initial(hostile)

@@ -5,6 +5,8 @@
 	max_universal_equip = 1
 	max_special_equip = 1
 
+	stomp_sound = 'sound/mecha/mechmove01.ogg'
+
 	cargo_capacity = 1
 
 /obj/mecha/medical/Initialize()
@@ -13,7 +15,7 @@
 	if(isPlayerLevel(T.z))
 		new /obj/item/mecha_parts/mecha_tracking(src)
 
-
+/*	// One horrific bastardization of glorious inheritence dead. A billion to go. ~Mech
 /obj/mecha/medical/mechturn(direction)
 	set_dir(direction)
 	playsound(src,'sound/mecha/mechmove01.ogg',40,1)
@@ -30,3 +32,4 @@
 	if(result)
 		playsound(src,'sound/mecha/mechstep.ogg',25,1)
 	return result
+*/

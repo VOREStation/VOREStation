@@ -229,3 +229,6 @@
 				prob(50);/obj/random/soap,
 				prob(60);/obj/random/drinkbottle,
 				prob(500);/obj/random/maintenance/clean)
+
+/obj/random/action_figure/supplypack
+	drop_get_turf = FALSE

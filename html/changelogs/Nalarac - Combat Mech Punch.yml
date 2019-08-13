@@ -22,7 +22,7 @@
 #################################
 
 # Your name.  
-author: Heroman3003
+author: Nalarac
 
 # Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
 delete-after: True
@@ -33,5 +33,8 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - tweak: "Removed access to departmental networks on camera modular computer program for average people."
-  - rscadd: "Added access to full network on camera modular computer program for heads."
+  - tweak: "Combat mechs can punch more things. Mech punch sounds like juggernaut now"
+  - tweak: "Simple mobs can attack more things."
+  - bugfix: "Cult pylons take damage from bullets."
+  - bugfix: "Click delay added on attacking simple doors and security barricades."
+  - tweak: "Material doors and barricades have different attacked sounds depending if its metal, wood, or resin."

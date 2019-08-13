@@ -86,7 +86,7 @@
 		var/obj/item/organ/external/E = organs_by_name[limb_tag]
 		if(!E || !E.is_usable())
 			stance_damage += 2 // let it fail even if just foot&leg
-		else if (E.is_malfunctioning())
+		else if (E.is_malfunctioning() && !(lying || resting))
 			//malfunctioning only happens intermittently so treat it as a missing limb when it procs
 			stance_damage += 2
 			if(isturf(loc) && prob(10))

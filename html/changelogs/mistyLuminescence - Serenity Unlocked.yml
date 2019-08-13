@@ -33,10 +33,4 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - bugfix: Prone people can no longer interact with an empty hand.
-  - bugfix: Two-handed items are now correctly unwielded when the user's offhand is severed.
-  - bugfix: Mecha syringe guns now respect pierceproof clothing.
-  - bugfix: Securitrons now correctly ignore attacks when disabled.
-  - bugfix: Rechargers now correctly benefit from upgraded capacitors.
-  - bugfix: Medical record laptops and detective TV camera consoles no longer turn into regular consoles when de- and re-constructed.
-  - bugfix: Zaddat Shrouds now retain their base name when damaged, if the shroud has been customized.
+  - tweak: "Allows construction of serenity in robotics."

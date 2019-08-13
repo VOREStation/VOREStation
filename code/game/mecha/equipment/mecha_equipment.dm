@@ -15,6 +15,7 @@
 	icon_state = "mecha_equip"
 	force = 5
 	origin_tech = list(TECH_MATERIAL = 2)
+	description_info = "Some equipment may gain new abilities or advantages if equipped to certain types of Exosuits."
 	var/equip_cooldown = 0
 	var/equip_ready = 1
 	var/energy_drain = 0
@@ -25,6 +26,7 @@
 	var/equip_type = null //mechaequip2
 	var/allow_duplicate = FALSE
 	var/ready_sound = 'sound/mecha/mech_reload_default.ogg' //Sound to play once the fire delay passed.
+	var/enable_special = FALSE	// Will the tool do its special?
 
 /obj/item/mecha_parts/mecha_equipment/proc/do_after_cooldown(target=1)
 	sleep(equip_cooldown)
@@ -122,6 +124,15 @@
 /obj/item/mecha_parts/mecha_equipment/proc/is_melee()
 	return range&MELEE
 
+/obj/item/mecha_parts/mecha_equipment/proc/enable_special_checks(atom/target)
+	if(ispath(required_type))
+		return istype(target, required_type)
+
+	for (var/path in required_type)
+		if (istype(target, path))
+			return 1
+
+	return 0
 
 /obj/item/mecha_parts/mecha_equipment/proc/action_checks(atom/target)
 	if(!target)
@@ -202,6 +213,10 @@
 	M.equipment += src
 	chassis = M
 	src.loc = M
+
+	if(enable_special_checks(M))
+		enable_special = TRUE
+
 	M.log_message("[src] initialized.")
 	if(!M.selected)
 		M.selected = src
@@ -235,14 +250,13 @@
 		chassis.log_message("[src] removed from equipment.")
 		chassis = null
 		set_ready_state(1)
+	enable_special = FALSE
 	return
-
 
 /obj/item/mecha_parts/mecha_equipment/Topic(href,href_list)
 	if(href_list["detach"])
 		src.detach()
 	return
-
 
 /obj/item/mecha_parts/mecha_equipment/proc/set_ready_state(state)
 	equip_ready = state
@@ -258,4 +272,7 @@
 /obj/item/mecha_parts/mecha_equipment/proc/log_message(message)
 	if(chassis)
 		chassis.log_message("<i>[src]:</i> [message]")
+	return
+
+/obj/item/mecha_parts/mecha_equipment/proc/MoveAction() //Allows mech equipment to do an action upon the mech moving
 	return

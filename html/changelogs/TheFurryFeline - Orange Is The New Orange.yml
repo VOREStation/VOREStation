@@ -22,7 +22,7 @@
 #################################
 
 # Your name.  
-author: Mechoid
+author: TheFurryFeline
 
 # Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
 delete-after: True
@@ -33,6 +33,5 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - rscadd: "The Shimm, Frostfly, Glitterfly, River Leech, Crystal-Feathered Duck, and Kururak are now able to be used on the map and PoIs."
-  - tweak: "Glass jars can now hold glitterflies, river leeches, and frostflies."
-  - tweak: "Glass jars now respect mobs that exist over the lighting plane, adding a special overlay visible when on the ground."
+  - rscadd: "New orange jumpsuit for loadout that doesn't get locked to tracking."
+  - tweak: "Prison jumpsuit filepath changed accordingly and closets with obj updated."
