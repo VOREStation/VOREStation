@@ -1820,6 +1820,7 @@
 #include "code\modules\fishing\fishing_net.dm"
 #include "code\modules\fishing\fishing_rod.dm"
 #include "code\modules\fishing\fishing_rod_vr.dm"
+#include "code\modules\fishing\fishing_vr.dm"
 #include "code\modules\flufftext\Dreaming.dm"
 #include "code\modules\flufftext\Hallucination.dm"
 #include "code\modules\flufftext\look_up.dm"
