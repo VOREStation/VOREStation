@@ -9,7 +9,7 @@
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
 #define LIGHT_BULB_TEMPERATURE 400 //K - used value for a 60W bulb
-#define LIGHTING_POWER_FACTOR 5		//5W per luminosity * range
+#define LIGHTING_POWER_FACTOR 2		//5W per luminosity * range		//VOREStation Edit: why the fuck are lights eating so much power, 2W per thing
 
 var/global/list/light_type_cache = list()
 /proc/get_light_type_instance(var/light_type)
@@ -170,7 +170,7 @@ var/global/list/light_type_cache = list()
 	layer = ABOVE_MOB_LAYER
 	use_power = 2
 	idle_power_usage = 2
-	active_power_usage = 20 // VOREStation Edit - Keep lights at 20 power
+	active_power_usage = 10
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = 0					// 1 if on, 0 if off
 	var/brightness_range
