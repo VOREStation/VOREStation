@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(indoor_fishing_chance_list, list(FISHING_RARE = 5, FISHING_UNCOMMON = 20, FISHING_COMMON = 30, FISHING_JUNK = 15, FISHING_NOTHING = 50))
+GLOBAL_LIST_INIT(indoor_fishing_chance_list, list(FISHING_RARE = 5, FISHING_UNCOMMON = 20, FISHING_COMMON = 30, FISHING_JUNK = 5, FISHING_NOTHING = 50))
 GLOBAL_LIST_INIT(indoor_fishing_junk_list, list(
 		/obj/random/junk = 15,
 		/obj/random/maintenance/clean = 1
