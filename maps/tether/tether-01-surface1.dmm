@@ -25562,7 +25562,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled,
 /area/maintenance/lower/atmos)
 "cjd" = (
 /obj/machinery/disposal,
@@ -26410,12 +26410,14 @@
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/processing)
 "dRx" = (
-/obj/machinery/vending/cigarette,
 /obj/machinery/power/apc{
 	cell_type = /obj/item/weapon/cell/apc;
 	dir = 8;
 	name = "west bump";
 	pixel_x = -28
+	},
+/obj/structure/cable/green{
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm3)
@@ -27501,7 +27503,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/steel_dirty,
 /area/crew_quarters/sleep/maintDorm2)
 "ipN" = (
 /obj/structure/closet/crate,
@@ -28450,7 +28452,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/tiled/steel_dirty,
 /area/crew_quarters/sleep/maintDorm3)
 "leP" = (
 /obj/structure/railing{
@@ -29050,7 +29052,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/steel_dirty,
 /area/crew_quarters/sleep/maintDorm1)
 "nhV" = (
 /obj/machinery/atmospherics/pipe/tank/nitrous_oxide{
