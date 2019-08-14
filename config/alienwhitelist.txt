@@ -39,6 +39,7 @@ singo - Gutter
 tastypred - Xenochimera
 varonis - Xenochimera
 verkister - Xenochimera
+westfire - Xenomorph Hybrid
 wickedtemp - Shadekin Empathy
 wtfismyname - Xenomorph Hybrid
 xioen - Diona
