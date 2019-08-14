@@ -5,8 +5,8 @@ GLOBAL_LIST_INIT(indoor_fishing_junk_list, list(
 		))
 
 /turf/simulated/floor/water/indoors
-	min_fishing_time = 45
-	max_fishing_time = 120
+	min_fishing_time = 33
+	max_fishing_time = 99
 
 /turf/simulated/floor/water/indoors/handle_fish()
 	if(has_fish)
