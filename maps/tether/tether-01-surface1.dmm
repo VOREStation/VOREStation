@@ -203,19 +203,19 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/airlock)
 "aay" = (
-/obj/structure/plasticflaps/mining,
 /obj/machinery/conveyor{
 	dir = 1;
 	id = "mining_inbound"
 	},
+/obj/structure/plasticflaps,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "aaz" = (
-/obj/structure/plasticflaps/mining,
 /obj/machinery/conveyor{
 	dir = 1;
 	id = "mining_outbound"
 	},
+/obj/structure/plasticflaps,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "aaA" = (
@@ -255,17 +255,17 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "aaD" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "mining_inbound"
+/obj/machinery/disposal/deliveryChute{
+	dir = 1
 	},
+/obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "aaE" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "mining_outbound"
+/obj/structure/disposaloutlet{
+	dir = 1
 	},
+/obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "aaF" = (
@@ -484,9 +484,9 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/mining_main/airlock)
 "aba" = (
-/obj/machinery/conveyor{
-	dir = 6;
-	id = "mining_inbound"
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
@@ -526,7 +526,7 @@
 "abf" = (
 /obj/machinery/door/airlock/maintenance/common{
 	name = "Trash Pit Access";
-	req_one_access = list(26,48)
+	req_one_access = list(26,48,12)
 	},
 /obj/structure/catwalk,
 /obj/machinery/door/firedoor/glass,
@@ -562,11 +562,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/refinery)
 "abj" = (
-/obj/structure/plasticflaps/mining,
 /obj/machinery/conveyor{
 	dir = 8;
 	id = "mining_inbound"
 	},
+/obj/structure/plasticflaps,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "abk" = (
@@ -764,13 +764,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
-"abz" = (
-/obj/machinery/conveyor{
-	dir = 6;
-	id = "mining_outbound"
-	},
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/mining_main/refinery)
 "abA" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/alarm{
@@ -792,11 +785,11 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
 "abC" = (
-/obj/structure/plasticflaps/mining,
 /obj/machinery/conveyor{
 	dir = 8;
 	id = "mining_outbound"
 	},
+/obj/structure/plasticflaps,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "abD" = (
@@ -5994,7 +5987,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/maintenance/common{
 	name = "Trash Pit Access";
-	req_one_access = list(48)
+	req_one_access = list(48,12)
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
@@ -26532,6 +26525,15 @@
 "epw" = (
 /turf/simulated/wall/r_wall,
 /area/crew_quarters/sleep/Dorm_3)
+"esO" = (
+/obj/structure/disposaloutlet{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/mining_main/refinery)
 "ewA" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -27225,6 +27227,10 @@
 "gXh" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/public_garden)
+"gYZ" = (
+/obj/structure/disposalpipe/segment,
+/turf/simulated/wall,
+/area/tether/surfacebase/mining_main/refinery)
 "gZC" = (
 /obj/structure/closet,
 /turf/simulated/floor/wood,
@@ -28328,6 +28334,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
+"kUA" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/mining_main/refinery)
 "kVd" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/purple{
 	icon_state = "map";
@@ -28897,6 +28909,10 @@
 /obj/item/weapon/beach_ball/holoball,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
+"mCn" = (
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/mining_main/refinery)
 "mDj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -29233,6 +29249,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
+"nGR" = (
+/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/mining_main/refinery)
 "nHz" = (
 /obj/machinery/alarm{
 	dir = 4;
@@ -29627,6 +29648,12 @@
 /obj/structure/stairs/north,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
+"pdy" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/wall,
+/area/tether/surfacebase/mining_main/refinery)
 "pdL" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -31131,6 +31158,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
+"ukF" = (
+/obj/machinery/disposal/deliveryChute{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/mining_main/refinery)
 "ulG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -43256,7 +43292,7 @@ aak
 aar
 aar
 aaC
-aaC
+aar
 aar
 aar
 aar
@@ -43398,10 +43434,10 @@ aal
 aat
 aaz
 aaE
-aaE
-aaz
-aaE
-abz
+gYZ
+mCn
+mCn
+aba
 aar
 acZ
 adD
@@ -43540,10 +43576,10 @@ aam
 aas
 aay
 aaD
-aaD
-aay
+gYZ
+mCn
 aba
-aby
+kUA
 aar
 abY
 acx
@@ -43684,8 +43720,8 @@ aar
 aar
 aar
 aar
-abd
-aby
+kUA
+kUA
 aaC
 abZ
 acy
@@ -43825,9 +43861,9 @@ aah
 aah
 aar
 aaF
-aar
-abd
-aby
+nGR
+kUA
+kUA
 aar
 aca
 acx
@@ -43968,8 +44004,8 @@ aah
 aar
 aaF
 aar
-abd
-aby
+pdy
+pdy
 aar
 adb
 acx
@@ -44110,8 +44146,8 @@ aah
 aar
 aaG
 aar
-abd
-aby
+esO
+ukF
 aaC
 acc
 adG
@@ -44393,7 +44429,7 @@ aah
 aah
 aar
 aaF
-aar
+nGR
 abd
 aby
 aar
@@ -44534,7 +44570,7 @@ aah
 aah
 aah
 aar
-aar
+nGR
 aar
 abd
 aby
