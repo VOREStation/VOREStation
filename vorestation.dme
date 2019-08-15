@@ -1117,6 +1117,7 @@
 #include "code\game\objects\items\weapons\grenades\projectile.dm"
 #include "code\game\objects\items\weapons\grenades\smokebomb.dm"
 #include "code\game\objects\items\weapons\grenades\spawnergrenade.dm"
+#include "code\game\objects\items\weapons\grenades\spawnergrenade_vr.dm"
 #include "code\game\objects\items\weapons\grenades\supermatter.dm"
 #include "code\game\objects\items\weapons\id cards\cards.dm"
 #include "code\game\objects\items\weapons\id cards\station_ids.dm"
