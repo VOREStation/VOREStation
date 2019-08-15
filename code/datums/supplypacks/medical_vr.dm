@@ -36,3 +36,6 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Virus sample crate"
 	access = access_medical_equip
+
+/datum/supply_pack/med/bloodpack
+	containertype = /obj/structure/closet/crate/medical/blood
