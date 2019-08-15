@@ -2116,21 +2116,11 @@
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
 "dx" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
-/obj/structure/catwalk,
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
+/obj/machinery/door/airlock/maintenance/common,
+/obj/effect/floor_decal/rust,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/ai)
 "dy" = (
 /turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/shuttle/excursion/tether)
@@ -2906,13 +2896,18 @@
 /turf/simulated/wall,
 /area/security/security_equiptment_storage)
 "eU" = (
-/obj/structure/railing{
-	icon_state = "railing0";
-	dir = 1
+/obj/structure/catwalk,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
-/obj/structure/closet,
-/obj/structure/railing{
-	dir = 4
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
 	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
@@ -3191,7 +3186,10 @@
 /turf/simulated/floor,
 /area/maintenance/station/ai)
 "fq" = (
-/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 1
+	},
 /obj/structure/railing{
 	dir = 4
 	},
@@ -5022,6 +5020,18 @@
 /turf/simulated/floor/tiled,
 /area/security/hallway)
 "iq" = (
+/obj/structure/catwalk,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
 "ir" = (
@@ -9967,7 +9977,14 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "pT" = (
-/obj/structure/railing,
+/obj/structure/catwalk,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
 "pU" = (
@@ -10524,25 +10541,17 @@
 /turf/simulated/floor/tiled,
 /area/security/hallway)
 "qT" = (
-/obj/structure/cable/green{
-	icon_state = "32-2"
-	},
-/obj/structure/lattice,
-/obj/structure/railing,
-/turf/simulated/open,
-/area/maintenance/station/sec_upper)
+/turf/simulated/floor,
+/area/maintenance/station/elevator)
 "qU" = (
 /obj/machinery/portable_atmospherics/powered/pump/filled,
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
 "qV" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing,
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/cobweb,
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "qW" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -11048,23 +11057,16 @@
 /turf/simulated/floor/plating,
 /area/crew_quarters/heads/cmo)
 "rD" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/catwalk,
+/obj/structure/railing,
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "rE" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing{
+	dir = 4
 	},
-/obj/structure/catwalk,
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "rF" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -11598,10 +11600,10 @@
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "so" = (
-/obj/structure/disposalpipe/segment,
+/obj/effect/decal/cleanable/dirt,
 /obj/structure/catwalk,
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "sp" = (
 /turf/simulated/wall/r_wall,
 /area/hallway/station/upper)
@@ -12178,16 +12180,12 @@
 /area/security/hallway)
 "te" = (
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	icon_state = "32-2"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/obj/structure/lattice,
+/obj/structure/railing,
+/turf/simulated/open,
+/area/maintenance/station/elevator)
 "tf" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
@@ -12856,10 +12854,22 @@
 /turf/simulated/floor/tiled,
 /area/security/hallway)
 "ue" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/structure/table/rack{
+	dir = 8;
+	layer = 2.9
+	},
+/obj/random/maintenance/security,
+/obj/random/maintenance/security,
+/obj/random/maintenance/medical,
+/obj/item/weapon/storage/box/lights/mixed,
+/obj/structure/railing,
+/obj/random/tool,
+/obj/machinery/light/small{
+	icon_state = "bulb1";
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/station/elevator)
 "uf" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -27578,22 +27588,13 @@
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
 "Re" = (
-/obj/structure/table/rack{
-	dir = 8;
-	layer = 2.9
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing{
+	dir = 4
 	},
-/obj/random/maintenance/security,
-/obj/random/maintenance/security,
-/obj/random/maintenance/medical,
-/obj/item/weapon/storage/box/lights/mixed,
 /obj/structure/railing,
-/obj/random/tool,
-/obj/machinery/light/small{
-	icon_state = "bulb1";
-	dir = 1
-	},
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "Rf" = (
 /obj/effect/floor_decal/borderfloor/corner2{
 	dir = 8
@@ -27637,10 +27638,9 @@
 /turf/space,
 /area/space)
 "Rk" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/cobweb,
+/obj/structure/catwalk,
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "Rl" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
@@ -27754,10 +27754,10 @@
 /turf/simulated/mineral/vacuum,
 /area/quartermaster/office)
 "Rv" = (
-/obj/machinery/door/airlock/maintenance/common,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor,
-/area/maintenance/station/ai)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "Rw" = (
 /obj/structure/catwalk,
 /obj/machinery/light/small{
@@ -27949,12 +27949,17 @@
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
 "RP" = (
-/obj/structure/catwalk,
-/obj/structure/cable{
-	icon_state = "2-8"
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/catwalk,
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "RQ" = (
 /obj/structure/closet/crate,
 /obj/random/drinkbottle,
@@ -28180,39 +28185,30 @@
 /turf/simulated/floor,
 /area/maintenance/station/ai)
 "St" = (
-/obj/structure/railing{
-	icon_state = "railing0";
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "west bump";
-	pixel_x = -28
-	},
-/turf/simulated/floor,
-/area/maintenance/station/sec_upper)
-"Su" = (
-/obj/structure/catwalk,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
+/obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/obj/structure/catwalk,
+/obj/machinery/alarm{
+	pixel_y = 22
 	},
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
+"Su" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/elevator)
 "Sv" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
@@ -28236,6 +28232,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor,
 /area/maintenance/cargo)
 "Sx" = (
@@ -28409,6 +28406,25 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
+"SL" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/elevator)
+"SM" = (
+/obj/effect/floor_decal/rust,
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/elevator)
+"SN" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/elevator)
 "SP" = (
 /obj/structure/table/woodentable,
 /obj/item/device/taperecorder{
@@ -37227,7 +37243,7 @@ eX
 lC
 lC
 mH
-te
+RP
 mH
 mH
 mH
@@ -37369,8 +37385,8 @@ eX
 lC
 lC
 mH
-dx
-so
+St
+SN
 tk
 uf
 uW
@@ -37511,8 +37527,8 @@ pr
 lC
 lC
 mH
-rD
-af
+Su
+tl
 tl
 ug
 tl
@@ -37653,8 +37669,8 @@ le
 mH
 mH
 mH
-rD
-af
+Su
+tl
 tm
 uh
 uX
@@ -37792,11 +37808,11 @@ mm
 SF
 oL
 le
-iq
-af
 qT
-rE
-af
+tl
+te
+SL
+tl
 tn
 tn
 tn
@@ -37934,11 +37950,11 @@ nS
 om
 oI
 le
-af
-af
-Re
-fc
-af
+tl
+tl
+ue
+Rk
+tl
 tn
 ui
 ui
@@ -38076,11 +38092,11 @@ nT
 on
 oM
 le
-Rk
-fq
 qV
-fc
-af
+rE
+Re
+Rk
+tl
 tn
 ui
 ui
@@ -38218,11 +38234,11 @@ nU
 oo
 oN
 le
-pT
-dw
-fc
-mR
-af
+rD
+so
+Rk
+SM
+tl
 tn
 ui
 ui
@@ -38363,8 +38379,8 @@ af
 aI
 qn
 aI
-aI
-af
+yz
+tl
 tn
 ui
 ui
@@ -38779,7 +38795,7 @@ ku
 kJ
 aI
 mR
-St
+fq
 aI
 aI
 aI
@@ -38919,10 +38935,10 @@ RE
 RH
 RH
 RH
-RH
-RH
-Su
 eU
+RH
+iq
+RO
 aI
 ab
 ab
@@ -39063,8 +39079,8 @@ be
 be
 be
 be
-RP
-RO
+aI
+pT
 aI
 ab
 ab
@@ -39767,7 +39783,7 @@ it
 di
 di
 dy
-ue
+Rv
 cK
 cK
 ms
@@ -39909,7 +39925,7 @@ iK
 jY
 kn
 di
-ue
+Rv
 cK
 cK
 ms
@@ -40051,7 +40067,7 @@ iK
 jY
 kn
 di
-ue
+Rv
 cK
 cK
 ms
@@ -40903,7 +40919,7 @@ eb
 ka
 ky
 di
-ue
+Rv
 cK
 cK
 ms
@@ -41045,7 +41061,7 @@ jf
 kj
 kQ
 di
-ue
+Rv
 cK
 cK
 ms
@@ -41187,7 +41203,7 @@ jr
 kk
 kR
 dy
-ue
+Rv
 cK
 cK
 ms
@@ -42175,7 +42191,7 @@ dV
 eI
 fp
 mT
-Rv
+dx
 Rx
 dV
 fy
