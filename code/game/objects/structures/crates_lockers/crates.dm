@@ -421,7 +421,7 @@
 /obj/structure/closet/crate/secure/bin
 	name = "secure bin"
 	desc = "A secure bin."
-	icon = 'icons/obj/storage_vr.dmi'	//VOREStation edit
+	icon = 'icons/obj/storage.dmi'	//VOREStation edit
 	icon_state = "largebins"
 	icon_opened = "largebinsopen"
 	icon_closed = "largebins"
