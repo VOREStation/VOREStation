@@ -572,6 +572,7 @@
 	name = "\improper Excursion Shuttle"
 	icon_state = "shuttle2"
 	base_turf = /turf/space
+	requires_power = 1
 
 /area/shuttle/excursion/tether
 	name = "\improper Excursion Shuttle - Tether"
