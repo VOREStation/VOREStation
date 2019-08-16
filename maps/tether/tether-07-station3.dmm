@@ -3075,6 +3075,12 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
+"fh" = (
+/obj/machinery/light/spot{
+	pixel_y = 32
+	},
+/turf/simulated/wall/thull,
+/area/shuttle/excursion/tether)
 "fi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	icon_state = "intact-scrubbers";
@@ -28514,9 +28520,6 @@
 	id_tag = "expshuttle_vent"
 	},
 /obj/structure/cable/cyan,
-/obj/machinery/oxygen_pump{
-	pixel_y = -32
-	},
 /obj/structure/handrail{
 	dir = 1
 	},
@@ -40771,7 +40774,7 @@ be
 bX
 cE
 cK
-dj
+fh
 ZB
 dW
 UB
@@ -41907,7 +41910,7 @@ be
 bX
 cE
 cK
-dj
+fh
 dj
 eg
 Xl
