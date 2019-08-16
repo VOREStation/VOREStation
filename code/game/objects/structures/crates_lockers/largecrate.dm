@@ -82,10 +82,11 @@
 	starts_with = list(/obj/structure/vehiclecage/quadtrailer)
 
 /obj/structure/largecrate/animal
-	icon_state = "mulecrate"
+	icon_state = "lisacrate"	//VOREStation Edit
 
 /obj/structure/largecrate/animal/mulebot
 	name = "Mulebot crate"
+	icon_state = "mulecrate"	//VOREStation Edit
 	starts_with = list(/mob/living/bot/mulebot)
 
 /obj/structure/largecrate/animal/corgi
