@@ -5490,7 +5490,6 @@
 /turf/simulated/wall,
 /area/maintenance/cargo)
 "iW" = (
-/obj/machinery/recharge_station,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "iX" = (
@@ -6116,13 +6115,10 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "jZ" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 1
-	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "ka" = (
@@ -6133,11 +6129,12 @@
 	icon_state = "intact-scrubbers";
 	dir = 4
 	},
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "kb" = (
-/obj/structure/handrail,
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
+/obj/machinery/recharge_station,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "kc" = (
@@ -29061,15 +29058,21 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "VU" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "shuttle_outbound"
-	},
 /obj/machinery/firealarm{
 	dir = 2;
 	layer = 3.3;
 	pixel_x = 0;
 	pixel_y = 26
+	},
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
+	},
+/obj/machinery/conveyor_switch/oneway{
+	id = "shuttle_outbound"
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
@@ -29181,21 +29184,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/evidence_storage)
 "Xa" = (
-/obj/machinery/conveyor_switch/oneway{
-	id = "shuttle_outbound"
-	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 8
-	},
 /obj/item/device/radio/intercom{
 	dir = 1;
 	pixel_y = 24;
 	req_access = list()
 	},
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/structure/handrail,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "Xb" = (
@@ -29205,12 +29199,26 @@
 /turf/simulated/wall/thull,
 /area/shuttle/excursion/tether)
 "Xc" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "shuttle blast";
+	name = "Shuttle Blast Doors";
+	opacity = 0
+	},
+/obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/floor/plating,
 /area/shuttle/excursion/tether)
 "Xe" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -29219,7 +29227,6 @@
 /turf/simulated/floor/wood,
 /area/security/breakroom)
 "Xi" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5;
 	icon_state = "intact"
@@ -29227,11 +29234,6 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "Xk" = (
-/obj/machinery/power/apc{
-	dir = 2;
-	name = "south bump";
-	pixel_y = -28
-	},
 /obj/structure/cable/cyan{
 	d2 = 4;
 	icon_state = "0-4"
@@ -29242,6 +29244,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	icon_state = "intact-scrubbers";
 	dir = 4
+	},
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -28;
+	req_access = list(67)
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
@@ -29517,8 +29525,9 @@
 /turf/simulated/floor/plating,
 /area/shuttle/excursion/tether)
 "Zk" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -29616,6 +29625,9 @@
 	dir = 1;
 	icon_state = "alarm0";
 	pixel_y = -22
+	},
+/obj/structure/handrail{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
@@ -42182,10 +42194,10 @@ cK
 cK
 dj
 Xc
+dj
+dj
+dj
 SQ
-dj
-dj
-dj
 UR
 UR
 VQ
