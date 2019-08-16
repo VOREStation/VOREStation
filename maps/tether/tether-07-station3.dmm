@@ -1970,15 +1970,23 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "di" = (
-/turf/simulated/shuttle/wall/voidcraft,
-/area/shuttle/excursion/tether)
-"dj" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/shuttle/plating,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "shuttle blast";
+	name = "Shuttle Blast Doors";
+	opacity = 0
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/excursion/tether)
+"dj" = (
+/turf/simulated/wall/thull,
 /area/shuttle/excursion/tether)
 "dk" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -2122,7 +2130,18 @@
 /turf/simulated/floor,
 /area/maintenance/station/ai)
 "dy" = (
-/turf/simulated/shuttle/wall/voidcraft/hard_corner,
+/obj/structure/bed/padded,
+/obj/item/weapon/bedsheet/brown,
+/obj/structure/curtain/open/bed,
+/obj/machinery/alarm{
+	breach_detection = 0;
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 25;
+	rcon_setting = 3;
+	report_danger_level = 0
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "dz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -2139,26 +2158,53 @@
 /obj/structure/catwalk,
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
-"dB" = (
-/obj/structure/table/steel,
-/obj/item/clothing/head/pilot,
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/excursion/tether)
 "dC" = (
-/obj/structure/flight_left,
-/turf/simulated/shuttle/floor/black,
+/obj/structure/bed/chair/comfy/blue{
+	icon_state = "comfychair_preview";
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "dD" = (
-/obj/machinery/computer/shuttle_control/web/excursion{
-	icon = 'icons/obj/computer.dmi';
-	my_doors = list("expshuttle_door_L" = "Port Cargo", "expshuttle_door_Ro" = "Airlock Outer", "expshuttle_door_Ri" = "Airlock Inner", "expshuttle_door_cargo" = "Cargo Hatch");
-	my_sensors = list("shuttlesens_exp" = "Exterior Environment", "shuttlesens_exp_int" = "Cargo Area", "shuttlesens_exp_psg" = "Passenger Area")
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "shuttle blast";
+	name = "Shuttle Blast Doors";
+	pixel_x = 26;
+	pixel_y = 39;
+	req_access = list(3)
 	},
-/turf/simulated/shuttle/floor/black,
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "dE" = (
-/obj/structure/flight_right,
-/turf/simulated/shuttle/floor/black,
+/obj/structure/bed/chair/comfy/blue{
+	icon_state = "comfychair_preview";
+	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/machinery/alarm{
+	breach_detection = 0;
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 25;
+	rcon_setting = 3;
+	report_danger_level = 0
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "dF" = (
 /obj/effect/floor_decal/borderfloor{
@@ -2381,12 +2427,16 @@
 /turf/simulated/wall/r_wall,
 /area/maintenance/station/ai)
 "dW" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8
+/obj/machinery/light{
+	dir = 1
 	},
-/turf/simulated/shuttle/plating,
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/tank/oxygen,
+/obj/item/device/suit_cooling_unit,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/suit/space/void/pilot,
+/obj/item/clothing/head/helmet/space/void/pilot,
+/turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "dX" = (
 /obj/effect/floor_decal/borderfloor{
@@ -2410,45 +2460,37 @@
 /turf/simulated/floor/tiled,
 /area/security/hallway)
 "dY" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/table/rack/shelf,
-/obj/item/weapon/tank/oxygen,
-/obj/item/device/suit_cooling_unit,
-/obj/item/clothing/head/helmet/space/void/pilot,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/pilot,
-/obj/item/clothing/head/helmet/space/void/pilot,
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/excursion/tether)
-"dZ" = (
 /obj/item/device/radio/intercom{
-	pixel_y = -24
+	dir = 4;
+	pixel_x = 24
 	},
-/turf/simulated/shuttle/floor/black,
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "ea" = (
-/obj/structure/bed/chair/comfy/blue{
-	icon_state = "comfychair_preview";
-	dir = 1
-	},
-/turf/simulated/shuttle/floor/black,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
 /area/shuttle/excursion/tether)
 "eb" = (
-/turf/simulated/shuttle/floor/black,
+/obj/machinery/door/airlock/hatch,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/excursion/tether)
 "ec" = (
-/obj/machinery/light{
-	dir = 1
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
-/obj/structure/table/rack/shelf,
-/obj/item/weapon/tank/oxygen,
-/obj/item/device/suit_cooling_unit,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/suit/space/void/pilot,
-/obj/item/clothing/head/helmet/space/void/pilot,
-/turf/simulated/shuttle/floor/black,
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "ed" = (
 /obj/structure/railing,
@@ -2477,12 +2519,17 @@
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
 "eg" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/simulated/shuttle/plating,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	name = "Station Intercom (General)";
+	pixel_y = 27
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "eh" = (
 /obj/effect/floor_decal/borderfloor/corner{
@@ -2567,6 +2614,11 @@
 /obj/machinery/camera/network/exploration{
 	dir = 8
 	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "en" = (
@@ -2602,9 +2654,19 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "er" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/turf/simulated/shuttle/plating,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "es" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2683,8 +2745,19 @@
 /turf/simulated/floor/tiled,
 /area/security/hallway)
 "ex" = (
-/obj/machinery/door/airlock/voidcraft,
-/turf/simulated/shuttle/floor/black,
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/visible/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold4w/visible/supply,
+/turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "ey" = (
 /turf/simulated/floor/carpet,
@@ -2849,42 +2922,19 @@
 /obj/random/junk,
 /turf/simulated/floor,
 /area/maintenance/station/ai)
-"eN" = (
-/obj/machinery/shuttle_sensor{
-	dir = 2;
-	id_tag = "shuttlesens_exp_psg"
-	},
-/turf/simulated/shuttle/wall/voidcraft,
-/area/shuttle/excursion/tether)
-"eO" = (
-/obj/machinery/recharge_station,
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/excursion/tether)
-"eP" = (
-/obj/structure/table/rack/shelf,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/mask/breath,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/excursion/tether)
-"eQ" = (
-/obj/structure/bed/chair/shuttle,
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/excursion/tether)
 "eR" = (
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+/obj/structure/bed/chair/shuttle,
+/obj/structure/cable/cyan{
+	d2 = 4;
+	icon_state = "0-4"
 	},
-/obj/structure/closet/walllocker/emerglocker{
-	pixel_x = -32
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
 	},
-/turf/simulated/shuttle/floor/black,
+/turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "eS" = (
 /obj/item/frame,
@@ -3051,31 +3101,38 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
 "fg" = (
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 6
 	},
-/obj/structure/closet/walllocker/emerglocker{
-	pixel_x = 32
-	},
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/excursion/tether)
-"fh" = (
-/obj/machinery/sleeper{
+/obj/machinery/atmospherics/portables_connector{
 	dir = 8
 	},
-/turf/simulated/shuttle/floor/black,
+/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 10
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "fi" = (
-/obj/machinery/sleep_console,
-/turf/simulated/shuttle/floor/black,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 6
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "fj" = (
-/obj/structure/bed/chair/shuttle{
-	icon_state = "shuttle_chair";
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
 	},
-/turf/simulated/shuttle/floor/black,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "fk" = (
 /obj/effect/floor_decal/borderfloorblack{
@@ -3250,14 +3307,23 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/security_processing)
 "fx" = (
-/obj/structure/bed/chair/shuttle{
-	icon_state = "shuttle_chair";
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 4
 	},
-/obj/item/device/radio/intercom{
-	pixel_y = -24
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
 	},
-/turf/simulated/shuttle/floor/black,
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/hatch,
+/turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/excursion/tether)
 "fy" = (
 /turf/simulated/wall/r_wall,
@@ -3328,13 +3394,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor,
 /area/maintenance/station/ai)
-"fF" = (
-/obj/machinery/shuttle_sensor{
-	dir = 6;
-	id_tag = "shuttlesens_exp_int"
-	},
-/turf/simulated/shuttle/wall/voidcraft,
-/area/shuttle/excursion/tether)
 "fG" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 10
@@ -3476,47 +3535,20 @@
 "fP" = (
 /turf/simulated/wall/r_wall,
 /area/ai_core_foyer)
-"fQ" = (
-/obj/effect/floor_decal/industrial/outline/red,
-/obj/structure/closet/secure_closet/guncabinet/excursion,
-/turf/simulated/shuttle/floor/darkred,
-/area/shuttle/excursion/tether)
-"fR" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/machinery/space_heater,
-/turf/simulated/shuttle/floor/darkred,
-/area/shuttle/excursion/tether)
-"fS" = (
-/obj/machinery/portable_atmospherics/powered/pump/filled,
-/obj/effect/floor_decal/industrial/outline/blue,
-/turf/simulated/shuttle/floor/darkred,
-/area/shuttle/excursion/tether)
-"fT" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/excursion/tether)
-"fU" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 6
-	},
-/turf/simulated/shuttle/plating,
-/area/shuttle/excursion/tether)
 "fV" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 9
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
 	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 8;
-	frequency = 1380;
-	id_tag = "expshuttle_docker_pump_out_internal"
-	},
-/turf/simulated/shuttle/floor/black,
+/obj/structure/table/rack,
+/obj/random/toolbox,
+/obj/random/powercell,
+/obj/random/tech_supply,
+/obj/random/tech_supply,
+/obj/random/tech_supply,
+/obj/random/tech_supply,
+/obj/random/tech_supply,
+/obj/random/tech_supply,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "fW" = (
 /obj/effect/floor_decal/borderfloorblack,
@@ -3930,40 +3962,24 @@
 /turf/simulated/floor,
 /area/maintenance/station/ai)
 "gL" = (
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	cycle_to_external_air = 1;
-	frequency = 1380;
-	id_tag = "expshuttle_docker";
-	pixel_y = 26;
-	req_one_access = list(19,43,67);
-	tag_airpump = "expshuttle_vent";
-	tag_chamber_sensor = "expshuttle_sensor";
-	tag_exterior_door = "expshuttle_door_Ro";
-	tag_exterior_sensor = "expshuttle_exterior_sensor";
-	tag_interior_door = "expshuttle_door_Ri"
+/obj/machinery/atmospherics/pipe/simple/visible/yellow,
+/obj/machinery/meter,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -26
 	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 1
-	},
-/turf/simulated/shuttle/floor/black,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "gM" = (
-/obj/effect/floor_decal/industrial/warning{
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 5
 	},
-/obj/machinery/airlock_sensor{
-	frequency = 1380;
-	id_tag = "expshuttle_sensor";
-	master_tag = "expshuttle_docker";
-	pixel_y = 28
+/obj/machinery/meter,
+/obj/item/device/radio/intercom{
+	pixel_y = -24
 	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4;
-	frequency = 1380;
-	id_tag = "expshuttle_vent"
-	},
-/turf/simulated/shuttle/floor/black,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "gN" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -4137,10 +4153,14 @@
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "hc" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 10
+/obj/machinery/atmospherics/pipe/tank/air{
+	dir = 8
 	},
-/turf/simulated/shuttle/wall/voidcraft,
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/outline/blue,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "hd" = (
 /obj/effect/floor_decal/borderfloorblack{
@@ -5047,22 +5067,11 @@
 /turf/simulated/floor/bluegrid,
 /area/ai)
 "it" = (
-/obj/machinery/door/airlock/voidcraft/vertical{
-	icon_state = "door_locked";
-	id_tag = "expshuttle_door_L";
-	locked = 1
+/obj/machinery/disposal/deliveryChute{
+	dir = 4
 	},
-/obj/machinery/button/remote/airlock{
-	desiredstate = 1;
-	dir = 1;
-	icon_state = "doorctrl0";
-	id = "expshuttle_door_L";
-	name = "hatch bolt control";
-	pixel_y = -28;
-	req_one_access = list(19,43,67);
-	specialfunctions = 4
-	},
-/turf/simulated/shuttle/floor/black,
+/obj/structure/disposalpipe/trunk,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "iu" = (
 /obj/effect/floor_decal/borderfloorblack{
@@ -5372,11 +5381,12 @@
 /turf/simulated/floor,
 /area/maintenance/station/ai)
 "iK" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 1
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "shuttle_outbound"
 	},
-/turf/simulated/shuttle/floor/black,
+/obj/structure/plasticflaps,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "iL" = (
 /obj/effect/floor_decal/borderfloorblack{
@@ -5521,39 +5531,20 @@
 /turf/simulated/wall,
 /area/maintenance/cargo)
 "iW" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 1
-	},
-/turf/simulated/shuttle/floor/black,
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "iX" = (
-/obj/machinery/door/airlock/voidcraft/vertical{
-	frequency = 1380;
-	id_tag = "expshuttle_door_Ri"
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 6
 	},
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	frequency = 1380;
-	master_tag = "expshuttle_docker";
-	pixel_y = -24
-	},
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/black,
+/turf/simulated/wall/thull,
 /area/shuttle/excursion/tether)
 "iY" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 4
 	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 8;
-	frequency = 1380;
-	id_tag = "expshuttle_docker_pump_out_internal"
-	},
-/turf/simulated/shuttle/floor/black,
+/turf/simulated/wall/thull,
 /area/shuttle/excursion/tether)
 "iZ" = (
 /obj/effect/floor_decal/borderfloorblack/full,
@@ -5621,18 +5612,6 @@
 "je" = (
 /turf/simulated/wall/r_wall,
 /area/crew_quarters/heads/hos)
-"jf" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 4
-	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4;
-	frequency = 1380;
-	id_tag = "expshuttle_vent"
-	},
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/excursion/tether)
 "jg" = (
 /obj/effect/floor_decal/borderfloorblack/full,
 /turf/simulated/floor/tiled/dark,
@@ -5766,22 +5745,10 @@
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
 "jr" = (
-/obj/machinery/door/airlock/voidcraft/vertical{
-	frequency = 1380;
-	id_tag = "expshuttle_door_Ro"
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
-	dir = 4
-	},
-/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
-	dir = 6;
-	frequency = 1380;
-	id_tag = "expshuttle_exterior_sensor";
-	master_tag = "expshuttle_docker";
-	pixel_x = 4;
-	pixel_y = 28
-	},
-/turf/simulated/shuttle/floor/black,
+/turf/simulated/wall/thull,
 /area/shuttle/excursion/tether)
 "js" = (
 /obj/machinery/light{
@@ -6180,28 +6147,34 @@
 /turf/simulated/floor/carpet,
 /area/security/breakroom)
 "jY" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/structure/stasis_cage,
-/turf/simulated/shuttle/floor/black,
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/guncabinet/excursion,
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "jZ" = (
-/obj/machinery/light,
-/obj/effect/floor_decal/industrial/warning/corner,
 /obj/effect/floor_decal/industrial/warning/corner{
-	dir = 8
+	icon_state = "warningcorner";
+	dir = 1
 	},
-/obj/structure/stasis_cage,
-/turf/simulated/shuttle/floor/black,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "ka" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/shuttle/floor/black,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "kb" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	dir = 8
-	},
-/turf/simulated/shuttle/wall/voidcraft,
+/obj/machinery/atmospherics/pipe/simple/visible/yellow,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "kc" = (
 /obj/effect/floor_decal/borderfloorblack/full,
@@ -6276,41 +6249,46 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/wood,
 /area/security/breakroom)
-"ki" = (
+"kj" = (
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	cycle_to_external_air = 1;
+	frequency = 1380;
+	id_tag = "expshuttle_docker";
+	pixel_y = 26;
+	req_one_access = list(19,43,67);
+	tag_airpump = "expshuttle_vent";
+	tag_chamber_sensor = "expshuttle_sensor";
+	tag_exterior_door = "expshuttle_door_Ro";
+	tag_exterior_sensor = "expshuttle_exterior_sensor";
+	tag_interior_door = "expshuttle_door_Ri"
+	},
 /obj/effect/floor_decal/industrial/warning{
-	dir = 10
+	icon_state = "warning";
+	dir = 1
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 8;
+	dir = 2;
 	frequency = 1380;
 	id_tag = "expshuttle_docker_pump_out_internal"
 	},
-/turf/simulated/shuttle/floor/black,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
-"kj" = (
+"kk" = (
 /obj/effect/floor_decal/industrial/warning{
-	dir = 6
+	dir = 5
 	},
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+/obj/machinery/airlock_sensor{
+	frequency = 1380;
+	id_tag = "expshuttle_sensor";
+	master_tag = "expshuttle_docker";
+	pixel_y = 28
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4;
+	dir = 2;
 	frequency = 1380;
 	id_tag = "expshuttle_vent"
 	},
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/excursion/tether)
-"kk" = (
-/obj/machinery/shuttle_sensor{
-	dir = 5;
-	id_tag = "shuttlesens_exp"
-	},
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
-	dir = 4
-	},
-/turf/simulated/shuttle/wall/voidcraft,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "kl" = (
 /obj/structure/cable/cyan{
@@ -6359,10 +6337,10 @@
 /turf/simulated/floor/bluegrid,
 /area/ai)
 "kn" = (
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram{
-	name = "\improper Shuttle Scrubber"
+/obj/machinery/cryopod{
+	dir = 4
 	},
-/turf/simulated/shuttle/floor/darkred,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "ko" = (
 /turf/simulated/wall/r_wall,
@@ -6457,34 +6435,52 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
 "kw" = (
-/obj/machinery/button/remote/airlock{
-	desiredstate = 1;
-	dir = 4;
-	icon_state = "doorctrl0";
-	id = "expshuttle_door_cargo";
-	name = "hatch bolt control";
-	pixel_x = -32;
-	req_one_access = list(19,43,67);
-	specialfunctions = 4
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/multi_tile/metal{
-	icon_state = "door_locked";
-	id_tag = "expshuttle_door_cargo";
-	locked = 1
-	},
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/excursion/tether)
-"kx" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 10
-	},
-/turf/simulated/shuttle/wall/voidcraft/hard_corner,
-/area/shuttle/excursion/tether)
-"ky" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/turf/simulated/shuttle/floor/darkred,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"kx" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 4
+	},
+/obj/machinery/door/airlock/glass_external{
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "expshuttle_door_Ri";
+	locked = 1
+	},
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "expshuttle_docker";
+	pixel_y = -24
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"ky" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/visible,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "kz" = (
 /obj/effect/floor_decal/borderfloorblack{
@@ -6720,17 +6716,25 @@
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
 "kQ" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 4
 	},
-/obj/machinery/meter,
-/turf/simulated/shuttle/floor/darkred,
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "kR" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	dir = 9
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
 	},
-/turf/simulated/shuttle/wall/voidcraft,
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "kS" = (
 /obj/effect/landmark{
@@ -7037,13 +7041,11 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
 "lq" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/wall_mounted{
-	dir = 1;
-	frequency = 1380;
-	id_tag = "expshuttle_docker_pump_out_external";
-	power_rating = 20000
-	},
-/turf/simulated/shuttle/wall/voidcraft,
+/obj/machinery/atmospherics/pipe/simple/visible/yellow,
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/recharger,
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "lr" = (
 /obj/effect/floor_decal/techfloor{
@@ -7442,6 +7444,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
+/obj/structure/cable/green,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "lX" = (
@@ -27754,9 +27757,10 @@
 /turf/simulated/mineral/vacuum,
 /area/quartermaster/office)
 "Rv" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 10
+	},
+/turf/simulated/wall/thull,
 /area/shuttle/excursion/tether)
 "Rw" = (
 /obj/structure/catwalk,
@@ -28404,6 +28408,11 @@
 	pixel_x = 32;
 	req_one_access = list(19,43,67)
 	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "SL" = (
@@ -28425,6 +28434,20 @@
 /obj/structure/catwalk,
 /turf/simulated/floor,
 /area/maintenance/station/elevator)
+"SO" = (
+/obj/machinery/atmospherics/pipe/simple/visible,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/closet/walllocker/emerglocker{
+	pixel_x = 32
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
 "SP" = (
 /obj/structure/table/woodentable,
 /obj/item/device/taperecorder{
@@ -28436,6 +28459,31 @@
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
+"SQ" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "shuttle blast";
+	name = "Shuttle Blast Doors";
+	opacity = 0
+	},
+/turf/simulated/floor/plating,
+/area/tether/exploration)
+"SR" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/wall_mounted{
+	dir = 1;
+	frequency = 1380;
+	id_tag = "expshuttle_docker_pump_out_external";
+	power_rating = 20000
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/space)
 "ST" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -28450,6 +28498,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/security_bathroom)
+"SY" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/tether/exploration)
 "Td" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -28464,6 +28517,34 @@
 	},
 /turf/simulated/floor/carpet,
 /area/security/breakroom)
+"Ti" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
+"Tl" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/tank/oxygen,
+/obj/item/device/suit_cooling_unit,
+/obj/item/clothing/head/helmet/space/void/pilot,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/suit/space/void/pilot,
+/obj/item/clothing/head/helmet/space/void/pilot,
+/turf/simulated/floor/tiled,
+/area/tether/exploration)
 "Tp" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -28474,6 +28555,30 @@
 /obj/structure/catwalk,
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
+"Tq" = (
+/obj/machinery/power/port_gen/pacman/mrs,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"Tu" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	icon_state = "intact-supply";
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
 "TD" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -28485,6 +28590,29 @@
 	},
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hos)
+"TG" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	frequency = 1380;
+	id_tag = "expshuttle_docker_pump_out_internal"
+	},
+/obj/structure/cable/cyan,
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -28
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"TJ" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/obj/effect/floor_decal/industrial/outline/red,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/tether/exploration)
 "TO" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/storage/secure/safe{
@@ -28505,6 +28633,22 @@
 /obj/item/weapon/storage/box/donkpockets,
 /turf/simulated/floor/wood,
 /area/security/breakroom)
+"TT" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/hatch,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/shuttle/excursion/tether)
+"TV" = (
+/obj/structure/table/steel,
+/obj/item/clothing/head/pilot,
+/turf/simulated/shuttle/floor/black,
+/area/space)
 "TX" = (
 /obj/machinery/alarm{
 	dir = 8;
@@ -28519,6 +28663,23 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/security_bathroom)
+"Uf" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/tether/exploration)
+"Uk" = (
+/obj/structure/bed/chair/shuttle,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
+"Um" = (
+/obj/machinery/sleep_console,
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
 "Un" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -28533,6 +28694,11 @@
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
+"Uo" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/space_heater,
+/turf/simulated/shuttle/floor/darkred,
+/area/space)
 "Up" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
@@ -28578,10 +28744,29 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"Us" = (
+/obj/structure/bed/chair/shuttle,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/alarm{
+	frequency = 1441;
+	pixel_y = 22
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
 "Uu" = (
 /obj/machinery/computer/security,
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
+"Uv" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/shuttle/plating,
+/area/space)
 "Uw" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -28601,6 +28786,37 @@
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
+"Uz" = (
+/obj/machinery/atmospherics/pipe/simple/visible,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/obj/machinery/firealarm{
+	dir = 4;
+	layer = 3.3;
+	pixel_x = 26
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
+"UB" = (
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -28
+	},
+/obj/structure/cable/cyan{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
 "UC" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -28614,6 +28830,84 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
+"UE" = (
+/obj/structure/bed/chair/shuttle,
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
+"UH" = (
+/obj/structure/bed/chair/shuttle,
+/turf/simulated/shuttle/floor/black,
+/area/space)
+"UJ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/wall/thull,
+/area/shuttle/excursion/tether)
+"UK" = (
+/turf/simulated/wall/thull,
+/area/tether/exploration)
+"UL" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 10
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"UM" = (
+/obj/machinery/atmospherics/pipe/tank/carbon_dioxide{
+	dir = 8;
+	start_pressure = 3039.75
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/tether/exploration)
+"UO" = (
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/terminal,
+/obj/machinery/cell_charger,
+/obj/item/clothing/head/pilot,
+/obj/item/clothing/head/pilot,
+/obj/structure/table/steel,
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 0;
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/tether/exploration)
+"UQ" = (
+/obj/machinery/portable_atmospherics/powered/pump/filled,
+/obj/effect/floor_decal/industrial/outline/blue,
+/turf/simulated/shuttle/floor/darkred,
+/area/space)
+"UR" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/wall_mounted{
+	dir = 8;
+	frequency = 1380;
+	id_tag = "expshuttle_docker_pump_out_external";
+	power_rating = 20000
+	},
+/turf/simulated/wall/thull,
+/area/tether/exploration)
 "US" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -28637,6 +28931,23 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/security_bathroom)
+"UU" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 9
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 2;
+	frequency = 1380;
+	id_tag = "expshuttle_docker_pump_out_internal"
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24;
+	req_access = list()
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
 "UV" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 6
@@ -28646,6 +28957,44 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/security_bathroom)
+"UW" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"UY" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating,
+/area/space)
+"UZ" = (
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 9
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/space)
+"Vd" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	frequency = 1380;
+	id_tag = "expshuttle_vent"
+	},
+/obj/machinery/oxygen_pump{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
 "Ve" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -28657,6 +29006,55 @@
 	},
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hos)
+"Vf" = (
+/obj/structure/table/rack/shelf,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/pickaxe,
+/turf/simulated/floor/tiled,
+/area/tether/exploration)
+"Vg" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/structure/closet/crate/freezer/rations,
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"Vi" = (
+/obj/machinery/atmospherics/pipe/tank/air{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/darkred,
+/area/space)
+"Vl" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/floodlight,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/tether/exploration)
+"Vm" = (
+/obj/structure/bed/chair/shuttle{
+	icon_state = "shuttle_chair";
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
 "Vn" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -28669,6 +29067,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/lobby)
+"Vo" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 9
+	},
+/turf/simulated/wall/thull,
+/area/tether/exploration)
 "Vp" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -28677,6 +29081,85 @@
 	},
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hos)
+"Vq" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"Vs" = (
+/obj/machinery/door/airlock/voidcraft,
+/turf/simulated/shuttle/floor/black,
+/area/space)
+"Vu" = (
+/obj/structure/flight_left,
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
+"Vw" = (
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
+"Vx" = (
+/turf/simulated/shuttle/floor/black,
+/area/space)
+"Vy" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating,
+/area/space)
+"VA" = (
+/turf/simulated/shuttle/wall/voidcraft,
+/area/space)
+"VB" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "shuttle blast";
+	name = "Shuttle Blast Doors";
+	opacity = 0
+	},
+/turf/simulated/floor/plating,
+/area/tether/exploration)
+"VD" = (
+/obj/machinery/atmospherics/binary/pump,
+/obj/machinery/atmospherics/pipe/simple/hidden/universal{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"VE" = (
+/obj/structure/closet/walllocker/emerglocker{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled,
+/area/tether/exploration)
+"VI" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/tether/exploration)
 "VJ" = (
 /obj/structure/cable/green{
 	d2 = 2;
@@ -28710,9 +29193,124 @@
 "VM" = (
 /turf/simulated/open,
 /area/ai_core_foyer)
+"VQ" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 10
+	},
+/turf/simulated/wall/thull,
+/area/tether/exploration)
+"VR" = (
+/obj/machinery/atmospherics/binary/pump{
+	dir = 8
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"VS" = (
+/obj/machinery/shuttle_sensor{
+	dir = 6;
+	id_tag = "shuttlesens_exp_int"
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/space)
+"VU" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "shuttle_outbound"
+	},
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 0;
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
 "VX" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/monotile,
+/area/tether/exploration)
+"Wd" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/universal{
+	dir = 4
+	},
+/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/portable_atmospherics/canister/air/airlock,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"Wg" = (
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
+"Wj" = (
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 4
+	},
+/obj/machinery/meter,
+/turf/simulated/shuttle/floor/darkred,
+/area/space)
+"Wk" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/tether/exploration)
+"Wm" = (
+/obj/machinery/door/airlock/voidcraft/vertical{
+	frequency = 1380;
+	id_tag = "expshuttle_door_Ri"
+	},
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "expshuttle_docker";
+	pixel_y = -24
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/black,
+/area/space)
+"Wn" = (
+/obj/structure/disposalpipe/segment,
+/turf/simulated/wall/thull,
+/area/shuttle/excursion/tether)
+"Ws" = (
+/obj/machinery/atmospherics/pipe/simple/visible,
+/turf/simulated/wall/thull,
+/area/tether/exploration)
+"Wu" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/obj/structure/closet/walllocker/emerglocker{
+	pixel_x = -32
+	},
+/turf/simulated/shuttle/floor/black,
+/area/space)
+"Wx" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "shuttle blast";
+	name = "Shuttle Blast Doors";
+	opacity = 0
+	},
+/turf/simulated/floor/plating,
 /area/tether/exploration)
 "WB" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -28729,20 +29327,307 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/security_bathroom)
+"WC" = (
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/structure/closet/secure_closet/guncabinet/excursion,
+/turf/simulated/shuttle/floor/darkred,
+/area/space)
+"WD" = (
+/obj/structure/flight_right,
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
+"WG" = (
+/obj/machinery/disposal/deliveryChute{
+	dir = 8
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/tether/exploration)
+"WH" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 10
+	},
+/turf/simulated/shuttle/wall/voidcraft/hard_corner,
+/area/space)
+"WJ" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	dir = 8
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/space)
+"WL" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/black,
+/area/space)
+"WQ" = (
+/obj/structure/bed/chair/comfy/blue{
+	icon_state = "comfychair_preview";
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/black,
+/area/space)
+"WR" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"WS" = (
+/obj/structure/disposaloutlet{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
 "WY" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/security/evidence_storage)
+"Xa" = (
+/obj/machinery/conveyor_switch/oneway{
+	id = "shuttle_outbound"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24;
+	req_access = list()
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"Xb" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/wall/thull,
+/area/shuttle/excursion/tether)
 "Xe" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
 /turf/simulated/floor/wood,
 /area/security/breakroom)
+"Xg" = (
+/obj/machinery/shuttle_sensor{
+	dir = 2;
+	id_tag = "shuttlesens_exp_psg"
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/space)
+"Xi" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 5
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"Xk" = (
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -28
+	},
+/obj/structure/cable/cyan{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/structure/cable/cyan{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"Xl" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"Xo" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"Xp" = (
+/obj/machinery/power/smes/buildable/outpost_substation,
+/obj/structure/cable/cyan{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/tether/exploration)
+"Xq" = (
+/obj/structure/bed/chair/shuttle{
+	icon_state = "shuttle_chair";
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/black,
+/area/space)
+"Xr" = (
+/obj/structure/shuttle/engine/heater,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/visible/yellow,
+/turf/simulated/floor/reinforced,
+/area/tether/exploration)
+"Xt" = (
+/obj/machinery/shuttle_sensor{
+	dir = 5;
+	id_tag = "shuttlesens_exp"
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/space)
+"Xy" = (
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 10
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/space)
+"XA" = (
+/obj/structure/shuttle/engine/heater,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 6
+	},
+/turf/simulated/floor/reinforced,
+/area/tether/exploration)
+"XB" = (
+/obj/structure/shuttle/engine/heater,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 10
+	},
+/turf/simulated/floor/reinforced,
+/area/tether/exploration)
+"XC" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 5
+	},
+/turf/simulated/wall/thull,
+/area/tether/exploration)
+"XE" = (
+/obj/machinery/conveyor_switch/oneway{
+	id = "shuttle_inbound"
+	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/plating,
+/area/tether/exploration)
 "XG" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"XJ" = (
+/obj/machinery/button/remote/airlock{
+	desiredstate = 1;
+	dir = 4;
+	icon_state = "doorctrl0";
+	id = "expshuttle_door_cargo";
+	name = "hatch bolt control";
+	pixel_x = -32;
+	req_one_access = list(19,43,67);
+	specialfunctions = 4
+	},
+/obj/machinery/door/airlock/multi_tile/metal{
+	icon_state = "door_locked";
+	id_tag = "expshuttle_door_cargo";
+	locked = 1
+	},
+/turf/simulated/shuttle/floor/black,
+/area/space)
+"XN" = (
+/obj/structure/shuttle/engine/heater,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/area/tether/exploration)
+"XO" = (
+/obj/machinery/door/airlock/voidcraft/vertical{
+	icon_state = "door_locked";
+	id_tag = "expshuttle_door_L";
+	locked = 1
+	},
+/obj/machinery/button/remote/airlock{
+	desiredstate = 1;
+	dir = 1;
+	icon_state = "doorctrl0";
+	id = "expshuttle_door_L";
+	name = "hatch bolt control";
+	pixel_y = -28;
+	req_one_access = list(19,43,67);
+	specialfunctions = 4
+	},
+/turf/simulated/shuttle/floor/black,
+/area/space)
+"XR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/camera/network/exploration{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/tether/exploration)
+"XS" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/black,
+/area/space)
 "XT" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -28765,15 +29650,155 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
+"XZ" = (
+/obj/machinery/computer/shuttle_control/web/excursion{
+	icon = 'icons/obj/computer.dmi';
+	my_doors = list("expshuttle_door_L" = "Port Cargo", "expshuttle_door_Ro" = "Airlock Outer", "expshuttle_door_Ri" = "Airlock Inner", "expshuttle_door_cargo" = "Cargo Hatch");
+	my_sensors = list("shuttlesens_exp" = "Exterior Environment", "shuttlesens_exp_int" = "Cargo Area", "shuttlesens_exp_psg" = "Passenger Area")
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
+"Yg" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 9
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"Yi" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/tether/exploration)
+"Yj" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	frequency = 1380;
+	id_tag = "expshuttle_docker_pump_out_internal"
+	},
+/obj/machinery/oxygen_pump{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"Ym" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	icon_state = "intact";
+	dir = 6
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/visible/supply,
+/obj/machinery/atmospherics/pipe/manifold4w/visible/scrubbers,
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
+"Ys" = (
+/obj/structure/bed/chair/shuttle{
+	icon_state = "shuttle_chair";
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
 "Yu" = (
 /obj/structure/closet/secure_closet/hos2,
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
+"Yw" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/reinforced,
+/area/tether/exploration)
+"Yx" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/black,
+/area/space)
+"YC" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating,
+/area/space)
+"YD" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/tether/exploration)
 "YH" = (
 /obj/structure/table/woodentable,
 /obj/machinery/microwave,
 /turf/simulated/floor/wood,
 /area/security/breakroom)
+"YI" = (
+/obj/structure/bed/chair/shuttle{
+	icon_state = "shuttle_chair";
+	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
+"YQ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	icon_state = "map-scrubbers";
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/tether/exploration)
+"YR" = (
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram{
+	name = "\improper Shuttle Scrubber"
+	},
+/turf/simulated/shuttle/floor/darkred,
+/area/space)
 "YT" = (
 /turf/simulated/wall,
 /area/security/breakroom)
@@ -28791,6 +29816,186 @@
 	},
 /turf/space,
 /area/space)
+"YY" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/obj/structure/closet/walllocker/emerglocker{
+	pixel_x = 32
+	},
+/turf/simulated/shuttle/floor/black,
+/area/space)
+"Za" = (
+/obj/machinery/atmospherics/pipe/simple/visible,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/hatch,
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/shuttle/excursion/tether)
+"Zc" = (
+/turf/simulated/floor/reinforced,
+/area/space)
+"Zd" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "shuttle_inbound"
+	},
+/obj/structure/plasticflaps,
+/turf/simulated/floor/plating,
+/area/tether/exploration)
+"Zg" = (
+/obj/structure/cable/cyan{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/cable/cyan{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -28
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
+"Zk" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"Zo" = (
+/obj/machinery/atmospherics/pipe/simple/visible,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"Zv" = (
+/obj/machinery/door/airlock/voidcraft/vertical{
+	frequency = 1380;
+	id_tag = "expshuttle_door_Ro"
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+	dir = 4
+	},
+/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
+	dir = 6;
+	frequency = 1380;
+	id_tag = "expshuttle_exterior_sensor";
+	master_tag = "expshuttle_docker";
+	pixel_x = 4;
+	pixel_y = 28
+	},
+/turf/simulated/shuttle/floor/black,
+/area/space)
+"Zw" = (
+/obj/machinery/light,
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/black,
+/area/space)
+"Zy" = (
+/obj/structure/disposaloutlet{
+	dir = 8
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/tether/exploration)
+"ZB" = (
+/obj/machinery/shuttle_sensor{
+	dir = 5;
+	id_tag = "shuttlesens_exp"
+	},
+/turf/simulated/wall/thull,
+/area/tether/exploration)
+"ZD" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 9
+	},
+/turf/simulated/wall/thull,
+/area/shuttle/excursion/tether)
+"ZE" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 9
+	},
+/obj/machinery/door/airlock/glass_external{
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "expshuttle_door_Ro";
+	locked = 1
+	},
+/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
+	dir = 6;
+	frequency = 1380;
+	id_tag = "expshuttle_exterior_sensor";
+	master_tag = "expshuttle_docker";
+	pixel_x = 4;
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/tether/exploration)
+"ZG" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 4
+	},
+/obj/machinery/meter,
+/obj/structure/cable/cyan{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"ZK" = (
+/turf/simulated/shuttle/wall/voidcraft/hard_corner,
+/area/space)
+"ZL" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/hatch,
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/shuttle/excursion/tether)
 "ZM" = (
 /obj/structure/table/woodentable,
 /obj/item/device/radio/off,
@@ -28800,6 +30005,53 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"ZQ" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/shuttle/floor/black,
+/area/space)
+"ZT" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/cable/cyan,
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -28
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"ZU" = (
+/obj/machinery/suit_cycler/pilot,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -26
+	},
+/turf/simulated/floor/tiled,
+/area/tether/exploration)
+"ZW" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/yellow,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
+"ZX" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/visible{
+	icon_state = "intact";
+	dir = 6
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/floor_decal/industrial/outline/blue,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
 "ZY" = (
 /turf/simulated/wall/r_wall,
 /area/security/security_lockerroom)
@@ -39497,10 +40749,10 @@ cK
 cK
 cK
 cK
-cK
-cK
-cK
-cK
+XE
+Zd
+UK
+UK
 cK
 ms
 Oz
@@ -39629,21 +40881,21 @@ bX
 cE
 cK
 cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
+UK
+UK
+Wx
+UK
+Wx
+UK
+Wx
+UK
+UK
+UK
+Zy
+WG
+UK
+XA
+SY
 ms
 Oz
 be
@@ -39771,21 +41023,21 @@ cp
 cE
 cK
 cK
-cK
-cK
-cK
-cK
-cK
-cK
-di
-fF
+UK
+Tl
+ZU
+UK
+Vf
+VE
+Vw
+dj
 it
-di
-di
-dy
-Rv
-cK
-cK
+Wn
+UJ
+Xb
+dj
+XN
+SY
 ms
 mq
 be
@@ -39912,22 +41164,22 @@ be
 bX
 cE
 cK
-cK
-di
+UK
+dj
 dW
-di
-dW
-di
-di
-di
-fQ
+UB
+dj
+UE
+Wg
+Um
+dj
 iK
 jY
 kn
-di
-Rv
-cK
-cK
+WS
+dj
+XN
+SY
 ms
 nA
 be
@@ -40047,7 +41299,7 @@ aa
 aa
 aa
 aa
-aa
+TV
 aa
 aa
 be
@@ -40057,18 +41309,18 @@ cK
 di
 dy
 dY
-di
-eO
+Tu
+dj
 eR
-fh
-di
-fR
-iK
-jY
-kn
-di
-Rv
-cK
+Wg
+YI
+dj
+VU
+Zk
+WR
+ZT
+iX
+Vo
 cK
 ms
 nz
@@ -40186,7 +41438,7 @@ aa
 aa
 aa
 aa
-aa
+WC
 aa
 aa
 aa
@@ -40195,22 +41447,22 @@ aa
 be
 bX
 cE
-cK
+UK
 dj
-dB
-dZ
-di
-eP
-eb
+dj
+dj
+ZL
+dj
+Us
 fi
-di
-fS
-iK
+Vm
+dj
+Xa
 jZ
-dy
-di
-cK
-cK
+Vq
+Xo
+XN
+SY
 cK
 ms
 mq
@@ -40321,14 +41573,14 @@ aa
 aa
 aa
 aa
+VA
+VS
+XO
+VA
+VA
+ZK
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Uo
 aa
 aa
 aa
@@ -40337,22 +41589,22 @@ aa
 be
 cs
 cF
-cK
-dj
+VB
+Vu
 dC
 ea
 er
-eQ
-eb
+ea
+Uk
 fj
-er
-fT
+Ys
+ea
 iW
 ka
 kw
-cK
-cK
-cK
+Uf
+XN
+SY
 cK
 ms
 mq
@@ -40463,14 +41715,14 @@ aa
 aa
 aa
 aa
+VA
 aa
+WL
+ZQ
+YR
+VA
 aa
-aa
-aa
-aa
-aa
-aa
-aa
+UQ
 aa
 aa
 aa
@@ -40479,22 +41731,22 @@ aa
 be
 bY
 cE
-cK
-dj
+VB
+XZ
 dD
 eb
 ex
-eb
-eb
-eb
-ex
-eb
-eb
-ka
-eb
-cK
-cK
-cK
+TT
+Ti
+Ym
+Uz
+Za
+SO
+Zo
+Xi
+Vl
+XN
+SY
 cK
 ms
 VX
@@ -40605,12 +41857,12 @@ aa
 aa
 aa
 aa
+VA
 aa
-aa
-aa
-aa
-aa
-aa
+WL
+ZQ
+YR
+VA
 aa
 aa
 aa
@@ -40621,22 +41873,22 @@ aa
 be
 cA
 cG
-cK
-dj
+VB
+WD
 dE
-ea
-er
-eQ
-eb
+dj
+Zg
+dj
+dj
 fx
-di
-fU
+dj
+dj
 iX
 kb
-kb
+ZW
 lq
-cK
-cK
+Xr
+SY
 cK
 ms
 mq
@@ -40747,38 +41999,38 @@ aa
 aa
 aa
 aa
+VA
+aa
+WL
+Zw
+ZK
+VA
 aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+TV
 aa
 aa
 be
 bX
 cE
-cK
+UK
 dj
-dB
-eb
-eN
-eQ
-eb
-fj
-di
+dj
+dj
+ZL
+dj
+Wd
+UL
+Vg
 fV
 iY
-ki
+ea
 kx
-lq
-cK
-cK
+dj
+XN
+SY
 cK
 ms
 mq
@@ -40889,12 +42141,12 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
+Uv
+Yx
+XS
+ZQ
+XJ
+Zc
 aa
 aa
 aa
@@ -40907,20 +42159,20 @@ bX
 cE
 cK
 di
-dy
+Tq
 ec
-di
-eQ
+Xk
+dj
 fg
-fj
-di
+Yg
+VD
 gL
-eb
-ka
+ZD
+UU
 ky
-di
+Yj
 Rv
-cK
+XC
 cK
 ms
 nz
@@ -41031,12 +42283,12 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
+Vs
+Vx
+Vx
+ZQ
+Vx
+Zc
 aa
 aa
 aa
@@ -41048,22 +42300,22 @@ be
 bX
 cE
 cK
-cK
-di
+UK
+dj
 eg
-di
-eg
-di
-di
-di
+Xl
+dj
+ZG
+VR
+UW
 gM
-jf
+dj
 kj
 kQ
-di
-Rv
-cK
-cK
+TG
+dj
+XN
+SY
 ms
 nA
 be
@@ -41191,21 +42443,21 @@ cp
 cE
 cK
 cK
-cK
-cK
-cK
-cK
-cK
-cK
-di
+UK
+UO
+Xp
+UK
+UM
+TJ
+ZX
 hc
 jr
 kk
 kR
-dy
-Rv
-cK
-cK
+Vd
+dj
+XN
+SY
 ms
 QL
 be
@@ -41333,21 +42585,21 @@ bX
 cE
 cK
 cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
-cK
+UK
+UK
+SQ
+UK
+UK
+UK
+UR
+UR
+VQ
+Ws
+ZE
+ZB
+UK
+XB
+SY
 ms
 Sq
 be
@@ -41476,6 +42728,7 @@ cE
 cK
 cK
 cK
+Yw
 cK
 cK
 cK
@@ -41486,9 +42739,8 @@ cK
 cK
 cK
 cK
-cK
-cK
-cK
+UK
+UK
 cK
 ms
 mq
@@ -41603,12 +42855,12 @@ aa
 aa
 aa
 aa
+VA
 aa
-aa
-aa
-aa
-aa
-aa
+Wm
+WJ
+WJ
+SR
 aa
 aa
 aa
@@ -41618,7 +42870,7 @@ cH
 db
 dk
 dF
-dF
+YD
 dF
 dF
 dF
@@ -41745,12 +42997,12 @@ aa
 aa
 aa
 aa
+VA
 aa
 aa
 aa
-aa
-aa
-aa
+WH
+SR
 aa
 aa
 aa
@@ -41761,18 +43013,18 @@ dc
 dl
 dH
 em
-cC
-cC
-cC
-dc
-dH
-dl
+Wk
+Wk
+Wk
+Yi
+VI
+YQ
 SK
-cC
-cC
-em
-dH
-dl
+Wk
+Wk
+XR
+VI
+YQ
 lW
 mu
 nB
@@ -41887,12 +43139,12 @@ aa
 aa
 aa
 aa
+VA
 aa
 aa
 aa
-aa
-aa
-aa
+Vi
+VA
 aa
 aa
 aa
@@ -42029,12 +43281,12 @@ aa
 aa
 aa
 aa
+VA
 aa
 aa
 aa
-aa
-aa
-aa
+Wj
+VA
 aa
 aa
 aa
@@ -42171,12 +43423,12 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
+VA
+Xy
+Zv
+Xt
+UZ
+ZK
 aa
 aa
 aa
@@ -42452,13 +43704,13 @@ aa
 aa
 aa
 aa
+Zc
+VA
+YC
+VA
 aa
-aa
-aa
-aa
-aa
-aa
-aa
+VA
+VA
 aa
 aa
 aa
@@ -42594,12 +43846,12 @@ aa
 aa
 aa
 aa
+VA
+ZK
 aa
+VA
 aa
-aa
-aa
-aa
-aa
+Wu
 aa
 aa
 aa
@@ -42736,12 +43988,12 @@ aa
 aa
 aa
 aa
+Vy
 aa
 aa
+VA
 aa
-aa
-aa
-aa
+Vx
 aa
 aa
 aa
@@ -42878,13 +44130,13 @@ aa
 aa
 aa
 aa
+Vy
 aa
-aa
-aa
-aa
-aa
-aa
-aa
+WQ
+Uv
+UH
+Vx
+Xq
 aa
 aa
 aa
@@ -43022,11 +44274,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+Vx
+Vs
+Vx
+Vx
+Vx
 aa
 aa
 aa
@@ -43164,10 +44416,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+WQ
+Uv
+UH
+Vx
 aa
 aa
 aa
@@ -43306,11 +44558,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+Vx
+Xg
+UH
+Vx
+Xq
 aa
 aa
 aa
@@ -43446,13 +44698,13 @@ aa
 aa
 aa
 aa
+VA
+ZK
 aa
-aa
-aa
-aa
-aa
-aa
-aa
+VA
+UH
+YY
+Xq
 aa
 aa
 aa
@@ -43588,13 +44840,13 @@ aa
 aa
 aa
 aa
+Zc
+VA
+UY
+VA
 aa
-aa
-aa
-aa
-aa
-aa
-aa
+VA
+VA
 aa
 aa
 aa
