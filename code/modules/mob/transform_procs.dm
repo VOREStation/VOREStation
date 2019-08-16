@@ -182,7 +182,7 @@
 		var/datum/preferences/B = O.client.prefs
 		for(var/language in B.alternate_languages)
 			O.add_language(language)
-		O.resize(B.size_multiplier, animate = FALSE)	//VOREStation Addition: add size prefs to borgs
+		O.resize(B.size_multiplier, animate = TRUE)		//VOREStation Addition: add size prefs to borgs
 		O.fuzzy = B.fuzzy								//VOREStation Addition: add size prefs to borgs
 
 	callHook("borgify", list(O))
