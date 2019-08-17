@@ -1,5 +1,5 @@
 /obj/item/weapon/plastique/seismic/locked
-	desc = "Used to dig holes in specific areas without too much extra hole. Has extra mechanism that safely implodes the bomb if its used in close proximity to the facility."
+	desc = "Used to dig holes in specific areas without too much extra hole. Has extra mechanism that safely implodes the bomb if it is used in close proximity to the facility."
 
 /obj/item/weapon/plastique/seismic/locked/explode(var/location)
 	if(!target)
