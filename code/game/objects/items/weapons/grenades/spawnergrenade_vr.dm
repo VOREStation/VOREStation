@@ -1,5 +1,5 @@
 /obj/item/weapon/grenade/spawnergrenade/manhacks/station/locked
-	desc = "It is set to detonate in 5 seconds. It will deploy three weaponized survey drones. This one has a safety interlock that self-destructs if used while in proximity to the facility."
+	desc = "It is set to detonate in 5 seconds. It will deploy three weaponized survey drones. This one has a safety interlock that prevents release if used while in proximity to the facility."
 	req_access = list(access_armory) //for toggling safety
 	var/locked = 1
 
@@ -7,8 +7,8 @@
 	if(locked)
 		var/turf/T = get_turf(src)
 		if(T.z in using_map.map_levels)
-			visible_message("<span class='warning'>\The [src] lets out a loud negative beep and instead of releasing the robots, implodes on itself.</span>")
-			qdel(src)
+			icon_state = initial(icon_state)
+			active = 0
 			return 0
 	return ..()
 
