@@ -40,11 +40,11 @@
 	allowed_roles = list("Colony Director", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective","Explorer","Pathfinder")
 
 /datum/gear/accessory/brown_vest
-	display_name = "webbing, brown"
+	display_name = "webbing, brown (Eng, Sec, Med, Exploration, Miner)"
 	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Pathfinder","Shaft Miner")
 
 /datum/gear/accessory/black_vest
-	display_name = "webbing, black"
+	display_name = "webbing, black (Eng, Sec, Med, Exploration, Miner)"
 	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Pathfinder","Shaft Miner")
 
 /datum/gear/accessory/white_vest
@@ -52,11 +52,11 @@
 	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic")
 
 /datum/gear/accessory/brown_drop_pouches
-	display_name = "drop pouches, brown"
+	display_name = "drop pouches, brown (Eng, Sec, Med, Exploration, Miner)"
 	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Pathfinder","Shaft Miner")
 
 /datum/gear/accessory/black_drop_pouches
-	display_name = "drop pouches, black"
+	display_name = "drop pouches, black (Eng, Sec, Med, Exploration, Miner)"
 	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Pathfinder","Shaft Miner")
 
 /datum/gear/accessory/white_drop_pouches
