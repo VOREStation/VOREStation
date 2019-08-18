@@ -526,7 +526,7 @@
 "abf" = (
 /obj/machinery/door/airlock/maintenance/common{
 	name = "Trash Pit Access";
-	req_one_access = list(26,48)
+	req_one_access = list(26,48,12)
 	},
 /obj/structure/catwalk,
 /obj/machinery/door/firedoor/glass,
@@ -5989,7 +5989,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/maintenance/common{
 	name = "Trash Pit Access";
-	req_one_access = list(48)
+	req_one_access = list(48,12)
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
