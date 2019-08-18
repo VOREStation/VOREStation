@@ -203,19 +203,19 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/airlock)
 "aay" = (
-/obj/structure/plasticflaps/mining,
 /obj/machinery/conveyor{
 	dir = 1;
 	id = "mining_inbound"
 	},
+/obj/structure/plasticflaps,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "aaz" = (
-/obj/structure/plasticflaps/mining,
 /obj/machinery/conveyor{
 	dir = 1;
 	id = "mining_outbound"
 	},
+/obj/structure/plasticflaps,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "aaA" = (
@@ -255,17 +255,17 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "aaD" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "mining_inbound"
+/obj/machinery/disposal/deliveryChute{
+	dir = 1
 	},
+/obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "aaE" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "mining_outbound"
+/obj/structure/disposaloutlet{
+	dir = 1
 	},
+/obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "aaF" = (
@@ -484,9 +484,9 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/mining_main/airlock)
 "aba" = (
-/obj/machinery/conveyor{
-	dir = 6;
-	id = "mining_inbound"
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
@@ -562,11 +562,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/refinery)
 "abj" = (
-/obj/structure/plasticflaps/mining,
 /obj/machinery/conveyor{
 	dir = 8;
 	id = "mining_inbound"
 	},
+/obj/structure/plasticflaps,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "abk" = (
@@ -785,11 +785,11 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
 "abC" = (
-/obj/structure/plasticflaps/mining,
 /obj/machinery/conveyor{
 	dir = 8;
 	id = "mining_outbound"
 	},
+/obj/structure/plasticflaps,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "abD" = (
@@ -8722,6 +8722,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
+"arF" = (
+/obj/structure/disposalpipe/segment,
+/turf/simulated/wall,
+/area/tether/surfacebase/mining_main/refinery)
 "arG" = (
 /turf/simulated/wall,
 /area/maintenance/lower/solars)
@@ -27357,6 +27361,10 @@
 /obj/structure/closet,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/maintDorm2)
+"hai" = (
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/mining_main/refinery)
 "hbn" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
@@ -27537,6 +27545,11 @@
 /obj/item/stack/material/steel,
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm1)
+"ici" = (
+/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/mining_main/refinery)
 "icN" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 4
@@ -27717,6 +27730,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
+"iAb" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/wall,
+/area/tether/surfacebase/mining_main/refinery)
 "iDf" = (
 /obj/machinery/atmospherics/pipe/simple/visible/purple{
 	icon_state = "intact";
@@ -28284,6 +28303,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm2)
+"kja" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/mining_main/refinery)
 "kjb" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
@@ -29752,6 +29777,15 @@
 "oUO" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
+"oVX" = (
+/obj/machinery/disposal/deliveryChute{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/mining_main/refinery)
 "oZi" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/visible/green{
@@ -29989,13 +30023,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
-"pIT" = (
-/obj/machinery/conveyor{
-	dir = 6;
-	id = "mining_outbound"
-	},
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/mining_main/refinery)
 "pMj" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	icon_state = "intact";
@@ -30301,6 +30328,15 @@
 /obj/machinery/disposal,
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm2)
+"qWV" = (
+/obj/structure/disposaloutlet{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/mining_main/refinery)
 "qZk" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/purple,
 /turf/simulated/floor/tiled/techmaint,
@@ -43439,7 +43475,7 @@ aak
 aar
 aar
 aaC
-aaC
+aar
 aar
 aar
 aar
@@ -43581,10 +43617,10 @@ aal
 aat
 aaz
 aaE
-aaE
-aaz
-aaE
-pIT
+arF
+hai
+hai
+aba
 aar
 acZ
 adD
@@ -43723,10 +43759,10 @@ aam
 aas
 aay
 aaD
-aaD
-aay
+arF
+hai
 aba
-aby
+kja
 aar
 abY
 acx
@@ -43867,8 +43903,8 @@ aar
 aar
 aar
 aar
-abd
-aby
+kja
+kja
 aaC
 abZ
 acy
@@ -44008,9 +44044,9 @@ aah
 aah
 aar
 aaF
-aar
-abd
-aby
+ici
+kja
+kja
 aar
 aca
 acx
@@ -44151,8 +44187,8 @@ aah
 aar
 aaF
 aar
-abd
-aby
+iAb
+iAb
 aar
 adb
 acx
@@ -44293,8 +44329,8 @@ aah
 aar
 aaG
 aar
-abd
-aby
+qWV
+oVX
 aaC
 acc
 adG
@@ -44576,7 +44612,7 @@ aah
 aah
 aar
 aaF
-aar
+ici
 abd
 aby
 aar
@@ -44717,7 +44753,7 @@ aah
 aah
 aah
 aar
-aar
+ici
 aar
 abd
 aby
