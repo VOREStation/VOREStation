@@ -2008,3 +2008,22 @@
 /obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor/Initialize()
 	..()
 	reagents.add_reagent("pwine", 60)
+	
+//RadiantAurora: Tiemli Kroto
+/obj/item/clothing/glasses/welding/tiemgogs
+   name = "custom-fitted welding goggles"
+   desc = "A pair of thick, custom-fitted goggles with LEDs above the lenses. Ruggedly engraved below the lenses is the name 'Tiemli Kroto'."
+
+   icon = 'icons/vore/custom_items_vr.dmi'
+   icon_state = "tiemgogs"
+
+   icon_override = 'icons/vore/custom_clothes_vr.dmi'
+   icon_state = "tiemgogs"
+   
+/obj/item/clothing/glasses/welding/tiemgogs/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+   if(..())
+      if(H.ckey != "radiantaurora")
+         to_chat(H, "<span class='warning'>These don't look like they were made to fit you...</span>")
+         return 0
+      else
+         return 1
