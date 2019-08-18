@@ -6796,7 +6796,6 @@
 	pixel_x = 27
 	},
 /obj/item/clothing/shoes/boots/jackboots{
-	armor = list("melee" = 69, "bullet" = 69, "laser" = 69, "energy" = 69, "bomb" = 69, "bio" = 69, "rad" = 69);
 	desc = "This pair of Jackboots look worn and freshly used. They have several claw markings inside and you can read the initials D and M at the bottom";
 	name = "Dhaeleena's Jackboots"
 	},
