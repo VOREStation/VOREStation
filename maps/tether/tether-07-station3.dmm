@@ -2142,9 +2142,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
@@ -2176,20 +2177,13 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/machinery/alarm{
-	breach_detection = 0;
-	dir = 8;
-	icon_state = "alarm0";
-	pixel_x = 25;
-	rcon_setting = 3;
-	report_danger_level = 0
-	},
 /obj/machinery/light_switch{
 	dir = 2;
 	name = "light switch ";
 	pixel_x = 6;
 	pixel_y = 32
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "dF" = (
@@ -2451,10 +2445,6 @@
 	pixel_x = 24
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
-	},
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "ea" = (
@@ -2527,8 +2517,6 @@
 	icon_state = "bulb1";
 	dir = 1
 	},
-/obj/item/weapon/storage/box/survival/space,
-/obj/item/weapon/storage/toolbox/emergency,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "eh" = (
@@ -3508,6 +3496,8 @@
 /obj/item/weapon/storage/belt/utility/full,
 /obj/item/clothing/head/pilot,
 /obj/item/clothing/head/pilot,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/toolbox/emergency,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "fW" = (
@@ -6101,12 +6091,11 @@
 /turf/simulated/floor/carpet,
 /area/security/breakroom)
 "jY" = (
-/obj/structure/closet/secure_closet/guncabinet/excursion,
-/obj/effect/floor_decal/industrial/outline/red,
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 1
 	},
+/obj/machinery/recharge_station,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "jZ" = (
@@ -6129,7 +6118,9 @@
 /area/shuttle/excursion/tether)
 "kb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
-/obj/machinery/recharge_station,
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/structure/closet/secure_closet/guncabinet/excursion,
+/obj/item/weapon/pickaxe,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "kc" = (
@@ -6980,7 +6971,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
-/obj/item/weapon/pickaxe,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "lr" = (
@@ -28567,8 +28557,8 @@
 	icon_state = "intact-scrubbers";
 	dir = 4
 	},
-/obj/machinery/light/small,
 /obj/structure/handrail,
+/obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "Ub" = (
@@ -29476,6 +29466,7 @@
 /obj/item/device/radio/intercom{
 	pixel_y = -24
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "YQ" = (
