@@ -2130,7 +2130,7 @@
 	pixel_y = 22
 	},
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "dy" = (
 /turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/shuttle/excursion/tether)
@@ -2905,17 +2905,6 @@
 "eT" = (
 /turf/simulated/wall,
 /area/security/security_equiptment_storage)
-"eU" = (
-/obj/structure/railing{
-	icon_state = "railing0";
-	dir = 1
-	},
-/obj/structure/closet,
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/floor,
-/area/maintenance/station/sec_upper)
 "eV" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -3196,7 +3185,7 @@
 	dir = 4
 	},
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "fr" = (
 /obj/machinery/photocopier,
 /obj/machinery/power/apc{
@@ -5023,7 +5012,7 @@
 /area/security/hallway)
 "iq" = (
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "ir" = (
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -9969,7 +9958,7 @@
 "pT" = (
 /obj/structure/railing,
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "pU" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -10529,8 +10518,9 @@
 	},
 /obj/structure/lattice,
 /obj/structure/railing,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/open,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "qU" = (
 /obj/machinery/portable_atmospherics/powered/pump/filled,
 /turf/simulated/floor,
@@ -10542,7 +10532,7 @@
 	},
 /obj/structure/railing,
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "qW" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -11055,7 +11045,7 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "rE" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -11064,7 +11054,7 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "rF" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -11601,7 +11591,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "sp" = (
 /turf/simulated/wall/r_wall,
 /area/hallway/station/upper)
@@ -12187,7 +12177,7 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "tf" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
@@ -26714,6 +26704,7 @@
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/zpipe/down/supply,
 /obj/machinery/atmospherics/pipe/zpipe/down/scrubbers,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/open,
 /area/tether/exploration)
 "PJ" = (
@@ -27593,7 +27584,7 @@
 	dir = 1
 	},
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "Rf" = (
 /obj/effect/floor_decal/borderfloor/corner2{
 	dir = 8
@@ -27640,7 +27631,7 @@
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/cobweb,
 /turf/simulated/floor,
-/area/maintenance/station/sec_upper)
+/area/maintenance/station/elevator)
 "Rl" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
@@ -27756,6 +27747,7 @@
 "Rv" = (
 /obj/machinery/door/airlock/maintenance/common,
 /obj/effect/floor_decal/rust,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor,
 /area/maintenance/station/ai)
 "Rw" = (
@@ -27945,13 +27937,6 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
-	},
-/turf/simulated/floor,
-/area/maintenance/station/sec_upper)
-"RP" = (
-/obj/structure/catwalk,
-/obj/structure/cable{
-	icon_state = "2-8"
 	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
@@ -28187,15 +28172,6 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "west bump";
-	pixel_x = -28
-	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
 "Su" = (
@@ -28206,10 +28182,10 @@
 	icon_state = "1-4"
 	},
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
@@ -28236,6 +28212,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor,
 /area/maintenance/cargo)
 "Sx" = (
@@ -28409,6 +28386,11 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
+"SN" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/elevator)
 "SP" = (
 /obj/structure/table/woodentable,
 /obj/item/device/taperecorder{
@@ -28694,6 +28676,22 @@
 "VM" = (
 /turf/simulated/open,
 /area/ai_core_foyer)
+"VW" = (
+/obj/structure/catwalk,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_upper)
 "VX" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/monotile,
@@ -28713,6 +28711,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/security_bathroom)
+"WX" = (
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/elevator)
 "WY" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
@@ -28723,6 +28725,22 @@
 	},
 /turf/simulated/floor/wood,
 /area/security/breakroom)
+"Xn" = (
+/obj/structure/catwalk,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor,
+/area/maintenance/station/sec_upper)
+"Xp" = (
+/obj/effect/floor_decal/rust,
+/obj/structure/catwalk,
+/turf/simulated/floor,
+/area/maintenance/station/elevator)
 "XG" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
@@ -37512,7 +37530,7 @@ lC
 lC
 mH
 rD
-af
+tl
 tl
 ug
 tl
@@ -37654,7 +37672,7 @@ mH
 mH
 mH
 rD
-af
+tl
 tm
 uh
 uX
@@ -37793,10 +37811,10 @@ SF
 oL
 le
 iq
-af
+tl
 qT
 rE
-af
+tl
 tn
 tn
 tn
@@ -37934,11 +37952,11 @@ nS
 om
 oI
 le
-af
-af
+tl
+tl
 Re
-fc
-af
+WX
+tl
 tn
 ui
 ui
@@ -38079,8 +38097,8 @@ le
 Rk
 fq
 qV
-fc
-af
+WX
+tl
 tn
 ui
 ui
@@ -38219,10 +38237,10 @@ oo
 oN
 le
 pT
-dw
-fc
-mR
-af
+SN
+WX
+Xp
+tl
 tn
 ui
 ui
@@ -38363,8 +38381,8 @@ af
 aI
 qn
 aI
-aI
-af
+yz
+tl
 tn
 ui
 ui
@@ -38919,10 +38937,10 @@ RE
 RH
 RH
 RH
-RH
+VW
 RH
 Su
-eU
+RO
 aI
 ab
 ab
@@ -39063,8 +39081,8 @@ be
 be
 be
 be
-RP
-RO
+aI
+Xn
 aI
 ab
 ab

@@ -4914,6 +4914,7 @@
 	icon_state = "32-2"
 	},
 /obj/structure/lattice,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/open,
 /area/maintenance/station/exploration)
 "hn" = (
@@ -8526,6 +8527,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/maintenance/station/eng_upper)
 "mt" = (
@@ -15493,6 +15495,7 @@
 	icon_state = "0-2"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor,
 /area/maintenance/station/medbay)
 "xH" = (
@@ -20247,6 +20250,7 @@
 	dir = 4
 	},
 /obj/structure/railing,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/open,
 /area/engineering/shaft)
 "Jp" = (
@@ -20465,6 +20469,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
 "LL" = (

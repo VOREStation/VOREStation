@@ -13792,6 +13792,7 @@
 	icon_state = "0-2"
 	},
 /obj/structure/cable,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/maintenance/station/eng_lower)
 "aKN" = (
@@ -19520,6 +19521,7 @@
 /obj/structure/symbol/da{
 	pixel_y = 32
 	},
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor,
 /area/maintenance/station/bridge)
 "bxe" = (
