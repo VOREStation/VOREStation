@@ -36,7 +36,7 @@
 		new /datum/data/exploration_equipment("Jump Boots",					/obj/item/clothing/shoes/bhop,										250),
 		new /datum/data/exploration_equipment("Luxury Shelter Capsule",		/obj/item/device/survivalcapsule/luxury,							310),
 		new /datum/data/exploration_equipment("Defense Equipment - Smoke Bomb",/obj/item/weapon/grenade/smokebomb,								10),
-		new /datum/data/exploration_equipment("Defense Equipment - Razor Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/manhacks/station,	100),
+		new /datum/data/exploration_equipment("Defense Equipment - Razor Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/manhacks/station/locked,	100),
 		new /datum/data/exploration_equipment("Defense Equipment - Sentry Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/ward,			150),
 		new /datum/data/exploration_equipment("Fishing Net",					/obj/item/weapon/material/fishing_net,								50),
 		new /datum/data/exploration_equipment("Titanium Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern,						100),
