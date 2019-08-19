@@ -2473,7 +2473,8 @@
 /obj/machinery/door/airlock/glass_external{
 	icon_state = "door_locked";
 	id_tag = "expshuttle_door_cargo";
-	locked = 1
+	locked = 1;
+	req_one_access = list()
 	},
 /obj/machinery/button/remote/airlock{
 	desiredstate = 1;
@@ -2482,7 +2483,7 @@
 	id = "expshuttle_door_cargo";
 	name = "hatch bolt control";
 	pixel_x = -32;
-	req_one_access = list();
+	req_one_access = list(19,43,67);
 	specialfunctions = 4
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
