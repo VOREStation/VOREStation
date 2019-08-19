@@ -633,7 +633,7 @@ item_path: /obj/item/weapon/fluff/dragor_dot
 ckey: radiantaurora
 character_name: Tiemli Kroto
 item_path: /obj/item/clothing/glasses/welding/tiemgogs
-req_access = 29
+req_titles: Roboticist
 }
 
 # ######## S CKEYS
