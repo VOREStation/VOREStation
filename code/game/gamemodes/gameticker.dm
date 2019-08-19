@@ -284,7 +284,7 @@ var/global/datum/controller/gameticker/ticker
 					var/mob/living/carbon/human/new_char = player.create_character()
 					if(new_char)
 						qdel(player)
-					if(istype(new_char) && !player.mind.assigned_role=="Cyborg")
+					if(istype(new_char) && !new_char.mind.assigned_role=="Cyborg")
 						data_core.manifest_inject(new_char)
 					//VOREStation Edit End
 
