@@ -443,6 +443,23 @@ var/global/list/latejoin_tram   = list()
 	network = list(NETWORK_XENOBIO)
 	req_access = list()
 
+//Dance pole
+/obj/structure/dancepole
+	name = "dance pole"
+	desc = "Engineered for your entertainment"
+	icon = 'icons/obj/objects_vr.dmi'
+	icon_state = "dancepole"
+	density = 0
+	anchored = 1
+
+/obj/structure/dancepole/attackby(var/obj/item/O as obj, var/mob/user as mob)
+	if(O.is_wrench())
+		anchored = !anchored
+		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+		if(anchored)
+			to_chat(user, "<font color='blue'>You secure \the [src].</font>")
+		else
+			to_chat(user, "<font color='blue'>You unsecure \the [src].</font>")
 //
 // ### Wall Machines On Full Windows ###
 // To make sure wall-mounted machines placed on full-tile windows are clickable they must be above the window

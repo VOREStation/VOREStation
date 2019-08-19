@@ -39,11 +39,13 @@
 	data["isAI"] = isAI(user)
 	data["map_levels"] = using_map.get_map_levels(T.z, FALSE)
 	data["crewmembers"] = list()
-	for(var/z in (data["map_levels"] | T.z))  // Always show crew from the current Z even if we can't show a map
+	for(var/z in data["map_levels"])			// VOREStation Edit
 		data["crewmembers"] += crew_repository.health_data(z)
 
 	if(!data["map_levels"].len)
 		to_chat(user, "<span class='warning'>The crew monitor doesn't seem like it'll work here.</span>")
+		if(ui)									// VOREStation Addition
+			ui.close()							// VOREStation Addition
 		return
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
