@@ -1969,6 +1969,21 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
+"di" = (
+/obj/machinery/meter,
+/obj/machinery/alarm{
+	frequency = 1441;
+	pixel_y = 22
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/floodlight,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
 "dj" = (
 /turf/simulated/wall/thull,
 /area/shuttle/excursion/tether)
@@ -2134,6 +2149,10 @@
 /obj/structure/catwalk,
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
+"dB" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
 "dC" = (
 /obj/structure/bed/chair/comfy/blue{
 	icon_state = "comfychair_preview";
@@ -2447,6 +2466,27 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
+"dZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 4
+	},
+/obj/machinery/door/airlock/glass_external{
+	icon_state = "door_locked";
+	id_tag = "expshuttle_door_cargo";
+	locked = 1
+	},
+/obj/machinery/button/remote/airlock{
+	desiredstate = 1;
+	dir = 4;
+	icon_state = "doorctrl0";
+	id = "expshuttle_door_cargo";
+	name = "hatch bolt control";
+	pixel_x = -32;
+	req_one_access = list();
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
 "ea" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -2641,6 +2681,11 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
+"er" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "es" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/railing{
@@ -28417,11 +28462,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/security_bathroom)
-"SY" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
 "Tc" = (
 /obj/structure/handrail{
 	dir = 4
@@ -28930,38 +28970,12 @@
 /obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
-"Vh" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 4
-	},
-/obj/machinery/door/airlock/glass_external{
-	icon_state = "door_locked";
-	id_tag = "expshuttle_door_cargo";
-	locked = 1
-	},
-/obj/machinery/button/remote/airlock{
-	desiredstate = 1;
-	dir = 4;
-	icon_state = "doorctrl0";
-	id = "expshuttle_door_cargo";
-	name = "hatch bolt control";
-	pixel_x = -32;
-	req_one_access = list(19,43,67);
-	specialfunctions = 4
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/shuttle/excursion/tether)
 "Vi" = (
 /obj/machinery/shuttle_sensor{
 	dir = 2;
 	id_tag = "shuttlesens_exp_psg"
 	},
 /turf/simulated/wall/thull,
-/area/shuttle/excursion/tether)
-"Vl" = (
-/obj/machinery/floodlight,
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "Vm" = (
 /obj/structure/bed/chair/shuttle{
@@ -29620,20 +29634,6 @@
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/shuttle/excursion/tether)
-"ZG" = (
-/obj/machinery/meter,
-/obj/machinery/alarm{
-	frequency = 1441;
-	pixel_y = 22
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
@@ -40539,7 +40539,7 @@ Zy
 WG
 dj
 XA
-SY
+er
 ms
 Oz
 be
@@ -40681,7 +40681,7 @@ UJ
 Xb
 dj
 XN
-SY
+er
 ms
 Xq
 be
@@ -40823,7 +40823,7 @@ kn
 WS
 dj
 XN
-SY
+er
 ms
 Vb
 be
@@ -41106,7 +41106,7 @@ jZ
 WR
 Xo
 XN
-SY
+er
 cK
 ms
 Xq
@@ -41388,8 +41388,8 @@ Za
 SO
 Zo
 Xi
-Vl
-Vh
+dB
+dZ
 Tc
 cK
 ms
@@ -41674,7 +41674,7 @@ ea
 kx
 dj
 XN
-SY
+er
 cK
 ms
 mq
@@ -41949,7 +41949,7 @@ dj
 eg
 Xl
 dj
-ZG
+di
 VR
 UW
 gM
@@ -41959,7 +41959,7 @@ kQ
 TG
 dj
 XN
-SY
+er
 ms
 nA
 be
@@ -42101,7 +42101,7 @@ kR
 Vd
 dj
 XN
-SY
+er
 ms
 QL
 be
@@ -42243,7 +42243,7 @@ ZE
 ZB
 dj
 XB
-SY
+er
 ms
 Sq
 be
