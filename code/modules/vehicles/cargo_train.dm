@@ -1,7 +1,7 @@
 /obj/vehicle/train/engine
 	name = "cargo train tug"
 	desc = "A ridable electric car designed for pulling cargo trolleys."
-	icon = 'icons/obj/vehicles.dmi'
+	icon = 'icons/obj/vehicles_vr.dmi'	//VOREStation Edit
 	icon_state = "cargo_engine"
 	on = 0
 	powered = 1
@@ -26,7 +26,7 @@
 
 /obj/vehicle/train/trolley
 	name = "cargo train trolley"
-	icon = 'icons/obj/vehicles.dmi'
+	icon = 'icons/obj/vehicles_vr.dmi'	//VOREStation Edit
 	icon_state = "cargo_trailer"
 	anchored = 0
 	passenger_allowed = 0
@@ -34,7 +34,7 @@
 
 	load_item_visible = 1
 	load_offset_x = 0
-	load_offset_y = 4
+	load_offset_y = 7		//VOREStation Edit
 	mob_offset_y = 8
 
 //-------------------------------------------
@@ -44,7 +44,7 @@
 	..()
 	cell = new /obj/item/weapon/cell/high(src)
 	key = new key_type(src)
-	var/image/I = new(icon = 'icons/obj/vehicles.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs
+	var/image/I = new(icon = 'icons/obj/vehicles_vr.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs		//VOREStation edit
 	overlays += I
 	turn_off()	//so engine verbs are correctly set
 
@@ -374,3 +374,17 @@
 		anchored = 0
 	else
 		anchored = 1
+
+// VOREStation Edit Start - Overlay stuff for the chair-like effect
+/obj/vehicle/train/engine/update_icon()
+	..()
+	overlays = null
+	var/image/O = image(icon = 'icons/obj/vehicles_vr.dmi', icon_state = "cargo_engine_overlay", dir = src.dir)
+	O.layer = FLY_LAYER
+	O.plane = MOB_PLANE
+	overlays += O
+
+/obj/vehicle/train/engine/set_dir()
+	..()
+	update_icon()
+// VOREStation Edit End - Overlay stuff for the chair-like effect

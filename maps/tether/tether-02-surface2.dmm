@@ -42,14 +42,6 @@
 /area/maintenance/lower/mining)
 "ak" = (
 /obj/machinery/door/firedoor/glass,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -57,19 +49,25 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance/common,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
 "al" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
 	pixel_x = 0;
 	pixel_y = 24
+	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
@@ -112,8 +110,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/structure/cable{
-	icon_state = "0-8"
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
 /area/vacant/vacant_site/gateway/lower)
@@ -123,6 +123,10 @@
 	},
 /obj/machinery/atmospherics/pipe/cap/visible/supply{
 	dir = 8
+	},
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
 	},
 /turf/simulated/floor/plating,
 /area/vacant/vacant_site/gateway/lower)
@@ -226,9 +230,6 @@
 /turf/simulated/floor/plating,
 /area/vacant/vacant_site/gateway/lower)
 "aJ" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -237,20 +238,19 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/obj/structure/cable{
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
 "aK" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -259,6 +259,11 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/maintenance/common,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
 "aL" = (
@@ -312,6 +317,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor,
 /area/maintenance/lower/north)
 "aP" = (
@@ -331,15 +337,14 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
 "aR" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
 "aS" = (
@@ -562,44 +567,42 @@
 /turf/simulated/wall,
 /area/maintenance/lower/public_garden_maintenence/upper)
 "bo" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
 "bp" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/public_garden_maintenence/upper)
-"bq" = (
-/obj/structure/cable{
+/obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence/upper)
+"bq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -607,6 +610,11 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
 "br" = (
@@ -665,12 +673,6 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
 "bA" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
@@ -679,18 +681,20 @@
 	icon_state = "map-scrubbers";
 	dir = 4
 	},
-/obj/structure/cable{
+/obj/structure/cable/green{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
 "bB" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/structure/cable{
-	icon_state = "16-0"
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{
@@ -699,7 +703,12 @@
 /obj/machinery/atmospherics/pipe/zpipe/up/supply{
 	dir = 1
 	},
-/obj/structure/cable,
+/obj/structure/cable/green{
+	d1 = 16;
+	d2 = 0;
+	icon_state = "16-0"
+	},
+/obj/structure/cable/green,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
 "bC" = (
@@ -862,12 +871,6 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
 "bZ" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -877,6 +880,11 @@
 	icon_state = "alarm0";
 	pixel_x = -22;
 	pixel_y = 0
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
@@ -1003,31 +1011,14 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "cm" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/railing,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/public_garden_maintenence/upper)
-"cn" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/structure/cable{
-	icon_state = "16-0"
-	},
-/obj/structure/cable,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/floor_decal/rust,
-/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/zpipe/up/supply{
-	dir = 1
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
@@ -3636,6 +3627,15 @@
 /obj/machinery/atmospherics/pipe/zpipe/up/scrubbers,
 /obj/machinery/atmospherics/pipe/zpipe/up/supply,
 /obj/structure/disposalpipe/up,
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/structure/cable/green{
+	d1 = 16;
+	d2 = 0;
+	icon_state = "16-0"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "hR" = (
@@ -3734,6 +3734,11 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "id" = (
@@ -5244,6 +5249,7 @@
 	icon_state = "32-2"
 	},
 /obj/structure/disposalpipe/down,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/open,
 /area/maintenance/lower/rnd)
 "ls" = (
@@ -8799,6 +8805,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "rM" = (
@@ -10102,11 +10109,11 @@
 /area/tether/surfacebase/east_stairs_two)
 "ue" = (
 /obj/structure/table/rack,
-/obj/item/weapon/material/fishing_rod/modern,
-/obj/item/weapon/material/fishing_rod/modern,
-/obj/item/weapon/material/fishing_rod/modern,
-/obj/item/weapon/material/fishing_rod/modern,
-/obj/item/weapon/material/fishing_rod/modern,
+/obj/item/weapon/material/fishing_rod/modern/cheap,
+/obj/item/weapon/material/fishing_rod/modern/cheap,
+/obj/item/weapon/material/fishing_rod/modern/cheap,
+/obj/item/weapon/material/fishing_rod/modern/cheap,
+/obj/item/weapon/material/fishing_rod/modern/cheap,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/fish_farm)
 "uf" = (
@@ -11976,6 +11983,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/lattice,
 /obj/structure/cable/green{
+	d1 = 32;
+	d2 = 1;
 	icon_state = "32-1"
 	},
 /obj/machinery/door/firedoor/glass,
@@ -13027,6 +13036,16 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/drone_fabrication)
+"Aw" = (
+/obj/structure/lattice,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable/green{
+	d1 = 32;
+	d2 = 2;
+	icon_state = "32-2"
+	},
+/turf/simulated/open,
+/area/maintenance/lower/public_garden_maintenence/upper)
 "Az" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
@@ -13057,6 +13076,19 @@
 /obj/structure/railing,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
+"AD" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23;
+	pixel_y = 0
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence/upper)
 "AH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -13546,9 +13578,12 @@
 /area/maintenance/lower/atmos)
 "Dw" = (
 /obj/structure/cable/green{
-	icon_state = "32-1"
+	d1 = 16;
+	d2 = 0;
+	icon_state = "16-0"
 	},
 /obj/structure/ladder,
+/obj/effect/floor_decal/industrial/outline/blue,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar_upper)
 "Dy" = (
@@ -16012,11 +16047,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
 "IE" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -16024,8 +16054,23 @@
 	dir = 4
 	},
 /obj/machinery/hologram/holopad,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
+"IN" = (
+/obj/structure/cable/green{
+	d1 = 32;
+	d2 = 4;
+	icon_state = "32-4"
+	},
+/obj/structure/lattice,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/open,
+/area/maintenance/lower/bar)
 "IR" = (
 /obj/machinery/camera/network/engineering{
 	dir = 1
@@ -16303,17 +16348,17 @@
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "Kn" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/lime/bordercorner{
 	icon_state = "bordercolorcorner";
 	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
@@ -16734,6 +16779,7 @@
 /area/maintenance/lower/south)
 "Mu" = (
 /obj/structure/ladder,
+/obj/effect/floor_decal/industrial/outline/blue,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "Mv" = (
@@ -17247,11 +17293,6 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/engineering/drone_fabrication)
 "OQ" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -17260,6 +17301,11 @@
 	},
 /obj/machinery/door/airlock/maintenance/common,
 /obj/machinery/door/firedoor/glass,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/public_garden_two)
 "OR" = (
@@ -18233,6 +18279,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/janitor)
+"Uo" = (
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence/upper)
 "Ut" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -18283,14 +18332,15 @@
 	pixel_x = 0;
 	pixel_y = 24
 	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 5
+	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
@@ -18385,6 +18435,7 @@
 /area/engineering/atmos/monitoring)
 "Vb" = (
 /obj/structure/ladder,
+/obj/effect/floor_decal/industrial/outline/blue,
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "Vd" = (
@@ -18430,9 +18481,6 @@
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "Vk" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -18445,6 +18493,11 @@
 /obj/effect/floor_decal/corner/lime/bordercorner{
 	icon_state = "bordercolorcorner";
 	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
@@ -18985,11 +19038,6 @@
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "Xk" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -19001,6 +19049,11 @@
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 5
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
@@ -25680,8 +25733,8 @@ ac
 ac
 ac
 ac
-ac
-ac
+bn
+bn
 Kt
 OQ
 Uk
@@ -25822,9 +25875,9 @@ ac
 ac
 ac
 ac
-ac
-ac
 bn
+Aw
+AD
 bp
 bB
 bX
@@ -25964,9 +26017,9 @@ ac
 ac
 ac
 ac
-ac
-ac
 bn
+Uo
+Uo
 bq
 bC
 bY
@@ -26257,7 +26310,7 @@ bZ
 aR
 aR
 cm
-cn
+bB
 bn
 ho
 hp
@@ -34221,7 +34274,7 @@ gU
 du
 hx
 hP
-hP
+IN
 ip
 iG
 ja

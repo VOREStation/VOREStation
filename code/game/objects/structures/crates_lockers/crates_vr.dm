@@ -32,3 +32,8 @@
 	..()
 
 	return
+
+/obj/structure/closet/crate/medical/blood
+	icon_state = "blood"
+	icon_opened = "bloodopen"
+	icon_closed = "blood"

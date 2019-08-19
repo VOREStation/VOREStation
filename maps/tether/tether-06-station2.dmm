@@ -1894,18 +1894,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
 "cI" = (
-/obj/structure/table/rack/shelf,
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
 	},
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 5
-	},
-/obj/item/weapon/storage/toolbox/mechanical{
-	pixel_y = -4
-	},
-/obj/item/device/multitool/tether_buffered{
-	pixel_y = 2
 	},
 /obj/machinery/requests_console{
 	department = "Exploration";
@@ -7765,7 +7758,6 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
 "lp" = (
-/obj/machinery/suit_cycler/exploration,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
 	icon_state = "borderfloor";
@@ -7780,16 +7772,23 @@
 	dir = 4
 	},
 /obj/machinery/camera/network/exploration,
+/obj/structure/table/rack/shelf,
+/obj/item/device/multitool/tether_buffered{
+	pixel_y = 2
+	},
+/obj/item/weapon/storage/toolbox/mechanical{
+	pixel_y = -4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
 "lq" = (
-/obj/machinery/suit_cycler/pilot,
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
 	},
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 5
 	},
+/obj/machinery/suit_cycler/exploration,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
 "lr" = (
