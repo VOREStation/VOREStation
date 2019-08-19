@@ -6403,6 +6403,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "ky" = (
@@ -6967,7 +6970,6 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
 "lq" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/recharger,
 /obj/structure/table/steel,
 /obj/machinery/light{
@@ -28420,6 +28422,15 @@
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/excursion/tether)
+"Tc" = (
+/obj/structure/handrail{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
 "Td" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -28577,10 +28588,10 @@
 	frequency = 1380;
 	id_tag = "expshuttle_docker_pump_out_external"
 	},
-/obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/structure/handrail{
 	dir = 4
 	},
+/obj/effect/floor_decal/industrial/warning/full,
 /turf/simulated/floor/plating,
 /area/shuttle/excursion/tether)
 "Ul" = (
@@ -28731,6 +28742,13 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/wall/thull,
+/area/shuttle/excursion/tether)
+"UK" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/handrail{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "UL" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -28912,6 +28930,27 @@
 /obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
+"Vh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 4
+	},
+/obj/machinery/door/airlock/glass_external{
+	icon_state = "door_locked";
+	id_tag = "expshuttle_door_cargo";
+	locked = 1
+	},
+/obj/machinery/button/remote/airlock{
+	desiredstate = 1;
+	dir = 4;
+	icon_state = "doorctrl0";
+	id = "expshuttle_door_cargo";
+	name = "hatch bolt control";
+	pixel_x = -32;
+	req_one_access = list(19,43,67);
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/excursion/tether)
 "Vi" = (
 /obj/machinery/shuttle_sensor{
 	dir = 2;
@@ -28920,8 +28959,8 @@
 /turf/simulated/wall/thull,
 /area/shuttle/excursion/tether)
 "Vl" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/floodlight,
+/obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "Vm" = (
@@ -29172,7 +29211,9 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "WY" = (
@@ -29280,12 +29321,8 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "Xr" = (
-/obj/structure/shuttle/engine/heater,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/yellow,
-/turf/simulated/floor/reinforced,
+/obj/machinery/atmospherics/pipe/manifold/hidden/yellow,
+/turf/simulated/wall/thull,
 /area/shuttle/excursion/tether)
 "XA" = (
 /obj/structure/shuttle/engine/heater,
@@ -29317,7 +29354,9 @@
 /obj/machinery/conveyor_switch/oneway{
 	id = "shuttle_inbound"
 	},
-/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
 /turf/simulated/floor/plating,
 /area/shuttle/excursion/tether)
 "XG" = (
@@ -29372,7 +29411,7 @@
 "XZ" = (
 /obj/machinery/computer/shuttle_control/web/excursion{
 	icon = 'icons/obj/computer.dmi';
-	my_doors = list("expshuttle_door_L" = "Port Cargo", "expshuttle_door_Ro" = "Airlock Outer", "expshuttle_door_Ri" = "Airlock Inner", "expshuttle_door_cargo" = "Cargo Hatch");
+	my_doors = list("expshuttle_door_Ro" = "Airlock Outer", "expshuttle_door_Ri" = "Airlock Inner", "expshuttle_door_cargo" = "Cargo Hatch");
 	my_sensors = list("shuttlesens_exp" = "Exterior Environment", "shuttlesens_exp_int" = "Cargo Area", "shuttlesens_exp_psg" = "Passenger Area")
 	},
 /turf/simulated/floor/tiled,
@@ -29579,6 +29618,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9;
 	icon_state = "intact"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
@@ -41205,9 +41248,9 @@ ea
 iW
 ka
 WR
-Xo
-XN
-SY
+UK
+iY
+dj
 cK
 ms
 mq
@@ -41348,8 +41391,8 @@ SO
 Zo
 Xi
 Vl
-XN
-SY
+Vh
+Tc
 cK
 ms
 VX
@@ -41491,7 +41534,7 @@ kb
 ZW
 lq
 Xr
-SY
+dj
 cK
 ms
 mq
