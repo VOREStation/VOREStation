@@ -266,6 +266,10 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/trunk,
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "mining_outbound"
+	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "aaF" = (
@@ -30330,6 +30334,10 @@
 	},
 /obj/structure/disposalpipe/trunk{
 	dir = 8
+	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "mining_inbound"
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
