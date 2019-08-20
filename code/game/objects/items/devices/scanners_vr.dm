@@ -271,6 +271,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		icon_state = initial(icon_state)
 
 /obj/item/device/healthanalyzer/improved/tricorder
+	name = "health tricorder"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "tricorder_med"
 	w_class = ITEMSIZE_NORMAL
