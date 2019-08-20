@@ -288,11 +288,11 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	deployed = !(deployed)
 	if(deployed)
 		w_class = ITEMSIZE_SMALL
-		icon_state = "tricorder"
+		icon_state = "[initial(icon_state)]"
 		to_chat(usr, span("notice", "You flip open \the [src]."))
 	else
 		w_class = ITEMSIZE_TINY
-		icon_state = "tricorder_closed"
+		icon_state = "[initial(icon_state)]_closed"
 		to_chat(usr, span("notice", "You close \the [src]."))
 
 	if (ismob(usr))
