@@ -270,42 +270,42 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/device/healthanalyzer/improved/tricorder
+/obj/item/device/healthanalyzer/tricorder
 	name = "health tricorder"
 	icon = 'icons/vore/custom_items_vr.dmi'
-	icon_state = "tricorder_med"
-	w_class = ITEMSIZE_NORMAL
+	icon_state = "tricorder"
+	w_class = ITEMSIZE_SMALL
 	action_button_name = "Toggle Tricorder"
 	var/deployed = TRUE
 
-/obj/item/device/healthanalyzer/improved/tricorder/ui_action_click()
+/obj/item/device/healthanalyzer/tricorder/ui_action_click()
 	toggle()
 
-/obj/item/device/healthanalyzer/improved/tricorder/verb/toggle()
+/obj/item/device/healthanalyzer/tricorder/verb/toggle()
 	set name = "Toggle Tricorder"
 	set category = "Object"
 
 	deployed = !(deployed)
 	if(deployed)
-		w_class = ITEMSIZE_NORMAL
-		icon_state = "tricorder_med"
+		w_class = ITEMSIZE_SMALL
+		icon_state = "tricorder"
 		to_chat(usr, span("notice", "You flip open \the [src]."))
 	else
-		w_class = ITEMSIZE_SMALL
-		icon_state = "tricorder_med_closed"
+		w_class = ITEMSIZE_TINY
+		icon_state = "tricorder_closed"
 		to_chat(usr, span("notice", "You close \the [src]."))
 
 	if (ismob(usr))
 		var/mob/M = usr
 		M.update_action_buttons()
 
-/obj/item/device/healthanalyzer/improved/tricorder/attack(mob/living/M, mob/living/user)
+/obj/item/device/healthanalyzer/tricorder/attack(mob/living/M, mob/living/user)
 	if(!deployed)
 		to_chat(user, span("warning", "\The [src] is closed."))
 		return
 	return ..()
 
-/obj/item/device/healthanalyzer/improved/tricorder/do_surgery(mob/living/M, mob/living/user)
+/obj/item/device/healthanalyzer/tricorder/do_surgery(mob/living/M, mob/living/user)
 	if(!deployed)
 		to_chat(user, span("warning", "\The [src] is closed."))
 		return
