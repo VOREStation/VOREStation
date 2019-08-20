@@ -269,3 +269,43 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		icon_state = "[initial(icon_state)]_on"
 	else
 		icon_state = initial(icon_state)
+
+/obj/item/device/healthanalyzer/improved/tricorder
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "tricorder_med"
+	w_class = ITEMSIZE_NORMAL
+	action_button_name = "Toggle Tricorder"
+	var/deployed = TRUE
+
+/obj/item/device/healthanalyzer/improved/tricorder/ui_action_click()
+	toggle()
+
+/obj/item/device/healthanalyzer/improved/tricorder/verb/toggle()
+	set name = "Toggle Tricorder"
+	set category = "Object"
+
+	deployed = !(deployed)
+	if(deployed)
+		w_class = ITEMSIZE_NORMAL
+		icon_state = "tricorder_med"
+		to_chat(usr, span("notice", "You flip open \the [src]."))
+	else
+		w_class = ITEMSIZE_SMALL
+		icon_state = "tricorder_med_closed"
+		to_chat(usr, span("notice", "You close \the [src]."))
+
+	if (ismob(usr))
+		var/mob/M = usr
+		M.update_action_buttons()
+
+/obj/item/device/healthanalyzer/improved/tricorder/attack(mob/living/M, mob/living/user)
+	if(!deployed)
+		to_chat(user, span("warning", "\The [src] is closed."))
+		return
+	return ..()
+
+/obj/item/device/healthanalyzer/improved/tricorder/do_surgery(mob/living/M, mob/living/user)
+	if(!deployed)
+		to_chat(user, span("warning", "\The [src] is closed."))
+		return
+	return ..()
