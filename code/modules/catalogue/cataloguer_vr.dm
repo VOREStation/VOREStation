@@ -20,7 +20,7 @@
 	set category = "Object"
 
 	if(busy)
-		to_chat(user, span("warning", "\The [src] is currently scanning something."))
+		to_chat(usr, span("warning", "\The [src] is currently scanning something."))
 		return
 	deployed = !(deployed)
 	if(deployed)
