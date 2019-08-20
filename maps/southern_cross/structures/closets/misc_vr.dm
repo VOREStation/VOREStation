@@ -49,7 +49,7 @@
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank/emergency/oxygen/engi,
 		/obj/item/clothing/glasses/hud/health,
-		/obj/item/device/healthanalyzer,
+		/obj/item/device/healthanalyzer/tricorder,
 		/obj/item/device/radio/off,
 		/obj/random/medical,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2,
