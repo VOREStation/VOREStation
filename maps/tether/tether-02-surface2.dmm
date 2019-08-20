@@ -9057,6 +9057,16 @@
 /obj/item/clothing/head/helmet/space/void/atmos,
 /turf/simulated/floor/tiled,
 /area/engineering/lower/atmos_eva)
+"sj" = (
+/obj/structure/ladder,
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/structure/cable/green{
+	d1 = 32;
+	d2 = 1;
+	icon_state = "32-1"
+	},
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "sk" = (
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled/steel_dirty,
@@ -13574,16 +13584,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
-"Dw" = (
-/obj/structure/cable/green{
-	d1 = 16;
-	d2 = 0;
-	icon_state = "16-0"
-	},
-/obj/structure/ladder,
-/obj/effect/floor_decal/industrial/outline/blue,
-/turf/simulated/floor/wood,
-/area/vacant/vacant_bar_upper)
 "Dy" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 10
@@ -31064,7 +31064,7 @@ OI
 OI
 VQ
 OI
-Dw
+sj
 Zl
 ac
 ab
