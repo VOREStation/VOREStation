@@ -6,6 +6,12 @@
 	action_button_name = "Toggle Cataloguer"
 	var/deployed = TRUE
 
+/obj/item/device/cataloguer/pathfinder/update_icon()
+	if(busy)
+		icon_state = "[initial(icon_state)]_s"
+	else
+		icon_state = initial(icon_state)
+
 /obj/item/device/cataloguer/pathfinder/ui_action_click()
 	toggle()
 
