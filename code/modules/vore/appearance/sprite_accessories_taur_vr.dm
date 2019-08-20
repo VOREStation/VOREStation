@@ -441,6 +441,7 @@
 	ckeys_allowed = list("natje")
 	do_colouration = 0
 	can_ride = 0
+	clip_mask_state = "taur_clip_mask_alraune"
 
 
 	msg_prey_stepunder = "You run between %prey's vines."
@@ -472,11 +473,13 @@
 	do_colouration = 1
 	extra_overlay = "alraunecolor_markings"
 	extra_overlay_w = "alraunecolor_closed_markings"
+	clip_mask_state = "taur_clip_mask_alraune"
 
 /datum/sprite_accessory/tail/taur/wasp
 	name = "Wasp (dual color)"
 	icon_state = "wasp_s"
 	extra_overlay = "wasp_markings"
+	clip_mask_state = "taur_clip_mask_wasp"
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their leg!"
