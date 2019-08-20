@@ -2683,9 +2683,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "er" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
+/obj/machinery/shuttle_sensor{
+	dir = 5;
+	id_tag = "shuttlesens_exp";
+	pixel_y = -6
+	},
+/turf/simulated/wall/thull,
 /area/shuttle/excursion/tether)
 "es" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2931,6 +2934,11 @@
 /obj/random/junk,
 /turf/simulated/floor,
 /area/maintenance/station/ai)
+"eN" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "eS" = (
 /obj/item/frame,
 /obj/effect/floor_decal/rust,
@@ -40540,7 +40548,7 @@ Zy
 WG
 dj
 XA
-er
+eN
 ms
 Oz
 be
@@ -40682,7 +40690,7 @@ UJ
 Xb
 dj
 XN
-er
+eN
 ms
 Xq
 be
@@ -40810,7 +40818,7 @@ bX
 cE
 cK
 fh
-ZB
+dj
 dW
 UB
 dj
@@ -40824,7 +40832,7 @@ kn
 WS
 dj
 XN
-er
+eN
 ms
 Vb
 be
@@ -41107,7 +41115,7 @@ jZ
 WR
 Xo
 XN
-er
+eN
 cK
 ms
 Xq
@@ -41521,7 +41529,7 @@ cG
 VB
 WD
 dE
-dj
+er
 TY
 dj
 dj
@@ -41675,7 +41683,7 @@ ea
 kx
 dj
 XN
-er
+eN
 cK
 ms
 mq
@@ -41960,7 +41968,7 @@ kQ
 TG
 dj
 XN
-er
+eN
 ms
 nA
 be
@@ -42102,7 +42110,7 @@ kR
 Vd
 dj
 XN
-er
+eN
 ms
 QL
 be
@@ -42244,7 +42252,7 @@ ZE
 ZB
 dj
 XB
-er
+eN
 ms
 Sq
 be
