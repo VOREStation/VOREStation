@@ -1,6 +1,5 @@
 /obj/item/device/cataloguer/pathfinder
 	name = "pathfinder's cataloguer"
-	w_class = ITEMSIZE_SMALL
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "tricorder"
 	action_button_name = "Toggle Cataloguer"
