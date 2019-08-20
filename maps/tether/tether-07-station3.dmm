@@ -1972,7 +1972,6 @@
 "di" = (
 /obj/machinery/meter,
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
@@ -28715,7 +28714,6 @@
 /obj/structure/bed/chair/shuttle,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,

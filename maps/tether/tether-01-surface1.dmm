@@ -26237,7 +26237,6 @@
 	dir = 1
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/item/weapon/towel/random,
@@ -26535,7 +26534,6 @@
 /area/vacant/vacant_bar)
 "dQB" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -26569,7 +26567,6 @@
 /area/tether/surfacebase/public_garden_one)
 "dUk" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/machinery/power/apc{
@@ -28219,7 +28216,6 @@
 	dir = 4
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/structure/cable/green{
@@ -28232,7 +28228,6 @@
 /area/maintenance/lower/atmos)
 "jXa" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/structure/table/bench/steel,
@@ -28693,7 +28688,6 @@
 	dir = 1
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/freezer,
@@ -30897,7 +30891,6 @@
 	dir = 4
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -32106,7 +32099,6 @@
 /area/engineering/atmos)
 "xiL" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/plating,
@@ -32301,7 +32293,6 @@
 /area/engineering/atmos)
 "ycb" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,
