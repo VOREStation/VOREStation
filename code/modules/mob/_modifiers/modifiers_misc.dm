@@ -43,7 +43,7 @@ the artifact triggers the rage.
 /datum/modifier/berserk
 	name = "berserk"
 	desc = "You are filled with an overwhelming rage."
-	client_color = "#FF0000" // Make everything red!
+	client_color = "#FF5555" // Make everything red!
 	mob_overlay_state = "berserk"
 
 	on_created_text = "<span class='critical'>You feel an intense and overwhelming rage overtake you as you go berserk!</span>"
