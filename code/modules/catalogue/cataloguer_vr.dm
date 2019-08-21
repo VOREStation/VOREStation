@@ -1,20 +1,22 @@
-/obj/item/device/cataloguer/pathfinder
-	name = "pathfinder's cataloguer"
+/obj/item/device/cataloguer/compact
+	name = "compact cataloguer"
 	icon = 'icons/vore/custom_items_vr.dmi'
-	icon_state = "tricorder_med"
+	icon_state = "tricorder"
 	action_button_name = "Toggle Cataloguer"
 	var/deployed = TRUE
+	scan_range = 1
+	toolspeed = 1.2
 
-/obj/item/device/cataloguer/pathfinder/update_icon()
+/obj/item/device/cataloguer/compact/update_icon()
 	if(busy)
 		icon_state = "[initial(icon_state)]_s"
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/device/cataloguer/pathfinder/ui_action_click()
+/obj/item/device/cataloguer/compact/ui_action_click()
 	toggle()
 
-/obj/item/device/cataloguer/pathfinder/verb/toggle()
+/obj/item/device/cataloguer/compact/verb/toggle()
 	set name = "Toggle Cataloguer"
 	set category = "Object"
 
@@ -35,14 +37,20 @@
 		var/mob/M = usr
 		M.update_action_buttons()
 
-/obj/item/device/cataloguer/pathfinder/afterattack(atom/target, mob/user, proximity_flag)
+/obj/item/device/cataloguer/compact/afterattack(atom/target, mob/user, proximity_flag)
 	if(!deployed)
 		to_chat(user, span("warning", "\The [src] is closed."))
 		return
 	return ..()
 
-/obj/item/device/cataloguer/pathfinder/pulse_scan(mob/user)
+/obj/item/device/cataloguer/compact/pulse_scan(mob/user)
 	if(!deployed)
 		to_chat(user, span("warning", "\The [src] is closed."))
 		return
 	return ..()
+
+/obj/item/device/cataloguer/compact/pathfinder
+	name = "pathfinder's cataloguer"
+	icon_state = "tricorder_med"
+	scan_range = 3
+	toolspeed = 1
