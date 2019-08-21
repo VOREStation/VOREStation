@@ -2851,11 +2851,8 @@
 #include "code\modules\reagents\Chemistry-Reagents\Chemistry-Reagents-Food-Drinks.dm"
 #include "code\modules\reagents\Chemistry-Reagents\Chemistry-Reagents-Food-Drinks_vr.dm"
 #include "code\modules\reagents\Chemistry-Reagents\Chemistry-Reagents-Medicine.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\reagents\Chemistry-Reagents\Chemistry-Reagents-Medicine_vr.dm"
-=======
 #include "code\modules\reagents\Chemistry-Reagents\Chemistry-Reagents-Modifiers.dm"
->>>>>>> 0069b9d... Merge pull request #6396 from Mechoid/ChemistryAdvancement:polaris.dme
 #include "code\modules\reagents\Chemistry-Reagents\Chemistry-Reagents-Other.dm"
 #include "code\modules\reagents\Chemistry-Reagents\Chemistry-Reagents-Toxins.dm"
 #include "code\modules\reagents\Chemistry-Reagents\Chemistry-Reagents-Vore_vr.dm"
@@ -2878,11 +2875,8 @@
 #include "code\modules\reagents\reagent_containers\glass.dm"
 #include "code\modules\reagents\reagent_containers\glass_vr.dm"
 #include "code\modules\reagents\reagent_containers\hypospray.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\reagents\reagent_containers\hypospray_vr.dm"
-=======
 #include "code\modules\reagents\reagent_containers\patch.dm"
->>>>>>> 0069b9d... Merge pull request #6396 from Mechoid/ChemistryAdvancement:polaris.dme
 #include "code\modules\reagents\reagent_containers\pill.dm"
 #include "code\modules\reagents\reagent_containers\pill_vr.dm"
 #include "code\modules\reagents\reagent_containers\spray.dm"
