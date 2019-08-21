@@ -2223,11 +2223,8 @@
 #include "code\modules\mob\living\carbon\human\stripping.dm"
 #include "code\modules\mob\living\carbon\human\unarmed_attack.dm"
 #include "code\modules\mob\living\carbon\human\update_icons.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\mob\living\carbon\human\update_icons_vr.dm"
-=======
 #include "code\modules\mob\living\carbon\human\ai_controlled\ai_controlled.dm"
->>>>>>> f294be6... Exploration Expansion 1: Or, How I Learned To Love The Tree (#6358):polaris.dme
 #include "code\modules\mob\living\carbon\human\descriptors\_descriptors.dm"
 #include "code\modules\mob\living\carbon\human\descriptors\descriptors_generic.dm"
 #include "code\modules\mob\living\carbon\human\descriptors\descriptors_skrell.dm"
