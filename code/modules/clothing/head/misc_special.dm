@@ -273,8 +273,6 @@
 /obj/item/clothing/head/psy_crown/wrath/activate_ability(var/mob/living/wearer)
 	..()
 	wearer.add_modifier(/datum/modifier/berserk, 30 SECONDS)
-<<<<<<< HEAD
-=======
 
 /obj/item/clothing/head/psy_crown/gluttony
 	name = "green crown"
@@ -289,4 +287,3 @@
 /obj/item/clothing/head/psy_crown/gluttony/activate_ability(var/mob/living/wearer)
 	..()
 	wearer.add_modifier(/datum/modifier/gluttonyregeneration, 45 SECONDS)
->>>>>>> f294be6... Exploration Expansion 1: Or, How I Learned To Love The Tree (#6358)
