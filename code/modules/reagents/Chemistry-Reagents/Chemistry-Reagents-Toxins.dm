@@ -11,6 +11,7 @@
 	metabolism = REM * 0.25 // 0.05 by default. Hopefully enough to get some help, or die horribly, whatever floats your boat
 	filtered_organs = list(O_LIVER, O_KIDNEYS)
 	var/strength = 4 // How much damage it deals per unit
+	var/skin_danger = 0.2 // The multiplier for how effective the toxin is when making skin contact.
 
 /datum/reagent/toxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(strength && alien != IS_DIONA)
@@ -22,6 +23,9 @@
 			else
 				M.heal_organ_damage((10/strength) * removed, (10/strength) * removed) //Doses of toxins below 10 units, and 10 strength, are capable of providing useful compounds for repair.
 		M.adjustToxLoss(strength * removed)
+
+/datum/reagent/toxin/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	affect_blood(M, alien, removed * 0.2)
 
 /datum/reagent/toxin/plasticide
 	name = "Plasticide"
@@ -58,6 +62,7 @@
 	reagent_state = LIQUID
 	color = "#005555"
 	strength = 8
+	skin_danger = 0.4
 
 /datum/reagent/toxin/neurotoxic_protein/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -121,6 +126,7 @@
 	color = "#9D14DB"
 	strength = 30
 	touch_met = 5
+	skin_danger = 1
 
 /datum/reagent/toxin/phoron/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L))
