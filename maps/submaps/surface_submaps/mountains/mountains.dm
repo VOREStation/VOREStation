@@ -252,18 +252,14 @@
 	cost = 40
 	discard_prob = 50
 
-<<<<<<< HEAD
-/datum/map_template/surface/mountains/normal/Scave1 //VOREStation Edit
-=======
-/datum/map_template/surface/mountains/deep/crashed_ufo_frigate
+/datum/map_template/surface/mountains/deep/crashed_ufo_frigate //VOREStation Edit
 	name = "Crashed UFO Frigate"
 	desc = "A (formerly) flying saucer that is now embedded into the mountain, yet its combat protocols still seem to be running..."
 	mappath = 'maps/submaps/surface_submaps/mountains/crashed_ufo.dmm'
 	cost = 60
 	discard_prob = 50
 
-/datum/map_template/surface/mountains/deep/Scave1
->>>>>>> f294be6... Exploration Expansion 1: Or, How I Learned To Love The Tree (#6358)
+/datum/map_template/surface/mountains/normal/Scave1 //VOREStation Edit
 	name = "Spider Cave 1"
 	desc = "A minning tunnel home to an aggressive collection of spiders."
 	mappath = 'maps/submaps/surface_submaps/mountains/Scave1.dmm'
