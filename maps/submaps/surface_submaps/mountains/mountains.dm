@@ -252,7 +252,7 @@
 	cost = 40
 	discard_prob = 50
 
-/datum/map_template/surface/mountains/deep/crashed_ufo_frigate //VOREStation Edit
+/datum/map_template/surface/mountains/normal/crashed_ufo_frigate //VOREStation Edit
 	name = "Crashed UFO Frigate"
 	desc = "A (formerly) flying saucer that is now embedded into the mountain, yet its combat protocols still seem to be running..."
 	mappath = 'maps/submaps/surface_submaps/mountains/crashed_ufo.dmm'
@@ -314,7 +314,7 @@
 	cost = 25
 	template_group = "Buried Vaults"
 
-/datum/map_template/surface/mountains/deep/vault6
+/datum/map_template/surface/mountains/normal/vault6 //VOREStation Edit
 	name = "Mine Vault 6"
 	desc = "A small mercenary tower with potential loot."
 	mappath = 'maps/submaps/surface_submaps/mountains/vault6.dmm'
