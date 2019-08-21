@@ -84,7 +84,8 @@
 		/obj/item/weapon/storage/box/flare,
 		/obj/item/weapon/cell/device,
 		/obj/item/device/radio,
-		/obj/item/device/gps/explorer)
+		/obj/item/device/gps/explorer,
+		/obj/item/device/cataloguer/compact)
 
 /obj/structure/closet/secure_closet/pathfinder
 	name = "pathfinder locker"
