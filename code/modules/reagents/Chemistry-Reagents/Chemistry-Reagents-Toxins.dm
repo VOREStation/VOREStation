@@ -346,6 +346,36 @@
 	if(alien == IS_DIONA)
 		M.adjustToxLoss(50 * removed)
 
+/datum/reagent/toxin/sifslurry
+	name = "Sivian Sap"
+	id = "sifsap"
+	description = "A natural slurry comprised of fluorescent bacteria native to Sif, in the Vir system."
+	taste_description = "sour"
+	reagent_state = LIQUID
+	color = "#C6E2FF"
+	strength = 2
+	overdose = 20
+
+/datum/reagent/toxin/sifslurry/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA) // Symbiotic bacteria.
+		M.nutrition += strength * removed
+		return
+	else
+		M.add_modifier(/datum/modifier/slow_pulse, 30 SECONDS)
+	..()
+
+/datum/reagent/toxin/sifslurry/overdose(var/mob/living/carbon/M, var/alien, var/removed) // Overdose effect.
+	if(alien == IS_DIONA)
+		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		overdose_mod *= H.species.chemOD_mod
+	M.apply_effect(2 * removed,IRRADIATE, 0, 0)
+	M.apply_effect(5 * removed,DROWSY, 0, 0)
+
+/datum/reagent/toxin/sifslurry/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	affect_blood(M, alien, removed * 0.7)
+
 /datum/reagent/acid/polyacid
 	name = "Polytrinic acid"
 	id = "pacid"

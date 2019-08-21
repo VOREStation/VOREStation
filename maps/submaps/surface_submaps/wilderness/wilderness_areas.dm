@@ -124,3 +124,11 @@
 /area/submap/ButcherShack
 	name = "POI - ButcherShack"
 	ambience = AMBIENCE_RUINS
+
+/area/submap/Chapel1
+	name = "POI - Abandoned Chapel"
+	ambience = AMBIENCE_RUINS
+
+/area/submap/Shelter1
+	name = "POI - Raided Shelter"
+	ambience = AMBIENCE_GHOSTLY

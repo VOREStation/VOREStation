@@ -4144,3 +4144,26 @@
 	. = ..()
 	reagents.add_reagent("fishbait", 40)
 	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/siffruit
+	name = "pulsing fruit"
+	desc = "A blue-ish sac encased in a tough black shell."
+	icon = 'icons/obj/flora/foraging.dmi'
+	icon_state = "siffruit"
+	nutriment_amt = 2
+	nutriment_desc = list("tart" = 1)
+	w_class = ITEMSIZE_TINY
+
+/obj/item/weapon/reagent_containers/food/snacks/siffruit/Initialize()
+	. = ..()
+	reagents.add_reagent("sifsap", 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/siffruit/afterattack(obj/O as obj, mob/user as mob, proximity)
+	if(istype(O,/obj/machinery/microwave))
+		return ..()
+	if(!(proximity && O.is_open_container()))
+		return
+	to_chat(user, "<span class='notice'>You tear \the [src]'s sac open, pouring it into \the [O].</span>")
+	reagents.trans_to(O, reagents.total_volume)
+	user.drop_from_inventory(src)
+	qdel(src)

@@ -1,0 +1,160 @@
+"aa" = (/turf/template_noop,/area/template_noop)
+"ab" = (/turf/template_noop,/area/submap/Blackshuttledown)
+"ac" = (/obj/effect/decal/remains/human,/turf/template_noop,/area/submap/Blackshuttledown)
+"ad" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Blackshuttledown)
+"ae" = (/obj/effect/decal/cleanable/blood,/turf/template_noop,/area/submap/Blackshuttledown)
+"af" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Blackshuttledown)
+"ag" = (/obj/structure/table/steel,/turf/template_noop,/area/submap/Blackshuttledown)
+"ah" = (/mob/living/simple_mob/humanoid/merc/ranged/smg/sol,/turf/template_noop,/area/submap/Blackshuttledown)
+"ai" = (/turf/template_noop,/turf/simulated/shuttle/wall/dark{icon_state = "dark6"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
+"aj" = (/turf/simulated/shuttle/wall/dark{icon_state = "dark0"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
+"ak" = (/turf/template_noop,/turf/simulated/shuttle/wall/dark{icon_state = "dark10"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
+"al" = (/obj/structure/shuttle/engine/heater{icon_state = "heater"; dir = 4},/turf/simulated/shuttle/wall/dark{icon_state = "dark0"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
+"am" = (/obj/structure/shuttle/engine/propulsion{dir = 4; icon_state = "propulsion_l"},/turf/template_noop,/area/submap/Blackshuttledown)
+"an" = (/obj/machinery/light{dir = 1},/obj/structure/table/rack,/obj/item/clothing/head/helmet/space,/obj/item/clothing/head/helmet/space,/obj/item/clothing/head/helmet/space,/obj/item/clothing/head/helmet/space,/obj/item/clothing/suit/space,/obj/item/clothing/suit/space,/obj/item/clothing/suit/space,/obj/item/clothing/suit/space,/obj/effect/floor_decal/borderfloor{dir = 9},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"ao" = (/obj/structure/dispenser/oxygen,/obj/effect/floor_decal/borderfloor{dir = 5},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"ap" = (/obj/machinery/door/airlock/external{density = 1; frequency = 1331; id_tag = "merc_shuttle_outer"; name = "Ship External Access"; req_access = list(150)},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"aq" = (/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 9},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"ar" = (/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 1},/obj/structure/morgue{icon_state = "morgue1"; dir = 8},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"as" = (/obj/machinery/light{dir = 1},/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 1},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"at" = (/obj/machinery/bodyscanner{dir = 8},/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 1},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"au" = (/obj/machinery/body_scanconsole,/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 5},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"av" = (/turf/simulated/floor/tiled/steel,/turf/simulated/shuttle/wall/dark{icon_state = "dark5"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
+"aw" = (/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
+"ax" = (/obj/structure/table/steel,/obj/item/weapon/gun/projectile/automatic/wt550,/obj/item/weapon/gun/projectile/automatic/p90,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
+"ay" = (/obj/effect/floor_decal/borderfloor{dir = 8},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"az" = (/obj/effect/floor_decal/borderfloor{dir = 4},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"aA" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"aB" = (/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 8},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"aC" = (/obj/machinery/optable,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"aD" = (/obj/structure/janitorialcart,/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
+"aE" = (/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"aF" = (/obj/machinery/organ_printer/flesh,/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 5},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"aG" = (/turf/simulated/floor/tiled/steel,/turf/simulated/shuttle/wall/dark{icon_state = "dark9"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
+"aH" = (/turf/simulated/floor/tiled/steel,/turf/simulated/shuttle/wall/dark{icon_state = "dark6"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
+"aI" = (/mob/living/simple_mob/mechanical/viscerator/mercenary,/mob/living/simple_mob/mechanical/viscerator/mercenary,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
+"aJ" = (/obj/structure/table/steel,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
+"aK" = (/obj/effect/floor_decal/borderfloor/corner{dir = 4},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"aL" = (/obj/effect/floor_decal/borderfloor{dir = 1},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"aM" = (/obj/effect/floor_decal/borderfloor{dir = 5},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"aN" = (/obj/structure/ore_box,/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
+"aO" = (/mob/living/simple_mob/humanoid/merc/melee/sword/poi,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"aP" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 4},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"aQ" = (/obj/structure/table/steel,/obj/effect/floor_decal/borderfloor/full,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"aR" = (/obj/structure/table/steel,/obj/item/weapon/grenade/smokebomb,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
+"aS" = (/obj/effect/floor_decal/borderfloor/corner,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"aT" = (/obj/effect/floor_decal/borderfloor,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"aU" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/effect/floor_decal/borderfloor{dir = 6},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"aV" = (/obj/structure/table/standard,/obj/item/weapon/storage/firstaid/surgery,/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 10},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"aW" = (/obj/structure/table/standard,/obj/item/weapon/tank/anesthetic,/obj/effect/floor_decal/corner/green/border,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"aX" = (/obj/effect/floor_decal/corner/green/border,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"aY" = (/obj/structure/table/standard,/obj/item/clothing/gloves/sterile,/obj/item/clothing/gloves/sterile,/obj/effect/floor_decal/corner/green/border,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"aZ" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/spray/sterilizine,/obj/item/weapon/reagent_containers/spray/sterilizine,/obj/effect/floor_decal/corner/green/border,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"ba" = (/obj/structure/table/standard,/obj/item/weapon/storage/box/masks,/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 6},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"bb" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/effect/floor_decal/borderfloor{dir = 9},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bc" = (/obj/structure/bed/chair/office/dark{dir = 1},/obj/effect/floor_decal/borderfloor{dir = 5},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bd" = (/obj/machinery/door/airlock/security{locked = 1},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"be" = (/obj/machinery/door/airlock/glass,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"bf" = (/turf/simulated/floor/tiled/steel,/turf/simulated/shuttle/wall/dark{icon_state = "dark10"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
+"bg" = (/obj/machinery/computer/communications,/obj/effect/floor_decal/borderfloor{dir = 9},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bh" = (/obj/effect/floor_decal/borderfloor/corner{dir = 1},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bi" = (/obj/effect/floor_decal/borderfloor{dir = 9},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bj" = (/obj/structure/closet/secure_closet/freezer/fridge,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bk" = (/obj/structure/table/steel,/obj/item/weapon/material/knife,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bl" = (/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bm" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bn" = (/obj/structure/curtain/open/shower/security,/obj/structure/window/reinforced/tinted/frosted{icon_state = "fwindow"; dir = 1},/obj/structure/window/reinforced/tinted/frosted,/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
+"bo" = (/obj/structure/table/steel,/obj/random/toolbox,/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
+"bp" = (/obj/structure/table/steel,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
+"bq" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating,/area/submap/Blackshuttledown)
+"br" = (/obj/structure/table/steel,/obj/effect/floor_decal/borderfloor{dir = 8},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bs" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/effect/floor_decal/borderfloor{dir = 8},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bt" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/effect/floor_decal/borderfloor{dir = 4},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bu" = (/obj/item/weapon/stool,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bv" = (/obj/structure/table/steel,/obj/random/projectile,/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
+"bw" = (/obj/structure/sink{dir = 8; icon_state = "sink"; pixel_x = -16},/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
+"bx" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating,/area/submap/Blackshuttledown)
+"by" = (/obj/machinery/door/airlock/glass,/obj/effect/floor_decal/borderfloor{dir = 1},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bz" = (/obj/effect/floor_decal/corner/grey,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bA" = (/obj/machinery/door/airlock/glass,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bB" = (/obj/structure/table/steel,/obj/item/pizzabox,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bC" = (/obj/structure/table/steel,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bD" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bE" = (/obj/machinery/door/airlock/glass,/obj/effect/floor_decal/borderfloor,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bF" = (/obj/effect/floor_decal/borderfloor/corner{dir = 8},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bG" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating,/area/submap/Blackshuttledown)
+"bH" = (/obj/machinery/power/apc{dir = 8; name = "BSD APC"; pixel_x = -24},/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
+"bI" = (/mob/living/simple_mob/humanoid/merc/melee/sword/poi,/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
+"bJ" = (/obj/machinery/computer/area_atmos,/obj/effect/floor_decal/borderfloor{dir = 10},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bK" = (/mob/living/simple_mob/humanoid/merc/ranged/laser/poi,/turf/template_noop,/area/submap/Blackshuttledown)
+"bL" = (/obj/effect/floor_decal/borderfloor{dir = 10},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bM" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/floor_decal/borderfloor{dir = 4},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bN" = (/obj/structure/table/steel,/obj/item/weapon/paper{info = "We need to take a short stop. The engine's are in need of minor repairs due to turbulence, should be a week's time. We've got reserve food supplies but pleanty of locale fauna to subsist on too if need be. PCRC is keeping most of there assets near New Reykjavik and locale authorities are more mindful then most to travel in this kind of weather. Our outfit should be at the rendezvous point in less then ten days assuming the upper ecehelon hasn't dropped ties with us yet."; name = "Operation Progress/M-53"},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bO" = (/obj/structure/table/steel,/obj/item/weapon/paper_bin,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bP" = (/obj/machinery/light,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bQ" = (/obj/structure/closet/toolcloset,/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
+"bR" = (/obj/machinery/portable_atmospherics/canister/empty/oxygen,/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
+"bS" = (/obj/machinery/atmospherics/pipe/tank/oxygen,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
+"bT" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/effect/floor_decal/borderfloor{dir = 10},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bU" = (/obj/structure/bed/chair/office/dark,/obj/effect/floor_decal/borderfloor{dir = 6},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bV" = (/obj/structure/table/steel,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
+"bW" = (/obj/effect/floor_decal/borderfloor/corner{dir = 4},/obj/effect/floor_decal/borderfloor/corner{dir = 4},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bX" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/effect/floor_decal/borderfloor{dir = 5},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bY" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bZ" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
+"ca" = (/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
+"cb" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/obj/structure/curtain/open/shower/security,/obj/structure/window/reinforced/tinted/frosted{icon_state = "fwindow"; dir = 1},/obj/structure/window/reinforced/tinted/frosted,/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
+"cc" = (/obj/structure/table/steel,/obj/item/weapon/gun/projectile/pistol,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
+"cd" = (/obj/effect/floor_decal/borderfloor{dir = 6},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"ce" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/structure/bed,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"cf" = (/obj/structure/urinal{dir = 4; icon_state = "urinal"; pixel_x = -32},/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
+"cg" = (/obj/structure/toilet{icon_state = "toilet00"; dir = 4},/obj/structure/curtain,/obj/structure/window/reinforced/tinted/frosted{icon_state = "fwindow"; dir = 1},/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
+"ch" = (/obj/structure/table/steel,/obj/random/energy,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
+"ci" = (/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
+"cj" = (/obj/machinery/light,/obj/structure/table/rack,/obj/item/clothing/head/helmet/space,/obj/item/clothing/head/helmet/space,/obj/item/clothing/head/helmet/space,/obj/item/clothing/head/helmet/space,/obj/item/clothing/suit/space,/obj/item/clothing/suit/space,/obj/item/clothing/suit/space,/obj/item/clothing/suit/space,/obj/effect/floor_decal/borderfloor{dir = 10},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"ck" = (/obj/structure/dispenser/oxygen,/obj/effect/floor_decal/borderfloor{dir = 6},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"cl" = (/obj/structure/table/woodentable,/obj/random/projectile,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"cm" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/machinery/light,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"cp" = (/turf/template_noop,/turf/simulated/shuttle/wall/dark{icon_state = "dark5"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
+"cq" = (/turf/template_noop,/turf/simulated/shuttle/wall/dark{icon_state = "dark9"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
+"cr" = (/obj/effect/floor_decal/borderfloor{dir = 4},/mob/living/simple_mob/humanoid/merc/melee/sword/poi,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"cs" = (/obj/effect/floor_decal/borderfloor{dir = 4},/mob/living/simple_mob/humanoid/merc/ranged/laser/poi,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"ct" = (/mob/living/simple_mob/humanoid/merc/ranged/smg/sol,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaabababababacababababababababadadabacabababababacabababababababababaa
+aaababababababaeabababababababadadababababababababababababadafababacaa
+aaabababababababababababababadadabababafabababafababaeababadadabababaa
+aaababafabadadadababababafababababababababababababababababadadabababaa
+aaabababababadadadabacababababagagagagagagabababababacabafabadabababaa
+aaababababababadadabafababababagahabababagabababababababababababababaa
+aaabababababababaiajajajakababagabababbKagabababafaiajajajajakabababaa
+aaabababababababajajajajajajajajajababajajajajajajajajajajajalamababaa
+aaababababafababajajajajajajanaoajapapajaqarasatauajajajajajalamababaa
+aaabababababababavajajawaxajayazajaAaAajaBaCaEaEaEaEaFajajaGababababaa
+aaabababababababaHajajaIaJajayaKaLaLaMajaBaEaEaEaOaEaPajaGabababababaa
+aaabafababababaHajaQajawaRajayaSaTaTaUajaVaWaEaXaYaZbaajababababafabaa
+aaabababababaHajbbbcajbdajajayazajajajajajajbeajajajajajbfabababababaa
+aaabababababajbgbhazajbiaLaLbhazajbjbkblbmblctblajbobobpajbfababababaa
+aaabababababbqbrblazajbsblblblbtajblblbububublblajbvblblaDalamabababaa
+aaabababababbxbrblaKbybhblbzblblbAblblbBbCbCblblbDblblctaNalamabababaa
+aaabababababbxbrblaSbEbFblblblblbAblblbCbCbCblblbDblblblcialamabababaa
+aaabababababbGbrblazajbsblblblbtajblblbububublblajbHblblbIalamabababaa
+aaabababababajbJbFcsajbLaTaTbFbMajbNbOblbPctblblajbQbRbSajaGababababaa
+aaabababababavajbTbUajbdajajayazajajajajajajbAajajajajajaGabababababaa
+aaababababababavajaQajawbVajaybWaLaLbXajbYblblbZcacabnajababababababaa
+aaabafabababababavajajaIccajayaSaTaTcdajceblbYajbwcacbajbfabafabababaa
+aaabababababababaHajajawchajaycrajaAaAajbYblbYajcfcabnajajbfababababaa
+aaabababababababajajajajajajcjckajapapajbYclcmajcgcabnajajalamabababaa
+aaabababababababajajajajajajajajajababajajajajajajajajajajalamabababaa
+aaababafababababcpajajajcqababagbKabababagabababcpajajajajcqababababaa
+aaabababadabababababafababababagabababahagababafabafabababadadadababaa
+aaababadadabacababababafabababagagagagagagababababacababadadadadababaa
+aaabadadadabababababababaeababababababababababadadabababadadadadababaa
+aaababadadababacabadababababababababababababadadadababababadadabababaa
+aaabababababababadadafabababafababababacabadadadafabababababababababaa
+aaabababafababadadadababababababababafabadadadadabababababababafababaa
+aaabababababababadadabacabababababababababababadaeabacafababababababaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}
