@@ -14,18 +14,9 @@
 	var/product_amount = 10 // How much of a stack you get, if the above is defined.
 	var/is_stump = FALSE // If true, suspends damage tracking and most other effects.
 	var/indestructable = FALSE // If true, the tree cannot die.
-	var/randomize_size = FALSE // If true, the tree will choose a random scale in the X and Y directions to stretch.
 
 /obj/structure/flora/tree/Initialize()
 	icon_state = choose_icon_state()
-
-	if(randomize_size)
-		icon_scale_x = rand(90, 125) / 100
-		icon_scale_y = rand(90, 125) / 100
-
-		if(prob(50))
-			icon_scale_x *= -1
-		update_transform()
 
 	return ..()
 
@@ -39,7 +30,17 @@
 /obj/structure/flora/tree/proc/choose_icon_state()
 	return icon_state
 
+/obj/structure/flora/tree/can_harvest(var/obj/item/I)
+	. = FALSE
+	if(!is_stump && harvest_tool && istype(I, harvest_tool) && harvest_loot && harvest_loot.len && harvest_count < max_harvests)
+		. = TRUE
+	return .
+
 /obj/structure/flora/tree/attackby(var/obj/item/weapon/W, var/mob/living/user)
+	if(can_harvest(W))
+		..(W, user)
+		return
+
 	if(!istype(W))
 		return ..()
 
@@ -267,6 +268,14 @@
 	product = /obj/item/stack/material/log/sif
 	catalogue_data = list(/datum/category_item/catalogue/flora/sif_tree)
 	randomize_size = TRUE
+
+	harvest_tool = /obj/item/weapon/material/knife
+	max_harvests = 2
+	min_harvests = -4
+	harvest_loot = list(
+		/obj/item/weapon/reagent_containers/food/snacks/siffruit = 5
+		)
+
 	var/light_shift = 0
 
 /obj/structure/flora/tree/sif/choose_icon_state()

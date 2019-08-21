@@ -529,3 +529,14 @@
 
 /obj/random/janusmodule/item_to_spawn()
 	return pick(subtypesof(/obj/item/weapon/circuitboard/mecha/imperion))
+
+/obj/random/curseditem
+	name = "random cursed item"
+	desc = "For use in dungeons."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "red"
+
+/obj/random/curseditem/item_to_spawn()
+	var/possible_object_paths = list(/obj/item/weapon/paper/carbon/cursedform)
+	possible_object_paths |= subtypesof(/obj/item/clothing/head/psy_crown)
+	return pick(possible_object_paths)

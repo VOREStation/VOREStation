@@ -97,6 +97,23 @@
 	name = "seismic charge"
 	desc = "Used to dig holes in specific areas without too much extra hole."
 
-	blast_heavy = 3
-	blast_light = 5
-	blast_flash = 8
+	blast_heavy = 2
+	blast_light = 4
+	blast_flash = 7
+
+/obj/item/weapon/plastique/seismic/attackby(var/obj/item/I, var/mob/user)
+	. = ..()
+	if(open_panel)
+		if(istype(I, /obj/item/weapon/stock_parts/micro_laser))
+			var/obj/item/weapon/stock_parts/SP = I
+			var/new_blast_power = max(1, round(SP.rating / 2) + 1)
+			if(new_blast_power > blast_heavy)
+				to_chat(user, "<span class='notice'>You install \the [I] into \the [src].</span>")
+				user.drop_from_inventory(I)
+				qdel(I)
+				blast_heavy = new_blast_power
+				blast_light = blast_heavy + round(new_blast_power * 0.5)
+				blast_flash = blast_light + round(new_blast_power * 0.75)
+			else
+				to_chat(user, "<span class='notice'>The [I] is not any better than the component already installed into this charge!</span>")
+	return .

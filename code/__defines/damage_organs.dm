@@ -8,6 +8,7 @@
 #define HALLOSS   "halloss"
 #define ELECTROCUTE "electrocute"
 #define BIOACID   "bioacid"
+#define SEARING   "searing"
 
 #define CUT       "cut"
 #define BRUISE    "bruise"
