@@ -102,6 +102,12 @@
 	circuit = /obj/item/weapon/circuitboard/grinder
 	frame_size = 3
 
+/datum/frame/frame_types/reagent_distillery
+	name = "Distillery"
+	frame_class = FRAME_CLASS_MACHINE
+	circuit = /obj/item/weapon/circuitboard/distiller
+	frame_size = 4
+
 /datum/frame/frame_types/display
 	name = "Display"
 	frame_class = FRAME_CLASS_DISPLAY
