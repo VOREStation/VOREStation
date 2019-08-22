@@ -19549,7 +19549,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 5
 	},
-/obj/machinery/equipment_vendor/exploration,
+/obj/machinery/mineral/equipment_vendor/survey,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
 "Ei" = (

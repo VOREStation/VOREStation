@@ -10,7 +10,7 @@
 	circuit = /obj/item/weapon/circuitboard/mining_equipment_vendor
 	var/icon_deny = "mining-deny"
 	var/obj/item/weapon/card/id/inserted_id
-	//VOREStation Edit - Heavily modified list
+	//VOREStation Edit Start - Heavily modified list
 	var/list/prize_list = list(
 		new /datum/data/mining_equipment("1 Marker Beacon",				/obj/item/stack/marker_beacon,										10),
 		new /datum/data/mining_equipment("10 Marker Beacons",			/obj/item/stack/marker_beacon/ten,									100),
@@ -35,7 +35,7 @@
 		new /datum/data/mining_equipment("Kinetic Accelerator",			/obj/item/weapon/gun/energy/kinetic_accelerator,					900),
 		new /datum/data/mining_equipment("Resonator",					/obj/item/resonator,												900),
 		new /datum/data/mining_equipment("Fulton Pack",					/obj/item/extraction_pack,											1200),
-		// new /datum/data/mining_equipment("Silver Pickaxe",				/obj/item/weapon/pickaxe/silver,									1200),
+		new /datum/data/mining_equipment("Silver Pickaxe",				/obj/item/weapon/pickaxe/silver,									1200),
 		// new /datum/data/mining_equipment("Mining Conscription Kit",	/obj/item/storage/backpack/duffelbag/mining_conscript,				1000),
 		new /datum/data/mining_equipment("Space Cash",					/obj/item/weapon/spacecash/c100,									1000),
 		new /datum/data/mining_equipment("Hardsuit - Control Module",	/obj/item/weapon/rig/industrial,									2000),
