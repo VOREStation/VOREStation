@@ -319,6 +319,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 		if(points_stored)
 			ID.survey_points += points_stored
 			points_stored = 0
+			to_chat(user, "<span class='notice'>You swipe the id over \the [src].</span>")
 		else
 			to_chat(user, "<span class='notice'>\The [src] has no points available.</span>")
 		busy = FALSE
