@@ -2059,7 +2059,6 @@
 #include "code\modules\mining\drilling\drill.dm"
 #include "code\modules\mining\drilling\scanner.dm"
 #include "code\modules\mining\ore_redemption_machine\construction.dm"
-#include "code\modules\mining\ore_redemption_machine\construction_vr.dm"
 #include "code\modules\mining\ore_redemption_machine\equipment_vendor.dm"
 #include "code\modules\mining\ore_redemption_machine\mine_point_items.dm"
 #include "code\modules\mining\ore_redemption_machine\survey_vendor.dm"
