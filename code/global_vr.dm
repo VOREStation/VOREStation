@@ -6,6 +6,10 @@
 	robot_module_types += "Pupdozer"
 	return 1
 
+var/list/shell_module_types = list(
+	"Standard", "Service", "Clerical"
+)
+
 var/global/list/acceptable_fruit_types= list(
 											"ambrosia",
 											"apple",
