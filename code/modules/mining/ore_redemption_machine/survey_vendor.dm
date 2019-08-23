@@ -6,9 +6,13 @@
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/exploration_equipment_vendor
+<<<<<<< HEAD
 	icon_deny = "exploration-deny" //VOREStation Edit
 	var/icon_vend = "exploration-vend" //VOREStation Add
 	//VOREStation Edit Start - Heavily modified list
+=======
+	icon_deny = "explore-deny"
+>>>>>>> d158f7a... Merge pull request #6413 from Novacat/nova-runtimes
 	prize_list = list(
 		new /datum/data/mining_equipment("1 Marker Beacon",			/obj/item/stack/marker_beacon,										1),
 		new /datum/data/mining_equipment("10 Marker Beacons",			/obj/item/stack/marker_beacon/ten,									10),
