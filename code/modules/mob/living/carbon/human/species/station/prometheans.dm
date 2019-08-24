@@ -74,7 +74,13 @@ var/datum/species/shapeshifter/promethean/prometheans
 	genders = list(MALE, FEMALE, NEUTER, PLURAL)
 
 	unarmed_types = list(/datum/unarmed_attack/slime_glomp)
-	has_organ =     list(O_BRAIN = /obj/item/organ/internal/brain/slime) // Slime core.
+
+	has_organ =     list(O_BRAIN = /obj/item/organ/internal/brain/slime,
+						O_HEART = /obj/item/organ/internal/heart/grey/colormatch/slime,
+						O_REGBRUTE = /obj/item/organ/internal/regennetwork,
+						O_REGBURN = /obj/item/organ/internal/regennetwork/burn,
+						O_REGOXY = /obj/item/organ/internal/regennetwork/oxy,
+						O_REGTOX = /obj/item/organ/internal/regennetwork/tox)
 
 	dispersed_eyes = TRUE
 
@@ -197,35 +203,71 @@ var/datum/species/shapeshifter/promethean/prometheans
 			var/nutrition_cost = 0		// The total amount of nutrition drained every tick, when healing
 			var/nutrition_debt = 0		// Holder variable used to store previous damage values prior to healing for use in the nutrition_cost equation.
 			var/starve_mod = 1			// Lowering this lowers healing and increases agony multiplicatively.
-			if(H.nutrition <= 150)	// This is when the icon goes red
+
+			var/strain_negation = 0		// How much agony is being prevented by the
+
+			if(H.nutrition <= 150)		// This is when the icon goes red
 				starve_mod = 0.75
 				if(H.nutrition <= 50)	// Severe starvation. Damage repaired beyond this point will cause a stunlock if untreated.
 					starve_mod = 0.5
 
+			var/to_pay = 0
 			if(regen_brute)
 				nutrition_debt = H.getBruteLoss()
 				H.adjustBruteLoss(-heal_rate * starve_mod)
-				nutrition_cost += nutrition_debt - H.getBruteLoss()
+
+				to_pay = nutrition_debt - H.getBruteLoss()
+
+				nutrition_cost += to_pay
+
+				var/obj/item/organ/internal/regennetwork/BrReg = H.internal_organs_by_name[O_REGBRUTE]
+
+				if(BrReg)
+					strain_negation += to_pay * max(0, (1 - BrReg.get_strain_percent()))
 
 			if(regen_burn)
 				nutrition_debt = H.getFireLoss()
 				H.adjustFireLoss(-heal_rate * starve_mod)
-				nutrition_cost += nutrition_debt - H.getFireLoss()
+
+				to_pay = nutrition_debt - H.getFireLoss()
+
+				nutrition_cost += to_pay
+
+				var/obj/item/organ/internal/regennetwork/BuReg = H.internal_organs_by_name[O_REGBURN]
+
+				if(BuReg)
+					strain_negation += to_pay * max(0, (1 - BuReg.get_strain_percent()))
 
 			if(regen_oxy)
 				nutrition_debt = H.getOxyLoss()
 				H.adjustOxyLoss(-heal_rate * starve_mod)
-				nutrition_cost += nutrition_debt - H.getOxyLoss()
+
+				to_pay = nutrition_debt - H.getOxyLoss()
+
+				nutrition_cost += to_pay
+
+				var/obj/item/organ/internal/regennetwork/OxReg = H.internal_organs_by_name[O_REGOXY]
+
+				if(OxReg)
+					strain_negation += to_pay * max(0, (1 - OxReg.get_strain_percent()))
 
 			if(regen_tox)
 				nutrition_debt = H.getToxLoss()
 				H.adjustToxLoss(-heal_rate * starve_mod)
-				nutrition_cost += nutrition_debt - H.getToxLoss()
+
+				to_pay = nutrition_debt - H.getToxLoss()
+
+				nutrition_cost += to_pay
+
+				var/obj/item/organ/internal/regennetwork/ToxReg = H.internal_organs_by_name[O_REGTOX]
+
+				if(ToxReg)
+					strain_negation += to_pay * max(0, (1 - ToxReg.get_strain_percent()))
 
 			H.nutrition -= (3 * nutrition_cost) //Costs Nutrition when damage is being repaired, corresponding to the amount of damage being repaired.
 			H.nutrition = max(0, H.nutrition) //Ensure it's not below 0.
 
-			var/agony_to_apply = ((1 / starve_mod) * nutrition_cost) //Regenerating damage causes minor pain over time. Small injures will be no issue, large ones will cause problems.
+			var/agony_to_apply = ((1 / starve_mod) * (nutrition_cost - strain_negation)) //Regenerating damage causes minor pain over time, if the organs responsible are nonexistant or too high on strain. Small injures will be no issue, large ones will cause problems.
 
 			if((starve_mod <= 0.5 && (H.getHalLoss() + agony_to_apply) <= 90) || ((H.getHalLoss() + agony_to_apply) <= 70))	// Will max out at applying halloss at 70, unless they are starving; starvation regeneration will bring them up to a maximum of 120, the same amount of agony a human receives from three taser hits.
 				H.apply_damage(agony_to_apply, HALLOSS)

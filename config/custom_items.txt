@@ -629,6 +629,13 @@ item_path: /obj/item/weapon/fluff/dragor_dot
 
 # ######## R CKEYS
 
+{
+ckey: radiantaurora
+character_name: Tiemli Kroto
+item_path: /obj/item/clothing/glasses/welding/tiemgogs
+req_titles: Roboticist
+}
+
 # ######## S CKEYS
 {
 ckey: samanthafyre

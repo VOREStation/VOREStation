@@ -1022,6 +1022,21 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
+"cn" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	icon_state = "borderfloor";
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/yellow/border{
+	icon_state = "bordercolor";
+	dir = 1
+	},
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/lower/atmos_eva)
 "co" = (
 /obj/structure/catwalk,
 /obj/structure/grille/broken,
@@ -7566,7 +7581,6 @@
 	dir = 4
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4,
@@ -8553,7 +8567,6 @@
 /obj/machinery/washing_machine,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/white,
@@ -9045,17 +9058,15 @@
 /turf/simulated/floor/tiled,
 /area/engineering/lower/atmos_eva)
 "sj" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1;
-	icon_state = "borderfloor";
-	pixel_y = 0
+/obj/structure/ladder,
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/structure/cable/green{
+	d1 = 32;
+	d2 = 1;
+	icon_state = "32-1"
 	},
-/obj/effect/floor_decal/corner/yellow/border{
-	icon_state = "bordercolor";
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/lower/atmos_eva)
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar_upper)
 "sk" = (
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled/steel_dirty,
@@ -9380,7 +9391,6 @@
 /area/rnd/breakroom/bathroom)
 "sU" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/white,
@@ -11865,7 +11875,6 @@
 	dir = 8
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,
@@ -12661,7 +12670,6 @@
 /area/maintenance/asmaint2)
 "zd" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/structure/railing,
@@ -13576,16 +13584,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
-"Dw" = (
-/obj/structure/cable/green{
-	d1 = 16;
-	d2 = 0;
-	icon_state = "16-0"
-	},
-/obj/structure/ladder,
-/obj/effect/floor_decal/industrial/outline/blue,
-/turf/simulated/floor/wood,
-/area/vacant/vacant_bar_upper)
 "Dy" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 10
@@ -16436,7 +16434,6 @@
 	},
 /obj/structure/closet/secure_closet/atmos_personal,
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,
@@ -16794,7 +16791,6 @@
 /area/maintenance/lower/bar)
 "Mz" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/wood,
@@ -17135,7 +17131,6 @@
 	dir = 1
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,
@@ -18350,7 +18345,6 @@
 /area/maintenance/asmaint2)
 "UG" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/structure/catwalk,
@@ -18606,7 +18600,6 @@
 /area/maintenance/lower/atmos)
 "VD" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -18663,7 +18656,6 @@
 /area/tether/surfacebase/public_garden_two)
 "VO" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/item/weapon/bananapeel,
@@ -19418,7 +19410,6 @@
 /area/engineering/drone_fabrication)
 "Zi" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/carpet,
@@ -29327,7 +29318,7 @@ pm
 qa
 qO
 rC
-sj
+cn
 tf
 Ke
 uD
@@ -31073,7 +31064,7 @@ OI
 OI
 VQ
 OI
-Dw
+sj
 Zl
 ac
 ab

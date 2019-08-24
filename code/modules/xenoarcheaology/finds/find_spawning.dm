@@ -511,6 +511,16 @@
 			desc = new_item.desc
 			item_type = new_item.name
 
+		if(39)
+			// Telecube.
+			if(prob(25))
+				apply_prefix = FALSE
+			if(prob(75))
+				apply_image_decorations = TRUE
+			if(prob(25))
+				apply_material_decorations = FALSE
+			new_item = new /obj/item/weapon/telecube/randomized(src.loc)
+
 	if(istype(new_item, /obj/item/weapon/material))
 		var/new_item_mat = pickweight(
 			DEFAULT_WALL_MATERIAL = 80,

@@ -504,6 +504,14 @@
 		mounted_pack.return_nozzle()
 		to_chat(user, "<span class='notice'>\The [src] retracts to its fueltank.</span>")
 
+/obj/item/weapon/weldingtool/tubefed/survival
+	name = "tube-fed emergency welding tool"
+	desc = "A bulky, cooler-burning welding tool that draws from a worn welding tank."
+	icon_state = "tubewelder"
+	max_fuel = 5
+	toolspeed = 1.75
+	eye_safety_modifier = 2
+
 /*
  * Electric/Arc Welder
  */

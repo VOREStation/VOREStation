@@ -266,6 +266,10 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/trunk,
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "mining_outbound"
+	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "aaF" = (
@@ -764,6 +768,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
+"abz" = (
+/obj/structure/table/woodentable,
+/obj/machinery/light_construct{
+	icon_state = "tube-construct-stage1";
+	dir = 1
+	},
+/obj/item/glass_jar,
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar)
 "abA" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/alarm{
@@ -7468,6 +7481,11 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
+"anp" = (
+/obj/structure/table/borosilicate,
+/obj/structure/dancepole,
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar)
 "anq" = (
 /obj/structure/railing{
 	dir = 8
@@ -26223,7 +26241,6 @@
 	dir = 1
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/item/weapon/towel/random,
@@ -26521,7 +26538,6 @@
 /area/vacant/vacant_bar)
 "dQB" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -26555,7 +26571,6 @@
 /area/tether/surfacebase/public_garden_one)
 "dUk" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/machinery/power/apc{
@@ -26717,15 +26732,6 @@
 /obj/structure/table/steel,
 /obj/item/weapon/paper_bin,
 /obj/item/weapon/pen,
-/turf/simulated/floor/wood,
-/area/vacant/vacant_bar)
-"eNp" = (
-/obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/drinks/jar,
-/obj/machinery/light_construct{
-	icon_state = "tube-construct-stage1";
-	dir = 1
-	},
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
 "ePE" = (
@@ -28214,7 +28220,6 @@
 	dir = 4
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/structure/cable/green{
@@ -28227,7 +28232,6 @@
 /area/maintenance/lower/atmos)
 "jXa" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/structure/table/bench/steel,
@@ -28688,7 +28692,6 @@
 	dir = 1
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/freezer,
@@ -29087,15 +29090,6 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/maintenance/lower/atmos)
-"mDm" = (
-/obj/effect/immovablerod{
-	density = 0;
-	desc = "Engineered for your entertainment.";
-	name = "Dance Pole"
-	},
-/obj/structure/table/borosilicate,
-/turf/simulated/floor/wood,
-/area/vacant/vacant_bar)
 "mEg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -30335,6 +30329,10 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "mining_inbound"
+	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "qZk" = (
@@ -30901,7 +30899,6 @@
 	dir = 4
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -32110,7 +32107,6 @@
 /area/engineering/atmos)
 "xiL" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/plating,
@@ -32305,7 +32301,6 @@
 /area/engineering/atmos)
 "ycb" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,
@@ -43556,7 +43551,7 @@ bEX
 xiL
 cyE
 azI
-eNp
+abz
 vVa
 itW
 vVa
@@ -44124,7 +44119,7 @@ cyE
 cyE
 aLC
 azI
-mDm
+anp
 jmP
 nsF
 lNF
