@@ -11,6 +11,10 @@
 	maxHealth = 5
 	health = 5
 
+	see_in_dark = 6
+	universal_understand = 1
+	movement_cooldown = 3
+
 	mob_size = MOB_MINISCULE
 	pass_flags = PASSTABLE
 //	can_pull_size = ITEMSIZE_TINY

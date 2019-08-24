@@ -1,4 +1,4 @@
-/mob/living/simple_mob/mouse
+/mob/living/simple_mob/mouse //this entire section is redundant, I guess mobs got refactored at some point
 	name = "mouse"
 	real_name = "mouse"
 	desc = "It's a small rodent."
