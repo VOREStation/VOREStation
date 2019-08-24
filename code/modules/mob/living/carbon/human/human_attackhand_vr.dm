@@ -61,3 +61,6 @@
 	claws/strong/attack_name = "strong claws"
 	slime_glomp/attack_name = "glomp"
 	bite/sharp/numbing/attack_name = "numbing bite"
+
+/datum/unarmed_attack/proc/unarmed_override(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/zone)
+	return 0 //return true if the unarmed override prevents further attacks

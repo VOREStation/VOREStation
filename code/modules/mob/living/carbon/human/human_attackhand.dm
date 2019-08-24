@@ -1,6 +1,14 @@
 /mob/living/carbon/human/proc/get_unarmed_attack(var/mob/living/carbon/human/target, var/hit_zone)
 	// VOREStation Edit - Begin
 	if(nif && nif.flag_check(NIF_C_HARDCLAWS,NIF_FLAGS_COMBAT)){return unarmed_hardclaws}
+	if(src.gloves)
+		var/obj/item/clothing/gloves/G = src.gloves
+		if(G.special_attack && G.special_attack.is_usable(src, target, hit_zone))
+			if(pulling_punches)
+				var/datum/unarmed_attack/soft_type = G.special_attack.get_sparring_variant()
+				if(soft_type)
+					return soft_type
+			return G.special_attack
 	if(src.default_attack && src.default_attack.is_usable(src, target, hit_zone))
 		if(pulling_punches)
 			var/datum/unarmed_attack/soft_type = src.default_attack.get_sparring_variant()
@@ -46,7 +54,7 @@
 		if(H != src && check_shields(0, null, H, H.zone_sel.selecting, H.name))
 			H.do_attack_animation(src)
 			return 0
-
+		/* begin vorestation removal
 		if(istype(H.gloves, /obj/item/clothing/gloves/boxing/hologlove))
 			H.do_attack_animation(src)
 			var/damage = rand(0, 9)
@@ -74,6 +82,7 @@
 				apply_effect(4, WEAKEN, armor_block)
 
 			return
+			end vorestation removal */
 
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
@@ -247,6 +256,11 @@
 			if(!attack)
 				return 0
 
+			//vorestation edit - begin
+			if(attack.unarmed_override(H, src, hit_zone))
+				return 0
+			//vorestation edit - end
+
 			H.do_attack_animation(src)
 			if(!attack_message)
 				attack.show_attack(H, src, hit_zone, rand_damage)
@@ -268,7 +282,8 @@
 					var/obj/item/clothing/gloves/G = H.gloves
 					real_damage += G.punch_force
 					hit_dam_type = G.punch_damtype
-					if(H.pulling_punches)	//SO IT IS DECREED: PULLING PUNCHES WILL PREVENT THE ACTUAL DAMAGE FROM RINGS AND KNUCKLES, BUT NOT THE ADDED PAIN
+					//if(H.pulling_punches)	//SO IT IS DECREED: PULLING PUNCHES WILL PREVENT THE ACTUAL DAMAGE FROM RINGS AND KNUCKLES, BUT NOT THE ADDED PAIN //vorestation removal, see below
+					if(H.pulling_punches && !attack.sharp && !attack.edge) //vorestation addition - you can't "pull punches" with a goddamn knife
 						hit_dam_type = AGONY
 			real_damage *= damage_multiplier
 			rand_damage *= damage_multiplier

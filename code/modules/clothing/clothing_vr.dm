@@ -151,3 +151,12 @@
 		else
 			sensor_mode = pick(0,1,2,3)
 			log_debug("Invalid switch for suit sensors, defaulting to random. [sensorpref] chosen")
+
+/obj/item/clothing/gloves
+	var/datum/unarmed_attack/special_attack = null //do the gloves have a special unarmed attack?
+	var/special_attack_type = null
+
+/obj/item/clothing/gloves/New()
+	..()
+	if(special_attack_type && ispath(special_attack_type))
+		special_attack = new special_attack_type
