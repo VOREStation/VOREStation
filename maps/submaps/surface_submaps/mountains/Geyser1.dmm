@@ -1,0 +1,17 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"c" = (/obj/random/turf/lava,/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"d" = (/obj/random/outcrop,/obj/random/turf/lava,/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"e" = (/obj/random/outcrop,/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"f" = (/obj/effect/map_effect/interval/effect_emitter/steam,/obj/effect/map_effect/interval/effect_emitter/smoke/mist{interval_upper_bound = 600},/obj/effect/map_effect/interval/effect_emitter/smoke/bad{interval_lower_bound = 100; interval_upper_bound = 3000},/obj/effect/map_effect/interval/screen_shaker{interval_upper_bound = 600},/turf/simulated/floor/water/deep{outdoors = 0},/area/template_noop)
+"g" = (/obj/random/turf/lava,/obj/random/outcrop,/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+
+(1,1,1) = {"
+accbdca
+cccbccc
+ccebbcc
+ebbfbbb
+ccbbecd
+ccgbccc
+accbcca
+"}

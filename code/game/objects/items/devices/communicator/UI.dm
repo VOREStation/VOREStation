@@ -116,7 +116,7 @@
 	data["flashlight"] = fon
 	data["manifest"] = PDA_Manifest
 	data["feeds"] = compile_news()
-	data["latest_news"] = get_recent_news()
+	//data["latest_news"] = get_recent_news()	//VOREStation Edit, bandaid for catastrophic runtime lag in helper.dm
 	if(cartridge) // If there's a cartridge, we need to grab the information from it
 		data["cart_devices"] = cartridge.get_device_status()
 		data["cart_templates"] = cartridge.ui_templates

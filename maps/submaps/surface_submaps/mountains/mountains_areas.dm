@@ -27,6 +27,11 @@
 	requires_power = FALSE
 	ambience = AMBIENCE_OTHERWORLDLY
 
+/area/submap/cave/crashed_ufo_frigate
+	name = "POI - Crashed Alien Frigate"
+	requires_power = FALSE
+	ambience = AMBIENCE_OTHERWORLDLY
+
 /area/submap/cave/crystal1
 	name = "POI - Crystaline Cave"
 	ambience = AMBIENCE_SPACE

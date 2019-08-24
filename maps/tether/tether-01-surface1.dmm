@@ -266,6 +266,10 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/trunk,
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "mining_outbound"
+	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "aaF" = (
@@ -26237,7 +26241,6 @@
 	dir = 1
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/item/weapon/towel/random,
@@ -26535,7 +26538,6 @@
 /area/vacant/vacant_bar)
 "dQB" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -26569,7 +26571,6 @@
 /area/tether/surfacebase/public_garden_one)
 "dUk" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/machinery/power/apc{
@@ -28219,7 +28220,6 @@
 	dir = 4
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/structure/cable/green{
@@ -28232,7 +28232,6 @@
 /area/maintenance/lower/atmos)
 "jXa" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/structure/table/bench/steel,
@@ -28693,7 +28692,6 @@
 	dir = 1
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/freezer,
@@ -30331,6 +30329,10 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "mining_inbound"
+	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "qZk" = (
@@ -30897,7 +30899,6 @@
 	dir = 4
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -32106,7 +32107,6 @@
 /area/engineering/atmos)
 "xiL" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/plating,
@@ -32301,7 +32301,6 @@
 /area/engineering/atmos)
 "ycb" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,

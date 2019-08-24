@@ -153,6 +153,9 @@
 	//Messages for smalls moving under larges
 	var/msg_owner_stepunder		= "%owner runs between your legs." //Weird becuase in the case this is used, %owner is the 'bumper' (src)
 	var/msg_prey_stepunder		= "You run between %prey's legs." //Same, inverse
+	hide_body_parts	= list(BP_L_LEG, BP_L_FOOT, BP_R_LEG, BP_R_FOOT) //Exclude pelvis just in case.
+	clip_mask_icon = 'icons/mob/vore/taurs_vr.dmi'
+	clip_mask_state = "taur_clip_mask_def" //Used to clip off the lower part of suits & uniforms.
 
 /datum/sprite_accessory/tail/taur/roiz_long_lizard // Not ACTUALLY a taur, but it uses 32x64 so it wouldn't fit in tails.dmi, and having it as a tail bugs up the sprite.
 	name = "Long Lizard Tail (Roiz Lizden)"
@@ -438,6 +441,7 @@
 	ckeys_allowed = list("natje")
 	do_colouration = 0
 	can_ride = 0
+	clip_mask_state = "taur_clip_mask_alraune"
 
 
 	msg_prey_stepunder = "You run between %prey's vines."
@@ -469,11 +473,13 @@
 	do_colouration = 1
 	extra_overlay = "alraunecolor_markings"
 	extra_overlay_w = "alraunecolor_closed_markings"
+	clip_mask_state = "taur_clip_mask_alraune"
 
 /datum/sprite_accessory/tail/taur/wasp
 	name = "Wasp (dual color)"
 	icon_state = "wasp_s"
 	extra_overlay = "wasp_markings"
+	clip_mask_state = "taur_clip_mask_wasp"
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their leg!"

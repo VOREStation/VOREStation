@@ -33,7 +33,6 @@
 "aah" = (
 /obj/structure/closet/coffin,
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/dark,

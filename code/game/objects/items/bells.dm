@@ -10,6 +10,7 @@
 	attack_verb = list("annoyed")
 	var/static/radial_examine = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_examine")
 	var/static/radial_use = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_use")
+	var/static/radial_pickup = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_pickup")
 
 /obj/item/weapon/deskbell/examine(mob/user)
 	..()
@@ -26,6 +27,7 @@
 	//This defines the radials and what call we're assiging to them.
 	var/list/options = list()
 	options["examine"] = radial_examine
+	options["pick up"] = radial_pickup
 	if(!broken)
 		options["use"] = radial_use
 
@@ -54,6 +56,9 @@
 				ring(user)
 				add_fingerprint(user)
 
+		if("pick up")
+			..()
+
 /obj/item/weapon/deskbell/proc/ring(mob/user)
 	if(user.a_intent == "harm")
 		playsound(user.loc, 'sound/effects/deskbell_rude.ogg', 50, 1)
@@ -78,9 +83,16 @@
 		to_chat(user,"<span class='notice'>You are not able to ring [src].</span>")
 	return 0
 
-/obj/item/weapon/deskbell/attackby(obj/item/i, mob/user, params)
-	if(!istype(i))
+/obj/item/weapon/deskbell/attackby(obj/item/W, mob/user, params)
+	if(!istype(W))
 		return
+	if(W.is_wrench() && isturf(loc))
+		if(do_after(5))
+			if(!src) return
+			to_chat(user, "<span class='notice'>You dissasemble the desk bell</span>")
+			new /obj/item/stack/material/steel(get_turf(src), 1)
+			qdel(src)
+			return
 	if(!broken)
 		ring(user)
 

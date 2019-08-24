@@ -31,6 +31,7 @@
 	var/dorm = 0			// determines if this ID has claimed a dorm already
 
 	var/mining_points = 0	// For redeeming at mining equipment vendors
+	var/survey_points = 0	// For redeeming at explorer equipment vendors.
 
 /obj/item/weapon/card/id/examine(mob/user)
 	set src in oview(1)
