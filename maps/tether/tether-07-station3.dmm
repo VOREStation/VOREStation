@@ -2681,14 +2681,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
-"er" = (
-/obj/machinery/shuttle_sensor{
-	dir = 5;
-	id_tag = "shuttlesens_exp";
-	pixel_y = -6
-	},
-/turf/simulated/wall/thull,
-/area/shuttle/excursion/tether)
 "es" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/railing{
@@ -41527,7 +41519,7 @@ cG
 VB
 WD
 dE
-er
+dj
 TY
 dj
 dj
