@@ -36,3 +36,5 @@ var/global/list/acceptable_fruit_types= list(
 											"watermelon",
 											"wheat",
 											"whitebeet")
+
+mouse_respawn_time = 2.5 // Amount of time that must pass between a player dying as a mouse and repawning as a mouse. In minutes. VOREStation Edit - Changed timer to 2.5, halved from 5.
