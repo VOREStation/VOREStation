@@ -6334,12 +6334,6 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai)
-"kn" = (
-/obj/machinery/cryopod{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/shuttle/excursion/tether)
 "ko" = (
 /turf/simulated/wall/r_wall,
 /area/security/security_equiptment_storage)
@@ -40818,7 +40812,7 @@ Um
 dj
 iK
 jY
-kn
+iW
 WS
 dj
 XN
