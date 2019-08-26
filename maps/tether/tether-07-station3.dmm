@@ -12478,13 +12478,15 @@
 /turf/simulated/wall,
 /area/quartermaster/office)
 "tC" = (
-/obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/white/border,
 /obj/machinery/button/windowtint{
 	id = "surgery_2";
 	pixel_y = -26
 	},
+/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/structure/closet/crate/freezer,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
 "tD" = (
@@ -21000,7 +21002,6 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "Hn" = (
-/obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
 	},
@@ -21013,6 +21014,7 @@
 	pixel_x = 0;
 	pixel_y = 26
 	},
+/obj/structure/closet/crate/freezer,
 /obj/item/weapon/reagent_containers/blood/OMinus,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
@@ -23618,7 +23620,6 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay_primary_storage)
 "Lv" = (
-/obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/blood/OMinus,
 /obj/item/weapon/reagent_containers/blood/OMinus,
 /obj/item/weapon/reagent_containers/blood/OMinus,
@@ -23634,6 +23635,7 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 8
 	},
+/obj/structure/closet/crate/freezer,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
 "Lw" = (
@@ -24204,7 +24206,6 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/exam_room)
 "Mp" = (
-/obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/blood/AMinus,
 /obj/item/weapon/reagent_containers/blood/APlus,
 /obj/item/weapon/reagent_containers/blood/BMinus,
@@ -24216,6 +24217,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 8
 	},
+/obj/structure/closet/crate/freezer,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
 "Mq" = (
@@ -25101,8 +25103,6 @@
 /obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/white/border,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
 "Nt" = (
