@@ -1984,7 +1984,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "dj" = (
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "dk" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -3112,7 +3112,7 @@
 /obj/machinery/light/spot{
 	pixel_y = 32
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "fi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -5533,13 +5533,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 6
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "iY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 4
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "iZ" = (
 /obj/effect/floor_decal/borderfloorblack/full,
@@ -27731,7 +27731,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 10
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "Rw" = (
 /obj/structure/catwalk,
@@ -28774,7 +28774,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "UK" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -28832,7 +28832,7 @@
 	dir = 6;
 	icon_state = "intact"
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "US" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -28968,7 +28968,7 @@
 	dir = 2;
 	id_tag = "shuttlesens_exp_psg"
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "Vm" = (
 /obj/structure/bed/chair/shuttle{
@@ -29091,7 +29091,7 @@
 	dir = 8;
 	icon_state = "map"
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "VR" = (
 /obj/machinery/atmospherics/binary/pump{
@@ -29149,7 +29149,7 @@
 	dir = 5;
 	id_tag = "shuttlesens_exp_int"
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "Wo" = (
 /obj/structure/bed/chair/shuttle,
@@ -29160,7 +29160,7 @@
 /area/shuttle/excursion/tether)
 "Ws" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "Wx" = (
 /obj/structure/grille,
@@ -29240,7 +29240,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "Xc" = (
 /obj/structure/grille,
@@ -29329,7 +29329,7 @@
 /area/tether/exploration)
 "Xr" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/yellow,
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "XA" = (
 /obj/structure/shuttle/engine/heater,
@@ -29355,7 +29355,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 5
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "XE" = (
 /obj/machinery/conveyor_switch/oneway{
@@ -29597,13 +29597,13 @@
 	dir = 5;
 	id_tag = "shuttlesens_exp"
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "ZD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 9
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "ZE" = (
 /obj/machinery/door/airlock/glass_external{
