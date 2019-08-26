@@ -78,6 +78,7 @@ var/list/organ_cache = list()
 					if(E.internal_organs == null)
 						E.internal_organs = list()
 					E.internal_organs |= src
+					H.internal_organs_by_name[organ_tag] = src
 			if(dna)
 				if(!blood_DNA)
 					blood_DNA = list()

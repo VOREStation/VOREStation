@@ -34,6 +34,7 @@
 	var/reaction_sound = 'sound/effects/bubbles.ogg'
 
 	var/log_is_important = 0 // If this reaction should be considered important for logging. Important recipes message admins when mixed, non-important ones just log to file.
+
 /datum/chemical_reaction/proc/can_happen(var/datum/reagents/holder)
 	//check that all the required reagents are present
 	if(!holder.has_all_reagents(required_reagents))
@@ -498,6 +499,15 @@
 	id = "zombiepowder"
 	result = "zombiepowder"
 	required_reagents = list("carpotoxin" = 5, "stoxin" = 5, "copper" = 5)
+	result_amount = 2
+
+/datum/chemical_reaction/carpotoxin
+	name = "Carpotoxin"
+	id = "carpotoxin"
+	result = "carpotoxin"
+	required_reagents = list("spidertoxin" = 2, "biomass" = 1, "sifsap" = 2)
+	catalysts = list("sifsap" = 10)
+	inhibitors = list("radium" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/mindbreaker
@@ -2522,4 +2532,20 @@
 	id = "neurotoxic_protein_neutral"
 	result = "protein"
 	required_reagents = list("anti_toxin" = 1, "neurotoxic_protein" = 2)
+	result_amount = 2
+
+/datum/chemical_reaction/neutralize_carpotoxin
+	name = "Neutralize Carpotoxin"
+	id = "carpotoxin_neutral"
+	result = "protein"
+	required_reagents = list("radium" = 1, "carpotoxin" = 1, "sifsap" = 1)
+	catalysts = list("sifsap" = 10)
+	result_amount = 2
+
+/datum/chemical_reaction/neutralize_spidertoxin
+	name = "Neutralize Spidertoxin"
+	id = "spidertoxin_neutral"
+	result = "protein"
+	required_reagents = list("radium" = 1, "spidertoxin" = 1, "sifsap" = 1)
+	catalysts = list("sifsap" = 10)
 	result_amount = 2

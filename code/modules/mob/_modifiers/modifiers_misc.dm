@@ -43,7 +43,7 @@ the artifact triggers the rage.
 /datum/modifier/berserk
 	name = "berserk"
 	desc = "You are filled with an overwhelming rage."
-	client_color = "#FF0000" // Make everything red!
+	client_color = "#FF5555" // Make everything red!
 	mob_overlay_state = "berserk"
 
 	on_created_text = "<span class='critical'>You feel an intense and overwhelming rage overtake you as you go berserk!</span>"
@@ -294,3 +294,28 @@ the artifact triggers the rage.
 	stacks = MODIFIER_STACK_EXTEND
 
 	pulse_set_level = PULSE_NORM
+
+/datum/modifier/slow_pulse
+	name = "slow pulse"
+	desc = "Your blood flows slower."
+
+	on_created_text = "<span class='notice'>You feel sluggish.</span>"
+	on_expired_text = "<span class='notice'>You feel energized.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+	bleeding_rate_percent = 0.8
+
+	pulse_set_level = PULSE_SLOW
+
+// Temperature Normalizer.
+/datum/modifier/homeothermic
+	name = "temperature resistance"
+	desc = "Your body normalizes to room temperature."
+
+	on_created_text = "<span class='notice'>You feel comfortable.</span>"
+	on_expired_text = "<span class='notice'>You feel.. still probably comfortable.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+/datum/modifier/homeothermic/tick()
+	..()
+	holder.bodytemperature = round((holder.bodytemperature + T20C) / 2)

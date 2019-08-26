@@ -21335,7 +21335,6 @@
 /area/vacant/vacant_library)
 "Pm" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -21701,7 +21700,6 @@
 /area/tether/surfacebase/public_garden_three)
 "Rf" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,

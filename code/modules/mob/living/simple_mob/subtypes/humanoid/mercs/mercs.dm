@@ -162,6 +162,16 @@
 	base_attack_cooldown = 5 // Two attacks a second or so.
 	reload_max = 20
 
+/mob/living/simple_mob/humanoid/merc/ranged/smg/sol
+	icon_state = "bluforranged_smg"
+	icon_living = "blueforranged_smg"
+
+	corpse = /obj/effect/landmark/mobcorpse/solarpeacekeeper
+	loot_list = list(/obj/item/weapon/gun/projectile/automatic/c20r = 100)
+
+	base_attack_cooldown = 5 // Two attacks a second or so.
+	reload_max = 20
+
 // Laser Rifle
 /mob/living/simple_mob/humanoid/merc/ranged/laser
 	icon_state = "syndicateranged_laser"

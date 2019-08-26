@@ -5,5 +5,9 @@
 /mob/living/simple_mob/humanoid/merc/melee/sword/space
 	name = "mercenary commando"
 
+	maxbodytemp = 700
+
 /mob/living/simple_mob/humanoid/merc/ranged/space
 	name = "mercenary commando"
+
+	maxbodytemp = 700
