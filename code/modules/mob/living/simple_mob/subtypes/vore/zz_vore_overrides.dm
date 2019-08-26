@@ -121,7 +121,7 @@
 	health = 80			// Increase health to compensate
 	maxHealth = 80
 */
-
+/*
 /mob/living/simple_mob/animal/space/mimic
 	vore_active = 1
 	// NO VORE SPRITES
@@ -130,7 +130,7 @@
 	// Overrides to non-vore version
 	maxHealth = 60
 	health = 60
-
+*/
 /mob/living/simple_mob/animal/passive/cat
 	vore_active = 1
 	// NO VORE SPRITES
