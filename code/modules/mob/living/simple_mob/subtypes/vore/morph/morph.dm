@@ -31,7 +31,9 @@
 	see_in_dark = 8
 	attacktext = "glomps"
 	attack_sound = 'sound/effects/blobattack.ogg'
-	//butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2)
+
+	meat_amount = 2
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 
 	showvoreprefs = 0
 	vore_active = 1
@@ -101,6 +103,7 @@
 		resize(M.size_multiplier)
 	pixel_y = initial(pixel_y)
 	pixel_x = initial(pixel_x)
+	density = target.density
 
 	//Morphed is weaker
 	melee_damage_lower = melee_damage_disguised
@@ -129,6 +132,7 @@
 	size_multiplier = 0
 	resize(our_size_multiplier)
 	overlays.Cut()
+	density = initial(density)
 
 	//Baseline stats
 	melee_damage_lower = initial(melee_damage_lower)
