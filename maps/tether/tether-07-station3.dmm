@@ -24346,7 +24346,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 4
 	},
-/obj/machinery/computer/communications,
+/obj/item/modular_computer/console/preset/command,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/heads/cmo)
 "Mz" = (
@@ -28423,7 +28423,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "SP" = (
-/obj/machinery/computer/communications{
+/obj/item/modular_computer/console/preset/command{
 	dir = 1
 	},
 /turf/simulated/floor/wood,

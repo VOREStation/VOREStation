@@ -17153,7 +17153,7 @@
 /turf/simulated/floor/carpet,
 /area/engineering/foyer)
 "bft" = (
-/obj/machinery/computer/atmos_alert{
+/obj/item/modular_computer/console/preset/command{
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
@@ -22332,12 +22332,6 @@
 /obj/machinery/status_display,
 /turf/simulated/wall/r_wall,
 /area/bridge)
-"hhC" = (
-/obj/machinery/computer/communications{
-	dir = 1
-	},
-/turf/simulated/floor/carpet/oracarpet,
-/area/crew_quarters/heads/chief)
 "hPi" = (
 /obj/machinery/light/small,
 /turf/simulated/floor,
@@ -27420,7 +27414,7 @@ agc
 aYF
 aRX
 aSe
-hhC
+aRX
 aVz
 aRb
 bYg
