@@ -5685,6 +5685,9 @@
 /obj/effect/floor_decal/corner/mauve/bordercorner2{
 	dir = 10
 	},
+/obj/machinery/computer/communications{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/rdoffice)
 "md" = (

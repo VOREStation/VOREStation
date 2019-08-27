@@ -15085,6 +15085,9 @@
 "wR" = (
 /obj/structure/table/woodentable,
 /obj/machinery/chemical_dispenser/bar_soft/full,
+/obj/machinery/keycard_auth{
+	pixel_y = 28
+	},
 /turf/simulated/floor/wood,
 /area/bridge/meeting_room)
 "wS" = (
@@ -20152,6 +20155,12 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
+"HU" = (
+/obj/machinery/keycard_auth{
+	pixel_y = -28
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "Ik" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -35883,7 +35892,7 @@ wV
 ys
 wV
 wV
-wV
+HU
 wo
 ac
 ac

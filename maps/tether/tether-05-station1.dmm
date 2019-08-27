@@ -22328,6 +22328,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/bridge_hallway)
+"gkC" = (
+/obj/machinery/status_display,
+/turf/simulated/wall/r_wall,
+/area/bridge)
+"hhC" = (
+/obj/machinery/computer/communications{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/oracarpet,
+/area/crew_quarters/heads/chief)
 "hPi" = (
 /obj/machinery/light/small,
 /turf/simulated/floor,
@@ -27410,7 +27420,7 @@ agc
 aYF
 aRX
 aSe
-aRX
+hhC
 aVz
 aRb
 bYg
@@ -31538,7 +31548,7 @@ awy
 awy
 awy
 awy
-awy
+gkC
 awy
 awy
 awy
@@ -32958,7 +32968,7 @@ awA
 awE
 awE
 awy
-awy
+gkC
 boL
 awy
 bqR

@@ -9253,6 +9253,13 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/item/device/taperecorder{
+	pixel_y = 0
+	},
+/obj/item/weapon/reagent_containers/food/drinks/flask/barflask{
+	pixel_x = -4;
+	pixel_y = 8
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
 "oX" = (
@@ -14091,6 +14098,7 @@
 	pixel_x = -20;
 	pixel_y = -25
 	},
+/obj/structure/flora/pottedplant/stoutbush,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/heads/cmo)
 "wg" = (
@@ -24323,7 +24331,6 @@
 /turf/simulated/open,
 /area/medical/surgery_hallway)
 "My" = (
-/obj/structure/flora/pottedplant/stoutbush,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
 	},
@@ -24339,6 +24346,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 4
 	},
+/obj/machinery/computer/communications,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/heads/cmo)
 "Mz" = (
@@ -28415,13 +28423,8 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "SP" = (
-/obj/structure/table/woodentable,
-/obj/item/device/taperecorder{
-	pixel_y = 0
-	},
-/obj/item/weapon/reagent_containers/food/drinks/flask/barflask{
-	pixel_x = -4;
-	pixel_y = 8
+/obj/machinery/computer/communications{
+	dir = 1
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
@@ -35038,12 +35041,12 @@ ab
 ab
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
+ad
+ae
+ad
+ad
+ae
 aa
 aa
 aa
@@ -35182,10 +35185,10 @@ ab
 ab
 aa
 aa
+ae
 aa
 aa
-aa
-aa
+ad
 aa
 aa
 aa
@@ -35324,10 +35327,10 @@ ab
 ab
 aa
 aa
+ae
 aa
 aa
-aa
-aa
+ad
 aa
 aa
 aa
@@ -35467,9 +35470,9 @@ Me
 uK
 uK
 Me
-aa
-aa
-aa
+ae
+ae
+ad
 aa
 aa
 aa
@@ -35611,7 +35614,7 @@ wf
 xh
 aa
 aa
-aa
+ae
 aa
 aa
 aa
@@ -35753,7 +35756,7 @@ NP
 xh
 aa
 aa
-aa
+ad
 aa
 aa
 aa
@@ -35895,7 +35898,7 @@ NP
 xh
 aa
 aa
-aa
+ad
 aa
 aa
 aa
@@ -36037,7 +36040,7 @@ NQ
 Me
 ab
 aa
-aa
+ad
 aa
 aa
 aa
