@@ -18,6 +18,7 @@
 /client/verb/adminspice()
 	set category = "Admin"
 	set name = "Request Spice"
+	set desc = "Request admins to spice round up for you"
 
 	//handle muting and automuting
 	if(prefs.muted & MUTE_ADMINHELP)
