@@ -29,8 +29,7 @@
 				sleeper = sleepernew
 				sleepernew.console = src
 				set_dir(get_dir(src, sleepernew))
-				return
-		return
+
 
 /obj/machinery/sleep_console/attack_ai(var/mob/user)
 	return attack_hand(user)
@@ -45,7 +44,7 @@
 			to_chat(user, "<span class='notice'>Sleeper not found!</span>")
 			return
 
-	if(sleeper.panel_open)
+	if(panel_open)
 		to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
 		return
 
@@ -108,6 +107,7 @@
 	else
 		data["beaker"] = -1
 	data["filtering"] = S.filtering
+	data["pump"] = S.pumping
 
 	var/stasis_level_name = "Error!"
 	for(var/N in S.stasis_choices)
@@ -142,6 +142,9 @@
 	if(href_list["sleeper_filter"])
 		if(S.filtering != text2num(href_list["sleeper_filter"]))
 			S.toggle_filter()
+	if(href_list["pump"])
+		if(S.pumping != text2num(href_list["pump"]))
+			S.toggle_pump()
 	if(href_list["chemical"] && href_list["amount"])
 		if(S.occupant && S.occupant.stat != DEAD)
 			if(href_list["chemical"] in S.available_chemicals) // Your hacks are bad and you should feel bad
@@ -166,6 +169,7 @@
 	var/list/base_chemicals = list("inaprovaline" = "Inaprovaline", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
 	var/obj/item/weapon/reagent_containers/glass/beaker = null
 	var/filtering = 0
+	var/pumping = 0
 	var/obj/machinery/sleep_console/console
 	var/stasis_level = 0 //Every 'this' life ticks are applied to the mob (when life_ticks%stasis_level == 1)
 	var/stasis_choices = list("Complete (1%)" = 100, "Deep (10%)" = 10, "Moderate (20%)" = 5, "Light (50%)" = 2, "None (100%)" = 0)
@@ -263,6 +267,17 @@
 			else
 				toggle_filter()
 
+		if(pumping > 0)
+			if(beaker)
+				if(beaker.reagents.total_volume < beaker.reagents.maximum_volume)
+					var/pumped = 0
+					for(var/datum/reagent/x in occupant.ingested.reagent_list)
+						occupant.reagents.trans_to_obj(beaker, 3)
+						pumped++
+					if(ishuman(occupant))
+						occupant.ingested.trans_to_obj(beaker, pumped + 1)
+			else
+				toggle_pump()
 
 /obj/machinery/sleeper/update_icon()
 	icon_state = "sleeper_[occupant ? "1" : "0"]"
@@ -301,14 +316,12 @@
 				return
 			if(UNCONSCIOUS)
 				to_chat(usr, "<span class='notice'>You struggle through the haze to hit the eject button. This will take a couple of minutes...</span>")
-				sleep(2 MINUTES)
-				if(!src || !usr || !occupant || (occupant != usr)) //Check if someone's released/replaced/bombed him already
-					return
-				go_out()
+				if(do_after(usr, 2 MINUTES, src))
+					go_out()
 			if(CONSCIOUS)
 				go_out()
 	else
-		if(usr.stat != 0)
+		if(usr.stat != CONSCIOUS)
 			return
 		go_out()
 	add_fingerprint(usr)
@@ -326,6 +339,9 @@
 	if(filtering)
 		toggle_filter()
 
+	if(pumping)
+		toggle_pump()
+
 	if(stat & (BROKEN|NOPOWER))
 		..(severity)
 		return
@@ -339,6 +355,12 @@
 		filtering = 0
 		return
 	filtering = !filtering
+
+/obj/machinery/sleeper/proc/toggle_pump()
+	if(!occupant || !beaker)
+		pumping = 0
+		return
+	pumping = !pumping
 
 /obj/machinery/sleeper/proc/go_in(var/mob/M, var/mob/user)
 	if(!M)
@@ -370,7 +392,8 @@
 		update_icon()
 
 /obj/machinery/sleeper/proc/go_out()
-	if(!occupant)
+	if(!occupant || occupant.loc != src)
+		occupant = null // JUST IN CASE
 		return
 	if(occupant.client)
 		occupant.client.eye = occupant.client.mob
@@ -387,6 +410,7 @@
 	update_use_power(1)
 	update_icon()
 	toggle_filter()
+	toggle_pump()
 
 /obj/machinery/sleeper/proc/remove_beaker()
 	if(beaker)
