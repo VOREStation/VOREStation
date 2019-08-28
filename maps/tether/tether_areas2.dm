@@ -613,10 +613,6 @@
 	name = "\improper Engine Room Balcony"
 /area/engineering/foyer_mezzenine
 	name = "\improper Engineering Mezzenine"
-//TFF 28/8/19 - cleanup of areas placement
-/area/engineering/engine_gas
-	name = "\improper Engine Gas Storage"
-	icon_state = "engine_waste"
 
 /area/hallway/station
 	icon_state = "hallC1"

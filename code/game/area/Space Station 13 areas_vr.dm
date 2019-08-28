@@ -44,3 +44,7 @@
 	name = "Asteroid Belt Zone 4"
 	icon_state = "red2"
 	shuttle_area = /area/shuttle/belter/belt/zone4
+
+/area/engineering/engine_gas
+	name = "\improper Engine Gas Storage"
+	icon_state = "engine_waste"
