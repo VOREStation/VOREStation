@@ -61,6 +61,58 @@
 			return
 	return ..()
 
+/obj/item/weapon/material/shard/afterattack(var/atom/target, mob/living/carbon/human/user as mob)
+	var/active_hand //hand the shard is in
+	var/will_break
+	var/gloves_are_heavy = FALSE//this is a fucking mess
+	var/break_damage = 4
+	var/light_glove_d = rand(2, 4)
+	var/no_glove_d = rand(4, 6)
+	var/list/h_gloves = list(/obj/item/clothing/gloves/captain, /obj/item/clothing/gloves/cyborg,
+							/obj/item/clothing/gloves/swat, /obj/item/clothing/gloves/combat,
+							/obj/item/clothing/gloves/botanic_leather, /obj/item/clothing/gloves/duty,
+							/obj/item/clothing/gloves/tactical, /obj/item/clothing/gloves/vox,
+							/obj/item/clothing/gloves/gauntlets)
+
+	if(istype(user.l_hand, src))
+		active_hand = BP_L_HAND
+	else
+		active_hand = BP_R_HAND
+
+	if(prob(75))
+		will_break = TRUE
+	else
+		will_break = FALSE
+
+	if(user.gloves && (user.gloves.body_parts_covered & HANDS))
+		var/obj/item/clothing/gloves/UG = user.gloves.type
+		for(var/I in h_gloves)
+			if(UG == I)
+				gloves_are_heavy = TRUE
+				if(will_break)
+					user.visible_message("<span class='danger'>[user] hit \the [target] with \the [src], shattering it!</span>", "<span class='warning'>You shatter \the [src] in your hand!</span>")
+					playsound(user, pick('sound/effects/Glassbr1.ogg', 'sound/effects/Glassbr2.ogg', 'sound/effects/Glassbr3.ogg'), 30, 1)
+					qdel(src)
+
+		if(gloves_are_heavy == FALSE)
+			to_chat(user, "<span class='warning'>\The [src] partially cuts into your hand through your gloves as you hit \the [target]!</span>")
+			if(will_break)
+				user.visible_message("<span class='danger'>[user] hit \the [target] with \the [src], shattering it!</span>", "<span class='warning'>You shatter \the [src] in your hand!</span>")
+				user.apply_damage(light_glove_d + break_damage, BRUTE, active_hand, 0 ,0, src, src.sharp, src.edge)
+				playsound(user, pick('sound/effects/Glassbr1.ogg', 'sound/effects/Glassbr2.ogg', 'sound/effects/Glassbr3.ogg'), 30, 1)
+				qdel(src)
+			else
+				user.apply_damage(light_glove_d, BRUTE, active_hand, 0 ,0, src, src.sharp, src.edge)
+	else
+		to_chat(user, "<span class='warning'>\The [src] cuts into your hand as you hit \the [target]!</span>")
+		if(will_break)
+			user.visible_message("<span class='danger'>[user] hit \the [target] with \the [src], shattering it!</span>", "<span class='warning'>You shatter \the [src] in your hand!</span>")
+			user.apply_damage(no_glove_d + break_damage, BRUTE, active_hand, 0 ,0, src, src.sharp, src.edge)
+			playsound(user, pick('sound/effects/Glassbr1.ogg', 'sound/effects/Glassbr2.ogg', 'sound/effects/Glassbr3.ogg'), 30, 1)
+			qdel(src)
+		else
+			user.apply_damage(no_glove_d, BRUTE, active_hand, 0 ,0, src, src.sharp, src.edge)
+
 /obj/item/weapon/material/shard/Crossed(AM as mob|obj)
 	..()
 	if(isliving(AM))
