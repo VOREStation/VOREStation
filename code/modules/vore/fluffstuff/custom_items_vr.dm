@@ -1280,7 +1280,7 @@
 /obj/item/device/perfect_tele/update_icon()
 	if(!power_source)
 		icon_state = "[initial(icon_state)]_o"
-	else if(ready && power_source.check_charge(charge_cost))
+	else if(ready && (power_source.check_charge(charge_cost) || power_source.fully_charged()))
 		icon_state = "[initial(icon_state)]"
 	else
 		icon_state = "[initial(icon_state)]_w"
@@ -1371,7 +1371,7 @@
 		return FALSE
 
 	//Check for charge
-	if(!power_source.check_charge(charge_cost))
+	if((!power_source.check_charge(charge_cost)) && (!power_source.fully_charged()))
 		to_chat(user,"<span class='warning'>\The [src] does not have enough power left!</span>")
 		return FALSE
 
@@ -1402,10 +1402,13 @@
 	//No, you can't port to or from away missions. Stupidly complicated check.
 	var/turf/uT = get_turf(user)
 	var/turf/dT = get_turf(destination)
+	var/list/dat = list()
+	dat["z_level_detection"] = using_map.get_map_levels(uT.z)
+
 	if(!uT || !dT)
 		return FALSE
 
-	if( (uT.z != dT.z) && ( (uT.z > max_default_z_level() ) || (dT.z > max_default_z_level()) ) )
+	if( (uT.z != dT.z) && (!(dT.z in dat["z_level_detection"])) )
 		to_chat(user,"<span class='warning'>\The [src] can't teleport you that far!</span>")
 		return FALSE
 
@@ -1566,7 +1569,6 @@
 	desc = "A more limited translocator with a single beacon, useful for some things, like setting the mining department on fire accidentally. Legal for use in the pursuit of NanoTrasen interests, namely mining and exploration."
 	icon_state = "minitrans"
 	beacons_left = 1 //Just one
-	charge_cost = 480 //One per
 	cell_type = /obj/item/weapon/cell/device
 	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5)
 
