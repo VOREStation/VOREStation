@@ -295,6 +295,10 @@
 	id = "armour"
 	build_path = /obj/item/robot_parts/robot_component/armour
 
+/datum/design/item/prosfab/cyborg/component/ai_shell
+	name = "AI Remote Interface"
+	id = "mmi_ai_shell"
+	build_path = /obj/item/device/mmi/inert/ai_remote
 
 //////////////////// Cyborg Modules ////////////////////
 /datum/design/item/prosfab/robot_upgrade
@@ -365,3 +369,84 @@
 	req_tech = list(TECH_DATA = 6, TECH_MATERIAL = 6)
 	materials = list(DEFAULT_WALL_MATERIAL = 25000, "glass" = 3000, "gold" = 350)
 	build_path = /obj/item/borg/upgrade/language
+
+// Synthmorph Bags.
+
+/datum/design/item/prosfab/synthmorphbag
+	name = "Synthmorph Storage Bag"
+	desc = "Used to store or slowly defragment an FBP."
+	id = "misc_synth_bag"
+	materials = list(DEFAULT_WALL_MATERIAL = 250, "glass" = 250, "plastic" = 2000)
+	build_path = /obj/item/bodybag/cryobag/robobag
+
+/datum/design/item/prosfab/badge_nt
+	name = "NanoTrasen Tag"
+	desc = "Used to identify an empty NanoTrasen FBP."
+	id = "misc_synth_bag_tag_nt"
+	materials = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 500, "plastic" = 1000)
+	build_path = /obj/item/clothing/accessory/badge/corporate_tag
+
+/datum/design/item/prosfab/badge_morph
+	name = "Morpheus Tag"
+	desc = "Used to identify an empty Morpheus FBP."
+	id = "misc_synth_bag_tag_morph"
+	materials = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 500, "plastic" = 1000)
+	build_path = /obj/item/clothing/accessory/badge/corporate_tag/morpheus
+
+/datum/design/item/prosfab/badge_wardtaka
+	name = "Ward-Takahashi Tag"
+	desc = "Used to identify an empty Ward-Takahashi FBP."
+	id = "misc_synth_bag_tag_wardtaka"
+	materials = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 500, "plastic" = 1000)
+	build_path = /obj/item/clothing/accessory/badge/corporate_tag/wardtaka
+
+/datum/design/item/prosfab/badge_zenghu
+	name = "Zeng-Hu Tag"
+	desc = "Used to identify an empty Zeng-Hu FBP."
+	id = "misc_synth_bag_tag_zenghu"
+	materials = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 500, "plastic" = 1000)
+	build_path = /obj/item/clothing/accessory/badge/corporate_tag/zenghu
+
+/datum/design/item/prosfab/badge_gilthari
+	name = "Gilthari Tag"
+	desc = "Used to identify an empty Gilthari FBP."
+	id = "misc_synth_bag_tag_gilthari"
+	materials = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 500, "gold" = 1000)
+	build_path = /obj/item/clothing/accessory/badge/corporate_tag/gilthari
+	req_tech = list(TECH_MATERIAL = 4, TECH_ILLEGAL = 2, TECH_PHORON = 2)
+
+/datum/design/item/prosfab/badge_veymed
+	name = "Vey-Medical Tag"
+	desc = "Used to identify an empty Vey-Medical FBP."
+	id = "misc_synth_bag_tag_veymed"
+	materials = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 500, "plastic" = 1000)
+	build_path = /obj/item/clothing/accessory/badge/corporate_tag/veymed
+	req_tech = list(TECH_MATERIAL = 3, TECH_ILLEGAL = 1, TECH_BIO = 4)
+
+/datum/design/item/prosfab/badge_hephaestus
+	name = "Hephaestus Tag"
+	desc = "Used to identify an empty Hephaestus FBP."
+	id = "misc_synth_bag_tag_heph"
+	materials = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 500, "plastic" = 1000)
+	build_path = /obj/item/clothing/accessory/badge/corporate_tag/hephaestus
+
+/datum/design/item/prosfab/badge_grayson
+	name = "Grayson Tag"
+	desc = "Used to identify an empty Grayson FBP."
+	id = "misc_synth_bag_tag_grayson"
+	materials = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 500, "plastic" = 1000)
+	build_path = /obj/item/clothing/accessory/badge/corporate_tag/grayson
+
+/datum/design/item/prosfab/badge_xion
+	name = "Xion Tag"
+	desc = "Used to identify an empty Xion FBP."
+	id = "misc_synth_bag_tag_xion"
+	materials = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 500, "plastic" = 1000)
+	build_path = /obj/item/clothing/accessory/badge/corporate_tag/xion
+
+/datum/design/item/prosfab/badge_bishop
+	name = "Bishop Tag"
+	desc = "Used to identify an empty Bishop FBP."
+	id = "misc_synth_bag_tag_bishop"
+	materials = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 2000, "plastic" = 500)
+	build_path = /obj/item/clothing/accessory/badge/corporate_tag/bishop

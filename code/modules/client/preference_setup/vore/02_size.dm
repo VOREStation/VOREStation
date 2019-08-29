@@ -46,6 +46,7 @@
 	character.weight_loss		= pref.weight_loss
 	character.fuzzy				= pref.fuzzy
 	character.appearance_flags	-= pref.fuzzy*PIXEL_SCALE
+	character.appearance_flags	|= KEEP_TOGETHER
 	character.resize(pref.size_multiplier, animate = FALSE)
 
 /datum/category_item/player_setup_item/vore/size/content(var/mob/user)
@@ -60,7 +61,7 @@
 /datum/category_item/player_setup_item/vore/size/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["size_multiplier"])
 		var/new_size = input(user, "Choose your character's size, ranging from 25% to 200%", "Set Size") as num|null
-		if (!IsInRange(new_size,25,200))
+		if (!ISINRANGE(new_size,25,200))
 			pref.size_multiplier = 1
 			user << "<span class='notice'>Invalid size.</span>"
 			return TOPIC_REFRESH_UPDATE_PREVIEW

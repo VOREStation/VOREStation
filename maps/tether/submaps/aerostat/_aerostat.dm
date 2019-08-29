@@ -48,10 +48,10 @@
 	shuttle_name = "Excursion Shuttle"
 	destinations = list(/datum/shuttle_destination/excursion/virgo2orbit, /datum/shuttle_destination/excursion/aerostat)
 
-/obj/away_mission_init/aerostat/initialize()
-	seed_submaps(list(z), 50, /area/tether_away/aerostat/surface/unexplored, /datum/map_template/virgo2)
-	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, z, world.maxx, world.maxy)
-	new /datum/random_map/noise/ore/virgo2(null, 1, 1, z, 64, 64)
+/obj/away_mission_init/aerostat/Initialize()
+	/*seed_submaps(list(Z_LEVEL_AEROSTAT_SURFACE), 50, /area/tether_away/aerostat/surface/unexplored, /datum/map_template/virgo2)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_AEROSTAT_SURFACE, world.maxx, world.maxy)
+	new /datum/random_map/noise/ore/virgo2(null, 1, 1, Z_LEVEL_AEROSTAT_SURFACE, 64, 64)*/
 
 	initialized = TRUE
 	return INITIALIZE_HINT_QDEL
@@ -62,12 +62,12 @@
 	atmos_comp = TRUE
 	prob_spawn = 100
 	prob_fall = 50
-	guard = 20
+	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/hostile/hivebot/range = 3,
-		/mob/living/simple_animal/hostile/hivebot/range/ion = 3,
-		/mob/living/simple_animal/hostile/hivebot/range/laser = 3,
-		/mob/living/simple_animal/hostile/corrupthound = 1
+		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/basic = 3,
+		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion = 3,
+		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser = 3,
+		/mob/living/simple_mob/vore/aggressive/corrupthound = 1
 	)
 
 /obj/tether_away_spawner/aerostat_surface
@@ -76,11 +76,11 @@
 	atmos_comp = TRUE
 	prob_spawn = 100
 	prob_fall = 50
-	guard = 20
+	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_animal/hostile/jelly = 3,
-		/mob/living/simple_animal/hostile/viscerator = 2,
-		/mob/living/simple_animal/hostile/corrupthound = 1
+		/mob/living/simple_mob/vore/aggressive/corrupthound = 3,
+		/mob/living/simple_mob/mechanical/viscerator = 2,
+		/mob/living/simple_mob/vore/aggressive/corrupthound = 1
 	)
 
 /obj/structure/old_roboprinter
@@ -129,7 +129,7 @@
 	color = "#eacd7c"
 	VIRGO2_SET_ATMOS
 
-/turf/unsimulated/floor/sky/virgo2_sky/initialize()
+/turf/unsimulated/floor/sky/virgo2_sky/Initialize()
 	skyfall_levels = list(z+1)
 	. = ..()
 
@@ -152,7 +152,7 @@ VIRGO2_TURF_CREATE(/turf/simulated/mineral)
 	if(mineral)
 		return
 
-	var/mineral_name = pickweight(list("uranium" = 5, "platinum" = 10, "hematite" = 5, "carbon" = 5, "diamond" = 10, "gold" = 20, "silver" = 20, "phoron" = 5))
+	var/mineral_name = pickweight(list("marble" = 5, "uranium" = 5, "platinum" = 10, "hematite" = 5, "carbon" = 5, "diamond" = 10, "gold" = 20, "silver" = 20, "lead" = 10, "verdantium" = 5))
 
 	if(mineral_name && (mineral_name in ore_data))
 		mineral = ore_data[mineral_name]

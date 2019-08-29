@@ -30,11 +30,13 @@ var/list/all_maps = list()
 	var/list/contact_levels = list() // Z-levels that can be contacted from the station, for eg announcements
 	var/list/player_levels = list()  // Z-levels a character can typically reach
 	var/list/sealed_levels = list()  // Z-levels that don't allow random transit at edge
+	var/list/xenoarch_exempt_levels = list()	//Z-levels exempt from xenoarch finds and digsites spawning.
 	var/list/empty_levels = null     // Empty Z-levels that may be used for various things (currently used by bluespace jump)
 
 	var/list/map_levels              // Z-levels available to various consoles, such as the crew monitor (when that gets coded in). Defaults to station_levels if unset.
 	var/list/base_turf_by_z = list() // Custom base turf by Z-level. Defaults to world.turf for unlisted Z-levels
 
+	var/list/usable_email_tlds = list("freemail.nt")
 	//This list contains the z-level numbers which can be accessed via space travel and the percentile chances to get there.
 	var/list/accessible_z_levels = list()
 
@@ -57,6 +59,8 @@ var/list/all_maps = list()
 	var/list/holomap_legend_x = list()
 	var/list/holomap_legend_y = list()
 	var/list/meteor_strike_areas	// VOREStation Edit - Areas meteor strikes may choose to hit.
+	var/ai_shell_restricted = FALSE			//VOREStation Addition - are there z-levels restricted?
+	var/ai_shell_allowed_levels = list()	//VOREStation Addition - which z-levels ARE we allowed to visit?
 
 	var/station_name  = "BAD Station"
 	var/station_short = "Baddy"
@@ -77,6 +81,9 @@ var/list/all_maps = list()
 	var/emergency_shuttle_recall_message
 
 	var/list/station_networks = list() 		// Camera networks that will show up on the console.
+	var/list/secondary_networks = list()	// Camera networks that exist, but don't show on regular camera monitors.
+
+	var/bot_patrolling = TRUE				// Determines if this map supports automated bot patrols
 
 	var/allowed_spawns = list("Arrivals Shuttle","Gateway", "Cryogenic Storage", "Cyborg Storage")
 
@@ -140,7 +147,7 @@ var/list/all_maps = list()
 
 /datum/map/proc/get_empty_zlevel()
 	if(empty_levels == null)
-		world.maxz++
+		world.increment_max_z()
 		empty_levels = list(world.maxz)
 	return pick(empty_levels)
 
@@ -185,6 +192,7 @@ var/list/all_maps = list()
 	if(flags & MAP_LEVEL_CONTACT) map.contact_levels += z
 	if(flags & MAP_LEVEL_PLAYER) map.player_levels += z
 	if(flags & MAP_LEVEL_SEALED) map.sealed_levels += z
+	if(flags & MAP_LEVEL_XENOARCH_EXEMPT) map.xenoarch_exempt_levels += z
 	if(flags & MAP_LEVEL_EMPTY)
 		if(!map.empty_levels) map.empty_levels = list()
 		map.empty_levels += z

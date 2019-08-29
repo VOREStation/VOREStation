@@ -1,7 +1,9 @@
 some~user - Species
 
+911earlyarther - Xenomorph Hybrid
 admiraldragon - Vox
 aether_elemental - Daemon
+A Random Alien - Xenochimera
 arokha - Protean
 aruis - Diona
 aruis - Xenochimera
@@ -11,6 +13,7 @@ bothnevarbackwards - Diona
 cameron653 - Xenomorph Hybrid
 funnyman2003 - Xenochimera
 hawkerthegreat - Vox
+hollifex - Diona
 inuzari - Diona
 jademanique - Xenochimera
 jemli - Gutter
@@ -21,10 +24,13 @@ natje - Xenochimera
 oreganovulgaris - Xenochimera
 paradoxspace - Xenochimera
 rapidvalj - Vox
+rapidvalj - Common Skrellian
+rapidvalj - High Skrellian
 rikaru19xjenkins  - Xenomorph Hybrid
 rikaru19xjenkins - Xenochimera
 rixunie - Diona
 rixunie - Gutter
+rykkastormheart - Xenochimera
 seiga - Vox
 sepulchre - Vox
 sepulchre - Xenomorph Hybrid
@@ -35,6 +41,7 @@ singo - Gutter
 tastypred - Xenochimera
 varonis - Xenochimera
 verkister - Xenochimera
+westfire - Xenomorph Hybrid
 wickedtemp - Shadekin Empathy
 wtfismyname - Xenomorph Hybrid
 xioen - Diona

@@ -19,7 +19,7 @@
 	density = 1
 	opacity = 1
 
-/obj/structure/bookcase/initialize()
+/obj/structure/bookcase/Initialize()
 	. = ..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/weapon/book))
@@ -141,6 +141,7 @@
 	icon_state ="book"
 	throw_speed = 1
 	throw_range = 5
+	flags = NOCONDUCT
 	w_class = ITEMSIZE_NORMAL		 //upped to three because books are, y'know, pretty big. (and you could hide them inside eachother recursively forever)
 	attack_verb = list("bashed", "whacked", "educated")
 	var/dat			 // Actual page content

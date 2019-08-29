@@ -14,7 +14,8 @@
 
 	disable_duration_percent = 0.25			// Disables only last 25% as long.
 	incoming_damage_percent = 0.5			// 50% incoming damage.
-	icon_scale_percent = 1.2				// Become a bigger target.
+	icon_scale_x_percent = 1.2				// Become a bigger target.
+	icon_scale_y_percent = 1.2
 	pain_immunity = TRUE
 
 	slowdown = 2
@@ -71,7 +72,7 @@
 
 /datum/modifier/repair_aura/tick()
 	spawn()
-		for(var/mob/living/simple_animal/construct/T in view(4,holder))
+		for(var/mob/living/simple_mob/construct/T in view(4,holder))
 			T.adjustBruteLoss(rand(-10,-15))
 			T.adjustFireLoss(rand(-10,-15))
 
@@ -110,7 +111,7 @@
 	spawn()
 		if(isliving(holder))
 			var/mob/living/L = holder
-			if(istype(L, /mob/living/simple_animal/construct))
+			if(istype(L, /mob/living/simple_mob/construct))
 				L.adjustBruteLoss(rand(-5,-10))
 				L.adjustFireLoss(rand(-5,-10))
 			else
@@ -145,3 +146,55 @@
 				if(prob(10))
 					to_chat(H, "<span class='danger'>It feels as though your body is being torn apart!</span>")
 			L.updatehealth()
+
+/datum/modifier/gluttonyregeneration
+	name = "gluttonous regeneration"
+	desc = "You are filled with an overwhelming hunger."
+	mob_overlay_state = "electricity"
+
+	on_created_text = "<span class='critical'>You feel an intense and overwhelming hunger overtake you as your body regenerates!</span>"
+	on_expired_text = "<span class='notice'>The blaze of hunger inside you has been snuffed.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+/datum/modifier/gluttonyregeneration/can_apply(var/mob/living/L)
+	if(L.stat == DEAD)
+		to_chat(L, "<span class='warning'>You can't be dead to consume.</span>")
+		return FALSE
+
+	if(!L.is_sentient())
+		return FALSE // Drones don't feel anything, not even hunger.
+
+	if(L.has_modifier_of_type(/datum/modifier/berserk_exhaustion))
+		to_chat(L, "<span class='warning'>You recently berserked, so you are too tired to consume.</span>")
+		return FALSE
+
+	if(!ishuman(L)) // Only humanoids feel hunger. Totally.
+		return FALSE
+
+	else
+		var/mob/living/carbon/human/H = L
+		if(H.species.name == "Diona")
+			to_chat(L, "<span class='warning'>You feel strange for a moment, but it passes.</span>")
+			return FALSE // Happy trees aren't affected by incredible hunger.
+
+	return ..()
+
+/datum/modifier/gluttonyregeneration/tick()
+	spawn()
+		if(ishuman(holder))
+			var/mob/living/carbon/human/H = holder
+			var/starting_nutrition = H.nutrition
+			H.nutrition = max(0, H.nutrition - 10)
+			var/healing_amount = starting_nutrition - H.nutrition
+			if(healing_amount < 0) // If you are eating enough to somehow outpace this, congratulations, you are gluttonous enough to gain a boon.
+				healing_amount *= -2
+
+			H.adjustBruteLoss(-healing_amount * 0.25)
+
+			H.adjustFireLoss(-healing_amount * 0.25)
+
+			H.adjustOxyLoss(-healing_amount * 0.25)
+
+			H.adjustToxLoss(-healing_amount * 0.25)
+
+	..()

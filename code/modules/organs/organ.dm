@@ -6,37 +6,44 @@ var/list/organ_cache = list()
 	germ_level = 0
 
 	// Strings.
-	var/organ_tag = "organ"           // Unique identifier.
-	var/parent_organ = BP_TORSO       // Organ holding this object.
+	var/organ_tag = "organ"				// Unique identifier.
+	var/parent_organ = BP_TORSO			// Organ holding this object.
 
 	// Status tracking.
-	var/status = 0                    // Various status flags
-	var/vital                         // Lose a vital limb, die immediately.
-	var/damage = 0                    // Current damage to the organ
+	var/status = 0						// Various status flags
+	var/vital							// Lose a vital limb, die immediately.
+	var/damage = 0						// Current damage to the organ
 	var/robotic = 0
 
 	// Reference data.
-	var/mob/living/carbon/human/owner // Current mob owning the organ.
-	var/list/transplant_data          // Transplant match data.
-	var/list/autopsy_data = list()    // Trauma data for forensics.
-	var/list/trace_chemicals = list() // Traces of chemicals in the organ.
-	var/datum/dna/dna                 // Original DNA.
-	var/datum/species/species         // Original species.
+	var/mob/living/carbon/human/owner	// Current mob owning the organ.
+	var/list/transplant_data			// Transplant match data.
+	var/list/autopsy_data = list()		// Trauma data for forensics.
+	var/list/trace_chemicals = list()	// Traces of chemicals in the organ.
+	var/datum/dna/dna					// Original DNA.
+	var/datum/species/species			// Original species.
 
 	// Damage vars.
-	var/min_bruised_damage = 10       // Damage before considered bruised
-	var/min_broken_damage = 30        // Damage before becoming broken
-	var/max_damage                    // Damage cap
-	var/can_reject = 1                // Can this organ reject?
-	var/rejecting                     // Is this organ already being rejected?
-	var/preserved = 0                 // If this is 1, prevents organ decay.
+	var/min_bruised_damage = 10			// Damage before considered bruised
+	var/min_broken_damage = 30			// Damage before becoming broken
+	var/max_damage						// Damage cap
+	var/can_reject = 1					// Can this organ reject?
+	var/rejecting						// Is this organ already being rejected?
+	var/decays = TRUE					// Can this organ decay at all?
+	var/preserved = 0					// If this is 1, prevents organ decay.
 
 	// Language vars. Putting them here in case we decide to do something crazy with sign-or-other-nonverbal languages.
 	var/list/will_assist_languages = list()
 	var/list/datum/language/assists_languages = list()
 
+	// Organ verb vars.
+	var/list/organ_verbs		// Verbs added by the organ when present in the body.
+	var/list/target_parent_classes = list()	// Is the parent supposed to be organic, robotic, assisted?
+	var/forgiving_class = TRUE	// Will the organ give its verbs when it isn't a perfect match? I.E., assisted in organic, synthetic in organic.
+
 /obj/item/organ/Destroy()
 
+	handle_organ_mod_special(TRUE)
 	if(owner)           owner = null
 	if(transplant_data) transplant_data.Cut()
 	if(autopsy_data)    autopsy_data.Cut()
@@ -71,6 +78,7 @@ var/list/organ_cache = list()
 					if(E.internal_organs == null)
 						E.internal_organs = list()
 					E.internal_organs |= src
+					H.internal_organs_by_name[organ_tag] = src
 			if(dna)
 				if(!blood_DNA)
 					blood_DNA = list()
@@ -79,6 +87,8 @@ var/list/organ_cache = list()
 			holder.internal_organs |= src
 	else
 		species = all_species["Human"]
+
+	handle_organ_mod_special()
 
 /obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
 	if(new_dna)
@@ -91,13 +101,14 @@ var/list/organ_cache = list()
 	if(robotic < ORGAN_ROBOT)
 		status |= ORGAN_DEAD
 	damage = max_damage
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
+	handle_organ_mod_special(TRUE)
 	if(owner && vital)
 		owner.death()
 		owner.can_defib = 0
 
 /obj/item/organ/proc/adjust_germ_level(var/amount)		// Unless you're setting germ level directly to 0, use this proc instead
-	germ_level = Clamp(germ_level + amount, 0, INFECTION_LEVEL_MAX)
+	germ_level = CLAMP(germ_level + amount, 0, INFECTION_LEVEL_MAX)
 
 /obj/item/organ/process()
 
@@ -117,6 +128,8 @@ var/list/organ_cache = list()
 	if(damage >= max_damage)
 		die()
 
+	handle_organ_proc_special()
+
 	//Process infections
 	if(robotic >= ORGAN_ROBOT || (owner && owner.species && (owner.species.flags & IS_PLANT || (owner.species.flags & NO_INFECT))))
 		germ_level = 0
@@ -127,7 +140,7 @@ var/list/organ_cache = list()
 		if(B && prob(40))
 			reagents.remove_reagent("blood",0.1)
 			blood_splatter(src,B,1)
-		if(config.organs_decay) damage += rand(1,3)
+		if(config.organs_decay && decays) damage += rand(1,3)
 		if(damage >= max_damage)
 			damage = max_damage
 		adjust_germ_level(rand(2,6))
@@ -233,6 +246,8 @@ var/list/organ_cache = list()
 	damage = 0
 	status = 0
 	germ_level = 0
+	if(owner)
+		handle_organ_mod_special()
 	if(!ignore_prosthetic_prefs && owner && owner.client && owner.client.prefs && owner.client.prefs.real_name == owner.real_name)
 		var/status = owner.client.prefs.organ_data[organ_tag]
 		if(status == "assisted")
@@ -278,7 +293,7 @@ var/list/organ_cache = list()
 	W.time_inflicted = world.time
 
 //Note: external organs have their own version of this proc
-/obj/item/organ/proc/take_damage(amount, var/silent=0)
+/obj/item/organ/take_damage(amount, var/silent=0)
 	if(src.robotic >= ORGAN_ROBOT)
 		src.damage = between(0, src.damage + (amount * 0.8), max_damage)
 	else
@@ -335,8 +350,8 @@ var/list/organ_cache = list()
 	var/obj/item/organ/external/affected = owner.get_organ(parent_organ)
 	if(affected) affected.internal_organs -= src
 
-	loc = owner.drop_location()
-	processing_objects |= src
+	loc = get_turf(owner)
+	START_PROCESSING(SSobj, src)
 	rejecting = null
 	var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list
 	if(!organ_blood || !organ_blood.data["blood_DNA"])
@@ -348,7 +363,10 @@ var/list/organ_cache = list()
 		owner.death()
 		owner.can_defib = 0
 
+	handle_organ_mod_special(TRUE)
+
 	owner = null
+
 
 /obj/item/organ/proc/replaced(var/mob/living/carbon/human/target,var/obj/item/organ/external/affected)
 
@@ -367,10 +385,12 @@ var/list/organ_cache = list()
 
 	owner = target
 	loc = owner
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	target.internal_organs |= src
 	affected.internal_organs |= src
 	target.internal_organs_by_name[organ_tag] = src
+
+	handle_organ_mod_special()
 
 /obj/item/organ/proc/bitten(mob/user)
 
@@ -412,3 +432,61 @@ var/list/organ_cache = list()
 	if(robotic && robotic < ORGAN_LIFELIKE)	//Super fancy humanlike robotics probably have sensors, or something?
 		return 0
 	return 1
+
+/obj/item/organ/proc/handle_organ_mod_special(var/removed = FALSE)	// Called when created, transplanted, and removed.
+	if(!istype(owner))
+		return
+
+	var/list/save_verbs = list()
+
+	if(removed && organ_verbs)	// Do we share verbs with any other organs? Are they functioning?
+		var/list/all_organs = list()
+		all_organs |= owner.organs
+		all_organs |= owner.internal_organs
+
+		for(var/obj/item/organ/O in all_organs)
+			if(!(O.status & ORGAN_DEAD) && O.organ_verbs && O.check_verb_compatability())
+				for(var/verb_type in O.organ_verbs)
+					if(verb_type in organ_verbs)
+						save_verbs |= verb_type
+
+	if(!removed && organ_verbs && check_verb_compatability())
+		for(var/verb_path in organ_verbs)
+			owner.verbs |= verb_path
+	else if(organ_verbs)
+		for(var/verb_path in organ_verbs)
+			if(!(verb_path in save_verbs))
+				owner.verbs -= verb_path
+	return
+
+/obj/item/organ/proc/handle_organ_proc_special()	// Called when processed.
+	return
+
+/obj/item/organ/proc/check_verb_compatability()		// Used for determining if an organ should give or remove its verbs. I.E., FBP part in a human, no verbs. If true, keep or add.
+	if(owner)
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+			var/obj/item/organ/O = H.get_organ(parent_organ)
+			if(forgiving_class)
+				if(O.robotic <= ORGAN_ASSISTED && robotic <= ORGAN_LIFELIKE)	// Parent is organic or assisted, we are at most synthetic.
+					return TRUE
+
+				if(O.robotic >= ORGAN_ROBOT && robotic >= ORGAN_ASSISTED)		// Parent is synthetic, and we are biosynthetic at least.
+					return TRUE
+
+			if(!target_parent_classes || !target_parent_classes.len)	// Default checks, if we're not looking for a Specific type.
+
+				if(O.robotic == robotic)	// Same thing, we're fine.
+					return TRUE
+
+				if(O.robotic < ORGAN_ROBOT && robotic < ORGAN_ROBOT)
+					return TRUE
+
+				if(O.robotic > ORGAN_ASSISTED && robotic > ORGAN_ASSISTED)
+					return TRUE
+
+			else
+				if(O.robotic in target_parent_classes)
+					return TRUE
+
+	return FALSE

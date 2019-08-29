@@ -152,3 +152,51 @@
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/makaroni
+
+/datum/recipe/lobster
+	fruit = list("lemon" = 1, "cabbage" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/lobster
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/lobstercooked
+
+/datum/recipe/cuttlefish
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/cuttlefish
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/cuttlefishcooked
+
+/datum/recipe/monkfish
+	fruit = list("chili" = 1, "onion" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/monkfishfillet
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/monkfishcooked
+
+/datum/recipe/margheritapizzacargo
+	reagents = list()
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/pizza/margfrozen
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margcargo
+
+/datum/recipe/mushroompizzacargo
+	reagents = list()
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/pizza/mushfrozen
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushcargo
+
+/datum/recipe/meatpizzacargo
+	reagents = list()
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/pizza/meatfrozen
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatcargo
+
+/datum/recipe/vegtablepizzacargo
+	reagents = list()
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/pizza/vegfrozen
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegcargo

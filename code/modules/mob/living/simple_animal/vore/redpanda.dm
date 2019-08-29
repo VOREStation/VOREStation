@@ -1,4 +1,4 @@
-/mob/living/simple_animal/redpanda
+/mob/living/simple_mob/redpanda
 	name = "red panda"
 	desc = "It's a wah! Beware of doom pounce!"
 	tt_desc = "Ailurus fulgens"
@@ -29,7 +29,7 @@
 	emote_see = list("trundles around","rears up onto their hind legs and pounces a bug")
 
 // Activate Noms!
-/mob/living/simple_animal/redpanda
+/mob/living/simple_mob/redpanda
 	vore_active = 1
 	vore_bump_chance = 10
 	vore_bump_emote	= "playfully lunges at"
@@ -37,7 +37,7 @@
 	vore_default_mode = DM_HOLD // above will only matter if someone toggles it anyway
 	vore_icons = SA_ICON_LIVING
 
-/mob/living/simple_animal/redpanda/fae
+/mob/living/simple_mob/redpanda/fae
 	name = "dark wah"
 	desc = "Ominous, but still cute!"
 	tt_desc = "Ailurus brattus"

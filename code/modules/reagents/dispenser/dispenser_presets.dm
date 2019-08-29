@@ -111,6 +111,7 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tequila,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/vermouth,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cognac,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cider,			
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ale,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/mead
 		)

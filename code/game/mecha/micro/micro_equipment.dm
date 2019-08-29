@@ -14,6 +14,7 @@
 	energy_drain = 50
 	projectile = /obj/item/projectile/beam
 	fire_sound = 'sound/weapons/Laser.ogg'
+	equip_type = EQUIP_MICRO_WEAPON
 	required_type = list(/obj/mecha/micro/sec)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/microheavy
@@ -26,6 +27,7 @@
 	energy_drain = 120
 	projectile = /obj/item/projectile/beam/heavylaser
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
+	equip_type = EQUIP_MICRO_WEAPON
 	required_type = list(/obj/mecha/micro/sec)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/microtaser
@@ -38,6 +40,7 @@
 	equip_cooldown = 10
 	projectile = /obj/item/projectile/beam/stun
 	fire_sound = 'sound/weapons/Taser.ogg'
+	equip_type = EQUIP_MICRO_WEAPON
 	required_type = list(/obj/mecha/micro/sec)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/microshotgun
@@ -49,12 +52,13 @@
 	equip_cooldown = 15
 	var/mode = 0 //0 - buckshot, 1 - beanbag, 2 - slug.
 	projectile = /obj/item/projectile/bullet/pellet/shotgun
-	fire_sound = 'sound/weapons/shotgun.ogg'
+	fire_sound = 'sound/weapons/Gunshot_shotgun.ogg'
 	fire_volume = 80
 	projectiles = 6
 	projectiles_per_shot = 1
 	deviation = 0.7
 	projectile_energy_cost = 100
+	equip_type = EQUIP_MICRO_WEAPON
 	required_type = list(/obj/mecha/micro/sec)
 
 	Topic(href,href_list)
@@ -89,6 +93,7 @@
 	projectile_energy_cost = 800
 	equip_cooldown = 30
 	det_time = 15
+	equip_type = EQUIP_MICRO_WEAPON
 	required_type = list(/obj/mecha/micro/sec)
 
 
@@ -105,6 +110,7 @@
 	equip_cooldown = 30
 	energy_drain = 10
 	force = 15
+	equip_type = EQUIP_MICRO_UTILITY
 	required_type = list(/obj/mecha/micro/utility)
 
 	action(atom/target)
@@ -140,7 +146,7 @@
 									occupant_message("<span class='warning'>The ore compartment is full.</span>")
 									return 1
 								else
-									ore.Move(ore_box)
+									ore.forceMove(ore_box)
 				else if(target.loc == C)
 					log_message("Drilled through [target]")
 					target.ex_act(2)
@@ -155,6 +161,7 @@
 	icon_state = "microscoop"
 	equip_cooldown = 5
 	energy_drain = 0
+	equip_type = EQUIP_MICRO_UTILITY
 	required_type = list(/obj/mecha/micro/utility)
 	var/orecapacity = 500
 

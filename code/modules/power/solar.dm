@@ -1,7 +1,10 @@
 #define SOLAR_MAX_DIST 40
+#define SOLAR_AUTO_START_NO     0 // Will never start itself.
+#define SOLAR_AUTO_START_YES    1 // Will always start itself.
+#define SOLAR_AUTO_START_CONFIG 2 // Will start itself if config allows it (default is no).
 
-var/solar_gen_rate = 1500
-var/list/solars_list = list()
+GLOBAL_VAR_INIT(solar_gen_rate, 1500)
+GLOBAL_LIST_EMPTY(solars_list)
 
 /obj/machinery/power/solar
 	name = "solar panel"
@@ -25,8 +28,8 @@ var/list/solars_list = list()
 /obj/machinery/power/solar/drain_power()
 	return -1
 
-/obj/machinery/power/solar/New(var/turf/loc, var/obj/item/solar_assembly/S)
-	..(loc)
+/obj/machinery/power/solar/Initialize(mapload, obj/item/solar_assembly/S)
+	. = ..()
 	Make(S)
 	connect_to_network()
 
@@ -51,7 +54,7 @@ var/list/solars_list = list()
 	if(!S)
 		S = new /obj/item/solar_assembly(src)
 		S.glass_type = /obj/item/stack/material/glass
-		S.anchored = 1
+		S.anchored = TRUE
 	S.loc = src
 	if(S.glass_type == /obj/item/stack/material/glass/reinforced) //if the panel is in reinforced glass
 		health *= 2 								 //this need to be placed here, because panels already on the map don't have an assembly linked to
@@ -102,18 +105,18 @@ var/list/solars_list = list()
 		src.set_dir(angle2dir(adir))
 	return
 
-//calculates the fraction of the sunlight that the panel recieves
+//calculates the fraction of the SSsun.sunlight that the panel recieves
 /obj/machinery/power/solar/proc/update_solar_exposure()
-	if(!sun)
+	if(!SSsun.sun)
 		return
 	if(obscured)
 		sunfrac = 0
 		return
 
-	//find the smaller angle between the direction the panel is facing and the direction of the sun (the sign is not important here)
-	var/p_angle = min(abs(adir - sun.angle), 360 - abs(adir - sun.angle))
+	//find the smaller angle between the direction the panel is facing and the direction of the SSsun.sun (the sign is not important here)
+	var/p_angle = min(abs(adir - SSsun.sun.angle), 360 - abs(adir - SSsun.sun.angle))
 
-	if(p_angle > 90)			// if facing more than 90deg from sun, zero output
+	if(p_angle > 90)			// if facing more than 90deg from SSsun.sun, zero output
 		sunfrac = 0
 		return
 
@@ -123,14 +126,14 @@ var/list/solars_list = list()
 /obj/machinery/power/solar/process()//TODO: remove/add this from machines to save on processing as needed ~Carn PRIORITY
 	if(stat & BROKEN)
 		return
-	if(!sun || !control) //if there's no sun or the panel is not linked to a solar control computer, no need to proceed
+	if(!SSsun.sun || !control) //if there's no SSsun.sun or the panel is not linked to a solar control computer, no need to proceed
 		return
 
 	if(powernet)
 		if(powernet == control.powernet)//check if the panel is still connected to the computer
-			if(obscured) //get no light from the sun, so don't generate power
+			if(obscured) //get no light from the SSsun.sun, so don't generate power
 				return
-			var/sgen = solar_gen_rate * sunfrac
+			var/sgen = GLOB.solar_gen_rate * sunfrac
 			add_avail(sgen)
 			control.gen += sgen
 		else //if we're no longer on the same powernet, remove from control computer
@@ -173,7 +176,7 @@ var/list/solars_list = list()
 	. = PROCESS_KILL
 	return
 
-//trace towards sun to see if we're in shadow
+//trace towards SSsun.sun to see if we're in shadow
 /obj/machinery/power/solar/proc/occlusion()
 
 	var/ax = x		// start at the solar panel
@@ -181,8 +184,8 @@ var/list/solars_list = list()
 	var/turf/T = null
 
 	for(var/i = 1 to 20)		// 20 steps is enough
-		ax += sun.dx	// do step
-		ay += sun.dy
+		ax += SSsun.sun.dx	// do step
+		ay += SSsun.sun.dy
 
 		T = locate( round(ax,0.5),round(ay,0.5),z)
 
@@ -290,12 +293,26 @@ var/list/solars_list = list()
 	var/lastgen = 0
 	var/track = 0			// 0= off  1=timed  2=auto (tracker)
 	var/trackrate = 600		// 300-900 seconds
-	var/nexttime = 0		// time for a panel to rotate of 1° in manual tracking
+	var/nexttime = 0		// time for a panel to rotate of 1ï¿½ in manual tracking
 	var/obj/machinery/power/tracker/connected_tracker = null
 	var/list/connected_panels = list()
+	var/auto_start = SOLAR_AUTO_START_NO
 
-/obj/machinery/power/solar_control/drain_power()
-	return -1
+// Used for mapping in solar arrays which automatically start itself.
+// Generally intended for far away and remote locations, where player intervention is rare.
+// In the interest of backwards compatability, this isn't named auto_start, as doing so might break downstream maps.
+/obj/machinery/power/solar_control/autostart
+	auto_start = SOLAR_AUTO_START_YES
+
+// Similar to above but controlled by the configuration file.
+// Intended to be used for the main solar arrays, so individual servers can choose to have them start automatically or require manual intervention.
+/obj/machinery/power/solar_control/config_start
+	auto_start = SOLAR_AUTO_START_CONFIG
+
+/obj/machinery/power/solar_control/Initialize()
+	. = ..()
+	connect_to_network()
+	set_panels(cdir)
 
 /obj/machinery/power/solar_control/Destroy()
 	for(var/obj/machinery/power/solar/M in connected_panels)
@@ -304,14 +321,33 @@ var/list/solars_list = list()
 		connected_tracker.unset_control()
 	return ..()
 
+/obj/machinery/power/solar_control/proc/auto_start(forced = FALSE)
+	// Automatically sets the solars, if allowed.
+	if(forced || auto_start == SOLAR_AUTO_START_YES || (auto_start == SOLAR_AUTO_START_CONFIG && config.autostart_solars) )
+		track = 2 // Auto tracking mode.
+		search_for_connected()
+		if(connected_tracker)
+			connected_tracker.set_angle(SSsun.sun.angle)
+		set_panels(cdir)
+
+// This would use LateInitialize(), however the powernet does not appear to exist during that time.
+/hook/roundstart/proc/auto_start_solars()
+	for(var/a in GLOB.solars_list)
+		var/obj/machinery/power/solar_control/SC = a
+		SC.auto_start()
+	return TRUE
+
+/obj/machinery/power/solar_control/drain_power()
+	return -1
+
 /obj/machinery/power/solar_control/disconnect_from_network()
 	..()
-	solars_list.Remove(src)
+	GLOB.solars_list.Remove(src)
 
 /obj/machinery/power/solar_control/connect_to_network()
 	var/to_return = ..()
 	if(powernet) //if connected and not already in solar_list...
-		solars_list |= src //... add it
+		GLOB.solars_list |= src //... add it
 	return to_return
 
 //search for unconnected panels and trackers in the computer powernet and connect them
@@ -330,7 +366,7 @@ var/list/solars_list = list()
 						connected_tracker = T
 						T.set_control(src)
 
-//called by the sun controller, update the facing angle (either manually or via tracking) and rotates the panels accordingly
+//called by the SSsun.sun controller, update the facing angle (either manually or via tracking) and rotates the panels accordingly
 /obj/machinery/power/solar_control/proc/update()
 	if(stat & (NOPOWER | BROKEN))
 		return
@@ -341,17 +377,10 @@ var/list/solars_list = list()
 				cdir = targetdir //...the current direction is the targetted one (and rotates panels to it)
 		if(2) // auto-tracking
 			if(connected_tracker)
-				connected_tracker.set_angle(sun.angle)
+				connected_tracker.set_angle(SSsun.sun.angle)
 
 	set_panels(cdir)
 	updateDialog()
-
-
-/obj/machinery/power/solar_control/initialize()
-	. = ..()
-	if(!powernet) return
-	set_panels(cdir)
-	connect_to_network()
 
 /obj/machinery/power/solar_control/update_icon()
 	if(stat & BROKEN)
@@ -375,7 +404,7 @@ var/list/solars_list = list()
 /obj/machinery/power/solar_control/interact(mob/user)
 
 	var/t = "<B><span class='highlight'>Generated power</span></B> : [round(lastgen)] W<BR>"
-	t += "<B><span class='highlight'>Star Orientation</span></B>: [sun.angle]&deg ([angle2text(sun.angle)])<BR>"
+	t += "<B><span class='highlight'>Star Orientation</span></B>: [SSsun.sun.angle]&deg ([angle2text(SSsun.sun.angle)])<BR>"
 	t += "<B><span class='highlight'>Array Orientation</span></B>: [rate_control(src,"cdir","[cdir]&deg",1,15)] ([angle2text(cdir)])<BR>"
 	t += "<B><span class='highlight'>Tracking:</span></B><div class='statusDisplay'>"
 	switch(track)
@@ -445,9 +474,9 @@ var/list/solars_list = list()
 			connected_tracker.unset_control()
 
 	if(track==1 && trackrate) //manual tracking and set a rotation speed
-		if(nexttime <= world.time) //every time we need to increase/decrease the angle by 1°...
+		if(nexttime <= world.time) //every time we need to increase/decrease the angle by 1ï¿½...
 			targetdir = (targetdir + trackrate/abs(trackrate) + 360) % 360 	//... do it
-			nexttime += 36000/abs(trackrate) //reset the counter for the next 1°
+			nexttime += 36000/abs(trackrate) //reset the counter for the next 1ï¿½
 
 	updateDialog()
 
@@ -477,7 +506,7 @@ var/list/solars_list = list()
 		track = text2num(href_list["track"])
 		if(track == 2)
 			if(connected_tracker)
-				connected_tracker.set_angle(sun.angle)
+				connected_tracker.set_angle(SSsun.sun.angle)
 				set_panels(cdir)
 		else if (track == 1) //begin manual tracking
 			src.targetdir = src.cdir
@@ -487,7 +516,7 @@ var/list/solars_list = list()
 	if(href_list["search_connected"])
 		src.search_for_connected()
 		if(connected_tracker && track == 2)
-			connected_tracker.set_angle(sun.angle)
+			connected_tracker.set_angle(SSsun.sun.angle)
 		src.set_panels(cdir)
 
 	interact(usr)
@@ -528,25 +557,13 @@ var/list/solars_list = list()
 				broken()
 	return
 
-// Used for mapping in solar array which automatically starts itself (telecomms, for example)
-/obj/machinery/power/solar_control/autostart
-	track = 2 // Auto tracking mode
-
-/obj/machinery/power/solar_control/autostart/New()
-	..()
-	spawn(150) // Wait 15 seconds to ensure everything was set up properly (such as, powernets, solar panels, etc.
-		src.search_for_connected()
-		if(connected_tracker && track == 2)
-			connected_tracker.set_angle(sun.angle)
-		src.set_panels(cdir)
-
 //
 // MISC
 //
 
 /obj/item/weapon/paper/solar
 	name = "paper- 'Going green! Setup your own solar array instructions.'"
-	info = "<h1>Welcome</h1><p>At greencorps we love the environment, and space. With this package you are able to help mother nature and produce energy without any usage of fossil fuel or phoron! Singularity energy is dangerous while solar energy is safe, which is why it's better. Now here is how you setup your own solar array.</p><p>You can make a solar panel by wrenching the solar assembly onto a cable node. Adding a glass panel, reinforced or regular glass will do, will finish the construction of your solar panel. It is that easy!</p><p>Now after setting up 19 more of these solar panels you will want to create a solar tracker to keep track of our mother nature's gift, the sun. These are the same steps as before except you insert the tracker equipment circuit into the assembly before performing the final step of adding the glass. You now have a tracker! Now the last step is to add a computer to calculate the sun's movements and to send commands to the solar panels to change direction with the sun. Setting up the solar computer is the same as setting up any computer, so you should have no trouble in doing that. You do need to put a wire node under the computer, and the wire needs to be connected to the tracker.</p><p>Congratulations, you should have a working solar array. If you are having trouble, here are some tips. Make sure all solar equipment are on a cable node, even the computer. You can always deconstruct your creations if you make a mistake.</p><p>That's all to it, be safe, be green!</p>"
+	info = "<h1>Welcome</h1><p>At greencorps we love the environment, and space. With this package you are able to help mother nature and produce energy without any usage of fossil fuel or phoron! Singularity energy is dangerous while solar energy is safe, which is why it's better. Now here is how you setup your own solar array.</p><p>You can make a solar panel by wrenching the solar assembly onto a cable node. Adding a glass panel, reinforced or regular glass will do, will finish the construction of your solar panel. It is that easy!</p><p>Now after setting up 19 more of these solar panels you will want to create a solar tracker to keep track of our mother nature's gift, the SSsun.sun. These are the same steps as before except you insert the tracker equipment circuit into the assembly before performing the final step of adding the glass. You now have a tracker! Now the last step is to add a computer to calculate the SSsun.sun's movements and to send commands to the solar panels to change direction with the SSsun.sun. Setting up the solar computer is the same as setting up any computer, so you should have no trouble in doing that. You do need to put a wire node under the computer, and the wire needs to be connected to the tracker.</p><p>Congratulations, you should have a working solar array. If you are having trouble, here are some tips. Make sure all solar equipment are on a cable node, even the computer. You can always deconstruct your creations if you make a mistake.</p><p>That's all to it, be safe, be green!</p>"
 
 /proc/rate_control(var/S, var/V, var/C, var/Min=1, var/Max=5, var/Limit=null) //How not to name vars
 	var/href = "<A href='?src=\ref[S];rate control=1;[V]"

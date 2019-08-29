@@ -9,7 +9,7 @@ var/global/list/total_extraction_beacons = list()
 	var/obj/structure/extraction_point/beacon
 	var/list/beacon_networks = list("station")
 	var/uses_left = 3
-	var/can_use_indoors
+	var/can_use_indoors = FALSE
 	var/safe_for_living_creatures = 1
 
 /obj/item/extraction_pack/examine()
@@ -145,7 +145,9 @@ var/global/list/total_extraction_beacons = list()
 	icon_state = "subspace_amplifier"
 
 /obj/item/fulton_core/attack_self(mob/user)
-	if(do_after(user,15,target = user) && !QDELETED(src))
+	var/turf/T = get_turf(user)
+	var/outdoors = T.outdoors
+	if(do_after(user,15,target = user) && !QDELETED(src) && outdoors)
 		new /obj/structure/extraction_point(get_turf(user))
 		qdel(src)
 
@@ -158,7 +160,7 @@ var/global/list/total_extraction_beacons = list()
 	density = FALSE
 	var/beacon_network = "station"
 
-/obj/structure/extraction_point/initialize()
+/obj/structure/extraction_point/Initialize()
 	. = ..()
 	name += " ([rand(100,999)]) ([get_area_name(src, TRUE)])"
 	global.total_extraction_beacons += src

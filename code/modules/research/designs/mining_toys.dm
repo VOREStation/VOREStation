@@ -46,3 +46,11 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 1000,"glass" = 1000)
 	build_path = /obj/item/device/depth_scanner
 	sort_string = "KAAAF"
+
+/datum/design/item/device/graviton_visor
+	desc = "Used to see via the complex interation of meson particles and graviton particles."
+	id = "graviton_goggles"
+	req_tech = list(TECH_MAGNET = 5, TECH_ENGINEERING = 3, TECH_BLUESPACE = 3, TECH_PHORON = 3)
+	materials = list(MAT_PLASTEEL = 2000, "glass" = 3000, MAT_PHORON = 1500)
+	build_path = /obj/item/clothing/glasses/graviton
+	sort_string = "KAAAG"

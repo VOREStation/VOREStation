@@ -142,7 +142,8 @@
 		visible_message("<span class='warning'>[src] spits [spit_name] at \the [A]!</span>", "<span class='alium'>You spit [spit_name] at \the [A].</span>")
 		var/obj/item/projectile/P = new spit_projectile(get_turf(src))
 		P.firer = src
-		P.launch(A)
+		P.old_style_target(A)
+		P.fire()
 		playsound(loc, 'sound/weapons/pierce.ogg', 25, 0)
 	else
 		..()

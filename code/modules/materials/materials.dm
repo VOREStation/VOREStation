@@ -105,7 +105,9 @@ var/list/name_to_material
 	var/opacity = 1              // Is the material transparent? 0.5< makes transparent walls/doors.
 	var/reflectivity = 0         // How reflective to light is the material?  Currently used for laser reflection and defense.
 	var/explosion_resistance = 5 // Only used by walls currently.
-	var/conductive = 1           // Objects with this var add CONDUCTS to flags on spawn.
+	var/negation = 0             // Objects that respect this will randomly absorb impacts with this var as the percent chance.
+	var/spatial_instability = 0  // Objects that have trouble staying in the same physical space by sheer laws of nature have this. Percent for respecting items to cause teleportation.
+	var/conductive = 1           // Objects without this var add NOCONDUCT to flags on spawn.
 	var/conductivity = null      // How conductive the material is. Iron acts as the baseline, at 10.
 	var/list/composite_material  // If set, object matter var will be a list containing these values.
 	var/luminescence
@@ -113,6 +115,7 @@ var/list/name_to_material
 
 	// Placeholder vars for the time being, todo properly integrate windows/light tiles/rods.
 	var/created_window
+	var/created_fulltile_window
 	var/rod_product
 	var/wire_product
 	var/list/window_options = list()
@@ -256,6 +259,7 @@ var/list/name_to_material
 	icon_colour = "#00FFE1"
 	opacity = 0.4
 	reflectivity = 0.6
+	conductive = 0
 	conductivity = 1
 	shard_type = SHARD_SHARD
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
@@ -292,6 +296,8 @@ var/list/name_to_material
 /material/supermatter
 	name = "supermatter"
 	icon_colour = "#FFFF00"
+	stack_type = /obj/item/stack/material/supermatter
+	shard_type = SHARD_SHARD
 	radioactivity = 20
 	stack_type = null
 	luminescence = 3
@@ -303,6 +309,7 @@ var/list/name_to_material
 	sheet_singular_name = "crystal"
 	sheet_plural_name = "crystals"
 	is_fusion_fuel = 1
+	stack_origin_tech = list(TECH_MATERIAL = 8, TECH_PHORON = 5, TECH_BLUESPACE = 4)
 
 /material/phoron
 	name = "phoron"
@@ -344,6 +351,7 @@ var/list/name_to_material
 	weight = 22
 	hardness = 55
 	protectiveness = 5 // 20%
+	conductive = 0
 	conductivity = 5
 	door_icon_base = "stone"
 	sheet_singular_name = "brick"
@@ -356,7 +364,6 @@ var/list/name_to_material
 	hardness = 30 //VOREStation Edit - Please.
 	integrity = 201 //hack to stop kitchen benches being flippable, todo: refactor into weight system
 	stack_type = /obj/item/stack/material/marble
-
 
 /material/steel
 	name = DEFAULT_WALL_MATERIAL
@@ -454,8 +461,8 @@ var/list/name_to_material
 	reflectivity = 0.9
 
 /material/plasteel/titanium
-	name = "titanium"
-	stack_type = null
+	name = MAT_TITANIUM
+	stack_type = /obj/item/stack/material/titanium
 	conductivity = 2.38
 	icon_base = "metal"
 	door_icon_base = "metal"
@@ -464,7 +471,7 @@ var/list/name_to_material
 
 /material/plasteel/titanium/hull
 	name = MAT_TITANIUMHULL
-	stack_type = null
+	stack_type = /obj/item/stack/material/titanium/hull
 	icon_base = "hull"
 	icon_reinf = "reinf_mesh"
 
@@ -480,16 +487,18 @@ var/list/name_to_material
 	hardness = 30
 	weight = 15
 	protectiveness = 0 // 0%
+	conductive = 0
 	conductivity = 1 // Glass shards don't conduct.
 	door_icon_base = "stone"
 	destruction_desc = "shatters"
 	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 2)
 	created_window = /obj/structure/window/basic
+	created_fulltile_window = /obj/structure/window/basic/full
 	rod_product = /obj/item/stack/material/glass/reinforced
 
 /material/glass/build_windows(var/mob/living/user, var/obj/item/stack/used_stack)
 
-	if(!user || !used_stack || !created_window || !window_options.len)
+	if(!user || !used_stack || !created_window || !created_fulltile_window || !window_options.len)
 		return 0
 
 	if(!user.IsAdvancedToolUser())
@@ -544,6 +553,8 @@ var/list/name_to_material
 	if(choice == "Windoor")
 		if(is_reinforced())
 			build_path = /obj/structure/windoor_assembly/secure
+	else if(choice == "Full Window")
+		build_path = created_fulltile_window
 	else
 		build_path = created_window
 
@@ -575,6 +586,7 @@ var/list/name_to_material
 	composite_material = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT / 2, "glass" = SHEET_MATERIAL_AMOUNT)
 	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 2)
 	created_window = /obj/structure/window/reinforced
+	created_fulltile_window = /obj/structure/window/reinforced/full
 	wire_product = null
 	rod_product = null
 
@@ -588,6 +600,7 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 4)
 	window_options = list("One Direction" = 1, "Full Window" = 4)
 	created_window = /obj/structure/window/phoronbasic
+	created_fulltile_window = /obj/structure/window/phoronbasic/full
 	wire_product = null
 	rod_product = /obj/item/stack/material/glass/phoronrglass
 
@@ -599,6 +612,7 @@ var/list/name_to_material
 	composite_material = list() //todo
 	window_options = list("One Direction" = 1, "Full Window" = 4)
 	created_window = /obj/structure/window/phoronreinforced
+	created_fulltile_window = /obj/structure/window/phoronreinforced/full
 	hardness = 40
 	weight = 30
 	stack_origin_tech = list(TECH_MATERIAL = 2)
@@ -615,6 +629,7 @@ var/list/name_to_material
 	hardness = 10
 	weight = 12
 	protectiveness = 5 // 20%
+	conductive = 0
 	conductivity = 2 // For the sake of material armor diversity, we're gonna pretend this plastic is a good insulator.
 	melting_point = T0C+371 //assuming heat resistant plastic
 	stack_origin_tech = list(TECH_MATERIAL = 3)
@@ -632,6 +647,7 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	conductivity = 100
 
 /material/tritium
 	name = "tritium"
@@ -641,6 +657,7 @@ var/list/name_to_material
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	is_fusion_fuel = 1
+	conductive = 0
 
 /material/deuterium
 	name = "deuterium"
@@ -650,6 +667,7 @@ var/list/name_to_material
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	is_fusion_fuel = 1
+	conductive = 0
 
 /material/mhydrogen
 	name = "mhydrogen"
@@ -679,7 +697,7 @@ var/list/name_to_material
 	sheet_plural_name = "ingots"
 
 /material/lead
-	name = "lead"
+	name = MAT_LEAD
 	stack_type = /obj/item/stack/material/lead
 	icon_colour = "#273956"
 	weight = 23 // Lead is a bit more dense than silver IRL, and silver has 22 ingame.
@@ -687,6 +705,76 @@ var/list/name_to_material
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	radiation_resistance = 25 // Lead is Special and so gets to block more radiation than it normally would with just weight, totalling in 48 protection.
+
+// Particle Smasher and other exotic materials.
+
+/material/verdantium
+	name = MAT_VERDANTIUM
+	stack_type = /obj/item/stack/material/verdantium
+	icon_base = "metal"
+	door_icon_base = "metal"
+	icon_reinf = "reinf_metal"
+	icon_colour = "#4FE95A"
+	integrity = 80
+	protectiveness = 15
+	weight = 15
+	hardness = 30
+	shard_type = SHARD_SHARD
+	negation = 15
+	conductivity = 60
+	reflectivity = 0.3
+	radiation_resistance = 5
+	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 5, TECH_BIO = 4)
+	sheet_singular_name = "sheet"
+	sheet_plural_name = "sheets"
+
+/material/morphium
+	name = MAT_MORPHIUM
+	stack_type = /obj/item/stack/material/morphium
+	icon_base = "metal"
+	door_icon_base = "metal"
+	icon_colour = "#37115A"
+	icon_reinf = "reinf_metal"
+	protectiveness = 60
+	integrity = 300
+	conductive = 0
+	conductivity = 1.5
+	hardness = 90
+	shard_type = SHARD_SHARD
+	weight = 30
+	negation = 25
+	explosion_resistance = 85
+	reflectivity = 0.2
+	radiation_resistance = 10
+	stack_origin_tech = list(TECH_MATERIAL = 8, TECH_ILLEGAL = 1, TECH_PHORON = 4, TECH_BLUESPACE = 4, TECH_ARCANE = 1)
+
+/material/morphium/hull
+	name = MAT_MORPHIUMHULL
+	stack_type = /obj/item/stack/material/morphium/hull
+	icon_base = "hull"
+	icon_reinf = "reinf_mesh"
+
+/material/valhollide
+	name = MAT_VALHOLLIDE
+	stack_type = /obj/item/stack/material/valhollide
+	icon_base = "stone"
+	door_icon_base = "stone"
+	icon_reinf = "reinf_mesh"
+	icon_colour = "##FFF3B2"
+	protectiveness = 30
+	integrity = 240
+	weight = 30
+	hardness = 45
+	negation = 2
+	conductive = 0
+	conductivity = 5
+	reflectivity = 0.5
+	radiation_resistance = 20
+	spatial_instability = 30
+	stack_origin_tech = list(TECH_MATERIAL = 7, TECH_PHORON = 5, TECH_BLUESPACE = 5)
+	sheet_singular_name = "gem"
+	sheet_plural_name = "gems"
+
 
 // Adminspawn only, do not let anyone get this.
 /material/alienalloy
@@ -734,6 +822,7 @@ var/list/name_to_material
 	melting_point = T0C+300
 	sheet_singular_name = "blob"
 	sheet_plural_name = "blobs"
+	conductive = 0
 
 /material/resin/can_open_material_door(var/mob/living/user)
 	var/mob/living/carbon/M = user
@@ -754,6 +843,7 @@ var/list/name_to_material
 	hardness = 15
 	weight = 18
 	protectiveness = 8 // 28%
+	conductive = 0
 	conductivity = 1
 	melting_point = T0C+300 //okay, not melting in this case, but hot enough to destroy wood
 	ignition_point = T0C+288
@@ -785,7 +875,7 @@ var/list/name_to_material
 
 /material/wood/sif
 	name = MAT_SIFWOOD
-//	stack_type = /obj/item/stack/material/wood/sif
+	stack_type = /obj/item/stack/material/wood/sif
 	icon_colour = "#0099cc" // Cyan-ish
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2) // Alien wood would presumably be more interesting to the analyzer.
 
@@ -800,6 +890,7 @@ var/list/name_to_material
 	hardness = 1
 	weight = 1
 	protectiveness = 0 // 0%
+	conductive = 0
 	ignition_point = T0C+232 //"the temperature at which book-paper catches fire, and burns." close enough
 	melting_point = T0C+232 //temperature at which cardboard walls would be destroyed
 	stack_origin_tech = list(TECH_MATERIAL = 1)
@@ -851,6 +942,7 @@ var/list/name_to_material
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
 	flags = MATERIAL_PADDING
+	conductive = 0
 
 /material/cult
 	name = "cult"
@@ -861,6 +953,7 @@ var/list/name_to_material
 	shard_type = SHARD_STONE_PIECE
 	sheet_singular_name = "brick"
 	sheet_plural_name = "bricks"
+	conductive = 0
 
 /material/cult/place_dismantled_girder(var/turf/target)
 	new /obj/structure/girder/cult(target, "cult")
@@ -884,6 +977,7 @@ var/list/name_to_material
 	ignition_point = T0C+300
 	melting_point = T0C+300
 	protectiveness = 3 // 13%
+	conductive = 0
 
 /material/carpet
 	name = "carpet"
@@ -896,6 +990,7 @@ var/list/name_to_material
 	sheet_singular_name = "tile"
 	sheet_plural_name = "tiles"
 	protectiveness = 1 // 4%
+	conductive = 0
 
 /material/cotton
 	name = "cotton"
@@ -905,6 +1000,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
+	conductive = 0
 
 // This all needs to be OOP'd and use inheritence if its ever used in the future.
 /material/cloth_teal
@@ -916,6 +1012,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
+	conductive = 0
 
 /material/cloth_black
 	name = "black"
@@ -926,6 +1023,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
+	conductive = 0
 
 /material/cloth_green
 	name = "green"
@@ -936,6 +1034,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
+	conductive = 0
 
 /material/cloth_puple
 	name = "purple"
@@ -946,6 +1045,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
+	conductive = 0
 
 /material/cloth_blue
 	name = "blue"
@@ -956,6 +1056,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
+	conductive = 0
 
 /material/cloth_beige
 	name = "beige"
@@ -966,6 +1067,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
+	conductive = 0
 
 /material/cloth_lime
 	name = "lime"
@@ -976,6 +1078,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
+	conductive = 0
 
 /material/toy_foam
 	name = "foam"
@@ -988,3 +1091,4 @@ var/list/name_to_material
 	hardness = 1
 	weight = 1
 	protectiveness = 0 // 0%
+	conductive = 0

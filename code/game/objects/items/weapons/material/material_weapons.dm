@@ -42,6 +42,9 @@
 			if(!isnull(matter[material_type]))
 				matter[material_type] *= force_divisor // May require a new var instead.
 
+	if(!(material.conductive))
+		src.flags |= NOCONDUCT
+
 /obj/item/weapon/material/get_material()
 	return material
 
@@ -67,11 +70,11 @@
 		if(applies_material_colour)
 			color = material.icon_colour
 		if(material.products_need_process())
-			processing_objects |= src
+			START_PROCESSING(SSobj, src)
 		update_force()
 
 /obj/item/weapon/material/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/item/weapon/material/apply_hit_effect()

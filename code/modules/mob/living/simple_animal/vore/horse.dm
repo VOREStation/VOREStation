@@ -1,4 +1,4 @@
-/mob/living/simple_animal/horse
+/mob/living/simple_mob/horse
 	name = "horse"
 	desc = "Don't look it in the mouth."
 	tt_desc = "Equus ferus caballus"
@@ -38,7 +38,7 @@
 	mount_offset_x = 0
 
 // Activate Noms!
-/mob/living/simple_animal/horse
+/mob/living/simple_mob/horse
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING
 

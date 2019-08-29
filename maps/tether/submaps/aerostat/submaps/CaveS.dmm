@@ -48,7 +48,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CaveS)
 "m" = (
-/mob/living/simple_animal/hostile/giant_spider/lurker,
+/mob/living/simple_mob/animal/giant_spider/lurker,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CaveS)
 "n" = (
@@ -61,7 +61,7 @@
 /area/submap/virgo2/CaveS)
 "q" = (
 /obj/effect/decal/cleanable/cobweb2,
-/mob/living/simple_animal/hostile/giant_spider/lurker,
+/mob/living/simple_mob/animal/giant_spider/lurker,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CaveS)
 "r" = (
@@ -84,6 +84,7 @@
 /area/submap/virgo2/CaveS)
 "x" = (
 /obj/structure/table/woodentable,
+/obj/item/device/survivalcapsule,
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
 "y" = (
@@ -107,6 +108,7 @@
 /obj/item/weapon/reagent_containers/pill/antitox,
 /obj/item/weapon/reagent_containers/pill/paracetamol,
 /obj/random/firstaid,
+/obj/item/weapon/storage/firstaid/combat,
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
 "B" = (
@@ -133,7 +135,7 @@
 /area/submap/virgo2/CaveS)
 "D" = (
 /obj/effect/spider/stickyweb,
-/mob/living/simple_animal/hostile/giant_spider/lurker,
+/mob/living/simple_mob/animal/giant_spider/lurker,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CaveS)
 "E" = (

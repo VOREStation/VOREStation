@@ -2,52 +2,6 @@
 CONTAINS:
 Deployable items
 Barricades
-
-for reference:
-	access_security = 1
-	access_brig = 2
-	access_armory = 3
-	access_forensics_lockers= 4
-	access_medical = 5
-	access_morgue = 6
-	access_tox = 7
-	access_tox_storage = 8
-	access_genetics = 9
-	access_engine = 10
-	access_engine_equip= 11
-	access_maint_tunnels = 12
-	access_external_airlocks = 13
-	access_emergency_storage = 14
-	access_change_ids = 15
-	access_ai_upload = 16
-	access_teleporter = 17
-	access_eva = 18
-	access_heads = 19
-	access_captain = 20
-	access_all_personal_lockers = 21
-	access_chapel_office = 22
-	access_tech_storage = 23
-	access_atmospherics = 24
-	access_bar = 25
-	access_janitor = 26
-	access_crematorium = 27
-	access_kitchen = 28
-	access_robotics = 29
-	access_rd = 30
-	access_cargo = 31
-	access_construction = 32
-	access_chemistry = 33
-	access_cargo_bot = 34
-	access_hydroponics = 35
-	access_manufacturing = 36
-	access_library = 37
-	access_lawyer = 38
-	access_virology = 39
-	access_cmo = 40
-	access_qm = 41
-	access_court = 42
-	access_clown = 43
-	access_mime = 44
 */
 
 //Barricades!
@@ -80,6 +34,7 @@ for reference:
 	return material
 
 /obj/structure/barricade/attackby(obj/item/W as obj, mob/user as mob)
+	user.setClickCooldown(user.get_attack_speed(W))
 	if(istype(W, /obj/item/stack))
 		var/obj/item/stack/D = W
 		if(D.get_material_name() != material.name)
@@ -96,45 +51,59 @@ for reference:
 				return
 		return
 	else
-		user.setClickCooldown(user.get_attack_speed(W))
 		switch(W.damtype)
 			if("fire")
 				health -= W.force * 1
 			if("brute")
 				health -= W.force * 0.75
-			else
-		if(health <= 0)
-			visible_message("<span class='danger'>The barricade is smashed apart!</span>")
-			dismantle()
-			qdel(src)
-			return
+		if(material == (get_material_by_name(MAT_WOOD) || get_material_by_name(MAT_SIFWOOD)))
+			playsound(loc, 'sound/effects/woodcutting.ogg', 100, 1)
+		else
+			playsound(src, 'sound/weapons/smash.ogg', 50, 1)
+		CheckHealth()
 		..()
+
+/obj/structure/barricade/proc/CheckHealth()
+	if(health <= 0)
+		dismantle()
+	return
+
+/obj/structure/barricade/take_damage(var/damage)
+	health -= damage
+	CheckHealth()
+	return
+
+/obj/structure/barricade/attack_generic(var/mob/user, var/damage, var/attack_verb)
+	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	if(material == get_material_by_name("resin"))
+		playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
+	else if(material == (get_material_by_name(MAT_WOOD) || get_material_by_name(MAT_SIFWOOD)))
+		playsound(loc, 'sound/effects/woodcutting.ogg', 100, 1)
+	else
+		playsound(src, 'sound/weapons/smash.ogg', 50, 1)
+	user.do_attack_animation(src)
+	health -= damage
+	CheckHealth()
+	return
 
 /obj/structure/barricade/proc/dismantle()
 	material.place_dismantled_product(get_turf(src))
+	visible_message("<span class='danger'>\The [src] falls apart!</span>")
 	qdel(src)
 	return
 
 /obj/structure/barricade/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			visible_message("<span class='danger'>\The [src] is blown apart!</span>")
-			qdel(src)
-			return
+			dismantle()
 		if(2.0)
 			health -= 25
-			if(health <= 0)
-				visible_message("<span class='danger'>\The [src] is blown apart!</span>")
-				dismantle()
-			return
+			CheckHealth()
 
-/obj/structure/barricade/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
-	if(air_group || (height==0))
-		return 1
+/obj/structure/barricade/CanPass(atom/movable/mover, turf/target)//So bullets will fly over and stuff.
 	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
-	else
-		return 0
+		return TRUE
+	return FALSE
 
 //Actual Deployable machinery stuff
 /obj/machinery/deployable
@@ -161,6 +130,7 @@ for reference:
 	icon_state = "barrier[locked]"
 
 /obj/machinery/deployable/barrier/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(istype(W, /obj/item/weapon/card/id/))
 		if(allowed(user))
 			if	(emagged < 2.0)
@@ -199,10 +169,27 @@ for reference:
 				health -= W.force * 0.75
 			if("brute")
 				health -= W.force * 0.5
-			else
-		if(health <= 0)
-			explode()
+		playsound(src, 'sound/weapons/smash.ogg', 50, 1)
+		CheckHealth()
 		..()
+
+/obj/machinery/deployable/barrier/proc/CheckHealth()
+	if(health <= 0)
+		explode()
+	return
+
+/obj/machinery/deployable/barrier/attack_generic(var/mob/user, var/damage, var/attack_verb)
+	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	playsound(src, 'sound/weapons/smash.ogg', 50, 1)
+	user.do_attack_animation(src)
+	health -= damage
+	CheckHealth()
+	return
+
+/obj/machinery/deployable/barrier/take_damage(var/damage)
+	health -= damage
+	CheckHealth()
+	return
 
 /obj/machinery/deployable/barrier/ex_act(severity)
 	switch(severity)
@@ -211,8 +198,7 @@ for reference:
 			return
 		if(2.0)
 			health -= 25
-			if(health <= 0)
-				explode()
+			CheckHealth()
 			return
 
 /obj/machinery/deployable/barrier/emp_act(severity)
@@ -223,13 +209,10 @@ for reference:
 		anchored = !anchored
 		icon_state = "barrier[locked]"
 
-/obj/machinery/deployable/barrier/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
-	if(air_group || (height==0))
-		return 1
+/obj/machinery/deployable/barrier/CanPass(atom/movable/mover, turf/target)//So bullets will fly over and stuff.
 	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
-	else
-		return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/deployable/barrier/proc/explode()
 

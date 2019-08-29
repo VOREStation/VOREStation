@@ -117,6 +117,8 @@ Class Procs:
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
 	var/obj/item/weapon/circuitboard/circuit = null
 
+	var/speed_process = FALSE			//If false, SSmachines. If true, SSfastprocess.
+
 /obj/machinery/New(l, d=0)
 	..(l)
 	if(d)
@@ -124,13 +126,19 @@ Class Procs:
 	if(circuit)
 		circuit = new circuit(src)
 
-/obj/machinery/initialize()
+/obj/machinery/Initialize()
 	. = ..()
 	global.machines += src
-	START_MACHINE_PROCESSING(src)
+	if(!speed_process)
+		START_MACHINE_PROCESSING(src)
+	else
+		START_PROCESSING(SSfastprocess, src)
 
 /obj/machinery/Destroy()
-	STOP_MACHINE_PROCESSING(src)
+	if(!speed_process)
+		STOP_MACHINE_PROCESSING(src)
+	else
+		STOP_PROCESSING(SSfastprocess, src)
 	global.machines -= src
 	if(component_parts)
 		for(var/atom/A in component_parts)
@@ -152,8 +160,6 @@ Class Procs:
 /obj/machinery/process()//If you dont use process or power why are you here
 	if(!(use_power || idle_power_usage || active_power_usage))
 		return PROCESS_KILL
-
-	return
 
 /obj/machinery/emp_act(severity)
 	if(use_power && stat == 0)
@@ -402,14 +408,21 @@ Class Procs:
 
 /obj/machinery/proc/dismantle()
 	playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+	//TFF 3/6/19 - port Cit RP fix of infinite frames. If it doesn't have a circuit board, don't create a frame. Return a smack instead. BONK!
+	if(!circuit)
+		return 0
 	var/obj/structure/frame/A = new /obj/structure/frame(src.loc)
 	var/obj/item/weapon/circuitboard/M = circuit
 	A.circuit = M
 	A.anchored = 1
-	A.density = 1
 	A.frame_type = M.board_type
 	if(A.frame_type.circuit)
 		A.need_circuit = 0
+
+	if(A.frame_type.frame_class == FRAME_CLASS_ALARM || A.frame_type.frame_class == FRAME_CLASS_DISPLAY)
+		A.density = 0
+	else
+		A.density = 1
 
 	if(A.frame_type.frame_class == FRAME_CLASS_MACHINE)
 		for(var/obj/D in component_parts)
@@ -440,3 +453,9 @@ Class Procs:
 	M.deconstruct(src)
 	qdel(src)
 	return 1
+
+/datum/proc/apply_visual(mob/M)
+	return
+
+/datum/proc/remove_visual(mob/M)
+	return

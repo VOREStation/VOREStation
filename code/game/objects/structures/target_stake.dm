@@ -6,7 +6,6 @@
 	icon_state = "target_stake"
 	density = 1
 	w_class = ITEMSIZE_HUGE
-	flags = CONDUCT
 	var/obj/item/target/pinned_target // the current pinned target
 
 	Move()

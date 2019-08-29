@@ -20,8 +20,7 @@
 	var/active_regen = FALSE //Used for the regenerate proc in human_powers.dm
 	var/active_regen_delay = 300
 
-/mob/living/carbon/human/New(var/new_loc, var/new_species = null)
-
+/mob/living/carbon/human/Initialize(mapload, var/new_species = null)
 	if(!dna)
 		dna = new /datum/dna(null)
 		// Species name is handled by set_species()
@@ -42,7 +41,7 @@
 
 	human_mob_list |= src
 
-	..()
+	. = ..()
 
 	hide_underwear.Cut()
 	for(var/category in global_underwear.categories_by_name)
@@ -58,7 +57,7 @@
 	for(var/organ in organs)
 		qdel(organ)
 	QDEL_NULL(nif)	//VOREStation Add
-	QDEL_NULL_LIST(vore_organs) //VOREStation Add
+	QDEL_LIST_NULL(vore_organs) //VOREStation Add
 	return ..()
 
 /mob/living/carbon/human/Stat()
@@ -633,7 +632,7 @@
 				src << browse(null, "window=flavor_changes")
 				return
 			if("general")
-				var/msg = sanitize(input(usr,"Update the general description of your character. This will be shown regardless of clothing, and may include OOC notes and preferences.","Flavor Text",html_decode(flavor_texts[href_list["flavor_change"]])) as message, extra = 0)
+				var/msg = sanitize(input(usr,"Update the general description of your character. This will be shown regardless of clothing.","Flavor Text",html_decode(flavor_texts[href_list["flavor_change"]])) as message, extra = 0)	//VOREStation Edit: separating out OOC notes
 				flavor_texts[href_list["flavor_change"]] = msg
 				return
 			else
@@ -1103,7 +1102,7 @@
 	else
 		usr << "<span class='warning'>You failed to check the pulse. Try again.</span>"
 
-/mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour, var/regen_icons = TRUE)
+/mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour, var/regen_icons = TRUE, var/mob/living/carbon/human/example = null)	//VOREStation Edit - send an example
 
 	if(!dna)
 		if(!new_species)
@@ -1140,7 +1139,15 @@
 	if(species.default_language)
 		add_language(species.default_language)
 
-	if(species.base_color) //VOREStation Edit - Always give them a basse color
+	//if(species.icon_scale_x != 1 || species.icon_scale_y != 1)	//VOREStation Removal
+	//	update_transform()											//VOREStation Removal
+
+	if(example)						//VOREStation Edit begin
+		if(!(example == src))
+			r_skin = example.r_skin
+			g_skin = example.g_skin
+			b_skin = example.b_skin
+	else if(species.base_color)	//VOREStation Edit end
 		//Apply colour.
 		r_skin = hex2num(copytext(species.base_color,2,4))
 		g_skin = hex2num(copytext(species.base_color,4,6))
@@ -1158,9 +1165,12 @@
 
 	//icon_state = lowertext(species.name) //Necessary?
 
-	species.create_organs(src)
-
+	//VOREStation Edit start: swap places of those two procs
 	species.handle_post_spawn(src)
+
+	species.create_organs(src)
+	//VOREStation Edit end: swap places of those two procs
+
 
 	maxHealth = species.total_health
 

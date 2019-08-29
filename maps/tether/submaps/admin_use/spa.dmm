@@ -55,7 +55,7 @@
 /turf/simulated/floor/water,
 /area/submap/spa)
 "ak" = (
-/mob/living/simple_animal/fox,
+/mob/living/simple_mob/animal/passive/fox,
 /turf/simulated/floor/grass,
 /area/submap/spa)
 "al" = (
@@ -623,7 +623,7 @@
 	},
 /area/space)
 "bW" = (
-/mob/living/simple_animal/redpanda,
+/mob/living/simple_mob/vore/redpanda,
 /turf/simulated/floor/grass,
 /area/submap/spa)
 "bX" = (

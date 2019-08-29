@@ -33,7 +33,7 @@
 	if(!(language && (language.flags & INNATE))) // skip understanding checks for INNATE languages
 		if(!say_understands(speaker,language))
 			if(language)
-				message = language.scramble(message)
+				message = language.scramble(message, languages)
 			else
 				message = stars(message)
 
@@ -77,6 +77,12 @@
 		if (speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
 			var/turf/source = speaker? get_turf(speaker) : get_turf(src)
 			src.playsound_local(source, speech_sound, sound_vol, 1)
+
+// Done here instead of on_hear_say() since that is NOT called if the mob is clientless (which includes most AI mobs).
+/mob/living/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
+	..()
+	if(has_AI()) // Won't happen if no ai_holder exists or there's a player inside w/o autopilot active.
+		ai_holder.on_hear_say(speaker, message)
 
 /mob/proc/on_hear_say(var/message)
 	to_chat(src, message)
@@ -158,17 +164,10 @@
 
 	if(!(language && (language.flags & INNATE))) // skip understanding checks for INNATE languages
 		if(!say_understands(speaker,language))
-			if(istype(speaker,/mob/living/simple_animal))
-				var/mob/living/simple_animal/S = speaker
-				if(S.speak && S.speak.len)
-					message = pick(S.speak)
-				else
-					return
+			if(language)
+				message = language.scramble(message, languages)
 			else
-				if(language)
-					message = language.scramble(message)
-				else
-					message = stars(message)
+				message = stars(message)
 
 		if(hard_to_hear)
 			message = stars(message)
@@ -276,6 +275,8 @@
 	var/final_message = "[part_a][speaker_name][part_b][formatted]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
 		final_message = "[time]<font size='3'><b>[final_message]</b></font>"
+	else
+		final_message = "[time][final_message]"
 	to_chat(src, final_message)
 
 /mob/living/silicon/ai/on_hear_radio(part_a, speaker_name, track, part_b, formatted)
@@ -283,6 +284,8 @@
 	var/final_message = "[part_a][track][part_b][formatted]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
 		final_message = "[time]<font size='3'><b>[final_message]</b></font>"
+	else
+		final_message = "[time][final_message]"
 	to_chat(src, final_message)
 
 /mob/proc/hear_signlang(var/message, var/verb = "gestures", var/datum/language/language, var/mob/speaker = null)

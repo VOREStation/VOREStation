@@ -135,6 +135,27 @@ emp_act
 
 	return siemens_coefficient
 
+// Similar to above but is for the mob's overall protection, being the average of all slots.
+/mob/living/carbon/human/proc/get_siemens_coefficient_average()
+	var/siemens_value = 0
+	var/total = 0
+	for(var/organ_name in organs_by_name)
+		if(organ_name in organ_rel_size)
+			var/obj/item/organ/external/organ = organs_by_name[organ_name]
+			if(organ)
+				var/weight = organ_rel_size[organ_name]
+				siemens_value += get_siemens_coefficient_organ(organ) * weight
+				total += weight
+
+	if(fire_stacks < 0) // Water makes you more conductive.
+		siemens_value *= 1.5
+
+	return (siemens_value/max(total, 1))
+
+// Returns a number between 0 to 1, with 1 being total protection.
+/mob/living/carbon/human/get_shock_protection()
+	return between(0, 1-get_siemens_coefficient_average(), 1)
+
 // Returns a list of clothing that is currently covering def_zone.
 /mob/living/carbon/human/proc/get_clothing_list_organ(var/obj/item/organ/external/def_zone, var/type)
 	var/list/results = list()
@@ -177,6 +198,14 @@ emp_act
 	var/list/protective_gear = H.get_covering_clothing(FACE)
 	for(var/obj/item/gear in protective_gear)
 		if(istype(gear) && (gear.body_parts_covered & FACE) && !(gear.item_flags & FLEXIBLEMATERIAL))
+			return gear
+	return null
+
+/mob/living/carbon/human/proc/check_mouth_coverage_survival()
+	var/obj/item/organ/external/H = organs_by_name[BP_HEAD]
+	var/list/protective_gear = H.get_covering_clothing(FACE)
+	for(var/obj/item/gear in protective_gear)
+		if(istype(gear) && (gear.body_parts_covered & FACE) && !(gear.item_flags & FLEXIBLEMATERIAL) && !(gear.item_flags & ALLOW_SURVIVALFOOD))
 			return gear
 	return null
 
@@ -448,6 +477,9 @@ emp_act
 		if(temp && !temp.is_usable())
 			return FALSE	// The hand isn't working in the first place
 
+	if(!O.catchable)
+		return FALSE
+
 	// Alright, our hand works? Time to try the catching.
 	var/catch_chance = 90	// Default 90% catch rate
 
@@ -541,6 +573,20 @@ emp_act
 		perm += perm_by_part[part]
 
 	return perm
+
+// This is for preventing harm by being covered in water, which only prometheans need to deal with.
+// This is not actually used for now since the code for prometheans gets changed a lot.
+/mob/living/carbon/human/get_water_protection()
+	var/protection = ..() // Todo: Replace with species var later.
+	if(protection == 1) // No point doing permeability checks if it won't matter.
+		return protection
+	// Wearing clothing with a low permeability_coefficient can protect from water.
+
+	var/converted_protection = 1 - protection
+	var/perm = reagent_permeability()
+	converted_protection *= perm
+	return 1-converted_protection
+
 
 /mob/living/carbon/human/shank_attack(obj/item/W, obj/item/weapon/grab/G, mob/user, hit_zone)
 

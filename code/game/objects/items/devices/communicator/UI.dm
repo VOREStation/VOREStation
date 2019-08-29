@@ -77,6 +77,8 @@
 				"Temperature" = planet.weather_holder.temperature - T0C,
 				"High" = planet.weather_holder.current_weather.temp_high - T0C,
 				"Low" = planet.weather_holder.current_weather.temp_low - T0C,
+				"WindDir" = planet.weather_holder.wind_dir ? dir2text(planet.weather_holder.wind_dir) : "None",
+				"WindSpeed" = planet.weather_holder.wind_speed ? "[planet.weather_holder.wind_speed > 2 ? "Severe" : "Normal"]" : "None",
 				"Forecast" = english_list(planet.weather_holder.forecast, and_text = "&#8594;", comma_text = "&#8594;", final_comma_text = "&#8594;") // Unicode RIGHTWARDS ARROW.
 				)
 			weather[++weather.len] = W
@@ -114,7 +116,7 @@
 	data["flashlight"] = fon
 	data["manifest"] = PDA_Manifest
 	data["feeds"] = compile_news()
-	data["latest_news"] = get_recent_news()
+	//data["latest_news"] = get_recent_news()	//VOREStation Edit, bandaid for catastrophic runtime lag in helper.dm
 	if(cartridge) // If there's a cartridge, we need to grab the information from it
 		data["cart_devices"] = cartridge.get_device_status()
 		data["cart_templates"] = cartridge.ui_templates
@@ -125,7 +127,7 @@
 			// The value element is the actual data, and can take any form necessary for the template
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -261,7 +263,7 @@
 			notehtml = note
 
 	if(href_list["switch_template"])
-		var/datum/nanoui/ui = GLOB.nanomanager.get_open_ui(usr, src, "main")
+		var/datum/nanoui/ui = SSnanoui.get_open_ui(usr, src, "main")
 		if(ui)
 			ui.add_template("Body", href_list["switch_template"])
 
@@ -276,5 +278,5 @@
 	if(href_list["cartridge_topic"] && cartridge) // Has to have a cartridge to perform these functions
 		cartridge.Topic(href, href_list)
 
-	GLOB.nanomanager.update_uis(src)
+	SSnanoui.update_uis(src)
 	add_fingerprint(usr)

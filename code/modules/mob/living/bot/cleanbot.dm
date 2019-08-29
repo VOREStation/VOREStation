@@ -113,7 +113,8 @@
 	dat += "Maintenance panel is [open ? "opened" : "closed"]"
 	if(!locked || issilicon(user))
 		dat += "<BR>Cleans Blood: <A href='?src=\ref[src];operation=blood'>[blood ? "Yes" : "No"]</A><BR>"
-		dat += "<BR>Patrol station: <A href='?src=\ref[src];operation=patrol'>[will_patrol ? "Yes" : "No"]</A><BR>"
+		if(using_map.bot_patrolling)
+			dat += "<BR>Patrol station: <A href='?src=\ref[src];operation=patrol'>[will_patrol ? "Yes" : "No"]</A><BR>"
 	if(open && !locked)
 		dat += "Odd looking screw twiddled: <A href='?src=\ref[src];operation=screw'>[screwloose ? "Yes" : "No"]</A><BR>"
 		dat += "Weird button pressed: <A href='?src=\ref[src];operation=oddbutton'>[oddbutton ? "Yes" : "No"]</A>"

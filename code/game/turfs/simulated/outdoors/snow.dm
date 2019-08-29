@@ -13,6 +13,9 @@
 
 /turf/simulated/floor/outdoors/snow/Entered(atom/A)
 	if(isliving(A))
+		var/mob/living/L = A
+		if(L.hovering) // Flying things shouldn't make footprints.
+			return ..()
 		var/mdir = "[A.dir]"
 		crossed_dirs[mdir] = 1
 		update_icon()
@@ -55,3 +58,10 @@
 			to_chat(M, "<span class='warning'>You slide across the ice!</span>")
 		M.SetStunned(1)
 		step(M,M.dir)
+
+// Ice that is used for, say, areas floating on water or similar.
+/turf/simulated/floor/outdoors/shelfice
+	name = "ice"
+	icon_state = "ice"
+	desc = "Looks slippery."
+	movement_cost = 4

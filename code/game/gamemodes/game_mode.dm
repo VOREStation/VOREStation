@@ -146,10 +146,10 @@ var/global/list/additional_antag_types = list()
 			playerC++
 
 	if(master_mode=="secret")
-		if(playerC < required_players_secret)
+		if(playerC < config.player_requirements_secret[config_tag])
 			return 0
 	else
-		if(playerC < required_players)
+		if(playerC < config.player_requirements[config_tag])
 			return 0
 
 	if(!(antag_templates && antag_templates.len))
@@ -176,12 +176,12 @@ var/global/list/additional_antag_types = list()
 
 /datum/game_mode/proc/refresh_event_modifiers()
 	if(event_delay_mod_moderate || event_delay_mod_major)
-		event_manager.report_at_round_end = 1
+		SSevents.report_at_round_end = TRUE
 		if(event_delay_mod_moderate)
-			var/datum/event_container/EModerate = event_manager.event_containers[EVENT_LEVEL_MODERATE]
+			var/datum/event_container/EModerate = SSevents.event_containers[EVENT_LEVEL_MODERATE]
 			EModerate.delay_modifier = event_delay_mod_moderate
 		if(event_delay_mod_moderate)
-			var/datum/event_container/EMajor = event_manager.event_containers[EVENT_LEVEL_MAJOR]
+			var/datum/event_container/EMajor = SSevents.event_containers[EVENT_LEVEL_MAJOR]
 			EMajor.delay_modifier = event_delay_mod_major
 
 /datum/game_mode/proc/pre_setup()
@@ -464,7 +464,7 @@ proc/display_roundstart_logout_report()
 
 		if(L.ckey)
 			var/found = 0
-			for(var/client/C in clients)
+			for(var/client/C in GLOB.clients)
 				if(C.ckey == L.ckey)
 					found = 1
 					break

@@ -37,7 +37,7 @@
 
 	shuttle_docked_message = "The scheduled shuttle to the %dock_name% has docked with the station at docks one and two. It will depart in approximately %ETD%."
 	shuttle_leaving_dock = "The Crew Transfer Shuttle has left the station. Estimate %ETA% until the shuttle docks at %dock_name%."
-	shuttle_called_message = "A crew transfer to %Dock_name% has been scheduled. The shuttle has been called. Those leaving should proceed to docks one and two in approximately %ETA%."
+	shuttle_called_message = "A crew transfer to %dock_name% has been scheduled. The shuttle has been called. Those leaving should proceed to docks one and two in approximately %ETA%."
 	shuttle_recall_message = "The scheduled crew transfer has been cancelled."
 	emergency_shuttle_docked_message = "The Emergency Shuttle has docked with the station at docks one and two. You have approximately %ETD% to board the Emergency Shuttle."
 	emergency_shuttle_leaving_dock = "The Emergency Shuttle has left the station. Estimate %ETA% until the shuttle docks at %dock_name%."
@@ -47,6 +47,7 @@
 	// Networks that will show up as options in the camera monitor program
 	station_networks = list(
 							NETWORK_CARGO,
+							NETWORK_CIRCUITS,
 							NETWORK_CIVILIAN,
 							NETWORK_COMMAND,
 							NETWORK_ENGINE,
@@ -65,7 +66,18 @@
 							NETWORK_SECURITY,
 							NETWORK_TELECOM
 							)
-
+	// Camera networks that exist, but don't show on regular camera monitors.
+	secondary_networks = list(
+							NETWORK_ERT,
+							NETWORK_MERCENARY,
+							NETWORK_THUNDER,
+							NETWORK_COMMUNICATORS,
+							NETWORK_ALARM_ATMOS,
+							NETWORK_ALARM_POWER,
+							NETWORK_ALARM_FIRE,
+							NETWORK_SUPPLY
+							)
+	usable_email_tlds = list("freemail.nt")
 	allowed_spawns = list("Arrivals Shuttle","Gateway", "Cryogenic Storage", "Cyborg Storage")
 	unit_test_exempt_areas = list(/area/ninja_dojo, /area/ninja_dojo/firstdeck, /area/ninja_dojo/arrivals_dock)
 
@@ -77,7 +89,7 @@
 	if (long_range && (srcz in map_levels))
 		return map_levels
 	else if (srcz == Z_LEVEL_TRANSIT)
-		return list() // Nothing on transit!
+		return list() // Nothing on these z-levels- sensors won't show, and GPSes won't see each other.
 	else if (srcz >= Z_LEVEL_STATION_ONE && srcz <= Z_LEVEL_STATION_THREE) // Station can see other decks.
 		return list(
 			Z_LEVEL_STATION_ONE,
@@ -89,7 +101,7 @@
 			Z_LEVEL_SURFACE_MINE,
 			Z_LEVEL_SURFACE_WILD)
 	else
-		return ..()
+		return list(srcz) //prevents runtimes when using CMC. any Z-level not defined above will be 'isolated' and only show to GPSes/CMCs on that same Z (e.g. CentCom).
 
 /datum/map/southern_cross/perform_map_generation()
 	// First, place a bunch of submaps. This comes before tunnel/forest generation as to not interfere with the submap.
@@ -213,53 +225,55 @@
 	teleport_y = world.maxy - 1
 	teleport_z = Z_LEVEL_SURFACE_MINE
 
-
-/obj/effect/step_trigger/teleporter/bridge/east_to_west/New()
-	..()
-	teleport_x = src.x - 4
-	teleport_y = src.y
-	teleport_z = src.z
-
-/obj/effect/step_trigger/teleporter/bridge/east_to_west/small/New()
-	..()
-	teleport_x = src.x - 3
-	teleport_y = src.y
-	teleport_z = src.z
-
-
-/obj/effect/step_trigger/teleporter/bridge/west_to_east/New()
-	..()
-	teleport_x = src.x + 4
-	teleport_y = src.y
-	teleport_z = src.z
-
-/obj/effect/step_trigger/teleporter/bridge/west_to_east/small/New()
-	..()
-	teleport_x = src.x + 3
-	teleport_y = src.y
-	teleport_z = src.z
-
-
-/obj/effect/step_trigger/teleporter/bridge/north_to_south/New()
-	..()
-	teleport_x = src.x
-	teleport_y = src.y - 4
-	teleport_z = src.z
-
-
-/obj/effect/step_trigger/teleporter/bridge/south_to_north/New()
-	..()
-	teleport_x = src.x
-	teleport_y = src.y + 4
-	teleport_z = src.z
-
-
 /datum/planet/sif
 	expected_z_levels = list(
 		Z_LEVEL_SURFACE,
 		Z_LEVEL_SURFACE_MINE,
 		Z_LEVEL_SURFACE_WILD,
 		Z_LEVEL_TRANSIT
+	)
+
+/obj/effect/step_trigger/teleporter/bridge/east_to_west/Initialize()
+	teleport_x = src.x - 4
+	teleport_y = src.y
+	teleport_z = src.z
+	return ..()
+
+/obj/effect/step_trigger/teleporter/bridge/east_to_west/small/Initialize()
+	teleport_x = src.x - 3
+	teleport_y = src.y
+	teleport_z = src.z
+	return ..()
+
+/obj/effect/step_trigger/teleporter/bridge/west_to_east/Initialize()
+	teleport_x = src.x + 4
+	teleport_y = src.y
+	teleport_z = src.z
+	return ..()
+
+/obj/effect/step_trigger/teleporter/bridge/west_to_east/small/Initialize()
+	teleport_x = src.x + 3
+	teleport_y = src.y
+	teleport_z = src.z
+	return ..()
+
+/obj/effect/step_trigger/teleporter/bridge/north_to_south/Initialize()
+	teleport_x = src.x
+	teleport_y = src.y - 4
+	teleport_z = src.z
+	return ..()
+
+/obj/effect/step_trigger/teleporter/bridge/south_to_north/Initialize()
+	teleport_x = src.x
+	teleport_y = src.y + 4
+	teleport_z = src.z
+	return ..()
+
+/datum/planet/sif
+	expected_z_levels = list(
+		Z_LEVEL_SURFACE,
+		Z_LEVEL_SURFACE_MINE,
+		Z_LEVEL_SURFACE_WILD
 	)
 
 //Suit Storage Units

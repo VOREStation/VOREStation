@@ -17,7 +17,7 @@
 	max_storage_space = ITEMSIZE_COST_SMALL * 7 // 14
 //	var/list/icon_variety // VOREStation edit
 
-/obj/item/weapon/storage/firstaid/initialize()
+/obj/item/weapon/storage/firstaid/Initialize()
 	. = ..()
 //	if(icon_variety) // VOREStation edit
 //		icon_state = pick(icon_variety)
@@ -160,6 +160,12 @@
 	max_storage_space = ITEMSIZE_COST_SMALL * 7
 	starts_with = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting = 8)
 
+/obj/item/weapon/storage/firstaid/bonemed
+	name = "bone repair kit"
+	desc = "Contains chemicals to mend broken bones."
+	max_storage_space = ITEMSIZE_COST_SMALL * 7
+	starts_with = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed = 8)
+
 /*
  * Pill Bottles
  */
@@ -177,15 +183,25 @@
 	use_sound = null
 	max_storage_space = ITEMSIZE_COST_TINY * 14
 	max_w_class = ITEMSIZE_TINY
+	var/wrapper_color
+	var/label
 
 	var/label_text = ""
 	var/base_name = " "
 	var/base_desc = " "
 
-/obj/item/weapon/storage/pill_bottle/New()
-	..()
+/obj/item/weapon/storage/pill_bottle/Initialize()
+	. = ..()
 	base_name = name
 	base_desc = desc
+	update_icon()
+
+/obj/item/weapon/storage/pill_bottle/update_icon()
+	overlays.Cut()
+	if(wrapper_color)
+		var/image/I = image(icon, "pillbottle_wrap")
+		I.color = wrapper_color
+		overlays += I
 
 /obj/item/weapon/storage/pill_bottle/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/flashlight/pen))
@@ -216,61 +232,71 @@
 	desc = "[base_desc] It is labeled \"[label_text]\"."
 
 /obj/item/weapon/storage/pill_bottle/antitox
-	name = "bottle of Dylovene pills"
+	name = "pill bottle (Dylovene)"
 	desc = "Contains pills used to counter toxins."
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/antitox = 7)
+	wrapper_color = COLOR_GREEN
 
 /obj/item/weapon/storage/pill_bottle/bicaridine
-	name = "bottle of Bicaridine pills"
+	name = "pill bottle (Bicaridine)"
 	desc = "Contains pills used to stabilize the severely injured."
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/bicaridine = 7)
+	wrapper_color = COLOR_MAROON
 
 /obj/item/weapon/storage/pill_bottle/dexalin_plus
-	name = "bottle of Dexalin Plus pills"
+	name = "pill bottle (Dexalin Plus)"
 	desc = "Contains pills used to treat extreme cases of oxygen deprivation."
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/dexalin_plus = 7)
+	wrapper_color = "#3366cc"
 
 /obj/item/weapon/storage/pill_bottle/dermaline
-	name = "bottle of Dermaline pills"
+	name = "pill bottle (Dermaline)"
 	desc = "Contains pills used to treat burn wounds."
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/dermaline = 7)
+	wrapper_color = "#e8d131"
 
 /obj/item/weapon/storage/pill_bottle/dylovene
-	name = "bottle of Dylovene pills"
+	name = "pill bottle (Dylovene)"
 	desc = "Contains pills used to treat toxic substances in the blood."
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/dylovene = 7)
+	wrapper_color = COLOR_GREEN
 
 /obj/item/weapon/storage/pill_bottle/inaprovaline
-	name = "bottle of Inaprovaline pills"
+	name = "pill bottle (Inaprovaline)"
 	desc = "Contains pills used to stabilize patients."
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/inaprovaline = 7)
+	wrapper_color = COLOR_PALE_BLUE_GRAY
 
 /obj/item/weapon/storage/pill_bottle/kelotane
-	name = "bottle of kelotane pills"
+	name = "pill bottle (Kelotane)"
 	desc = "Contains pills used to treat burns."
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/kelotane = 7)
+	wrapper_color = "#ec8b2f"
 
 /obj/item/weapon/storage/pill_bottle/spaceacillin
-	name = "bottle of Spaceacillin pills"
+	name = "pill bottle (Spaceacillin)"
 	desc = "A theta-lactam antibiotic. Effective against many diseases likely to be encountered in space."
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/spaceacillin = 7)
+	wrapper_color = COLOR_PALE_GREEN_GRAY
 
 /obj/item/weapon/storage/pill_bottle/tramadol
-	name = "bottle of Tramadol pills"
+	name = "pill bottle (Tramadol)"
 	desc = "Contains pills used to relieve pain."
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/tramadol = 7)
+	wrapper_color = COLOR_PURPLE_GRAY
 
 /obj/item/weapon/storage/pill_bottle/citalopram
-	name = "bottle of Citalopram pills"
+	name = "pill bottle (Citalopram)"
 	desc = "Contains pills used to stabilize a patient's mood."
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/citalopram = 7)
+	wrapper_color = COLOR_GRAY
 
 /obj/item/weapon/storage/pill_bottle/carbon
-	name = "bottle of Carbon pills"
+	name = "pill bottle (Carbon)"
 	desc = "Contains pills used to neutralise chemicals in the stomach."
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/carbon = 7)
 
 /obj/item/weapon/storage/pill_bottle/iron
-	name = "bottle of Iron pills"
+	name = "pill bottle (Iron)"
 	desc = "Contains pills used to aid in blood regeneration."
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/iron = 7)

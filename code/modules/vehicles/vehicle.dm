@@ -81,7 +81,6 @@
 	if(riding_datum)
 		riding_datum.handle_ride(user, direction)
 
-
 /obj/vehicle/Moved()
 	. = ..()
 	if(riding_datum)
@@ -162,6 +161,10 @@
 /obj/vehicle/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.get_structure_damage()
 	..()
+	healthcheck()
+
+/obj/vehicle/proc/adjust_health(amount)
+	health = between(0, health + amount, maxhealth)
 	healthcheck()
 
 /obj/vehicle/ex_act(severity)
@@ -416,6 +419,15 @@
 	visible_message("<span class='danger'>[user] [attack_message] the [src]!</span>")
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
 	user.do_attack_animation(src)
+	src.health -= damage
+	if(mechanical && prob(10))
+		new /obj/effect/decal/cleanable/blood/oil(src.loc)
+	spawn(1) healthcheck()
+	return 1
+
+/obj/vehicle/take_damage(var/damage)
+	if(!damage)
+		return
 	src.health -= damage
 	if(mechanical && prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)

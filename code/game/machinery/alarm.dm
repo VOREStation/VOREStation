@@ -137,7 +137,7 @@
 	TLV["temperature"] =	list(T0C - 26, T0C, T0C + 40, T0C + 66) // K
 
 
-/obj/machinery/alarm/initialize()
+/obj/machinery/alarm/Initialize()
 	. = ..()
 	set_frequency(frequency)
 	if(!master_is_operating())
@@ -497,7 +497,7 @@
 	if(!(locked && !remote_connection) || remote_access || issilicon(user))
 		populate_controls(data)
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "air_alarm.tmpl", name, 325, 625, master_ui = master_ui, state = state)
 		ui.set_initial_data(data)
@@ -848,6 +848,9 @@ FIRE ALARM
 			icon_state = "fire0"
 			switch(seclevel)
 				if("green")	set_light(l_range = 2, l_power = 0.25, l_color = "#00ff00")
+				if("yellow")	set_light(l_range = 2, l_power = 0.25, l_color = "#ffff00")
+				if("violet")	set_light(l_range = 2, l_power = 0.25, l_color = "#9933ff")
+				if("orange")	set_light(l_range = 2, l_power = 0.25, l_color = "#ff9900")
 				if("blue")	set_light(l_range = 2, l_power = 0.25, l_color = "#1024A9")
 				if("red")	set_light(l_range = 4, l_power = 0.9, l_color = "#ff0000")
 				if("delta")	set_light(l_range = 4, l_power = 0.9, l_color = "#FF6633")
@@ -873,6 +876,11 @@ FIRE ALARM
 /obj/machinery/firealarm/attackby(obj/item/W as obj, mob/user as mob)
 	add_fingerprint(user)
 
+	if(alarm_deconstruction_screwdriver(user, W))
+		return
+	if(alarm_deconstruction_wirecutters(user, W))
+		return
+
 	if(panel_open)
 		if(istype(W, /obj/item/device/multitool))
 			detecting = !(detecting)
@@ -896,7 +904,7 @@ FIRE ALARM
 			alarm()
 			time = 0
 			timing = 0
-			processing_objects.Remove(src)
+			STOP_PROCESSING(SSobj, src)
 		updateDialog()
 	last_process = world.timeofday
 
@@ -965,7 +973,7 @@ FIRE ALARM
 		else if(href_list["time"])
 			timing = text2num(href_list["time"])
 			last_process = world.timeofday
-			processing_objects.Add(src)
+			START_PROCESSING(SSobj, src)
 		else if(href_list["tp"])
 			var/tp = text2num(href_list["tp"])
 			time += tp
@@ -1003,7 +1011,7 @@ FIRE ALARM
 		seclevel = newlevel
 		update_icon()
 
-/obj/machinery/firealarm/initialize()
+/obj/machinery/firealarm/Initialize()
 	. = ..()
 	if(z in using_map.contact_levels)
 		set_security_level(security_level? get_security_level() : "green")

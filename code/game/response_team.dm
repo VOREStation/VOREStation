@@ -93,6 +93,12 @@ proc/increment_ert_chance()
 	while(send_emergency_team == 0) // There is no ERT at the time.
 		if(get_security_level() == "green")
 			ert_base_chance += 1
+		if(get_security_level() == "yellow")
+			ert_base_chance += 1
+		if(get_security_level() == "violet")
+			ert_base_chance += 2
+		if(get_security_level() == "orange")
+			ert_base_chance += 2
 		if(get_security_level() == "blue")
 			ert_base_chance += 2
 		if(get_security_level() == "red")

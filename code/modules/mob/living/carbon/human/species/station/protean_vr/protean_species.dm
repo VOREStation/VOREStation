@@ -20,8 +20,7 @@
 	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	health_hud_intensity = 2
 	num_alternate_languages = 3
-	species_language = LANGUAGE_SOL_COMMON
-	assisted_langs = list(LANGUAGE_EAL)
+	assisted_langs = list(LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 	color_mult = TRUE
 
 	breath_type = null
@@ -117,7 +116,7 @@
 	var/obj/item/device/nif/saved_nif = H.nif
 	if(saved_nif)
 		H.nif.unimplant(H) //Needs reference to owner to unimplant right.
-		H.nif.forceMove(null)
+		H.nif.moveToNullspace()
 	..()
 	if(saved_nif)
 		saved_nif.quick_implant(H)

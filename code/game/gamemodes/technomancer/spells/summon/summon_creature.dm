@@ -16,34 +16,32 @@
 	desc = "Chitter chitter."
 	summoned_mob_type = null
 	summon_options = list(
-		"Mouse"			=	/mob/living/simple_animal/mouse,
-		"Lizard"		=	/mob/living/simple_animal/lizard,
-		"Chicken"		=	/mob/living/simple_animal/chicken,
-		"Chick"			=	/mob/living/simple_animal/chick,
-		"Crab"			=	/mob/living/simple_animal/crab,
-		"Parrot"		=	/mob/living/simple_animal/parrot,
-		"Goat"			=	/mob/living/simple_animal/retaliate/goat,
-		"Cat"			=	/mob/living/simple_animal/cat,
-		"Kitten"		=	/mob/living/simple_animal/cat/kitten,
-		"Corgi"			=	/mob/living/simple_animal/corgi,
-		"Corgi Pup"		=	/mob/living/simple_animal/corgi/puppy,
-		"BAT"			=	/mob/living/simple_animal/hostile/scarybat,
-		"SPIDER"		=	/mob/living/simple_animal/hostile/giant_spider,
-		"SPIDER HUNTER"	=	/mob/living/simple_animal/hostile/giant_spider/hunter,
-		"SPIDER NURSE"	=	/mob/living/simple_animal/hostile/giant_spider/nurse,
-		"CARP"			=	/mob/living/simple_animal/hostile/carp,
-		"BEAR"			=	/mob/living/simple_animal/hostile/bear
-		) // Vorestation edits to add vore versions.
+		"Mouse"			=	/mob/living/simple_mob/animal/passive/mouse,
+		"Lizard"		=	/mob/living/simple_mob/animal/passive/lizard,
+		"Chicken"		=	/mob/living/simple_mob/animal/passive/chicken,
+		"Chick"			=	/mob/living/simple_mob/animal/passive/chick,
+		"Crab"			=	/mob/living/simple_mob/animal/passive/crab,
+		"Parrot"		=	/mob/living/simple_mob/animal/passive/bird/parrot,
+		"Goat"			=	/mob/living/simple_mob/animal/goat,
+		"Cat"			=	/mob/living/simple_mob/animal/passive/cat,
+		"Kitten"		=	/mob/living/simple_mob/animal/passive/cat/kitten,
+		"Corgi"			=	/mob/living/simple_mob/animal/passive/dog/corgi,
+		"Corgi Pup"		=	/mob/living/simple_mob/animal/passive/dog/corgi/puppy,
+		"BAT"			=	/mob/living/simple_mob/animal/space/bats,
+		"SPIDER"		=	/mob/living/simple_mob/animal/giant_spider,
+		"SPIDER HUNTER"	=	/mob/living/simple_mob/animal/giant_spider/hunter,
+		"SPIDER NURSE"	=	/mob/living/simple_mob/animal/giant_spider/nurse,
+		"CARP"			=	/mob/living/simple_mob/animal/space/carp,
+		"BEAR"			=	/mob/living/simple_mob/animal/space/bear
+		)
 	cooldown = 30
 	instability_cost = 10
 	energy_cost = 1000
 
-/obj/item/weapon/spell/summon/summon_creature/on_summon(var/mob/living/simple_animal/summoned)
+/obj/item/weapon/spell/summon/summon_creature/on_summon(var/mob/living/simple_mob/summoned)
 	if(check_for_scepter())
 //		summoned.faction = "technomancer"
-		if(istype(summoned, /mob/living/simple_animal/hostile))
-			var/mob/living/simple_animal/SA = summoned
-			SA.friends.Add(owner)
+		summoned.friends += owner
 
 	// Makes their new pal big and strong, if they have spell power.
 	summoned.maxHealth = calculate_spell_power(summoned.maxHealth)
@@ -51,15 +49,12 @@
 	summoned.melee_damage_lower = calculate_spell_power(summoned.melee_damage_lower)
 	summoned.melee_damage_upper = calculate_spell_power(summoned.melee_damage_upper)
 	// This makes the summon slower, so the crew has a chance to flee from massive monsters.
-	summoned.move_to_delay = calculate_spell_power(round(summoned.move_to_delay))
+	summoned.movement_cooldown = calculate_spell_power(round(summoned.movement_cooldown))
 
 	var/new_size = calculate_spell_power(1)
 	if(new_size != 1)
-		var/matrix/M = matrix()
-		M.Scale(new_size)
-		M.Translate(0, 16*(new_size-1))
-		summoned.transform = M
+		adjust_scale(new_size)
 
 
 	// Now we hurt their new pal, because being forcefully abducted by teleportation can't be healthy.
-	summoned.health = round(summoned.getMaxHealth() * 0.7)
+	summoned.adjustBruteLoss(summoned.getMaxHealth() * 0.3) // Lose 30% of max health on arrival (but could be healed back up).

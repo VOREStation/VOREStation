@@ -1,0 +1,148 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/simulated/floor/outdoors/snow,
+/area/submap/RationCache)
+"d" = (
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/RationCache)
+"e" = (
+/obj/item/trash/liquidfood,
+/obj/item/trash/liquidfood,
+/obj/item/trash/liquidfood,
+/obj/item/trash/liquidfood,
+/obj/item/trash/liquidfood,
+/obj/item/trash/liquidfood,
+/turf/simulated/mineral/floor/ignore_mapgen,
+/area/submap/RationCache)
+"f" = (
+/obj/machinery/portable_atmospherics/hydroponics/soil,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/RationCache)
+"x" = (
+/mob/living/simple_mob/vore/aggressive/dino,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/RationCache)
+
+(1,1,1) = {"
+a
+a
+a
+a
+b
+b
+b
+b
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+b
+b
+b
+b
+b
+b
+a
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+"}
+(4,1,1) = {"
+a
+b
+b
+b
+d
+x
+b
+b
+b
+b
+"}
+(5,1,1) = {"
+b
+b
+b
+d
+e
+f
+d
+b
+b
+b
+"}
+(6,1,1) = {"
+b
+b
+b
+b
+d
+d
+b
+b
+b
+a
+"}
+(7,1,1) = {"
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+b
+b
+b
+b
+b
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+b
+b
+b
+b
+b
+a
+a
+a
+"}

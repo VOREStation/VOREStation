@@ -126,7 +126,7 @@
 	item_state_slots = list(slot_r_hand_str = "swat", slot_l_hand_str = "swat")
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
-	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL
+	item_flags = THICKMATERIAL
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency/oxygen,/obj/item/clothing/head/helmet)
 	slowdown = 1
@@ -135,6 +135,8 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	min_pressure_protection = 0 * ONE_ATMOSPHERE
+	max_pressure_protection = 20* ONE_ATMOSPHERE
 	siemens_coefficient = 0.6
 
 
@@ -375,6 +377,16 @@
 	icon_state = "tacwebvest"
 	item_state = "tacwebvest"
 	armor = list(melee = 40, bullet = 40, laser = 60, energy = 35, bomb = 30, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/vest/heavy/flexitac //a reskin of the above to have a matching armor set
+	name = "tactical light vest"
+	desc = "An armored vest made from advanced flexible ceramic plates. It's surprisingly mobile, if a little unfashionable."
+	icon_state = "flexitac"
+	item_state = "flexitac"
+	armor = list(melee = 40, bullet = 40, laser = 60, energy = 35, bomb = 30, bio = 0, rad = 0)
+	cold_protection = UPPER_TORSO|LOWER_TORSO
+	min_cold_protection_temperature = T0C - 20
+	slowdown = 0.3
 
 /obj/item/clothing/suit/storage/vest/detective
 	name = "detective armor vest"

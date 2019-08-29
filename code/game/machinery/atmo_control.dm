@@ -63,7 +63,7 @@
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/air_sensor/initialize()
+/obj/machinery/air_sensor/Initialize()
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)
@@ -117,7 +117,7 @@ obj/machinery/computer/general_air_control/Destroy()
 
 	data["sensors"] = sensors_ui
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "atmo_control.tmpl", name, 525, 600)
 		ui.set_initial_data(data)
@@ -129,7 +129,7 @@ obj/machinery/computer/general_air_control/Destroy()
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/computer/general_air_control/initialize()
+/obj/machinery/computer/general_air_control/Initialize()
 	. = ..()
 	if(frequency)
 		set_frequency(frequency)
@@ -174,7 +174,7 @@ obj/machinery/computer/general_air_control/Destroy()
 	data["input_flow_setting"] = round(input_flow_setting, 0.1)
 	data["pressure_setting"] = pressure_setting
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "atmo_control.tmpl", name, 660, 500)
 		ui.set_initial_data(data)
@@ -284,7 +284,7 @@ obj/machinery/computer/general_air_control/Destroy()
 	data["input_flow_setting"] = round(input_flow_setting, 0.1)
 	data["pressure_setting"] = pressure_setting
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "atmo_control.tmpl", name, 650, 500)
 		ui.set_initial_data(data)
@@ -416,7 +416,7 @@ obj/machinery/computer/general_air_control/Destroy()
 	else
 		data["device_info"] = null
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "atmo_control.tmpl", name, 650, 500)
 		ui.set_initial_data(data)

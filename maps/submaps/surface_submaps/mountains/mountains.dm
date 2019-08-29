@@ -8,6 +8,7 @@
 #include "Mineshaft1.dmm"
 #include "Scave1.dmm"
 #include "crashed_ufo.dmm"
+#include "crashed_ufo_frigate.dmm"
 #include "crystal1.dmm"
 #include "crystal2.dmm"
 #include "crystal3.dmm"
@@ -32,6 +33,11 @@
 #include "BlastMine1.dmm"
 #include "crashedcontainmentshuttle.dmm"
 #include "deadspy.dmm"
+#include "lava_trench.dmm"
+#include "Geyser1.dmm"
+#include "Geyser2.dmm"
+#include "Geyser3.dmm"
+#include "Cliff1.dmm"
 #endif
 
 // The 'mountains' is the mining z-level, and has a lot of caves.
@@ -124,12 +130,6 @@
 	mappath = 'maps/submaps/surface_submaps/mountains/temple.dmm'
 	cost = 20
 
-/datum/map_template/surface/mountains/normal/crashedmedshuttle
-	name = "Crashed Med Shuttle"
-	desc = "A medical response shuttle that went missing some time ago. So this is where they went."
-	mappath = 'maps/submaps/surface_submaps/mountains/CrashedMedShuttle1.dmm'
-	cost = 20
-
 /datum/map_template/surface/mountains/normal/digsite
 	name = "Dig Site"
 	desc = "A small abandoned dig site."
@@ -142,6 +142,7 @@
 	mappath = 'maps/submaps/surface_submaps/mountains/vault1.dmm'
 	cost = 5
 	allow_duplicates = TRUE
+	template_group = "Buried Vaults"
 
 /datum/map_template/surface/mountains/normal/vault2
 	name = "Mine Vault 2"
@@ -149,12 +150,14 @@
 	mappath = 'maps/submaps/surface_submaps/mountains/vault2.dmm'
 	cost = 5
 	allow_duplicates = TRUE
+	template_group = "Buried Vaults"
 
 /datum/map_template/surface/mountains/normal/vault3
 	name = "Mine Vault 3"
 	desc = "A small vault with potential loot. Also a horrible suprise."
 	mappath = 'maps/submaps/surface_submaps/mountains/vault3.dmm'
 	cost = 15
+	template_group = "Buried Vaults"
 
 /datum/map_template/surface/mountains/normal/IceCave1A
 	name = "Ice Cave 1A"
@@ -198,77 +201,142 @@
 	mappath = 'maps/submaps/surface_submaps/mountains/deadspy.dmm'
 	cost = 15
 
+/datum/map_template/surface/mountains/normal/geyser1
+	name = "Ore-Rich Geyser"
+	desc = "A subterranean geyser that produces steam. This one has a particularly abundant amount of materials surrounding it."
+	mappath = 'maps/submaps/surface_submaps/mountains/Geyser1.dmm'
+	cost = 5
+	allow_duplicates = TRUE
+	template_group = "Underground Geysers"
+
+/datum/map_template/surface/mountains/normal/geyser2
+	name = "Fenced Geyser"
+	desc = "A subterranean geyser that produces steam. This one has a damaged fence surrounding it."
+	mappath = 'maps/submaps/surface_submaps/mountains/Geyser2.dmm'
+	cost = 5
+	allow_duplicates = TRUE
+	template_group = "Underground Geysers"
+
+/datum/map_template/surface/mountains/normal/geyser3
+	name = "Magmatic Geyser"
+	desc = "A subterranean geyser that produces incendiary gas. It is recessed into the ground, and filled with magma. It's a relatively dormant volcano."
+	mappath = 'maps/submaps/surface_submaps/mountains/Geyser2.dmm'
+	cost = 10
+	allow_duplicates = TRUE
+	template_group = "Underground Geysers"
+
+/datum/map_template/surface/mountains/normal/cliff1
+	name = "Ore-Topped Cliff"
+	desc = "A raised area of rock created by volcanic forces."
+	mappath = 'maps/submaps/surface_submaps/mountains/Cliff1.dmm'
+	cost = 5
+	allow_duplicates = TRUE
+	template_group = "Underground Cliffs"
 
 /**************
  * Deep Caves *
  **************/
 
+/* Vorestation Removal
 /datum/map_template/surface/mountains/deep/lost_explorer
 	name = "Lost Explorer, Deep"
 	desc = "The remains of an explorer who rotted away ages ago, and their equipment. Again."
 	mappath = 'maps/submaps/surface_submaps/mountains/lost_explorer.dmm'
 	cost = 5
-	allow_duplicates = TRUE
+	allow_duplicates = TRUE */
 
-/datum/map_template/surface/mountains/deep/crashed_ufo
+/datum/map_template/surface/mountains/normal/crashed_ufo //VOREStation Edit
 	name = "Crashed UFO"
 	desc = "A (formerly) flying saucer that is now embedded into the mountain, yet it still seems to be running..."
 	mappath = 'maps/submaps/surface_submaps/mountains/crashed_ufo.dmm'
 	cost = 40
 	discard_prob = 50
 
-/datum/map_template/surface/mountains/deep/Scave1
+/datum/map_template/surface/mountains/normal/crashed_ufo_frigate //VOREStation Edit
+	name = "Crashed UFO Frigate"
+	desc = "A (formerly) flying saucer that is now embedded into the mountain, yet its combat protocols still seem to be running..."
+	mappath = 'maps/submaps/surface_submaps/mountains/crashed_ufo.dmm'
+	cost = 60
+	discard_prob = 50
+
+/datum/map_template/surface/mountains/normal/Scave1 //VOREStation Edit
 	name = "Spider Cave 1"
 	desc = "A minning tunnel home to an aggressive collection of spiders."
 	mappath = 'maps/submaps/surface_submaps/mountains/Scave1.dmm'
 	cost = 20
 
-/datum/map_template/surface/mountains/deep/CaveTrench
+/datum/map_template/surface/mountains/normal/CaveTrench //VOREStation Edit
 	name = "Cave River"
 	desc = "A strange underground river."
 	mappath = 'maps/submaps/surface_submaps/mountains/CaveTrench.dmm'
 	cost = 20
 
-/datum/map_template/surface/mountains/deep/Cavelake
+/datum/map_template/surface/mountains/normal/Cavelake //VOREStation Edit
 	name = "Cave Lake"
 	desc = "A large underground lake."
 	mappath = 'maps/submaps/surface_submaps/mountains/Cavelake.dmm'
 	cost = 20
 
-/datum/map_template/surface/mountains/deep/vault1
+/datum/map_template/surface/mountains/normal/vault1 //VOREStation Edit
 	name = "Mine Vault 1"
 	desc = "A small vault with potential loot."
 	mappath = 'maps/submaps/surface_submaps/mountains/vault1.dmm'
 	cost = 5
 	allow_duplicates = TRUE
+	template_group = "Buried Vaults"
 
-/datum/map_template/surface/mountains/deep/vault2
+/datum/map_template/surface/mountains/normal/vault2 //VOREStation Edit
 	name = "Mine Vault 2"
 	desc = "A small vault with potential loot."
 	mappath = 'maps/submaps/surface_submaps/mountains/vault2.dmm'
 	cost = 5
 	allow_duplicates = TRUE
+	template_group = "Buried Vaults"
 
-/datum/map_template/surface/mountains/deep/vault3
+/datum/map_template/surface/mountains/normal/vault3 //VOREStation Edit
 	name = "Mine Vault 3"
 	desc = "A small vault with potential loot. Also a horrible suprise."
 	mappath = 'maps/submaps/surface_submaps/mountains/vault3.dmm'
 	cost = 15
+	template_group = "Buried Vaults"
 
-/datum/map_template/surface/mountains/deep/vault4
+/datum/map_template/surface/mountains/normal/vault4 //VOREStation Edit
 	name = "Mine Vault 4"
 	desc = "A small xeno vault with potential loot. Also horrible suprises."
 	mappath = 'maps/submaps/surface_submaps/mountains/vault4.dmm'
 	cost = 20
+	template_group = "Buried Vaults"
 
-/datum/map_template/surface/mountains/deep/vault5
+/datum/map_template/surface/mountains/normal/vault5 //VOREStation Edit
 	name = "Mine Vault 5"
 	desc = "A small xeno vault with potential loot. Also major horrible suprises."
 	mappath = 'maps/submaps/surface_submaps/mountains/vault5.dmm'
 	cost = 25
+	template_group = "Buried Vaults"
 
-/datum/map_template/surface/mountains/deep/BlastMine1
+/datum/map_template/surface/mountains/normal/vault6 //VOREStation Edit
+	name = "Mine Vault 6"
+	desc = "A small mercenary tower with potential loot."
+	mappath = 'maps/submaps/surface_submaps/mountains/vault6.dmm'
+	cost = 25
+	template_group = "Buried Vaults"
+
+/datum/map_template/surface/mountains/normal/BlastMine1 //VOREStation Edit
 	name = "Blast Mine 1"
 	desc = "An abandoned blast mining site, seems that local wildlife has moved in."
 	mappath = 'maps/submaps/surface_submaps/mountains/BlastMine1.dmm'
 	cost = 20
+
+/datum/map_template/surface/mountains/normal/lava_trench //VOREStation Edit
+	name = "lava trench"
+	desc = "A long stretch of lava underground, almost river-like, with a small crystal research outpost on the side."
+	mappath = 'maps/submaps/surface_submaps/mountains/lava_trench.dmm'
+	cost = 20
+	fixed_orientation = TRUE
+
+/datum/map_template/surface/mountains/normal/crashedmedshuttle //VOREStation Edit
+	name = "Crashed Med Shuttle"
+	desc = "A medical response shuttle that went missing some time ago. So this is where they went."
+	mappath = 'maps/submaps/surface_submaps/mountains/CrashedMedShuttle1.dmm'
+	cost = 20
+	fixed_orientation = TRUE

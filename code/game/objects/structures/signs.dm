@@ -239,6 +239,18 @@
 	name = "\improper EMERGENT INTELLIGENCE DETAILS"
 	icon_state = "rogueai"
 
+/obj/structure/sign/warning/falling
+	name = "\improper FALL HAZARD"
+	icon_state = "falling"
+
+/obj/structure/sign/warning/lava
+	name = "\improper MOLTEN SURFACE"
+	icon_state = "lava"
+
+/obj/structure/sign/warning/acid
+	name = "\improper ACIDIC SURFACE"
+	icon_state = "acid"
+
 /obj/structure/sign/redcross
 	name = "medbay"
 	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
@@ -503,6 +515,7 @@
 	name = "\improper NanoTrasen"
 	desc = "An old metal sign which reads 'NanoTrasen'."
 	icon_state = "NT"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/nanotrasen)
 
 // Eris standards compliant hazards
 /obj/structure/sign/signnew

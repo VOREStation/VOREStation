@@ -17,7 +17,7 @@
 
 	var/const/climb_time = 2 SECONDS
 
-/obj/structure/ladder/initialize()
+/obj/structure/ladder/Initialize()
 	. = ..()
 	// the upper will connect to the lower
 	if(allowed_directions & DOWN) //we only want to do the top one, as it will initialize the ones before it.
@@ -48,7 +48,7 @@
 	var/obj/structure/ladder/target_ladder = getTargetLadder(M)
 	if(!target_ladder)
 		return
-	if(!M.Move(get_turf(src)))
+	if(!(M.loc == loc) && !M.Move(get_turf(src)))
 		to_chat(M, "<span class='notice'>You fail to reach \the [src].</span>")
 		return
 
@@ -67,6 +67,10 @@
 	var/target_ladder = getTargetLadder(M)
 	if(target_ladder)
 		M.forceMove(get_turf(target_ladder))
+
+/obj/structure/ladder/attack_robot(var/mob/M)
+	attack_hand(M)
+	return
 
 /obj/structure/ladder/proc/getTargetLadder(var/mob/M)
 	if((!target_up && !target_down) || (target_up && !istype(target_up.loc, /turf) || (target_down && !istype(target_down.loc,/turf))))
@@ -130,9 +134,10 @@
 	density = 0
 	opacity = 0
 	anchored = 1
-	layer = 2.4 // Above turf, but they're sort of the floor, so below objects.
+	flags = ON_BORDER
+	layer = STAIRS_LAYER
 
-/obj/structure/stairs/initialize()
+/obj/structure/stairs/Initialize()
 	. = ..()
 	for(var/turf/turf in locs)
 		var/turf/simulated/open/above = GetAbove(turf)

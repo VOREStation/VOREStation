@@ -62,7 +62,6 @@
 			)
 
 /datum/supply_pack/voidsuits/supply
-	name = "Mining voidsuits"
 	contains = list(
 			/obj/item/clothing/suit/space/void/mining = 3,
 			/obj/item/clothing/head/helmet/space/void/mining = 3,
@@ -80,7 +79,7 @@
 			/obj/item/weapon/tank/oxygen = 3
 			)
 	cost = 50
-	containertype = "/obj/structure/closet/crate/secure"
+	containertype = /obj/structure/closet/crate/secure
 	containername = "Exploration voidsuit crate"
 	access = access_explorer
 
@@ -94,6 +93,6 @@
 			/obj/item/weapon/tank/oxygen = 1
 			)
 	cost = 20
-	containertype = "/obj/structure/closet/crate/secure"
+	containertype = /obj/structure/closet/crate/secure
 	containername = "Pilot voidsuit crate"
 	access = access_pilot

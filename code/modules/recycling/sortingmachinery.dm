@@ -1,7 +1,7 @@
 /obj/structure/bigDelivery
 	desc = "A big wrapped package."
 	name = "large parcel"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage_vr.dmi'	//VOREStation Edit
 	icon_state = "deliverycloset"
 	var/obj/wrapped = null
 	density = 1
@@ -109,7 +109,7 @@
 /obj/item/smallDelivery
 	desc = "A small wrapped package."
 	name = "small parcel"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/storage_vr.dmi'	//VOREStation Edit
 	icon_state = "deliverycrate3"
 	var/obj/item/wrapped = null
 	var/sortTag = null
@@ -326,7 +326,6 @@
 
 	w_class = ITEMSIZE_SMALL
 	item_state = "electronic"
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 
 	proc/openwindow(mob/user as mob)

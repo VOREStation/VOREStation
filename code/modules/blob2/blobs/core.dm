@@ -6,6 +6,7 @@ var/list/blob_cores = list()
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blank_blob"
 	desc = "A huge, pulsating yellow mass."
+	density = TRUE //bandaid fix for PolarisSS13/6173
 	max_integrity = 150
 	point_return = -1
 	health_regen = 0 //we regen in Life() instead of when pulsed
@@ -83,7 +84,7 @@ var/list/blob_cores = list()
 /obj/structure/blob/core/New(var/newloc, var/client/new_overmind = null, new_rate = 2, placed = 0)
 	..(newloc)
 	blob_cores += src
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	update_icon() //so it atleast appears
 	if(!placed && !overmind)
 		create_overmind(new_overmind)
@@ -97,7 +98,7 @@ var/list/blob_cores = list()
 		overmind.blob_core = null
 		qdel(overmind)
 	overmind = null
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/structure/blob/core/update_icon()

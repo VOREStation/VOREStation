@@ -74,9 +74,8 @@ proc/cardinalrange(var/center)
 	return
 
 
-/obj/machinery/am_shielding/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0))	return 1
-	return 0
+/obj/machinery/am_shielding/CanPass(atom/movable/mover, turf/target)
+	return FALSE
 
 
 /obj/machinery/am_shielding/process()
@@ -192,7 +191,6 @@ proc/cardinalrange(var/center)
 	icon_state = "box"
 	item_state = "electronic"
 	w_class = ITEMSIZE_LARGE
-	flags = CONDUCT
 	throwforce = 5
 	throw_speed = 1
 	throw_range = 2

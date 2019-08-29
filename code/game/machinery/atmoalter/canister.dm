@@ -4,7 +4,6 @@
 	icon_state = "yellow"
 	density = 1
 	var/health = 100.0
-	flags = CONDUCT
 	w_class = ITEMSIZE_HUGE
 
 	layer = TABLE_LAYER	// Above catwalks, hopefully below other things
@@ -261,7 +260,7 @@ update_flag
 
 	..()
 
-	GLOB.nanomanager.update_uis(src) // Update all NanoUIs attached to src
+	SSnanoui.update_uis(src) // Update all NanoUIs attached to src
 
 /obj/machinery/portable_atmospherics/canister/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
@@ -289,7 +288,7 @@ update_flag
 		data["holdingTank"] = list("name" = holding.name, "tankPressure" = round(holding.air_contents.return_pressure()))
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -450,3 +449,7 @@ update_flag
 	src.air_contents.adjust_gas("phoron", MolesForPressure())
 	src.update_icon()
 	return 1
+
+/obj/machinery/portable_atmospherics/canister/take_damage(var/damage)
+	src.health -= damage
+	healthcheck()

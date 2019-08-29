@@ -258,7 +258,7 @@
 	joint = "jaw"
 	amputation_point = "neck"
 	gendered_icon = 1
-	cannot_gib = 1
+	cannot_gib = TRUE
 	encased = "skull"
 	base_miss_chance = 40
 	var/can_intake_reagents = 1
@@ -267,6 +267,11 @@
 	throwforce = 7
 
 	var/eye_icon_location = 'icons/mob/human_face.dmi'
+
+/obj/item/organ/external/head/Initialize()
+	if(config.allow_headgibs)
+		cannot_gib = FALSE
+	return ..()
 
 /obj/item/organ/external/head/robotize(var/company, var/skip_prosthetics, var/keep_organs)
 	return ..(company, skip_prosthetics, 1)

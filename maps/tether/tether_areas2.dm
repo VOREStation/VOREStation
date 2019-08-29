@@ -69,6 +69,9 @@
 /area/tether/surfacebase/public_garden
 	name = "\improper Public Garden"
 	icon_state = "purple"
+/area/tether/surfacebase/fish_farm
+	name = "\improper Fish Farm"
+	icon_state = "red"
 /area/tether/surfacebase/bar_backroom
 	name = "\improper Bar Backroom"
 	icon_state = "red"
@@ -81,6 +84,17 @@
 	icon_state = "dk_yellow"
 /area/vacant/vacant_site/east
 	name = "\improper East Base Vacant Site"
+	flags = null
+/area/vacant/vacant_library
+	name = "\improper Atrium Construction Site"
+/area/vacant/vacant_bar
+	name = "\improper Vacant Bar"
+/area/vacant/vacant_bar_upper
+	name = "\improper Upper Vacant Bar"
+/area/vacant/vacant_site/gateway
+	name = "\improper Vacant Prep Area"
+/area/vacant/vacant_site/gateway/lower
+	name = "\improper Lower Vacant Prep Area"
 
 // /area/tether/surfacebase/east_stairs_three //This is just part of an upper hallway
 
@@ -137,6 +151,12 @@
 /area/tether/outpost/solars_shed
 	name = "\improper Solar Farm Shed"
 
+// Exploration area - Plains
+/area/tether/outpost/exploration_plains
+	name = "\improper Plains Exploration Zone"
+	icon_state = "green"
+/area/tether/outpost/exploration_shed
+	name = "\improper Plains Entrance Shed"
 
 /area/maintenance/substation/medsec
 	name = "\improper MedSec Substation"
@@ -148,6 +168,8 @@
 	name = "\improper Surface Atmos Substation"
 /area/maintenance/substation/civ_west
 	name = "\improper Civilian West Substation"
+/area/maintenance/substation/exploration
+	name = "\improper Exploration Substation"
 
 
 /area/tether/surfacebase/medical
@@ -181,6 +203,10 @@
 	icon_state = "atmos"
 	sound_env = LARGE_ENCLOSED
 
+/area/engineering/atmos/gas_storage
+	name = "Atmospherics Gas Storage"
+	icon_state = "atmos"
+
 /area/engineering/atmos/intake
 	name = "\improper Atmospherics Intake"
 	icon_state = "atmos"
@@ -196,6 +222,8 @@
 	name = "\improper Tether Lower Service Corridor"
 /area/engineering/lower/atmos_lockers
 	name = "\improper Engineering Atmos Locker Room"
+/area/engineering/lower/atmos_eva
+	name = "\improper Engineering Atmos EVA"
 
 /area/gateway/prep_room
 	name = "\improper Gateway Prep Room"
@@ -235,6 +263,8 @@
 	name = "\improper Mining EVA Maintenance"
 /area/maintenance/lower/public_garden_maintenence
 	name = "\improper Public Garden Maintenence"
+/area/maintenance/lower/public_garden_maintenence/upper
+	name = "\improper Upper Public Garden Maintenence"
 
 // Research
 /area/rnd/xenobiology/xenoflora/lab_atmos
@@ -254,17 +284,37 @@
 /area/rnd/hallway
 	name = "\improper Research Lower Hallway"
 	icon_state = "research"
-/area/rnd/anomaly_lab
-	name = "\improper Anomaly Lab"
-	icon_state = "research"
-/area/rnd/anomaly_lab/containment_one
-	name = "\improper Anomaly Lab - Containment One"
-	icon_state = "research"
-/area/rnd/anomaly_lab/containment_two
-	name = "\improper Anomaly Lab - Containment Two"
-	icon_state = "research"
 /area/rnd/xenoarch_storage
 	name = "\improper Xenoarch Storage"
+	icon_state = "research"
+/area/rnd/chemistry_lab
+	name = "\improper Research Chemistry Lab"
+	icon_state = "research"
+/area/rnd/staircase/secondfloor
+	name = "\improper Research Staircase Second Floor"
+	icon_state = "research"
+/area/rnd/staircase/thirdfloor
+	name = "\improper Research Staircase Third Floor"
+	icon_state = "research"
+/area/rnd/breakroom/bathroom
+	name = "\improper Research Bathroom"
+	icon_state = "research"
+
+//Outpost areas
+/area/rnd/outpost/anomaly_lab
+	name = "\improper Research Outpost Anomaly Lab"
+	icon_state = "research"
+/area/rnd/outpost/anomaly_lab/analysis
+	name = "\improper Anomaly Lab Analysis Chamber"
+	icon_state = "research"
+/area/rnd/outpost/anomaly_lab/testing
+	name = "\improper Anomaly Lab Testing Chamber"
+	icon_state = "research"
+/area/rnd/outpost/anomaly_lab/storage
+	name = "\improper Anomaly Storage"
+	icon_state = "research"
+/area/rnd/outpost/xenoarch_storage
+	name = "\improper Research Outpost Xenoarch Storage"
 	icon_state = "research"
 // Misc
 /area/hallway/lower/third_south
@@ -286,10 +336,12 @@
 	name = "\improper Reading Room"
 /area/tether/surfacebase/vacant_site
 	name = "\improper Vacant Site"
+	flags = null
 /area/crew_quarters/freezer
 	name = "\improper Kitchen Freezer"
 /area/crew_quarters/panic_shelter
 	name = "\improper Panic Shelter"
+	flags = RAD_SHIELDED	//It just makes sense
 
 
 
@@ -314,42 +366,79 @@
 	name = "\improper Dock Two"
 	icon_state = "dk_yellow"
 
+/area/crew_quarters/showers
+	name = "\improper Unisex Showers"
+	icon_state = "recreation_area_restroom"
+
+/area/crew_quarters/sleep/maintDorm1
+	name = "\improper Construction Dorm 1"
+	icon_state = "Sleep"
+	flags = RAD_SHIELDED
+
+/area/crew_quarters/sleep/maintDorm2
+	name = "\improper Construction Dorm 2"
+	icon_state = "Sleep"
+	flags = RAD_SHIELDED
+
+/area/crew_quarters/sleep/maintDorm3
+	name = "\improper Construction Dorm 3"
+	icon_state = "Sleep"
+	flags = RAD_SHIELDED
+
+/area/crew_quarters/sleep/maintDorm4
+	name = "\improper Construction Dorm 4"
+	icon_state = "Sleep"
+	flags = RAD_SHIELDED
+
 /area/crew_quarters/sleep/Dorm_1/holo
 	name = "\improper Dorm 1 Holodeck"
 	icon_state = "dk_yellow"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/Dorm_3/holo
 	name = "\improper Dorm 3 Holodeck"
 	icon_state = "dk_yellow"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/Dorm_5/holo
 	name = "\improper Dorm 5 Holodeck"
 	icon_state = "dk_yellow"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/crew_quarters/sleep/Dorm_7/holo
 	name = "\improper Dorm 7 Holodeck"
 	icon_state = "dk_yellow"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/holodeck/holodorm/source_basic
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_desert
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_seating
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_beach
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_garden
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_boxing
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_snow
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_space
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/holodeck/holodorm/source_off
 	name = "\improper Holodeck Source"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 
-/area/ai/foyer
+/area/ai_core_foyer
 	name = "\improper AI Core Access"
 
 /area/medical/virologyisolation
@@ -438,6 +527,8 @@
 /area/maintenance/station/ai
 	name = "\improper AI Maintenance"
 	sound_env = SEWER_PIPE
+/area/maintenance/station/exploration
+	name = "\improper Exploration Maintenance"
 
 /area/tether/station/public_meeting_room
 	name = "Public Meeting Room"
@@ -454,22 +545,34 @@
 	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
 
 // Exploration Shuttle stuff //
-/area/tether/station/excursion_dock
+/area/tether/exploration
 	name = "\improper Excursion Shuttle Dock"
+	icon_state = "yellow"
+	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
 
-/area/tether/station/explorer_prep
-	name = "\improper Explorer Prep Room"
+/area/tether/exploration/equipment
+	name = "\improper Exploration Equipment Storage"
 
-/area/tether/station/explorer_meeting
-	name = "\improper Explorer Meeting Room"
+/area/tether/exploration/crew
+	name = "\improper Exploration Crew Area"
 
-/area/tether/station/pathfinder_office
+/area/tether/exploration/pathfinder_office
 	name = "\improper Pathfinder's Office"
+
+/area/tether/exploration/hallway
+	name = "\improper Exploration Hallway"
+
+/area/tether/exploration/staircase
+	name = "\improper Exploration Staircase"
+
+/area/tether/exploration/showers
+	name = "\improper Exploration Showers"
 
 /area/shuttle/excursion
 	name = "\improper Excursion Shuttle"
 	icon_state = "shuttle2"
 	base_turf = /turf/space
+	requires_power = 1
 
 /area/shuttle/excursion/tether
 	name = "\improper Excursion Shuttle - Tether"
@@ -499,6 +602,17 @@
 /area/shuttle/excursion/virgo3b_sky
 	name = "\improper Excursion Shuttle - Virgo3b Sky"
 	base_turf = /turf/simulated/sky
+
+// Elevator area //
+
+/area/tether/elevator
+	name = "\improper Tether Elevator"
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "elevator"
+	dynamic_lighting = FALSE
+
+	requires_power = FALSE
+
 //////////////////////////////////
 
 /area/antag/antag_base

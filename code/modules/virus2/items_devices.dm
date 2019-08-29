@@ -6,7 +6,6 @@
 	icon_state = "health"
 	w_class = ITEMSIZE_SMALL
 	item_state = "electronic"
-	flags = CONDUCT
 
 /obj/item/device/antibody_scanner/attack(mob/M as mob, mob/user as mob)
 	if(!istype(M,/mob/living/carbon/))

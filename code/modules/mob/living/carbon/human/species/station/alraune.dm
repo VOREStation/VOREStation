@@ -17,7 +17,7 @@
 	selects_bodytype = TRUE
 
 	body_temperature = T20C
-	breath_type = "carbon_dioxide"
+	breath_type = "oxygen"
 	poison_type = "phoron"
 	exhale_type = "oxygen"
 
@@ -67,6 +67,7 @@
 	\
 	However, after their discovery by the angels of Sanctum, many alraunes succumbed to their curiosity, and took the offer\
 	to learn of the world and venture out, whether it's to Sanctum, or elsewhere in the galaxy."
+	catalogue_data = list(/datum/category_item/catalogue/fauna/alraune)
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
@@ -111,7 +112,7 @@
 	var/fullysealed = FALSE //if they're wearing a fully sealed suit, their internals take priority.
 	var/environmentalair = FALSE //if no sealed suit, internals take priority in low pressure environements
 
-	if(H.wear_suit && (H.wear_suit.item_flags & STOPPRESSUREDAMAGE) && H.head && (H.head.item_flags & STOPPRESSUREDAMAGE))
+	if(H.wear_suit && (H.wear_suit.min_pressure_protection = 0) && H.head && (H.head.min_pressure_protection = 0))
 		fullysealed = TRUE
 	else // find out if local gas mixture is enough to override use of internals
 		var/datum/gas_mixture/environment = H.loc.return_air()
@@ -169,7 +170,7 @@
 	var/failed_inhale = 0
 	var/failed_exhale = 0
 
-	inhaling = breath.gas[breath_type]
+	inhaling = breath.gas["carbon_dioxide"]
 	poison = breath.gas[poison_type]
 	exhaling = breath.gas[exhale_type]
 
@@ -193,7 +194,7 @@
 		H.oxygen_alert = 0
 
 	inhaled_gas_used = inhaling/6
-	breath.adjust_gas(breath_type, -inhaled_gas_used, update = 0) //update afterwards
+	breath.adjust_gas("carbon_dioxide", -inhaled_gas_used, update = 0) //update afterwards
 	breath.adjust_gas_temp(exhale_type, inhaled_gas_used, H.bodytemperature, update = 0) //update afterwards
 
 	//Now we handle CO2.
@@ -207,7 +208,7 @@
 
 	var/co2buff = 0
 	if(inhaling)
-		co2buff = (Clamp(inhale_pp, 0, minimum_breath_pressure))/minimum_breath_pressure //returns a value between 0 and 1.
+		co2buff = (CLAMP(inhale_pp, 0, minimum_breath_pressure))/minimum_breath_pressure //returns a value between 0 and 1.
 
 	var/light_amount = fullysealed ? H.getlightlevel() : H.getlightlevel()/5 // if they're covered, they're not going to get much light on them.
 
@@ -222,7 +223,7 @@
 	if(toxins_pp > safe_toxins_max)
 		var/ratio = (poison/safe_toxins_max) * 10
 		if(H.reagents)
-			H.reagents.add_reagent("toxin", Clamp(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
+			H.reagents.add_reagent("toxin", CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
 			breath.adjust_gas(poison_type, -poison/6, update = 0) //update after
 		H.phoron_alert = max(H.phoron_alert, 1)
 	else
@@ -389,7 +390,7 @@
 /mob/living/carbon/human/proc/alraune_fruit_select() //So if someone doesn't want fruit/vegetables, they don't have to select one.
 	set name = "Select fruit"
 	set desc = "Select what fruit/vegetable you wish to grow."
-	set category = "Object"
+	set category = "Abilities"
 	var/obj/item/organ/internal/fruitgland/fruit_gland
 	for(var/F in contents)
 		if(istype(F, /obj/item/organ/internal/fruitgland))

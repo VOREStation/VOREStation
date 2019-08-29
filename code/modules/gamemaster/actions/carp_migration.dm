@@ -8,14 +8,7 @@
 	length = 20 MINUTES
 
 /datum/gm_action/carp_migration/get_weight()
-	var/people_in_space = 0
-	for(var/mob/living/L in player_list)
-		if(!(L.z in using_map.station_levels))
-			continue // Not on the right z-level.
-		var/turf/T = get_turf(L)
-		if(istype(T, /turf/space) && istype(T.loc,/area/space))
-			people_in_space++
-	return 50 + (metric.count_people_in_department(ROLE_SECURITY) * 10) + (people_in_space * 20)
+	return 50 + (metric.count_people_in_department(ROLE_SECURITY) * 10) + (metric.count_all_space_mobs() * 20)
 
 /datum/gm_action/carp_migration/announce()
 	var/announcement = "Unknown biological entities have been detected near [station_name()], please stand-by."
@@ -32,7 +25,7 @@
 	var/activeness = ((metric.assess_department(ROLE_SECURITY) + metric.assess_department(ROLE_ENGINEERING) + metric.assess_department(ROLE_MEDICAL)) / 3)
 	activeness = max(activeness, 20)
 
-	carp_amount = Ceiling(station_strength * (activeness / 100) + 1)
+	carp_amount = CEILING(station_strength * (activeness / 100) + 1, 1)
 
 /datum/gm_action/carp_migration/start()
 	..()
@@ -52,12 +45,12 @@
 	while (i <= carp_amount)
 		var/group_size = rand(group_size_min, group_size_max)
 		for (var/j = 1, j <= group_size, j++)
-			spawned_carp.Add(new /mob/living/simple_animal/hostile/carp(spawn_locations[i]))
+			spawned_carp.Add(new /mob/living/simple_mob/animal/space/carp/event(spawn_locations[i]))
 		i++
 	message_admins("[spawned_carp.len] carp spawned by event.")
 
 /datum/gm_action/carp_migration/end()
-	for(var/mob/living/simple_animal/hostile/carp/C in spawned_carp)
+	for(var/mob/living/simple_mob/animal/space/carp/C in spawned_carp)
 		if(!C.stat)
 			var/turf/T = get_turf(C)
 			if(istype(T, /turf/space))

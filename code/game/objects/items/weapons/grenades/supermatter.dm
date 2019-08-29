@@ -8,12 +8,12 @@
 
 /obj/item/weapon/grenade/supermatter/Destroy()
 	if(implode_at)
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/item/weapon/grenade/supermatter/detonate()
 	..()
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	implode_at = world.time + 10 SECONDS
 	update_icon()
 	playsound(src, 'sound/weapons/wave.ogg', 100)

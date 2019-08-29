@@ -8,14 +8,7 @@
 	var/mob/living/victim = null
 
 /datum/gm_action/surprise_carp_attack/get_weight()
-	var/people_in_space = 0
-	for(var/mob/living/L in player_list)
-		if(!(L.z in using_map.station_levels))
-			continue // Not on the right z-level.
-		var/turf/T = get_turf(L)
-		if(istype(T, /turf/space) && istype(T.loc,/area/space))
-			people_in_space++
-	return people_in_space * 50
+	return metric.count_all_space_mobs() * 50
 
 /datum/gm_action/surprise_carp_attack/set_up()
 	var/list/potential_victims = list()
@@ -28,7 +21,8 @@
 		var/turf/T = get_turf(L)
 		if(istype(T, /turf/space) && istype(T.loc,/area/space))
 			potential_victims.Add(L)
-	victim = pick(potential_victims)
+	if(potential_victims.len)
+		victim = pick(potential_victims)
 
 
 /datum/gm_action/surprise_carp_attack/start()
@@ -47,7 +41,5 @@
 			spawning_turf = space
 			break
 		if(spawning_turf)
-			var/mob/living/simple_animal/hostile/carp/C = new(spawning_turf)
-			C.target_mob = victim
-			C.stance = STANCE_ATTACK
+			new /mob/living/simple_mob/animal/space/carp(spawning_turf)
 		number_of_carp--

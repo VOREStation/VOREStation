@@ -27,6 +27,8 @@
 		if(!temp || !temp.is_usable())
 			H << "<font color='red'>You can't use your hand.</font>"
 			return
+	if(H.lying)
+		return
 	M.break_cloak()
 
 	..()
@@ -105,7 +107,7 @@
 				spawn(30)
 					cpr_time = 1
 
-				H.visible_message("<span class='danger'>\The [H] is trying perform CPR on \the [src]!</span>")
+				H.visible_message("<span class='danger'>\The [H] is trying to perform CPR on \the [src]!</span>")
 
 				if(!do_after(H, 30))
 					return
@@ -135,6 +137,7 @@
 			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
 			if(buckled)
 				M << "<span class='notice'>You cannot grab [src], [TT.he] is buckled in!</span>"
+				return
 			if(!G)	//the grab will delete itself in New if affecting is anchored
 				return
 			M.put_in_active_hand(G)

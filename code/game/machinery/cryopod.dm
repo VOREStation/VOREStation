@@ -229,7 +229,7 @@
 
 	var/obj/machinery/computer/cryopod/control_computer
 	var/last_no_computer_message = 0
-	var/applies_stasis = 1
+	var/applies_stasis = 0	//VOREStation Edit: allow people to change their mind
 
 /obj/machinery/cryopod/robot
 	name = "robotic storage unit"
@@ -303,7 +303,7 @@
 		occupant.resting = 1
 	return ..()
 
-/obj/machinery/cryopod/initialize()
+/obj/machinery/cryopod/Initialize()
 	. = ..()
 
 	find_control_computer()
@@ -513,6 +513,12 @@
 	//visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [to_despawn.real_name] into storage.</span>", 3)
 	visible_message("<span class='notice'>\The [initial(name)] [on_store_visible_message_1] [to_despawn.real_name] [on_store_visible_message_2].</span>", 3)
 
+	//VOREStation Edit begin: Dont delete mobs-in-mobs
+	if(to_despawn.client && to_despawn.stat<2)
+		var/mob/observer/dead/newghost = to_despawn.ghostize()
+		newghost.timeofdeath = world.time
+	//VOREStation Edit end: Dont delete mobs-in-mobs
+
 	//This should guarantee that ghosts don't spawn.
 	to_despawn.ckey = null
 
@@ -574,9 +580,10 @@
 		to_chat(usr, "<span class='notice'><B>\The [src] is in use.</B></span>")
 		return
 
-	for(var/mob/living/simple_animal/slime/M in range(1,usr))
-		if(M.victim == usr)
-			to_chat(usr, "You're too busy getting your life sucked out of you.")
+	if(isliving(usr))
+		var/mob/living/L = usr
+		if(L.has_buckled_mobs())
+			to_chat(L, span("warning", "You have other entities attached to yourself. Remove them first."))
 			return
 
 	visible_message("[usr] [on_enter_visible_message] [src].", 3)

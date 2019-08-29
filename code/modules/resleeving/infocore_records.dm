@@ -14,6 +14,7 @@
 	//0: Normal, 1: Might be dead, 2: Definitely dead, show on console
 	var/dead_state = 0
 	var/last_update = 0
+	var/last_notification
 
 	//Backend
 	var/ckey = ""

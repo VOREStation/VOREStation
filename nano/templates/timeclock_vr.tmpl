@@ -5,6 +5,7 @@
 
 <!-- Always show person's status display -->
 <div class="statusDisplay">
+	<h3><div class='notice'>OOC Note: PTO acquired is account-wide and shared across all characters. Info listed below is not IC information.</div></h3>
 	<h3>Time Off Balance for {{:config.user.name}}</h3>
 	{{props data.department_hours}}
 		<div class="line">
@@ -56,24 +57,21 @@
 	{{/if}}
 </div>
 
-{{if data.allow_change_job && data.job_datum && data.job_datum.timeoff_factor != 0 }}
+{{if data.allow_change_job && data.job_datum && data.job_datum.timeoff_factor != 0 && !(data.assignment == "Terminated")}}
 <h3>Employment Actions</h3>
 <div class='itemGroup'>
 	<div class='item'>
-		{{if data.job_datum.head_position }}
-			<i class='uiIcon16 icon-alert'></i>
-			<span class='average'>NT policy does not permit head positions to go off duty mid-shift.</span>
-		{{else (data.job_datum.timeoff_factor > 0) }}
-			{{if helper.round(data.department_hours[data.job_datum.department]) > 0 }}
-				{{:helper.link('Go Off Duty', 'alert', {'switch-to-offduty': 1})}}
+		{{if (data.job_datum.timeoff_factor > 0) }}
+			{{if helper.round(data.department_hours[data.job_datum.department]) > 0 || (data.job_datum.department == "Command" && helper.round(data.department_hours["Civilian"]) > 0)}}
+				{{:helper.link('Go Off-Duty', 'alert', {'switch-to-offduty': 1})}}
 			{{else}}
 				<i class='uiIcon16 icon-alert-red'></i>
 				<span class='bad'>Insufficent Time Off Accrued</span>
 			{{/if}}
 		{{else (data.job_datum.timeoff_factor < 0) }}
-			{{for data.job_choices }}
+			{{props data.job_choices }}
 				<div class='itemLabelWide'>{{:value}}</div>
-				<div class='itemContentMedium'>{{:helper.link("Issue Guest Pass", 'suitcase', {'guest-pass' : value})}}</div>
+				<div class='itemContentMedium'>{{:helper.link("Go On-Duty", 'suitcase', {'switch-to-onduty' : value})}}</div>
 			{{empty}}
 				<div class='notice'>No Open Positions - See Head of Personnel</div>
 			{{/for}}

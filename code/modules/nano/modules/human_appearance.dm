@@ -100,7 +100,7 @@
 		return
 
 	generate_data(check_whitelist, whitelist, blacklist)
-	var/data[0]
+	var/list/data = host.initial_data()
 
 	data["specimen"] = owner.species.name
 	data["gender"] = owner.gender
@@ -145,7 +145,7 @@
 
 	data["change_hair_color"] = can_change(APPEARANCE_HAIR_COLOR)
 	data["change_facial_hair_color"] = can_change(APPEARANCE_FACIAL_HAIR_COLOR)
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "appearance_changer.tmpl", "[src]", 800, 450, state = state)
 		ui.set_initial_data(data)

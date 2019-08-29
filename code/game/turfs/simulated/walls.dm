@@ -39,11 +39,10 @@
 	if(!isnull(rmaterialtype))
 		reinf_material = get_material_by_name(rmaterialtype)
 	update_material()
-
-	processing_turfs |= src
+	START_PROCESSING(SSturfs, src)
 
 /turf/simulated/wall/Destroy()
-	processing_turfs -= src
+	STOP_PROCESSING(SSturfs, src)
 	dismantle_wall(null,null,1)
 	..()
 
@@ -154,7 +153,7 @@
 	visible_message("<span class='danger'>\The [src] spontaneously combusts!.</span>") //!!OH SHIT!!
 	return
 
-/turf/simulated/wall/proc/take_damage(dam)
+/turf/simulated/wall/take_damage(dam)
 	if(dam)
 		damage = max(0, damage + dam)
 		update_damage()

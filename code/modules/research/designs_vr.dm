@@ -13,6 +13,14 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000)
 	build_path = /obj/item/weapon/implantcase/backup
 
+/datum/design/item/implant/sizecontrol
+	name = "Size control implant"
+	id = "implant_size"
+	req_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4, TECH_DATA = 4, TECH_ENGINEERING = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000, "silver" = 3000)
+	build_path = /obj/item/weapon/implanter/sizecontrol
+	sort_string = "TAAAA"
+
 /datum/design/item/weapon/sizegun
 	name = "Size gun"
 	id = "sizegun"
@@ -108,6 +116,15 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 200, "glass" = 3000, "uranium" = 2000, "diamond" = 2000)
 	build_path = /obj/item/device/nifrepairer
 	sort_string = "HABBE" //Changed String from HABBD to HABBE
+
+/datum/design/item/medical/protohypospray
+	name = "prototype hypospray"
+	desc = "This prototype hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients."
+	id = "protohypospray"
+	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_POWER = 2, TECH_BIO = 4, TECH_ILLEGAL = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 1500, "silver" = 2000, "gold" = 1500, "uranium" = 1000)
+	build_path = /obj/item/weapon/reagent_containers/hypospray/science
+	sort_string = "MBBAH"
 
 // Resleeving Circuitboards
 
@@ -308,3 +325,13 @@
 	id = "rigmod_orescanner"
 	build_path = /obj/item/rig_module/device/orescanner
 	sort_string = "HCAAI"
+
+//Prosfab stuff for borgs and such
+
+/datum/design/item/robot_upgrade/sizeshift
+	name = "Size Alteration Module"
+	desc = "Used to allow robot to freely alter their size."
+	id = "borg_sizeshift_module"
+	req_tech = list(TECH_BLUESPACE = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
+	build_path = /obj/item/borg/upgrade/sizeshift

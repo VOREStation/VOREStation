@@ -6,66 +6,15 @@
 	to_chat(user, "You cannot reset the naming locks on [src]. It's issued by CentCom and totally tamper-proof!")
 	return
 
-// aerowing:Sebastian Aji
-/obj/item/clothing/accessory/permit/gun/fluff/sebastian_aji
-	name = "Sebastian Aji's Sidearm Permit"
-	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on April 17th, 2563."
-
-
-/* arokha:Aronai Kadigan
-/obj/item/clothing/accessory/permit/gun/fluff/aronai_kadigan
-	name = "Aronai Kadigan's Sidearm Permit"
-	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on February 16th, 2562."
-*/
-
-/*
-// bwoincognito:Tasald Corlethian
-/obj/item/clothing/accessory/permit/gun/fluff/tasald_corlethian
-	name = "Tasald Ajax Corlethian's Sidearm Permit"
-	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on August 2nd, 2562."
-*/
-
-/* dhaeleena:Dhaeleena M'iar
-/obj/item/clothing/accessory/permit/gun/fluff/dhaeleena_miar
-	name = "Dhaeleena M'iar's Sidearm Permit"
-	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on March 1st, 2562."
-*/
-
 // jertheace:Jeremiah 'Ace' Acacius
 /obj/item/clothing/accessory/permit/gun/fluff/ace
 	name = "Jeremiah Acacius's Sidearm Permit"
 	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on November 10th, 2563."
 
-/* joanrisu:Joan Risu
-/obj/item/clothing/accessory/permit/gun/fluff/joanrisu
-	name = "Joan Risu's Sidearm Permit"
-	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on April 4th, 2562."
-*/
-
-/* luminescent_ring:Briana Moore
-/obj/item/clothing/accessory/permit/gun/fluff/briana_moore
-	name = "Briana Moore's Sidearm Permit"
-	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on April 24th, 2562."
-*/
-
-/*  silenedmp5a5:Serdykov Antoz
-/obj/item/clothing/accessory/permit/gun/fluff/silencedmp5a5
-	name = "Serdykov Antoz's Sidearm Permit"
-	desc = "A card indicating that the owner is allowed to carry a sidearm that uses less-than-lethal munitions. It is issued by CentCom, so it is valid until it expires on April 24th, 2562."
-*/
-
-/*
-// pawoverlord:Sorrel Cavalet
-/obj/item/clothing/accessory/permit/gun/fluff/sorrel_cavalet
-	name = "Sorrel Cavalet's Sidearm Permit"
-	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on September 26th, 2562."
-*/
-
-/*  hzdonut:Jesse Soemmer
-/obj/item/clothing/accessory/permit/gun/fluff/JesseSoemmer
-	name = "Jesse Soemmer's Sidearm Permit"
-	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on March 4, 2563." // Apparently revoked? -Ace
-*/
+// ValiTheWolf: Vakashi
+/obj/item/clothing/accessory/permit/gun/fluff/Vakashi
+	name = "Vakashi's Sidearm Permit"
+	desc = "A card indicating that the owner is allowed to carry a sidearm that uses less-than-lethal munitions. It is issued by CentCom, so it is valid until it expires on March 1st, 2564."
 
 /* Legacy Permits
 // BEGIN - PROTOTYPE

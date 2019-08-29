@@ -9,8 +9,8 @@
 	var/spawn_delay = 10 MINUTES
 
 	var/list/spawn_types = list(
-	/mob/living/simple_animal/corgi = 100,
-	/mob/living/simple_animal/cat = 25
+	/mob/living/simple_mob/animal/passive/dog/corgi = 100,
+	/mob/living/simple_mob/animal/passive/cat = 25
 	)
 
 	var/total_spawns = -1 //Total mob spawns, over all time, -1 for no limit
@@ -24,11 +24,11 @@
 
 /obj/structure/mob_spawner/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	last_spawn = world.time + rand(0,spawn_delay)
 
 /obj/structure/mob_spawner/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	for(var/mob/living/L in spawned_mobs)
 		L.source_spawner = null
 	spawned_mobs.Cut()
@@ -84,7 +84,7 @@
 	if(destructible)
 		take_damage(Proj.get_structure_damage())
 
-/obj/structure/mob_spawner/proc/take_damage(var/damage)
+/obj/structure/mob_spawner/take_damage(var/damage)
 	health -= damage
 	if(health <= 0)
 		visible_message("<span class='warning'>\The [src] breaks apart!</span>")
@@ -129,15 +129,14 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 //////////////
 // Spawners //
 /////////////
-
 /obj/structure/mob_spawner/scanner/corgi
 	name = "Corgi Lazy Spawner"
 	desc = "This is a proof of concept, not sure why you would use this one"
 	spawn_delay = 3 MINUTES
 	mob_faction = "Corgi"
 	spawn_types = list(
-	/mob/living/simple_animal/corgi = 75,
-	/mob/living/simple_animal/corgi/puppy = 50
+	/mob/living/simple_mob/animal/passive/dog/corgi = 75,
+	/mob/living/simple_mob/animal/passive/dog/corgi/puppy = 50
 	)
 
 	simultaneous_spawns = 5
@@ -157,10 +156,10 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	anchored = 1
 	invisibility = 101
 	spawn_types = list(
-	/mob/living/simple_animal/retaliate/gaslamp = 20,
-	/mob/living/simple_animal/otie/feral = 10,
-	/mob/living/simple_animal/hostile/dino/virgo3b = 5,
-	/mob/living/simple_animal/hostile/dragon/virgo3b = 1
+	/mob/living/simple_mob/animal/passive/gaslamp = 20,
+//	/mob/living/simple_mob/otie/feral = 10,
+	/mob/living/simple_mob/vore/aggressive/dino/virgo3b = 5,
+	/mob/living/simple_mob/vore/aggressive/dragon/virgo3b = 1
 	)
 
 /obj/structure/mob_spawner/scanner/xenos
@@ -176,10 +175,10 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "alien_egg"
 	spawn_types = list(
-	/mob/living/simple_animal/hostile/alien/drone = 20,
-	/mob/living/simple_animal/hostile/alien = 10,
-	/mob/living/simple_animal/hostile/alien/sentinel = 5,
-	/mob/living/simple_animal/hostile/alien/queen = 1
+	/mob/living/simple_mob/animal/space/alien/drone = 20,
+	/mob/living/simple_mob/animal/space/alien = 10,
+	/mob/living/simple_mob/animal/space/alien/sentinel = 5,
+	/mob/living/simple_mob/animal/space/alien/queen = 1
 	)
 
 /obj/structure/mob_spawner/scanner/xenos/royal
@@ -195,5 +194,5 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "alien_egg"
 	spawn_types = list(
-	/mob/living/simple_animal/hostile/alien/queen = 5,
+	/mob/living/simple_mob/animal/space/alien/queen = 5,
 	)

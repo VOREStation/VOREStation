@@ -2,6 +2,7 @@
 	name = "cult blade"
 	desc = "An arcane weapon wielded by the followers of Nar-Sie."
 	icon_state = "cultblade"
+	origin_tech = list(TECH_COMBAT = 1, TECH_ARCANE = 1)
 	w_class = ITEMSIZE_LARGE
 	force = 30
 	throwforce = 10
@@ -14,7 +15,7 @@
 	return
 
 /obj/item/weapon/melee/cultblade/attack(mob/living/M, mob/living/user, var/target_zone)
-	if(iscultist(user) && !istype(user, /mob/living/simple_animal/construct))
+	if(iscultist(user) && !istype(user, /mob/living/simple_mob/construct))
 		return ..()
 
 	var/zone = (user.hand ? "l_arm":"r_arm")
@@ -25,7 +26,7 @@
 		//random amount of damage between half of the blade's force and the full force of the blade.
 		user.apply_damage(rand(force/2, force), BRUTE, zone, 0, sharp=1, edge=1)
 		user.Weaken(5)
-	else if(!istype(user, /mob/living/simple_animal/construct))
+	else if(!istype(user, /mob/living/simple_mob/construct))
 		to_chat(user, "<span class='danger'>An inexplicable force rips through you, tearing the sword from your grasp!</span>")
 	else
 		to_chat(user, "<span class='critical'>The blade hisses, forcing itself from your manipulators. \The [src] will only allow mortals to wield it against foes, not kin.</span>")
@@ -39,16 +40,17 @@
 	return 1
 
 /obj/item/weapon/melee/cultblade/pickup(mob/living/user as mob)
-	if(!iscultist(user) && !istype(user, /mob/living/simple_animal/construct))
+	if(!iscultist(user) && !istype(user, /mob/living/simple_mob/construct))
 		to_chat(user, "<span class='warning'>An overwhelming feeling of dread comes over you as you pick up the cultist's sword. It would be wise to be rid of this blade quickly.</span>")
 		user.make_dizzy(120)
-	if(istype(user, /mob/living/simple_animal/construct))
+	if(istype(user, /mob/living/simple_mob/construct))
 		to_chat(user, "<span class='warning'>\The [src] hisses, as it is discontent with your acquisition of it. It would be wise to return it to a worthy mortal quickly.</span>")
 
 /obj/item/clothing/head/culthood
 	name = "cult hood"
 	icon_state = "culthood"
 	desc = "A hood worn by the followers of Nar-Sie."
+	origin_tech = list(TECH_MATERIAL = 3, TECH_ARCANE = 1)
 	flags_inv = HIDEFACE
 	body_parts_covered = HEAD
 	armor = list(melee = 50, bullet = 30, laser = 50, energy = 80, bomb = 25, bio = 10, rad = 0)
@@ -73,6 +75,7 @@
 	name = "cult robes"
 	desc = "A set of armored robes worn by the followers of Nar-Sie."
 	icon_state = "cultrobes"
+	origin_tech = list(TECH_MATERIAL = 3, TECH_ARCANE = 1)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	allowed = list(/obj/item/weapon/book/tome,/obj/item/weapon/melee/cultblade)
 	armor = list(melee = 50, bullet = 30, laser = 50, energy = 80, bomb = 25, bio = 10, rad = 0)
@@ -96,6 +99,7 @@
 	name = "cult helmet"
 	desc = "A space worthy helmet used by the followers of Nar-Sie."
 	icon_state = "cult_helmet"
+	origin_tech = list(TECH_MATERIAL = 3, TECH_ARCANE = 1)
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 80, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0
 
@@ -105,6 +109,7 @@
 /obj/item/clothing/suit/space/cult
 	name = "cult armour"
 	icon_state = "cult_armour"
+	origin_tech = list(TECH_MATERIAL = 3, TECH_ARCANE = 1)
 	desc = "A bulky suit of armour, bristling with spikes. It looks space-worthy."
 	w_class = ITEMSIZE_NORMAL
 	allowed = list(/obj/item/weapon/book/tome,/obj/item/weapon/melee/cultblade,/obj/item/weapon/tank/emergency/oxygen,/obj/item/device/suit_cooling_unit)

@@ -102,7 +102,6 @@
 	load_type = /obj/item/weapon/magnetic_ammo
 	projectile_type = /obj/item/projectile/bullet/magnetic/flechette
 	loaded = /obj/item/weapon/magnetic_ammo
-	fire_sound = 'sound/weapons/rapidslice.ogg'
 	empty_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
 	firemodes = list(

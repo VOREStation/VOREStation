@@ -25,10 +25,10 @@ var/global/list/station_networks = list(
 var/global/list/engineering_networks = list(
 										NETWORK_ENGINE,
 										NETWORK_ENGINEERING,
-										NETWORK_ENGINEERING_OUTPOST,
-										"Atmosphere Alarms",
-										"Fire Alarms",
-										"Power Alarms")
+										//NETWORK_ENGINEERING_OUTPOST,	//VOREStation Edit: Tether has no Engineering Outpost,
+										NETWORK_ALARM_ATMOS,
+										NETWORK_ALARM_FIRE,
+										NETWORK_ALARM_POWER)
 /obj/machinery/camera/network/crescent
 	network = list(NETWORK_CRESCENT)
 
@@ -42,6 +42,9 @@ var/global/list/engineering_networks = list(
 
 /obj/machinery/camera/network/civilian
 	network = list(NETWORK_CIVILIAN)
+
+/obj/machinery/camera/network/circuits
+	network = list(NETWORK_CIRCUITS)
 
 /*
 /obj/machinery/camera/network/civilian_east

@@ -1,0 +1,28 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 9},/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"c" = (/obj/structure/cliff/automatic,/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"d" = (/obj/random/turf/lava,/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"e" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 5},/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"f" = (/obj/structure/cliff/automatic/corner{icon_state = "cliffbuilder-corner"; dir = 9},/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"g" = (/turf/simulated/floor/lava,/area/template_noop)
+"h" = (/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"i" = (/obj/structure/cliff/automatic/corner,/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"j" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 8},/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"k" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 4},/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"l" = (/obj/effect/map_effect/interval/effect_emitter/steam,/obj/effect/map_effect/interval/effect_emitter/smoke/bad{interval_lower_bound = 100; interval_upper_bound = 3000},/obj/effect/map_effect/interval/screen_shaker{interval_upper_bound = 600},/obj/effect/map_effect/interval/effect_emitter/smoke/fire{interval_upper_bound = 1200},/turf/simulated/floor/lava,/area/template_noop)
+"m" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 10},/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"n" = (/obj/structure/cliff/automatic/corner{icon_state = "cliffbuilder-corner"; dir = 10},/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"o" = (/obj/structure/cliff/automatic/corner{icon_state = "cliffbuilder-corner"; dir = 6},/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"p" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 6},/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"q" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 2},/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"r" = (/obj/random/multiple/minevault,/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+
+(1,1,1) = {"
+abcdcea
+bfghgie
+jggrggk
+jgglggk
+jgggggk
+mngggop
+amqqqpa
+"}

@@ -7,7 +7,7 @@
 	var/list/datum/alarm/alarms_assoc = new	// Associative list of alarms, to efficiently acquire them based on origin.
 	var/list/listeners = new				// A list of all objects interested in alarm changes.
 
-/datum/alarm_handler/proc/process()
+/datum/alarm_handler/process()
 	for(var/datum/alarm/A in alarms)
 		A.process()
 		check_alarm_cleared(A)
@@ -49,6 +49,11 @@
 
 /datum/alarm_handler/proc/major_alarms()
 	return visible_alarms()
+
+/datum/alarm_handler/proc/has_major_alarms()
+	if(alarms && alarms.len)
+		return 1
+	return 0
 
 /datum/alarm_handler/proc/minor_alarms()
 	return visible_alarms()

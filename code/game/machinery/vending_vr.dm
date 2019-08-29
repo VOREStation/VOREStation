@@ -6,7 +6,6 @@
 /obj/machinery/vending/security/New()
 	products += list(/obj/item/weapon/gun/energy/taser = 8,/obj/item/weapon/gun/energy/stunrevolver = 4,
 					/obj/item/weapon/reagent_containers/spray/pepper = 6,/obj/item/taperoll/police = 6,
-					/obj/item/weapon/gun/projectile/sec/flash = 4, /obj/item/ammo_magazine/m45/flash = 8,
 					/obj/item/clothing/glasses/omnihud/sec = 6)
 	..()
 
@@ -127,3 +126,8 @@
 	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6)
 	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800,  /obj/item/weapon/gun/projectile/olivaw = 1600, /obj/item/weapon/gun/projectile/giskard = 1200, /obj/item/ammo_magazine/mg/cl32/rubber = 200)
 */
+
+/obj/machinery/vending/fitness/New()
+	products += list(/obj/item/weapon/reagent_containers/food/snacks/liquidprotein = 8)
+	prices += list(/obj/item/weapon/reagent_containers/food/snacks/liquidprotein = 10)
+	..()

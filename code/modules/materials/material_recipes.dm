@@ -89,11 +89,18 @@
 	recipes += new/datum/stack_recipe("small light fixture frame", /obj/item/frame/light/small, 1)
 	recipes += new/datum/stack_recipe("floor lamp fixture frame", /obj/machinery/light_construct/flamp, 2)
 	recipes += new/datum/stack_recipe("apc frame", /obj/item/frame/apc, 2)
+	recipes += new/datum/stack_recipe_list("modular computer frames", list( \
+		new/datum/stack_recipe("modular console frame", /obj/item/modular_computer/console, 20),\
+		new/datum/stack_recipe("modular telescreen frame", /obj/item/modular_computer/telescreen, 10),\
+		new/datum/stack_recipe("modular laptop frame", /obj/item/modular_computer/laptop, 10),\
+		new/datum/stack_recipe("modular tablet frame", /obj/item/modular_computer/tablet, 5),\
+	))
 	recipes += new/datum/stack_recipe_list("filing cabinets", list( \
 		new/datum/stack_recipe("filing cabinet", /obj/structure/filingcabinet, 4, time = 20, one_per_turf = 1, on_floor = 1), \
 		new/datum/stack_recipe("tall filing cabinet", /obj/structure/filingcabinet/filingcabinet, 4, time = 20, one_per_turf = 1, on_floor = 1), \
 		new/datum/stack_recipe("chest drawer", /obj/structure/filingcabinet/chestdrawer, 4, time = 20, one_per_turf = 1, on_floor = 1), \
 		))
+	recipes += new/datum/stack_recipe("desk bell", /obj/item/weapon/deskbell, 1, on_floor = 1, supplied_material = "[name]")
 
 /material/plasteel/generate_recipes()
 	..()
@@ -123,6 +130,7 @@
 	recipes += new/datum/stack_recipe("airtight plastic flaps", /obj/structure/plasticflaps/mining, 5, time = 25, one_per_turf = 1, on_floor = 1)
 	recipes += new/datum/stack_recipe("water-cooler", /obj/structure/reagent_dispensers/water_cooler, 4, time = 10, one_per_turf = 1, on_floor = 1)
 	recipes += new/datum/stack_recipe("lampshade", /obj/item/weapon/lampshade, 1, time = 1)
+	recipes += new/datum/stack_recipe("plastic net", /obj/item/weapon/material/fishing_net, 25, time = 1 MINUTE)
 
 /material/wood/generate_recipes()
 	..()
@@ -142,6 +150,7 @@
 	recipes += new/datum/stack_recipe("noticeboard frame", /obj/item/frame/noticeboard, 4, time = 5, one_per_turf = 0, on_floor = 1)
 	recipes += new/datum/stack_recipe("wooden bucket", /obj/item/weapon/reagent_containers/glass/bucket/wood, 2, time = 4, one_per_turf = 0, on_floor = 0)
 	recipes += new/datum/stack_recipe("coilgun stock", /obj/item/weapon/coilgun_assembly, 5)
+	recipes += new/datum/stack_recipe("crude fishing rod", /obj/item/weapon/material/fishing_rod/built, 8, time = 10 SECONDS)
 
 /material/wood/log/generate_recipes()
 	recipes = list()
@@ -188,5 +197,31 @@
 /material/wood/sif/generate_recipes()
 	..()
 	recipes += new/datum/stack_recipe("alien wood floor tile", /obj/item/stack/tile/wood/sif, 1, 4, 20)
-	recipes -= new/datum/stack_recipe("wood floor tile", /obj/item/stack/tile/wood, 1, 4, 20)
-	recipes -= new/datum/stack_recipe("wooden chair", /obj/structure/bed/chair/wood, 3, time = 10, one_per_turf = 1, on_floor = 1)
+	for(var/datum/stack_recipe/r_recipe in recipes)
+		if(r_recipe.title == "wood floor tile")
+			recipes -= r_recipe
+			continue
+		if(r_recipe.title == "wooden chair")
+			recipes -= r_recipe
+			continue
+
+/material/supermatter/generate_recipes()
+	recipes = list()
+	recipes += new/datum/stack_recipe("supermatter shard", /obj/machinery/power/supermatter/shard, 30 , one_per_turf = 1, time = 600, on_floor = 1)
+
+/material/cloth/generate_recipes()
+	recipes = list()
+	recipes += new/datum/stack_recipe("woven net", /obj/item/weapon/material/fishing_net, 10, time = 30 SECONDS)
+	recipes += new/datum/stack_recipe("bedsheet", /obj/item/weapon/bedsheet, 10, time = 30 SECONDS)
+	recipes += new/datum/stack_recipe("uniform", /obj/item/clothing/under/color/white, 8, time = 15 SECONDS)
+	recipes += new/datum/stack_recipe("foot wraps", /obj/item/clothing/shoes/footwraps, 2, time = 5 SECONDS)
+	recipes += new/datum/stack_recipe("gloves", /obj/item/clothing/gloves/white, 2, time = 5 SECONDS)
+	recipes += new/datum/stack_recipe("wig", /obj/item/clothing/head/powdered_wig, 4, time = 10 SECONDS)
+	recipes += new/datum/stack_recipe("philosopher's wig", /obj/item/clothing/head/philosopher_wig, 50, time = 2 MINUTES)
+	recipes += new/datum/stack_recipe("taqiyah", /obj/item/clothing/head/taqiyah, 3, time = 6 SECONDS)
+	recipes += new/datum/stack_recipe("turban", /obj/item/clothing/head/turban, 3, time = 6 SECONDS)
+	recipes += new/datum/stack_recipe("hijab", /obj/item/clothing/head/hijab, 3, time = 6 SECONDS)
+	recipes += new/datum/stack_recipe("kippa", /obj/item/clothing/head/kippa, 3, time = 6 SECONDS)
+	recipes += new/datum/stack_recipe("scarf", /obj/item/clothing/accessory/scarf/white, 4, time = 5 SECONDS)
+	recipes += new/datum/stack_recipe("baggy pants", /obj/item/clothing/under/pants/baggy/white, 8, time = 10 SECONDS)
+	recipes += new/datum/stack_recipe("belt pouch", /obj/item/weapon/storage/belt/fannypack/white, 25, time = 1 MINUTE)

@@ -175,7 +175,7 @@
 			else
 				D = new /datum/admins(new_rank, rights, adm_ckey)
 
-			var/client/C = directory[adm_ckey]						//find the client with the specified ckey (if they are logged in)
+			var/client/C = GLOB.directory[adm_ckey]						//find the client with the specified ckey (if they are logged in)
 			D.associate(C)											//link up with the client and add verbs
 
 			message_admins("[key_name_admin(usr)] edited the admin rank of [adm_ckey] to [new_rank]")
@@ -280,21 +280,21 @@
 			if("larva")				M.change_mob_type( /mob/living/carbon/alien/larva , null, null, delmob )
 			if("nymph")				M.change_mob_type( /mob/living/carbon/alien/diona , null, null, delmob )
 			if("human")				M.change_mob_type( /mob/living/carbon/human , null, null, delmob, href_list["species"])
-			if("slime")				M.change_mob_type( /mob/living/simple_animal/slime , null, null, delmob )
+			if("slime")				M.change_mob_type( /mob/living/simple_mob/slime/xenobio , null, null, delmob )
 			if("monkey")			M.change_mob_type( /mob/living/carbon/human/monkey , null, null, delmob )
 			if("robot")				M.change_mob_type( /mob/living/silicon/robot , null, null, delmob )
-			if("cat")				M.change_mob_type( /mob/living/simple_animal/cat , null, null, delmob )
-			if("runtime")			M.change_mob_type( /mob/living/simple_animal/cat/fluff/Runtime , null, null, delmob )
-			if("corgi")				M.change_mob_type( /mob/living/simple_animal/corgi , null, null, delmob )
-			if("ian")				M.change_mob_type( /mob/living/simple_animal/corgi/Ian , null, null, delmob )
-			if("crab")				M.change_mob_type( /mob/living/simple_animal/crab , null, null, delmob )
-			if("coffee")			M.change_mob_type( /mob/living/simple_animal/crab/Coffee , null, null, delmob )
-			if("parrot")			M.change_mob_type( /mob/living/simple_animal/parrot , null, null, delmob )
-			if("polyparrot")		M.change_mob_type( /mob/living/simple_animal/parrot/Poly , null, null, delmob )
-			if("constructarmoured")	M.change_mob_type( /mob/living/simple_animal/construct/armoured , null, null, delmob )
-			if("constructbuilder")	M.change_mob_type( /mob/living/simple_animal/construct/builder , null, null, delmob )
-			if("constructwraith")	M.change_mob_type( /mob/living/simple_animal/construct/wraith , null, null, delmob )
-			if("shade")				M.change_mob_type( /mob/living/simple_animal/shade , null, null, delmob )
+			if("cat")				M.change_mob_type( /mob/living/simple_mob/animal/passive/cat , null, null, delmob )
+			if("runtime")			M.change_mob_type( /mob/living/simple_mob/animal/passive/cat/runtime , null, null, delmob )
+			if("corgi")				M.change_mob_type( /mob/living/simple_mob/animal/passive/dog/corgi , null, null, delmob )
+			if("ian")				M.change_mob_type( /mob/living/simple_mob/animal/passive/dog/corgi/Ian , null, null, delmob )
+			if("crab")				M.change_mob_type( /mob/living/simple_mob/animal/passive/crab , null, null, delmob )
+			if("coffee")			M.change_mob_type( /mob/living/simple_mob/animal/passive/crab/Coffee , null, null, delmob )
+			if("parrot")			M.change_mob_type( /mob/living/simple_mob/animal/passive/bird/parrot , null, null, delmob )
+			if("polyparrot")		M.change_mob_type( /mob/living/simple_mob/animal/passive/bird/parrot/poly , null, null, delmob )
+			if("constructarmoured")	M.change_mob_type( /mob/living/simple_mob/construct/juggernaut , null, null, delmob )
+			if("constructbuilder")	M.change_mob_type( /mob/living/simple_mob/construct/artificer , null, null, delmob )
+			if("constructwraith")	M.change_mob_type( /mob/living/simple_mob/construct/wraith , null, null, delmob )
+			if("shade")				M.change_mob_type( /mob/living/simple_mob/construct/shade , null, null, delmob )
 
 
 	/////////////////////////////////////new ban stuff
@@ -516,7 +516,28 @@
 				jobs += "</tr><tr align='center'>"
 				counter = 0
 		jobs += "</tr></table>"
+	//VOREStation Edit Start
+	//Exploration (Purple)
+		counter = 0
+		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+		jobs += "<tr bgcolor='e79fff'><th colspan='[length(planet_positions)]'><a href='?src=\ref[src];jobban3=explorationdept;jobban4=\ref[M]'>Exploration Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in planet_positions)
+			if(!jobPos)	continue
+			var/datum/job/job = job_master.GetJob(jobPos)
+			if(!job) continue
 
+			if(jobban_isbanned(M, job.title))
+				jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=[job.title];jobban4=\ref[M]'><font color=red>[replacetext(job.title, " ", "&nbsp")]</font></a></td>"
+				counter++
+			else
+				jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=[job.title];jobban4=\ref[M]'>[replacetext(job.title, " ", "&nbsp")]</a></td>"
+				counter++
+
+			if(counter >= 5) //So things dont get squiiiiished!
+				jobs += "</tr><tr align='center'>"
+				counter = 0
+		jobs += "</tr></table>"
+	//VOREstation Edit End
 	//Civilian (Grey)
 		counter = 0
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
@@ -670,6 +691,14 @@
 					var/datum/job/temp = job_master.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
+			//VOREStation Edit Start
+			if("explorationdept")
+				for(var/jobPos in planet_positions)
+					if(!jobPos)	continue
+					var/datum/job/temp = job_master.GetJob(jobPos)
+					if(!temp) continue
+					joblist += temp.title
+			//VOREStation Edit End
 			if("civiliandept")
 				for(var/jobPos in civilian_positions)
 					if(!jobPos)	continue
@@ -790,13 +819,13 @@
 		if (ismob(M))
 			if(!check_if_greater_rights_than(M.client))
 				return
-			var/reason = sanitize(input("Please enter reason"))
+			var/reason = sanitize(input("Please enter reason.") as null|message)
 			if(!reason)
-				M << "<font color='red'>You have been kicked from the server</font>"
-			else
-				M << "<font color='red'>You have been kicked from the server: [reason]</font>"
-			log_admin("[key_name(usr)] booted [key_name(M)].")
-			message_admins("<font color='blue'>[key_name_admin(usr)] booted [key_name_admin(M)].</font>", 1)
+				return
+
+			to_chat(M, span("critical", "You have been kicked from the server: [reason]"))
+			log_admin("[key_name(usr)] booted [key_name(M)] for reason: '[reason]'.")
+			message_admins("<font color='blue'>[key_name_admin(usr)] booted [key_name_admin(M)] for reason '[reason]'.</font>", 1)
 			//M.client = null
 			qdel(M.client)
 

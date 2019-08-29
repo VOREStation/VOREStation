@@ -98,7 +98,7 @@
 /obj/screen/fullscreen/flash
 	icon = 'icons/mob/screen1.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
-	icon_state = "flash"
+	icon_state = "flash_static"
 
 /obj/screen/fullscreen/flash/noise
 	icon_state = "noise"
@@ -107,6 +107,22 @@
 	icon = 'icons/mob/screen1.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "druggy"
+
+/obj/screen/fullscreen/noise
+	icon = 'icons/effects/static.dmi'
+	icon_state = "1 light"
+	screen_loc = ui_entire_screen
+	layer = FULLSCREEN_LAYER
+
+/obj/screen/fullscreen/scanline
+	icon = 'icons/effects/static.dmi'
+	icon_state = "scanlines"
+	screen_loc = ui_entire_screen
+	alpha = 50
+	layer = FULLSCREEN_LAYER
+
+/obj/screen/fullscreen/fishbed
+	icon_state = "fishbed" 
 
 #undef FULLSCREEN_LAYER
 #undef BLIND_LAYER

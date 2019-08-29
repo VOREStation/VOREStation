@@ -142,7 +142,7 @@
 	if(M.mind)
 		user << "<span class='warning'> The slime resists!</span>"
 		return ..()
-	var/mob/living/simple_animal/slime/pet = new /mob/living/simple_animal/slime(M.loc)
+	var/mob/living/simple_mob/slime/pet = new /mob/living/simple_mob/slime(M.loc)
 	pet.icon_state = "[M.colour] [M.is_adult ? "adult" : "baby"] slime"
 	pet.icon_living = "[M.colour] [M.is_adult ? "adult" : "baby"] slime"
 	pet.icon_dead = "[M.colour] [M.is_adult ? "adult" : "baby"] slime dead"
@@ -196,7 +196,7 @@
 		if(M.mind)
 			user << "<span class='warning'> The slime resists!</span>"
 			return ..()
-		var/mob/living/simple_animal/adultslime/pet = new /mob/living/simple_animal/adultslime(M.loc)
+		var/mob/living/simple_mob/adultslime/pet = new /mob/living/simple_mob/adultslime(M.loc)
 		pet.icon_state = "[M.colour] adult slime"
 		pet.icon_living = "[M.colour] adult slime"
 		pet.icon_dead = "[M.colour] baby slime dead"
@@ -266,7 +266,7 @@
 
 	New()
 		..()
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 
 	process()
 		var/mob/observer/dead/ghost
@@ -356,8 +356,8 @@
 	origin_tech = list(TECH_BIO = 4)
 	var/grown = 0
 
-/obj/item/weapon/reagent_containers/food/snacks/egg/slime/New()
-	..()
+/obj/item/weapon/reagent_containers/food/snacks/egg/slime/Initialize()
+	. = ..()
 	reagents.add_reagent("nutriment", 4)
 	reagents.add_reagent("slimejelly", 1)
 	spawn(rand(1200,1500))//the egg takes a while to "ripen"
@@ -366,11 +366,11 @@
 /obj/item/weapon/reagent_containers/food/snacks/egg/slime/proc/Grow()
 	grown = 1
 	icon_state = "slime egg-grown"
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	return
 
 /obj/item/weapon/reagent_containers/food/snacks/egg/slime/proc/Hatch()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	var/turf/T = get_turf(src)
 	src.visible_message("<span class='warning'> The [name] pulsates and quivers!</span>")
 	spawn(rand(50,100))

@@ -113,7 +113,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			S.update_connections()
 			break
 
-/obj/machinery/computer/rdconsole/initialize()
+/obj/machinery/computer/rdconsole/Initialize()
 	SyncRDevices()
 	. = ..()
 
@@ -642,9 +642,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					continue
 				var/temp_dat
 				for(var/M in D.materials)
-					temp_dat += ", [D.materials[M]] [CallMaterialName(M)]"
+					temp_dat += ", [D.materials[M]*linked_lathe.mat_efficiency] [CallMaterialName(M)]"
 				for(var/T in D.chemicals)
-					temp_dat += ", [D.chemicals[T]*linked_imprinter.mat_efficiency] [CallReagentName(T)]"
+					temp_dat += ", [D.chemicals[T]*linked_lathe.mat_efficiency] [CallReagentName(T)]"
 				if(temp_dat)
 					temp_dat = " \[[copytext(temp_dat, 3)]\]"
 				if(linked_lathe.canBuild(D))
@@ -660,6 +660,13 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<UL>"
 			for(var/M in linked_lathe.materials)
 				var/amount = linked_lathe.materials[M]
+				var/hidden_mat = FALSE
+				for(var/HM in linked_lathe.hidden_materials)
+					if(M == HM && amount == 0)
+						hidden_mat = TRUE
+						break
+				if(hidden_mat)
+					continue
 				dat += "<LI><B>[capitalize(M)]</B>: [amount] cm<sup>3</sup>"
 				if(amount >= SHEET_MATERIAL_AMOUNT)
 					dat += " || Eject "
@@ -745,6 +752,13 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<UL>"
 			for(var/M in linked_imprinter.materials)
 				var/amount = linked_imprinter.materials[M]
+				var/hidden_mat = FALSE
+				for(var/HM in linked_imprinter.hidden_materials)
+					if(M == HM && amount == 0)
+						hidden_mat = TRUE
+						break
+				if(hidden_mat)
+					continue
 				dat += "<LI><B>[capitalize(M)]</B>: [amount] cm<sup>3</sup>"
 				if(amount >= SHEET_MATERIAL_AMOUNT)
 					dat += " || Eject: "

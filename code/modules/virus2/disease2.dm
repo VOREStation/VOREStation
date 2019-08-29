@@ -39,6 +39,9 @@
 	spreadtype = prob(70) ? "Airborne" : "Contact"
 	resistance = rand(15,70)
 
+	if(severity >= 2 && prob(33))
+		resistance += 10
+
 	if(all_species.len)
 		affected_species = get_infectable_species()
 

@@ -8,12 +8,16 @@
 	var/slots = 5
 	var/obj/item/weapon/storage/internal/hold
 	w_class = ITEMSIZE_NORMAL
+	on_rolled = list("down" = "none")
+	var/hide_on_roll = FALSE
 
 /obj/item/clothing/accessory/storage/New()
 	..()
 	hold = new/obj/item/weapon/storage/internal(src)
 	hold.max_storage_space = slots * 2
 	hold.max_w_class = ITEMSIZE_SMALL
+	if (!hide_on_roll)
+		on_rolled["down"] = icon_state
 
 /obj/item/clothing/accessory/storage/attack_hand(mob/user as mob)
 	if (has_suit)	//if we are part of a suit

@@ -52,6 +52,13 @@
 				if(O)
 					O.see_emote(src, message, m_type)
 
+// Shortcuts for above proc
+/mob/proc/visible_emote(var/act_desc)
+	custom_emote(1, act_desc)
+
+/mob/proc/audible_emote(var/act_desc)
+	custom_emote(2, act_desc)
+
 /mob/proc/emote_dead(var/message)
 
 	if(client.prefs.muted & MUTE_DEADCHAT)

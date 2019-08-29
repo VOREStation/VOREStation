@@ -12,6 +12,9 @@
 	var/notransform
 	var/original_icon = 'icons/mob/robots.dmi'
 	var/ui_style_vr = FALSE //Do we use our hud icons?
+	var/sitting = FALSE
+	var/bellyup = FALSE
+	does_spin = FALSE
 	var/vr_icons = list(
 					   "handy-hydro",
 					   "handy-service",
@@ -29,7 +32,14 @@
 					   "mechoid-Service",
 					   "mechoid-Janitor",
 					   "mechoid-Combat",
-					   "mechoid-Combat-roll"
+					   "mechoid-Combat-roll",
+					   "Noble-CLN",
+					   "Noble-SRV",
+					   "Noble-DIG",
+					   "Noble-MED",
+					   "Noble-SEC",
+					   "Noble-ENG",
+					   "Noble-STD"
 					   )					//List of all used sprites that are in robots_vr.dmi
 
 
@@ -41,6 +51,21 @@
 	if (stat != CONSCIOUS)
 		return
 	return feed_grabbed_to_self(src,T)
+
+/mob/living/silicon/robot/proc/rest_style()
+	set name = "Switch Rest Style"
+	set category = "IC"
+	set desc = "Select your resting pose."
+	sitting = FALSE
+	bellyup = FALSE
+	var/choice = alert(src, "Select resting pose", "", "Resting", "Sitting", "Belly up")
+	switch(choice)
+		if("Resting")
+			return 0
+		if("Sitting")
+			sitting = TRUE
+		if("Belly up")
+			bellyup = TRUE
 
 /mob/living/silicon/robot/updateicon()
 	vr_sprite_check()
@@ -58,7 +83,12 @@
 			add_overlay("eyes-[module_sprites[icontype]]-lights")
 		if(resting)
 			cut_overlays() // Hide that gut for it has no ground sprite yo.
-			icon_state = "[module_sprites[icontype]]-rest"
+			if(sitting)
+				icon_state = "[module_sprites[icontype]]-sit"
+			if(bellyup)
+				icon_state = "[module_sprites[icontype]]-bellyup"
+			else if(!sitting && !bellyup)
+				icon_state = "[module_sprites[icontype]]-rest"
 		else
 			icon_state = "[module_sprites[icontype]]"
 	if(dogborg == TRUE && stat == DEAD)
@@ -166,7 +196,7 @@
 	buckle_movable = TRUE
 	buckle_lying = FALSE
 
-/mob/living/silicon/robot/New()
+/mob/living/silicon/robot/New(loc,var/unfinished = 0)
 	..()
 	riding_datum = new /datum/riding/dogborg(src)
 
@@ -228,3 +258,10 @@
 		return
 	if(buckle_mob(M))
 		visible_message("<span class='notice'>[M] starts riding [name]!</span>")
+
+/mob/living/silicon/robot/onTransitZ(old_z, new_z)
+	if(shell)
+		if(deployed && using_map.ai_shell_restricted && !(new_z in using_map.ai_shell_allowed_levels))
+			to_chat(src,"<span class='warning'>Your connection with the shell is suddenly interrupted!</span>")
+			undeploy()
+	..()

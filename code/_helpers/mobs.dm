@@ -177,7 +177,7 @@ Proc for attack log creation, because really why not
 	else
 		return pick("chest", "groin")
 
-/proc/do_mob(mob/user , mob/target, time = 30, target_zone = 0, uninterruptible = 0, progress = 1)
+/proc/do_mob(mob/user , mob/target, time = 30, target_zone = 0, uninterruptible = FALSE, progress = TRUE, ignore_movement = FALSE)
 	if(!user || !target)
 		return 0
 	var/user_loc = user.loc
@@ -190,37 +190,41 @@ Proc for attack log creation, because really why not
 
 	var/endtime = world.time+time
 	var/starttime = world.time
-	. = 1
+	. = TRUE
 	while (world.time < endtime)
 		stoplag(1)
 		if (progress)
 			progbar.update(world.time - starttime)
 		if(!user || !target)
-			. = 0
+			. = FALSE
 			break
 		if(uninterruptible)
 			continue
 
-		if(!user || user.incapacitated() || user.loc != user_loc)
-			. = 0
+		if(!user || user.incapacitated())
+			. = FALSE
 			break
 
-		if(target.loc != target_loc)
-			. = 0
+		if(user.loc != user_loc && !ignore_movement)
+			. = FALSE
+			break
+
+		if(target.loc != target_loc && !ignore_movement)
+			. = FALSE
 			break
 
 		if(user.get_active_hand() != holding)
-			. = 0
+			. = FALSE
 			break
 
 		if(target_zone && user.zone_sel.selecting != target_zone)
-			. = 0
+			. = FALSE
 			break
 
 	if (progbar)
 		qdel(progbar)
 
-/proc/do_after(mob/user, delay, atom/target = null, needhand = 1, progress = 1, var/incapacitation_flags = INCAPACITATION_DEFAULT)
+/proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, incapacitation_flags = INCAPACITATION_DEFAULT, ignore_movement = FALSE, max_distance = null)
 	if(!user)
 		return 0
 	if(!delay)
@@ -230,6 +234,12 @@ Proc for attack log creation, because really why not
 		target_loc = target.loc
 
 	var/atom/original_loc = user.loc
+
+	var/obj/mecha/M = null
+
+	if(istype(user.loc, /obj/mecha))
+		original_loc = get_turf(original_loc)
+		M = user.loc
 
 	var/holding = user.get_active_hand()
 
@@ -242,23 +252,40 @@ Proc for attack log creation, because really why not
 	. = 1
 	while (world.time < endtime)
 		stoplag(1)
-		if (progress)
+		if(progress)
 			progbar.update(world.time - starttime)
 
-		if(!user || user.incapacitated(incapacitation_flags) || user.loc != original_loc)
-			. = 0
+		if(!user || user.incapacitated(incapacitation_flags))
+			. = FALSE
 			break
 
-		if(target_loc && (QDELETED(target) || target_loc != target.loc))
-			. = 0
+		if(M)
+			if(user.loc != M || (M.loc != original_loc && !ignore_movement)) // Mech coooooode.
+				. = FALSE
+				break
+
+		else if(user.loc != original_loc && !ignore_movement)
+			. = FALSE
+			break
+
+		if(target_loc && (QDELETED(target)))
+			. = FALSE
+			break
+
+		if(target && target_loc != target.loc && !ignore_movement)
+			. = FALSE
 			break
 
 		if(needhand)
 			if(user.get_active_hand() != holding)
-				. = 0
+				. = FALSE
 				break
 
-	if (progbar)
+		if(max_distance && target && get_dist(user, target) > max_distance)
+			. = FALSE
+			break
+
+	if(progbar)
 		qdel(progbar)
 
 /atom/proc/living_mobs(var/range = world.view)
@@ -285,16 +312,3 @@ Proc for attack log creation, because really why not
 	else
 		. = getCompoundIcon(desired)
 		cached_character_icons[cachekey] = .
-
-/proc/getviewsize(view)
-	var/viewX
-	var/viewY
-	if(isnum(view))
-		var/totalviewrange = 1 + 2 * view
-		viewX = totalviewrange
-		viewY = totalviewrange
-	else
-		var/list/viewrangelist = splittext(view,"x")
-		viewX = text2num(viewrangelist[1])
-		viewY = text2num(viewrangelist[2])
-	return list(viewX, viewY)

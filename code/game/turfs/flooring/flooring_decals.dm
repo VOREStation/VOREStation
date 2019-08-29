@@ -14,7 +14,7 @@ var/list/floor_decals = list()
 	if(newcolour) color = newcolour
 	..(newloc)
 
-/obj/effect/floor_decal/initialize()
+/obj/effect/floor_decal/Initialize()
 	add_to_turf_decals()
 	initialized = TRUE
 	return INITIALIZE_HINT_QDEL
@@ -40,7 +40,7 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/reset
 	name = "reset marker"
 
-/obj/effect/floor_decal/reset/initialize()
+/obj/effect/floor_decal/reset/Initialize()
 	var/turf/T = get_turf(src)
 	if(T.decals && T.decals.len)
 		T.decals.Cut()

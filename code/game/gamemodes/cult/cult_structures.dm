@@ -35,6 +35,22 @@
 /obj/structure/cult/pylon/attackby(obj/item/W as obj, mob/user as mob)
 	attackpylon(user, W.force)
 
+/obj/structure/cult/pylon/take_damage(var/damage)
+	pylonhit(damage)
+
+/obj/structure/cult/pylon/bullet_act(var/obj/item/projectile/Proj)
+	pylonhit(Proj.get_structure_damage())
+
+/obj/structure/cult/pylon/proc/pylonhit(var/damage)
+	if(!isbroken)
+		if(prob(1+ damage * 5))
+			visible_message("<span class='danger'>The pylon shatters!</span>")
+			playsound(get_turf(src), 'sound/effects/Glassbr3.ogg', 75, 1)
+			isbroken = 1
+			density = 0
+			icon_state = "pylon-broken"
+			set_light(0)
+
 /obj/structure/cult/pylon/proc/attackpylon(mob/user as mob, var/damage)
 	if(!isbroken)
 		if(prob(1+ damage * 5))
@@ -108,18 +124,18 @@
 	light_range=5
 	light_color="#ff0000"
 	spawnable=list(
-		/mob/living/simple_animal/hostile/scarybat,
-		/mob/living/simple_animal/hostile/creature/vore,
-		/mob/living/simple_animal/hostile/faithless
-	)   // Vorestation Edit
+		/mob/living/simple_mob/animal/space/bats,
+		/mob/living/simple_mob/creature,
+		/mob/living/simple_mob/faithless
+	)
 
 /obj/effect/gateway/active/cult
 	light_range=5
 	light_color="#ff0000"
 	spawnable=list(
-		/mob/living/simple_animal/hostile/scarybat/cult,
-		/mob/living/simple_animal/hostile/creature/cult,
-		/mob/living/simple_animal/hostile/faithless/cult
+		/mob/living/simple_mob/animal/space/bats/cult,
+		/mob/living/simple_mob/creature/cult,
+		/mob/living/simple_mob/faithless/cult
 	)
 
 /obj/effect/gateway/active/cult/cultify()

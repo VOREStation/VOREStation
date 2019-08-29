@@ -22,3 +22,11 @@
 	..()
 	for (var/i = 1 to 7)
 		new /obj/item/weapon/reagent_containers/hypospray/autoinjector/miner(src)
+
+/obj/item/weapon/reagent_containers/hypospray
+	var/prototype = 0
+
+/obj/item/weapon/reagent_containers/hypospray/science
+	name = "prototype hypospray"
+	desc = "This reproduction hypospray is nearly a perfect replica of the early model DeForest hyposprays, sharing many of the same features. However, there are additional safety measures installed to prevent unwanted injections."
+	prototype = 1

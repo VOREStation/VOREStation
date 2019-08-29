@@ -293,6 +293,23 @@
 				/obj/item/weapon/reagent_containers/food/drinks/bottle/rum,
 				/obj/item/weapon/reagent_containers/food/drinks/bottle/patron)
 
+/obj/random/meat
+	name = "random meat"
+	desc = "This is a random slab of meat."
+	icon = 'icons/obj/food.dmi'
+	icon_state = "meat"
+
+/obj/random/meat/item_to_spawn()
+	return pick(prob(60);/obj/item/weapon/reagent_containers/food/snacks/meat,
+				prob(20);/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,
+				prob(10);/obj/item/weapon/reagent_containers/food/snacks/carpmeat,
+				prob(5);/obj/item/weapon/reagent_containers/food/snacks/bearmeat,
+				prob(1);/obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh,
+				prob(1);/obj/item/weapon/reagent_containers/food/snacks/meat/human,
+				prob(1);/obj/item/weapon/reagent_containers/food/snacks/meat/monkey,
+				prob(1);/obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
+				prob(1);/obj/item/weapon/reagent_containers/food/snacks/xenomeat)
+
 /obj/random/material //Random materials for building stuff
 	name = "random material"
 	desc = "This is a random material."
@@ -503,3 +520,23 @@
 				/obj/item/weapon/cigbutt,
 				/obj/item/weapon/cigbutt/cigarbutt,
 				/obj/effect/decal/remains/mouse)
+
+/obj/random/janusmodule
+	name = "random janus circuit"
+	desc = "A random (possibly broken) Janus module."
+	icon = 'icons/obj/abductor.dmi'
+	icon_state = "circuit_damaged"
+
+/obj/random/janusmodule/item_to_spawn()
+	return pick(subtypesof(/obj/item/weapon/circuitboard/mecha/imperion))
+
+/obj/random/curseditem
+	name = "random cursed item"
+	desc = "For use in dungeons."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "red"
+
+/obj/random/curseditem/item_to_spawn()
+	var/possible_object_paths = list(/obj/item/weapon/paper/carbon/cursedform)
+	possible_object_paths |= subtypesof(/obj/item/clothing/head/psy_crown)
+	return pick(possible_object_paths)

@@ -118,13 +118,33 @@
 	desc = "Used in cooking various dishes."
 	icon_state = "enzyme"
 
-/obj/item/weapon/reagent_containers/food/condiment/enzyme/New()
-	..()
+/obj/item/weapon/reagent_containers/food/condiment/enzyme/Initialize()
+	. = ..()
 	reagents.add_reagent("enzyme", 50)
 
-/obj/item/weapon/reagent_containers/food/condiment/sugar/New()
-	..()
+/obj/item/weapon/reagent_containers/food/condiment/sugar/Initialize()
+	. = ..()
 	reagents.add_reagent("sugar", 50)
+
+/obj/item/weapon/reagent_containers/food/condiment/ketchup/Initialize()
+	. = ..()
+	reagents.add_reagent("ketchup", 50)
+
+/obj/item/weapon/reagent_containers/food/condiment/hotsauce/Initialize()
+	. = ..()
+	reagents.add_reagent("capsaicin", 50)
+
+/obj/item/weapon/reagent_containers/food/condiment/cornoil/Initialize()
+	. = ..()
+	reagents.add_reagent("cornoil", 50)
+
+/obj/item/weapon/reagent_containers/food/condiment/coldsauce/Initialize()
+	. = ..()
+	reagents.add_reagent("frostoil", 50)
+
+/obj/item/weapon/reagent_containers/food/condiment/soysauce/Initialize()
+	. = ..()
+	reagents.add_reagent("soysauce", 50)
 
 /obj/item/weapon/reagent_containers/food/condiment/small
 	possible_transfer_amounts = list(1,20)
@@ -140,8 +160,8 @@
 	desc = "Salt. From space oceans, presumably."
 	icon_state = "saltshakersmall"
 
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker/New()
-	..()
+/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker/Initialize()
+	. = ..()
 	reagents.add_reagent("sodiumchloride", 20)
 
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill
@@ -149,8 +169,8 @@
 	desc = "Often used to flavor food or make people sneeze."
 	icon_state = "peppermillsmall"
 
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill/New()
-	..()
+/obj/item/weapon/reagent_containers/food/condiment/small/peppermill/Initialize()
+	. = ..()
 	reagents.add_reagent("blackpepper", 20)
 
 /obj/item/weapon/reagent_containers/food/condiment/small/sugar
@@ -158,8 +178,8 @@
 	desc = "Sweetness in a bottle"
 	icon_state = "sugarsmall"
 
-/obj/item/weapon/reagent_containers/food/condiment/small/sugar/New()
-	..()
+/obj/item/weapon/reagent_containers/food/condiment/small/sugar/Initialize()
+	. = ..()
 	reagents.add_reagent("sugar", 20)
 
 /obj/item/weapon/reagent_containers/food/condiment/flour
@@ -171,8 +191,8 @@
 /obj/item/weapon/reagent_containers/food/condiment/flour/on_reagent_change()
 	return
 
-/obj/item/weapon/reagent_containers/food/condiment/flour/New()
-	..()
+/obj/item/weapon/reagent_containers/food/condiment/flour/Initialize()
+	. = ..()
 	reagents.add_reagent("flour", 30)
 	src.pixel_x = rand(-10.0, 10)
 	src.pixel_y = rand(-10.0, 10)

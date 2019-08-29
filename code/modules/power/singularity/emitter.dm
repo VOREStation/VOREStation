@@ -30,18 +30,18 @@
 	var/integrity = 80
 
 
-/obj/machinery/power/emitter/verb/rotate()
-	set name = "Rotate"
+/obj/machinery/power/emitter/verb/rotate_clockwise()
+	set name = "Rotate Emitter Clockwise"
 	set category = "Object"
 	set src in oview(1)
 
 	if (src.anchored || usr:stat)
-		usr << "It is fastened to the floor!"
+		to_chat(usr, "It is fastened to the floor!")
 		return 0
-	src.set_dir(turn(src.dir, 90))
+	src.set_dir(turn(src.dir, 270))
 	return 1
 
-/obj/machinery/power/emitter/initialize()
+/obj/machinery/power/emitter/Initialize()
 	. = ..()
 	if(state == 2 && anchored)
 		connect_to_network()
@@ -142,7 +142,8 @@
 
 		var/obj/item/projectile/beam/emitter/A = get_emitter_beam()
 		A.damage = round(power_per_shot/EMITTER_DAMAGE_POWER_TRANSFER)
-		A.launch( get_step(src.loc, src.dir) )
+		A.firer = src
+		A.fire(dir2angle(dir))
 
 /obj/machinery/power/emitter/attackby(obj/item/W, mob/user)
 
@@ -207,7 +208,7 @@
 		return
 
 	if(istype(W, /obj/item/stack/material) && W.get_material_name() == DEFAULT_WALL_MATERIAL)
-		var/amt = Ceiling(( initial(integrity) - integrity)/10)
+		var/amt = CEILING(( initial(integrity) - integrity)/10, 1)
 		if(!amt)
 			to_chat(user, "<span class='notice'>\The [src] is already fully repaired.</span>")
 			return
