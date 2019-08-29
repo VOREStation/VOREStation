@@ -87,7 +87,7 @@
 /mob/living/simple_mob/hostile/hivebot/range/ion
 	name = "engineering hivebot"
 	desc = "A robot. It has a tool which emits focused electromagnetic pulses, which are deadly to synthetic adverseries."
-	projectiletype = /obj/item/projectile/ion/small //VOREStation Edit
+	projectiletype = /obj/item/projectile/ion/pistol //VOREStation Edit
 	projectilesound = 'sound/weapons/Laser.ogg'
 	icon_living = "engi"
 	ranged = TRUE
