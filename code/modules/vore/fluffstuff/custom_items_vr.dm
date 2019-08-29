@@ -1244,7 +1244,8 @@
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 7)
 
-	var/obj/item/weapon/cell/device/weapon/power_source
+	var/cell_type = /obj/item/weapon/cell/device/weapon
+	var/obj/item/weapon/cell/power_source
 	var/charge_cost = 800 // cell/device/weapon has 2400
 
 	var/list/beacons = list()
@@ -1259,7 +1260,10 @@
 /obj/item/device/perfect_tele/New()
 	..()
 	flags |= NOBLUDGEON
-	power_source = new (src)
+	if(cell_type)
+		power_source = new cell_type(src)
+	else
+		power_source = new /obj/item/weapon/cell/device(src)
 	spk = new(src)
 	spk.set_up(5, 0, src)
 	spk.attach(src)
@@ -1338,7 +1342,7 @@
 			return
 
 /obj/item/device/perfect_tele/attackby(obj/W, mob/user)
-	if(istype(W,/obj/item/weapon/cell/device/weapon) && !power_source)
+	if(istype(W,cell_type) && !power_source)
 		power_source = W
 		power_source.update_icon() //Why doesn't a cell do this already? :|
 		user.unEquip(power_source)
@@ -1562,14 +1566,18 @@
 	desc = "A more limited translocator with a single beacon, useful for some things, like setting the mining department on fire accidentally. Legal for use in the pursuit of NanoTrasen interests, namely mining and exploration."
 	icon_state = "minitrans"
 	beacons_left = 1 //Just one
-	charge_cost = 2400 //One per
+	charge_cost = 480 //One per
+	cell_type = /obj/item/weapon/cell/device
+	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5)
 
+/*
 /obj/item/device/perfect_tele/one_beacon/teleport_checks(mob/living/target,mob/living/user)
 	var/turf/T = get_turf(destination)
 	if(T && user.z != T.z)
 		to_chat(user,"<span class='warning'>\The [src] is too far away from the beacon. Try getting closer first!</span>")
 		return FALSE
 	return ..()
+*/
 
 //InterroLouis: Ruda Lizden
 /obj/item/clothing/accessory/badge/holo/detective/ruda
@@ -2008,7 +2016,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor/Initialize()
 	..()
 	reagents.add_reagent("pwine", 60)
-	
+
 //RadiantAurora: Tiemli Kroto
 /obj/item/clothing/glasses/welding/tiemgogs
    name = "custom-fitted welding goggles"
