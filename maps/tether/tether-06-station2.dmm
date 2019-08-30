@@ -4433,7 +4433,7 @@
 "gC" = (
 /obj/item/weapon/stool/padded,
 /obj/item/weapon/paper{
-	step_y = 31
+	pixel_y = 31
 	},
 /turf/simulated/mineral/floor/vacuum,
 /area/mine/explored/upper_level)
@@ -7757,7 +7757,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/table/steel,
 /obj/item/weapon/paper{
-	step_y = 31
+	pixel_y = 31
 	},
 /obj/item/weapon/pen/blue{
 	pixel_x = 5;
@@ -15386,13 +15386,13 @@
 "xy" = (
 /obj/effect/decal/cleanable/blood,
 /obj/item/weapon/paper{
-	step_y = 31
+	pixel_y = 31
 	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
 "xz" = (
 /obj/item/weapon/paper{
-	step_y = 31
+	pixel_y = 31
 	},
 /obj/effect/rune,
 /obj/effect/decal/cleanable/blood,
@@ -15401,7 +15401,7 @@
 /area/maintenance/station/sec_lower)
 "xA" = (
 /obj/item/weapon/paper{
-	step_y = 31
+	pixel_y = 31
 	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
@@ -19885,8 +19885,8 @@
 /obj/machinery/button/crematorium{
 	req_access = list(6);
 	req_one_access = list(5);
-	step_x = -25;
-	step_y = 2
+	pixel_x = -25;
+	pixel_y = 2
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
