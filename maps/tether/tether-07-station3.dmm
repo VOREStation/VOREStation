@@ -2681,6 +2681,11 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
+"er" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "es" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/railing{
@@ -2926,10 +2931,16 @@
 /turf/simulated/floor,
 /area/maintenance/station/ai)
 "eN" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/structure/table/reinforced,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/powered/reagent_distillery,
+/turf/simulated/floor/tiled/white,
+/area/medical/chemistry)
 "eS" = (
 /obj/item/frame,
 /obj/effect/floor_decal/rust,
@@ -19158,16 +19169,6 @@
 	dir = 1
 	},
 /obj/item/weapon/reagent_containers/dropper,
-/turf/simulated/floor/tiled/white,
-/area/medical/chemistry)
-"DX" = (
-/obj/structure/table/reinforced,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/white,
 /area/medical/chemistry)
 "DY" = (
@@ -38576,7 +38577,7 @@ Aq
 Aw
 Ck
 Dq
-DX
+eN
 ES
 FH
 Gx
@@ -40535,7 +40536,7 @@ Zy
 WG
 dj
 XA
-eN
+er
 ms
 Oz
 be
@@ -40677,7 +40678,7 @@ UJ
 Xb
 dj
 XN
-eN
+er
 ms
 Xq
 be
@@ -40819,7 +40820,7 @@ iW
 WS
 dj
 XN
-eN
+er
 ms
 Vb
 be
@@ -41102,7 +41103,7 @@ jZ
 WR
 Xo
 XN
-eN
+er
 cK
 ms
 Xq
@@ -41670,7 +41671,7 @@ ea
 kx
 dj
 XN
-eN
+er
 cK
 ms
 mq
@@ -41955,7 +41956,7 @@ kQ
 TG
 dj
 XN
-eN
+er
 ms
 nA
 be
@@ -42097,7 +42098,7 @@ kR
 Vd
 dj
 XN
-eN
+er
 ms
 QL
 be
@@ -42239,7 +42240,7 @@ ZE
 ZB
 dj
 XB
-eN
+er
 ms
 Sq
 be
