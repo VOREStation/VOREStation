@@ -127,6 +127,7 @@
 
 	visible_message("<span class='warning'>[src] suddenly collapses in on itself, dissolving into a pile of green flesh!</span>")
 	name = initial(name)
+	desc = initial(desc)
 	icon = initial(icon)
 	icon_state = initial(icon_state)
 	size_multiplier = 0
