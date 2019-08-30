@@ -16848,6 +16848,24 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Hv" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/station_mid,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
+"HL" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/midpoint,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
+"JB" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/station_low,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
 "JC" = (
 /obj/machinery/power/thermoregulator,
 /turf/unsimulated/floor{
@@ -16860,6 +16878,18 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"JW" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/base_low,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
+"Lb" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/base_high,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
 "Nt" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/unsimulated/floor{
@@ -16893,6 +16923,18 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Rx" = (
+/obj/machinery/telecomms/relay/preset/centcom/underdark,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
+"Sp" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/station_high,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
 "UC" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/stack/cable_coil,
@@ -16911,6 +16953,12 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Xi" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/base_mid,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
 "XA" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/smes_coil,
@@ -16922,6 +16970,12 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"YM" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/sci_outpost,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
 
 (1,1,1) = {"
 aa
@@ -34372,7 +34426,7 @@ ac
 nK
 nK
 nK
-nK
+CZ
 nK
 nK
 ac
@@ -34511,12 +34565,12 @@ Cg
 ho
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+JW
+CE
+CE
+JB
+nK
 ac
 ac
 ac
@@ -34653,12 +34707,12 @@ Ch
 Ct
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+Xi
+CE
+CE
+Hv
+nK
 ac
 ac
 ac
@@ -34795,12 +34849,12 @@ Ch
 BW
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+Lb
+CE
+CE
+Sp
+nK
 ac
 ac
 ac
@@ -34937,12 +34991,12 @@ Ch
 Ct
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+CE
+CE
+CE
+YM
+nK
 ac
 ac
 ac
@@ -35079,12 +35133,12 @@ Ch
 BW
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+HL
+CE
+CE
+Rx
+nK
 ac
 ac
 ac
@@ -35221,12 +35275,12 @@ Ch
 Ct
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+nK
+nK
+nK
+nK
+nK
 ac
 ac
 ac
