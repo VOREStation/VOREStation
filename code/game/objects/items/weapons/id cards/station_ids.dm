@@ -139,6 +139,16 @@
 	rank = "Command Secretary"
 	job_access_type = /datum/job/secretary
 
+// Vorestation Edit Start - Rykka
+
+/obj/item/weapon/card/id/silver/bridge_officer
+	assignment = "Bridge Officer"
+	rank = "Bridge Officer"
+	job_access_type = /datum/job/bridge_officer
+
+// Vorestation Edit End - Rykka
+
+
 /obj/item/weapon/card/id/silver/hop
 	assignment = "Head of Personnel"
 	rank = "Head of Personnel"
