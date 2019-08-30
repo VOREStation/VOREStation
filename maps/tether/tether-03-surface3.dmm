@@ -1069,6 +1069,15 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
+"cj" = (
+/obj/structure/table/woodentable,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/obj/machinery/portable_atmospherics/powered/reagent_distillery,
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/bar_backroom)
 "ck" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -1104,6 +1113,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
+"cm" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
 "cn" = (
 /obj/machinery/atm{
 	pixel_y = 31
@@ -20261,11 +20275,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
-"HG" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
 "HH" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/borderfloor{
@@ -21321,14 +21330,6 @@
 /obj/item/weapon/storage/briefcase/inflatable,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atrium)
-"OV" = (
-/obj/structure/table/woodentable,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/turf/simulated/floor/wood,
-/area/tether/surfacebase/bar_backroom)
 "Pe" = (
 /obj/structure/table,
 /turf/simulated/floor/carpet,
@@ -36777,7 +36778,7 @@ Jr
 Js
 Wh
 JE
-HG
+cm
 IY
 bg
 RO
@@ -36919,7 +36920,7 @@ Js
 Js
 Jz
 JE
-HG
+cm
 IY
 bg
 RO
@@ -37061,7 +37062,7 @@ Jt
 Js
 Jz
 JE
-HG
+cm
 IY
 bg
 RO
@@ -37905,7 +37906,7 @@ Tv
 Hw
 TP
 NO
-OV
+cj
 RB
 ac
 ac
