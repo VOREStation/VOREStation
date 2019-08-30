@@ -15,7 +15,7 @@
 	minimum_character_age = 20
 	ideal_character_age = 25
 
-	access = list(access_heads, access_keycard_auth, access_gateway, access_eva, access_teleporter)
-	minimal_access = list(access_heads, access_keycard_auth, access_gateway, access_eva, access_teleporter)
+	access = list(access_heads, access_keycard_auth, access_eva, access_teleporter)
+	minimal_access = list(access_heads, access_keycard_auth, access_eva, access_teleporter)
 
 	outfit_type = /decl/hierarchy/outfit/job/bridge_officer
