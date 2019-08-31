@@ -746,6 +746,7 @@
 	unacidable = 1
 
 	var/recharging = 0
+	var/phase_power = 75
 
 	projectile_type = /obj/item/projectile/beam
 	firemodes = list(
@@ -764,7 +765,7 @@
 		if(!do_after(user, 10, src, ignore_movement = TRUE))
 			break
 		playsound(get_turf(src),'sound/items/change_drill.ogg',25,1)
-		if(power_supply.give(90) < 90)
+		if(power_supply.give(phase_power) < phase_power)
 			break
 
 	recharging = 0
@@ -842,6 +843,7 @@
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "holdoutkill"
 	item_state = null
+	var/phase_power = 100
 
 	w_class = ITEMSIZE_SMALL
 	charge_cost = 600
