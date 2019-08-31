@@ -730,7 +730,7 @@
 	icon_state = "r357"
 	ammo_type = /obj/item/ammo_casing/a44/rubber
 
-//Expedition pistol
+//Expedition Frontier Phaser
 /obj/item/weapon/gun/energy/frontier
 	name = "frontier phaser"
 	desc = "An extraordinarily rugged laser weapon, built to last and requiring effectively no maintenance. Includes a built-in crank charger for recharging away from civilization."
@@ -761,10 +761,10 @@
 	user.visible_message("<span class='notice'>[user] opens \the [src] and starts pumping the handle.</span>", \
 						"<span class='notice'>You open \the [src] and start pumping the handle.</span>")
 	while(recharging)
-		if(!do_after(user, 10, src))
+		if(!do_after(user, 10, src, ignore_movement = TRUE))
 			break
 		playsound(get_turf(src),'sound/items/change_drill.ogg',25,1)
-		if(power_supply.give(60) < 60)
+		if(power_supply.give(90) < 90)
 			break
 
 	recharging = 0
@@ -835,7 +835,7 @@
 		return
 	..()
 
-//Expeditionary Holdout Phaser
+//Expeditionary Holdout Phaser Pistol
 /obj/item/weapon/gun/energy/frontier/locked/holdout
 	name = "holdout frontier phaser"
 	desc = "An minaturized weapon designed for the purpose of expeditionary support to defend themselves on the field. Includes a built-in crank charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
