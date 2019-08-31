@@ -36,6 +36,7 @@
 		"Parrot" = "pai-parrot",
 		"Rabbit" = "pai-rabbit",
 		"Bear" = "pai-bear"  //VOREStation Edit
+		"Fennec" = "pai-fennec" // VOREStation Edit - Rykka
 		)
 
 	var/global/list/possible_say_verbs = list(
