@@ -414,18 +414,12 @@
 /area/centcom/specops)
 "aI" = (
 /obj/structure/closet/crate/medical,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -470,6 +464,7 @@
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
 /turf/unsimulated/floor{
 	icon_state = "vault";
@@ -1281,14 +1276,14 @@
 /area/centcom/specops)
 "bW" = (
 /obj/structure/table/reinforced,
-/obj/item/ammo_casing/nsfw_batt/stun,
-/obj/item/ammo_casing/nsfw_batt/stun,
-/obj/item/ammo_casing/nsfw_batt/stun,
-/obj/item/ammo_casing/nsfw_batt,
-/obj/item/ammo_casing/nsfw_batt,
-/obj/item/ammo_casing/nsfw_batt,
-/obj/item/ammo_casing/nsfw_batt/net,
-/obj/item/ammo_casing/nsfw_batt/net,
+/obj/item/ammo_casing/nsfw_batt/combat/stun,
+/obj/item/ammo_casing/nsfw_batt/combat/stun,
+/obj/item/ammo_casing/nsfw_batt/combat/stun,
+/obj/item/ammo_casing/nsfw_batt/medical/brute2,
+/obj/item/ammo_casing/nsfw_batt/medical/burn2,
+/obj/item/ammo_casing/nsfw_batt/medical/stabilize2,
+/obj/item/ammo_casing/nsfw_batt/combat/net,
+/obj/item/ammo_casing/nsfw_batt/combat/net,
 /obj/item/ammo_magazine/nsfw_mag,
 /obj/item/weapon/gun/projectile/nsfw,
 /turf/unsimulated/floor/steel{
@@ -16848,6 +16843,24 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Hv" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/station_mid,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
+"HL" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/midpoint,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
+"JB" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/station_low,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
 "JC" = (
 /obj/machinery/power/thermoregulator,
 /turf/unsimulated/floor{
@@ -16860,6 +16873,18 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"JW" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/base_low,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
+"Lb" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/base_high,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
 "Nt" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/unsimulated/floor{
@@ -16893,6 +16918,18 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Rx" = (
+/obj/machinery/telecomms/relay/preset/centcom/underdark,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
+"Sp" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/station_high,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
 "UC" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/stack/cable_coil,
@@ -16911,6 +16948,12 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Xi" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/base_mid,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
 "XA" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/smes_coil,
@@ -16922,6 +16965,12 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"YM" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/sci_outpost,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
 
 (1,1,1) = {"
 aa
@@ -34372,7 +34421,7 @@ ac
 nK
 nK
 nK
-nK
+CZ
 nK
 nK
 ac
@@ -34511,12 +34560,12 @@ Cg
 ho
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+JW
+CE
+CE
+JB
+nK
 ac
 ac
 ac
@@ -34653,12 +34702,12 @@ Ch
 Ct
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+Xi
+CE
+CE
+Hv
+nK
 ac
 ac
 ac
@@ -34795,12 +34844,12 @@ Ch
 BW
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+Lb
+CE
+CE
+Sp
+nK
 ac
 ac
 ac
@@ -34937,12 +34986,12 @@ Ch
 Ct
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+CE
+CE
+CE
+YM
+nK
 ac
 ac
 ac
@@ -35079,12 +35128,12 @@ Ch
 BW
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+HL
+CE
+CE
+Rx
+nK
 ac
 ac
 ac
@@ -35221,12 +35270,12 @@ Ch
 Ct
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+nK
+nK
+nK
+nK
+nK
 ac
 ac
 ac

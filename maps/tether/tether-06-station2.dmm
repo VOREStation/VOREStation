@@ -7210,9 +7210,9 @@
 /area/tether/exploration/hallway)
 "kC" = (
 /obj/item/weapon/material/twohanded/spear/foam,
-/obj/item/weapon/storage/fancy/crayons{
+/obj/item/weapon/storage/mre/menu12{
 	desc = "Special food for special warriors of the expedition force.";
-	name = "spearman ration"
+	name = "spearman MRE"
 	},
 /turf/simulated/floor,
 /area/tether/exploration/hallway)
@@ -15085,6 +15085,9 @@
 "wR" = (
 /obj/structure/table/woodentable,
 /obj/machinery/chemical_dispenser/bar_soft/full,
+/obj/machinery/keycard_auth{
+	pixel_y = 28
+	},
 /turf/simulated/floor/wood,
 /area/bridge/meeting_room)
 "wS" = (
@@ -19549,7 +19552,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 5
 	},
-/obj/machinery/equipment_vendor/exploration,
+/obj/machinery/mineral/equipment_vendor/survey,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
 "Ei" = (
@@ -20152,6 +20155,12 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
+"HU" = (
+/obj/machinery/keycard_auth{
+	pixel_y = -28
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "Ik" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -35883,7 +35892,7 @@ wV
 ys
 wV
 wV
-wV
+HU
 wo
 ac
 ac

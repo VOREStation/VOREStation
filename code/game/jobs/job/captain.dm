@@ -31,7 +31,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 		H.implant_loyalty(src)
 */
 /datum/job/captain/get_access()
-	return get_all_station_access()
+	return get_all_station_access().Copy()
 
 /datum/job/hop
 	title = "Head of Personnel"

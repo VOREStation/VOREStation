@@ -82,3 +82,11 @@
 			H.updateicon()
 		else
 			return 1
+
+
+/obj/item/projectile/beam/sizelaser/shrink
+	set_size = 0.5 //50% of current size
+
+
+/obj/item/projectile/beam/sizelaser/grow
+	set_size = 2.0 //200% of current size

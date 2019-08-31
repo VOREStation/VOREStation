@@ -18,7 +18,6 @@
 	feedback_add_details("admin_verb","SMITEV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	switch(smite_choice)
-		/*
 		if(SMITE_SHADEKIN_ATTACK)
 			var/turf/Tt = get_turf(target) //Turf for target
 
@@ -35,22 +34,22 @@
 			if(!Ts)
 				return //Didn't find shadekin spawn turf
 
-			var/mob/living/simple_mob/shadekin/red/shadekin = new(Ts)
+			var/mob/living/simple_mob/shadekin/red/ai/shadekin = new(Ts)
 			//Abuse of shadekin
 			shadekin.real_name = shadekin.name
 			shadekin.init_vore()
 			shadekin.ability_flags |= 0x1
-			shadekin.specific_targets = TRUE //Don't attack others
 			shadekin.phase_shift()
-			shadekin.target_mob = target
-			shadekin.stance = STANCE_ATTACK
+			shadekin.ai_holder.give_target(target)
+			shadekin.ai_holder.hostile = FALSE
+			shadekin.ai_holder.mauling = TRUE
 			shadekin.Life()
 			//Remove when done
 			spawn(10 SECONDS)
 				if(shadekin)
-					shadekin.death()*/ //VORESTATION AI TEMPORARY REMOVAL
+					shadekin.death()
 
-		/*if(SMITE_SHADEKIN_NOMF)
+		if(SMITE_SHADEKIN_NOMF)
 			var/list/kin_types = list(
 				"Red Eyes (Dark)" =	/mob/living/simple_mob/shadekin/red/dark,
 				"Red Eyes (Light)" = /mob/living/simple_mob/shadekin/red/white,
@@ -93,7 +92,6 @@
 			shadekin.real_name = shadekin.name
 			shadekin.init_vore()
 			shadekin.can_be_drop_pred = TRUE
-			shadekin.ai_inactive = TRUE
 			shadekin.dir = SOUTH
 			shadekin.ability_flags |= 0x1
 			shadekin.phase_shift() //Homf
@@ -119,7 +117,7 @@
 				target.ghostize()
 				qdel(target)
 				qdel(shadekin)
-		*/
+
 
 		if(SMITE_REDSPACE_ABDUCT)
 			redspace_abduction(target, src)

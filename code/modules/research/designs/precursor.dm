@@ -77,3 +77,12 @@
 			var/obj/item/I = build_path
 			desc = initial(I.desc)
 		..()
+
+/datum/design/item/anomaly/camotrap
+	name = "Chameleon Trap"
+	desc = "A self-miraging mechanical trap, capable of producing short bursts of electric current when triggered."
+	id = "hunt_trap"
+	materials = list(MAT_DURASTEEL = 3000, MAT_METALHYDROGEN = 1000, MAT_PHORON = 2000)
+	req_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 3, TECH_MAGNET = 4, TECH_PHORON = 2, TECH_ARCANE = 2)
+	build_path = /obj/item/weapon/beartrap/hunting
+	sort_string = "ARCAT"

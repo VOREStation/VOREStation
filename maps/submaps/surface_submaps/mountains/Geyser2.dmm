@@ -1,0 +1,23 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/obj/random/turf/lava,/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"c" = (/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"d" = (/obj/structure/fence/corner{icon_state = "corner"; dir = 9},/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"e" = (/obj/structure/fence{icon_state = "straight"; dir = 8},/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"f" = (/obj/structure/fence/corner{icon_state = "corner"; dir = 5},/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"g" = (/obj/structure/fence/cut/large,/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"h" = (/mob/living/simple_mob/mechanical/viscerator,/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"i" = (/obj/structure/fence,/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"j" = (/obj/structure/fence/corner{icon_state = "corner"; dir = 10},/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"k" = (/obj/structure/fence/door/locked,/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"l" = (/obj/structure/fence/corner{icon_state = "corner"; dir = 6},/turf/simulated/floor/outdoors/rocks/caves,/area/template_noop)
+"m" = (/obj/effect/map_effect/interval/effect_emitter/steam,/obj/effect/map_effect/interval/effect_emitter/smoke/mist{interval_upper_bound = 600},/obj/effect/map_effect/interval/effect_emitter/smoke/bad{interval_lower_bound = 100; interval_upper_bound = 3000},/obj/effect/map_effect/interval/screen_shaker{interval_upper_bound = 600},/obj/random/humanoidremains,/obj/random/medical/lite,/turf/simulated/floor/water/deep{outdoors = 0},/area/template_noop)
+
+(1,1,1) = {"
+abbcbba
+bbbhbbb
+bbdefbb
+chgmihc
+bbjklbb
+bbbhbbb
+abbcbba
+"}

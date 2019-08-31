@@ -149,6 +149,8 @@
 	var/power_losses
 	var/last_power_draw = 0
 	var/obj/item/weapon/cell/cell
+	var/use_cell = TRUE
+	var/removeable_cell = TRUE
 
 /obj/machinery/portable_atmospherics/powered/powered()
 	if(use_power) //using area power
@@ -158,7 +160,7 @@
 	return 0
 
 /obj/machinery/portable_atmospherics/powered/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/cell))
+	if(use_cell && istype(I, /obj/item/weapon/cell))
 		if(cell)
 			to_chat(user, "There is already a power cell installed.")
 			return
@@ -173,7 +175,7 @@
 		power_change()
 		return
 
-	if(I.is_screwdriver())
+	if(I.is_screwdriver() && removeable_cell)
 		if(!cell)
 			to_chat(user, "<span class='warning'>There is no power cell installed.</span>")
 			return

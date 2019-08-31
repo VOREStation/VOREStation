@@ -25,3 +25,11 @@
 	materials = list(MAT_PLASTEEL = 3500, "glass" = 1000, MAT_LEAD = 2250, MAT_METALHYDROGEN = 500)
 	build_path = /obj/item/weapon/melee/energy/sword/charge
 	sort_string = "VASCA"
+
+/datum/design/item/weapon/eaxe
+	name = "Energy Axe"
+	id = "chargeaxe"
+	req_tech = list(TECH_COMBAT = 6, TECH_MAGNET = 5, TECH_ENGINEERING = 4, TECH_ILLEGAL = 4)
+	materials = list(MAT_PLASTEEL = 3500, MAT_OSMIUM = 2000, MAT_LEAD = 2000, MAT_METALHYDROGEN = 500)
+	build_path = /obj/item/weapon/melee/energy/axe/charge
+	sort_string = "VASCB"

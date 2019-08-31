@@ -293,6 +293,17 @@
 	punch_force = initial(punch_force)
 	wearer = null
 
+/obj/item/clothing/gloves
+	var/datum/unarmed_attack/special_attack = null //do the gloves have a special unarmed attack?
+	var/special_attack_type = null
+
+/obj/item/clothing/gloves/New()
+	..()
+	if(special_attack_type && ispath(special_attack_type))
+		special_attack = new special_attack_type
+
+
+
 /////////////////////////////////////////////////////////////////////
 //Rings
 
@@ -502,6 +513,7 @@
 	if(usr.put_in_hands(holding))
 		usr.visible_message("<span class='danger'>\The [usr] pulls a knife out of their boot!</span>")
 		holding = null
+		overlays -= image(icon, "[icon_state]_knife")
 	else
 		usr << "<span class='warning'>Your need an empty, unbroken hand to do that.</span>"
 		holding.forceMove(src)
@@ -546,7 +558,6 @@
 	update_icon()
 
 /obj/item/clothing/shoes/update_icon()
-	overlays.Cut()
 	if(holding)
 		overlays += image(icon, "[icon_state]_knife")
 	if(ismob(usr))

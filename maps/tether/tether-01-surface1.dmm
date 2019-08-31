@@ -4676,8 +4676,6 @@
 /area/tether/surfacebase/north_stairs_one)
 "aib" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/fancy/vials,
-/obj/item/device/reagent_scanner,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
@@ -4690,6 +4688,7 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 8
 	},
+/obj/machinery/portable_atmospherics/powered/reagent_distillery,
 /turf/simulated/floor/tiled/white,
 /area/rnd/chemistry_lab)
 "aic" = (
@@ -4900,8 +4899,6 @@
 /area/tether/surfacebase/atrium_one)
 "aip" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/box/beakers,
-/obj/item/clothing/glasses/science,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
@@ -4911,6 +4908,9 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 8
 	},
+/obj/item/weapon/storage/fancy/vials,
+/obj/item/weapon/storage/box/beakers,
+/obj/item/clothing/glasses/science,
 /turf/simulated/floor/tiled/white,
 /area/rnd/chemistry_lab)
 "aiq" = (
@@ -5091,14 +5091,15 @@
 /area/rnd/chemistry_lab)
 "aiJ" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/box/syringes,
-/obj/item/weapon/reagent_containers/spray/cleaner,
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 10
 	},
+/obj/item/weapon/storage/box/syringes,
+/obj/item/device/reagent_scanner,
+/obj/item/weapon/reagent_containers/spray/cleaner,
 /turf/simulated/floor/tiled/white,
 /area/rnd/chemistry_lab)
 "aiK" = (
@@ -26241,7 +26242,6 @@
 	dir = 1
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/item/weapon/towel/random,
@@ -26539,7 +26539,6 @@
 /area/vacant/vacant_bar)
 "dQB" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -26573,7 +26572,6 @@
 /area/tether/surfacebase/public_garden_one)
 "dUk" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/machinery/power/apc{
@@ -28223,7 +28221,6 @@
 	dir = 4
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/structure/cable/green{
@@ -28236,7 +28233,6 @@
 /area/maintenance/lower/atmos)
 "jXa" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/structure/table/bench/steel,
@@ -28697,7 +28693,6 @@
 	dir = 1
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/freezer,
@@ -30905,7 +30900,6 @@
 	dir = 4
 	},
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -32114,7 +32108,6 @@
 /area/engineering/atmos)
 "xiL" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/plating,
@@ -32309,7 +32302,6 @@
 /area/engineering/atmos)
 "ycb" = (
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,

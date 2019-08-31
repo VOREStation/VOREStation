@@ -1060,7 +1060,7 @@ default behaviour is:
 							var/mob/living/carbon/human/H = src
 							if(!H.isSynthetic())
 								var/obj/item/organ/internal/liver/L = H.internal_organs_by_name["liver"]
-								if(L.is_broken())
+								if(!L || L.is_broken())
 									blood_vomit = 1
 
 					Stun(5)

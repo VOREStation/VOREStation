@@ -11,7 +11,7 @@
 
 	base_attack_cooldown = 10
 	projectilesound = 'sound/weapons/taser2.ogg'
-	projectiletype = /obj/item/projectile/ion/small
+	projectiletype = /obj/item/projectile/ion/pistol
 
 	melee_damage_lower = 8
 	melee_damage_upper = 15

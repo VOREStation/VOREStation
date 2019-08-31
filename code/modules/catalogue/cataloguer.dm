@@ -312,3 +312,15 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	interact(usr) // So it refreshes the window.
 	return 1
 
+/obj/item/device/cataloguer/attackby(obj/item/weapon/W, mob/user)
+	if(istype(W, /obj/item/weapon/card/id) && !busy)
+		busy = TRUE
+		var/obj/item/weapon/card/id/ID = W
+		if(points_stored)
+			ID.survey_points += points_stored
+			points_stored = 0
+			to_chat(user, "<span class='notice'>You swipe the id over \the [src].</span>")
+		else
+			to_chat(user, "<span class='notice'>\The [src] has no points available.</span>")
+		busy = FALSE
+	return ..()

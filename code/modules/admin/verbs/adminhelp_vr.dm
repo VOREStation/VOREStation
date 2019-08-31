@@ -18,6 +18,7 @@
 /client/verb/adminspice()
 	set category = "Admin"
 	set name = "Request Spice"
+	set desc = "Request admins to spice round up for you"
 
 	//handle muting and automuting
 	if(prefs.muted & MUTE_ADMINHELP)
@@ -26,6 +27,7 @@
 
 	if(alert(usr, "Are you sure you want to request the admins spice things up for you? You accept the consequences if you do.",,"No","Yes") != "No")
 		message_admins("[ADMIN_FULLMONTY(usr)] has requested the round be spiced up a little.")
+		to_chat(usr, "<span class='notice'>You have requested some more spice in your round.</span>")
 	else
 		to_chat(usr, "<span class='notice'>Spice request cancelled.</span>")
 		return

@@ -1972,7 +1972,6 @@
 "di" = (
 /obj/machinery/meter,
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
@@ -1985,7 +1984,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "dj" = (
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "dk" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -2683,12 +2682,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "er" = (
-/obj/machinery/shuttle_sensor{
-	dir = 5;
-	id_tag = "shuttlesens_exp";
-	pixel_y = -6
-	},
-/turf/simulated/wall/thull,
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/excursion/tether)
 "es" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2935,10 +2931,16 @@
 /turf/simulated/floor,
 /area/maintenance/station/ai)
 "eN" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/structure/table/reinforced,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/powered/reagent_distillery,
+/turf/simulated/floor/tiled/white,
+/area/medical/chemistry)
 "eS" = (
 /obj/item/frame,
 /obj/effect/floor_decal/rust,
@@ -3121,7 +3123,7 @@
 /obj/machinery/light/spot{
 	pixel_y = 32
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "fi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -5542,13 +5544,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 6
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "iY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 4
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "iZ" = (
 /obj/effect/floor_decal/borderfloorblack/full,
@@ -6343,12 +6345,6 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai)
-"kn" = (
-/obj/machinery/cryopod{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/shuttle/excursion/tether)
 "ko" = (
 /turf/simulated/wall/r_wall,
 /area/security/security_equiptment_storage)
@@ -9267,6 +9263,13 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/item/device/taperecorder{
+	pixel_y = 0
+	},
+/obj/item/weapon/reagent_containers/food/drinks/flask/barflask{
+	pixel_x = -4;
+	pixel_y = 8
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
@@ -12493,13 +12496,15 @@
 /turf/simulated/wall,
 /area/quartermaster/office)
 "tC" = (
-/obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/white/border,
 /obj/machinery/button/windowtint{
 	id = "surgery_2";
 	pixel_y = -26
 	},
+/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/structure/closet/crate/freezer,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
 "tD" = (
@@ -14104,6 +14109,7 @@
 	pixel_x = -20;
 	pixel_y = -25
 	},
+/obj/structure/flora/pottedplant/stoutbush,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/heads/cmo)
 "wg" = (
@@ -19165,16 +19171,6 @@
 /obj/item/weapon/reagent_containers/dropper,
 /turf/simulated/floor/tiled/white,
 /area/medical/chemistry)
-"DX" = (
-/obj/structure/table/reinforced,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/chemistry)
 "DY" = (
 /obj/machinery/chemical_dispenser/full,
 /obj/structure/table/reinforced,
@@ -21015,7 +21011,6 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "Hn" = (
-/obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
 	},
@@ -21028,6 +21023,7 @@
 	pixel_x = 0;
 	pixel_y = 26
 	},
+/obj/structure/closet/crate/freezer,
 /obj/item/weapon/reagent_containers/blood/OMinus,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
@@ -23633,7 +23629,6 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay_primary_storage)
 "Lv" = (
-/obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/blood/OMinus,
 /obj/item/weapon/reagent_containers/blood/OMinus,
 /obj/item/weapon/reagent_containers/blood/OMinus,
@@ -23649,6 +23644,7 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 8
 	},
+/obj/structure/closet/crate/freezer,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
 "Lw" = (
@@ -24219,7 +24215,6 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/exam_room)
 "Mp" = (
-/obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/blood/AMinus,
 /obj/item/weapon/reagent_containers/blood/APlus,
 /obj/item/weapon/reagent_containers/blood/BMinus,
@@ -24231,6 +24226,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 8
 	},
+/obj/structure/closet/crate/freezer,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
 "Mq" = (
@@ -24336,7 +24332,6 @@
 /turf/simulated/open,
 /area/medical/surgery_hallway)
 "My" = (
-/obj/structure/flora/pottedplant/stoutbush,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
 	},
@@ -24352,6 +24347,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 4
 	},
+/obj/item/modular_computer/console/preset/command,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/heads/cmo)
 "Mz" = (
@@ -25116,8 +25112,6 @@
 /obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/white/border,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
 "Nt" = (
@@ -27746,7 +27740,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 10
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "Rw" = (
 /obj/structure/catwalk,
@@ -28430,13 +28424,8 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "SP" = (
-/obj/structure/table/woodentable,
-/obj/item/device/taperecorder{
-	pixel_y = 0
-	},
-/obj/item/weapon/reagent_containers/food/drinks/flask/barflask{
-	pixel_x = -4;
-	pixel_y = 8
+/obj/item/modular_computer/console/preset/command{
+	dir = 1
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
@@ -28715,7 +28704,6 @@
 /obj/structure/bed/chair/shuttle,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/machinery/alarm{
-	frequency = 1441;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,
@@ -28790,7 +28778,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "UK" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -28848,7 +28836,7 @@
 	dir = 6;
 	icon_state = "intact"
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "US" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -28973,10 +28961,8 @@
 	dir = 1
 	},
 /obj/structure/closet/crate/freezer/rations,
-/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
-/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
-/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
-/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu10,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "Vi" = (
@@ -28984,7 +28970,7 @@
 	dir = 2;
 	id_tag = "shuttlesens_exp_psg"
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "Vm" = (
 /obj/structure/bed/chair/shuttle{
@@ -29107,7 +29093,7 @@
 	dir = 8;
 	icon_state = "map"
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "VR" = (
 /obj/machinery/atmospherics/binary/pump{
@@ -29165,7 +29151,7 @@
 	dir = 5;
 	id_tag = "shuttlesens_exp_int"
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "Wo" = (
 /obj/structure/bed/chair/shuttle,
@@ -29176,7 +29162,7 @@
 /area/shuttle/excursion/tether)
 "Ws" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "Wx" = (
 /obj/structure/grille,
@@ -29256,7 +29242,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "Xc" = (
 /obj/structure/grille,
@@ -29345,7 +29331,7 @@
 /area/tether/exploration)
 "Xr" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/yellow,
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "XA" = (
 /obj/structure/shuttle/engine/heater,
@@ -29371,7 +29357,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 5
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "XE" = (
 /obj/machinery/conveyor_switch/oneway{
@@ -29613,13 +29599,13 @@
 	dir = 5;
 	id_tag = "shuttlesens_exp"
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "ZD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 9
 	},
-/turf/simulated/wall/thull,
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/tether)
 "ZE" = (
 /obj/machinery/door/airlock/glass_external{
@@ -35054,12 +35040,12 @@ ab
 ab
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
+ad
+ae
+ad
+ad
+ae
 aa
 aa
 aa
@@ -35198,10 +35184,10 @@ ab
 ab
 aa
 aa
+ae
 aa
 aa
-aa
-aa
+ad
 aa
 aa
 aa
@@ -35340,10 +35326,10 @@ ab
 ab
 aa
 aa
+ae
 aa
 aa
-aa
-aa
+ad
 aa
 aa
 aa
@@ -35483,9 +35469,9 @@ Me
 uK
 uK
 Me
-aa
-aa
-aa
+ae
+ae
+ad
 aa
 aa
 aa
@@ -35627,7 +35613,7 @@ wf
 xh
 aa
 aa
-aa
+ae
 aa
 aa
 aa
@@ -35769,7 +35755,7 @@ NP
 xh
 aa
 aa
-aa
+ad
 aa
 aa
 aa
@@ -35911,7 +35897,7 @@ NP
 xh
 aa
 aa
-aa
+ad
 aa
 aa
 aa
@@ -36053,7 +36039,7 @@ NQ
 Me
 ab
 aa
-aa
+ad
 aa
 aa
 aa
@@ -38589,7 +38575,7 @@ Aq
 Aw
 Ck
 Dq
-DX
+eN
 ES
 FH
 Gx
@@ -40548,7 +40534,7 @@ Zy
 WG
 dj
 XA
-eN
+er
 ms
 Oz
 be
@@ -40690,7 +40676,7 @@ UJ
 Xb
 dj
 XN
-eN
+er
 ms
 Xq
 be
@@ -40828,11 +40814,11 @@ Um
 dj
 iK
 jY
-kn
+iW
 WS
 dj
 XN
-eN
+er
 ms
 Vb
 be
@@ -41115,7 +41101,7 @@ jZ
 WR
 Xo
 XN
-eN
+er
 cK
 ms
 Xq
@@ -41529,7 +41515,7 @@ cG
 VB
 WD
 dE
-er
+dj
 TY
 dj
 dj
@@ -41683,7 +41669,7 @@ ea
 kx
 dj
 XN
-eN
+er
 cK
 ms
 mq
@@ -41968,7 +41954,7 @@ kQ
 TG
 dj
 XN
-eN
+er
 ms
 nA
 be
@@ -42110,7 +42096,7 @@ kR
 Vd
 dj
 XN
-eN
+er
 ms
 QL
 be
@@ -42252,7 +42238,7 @@ ZE
 ZB
 dj
 XB
-eN
+er
 ms
 Sq
 be

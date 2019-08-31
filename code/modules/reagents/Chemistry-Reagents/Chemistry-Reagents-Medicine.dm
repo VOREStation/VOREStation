@@ -16,6 +16,28 @@
 		M.add_chemical_effect(CE_STABLE, 15)
 		M.add_chemical_effect(CE_PAINKILLER, 10)
 
+/datum/reagent/inaprovaline/topical
+	name = "Inaprovalaze"
+	id = "inaprovalaze"
+	description = "Inaprovalaze is a topical variant of Inaprovaline."
+	taste_description = "bitterness"
+	reagent_state = LIQUID
+	color = "#00BFFF"
+	overdose = REAGENTS_OVERDOSE * 2
+	metabolism = REM * 0.5
+	scannable = 1
+	touch_met = REM * 0.75
+
+/datum/reagent/inaprovaline/topical/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien != IS_DIONA)
+		..()
+		M.adjustToxLoss(2 * removed)
+
+/datum/reagent/inaprovaline/topical/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien != IS_DIONA)
+		M.add_chemical_effect(CE_STABLE, 20)
+		M.add_chemical_effect(CE_PAINKILLER, 12)
+
 /datum/reagent/bicaridine
 	name = "Bicaridine"
 	id = "bicaridine"
@@ -50,6 +72,33 @@
 					W.damage = max(W.damage - wound_heal, 0)
 					if(W.damage <= 0)
 						O.wounds -= W
+
+/datum/reagent/bicaridine/topical
+	name = "Bicaridaze"
+	id = "bicaridaze"
+	description = "Bicaridaze is a topical variant of the chemical Bicaridine."
+	taste_description = "bitterness"
+	taste_mult = 3
+	reagent_state = LIQUID
+	color = "#BF0000"
+	overdose = REAGENTS_OVERDOSE * 0.75
+	scannable = 1
+	touch_met = REM * 0.75
+
+/datum/reagent/bicaridine/topical/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
+	if(alien != IS_DIONA)
+		..(M, alien, removed * chem_effective)
+		M.adjustToxLoss(2 * removed)
+
+/datum/reagent/bicaridine/topical/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
+	if(alien != IS_DIONA)
+		M.heal_organ_damage(6 * removed * chem_effective, 0)
 
 /datum/reagent/kelotane
 	name = "Kelotane"
@@ -86,6 +135,33 @@
 		chem_effective = 0.75
 	if(alien != IS_DIONA)
 		M.heal_organ_damage(0, 8 * removed * chem_effective) //VOREStation edit
+
+/datum/reagent/dermaline/topical
+	name = "Dermalaze"
+	id = "dermalaze"
+	description = "Dermalaze is a topical variant of the chemical Dermaline."
+	taste_description = "bitterness"
+	taste_mult = 1.5
+	reagent_state = LIQUID
+	color = "#FF8000"
+	overdose = REAGENTS_OVERDOSE * 0.4
+	scannable = 1
+	touch_met = REM * 0.75
+
+/datum/reagent/dermaline/topical/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
+	if(alien != IS_DIONA)
+		..(M, alien, removed * chem_effective)
+		M.adjustToxLoss(2 * removed)
+
+/datum/reagent/dermaline/topical/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
+	if(alien != IS_DIONA)
+		M.heal_organ_damage(0, 12 * removed * chem_effective)
 
 /datum/reagent/dylovene
 	name = "Dylovene"
@@ -202,6 +278,10 @@
 		M.adjustOxyLoss(-3 * removed * chem_effective)
 		M.heal_organ_damage(1.5 * removed, 1.5 * removed * chem_effective)
 		M.adjustToxLoss(-1.5 * removed * chem_effective)
+
+/datum/reagent/tricordrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien != IS_DIONA)
+		affect_blood(M, alien, removed * 0.4)
 
 /datum/reagent/cryoxadone
 	name = "Cryoxadone"
@@ -864,6 +944,9 @@
 				data = world.time
 				to_chat(M, "<span class='warning'>Your senses feel unfocused, and divided.</span>")
 	M.add_chemical_effect(CE_ANTIBIOTIC, dose >= overdose ? ANTIBIO_OD : ANTIBIO_NORM)
+
+/datum/reagent/spaceacillin/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	affect_blood(M, alien, removed * 0.8) // Not 100% as effective as injections, though still useful.
 
 /datum/reagent/corophizine
 	name = "Corophizine"

@@ -7,6 +7,9 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = null
 	item_state = "pill"
+
+	var/base_state = "pill"
+
 	possible_transfer_amounts = null
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
@@ -15,7 +18,7 @@
 /obj/item/weapon/reagent_containers/pill/Initialize()
 	. = ..()
 	if(!icon_state)
-		icon_state = "pill[rand(1, 4)]" //preset pills only use colour changing or unique icons
+		icon_state = "[base_state][rand(1, 4)]" //preset pills only use colour changing or unique icons
 
 /obj/item/weapon/reagent_containers/pill/attack(mob/M as mob, mob/user as mob)
 	if(M == user)
