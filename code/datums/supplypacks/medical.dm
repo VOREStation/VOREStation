@@ -116,7 +116,6 @@
 /datum/supply_pack/med/cmogear
 	name = "Chief medical officer equipment"
 	contains = list(
-			/obj/item/weapon/storage/firstaid/ml3m_pack_cmo, //VOREStation addition,
 			/obj/item/weapon/storage/belt/medical,
 			/obj/item/device/radio/headset/heads/cmo,
 			/obj/item/clothing/under/rank/chief_medical_officer,
@@ -187,7 +186,6 @@
 /datum/supply_pack/med/paramedicgear
 	name = "Paramedic equipment"
 	contains = list(
-			/obj/item/weapon/storage/firstaid/ml3m_pack_med, //VOREStation addition,
 			/obj/item/weapon/storage/belt/medical/emt,
 			/obj/item/device/radio/headset/headset_med,
 			/obj/item/clothing/under/rank/medical/scrubs/black,
