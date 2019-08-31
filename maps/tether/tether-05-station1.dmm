@@ -15391,7 +15391,7 @@
 	dir = 1
 	},
 /obj/item/weapon/reagent_containers/food/snacks/snakesnack,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/outdoors/grass/forest,
 /area/crew_quarters/heads/chief)
 "aTX" = (
 /obj/machinery/computer/general_air_control{
@@ -15605,7 +15605,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/outdoors/grass/forest,
 /area/crew_quarters/heads/chief)
 "aVH" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -22367,7 +22367,7 @@
 	dir = 8
 	},
 /obj/machinery/door/window/northleft,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/outdoors/grass/forest,
 /area/crew_quarters/heads/chief)
 "kCH" = (
 /obj/machinery/door/firedoor/glass,
@@ -22514,7 +22514,7 @@
 /area/tether/station/dock_one)
 "vyI" = (
 /mob/living/simple_mob/animal/passive/snake/noodle,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/outdoors/grass/forest,
 /area/crew_quarters/heads/chief)
 "wlD" = (
 /obj/machinery/door/firedoor/glass,

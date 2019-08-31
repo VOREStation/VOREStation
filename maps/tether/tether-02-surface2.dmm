@@ -1051,12 +1051,11 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
 "cq" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/alarm{
 	dir = 1;
 	pixel_y = -22
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor,
 /area/maintenance/lower/rnd)
 "cr" = (
 /obj/structure/railing{
@@ -12351,11 +12350,19 @@
 	icon_state = "intact-scrubbers";
 	dir = 4
 	},
-/obj/machinery/door/airlock/glass_command{
-	req_access = list(30)
+/obj/machinery/door/window/eastleft{
+	name = "Kendrick's Pen";
+	req_access = list(30);
+	req_one_access = list(19)
 	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled,
+/obj/machinery/door/window/eastleft{
+	dir = 8;
+	icon_state = "left";
+	name = "Kendrick's Pen";
+	req_access = list(30);
+	req_one_access = list(19)
+	},
+/turf/simulated/floor/reinforced,
 /area/rnd/rdoffice)
 "yi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -12448,6 +12455,21 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled,
+/area/rnd/rdoffice)
+"yw" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
 /area/rnd/rdoffice)
 "yx" = (
 /obj/structure/cable/cyan{
@@ -16219,6 +16241,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/toy/plushie/farwa,
 /turf/simulated/floor/reinforced,
 /area/rnd/rdoffice)
 "Ji" = (
@@ -26690,7 +26713,7 @@ jy
 bz
 cF
 cF
-cF
+yw
 yg
 cF
 cF
