@@ -15390,6 +15390,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/item/weapon/reagent_containers/food/snacks/snakesnack,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "aTX" = (

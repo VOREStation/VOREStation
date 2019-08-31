@@ -4447,7 +4447,7 @@
 /area/rnd/rdoffice)
 "jF" = (
 /mob/living/simple_mob/slime/xenobio/rainbow/kendrick,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/reinforced,
 /area/rnd/rdoffice)
 "jG" = (
 /obj/effect/decal/cleanable/dirt,
@@ -12344,11 +12344,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos)
 "yg" = (
-/obj/machinery/door/airlock/command{
-	id_tag = "RDdoor";
-	name = "Research Director";
-	req_access = list(30)
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -12356,7 +12351,11 @@
 	icon_state = "intact-scrubbers";
 	dir = 4
 	},
-/turf/simulated/wall/r_wall,
+/obj/machinery/door/airlock/glass_command{
+	req_access = list(30)
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled,
 /area/rnd/rdoffice)
 "yi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -12499,10 +12498,6 @@
 	},
 /turf/simulated/open,
 /area/engineering/atmos)
-"yD" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/wall/r_wall,
-/area/rnd/rdoffice)
 "yE" = (
 /obj/machinery/light_switch{
 	dir = 4;
@@ -13266,6 +13261,9 @@
 "Bw" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos)
+"BD" = (
+/turf/simulated/floor,
+/area/maintenance/lower/rnd)
 "BH" = (
 /obj/structure/catwalk,
 /obj/random/junk,
@@ -16217,6 +16215,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
+"Jg" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/area/rnd/rdoffice)
 "Ji" = (
 /turf/simulated/wall/r_wall,
 /area/engineering/lower/lobby)
@@ -17588,7 +17592,7 @@
 	dir = 1;
 	pixel_y = -22
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/reinforced,
 /area/rnd/rdoffice)
 "PP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -17943,10 +17947,7 @@
 /area/maintenance/lower/atmos)
 "RO" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/reinforced,
 /area/rnd/rdoffice)
 "RR" = (
 /obj/structure/catwalk,
@@ -18109,7 +18110,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/reinforced,
 /area/rnd/rdoffice)
 "SV" = (
 /obj/structure/bed/chair,
@@ -18397,9 +18398,6 @@
 /obj/random/tech_supply,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/atmos)
-"UA" = (
-/turf/simulated/mineral,
-/area/rnd/rdoffice)
 "UB" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -19465,6 +19463,10 @@
 /obj/structure/closet/secure_closet/personal,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar_upper)
+"YV" = (
+/obj/machinery/camera/network/research,
+/turf/simulated/floor/reinforced,
+/area/rnd/rdoffice)
 "YX" = (
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
@@ -26119,9 +26121,9 @@ ho
 jy
 bz
 cp
-yD
-UA
-UA
+ii
+ac
+ac
 ks
 lk
 lI
@@ -26259,8 +26261,8 @@ um
 vO
 ho
 jy
-jy
-il
+BD
+cF
 cF
 cF
 cF
@@ -26402,8 +26404,8 @@ hq
 ho
 jy
 bz
-il
 cF
+YV
 jF
 SQ
 ks
@@ -26544,8 +26546,8 @@ vW
 vA
 jx
 bz
-il
 cF
+Jg
 RO
 PN
 ks
@@ -26686,7 +26688,7 @@ hq
 ho
 jy
 bz
-il
+cF
 cF
 cF
 yg
@@ -26827,7 +26829,7 @@ hq
 ho
 ho
 jy
-jy
+BD
 cq
 cF
 cN

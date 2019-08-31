@@ -28553,6 +28553,10 @@
 /area/shuttle/excursion/tether)
 "Ui" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/camera/network/security{
+	icon_state = "camera";
+	dir = 8
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
 "Uj" = (
@@ -28562,7 +28566,9 @@
 "Uk" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced/polarized/full{
+	id = "hos_office"
+	},
 /turf/simulated/floor,
 /area/crew_quarters/heads/hos)
 "Ul" = (
@@ -29200,6 +29206,7 @@
 	desc = "Runtime's bed. Some of her disappointment seems to have rubbed off on it.";
 	name = "cat bed"
 	},
+/obj/item/toy/plushie/mouse/fluff,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/heads/cmo)
 "Wm" = (
