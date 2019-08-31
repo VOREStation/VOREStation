@@ -591,9 +591,9 @@ turf/simulated/mineral/floor/light_corner
 	if(is_clean)
 		X = new /obj/item/weapon/archaeological_find(src, new_item_type = F.find_type)
 	else
-		X = new /obj/item/weapon/ore/strangerock(src, inside_item_type = F.find_type)
+		X = new /obj/item/weapon/strangerock(src, inside_item_type = F.find_type)
 		geologic_data.UpdateNearbyArtifactInfo(src)
-		var/obj/item/weapon/ore/strangerock/SR = X
+		var/obj/item/weapon/strangerock/SR = X
 		SR.geologic_data = geologic_data
 
 	//some find types delete the /obj/item/weapon/archaeological_find and replace it with something else, this handles when that happens

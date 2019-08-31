@@ -368,7 +368,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	var/location = alert(src,"Please specify where to spawn them.", "Location", "Right Here", "Arrivals", "Cancel")
-	if(!location)
+	if(location == "Cancel" || !location)
 		return
 
 	var/announce = alert(src,"Announce as if they had just arrived?", "Announce", "Yes", "No", "Cancel")

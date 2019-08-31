@@ -61,7 +61,8 @@
 		/obj/item/taperoll/medical,
 		/obj/item/device/gps/medical,
 		/obj/item/device/geiger,
-		/obj/item/bodybag/cryobag)
+		/obj/item/bodybag/cryobag,
+		/obj/item/device/cataloguer/compact)
 
 /obj/structure/closet/secure_closet/pilot
 	starts_with = list(
@@ -83,7 +84,8 @@
 		/obj/item/weapon/storage/box/flare,
 		/obj/item/weapon/cell/device,
 		/obj/item/device/radio,
-		/obj/item/device/gps/explorer)
+		/obj/item/device/gps/explorer,
+		/obj/item/device/cataloguer/compact)
 
 /obj/structure/closet/secure_closet/pathfinder
 	name = "pathfinder locker"
@@ -118,7 +120,7 @@
 		/obj/item/clothing/accessory/holster/machete,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
-		/obj/item/device/cataloguer)
+		/obj/item/device/cataloguer/compact/pathfinder)
 
 /obj/structure/closet/secure_closet/pathfinder/Initialize()
 	if(prob(50))

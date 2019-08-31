@@ -411,7 +411,7 @@
 		/obj/random/bomb_supply = 7,
 		/obj/random/contraband = 3,
 		/obj/random/unidentified_medicine/old_medicine = 7,
-		/obj/item/weapon/ore/strangerock = 3,
+		/obj/item/weapon/strangerock = 3,
 		/obj/item/weapon/ore/phoron = 7,
 		/obj/random/handgun = 1,
 		/obj/random/toolbox = 4,

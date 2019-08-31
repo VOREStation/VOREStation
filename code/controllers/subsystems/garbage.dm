@@ -240,9 +240,9 @@ SUBSYSTEM_DEF(garbage)
 		time = TICK_DELTA_TO_MS(tick)/100
 	if (time > highest_del_time)
 		highest_del_time = time
-	if (time > 10)
-		log_game("Error: [type]([refID]) took longer than 1 second to delete (took [time/10] seconds to delete)")
-		message_admins("Error: [type]([refID]) took longer than 1 second to delete (took [time/10] seconds to delete).")
+	if (time > 20) //VOREStation Edit
+		log_game("Error: [type]([refID]) took longer than 2 seconds to delete (took [time/10] seconds to delete)") //VOREStation Edit
+		message_admins("Error: [type]([refID]) took longer than 2 seconds to delete (took [time/10] seconds to delete).") //VOREStation Edit
 		postpone(time)
 
 /datum/controller/subsystem/garbage/proc/HardQueue(datum/D)

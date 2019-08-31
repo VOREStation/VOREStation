@@ -438,7 +438,7 @@ var/list/name_to_material
 // Very rare alloy that is reflective, should be used sparingly.
 /material/durasteel
 	name = "durasteel"
-	stack_type = /obj/item/stack/material/durasteel
+	stack_type = /obj/item/stack/material/durasteel/hull
 	integrity = 600
 	melting_point = 7000
 	icon_base = "metal"
@@ -460,6 +460,9 @@ var/list/name_to_material
 	explosion_resistance = 90
 	reflectivity = 0.9
 
+/material/durasteel/hull/place_sheet(var/turf/target) //Deconstructed into normal durasteel sheets.
+	new /obj/item/stack/material/durasteel(target)
+
 /material/plasteel/titanium
 	name = MAT_TITANIUM
 	stack_type = /obj/item/stack/material/titanium
@@ -474,6 +477,9 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/titanium/hull
 	icon_base = "hull"
 	icon_reinf = "reinf_mesh"
+
+/material/plasteel/titanium/hull/place_sheet(var/turf/target) //Deconstructed into normal titanium sheets.
+	new /obj/item/stack/material/titanium(target)
 
 /material/glass
 	name = "glass"

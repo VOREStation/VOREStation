@@ -22222,9 +22222,6 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled,
 /area/engineering/engine_eva)
-"cbM" = (
-/turf/simulated/mineral/vacuum,
-/area/space)
 "cbY" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -26857,8 +26854,8 @@ aac
 aac
 aac
 aac
-cbM
-cbM
+aac
+aac
 ayp
 ayp
 ayp
