@@ -4432,9 +4432,6 @@
 /area/tether/exploration/crew)
 "gC" = (
 /obj/item/weapon/stool/padded,
-/obj/item/weapon/paper{
-	pixel_y = 31
-	},
 /turf/simulated/mineral/floor/vacuum,
 /area/mine/explored/upper_level)
 "gD" = (
@@ -7756,9 +7753,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/table/steel,
-/obj/item/weapon/paper{
-	pixel_y = 31
-	},
+/obj/item/weapon/paper,
 /obj/item/weapon/pen/blue{
 	pixel_x = 5;
 	pixel_y = 5
@@ -15385,24 +15380,18 @@
 /area/medical/morgue)
 "xy" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/weapon/paper{
-	pixel_y = 31
-	},
+/obj/item/weapon/paper,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
 "xz" = (
-/obj/item/weapon/paper{
-	pixel_y = 31
-	},
+/obj/item/weapon/paper,
 /obj/effect/rune,
 /obj/effect/decal/cleanable/blood,
 /obj/random/maintenance/engineering,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
 "xA" = (
-/obj/item/weapon/paper{
-	pixel_y = 31
-	},
+/obj/item/weapon/paper,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
 "xB" = (
