@@ -843,7 +843,7 @@
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "holdoutkill"
 	item_state = null
-	var/phase_power = 100
+	phase_power = 100
 
 	w_class = ITEMSIZE_SMALL
 	charge_cost = 600
