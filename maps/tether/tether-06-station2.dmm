@@ -7211,6 +7211,7 @@
 "kC" = (
 /obj/item/weapon/material/twohanded/spear/foam,
 /obj/item/weapon/storage/mre/menu12{
+	desc = "Special food for special warriors of the expedition force.";
 	name = "spearman MRE"
 	},
 /turf/simulated/floor,
