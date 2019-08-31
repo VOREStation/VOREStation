@@ -513,6 +513,7 @@
 	if(usr.put_in_hands(holding))
 		usr.visible_message("<span class='danger'>\The [usr] pulls a knife out of their boot!</span>")
 		holding = null
+		overlays -= image(icon, "[icon_state]_knife")
 	else
 		usr << "<span class='warning'>Your need an empty, unbroken hand to do that.</span>"
 		holding.forceMove(src)
@@ -557,7 +558,6 @@
 	update_icon()
 
 /obj/item/clothing/shoes/update_icon()
-	overlays.Cut()
 	if(holding)
 		overlays += image(icon, "[icon_state]_knife")
 	if(ismob(usr))

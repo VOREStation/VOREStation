@@ -41,3 +41,37 @@
 	muzzle_type = /obj/effect/projectile/muzzle/laser_blue
 	tracer_type = /obj/effect/projectile/tracer/laser_blue
 	impact_type = /obj/effect/projectile/impact/laser_blue
+
+/obj/item/projectile/beam/medigun
+	name = "healing beam"
+	icon_state = "healbeam"
+	damage = 0 //stops it damaging walls
+	nodamage = TRUE
+	no_attack_log = TRUE
+	damage_type = BURN
+	check_armour = "laser"
+	light_color = "#80F5FF"
+
+	combustion = FALSE
+
+	muzzle_type = /obj/effect/projectile/muzzle/medigun
+	tracer_type = /obj/effect/projectile/tracer/medigun
+	impact_type = /obj/effect/projectile/impact/medigun
+
+/obj/item/projectile/beam/medigun/on_hit(var/atom/target, var/blocked = 0)
+	if(istype(target, /mob/living/carbon/human))
+		var/mob/living/carbon/human/M = target
+		if(M.health < M.maxHealth)
+			var/obj/effect/overlay/pulse = new /obj/effect/overlay(get_turf(M))
+			pulse.icon = 'icons/effects/effects.dmi'
+			pulse.icon_state = "heal"
+			pulse.name = "heal"
+			pulse.anchored = 1
+			spawn(20)
+				qdel(pulse)
+			to_chat(target, "<span class='notice'>As the beam strikes you, your injuries close up!</span>")
+			M.adjustBruteLoss(-15)
+			M.adjustFireLoss(-15)
+			M.adjustToxLoss(-5)
+			M.adjustOxyLoss(-5)
+	return 1
