@@ -1,8 +1,8 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 #define MUSICIAN_HEARCHECK_MINDELAY 4
-#define INSTRUMENT_MAX_LINE_LENGTH 300
-#define INSTRUMENT_MAX_LINE_NUMBER 50
+#define INSTRUMENT_MAX_LINE_LENGTH 50
+#define INSTRUMENT_MAX_LINE_NUMBER 300
 
 /datum/song
 	var/name = "Untitled"
