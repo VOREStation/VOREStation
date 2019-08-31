@@ -114,7 +114,7 @@
 
 	if(href_list["observe"])
 
-		if(alert(src,"Are you sure you wish to observe? You will have to wait 5 minute before being able to respawn!","Player Setup","Yes","No") == "Yes") //Vorestation edit
+		if(alert(src,"Are you sure you wish to observe? You will have to wait 60 seconds before being able to respawn!","Player Setup","Yes","No") == "Yes") //Vorestation edit - Rykka corrected to 60 seconds to match current spawn time
 			if(!client)	return 1
 
 			//Make a new mannequin quickly, and allow the observer to take the appearance
