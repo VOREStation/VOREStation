@@ -5,8 +5,8 @@
 	head_position = 1
 	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = 6
-	spawn_positions = 4
+	total_positions = 3
+	spawn_positions = 2
 	supervisors = "command staff"
 	selection_color = "#2F2F7F"
 	idtype = /obj/item/weapon/card/id/silver/secretary
