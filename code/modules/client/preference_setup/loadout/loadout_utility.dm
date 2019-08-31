@@ -123,7 +123,7 @@
 	display_name = "implant, tracking"
 	path = /obj/item/weapon/implant/tracking/weak
 	cost = 0 //VOREStation Edit. Changed cost to 0
-/* VOREStation Edit - Make languages great again
+
 /datum/gear/utility/implant/language
 	cost = 2
 	exploitable = 0
@@ -137,7 +137,7 @@
 	display_name = "vocal synthesizer, Skrellian"
 	description = "A surgically implanted vocal synthesizer which allows the owner to speak Common Skrellian, if they know it."
 	path = /obj/item/weapon/implant/language/skrellian
-*/
+
 /datum/gear/utility/pen
 	display_name = "Fountain Pen"
 	path = /obj/item/weapon/pen/fountain

@@ -136,7 +136,7 @@
 
 	if(isrobot(user))
 		return
-	if(!I)
+	if(!I || I.anchored || !I.canremove)
 		return
 
 	user.drop_item()

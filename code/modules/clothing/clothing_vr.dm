@@ -126,9 +126,28 @@
 	return ..()
 
 // Taur suits need to be shifted so its centered on their taur half.
-/obj/item/clothing/suit/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0)
+/obj/item/clothing/suit/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0,var/icon/clip_mask)
 	var/image/standing = ..()
 	if(taurized) //Special snowflake var on suits
 		standing.pixel_x = -16
 		standing.layer = BODY_LAYER + 15 // 15 is above tail layer, so will not be covered by taurbody.
 	return standing
+
+//TFF 5/8/19 - sets Vorestation /obj/item/clothing/under sensor setting default?
+/obj/item/clothing/under
+	sensor_mode = 3
+	var/sensorpref = 5
+
+//TFF 5/8/19 - define numbers and specifics for suit sensor settings
+/obj/item/clothing/under/New(var/mob/living/carbon/human/H)
+	..()
+	sensorpref = isnull(H) ? 1 : (ishuman(H) ? H.sensorpref : 1)
+	switch(sensorpref)
+		if(1) sensor_mode = 0				//Sensors off
+		if(2) sensor_mode = 1				//Sensors on binary
+		if(3) sensor_mode = 2				//Sensors display vitals
+		if(4) sensor_mode = 3				//Sensors display vitals and enables tracking
+		if(5) sensor_mode = pick(0,1,2,3)	//Select a random setting
+		else
+			sensor_mode = pick(0,1,2,3)
+			log_debug("Invalid switch for suit sensors, defaulting to random. [sensorpref] chosen")

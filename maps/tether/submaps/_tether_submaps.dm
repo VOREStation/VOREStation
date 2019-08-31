@@ -149,6 +149,8 @@
 
 
 #include "space/_debrisfield.dm"
+#include "space/pois/_templates.dm"
+#include "space/pois/debrisfield_things.dm"
 /datum/map_template/tether_lateload/away_debrisfield
 	name = "Debris Field - Z1 Space"
 	desc = "The Virgo 3 Debris Field away mission."
@@ -158,7 +160,7 @@
 /datum/map_template/tether_lateload/away_debrisfield/on_map_loaded(z)
 	. = ..()
 	//Commented out until we actually get POIs
-	//seed_submaps(list(Z_LEVEL_DEBRISFIELD), 50, /area/tether_away/debrisfield/space/poi, /datum/map_template/debrisfield)
+	seed_submaps(list(Z_LEVEL_DEBRISFIELD), 200, /area/tether_away/debrisfield/unexplored, /datum/map_template/debrisfield)
 
 /datum/map_z_level/tether_lateload/away_debrisfield
 	name = "Away Mission - Debris Field"

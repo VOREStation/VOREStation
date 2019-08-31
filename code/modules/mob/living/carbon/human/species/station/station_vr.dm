@@ -27,6 +27,9 @@
 	racial tensions which has resulted in more than a number of wars and outright attempts at genocide. Sergals have an incredibly long \
 	lifespan, but due to their lust for violence, only a handful have ever survived beyond the age of 80, such as the infamous and \
 	legendary General Rain Silves who is claimed to have lived to 5000."
+
+	wikilink="https://wiki.vore-station.net/Backstory#Sergal"
+
 	catalogue_data = list(/datum/category_item/catalogue/fauna/sergal)
 
 	primitive_form = "Saru"
@@ -88,6 +91,9 @@
 	allies over the next few hundred years. With the help of Skrellean technology, the Akula had their genome modified to be capable of \
 	surviving in open air for long periods of time. However, Akula even today still require a high humidity environment to avoid drying out \
 	after a few days, which would make life on an arid world like Virgo-Prime nearly impossible if it were not for Skrellean technology to aid them."
+
+	wikilink="https://wiki.vore-station.net/Backstory#Akula"
+
 	catalogue_data = list(/datum/category_item/catalogue/fauna/akula)
 
 	primitive_form = "Sobaka"
@@ -129,6 +135,9 @@
 	intelligence and very skillful hands that are put use for constructing precision instruments, but tire-out fast when repeatedly working \
 	over and over again. Consequently, they struggle to make copies of same things. Both genders have a voice that echoes a lot. Their natural \
 	tone oscillates between tenor and soprano. They are excessively noisy when they quarrel in their native language."
+
+	wikilink="https://wiki.vore-station.net/Backstory#Nevrean"
+
 	catalogue_data = list(/datum/category_item/catalogue/fauna/nevrean)
 
 	primitive_form = "Sparra"
@@ -168,6 +177,8 @@
 	mountainous areas, they have a differing societal structure than the Flatland Zorren having a more feudal social structure, like the Flatland Zorren, \
 	the Highland Zorren have also only recently been hired by the Trans-Stellar Corporations, but thanks to the different social structure they seem to \
 	have adjusted better to their new lives. Though similar fox-like beings have been seen they are different than the Zorren."
+	wikilink="https://wiki.vore-station.net/Zorren"
+
 	catalogue_data = list(/datum/category_item/catalogue/fauna/zorren,
 						/datum/category_item/catalogue/fauna/highzorren)
 
@@ -210,6 +221,8 @@
 	mountainous areas, they have a differing societal structure than the Flatland Zorren having a more feudal social structure, like the Flatland Zorren, \
 	the Highland Zorren have also only recently been hired by the Trans-Stellar Corporations, but thanks to the different social structure they \
 	seem to have adjusted better to their new lives. Though similar fox-like beings have been seen they are different than the Zorren."
+	wikilink="https://wiki.vore-station.net/Zorren"
+
 	catalogue_data = list(/datum/category_item/catalogue/fauna/zorren,
 						/datum/category_item/catalogue/fauna/flatzorren)
 
@@ -254,6 +267,9 @@
 	culture both feared and respected for their scientific breakthroughs. Discovery, loyalty, and utilitarianism dominates their lifestyles \
 	to the degree it can cause conflict with more rigorous and strict authorities. They speak a guttural language known as 'Canilunzt' \
     which has a heavy emphasis on utilizing tail positioning and ear twitches to communicate intent."
+
+	wikilink="https://wiki.vore-station.net/Backstory#Vulpkanin"
+
 	catalogue_data = list(/datum/category_item/catalogue/fauna/vulpkanin)
 
 	primitive_form = "Wolpin"
@@ -288,10 +304,11 @@
 	but there are multiple exceptions. All xenomorph hybrids have had their ability to lay eggs containing facehuggers \
 	removed if they had the ability to, although hybrids that previously contained this ability is extremely rare."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/xenohybrid)
+	// No wiki page for xenohybrids at present
 
 	//primitive_form = "" //None for these guys
 
-	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	blood_color = "#12ff12"
@@ -315,6 +332,7 @@
 	gluttonous = 0
 	inherent_verbs = list(/mob/living/proc/shred_limb)
 	descriptors = list()
+	wikilink="https://wiki.vore-station.net/Unathi"
 
 /datum/species/tajaran
 	spawn_flags = SPECIES_CAN_JOIN
@@ -326,6 +344,7 @@
 	gluttonous = 0 //Moving this here so I don't have to fix this conflict every time polaris glances at station.dm
 	inherent_verbs = list(/mob/living/proc/shred_limb, /mob/living/carbon/human/proc/lick_wounds)
 	heat_discomfort_level = 295 //Prevents heat discomfort spam at 20c
+	wikilink="https://wiki.vore-station.net/Tajaran"
 
 /datum/species/skrell
 	spawn_flags = SPECIES_CAN_JOIN
@@ -335,12 +354,14 @@
 	min_age = 18
 	reagent_tag = null
 	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
+	wikilink="https://wiki.vore-station.net/Skrell"
 
 /datum/species/zaddat
 	spawn_flags = SPECIES_CAN_JOIN
 	min_age = 18
 	gluttonous = 0
 	descriptors = list()
+	// no wiki link exists for Zaddat yet
 
 /datum/species/zaddat/equip_survival_gear(var/mob/living/carbon/human/H)
 	.=..()
@@ -351,20 +372,23 @@
 		H.equip_to_slot_or_del(L, slot_in_backpack)
 
 /datum/species/diona
-	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
 	min_age = 18
+	wikilink="https://wiki.vore-station.net/Diona"
 
 /datum/species/teshari
 	mob_size = MOB_MEDIUM
 	spawn_flags = SPECIES_CAN_JOIN
 	icobase = 'icons/mob/human_races/r_seromi_vr.dmi'
 	deform = 'icons/mob/human_races/r_seromi_vr.dmi'
+	icobase_tail = 1
 	color_mult = 1
 	min_age = 18
 	push_flags = ~HEAVY //Allows them to use micro step code.
 	swap_flags = ~HEAVY
 	gluttonous = 0
 	descriptors = list()
+	wikilink="https://wiki.vore-station.net/Teshari"
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/sonar_ping,
@@ -375,6 +399,7 @@
 
 /datum/species/shapeshifter/promethean
 	spawn_flags = SPECIES_CAN_JOIN
+	wikilink="https://wiki.vore-station.net/Promethean"
 
 /datum/species/human
 	color_mult = 1
@@ -383,10 +408,11 @@
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
 	min_age = 18
 	base_color = "#EECEB3"
+	wikilink="https://wiki.vore-station.net/Human"
 
 /datum/species/vox
 	gluttonous = 0
-	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
 	min_age = 18
 	icobase = 'icons/mob/human_races/r_vox_old.dmi'
 	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
@@ -394,6 +420,7 @@
 	descriptors = list(
 		/datum/mob_descriptor/vox_markings = 0
 		)
+	wikilink="https://wiki.vore-station.net/Vox"
 
 datum/species/harpy
 	name = SPECIES_RAPALA
@@ -418,6 +445,9 @@ datum/species/harpy
 	Sol researchers have commented on them having a very close resemblance to the mythical race called 'Harpies',\
 	who are known for having massive winged arms and talons as feet. They've been clocked at speeds of over 35 miler per hour chasing the planet's many fish-like fauna.\
 	The Rapalan's home-world 'Verita' is a strangely habitable gas giant, while no physical earth exists, there are fertile floating islands orbiting around the planet from past asteroid activity."
+
+	wikilink="https://wiki.vore-station.net/Backstory#Rapala"
+
 	catalogue_data = list(/datum/category_item/catalogue/fauna/rapala)
 
 	spawn_flags = SPECIES_CAN_JOIN

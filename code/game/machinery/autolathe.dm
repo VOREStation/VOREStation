@@ -277,9 +277,13 @@
 
 		//Create the desired item.
 		var/obj/item/I = new making.path(src.loc)
-		if(multiplier > 1 && istype(I, /obj/item/stack))
-			var/obj/item/stack/S = I
-			S.amount = multiplier
+		if(multiplier > 1)
+			if(istype(I, /obj/item/stack))
+				var/obj/item/stack/S = I
+				S.amount = multiplier
+			else
+				for(multiplier; multiplier > 1; --multiplier) // Create multiple items if it's not a stack.
+					new making.path(src.loc)
 
 	updateUsrDialog()
 

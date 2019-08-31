@@ -9,4 +9,4 @@
 #define MAP_LEVEL_XENOARCH_EXEMPT 0x080	// Z-levels exempt from xenoarch digsite generation.
 
 // Misc map defines.
-#define SUBMAP_MAP_EDGE_PAD 15 // Automatically created submaps are forbidden from being this close to the main map's edge.
+#define SUBMAP_MAP_EDGE_PAD 8 // Automatically created submaps are forbidden from being this close to the main map's edge.	//VOREStation Edit

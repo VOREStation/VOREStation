@@ -42,6 +42,10 @@
 	flags |= NOBLUDGEON //No more attack messages
 	files = new /datum/research/techonly(src)
 
+/obj/item/device/dogborg/sleeper/Destroy()
+	go_out()
+	..()
+
 /obj/item/device/dogborg/sleeper/Exit(atom/movable/O)
 	return 0
 

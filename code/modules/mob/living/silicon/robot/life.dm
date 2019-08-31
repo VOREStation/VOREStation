@@ -153,6 +153,7 @@
 
 /mob/living/silicon/robot/handle_regular_hud_updates()
 	var/fullbright = FALSE
+	var/seemeson = FALSE
 	if (src.stat == 2 || (XRAY in mutations) || (src.sight_mode & BORGXRAY))
 		src.sight |= SEE_TURFS
 		src.sight |= SEE_MOBS
@@ -170,6 +171,7 @@
 		src.see_in_dark = 8
 		see_invisible = SEE_INVISIBLE_MINIMUM
 		fullbright = TRUE
+		seemeson = TRUE
 	else if (src.sight_mode & BORGMATERIAL)
 		src.sight |= SEE_OBJS
 		src.see_in_dark = 8
@@ -194,6 +196,7 @@
 		src.see_invisible = SEE_INVISIBLE_LIVING // This is normal vision (25), setting it lower for normal vision means you don't "see" things like darkness since darkness
 							 // has a "invisible" value of 15
 	plane_holder.set_vis(VIS_FULLBRIGHT,fullbright)
+	plane_holder.set_vis(VIS_MESONS,seemeson)
 	..()
 
 	if (src.healths)

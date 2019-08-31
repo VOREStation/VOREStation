@@ -11,6 +11,10 @@ var/list/mining_overlay_cache = list()
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
+	var/rock_side_icon_state = "rock_side"
+	var/sand_icon_state = "asteroid"
+	var/rock_icon_state = "rock"
+	var/random_icon = 0
 	oxygen = 0
 	nitrogen = 0
 	opacity = 1
@@ -54,6 +58,14 @@ var/list/mining_overlay_cache = list()
 
 	has_resources = 1
 
+// Alternative rock wall sprites.
+/turf/simulated/mineral/light
+	icon_state = "rock-light"
+	rock_side_icon_state = "rock_side-light"
+	sand_icon_state = "sand-light"
+	rock_icon_state = "rock-light"
+	random_icon = 1
+
 /turf/simulated/mineral/ignore_mapgen
 	ignore_mapgen = 1
 
@@ -65,6 +77,23 @@ var/list/mining_overlay_cache = list()
 	opacity = 0
 	blocks_air = 0
 	can_build_into_floor = TRUE
+
+//Alternative sand floor sprite.
+turf/simulated/mineral/floor/light
+	icon_state = "sand-light"
+	sand_icon_state = "sand-light"
+
+turf/simulated/mineral/floor/light_border
+	icon_state = "sand-light-border"
+	sand_icon_state = "sand-light-border"
+
+turf/simulated/mineral/floor/light_nub
+	icon_state = "sand-light-nub"
+	sand_icon_state = "sand-light-nub"
+
+turf/simulated/mineral/floor/light_corner
+	icon_state = "sand-light-corner"
+	sand_icon_state = "sand-light-corner"
 
 /turf/simulated/mineral/floor/ignore_mapgen
 	ignore_mapgen = 1
@@ -130,6 +159,9 @@ var/list/mining_overlay_cache = list()
 	update_icon(1)
 	if(density && mineral)
 		. = INITIALIZE_HINT_LATELOAD
+	if(random_icon)
+		dir = pick(alldirs)
+		. = INITIALIZE_HINT_LATELOAD
 
 /turf/simulated/mineral/LateInitialize()
 	if(density && mineral)
@@ -147,13 +179,13 @@ var/list/mining_overlay_cache = list()
 			name = "rock"
 
 		icon = 'icons/turf/walls.dmi'
-		icon_state = "rock"
+		icon_state = rock_icon_state
 
 		//Apply overlays if we should have borders
 		for(var/direction in cardinal)
 			var/turf/T = get_step(src,direction)
 			if(istype(T) && !T.density)
-				add_overlay(get_cached_border("rock_side",direction,icon,"rock_side"))
+				add_overlay(get_cached_border(rock_side_icon_state,direction,icon,rock_side_icon_state))
 
 			if(archaeo_overlay)
 				add_overlay(archaeo_overlay)
@@ -165,7 +197,7 @@ var/list/mining_overlay_cache = list()
 	else
 		name = "sand"
 		icon = 'icons/turf/flooring/asteroid.dmi'
-		icon_state = "asteroid"
+		icon_state = sand_icon_state
 
 		if(sand_dug)
 			add_overlay("dug_overlay")
@@ -179,7 +211,7 @@ var/list/mining_overlay_cache = list()
 			else
 				var/turf/T = get_step(src, direction)
 				if(istype(T) && T.density)
-					add_overlay(get_cached_border("rock_side",direction,'icons/turf/walls.dmi',"rock_side"))
+					add_overlay(get_cached_border(rock_side_icon_state,direction,'icons/turf/walls.dmi',rock_side_icon_state))
 
 		if(overlay_detail)
 			add_overlay('icons/turf/flooring/decals.dmi',overlay_detail)
@@ -559,9 +591,9 @@ var/list/mining_overlay_cache = list()
 	if(is_clean)
 		X = new /obj/item/weapon/archaeological_find(src, new_item_type = F.find_type)
 	else
-		X = new /obj/item/weapon/ore/strangerock(src, inside_item_type = F.find_type)
+		X = new /obj/item/weapon/strangerock(src, inside_item_type = F.find_type)
 		geologic_data.UpdateNearbyArtifactInfo(src)
-		var/obj/item/weapon/ore/strangerock/SR = X
+		var/obj/item/weapon/strangerock/SR = X
 		SR.geologic_data = geologic_data
 
 	//some find types delete the /obj/item/weapon/archaeological_find and replace it with something else, this handles when that happens

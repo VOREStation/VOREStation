@@ -8,76 +8,83 @@ var/global/list/datum/pipe_network/pipe_networks = list()	// TODO - Move into SS
 	var/list/datum/pipeline/line_members = list()
 		//membership roster to go through for updates and what not
 
+	var/list/leaks = list()
+
 	var/update = 1
 	//var/datum/gas_mixture/air_transient = null
 
-	Destroy()
-		STOP_PROCESSING_PIPENET(src)
-		for(var/datum/pipeline/line_member in line_members)
-			line_member.network = null
-		for(var/obj/machinery/atmospherics/normal_member in normal_members)
-			normal_member.reassign_network(src, null)
-		gases.Cut()  // Do not qdel the gases, we don't own them
-		return ..()
+/datum/pipe_network/Destroy()
+	STOP_PROCESSING_PIPENET(src)
+	for(var/datum/pipeline/line_member in line_members)
+		line_member.network = null
+	for(var/obj/machinery/atmospherics/normal_member in normal_members)
+		normal_member.reassign_network(src, null)
+	gases.Cut()  // Do not qdel the gases, we don't own them
+	leaks.Cut()
+	return ..()
 
-	process()
-		//Equalize gases amongst pipe if called for
-		if(update)
-			update = 0
-			reconcile_air() //equalize_gases(gases)
+/datum/pipe_network/process()
+	//Equalize gases amongst pipe if called for
+	if(update)
+		update = 0
+		reconcile_air() //equalize_gases(gases)
 
-		//Give pipelines their process call for pressure checking and what not. Have to remove pressure checks for the time being as pipes dont radiate heat - Mport
-		//for(var/datum/pipeline/line_member in line_members)
-		//	line_member.process()
+	listclearnulls(leaks) // Let's not have forever-seals.
 
-	proc/build_network(obj/machinery/atmospherics/start_normal, obj/machinery/atmospherics/reference)
-		//Purpose: Generate membership roster
-		//Notes: Assuming that members will add themselves to appropriate roster in network_expand()
+	//Give pipelines their process call for pressure checking and what not. Have to remove pressure checks for the time being as pipes dont radiate heat - Mport
+	//for(var/datum/pipeline/line_member in line_members)
+	//	line_member.process()
 
-		if(!start_normal)
-			qdel(src)
-			return
+/datum/pipe_network/proc/build_network(obj/machinery/atmospherics/start_normal, obj/machinery/atmospherics/reference)
+	//Purpose: Generate membership roster
+	//Notes: Assuming that members will add themselves to appropriate roster in network_expand()
 
-		start_normal.network_expand(src, reference)
+	if(!start_normal)
+		qdel(src)
+		return
 
-		update_network_gases()
+	start_normal.network_expand(src, reference)
 
-		if((normal_members.len>0)||(line_members.len>0))
-			START_PROCESSING_PIPENET(src)
-		else
-			qdel(src)
+	update_network_gases()
 
-	proc/merge(datum/pipe_network/giver)
-		if(giver==src) return 0
+	if((normal_members.len>0)||(line_members.len>0))
+		START_PROCESSING_PIPENET(src)
+	else
+		qdel(src)
 
-		normal_members |= giver.normal_members
+/datum/pipe_network/proc/merge(datum/pipe_network/giver)
+	if(giver==src) return 0
 
-		line_members |= giver.line_members
+	normal_members |= giver.normal_members
 
-		for(var/obj/machinery/atmospherics/normal_member in giver.normal_members)
-			normal_member.reassign_network(giver, src)
+	line_members |= giver.line_members
 
-		for(var/datum/pipeline/line_member in giver.line_members)
-			line_member.network = src
+	leaks |= giver.leaks
 
-		update_network_gases()
-		return 1
+	for(var/obj/machinery/atmospherics/normal_member in giver.normal_members)
+		normal_member.reassign_network(giver, src)
 
-	proc/update_network_gases()
-		//Go through membership roster and make sure gases is up to date
+	for(var/datum/pipeline/line_member in giver.line_members)
+		line_member.network = src
 
-		gases = list()
-		volume = 0
+	update_network_gases()
+	return 1
 
-		for(var/obj/machinery/atmospherics/normal_member in normal_members)
-			var/result = normal_member.return_network_air(src)
-			if(result) gases += result
+/datum/pipe_network/proc/update_network_gases()
+	//Go through membership roster and make sure gases is up to date
 
-		for(var/datum/pipeline/line_member in line_members)
-			gases += line_member.air
+	gases = list()
+	volume = 0
 
-		for(var/datum/gas_mixture/air in gases)
-			volume += air.volume
+	for(var/obj/machinery/atmospherics/normal_member in normal_members)
+		var/result = normal_member.return_network_air(src)
+		if(result) gases += result
 
-	proc/reconcile_air()
-		equalize_gases(gases)
+	for(var/datum/pipeline/line_member in line_members)
+		gases += line_member.air
+
+	for(var/datum/gas_mixture/air in gases)
+		volume += air.volume
+
+/datum/pipe_network/proc/reconcile_air()
+	equalize_gases(gases)

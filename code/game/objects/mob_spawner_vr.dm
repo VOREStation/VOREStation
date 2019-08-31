@@ -84,7 +84,7 @@
 	if(destructible)
 		take_damage(Proj.get_structure_damage())
 
-/obj/structure/mob_spawner/proc/take_damage(var/damage)
+/obj/structure/mob_spawner/take_damage(var/damage)
 	health -= damage
 	if(health <= 0)
 		visible_message("<span class='warning'>\The [src] breaks apart!</span>")

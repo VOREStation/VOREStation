@@ -43,7 +43,20 @@
 	faction = "syndicate"
 
 /mob/living/simple_mob/mechanical/ward/monitor/crew
-	faction = "neutral"
+	icon_state = "ward-nt"
+
+/mob/living/simple_mob/mechanical/ward/monitor/crew/attackby(var/obj/item/O as obj, var/mob/user as mob)
+	if(istype(O, /obj/item/weapon/card/id) && !owner)
+		owner = user
+		return
+	..()
+
+/mob/living/simple_mob/mechanical/ward/monitor/crew/IIsAlly(mob/living/L)
+	. = ..()
+	if(!.)
+		if(isrobot(L)) // They ignore synths.
+			return TRUE
+		return L.assess_perp(src, FALSE, FALSE, TRUE, FALSE) <= 3
 
 /mob/living/simple_mob/mechanical/ward/monitor/death()
 	if(owner)
@@ -55,10 +68,10 @@
 
 /mob/living/simple_mob/mechanical/ward/monitor/update_icon()
 	if(seen_mobs.len)
-		icon_living = "ward_spotted"
+		icon_living = "[initial(icon_state)]_spotted"
 		glow_color = "#FF0000"
 	else
-		icon_living = "ward"
+		icon_living = "[initial(icon_state)]"
 		glow_color = "#00FF00"
 	handle_light() // Update the light immediately.
 	..()

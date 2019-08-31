@@ -2,7 +2,7 @@
 	name = "viral outbreak"
 	departments = list(ROLE_MEDICAL, ROLE_EVERYONE)
 	chaotic = 30
-	var/severity = 1
+	severity = 1
 	var/list/candidates = list()
 
 /datum/gm_action/viral_outbreak/set_up()

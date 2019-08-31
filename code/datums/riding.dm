@@ -101,7 +101,7 @@
 	if(keycheck(user))
 		if(!Process_Spacemove(direction) || !isturf(ridden.loc))
 			return
-		step(ridden, direction)
+		ridden.Move(get_step(ridden, direction))
 
 		handle_vehicle_layer()
 		handle_vehicle_offsets()

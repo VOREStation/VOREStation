@@ -693,9 +693,6 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "rig-hos_mob"
 
-	//Slightly improved security voidsuit, which when made, was:
-	//armor = list(melee = 50, bullet = 25, laser = 25, energy = 5, bomb = 45, bio = 100, rad = 10)
-	armor = list("melee" = 60, "bullet" = 35, "laser" = 35, "energy" = 15, "bomb" = 50, "bio" = 100, "rad" = 10)
 	species_restricted = null
 
 //HOS Hardsuit Helmet
@@ -709,7 +706,6 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "rig0-hos_mob"
 
-	armor = list("melee" = 60, "bullet" = 35, "laser" = 35, "energy" = 15, "bomb" = 50, "bio" = 100, "rad" = 10)
 	species_restricted = null
 
 //adk09:Lethe
@@ -1849,3 +1845,20 @@ Departamental Swimsuits, for general use
 	item_state = "goldenstring"
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_TIE
+
+//Chaoko99: Aika Hisakawa
+/obj/item/clothing/suit/fluff/blue_trimmed_coat
+	name = "blue-trimmed greatcoat"
+	desc = "A heavy, form-obscuring coat with gilded buttons and azure trim."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "aika_coat"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "aika_coat_mob"
+	flags_inv = HIDEJUMPSUIT | HIDETIE
+
+	item_icons = list(
+		slot_l_hand_str = 'icons/vore/custom_clothes_vr.dmi',
+		slot_r_hand_str = 'icons/vore/custom_clothes_vr.dmi',
+		)
+	item_state_slots = list(slot_r_hand_str = "aika_coat_mob_r", slot_l_hand_str = "aika_coat_mob_l")

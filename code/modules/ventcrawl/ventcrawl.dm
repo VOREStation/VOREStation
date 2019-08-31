@@ -18,6 +18,7 @@ var/list/ventcrawl_machinery = list(
 /mob/living/var/list/icon/pipes_shown = list()
 /mob/living/var/last_played_vent
 /mob/living/var/is_ventcrawling = 0
+/mob/living/var/prepping_to_ventcrawl = 0
 /mob/var/next_play_vent = 0
 
 /mob/living/proc/can_ventcrawl()
@@ -106,7 +107,7 @@ var/list/ventcrawl_machinery = list(
 /mob/living/var/ventcrawl_layer = 3
 
 /mob/living/proc/handle_ventcrawl(var/atom/clicked_on)
-	if(!can_ventcrawl())
+	if(!can_ventcrawl() || prepping_to_ventcrawl)
 		return
 
 	var/obj/machinery/atmospherics/unary/vent_found
@@ -153,6 +154,9 @@ var/list/ventcrawl_machinery = list(
 						to_chat(src, "<span class='danger'>You feel a roaring wind pushing you away from the vent!</span>")
 
 			fade_towards(vent_found,45)
+			prepping_to_ventcrawl = 1
+			spawn(50)
+				prepping_to_ventcrawl = 0
 			if(!do_after(src, 45, vent_found, 1, 1))
 				return
 			if(!can_ventcrawl())

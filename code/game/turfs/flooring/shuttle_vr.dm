@@ -8,3 +8,8 @@
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
+
+/turf/simulated/shuttle/floor/white/airless
+	oxygen = 0
+	nitrogen = 0
+	temperature = TCMB

@@ -47,6 +47,12 @@ obj/var/contaminated = 0
 		return 0
 	else if(istype(src,/obj/item/weapon/storage/backpack))
 		return 0 //Cannot be washed :(
+	//VOREStation Addition start
+	else if(isbelly(loc))
+		return 0
+	else if(ismob(loc) && isbelly(loc.loc))
+		return 0
+	//VOREStation Addition end
 	else if(istype(src,/obj/item/clothing))
 		return 1
 

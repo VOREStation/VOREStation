@@ -34,11 +34,18 @@
 		var/turf/aimloc = targloc
 		if(deviation)
 			aimloc = locate(targloc.x+GaussRandRound(deviation,1),targloc.y+GaussRandRound(deviation,1),targloc.z)
-		if(!aimloc || aimloc == curloc)
+		if(!aimloc || aimloc == curloc || (locs && aimloc in locs))
 			break
 		playsound(chassis, fire_sound, fire_volume, 1)
 		projectiles--
-		var/P = new projectile(curloc)
+		var/turf/projectile_turf
+		if(chassis.locs && chassis.locs.len)	// Multi tile.
+			for(var/turf/Tloc in chassis.locs)
+				if(get_dist(Tloc, aimloc) < get_dist(loc, aimloc))
+					projectile_turf = get_turf(Tloc)
+		if(!projectile_turf)
+			projectile_turf = get_turf(curloc)
+		var/P = new projectile(projectile_turf)
 		Fire(P, target, params)
 		if(i == 1)
 			set_ready_state(0)
@@ -61,11 +68,14 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/Fire(atom/A, atom/target, params)
-	var/obj/item/projectile/P = A
-	P.dispersion = deviation
-	process_accuracy(P, chassis.occupant, target)
-	P.preparePixelProjectile(target, chassis.occupant, params)
-	P.fire()
+	if(istype(A, /obj/item/projectile))	// Sanity.
+		var/obj/item/projectile/P = A
+		P.dispersion = deviation
+		process_accuracy(P, chassis.occupant, target)
+		P.launch_projectile_from_turf(target, chassis.occupant.zone_sel.selecting, chassis.occupant, params)
+	else if(istype(A, /atom/movable))
+		var/atom/movable/AM = A
+		AM.throw_at(target, 7, 1, chassis)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/process_accuracy(obj/projectile, mob/living/user, atom/target)
 	var/obj/item/projectile/P = projectile
@@ -416,6 +426,7 @@
 	var/heavy_blast = 1
 	var/light_blast = 2
 	var/flash_blast = 4
+	does_spin = FALSE	// No fun corkscrew missiles.
 
 /obj/item/missile/proc/warhead_special(var/target)
 	explosion(target, devastation, heavy_blast, light_blast, flash_blast)

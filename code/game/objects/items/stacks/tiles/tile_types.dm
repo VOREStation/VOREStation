@@ -203,3 +203,11 @@
 	singular_name = "roofing"
 	desc = "A section of roofing material. You can use it to repair the ceiling, or expand it."
 	icon_state = "techtile_grid"
+
+/obj/item/stack/tile/roofing/cyborg
+	name = "roofing synthesizer"
+	desc = "A device that makes roofing tiles."
+	uses_charge = 1
+	charge_costs = list(250)
+	stacktype = /obj/item/stack/tile/roofing
+	build_type = /obj/item/stack/tile/roofing

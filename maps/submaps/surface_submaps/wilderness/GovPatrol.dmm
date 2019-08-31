@@ -25,7 +25,7 @@
 /turf/template_noop,
 /area/submap/GovPatrol)
 "h" = (
-/obj/item/clothing/under/utility/sifguard,
+/obj/item/clothing/under/solgov/utility/sifguard,
 /obj/item/clothing/shoes/boots/jackboots,
 /obj/effect/decal/remains,
 /turf/template_noop,

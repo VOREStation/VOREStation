@@ -58,3 +58,10 @@
 			to_chat(M, "<span class='warning'>You slide across the ice!</span>")
 		M.SetStunned(1)
 		step(M,M.dir)
+
+// Ice that is used for, say, areas floating on water or similar.
+/turf/simulated/floor/outdoors/shelfice
+	name = "ice"
+	icon_state = "ice"
+	desc = "Looks slippery."
+	movement_cost = 4

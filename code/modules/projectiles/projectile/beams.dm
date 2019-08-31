@@ -63,7 +63,7 @@
 	icon_state = "emitter"
 	fire_sound = 'sound/weapons/emitter.ogg'
 	light_color = "#00CC33"
-	excavation_amount = 70 // 3 shots to mine a turf
+	excavation_amount = 140	// 2 shots to dig a standard rock turf. Superior due to being a mounted tool beam, to make it actually viable.
 
 	muzzle_type = /obj/effect/projectile/muzzle/emitter
 	tracer_type = /obj/effect/projectile/tracer/emitter
@@ -89,6 +89,7 @@
 /obj/item/projectile/beam/cyan
 	name = "cyan beam"
 	icon_state = "cyan"
+	fire_sound = 'sound/weapons/eluger.ogg'
 	damage = 40
 	light_color = "#00C6FF"
 
@@ -125,62 +126,52 @@
 	tracer_type = /obj/effect/projectile/tracer/emitter
 	impact_type = /obj/effect/projectile/impact/emitter
 
-/obj/item/projectile/beam/lastertag/blue
+/obj/item/projectile/beam/lasertag
 	name = "lasertag beam"
-	icon_state = "bluelaser"
 	damage = 0
+	eyeblur = 0
 	no_attack_log = 1
 	damage_type = BURN
 	check_armour = "laser"
-	light_color = "#0066FF"
 
 	combustion = FALSE
+
+/obj/item/projectile/beam/lasertag/blue
+	icon_state = "bluelaser"
+	light_color = "#0066FF"
 
 	muzzle_type = /obj/effect/projectile/muzzle/laser_blue
 	tracer_type = /obj/effect/projectile/tracer/laser_blue
 	impact_type = /obj/effect/projectile/impact/laser_blue
 
-/obj/item/projectile/beam/lastertag/blue/on_hit(var/atom/target, var/blocked = 0)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/lasertag/blue/on_hit(var/atom/target, var/blocked = 0)
+	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
 			M.Weaken(5)
 	return 1
 
-/obj/item/projectile/beam/lastertag/red
-	name = "lasertag beam"
+/obj/item/projectile/beam/lasertag/red
 	icon_state = "laser"
-	damage = 0
-	no_attack_log = 1
-	damage_type = BURN
-	check_armour = "laser"
 	light_color = "#FF0D00"
 
-	combustion = FALSE
-
-/obj/item/projectile/beam/lastertag/red/on_hit(var/atom/target, var/blocked = 0)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/lasertag/red/on_hit(var/atom/target, var/blocked = 0)
+	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
 			M.Weaken(5)
 	return 1
 
-/obj/item/projectile/beam/lastertag/omni//A laser tag bolt that stuns EVERYONE
-	name = "lasertag beam"
+/obj/item/projectile/beam/lasertag/omni//A laser tag bolt that stuns EVERYONE
 	icon_state = "omnilaser"
-	damage = 0
-	damage_type = BURN
-	check_armour = "laser"
 	light_color = "#00C6FF"
-
-	combustion = FALSE
 
 	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
 	tracer_type = /obj/effect/projectile/tracer/laser_omni
 	impact_type = /obj/effect/projectile/impact/laser_omni
 
-/obj/item/projectile/beam/lastertag/omni/on_hit(var/atom/target, var/blocked = 0)
-	if(istype(target, /mob/living/carbon/human))
+/obj/item/projectile/beam/lasertag/omni/on_hit(var/atom/target, var/blocked = 0)
+	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		if((istype(M.wear_suit, /obj/item/clothing/suit/bluetag))||(istype(M.wear_suit, /obj/item/clothing/suit/redtag)))
 			M.Weaken(5)
@@ -223,3 +214,16 @@
 	name = "stun beam"
 	icon_state = "stun"
 	agony = 30
+
+/obj/item/projectile/beam/shock
+	name = "shock beam"
+	icon_state = "lightning"
+	damage_type = ELECTROCUTE
+
+	muzzle_type = /obj/effect/projectile/muzzle/lightning
+	tracer_type = /obj/effect/projectile/tracer/lightning
+	impact_type = /obj/effect/projectile/impact/lightning
+
+	damage = 30
+	agony = 15
+	eyeblur = 2

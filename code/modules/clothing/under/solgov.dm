@@ -1,7 +1,18 @@
 //SolGov Uniforms
 
+//Master
+/obj/item/clothing/under/solgov
+	name = "master solgov uniform"
+	desc = "You shouldn't be seeing this."
+	icon = 'icons/obj/clothing/uniforms_solgov.dmi'
+	rolled_down = 0
+	rolled_sleeves = 0
+	item_icons = list(slot_w_uniform_str = 'icons/mob/uniform_solgov.dmi')
+	armor = list(melee = 5, bullet = 0, laser = 5, energy = 5, bomb = 0, bio = 5, rad = 5)
+	siemens_coefficient = 0.8
+
 //PT
-/obj/item/clothing/under/pt
+/obj/item/clothing/under/solgov/pt
 	name = "pt uniform"
 	desc = "Shorts! Shirt! Miami! Sexy!"
 	icon_state = "miami"
@@ -10,19 +21,19 @@
 	siemens_coefficient = 0.9
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
-/obj/item/clothing/under/pt/sifguard
+/obj/item/clothing/under/solgov/pt/sifguard
 	name = "\improper SifGuard pt uniform"
 	desc = "A baggy shirt bearing the seal of the Sif Defense Force and some dorky looking blue shorts."
 	icon_state = "expeditionpt"
 	worn_state = "expeditionpt"
 
-/obj/item/clothing/under/pt/fleet
+/obj/item/clothing/under/solgov/pt/fleet
 	name = "fleet pt uniform"
 	desc = "A pair of black shorts and two tank tops, seems impractical. Looks good though."
 	icon_state = "fleetpt"
 	worn_state = "fleetpt"
 
-/obj/item/clothing/under/pt/marine
+/obj/item/clothing/under/solgov/pt/marine
 	name = "marine pt uniform"
 	desc = "Does NOT leave much to the imagination."
 	icon_state = "marinept"
@@ -53,63 +64,62 @@
 	worn_state = "greyutility"
 
 //Here's the real ones
-/obj/item/clothing/under/utility/sifguard
+/obj/item/clothing/under/solgov/utility/sifguard
 	name = "\improper SifGuard uniform"
 	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has silver trim."
 	icon_state = "blackutility_crew"
 	worn_state = "blackutility_crew"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 10)
 
-/obj/item/clothing/under/utility/sifguard/medical
-	name = "\improper SifGuard medical uniform"
-	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has silver trim and blue blazes."
-	icon_state = "blackutility_med"
-	worn_state = "blackutility_med"
+/obj/item/clothing/under/solgov/utility/sifguard/command
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/command)
 
-/obj/item/clothing/under/utility/sifguard/medical/command
-	name = "\improper SifGuard medical command uniform"
-	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has gold trim and blue blazes."
-	icon_state = "blackutility_medcom"
-	worn_state = "blackutility_medcom"
+/obj/item/clothing/under/solgov/utility/sifguard/engineering
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/engineering)
 
-/obj/item/clothing/under/utility/sifguard/engineering
-	name = "\improper SifGuard engineering uniform"
-	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has silver trim and organge blazes."
-	icon_state = "blackutility_eng"
-	worn_state = "blackutility_eng"
+/obj/item/clothing/under/solgov/utility/sifguard/security
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/security)
 
-/obj/item/clothing/under/utility/sifguard/engineering/command
-	name = "\improper SifGuard engineering command uniform"
-	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has gold trim and organge blazes."
-	icon_state = "blackutility_engcom"
-	worn_state = "blackutility_engcom"
+/obj/item/clothing/under/solgov/utility/sifguard/medical
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/medical)
 
-/obj/item/clothing/under/utility/sifguard/supply
-	name = "\improper SifGuard supply uniform"
-	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has silver trim and brown blazes."
-	icon_state = "blackutility_sup"
-	worn_state = "blackutility_sup"
+/obj/item/clothing/under/solgov/utility/sifguard/supply
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/supply)
 
-/obj/item/clothing/under/utility/sifguard/security
-	name = "\improper SifGuard security uniform"
-	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has silver trim and red blazes."
-	icon_state = "blackutility_sec"
-	worn_state = "blackutility_sec"
+/obj/item/clothing/under/solgov/utility/sifguard/exploration
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/exploration)
 
-/obj/item/clothing/under/utility/sifguard/security/command
-	name = "\improper SifGuard security command uniform"
-	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has gold trim and red blazes."
-	icon_state = "blackutility_seccom"
-	worn_state = "blackutility_seccom"
+/obj/item/clothing/under/solgov/utility/sifguard/research
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/research)
 
-/obj/item/clothing/under/utility/sifguard/command
-	name = "\improper SifGuard command uniform"
-	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has gold trim and gold blazes."
+/obj/item/clothing/under/solgov/utility/sifguard/officer
+	name = "\improper Sifuard officer's uniform"
+	desc = "The utility uniform of the Sif Defense Force, made from biohazard resistant material. This one has gold trim."
 	icon_state = "blackutility_com"
 	worn_state = "blackutility_com"
 
+/obj/item/clothing/under/solgov/utility/sifguard/officer/command
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/command)
 
-/obj/item/clothing/under/utility/fleet
+/obj/item/clothing/under/solgov/utility/sifguard/officer/engineering
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/engineering)
+
+/obj/item/clothing/under/solgov/utility/sifguard/officer/security
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/security)
+
+/obj/item/clothing/under/solgov/utility/sifguard/officer/medical
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/medical)
+
+/obj/item/clothing/under/solgov/utility/sifguard/officer/supply
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/supply)
+
+/obj/item/clothing/under/solgov/utility/sifguard/officer/exploration
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/exploration)
+
+/obj/item/clothing/under/solgov/utility/sifguard/officer/research
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/research)
+
+/obj/item/clothing/under/solgov/utility/fleet
 	name = "fleet coveralls"
 	desc = "The utility uniform of the SCG Fleet, made from an insulated material."
 	icon_state = "navyutility"
@@ -117,116 +127,96 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 10, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
 
-/obj/item/clothing/under/utility/fleet/medical
-	name = "fleet medical coveralls"
-	desc = "The utility uniform of the SCG Fleet, made from an insulated material. This one has blue cuffs."
-	icon_state = "navyutility_med"
-	worn_state = "navyutility_med"
+/obj/item/clothing/under/solgov/utility/fleet/command
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/command/fleet)
 
-/obj/item/clothing/under/utility/fleet/engineering
-	name = "fleet engineering coveralls"
-	desc = "The utility uniform of the SCG Fleet, made from an insulated material. This one has orange cuffs."
-	icon_state = "navyutility_eng"
-	worn_state = "navyutility_eng"
+/obj/item/clothing/under/solgov/utility/fleet/command/pilot
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/specialty/pilot)
 
-/obj/item/clothing/under/utility/fleet/supply
-	name = "fleet supply coveralls"
-	desc = "The utility uniform of the SCG Fleet, made from an insulated material. This one has brown cuffs."
-	icon_state = "navyutility_sup"
-	worn_state = "navyutility_sup"
+/obj/item/clothing/under/solgov/utility/fleet/engineering
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/engineering/fleet)
 
-/obj/item/clothing/under/utility/fleet/security
-	name = "fleet security coveralls"
-	desc = "The utility uniform of the SCG Fleet, made from an insulated material. This one has red cuffs."
-	icon_state = "navyutility_sec"
-	worn_state = "navyutility_sec"
+/obj/item/clothing/under/solgov/utility/fleet/security
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/security/fleet)
 
-/obj/item/clothing/under/utility/fleet/command
-	name = "fleet command coveralls"
-	desc = "The utility uniform of the SCG Fleet, made from an insulated material. This one has gold cuffs."
-	icon_state = "navyutility_com"
-	worn_state = "navyutility_com"
+/obj/item/clothing/under/solgov/utility/fleet/medical
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/medical/fleet)
+
+/obj/item/clothing/under/solgov/utility/fleet/supply
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/supply/fleet)
+
+/obj/item/clothing/under/solgov/utility/fleet/exploration
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/exploration/fleet)
 
 
-/obj/item/clothing/under/utility/marine
+/obj/item/clothing/under/solgov/utility/marine
 	name = "marine fatigues"
 	desc = "The utility uniform of the SCG Marine Corps, made from durable material."
 	icon_state = "greyutility"
 	worn_state = "greyutility"
 	armor = list(melee = 10, bullet = 0, laser = 10,energy = 0, bomb = 0, bio = 0, rad = 0)
 
-/obj/item/clothing/under/utility/marine/green
+/obj/item/clothing/under/solgov/utility/marine/command
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/command/marine)
+
+/obj/item/clothing/under/solgov/utility/marine/engineering
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/engineering/marine)
+
+/obj/item/clothing/under/solgov/utility/marine/security
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/security/marine)
+
+/obj/item/clothing/under/solgov/utility/marine/medical
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/medical/marine)
+
+/obj/item/clothing/under/solgov/utility/marine/supply
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/supply/marine)
+
+/obj/item/clothing/under/solgov/utility/marine/exploration
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/exploration/marine)
+
+/obj/item/clothing/under/solgov/utility/marine/green
 	name = "green fatigues"
 	desc = "A green version of the SCG marine utility uniform, made from durable material."
 	icon_state = "greenutility"
 	worn_state = "greenutility"
 
-/obj/item/clothing/under/utility/marine/tan
+/obj/item/clothing/under/solgov/utility/marine/tan
 	name = "tan fatigues"
 	desc = "A tan version of the SCG marine utility uniform, made from durable material."
 	icon_state = "tanutility"
 	worn_state = "tanutility"
 
-/obj/item/clothing/under/utility/marine/medical
-	name = "marine medical fatigues"
-	desc = "The utility uniform of the SCG Marine Corps, made from durable material. This one has blue markings."
-	icon_state = "greyutility_med"
-	worn_state = "greyutility_med"
-
-/obj/item/clothing/under/utility/marine/engineering
-	name = "marine engineering fatigues"
-	desc = "The utility uniform of the SCG Marine Corps, made from durable material. This one has orange markings."
-	icon_state = "greyutility_eng"
-	worn_state = "greyutility_eng"
-
-/obj/item/clothing/under/utility/marine/supply
-	name = "marine supply fatigues"
-	desc = "The utility uniform of the SCG Marine Corps, made from durable material. This one has brown markings."
-	icon_state = "greyutility_sup"
-	worn_state = "greyutility_sup"
-
-/obj/item/clothing/under/utility/marine/security
-	name = "marine security fatigues"
-	desc = "The utility uniform of the SCG Marine Corps, made from durable material. This one has red markings."
-	icon_state = "greyutility_sec"
-	worn_state = "greyutility_sec"
-
-/obj/item/clothing/under/utility/marine/command
-	name = "marine command coveralls"
-	desc = "The utility uniform of the SCG Marine Corps, made from durable material. This one has gold markings."
-	icon_state = "greyutility_com"
-	worn_state = "greyutility_com"
-
 //Service
 
-/obj/item/clothing/under/service
+/obj/item/clothing/under/solgov/service
 	name = "service uniform"
 	desc = "A service uniform of some kind."
 	icon_state = "whiteservice"
 	worn_state = "whiteservice"
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list(melee = 5, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 5, rad = 0)
 	siemens_coefficient = 0.9
 
-/obj/item/clothing/under/service/fleet
+/obj/item/clothing/under/solgov/service/fleet
 	name = "fleet service uniform"
 	desc = "The service uniform of the SCG Fleet, made from immaculate white fabric."
 	icon_state = "whiteservice"
 	worn_state = "whiteservice"
 
-/obj/item/clothing/under/service/marine
+/obj/item/clothing/under/solgov/service/marine
 	name = "marine service uniform"
 	desc = "The service uniform of the SCG Marine Corps. Slimming."
 	icon_state = "greenservice"
 	worn_state = "greenservice"
 
-/obj/item/clothing/under/service/marine/command
+/obj/item/clothing/under/solgov/service/marine/command
 	name = "marine command service uniform"
 	desc = "The service uniform of the SCG Marine Corps. Slimming and stylish."
 	icon_state = "greenservice_com"
 	worn_state = "greenservice_com"
 
 //Dress
-/obj/item/clothing/under/mildress
+
+/obj/item/clothing/under/solgov/mildress
 	name = "dress uniform"
 	desc = "A dress uniform of some kind."
 	icon_state = "greydress"
@@ -234,25 +224,71 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 
-/obj/item/clothing/under/mildress/sifguard
+/obj/item/clothing/under/solgov/mildress/sifguard
 	name = "\improper SifGuard dress uniform"
 	desc = "The dress uniform of the Sif Defense Force in silver trim."
-	icon_state = "greydress"
-	worn_state = "greydress"
 
-/obj/item/clothing/under/mildress/sifguard/command
+/obj/item/clothing/under/solgov/mildress/sifguard/command
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/command/service)
+
+/obj/item/clothing/under/solgov/mildress/sifguard/engineering
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/engineering/service)
+
+/obj/item/clothing/under/solgov/mildress/sifguard/security
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/security/service)
+
+/obj/item/clothing/under/solgov/mildress/sifguard/medical
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/medical/service)
+
+/obj/item/clothing/under/solgov/mildress/sifguard/supply
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/supply/service)
+
+/obj/item/clothing/under/solgov/mildress/sifguard/service
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/service/service)
+
+/obj/item/clothing/under/solgov/mildress/sifguard/exploration
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/exploration/service)
+
+/obj/item/clothing/under/solgov/mildress/sifguard/research
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/research/service)
+
+/obj/item/clothing/under/solgov/mildress/sifguard/officer
 	name = "\improper SifGuard command dress uniform"
 	desc = "The dress uniform of the Sif Defense Force in gold trim."
 	icon_state = "greydress_com"
 	worn_state = "greydress_com"
 
-/obj/item/clothing/under/mildress/marine
+/obj/item/clothing/under/solgov/mildress/sifguard/officer/command
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/command/service)
+
+/obj/item/clothing/under/solgov/mildress/sifguard/officer/engineering
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/engineering/service)
+
+/obj/item/clothing/under/solgov/mildress/sifguard/officer/security
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/security/service)
+
+/obj/item/clothing/under/solgov/mildress/sifguard/officer/medical
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/medical/service)
+
+/obj/item/clothing/under/solgov/mildress/sifguard/officer/supply
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/supply/service)
+
+/obj/item/clothing/under/solgov/mildress/sifguard/officer/service
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/service/service)
+
+/obj/item/clothing/under/solgov/mildress/sifguard/officer/exploration
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/exploration/service)
+
+/obj/item/clothing/under/solgov/mildress/sifguard/officer/research
+	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/research/service)
+
+/obj/item/clothing/under/solgov/mildress/marine
 	name = "marine dress uniform"
 	desc = "The dress uniform of the SCG Marine Corps, class given form."
 	icon_state = "blackdress"
 	worn_state = "blackdress"
 
-/obj/item/clothing/under/mildress/marine/command
+/obj/item/clothing/under/solgov/mildress/marine/command
 	name = "marine command dress uniform"
 	desc = "The dress uniform of the SCG Marine Corps, even classier in gold."
 	icon_state = "blackdress_com"

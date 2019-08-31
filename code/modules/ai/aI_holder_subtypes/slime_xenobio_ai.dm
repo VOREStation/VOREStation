@@ -175,9 +175,8 @@
 			if(istype(H.species, /datum/species/monkey)) // istype() is so they'll eat the alien monkeys too.
 				return TRUE // Monkeys are always food (sorry Pun Pun).
 			else if(H.species && H.species.name == SPECIES_PROMETHEAN) // Prometheans are always our friends.
-				if(H in grudges) // Unless they're an ass.
-					return TRUE
-				return FALSE
+				if(!(H in grudges)) // Unless they're an ass.
+					return FALSE
 		if(discipline && !rabid)
 			return FALSE // We're a good slime.
 

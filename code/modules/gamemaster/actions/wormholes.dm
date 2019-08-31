@@ -3,7 +3,7 @@
 	chaotic = 70
 	length = 12 MINUTES
 	departments = list(ROLE_EVERYONE)
-	var/severity = 1
+	severity = 1
 
 /datum/gm_action/wormholes/set_up()	// 1 out of 5 will be full-duration wormholes, meaning up to a minute long.
 	severity = pickweight(list(
