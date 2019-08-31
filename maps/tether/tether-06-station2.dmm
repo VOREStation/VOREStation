@@ -7210,9 +7210,9 @@
 /area/tether/exploration/hallway)
 "kC" = (
 /obj/item/weapon/material/twohanded/spear/foam,
-/obj/item/weapon/storage/fancy/crayons{
+/obj/item/weapon/storage/mre/menu12{
 	desc = "Special food for special warriors of the expedition force.";
-	name = "spearman ration"
+	name = "spearman MRE"
 	},
 /turf/simulated/floor,
 /area/tether/exploration/hallway)

@@ -18,6 +18,10 @@
 	var/mob/living/carbon/human/H = user
 	if(H.gloves)
 		gloves = H.gloves
+		if(!istype(gloves))
+			to_chat(user, "You are unable to wear \the [src] as \the [H.gloves] are in the way.")
+			gloves = null
+			return 0
 		if(gloves.overgloves)
 			to_chat(user, "You are unable to wear \the [src] as \the [H.gloves] are in the way.")
 			gloves = null
