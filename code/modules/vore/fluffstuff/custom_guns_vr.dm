@@ -730,7 +730,7 @@
 	icon_state = "r357"
 	ammo_type = /obj/item/ammo_casing/a44/rubber
 
-//Expedition pistol
+//Expedition Frontier Phaser
 /obj/item/weapon/gun/energy/frontier
 	name = "frontier phaser"
 	desc = "An extraordinarily rugged laser weapon, built to last and requiring effectively no maintenance. Includes a built-in crank charger for recharging away from civilization."
@@ -746,6 +746,7 @@
 	unacidable = 1
 
 	var/recharging = 0
+	var/chargetime = 10
 
 	projectile_type = /obj/item/projectile/beam
 	firemodes = list(
@@ -761,10 +762,10 @@
 	user.visible_message("<span class='notice'>[user] opens \the [src] and starts pumping the handle.</span>", \
 						"<span class='notice'>You open \the [src] and start pumping the handle.</span>")
 	while(recharging)
-		if(!do_after(user, 10, src))
+		if(!do_after(user, chargetime, src, ignore_movement = TRUE)) // <- added chargetime varaible instead of hardcoded, also added an ignore_movement flag. Reload phasers on the fly. Hurrah!
 			break
 		playsound(get_turf(src),'sound/items/change_drill.ogg',25,1)
-		if(power_supply.give(60) < 60)
+		if(power_supply.give(90) < 90) // Rykka Edited - reduces charge time to the ballpark of 30-40 seconds. Slight buff.
 			break
 
 	recharging = 0
@@ -835,13 +836,14 @@
 		return
 	..()
 
-//Expeditionary Holdout Phaser
+//Expeditionary Holdout Phaser Pistol
 /obj/item/weapon/gun/energy/frontier/locked/holdout
 	name = "holdout frontier phaser"
 	desc = "An minaturized weapon designed for the purpose of expeditionary support to defend themselves on the field. Includes a built-in crank charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "holdoutkill"
 	item_state = null
+	chargetime = 5
 
 	w_class = ITEMSIZE_SMALL
 	charge_cost = 600
