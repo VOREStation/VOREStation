@@ -3754,12 +3754,12 @@
 	desc = "Fried, salted lean meat compressed into a cube. Not very appetizing."
 	icon_state = "meatcube"
 	filling_color = "#7a3d11"
-	center_of_mass = "x=16;y=16"
-	bitesize = 3
+	center_of_mass = list("x"=16, "y"=16)
 
 /obj/item/weapon/reagent_containers/food/snacks/meatcube/Initialize()
 	. = ..()
-	reagents.add_reagent(/datum/reagent/nutriment/protein, 15)
+	reagents.add_reagent("protein", 15)
+	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/tastybread
 	name = "bread tube"

@@ -548,6 +548,7 @@
 	desc = "This is a random single MRE."
 	icon = 'icons/obj/food.dmi'
 	icon_state = "mre"
+	drop_get_turf = FALSE
 
 /obj/random/mre/item_to_spawn()
 	return pick(/obj/item/weapon/storage/mre,
@@ -584,7 +585,7 @@
 	icon_state = "pouch"
 	drop_get_turf = FALSE
 
-/obj/random/mre/main/item_to_spawn()
+/obj/random/mre/side/item_to_spawn()
 	return pick(/obj/item/weapon/reagent_containers/food/snacks/tossedsalad,
 				/obj/item/weapon/reagent_containers/food/snacks/boiledrice,
 				/obj/item/weapon/reagent_containers/food/snacks/poppypretzel,
