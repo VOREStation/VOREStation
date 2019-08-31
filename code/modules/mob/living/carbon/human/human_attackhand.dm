@@ -1,4 +1,5 @@
 /mob/living/carbon/human/proc/get_unarmed_attack(var/mob/living/carbon/human/target, var/hit_zone)
+<<<<<<< HEAD
 	// VOREStation Edit - Begin
 	if(nif && nif.flag_check(NIF_C_HARDCLAWS,NIF_FLAGS_COMBAT)){return unarmed_hardclaws}
 	if(src.default_attack && src.default_attack.is_usable(src, target, hit_zone))
@@ -8,6 +9,8 @@
 				return soft_type
 		return src.default_attack
 	// VOREStation Edit - End
+=======
+>>>>>>> 49a8e3b... Merge pull request #6428 from Screemonster/icastfist
 	if(src.gloves)
 		var/obj/item/clothing/gloves/G = src.gloves
 		if(istype(G) && G.special_attack && G.special_attack.is_usable(src, target, hit_zone))
@@ -126,9 +129,13 @@
 
 			H.do_attack_animation(src)
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+<<<<<<< HEAD
 			//VORESTATION EDIT
 			visible_message("<span class='warning'>[M] has grabbed [src] [(M.zone_sel.selecting == BP_L_HAND || M.zone_sel.selecting == BP_R_HAND)? "by [(gender==FEMALE)? "her" : ((gender==MALE)? "his": "their")] hands": "passively"]!</span>")
 			//VORESTATION END END
+=======
+			visible_message("<span class='warning'>[M] has grabbed [src] passively!</span>")
+>>>>>>> 49a8e3b... Merge pull request #6428 from Screemonster/icastfist
 			return TRUE
 
 		if(I_HURT)
@@ -429,4 +436,8 @@
 		else
 			user.visible_message("\The [user] stops applying pressure to [src]'s [organ.name]!", "You stop applying pressure to [src]'s [organ.name]!")
 
+<<<<<<< HEAD
 	return TRUE 
+=======
+	return TRUE
+>>>>>>> 49a8e3b... Merge pull request #6428 from Screemonster/icastfist
