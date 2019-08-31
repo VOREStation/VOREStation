@@ -148,7 +148,7 @@
 		else
 			var/obj/item/I = build_type
 			cost = initial(I.w_class)
-		if(!build_type in SScircuit.circuit_fabricator_recipe_list[current_category])
+		if(!(build_type in SScircuit.circuit_fabricator_recipe_list[current_category]))
 			return
 
 		if(!debug)

@@ -14,20 +14,22 @@
 	clearance_range = rand(4, 12)
 	dissonance_spread = rand(1500, 2500) / 100
 
-/obj/item/weapon/ore/strangerock
+/obj/item/weapon/strangerock
 	name = "Strange rock"
 	desc = "Seems to have some unusal strata evident throughout it."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "strange"
+	var/datum/geosample/geologic_data
 	origin_tech = list(TECH_MATERIAL = 5)
 
-/obj/item/weapon/ore/strangerock/New(loc, var/inside_item_type = 0)
-	..(loc)
+/obj/item/weapon/strangerock/New(loc, var/inside_item_type = 0)
+	pixel_x = rand(0,16)-8
+	pixel_y = rand(0,8)-8
 
 	if(inside_item_type)
 		new /obj/item/weapon/archaeological_find(src, new_item_type = inside_item_type)
 
-/obj/item/weapon/ore/strangerock/attackby(var/obj/item/I, var/mob/user)
+/obj/item/weapon/strangerock/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/weapon/pickaxe/brush))
 		var/obj/item/inside = locate() in src
 		if(inside)

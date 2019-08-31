@@ -97,6 +97,7 @@
 		/obj/item/clothing/glasses/meson,
 		/obj/item/weapon/cartridge/engineering,
 		/obj/item/taperoll/engineering,
+		/obj/item/clothing/head/hardhat,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering,
 		/obj/item/clothing/shoes/boots/winter/engineering,
 		/obj/item/weapon/tank/emergency/oxygen/engi,
@@ -125,6 +126,7 @@
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
 		/obj/item/clothing/suit/fire/firefighter,
+		/obj/item/clothing/head/hardhat/red,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/extinguisher,
 		///obj/item/clamp,	//VOREStation Removal: without leaks those are pointless,

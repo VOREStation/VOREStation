@@ -171,7 +171,7 @@
 
 /obj/item/weapon/card/id/synthetic/Initialize()
 	. = ..()
-	access = get_all_station_access() + access_synth
+	access = get_all_station_access().Copy() + access_synth
 
 /obj/item/weapon/card/id/centcom
 	name = "\improper CentCom. ID"
@@ -182,7 +182,7 @@
 
 /obj/item/weapon/card/id/centcom/Initialize()
 	. = ..()
-	access = get_all_centcom_access()
+	access = get_all_centcom_access().Copy()
 
 /obj/item/weapon/card/id/centcom/station/Initialize()
 	. = ..()

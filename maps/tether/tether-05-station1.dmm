@@ -17153,7 +17153,7 @@
 /turf/simulated/floor/carpet,
 /area/engineering/foyer)
 "bft" = (
-/obj/machinery/computer/atmos_alert{
+/obj/item/modular_computer/console/preset/command{
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
@@ -22222,9 +22222,6 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled,
 /area/engineering/engine_eva)
-"cbM" = (
-/turf/simulated/mineral/vacuum,
-/area/space)
 "cbY" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -22328,6 +22325,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/bridge_hallway)
+"gkC" = (
+/obj/machinery/status_display,
+/turf/simulated/wall/r_wall,
+/area/bridge)
 "hPi" = (
 /obj/machinery/light/small,
 /turf/simulated/floor,
@@ -26853,8 +26854,8 @@ aac
 aac
 aac
 aac
-cbM
-cbM
+aac
+aac
 ayp
 ayp
 ayp
@@ -31538,7 +31539,7 @@ awy
 awy
 awy
 awy
-awy
+gkC
 awy
 awy
 awy
@@ -32958,7 +32959,7 @@ awA
 awE
 awE
 awy
-awy
+gkC
 boL
 awy
 bqR

@@ -693,9 +693,6 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "rig-hos_mob"
 
-	//Slightly improved security voidsuit, which when made, was:
-	//armor = list(melee = 50, bullet = 25, laser = 25, energy = 5, bomb = 45, bio = 100, rad = 10)
-	armor = list("melee" = 60, "bullet" = 35, "laser" = 35, "energy" = 15, "bomb" = 50, "bio" = 100, "rad" = 10)
 	species_restricted = null
 
 //HOS Hardsuit Helmet
@@ -709,7 +706,6 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "rig0-hos_mob"
 
-	armor = list("melee" = 60, "bullet" = 35, "laser" = 35, "energy" = 15, "bomb" = 50, "bio" = 100, "rad" = 10)
 	species_restricted = null
 
 //adk09:Lethe

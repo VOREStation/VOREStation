@@ -346,7 +346,7 @@
 	desc = "A crate of emergency rations."
 
 	starts_with = list(
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 4)
+		/obj/random/mre = 6)
 
 
 /obj/structure/closet/crate/bin
