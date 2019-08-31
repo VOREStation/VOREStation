@@ -414,18 +414,12 @@
 /area/centcom/specops)
 "aI" = (
 /obj/structure/closet/crate/medical,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -470,6 +464,7 @@
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
 /turf/unsimulated/floor{
 	icon_state = "vault";

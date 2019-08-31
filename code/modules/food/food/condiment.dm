@@ -182,6 +182,198 @@
 	. = ..()
 	reagents.add_reagent("sugar", 20)
 
+//MRE condiments and drinks.
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet
+	icon_state = "packet_small"
+	w_class = ITEMSIZE_TINY
+	possible_transfer_amounts = "1;5;10"
+	amount_per_transfer_from_this = 1
+	volume = 5
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/salt
+	name = "salt packet"
+	desc = "Contains 5u of table salt."
+	icon_state = "packet_small_white"
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/salt/Initialize()
+	. = ..()
+	reagents.add_reagent("sodiumchloride", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/pepper
+	name = "pepper packet"
+	desc = "Contains 5u of black pepper."
+	icon_state = "packet_small_black"
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/salt/Initialize()
+	. = ..()
+	reagents.add_reagent("blackpepper", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/sugar
+	name = "sugar packet"
+	desc = "Contains 5u of refined sugar."
+	icon_state = "packet_small_white"
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/salt/Initialize()
+	. = ..()
+	reagents.add_reagent("sugar", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/jelly
+	name = "jelly packet"
+	desc = "Contains 10u of cherry jelly. Best used for spreading on crackers."
+	icon_state = "packet_medium"
+	volume = 10
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/salt/Initialize()
+	. = ..()
+	reagents.add_reagent("cherryjelly", 10)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/honey
+	name = "honey packet"
+	desc = "Contains 10u of honey."
+	icon_state = "packet_medium"
+	volume = 10
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/salt/Initialize()
+	. = ..()
+	reagents.add_reagent("honey", 10)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/capsaicin
+	name = "hot sauce packet"
+	desc = "Contains 5u of hot sauce. Enjoy in moderation."
+	icon_state = "packet_small_red"
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/salt/Initialize()
+	. = ..()
+	reagents.add_reagent("capsaicin", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/ketchup
+	name = "ketchup packet"
+	desc = "Contains 5u of ketchup."
+	icon_state = "packet_small_red"
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/salt/Initialize()
+	. = ..()
+	reagents.add_reagent("ketchup", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/mayo
+	name = "mayonnaise packet"
+	desc = "Contains 5u of mayonnaise."
+	icon_state = "packet_small_white"
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/salt/Initialize()
+	. = ..()
+	reagents.add_reagent("mayo", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/soy
+	name = "soy sauce packet"
+	desc = "Contains 5u of soy sauce."
+	icon_state = "packet_small_black"
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/salt/Initialize()
+	. = ..()
+	reagents.add_reagent("soysauce", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/coffee
+	name = "coffee powder packet"
+	desc = "Contains 5u of coffee powder. Mix with 25u of water and heat."
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/salt/Initialize()
+	. = ..()
+	reagents.add_reagent("coffeepowder", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/tea
+	name = "tea powder packet"
+	desc = "Contains 5u of black tea powder. Mix with 25u of water and heat."
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/salt/Initialize()
+	. = ..()
+	reagents.add_reagent("tea", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/cocoa
+	name = "cocoa powder packet"
+	desc = "Contains 5u of cocoa powder. Mix with 25u of water and heat."
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/salt/Initialize()
+	. = ..()
+	reagents.add_reagent("coco", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/grape
+	name = "grape juice powder packet"
+	desc = "Contains 5u of powdered grape juice. Mix with 15u of water."
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/salt/Initialize()
+	. = ..()
+	reagents.add_reagent("instantgrape", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/orange
+	name = "orange juice powder packet"
+	desc = "Contains 5u of powdered orange juice. Mix with 15u of water."
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/salt/Initialize()
+	. = ..()
+	reagents.add_reagent("instantorange", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/watermelon
+	name = "watermelon juice powder packet"
+	desc = "Contains 5u of powdered watermelon juice. Mix with 15u of water."
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/salt/Initialize()
+	. = ..()
+	reagents.add_reagent("instantwatermelon", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/apple
+	name = "apple juice powder packet"
+	desc = "Contains 5u of powdered apple juice. Mix with 15u of water."
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/salt/Initialize()
+	. = ..()
+	reagents.add_reagent("instantapple", 5)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein
+	name = "protein powder packet"
+	desc = "Contains 10u of powdered protein. Mix with 20u of water."
+	icon_state = "packet_medium"
+	volume = 10
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/protein/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 10)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/crayon
+	name = "crayon powder packet"
+	desc = "Contains 10u of powdered crayon. Mix with 30u of water."
+	volume = 10
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/crayon/generic/Initialize()
+	. = ..()
+	reagents.add_reagent("crayon_dust", 10)
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/crayon/red/Initialize()
+	. = ..()
+	reagents.add_reagent("crayon_dust_red", 10)
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/crayon/orange/Initialize()
+	. = ..()
+	reagents.add_reagent("crayon_dust_orange", 10)
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/crayon/yellow/Initialize()
+	. = ..()
+	reagents.add_reagent("crayon_dust_yellow", 10)
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/crayon/green/Initialize()
+	. = ..()
+	reagents.add_reagent("crayon_dust_green", 10)
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/crayon/blue/Initialize()
+	. = ..()
+	reagents.add_reagent("crayon_dust_blue", 10)
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/crayon/purple/Initialize()
+	. = ..()
+	reagents.add_reagent("crayon_dust_purple", 10)
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/crayon/grey/Initialize()
+	. = ..()
+	reagents.add_reagent("crayon_dust_grey", 10)
+/obj/item/weapon/reagent_containers/food/condiment/small/packet/crayon/brown/Initialize()
+	. = ..()
+	reagents.add_reagent("crayon_dust_brown", 10)
+
+//End of MRE stuff.
+
 /obj/item/weapon/reagent_containers/food/condiment/flour
 	name = "flour sack"
 	desc = "A big bag of flour. Good for baking!"
