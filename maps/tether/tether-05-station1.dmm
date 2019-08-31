@@ -11111,7 +11111,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
 "aBg" = (
-/obj/structure/flora/pottedplant/stoutbush,
+/obj/structure/closet/secure_closet/engineering_chief,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "aBh" = (
@@ -11210,7 +11210,6 @@
 /turf/simulated/floor/tiled,
 /area/engineering/engine_eva)
 "aBr" = (
-/obj/structure/table/reinforced,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
@@ -11220,6 +11219,7 @@
 /obj/machinery/keycard_auth{
 	pixel_x = -28
 	},
+/obj/machinery/photocopier,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "aBt" = (
@@ -15387,7 +15387,9 @@
 	pixel_x = 25;
 	pixel_y = 0
 	},
-/obj/structure/closet/secure_closet/engineering_chief,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "aTX" = (
@@ -15599,9 +15601,8 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "aVG" = (
-/obj/machinery/light_switch{
-	dir = 1;
-	pixel_y = -24
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
@@ -15932,6 +15933,12 @@
 /area/hallway/station/atrium)
 "aYE" = (
 /obj/structure/table/reinforced,
+/obj/machinery/light_switch{
+	dir = 2;
+	name = "light switch ";
+	pixel_x = 10;
+	pixel_y = 36
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "aYF" = (
@@ -17210,7 +17217,6 @@
 /area/hallway/station/atrium)
 "bfT" = (
 /obj/structure/disposalpipe/segment,
-/mob/living/simple_mob/animal/passive/snake/noodle,
 /turf/simulated/floor/carpet/oracarpet,
 /area/crew_quarters/heads/chief)
 "bfW" = (
@@ -17489,6 +17495,11 @@
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
 	dir = 4
+	},
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
@@ -18976,7 +18987,6 @@
 /turf/simulated/floor/tiled/monotile,
 /area/bridge_hallway)
 "bsO" = (
-/obj/structure/table/reinforced,
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "south bump";
@@ -18986,6 +18996,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/machinery/papershredder,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "bsP" = (
@@ -19002,11 +19013,11 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "bsR" = (
-/obj/structure/flora/pottedplant,
 /obj/machinery/camera/network/command{
 	c_tag = "Head of Personnel Office";
 	dir = 9
 	},
+/obj/structure/table/reinforced,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "bti" = (
@@ -22350,6 +22361,13 @@
 /obj/random/junk,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
+"klO" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/northleft,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/heads/chief)
 "kCH" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -22493,6 +22511,10 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/tether/station/dock_one)
+"vyI" = (
+/mob/living/simple_mob/animal/passive/snake/noodle,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/heads/chief)
 "wlD" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -27979,7 +28001,7 @@ agc
 aRV
 aQh
 aRV
-aRV
+klO
 aVG
 aRb
 bYi
@@ -28122,7 +28144,7 @@ aZg
 aQl
 aSu
 aTW
-aBg
+vyI
 aRb
 bYj
 bYj
