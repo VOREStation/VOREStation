@@ -75,7 +75,7 @@ item_path: /obj/item/device/flashlight/pen/fluff/lynn
 {
 ckey: arokha
 character_name: Aronai Kadigan
-item_path: /obj/item/clothing/under/utility/sifguard/medical/command
+item_path: /obj/item/clothing/under/solgov/utility/sifguard/medical/command
 item_name: centcom medical uniform
 item_desc: A medical uniform straight from Central Command.
 }
