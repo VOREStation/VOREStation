@@ -430,8 +430,4 @@
 		else
 			user.visible_message("\The [user] stops applying pressure to [src]'s [organ.name]!", "You stop applying pressure to [src]'s [organ.name]!")
 
-<<<<<<< HEAD
 	return TRUE 
-=======
-	return TRUE
->>>>>>> 49a8e3b... Merge pull request #6428 from Screemonster/icastfist
