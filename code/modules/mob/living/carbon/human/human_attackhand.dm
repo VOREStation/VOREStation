@@ -126,13 +126,10 @@
 
 			H.do_attack_animation(src)
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-<<<<<<< HEAD
 			//VORESTATION EDIT
 			visible_message("<span class='warning'>[M] has grabbed [src] [(M.zone_sel.selecting == BP_L_HAND || M.zone_sel.selecting == BP_R_HAND)? "by [(gender==FEMALE)? "her" : ((gender==MALE)? "his": "their")] hands": "passively"]!</span>")
 			//VORESTATION END END
-=======
-			visible_message("<span class='warning'>[M] has grabbed [src] passively!</span>")
->>>>>>> 49a8e3b... Merge pull request #6428 from Screemonster/icastfist
+
 			return TRUE
 
 		if(I_HURT)
