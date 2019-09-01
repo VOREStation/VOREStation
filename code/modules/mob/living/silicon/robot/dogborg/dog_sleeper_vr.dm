@@ -19,6 +19,7 @@
 	var/analyzer = FALSE
 	var/decompiler = FALSE
 	var/delivery = FALSE
+	var/ore_breaker = FALSE
 	var/delivery_tag = "Fuel"
 	var/list/deliverylists = list()
 	var/list/deliveryslot_1 = list()

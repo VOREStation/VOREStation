@@ -558,7 +558,7 @@
 /obj/item/weapon/robot_module/robot/orepup
 	name = "Mining Hound Module"
 	sprites = list(
-					"Mining Hound" = "supply",
+					"Mining Hound" = "orepup",
 					)
 	channels = list("Supply" = 1)
 	can_be_pushed = 0
@@ -567,6 +567,7 @@
 	src.modules += new /obj/item/weapon/dogborg/jaws/big(src)
 	src.modules += new /obj/item/device/dogborg/boop_module(src)
 	src.modules += new /obj/item/weapon/dogborg/pounce(src)
+	src.modules += new /obj/item/weapon/pickaxe/borgdrill(src)
 	src.emag 	 = new /obj/item/weapon/gun/energy/laser/mounted(src)
 
 	var/datum/matter_synth/water = new /datum/matter_synth(500)
