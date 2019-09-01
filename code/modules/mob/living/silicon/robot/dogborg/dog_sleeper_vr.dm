@@ -660,7 +660,7 @@
 	startdrain = 100
 	analyzer = TRUE
 
-/obj/item/device/dogborg/sleeper/compactor/decompiler
+/obj/item/device/dogborg/sleeper/compactor/decompiler // Pupdozer gut
 	name = "Matter Decompiler"
 	desc = "A mounted matter decompiling unit with fuel processor."
 	icon_state = "decompiler"
@@ -673,3 +673,10 @@
 	icon_state = "decompiler"
 	max_item_count = 20
 	delivery = TRUE
+
+/obj/item/device/dogborg/sleeper/compactor/ore_breaker // Unfinished R0C gut
+	name = "Ore Breaker"
+	desc = "A mounted ore storage akin to a miner's satchel, with built-in fuel processor, and prototype ore processor."
+	icon_state = "decompiler"
+	max_item_count = 100
+	ore_breaker = TRUE

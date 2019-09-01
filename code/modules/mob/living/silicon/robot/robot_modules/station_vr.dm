@@ -43,6 +43,7 @@
 	robot_modules["Janihound"] = /obj/item/weapon/robot_module/robot/scrubpup
 	robot_modules["Sci-borg"] = /obj/item/weapon/robot_module/robot/science
 	robot_modules["Pupdozer"] = /obj/item/weapon/robot_module/robot/engiedog
+	robot_modules["R-0C Hound"] = /obj/item/weapon/robot_module/robot/orepup
 	return 1
 
 //Just add a new proc with the robot_module type if you wish to run some other vore code
@@ -553,6 +554,49 @@
 	R.verbs |= /mob/living/proc/shred_limb
 	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 	..()
+
+/obj/item/weapon/robot_module/robot/orepup
+	name = "Mining Hound Module"
+	sprites = list(
+					"Mining Hound" = "supply",
+					)
+	channels = list("Supply" = 1)
+	can_be_pushed = 0
+
+/obj/item/weapon/robot_module/robot/orepup/New(var/mob/living/silicon/robot/R)
+	src.modules += new /obj/item/weapon/dogborg/jaws/big(src)
+	src.modules += new /obj/item/device/dogborg/boop_module(src)
+	src.modules += new /obj/item/weapon/dogborg/pounce(src)
+	src.emag 	 = new /obj/item/weapon/gun/energy/laser/mounted(src)
+
+	var/datum/matter_synth/water = new /datum/matter_synth(500)
+	water.name = "Water reserves"
+	water.recharge_rate = 0
+	R.water_res = water
+	synths += water
+
+	var/obj/item/device/dogborg/tongue/T = new /obj/item/device/dogborg/tongue(src)
+	T.water = water
+	src.modules += T
+
+	var/obj/item/device/dogborg/sleeper/compactor/ore_breaker/B = new /obj/item/device/dogborg/sleeper/compactor/ore_breaker(src)
+	B.water = water
+	src.modules += B
+
+	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
+	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
+	R.ui_style_vr = TRUE
+	R.pixel_x 	 = -16
+	R.old_x 	 = -16
+	R.default_pixel_x = -16
+	R.dogborg = TRUE
+	R.wideborg = TRUE
+	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
+	R.verbs |= /mob/living/proc/shred_limb
+	R.verbs |= /mob/living/silicon/robot/proc/rest_style
+	..()
+
 
 /obj/item/weapon/robot_module/Reset(var/mob/living/silicon/robot/R)
 	R.pixel_x = initial(pixel_x)
