@@ -374,3 +374,23 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Security biohazard gear"
 	access = access_security
+
+/datum/supply_pack/security/trackingimplant
+	name = "Implants - Tracking"
+	contains = list(
+			/obj/item/weapon/storage/box/trackimp = 1
+			)
+	cost = 25
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Tracking implants"
+	access = access_security
+
+/datum/supply_pack/security/chemicalimplant
+	name = "Implants - Chemical"
+	contains = list(
+			/obj/item/weapon/storage/box/chemimp = 1
+			)
+	cost = 25
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Chemical implants"
+	access = access_security
