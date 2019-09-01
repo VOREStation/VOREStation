@@ -1,9 +1,8 @@
 /obj/item/clothing/mask/gas
 	name = "gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
-	//icon = 'icons/obj/clothing/masks_vr.dmi' // Vorestation Edit?
 	icon_state = "gas_alt"
-	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT
+	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT | ALLOW_SURVIVALFOOD
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
 	body_parts_covered = FACE|EYES
 	w_class = ITEMSIZE_NORMAL
@@ -84,6 +83,16 @@
 /obj/item/clothing/mask/gas/swat/vox/attack_self(mob/user)
 	feeding_port(user)
 	..()
+
+/obj/item/clothing/mask/gas/zaddat
+	name = "Zaddat Veil"
+	desc = "A clear survival mask used by the Zaddat to filter out harmful nitrogen. Can be connected to an air supply and reconfigured to allow for safe eating."
+	icon_state = "zaddat_mask"
+	item_state = "vax_mask"
+	//body_parts_covered = 0
+	species_restricted = list(SPECIES_ZADDAT)
+	flags_inv = HIDEEARS //semi-transparent
+	filtered_gases = list("phoron", "nitrogen", "sleeping_agent")
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "tactical mask"

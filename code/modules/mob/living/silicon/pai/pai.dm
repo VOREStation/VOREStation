@@ -35,7 +35,8 @@
 		"Fox" = "pai-fox",
 		"Parrot" = "pai-parrot",
 		"Rabbit" = "pai-rabbit",
-		"Bear" = "pai-bear"  //VOREStation Edit
+		"Bear" = "pai-bear",  //VOREStation Edit
+		"Fennec" = "pai-fen" // VOREStation Edit - Rykka
 		)
 
 	var/global/list/possible_say_verbs = list(
@@ -201,7 +202,7 @@
 	medicalActive1 = null
 	medicalActive2 = null
 	medical_cannotfind = 0
-	GLOB.nanomanager.update_uis(src)
+	SSnanoui.update_uis(src)
 	usr << "<span class='notice'>You reset your record-viewing software.</span>"
 
 /mob/living/silicon/pai/cancel_camera()

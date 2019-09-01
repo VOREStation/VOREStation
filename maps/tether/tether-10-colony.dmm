@@ -414,18 +414,12 @@
 /area/centcom/specops)
 "aI" = (
 /obj/structure/closet/crate/medical,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -470,6 +464,7 @@
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
 /turf/unsimulated/floor{
 	icon_state = "vault";
@@ -689,11 +684,11 @@
 "bd" = (
 /obj/structure/table/rack,
 /obj/structure/window/reinforced,
-/obj/item/weapon/gun/projectile/automatic/saber,
-/obj/item/ammo_magazine/m9mmR/saber,
-/obj/item/ammo_magazine/m9mmR/saber,
-/obj/item/ammo_magazine/m9mmR/saber,
-/obj/item/ammo_magazine/m9mmR/saber,
+/obj/item/weapon/gun/projectile/automatic/advanced_smg,
+/obj/item/ammo_magazine/m9mmAdvanced,
+/obj/item/ammo_magazine/m9mmAdvanced,
+/obj/item/ammo_magazine/m9mmAdvanced,
+/obj/item/ammo_magazine/m9mmAdvanced,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -778,21 +773,11 @@
 	})
 "bj" = (
 /obj/structure/table/rack,
-/obj/item/clothing/gloves/swat{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 80, "rad" = 80)
-	},
-/obj/item/clothing/gloves/swat{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 80, "rad" = 80)
-	},
-/obj/item/clothing/gloves/swat{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 80, "rad" = 80)
-	},
-/obj/item/clothing/gloves/swat{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 80, "rad" = 80)
-	},
-/obj/item/clothing/gloves/swat{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 80, "energy" = 80, "bomb" = 80, "bio" = 80, "rad" = 80)
-	},
+/obj/item/clothing/gloves/swat,
+/obj/item/clothing/gloves/swat,
+/obj/item/clothing/gloves/swat,
+/obj/item/clothing/gloves/swat,
+/obj/item/clothing/gloves/swat,
 /obj/item/clothing/shoes/boots/swat,
 /obj/item/clothing/shoes/boots/swat,
 /obj/item/clothing/shoes/boots/swat,
@@ -806,47 +791,36 @@
 /obj/item/clothing/suit/armor/swat,
 /obj/item/clothing/suit/armor/swat,
 /obj/item/clothing/mask/gas/commando{
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 75, "rad" = 0);
 	name = "Commando Mask"
 	},
 /obj/item/clothing/mask/gas/commando{
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 75, "rad" = 0);
 	name = "Commando Mask"
 	},
 /obj/item/clothing/mask/gas/commando{
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 75, "rad" = 0);
 	name = "Commando Mask"
 	},
 /obj/item/clothing/mask/gas/commando{
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 75, "rad" = 0);
 	name = "Commando Mask"
 	},
 /obj/item/clothing/mask/gas/commando{
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 75, "rad" = 0);
 	name = "Commando Mask"
 	},
 /obj/item/clothing/head/helmet/space/deathsquad{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 60, "energy" = 70, "bomb" = 50, "bio" = 100, "rad" = 60);
 	name = "swat helmet"
 	},
 /obj/item/clothing/head/helmet/space/deathsquad{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 60, "energy" = 70, "bomb" = 50, "bio" = 100, "rad" = 60);
 	name = "swat helmet"
 	},
 /obj/item/clothing/head/helmet/space/deathsquad{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 60, "energy" = 70, "bomb" = 50, "bio" = 100, "rad" = 60);
 	name = "swat helmet"
 	},
 /obj/item/clothing/head/helmet/space/deathsquad{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 60, "energy" = 70, "bomb" = 50, "bio" = 100, "rad" = 60);
 	name = "swat helmet"
 	},
 /obj/item/clothing/head/helmet/space/deathsquad{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 60, "energy" = 70, "bomb" = 50, "bio" = 100, "rad" = 60);
 	name = "swat helmet"
 	},
 /obj/item/clothing/head/helmet/space/deathsquad{
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 60, "energy" = 70, "bomb" = 50, "bio" = 100, "rad" = 60);
 	name = "swat helmet"
 	},
 /turf/unsimulated/floor{
@@ -1302,14 +1276,14 @@
 /area/centcom/specops)
 "bW" = (
 /obj/structure/table/reinforced,
-/obj/item/ammo_casing/nsfw_batt/stun,
-/obj/item/ammo_casing/nsfw_batt/stun,
-/obj/item/ammo_casing/nsfw_batt/stun,
-/obj/item/ammo_casing/nsfw_batt,
-/obj/item/ammo_casing/nsfw_batt,
-/obj/item/ammo_casing/nsfw_batt,
-/obj/item/ammo_casing/nsfw_batt/net,
-/obj/item/ammo_casing/nsfw_batt/net,
+/obj/item/ammo_casing/nsfw_batt/combat/stun,
+/obj/item/ammo_casing/nsfw_batt/combat/stun,
+/obj/item/ammo_casing/nsfw_batt/combat/stun,
+/obj/item/ammo_casing/nsfw_batt/medical/brute2,
+/obj/item/ammo_casing/nsfw_batt/medical/burn2,
+/obj/item/ammo_casing/nsfw_batt/medical/stabilize2,
+/obj/item/ammo_casing/nsfw_batt/combat/net,
+/obj/item/ammo_casing/nsfw_batt/combat/net,
 /obj/item/ammo_magazine/nsfw_mag,
 /obj/item/weapon/gun/projectile/nsfw,
 /turf/unsimulated/floor/steel{
@@ -10902,7 +10876,6 @@
 "tO" = (
 /obj/structure/table/steel,
 /obj/item/clothing/shoes/boots/jackboots{
-	armor = list("melee" = 69, "bullet" = 69, "laser" = 69, "energy" = 69, "bomb" = 69, "bio" = 69, "rad" = 69);
 	desc = "This pair of Jackboots look worn and freshly used. They have several claw markings inside and you can read the initials D and M at the bottom";
 	name = "Dhaeleena's Jackboots"
 	},
@@ -16870,6 +16843,24 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Hv" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/station_mid,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
+"HL" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/midpoint,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
+"JB" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/station_low,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
 "JC" = (
 /obj/machinery/power/thermoregulator,
 /turf/unsimulated/floor{
@@ -16882,6 +16873,18 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"JW" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/base_low,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
+"Lb" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/base_high,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
 "Nt" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/unsimulated/floor{
@@ -16894,6 +16897,10 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"QB" = (
+/obj/machinery/washing_machine,
+/turf/unsimulated/floor/steel,
+/area/centcom/evac)
 "Rc" = (
 /obj/structure/table/glass,
 /obj/item/device/defib_kit/compact/loaded,
@@ -16911,6 +16918,18 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Rx" = (
+/obj/machinery/telecomms/relay/preset/centcom/underdark,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
+"Sp" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/station_high,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
 "UC" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/stack/cable_coil,
@@ -16929,6 +16948,12 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Xi" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/base_mid,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
 "XA" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/smes_coil,
@@ -16940,6 +16965,12 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"YM" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/sci_outpost,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/centcom/command)
 
 (1,1,1) = {"
 aa
@@ -23127,8 +23158,8 @@ mQ
 no
 no
 mQ
-oN
-oN
+QB
+QB
 mQ
 no
 no
@@ -34390,7 +34421,7 @@ ac
 nK
 nK
 nK
-nK
+CZ
 nK
 nK
 ac
@@ -34529,12 +34560,12 @@ Cg
 ho
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+JW
+CE
+CE
+JB
+nK
 ac
 ac
 ac
@@ -34671,12 +34702,12 @@ Ch
 Ct
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+Xi
+CE
+CE
+Hv
+nK
 ac
 ac
 ac
@@ -34813,12 +34844,12 @@ Ch
 BW
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+Lb
+CE
+CE
+Sp
+nK
 ac
 ac
 ac
@@ -34955,12 +34986,12 @@ Ch
 Ct
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+CE
+CE
+CE
+YM
+nK
 ac
 ac
 ac
@@ -35097,12 +35128,12 @@ Ch
 BW
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+HL
+CE
+CE
+Rx
+nK
 ac
 ac
 ac
@@ -35239,12 +35270,12 @@ Ch
 Ct
 ho
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+nK
+nK
+nK
+nK
+nK
+nK
 ac
 ac
 ac

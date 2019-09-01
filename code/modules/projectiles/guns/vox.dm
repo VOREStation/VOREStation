@@ -15,16 +15,16 @@
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "spikethrower3"
 	item_state = "spikethrower"
-	fire_sound_text = "a strange noise"
 	fire_sound = 'sound/weapons/bladeslice.ogg'
+	fire_sound_text = "a strange noise"
 
 /obj/item/weapon/gun/launcher/spikethrower/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	last_regen = world.time
 
 /obj/item/weapon/gun/launcher/spikethrower/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/weapon/gun/launcher/spikethrower/process()
@@ -79,9 +79,9 @@
 	damage_type = HALLOSS
 	light_color = "#8837A3"
 
-	muzzle_type = /obj/effect/projectile/darkmatterstun/muzzle
-	tracer_type = /obj/effect/projectile/darkmatterstun/tracer
-	impact_type = /obj/effect/projectile/darkmatterstun/impact
+	muzzle_type = /obj/effect/projectile/muzzle/darkmatterstun
+	tracer_type = /obj/effect/projectile/tracer/darkmatterstun
+	impact_type = /obj/effect/projectile/impact/darkmatterstun
 
 /obj/item/projectile/beam/darkmatter
 	name = "dark matter bolt"
@@ -95,9 +95,9 @@
 
 	embed_chance = 0
 
-	muzzle_type = /obj/effect/projectile/darkmatter/muzzle
-	tracer_type = /obj/effect/projectile/darkmatter/tracer
-	impact_type = /obj/effect/projectile/darkmatter/impact
+	muzzle_type = /obj/effect/projectile/muzzle/darkmatter
+	tracer_type = /obj/effect/projectile/tracer/darkmatter
+	impact_type = /obj/effect/projectile/impact/darkmatter
 
 /obj/item/projectile/energy/darkmatter
 	name = "dark matter pellet"

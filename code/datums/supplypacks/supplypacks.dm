@@ -33,6 +33,7 @@ var/list/all_supply_groups = list("Atmospherics",
 	var/containertype = null
 	var/containername = null
 	var/access = null
+	var/one_access = FALSE
 	var/contraband = 0
 	var/num_contained = 0		//number of items picked to be contained in a /randomised crate
 	var/group = "Miscellaneous"

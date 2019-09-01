@@ -52,7 +52,6 @@
 	name = "cyborg suit"
 	desc = "Suit for a cyborg costume."
 	icon_state = "death"
-	flags = CONDUCT
 	fire_resist = T0C+5200
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
@@ -224,6 +223,8 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 
+	var/resist_time = 4800	// Eight minutes.
+
 /obj/item/clothing/suit/straight_jacket/attack_hand(mob/living/user as mob)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -254,6 +255,11 @@ obj/item/clothing/suit/kimono
 	desc = "A traditional Japanese kimono."
 	icon_state = "kimono"
 	addblends = "kimono_a"
+
+obj/item/clothing/suit/kamishimo
+	name = "kamishimo"
+	desc = "Traditional Japanese menswear."
+	icon_state = "kamishimo"
 
 /*
  * coats
@@ -317,7 +323,7 @@ obj/item/clothing/suit/kimono
 	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
 	flags_inv = HIDEHOLSTER
 
-obj/item/clothing/suit/storage/toggle/peacoat
+/obj/item/clothing/suit/storage/toggle/peacoat
 	name = "peacoat"
 	desc = "A well-tailored, stylish peacoat."
 	icon_state = "peacoat"
@@ -332,6 +338,14 @@ obj/item/clothing/suit/storage/toggle/peacoat
 	blood_overlay_type = "coat"
 	allowed = list(/obj/item/weapon/tank/emergency/oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter)
 	flags_inv = HIDEHOLSTER
+
+/obj/item/clothing/suit/storage/toggle/cardigan
+	name = "cardigan"
+	desc = "A cozy cardigan in a classic style."
+	icon_state = "cardigan"
+	addblends = "cardigan_a"
+	flags_inv = HIDEHOLSTER
+
 /*
  * stripper
  */

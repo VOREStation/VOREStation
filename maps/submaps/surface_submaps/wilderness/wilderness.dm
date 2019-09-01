@@ -14,6 +14,7 @@
 #include "Snowrock1.dmm"
 #include "Boombase.dmm"
 #include "Blackshuttledown.dmm"
+#include "Blueshuttledown.dmm"
 #include "Lab1.dmm"
 #include "Rocky4.dmm"
 #include "DJOutpost1.dmm"
@@ -27,6 +28,11 @@
 #include "Drugden.dmm"
 #include "Musk.dmm"
 #include "Manor1.dmm"
+#include "Epod3.dmm"
+#include "Epod4.dmm"
+#include "ButcherShack.dmm"
+#include "Chapel.dmm"
+#include "Shelter.dmm"
 
 #endif
 
@@ -144,6 +150,20 @@
 	template_group = "Sif Free Radio"
 	cost = 5
 
+/datum/map_template/surface/wilderness/deep/DJOutpost3
+	name = "DJOutpost3"
+	desc = "The surprisingly high-tech home of Sif Free Radio, the best - and only - radio station for miles around."
+	mappath = 'maps/submaps/surface_submaps/wilderness/DJOutpost3.dmm'
+	template_group = "Sif Free Radio"
+	cost = 10
+
+/datum/map_template/surface/wilderness/deep/DJOutpost4
+	name = "DJOutpost4"
+	desc = "The surprisingly high-tech home of Sif Free Radio, the only radio station run by mindless clones."
+	mappath = 'maps/submaps/surface_submaps/wilderness/DJOutpost4.dmm'
+	template_group = "Sif Free Radio"
+	cost = 10
+
 /datum/map_template/surface/wilderness/deep/Boombase
 	name = "Boombase"
 	desc = "What happens when you don't follow SOP."
@@ -155,6 +175,14 @@
 	desc = "You REALLY shouldn't be near this."
 	mappath = 'maps/submaps/surface_submaps/wilderness/Blackshuttledown.dmm'
 	cost = 30
+	template_group = "Shuttle Down"
+
+/datum/map_template/surface/wilderness/deep/BluSD
+	name = "Blue Shuttle Down"
+	desc = "You REALLY shouldn't be near this. Mostly because they're Police."
+	mappath = 'maps/submaps/surface_submaps/wilderness/Blueshuttledown.dmm'
+	cost = 50
+	template_group = "Shuttle Down"
 
 /datum/map_template/surface/wilderness/deep/Rockybase
 	name = "Rocky Base"
@@ -209,3 +237,33 @@
 	desc = "Whodunit"
 	mappath = 'maps/submaps/surface_submaps/wilderness/Manor1.dmm'
 	cost = 20
+
+/datum/map_template/surface/wilderness/deep/Epod3
+	name = "Emergency Pod 3"
+	desc = "A webbed Emergency pod in the middle of nowhere."
+	mappath = 'maps/submaps/surface_submaps/wilderness/Epod3.dmm'
+	cost = 5
+
+/datum/map_template/surface/wilderness/normal/Epod4
+	name = "Emergency Pod 4"
+	desc = "A flooded Emergency pod in the middle of nowhere."
+	mappath = 'maps/submaps/surface_submaps/wilderness/Epod4.dmm'
+	cost = 5
+
+/datum/map_template/surface/wilderness/normal/ButcherShack
+	name = "Butcher Shack"
+	desc = "An old, bloody butcher's shack. Get your meat here!"
+	mappath = 'maps/submaps/surface_submaps/wilderness/ButcherShack.dmm'
+	cost = 5
+
+/datum/map_template/surface/wilderness/deep/Chapel1
+	name = "Chapel1"
+	desc = "The chapel of lights and a robot."
+	mappath = 'maps/submaps/surface_submaps/wilderness/Chapel.dmm'
+	cost = 20
+
+/datum/map_template/surface/wilderness/normal/Shelter1
+	name = "Shelter1"
+	desc = "The remains of a resourceful, but prideful explorer."
+	mappath = 'maps/submaps/surface_submaps/wilderness/Shelter.dmm'
+	cost = 10

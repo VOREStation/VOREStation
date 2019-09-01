@@ -143,8 +143,8 @@ var/global/list/PDA_Manifest = list()
 		bot[++bot.len] = list("name" = ai.real_name, "rank" = "Artificial Intelligence", "active" = "Active")
 
 	for(var/mob/living/silicon/robot/robot in mob_list)
-		// No combat/syndicate cyborgs, no drones.
-		if(robot.scrambledcodes || (robot.module && robot.module.hide_on_manifest))
+		// No combat/syndicate cyborgs, no drones, and no AI shells.
+		if(robot.scrambledcodes || robot.shell || (robot.module && robot.module.hide_on_manifest))
 			continue
 
 		bot[++bot.len] = list("name" = robot.real_name, "rank" = "[robot.modtype] [robot.braintype]", "active" = "Active")
@@ -157,7 +157,7 @@ var/global/list/PDA_Manifest = list()
 		list("cat" = "Medical", "elems" = med),
 		list("cat" = "Science", "elems" = sci),
 		list("cat" = "Cargo", "elems" = car),
-		// list("cat" = "Planetside", "elems" = pla), // VOREStation Edit - Don't show empty dpt in PDA
+		list("cat" = "Exploration", "elems" = pla), // VOREStation Edit
 		list("cat" = "Civilian", "elems" = civ),
 		list("cat" = "Silicon", "elems" = bot),
 		list("cat" = "Miscellaneous", "elems" = misc)
@@ -222,7 +222,6 @@ var/global/list/PDA_Manifest = list()
 	throwforce = 0.0
 	throw_speed = 1
 	throw_range = 20
-	flags = CONDUCT
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
 		user.drop_item()

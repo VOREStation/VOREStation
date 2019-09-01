@@ -1,9 +1,12 @@
 // Math constants.
-#define M_PI    3.14159265
-
 #define R_IDEAL_GAS_EQUATION       8.31    // kPa*L/(K*mol).
 #define ONE_ATMOSPHERE             101.325 // kPa.
 #define IDEAL_GAS_ENTROPY_CONSTANT 1164    // (mol^3 * s^3) / (kg^3 * L).
+
+#define T0C  273.15  //    0.0 degrees celcius
+#define T20C 293.15  //   20.0 degrees celcius
+#define TCMB 2.7     // -270.3 degrees celcius
+#define TN60C 213.15 //    -60 degrees celcius
 
 // Radiation constants.
 #define STEFAN_BOLTZMANN_CONSTANT    5.6704e-8 // W/(m^2*K^4).
@@ -15,18 +18,7 @@
 #define RADIATOR_EXPOSED_SURFACE_AREA_RATIO 0.04 // (3 cm + 100 cm * sin(3deg))/(2*(3+100 cm)). Unitless ratio.
 #define HUMAN_EXPOSED_SURFACE_AREA          5.2 //m^2, surface area of 1.7m (H) x 0.46m (D) cylinder
 
-#define T0C  273.15  //    0.0 degrees celcius
-#define T20C 293.15  //   20.0 degrees celcius
-#define TCMB 2.7     // -270.3 degrees celcius
-#define TN60C 213.15 //    -60 degrees celcius
-
-#define CLAMP01(x) max(0, min(1, x))
 #define QUANTIZE(variable) (round(variable,0.0001))
 
-#define INFINITY	1.#INF
-
-#define TICKS_IN_DAY 		24*60*60*10
-#define TICKS_IN_SECOND 	10
-
-#define SIMPLE_SIGN(X) ((X) < 0 ? -1 : 1)
-#define SIGN(X)        ((X) ? SIMPLE_SIGN(X) : 0)
+#define TICKS_IN_DAY 		(TICKS_IN_SECOND * 60 * 60 * 24)
+#define TICKS_IN_SECOND 	(world.fps)

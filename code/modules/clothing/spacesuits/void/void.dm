@@ -7,6 +7,8 @@
 	heat_protection = HEAD
 	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	min_pressure_protection = 0 * ONE_ATMOSPHERE
+	max_pressure_protection = 10 * ONE_ATMOSPHERE
 
 //	flags_inv = HIDEEARS|BLOCKHAIR
 
@@ -37,6 +39,8 @@
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
+	min_pressure_protection = 0 * ONE_ATMOSPHERE
+	max_pressure_protection = 10 * ONE_ATMOSPHERE
 
 	species_restricted = list("Human", SPECIES_SKRELL, "Promethean")
 	sprite_sheets_refit = list(
@@ -216,7 +220,7 @@
 	if(istype(W,/obj/item/clothing/accessory) || istype(W, /obj/item/weapon/hand_labeler))
 		return ..()
 
-	if(istype(src.loc,/mob/living))
+	if(user.get_inventory_slot(src) == slot_wear_suit)
 		to_chat(user, "<span class='warning'>You cannot modify \the [src] while it is being worn.</span>")
 		return
 
@@ -236,12 +240,12 @@
 				playsound(src, W.usesound, 50, 1)
 				src.cooler = null
 			else if(choice == helmet)
-				to_chat(user, "You detatch \the [helmet] from \the [src]'s helmet mount.")
+				to_chat(user, "You detach \the [helmet] from \the [src]'s helmet mount.")
 				helmet.forceMove(get_turf(src))
 				playsound(src, W.usesound, 50, 1)
 				src.helmet = null
 			else if(choice == boots)
-				to_chat(user, "You detatch \the [boots] from \the [src]'s boot mounts.")
+				to_chat(user, "You detach \the [boots] from \the [src]'s boot mounts.")
 				boots.forceMove(get_turf(src))
 				playsound(src, W.usesound, 50, 1)
 				src.boots = null

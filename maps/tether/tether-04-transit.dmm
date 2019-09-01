@@ -4,7 +4,7 @@
 /area/tether/transit)
 "b" = (
 /turf/simulated/wall/r_wall,
-/area/space)
+/area/tether/elevator)
 "c" = (
 /obj/machinery/light/small{
 	dir = 4;
@@ -20,12 +20,12 @@
 /obj/structure/disposalpipe/down,
 /obj/effect/ceiling,
 /turf/simulated/open,
-/area/space)
+/area/tether/elevator)
 "d" = (
 /turf/simulated/shuttle/wall/voidcraft/green{
 	hard_corner = 1
 	},
-/area/space)
+/area/tether/elevator)
 "e" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
@@ -36,10 +36,10 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/ceiling,
 /turf/simulated/floor/plating,
-/area/space)
+/area/tether/elevator)
 "f" = (
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/space)
+/area/tether/elevator)
 "g" = (
 /obj/machinery/atmospherics/pipe/zpipe/up/supply{
 	dir = 1
@@ -59,23 +59,23 @@
 /obj/structure/cable,
 /obj/effect/ceiling,
 /turf/simulated/floor/plating,
-/area/space)
+/area/tether/elevator)
 "h" = (
 /obj/effect/ceiling,
 /turf/simulated/floor/tiled,
-/area/space)
+/area/tether/elevator)
 "i" = (
 /obj/structure/disposalpipe/up,
 /obj/effect/ceiling,
 /turf/simulated/floor/tiled,
-/area/space)
+/area/tether/elevator)
 "j" = (
 /obj/structure/disposalpipe/down{
 	dir = 1
 	},
 /obj/effect/ceiling,
 /turf/simulated/floor/tiled,
-/area/space)
+/area/tether/elevator)
 
 (1,1,1) = {"
 a

@@ -40,8 +40,11 @@
 	if(!jingled)
 		usr.audible_message("[usr] jingles the [src]'s bell.")
 		jingled = 1
-		schedule_callback_in(5 SECONDS, VARSET_CALLBACK(src, jingled, 0))
+		addtimer(CALLBACK(src, .proc/jingledreset), 50)
 	return
+
+/obj/item/clothing/accessory/collar/bell/proc/jingledreset()
+		jingled = 0
 
 /obj/item/clothing/accessory/collar/shock
 	name = "Shock collar"
@@ -54,7 +57,7 @@
 	var/code = 2
 	var/datum/radio_frequency/radio_connection
 
-/obj/item/clothing/accessory/collar/shock/New()
+/obj/item/clothing/accessory/collar/shock/Initialize()
 	..()
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT) // Makes it so you don't need to change the frequency off of default for it to work.
 
@@ -178,6 +181,18 @@
 	icon_state = "collar_holo"
 	item_state = "collar_holo_overlay"
 	overlay_state = "collar_holo_overlay"
+	matter = list(DEFAULT_WALL_MATERIAL = 50)
+
+//TFF 17/6/19 - public loadout addition: Indigestible Holocollar
+/obj/item/clothing/accessory/collar/holo/indigestible
+	name = "Holo-collar"
+	desc = "A special variety of the holo-collar that seems to be made of a very durable fabric that fits around the neck."
+	icon_state = "collar_holo"
+	item_state = "collar_holo_overlay"
+	overlay_state = "collar_holo_overlay"
+//Make indigestible
+/obj/item/clothing/accessory/collar/holo/indigestible/digest_act(var/atom/movable/item_storage = null)
+	return FALSE
 
 /obj/item/clothing/accessory/collar/attack_self(mob/user as mob)
 	if(istype(src,/obj/item/clothing/accessory/collar/holo))
@@ -206,23 +221,23 @@
 /obj/item/clothing/accessory/collar/attackby(obj/item/I, mob/user)
 	if(istype(src,/obj/item/clothing/accessory/collar/holo))
 		return
-	
+
 	if(istype(I,/obj/item/weapon/tool/screwdriver))
 		update_collartag(user, I, "scratched out", "scratch out", "engraved")
 		return
-		
+
 	if(istype(I,/obj/item/weapon/pen))
 		update_collartag(user, I, "crossed out", "cross out", "written")
 		return
-	
+
 	to_chat(user,"<span class='notice'>You need a pen or a screwdriver to edit the tag on this collar.</span>")
-	
+
 /obj/item/clothing/accessory/collar/proc/update_collartag(mob/user, obj/item/I, var/erasemethod, var/erasing, var/writemethod)
 	if(!(istype(user.get_active_hand(),I)) || !(istype(user.get_inactive_hand(),src)) || (user.stat))
 		return
-	
+
 	var/str = copytext(reject_bad_text(input(user,"Tag text?","Set tag","")),1,MAX_NAME_LEN)
-	
+
 	if(!str || !length(str))
 		if(!writtenon)
 			to_chat(user,"<span class='notice'>You don't write anything.</span>")

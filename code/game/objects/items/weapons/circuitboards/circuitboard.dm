@@ -12,7 +12,6 @@
 	density = 0
 	anchored = 0
 	w_class = ITEMSIZE_SMALL
-	flags = CONDUCT
 	force = 5.0
 	throwforce = 5.0
 	throw_speed = 3

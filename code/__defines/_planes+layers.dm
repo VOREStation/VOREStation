@@ -58,23 +58,28 @@ What is the naming convention for planes or layers?
 	#define ATMOS_LAYER			2.4 // Pipe-like atmos machinery that goes on the floor, like filters.
 	#define ABOVE_UTILITY		2.5 // Above stuff like pipes and wires
 #define TURF_PLANE				-45 // Turfs themselves, most flooring
-	#define ABOVE_TURF_LAYER	2.1	// Snow and wallmounted/floormounted equipment
+	#define WATER_FLOOR_LAYER	2.0 // The 'bottom' of water tiles.
+	#define UNDERWATER_LAYER	2.5 // Anything on this layer will render under the water layer.
+	#define WATER_LAYER			3.0 // Layer for water overlays.
+	#define ABOVE_TURF_LAYER	3.1	// Snow and wallmounted/floormounted equipment
 #define DECAL_PLANE				-44 // Permanent decals
 #define DIRTY_PLANE				-43 // Nonpermanent decals
 #define BLOOD_PLANE				-42 // Blood is really dirty, but we can do special stuff if we separate it
 
 // Obj planes
 #define OBJ_PLANE				-35
+	#define STAIRS_LAYER			2.5 // Layer for stairs
 	#define HIDING_LAYER			2.6 // Layer at which mobs hide to be under things like tables
 	#define DOOR_OPEN_LAYER			2.7 // Under all objects if opened. 2.7 due to tables being at 2.6
 	#define TABLE_LAYER				2.8 // Just under stuff that wants to be slightly below common objects.
+	#define PROJECTILE_HIT_THRESHOLD_LAYER 2.8
 	#define UNDER_JUNK_LAYER		2.9 // Things that want to be slightly below common objects
 	// Turf/Obj layer boundary
 	#define ABOVE_JUNK_LAYER		3.1 // Things that want to be slightly above common objects
 	#define DOOR_CLOSED_LAYER		3.1	// Doors when closed
 	#define WINDOW_LAYER			3.2	// Windows
-	#define ABOVE_WINDOW_LAYER 		3.25 //Above full tile windows so wall items are clickable
 	#define ON_WINDOW_LAYER			3.3 // Ontop of a window
+	#define ABOVE_WINDOW_LAYER 		3.4 //Above full tile windows so wall items are clickable
 
 // Mob planes
 #define MOB_PLANE				-25
@@ -140,6 +145,7 @@ What is the naming convention for planes or layers?
 	#define LAYER_HUD_ITEM		3 //Things sitting on HUD items (largely irrelevant because PLANE_PLAYER_HUD_ITEMS)
 	#define LAYER_HUD_ABOVE		4 //Things that reside above items (highlights)
 #define PLANE_PLAYER_HUD_ITEMS	96 //Separate layer with which to apply colorblindness
+#define PLANE_PLAYER_HUD_ABOVE	97 //Things above the player hud
 
 #define PLANE_ADMIN3			99 //Purely for shenanigans (above HUD)
 

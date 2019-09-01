@@ -1,85 +1,80 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "burst_l"
 	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry{
 	dir = 1
 	},
 /area/supply/dock)
 "ab" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion,
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry{
 	dir = 1
 	},
 /area/supply/dock)
 "ac" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "burst_r"
 	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry{
 	dir = 1
 	},
 /area/supply/dock)
 "ad" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "propulsion_r";
 	dir = 4
 	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/trade/centcom)
 "ae" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion{
 	dir = 4
 	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/trade/centcom)
 "af" = (
-/turf/space,
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "propulsion_l";
 	dir = 4
 	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/trade/centcom)
 "ag" = (
-/turf/space,
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 8;
-	icon_state = "emitter-off";
-	name = "pulse laser"
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
 	},
-/turf/simulated/shuttle/plating/airless/carry,
-/area/syndicate_station/start)
+/obj/structure/closet/crate/secure,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade/centcom)
 "ah" = (
-/turf/space,
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion_r";
-	dir = 4
-	},
-/turf/simulated/shuttle/plating/airless/carry,
-/area/syndicate_station/start)
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/closet/crate/secure,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade/centcom)
 "ai" = (
-/turf/space,
-/obj/structure/shuttle/engine/propulsion{
-	dir = 4
+/obj/effect/floor_decal/transit/orange{
+	dir = 8
 	},
-/turf/simulated/shuttle/plating/airless/carry,
-/area/syndicate_station/start)
+/obj/effect/step_trigger/lost_in_space/tram,
+/turf/unsimulated/floor/techfloor_grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
+/area/centcom/ferry)
 "aj" = (
-/turf/space,
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion_l";
-	dir = 4
+/obj/effect/step_trigger/lost_in_space/tram,
+/turf/unsimulated/floor/techfloor_grid{
+	icon = 'icons/turf/transit_vr.dmi'
 	},
-/turf/simulated/shuttle/plating/airless/carry,
-/area/syndicate_station/start)
+/area/centcom/ferry)
 "ak" = (
 /obj/machinery/fitness/heavy/lifter,
 /obj/effect/floor_decal/steeldecal/steel_decals10{
@@ -92,6 +87,12 @@
 	icon_state = "steel"
 	},
 /area/antag/antag_base)
+"al" = (
+/obj/effect/step_trigger/lost_in_space/tram,
+/turf/unsimulated/floor/maglev{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
+/area/centcom/ferry)
 "am" = (
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
@@ -1619,6 +1620,33 @@
 "dY" = (
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source_boxingcourt)
+"dZ" = (
+/obj/effect/floor_decal/transit/orange{
+	dir = 4
+	},
+/obj/effect/step_trigger/lost_in_space/tram,
+/turf/unsimulated/floor/techfloor_grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
+/area/centcom/ferry)
+"ea" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 8;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/syndicate_station/start)
+"eb" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_r";
+	dir = 4
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/syndicate_station/start)
 "ec" = (
 /obj/effect/landmark{
 	name = "Holocarp Spawn Random"
@@ -1831,6 +1859,13 @@
 /obj/structure/sign/department/operational,
 /turf/simulated/shuttle/wall/dark,
 /area/syndicate_station/start)
+"eG" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/syndicate_station/start)
 "eH" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -2030,6 +2065,14 @@
 	dir = 4
 	},
 /turf/simulated/shuttle/plating/airless,
+/area/syndicate_station/start)
+"fl" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_l";
+	dir = 4
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
 /area/syndicate_station/start)
 "fm" = (
 /obj/item/device/radio/intercom{
@@ -3888,7 +3931,7 @@
 /turf/simulated/shuttle/plating,
 /area/shuttle/trade/centcom)
 "jG" = (
-/obj/vehicle/train/cargo/engine,
+/obj/vehicle/train/engine,
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
@@ -3987,7 +4030,7 @@
 /turf/simulated/shuttle/plating,
 /area/shuttle/trade/centcom)
 "jU" = (
-/obj/vehicle/train/cargo/trolley,
+/obj/vehicle/train/trolley,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
 "jV" = (
@@ -4271,7 +4314,7 @@
 	name = "Beruang";
 	pixel_x = 32
 	},
-/mob/living/simple_animal/corgi/tamaskan/spice,
+/mob/living/simple_mob/animal/passive/dog/tamaskan/Spice,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/trade/centcom)
 "kz" = (
@@ -4331,14 +4374,6 @@
 /obj/item/device/kit/paint/ripley/flames_blue,
 /obj/item/device/kit/paint/ripley/flames_red,
 /obj/item/device/kit/paint/ripley,
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/trade/centcom)
-"kH" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 1
-	},
-/obj/structure/closet/crate/secure/loot,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
 "kI" = (
@@ -4450,11 +4485,6 @@
 /obj/item/device/kit/paint/durand,
 /obj/item/device/kit/paint/durand/phazon,
 /obj/item/device/kit/paint/durand/seraph,
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/trade/centcom)
-"kV" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/structure/closet/crate/secure/loot,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
 "kW" = (
@@ -5000,7 +5030,7 @@
 /area/shuttle/trade/centcom)
 "lW" = (
 /obj/structure/table/woodentable,
-/obj/item/device/laptop,
+/obj/item/modular_computer/laptop/preset/custom_loadout/standard,
 /turf/simulated/floor/carpet,
 /area/shuttle/trade/centcom)
 "lX" = (
@@ -5132,7 +5162,7 @@
 /area/shuttle/trade/centcom)
 "mh" = (
 /obj/structure/table/glass,
-/obj/machinery/computer3/wall_comp/telescreen/entertainment{
+/obj/machinery/computer/security/telescreen/entertainment{
 	pixel_y = -35
 	},
 /turf/simulated/shuttle/floor/black,
@@ -5640,7 +5670,7 @@
 	},
 /area/wizard_station)
 "nm" = (
-/mob/living/simple_animal/mouse/gray{
+/mob/living/simple_mob/animal/passive/mouse/gray{
 	desc = "He looks kingly.";
 	name = "Arthur"
 	},
@@ -8869,7 +8899,7 @@
 	},
 /area/antag/antag_base)
 "sM" = (
-/mob/living/simple_animal/fox/syndicate{
+/mob/living/simple_mob/animal/passive/fox/syndicate{
 	name = "Rick"
 	},
 /turf/unsimulated/floor{
@@ -11082,7 +11112,7 @@ hm
 hv
 hm
 hm
-hm
+ai
 mu
 ap
 mv
@@ -11224,7 +11254,7 @@ hn
 hn
 hn
 hn
-hn
+aj
 gX
 ap
 mv
@@ -11366,7 +11396,7 @@ ho
 ho
 ho
 ho
-ho
+al
 gX
 ap
 mv
@@ -11508,7 +11538,7 @@ hn
 hn
 hn
 hn
-hn
+aj
 gX
 ap
 mv
@@ -11650,7 +11680,7 @@ hn
 hn
 hn
 hn
-hn
+aj
 gX
 ap
 mv
@@ -11792,7 +11822,7 @@ hn
 hn
 hn
 hn
-hn
+aj
 gX
 ap
 mv
@@ -11934,7 +11964,7 @@ hn
 hn
 hn
 hn
-hn
+aj
 gX
 ap
 mv
@@ -12076,7 +12106,7 @@ ho
 ho
 ho
 ho
-ho
+al
 gX
 ap
 mv
@@ -12218,7 +12248,7 @@ hn
 hn
 hn
 hn
-hn
+aj
 gX
 ap
 mv
@@ -12360,7 +12390,7 @@ hp
 hp
 hI
 hp
-hp
+dZ
 gX
 ap
 mv
@@ -25295,7 +25325,7 @@ ap
 ap
 ap
 aC
-ag
+ea
 aC
 ap
 hb
@@ -25304,7 +25334,7 @@ gL
 ik
 ap
 aC
-ag
+ea
 aC
 ap
 ap
@@ -27352,8 +27382,8 @@ jQ
 kb
 jg
 jH
-kH
-kV
+ag
+ah
 jH
 jg
 lr
@@ -29132,10 +29162,10 @@ aC
 aC
 cJ
 fk
-ah
-ai
-ai
-aj
+eb
+eG
+eG
+fl
 fk
 cJ
 aC
@@ -29273,12 +29303,12 @@ aC
 aC
 cJ
 fk
-ah
+eb
 ap
 ap
 ap
 ap
-aj
+fl
 fk
 cJ
 aC
@@ -29414,14 +29444,14 @@ aC
 aC
 aC
 fk
-ah
+eb
 ap
 ap
 ap
 ap
 ap
 ap
-aj
+fl
 fk
 aC
 aC
@@ -29555,7 +29585,7 @@ ap
 ap
 aC
 cJ
-ah
+eb
 ap
 ap
 ap
@@ -29564,7 +29594,7 @@ ap
 ap
 ap
 ap
-aj
+fl
 cJ
 aC
 ap

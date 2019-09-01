@@ -1,0 +1,693 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/template_noop,
+/area/submap/Thiefc)
+"c" = (
+/turf/simulated/mineral/ignore_mapgen,
+/area/submap/Thiefc)
+"d" = (
+/obj/structure/ore_box,
+/obj/item/weapon/ore/coal,
+/obj/item/weapon/ore/coal,
+/obj/item/weapon/ore/coal,
+/obj/item/weapon/ore/coal,
+/obj/item/weapon/ore/coal,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"e" = (
+/obj/structure/closet/crate,
+/obj/item/weapon/extinguisher,
+/obj/item/weapon/extinguisher,
+/obj/item/weapon/extinguisher,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"f" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"g" = (
+/obj/item/weapon/ore/coal,
+/obj/item/weapon/ore/coal,
+/obj/item/weapon/ore/coal,
+/obj/item/weapon/ore/coal,
+/obj/item/weapon/ore/coal,
+/obj/item/weapon/ore/coal,
+/obj/item/weapon/ore/coal,
+/obj/item/weapon/ore/coal,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"h" = (
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"i" = (
+/obj/structure/closet/crate,
+/obj/item/weapon/lipstick,
+/obj/item/weapon/lipstick/black,
+/obj/item/weapon/lipstick/random,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"j" = (
+/obj/structure/table/steel,
+/obj/item/weapon/beartrap,
+/obj/item/device/survivalcapsule,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"k" = (
+/obj/vehicle/train/trolley,
+/obj/random/firstaid,
+/obj/random/firstaid,
+/obj/random/firstaid,
+/obj/random/firstaid,
+/obj/random/firstaid,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"l" = (
+/obj/structure/closet/crate,
+/obj/item/device/nif,
+/obj/item/device/nif/bad,
+/obj/item/device/nif/bad,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"m" = (
+/obj/structure/table/steel,
+/obj/item/weapon/paper{
+	desc = "This is some bullshit. First chance we got to knick something that looks half decent turns out to be mostly junk. And now we're getting calls that the other stash we've got has got a spider problem. Fuck this, Between the shitty weather, The pissed of bugs, And now apparently some NT goon running around in the area there's hardly enough reason to stick around. I'm telling Carl I'm out tommorow.";
+	name = "Note"
+	},
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"n" = (
+/obj/vehicle/train/trolley,
+/obj/random/multiple/voidsuit,
+/obj/random/multiple/voidsuit,
+/obj/random/multiple/voidsuit,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"o" = (
+/obj/structure/closet/crate,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/device/perfect_tele/one_beacon,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"p" = (
+/obj/structure/closet/crate,
+/obj/item/weapon/storage/box/shotgunammo,
+/obj/item/weapon/storage/box/practiceshells,
+/obj/item/weapon/grenade/spawnergrenade/manhacks/station,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"u" = (
+/mob/living/simple_mob/humanoid/merc/ranged/virgo,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+"P" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor/outdoors/dirt{
+	outdoors = 0
+	},
+/area/submap/Thiefc)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+c
+c
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(4,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(5,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+b
+b
+c
+b
+b
+b
+c
+b
+b
+b
+b
+b
+a
+"}
+(6,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+b
+c
+c
+c
+b
+b
+c
+b
+b
+b
+b
+b
+a
+"}
+(7,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+P
+c
+c
+b
+b
+b
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+c
+c
+c
+j
+m
+c
+c
+c
+c
+c
+h
+c
+c
+b
+b
+b
+b
+a
+"}
+(9,1,1) = {"
+a
+c
+c
+c
+u
+h
+h
+h
+c
+c
+h
+h
+h
+c
+c
+b
+b
+b
+b
+a
+"}
+(10,1,1) = {"
+a
+c
+c
+f
+h
+h
+h
+h
+h
+c
+h
+h
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(11,1,1) = {"
+a
+c
+d
+g
+h
+k
+n
+h
+h
+h
+h
+h
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(12,1,1) = {"
+a
+c
+e
+h
+u
+h
+h
+h
+h
+h
+h
+c
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(13,1,1) = {"
+a
+c
+c
+c
+i
+h
+h
+h
+u
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(14,1,1) = {"
+a
+c
+c
+c
+h
+h
+h
+h
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(15,1,1) = {"
+a
+c
+c
+h
+h
+l
+o
+p
+h
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(16,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(17,1,1) = {"
+a
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(18,1,1) = {"
+a
+b
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+a
+"}
+(19,1,1) = {"
+a
+b
+b
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+b
+a
+"}
+(20,1,1) = {"
+a
+b
+b
+b
+b
+b
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(21,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+c
+c
+c
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(22,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(23,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(24,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(25,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

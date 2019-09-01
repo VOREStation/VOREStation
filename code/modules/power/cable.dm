@@ -59,14 +59,13 @@ var/list/possible_cable_coil_colours = list(
 	var/obj/machinery/power/breakerbox/breaker_box
 
 /obj/structure/cable/drain_power(var/drain_check, var/surge, var/amount = 0)
-
 	if(drain_check)
 		return 1
 
-	var/datum/powernet/PN = get_powernet()
-	if(!PN) return 0
+	if(!powernet)
+		return 0
 
-	return PN.draw_power(amount)
+	return powernet.draw_power(amount)
 
 /obj/structure/cable/yellow
 	color = COLOR_YELLOW
@@ -122,6 +121,35 @@ var/list/possible_cable_coil_colours = list(
 			to_chat(user, "<span class='warning'>The cable is not powered.</span>")
 	return
 
+
+// Rotating cables requires d1 and d2 to be rotated
+/obj/structure/cable/set_dir(new_dir)
+	if(powernet)
+		cut_cable_from_powernet() // Remove this cable from the powernet so the connections update
+
+	// If d1 is 0, then it's a not, and doesn't rotate
+	if(d1)
+		// Using turn will maintain the cable's shape
+		// Taking the difference between current orientation and new one
+		d1 = turn(d1, dir2angle(new_dir) - dir2angle(dir))
+	d2 = turn(d2, dir2angle(new_dir) - dir2angle(dir))
+
+	// Maintain d1 < d2
+	if(d1 > d2)
+		var/temp = d1
+		d1 = d2
+		d2 = temp
+
+	//	..()	Cable sprite generation is dependent upon only d1 and d2.
+	// 			Actually changing dir will rotate the generated sprite to look wrong, but function correctly.
+	update_icon()
+	// Add this cable back to the powernet, if it's connected to any
+	if(d1)
+		mergeConnectedNetworks(d1)
+	else
+		mergeConnectedNetworksOnTurf()
+	mergeConnectedNetworks(d2)
+
 ///////////////////////////////////
 // General procedures
 ///////////////////////////////////
@@ -138,10 +166,6 @@ var/list/possible_cable_coil_colours = list(
 /obj/structure/cable/update_icon()
 	icon_state = "[d1]-[d2]"
 	alpha = invisibility ? 127 : 255
-
-// returns the powernet this cable belongs to
-/obj/structure/cable/proc/get_powernet()			//TODO: remove this as it is obsolete
-	return powernet
 
 //Telekinesis has no effect on a cable
 /obj/structure/cable/attack_tk(mob/user)
@@ -214,7 +238,7 @@ var/list/possible_cable_coil_colours = list(
 		shock(user, 5, 0.2)
 
 	else
-		if (W.flags & CONDUCT)
+		if(!(W.flags & NOCONDUCT))
 			shock(user, 50, 0.7)
 
 	src.add_fingerprint(user)
@@ -487,7 +511,6 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	throw_speed = 2
 	throw_range = 5
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 20)
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	item_state = "coil"
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
@@ -532,7 +555,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
 			return ..()
 
-		var/use_amt = min(src.amount, ceil(S.burn_dam/5), 5)
+		var/use_amt = min(src.amount, CEILING(S.burn_dam/5, 1), 5)
 		if(can_use(use_amt))
 			if(S.robo_repair(5*use_amt, BURN, "some damaged wiring", src, user))
 				src.use(use_amt)
@@ -895,20 +918,36 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 //Endless alien cable coil
 
+
+/datum/category_item/catalogue/anomalous/precursor_a/alien_wire
+	name = "Precursor Alpha Object - Recursive Spool"
+	desc = "Upon visual inspection, this merely appears to be a \
+	spool for silver-colored cable. If one were to use this for \
+	some time, however, it would become apparent that the cables \
+	inside the spool appear to coil around the spool endlessly, \
+	suggesting an infinite length of wire.\
+	<br><br>\
+	In reality, an infinite amount of something within a finite space \
+	would likely not be able to exist. Instead, the spool likely has \
+	some method of creating new wire as it is unspooled. How this is \
+	accomplished without an apparent source of material would require \
+	further study."
+	value = CATALOGUER_REWARD_EASY
+
 /obj/item/stack/cable_coil/alien
 	name = "alien spool"
+	desc = "A spool of cable. No matter how hard you try, you can never seem to get to the end."
+	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_wire)
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "coil"
 	amount = MAXCOIL
 	max_amount = MAXCOIL
 	color = COLOR_SILVER
-	desc = "A spool of cable. No matter how hard you try, you can never seem to get to the end."
 	throwforce = 10
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 2
 	throw_range = 5
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 20)
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	stacktype = null

@@ -467,7 +467,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	ui_tick++
-	var/datum/nanoui/old_ui = GLOB.nanomanager.get_open_ui(user, src, "main")
+	var/datum/nanoui/old_ui = SSnanoui.get_open_ui(user, src, "main")
 	var/auto_update = 1
 	if(mode in no_auto_update)
 		auto_update = 0
@@ -577,31 +577,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 
 	if(mode==3)
-		var/turf/T = get_turf(user.loc)
-		if(!isnull(T))
-			var/datum/gas_mixture/environment = T.return_air()
-
-			var/pressure = environment.return_pressure()
-			var/total_moles = environment.total_moles
-
-			if (total_moles)
-				var/o2_level = environment.gas["oxygen"]/total_moles
-				var/n2_level = environment.gas["nitrogen"]/total_moles
-				var/co2_level = environment.gas["carbon_dioxide"]/total_moles
-				var/phoron_level = environment.gas["phoron"]/total_moles
-				var/unknown_level =  1-(o2_level+n2_level+co2_level+phoron_level)
-				data["aircontents"] = list(\
-					"pressure" = "[round(pressure,0.1)]",\
-					"nitrogen" = "[round(n2_level*100,0.1)]",\
-					"oxygen" = "[round(o2_level*100,0.1)]",\
-					"carbon_dioxide" = "[round(co2_level*100,0.1)]",\
-					"phoron" = "[round(phoron_level*100,0.01)]",\
-					"other" = "[round(unknown_level, 0.01)]",\
-					"temp" = "[round(environment.temperature-T0C,0.1)]",\
-					"reading" = 1\
-					)
-		if(isnull(data["aircontents"]))
-			data["aircontents"] = list("reading" = 0)
+		data["aircontents"] = src.analyze_air()
 	if(mode==6)
 		if(has_reception)
 			feeds.Cut()
@@ -647,7 +623,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	nanoUI = data
 	// update the ui if it exists, returns null if no ui is passed/found
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
@@ -685,7 +661,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	..()
 	var/mob/user = usr
-	var/datum/nanoui/ui = GLOB.nanomanager.get_open_ui(user, src, "main")
+	var/datum/nanoui/ui = SSnanoui.get_open_ui(user, src, "main")
 	var/mob/living/U = usr
 	//Looking for master was kind of pointless since PDAs don't appear to have one.
 	//if ((src in U.contents) || ( istype(loc, /turf) && in_range(src, U) ) )
@@ -1130,7 +1106,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 					ai.show_message("<i>Intercepted message from <b>[who]</b>: [t]</i>")
 
 		P.new_message_from_pda(src, t)
-		GLOB.nanomanager.update_user_uis(U, src) // Update the sending user's PDA UI so that they can see the new message
+		SSnanoui.update_user_uis(U, src) // Update the sending user's PDA UI so that they can see the new message
 	else
 		to_chat(U, "<span class='notice'>ERROR: Messaging server is not responding.</span>")
 
@@ -1150,7 +1126,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if(L)
 		if(reception_message)
 			L << reception_message
-		GLOB.nanomanager.update_user_uis(L, src) // Update the receiving user's PDA UI so that they can see the new message
+		SSnanoui.update_user_uis(L, src) // Update the receiving user's PDA UI so that they can see the new message
 
 /obj/item/device/pda/proc/new_news(var/message)
 	new_info(news_silent, newstone, news_silent ? "" : "\icon[src] <b>[message]</b>")
@@ -1196,7 +1172,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	if(can_use(usr))
 		mode = 0
-		GLOB.nanomanager.update_uis(src)
+		SSnanoui.update_uis(src)
 		to_chat(usr, "<span class='notice'>You press the reset button on \the [src].</span>")
 	else
 		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")
@@ -1297,7 +1273,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		user.drop_item()
 		cartridge.loc = src
 		to_chat(usr, "<span class='notice'>You insert [cartridge] into [src].</span>")
-		GLOB.nanomanager.update_uis(src) // update all UIs attached to src
+		SSnanoui.update_uis(src) // update all UIs attached to src
 		if(cartridge.radio)
 			cartridge.radio.hostpda = src
 
@@ -1325,7 +1301,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		C.loc = src
 		pai = C
 		to_chat(user, "<span class='notice'>You slot \the [C] into \the [src].</span>")
-		GLOB.nanomanager.update_uis(src) // update all UIs attached to src
+		SSnanoui.update_uis(src) // update all UIs attached to src
 	else if(istype(C, /obj/item/weapon/pen))
 		var/obj/item/weapon/pen/O = locate() in src
 		if(O)
@@ -1544,3 +1520,37 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /obj/item/device/pda/emp_act(severity)
 	for(var/atom/A in src)
 		A.emp_act(severity)
+
+/obj/item/device/pda/proc/analyze_air()
+	var/list/results = list()
+	var/turf/T = get_turf(src.loc)
+	if(!isnull(T))
+		var/datum/gas_mixture/environment = T.return_air()
+		var/pressure = environment.return_pressure()
+		var/total_moles = environment.total_moles
+		if (total_moles)
+			var/o2_level = environment.gas["oxygen"]/total_moles
+			var/n2_level = environment.gas["nitrogen"]/total_moles
+			var/co2_level = environment.gas["carbon_dioxide"]/total_moles
+			var/phoron_level = environment.gas["phoron"]/total_moles
+			var/unknown_level =  1-(o2_level+n2_level+co2_level+phoron_level)
+
+			// entry is what the element is describing
+			// Type identifies which unit or other special characters to use
+			// Val is the information reported
+			// Bad_high/_low are the values outside of which the entry reports as dangerous
+			// Poor_high/_low are the values outside of which the entry reports as unideal
+			// Values were extracted from the template itself
+			results = list(
+						list("entry" = "Pressure", "units" = "kPa", "val" = "[round(pressure,0.1)]", "bad_high" = 120, "poor_high" = 110, "poor_low" = 95, "bad_low" = 80),
+						list("entry" = "Temperature", "units" = "&degC", "val" = "[round(environment.temperature-T0C,0.1)]", "bad_high" = 35, "poor_high" = 25, "poor_low" = 15, "bad_low" = 5),
+						list("entry" = "Oxygen", "units" = "kPa", "val" = "[round(o2_level*100,0.1)]", "bad_high" = 140, "poor_high" = 135, "poor_low" = 19, "bad_low" = 17),
+						list("entry" = "Nitrogen", "units" = "kPa", "val" = "[round(n2_level*100,0.1)]", "bad_high" = 105, "poor_high" = 85, "poor_low" = 50, "bad_low" = 40),
+						list("entry" = "Carbon Dioxide", "units" = "kPa", "val" = "[round(co2_level*100,0.1)]", "bad_high" = 10, "poor_high" = 5, "poor_low" = 0, "bad_low" = 0),
+						list("entry" = "Phoron", "units" = "kPa", "val" = "[round(phoron_level*100,0.01)]", "bad_high" = 0.5, "poor_high" = 0, "poor_low" = 0, "bad_low" = 0),
+						list("entry" = "Other", "units" = "kPa", "val" = "[round(unknown_level, 0.01)]", "bad_high" = 1, "poor_high" = 0.5, "poor_low" = 0, "bad_low" = 0)
+						)
+
+	if(isnull(results))
+		results = list(list("entry" = "pressure", "units" = "kPa", "val" = "0", "bad_high" = 120, "poor_high" = 110, "poor_low" = 95, "bad_low" = 80))
+	return results

@@ -8,11 +8,13 @@
 	energy_drain = 10
 	var/dam_force = 20
 	var/obj/mecha/working/ripley/cargo_holder
-	required_type = /obj/mecha/working
+	required_type = list(/obj/mecha/working)
+	ready_sound = 'sound/mecha/gasdisconnected.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/attach(obj/mecha/M as obj)
 	..()
 	cargo_holder = M
+
 	return
 
 /obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/action(atom/target)
@@ -28,7 +30,48 @@
 			occupant_message("<span class='warning'>You can't load living things into the cargo compartment.</span>")
 			return
 		if(O.anchored)
-			occupant_message("<span class='warning'>[target] is firmly secured.</span>")
+			if(enable_special)
+				if(istype(O, /obj/machinery/door/firedoor))	// I love doors.
+					var/obj/machinery/door/firedoor/FD = O
+					if(FD.blocked)
+						FD.visible_message("<span class='danger'>\The [chassis] begins prying on \the [FD]!</span>")
+						if(do_after(chassis.occupant,10 SECONDS,FD))
+							playsound(FD.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+							FD.blocked = 0
+							FD.update_icon()
+							FD.open(1)
+							FD.visible_message("<span class='warning'>\The [chassis] tears \the [FD] open!</span>")
+					else if(FD.density)
+						FD.visible_message("<span class='warning'>\The [chassis] begins forcing \the [FD] open!</span>")
+						if(do_after(chassis.occupant, 5 SECONDS,FD))
+							playsound(FD.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+							FD.visible_message("<span class='danger'>\The [chassis] forces \the [FD] open!</span>")
+							FD.open(1)
+					else
+						FD.visible_message("<span class='danger'>\The [chassis] forces \the [FD] closed!</span>")
+						FD.close(1)
+				else if(istype(O, /obj/machinery/door/airlock))	// D o o r s.
+					var/obj/machinery/door/airlock/AD = O
+					if(AD.locked)
+						occupant_message("<span class='notice'>The airlock's bolts prevent it from being forced.</span>")
+					else if(!AD.operating)
+						if(AD.welded)
+							AD.visible_message("<span class='warning'>\The [chassis] begins prying on \the [AD]!</span>")
+							if(do_after(chassis.occupant, 15 SECONDS,AD) && chassis.Adjacent(AD))
+								AD.welded = FALSE
+								AD.update_icon()
+								playsound(AD.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+								AD.visible_message("<span class='danger'>\The [chassis] tears \the [AD] open!</span>")
+						if(!AD.welded)
+							if(density)
+								spawn(0)
+									AD.open(1)
+							else
+								spawn(0)
+									AD.close(1)
+				return
+			else
+				occupant_message("<span class='warning'>[target] is firmly secured.</span>")
 			return
 		if(cargo_holder.cargo.len >= cargo_holder.cargo_capacity)
 			occupant_message("<span class='warning'>Not enough room in cargo compartment.</span>")
@@ -62,6 +105,15 @@
 			occupant_message("<span class='warning'>You squeeze [target] with [src.name]. Something cracks.</span>")
 			playsound(src.loc, "fracture", 5, 1, -2) //CRACK
 			chassis.visible_message("<span class='warning'>[chassis] squeezes [target].</span>")
+		else if(chassis.occupant.a_intent == I_DISARM && enable_special)
+			playsound(src.loc, 'sound/mecha/hydraulic.ogg', 10, 1, -2)
+			M.take_overall_damage(dam_force/2)
+			M.adjustOxyLoss(round(dam_force/3))
+			M.updatehealth()
+			occupant_message("<span class='warning'>You slam [target] with [src.name]. Something cracks.</span>")
+			playsound(src.loc, "fracture", 3, 1, -2) //CRACK 2
+			chassis.visible_message("<span class='warning'>[chassis] slams [target].</span>")
+			M.throw_at(get_step(M,get_dir(src, M)), 14, 1.5, chassis)
 		else
 			step_away(M,chassis)
 			occupant_message("You push [target] out of the way.")
@@ -73,12 +125,12 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/drill
 	name = "drill"
-	desc = "This is the drill that'll pierce the heavens! (Can be attached to: Combat and Engineering Exosuits)"
+	desc = "This is the drill that'll pierce the heavens!"
 	icon_state = "mecha_drill"
 	equip_cooldown = 30
 	energy_drain = 10
 	force = 15
-	required_type = list(/obj/mecha/working/ripley, /obj/mecha/combat)
+	required_type = list(/obj/mecha/working/ripley)
 
 /obj/item/mecha_parts/mecha_equipment/tool/drill/action(atom/target)
 	if(!action_checks(target)) return
@@ -101,23 +153,20 @@
 					log_message("Drilled through [target]")
 					target.ex_act(2)
 			else if(istype(target, /turf/simulated/mineral))
-				for(var/turf/simulated/mineral/M in range(chassis,1))
-					if(get_dir(chassis,M)&chassis.dir)
-						M.GetDrilled()
+				if(enable_special)
+					for(var/turf/simulated/mineral/M in range(chassis,1))
+						if(get_dir(chassis,M)&chassis.dir)
+							M.GetDrilled()
+				else
+					var/turf/simulated/mineral/M1 = target
+					M1.GetDrilled()
 				log_message("Drilled through [target]")
 				if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
 					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
 					if(ore_box)
 						for(var/obj/item/weapon/ore/ore in range(chassis,1))
 							if(get_dir(chassis,ore)&chassis.dir)
-								ore.Move(ore_box)
-				log_message("Drilled through [target]")
-				if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
-					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
-					if(ore_box)
-						for(var/obj/item/weapon/ore/ore in range(chassis,1))
-							if(get_dir(chassis,ore)&chassis.dir)
-								ore.Move(ore_box)
+								ore.forceMove(ore_box)
 			else if(target.loc == C)
 				log_message("Drilled through [target]")
 				target.ex_act(2)
@@ -125,7 +174,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill
 	name = "diamond drill"
-	desc = "This is an upgraded version of the drill that'll pierce the heavens! (Can be attached to: Combat and Engineering Exosuits)"
+	desc = "This is an upgraded version of the drill that'll pierce the heavens!"
 	icon_state = "mecha_diamond_drill"
 	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	equip_cooldown = 10
@@ -150,20 +199,114 @@
 					log_message("Drilled through [target]")
 					target.ex_act(3)
 			else if(istype(target, /turf/simulated/mineral))
-				for(var/turf/simulated/mineral/M in range(chassis,1))
-					if(get_dir(chassis,M)&chassis.dir)
-						M.GetDrilled()
+				if(enable_special)
+					for(var/turf/simulated/mineral/M in range(chassis,1))
+						if(get_dir(chassis,M)&chassis.dir)
+							M.GetDrilled()
+				else
+					var/turf/simulated/mineral/M1 = target
+					M1.GetDrilled()
 				log_message("Drilled through [target]")
 				if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
 					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
 					if(ore_box)
 						for(var/obj/item/weapon/ore/ore in range(chassis,1))
 							if(get_dir(chassis,ore)&chassis.dir)
-								ore.Move(ore_box)
+								ore.forceMove(ore_box)
 			else if(target.loc == C)
 				log_message("Drilled through [target]")
 				target.ex_act(2)
 	return 1
+
+/obj/item/mecha_parts/mecha_equipment/tool/drill/bore
+	name = "depth bore"
+	desc = "This is the drill that'll pierce the depths!"
+	icon_state = "mecha_bore"
+	equip_cooldown = 5 SECONDS
+	energy_drain = 30
+	force = 20
+	required_type = list(/obj/mecha/working/ripley)
+
+/obj/item/mecha_parts/mecha_equipment/tool/drill/bore/action(atom/target)
+	if(!action_checks(target)) return
+	if(isobj(target))
+		var/obj/target_obj = target
+		if(target_obj.unacidable)	return
+	set_ready_state(0)
+	chassis.use_power(energy_drain)
+	chassis.visible_message("<span class='danger'>[chassis] starts to bore into \the [target]</span>", "<span class='warning'>You hear the bore.</span>")
+	occupant_message("<span class='danger'>You start to bore into \the [target]</span>")
+	var/T = chassis.loc
+	var/C = target.loc
+	if(do_after_cooldown(target))
+		if(T == chassis.loc && src == chassis.selected)
+			if(istype(target, /turf/simulated/wall))
+				var/turf/simulated/wall/W = target
+				if(W.reinf_material)
+					occupant_message("<span class='warning'>[target] is too durable to bore through.</span>")
+				else
+					log_message("Bored through [target]")
+					target.ex_act(2)
+			else if(istype(target, /turf/simulated/mineral))
+				var/turf/simulated/mineral/M = target
+				if(enable_special && !M.density)
+					M.ex_act(2)
+					log_message("Bored into [target]")
+				else
+					M.GetDrilled()
+					log_message("Bored through [target]")
+				if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
+					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
+					if(ore_box)
+						for(var/obj/item/weapon/ore/ore in range(chassis,1))
+							if(get_dir(chassis,ore)&chassis.dir)
+								ore.forceMove(ore_box)
+			else if(target.loc == C)
+				log_message("Drilled through [target]")
+				target.ex_act(2)
+	return 1
+
+/obj/item/mecha_parts/mecha_equipment/tool/orescanner
+	name = "mounted ore scanner"
+	desc = "An exosuit-mounted ore scanner."
+	icon_state = "mecha_analyzer"
+	origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 2, TECH_POWER = 2)
+	equip_cooldown = 5
+	energy_drain = 30
+	range = MELEE|RANGED
+	equip_type = EQUIP_SPECIAL
+	ready_sound = 'sound/items/goggles_charge.ogg'
+	required_type = list(/obj/mecha/working/ripley)
+
+	var/obj/item/weapon/mining_scanner/my_scanner = null
+	var/exact_scan = FALSE
+
+/obj/item/mecha_parts/mecha_equipment/tool/orescanner/Initialize()
+	my_scanner = new(src)
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/tool/orescanner/Destroy()
+	QDEL_NULL(my_scanner)
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/tool/orescanner/action(var/atom/target)
+	if(!action_checks(target) || get_dist(chassis, target) > 5)
+		return FALSE
+
+	if(!enable_special)
+		target = get_turf(chassis)
+
+	var/datum/beam/ScanBeam = chassis.Beam(target,"g_beam",'icons/effects/beam.dmi',time=2 SECONDS,10,/obj/effect/ebeam,2)
+
+	if(do_after(chassis.occupant, 2 SECONDS))
+		my_scanner.ScanTurf(target, chassis.occupant, exact_scan)
+
+	QDEL_NULL(ScanBeam)
+
+/obj/item/mecha_parts/mecha_equipment/tool/orescanner/advanced
+	name = "advanced ore scanner"
+	icon_state = "mecha_analyzer_adv"
+	exact_scan = TRUE
 
 /obj/item/mecha_parts/mecha_equipment/tool/extinguisher
 	name = "extinguisher"
@@ -172,17 +315,16 @@
 	equip_cooldown = 5
 	energy_drain = 0
 	range = MELEE|RANGED
-	required_type = /obj/mecha/working
+	required_type = list(/obj/mecha/working)
 	var/spray_particles = 5
 	var/spray_amount = 5	//units of liquid per particle. 5 is enough to wet the floor - it's a big fire extinguisher, so should be fine
 	var/max_water = 1000
 
-/obj/item/mecha_parts/mecha_equipment/tool/extinguisher/New()
+/obj/item/mecha_parts/mecha_equipment/tool/extinguisher/Initialize()
+	. = ..()
 	reagents = new/datum/reagents(max_water)
 	reagents.my_atom = src
 	reagents.add_reagent("water", max_water)
-	..()
-	return
 
 /obj/item/mecha_parts/mecha_equipment/tool/extinguisher/action(atom/target) //copypasted from extinguisher. TODO: Rewrite from scratch.
 	if(!action_checks(target) || get_dist(chassis, target)>3) return
@@ -236,6 +378,48 @@
 /obj/item/mecha_parts/mecha_equipment/tool/extinguisher/on_reagent_change()
 	return
 
+/obj/item/mecha_parts/mecha_equipment/tool/powertool
+	name = "pneumatic wrench"
+	desc = "An exosuit-mounted hydraulic wrench."
+	icon_state = "mecha_wrench"
+	origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 2, TECH_POWER = 2)
+	equip_cooldown = 3
+	energy_drain = 15
+	range = MELEE
+	equip_type = EQUIP_UTILITY
+	ready_sound = 'sound/items/Ratchet.ogg'
+	required_type = list(/obj/mecha/working/ripley)
+
+	var/obj/item/my_tool = null
+	var/tooltype = /obj/item/weapon/tool/wrench/power
+
+/obj/item/mecha_parts/mecha_equipment/tool/powertool/Initialize()
+	my_tool = new tooltype(src)
+	my_tool.name = name
+	my_tool.anchored = TRUE
+	my_tool.canremove = FALSE
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/tool/powertool/Destroy()
+	QDEL_NULL(my_tool)
+	return ..()
+
+/obj/item/mecha_parts/mecha_equipment/tool/powertool/action(var/atom/target)
+	if(!action_checks(target))
+		return FALSE
+
+	if(isliving(target))
+		my_tool.attack(target, chassis.occupant, BP_TORSO)
+
+	target.attackby(my_tool,chassis.occupant)
+
+/obj/item/mecha_parts/mecha_equipment/tool/powertool/prybar
+	name = "pneumatic prybar"
+	desc = "An exosuit-mounted pneumatic prybar."
+	icon_state = "mecha_crowbar"
+	tooltype = /obj/item/weapon/tool/crowbar/power
+	ready_sound = 'sound/mecha/gasdisconnected.ogg'
+
 /obj/item/mecha_parts/mecha_equipment/tool/rcd
 	name = "mounted RCD"
 	desc = "An exosuit-mounted Rapid Construction Device. (Can be attached to: Any exosuit)"
@@ -247,7 +431,7 @@
 	equip_type = EQUIP_SPECIAL
 	var/obj/item/weapon/rcd/electric/mounted/mecha/my_rcd = null
 
-/obj/item/mecha_parts/mecha_equipment/tool/rcd/initialize()
+/obj/item/mecha_parts/mecha_equipment/tool/rcd/Initialize()
 	my_rcd = new(src)
 	return ..()
 
@@ -1030,7 +1214,7 @@
 	energy_drain = 0
 	var/dam_force = 0
 	var/obj/mecha/working/ripley/cargo_holder
-	required_type = /obj/mecha/working/ripley
+	required_type = list(/obj/mecha/working/ripley)
 
 	equip_type = EQUIP_SPECIAL
 
@@ -1203,9 +1387,10 @@
 			usr << "<span class='danger'>Kinda hard to climb in while handcuffed don't you think?</span>"
 			return
 
-	for(var/mob/living/simple_animal/slime/M in range(1,usr))
-		if(M.victim == usr)
-			usr << "<span class='danger'>You're too busy getting your life sucked out of you.</span>"
+	if(isliving(usr))
+		var/mob/living/L = usr
+		if(L.has_buckled_mobs())
+			to_chat(L, span("warning", "You have other entities attached to yourself. Remove them first."))
 			return
 
 	//search for a valid passenger compartment
@@ -1329,4 +1514,155 @@
 /obj/item/mecha_parts/mecha_equipment/tool/jetpack/do_after_cooldown()
 	sleep(equip_cooldown)
 	wait = 0
+	return 1
+
+/obj/item/mecha_parts/mecha_equipment/speedboost
+	name = "ripley leg actuator overdrive"
+	desc = "System enhancements and overdrives to make a ripley's legs move faster."
+	icon_state = "tesla"
+	origin_tech = list( TECH_POWER = 5, TECH_MATERIAL = 4, TECH_ENGINEERING = 4)
+	required_type = list(/obj/mecha/working/ripley)
+
+	equip_type = EQUIP_HULL
+
+/obj/item/mecha_parts/mecha_equipment/speedboost/attach(obj/mecha/M as obj)
+	..()
+	if(enable_special)
+		chassis.step_in = (chassis.step_in-2) // Make the ripley as fast as a durand
+	else
+		chassis.step_in = (chassis.step_in+1) // Improper parts slow the mech down
+	return
+
+/obj/item/mecha_parts/mecha_equipment/speedboost/detach()
+	chassis.step_in = initial(chassis.step_in)
+	..()
+	return
+
+/obj/item/mecha_parts/mecha_equipment/tool/cable_layer
+	name = "Cable Layer"
+	icon_state = "mecha_wire"
+	var/turf/old_turf
+	var/obj/structure/cable/last_piece
+	var/obj/item/stack/cable_coil/cable
+	var/max_cable = 1000
+	required_type = list(/obj/mecha/working)
+
+/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/New()
+	cable = new(src)
+	cable.amount = 0
+	..()
+
+/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/MoveAction()
+	layCable()
+
+/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/action(var/obj/item/stack/cable_coil/target)
+	if(!action_checks(target))
+		return
+	var/result = load_cable(target)
+	var/message
+	if(isnull(result))
+		message = "<font color='red'>Unable to load [target] - no cable found.</font>"
+	else if(!result)
+		message = "Reel is full."
+	else
+		message = "[result] meters of cable successfully loaded."
+		send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",src.get_equip_info())
+	occupant_message(message)
+	return
+
+/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/Topic(href,href_list)
+	..()
+	if(href_list["toggle"])
+		set_ready_state(!equip_ready)
+		occupant_message("[src] [equip_ready?"dea":"a"]ctivated.")
+		log_message("[equip_ready?"Dea":"A"]ctivated.")
+		return
+	if(href_list["cut"])
+		if(cable && cable.amount)
+			var/m = round(input(chassis.occupant,"Please specify the length of cable to cut","Cut cable",min(cable.amount,30)) as num, 1)
+			m = min(m, cable.amount)
+			if(m)
+				use_cable(m)
+				var/obj/item/stack/cable_coil/CC = new (get_turf(chassis))
+				CC.amount = m
+		else
+			occupant_message("There's no more cable on the reel.")
+	return
+
+/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/get_equip_info()
+	var/output = ..()
+	if(output)
+		return "[output] \[Cable: [cable ? cable.amount : 0] m\][(cable && cable.amount) ? "- <a href='?src=\ref[src];toggle=1'>[!equip_ready?"Dea":"A"]ctivate</a>|<a href='?src=\ref[src];cut=1'>Cut</a>" : null]"
+	return
+
+/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/proc/load_cable(var/obj/item/stack/cable_coil/CC)
+	if(istype(CC) && CC.amount)
+		var/cur_amount = cable? cable.amount : 0
+		var/to_load = max(max_cable - cur_amount,0)
+		if(to_load)
+			to_load = min(CC.amount, to_load)
+			if(!cable)
+				cable = new(src)
+				cable.amount = 0
+			cable.amount += to_load
+			CC.use(to_load)
+			return to_load
+		else
+			return 0
+	return
+
+/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/proc/use_cable(amount)
+	if(!cable || cable.amount<1)
+		set_ready_state(1)
+		occupant_message("Cable depleted, [src] deactivated.")
+		log_message("Cable depleted, [src] deactivated.")
+		return
+	if(cable.amount < amount)
+		occupant_message("No enough cable to finish the task.")
+		return
+	cable.use(amount)
+	update_equip_info()
+	return 1
+
+/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/proc/reset()
+	last_piece = null
+
+/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/proc/dismantleFloor(var/turf/new_turf)
+	new_turf = get_turf(chassis)
+	if(istype(new_turf, /turf/simulated/floor))
+		var/turf/simulated/floor/T = new_turf
+		if(!T.is_plating())
+			T.make_plating(!(T.broken || T.burnt))
+	return new_turf.is_plating()
+
+/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/proc/layCable(var/turf/new_turf)
+	new_turf = get_turf(chassis)
+	if(equip_ready || !istype(new_turf, /turf/simulated/floor) || !dismantleFloor(new_turf))
+		return reset()
+	var/fdirn = turn(chassis.dir,180)
+	for(var/obj/structure/cable/LC in new_turf)		// check to make sure there's not a cable there already
+		if(LC.d1 == fdirn || LC.d2 == fdirn)
+			return reset()
+	if(!use_cable(1))
+		return reset()
+	var/obj/structure/cable/NC = new(new_turf)
+	NC.cableColor("red")
+	NC.d1 = 0
+	NC.d2 = fdirn
+	NC.update_icon()
+
+	var/datum/powernet/PN
+	if(last_piece && last_piece.d2 != chassis.dir)
+		last_piece.d1 = min(last_piece.d2, chassis.dir)
+		last_piece.d2 = max(last_piece.d2, chassis.dir)
+		last_piece.update_icon()
+		PN = last_piece.powernet
+
+	if(!PN)
+		PN = new()
+	PN.add_cable(NC)
+	NC.mergeConnectedNetworks(NC.d2)
+
+	//NC.mergeConnectedNetworksOnTurf()
+	last_piece = NC
 	return 1

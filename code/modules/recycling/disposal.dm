@@ -136,7 +136,7 @@
 
 	if(isrobot(user))
 		return
-	if(!I)
+	if(!I || I.anchored || !I.canremove)
 		return
 
 	user.drop_item()
@@ -467,7 +467,7 @@
 		H.vent_gas(loc)
 		qdel(H)
 
-/obj/machinery/disposal/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/machinery/disposal/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/item/projectile))
 		return 1
 	if (istype(mover,/obj/item) && mover.throwing)
@@ -483,7 +483,7 @@
 				M.show_message("\The [I] bounces off of \the [src]'s rim!", 3)
 		return 0
 	else
-		return ..(mover, target, height, air_group)
+		return ..(mover, target)
 
 // virtual disposal object
 // travels through pipes in lieu of actual items

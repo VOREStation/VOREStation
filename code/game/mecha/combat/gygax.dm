@@ -121,3 +121,52 @@
 	if (href_list["toggle_leg_overload"])
 		src.overload()
 	return
+
+/obj/mecha/combat/gygax/serenity
+	desc = "A lightweight exosuit made from a modified Gygax chassis combined with proprietary VeyMed medical tech. It's faster and sturdier than most medical mechs, but much of the armor plating has been stripped out, leaving it more vulnerable than a regular Gygax."
+	name = "Serenity"
+	icon_state = "medgax"
+	initial_icon = "medgax"
+	health = 150
+	maxhealth = 150
+	deflect_chance = 20
+	step_in = 2
+	damage_absorption = list("brute"=0.9,"fire"=1,"bullet"=0.9,"laser"=0.8,"energy"=0.9,"bomb"=1)
+	max_temperature = 20000
+	overload_coeff = 1
+	wreckage = /obj/effect/decal/mecha_wreckage/gygax/serenity
+	max_equip = 3
+	step_energy_drain = 8
+	cargo_capacity = 2
+	max_hull_equip = 1
+	max_weapon_equip = 1
+	max_utility_equip = 2
+	max_universal_equip = 1
+	max_special_equip = 1
+
+	var/obj/item/clothing/glasses/hud/health/mech/hud
+
+/obj/mecha/combat/gygax/serenity/New()
+	..()
+	hud = new /obj/item/clothing/glasses/hud/health/mech(src)
+	return
+
+/obj/mecha/combat/gygax/serenity/moved_inside(var/mob/living/carbon/human/H as mob)
+	if(..())
+		if(H.glasses)
+			occupant_message("<font color='red'>[H.glasses] prevent you from using [src] [hud]</font>")
+		else
+			H.glasses = hud
+			H.recalculate_vis()
+		return 1
+	else
+		return 0
+
+/obj/mecha/combat/gygax/serenity/go_out()
+	if(ishuman(occupant))
+		var/mob/living/carbon/human/H = occupant
+		if(H.glasses == hud)
+			H.glasses = null
+			H.recalculate_vis()
+	..()
+	return

@@ -2,6 +2,9 @@
 /atom/proc/attack_generic(mob/user as mob)
 	return 0
 
+/atom/proc/take_damage(var/damage)
+	return 0
+
 /*
 	Humans:
 	Adds an exception for gloves, to allow special glove types like the ninja ones.
@@ -68,58 +71,3 @@
 */
 /mob/new_player/ClickOn()
 	return
-
-/*
-	Animals
-*/
-/mob/living/simple_animal/UnarmedAttack(var/atom/A, var/proximity)
-	if(!(. = ..()))
-		return
-
-	setClickCooldown(get_attack_speed())
-
-	if(has_hands && istype(A,/obj) && a_intent != I_HURT)
-		var/obj/O = A
-		return O.attack_hand(src)
-
-	switch(a_intent)
-		if(I_HELP)
-			if(isliving(A))
-				custom_emote(1,"[pick(friendly)] [A]!")
-
-		if(I_HURT)
-			if(prob(spattack_prob))
-				if(spattack_min_range <= 1)
-					SpecialAtkTarget()
-
-
-			else if(melee_damage_upper == 0 && istype(A,/mob/living))
-				custom_emote(1,"[pick(friendly)] [A]!")
-
-
-			else
-				DoPunch(A)
-
-		if(I_GRAB)
-			if(has_hands)
-				A.attack_hand(src)
-
-		if(I_DISARM)
-			if(has_hands)
-				A.attack_hand(src)
-
-/mob/living/simple_animal/RangedAttack(var/atom/A)
-	setClickCooldown(get_attack_speed())
-	var/distance = get_dist(src, A)
-
-	if(prob(spattack_prob) && (distance >= spattack_min_range) && (distance <= spattack_max_range))
-		target_mob = A
-		SpecialAtkTarget()
-		target_mob = null
-		return
-
-	if(ranged && distance <= shoot_range)
-		target_mob = A
-		ShootTarget(A)
-		target_mob = null
-

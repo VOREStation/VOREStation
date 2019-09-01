@@ -7,7 +7,7 @@
 	caliber = "7.62mm"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BACK
-	fire_sound = 'sound/weapons/rifleshot.ogg'
+	//fire_sound = 'sound/weapons/rifleshot.ogg'
 	load_method = MAGAZINE // ToDo: Make it so MAGAZINE, SPEEDLOADER and SINGLE_CASING can all be used on the same gun.
 	magazine_type = /obj/item/ammo_magazine/m762garand
 	allowed_magazines = list(/obj/item/ammo_magazine/m762garand)

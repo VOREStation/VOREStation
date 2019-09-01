@@ -11,7 +11,7 @@
 	var/maxhealth = 100
 	anchored = 1.0
 
-/obj/structure/catwalk/initialize()
+/obj/structure/catwalk/Initialize()
 	. = ..()
 	for(var/obj/structure/catwalk/O in range(1))
 		O.update_icon()
@@ -98,7 +98,7 @@
 		return 0
 	return 1
 
-/obj/structure/catwalk/proc/take_damage(amount)
+/obj/structure/catwalk/take_damage(amount)
 	health -= amount
 	if(health <= 0)
 		visible_message("<span class='warning'>\The [src] breaks down!</span>")

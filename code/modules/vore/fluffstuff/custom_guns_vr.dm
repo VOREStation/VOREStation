@@ -540,26 +540,26 @@
 	name = "laser beam"
 	icon_state = "xray"
 	light_color = "#00FF00"
-	muzzle_type = /obj/effect/projectile/xray/muzzle
-	tracer_type = /obj/effect/projectile/xray/tracer
-	impact_type = /obj/effect/projectile/xray/impact
+	muzzle_type = /obj/effect/projectile/muzzle/xray
+	tracer_type = /obj/effect/projectile/tracer/xray
+	impact_type = /obj/effect/projectile/impact/xray
 
 /obj/item/projectile/beam/imperial
 	name = "laser beam"
 	fire_sound = 'sound/weapons/mandalorian.ogg'
 	icon_state = "darkb"
 	light_color = "#8837A3"
-	muzzle_type = /obj/effect/projectile/darkmatter/muzzle
-	tracer_type = /obj/effect/projectile/darkmatter/tracer
-	impact_type = /obj/effect/projectile/darkmatter/impact
+	muzzle_type = /obj/effect/projectile/muzzle/darkmatter
+	tracer_type = /obj/effect/projectile/tracer/darkmatter
+	impact_type = /obj/effect/projectile/impact/darkmatter
 
 /obj/item/projectile/beam/stun/kin21
 	name = "kinh21 stun beam"
 	icon_state = "omnilaser"
 	light_color = "#0000FF"
-	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
-	tracer_type = /obj/effect/projectile/laser_omni/tracer
-	impact_type = /obj/effect/projectile/laser_omni/impact
+	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+	tracer_type = /obj/effect/projectile/tracer/laser_omni
+	impact_type = /obj/effect/projectile/impact/laser_omni
 
 //--------------- StG-60 ----------------
 /obj/item/ammo_magazine/m792
@@ -730,7 +730,7 @@
 	icon_state = "r357"
 	ammo_type = /obj/item/ammo_casing/a44/rubber
 
-//Expedition pistol
+//Expedition Frontier Phaser
 /obj/item/weapon/gun/energy/frontier
 	name = "frontier phaser"
 	desc = "An extraordinarily rugged laser weapon, built to last and requiring effectively no maintenance. Includes a built-in crank charger for recharging away from civilization."
@@ -746,6 +746,7 @@
 	unacidable = 1
 
 	var/recharging = 0
+	var/phase_power = 75
 
 	projectile_type = /obj/item/projectile/beam
 	firemodes = list(
@@ -764,7 +765,7 @@
 		if(!do_after(user, 10, src))
 			break
 		playsound(get_turf(src),'sound/items/change_drill.ogg',25,1)
-		if(power_supply.give(60) < 60)
+		if(power_supply.give(phase_power) < phase_power)
 			break
 
 	recharging = 0
@@ -835,13 +836,14 @@
 		return
 	..()
 
-//Expeditionary Holdout Phaser
+//Expeditionary Holdout Phaser Pistol
 /obj/item/weapon/gun/energy/frontier/locked/holdout
 	name = "holdout frontier phaser"
 	desc = "An minaturized weapon designed for the purpose of expeditionary support to defend themselves on the field. Includes a built-in crank charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "holdoutkill"
 	item_state = null
+	phase_power = 100
 
 	w_class = ITEMSIZE_SMALL
 	charge_cost = 600

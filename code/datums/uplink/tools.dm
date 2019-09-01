@@ -84,7 +84,7 @@
 	item_cost = 25
 	path = /obj/item/device/radio_jammer
 	desc = "A device which is capable of disrupting subspace communications, preventing the use of headsets, PDAs, and communicators within \
-	a radius of seven meters.  It runs off weapon cells, which can be replaced as needed.  One cell will last for approximately a minute."
+	a radius of seven meters.  It runs off weapon cells, which can be replaced as needed.  One cell will last for approximately ten minutes."
 
 /datum/uplink_item/item/tools/emag
 	name = "Cryptographic Sequencer"

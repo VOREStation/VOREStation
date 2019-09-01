@@ -7,14 +7,16 @@
 	w_class = ITEMSIZE_LARGE
 	var/max_fuel = 350
 	var/obj/item/weapon/nozzle = null //Attached welder, or other spray device.
+	var/nozzle_type = /obj/item/weapon/weldingtool/tubefed
 	var/nozzle_attached = 0
 
-/obj/item/weapon/weldpack/New()
+/obj/item/weapon/weldpack/Initialize()
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
 	R.my_atom = src
 	R.add_reagent("fuel", max_fuel)
-	nozzle = new/obj/item/weapon/weldingtool/tubefed(src)
+	nozzle = new nozzle_type(src)
 	nozzle_attached = 1
 
 /obj/item/weapon/weldpack/Destroy()
@@ -144,3 +146,14 @@
 	..(user)
 	user << text("\icon[] [] units of fuel left!", src, src.reagents.total_volume)
 	return
+
+/obj/item/weapon/weldpack/survival
+	name = "emergency welding kit"
+	desc = "A heavy-duty, portable welding fluid carrier."
+	slot_flags = SLOT_BACK
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "welderpack-e"
+	item_state = "welderpack"
+	w_class = ITEMSIZE_LARGE
+	max_fuel = 100
+	nozzle_type = /obj/item/weapon/weldingtool/tubefed/survival

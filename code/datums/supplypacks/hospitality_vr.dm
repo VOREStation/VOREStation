@@ -1,3 +1,6 @@
+/datum/supply_pack/randomised/hospitality/pizza
+	cost = 50
+
 /datum/supply_pack/randomised/hospitality/burgers_vr
 	num_contained = 5
 	contains = list(
@@ -79,6 +82,3 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Chinese takeout crate"
-
-/datum/supply_pack/randomised/hospitality/pizza
-	cost = 25

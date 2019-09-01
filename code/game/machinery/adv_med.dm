@@ -24,6 +24,11 @@
 	component_parts += new /obj/item/stack/material/glass/reinforced(src, 2)
 	RefreshParts()
 
+/obj/machinery/bodyscanner/Destroy()
+	if(console)
+		console.scanner = null
+	return ..()
+
 /obj/machinery/bodyscanner/power_change()
 	..()
 	if(!(stat & (BROKEN|NOPOWER)))
@@ -32,11 +37,7 @@
 		set_light(0)
 
 /obj/machinery/bodyscanner/attackby(var/obj/item/G, user as mob)
-	if(default_deconstruction_screwdriver(user, G))
-		return
-	else if(default_deconstruction_crowbar(user, G))
-		return
-	else if(istype(G, /obj/item/weapon/grab))
+	if(istype(G, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/H = G
 		if(panel_open)
 			to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
@@ -49,10 +50,9 @@
 		if(occupant)
 			to_chat(user, "<span class='notice'>\The [src] is already occupied!</span>")
 			return
-		for(var/mob/living/simple_animal/slime/M in range(1, H.affecting))
-			if(M.victim == H.affecting)
-				to_chat(user, "<span class='danger'>[H.affecting.name] has a slime attached to them, deal with that first.</span>")
-				return
+		if(H.affecting.has_buckled_mobs())
+			to_chat(user, span("warning", "\The [H.affecting] has other entities attached to it. Remove them first."))
+			return
 		var/mob/M = H.affecting
 		if(M.abiotic())
 			to_chat(user, "<span class='notice'>Subject cannot have abiotic items on.</span>")
@@ -62,6 +62,11 @@
 		update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
 		add_fingerprint(user)
 		qdel(G)
+	if(!occupant)
+		if(default_deconstruction_screwdriver(user, G))
+			return
+		if(default_deconstruction_crowbar(user, G))
+			return
 
 /obj/machinery/bodyscanner/MouseDrop_T(mob/living/carbon/O, mob/user as mob)
 	if(!istype(O))
@@ -86,10 +91,9 @@
 	if(O.abiotic())
 		to_chat(user, "<span class='notice'>Subject cannot have abiotic items on.</span>")
 		return 0
-	for(var/mob/living/simple_animal/slime/M in range(1, O))
-		if(M.victim == O)
-			to_chat(user, "<span class='danger'>[O] has a slime attached to them, deal with that first.</span>")
-			return 0
+	if(O.has_buckled_mobs())
+		to_chat(user, span("warning", "\The [O] has other entities attached to it. Remove them first."))
+		return
 
 	if(O == user)
 		visible_message("[user] climbs into \the [src].")
@@ -178,6 +182,11 @@
 	..()
 	findscanner()
 
+/obj/machinery/body_scanconsole/Destroy()
+	if(scanner)
+		scanner.console = null
+	return ..()
+
 /obj/machinery/body_scanconsole/attackby(var/obj/item/I, var/mob/user)
 	if(computer_deconstruction_screwdriver(user, I))
 		return
@@ -247,18 +256,18 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 
+	if(!scanner)
+		findscanner()
+		if(!scanner)
+			to_chat(user, "<span class='notice'>Scanner not found!</span>")
+			return
+
 	if (scanner.panel_open)
 		to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
 		return
 
-	if(!scanner)
-		findscanner()
-		if(scanner)
-			return ui_interact(user)
-	else if(scanner)
+	if(scanner)
 		return ui_interact(user)
-	else
-		to_chat(user, "<span class='warning'>Scanner not found!</span>")
 
 /obj/machinery/body_scanconsole/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/data[0]
@@ -391,7 +400,7 @@
 			occupantData = attempt_vr(scanner,"get_occupant_data_vr",list(occupantData,H)) //VOREStation Insert
 		data["occupant"] = occupantData
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "adv_med.tmpl", "Body Scanner", 690, 800)
 		ui.set_initial_data(data)

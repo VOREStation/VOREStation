@@ -22,10 +22,8 @@
 	update_icon()
 	return ..(loc)
 
-/obj/effect/blob/CanPass(var/atom/movable/mover, vra/turf/target, var/height = 0, var/air_group = 0)
-	if(air_group || height == 0)
-		return 1
-	return 0
+/obj/effect/blob/CanPass(var/atom/movable/mover, vra/turf/target)
+	return FALSE
 
 /obj/effect/blob/ex_act(var/severity)
 	switch(severity)
@@ -42,7 +40,7 @@
 	else
 		icon_state = "blob_damaged"
 
-/obj/effect/blob/proc/take_damage(var/damage)
+/obj/effect/blob/take_damage(var/damage)	// VOREStation Edit
 	health -= damage
 	if(health < 0)
 		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
@@ -167,11 +165,11 @@
 	return
 
 /obj/effect/blob/core/New(loc)
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	return ..(loc)
 
 /obj/effect/blob/core/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/effect/blob/core/process()
@@ -207,5 +205,5 @@
 	else
 		icon_state = "blob_damaged"
 
-/obj/effect/blob/shield/CanPass(var/atom/movable/mover, var/turf/target, var/height = 0, var/air_group = 0)
+/obj/effect/blob/shield/CanPass(var/atom/movable/mover, var/turf/target)
 	return !density

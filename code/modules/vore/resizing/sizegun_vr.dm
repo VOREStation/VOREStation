@@ -65,9 +65,9 @@
 	check_armour = "laser"
 	var/set_size = 1 //Let's default to 100%
 
-	muzzle_type = /obj/effect/projectile/xray/muzzle
-	tracer_type = /obj/effect/projectile/xray/tracer
-	impact_type = /obj/effect/projectile/xray/impact
+	muzzle_type = /obj/effect/projectile/muzzle/xray
+	tracer_type = /obj/effect/projectile/tracer/xray
+	impact_type = /obj/effect/projectile/impact/xray
 
 	on_hit(var/atom/target)
 		var/mob/living/M = target
@@ -82,3 +82,11 @@
 			H.updateicon()
 		else
 			return 1
+
+
+/obj/item/projectile/beam/sizelaser/shrink
+	set_size = 0.5 //50% of current size
+
+
+/obj/item/projectile/beam/sizelaser/grow
+	set_size = 2.0 //200% of current size

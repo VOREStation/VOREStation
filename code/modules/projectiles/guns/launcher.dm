@@ -2,7 +2,6 @@
 	name = "launcher"
 	desc = "A device that launches things."
 	w_class = ITEMSIZE_HUGE
-	flags =  CONDUCT
 	slot_flags = SLOT_BACK
 
 	var/release_force = 0

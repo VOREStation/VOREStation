@@ -3,7 +3,6 @@
 	desc = "A bullet casing."
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "s-casing"
-	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throwforce = 1
 	w_class = ITEMSIZE_TINY
@@ -13,7 +12,7 @@
 	var/caliber = ""					//Which kind of guns it can be loaded into
 	var/projectile_type					//The bullet type to create when New() is called
 	var/obj/item/projectile/BB = null	//The loaded bullet - make it so that the projectiles are created only when needed?
-//	var/spent_icon = null
+	var/caseless = null					//Caseless ammo deletes its self once the projectile is fired.
 
 /obj/item/ammo_casing/New()
 	..()
@@ -47,9 +46,7 @@
 			BB.name = "[initial(BB.name)] (\"[label_text]\")"
 
 /obj/item/ammo_casing/update_icon()
-/*	if(spent_icon && !BB)
-		icon_state = spent_icon*/
-	if(!BB) // This is really just a much better way of doing this.
+	if(!BB)
 		icon_state = "[initial(icon_state)]-spent"
 
 /obj/item/ammo_casing/examine(mob/user)
@@ -68,7 +65,6 @@
 	desc = "A magazine for some kind of gun."
 	icon_state = ".357"
 	icon = 'icons/obj/ammo.dmi'
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	item_state = "syringe_kit"
 	matter = list(DEFAULT_WALL_MATERIAL = 500)

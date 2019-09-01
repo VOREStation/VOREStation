@@ -88,9 +88,48 @@
 
 	var/debug = 0
 
+	var/datum/looping_sound/supermatter/soundloop
+
+/obj/machinery/power/supermatter/New()
+	..()
+	uid = gl_uid++
+
+/obj/machinery/power/supermatter/Initialize()
+	soundloop = new(list(src), TRUE)
+	return ..()
 
 /obj/machinery/power/supermatter/Destroy()
-	. = ..()
+	STOP_PROCESSING(SSobj, src)
+	QDEL_NULL(soundloop)
+	return ..()
+
+/obj/machinery/power/supermatter/proc/get_status()
+	var/turf/T = get_turf(src)
+	if(!T)
+		return SUPERMATTER_ERROR
+	var/datum/gas_mixture/air = T.return_air()
+	if(!air)
+		return SUPERMATTER_ERROR
+
+	if(grav_pulling || exploded)
+		return SUPERMATTER_DELAMINATING
+
+	if(get_integrity() < 25)
+		return SUPERMATTER_EMERGENCY
+
+	if(get_integrity() < 50)
+		return SUPERMATTER_DANGER
+
+	if((get_integrity() < 100) || (air.temperature > CRITICAL_TEMPERATURE))
+		return SUPERMATTER_WARNING
+
+	if(air.temperature > (CRITICAL_TEMPERATURE * 0.8))
+		return SUPERMATTER_NOTIFY
+
+	if(power > 5)
+		return SUPERMATTER_NORMAL
+	return SUPERMATTER_INACTIVE
+
 
 /obj/machinery/power/supermatter/proc/explode()
 	message_admins("Supermatter exploded at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
@@ -112,6 +151,8 @@
 				H.hallucination += max(50, min(300, DETONATION_HALLUCINATION * sqrt(1 / (get_dist(mob, src) + 1)) ) )
 	spawn(pull_time)
 		explosion(get_turf(src), explosion_power, explosion_power * 2, explosion_power * 3, explosion_power * 4, 1)
+		spawn(5) //to allow the explosion to finish
+		new /obj/item/broken_sm(TS)
 		qdel(src)
 		return
 
@@ -196,6 +237,11 @@
 		shift_light(4,initial(light_color))
 	if(grav_pulling)
 		supermatter_pull(src)
+
+	if(power)
+		// Volume will be 1 at no power, ~12.5 at ENERGY_NITROGEN, and 20+ at ENERGY_PHORON.
+		// Capped to 20 volume since higher volumes get annoying and it sounds worse.
+		soundloop.volume = min(round(power/10)+1, 20)
 
 	//Ok, get the air from the turf
 	var/datum/gas_mixture/removed = null
@@ -322,7 +368,7 @@
 		data["ambient_pressure"] = round(env.return_pressure())
 	data["detonating"] = grav_pulling
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "supermatter_crystal.tmpl", "Supermatter Crystal", 500, 300)
 		ui.set_initial_data(data)
@@ -404,3 +450,21 @@
 
 /obj/machinery/power/supermatter/shard/announce_warning() //Shards don't get announcements
 	return
+
+/obj/item/broken_sm
+	name = "shattered supermatter plinth"
+	desc = "The shattered remains of a supermatter shard plinth. It doesn't look safe to be around."
+	icon = 'icons/obj/engine.dmi'
+	icon_state = "darkmatter_broken"
+
+/obj/item/broken_sm/New()
+	message_admins("Broken SM shard created at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
+	START_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/broken_sm/process()
+	radiation_repository.radiate(src, 50)
+
+/obj/item/broken_sm/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()

@@ -6,9 +6,9 @@
 	intelligence_level = SA_ANIMAL
 	icon_state = "cat2"
 	item_state = "cat2"
-	icon_living = "cat2"
-	icon_dead = "cat2_dead"
-	icon_rest = "cat2_rest"
+	icon_living = "[initial(icon_state)]"
+	icon_dead = "[initial(icon_state)]_dead"
+	icon_rest = "[initial(icon_state)]_rest"
 
 	investigates = 1
 	specific_targets = 1 //Only targets with Found()
@@ -63,8 +63,8 @@
 	handle_flee_target()
 
 /mob/living/simple_animal/cat/PunchTarget()
-	if(istype(target_mob,/mob/living/simple_animal/mouse))
-		var/mob/living/simple_animal/mouse/mouse = target_mob
+	if(ismouse(target_mob))
+		var/mob/living/simple_mob/animal/passive/mouse/mouse = target_mob
 		mouse.splat()
 		visible_emote(pick("bites \the [mouse]!","toys with \the [mouse].","chomps on \the [mouse]!"))
 		return mouse
@@ -72,7 +72,7 @@
 		..()
 
 /mob/living/simple_animal/cat/Found(var/atom/found_atom)
-	if(istype(found_atom,/mob/living/simple_animal/mouse) && SA_attackable(found_atom))
+	if(ismouse(found_atom) && SA_attackable(found_atom))
 		return found_atom
 
 /mob/living/simple_animal/cat/proc/handle_flee_target()
@@ -101,6 +101,7 @@
 /mob/living/simple_animal/cat/fluff
 	var/mob/living/carbon/human/friend
 	var/befriend_job = null
+	var/friend_name = null
 
 /mob/living/simple_animal/cat/fluff/Life()
 	. = ..()
@@ -136,7 +137,7 @@
 
 	if(!friend)
 		var/mob/living/carbon/human/H = usr
-		if(istype(H) && (!befriend_job || H.job == befriend_job))
+		if(istype(H) && (!befriend_job || H.job == befriend_job) && (!friend_name || H.real_name == friend_name))
 			friend = usr
 			. = 1
 	else if(usr == friend)
@@ -160,9 +161,6 @@
 	gender = FEMALE
 	icon_state = "cat"
 	item_state = "cat"
-	icon_living = "cat"
-	icon_dead = "cat_dead"
-	icon_rest = "cat_rest"
 	befriend_job = "Chief Medical Officer"
 
 /mob/living/simple_animal/cat/kitten
@@ -173,7 +171,6 @@
 	icon_living = "kitten"
 	icon_dead = "kitten_dead"
 	gender = NEUTER
-	holder_type = /obj/item/weapon/holder/cat/kitten //VOREStation Edit
 
 // Leaving this here for now.
 /obj/item/weapon/holder/cat/fluff/bones
@@ -188,17 +185,9 @@
 	gender = MALE
 	icon_state = "cat3"
 	item_state = "cat3"
-	icon_living = "cat3"
-	icon_dead = "cat3_dead"
-	icon_rest = "cat3_rest"
 	holder_type = /obj/item/weapon/holder/cat/fluff/bones
-	var/friend_name = "Erstatz Vryroxes"
+	friend_name = "Erstatz Vryroxes"
 
 /mob/living/simple_animal/cat/kitten/New()
 	gender = pick(MALE, FEMALE)
 	..()
-
-// VOREStation Edit - Adds generic tactical kittens
-/obj/item/weapon/holder/cat/kitten
-	icon_state = "kitten"
-	w_class = ITEMSIZE_SMALL

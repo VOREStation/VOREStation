@@ -527,7 +527,7 @@
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T)
 
-/obj/item/weapon/storage/initialize()
+/obj/item/weapon/storage/Initialize()
 	. = ..()
 
 	if(allow_quick_empty)

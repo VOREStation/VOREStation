@@ -109,7 +109,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 
 	var/nagmessage = "Adjust your mass to be a size between 25 to 200% (DO NOT ABUSE)"
 	var/new_size = input(nagmessage, "Pick a Size") as num|null
-	if(new_size && IsInRange(new_size,25,200))
+	if(new_size && ISINRANGE(new_size,25,200))
 		src.resize(new_size/100)
 		message_admins("[key_name(src)] used the resize command in-game to be [new_size]% size. \
 			([src ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>" : "null"])")
@@ -132,7 +132,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	if(!istype(M))
 		return 0
 	if(isanimal(M))
-		var/mob/living/simple_animal/SA = M
+		var/mob/living/simple_mob/SA = M
 		if(!SA.has_hands)
 			return 0
 	if(M.buckled)
@@ -155,7 +155,6 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  * @return false if normal code should continue, true to prevent normal code.
  */
 /mob/living/proc/handle_micro_bump_helping(var/mob/living/tmob)
-
 	//Both small! Go ahead and go.
 	if(src.get_effective_size() <= RESIZE_A_SMALLTINY && tmob.get_effective_size() <= RESIZE_A_SMALLTINY)
 		return TRUE
@@ -218,10 +217,16 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	var/mob/living/carbon/human/H
 	if(ishuman(src))
 		H = src
+	else
+		//If we're not human, can't do the steppy
+		return FALSE
 
 	var/mob/living/carbon/human/Ht
 	if(ishuman(tmob))
 		Ht = tmob
+	else
+		//If they're not human, steppy shouldn't happen
+		return FALSE
 
 	//Depending on intent...
 	switch(a_intent)

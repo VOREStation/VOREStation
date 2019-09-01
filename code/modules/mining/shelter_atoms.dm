@@ -128,7 +128,7 @@
 	basestate = "pwindow"
 
 //The windows have diagonal versions, and will never be a full window
-/obj/structure/window/reinforced/survival_pod/is_full_window()
+/obj/structure/window/reinforced/survival_pod/is_fulltile()
 	return FALSE
 
 /obj/structure/window/reinforced/survival_pod/update_icon()
@@ -219,7 +219,7 @@
 	pixel_y = -4
 	max_n_of_items = 100
 
-/obj/machinery/smartfridge/survival_pod/initialize()
+/obj/machinery/smartfridge/survival_pod/Initialize()
 	. = ..()
 	for(var/obj/item/O in loc)
 		if(accept_check(O))
@@ -240,13 +240,9 @@
 	desc = "A large machine releasing a constant gust of air."
 	anchored = TRUE
 	density = TRUE
+	can_atmos_pass = ATMOS_PASS_NO
 	var/buildstacktype = /obj/item/stack/material/steel
 	var/buildstackamount = 5
-
-/obj/structure/fans/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(!height)
-		return FALSE
-	return TRUE
 
 /obj/structure/fans/proc/deconstruct()
 	new buildstacktype(loc,buildstackamount)

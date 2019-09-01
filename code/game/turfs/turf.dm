@@ -32,6 +32,7 @@
 
 	var/block_tele = FALSE      // If true, most forms of teleporting to or from this turf tile will fail.
 	var/can_build_into_floor = FALSE // Used for things like RCDs (and maybe lattices/floor tiles in the future), to see if a floor should replace it.
+	var/list/dangerous_objects // List of 'dangerous' objs that the turf holds that can cause something bad to happen when stepped on, used for AI mobs.
 
 /turf/New()
 	..()
@@ -141,50 +142,6 @@ turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
 			sleep(2)
 			O.update_transform()
 
-/turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
-	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		usr << "<span class='warning'>Movement is admin-disabled.</span>" //This is to identify lag problems
-		return
-
-	..()
-
-	if (!mover || !isturf(mover.loc))
-		return 1
-
-	//First, check objects to block exit that are not on the border
-	for(var/obj/obstacle in mover.loc)
-		if(!(obstacle.flags & ON_BORDER) && (mover != obstacle) && (forget != obstacle))
-			if(!obstacle.CheckExit(mover, src))
-				mover.Bump(obstacle, 1)
-				return 0
-
-	//Now, check objects to block exit that are on the border
-	for(var/obj/border_obstacle in mover.loc)
-		if((border_obstacle.flags & ON_BORDER) && (mover != border_obstacle) && (forget != border_obstacle))
-			if(!border_obstacle.CheckExit(mover, src))
-				mover.Bump(border_obstacle, 1)
-				return 0
-
-	//Next, check objects to block entry that are on the border
-	for(var/obj/border_obstacle in src)
-		if(border_obstacle.flags & ON_BORDER)
-			if(!border_obstacle.CanPass(mover, mover.loc, 1, 0) && (forget != border_obstacle))
-				mover.Bump(border_obstacle, 1)
-				return 0
-
-	//Then, check the turf itself
-	if (!src.CanPass(mover, src))
-		mover.Bump(src, 1)
-		return 0
-
-	//Finally, check objects/mobs to block entry that are not on the border
-	for(var/atom/movable/obstacle in src)
-		if(!(obstacle.flags & ON_BORDER))
-			if(!obstacle.CanPass(mover, mover.loc, 1, 0) && (forget != obstacle))
-				mover.Bump(obstacle, 1)
-				return 0
-	return 1 //Nothing found to block so return success!
-
 var/const/enterloopsanity = 100
 /turf/Entered(atom/atom as mob|obj)
 
@@ -217,14 +174,74 @@ var/const/enterloopsanity = 100
 	var/objects = 0
 	if(A && (A.flags & PROXMOVE))
 		for(var/atom/movable/thing in range(1))
-			if(objects > enterloopsanity) break
-			objects++
+			if(objects++ > enterloopsanity) break
 			spawn(0)
 				if(A) //Runtime prevention
 					A.HasProximity(thing, 1)
 					if ((thing && A) && (thing.flags & PROXMOVE))
 						thing.HasProximity(A, 1)
-	return
+
+/turf/CanPass(atom/movable/mover, turf/target)
+	if(!target)
+		return FALSE
+
+	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
+		return !density
+
+	crash_with("Non movable passed to turf CanPass : [mover]")
+	return FALSE
+
+//There's a lot of QDELETED() calls here if someone can figure out how to optimize this but not runtime when something gets deleted by a Bump/CanPass/Cross call, lemme know or go ahead and fix this mess - kevinz000
+/turf/Enter(atom/movable/mover, atom/oldloc)
+	if(movement_disabled && usr.ckey != movement_disabled_exception)
+		usr << "<span class='warning'>Movement is admin-disabled.</span>" //This is to identify lag problems
+		return
+	// Do not call ..()
+	// Byond's default turf/Enter() doesn't have the behaviour we want with Bump()
+	// By default byond will call Bump() on the first dense object in contents
+	// Here's hoping it doesn't stay like this for years before we finish conversion to step_
+	var/atom/firstbump
+	var/CanPassSelf = CanPass(mover, src)
+	if(CanPassSelf || CHECK_BITFIELD(mover.movement_type, UNSTOPPABLE))
+		for(var/i in contents)
+			if(QDELETED(mover))
+				return FALSE		//We were deleted, do not attempt to proceed with movement.
+			if(i == mover || i == mover.loc) // Multi tile objects and moving out of other objects
+				continue
+			var/atom/movable/thing = i
+			if(!thing.Cross(mover))
+				if(QDELETED(mover))		//Mover deleted from Cross/CanPass, do not proceed.
+					return FALSE
+				if(CHECK_BITFIELD(mover.movement_type, UNSTOPPABLE))
+					mover.Bump(thing)
+					continue
+				else
+					if(!firstbump || ((thing.layer > firstbump.layer || thing.flags & ON_BORDER) && !(firstbump.flags & ON_BORDER)))
+						firstbump = thing
+	if(QDELETED(mover))					//Mover deleted from Cross/CanPass/Bump, do not proceed.
+		return FALSE
+	if(!CanPassSelf)	//Even if mover is unstoppable they need to bump us.
+		firstbump = src
+	if(firstbump)
+		mover.Bump(firstbump)
+		return !QDELETED(mover) && CHECK_BITFIELD(mover.movement_type, UNSTOPPABLE)
+	return TRUE
+
+/turf/Exit(atom/movable/mover, atom/newloc)
+	. = ..()
+	if(!. || QDELETED(mover))
+		return FALSE
+	for(var/i in contents)
+		if(i == mover)
+			continue
+		var/atom/movable/thing = i
+		if(!thing.Uncross(mover, newloc))
+			if(thing.flags & ON_BORDER)
+				mover.Bump(thing)
+			if(!CHECK_BITFIELD(mover.movement_type, UNSTOPPABLE))
+				return FALSE
+		if(QDELETED(mover))
+			return FALSE		//We were deleted.
 
 /turf/proc/adjacent_fire_act(turf/simulated/floor/source, temperature, volume)
 	return
@@ -283,9 +300,6 @@ var/const/enterloopsanity = 100
 				L.Add(t)
 	return L
 
-/turf/proc/process()
-	return PROCESS_KILL
-
 /turf/proc/contains_dense_objects()
 	if(density)
 		return 1
@@ -322,6 +336,30 @@ var/const/enterloopsanity = 100
 
 /turf/AllowDrop()
 	return TRUE
+
+// Returns false if stepping into a tile would cause harm (e.g. open space while unable to fly, water tile while a slime, lava, etc).
+/turf/proc/is_safe_to_enter(mob/living/L)
+	if(LAZYLEN(dangerous_objects))
+		for(var/obj/O in dangerous_objects)
+			if(!O.is_safe_to_step(L))
+				return FALSE
+	return TRUE
+
+// Tells the turf that it currently contains something that automated movement should consider if planning to enter the tile.
+// This uses lazy list macros to reduce memory footprint, since for 99% of turfs the list would've been empty anyways.
+/turf/proc/register_dangerous_object(obj/O)
+	if(!istype(O))
+		return FALSE
+	LAZYADD(dangerous_objects, O)
+//	color = "#FF0000"
+
+// Similar to above, for when the dangerous object stops being dangerous/gets deleted/moved/etc.
+/turf/proc/unregister_dangerous_object(obj/O)
+	if(!istype(O))
+		return FALSE
+	LAZYREMOVE(dangerous_objects, O)
+	UNSETEMPTY(dangerous_objects) // This nulls the list var if it's empty.
+//	color = "#00FF00"
 
 // This is all the way up here since its the common ancestor for things that need to get replaced with a floor when an RCD is used on them.
 // More specialized turfs like walls should instead override this.

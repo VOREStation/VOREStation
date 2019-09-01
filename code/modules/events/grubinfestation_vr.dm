@@ -9,7 +9,7 @@
 /datum/event/grub_infestation/setup()
 	announceWhen = rand(announceWhen, announceWhen + 60)
 
-	spawncount = rand(4 * severity, 6 * severity)	//grub larva only have a 50% chance to grow big and strong
+	spawncount = rand(2 * severity, 6 * severity)
 
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
 		if(istype(get_area(temp_vent), /area/crew_quarters/sleep))
@@ -24,7 +24,7 @@
 /datum/event/grub_infestation/start()
 	while((spawncount >= 1) && vents.len)
 		var/obj/vent = pick(vents)
-		new /mob/living/simple_animal/solargrub_larva(get_turf(vent))
+		new /mob/living/simple_mob/animal/solargrub_larva(get_turf(vent))
 		vents -= vent
 		spawncount--
 	vents.Cut()

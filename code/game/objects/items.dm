@@ -27,6 +27,10 @@
 	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection flags
 	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection flags
 
+	var/max_pressure_protection // Set this variable if the item protects its wearer against high pressures below an upper bound. Keep at null to disable protection.
+	var/min_pressure_protection // Set this variable if the item protects its wearer against low pressures above a lower bound. Keep at null to disable protection. 0 represents protection against hard vacuum.
+
+
 	var/datum/action/item_action/action = null
 	var/action_button_name //It is also the text which gets displayed on the action button. If not set it defaults to 'Use [name]'. If it's not set, there'll be no button.
 	var/action_button_is_hands_free = 0 //If 1, bypass the restrained, lying, and stunned checks action buttons normally test for
@@ -488,13 +492,15 @@ var/list/global/slot_flags_enumeration = list(
 		user << "<span class='warning'>You cannot locate any eyes on [M]!</span>"
 		return
 
-	if(U.get_accuracy_penalty(U))	//Should only trigger if they're not aiming well
-		var/hit_zone = get_zone_with_miss_chance(U.zone_sel.selecting, M, U.get_accuracy_penalty(U))
-		if(!hit_zone)
-			U.do_attack_animation(M)
-			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-			visible_message("<font color='red'><B>[U] attempts to stab [M] in the eyes, but misses!</B></font>")
-			return
+	//this should absolutely trigger even if not aim-impaired in some way
+	var/hit_zone = get_zone_with_miss_chance(U.zone_sel.selecting, M, U.get_accuracy_penalty(U))
+	if(!hit_zone)
+		U.do_attack_animation(M)
+		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+		//visible_message("<span class='danger'>[U] attempts to stab [M] in the eyes, but misses!</span>")
+		for(var/mob/V in viewers(M))
+			V.show_message("<span class='danger'>[U] attempts to stab [M] in the eyes, but misses!</span>")
+		return
 
 	add_attack_logs(user,M,"Attack eyes with [name]")
 
@@ -710,7 +716,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	icon = 'icons/obj/device.dmi'
 
 //Worn icon generation for on-mob sprites
-/obj/item/proc/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer)
+/obj/item/proc/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer,var/icon/clip_mask = null) //VOREStation edit - add 'clip mask' argument.
 	//Get the required information about the base icon
 	var/icon/icon2use = get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name)
@@ -732,6 +738,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(!inhands)
 		apply_custom(standing_icon)		//Pre-image overridable proc to customize the thing
 		apply_addblends(icon2use,standing_icon)		//Some items have ICON_ADD blend shaders
+		if(istype(clip_mask)) //VOREStation Edit - For taur bodies/tails clipping off parts of uniforms and suits.
+			standing_icon = get_icon_difference(standing_icon, clip_mask, 1)
 
 	var/image/standing = image(standing_icon)
 	standing.alpha = alpha

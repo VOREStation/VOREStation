@@ -1,0 +1,882 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/turf/template_noop,
+/area/submap/Oldhouse)
+"ac" = (
+/turf/simulated/wall/wood,
+/area/submap/Oldhouse)
+"ad" = (
+/obj/structure/flora/tree/sif,
+/turf/template_noop,
+/area/submap/Oldhouse)
+"ae" = (
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"af" = (
+/obj/structure/table/woodentable,
+/obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"ag" = (
+/obj/item/stack/material/wood,
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"ah" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"ai" = (
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aj" = (
+/turf/simulated/floor/wood{
+	icon_state = "wood_broken6"
+	},
+/area/submap/Oldhouse)
+"ak" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/spiderling_remains,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"al" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"am" = (
+/obj/structure/closet/cabinet,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"an" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/Oldhouse)
+"ao" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/wood{
+	icon_state = "wood_broken4"
+	},
+/area/submap/Oldhouse)
+"ap" = (
+/turf/simulated/floor/wood{
+	icon_state = "wood_broken2"
+	},
+/area/submap/Oldhouse)
+"aq" = (
+/obj/item/stack/material/wood,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"ar" = (
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/Oldhouse)
+"as" = (
+/turf/simulated/floor/wood{
+	icon_state = "wood_broken4"
+	},
+/area/submap/Oldhouse)
+"at" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/paper,
+/obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"au" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"av" = (
+/obj/structure/bed/chair/wood{
+	icon_state = "wooden_chair";
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aw" = (
+/obj/item/stack/material/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"ax" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/wood{
+	icon_state = "wood_broken6"
+	},
+/area/submap/Oldhouse)
+"ay" = (
+/obj/effect/decal/remains/mouse,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"az" = (
+/obj/structure/table/woodentable,
+/obj/item/stack/material/wood,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aA" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aB" = (
+/obj/structure/bed/chair/comfy/teal,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aC" = (
+/obj/structure/bookcase,
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/Oldhouse)
+"aD" = (
+/obj/structure/table,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aE" = (
+/obj/structure/table/woodentable,
+/obj/item/trash/candle,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aF" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/pen/blue,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aG" = (
+/obj/item/weapon/reagent_containers/food/snacks/chips,
+/obj/item/weapon/reagent_containers/food/snacks/chips,
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/Oldhouse)
+"aH" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/flame/candle,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aI" = (
+/obj/structure/bed/chair/wood{
+	icon_state = "wooden_chair";
+	dir = 8
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/Oldhouse)
+"aJ" = (
+/obj/effect/decal/remains/mouse,
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/Oldhouse)
+"aK" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/paper,
+/obj/item/weapon/paper,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aL" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/paper/crumpled,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aM" = (
+/obj/structure/frame,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aN" = (
+/mob/living/simple_mob/animal/giant_spider{
+	attack_armor_pen = 100;
+	attacktext = list("lightly bonked");
+	desc = "Furry and brown, this spider is so goddamn fat you're surprised it even moves around.";
+	faction = "neutral";
+	health = 400;
+	melee_damage_lower = 1;
+	melee_damage_upper = 3;
+	melee_miss_chance = 30;
+	movement_cooldown = 8;
+	name = "Mr. Tuddly"
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/Oldhouse)
+"aO" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/Oldhouse)
+"aP" = (
+/obj/item/weapon/circuitboard/papershredder,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aQ" = (
+/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers,
+/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers,
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/Oldhouse)
+"aR" = (
+/obj/effect/decal/cleanable/spiderling_remains,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aS" = (
+/obj/item/weapon/paper/crumpled,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aT" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/storage/backpack/satchel,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aU" = (
+/obj/structure/table/rack,
+/obj/item/clothing/suit/storage/hooded/wintercoat,
+/obj/item/clothing/suit/storage/hooded/wintercoat,
+/obj/item/clothing/head/hood/winter,
+/obj/item/clothing/head/hood/winter,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aV" = (
+/obj/item/device/flashlight,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aW" = (
+/obj/structure/table/rack,
+/obj/item/clothing/shoes/boots/winter,
+/obj/item/clothing/shoes/boots/winter,
+/obj/item/clothing/shoes/boots/winter,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aX" = (
+/obj/structure/coatrack,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"aY" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood{
+	icon_state = "wood_broken6"
+	},
+/area/submap/Oldhouse)
+"aZ" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood{
+	icon_state = "wood_broken2"
+	},
+/area/submap/Oldhouse)
+"ba" = (
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+"Uw" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/wood,
+/area/submap/Oldhouse)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+ab
+ab
+ac
+ac
+ae
+ae
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ad
+ab
+aa
+"}
+(3,1,1) = {"
+aa
+ab
+ac
+ac
+am
+ai
+ai
+aA
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(4,1,1) = {"
+aa
+ac
+ac
+af
+ai
+ai
+ai
+aB
+aE
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(5,1,1) = {"
+aa
+ac
+ac
+ac
+ac
+au
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(6,1,1) = {"
+aa
+ac
+ac
+ag
+ai
+ai
+as
+al
+aF
+al
+aL
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+ab
+aa
+"}
+(7,1,1) = {"
+aa
+ac
+ac
+ah
+an
+an
+an
+an
+ar
+aI
+ar
+ai
+ai
+ac
+ac
+ac
+ac
+ab
+ab
+aa
+"}
+(8,1,1) = {"
+aa
+ac
+ac
+ah
+an
+an
+an
+an
+ar
+ar
+ar
+ai
+aR
+au
+ai
+al
+ac
+ab
+ab
+aa
+"}
+(9,1,1) = {"
+aa
+ac
+ac
+ah
+ao
+ah
+aw
+ai
+ai
+ai
+aM
+aP
+ai
+au
+ai
+aT
+ac
+ab
+ab
+aa
+"}
+(10,1,1) = {"
+aa
+ac
+ac
+ai
+ai
+ac
+ac
+au
+au
+ac
+ac
+ac
+ac
+ac
+ah
+aj
+ac
+ab
+ab
+aa
+"}
+(11,1,1) = {"
+aa
+ab
+ae
+ai
+ai
+ac
+ax
+ai
+ai
+ai
+ai
+ai
+aS
+ac
+ah
+ah
+ac
+ab
+ab
+aa
+"}
+(12,1,1) = {"
+aa
+ab
+ae
+ai
+ap
+ac
+ai
+aC
+aC
+aC
+aC
+aC
+ai
+ac
+ah
+ah
+ac
+ac
+ac
+aa
+"}
+(13,1,1) = {"
+aa
+ab
+ae
+ai
+ai
+ac
+ai
+ar
+ar
+ar
+ar
+ar
+ay
+ac
+ai
+aU
+ac
+ba
+ac
+aa
+"}
+(14,1,1) = {"
+aa
+ab
+ac
+ai
+ai
+ac
+ai
+aC
+aC
+aC
+aC
+aC
+ai
+ac
+ai
+aV
+au
+ai
+au
+aa
+"}
+(15,1,1) = {"
+aa
+ab
+ac
+ai
+ai
+ac
+ay
+aC
+aC
+aC
+aC
+aC
+ai
+ac
+ai
+ai
+au
+ai
+au
+aa
+"}
+(16,1,1) = {"
+aa
+ab
+ae
+aj
+ai
+ac
+ai
+ar
+aG
+aJ
+aN
+aQ
+ai
+ac
+ai
+aW
+ac
+ba
+ac
+aa
+"}
+(17,1,1) = {"
+aa
+ab
+ae
+ai
+aq
+ac
+ai
+aC
+aC
+aC
+aC
+aC
+as
+ac
+ai
+aX
+ac
+ac
+ac
+aa
+"}
+(18,1,1) = {"
+aa
+ab
+ae
+ai
+ai
+ac
+ai
+ai
+ai
+ai
+ai
+ai
+ay
+ac
+aS
+ai
+ac
+ab
+ab
+aa
+"}
+(19,1,1) = {"
+aa
+ac
+ac
+ah
+ai
+ac
+ac
+au
+au
+ac
+ac
+ac
+ac
+ac
+ai
+Uw
+ac
+ab
+ab
+aa
+"}
+(20,1,1) = {"
+aa
+ac
+ac
+ah
+ai
+ai
+ai
+ai
+ai
+ah
+ah
+aq
+ai
+au
+ai
+aY
+ac
+ab
+ab
+aa
+"}
+(21,1,1) = {"
+aa
+ac
+ac
+ak
+ar
+ar
+ar
+ar
+ar
+an
+aO
+ai
+ai
+au
+ai
+aZ
+ac
+ab
+ab
+aa
+"}
+(22,1,1) = {"
+aa
+ac
+ac
+ah
+ar
+ar
+ar
+ar
+ar
+ar
+an
+ai
+ai
+ac
+ac
+ac
+ac
+ab
+ab
+aa
+"}
+(23,1,1) = {"
+aa
+ac
+ac
+ah
+as
+ai
+az
+aD
+aD
+aK
+al
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+ab
+aa
+"}
+(24,1,1) = {"
+aa
+ac
+ac
+ac
+ac
+au
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(25,1,1) = {"
+aa
+ac
+ac
+al
+ai
+ai
+ai
+ai
+aH
+ac
+ac
+ab
+ab
+ad
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(26,1,1) = {"
+aa
+ab
+ac
+ac
+at
+av
+ai
+aA
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(27,1,1) = {"
+aa
+ad
+ab
+ac
+ac
+ae
+ae
+ac
+ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(28,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}

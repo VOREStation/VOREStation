@@ -6,7 +6,7 @@
 		. = 0
 		return
 
-	if(!M.mind || !M.client) // Logged out.  They might come back but we can't do any meaningful assessments for now.
+	if(!M.client) // Logged out.  They might come back but we can't do any meaningful assessments for now.
 		. = 0
 		return
 
@@ -78,5 +78,16 @@
 	for(var/mob/observer/dead/O in player_list)
 		. += assess_player_activity(O)
 		num++
+	if(num)
+		. = round(. / num, 0.1)
+
+/datum/metric/proc/assess_all_outdoor_mobs()
+	. = 0
+	var/num = 0
+	for(var/mob/living/L in player_list)
+		var/turf/T = get_turf(L)
+		if(istype(T) && !istype(T, /turf/space) && T.outdoors)
+			. += assess_player_activity(L)
+			num++
 	if(num)
 		. = round(. / num, 0.1)

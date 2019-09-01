@@ -26,6 +26,7 @@
 	density = 1
 	opacity = 1
 	anchored = 1
+	can_atmos_pass = ATMOS_PASS_NO
 	var/health = 200
 	//var/mob/living/affecting = null
 
@@ -60,6 +61,19 @@
 /obj/effect/alien/resin/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage
 	..()
+	healthcheck()
+	return
+
+/obj/effect/alien/resin/attack_generic(var/mob/user, var/damage, var/attack_verb)
+	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
+	user.do_attack_animation(src)
+	health -= damage
+	healthcheck()
+	return
+
+/obj/effect/alien/resin/take_damage(var/damage)
+	health -= damage
 	healthcheck()
 	return
 
@@ -128,8 +142,7 @@
 	..()
 	return
 
-/obj/effect/alien/resin/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group) return 0
+/obj/effect/alien/resin/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return !opacity
 	return !density
@@ -245,6 +258,18 @@ Alien plants should do something if theres a lot of poison
 
 	health -= damage
 	healthcheck()
+
+/obj/effect/alien/weeds/attack_generic(var/mob/user, var/damage, var/attack_verb)
+	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	user.do_attack_animation(src)
+	health -= damage
+	healthcheck()
+	return
+
+/obj/effect/alien/weeds/take_damage(var/damage)
+	health -= damage
+	healthcheck()
+	return
 
 /obj/effect/alien/weeds/proc/healthcheck()
 	if(health <= 0)
@@ -398,6 +423,18 @@ Alien plants should do something if theres a lot of poison
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage
 	..()
+	healthcheck()
+	return
+
+/obj/effect/alien/egg/attack_generic(var/mob/user, var/damage, var/attack_verb)
+	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	user.do_attack_animation(src)
+	health -= damage
+	healthcheck()
+	return
+
+/obj/effect/alien/egg/take_damage(var/damage)
+	health -= damage
 	healthcheck()
 	return
 

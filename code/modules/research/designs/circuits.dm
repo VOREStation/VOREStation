@@ -287,6 +287,13 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/solar_control
 	sort_string = "JAAAF"
 
+/datum/design/circuit/shutoff_monitor
+	name = "Automatic shutoff valve monitor"
+	id = "shutoff_monitor"
+	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3)
+	build_path = /obj/item/weapon/circuitboard/shutoff_monitor
+	sort_string = "JAAAG"
+
 /datum/design/circuit/pacman
 	name = "PACMAN-type generator"
 	id = "pacman"
@@ -468,6 +475,13 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/mecha/gygax/targeting
 	sort_string = "NAACC"
 
+/datum/design/circuit/mecha/gygax_medical
+	name = "'Serenity' medical control"
+	id = "gygax_medical"
+	req_tech = list(TECH_DATA = 4, TECH_BIO = 2)
+	build_path = /obj/item/weapon/circuitboard/mecha/gygax/medical
+	sort_string = "NAACD"
+
 /datum/design/circuit/mecha/durand_main
 	name = "'Durand' central control"
 	id = "durand_main"
@@ -578,6 +592,13 @@ CIRCUITS BELOW
 	req_tech = list(TECH_MAGNET = 3, TECH_POWER = 4)
 	build_path = /obj/item/weapon/circuitboard/shield_cap
 	sort_string = "VAAAC"
+
+/datum/design/circuit/ntnet_relay
+	name = "NTNet Quantum Relay"
+	id = "ntnet_relay"
+	req_tech = list(TECH_DATA = 4)
+	build_path = /obj/item/weapon/circuitboard/ntnet_relay
+	sort_string = "WAAAA"
 
 /datum/design/circuit/aicore
 	name = "AI core"

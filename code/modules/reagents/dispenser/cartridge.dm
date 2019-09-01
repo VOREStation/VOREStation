@@ -8,17 +8,17 @@
 	volume = CARTRIDGE_VOLUME_LARGE
 	amount_per_transfer_from_this = 50
 	// Large, but inaccurate. Use a chem dispenser or beaker for accuracy.
-	possible_transfer_amounts = list(50, 100)
+	possible_transfer_amounts = list(50, 100, 250, 500)
 	unacidable = 1
 
 	var/spawn_reagent = null
 	var/label = ""
 
-/obj/item/weapon/reagent_containers/chem_disp_cartridge/New()
-	..()
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/Initialize()
+	. = ..()
 	if(spawn_reagent)
 		reagents.add_reagent(spawn_reagent, volume)
-		var/datum/reagent/R = chemical_reagents_list[spawn_reagent]
+		var/datum/reagent/R = SSchemistry.chemical_reagents[spawn_reagent]
 		setLabel(R.name)
 
 /obj/item/weapon/reagent_containers/chem_disp_cartridge/examine(mob/user)

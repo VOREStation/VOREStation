@@ -504,6 +504,7 @@
 	name = "spider legs"
 	desc = ""
 	icon_state = "spider-legs"
+	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/moth
@@ -516,6 +517,12 @@
 	desc = ""
 	icon_state = "moth"
 	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/dragonfly
+	name = "dragonfly"
+	desc = ""
+	icon_state = "dragonfly"
 	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/wing/citheroniamoth
@@ -602,6 +609,13 @@
 	desc = ""
 	icon_state = "moth_full"
 
+/datum/sprite_accessory/wing/moth_full_gray
+	name = "moth antenna and wings, colorable"
+	desc = ""
+	icon_state = "moth_full_gray"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/wing/kerena
 	name = "wingwolf wings (Kerena)"
 	desc = ""
@@ -639,6 +653,9 @@
 	var/desc = "You should not see this..."
 	var/ani_state // State when wagging/animated
 	var/extra_overlay_w // Wagging state for extra overlay
+	var/list/hide_body_parts = list() //Uses organ tag defines. Bodyparts in this list do not have their icons rendered, allowing for more spriter freedom when doing taur/digitigrade stuff.
+	var/icon/clip_mask_icon = null //Icon file used for clip mask.
+	var/clip_mask_state = null //Icon state to generate clip mask. Clip mask is used to 'clip' off the lower part of clothing such as jumpsuits & full suits.
 
 /datum/sprite_accessory/tail/invisible
 	name = "hide species-sprite tail"
@@ -696,6 +713,13 @@
 	name = "stripey taj, brown"
 	desc = ""
 	icon_state = "stripeytail-brown"
+
+/datum/sprite_accessory/tail/chameleon
+	name = "Chameleon, colorable"
+	desc = ""
+	icon_state = "chameleon"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/bunny
 	name = "bunny, colorable"
@@ -898,6 +922,12 @@
 	ani_state = "ketraitail_w"
 	//ckeys_allowed = list("ketrai") //They requested it to be enabled for everyone.
 
+/datum/sprite_accessory/tail/ketrainew_wag
+	name = "new fennix tail (vwag)"
+	desc = ""
+	icon_state = "ketraitailnew"
+	ani_state = "ketraitailnew_w"
+
 /datum/sprite_accessory/tail/redpanda
 	name = "red panda"
 	desc = ""
@@ -923,6 +953,9 @@
 	icon_state = "satyr"
 	color_blend_mode = ICON_MULTIPLY
 	do_colouration = 1
+	hide_body_parts = list(BP_L_LEG, BP_L_FOOT, BP_R_LEG, BP_R_FOOT) //Exclude pelvis just in case.
+	clip_mask_icon = 'icons/mob/vore/taurs_vr.dmi'
+	clip_mask_state = "taur_mask_def" //Used to clip off the lower part of suits & uniforms.
 
 /datum/sprite_accessory/tail/tailmaw
 	name = "tailmaw, colorable"
@@ -1492,3 +1525,11 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "buggofirefly_vass_markings"
 	extra_overlay_w = "buggofatfirefly_vass_markings"
+
+/datum/sprite_accessory/tail/tail_smooth
+	name = "Smooth Lizard Tail, Colorable"
+	desc = ""
+	icon_state = "tail_smooth"
+	ani_state = "tail_smooth_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY

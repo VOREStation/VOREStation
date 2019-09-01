@@ -1,8 +1,8 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 #define MUSICIAN_HEARCHECK_MINDELAY 4
-#define INSTRUMENT_MAX_LINE_LENGTH 300
-#define INSTRUMENT_MAX_LINE_NUMBER 50
+#define INSTRUMENT_MAX_LINE_LENGTH 50
+#define INSTRUMENT_MAX_LINE_NUMBER 300
 
 /datum/song
 	var/name = "Untitled"
@@ -210,12 +210,12 @@
 			else
 				tempo = sanitize_tempo(5) // default 120 BPM
 			if(lines.len > INSTRUMENT_MAX_LINE_NUMBER)
-				usr << "Too many lines!"
+				to_chat(usr, "Too many lines!")
 				lines.Cut(INSTRUMENT_MAX_LINE_NUMBER+1)
 			var/linenum = 1
 			for(var/l in lines)
 				if(lentext(l) > INSTRUMENT_MAX_LINE_LENGTH)
-					usr << "Line [linenum] too long!"
+					to_chat(usr, "Line [linenum] too long!")
 					lines.Remove(l)
 				else
 					linenum++
@@ -316,22 +316,18 @@
 	song = null
 	..()
 
-/obj/structure/device/piano/verb/rotate()
-	set name = "Rotate Piano"
+/obj/structure/device/piano/verb/rotate_clockwise()
+	set name = "Rotate Piano Clockwise"
 	set category = "Object"
 	set src in oview(1)
 
-	if(istype(usr,/mob/living/simple_animal/mouse))
+	if(ismouse(usr))
 		return
-	else if(!usr || !isturf(usr.loc))
+	if(!usr || !isturf(usr.loc) || usr.stat || usr.restrained())
 		return
-	else if(usr.stat || usr.restrained())
+	if (isobserver(usr) && !config.ghost_interaction)
 		return
-	else if (istype(usr,/mob/observer/ghost) && !config.ghost_interaction)
-		return
-	else
-		src.set_dir(turn(src.dir, 90))
-		return
+	src.set_dir(turn(src.dir, 270))
 
 /obj/structure/device/piano/attack_hand(mob/user)
 	if(!user.IsAdvancedToolUser())
@@ -350,7 +346,7 @@
 	if(O.is_wrench())
 		if(anchored)
 			playsound(src.loc, O.usesound, 50, 1)
-			user << "<span class='notice'>You begin to loosen \the [src]'s casters...</span>"
+			to_chat(user, "<span class='notice'>You begin to loosen \the [src]'s casters...</span>")
 			if (do_after(user, 40 * O.toolspeed))
 				user.visible_message( \
 					"[user] loosens \the [src]'s casters.", \
@@ -359,7 +355,7 @@
 				src.anchored = 0
 		else
 			playsound(src.loc, O.usesound, 50, 1)
-			user << "<span class='notice'>You begin to tighten \the [src] to the floor...</span>"
+			to_chat(user, "<span class='notice'>You begin to tighten \the [src] to the floor...</span>")
 			if (do_after(user, 20 * O.toolspeed))
 				user.visible_message( \
 					"[user] tightens \the [src]'s casters.", \

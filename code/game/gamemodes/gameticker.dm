@@ -101,7 +101,7 @@ var/global/datum/controller/gameticker/ticker
 	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
 	if(!src.mode.can_start())
-		world << "<B>Unable to start [mode.name].</B> Not enough players readied, [mode.required_players] players needed. Reverting to pregame lobby."
+		world << "<B>Unable to start [mode.name].</B> Not enough players readied, [config.player_requirements[mode.config_tag]] players needed. Reverting to pregame lobby."
 		current_state = GAME_STATE_PREGAME
 		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		mode.fail_setup()
@@ -126,7 +126,7 @@ var/global/datum/controller/gameticker/ticker
 	create_characters() //Create player characters and transfer them.
 	collect_minds()
 	equip_characters()
-	data_core.manifest()
+	//data_core.manifest()	//VOREStation Removal
 
 	callHook("roundstart")
 
@@ -280,8 +280,13 @@ var/global/datum/controller/gameticker/ticker
 				else if(!player.mind.assigned_role)
 					continue
 				else
-					if (player.create_character()) // VOREStation Edit
+					//VOREStation Edit Start
+					var/mob/living/carbon/human/new_char = player.create_character()
+					if(new_char)
 						qdel(player)
+					if(istype(new_char) && !(new_char.mind.assigned_role=="Cyborg"))
+						data_core.manifest_inject(new_char)
+					//VOREStation Edit End
 
 
 	proc/collect_minds()
@@ -307,7 +312,7 @@ var/global/datum/controller/gameticker/ticker
 					to_chat(M, "Colony Directorship not forced on anyone.")
 
 
-	proc/process()
+	process()
 		if(current_state != GAME_STATE_PLAYING)
 			return 0
 
@@ -439,7 +444,7 @@ var/global/datum/controller/gameticker/ticker
 	mode.declare_completion()//To declare normal completion.
 
 	//Ask the event manager to print round end information
-	event_manager.RoundEnd()
+	SSevents.RoundEnd()
 
 	//Print a list of antagonists to the server log
 	var/list/total_antagonists = list()

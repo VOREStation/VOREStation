@@ -293,6 +293,17 @@
 	punch_force = initial(punch_force)
 	wearer = null
 
+/obj/item/clothing/gloves
+	var/datum/unarmed_attack/special_attack = null //do the gloves have a special unarmed attack?
+	var/special_attack_type = null
+
+/obj/item/clothing/gloves/New()
+	..()
+	if(special_attack_type && ispath(special_attack_type))
+		special_attack = new special_attack_type
+
+
+
 /////////////////////////////////////////////////////////////////////
 //Rings
 
@@ -306,6 +317,7 @@
 	glove_level = 1
 	fingerprint_chance = 100
 	punch_force = 2
+	body_parts_covered = 0
 
 ///////////////////////////////////////////////////////////////////////
 //Head
@@ -473,6 +485,7 @@
 
 	var/water_speed = 0		//Speed boost/decrease in water, lower/negative values mean more speed
 	var/snow_speed = 0		//Speed boost/decrease on snow, lower/negative values mean more speed
+	var/rock_climbing = FALSE // If true, allows climbing cliffs with clickdrag.
 
 	var/step_volume_mod = 1	//How quiet or loud footsteps in this shoe are
 
@@ -500,6 +513,7 @@
 	if(usr.put_in_hands(holding))
 		usr.visible_message("<span class='danger'>\The [usr] pulls a knife out of their boot!</span>")
 		holding = null
+		overlays -= image(icon, "[icon_state]_knife")
 	else
 		usr << "<span class='warning'>Your need an empty, unbroken hand to do that.</span>"
 		holding.forceMove(src)
@@ -544,7 +558,6 @@
 	update_icon()
 
 /obj/item/clothing/shoes/update_icon()
-	overlays.Cut()
 	if(holding)
 		overlays += image(icon, "[icon_state]_knife")
 	if(ismob(usr))
@@ -641,6 +654,7 @@
 		|ACCESSORY_SLOT_ARMBAND\
 		|ACCESSORY_SLOT_DECOR\
 		|ACCESSORY_SLOT_MEDAL\
+		|ACCESSORY_SLOT_INSIGNIA\
 		|ACCESSORY_SLOT_TIE\
 		|ACCESSORY_SLOT_OVER)
 	restricted_accessory_slots = (\

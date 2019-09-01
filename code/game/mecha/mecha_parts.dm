@@ -1,4 +1,4 @@
-/////////////////////////
+ /////////////////////////
 ////// Mecha Parts //////
 /////////////////////////
 
@@ -9,7 +9,6 @@
 	icon = 'icons/mecha/mech_construct.dmi'
 	icon_state = "blank"
 	w_class = ITEMSIZE_HUGE
-	flags = CONDUCT
 	origin_tech = list(TECH_DATA = 2, TECH_MATERIAL = 2)
 
 
@@ -17,7 +16,6 @@
 	name="Mecha Chassis"
 	icon_state = "backbone"
 	var/datum/construction/construct
-	flags = CONDUCT
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if(!construct || !construct.action(W, user))
@@ -114,6 +112,14 @@
 	icon_state = "gygax_armour"
 	origin_tech = list(TECH_MATERIAL = 6, TECH_COMBAT = 4, TECH_ENGINEERING = 5)
 
+////////// Serenity
+
+/obj/item/mecha_parts/chassis/serenity
+	name = "Serenity Chassis"
+
+	New()
+		..()
+		construct = new /datum/construction/mecha/serenity_chassis(src)
 
 //////////// Durand
 
@@ -294,3 +300,43 @@
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3)
 	construction_time = 200
 	construction_cost = list(DEFAULT_WALL_MATERIAL=15000)*/
+
+////////// Janus
+
+/obj/item/mecha_parts/chassis/janus
+	name = "Janus Chassis"
+	origin_tech = list(TECH_MATERIAL = 7)
+
+	New()
+		..()
+		construct = new /datum/construction/mecha/janus_chassis(src)
+
+/obj/item/mecha_parts/part/janus_torso
+	name="Imperion Torso"
+	icon_state = "janus_harness"
+	origin_tech = list(TECH_DATA = 5, TECH_MATERIAL = 7, TECH_BLUESPACE = 2, TECH_POWER = 6, TECH_PRECURSOR = 2)
+
+/obj/item/mecha_parts/part/janus_head
+	name="Imperion Head"
+	icon_state = "janus_head"
+	origin_tech = list(TECH_DATA = 4, TECH_MATERIAL = 5, TECH_MAGNET = 6, TECH_PRECURSOR = 1)
+
+/obj/item/mecha_parts/part/janus_left_arm
+	name="Prototype Gygax Left Arm"
+	icon_state = "janus_l_arm"
+	origin_tech = list(TECH_MATERIAL = 5, TECH_BLUESPACE = 2, TECH_MAGNET = 2)
+
+/obj/item/mecha_parts/part/janus_right_arm
+	name="Prototype Gygax Right Arm"
+	icon_state = "janus_r_arm"
+	origin_tech = list(TECH_MATERIAL = 5, TECH_BLUESPACE = 2, TECH_MAGNET = 2)
+
+/obj/item/mecha_parts/part/janus_left_leg
+	name="Prototype Durand Left Leg"
+	icon_state = "janus_l_leg"
+	origin_tech = list(TECH_MATERIAL = 5, TECH_BLUESPACE = 3, TECH_MAGNET = 3, TECH_ARCANE = 1)
+
+/obj/item/mecha_parts/part/janus_right_leg
+	name="Prototype Durand Right Leg"
+	icon_state = "janus_r_leg"
+	origin_tech = list(TECH_MATERIAL = 5, TECH_BLUESPACE = 3, TECH_MAGNET = 3, TECH_ARCANE = 1)

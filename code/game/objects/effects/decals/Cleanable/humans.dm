@@ -33,11 +33,11 @@ var/global/list/image/splatter_cache=list()
 	if(invisibility != 100)
 		invisibility = 100
 		amount = 0
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 	..(ignore=1)
 
 /obj/effect/decal/cleanable/blood/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/effect/decal/cleanable/blood/New()
@@ -53,7 +53,7 @@ var/global/list/image/splatter_cache=list()
 						blood_DNA |= B.blood_DNA.Copy()
 					qdel(B)
 	drytime = world.time + DRYING_TIME * (amount+1)
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 
 /obj/effect/decal/cleanable/blood/process()
 	if(world.time > drytime)
@@ -93,7 +93,6 @@ var/global/list/image/splatter_cache=list()
 				S.overlays += S.blood_overlay
 			if(S.blood_overlay && S.blood_overlay.color != basecolor)
 				S.blood_overlay.color = basecolor
-				S.overlays.Cut()
 				S.overlays += S.blood_overlay
 			S.blood_DNA |= blood_DNA.Copy()
 			perp.update_inv_shoes()
@@ -115,7 +114,7 @@ var/global/list/image/splatter_cache=list()
 	desc = drydesc
 	color = adjust_brightness(color, -50)
 	amount = 0
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 
 /obj/effect/decal/cleanable/blood/attack_hand(mob/living/carbon/human/user)
 	..()
@@ -250,4 +249,4 @@ var/global/list/image/splatter_cache=list()
 /obj/effect/decal/cleanable/mucus/mapped/New()
 	..()
 	virus2 |= new /datum/disease2/disease
-	virus2.makerandom()
+	virus2[1].makerandom()

@@ -10,6 +10,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	mimic many forms of life. Derived from the Aetolian giant slime (Macrolimus vulgaris) inhabiting the warm, tropical planet \
 	of Aetolus, they are a relatively new lab-created sapient species, and as such many things about them have yet to be comprehensively studied. \
 	What has Science done?"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/promethean)
 	show_ssd =         "totally quiescent"
 	death_message =    "rapidly loses cohesion, splattering across the ground..."
 	knockout_message = "collapses inwards, forming a disordered puddle of goo."
@@ -30,6 +31,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	health_hud_intensity = 2
 	num_alternate_languages = 3
 	species_language = LANGUAGE_SOL_COMMON
+	secondary_langs = list(LANGUAGE_SOL_COMMON)	// For some reason, having this as their species language does not allow it to be chosen.
 	assisted_langs = list(LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)	// Prometheans are weird, let's just assume they can use basically any language.
 
 	breath_type = null
@@ -64,15 +66,21 @@ var/datum/species/shapeshifter/promethean/prometheans
 	heat_level_2 = 370 //Default 400
 	heat_level_3 = 600 //Default 1000
 
-	body_temperature =      310.15
+	body_temperature = T20C	// Room temperature
 
-	siemens_coefficient =   0.4
-	rarity_value =          5
+	rarity_value = 5
+	siemens_coefficient = 0.8
 
 	genders = list(MALE, FEMALE, NEUTER, PLURAL)
 
 	unarmed_types = list(/datum/unarmed_attack/slime_glomp)
-	has_organ =     list(O_BRAIN = /obj/item/organ/internal/brain/slime) // Slime core.
+
+	has_organ =     list(O_BRAIN = /obj/item/organ/internal/brain/slime,
+						O_HEART = /obj/item/organ/internal/heart/grey/colormatch/slime,
+						O_REGBRUTE = /obj/item/organ/internal/regennetwork,
+						O_REGBURN = /obj/item/organ/internal/regennetwork/burn,
+						O_REGOXY = /obj/item/organ/internal/regennetwork/oxy,
+						O_REGTOX = /obj/item/organ/internal/regennetwork/tox)
 
 	dispersed_eyes = TRUE
 
@@ -114,12 +122,16 @@ var/datum/species/shapeshifter/promethean/prometheans
 	prometheans = src
 
 /datum/species/shapeshifter/promethean/equip_survival_gear(var/mob/living/carbon/human/H)
-	var/boxtype = pick(typesof(/obj/item/weapon/storage/toolbox/lunchbox))
+	var/boxtype = pick(list(/obj/item/weapon/storage/toolbox/lunchbox,
+							/obj/item/weapon/storage/toolbox/lunchbox/heart,
+							/obj/item/weapon/storage/toolbox/lunchbox/cat,
+							/obj/item/weapon/storage/toolbox/lunchbox/nt,
+							/obj/item/weapon/storage/toolbox/lunchbox/mars,
+							/obj/item/weapon/storage/toolbox/lunchbox/cti,
+							/obj/item/weapon/storage/toolbox/lunchbox/nymph,
+							/obj/item/weapon/storage/toolbox/lunchbox/syndicate))	//Only pick the empty types
 	var/obj/item/weapon/storage/toolbox/lunchbox/L = new boxtype(get_turf(H))
-	var/mob/living/simple_animal/mouse/mouse = new (L)
-	var/obj/item/weapon/holder/holder = new (L)
-	mouse.forceMove(holder)
-	holder.sync(mouse)
+	new /obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar(L)
 	if(H.backbag == 1)
 		H.equip_to_slot_or_del(L, slot_r_hand)
 	else
@@ -153,8 +165,16 @@ var/datum/species/shapeshifter/promethean/prometheans
 			H.gib()
 
 /datum/species/shapeshifter/promethean/handle_environment_special(var/mob/living/carbon/human/H)
-/* VOREStation Removal - Too crazy with our uncapped hunger and slowdown stuff.
-	var/turf/T = H.loc
+	var/healing = TRUE	// Switches to FALSE if healing is not possible at all.
+	var/regen_brute = TRUE
+	var/regen_burn = TRUE
+	var/regen_tox = TRUE
+	var/regen_oxy = TRUE
+	if(H.fire_stacks < 0)	// If you're soaked, you're melting.
+		H.adjustToxLoss(3 * heal_rate)	// Tripled because 0.5 is miniscule, and fire_stacks are capped in both directions
+		healing = FALSE
+
+	var/turf/T = get_turf(H)
 	if(istype(T))
 		var/obj/effect/decal/cleanable/C = locate() in T
 		if(C && !(H.shoes || (H.wear_suit && (H.wear_suit.body_parts_covered & FEET))))
@@ -162,35 +182,95 @@ var/datum/species/shapeshifter/promethean/prometheans
 			if (istype(T, /turf/simulated))
 				var/turf/simulated/S = T
 				S.dirt = 0
+			H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
 
-			H.nutrition = min(500, max(0, H.nutrition + rand(15, 30)))
-VOREStation Removal End */
+		var/datum/gas_mixture/environment = T.return_air()
+		var/pressure = environment.return_pressure()
+		var/affecting_pressure = H.calculate_affecting_pressure(pressure)
+		if(affecting_pressure <= hazard_low_pressure) // Dangerous low pressure stops the regeneration of physical wounds. Body is focusing on keeping them intact rather than sealing.
+			regen_brute = FALSE
+			regen_burn = FALSE
+
+	if(world.time < H.l_move_time + 1 MINUTE)	// Need to stay still for a minute, before passive healing will activate.
+		healing = FALSE
+
+	if(H.bodytemperature > heat_level_1 || H.bodytemperature < cold_level_1)	// If you're too hot or cold, you can't heal.
+		healing = FALSE
+
 	// Heal remaining damage.
-	if(H.fire_stacks >= 0)
+	if(healing)
 		if(H.getBruteLoss() || H.getFireLoss() || H.getOxyLoss() || H.getToxLoss())
-			var/nutrition_cost = 0
-			var/nutrition_debt = H.getBruteLoss()
-			var/starve_mod = 1
-			if(H.nutrition <= 25)
+			var/nutrition_cost = 0		// The total amount of nutrition drained every tick, when healing
+			var/nutrition_debt = 0		// Holder variable used to store previous damage values prior to healing for use in the nutrition_cost equation.
+			var/starve_mod = 1			// Lowering this lowers healing and increases agony multiplicatively.
+
+			var/strain_negation = 0		// How much agony is being prevented by the
+
+			if(H.nutrition <= 150)		// This is when the icon goes red
 				starve_mod = 0.75
-			H.adjustBruteLoss(-heal_rate * starve_mod)
-			nutrition_cost += nutrition_debt - H.getBruteLoss()
+				if(H.nutrition <= 50)	// Severe starvation. Damage repaired beyond this point will cause a stunlock if untreated.
+					starve_mod = 0.5
 
-			nutrition_debt = H.getFireLoss()
-			H.adjustFireLoss(-heal_rate * starve_mod)
-			nutrition_cost += nutrition_debt - H.getFireLoss()
+			var/to_pay = 0
+			if(regen_brute)
+				nutrition_debt = H.getBruteLoss()
+				H.adjustBruteLoss(-heal_rate * starve_mod)
 
-			nutrition_debt = H.getOxyLoss()
-			H.adjustOxyLoss(-heal_rate * starve_mod)
-			nutrition_cost += nutrition_debt - H.getOxyLoss()
+				to_pay = nutrition_debt - H.getBruteLoss()
 
-			nutrition_debt = H.getToxLoss()
-			H.adjustToxLoss(-heal_rate * starve_mod)
-			nutrition_cost += nutrition_debt - H.getToxLoss()
-			H.nutrition -= (2 * nutrition_cost) //Costs Nutrition when damage is being repaired, corresponding to the amount of damage being repaired.
+				nutrition_cost += to_pay
+
+				var/obj/item/organ/internal/regennetwork/BrReg = H.internal_organs_by_name[O_REGBRUTE]
+
+				if(BrReg)
+					strain_negation += to_pay * max(0, (1 - BrReg.get_strain_percent()))
+
+			if(regen_burn)
+				nutrition_debt = H.getFireLoss()
+				H.adjustFireLoss(-heal_rate * starve_mod)
+
+				to_pay = nutrition_debt - H.getFireLoss()
+
+				nutrition_cost += to_pay
+
+				var/obj/item/organ/internal/regennetwork/BuReg = H.internal_organs_by_name[O_REGBURN]
+
+				if(BuReg)
+					strain_negation += to_pay * max(0, (1 - BuReg.get_strain_percent()))
+
+			if(regen_oxy)
+				nutrition_debt = H.getOxyLoss()
+				H.adjustOxyLoss(-heal_rate * starve_mod)
+
+				to_pay = nutrition_debt - H.getOxyLoss()
+
+				nutrition_cost += to_pay
+
+				var/obj/item/organ/internal/regennetwork/OxReg = H.internal_organs_by_name[O_REGOXY]
+
+				if(OxReg)
+					strain_negation += to_pay * max(0, (1 - OxReg.get_strain_percent()))
+
+			if(regen_tox)
+				nutrition_debt = H.getToxLoss()
+				H.adjustToxLoss(-heal_rate * starve_mod)
+
+				to_pay = nutrition_debt - H.getToxLoss()
+
+				nutrition_cost += to_pay
+
+				var/obj/item/organ/internal/regennetwork/ToxReg = H.internal_organs_by_name[O_REGTOX]
+
+				if(ToxReg)
+					strain_negation += to_pay * max(0, (1 - ToxReg.get_strain_percent()))
+
+			H.nutrition -= (3 * nutrition_cost) //Costs Nutrition when damage is being repaired, corresponding to the amount of damage being repaired.
 			H.nutrition = max(0, H.nutrition) //Ensure it's not below 0.
-	//else//VOREStation Removal
-		//H.adjustToxLoss(2*heal_rate)	// Doubled because 0.5 is miniscule, and fire_stacks are capped in both directions
+
+			var/agony_to_apply = ((1 / starve_mod) * (nutrition_cost - strain_negation)) //Regenerating damage causes minor pain over time, if the organs responsible are nonexistant or too high on strain. Small injures will be no issue, large ones will cause problems.
+
+			if((starve_mod <= 0.5 && (H.getHalLoss() + agony_to_apply) <= 90) || ((H.getHalLoss() + agony_to_apply) <= 70))	// Will max out at applying halloss at 70, unless they are starving; starvation regeneration will bring them up to a maximum of 120, the same amount of agony a human receives from three taser hits.
+				H.apply_damage(agony_to_apply, HALLOSS)
 
 /datum/species/shapeshifter/promethean/get_blood_colour(var/mob/living/carbon/human/H)
 	return (H ? rgb(H.r_skin, H.g_skin, H.b_skin) : ..())

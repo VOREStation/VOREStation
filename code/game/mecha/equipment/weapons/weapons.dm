@@ -19,7 +19,7 @@
 		return 0
 	return ..()
 
-/obj/item/mecha_parts/mecha_equipment/weapon/action(atom/target)
+/obj/item/mecha_parts/mecha_equipment/weapon/action(atom/target, params)
 	if(!action_checks(target))
 		return
 	var/turf/curloc = chassis.loc
@@ -34,12 +34,19 @@
 		var/turf/aimloc = targloc
 		if(deviation)
 			aimloc = locate(targloc.x+GaussRandRound(deviation,1),targloc.y+GaussRandRound(deviation,1),targloc.z)
-		if(!aimloc || aimloc == curloc)
+		if(!aimloc || aimloc == curloc || (locs && aimloc in locs))
 			break
 		playsound(chassis, fire_sound, fire_volume, 1)
 		projectiles--
-		var/P = new projectile(curloc)
-		Fire(P, target)
+		var/turf/projectile_turf
+		if(chassis.locs && chassis.locs.len)	// Multi tile.
+			for(var/turf/Tloc in chassis.locs)
+				if(get_dist(Tloc, aimloc) < get_dist(loc, aimloc))
+					projectile_turf = get_turf(Tloc)
+		if(!projectile_turf)
+			projectile_turf = get_turf(curloc)
+		var/P = new projectile(projectile_turf)
+		Fire(P, target, params)
 		if(i == 1)
 			set_ready_state(0)
 		if(fire_cooldown)
@@ -60,11 +67,15 @@
 
 	return
 
-/obj/item/mecha_parts/mecha_equipment/weapon/proc/Fire(atom/A, atom/target)
-	var/obj/item/projectile/P = A
-	P.dispersion = deviation
-	process_accuracy(P, chassis.occupant, target)
-	P.launch(target)
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/Fire(atom/A, atom/target, params)
+	if(istype(A, /obj/item/projectile))	// Sanity.
+		var/obj/item/projectile/P = A
+		P.dispersion = deviation
+		process_accuracy(P, chassis.occupant, target)
+		P.launch_projectile_from_turf(target, chassis.occupant.zone_sel.selecting, chassis.occupant, params)
+	else if(istype(A, /atom/movable))
+		var/atom/movable/AM = A
+		AM.throw_at(target, 7, 1, chassis)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/proc/process_accuracy(obj/projectile, mob/living/user, atom/target)
 	var/obj/item/projectile/P = projectile
@@ -296,7 +307,7 @@
 	description_info = "This weapon cannot be fired indoors, underground, or on-station."
 	icon_state = "mecha_mortar"
 	equip_cooldown = 30
-	fire_sound = 'sound/weapons/cannon.ogg'
+	fire_sound = 'sound/weapons/Gunshot_cannon.ogg'
 	fire_volume = 100
 	projectiles = 3
 	deviation = 0.6
@@ -319,7 +330,7 @@
 	icon_state = "mecha_scatter"
 	equip_cooldown = 20
 	projectile = /obj/item/projectile/bullet/pellet/shotgun/flak
-	fire_sound = 'sound/weapons/gunshot/shotgun.ogg'
+	fire_sound = 'sound/weapons/Gunshot_shotgun.ogg'
 	fire_volume = 80
 	projectiles = 40
 	projectiles_per_shot = 4
@@ -345,7 +356,7 @@
 	icon_state = "mecha_uac2"
 	equip_cooldown = 10
 	projectile = /obj/item/projectile/bullet/pistol/medium
-	fire_sound = 'sound/weapons/machinegun.ogg'
+	fire_sound = 'sound/weapons/Gunshot_machinegun.ogg'
 	projectiles = 30 //10 bursts, matching the Scattershot's 10. Also, conveniently, doesn't eat your powercell when reloading like 300 bullets does.
 	projectiles_per_shot = 3
 	deviation = 0.3
@@ -410,10 +421,12 @@
 	icon_state = "missile"
 	var/primed = null
 	throwforce = 15
+	catchable = 0
 	var/devastation = 0
 	var/heavy_blast = 1
 	var/light_blast = 2
 	var/flash_blast = 4
+	does_spin = FALSE	// No fun corkscrew missiles.
 
 /obj/item/missile/proc/warhead_special(var/target)
 	explosion(target, devastation, heavy_blast, light_blast, flash_blast)
@@ -523,7 +536,7 @@
 	icon_state = "mecha_drac3"
 	equip_cooldown = 20
 	projectile = /obj/item/projectile/bullet/incendiary
-	fire_sound = 'sound/weapons/machinegun.ogg'
+	fire_sound = 'sound/weapons/Gunshot_machinegun.ogg'
 	projectiles = 30
 	projectiles_per_shot = 2
 	deviation = 0.4

@@ -26,6 +26,9 @@
 			if(COLD_RESISTANCE in mutations)
 				damage = 0
 			adjustFireLoss(damage * blocked)
+		if(SEARING)
+			apply_damage(damage / 3, BURN, def_zone, blocked, soaked, used_weapon, sharp, edge)
+			apply_damage(damage / 3 * 2, BRUTE, def_zone, blocked, soaked, used_weapon, sharp, edge)
 		if(TOX)
 			adjustToxLoss(damage * blocked)
 		if(OXY)
@@ -36,6 +39,11 @@
 			adjustHalLoss(damage * blocked)
 		if(ELECTROCUTE)
 			electrocute_act(damage, used_weapon, 1.0, def_zone)
+		if(BIOACID)
+			if(isSynthetic())
+				adjustFireLoss(damage * blocked)
+			else
+				adjustToxLoss(damage * blocked)
 	flash_weak_pain()
 	updatehealth()
 	return 1

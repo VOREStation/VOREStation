@@ -1,4 +1,4 @@
-/var/global/list/event_viruses = list() // so that event viruses are kept around for admin logs, rather than being GCed
+//var/global/list/event_viruses = list() // so that event viruses are kept around for admin logs, rather than being GCed
 
 datum/event/viral_infection
 	var/list/viruses = list()

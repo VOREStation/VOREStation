@@ -11,7 +11,7 @@
 	var/id_tag = null
 	var/chime_sound = 'sound/machines/doorbell.ogg'
 
-/obj/machinery/doorbell_chime/initialize()
+/obj/machinery/doorbell_chime/Initialize()
 	. = ..()
 	update_icon()
 
@@ -43,12 +43,13 @@
 	else
 		icon_state = "dbchime-standby"
 
+//TFF 3/6/19 - Port Cit RP fix of infinite frames. ToDo: Make it so that you can completely deconstruct it and reconstruct it.
 /obj/machinery/doorbell_chime/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 	if(default_deconstruction_screwdriver(user, W))
 		return
-	else if(default_deconstruction_crowbar(user, W))
-		return
+//	else if(default_deconstruction_crowbar(user, W))
+//		return
 	else if(default_part_replacement(user, W))
 		return
 	else if(panel_open && istype(W, /obj/item/device/multitool))
@@ -99,7 +100,7 @@
 		assign_uid()
 		id = num2text(uid)
 
-/obj/machinery/button/doorbell/initialize()
+/obj/machinery/button/doorbell/Initialize()
 	. = ..()
 	update_icon()
 

@@ -27,7 +27,7 @@
 		user << "<span class='notice'>You cannot hang [W] on [src]</span>"
 		return ..()
 
-/obj/structure/coatrack/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/structure/coatrack/CanPass(atom/movable/mover, turf/target)
 	var/can_hang = 0
 	for (var/T in allowed)
 		if(istype(mover,T))

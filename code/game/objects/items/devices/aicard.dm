@@ -43,7 +43,7 @@
 		data["laws"] = laws
 		data["has_laws"] = laws.len
 
-	ui = GLOB.nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
 		ui = new(user, src, ui_key, "aicard.tmpl", "[name]", 600, 400, state = state)
 		ui.set_initial_data(data)
@@ -59,15 +59,15 @@
 
 	var/user = usr
 	if (href_list["wipe"])
-		var/confirm = alert("Are you sure you want to disable this core's power? This cannot be undone once started.", "Confirm Shutdown", "Yes", "No")
+		var/confirm = alert("Are you sure you want to disable this core's power? This cannot be undone once started.", "Confirm Shutdown", "No", "Yes")
 		if(confirm == "Yes" && (CanUseTopic(user, state) == STATUS_INTERACTIVE))
 			add_attack_logs(user,carded_ai,"Purged from AI Card")
 			flush = 1
 			carded_ai.suiciding = 1
 			to_chat(carded_ai, "Your power has been disabled!")
-			while (carded_ai && carded_ai.stat != 2)
-				if(carded_ai.controlling_drone && prob(carded_ai.oxyloss)) //You feel it creeping? Eventually will reach 100, resulting in the second half of the AI's remaining life being lonely.
-					carded_ai.controlling_drone.release_ai_control("Unit lost. Integrity too low to maintain connection.")
+			while (carded_ai && carded_ai.stat != DEAD)
+				if(carded_ai.deployed_shell && prob(carded_ai.oxyloss)) //You feel it creeping? Eventually will reach 100, resulting in the second half of the AI's remaining life being lonely.
+					carded_ai.disconnect_shell("Disconnecting from remote shell due to insufficent power.")
 				carded_ai.adjustOxyLoss(2)
 				carded_ai.updatehealth()
 				sleep(10)
@@ -80,8 +80,8 @@
 		carded_ai.control_disabled = text2num(href_list["wireless"])
 		to_chat(carded_ai, "<span class='warning'>Your wireless interface has been [carded_ai.control_disabled ? "disabled" : "enabled"]!</span>")
 		to_chat(user, "<span class='notice'>You [carded_ai.control_disabled ? "disable" : "enable"] the AI's wireless interface.</span>")
-		if(carded_ai.control_disabled && carded_ai.controlling_drone)
-			carded_ai.controlling_drone.release_ai_control("Unit control terminated at intellicore port.")
+		if(carded_ai.control_disabled && carded_ai.deployed_shell)
+			carded_ai.disconnect_shell("Disconnecting from remote shell due to [src] wireless access interface being disabled.")
 		update_icon()
 	return 1
 
@@ -98,7 +98,7 @@
 		icon_state = "aicard"
 
 /obj/item/device/aicard/proc/grab_ai(var/mob/living/silicon/ai/ai, var/mob/living/user)
-	if(!ai.client && !ai.controlling_drone)
+	if(!ai.client && !ai.deployed_shell)
 		to_chat(user, "<span class='danger'>ERROR:</span> AI [ai.name] is offline. Unable to transfer.")
 		return 0
 
@@ -107,14 +107,12 @@
 		return 0
 
 	if(!user.IsAdvancedToolUser() && isanimal(user))
-		var/mob/living/simple_animal/S = user
+		var/mob/living/simple_mob/S = user
 		if(!S.IsHumanoidToolUser(src))
 			return 0
 
 	user.visible_message("\The [user] starts transferring \the [ai] into \the [src]...", "You start transferring \the [ai] into \the [src]...")
-	to_chat(ai, "<span class='danger'>\The [user] is transferring you into \the [src]!</span>")
-	if(ai.controlling_drone)
-		to_chat(ai.controlling_drone, "<span class='danger'>\The [user] is transferring you into \the [src]!</span>")
+	show_message(span("critical", "\The [user] is transferring you into \the [src]!"))
 
 	if(do_after(user, 100))
 		if(istype(ai.loc, /turf/))
@@ -130,8 +128,7 @@
 		ai.control_disabled = 1
 		ai.aiRestorePowerRoutine = 0
 		carded_ai = ai
-		if(ai.controlling_drone)
-			ai.controlling_drone.release_ai_control("Unit control lost.")
+		ai.disconnect_shell("Disconnected from remote shell due to core intelligence transfer.") //If the AI is controlling a borg, force the player back to core!
 
 		if(ai.client)
 			to_chat(ai, "You have been transferred into a mobile core. Remote access lost.")

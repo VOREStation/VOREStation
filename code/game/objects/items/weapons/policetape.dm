@@ -14,7 +14,7 @@
 
 	var/apply_tape = FALSE
 
-/obj/item/taperoll/initialize()
+/obj/item/taperoll/Initialize()
 	. = ..()
 	if(apply_tape)
 		var/turf/T = get_turf(src)
@@ -140,14 +140,14 @@ var/list/tape_roll_applications = list()
 /obj/item/taperoll/attack_self(mob/user as mob)
 	if(!start)
 		start = get_turf(src)
-		usr << "<span class='notice'>You place the first end of \the [src].</span>"
+		to_chat(user, "<span class='notice'>You place the first end of \the [src].</span>")
 		update_icon()
 	else
 		end = get_turf(src)
 		if(start.y != end.y && start.x != end.x || start.z != end.z)
 			start = null
 			update_icon()
-			usr << "<span class='notice'>\The [src] can only be laid horizontally or vertically.</span>"
+			to_chat(user, "<span class='notice'>\The [src] can only be laid horizontally or vertically.</span>")
 			return
 
 		if(start == end)
@@ -157,15 +157,18 @@ var/list/tape_roll_applications = list()
 			for(var/dir in cardinal)
 				T = get_step(start, dir)
 				if(T && T.density)
-					possible_dirs += dir
+					possible_dirs |= dir
 				else
 					for(var/obj/structure/window/W in T)
 						if(W.is_fulltile() || W.dir == reverse_dir[dir])
-							possible_dirs += dir
+							possible_dirs |= dir
+			for(var/obj/structure/window/window in start)
+				if(istype(window) && !window.is_fulltile())
+					possible_dirs |= window.dir
 			if(!possible_dirs)
 				start = null
 				update_icon()
-				usr << "<span class='notice'>You can't place \the [src] here.</span>"
+				to_chat(user, "<span class='notice'>You can't place \the [src] here.</span>")
 				return
 			if(possible_dirs & (NORTH|SOUTH))
 				var/obj/item/tape/TP = new tape_type(start)
@@ -181,7 +184,7 @@ var/list/tape_roll_applications = list()
 				TP.update_icon()
 			start = null
 			update_icon()
-			usr << "<span class='notice'>You finish placing \the [src].</span>"
+			to_chat(user, "<span class='notice'>You finish placing \the [src].</span>")
 			return
 
 		var/turf/cur = start
@@ -199,6 +202,28 @@ var/list/tape_roll_applications = list()
 				can_place = 0
 			else
 				for(var/obj/O in cur)
+					if(istype(O, /obj/structure/window))
+						var/obj/structure/window/window = O
+						if(window.is_fulltile())
+							can_place = 0
+							break
+						if(cur == start)
+							if(window.dir == orientation)
+								can_place = 0
+								break
+							else
+								continue
+						else if(cur == end)
+							if(window.dir == reverse_dir[orientation])
+								can_place = 0
+								break
+							else
+								continue
+						else if (window.dir == reverse_dir[orientation] || window.dir == orientation)
+							can_place = 0
+							break
+						else
+							continue
 					if(O.density)
 						can_place = 0
 						break
@@ -208,7 +233,7 @@ var/list/tape_roll_applications = list()
 		if (!can_place)
 			start = null
 			update_icon()
-			usr << "<span class='warning'>You can't run \the [src] through that!</span>"
+			to_chat(user, "<span class='warning'>You can't run \the [src] through that!</span>")
 			return
 
 		cur = start
@@ -224,6 +249,9 @@ var/list/tape_roll_applications = list()
 					for(var/obj/structure/window/W in T)
 						if(W.is_fulltile() || W.dir == orientation)
 							tape_dir = dir
+				for(var/obj/structure/window/window in cur)
+					if(istype(window) && !window.is_fulltile() && window.dir == reverse_dir[orientation])
+						tape_dir = dir
 			else if(cur == end)
 				var/turf/T = get_step(end, orientation)
 				if(T && !T.density)
@@ -231,6 +259,9 @@ var/list/tape_roll_applications = list()
 					for(var/obj/structure/window/W in T)
 						if(W.is_fulltile() || W.dir == reverse_dir[orientation])
 							tape_dir = dir
+				for(var/obj/structure/window/window in cur)
+					if(istype(window) && !window.is_fulltile() && window.dir == orientation)
+						tape_dir = dir
 			for(var/obj/item/tape/T in cur)
 				if((T.tape_dir == tape_dir) && (T.icon_base == icon_base))
 					tapetest = 1
@@ -246,7 +277,7 @@ var/list/tape_roll_applications = list()
 			cur = get_step_towards(cur,end)
 		start = null
 		update_icon()
-		usr << "<span class='notice'>You finish placing \the [src].</span>"
+		to_chat(user, "<span class='notice'>You finish placing \the [src].</span>")
 		return
 
 /obj/item/taperoll/afterattack(var/atom/A, mob/user as mob, proximity)
@@ -256,12 +287,12 @@ var/list/tape_roll_applications = list()
 	if (istype(A, /obj/machinery/door))
 		var/turf/T = get_turf(A)
 		if(locate(/obj/item/tape, A.loc))
-			user << "There's already tape over that door!"
+			to_chat(user, "There's already tape over that door!")
 		else
 			var/obj/item/tape/P = new tape_type(T)
 			P.update_icon()
 			P.layer = WINDOW_LAYER
-			user << "<span class='notice'>You finish placing \the [src].</span>"
+			to_chat(user, "<span class='notice'>You finish placing \the [src].</span>")
 
 	if (istype(A, /turf/simulated/floor) ||istype(A, /turf/unsimulated/floor))
 		var/turf/F = A
@@ -286,16 +317,16 @@ var/list/tape_roll_applications = list()
 		update_icon()
 		name = "crumpled [name]"
 
-/obj/item/tape/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/item/tape/CanPass(atom/movable/mover, turf/target)
 	if(!lifted && ismob(mover))
 		var/mob/M = mover
 		add_fingerprint(M)
-		if (!allowed(M))	//only select few learn art of not crumpling the tape
-			M << "<span class='warning'>You are not supposed to go past [src]...</span>"
-			if(M.a_intent == I_HELP && !(istype(M, /mob/living/simple_animal)))
-				return 0
+		if(!allowed(M))	//only select few learn art of not crumpling the tape
+			to_chat(M, span("warning", "You are not supposed to go past \the [src]..."))
+			if(M.a_intent == I_HELP && !(istype(M, /mob/living/simple_mob)))
+				return FALSE
 			crumple()
-	return ..(mover)
+	return ..()
 
 /obj/item/tape/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	breaktape(user)

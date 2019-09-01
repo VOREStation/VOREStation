@@ -34,7 +34,7 @@
 	penetrating = 2
 	embed_chance = 0
 	armor_penetration = 40
-	kill_count = 20
+	range = 20
 
 	var/searing = 0 //Does this fuelrod ignore shields?
 	var/detonate_travel = 0 //Will this fuelrod explode when it reaches maximum distance?
@@ -50,7 +50,7 @@
 
 		if(energetic_impact)
 			var/eye_coverage = 0
-			for(var/mob/living/carbon/M in viewers(world.view, location))
+			for(var/mob/living/carbon/M in viewers(world.view, get_turf(src)))
 				eye_coverage = 0
 				if(iscarbon(M))
 					eye_coverage = M.eyecheck()
@@ -103,7 +103,7 @@
 	armor_penetration = 100
 	penetrating = 100 //Theoretically, this shouldn't stop flying for a while, unless someone lines it up with a wall or fires it into a mountain.
 	irradiate = 120
-	kill_count = 75
+	range = 75
 	searing = 1
 	detonate_travel = 1
 	detonate_mob = 1
@@ -117,3 +117,28 @@
 
 /obj/item/projectile/bullet/magnetic/fuelrod/supermatter/check_penetrate()
 	return 1
+
+/obj/item/projectile/bullet/magnetic/bore
+	name = "phorogenic blast"
+	icon_state = "purpleemitter"
+	damage = 20
+	incendiary = 1
+	armor_penetration = 20
+	penetrating = 0
+	check_armour = "melee"
+	irradiate = 20
+	range = 6
+
+/obj/item/projectile/bullet/magnetic/bore/Bump(atom/A, forced=0)
+	if(istype(A, /turf/simulated/mineral))
+		var/turf/simulated/mineral/MI = A
+		loc = get_turf(A) // Careful.
+		permutated.Add(A)
+		MI.GetDrilled(TRUE)
+		return 0
+	else if(istype(A, /turf/simulated/wall) || istype(A, /turf/simulated/shuttle/wall))	// Cause a loud, but relatively minor explosion on the wall it hits.
+		explosion(A, -1, -1, 1, 3)
+		qdel(src)
+		return 1
+	else
+		..()

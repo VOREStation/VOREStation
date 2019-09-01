@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/wolf
+/mob/living/simple_mob/hostile/wolf
 	name = "grey wolf"
 	desc = "My, what big jaws it has!"
 	tt_desc = "Canis lupus"
@@ -22,6 +22,6 @@
 	minbodytemp = 200
 
 // Activate Noms!
-/mob/living/simple_animal/hostile/wolf
+/mob/living/simple_mob/hostile/wolf
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING

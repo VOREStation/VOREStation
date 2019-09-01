@@ -278,7 +278,7 @@
 	icon_override = 'icons/vore/custom_items_vr.dmi'
 	item_state = "holochain_mob"
 
-	flags = CONDUCT | NOBLOODY
+	flags = NOBLOODY
 	slot_flags = SLOT_BELT
 	force = 10
 	throwforce = 3
@@ -436,7 +436,7 @@
 /obj/item/clothing/accessory/collar/khcrystal/process()
 	check_owner()
 	if((state > 1) || !owner)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 
 /obj/item/clothing/accessory/collar/khcrystal/attack_self(mob/user as mob)
 	if(state > 0) //Can't re-pair, one time only, for security reasons.
@@ -447,7 +447,7 @@
 	owner_c = user.client	//This is his client
 	update_state(1)
 	to_chat(user, "<span class='notice'>The [name] glows pleasantly blue.</span>")
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/accessory/collar/khcrystal/proc/check_owner()
 	//He's dead, jim
@@ -529,7 +529,6 @@
 	icon_state = "browncane"
 	item_icons = list (slot_r_hand_str = 'icons/vore/custom_items_vr.dmi', slot_l_hand_str = 'icons/vore/custom_items_vr.dmi')
 	item_state_slots = list(slot_r_hand_str = "browncanemob_r", slot_l_hand_str = "browncanemob_l")
-	flags = CONDUCT
 	force = 5.0
 	throwforce = 7.0
 	w_class = ITEMSIZE_SMALL
@@ -549,7 +548,6 @@
     icon_state = "alexiswand"
     item_icons = list (slot_r_hand_str = 'icons/vore/custom_items_vr.dmi', slot_l_hand_str = 'icons/vore/custom_items_vr.dmi')
     item_state_slots = list(slot_r_hand_str = "alexiswandmob_r", slot_l_hand_str = "alexiswandmob_l")
-    flags = CONDUCT
     force = 1.0
     throwforce = 2.0
     w_class = ITEMSIZE_SMALL
@@ -614,6 +612,48 @@
 	slowdown = 0
 	taurtype = /datum/sprite_accessory/tail/taur/feline/tempest
 	no_message = "These saddlebags seem to be fitted for someone else, and keep slipping off!"
+	action_button_name = "Toggle Mlembulance Mode"
+	var/ambulance = FALSE
+	var/ambulance_state = FALSE
+	var/ambulance_last_switch = 0
+	var/ambulance_volume = 25	//Allows for varediting, just in case
+
+/obj/item/weapon/storage/backpack/saddlebag/tempest/ui_action_click()
+	ambulance = !(ambulance)
+	if(ambulance)
+		START_PROCESSING(SSobj, src)
+		item_state = "tempestsaddlebag-amb"
+		icon_state = "tempestbag-amb"
+		if (ismob(loc))
+			var/mob/M = loc
+			M.update_inv_back()
+		ambulance_state = FALSE
+		set_light(2, 1, "#FF0000")
+		while(ambulance)
+			playsound(src.loc, 'sound/items/amulanceweeoo.ogg', ambulance_volume, 0)
+			sleep(20)
+	else
+		item_state = "tempestsaddlebag"
+		icon_state = "tempestbag"
+		if (ismob(loc))
+			var/mob/M = loc
+			M.update_inv_back()
+		set_light(0)
+
+/obj/item/weapon/storage/backpack/saddlebag/tempest/process()
+	if(!ambulance)
+		STOP_PROCESSING(SSobj, src)
+		return
+	if(world.time - ambulance_last_switch > 15)
+		ambulance_state = !(ambulance_state)
+		var/newlight = "#FF0000"
+		if(ambulance_state)
+			newlight = "#0000FF"
+		if (ismob(loc))
+			var/mob/M = loc
+			M.update_inv_back()
+		set_light(2, 1, newlight)
+		ambulance_last_switch = world.time
 
 //WickedTempest: Chakat Tempest
 /obj/item/weapon/implant/reagent_generator/tempest
@@ -726,7 +766,7 @@
 	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_roiz
 
 /obj/item/weapon/implant/reagent_generator/roiz/post_implant(mob/living/carbon/source)
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	source.verbs |= assigned_proc
 	return 1
@@ -748,10 +788,11 @@
 		return
 
 	var/obj/item/weapon/implant/reagent_generator/roiz/rimplant
-	for(var/I in contents)
-		if(istype(I, /obj/item/weapon/implant/reagent_generator))
-			rimplant = I
-			break
+	for(var/obj/item/organ/external/E in organs)
+		for(var/obj/item/weapon/implant/I in E.implants)
+			if(istype(I, /obj/item/weapon/implant/reagent_generator))
+				rimplant = I
+				break
 	if (rimplant)
 		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
 			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
@@ -794,7 +835,7 @@
 	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_jasmine
 
 /obj/item/weapon/implant/reagent_generator/jasmine/post_implant(mob/living/carbon/source)
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	source.verbs |= assigned_proc
 	return 1
@@ -816,10 +857,11 @@
 		return
 
 	var/obj/item/weapon/implant/reagent_generator/jasmine/rimplant
-	for(var/I in contents)
-		if(istype(I, /obj/item/weapon/implant/reagent_generator))
-			rimplant = I
-			break
+	for(var/obj/item/organ/external/E in organs)
+		for(var/obj/item/weapon/implant/I in E.implants)
+			if(istype(I, /obj/item/weapon/implant/reagent_generator))
+				rimplant = I
+				break
 	if (rimplant)
 		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
 			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
@@ -862,7 +904,7 @@
 	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_yonra
 
 /obj/item/weapon/implant/reagent_generator/yonra/post_implant(mob/living/carbon/source)
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	source.verbs |= assigned_proc
 	return 1
@@ -884,10 +926,11 @@
 		return
 
 	var/obj/item/weapon/implant/reagent_generator/yonra/rimplant
-	for(var/I in contents)
-		if(istype(I, /obj/item/weapon/implant/reagent_generator))
-			rimplant = I
-			break
+	for(var/obj/item/organ/external/E in organs)
+		for(var/obj/item/weapon/implant/I in E.implants)
+			if(istype(I, /obj/item/weapon/implant/reagent_generator))
+				rimplant = I
+				break
 	if (rimplant)
 		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
 			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
@@ -946,7 +989,7 @@
 	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_rischi
 
 /obj/item/weapon/implant/reagent_generator/rischi/post_implant(mob/living/carbon/source)
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	source.verbs |= assigned_proc
 	return 1
@@ -968,10 +1011,11 @@
 		return
 
 	var/obj/item/weapon/implant/reagent_generator/rischi/rimplant
-	for(var/I in contents)
-		if(istype(I, /obj/item/weapon/implant/reagent_generator))
-			rimplant = I
-			break
+	for(var/obj/item/organ/external/E in organs)
+		for(var/obj/item/weapon/implant/I in E.implants)
+			if(istype(I, /obj/item/weapon/implant/reagent_generator))
+				rimplant = I
+				break
 	if (rimplant)
 		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
 			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
@@ -1200,7 +1244,8 @@
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 7)
 
-	var/obj/item/weapon/cell/device/weapon/power_source
+	var/cell_type = /obj/item/weapon/cell/device/weapon
+	var/obj/item/weapon/cell/power_source
 	var/charge_cost = 800 // cell/device/weapon has 2400
 
 	var/list/beacons = list()
@@ -1215,7 +1260,10 @@
 /obj/item/device/perfect_tele/New()
 	..()
 	flags |= NOBLUDGEON
-	power_source = new (src)
+	if(cell_type)
+		power_source = new cell_type(src)
+	else
+		power_source = new /obj/item/weapon/cell/device(src)
 	spk = new(src)
 	spk.set_up(5, 0, src)
 	spk.attach(src)
@@ -1232,7 +1280,7 @@
 /obj/item/device/perfect_tele/update_icon()
 	if(!power_source)
 		icon_state = "[initial(icon_state)]_o"
-	else if(ready && power_source.check_charge(charge_cost))
+	else if(ready && (power_source.check_charge(charge_cost) || power_source.fully_charged()))
 		icon_state = "[initial(icon_state)]"
 	else
 		icon_state = "[initial(icon_state)]_w"
@@ -1294,7 +1342,7 @@
 			return
 
 /obj/item/device/perfect_tele/attackby(obj/W, mob/user)
-	if(istype(W,/obj/item/weapon/cell/device/weapon) && !power_source)
+	if(istype(W,cell_type) && !power_source)
 		power_source = W
 		power_source.update_icon() //Why doesn't a cell do this already? :|
 		user.unEquip(power_source)
@@ -1323,7 +1371,7 @@
 		return FALSE
 
 	//Check for charge
-	if(!power_source.check_charge(charge_cost))
+	if((!power_source.check_charge(charge_cost)) && (!power_source.fully_charged()))
 		to_chat(user,"<span class='warning'>\The [src] does not have enough power left!</span>")
 		return FALSE
 
@@ -1354,10 +1402,13 @@
 	//No, you can't port to or from away missions. Stupidly complicated check.
 	var/turf/uT = get_turf(user)
 	var/turf/dT = get_turf(destination)
+	var/list/dat = list()
+	dat["z_level_detection"] = using_map.get_map_levels(uT.z)
+
 	if(!uT || !dT)
 		return FALSE
 
-	if( (uT.z != dT.z) && ( (uT.z > max_default_z_level() ) || (dT.z > max_default_z_level()) ) )
+	if( (uT.z != dT.z) && (!(dT.z in dat["z_level_detection"])) )
 		to_chat(user,"<span class='warning'>\The [src] can't teleport you that far!</span>")
 		return FALSE
 
@@ -1518,14 +1569,17 @@
 	desc = "A more limited translocator with a single beacon, useful for some things, like setting the mining department on fire accidentally. Legal for use in the pursuit of NanoTrasen interests, namely mining and exploration."
 	icon_state = "minitrans"
 	beacons_left = 1 //Just one
-	charge_cost = 2400 //One per
+	cell_type = /obj/item/weapon/cell/device
+	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5)
 
+/*
 /obj/item/device/perfect_tele/one_beacon/teleport_checks(mob/living/target,mob/living/user)
 	var/turf/T = get_turf(destination)
 	if(T && user.z != T.z)
 		to_chat(user,"<span class='warning'>\The [src] is too far away from the beacon. Try getting closer first!</span>")
 		return FALSE
 	return ..()
+*/
 
 //InterroLouis: Ruda Lizden
 /obj/item/clothing/accessory/badge/holo/detective/ruda
@@ -1641,7 +1695,7 @@
 	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_evian
 
 /obj/item/weapon/implant/reagent_generator/evian/post_implant(mob/living/carbon/source)
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
 	source.verbs |= assigned_proc
 	return 1
@@ -1663,10 +1717,11 @@
 		return
 
 	var/obj/item/weapon/implant/reagent_generator/evian/rimplant
-	for(var/I in contents)
-		if(istype(I, /obj/item/weapon/implant/reagent_generator))
-			rimplant = I
-			break
+	for(var/obj/item/organ/external/E in organs)
+		for(var/obj/item/weapon/implant/I in E.implants)
+			if(istype(I, /obj/item/weapon/implant/reagent_generator))
+				rimplant = I
+				break
 	if (rimplant)
 		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
 			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
@@ -1954,3 +2009,31 @@
 	desc = "A gold-trimmed MKII hypospray. The name 'Kenzie Houser' is engraved on the side."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "kenziehypo"
+
+//Semaun - Viktor Solothurn
+/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor
+	name = "flask of expensive alcohol"
+	desc = "A standard vacuum-flask filled with good and expensive drink."
+
+/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor/Initialize()
+	..()
+	reagents.add_reagent("pwine", 60)
+
+//RadiantAurora: Tiemli Kroto
+/obj/item/clothing/glasses/welding/tiemgogs
+   name = "custom-fitted welding goggles"
+   desc = "A pair of thick, custom-fitted goggles with LEDs above the lenses. Ruggedly engraved below the lenses is the name 'Tiemli Kroto'."
+
+   icon = 'icons/vore/custom_items_vr.dmi'
+   icon_state = "tiemgogs"
+
+   icon_override = 'icons/vore/custom_clothes_vr.dmi'
+   icon_state = "tiemgogs"
+
+/obj/item/clothing/glasses/welding/tiemgogs/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+   if(..())
+      if(H.ckey != "radiantaurora")
+         to_chat(H, "<span class='warning'>These don't look like they were made to fit you...</span>")
+         return 0
+      else
+         return 1

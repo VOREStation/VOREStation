@@ -12,7 +12,7 @@
 	var/does_skyfall = TRUE
 	var/list/skyfall_levels
 
-/turf/unsimulated/floor/sky/initialize()
+/turf/unsimulated/floor/sky/Initialize()
 	. = ..()
 	if(does_skyfall && !LAZYLEN(skyfall_levels))
 		error("[x],[y],[z], [get_area(src)] doesn't have skyfall_levels defined! Can't skyfall!")
@@ -27,6 +27,8 @@
 		return //Don't ghostport, very annoying
 	if(AM.throwing)
 		return //Being thrown over, not fallen yet
+	if(/obj/item/projectile)
+		return // Bullets/lasers/pewpew should not fall out of the sky. pew.
 
 	var/mob/living/L
 	if(isliving(AM))

@@ -114,14 +114,14 @@
 
 	if(href_list["observe"])
 
-		if(alert(src,"Are you sure you wish to observe? You will have to wait 5 minute before being able to respawn!","Player Setup","Yes","No") == "Yes") //Vorestation edit
+		if(alert(src,"Are you sure you wish to observe? You will have to wait 60 seconds before being able to respawn!","Player Setup","Yes","No") == "Yes") //Vorestation edit - Rykka corrected to 60 seconds to match current spawn time
 			if(!client)	return 1
 
 			//Make a new mannequin quickly, and allow the observer to take the appearance
 			var/mob/living/carbon/human/dummy/mannequin = new()
 			client.prefs.dress_preview_mob(mannequin)
 			var/mob/observer/dead/observer = new(mannequin)
-			observer.forceMove(null) //Let's not stay in our doomed mannequin
+			observer.moveToNullspace() //Let's not stay in our doomed mannequin
 			qdel(mannequin)
 
 			spawning = 1
@@ -169,6 +169,13 @@
 		ViewManifest()
 
 	if(href_list["SelectedJob"])
+
+		//Prevents people rejoining as same character.
+		for (var/mob/living/carbon/human/C in mob_list)
+			var/char_name = client.prefs.real_name
+			if(char_name == C.real_name)
+				usr << "<span class='notice'>There is a character that already exists with the same name - <b>[C.real_name]</b>, please join with a different one, or use Quit the Round with the previous character.</span>" //VOREStation Edit
+				return
 
 		if(!config.enter_allowed)
 			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
@@ -302,7 +309,7 @@
 	var/savefile/F = get_server_news()
 	if(F)
 		client.prefs.lastnews = md5(F["body"])
-		client.prefs.save_preferences()
+		SScharacter_setup.queue_preferences_save(client.prefs)
 
 		var/dat = "<html><body><center>"
 		dat += "<h1>[F["title"]]</h1>"

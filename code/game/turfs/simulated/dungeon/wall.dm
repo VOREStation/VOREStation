@@ -32,7 +32,7 @@
 				mining_overlay_cache["rock_side_[place_dir]"] = image('icons/turf/walls.dmi', "rock_side", dir = place_dir)
 			T.add_overlay(mining_overlay_cache["rock_side_[place_dir]"])
 
-/turf/simulated/wall/solidrock/initialize()
+/turf/simulated/wall/solidrock/Initialize()
 	icon_state = base_state
 	update_icon(1)
 

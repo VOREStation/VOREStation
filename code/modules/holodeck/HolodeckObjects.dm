@@ -104,7 +104,7 @@
 	base_icon = 'icons/turf/flooring/asteroid.dmi'
 	initial_flooring = null
 
-/turf/simulated/floor/holofloor/desert/initialize()
+/turf/simulated/floor/holofloor/desert/Initialize()
 	. = ..()
 	if(prob(10))
 		add_overlay("asteroid[rand(0,9)]")
@@ -126,6 +126,38 @@
 			slot_r_hand_str = 'icons/mob/items/righthand_gloves.dmi',
 			)
 	item_state = "boxing"
+	special_attack_type = /datum/unarmed_attack/holopugilism
+
+datum/unarmed_attack/holopugilism
+	sparring_variant_type = /datum/unarmed_attack/holopugilism
+
+datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/zone)
+	user.do_attack_animation(src)
+	var/damage = rand(0, 9)
+	if(!damage)
+		playsound(target.loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+		target.visible_message("<font color='red'><B>[user] has attempted to punch [target]!</B></font>")
+		return TRUE
+	var/obj/item/organ/external/affecting = target.get_organ(ran_zone(user.zone_sel.selecting))
+	var/armor_block = target.run_armor_check(affecting, "melee")
+	var/armor_soak = target.get_armor_soak(affecting, "melee")
+
+	if(HULK in user.mutations)
+		damage += 5
+
+	playsound(target.loc, "punch", 25, 1, -1)
+
+	target.visible_message("<font color='red'><B>[user] has punched [target]!</B></font>")
+
+	if(armor_soak >= damage)
+		return TRUE
+
+	target.apply_damage(damage, HALLOSS, affecting, armor_block, armor_soak)
+	if(damage >= 9)
+		target.visible_message("<font color='red'><B>[user] has weakened [target]!</B></font>")
+		target.apply_effect(4, WEAKEN, armor_block)
+
+	return TRUE
 
 /obj/structure/window/reinforced/holowindow/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W))
@@ -262,8 +294,8 @@
 		spark_system.set_up(5, 0, user.loc)
 		spark_system.start()
 		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/item/weapon/holo/esword/New()
 	item_color = pick("red","blue","green","purple")
@@ -325,19 +357,18 @@
 		visible_message("<span class='notice'>[user] dunks [W] into the [src]!</span>", 3)
 		return
 
-/obj/structure/holohoop/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+/obj/structure/holohoop/CanPass(atom/movable/mover, turf/target)
 	if (istype(mover,/obj/item) && mover.throwing)
 		var/obj/item/I = mover
 		if(istype(I, /obj/item/projectile))
-			return
+			return TRUE
 		if(prob(50))
-			I.loc = src.loc
-			visible_message("<span class='notice'>Swish! \the [I] lands in \the [src].</span>", 3)
+			I.forceMove(loc)
+			visible_message(span("notice", "Swish! \the [I] lands in \the [src]."), 3)
 		else
-			visible_message("<span class='warning'>\The [I] bounces off of \the [src]'s rim!</span>", 3)
-		return 0
-	else
-		return ..(mover, target, height, air_group)
+			visible_message(span("warning", "\The [I] bounces off of \the [src]'s rim!"), 3)
+		return FALSE
+	return ..()
 
 
 /obj/machinery/readybutton
@@ -419,7 +450,7 @@
 
 //Holocarp
 
-/mob/living/simple_animal/hostile/carp/holodeck
+/mob/living/simple_mob/animal/space/carp/holodeck
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "holo4"
 	icon_living = "holo4"
@@ -429,31 +460,27 @@
 	meat_amount = 0
 	meat_type = null
 
-/mob/living/simple_animal/hostile/carp/holodeck/New()
+/mob/living/simple_mob/animal/space/carp/holodeck/New()
 	..()
 	set_light(2) //hologram lighting
 
-/mob/living/simple_animal/hostile/carp/holodeck/proc/set_safety(var/safe)
+/mob/living/simple_mob/animal/space/carp/holodeck/proc/set_safety(var/safe)
 	if (safe)
 		faction = "neutral"
 		melee_damage_lower = 0
 		melee_damage_upper = 0
-		environment_smash = 0
-		destroy_surroundings = 0
 	else
 		faction = "carp"
 		melee_damage_lower = initial(melee_damage_lower)
 		melee_damage_upper = initial(melee_damage_upper)
-		environment_smash = initial(environment_smash)
-		destroy_surroundings = initial(destroy_surroundings)
 
-/mob/living/simple_animal/hostile/carp/holodeck/gib()
+/mob/living/simple_mob/animal/space/carp/holodeck/gib()
 	derez() //holograms can't gib
 
-/mob/living/simple_animal/hostile/carp/holodeck/death()
+/mob/living/simple_mob/animal/space/carp/holodeck/death()
 	..()
 	derez()
 
-/mob/living/simple_animal/hostile/carp/holodeck/proc/derez()
+/mob/living/simple_mob/animal/space/carp/holodeck/proc/derez()
 	visible_message("<span class='notice'>\The [src] fades away!</span>")
 	qdel(src)

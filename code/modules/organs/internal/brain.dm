@@ -107,7 +107,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	if(name == initial(name))
 		name = "\the [owner.real_name]'s [initial(name)]"
 
-	var/mob/living/simple_animal/borer/borer = owner.has_brain_worms()
+	var/mob/living/simple_mob/animal/borer/borer = owner.has_brain_worms()
 
 	if(borer)
 		borer.detatch() //Should remove borer if the brain is removed - RR
@@ -152,6 +152,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	name = "slime core"
 	desc = "A complex, organic knot of jelly and crystalline particles."
 	icon_state = "core"
+	decays = FALSE
 	parent_organ = BP_TORSO
 	clone_source = TRUE
 	flags = OPENCONTAINER

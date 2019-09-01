@@ -9,7 +9,6 @@ var/list/overminds = list()
 	mouse_opacity = 1
 	see_in_dark = 8
 	invisibility = INVISIBILITY_OBSERVER
-	layer = FLY_LAYER + 0.1
 
 	faction = "blob"
 	var/obj/structure/blob/core/blob_core = null // The blob overmind's core
@@ -53,7 +52,7 @@ var/list/overminds = list()
 			B.update_icon() //reset anything that was ours
 
 	for(var/BLO in blob_mobs)
-		var/mob/living/simple_animal/hostile/blob/BM = BLO
+		var/mob/living/simple_mob/blob/spore/BM = BLO
 		if(BM)
 			BM.overmind = null
 			BM.update_icons()

@@ -66,7 +66,7 @@
 		else if(istype(W,/obj/item/rig_module))
 			if(istype(src.loc,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = src.loc
-				if(H.back == src)
+				if(H.back == src || H.belt == src)
 					to_chat(user, "<span class='danger'>You can't install a hardsuit module while the suit is being worn.</span>")
 					return 1
 
@@ -105,7 +105,7 @@
 		else if(W.is_wrench())
 
 			if(!air_supply)
-				to_chat(user, "There is not tank to remove.")
+				to_chat(user, "There is no tank to remove.")
 				return
 
 			if(user.r_hand && user.l_hand)
@@ -128,7 +128,7 @@
 
 			if(istype(src.loc,/mob/living/carbon/human) && to_remove != "cell")
 				var/mob/living/carbon/human/H = src.loc
-				if(H.back == src)
+				if(H.back == src || H.belt == src)
 					to_chat(user, "You can't remove an installed device while the hardsuit is being worn.")
 					return
 
@@ -137,7 +137,7 @@
 				if("cell")
 
 					if(cell)
-						to_chat(user, "You detatch \the [cell] from \the [src]'s battery mount.")
+						to_chat(user, "You detach \the [cell] from \the [src]'s battery mount.")
 						for(var/obj/item/rig_module/module in installed_modules)
 							module.deactivate()
 						if(user.r_hand && user.l_hand)
@@ -165,7 +165,7 @@
 						return
 
 					var/obj/item/rig_module/removed = possible_removals[removal_choice]
-					to_chat(user, "You detatch \the [removed] from \the [src].")
+					to_chat(user, "You detach \the [removed] from \the [src].")
 					removed.forceMove(get_turf(src))
 					removed.removed()
 					installed_modules -= removed

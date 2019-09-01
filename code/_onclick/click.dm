@@ -76,7 +76,7 @@
 		if(!locate(/turf) in list(A, A.loc)) // Prevents inventory from being drilled
 			return
 		var/obj/mecha/M = loc
-		return M.click_action(A, src)
+		return M.click_action(A, src, params)
 
 	if(restrained())
 		setClickCooldown(10)
@@ -113,6 +113,19 @@
 
 		trigger_aiming(TARGET_CAN_CLICK)
 		return 1
+
+	// VOREStation Addition Start: inbelly item interaction
+	if(isbelly(loc) && (loc == A.loc))
+		if(W)
+			var/resolved = W.resolve_attackby(A,src)
+			if(!resolved && A && W)
+				W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
+		else
+			if(ismob(A)) // No instant mob attacking
+				setClickCooldown(get_attack_speed())
+			UnarmedAttack(A, 1)
+		return
+	// VOREStation Addition End
 
 	if(!isturf(loc)) // This is going to stop you from telekinesing from inside a closet, but I don't shed many tears for that
 		return
@@ -282,10 +295,10 @@
 	Laser Eyes: as the name implies, handles this since nothing else does currently
 	face_atom: turns the mob towards what you clicked on
 */
-/mob/proc/LaserEyes(atom/A)
+/mob/proc/LaserEyes(atom/A, params)
 	return
 
-/mob/living/LaserEyes(atom/A)
+/mob/living/LaserEyes(atom/A, params)
 	setClickCooldown(4)
 	var/turf/T = get_turf(src)
 
@@ -293,8 +306,11 @@
 	LE.icon = 'icons/effects/genetics.dmi'
 	LE.icon_state = "eyelasers"
 	playsound(usr.loc, 'sound/weapons/taser2.ogg', 75, 1)
-	LE.launch(A)
-/mob/living/carbon/human/LaserEyes()
+	LE.firer = src
+	LE.preparePixelProjectile(A, src, params)
+	LE.fire()
+
+/mob/living/carbon/human/LaserEyes(atom/A, params)
 	if(nutrition>0)
 		..()
 		nutrition = max(nutrition - rand(1,5),0)

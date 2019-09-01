@@ -282,11 +282,11 @@
 				var/obj/item/device/pda/pda = H.wear_id
 				id = pda.id
 			id.icon_state = "gold"
-			id.access = get_all_accesses()
+			id.access = get_all_accesses().Copy()
 		else
 			var/obj/item/weapon/card/id/id = new/obj/item/weapon/card/id(M);
 			id.icon_state = "gold"
-			id.access = get_all_accesses()
+			id.access = get_all_accesses().Copy()
 			id.registered_name = H.real_name
 			id.assignment = "Colony Director"
 			id.name = "[id.registered_name]'s ID Card ([id.assignment])"
@@ -592,7 +592,7 @@
 		if("Dead Mobs")
 			usr << jointext(dead_mob_list,",")
 		if("Clients")
-			usr << jointext(clients,",")
+			usr << jointext(GLOB.clients,",")
 
 /client/proc/cmd_debug_using_map()
 	set category = "Debug"

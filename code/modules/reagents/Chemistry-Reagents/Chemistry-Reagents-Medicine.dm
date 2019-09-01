@@ -16,6 +16,28 @@
 		M.add_chemical_effect(CE_STABLE, 15)
 		M.add_chemical_effect(CE_PAINKILLER, 10)
 
+/datum/reagent/inaprovaline/topical
+	name = "Inaprovalaze"
+	id = "inaprovalaze"
+	description = "Inaprovalaze is a topical variant of Inaprovaline."
+	taste_description = "bitterness"
+	reagent_state = LIQUID
+	color = "#00BFFF"
+	overdose = REAGENTS_OVERDOSE * 2
+	metabolism = REM * 0.5
+	scannable = 1
+	touch_met = REM * 0.75
+
+/datum/reagent/inaprovaline/topical/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien != IS_DIONA)
+		..()
+		M.adjustToxLoss(2 * removed)
+
+/datum/reagent/inaprovaline/topical/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien != IS_DIONA)
+		M.add_chemical_effect(CE_STABLE, 20)
+		M.add_chemical_effect(CE_PAINKILLER, 12)
+
 /datum/reagent/bicaridine
 	name = "Bicaridine"
 	id = "bicaridine"
@@ -50,6 +72,33 @@
 					W.damage = max(W.damage - wound_heal, 0)
 					if(W.damage <= 0)
 						O.wounds -= W
+
+/datum/reagent/bicaridine/topical
+	name = "Bicaridaze"
+	id = "bicaridaze"
+	description = "Bicaridaze is a topical variant of the chemical Bicaridine."
+	taste_description = "bitterness"
+	taste_mult = 3
+	reagent_state = LIQUID
+	color = "#BF0000"
+	overdose = REAGENTS_OVERDOSE * 0.75
+	scannable = 1
+	touch_met = REM * 0.75
+
+/datum/reagent/bicaridine/topical/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
+	if(alien != IS_DIONA)
+		..(M, alien, removed * chem_effective)
+		M.adjustToxLoss(2 * removed)
+
+/datum/reagent/bicaridine/topical/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
+	if(alien != IS_DIONA)
+		M.heal_organ_damage(6 * removed * chem_effective, 0)
 
 /datum/reagent/kelotane
 	name = "Kelotane"
@@ -87,6 +136,33 @@
 	if(alien != IS_DIONA)
 		M.heal_organ_damage(0, 8 * removed * chem_effective) //VOREStation edit
 
+/datum/reagent/dermaline/topical
+	name = "Dermalaze"
+	id = "dermalaze"
+	description = "Dermalaze is a topical variant of the chemical Dermaline."
+	taste_description = "bitterness"
+	taste_mult = 1.5
+	reagent_state = LIQUID
+	color = "#FF8000"
+	overdose = REAGENTS_OVERDOSE * 0.4
+	scannable = 1
+	touch_met = REM * 0.75
+
+/datum/reagent/dermaline/topical/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
+	if(alien != IS_DIONA)
+		..(M, alien, removed * chem_effective)
+		M.adjustToxLoss(2 * removed)
+
+/datum/reagent/dermaline/topical/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
+	if(alien != IS_DIONA)
+		M.heal_organ_damage(0, 12 * removed * chem_effective)
+
 /datum/reagent/dylovene
 	name = "Dylovene"
 	id = "anti_toxin"
@@ -106,6 +182,8 @@
 		M.drowsyness = max(0, M.drowsyness - 6 * removed * chem_effective)
 		M.hallucination = max(0, M.hallucination - 9 * removed * chem_effective)
 		M.adjustToxLoss(-4 * removed * chem_effective)
+		if(prob(10))
+			M.remove_a_modifier_of_type(/datum/modifier/poisoned)
 
 /datum/reagent/carthatoline
 	name = "Carthatoline"
@@ -121,6 +199,8 @@
 	if(M.getToxLoss() && prob(10))
 		M.vomit(1)
 	M.adjustToxLoss(-8 * removed)
+	if(prob(30))
+		M.remove_a_modifier_of_type(/datum/modifier/poisoned)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
@@ -198,6 +278,10 @@
 		M.adjustOxyLoss(-3 * removed * chem_effective)
 		M.heal_organ_damage(1.5 * removed, 1.5 * removed * chem_effective)
 		M.adjustToxLoss(-1.5 * removed * chem_effective)
+
+/datum/reagent/tricordrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien != IS_DIONA)
+		affect_blood(M, alien, removed * 0.4)
 
 /datum/reagent/cryoxadone
 	name = "Cryoxadone"
@@ -504,6 +588,230 @@
 					if(W.damage <= 0)
 						O.wounds -= W
 
+/datum/reagent/respirodaxon
+	name = "Respirodaxon"
+	id = "respirodaxon"
+	description = "Used to repair the tissue of the lungs and similar organs."
+	taste_description = "metallic"
+	reagent_state = LIQUID
+	color = "#4444FF"
+	metabolism = REM * 1.5
+	overdose = 10
+	scannable = 1
+
+/datum/reagent/respirodaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/repair_strength = 1
+	if(alien == IS_SLIME)
+		repair_strength = 0.6
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/organ/I in H.internal_organs)
+			if(I.robotic >= ORGAN_ROBOT || !(I.organ_tag in list(O_LUNGS, O_VOICE, O_GBLADDER)))
+				continue
+			if(I.damage > 0)
+				I.damage = max(I.damage - 4 * removed * repair_strength, 0)
+				H.Confuse(2)
+		if(M.reagents.has_reagent("gastirodaxon") || M.reagents.has_reagent("peridaxon"))
+			if(H.losebreath >= 15 && prob(H.losebreath))
+				H.Stun(2)
+			else
+				H.losebreath = CLAMP(H.losebreath + 3, 0, 20)
+		else
+			H.losebreath = max(H.losebreath - 4, 0)
+
+/datum/reagent/gastirodaxon
+	name = "Gastirodaxon"
+	id = "gastirodaxon"
+	description = "Used to repair the tissues of the digestive system."
+	taste_description = "chalk"
+	reagent_state = LIQUID
+	color = "#8B4513"
+	metabolism = REM * 1.5
+	overdose = 10
+	scannable = 1
+
+/datum/reagent/gastirodaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/repair_strength = 1
+	if(alien == IS_SLIME)
+		repair_strength = 0.6
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/organ/I in H.internal_organs)
+			if(I.robotic >= ORGAN_ROBOT || !(I.organ_tag in list(O_APPENDIX, O_NUTRIENT, O_PLASMA, O_POLYP)))
+				continue
+			if(I.damage > 0)
+				I.damage = max(I.damage - 4 * removed * repair_strength, 0)
+				H.Confuse(2)
+		if(M.reagents.has_reagent("hepanephrodaxon") || M.reagents.has_reagent("peridaxon"))
+			if(prob(10))
+				H.vomit(1)
+			else if(H.nutrition > 30)
+				H.nutrition = max(0, H.nutrition - round(30 * removed))
+		else
+			H.adjustToxLoss(-10 * removed) // Carthatoline based, considering cost.
+
+/datum/reagent/hepanephrodaxon
+	name = "Hepanephrodaxon"
+	id = "hepanephrodaxon"
+	description = "Used to repair the common tissues involved in filtration."
+	taste_description = "glue"
+	reagent_state = LIQUID
+	color = "#D2691E"
+	metabolism = REM * 1.5
+	overdose = 10
+	scannable = 1
+
+/datum/reagent/hepanephrodaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/repair_strength = 1
+	if(alien == IS_SLIME)
+		repair_strength = 0.4
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/organ/I in H.internal_organs)
+			if(I.robotic >= ORGAN_ROBOT || !(I.organ_tag in list(O_LIVER, O_KIDNEYS, O_APPENDIX, O_ACID, O_HIVE)))
+				continue
+			if(I.damage > 0)
+				I.damage = max(I.damage - 4 * removed * repair_strength, 0)
+				H.Confuse(2)
+		if(M.reagents.has_reagent("cordradaxon") || M.reagents.has_reagent("peridaxon"))
+			if(prob(5))
+				H.vomit(1)
+			else if(prob(5))
+				to_chat(H,"<span class='danger'>Something churns inside you.</span>")
+				H.adjustToxLoss(10 * removed)
+				H.vomit(0, 1)
+		else
+			H.adjustToxLoss(-12 * removed) // Carthatoline based, considering cost.
+
+/datum/reagent/cordradaxon
+	name = "Cordradaxon"
+	id = "cordradaxon"
+	description = "Used to repair the specialized tissues involved in the circulatory system."
+	taste_description = "rust"
+	reagent_state = LIQUID
+	color = "#FF4444"
+	metabolism = REM * 1.5
+	overdose = 10
+	scannable = 1
+
+/datum/reagent/cordradaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/repair_strength = 1
+	if(alien == IS_SLIME)
+		repair_strength = 0.6
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/organ/I in H.internal_organs)
+			if(I.robotic >= ORGAN_ROBOT || !(I.organ_tag in list(O_HEART, O_RESPONSE, O_ANCHOR, O_EGG)))
+				continue
+			if(I.damage > 0)
+				I.damage = max(I.damage - 4 * removed * repair_strength, 0)
+				H.Confuse(2)
+		if(M.reagents.has_reagent("respirodaxon") || M.reagents.has_reagent("peridaxon"))
+			H.losebreath = CLAMP(H.losebreath + 1, 0, 10)
+		else
+			H.adjustOxyLoss(-30 * removed) // Deals with blood oxygenation.
+
+/datum/reagent/immunosuprizine
+	name = "Immunosuprizine"
+	id = "immunosuprizine"
+	description = "An experimental powder believed to have the ability to prevent any organ rejection."
+	taste_description = "flesh"
+	reagent_state = SOLID
+	color = "#7B4D4F"
+	overdose = 20
+	scannable = 1
+
+/datum/reagent/immunosuprizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/strength_mod = 1
+
+	if(alien == IS_DIONA)	// It's a tree.
+		strength_mod = 0.25
+
+	if(alien == IS_SLIME)	// Diffculty bonding with internal cellular structure.
+		strength_mod = 0.75
+
+	if(alien == IS_SKRELL)	// Natural inclination toward toxins.
+		strength_mod = 1.5
+
+	if(alien == IS_UNATHI)	// Natural regeneration, robust biology.
+		strength_mod = 1.75
+
+	if(alien == IS_TAJARA)	// Highest metabolism.
+		strength_mod = 2
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(alien != IS_DIONA)
+			H.adjustToxLoss((30 / strength_mod) * removed)
+
+		var/list/organtotal = list()
+		organtotal |= H.organs
+		organtotal |= H.internal_organs
+
+		for(var/obj/item/organ/I in organtotal)	// Don't mess with robot bits, they don't reject.
+			if(I.robotic >= ORGAN_ROBOT)
+				organtotal -= I
+
+		if(dose >= 15)
+			for(var/obj/item/organ/I in organtotal)
+				if(I.transplant_data && prob(round(15 * strength_mod)))	// Reset the rejection process, toggle it to not reject.
+					I.rejecting = 0
+					I.can_reject = FALSE
+
+		if(H.reagents.has_reagent("spaceacillin") || H.reagents.has_reagent("corophizine"))	// Chemicals that increase your immune system's aggressiveness make this chemical's job harder.
+			for(var/obj/item/organ/I in organtotal)
+				if(I.transplant_data)
+					var/rejectmem = I.can_reject
+					I.can_reject = initial(I.can_reject)
+					if(rejectmem != I.can_reject)
+						H.adjustToxLoss((15 / strength_mod))
+						I.take_damage(1)
+
+/datum/reagent/skrellimmuno
+	name = "Malish-Qualem"
+	id = "malish-qualem"
+	description = "A strange, oily powder used by Malish-Katish to prevent organ rejection."
+	taste_description = "mordant"
+	reagent_state = SOLID
+	color = "#84B2B0"
+	metabolism = REM * 0.75
+	overdose = 20
+	scannable = 1
+
+/datum/reagent/skrellimmuno/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/strength_mod = 0.5
+
+	if(alien == IS_SKRELL)
+		strength_mod = 1
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(alien != IS_SKRELL)
+			H.adjustToxLoss(20 * removed)
+
+		var/list/organtotal = list()
+		organtotal |= H.organs
+		organtotal |= H.internal_organs
+
+		for(var/obj/item/organ/I in organtotal)	// Don't mess with robot bits, they don't reject.
+			if(I.robotic >= ORGAN_ROBOT)
+				organtotal -= I
+
+		if(dose >= 15)
+			for(var/obj/item/organ/I in organtotal)
+				if(I.transplant_data && prob(round(15 * strength_mod)))
+					I.rejecting = 0
+					I.can_reject = FALSE
+
+		if(H.reagents.has_reagent("spaceacillin") || H.reagents.has_reagent("corophizine"))
+			for(var/obj/item/organ/I in organtotal)
+				if(I.transplant_data)
+					var/rejectmem = I.can_reject
+					I.can_reject = initial(I.can_reject)
+					if(rejectmem != I.can_reject)
+						H.adjustToxLoss((10 / strength_mod))
+						I.take_damage(1)
+
 /datum/reagent/ryetalyn
 	name = "Ryetalyn"
 	id = "ryetalyn"
@@ -637,6 +945,9 @@
 				to_chat(M, "<span class='warning'>Your senses feel unfocused, and divided.</span>")
 	M.add_chemical_effect(CE_ANTIBIOTIC, dose >= overdose ? ANTIBIO_OD : ANTIBIO_NORM)
 
+/datum/reagent/spaceacillin/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	affect_blood(M, alien, removed * 0.8) // Not 100% as effective as injections, though still useful.
+
 /datum/reagent/corophizine
 	name = "Corophizine"
 	id = "corophizine"
@@ -698,7 +1009,7 @@
 		M.make_dizzy(5)
 	if(prob(20))
 		M.hallucination = max(M.hallucination, 10)
-	
+
 	//One of the levofloxacin side effects is 'spontaneous tendon rupture', which I'll immitate here. 1:1000 chance, so, pretty darn rare.
 	if(ishuman(M) && rand(1,10000) == 1) //VOREStation Edit (more rare)
 		var/obj/item/organ/external/eo = pick(H.organs) //Misleading variable name, 'organs' is only external organs
@@ -738,6 +1049,14 @@
 		I.was_bloodied = null
 	for(var/obj/effect/decal/cleanable/blood/B in T)
 		qdel(B)
+
+/datum/reagent/sterilizine/touch_mob(var/mob/living/L, var/amount)
+	if(istype(L))
+		if(istype(L, /mob/living/simple_mob/slime))
+			var/mob/living/simple_mob/slime/S = L
+			S.adjustToxLoss(rand(15, 25) * amount)	// Does more damage than water.
+			S.visible_message("<span class='warning'>[S]'s flesh sizzles where the fluid touches it!</span>", "<span class='danger'>Your flesh burns in the fluid!</span>")
+		remove_self(amount)
 
 /datum/reagent/leporazine
 	name = "Leporazine"

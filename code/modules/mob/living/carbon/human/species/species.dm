@@ -8,6 +8,7 @@
 	var/name												// Species name.
 	var/name_plural											// Pluralized name (since "[name]s" is not always valid)
 	var/blurb = "A completely nondescript species."			// A brief lore summary for use in the chargen screen.
+	var/list/catalogue_data = null							// A list of /datum/category_item/catalogue datums, for the cataloguer, or null.
 
 	// Icon/appearance vars.
 	var/icobase = 'icons/mob/human_races/r_human.dmi'		// Normal icon set.
@@ -31,7 +32,8 @@
 	var/tail_animation										// If set, the icon to obtain tail animation states from.
 	var/tail_hair
 
-	var/icon_scale = 1										// Makes the icon larger/smaller.
+	var/icon_scale_x = 1										// Makes the icon wider/thinner.
+	var/icon_scale_y = 1										// Makes the icon taller/shorter.
 
 	var/race_key = 0										// Used for mob icon cache string.
 	var/icon/icon_template									// Used for mob icon generation for non-32x32 species.
@@ -85,6 +87,7 @@
 	var/toxins_mod =    1									// Toxloss modifier
 	var/radiation_mod = 1									// Radiation modifier
 	var/flash_mod =     1									// Stun from blindness modifier.
+	var/flash_burn =    0									// how much damage to take from being flashed if light hypersensitive
 	var/sound_mod =     1									// Stun from sounds, I.E. flashbangs.
 	var/chemOD_mod =	1									// Damage modifier for overdose
 	var/vision_flags = SEE_SELF								// Same flags as glasses.
@@ -145,6 +148,7 @@
 	var/warning_high_pressure = WARNING_HIGH_PRESSURE		// High pressure warning.
 	var/warning_low_pressure = WARNING_LOW_PRESSURE			// Low pressure warning.
 	var/hazard_low_pressure = HAZARD_LOW_PRESSURE			// Dangerously low pressure.
+	var/safe_pressure = ONE_ATMOSPHERE
 	var/light_dam											// If set, mob will be damaged in light over this value and heal in light below its negative.
 	var/minimum_breath_pressure = 16						// Minimum required pressure for breath, in kPa
 
