@@ -306,9 +306,15 @@
 
 	switch(user.allowmobvore)
 		if(1)
-			dat += "<a href='?src=\ref[src];togglemv=1'>Toggle Mob Vore</a>"
+			dat += "<br><a href='?src=\ref[src];togglemv=1'>Toggle Mob Vore</a>"
 		if(0)
-			dat += "<a href='?src=\ref[src];togglemv=1'><span style='color:green;'>Toggle Mob Vore</span></a>"
+			dat += "<br><a href='?src=\ref[src];togglemv=1'><span style='color:green;'>Toggle Mob Vore</span></a>"
+
+	switch(user.permit_healbelly)
+		if(1)
+			dat += "<a href='?src=\ref[src];togglehealbelly=1'>Toggle Healbelly Permission</a>"
+		if(0)
+			dat += "<a href='?src=\ref[src];togglehealbelly=1'><span style='color:red;'>Toggle Healbelly Permission</span></a>"
 
 	dat += "<br><a href='?src=\ref[src];toggle_dropnom_prey=1'>Toggle Drop-nom Prey</a>" //These two get their own, custom row, too.
 	dat += "<a href='?src=\ref[src];toggle_dropnom_pred=1'>Toggle Drop-nom Pred</a>"
@@ -870,6 +876,19 @@
 
 		if(user.client.prefs_vr)
 			user.client.prefs_vr.allowmobvore = user.allowmobvore
+
+	if(href_list["togglehealbelly"])
+		var/choice = alert(user, "This button is for those who don't like healbelly used on them as a mechanic. It does not affect anything, but is displayed under mechanical prefs for ease of quick checks. You are currently: [user.allowmobvore ? "Okay" : "Not Okay"] with players using healbelly on you.", "", "Allow Healing Belly", "Cancel", "Disallow Healing Belly")
+		switch(choice)
+			if("Cancel")
+				return 0
+			if("Allow Healing Belly")
+				user.permit_healbelly = TRUE
+			if("Disallow Healing Belly")
+				user.permit_healbelly = FALSE
+
+		if(user.client.prefs_vr)
+			user.client.prefs_vr.permit_healbelly = user.permit_healbelly
 
 	if(href_list["togglenoisy"])
 		var/choice = alert(user, "Toggle audible hunger noises. Currently: [user.noisy ? "Enabled" : "Disabled"]", "", "Enable audible hunger", "Cancel", "Disable audible hunger")
