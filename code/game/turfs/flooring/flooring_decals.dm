@@ -469,8 +469,8 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/corner/grey/bordercorner
 	icon_state = "bordercolorcorner"
 
-/obj/effect/floor_decal/corner/grey/bordercorner
-	icon_state = "bordercolorcorner"
+/obj/effect/floor_decal/corner/grey/bordercorner2
+	icon_state = "bordercolorcorner2"
 
 /obj/effect/floor_decal/corner/grey/borderfull
 	icon_state = "bordercolorfull"
