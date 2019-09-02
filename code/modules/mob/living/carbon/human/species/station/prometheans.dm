@@ -47,7 +47,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 	economic_modifier = 3
 
-	//gluttonous =	1 // VOREStation Edit. Redundant feature.
+	gluttonous =	1
 	virus_immune =	1
 	blood_volume =	560
 	brute_mod =		0.75
