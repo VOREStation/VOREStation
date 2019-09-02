@@ -12,7 +12,7 @@
 	movement_cooldown = 1
 	status_flags = CANPUSH
 	pass_flags = PASSTABLE
-	mob_bump_flag = 0
+	mob_bump_flag = SLIME
 
 	min_oxy = 0
 	max_oxy = 0
