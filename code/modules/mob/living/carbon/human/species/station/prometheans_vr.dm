@@ -1,6 +1,9 @@
 /datum/species/shapeshifter/promethean
 	min_age = 18 //Required for server rules
 	max_age = 80
+	push_flags = ~HEAVY
+	swap_flags = ~HEAVY
+	gluttonous = 0
 	valid_transform_species = list(
 		"Human", "Unathi", "Tajara", "Skrell",
 		"Diona", "Teshari", "Monkey","Sergal",
