@@ -565,10 +565,9 @@
 		overlays += image(icon, "[icon_state]_knife")
 	if(contaminated)
 		overlays += contamination_overlay
-	//VOREStation Edit Start
-	if(gurgled)
+	if(gurgled) //VOREStation Edit Start
 		decontaminate()
-		gurgle_contaminate()
+		gurgle_contaminate() //VOREStation Edit End
 	if(ismob(usr))
 		var/mob/M = usr
 		M.update_inv_shoes()
