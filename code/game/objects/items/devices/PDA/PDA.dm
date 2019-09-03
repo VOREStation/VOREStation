@@ -1096,7 +1096,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			P.conversations.Add("\ref[src]")
 
 
-		if (prob(15)) //Give the AI a chance of intercepting the message
+		if (prob(5) && security_level >= SEC_LEVEL_BLUE) //Give the AI a chance of intercepting the message		//VOREStation Edit: no spam interception on lower codes + lower interception chance
 			var/who = src.owner
 			if(prob(50))
 				who = P.owner
