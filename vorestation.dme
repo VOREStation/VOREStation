@@ -3245,5 +3245,6 @@
 #include "maps\submaps\surface_submaps\wilderness\wilderness.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
 #include "maps\tether\tether.dm"
+#include "maps\tether\submaps\underdark_pois\ud_submap_pois\nomboss.dmm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE

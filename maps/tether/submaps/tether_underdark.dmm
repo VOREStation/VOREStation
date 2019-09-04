@@ -24,12 +24,12 @@
 "ax" = (/obj/structure/railing{icon_state = "railing0"; dir = 1},/turf/simulated/floor/outdoors/dirt/virgo3b,/area/mine/explored/underdark)
 "ay" = (/turf/simulated/wall/iron,/area/mine/explored/underdark)
 "az" = (/obj/structure/ore_box,/turf/simulated/floor/tiled/steel_dirty/virgo3b,/area/mine/explored/underdark)
-"aA" = (/obj/tether_away_spawner/underdark_submap/deadly_spider_randomizer,/obj/effect/decal/cleanable/cobweb,/turf/simulated/mineral/floor/virgo3b{ignore_mapgen = 1},/area/mine/explored/underdark)
+"aA" = (/obj/effect/decal/cleanable/cobweb,/turf/simulated/mineral/floor/virgo3b{ignore_mapgen = 1},/area/mine/explored/underdark)
 "aB" = (/obj/machinery/light/small{icon_state = "bulb1"; dir = 8},/turf/simulated/floor/outdoors/dirt/virgo3b,/area/mine/explored/underdark)
 "aC" = (/obj/machinery/door/airlock/maintenance/cargo,/turf/simulated/floor/virgo3b,/area/mine/explored/underdark)
 "aD" = (/obj/machinery/light/small{icon_state = "bulb1"; dir = 4},/turf/simulated/floor/tiled/steel_dirty/virgo3b,/area/mine/explored/underdark)
 "aE" = (/obj/structure/cult/talisman,/turf/simulated/mineral/floor/virgo3b{ignore_mapgen = 1},/area/mine/explored/underdark)
-"aF" = (/obj/tether_away_spawner/underdark_submap/regular_spider_randomizer,/turf/simulated/mineral/floor/virgo3b{ignore_mapgen = 1},/area/mine/explored/underdark)
+"aF" = (/obj/effect/decal/remains/xeno,/obj/effect/decal/cleanable/blood,/obj/effect/decal/cleanable/blood/xeno,/turf/simulated/mineral/floor/virgo3b{ignore_mapgen = 1},/area/mine/explored/underdark)
 "aG" = (/obj/machinery/door/airlock/multi_tile/metal/mait{dir = 2},/turf/simulated/floor/tiled/steel_dirty/virgo3b,/area/mine/explored/underdark)
 "aH" = (/obj/machinery/light/small{icon_state = "bulb1"; dir = 4},/turf/simulated/mineral/floor/virgo3b,/area/mine/explored/underdark)
 "aI" = (/obj/machinery/light/small,/turf/simulated/floor/outdoors/dirt/virgo3b,/area/mine/explored/underdark)
@@ -54,7 +54,6 @@
 "bb" = (/obj/effect/decal/cleanable/blood/xeno,/turf/simulated/mineral/floor/virgo3b{ignore_mapgen = 1},/area/mine/explored/underdark)
 "bc" = (/obj/effect/decal/remains/ribcage,/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/virgo3b,/area/mine/explored/underdark)
 "bd" = (/obj/effect/decal/cleanable/blood,/obj/effect/decal/cleanable/blood/xeno,/turf/simulated/mineral/floor/virgo3b{ignore_mapgen = 1},/area/mine/explored/underdark)
-"be" = (/obj/tether_away_spawner/underdark_submap/regular_spider_randomizer,/obj/effect/decal/remains/xeno,/obj/effect/decal/cleanable/blood,/obj/effect/decal/cleanable/blood/xeno,/turf/simulated/mineral/floor/virgo3b{ignore_mapgen = 1},/area/mine/explored/underdark)
 "bf" = (/obj/effect/decal/remains/tajaran,/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/virgo3b{ignore_mapgen = 1},/area/mine/explored/underdark)
 "bg" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/mineral/floor/virgo3b{ignore_mapgen = 1},/area/mine/explored/underdark)
 "bh" = (/obj/effect/decal/mecha_wreckage/ripley,/turf/simulated/mineral/floor/virgo3b{ignore_mapgen = 1},/area/mine/explored/underdark)
@@ -116,7 +115,7 @@ aeagafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaf
 aeagafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafacacacacafafafafafafafafafafafafafafacacbbaWbbaWbgbgbgaPaMaSacaVafafafafafafafafafafafafafafafagae
 aeagafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafacacacacafafafafafafafafafafafafafafacaZacaKahamacaMacaXaXagacaVafafafafafafafafafafafafafafafagae
 aeagafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafacacacafafafafafafafafafafafafafafafafafafafafafambdacacacacacacaVafafafafafafafafafafafafafafafagae
-aeagafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafacacacafafafafafafafafafafafafafafafafafafafafafambebdaUacbfbhaFaVafafafafafafafafafafafafafafafagae
+aeagafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafacacacafafafafafafafafafafafafafafafafafafafafafamaFbdaUacbfbhacaVafafafafafafafafafafafafafafafagae
 aeagafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafacacafafafafafafafafafafafafafafafafafafafafafafamamaVaVaVaVaVaVaVafafafafafafafafafafafafafafafagae
 aeagafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafacacacafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafagae
 aeagafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafacacafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafagae
