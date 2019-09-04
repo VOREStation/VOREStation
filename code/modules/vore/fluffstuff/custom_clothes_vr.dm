@@ -1862,3 +1862,19 @@ Departamental Swimsuits, for general use
 		slot_r_hand_str = 'icons/vore/custom_clothes_vr.dmi',
 		)
 	item_state_slots = list(slot_r_hand_str = "aika_coat_mob_r", slot_l_hand_str = "aika_coat_mob_l")
+
+//Burrito Justice: Jayda Wilson
+/obj/item/clothing/under/solgov/utility/sifguard/medical/fluff
+	desc = "The utility uniform of the Society of Universal Cartographers, made from biohazard resistant material. This is an older issuing of the uniform, with integrated department markings."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+
+	icon_state = "blackutility_med"
+	worn_state = "blackutility_med"
+	item_state = "blackutility_med"
+
+	rolled_down = 0
+	rolled_sleeves = 0
+	starting_accessories = null
+	item_icons = list()
