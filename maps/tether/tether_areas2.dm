@@ -137,9 +137,11 @@
 /area/mine/unexplored/underdark
 	name = "\improper Mining Underdark"
 	base_turf = /turf/simulated/mineral/floor/virgo3b
+	requires_power = 1
 /area/mine/explored/underdark
 	name = "\improper Mining Underdark"
 	base_turf = /turf/simulated/mineral/floor/virgo3b
+	requires_power = 1
 
 // Mining outpost areas
 /area/outpost/mining_main/passage

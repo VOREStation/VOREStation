@@ -1,0 +1,21 @@
+"a" = (/turf/template_noop,/area/mine/explored/underdark)
+"b" = (/turf/simulated/mineral/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
+"c" = (/obj/effect/decal/remains/deer,/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
+"d" = (/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
+"e" = (/obj/effect/decal/remains/tajaran,/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
+"f" = (/obj/effect/decal/remains/ribcage,/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
+
+(1,1,1) = {"
+aabbbbbbbbaa
+aabcdddedbaa
+bbbdfddddbbb
+bddddddddddb
+dddddddddddd
+dddddddddddd
+dddddddddddd
+dddddddddddd
+dddddddddddd
+dddddddddddd
+dddddddddddd
+dddddddddddd
+"}

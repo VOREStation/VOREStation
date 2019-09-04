@@ -46,6 +46,52 @@
 	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_UNDERDARK, world.maxx - 4, world.maxy - 4) // Create the mining Z-level.
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_UNDERDARK, 64, 64)         // Create the mining ore distribution map.
 
+// Rykka adds Underdark S1 + S2 - START Edit
+
+#include "underdark_pois/ud_submap_pois/_submap_templates.dm"
+#include "underdark_pois/ud_submap_pois/underdark_submap_things.dm"
+/datum/map_template/tether_lateload/tether_underdark_s1
+	name = "Underdark - Sublevel 1"
+	desc = "Underdark, but harder."
+	mappath = 'tether_underdark_S1.dmm'
+
+	associated_map_datum = /datum/map_z_level/tether_lateload/underdark
+
+/datum/map_z_level/tether_lateload/underdark_s1
+	name = "Underdark Sublevel S1"
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	base_turf = /turf/simulated/mineral/floor/virgo3b
+	z = Z_LEVEL_UNDERDARK_S1
+
+/datum/map_template/tether_lateload/tether_underdark_s1/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(Z_LEVEL_UNDERDARK_S1), 100, /area/mine/unexplored/underdark, /datum/map_template/underdark)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_UNDERDARK_S1, world.maxx - 4, world.maxy - 4) // Create the mining Z-level.
+	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_UNDERDARK_S1, 64, 64)         // Create the mining ore distribution map.
+
+
+#include "underdark_pois/ud_submap_pois/_submap_templates.dm"
+#include "underdark_pois/ud_submap_pois/underdark_submap_things.dm"
+/datum/map_template/tether_lateload/tether_underdark_s2
+	name = "Underdark - Sublevel 2"
+	desc = "Underdark, but harder."
+	mappath = 'tether_underdark_S2.dmm'
+
+	associated_map_datum = /datum/map_z_level/tether_lateload/underdark
+
+/datum/map_z_level/tether_lateload/underdark_s2
+	name = "Underdark Sublevel S2"
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	base_turf = /turf/simulated/mineral/floor/virgo3b
+	z = Z_LEVEL_UNDERDARK_S2
+
+/datum/map_template/tether_lateload/tether_underdark_s1/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(Z_LEVEL_UNDERDARK_S2), 100, /area/mine/unexplored/underdark, /datum/map_template/underdark)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_UNDERDARK_S2, world.maxx - 4, world.maxy - 4) // Create the mining Z-level.
+	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_UNDERDARK_S2, 64, 64)         // Create the mining ore distribution map.
+
+// Rykka adds Underdark S1 + S2 - STOP Edit
 
 /datum/map_template/tether_lateload/tether_plains
 	name = "Tether - Plains"

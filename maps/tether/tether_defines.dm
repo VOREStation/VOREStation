@@ -35,13 +35,15 @@
 #define Z_LEVEL_MISC						11
 #define Z_LEVEL_SHIPS						12
 #define Z_LEVEL_UNDERDARK					13
-#define Z_LEVEL_PLAINS						14
-#define Z_LEVEL_ALIENSHIP					15
-#define Z_LEVEL_BEACH						16
-#define Z_LEVEL_BEACH_CAVE					17
-#define Z_LEVEL_AEROSTAT					18
-#define Z_LEVEL_AEROSTAT_SURFACE			19
-#define Z_LEVEL_DEBRISFIELD					20
+#define Z_LEVEL_UNDERDARK_S1				14
+#define Z_LEVEL_UNDERDARK_S2				15
+#define Z_LEVEL_PLAINS						16
+#define Z_LEVEL_ALIENSHIP					17
+#define Z_LEVEL_BEACH						18
+#define Z_LEVEL_BEACH_CAVE					19
+#define Z_LEVEL_AEROSTAT					20
+#define Z_LEVEL_AEROSTAT_SURFACE			21
+#define Z_LEVEL_DEBRISFIELD					22
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
