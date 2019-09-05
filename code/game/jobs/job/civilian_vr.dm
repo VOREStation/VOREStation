@@ -15,9 +15,10 @@
 	spawn_positions = 3
 	alt_titles = list("Custodian", "Sanitation Technician", "Maid")
 
+//TFF 5/9/19 - restore librarian job slot to 2
 /datum/job/librarian
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 2
+	spawn_positions = 2
 	alt_titles = list("Journalist", "Historian", "Writer")
 
 /datum/job/lawyer
