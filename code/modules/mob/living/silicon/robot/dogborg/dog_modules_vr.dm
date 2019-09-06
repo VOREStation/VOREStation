@@ -158,6 +158,13 @@
 					reagent_volumes[T] = min(reagent_volumes[T] + 1, volume)
 	return 1
 
+/obj/item/weapon/reagent_containers/borghypo/hound/lost
+	name = "Hound hypospray"
+	desc = "An advanced chemical synthesizer and injection system utilizing carrier's reserves."
+	charge_cost = 5
+	reagent_ids = list("tricordrazine", "inaprovaline", "bicaridine", "dexalin", "anti_toxin", "tramadol", "spaceacillin", "hyperzine")
+
+
 //Tongue stuff
 /obj/item/device/dogborg/tongue
 	name = "synthetic tongue"

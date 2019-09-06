@@ -1,39 +1,38 @@
-/mob/living/silicon/robot/lost
+/mob/living/silicon/robot/stray
 	lawupdate = 0
 	scrambledcodes = 1
-	icon_state = "drone-lost"
-	modtype = "Lost"
+	icon_state = "stray"
+	modtype = "Stray"
 	lawchannel = "State"
 	braintype = "Drone"
 	idcard_type = /obj/item/weapon/card/id
 	icon_selected = FALSE
 
-/mob/living/silicon/robot/lost/init()
+/mob/living/silicon/robot/stray/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
 
 	mmi = new /obj/item/device/mmi/digital/robot(src) // Explicitly a drone.
-	module = new /obj/item/weapon/robot_module/robot/lost(src)
+	module = new /obj/item/weapon/robot_module/robot/stray(src)
 	overlays.Cut()
 	init_id()
 
-	updatename("Lost")
+	updatename("Stray")
 
 	if(!cell)
 		cell = new /obj/item/weapon/cell/high(src) // 15k cell, as recharging stations are a lot more rare on the Surface.
 
 	playsound(loc, 'sound/mecha/nominalsyndi.ogg', 75, 0)
 
-/mob/living/silicon/robot/lost/speech_bubble_appearance()
+/mob/living/silicon/robot/stray/speech_bubble_appearance()
 	return "synthetic_evil"
 
-/mob/living/silicon/robot/lost/randomlaws
+/mob/living/silicon/robot/stray/randomlaws
 
-/mob/living/silicon/robot/lost/randomlaws/init()
+/mob/living/silicon/robot/stray/randomlaws/init()
 	..()
-	laws = give_random_lawset()
+	laws = give_random_lawset_vore()
 
-// Returns a random ai_laws datum.
-/mob/living/silicon/proc/give_random_lawset()
+/mob/living/silicon/proc/give_random_lawset_vore()		// Should be filled out with more vorish possibilities later
 	// Decide what kind of laws we want to draw from.
 	var/law_class = pick(
 		prob(25);"good",
