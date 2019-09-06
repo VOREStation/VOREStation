@@ -66,3 +66,9 @@
 	mappath = 'ship_sci_overrun.dmm'
 	cost = 35
 	allow_duplicates = FALSE
+
+/datum/map_template/debrisfield/oldshuttle
+	name = "Old Expedition Shuttle"
+	mappath = 'oldshuttle.dmm'
+	cost = 30
+	allow_duplicates = FALSE

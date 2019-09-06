@@ -1,5 +1,7 @@
 /obj/tether_away_spawner/debrisfield
 	atmos_comp = FALSE
+	prob_spawn = 100
+	prob_fall = 15
 
 /obj/tether_away_spawner/debrisfield/carp
 	name = "debris field carp spawner"
