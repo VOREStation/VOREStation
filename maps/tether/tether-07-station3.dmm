@@ -29661,7 +29661,7 @@
 "Yu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door_timer/tactical_pet_storags{
+/obj/machinery/door_timer/tactical_pet_storage{
 	pixel_x = 32;
 	pixel_y = 34
 	},
