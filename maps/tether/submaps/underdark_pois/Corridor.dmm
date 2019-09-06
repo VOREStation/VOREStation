@@ -1,0 +1,26 @@
+"a" = (/turf/template_noop,/area/mine/explored/underdark)
+"b" = (/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
+"c" = (/obj/tether_away_spawner/underdark_normal,/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,/area/mine/explored/underdark)
+
+(1,1,1) = {"
+aaabbbbbbbbbbbbbaaaa
+aaabbbbbbbbbbbbbaaaa
+aaabbbbbbbbbbbbbaaaa
+bbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbb
+bbbbbbbbbbbbbbbbbbbb
+bbbbcbbbaaaabbbbbbbb
+bbbbbbbbaaaabbbbbbbb
+bbbbbbbbaaaabbbbbbbb
+aabbbbbbaaaabbbbbbbb
+aabbbbbbbbbbbbbbbbbb
+aabbbbbbbbbbbbbbbbbb
+aabbbbbbbbbbbbbbbbbb
+aaaabbbbbbbbbbbbbbbb
+aaaabbbbbbbbbbbbbbbb
+aaaabbbbbbbbbbbbbbbb
+aaaabbbbbbbbbbbbbbbb
+aaaabbbbbbbbbbbbbaaa
+aaaabbbbbbbbbbbbbaaa
+aaaabbbbbbbbbbbbbaaa
+"}
