@@ -29,6 +29,10 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 20
 	see_in_dark = 8
+
+	response_help = "touches"
+	response_disarm = "pushes"
+	response_harm = "hits"
 	attacktext = "glomps"
 	attack_sound = 'sound/effects/blobattack.ogg'
 
