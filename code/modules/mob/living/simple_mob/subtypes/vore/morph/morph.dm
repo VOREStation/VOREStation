@@ -26,8 +26,9 @@
 	minbodytemp = 0
 	maxHealth = 250
 	health = 250
-	melee_damage_lower = 20
-	melee_damage_upper = 20
+	melee_damage_lower = 40
+	melee_damage_upper = 30
+	taser_kill = FALSE
 	see_in_dark = 8
 
 	response_help = "touches"
