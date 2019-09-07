@@ -156,6 +156,11 @@
 		return
 	return ..()
 
+/mob/living/simple_mob/vore/hostile/morph/update_icon()
+	if(morphed)
+		return
+	return ..()
+
 /mob/living/simple_mob/vore/hostile/morph/update_icons()
 	if(morphed)
 		return
