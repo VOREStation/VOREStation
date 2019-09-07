@@ -24,8 +24,8 @@
 	max_n2 = 0
 
 	minbodytemp = 0
-	maxHealth = 150
-	health = 150
+	maxHealth = 250
+	health = 250
 	melee_damage_lower = 20
 	melee_damage_upper = 20
 	see_in_dark = 8
