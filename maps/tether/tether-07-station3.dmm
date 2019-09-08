@@ -2940,6 +2940,29 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/chemistry)
+"eO" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/glass_security{
+	id_tag = "detdoor";
+	name = "Detective";
+	req_access = list(4)
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/lino,
+/area/security/detectives_office)
 "eS" = (
 /obj/item/frame,
 /obj/effect/floor_decal/rust,
@@ -10835,23 +10858,6 @@
 	dir = 4
 	},
 /turf/simulated/floor/lino,
-/area/security/detectives_office)
-"rq" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/glass_security{
-	id_tag = "detdoor";
-	name = "Detective";
-	req_access = list(4)
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/simulated/floor/wood,
 /area/security/detectives_office)
 "rr" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -35719,7 +35725,7 @@ pg
 pH
 fH
 qe
-rq
+eO
 fH
 qe
 qe
