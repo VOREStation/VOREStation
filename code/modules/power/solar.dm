@@ -253,6 +253,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 					new /obj/machinery/power/tracker(get_turf(src), src)
 				else
 					new /obj/machinery/power/solar(get_turf(src), src)
+				qdel(src)
 			else
 				to_chat(user, "<span class='warning'>You need two sheets of glass to put them into a solar panel.</span>")
 				return
