@@ -22,8 +22,8 @@
 	catalogue_data = list(/datum/category_item/catalogue/technology/drone/corrupt_maint_drone)
 
 	icon = 'icons/mob/robots.dmi'
-	icon_state = "repairbot"
-	icon_living = "repairbot"
+	icon_state = "corrupt-repairbot"
+	icon_living = "corrupt-repairbot"
 	hovering = FALSE // Can trigger landmines.
 
 	faction = "underdark"
