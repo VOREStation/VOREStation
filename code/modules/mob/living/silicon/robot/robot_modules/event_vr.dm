@@ -18,7 +18,6 @@
 
 	// Med
 	src.modules += new /obj/item/device/healthanalyzer(src)
-	src.modules += new /obj/item/device/sleevemate(src)
 	src.modules += new /obj/item/weapon/shockpaddles/robot/hound(src)
 
 	// Engi

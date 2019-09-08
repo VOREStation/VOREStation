@@ -136,7 +136,7 @@
 /obj/item/weapon/robot_module/robot/knine
 	name = "k9 robot module"
 	sprites = list(
-					"K9 hound" = "stray",
+					"K9 hound" = "k9",
 					"K9 Alternative (Static)" = "k92",
 					"Secborg model V-2" = "secborg"
 					)
