@@ -592,6 +592,7 @@ var/list/global/slot_flags_enumeration = list(
 		blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 	return 1 //we applied blood to the item
 
+
 /obj/item/proc/generate_blood_overlay()
 	if(blood_overlay)
 		return
