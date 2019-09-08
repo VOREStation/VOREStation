@@ -24,9 +24,10 @@
 	max_n2 = 0
 
 	minbodytemp = 0
-	maxHealth = 150
-	health = 150
-	melee_damage_lower = 20
+	maxHealth = 250
+	health = 250
+	taser_kill = FALSE
+	melee_damage_lower = 15
 	melee_damage_upper = 20
 	see_in_dark = 8
 	attacktext = "glomps"
