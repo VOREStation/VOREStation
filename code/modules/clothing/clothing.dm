@@ -565,12 +565,9 @@
 		overlays += image(icon, "[icon_state]_knife")
 	if(contaminated)
 		overlays += contamination_overlay
-<<<<<<< HEAD
 	if(gurgled) //VOREStation Edit Start
 		decontaminate()
 		gurgle_contaminate() //VOREStation Edit End
-=======
->>>>>>> 02c0e63... Merge pull request #6436 from Cameron653/Boot_Fix
 	if(ismob(usr))
 		var/mob/M = usr
 		M.update_inv_shoes()
