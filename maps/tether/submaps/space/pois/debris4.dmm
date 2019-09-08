@@ -1,0 +1,14 @@
+"a" = (/turf/space,/area/tether_away/debrisfield/explored)
+"b" = (/obj/structure/lattice,/turf/space,/area/tether_away/debrisfield/explored)
+"c" = (/obj/structure/girder,/turf/simulated/floor/airless,/area/tether_away/debrisfield/explored)
+"d" = (/turf/simulated/shuttle/wall,/area/tether_away/debrisfield/explored)
+"e" = (/turf/simulated/floor/airless,/area/tether_away/debrisfield/explored)
+"f" = (/turf/simulated/shuttle/floor/white/airless,/area/tether_away/debrisfield/explored)
+
+(1,1,1) = {"
+aaaabb
+bcddcb
+aefeeb
+beebba
+babaaa
+"}

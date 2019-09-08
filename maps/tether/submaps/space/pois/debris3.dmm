@@ -1,0 +1,13 @@
+"a" = (/turf/space,/area/tether_away/debrisfield/explored)
+"b" = (/obj/structure/lattice,/turf/space,/area/tether_away/debrisfield/explored)
+"c" = (/turf/simulated/floor/airless,/area/tether_away/debrisfield/explored)
+"d" = (/obj/structure/girder,/turf/simulated/floor/airless,/area/tether_away/debrisfield/explored)
+
+(1,1,1) = {"
+aabc
+abcc
+abbb
+bcbb
+dcba
+dcca
+"}

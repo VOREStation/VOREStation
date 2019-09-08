@@ -1,0 +1,11 @@
+"a" = (/turf/space,/area/space)
+"b" = (/obj/structure/lattice,/turf/space,/area/space)
+"c" = (/turf/simulated/floor/airless,/area/space)
+"d" = (/turf/simulated/shuttle/wall/dark,/area/space)
+
+(1,1,1) = {"
+abaa
+bcda
+bcda
+bdbb
+"}
