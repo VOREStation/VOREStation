@@ -60,6 +60,7 @@ var/list/gear_datums = list()
 	to_file(S["gear_list"], pref.gear_list)
 	to_file(S["gear_slot"], pref.gear_slot)
 
+/* Vorestation Edit. Defined in a _vr file
 /datum/category_item/player_setup_item/loadout/proc/valid_gear_choices(var/max_cost)
 	. = list()
 	var/mob/preference_mob = preference_mob()
@@ -71,6 +72,7 @@ var/list/gear_datums = list()
 		if(max_cost && G.cost > max_cost)
 			continue
 		. += gear_name
+*/
 
 /datum/category_item/player_setup_item/loadout/sanitize_character()
 	var/mob/preference_mob = preference_mob()
