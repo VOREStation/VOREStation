@@ -82,8 +82,8 @@
 /datum/map_template/underdark/corridor // Bob was a derp
 	name = "Underdark Corridor"
 	mappath = 'Corridor.dmm'
-	cost = 6
-	allow_duplicates = TRUE
+	cost = 5
+	allow_duplicates = FALSE
 
 /*
 /datum/map_template/underdark/boss_mob
