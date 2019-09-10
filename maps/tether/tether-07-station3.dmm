@@ -2941,9 +2941,31 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/powered/reagent_distillery,
 /turf/simulated/floor/tiled/white,
 /area/medical/chemistry)
+"eO" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/glass_security{
+	id_tag = "detdoor";
+	name = "Detective";
+	req_access = list(4)
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/lino,
+/area/security/detectives_office)
 "eP" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Cargo Substation";
@@ -10863,23 +10885,6 @@
 	dir = 4
 	},
 /turf/simulated/floor/lino,
-/area/security/detectives_office)
-"rq" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/glass_security{
-	id_tag = "detdoor";
-	name = "Detective";
-	req_access = list(4)
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/simulated/floor/wood,
 /area/security/detectives_office)
 "rr" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -28936,10 +28941,8 @@
 	dir = 1
 	},
 /obj/structure/closet/crate/freezer/rations,
-/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
-/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
-/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
-/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu10,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
 "Vi" = (
@@ -36006,7 +36009,7 @@ pg
 pH
 fH
 qe
-rq
+eO
 fH
 qe
 qe

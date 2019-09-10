@@ -155,6 +155,7 @@
 //And some special areas, including our shuttle landing spot (must be unique)
 /area/shuttle/excursion/away_beach
 	name = "\improper Excursion Shuttle - Beach"
+	base_turf = /turf/simulated/floor/beach/sand/desert
 	dynamic_lighting = 0
 
 /area/tether_away/beach

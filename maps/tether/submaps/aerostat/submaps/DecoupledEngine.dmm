@@ -132,6 +132,10 @@
 	},
 /turf/simulated/floor,
 /area/submap/virgo2/DecoupledEngine)
+"aC" = (
+/obj/structure/ghost_pod/manual/lost_drone/dogborg,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/DecoupledEngine)
 "aD" = (
 /obj/structure/lattice,
 /obj/structure/grille,
@@ -981,7 +985,7 @@ ab
 ab
 ag
 ad
-ad
+aC
 ad
 ad
 aj

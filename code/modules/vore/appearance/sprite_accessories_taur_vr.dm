@@ -162,6 +162,9 @@
 	icon_state = "roiz_tail_s"
 	do_colouration = 0
 	ckeys_allowed = list("spoopylizz")
+	hide_body_parts = null
+	clip_mask_icon = null
+	clip_mask_state = null
 
 /datum/sprite_accessory/tail/taur/wolf
 	name = "Wolf (Taur)"

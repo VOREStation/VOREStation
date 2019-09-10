@@ -167,6 +167,7 @@ VIRGO2_TURF_CREATE(/turf/simulated/mineral/floor/ignore_mapgen)
 
 /area/shuttle/excursion/away_aerostat
 	name = "\improper Excursion Shuttle - Aerostat"
+	base_turf = /turf/unsimulated/floor/sky/virgo2_sky
 
 // The aerostat shuttle
 /area/shuttle/aerostat/docked

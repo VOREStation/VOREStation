@@ -1057,6 +1057,7 @@
 /obj/machinery/light_switch{
 	pixel_y = 25
 	},
+/obj/machinery/washing_machine,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/storage)
 "abZ" = (
@@ -1075,9 +1076,6 @@
 	},
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 1
-	},
-/obj/machinery/alarm{
-	pixel_y = 22
 	},
 /obj/machinery/washing_machine,
 /turf/simulated/floor/tiled,
@@ -1101,22 +1099,28 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 1
 	},
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk,
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/obj/structure/closet/secure_closet/miner,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/storage)
 "acd" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/machinery/light{
+	dir = 1
+	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 1
 	},
-/obj/machinery/camera/network/cargo,
-/obj/structure/sign/nosmoking_2{
-	pixel_y = 30
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24;
+	req_access = list()
 	},
+/obj/structure/closet/secure_closet/miner,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/storage)
 "ace" = (
@@ -1151,26 +1155,43 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/eva)
 "acg" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 1
+	},
+/obj/machinery/camera/network/cargo,
+/obj/structure/sign/nosmoking_2{
+	pixel_y = 30
+	},
 /obj/structure/closet/secure_closet/miner,
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 1
-	},
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/mining_main/eva)
+/area/tether/surfacebase/mining_main/storage)
 "ach" = (
-/obj/structure/table/rack,
-/obj/item/weapon/mining_scanner,
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
 	},
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 5
 	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/brown/bordercorner2{
+	dir = 5
+	},
+/obj/machinery/status_display{
+	pixel_x = 32;
+	pixel_y = 0
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/mining_main/eva)
+/area/tether/surfacebase/mining_main/storage)
 "aci" = (
 /turf/simulated/mineral,
 /area/storage/surface_eva/external)
@@ -1373,21 +1394,33 @@
 /turf/simulated/floor/tiled/monofloor,
 /area/crew_quarters/visitor_laundry)
 "acA" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
 	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 1
+	},
+/obj/structure/table/rack,
+/obj/item/clothing/suit/space/void/mining,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/head/helmet/space/void/mining,
+/obj/item/weapon/mining_scanner,
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/mining_main/storage)
+/area/tether/surfacebase/mining_main/eva)
 "acB" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/table/rack,
+/obj/effect/floor_decal/borderfloor{
+	dir = 5
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 10
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 5
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/item/weapon/pickaxe,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/shovel,
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/mining_main/storage)
+/area/tether/surfacebase/mining_main/eva)
 "acC" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/disposalpipe/segment{
@@ -1699,43 +1732,19 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
 "adb" = (
-/obj/machinery/light{
-	dir = 1
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
 	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 1
-	},
-/obj/item/device/radio/intercom{
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/structure/disposalpipe/segment{
 	dir = 1;
-	pixel_y = 24;
-	req_access = list()
+	icon_state = "pipe-c"
 	},
-/obj/machinery/washing_machine,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/storage)
 "adc" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/effect/floor_decal/borderfloor{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 5
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/brown/bordercorner2{
-	dir = 5
-	},
-/obj/machinery/status_display{
-	pixel_x = 32;
-	pixel_y = 0
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 30
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/storage)
@@ -1937,14 +1946,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/storage)
 "adt" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
-	},
 /obj/effect/landmark/start{
 	name = "Shaft Miner"
 	},
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/mining_main/storage)
+/area/tether/surfacebase/mining_main/eva)
 "adu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -2085,10 +2091,11 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
 "adG" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/brown/border,
+/obj/effect/floor_decal/borderfloor/corner2,
+/obj/effect/floor_decal/corner/brown/bordercorner2,
+/obj/structure/reagent_dispensers/watertank,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/storage)
 "adH" = (
@@ -2266,23 +2273,6 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/storage)
 "adU" = (
-/obj/structure/table/rack,
-/obj/item/weapon/pickaxe,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/shovel,
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/brown/border,
-/obj/effect/floor_decal/borderfloor/corner2,
-/obj/effect/floor_decal/corner/brown/bordercorner2,
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/mining_main/storage)
-"adV" = (
-/obj/structure/table/rack,
-/obj/item/weapon/pickaxe,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/shovel,
 /obj/machinery/light,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
@@ -2292,8 +2282,23 @@
 /obj/effect/floor_decal/corner/brown/bordercorner2{
 	dir = 9
 	},
+/obj/structure/reagent_dispensers/fueltank,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/storage)
+"adV" = (
+/obj/structure/table/rack,
+/obj/effect/floor_decal/borderfloor{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 6
+	},
+/obj/item/weapon/pickaxe,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/shovel,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/mining_main/eva)
 "adW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -2363,20 +2368,6 @@
 /obj/item/weapon/mining_scanner,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/mining_main/eva)
-"aeb" = (
-/obj/structure/table/rack,
-/obj/item/clothing/suit/space/void/mining,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/head/helmet/space/void/mining,
-/obj/item/weapon/mining_scanner,
-/obj/effect/floor_decal/borderfloor{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 6
-	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/eva)
 "aec" = (
@@ -3603,6 +3594,9 @@
 /obj/effect/floor_decal/borderfloor/corner2{
 	dir = 10
 	},
+/obj/effect/floor_decal/corner/grey/bordercorner2{
+	dir = 10
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "aga" = (
@@ -4676,8 +4670,6 @@
 /area/tether/surfacebase/north_stairs_one)
 "aib" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/fancy/vials,
-/obj/item/device/reagent_scanner,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
@@ -4900,8 +4892,6 @@
 /area/tether/surfacebase/atrium_one)
 "aip" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/box/beakers,
-/obj/item/clothing/glasses/science,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
@@ -4911,6 +4901,9 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 8
 	},
+/obj/item/weapon/storage/fancy/vials,
+/obj/item/weapon/storage/box/beakers,
+/obj/item/clothing/glasses/science,
 /turf/simulated/floor/tiled/white,
 /area/rnd/chemistry_lab)
 "aiq" = (
@@ -5091,14 +5084,15 @@
 /area/rnd/chemistry_lab)
 "aiJ" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/box/syringes,
-/obj/item/weapon/reagent_containers/spray/cleaner,
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 10
 	},
+/obj/item/weapon/storage/box/syringes,
+/obj/item/device/reagent_scanner,
+/obj/item/weapon/reagent_containers/spray/cleaner,
 /turf/simulated/floor/tiled/white,
 /area/rnd/chemistry_lab)
 "aiK" = (
@@ -7498,6 +7492,26 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining_eva)
+"anr" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/grey/border{
+	icon_state = "bordercolor";
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 8
+	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/grey/bordercorner2{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/visitor_laundry)
 "anw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -25135,23 +25149,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_7)
-"chl" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/grey/border{
-	icon_state = "bordercolor";
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 8
-	},
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/crew_quarters/visitor_laundry)
 "chm" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -25271,6 +25268,7 @@
 /area/crew_quarters/visitor_lodging)
 "chE" = (
 /obj/structure/closet/secure_closet/personal,
+/obj/item/weapon/towel/random,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_8)
 "chF" = (
@@ -25282,6 +25280,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/structure/table/standard,
+/obj/random/soap,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/Dorm_8)
 "chH" = (
@@ -25496,6 +25496,7 @@
 /area/crew_quarters/sleep/Dorm_6)
 "cis" = (
 /obj/structure/closet/secure_closet/personal,
+/obj/item/weapon/towel/random,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_6)
 "cit" = (
@@ -25507,6 +25508,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/structure/table/standard,
+/obj/random/soap,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/Dorm_6)
 "civ" = (
@@ -25719,6 +25722,7 @@
 /area/crew_quarters/visitor_laundry)
 "cjf" = (
 /obj/structure/closet/secure_closet/personal,
+/obj/item/weapon/towel/random,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_4)
 "cjg" = (
@@ -25730,6 +25734,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/structure/table/standard,
+/obj/random/soap,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/Dorm_4)
 "cji" = (
@@ -25967,6 +25973,7 @@
 /area/crew_quarters/sleep/Dorm_2)
 "cjQ" = (
 /obj/structure/closet/secure_closet/personal,
+/obj/item/weapon/towel/random,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_2)
 "cjR" = (
@@ -25978,6 +25985,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/structure/table/standard,
+/obj/random/soap,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/Dorm_2)
 "cjT" = (
@@ -43901,7 +43910,7 @@ aar
 kja
 kja
 aaC
-abZ
+aca
 acy
 afb
 ads
@@ -44043,11 +44052,11 @@ ici
 kja
 kja
 aar
-aca
-acx
-aeZ
+acc
 adr
-adU
+aeZ
+acx
+adG
 aer
 aeE
 aeF
@@ -44185,11 +44194,11 @@ aar
 iAb
 iAb
 aar
-adb
-acx
+acd
+adr
 afl
-adt
-adV
+adc
+adU
 aer
 aeF
 aeF
@@ -44327,8 +44336,8 @@ aar
 qWV
 oVX
 aaC
-acc
-adG
+abZ
+adr
 afg
 ahF
 ajb
@@ -44469,8 +44478,8 @@ aar
 abj
 abC
 aar
-acd
-acA
+acg
+adr
 aeU
 acx
 adX
@@ -44611,8 +44620,8 @@ ici
 abd
 aby
 aar
-adc
-acB
+ach
+adb
 afn
 adv
 aje
@@ -45037,10 +45046,10 @@ aaC
 aaC
 abE
 abM
-acg
+acA
 acE
 afE
-adx
+adt
 aea
 abL
 svt
@@ -45179,10 +45188,10 @@ aaC
 waB
 abh
 abM
-acg
+acA
 acF
 afB
-adx
+adt
 aea
 abL
 aeL
@@ -45321,11 +45330,11 @@ aaC
 abc
 abG
 abL
-ach
+acB
 acG
 afB
 ady
-aeb
+adV
 abL
 akQ
 ama
@@ -47242,7 +47251,7 @@ ceK
 afZ
 cfL
 cgk
-chl
+anr
 rEC
 chO
 cje
