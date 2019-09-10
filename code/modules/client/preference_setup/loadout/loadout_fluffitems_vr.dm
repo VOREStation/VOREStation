@@ -396,7 +396,7 @@
 	path = /obj/item/weapon/reagent_containers/hypospray/vial/kenzie
 	ckeywhitelist = list("lm40")
 	character_name = list("Kenzie Houser")
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Search and Rescue")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Field Medic")
 
 /datum/gear/fluff/brianna_backpack
 	path = /obj/item/weapon/storage/backpack/messenger/black/fluff/briana
@@ -478,12 +478,10 @@
 	ckeywhitelist = list("pontifexminimus")
 	character_name = list("Lucius Null")
 
-/* Commenting out one of these, as I have the character_name check disabled in loadout_vr.dm
 /datum/gear/fluff/lucia_battery
 	path = /obj/item/weapon/fluff/dragor_dot
 	ckeywhitelist = list("pontifexminimus")
 	character_name = list("Lucia Null")
-*/
 
 //  Q CKEYS
 
