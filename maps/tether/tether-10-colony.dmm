@@ -16611,6 +16611,7 @@
 "Ea" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/storage/firstaid/clotting,
+/obj/item/weapon/storage/firstaid/bonemed,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
