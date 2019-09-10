@@ -177,7 +177,7 @@
 			if(char_name == C.real_name)
 				usr << "<span class='notice'>There is a character that already exists with the same name - <b>[C.real_name]</b>, please join with a different one, or use Quit the Round with the previous character.</span>" //VOREStation Edit
 				return
-		*/ Vorestation Removal End
+		*/ //Vorestation Removal End
 
 		if(!config.enter_allowed)
 			usr << "<span class='notice'>There is an administrative lock on entering the game!</span>"
