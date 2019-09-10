@@ -21,7 +21,7 @@
 	desc = "A small, normal-looking drone. It looks like one you'd find on station, except... IT'S COMING AT YOU!"
 	catalogue_data = list(/datum/category_item/catalogue/technology/drone/corrupt_maint_drone)
 
-	icon = 'icons/mob/robots.dmi'
+	icon = 'icons/mob/robots_vr.dmi'
 	icon_state = "corrupt-repairbot"
 	icon_living = "corrupt-repairbot"
 	hovering = FALSE // Can trigger landmines.
