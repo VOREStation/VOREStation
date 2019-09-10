@@ -1,8 +1,7 @@
 /datum/gear/fluff
 	path = /obj/item/
 	sort_category = "Fluff Items"
-	display_name = "Test Item!"
-	description = "If you can see this, please make an issue on the git."
+	display_name = "If this item can be chosen or seen, ping a coder immediately!"
 	ckeywhitelist = list("This entry should never be choosable with this variable set.") //If it does, then that means somebody fucked up the whitelist system pretty hard
 	character_name = list("This entry should never be choosable with this variable set.")
 	cost = 0
@@ -16,13 +15,6 @@
 */
 
 //  0-9 CKEYS
-/* Item not defined.
-/datum/gear/fluff/zippy_chain
-	path = /obj/item/weapon/melee/fluff/holochain/zippy
-	ckeywhitelist = list("1r1s")
-	character_name = list("Zippy Shanks")
-*/
-
 /datum/gear/fluff/malady_crop
 	path = /obj/item/weapon/material/twohanded/fluff/riding_crop/malady
 	ckeywhitelist = list("1r1s")
@@ -44,14 +36,12 @@
 	ckeywhitelist = list("argobargsoup")
 	character_name = list("Lynn Shady")
 
-/* Item not defined.
 /datum/gear/fluff/aronai_ccmeduniform
-	path = /obj/item/clothing/under/solgov/utility/sifguard/medical/command
+	path = /obj/item/clothing/under/solgov/utility/sifguard/officer/medical
 	display_name  = "centcom medical uniform"
 	description = "A medical uniform straight from Central Command."
 	ckeywhitelist = list("arokha")
 	character_name = list("Aronai Kadigan")
-*/
 
 /datum/gear/fluff/aronai_ccmedjacket
 	path = /obj/item/clothing/suit/storage/service/sifguard/medical/command
@@ -204,7 +194,7 @@
 	path = /obj/item/clothing/accessory/medal/bronze_heart
 	ckeywhitelist = list("epigraphzero")
 	character_name = list("Verd Woodrow")
-
+	
 //  F CKEYS
 
 //  G CKEYS
@@ -228,13 +218,6 @@
 	path = /obj/item/weapon/gun/energy/sizegun
 	ckeywhitelist = list("hottokeeki")
 	character_name = list("Belle Day")
-
-/* //Commenting out, no permit, not allowed
-/datum/gear/fluff/belle_netgun
-	path = /obj/item/weapon/gun/energy/netgun 
-	ckeywhitelist = list("hottokeeki")
-	character_name = list("Belle Day")
-*/  
 
 /datum/gear/fluff/belle_implant
 	path = /obj/item/weapon/implanter/reagent_generator/belle
@@ -332,13 +315,6 @@
 	path = /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/katarina
 	ckeywhitelist = list("joanrisu")
 	character_name = list("Katarina Eine")
-
-/* Item not defined.
-/datum/gear/fluff/rosey_tails
-	path = /obj/item/clothing/head/fluff/threetail
-	ckeywhitelist = list("joey4298")
-	character_name = list("Rosey Tasimaro Maximus")
-*/
 
 /datum/gear/fluff/emoticon_box
 	path = /obj/item/weapon/storage/box/fluff/emoticon
@@ -444,24 +420,10 @@
 	ckeywhitelist = list("mewchild")
 	character_name = list("Phi Vietsi")
 
-/* Item not defined.
-/datum/gear/fluff/uya_hat
-	path = /obj/item/clothing/head/fluff/molenar
-	ckeywhitelist = list("molenar")
-	character_name = list("Uya Kohakuren")
-*/
-
 /datum/gear/fluff/giliana_labcoat
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/fluff/molenar
 	ckeywhitelist = list("molenar")
 	character_name = list("Giliana Gamish")
-
-/* Item not defined.
-/datum/gear/fluff/giliana_hat
-	path = /obj/item/clothing/head/fluff/molenar2
-	ckeywhitelist = list("molenar")
-	character_name = list("Giliana Gamish")
-*/
 
 /datum/gear/fluff/myryan_belt
 	path = /obj/item/weapon/storage/belt/utility/fluff/vulpine
@@ -553,20 +515,6 @@
 	path = /obj/item/clothing/suit/armor/vest/wolftaur/kate
 	ckeywhitelist = list("samanthafyre")
 	character_name = list("Kateryna Petrovitch")
-
-/* Item not defined.
-/datum/gear/fluff/joseph_medal
-	path = /obj/item/clothing/accessory/medal/ERTservice
-	ckeywhitelist = list("sasoperative")
-	character_name = list("Joseph Skinner")
-*/
-
-/* Item not defined.
-/datum/gear/fluff/joseph_secuniform
-	path = /obj/item/clothing/under/rank/security/fluff/formalsec
-	ckeywhitelist = list("sasoperative")
-	character_name = list("Joseph Skinner")
-*/
 
 /datum/gear/fluff/viktor_flask
 	path = /obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor
@@ -669,13 +617,6 @@
 	path = /obj/item/clothing/accessory/medal/silver/unity
 	ckeywhitelist = list("tinydude16")
 	character_name = list("Konor Foxe")
-
-/* Item not defined.
-/datum/gear/fluff/tony_hat
-	path = /obj/item/clothing/head/fluff/runac
-	ckeywhitelist = list("tonyvld")
-	character_name = list("Tony Bingham")
-*/
 
 //  U CKEYS
 
@@ -815,20 +756,6 @@
 //  Y CKEYS
 
 //  Z CKEYS
-/* Item not defined.
-/datum/gear/fluff/sarah_modkit
-	path = /obj/item/device/modkit_single/fluff/zekechimera
-	ckeywhitelist = list("zekesturm")
-	character_name = list("Sarah Arachi Lacecraft")
-*/
-
-/* Item not defined.
-/datum/gear/fluff/zeke_hat
-	path = /obj/item/clothing/head/fluff/xeno
-	ckeywhitelist = list("zekesturm")
-	character_name = list("Zeke Arachi")
-*/
-
 /datum/gear/fluff/zaoozaoo_hat
 	path = /obj/item/clothing/head/fluff/zao
 	ckeywhitelist = list("zigfe")
