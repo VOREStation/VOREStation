@@ -16657,10 +16657,6 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
-"EX" = (
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram,
-/turf/unsimulated/floor/steel,
-/area/space)
 "Fj" = (
 /obj/machinery/power/emitter,
 /turf/unsimulated/floor{
@@ -16853,7 +16849,7 @@
 	},
 /obj/effect/floor_decal/corner_steel_grid/diagonal,
 /turf/unsimulated/floor/steel,
-/area/space)
+/area/centcom/evac)
 "LD" = (
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /turf/unsimulated/floor{
@@ -17050,13 +17046,6 @@
 	dir = 5
 	},
 /area/centcom/specops)
-"Tl" = (
-/obj/machinery/door/airlock/glass_external,
-/turf/unsimulated/floor/steel,
-/area/space)
-"Tp" = (
-/turf/unsimulated/floor/steel,
-/area/space)
 "TW" = (
 /obj/machinery/shield_gen,
 /turf/unsimulated/floor{
@@ -17133,16 +17122,6 @@
 	icon_state = "steel"
 	},
 /area/centcom/command)
-"Xp" = (
-/obj/structure/grille,
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/unsimulated/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
-/area/space)
 "XA" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/smes_coil,
@@ -17180,9 +17159,6 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
-"ZB" = (
-/turf/unsimulated/wall,
-/area/space)
 "ZC" = (
 /obj/effect/floor_decal/corner_steel_grid{
 	dir = 6
@@ -22505,9 +22481,9 @@ Uh
 Lg
 Lg
 Lg
-ZB
-Tp
-Tp
+mQ
+nm
+nm
 nO
 nm
 nm
@@ -22647,7 +22623,7 @@ ab
 ab
 ab
 ab
-Tl
+mR
 Lh
 Lh
 mR
@@ -22789,7 +22765,7 @@ ab
 ab
 ab
 ab
-Tl
+mR
 Lh
 Lh
 mR
@@ -22931,9 +22907,9 @@ ab
 ab
 ab
 ab
-ZB
-Tp
-Tp
+mQ
+nm
+nm
 nO
 iS
 iQ
@@ -23073,9 +23049,9 @@ ab
 ab
 ab
 ab
-ZB
-Xp
-Xp
+mQ
+nn
+nn
 mQ
 mQ
 mQ
@@ -23215,10 +23191,10 @@ ab
 ab
 ab
 ab
-ZB
-EX
-EX
-ZB
+mQ
+no
+no
+mQ
 ab
 ab
 ab
@@ -23357,10 +23333,10 @@ ac
 ac
 ac
 ac
-ZB
-ZB
-ZB
-ZB
+mQ
+mQ
+mQ
+mQ
 ac
 ac
 ac
