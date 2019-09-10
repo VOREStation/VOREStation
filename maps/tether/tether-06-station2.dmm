@@ -16167,6 +16167,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/light_switch{
+	pixel_y = -26
+	},
 /turf/simulated/floor/tiled,
 /area/bridge/meeting_room)
 "yO" = (
@@ -16865,29 +16868,6 @@
 /obj/structure/table/woodentable,
 /obj/structure/flora/pottedplant/small{
 	pixel_y = 12
-	},
-/turf/simulated/floor/wood,
-/area/bridge/meeting_room)
-"zH" = (
-/obj/machinery/photocopier,
-/turf/simulated/floor/wood,
-/area/bridge/meeting_room)
-"zI" = (
-/obj/machinery/alarm{
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -22
-	},
-/obj/structure/table/woodentable,
-/turf/simulated/floor/wood,
-/area/bridge/meeting_room)
-"zJ" = (
-/obj/machinery/light,
-/turf/simulated/floor/wood,
-/area/bridge/meeting_room)
-"zK" = (
-/obj/machinery/light_switch{
-	pixel_y = -26
 	},
 /turf/simulated/floor/wood,
 /area/bridge/meeting_room)
@@ -20082,6 +20062,13 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
+"Hg" = (
+/obj/machinery/keycard_auth{
+	pixel_y = -28
+	},
+/obj/structure/flora/pottedplant,
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "Hq" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -20155,12 +20142,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
-"HU" = (
-/obj/machinery/keycard_auth{
-	pixel_y = -28
-	},
-/turf/simulated/floor/wood,
-/area/bridge/meeting_room)
 "Ik" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -20257,6 +20238,15 @@
 /obj/structure/railing,
 /turf/simulated/open,
 /area/engineering/shaft)
+"Jn" = (
+/obj/machinery/alarm{
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/obj/machinery/photocopier,
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "Jp" = (
 /obj/machinery/alarm{
 	dir = 4;
@@ -21154,6 +21144,10 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
+"Ry" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "RB" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -21324,6 +21318,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white,
 /area/maintenance/station/sec_lower)
+"Tc" = (
+/obj/machinery/light,
+/obj/structure/filingcabinet/filingcabinet,
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "Tj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet,
@@ -34758,7 +34757,7 @@ yN
 wo
 wo
 wo
-ac
+wo
 ac
 aP
 aP
@@ -34897,11 +34896,11 @@ xs
 xK
 ym
 yO
-wV
+Ry
+Ry
 zG
 wo
-ac
-ac
+aP
 aP
 aP
 aP
@@ -35040,10 +35039,10 @@ wV
 yn
 yO
 wV
-zH
+wV
+Ry
 wo
-ac
-ac
+aP
 aP
 aP
 aP
@@ -35182,10 +35181,10 @@ wV
 yn
 yO
 wV
-zI
+wV
+Jn
 wo
-ac
-ac
+aP
 aP
 aP
 aP
@@ -35324,10 +35323,10 @@ xL
 yo
 yP
 xN
-zJ
+wV
+Tc
 wo
-ac
-ac
+aP
 aP
 aP
 aP
@@ -35466,10 +35465,10 @@ xM
 yp
 yQ
 zc
-zK
+wV
+wV
 wo
-ac
-ac
+aP
 aP
 aP
 aP
@@ -35609,9 +35608,9 @@ yq
 yR
 zc
 wV
+wV
 wo
-ac
-ac
+aP
 aP
 aP
 aP
@@ -35751,9 +35750,9 @@ yr
 yS
 xN
 wV
+wV
 wo
-ac
-ac
+aP
 aP
 aP
 aP
@@ -35886,16 +35885,16 @@ pB
 qg
 vK
 wo
-wX
 wV
 wV
-ys
 wV
 wV
-HU
+wV
+wV
+wV
+wV
 wo
-ac
-ac
+aP
 aP
 aP
 aP
@@ -36028,16 +36027,16 @@ uH
 vk
 vL
 wo
-wY
-wY
-wY
-wY
-wY
-wY
-wY
+wX
+wV
+wV
+ys
+wV
+wV
+wV
+Hg
 wo
-ac
-ac
+aP
 aP
 aP
 aP
@@ -36170,16 +36169,16 @@ uI
 tD
 oY
 oY
+wY
+wY
+wY
+wY
+wY
+wY
+wY
+wY
+wo
 aP
-aP
-aP
-aP
-aP
-aP
-aP
-aP
-ac
-ac
 aP
 aP
 aP
@@ -36320,8 +36319,8 @@ aP
 aP
 aP
 aP
-ac
-ac
+aP
+aP
 aP
 aP
 aP
@@ -36454,16 +36453,16 @@ uK
 vl
 oY
 oY
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aP
 aP
 aP
-aP
-aP
-aP
-aP
-aP
-aP
-ac
 aP
 aP
 aP
@@ -36602,8 +36601,8 @@ aa
 aa
 aa
 aa
-aP
-aP
+aa
+aa
 aP
 aP
 aP
