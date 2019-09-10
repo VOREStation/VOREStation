@@ -16811,6 +16811,18 @@
 	icon_state = "steel"
 	},
 /area/centcom/command)
+"Ka" = (
+/obj/machinery/vending/nifsoft_shop{
+	categories = 111;
+	emagged = 1;
+	name = "Hacked NIFSoft Shop";
+	prices = list()
+	},
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/centcom/specops)
 "Kw" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/storage/firstaid/combat{
@@ -31689,7 +31701,7 @@ ah
 ah
 ah
 ah
-aX
+Ka
 aX
 aX
 ah
