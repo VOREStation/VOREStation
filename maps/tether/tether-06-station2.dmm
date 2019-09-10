@@ -16031,11 +16031,6 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "yD" = (
@@ -16043,11 +16038,6 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "yE" = (
@@ -16055,11 +16045,6 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "yF" = (
@@ -19072,11 +19057,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "Dq" = (
@@ -19510,11 +19490,6 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/techfloor,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "Ee" = (
@@ -19831,27 +19806,11 @@
 	pixel_y = -22
 	},
 /obj/effect/floor_decal/techfloor,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "EG" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 6
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/button/crematorium{
-	req_access = list(6);
-	req_one_access = list(5);
-	pixel_x = -25;
-	pixel_y = 2
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
@@ -19872,7 +19831,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/structure/morgue/crematorium{
+/obj/structure/morgue{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
