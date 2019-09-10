@@ -80,7 +80,6 @@
 	path = /obj/item/weapon/storage/box/fluff/kilano
 	ckeywhitelist = list("beyondmylife")
 	character_name = list("Ne'tra Ky'ram")
-	allowed_roles = list("Colony Director", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
 
 /datum/gear/fluff/xin_sovietuniform
 	path = /obj/item/clothing/under/soviet
@@ -144,13 +143,6 @@
 	path = /obj/item/clothing/accessory/medal/silver/security/fluff/dhael
 	ckeywhitelist = list("dhaeleena")
 	character_name = list("Dhaeleena M'iar")
-
-/* Item not defined.
-/datum/gear/fluff/elliot_medal
-	path = /obj/item/clothing/accessory/medal/medical
-	ckeywhitelist = list("dickfreedomjohnson")
-	character_name = list("Elliot Richards")
-*/
 
 /datum/gear/fluff/elliot_belt
 	path = /obj/item/weapon/storage/belt/champion
@@ -276,25 +268,25 @@
 	path = /obj/item/clothing/accessory/permit/gun/fluff/ace
 	ckeywhitelist = list("jertheace")
 	character_name = list("Jeremiah Acacius")
-	allowed_roles = list("Colony Director", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
+	allowed_roles = list("Colony Director", "Warden", "Head of Security")
 
 /datum/gear/fluff/jeremiah_gun
 	path = /obj/item/weapon/gun/projectile/p92x/large/preban/hp
 	ckeywhitelist = list("jertheace")
 	character_name = list("Jeremiah Acacius")
-	allowed_roles = list("Colony Director", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
+	allowed_roles = list("Colony Director", "Warden", "Head of Security")
 
 /datum/gear/fluff/jeremiah_ammo
 	path = /obj/item/ammo_magazine/m9mm/large/preban/hp //Spare ammo
 	ckeywhitelist = list("jertheace")
 	character_name = list("Jeremiah Acacius")
-	allowed_roles = list("Colony Director", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
+	allowed_roles = list("Colony Director", "Warden", "Head of Security")
 
 /datum/gear/fluff/jeremiah_holster
 	path = /obj/item/clothing/accessory/holster/armpit
 	ckeywhitelist = list("jertheace")
 	character_name = list("Jeremiah Acacius")
-	allowed_roles = list("Colony Director", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
+	allowed_roles = list("Colony Director", "Warden", "Head of Security")
 
 /datum/gear/fluff/jeremiah_boots
 	path = /obj/item/clothing/shoes/boots/combat
@@ -311,10 +303,12 @@
 	ckeywhitelist = list("joanrisu")
 	character_name = list("Joan Risu")
 
+
 /datum/gear/fluff/katarina_backpack
 	path = /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/katarina
 	ckeywhitelist = list("joanrisu")
 	character_name = list("Katarina Eine")
+	allowed_roles = list("Colony Director", "Warden", "Head of Security")
 
 /datum/gear/fluff/emoticon_box
 	path = /obj/item/weapon/storage/box/fluff/emoticon
@@ -536,7 +530,7 @@
 	ckeywhitelist = list("seiga")
 	character_name = list("Alfonso Oak Telanor")
 
-/datum/gear/fluff/nthasd_modkit
+/datum/gear/fluff/nthasd_modkit //Converts a Security suit's sprite
 	path = /obj/item/device/modkit_conversion/hasd
 	ckeywhitelist = list("silencedmp5a5")
 	character_name = list("NT-HASD #556")

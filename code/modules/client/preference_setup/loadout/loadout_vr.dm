@@ -14,8 +14,6 @@
 			continue
 		if(G.ckeywhitelist && !(preference_mob.ckey in G.ckeywhitelist)) 
 			continue 
-/* Commenting out the charactername check, for now. Easier to do it here, instead of doing it in the individual entries.
 		if(G.character_name && !(preference_mob.real_name in G.character_name)) 
 			continue 
-*/
 		. += gear_name
