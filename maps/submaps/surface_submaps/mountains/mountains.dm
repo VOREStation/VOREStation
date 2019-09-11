@@ -192,7 +192,7 @@
 /datum/map_template/surface/mountains/normal/crashedcontainmentshuttle
 	name = "Crashed Cargo Shuttle"
 	desc = "A severely damaged military shuttle, its cargo seems to remain intact."
-	mappath = 'maps/submaps/surface_submaps/mountains/crashedcontainmentshuttle.dmm'
+	mappath = 'maps/submaps/surface_submaps/mountains/crashedcontainmentshuttle_vr.dmm'	//VOREStation Edit
 	cost = 30
 
 /datum/map_template/surface/mountains/normal/deadspy
@@ -337,6 +337,6 @@
 /datum/map_template/surface/mountains/normal/crashedmedshuttle //VOREStation Edit
 	name = "Crashed Med Shuttle"
 	desc = "A medical response shuttle that went missing some time ago. So this is where they went."
-	mappath = 'maps/submaps/surface_submaps/mountains/CrashedMedShuttle1.dmm'
+	mappath = 'maps/submaps/surface_submaps/mountains/CrashedMedShuttle1_vr.dmm'	//VOREStation Edit
 	cost = 20
 	fixed_orientation = TRUE

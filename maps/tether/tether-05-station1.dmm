@@ -192,7 +192,7 @@
 "aay" = (
 /obj/machinery/door/airlock{
 	name = "Chapel Morgue";
-	req_access = list(27)
+	req_one_access = list(6,27)
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -346,6 +346,11 @@
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/chapel_morgue)
 "aaL" = (
@@ -401,6 +406,17 @@
 /obj/machinery/light_switch{
 	dir = 1;
 	pixel_y = -24
+	},
+/obj/machinery/button/crematorium{
+	pixel_x = 8;
+	pixel_y = -26;
+	req_access = newlist();
+	req_one_access = list(6,27)
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/chapel_morgue)
@@ -2571,7 +2587,7 @@
 	name = "Chapel Observation Shutters";
 	pixel_x = -6;
 	pixel_y = 29;
-	req_access = list(27)
+	req_one_access = list(6,27)
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
@@ -11111,7 +11127,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
 "aBg" = (
-/obj/structure/flora/pottedplant/stoutbush,
+/obj/structure/closet/secure_closet/engineering_chief,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "aBh" = (
@@ -11210,7 +11226,6 @@
 /turf/simulated/floor/tiled,
 /area/engineering/engine_eva)
 "aBr" = (
-/obj/structure/table/reinforced,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
@@ -11220,6 +11235,7 @@
 /obj/machinery/keycard_auth{
 	pixel_x = -28
 	},
+/obj/machinery/photocopier,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "aBt" = (
@@ -15387,8 +15403,11 @@
 	pixel_x = 25;
 	pixel_y = 0
 	},
-/obj/structure/closet/secure_closet/engineering_chief,
-/turf/simulated/floor/tiled,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/item/weapon/reagent_containers/food/snacks/snakesnack,
+/turf/simulated/floor/outdoors/grass/forest,
 /area/crew_quarters/heads/chief)
 "aTX" = (
 /obj/machinery/computer/general_air_control{
@@ -15599,11 +15618,10 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "aVG" = (
-/obj/machinery/light_switch{
-	dir = 1;
-	pixel_y = -24
+/obj/structure/window/reinforced{
+	dir = 8
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/outdoors/grass/forest,
 /area/crew_quarters/heads/chief)
 "aVH" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -15932,6 +15950,12 @@
 /area/hallway/station/atrium)
 "aYE" = (
 /obj/structure/table/reinforced,
+/obj/machinery/light_switch{
+	dir = 2;
+	name = "light switch ";
+	pixel_x = 10;
+	pixel_y = 36
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "aYF" = (
@@ -17210,7 +17234,6 @@
 /area/hallway/station/atrium)
 "bfT" = (
 /obj/structure/disposalpipe/segment,
-/mob/living/simple_mob/animal/passive/snake/noodle,
 /turf/simulated/floor/carpet/oracarpet,
 /area/crew_quarters/heads/chief)
 "bfW" = (
@@ -17489,6 +17512,11 @@
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
 	dir = 4
+	},
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
@@ -18976,7 +19004,6 @@
 /turf/simulated/floor/tiled/monotile,
 /area/bridge_hallway)
 "bsO" = (
-/obj/structure/table/reinforced,
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "south bump";
@@ -18986,6 +19013,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/machinery/papershredder,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "bsP" = (
@@ -19002,11 +19030,11 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "bsR" = (
-/obj/structure/flora/pottedplant,
 /obj/machinery/camera/network/command{
 	c_tag = "Head of Personnel Office";
 	dir = 9
 	},
+/obj/structure/table/reinforced,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "bti" = (
@@ -22350,6 +22378,13 @@
 /obj/random/junk,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
+"klO" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/door/window/northleft,
+/turf/simulated/floor/outdoors/grass/forest,
+/area/crew_quarters/heads/chief)
 "kCH" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -22449,6 +22484,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_one)
+"tpQ" = (
+/obj/structure/morgue/crematorium{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/chapel/chapel_morgue)
 "tKI" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -22493,6 +22537,10 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/tether/station/dock_one)
+"vyI" = (
+/mob/living/simple_mob/animal/passive/snake/noodle,
+/turf/simulated/floor/outdoors/grass/forest,
+/area/crew_quarters/heads/chief)
 "wlD" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -27979,7 +28027,7 @@ agc
 aRV
 aQh
 aRV
-aRV
+klO
 aVG
 aRb
 bYi
@@ -28122,7 +28170,7 @@ aZg
 aQl
 aSu
 aTW
-aBg
+vyI
 aRb
 bYj
 bYj
@@ -34198,7 +34246,7 @@ aae
 aal
 aax
 aaJ
-aaJ
+tpQ
 aaW
 ahh
 acc
