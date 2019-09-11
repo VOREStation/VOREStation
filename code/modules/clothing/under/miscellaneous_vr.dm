@@ -105,3 +105,7 @@
 		H.resize(original_size)
 		original_size = null
 		H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
+
+//Same as Nanotrasen Security Uniforms
+/obj/item/clothing/under/ert
+	armor = list(melee = 5, bullet = 10, laser = 10, energy = 5, bomb = 5, bio = 0, rad = 0)

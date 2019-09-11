@@ -465,6 +465,8 @@
 /obj/structure/table/rack,
 /obj/item/weapon/gun/energy/gun/martin,
 /obj/item/weapon/gun/energy/gun/martin,
+/obj/item/device/flash,
+/obj/item/device/flash,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -536,8 +538,6 @@
 	})
 "aW" = (
 /obj/structure/table/rack,
-/obj/item/device/flash,
-/obj/item/device/flash,
 /obj/item/clothing/accessory/storage/black_vest,
 /obj/item/clothing/accessory/storage/black_vest,
 /obj/item/clothing/accessory/storage/black_vest,
@@ -1248,6 +1248,8 @@
 "cf" = (
 /obj/structure/table/reinforced,
 /obj/item/device/pda/ert,
+/obj/item/device/perfect_tele,
+/obj/item/weapon/hand_tele,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
@@ -1356,7 +1358,6 @@
 "co" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/gun/energy/gun/nuclear,
-/obj/item/weapon/hand_tele,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
@@ -1689,20 +1690,6 @@
 /area/centcom/main_hall)
 "cQ" = (
 /obj/machinery/vending/tool,
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/centcom/specops)
-"cS" = (
-/obj/structure/table/rack,
-/obj/item/weapon/storage/box/survival/comp,
-/obj/item/weapon/storage/box/survival/comp,
-/obj/item/weapon/storage/box/survival/comp,
-/obj/item/weapon/storage/box/survival/comp,
-/obj/item/weapon/storage/box/survival/comp,
-/obj/item/weapon/storage/box/survival/comp,
-/obj/item/weapon/storage/box/survival/comp,
-/obj/item/weapon/storage/box/survival/comp,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -16623,6 +16610,12 @@
 	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/space)
+"Eq" = (
+/obj/machinery/porta_turret,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/specops)
 "Ez" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/cell/hyper,
@@ -16663,10 +16656,20 @@
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"Fo" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/storage/box/survival/comp,
+/obj/item/weapon/storage/box/survival/comp,
+/obj/item/weapon/storage/box/survival/comp,
+/obj/item/weapon/storage/box/survival/comp,
+/obj/item/weapon/storage/box/survival/comp,
+/obj/item/weapon/storage/box/survival/comp,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/specops)
 "FL" = (
 /obj/structure/table/rack,
-/obj/item/device/flash,
-/obj/item/device/flash,
 /obj/item/clothing/accessory/storage/brown_vest,
 /obj/item/clothing/accessory/storage/brown_vest,
 /obj/item/clothing/accessory/storage/brown_vest,
@@ -16898,6 +16901,28 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"MA" = (
+/obj/machinery/porta_turret,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/control)
+"Ns" = (
+/obj/structure/closet/crate/freezer/rations,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor_red"
+	},
+/area/shuttle/specops/centcom{
+	base_turf = /turf/unsimulated/floor/shuttle_ceiling
+	})
 "Nx" = (
 /obj/structure/table/rack,
 /obj/item/weapon/plastique,
@@ -16980,7 +17005,6 @@
 /area/centcom/medical)
 "Re" = (
 /obj/structure/table/reinforced,
-/obj/item/device/perfect_tele,
 /obj/item/device/binoculars,
 /obj/item/device/survivalcapsule,
 /obj/item/device/survivalcapsule,
@@ -17058,20 +17082,22 @@
 	dir = 5
 	},
 /area/centcom/specops)
+"Tx" = (
+/obj/machinery/autolathe{
+	desc = "Your typical Autolathe. It appears to have much more options than your regular one, however...";
+	hacked = 1;
+	name = "Unlocked Autolathe"
+	},
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/specops)
 "TW" = (
 /obj/machinery/shield_gen,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/specops)
-"Ug" = (
-/obj/structure/table/rack,
-/obj/item/weapon/gun/energy/gun/martin,
-/obj/item/weapon/gun/energy/gun/martin,
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/centcom/control)
 "Uh" = (
 /obj/effect/floor_decal/corner_steel_grid{
 	dir = 8
@@ -17090,6 +17116,16 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"UO" = (
+/obj/structure/table/rack,
+/obj/item/weapon/gun/energy/gun/martin,
+/obj/item/weapon/gun/energy/gun/martin,
+/obj/item/device/flash,
+/obj/item/device/flash,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/control)
 "Vf" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/box/frags,
@@ -30573,7 +30609,7 @@ aG
 aG
 aG
 aG
-PP
+UO
 PP
 ds
 dm
@@ -30714,8 +30750,8 @@ cg
 cH
 cU
 aG
-cS
-Ug
+aG
+PP
 PP
 Gm
 dm
@@ -30856,8 +30892,8 @@ cg
 cI
 cV
 aG
-aG
-PP
+Eq
+MA
 PP
 FL
 dm
@@ -32132,7 +32168,7 @@ aX
 aX
 ch
 aG
-aG
+Fo
 aG
 cY
 dm
@@ -33126,7 +33162,7 @@ aX
 aX
 ch
 aG
-aG
+Tx
 aG
 df
 dm
@@ -34250,7 +34286,7 @@ ac
 ac
 ad
 af
-al
+Ns
 aC
 aR
 af
