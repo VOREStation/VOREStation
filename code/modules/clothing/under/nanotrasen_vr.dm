@@ -13,7 +13,7 @@
 	desc = "The security uniform of NanoTrasen's security. It looks sturdy and well padded"
 	icon_state = "navyutility_sec"
 	worn_state = "navyutility_sec"
-	armor = list(melee = 10, bullet = 10, laser = 10,energy = 5, bomb = 5, bio = 0, rad = 0)
+	armor = list(melee = 10, bullet = 5, laser = 5,energy = 5, bomb = 5, bio = 0, rad = 0)
 
 /obj/item/clothing/under/nanotrasen/security/warden
 	name = "NanoTrasen warden uniform"
