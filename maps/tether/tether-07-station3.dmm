@@ -23267,13 +23267,19 @@
 /turf/simulated/floor,
 /area/maintenance/station/cargo)
 "JZ" = (
-/obj/structure/shuttle/engine/propulsion{
+/obj/structure/table/standard,
+/obj/random/medical,
+/obj/machinery/power/apc{
 	dir = 8;
-	icon_state = "propulsion_l"
+	name = "west bump";
+	pixel_x = -28
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/virologyaccess)
 "Ka" = (
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/weapon/soap/nanotrasen,
@@ -23286,12 +23292,23 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay_primary_storage)
 "Kb" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 6
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/virologyaccess)
 "Kc" = (
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/weapon/soap/nanotrasen,
@@ -23588,7 +23605,14 @@
 "KC" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
-	icon_state = "propulsion_r"
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
+"KD" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -24042,6 +24066,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medical_restroom)
+"LB" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
 "LC" = (
 /obj/machinery/vending/snack,
 /obj/effect/floor_decal/spline/plain{
@@ -25423,29 +25455,6 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/crew_quarters/medbreak)
-"NI" = (
-/obj/structure/table/standard,
-/obj/random/medical,
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "west bump";
-	pixel_x = -28
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/virologyaccess)
-"NJ" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/virologyaccess)
 "NK" = (
 /obj/structure/closet/l3closet/virology,
 /obj/machinery/alarm{
@@ -37506,7 +37515,7 @@ Lh
 Nb
 Nr
 NB
-NI
+JZ
 NN
 Nr
 Om
@@ -37648,7 +37657,7 @@ MJ
 Nc
 Ns
 NC
-NJ
+Kb
 NP
 NX
 On
@@ -38785,11 +38794,11 @@ MK
 Iy
 ab
 NL
-JZ
-Kb
-Kb
-Kb
 KC
+KD
+KD
+KD
+LB
 NL
 vt
 vt
