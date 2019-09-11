@@ -17070,6 +17070,9 @@
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 2
 	},
+/obj/machinery/ai_status_display{
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "Ai" = (
@@ -20621,17 +20624,22 @@
 /turf/simulated/floor/tiled/dark,
 /area/medical/medbay_emt_bay)
 "FT" = (
-/obj/structure/table/glass,
-/obj/machinery/photocopier/faxmachine{
-	department = "CMO's Office"
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
 	},
-/obj/machinery/newscaster{
-	layer = 3.3;
-	pixel_x = -27;
-	pixel_y = 0
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
 	},
-/turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/obj/machinery/status_display{
+	density = 0;
+	layer = 4;
+	pixel_x = 0;
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/upper)
 "FU" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
@@ -21232,18 +21240,23 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/cmo)
 "GT" = (
-/obj/machinery/portable_atmospherics/canister/oxygen/prechilled,
-/obj/machinery/atmospherics/portables_connector{
-	dir = 4
+/obj/structure/table/glass,
+/obj/machinery/photocopier/faxmachine{
+	department = "CMO's Office"
 	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 9
+/obj/machinery/newscaster{
+	layer = 3.3;
+	pixel_x = -27;
+	pixel_y = 0
 	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 9
+/obj/machinery/status_display{
+	density = 0;
+	layer = 4;
+	pixel_x = 0;
+	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/white,
-/area/medical/medbay_primary_storage)
+/turf/simulated/floor/wood,
+/area/crew_quarters/heads/cmo)
 "GU" = (
 /obj/machinery/iv_drip,
 /obj/machinery/power/apc{
@@ -21531,9 +21544,9 @@
 /turf/simulated/floor/plating,
 /area/medical/medbay_primary_storage)
 "Hp" = (
-/obj/structure/flora/pottedplant/stoutbush,
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/portable_atmospherics/canister/oxygen/prechilled,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
 	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
@@ -21541,8 +21554,14 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 9
 	},
+/obj/machinery/status_display{
+	density = 0;
+	layer = 4;
+	pixel_x = 0;
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/white,
-/area/medical/sleeper)
+/area/medical/medbay_primary_storage)
 "Hq" = (
 /obj/machinery/button/remote/airlock{
 	desc = "A remote control switch for the medbay foyer.";
@@ -21841,14 +21860,21 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "HK" = (
+/obj/structure/flora/pottedplant/stoutbush,
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
+	dir = 9
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
+	dir = 9
+	},
+/obj/machinery/status_display{
+	density = 0;
+	layer = 4;
+	pixel_x = 0;
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
@@ -21893,19 +21919,23 @@
 /turf/simulated/floor/plating,
 /area/crew_quarters/heads/cmo)
 "HO" = (
-/obj/structure/dogbed{
-	desc = "Runtime's bed. Some of her disappointment seems to have rubbed off on it.";
-	name = "cat bed"
+/obj/machinery/light{
+	dir = 1
 	},
-/obj/item/toy/plushie/mouse/fluff,
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 9
+	dir = 1
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
-	dir = 9
+	dir = 1
+	},
+/obj/machinery/status_display{
+	density = 0;
+	layer = 4;
+	pixel_x = 0;
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
+/area/medical/sleeper)
 "HP" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -23603,20 +23633,43 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/virologyisolation)
 "KC" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/structure/dogbed{
+	desc = "Runtime's bed. Some of her disappointment seems to have rubbed off on it.";
+	name = "cat bed"
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/obj/item/toy/plushie/mouse/fluff,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 9
+	},
+/obj/machinery/ai_status_display{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/heads/cmo)
 "KD" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 2
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/machinery/status_display{
+	density = 0;
+	layer = 4;
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/white,
+/area/hallway/secondary/escape/medical_escape_pod_hallway)
 "KE" = (
 /turf/simulated/wall,
 /area/crew_quarters/medical_restroom)
@@ -23973,20 +24026,18 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "Lr" = (
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 2
-	},
-/obj/structure/disposalpipe/segment{
+/obj/machinery/vending/fitness,
+/obj/effect/floor_decal/spline/plain{
 	dir = 4
 	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
+/obj/machinery/status_display{
+	density = 0;
+	layer = 4;
+	pixel_x = -32;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/white,
-/area/hallway/secondary/escape/medical_escape_pod_hallway)
+/area/crew_quarters/medbreak)
 "Ls" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2;
@@ -24069,7 +24120,7 @@
 "LB" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
-	icon_state = "propulsion_r"
+	icon_state = "propulsion_l"
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -24424,12 +24475,12 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medical_restroom)
 "Mg" = (
-/obj/machinery/vending/fitness,
-/obj/effect/floor_decal/spline/plain{
-	dir = 4
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/medbreak)
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
 "Mh" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -25331,6 +25382,14 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/crew_quarters/medical_restroom)
+"Ny" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
 "Nz" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -35939,7 +35998,7 @@ Gk
 Gk
 Gk
 Jr
-GT
+Hp
 Hh
 HT
 IB
@@ -35948,7 +36007,7 @@ Ka
 Jr
 KX
 LC
-Mg
+Lr
 MB
 MS
 No
@@ -37218,7 +37277,7 @@ Fe
 FK
 Go
 Iy
-Hp
+HK
 HZ
 IK
 Jv
@@ -38486,7 +38545,7 @@ yD
 zx
 As
 Bz
-Ck
+FT
 Dl
 Bh
 Cr
@@ -38780,7 +38839,7 @@ Fi
 FQ
 FQ
 yT
-HK
+HO
 Ii
 Jc
 Jc
@@ -38794,11 +38853,11 @@ MK
 Iy
 ab
 NL
-KC
-KD
-KD
-KD
 LB
+Mg
+Mg
+Mg
+Ny
 NL
 vt
 vt
@@ -39354,7 +39413,7 @@ HN
 JG
 HN
 Fz
-Lr
+KD
 LU
 Lu
 Lu
@@ -39490,7 +39549,7 @@ Fz
 Fz
 Fz
 Fz
-HO
+KC
 Iw
 Jf
 JJ
@@ -39629,7 +39688,7 @@ Cx
 DT
 EP
 Fz
-FT
+GT
 GD
 Uj
 HP
