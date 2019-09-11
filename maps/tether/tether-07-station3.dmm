@@ -15227,7 +15227,7 @@
 	pixel_x = 0;
 	pixel_y = 0
 	},
-/turf/simulated/wall,
+/turf/simulated/wall/r_wall,
 /area/tether/station/stairs_three)
 "xv" = (
 /obj/structure/sign/warning/secure_area,
@@ -15769,7 +15769,7 @@
 /area/lawoffice)
 "yl" = (
 /obj/structure/sign/department/medbay,
-/turf/simulated/wall,
+/turf/simulated/wall/r_wall,
 /area/medical/chemistry)
 "ym" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -16086,7 +16086,7 @@
 /turf/simulated/floor/plating,
 /area/medical/chemistry)
 "yJ" = (
-/turf/simulated/wall,
+/turf/simulated/wall/r_wall,
 /area/medical/chemistry)
 "yK" = (
 /obj/structure/grille,
@@ -20124,9 +20124,8 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/chemistry)
 "Fd" = (
-/obj/structure/sign/nosmoking_1,
-/turf/simulated/wall,
-/area/medical/chemistry)
+/turf/simulated/wall/r_wall,
+/area/tether/station/stairs_three)
 "Fe" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -24131,13 +24130,9 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medical_restroom)
 "LB" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/obj/structure/sign/nosmoking_1,
+/turf/simulated/wall/r_wall,
+/area/medical/chemistry)
 "LC" = (
 /obj/machinery/vending/snack,
 /obj/effect/floor_decal/spline/plain{
@@ -24489,7 +24484,8 @@
 /area/crew_quarters/medical_restroom)
 "Mg" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -25534,8 +25530,7 @@
 /area/crew_quarters/medbreak)
 "NI" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+	dir = 8
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -25677,6 +25672,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
 /turf/simulated/floor/tiled/white,
 /area/medical/virologyaccess)
+"NY" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
 "NZ" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 8
@@ -36292,12 +36295,12 @@ Ae
 Bo
 Cj
 xu
-Df
-Df
-Df
-Df
-Df
-Df
+Fd
+Fd
+Fd
+Fd
+Fd
+Fd
 yJ
 yJ
 Hj
@@ -37148,7 +37151,7 @@ yJ
 BJ
 BJ
 Ej
-Fd
+LB
 BJ
 yJ
 yJ
@@ -38870,11 +38873,11 @@ MK
 Iy
 ab
 NL
-LB
-Mg
-Mg
 Mg
 NI
+NI
+NI
+NY
 NL
 vt
 vt
