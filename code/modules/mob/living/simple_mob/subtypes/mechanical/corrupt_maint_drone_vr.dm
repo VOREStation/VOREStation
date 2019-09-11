@@ -30,7 +30,7 @@
 	maxHealth = 25
 	health = 25
 	movement_cooldown = 0
-    movement_sound = 'sound/effects/servostep.ogg'
+	movement_sound = 'sound/effects/servostep.ogg'
 
 	pass_flags = PASSTABLE
 	mob_swap_flags = 0
@@ -44,7 +44,7 @@
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attacktext = list("cut", "sliced")
 
-    poison_per_bite = 5
+	poison_per_bite = 5
 	poison_type = "welder fuel"
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
