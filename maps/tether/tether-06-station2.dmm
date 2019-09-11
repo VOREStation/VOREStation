@@ -12275,8 +12275,15 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "sg" = (
-/turf/simulated/wall/r_wall,
-/area/tether/station/public_meeting_room)
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/glass_medical{
+	id_tag = "MedbayWaiting";
+	name = "Medbay"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery_hallway)
 "sh" = (
 /obj/structure/bookcase,
 /turf/simulated/floor/wood,
@@ -12288,12 +12295,37 @@
 /turf/simulated/floor/wood,
 /area/medical/psych)
 "sj" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/glass_medical{
-	name = "Medbay"
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 5
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 4
+	},
+/obj/machinery/button/remote/airlock{
+	desc = "A remote control switch for the medbay foyer.";
+	id = "MedbayWaiting";
+	name = "Medbay Door Control";
+	pixel_x = -4;
+	pixel_y = 26
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
 "sk" = (
@@ -12602,32 +12634,17 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
 "sL" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/structure/filingcabinet/medical{
+	desc = "A large cabinet with hard copy medical records.";
+	name = "Medical Records"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/machinery/button/windowtint{
+	id = "psych_office";
+	pixel_x = 24;
+	range = 12
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 5
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/surgery_hallway)
+/turf/simulated/floor/carpet/blue,
+/area/medical/psych)
 "sM" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/medical{
@@ -14898,18 +14915,6 @@
 "wz" = (
 /obj/item/device/radio/intercom/department/medbay{
 	pixel_y = -24
-	},
-/turf/simulated/floor/carpet/blue,
-/area/medical/psych)
-"wA" = (
-/obj/structure/filingcabinet/medical{
-	desc = "A large cabinet with hard copy medical records.";
-	name = "Medical Records"
-	},
-/obj/machinery/button/windowtint{
-	id = "psych_office";
-	pixel_x = 24;
-	range = 8
 	},
 /turf/simulated/floor/carpet/blue,
 /area/medical/psych)
@@ -31487,7 +31492,7 @@ oX
 KI
 KI
 KI
-sg
+KI
 KI
 po
 tw
@@ -32203,7 +32208,7 @@ tq
 tO
 uZ
 wa
-wA
+sL
 xb
 xv
 ye
@@ -32623,7 +32628,7 @@ ps
 qO
 rx
 sb
-sj
+sg
 sK
 ts
 tR
@@ -32766,7 +32771,7 @@ qP
 ry
 sc
 pp
-sL
+sj
 tt
 tS
 vc
