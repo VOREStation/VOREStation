@@ -44,10 +44,30 @@
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attacktext = list("cut", "sliced")
 
+	var/poison_type = "spidertoxin"	// The reagent that gets injected when it attacks.
+	var/poison_chance = 35			// Chance for injection to occur.
+	var/poison_per_bite = 5			// Amount added per injection.
+
 	poison_per_bite = 5
 	poison_type = "welder fuel"
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
+
+
+/mob/living/simple_mob/mechanical/corrupt_maint_drone/apply_melee_effects(var/atom/A)
+	if(isliving(A))
+		var/mob/living/L = A
+		if(L.reagents)
+			var/target_zone = pick(BP_TORSO,BP_TORSO,BP_TORSO,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_HEAD)
+			if(L.can_inject(src, null, target_zone))
+				inject_poison(L, target_zone)
+
+// Does actual poison injection, after all checks passed.
+/mob/living/simple_mob/mechanical/corrupt_maint_drone/proc/inject_poison(mob/living/L, target_zone)
+	if(prob(poison_chance))
+		to_chat(L, "<span class='warning'>Something burns in your veins.</span>")
+		L.reagents.add_reagent(poison_type, poison_per_bite)
+
 
 /mob/living/simple_mob/mechanical/corrupt_maint_drone/death()
 	..(null,"is smashed into pieces!")
