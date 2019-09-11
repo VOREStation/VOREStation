@@ -101,12 +101,11 @@
 
 // Rykka adds teleporters from UD -> S1 -> S2
 
-
 /obj/effect/step_trigger/teleporter/to_underdark_s1
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "stairs"
 	invisibility = 0
-/obj/effect/step_trigger/teleporter/to_underdark/Initialize()
+/obj/effect/step_trigger/teleporter/to_underdark_S1/Initialize()
 	. = ..()
 	teleport_x = x
 	teleport_y = y
@@ -120,7 +119,7 @@
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "stairs"
 	invisibility = 0
-/obj/effect/step_trigger/teleporter/from_underdark/Initialize()
+/obj/effect/step_trigger/teleporter/from_underdark_s1/Initialize()
 	. = ..()
 	teleport_x = x
 	teleport_y = y
@@ -135,7 +134,7 @@
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "stairs"
 	invisibility = 0
-/obj/effect/step_trigger/teleporter/to_underdark/Initialize()
+/obj/effect/step_trigger/teleporter/to_underdark_s2/Initialize()
 	. = ..()
 	teleport_x = x
 	teleport_y = y
@@ -149,7 +148,7 @@
 	icon = 'icons/obj/stairs.dmi'
 	icon_state = "stairs"
 	invisibility = 0
-/obj/effect/step_trigger/teleporter/from_underdark/Initialize()
+/obj/effect/step_trigger/teleporter/from_underdark_s2/Initialize()
 	. = ..()
 	teleport_x = x
 	teleport_y = y
