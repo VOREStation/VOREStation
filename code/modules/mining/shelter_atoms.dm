@@ -15,14 +15,12 @@
 	w_class = ITEMSIZE_TINY
 	var/template_id = "shelter_alpha"
 	var/datum/map_template/shelter/template
-	var/datum/map_template/shelter/template_roof
 	var/used = FALSE
 
 /obj/item/device/survivalcapsule/proc/get_template()
 	if(template)
 		return
 	template = SSmapping.shelter_templates[template_id]
-	template_roof = SSmapping.shelter_templates[template.roof]
 	if(!template)
 		throw EXCEPTION("Shelter template ([template_id]) not found!")
 		qdel(src)
@@ -49,10 +47,6 @@
 		var/turf/deploy_location = get_turf(src)
 		var/status = template.check_deploy(deploy_location)
 		var/turf/above_location = GetAbove(deploy_location)
-		if(!isopenspace(above_location))
-			above_location = null
-		if(above_location && status == SHELTER_DEPLOY_ALLOWED)
-			status = template.check_deploy(above_location)
 
 		switch(status)
 			//Not allowed due to /area technical reasons
@@ -79,8 +73,8 @@
 		playsound(get_turf(src), 'sound/effects/phasein.ogg', 100, 1)
 
 		log_and_message_admins("[key_name_admin(usr)] activated a bluespace capsule at [get_area(T)]!")
-		if(above_location && template_roof)
-			template_roof.load(above_location, centered = TRUE)
+		if(above_location)
+			template.add_roof(above_location)
 		template.load(deploy_location, centered = TRUE)
 		qdel(src)
 

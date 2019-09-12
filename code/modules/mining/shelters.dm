@@ -5,7 +5,6 @@
 	var/whitelisted_turfs
 	var/banned_areas
 	var/banned_objects
-	var/roof
 
 /datum/map_template/shelter/New()
 	. = ..()
@@ -31,6 +30,12 @@
 				return SHELTER_DEPLOY_ANCHORED_OBJECTS
 	return SHELTER_DEPLOY_ALLOWED
 
+/datum/map_template/shelter/proc/add_roof(turf/deploy_location)
+	var/affected = get_affected_turfs(deploy_location, centered=TRUE)
+	for(var/turf/T in affected)
+		if(isopenspace(T))
+			T.ChangeTurf(/turf/simulated/shuttle/floor/voidcraft)
+
 /datum/map_template/shelter/alpha
 	name = "Shelter Alpha"
 	shelter_id = "shelter_alpha"
@@ -39,7 +44,6 @@
 		sleeping area! Order now, and we'll throw in a TINY FAN, \
 		absolutely free!"
 	mappath = "maps/submaps/shelters/shelter_1.dmm"
-	roof = "roof_alpha"
 
 /datum/map_template/shelter/alpha_roof
 	shelter_id = "roof_alpha"
@@ -59,7 +63,6 @@
 		and a deluxe companion to keep you from getting lonely during \
 		an ash storm."
 	mappath = "maps/submaps/shelters/shelter_2.dmm"
-	roof = "roof_beta"
 
 /datum/map_template/shelter/beta_roof
 	shelter_id = "roof_beta"
@@ -79,7 +82,6 @@
 		to no contact, the expense of these shelters have prevented them \
 		from seeing common use."
 	mappath = "maps/submaps/shelters/shelter_3.dmm"
-	roof = "roof_beta"
 
 /datum/map_template/shelter/gamma/New()
 	. = ..()
