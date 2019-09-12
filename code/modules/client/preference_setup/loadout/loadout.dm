@@ -71,7 +71,7 @@ var/list/gear_datums = list()
 			continue
 		if(G.ckeywhitelist && !(preference_mob.ckey in G.ckeywhitelist)) //Vorestation Edit 
 			continue  //Vorestation Edit 
-		if(G.character_name && !(preference_mob.real_name in G.character_name))  //Vorestation Edit 
+		if(G.character_name && !(preference_mob.client.prefs.real_name in G.character_name))  //Vorestation Edit 
 			continue  //Vorestation Edit 
 		. += gear_name
 
@@ -151,7 +151,7 @@ var/list/gear_datums = list()
 		var/datum/gear/G = LC.gear[gear_name]
 		if(G.ckeywhitelist && !(preference_mob.ckey in G.ckeywhitelist)) //Vorestation Edit
 			continue //Vorestation Edit
-		if(G.character_name && !(preference_mob.real_name in G.character_name)) //Vorestation Edit
+		if(G.character_name && !(preference_mob.client.prefs.real_name in G.character_name)) //Vorestation Edit
 			continue //Vorestation Edit
 		var/ticked = (G.display_name in pref.gear)
 		. += "<tr style='vertical-align:top;'><td width=25%><a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='?src=\ref[src];toggle_gear=[html_encode(G.display_name)]'>[G.display_name]</a></td>"
