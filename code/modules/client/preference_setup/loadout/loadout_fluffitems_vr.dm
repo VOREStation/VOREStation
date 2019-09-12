@@ -6,7 +6,6 @@
 	character_name = list("This entry should never be choosable with this variable set.")
 	allowed_roles = list()
 	cost = 0
-
 /* 
 /datum/gear/fluff/testhorn
 	path = /obj/item/weapon/bikehorn
@@ -14,7 +13,6 @@
 	description = "An example item that you probably shouldn't see!"
 	ckeywhitelist = list("mewchild")
 	allowed_roles = list("Station Engineer")
-
 */
 
 //  0-9 CKEYS
@@ -225,7 +223,7 @@
 /datum/gear/fluff/eldi_implant
 	path = /obj/item/weapon/implanter/reagent_generator/eldi
 	display_name = "Eldi's Implant"
-	ckeywhitelist = list("Gowst")
+	ckeywhitelist = list("gowst")
 	character_name = list("Eldi Moljir")
 
 //  H CKEYS
@@ -434,7 +432,7 @@
 /datum/gear/fluff/lassara_sheath
 	path = /obj/item/clothing/accessory/storage/knifeharness
 	display_name = "Lassara's Knife Harness"
-	ckeywhitelist = list("Killjaden")
+	ckeywhitelist = list("killjaden")
 	character_name = list("Lassara Faaira'Nrezi")
 
 /datum/gear/fluff/rana_medal
@@ -446,7 +444,7 @@
 /datum/gear/fluff/taiga_uniform
 	path = /obj/item/clothing/under/fluff/taiga
 	display_name = "Taifa's Uniform"
-	ckeywhitelist = list("KiwiDaNinja")
+	ckeywhitelist = list("kiwiDaNinja")
 	character_name = list("Chakat Taiga")
 
 /datum/gear/fluff/rischi_implant
@@ -478,7 +476,7 @@
 /datum/gear/fluff/savannah_implant
 	path = /obj/item/weapon/implanter/reagent_generator/savannah
 	display_name = "Savannah's Implant"
-	ckeywhitelist = list("Lycanthorph")
+	ckeywhitelist = list("lycanthorph")
 	character_name = list("Savannah Dixon")
 
 //  M CKEYS
@@ -659,7 +657,7 @@
 /datum/gear/fluff/fortune_backpack
 	path = /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
 	display_name = "Fortune's Backpack"
-	ckeywhitelist = list("Swat43")
+	ckeywhitelist = list("swat43")
 	character_name = list("Fortune Bloise")
 
 /datum/gear/fluff/alexis_cane
@@ -671,13 +669,13 @@
 /datum/gear/fluff/roiz_implant
 	path = /obj/item/weapon/implanter/reagent_generator/roiz
 	display_name = "Roiz's Implant"
-	ckeywhitelist = list("SpoopyLizz")
+	ckeywhitelist = list("spoopyLizz")
 	character_name = list("Roiz Lizden")
 
 /datum/gear/fluff/roiz_coat
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/roiz
 	display_name = "Roiz's Coat"
-	ckeywhitelist = list("SpoopyLizz")
+	ckeywhitelist = list("spoopyLizz")
 	character_name = list("Roiz Lizden")
 
 /datum/gear/fluff/silent_mimemask
@@ -807,13 +805,13 @@
 /datum/gear/fluff/keturah_maiddress
 	path = /obj/item/clothing/under/dress/maid/
 	display_name = "Keturah's Maid Dress"
-	ckeywhitelist = list("Viveret")
+	ckeywhitelist = list("viveret")
 	character_name = list("Keturah")
 
 /datum/gear/fluff/silentio_mimeuniform
 	path = /obj/item/clothing/under/sexymime
 	display_name = "Silentio's Mime Uniform"
-	ckeywhitelist = list("Viveret")
+	ckeywhitelist = list("viveret")
 	character_name = list("Silentio")
 
 /datum/gear/fluff/silentio_mimemask
@@ -871,24 +869,30 @@
 /datum/gear/fluff/penelope_box
 	path = /obj/item/weapon/storage/box/fluff/penelope
 	display_name = "Penelope's Box"
-	ckeywhitelist = list("Xsdew")
+	ckeywhitelist = list("xsdew")
 	character_name = list("Penelope Allen")
 
 /datum/gear/fluff/amy_id
 	path = /obj/item/weapon/card/id/fluff/xennith
 	display_name = "Amy's ID Card"
-	ckeywhitelist = list("Xennith")
+	ckeywhitelist = list("xennith")
 	character_name = list("Amy Lessen")
 
 /datum/gear/fluff/ali_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
 	display_name = "Ali's Unity Medal"
-	ckeywhitelist = list("Xonkon")
+	ckeywhitelist = list("xonkon")
 	character_name = list("Ali")
 
 //  Y CKEYS
 
 //  Z CKEYS
+/datum/gear/fluff/tachika_medal
+	path = /obj/item/clothing/head/fluff/zao
+	display_name = "Tachika's Conduct Medal"
+	ckeywhitelist = list("zammyman")
+	character_name = list("Tachika")
+
 /datum/gear/fluff/zaoozaoo_hat
 	path = /obj/item/clothing/head/fluff/zao
 	display_name = "Zaoozaoo's Hat"
