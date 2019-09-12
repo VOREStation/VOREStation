@@ -764,7 +764,7 @@
 
 /area/shuttle/excursion/virgo3b_sky
 	name = "\improper Excursion Shuttle - Virgo3b Sky"
-	base_turf = /turf/simulated/sky
+	base_turf = /turf/simulated/sky/virgo3b/south
 
 // Elevator area //
 

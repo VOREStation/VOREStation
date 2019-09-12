@@ -149,6 +149,7 @@
 /area/tether_away/debrisfield/explored)
 "aD" = (
 /obj/machinery/processor,
+/obj/item/slime_extract/dark_blue,
 /turf/simulated/floor/tiled/white/airless,
 /area/tether_away/debrisfield/explored)
 "aE" = (
@@ -383,6 +384,10 @@
 /obj/item/weapon/tool/prybar/red,
 /turf/simulated/floor/airless,
 /area/tether_away/debrisfield/explored)
+"bq" = (
+/mob/living/simple_mob/slime/feral/dark_blue,
+/turf/simulated/floor/airless,
+/area/tether_away/debrisfield/explored)
 
 (1,1,1) = {"
 aa
@@ -555,7 +560,7 @@ ac
 ac
 ac
 ac
-ac
+bq
 ac
 ab
 aY
@@ -702,7 +707,7 @@ ad
 ad
 ab
 ad
-aT
+ad
 ab
 aa
 aa
@@ -807,7 +812,7 @@ ad
 ab
 aB
 ad
-ad
+aT
 aX
 ad
 ad
@@ -859,7 +864,7 @@ ad
 ad
 ad
 ab
-aT
+ad
 ad
 aX
 ab
@@ -1025,7 +1030,7 @@ ad
 ad
 ad
 ad
-aT
+ad
 ad
 ab
 aa
