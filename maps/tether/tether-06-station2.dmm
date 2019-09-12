@@ -13664,6 +13664,10 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 9
 	},
+/obj/structure/sink/kitchen{
+	name = "sink";
+	pixel_y = 28
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/biostorage)
 "uw" = (
