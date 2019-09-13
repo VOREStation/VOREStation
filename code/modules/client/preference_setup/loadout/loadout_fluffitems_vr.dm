@@ -888,7 +888,7 @@
 
 //  Z CKEYS
 /datum/gear/fluff/tachika_medal
-	path = /obj/item/clothing/head/fluff/zao
+	path = /obj/item/clothing/accessory/medal/conduct
 	display_name = "Tachika's Conduct Medal"
 	ckeywhitelist = list("zammyman")
 	character_name = list("Tachika")
