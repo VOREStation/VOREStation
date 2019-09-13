@@ -1,5 +1,5 @@
 #define DAM_SCALE_FACTOR 0.01
-#define METAL_PER_TICK 150
+#define METAL_PER_TICK 100
 /datum/species/protean
 	name =             SPECIES_PROTEAN
 	name_plural =      "Proteans"
@@ -30,9 +30,10 @@
 	blood_volume =	0
 	min_age =		18
 	max_age =		200
-	brute_mod =		1.25
-	burn_mod =		1.25
+	brute_mod =		1
+	burn_mod =		1.4
 	oxy_mod =		0
+	item_slowdown_mod = 1.33
 
 	cold_level_1 = 280 //Default 260 - Lower is better
 	cold_level_2 = 220 //Default 200
@@ -57,8 +58,6 @@
 
 	siemens_coefficient =   1.5 //Very bad zappy times
 	rarity_value =          5
-
-	darksight = 3 // Equivalent to the minor trait
 
 	has_organ = list(
 		O_BRAIN = /obj/item/organ/internal/mmi_holder/posibrain/nano,
@@ -160,7 +159,7 @@
 	return rgb(80,80,80,230)
 
 /datum/species/protean/handle_death(var/mob/living/carbon/human/H)
-	to_chat(H,"<span class='warning'>You died as a Protean. Please sit out of the round for at least 30 minutes before respawning, to represent the time it would take to ship a new-you to the station.</span>")
+	to_chat(H,"<span class='warning'>You died as a Protean. Please sit out of the round for at least 60 minutes before respawning, to represent the time it would take to ship a new-you to the station.</span>")
 	spawn(1) //This spawn is here so that if the protean_blob calls qdel, it doesn't try to gib the humanform.
 		if(H)
 			H.gib()
@@ -174,16 +173,20 @@
 	if(refactory && !(refactory.status & ORGAN_DEAD))
 
 		//MHydrogen adds speeeeeed
-		if(refactory.get_stored_material("mhydrogen") >= METAL_PER_TICK)
+		if(refactory.get_stored_material(MAT_METALHYDROGEN) >= METAL_PER_TICK)
 			H.add_modifier(/datum/modifier/protean/mhydrogen, origin = refactory)
 
-		//Plasteel adds brute armor
-		if(refactory.get_stored_material("plasteel") >= METAL_PER_TICK)
-			H.add_modifier(/datum/modifier/protean/plasteel, origin = refactory)
+		//Uranium adds brute armor
+		if(refactory.get_stored_material(MAT_URANIUM) >= METAL_PER_TICK)
+			H.add_modifier(/datum/modifier/protean/uranium, origin = refactory)
 
-		//Diamond adds burn armor
-		if(refactory.get_stored_material("diamond") >= METAL_PER_TICK)
-			H.add_modifier(/datum/modifier/protean/diamond, origin = refactory)
+		//Gold adds burn armor
+		if(refactory.get_stored_material(MAT_GOLD) >= METAL_PER_TICK)
+			H.add_modifier(/datum/modifier/protean/gold, origin = refactory)
+
+		//Silver adds darksight
+		if(refactory.get_stored_material(MAT_SILVER) >= METAL_PER_TICK)
+			H.add_modifier(/datum/modifier/protean/silver, origin = refactory)
 
 	return ..()
 
@@ -245,31 +248,42 @@
 	on_created_text = "<span class='notice'>You feel yourself accelerate, the metallic hydrogen increasing your speed temporarily.</span>"
 	on_expired_text = "<span class='notice'>Your refactory finishes consuming the metallic hydrogen, and you return to normal speed.</span>"
 
-	material_name = "mhydrogen"
+	material_name = MAT_METALHYDROGEN
 
 	slowdown = -1
 
-/datum/modifier/protean/plasteel
-	name = "Protean Effect - Plasteel"
-	desc = "You're affected by the presence of plasteel."
+/datum/modifier/protean/uranium
+	name = "Protean Effect - Uranium"
+	desc = "You're affected by the presence of uranium."
 
-	on_created_text = "<span class='notice'>You feel yourself become nearly impervious to physical attacks as plasteel nanites are made.</span>"
-	on_expired_text = "<span class='notice'>Your refactory finishes consuming the plasteel, and you return to your normal nanites.</span>"
+	on_created_text = "<span class='notice'>You feel yourself become nearly impervious to physical attacks as uranium is incorporated in your nanites.</span>"
+	on_expired_text = "<span class='notice'>Your refactory finishes consuming the uranium, and you return to your normal nanites.</span>"
 
-	material_name = "plasteel"
+	material_name = MAT_URANIUM
 
-	incoming_brute_damage_percent = 0.5
+	incoming_brute_damage_percent = 0.8
 
-/datum/modifier/protean/diamond
-	name = "Protean Effect - Diamond"
-	desc = "You're affected by the presence of diamond."
+/datum/modifier/protean/gold
+	name = "Protean Effect - Gold"
+	desc = "You're affected by the presence of gold."
 
 	on_created_text = "<span class='notice'>You feel yourself become more reflective, able to resist heat and fire better for a time.</span>"
-	on_expired_text = "<span class='notice'>Your refactory finishes consuming the diamond, and you return to your normal nanites.</span>"
+	on_expired_text = "<span class='notice'>Your refactory finishes consuming the gold, and you return to your normal nanites.</span>"
 
-	material_name = "diamond"
+	material_name = MAT_GOLD
 
-	incoming_fire_damage_percent = 0.2
+	incoming_fire_damage_percent = 0.8
+
+/datum/modifier/protean/silver
+	name = "Protean Effect - Silver"
+	desc = "You're affected by the presence of silver."
+
+	on_created_text = "<span class='notice'>Your optical senses are improved for a time, allowing you to see better in the dark.</span>"
+	on_expired_text = "<span class='notice'>Your refactory finishes consuming the silver, and your eyes dullen.</span>"
+
+	material_name = MAT_SILVER
+
+	darksight = 7
 
 /datum/modifier/protean/steel
 	name = "Protean Effect - Steel"
@@ -278,7 +292,7 @@
 	on_created_text = "<span class='notice'>You feel new nanites being produced from your stockpile of steel, healing you slowly.</span>"
 	on_expired_text = "<span class='notice'>Your steel supply has either run out, or is no longer needed, and your healing stops.</span>"
 
-	material_name = "steel"
+	material_name = MAT_STEEL
 
 /datum/modifier/protean/steel/tick()
 	..()
