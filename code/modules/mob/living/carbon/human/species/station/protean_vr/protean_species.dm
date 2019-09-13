@@ -278,12 +278,13 @@
 	name = "Protean Effect - Silver"
 	desc = "You're affected by the presence of silver."
 
-	on_created_text = "<span class='notice'>Your optical senses are improved for a time, allowing you to see better in the dark.</span>"
-	on_expired_text = "<span class='notice'>Your refactory finishes consuming the silver, and your eyes dullen.</span>"
+	on_created_text = "<span class='notice'>Your physical control is improved for a time, making it easier to hit targets, and avoid being hit.</span>"
+	on_expired_text = "<span class='notice'>Your refactory finishes consuming the silver, and your motor control returns to normal.</span>"
 
 	material_name = MAT_SILVER
 
-	darksight = 7
+	accuracy = 30
+	evasion = 30
 
 /datum/modifier/protean/steel
 	name = "Protean Effect - Steel"
