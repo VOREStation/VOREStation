@@ -72,3 +72,20 @@
 	name = "bottle of Healing nanites capsules"
 	desc = "Miniature medical robots that swiftly restore bodily damage."
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/healing_nanites = 7)
+
+/obj/item/weapon/storage/firstaid/insiderepair
+	name = "combat organ kit"
+	desc = "Contains advanced organ medical treatments."
+	icon_state = "bezerk"
+	item_state_slots = list(slot_r_hand_str = "firstaid-advanced", slot_l_hand_str = "firstaid-advanced")
+	starts_with = list(
+		/obj/item/weapon/storage/pill_bottle/rezadone,
+		/obj/item/weapon/storage/pill_bottle/peridaxon,
+		/obj/item/weapon/storage/pill_bottle/carthatoline,
+		/obj/item/weapon/storage/pill_bottle/alkysine,
+		/obj/item/weapon/storage/pill_bottle/imidazoline,
+		/obj/item/weapon/storage/pill_bottle/osteodaxon,
+		/obj/item/weapon/storage/pill_bottle/myelamine,
+		/obj/item/weapon/storage/pill_bottle/arithrazine,
+		/obj/item/device/healthanalyzer/advanced
+	)

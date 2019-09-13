@@ -75,6 +75,7 @@
 		log_and_message_admins("[key_name_admin(usr)] activated a bluespace capsule at [get_area(T)]!")
 		if(above_location)
 			template.add_roof(above_location)
+		template.annihilate_plants(deploy_location)
 		template.load(deploy_location, centered = TRUE)
 		qdel(src)
 
@@ -83,16 +84,30 @@
 	desc = "An exorbitantly expensive luxury suite programmed into construction nanomachines. There's a license for use printed on the bottom."
 	template_id = "shelter_beta"
 
+/obj/item/device/survivalcapsule/luxurybar
+	name = "luxury surfluid bar capsule"
+	desc = "A luxury bar in a capsule. Bartender required and not included. There's a license for use printed on the bottom."
+	template_id = "shelter_gamma"
+
+/obj/item/device/survivalcapsule/military
+	name = "military surfluid shelter capsule"
+	desc = "A prefabricated firebase in a capsule. Contains basic weapons, building materials, and combat suits. There's a license for use printed on the bottom."
+	template_id = "shelter_delta"
+
+//Custom Shelter Capsules
 /obj/item/device/survivalcapsule/tabiranth
 	name = "silver-trimmed surfluid shelter capsule"
 	desc = "An exorbitantly expensive luxury suite programmed into construction nanomachines. This one is a particularly rare and expensive model. There's a license for use printed on the bottom."
-	template_id = "shelter_gamma"
+	template_id = "shelter_phi"
 
 //Pod objects
 //Walls
 /turf/simulated/shuttle/wall/voidcraft/survival
 	name = "survival shelter"
 	stripe_color = "#efbc3b"
+
+/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner
+	hard_corner = 1
 
 //Doors
 /obj/machinery/door/airlock/voidcraft/survival_pod
