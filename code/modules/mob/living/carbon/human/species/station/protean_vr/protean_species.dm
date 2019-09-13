@@ -17,7 +17,7 @@
 
 	flags =            NO_SCAN | NO_SLIP | NO_MINOR_CUT | NO_HALLUCINATION | NO_INFECT | NO_PAIN
 	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | HAS_UNDERWEAR | HAS_LIPS
-	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
+	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
 	health_hud_intensity = 2
 	num_alternate_languages = 3
 	assisted_langs = list(LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
@@ -30,8 +30,8 @@
 	blood_volume =	0
 	min_age =		18
 	max_age =		200
-	brute_mod =		0.2 //Brute isn't very effective, they're made of dust
-	burn_mod =		2.0 //Burn, however, is
+	brute_mod =		1.25
+	burn_mod =		1.25
 	oxy_mod =		0
 
 	cold_level_1 = 280 //Default 260 - Lower is better
@@ -42,8 +42,7 @@
 	heat_level_2 = 370 //Default 400
 	heat_level_3 = 600 //Default 1000
 
-	//Space doesn't bother them
-	hazard_low_pressure = -1
+	hazard_low_pressure = -1 //Space doesn't bother them
 	hazard_high_pressure = 200 //They can cope with slightly higher pressure
 
 	//Cold/heat does affect them, but it's done in special ways below
@@ -56,7 +55,7 @@
 
 	body_temperature =      290
 
-	siemens_coefficient =   3 //Very bad zappy times
+	siemens_coefficient =   1.5 //Very bad zappy times
 	rarity_value =          5
 
 	darksight = 3 // Equivalent to the minor trait
