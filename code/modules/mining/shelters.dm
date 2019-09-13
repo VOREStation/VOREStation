@@ -8,8 +8,8 @@
 
 /datum/map_template/shelter/New()
 	. = ..()
-	blacklisted_turfs = typecacheof(/turf/unsimulated)
-	whitelisted_turfs = list()
+	blacklisted_turfs = typecacheof(list(/turf/unsimulated, /turf/simulated/wall, /turf/simulated/floor/tiled, /turf/simulated/mineral))
+	whitelisted_turfs = typecacheof(/turf/simulated/mineral/floor)
 	banned_areas = typecacheof(/area/shuttle)
 	banned_objects = list()
 
@@ -54,11 +54,6 @@
 		absolutely free!"
 	mappath = "maps/submaps/shelters/shelter_1.dmm"
 
-/datum/map_template/shelter/alpha/New()
-	. = ..()
-	whitelisted_turfs = typecacheof(/turf/simulated/mineral)
-	banned_objects = list()
-
 /datum/map_template/shelter/beta
 	name = "Shelter Beta"
 	shelter_id = "shelter_beta"
@@ -68,11 +63,6 @@
 		and a deluxe companion to keep you from getting lonely during \
 		an ash storm."
 	mappath = "maps/submaps/shelters/shelter_2.dmm"
-
-/datum/map_template/shelter/beta/New()
-	. = ..()
-	whitelisted_turfs = typecacheof(/turf/simulated/mineral)
-	banned_objects = list()
 
 /datum/map_template/shelter/gamma
 	name = "Shelter Gamma"
@@ -84,11 +74,6 @@
 		death."
 	mappath = "maps/submaps/shelters/shelter_3.dmm"
 
-/datum/map_template/shelter/gamma/New()
-	. = ..()
-	whitelisted_turfs = typecacheof(/turf/simulated/mineral)
-	banned_objects = list()
-
 /datum/map_template/shelter/delta
 	name = "Shelter Delta"
 	shelter_id = "shelter_delta"
@@ -99,11 +84,6 @@
 		possible."
 	mappath = "maps/submaps/shelters/shelter_4.dmm"
 
-/datum/map_template/shelter/delta/New()
-	. = ..()
-	whitelisted_turfs = typecacheof(/turf/simulated/mineral)
-	banned_objects = list()
-
 /datum/map_template/shelter/phi
 	name = "Shelter Phi"
 	shelter_id = "shelter_phi"
@@ -113,8 +93,3 @@
 		to no contact, the expense of these shelters have prevented them \
 		from seeing common use."
 	mappath = "maps/submaps/shelters/shelter_a.dmm"
-
-/datum/map_template/shelter/phi/New()
-	. = ..()
-	whitelisted_turfs = typecacheof(/turf/simulated/mineral)
-	banned_objects = list()
