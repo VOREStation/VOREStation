@@ -1313,6 +1313,7 @@
 #include "code\game\objects\structures\stool_bed_chair_nest\alien_nests.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\bed.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\chairs.dm"
+#include "code\game\objects\structures\stool_bed_chair_nest\chairs_vr.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\stools.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\wheelchair.dm"
 #include "code\game\turfs\simulated.dm"
