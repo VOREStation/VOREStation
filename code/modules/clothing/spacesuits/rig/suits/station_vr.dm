@@ -11,7 +11,8 @@
 		)
 
 //Armor reduction for industrial suit
-/obj/item/weapon/rig/industrial
+/obj/item/weapon/rig/industrial/vendor
+	desc = "A heavy, powerful hardsuit used by construction crews and mining corporations. This is a mass production model with reduced armor."
 	armor = list(melee = 50, bullet = 10, laser = 20, energy = 15, bomb = 30, bio = 100, rad = 50)
 
 /obj/item/weapon/rig/ert/assetprotection

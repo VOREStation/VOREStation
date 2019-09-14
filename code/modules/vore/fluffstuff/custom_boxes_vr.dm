@@ -147,7 +147,6 @@
 		new /obj/item/clothing/accessory/holster/hip(src)
 		new /obj/item/clothing/suit/storage/fluff/modernfedcoat(src)
 		new /obj/item/clothing/head/caphat/formal/fedcover(src)
-		new /obj/item/weapon/card/id/centcom/station/fluff/joanbadge(src)
 		new /obj/item/clothing/suit/armor/det_suit(src)
 		new /obj/item/weapon/flame/lighter/zippo/fluff/joan(src)
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
