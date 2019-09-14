@@ -6871,6 +6871,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
+"amo" = (
+/obj/machinery/door/window/northright{
+	name = "Cafe";
+	req_one_access = list(25)
+	},
+/turf/simulated/floor/wood,
+/area/hallway/station/atrium)
 "amp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -6924,8 +6931,10 @@
 /area/engineering/hallway)
 "amt" = (
 /obj/machinery/door/window{
+	dir = 1;
 	icon_state = "left";
-	dir = 1
+	name = "Cafe";
+	req_one_access = list(25)
 	},
 /turf/simulated/floor/wood,
 /area/hallway/station/atrium)
@@ -6954,10 +6963,6 @@
 	dir = 8
 	},
 /turf/simulated/floor/water/pool,
-/area/hallway/station/atrium)
-"amy" = (
-/obj/machinery/door/window/northright,
-/turf/simulated/floor/wood,
 /area/hallway/station/atrium)
 "amz" = (
 /obj/structure/table/woodentable,
@@ -34018,7 +34023,7 @@ afc
 agD
 agx
 acm
-amy
+amo
 acH
 acH
 acH
