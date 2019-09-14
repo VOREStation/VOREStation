@@ -491,7 +491,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(equipment)
 		if(charjob)
 			job_master.EquipRank(new_character, charjob, 1)
-		equip_custom_items(new_character)
+		//equip_custom_items(new_character)	//VOREStation Removal
 
 	//If desired, add records.
 	if(records)
