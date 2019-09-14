@@ -866,12 +866,6 @@
 	ckeywhitelist = list("xsdew")
 	character_name = list("Penelope Allen")
 
-/datum/gear/fluff/amy_id
-	path = /obj/item/weapon/card/id/fluff/xennith
-	display_name = "Amy's ID Card"
-	ckeywhitelist = list("xennith")
-	character_name = list("Amy Lessen")
-
 /datum/gear/fluff/ali_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
 	display_name = "Ali's Unity Medal"
