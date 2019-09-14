@@ -1314,7 +1314,6 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/mob/living/simple_mob/animal/passive/fish/javelin,
 /turf/simulated/floor/water/pool,
 /area/hallway/station/atrium)
 "acD" = (
@@ -1835,7 +1834,6 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/mob/living/simple_mob/animal/passive/fish/icebass,
 /turf/simulated/floor/water/pool,
 /area/hallway/station/atrium)
 "adF" = (
@@ -6873,13 +6871,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
-"amo" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/mob/living/simple_mob/animal/passive/fish/javelin,
-/turf/simulated/floor/water/pool,
-/area/hallway/station/atrium)
 "amp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -6955,7 +6946,6 @@
 	icon_state = "railing0";
 	dir = 4
 	},
-/mob/living/simple_mob/animal/passive/fish/solarfish,
 /turf/simulated/floor/water/pool,
 /area/hallway/station/atrium)
 "amx" = (
@@ -7019,17 +7009,11 @@
 	},
 /turf/simulated/floor/wood,
 /area/hallway/station/atrium)
-"amG" = (
-/obj/structure/railing,
-/mob/living/simple_mob/animal/passive/fish/icebass,
-/turf/simulated/floor/water/pool,
-/area/hallway/station/atrium)
 "amH" = (
 /obj/structure/railing{
 	dir = 4
 	},
 /obj/structure/railing,
-/mob/living/simple_mob/animal/passive/fish/solarfish,
 /turf/simulated/floor/water/pool,
 /area/hallway/station/atrium)
 "amI" = (
@@ -34896,8 +34880,8 @@ acm
 acF
 add
 adl
-amo
-amG
+adE
+amv
 acy
 acp
 beK
