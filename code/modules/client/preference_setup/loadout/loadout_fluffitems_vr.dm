@@ -55,12 +55,6 @@
 	ckeywhitelist = list("arokha")
 	character_name = list("Aronai Kadigan")
 
-/datum/gear/fluff/aronai_ccid
-	path = /obj/item/weapon/card/id/centcom/station/fluff/aronai
-	display_name = "Aronai's CC ID"
-	ckeywhitelist = list("arokha")
-	character_name = list("Aronai Kadigan")
-
 //  B CKEYS
 /datum/gear/fluff/yuuko_kimono
 	path = /obj/item/clothing/under/fluff/sakura_hokkaido_kimono
