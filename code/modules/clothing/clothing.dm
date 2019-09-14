@@ -573,6 +573,10 @@
 		M.update_inv_shoes()
 	return ..()
 
+/obj/item/clothing/shoes/clean_blood()
+	update_icon()
+	return ..()
+
 /obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running)
 	if(prob(1) && !recent_squish) //VOREStation edit begin
 		recent_squish = 1
