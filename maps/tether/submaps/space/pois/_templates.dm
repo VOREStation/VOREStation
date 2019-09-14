@@ -49,6 +49,31 @@
 	mappath = 'debris1.dmm'
 	cost = 2
 
+/datum/map_template/debrisfield/debris2
+	name = "Debris 2"
+	mappath = 'debris2.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/debris3
+	name = "Debris 3"
+	mappath = 'debris3.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/debris4
+	name = "Debris 4"
+	mappath = 'debris4.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/debris5
+	name = "Debris 5"
+	mappath = 'debris5.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/debris6
+	name = "Debris 6"
+	mappath = 'debris6.dmm'
+	cost = 2
+
 /datum/map_template/debrisfield/ship_sup_exploded
 	name = "Exploded Cargo Ship"
 	mappath = 'ship_sup_exploded.dmm'
@@ -65,4 +90,10 @@
 	name = "Overrun Research Ship"
 	mappath = 'ship_sci_overrun.dmm'
 	cost = 35
+	allow_duplicates = FALSE
+
+/datum/map_template/debrisfield/oldshuttle
+	name = "Old Expedition Shuttle"
+	mappath = 'oldshuttle.dmm'
+	cost = 30
 	allow_duplicates = FALSE

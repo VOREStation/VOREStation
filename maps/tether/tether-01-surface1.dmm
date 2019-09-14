@@ -25268,6 +25268,7 @@
 /area/crew_quarters/visitor_lodging)
 "chE" = (
 /obj/structure/closet/secure_closet/personal,
+/obj/item/weapon/towel/random,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_8)
 "chF" = (
@@ -25279,6 +25280,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/structure/table/standard,
+/obj/random/soap,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/Dorm_8)
 "chH" = (
@@ -25493,6 +25496,7 @@
 /area/crew_quarters/sleep/Dorm_6)
 "cis" = (
 /obj/structure/closet/secure_closet/personal,
+/obj/item/weapon/towel/random,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_6)
 "cit" = (
@@ -25504,6 +25508,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/structure/table/standard,
+/obj/random/soap,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/Dorm_6)
 "civ" = (
@@ -25716,6 +25722,7 @@
 /area/crew_quarters/visitor_laundry)
 "cjf" = (
 /obj/structure/closet/secure_closet/personal,
+/obj/item/weapon/towel/random,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_4)
 "cjg" = (
@@ -25727,6 +25734,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/structure/table/standard,
+/obj/random/soap,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/Dorm_4)
 "cji" = (
@@ -25964,6 +25973,7 @@
 /area/crew_quarters/sleep/Dorm_2)
 "cjQ" = (
 /obj/structure/closet/secure_closet/personal,
+/obj/item/weapon/towel/random,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_2)
 "cjR" = (
@@ -25975,6 +25985,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/structure/table/standard,
+/obj/random/soap,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/Dorm_2)
 "cjT" = (

@@ -1,4 +1,6 @@
 /mob/living/simple_mob/animal/passive/mouse
+	nutrition = 0	//To prevent draining maint mice for infinite food. Low nutrition has no mechanical effect on simplemobs, so wont hurt mice themselves.
+
 	no_vore = 1 //Mice can't eat others due to the amount of bugs caused by it.
 	vore_taste = "cheese"
 

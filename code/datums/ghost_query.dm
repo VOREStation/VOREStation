@@ -117,7 +117,7 @@
 /datum/ghost_query/lost_drone
 	role_name = "Lost Drone"
 	question = "A lost drone onboard has been discovered by a crewmember and they are attempting to reactivate it.  Would you like to play as the drone?"
-	be_special_flag = BE_AI
+	//be_special_flag = BE_AI	//VOREStation Removal: Positronic role is never used because intended purpose is unfitting, so remove the check
 	check_bans = list("AI", "Cyborg")
 	cutoff_number = 1
 

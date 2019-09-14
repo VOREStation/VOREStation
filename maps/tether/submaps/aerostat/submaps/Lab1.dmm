@@ -281,6 +281,10 @@
 "W" = (
 /turf/simulated/floor/plating/virgo2,
 /area/submap/virgo2/Lab1)
+"X" = (
+/obj/structure/ghost_pod/manual/lost_drone/dogborg,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
 
 (1,1,1) = {"
 a
@@ -660,7 +664,7 @@ a
 a
 V
 f
-h
+X
 h
 p
 t

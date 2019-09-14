@@ -38,3 +38,43 @@
 	access = list(access_mining,
 				  access_eva)
 	one_access = TRUE
+
+/datum/supply_pack/misc/medical_rig
+	name = "medical hardsuit (empty)"
+	contains = list(
+			/obj/item/weapon/rig/medical = 1
+			)
+	cost = 150
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "medical hardsuit crate"
+	access = access_medical
+
+/datum/supply_pack/misc/security_rig
+	name = "hazard hardsuit (empty)"
+	contains = list(
+			/obj/item/weapon/rig/hazard = 1
+			)
+	cost = 150
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "hazard hardsuit crate"
+	access = access_armory
+
+/datum/supply_pack/misc/science_rig
+	name = "ami hardsuit (empty)"
+	contains = list(
+			/obj/item/weapon/rig/hazmat = 1
+			)
+	cost = 150
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "ami hardsuit crate"
+	access = access_rd
+
+/datum/supply_pack/misc/ce_rig
+	name = "advanced voidsuit (empty)"
+	contains = list(
+			/obj/item/weapon/rig/ce = 1
+			)
+	cost = 150
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "advanced voidsuit crate"
+	access = access_ce
