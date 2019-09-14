@@ -139,9 +139,9 @@
 	icon_state = "blood"
 	idle_power_usage = 211
 	req_access = list(access_medical)
-	products = list(/obj/item/weapon/reagent_containers/blood/APlus = 3,/obj/item/weapon/reagent_containers/blood/AMinus = 3,
-					/obj/item/weapon/reagent_containers/blood/BPlus = 3,/obj/item/weapon/reagent_containers/blood/BMinus = 3,
-					/obj/item/weapon/reagent_containers/blood/OPlus = 2,/obj/item/weapon/reagent_containers/blood/OMinus = 5,
+	products = list(/obj/item/weapon/reagent_containers/blood/prelabeled/APlus = 3,/obj/item/weapon/reagent_containers/blood/prelabeled/AMinus = 3,
+					/obj/item/weapon/reagent_containers/blood/prelabeled/BPlus = 3,/obj/item/weapon/reagent_containers/blood/prelabeled/BMinus = 3,
+					/obj/item/weapon/reagent_containers/blood/prelabeled/OPlus = 2,/obj/item/weapon/reagent_containers/blood/prelabeled/OMinus = 5,
 					/obj/item/weapon/reagent_containers/blood/empty = 5)
 	contraband = list(/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 2)
 	req_log_access = access_cmo
