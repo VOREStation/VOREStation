@@ -1324,7 +1324,7 @@
 /obj/structure/table/woodentable,
 /obj/machinery/door/blast/shutters{
 	dir = 8;
-	id = "cafe";
+	id = "cafe2";
 	layer = 3.1;
 	name = "Cafe Shutters"
 	},
@@ -1738,7 +1738,7 @@
 /obj/item/weapon/reagent_containers/glass/rag,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
-	id = "cafe";
+	id = "cafe2";
 	layer = 3.1;
 	name = "Cafe Shutters"
 	},
@@ -1754,7 +1754,7 @@
 /obj/machinery/chemical_dispenser/bar_coffee/full,
 /obj/machinery/button/remote/blast_door{
 	desc = "A remote control-switch for shutters.";
-	id = "cafe";
+	id = "cafe2";
 	name = "Cafe Shutters";
 	pixel_x = -10;
 	pixel_y = 36;
@@ -6683,7 +6683,7 @@
 	},
 /obj/machinery/door/blast/shutters{
 	dir = 2;
-	id = "cafe";
+	id = "cafe2";
 	layer = 3.1;
 	name = "Cafe Shutters"
 	},
@@ -6792,7 +6792,7 @@
 /obj/structure/table/woodentable,
 /obj/machinery/door/blast/shutters{
 	dir = 4;
-	id = "cafe";
+	id = "cafe2";
 	layer = 3.1;
 	name = "Cafe Shutters"
 	},
@@ -6843,7 +6843,7 @@
 /obj/structure/table/woodentable,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
-	id = "cafe";
+	id = "cafe2";
 	layer = 3.1;
 	name = "Cafe Shutters"
 	},
@@ -6978,7 +6978,7 @@
 /obj/structure/table/woodentable,
 /obj/machinery/door/blast/shutters{
 	dir = 8;
-	id = "cafe";
+	id = "cafe2";
 	layer = 3.1;
 	name = "Cafe Shutters"
 	},
@@ -6989,7 +6989,7 @@
 /obj/structure/table/woodentable,
 /obj/machinery/door/blast/shutters{
 	dir = 4;
-	id = "cafe";
+	id = "cafe2";
 	layer = 3.1;
 	name = "Cafe Shutters"
 	},
@@ -7003,7 +7003,7 @@
 "amF" = (
 /obj/machinery/door/blast/shutters{
 	dir = 2;
-	id = "cafe";
+	id = "cafe2";
 	layer = 3.1;
 	name = "Cafe Shutters"
 	},
