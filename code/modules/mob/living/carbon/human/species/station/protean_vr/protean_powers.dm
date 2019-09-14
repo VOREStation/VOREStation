@@ -200,7 +200,7 @@
 
 	var/obj/item/stack/material/matstack = held
 	var/substance = matstack.material.name
-	var/list/edible_materials = list("steel", "plasteel", "diamond", "mhydrogen") //Can't eat all materials, just useful ones.
+	var/list/edible_materials = list(MAT_STEEL, MAT_SILVER, MAT_GOLD, MAT_URANIUM, MAT_METALHYDROGEN) //Can't eat all materials, just useful ones.
 	var allowed = FALSE
 	for(var/material in edible_materials)
 		if(material == substance) allowed = TRUE
@@ -298,14 +298,14 @@
 
 	//Sizing up
 	if(cost > 0)
-		if(refactory.use_stored_material("steel",cost))
+		if(refactory.use_stored_material(MAT_STEEL,cost))
 			user.resize(size_factor)
 		else
 			to_chat(user,"<span class='warning'>That size change would cost [cost] steel, which you don't have.</span>")
 	//Sizing down (or not at all)
 	else if(cost <= 0)
 		cost = abs(cost)
-		var/actually_added = refactory.add_stored_material("steel",cost)
+		var/actually_added = refactory.add_stored_material(MAT_STEEL,cost)
 		user.resize(size_factor)
 		if(actually_added != cost)
 			to_chat(user,"<span class='warning'>Unfortunately, [cost-actually_added] steel was lost due to lack of storage space.</span>")
