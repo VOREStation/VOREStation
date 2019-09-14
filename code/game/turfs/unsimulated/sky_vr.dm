@@ -27,8 +27,10 @@
 		return //Don't ghostport, very annoying
 	if(AM.throwing)
 		return //Being thrown over, not fallen yet
-	if(/obj/item/projectile)
-		return // Bullets/lasers/pewpew should not fall out of the sky. pew.
+	if(istype(AM, /obj/item/projectile))
+		return // pewpew should not fall out of the sky. pew.
+	if(istype(AM, /obj/effect/projectile))
+		return // ...neither should the effects be falling
 
 	var/mob/living/L
 	if(isliving(AM))
