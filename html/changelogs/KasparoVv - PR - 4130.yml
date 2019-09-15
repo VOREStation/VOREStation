@@ -1,6 +1,0 @@
-author: KasparoVy
-delete-after: True
-changes: 
-  - rscadd: "Hiding mobs are now revealed when grabbed, buckled and/or killed."
-  - rscadd: "You cannot hide if you grab something, are grabbed yourself or are buckled."
-  - rscadd: "Adds some fluff messages for when hiding mobs are revealed."
