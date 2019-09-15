@@ -249,7 +249,7 @@
 	path = /obj/item/clothing/accessory/badge/holo/detective/ruda
 	display_name = "Ruda's Detective Badge"
 	ckeywhitelist = list("interrolouis")
-	character_name = list(" Ruda Lizden")
+	character_name = list("Ruda Lizden")
 
 /datum/gear/fluff/kai_modkit
 	path = /obj/item/borg/upgrade/modkit/chassis_mod/kai
