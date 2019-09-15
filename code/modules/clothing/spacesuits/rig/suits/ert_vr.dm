@@ -1,4 +1,4 @@
-/obj/item/weapon/rig/ert/security
+/obj/item/weapon/rig/ert/janitor
 	name = "ERT-J suit control module"
 	desc = "A suit worn by the janitorial division of an Emergency Response Team. Has purple highlights. Armoured and space ready."
 	suit_type = "ERT janitor"
