@@ -19553,7 +19553,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/wall,
+/turf/simulated/floor,
 /area/quartermaster/warehouse)
 "Ed" = (
 /obj/structure/cable/green{
