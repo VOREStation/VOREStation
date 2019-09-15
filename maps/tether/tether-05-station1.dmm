@@ -7041,6 +7041,11 @@
 /obj/machinery/light/flamp/noshade,
 /turf/simulated/floor/grass,
 /area/hallway/station/atrium)
+"amJ" = (
+/obj/machinery/light/flamp/noshade,
+/obj/structure/flora/ausbushes/brflowers,
+/turf/simulated/floor/grass,
+/area/hallway/station/atrium)
 "amM" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -33612,11 +33617,11 @@ abh
 agv
 acp
 acy
-acy
-acy
-acy
+acG
 acF
-acT
+acG
+acF
+amJ
 acm
 acm
 acF
@@ -33753,7 +33758,7 @@ acV
 afW
 agB
 acp
-acy
+acF
 acD
 acI
 acI
@@ -33895,7 +33900,7 @@ aiI
 abh
 agC
 acp
-acT
+amJ
 amC
 acE
 acE
@@ -34605,7 +34610,7 @@ acN
 afC
 ajr
 acp
-acT
+amJ
 amD
 ami
 ami
@@ -34747,7 +34752,7 @@ ajo
 afC
 ajs
 acp
-acy
+acF
 acD
 acK
 acK
@@ -34890,11 +34895,11 @@ afC
 afe
 acp
 acy
-acy
-acy
-acy
+acG
 acF
-acT
+acG
+acF
+amJ
 acm
 acm
 acF
