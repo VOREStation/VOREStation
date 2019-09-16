@@ -212,7 +212,7 @@ Class Procs:
 	return (stat & (NOPOWER | BROKEN | additional_flags))
 
 /obj/machinery/CanUseTopic(var/mob/user)
-	if(!interact_offline && (stat & (NOPOWER | BROKEN)) || user.stat)
+	if(!interact_offline && (stat & (NOPOWER | BROKEN)))
 		return STATUS_CLOSE
 	if(!isliving(user))
 		return STATUS_UPDATE
