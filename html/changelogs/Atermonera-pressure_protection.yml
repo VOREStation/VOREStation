@@ -1,8 +1,0 @@
-author: Atermonera
-delete-after: True
-changes: 
-  - rscadd: "Clothing now has pressure protection variables, that set lower and upper pressure bounds within which they will protect you from pressure-based harm."
-  - rscadd: "Protection falls off when exceeding the pressure limits from 100% protection at the boundary to 0% at 10% in excess (above the max or below the min) boundary."
-  - tweak: "Currently, only hat and suit slots are checked for this protection (No change)."
-  - tweak: "Anomaly suits (The orange ones) now offer limited pressure protection in case anomalies start making or draining air."
-  - bugfix: "Firesuits are no longer spaceproof, but still offer protection against the high pressures of fire."

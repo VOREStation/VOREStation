@@ -437,7 +437,7 @@
 /datum/gear/fluff/taiga_uniform
 	path = /obj/item/clothing/under/fluff/taiga
 	display_name = "Taifa's Uniform"
-	ckeywhitelist = list("kiwiDaNinja")
+	ckeywhitelist = list("kiwidaninja")
 	character_name = list("Chakat Taiga")
 
 /datum/gear/fluff/rischi_implant
@@ -662,13 +662,13 @@
 /datum/gear/fluff/roiz_implant
 	path = /obj/item/weapon/implanter/reagent_generator/roiz
 	display_name = "Roiz's Implant"
-	ckeywhitelist = list("spoopyLizz")
+	ckeywhitelist = list("spoopylizz")
 	character_name = list("Roiz Lizden")
 
 /datum/gear/fluff/roiz_coat
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/roiz
 	display_name = "Roiz's Coat"
-	ckeywhitelist = list("spoopyLizz")
+	ckeywhitelist = list("spoopylizz")
 	character_name = list("Roiz Lizden")
 
 /datum/gear/fluff/silent_mimemask

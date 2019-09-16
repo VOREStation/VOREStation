@@ -214,8 +214,6 @@ Class Procs:
 /obj/machinery/CanUseTopic(var/mob/user)
 	if(!interact_offline && (stat & (NOPOWER | BROKEN)))
 		return STATUS_CLOSE
-	// return ..()		// This doesn't call the parent with the correct number of arguments (causing a runtime in /code/modules/nano/interaction/base.dm), nor easily provide any indication as to what the datum/topic_state should be, so this is clearly the wrong action.
-	return STATUS_INTERACTIVE
 
 /obj/machinery/CouldUseTopic(var/mob/user)
 	..()
