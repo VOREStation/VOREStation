@@ -387,7 +387,7 @@
 		return
 
 	// Equip our custom items only AFTER deploying to spawn points eh?
-	equip_custom_items(character)
+	//equip_custom_items(character)	//VOREStation Removal
 
 	//character.apply_traits() //VOREStation Removal
 

@@ -10213,11 +10213,6 @@
 /turf/simulated/floor/tiled,
 /area/security/hallway)
 "pS" = (
-/obj/machinery/alarm{
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -22
-	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/paleblue/border,
 /obj/effect/floor_decal/steeldecal/steel_decals7{
@@ -10226,6 +10221,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 8
 	},
+/obj/machinery/computer/timeclock/premade/south,
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "pT" = (
@@ -19016,6 +19012,11 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 8
 	},
+/obj/structure/extinguisher_cabinet{
+	dir = 4;
+	icon_state = "extinguisher_closed";
+	pixel_x = -30
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/chemistry)
 "Dn" = (
@@ -19548,7 +19549,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/wall,
+/turf/simulated/floor,
 /area/quartermaster/warehouse)
 "Ed" = (
 /obj/structure/cable/green{
@@ -38881,8 +38882,8 @@ NY
 NL
 vt
 vt
-aa
-aa
+gg
+gg
 aa
 aa
 aa
@@ -39023,8 +39024,8 @@ NS
 NL
 vt
 vt
-aa
-aa
+gg
+gg
 aa
 aa
 aa
@@ -39165,8 +39166,8 @@ NS
 NL
 vt
 vt
-aa
-aa
+gg
+gg
 aa
 aa
 aa
@@ -39307,8 +39308,8 @@ NS
 NL
 vt
 vt
-aa
-aa
+gg
+gg
 aa
 aa
 aa
@@ -39449,8 +39450,8 @@ NS
 NL
 vt
 vt
-aa
-aa
+gg
+gg
 aa
 aa
 aa
@@ -39590,9 +39591,9 @@ OK
 NS
 NL
 vt
-aa
-aa
-aa
+gg
+gg
+gg
 aa
 aa
 aa
@@ -39731,10 +39732,10 @@ Oe
 OL
 NS
 NL
-aa
-aa
-aa
-aa
+gg
+gg
+gg
+gg
 aa
 aa
 aa
@@ -39873,7 +39874,7 @@ Oe
 OM
 NU
 NL
-aa
+gg
 aa
 aa
 aa
@@ -40015,7 +40016,7 @@ Oe
 ON
 NS
 NL
-aa
+gg
 aa
 aa
 aa
@@ -40157,7 +40158,7 @@ Oe
 OO
 NS
 NL
-aa
+gg
 aa
 aa
 aa
@@ -40299,7 +40300,7 @@ Ou
 Oi
 NS
 NL
-aa
+gg
 aa
 aa
 aa
@@ -40441,7 +40442,7 @@ Ow
 NS
 NV
 NL
-aa
+gg
 aa
 aa
 aa
@@ -40583,7 +40584,7 @@ vt
 vt
 vt
 vt
-aa
+gg
 aa
 aa
 aa
@@ -40725,7 +40726,7 @@ vt
 vt
 vt
 vt
-aa
+gg
 aa
 aa
 aa

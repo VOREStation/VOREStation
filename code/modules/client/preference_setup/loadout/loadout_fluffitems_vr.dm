@@ -1,12 +1,11 @@
 /datum/gear/fluff
-	path = /obj/item/
+	path = /obj/item
 	sort_category = "Fluff Items"
 	display_name = "If this item can be chosen or seen, ping a coder immediately!"
 	ckeywhitelist = list("This entry should never be choosable with this variable set.") //If it does, then that means somebody fucked up the whitelist system pretty hard
 	character_name = list("This entry should never be choosable with this variable set.")
-	allowed_roles = list()
 	cost = 0
-/* 
+/*
 /datum/gear/fluff/testhorn
 	path = /obj/item/weapon/bikehorn
 	display_name = "Airhorn - Example Item"
@@ -210,7 +209,7 @@
 	display_name = "Verd's Medal"
 	ckeywhitelist = list("epigraphzero")
 	character_name = list("Verd Woodrow")
-	
+
 //  F CKEYS
 
 //  G CKEYS
@@ -250,7 +249,7 @@
 	path = /obj/item/clothing/accessory/badge/holo/detective/ruda
 	display_name = "Ruda's Detective Badge"
 	ckeywhitelist = list("interrolouis")
-	character_name = list(" Ruda Lizden")
+	character_name = list("Ruda Lizden")
 
 /datum/gear/fluff/kai_modkit
 	path = /obj/item/borg/upgrade/modkit/chassis_mod/kai
@@ -438,7 +437,7 @@
 /datum/gear/fluff/taiga_uniform
 	path = /obj/item/clothing/under/fluff/taiga
 	display_name = "Taifa's Uniform"
-	ckeywhitelist = list("kiwiDaNinja")
+	ckeywhitelist = list("kiwidaninja")
 	character_name = list("Chakat Taiga")
 
 /datum/gear/fluff/rischi_implant
@@ -663,13 +662,13 @@
 /datum/gear/fluff/roiz_implant
 	path = /obj/item/weapon/implanter/reagent_generator/roiz
 	display_name = "Roiz's Implant"
-	ckeywhitelist = list("spoopyLizz")
+	ckeywhitelist = list("spoopylizz")
 	character_name = list("Roiz Lizden")
 
 /datum/gear/fluff/roiz_coat
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/roiz
 	display_name = "Roiz's Coat"
-	ckeywhitelist = list("spoopyLizz")
+	ckeywhitelist = list("spoopylizz")
 	character_name = list("Roiz Lizden")
 
 /datum/gear/fluff/silent_mimemask
