@@ -214,9 +214,7 @@ Class Procs:
 /obj/machinery/CanUseTopic(var/mob/user)
 	if(!interact_offline && (stat & (NOPOWER | BROKEN)))
 		return STATUS_CLOSE
-	if(!isliving(user))
-		return STATUS_UPDATE
-	return STATUS_INTERACTIVE
+	return ..()
 
 /obj/machinery/CouldUseTopic(var/mob/user)
 	..()
