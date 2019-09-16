@@ -10213,11 +10213,6 @@
 /turf/simulated/floor/tiled,
 /area/security/hallway)
 "pS" = (
-/obj/machinery/alarm{
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -22
-	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/paleblue/border,
 /obj/effect/floor_decal/steeldecal/steel_decals7{
@@ -10226,6 +10221,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 8
 	},
+/obj/machinery/computer/timeclock/premade/south,
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "pT" = (
