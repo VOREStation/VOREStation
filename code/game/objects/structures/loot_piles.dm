@@ -158,6 +158,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/clothing/gloves/sterile/latex,
 		/obj/item/clothing/gloves/white,
 		/obj/item/clothing/gloves/rainbow,
+		/obj/item/clothing/gloves/fyellow,
 		/obj/item/clothing/glasses/sunglasses,
 		/obj/item/clothing/glasses/meson,
 		/obj/item/clothing/glasses/meson/prescription,
