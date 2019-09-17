@@ -4,6 +4,8 @@
 #define SA_ICON_REST	0x04
 
 /mob/living/simple_mob
+	base_attack_cooldown = 15
+
 	var/temperature_range = 40			// How close will they get to environmental temperature before their body stops changing its heat
 
 	var/vore_active = 0					// If vore behavior is enabled for this mob
