@@ -259,3 +259,24 @@
 	new /obj/item/ammo_casing/microbattery/medical/stabilize2(src)
 	new /obj/item/ammo_casing/microbattery/medical/toxin3(src)
 	new /obj/item/ammo_casing/microbattery/medical/omni3(src)
+
+/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat
+	name = "military cell-loaded gun kit"
+	desc = "A storage case for a multi-purpose handgun. Variety hour!"
+	w_class = ITEMSIZE_NORMAL
+	max_w_class = ITEMSIZE_NORMAL
+
+/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat/New()
+	..()
+	new /obj/item/weapon/gun/projectile/cell_loaded(src)
+	new /obj/item/ammo_magazine/cell_mag/advanced(src)
+	new /obj/item/ammo_casing/microbattery/combat/shotstun(src)
+	new /obj/item/ammo_casing/microbattery/combat/shotstun(src)
+	new /obj/item/ammo_casing/microbattery/combat/lethal(src)
+	new /obj/item/ammo_casing/microbattery/combat/lethal(src)
+	new /obj/item/ammo_casing/microbattery/combat/lethal(src)
+	new /obj/item/ammo_casing/microbattery/combat/ion(src)
+	new /obj/item/ammo_casing/microbattery/combat/xray(src)
+	new /obj/item/ammo_casing/microbattery/medical/stabilize2(src)
+	new /obj/item/ammo_casing/microbattery/medical/haste(src)
+	new /obj/item/ammo_casing/microbattery/medical/resist(src)
