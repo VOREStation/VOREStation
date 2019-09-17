@@ -2715,6 +2715,7 @@
 #include "code\modules\persistence\persistence.dm"
 #include "code\modules\planet\planet.dm"
 #include "code\modules\planet\time.dm"
+#include "code\modules\planet\virgo3b_vr.dm"
 #include "code\modules\planet\weather.dm"
 #include "code\modules\power\apc.dm"
 #include "code\modules\power\apc_vr.dm"

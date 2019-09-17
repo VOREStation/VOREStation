@@ -179,6 +179,16 @@
 
 	return 1
 
+/datum/planet/virgo3b
+	expected_z_levels = list(
+		Z_LEVEL_SURFACE_LOW,
+		Z_LEVEL_SURFACE_MID,
+		Z_LEVEL_SURFACE_HIGH,
+		Z_LEVEL_SURFACE_MINE,
+		Z_LEVEL_SOLARS,
+		Z_LEVEL_PLAINS
+	)
+
 // Short range computers see only the six main levels, others can see the surrounding surface levels.
 /datum/map/tether/get_map_levels(var/srcz, var/long_range = TRUE)
 	if (long_range && (srcz in map_levels))
