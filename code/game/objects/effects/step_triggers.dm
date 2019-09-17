@@ -6,6 +6,8 @@
 	invisibility = 99 // nope cant see this shit
 	plane = ABOVE_PLANE
 	anchored = 1
+	icon = 'icons/mob/screen1.dmi'
+	icon_state = "centermarker"
 
 /obj/effect/step_trigger/proc/Trigger(var/atom/movable/A)
 	return 0
