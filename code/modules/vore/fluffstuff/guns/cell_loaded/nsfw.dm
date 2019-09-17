@@ -70,5 +70,6 @@
 	new /obj/item/ammo_casing/microbattery/combat/lethal(src)
 	new /obj/item/ammo_casing/microbattery/combat/stun(src)
 	new /obj/item/ammo_casing/microbattery/combat/stun(src)
+	new /obj/item/ammo_casing/microbattery/combat/stun(src)
 	new /obj/item/ammo_casing/microbattery/combat/net(src)
 	new /obj/item/ammo_casing/microbattery/combat/ion(src)
