@@ -14,6 +14,7 @@
 	health = 20
 
 	movement_cooldown = 5
+	makes_dirt = 0
 
 	see_in_dark = 5
 	mob_size = MOB_TINY
@@ -38,3 +39,12 @@
 	speak = list("Squee","Arf arf","Awoo","Squeak")
 	emote_hear = list("howls","squeals","squeaks", "barks")
 	emote_see = list("puffs its fur out", "shakes its fur", "stares directly at you")
+
+/mob/living/simple_mob/animal/sif/fluffy/silky
+	name = "Silky"
+	desc = "It's a blue Diyaab! It seems to be very tame and quiet."
+
+	icon_state = "diyaab"
+	icon_living = "diyaab"
+	icon_dead = "diyaab_dead"
+	icon = 'icons/jungle.dmi'

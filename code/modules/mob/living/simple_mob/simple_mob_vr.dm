@@ -1,7 +1,7 @@
 // Flags for specifying which states we have vore icon_states for.
 #define SA_ICON_LIVING	0x01
 #define SA_ICON_DEAD	0x02
-#define SA_ICON_REST	0x03
+#define SA_ICON_REST	0x04
 
 /mob/living/simple_mob
 	var/temperature_range = 40			// How close will they get to environmental temperature before their body stops changing its heat

@@ -15,14 +15,12 @@
 	w_class = ITEMSIZE_TINY
 	var/template_id = "shelter_alpha"
 	var/datum/map_template/shelter/template
-	var/datum/map_template/shelter/template_roof
 	var/used = FALSE
 
 /obj/item/device/survivalcapsule/proc/get_template()
 	if(template)
 		return
 	template = SSmapping.shelter_templates[template_id]
-	template_roof = SSmapping.shelter_templates[template.roof]
 	if(!template)
 		throw EXCEPTION("Shelter template ([template_id]) not found!")
 		qdel(src)
@@ -49,8 +47,6 @@
 		var/turf/deploy_location = get_turf(src)
 		var/status = template.check_deploy(deploy_location)
 		var/turf/above_location = GetAbove(deploy_location)
-		if(above_location && status == SHELTER_DEPLOY_ALLOWED)
-			status = template.check_deploy(above_location)
 
 		switch(status)
 			//Not allowed due to /area technical reasons
@@ -77,8 +73,9 @@
 		playsound(get_turf(src), 'sound/effects/phasein.ogg', 100, 1)
 
 		log_and_message_admins("[key_name_admin(usr)] activated a bluespace capsule at [get_area(T)]!")
-		if(above_location && template_roof)
-			template_roof.load(above_location, centered = TRUE)
+		if(above_location)
+			template.add_roof(above_location)
+		template.annihilate_plants(deploy_location)
 		template.load(deploy_location, centered = TRUE)
 		qdel(src)
 
@@ -87,16 +84,30 @@
 	desc = "An exorbitantly expensive luxury suite programmed into construction nanomachines. There's a license for use printed on the bottom."
 	template_id = "shelter_beta"
 
+/obj/item/device/survivalcapsule/luxurybar
+	name = "luxury surfluid bar capsule"
+	desc = "A luxury bar in a capsule. Bartender required and not included. There's a license for use printed on the bottom."
+	template_id = "shelter_gamma"
+
+/obj/item/device/survivalcapsule/military
+	name = "military surfluid shelter capsule"
+	desc = "A prefabricated firebase in a capsule. Contains basic weapons, building materials, and combat suits. There's a license for use printed on the bottom."
+	template_id = "shelter_delta"
+
+//Custom Shelter Capsules
 /obj/item/device/survivalcapsule/tabiranth
 	name = "silver-trimmed surfluid shelter capsule"
 	desc = "An exorbitantly expensive luxury suite programmed into construction nanomachines. This one is a particularly rare and expensive model. There's a license for use printed on the bottom."
-	template_id = "shelter_gamma"
+	template_id = "shelter_phi"
 
 //Pod objects
 //Walls
 /turf/simulated/shuttle/wall/voidcraft/survival
 	name = "survival shelter"
 	stripe_color = "#efbc3b"
+
+/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner
+	hard_corner = 1
 
 //Doors
 /obj/machinery/door/airlock/voidcraft/survival_pod

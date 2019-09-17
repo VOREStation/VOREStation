@@ -151,7 +151,7 @@
 	icon_state = "pda-joan"
 
 //Vorrarkul:Lucina Dakarim
-/obj/item/device/pda/heads/cmo/lucinapda
+/obj/item/device/pda/heads/cmo/fluff/lucinapda
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "pda-lucina"
 
