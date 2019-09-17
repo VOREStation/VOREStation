@@ -5,19 +5,19 @@
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 
-/obj/item/clothing/gloves/fyellow                             //VORE:These used to be budget insuls. Not changing the path due to upstream conflicts.
-	name = "yelllow gloves"
-	desc = "A pair of gloves, they don't look special in any way."
+/obj/item/clothing/gloves/fyellow                             //Cheap Chinese Crap
+	desc = "These gloves are cheap copies of proper insulated gloves. No way this can end badly."
+	name = "budget insulated gloves"
 	icon_state = "yellow"
 	siemens_coefficient = 1			//Set to a default of 1, gets overridden in initialize()
-	//permeability_coefficient = 0.05 //VORE: These are yellow gloves now.
-/*Vorestation edit: Budget gloves no longer protect you at all.
+	permeability_coefficient = 0.05
+
 /obj/item/clothing/gloves/fyellow/Initialize()
 	. = ..()
 	//Picks a value between 0 and 1.25, in 5% increments // VOREStation edit
-	var/shock_pick = rand(0,25) // VOREStation Edit
+	var/shock_pick = rand(0,15) // VOREStation Edit
 	siemens_coefficient = shock_pick * 0.05
-*/
+
 /obj/item/clothing/gloves/black
 	desc = "These work gloves are thick and fire-resistant."
 	name = "black gloves"
