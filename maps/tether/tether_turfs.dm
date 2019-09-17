@@ -122,6 +122,9 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	update_icon()
 
 //Unsimulated
+/turf/unsimulated/wall/planetary/virgo3b
+	VIRGO3B_SET_ATMOS
+
 /turf/unsimulated/mineral/virgo3b
 	blocks_air = TRUE
 

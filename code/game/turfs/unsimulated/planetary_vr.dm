@@ -4,4 +4,4 @@
 	name = "facility wall"
 	desc = "An eight-meter tall carbyne wall. For when the wildlife on your planet is mostly militant megacorps."
 	alpha = 0xFF
-	VIRGO3B_SET_ATMOS
+	//VIRGO3B_SET_ATMOS - Defines set later
