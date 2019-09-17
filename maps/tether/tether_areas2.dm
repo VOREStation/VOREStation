@@ -733,6 +733,9 @@
 
 	requires_power = FALSE
 
+/area/tether/midpoint
+	name = "\improper Tether Midpoint"
+
 //////////////////////////////////
 
 /area/antag/antag_base

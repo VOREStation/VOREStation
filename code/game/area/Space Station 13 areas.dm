@@ -861,6 +861,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Tool Storage Maintenance"
 	icon_state = "maint_tool_storage"
 
+/area/maintenance/tether_midpoint
+	name = "\improper Tether Midpoint Maint"
+	icon_state = "green"
+
 
 // SUBSTATIONS (Subtype of maint, that should let them serve as shielded area during radstorm)
 

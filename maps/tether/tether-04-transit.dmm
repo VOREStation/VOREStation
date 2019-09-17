@@ -1,10 +1,25 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/unsimulated/wall,
+/turf/simulated/sky/virgo3b,
 /area/tether/transit)
 "b" = (
-/turf/simulated/wall/r_wall,
-/area/tether/elevator)
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation)
 "c" = (
 /obj/machinery/light/small{
 	dir = 4;
@@ -20,23 +35,31 @@
 /obj/structure/disposalpipe/down,
 /obj/effect/ceiling,
 /turf/simulated/open,
-/area/tether/elevator)
+/area/maintenance/substation)
 "d" = (
 /turf/simulated/shuttle/wall/voidcraft/green{
 	hard_corner = 1
 	},
 /area/tether/elevator)
 "e" = (
-/obj/machinery/atmospherics/pipe/simple/visible/supply,
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/segment,
 /obj/effect/ceiling,
+/obj/structure/disposalpipe/junction,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
+	icon_state = "map-scrubbers";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/supply{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
-/area/tether/elevator)
+/area/maintenance/substation)
 "f" = (
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/tether/elevator)
@@ -59,23 +82,344 @@
 /obj/structure/cable,
 /obj/effect/ceiling,
 /turf/simulated/floor/plating,
-/area/tether/elevator)
+/area/maintenance/substation)
 "h" = (
 /obj/effect/ceiling,
-/turf/simulated/floor/tiled,
-/area/tether/elevator)
+/turf/simulated/floor/plating,
+/area/maintenance/substation)
 "i" = (
 /obj/structure/disposalpipe/up,
 /obj/effect/ceiling,
-/turf/simulated/floor/tiled,
-/area/tether/elevator)
+/turf/simulated/floor/plating,
+/area/maintenance/substation)
 "j" = (
 /obj/structure/disposalpipe/down{
 	dir = 1
 	},
 /obj/effect/ceiling,
-/turf/simulated/floor/tiled,
-/area/tether/elevator)
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation)
+"k" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/obj/structure/flora/pottedplant/unusual,
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"l" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 2
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/midpoint)
+"m" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 0;
+	pixel_y = 26
+	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/midpoint)
+"n" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"o" = (
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -25
+	},
+/obj/machinery/vending/coffee,
+/turf/simulated/floor/tiled/dark,
+/area/tether/midpoint)
+"p" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/obj/structure/flora/pottedplant/unusual,
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"q" = (
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"r" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/firedoor/glass/hidden/steel,
+/turf/simulated/floor/tiled/dark,
+/area/tether/midpoint)
+"s" = (
+/turf/simulated/wall/r_wall,
+/area/maintenance/substation)
+"v" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/tether/midpoint)
+"w" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/tether/midpoint)
+"y" = (
+/turf/simulated/wall/r_wall,
+/area/tether/midpoint)
+"z" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 5
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation)
+"A" = (
+/obj/structure/grille,
+/turf/simulated/floor/plating,
+/area/maintenance/substation)
+"B" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation)
+"C" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/door/airlock/maintenance/engi,
+/turf/simulated/floor/plating,
+/area/maintenance/substation)
+"D" = (
+/obj/structure/closet,
+/obj/random/plushie,
+/turf/simulated/floor/plating,
+/area/maintenance/substation)
+"E" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"F" = (
+/obj/structure/table/bench/padded,
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"H" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/tether/midpoint)
+"I" = (
+/turf/simulated/floor/plating,
+/area/maintenance/substation)
+"K" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/midpoint)
+"L" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"N" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/tether/midpoint)
+"O" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/midpoint)
+"P" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/vending/snack,
+/turf/simulated/floor/tiled/dark,
+/area/tether/midpoint)
+"R" = (
+/obj/structure/table/woodentable,
+/obj/structure/flora/pottedplant/small{
+	pixel_y = 8
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"S" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/midpoint)
+"T" = (
+/obj/structure/table/woodentable,
+/obj/structure/flora/pottedplant/smallcactus{
+	pixel_x = 0;
+	pixel_y = 8
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"U" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"V" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 5
+	},
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/midpoint)
+"W" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/midpoint)
+"X" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/plating,
+/area/maintenance/substation)
+"Y" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/alarm{
+	pixel_y = 26
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/midpoint)
+"Z" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/midpoint)
 
 (1,1,1) = {"
 a
@@ -8658,16 +9002,16 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+s
+s
+s
+s
+s
+s
+s
+s
+s
+s
 a
 a
 a
@@ -8800,16 +9144,16 @@ a
 a
 a
 a
-a
+s
 b
-b
-b
-b
-b
-b
-b
-b
-a
+X
+z
+I
+I
+I
+I
+I
+s
 a
 a
 a
@@ -8942,16 +9286,16 @@ a
 a
 a
 a
-a
-b
+s
+B
 c
 e
 g
 h
 i
 j
-b
-a
+I
+s
 a
 a
 a
@@ -9084,16 +9428,16 @@ a
 a
 a
 a
-a
-b
+s
+B
 d
 d
 d
 d
 d
 d
-b
-a
+I
+s
 a
 a
 a
@@ -9226,16 +9570,16 @@ a
 a
 a
 a
-a
-b
+s
+B
 d
 f
 f
 f
 f
 d
-b
-a
+A
+s
 a
 a
 a
@@ -9368,16 +9712,16 @@ a
 a
 a
 a
-a
-b
+s
+B
 d
 f
 f
 f
 f
 d
-b
-a
+I
+s
 a
 a
 a
@@ -9510,16 +9854,16 @@ a
 a
 a
 a
-a
-b
+s
+B
 d
 f
 f
 f
 f
 d
-b
-a
+I
+s
 a
 a
 a
@@ -9652,16 +9996,16 @@ a
 a
 a
 a
-a
-b
+s
+B
 d
 f
 f
 f
 f
 d
-b
-a
+D
+s
 a
 a
 a
@@ -9794,16 +10138,16 @@ a
 a
 a
 a
-a
-b
+s
+C
 d
 d
 f
 f
 d
 d
-b
-a
+s
+s
 a
 a
 a
@@ -9936,16 +10280,16 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+y
+Y
+V
+l
+r
+r
+W
+S
+o
+y
 a
 a
 a
@@ -10077,18 +10421,18 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+y
+y
+m
+Z
+K
+K
+K
+K
+O
+P
+y
+y
 a
 a
 a
@@ -10219,18 +10563,18 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+H
+k
+q
+q
+F
+F
+F
+F
+q
+E
+p
+H
 a
 a
 a
@@ -10361,18 +10705,18 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+H
+U
+q
+q
+T
+n
+n
+R
+q
+q
+U
+H
 a
 a
 a
@@ -10503,18 +10847,18 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+H
+n
+q
+q
+F
+F
+F
+F
+q
+q
+n
+H
 a
 a
 a
@@ -10645,18 +10989,18 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+H
+L
+q
+q
+q
+q
+q
+q
+q
+q
+L
+H
 a
 a
 a
@@ -10787,18 +11131,18 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+v
+N
+N
+N
+N
+N
+N
+N
+N
+N
+N
+w
 a
 a
 a
