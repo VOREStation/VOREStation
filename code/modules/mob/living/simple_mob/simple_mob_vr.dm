@@ -130,9 +130,9 @@
 /mob/living/simple_mob/proc/CanPounceTarget(var/mob/living/M) //returns either FALSE or a %chance of success
 	if(!M.canmove || issilicon(M) || world.time < vore_pounce_cooldown) //eliminate situations where pouncing CANNOT happen
 		return FALSE
-	if(!prob(vore_pounce_chance)) //mob doesn't want to pounce
+	if(!prob(vore_pounce_chance) || !will_eat(M)) //mob doesn't want to pounce
 		return FALSE
-	if(will_eat(M) && vore_standing_too) //100% chance of hitting people we can eat on the spot
+	if(vore_standing_too) //100% chance of hitting people we can eat on the spot
 		return 100
 	var/TargetHealthPercent = (M.health/M.getMaxHealth())*100 //now we start looking at the target itself
 	if (TargetHealthPercent > vore_pounce_maxhealth) //target is too healthy to pounce
