@@ -75,11 +75,13 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/operating
 	sort_string = "FACAA"
 
+/*		//VOREStation Removal: DNA modification specifically, cloning is still a thing that actually reasonably works
 /datum/design/circuit/scan_console
 	name = "DNA machine"
 	id = "scan_console"
 	build_path = /obj/item/weapon/circuitboard/scan_consolenew
 	sort_string = "FAGAA"
+*/
 
 /datum/design/circuit/clonecontrol
 	name = "cloning control console"
