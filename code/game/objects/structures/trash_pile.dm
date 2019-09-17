@@ -173,7 +173,6 @@
 					prob(3);/obj/item/weapon/storage/box/mousetraps,
 					prob(3);/obj/item/weapon/storage/wallet,
 					prob(2);/obj/item/clothing/glasses/meson/prescription,
-					prob(2);/obj/item/clothing/gloves/fyellow,
 					prob(2);/obj/item/clothing/gloves/sterile/latex,
 					prob(2);/obj/item/clothing/head/welding,
 					prob(2);/obj/item/clothing/mask/gas/half,
