@@ -1158,16 +1158,7 @@
 /area/centcom/specops)
 "bW" = (
 /obj/structure/table/reinforced,
-/obj/item/ammo_casing/microbattery/combat/stun,
-/obj/item/ammo_casing/microbattery/combat/stun,
-/obj/item/ammo_casing/microbattery/combat/stun,
-/obj/item/ammo_casing/microbattery/medical/brute2,
-/obj/item/ammo_casing/microbattery/medical/burn2,
-/obj/item/ammo_casing/microbattery/medical/stabilize2,
-/obj/item/ammo_casing/microbattery/combat/net,
-/obj/item/ammo_casing/microbattery/combat/net,
-/obj/item/ammo_magazine/cell_mag,
-/obj/item/weapon/gun/projectile/cell_loaded,
+/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
