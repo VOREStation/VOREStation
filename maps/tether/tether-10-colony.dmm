@@ -1064,6 +1064,7 @@
 /area/centcom/specops)
 "bL" = (
 /obj/structure/closet/wardrobe/ert,
+/obj/item/modular_computer/laptop/preset/custom_loadout/elite,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
@@ -16610,12 +16611,6 @@
 	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/space)
-"Eq" = (
-/obj/machinery/porta_turret,
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/centcom/specops)
 "Ez" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/cell/hyper,
@@ -16901,12 +16896,6 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
-"MA" = (
-/obj/machinery/porta_turret,
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/centcom/control)
 "Ns" = (
 /obj/structure/closet/crate/freezer/rations,
 /obj/random/mre,
@@ -30892,8 +30881,8 @@ cg
 cI
 cV
 aG
-Eq
-MA
+aG
+PP
 PP
 FL
 dm
