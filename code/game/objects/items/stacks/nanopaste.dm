@@ -39,10 +39,11 @@
 				user.setClickCooldown(user.get_attack_speed(src))
 				if(S.open >= 2)
 					if(do_after(user,5 * toolspeed))
-						S.heal_damage(20, 20, robo_repair = 1)
+						S.heal_damage(restoration_internal, restoration_internal, robo_repair = 1)
 				else if(do_after(user,5 * toolspeed))
-					S.heal_damage(5,5, robo_repair =1)
+					S.heal_damage(restoration_external,restoration_external, robo_repair =1)
 				H.updatehealth()
 				use(1)
 				user.visible_message("<span class='notice'>\The [user] applies some nanite paste on [user != M ? "[M]'s [S.name]" : "[S]"] with [src].</span>",\
 				"<span class='notice'>You apply some nanite paste on [user == M ? "your" : "[M]'s"] [S.name].</span>")
+		//VOREStation Edit End
