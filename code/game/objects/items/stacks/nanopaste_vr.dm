@@ -7,5 +7,7 @@
 	name = "advanced nanopaste"
 	singular_name = "advanced nanite swarm"
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery. These ones are capable of restoring condition even of most thrashed robotic parts"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "adv_nanopaste"
 	restoration_external = 10
 	repair_external = TRUE
