@@ -2,14 +2,12 @@
 	var/shelter_id
 	var/description
 	var/blacklisted_turfs
-	var/whitelisted_turfs
 	var/banned_areas
 	var/banned_objects
 
 /datum/map_template/shelter/New()
 	. = ..()
-	blacklisted_turfs = typecacheof(list(/turf/unsimulated, /turf/simulated/wall, /turf/simulated/floor/tiled, /turf/simulated/mineral))
-	whitelisted_turfs = typecacheof(/turf/simulated/mineral/floor)
+	blacklisted_turfs = typecacheof(list(/turf/unsimulated, /turf/simulated/wall, /turf/simulated/floor/tiled))
 	banned_areas = typecacheof(/area/shuttle)
 	banned_objects = list()
 
@@ -21,10 +19,8 @@
 			return SHELTER_DEPLOY_BAD_AREA
 
 		var/banned = is_type_in_typecache(T, blacklisted_turfs)
-		var/permitted = is_type_in_typecache(T, whitelisted_turfs)
-		if(banned)
-			if(!permitted)
-				return SHELTER_DEPLOY_BAD_TURFS
+		if(banned || T.density)
+			return SHELTER_DEPLOY_BAD_TURFS
 
 		for(var/obj/O in T)
 			if((O.density && O.anchored) || is_type_in_typecache(O, banned_objects))
