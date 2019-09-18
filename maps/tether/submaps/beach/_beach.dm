@@ -117,7 +117,7 @@
 	prob_fall = 40
 	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/aggressive/frog = 5, //Frogs are 3x more likely to spawn than,
+		/mob/living/simple_mob/vore/aggressive/frog = 3, //Frogs are 3x more likely to spawn than,
 		/mob/living/simple_mob/vore/aggressive/deathclaw = 1, //these deathclaws are, with these values,
 		/mob/living/simple_mob/animal/giant_spider = 2,
 		/mob/living/simple_mob/vore/aggressive/giant_snake = 1,
