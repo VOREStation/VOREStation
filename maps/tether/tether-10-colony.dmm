@@ -375,13 +375,13 @@
 /area/centcom/specops)
 "aH" = (
 /obj/structure/closet/crate/medical,
-/obj/item/stack/nanopaste,
+/obj/item/stack/nanopaste/advanced,
 /obj/item/weapon/tank/anesthetic,
 /obj/item/clothing/mask/breath/medical,
 /obj/item/clothing/mask/surgical,
 /obj/item/clothing/mask/surgical,
-/obj/item/stack/nanopaste,
-/obj/item/stack/nanopaste,
+/obj/item/stack/nanopaste/advanced,
+/obj/item/stack/nanopaste/advanced,
 /obj/item/weapon/storage/firstaid/surgery,
 /turf/unsimulated/floor{
 	icon_state = "vault";
@@ -7452,7 +7452,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 1
 	},
-/obj/item/stack/nanopaste,
+/obj/item/stack/nanopaste/advanced,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
