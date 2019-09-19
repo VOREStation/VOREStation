@@ -10899,6 +10899,10 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 9
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "qa" = (
@@ -11329,12 +11333,18 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "qE" = (
 /obj/machinery/disposal,
 /obj/effect/floor_decal/techfloor{
 	dir = 5
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
@@ -12326,6 +12336,9 @@
 	pixel_x = -4;
 	pixel_y = 26
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
 "sk" = (
@@ -12335,6 +12348,10 @@
 	},
 /obj/effect/floor_decal/techfloor{
 	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
@@ -12348,6 +12365,9 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "sm" = (
@@ -12359,6 +12379,9 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/techfloor/corner{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -12375,6 +12398,9 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "so" = (
@@ -12387,6 +12413,9 @@
 	},
 /obj/effect/floor_decal/techfloor{
 	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
@@ -12530,6 +12559,10 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "sD" = (
@@ -12618,7 +12651,6 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
 	},
@@ -12630,6 +12662,10 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 4
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 2;
+	icon_state = "pipe-j2"
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
@@ -12663,6 +12699,9 @@
 	icon_state = "intact-scrubbers";
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/morgue)
 "sN" = (
@@ -12682,6 +12721,10 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/techfloor,
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "sO" = (
@@ -20973,6 +21016,13 @@
 /obj/item/roller,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
+"KV" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled/techfloor,
+/area/medical/morgue)
 "Ld" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -33888,9 +33938,9 @@ ac
 ac
 uW
 pZ
-rn
-rn
-rn
+KV
+KV
+KV
 sC
 tj
 tv
