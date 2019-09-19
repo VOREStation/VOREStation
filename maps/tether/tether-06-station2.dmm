@@ -20683,6 +20683,18 @@
 "Gw" = (
 /turf/simulated/floor/tiled/dark,
 /area/security/brig)
+"GF" = (
+/obj/effect/floor_decal/borderfloorwhite/corner{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery_hallway)
 "GG" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/table/steel,
@@ -20937,6 +20949,20 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
+"JF" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j2";
+	dir = 2
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery_hallway)
 "JH" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -21698,6 +21724,19 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
+"QK" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/disposal,
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery_hallway)
 "QN" = (
 /obj/structure/closet,
 /obj/item/clothing/shoes/boots/winter/medical,
@@ -32819,7 +32858,7 @@ zg
 ts
 ts
 Aa
-ts
+JF
 Az
 ts
 Bd
@@ -32961,7 +33000,7 @@ wd
 wD
 tS
 Ab
-Al
+GF
 AA
 rw
 Be
@@ -33103,7 +33142,7 @@ zh
 xx
 xx
 Ac
-Am
+QK
 AA
 AM
 Bf
