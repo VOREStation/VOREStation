@@ -124,6 +124,7 @@ var/global/list/tf_vore_egg_types = list(
 
 var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/clothing/accessory/collar,	//TFF 10/7/19 - add option to nom collars,
+				/obj/item/device/communicator,		//TFF 19/9/19 - add option to nom communicators and commwatches,
 				/obj/item/clothing/mask,
 				/obj/item/clothing/glasses,
 				/obj/item/clothing/gloves,
