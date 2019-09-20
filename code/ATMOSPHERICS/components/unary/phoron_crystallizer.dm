@@ -73,12 +73,12 @@
 		ui_error = "Insufficient [material_display_name(MATERIAL_PHORON)] to process."
 		update_icon()
 		return
-	if(stored_material[MATERIAL_PHORON_SHEET] + carbon_per_mole > storage_capacity[MATERIAL_PHORON_SHEET])
+	if(stored_material[MATERIAL_PHORON] + phoron_per_mole > storage_capacity[MATERIAL_PHORON_SHEET])
 		ui_error = "[material_display_name(MATERIAL_PHORON_SHEET)] output storage is full."
 		update_icon()
 		return
 	var/moles_to_convert = min(moles_per_tick,\
-		stored_material[MATERIAL_ALGAE] * algae_per_mole,\
+		stored_material[MATERIAL_PHORON] * phoron_per_mole,\
 		storage_capacity[MATERIAL_PHORON_SHEET] - stored_material[MATERIAL_PHORON_SHEET])
 
 	// STEP 2 - Take the CO2 out of the input!
