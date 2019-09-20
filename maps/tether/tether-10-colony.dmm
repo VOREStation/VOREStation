@@ -1159,16 +1159,7 @@
 /area/centcom/specops)
 "bW" = (
 /obj/structure/table/reinforced,
-/obj/item/ammo_casing/nsfw_batt/combat/stun,
-/obj/item/ammo_casing/nsfw_batt/combat/stun,
-/obj/item/ammo_casing/nsfw_batt/combat/stun,
-/obj/item/ammo_casing/nsfw_batt/medical/brute2,
-/obj/item/ammo_casing/nsfw_batt/medical/burn2,
-/obj/item/ammo_casing/nsfw_batt/medical/stabilize2,
-/obj/item/ammo_casing/nsfw_batt/combat/net,
-/obj/item/ammo_casing/nsfw_batt/combat/net,
-/obj/item/ammo_magazine/nsfw_mag,
-/obj/item/weapon/gun/projectile/nsfw,
+/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
@@ -16979,8 +16970,8 @@
 /area/centcom/evac)
 "QQ" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/secure/briefcase/nsfw_pack,
-/obj/item/weapon/storage/secure/briefcase/nsfw_pack,
+/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat,
+/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},

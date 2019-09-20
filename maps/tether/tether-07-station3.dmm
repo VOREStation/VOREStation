@@ -23600,6 +23600,7 @@
 /obj/item/clothing/glasses/hud/health,
 /obj/item/device/defib_kit/compact/combat/loaded,
 /obj/item/weapon/cmo_disk_holder,
+/obj/item/weapon/storage/secure/briefcase/ml3m_pack_cmo,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 6
 	},

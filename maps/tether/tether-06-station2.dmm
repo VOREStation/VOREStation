@@ -13724,6 +13724,7 @@
 /obj/structure/table/standard,
 /obj/random/tetheraid,
 /obj/random/tetheraid,
+/obj/item/weapon/storage/secure/briefcase/ml3m_pack_med,
 /obj/item/device/radio/intercom/department/medbay{
 	dir = 1;
 	pixel_y = 24
