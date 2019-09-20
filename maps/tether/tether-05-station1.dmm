@@ -5627,7 +5627,7 @@
 /area/gateway/prep_room)
 "akc" = (
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 8;
 	id = "PubPrep";
 	layer = 3.3;
 	name = "Public Access Shutter"
@@ -5817,7 +5817,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 8;
 	id = "PubPrep";
 	layer = 3.3;
 	name = "Public Access Shutter"
