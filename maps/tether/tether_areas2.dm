@@ -672,6 +672,12 @@
 /area/hallway/station/docks
 	name = "\improper Docks Hallway"
 
+/area/bridge/secondary
+	name = "\improper Secondary Command Office"
+
+/area/bridge/secondary/meeting_room
+	name = "\improper Secondary Command Meeting Room"
+
 /area/maintenance/station
 	icon_state = "fsmaint"
 /area/maintenance/station/bridge
