@@ -12,7 +12,7 @@
 	access = list()			//See /datum/job/intern/get_access()
 	minimal_access = list()	//See /datum/job/intern/get_access()
 	outfit_type = /decl/hierarchy/outfit/job/assistant/intern
-	alt_titles = list("Apprentice Engineer","Medical Intern","Lab Assistant","Security Cadet","Jr. Cargo Tech", "Jr. Explorer", "Waiter" = /decl/hierarchy/outfit/job/service/waiter, "Waitress" = /decl/hierarchy/outfit/job/service/waitress)
+	alt_titles = list("Apprentice Engineer","Medical Intern","Lab Assistant","Security Cadet","Jr. Cargo Tech", "Jr. Explorer", "Server" = /decl/hierarchy/outfit/job/service/server)
 	timeoff_factor = 0 // Interns, noh
 
 /datum/job/intern/New()
