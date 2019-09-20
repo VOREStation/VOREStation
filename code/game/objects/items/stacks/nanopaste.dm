@@ -33,7 +33,7 @@
 		if (S && (S.robotic >= ORGAN_ROBOT))
 			if(!S.get_damage())
 				to_chat(user, "<span class='notice'>Nothing to fix here.</span>")
-			else if((S.open < 2) && (S.get_damage() > 10) && !repair_external)
+			else if((S.open < 2) && (S.brute_dam + S.burn_dam >= S.min_broken_damage) && !repair_external)
 				to_chat(user, "<span class='notice'>The damage is too extensive for this nanite swarm to handle.</span>")
 			else if(can_use(1))
 				user.setClickCooldown(user.get_attack_speed(src))
