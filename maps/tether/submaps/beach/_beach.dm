@@ -121,7 +121,7 @@
 		/mob/living/simple_mob/vore/aggressive/deathclaw = 1, //these deathclaws are, with these values,
 		/mob/living/simple_mob/animal/giant_spider = 2,
 		/mob/living/simple_mob/vore/aggressive/giant_snake = 1,
-		/mob/living/simple_mob/animal/giant_spider/ion = 1
+		/mob/living/simple_mob/animal/giant_spider/webslinger = 1
 	)
 
 // These are step-teleporters, for map edge transitions
