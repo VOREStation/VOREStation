@@ -170,6 +170,8 @@
 	name = "\improper Civilian West Substation"
 /area/maintenance/substation/exploration
 	name = "\improper Exploration Substation"
+/area/maintenance/tether_midpoint
+	name = "\improper Tether Midpoint Maint"
 
 
 /area/tether/surfacebase/medical
@@ -775,6 +777,9 @@
 	dynamic_lighting = FALSE
 
 	requires_power = FALSE
+
+/area/tether/midpoint
+	name = "\improper Tether Midpoint"
 
 //////////////////////////////////
 
