@@ -33,6 +33,7 @@
 		source.add_language(LANGUAGE_BIRDSONG)
 		source.add_language(LANGUAGE_SAGARU)
 		source.add_language(LANGUAGE_CANILUNZT)
+		source.add_language(LANGUAGE_SLAVIC)
 		source.add_language(LANGUAGE_SOL_COMMON) //In case they're giving a xenomorph an implant or something.
 
 /obj/item/weapon/implant/vrlanguage/post_implant(mob/source)

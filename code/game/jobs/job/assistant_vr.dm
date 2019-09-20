@@ -6,13 +6,13 @@
 	faction = "Station"
 	total_positions = -1
 	spawn_positions = -1
-	supervisors = "the staff from the departmen you're interning in"
+	supervisors = "the staff from the department you're interning in"
 	selection_color = "#555555"
 	economic_modifier = 2
 	access = list()			//See /datum/job/intern/get_access()
 	minimal_access = list()	//See /datum/job/intern/get_access()
 	outfit_type = /decl/hierarchy/outfit/job/assistant/intern
-	alt_titles = list("Apprentice Engineer","Medical Intern","Lab Assistant","Security Cadet","Jr. Cargo Tech", "Jr. Explorer") //VOREStation Edit
+	alt_titles = list("Apprentice Engineer","Medical Intern","Lab Assistant","Security Cadet","Jr. Cargo Tech", "Jr. Explorer", "Server" = /decl/hierarchy/outfit/job/service/server)
 	timeoff_factor = 0 // Interns, noh
 
 /datum/job/intern/New()

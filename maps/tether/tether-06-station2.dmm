@@ -4240,18 +4240,20 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
 "go" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 1
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/borderfloor/corner,
+/obj/effect/floor_decal/corner/lightgrey/bordercorner,
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 8
 	},
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 9
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+/obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 9
 	},
 /turf/simulated/floor/tiled,
@@ -4336,20 +4338,19 @@
 /turf/simulated/open,
 /area/engineering/locker_room)
 "gx" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
@@ -9785,18 +9786,14 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
 "op" = (
+/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/floor_decal/borderfloor/corner,
-/obj/effect/floor_decal/corner/lightgrey/bordercorner,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 8
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
@@ -12914,6 +12911,11 @@
 /obj/item/weapon/autopsy_scanner,
 /obj/item/weapon/surgical/cautery,
 /obj/effect/floor_decal/techfloor,
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -26
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "th" = (
@@ -13724,6 +13726,7 @@
 /obj/structure/table/standard,
 /obj/random/tetheraid,
 /obj/random/tetheraid,
+/obj/item/weapon/storage/secure/briefcase/ml3m_pack_med,
 /obj/item/device/radio/intercom/department/medbay{
 	dir = 1;
 	pixel_y = 24
@@ -14963,6 +14966,11 @@
 	pixel_y = -26;
 	range = 12
 	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = -8;
+	pixel_y = -26
+	},
 /turf/simulated/floor/carpet/blue,
 /area/medical/psych)
 "wx" = (
@@ -15047,6 +15055,11 @@
 	},
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 8
+	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -26
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
@@ -16206,7 +16219,6 @@
 /area/medical/surgery2)
 "yx" = (
 /obj/structure/table/standard,
-/obj/item/stack/nanopaste,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 6
 	},
@@ -16922,6 +16934,11 @@
 /obj/effect/floor_decal/corner/pink/bordercorner2{
 	dir = 5
 	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 26;
+	pixel_y = 8
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/patient_a)
 "zF" = (
@@ -17585,6 +17602,11 @@
 	},
 /obj/effect/floor_decal/corner/pink/bordercorner2{
 	dir = 5
+	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 26;
+	pixel_y = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/patient_b)
@@ -18369,6 +18391,11 @@
 	},
 /obj/effect/floor_decal/corner/pink/bordercorner2{
 	dir = 5
+	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 26;
+	pixel_y = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/patient_c)
@@ -19242,6 +19269,11 @@
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 8
+	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -28;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/ward)
@@ -20190,6 +20222,11 @@
 /obj/effect/floor_decal/corner/pink/border{
 	dir = 10
 	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/exam_room)
 "EK" = (
@@ -20474,7 +20511,6 @@
 /area/maintenance/station/sec_lower)
 "Fg" = (
 /obj/structure/table/standard,
-/obj/item/stack/nanopaste,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 5
 	},
@@ -32697,7 +32733,7 @@ pk
 pT
 qF
 fG
-go
+gx
 pr
 qN
 rw
@@ -32839,7 +32875,7 @@ pl
 lK
 qG
 fH
-gx
+op
 ps
 qO
 rx
@@ -32975,7 +33011,7 @@ lJ
 lJ
 lJ
 nL
-op
+go
 oV
 pm
 pU

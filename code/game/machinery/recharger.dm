@@ -10,7 +10,7 @@
 	active_power_usage = 40000	//40 kW
 	var/efficiency = 40000 //will provide the modified power rate when upgraded
 	var/obj/item/charging = null
-	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/modular_computer, /obj/item/weapon/computer_hardware/battery_module, /obj/item/weapon/cell, /obj/item/device/flashlight, /obj/item/device/electronic_assembly, /obj/item/weapon/weldingtool/electric, /obj/item/ammo_magazine/smart, /obj/item/device/flash, /obj/item/ammo_casing/nsfw_batt) //VOREStation Add - NSFW Batteries
+	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/modular_computer, /obj/item/weapon/computer_hardware/battery_module, /obj/item/weapon/cell, /obj/item/device/flashlight, /obj/item/device/electronic_assembly, /obj/item/weapon/weldingtool/electric, /obj/item/ammo_magazine/smart, /obj/item/device/flash, /obj/item/ammo_casing/microbattery) //VOREStation Add - NSFW Batteries
 	var/icon_state_charged = "recharger2"
 	var/icon_state_charging = "recharger1"
 	var/icon_state_idle = "recharger0" //also when unpowered
@@ -72,7 +72,7 @@
 			if(EW.use_external_power)
 				to_chat(user, "<span class='notice'>\The [EW] has no recharge port.</span>")
 				return
-		else if(!G.get_cell() && !istype(G, /obj/item/ammo_casing/nsfw_batt))	//VOREStation Edit: NSFW charging
+		else if(!G.get_cell() && !istype(G, /obj/item/ammo_casing/microbattery))	//VOREStation Edit: NSFW charging
 			to_chat(user, "\The [G] does not have a battery installed.")
 			return
 
@@ -157,8 +157,8 @@
 				update_use_power(1)
 
 		//VOREStation Add - NSFW Batteries
-		else if(istype(charging, /obj/item/ammo_casing/nsfw_batt))
-			var/obj/item/ammo_casing/nsfw_batt/batt = charging
+		else if(istype(charging, /obj/item/ammo_casing/microbattery))
+			var/obj/item/ammo_casing/microbattery/batt = charging
 			if(batt.shots_left >= initial(batt.shots_left))
 				icon_state = icon_state_charged
 				update_use_power(1)
