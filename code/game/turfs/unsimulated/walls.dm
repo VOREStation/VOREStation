@@ -4,6 +4,7 @@
 	icon_state = "riveted"
 	opacity = 1
 	density = 1
+	blocks_air = TRUE
 
 /turf/unsimulated/wall/fakeglass
 	name = "window"
