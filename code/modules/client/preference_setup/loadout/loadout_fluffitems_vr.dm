@@ -144,13 +144,13 @@
 /datum/gear/fluff/sariU_disk
 	path = /obj/item/weapon/disk/limb/eggnerdltd
 	display_name = "Sari-U's Eggnerd Disk"
-	ckeywhitelist = list("cross_exonar")
+	ckeywhitelist = list("crossexonar")
 	character_name = list("Sari-U")
 
 /datum/gear/fluff/sariE_disk
 	path = /obj/item/weapon/disk/limb/eggnerdltd
 	display_name = "Sari-E's Eggnerd Disk"
-	ckeywhitelist = list("cross_exonar")
+	ckeywhitelist = list("crossexonar")
 	character_name = list("Sari-E")
 
 //  D CKEYS
@@ -494,14 +494,14 @@
 /datum/gear/fluff/resh_uniform
 	path = /obj/item/clothing/suit/security/navyhos
 	display_name = "Resh's HoS Uniform"
-	ckeywhitelist = list("mr_signmeup")
+	ckeywhitelist = list("mrsignmeup")
 	character_name = list("Reshskakskakss Seekiseekis")
 	allowed_roles = list("Head of Security")
 
 /datum/gear/fluff/daniel_medal
 	path = /obj/item/clothing/accessory/medal/conduct
 	display_name = "Daniel's Conduct Medal"
-	ckeywhitelist = list("mr_signmeup")
+	ckeywhitelist = list("mrsignmeup")
 	character_name = list("Daniel Fisher")
 
 //  N CKEYS
