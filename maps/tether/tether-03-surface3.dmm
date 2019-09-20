@@ -669,7 +669,7 @@
 /area/tether/surfacebase/atrium_three)
 "bC" = (
 /obj/machinery/status_display{
-	pixel_y = 30
+	pixel_y = 32
 	},
 /obj/machinery/computer/supplycomp,
 /turf/simulated/floor/tiled/dark,
@@ -27309,7 +27309,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 1;
+	dir = 8;
 	icon_state = "pdoor0";
 	id = "secondary_bridge_blast";
 	name = "Secondary Command Office Blast Doors";
@@ -27333,7 +27333,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 1;
+	dir = 8;
 	icon_state = "pdoor0";
 	id = "secondary_bridge_blast";
 	name = "Secondary Command Office Blast Doors";
@@ -27354,7 +27354,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 1;
+	dir = 8;
 	icon_state = "pdoor0";
 	id = "secondary_bridge_blast";
 	name = "Secondary Command Office Blast Doors";
@@ -27374,7 +27374,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 1;
+	dir = 8;
 	icon_state = "pdoor0";
 	id = "secondary_bridge_blast";
 	name = "Secondary Command Office Blast Doors";
@@ -27398,7 +27398,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 1;
+	dir = 8;
 	icon_state = "pdoor0";
 	id = "secondary_bridge_blast";
 	name = "Secondary Command Office Blast Doors";
@@ -27418,7 +27418,7 @@
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 1;
+	dir = 8;
 	icon_state = "pdoor0";
 	id = "secondary_bridge_blast";
 	name = "Secondary Command Office Blast Doors";
