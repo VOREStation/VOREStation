@@ -1098,7 +1098,8 @@
 /area/centcom/specops)
 "bP" = (
 /obj/machinery/door/blast/regular{
-	name = "When Everything else fails."
+	name = "When Everything else fails.";
+	dir = 4
 	},
 /turf/unsimulated/floor{
 	icon_state = "dark"
