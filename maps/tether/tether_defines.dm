@@ -133,7 +133,8 @@
 		/area/crew_quarters/sleep/Dorm_1/holo,
 		/area/crew_quarters/sleep/Dorm_3/holo,
 		/area/crew_quarters/sleep/Dorm_5/holo,
-		/area/crew_quarters/sleep/Dorm_7/holo)
+		/area/crew_quarters/sleep/Dorm_7/holo,
+		/area/rnd/miscellaneous_lab)	//TFF 31/8/19 - exempt new construction site from unit tests
 	unit_test_exempt_from_atmos = list(
 		/area/engineering/atmos/intake, // Outside,
 		/area/rnd/external, //  Outside,
