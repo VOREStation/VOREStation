@@ -12,8 +12,8 @@
 /turf/simulated/wall,
 /area/maintenance/lower/mining)
 "ae" = (
-/turf/simulated/wall,
-/area/vacant/vacant_site/gateway/lower)
+/turf/simulated/wall/r_wall,
+/area/bridge/secondary/meeting_room)
 "af" = (
 /obj/structure/table/steel,
 /obj/item/weapon/storage/box/bodybags,
@@ -41,21 +41,8 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining)
 "ak" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/airlock/maintenance/common,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/public_garden_maintenence/upper)
+/turf/simulated/floor/carpet/purcarpet,
+/area/bridge/secondary/meeting_room)
 "al" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
@@ -72,8 +59,9 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
 "am" = (
-/turf/simulated/floor/plating,
-/area/vacant/vacant_site/gateway/lower)
+/obj/structure/bed/chair/comfy/black,
+/turf/simulated/floor/carpet/purcarpet,
+/area/bridge/secondary/meeting_room)
 "an" = (
 /turf/simulated/wall,
 /area/maintenance/substation/medsec)
@@ -104,36 +92,24 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining)
 "at" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/structure/bed/chair/comfy/black{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/plating,
-/area/vacant/vacant_site/gateway/lower)
-"au" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/cap/visible/supply{
+/obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/simulated/floor/plating,
-/area/vacant/vacant_site/gateway/lower)
+/turf/simulated/floor/carpet/purcarpet,
+/area/bridge/secondary/meeting_room)
+"au" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/book/manual/security_space_law,
+/turf/simulated/floor/carpet/purcarpet,
+/area/bridge/secondary/meeting_room)
 "av" = (
-/obj/structure/closet/crate,
-/turf/simulated/floor/plating,
-/area/vacant/vacant_site/gateway/lower)
+/obj/structure/table/woodentable,
+/obj/item/weapon/folder/blue,
+/turf/simulated/floor/carpet/purcarpet,
+/area/bridge/secondary/meeting_room)
 "aw" = (
 /obj/machinery/power/breakerbox/activated{
 	RCon_tag = "MedSec Substation Bypass"
@@ -226,9 +202,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining)
 "aI" = (
-/obj/structure/stairs/south,
-/turf/simulated/floor/plating,
-/area/vacant/vacant_site/gateway/lower)
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/bridge/secondary/meeting_room)
 "aJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
@@ -4690,11 +4668,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
 "kg" = (
-/obj/machinery/atmospherics/pipe/cap/visible/scrubbers{
-	dir = 8
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/vacant/vacant_site/gateway/lower)
+/turf/simulated/floor/carpet/purcarpet,
+/area/bridge/secondary/meeting_room)
 "kh" = (
 /obj/machinery/firealarm{
 	dir = 2;
@@ -21808,6 +21786,192 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
+"OW" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/table/woodentable,
+/obj/item/weapon/paper_bin,
+/obj/item/weapon/pen,
+/turf/simulated/floor/carpet/purcarpet,
+/area/bridge/secondary/meeting_room)
+"OX" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/structure/table/woodentable,
+/obj/item/weapon/folder/red,
+/turf/simulated/floor/carpet/purcarpet,
+/area/bridge/secondary/meeting_room)
+"OY" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/bridge/secondary/meeting_room)
+"OZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/bridge/secondary/meeting_room)
+"Pa" = (
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/simulated/floor/carpet/purcarpet,
+/area/bridge/secondary/meeting_room)
+"Pb" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24;
+	pixel_y = 0
+	},
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Pc" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Pd" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Pe" = (
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Pf" = (
+/obj/machinery/camera/network/command{
+	dir = 8
+	},
+/obj/structure/reagent_dispensers/water_cooler/full,
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Pg" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "secondary_bridge_blast";
+	name = "Secondary Command Office Blast Doors";
+	opacity = 0
+	},
+/obj/machinery/door/airlock/maintenance/command,
+/turf/simulated/floor/plating,
+/area/bridge/secondary/meeting_room)
+"Ph" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Pi" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Pj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Pk" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/storage/box/cups,
+/obj/machinery/alarm{
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 24
+	},
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Pl" = (
+/obj/structure/cable/green,
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/apc;
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Pm" = (
+/obj/structure/table/woodentable,
+/obj/machinery/newscaster{
+	pixel_x = 28
+	},
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Pn" = (
+/obj/machinery/keycard_auth{
+	pixel_x = -24
+	},
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Po" = (
+/obj/machinery/keycard_auth{
+	pixel_x = 24
+	},
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Pp" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Pq" = (
+/obj/machinery/photocopier,
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Pr" = (
+/obj/structure/stairs/south,
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Ps" = (
+/obj/structure/table/woodentable,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/weapon/folder/blue,
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Pt" = (
+/obj/structure/table/woodentable,
+/obj/machinery/light,
+/obj/item/weapon/paper_bin,
+/obj/item/weapon/pen,
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
+"Pu" = (
+/obj/structure/filingcabinet/chestdrawer,
+/turf/simulated/floor/wood,
+/area/bridge/secondary/meeting_room)
 
 (1,1,1) = {"
 aa
@@ -28653,14 +28817,14 @@ ae
 ae
 ae
 ae
-bn
-bn
-ak
-bn
-bn
-bn
-bn
-bn
+ae
+ae
+Pg
+ae
+ae
+ae
+ae
+ae
 bn
 bn
 bn
@@ -28792,16 +28956,16 @@ ac
 ac
 ac
 ae
-am
-am
-am
-am
-am
+ak
 at
-am
-am
-am
-aI
+kg
+ak
+Pb
+Ph
+Pl
+Pn
+Pe
+Pr
 ae
 cW
 cW
@@ -28935,15 +29099,15 @@ ac
 ac
 ae
 am
-am
-am
-am
-am
 au
-am
-am
-am
-aI
+OW
+OY
+Pc
+Pi
+Pe
+Pe
+Pe
+Pr
 ae
 cW
 cW
@@ -29077,15 +29241,15 @@ ac
 ac
 ae
 am
-am
-am
-am
-am
-kg
-am
-am
-ae
-ae
+av
+OX
+OZ
+Pd
+Pj
+Pe
+Pe
+Pp
+Ps
 ae
 cW
 cW
@@ -29218,16 +29382,16 @@ ac
 ac
 ac
 ae
-ae
-ae
-ae
-ae
-am
-am
-am
-am
-am
-av
+ak
+aI
+aI
+Pa
+Pe
+Pe
+Pe
+Pe
+Pe
+Pt
 ae
 cW
 cW
@@ -29359,17 +29523,17 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
 ae
-am
-am
-am
-am
-av
-av
+ae
+ae
+ae
+ae
+Pf
+Pk
+Pm
+Po
+Pq
+Pu
 ae
 cW
 cW
