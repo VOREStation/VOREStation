@@ -3669,10 +3669,15 @@
 /area/hallway/station/upper)
 "fR" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled,
+/obj/machinery/door/airlock/multi_tile/glass{
+	name = "Security Lobby"
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals_central1{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/monofloor{
+	dir = 8
+	},
 /area/security/lobby)
 "fS" = (
 /obj/effect/floor_decal/borderfloor{
@@ -16099,6 +16104,18 @@
 /area/medical/reception)
 "yL" = (
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/steeldecal/steel_decals_central1{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monofloor{
+	dir = 4
+	},
+/area/security/lobby)
+"yM" = (
+/obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/multi_tile/glass{
 	name = "Medbay Lobby"
 	},
@@ -16110,25 +16127,11 @@
 	name = "Medbay Emergency Lockdown Shutters";
 	opacity = 0
 	},
-/turf/simulated/floor/tiled/monofloor{
+/obj/effect/floor_decal/steeldecal/steel_decals_central1{
 	dir = 8
 	},
-/area/medical/reception)
-"yM" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/shutters{
-	density = 0;
-	dir = 2;
-	icon_state = "shutter0";
-	id = "medbayquar";
-	name = "Medbay Emergency Lockdown Shutters";
-	opacity = 0
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/monofloor{
-	dir = 4
+	dir = 8
 	},
 /area/medical/reception)
 "yN" = (
@@ -16526,11 +16529,24 @@
 /area/security/lobby)
 "zr" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Security Lobby"
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "medbayquar";
+	name = "Medbay Emergency Lockdown Shutters";
+	opacity = 0
 	},
-/turf/simulated/floor/tiled,
-/area/security/lobby)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/steeldecal/steel_decals_central1{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monofloor{
+	dir = 4
+	},
+/area/medical/reception)
 "zs" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/medical{
@@ -22503,6 +22519,10 @@
 	icon_state = "intact";
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay_primary_storage)
 "II" = (
@@ -22526,6 +22546,9 @@
 	dir = 10
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay_primary_storage)
 "IJ" = (
@@ -22548,6 +22571,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	icon_state = "intact";
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -22575,6 +22601,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "IL" = (
@@ -22592,6 +22621,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	icon_state = "intact";
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -22613,6 +22645,9 @@
 	icon_state = "intact";
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "IN" = (
@@ -22623,11 +22658,11 @@
 	icon_state = "map-scrubbers";
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	icon_state = "intact";
 	dir = 4
 	},
+/obj/structure/disposalpipe/junction,
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "IO" = (
@@ -22923,6 +22958,10 @@
 /obj/effect/floor_decal/corner/paleblue/border,
 /obj/effect/floor_decal/borderfloorwhite/corner2,
 /obj/effect/floor_decal/corner/paleblue/bordercorner2,
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/medbay_primary_storage)
 "Jt" = (
@@ -23577,6 +23616,7 @@
 /obj/item/clothing/glasses/hud/health,
 /obj/item/device/defib_kit/compact/combat/loaded,
 /obj/item/weapon/cmo_disk_holder,
+/obj/item/weapon/storage/secure/briefcase/ml3m_pack_cmo,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 6
 	},
@@ -23918,6 +23958,10 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 8
 	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal,
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "Lf" = (
@@ -24658,14 +24702,15 @@
 	icon_state = "intact-scrubbers";
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 1
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
+	},
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j1";
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
@@ -37285,7 +37330,7 @@ wp
 wn
 xL
 yw
-zr
+fR
 hZ
 mX
 pS
@@ -37427,7 +37472,7 @@ wq
 wV
 xM
 yx
-fR
+yL
 jf
 nc
 qQ
@@ -37573,7 +37618,7 @@ zt
 jm
 nf
 Ch
-yL
+yM
 AC
 Cl
 Cl
@@ -37715,7 +37760,7 @@ yz
 jr
 ng
 rq
-yM
+zr
 AD
 Cm
 Cm

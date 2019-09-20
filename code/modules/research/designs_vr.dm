@@ -12,30 +12,7 @@
 	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2, TECH_DATA = 4, TECH_ENGINEERING = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000)
 	build_path = /obj/item/weapon/implantcase/backup
-
-/datum/design/item/implant/sizecontrol
-	name = "Size control implant"
-	id = "implant_size"
-	req_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4, TECH_DATA = 4, TECH_ENGINEERING = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000, "silver" = 3000)
-	build_path = /obj/item/weapon/implanter/sizecontrol
-	sort_string = "TAAAA"
-
-/datum/design/item/weapon/sizegun
-	name = "Size gun"
-	id = "sizegun"
-	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 2000, "uranium" = 2000)
-	build_path = /obj/item/weapon/gun/energy/sizegun
-	sort_string = "TAAAB"
-
-/datum/design/item/bluespace_jumpsuit
-	name = "Bluespace jumpsuit"
-	id = "bsjumpsuit"
-	req_tech = list(TECH_BLUESPACE = 2, TECH_MATERIAL = 3, TECH_POWER = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
-	build_path = /obj/item/clothing/under/bluespace
-	sort_string = "TAAAC"
+	sort_string = "SAAAA"
 
 /datum/design/item/sleevemate
 	name = "SleeveMate 3700"
@@ -43,7 +20,7 @@
 	req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_BIO = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
 	build_path = /obj/item/device/sleevemate
-	sort_string = "TAAAD"
+	sort_string = "SAAAB"
 
 /datum/design/item/bodysnatcher
 	name = "Body Snatcher"
@@ -51,6 +28,31 @@
 	req_tech = list(TECH_MAGNET = 3, TECH_BIO = 3, TECH_ILLEGAL = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
 	build_path = /obj/item/device/bodysnatcher
+	sort_string = "SAAAC"
+
+/datum/design/item/weapon/sizegun
+	name = "Size gun"
+	id = "sizegun"
+	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 2000, "uranium" = 2000)
+	build_path = /obj/item/weapon/gun/energy/sizegun
+	sort_string = "SBAAA"
+
+/datum/design/item/bluespace_jumpsuit
+	name = "Bluespace jumpsuit"
+	id = "bsjumpsuit"
+	req_tech = list(TECH_BLUESPACE = 2, TECH_MATERIAL = 3, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
+	build_path = /obj/item/clothing/under/bluespace
+	sort_string = "SBAAB"
+
+/datum/design/item/implant/sizecontrol
+	name = "Size control implant"
+	id = "implant_size"
+	req_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4, TECH_DATA = 4, TECH_ENGINEERING = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000, "silver" = 3000)
+	build_path = /obj/item/weapon/implanter/sizecontrol
+	sort_string = "SBAAC"
 
 /datum/design/item/item/pressureinterlock
 	name = "APP pressure interlock"
@@ -369,8 +371,307 @@
 
 /datum/design/item/robot_upgrade/sizeshift
 	name = "Size Alteration Module"
-	desc = "Used to allow robot to freely alter their size."
 	id = "borg_sizeshift_module"
 	req_tech = list(TECH_BLUESPACE = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
 	build_path = /obj/item/borg/upgrade/sizeshift
+
+
+
+// NSFW gun and cells
+/datum/design/item/weapon/prototype_nsfw
+	name = "cell-loaded revolver"
+	id = "nsfw_prototype"
+	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 4, TECH_COMBAT = 7)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 6000, "phoron" = 8000, "uranium" = 4000)
+	build_path = /obj/item/weapon/gun/projectile/cell_loaded/combat/prototype
+	sort_string = "TNAAA"
+
+/datum/design/item/weapon/prototype_nsfw_mag
+	name = "combat cell magazine"
+	id = "nsfw_mag_prototype"
+	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 4, TECH_COMBAT = 7)
+	materials = list(DEFAULT_WALL_MATERIAL = 8000, "glass" = 4000, "phoron" = 4000)
+	build_path = /obj/item/ammo_magazine/cell_mag/combat/prototype
+	sort_string = "TNABA"
+
+/datum/design/item/nsfw_cell/AssembleDesignName()
+	..()
+	name = "Microbattery prototype ([item_name])"
+
+/datum/design/item/nsfw_cell/stun
+	name = "STUN"
+	id = "nsfw_cell_stun"
+	req_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 2, TECH_POWER = 3, TECH_COMBAT = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000)
+	build_path = /obj/item/ammo_casing/microbattery/combat/stun
+	sort_string = "TNACA"
+
+/datum/design/item/nsfw_cell/lethal
+	name = "LETHAL"
+	id = "nsfw_cell_lethal"
+	req_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_POWER = 3, TECH_COMBAT = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "phoron" = 3000)
+	build_path = /obj/item/ammo_casing/microbattery/combat/lethal
+	sort_string = "TNACB"
+
+/datum/design/item/nsfw_cell/net
+	name = "NET"
+	id = "nsfw_cell_net"
+	req_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_POWER = 3, TECH_COMBAT = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "uranium" = 3000)
+	build_path = /obj/item/ammo_casing/microbattery/combat/net
+	sort_string = "TNACC"
+
+/datum/design/item/nsfw_cell/ion
+	name = "ION"
+	id = "nsfw_cell_ion"
+	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_POWER = 5, TECH_COMBAT = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "silver" = 3000)
+	build_path = /obj/item/ammo_casing/microbattery/combat/ion
+	sort_string = "TNACD"
+
+/datum/design/item/nsfw_cell/shotstun
+	name = "SCATTERSTUN"
+	id = "nsfw_cell_shotstun"
+	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 3, TECH_POWER = 6, TECH_COMBAT = 6)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "silver" = 2000, "gold" = 2000)
+	build_path = /obj/item/ammo_casing/microbattery/combat/shotstun
+	sort_string = "TNACE"
+
+/datum/design/item/nsfw_cell/xray
+	name = "XRAY"
+	id = "nsfw_cell_xray"
+	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 5, TECH_COMBAT = 7)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "silver" = 1000, "gold" = 1000, "uranium" = 1000, "phoron" = 1000)
+	build_path = /obj/item/ammo_casing/microbattery/combat/xray
+	sort_string = "TNACF"
+
+/datum/design/item/nsfw_cell/stripper
+	name = "STRIPPER"
+	id = "nsfw_cell_stripper"
+	req_tech = list(TECH_MATERIAL = 7, TECH_BIO = 4, TECH_POWER = 4, TECH_COMBAT = 4, TECH_ILLEGAL = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "uranium" = 2000, "phoron" = 2000, "diamond" = 500)
+	build_path = /obj/item/ammo_casing/microbattery/combat/stripper
+	sort_string = "TNACG"
+
+/*
+/datum/design/item/nsfw_cell/final
+	name = "FINAL OPTION"
+	id = "nsfw_cell_final"
+	req_tech = list(TECH_COMBAT = 69, TECH_ILLEGAL = 69, TECH_PRECURSOR = 1)
+	materials = list("unobtanium" = 9001)
+	build_path = /obj/item/ammo_casing/microbattery/combat/final
+	sort_string = "TNACH"
+*/
+
+
+
+// ML-3M medigun and cells
+/datum/design/item/medical/cell_medigun
+	name = "cell-loaded medigun"
+	id = "cell_medigun"
+	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 3, TECH_BIO = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 8000, "plastic" = 8000, "glass" = 5000, "silver" = 1000, "gold" = 1000, "uranium" = 1000)
+	build_path = /obj/item/weapon/gun/projectile/cell_loaded/medical
+	sort_string = "MLAAA"
+
+/datum/design/item/medical/cell_medigun_mag
+	name = "medical cell magazine"
+	id = "cell_medigun_mag"
+	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 3, TECH_BIO = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "plastic" = 6000, "glass" = 3000, "silver" = 500, "gold" = 500)
+	build_path = /obj/item/ammo_magazine/cell_mag/medical
+	sort_string = "MLABA"
+
+/datum/design/item/medical/cell_medigun_mag_advanced
+	name = "advanced medical cell magazine"
+	id = "cell_medigun_mag_advanced"
+	req_tech = list(TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_POWER = 4, TECH_BIO = 7)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "plastic" = 10000, "glass" = 5000, "silver" = 1500, "gold" = 1500, "diamond" = 5000)
+	build_path = /obj/item/ammo_magazine/cell_mag/medical/advanced
+	sort_string = "MLABB"
+
+/datum/design/item/ml3m_cell/AssembleDesignName()
+	..()
+	name = "Nanite cell prototype ([item_name])"
+
+//Tier 0
+
+/datum/design/item/ml3m_cell/brute
+	name = "BRUTE"
+	id = "ml3m_cell_brute"
+	req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_BIO = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000)
+	build_path = /obj/item/ammo_casing/microbattery/medical/brute
+	sort_string = "MLACA"
+
+/datum/design/item/ml3m_cell/burn
+	name = "BURN"
+	id = "ml3m_cell_burn"
+	req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_BIO = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000)
+	build_path = /obj/item/ammo_casing/microbattery/medical/burn
+	sort_string = "MLACB"
+
+/datum/design/item/ml3m_cell/stabilize
+	name = "STABILIZE"
+	id = "ml3m_cell_stabilize"
+	req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_BIO = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000)
+	build_path = /obj/item/ammo_casing/microbattery/medical/stabilize
+	sort_string = "MLACC"
+
+//Tier 1
+
+/datum/design/item/ml3m_cell/toxin
+	name = "TOXIN"
+	id = "ml3m_cell_toxin"
+	req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 3, TECH_BIO = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500)
+	build_path = /obj/item/ammo_casing/microbattery/medical/toxin
+	sort_string = "MLACD"
+
+/datum/design/item/ml3m_cell/omni
+	name = "OMNI"
+	id = "ml3m_cell_omni"
+	req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 3, TECH_BIO = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500)
+	build_path = /obj/item/ammo_casing/microbattery/medical/omni
+	sort_string = "MLACE"
+
+/datum/design/item/ml3m_cell/antirad
+	name = "ANTIRAD"
+	id = "ml3m_cell_antirad"
+	req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 3, TECH_BIO = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500)
+	build_path = /obj/item/ammo_casing/microbattery/medical/antirad
+	sort_string = "MLACF"
+
+//Tier 2
+
+/datum/design/item/ml3m_cell/brute2
+	name = "BRUTE-II"
+	id = "ml3m_cell_brute2"
+	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_POWER = 2, TECH_BIO = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "gold" = 1000)
+	build_path = /obj/item/ammo_casing/microbattery/medical/brute2
+	sort_string = "MLACG"
+
+/datum/design/item/ml3m_cell/burn2
+	name = "BURN-II"
+	id = "ml3m_cell_burn2"
+	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_POWER = 2, TECH_BIO = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "gold" = 1000)
+	build_path = /obj/item/ammo_casing/microbattery/medical/burn2
+	sort_string = "MLACH"
+
+/datum/design/item/ml3m_cell/stabilize2
+	name = "STABILIZE-II"
+	id = "ml3m_cell_stabilize2"
+	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_POWER = 2, TECH_BIO = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "silver" = 1000)
+	build_path = /obj/item/ammo_casing/microbattery/medical/stabilize2
+	sort_string = "MLACI"
+
+/datum/design/item/ml3m_cell/omni2
+	name = "OMNI-II"
+	id = "ml3m_cell_omni2"
+	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_POWER = 2, TECH_BIO = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "uranium" = 1000)
+	build_path = /obj/item/ammo_casing/microbattery/medical/omni2
+	sort_string = "MLACJ"
+
+//Tier 3
+
+/datum/design/item/ml3m_cell/toxin2
+	name = "TOXIN-II"
+	id = "ml3m_cell_toxin2"
+	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 3, TECH_POWER = 3, TECH_BIO = 6)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "uranium" = 1000, "silver" = 1000, "diamond" = 500)
+	build_path = /obj/item/ammo_casing/microbattery/medical/toxin2
+	sort_string = "MLACK"
+
+/datum/design/item/ml3m_cell/haste
+	name = "HASTE"
+	id = "ml3m_cell_haste"
+	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 3, TECH_POWER = 3, TECH_BIO = 6)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "gold" = 1000, "silver" = 1000, "diamond" = 1000)
+	build_path = /obj/item/ammo_casing/microbattery/medical/haste
+	sort_string = "MLACL"
+
+/datum/design/item/ml3m_cell/resist
+	name = "RESIST"
+	id = "ml3m_cell_resist"
+	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 3, TECH_POWER = 3, TECH_BIO = 6)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "gold" = 1000, "uranium" = 1000, "diamond" = 1000)
+	build_path = /obj/item/ammo_casing/microbattery/medical/resist
+	sort_string = "MLACM"
+
+/datum/design/item/ml3m_cell/corpse_mend
+	name = "CORPSE MEND"
+	id = "ml3m_cell_corpse_mend"
+	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 3, TECH_POWER = 3, TECH_BIO = 6)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "phoron" = 3000, "diamond" = 3000)
+	build_path = /obj/item/ammo_casing/microbattery/medical/corpse_mend
+	sort_string = "MLACN"
+
+//Tier 4
+
+/datum/design/item/ml3m_cell/brute3
+	name = "BRUTE-III"
+	id = "ml3m_cell_brute3"
+	req_tech = list(TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_POWER = 5, TECH_BIO = 7, TECH_PRECURSOR = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "diamond" = 500, "verdantium" = 1000)
+	build_path = /obj/item/ammo_casing/microbattery/medical/brute3
+	sort_string = "MLACO"
+
+/datum/design/item/ml3m_cell/burn3
+	name = "BURN-III"
+	id = "ml3m_cell_burn3"
+	req_tech = list(TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_POWER = 5, TECH_BIO = 7, TECH_PRECURSOR = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "diamond" = 500, "verdantium" = 1000)
+	build_path = /obj/item/ammo_casing/microbattery/medical/burn3
+	sort_string = "MLACP"
+
+/datum/design/item/ml3m_cell/toxin3
+	name = "TOXIN-III"
+	id = "ml3m_cell_toxin3"
+	req_tech = list(TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_POWER = 5, TECH_BIO = 7, TECH_ARCANE = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "diamond" = 500, "verdantium" = 1000)
+	build_path = /obj/item/ammo_casing/microbattery/medical/toxin3
+	sort_string = "MLACQ"
+
+/datum/design/item/ml3m_cell/omni3
+	name = "OMNI-III"
+	id = "ml3m_cell_omni3"
+	req_tech = list(TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_POWER = 5, TECH_BIO = 7, TECH_ARCANE = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "diamond" = 500, "verdantium" = 1000)
+	build_path = /obj/item/ammo_casing/microbattery/medical/omni3
+	sort_string = "MLACR"
+
+//Tierless
+
+/datum/design/item/ml3m_cell/shrink
+	name = "SHRINK"
+	id = "ml3m_cell_shrink"
+	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_BLUESPACE = 3, TECH_BIO = 5, TECH_ILLEGAL = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "uranium" = 2000)
+	build_path = /obj/item/ammo_casing/microbattery/medical/shrink
+	sort_string = "MLADA"
+
+/datum/design/item/ml3m_cell/grow
+	name = "GROW"
+	id = "ml3m_cell_grow"
+	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_BLUESPACE = 3, TECH_BIO = 5, TECH_ILLEGAL = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "uranium" = 2000)
+	build_path = /obj/item/ammo_casing/microbattery/medical/grow
+	sort_string = "MLADB"
+
+/datum/design/item/ml3m_cell/normalsize
+	name = "NORMALSIZE"
+	id = "ml3m_cell_normalsize"
+	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_BLUESPACE = 3, TECH_BIO = 5, TECH_ILLEGAL = 5)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "uranium" = 2000)
+	build_path = /obj/item/ammo_casing/microbattery/medical/normalsize
+	sort_string = "MLADC"

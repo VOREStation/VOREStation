@@ -173,7 +173,6 @@
 				prob(3);/obj/item/weapon/reagent_containers/syringe/antiviral,
 				prob(5);/obj/item/weapon/reagent_containers/syringe/inaprovaline,
 				prob(1);/obj/item/weapon/reagent_containers/hypospray,
-				prob(1);/obj/item/weapon/storage/secure/briefcase/ml3m_pack_med,
 				prob(1);/obj/item/weapon/storage/box/freezer,
 				prob(2);/obj/item/stack/nanopaste)
 

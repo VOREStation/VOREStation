@@ -375,13 +375,13 @@
 /area/centcom/specops)
 "aH" = (
 /obj/structure/closet/crate/medical,
-/obj/item/stack/nanopaste,
+/obj/item/stack/nanopaste/advanced,
 /obj/item/weapon/tank/anesthetic,
 /obj/item/clothing/mask/breath/medical,
 /obj/item/clothing/mask/surgical,
 /obj/item/clothing/mask/surgical,
-/obj/item/stack/nanopaste,
-/obj/item/stack/nanopaste,
+/obj/item/stack/nanopaste/advanced,
+/obj/item/stack/nanopaste/advanced,
 /obj/item/weapon/storage/firstaid/surgery,
 /turf/unsimulated/floor{
 	icon_state = "vault";
@@ -1064,6 +1064,7 @@
 /area/centcom/specops)
 "bL" = (
 /obj/structure/closet/wardrobe/ert,
+/obj/item/modular_computer/laptop/preset/custom_loadout/elite,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
@@ -1158,16 +1159,7 @@
 /area/centcom/specops)
 "bW" = (
 /obj/structure/table/reinforced,
-/obj/item/ammo_casing/nsfw_batt/combat/stun,
-/obj/item/ammo_casing/nsfw_batt/combat/stun,
-/obj/item/ammo_casing/nsfw_batt/combat/stun,
-/obj/item/ammo_casing/nsfw_batt/medical/brute2,
-/obj/item/ammo_casing/nsfw_batt/medical/burn2,
-/obj/item/ammo_casing/nsfw_batt/medical/stabilize2,
-/obj/item/ammo_casing/nsfw_batt/combat/net,
-/obj/item/ammo_casing/nsfw_batt/combat/net,
-/obj/item/ammo_magazine/nsfw_mag,
-/obj/item/weapon/gun/projectile/nsfw,
+/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
@@ -7452,7 +7444,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 1
 	},
-/obj/item/stack/nanopaste,
+/obj/item/stack/nanopaste/advanced,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
@@ -16610,12 +16602,6 @@
 	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/space)
-"Eq" = (
-/obj/machinery/porta_turret,
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/centcom/specops)
 "Ez" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/cell/hyper,
@@ -16901,12 +16887,6 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
-"MA" = (
-/obj/machinery/porta_turret,
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/centcom/control)
 "Ns" = (
 /obj/structure/closet/crate/freezer/rations,
 /obj/random/mre,
@@ -16990,8 +16970,8 @@
 /area/centcom/evac)
 "QQ" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/secure/briefcase/nsfw_pack,
-/obj/item/weapon/storage/secure/briefcase/nsfw_pack,
+/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat,
+/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -30892,8 +30872,8 @@ cg
 cI
 cV
 aG
-Eq
-MA
+aG
+PP
 PP
 FL
 dm

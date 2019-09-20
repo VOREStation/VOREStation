@@ -65,7 +65,7 @@
 	//guard = 20
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/basic = 3,
-		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion = 3,
+		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion = 1,
 		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser = 3,
 		/mob/living/simple_mob/vore/aggressive/corrupthound = 1
 	)

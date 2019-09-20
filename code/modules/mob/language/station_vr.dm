@@ -83,6 +83,19 @@
     "uhk","zir","sc'orth","sc'er","thc'yek","th'zirk","th'esk","k'ayek","ka'mil","sc'","ik'yir","yol","kig","k'zit","'","'","zrk","krg","isk'yet","na'k",
     "sc'azz","th'sc","nil","n'ahk","sc'yeth","aur'sk","iy'it","azzg","a'","i'","o'","u'","a","i","o","u","zz","kr","ak","nrk","tzzk","bz","xic'","k'lax'","histh")
 
+/datum/language/human/slavic
+	name = LANGUAGE_SLAVIC
+	desc = "The official language of the Independent Colonial Confederation of Gilgamesh, originally established in 2122 by the short-lived United Slavic Confederation on Earth."
+	colour = "solcom"
+	key = "r"
+
+	syllables = list(
+		"rus", "zem", "ave", "groz", "ski", "ska", "ven", "konst", "pol", "lin", "svy",
+		"danya", "da", "mied", "zan", "das", "krem", "myka", "to", "st", "no", "na", "ni",
+		"ko", "ne", "en", "po", "ra", "li", "on", "byl", "cto", "eni", "ost", "ol", "ego",
+		"ver", "stv", "pro"
+	)
+
 /datum/language/unathi
 	flags = 0
 /datum/language/tajaran
