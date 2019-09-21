@@ -24686,7 +24686,7 @@
 "QH" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/stack/material/phoron{
-	amount = 4
+	amount = 6
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -25878,6 +25878,11 @@
 /obj/item/weapon/storage/box/monkeycubes,
 /obj/item/weapon/storage/box/monkeycubes,
 /obj/item/weapon/storage/box/monkeycubes,
+/obj/item/weapon/storage/box/monkeycubes,
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped,
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped,
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped,
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped,
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped,
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped,
 /obj/machinery/alarm{
