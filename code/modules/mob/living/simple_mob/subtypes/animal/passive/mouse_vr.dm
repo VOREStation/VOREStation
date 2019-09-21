@@ -12,6 +12,8 @@
 /mob/living/simple_mob/animal/passive/mouse/attack_hand(mob/living/hander)
 	if(hander.a_intent == I_HELP) //if lime intent
 		get_scooped(hander) //get scooped
+	else
+		..()
 
 /obj/item/weapon/holder/mouse/attack_self(var/mob/U)
 	for(var/mob/living/simple_mob/M in src.contents)
