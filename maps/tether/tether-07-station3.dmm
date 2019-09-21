@@ -5909,26 +5909,24 @@
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
 "jm" = (
-/obj/effect/floor_decal/borderfloor{
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 6
+	},
+/obj/structure/sign/poster{
+	pixel_x = -32
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 1
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 4
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 8
 	},
 /obj/item/device/radio/intercom{
-	dir = 1;
-	pixel_y = 24;
-	req_access = list()
-	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 4
+	dir = 8;
+	pixel_x = -24
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
@@ -15932,20 +15930,24 @@
 /turf/simulated/wall,
 /area/maintenance/station/elevator)
 "yA" = (
-/obj/effect/floor_decal/corner/lightgrey{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/lightgrey{
-	dir = 6
-	},
-/obj/structure/sign/poster{
-	pixel_x = -32
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals6{
+/obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 8
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 4
+	},
+/obj/machinery/computer/guestpass{
+	pixel_y = 30
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
@@ -37615,7 +37617,7 @@ uP
 uP
 uP
 zt
-jm
+yA
 nf
 Ch
 yM
@@ -38181,7 +38183,7 @@ vO
 wu
 wX
 sp
-yA
+jm
 zv
 Aq
 Aw
