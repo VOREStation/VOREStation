@@ -267,7 +267,8 @@
 	data["access"] = !isLocked(user)
 	data["locked"] = locked
 	data["enabled"] = enabled
-// VOREStation Edit - Removal of "Lethal" setting - it does nothing. Rykka did dis.
+	// data["is_lethal"] = 1 // VOREStation Edit - Removal of "Lethal" setting - it does nothing. Rykka did dis.
+    // data["lethal"] = lethal // VOREStation Edit - Removal of "Lethal" setting - it does nothing. Rykka did dis.
 
 	if(data["access"])
 		var/settings[0]
@@ -290,7 +291,8 @@
 		var/value = text2num(href_list["value"])
 		if(href_list["command"] == "enable")
 			enabled = value
-// VOREStation Edit - Removal of "Lethal" setting - it does nothing. Rykka did dis.
+		// else if(href_list["command"] == "lethal") // VOREStation Edit - Removal of "Lethal" setting - it does nothing. Rykka did dis.
+    		// lethal = value // VOREStation Edit - Removal of "Lethal" setting - it does nothing. Rykka did dis.
 		else if(href_list["command"] == "check_synth")
 			check_synth = value
 		else if(href_list["command"] == "check_weapons")
