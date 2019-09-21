@@ -269,8 +269,6 @@
 	data["access"] = !isLocked(user)
 	data["locked"] = locked
 	data["enabled"] = enabled
-	data["is_lethal"] = 1
-	data["lethal"] = lethal
 
 	if(data["access"])
 		var/settings[0]
@@ -293,8 +291,6 @@
 		var/value = text2num(href_list["value"])
 		if(href_list["command"] == "enable")
 			enabled = value
-		else if(href_list["command"] == "lethal")
-			lethal = value
 		else if(href_list["command"] == "check_synth")
 			check_synth = value
 		else if(href_list["command"] == "check_weapons")
