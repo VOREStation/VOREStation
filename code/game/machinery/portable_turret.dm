@@ -208,8 +208,6 @@
 	check_all = TRUE
 	can_salvage = FALSE	// So you can't just twoshot a turret and get a fancy gun
 
-// Start Lasertag Turret Code
-
 /obj/machinery/porta_turret/lasertag
 	name = "lasertag turret"
 	turret_type = "normal"
@@ -299,8 +297,6 @@
 			check_weapons = value
 
 		return 1
-
-// End Lasertag Turret Code
 
 /obj/machinery/porta_turret/Initialize()
 	//Sets up a spark system
