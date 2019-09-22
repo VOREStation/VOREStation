@@ -205,18 +205,18 @@
 "aay" = (
 /obj/machinery/conveyor{
 	dir = 1;
-	id = "mining_inbound"
+	id = "mining_outbound"
 	},
 /obj/structure/plasticflaps,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/virgo3b,
 /area/tether/surfacebase/mining_main/refinery)
 "aaz" = (
 /obj/machinery/conveyor{
 	dir = 1;
-	id = "mining_outbound"
+	id = "mining_inbound"
 	},
 /obj/structure/plasticflaps,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/virgo3b,
 /area/tether/surfacebase/mining_main/refinery)
 "aaA" = (
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
@@ -255,13 +255,6 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "aaD" = (
-/obj/machinery/disposal/deliveryChute{
-	dir = 1
-	},
-/obj/structure/disposalpipe/trunk,
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/mining_main/refinery)
-"aaE" = (
 /obj/structure/disposaloutlet{
 	dir = 1
 	},
@@ -270,7 +263,14 @@
 	dir = 1;
 	id = "mining_outbound"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/virgo3b,
+/area/tether/surfacebase/mining_main/refinery)
+"aaE" = (
+/obj/machinery/disposal/deliveryChute{
+	dir = 1
+	},
+/obj/structure/disposalpipe/trunk,
+/turf/simulated/floor/virgo3b,
 /area/tether/surfacebase/mining_main/refinery)
 "aaF" = (
 /obj/random/maintenance/cargo,
@@ -11543,6 +11543,7 @@
 /area/tether/surfacebase/tram)
 "atD" = (
 /obj/structure/closet/excavation,
+/obj/item/weapon/melee/umbrella/random,
 /turf/simulated/floor/tiled,
 /area/rnd/xenoarch_storage)
 "atE" = (
@@ -41960,7 +41961,7 @@ aaf
 aak
 aar
 aar
-aaC
+aar
 aar
 aar
 aar
@@ -42101,8 +42102,8 @@ aaf
 aaf
 aal
 aat
-aaz
-aaE
+aay
+aaD
 ajW
 aka
 aka
@@ -42243,8 +42244,8 @@ aaf
 aaf
 aam
 aas
-aay
-aaD
+aaz
+aaE
 ajW
 aka
 aba
@@ -42391,7 +42392,7 @@ aar
 aar
 akc
 akc
-aaC
+aar
 aca
 acy
 afb
