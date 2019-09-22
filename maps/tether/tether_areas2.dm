@@ -321,6 +321,10 @@
 	name = "\improper Research Outpost Hallway"
 	icon_state = "research"
 
+/area/rnd/outpost/breakroom
+	name = "\improper Research Outpost Breakroom"
+	icon_state = "research"
+
 /area/rnd/outpost/airlock
 	name = "\improper Research Outpost Airlock"
 	icon_state = "green"
@@ -365,6 +369,9 @@
 /area/rnd/outpost/anomaly_lab/testing
 	name = "\improper Anomaly Lab Testing Chamber"
 	icon_state = "research"
+/area/rnd/outpost/anomaly_lab/airlock
+	name = "\improper Anomaly Lab Testing Chamber Airlock"
+	icon_state = "research"
 /area/rnd/outpost/anomaly_lab/storage
 	name = "\improper Anomaly Storage"
 	icon_state = "research"
@@ -372,6 +379,8 @@
 	name = "\improper Research Outpost Xenoarch Storage"
 	icon_state = "research"
 
+
+// Xenobiology Outpost Areas
 /area/rnd/outpost/xenobiology/outpost_north_airlock
 	name = "\improper Xenbiology Northern Airlock"
 	icon_state = "research"
