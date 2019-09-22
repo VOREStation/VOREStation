@@ -21238,6 +21238,7 @@
 "Jm" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
+	dir = 4;
 	id = "mechbay";
 	name = "Mech Bay"
 	},
