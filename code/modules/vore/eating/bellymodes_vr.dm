@@ -75,6 +75,11 @@
 					if(H.bloodstr.get_reagent_amount("numbenzyme") < 2)
 						H.bloodstr.add_reagent("numbenzyme",4)
 
+				//Thickbelly flag
+				if(mode_flags & DM_FLAG_THICKBELLY)
+					if(!(H.blinded))
+						H.Blind(10)
+
 				//Stripping flag
 				if(mode_flags & DM_FLAG_STRIPPING)
 					for(var/slot in slots)

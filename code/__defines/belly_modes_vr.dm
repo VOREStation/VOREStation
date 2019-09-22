@@ -32,6 +32,7 @@
 #define DM_FLAG_NUMBING			0x1
 #define DM_FLAG_STRIPPING		0x2
 #define DM_FLAG_LEAVEREMAINS	0x4
+#define DM_FLAG_THICKBELLY		0x8
 
 //Item related modes
 #define IM_HOLD									"Hold"
