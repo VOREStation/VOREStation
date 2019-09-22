@@ -1281,6 +1281,7 @@ default behaviour is:
 			var/turf/end_T = get_turf(target)
 			if(end_T)
 				add_attack_logs(src,M,"Thrown via grab to [end_T.x],[end_T.y],[end_T.z]")
+			src.drop_from_inventory(G)	//VOREStation Addition: grab exploit fix
 
 	src.drop_from_inventory(item)
 	if(!item || !isturf(item.loc))
