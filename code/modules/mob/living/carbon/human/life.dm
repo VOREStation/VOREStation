@@ -1279,7 +1279,7 @@
 					else
 						bodytemp.icon_state = "temp0"
 
-		if(blinded || muffled)		overlay_fullscreen("blind", /obj/screen/fullscreen/blind) //VOREStation Edit
+		if(blinded)		overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 		else			clear_fullscreens()
 
 		if(disabilities & NEARSIGHTED)	//this looks meh but saves a lot of memory by not requiring to add var/prescription
