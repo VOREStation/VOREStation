@@ -67,6 +67,7 @@
 	item_state = "candlebox5"
 	throwforce = 2
 	slot_flags = SLOT_BELT
+	max_storage_space = ITEMSIZE_COST_SMALL * 5
 	starts_with = list(/obj/item/weapon/flame/candle = 5)
 
 /obj/item/weapon/storage/fancy/whitecandle_box
@@ -78,6 +79,7 @@
 	item_state = "whitecandlebox5"
 	throwforce = 2
 	slot_flags = SLOT_BELT
+	max_storage_space = ITEMSIZE_COST_SMALL * 5
 	starts_with = list(/obj/item/weapon/flame/candle/white = 5)
 
 /obj/item/weapon/storage/fancy/blackcandle_box
@@ -89,6 +91,7 @@
 	item_state = "blackcandlebox5"
 	throwforce = 2
 	slot_flags = SLOT_BELT
+	max_storage_space = ITEMSIZE_COST_SMALL * 5
 	starts_with = list(/obj/item/weapon/flame/candle/black = 5)
 
 
@@ -178,6 +181,21 @@
 				to_chat(user, "This marker is too childish to be contained in this box.")
 				return
 	..()
+
+/*
+ * Cracker Packet
+ */
+
+/obj/item/weapon/storage/fancy/crackers
+	name = "\improper Getmore Crackers"
+	icon = 'icons/obj/food.dmi'
+	icon_state = "crackerbox"
+	icon_type = "cracker"
+	max_storage_space = ITEMSIZE_COST_TINY * 6
+	max_w_class = ITEMSIZE_TINY
+	w_class = ITEMSIZE_SMALL
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/cracker)
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/cracker = 6)
 
 ////////////
 //CIG PACK//

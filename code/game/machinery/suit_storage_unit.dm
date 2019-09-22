@@ -648,7 +648,7 @@
 	model_text = "Exploration"
 	departments = list("Exploration","Old Exploration")
 
-/obj/machinery/suit_cycler/exploreration/Initialize()
+/obj/machinery/suit_cycler/exploration/Initialize()
 	species -= SPECIES_TESHARI
 	return ..()
 

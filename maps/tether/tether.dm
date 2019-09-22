@@ -9,7 +9,6 @@
 	#include "tether_shuttle_defs.dm"
 	#include "tether_shuttles.dm"
 	#include "tether_telecomms.dm"
-	#include "tether_virgo3b.dm"
 
 	#include "tether-01-surface1.dmm"
 	#include "tether-02-surface2.dmm"

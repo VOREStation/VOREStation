@@ -38,7 +38,7 @@
 		new /datum/data/mining_equipment("Silver Pickaxe",				/obj/item/weapon/pickaxe/silver,									1200),
 		// new /datum/data/mining_equipment("Mining Conscription Kit",	/obj/item/storage/backpack/duffelbag/mining_conscript,				1000),
 		new /datum/data/mining_equipment("Space Cash",					/obj/item/weapon/spacecash/c100,									1000),
-		new /datum/data/mining_equipment("Hardsuit - Control Module",	/obj/item/weapon/rig/industrial,									2000),
+		new /datum/data/mining_equipment("Hardsuit - Control Module",	/obj/item/weapon/rig/industrial/vendor,									2000),
 		new /datum/data/mining_equipment("Hardsuit - Plasma Cutter",		/obj/item/rig_module/device/plasmacutter,						800),
 		new /datum/data/mining_equipment("Hardsuit - Drill",				/obj/item/rig_module/device/drill,								5000),
 		new /datum/data/mining_equipment("Hardsuit - Ore Scanner",		/obj/item/rig_module/device/orescanner,								1000),
@@ -77,7 +77,8 @@
 		new /datum/data/mining_equipment("Defense Equipment - Plasteel Machete",	/obj/item/weapon/material/knife/machete,				500),
 		new /datum/data/mining_equipment("Fishing Net",					/obj/item/weapon/material/fishing_net,								500),
 		new /datum/data/mining_equipment("Titanium Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern,						1000),
-		new /datum/data/mining_equipment("Durasteel Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern/strong,				7500)
+		new /datum/data/mining_equipment("Durasteel Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern/strong,				7500),
+		new /datum/data/mining_equipment("Bar Shelter Capsule",		/obj/item/device/survivalcapsule/luxurybar,							10000)
 		)
 	//VOREStation Edit End
 

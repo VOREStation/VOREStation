@@ -88,7 +88,7 @@
 
 		if(Environment)
 
-			if( abs(Environment.temperature - bodytemperature) > 40 )
+			if( abs(Environment.temperature - bodytemperature) > temperature_range )	//VOREStation Edit: heating adjustments
 				bodytemperature += ((Environment.temperature - bodytemperature) / 5)
 
 			if(min_oxy)

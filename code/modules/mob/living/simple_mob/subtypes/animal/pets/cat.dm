@@ -102,6 +102,7 @@
 	icon_state = "cat"
 	item_state = "cat"
 	named = TRUE
+	makes_dirt = 0 //Vorestation Edit
 
 /mob/living/simple_mob/animal/passive/cat/kitten
 	name = "kitten"

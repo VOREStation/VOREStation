@@ -26,9 +26,11 @@
 		for(dir in list(NORTH, EAST, SOUTH, WEST)) // Loop through every direction
 			sleepernew = locate(/obj/machinery/sleeper, get_step(src, dir)) // Try to find a scanner in that direction
 			if(sleepernew)
+				// VOREStation Edit Start
 				sleeper = sleepernew
 				sleepernew.console = src
-				set_dir(get_dir(src, sleepernew))
+				break
+				// VOREStation Edit End
 
 
 /obj/machinery/sleep_console/attack_ai(var/mob/user)
@@ -270,12 +272,8 @@
 		if(pumping > 0)
 			if(beaker)
 				if(beaker.reagents.total_volume < beaker.reagents.maximum_volume)
-					var/pumped = 0
 					for(var/datum/reagent/x in occupant.ingested.reagent_list)
-						occupant.reagents.trans_to_obj(beaker, 3)
-						pumped++
-					if(ishuman(occupant))
-						occupant.ingested.trans_to_obj(beaker, pumped + 1)
+						occupant.ingested.trans_to_obj(beaker, 3)
 			else
 				toggle_pump()
 

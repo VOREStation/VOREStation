@@ -122,12 +122,6 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	update_icon()
 
 //Unsimulated
-/turf/unsimulated/wall/planetary/virgo3b
-	name = "facility wall"
-	desc = "An eight-meter tall carbyne wall. For when the wildlife on your planet is mostly militant megacorps."
-	alpha = 0xFF
-	VIRGO3B_SET_ATMOS
-
 /turf/unsimulated/mineral/virgo3b
 	blocks_air = TRUE
 

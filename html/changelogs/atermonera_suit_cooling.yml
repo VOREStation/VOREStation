@@ -1,4 +1,0 @@
-author: atermonera
-delete-after: True
-changes: 
-  - bugfix: "Suit coolers and rigsuit coolers now protect FBPs against vacuum again."
