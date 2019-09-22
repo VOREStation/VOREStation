@@ -25,6 +25,10 @@
 	message = sanitize_or_reflect(message,src) //VOREStation Edit - Reflect too-long messages (within reason)
 
 	set_typing_indicator(FALSE)
+	//VOREStation Edit Start
+	if(muffled)
+		return me_verb_subtle(message)
+	//VOREStation Edit End
 	if(use_me)
 		usr.emote("me",usr.emote_type,message)
 	else
