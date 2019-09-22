@@ -748,12 +748,12 @@
 "ot" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
 "ou" = (/obj/structure/bed/chair/comfy/brown{dir = 4},/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
 "ov" = (/obj/machinery/atmospherics/unary/vent_pump/on,/obj/machinery/alarm{dir = 4; icon_state = "alarm0"; pixel_x = -22},/obj/machinery/firealarm{pixel_y = 25},/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
-"ow" = (/obj/structure/table/woodentable,/obj/machinery/light{dir = 8},/obj/machinery/light_switch{dir = 4; pixel_x = -28},/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
+"ow" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/box/donkpockets,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 "ox" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 1},/obj/machinery/alarm{dir = 4; icon_state = "alarm0"; pixel_x = -22},/obj/machinery/light,/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
 "oy" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 8},/obj/machinery/light_switch{dir = 1; pixel_y = -24},/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
 "oz" = (/obj/structure/bed/chair/comfy/brown{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 10},/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
 "oA" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 10},/obj/machinery/firealarm{pixel_y = 25},/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
-"oB" = (/obj/structure/table/woodentable,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
+"oB" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/box/donut,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 "oC" = (/obj/machinery/vending/coffee,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 "oD" = (/obj/machinery/vending/snack,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 "oE" = (/obj/machinery/vending/cola,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
@@ -778,6 +778,7 @@
 "oX" = (/obj/structure/table/woodentable,/obj/machinery/recharger,/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 "oY" = (/obj/machinery/light,/turf/simulated/floor/tiled,/area/rnd/outpost/anomaly_lab)
 "oZ" = (/obj/structure/sign/science,/turf/simulated/wall,/area/rnd/outpost/breakroom)
+"pa" = (/obj/structure/table/woodentable,/obj/machinery/light{dir = 8},/obj/machinery/light_switch{dir = 4; pixel_x = -28},/obj/item/weapon/storage/box/donkpockets,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -908,9 +909,9 @@ aaababababababababababababababababababababababababababababababababababababababab
 aaabababababababababababababababababababababababababababababababababababababababababababababababadadadadadadadadadadadadadadadadadadadabadababababababababababababababababababababjwjNnInInInIkhkxkyltjEjRkbkjkokjkpkcjEkuftkqkzkDkOlblclrlslxhMjfiViViCjjiAjkjljljljljmhMababababababaa
 aaababababababababababababababababababababababababababababababababababababababababababababababababadadadadadadadadadadadadadadadadababababababababababababababababababababababababkvnIlpjOkgkUjPlAlGoljEkilukkklkmlvlwlBlDlElsntnAnuksoZksktkshMjojojqiVjbiAjrjvjvjvhMhMhMababababababaa
 aaababababababababababababababababababababababababababababababababababababababababababababababababababababadadadadabababadababababababababababababababababababababababababababababkvnIlWkflylzjwkaomkajEkCngkEkFkEkGkHjEjxjxkIkJjxjxksoIoJoKoChMjijijAjhjgiAjBjCjDhMhMababababababababaa
-aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababkvnImRmgmhnIjwoknHnSnTnUnVkkklkmldlejElfmAnCliljlqksoBonoKoDhMhMjFjGjHjpjIjJjKjLhMabababababababababaa
+aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababkvnImRmgmhnIjwoknHnSnTnUnVkkklkmldlejElfmAnCliljlqksowonoKoDhMhMjFjGjHjpjIjJjKjLhMabababababababababaa
 aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababjwjNlTlUlVnJjwnEnWlYjElClHnnlJlIlKlLjElMlNlOkZkZlPksoHonoKoEkshMhMhMhMhMhMhMhMhMhMabababababababababaa
-aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababjwjwmimzkVjwjwjxnPnOjEjEjEjElajEjEjEjElZmambmcmdmdksowonoKoFksovouotosabababababababababababababababaa
+aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababjwjwmimzkVjwjwjxnPnOjEjEjEjElajEjEjEjElZmambmcmdmdkspaonoKoFksovouotosabababababababababababababababaa
 aaabababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababawababababababababababjxnskWmBmCmOnDnolXmjmkmlmmmnkZmompmqmrmsnRmtmtmtmtmtoGonoKonooopoyoqosabababababababababababababababaa
 aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababjxmxmynbncnLnMmDmEmFnwmGmGmGnXmHmHmHnYmImJmKmLmMmNmtoPoLoMoWksksksksksabababababababababababababababaa
 aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababjxnQmPnenxnNkZkZmSmTkZmUmVkZnZkZmUkZoakZmWmXmYmZnamtoXoNononoooAozotosabababababababababababababababaa
