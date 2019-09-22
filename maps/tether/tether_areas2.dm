@@ -170,6 +170,8 @@
 	name = "\improper Civilian West Substation"
 /area/maintenance/substation/exploration
 	name = "\improper Exploration Substation"
+/area/maintenance/tether_midpoint
+	name = "\improper Tether Midpoint Maint"
 
 
 /area/tether/surfacebase/medical
@@ -258,7 +260,7 @@
 /area/maintenance/lower/trash_pit
 	name = "\improper Trash Pit"
 /area/maintenance/lower/solars
-	name = "\improper Solars maintenanceance"
+	name = "\improper Solars Maintenance"
 /area/maintenance/lower/mining_eva
 	name = "\improper Mining EVA Maintenance"
 /area/maintenance/lower/public_garden_maintenence
@@ -290,6 +292,9 @@
 /area/rnd/chemistry_lab
 	name = "\improper Research Chemistry Lab"
 	icon_state = "research"
+/area/rnd/miscellaneous_lab
+	name = "\improper Research Miscellaneous Lab"
+	icon_state = "research"
 /area/rnd/staircase/secondfloor
 	name = "\improper Research Staircase Second Floor"
 	icon_state = "research"
@@ -314,6 +319,10 @@
 //TFF 28/8/19 - cleanup of areas placement
 /area/rnd/outpost
 	name = "\improper Research Outpost Hallway"
+	icon_state = "research"
+
+/area/rnd/outpost/breakroom
+	name = "\improper Research Outpost Breakroom"
 	icon_state = "research"
 
 /area/rnd/outpost/airlock
@@ -360,11 +369,56 @@
 /area/rnd/outpost/anomaly_lab/testing
 	name = "\improper Anomaly Lab Testing Chamber"
 	icon_state = "research"
+/area/rnd/outpost/anomaly_lab/airlock
+	name = "\improper Anomaly Lab Testing Chamber Airlock"
+	icon_state = "research"
 /area/rnd/outpost/anomaly_lab/storage
 	name = "\improper Anomaly Storage"
 	icon_state = "research"
 /area/rnd/outpost/xenoarch_storage
 	name = "\improper Research Outpost Xenoarch Storage"
+	icon_state = "research"
+
+
+// Xenobiology Outpost Areas
+/area/rnd/outpost/xenobiology/outpost_north_airlock
+	name = "\improper Xenbiology Northern Airlock"
+	icon_state = "research"
+/area/rnd/outpost/xenobiology/outpost_south_airlock
+	name = "\improper Xenbiology Southern Airlock"
+	icon_state = "research"
+/area/rnd/outpost/xenobiology/outpost_hallway
+	name = "\improper Xenbiology Access Corridor"
+	icon_state = "research"
+/area/rnd/outpost/xenobiology/outpost_breakroom
+	name = "\improper Xenbiology Breakroom"
+	icon_state = "research"
+/area/rnd/outpost/xenobiology/outpost_office
+	name = "\improper Xenbiology Main Office"
+	icon_state = "research"
+/area/rnd/outpost/xenobiology/outpost_autopsy
+	name = "\improper Xenbiology Alien Autopsy Room"
+	icon_state = "research"
+/area/rnd/outpost/xenobiology/outpost_decon
+	name = "\improper Xenbiology Decontamination and Showers"
+	icon_state = "research"
+/area/rnd/outpost/xenobiology/outpost_first_aid
+	name = "\improper Xenbiology First Aid"
+	icon_state = "research"
+/area/rnd/outpost/xenobiology/outpost_slimepens
+	name = "\improper Xenbiology Slime and Xenos Containment"
+	icon_state = "research"
+/area/rnd/outpost/xenobiology/outpost_main
+	name = "\improper Xenbiology Main Outpost"
+	icon_state = "research"
+/area/rnd/outpost/xenobiology/outpost_storage
+	name = "\improper Xenbiology Equipment Storage"
+	icon_state = "research"
+/area/rnd/outpost/xenobiology/outpost_atmos
+	name = "\improper Xenbiology Atmos"
+	icon_state = "research"
+/area/rnd/outpost/xenobiology/outpost_substation
+	name = "\improper Xenbiology SMES Substation"
 	icon_state = "research"
 
 // Misc
@@ -627,6 +681,12 @@
 /area/hallway/station/docks
 	name = "\improper Docks Hallway"
 
+/area/bridge/secondary
+	name = "\improper Secondary Command Office"
+
+/area/bridge/secondary/meeting_room
+	name = "\improper Secondary Command Meeting Room"
+
 /area/maintenance/station
 	icon_state = "fsmaint"
 /area/maintenance/station/bridge
@@ -732,6 +792,9 @@
 	dynamic_lighting = FALSE
 
 	requires_power = FALSE
+
+/area/tether/midpoint
+	name = "\improper Tether Midpoint"
 
 //////////////////////////////////
 

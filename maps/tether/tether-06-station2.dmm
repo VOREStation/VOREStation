@@ -13436,6 +13436,9 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 9
 	},
+/obj/machinery/computer/guestpass{
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
 "tV" = (
@@ -16219,7 +16222,6 @@
 /area/medical/surgery2)
 "yx" = (
 /obj/structure/table/standard,
-/obj/item/stack/nanopaste,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 6
 	},
@@ -20512,7 +20514,6 @@
 /area/maintenance/station/sec_lower)
 "Fg" = (
 /obj/structure/table/standard,
-/obj/item/stack/nanopaste,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 5
 	},
