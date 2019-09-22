@@ -77,8 +77,8 @@
 
 				//Thickbelly flag
 				if(mode_flags & DM_FLAG_THICKBELLY)
-					if(!(H.blinded))
-						H.Blind(10)
+					if(!(H.muffled))
+						H.muffled = 1
 
 				//Stripping flag
 				if(mode_flags & DM_FLAG_STRIPPING)

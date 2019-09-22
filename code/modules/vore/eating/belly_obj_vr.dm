@@ -238,6 +238,8 @@
 	if(istype(M,/mob/living))
 		var/mob/living/ML = M
 		var/mob/living/OW = owner
+		if(ML.muffled)
+			ML.muffled = 0
 		if(ML.absorbed)
 			ML.absorbed = FALSE
 			if(ishuman(M) && ishuman(OW))

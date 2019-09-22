@@ -25,6 +25,7 @@
 	var/permit_healbelly = TRUE
 	var/can_be_drop_prey = 0
 	var/can_be_drop_pred = 1			// Mobs are pred by default.
+	var/muffled = 0 					// Used by muffling belly
 
 //
 // Hook for generic creation of stuff on new creatures
