@@ -1,7 +1,9 @@
+/mob
+	var/muffled = 0 					// Used by muffling belly
+
 /mob/living
 	var/ooc_notes = null
 	var/obj/structure/mob_spawner/source_spawner = null
-	var/muffled = 0 					// Used by muffling belly
 
 //custom say verbs
 	var/custom_say = null
