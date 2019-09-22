@@ -692,7 +692,7 @@
 "np" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 4},/obj/machinery/camera/network/research_outpost{dir = 1},/turf/simulated/floor/tiled/dark,/area/rnd/outpost/anomaly_lab/analysis)
 "nq" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 9},/obj/machinery/alarm{dir = 1; pixel_y = -25},/turf/simulated/floor/tiled/dark,/area/rnd/outpost/anomaly_lab/analysis)
 "nr" = (/obj/machinery/artifact_analyser,/turf/simulated/floor/tiled/dark,/area/rnd/outpost/anomaly_lab/analysis)
-"ns" = (/obj/machinery/button/remote/blast_door{id = "anomaly_testing_v"; name = "Panic Chamber Vent"; pixel_x = 6; pixel_y = 26},/obj/machinery/alarm{dir = 4; pixel_x = -23; pixel_y = 0},/turf/simulated/floor/tiled,/area/rnd/outpost/anomaly_lab)
+"ns" = (/obj/machinery/button/remote/blast_door{id = "anomaly_testing_v"; name = "Panic Chamber Vent"; pixel_x = 6; pixel_y = 26},/obj/machinery/alarm{dir = 4; pixel_x = -23; pixel_y = 0},/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled,/area/rnd/outpost/anomaly_lab)
 "nt" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/corner/purple/border,/obj/effect/floor_decal/borderfloor/corner2,/obj/effect/floor_decal/corner/purple/bordercorner2,/obj/effect/floor_decal/steeldecal/steel_decals7{dir = 8},/obj/effect/floor_decal/steeldecal/steel_decals7{dir = 1},/turf/simulated/floor/tiled,/area/rnd/outpost)
 "nu" = (/obj/machinery/camera/network/research_outpost{dir = 1},/obj/effect/floor_decal/borderfloor{dir = 6},/obj/effect/floor_decal/corner/purple/border{dir = 6},/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{scrub_id = "science_outpost"},/turf/simulated/floor/tiled,/area/rnd/outpost)
 "nv" = (/obj/effect/floor_decal/industrial/warning{dir = 4},/obj/machinery/door/firedoor/glass/hidden{icon_state = "door_open"; dir = 1},/turf/simulated/floor/tiled,/area/rnd/outpost/anomaly_lab)
@@ -741,16 +741,16 @@
 "om" = (/obj/machinery/door/airlock/glass_external{frequency = 1452; icon_state = "door_locked"; id_tag = "anomaly_testing_interior"; locked = 1; name = "Anomaly Secure Testing"; req_access = list(65); req_one_access = list(47)},/obj/machinery/door/firedoor/glass,/obj/machinery/atmospherics/pipe/simple/visible,/turf/simulated/floor/tiled,/area/rnd/outpost/anomaly_lab/airlock)
 "on" = (/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 "oo" = (/obj/machinery/door/airlock/research{name = "Science Outpost Personal Quarters"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
-"op" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 9; pixel_y = 0},/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
+"op" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 9; pixel_y = 0},/obj/machinery/light,/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
 "oq" = (/obj/structure/bed/double,/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
 "or" = (/obj/structure/bed,/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
 "os" = (/obj/structure/window/basic/full,/obj/structure/window/basic{dir = 4},/obj/structure/grille,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 "ot" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
 "ou" = (/obj/structure/bed/chair/comfy/brown{dir = 4},/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
 "ov" = (/obj/machinery/atmospherics/unary/vent_pump/on,/obj/machinery/alarm{dir = 4; icon_state = "alarm0"; pixel_x = -22},/obj/machinery/firealarm{pixel_y = 25},/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
-"ow" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 8},/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
-"ox" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 1},/obj/machinery/alarm{dir = 4; icon_state = "alarm0"; pixel_x = -22},/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
-"oy" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 1},/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
+"ow" = (/obj/structure/table/woodentable,/obj/machinery/light{dir = 8},/obj/machinery/light_switch{dir = 4; pixel_x = -28},/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
+"ox" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 1},/obj/machinery/alarm{dir = 4; icon_state = "alarm0"; pixel_x = -22},/obj/machinery/light,/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
+"oy" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 8},/obj/machinery/light_switch{dir = 1; pixel_y = -24},/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
 "oz" = (/obj/structure/bed/chair/comfy/brown{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 10},/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
 "oA" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 10},/obj/machinery/firealarm{pixel_y = 25},/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
 "oB" = (/obj/structure/table/woodentable,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
@@ -760,7 +760,7 @@
 "oF" = (/obj/machinery/vending/fitness,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 "oG" = (/obj/machinery/vending/cigarette,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 "oH" = (/obj/structure/table/woodentable,/obj/machinery/microwave,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
-"oI" = (/obj/machinery/alarm{dir = 8; pixel_x = 22; pixel_y = 0},/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
+"oI" = (/obj/structure/table/woodentable,/obj/machinery/microwave,/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 "oJ" = (/obj/machinery/firealarm{pixel_y = 25},/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 "oK" = (/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 "oL" = (/obj/structure/cable/green{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
@@ -768,12 +768,16 @@
 "oN" = (/obj/structure/cable/green{icon_state = "1-2"},/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 "oO" = (/obj/machinery/power/apc{dir = 2; name = "south bump"; pixel_y = -24},/obj/structure/cable/green,/obj/structure/bed/chair/wood{dir = 4},/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 "oP" = (/obj/machinery/recharge_station,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
-"oQ" = (/obj/structure/table/woodentable,/obj/machinery/recharger,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
+"oQ" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 1},/obj/machinery/light_switch{dir = 1; pixel_y = -24},/turf/simulated/floor/wood,/area/rnd/outpost/breakroom)
 "oR" = (/obj/structure/disposalpipe/segment,/obj/structure/grille,/obj/structure/window/basic/full,/obj/structure/window/basic,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 "oS" = (/obj/structure/disposaloutlet,/obj/structure/disposalpipe/trunk{dir = 1},/turf/simulated/floor/outdoors/grass/sif/virgo3b,/area/tether/outpost/solars_outside)
 "oT" = (/obj/structure/bed/chair/wood{dir = 8},/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 "oU" = (/obj/structure/window/basic/full,/obj/structure/window/basic,/obj/structure/grille,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
 "oV" = (/obj/structure/grille,/obj/structure/window/basic/full,/obj/structure/window/basic,/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
+"oW" = (/obj/machinery/alarm{dir = 8; pixel_x = 22; pixel_y = 0},/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
+"oX" = (/obj/structure/table/woodentable,/obj/machinery/recharger,/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled,/area/rnd/outpost/breakroom)
+"oY" = (/obj/machinery/light,/turf/simulated/floor/tiled,/area/rnd/outpost/anomaly_lab)
+"oZ" = (/obj/structure/sign/science,/turf/simulated/wall,/area/rnd/outpost/breakroom)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -902,15 +906,15 @@ aaabababababababababababababababababababababababababababababababababadadadadadad
 aaababababababababababababababababababababawababababababababababababadadababadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadadababadadababababababababababababababababababababababababgjabababiWiYiXhrhrhrhrhrhrhrkAftjYjSkBjZiwiVixiyizkMiBiRiRiRiRiShMababababababaa
 aaabababababababababababababababababababababababababababababababababababababababababababababadadadadadadadadadadadadadadadadadadadadadadadadadababababababababababababababababababjwjwjwjwjwjwjPkakakajEjEjEjEjEjEjEjEjEkNkLkQkSkTkXlgftlFjTlhiTiUiUiUiZjaiAjcjdjdjdjdjehMababababababaa
 aaabababababababababababababababababababababababababababababababababababababababababababababababadadadadadadadadadadadadadadadadadadadabadababababababababababababababababababababjwjNnInInInIkhkxkyltjEjRkbkjkokjkpkcjEkuftkqkzkDkOlblclrlslxhMjfiViViCjjiAjkjljljljljmhMababababababaa
-aaababababababababababababababababababababababababababababababababababababababababababababababababadadadadadadadadadadadadadadadadababababababababababababababababababababababababkvnIlpjOkgkUjPlAlGoljEkilukkklkmlvlwlBlDlElsntnAnuksksksktkshMjojojqiVjbiAjrjvjvjvhMhMhMababababababaa
-aaababababababababababababababababababababababababababababababababababababababababababababababababababababadadadadabababadababababababababababababababababababababababababababababkvnIlWkflylzjwkaomkajEkCngkEkFkEkGkHjEjxjxkIkJjxjxksoHoJoKoChMjijijAjhjgiAjBjCjDhMhMababababababababaa
+aaababababababababababababababababababababababababababababababababababababababababababababababababadadadadadadadadadadadadadadadadababababababababababababababababababababababababkvnIlpjOkgkUjPlAlGoljEkilukkklkmlvlwlBlDlElsntnAnuksoZksktkshMjojojqiVjbiAjrjvjvjvhMhMhMababababababaa
+aaababababababababababababababababababababababababababababababababababababababababababababababababababababadadadadabababadababababababababababababababababababababababababababababkvnIlWkflylzjwkaomkajEkCngkEkFkEkGkHjEjxjxkIkJjxjxksoIoJoKoChMjijijAjhjgiAjBjCjDhMhMababababababababaa
 aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababkvnImRmgmhnIjwoknHnSnTnUnVkkklkmldlejElfmAnCliljlqksoBonoKoDhMhMjFjGjHjpjIjJjKjLhMabababababababababaa
 aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababjwjNlTlUlVnJjwnEnWlYjElClHnnlJlIlKlLjElMlNlOkZkZlPksoHonoKoEkshMhMhMhMhMhMhMhMhMhMabababababababababaa
-aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababjwjwmimzkVjwjwjxnPnOjEjEjEjElajEjEjEjElZmambmcmdmdksoBonoKoFksovouotosabababababababababababababababaa
-aaabababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababawababababababababababjxnskWmBmCmOnDnolXmjmkmlmmmnkZmompmqmrmsnRmtmtmtmtmtoGonoKonooopowoqosabababababababababababababababaa
-aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababjxmxmynbncnLnMmDmEmFnwmGmGmGnXmHmHmHnYmImJmKmLmMmNmtoPoLoMoIksksksksksabababababababababababababababaa
-aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababjxnQmPnenxnNkZkZmSmTkZmUmVkZnZkZmUkZoakZmWmXmYmZnamtoQoNononoooAozotosabababababababababababababababaa
-aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababjxnQnKnFnGnymQndlfnvnhninfnknlnjnznmkZlfkZmXnpnqnrmteEoOoBoTksoxoyorosabababababababababababababababaa
+aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababjwjwmimzkVjwjwjxnPnOjEjEjEjElajEjEjEjElZmambmcmdmdksowonoKoFksovouotosabababababababababababababababaa
+aaabababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababawababababababababababjxnskWmBmCmOnDnolXmjmkmlmmmnkZmompmqmrmsnRmtmtmtmtmtoGonoKonooopoyoqosabababababababababababababababaa
+aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababjxmxmynbncnLnMmDmEmFnwmGmGmGnXmHmHmHnYmImJmKmLmMmNmtoPoLoMoWksksksksksabababababababababababababababaa
+aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababjxnQmPnenxnNkZkZmSmTkZmUmVkZnZkZmUkZoakZmWmXmYmZnamtoXoNononoooAozotosabababababababababababababababaa
+aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababjxnQnKnFnGnymQndlfnvnhninfnknlnjnznmoYlfkZmXnpnqnrmteEoOoBoTksoxoQorosabababababababababababababababaa
 aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababjxjxjxjxjxjxjxjxjxjxjxjxjxjxjxjxjxjxjxjxjxmtmtmtmtmtoRksoUoVksksksksksabababababababababababababababaa
 aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababoSabababababababababababababababababababababababaa
 aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababaa
