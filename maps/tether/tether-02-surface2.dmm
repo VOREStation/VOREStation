@@ -17673,15 +17673,8 @@
 /turf/simulated/wall/r_wall,
 /area/tcommsat/computer)
 "HQ" = (
-/obj/machinery/camera/network/research/xenobio{
-	dir = 4
-	},
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "pen_one";
-	dir = 4;
-	pixel_x = -22
-	},
-/turf/simulated/floor/reinforced,
+/obj/structure/reagent_dispensers/watertank,
+/turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "HR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -17734,31 +17727,52 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "HV" = (
+/obj/machinery/button/remote/blast_door{
+	id = "xenobiodiv7";
+	name = "Divider 7 Blast Doors";
+	pixel_x = -38;
+	pixel_y = 0;
+	req_access = list(55)
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "xenocont1";
+	name = "Exterior Containment Blast Doors";
+	pixel_x = -30;
+	pixel_y = -8;
+	req_access = list(55)
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "xenobiopen9";
+	name = "Pen 9 Containment";
+	pixel_x = -30;
+	pixel_y = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/camera/network/research{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/super{
+	dir = 1;
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_slimepens)
+"HW" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/obj/structure/cable/green{
-	icon_state = "2-4"
-	},
 /obj/machinery/hologram/holopad,
 /obj/structure/bed/chair/office/dark{
 	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/rnd/outpost/xenobiology/outpost_slimepens)
-"HW" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
@@ -17796,17 +17810,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9;
 	pixel_y = 0
-	},
-/turf/simulated/floor/reinforced,
-/area/rnd/outpost/xenobiology/outpost_slimepens)
-"Ia" = (
-/obj/machinery/camera/network/research/xenobio{
-	dir = 8
-	},
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "pen_two";
-	dir = 8;
-	pixel_x = 22
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
@@ -18044,17 +18047,9 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "ID" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 24
-	},
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/structure/reagent_dispensers/watertank,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "IE" = (
@@ -18277,19 +18272,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Jb" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/white,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Jc" = (
 /obj/machinery/button/remote/blast_door{
@@ -18560,9 +18546,6 @@
 "JD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "JE" = (
@@ -18980,17 +18963,6 @@
 "Kh" = (
 /turf/simulated/wall/r_wall,
 /area/tcommsat/chamber)
-"Ki" = (
-/obj/machinery/camera/network/research/xenobio{
-	dir = 4
-	},
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "pen_three";
-	dir = 4;
-	pixel_x = -22
-	},
-/turf/simulated/floor/reinforced,
-/area/rnd/outpost/xenobiology/outpost_slimepens)
 "Kj" = (
 /obj/random/slimecore,
 /turf/simulated/floor/reinforced,
@@ -19043,9 +19015,6 @@
 "Kp" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Kq" = (
@@ -19103,17 +19072,6 @@
 "Ku" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
-	},
-/turf/simulated/floor/reinforced,
-/area/rnd/outpost/xenobiology/outpost_slimepens)
-"Kv" = (
-/obj/machinery/camera/network/research/xenobio{
-	dir = 8
-	},
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "pen_four";
-	dir = 8;
-	pixel_x = 22
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
@@ -20087,18 +20045,16 @@
 	},
 /area/tcommsat/chamber)
 "Mf" = (
-/obj/machinery/camera/network/research/xenobio{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/firedoor/glass/hidden{
+	icon_state = "door_open";
+	dir = 2
 	},
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "pen_five";
-	dir = 4;
-	pixel_x = -22
-	},
-/turf/simulated/floor/reinforced,
+/turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Mg" = (
-/obj/item/slime_extract,
+/obj/item/slime_extract/grey,
 /turf/simulated/floor/reinforced,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Mh" = (
@@ -20147,10 +20103,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Mk" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/obj/structure/cable/green{
-	icon_state = "1-2"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/table/steel,
+/obj/machinery/computer/atmoscontrol/laptop{
+	monitored_alarm_ids = list("slime_pens");
+	req_one_access = list(47,55)
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
@@ -20191,12 +20149,13 @@
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Mn" = (
 /obj/machinery/camera/network/research/xenobio{
-	dir = 8
+	dir = 4;
+	network = list("Xenobiology")
 	},
 /obj/machinery/alarm/monitor/isolation{
-	alarm_id = "pen_six";
-	dir = 8;
-	pixel_x = 22
+	alarm_id = "slime_pens";
+	dir = 4;
+	pixel_x = -22
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
@@ -20911,17 +20870,6 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
-"Nz" = (
-/obj/machinery/camera/network/research/xenobio{
-	dir = 8
-	},
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "pen_eight";
-	dir = 8;
-	pixel_x = 22
-	},
-/turf/simulated/floor/reinforced,
-/area/rnd/outpost/xenobiology/outpost_slimepens)
 "NA" = (
 /obj/structure/catwalk,
 /obj/structure/table/steel,
@@ -21131,15 +21079,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "NU" = (
-/obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -25
-	},
-/obj/machinery/light,
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
-	scrub_id = "xeno_phoron_pen_scrubbers"
-	},
-/turf/simulated/floor/reinforced,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "NV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -21291,8 +21234,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Ok" = (
+/obj/machinery/alarm/monitor/isolation{
+	alarm_id = "slime_pens";
+	dir = 4;
+	pixel_x = -22
+	},
 /obj/machinery/camera/network/research/xenobio{
-	dir = 8
+	dir = 4;
+	network = list("Xenobiology")
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
@@ -21339,49 +21288,48 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/atmos)
 "Oo" = (
-/obj/structure/cable/green{
-	icon_state = "1-2"
+/obj/machinery/camera/network/research/xenobio{
+	dir = 8;
+	network = list("Xenobiology")
 	},
+/obj/machinery/alarm/monitor/isolation{
+	alarm_id = "slime_pens";
+	dir = 8;
+	pixel_x = 22
+	},
+/turf/simulated/floor/reinforced,
+/area/rnd/outpost/xenobiology/outpost_slimepens)
+"Op" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_slimepens)
-"Op" = (
-/obj/machinery/button/remote/blast_door{
-	id = "xenobiodiv7";
-	name = "Divider 7 Blast Doors";
-	pixel_x = -38;
-	pixel_y = 0;
-	req_access = list(55)
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "xenocont1";
-	name = "Exterior Containment Blast Doors";
-	pixel_x = -30;
-	pixel_y = -8;
-	req_access = list(55)
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "xenobiopen9";
-	name = "Pen 9 Containment";
-	pixel_x = -30;
-	pixel_y = 8
-	},
-/obj/machinery/light{
-	dir = 1
+	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Oq" = (
-/obj/machinery/camera/network/research/xenobio{
+/obj/structure/grille,
+/obj/structure/window/phoronreinforced/full,
+/obj/structure/window/phoronreinforced{
+	dir = 8
+	},
+/obj/structure/window/phoronreinforced,
+/obj/structure/window/phoronreinforced{
+	dir = 1
+	},
+/obj/structure/window/phoronreinforced{
 	dir = 4
 	},
-/turf/simulated/floor/reinforced,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers,
+/obj/machinery/atmospherics/pipe/zpipe/up/supply,
+/obj/structure/cable/green,
+/obj/structure/cable/green{
+	d1 = 16;
+	d2 = 0;
+	icon_state = "16-0"
+	},
+/turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Or" = (
 /obj/machinery/door/blast/regular{
@@ -21433,42 +21381,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Ow" = (
-/obj/machinery/button/remote/blast_door{
-	id = "xenobiodiv8";
-	name = "Divider 8 Blast Doors";
-	pixel_x = 38;
-	pixel_y = 0;
-	req_access = list(55)
+/obj/machinery/camera/network/research/xenobio{
+	dir = 8;
+	network = list("Xenobiology")
 	},
-/obj/machinery/button/remote/blast_door{
-	id = "xenocont2";
-	name = "Exterior Containment Blast Doors";
-	pixel_x = 30;
-	pixel_y = -8;
-	req_access = list(55)
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "xenobiopen10";
-	name = "Pen 10 Containment";
-	pixel_x = 30;
-	pixel_y = 8
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_slimepens)
-"Ox" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark,
+/turf/simulated/floor/reinforced,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Oy" = (
 /obj/machinery/door/blast/regular{
@@ -21641,15 +21558,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "OI" = (
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "pen_seven";
-	dir = 4;
-	pixel_x = -22
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/machinery/camera/network/research/xenobio{
-	dir = 4
-	},
-/turf/simulated/floor/reinforced,
+/turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "OJ" = (
 /obj/machinery/door/blast/regular{
@@ -21666,16 +21580,32 @@
 /turf/simulated/floor/reinforced,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "OL" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -26
+/obj/machinery/button/remote/blast_door{
+	id = "xenobiodiv8";
+	name = "Divider 8 Blast Doors";
+	pixel_x = 38;
+	pixel_y = 0;
+	req_access = list(55)
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "xenocont2";
+	name = "Exterior Containment Blast Doors";
+	pixel_x = 30;
+	pixel_y = -8;
+	req_access = list(55)
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "xenobiopen10";
+	name = "Pen 10 Containment";
+	pixel_x = 30;
+	pixel_y = 8
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 1
 	},
-/obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/camera/network/research{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "OM" = (
@@ -21686,16 +21616,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "ON" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	icon_state = "1-2"
+/obj/machinery/camera/network/research/xenobio{
+	dir = 4;
+	network = list("Xenobiology")
 	},
-/obj/structure/table/steel,
-/obj/machinery/computer/atmoscontrol/laptop{
-	req_one_access = list(47,55)
-	},
-/turf/simulated/floor/tiled/dark,
+/turf/simulated/floor/reinforced,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "OO" = (
 /obj/structure/window/reinforced/full,
@@ -21719,23 +21644,17 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "OP" = (
-/obj/machinery/light,
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
-	scrub_id = "xeno_phoron_pen_scrubbers"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "pen_ten";
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -22
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
 	},
-/turf/simulated/floor/reinforced,
+/turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "OQ" = (
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
@@ -21748,15 +21667,6 @@
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
-/area/rnd/outpost/xenobiology/outpost_slimepens)
-"OS" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "OT" = (
 /obj/structure/catwalk,
@@ -21775,12 +21685,16 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
 "OU" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	icon_state = "1-2"
+/obj/machinery/light{
+	dir = 8
 	},
-/obj/machinery/hologram/holopad,
+/obj/machinery/alarm{
+	alarm_id = null;
+	breach_detection = 0;
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "OV" = (
@@ -21994,52 +21908,38 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Pw" = (
-/obj/structure/cable/green{
-	icon_state = "1-2"
+/obj/machinery/recharger/wallcharger{
+	pixel_y = -38
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_y = -28
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Px" = (
-/obj/machinery/alarm/monitor/isolation{
-	alarm_id = "pen_ten";
+/obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/firealarm{
 	dir = 1;
 	pixel_x = 0;
-	pixel_y = -22
-	},
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "west bump";
-	pixel_x = -28
-	},
-/obj/structure/cable/green{
-	icon_state = "0-4"
+	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Py" = (
-/obj/machinery/recharger/wallcharger{
-	pixel_w = 0;
-	pixel_y = -28
+/obj/machinery/light,
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
+	scrub_id = "xeno_phoron_pen_scrubbers"
 	},
-/obj/machinery/recharger/wallcharger{
-	pixel_w = 0;
-	pixel_y = -38
+/obj/machinery/alarm/monitor/isolation{
+	alarm_id = "slime_pens";
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -22
 	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_slimepens)
-"Pz" = (
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark,
+/turf/simulated/floor/reinforced,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "PA" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -22051,38 +21951,6 @@
 /obj/machinery/door/firedoor/glass/hidden{
 	icon_state = "door_open";
 	dir = 2
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_slimepens)
-"PC" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/glass/hidden{
-	icon_state = "door_open";
-	dir = 2
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_slimepens)
-"PD" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_slimepens)
-"VM" = (
-/obj/machinery/recharger/wallcharger{
-	pixel_w = 0;
-	pixel_y = -28
-	},
-/obj/machinery/recharger/wallcharger{
-	pixel_w = 0;
-	pixel_y = -38
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
@@ -26734,25 +26602,25 @@ ab
 ab
 Hc
 Hs
-HQ
+Mn
 Iy
 IY
 Hs
-Ki
+Mn
 Iy
 Ls
 Hs
-Mf
+Mn
 Iy
 MP
 Nu
-OI
+Ok
 Iy
 OJ
 Ht
 Ht
 Ht
-NU
+Py
 Hc
 ab
 ab
@@ -27033,7 +26901,7 @@ Ht
 Kk
 KW
 OJ
-Ok
+Ow
 NV
 KW
 OK
@@ -27317,11 +27185,11 @@ Nk
 Nv
 ND
 Hc
-Op
+HV
 Oj
 Ja
 Ja
-Px
+OU
 Hc
 ab
 ab
@@ -27459,11 +27327,11 @@ Nl
 Nw
 KZ
 NT
+OI
+OP
 OQ
-Ox
-Pz
+Ja
 Pw
-Py
 Hc
 ab
 ab
@@ -27728,21 +27596,21 @@ ab
 ab
 Hc
 Hz
-HV
-OS
-PD
+HW
+ID
+Jb
 JD
 Kp
-PC
-ON
-JD
+Mf
 Mk
-PC
-OU
 JD
-Mk
-Oo
-NT
+OA
+Mf
+NU
+JD
+OA
+Op
+Oq
 OA
 Ov
 Ja
@@ -27870,7 +27738,7 @@ ab
 ab
 Hc
 HA
-Jb
+HU
 IC
 Ja
 JE
@@ -28011,8 +27879,8 @@ ab
 ab
 ab
 Hc
-ID
-HW
+HQ
+HU
 IE
 Jc
 JF
@@ -28031,7 +27899,7 @@ Ja
 Pv
 PA
 Ja
-VM
+Pw
 Hc
 ab
 ab
@@ -28169,11 +28037,11 @@ Nm
 Ny
 NE
 NW
-Ow
+OL
 Mj
 Ja
 Ja
-OL
+Px
 Hc
 ab
 ab
@@ -28453,7 +28321,7 @@ Ht
 Ku
 KW
 NX
-Oq
+ON
 Kt
 KX
 OK
@@ -28722,25 +28590,25 @@ ab
 ab
 Hc
 HC
-Ia
+Oo
 IH
 Jd
 HC
-Kv
+Oo
 IH
 Lv
 HC
-Mn
+Oo
 IH
 MS
 HC
-Nz
+Oo
 IH
 NX
 Ht
 Ht
 Ht
-OP
+Py
 Hc
 ab
 ab

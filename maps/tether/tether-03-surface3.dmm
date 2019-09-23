@@ -22797,15 +22797,11 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_hallway)
 "LM" = (
-/obj/structure/railing{
-	dir = 1
+/obj/machinery/light{
+	dir = 8
 	},
-/obj/structure/railing{
-	icon_state = "railing0";
-	dir = 4
-	},
-/turf/simulated/open/virgo3b,
-/area/tether/surfacebase/outside/outside3)
+/turf/simulated/open,
+/area/rnd/outpost/xenobiology/outpost_stairs)
 "LN" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
@@ -22830,16 +22826,20 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/rnd/outpost/xenobiology/outpost_storage)
 "LP" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/simulated/open/virgo3b,
-/area/tether/surfacebase/outside/outside3)
-"LQ" = (
 /obj/machinery/hologram/holopad,
+/obj/machinery/camera/network/research,
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_stairs)
+"LQ" = (
+/obj/machinery/alarm{
+	alarm_id = "anomaly_testing";
+	breach_detection = 0;
+	dir = 8;
+	frequency = 1439;
+	pixel_x = 22;
+	pixel_y = 0;
+	report_danger_level = 0
+	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_stairs)
 "LR" = (
@@ -23799,21 +23799,16 @@
 /turf/simulated/shuttle/plating/airless,
 /area/shuttle/tether/surface)
 "NQ" = (
-/obj/structure/catwalk,
-/obj/structure/railing{
-	icon_state = "railing0";
-	dir = 1
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
 	},
-/obj/machinery/light,
 /turf/simulated/open,
 /area/rnd/outpost/xenobiology/outpost_stairs)
 "NR" = (
 /obj/structure/catwalk,
 /obj/structure/railing{
 	icon_state = "railing0";
-	dir = 1
-	},
-/obj/machinery/camera/network/outside{
 	dir = 1
 	},
 /turf/simulated/open,
@@ -24012,17 +24007,15 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_hallway)
 "Os" = (
-/obj/machinery/alarm{
-	alarm_id = "anomaly_testing";
-	breach_detection = 0;
-	dir = 8;
-	frequency = 1439;
-	pixel_x = 22;
-	pixel_y = 0;
-	report_danger_level = 0
+/obj/structure/railing{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_stairs)
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 4
+	},
+/turf/simulated/open/virgo3b,
+/area/tether/surfacebase/outside/outside3)
 "Ot" = (
 /obj/structure/railing,
 /obj/structure/railing{
@@ -24140,17 +24133,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_south_airlock)
 "OF" = (
-/obj/structure/catwalk,
 /obj/structure/railing{
-	icon_state = "railing0";
 	dir = 1
 	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
+/obj/structure/railing{
+	dir = 8
 	},
-/turf/simulated/open,
-/area/rnd/outpost/xenobiology/outpost_stairs)
+/turf/simulated/open/virgo3b,
+/area/tether/surfacebase/outside/outside3)
 "OG" = (
 /obj/machinery/alarm{
 	dir = 8;
@@ -24446,6 +24436,9 @@
 "Pn" = (
 /obj/structure/table/woodentable,
 /obj/machinery/microwave,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_breakroom)
 "Po" = (
@@ -25057,11 +25050,6 @@
 /obj/item/weapon/storage/box/donut,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_breakroom)
-"QF" = (
-/obj/structure/table/woodentable,
-/obj/random/plushielarge,
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/xenobiology/outpost_breakroom)
 "QG" = (
 /obj/structure/bed/chair/wood{
 	dir = 8
@@ -25076,6 +25064,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/item/weapon/reagent_containers/syringe,
+/obj/item/weapon/reagent_containers/syringe,
+/obj/item/weapon/reagent_containers/syringe,
+/obj/item/weapon/reagent_containers/syringe,
 /turf/simulated/floor/wood,
 /area/rnd/outpost/xenobiology/outpost_office)
 "QI" = (
@@ -31923,7 +31915,7 @@ Wy
 XF
 SA
 dG
-LM
+Os
 ab
 ab
 ab
@@ -32487,9 +32479,9 @@ Sd
 JD
 LR
 Oh
+LM
 Ml
-Ml
-NQ
+NR
 CO
 dG
 Oi
@@ -32628,7 +32620,7 @@ RS
 Se
 Sr
 HH
-LQ
+LP
 Ml
 Ml
 NR
@@ -32770,10 +32762,10 @@ RR
 Sd
 Ss
 Es
-Os
+LQ
+NQ
 Ml
-Ml
-OF
+NR
 CO
 dG
 Oi
@@ -33327,7 +33319,7 @@ PH
 PW
 Qi
 Qv
-QF
+QP
 QP
 Qj
 Rf
@@ -33343,7 +33335,7 @@ Rd
 Tu
 SI
 dG
-LP
+OF
 ab
 ab
 ab
