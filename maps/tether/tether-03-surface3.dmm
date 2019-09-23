@@ -24446,6 +24446,9 @@
 "Pn" = (
 /obj/structure/table/woodentable,
 /obj/machinery/microwave,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_breakroom)
 "Po" = (
@@ -25057,11 +25060,6 @@
 /obj/item/weapon/storage/box/donut,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_breakroom)
-"QF" = (
-/obj/structure/table/woodentable,
-/obj/random/plushielarge,
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/xenobiology/outpost_breakroom)
 "QG" = (
 /obj/structure/bed/chair/wood{
 	dir = 8
@@ -25076,6 +25074,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/item/weapon/reagent_containers/syringe,
+/obj/item/weapon/reagent_containers/syringe,
+/obj/item/weapon/reagent_containers/syringe,
+/obj/item/weapon/reagent_containers/syringe,
 /turf/simulated/floor/wood,
 /area/rnd/outpost/xenobiology/outpost_office)
 "QI" = (
@@ -33327,7 +33329,7 @@ PH
 PW
 Qi
 Qv
-QF
+QP
 QP
 Qj
 Rf
