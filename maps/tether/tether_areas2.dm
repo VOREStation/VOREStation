@@ -414,8 +414,8 @@
 /area/rnd/outpost/xenobiology/outpost_storage
 	name = "\improper Xenbiology Equipment Storage"
 	icon_state = "research"
-/area/rnd/outpost/xenobiology/outpost_atmos
-	name = "\improper Xenbiology Atmos"
+/area/rnd/outpost/xenobiology/outpost_stairs
+	name = "\improper Xenbiology Stairwell"
 	icon_state = "research"
 /area/rnd/outpost/xenobiology/outpost_substation
 	name = "\improper Xenbiology SMES Substation"
