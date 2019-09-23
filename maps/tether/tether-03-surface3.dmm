@@ -8333,14 +8333,6 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
 	},
-/obj/machinery/access_button/airlock_interior{
-	frequency = 1392;
-	master_tag = "xenobiology_airlock";
-	name = "Xenobiology Access Control";
-	pixel_x = 20;
-	pixel_y = 20;
-	req_one_access = list(47,55)
-	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_hallway)
 "oX" = (
@@ -9259,6 +9251,14 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
 	},
+/obj/machinery/access_button/airlock_interior{
+	command = "cycle_interior";
+	frequency = 1392;
+	master_tag = "xenobiology_north_airlock_control";
+	name = "Xenobiology Access Control";
+	pixel_x = 0;
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_north_airlock)
 "qx" = (
@@ -9267,14 +9267,6 @@
 	},
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
-	},
-/obj/machinery/access_button/airlock_interior{
-	frequency = 1392;
-	master_tag = "xenobiology_airlock";
-	name = "Xenobiology Access Control";
-	pixel_x = -20;
-	pixel_y = 20;
-	req_one_access = list(47,55)
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_north_airlock)
@@ -9734,6 +9726,14 @@
 	id_tag = "xenobiology_north_airlock_outer";
 	locked = 1;
 	name = "Xenobiology North Airlock"
+	},
+/obj/machinery/access_button/airlock_interior{
+	command = "cycle_exterior";
+	frequency = 1392;
+	master_tag = "xenobiology_north_airlock_control";
+	name = "Xenobiology Access Control";
+	pixel_x = 0;
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_north_airlock)
@@ -11634,14 +11634,6 @@
 /obj/effect/floor_decal/borderfloor/corner2{
 	dir = 10
 	},
-/obj/machinery/access_button/airlock_interior{
-	frequency = 1392;
-	master_tag = "xenobiology_airlock";
-	name = "Xenobiology Access Control";
-	pixel_x = -20;
-	pixel_y = 20;
-	req_one_access = list(47,55)
-	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "uu" = (
@@ -12632,6 +12624,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
+"wh" = (
+/obj/effect/floor_decal/borderfloorblack/corner,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/xenobiology/outpost_hallway)
 "wi" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -15092,7 +15096,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_north_airlock)
 "zO" = (
@@ -16507,6 +16511,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/testingrange)
+"BK" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/wood,
+/area/rnd/outpost/xenobiology/outpost_office)
 "BL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9;
@@ -16582,7 +16596,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/unary/vent_pump,
+/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_north_airlock)
 "BR" = (
@@ -16623,6 +16637,24 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research_foyer)
+"BT" = (
+/obj/structure/lattice,
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/zpipe/down/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/zpipe/down/supply{
+	dir = 1
+	},
+/obj/structure/cable/green{
+	d1 = 32;
+	icon_state = "32-1"
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/open,
+/area/rnd/outpost/xenobiology/outpost_main)
 "BU" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light{
@@ -16735,14 +16767,14 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_hallway)
 "Cd" = (
-/obj/effect/floor_decal/borderfloorblack/corner,
-/obj/machinery/access_button/airlock_interior{
+/obj/machinery/door/firedoor/glass,
+/obj/effect/floor_decal/borderfloorblack,
+/obj/machinery/door/airlock/glass_research{
 	frequency = 1392;
-	master_tag = "xenobiology_airlock";
-	name = "Xenobiology Access Control";
-	pixel_x = 20;
-	pixel_y = -20;
-	req_one_access = list(47,55)
+	icon_state = "door_locked";
+	id_tag = "xenobiology_north_airlock_inner";
+	locked = 1;
+	name = "Xenobiology North Airlock"
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -16752,8 +16784,16 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/access_button/airlock_interior{
+	command = "cycle_interior";
+	frequency = 1392;
+	master_tag = "xenobiology_north_airlock_control";
+	name = "Xenobiology Access Control";
+	pixel_x = 0;
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/xenobiology/outpost_hallway)
+/area/rnd/outpost/xenobiology/outpost_north_airlock)
 "Ce" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -17183,6 +17223,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
+"CO" = (
+/obj/machinery/camera/network/outside{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/xenobiology/outpost_main)
 "CP" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -18125,6 +18174,30 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
+"Es" = (
+/obj/machinery/firealarm{
+	pixel_y = -30
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/xenobiology/outpost_main)
+"Et" = (
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 8;
+	icon_state = "pdoor0";
+	id = "xenobiolockdown";
+	name = "Xenobiology Lockdown Blast Doors";
+	opacity = 0
+	},
+/obj/effect/floor_decal/industrial/warning,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/xenobiology/outpost_hallway)
 "Eu" = (
 /obj/machinery/light,
 /obj/effect/floor_decal/borderfloor,
@@ -18187,6 +18260,27 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
+"Ey" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 8;
+	icon_state = "pdoor0";
+	id = "xenobiolockdown";
+	name = "Xenobiology Lockdown Blast Doors";
+	opacity = 0
+	},
+/obj/effect/floor_decal/industrial/warning,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_hallway)
 "Ez" = (
 /turf/simulated/wall,
 /area/vacant/vacant_library)
@@ -18555,22 +18649,32 @@
 /turf/simulated/floor/wood,
 /area/vacant/vacant_library)
 "Fo" = (
-/obj/machinery/door/firedoor/glass,
-/obj/effect/floor_decal/borderfloorblack,
-/obj/machinery/door/airlock/glass_research{
-	frequency = 1392;
-	icon_state = "door_locked";
-	id_tag = "xenobiology_north_airlock_inner";
-	locked = 1;
-	name = "Xenobiology North Airlock"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorblack,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/embedded_controller/radio/airlock/access_controller{
+	frequency = 1392;
+	id_tag = "xenobiology_north_airlock_control";
+	name = "Xenobiology Access Controller";
+	pixel_x = 0;
+	pixel_y = -24;
+	tag_exterior_door = "xenobiology_north_airlock_outer";
+	tag_interior_door = "xenobiology_north_airlock_inner"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_north_airlock)
@@ -19257,27 +19361,6 @@
 	icon_state = "intact-scrubbers";
 	dir = 4
 	},
-/obj/effect/floor_decal/borderfloorblack,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/xenobiology/outpost_north_airlock)
-"Gm" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 4
-	},
 /obj/item/device/radio/intercom{
 	pixel_y = -24
 	},
@@ -19285,14 +19368,6 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/borderfloorblack,
-/obj/machinery/access_button/airlock_interior{
-	frequency = 1392;
-	master_tag = "xenobiology_airlock";
-	name = "Xenobiology Access Control";
-	pixel_x = -20;
-	pixel_y = -20;
-	req_one_access = list(47,55)
-	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -19300,37 +19375,7 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_north_airlock)
-"Gn" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 4
-	},
-/obj/machinery/light,
-/obj/effect/floor_decal/borderfloorblack,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/xenobiology/outpost_north_airlock)
-"Gp" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/effect/floor_decal/borderfloorblack{
-	dir = 6
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/xenobiology/outpost_north_airlock)
-"Gq" = (
+"Gm" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
@@ -19353,8 +19398,91 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/machinery/access_button/airlock_interior{
+	command = "cycle_exterior";
+	frequency = 1392;
+	master_tag = "xenobiology_north_airlock_control";
+	name = "Xenobiology Access Control";
+	pixel_x = 0;
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_north_airlock)
+"Gn" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/obj/machinery/light,
+/obj/effect/floor_decal/borderfloorblack,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/xenobiology/outpost_north_airlock)
+"Go" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/research{
+	autoclose = 0;
+	frequency = 1382;
+	icon_state = "door_locked";
+	id_tag = "xenobiology_airlock_outer";
+	locked = 1;
+	name = "Xenobiology Exterior Airlock Doors";
+	req_access = list();
+	req_one_access = list(47,55)
+	},
+/obj/machinery/access_button/airlock_interior{
+	command = "cycle_exterior";
+	frequency = 1382;
+	master_tag = "xenobiology_airlock_control";
+	name = "Xenobiology Access Control";
+	pixel_x = -24;
+	pixel_y = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_south_airlock)
+"Gp" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/effect/floor_decal/borderfloorblack{
+	dir = 6
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/xenobiology/outpost_north_airlock)
+"Gq" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 10
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/research/researchdivision)
 "Gr" = (
 /obj/machinery/door/firedoor/glass/hidden{
 	icon_state = "door_open";
@@ -19368,6 +19496,28 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_hallway)
+"Gs" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/research{
+	autoclose = 0;
+	frequency = 1382;
+	icon_state = "door_locked";
+	id_tag = "xenobiology_airlock_outer";
+	locked = 1;
+	name = "Xenobiology Exterior Airlock Doors";
+	req_access = list();
+	req_one_access = list(47,55)
+	},
+/obj/machinery/access_button/airlock_interior{
+	command = "cycle_exterior";
+	frequency = 1382;
+	master_tag = "xenobiology_airlock_control";
+	name = "Xenobiology Access Control";
+	pixel_x = 24;
+	pixel_y = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_south_airlock)
 "Gt" = (
 /obj/machinery/door/firedoor/glass/hidden{
 	icon_state = "door_open";
@@ -19627,36 +19777,10 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_main)
 "GO" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/mauve/border{
-	dir = 10
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 8
-	},
-/obj/machinery/access_button/airlock_interior{
-	frequency = 1392;
-	master_tag = "xenobiology_airlock";
-	name = "Xenobiology Access Control";
-	pixel_x = -20;
-	pixel_y = -20;
-	req_one_access = list(47,55)
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/research/researchdivision)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
 "GP" = (
 /obj/structure/sign/nanotrasen,
 /turf/simulated/wall,
@@ -20331,6 +20455,29 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_hallway)
+"HG" = (
+/obj/machinery/camera/network/research{
+	dir = 8
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24;
+	req_access = list()
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
+	},
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
+/obj/structure/closet/wardrobe/science_white,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_south_airlock)
 "HH" = (
 /turf/simulated/mineral,
 /area/tether/surfacebase/outside/outside3)
@@ -20394,6 +20541,21 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
+"HM" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
+/obj/structure/curtain/open/shower,
+/obj/machinery/shower{
+	dir = 4;
+	icon_state = "shower";
+	pixel_x = 5;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_south_airlock)
 "HN" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -20453,6 +20615,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
+"HS" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/closet/firecloset,
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_south_airlock)
 "HT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -20470,6 +20639,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
+"HU" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	layer = 3.3;
+	pixel_x = 26
+	},
+/obj/structure/closet/l3closet/scientist,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_south_airlock)
 "HV" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -20773,6 +20954,50 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_hallway)
+"Ir" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/research{
+	autoclose = 0;
+	frequency = 1382;
+	icon_state = "door_locked";
+	id_tag = "xenobiology_airlock_inner";
+	locked = 1;
+	name = "Xenobiology Interior Airlock Doors";
+	req_access = list();
+	req_one_access = list(47,55)
+	},
+/obj/machinery/access_button/airlock_interior{
+	command = "cycle_interior";
+	frequency = 1382;
+	master_tag = "xenobiology_airlock_control";
+	name = "Xenobiology Access Control";
+	pixel_x = -24;
+	pixel_y = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_south_airlock)
+"Is" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/research{
+	autoclose = 0;
+	frequency = 1382;
+	icon_state = "door_locked";
+	id_tag = "xenobiology_airlock_inner";
+	locked = 1;
+	name = "Xenobiology Interior Airlock Doors";
+	req_access = list();
+	req_one_access = list(47,55)
+	},
+/obj/machinery/access_button/airlock_interior{
+	command = "cycle_interior";
+	frequency = 1382;
+	master_tag = "xenobiology_airlock_control";
+	name = "Xenobiology Access Control";
+	pixel_x = 24;
+	pixel_y = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_south_airlock)
 "It" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/borderfloor{
@@ -21113,6 +21338,30 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_hallway)
+"IX" = (
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/apc;
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 8;
+	icon_state = "pdoor0";
+	id = "xenobiolockdown";
+	name = "Xenobiology Lockdown Blast Doors";
+	opacity = 0
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_main)
 "IY" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
@@ -21122,6 +21371,71 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_hallway)
+"IZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 8;
+	icon_state = "pdoor0";
+	id = "xenobiolockdown";
+	name = "Xenobiology Lockdown Blast Doors";
+	opacity = 0
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_main)
+"Ja" = (
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 8;
+	icon_state = "pdoor0";
+	id = "xenobiolockdown";
+	name = "Xenobiology Lockdown Blast Doors";
+	opacity = 0
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/embedded_controller/radio/airlock/access_controller{
+	frequency = 1382;
+	id_tag = "xenobiology_airlock_control";
+	name = "Xenobiology Access Controller";
+	pixel_x = 25;
+	tag_exterior_door = "xenobiology_airlock_outer";
+	tag_interior_door = "xenobiology_airlock_inner"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_main)
+"Jb" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/access_button/airlock_interior{
+	frequency = 1382;
+	master_tag = "xenobiology_airlock";
+	name = "Xenobiology Access Control";
+	pixel_x = 20;
+	pixel_y = -20;
+	req_one_access = list(47,55)
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/xenobiology/outpost_breakroom)
 "Jc" = (
 /obj/machinery/hologram/holopad,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -21337,28 +21651,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_hallway)
-"JA" = (
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 8;
-	icon_state = "pdoor0";
-	id = "xenobiolockdown";
-	name = "Xenobiology Lockdown Blast Doors"
-	},
-/obj/effect/floor_decal/industrial/warning,
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
-/obj/machinery/access_button/airlock_interior{
-	frequency = 1382;
-	master_tag = "xenobiology_airlock";
-	name = "Xenobiology Access Control";
-	pixel_x = -20;
-	pixel_y = -20;
-	req_one_access = list(47,55)
-	},
-/turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_hallway)
 "JB" = (
 /obj/machinery/light{
@@ -21834,26 +22126,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
-"KA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 8;
-	icon_state = "pdoor0";
-	id = "xenobiolockdown";
-	name = "Xenobiology Lockdown Blast Doors"
-	},
-/obj/effect/floor_decal/industrial/warning,
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_hallway)
 "KB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
@@ -22776,34 +23048,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge/secondary)
-"MJ" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/research{
-	autoclose = 0;
-	frequency = 1382;
-	icon_state = "door_locked";
-	id_tag = "xenobiology_airlock_outer";
-	locked = 1;
-	name = "Xenobiology Exterior Airlock Doors";
-	req_access = list();
-	req_one_access = list(47,55)
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_south_airlock)
-"MK" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/research{
-	autoclose = 0;
-	frequency = 1382;
-	icon_state = "door_locked";
-	id_tag = "xenobiology_airlock_inner";
-	locked = 1;
-	name = "Xenobiology Interior Airlock Doors";
-	req_access = list();
-	req_one_access = list(47,55)
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_south_airlock)
 "MN" = (
 /obj/machinery/light{
 	dir = 8
@@ -23303,43 +23547,6 @@
 	},
 /turf/simulated/shuttle/plating/airless,
 /area/shuttle/tether/surface)
-"NQ" = (
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 8;
-	icon_state = "pdoor0";
-	id = "xenobiolockdown";
-	name = "Xenobiology Lockdown Blast Doors"
-	},
-/obj/effect/floor_decal/industrial/warning,
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
-/obj/machinery/access_button/airlock_interior{
-	frequency = 1382;
-	master_tag = "xenobiology_airlock";
-	name = "Xenobiology Access Control";
-	pixel_x = 20;
-	pixel_y = -20;
-	req_one_access = list(47,55)
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/xenobiology/outpost_hallway)
-"NR" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/grille,
-/obj/machinery/firealarm{
-	dir = 4;
-	layer = 3.3;
-	pixel_x = 26
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_south_airlock)
 "NS" = (
 /obj/machinery/light{
 	dir = 8;
@@ -23446,29 +23653,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge/secondary)
-"Oh" = (
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
-	},
-/obj/structure/curtain/open/shower,
-/obj/machinery/shower{
-	dir = 4;
-	icon_state = "shower";
-	pixel_x = 5;
-	pixel_y = 0
-	},
-/obj/machinery/access_button/airlock_interior{
-	frequency = 1382;
-	master_tag = "xenobiology_airlock";
-	name = "Xenobiology Access Control";
-	pixel_x = -20;
-	pixel_y = 20;
-	req_one_access = list(47,55)
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_south_airlock)
 "Oi" = (
 /obj/structure/railing{
 	dir = 1
@@ -23541,34 +23725,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_hallway)
-"Os" = (
-/obj/structure/grille,
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/machinery/camera/network/research{
-	dir = 8
-	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 8;
-	frequency = 1379;
-	id_tag = "xenobiology_airlock_pump"
-	},
-/obj/item/device/radio/intercom{
-	dir = 1;
-	pixel_y = 24;
-	req_access = list()
-	},
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 24
-	},
-/obj/structure/cable/green{
-	icon_state = "0-8"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_south_airlock)
 "Ot" = (
 /obj/structure/railing,
 /obj/structure/railing{
@@ -23685,44 +23841,6 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_south_airlock)
-"OF" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/structure/cable/green{
-	icon_state = "1-8"
-	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 8;
-	icon_state = "pdoor0";
-	id = "xenobiolockdown";
-	name = "Xenobiology Lockdown Blast Doors"
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_main)
-"OG" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/grille,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
-	frequency = 1379;
-	id = 0;
-	scrub_id = "xenobiology_airlock_scrubber"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_south_airlock)
 "OH" = (
 /obj/effect/floor_decal/borderfloorblack/corner{
 	icon_state = "borderfloorcorner_black";
@@ -23822,36 +23940,6 @@
 "OR" = (
 /turf/simulated/wall,
 /area/rnd/outpost/xenobiology/outpost_office)
-"OS" = (
-/obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/apc;
-	dir = 8;
-	name = "west bump";
-	pixel_x = -28
-	},
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 8;
-	icon_state = "pdoor0";
-	id = "xenobiolockdown";
-	name = "Xenobiology Lockdown Blast Doors"
-	},
-/obj/machinery/access_button/airlock_interior{
-	master_tag = "xenobiology_airlock";
-	name = "Xenobiology Access Control";
-	pixel_x = -20;
-	pixel_y = 20;
-	req_one_access = list(47,55)
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_main)
 "OT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -23867,36 +23955,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge/secondary)
-"OV" = (
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 8;
-	icon_state = "pdoor0";
-	id = "xenobiolockdown";
-	name = "Xenobiology Lockdown Blast Doors"
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
-/obj/effect/floor_decal/industrial/warning,
-/obj/machinery/embedded_controller/radio/airlock/access_controller{
-	frequency = 1382;
-	id_tag = "xenobiology_airlock_control";
-	name = "Xenobiology Access Controller";
-	pixel_x = 25;
-	tag_exterior_door = "xenobiology_airlock_outer";
-	tag_interior_door = "xenobiology_airlock_inner"
-	},
-/obj/machinery/access_button/airlock_interior{
-	frequency = 1382;
-	master_tag = "xenobiology_airlock";
-	name = "Xenobiology Access Control";
-	pixel_x = 20;
-	pixel_y = 20;
-	req_one_access = list(47,55)
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_main)
 "OW" = (
 /turf/simulated/wall,
 /area/rnd/outpost/xenobiology/outpost_breakroom)
@@ -24158,17 +24216,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/rnd/outpost/xenobiology/outpost_office)
-"PA" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/device/radio/intercom{
-	dir = 4;
-	pixel_x = 24
-	},
-/obj/structure/prop/blackbox/xenofrigate,
-/turf/simulated/floor/wood,
-/area/rnd/outpost/xenobiology/outpost_office)
 "PB" = (
 /obj/structure/table/glass,
 /obj/machinery/light{
@@ -24327,16 +24374,6 @@
 /area/rnd/outpost/xenobiology/outpost_breakroom)
 "PU" = (
 /obj/machinery/vending/fitness,
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/xenobiology/outpost_breakroom)
-"PV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_breakroom)
 "PW" = (
@@ -25670,21 +25707,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/rnd/outpost/xenobiology/outpost_storage)
-"SN" = (
-/obj/structure/lattice,
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/zpipe/down/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/zpipe/down/supply{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	d1 = 32;
-	icon_state = "32-1"
-	},
-/turf/simulated/open,
-/area/rnd/outpost/xenobiology/outpost_main)
 "SP" = (
 /obj/structure/table/glass,
 /obj/item/bodybag,
@@ -25816,12 +25838,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_first_aid)
-"Tc" = (
-/obj/machinery/camera/network/outside{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/xenobiology/outpost_main)
 "Te" = (
 /obj/machinery/camera/network/research{
 	dir = 8
@@ -25893,12 +25909,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/rnd/outpost/xenobiology/outpost_storage)
-"To" = (
-/obj/machinery/firealarm{
-	pixel_y = -30
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/xenobiology/outpost_main)
 "Tq" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
@@ -26833,11 +26843,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
-"Uz" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
 "Vp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -30805,7 +30810,7 @@ ac
 ac
 ac
 ac
-ac
+Ff
 ac
 ac
 ac
@@ -30946,9 +30951,9 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
+Ff
+Fh
+Ff
 ac
 ac
 ac
@@ -31089,9 +31094,9 @@ ac
 ac
 ac
 ac
-ac
-ac
 Ff
+ac
+ac
 ac
 ac
 ac
@@ -31232,9 +31237,9 @@ ac
 ac
 ac
 ac
-Ff
-Fh
-Ff
+ac
+ac
+ac
 ac
 ac
 ac
@@ -31375,7 +31380,7 @@ ac
 ac
 ac
 ac
-Ff
+ac
 ac
 ac
 ac
@@ -31843,9 +31848,9 @@ RP
 RZ
 Sm
 GN
-SN
-Tc
-To
+BT
+CO
+Es
 SU
 dG
 Oi
@@ -32112,7 +32117,7 @@ Of
 Of
 Of
 Of
-PA
+BK
 PO
 Qc
 Qn
@@ -32251,7 +32256,7 @@ NV
 NZ
 Of
 Oo
-Oh
+HM
 Oq
 Of
 OR
@@ -32390,13 +32395,13 @@ Cc
 Cc
 No
 NS
-JA
-MJ
+Et
+Go
 Op
 Op
 Op
-MK
-OS
+Ir
+IX
 PQ
 Qd
 Qp
@@ -32532,13 +32537,13 @@ Vp
 Vp
 JE
 OD
-KA
+Ey
 Pj
 KB
 OE
 Lj
 Pj
-OF
+IZ
 PR
 Qe
 Qq
@@ -32657,7 +32662,7 @@ ac
 cj
 oW
 Cm
-Cd
+wh
 GM
 Nn
 Iq
@@ -32674,13 +32679,13 @@ Nc
 Nn
 NA
 Or
-NQ
-MJ
+Et
+Gs
 KC
 Op
 Mj
-MK
-OV
+Is
+Ja
 PS
 Qf
 Qr
@@ -32799,7 +32804,7 @@ ac
 iE
 qw
 FL
-Fo
+Cd
 iE
 cj
 cj
@@ -32818,9 +32823,9 @@ cj
 NV
 NZ
 Of
-Os
-OG
-NR
+HG
+HS
+HU
 Of
 PE
 PT
@@ -33107,7 +33112,7 @@ dG
 OW
 Pk
 PG
-PV
+Jb
 Qh
 Qu
 QE
@@ -33225,7 +33230,7 @@ ac
 iE
 qF
 BN
-Gl
+Fo
 iE
 HH
 HH
@@ -33367,7 +33372,7 @@ ac
 iE
 qx
 wb
-Gm
+Gl
 iE
 HH
 HH
@@ -33793,7 +33798,7 @@ ac
 iE
 rj
 BP
-Gq
+Gm
 GQ
 Ba
 BU
@@ -33935,7 +33940,7 @@ fK
 oy
 ut
 FM
-GO
+Gq
 zL
 Bb
 BW
@@ -40766,7 +40771,7 @@ Nk
 Nl
 NJ
 NP
-Uz
+GO
 KU
 bg
 Ok
@@ -40908,7 +40913,7 @@ Nl
 Nl
 NK
 NP
-Uz
+GO
 KU
 bg
 Ok
@@ -41050,7 +41055,7 @@ Nm
 Nl
 NK
 NP
-Uz
+GO
 KU
 bg
 Ok
