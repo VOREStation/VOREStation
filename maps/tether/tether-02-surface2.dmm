@@ -18044,17 +18044,14 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "ID" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 24
-	},
 /obj/structure/cable/green{
 	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/structure/reagent_dispensers/watertank,
+/obj/machinery/power/apc/super{
+	pixel_y = 25
+	},
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "IE" = (
@@ -20098,7 +20095,7 @@
 /turf/simulated/floor/reinforced,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Mg" = (
-/obj/item/slime_extract,
+/obj/item/slime_extract/grey,
 /turf/simulated/floor/reinforced,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Mh" = (
@@ -22073,6 +22070,28 @@
 	icon_state = "1-2"
 	},
 /obj/structure/table/steel,
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_slimepens)
+"PE" = (
+/obj/structure/grille,
+/obj/structure/window/phoronreinforced/full,
+/obj/structure/window/phoronreinforced{
+	dir = 8
+	},
+/obj/structure/window/phoronreinforced,
+/obj/structure/window/phoronreinforced{
+	dir = 1
+	},
+/obj/structure/window/phoronreinforced{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers,
+/obj/machinery/atmospherics/pipe/zpipe/up/supply,
+/obj/structure/cable/green,
+/obj/structure/cable/green{
+	icon_state = "16-0"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "VM" = (
@@ -27742,7 +27761,7 @@ OU
 JD
 Mk
 Oo
-NT
+PE
 OA
 Ov
 Ja
