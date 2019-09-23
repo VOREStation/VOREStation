@@ -21326,6 +21326,17 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/atmos)
+"Oo" = (
+/obj/machinery/atmospherics/pipe/zpipe/up/supply,
+/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
+/obj/structure/cable/green{
+	icon_state = "16-0"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_slimepens)
 "Op" = (
 /obj/machinery/button/remote/blast_door{
 	id = "xenobiodiv8";
@@ -21768,16 +21779,6 @@
 	dir = 1
 	},
 /turf/simulated/floor/reinforced,
-/area/rnd/outpost/xenobiology/outpost_slimepens)
-"Ta" = (
-/obj/structure/cable/green{
-	d1 = 32;
-	d2 = 2;
-	icon_state = "32-2"
-	},
-/obj/machinery/atmospherics/pipe/zpipe/up/supply,
-/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers,
-/turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "Te" = (
 /obj/structure/stairs/north,
@@ -26799,7 +26800,7 @@ Ht
 Kk
 YH
 Hc
-Ta
+Oo
 NS
 NV
 Ok
