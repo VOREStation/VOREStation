@@ -18,33 +18,24 @@
 	},
 /turf/unsimulated/floor/shuttle_ceiling,
 /turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
+/area/shuttle/specialops/centcom)
 "af" = (
 /turf/simulated/shuttle/wall/dark{
 	join_group = "shuttle_ert"
 	},
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
+/area/shuttle/specialops/centcom)
 "ag" = (
-/turf/unsimulated/floor/shuttle_ceiling,
-/area/centcom/specops)
-"ah" = (
-/turf/unsimulated/wall,
-/area/centcom/specops)
-"ai" = (
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "propulsion";
 	dir = 8
 	},
 /turf/unsimulated/floor/shuttle_ceiling,
 /turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
-"aj" = (
+/area/shuttle/specialops/centcom)
+"ah" = (
+/turf/unsimulated/wall,
+/area/centcom/specops)
+"ai" = (
 /obj/structure/shuttle/engine/heater{
 	icon_state = "heater";
 	dir = 8
@@ -53,31 +44,41 @@
 	dir = 4
 	},
 /turf/simulated/shuttle/plating/airless,
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
+/area/shuttle/specialops/centcom)
+"aj" = (
+/obj/structure/flight_right{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor_red"
+	},
+/area/shuttle/specialops/centcom)
 "ak" = (
+/obj/structure/closet/crate/freezer/rations,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
 /obj/machinery/computer/security/telescreen{
 	desc = "";
 	name = "Spec. Ops. Monitor";
 	network = list("NETWORK_ERT");
 	pixel_y = 30
 	},
-/obj/machinery/computer/shuttle_control/specops,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_red"
 	},
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
+/area/shuttle/specialops/centcom)
 "al" = (
 /obj/structure/bed/chair,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_red"
 	},
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
+/area/shuttle/specialops/centcom)
 "am" = (
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 4;
@@ -87,9 +88,7 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_red"
 	},
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
+/area/shuttle/specialops/centcom)
 "an" = (
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 4;
@@ -108,17 +107,13 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_red"
 	},
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
+/area/shuttle/specialops/centcom)
 "ao" = (
 /turf/simulated/shuttle/wall/dark{
 	hard_corner = 1;
 	join_group = "shuttle_ert"
 	},
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
+/area/shuttle/specialops/centcom)
 "ap" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -321,30 +316,37 @@
 	},
 /area/centcom/specops)
 "aB" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
 /obj/machinery/light{
 	icon_state = "tube1";
+	dir = 8
+	},
+/obj/machinery/computer/shuttle_control/web/specialops{
+	dir = 8;
+	icon = 'icons/obj/computer.dmi';
+	my_doors = list("specops_shuttle_fore_hatch" = "Docking Hatch");
+	my_sensors = list("shuttlesens_specops_int" = "Shuttle Interior")
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor_red"
+	},
+/area/shuttle/specialops/centcom)
+"aC" = (
+/obj/structure/bed/chair{
 	dir = 8
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_red"
 	},
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
-"aC" = (
+/area/shuttle/specialops/centcom)
+"aD" = (
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_red"
 	},
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
-"aD" = (
+/area/shuttle/specialops/centcom)
+"aE" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	frequency = 1380;
-	id_tag = "specops_shuttle_fore";
+	id_tag = "specops_shuttle_hatch";
 	name = "forward docking hatch controller";
 	pixel_x = 0;
 	pixel_y = -25;
@@ -353,10 +355,8 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_red"
 	},
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
-"aE" = (
+/area/shuttle/specialops/centcom)
+"aF" = (
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
@@ -365,9 +365,7 @@
 	name = "Forward Docking Hatch"
 	},
 /turf/simulated/shuttle/plating,
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
+/area/shuttle/specialops/centcom)
 "aG" = (
 /turf/unsimulated/floor{
 	icon_state = "dark"
@@ -473,7 +471,6 @@
 	},
 /area/centcom/specops)
 "aQ" = (
-/obj/machinery/computer/communications,
 /obj/item/device/radio/intercom{
 	broadcasting = 0;
 	dir = 1;
@@ -482,37 +479,30 @@
 	name = "Spec Ops Intercom";
 	pixel_y = -28
 	},
+/obj/structure/flight_left{
+	dir = 8
+	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_red"
 	},
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
+/area/shuttle/specialops/centcom)
 "aR" = (
+/obj/machinery/computer/communications{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor_red"
+	},
+/area/shuttle/specialops/centcom)
+"aS" = (
 /obj/machinery/computer/prisoner{
+	dir = 1;
 	name = "Implant Management"
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_red"
 	},
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
-"aS" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
-	id_tag = "specops_shuttle_port";
-	name = "port docking hatch controller";
-	pixel_x = 0;
-	pixel_y = -25;
-	tag_door = "specops_shuttle_port_hatch"
-	},
-/turf/simulated/shuttle/floor{
-	icon_state = "floor_red"
-	},
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
+/area/shuttle/specialops/centcom)
 "aT" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -520,9 +510,7 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_red"
 	},
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
+/area/shuttle/specialops/centcom)
 "aU" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -533,9 +521,15 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_red"
 	},
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
+/area/shuttle/specialops/centcom)
+"aV" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "burst_r";
+	dir = 8
+	},
+/turf/unsimulated/floor/shuttle_ceiling,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/specialops/centcom)
 "aW" = (
 /obj/structure/table/rack,
 /obj/item/clothing/accessory/storage/black_vest,
@@ -690,29 +684,14 @@
 	},
 /area/centcom/specops)
 "bh" = (
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "burst_r";
-	dir = 8
+/obj/machinery/shuttle_sensor{
+	dir = 1;
+	id_tag = "shuttlesens_specops_int"
 	},
-/turf/unsimulated/floor/shuttle_ceiling,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
-"bi" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "specops_shuttle_port_hatch";
-	locked = 1;
-	name = "Port Docking Hatch"
+/turf/simulated/shuttle/wall/dark{
+	join_group = "shuttle_ert"
 	},
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
+/area/shuttle/specialops/centcom)
 "bk" = (
 /obj/machinery/iv_drip,
 /turf/unsimulated/floor{
@@ -906,17 +885,6 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
-"by" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "specops_centcom_dock_door";
-	locked = 1
-	},
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/centcom/specops)
 "bz" = (
 /obj/structure/table/rack,
 /obj/item/weapon/rig/ert/assetprotection,
@@ -1075,21 +1043,6 @@
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
-	},
-/area/centcom/specops)
-"bN" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
-	id_tag = "specops_centcom_dock";
-	name = "docking port controller";
-	pixel_x = 0;
-	pixel_y = 25;
-	req_one_access = list(103);
-	tag_door = "specops_centcom_dock_door"
-	},
-/turf/unsimulated/floor{
-	icon_state = "vault";
-	dir = 5
 	},
 /area/centcom/specops)
 "bO" = (
@@ -16888,22 +16841,6 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
-"Ns" = (
-/obj/structure/closet/crate/freezer/rations,
-/obj/random/mre,
-/obj/random/mre,
-/obj/random/mre,
-/obj/random/mre,
-/obj/random/mre,
-/obj/random/mre,
-/obj/random/mre,
-/obj/random/mre,
-/turf/simulated/shuttle/floor{
-	icon_state = "floor_red"
-	},
-/area/shuttle/specops/centcom{
-	base_turf = /turf/unsimulated/floor/shuttle_ceiling
-	})
 "Nx" = (
 /obj/structure/table/rack,
 /obj/item/weapon/plastique,
@@ -32699,12 +32636,12 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+ah
+ah
+ah
+ah
+ah
+ah
 ah
 aw
 aG
@@ -32841,12 +32778,12 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+ah
+ae
+ag
+ag
+ag
+aV
 ah
 av
 aG
@@ -32983,12 +32920,12 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+ah
+af
+ai
+ai
+ai
+af
 ah
 ax
 aG
@@ -33125,12 +33062,12 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+ah
+af
+aj
+aB
+aQ
+af
 ah
 ay
 aG
@@ -33267,12 +33204,12 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+ah
+af
+ak
+aC
+aR
+af
 ah
 az
 aG
@@ -33409,12 +33346,12 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+ah
+af
+al
+aD
+aS
+af
 ah
 aA
 aG
@@ -33551,12 +33488,12 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ad
-ad
+ah
+af
+al
+aD
+aD
+af
 ah
 ah
 ah
@@ -33693,16 +33630,16 @@ ac
 ac
 ac
 ac
+ah
+af
+al
+aD
+aT
+af
+ah
 ac
 ac
 ac
-ac
-ad
-ad
-ah
-ah
-ah
-ah
 ah
 bK
 bS
@@ -33835,16 +33772,16 @@ ac
 ac
 ac
 ac
+ah
+af
+al
+aD
+aT
+af
+ah
 ac
 ac
 ac
-ac
-ad
-ae
-ai
-ai
-ai
-bh
 ah
 bL
 bT
@@ -33977,16 +33914,16 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ad
+ah
 af
-aj
-aj
-aj
+am
+aD
+aT
 af
+ah
+ac
+ac
+ac
 ah
 bL
 bT
@@ -34119,16 +34056,16 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ad
+ah
 af
-ak
-aB
-aQ
-af
+an
+aD
+aU
+bh
+ah
+ac
+ac
+ac
 ah
 bL
 bT
@@ -34261,16 +34198,16 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ad
+ah
 af
-Ns
-aC
-aR
+ao
+aE
+ao
 af
+ah
+ac
+ac
+ac
 ah
 bM
 bS
@@ -34403,16 +34340,16 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ad
+ah
+ah
 af
-al
-aC
-aS
+aF
 af
+ah
+ah
+ah
+ah
+ah
 ah
 ah
 ah
@@ -34545,17 +34482,17 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ad
-af
-al
-aC
-aC
-bi
-by
+ah
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
 aX
 aX
 aX
@@ -34687,17 +34624,17 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ad
-af
-al
-aC
-aC
-bi
-by
+ah
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
 aX
 aX
 aX
@@ -34829,18 +34766,18 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ad
-af
-al
-aC
-aT
-af
 ah
-bN
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
+aX
 aX
 aX
 aX
@@ -34971,16 +34908,16 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ad
-af
-am
-aC
-aT
-af
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
 ah
 ah
 ah
@@ -35117,13 +35054,13 @@ ac
 ac
 ac
 ac
-ad
-af
-an
-aC
-aU
-af
-ah
+ac
+ac
+ac
+ac
+ac
+ac
+ac
 ah
 bU
 bS
@@ -35259,13 +35196,13 @@ ac
 ac
 ac
 ac
-ad
-af
-ao
-aD
-ao
-af
-ah
+ac
+ac
+ac
+ac
+ac
+ac
+ac
 ah
 bV
 bS
@@ -35401,13 +35338,13 @@ ac
 ac
 ac
 ac
-ad
-ag
-af
-aE
-af
-ag
-ah
+ac
+ac
+ac
+ac
+ac
+ac
+ac
 ah
 bW
 cb
@@ -35543,13 +35480,13 @@ ac
 ac
 ac
 ac
-ad
-ad
-ad
-ad
-ad
-ad
-ad
+ac
+ac
+ac
+ac
+ac
+ac
+ac
 ad
 ad
 ad
