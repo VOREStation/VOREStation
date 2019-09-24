@@ -12543,6 +12543,9 @@
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/janitor)
 "yn" = (
@@ -17813,6 +17816,14 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
+"Ia" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/purple/border,
+/obj/structure/closet/jcloset,
+/obj/item/weapon/soap/nanotrasen,
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/janitor)
 "Ib" = (
 /obj/structure/railing,
 /obj/structure/railing{
@@ -35954,7 +35965,7 @@ yS
 zM
 yS
 Bl
-BT
+Ia
 xB
 rl
 rl
