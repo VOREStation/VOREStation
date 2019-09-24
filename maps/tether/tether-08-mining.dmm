@@ -113,16 +113,8 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/storage)
 "av" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4;
-	icon_state = "map_vent_out";
-	name = "Large Waste Vent";
-	pressure_checks = 2;
-	pressure_checks_default = 2;
-	use_power = 1
-	},
-/turf/simulated/floor/virgo3b,
-/area/outpost/mining_main/maintenance)
+/turf/simulated/wall/r_wall,
+/area/outpost/mining_main/hangar)
 "aw" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -316,26 +308,21 @@
 /turf/simulated/floor/virgo3b,
 /area/mine/explored)
 "aP" = (
-/obj/machinery/atmospherics/pipe/tank/air{
-	dir = 4
-	},
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
 /turf/simulated/floor/plating,
-/area/outpost/mining_main/maintenance)
+/area/outpost/mining_main/passage)
 "aQ" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
-	dir = 1
-	},
-/obj/machinery/meter{
-	frequency = 1443;
-	id = "mair_mining_meter";
-	name = "Mixed Air Tank"
-	},
-/turf/simulated/floor/plating,
-/area/outpost/mining_main/maintenance)
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/hangar)
 "aR" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
-	dir = 1
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 8
 	},
+/obj/structure/grille,
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "aS" = (
@@ -370,8 +357,7 @@
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "aV" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/machinery/atmospherics/portables_connector{
+/obj/machinery/atmospherics/pipe/tank/air{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -452,17 +438,19 @@
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
 "ba" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/cyan,
+/obj/machinery/meter{
+	frequency = 1443;
+	id = "mair_mining_meter";
+	name = "Mixed Air Tank"
+	},
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "bb" = (
-/obj/machinery/atmospherics/omni/atmos_filter{
-	tag_east = 1;
-	tag_north = 3;
-	tag_south = 2
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+	dir = 1
 	},
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
@@ -505,7 +493,10 @@
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "bf" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "bg" = (
@@ -559,10 +550,10 @@
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
 "bj" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/red,
+/obj/machinery/atmospherics/pipe/simple/visible/cyan,
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "bk" = (
@@ -597,11 +588,8 @@
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "bn" = (
-/obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/outpost/mining_main/maintenance)
+/turf/simulated/wall/r_wall,
+/area/outpost/mining_main/passage)
 "bo" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 9
@@ -626,13 +614,8 @@
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "bs" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/plating,
-/area/outpost/mining_main/maintenance)
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/passage)
 "bt" = (
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
 	frequency = 1379;
@@ -642,15 +625,10 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/outpost/mining_main/airlock)
 "bu" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/machinery/atmospherics/omni/atmos_filter{
+	tag_east = 1;
+	tag_north = 3;
+	tag_south = 2
 	},
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
@@ -674,11 +652,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/outpost/mining_main/break_room)
 "bw" = (
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/power/terminal,
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan,
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "bx" = (
@@ -714,33 +688,33 @@
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "bB" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "0-2"
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 4
 	},
-/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/visible/red,
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "bC" = (
-/obj/machinery/power/breakerbox/activated{
-	RCon_tag = "Mining Outpost Substation Bypass"
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	icon_state = "map_vent_out";
+	name = "Large Waste Vent";
+	pressure_checks = 2;
+	pressure_checks_default = 2;
+	use_power = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/virgo3b,
 /area/outpost/mining_main/maintenance)
 "bD" = (
-/obj/machinery/power/smes/buildable{
-	charge = 0;
-	output_attempt = 0;
-	outputting = 0;
-	RCon_tag = "Substation - Mining Outpost"
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 4
 	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/structure/window/reinforced{
+	dir = 8
 	},
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/structure/grille,
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "bE" = (
@@ -768,12 +742,8 @@
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "bI" = (
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced,
-/obj/structure/cable/heavyduty{
-	icon_state = "1-2"
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
@@ -784,44 +754,127 @@
 /turf/simulated/floor/bluegrid,
 /area/outpost/mining_main/airlock)
 "bK" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 9
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 10
-	},
-/obj/machinery/vending/wallmed_airlock{
-	pixel_x = 30
-	},
-/turf/simulated/floor/tiled,
-/area/outpost/mining_main/break_room)
+/turf/simulated/floor/plating,
+/area/outpost/mining_main/maintenance)
 "bL" = (
-/obj/effect/floor_decal/borderfloor{
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/outpost/mining_main/maintenance)
+"bM" = (
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/terminal,
+/turf/simulated/floor/plating,
+/area/outpost/mining_main/maintenance)
+"bN" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "0-2"
+	},
+/obj/structure/cable,
+/turf/simulated/floor/plating,
+/area/outpost/mining_main/maintenance)
+"bO" = (
+/obj/machinery/power/breakerbox/activated{
+	RCon_tag = "Mining Outpost Substation Bypass"
+	},
+/turf/simulated/floor/plating,
+/area/outpost/mining_main/maintenance)
+"bP" = (
+/obj/machinery/power/smes/buildable{
+	charge = 0;
+	output_attempt = 0;
+	outputting = 0;
+	RCon_tag = "Substation - Mining Outpost"
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/plating,
+/area/outpost/mining_main/maintenance)
+"bQ" = (
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/outpost/mining_main/maintenance)
+"bR" = (
+/obj/machinery/alarm{
+	breach_detection = 0;
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 25;
+	rcon_setting = 3;
+	report_danger_level = 0
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/hangar)
+"bS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/floor_decal/corner/brown/border{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 5
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/effect/floor_decal/corner/brown/bordercorner2{
-	dir = 5
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/passage)
+"bT" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 9
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 10
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled,
+/obj/machinery/door/airlock/mining{
+	name = "Belt Miner Hallway And Utility Access"
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/steel_grid,
 /area/outpost/mining_main/break_room)
+"bU" = (
+/turf/simulated/wall/rshull,
+/area/shuttle/belter/station)
+"bV" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/hangar)
 "bW" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
@@ -839,6 +892,160 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
+"bX" = (
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/hangar)
+"bY" = (
+/obj/machinery/door/airlock/mining{
+	name = "Belt Miner Shuttlepad"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/passage)
+"bZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/passage)
+"ca" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/structure/cable/green{
+	icon_state = "2-4"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/passage)
+"cb" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/hangar)
+"cc" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9;
+	pixel_y = 0
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/passage)
+"cd" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/hangar)
+"ce" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/hangar)
+"cf" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/hangar)
+"cg" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/belter/station)
+"ch" = (
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/passage)
+"ci" = (
+/obj/structure/table/rack,
+/obj/item/clothing/suit/space/void/mining,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/head/helmet/space/void/mining,
+/obj/item/weapon/mining_scanner,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 22;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/passage)
+"cj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/mining{
+	name = "Belt Mining Equipment Storage"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/passage)
 "ck" = (
 /obj/effect/floor_decal/rust/steel_decals_rusted1,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -866,6 +1073,39 @@
 /obj/effect/step_trigger/teleporter/from_mining,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/passage)
+"cr" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/passage)
+"cs" = (
+/obj/structure/cable/green{
+	d2 = 8;
+	dir = 2;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/passage)
+"ct" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/hangar)
 "cu" = (
 /mob/living/simple_mob/animal/passive/gaslamp,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
@@ -874,6 +1114,201 @@
 /obj/machinery/status_display,
 /turf/simulated/wall/r_wall,
 /area/outpost/mining_main/break_room)
+"cw" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/hangar)
+"cx" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/passage)
+"cy" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/passage)
+"cz" = (
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_y = 0
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/mine/explored)
+"cA" = (
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/belter/station)
+"cB" = (
+/obj/effect/landmark/start{
+	name = "Shaft Miner"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/break_room)
+"cC" = (
+/obj/structure/window/reinforced/full,
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/belter/station)
+"cD" = (
+/obj/structure/window/reinforced/full,
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/belter/station)
+"cE" = (
+/obj/structure/window/reinforced/full,
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/belter/station)
+"cF" = (
+/obj/structure/window/reinforced/full,
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/belter/station)
+"cG" = (
+/obj/machinery/button/remote/airlock{
+	id = "belter_shuttle_door_2";
+	name = "Belter Door Lock";
+	pixel_x = -25;
+	specialfunctions = 4
+	},
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	id_tag = "belter_shuttle_door_2";
+	locked = 1;
+	name = "Belter Shuttle Doors"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/belter/station)
+"cH" = (
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/hangar)
+"cI" = (
+/obj/item/device/radio/intercom{
+	dir = 1;
+	name = "Station Intercom (General)";
+	pixel_y = 27
+	},
+/obj/structure/bed/chair/shuttle,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/belter/station)
+"cJ" = (
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/passage)
+"cK" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/structure/closet/secure_closet/miner,
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/break_room)
+"cL" = (
+/obj/structure/window/reinforced/full,
+/obj/structure/grille,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/belter/station)
+"cM" = (
+/obj/structure/shuttle/engine/heater{
+	icon_state = "heater";
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/belter/station)
+"cN" = (
+/turf/simulated/floor/reinforced,
+/area/outpost/mining_main/hangar)
+"cO" = (
+/obj/machinery/computer/shuttle_control/belter{
+	icon_state = "computer";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/belter/station)
+"cP" = (
+/obj/structure/bed/chair/shuttle,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/belter/station)
+"cQ" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/belter/station)
+"cR" = (
+/obj/machinery/button/remote/airlock{
+	id = "belter_shuttle_door";
+	name = "Belter Door Lock";
+	pixel_x = -25;
+	specialfunctions = 4
+	},
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	id_tag = "belter_shuttle_door";
+	locked = 1;
+	name = "Belter Shuttle Doors"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/belter/station)
+"cS" = (
+/obj/machinery/suit_cycler/mining,
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/passage)
+"cT" = (
+/obj/structure/table/rack,
+/obj/item/clothing/suit/space/void/mining,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/head/helmet/space/void/mining,
+/obj/item/weapon/mining_scanner,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/passage)
 "di" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -1020,15 +1455,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/outpost/mining_main/dorms)
-"vo" = (
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/grille,
-/turf/simulated/floor/plating,
-/area/outpost/mining_main/maintenance)
 "vx" = (
 /turf/simulated/floor/bluegrid,
 /area/outpost/mining_main/airlock)
@@ -1288,9 +1714,6 @@
 /obj/structure/railing,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/mine/explored)
-"Uk" = (
-/turf/simulated/floor/tiled/steel_grid,
-/area/outpost/mining_main/break_room)
 "Uy" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
@@ -1365,6 +1788,28 @@
 	},
 /turf/simulated/floor/wood,
 /area/outpost/mining_main/dorms)
+"WV" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/brown/bordercorner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/structure/closet/secure_closet/miner,
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/break_room)
 "Zn" = (
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/borderfloorblack{
@@ -1380,18 +1825,6 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/dark,
 /area/outpost/mining_main/airlock)
-"ZC" = (
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/grille,
-/turf/simulated/floor/plating,
-/area/outpost/mining_main/maintenance)
 "ZV" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -2675,7 +3108,7 @@ ab
 ab
 ab
 ab
-ab
+bC
 ab
 ab
 ab
@@ -2805,22 +3238,22 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+av
+av
+av
+av
+av
+av
+av
+av
+ay
+aR
+aR
+aR
+bD
+aR
+aR
+ay
 ab
 ab
 ab
@@ -2947,24 +3380,24 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+av
+aQ
+aQ
+ct
+aQ
+aQ
+aQ
+bX
+ay
+aV
+bf
+aV
+bI
+bK
+bN
+bQ
+aA
+aB
 ab
 ab
 ab
@@ -3089,24 +3522,24 @@ ab
 ab
 ab
 ab
+av
+aQ
+bU
+cg
+cg
+cg
+bU
+cb
+ay
+ba
+bj
+bw
+bI
+bL
+bO
+SF
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+aF
 ab
 ab
 ab
@@ -3231,24 +3664,24 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
 av
+aQ
+bU
+cM
+cM
+cM
+bU
+cb
+ay
+bb
+bu
+bB
+bo
+bM
+bP
+SF
 ab
-ab
-ab
-ab
-ab
+aF
 ab
 ab
 ab
@@ -3373,24 +3806,24 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+av
+aQ
+bU
+cP
+cA
+cQ
+bU
+cb
 ay
-vo
-vo
-vo
-ZC
-vo
-vo
-ay
+aS
+bc
+bk
+bp
+bx
+bF
+SF
 ab
-ab
+aF
 ab
 ab
 ab
@@ -3515,24 +3948,24 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+av
+aQ
+cR
+cA
+cA
+cA
+cG
+cb
 ay
-aP
-aV
-aP
-bn
-bs
-bB
-bI
-aA
-aB
+aT
+bd
+bl
+bq
+bz
+bG
+SF
+ab
+aF
 ab
 ab
 ab
@@ -3657,21 +4090,21 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ay
+av
 aQ
-ba
-bf
-bn
-bu
-bC
+bU
+cI
+cA
+cQ
+bU
+cb
+ay
+aU
+be
+bm
+br
+bA
+bH
 SF
 ab
 aF
@@ -3799,22 +4232,22 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-cu
-ab
-ab
-ab
+av
+aQ
+bU
+cP
+cA
+cQ
+bU
+cb
 ay
-aR
-bb
-bj
-bo
-bw
-bD
-SF
+ay
+Cy
+ay
+ay
+ay
+ay
+ay
 ab
 aF
 ab
@@ -3941,22 +4374,22 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ay
-aS
-bc
-bk
-bp
-bx
-bF
-SF
+av
+aQ
+cC
+cL
+cO
+cL
+cE
+cd
+aP
+cx
+bS
+bs
+bn
+ch
+cS
+bn
 ab
 aF
 ab
@@ -4083,22 +4516,22 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ay
-aT
-bd
-bl
-bq
-bz
-bG
-SF
+av
+aQ
+cN
+cC
+cD
+cF
+cN
+ce
+bY
+cr
+ca
+bZ
+cj
+cc
+cy
+bn
 ab
 aF
 ab
@@ -4225,22 +4658,22 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ay
-aU
-be
-bm
-br
-bA
-bH
-SF
+av
+aQ
+cH
+cw
+bR
+bV
+aQ
+cf
+aP
+cs
+bS
+cJ
+bn
+ci
+cT
+bn
 ab
 aF
 ab
@@ -4367,22 +4800,22 @@ ab
 ab
 ab
 ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ay
-ay
-Cy
-ay
-ay
-ay
-ay
-ay
+av
+av
+av
+av
+av
+av
+av
+av
+az
+az
+bT
+az
+az
+az
+az
+az
 ab
 aF
 ab
@@ -4509,7 +4942,7 @@ ab
 ab
 ab
 ab
-ab
+cz
 ab
 ah
 an
@@ -5087,9 +5520,9 @@ ao
 ao
 VK
 aM
-bg
-Uk
-Uk
+aZ
+cB
+cB
 by
 DV
 az
@@ -5230,8 +5663,8 @@ ab
 VK
 Uy
 hW
-bK
-bL
+cK
+WV
 by
 US
 az

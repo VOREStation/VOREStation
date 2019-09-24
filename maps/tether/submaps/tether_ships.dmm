@@ -88,6 +88,12 @@
 "hf" = (
 /turf/space/transit/east,
 /area/shuttle/large_escape_pod1/transit)
+"hg" = (
+/obj/effect/step_trigger/lost_in_space,
+/obj/effect/step_trigger/lost_in_space,
+/turf/space,
+/turf/space/transit/west,
+/area/space)
 "hh" = (
 /obj/effect/floor_decal/transit/orange{
 	dir = 8

@@ -147,6 +147,8 @@
 // Mining outpost areas
 /area/outpost/mining_main/passage
 	name = "\improper Mining Outpost Passage"
+/area/outpost/mining_main/hangar
+	name = "\improper Mining Outpost Belt Miner Hangar"
 
 // Solars map areas
 /area/tether/outpost/solars_outside
