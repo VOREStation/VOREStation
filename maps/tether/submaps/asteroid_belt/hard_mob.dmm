@@ -1,9 +1,11 @@
-"a" = (/turf,/area)
+"a" = (/turf/template_noop,/area/mine/explored/belt_miner)
+"b" = (/turf/simulated/mineral/floor/ignore_cavegen,/area/mine/explored/belt_miner)
+"c" = (/obj/tether_away_spawner/belt_normal,/turf/simulated/mineral/floor/ignore_cavegen,/area/mine/explored/belt_miner)
 
 (1,1,1) = {"
 aaaaa
-aaaaa
-aaaaa
-aaaaa
+aabaa
+abcba
+aabaa
 aaaaa
 "}
