@@ -10,8 +10,8 @@
 	spawn_positions = 3
 
 /datum/job/mining
-	total_positions = 4
-	spawn_positions = 4
+	total_positions = 6
+	spawn_positions = 6
 
 /datum/job/janitor //Lots of janitor substations on station.
 	total_positions = 3
