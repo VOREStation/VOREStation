@@ -189,6 +189,12 @@
 	docking_controller_tag = "belter_docking"
 	dock_target_station = "belter_nodocking" //Fake tags to prevent the shuttle from opening doors.
 	dock_target_offsite = "belter_nodocking"
+	announcer = "Automated Traffic Control"
+
+/datum/shuttle/ferry/belter/New()
+	arrival_message = "The Belter is approaching Virgo-3B Mining Outpost."
+	departure_message = "Belter is now departing Virgo-3B for the Belt."
+	..()
 
 /datum/shuttle/ferry/belter/New()
 	move_time = move_time + rand(10, 40)

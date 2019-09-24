@@ -144,6 +144,14 @@
 	name = "\improper Mining Underdark"
 	base_turf = /turf/simulated/mineral/floor/virgo3b
 
+// Belt Mining Areas
+/area/mine/unexplored/belt_miner
+	name = "\improper Belt Mining"
+	base_turf = /turf/space
+/area/mine/explored/belt_miner
+	name = "\improper Belt Mining"
+	base_turf = /turf/space
+
 // Mining outpost areas
 /area/outpost/mining_main/passage
 	name = "\improper Mining Outpost Passage"

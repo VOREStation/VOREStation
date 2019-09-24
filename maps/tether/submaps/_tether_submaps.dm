@@ -46,6 +46,28 @@
 	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_UNDERDARK, world.maxx - 4, world.maxy - 4) // Create the mining Z-level.
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_UNDERDARK, 64, 64)         // Create the mining ore distribution map.
 
+// Rykka adds Belt Mining
+
+#include "asteroid_belt/_templates.dm"
+#include "asteroid_belt/belt_miner_things.dm"
+/datum/map_template/tether_lateload/tether_belt_miner
+	name = "Tether - Asteroid Belt"
+	desc = "Mining, but harder, and in spess."
+	mappath = 'tether_belt_miner.dmm'
+
+	associated_map_datum = /datum/map_z_level/tether_lateload/belt_miner
+
+/datum/map_z_level/tether_lateload/belt_miner
+	name = "Asteroid Belt"
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	base_turf = /turf/simulated/mineral/floor/virgo3b
+	z = Z_LEVEL_BELT
+
+/datum/map_template/tether_lateload/tether_belt_miner/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(Z_LEVEL_BELT), 100, /area/mine/unexplored/belt_miner, /datum/map_template/asteroid_belt)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_BELT, world.maxx - 4, world.maxy - 4) // Create the mining Z-level.
+	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_BELT, 64, 64)         // Create the mining ore distribution map.
 
 /datum/map_template/tether_lateload/tether_plains
 	name = "Tether - Plains"
