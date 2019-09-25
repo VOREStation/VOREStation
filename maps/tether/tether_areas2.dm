@@ -157,6 +157,18 @@
 	name = "\improper Mining Outpost Passage"
 /area/outpost/mining_main/hangar
 	name = "\improper Mining Outpost Belt Miner Hangar"
+/area/outpost/mining_main/belt_outpost
+	name = "\improper Belt Mining Outpost"
+/area/outpost/mining_main/belt_outpost/airlock
+	name = "\improper Belt Mining Airlock"
+/area/outpost/mining_main/belt_outpost/dorms
+	name = "\improper Belt Mining Dorms"
+/area/outpost/mining_main/belt_outpost/substation
+	name = "\improper Belt Mining Substation"
+/area/outpost/mining_main/belt_outpost/atmos
+	name = "\improper Belt Mining Atmos"
+/area/outpost/mining_main/belt_outpost/solars
+	name = "\improper Belt Mining Solars"
 
 // Solars map areas
 /area/tether/outpost/solars_outside
