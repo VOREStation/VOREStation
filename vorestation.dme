@@ -1621,7 +1621,11 @@
 #include "code\modules\clothing\clothing.dm"
 #include "code\modules\clothing\clothing_accessories.dm"
 #include "code\modules\clothing\clothing_icons.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\clothing\clothing_vr.dm"
+=======
+#include "code\modules\clothing\ears\earrings.dm"
+>>>>>>> 7821e74... Ports Earrings from Baystation (#6444):polaris.dme
 #include "code\modules\clothing\ears\ears.dm"
 #include "code\modules\clothing\glasses\glasses.dm"
 #include "code\modules\clothing\glasses\glasses_vr.dm"
