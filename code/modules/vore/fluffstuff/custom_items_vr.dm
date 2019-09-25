@@ -1581,6 +1581,48 @@
 	return ..()
 */
 
+/obj/item/device/perfect_tele/admin
+	name = "alien translocator"
+	desc = "This strange device allows one to teleport people and objects across large distances."
+
+	cell_type = /obj/item/weapon/cell/device/weapon/recharge/alien
+	charge_cost = 400
+	beacons_left = 5
+	failure_chance = 0 //Percent
+
+/obj/item/device/perfect_tele/admin/teleport_checks(mob/living/target,mob/living/user)
+	//Uhhuh, need that power source
+	if(!power_source)
+		to_chat(user,"<span class='warning'>\The [src] has no power source!</span>")
+		return FALSE
+
+	//Check for charge
+	if((!power_source.check_charge(charge_cost)) && (!power_source.fully_charged()))
+		to_chat(user,"<span class='warning'>\The [src] does not have enough power left!</span>")
+		return FALSE
+
+	//Only mob/living need apply.
+	if(!istype(user) || !istype(target))
+		return FALSE
+
+	//No, you can't teleport buckled people.
+	if(target.buckled)
+		to_chat(user,"<span class='warning'>The target appears to be attached to something...</span>")
+		return FALSE
+
+	//No, you can't teleport if it's not ready yet.
+	if(!ready)
+		to_chat(user,"<span class='warning'>\The [src] is still recharging!</span>")
+		return FALSE
+
+	//No, you can't teleport if there's no destination.
+	if(!destination)
+		to_chat(user,"<span class='warning'>\The [src] doesn't have a current valid destination set!</span>")
+		return FALSE
+
+	//Seems okay to me!
+	return TRUE
+
 //InterroLouis: Ruda Lizden
 /obj/item/clothing/accessory/badge/holo/detective/ruda
 	name = "Hisstective's Badge"
