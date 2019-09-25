@@ -285,6 +285,7 @@
 #include "code\datums\autolathe\devices.dm"
 #include "code\datums\autolathe\devices_vr.dm"
 #include "code\datums\autolathe\engineering.dm"
+#include "code\datums\autolathe\engineering_vr.dm"
 #include "code\datums\autolathe\general.dm"
 #include "code\datums\autolathe\general_vr.dm"
 #include "code\datums\autolathe\medical.dm"
