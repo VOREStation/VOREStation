@@ -105,13 +105,3 @@
 	req_tech = list(TECH_DATA = 4, TECH_ILLEGAL = 2, TECH_MATERIAL = 6)
 	build_path = /obj/item/weapon/aiModule/tyrant
 	sort_string = "XACAD"
-
-// AI file, AI tool
-/datum/design/item/intellicard
-	name = "'intelliCore', AI preservation and transportation system"
-	desc = "Allows for the construction of an intelliCore."
-	id = "intellicore"
-	req_tech = list(TECH_DATA = 4, TECH_MATERIAL = 4)
-	materials = list("glass" = 1000, "gold" = 200)
-	build_path = /obj/item/device/aicard
-	sort_string = "VACAA"
