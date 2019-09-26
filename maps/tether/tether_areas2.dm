@@ -954,6 +954,15 @@
 	icon_state = "blue2"
 
 
+/area/shuttle/specialops/centcom
+	name = "Special Operations Shuttle - Centcom"
+	icon_state = "shuttlered"
+	base_turf = /turf/unsimulated/floor/shuttle_ceiling
+
+/area/shuttle/specialops/tether
+	name = "Special Operations Shuttle - Tether"
+	icon_state = "shuttlered"
+
 // Tether Map has this shuttle
 /area/shuttle/tether/surface
 	name = "Tether Shuttle Landed"
