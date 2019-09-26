@@ -195,26 +195,19 @@
 	..()
 */
 
-// Belter Mark 2.0. Now with multi-desto!
-/datum/shuttle/multi_shuttle/belter
-	name = "Belter"
+// Belter Mark 2.0, for short-haul trips!
+/datum/shuttle/ferry/beltferry
+	name = "Belter M2.0"
 	location = 0
 	warmup_time = 6
 	move_time = 60
-	area_station = /area/shuttle/belter/station
-	area_offsite = /area/shuttle/belter/belt
-	area_transition = /area/shuttle/belter/transit
-	docking_controller_tag = "belter_station"
-	dock_target_station = "belter_nodocking" //Fake tags to prevent the shuttle from opening doors.
-	dock_target_offsite = "belter_nodocking"
-	announcer = "Automated Traffic Control"
-
-/datum/shuttle/multi_shuttle/belter/New()
-	arrival_message = "Attention, the Belter Shuttle has arrived safely at the Virgo-3B Mining Outpost."
-	departure_message = "Attention, the Belter Shuttle has departed Virgo-3B and will arrive at the Belt shortly."
-	..()
-
-/datum/shuttle/multi_shuttle/belter/New()
+	area_station = /area/shuttle/beltferry/station
+	area_offsite = /area/shuttle/beltferry/belt
+	docking_controller_tag = "beltferry_station"
+	dock_target_station = "beltferry_nodocking" //Fake tags to prevent the shuttle from opening doors.
+	dock_target_offsite = "beltferry_nodocking"
+	
+/datum/shuttle/ferry/beltferry/New()
 	move_time = move_time + rand(10, 40)
 	..()
 

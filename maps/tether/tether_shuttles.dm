@@ -20,9 +20,9 @@
 	shuttle_tag = "Cruiser Shuttle"
 	req_one_access = list(access_heads)
 
-/obj/machinery/computer/shuttle_control/multi/belter
+/obj/machinery/computer/shuttle_control/beltferry
 	name = "belter control console"
-	shuttle_tag = "Belter"
+	shuttle_tag = "Belter M2.0"
 	req_one_access = list(access_mining, access_xenoarch)
 
 //
