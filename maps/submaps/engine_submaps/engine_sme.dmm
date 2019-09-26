@@ -1310,14 +1310,18 @@
 	dir = 1
 	},
 /turf/simulated/floor,
-/area/engineering/engine_gas)
+/area/engineering/engine_room)
 "cM" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor,
-/area/engineering/engine_gas)
-"cN" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
+	},
+/turf/simulated/floor,
+/area/engineering/engine_room)
+"cN" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/machinery/camera/network/engine{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/engineering/engine_gas)
@@ -1491,14 +1495,6 @@
 	},
 /turf/simulated/floor,
 /area/engineering/engine_room)
-"di" = (
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/obj/machinery/camera/network/engineering{
-	dir = 4
-	},
-/turf/simulated/floor,
-/area/engineering/engine_gas)
 "dj" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -2003,7 +1999,7 @@ bP
 ce
 cp
 at
-cJ
+as
 cJ
 cJ
 cJ
@@ -2035,10 +2031,10 @@ bQ
 cf
 cq
 cB
-cK
+aE
 cJ
 cY
-di
+cN
 dn
 do
 cJ
@@ -2099,7 +2095,7 @@ bR
 ch
 cs
 cC
-cM
+bY
 cR
 cK
 dj
@@ -2131,7 +2127,7 @@ bS
 ch
 cs
 cD
-cM
+bY
 cR
 cK
 dk
@@ -2163,7 +2159,7 @@ bT
 cg
 cr
 cC
-cN
+cM
 cJ
 da
 dl
@@ -2195,7 +2191,7 @@ bU
 aE
 aE
 cC
-cK
+aE
 cJ
 cJ
 cJ
