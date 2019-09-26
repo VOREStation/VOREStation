@@ -20,6 +20,11 @@
 	shuttle_tag = "Cruiser Shuttle"
 	req_one_access = list(access_heads)
 
+/obj/machinery/computer/shuttle_control/multi/belter
+	name = "belter control console"
+	shuttle_tag = "Belter"
+	req_one_access = list(access_mining, access_xenoarch)
+
 //
 // "Tram" Emergency Shuttler
 // Becuase the tram only has its own doors and no corresponding station doors, a docking controller is overkill.

@@ -2,7 +2,7 @@
 	name = "Belt Miner Content"
 	desc = "For seeding submaps in the Asteroid Belt"
 	allow_duplicates = TRUE
-
+/*
 /datum/map_template/asteroid_belt/normal_mob
 	name = "Belt Normal Mob Spawn"
 	mappath = 'normal_mob.dmm'
@@ -12,7 +12,7 @@
 	name = "Belt Hard Mob Spawn"
 	mappath = 'hard_mob.dmm'
 	cost = 15
-
+*/
 /*
 /datum/map_template/asteroid_belt/whatever_treasure
 	name = "Some Kinda Treasure" //A name, only visible to admins

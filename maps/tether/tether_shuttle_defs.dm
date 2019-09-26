@@ -175,8 +175,8 @@
 	..()
 
 //////////////////////////////////////////////////////////////
-// RogueMiner "Belter: Shuttle
-// TODO - Not implemented yet on new map
+// RogueMiner "Belter: Shuttle"
+// Commented out since it's OLD and Tether doesn't use this
 /*
 /datum/shuttle/ferry/belter
 	name = "Belter"
@@ -189,17 +189,34 @@
 	docking_controller_tag = "belter_docking"
 	dock_target_station = "belter_nodocking" //Fake tags to prevent the shuttle from opening doors.
 	dock_target_offsite = "belter_nodocking"
-	announcer = "Automated Traffic Control"
-
-/datum/shuttle/ferry/belter/New()
-	arrival_message = "The Belter is approaching Virgo-3B Mining Outpost."
-	departure_message = "Belter is now departing Virgo-3B for the Belt."
-	..()
-
+	
 /datum/shuttle/ferry/belter/New()
 	move_time = move_time + rand(10, 40)
 	..()
 */
+
+// Belter Mark 2.0. Now with multi-desto!
+/datum/shuttle/multi_shuttle/belter
+	name = "Belter"
+	location = 0
+	warmup_time = 6
+	move_time = 60
+	area_station = /area/shuttle/belter/station
+	area_offsite = /area/shuttle/belter/belt
+	area_transition = /area/shuttle/belter/transit
+	docking_controller_tag = "belter_station"
+	dock_target_station = "belter_nodocking" //Fake tags to prevent the shuttle from opening doors.
+	dock_target_offsite = "belter_nodocking"
+	announcer = "Automated Traffic Control"
+
+/datum/shuttle/multi_shuttle/belter/New()
+	arrival_message = "Attention, the Belter Shuttle has arrived safely at the Virgo-3B Mining Outpost."
+	departure_message = "Attention, the Belter Shuttle has departed Virgo-3B and will arrive at the Belt shortly."
+	..()
+
+/datum/shuttle/multi_shuttle/belter/New()
+	move_time = move_time + rand(10, 40)
+	..()
 
 //////////////////////////////////////////////////////////////
 // CC Lewdship shuttle
