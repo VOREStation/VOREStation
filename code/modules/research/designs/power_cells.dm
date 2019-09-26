@@ -22,7 +22,7 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
 	build_path = /obj/item/weapon/cell
 	category = "Misc"
-	sort_string = "DAAAA"
+	sort_string = "BAAAA"
 
 /datum/design/item/powercell/high
 	name = "high-capacity"
@@ -32,7 +32,7 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 60)
 	build_path = /obj/item/weapon/cell/high
 	category = "Misc"
-	sort_string = "DAAAB"
+	sort_string = "BAAAB"
 
 /datum/design/item/powercell/super
 	name = "super-capacity"
@@ -41,7 +41,7 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 70)
 	build_path = /obj/item/weapon/cell/super
 	category = "Misc"
-	sort_string = "DAAAC"
+	sort_string = "BAAAC"
 
 /datum/design/item/powercell/hyper
 	name = "hyper-capacity"
@@ -50,7 +50,7 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 400, "gold" = 150, "silver" = 150, "glass" = 70)
 	build_path = /obj/item/weapon/cell/hyper
 	category = "Misc"
-	sort_string = "DAAAD"
+	sort_string = "BAAAD"
 
 /datum/design/item/powercell/device
 	name = "device"
@@ -59,7 +59,7 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 350, "glass" = 25)
 	build_path = /obj/item/weapon/cell/device
 	category = "Misc"
-	sort_string = "DAABA"
+	sort_string = "BAABA"
 
 /datum/design/item/powercell/weapon
 	name = "weapon"
@@ -68,4 +68,4 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
 	build_path = /obj/item/weapon/cell/device/weapon
 	category = "Misc"
-	sort_string = "DAABB"
+	sort_string = "BAABB"
