@@ -1819,8 +1819,20 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "dz" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/floor_decal/steeldecal/steel_decals6,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 8
+	},
+/obj/machinery/button/remote/blast_door{
+	desc = "A remote control-switch for shutters.";
+	id = "surfmed";
+	name = "Medical Shutters";
+	pixel_x = -24;
+	pixel_y = 0;
+	req_access = list(5)
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "dA" = (
@@ -2106,22 +2118,38 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/vacant/vacant_site2)
 "ec" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/plating,
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/steeldecal/steel_decals6,
+/turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "ed" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/patient_b)
 "ee" = (
 /obj/machinery/door/firedoor/glass,
-/obj/structure/disposalpipe/segment,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/airlock/multi_tile/glass{
+	id_tag = "SurfMedbayFoyer";
+	name = "Infirmary";
+	req_access = list(5)
+	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
-	dir = 4
+	dir = 8
+	},
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "surfmed";
+	layer = 3.1;
+	name = "Medical Shutters"
 	},
 /turf/simulated/floor/tiled/monofloor{
-	dir = 4
+	dir = 8
 	},
 /area/tether/surfacebase/medical/triage)
 "ef" = (
@@ -3414,13 +3442,16 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "gn" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 8
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "surfmed";
+	layer = 3.1;
+	name = "Medical Shutters"
 	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/triage)
 "go" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -4533,10 +4564,20 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/lobby)
 "ig" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/plating,
+/obj/structure/bed/chair/office/light,
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/effect/landmark/start{
+	name = "Medical Doctor"
+	},
+/obj/machinery/button/remote/blast_door{
+	desc = "A remote control-switch for shutters.";
+	id = "surfmed";
+	name = "Medical Shutters";
+	pixel_x = -16;
+	pixel_y = -24;
+	req_access = list(5)
+	},
+/turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "ih" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -27806,23 +27847,18 @@
 /area/maintenance/lower/mining)
 "UI" = (
 /obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/multi_tile/glass{
-	id_tag = "SurfMedbayFoyer";
-	name = "Infirmary";
-	req_access = list(5)
-	},
+/obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
-	dir = 8
+	dir = 4
+	},
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "surfmed";
+	layer = 3.1;
+	name = "Medical Shutters"
 	},
 /turf/simulated/floor/tiled/monofloor{
-	dir = 8
+	dir = 4
 	},
 /area/tether/surfacebase/medical/triage)
 "UJ" = (
@@ -27960,12 +27996,16 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "UU" = (
-/obj/structure/bed/chair/office/light,
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/effect/landmark/start{
-	name = "Medical Doctor"
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "surfmed";
+	layer = 3.1;
+	name = "Medical Shutters"
 	},
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/lobby)
 "UV" = (
 /obj/structure/window/reinforced{
@@ -40691,7 +40731,7 @@ Tj
 Uz
 ag
 eI
-UU
+ig
 gj
 gX
 Vn
@@ -40823,7 +40863,7 @@ at
 ag
 ao
 eH
-gn
+dz
 aH
 aR
 ba
@@ -40831,13 +40871,13 @@ bq
 cb
 cN
 UA
-ec
+gn
 eJ
 fz
 gk
 gX
 hK
-ig
+UU
 jd
 jV
 kG
@@ -40973,13 +41013,13 @@ aS
 cc
 cO
 UB
-ec
+gn
 eK
 UV
 gl
 gX
 hL
-ig
+UU
 je
 jW
 kG
@@ -41115,7 +41155,7 @@ SM
 SS
 cP
 dy
-UI
+ee
 eL
 fB
 gm
@@ -41256,8 +41296,8 @@ bc
 SN
 ST
 cQ
-dz
-ee
+ec
+UI
 eM
 gY
 fC
