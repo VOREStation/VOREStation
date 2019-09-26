@@ -114,6 +114,7 @@
 	..()
 	name = "Phase weapon prototype ([item_name])"
 
+/* //VOREStation Removal Start
 /datum/design/item/weapon/phase/phase_pistol
 	id = "phasepistol"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2, TECH_POWER = 2)
@@ -141,6 +142,7 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 2000, "silver" = 1000, "diamond" = 750)
 	build_path = /obj/item/weapon/gun/energy/phasegun/cannon
 	sort_string = "MACAD"
+*/ //VOREStation Removal End
 
 // Other weapons
 
@@ -204,54 +206,7 @@
 	build_path = /obj/item/ammo_casing/chemdart
 	sort_string = "MADBD"
 
-<<<<<<< HEAD
-/datum/design/item/weapon/fuelrod
-	id = "fuelrod_gun"
-	req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_PHORON = 4, TECH_ILLEGAL = 5, TECH_MAGNET = 5)
-	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 2000, "gold" = 500, "silver" = 500, "uranium" = 1000, "phoron" = 3000, "diamond" = 1000)
-	build_path = /obj/item/weapon/gun/magnetic/fuelrod
-	sort_string = "TACBA"
-
-/datum/design/item/weapon/flora_gun
-	id = "flora_gun"
-	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 500, "uranium" = 500)
-	build_path = /obj/item/weapon/gun/energy/floragun
-	sort_string = "TBAAA"
-
-// Xenobio Tools
-/datum/design/item/weapon/slimebation
-	id = "slimebation"
-	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2, TECH_POWER = 3, TECH_COMBAT = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000)
-	build_path = /obj/item/weapon/melee/baton/slime
-	sort_string = "TBAAB"
-
-/datum/design/item/weapon/slimetaser
-	id = "slimetaser"
-	req_tech = list(TECH_MATERIAL = 3, TECH_BIO = 3, TECH_POWER = 4, TECH_COMBAT = 4)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000)
-	build_path = /obj/item/weapon/gun/energy/taser/xeno
-	sort_string = "TBAAC"
-
-/* //VOREStation Edit
-// Phase Weapons
-/datum/design/item/weapon/phase_pistol
-	id = "phasepistol"
-	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2, TECH_POWER = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 4000)
-	build_path = /obj/item/weapon/gun/energy/phasegun/pistol
-	sort_string = "TPAAA"
-
-/datum/design/item/weapon/phase_carbine
-	id = "phasecarbine"
-	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2, TECH_POWER = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 6000, "glass" = 1500)
-	build_path = /obj/item/weapon/gun/energy/phasegun
-	sort_string = "TPAAB"
-=======
 // Melee weapons
->>>>>>> 8ccac5f... Merge pull request #6459 from Heroman3003/re-sort-ch
 
 /datum/design/item/weapon/melee/AssembleDesignName()
 	..()
@@ -278,19 +233,9 @@
 	..()
 	name = "Grenade casing prototype ([item_name])"
 
-<<<<<<< HEAD
-/datum/design/item/weapon/phase_cannon
-	id = "phasecannon"
-	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4, TECH_POWER = 4)
-	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 2000, "silver" = 1000, "diamond" = 750)
-	build_path = /obj/item/weapon/gun/energy/phasegun/cannon
-	sort_string = "TPAAD"
-*/
-=======
 /datum/design/item/weapon/grenade/large_grenade
 	id = "large_Grenade"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 3000)
 	build_path = /obj/item/weapon/grenade/chem_grenade/large
 	sort_string = "MCAAA"
->>>>>>> 8ccac5f... Merge pull request #6459 from Heroman3003/re-sort-ch
