@@ -182,6 +182,37 @@
 	name = "\improper Surface Triage"
 /area/tether/surfacebase/medical/first_aid_west
 	name = "\improper First Aid West"
+/area/tether/surfacebase/medical/chemistry
+	name = "\improper Surface Chemistry"
+	lightswitch = 0
+/area/tether/surfacebase/medical/resleeving
+	name = "\improper Surface Resleeving"
+	lightswitch = 0
+/area/tether/surfacebase/medical/surgery
+	name = "\improper Surface Surgery"
+	lightswitch = 0
+/area/tether/surfacebase/medical/patient_a
+	name = "\improper Surface Patient Room A"
+	lightswitch = 0
+/area/tether/surfacebase/medical/patient_b
+	name = "\improper Surface Patient Room B"
+	lightswitch = 0
+/area/tether/surfacebase/medical/patient_c
+	name = "\improper Surface Patient Room C"
+	lightswitch = 0
+/area/tether/surfacebase/medical/lowerhall
+	name = "\improper Surface Medical Lower Hall"
+/area/tether/surfacebase/medical/storage
+	name = "\improper Surface Medical Storage"
+	lightswitch = 0
+/area/tether/surfacebase/medical/paramed
+	name = "\improper Surface Paramedic Closet"
+	lightswitch = 0
+/area/tether/surfacebase/medical/breakroom
+	name = "\improper Surface Medical Break Room"
+	lightswitch = 0
+/area/tether/surfacebase/medical/maints
+	name = "\improper Mining Upper Maintenance"
 
 
 /area/tether/surfacebase/security
