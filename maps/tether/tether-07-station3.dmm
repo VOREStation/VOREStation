@@ -16102,6 +16102,12 @@
 	name = "Medbay Emergency Lockdown Shutters";
 	opacity = 0
 	},
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "spacemedlobby";
+	layer = 3.1;
+	name = "Medical Shutters"
+	},
 /turf/simulated/floor,
 /area/medical/reception)
 "yL" = (
@@ -19010,6 +19016,12 @@
 	name = "Medbay Emergency Lockdown Shutters";
 	opacity = 0
 	},
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "spacemedlobby";
+	layer = 3.1;
+	name = "Medical Shutters"
+	},
 /turf/simulated/floor/plating,
 /area/medical/reception)
 "Dl" = (
@@ -21030,6 +21042,14 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 8
 	},
+/obj/machinery/button/remote/blast_door{
+	desc = "A remote control-switch for shutters.";
+	id = "spacemedlobby";
+	name = "Medical Shutters";
+	pixel_x = 22;
+	pixel_y = -24;
+	req_access = list(5)
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/reception)
 "Gx" = (
@@ -21339,6 +21359,12 @@
 	name = "Treatment Centre";
 	req_one_access = list(5)
 	},
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "spacemedlobby";
+	layer = 3.1;
+	name = "Medical Shutters"
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "GY" = (
@@ -21346,6 +21372,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "spacemedlobby";
+	layer = 3.1;
+	name = "Medical Shutters"
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "GZ" = (
