@@ -1587,7 +1587,7 @@
 
 	cell_type = /obj/item/weapon/cell/device/weapon/recharge/alien
 	charge_cost = 400
-	beacons_left = 5
+	beacons_left = 6
 	failure_chance = 0 //Percent
 
 /obj/item/device/perfect_tele/admin/teleport_checks(mob/living/target,mob/living/user)
