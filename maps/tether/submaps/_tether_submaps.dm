@@ -59,6 +59,7 @@
 
 /datum/map_z_level/tether_lateload/belt_miner
 	name = "Asteroid Belt"
+	flags = MAP_LEVEL_SEALED|MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT
 	z = Z_LEVEL_BELT
 
 /datum/map_template/tether_lateload/tether_belt_miner/on_map_loaded(z)

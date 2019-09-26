@@ -169,6 +169,8 @@
 	name = "\improper Belt Mining Atmos"
 /area/outpost/mining_main/belt_outpost/solars
 	name = "\improper Belt Mining Solars"
+/area/outpost/mining_main/belt_outpost/tank_storage
+	name = "\improper Belt Mining Tank Holding and Console Access"
 
 // Solars map areas
 /area/tether/outpost/solars_outside
@@ -1195,6 +1197,10 @@
 
 /area/shuttle/beltferry/belt // This is our "dock" area for the Belter M2.0
 	name = "Belter M2.0 Holding Position"
+	icon_state = "shuttle2"
+
+/area/shuttle/beltferry/transit // Transit Area - the in-between.
+	name = "Belter M2.0 Transit"
 	icon_state = "shuttle2"
 
 //////// Small Cruiser Areas ////////

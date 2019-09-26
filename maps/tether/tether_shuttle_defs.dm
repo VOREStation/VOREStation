@@ -189,7 +189,7 @@
 	docking_controller_tag = "belter_docking"
 	dock_target_station = "belter_nodocking" //Fake tags to prevent the shuttle from opening doors.
 	dock_target_offsite = "belter_nodocking"
-	
+
 /datum/shuttle/ferry/belter/New()
 	move_time = move_time + rand(10, 40)
 	..()
@@ -203,10 +203,11 @@
 	move_time = 60
 	area_station = /area/shuttle/beltferry/station
 	area_offsite = /area/shuttle/beltferry/belt
+	area_transition = /area/shuttle/beltferry/transit
 	docking_controller_tag = "beltferry_station"
 	dock_target_station = "beltferry_nodocking" //Fake tags to prevent the shuttle from opening doors.
 	dock_target_offsite = "beltferry_nodocking"
-	
+
 /datum/shuttle/ferry/beltferry/New()
 	move_time = move_time + rand(10, 40)
 	..()
