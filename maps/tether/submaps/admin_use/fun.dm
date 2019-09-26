@@ -40,7 +40,7 @@
 	power_environ = FALSE
 	power_light = FALSE
 
-	/area/submap/AU3
+/area/submap/AU3
 	name = "\improper Unknown Area B"
 	requires_power = 1
 	dynamic_lighting = 1
@@ -48,7 +48,7 @@
 	power_environ = FALSE
 	power_light = FALSE
 
-	/area/submap/AU4
+/area/submap/AU4
 	name = "\improper Unknown Area C"
 	requires_power = 1
 	dynamic_lighting = 1
@@ -56,7 +56,7 @@
 	power_environ = FALSE
 	power_light = FALSE
 
-	/area/submap/AU5
+/area/submap/AU5
 	name = "\improper Unknown Area D"
 	requires_power = 1
 	dynamic_lighting = 1
@@ -64,7 +64,7 @@
 	power_environ = FALSE
 	power_light = FALSE
 
-	/area/submap/AU6
+/area/submap/AU6
 	name = "\improper Unknown Area E"
 	requires_power = 1
 	dynamic_lighting = 1
