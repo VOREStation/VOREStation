@@ -107,6 +107,12 @@ proc/get_radio_key_from_channel(var/channel)
 		message = stutter(message)
 		verb = pick("stammers","stutters")
 		. = 1
+	//VOREStation Edit Start
+	if(muffled)
+		verb = pick("muffles")
+		whispering = 1
+		. = 1
+	//VOREStation Edit End
 
 	message_data[1] = message
 	message_data[2] = verb
