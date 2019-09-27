@@ -567,6 +567,8 @@
 /obj/effect/floor_decal/borderfloor/corner2,
 /obj/effect/floor_decal/corner/red/bordercorner2,
 /obj/structure/table/reinforced,
+/obj/item/weapon/storage/bag/trash,
+/obj/item/weapon/storage/bag/trash,
 /turf/simulated/floor/tiled,
 /area/security/range)
 "aT" = (
