@@ -170,7 +170,7 @@
 	. = ..()
 	shock_area = locate(shock_area)
 
-// Walking on maglev tracks will shock you! Horray!
+// Walking on maglev tracks will shock you! Ow!
 /turf/simulated/floor/maglev/Entered(var/atom/movable/AM, var/atom/old_loc)
 	if(isliving(AM) && prob(50))
 		track_zap(AM)

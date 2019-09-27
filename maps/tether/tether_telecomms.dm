@@ -74,6 +74,11 @@
 	listening_level = Z_LEVEL_UNDERDARK
 	autolinkers = list("ud_relay")
 
+/obj/machinery/telecomms/relay/preset/belt_outpost
+	id = "Belt Mining Relay"
+	listening_level = Z_LEVEL_BELT
+	autolinkers = list("belt_relay")
+
 /obj/machinery/telecomms/relay/preset/centcom/underdark
 	listening_level = Z_LEVEL_UNDERDARK
 
@@ -83,7 +88,7 @@
 	network = "tcommsat"
 	autolinkers = list("hub",
 		"tbl_relay", "tbm_relay", "tbh_relay", "tmp_relay", "tsl_relay", "tsm_relay", "tsh_relay",
-		"c_relay", "m_relay", "r_relay", "sci_o_relay", "ud_relay",
+		"c_relay", "m_relay", "r_relay", "sci_o_relay", "ud_relay", "belt_relay",
 		"science", "medical", "supply", "service", "common", "command", "engineering", "security", "explorer", "unused",
 		"hb_relay", "receiverA", "broadcasterA"
 	)

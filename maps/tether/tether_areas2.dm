@@ -152,21 +152,27 @@
 	name = "\improper Belt Mining"
 	base_turf = /turf/space
 
-// Mining outpost areas
+// Belt Mining outpost areas
 /area/outpost/mining_main/passage
 	name = "\improper Mining Outpost Passage"
 /area/outpost/mining_main/hangar
 	name = "\improper Mining Outpost Belt Miner Hangar"
-/area/outpost/mining_main/belt_outpost
+/area/outpost/mining_main/belt_outpost // Master area for "Belt Outpost", all sub-areas follow this one's preset
 	name = "\improper Belt Mining Outpost"
+	sound_env = ASTEROID
+	forced_ambience = list('sound/ambience/ruins/ruins1.ogg')
+	lightswitch = 0
 /area/outpost/mining_main/belt_outpost/airlock
 	name = "\improper Belt Mining Airlock"
 /area/outpost/mining_main/belt_outpost/dorms
 	name = "\improper Belt Mining Dorms"
+	forced_ambience = list('sound/ambience/generic/generic1.ogg')
 /area/outpost/mining_main/belt_outpost/substation
 	name = "\improper Belt Mining Substation"
+	ambience = list('sound/ambience/engineering/engineering1.ogg')
 /area/outpost/mining_main/belt_outpost/atmos
 	name = "\improper Belt Mining Atmos"
+	ambience = list('sound/ambience/ambiatm1.ogg')
 /area/outpost/mining_main/belt_outpost/solars
 	name = "\improper Belt Mining Solars"
 /area/outpost/mining_main/belt_outpost/tank_storage
