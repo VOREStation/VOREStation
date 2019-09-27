@@ -93,7 +93,6 @@
 #include "aerostat/aerostat.dmm"
 #include "aerostat/surface.dmm"
 #include "space/debrisfield.dmm"
-#include "asteroid_belt/tether_belt_miner.dmm"
 #endif
 
 #include "beach/_beach.dm"
