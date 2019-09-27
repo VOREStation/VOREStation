@@ -171,6 +171,7 @@
 /obj/machinery/power/supermatter/proc/announce_warning()
 	var/integrity = get_integrity()
 	var/alert_msg = " Integrity at [integrity]%"
+	var/message_sound = 'sound/ambience/matteralarm.ogg'
 
 	if(damage > emergency_point)
 		alert_msg = emergency_alert + alert_msg
@@ -191,6 +192,9 @@
 		//Public alerts
 		if((damage > emergency_point) && !public_alert)
 			global_announcer.autosay("WARNING: SUPERMATTER CRYSTAL DELAMINATION IMMINENT!", "Supermatter Monitor")
+			for(var/mob/M in player_list)
+				if(!istype(M,/mob/new_player) && !isdeaf(M))
+					M << message_sound
 			admin_chat_message(message = "SUPERMATTER DELAMINATING!", color = "#FF2222") //VOREStation Add
 			public_alert = 1
 			log_game("SUPERMATTER([x],[y],[z]) Emergency PUBLIC announcement. Power:[power], Oxygen:[oxygen], Damage:[damage], Integrity:[get_integrity()]")
