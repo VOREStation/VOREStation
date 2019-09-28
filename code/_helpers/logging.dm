@@ -61,13 +61,8 @@
 
 /proc/log_access_in(client/new_client)
 	if (config.log_access)
-<<<<<<< HEAD
-		var/message = "[key_name(new_client)] - IP:[new_client.address] - CID:[new_client.computer_id] - BYOND v[new_client.byond_version]"			
-		WRITE_LOG(diary, "ACCESS IN: [message]")
-=======
 		var/message = "[key_name(new_client)] - IP:[new_client.address] - CID:[new_client.computer_id] - BYOND v[new_client.byond_version]"
-		diary << "\[[time_stamp()]]ACCESS IN: [message][log_end]"
->>>>>>> e7ea3a2... Ports World Server Dialogue/Attack Log Viewer (#6460)
+		WRITE_LOG(diary, "ACCESS IN: [message]") //VOREStation Edit
 
 /proc/log_access_out(mob/last_mob)
 	if (config.log_access)
