@@ -439,7 +439,8 @@
 
 	// Actually shove prey into the belly.
 	belly.nom_mob(prey, user)
-	user.update_icons()
+	if(!ishuman(user))
+		user.update_icons()
 
 	// Flavor handling
 	if(belly.can_taste && prey.get_taste_message(FALSE))
