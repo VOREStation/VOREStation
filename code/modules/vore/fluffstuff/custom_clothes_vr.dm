@@ -1900,7 +1900,10 @@ Departamental Swimsuits, for general use
 
 	if(istype(M,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		if(!(H.get_species() == SPECIES_PROMETHEAN))
+		if(!(H.get_species() == SPECIES_PROMETHEAN))	//Only wearable by slimes, since species_restricted actually checks bodytype, not species
 			return 0
 
 	return 1
+
+/obj/item/clothing/under/fluff/slime_skeleton/digest_act(var/atom/movable/item_storage = null)
+	return FALSE	//Indigestible
