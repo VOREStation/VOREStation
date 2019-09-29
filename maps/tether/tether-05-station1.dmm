@@ -1316,10 +1316,6 @@
 	},
 /turf/simulated/floor/water/pool,
 /area/hallway/station/atrium)
-"acD" = (
-/obj/structure/table/woodentable,
-/turf/simulated/floor/wood,
-/area/hallway/station/atrium)
 "acE" = (
 /obj/structure/table/woodentable,
 /obj/machinery/door/blast/shutters{
@@ -1479,12 +1475,9 @@
 /turf/simulated/floor/water/pool,
 /area/hallway/station/atrium)
 "ada" = (
-/obj/structure/table/wooden_reinforced,
-/turf/simulated/floor/grass,
-/area/hallway/station/atrium)
-"adb" = (
-/obj/structure/bed/chair/wood{
-	dir = 1
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
 	},
 /turf/simulated/floor/grass,
 /area/hallway/station/atrium)
@@ -1740,10 +1733,12 @@
 	layer = 3.1;
 	name = "Cafe Shutters"
 	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "ady" = (
-/obj/structure/table/marble,
 /obj/machinery/floor_light/prebuilt{
 	on = 1
 	},
@@ -1752,6 +1747,13 @@
 	id = "cafe2";
 	layer = 3.1;
 	name = "Cafe Shutters"
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
 	},
 /turf/simulated/floor/wood,
 /area/hallway/station/atrium)
@@ -6971,20 +6973,11 @@
 /obj/item/weapon/reagent_containers/food/snacks/donut/jelly,
 /turf/simulated/floor/wood,
 /area/hallway/station/atrium)
-"amz" = (
-/obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/donut/chaos,
-/turf/simulated/floor/wood,
-/area/hallway/station/atrium)
 "amA" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/weapon/reagent_containers/food/snacks/donut/cherryjelly,
-/turf/simulated/floor/grass,
-/area/hallway/station/atrium)
-"amB" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/grass,
 /area/hallway/station/atrium)
 "amC" = (
 /obj/structure/table/woodentable,
@@ -7019,6 +7012,8 @@
 	layer = 3.1;
 	name = "Cafe Shutters"
 	},
+/obj/structure/table/woodentable,
+/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
 /turf/simulated/floor/wood,
 /area/hallway/station/atrium)
 "amG" = (
@@ -22653,6 +22648,16 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/station/dock_one)
+"lUy" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 1;
+	icon_state = "pipe-j2"
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/atrium)
 "mNU" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -22673,6 +22678,13 @@
 /obj/random/tech_supply,
 /turf/simulated/floor,
 /area/engineering/shaft)
+"nyV" = (
+/obj/structure/disposalpipe/junction{
+	dir = 8;
+	icon_state = "pipe-j2"
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/atrium)
 "oEH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -22764,6 +22776,11 @@
 /obj/structure/railing,
 /turf/simulated/floor,
 /area/engineering/shaft)
+"xUV" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/reagent_containers/food/snacks/donut/chaos,
+/turf/simulated/floor/grass,
+/area/hallway/station/atrium)
 
 (1,1,1) = {"
 aaa
@@ -33335,7 +33352,7 @@ acm
 acy
 acy
 amA
-ada
+adl
 acy
 acy
 acm
@@ -33759,13 +33776,13 @@ afW
 agB
 acp
 acF
-acD
 acI
 acI
 acI
 acI
-amz
-acU
+acI
+acI
+acH
 acH
 acG
 acy
@@ -34191,7 +34208,7 @@ ama
 amG
 acH
 amF
-amB
+acU
 acH
 acm
 acm
@@ -34325,15 +34342,15 @@ ags
 aiE
 afa
 afg
-acp
-acm
+nyV
+adH
 ady
 aga
 amy
 adM
 acH
 amF
-amB
+acU
 acH
 acm
 acm
@@ -34621,7 +34638,7 @@ acU
 acH
 acF
 acy
-adl
+xUV
 adl
 acy
 acp
@@ -34753,13 +34770,13 @@ afC
 ajs
 acp
 acF
-acD
 acK
 acK
 acK
 acK
-amz
-acU
+acK
+acK
+acH
 acH
 acG
 acy
@@ -35178,10 +35195,10 @@ ala
 alg
 ald
 acr
-acY
 acy
-ada
-ada
+acy
+xUV
+adl
 acy
 acy
 acm
@@ -35321,7 +35338,7 @@ afC
 aju
 act
 ada
-adb
+acy
 adc
 adc
 acy
@@ -35462,7 +35479,7 @@ akQ
 afC
 aAL
 aCx
-acW
+lUy
 adH
 adH
 adH
