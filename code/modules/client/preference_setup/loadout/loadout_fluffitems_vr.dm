@@ -771,6 +771,12 @@
 	ckeywhitelist = list("vorrarkul")
 	character_name = list("Lucina Dakarim")
 
+/datum/gear/fluff/melanie_skeleton
+	path = /obj/item/clothing/under/fluff/slime_skeleton
+	display_name = "Melanie's Skeleton"
+	ckeywhitelist = list("vorrarkul")
+	character_name = list("Melanie Farmer")
+
 /datum/gear/fluff/nyssa_coat
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/cargo
 	display_name = "Nyssa's Coat"

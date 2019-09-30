@@ -3,6 +3,9 @@
 /turf/unsimulated/wall,
 /area/space)
 "b" = (
+/turf/simulated/wall/r_wall,
+/area/maintenance/tether_midpoint)
+"c" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
@@ -19,8 +22,63 @@
 	dir = 6
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/substation)
-"c" = (
+/area/maintenance/tether_midpoint)
+"d" = (
+/turf/simulated/shuttle/wall/voidcraft/green{
+	hard_corner = 1
+	},
+/area/tether/elevator)
+"e" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/tether_midpoint)
+"f" = (
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/tether/elevator)
+"g" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/door/airlock/maintenance/engi,
+/turf/simulated/floor/plating,
+/area/maintenance/tether_midpoint)
+"h" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/plating,
+/area/maintenance/tether_midpoint)
+"i" = (
 /obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 0
@@ -35,74 +93,32 @@
 /obj/structure/disposalpipe/down,
 /obj/effect/ceiling,
 /turf/simulated/open,
-/area/maintenance/substation)
-"d" = (
-/turf/simulated/shuttle/wall/voidcraft/green{
-	hard_corner = 1
-	},
-/area/tether/elevator)
-"e" = (
-/obj/machinery/atmospherics/pipe/simple/visible,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/ceiling,
-/obj/structure/disposalpipe/junction,
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
-	icon_state = "map-scrubbers";
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/visible/supply{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/substation)
-"f" = (
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/tether/elevator)
-"g" = (
-/obj/machinery/atmospherics/pipe/zpipe/up/supply{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/zpipe/up{
-	dir = 1
-	},
-/obj/structure/disposalpipe/up{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "16-0"
-	},
-/obj/structure/cable,
-/obj/effect/ceiling,
-/turf/simulated/floor/plating,
-/area/maintenance/substation)
-"h" = (
-/obj/effect/ceiling,
-/turf/simulated/floor/plating,
-/area/maintenance/substation)
-"i" = (
-/obj/structure/disposalpipe/up,
-/obj/effect/ceiling,
-/turf/simulated/floor/plating,
-/area/maintenance/substation)
+/area/maintenance/tether_midpoint)
 "j" = (
-/obj/structure/disposalpipe/down{
-	dir = 1
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
-/obj/effect/ceiling,
-/obj/machinery/light/small{
-	dir = 4;
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 5
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
 	pixel_y = 0
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/substation)
+/area/maintenance/tether_midpoint)
 "k" = (
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -169,8 +185,37 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
 "s" = (
-/turf/simulated/wall/r_wall,
-/area/maintenance/substation)
+/obj/machinery/atmospherics/pipe/simple/visible,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/ceiling,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
+	icon_state = "map-scrubbers";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/sortjunction/flipped{
+	dir = 1;
+	name = "Tether Midpoint";
+	sortType = "Tether Midpoint"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/tether_midpoint)
+"t" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/tether_midpoint)
 "u" = (
 /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b,
 /turf/simulated/sky/virgo3b,
@@ -195,72 +240,62 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/midpoint)
+"x" = (
+/obj/machinery/atmospherics/pipe/zpipe/up/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/zpipe/up{
+	dir = 1
+	},
+/obj/structure/disposalpipe/up{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "16-0"
+	},
+/obj/structure/cable,
+/obj/effect/ceiling,
+/turf/simulated/floor/plating,
+/area/maintenance/tether_midpoint)
 "y" = (
 /turf/simulated/wall/r_wall,
 /area/tether/midpoint)
 "z" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/super;
+	dir = 8;
+	name = "west bump";
+	pixel_x = -24
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 5
-	},
+/obj/structure/cable,
 /turf/simulated/floor/plating,
-/area/maintenance/substation)
+/area/maintenance/tether_midpoint)
 "A" = (
-/obj/structure/grille,
+/obj/effect/ceiling,
 /turf/simulated/floor/plating,
-/area/maintenance/substation)
+/area/maintenance/tether_midpoint)
 "B" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /turf/simulated/floor/plating,
-/area/maintenance/substation)
+/area/maintenance/tether_midpoint)
 "C" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/door/airlock/maintenance/engi,
+/obj/structure/disposalpipe/up,
+/obj/effect/ceiling,
 /turf/simulated/floor/plating,
-/area/maintenance/substation)
+/area/maintenance/tether_midpoint)
 "D" = (
-/obj/structure/closet,
-/obj/random/plushie,
+/obj/structure/disposalpipe/down{
+	dir = 1
+	},
+/obj/effect/ceiling,
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
 /turf/simulated/floor/plating,
-/area/maintenance/substation)
+/area/maintenance/tether_midpoint)
 "E" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -273,6 +308,10 @@
 /obj/structure/table/bench/padded,
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
+"G" = (
+/obj/structure/grille,
+/turf/simulated/floor/plating,
+/area/maintenance/tether_midpoint)
 "H" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -283,8 +322,10 @@
 /turf/simulated/floor/plating,
 /area/tether/midpoint)
 "I" = (
+/obj/structure/closet,
+/obj/random/plushie,
 /turf/simulated/floor/plating,
-/area/maintenance/substation)
+/area/maintenance/tether_midpoint)
 "K" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -385,18 +426,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
-"X" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/plating,
-/area/maintenance/substation)
 "Y" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -9011,16 +9040,16 @@ u
 u
 u
 u
-s
-s
-s
-s
-s
-s
-s
-s
-s
-s
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
 u
 u
 u
@@ -9153,16 +9182,16 @@ u
 u
 u
 u
-s
 b
-X
+c
+h
+j
+t
 z
-I
-I
-I
-I
-I
-s
+B
+B
+B
+b
 u
 u
 u
@@ -9295,16 +9324,16 @@ u
 u
 u
 u
-s
-B
-c
+b
 e
-g
-h
 i
-j
-I
 s
+x
+A
+C
+D
+B
+b
 u
 u
 u
@@ -9437,16 +9466,16 @@ u
 u
 u
 u
-s
+b
+e
+d
+d
+d
+d
+d
+d
 B
-d
-d
-d
-d
-d
-d
-I
-s
+b
 u
 u
 u
@@ -9579,16 +9608,16 @@ u
 u
 u
 u
-s
-B
+b
+e
 d
 f
 f
 f
 f
 d
-A
-s
+G
+b
 u
 u
 u
@@ -9721,16 +9750,16 @@ u
 u
 u
 u
-s
+b
+e
+d
+f
+f
+f
+f
+d
 B
-d
-f
-f
-f
-f
-d
-I
-s
+b
 u
 u
 u
@@ -9863,16 +9892,16 @@ u
 u
 u
 u
-s
+b
+e
+d
+f
+f
+f
+f
+d
 B
-d
-f
-f
-f
-f
-d
-I
-s
+b
 u
 u
 u
@@ -10005,16 +10034,16 @@ u
 u
 u
 u
-s
-B
+b
+e
 d
 f
 f
 f
 f
 d
-D
-s
+I
+b
 u
 u
 u
@@ -10147,16 +10176,16 @@ u
 u
 u
 u
-s
-C
+b
+g
 d
 d
 f
 f
 d
 d
-s
-s
+b
+b
 u
 u
 u

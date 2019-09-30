@@ -17,6 +17,7 @@ hollifex - Diona
 inuzari - Diona
 jademanique - Xenochimera
 jemli - Gutter
+killerdragn - Xenomorph Hybrid
 ktccd - Diona
 mewchild - Diona
 mewchild - Vox
@@ -34,8 +35,8 @@ rykkastormheart - Xenochimera
 seiga - Vox
 sepulchre - Vox
 sepulchre - Xenomorph Hybrid
-silverTalismen - Diona
-silverTalismen - Vox
+silvertalismen - Diona
+silvertalismen - Vox
 silvertalismen - Xenochimera
 singo - Gutter
 tastypred - Xenochimera
