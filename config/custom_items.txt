@@ -556,14 +556,14 @@ item_path: /obj/item/weapon/storage/belt/utility/fluff/vulpine
 }
 
 {
-ckey: mr_signmeup
+ckey: mrsignmeup
 character_name: Reshskakskakss Seekiseekis
 item_path: /obj/item/clothing/suit/security/navyhos
 req_access: 58
 }
 
 {
-ckey: mr_signmeup
+ckey: mrsignmeup
 character_name: Daniel Fisher
 item_path: /obj/item/clothing/accessory/medal/conduct
 }
