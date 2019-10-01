@@ -15732,13 +15732,11 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 1
 	},
+/obj/structure/disposalpipe/trunk,
+/obj/machinery/disposal,
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "Ao" = (
@@ -16300,9 +16298,6 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
 "AY" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
 	icon_state = "borderfloor";
@@ -16321,6 +16316,10 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "AZ" = (
@@ -19423,9 +19422,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 6
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j2";
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
@@ -19440,6 +19439,10 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
@@ -20780,32 +20783,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_south_airlock)
 "HH" = (
-/obj/structure/lattice,
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/zpipe/down/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/zpipe/down/supply{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	d1 = 32;
-	icon_state = "32-1"
-	},
-/obj/structure/window/basic/full,
-/obj/structure/grille,
-/obj/structure/window/basic,
-/obj/structure/window/basic{
-	dir = 8
-	},
-/obj/structure/window/basic{
-	dir = 1
-	},
-/obj/structure/window/basic{
-	dir = 4
-	},
-/turf/simulated/open,
-/area/rnd/outpost/xenobiology/outpost_stairs)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
 "HI" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/alarm{
@@ -25074,6 +25055,24 @@
 /turf/simulated/floor/wood,
 /area/rnd/outpost/xenobiology/outpost_office)
 "Qd" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/green{
+	icon_state = "1-4"
+	},
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 1;
+	icon_state = "pipe-j2"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_main)
+"Qe" = (
 /obj/machinery/light_switch{
 	dir = 4;
 	pixel_x = -28
@@ -25081,18 +25080,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_main)
-"Qe" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable/green{
-	icon_state = "1-2"
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_main)
@@ -25143,6 +25133,22 @@
 /turf/simulated/floor/wood,
 /area/rnd/outpost/xenobiology/outpost_office)
 "Qn" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/sortjunction{
+	name = "Xenobiology";
+	sortType = "Xenobiology"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_main)
+"Qo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	icon_state = "intact-scrubbers";
 	dir = 4
@@ -25153,9 +25159,26 @@
 /obj/structure/cable/green{
 	icon_state = "2-4"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/wood,
 /area/rnd/outpost/xenobiology/outpost_office)
-"Qo" = (
+"Qp" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_main)
+"Qq" = (
 /obj/machinery/door/airlock/research{
 	name = "Xenobiology Office";
 	req_access = list();
@@ -25172,39 +25195,11 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/rnd/outpost/xenobiology/outpost_office)
-"Qp" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_main)
-"Qq" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/obj/structure/disposalpipe/junction{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/structure/cable/green{
-	icon_state = "1-8"
-	},
-/obj/structure/cable/green{
-	icon_state = "1-4"
-	},
-/obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_main)
 "Qr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -25307,16 +25302,22 @@
 /turf/simulated/floor/wood,
 /area/rnd/outpost/xenobiology/outpost_office)
 "QA" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /obj/structure/cable/green{
-	icon_state = "1-2"
+	icon_state = "4-8"
 	},
-/obj/machinery/light_switch{
+/obj/structure/disposalpipe/segment{
 	dir = 8;
-	pixel_x = 24
+	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/wood,
-/area/rnd/outpost/xenobiology/outpost_office)
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_main)
 "QB" = (
 /obj/machinery/light{
 	dir = 8;
@@ -25414,15 +25415,15 @@
 /turf/simulated/floor/wood,
 /area/rnd/outpost/xenobiology/outpost_office)
 "QL" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
+/obj/machinery/vending/coffee,
+/obj/structure/cable/green{
+	icon_state = "1-2"
 	},
-/obj/machinery/light{
-	dir = 4
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 24
 	},
-/obj/structure/cable/green,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/wood,
 /area/rnd/outpost/xenobiology/outpost_office)
 "QM" = (
@@ -25567,7 +25568,6 @@
 "Rc" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/obj/structure/disposalpipe/junction,
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
@@ -25578,6 +25578,9 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/hologram/holopad,
+/obj/structure/disposalpipe/junction{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_main)
 "Rd" = (
@@ -25661,22 +25664,24 @@
 /turf/simulated/wall,
 /area/rnd/outpost/xenobiology/outpost_decon)
 "Ro" = (
-/obj/structure/table/standard,
-/obj/item/toy/plushie/purple_fox,
-/obj/machinery/firealarm{
-	dir = 4;
-	layer = 3.3;
-	pixel_x = 26
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/structure/cable/green{
+	icon_state = "1-2"
 	},
-/obj/machinery/recharger/wallcharger{
-	pixel_x = 4;
-	pixel_y = 28
+/obj/structure/cable/green{
+	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
+/obj/structure/cable/green{
+	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled/techmaint,
-/area/rnd/outpost/xenobiology/outpost_storage)
+/obj/machinery/hologram/holopad,
+/obj/structure/disposalpipe/junction{
+	dir = 1;
+	icon_state = "pipe-j2"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_main)
 "Rp" = (
 /obj/structure/closet/l3closet/scientist,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -25755,6 +25760,7 @@
 /obj/item/weapon/extinguisher,
 /obj/item/clothing/shoes/galoshes,
 /obj/item/clothing/shoes/galoshes,
+/obj/item/weapon/extinguisher,
 /turf/simulated/floor/tiled/techmaint,
 /area/rnd/outpost/xenobiology/outpost_storage)
 "Rx" = (
@@ -26276,23 +26282,35 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "Sr" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/lattice,
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/zpipe/down/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/zpipe/down/supply{
+	dir = 1
 	},
 /obj/structure/cable/green{
-	icon_state = "1-2"
+	d1 = 32;
+	icon_state = "32-1"
 	},
-/obj/structure/cable/green{
-	icon_state = "1-4"
+/obj/structure/window/basic/full,
+/obj/structure/grille,
+/obj/structure/window/basic,
+/obj/structure/window/basic{
+	dir = 8
 	},
-/obj/structure/cable/green{
-	icon_state = "1-8"
+/obj/structure/window/basic{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_main)
+/obj/structure/window/basic{
+	dir = 4
+	},
+/obj/structure/disposalpipe/down{
+	dir = 1
+	},
+/turf/simulated/open,
+/area/rnd/outpost/xenobiology/outpost_stairs)
 "Ss" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -26969,8 +26987,21 @@
 /area/maintenance/lower/mining)
 "Tt" = (
 /obj/structure/table/standard,
-/obj/item/weapon/gun/energy/taser/xeno,
-/obj/item/weapon/melee/baton/slime,
+/obj/item/toy/plushie/purple_fox,
+/obj/machinery/firealarm{
+	dir = 4;
+	layer = 3.3;
+	pixel_x = 26
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 28
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/item/weapon/reagent_containers/spray,
+/obj/item/weapon/reagent_containers/spray,
 /turf/simulated/floor/tiled/techmaint,
 /area/rnd/outpost/xenobiology/outpost_storage)
 "Tu" = (
@@ -29542,11 +29573,6 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/upperhall)
 "WQ" = (
-/obj/machinery/light_switch{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -28
-	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
@@ -29555,14 +29581,10 @@
 "WR" = (
 /obj/structure/table/standard,
 /obj/item/weapon/gun/energy/taser/xeno,
-/obj/item/weapon/melee/baton/slime,
+/obj/item/weapon/melee/baton/slime/loaded,
 /obj/machinery/light_switch{
 	dir = 1;
 	pixel_x = 0;
-	pixel_y = -28
-	},
-/obj/machinery/recharger/wallcharger{
-	pixel_x = 4;
 	pixel_y = -28
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -29985,10 +30007,43 @@
 /turf/simulated/floor/wood,
 /area/library)
 "Xy" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
+/obj/structure/table/standard,
+/obj/item/weapon/gun/energy/taser/xeno,
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = -28
+	},
+/obj/item/weapon/melee/baton/slime/loaded,
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/outpost/xenobiology/outpost_storage)
+"Xz" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/cable/green,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal,
+/turf/simulated/floor/wood,
+/area/rnd/outpost/xenobiology/outpost_office)
+"XA" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -28
+	},
+/turf/simulated/floor/tiled/white,
+/area/rnd/outpost/xenobiology/outpost_first_aid)
 "XF" = (
 /obj/machinery/power/apc{
 	dir = 2;
@@ -35228,9 +35283,9 @@ Of
 Mm
 PO
 Qc
-Qn
-QA
+Qo
 QL
+Xz
 QU
 Ra
 MM
@@ -35242,7 +35297,7 @@ Mq
 SB
 PV
 Te
-PV
+XA
 SA
 CO
 dG
@@ -35370,7 +35425,7 @@ Of
 OR
 PP
 OR
-Qo
+Qq
 OR
 OR
 OR
@@ -35511,8 +35566,8 @@ Op
 Ir
 IX
 QM
-Qd
-Qp
+Qe
+QA
 QB
 QM
 QM
@@ -35653,19 +35708,19 @@ Lj
 Pj
 IZ
 PR
-Qe
-Qq
+Qn
+Rc
 QC
 QC
 QC
 QC
 PR
-Rc
+Ro
 QC
 RS
 Se
+Qd
 Sr
-HH
 LP
 Ml
 Ml
@@ -36236,7 +36291,7 @@ Sv
 SJ
 SW
 Ti
-Tt
+WR
 SI
 dG
 dG
@@ -36378,7 +36433,7 @@ Sw
 LO
 SX
 Rd
-WR
+Xy
 SI
 dG
 OF
@@ -36660,7 +36715,7 @@ RV
 Sh
 Sy
 SI
-Ro
+Tt
 Rt
 RA
 SI
@@ -43879,7 +43934,7 @@ Nk
 Nl
 NJ
 NP
-Xy
+HH
 KU
 bg
 Ok
@@ -44021,7 +44076,7 @@ Nl
 Nl
 NK
 NP
-Xy
+HH
 KU
 bg
 Ok
@@ -44163,7 +44218,7 @@ Nm
 Nl
 NK
 NP
-Xy
+HH
 KU
 bg
 Ok
