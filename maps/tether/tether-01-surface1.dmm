@@ -6870,6 +6870,7 @@
 	icon_state = "0-2"
 	},
 /obj/effect/floor_decal/industrial/warning,
+/obj/random/drinkbottle,
 /turf/simulated/floor,
 /area/maintenance/substation/mining)
 "alT" = (
@@ -6897,9 +6898,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/obj/machinery/alarm{
-	pixel_y = 22
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor,
@@ -23106,6 +23104,7 @@
 	pixel_x = 0;
 	pixel_y = 26
 	},
+/obj/random/drinkbottle,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_8)
 "aLT" = (
@@ -23944,8 +23943,8 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_8)
 "aNr" = (
-/obj/item/weapon/bedsheet/double,
 /obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/bluedouble,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_8)
 "aNs" = (
@@ -24443,6 +24442,7 @@
 	pixel_x = 0;
 	pixel_y = 26
 	},
+/obj/random/carp_plushie,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_6)
 "aOr" = (
@@ -24985,8 +24985,8 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_6)
 "aPh" = (
-/obj/item/weapon/bedsheet/double,
 /obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/reddouble,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_6)
 "aPi" = (
@@ -25748,9 +25748,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
-"aQE" = (
-/turf/simulated/wall/r_wall,
-/area/crew_quarters/sleep/Dorm_3)
 "aQF" = (
 /obj/machinery/light{
 	dir = 8
@@ -26194,8 +26191,8 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_4)
 "aRq" = (
-/obj/item/weapon/bedsheet/double,
 /obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/yellowdouble,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_4)
 "aRr" = (
@@ -26701,6 +26698,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/random/action_figure,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_2)
 "aSr" = (
@@ -27328,8 +27326,8 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_2)
 "aTF" = (
-/obj/item/weapon/bedsheet/double,
 /obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/orangedouble,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_2)
 "aTG" = (
@@ -30873,6 +30871,29 @@
 /obj/effect/step_trigger/teleporter/to_plains,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/surfacebase/outside/outside1)
+"cGJ" = (
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining_eva)
+"guV" = (
+/obj/structure/closet,
+/obj/random/drinkbottle,
+/obj/random/maintenance/cargo,
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/vacant_site)
+"obY" = (
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/mining)
+"vNx" = (
+/turf/simulated/floor/plating,
+/area/maintenance/substation/mining)
+"yiv" = (
+/obj/structure/closet/crate,
+/obj/random/maintenance/cargo,
+/turf/simulated/floor/plating,
+/area/maintenance/substation/mining)
 
 (1,1,1) = {"
 aaa
@@ -33923,7 +33944,7 @@ aah
 aah
 aah
 aah
-azs
+auK
 auK
 auK
 auK
@@ -34065,7 +34086,7 @@ aah
 aah
 aah
 aah
-azs
+auK
 aAs
 aBu
 aCc
@@ -34207,7 +34228,7 @@ aah
 aah
 aah
 aah
-azs
+auK
 aAt
 aBv
 aBv
@@ -34349,7 +34370,7 @@ aah
 aah
 aah
 aah
-azs
+auK
 aAu
 aBv
 aah
@@ -34491,7 +34512,7 @@ aah
 aah
 aah
 aah
-azs
+auK
 aAu
 aBv
 aah
@@ -34633,7 +34654,7 @@ aah
 aah
 aah
 aah
-azs
+auK
 abB
 aBv
 aah
@@ -34775,7 +34796,7 @@ aah
 aah
 aah
 aah
-azs
+auK
 aAu
 aBv
 aah
@@ -34917,7 +34938,7 @@ aah
 aah
 aah
 aah
-azs
+auK
 aAv
 aBv
 aah
@@ -40990,7 +41011,7 @@ abT
 abT
 abT
 abT
-abT
+aex
 aex
 aex
 aex
@@ -41128,12 +41149,12 @@ aah
 aah
 aah
 abT
-abT
+cGJ
 acS
 acS
 adp
-abT
 aex
+yiv
 alS
 amn
 afX
@@ -41274,8 +41295,8 @@ acj
 acX
 acX
 adL
-abT
 aex
+vNx
 alT
 amo
 amI
@@ -41416,8 +41437,8 @@ acQ
 adl
 ado
 adM
-abT
 aex
+obY
 alU
 amp
 amJ
@@ -41558,7 +41579,7 @@ abn
 abn
 abT
 adN
-abT
+aex
 alC
 alV
 aex
@@ -43889,7 +43910,7 @@ aOj
 aOj
 aOj
 aQb
-aQE
+aQb
 aQb
 aQb
 aSi
@@ -44838,7 +44859,7 @@ anI
 aob
 aom
 ahx
-apF
+guV
 apF
 ahc
 apF
