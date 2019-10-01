@@ -892,6 +892,11 @@
 /obj/item/weapon/rig/ert/assetprotection,
 /obj/item/weapon/rig/ert/assetprotection,
 /obj/item/weapon/rig/ert/assetprotection,
+/obj/item/clothing/glasses/thermal,
+/obj/item/clothing/glasses/thermal,
+/obj/item/clothing/glasses/thermal,
+/obj/item/clothing/glasses/thermal,
+/obj/item/clothing/glasses/thermal,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -1365,6 +1370,10 @@
 	pixel_x = 1;
 	pixel_y = 9
 	},
+/obj/item/clothing/glasses/graviton,
+/obj/item/clothing/glasses/graviton,
+/obj/item/clothing/glasses/graviton,
+/obj/item/clothing/glasses/graviton,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -1525,6 +1534,7 @@
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/mask/gas,
 /obj/effect/floor_decal/industrial/outline/blue,
+/obj/item/weapon/storage/box/traumainjectors,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -16598,12 +16608,24 @@
 /area/centcom/control)
 "Fo" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/box/survival/comp,
-/obj/item/weapon/storage/box/survival/comp,
-/obj/item/weapon/storage/box/survival/comp,
-/obj/item/weapon/storage/box/survival/comp,
-/obj/item/weapon/storage/box/survival/comp,
-/obj/item/weapon/storage/box/survival/comp,
+/obj/item/weapon/storage/box/survival/comp{
+	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+	},
+/obj/item/weapon/storage/box/survival/comp{
+	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+	},
+/obj/item/weapon/storage/box/survival/comp{
+	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+	},
+/obj/item/weapon/storage/box/survival/comp{
+	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+	},
+/obj/item/weapon/storage/box/survival/comp{
+	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+	},
+/obj/item/weapon/storage/box/survival/comp{
+	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+	},
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
