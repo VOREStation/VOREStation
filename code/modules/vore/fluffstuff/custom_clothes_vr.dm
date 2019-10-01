@@ -1520,6 +1520,14 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "gnshorts"
 
+/obj/item/clothing/under/fluff/v_nanovest
+	name = "Varmacorp nanovest"
+	desc = "A nifty little vest optimized for nanite contact."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "nanovest"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "nanovest"
+
 //General use
 /obj/item/clothing/suit/storage/fluff/loincloth
 	name = "Loincloth"
@@ -1878,3 +1886,32 @@ Departamental Swimsuits, for general use
 	rolled_sleeves = 0
 	starting_accessories = null
 	item_icons = list()
+
+//Vorrarkul: Melanie Farmer
+/obj/item/clothing/under/fluff/slime_skeleton
+	name = "Melanie's Skeleton"
+	desc = "The skeleton of a promethean, still covered in residual slime. Upon closer inspection, they're not even real bones!"
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+
+	icon_state = "melanie_skeleton"
+	item_state = "melanie_skeleton_mob"
+
+	body_parts_covered = 0
+
+	species_restricted = list("exclude", SPECIES_TESHARI)
+
+/obj/item/clothing/under/fluff/slime_skeleton/mob_can_equip(M as mob, slot)
+	if(!..())
+		return 0
+
+	if(istype(M,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = M
+		if(!(H.get_species() == SPECIES_PROMETHEAN))	//Only wearable by slimes, since species_restricted actually checks bodytype, not species
+			return 0
+
+	return 1
+
+/obj/item/clothing/under/fluff/slime_skeleton/digest_act(var/atom/movable/item_storage = null)
+	return FALSE	//Indigestible

@@ -10,6 +10,8 @@ var/list/shell_module_types = list(
 	"Standard", "Service", "Clerical"
 )
 
+var/list/eventdestinations = list() // List of scatter landmarks for VOREStation event portals
+
 var/global/list/acceptable_fruit_types= list(
 											"ambrosia",
 											"apple",

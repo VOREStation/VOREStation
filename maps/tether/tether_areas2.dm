@@ -219,17 +219,53 @@
 	icon_state = "security"
 /area/tether/surfacebase/security/breakroom
 	name = "\improper Surface Security Break Room"
+	lightswitch = 0
+	sound_env = MEDIUM_SOFTFLOOR
 /area/tether/surfacebase/security/lobby
 	name = "\improper Surface Security Lobby"
 /area/tether/surfacebase/security/common
 	name = "\improper Surface Security Room"
 /area/tether/surfacebase/security/armory
-	name = "\improper Surface Armory"
+	name = "\improper Surface Equipment Storage"
+	lightswitch = 0
 /area/tether/surfacebase/security/checkpoint
 	name = "\improper Surface Checkpoint Office"
 /area/tether/surfacebase/security/hallway
 	name = "\improper Surface Checkpoint Hallway"
-
+/area/tether/surfacebase/security/warden
+	name = "\improper Surface Security Warden's Office"
+	lightswitch = 0
+/area/tether/surfacebase/security/lowerhallway
+	name = "\improper Surface Security Lower Hallway"
+/area/tether/surfacebase/security/evidence
+	name = "\improper Surface Security Evidence Storage"
+	lightswitch = 0
+/area/tether/surfacebase/security/brig
+	name = "\improper Surface Security Brig"
+	lightswitch = 0
+/area/tether/surfacebase/security/solitary
+	name = "\improper Surface Security Solitary Confinement"
+	lightswitch = 0
+	sound_env =PADDED_CELL
+/area/tether/surfacebase/security/gasstorage
+	name = "\improper Surface Security Gas Storage"
+	lightswitch = 0
+/area/tether/surfacebase/security/interrogation
+	name = "\improper Surface Security Interrogation"
+	lightswitch = 0
+	sound_env = SMALL_ENCLOSED
+/area/tether/surfacebase/security/processing
+	name = "\improper Surface Security Processing"
+	lightswitch = 0
+/area/tether/surfacebase/security/lobby
+	name = "\improper Surface Security Lobby"
+/area/tether/surfacebase/security/frontdesk
+	name = "\improper Surface Security Front Desk"
+	lightswitch = 0
+/area/tether/surfacebase/security/upperhall
+	name = "\improper Surface Security Upper Hallway"
+/area/maintenance/lower/security
+	name = "\improper Surface Security Maintenance"
 
 /area/engineering/atmos/processing
 	name = "Atmospherics Processing"
@@ -745,6 +781,12 @@
 	sound_env = SEWER_PIPE
 /area/maintenance/station/exploration
 	name = "\improper Exploration Maintenance"
+/area/maintenance/abandonedlibrary
+	name = "\improper Abandoned Library"
+	icon_state = "library"
+/area/maintenance/abandonedlibraryconference
+	name = "\improper Abandoned Library Conference"
+	icon_state = "library"
 
 /area/shuttle/tether/crash1
 	name = "\improper Crash Site 1"
