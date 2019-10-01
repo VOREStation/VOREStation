@@ -23233,6 +23233,11 @@
 	dir = 9
 	},
 /obj/machinery/light/small,
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = 25;
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/resleeving)
 "Rh" = (
@@ -27401,6 +27406,23 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lowerhallway)
+"XK" = (
+/turf/simulated/wall{
+	can_open = 1
+	},
+/area/maintenance/lower/bar)
+"Za" = (
+/turf/simulated/wall{
+	can_open = 0
+	},
+/area/maintenance/lower/bar)
+"Zt" = (
+/obj/structure/closet/crate,
+/obj/random/cash,
+/obj/random/contraband,
+/obj/random/drinkbottle,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining)
 
 (1,1,1) = {"
 aa
@@ -41927,7 +41949,7 @@ dJ
 df
 ad
 Th
-Th
+Zt
 ny
 ny
 dY
@@ -42212,8 +42234,8 @@ ec
 du
 du
 du
-du
-du
+Za
+XK
 du
 du
 du

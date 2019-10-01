@@ -15240,11 +15240,11 @@
 /turf/simulated/floor/wood,
 /area/bridge/meeting_room)
 "wT" = (
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk,
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/wood,
 /area/bridge/meeting_room)
 "wU" = (
@@ -19212,7 +19212,7 @@
 	},
 /obj/structure/mirror{
 	dir = 4;
-	pixel_x = 32;
+	pixel_x = 28;
 	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/white,
@@ -20200,7 +20200,7 @@
 	},
 /obj/structure/mirror{
 	dir = 4;
-	pixel_x = 32;
+	pixel_x = 28;
 	pixel_y = 0
 	},
 /obj/machinery/power/apc{
@@ -22454,6 +22454,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/maintenance/station/sec_lower)
+"Xd" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "Xk" = (
 /obj/structure/table/steel,
 /obj/item/device/flashlight/lamp{
@@ -36018,7 +36024,7 @@ yP
 xN
 yU
 wo
-ac
+wo
 ac
 ac
 ac
@@ -36578,14 +36584,14 @@ pB
 qg
 vK
 wo
+Xd
 wV
 wV
 wV
 wV
 wV
 wV
-wV
-wV
+yU
 wo
 aP
 aP
@@ -37001,8 +37007,8 @@ qc
 qc
 uj
 uJ
+qc
 vl
-oY
 oY
 aP
 aP
@@ -37143,8 +37149,8 @@ sU
 tE
 uk
 uK
+qc
 vl
-oY
 oY
 aa
 aa
@@ -37287,7 +37293,7 @@ oY
 uL
 oY
 oY
-aa
+oY
 aa
 aa
 aa
