@@ -2,7 +2,7 @@ some~user - Species
 
 911earlyarther - Xenomorph Hybrid
 admiraldragon - Vox
-aether_elemental - Daemon
+aetherelemental - Daemon
 arandomalien - Xenochimera
 arokha - Protean
 aruis - Diona
@@ -11,6 +11,7 @@ azmodan412 - Xenochimera
 azmodan412 - Xenomorph Hybrid
 bothnevarbackwards - Diona
 cameron653 - Xenomorph Hybrid
+crossexonar - Protean
 funnyman2003 - Xenochimera
 hawkerthegreat - Vox
 hollifex - Diona
