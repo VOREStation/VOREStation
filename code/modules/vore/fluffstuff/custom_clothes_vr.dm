@@ -1520,6 +1520,14 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "gnshorts"
 
+/obj/item/clothing/under/fluff/v_nanovest
+	name = "Varmacorp nanovest"
+	desc = "A nifty little vest optimized for nanite contact."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "nanovest"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "nanovest"
+
 //General use
 /obj/item/clothing/suit/storage/fluff/loincloth
 	name = "Loincloth"

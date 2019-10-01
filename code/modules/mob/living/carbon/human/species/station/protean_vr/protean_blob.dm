@@ -36,6 +36,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 	maxbodytemp = 900
+	movement_cooldown = 0
 
 	var/mob/living/carbon/human/humanform
 	var/obj/item/organ/internal/nano/refactory/refactory
@@ -200,7 +201,7 @@
 					target.forceMove(vore_selected)
 					to_chat(target,"<span class='warning'>\The [src] quickly engulfs you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
 
-/mob/living/simple_mob/protean_blob/attack_hand(var/atom/A) //VORESTATION AI TEMPORARY REMOVAL (Marking this as such even though it was an edit.)
+/mob/living/simple_mob/protean_blob/attack_target(var/atom/A)
 	if(refactory && istype(A,/obj/item/stack/material))
 		var/obj/item/stack/material/S = A
 		var/substance = S.material.name
@@ -346,8 +347,7 @@
 	var/atom/reform_spot = blob.drop_location()
 
 	//Size update
-	transform = matrix()*blob.size_multiplier
-	size_multiplier = blob.size_multiplier
+	resize(blob.size_multiplier, FALSE)
 
 	//Move them back where the blob was
 	forceMove(reform_spot)
