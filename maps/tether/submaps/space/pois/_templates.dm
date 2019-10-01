@@ -103,3 +103,4 @@
 	mappath = 'derelict.dmm'
 	cost = 35
 	allow_duplicates = FALSE
+	discard_prob = 50
