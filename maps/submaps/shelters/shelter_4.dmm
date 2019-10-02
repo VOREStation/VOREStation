@@ -91,6 +91,10 @@
 /obj/item/weapon/towel/random,
 /obj/item/weapon/towel/random,
 /obj/item/weapon/extinguisher/mini,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/survivalpod)
 "i" = (
@@ -237,7 +241,9 @@
 /obj/item/weapon/gun/projectile/pistol,
 /obj/item/clothing/accessory/storage/black_vest,
 /obj/item/weapon/material/knife/tacknife/survival,
-/obj/item/weapon/storage/box/survival/comp,
+/obj/item/weapon/storage/box/survival/comp{
+	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod)
 "C" = (
@@ -403,16 +409,17 @@
 /area/survivalpod)
 "R" = (
 /obj/machinery/iv_drip,
-/turf/simulated/shuttle/floor/voidcraft/light,
-/area/survivalpod)
-"S" = (
 /obj/effect/floor_decal/industrial/loading{
 	dir = 1
 	},
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/survivalpod)
+"S" = (
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 4
 	},
+/obj/machinery/chemical_dispenser/ert,
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/survivalpod)
 "T" = (

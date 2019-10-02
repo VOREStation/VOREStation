@@ -169,3 +169,7 @@ Swimsuits
 /datum/gear/uniform/siren
 	display_name = "jumpsuit, Siren"
 	path = /obj/item/clothing/under/fluff/siren
+
+/datum/gear/uniform/suit/v_nanovest
+	display_name = "Varmacorp nanovest"
+	path = /obj/item/clothing/under/fluff/v_nanovest

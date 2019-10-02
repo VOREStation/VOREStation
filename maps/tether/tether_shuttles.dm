@@ -281,3 +281,55 @@
 	name = "Bluespace Jump"
 	my_area = /area/shuttle/excursion/bluespace
 	preferred_interim_area = /area/shuttle/excursion/space_moving
+
+
+////////////////////////////////////
+//////// Specops Shuttle ///////////
+////////////////////////////////////
+
+/obj/machinery/computer/shuttle_control/web/specialops
+	name = "shuttle control console"
+	shuttle_tag = "Special Operations Shuttle"
+	req_access = list()
+	req_one_access = list(access_cent_specops)
+
+/datum/shuttle/web_shuttle/specialops
+	name = "Special Operations Shuttle"
+	visible_name = "Special Operations Shuttle"
+	current_area = /area/shuttle/specialops/centcom
+	docking_controller_tag = "specops_shuttle_hatch"
+	web_master_type = /datum/shuttle_web_master/specialops
+	can_rename = FALSE
+	can_cloak = TRUE
+	cloaked = FALSE
+
+/datum/shuttle_web_master/specialops
+	destination_class = /datum/shuttle_destination/specialops
+	starting_destination = /datum/shuttle_destination/specialops/centcom
+
+/datum/shuttle_destination/specialops/tether
+	name = "NSB Adephagia Docking Arm 2"
+	my_area = /area/shuttle/specialops/tether
+
+	dock_target = "specops_dock"
+	radio_announce = 1
+	announcer = "A.L.I.C.E."
+
+	routes_to_make = list(
+		/datum/shuttle_destination/specialops/centcom = 0,
+	)
+
+/datum/shuttle_destination/specialops/tether/get_arrival_message()
+	return "Attention, [master.my_shuttle.visible_name] has arrived at the Docking Arm 2."
+
+/datum/shuttle_destination/specialops/tether/get_departure_message()
+	return "Attention, [master.my_shuttle.visible_name] has departed from the Docking Arm 2."
+
+
+/datum/shuttle_destination/specialops/centcom
+	name = "Central Command"
+	my_area = /area/shuttle/specialops/centcom
+
+	routes_to_make = list(
+		/datum/shuttle_destination/specialops/tether = 0
+	)
