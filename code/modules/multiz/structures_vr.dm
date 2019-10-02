@@ -59,8 +59,8 @@
 /obj/structure/portal_gateway
 	name = "portal"
 	desc = "Looks unstable. Best to test it with the clown."
-	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "portal"
+	icon = 'icons/obj/stationobjs_vr.dmi'
+	icon_state = "portalgateway"
 	density = 1
 	unacidable = 1//Can't destroy energy portals.
 	anchored = 1
