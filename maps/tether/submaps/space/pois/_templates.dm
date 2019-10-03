@@ -97,3 +97,10 @@
 	mappath = 'oldshuttle.dmm'
 	cost = 30
 	allow_duplicates = FALSE
+
+/datum/map_template/debrisfield/alien_massive_derelict
+	name = "Alien Derelict"
+	mappath = 'derelict.dmm'
+	cost = 35
+	allow_duplicates = FALSE
+	discard_prob = 50

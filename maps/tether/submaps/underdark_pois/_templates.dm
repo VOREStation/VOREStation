@@ -85,7 +85,72 @@
 	cost = 5
 	allow_duplicates = FALSE
 
+/datum/map_template/underdark/old_drone_hive
+	name = "Underdark Old Drone Hive"
+	mappath = 'old_drone_hive.dmm'
+	cost = 25
+
+/datum/map_template/underdark/phoron_rat_den
+	name = "Underdark Phoron Rat Den"
+	mappath = 'phoron_rat_den.dmm'
+	cost = 35
+	allow_duplicates = FALSE
+
+/datum/map_template/underdark/subterranean_lake
+	name = "Underdark Underground Lake"
+	mappath = 'subterranean_lake.dmm'
+	cost = 5
+
+/datum/map_template/underdark/spider_nest
+	name = "Underdark Spider Nest"
+	mappath = 'spider_nest.dmm'
+	cost = 15
+
+/datum/map_template/underdark/rykka_easter_egg // bark bark Rykka was here. <3
+	name = "Underdark GSD"
+	mappath = 'rykka_easter_egg.dmm'
+	cost = 5
+	allow_duplicates = FALSE
+
+/datum/map_template/underdark/tree_shrine
+	name = "Underdark Tree"
+	mappath = 'tree_shrine.dmm'
+	cost = 10
+	allow_duplicates = FALSE
+
+/datum/map_template/underdark/abandoned_outpost
+	name = "Underdark Abandonded Outpost"
+	mappath = 'abandonded_outpost.dmm'
+	cost = 45
+	allow_duplicates = FALSE
+
+/datum/map_template/underdark/mimicry
+	name = "Underdark Mimic Death"
+	mappath = 'mimicry.dmm'
+	cost = 15
+
+/datum/map_template/underdark/wolf_den
+	name = "Underdark Wolf Den"
+	mappath = 'wolf_den.dmm'
+	cost = 15
+
+/datum/map_template/underdark/puzzle_corridor
+	name = "Underdark Puzzle Corridor"
+	mappath = 'puzzle_corridor.dmm'
+	cost = 10
+
 /*
+// Comment out unfinished/unbalanced POI's here
+/datum/map_template/underdark/rad_threat
+	name = "Underdark Rad Threat"
+	mappath = 'rad_threat.dmm'
+	cost = 10
+
+/datum/map_template/underdark/broken_engine
+	name = "Underdark Broken Twin Engine"
+	mappath = 'broken_engine.dmm'
+	cost = 10
+
 /datum/map_template/underdark/boss_mob
 	name = "Underdark Boss Mob Spawn"
 	mappath = 'boss_mob.dmm'
