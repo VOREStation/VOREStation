@@ -12908,6 +12908,13 @@
 /obj/structure/closet/secure_closet/detective,
 /obj/item/weapon/reagent_containers/spray/pepper,
 /obj/item/weapon/gun/energy/taser,
+/obj/item/device/camera{
+	desc = "A one use - polaroid camera. 30 photos left.";
+	name = "detectives camera";
+	pictures_left = 30;
+	pixel_x = 2;
+	pixel_y = 3
+	},
 /turf/simulated/floor/carpet,
 /area/security/detectives_office)
 "tO" = (
@@ -23873,6 +23880,29 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/station/cargo)
+"KS" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
+"KT" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
+"KU" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
 "KV" = (
 /obj/structure/undies_wardrobe,
 /turf/simulated/floor/tiled/white,
@@ -24485,14 +24515,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/medical_restroom)
-"Mg" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
 "Mh" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -25454,13 +25476,6 @@
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
-"NI" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
 "NJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/universal{
 	dir = 4
@@ -25598,14 +25613,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
 /turf/simulated/floor/tiled/white,
 /area/medical/virologyaccess)
-"NY" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
 "NZ" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 8
@@ -39019,11 +39026,11 @@ MK
 Iy
 ab
 NL
-Mg
-NI
-NI
-NI
-NY
+KS
+KT
+KT
+KT
+KU
 NL
 vt
 vt
