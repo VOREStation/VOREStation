@@ -16,6 +16,28 @@
 		/mob/living/simple_mob/animal/space/carp/large/huge = 1
 	)
 
+/obj/tether_away_spawner/debrisfield/derelict
+	name = "debris field derelict random mob spawner"
+	faction = "derelict"
+	mobs_to_pick_from = list(
+		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 2,
+		/mob/living/simple_mob/mechanical/infectionbot = 3,
+		/mob/living/simple_mob/mechanical/combat_drone = 1
+	)
+
+/obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm
+	name = "debris field derelict maint swarm"
+	faction = "derelict"
+	mobs_to_pick_from = list(
+		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 4
+	)
+
+/obj/tether_away_spawner/debrisfield/derelict/mech_wizard
+	name = "debris field derelict wizard lol"
+	faction = "derelict"
+	mobs_to_pick_from = list(
+		/mob/living/simple_mob/mechanical/technomancer_golem = 2
+	)
 
 //Sciship
 /mob/living/simple_mob/tomato/space
