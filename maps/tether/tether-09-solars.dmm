@@ -2132,16 +2132,17 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
 "eA" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 1
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
 	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost)
+/area/rnd/outpost/xenoarch_storage)
 "eB" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
@@ -2552,20 +2553,10 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "fc" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 9
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
 "fd" = (
@@ -5248,15 +5239,13 @@
 /turf/simulated/floor,
 /area/rnd/outpost/storage)
 "jM" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
 "jN" = (
@@ -5826,13 +5815,17 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "kP" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
 "kQ" = (
@@ -6113,19 +6106,29 @@
 /area/rnd/outpost/xenoarch_storage)
 "ll" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
 "lm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+	dir = 9
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
@@ -6140,14 +6143,21 @@
 /turf/simulated/floor,
 /area/maintenance/substation/outpost)
 "lo" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 1
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/xenoarch_storage)
+/area/rnd/outpost)
 "lp" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /turf/simulated/floor/tiled/dark,
@@ -6527,19 +6537,6 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
 "lR" = (
-/obj/machinery/door/airlock/glass_science{
-	name = "Xenoarch Storage"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/xenoarch_storage)
-"lS" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 4
 	},
@@ -6549,6 +6546,37 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost)
+"lS" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 5
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/purple/bordercorner2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
@@ -7696,26 +7724,23 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "oe" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 5
+/obj/machinery/door/airlock/glass_science{
+	name = "Xenoarch Storage"
 	},
-/obj/effect/floor_decal/corner/purple/border{
-	dir = 5
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/purple/bordercorner2{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost)
+/area/rnd/outpost/xenoarch_storage)
 "of" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -24272,7 +24297,7 @@ cE
 db
 dC
 eb
-eA
+lo
 fv
 fv
 eY
@@ -24414,7 +24439,7 @@ cD
 da
 dB
 ea
-lS
+lR
 oi
 oi
 oj
@@ -24556,7 +24581,7 @@ cF
 dc
 dD
 ch
-oe
+lS
 oc
 of
 fd
@@ -24698,7 +24723,7 @@ ch
 ch
 ch
 ch
-lR
+oe
 eu
 dE
 dE
@@ -24839,8 +24864,8 @@ kr
 ez
 jt
 kK
-ll
-lo
+kP
+lm
 kr
 eD
 ff
@@ -24981,7 +25006,7 @@ kr
 eC
 mw
 mw
-lm
+ll
 me
 kr
 fe
@@ -25120,10 +25145,10 @@ ad
 ab
 ef
 kr
+eA
 fc
 jM
-kP
-lo
+lm
 mf
 kr
 fg
