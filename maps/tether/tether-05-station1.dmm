@@ -1316,6 +1316,11 @@
 	},
 /turf/simulated/floor/water/pool,
 /area/hallway/station/atrium)
+"acD" = (
+/obj/item/weapon/reagent_containers/food/snacks/donut/cherryjelly,
+/obj/structure/table/woodentable,
+/turf/simulated/floor/grass,
+/area/hallway/station/atrium)
 "acE" = (
 /obj/structure/table/woodentable,
 /obj/machinery/door/blast/shutters{
@@ -6989,12 +6994,6 @@
 /obj/item/device/flashlight/lamp/green,
 /obj/item/weapon/reagent_containers/food/snacks/donut/jelly,
 /turf/simulated/floor/wood,
-/area/hallway/station/atrium)
-"amA" = (
-/obj/structure/table/wooden_reinforced,
-/obj/item/weapon/reagent_containers/food/snacks/donut/cherryjelly,
-/obj/structure/table/woodentable,
-/turf/simulated/floor/grass,
 /area/hallway/station/atrium)
 "amC" = (
 /obj/structure/table/woodentable,
@@ -33281,7 +33280,7 @@ agd
 acm
 acy
 acy
-amA
+acD
 adl
 acy
 acy
