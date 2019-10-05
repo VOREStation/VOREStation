@@ -1605,6 +1605,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
+/obj/item/device/retail_scanner/security,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/armory)
 "dg" = (
@@ -2110,6 +2111,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/item/device/retail_scanner/security,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/armory)
 "ec" = (
@@ -2882,6 +2884,7 @@
 	pixel_x = -22;
 	pixel_y = 0
 	},
+/obj/item/device/retail_scanner/security,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/processing)
 "fo" = (
