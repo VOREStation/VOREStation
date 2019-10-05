@@ -1,4 +1,5 @@
 // The GOLEM is a spell-flinging synthetic.
+
 /mob/living/simple_mob/mechanical/technomancer_golem
 	name = "unknown synthetic"
 	desc = "A rather unusual looking synthetic."
