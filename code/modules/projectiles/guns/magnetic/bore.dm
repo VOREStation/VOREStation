@@ -1,9 +1,9 @@
 /obj/item/weapon/gun/magnetic/matfed
 	name = "portable phoron bore"
-	desc = "A large man-portable tunnel bore, using phorogenic plasma blasts. Point away from user."
+	desc = "A large man-portable tunnel bore, using energy and lead weapon cores to blast tunnels. Point away from user."
 	description_fluff = "An aging Grayson Manufactories mining tool used for rapidly digging through rock. Mass production was discontinued when many of the devices were stolen and used to break into a high security facility by Boiling Point drones."
 	description_antag = "This device is exceptional at breaking down walls, though it is incredibly loud when doing so."
-	description_info = "The projectile of this tool will travel six tiles before dissipating, excavating mineral walls as it does so. It can be reloaded with phoron sheets."
+	description_info = "The projectile of this tool will travel six tiles before dissipating, excavating mineral walls as it does so. It can be reloaded with lead sheets."
 
 	icon_state = "bore"
 	item_state = "bore"
@@ -18,8 +18,8 @@
 	load_type = /obj/item/stack/material
 	var/mat_storage = 0			// How much material is stored inside? Input in multiples of 2000 as per auto/protolathe.
 	var/max_mat_storage = 8000	// How much material can be stored inside?
-	var/mat_cost = 500			// How much material is used per-shot?
-	var/ammo_material = MAT_PHORON
+	var/mat_cost = 250			// How much material is used per-shot?
+	var/ammo_material = MAT_LEAD
 	var/loading = FALSE
 
 /obj/item/weapon/gun/magnetic/matfed/examine(mob/user)

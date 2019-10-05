@@ -119,14 +119,14 @@
 	return 1
 
 /obj/item/projectile/bullet/magnetic/bore
-	name = "phorogenic blast"
-	icon_state = "purpleemitter"
+	name = "lead-charged blast"
+	icon_state = "leademitter"
 	damage = 20
-	incendiary = 1
-	armor_penetration = 20
+	incendiary = 0
+	armor_penetration = 35
 	penetrating = 0
 	check_armour = "melee"
-	irradiate = 20
+	irradiate = 00
 	range = 6
 
 /obj/item/projectile/bullet/magnetic/bore/Bump(atom/A, forced=0)
