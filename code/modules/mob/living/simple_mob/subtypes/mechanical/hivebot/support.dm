@@ -11,13 +11,6 @@
 
 // This hivebot supplies a general buff to nearby hivebots that improve their performance.
 // Note that the commander itself does not receive the buff.
-/datum/category_item/catalogue/technology/drone/hivebot/commander // Hivebot Scanner Data - This is for Commander Hivebots
-	name = "Drone - Commander Hivebot"
-	desc = "A drone that walks on several legs, with yellow/gold armor plating. It appears to have some sort of \
-	ballistic weapon. It also appears to have hardened internal connections and network interlinks, as well as some sort of datalink \
-	to the other hivebots. Other than that, it has similar yellowish color to regular hivebots."
-	value = CATALOGUER_REWARD_HARD
-
 /mob/living/simple_mob/mechanical/hivebot/support/commander
 	name = "commander hivebot"
 	desc = "A robot that appears to be directing the others."
@@ -67,13 +60,6 @@
 // This hivebot adds charges to nearby allied hivebots that use the charge system for their special attacks.
 // A charge is given to a nearby ally every so often.
 // Charges cannot exceed the initial starting amount.
-/datum/category_item/catalogue/technology/drone/hivebot/logistics // Hivebot Scanner Data - This is for Commander Hivebots
-	name = "Drone - Logistics Hivebot"
-	desc = "A drone that walks on several legs, with yellow/gold armor plating. It appears to have some sort of \
-	ballistic weapon. It also appears to have supply deploying bays, and internal fabs to repair and buff their allies' special capabilities. \
-	Other than that, it has similar yellowish color to regular hivebots."
-	value = CATALOGUER_REWARD_HARD
-
 /mob/living/simple_mob/mechanical/hivebot/support/logistics
 	name = "logistics hivebot"
 	desc = "A robot that resupplies their allies."

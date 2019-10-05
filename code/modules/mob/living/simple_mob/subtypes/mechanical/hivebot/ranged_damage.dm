@@ -12,13 +12,6 @@
 
 
 // This one shoots quickly, and is considerably more dangerous.
-/datum/category_item/catalogue/technology/drone/hivebot/laser // Hivebot Scanner Data - This is for Laser Hivebots
-	name = "Drone - Rapidfire Hivebot"
-	desc = "A drone that walks on several legs, with yellow/gold armor plating. It appears to have some sort of \
-	rifle, built for high-rate fire. Other than that, it has similar yellowish color \
-	to regular hivebots."
-	value = CATALOGUER_REWARD_HARD
-
 /mob/living/simple_mob/mechanical/hivebot/ranged_damage/rapid
 	name = "rapid hivebot"
 	desc = "A robot with a crude but deadly integrated rifle."
@@ -27,13 +20,6 @@
 
 
 // Shoots deadly lasers.
-/datum/category_item/catalogue/technology/drone/hivebot/laser // Hivebot Scanner Data - This is for Laser Hivebots
-	name = "Drone - Laser Hivebot"
-	desc = "A drone that walks on several legs, with yellow/gold armor plating. It appears to have some sort of \
-	laser weapon, different from ion bolts, firing bright, vibrant blue bolts of energy. Other than that, it has similar yellowish color \
-	to regular hivebots."
-	value = CATALOGUER_REWARD_HARD
-
 /mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser
 	name = "laser hivebot"
 	desc = "A robot with a photonic weapon integrated into itself."
@@ -43,13 +29,6 @@
 
 
 // Shoots EMPs, to screw over other robots.
-/datum/category_item/catalogue/technology/drone/hivebot/ion // Hivebot Scanner Data - This is for Ion Hivebots
-	name = "Drone - Ion Hivebot"
-	desc = "A drone that walks on several legs, with yellow/gold armor plating. It appears to have some sort of \
-	electromagnetic pulse generator, firing bright, vibrant blue bolts of ion energy. Other than that, it has similar yellowish color \
-	to regular hivebots."
-	value = CATALOGUER_REWARD_HARD
-
 /mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion
 	name = "ionic hivebot"
 	desc = "A robot with an electromagnetic pulse projector."
@@ -62,13 +41,6 @@
 	Be careful to not hit yourself or your team, as it will affect you as well."
 
 // Beefy and ranged.
-/datum/category_item/catalogue/technology/drone/hivebot/strong // Hivebot Scanner Data - This is for Laser Hivebots
-	name = "Drone - Strong Laser Hivebot"
-	desc = "A drone that walks on several legs, with yellow/gold armor plating. It appears to have some sort of \
-	ballistic weapon. The weapon seems to fire larger projectiles, and it has heavier armor. Other than that, it has similar yellowish color \
-	to regular hivebots."
-	value = CATALOGUER_REWARD_HARD
-
 /mob/living/simple_mob/mechanical/hivebot/ranged_damage/strong
 	name = "strong hivebot"
 	desc = "A robot with a crude ballistic weapon and strong armor."
