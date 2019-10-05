@@ -18,7 +18,7 @@
 	load_type = /obj/item/stack/material
 	var/mat_storage = 0			// How much material is stored inside? Input in multiples of 2000 as per auto/protolathe.
 	var/max_mat_storage = 8000	// How much material can be stored inside?
-	var/mat_cost = 500			// How much material is used per-shot?
+	var/mat_cost = 100			// How much material is used per-shot?
 	var/ammo_material = MAT_PHORON
 	var/loading = FALSE
 
@@ -110,6 +110,17 @@
 			power_per_tick = (power_cost*0.15) * capacitor.rating
 			user.visible_message("<span class='notice'>\The [user] slots \the [capacitor] into \the [src].</span>")
 			update_icon()
+			return
+		if(istype(thing, /obj/item/weapon/stock_parts/manipulator))
+			if(manipulator)
+				to_chat(user, "<span class='warning'>\The [src] already has \a [manipulator] installed.</span>")
+				return
+			manipulator = thing
+			user.drop_from_inventory(manipulator)
+			manipulator.forceMove(src)
+			playsound(loc, 'sound/machines/click.ogg', 10, 1)
+			ammo_material_per_tick = (mat_cost*0.1) * manipulator.rating
+			user.visible_message("<span class='notice'>\The [user] slots \the [manipulator] into \the [src] material processor.</span>")
 			return
 
 	if(istype(thing, load_type))
