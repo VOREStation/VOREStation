@@ -20,7 +20,6 @@
 	var/max_mat_storage = 8000	// How much material can be stored inside?
 	var/mat_cost = 100			// How much material is used per-shot?
 	var/ammo_material = MAT_PHORON
-	var//obj/item/weapon/stock_parts/manipulator/manipulator
 	var/loading = FALSE
 
 /obj/item/weapon/gun/magnetic/matfed/examine(mob/user)

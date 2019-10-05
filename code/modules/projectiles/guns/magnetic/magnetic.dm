@@ -10,6 +10,7 @@
 
 	var/obj/item/weapon/cell/cell                              // Currently installed powercell.
 	var/obj/item/weapon/stock_parts/capacitor/capacitor        // Installed capacitor. Higher rating == faster charge between shots.
+	var//obj/item/weapon/stock_parts/manipulator/manipulator   // Installed Manipulator. Rykka adds this.
 	var/removable_components = TRUE                            // Whether or not the gun can be dismantled.
 	var/gun_unreliable = 15                                    // Percentage chance of detonating in your hands.
 
