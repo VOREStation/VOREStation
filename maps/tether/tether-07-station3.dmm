@@ -3594,6 +3594,7 @@
 	pixel_x = -24;
 	pixel_y = 0
 	},
+/obj/item/device/retail_scanner/security,
 /turf/simulated/floor/tiled,
 /area/security/security_processing)
 "fL" = (
@@ -7834,6 +7835,7 @@
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_y = 32
 	},
+/obj/item/device/retail_scanner/security,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "me" = (
@@ -7874,6 +7876,7 @@
 /obj/item/device/holowarrant,
 /obj/item/device/holowarrant,
 /obj/item/device/holowarrant,
+/obj/item/device/retail_scanner/security,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "mf" = (
