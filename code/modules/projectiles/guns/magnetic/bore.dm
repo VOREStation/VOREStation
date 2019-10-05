@@ -18,7 +18,7 @@
 	load_type = /obj/item/stack/material
 	var/mat_storage = 0			// How much material is stored inside? Input in multiples of 2000 as per auto/protolathe.
 	var/max_mat_storage = 8000	// How much material can be stored inside?
-	var/mat_cost = 500			// How much material is used per-shot?
+	var/mat_cost = 100			// How much material is used per-shot?
 	var/ammo_material = MAT_PHORON
 	var/loading = FALSE
 
