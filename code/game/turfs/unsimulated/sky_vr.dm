@@ -27,6 +27,8 @@
 		return //Don't ghostport, very annoying
 	if(AM.throwing)
 		return //Being thrown over, not fallen yet
+	if(!(AM.can_fall()))
+		return // Phased shifted kin should not fall
 	if(istype(AM, /obj/item/projectile))
 		return // pewpew should not fall out of the sky. pew.
 	if(istype(AM, /obj/effect/projectile))

@@ -300,6 +300,8 @@
 	docking_controller_tag = "specops_shuttle_hatch"
 	web_master_type = /datum/shuttle_web_master/specialops
 	can_rename = FALSE
+	can_cloak = TRUE
+	cloaked = FALSE
 
 /datum/shuttle_web_master/specialops
 	destination_class = /datum/shuttle_destination/specialops

@@ -308,11 +308,12 @@
 	var/list/valid_things = list()
 	if(isweakref(I.data))
 		var/atom/A = I.data.resolve()
-		var/desired_type = A.type
-		if(desired_type)
-			for(var/atom/thing in nearby_things)
-				if(thing.type == desired_type)
-					valid_things.Add(thing)
+		if(A)
+			var/desired_type = A.type
+			if(desired_type)
+				for(var/atom/thing in nearby_things)
+					if(thing.type == desired_type)
+						valid_things.Add(thing)
 	else if(istext(I.data))
 		var/DT = I.data
 		for(var/atom/thing in nearby_things)
