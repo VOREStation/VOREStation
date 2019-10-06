@@ -15,10 +15,14 @@
 
 /datum/artifact_effect/radiate/DoEffectAura()
 	if(holder)
-		radiation_repository.flat_radiate(holder, radiation_amount, src.effectrange)
+		SSradiation.flat_radiate(holder, radiation_amount, src.effectrange)
 		return 1
 
 /datum/artifact_effect/radiate/DoEffectPulse()
 	if(holder)
+<<<<<<< HEAD
 		radiation_repository.radiate(holder, ((radiation_amount * 3) * (sqrt(src.effectrange)))) //Need to get feedback on this //VOREStation Edit - Was too crazy-strong.
+=======
+		SSradiation.radiate(holder, ((radiation_amount * 25) * (sqrt(src.effectrange)))) //Need to get feedback on this
+>>>>>>> b193761... Merge pull request #6471 from Novacat/nova-runtimes
 		return 1

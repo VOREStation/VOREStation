@@ -133,7 +133,7 @@
 	..()
 	if(phasing)
 		phasing = FALSE
-		radiation_repository.radiate(get_turf(src), 30)
+		SSradiation.radiate(get_turf(src), 30)
 		log_append_to_last("WARNING: BLUESPACE DRIVE INSTABILITY DETECTED. DISABLING DRIVE.",1)
 		visible_message("<span class='alien'>The [src.name] appears to flicker, before its silhouette stabilizes!</span>")
 	return

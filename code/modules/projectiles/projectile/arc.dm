@@ -167,4 +167,4 @@
 	var/rad_power = 50
 
 /obj/item/projectile/arc/radioactive/on_impact(turf/T)
-	radiation_repository.radiate(T, rad_power)
+	SSradiation.radiate(T, rad_power)
