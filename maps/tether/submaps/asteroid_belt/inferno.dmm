@@ -1,0 +1,17 @@
+"a" = (/turf/simulated/mineral/vacuum,/area/mine/explored/belt_miner)
+"b" = (/mob/living/simple_mob/animal/giant_spider/thermic,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"c" = (/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"d" = (/obj/effect/spider/stickyweb/dark,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"e" = (/obj/effect/spider/stickyweb,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"f" = (/obj/effect/spider/spiderling,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"g" = (/obj/effect/spider/eggcluster,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"h" = (/obj/effect/spider/cocoon,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+
+(1,1,1) = {"
+aaddaa
+aeeeea
+acfcba
+abcfga
+afhgga
+aaaaaa
+"}

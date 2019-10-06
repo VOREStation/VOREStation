@@ -1,0 +1,12 @@
+"a" = (/turf/simulated/mineral/vacuum,/area/mine/explored/belt_miner)
+"b" = (/turf/template_noop,/area/mine/explored/belt_miner)
+"c" = (/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"d" = (/obj/tether_away_spawner/belt_hard,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+
+(1,1,1) = {"
+aabaa
+accca
+bcdcb
+accca
+aabaa
+"}

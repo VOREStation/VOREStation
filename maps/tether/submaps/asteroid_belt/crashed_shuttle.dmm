@@ -1,0 +1,28 @@
+"a" = (/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"b" = (/turf/simulated/wall/rshull,/area/mine/explored/belt_miner)
+"c" = (/turf/simulated/floor/reinforced,/obj/structure/shuttle/engine/propulsion{dir = 8; icon_state = "propulsion_r"},/turf/simulated/shuttle/plating/airless/carry,/area/mine/explored/belt_miner)
+"d" = (/obj/structure/window/reinforced/full,/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/turf/simulated/floor/tiled/techfloor/grid,/area/mine/explored/belt_miner)
+"e" = (/obj/tether_away_spawner/belt_normal,/turf/simulated/floor/tiled/techfloor/grid,/area/mine/explored/belt_miner)
+"f" = (/obj/structure/shuttle/engine/heater{icon_state = "heater"; dir = 8},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/tiled/techfloor/grid,/area/mine/explored/belt_miner)
+"g" = (/obj/structure/bed/chair/shuttle,/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled/techfloor/grid,/area/mine/explored/belt_miner)
+"h" = (/turf/simulated/floor/tiled/techfloor/grid,/area/mine/explored/belt_miner)
+"i" = (/obj/item/device/radio/intercom{dir = 1; name = "Station Intercom (General)"; pixel_y = 27},/obj/structure/bed/chair/shuttle,/turf/simulated/floor/tiled/techfloor/grid,/area/mine/explored/belt_miner)
+"j" = (/obj/structure/bed/chair/shuttle,/turf/simulated/floor/tiled/techfloor/grid,/area/mine/explored/belt_miner)
+"k" = (/obj/structure/window/reinforced/full,/obj/structure/grille,/turf/simulated/floor/tiled/techfloor/grid,/area/mine/explored/belt_miner)
+"l" = (/obj/machinery/computer/shuttle_control/beltferry{icon_state = "computer"; dir = 8},/turf/simulated/floor/tiled/techfloor/grid,/area/mine/explored/belt_miner)
+"m" = (/obj/structure/window/reinforced/full,/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/tiled/techfloor/grid,/area/mine/explored/belt_miner)
+"n" = (/obj/structure/bed/chair/shuttle{dir = 1},/obj/machinery/light,/turf/simulated/floor/tiled/techfloor/grid,/area/mine/explored/belt_miner)
+"o" = (/obj/structure/bed/chair/shuttle{dir = 1},/turf/simulated/floor/tiled/techfloor/grid,/area/mine/explored/belt_miner)
+"p" = (/obj/structure/window/reinforced/full,/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/turf/simulated/floor/tiled/techfloor/grid,/area/mine/explored/belt_miner)
+"r" = (/obj/structure/window/reinforced/full,/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/tiled/techfloor/grid,/area/mine/explored/belt_miner)
+
+(1,1,1) = {"
+aaaaaaaa
+bbbaaaaa
+aaahbada
+cfghijkd
+cfhehhlm
+aaaaaaap
+cfnahook
+bbbahbbr
+"}

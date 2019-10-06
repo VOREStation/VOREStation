@@ -1,0 +1,38 @@
+"a" = (/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"b" = (/turf/simulated/wall,/area/mine/explored/belt_miner)
+"c" = (/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"d" = (/obj/structure/ghost_pod/manual/lost_drone/dogborg,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"e" = (/obj/structure/old_roboprinter,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"f" = (/obj/structure/door_assembly/door_assembly_eng,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"g" = (/obj/structure/barricade,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"h" = (/obj/machinery/door/airlock/glass_engineering,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"i" = (/obj/machinery/atmospherics/pipe/tank/air{dir = 1},/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"j" = (/obj/machinery/atmospherics/unary/heater,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"k" = (/obj/machinery/atmospherics/unary/freezer,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"l" = (/obj/machinery/atmospherics/pipe/simple/visible,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"m" = (/obj/machinery/atmospherics/pipe/simple/visible{dir = 5},/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"n" = (/obj/machinery/atmospherics/pipe/manifold/visible{dir = 1},/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"o" = (/obj/machinery/atmospherics/pipe/simple/visible{dir = 9},/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"p" = (/obj/machinery/atmospherics/pipe/simple/visible{icon_state = "intact"; dir = 6},/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"q" = (/obj/machinery/atmospherics/pipe/simple/visible{dir = 4},/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"r" = (/obj/machinery/auto_cloner,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"s" = (/obj/machinery/crystal/ice,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"t" = (/obj/machinery/gravity_generator,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"u" = (/obj/machinery/particle_smasher,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"v" = (/obj/tether_away_spawner/asteroid_drone_swarm,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+
+(1,1,1) = {"
+bbbbbbbbbbbbb
+beavataaajakb
+beavaaaaalalb
+baaaaadaalalb
+braaaaaaamnob
+bpqqaqqqqqoab
+biavaaaaavaub
+bbbfbbhbbfbbb
+ccgggcccgggcc
+ccccccccccccc
+csccccsccsccc
+cccccccccccsc
+cccccsccccccc
+"}

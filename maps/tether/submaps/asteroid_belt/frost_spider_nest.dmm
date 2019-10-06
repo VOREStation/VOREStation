@@ -1,0 +1,23 @@
+"a" = (/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"b" = (/turf/simulated/mineral/vacuum,/area/mine/explored/belt_miner)
+"c" = (/turf/template_noop,/area/mine/explored/belt_miner)
+"d" = (/mob/living/simple_mob/animal/giant_spider/frost/space,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"e" = (/obj/effect/spider/stickyweb/dark,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"f" = (/obj/effect/spider/stickyweb,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"g" = (/obj/effect/decal/cleanable/spiderling_remains,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"h" = (/obj/effect/spider/cocoon,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"i" = (/obj/effect/spider/eggcluster/small/frost,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"j" = (/obj/effect/spider/spiderling/frost,/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+
+(1,1,1) = {"
+bbbbbccccc
+bdajefcccc
+baaaajeccc
+baajgaafcc
+bfaaaaajfc
+bfgadafaeb
+biaaaaaaab
+biaaaajgab
+badaafaahb
+bbbbbbbbbb
+"}

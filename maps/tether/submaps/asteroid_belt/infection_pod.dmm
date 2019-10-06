@@ -1,0 +1,15 @@
+"a" = (/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"b" = (/turf/simulated/wall,/area/mine/explored/belt_miner)
+"c" = (/turf/simulated/floor/plating,/area/mine/explored/belt_miner)
+"d" = (/obj/machinery/door/airlock/silver,/turf/simulated/floor/plating,/area/mine/explored/belt_miner)
+"e" = (/mob/living/simple_mob/mechanical/infectionbot,/turf/simulated/floor/plating,/area/mine/explored/belt_miner)
+
+(1,1,1) = {"
+aaaaaa
+abddba
+abccba
+abccba
+abeeba
+abbbba
+aaaaaa
+"}
