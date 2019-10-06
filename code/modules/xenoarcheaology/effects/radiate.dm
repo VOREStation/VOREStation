@@ -20,9 +20,5 @@
 
 /datum/artifact_effect/radiate/DoEffectPulse()
 	if(holder)
-<<<<<<< HEAD
-		radiation_repository.radiate(holder, ((radiation_amount * 3) * (sqrt(src.effectrange)))) //Need to get feedback on this //VOREStation Edit - Was too crazy-strong.
-=======
-		SSradiation.radiate(holder, ((radiation_amount * 25) * (sqrt(src.effectrange)))) //Need to get feedback on this
->>>>>>> b193761... Merge pull request #6471 from Novacat/nova-runtimes
+		SSradiation.radiate(holder, ((radiation_amount * 3) * (sqrt(src.effectrange)))) //Need to get feedback on this //VOREStation Edit - Was too crazy-strong.
 		return 1
