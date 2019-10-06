@@ -348,10 +348,12 @@ var/global/list/##LIST_NAME = list();\
 #define RCD_MAX_CAPACITY			30 * RCD_SHEETS_PER_MATTER_UNIT
 
 // Radiation 'levels'. Used for the geiger counter, for visuals and sound. They are in different files so this goes here.
-#define RAD_LEVEL_LOW 0.01 // Around the level at which radiation starts to become harmful
-#define RAD_LEVEL_MODERATE 10
+#define RAD_LEVEL_LOW 0.5 // Around the level at which radiation starts to become harmful
+#define RAD_LEVEL_MODERATE 5
 #define RAD_LEVEL_HIGH 25
-#define RAD_LEVEL_VERY_HIGH 50
+#define RAD_LEVEL_VERY_HIGH 75
+
+#define RADIATION_THRESHOLD_CUTOFF 0.1	// Radiation will not affect a tile when below this value.
 
 //https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
 #define MOUSE_OPACITY_TRANSPARENT 0

@@ -28,7 +28,7 @@
 /obj/item/device/geiger/proc/get_radiation()
 	if(!scanning)
 		return
-	radiation_count = radiation_repository.get_rads_at_turf(get_turf(src))
+	radiation_count = SSradiation.get_rads_at_turf(get_turf(src))
 	update_icon()
 	update_sound()
 

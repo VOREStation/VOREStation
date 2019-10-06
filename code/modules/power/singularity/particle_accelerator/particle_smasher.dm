@@ -142,13 +142,13 @@
 /obj/machinery/particle_smasher/process()
 	if(!src.anchored)	// Rapidly loses focus.
 		if(energy)
-			radiation_repository.radiate(src, round(((src.energy-150)/50)*5,1))
+			SSradiation.radiate(src, round(((src.energy-150)/50)*5,1))
 			energy = max(0, energy - 30)
 			update_icon()
 		return
 
 	if(energy)
-		radiation_repository.radiate(src, round(((src.energy-150)/50)*5,1))
+		SSradiation.radiate(src, round(((src.energy-150)/50)*5,1))
 		energy = CLAMP(energy - 5, 0, max_energy)
 
 	return
@@ -178,7 +178,7 @@
 	if(successful_craft)
 		visible_message("<span class='warning'>\The [src] fizzles.</span>")
 		if(prob(33))	// Why are you blasting it after it's already done!
-			radiation_repository.radiate(src, 10 + round(src.energy / 60, 1))
+			SSradiation.radiate(src, 10 + round(src.energy / 60, 1))
 			energy = max(0, energy - 30)
 		update_icon()
 		return

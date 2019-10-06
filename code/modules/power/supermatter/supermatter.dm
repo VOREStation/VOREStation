@@ -141,7 +141,7 @@
 	if(!TS)
 		return
 	for(var/z in GetConnectedZlevels(TS.z))
-		radiation_repository.z_radiate(locate(1, 1, z), DETONATION_RADS, 1)
+		SSradiation.z_radiate(locate(1, 1, z), DETONATION_RADS, 1)
 	for(var/mob/living/mob in living_mob_list)
 		var/turf/T = get_turf(mob)
 		if(T && (loc.z == T.z))
@@ -311,7 +311,7 @@
 		if(!istype(l.glasses, /obj/item/clothing/glasses/meson)) // VOREStation Edit - Only mesons can protect you!
 			l.hallucination = max(0, min(200, l.hallucination + power * config_hallucination_power * sqrt( 1 / max(1,get_dist(l, src)) ) ) )
 
-	radiation_repository.radiate(src, max(power * 1.5, 50) ) //Better close those shutters!
+	SSradiation.radiate(src, max(power * 1.5, 50) ) //Better close those shutters!
 
 	power -= (power/DECAY_FACTOR)**3		//energy losses due to radiation
 
@@ -424,7 +424,7 @@
 		else
 			l.show_message("<span class=\"warning\">You hear an uneartly ringing and notice your skin is covered in fresh radiation burns.</span>", 2)
 	var/rads = 500
-	radiation_repository.radiate(src, rads)
+	SSradiation.radiate(src, rads)
 
 /proc/supermatter_pull(var/atom/target, var/pull_range = 255, var/pull_power = STAGE_FIVE)
 	for(var/atom/A in range(pull_range, target))
@@ -467,7 +467,7 @@
 	return ..()
 
 /obj/item/broken_sm/process()
-	radiation_repository.radiate(src, 50)
+	SSradiation.radiate(src, 50)
 
 /obj/item/broken_sm/Destroy()
 	STOP_PROCESSING(SSobj, src)
