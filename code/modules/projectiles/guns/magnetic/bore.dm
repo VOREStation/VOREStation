@@ -103,7 +103,7 @@
 				return
 			manipulator.forceMove(get_turf(src))
 			user.put_in_hands(manipulator)
-			user.visible_message("<span class='notice'>\The [user] unscrews \the [manipulator] from, \the [src].</span>")
+			user.visible_message("<span class='notice'>\The [user] unscrews \the [manipulator] from \the [src].</span>")
 			playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 			manipulator = null
 			update_icon()
