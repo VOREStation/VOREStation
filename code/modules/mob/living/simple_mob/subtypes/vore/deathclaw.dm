@@ -1,3 +1,10 @@
+/datum/category_item/catalogue/fauna/deathclaw		//TODO: VIRGO_LORE_WRITING_WIP
+	name = "Creature - Deathclaw"
+	desc = "A massive beast, tall as three standard-size humans, with massive, terrifying claws, \
+	and dark, black fangs. It's entire body is yellowish, like sand, and it's skin is leathery and tough. \
+	It seems to have adapted to the harsh desert environment on Virgo 4, and makes it's home inside the caves."
+	value = CATALOGUER_REWARD_HARD
+
 /mob/living/simple_mob/vore/aggressive/deathclaw
 	name = "deathclaw"
 	desc = "Big! Big! The size of three men! Claws as long as my forearm! Ripped apart! Ripped apart!"
