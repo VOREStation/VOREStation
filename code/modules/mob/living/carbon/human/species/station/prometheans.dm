@@ -186,32 +186,28 @@ var/datum/species/shapeshifter/promethean/prometheans
 				var/turf/simulated/S = T
 				T.clean_blood()
 				S.dirt = 0
-<<<<<<< HEAD
-			H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
-=======
-				H.nutrition = min(500, max(0, H.nutrition + rand(10, 20)))
+				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
 		if(H.clean_blood(1))
-			H.nutrition = min(500, max(0, H.nutrition + rand(5, 15)))
+			H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
 		if(H.r_hand)
 			if(H.r_hand.clean_blood())
-				H.nutrition = min(500, max(0, H.nutrition + rand(5, 15)))
+				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
 		if(H.l_hand)
 			if(H.l_hand.clean_blood())
-				H.nutrition = min(500, max(0, H.nutrition + rand(5, 15)))
+				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
 		if(H.head)
 			if(H.head.clean_blood())
 				H.update_inv_head(0)
-				H.nutrition = min(500, max(0, H.nutrition + rand(5, 15)))
+				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
 		if(H.wear_suit)
 			if(H.wear_suit.clean_blood())
 				H.update_inv_wear_suit(0)
-				H.nutrition = min(500, max(0, H.nutrition + rand(5, 15)))
+				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
 		if(H.w_uniform)
 			if(H.w_uniform.clean_blood())
 				H.update_inv_w_uniform(0)
-				H.nutrition = min(500, max(0, H.nutrition + rand(5, 15)))
+				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
 		//End cleaning code.
->>>>>>> 73864a5... Prometheans clean everything, not just the tile they're on. (#6468)
 
 		var/datum/gas_mixture/environment = T.return_air()
 		var/pressure = environment.return_pressure()
