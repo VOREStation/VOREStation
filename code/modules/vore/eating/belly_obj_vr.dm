@@ -248,13 +248,15 @@
 
 	//Place them into our drop_location
 	M.forceMove(drop_location())
-	M.stop_sound_channel(CHANNEL_PREYLOOP) //Stop the internal loop, it'll restart if the isbelly check on next tick anyway
+	
 	items_preserved -= M
 
 	//Special treatment for absorbed prey
-	if(istype(M,/mob/living))
+	if(isliving(M))
 		var/mob/living/ML = M
 		var/mob/living/OW = owner
+		if(ML.client)
+			ML.stop_sound_channel(CHANNEL_PREYLOOP) //Stop the internal loop, it'll restart if the isbelly check on next tick anyway
 		if(ML.muffled)
 			ML.muffled = 0
 		if(ML.absorbed)
