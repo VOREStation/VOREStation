@@ -1,12 +1,12 @@
 ///////////////////// Mob Living /////////////////////
 /mob/living
-	var/digestable = 1					// Can the mob be digested inside a belly?
-	var/digest_leave_remains = 0		// Will this mob leave bones/skull/etc after the melty demise?
-	var/allowmobvore = 1				// Will simplemobs attempt to eat the mob?
-	var/showvoreprefs = 1				// Determines if the mechanical vore preferences button will be displayed on the mob or not.
+	var/digestable = TRUE				// Can the mob be digested inside a belly?
+	var/digest_leave_remains = FALSE	// Will this mob leave bones/skull/etc after the melty demise?
+	var/allowmobvore = TRUE				// Will simplemobs attempt to eat the mob?
+	var/showvoreprefs = TRUE			// Determines if the mechanical vore preferences button will be displayed on the mob or not.
 	var/obj/belly/vore_selected			// Default to no vore capability.
 	var/list/vore_organs = list()		// List of vore containers inside a mob
-	var/absorbed = 0					// If a mob is absorbed into another
+	var/absorbed = FALSE				// If a mob is absorbed into another
 	var/weight = 137					// Weight for mobs for weightgain system
 	var/weight_gain = 1 				// How fast you gain weight
 	var/weight_loss = 0.5 				// How fast you lose weight
@@ -15,16 +15,17 @@
 	var/revive_ready = REVIVING_READY	// Only used for creatures that have the xenochimera regen ability, so far.
 	var/metabolism = 0.0015
 	var/vore_taste = null				// What the character tastes like
-	var/no_vore = 0 					// If the character/mob can vore.
-	var/openpanel = 0					// Is the vore panel open?
-	var/noisy = 0						// Toggle audible hunger.
+	var/no_vore = FALSE					// If the character/mob can vore.
+	var/openpanel = FALSE				// Is the vore panel open?
+	var/noisy = FALSE					// Toggle audible hunger.
 	var/absorbing_prey = 0 				// Determines if the person is using the succubus drain or not. See station_special_abilities_vr.
 	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
 	var/fuzzy = 1						// Preference toggle for sharp/fuzzy icon.
 	var/tail_alt = 0					// Tail layer toggle.
 	var/permit_healbelly = TRUE
-	var/can_be_drop_prey = 0
-	var/can_be_drop_pred = 1			// Mobs are pred by default.
+	var/can_be_drop_prey = FALSE
+	var/can_be_drop_pred = TRUE			// Mobs are pred by default.
+	var/next_preyloop					// For Fancy sound internal loop
 
 //
 // Hook for generic creation of stuff on new creatures
