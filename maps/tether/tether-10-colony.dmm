@@ -418,6 +418,7 @@
 /obj/item/weapon/storage/pill_bottle/nutriment,
 /obj/item/weapon/storage/pill_bottle/iron,
 /obj/item/weapon/storage/pill_bottle/iron,
+/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
