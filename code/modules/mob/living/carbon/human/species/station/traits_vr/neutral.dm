@@ -68,7 +68,7 @@
 			"l" = list("w", "ww"),
 			"r" = list("w", "ww")
 		),
-	autohiss_exempt = list("siik", "Sinta' unathi"))
+	autohiss_exempt = list("Siik", "Sinta'unathi"))
 	excludes = list(/datum/trait/autohiss_unathi,/datum/trait/autohiss_tajaran)
 
 /datum/trait/bloodsucker
