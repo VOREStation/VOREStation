@@ -20,19 +20,22 @@
 	var/emote_time = 60 SECONDS				// How long between stomach emotes at prey
 	var/digest_brute = 2					// Brute damage per tick in digestion mode
 	var/digest_burn = 2						// Burn damage per tick in digestion mode
-	var/immutable = 0						// Prevents this belly from being deleted
-	var/escapable = 0						// Belly can be resisted out of at any time
+	var/immutable = FALSE					// Prevents this belly from being deleted
+	var/escapable = FALSE					// Belly can be resisted out of at any time
 	var/escapetime = 60 SECONDS				// Deciseconds, how long to escape this belly
 	var/digestchance = 0					// % Chance of stomach beginning to digest if prey struggles
 	var/absorbchance = 0					// % Chance of stomach beginning to absorb if prey struggles
 	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
 	var/transferchance = 0 					// % Chance of prey being
-	var/can_taste = 0						// If this belly prints the flavor of prey when it eats someone.
+	var/can_taste = FALSE					// If this belly prints the flavor of prey when it eats someone.
 	var/bulge_size = 0.25					// The minimum size the prey has to be in order to show up on examine.
 	var/shrink_grow_size = 1				// This horribly named variable determines the minimum/maximum size it will shrink/grow prey to.
 	var/transferlocation					// Location that the prey is released if they struggle and get dropped off.
-	var/release_sound = TRUE				// Boolean for now, maybe replace with something else later
+	var/release_sound = "Splatter"			// Sound for letting someone out. Replaced from True/false
 	var/mode_flags = 0						// Stripping, numbing, etc.
+	var/fancy_vore = FALSE					// Using the new sounds?
+	var/is_wet = TRUE						// Is this belly's insides made of slimy parts?
+	var/wet_loop = TRUE						// Does the belly have a fleshy loop playing?
 
 	//I don't think we've ever altered these lists. making them static until someone actually overrides them somewhere.
 	//Actual full digest modes
@@ -147,7 +150,11 @@
 		"item_digest_mode",
 		"contaminates",
 		"contamination_flavor",
-		"contamination_color"
+		"contamination_color",
+		"release_sound",
+		"fancy_vore",
+		"is_wet",
+		"wet_loop"
 		)
 
 /obj/belly/New(var/newloc)
@@ -175,7 +182,11 @@
 
 	//Sound w/ antispam flag setting
 	if(vore_sound && !recent_sound)
-		var/soundfile = vore_sounds[vore_sound]
+		var/soundfile
+		if(!fancy_vore)
+			soundfile = classic_vore_sounds[vore_sound]
+		else
+			soundfile = fancy_vore_sounds[vore_sound]
 		if(soundfile)
 			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
 			recent_sound = TRUE
@@ -196,7 +207,7 @@
 
 	//Don't bother if we don't have contents
 	if(!contents.len)
-		return 0
+		return FALSE
 
 	//Find where we should drop things into (certainly not the owner)
 	var/count = 0
@@ -218,8 +229,13 @@
 	//Print notifications/sound if necessary
 	if(!silent)
 		owner.visible_message("<font color='green'><b>[owner] expels everything from their [lowertext(name)]!</b></font>")
-		if(release_sound)
-			playsound(src, 'sound/effects/splat.ogg', vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
+		var/soundfile
+		if(!fancy_vore)
+			soundfile = classic_release_sounds[release_sound]
+		else
+			soundfile = fancy_release_sounds[release_sound]
+		if(soundfile)
+			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
 
 	return count
 
@@ -232,12 +248,15 @@
 
 	//Place them into our drop_location
 	M.forceMove(drop_location())
+	
 	items_preserved -= M
 
 	//Special treatment for absorbed prey
-	if(istype(M,/mob/living))
+	if(isliving(M))
 		var/mob/living/ML = M
 		var/mob/living/OW = owner
+		if(ML.client)
+			ML.stop_sound_channel(CHANNEL_PREYLOOP) //Stop the internal loop, it'll restart if the isbelly check on next tick anyway
 		if(ML.muffled)
 			ML.muffled = 0
 		if(ML.absorbed)
@@ -258,8 +277,13 @@
 	//Print notifications/sound if necessary
 	if(!silent)
 		owner.visible_message("<font color='green'><b>[owner] expels [M] from their [lowertext(name)]!</b></font>")
-		if(release_sound)
-			playsound(src, 'sound/effects/splat.ogg', vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
+		var/soundfile
+		if(!fancy_vore)
+			soundfile = classic_release_sounds[release_sound]
+		else
+			soundfile = fancy_release_sounds[release_sound]
+		if(soundfile)
+			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
 
 	return 1
 
@@ -403,6 +427,8 @@
 		else if(M.reagents)
 			M.reagents.trans_to_holder(Pred.bloodstr, M.reagents.total_volume, 0.5, TRUE)
 
+	//Incase they have the loop going, let's double check to stop it.
+	M.stop_sound_channel(CHANNEL_PREYLOOP)
 	// Delete the digested mob
 	qdel(M)
 
@@ -515,9 +541,17 @@
 		M.show_message(struggle_outer_message, 2) // hearable
 	to_chat(R,struggle_user_message)
 
-	var/strpick = pick(struggle_sounds)
-	var/strsound = struggle_sounds[strpick]
-	playsound(src, strsound, vary = 1, vol = 100, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/digestion_noises)
+	var/sound/struggle_snuggle
+	var/sound/struggle_rustle = sound(get_sfx("rustle"))
+
+	if(is_wet)
+		if(!fancy_vore)
+			struggle_snuggle = sound(get_sfx("classic_struggle_sounds"))
+		else
+			struggle_snuggle = sound(get_sfx("fancy_prey_struggle"))
+		playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/digestion_noises)
+	else
+		playsound(src, struggle_rustle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/digestion_noises)
 
 	if(escapable) //If the stomach has escapable enabled.
 		if(prob(escapechance)) //Let's have it check to see if the prey escapes first.
@@ -601,7 +635,11 @@
 			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
 	items_preserved -= content
 	if(!silent && target.vore_sound && !recent_sound)
-		var/soundfile = vore_sounds[target.vore_sound]
+		var/soundfile
+		if(!fancy_vore)
+			soundfile = classic_vore_sounds[target.vore_sound]
+		else
+			soundfile = fancy_vore_sounds[target.vore_sound]
 		if(soundfile)
 			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/digestion_noises)
 	owner.updateVRPanel()
@@ -639,6 +677,10 @@
 	dupe.contaminates = contaminates
 	dupe.contamination_flavor = contamination_flavor
 	dupe.contamination_color = contamination_color
+	dupe.release_sound = release_sound
+	dupe.fancy_vore = fancy_vore
+	dupe.is_wet = is_wet
+	dupe.wet_loop = wet_loop
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings
