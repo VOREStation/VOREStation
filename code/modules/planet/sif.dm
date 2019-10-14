@@ -555,4 +555,4 @@ var/datum/planet/sif/planet_sif = null
 	if(!istype(T))
 		return
 	if(T.outdoors)
-		radiation_repository.radiate(T, rand(fallout_rad_low, fallout_rad_high))
+		SSradiation.radiate(T, rand(fallout_rad_low, fallout_rad_high))

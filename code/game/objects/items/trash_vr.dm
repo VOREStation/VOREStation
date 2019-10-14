@@ -26,11 +26,6 @@
 			return
 	..()
 
-/obj/item/trash/liquidprotein
-	name = "\improper \"LiquidProtein\" ration"
-	icon = 'icons/obj/trash_vr.dmi'
-	icon_state = "liquidprotein"
-
 /obj/item/trash/fancyplate
 	name = "dirty fancy plate"
 	icon = 'icons/obj/trash_vr.dmi'

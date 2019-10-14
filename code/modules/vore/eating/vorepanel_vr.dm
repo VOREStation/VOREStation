@@ -189,6 +189,13 @@
 		dat += "<a href='?src=\ref[src];b_name=\ref[selected]'>Name:</a>"
 		dat += " '[selected.name]'"
 
+		//Belly Type button
+		dat += "<br><a href='?src=\ref[src];b_wetness=\ref[selected]'>Is this belly fleshy:</a>"
+		dat += "[selected.is_wet ? "Yes" : "No"]"
+		if(selected.is_wet)
+			dat += "<a href='?src=\ref[src];b_wetloop=\ref[selected]'>Internal loop for prey?:</a>"
+			dat += "[selected.wet_loop ? "Yes" : "No"]"
+
 		//Digest Mode Button
 		dat += "<br><a href='?src=\ref[src];b_mode=\ref[selected]'>Belly Mode:</a>"
 		var/mode = selected.digest_mode
@@ -229,9 +236,17 @@
 		dat += "<br><a href='?src=\ref[src];b_desc=\ref[selected]'>Flavor Text:</a>"
 		dat += " '[selected.desc]'"
 
+		//Belly Sound Fanciness
+		dat += "<br><a href='?src=\ref[src];b_fancy_sound=\ref[selected]'>Use Fancy Sounds:</a>"
+		dat += "[selected.fancy_vore ? "Yes" : "No"]"
+
 		//Belly sound
-		dat += "<br><a href='?src=\ref[src];b_sound=\ref[selected]'>Set Vore Sound</a>"
+		dat += "<br><a href='?src=\ref[src];b_sound=\ref[selected]'>Vore Sound: [selected.vore_sound]</a>"
 		dat += "<a href='?src=\ref[src];b_soundtest=\ref[selected]'>Test</a>"
+
+		//Release sound
+		dat += "<br><a href='?src=\ref[src];b_release=\ref[selected]'>Release Sound: [selected.release_sound]</a>"
+		dat += "<a href='?src=\ref[src];b_releasesoundtest=\ref[selected]'>Test</a>"
 
 		//Belly messages
 		dat += "<br><a href='?src=\ref[src];b_msgs=\ref[selected]'>Belly Messages</a>"
@@ -293,22 +308,28 @@
 	dat += "<HR>"
 
 	switch(user.digestable)
-		if(1)
+		if(TRUE)
 			dat += "<a href='?src=\ref[src];toggledg=1'>Toggle Digestable</a>"
-		if(0)
+		if(FALSE)
 			dat += "<a href='?src=\ref[src];toggledg=1'><span style='color:green;'>Toggle Digestable</span></a>"
 
 	switch(user.digest_leave_remains)
-		if(1)
+		if(TRUE)
 			dat += "<a href='?src=\ref[src];toggledlm=1'><span style='color:red;'>Toggle Leaving Remains</span></a>"
-		if(0)
+		if(FALSE)
 			dat += "<a href='?src=\ref[src];toggledlm=1'>Toggle Leaving Remains</a>"
 
 	switch(user.allowmobvore)
-		if(1)
-			dat += "<a href='?src=\ref[src];togglemv=1'>Toggle Mob Vore</a>"
-		if(0)
-			dat += "<a href='?src=\ref[src];togglemv=1'><span style='color:green;'>Toggle Mob Vore</span></a>"
+		if(TRUE)
+			dat += "<br><a href='?src=\ref[src];togglemv=1'>Toggle Mob Vore</a>"
+		if(FALSE)
+			dat += "<br><a href='?src=\ref[src];togglemv=1'><span style='color:green;'>Toggle Mob Vore</span></a>"
+
+	switch(user.permit_healbelly)
+		if(TRUE)
+			dat += "<a href='?src=\ref[src];togglehealbelly=1'>Toggle Healbelly Permission</a>"
+		if(FALSE)
+			dat += "<a href='?src=\ref[src];togglehealbelly=1'><span style='color:red;'>Toggle Healbelly Permission</span></a>"
 
 	dat += "<br><a href='?src=\ref[src];toggle_dropnom_prey=1'>Toggle Drop-nom Prey</a>" //These two get their own, custom row, too.
 	dat += "<a href='?src=\ref[src];toggle_dropnom_pred=1'>Toggle Drop-nom Pred</a>"
@@ -528,6 +549,12 @@
 
 		selected.name = new_name
 
+	if(href_list["b_wetness"])
+		selected.is_wet = !selected.is_wet
+
+	if(href_list["b_wetloop"])
+		selected.wet_loop = !selected.wet_loop
+
 	if(href_list["b_mode"])
 		var/list/menu_list = selected.digest_modes.Copy()
 		if(istype(usr,/mob/living/carbon/human))
@@ -652,17 +679,54 @@
 
 		selected.vore_verb = new_verb
 
-	if(href_list["b_sound"])
-		var/choice = input(user,"Currently set to [selected.vore_sound]","Select Sound") as null|anything in vore_sounds
+	if(href_list["b_fancy_sound"])
+		selected.fancy_vore = !selected.fancy_vore
+		selected.vore_sound = "Gulp"
+		selected.release_sound = "Splatter"
+		// defaults as to avoid potential bugs
+
+	if(href_list["b_release"])
+		var/choice
+		if(selected.fancy_vore)
+			choice = input(user,"Currently set to [selected.release_sound]","Select Sound") as null|anything in fancy_release_sounds
+		else
+			choice = input(user,"Currently set to [selected.release_sound]","Select Sound") as null|anything in classic_release_sounds
+
 		if(!choice)
-			return 0
+			return FALSE
+
+		selected.release_sound = choice
+
+	if(href_list["b_releasesoundtest"])
+		var/sound/releasetest
+		if(selected.fancy_vore)
+			releasetest = fancy_release_sounds[selected.release_sound]
+		else
+			releasetest = classic_release_sounds[selected.release_sound]
+
+		if(releasetest)
+			SEND_SOUND(user, releasetest)
+
+	if(href_list["b_sound"])
+		var/choice
+		if(selected.fancy_vore)
+			choice = input(user,"Currently set to [selected.vore_sound]","Select Sound") as null|anything in fancy_vore_sounds
+		else
+			choice = input(user,"Currently set to [selected.vore_sound]","Select Sound") as null|anything in classic_vore_sounds
+
+		if(!choice)
+			return FALSE
 
 		selected.vore_sound = choice
 
 	if(href_list["b_soundtest"])
-		var/soundfile = vore_sounds[selected.vore_sound]
-		if(soundfile)
-			user << soundfile
+		var/sound/voretest
+		if(selected.fancy_vore)
+			voretest = fancy_vore_sounds[selected.vore_sound]
+		else
+			voretest = classic_vore_sounds[selected.vore_sound]
+		if(voretest)
+			SEND_SOUND(user, voretest)
 
 	if(href_list["b_tastes"])
 		selected.can_taste = !selected.can_taste
@@ -754,7 +818,7 @@
 
 	if(href_list["b_del"])
 		var/alert = alert("Are you sure you want to delete your [lowertext(selected.name)]?","Confirmation","Delete","Cancel")
-		if(!alert == "Delete")
+		if(!(alert == "Delete"))
 			return 0
 
 		var/failure_msg = ""
@@ -870,6 +934,19 @@
 
 		if(user.client.prefs_vr)
 			user.client.prefs_vr.allowmobvore = user.allowmobvore
+
+	if(href_list["togglehealbelly"])
+		var/choice = alert(user, "This button is for those who don't like healbelly used on them as a mechanic. It does not affect anything, but is displayed under mechanical prefs for ease of quick checks. You are currently: [user.allowmobvore ? "Okay" : "Not Okay"] with players using healbelly on you.", "", "Allow Healing Belly", "Cancel", "Disallow Healing Belly")
+		switch(choice)
+			if("Cancel")
+				return 0
+			if("Allow Healing Belly")
+				user.permit_healbelly = TRUE
+			if("Disallow Healing Belly")
+				user.permit_healbelly = FALSE
+
+		if(user.client.prefs_vr)
+			user.client.prefs_vr.permit_healbelly = user.permit_healbelly
 
 	if(href_list["togglenoisy"])
 		var/choice = alert(user, "Toggle audible hunger noises. Currently: [user.noisy ? "Enabled" : "Disabled"]", "", "Enable audible hunger", "Cancel", "Disable audible hunger")

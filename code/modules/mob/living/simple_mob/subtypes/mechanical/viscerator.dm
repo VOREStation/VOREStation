@@ -83,4 +83,6 @@
 	if(!.)
 		if(isrobot(L)) // They ignore synths.
 			return TRUE
+		if(istype(L, /mob/living/simple_mob/mechanical/ward/monitor/crew))	// Also ignore friendly monitor wards
+			return TRUE
 		return L.assess_perp(src, FALSE, FALSE, TRUE, FALSE) <= 3

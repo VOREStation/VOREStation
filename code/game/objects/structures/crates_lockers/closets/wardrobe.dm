@@ -140,7 +140,7 @@
 	icon_closed = "orange"
 
 	starts_with = list(
-		/obj/item/clothing/under/color/orange = 3,
+		/obj/item/clothing/under/color/prison = 3,
 		/obj/item/clothing/shoes/orange = 3)
 
 

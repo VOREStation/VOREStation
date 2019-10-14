@@ -279,6 +279,9 @@
 	if(!..())
 		return 0
 
+	if(H.isSynthetic()) // Don't treat FBPs
+		return 0
+
 	if(H.stat == DEAD) // He's dead, Jim
 		return 0
 

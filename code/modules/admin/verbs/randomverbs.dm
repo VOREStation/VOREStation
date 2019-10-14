@@ -35,7 +35,7 @@
 		M.loc = pick(prisonwarp)
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/prisoner = M
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), slot_w_uniform)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/prison(prisoner), slot_w_uniform)
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), slot_shoes)
 		spawn(50)
 			M << "<font color='red'>You have been sent to the prison station!</font>"
@@ -368,7 +368,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	var/location = alert(src,"Please specify where to spawn them.", "Location", "Right Here", "Arrivals", "Cancel")
-	if(!location)
+	if(location == "Cancel" || !location)
 		return
 
 	var/announce = alert(src,"Announce as if they had just arrived?", "Announce", "Yes", "No", "Cancel")
@@ -491,7 +491,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(equipment)
 		if(charjob)
 			job_master.EquipRank(new_character, charjob, 1)
-		equip_custom_items(new_character)
+		//equip_custom_items(new_character)	//VOREStation Removal
 
 	//If desired, add records.
 	if(records)

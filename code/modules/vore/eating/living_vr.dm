@@ -1,12 +1,12 @@
 ///////////////////// Mob Living /////////////////////
 /mob/living
-	var/digestable = 1					// Can the mob be digested inside a belly?
-	var/digest_leave_remains = 0		// Will this mob leave bones/skull/etc after the melty demise?
-	var/allowmobvore = 1				// Will simplemobs attempt to eat the mob?
-	var/showvoreprefs = 1				// Determines if the mechanical vore preferences button will be displayed on the mob or not.
+	var/digestable = TRUE				// Can the mob be digested inside a belly?
+	var/digest_leave_remains = FALSE	// Will this mob leave bones/skull/etc after the melty demise?
+	var/allowmobvore = TRUE				// Will simplemobs attempt to eat the mob?
+	var/showvoreprefs = TRUE			// Determines if the mechanical vore preferences button will be displayed on the mob or not.
 	var/obj/belly/vore_selected			// Default to no vore capability.
 	var/list/vore_organs = list()		// List of vore containers inside a mob
-	var/absorbed = 0					// If a mob is absorbed into another
+	var/absorbed = FALSE				// If a mob is absorbed into another
 	var/weight = 137					// Weight for mobs for weightgain system
 	var/weight_gain = 1 				// How fast you gain weight
 	var/weight_loss = 0.5 				// How fast you lose weight
@@ -15,15 +15,17 @@
 	var/revive_ready = REVIVING_READY	// Only used for creatures that have the xenochimera regen ability, so far.
 	var/metabolism = 0.0015
 	var/vore_taste = null				// What the character tastes like
-	var/no_vore = 0 					// If the character/mob can vore.
-	var/openpanel = 0					// Is the vore panel open?
-	var/noisy = 0						// Toggle audible hunger.
+	var/no_vore = FALSE					// If the character/mob can vore.
+	var/openpanel = FALSE				// Is the vore panel open?
+	var/noisy = FALSE					// Toggle audible hunger.
 	var/absorbing_prey = 0 				// Determines if the person is using the succubus drain or not. See station_special_abilities_vr.
 	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
 	var/fuzzy = 1						// Preference toggle for sharp/fuzzy icon.
 	var/tail_alt = 0					// Tail layer toggle.
-	var/can_be_drop_prey = 0
-	var/can_be_drop_pred = 1			// Mobs are pred by default.
+	var/permit_healbelly = TRUE
+	var/can_be_drop_prey = FALSE
+	var/can_be_drop_pred = TRUE			// Mobs are pred by default.
+	var/next_preyloop					// For Fancy sound internal loop
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -199,6 +201,7 @@
 	P.digest_leave_remains = src.digest_leave_remains
 	P.allowmobvore = src.allowmobvore
 	P.vore_taste = src.vore_taste
+	P.permit_healbelly = src.permit_healbelly
 	P.can_be_drop_prey = src.can_be_drop_prey
 	P.can_be_drop_pred = src.can_be_drop_pred
 
@@ -225,6 +228,7 @@
 	digest_leave_remains = P.digest_leave_remains
 	allowmobvore = P.allowmobvore
 	vore_taste = P.vore_taste
+	permit_healbelly = P.permit_healbelly
 	can_be_drop_prey = P.can_be_drop_prey
 	can_be_drop_pred = P.can_be_drop_pred
 
@@ -334,6 +338,7 @@
 			return
 		//Actual escaping
 		absorbed = 0	//Make sure we're not absorbed
+		muffled = 0		//Removes Muffling
 		forceMove(get_turf(src)) //Just move me up to the turf, let's not cascade through bellies, there's been a problem, let's just leave.
 		for(var/mob/living/simple_mob/SA in range(10))
 			SA.prey_excludes[src] = world.time
@@ -435,7 +440,8 @@
 
 	// Actually shove prey into the belly.
 	belly.nom_mob(prey, user)
-	user.update_icons()
+	if(!ishuman(user))
+		user.update_icons()
 
 	// Flavor handling
 	if(belly.can_taste && prey.get_taste_message(FALSE))
@@ -600,6 +606,8 @@
 		I.forceMove(vore_selected)
 		updateVRPanel()
 
+		log_admin("VORE: [src] used Eat Trash to swallow [I].")
+
 		if(istype(I,/obj/item/device/flashlight/flare) || istype(I,/obj/item/weapon/flame/match) || istype(I,/obj/item/weapon/storage/box/matches))
 			to_chat(src, "<span class='notice'>You can taste the flavor of spicy cardboard.</span>")
 		else if(istype(I,/obj/item/device/flashlight/glowstick))
@@ -656,7 +664,6 @@
 	set category = "Preferences"
 	set desc = "Switch sharp/fuzzy scaling for current mob."
 	appearance_flags ^= PIXEL_SCALE
-	appearance_flags ^= KEEP_TOGETHER
 
 /mob/living/examine(mob/user, distance, infix, suffix)
 	. = ..(user, distance, infix, suffix)
@@ -680,6 +687,7 @@
 	dispvoreprefs += "<b>Digestable:</b> [digestable ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Leaves Remains:</b> [digest_leave_remains ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Mob Vore:</b> [allowmobvore ? "Enabled" : "Disabled"]<br>"
+	dispvoreprefs += "<b>Healbelly permission:</b> [permit_healbelly ? "Allowed" : "Disallowed"]<br>"
 	dispvoreprefs += "<b>Drop-nom prey:</b> [can_be_drop_prey ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Drop-nom pred:</b> [can_be_drop_pred ? "Enabled" : "Disabled"]<br>"
 	user << browse("<html><head><title>Vore prefs: [src]</title></head><body><center>[dispvoreprefs]</center></body></html>", "window=[name];size=200x300;can_resize=0;can_minimize=0")

@@ -1,14 +1,82 @@
 
+/obj/structure/flora
+	name = "flora"
+	desc = "A perfectly generic plant."
 
+	anchored = TRUE // Usually, plants don't move. Usually.
+	plane = DECAL_PLANE
+	layer = BELOW_MOB_LAYER
 
+	var/randomize_size = FALSE
+	var/max_x_scale = 1.25
+	var/max_y_scale = 1.25
+	var/min_x_scale = 0.9
+	var/min_y_scale = 0.9
 
+	var/harvest_tool = null // The type of item used to harvest the plant.
+	var/harvest_count = 0
+
+	var/randomize_harvest_count = TRUE
+	var/max_harvests = 0
+	var/min_harvests = -1
+	var/list/harvest_loot = null	// Should be an associative list for things to spawn, and their weights. An example would be a branch from a tree.
+
+/obj/structure/flora/Initialize()
+	..()
+
+	if(randomize_size)
+		icon_scale_x = rand(min_x_scale * 100, max_x_scale * 100) / 100
+		icon_scale_y = rand(min_y_scale * 100, max_y_scale * 100) / 100
+
+		if(prob(50))
+			icon_scale_x *= -1
+		update_transform()
+
+	if(randomize_harvest_count)
+		max_harvests = max(0, rand(min_harvests, max_harvests)) // Incase you want to weight it more toward 'not harvestable', set min_harvests to a negative value.
+
+/obj/structure/flora/examine(mob/user)
+	. = ..(user)
+	if(harvest_count < max_harvests)
+		to_chat(user, "<span class='notice'>\The [src] seems to have something hanging from it.</span>")
+
+/obj/structure/flora/attackby(var/obj/item/weapon/W, var/mob/living/user)
+	if(can_harvest(W))
+		var/harvest_spawn = pickweight(harvest_loot)
+		var/atom/movable/AM = spawn_harvest(harvest_spawn, user)
+
+		if(!AM)
+			to_chat(user, "<span class='notice'>You fail to harvest anything from \the [src].</span>")
+
+		else
+			to_chat(user, "<span class='notice'>You harvest \the [AM] from \the [src].</span>")
+			return
+
+	..(W, user)
+
+/obj/structure/flora/proc/can_harvest(var/obj/item/I)
+	. = FALSE
+	if(harvest_tool && istype(I, harvest_tool) && harvest_loot && harvest_loot.len && harvest_count < max_harvests)
+		. = TRUE
+	return .
+
+/obj/structure/flora/proc/spawn_harvest(var/path = null, var/mob/user = null)
+	if(!ispath(path))
+		return 0
+	var/turf/Target = get_turf(src)
+	if(user)
+		Target = get_turf(user)
+
+	var/atom/movable/AM = new path(Target)
+
+	harvest_count++
+	return AM
 
 //bushes
 /obj/structure/flora/bush
 	name = "bush"
 	icon = 'icons/obj/flora/snowflora.dmi'
 	icon_state = "snowbush1"
-	anchored = 1
 
 /obj/structure/flora/bush/New()
 	..()
@@ -20,6 +88,7 @@
 	icon = 'icons/obj/plants.dmi'
 	icon_state = "plant-26"
 
+	anchored = FALSE
 
 //newbushes
 
@@ -27,7 +96,6 @@
 	name = "bush"
 	icon = 'icons/obj/flora/ausflora.dmi'
 	icon_state = "firstbush_1"
-	anchored = 1
 
 /obj/structure/flora/ausbushes/New()
 	..()
@@ -144,6 +212,7 @@
 	icon_state = "hangskele"
 	desc = "It's an anatomical model of a human skeletal system made of plaster."
 
+	plane = OBJ_PLANE
 
 //potted plants credit: Flashkirby
 /obj/structure/flora/pottedplant
@@ -151,6 +220,8 @@
 	desc = "Really brings the room together."
 	icon = 'icons/obj/plants.dmi'
 	icon_state = "plant-01"
+
+	plane = OBJ_PLANE
 
 /obj/structure/flora/pottedplant/large
 	name = "large potted plant"
@@ -347,5 +418,23 @@
 	catalogue_data = list(/datum/category_item/catalogue/flora/eyebulbs)
 
 /obj/structure/flora/sif/eyes/Initialize()
+	icon_state = "[initial(icon_state)][rand(1,3)]"
+	. = ..()
+
+/datum/category_item/catalogue/flora/mosstendrils
+	name = "Sivian Flora - Moss Stalks"
+	desc = "A plant native to Sif. The plant is most closely related to the common, dense moss found covering Sif's terrain. \
+	It has evolved a method of camouflage utilizing white hairs on its dorsal sides to make it appear as a small mound of snow from \
+	above. It has no known use, though it is a common furnishing in contemporary homes."
+	value = CATALOGUER_REWARD_TRIVIAL
+
+/obj/structure/flora/sif/tendrils
+	name = "stocky tendrils"
+	desc = "A 'plant' made up of hardened moss. It has tiny hairs that bunch together to look like snow."
+	icon_state = "grass"
+	randomize_size = TRUE
+	catalogue_data = list(/datum/category_item/catalogue/flora/mosstendrils)
+
+/obj/structure/flora/sif/tendrils/Initialize()
 	icon_state = "[initial(icon_state)][rand(1,3)]"
 	. = ..()

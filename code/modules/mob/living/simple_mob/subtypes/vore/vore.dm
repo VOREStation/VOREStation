@@ -3,4 +3,4 @@
 	mob_bump_flag = 0
 
 /mob/living/simple_mob/vore/aggressive
-	mob_bump_flag = 1
+	mob_bump_flag = HEAVY

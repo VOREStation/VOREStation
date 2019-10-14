@@ -1153,7 +1153,7 @@
 					/obj/item/toy/plushie/tabby_cat = 50)
 
 /obj/machinery/vending/fishing
-	name = "loot trawler"
+	name = "Loot Trawler"
 	desc = "A special vendor for fishing equipment."
 	product_ads = "Tired of trawling across the ocean floor? Get our loot!;Chum and rods.;Don't get baited into fishing without us!;Baby is your star-sign pisces? We'd make a perfect match.;Do not fear, plenty to catch around here.;Don't get reeled in helplessly, get your own rod today!"
 	icon_state = "fishvendor"

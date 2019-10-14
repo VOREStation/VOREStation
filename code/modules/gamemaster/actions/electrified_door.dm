@@ -9,7 +9,6 @@
 		/area/shuttle,
 		/area/crew_quarters
 	)
-	var/severity
 
 /datum/gm_action/electrified_door/set_up()
 	var/list/area/grand_list_of_areas = get_station_areas(excluded)

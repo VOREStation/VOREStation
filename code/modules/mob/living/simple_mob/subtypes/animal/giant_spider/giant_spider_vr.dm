@@ -1,3 +1,9 @@
+/mob/living/simple_mob/animal/giant_spider/electric
+	base_attack_cooldown = 15
+
+/mob/living/simple_mob/animal/giant_spider/webslinger
+	base_attack_cooldown = 15
+
 // Slightly placeholder, mostly to replace ion hivebots on V4
 /mob/living/simple_mob/animal/giant_spider/ion
 	desc = "Furry and green, it makes you shudder to look at it. This one has brilliant green eyes and a hint of static discharge."
@@ -9,9 +15,9 @@
 	maxHealth = 90
 	health = 90
 
-	base_attack_cooldown = 10
+	base_attack_cooldown = 15
 	projectilesound = 'sound/weapons/taser2.ogg'
-	projectiletype = /obj/item/projectile/ion/small
+	projectiletype = /obj/item/projectile/ion/pistol
 
 	melee_damage_lower = 8
 	melee_damage_upper = 15

@@ -75,7 +75,7 @@ item_path: /obj/item/device/flashlight/pen/fluff/lynn
 {
 ckey: arokha
 character_name: Aronai Kadigan
-item_path: /obj/item/clothing/under/utility/sifguard/medical/command
+item_path: /obj/item/clothing/under/solgov/utility/sifguard/medical/command
 item_name: centcom medical uniform
 item_desc: A medical uniform straight from Central Command.
 }
@@ -148,7 +148,7 @@ item_path: /obj/item/weapon/storage/box/fluff/octavious
 {
 ckey: burritojustice
 character_name: Jayda Wilson
-item_path: /obj/item/clothing/under/utility/sifguard/medical
+item_path: /obj/item/clothing/under/solgov/utility/sifguard/medical/fluff
 }
 
 # ######## C CKEYS
@@ -629,6 +629,13 @@ item_path: /obj/item/weapon/fluff/dragor_dot
 
 # ######## R CKEYS
 
+{
+ckey: radiantaurora
+character_name: Tiemli Kroto
+item_path: /obj/item/clothing/glasses/welding/tiemgogs
+req_titles: Roboticist
+}
+
 # ######## S CKEYS
 {
 ckey: samanthafyre
@@ -974,3 +981,10 @@ ckey: zodiacshadow
 character_name: Nehi Maximus
 item_path: /obj/item/device/radio/headset/fluff/zodiacshadow
 }
+
+{
+ckey: chaoko99
+character_name: Aika Hisakawa
+item_path: /obj/item/clothing/suit/fluff/blue_trimmed_coat
+}
+

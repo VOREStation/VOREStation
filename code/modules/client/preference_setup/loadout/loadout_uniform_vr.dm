@@ -3,9 +3,9 @@
 	path = /obj/item/clothing/under/permit
 
 //Polaris overrides
-/datum/gear/uniform/pt/sifguard
+/datum/gear/uniform/solgov/pt/sifguard
 	display_name = "pt uniform, planetside sec"
-	path = /obj/item/clothing/under/pt/sifguard
+	path = /obj/item/clothing/under/solgov/pt/sifguard
 
 //KHI Uniforms
 /datum/gear/uniform/job_khi/cmd
@@ -169,3 +169,7 @@ Swimsuits
 /datum/gear/uniform/siren
 	display_name = "jumpsuit, Siren"
 	path = /obj/item/clothing/under/fluff/siren
+
+/datum/gear/uniform/suit/v_nanovest
+	display_name = "Varmacorp nanovest"
+	path = /obj/item/clothing/under/fluff/v_nanovest

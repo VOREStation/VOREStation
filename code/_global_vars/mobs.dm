@@ -5,3 +5,4 @@ GLOBAL_LIST_EMPTY(stealthminID)
 GLOBAL_LIST_EMPTY(directory)							//all ckeys with associated client
 GLOBAL_LIST_EMPTY(clients)
 GLOBAL_LIST_EMPTY(players_by_zlevel)
+GLOBAL_LIST_EMPTY(round_text_log)

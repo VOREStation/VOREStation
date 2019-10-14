@@ -106,3 +106,27 @@
 		<B>Something chitters.</B><BR>
 		<B>End of transcript.</B>
 	"}
+
+/obj/structure/prop/blackbox/xenofrigate
+	catalogue_data = list(/datum/category_item/catalogue/information/blackbox/xenofrigate)
+
+/datum/category_item/catalogue/information/blackbox/xenofrigate
+	name = "Black Box Data - MBT-540"
+	desc = {"
+		<BR>
+		<B>Begin Log</B>
+		<B>@$&@$& Human ##:##:##:</B> Attention unidentified vessel, state your designation and intent.<BR>
+		<B>!#@$&&^ Human ##:##:##:</B> Commander I don't think they're going to stop.<BR>
+		<B>@$&@$& Human ##:##:##:</B> Unidentified vessel, you have until the count of three before we engage weapon-<BR>
+		<B>!#@$&&^ Human ##:##:##:</B> Commander! Think about what you're-<BR>
+		<B>A repeating clicking, before silence.</B><BR>
+		<B>End of first log.</B><BR>
+		**<BR>
+		<B>Begin Log</B><BR>
+		<B>#!#^@$& Skrell ##:##:##:</B> Director, I think you should see this.<BR>
+		<B>^@$& Skrell ##:##:##:</B> Yes? What is it?<BR>
+		<B>#!#^@$& Skrell ##:##:##:</B> Another one of those ships has appeared near th-462$^ ---n colonies. I would strongly advise pursuing it.<BR>
+		<B>^@$& Skrell ##:##:##:</B> A wise decision. If it is damaged like the last one, we may be able to finally see what is - What?<BR>
+		<B>A repeating ping, before silence.</B><BR>
+		<B>End of second log.</B>
+	"}

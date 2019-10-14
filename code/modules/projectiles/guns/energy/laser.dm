@@ -90,7 +90,6 @@
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_pistol)
 	icon_state = "alienpistol"
 	item_state = "alienpistol"
-	fire_sound = 'sound/weapons/eLuger.ogg'
 	fire_delay = 10 // Handguns should be inferior to two-handed weapons. Even alien ones I suppose.
 	charge_cost = 480 // Five shots.
 
@@ -222,7 +221,7 @@
 	desc = "Standard issue weapon of the Imperial Guard"
 	origin_tech = list(TECH_COMBAT = 1, TECH_MAGNET = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
-	projectile_type = /obj/item/projectile/beam/lastertag/blue
+	projectile_type = /obj/item/projectile/beam/lasertag/blue
 	cell_type = /obj/item/weapon/cell/device/weapon/recharge
 	battery_lock = 1
 	var/required_vest
@@ -237,11 +236,26 @@
 /obj/item/weapon/gun/energy/lasertag/blue
 	icon_state = "bluetag"
 	item_state = "bluetag"
-	projectile_type = /obj/item/projectile/beam/lastertag/blue
+	projectile_type = /obj/item/projectile/beam/lasertag/blue
 	required_vest = /obj/item/clothing/suit/bluetag
 
 /obj/item/weapon/gun/energy/lasertag/red
 	icon_state = "redtag"
 	item_state = "redtag"
-	projectile_type = /obj/item/projectile/beam/lastertag/red
+	projectile_type = /obj/item/projectile/beam/lasertag/red
 	required_vest = /obj/item/clothing/suit/redtag
+
+/obj/item/weapon/gun/energy/lasertag/omni
+	projectile_type = /obj/item/projectile/beam/lasertag/omni
+
+// Laser scattergun, proof of concept.
+
+/obj/item/weapon/gun/energy/lasershotgun
+	name = "laser scattergun"
+	icon = 'icons/obj/energygun.dmi'
+	item_state = "laser"
+	icon_state = "scatter"
+	desc = "A strange Almachi weapon, utilizing a refracting prism to turn a single laser blast into a diverging cluster."
+	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 1, TECH_MATERIAL = 4)
+
+	projectile_type = /obj/item/projectile/scatter/laser

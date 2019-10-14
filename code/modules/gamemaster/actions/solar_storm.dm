@@ -1,6 +1,6 @@
 /datum/gm_action/solar_storm
 	name = "solar storm"
-	var/const/rad_interval 	= 5  	//Same interval period as radiation storms.
+	var/rad_interval = 1 SECOND
 	var/base_solar_gen_rate
 	length = 3 MINUTES
 	var/duration	// Duration for the storm
@@ -21,30 +21,25 @@
 	if(isnull(base_solar_gen_rate)) base_solar_gen_rate = GLOB.solar_gen_rate
 	GLOB.solar_gen_rate = mult * base_solar_gen_rate
 
-
 /datum/gm_action/solar_storm/start()
 	..()
 	length = duration
 	command_announcement.Announce("The solar storm has reached the station. Please refain from EVA and remain inside the station until it has passed.", "Anomaly Alert")
 	adjust_solar_output(5)
 
-	while(world.time <= world.time + duration)
-		if(duration % rad_interval == 0)
+	var/start_time = world.time
+
+	spawn()
+		while(world.time <= start_time + duration)
+			sleep(rad_interval)
 			radiate()
 
 /datum/gm_action/solar_storm/get_weight()
-	var/people_in_space = 0
-	for(var/mob/living/L in player_list)
-		if(!(L.z in using_map.station_levels))
-			continue // Not on the right z-level.
-		var/turf/T = get_turf(L)
-		if(istype(T, /turf/space) && istype(T.loc,/area/space))
-			people_in_space++
-	return 20 + (metric.count_people_in_department(ROLE_ENGINEERING) * 10) + (people_in_space * 30)
+	return 20 + (metric.count_people_in_department(ROLE_ENGINEERING) * 10) + (metric.count_all_space_mobs() * 30)
 
 /datum/gm_action/solar_storm/proc/radiate()
 	// Note: Too complicated to be worth trying to use the radiation system for this.  Its only in space anyway, so we make an exception in this case.
-	for(var/mob/living/L in living_mob_list)
+	for(var/mob/living/L in player_list)
 		var/turf/T = get_turf(L)
 		if(!T)
 			continue

@@ -46,12 +46,3 @@
 		L.throw_at(get_edge_target_turf(L, throwdir), rand(3,6), 10)
 
 		return 1
-
-//R&D Design
-/datum/design/item/weapon/pummeler
-	desc = "With the 'Pummeler', punt anyone you don't like out of the room!"
-	id = "pummeler"
-	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_MAGNET = 5)
-	materials = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 3000, "uranium" = 1000)
-	build_path = /obj/item/weapon/gun/energy/pummeler
-	sort_string = "TAADC"

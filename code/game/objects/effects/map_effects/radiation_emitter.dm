@@ -13,7 +13,7 @@
 	return ..()
 
 /obj/effect/map_effect/radiation_emitter/process()
-	radiation_repository.radiate(src, radiation_power)
+	SSradiation.radiate(src, radiation_power)
 
 /obj/effect/map_effect/radiation_emitter/strong
 	radiation_power = 100

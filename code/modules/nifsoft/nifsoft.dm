@@ -165,15 +165,19 @@
 	return ..()
 
 /////////////////
-// A NIFSoft Disk
+// A NIFSoft Uploader
 /obj/item/weapon/disk/nifsoft
-	name = "NIFSoft Disk"
+	name = "NIFSoft Uploader"
 	desc = "It has a small label: \n\
-	\"Portable NIFSoft Disk. \n\
-	Insert directly into brain.\""
-	icon = 'icons/obj/cloning.dmi'
-	icon_state = "datadisk2"
-	item_state = "card-id"
+	\"Portable NIFSoft Installation Media. \n\
+	Align ocular port with eye socket and depress red plunger.\""
+	icon = 'icons/obj/nanomods.dmi'
+	icon_state = "medical"
+	item_state = "nanomod"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_vr.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_vr.dmi',
+		)
 	w_class = ITEMSIZE_SMALL
 	var/datum/nifsoft/stored = null
 
@@ -188,7 +192,7 @@
 	var/mob/living/carbon/human/Hu = user
 
 	if(!Ht.nif || Ht.nif.stat != NIF_WORKING)
-		to_chat(user,"<span class='warning'>Either they don't have a NIF, or the disk can't connect.</span>")
+		to_chat(user,"<span class='warning'>Either they don't have a NIF, or the uploader can't connect.</span>")
 		return
 
 	var/extra = extra_params()
@@ -197,9 +201,18 @@
 	else
 		Ht.visible_message("<span class='warning'>[Hu] begins uploading [src] into [Ht]!</span>","<span class='danger'>[Hu] is uploading [src] into you!</span>")
 
-	if(A == user || do_after(Hu,10 SECONDS,Ht))
+	icon_state = "[initial(icon_state)]-animate"	//makes it play the item animation upon using on a valid target
+	update_icon()
+
+	if(A == user && do_after(Hu,1 SECONDS,Ht))
 		new stored(Ht.nif,extra)
 		qdel(src)
+	else if(A != user && do_after(Hu,10 SECONDS,Ht))
+		new stored(Ht.nif,extra)
+		qdel(src)
+	else
+		icon_state = "[initial(icon_state)]"	//If it fails to apply to a valid target and doesn't get deleted, reset its icon state
+		update_icon()
 
 //So disks can pass fancier stuff.
 /obj/item/weapon/disk/nifsoft/proc/extra_params()
@@ -208,8 +221,14 @@
 
 // Compliance Disk //
 /obj/item/weapon/disk/nifsoft/compliance
-	name = "NIFSoft Disk (Compliance)"
+	name = "NIFSoft Uploader (Compliance)"
 	desc = "Wow, adding laws to people? That seems illegal. It probably is. Okay, it really is."
+	icon_state = "compliance"
+	item_state = "healthanalyzer"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand.dmi',
+		)
 	stored = /datum/nifsoft/compliance
 	var/laws
 
@@ -233,19 +252,20 @@
 
 // Security Disk //
 /obj/item/weapon/disk/nifsoft/security
-	name = "NIFSoft Disk - Security"
+	name = "NIFSoft Uploader - Security"
 	desc = "Contains free NIFSofts useful for security members.\n\
 	It has a small label: \n\
-	\"Portable NIFSoft Disk. \n\
-	Insert directly into brain.\""
+	\"Portable NIFSoft Installation Media. \n\
+	Align ocular port with eye socket and depress red plunger.\""
 
+	icon_state = "security"
 	stored = /datum/nifsoft/package/security
 
 /datum/nifsoft/package/security
 	software = list(/datum/nifsoft/ar_sec,/datum/nifsoft/flashprot)
 
 /obj/item/weapon/storage/box/nifsofts_security
-	name = "security nifsoft disks"
+	name = "security nifsoft uploaders"
 	desc = "A box of free nifsofts for security employees."
 	icon_state = "disk_kit"
 
@@ -256,19 +276,20 @@
 
 // Engineering Disk //
 /obj/item/weapon/disk/nifsoft/engineering
-	name = "NIFSoft Disk - Engineering"
+	name = "NIFSoft Uploader - Engineering"
 	desc = "Contains free NIFSofts useful for engineering members.\n\
 	It has a small label: \n\
-	\"Portable NIFSoft Disk. \n\
-	Insert directly into brain.\""
+	\"Portable NIFSoft Installation Media. \n\
+	Align ocular port with eye socket and depress red plunger.\""
 
+	icon_state = "engineering"
 	stored = /datum/nifsoft/package/engineering
 
 /datum/nifsoft/package/engineering
 	software = list(/datum/nifsoft/ar_eng,/datum/nifsoft/alarmmonitor,/datum/nifsoft/uvblocker)
 
 /obj/item/weapon/storage/box/nifsofts_engineering
-	name = "engineering nifsoft disks"
+	name = "engineering nifsoft uploaders"
 	desc = "A box of free nifsofts for engineering employees."
 	icon_state = "disk_kit"
 
@@ -279,11 +300,11 @@
 
 // Medical Disk //
 /obj/item/weapon/disk/nifsoft/medical
-	name = "NIFSoft Disk - Medical"
+	name = "NIFSoft Uploader - Medical"
 	desc = "Contains free NIFSofts useful for medical members.\n\
 	It has a small label: \n\
-	\"Portable NIFSoft Disk. \n\
-	Insert directly into brain.\""
+	\"Portable NIFSoft Installation Media. \n\
+	Align ocular port with eye socket and depress red plunger.\""
 
 	stored = /datum/nifsoft/package/medical
 
@@ -291,7 +312,7 @@
 	software = list(/datum/nifsoft/ar_med,/datum/nifsoft/crewmonitor)
 
 /obj/item/weapon/storage/box/nifsofts_medical
-	name = "medical nifsoft disks"
+	name = "medical nifsoft uploaders"
 	desc = "A box of free nifsofts for medical employees."
 	icon_state = "disk_kit"
 
@@ -302,19 +323,20 @@
 
 // Mining Disk //
 /obj/item/weapon/disk/nifsoft/mining
-	name = "NIFSoft Disk - Mining"
+	name = "NIFSoft Uploader - Mining"
 	desc = "Contains free NIFSofts useful for mining members.\n\
 	It has a small label: \n\
-	\"Portable NIFSoft Disk. \n\
-	Insert directly into brain.\""
+	\"Portable NIFSoft Installation Media. \n\
+	Align ocular port with eye socket and depress red plunger.\""
 
+	icon_state = "mining"
 	stored = /datum/nifsoft/package/mining
 
 /datum/nifsoft/package/mining
 	software = list(/datum/nifsoft/material,/datum/nifsoft/spare_breath)
 
 /obj/item/weapon/storage/box/nifsofts_mining
-	name = "mining nifsoft disks"
+	name = "mining nifsoft uploaders"
 	desc = "A box of free nifsofts for mining employees."
 	icon_state = "disk_kit"
 

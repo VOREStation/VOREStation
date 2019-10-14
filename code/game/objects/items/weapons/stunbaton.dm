@@ -9,6 +9,7 @@
 	sharp = 0
 	edge = 0
 	throwforce = 7
+	flags = NOCONDUCT
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")
@@ -18,6 +19,7 @@
 	var/status = 0		//whether the thing is on or not
 	var/obj/item/weapon/cell/bcell = null
 	var/hitcost = 240
+	var/use_external_power = FALSE //only used to determine if it's a cyborg baton
 
 /obj/item/weapon/melee/baton/New()
 	..()
@@ -108,6 +110,8 @@
 		user <<"<span class='warning'>The baton does not have a power source installed.</span>"
 
 /obj/item/weapon/melee/baton/attackby(obj/item/weapon/W, mob/user)
+	if(use_external_power)
+		return
 	if(istype(W, /obj/item/weapon/cell))
 		if(istype(W, /obj/item/weapon/cell/device))
 			if(!bcell)
@@ -136,6 +140,11 @@
 		return ..()
 
 /obj/item/weapon/melee/baton/attack_self(mob/user)
+	if(use_external_power)
+		//try to find our power cell
+		var/mob/living/silicon/robot/R = loc
+		if (istype(R))
+			bcell = R.cell
 	if(bcell && bcell.charge > hitcost)
 		status = !status
 		user << "<span class='notice'>[src] is now [status ? "on" : "off"].</span>"
@@ -204,16 +213,7 @@
 //secborg stun baton module
 /obj/item/weapon/melee/baton/robot
 	hitcost = 500
-
-/obj/item/weapon/melee/baton/robot/attack_self(mob/user)
-	//try to find our power cell
-	var/mob/living/silicon/robot/R = loc
-	if (istype(R))
-		bcell = R.cell
-	return ..()
-
-/obj/item/weapon/melee/baton/robot/attackby(obj/item/weapon/W, mob/user)
-	return
+	use_external_power = TRUE
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/weapon/melee/baton/cattleprod
@@ -274,13 +274,4 @@
 
 // Borg version, for the lost module.
 /obj/item/weapon/melee/baton/shocker/robot
-
-/obj/item/weapon/melee/baton/shocker/robot/attack_self(mob/user)
-	//try to find our power cell
-	var/mob/living/silicon/robot/R = loc
-	if (istype(R))
-		bcell = R.cell
-	return ..()
-
-/obj/item/weapon/melee/baton/shocker/robot/attackby(obj/item/weapon/W, mob/user)
-	return
+	use_external_power = TRUE

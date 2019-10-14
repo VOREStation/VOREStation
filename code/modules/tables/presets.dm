@@ -58,6 +58,23 @@
 	material = get_material_by_name("wood")
 	..()
 
+/obj/structure/table/sifwoodentable
+	icon_state = "plain_preview"
+	color = "#824B28"
+
+/obj/structure/table/sifwoodentable/New()
+	material = get_material_by_name("alien wood")
+	..()
+
+/obj/structure/table/sifwooden_reinforced
+	icon_state = "reinf_preview"
+	color = "#824B28"
+
+/obj/structure/table/sifwooden_reinforced/New()
+	material = get_material_by_name("alien wood")
+	reinforced = get_material_by_name(DEFAULT_WALL_MATERIAL)
+	..()
+
 /obj/structure/table/gamblingtable
 	icon_state = "gamble_preview"
 
@@ -73,6 +90,15 @@
 
 /obj/structure/table/glass/New()
 	material = get_material_by_name("glass")
+	..()
+
+/obj/structure/table/borosilicate
+	icon_state = "plain_preview"
+	color = "#4D3EAC"
+	alpha = 77
+
+/obj/structure/table/borosilicate/New()
+	material = get_material_by_name("borosilicate glass")
 	..()
 
 /obj/structure/table/holotable
@@ -167,6 +193,18 @@
 /obj/structure/table/bench/wooden/New()
 	material = get_material_by_name("wood")
 	..()
+
+/obj/structure/table/bench/sifwooden
+	icon_state = "plain_preview"
+	color = "#824B28"
+
+/obj/structure/table/bench/sifwooden/New()
+	material = get_material_by_name("alien wood")
+	..()
+
+/obj/structure/table/bench/sifwooden/padded
+	icon_state = "padded_preview"
+	carpeted = 1
 
 /obj/structure/table/bench/padded
 	icon_state = "padded_preview"

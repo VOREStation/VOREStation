@@ -10,7 +10,9 @@ List of things solar grubs should be able to do:
 
 /datum/category_item/catalogue/fauna/solargrub		//TODO: VIRGO_LORE_WRITING_WIP
 	name = "Solargrub"
-	desc = ""
+	desc = "Some form of mutated space larva, they seem to crop up on space stations wherever there is power. \
+	They seem to have the chance to cocoon and mutate if left alone, but no recorded instances of this have happened yet. \
+	Therefore, if you see the grubs, kill them while they're small, or things might escalate." // TODO: PORT SOLAR MOTHS - Rykka
 	value = CATALOGUER_REWARD_EASY
 
 #define SINK_POWER 1

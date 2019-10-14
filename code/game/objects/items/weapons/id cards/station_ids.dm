@@ -31,6 +31,7 @@
 	var/dorm = 0			// determines if this ID has claimed a dorm already
 
 	var/mining_points = 0	// For redeeming at mining equipment vendors
+	var/survey_points = 0	// For redeeming at explorer equipment vendors.
 
 /obj/item/weapon/card/id/examine(mob/user)
 	set src in oview(1)
@@ -170,7 +171,7 @@
 
 /obj/item/weapon/card/id/synthetic/Initialize()
 	. = ..()
-	access = get_all_station_access() + access_synth
+	access = get_all_station_access().Copy() + access_synth
 
 /obj/item/weapon/card/id/centcom
 	name = "\improper CentCom. ID"
@@ -181,7 +182,7 @@
 
 /obj/item/weapon/card/id/centcom/Initialize()
 	. = ..()
-	access = get_all_centcom_access()
+	access = get_all_centcom_access().Copy()
 
 /obj/item/weapon/card/id/centcom/station/Initialize()
 	. = ..()

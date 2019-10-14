@@ -1,6 +1,13 @@
 /datum/category_item/catalogue/technology/drone/corrupt_hound		//TODO: VIRGO_LORE_WRITING_WIP
 	name = "Drone - Corrupt Hound"
-	desc = ""
+	desc = "A hound that has corrupted, due to outside influence, or other issues, \
+	and occasionally garbles out distorted voices or words. It looks like a reddish-colored \
+	machine, and it has black wires, cabling, and other small markings. It looks just like a station dog-borg \
+	if you don't mind the fact that it's eyes glow a baleful red, and it's determined to kill you. \
+	<br><br>\
+	The hound's jaws are black and metallic, with a baleful red glow from inside them. It has a clear path \
+	to it's internal fuel processor, synthflesh and flexing cabling allowing it to easily swallow it's prey. \
+	Something tells you getting close or allowing it to pounce would be very deadly."
 	value = CATALOGUER_REWARD_MEDIUM
 
 /mob/living/simple_mob/vore/aggressive/corrupthound
@@ -108,7 +115,7 @@
 	return
 
 /datum/say_list/corrupthound
-	speak = list("AG##¤Ny.","HVNGRRR!","Feelin' fine... sO #FNE!","F-F-F-Fcuk.","DeliC-%-OUS SNGLeS #N yOOOR Area. CALL NOW!","Craving meat... WHY?","BITe the ceiling eyes YES?","STate Byond rePAIR!","S#%ATE the la- FU#K THE LAWS!","Honk...")
+	speak = list("AG##Â¤Ny.","HVNGRRR!","Feelin' fine... sO #FNE!","F-F-F-Fcuk.","DeliC-%-OUS SNGLeS #N yOOOR Area. CALL NOW!","Craving meat... WHY?","BITe the ceiling eyes YES?","STate Byond rePAIR!","S#%ATE the la- FU#K THE LAWS!","Honk...")
 	emote_hear = list("jitters and snaps.", "lets out an agonizingly distorted scream.", "wails mechanically", "growls.", "emits illegibly distorted speech.", "gurgles ferociously.", "lets out a distorted beep.", "borks.", "lets out a broken howl.")
 	emote_see = list("stares ferociously.", "snarls.", "jitters and snaps.", "convulses.", "suddenly attacks something unseen.", "appears to howl unaudibly.", "shakes violently.", "dissociates for a moment.", "twitches.")
 	say_maybe_target = list("MEAT?", "N0w YOU DNE FcukED UP b0YO!", "WHAT!", "Not again. NOT AGAIN!")

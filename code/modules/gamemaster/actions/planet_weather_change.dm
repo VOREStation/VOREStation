@@ -5,7 +5,13 @@
 	reusable = TRUE
 	var/datum/planet/target_planet
 
-	var/list/banned_weathers = list() //VOREStation Temp Edit
+	var/list/banned_weathers = list(
+		//VOREStation Edit - Virgo 3B Weather,
+		/datum/weather/virgo3b/ash_storm,
+		/datum/weather/virgo3b/emberfall,
+		/datum/weather/virgo3b/blood_moon,
+		/datum/weather/virgo3b/fallout)
+		//VOREStation Edit End
 	var/list/possible_weathers = list()
 
 /datum/gm_action/planet_weather_shift/set_up()

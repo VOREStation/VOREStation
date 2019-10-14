@@ -2,15 +2,12 @@
 	var/shelter_id
 	var/description
 	var/blacklisted_turfs
-	var/whitelisted_turfs
 	var/banned_areas
 	var/banned_objects
-	var/roof
 
 /datum/map_template/shelter/New()
 	. = ..()
-	blacklisted_turfs = typecacheof(/turf/unsimulated)
-	whitelisted_turfs = list()
+	blacklisted_turfs = typecacheof(list(/turf/unsimulated, /turf/simulated/floor/tiled))
 	banned_areas = typecacheof(/area/shuttle)
 	banned_objects = list()
 
@@ -22,14 +19,33 @@
 			return SHELTER_DEPLOY_BAD_AREA
 
 		var/banned = is_type_in_typecache(T, blacklisted_turfs)
-		var/permitted = is_type_in_typecache(T, whitelisted_turfs)
-		if(banned && !permitted)
+		if(banned || T.density)
 			return SHELTER_DEPLOY_BAD_TURFS
 
 		for(var/obj/O in T)
 			if((O.density && O.anchored) || is_type_in_typecache(O, banned_objects))
 				return SHELTER_DEPLOY_ANCHORED_OBJECTS
 	return SHELTER_DEPLOY_ALLOWED
+
+/datum/map_template/shelter/proc/add_roof(turf/deploy_location)
+	var/affected = get_affected_turfs(deploy_location, centered=TRUE)
+	for(var/turf/T in affected)
+		if(isopenspace(T))
+			T.ChangeTurf(/turf/simulated/shuttle/floor/voidcraft)
+
+/datum/map_template/shelter/proc/annihilate_plants(turf/deploy_location)
+	var/deleted_atoms = 0
+	var/affected = get_affected_turfs(deploy_location, centered=TRUE)
+	for(var/turf/T in affected)
+		for(var/obj/structure/flora/AM in T)
+			++deleted_atoms
+			qdel(AM)
+	admin_notice("<span class='danger'>Annihilated [deleted_atoms] plants.</span>", R_DEBUG)
+
+/datum/map_template/shelter/proc/update_lighting(turf/deploy_location)
+	var/affected = get_affected_turfs(deploy_location, centered=TRUE)
+	for(var/turf/T in affected)
+		T.lighting_build_overlay()
 
 /datum/map_template/shelter/alpha
 	name = "Shelter Alpha"
@@ -39,16 +55,6 @@
 		sleeping area! Order now, and we'll throw in a TINY FAN, \
 		absolutely free!"
 	mappath = "maps/submaps/shelters/shelter_1.dmm"
-	roof = "roof_alpha"
-
-/datum/map_template/shelter/alpha_roof
-	shelter_id = "roof_alpha"
-	mappath = "maps/submaps/shelters/shelter_1_roof.dmm"
-
-/datum/map_template/shelter/alpha/New()
-	. = ..()
-	whitelisted_turfs = typecacheof(/turf/simulated/mineral)
-	banned_objects = list()
 
 /datum/map_template/shelter/beta
 	name = "Shelter Beta"
@@ -59,29 +65,33 @@
 		and a deluxe companion to keep you from getting lonely during \
 		an ash storm."
 	mappath = "maps/submaps/shelters/shelter_2.dmm"
-	roof = "roof_beta"
-
-/datum/map_template/shelter/beta_roof
-	shelter_id = "roof_beta"
-	mappath = "maps/submaps/shelters/shelter_2_roof.dmm"
-
-/datum/map_template/shelter/beta/New()
-	. = ..()
-	whitelisted_turfs = typecacheof(/turf/simulated/mineral)
-	banned_objects = list()
 
 /datum/map_template/shelter/gamma
 	name = "Shelter Gamma"
 	shelter_id = "shelter_gamma"
+	description = "A luxury elite bar which holds an entire bar \
+		along with two vending machines, tables, and a restroom that \
+		also has a sink. This isn't a survival capsule and so you can \
+		expect that this won't save you if you're bleeding out to \
+		death."
+	mappath = "maps/submaps/shelters/shelter_3.dmm"
+
+/datum/map_template/shelter/delta
+	name = "Shelter Delta"
+	shelter_id = "shelter_delta"
+	description = "A small firebase that contains equipment and supplies \
+		for roughly a squad of military troops. Large quantities of \
+		supplies allow it to hold out for an extended period of time\
+		and a built in medical facility allows field treatment to be \
+		possible."
+	mappath = "maps/submaps/shelters/shelter_4.dmm"
+
+/datum/map_template/shelter/phi
+	name = "Shelter Phi"
+	shelter_id = "shelter_phi"
 	description = "An heavily modified variant of the luxury shelter, \
 		this particular model has extra food, drinks, and other supplies. \
 		Originally designed for use by colonists on worlds with little to \
 		to no contact, the expense of these shelters have prevented them \
 		from seeing common use."
-	mappath = "maps/submaps/shelters/shelter_3.dmm"
-	roof = "roof_beta"
-
-/datum/map_template/shelter/gamma/New()
-	. = ..()
-	whitelisted_turfs = typecacheof(/turf/simulated/mineral)
-	banned_objects = list()
+	mappath = "maps/submaps/shelters/shelter_a.dmm"

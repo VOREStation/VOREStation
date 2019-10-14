@@ -41,7 +41,7 @@
 /datum/gm_action/radiation_storm/proc/radiate()
 	var/radiation_level = rand(15, 35)
 	for(var/z in using_map.station_levels)
-		radiation_repository.z_radiate(locate(1, 1, z), radiation_level, 1)
+		SSradiation.z_radiate(locate(1, 1, z), radiation_level, 1)
 
 	for(var/mob/living/carbon/C in living_mob_list)
 		var/area/A = get_area(C)
@@ -64,11 +64,4 @@
 		revoke_maint_all_access()
 
 /datum/gm_action/radiation_storm/get_weight()
-	var/people_in_space = 0
-	for(var/mob/living/L in player_list)
-		if(!(L.z in using_map.station_levels))
-			continue // Not on the right z-level.
-		var/turf/T = get_turf(L)
-		if(istype(T, /turf/space) && istype(T.loc,/area/space))
-			people_in_space++
-	return 20 + (metric.count_people_in_department(ROLE_MEDICAL) * 10) + (people_in_space * 40) + (metric.count_people_in_department(ROLE_EVERYONE) * 20)
+	return 20 + (metric.count_people_in_department(ROLE_MEDICAL) * 10) + (metric.count_all_space_mobs() * 40) + (metric.count_people_in_department(ROLE_EVERYONE) * 20)

@@ -60,11 +60,4 @@
 		command_announcement.Announce("We're disappointed at the loss of the drones, but the survivors have been recovered.", "Rogue drone alert")
 
 /datum/gm_action/rogue_drone/get_weight()
-	var/people_in_space = 0
-	for(var/mob/living/L in player_list)
-		if(!(L.z in using_map.station_levels))
-			continue // Not on the right z-level.
-		var/turf/T = get_turf(L)
-		if(istype(T, /turf/space) && istype(T.loc,/area/space))
-			people_in_space++
-	return 20 + (metric.count_people_in_department(ROLE_SECURITY) * 10) + (people_in_space * 30)
+	return 20 + (metric.count_people_in_department(ROLE_SECURITY) * 10) + (metric.count_all_space_mobs() * 30)
