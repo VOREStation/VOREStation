@@ -453,6 +453,10 @@
 	icon_state = "sari_green"
 	item_state_slots = list(slot_r_hand_str = "dress_green", slot_l_hand_str = "dress_green")
 
+/obj/item/clothing/under/dress/lilacdress
+	name = "lilac dress"
+	desc = "A simple black dress adorned in fake purple lilacs."
+	icon_state = "lilacdress"
 
 /*
  * wedding stuff

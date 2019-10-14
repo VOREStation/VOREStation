@@ -99,7 +99,19 @@
 	corpseidjob = "Operative"
 	corpseidaccess = "Syndicate"
 
-
+/obj/effect/landmark/mobcorpse/solarpeacekeeper
+	name = "Mercenary"
+	corpseuniform = /obj/item/clothing/under/syndicate
+	corpsesuit = /obj/item/clothing/suit/armor/pcarrier/blue/sol
+	corpseshoes = /obj/item/clothing/shoes/boots/swat
+	corpsegloves = /obj/item/clothing/gloves/swat
+	corpseradio = /obj/item/device/radio/headset
+	corpsemask = /obj/item/clothing/mask/gas
+	corpsehelmet = /obj/item/clothing/head/helmet/swat
+	corpseback = /obj/item/weapon/storage/backpack
+	corpseid = 1
+	corpseidjob = "Peacekeeper"
+	corpseidaccess = "Syndicate"
 
 /obj/effect/landmark/mobcorpse/syndicatecommando
 	name = "Syndicate Commando"

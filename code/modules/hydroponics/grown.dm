@@ -5,6 +5,7 @@
 	icon = 'icons/obj/hydroponics_products.dmi'
 	icon_state = "blank"
 	desc = "Nutritious! Probably."
+	flags = NOCONDUCT
 	slot_flags = SLOT_HOLSTER
 
 	var/plantname

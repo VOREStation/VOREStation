@@ -1,4 +1,0 @@
-author: Atermonera
-delete-after: True
-changes
-  - bugfix: "Powersink drains have been unclogged and work once more"

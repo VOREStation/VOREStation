@@ -295,6 +295,7 @@
 	msg += attempt_vr(src,"examine_pickup_size",args) //VOREStation Code
 	msg += attempt_vr(src,"examine_step_size",args) //VOREStation Code
 	msg += attempt_vr(src,"examine_nif",args) //VOREStation Code
+	msg += attempt_vr(src,"examine_chimera",args) //VOREStation Code
 
 	if(mSmallsize in mutations)
 		msg += "[T.He] [T.is] very short!<br>"

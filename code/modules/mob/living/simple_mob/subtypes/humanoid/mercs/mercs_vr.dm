@@ -5,5 +5,21 @@
 /mob/living/simple_mob/humanoid/merc/melee/sword/space
 	name = "mercenary commando"
 
+	maxbodytemp = 700
+
 /mob/living/simple_mob/humanoid/merc/ranged/space
 	name = "mercenary commando"
+
+	maxbodytemp = 700
+
+/mob/living/simple_mob/humanoid/merc/ranged/virgo
+	name = "suspicious individual"
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	minbodytemp = 0

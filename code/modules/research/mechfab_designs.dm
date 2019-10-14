@@ -107,13 +107,13 @@
 
 /datum/design/item/mechfab/gygax
 	category = "Gygax"
-//VOREStation Edit to make Serenity Constructable						
+
 /datum/design/item/mechfab/gygax/chassis/serenity
 	name = "Serenity Chassis"
 	id = "serenity_chassis"
 	build_path = /obj/item/mecha_parts/chassis/serenity
 	materials = list(DEFAULT_WALL_MATERIAL = 18750, "phoron" = 4000)
-	
+
 /datum/design/item/mechfab/gygax/chassis
 	name = "Gygax Chassis"
 	id = "gygax_chassis"
@@ -663,6 +663,14 @@
 	req_tech = list(TECH_POWER= 3, TECH_ENGINEERING = 3, TECH_MATERIAL = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 7500, "silver" = 375, "glass" = 750)
 	build_path = /obj/item/mecha_parts/mecha_equipment/generator/nuclear
+
+/datum/design/item/mecha/speedboost_ripley
+	name = "Ripley Leg Actuator Overdrive"
+	desc = "System enhancements and overdrives to make a mech's legs move faster."
+	id = "mech_speedboost_ripley"
+	req_tech = list( TECH_POWER = 5, TECH_MATERIAL = 4, TECH_ENGINEERING = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, "silver" = 1000, "gold" = 1000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/speedboost
 
 /datum/design/item/synthetic_flash
 	name = "Synthetic Flash"

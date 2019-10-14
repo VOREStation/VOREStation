@@ -506,3 +506,14 @@
 	display_name = "plain ascetic garb"
 	path = /obj/item/clothing/under/ascetic
 
+/datum/gear/uniform/pleated
+	display_name = "pleated skirt"
+	path = /obj/item/clothing/under/skirt/pleated
+
+/datum/gear/uniform/pleated/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/uniform/lilacdress
+	display_name = "lilac dress"
+	path = /obj/item/clothing/under/dress/lilacdress

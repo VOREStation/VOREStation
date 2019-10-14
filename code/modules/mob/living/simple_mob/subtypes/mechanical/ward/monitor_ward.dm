@@ -56,7 +56,7 @@
 	if(!.)
 		if(isrobot(L)) // They ignore synths.
 			return TRUE
-		return L.assess_perp(src, FALSE, FALSE, TRUE, FALSE) <= 4
+		return L.assess_perp(src, FALSE, FALSE, TRUE, FALSE) <= 3
 
 /mob/living/simple_mob/mechanical/ward/monitor/death()
 	if(owner)
@@ -71,7 +71,7 @@
 		icon_living = "[initial(icon_state)]_spotted"
 		glow_color = "#FF0000"
 	else
-		icon_living = "[initial(icon_state)]_ward"
+		icon_living = "[initial(icon_state)]"
 		glow_color = "#00FF00"
 	handle_light() // Update the light immediately.
 	..()

@@ -44,6 +44,7 @@
 	var/tracer_type
 	var/muzzle_type
 	var/impact_type
+	var/datum/beam_components_cache/beam_components
 
 	//Fancy hitscan lighting effects!
 	var/hitscan_light_intensity = 1.5
@@ -84,8 +85,17 @@
 	var/accuracy = 0
 	var/dispersion = 0.0
 
+	// Sub-munitions. Basically, multi-projectile shotgun, rather than pellets.
+	var/use_submunitions = FALSE
+	var/only_submunitions = FALSE // Will the projectile delete itself after firing the submunitions?
+	var/list/submunitions = list() // Assoc list of the paths of any submunitions, and how many they are. [projectilepath] = [projectilecount].
+	var/submunition_spread_max = 30 // Divided by 10 to get the percentile dispersion.
+	var/submunition_spread_min = 5 // Above.
+	var/force_max_submunition_spread = FALSE // Do we just force the maximum?
+	var/spread_submunition_damage = FALSE // Do we assign damage to our sub projectiles based on our main projectile damage?
+
 	var/damage = 10
-	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS are the only things that should be in here
+	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS, ELECTROCUTE, BIOACID are the only things that should be in here
 	var/SA_bonus_damage = 0 // Some bullets inflict extra damage on simple animals.
 	var/SA_vulnerability = null // What kind of simple animal the above bonus damage should be applied to. Set to null to apply to all SAs.
 	var/nodamage = 0 //Determines if the projectile will skip any damage inflictions
@@ -423,7 +433,6 @@
 	if(hitscan)
 		finalize_hitscan_and_generate_tracers()
 	STOP_PROCESSING(SSprojectiles, src)
-	cleanup_beam_segments()
 	qdel(trajectory)
 	return ..()
 
@@ -447,10 +456,11 @@
 /obj/item/projectile/proc/generate_hitscan_tracers(cleanup = TRUE, duration = 5, impacting = TRUE)
 	if(!length(beam_segments))
 		return
+	beam_components = new
 	if(tracer_type)
 		var/tempref = "\ref[src]"
 		for(var/datum/point/p in beam_segments)
-			generate_tracer_between_points(p, beam_segments[p], tracer_type, color, duration, hitscan_light_range, hitscan_light_color_override, hitscan_light_intensity, tempref)
+			generate_tracer_between_points(p, beam_segments[p], beam_components, tracer_type, color, duration, hitscan_light_range, hitscan_light_color_override, hitscan_light_intensity, tempref)
 	if(muzzle_type && duration > 0)
 		var/datum/point/p = beam_segments[1]
 		var/atom/movable/thing = new muzzle_type
@@ -460,7 +470,7 @@
 		thing.transform = M
 		thing.color = color
 		thing.set_light(muzzle_flash_range, muzzle_flash_intensity, muzzle_flash_color_override? muzzle_flash_color_override : color)
-		QDEL_IN(thing, duration)
+		beam_components.beam_components += thing
 	if(impacting && impact_type && duration > 0)
 		var/datum/point/p = beam_segments[beam_segments[beam_segments.len]]
 		var/atom/movable/thing = new impact_type
@@ -470,9 +480,8 @@
 		thing.transform = M
 		thing.color = color
 		thing.set_light(impact_light_range, impact_light_intensity, impact_light_color_override? impact_light_color_override : color)
-		QDEL_IN(thing, duration)
-	if(cleanup)
-		cleanup_beam_segments()
+		beam_components.beam_components += thing
+	QDEL_IN(beam_components, duration)
 
 //Returns true if the target atom is on our current turf and above the right layer
 //If direct target is true it's the originally clicked target.
@@ -649,6 +658,37 @@
 	if(get_turf(target) == get_turf(src))
 		direct_target = target
 
+	if(use_submunitions && submunitions.len)
+		var/temp_min_spread = 0
+		if(force_max_submunition_spread)
+			temp_min_spread = submunition_spread_max
+		else
+			temp_min_spread = submunition_spread_min
+
+		var/damage_override = null
+
+		if(spread_submunition_damage)
+			damage_override = damage
+			if(nodamage)
+				damage_override = 0
+
+			var/projectile_count = 0
+
+			for(var/proj in submunitions)
+				projectile_count += submunitions[proj]
+
+			damage_override = round(damage_override / max(1, projectile_count))
+
+		for(var/path in submunitions)
+			for(var/count = 1 to submunitions[path])
+				var/obj/item/projectile/SM = new path(get_turf(loc))
+				SM.shot_from = shot_from
+				SM.silenced = silenced
+				SM.dispersion = rand(temp_min_spread, submunition_spread_max) / 10
+				if(!isnull(damage_override))
+					SM.damage = damage_override
+				SM.launch_projectile(target, target_zone, user, params, angle_override)
+
 	preparePixelProjectile(target, user? user : get_turf(src), params, forced_spread)
 	return fire(angle_override, direct_target)
 
@@ -667,6 +707,37 @@
 	var/direct_target
 	if(get_turf(target) == get_turf(src))
 		direct_target = target
+
+	if(use_submunitions && submunitions.len)
+		var/temp_min_spread = 0
+		if(force_max_submunition_spread)
+			temp_min_spread = submunition_spread_max
+		else
+			temp_min_spread = submunition_spread_min
+
+		var/damage_override = null
+
+		if(spread_submunition_damage)
+			damage_override = damage
+			if(nodamage)
+				damage_override = 0
+
+			var/projectile_count = 0
+
+			for(var/proj in submunitions)
+				projectile_count += submunitions[proj]
+
+			damage_override = round(damage_override / max(1, projectile_count))
+
+		for(var/path in submunitions)
+			for(var/count = 1 to submunitions[path])
+				var/obj/item/projectile/SM = new path(get_turf(loc))
+				SM.shot_from = shot_from
+				SM.silenced = silenced
+				SM.dispersion = rand(temp_min_spread, submunition_spread_max) / 10
+				if(!isnull(damage_override))
+					SM.damage = damage_override
+				SM.launch_projectile_from_turf(target, target_zone, user, params, angle_override)
 
 	preparePixelProjectile(target, get_turf(src), params, forced_spread)
 	return fire(angle_override, direct_target)

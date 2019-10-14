@@ -9,7 +9,6 @@ var/list/overminds = list()
 	mouse_opacity = 1
 	see_in_dark = 8
 	invisibility = INVISIBILITY_OBSERVER
-	layer = FLY_LAYER + 0.1
 
 	faction = "blob"
 	var/obj/structure/blob/core/blob_core = null // The blob overmind's core

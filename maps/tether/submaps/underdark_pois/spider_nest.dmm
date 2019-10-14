@@ -1,0 +1,111 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"b" = (
+/turf/template_noop,
+/area/mine/explored/underdark)
+"c" = (
+/turf/simulated/mineral/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"d" = (
+/obj/tether_away_spawner/underdark_normal,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"e" = (
+/obj/effect/decal/cleanable/spiderling_remains,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"f" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"g" = (
+/obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"h" = (
+/obj/structure/barricade,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"i" = (
+/obj/structure/bonfire/permanent,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"j" = (
+/obj/random/underdark/uncertain,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"k" = (
+/obj/random/underdark,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"l" = (
+/obj/random/outcrop,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+
+(1,1,1) = {"
+b
+c
+a
+e
+a
+b
+"}
+(2,1,1) = {"
+c
+c
+a
+a
+a
+k
+"}
+(3,1,1) = {"
+e
+f
+a
+d
+a
+a
+"}
+(4,1,1) = {"
+e
+a
+a
+i
+a
+a
+"}
+(5,1,1) = {"
+l
+d
+a
+j
+a
+a
+"}
+(6,1,1) = {"
+b
+b
+a
+a
+d
+g
+"}
+(7,1,1) = {"
+b
+b
+a
+e
+c
+c
+"}
+(8,1,1) = {"
+b
+b
+h
+h
+c
+c
+"}

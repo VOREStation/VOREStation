@@ -132,8 +132,8 @@
 	department = "Civilian"
 	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = 2 // VOREStation Edit. Original number is 1.
-	spawn_positions = 2 // VOREStation Edit. Original number is 1.
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#515151"
 	idtype = /obj/item/weapon/card/id/civilian/librarian

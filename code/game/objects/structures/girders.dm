@@ -38,7 +38,7 @@
 	if(!total_radiation)
 		return
 
-	radiation_repository.radiate(src, total_radiation)
+	SSradiation.radiate(src, total_radiation)
 	return total_radiation
 
 
@@ -212,7 +212,7 @@
 	else
 		return ..()
 
-/obj/structure/girder/proc/take_damage(var/damage)
+/obj/structure/girder/take_damage(var/damage)
 	health -= damage
 	if(health <= 0)
 		dismantle()

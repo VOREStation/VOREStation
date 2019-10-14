@@ -693,9 +693,6 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "rig-hos_mob"
 
-	//Slightly improved security voidsuit, which when made, was:
-	//armor = list(melee = 50, bullet = 25, laser = 25, energy = 5, bomb = 45, bio = 100, rad = 10)
-	armor = list("melee" = 60, "bullet" = 35, "laser" = 35, "energy" = 15, "bomb" = 50, "bio" = 100, "rad" = 10)
 	species_restricted = null
 
 //HOS Hardsuit Helmet
@@ -709,7 +706,6 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "rig0-hos_mob"
 
-	armor = list("melee" = 60, "bullet" = 35, "laser" = 35, "energy" = 15, "bomb" = 50, "bio" = 100, "rad" = 10)
 	species_restricted = null
 
 //adk09:Lethe
@@ -1524,6 +1520,14 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "gnshorts"
 
+/obj/item/clothing/under/fluff/v_nanovest
+	name = "Varmacorp nanovest"
+	desc = "A nifty little vest optimized for nanite contact."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "nanovest"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "nanovest"
+
 //General use
 /obj/item/clothing/suit/storage/fluff/loincloth
 	name = "Loincloth"
@@ -1849,3 +1853,65 @@ Departamental Swimsuits, for general use
 	item_state = "goldenstring"
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_TIE
+
+//Chaoko99: Aika Hisakawa
+/obj/item/clothing/suit/fluff/blue_trimmed_coat
+	name = "blue-trimmed greatcoat"
+	desc = "A heavy, form-obscuring coat with gilded buttons and azure trim."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "aika_coat"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "aika_coat_mob"
+	flags_inv = HIDEJUMPSUIT | HIDETIE
+
+	item_icons = list(
+		slot_l_hand_str = 'icons/vore/custom_clothes_vr.dmi',
+		slot_r_hand_str = 'icons/vore/custom_clothes_vr.dmi',
+		)
+	item_state_slots = list(slot_r_hand_str = "aika_coat_mob_r", slot_l_hand_str = "aika_coat_mob_l")
+
+//Burrito Justice: Jayda Wilson
+/obj/item/clothing/under/solgov/utility/sifguard/medical/fluff
+	desc = "The utility uniform of the Society of Universal Cartographers, made from biohazard resistant material. This is an older issuing of the uniform, with integrated department markings."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+
+	icon_state = "blackutility_med"
+	worn_state = "blackutility_med"
+	item_state = "blackutility_med"
+
+	rolled_down = 0
+	rolled_sleeves = 0
+	starting_accessories = null
+	item_icons = list()
+
+//Vorrarkul: Melanie Farmer
+/obj/item/clothing/under/fluff/slime_skeleton
+	name = "Melanie's Skeleton"
+	desc = "The skeleton of a promethean, still covered in residual slime. Upon closer inspection, they're not even real bones!"
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+
+	icon_state = "melanie_skeleton"
+	item_state = "melanie_skeleton_mob"
+
+	body_parts_covered = 0
+
+	species_restricted = list("exclude", SPECIES_TESHARI)
+
+/obj/item/clothing/under/fluff/slime_skeleton/mob_can_equip(M as mob, slot)
+	if(!..())
+		return 0
+
+	if(istype(M,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = M
+		if(!(H.get_species() == SPECIES_PROMETHEAN))	//Only wearable by slimes, since species_restricted actually checks bodytype, not species
+			return 0
+
+	return 1
+
+/obj/item/clothing/under/fluff/slime_skeleton/digest_act(var/atom/movable/item_storage = null)
+	return FALSE	//Indigestible

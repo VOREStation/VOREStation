@@ -7,3 +7,6 @@
 	var/flapping = 0
 	var/vantag_pref = VANTAG_NONE //What's my status?
 	var/impersonate_bodytype //For impersonating a bodytype
+
+	//TFF 5/8/19 - add and set suit sensor setting define to 5 for random setting
+	var/sensorpref = 5

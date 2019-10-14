@@ -1,4 +1,4 @@
-#### Brief description of the issue
+#### Brief description of the bug
 
 
 #### What you expected to happen

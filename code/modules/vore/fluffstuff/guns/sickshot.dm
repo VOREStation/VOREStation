@@ -46,12 +46,3 @@
 			H.Confuse(2)
 
 		return 1
-
-//R&D Design
-/datum/design/item/weapon/sickshot
-	desc = "A 'Sickshot' is a 4-shot energy revolver that causes nausea and confusion."
-	id = "sickshot"
-	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_MAGNET = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 2000)
-	build_path = /obj/item/weapon/gun/energy/sickshot
-	sort_string = "TAADB"

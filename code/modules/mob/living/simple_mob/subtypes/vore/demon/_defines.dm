@@ -1,0 +1,3 @@
+#define AB_SHIFT_NONE		0
+#define AB_SHIFT_PASSIVE	1
+#define AB_SHIFT_ACTIVE		2

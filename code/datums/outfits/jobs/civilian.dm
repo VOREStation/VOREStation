@@ -44,6 +44,14 @@
 	name = OUTFIT_JOB_NAME("Cook")
 	id_pda_assignment = "Cook"
 
+// Rykka adds Server Outfit
+
+/decl/hierarchy/outfit/job/service/server
+	name = OUTFIT_JOB_NAME("Server")
+	uniform = /obj/item/clothing/under/waiter
+
+// End Outfit addition
+
 /decl/hierarchy/outfit/job/service/gardener
 	name = OUTFIT_JOB_NAME("Gardener")
 	uniform = /obj/item/clothing/under/rank/hydroponics
