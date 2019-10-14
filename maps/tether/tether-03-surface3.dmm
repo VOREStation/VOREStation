@@ -11896,14 +11896,11 @@
 /area/rnd/research)
 "ut" = (
 /obj/machinery/camera/network/research,
-/obj/effect/floor_decal/borderfloor{
-	dir = 9
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 4
 	},
-/obj/effect/floor_decal/corner/mauve/border{
-	dir = 9
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 10
+/obj/effect/floor_decal/corner/mauve/bordercorner{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
@@ -13602,23 +13599,12 @@
 /turf/simulated/wall,
 /area/library)
 "xh" = (
-/obj/machinery/disposal,
-/obj/effect/floor_decal/borderfloor{
-	dir = 8;
-	icon_state = "borderfloor";
-	pixel_x = 0
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j2";
+	dir = 2
 	},
-/obj/effect/floor_decal/corner/mauve/border{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/mauve/bordercorner2{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/research)
+/turf/simulated/floor/plating,
+/area/rnd/research_storage)
 "xi" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -14299,27 +14285,12 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "yi" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
+/obj/structure/disposalpipe/sortjunction{
+	name = "Research";
+	sortType = "Research"
 	},
-/obj/effect/floor_decal/corner/mauve/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/mauve/bordercorner2{
-	dir = 6
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 9
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 10
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/research/researchdivision)
+/turf/simulated/floor/plating,
+/area/rnd/research_storage)
 "yj" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
@@ -14487,21 +14458,16 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "yv" = (
-/obj/structure/disposalpipe/sortjunction{
-	name = "Research";
-	sortType = "Research"
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/effect/floor_decal/borderfloor/corner{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/mauve/bordercorner{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
@@ -14602,21 +14568,27 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "yH" = (
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
 	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
+/obj/effect/floor_decal/corner/mauve/bordercorner2{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
@@ -14946,56 +14918,44 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research_foyer)
 "zc" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
+/turf/simulated/floor/plating,
+/area/rnd/research)
+"zd" = (
+/obj/machinery/disposal,
+/obj/effect/floor_decal/borderfloor{
+	dir = 8;
+	icon_state = "borderfloor";
+	pixel_x = 0
+	},
+/obj/effect/floor_decal/corner/mauve/border{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/effect/floor_decal/corner/mauve/bordercorner2{
+	dir = 8
 	},
-/turf/simulated/floor/tiled,
-/area/rnd/research/researchdivision)
-"zd" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/structure/disposalpipe/trunk{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
-/area/rnd/research/researchdivision)
+/area/rnd/research)
 "ze" = (
-/obj/machinery/hologram/holopad,
 /obj/structure/cable/green{
 	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	icon_state = "map-scrubbers";
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "zf" = (
@@ -15389,11 +15349,15 @@
 "zJ" = (
 /obj/structure/cable/green{
 	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "zK" = (
@@ -15776,27 +15740,29 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/testingrange)
 "Am" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/glass_research{
-	name = "Weapons Testing Range";
-	req_access = list(47)
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/research/testingrange)
-"An" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 1
 	},
-/obj/structure/disposalpipe/trunk,
-/obj/machinery/disposal,
+/turf/simulated/floor/tiled,
+/area/rnd/research/researchdivision)
+"An" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
+	},
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j1";
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "Ao" = (
@@ -16239,13 +16205,19 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "AT" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/corner/mauve/bordercorner{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/structure/disposalpipe/junction,
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "AU" = (
@@ -16682,15 +16654,26 @@
 /area/tether/surfacebase/atrium_three)
 "Bp" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
 /turf/simulated/floor/tiled,
-/area/rnd/research/testingrange)
+/area/rnd/research/researchdivision)
 "Bq" = (
 /obj/structure/table/woodentable,
 /obj/item/device/taperecorder,
@@ -16749,27 +16732,21 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/device/radio/intercom{
-	dir = 1;
-	pixel_y = 24;
-	req_access = list()
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
 	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 1;
-	icon_state = "borderfloor";
-	pixel_y = 0
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
-/obj/effect/floor_decal/corner/mauve/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/mauve/bordercorner2{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
-/area/rnd/research/testingrange)
+/area/rnd/research/researchdivision)
 "Bx" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -17100,15 +17077,22 @@
 /area/rnd/research/testingrange)
 "BX" = (
 /obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 1
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "BY" = (
@@ -17409,19 +17393,15 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "Ct" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 4
+	dir = 5
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "Cu" = (
@@ -17528,16 +17508,19 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/testingrange)
 "CD" = (
+/obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 5
+/obj/machinery/door/airlock/glass_research{
+	name = "Weapons Testing Range";
+	req_access = list(47)
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
-/area/rnd/research/researchdivision)
+/area/rnd/research/testingrange)
 "CE" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -19462,46 +19445,35 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
 /obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/steel_dirty,
-/area/rnd/research/researchdivision)
-"FN" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 6
-	},
-/obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j2";
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
+"FN" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 28
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	icon_state = "borderfloor";
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 1
+	},
+/obj/item/weapon/storage/bag/trash,
+/obj/item/weapon/storage/bag/trash,
+/turf/simulated/floor/tiled,
+/area/rnd/research/testingrange)
 "FO" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -19537,24 +19509,19 @@
 /area/rnd/research/researchdivision)
 "FQ" = (
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/green{
 	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+	d2 = 4;
+	icon_state = "1-4"
 	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled,
-/area/rnd/research/researchdivision)
+/area/rnd/research/testingrange)
 "FR" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -19912,15 +19879,6 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_north_airlock)
 "Gq" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/mauve/border{
-	dir = 10
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 8
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 8;
@@ -19932,6 +19890,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
+/obj/effect/floor_decal/borderfloor/corner,
+/obj/effect/floor_decal/corner/mauve/bordercorner,
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "Gr" = (
@@ -19981,32 +19941,41 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_hallway)
 "Gu" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/mauve/border,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 8
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 1
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 1
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "Gv" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/floor_decal/borderfloor/corner{
-	dir = 8
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/effect/floor_decal/corner/mauve/bordercorner{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 6
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 1
+/obj/structure/disposalpipe/sortjunction{
+	name = "Research";
+	sortType = "Research"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
@@ -30241,10 +30210,27 @@
 /turf/simulated/floor/plating,
 /area/rnd/research_storage)
 "XK" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
+/obj/machinery/hologram/holopad,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	icon_state = "map-scrubbers";
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled,
+/area/rnd/research/researchdivision)
 "XL" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -30255,9 +30241,23 @@
 /turf/simulated/floor/plating,
 /area/rnd/research_storage)
 "XM" = (
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/plating,
-/area/rnd/research_storage)
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/mauve/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/research/researchdivision)
 "XN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
@@ -30297,6 +30297,75 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/rnd/research_storage)
+"XS" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/mauve/bordercorner{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/research/researchdivision)
+"XT" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/research/researchdivision)
+"XU" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24;
+	req_access = list()
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	icon_state = "borderfloor";
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/mauve/bordercorner2{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/disposal,
+/turf/simulated/floor/tiled,
+/area/rnd/research/testingrange)
+"XV" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
 "Zf" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -37346,10 +37415,10 @@ fK
 fK
 oy
 ut
-FM
+Bp
 Gq
 zL
-Bb
+FN
 BW
 BW
 JG
@@ -37487,8 +37556,8 @@ xF
 yr
 Be
 fK
-An
-FN
+Am
+FM
 Cf
 zL
 Bb
@@ -37913,11 +37982,11 @@ xO
 yN
 Bj
 Fl
+An
+Bw
 Ct
-FQ
 CD
-Am
-Bp
+FQ
 BW
 BW
 JK
@@ -38059,7 +38128,7 @@ Bf
 FR
 CK
 zL
-Bw
+XU
 BW
 CB
 JL
@@ -38482,8 +38551,8 @@ zG
 fK
 fK
 yR
-zc
 Gu
+XM
 zL
 zL
 zL
@@ -38609,7 +38678,7 @@ fj
 ac
 Ei
 XH
-XM
+xh
 XN
 gD
 hk
@@ -38623,9 +38692,9 @@ xP
 Ar
 yu
 Fm
-yv
-zd
+AT
 Gv
+XS
 GR
 HI
 It
@@ -38751,7 +38820,7 @@ fj
 fi
 XG
 XI
-XM
+yi
 XO
 XQ
 XR
@@ -38761,13 +38830,13 @@ wD
 xI
 xN
 yO
-AT
-AT
-BX
-AT
-yH
+yv
 ze
 zJ
+ze
+BX
+XK
+XT
 Ao
 BL
 hf
@@ -38903,7 +38972,7 @@ wx
 wB
 xD
 xH
-yi
+yH
 wB
 yQ
 AM
@@ -39045,7 +39114,7 @@ tU
 uY
 uY
 wE
-uY
+zc
 uY
 tU
 AS
@@ -39187,7 +39256,7 @@ ur
 vt
 vS
 wK
-xh
+zd
 xC
 uY
 AW
@@ -44178,7 +44247,7 @@ Nk
 Nl
 NJ
 NP
-XK
+XV
 KU
 bg
 Ok
@@ -44320,7 +44389,7 @@ Nl
 Nl
 NK
 NP
-XK
+XV
 KU
 bg
 Ok
@@ -44462,7 +44531,7 @@ Nm
 Nl
 NK
 NP
-XK
+XV
 KU
 bg
 Ok

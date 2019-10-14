@@ -2347,6 +2347,16 @@
 /obj/effect/floor_decal/corner/brown/border,
 /obj/effect/floor_decal/borderfloor/corner2,
 /obj/effect/floor_decal/corner/brown/bordercorner2,
+/obj/item/device/destTagger{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/obj/item/weapon/packageWrap,
+/obj/item/weapon/paper{
+	desc = "";
+	info = "There is a pipe you can send stuff through in the warehouse. This is primarily a direct pipeline between mining and cargo. However, it can mail things to the 'Research' tag. If you tag anything else, it will just go to cargo! Keep it in mind.";
+	name = "note to mining staff"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/storage)
 "adY" = (
@@ -4606,17 +4616,15 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/north_stairs_one)
 "ahY" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 24
 	},
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+	icon_state = "0-4"
 	},
-/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether/surfacebase/mining_main/ore)
 "ahZ" = (
@@ -4792,7 +4800,7 @@
 	dir = 4
 	},
 /obj/machinery/conveyor{
-	dir = 8;
+	dir = 4;
 	id = "gloriouscargopipeline"
 	},
 /turf/simulated/floor/plating,
@@ -6605,6 +6613,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 4
 	},
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether/surfacebase/mining_main/ore)
 "alF" = (
@@ -6864,7 +6875,7 @@
 	dir = 4
 	},
 /obj/machinery/conveyor{
-	dir = 8;
+	dir = 4;
 	id = "gloriouscargopipeline"
 	},
 /turf/simulated/floor/tiled/steel_dirty,
@@ -7068,7 +7079,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/conveyor{
-	dir = 8;
+	dir = 4;
 	id = "gloriouscargopipeline"
 	},
 /turf/simulated/floor/tiled/steel_dirty,
@@ -7331,14 +7342,14 @@
 "amN" = (
 /obj/machinery/light,
 /obj/machinery/conveyor{
-	dir = 8;
+	dir = 4;
 	id = "gloriouscargopipeline"
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether/surfacebase/mining_main/ore)
 "amO" = (
 /obj/machinery/conveyor{
-	dir = 8;
+	dir = 4;
 	id = "gloriouscargopipeline"
 	},
 /turf/simulated/floor/tiled/steel_dirty,
@@ -7352,6 +7363,7 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
+/obj/random/junk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "amR" = (
@@ -7659,16 +7671,12 @@
 /turf/simulated/floor/tiled,
 /area/storage/primary)
 "anm" = (
-/obj/machinery/power/apc{
-	dir = 2;
-	name = "south bump";
-	pixel_y = -28
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/structure/cable/green,
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "gloriouscargopipeline"
-	},
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether/surfacebase/mining_main/ore)
 "ann" = (
@@ -7680,7 +7688,7 @@
 	req_access = list(31)
 	},
 /obj/machinery/conveyor{
-	dir = 8;
+	dir = 4;
 	id = "gloriouscargopipeline"
 	},
 /turf/simulated/floor/tiled/steel_dirty,
@@ -7930,7 +7938,7 @@
 "anH" = (
 /obj/structure/plasticflaps,
 /obj/machinery/conveyor{
-	dir = 8;
+	dir = 4;
 	id = "gloriouscargopipeline"
 	},
 /turf/simulated/floor/plating,
@@ -12109,11 +12117,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/xenoflora)
 "auM" = (
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/xenoflora)
+/obj/structure/table/rack,
+/obj/random/junk,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining_eva)
 "auN" = (
 /obj/machinery/light{
 	dir = 8
@@ -30865,17 +30872,13 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "bbd" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
-/obj/machinery/alarm{
-	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22
-	},
+/obj/random/cash,
+/obj/random/contraband,
+/obj/random/mre,
+/obj/structure/closet/crate,
+/obj/effect/decal/cleanable/cobweb,
 /turf/simulated/floor/plating,
-/area/maintenance/lower/xenoflora)
+/area/maintenance/lower/mining_eva)
 "bbe" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
@@ -31180,13 +31183,12 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/surfacecargo)
 "bbw" = (
-/obj/machinery/alarm{
-	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22
-	},
+/obj/structure/table/rack,
+/obj/random/maintenance/cargo,
+/obj/random/maintenance/clean,
+/obj/random/maintenance/medical,
 /turf/simulated/floor/plating,
-/area/maintenance/lower/xenoflora)
+/area/maintenance/lower/mining_eva)
 "bbx" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -31245,14 +31247,13 @@
 /area/tether/surfacebase/mining_main/surfacecargo)
 "bbB" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-c"
 	},
-/obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -25
-	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb,
 /turf/simulated/floor/plating,
-/area/maintenance/lower/xenoflora)
+/area/maintenance/lower/mining_eva)
 "bbC" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 1
@@ -31268,9 +31269,9 @@
 /area/tether/surfacebase/mining_main/surfacecargo)
 "bbE" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "bbF" = (
@@ -31455,9 +31456,13 @@
 /turf/simulated/mineral,
 /area/maintenance/lower/mining_eva)
 "bbU" = (
-/obj/structure/disposalpipe/segment,
+/obj/structure/table/rack,
+/obj/random/maintenance/cargo,
+/obj/random/maintenance/clean,
+/obj/random/maintenance/engineering,
+/obj/random/maintenance/medical,
 /turf/simulated/floor/plating,
-/area/maintenance/lower/xenoflora)
+/area/maintenance/lower/mining_eva)
 "bbV" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
@@ -31542,33 +31547,182 @@
 /area/maintenance/lower/xenoflora)
 "bce" = (
 /obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining_eva)
+"bcf" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining_eva)
+"bcg" = (
+/obj/structure/table/rack,
+/obj/random/maintenance/cargo,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining_eva)
+"bch" = (
+/obj/random/junk,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining_eva)
+"bci" = (
+/obj/structure/disposalpipe/segment,
+/obj/random/junk,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining_eva)
+"bcj" = (
+/obj/structure/table/standard,
+/obj/item/weapon/storage/firstaid/surgery,
+/obj/item/weapon/paper{
+	desc = "";
+	info = "Stop installing NIFs in here you clods! Unless it's on a synth. Otherwise, STOP DOING IT! You're killing people! -Management";
+	name = "note to science staff"
+	},
+/obj/item/device/robotanalyzer,
+/obj/item/device/robotanalyzer,
+/turf/simulated/floor/tiled/white,
+/area/space)
+"bck" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/xenoflora)
+"bcl" = (
+/obj/random/junk,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/xenoflora)
+"bcm" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/xenoflora)
+"bcn" = (
+/obj/structure/closet/crate,
+/obj/random/tool,
+/obj/random/tool,
+/obj/random/tool,
+/obj/random/cigarettes,
+/obj/random/coin,
+/obj/random/drinkbottle,
+/obj/effect/decal/cleanable/cobweb{
+	icon_state = "cobweb2"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/xenoflora)
+"bco" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/xenoflora)
+"bcp" = (
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/xenoflora)
+"bcq" = (
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance/common,
 /obj/machinery/door/firedoor/glass,
+/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/xenoflora)
-"bcf" = (
+"bcr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/xenoflora)
-"bcg" = (
+"bcs" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -25
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/xenoflora)
+"bct" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2;
 	icon_state = "pipe-c"
 	},
+/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/xenoflora)
-"bch" = (
+"bcu" = (
 /obj/machinery/door/airlock/maintenance/common,
 /obj/machinery/door/firedoor/glass,
+/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/xenoflora)
-"bci" = (
+"bcv" = (
 /obj/structure/disposalpipe/up{
 	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/xenoflora)
+"bcw" = (
+/obj/structure/disposalpipe/segment,
+/obj/random/junk,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/xenoflora)
+"bcx" = (
+/obj/random/junk,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/xenoflora)
+"bcy" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/xenoflora)
+"bcz" = (
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/random/trash,
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/xenoflora)
+"bcA" = (
+/obj/structure/table,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/xenoflora)
+"bcB" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/random/trash,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/xenoflora)
+"bcC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate,
+/obj/random/unidentified_medicine,
+/obj/random/firstaid,
+/obj/random/drinkbottle,
+/obj/effect/decal/cleanable/cobweb{
+	icon_state = "cobweb2"
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/xenoflora)
@@ -39725,14 +39879,14 @@ aah
 aah
 aah
 abT
-cGJ
-cGJ
+bbd
+auM
 baZ
+bbw
+bbU
 cGJ
-cGJ
-cGJ
-cGJ
-cGJ
+bch
+air
 ahl
 ahK
 add
@@ -39874,7 +40028,7 @@ bbe
 bbe
 bbe
 bbe
-bbe
+bci
 bbG
 bbH
 bbN
@@ -40164,13 +40318,13 @@ ahS
 bbP
 bbS
 bbG
-bbU
-bbU
-bbU
-bbd
-axS
-axS
-axS
+bck
+bcw
+bck
+bcy
+bco
+bco
+bcl
 apu
 bbY
 bca
@@ -40306,20 +40460,20 @@ anC
 adh
 adO
 ahl
-axS
-axS
-axS
-bcg
-bbU
-bbU
-bbU
+bcn
+bco
+bcx
+bct
+bck
+bck
+bck
 bbX
 bbZ
 atd
 atJ
 auq
 apu
-bce
+bcq
 avT
 avT
 axe
@@ -40461,7 +40615,7 @@ ate
 atK
 aur
 apu
-bcf
+bcr
 avT
 awD
 axf
@@ -40603,7 +40757,7 @@ ate
 apu
 apu
 apu
-bcf
+bcr
 avT
 agb
 agb
@@ -40745,7 +40899,7 @@ ate
 apu
 bcd
 apu
-bcf
+bcr
 avT
 agb
 agc
@@ -40887,7 +41041,7 @@ arL
 apu
 bcd
 apu
-bcf
+bcB
 avT
 agb
 agc
@@ -41029,7 +41183,7 @@ arL
 apu
 bcd
 apu
-bbB
+bcs
 avT
 agb
 agc
@@ -41171,7 +41325,7 @@ arL
 apu
 bcd
 apu
-bcf
+bcr
 avT
 agb
 agc
@@ -41313,7 +41467,7 @@ arL
 apu
 bcd
 apu
-bcf
+bcr
 avU
 agb
 agb
@@ -41455,7 +41609,7 @@ atf
 apu
 bcd
 apu
-bcf
+bcr
 agM
 agM
 axg
@@ -41597,7 +41751,7 @@ atg
 apu
 bcd
 apu
-bcf
+bcr
 bbQ
 agM
 axh
@@ -41739,7 +41893,7 @@ apu
 apu
 apu
 apu
-bce
+bcq
 apu
 agM
 agM
@@ -41880,10 +42034,10 @@ asL
 ath
 axS
 apu
-bbw
-bcg
-bci
-axS
+bcz
+bct
+bcv
+bco
 agM
 axW
 ayI
@@ -42022,8 +42176,8 @@ asL
 apu
 axS
 apu
-axS
-axS
+bcA
+bco
 apu
 apu
 agM
@@ -42164,8 +42318,8 @@ asL
 apu
 axS
 apu
-axS
-axS
+bcC
+bco
 apu
 bcd
 agM
@@ -42307,7 +42461,7 @@ ati
 apu
 apu
 apu
-bch
+bcu
 agM
 agM
 agM
@@ -42447,9 +42601,9 @@ apu
 asL
 atj
 atL
-atL
-atL
-atL
+bcm
+bcm
+bcm
 agM
 ahc
 ahu
@@ -42590,8 +42744,8 @@ asL
 apu
 agM
 agM
-atL
-atL
+bcm
+bcm
 agM
 agM
 agM
@@ -42712,9 +42866,9 @@ afd
 afC
 agd
 abT
-amQ
+bbB
 bbe
-bbE
+bce
 bbT
 ahX
 aiZ
@@ -42732,9 +42886,9 @@ asL
 apu
 ahc
 agM
-auM
-atL
-atL
+bcp
+bcm
+bcm
 atL
 atj
 ayc
@@ -42854,7 +43008,7 @@ aer
 aer
 aer
 aer
-anp
+bbE
 abT
 abT
 agM
@@ -42996,9 +43150,9 @@ age
 afD
 ail
 aer
-anp
+bbE
 air
-cGJ
+bcg
 agM
 anD
 anU
@@ -43138,9 +43292,9 @@ aff
 alJ
 alY
 aer
-anp
-cGJ
-cGJ
+bbE
+bcf
+bcg
 agM
 aic
 anV
@@ -43280,8 +43434,8 @@ agf
 agf
 ams
 ano
-bbE
-cGJ
+bce
+bcf
 cGJ
 agM
 aid
@@ -43417,12 +43571,12 @@ afl
 adt
 adG
 aer
-aeF
+ahY
 agf
 agg
 amN
 aer
-cGJ
+bcf
 bbc
 air
 agM
@@ -43564,7 +43718,7 @@ alZ
 amr
 amO
 aer
-cGJ
+bcf
 agM
 agM
 agM
@@ -43703,8 +43857,8 @@ adX
 aer
 alF
 agf
-ahY
 anm
+amO
 aer
 cGJ
 agM
@@ -45695,7 +45849,7 @@ ahd
 amR
 aeJ
 aah
-aah
+bcj
 aah
 ahx
 ait
