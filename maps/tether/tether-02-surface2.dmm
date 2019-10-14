@@ -22312,7 +22312,6 @@
 /obj/item/weapon/tool/wrench,
 /obj/item/weapon/storage/briefcase/inflatable,
 /obj/item/weapon/storage/briefcase/inflatable,
-/obj/machinery/camera/network/medbay,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "PW" = (
@@ -24754,6 +24753,7 @@
 /obj/effect/floor_decal/corner/red/border{
 	dir = 5
 	},
+/obj/machinery/camera/network/security,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/warden)
 "Tr" = (
@@ -25160,6 +25160,21 @@
 /obj/effect/floor_decal/corner/red/bordercorner,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lowerhallway)
+"TT" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -32
+	},
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/solitary)
 "TU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -25629,25 +25644,6 @@
 	},
 /turf/simulated/floor,
 /area/tether/surfacebase/security/gasstorage)
-"UE" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/power/apc{
-	dir = 2;
-	name = "south bump";
-	pixel_y = -32
-	},
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/camera/network/security{
-	c_tag = "SEC - Vault Exterior North";
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/security/solitary)
 "UF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	icon_state = "intact";
@@ -38290,7 +38286,7 @@ ab
 ab
 Tt
 TJ
-UE
+TT
 Uk
 Uk
 Uk
