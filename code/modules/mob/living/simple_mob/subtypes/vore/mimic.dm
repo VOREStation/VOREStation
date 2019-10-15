@@ -1,3 +1,10 @@
+/datum/category_item/catalogue/fauna/mimic		//TODO: VIRGO_LORE_WRITING_WIP
+	name = "Aberration - Mimic"
+	desc = "A being that seems to take the form of a crate, for whatever reason. \
+	It seems to lie in wait for it's prey, and then pounce once the unsuspecting person attempts to open it. \
+	For whatever reason, they seem native to underground areas, and they're very tough, and hard to kill, able to pounce fast."
+	value = CATALOGUER_REWARD_HARD
+
 /obj/structure/closet/crate/mimic
 	name = "old crate"
 	desc = "A rectangular steel crate. This one looks particularly unstable."

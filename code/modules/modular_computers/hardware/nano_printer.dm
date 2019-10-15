@@ -31,9 +31,24 @@
 	if(paper_title)
 		P.name = paper_title
 	P.update_icon()
+	P.fields = count_fields(P.info)
+	P.updateinfolinks()
 
 	stored_paper--
 	return 1
+
+/obj/item/weapon/computer_hardware/nano_printer/proc/count_fields(var/info)
+//Count the fields. This is taken directly from paper.dm, /obj/item/weapon/paper/proc/parsepencode(). -Hawk_v3
+	var/fields = 0
+	var/t = info
+	var/laststart = 1
+	while(1)
+		var/i = findtext(t, "<span class=\"paper_field\">", laststart)	//</span>
+		if(i==0)
+			break
+		laststart = i+1
+		fields++
+	return fields
 
 /obj/item/weapon/computer_hardware/nano_printer/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/paper))

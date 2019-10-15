@@ -59,6 +59,7 @@
 		if(H.stat == DEAD && (/mob/living/carbon/human/proc/reconstitute_form in H.verbs)) //no magical regen for non-regenners, and can't force the reaction on live ones
 			if(H.hasnutriment()) // make sure it actually has the conditions to revive
 				if(H.revive_ready >= 1) // if it's not reviving, start doing so
+					H.revive_ready = REVIVING_READY // overrides the normal cooldown
 					H.visible_message("<span class='info'>[H] shudders briefly, then relaxes, faint movements stirring within.</span>")
 					H.chimera_regenerate()
 				else if (/mob/living/carbon/human/proc/hatch in H.verbs)// already reviving, check if they're ready to hatch

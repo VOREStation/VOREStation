@@ -923,7 +923,7 @@
 			overeatduration -= 2 //doubled the unfat rate
 
 	if(noisy == TRUE && nutrition < 250 && prob(10)) //VOREStation edit for hunger noises.
-		var/growlsound = pick(hunger_sounds)
+		var/sound/growlsound = sound(get_sfx("hunger_sounds"))
 		var/growlmultiplier = 100 - (nutrition / 250 * 100)
 		playsound(src, growlsound, vol = growlmultiplier, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/client_preference/digestion_noises)
 	// VOREStation Edit End

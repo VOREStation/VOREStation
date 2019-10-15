@@ -1201,7 +1201,7 @@
 
 /datum/global_iterator/mecha_generator/nuclear/process(var/obj/item/mecha_parts/mecha_equipment/generator/nuclear/EG)
 	if(..())
-		radiation_repository.radiate(EG, (EG.rad_per_cycle * 3))
+		SSradiation.radiate(EG, (EG.rad_per_cycle * 3))
 	return 1
 
 

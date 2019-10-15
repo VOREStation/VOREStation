@@ -49,12 +49,15 @@
 	if (!( target ))
 		qdel(src)
 		return
+	if (istype(target, /obj/structure/portal_subtle))
+		qdel(src)
+		return
 	if (istype(M, /atom/movable))
 		if(prob(failchance)) //oh dear a problem, put em in deep space
 			src.icon_state = "portal1"
 			do_noeffect_teleport(M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
 		else
-			do_noeffect_teleport(M, target, 1) ///You will appear adjacent to the beacon
+			do_noeffect_teleport(M, target, 0) ///You will appear on the beacon
 
 /obj/structure/portal_gateway
 	name = "portal"

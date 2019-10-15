@@ -1,3 +1,10 @@
+/datum/category_item/catalogue/fauna/rat		//TODO: VIRGO_LORE_WRITING_WIP
+	name = "Creature - Rat"
+	desc = "A massive rat, some sort of mutated descendant of normal Earth rats. These ones seem particularly hungry, \
+	and are able to pounce and stun their targets - presumably to eat them. Their bodies are long and greyfurred, \
+	with a pink nose and large teeth, just like their regular-sized counterparts."
+	value = CATALOGUER_REWARD_MEDIUM
+
 /mob/living/simple_mob/vore/aggressive/rat
 	name = "giant rat"
 	desc = "In what passes for a hierarchy among verminous rodents, this one is king."

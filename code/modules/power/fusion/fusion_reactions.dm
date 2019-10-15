@@ -120,7 +120,7 @@ proc/get_fusion_reaction(var/p_react, var/s_react, var/m_energy)
 	var/radiation_level = 200
 
 	// Copied from the SM for proof of concept. //Not any more --Cirra //Use the whole z proc --Leshana
-	radiation_repository.z_radiate(locate(1, 1, holder.z), radiation_level, 1)
+	SSradiation.z_radiate(locate(1, 1, holder.z), radiation_level, 1)
 
 	for(var/mob/living/mob in living_mob_list)
 		var/turf/T = get_turf(mob)

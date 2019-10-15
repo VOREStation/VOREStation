@@ -278,7 +278,7 @@
 	. = ..()
 
 	update_mass()
-	radiation_repository.radiate(src, 5 + amount)
+	SSradiation.radiate(src, 5 + amount)
 	var/mob/living/M = user
 	if(!istype(M))
 		return
@@ -305,11 +305,11 @@
 
 /obj/item/stack/material/supermatter/ex_act(severity)	// An incredibly hard to manufacture material, SM chunks are unstable by their 'stabilized' nature.
 	if(prob((4 / severity) * 20))
-		radiation_repository.radiate(get_turf(src), amount * 4)
+		SSradiation.radiate(get_turf(src), amount * 4)
 		explosion(get_turf(src),round(amount / 12) , round(amount / 6), round(amount / 3), round(amount / 25))
 		qdel(src)
 		return
-	radiation_repository.radiate(get_turf(src), amount * 2)
+	SSradiation.radiate(get_turf(src), amount * 2)
 	..()
 
 /obj/item/stack/material/wood
