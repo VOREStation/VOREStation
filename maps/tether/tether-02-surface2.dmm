@@ -4771,6 +4771,23 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
+"ajZ" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 24
+	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/chapel/main)
 "aka" = (
 /turf/simulated/wall,
 /area/maintenance/asmaint2)
@@ -5953,6 +5970,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/north_staires_two)
+"ame" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/chapel/main)
 "amf" = (
 /obj/machinery/camera/network/civilian{
 	dir = 4
@@ -6285,6 +6309,18 @@
 /obj/random/drinkbottle,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/atrium_two)
+"amL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/lino,
+/area/chapel/office)
 "amT" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -27051,19 +27087,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/chapel_morgue)
-"aYg" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 24
-	},
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/chapel/main)
 "aYi" = (
 /obj/structure/table/bench/padded,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -28381,28 +28404,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
-"baU" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/simulated/floor/lino,
-/area/chapel/office)
-"baW" = (
-/obj/structure/table/bench/padded,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark,
-/area/chapel/main)
 "baX" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -28428,11 +28429,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark,
-/area/chapel/main)
-"bbb" = (
-/obj/structure/table/bench/padded,
-/obj/machinery/light,
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
 "bbd" = (
@@ -42841,7 +42837,7 @@ ahR
 adu
 ajp
 aYd
-aYg
+ajZ
 aYt
 aYG
 aYR
@@ -42849,7 +42845,7 @@ aZd
 baJ
 aXi
 aXk
-aro
+ame
 aYd
 aZZ
 arZ
@@ -43267,7 +43263,7 @@ ais
 adu
 ajb
 aYd
-baW
+aXy
 aYv
 aXy
 aro
@@ -43275,7 +43271,7 @@ aZg
 aro
 aXy
 aZK
-bbb
+aXy
 aYd
 bac
 arZ
@@ -44548,7 +44544,7 @@ aoE
 aYn
 aYC
 aYK
-baU
+amL
 aZm
 api
 aZH
