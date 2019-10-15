@@ -49,6 +49,9 @@
 	if (!( target ))
 		qdel(src)
 		return
+	if (istype(target, /obj/structure/portal_subtle))
+		src.icon_state = "portal1"
+		return
 	if (istype(M, /atom/movable))
 		if(prob(failchance)) //oh dear a problem, put em in deep space
 			src.icon_state = "portal1"
