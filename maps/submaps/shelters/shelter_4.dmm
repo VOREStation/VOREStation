@@ -95,6 +95,7 @@
 /obj/item/weapon/reagent_containers/glass/beaker/large,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/survivalpod)
 "i" = (
