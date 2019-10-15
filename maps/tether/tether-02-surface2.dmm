@@ -6321,6 +6321,18 @@
 	},
 /turf/simulated/floor/lino,
 /area/chapel/office)
+"amM" = (
+/obj/structure/closet/wardrobe/chaplain_black,
+/obj/item/weapon/storage/fancy/crayons,
+/obj/machinery/camera/network/civilian{
+	dir = 8
+	},
+/obj/item/weapon/flame/candle/candelabra,
+/obj/item/weapon/flame/candle/candelabra,
+/obj/item/weapon/flame/candle/candelabra,
+/obj/item/weapon/flame/candle/candelabra,
+/turf/simulated/floor/lino,
+/area/chapel/office)
 "amT" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -27118,14 +27130,6 @@
 	},
 /turf/simulated/floor/lino,
 /area/chapel/office)
-"aYn" = (
-/obj/structure/closet/wardrobe/chaplain_black,
-/obj/item/weapon/storage/fancy/crayons,
-/obj/machinery/camera/network/civilian{
-	dir = 8
-	},
-/turf/simulated/floor/lino,
-/area/chapel/office)
 "aYo" = (
 /obj/structure/morgue/crematorium,
 /obj/machinery/camera/network/civilian{
@@ -44541,7 +44545,7 @@ aiu
 aiM
 aZO
 aoE
-aYn
+amM
 aYC
 aYK
 amL
