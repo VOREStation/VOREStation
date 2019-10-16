@@ -105,9 +105,11 @@
 			message = "<span class='warning'>[t_He] [t_is] extremely hungry. A deep growl occasionally rumbles from [t_his] empty stomach.</span>\n"
 		if(100 to 499)
 			return message //Well that's pretty normal, really.
-		if(500 to 1199) // Fat.
+		if(500 to 999) // Fat.
 			message = "[t_He] [t_has] a stuffed belly, bloated fat and round from eating too much.\n"
-		if(1200 to 1934) // One person fully digested.
+		if(1000 to 1399)
+			message = "[t_He] [t_has] a rotund, thick gut. It bulges from their body obscenely, close to sagging under its own weight.\n"
+		if(1400 to 1934) // One person fully digested.
 			message = "<span class='warning'>[t_He] [t_is] sporting a large, round, sagging stomach. It's contains at least their body weight worth of glorping slush.</span>\n"
 		if(1935 to 3004) // Two people.
 			message = "<span class='warning'>[t_He] [t_is] engorged with a huge stomach that sags and wobbles as they move. [t_He] must have consumed at least twice their body weight. It looks incredibly soft.</span>\n"
