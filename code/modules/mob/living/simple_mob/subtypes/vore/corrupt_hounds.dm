@@ -26,6 +26,7 @@
 
 	maxHealth = 200
 	health = 200
+	movement_sound = 'sound/effects/houndstep.ogg'
 
 	melee_damage_lower = 5
 	melee_damage_upper = 10 //makes it so 4 max dmg hits don't instakill you.
