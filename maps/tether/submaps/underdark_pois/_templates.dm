@@ -123,6 +123,7 @@
 	mappath = 'abandonded_outpost.dmm'
 	cost = 45
 	allow_duplicates = FALSE
+	discard_prob = 35
 
 /datum/map_template/underdark/mimicry
 	name = "Underdark Mimic Death"
