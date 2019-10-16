@@ -31571,18 +31571,6 @@
 /obj/random/junk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
-"bcj" = (
-/obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/surgery,
-/obj/item/weapon/paper{
-	desc = "";
-	info = "Stop installing NIFs in here you clods! Unless it's on a synth. Otherwise, STOP DOING IT! You're killing people! -Management";
-	name = "note to science staff"
-	},
-/obj/item/device/robotanalyzer,
-/obj/item/device/robotanalyzer,
-/turf/simulated/floor/tiled/white,
-/area/space)
 "bck" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
@@ -45849,7 +45837,7 @@ ahd
 amR
 aeJ
 aah
-bcj
+aah
 aah
 ahx
 ait
