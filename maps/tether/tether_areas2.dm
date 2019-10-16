@@ -132,6 +132,9 @@
 	name = "\improper Mining Bathroom"
 /area/tether/surfacebase/mining_main/lobby
 	name = "\improper Mining Lobby"
+/area/tether/surfacebase/mining_main/surfacecargo
+	name = "\improper Surface Cargo Office"
+	lightswitch = 0
 
 // Mining Underdark
 /area/mine/unexplored/underdark
@@ -182,23 +185,94 @@
 	name = "\improper Surface Triage"
 /area/tether/surfacebase/medical/first_aid_west
 	name = "\improper First Aid West"
+/area/tether/surfacebase/medical/chemistry
+	name = "\improper Surface Chemistry"
+	lightswitch = 0
+/area/tether/surfacebase/medical/resleeving
+	name = "\improper Surface Resleeving"
+	lightswitch = 0
+/area/tether/surfacebase/medical/surgery
+	name = "\improper Surface Surgery"
+	lightswitch = 0
+/area/tether/surfacebase/medical/patient_a
+	name = "\improper Surface Patient Room A"
+	lightswitch = 0
+/area/tether/surfacebase/medical/patient_b
+	name = "\improper Surface Patient Room B"
+	lightswitch = 0
+/area/tether/surfacebase/medical/patient_c
+	name = "\improper Surface Patient Room C"
+	lightswitch = 0
+/area/tether/surfacebase/medical/lowerhall
+	name = "\improper Surface Medical Lower Hall"
+/area/tether/surfacebase/medical/storage
+	name = "\improper Surface Medical Storage"
+	lightswitch = 0
+/area/tether/surfacebase/medical/paramed
+	name = "\improper Surface Paramedic Closet"
+	lightswitch = 0
+/area/tether/surfacebase/medical/breakroom
+	name = "\improper Surface Medical Break Room"
+	lightswitch = 0
+/area/tether/surfacebase/medical/maints
+	name = "\improper Mining Upper Maintenance"
 
+/area/tether/surfacebase/library/study
+	name = "\improper Library Private Study"
+	lightswitch = 0
+	icon_state = "library"
 
 /area/tether/surfacebase/security
 	icon_state = "security"
 /area/tether/surfacebase/security/breakroom
 	name = "\improper Surface Security Break Room"
+	lightswitch = 0
+	sound_env = MEDIUM_SOFTFLOOR
 /area/tether/surfacebase/security/lobby
 	name = "\improper Surface Security Lobby"
 /area/tether/surfacebase/security/common
 	name = "\improper Surface Security Room"
 /area/tether/surfacebase/security/armory
-	name = "\improper Surface Armory"
+	name = "\improper Surface Equipment Storage"
+	lightswitch = 0
 /area/tether/surfacebase/security/checkpoint
 	name = "\improper Surface Checkpoint Office"
 /area/tether/surfacebase/security/hallway
 	name = "\improper Surface Checkpoint Hallway"
-
+/area/tether/surfacebase/security/warden
+	name = "\improper Surface Security Warden's Office"
+	lightswitch = 0
+/area/tether/surfacebase/security/lowerhallway
+	name = "\improper Surface Security Lower Hallway"
+/area/tether/surfacebase/security/evidence
+	name = "\improper Surface Security Evidence Storage"
+	lightswitch = 0
+/area/tether/surfacebase/security/brig
+	name = "\improper Surface Security Brig"
+	lightswitch = 0
+/area/tether/surfacebase/security/solitary
+	name = "\improper Surface Security Solitary Confinement"
+	lightswitch = 0
+	sound_env =PADDED_CELL
+/area/tether/surfacebase/security/gasstorage
+	name = "\improper Surface Security Gas Storage"
+	lightswitch = 0
+/area/tether/surfacebase/security/interrogation
+	name = "\improper Surface Security Interrogation"
+	lightswitch = 0
+	sound_env = SMALL_ENCLOSED
+/area/tether/surfacebase/security/processing
+	name = "\improper Surface Security Processing"
+	lightswitch = 0
+/area/tether/surfacebase/security/lobby
+	name = "\improper Surface Security Lobby"
+/area/tether/surfacebase/security/frontdesk
+	name = "\improper Surface Security Front Desk"
+	lightswitch = 0
+/area/tether/surfacebase/security/upperhall
+	name = "\improper Surface Security Upper Hallway"
+/area/maintenance/lower/security
+	name = "\improper Surface Security Maintenance"
 
 /area/engineering/atmos/processing
 	name = "Atmospherics Processing"
@@ -414,8 +488,8 @@
 /area/rnd/outpost/xenobiology/outpost_storage
 	name = "\improper Xenbiology Equipment Storage"
 	icon_state = "research"
-/area/rnd/outpost/xenobiology/outpost_atmos
-	name = "\improper Xenbiology Atmos"
+/area/rnd/outpost/xenobiology/outpost_stairs
+	name = "\improper Xenbiology Stairwell"
 	icon_state = "research"
 /area/rnd/outpost/xenobiology/outpost_substation
 	name = "\improper Xenbiology SMES Substation"
@@ -714,6 +788,12 @@
 	sound_env = SEWER_PIPE
 /area/maintenance/station/exploration
 	name = "\improper Exploration Maintenance"
+/area/maintenance/abandonedlibrary
+	name = "\improper Abandoned Library"
+	icon_state = "library"
+/area/maintenance/abandonedlibraryconference
+	name = "\improper Abandoned Library Conference"
+	icon_state = "library"
 
 /area/shuttle/tether/crash1
 	name = "\improper Crash Site 1"
@@ -953,6 +1033,15 @@
 	name = "Small Cruiser Shuttle - Station"
 	icon_state = "blue2"
 
+
+/area/shuttle/specialops/centcom
+	name = "Special Operations Shuttle - Centcom"
+	icon_state = "shuttlered"
+	base_turf = /turf/unsimulated/floor/shuttle_ceiling
+
+/area/shuttle/specialops/tether
+	name = "Special Operations Shuttle - Tether"
+	icon_state = "shuttlered"
 
 // Tether Map has this shuttle
 /area/shuttle/tether/surface

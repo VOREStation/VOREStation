@@ -382,7 +382,7 @@
 		icon_state = "door1"
 	else
 		icon_state = "door0"
-	radiation_repository.resistance_cache.Remove(get_turf(src))
+	SSradiation.resistance_cache.Remove(get_turf(src))
 	return
 
 

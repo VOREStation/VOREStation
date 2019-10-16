@@ -174,15 +174,40 @@ var/datum/species/shapeshifter/promethean/prometheans
 		H.adjustToxLoss(3 * heal_rate)	// Tripled because 0.5 is miniscule, and fire_stacks are capped in both directions
 		healing = FALSE
 
+	//Prometheans automatically clean every surface they're in contact with every life tick - this includes the floor without shoes.
+	//They gain nutrition from doing this.
 	var/turf/T = get_turf(H)
 	if(istype(T))
-		var/obj/effect/decal/cleanable/C = locate() in T
-		if(C && !(H.shoes || (H.wear_suit && (H.wear_suit.body_parts_covered & FEET))))
-			qdel(C)
+		if(!(H.shoes || (H.wear_suit && (H.wear_suit.body_parts_covered & FEET))))
+			for(var/obj/O in T)
+				O.clean_blood()
+				H.nutrition = min(500, max(0, H.nutrition + rand(5, 15)))
 			if (istype(T, /turf/simulated))
 				var/turf/simulated/S = T
+				T.clean_blood()
 				S.dirt = 0
+				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+		if(H.clean_blood(1))
 			H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+		if(H.r_hand)
+			if(H.r_hand.clean_blood())
+				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+		if(H.l_hand)
+			if(H.l_hand.clean_blood())
+				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+		if(H.head)
+			if(H.head.clean_blood())
+				H.update_inv_head(0)
+				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+		if(H.wear_suit)
+			if(H.wear_suit.clean_blood())
+				H.update_inv_wear_suit(0)
+				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+		if(H.w_uniform)
+			if(H.w_uniform.clean_blood())
+				H.update_inv_w_uniform(0)
+				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+		//End cleaning code.
 
 		var/datum/gas_mixture/environment = T.return_air()
 		var/pressure = environment.return_pressure()

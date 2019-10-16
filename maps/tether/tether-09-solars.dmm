@@ -2132,16 +2132,17 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
 "eA" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 1
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
 	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost)
+/area/rnd/outpost/xenoarch_storage)
 "eB" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
@@ -2552,20 +2553,10 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "fc" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 9
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
 "fd" = (
@@ -5248,15 +5239,13 @@
 /turf/simulated/floor,
 /area/rnd/outpost/storage)
 "jM" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
 "jN" = (
@@ -5598,6 +5587,7 @@
 "kx" = (
 /obj/machinery/access_button{
 	frequency = 1452;
+	master_tag = "anomaly_chamber_airlock";
 	pixel_x = -25;
 	pixel_y = 25
 	},
@@ -5614,9 +5604,12 @@
 	pixel_x = 6;
 	pixel_y = 26
 	},
-/obj/machinery/atmospherics/pipe/simple/visible{
-	icon_state = "intact";
-	dir = 6
+/obj/structure/cable/green{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab/airlock)
@@ -5822,13 +5815,17 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "kP" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
 "kQ" = (
@@ -5900,6 +5897,7 @@
 	},
 /obj/machinery/access_button{
 	frequency = 1452;
+	master_tag = "anomaly_chamber_airlock";
 	pixel_x = 25;
 	pixel_y = 0
 	},
@@ -6108,19 +6106,29 @@
 /area/rnd/outpost/xenoarch_storage)
 "ll" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
 "lm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+	dir = 9
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
@@ -6135,14 +6143,21 @@
 /turf/simulated/floor,
 /area/maintenance/substation/outpost)
 "lo" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 1
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/xenoarch_storage)
+/area/rnd/outpost)
 "lp" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /turf/simulated/floor/tiled/dark,
@@ -6225,8 +6240,22 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "lt" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 8;
+	frequency = 1452;
+	icon_state = "map_vent";
+	id_tag = "anomaly_airlock_pump";
+	name = "Anomaly Airlock Pump"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab/airlock)
@@ -6307,16 +6336,20 @@
 "lA" = (
 /obj/machinery/airlock_sensor/phoron{
 	frequency = 1452;
+	id_tag = "anomaly_chamber_airlock_sensor";
+	master_tag = null;
 	pixel_x = -25;
 	pixel_y = -10
 	},
 /obj/machinery/embedded_controller/radio/airlock/phoron{
 	frequency = 1452;
-	id_tag = "anomaly_chamber_airlock_cont";
+	id_tag = "anomaly_chamber_airlock";
 	pixel_x = -25;
+	tag_airpump = "anomaly_airlock_pump";
+	tag_chamber_sensor = "anomaly_chamber_airlock_sensor";
 	tag_exterior_door = "anomaly_testing_exterior";
 	tag_interior_door = "anomaly_testing_interior";
-	tag_scrubber = "anomaly_testing_airlock"
+	tag_scrubber = "anomaly_airlock_scrubber"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab/airlock)
@@ -6407,7 +6440,10 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "lG" = (
-/obj/machinery/atmospherics/pipe/simple/visible,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab/airlock)
 "lH" = (
@@ -6501,19 +6537,6 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
 "lR" = (
-/obj/machinery/door/airlock/glass_science{
-	name = "Xenoarch Storage"
-	},
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/xenoarch_storage)
-"lS" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 4
 	},
@@ -6523,6 +6546,37 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost)
+"lS" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 5
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/purple/bordercorner2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
@@ -6555,9 +6609,22 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/anomaly_lab/testing)
 "lX" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/airlock/glass_external{
+	frequency = 1452;
+	icon_state = "door_locked";
+	id_tag = "anomaly_testing_interior";
+	locked = 1;
+	name = "Anomaly Secure Testing";
+	req_access = list(65);
+	req_one_access = list(47)
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/anomaly_lab)
+/area/rnd/outpost/anomaly_lab/airlock)
 "lY" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/machinery/light{
@@ -6867,12 +6934,16 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "mE" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5;
+	icon_state = "intact"
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "mF" = (
@@ -7410,6 +7481,15 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/super;
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "nF" = (
@@ -7428,11 +7508,16 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "nH" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 5
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
@@ -7502,6 +7587,9 @@
 /obj/machinery/door/airlock/glass_science{
 	name = "Anomaly Testing Airlock Access"
 	},
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "nQ" = (
@@ -7524,18 +7612,12 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "nS" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	dir = 1
-	},
-/obj/machinery/access_button{
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
 	frequency = 1452;
-	pixel_y = 25
-	},
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 4
+	scrub_id = "anomaly_airlock_scrubber"
 	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/anomaly_lab)
+/area/rnd/outpost/anomaly_lab/airlock)
 "nT" = (
 /obj/machinery/door/airlock/maintenance/rnd{
 	name = "Anomaly Storage"
@@ -7562,8 +7644,9 @@
 /turf/simulated/floor,
 /area/rnd/outpost/anomaly_lab/storage)
 "nW" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/green{
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
@@ -7641,26 +7724,23 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "oe" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 5
+/obj/machinery/door/airlock/glass_science{
+	name = "Xenoarch Storage"
 	},
-/obj/effect/floor_decal/corner/purple/border{
-	dir = 5
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/purple/bordercorner2{
-	dir = 4
-	},
+/obj/machinery/door/firedoor/border_only,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost)
+/area/rnd/outpost/xenoarch_storage)
 "of" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -7704,6 +7784,20 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "ok" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/machinery/access_button{
+	frequency = 1452;
+	master_tag = "anomaly_chamber_airlock";
+	pixel_y = 25
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/anomaly_lab)
+"ol" = (
 /obj/machinery/alarm{
 	dir = 4;
 	pixel_x = -23;
@@ -7711,30 +7805,25 @@
 	},
 /obj/machinery/access_button{
 	frequency = 1452;
+	master_tag = "anomaly_chamber_airlock";
 	pixel_y = 25
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
-"ol" = (
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
-	scrub_id = "anomaly_testing_airlock"
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/anomaly_lab/airlock)
 "om" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1452;
-	icon_state = "door_locked";
-	id_tag = "anomaly_testing_interior";
-	locked = 1;
-	name = "Anomaly Secure Testing";
-	req_access = list(65);
-	req_one_access = list(47)
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/visible,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/anomaly_lab/airlock)
+/area/rnd/outpost/anomaly_lab)
 "on" = (
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
@@ -21814,7 +21903,7 @@ ka
 kx
 lA
 ka
-ok
+ol
 nE
 jx
 no
@@ -21955,12 +22044,12 @@ ab
 ka
 ky
 lG
-om
-nH
-nW
-nP
 lX
 mE
+nH
+nP
+nW
+om
 mS
 lf
 jx
@@ -22096,9 +22185,9 @@ ab
 ab
 ka
 lt
-ol
-ka
 nS
+ka
+ok
 lY
 nO
 mj
@@ -24208,7 +24297,7 @@ cE
 db
 dC
 eb
-eA
+lo
 fv
 fv
 eY
@@ -24350,7 +24439,7 @@ cD
 da
 dB
 ea
-lS
+lR
 oi
 oi
 oj
@@ -24492,7 +24581,7 @@ cF
 dc
 dD
 ch
-oe
+lS
 oc
 of
 fd
@@ -24634,7 +24723,7 @@ ch
 ch
 ch
 ch
-lR
+oe
 eu
 dE
 dE
@@ -24775,8 +24864,8 @@ kr
 ez
 jt
 kK
-ll
-lo
+kP
+lm
 kr
 eD
 ff
@@ -24917,7 +25006,7 @@ kr
 eC
 mw
 mw
-lm
+ll
 me
 kr
 fe
@@ -25056,10 +25145,10 @@ ad
 ab
 ef
 kr
+eA
 fc
 jM
-kP
-lo
+lm
 mf
 kr
 fg

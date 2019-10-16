@@ -229,6 +229,10 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 		if(isobserver(A))
 			A.forceMove(T) // Harmlessly move ghosts.
 			return
+		//VOREStation Edit Start
+		if(!(A.can_fall()))
+			return // Phased shifted kin should not fall
+		//VOREStation Edit End
 
 		A.forceMove(T)
 		// Living things should probably be logged when they fall...

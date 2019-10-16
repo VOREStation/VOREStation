@@ -574,7 +574,7 @@ turf/simulated/mineral/floor/light_corner
 				M.flash_eyes()
 				if(prob(50))
 					M.Stun(5)
-			radiation_repository.flat_radiate(src, 25, 100)
+			SSradiation.flat_radiate(src, 25, 100)
 			if(prob(25))
 				excavate_find(prob(5), finds[1])
 	else if(rand(1,500) == 1)

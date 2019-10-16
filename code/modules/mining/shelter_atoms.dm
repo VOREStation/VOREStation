@@ -77,6 +77,7 @@
 			template.add_roof(above_location)
 		template.annihilate_plants(deploy_location)
 		template.load(deploy_location, centered = TRUE)
+		template.update_lighting(deploy_location)
 		qdel(src)
 
 /obj/item/device/survivalcapsule/luxury

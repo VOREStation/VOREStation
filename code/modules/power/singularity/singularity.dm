@@ -408,7 +408,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	if (src.energy>200)
 		toxdamage = round(((src.energy-150)/50)*4,1)
 		radiation = round(((src.energy-150)/50)*5,1)
-	radiation_repository.radiate(src, radiation) //Always radiate at max, so a decent dose of radiation is applied
+	SSradiation.radiate(src, radiation) //Always radiate at max, so a decent dose of radiation is applied
 	for(var/mob/living/M in view(toxrange, src.loc))
 		if(M.status_flags & GODMODE)
 			continue
@@ -451,7 +451,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 			M << "<span class=\"danger\">You hear an uneartly ringing, then what sounds like a shrilling kettle as you are washed with a wave of heat.</span>"
 			M << "<span class=\"danger\">You don't even have a moment to react as you are reduced to ashes by the intense radiation.</span>"
 			M.dust()
-	radiation_repository.radiate(src, rand(energy))
+	SSradiation.radiate(src, rand(energy))
 	return
 
 /obj/singularity/proc/pulse()

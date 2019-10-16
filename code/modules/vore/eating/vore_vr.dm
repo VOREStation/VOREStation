@@ -19,6 +19,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 -Aro <3 */
 
+#define VORE_VERSION	1	//This is a Define so you don't have to worry about magic numbers.
+
 //
 // Overrides/additions to stock defines go here, as well as hooks. Sort them by
 // the object they are overriding. So all /mob/living together, etc.
@@ -139,7 +141,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 /datum/vore_preferences/proc/save_vore()
 	if(!path)				return 0
 
-	var/version = 1	//For "good times" use in the future
+	var/version = VORE_VERSION	//For "good times" use in the future
 	var/list/settings_list = list(
 			"version"				= version,
 			"digestable"			= digestable,
