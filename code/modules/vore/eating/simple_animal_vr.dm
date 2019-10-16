@@ -1,6 +1,6 @@
 ///////////////////// Simple Animal /////////////////////
 /mob/living/simple_mob
-	var/swallowTime = 30 				//How long it takes to eat its prey in 1/10 of a second. The default is 3 seconds.
+	var/swallowTime = (3 SECONDS)		//How long it takes to eat its prey in 1/10 of a second. The default is 3 seconds.
 	var/list/prey_excludes = list()		//For excluding people from being eaten.
 
 //
@@ -42,13 +42,24 @@
 		var/confirm = alert(user, "Enabling digestion on [name] will cause it to digest all stomach contents. Using this to break OOC prefs is against the rules. Digestion will reset after 20 minutes.", "Enabling [name]'s Digestion", "Enable", "Cancel")
 		if(confirm == "Enable")
 			vore_selected.digest_mode = DM_DIGEST
-			spawn(12000) //12000=20 minutes
+			spawn(20 MINUTES)
 				if(src)	vore_selected.digest_mode = vore_default_mode
 	else
 		var/confirm = alert(user, "This mob is currently set to process all stomach contents. Do you want to disable this?", "Disabling [name]'s Digestion", "Disable", "Cancel")
 		if(confirm == "Disable")
 			vore_selected.digest_mode = DM_HOLD
 
+/mob/living/simple_mob/verb/toggle_fancygurgle()
+	set name = "Toggle Animal's Gurgle sounds"
+	set desc = "Switches between Fancy and Classic sounds on this mob."
+	set category = "OOC"
+	set src in oview(1)
+
+	var/mob/living/user = usr	//I mean, At least ghosts won't use it.
+	if(!istype(user) || user.stat) return
+
+	vore_selected.fancy_vore = !vore_selected.fancy_vore
+	to_chat(user, "[src] is now using [vore_selected.fancy_vore ? "Fancy" : "Classic"] vore sounds.")
 
 /mob/living/simple_mob/attackby(var/obj/item/O, var/mob/user)
 	if (istype(O, /obj/item/weapon/newspaper) && !(ckey || (ai_holder.hostile && faction != user.faction)) && isturf(user.loc))
@@ -70,7 +81,7 @@
 			for(var/mob/living/L in living_mobs(0)) //add everyone on the tile to the do-not-eat list for a while
 				if(!(L in prey_excludes)) // Unless they're already on it, just to avoid fuckery.
 					prey_excludes += L
-					spawn(3600)
+					spawn(5 MINUTES)
 						if(src && L)
 							prey_excludes -= L
 	else
