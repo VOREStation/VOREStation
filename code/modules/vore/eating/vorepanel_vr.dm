@@ -338,8 +338,18 @@
 		if(FALSE)
 			dat += "<a style='background:#990000;' href='?src=\ref[src];togglehealbelly=1'>Toggle Healbelly Permission (Currently: OFF)</a>"
 
-	dat += "<br><a href='?src=\ref[src];toggle_dropnom_prey=1'>Toggle Drop-nom Prey</a>" //These two get their own, custom row, too.
-	dat += "<a href='?src=\ref[src];toggle_dropnom_pred=1'>Toggle Drop-nom Pred</a>"
+	switch(user.can_be_drop_prey)
+		if(TRUE)
+			dat += "<br><a style='background:#173d15;' href='?src=\ref[src];toggle_dropnom_prey=1'>Toggle Prey Spontaneous Vore (Currently: ON)</a>"
+		if(FALSE)
+			dat += "<br><a style='background:#990000;' href='?src=\ref[src];toggle_dropnom_prey=1'>Toggle Prey Spontaneous Vore (Currently: OFF)</a>"
+
+	switch(user.can_be_drop_pred)
+		if(TRUE)
+			dat += "<a style='background:#173d15;' href='?src=\ref[src];toggle_dropnom_pred=1'>Toggle Pred Spontaneous Vore (Currently: ON)</a>"
+		if(FALSE)
+			dat += "<a style='background:#990000;' href='?src=\ref[src];toggle_dropnom_pred=1'>Toggle Pred Spontaneous Vore (Currently: OFF)</a>"
+
 	dat += "<br><a href='?src=\ref[src];setflavor=1'>Set Your Taste</a>"
 	dat += "<a href='?src=\ref[src];togglenoisy=1'>Toggle Hunger Noises</a>"
 
@@ -880,7 +890,7 @@
 		user.vore_taste = new_flavor
 
 	if(href_list["toggle_dropnom_pred"])
-		var/choice = alert(user, "You are currently [user.can_be_drop_pred ? " able to eat prey that fall from above or that you fall onto" : "not able to eat prey that fall from above or that you fall onto."]", "", "Be Pred", "Cancel", "Don't be Pred")
+		var/choice = alert(user, "This toggle is for spontaneous, environment related vore as a predator, including drop-noms, teleporters, etc. You are currently [user.can_be_drop_pred ? " able to eat prey that you encounter by environmental actions." : "avoiding eating prey encountered in the environment."]", "", "Be Pred", "Cancel", "Don't be Pred")
 		switch(choice)
 			if("Cancel")
 				return FALSE
@@ -890,7 +900,7 @@
 				user.can_be_drop_pred = FALSE
 
 	if(href_list["toggle_dropnom_prey"])
-		var/choice = alert(user, "You are currently [user.can_be_drop_prey ? "able to be eaten." : "not able to be eaten."]", "", "Be Prey", "Cancel", "Don't Be Prey")
+		var/choice = alert(user, "This toggle is for spontaneous, environment related vore as a prey, including drop-noms, teleporters, etc. You are currently [user.can_be_drop_prey ? "able to be eaten by environmental actions." : "not able to be eaten by environmental actions."]", "", "Be Prey", "Cancel", "Don't Be Prey")
 		switch(choice)
 			if("Cancel")
 				return FALSE
