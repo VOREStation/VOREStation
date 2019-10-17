@@ -36,7 +36,7 @@
 /datum/map_template/underdark/guardedloot_hard
 	name = "Underdark Guarded Loot Hard"
 	mappath = 'guardedloot_hard.dmm'
-	cost = 20
+	cost = 15
 
 /datum/map_template/underdark/blaster
 	name = "Underdark Blaster"
@@ -88,12 +88,12 @@
 /datum/map_template/underdark/old_drone_hive
 	name = "Underdark Old Drone Hive"
 	mappath = 'old_drone_hive.dmm'
-	cost = 25
+	cost = 15
 
 /datum/map_template/underdark/phoron_rat_den
 	name = "Underdark Phoron Rat Den"
 	mappath = 'phoron_rat_den.dmm'
-	cost = 35
+	cost = 25
 	allow_duplicates = FALSE
 
 /datum/map_template/underdark/subterranean_lake
@@ -123,6 +123,7 @@
 	mappath = 'abandonded_outpost.dmm'
 	cost = 45
 	allow_duplicates = FALSE
+	discard_prob = 35
 
 /datum/map_template/underdark/mimicry
 	name = "Underdark Mimic Death"

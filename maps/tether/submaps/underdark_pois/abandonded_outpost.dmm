@@ -160,7 +160,9 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored/underdark)
 "aO" = (
-/obj/machinery/porta_turret/stationary/syndie,
+/obj/machinery/porta_turret/stationary/syndie{
+	faction = "underdark"
+	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored/underdark)
 "aP" = (
@@ -355,7 +357,9 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored/underdark)
 "bB" = (
-/mob/living/simple_mob/mechanical/infectionbot,
+/mob/living/simple_mob/mechanical/infectionbot{
+	faction = "underdark"
+	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored/underdark)
 "bC" = (
@@ -392,7 +396,6 @@ ad
 ad
 aj
 ad
-aa
 ac
 "}
 (2,1,1) = {"
@@ -412,14 +415,13 @@ aj
 ad
 ad
 ad
-aX
+ad
 ad
 ad
 aj
 ad
 ad
 ad
-aa
 ac
 "}
 (3,1,1) = {"
@@ -446,7 +448,6 @@ ab
 ab
 ab
 ad
-aa
 ac
 "}
 (4,1,1) = {"
@@ -473,7 +474,6 @@ bp
 ae
 ab
 ad
-aa
 ac
 "}
 (5,1,1) = {"
@@ -500,7 +500,6 @@ ae
 ae
 ab
 ad
-aa
 ac
 "}
 (6,1,1) = {"
@@ -527,7 +526,6 @@ bi
 ae
 ab
 ad
-aa
 ac
 "}
 (7,1,1) = {"
@@ -554,7 +552,6 @@ br
 ae
 ab
 ad
-aa
 ac
 "}
 (8,1,1) = {"
@@ -581,7 +578,6 @@ bj
 bj
 ab
 ad
-aa
 ac
 "}
 (9,1,1) = {"
@@ -608,7 +604,6 @@ bj
 bj
 ab
 bc
-aa
 ac
 "}
 (10,1,1) = {"
@@ -635,7 +630,6 @@ bj
 bD
 ab
 ad
-aa
 ac
 "}
 (11,1,1) = {"
@@ -662,7 +656,6 @@ ae
 bC
 ab
 ad
-aa
 ac
 "}
 (12,1,1) = {"
@@ -689,7 +682,6 @@ ae
 aJ
 ab
 ad
-aa
 ac
 "}
 (13,1,1) = {"
@@ -716,7 +708,6 @@ ae
 aK
 ab
 ad
-aa
 ac
 "}
 (14,1,1) = {"
@@ -743,7 +734,6 @@ ae
 aL
 ab
 bc
-aa
 ac
 "}
 (15,1,1) = {"
@@ -770,7 +760,6 @@ ae
 bC
 ab
 ad
-aa
 ac
 "}
 (16,1,1) = {"
@@ -797,7 +786,6 @@ ae
 bC
 ab
 ad
-aa
 ac
 "}
 (17,1,1) = {"
@@ -824,7 +812,6 @@ ae
 ae
 ab
 ad
-aa
 ac
 "}
 (18,1,1) = {"
@@ -851,7 +838,6 @@ ae
 ae
 ab
 ad
-aa
 ac
 "}
 (19,1,1) = {"
@@ -878,7 +864,6 @@ ae
 bk
 ab
 ad
-aa
 ac
 "}
 (20,1,1) = {"
@@ -905,7 +890,6 @@ ae
 ae
 ab
 ad
-aa
 ac
 "}
 (21,1,1) = {"
@@ -932,7 +916,6 @@ ae
 ae
 ab
 ad
-aa
 ac
 "}
 (22,1,1) = {"
@@ -959,7 +942,6 @@ bq
 ae
 ab
 ad
-aa
 ac
 "}
 (23,1,1) = {"
@@ -986,7 +968,6 @@ ab
 ab
 ab
 ad
-aa
 ac
 "}
 (24,1,1) = {"
@@ -1013,7 +994,6 @@ ad
 aj
 ad
 ad
-aa
 ac
 "}
 (25,1,1) = {"
@@ -1040,6 +1020,5 @@ ad
 ad
 ad
 ad
-aa
 ac
 "}
