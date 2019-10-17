@@ -28,10 +28,6 @@
 /obj/machinery/floodlight,
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
-"ai" = (
-/obj/machinery/door/airlock/uranium,
-/turf/simulated/wall,
-/area/mine/explored/underdark)
 "aj" = (
 /obj/machinery/crystal,
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
@@ -371,6 +367,10 @@
 /obj/random/underdark,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored/underdark)
+"bE" = (
+/obj/item/device/geiger,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
 
 (1,1,1) = {"
 aa
@@ -414,7 +414,7 @@ ad
 aj
 ad
 ad
-ad
+bE
 ad
 ad
 ad
@@ -484,7 +484,7 @@ ad
 ah
 ad
 ad
-ai
+af
 ae
 ae
 ae
@@ -588,7 +588,7 @@ ad
 ad
 ad
 ad
-ai
+af
 ae
 ae
 ae
@@ -717,7 +717,7 @@ ad
 ad
 be
 ad
-ad
+bE
 ab
 bl
 ae
@@ -833,7 +833,7 @@ ae
 ae
 ae
 as
-ab
+aE
 ae
 ae
 ab
@@ -885,7 +885,7 @@ bb
 ae
 ae
 aW
-ab
+aE
 ae
 ae
 ab
@@ -1005,7 +1005,7 @@ aa
 aa
 aa
 ad
-ad
+bE
 ad
 ad
 ad
