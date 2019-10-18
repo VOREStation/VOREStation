@@ -9436,12 +9436,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/vacant_site)
 "aqj" = (
+/obj/structure/ladder/up,
 /obj/structure/catwalk,
-/obj/structure/closet,
-/obj/random/maintenance/clean,
-/obj/random/maintenance/cargo,
-/obj/random/maintenance/cargo,
-/obj/random/drinkbottle,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
 "aqk" = (
@@ -9867,12 +9864,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
-"aqS" = (
-/obj/structure/ladder/up,
-/obj/structure/catwalk,
-/obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/vacant_site)
 "aqT" = (
 /turf/simulated/wall/r_wall,
 /area/storage/surface_eva/external)
@@ -10044,16 +10035,6 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/vacant_site)
-"arm" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/random/trash_pile,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
 "arn" = (
@@ -31706,6 +31687,25 @@
 /obj/random/maintenance/cargo,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/vacant_site)
+"lry" = (
+/obj/structure/catwalk,
+/obj/structure/closet,
+/obj/random/maintenance/clean,
+/obj/random/maintenance/cargo,
+/obj/random/maintenance/cargo,
+/obj/random/drinkbottle,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/vacant_site)
+"nlo" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/random/trash_pile,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/vacant_site)
 "obY" = (
 /obj/machinery/alarm{
 	pixel_y = 22
@@ -47534,7 +47534,7 @@ aah
 apF
 apF
 aql
-arm
+nlo
 apF
 aah
 aah
@@ -47674,7 +47674,7 @@ aah
 aah
 aah
 apF
-aqj
+lry
 aql
 aql
 apF
@@ -47817,7 +47817,7 @@ aah
 aah
 apF
 aqk
-aqS
+aqj
 aql
 apF
 aah
