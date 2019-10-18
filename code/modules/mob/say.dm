@@ -21,15 +21,14 @@
 	if(say_disabled)	//This is here to try to identify lag problems
 		usr << "<font color='red'>Speech is currently admin-disabled.</font>"
 		return
-	
-	//message = sanitize(message) //VOREStation removal - moving this to after muffled check to avoid double-sanitization problems.
 
-	set_typing_indicator(FALSE)
 	//VOREStation Edit Start
 	if(muffled)
 		return me_verb_subtle(message)
 	message = sanitize_or_reflect(message,src) //VOREStation Edit - Reflect too-long messages (within reason)
 	//VOREStation Edit End
+
+	set_typing_indicator(FALSE)
 	if(use_me)
 		usr.emote("me",usr.emote_type,message)
 	else
