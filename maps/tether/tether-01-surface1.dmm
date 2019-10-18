@@ -31687,6 +31687,25 @@
 /obj/random/maintenance/cargo,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/vacant_site)
+"lry" = (
+/obj/structure/catwalk,
+/obj/structure/closet,
+/obj/random/maintenance/clean,
+/obj/random/maintenance/cargo,
+/obj/random/maintenance/cargo,
+/obj/random/drinkbottle,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/vacant_site)
+"nlo" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/random/trash_pile,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/vacant_site)
 "obY" = (
 /obj/machinery/alarm{
 	pixel_y = 22
@@ -47372,7 +47391,7 @@ aah
 aah
 aah
 apF
-aqk
+aql
 arl
 apF
 aah
@@ -47515,7 +47534,7 @@ aah
 apF
 apF
 aql
-apF
+nlo
 apF
 aah
 aah
@@ -47655,7 +47674,7 @@ aah
 aah
 aah
 apF
-aql
+lry
 aql
 aql
 apF
@@ -47797,7 +47816,7 @@ aah
 aah
 aah
 apF
-aql
+aqk
 aqj
 aql
 apF
