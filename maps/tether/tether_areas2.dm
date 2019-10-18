@@ -552,6 +552,10 @@
 	name = "\improper Dock Two"
 	icon_state = "dk_yellow"
 
+/area/tether/station/burial
+	name = "\improper Burial"
+	icon_state = "chapel_morgue"
+
 /area/crew_quarters/showers
 	name = "\improper Unisex Showers"
 	icon_state = "recreation_area_restroom"

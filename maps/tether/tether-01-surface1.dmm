@@ -10008,20 +10008,7 @@
 /turf/simulated/floor/water/pool,
 /area/tether/surfacebase/atrium_one)
 "arh" = (
-/obj/structure/railing{
-	dir = 1
-	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/structure/cable/green{
-	d1 = 16;
-	d2 = 0;
-	icon_state = "16-0"
-	},
-/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
 "ari" = (
@@ -10239,19 +10226,15 @@
 "arC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/vacant_site)
-"arD" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+	d1 = 16;
+	d2 = 0;
+	icon_state = "16-0"
 	},
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
 "arE" = (
@@ -37869,7 +37852,7 @@ ajL
 ajL
 ajL
 ajL
-ajL
+akA
 ajL
 ajM
 akm
@@ -46415,8 +46398,8 @@ aah
 aah
 apF
 aqQ
+ari
 arh
-arD
 apF
 ash
 asx
@@ -46841,7 +46824,7 @@ aaU
 aaU
 aaU
 aql
-ari
+arh
 apF
 aah
 ash
