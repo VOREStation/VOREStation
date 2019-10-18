@@ -18,18 +18,6 @@
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
 "ae" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"af" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"ag" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
@@ -40,7 +28,31 @@
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
+"af" = (
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 1
+	},
+/obj/machinery/power/solar,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"ag" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 1
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
 "ah" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -110,13 +122,13 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
+/obj/machinery/power/solar,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
 	},
-/obj/machinery/power/solar,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "ar" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -124,17 +136,12 @@
 /turf/simulated/floor/plating/virgo2,
 /area/tether_away/aerostat/inside)
 "as" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/effect/floor_decal/industrial/warning/dust{
-	dir = 1
+	dir = 5
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "at" = (
 /obj/structure/table/standard,
 /obj/fiftyspawner/osmium,
@@ -148,33 +155,39 @@
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
 "av" = (
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/power/solar,
 /obj/effect/floor_decal/industrial/warning/dust{
-	dir = 1
+	dir = 9
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "aw" = (
 /turf/unsimulated/floor/sky/virgo2_sky,
 /area/tether_away/aerostat)
 "ax" = (
+/obj/machinery/power/solar,
 /obj/effect/floor_decal/industrial/warning/dust{
-	dir = 4
+	dir = 1
 	},
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"ay" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 5
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
+"ay" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
 "az" = (
 /obj/machinery/atmospherics/binary/algae_farm,
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
@@ -192,22 +205,17 @@
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
 "aB" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 5
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 8
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "aC" = (
 /obj/machinery/atmospherics/binary/algae_farm,
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
@@ -221,6 +229,35 @@
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
 "aD" = (
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"aE" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 8
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"aF" = (
+/obj/machinery/atmospherics/binary/algae_farm,
+/obj/machinery/atmospherics/pipe/simple/hidden/black{
+	icon_state = "intact";
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/tether_away/aerostat/inside)
+"aG" = (
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -228,8 +265,8 @@
 /obj/machinery/power/solar,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"aE" = (
+/area/tether_away/aerostat/solars)
+"aH" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -242,46 +279,7 @@
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"aF" = (
-/obj/machinery/atmospherics/binary/algae_farm,
-/obj/machinery/atmospherics/pipe/simple/hidden/black{
-	icon_state = "intact";
-	dir = 6
-	},
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/tether_away/aerostat/inside)
-"aG" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"aH" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 8
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "aI" = (
 /obj/machinery/atmospherics/binary/algae_farm,
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
@@ -341,54 +339,42 @@
 /turf/simulated/floor/bluegrid/virgo2,
 /area/tether_away/aerostat/inside)
 "aS" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"aT" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
+"aT" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 8
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
 "aU" = (
-/obj/structure/cable/heavyduty{
-	dir = 2;
+/obj/machinery/power/solar,
+/obj/structure/cable/yellow{
+	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/structure/cable/yellow,
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "aV" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "4-8"
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 4
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "aW" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-8"
@@ -405,20 +391,36 @@
 /turf/simulated/floor/plating/virgo2,
 /area/tether_away/aerostat/inside)
 "aY" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"aZ" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 8
-	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"aZ" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 4
+/area/tether_away/aerostat/solars)
+"ba" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -427,40 +429,33 @@
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"ba" = (
+/area/tether_away/aerostat/solars)
+"bb" = (
 /obj/structure/cable/yellow{
-	d1 = 1;
+	d1 = 4;
 	d2 = 8;
-	icon_state = "1-8"
+	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"bb" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/area/tether_away/aerostat/solars)
+"bc" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"bc" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 9
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "bd" = (
 /turf/simulated/shuttle/wall,
 /area/shuttle/aerostat/docked)
@@ -542,29 +537,29 @@
 "bt" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "bu" = (
 /obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/industrial/warning/dust{
-	dir = 10
+	dir = 4
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "bv" = (
 /turf/simulated/wall/virgo2,
 /area/tether_away/aerostat/inside)
@@ -822,11 +817,10 @@
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
 "cn" = (
-/obj/machinery/door/airlock/multi_tile/metal{
-	dir = 1;
-	hackProof = 1;
-	icon_state = "door_locked";
-	locked = 1
+/obj/machinery/button/remote/blast_door{
+	id = "aerostat_doors";
+	name = "Airlock Doors";
+	pixel_y = 25
 	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
@@ -849,6 +843,10 @@
 "cq" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
 	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
@@ -886,24 +884,19 @@
 /area/tether_away/aerostat/inside)
 "cx" = (
 /obj/structure/cable/yellow{
+	d1 = 2;
 	d2 = 8;
-	icon_state = "0-8"
+	icon_state = "2-8"
 	},
-/obj/effect/floor_decal/industrial/warning/dust,
-/obj/machinery/power/solar,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "cy" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 4
 	},
-/obj/effect/floor_decal/industrial/warning/dust,
-/obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "cz" = (
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/floor/tiled/techfloor/virgo2,
@@ -996,14 +989,12 @@
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
 "cO" = (
-/obj/effect/floor_decal/rust,
-/obj/machinery/door/airlock/multi_tile/metal{
-	dir = 1;
-	hackProof = 1;
+/obj/machinery/door/airlock/external{
 	icon_state = "door_locked";
+	id_tag = "aerostat_doors";
 	locked = 1
 	},
-/turf/simulated/floor/plating/virgo2,
+/turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
 "cP" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -1075,183 +1066,169 @@
 /turf/simulated/floor/plating/virgo2,
 /area/tether_away/aerostat/inside)
 "db" = (
-/obj/machinery/power/solar,
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dc" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dd" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 5
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"de" = (
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"df" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
 	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dg" = (
-/obj/machinery/power/solar,
 /obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dh" = (
+/area/tether_away/aerostat/solars)
+"dc" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /obj/structure/cable/yellow{
 	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
 	d2 = 8;
-	icon_state = "2-8"
+	icon_state = "1-8"
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"di" = (
+/area/tether_away/aerostat/solars)
+"dd" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	d2 = 8;
+	icon_state = "1-8"
 	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"de" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
+"df" = (
+/obj/machinery/power/tracker,
+/obj/structure/cable/yellow,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"dg" = (
+/obj/machinery/power/solar_control,
+/obj/structure/cable/yellow,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"dh" = (
+/obj/effect/floor_decal/rust,
+/mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_laser,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"di" = (
+/obj/structure/cable/heavyduty{
+	dir = 2;
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
 "dj" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"dk" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 4
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"dl" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 8
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"dm" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "0-8"
+	},
+/obj/structure/cable/yellow,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"dn" = (
+/obj/effect/floor_decal/rust,
+/mob/living/simple_mob/mechanical/hivebot/ranged_damage/siege/radiation,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"do" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dk" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dl" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dm" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dn" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"do" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "dp" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dq" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
 	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
+"dq" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
 "dr" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "2-4"
@@ -1265,57 +1242,10 @@
 	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/rust,
+/obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/plating/virgo2,
 /area/tether_away/aerostat/inside)
 "dt" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 8
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"du" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dv" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "0-8"
-	},
-/obj/structure/cable/yellow,
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dw" = (
-/obj/machinery/power/solar_control,
-/obj/structure/cable/yellow,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dx" = (
-/obj/machinery/power/tracker,
-/obj/structure/cable/yellow,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dy" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-2"
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat/inside)
-"dz" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 4;
@@ -1323,8 +1253,8 @@
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dA" = (
+/area/tether_away/aerostat/solars)
+"du" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -1337,8 +1267,8 @@
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dB" = (
+/area/tether_away/aerostat/solars)
+"dv" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
 	},
@@ -1349,8 +1279,55 @@
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dC" = (
+/area/tether_away/aerostat/solars)
+"dw" = (
+/obj/structure/metal_edge,
+/turf/unsimulated/floor/sky/virgo2_sky,
+/area/tether_away/aerostat/solars)
+"dx" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 8
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"dy" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/inside)
+"dz" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"dA" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"dB" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -1363,8 +1340,8 @@
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dD" = (
+/area/tether_away/aerostat/solars)
+"dC" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
 	},
@@ -1380,46 +1357,54 @@
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
+"dD" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 4
+	},
+/obj/effect/floor_decal/rust,
+/obj/random/powercell,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
 "dE" = (
+/obj/effect/floor_decal/rust,
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"dF" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 10
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dF" = (
-/obj/machinery/power/solar,
-/obj/effect/floor_decal/industrial/warning/dust,
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "dG" = (
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
+	},
 /obj/effect/floor_decal/industrial/warning/dust,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/machinery/power/solar,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "dH" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 6
-	},
 /obj/structure/cable/yellow{
 	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+	d2 = 4;
+	icon_state = "1-4"
 	},
+/obj/effect/floor_decal/industrial/warning/dust,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "dI" = (
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -1429,14 +1414,14 @@
 /obj/effect/floor_decal/industrial/warning/dust,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "dJ" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 6
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
 "dK" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/tether_away_spawner/support_hivebot,
@@ -1452,7 +1437,8 @@
 /turf/simulated/floor/plating/virgo2,
 /area/tether_away/aerostat/inside)
 "dN" = (
-/obj/tether_away_spawner/ranged_hivebot,
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/tether_away_spawner/ranged_hivebot_danger,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
 "dO" = (
@@ -1460,43 +1446,89 @@
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
 "dP" = (
-/obj/tether_away_spawner/ranged_hivebot_danger,
-/turf/simulated/wall/virgo2,
+/obj/effect/floor_decal/rust,
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	id_tag = "aerostat_doors";
+	locked = 1
+	},
+/turf/simulated/floor/plating/virgo2,
 /area/tether_away/aerostat/inside)
 "dQ" = (
 /obj/effect/floor_decal/industrial/warning/dust{
-	dir = 8
+	dir = 10
 	},
-/obj/tether_away_spawner/support_hivebot,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/tether_away/aerostat/inside)
-"dR" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 4
-	},
-/obj/tether_away_spawner/tank_hivebot,
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/tether_away/aerostat/inside)
-"dS" = (
 /obj/effect/floor_decal/rust,
-/mob/living/simple_mob/mechanical/hivebot/ranged_damage/siege/radiation,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/solars)
+"dR" = (
+/obj/machinery/power/solar,
+/obj/effect/floor_decal/industrial/warning/dust,
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"dS" = (
+/obj/effect/floor_decal/industrial/warning/dust,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
 "dT" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 6
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"dU" = (
+/obj/effect/floor_decal/rust,
+/obj/random/powercell,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/solars)
+"dV" = (
 /obj/effect/floor_decal/rust,
 /mob/living/simple_mob/mechanical/hivebot/ranged_damage/dot,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dU" = (
+/area/tether_away/aerostat/solars)
+"dW" = (
 /obj/effect/floor_decal/rust,
 /mob/living/simple_mob/mechanical/hivebot/swarm,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
-"dV" = (
-/obj/effect/floor_decal/rust,
-/mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_laser,
+/area/tether_away/aerostat/solars)
+"dX" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/tether_away/aerostat/inside)
+"dY" = (
+/obj/machinery/power/apc/alarms_hidden{
+	chargelevel = 0.005;
+	pixel_x = 25;
+	start_charge = 0
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/tether_away/aerostat/inside)
+"dZ" = (
+/obj/structure/ghost_pod/manual/lost_drone/dogborg,
 /turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
+/area/tether_away/aerostat/inside)
 "eE" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/random/toolbox,
@@ -1524,11 +1556,6 @@
 /obj/random/contraband,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
-"ub" = (
-/obj/effect/floor_decal/rust,
-/obj/random/powercell,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
 "uU" = (
 /obj/structure/table/standard,
 /obj/item/weapon/gun/energy/taser/xeno,
@@ -1557,14 +1584,6 @@
 /obj/random/drinkbottle,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
-"DK" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 4
-	},
-/obj/effect/floor_decal/rust,
-/obj/random/powercell,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat)
 "Fg" = (
 /obj/random/firstaid,
 /turf/simulated/floor/plating/virgo2,
@@ -5068,10 +5087,10 @@ aw
 aw
 aw
 aw
-df
-df
-df
-JG
+aT
+aT
+aT
+dw
 aw
 aw
 aw
@@ -5209,12 +5228,12 @@ aw
 aw
 aw
 aw
-de
-de
-de
-de
-de
-JG
+aD
+aD
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -5280,10 +5299,10 @@ aw
 aw
 aw
 aw
-df
-df
-df
-JG
+aT
+aT
+aT
+dw
 aw
 aw
 aw
@@ -5350,14 +5369,14 @@ aw
 aw
 aw
 aw
-de
-de
-dj
-dx
-de
-de
-de
-JG
+aD
+aD
+aZ
+df
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -5421,12 +5440,12 @@ aw
 aw
 aw
 aw
-de
-de
-de
-de
-de
-JG
+aD
+aD
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -5491,16 +5510,16 @@ aw
 aw
 aw
 aw
-de
-de
-de
-aG
+aD
+aD
+aD
+ba
+dg
+aD
+aD
+aD
+aD
 dw
-de
-de
-de
-de
-JG
 aw
 aw
 aw
@@ -5562,14 +5581,14 @@ aw
 aw
 aw
 aw
-de
-de
-dj
-dx
-de
-de
-de
-JG
+aD
+aD
+aZ
+df
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -5632,87 +5651,87 @@ aw
 aw
 aw
 aw
-de
-de
-de
-de
-dk
-de
-de
-de
-de
-de
-de
-JG
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-de
-de
-de
-aG
+aD
+aD
+aD
+aD
+bb
+aD
+aD
+aD
+aD
+aD
+aD
 dw
-de
-de
-de
-de
-JG
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aD
+aD
+aD
+ba
+dg
+aD
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -5773,89 +5792,89 @@ aw
 aw
 aw
 aw
-ag
-aB
-aB
-aB
-aB
-aH
-df
-aY
+ae
+aE
+aE
+aE
+aE
+bc
+aT
+do
+dx
+dx
+dx
+dx
+dF
+dw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aD
+aD
+aD
+aD
 bb
-bb
-bb
-bb
-bu
-JG
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-de
-de
-de
-de
-dk
-de
-de
-de
-de
-de
-de
-JG
+aD
+aD
+aD
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -5915,90 +5934,90 @@ aw
 aw
 aw
 aw
-aq
-aD
-aD
-aD
-aD
-dk
-de
-dk
-aD
-aD
-aD
-aD
-cx
-JG
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-ag
-aB
-aB
-aB
-aB
-aH
-df
-aY
+af
+aG
+aG
+aG
+aG
 bb
+aD
 bb
-bb
-bb
-bu
-JG
+aG
+aG
+aG
+aG
+dG
+dw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+ae
+aE
+aE
+aE
+aE
+bc
+aT
+do
+dx
+dx
+dx
+dx
+dF
+dw
 aw
 aw
 aw
@@ -6057,90 +6076,90 @@ aw
 aw
 aw
 aw
-as
-aE
-aE
-aE
-aE
-aS
-de
+ag
+aH
+aH
+aH
+aH
+bt
+aD
+ba
+dz
+dz
+dz
+dz
+dH
+dw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+af
 aG
-bt
-bt
-bt
-bt
-cy
-JG
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aq
+aG
+aG
+aG
+bb
 aD
-aD
-aD
-aD
-dk
-de
-dk
-aD
-aD
-aD
-aD
-cx
-JG
+bb
+aG
+aG
+aG
+aG
+dG
+dw
 aw
 aw
 aw
@@ -6199,90 +6218,90 @@ aw
 aw
 aw
 aw
-aq
-aD
-aD
-aD
-aD
-dk
-de
-dk
-aD
-aD
-aD
-aD
-cx
-JG
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-as
-aE
-aE
-aE
-aE
-aS
-de
+af
 aG
+aG
+aG
+aG
+bb
+aD
+bb
+aG
+aG
+aG
+aG
+dG
+dw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+ag
+aH
+aH
+aH
+aH
 bt
-bt
-bt
-bt
-cy
-JG
+aD
+ba
+dz
+dz
+dz
+dz
+dH
+dw
 aw
 aw
 aw
@@ -6341,90 +6360,90 @@ aw
 aw
 aw
 aw
-as
-aE
-aE
-aE
-aE
-aS
-de
+ag
+aH
+aH
+aH
+aH
+bt
+aD
+ba
+dz
+dz
+dz
+dz
+dH
+dw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+af
 aG
-bt
-bt
-bt
-bt
-cy
-JG
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aq
+aG
+aG
+aG
+bb
 aD
-aD
-aD
-aD
-dk
-de
-dk
-aD
-aD
-aD
-aD
-cx
-JG
+bb
+aG
+aG
+aG
+aG
+dG
+dw
 aw
 aw
 aw
@@ -6483,90 +6502,90 @@ aw
 aw
 aw
 aw
-aq
-aD
-aD
-aD
-aD
-dk
-de
-dk
-aD
-aD
-aD
-aD
-cx
-JG
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-as
-aE
-aE
-aE
-aE
-aS
-de
+af
 aG
+aG
+aG
+aG
+bb
+aD
+bb
+aG
+aG
+aG
+aG
+dG
+dw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+ag
+aH
+aH
+aH
+aH
 bt
-bt
-bt
-bt
-cy
-JG
+aD
+ba
+dz
+dz
+dz
+dz
+dH
+dw
 aw
 aw
 aw
@@ -6625,90 +6644,90 @@ aw
 aw
 aw
 aw
-as
-aE
-aE
-aE
-aE
-aS
-de
+ag
+aH
+aH
+aH
+aH
+bt
+aD
+ba
+dz
+dz
+dz
+dz
+dH
+dw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+cv
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+af
 aG
-bt
-bt
-bt
-bt
-cy
-JG
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-cv
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aq
+aG
+aG
+aG
+bb
 aD
-aD
-aD
-aD
-dk
-de
-dk
-aD
-aD
-aD
-aD
-cx
-JG
+bb
+aG
+aG
+aG
+aG
+dG
+dw
 aw
 aw
 aw
@@ -6767,20 +6786,20 @@ aw
 aw
 aw
 aw
-aq
-aD
-aD
-aD
-aD
-dk
-dV
-dk
-aD
-aD
-aD
-aD
-cx
-JG
+af
+aG
+aG
+aG
+aG
+bb
+dh
+bb
+aG
+aG
+aG
+aG
+dG
+dw
 aw
 aw
 aw
@@ -6837,20 +6856,20 @@ aw
 aw
 aw
 aw
-as
-aE
-aE
-aE
-aE
-aS
-de
-aG
+ag
+aH
+aH
+aH
+aH
 bt
-bt
-bt
-bt
-cy
-JG
+aD
+ba
+dz
+dz
+dz
+dz
+dH
+dw
 aw
 aw
 aw
@@ -6909,20 +6928,20 @@ aw
 aw
 aw
 aw
-as
-aE
-aE
-aE
-aE
-aS
-de
-aG
+ag
+aH
+aH
+aH
+aH
 bt
-bt
-bt
-bt
-cy
-JG
+aD
+ba
+dz
+dz
+dz
+dz
+dH
+dw
 aw
 aw
 aw
@@ -6979,20 +6998,20 @@ aw
 aw
 aw
 aw
-aq
+af
+aG
+aG
+aG
+aG
+bb
 aD
-aD
-aD
-aD
-dk
-de
-dk
-aD
-aD
-aD
-aD
-cx
-JG
+bb
+aG
+aG
+aG
+aG
+dG
+dw
 aw
 aw
 aw
@@ -7051,20 +7070,20 @@ aw
 aw
 aw
 aw
-aq
+af
+aG
+aG
+aG
+aG
+bb
 aD
-aD
-aD
-aD
-dk
-de
-dk
-aD
-aD
-aD
-aD
-cx
-JG
+bb
+aG
+aG
+aG
+aG
+dG
+dw
 aw
 aw
 aw
@@ -7121,20 +7140,20 @@ aw
 aw
 aw
 aw
-as
-aE
-aE
-aE
-aE
-aS
-dT
-aG
+ag
+aH
+aH
+aH
+aH
 bt
-bt
-bt
-bt
-cy
-JG
+dV
+ba
+dz
+dz
+dz
+dz
+dH
+dw
 aw
 aw
 aw
@@ -7193,90 +7212,90 @@ aw
 aw
 aw
 aw
-as
-aE
-aE
-aE
-aE
-aS
-de
+ag
+aH
+aH
+aH
+aH
+bt
+aD
+ba
+dz
+dz
+dz
+dz
+dH
+dw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aa
+ac
+bv
+cw
+cw
+bv
+ac
+aa
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+af
 aG
-bt
-bt
-bt
-bt
-cy
-JG
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aa
-ac
-bv
-cw
-cw
-bv
-ac
-aa
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aq
+aG
+aG
+aG
+bb
 aD
-aD
-aD
-aD
-dk
-de
-dk
-aD
-aD
-aD
-aD
-cx
-JG
+bb
+aG
+aG
+aG
+aG
+dG
+dw
 aw
 aw
 aw
@@ -7335,20 +7354,20 @@ aw
 aw
 aw
 aw
-aq
+af
+aG
+aG
+aG
+aG
+bb
 aD
-aD
-aD
-aD
-dk
-de
-dk
-aD
-aD
-aD
-aD
-cx
-JG
+bb
+aG
+aG
+aG
+aG
+dG
+dw
 aw
 aw
 aw
@@ -7405,20 +7424,20 @@ aw
 aw
 aw
 aw
-as
-aE
-aE
-aE
-aE
-aS
-de
-aG
+ag
+aH
+aH
+aH
+aH
 bt
-bt
-bt
-bt
-cy
-JG
+aD
+ba
+dz
+dz
+dz
+dz
+dH
+dw
 aw
 aw
 aw
@@ -7477,20 +7496,20 @@ aw
 aw
 aw
 aw
-as
-aE
-aE
-aE
-aE
-aS
-de
-aG
+ag
+aH
+aH
+aH
+aH
 bt
-bt
-bt
-bt
-cy
-JG
+aD
+ba
+dz
+dz
+dz
+dz
+dH
+dw
 aw
 aw
 aw
@@ -7547,20 +7566,20 @@ aw
 aw
 aw
 aw
-aq
+af
+aG
+aG
+aG
+aG
+bb
 aD
-aD
-aD
-aD
-dk
-de
-dk
-aD
-aD
-aD
-aD
-cx
-JG
+bb
+aG
+aG
+aG
+aG
+dG
+dw
 aw
 aw
 aw
@@ -7619,90 +7638,90 @@ aw
 aw
 aw
 aw
-aq
-aD
-aD
-aD
-aD
-dk
-de
-dk
-aD
-aD
-aD
-aD
-cx
-JG
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aa
-ac
-bK
-bK
-bK
-bv
-cw
-cw
-bv
-be
-be
-be
-ac
-aa
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-as
-aE
-aE
-aE
-aE
-aS
-de
+af
 aG
+aG
+aG
+aG
+bb
+aD
+bb
+aG
+aG
+aG
+aG
+dG
+dw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aa
+ac
+bK
+bK
+bK
+bv
+cw
+cw
+bv
+be
+be
+be
+ac
+aa
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+ag
+aH
+aH
+aH
+aH
 bt
-bt
-bt
-bt
-cy
-JG
+aD
+ba
+dz
+dz
+dz
+dz
+dH
+dw
 aw
 aw
 aw
@@ -7761,20 +7780,20 @@ aw
 aw
 aw
 aw
-as
-aE
-aE
-aE
-aE
-aS
-de
-aG
+ag
+aH
+aH
+aH
+aH
 bt
-bt
-bt
-bt
-cy
-JG
+aD
+ba
+dz
+dz
+dz
+dz
+dH
+dw
 aw
 aw
 aw
@@ -7831,20 +7850,20 @@ aw
 aw
 aw
 aw
-aq
+af
+aG
+aG
+aG
+aG
+bb
 aD
-aD
-aD
-aD
-dk
-de
-dk
-aD
-aD
-aD
-aD
-cx
-JG
+bb
+aG
+aG
+aG
+aG
+dG
+dw
 aw
 aw
 aw
@@ -7903,20 +7922,20 @@ aw
 aw
 aw
 aw
-av
+aq
+aG
+aG
+aG
+aG
+bb
 aD
-aD
-aD
-aD
-dk
-de
-dk
-aD
-aD
-aD
-aD
+bb
+aG
+aG
+aG
+aG
 dI
-JG
+dw
 aw
 aw
 aw
@@ -7973,20 +7992,20 @@ aw
 aw
 aw
 aw
-as
-aE
-aE
-aE
-aE
-aS
-de
-aG
+ag
+aH
+aH
+aH
+aH
 bt
-bt
-bt
-bt
-cy
-JG
+aD
+ba
+dz
+dz
+dz
+dz
+dH
+dw
 aw
 aw
 aw
@@ -8045,20 +8064,20 @@ aw
 aw
 aw
 aw
-ay
-dq
-dq
-dq
-dq
-aT
-dq
-aZ
-dq
-DK
-dq
-dq
+as
+aS
+aS
+aS
+aS
+bu
+aS
+dp
+aS
+dD
+aS
+aS
 dJ
-JG
+dw
 aw
 aw
 aw
@@ -8115,20 +8134,20 @@ aw
 aw
 aw
 aw
-av
+aq
+aG
+aG
+aG
+aG
+bb
 aD
-aD
-aD
-aD
-dk
-de
-dk
-aD
-aD
-aD
-aD
+bb
+aG
+aG
+aG
+aG
 dI
-JG
+dw
 aw
 aw
 aw
@@ -8188,17 +8207,17 @@ aw
 aw
 aw
 aw
-de
-de
-de
-de
-dk
-de
-dk
-de
-de
-de
-de
+aD
+aD
+aD
+aD
+bb
+aD
+bb
+aD
+aD
+aD
+aD
 JG
 aw
 aw
@@ -8257,20 +8276,20 @@ aw
 aw
 aw
 aw
-ay
-dq
-dq
-dq
-dq
-aT
-dq
-aZ
-dq
-dq
-dq
-dq
+as
+aS
+aS
+aS
+aS
+bu
+aS
+dp
+aS
+aS
+aS
+aS
 dJ
-JG
+dw
 aw
 aw
 aw
@@ -8331,16 +8350,16 @@ aw
 aw
 aw
 aw
-de
-de
-de
-dk
-de
-dk
-de
-de
-de
-JG
+aD
+aD
+aD
+bb
+aD
+bb
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -8400,18 +8419,18 @@ aw
 aw
 aw
 aw
-de
-de
-de
-de
-dk
-de
-dk
-de
-de
-de
-de
-JG
+aD
+aD
+aD
+aD
+bb
+aD
+bb
+aD
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -8474,14 +8493,14 @@ aw
 aw
 aw
 aw
-de
-de
-dp
-aU
-ba
-de
-de
-JG
+aD
+aD
+cx
+di
+dq
+aD
+aD
+dw
 aw
 aw
 aw
@@ -8543,16 +8562,16 @@ aw
 aw
 aw
 aw
-de
-de
-de
-dk
-de
-dk
-de
-de
-de
-JG
+aD
+aD
+aD
+bb
+aD
+bb
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -8617,12 +8636,12 @@ aw
 aw
 aw
 aw
-de
-de
-du
-de
-de
-JG
+aD
+aD
+dj
+aD
+aD
+dw
 aw
 aw
 aw
@@ -8686,14 +8705,14 @@ aw
 aw
 aw
 aw
-de
-de
-dp
-aU
-ba
-de
-de
-JG
+aD
+aD
+cx
+di
+dq
+aD
+aD
+dw
 aw
 aw
 aw
@@ -8760,10 +8779,10 @@ aw
 aw
 aw
 aw
-ax
-aV
-ax
-JG
+cy
+dk
+cy
+dw
 aw
 aw
 aw
@@ -8829,12 +8848,12 @@ aw
 aw
 aw
 aw
-de
-de
-du
-de
-de
-JG
+aD
+aD
+dj
+aD
+aD
+dw
 aw
 aw
 aw
@@ -8972,10 +8991,10 @@ aw
 aw
 aw
 aw
-dq
-aV
-dq
-JG
+aS
+dk
+aS
+dw
 aw
 aw
 aw
@@ -9513,7 +9532,7 @@ cr
 bQ
 bL
 bQ
-dR
+bL
 bv
 bj
 aw
@@ -9787,7 +9806,7 @@ bN
 bR
 bN
 bR
-dN
+bK
 bN
 bv
 ci
@@ -10908,7 +10927,7 @@ be
 bv
 cP
 dK
-bw
+dN
 cB
 bC
 be
@@ -12480,7 +12499,7 @@ bD
 bq
 be
 be
-be
+dZ
 be
 be
 be
@@ -12496,7 +12515,7 @@ bq
 be
 be
 be
-be
+dZ
 be
 be
 bj
@@ -13627,7 +13646,7 @@ bv
 ci
 ci
 bv
-dQ
+bP
 bS
 bP
 bS
@@ -14051,7 +14070,7 @@ bB
 bB
 cd
 cm
-bK
+dX
 bv
 Qe
 Ym
@@ -14193,7 +14212,7 @@ tZ
 bJ
 bv
 bK
-bK
+dX
 bv
 bv
 bv
@@ -14226,10 +14245,10 @@ aw
 aw
 aw
 aw
-df
-dt
-df
-JG
+aT
+dl
+aT
+dw
 aw
 aw
 aw
@@ -14298,10 +14317,10 @@ aw
 aw
 aw
 aw
-df
-dt
-df
-JG
+aT
+dl
+aT
+dw
 aw
 aw
 aw
@@ -14335,8 +14354,8 @@ bv
 bv
 bv
 bK
-bK
-dP
+dX
+bv
 be
 be
 be
@@ -14367,12 +14386,12 @@ aw
 aw
 aw
 aw
-de
-de
-du
-de
-de
-JG
+aD
+aD
+dj
+aD
+aD
+dw
 aw
 aw
 aw
@@ -14439,83 +14458,83 @@ aw
 aw
 aw
 aw
-de
-de
-du
-de
-de
-JG
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aa
-ac
-be
-be
-be
-be
-be
-be
-be
-be
-be
-be
-bC
-bK
-bK
-bK
-bC
-be
-be
-be
-be
-be
-be
-be
-be
-be
-ac
-aa
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-de
-de
+aD
+aD
 dj
-dv
-dz
-de
-de
-JG
+aD
+aD
+dw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aa
+ac
+be
+be
+be
+be
+be
+be
+be
+be
+be
+be
+bC
+bK
+bK
+dX
+bC
+be
+be
+be
+be
+be
+be
+be
+be
+be
+ac
+aa
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aD
+aD
+aZ
+dm
+dt
+aD
+aD
+dw
 aw
 aw
 aw
@@ -14580,14 +14599,14 @@ aw
 aw
 aw
 aw
-de
-de
-dj
-dv
-dz
-ae
-de
-JG
+aD
+aD
+aZ
+dm
+dt
+dA
+aD
+dw
 aw
 aw
 aw
@@ -14617,9 +14636,9 @@ be
 be
 be
 bv
+cn
 bK
-bK
-bK
+dY
 bv
 be
 be
@@ -14649,16 +14668,16 @@ aw
 aw
 aw
 aw
-de
-de
-de
-dk
-de
-dk
-de
-de
-de
-JG
+aD
+aD
+aD
+bb
+aD
+bb
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -14721,16 +14740,16 @@ aw
 aw
 aw
 aw
-de
-de
-de
-dk
-de
-dk
-de
-de
-af
-JG
+aD
+aD
+aD
+bb
+aD
+bb
+aD
+aD
+dE
+dw
 aw
 aw
 aw
@@ -14759,8 +14778,8 @@ be
 be
 be
 bv
-bK
-cn
+cO
+cO
 bv
 bv
 ao
@@ -14790,18 +14809,18 @@ aw
 aw
 aw
 aw
-de
-de
-de
-de
-dk
-de
-dk
-de
-de
-de
-de
-JG
+aD
+aD
+aD
+aD
+bb
+aD
+bb
+aD
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -14862,18 +14881,18 @@ aw
 aw
 aw
 aw
-de
-de
-de
-de
-dk
-de
-dk
-de
-de
-de
-de
-JG
+aD
+aD
+aD
+aD
+bb
+aD
+bb
+aD
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -14931,20 +14950,20 @@ aw
 aw
 aw
 aw
-bc
-df
-df
-df
-df
-dl
-df
-dl
-df
-df
-df
-df
-dE
-JG
+av
+aT
+aT
+aT
+aT
+db
+aT
+db
+aT
+aT
+aT
+aT
+dQ
+dw
 aw
 aw
 aw
@@ -15003,90 +15022,90 @@ aw
 aw
 aw
 aw
-bc
-df
-df
-df
-df
-dl
-df
-dl
-df
-df
-df
-df
-dE
-JG
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aa
-ac
-be
-be
-be
-be
-be
-be
-bv
-cw
-cw
-bv
-be
-be
-be
-be
-be
-be
-ac
-aa
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
+av
+aT
+aT
+aT
+aT
 db
-dg
-dg
-dg
-dg
-dk
-de
-dk
-dg
-dg
-dg
-dg
-dF
-JG
+aT
+db
+aT
+aT
+aT
+aT
+dQ
+dw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aa
+ac
+be
+be
+be
+be
+be
+be
+bv
+cw
+cw
+bv
+be
+be
+be
+be
+be
+be
+ac
+aa
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+ax
+aU
+aU
+aU
+aU
+bb
+aD
+bb
+aU
+aU
+aU
+aU
+dR
+dw
 aw
 aw
 aw
@@ -15145,20 +15164,20 @@ aw
 aw
 aw
 aw
-db
-dg
-dg
-dg
-dg
-dk
-de
-dk
-dg
-dg
-dg
-dg
-dF
-JG
+ax
+aU
+aU
+aU
+aU
+bb
+aD
+bb
+aU
+aU
+aU
+aU
+dR
+dw
 aw
 aw
 aw
@@ -15215,20 +15234,20 @@ aw
 aw
 aw
 aw
+ay
+aV
+aV
+aV
+aV
 dc
-dh
-dh
-dh
-dh
-dm
-de
-dA
-dC
-dC
-dC
-dC
-dG
-JG
+aD
+du
+dB
+dB
+dB
+dB
+dS
+dw
 aw
 aw
 aw
@@ -15287,20 +15306,20 @@ aw
 aw
 aw
 aw
+ay
+aV
+aV
+aV
+aV
 dc
-dh
-dh
-dh
-dh
-dm
-de
-dA
-dC
-dC
-dC
-dC
-dG
-JG
+aD
+du
+dB
+dB
+dB
+dB
+dS
+dw
 aw
 aw
 aw
@@ -15357,20 +15376,20 @@ aw
 aw
 aw
 aw
-db
-dg
-dg
-dg
-dg
-dk
-de
-dk
-dg
-dg
-dg
-dg
-dF
-JG
+ax
+aU
+aU
+aU
+aU
+bb
+aD
+bb
+aU
+aU
+aU
+aU
+dR
+dw
 aw
 aw
 aw
@@ -15429,20 +15448,20 @@ aw
 aw
 aw
 aw
-db
-dg
-dg
-dg
-dg
-dk
-de
-dk
-dg
-dg
-dg
-dg
-dF
-JG
+ax
+aU
+aU
+aU
+aU
+bb
+aD
+bb
+aU
+aU
+aU
+aU
+dR
+dw
 aw
 aw
 aw
@@ -15499,20 +15518,20 @@ aw
 aw
 aw
 aw
+ay
+aV
+aV
+aV
+aV
 dc
-dh
-dh
-dh
-dh
-dm
-de
-dA
-dC
-dC
-dC
-dC
-dG
-JG
+aD
+du
+dB
+dB
+dB
+dB
+dS
+dw
 aw
 aw
 aw
@@ -15571,20 +15590,20 @@ aw
 aw
 aw
 aw
+ay
+aV
+aV
+aV
+aV
 dc
-dh
-dh
-dh
-dh
-dm
-de
-dA
-dC
-dC
-dC
-dC
-dG
-JG
+aD
+du
+dB
+dB
+dB
+dB
+dS
+dw
 aw
 aw
 aw
@@ -15641,20 +15660,20 @@ aw
 aw
 aw
 aw
-db
-dg
-dg
-dg
-dg
-dk
-de
-dk
-dg
-dg
-dg
-dg
-dF
-JG
+ax
+aU
+aU
+aU
+aU
+bb
+aD
+bb
+aU
+aU
+aU
+aU
+dR
+dw
 aw
 aw
 aw
@@ -15713,20 +15732,20 @@ aw
 aw
 aw
 aw
-db
-dg
-dg
-dg
-dg
-dk
-de
-dk
-dg
-dg
-dg
-dg
-dF
-JG
+ax
+aU
+aU
+aU
+aU
+bb
+aD
+bb
+aU
+aU
+aU
+aU
+dR
+dw
 aw
 aw
 aw
@@ -15783,20 +15802,20 @@ aw
 aw
 aw
 aw
+ay
+aV
+aV
+aV
+aV
 dc
-dh
-dh
-dh
-dh
-dm
-de
-dA
-dC
-dC
-dC
-dC
-dG
-JG
+aD
+du
+dB
+dB
+dB
+dB
+dS
+dw
 aw
 aw
 aw
@@ -15855,20 +15874,20 @@ aw
 aw
 aw
 aw
+ay
+aV
+aV
+aV
+aV
 dc
-dh
-dh
-dh
-dh
-dm
-de
-dA
-dC
-dC
-dC
-dC
-dG
-JG
+aD
+du
+dB
+dB
+dB
+dB
+dS
+dw
 aw
 aw
 aw
@@ -15895,8 +15914,8 @@ aw
 aa
 ac
 bv
-cw
-cO
+dP
+dP
 bv
 ac
 aa
@@ -15925,20 +15944,20 @@ aw
 aw
 aw
 aw
-db
-dg
-dg
-dg
-dg
-dk
-de
-dk
-dg
-dg
-dg
-dg
-dF
-JG
+ax
+aU
+aU
+aU
+aU
+bb
+aD
+bb
+aU
+aU
+aU
+aU
+dR
+dw
 aw
 aw
 aw
@@ -15997,20 +16016,20 @@ aw
 aw
 aw
 aw
-db
-dg
-dg
-dg
-dg
-dk
-dS
-dk
-dg
-dg
-dg
-dg
-dF
-JG
+ax
+aU
+aU
+aU
+aU
+bb
+dn
+bb
+aU
+aU
+aU
+aU
+dR
+dw
 aw
 aw
 aw
@@ -16067,20 +16086,20 @@ aw
 aw
 aw
 aw
+ay
+aV
+aV
+aV
+aV
 dc
-dh
-dh
-dh
-dh
-dm
-dU
-dA
-dC
-dC
-dC
-dC
-dG
-JG
+dW
+du
+dB
+dB
+dB
+dB
+dS
+dw
 aw
 aw
 aw
@@ -16139,20 +16158,20 @@ aw
 aw
 aw
 aw
+ay
+aV
+aV
+aV
+aV
 dc
-dh
-dh
-dh
-dh
-dm
-de
-dA
-dC
-dC
-dC
-dC
-dG
-JG
+aD
+du
+dB
+dB
+dB
+dB
+dS
+dw
 aw
 aw
 aw
@@ -16209,20 +16228,20 @@ aw
 aw
 aw
 aw
-db
-dg
-dg
-dg
-dg
-dk
-de
-dk
-dg
-dg
-dg
-dg
-dF
-JG
+ax
+aU
+aU
+aU
+aU
+bb
+aD
+bb
+aU
+aU
+aU
+aU
+dR
+dw
 aw
 aw
 aw
@@ -16281,20 +16300,20 @@ aw
 aw
 aw
 aw
-db
-dg
-dg
-dg
-dg
-dk
-de
-dk
-dg
-dg
-dg
-dg
-dF
-JG
+ax
+aU
+aU
+aU
+aU
+bb
+aD
+bb
+aU
+aU
+aU
+aU
+dR
+dw
 aw
 aw
 aw
@@ -16351,20 +16370,20 @@ aw
 aw
 aw
 aw
+ay
+aV
+aV
+aV
+aV
 dc
-dh
-dh
-dh
-dh
-dm
-de
-dA
-dC
-dC
-dC
-dC
-dG
-JG
+aD
+du
+dB
+dB
+dB
+dB
+dS
+dw
 aw
 aw
 aw
@@ -16423,20 +16442,20 @@ aw
 aw
 aw
 aw
+ay
+aV
+aV
+aV
+aV
 dc
-dh
-dh
-dh
-dh
-dm
-de
-dA
-dC
-dC
-dC
-dC
-dG
-JG
+aD
+du
+dB
+dB
+dB
+dB
+dS
+dw
 aw
 aw
 aw
@@ -16493,20 +16512,20 @@ aw
 aw
 aw
 aw
-db
-dg
-dg
-dg
-dg
-dk
-de
-dk
-dg
-dg
-dg
-dg
-dF
-JG
+ax
+aU
+aU
+aU
+aU
+bb
+aD
+bb
+aU
+aU
+aU
+aU
+dR
+dw
 aw
 aw
 aw
@@ -16565,20 +16584,20 @@ aw
 aw
 aw
 aw
-db
-dg
-dg
-dg
-dg
-dk
-de
-dk
-dg
-dg
-dg
-dg
-dF
-JG
+ax
+aU
+aU
+aU
+aU
+bb
+aD
+bb
+aU
+aU
+aU
+aU
+dR
+dw
 aw
 aw
 aw
@@ -16635,20 +16654,20 @@ aw
 aw
 aw
 aw
+ay
+aV
+aV
+aV
+aV
 dc
-dh
-dh
-dh
-dh
-dm
-de
-dA
-dC
-dC
-dC
-dC
-dG
-JG
+aD
+du
+dB
+dB
+dB
+dB
+dS
+dw
 aw
 aw
 aw
@@ -16707,20 +16726,20 @@ aw
 aw
 aw
 aw
+ay
+aV
+aV
+aV
+aV
 dc
-dh
-dh
-dh
-dh
-dm
-de
-dA
-dC
-dC
-dC
-dC
-dG
-JG
+aD
+du
+dB
+dB
+dB
+dB
+dS
+dw
 aw
 aw
 aw
@@ -16777,20 +16796,20 @@ aw
 aw
 aw
 aw
-db
-dg
-dg
-dg
-dg
-dk
-de
-dk
-dg
-dg
-dg
-dg
-dF
-JG
+ax
+aU
+aU
+aU
+aU
+bb
+aD
+bb
+aU
+aU
+aU
+aU
+dR
+dw
 aw
 aw
 aw
@@ -16849,20 +16868,20 @@ aw
 aw
 aw
 aw
-db
-dg
-dg
-dg
-dg
-dk
-de
-dk
-dg
-dg
-dg
-dg
-dF
-JG
+ax
+aU
+aU
+aU
+aU
+bb
+aD
+bb
+aU
+aU
+aU
+aU
+dR
+dw
 aw
 aw
 aw
@@ -16919,20 +16938,20 @@ aw
 aw
 aw
 aw
+ay
+aV
+aV
+aV
+aV
 dc
-dh
-dh
-dh
-dh
-dm
-de
-dA
-dC
-dC
-dC
-dC
-dG
-JG
+aD
+du
+dB
+dB
+dB
+dB
+dS
+dw
 aw
 aw
 aw
@@ -16991,20 +17010,20 @@ aw
 aw
 aw
 aw
+ay
+aV
+aV
+aV
+aV
 dc
-dh
-dh
-dh
-dh
-dm
-de
-dA
-dC
-dC
-dC
-dC
-dG
-JG
+aD
+du
+dB
+dB
+dB
+dB
+dS
+dw
 aw
 aw
 aw
@@ -17061,20 +17080,20 @@ aw
 aw
 aw
 aw
-db
-dg
-dg
-dg
-dg
-dk
-de
-dk
-dg
-dg
-dg
-dg
-dF
-JG
+ax
+aU
+aU
+aU
+aU
+bb
+aD
+bb
+aU
+aU
+aU
+aU
+dR
+dw
 aw
 aw
 aw
@@ -17133,20 +17152,20 @@ aw
 aw
 aw
 aw
-db
-dg
-dg
-dg
-dg
-dk
-de
-dk
-dg
-dg
-dg
-dg
-dF
-JG
+ax
+aU
+aU
+aU
+aU
+bb
+aD
+bb
+aU
+aU
+aU
+aU
+dR
+dw
 aw
 aw
 aw
@@ -17203,20 +17222,20 @@ aw
 aw
 aw
 aw
+aB
+aY
+aY
+aY
+aY
 dd
-di
-di
-di
-di
-dn
-dq
-dB
-dD
-dD
-dD
-dD
-dH
-JG
+aS
+dv
+dC
+dC
+dC
+dC
+dT
+dw
 aw
 aw
 aw
@@ -17275,20 +17294,20 @@ aw
 aw
 aw
 aw
+aB
+aY
+aY
+aY
+aY
 dd
-di
-di
-di
-di
-dn
-dq
-dB
-dD
-dD
-dD
-dD
-dH
-JG
+aS
+dv
+dC
+dC
+dC
+dC
+dT
+dw
 aw
 aw
 aw
@@ -17346,18 +17365,18 @@ aw
 aw
 aw
 aw
-de
-de
-de
-de
-dk
-de
-de
-de
-de
-de
-de
-JG
+aD
+aD
+aD
+aD
+bb
+aD
+aD
+aD
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -17418,87 +17437,87 @@ aw
 aw
 aw
 aw
-de
-de
-de
-de
-dk
-de
-de
-de
-de
-de
-de
-JG
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-aw
-de
-de
-ub
-do
+aD
+aD
+aD
+aD
+bb
+aD
+aD
+aD
+aD
+aD
+aD
 dw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aw
+aD
+aD
+dU
 de
-de
-de
-de
-JG
+dg
+aD
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -17561,16 +17580,16 @@ aw
 aw
 aw
 aw
+aD
+aD
+aD
 de
-de
-de
-do
+dg
+aD
+aD
+aD
+aD
 dw
-de
-de
-de
-de
-JG
 aw
 aw
 aw
@@ -17632,14 +17651,14 @@ aw
 aw
 aw
 aw
-de
-de
-dp
-dx
-de
-de
-de
-JG
+aD
+aD
+cx
+df
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -17704,14 +17723,14 @@ aw
 aw
 aw
 aw
-de
-de
-dp
-dx
-de
-de
-de
-JG
+aD
+aD
+cx
+df
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -17775,12 +17794,12 @@ aw
 aw
 aw
 aw
-de
-de
-de
-de
-de
-JG
+aD
+aD
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -17847,12 +17866,12 @@ aw
 aw
 aw
 aw
-de
-de
-de
-de
-de
-JG
+aD
+aD
+aD
+aD
+aD
+dw
 aw
 aw
 aw
@@ -17918,10 +17937,10 @@ aw
 aw
 aw
 aw
-dq
-dq
-dq
-JG
+aS
+aS
+aS
+dw
 aw
 aw
 aw
@@ -17990,10 +18009,10 @@ aw
 aw
 aw
 aw
-dq
-dq
-dq
-JG
+aS
+aS
+aS
+dw
 aw
 aw
 aw
