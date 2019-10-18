@@ -3709,12 +3709,15 @@
 /turf/simulated/floor/tiled/dark,
 /area/maintenance/lower/bar)
 "ahV" = (
-/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/airlock/maintenance/common{
+	name = "Morgue Access"
+	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "ahW" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/simulated/floor/outdoors/grass/forest,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/simulated/floor/grass,
 /area/chapel/office)
 "ahX" = (
 /obj/machinery/alarm{
@@ -3795,14 +3798,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/maintenance/lower/bar)
 "aig" = (
-/obj/machinery/door/airlock{
-	name = "Chapel Morgue";
-	req_access = list(27);
-	req_one_access = list(27,6)
+/obj/structure/ladder{
+	pixel_y = 16
 	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/dark,
-/area/chapel/chapel_morgue)
+/obj/effect/floor_decal/industrial/outline/blue,
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/bar)
 "aih" = (
 /turf/simulated/floor/lino,
 /area/chapel/office)
@@ -3851,11 +3852,7 @@
 /area/maintenance/lower/bar)
 "aio" = (
 /obj/machinery/recharge_station,
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/floor/tiled/dark,
+/turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "aip" = (
 /obj/effect/floor_decal/techfloor/corner{
@@ -3899,11 +3896,12 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "air" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
+/obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/outdoors/grass/forest,
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/turf/simulated/floor/grass,
 /area/chapel/office)
 "ais" = (
 /obj/structure/cable/green{
@@ -3935,34 +3933,25 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "ait" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
-/turf/simulated/floor/outdoors/grass/forest,
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/simulated/floor/grass,
 /area/chapel/office)
 "aiu" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 1;
+	name = "Chapel Access"
 	},
-/turf/simulated/floor/lino,
-/area/chapel/office)
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/dark,
+/area/maintenance/lower/bar)
 "aiv" = (
+/obj/machinery/button/windowtint{
+	id = "noodle";
+	pixel_x = 20;
+	pixel_y = 25
+	},
 /obj/machinery/disposal,
-/obj/machinery/button/remote/blast_door{
-	desc = "A remote control-switch for shutters.";
-	id = "chapel_obs";
-	layer = 3.3;
-	name = "Chapel Observation Shutters";
-	pixel_x = 29;
-	pixel_y = 0;
-	req_access = list(27)
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
+/obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/lino,
 /area/chapel/office)
 "aiw" = (
@@ -4072,7 +4061,7 @@
 /area/tether/surfacebase/atrium_two)
 "aiG" = (
 /obj/machinery/door/airlock{
-	name = "Chapel Office";
+	name = "Noodle Office";
 	req_access = list(27)
 	},
 /obj/machinery/door/firedoor/glass,
@@ -4105,13 +4094,13 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/bar)
 "aiJ" = (
-/obj/structure/ladder,
-/obj/effect/floor_decal/industrial/outline/blue,
+/obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "aiK" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/outdoors/grass/forest,
+/mob/living/simple_mob/animal/passive/snake/noodle,
+/turf/simulated/floor/grass,
 /area/chapel/office)
 "aiL" = (
 /obj/structure/grille,
@@ -4237,13 +4226,19 @@
 /turf/simulated/floor/tiled/dark,
 /area/maintenance/lower/bar)
 "aiY" = (
-/obj/structure/closet,
-/turf/simulated/floor/tiled/techfloor,
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/tiled/dark,
 /area/maintenance/lower/bar)
 "aiZ" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_mob/animal/passive/mouse/white,
-/turf/simulated/floor/outdoors/grass/forest,
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "noodle"
+	},
+/turf/simulated/floor/tiled/dark,
 /area/chapel/office)
 "aja" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -4447,7 +4442,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/multi_tile/glass{
+	name = "Chapel"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
 "ajt" = (
@@ -4547,6 +4545,10 @@
 /obj/random/action_figure,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
+"ajH" = (
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/lino,
+/area/chapel/office)
 "ajI" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -4555,6 +4557,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
+"ajJ" = (
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/dark,
+/area/chapel/main)
 "ajK" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -6286,13 +6292,53 @@
 /turf/simulated/floor/lino,
 /area/chapel/office)
 "amN" = (
-/obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/snakesnackbox,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/chapel/office)
-"amR" = (
 /obj/structure/flora/ausbushes/brflowers,
-/turf/simulated/floor/outdoors/grass/forest,
+/turf/simulated/floor/grass,
+/area/chapel/office)
+"amO" = (
+/obj/machinery/door/airlock{
+	name = "Chapel Morgue";
+	req_one_access = list(6,27)
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/dark,
+/area/chapel/chapel_morgue)
+"amP" = (
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/obj/effect/floor_decal/techfloor{
+	icon_state = "techfloororange_edges";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/bar)
+"amQ" = (
+/obj/structure/closet,
+/obj/random/maintenance/clean,
+/obj/random/maintenance/clean,
+/obj/effect/floor_decal/techfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor/hole/right{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/bar)
+"amR" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/mob/living/simple_mob/animal/passive/mouse/white,
+/turf/simulated/floor/grass,
+/area/chapel/office)
+"amS" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/holywater,
+/obj/item/weapon/nullrod,
+/obj/machinery/light/small,
+/turf/simulated/floor/lino,
 /area/chapel/office)
 "amT" = (
 /obj/effect/floor_decal/techfloor{
@@ -6395,9 +6441,21 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
 "ane" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/mob/living/simple_mob/animal/passive/snake/noodle,
-/turf/simulated/floor/outdoors/grass/forest,
+/obj/structure/table/woodentable,
+/obj/item/weapon/storage/box/snakesnackbox,
+/turf/simulated/floor/grass,
+/area/chapel/office)
+"anf" = (
+/obj/machinery/button/remote/blast_door{
+	desc = "A remote control-switch for shutters.";
+	id = "chapel_obs";
+	layer = 3.3;
+	name = "Chapel Observation Shutters";
+	pixel_x = 29;
+	pixel_y = 0;
+	req_access = list(27)
+	},
+/turf/simulated/floor/lino,
 /area/chapel/office)
 "ank" = (
 /turf/simulated/floor/tiled/techfloor,
@@ -27104,13 +27162,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/chapel_morgue)
-"aYs" = (
-/obj/machinery/light/small{
-	icon_state = "bulb1";
-	dir = 1
-	},
-/turf/simulated/floor/lino,
-/area/chapel/office)
 "aYt" = (
 /obj/effect/floor_decal/chapel{
 	dir = 1
@@ -27171,12 +27222,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
-"aYz" = (
-/obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/holywater,
-/obj/item/weapon/nullrod,
-/turf/simulated/floor/lino,
-/area/chapel/office)
 "aYB" = (
 /obj/effect/landmark/start{
 	name = "Chaplain"
@@ -28286,13 +28331,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
-"baO" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/dark,
-/area/maintenance/lower/bar)
 "baP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
@@ -43485,7 +43523,7 @@ agW
 adu
 adu
 aie
-baO
+aiu
 adu
 adu
 ajc
@@ -43772,8 +43810,8 @@ ahT
 ahU
 ahT
 ahT
-aio
-aYd
+aiY
+ajJ
 aro
 aro
 aro
@@ -43910,7 +43948,7 @@ agI
 aee
 adL
 adu
-ahX
+amP
 aoE
 aiL
 aiL
@@ -44054,12 +44092,12 @@ adL
 adu
 ahP
 aiL
-air
-aiK
-aiZ
+ahW
+ahW
+amR
 aoE
 aYm
-aYz
+amS
 aoE
 aoE
 aZk
@@ -44196,11 +44234,11 @@ adL
 adu
 ahV
 aoE
+air
+aiK
 ait
-ane
-ahW
 aiG
-aYs
+aih
 aYB
 aYI
 aZW
@@ -44338,12 +44376,12 @@ ahl
 adu
 ahX
 aiL
-ahW
-amR
+ait
 amN
-aiL
-aih
-aiu
+ane
+aiZ
+aiv
+ajH
 ajX
 aZc
 baG
@@ -44478,14 +44516,14 @@ adu
 adu
 adu
 adu
-aiJ
+aig
 aoE
 aiL
 aiL
 aiL
 aoE
 amM
-aiv
+anf
 aYK
 amL
 aZm
@@ -44620,7 +44658,7 @@ aac
 aac
 aac
 adu
-ahP
+aiJ
 aiM
 ahP
 ajt
@@ -44906,10 +44944,10 @@ aac
 aac
 aac
 adu
-aiY
-aiY
+aio
+amQ
 ahP
-aig
+amO
 aYp
 aYp
 aYM
