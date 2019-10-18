@@ -15745,7 +15745,6 @@
 	icon_state = "0-8"
 	},
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/box/snakesnackbox,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "aQn" = (
@@ -22694,7 +22693,7 @@
 /turf/simulated/floor/plating,
 /area/tether/station/dock_one)
 "vyI" = (
-/mob/living/simple_mob/animal/passive/snake/noodle,
+/mob/living/simple_mob/animal/passive/bird/parrot/poly,
 /turf/simulated/floor/outdoors/grass/forest,
 /area/crew_quarters/heads/chief)
 "wlD" = (
