@@ -9435,15 +9435,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/vacant_site)
-"aqj" = (
-/obj/structure/catwalk,
-/obj/structure/closet,
-/obj/random/maintenance/clean,
-/obj/random/maintenance/cargo,
-/obj/random/maintenance/cargo,
-/obj/random/drinkbottle,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/vacant_site)
 "aqk" = (
 /obj/structure/catwalk,
 /obj/machinery/alarm{
@@ -9867,12 +9858,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
-"aqS" = (
-/obj/structure/ladder/up,
-/obj/structure/catwalk,
-/obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/vacant_site)
 "aqT" = (
 /turf/simulated/wall/r_wall,
 /area/storage/surface_eva/external)
@@ -10044,16 +10029,6 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/vacant_site)
-"arm" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/random/trash_pile,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
 "arn" = (
@@ -47391,7 +47366,7 @@ aah
 aah
 aah
 apF
-aql
+aqk
 arl
 apF
 aah
@@ -47531,10 +47506,10 @@ aah
 aah
 aah
 aah
+aah
 apF
 apF
-aql
-arm
+apF
 apF
 aah
 aah
@@ -47673,11 +47648,11 @@ aah
 aah
 aah
 aah
-apF
-aqj
-aql
-aql
-apF
+aah
+aah
+aah
+aah
+aah
 aah
 aah
 aah
@@ -47815,11 +47790,11 @@ aah
 aah
 aah
 aah
-apF
-aqk
-aqS
-aql
-apF
+aah
+aah
+aah
+aah
+aah
 aah
 aah
 aah
@@ -47957,11 +47932,11 @@ aah
 aah
 aah
 aah
-apF
-aql
-aql
-aql
-apF
+aah
+aah
+aah
+aah
+aah
 aah
 aah
 aah
@@ -48099,11 +48074,11 @@ aah
 aah
 aah
 aah
-apF
-apF
-apF
-apF
-apF
+aah
+aah
+aah
+aah
+aah
 aah
 aah
 aah
