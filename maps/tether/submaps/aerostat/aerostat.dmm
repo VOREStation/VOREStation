@@ -823,8 +823,10 @@
 /area/tether_away/aerostat/inside)
 "cn" = (
 /obj/machinery/door/airlock/multi_tile/metal{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	hackProof = 1;
+	icon_state = "door_locked";
+	locked = 1
 	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
@@ -991,6 +993,21 @@
 "cN" = (
 /obj/structure/table/standard,
 /obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/tether_away/aerostat/inside)
+"cO" = (
+/obj/effect/floor_decal/rust,
+/obj/machinery/door/airlock/multi_tile/metal{
+	dir = 1;
+	hackProof = 1;
+	icon_state = "door_locked";
+	locked = 1
+	},
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/inside)
+"cP" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/tether_away_spawner/tank_hivebot,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
 "cQ" = (
@@ -1418,6 +1435,66 @@
 	dir = 6
 	},
 /obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat)
+"dK" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/tether_away_spawner/support_hivebot,
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/tether_away/aerostat/inside)
+"dL" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/tether_away_spawner/ranged_hivebot,
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/tether_away/aerostat/inside)
+"dM" = (
+/obj/tether_away_spawner/ranged_hivebot_danger,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/inside)
+"dN" = (
+/obj/tether_away_spawner/ranged_hivebot,
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/tether_away/aerostat/inside)
+"dO" = (
+/obj/tether_away_spawner/ranged_hivebot_danger,
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/tether_away/aerostat/inside)
+"dP" = (
+/obj/tether_away_spawner/ranged_hivebot_danger,
+/turf/simulated/wall/virgo2,
+/area/tether_away/aerostat/inside)
+"dQ" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 8
+	},
+/obj/tether_away_spawner/support_hivebot,
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/tether_away/aerostat/inside)
+"dR" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 4
+	},
+/obj/tether_away_spawner/tank_hivebot,
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/tether_away/aerostat/inside)
+"dS" = (
+/obj/effect/floor_decal/rust,
+/mob/living/simple_mob/mechanical/hivebot/ranged_damage/siege/radiation,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat)
+"dT" = (
+/obj/effect/floor_decal/rust,
+/mob/living/simple_mob/mechanical/hivebot/ranged_damage/dot,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat)
+"dU" = (
+/obj/effect/floor_decal/rust,
+/mob/living/simple_mob/mechanical/hivebot/swarm,
+/turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat)
+"dV" = (
+/obj/effect/floor_decal/rust,
+/mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_laser,
 /turf/simulated/floor/plating/virgo2,
 /area/tether_away/aerostat)
 "eE" = (
@@ -6696,7 +6773,7 @@ aD
 aD
 aD
 dk
-de
+dV
 dk
 aD
 aD
@@ -7050,7 +7127,7 @@ aE
 aE
 aE
 aS
-de
+dT
 aG
 bt
 bt
@@ -8443,7 +8520,7 @@ bK
 be
 be
 be
-gD
+be
 be
 be
 ac
@@ -8729,7 +8806,7 @@ ZK
 an
 bK
 be
-be
+dM
 be
 be
 ac
@@ -9436,7 +9513,7 @@ cr
 bQ
 bL
 bQ
-bL
+dR
 bv
 bj
 aw
@@ -9710,7 +9787,7 @@ bN
 bR
 bN
 bR
-bK
+dN
 bN
 bv
 ci
@@ -10406,7 +10483,7 @@ bv
 bv
 bv
 bv
-bv
+bC
 bv
 bv
 bv
@@ -10440,7 +10517,7 @@ bv
 bv
 bv
 bv
-bv
+bC
 bv
 bv
 bv
@@ -10829,8 +10906,8 @@ be
 be
 be
 bv
-bw
-bw
+cP
+dK
 bw
 cB
 bC
@@ -10868,8 +10945,8 @@ be
 bC
 cz
 bw
-bw
-bw
+dL
+cP
 bv
 be
 be
@@ -11973,7 +12050,7 @@ bv
 be
 be
 be
-gD
+be
 be
 be
 cH
@@ -12135,7 +12212,7 @@ bq
 be
 be
 be
-gD
+be
 be
 be
 be
@@ -12536,7 +12613,7 @@ bv
 bv
 bv
 bv
-bv
+bC
 bv
 bv
 bv
@@ -12570,7 +12647,7 @@ bv
 bv
 bv
 bv
-bv
+bC
 bv
 bv
 bv
@@ -12976,7 +13053,7 @@ bN
 bR
 bN
 bR
-bK
+dO
 bN
 bv
 ci
@@ -13550,7 +13627,7 @@ bv
 ci
 ci
 bv
-bP
+dQ
 bS
 bP
 bS
@@ -14259,7 +14336,7 @@ bv
 bv
 bK
 bK
-bv
+dP
 be
 be
 be
@@ -15819,7 +15896,7 @@ aa
 ac
 bv
 cw
-cw
+cO
 bv
 ac
 aa
@@ -15926,7 +16003,7 @@ dg
 dg
 dg
 dk
-de
+dS
 dk
 dg
 dg
@@ -15996,7 +16073,7 @@ dh
 dh
 dh
 dm
-de
+dU
 dA
 dC
 dC
