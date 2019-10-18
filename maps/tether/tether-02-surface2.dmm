@@ -3697,31 +3697,31 @@
 /turf/simulated/floor/tiled/dark,
 /area/maintenance/lower/bar)
 "ahU" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 5
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
 	},
-/obj/machinery/alarm{
-	pixel_y = 22
+/obj/structure/cable{
+	icon_state = "0-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled/dark,
 /area/maintenance/lower/bar)
 "ahV" = (
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
-/obj/random/mob/mouse,
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/chapel/office)
+/obj/machinery/door/airlock/maintenance/common,
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/bar)
 "ahW" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/simulated/floor/outdoors/grass/forest,
 /area/chapel/office)
 "ahX" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/mob/living/simple_mob/animal/passive/mouse/white,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/chapel/office)
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/bar)
 "ahY" = (
 /obj/structure/sign/warning/caution{
 	name = "\improper CAUTION - DANGEROUS EQUIPMENT AND DROPS"
@@ -3763,17 +3763,17 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
 "aic" = (
-/obj/structure/railing{
-	dir = 8
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
-/obj/effect/floor_decal/techfloor{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
-/obj/effect/floor_decal/techfloor{
-	icon_state = "techfloororange_edges";
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/tiled/dark,
 /area/maintenance/lower/bar)
 "aid" = (
 /obj/effect/floor_decal/techfloor/corner,
@@ -3795,21 +3795,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/maintenance/lower/bar)
 "aig" = (
-/obj/structure/railing{
-	dir = 8
+/obj/machinery/door/airlock{
+	name = "Chapel Morgue";
+	req_access = list(27);
+	req_one_access = list(27,6)
 	},
-/obj/effect/floor_decal/rust,
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/effect/floor_decal/techfloor{
-	icon_state = "techfloororange_edges";
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/bar)
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/dark,
+/area/chapel/chapel_morgue)
 "aih" = (
 /turf/simulated/floor/lino,
 /area/chapel/office)
@@ -3858,7 +3851,11 @@
 /area/maintenance/lower/bar)
 "aio" = (
 /obj/machinery/recharge_station,
-/turf/simulated/floor/tiled/techfloor,
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/tiled/dark,
 /area/maintenance/lower/bar)
 "aip" = (
 /obj/effect/floor_decal/techfloor/corner{
@@ -3902,14 +3899,12 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "air" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 4
+/obj/machinery/light/small{
+	dir = 8
 	},
-/obj/effect/floor_decal/techfloor/hole/right{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/bar)
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/simulated/floor/outdoors/grass/forest,
+/area/chapel/office)
 "ais" = (
 /obj/structure/cable/green{
 	d1 = 16;
@@ -3940,22 +3935,13 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "ait" = (
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/machinery/alarm{
+	pixel_y = 22
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/dark,
-/area/maintenance/lower/bar)
+/turf/simulated/floor/outdoors/grass/forest,
+/area/chapel/office)
 "aiu" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -4093,21 +4079,16 @@
 /turf/simulated/floor/lino,
 /area/chapel/office)
 "aiH" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/floor_decal/rust,
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
-/obj/effect/floor_decal/techfloor{
-	icon_state = "techfloororange_edges";
-	dir = 8
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
 	},
-/turf/simulated/floor/tiled/techfloor,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/dark,
 /area/maintenance/lower/bar)
 "aiI" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
@@ -4124,26 +4105,14 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/bar)
 "aiJ" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 4
-	},
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 24
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
+/obj/structure/ladder,
+/obj/effect/floor_decal/industrial/outline/blue,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "aiK" = (
-/obj/effect/floor_decal/techfloor/corner{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/bar)
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/simulated/floor/outdoors/grass/forest,
+/area/chapel/office)
 "aiL" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -4151,10 +4120,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/chapel/office)
 "aiM" = (
-/obj/structure/flora/tree/palm,
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/chapel/office)
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/bar)
 "aiN" = (
 /obj/machinery/button/remote/blast_door{
 	desc = "A remote control-switch for shutters.";
@@ -4266,28 +4237,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/maintenance/lower/bar)
 "aiY" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
-	},
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/dark,
-/area/maintenance/lower/bar)
-"aiZ" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/effect/floor_decal/techfloor{
-	icon_state = "techfloororange_edges";
-	dir = 8
-	},
+/obj/structure/closet,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
+"aiZ" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/mob/living/simple_mob/animal/passive/mouse/white,
+/turf/simulated/floor/outdoors/grass/forest,
+/area/chapel/office)
 "aja" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -4481,7 +4438,6 @@
 /turf/simulated/floor/plating,
 /area/chapel/main)
 "ajs" = (
-/obj/machinery/door/airlock/multi_tile/glass,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -4491,14 +4447,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
 "ajt" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/floor/tiled/dark,
+/obj/machinery/space_heater,
+/turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "aju" = (
 /turf/simulated/floor/tiled/dark,
@@ -4593,13 +4547,6 @@
 /obj/random/action_figure,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
-"ajH" = (
-/obj/effect/floor_decal/techfloor{
-	icon_state = "techfloororange_edges";
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/bar)
 "ajI" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -4608,13 +4555,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
-"ajJ" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/chapel/office)
 "ajK" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -6350,26 +6290,8 @@
 /obj/item/weapon/storage/box/snakesnackbox,
 /turf/simulated/floor/outdoors/grass/forest,
 /area/chapel/office)
-"amO" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/chapel/office)
-"amP" = (
-/obj/structure/flora/ausbushes/grassybush,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/chapel/office)
-"amQ" = (
-/obj/random/mob/mouse,
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/chapel/office)
 "amR" = (
 /obj/structure/flora/ausbushes/brflowers,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/chapel/office)
-"amS" = (
-/obj/structure/flora/ausbushes/sparsegrass,
 /turf/simulated/floor/outdoors/grass/forest,
 /area/chapel/office)
 "amT" = (
@@ -6475,18 +6397,6 @@
 "ane" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /mob/living/simple_mob/animal/passive/snake/noodle,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/chapel/office)
-"anf" = (
-/obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
-	},
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/chapel/office)
-"ang" = (
-/obj/structure/flora/ausbushes/ppflowers,
 /turf/simulated/floor/outdoors/grass/forest,
 /area/chapel/office)
 "ank" = (
@@ -43717,9 +43627,9 @@ alL
 ahj
 ahA
 ahS
-ahS
+aic
 aif
-ait
+aiH
 aiX
 ajs
 aYl
@@ -43859,11 +43769,11 @@ amc
 ahk
 ahB
 ahT
+ahU
 ahT
 ahT
-aiY
-ajt
-aro
+aio
+aYd
 aro
 aro
 aro
@@ -44000,11 +43910,11 @@ agI
 aee
 adL
 adu
-aic
-aig
-aiH
-aiZ
-ajH
+ahX
+aoE
+aiL
+aiL
+aoE
 aoE
 api
 api
@@ -44142,11 +44052,11 @@ agJ
 aee
 adL
 adu
-ahU
-aiJ
+ahP
+aiL
 air
 aiK
-aio
+aiZ
 aoE
 aYm
 aYz
@@ -44283,13 +44193,13 @@ aee
 aee
 aee
 adL
+adu
+ahV
 aoE
-aiL
-aoE
-aiL
-aiL
-aiL
-aoE
+ait
+ane
+ahW
+aiG
 aYs
 aYB
 aYI
@@ -44425,13 +44335,13 @@ aef
 aef
 aef
 ahl
-aoE
-ahV
+adu
+ahX
+aiL
 ahW
-ajJ
-amS
-ahW
-aiG
+amR
+amN
+aiL
 aih
 aiu
 ajX
@@ -44567,13 +44477,13 @@ adu
 adu
 adu
 adu
+adu
+aiJ
 aoE
-ahW
-ahX
-amO
-ane
-ahW
 aiL
+aiL
+aiL
+aoE
 amM
 aiv
 aYK
@@ -44709,12 +44619,12 @@ aac
 aac
 aac
 aac
-aoE
-ahW
+adu
+ahP
 aiM
-amP
-ahW
-aiM
+ahP
+ajt
+ajt
 aoE
 aoE
 aoE
@@ -44851,12 +44761,12 @@ aac
 aac
 aac
 aac
-aoE
-aoE
-aoE
-amQ
-amR
-ang
+adu
+adu
+adu
+ahP
+ahP
+ahP
 ajT
 aYo
 aYD
@@ -44995,11 +44905,11 @@ aab
 aac
 aac
 aac
-aoE
-amR
-anf
-amN
-ajT
+adu
+aiY
+aiY
+ahP
+aig
 aYp
 aYp
 aYM
@@ -45137,10 +45047,10 @@ aab
 aab
 aab
 aac
-aoE
-aoE
-aoE
-aoE
+adu
+adu
+adu
+adu
 ajT
 aYq
 aYE
