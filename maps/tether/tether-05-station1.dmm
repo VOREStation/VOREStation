@@ -1148,6 +1148,10 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
+"acc" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor,
+/area/hallway/station/docks)
 "acd" = (
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
@@ -7475,11 +7479,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/carpet,
 /area/maintenance/abandonedlibrary)
-"api" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/random/trash_pile,
-/turf/simulated/floor,
-/area/maintenance/station/eng_lower)
 "apj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -10465,11 +10464,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor,
 /area/maintenance/station/bridge)
-"axl" = (
-/obj/random/trash_pile,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor,
-/area/maintenance/station/bridge)
 "axt" = (
 /obj/random/trash_pile,
 /turf/simulated/floor,
@@ -11280,11 +11274,6 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled,
-/area/hallway/station/docks)
-"aAq" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/random/trash_pile,
-/turf/simulated/floor,
 /area/hallway/station/docks)
 "aAG" = (
 /obj/structure/bed/chair{
@@ -30082,7 +30071,7 @@ aef
 abP
 abC
 adG
-ahq
+ack
 aJs
 aiV
 aJV
@@ -30251,7 +30240,7 @@ aLl
 aET
 aaV
 atp
-api
+acj
 aMt
 aqs
 amA
@@ -30513,7 +30502,7 @@ ack
 ach
 ack
 akq
-api
+acj
 ahY
 aiR
 amR
@@ -30696,7 +30685,7 @@ bXs
 bnl
 azl
 azl
-aAq
+acc
 awu
 aac
 aac
@@ -30802,7 +30791,7 @@ aik
 aik
 aik
 aik
-ack
+ahq
 ack
 ack
 jRS
@@ -30810,7 +30799,7 @@ ach
 ach
 acj
 aiR
-api
+acj
 aiX
 abC
 anE
@@ -34098,7 +34087,7 @@ acy
 acp
 aqg
 awK
-axl
+aEG
 axM
 bmc
 aza

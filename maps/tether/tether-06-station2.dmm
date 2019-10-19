@@ -396,10 +396,14 @@
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
 "aO" = (
-/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small{
+	icon_state = "bulb1";
+	dir = 1
+	},
+/obj/structure/railing,
 /obj/random/trash_pile,
 /turf/simulated/floor,
-/area/maintenance/station/sec_lower)
+/area/maintenance/station/exploration)
 "aP" = (
 /turf/simulated/mineral/floor/vacuum,
 /area/mine/explored/upper_level)
@@ -3935,9 +3939,12 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/port)
 "fN" = (
-/obj/random/trash_pile,
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 4
+	},
 /turf/simulated/floor,
-/area/maintenance/station/sec_lower)
+/area/maintenance/station/exploration)
 "fO" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/steeldecal/steel_decals7{
@@ -6482,13 +6489,9 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
 "ju" = (
-/obj/machinery/light/small{
-	icon_state = "bulb1";
-	dir = 1
-	},
-/obj/structure/railing,
-/turf/simulated/floor,
-/area/maintenance/station/exploration)
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating,
+/area/maintenance/station/sec_lower)
 "jv" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -6506,13 +6509,10 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/staircase)
 "jw" = (
-/obj/structure/railing,
-/obj/structure/railing{
-	dir = 4
-	},
+/obj/effect/decal/cleanable/dirt,
 /obj/random/trash_pile,
-/turf/simulated/floor,
-/area/maintenance/station/exploration)
+/turf/simulated/floor/plating,
+/area/maintenance/station/sec_lower)
 "jx" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/purple/border,
@@ -8293,9 +8293,12 @@
 /area/storage/tech)
 "mf" = (
 /obj/structure/railing,
-/obj/random/trash_pile,
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 4
+	},
 /turf/simulated/floor,
-/area/maintenance/station/exploration)
+/area/maintenance/station/medbay)
 "mg" = (
 /obj/structure/cable/green{
 	d2 = 2;
@@ -17477,15 +17480,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
-"AD" = (
-/obj/structure/railing,
-/obj/structure/railing{
-	icon_state = "railing0";
-	dir = 4
-	},
-/obj/random/trash_pile,
-/turf/simulated/floor,
-/area/maintenance/station/medbay)
 "AE" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -22935,11 +22929,6 @@
 /obj/machinery/vending/cola,
 /turf/simulated/floor/tiled,
 /area/engineering/foyer_mezzenine)
-"YU" = (
-/obj/effect/floor_decal/rust,
-/obj/random/trash_pile,
-/turf/simulated/floor/plating,
-/area/maintenance/station/sec_lower)
 "Za" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -27532,7 +27521,7 @@ at
 at
 XM
 Ny
-Zr
+jw
 Zr
 FR
 DA
@@ -32212,7 +32201,7 @@ fb
 WL
 hZ
 fd
-fN
+RS
 jQ
 kk
 fq
@@ -32772,8 +32761,8 @@ XM
 be
 Uf
 at
-YU
-fN
+ju
+RS
 RS
 RS
 RS
@@ -32904,7 +32893,7 @@ OA
 FA
 QG
 at
-aO
+bf
 bf
 bx
 bS
@@ -34234,7 +34223,7 @@ xf
 xf
 xf
 Ar
-AD
+mf
 AT
 xg
 ac
@@ -35472,7 +35461,7 @@ dF
 bT
 fg
 cZ
-mf
+mx
 ns
 mB
 ic
@@ -36037,7 +36026,7 @@ bg
 bg
 bg
 bg
-ju
+aO
 ls
 bg
 mx
@@ -36179,7 +36168,7 @@ gO
 bU
 ip
 bg
-jw
+fN
 lP
 bg
 Ec

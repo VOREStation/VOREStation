@@ -4645,7 +4645,6 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "ic" = (
-/obj/random/trash_pile,
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},
