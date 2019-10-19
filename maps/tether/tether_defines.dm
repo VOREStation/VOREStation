@@ -19,6 +19,7 @@
 #define Z_LEVEL_AEROSTAT					18
 #define Z_LEVEL_AEROSTAT_SURFACE			19
 #define Z_LEVEL_DEBRISFIELD					20
+#define Z_LEVEL_SPACE_HULK					21
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -142,7 +143,8 @@
 		Z_LEVEL_CENTCOM,
 		Z_LEVEL_MISC,
 		Z_LEVEL_SHIPS,
-		Z_LEVEL_BEACH
+		Z_LEVEL_BEACH,
+		Z_LEVEL_SPACE_HULK
 		)
 
 	lateload_single_pick = null //Nothing right now.
