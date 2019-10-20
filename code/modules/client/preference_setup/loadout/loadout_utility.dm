@@ -124,6 +124,24 @@
 	path = /obj/item/weapon/implant/tracking/weak
 	cost = 0 //VOREStation Edit. Changed cost to 0
 
+/datum/gear/utility/implant/neural
+	display_name = "implant, neural assistance web"
+	description = "A complex web implanted into the subject, medically in order to compensate for neurological disease."
+	path = /obj/item/weapon/implant/neural/roundstart
+	cost = 6
+
+/datum/gear/utility/implant/dud1
+	display_name = "implant, head"
+	description = "An implant with no obvious purpose."
+	path = /obj/item/weapon/implant/dud
+	cost = 1
+
+/datum/gear/utility/implant/dud2
+	display_name = "implant, torso"
+	description = "An implant with no obvious purpose."
+	path = /obj/item/weapon/implant/dud/torso
+	cost = 1
+
 /datum/gear/utility/implant/language
 	cost = 2
 	exploitable = 0

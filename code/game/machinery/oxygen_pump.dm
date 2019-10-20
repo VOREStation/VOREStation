@@ -4,7 +4,7 @@
 /obj/machinery/oxygen_pump
 	name = "emergency oxygen pump"
 	icon = 'icons/obj/walllocker.dmi'
-	desc = "A wall mounted oxygen pump with a retractable face mask that you can pull over your face in case of emergencies."
+	desc = "A wall mounted oxygen pump with a retractable mask that you can pull over your face in case of emergencies."
 	icon_state = "oxygen_tank"
 
 	anchored = TRUE
@@ -236,3 +236,76 @@
 	icon_state_closed = "anesthetic_tank"
 	icon_state_open = "anesthetic_tank_open"
 	mask_type = /obj/item/clothing/mask/breath/anesthetic
+
+/obj/machinery/oxygen_pump/mobile
+	name = "portable oxygen pump"
+	icon = 'icons/obj/atmos.dmi'
+	desc = "A portable oxygen pump with a retractable mask that you can pull over your face in case of emergencies."
+	icon_state = "medpump"
+	icon_state_open = "medpump_open"
+	icon_state_closed = "medpump"
+
+	anchored = FALSE
+	density = TRUE
+
+	mask_type = /obj/item/clothing/mask/gas/clear
+
+	var/last_area = null
+
+/obj/machinery/oxygen_pump/mobile/process()
+	..()
+
+	var/turf/T = get_turf(src)
+
+	if(!last_area && T)
+		last_area = T.loc
+
+	if(last_area != T.loc)
+		power_change()
+		last_area = T.loc
+
+/obj/machinery/oxygen_pump/mobile/anesthetic
+	name = "portable anesthetic pump"
+	spawn_type = /obj/item/weapon/tank/anesthetic
+	icon_state = "medpump_n2o"
+	icon_state_closed = "medpump_n2o"
+	icon_state_open = "medpump_n2o_open"
+	mask_type = /obj/item/clothing/mask/breath/anesthetic
+
+/obj/machinery/oxygen_pump/mobile/stabilizer
+	name = "portable patient stabilizer"
+	desc = "A portable oxygen pump with a retractable mask used for stabilizing patients in the field."
+
+/obj/machinery/oxygen_pump/mobile/stabilizer/process()
+	if(breather)
+		if(!can_apply_to_target(breather))
+			if(tank)
+				tank.forceMove(src)
+			breather.remove_from_mob(contained)
+			contained.forceMove(src)
+			src.visible_message("<span class='notice'>\The [contained] rapidly retracts back into \the [src]!</span>")
+			breather = null
+			use_power = 1
+		else if(!breather.internal && tank)
+			breather.internal = tank
+			if(breather.internals)
+				breather.internals.icon_state = "internal0"
+
+		if(breather)	// Safety.
+			if(ishuman(breather))
+				var/mob/living/carbon/human/H = breather
+
+				if(H.stat == DEAD)
+					H.add_modifier(/datum/modifier/bloodpump_corpse, 6 SECONDS)
+
+				else
+					H.add_modifier(/datum/modifier/bloodpump, 6 SECONDS)
+
+	var/turf/T = get_turf(src)
+
+	if(!last_area && T)
+		last_area = T.loc
+
+	if(last_area != T.loc)
+		power_change()
+		last_area = T.loc

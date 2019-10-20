@@ -394,6 +394,7 @@ var/global/datum/controller/occupations/job_master
 
 						if(G.slot == "implant")
 							var/obj/item/weapon/implant/I = G.spawn_item(H)
+							I.invisibility = 100
 							I.implant_loadout(H)
 							continue
 

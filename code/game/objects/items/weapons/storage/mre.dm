@@ -185,6 +185,20 @@ MRE Stuff
 	/obj/random/mre/sauce/crayon
 	)
 
+/obj/item/weapon/storage/mre/menu13
+	name = "medical MRE"
+	meal_desc = "This one is menu 13, vitamin paste & dessert. Only for emergencies."
+	icon_state = "crayonmre"
+	starts_with = list(
+	/obj/item/weapon/reagent_containers/food/snacks/liquidvitamin,
+	/obj/item/weapon/reagent_containers/food/snacks/liquidvitamin,
+	/obj/item/weapon/reagent_containers/food/snacks/liquidvitamin,
+	/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
+	/obj/random/mre/drink,
+	/obj/item/weapon/storage/mrebag/dessert,
+	/obj/item/weapon/material/kitchen/utensil/spoon/plastic
+	)
+
 /obj/item/weapon/storage/mre/random
 	meal_desc = "The menu label is faded out."
 	starts_with = list(
