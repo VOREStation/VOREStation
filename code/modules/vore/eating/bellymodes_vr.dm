@@ -35,7 +35,7 @@
 					if(M.is_preference_enabled(/datum/client_preference/digestion_noises)) //then we check if the mob has sounds enabled at all
 						var/sound/preyloop = sound('sound/vore/sunesound/prey/loop.ogg')
 						M.playsound_local(get_turf(src),preyloop, 80,0, channel = CHANNEL_PREYLOOP)
-						M.next_preyloop = (world.time + 52 SECONDS)
+						M.next_preyloop = (world.time + (52 SECONDS))
 
 /////////////////////////// Sound Selections ///////////////////////////
 	var/sound/prey_digest
@@ -354,9 +354,18 @@
 
 /////////////////////////// Make any noise ///////////////////////////
 	if(play_sound)
-		for(var/mob/M in hearers(4, owner)) //so we don't fill the whole room with the sound effect
-			if(M && M.client && (isturf(M.loc) || (M.loc != src.contents)) && M.is_preference_enabled(/datum/client_preference/digestion_noises)) //to avoid people on the inside getting the outside sounds and their direct sounds + built in sound pref check
-				SEND_SOUND(M, play_sound) //these are all external sound triggers now, so it's ok.
+		LAZYCLEARLIST(hearing_mobs)
+		for(var/mob/M in hearers(VORE_SOUND_RANGE, owner))
+			if(!M.client || !(M.is_preference_enabled(/datum/client_preference/digestion_noises)))
+				continue
+			LAZYADD(hearing_mobs, M)
+		for(var/mob/M in hearing_mobs) //so we don't fill the whole room with the sound effect
+			if(M && M.client && (isturf(M.loc) || (M.loc != src.contents))) //to avoid people on the inside getting the outside sounds and their direct sounds + built in sound pref check
+				if(fancy_vore)
+					M.playsound_local(owner.loc, play_sound, vol = 75, vary = 1, falloff = VORE_SOUND_FALLOFF)
+				else
+					M.playsound_local(owner.loc, play_sound, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF)
+				 //these are all external sound triggers now, so it's ok.
 	if(to_update)
 		for(var/mob/living/M in contents)
 			if(M.client)
