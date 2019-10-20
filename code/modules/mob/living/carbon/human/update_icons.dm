@@ -295,7 +295,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
 			//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
 			if(part.icon_position & (LEFT | RIGHT))
-				var/icon/temp2 = new('icons/mob/human.dmi',"blank")
+				var/icon/temp2 = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi', icon_state = "blank")
 				temp2.Insert(new/icon(temp,dir=NORTH),dir=NORTH)
 				temp2.Insert(new/icon(temp,dir=SOUTH),dir=SOUTH)
 				if(!(part.icon_position & LEFT))
@@ -440,8 +440,13 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	// VOREStation Edit - START
 	var/icon/ears_s = get_ears_overlay()
-	if (ears_s)
+	if(ears_s)
 		face_standing.Blend(ears_s, ICON_OVERLAY)
+	if(istype(head_organ,/obj/item/organ/external/head/vr))
+		var/obj/item/organ/external/head/vr/head_organ_vr = head_organ
+		overlays_standing[HAIR_LAYER] = image(face_standing, layer = BODY_LAYER+HAIR_LAYER, "pixel_y" = head_organ_vr.head_offset)
+		apply_layer(HAIR_LAYER)
+		return
 	// VOREStation Edit - END
 
 	if(head_organ.nonsolid)
