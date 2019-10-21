@@ -573,9 +573,6 @@
 	for(var/reagent in S.processed_reagents)
 		S.reagents.add_reagent(reagent,amount)
 		S.chassis.use_power(energy_drain)
-<<<<<<< HEAD
-	return 1
-=======
 	return 1
 
 /obj/item/mecha_parts/mecha_equipment/crisis_drone
