@@ -1133,11 +1133,8 @@
 #include "code\game\objects\items\weapons\id cards\station_ids.dm"
 #include "code\game\objects\items\weapons\id cards\syndicate_ids.dm"
 #include "code\game\objects\items\weapons\implants\implant.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\game\objects\items\weapons\implants\implant_vr.dm"
-=======
 #include "code\game\objects\items\weapons\implants\implantaugment.dm"
->>>>>>> e2e870f... Medical Expansion (#6465):polaris.dme
 #include "code\game\objects\items\weapons\implants\implantcase.dm"
 #include "code\game\objects\items\weapons\implants\implantcase_vr.dm"
 #include "code\game\objects\items\weapons\implants\implantchair.dm"
