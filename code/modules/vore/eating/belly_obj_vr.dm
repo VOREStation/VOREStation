@@ -1,4 +1,5 @@
 #define VORE_SOUND_FALLOFF 0.1
+#define VORE_SOUND_RANGE 3
 
 //
 //  Belly system 2.0, now using objects instead of datums because EH at datums.
@@ -57,6 +58,7 @@
 	var/tmp/list/items_preserved = list()		// Stuff that wont digest so we shouldn't process it again.
 	var/tmp/next_emote = 0						// When we're supposed to print our next emote, as a belly controller tick #
 	var/tmp/recent_sound = FALSE				// Prevent audio spam
+	var/tmp/list/hearing_mobs
 
 	// Don't forget to watch your commas at the end of each line if you change these.
 	var/list/struggle_messages_outside = list(
@@ -248,7 +250,7 @@
 
 	//Place them into our drop_location
 	M.forceMove(drop_location())
-	
+
 	items_preserved -= M
 
 	//Special treatment for absorbed prey
