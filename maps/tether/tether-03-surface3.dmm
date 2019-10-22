@@ -8497,10 +8497,15 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/atrium_three)
 "oG" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
+/obj/machinery/camera/network/civilian{
+	dir = 4
+	},
+/obj/machinery/door/window/southleft{
+	name = "Library Desk Door";
+	req_access = list(37)
+	},
+/turf/simulated/floor/carpet,
+/area/library)
 "oH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -8511,6 +8516,11 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/vacant/vacant_shop)
+"oI" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
 "oJ" = (
 /turf/simulated/wall,
 /area/crew_quarters/freezer)
@@ -29828,17 +29838,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
-"Xn" = (
-/obj/machinery/door/window/northright{
-	dir = 2;
-	name = "Library Desk Door";
-	req_access = list(37)
-	},
-/obj/machinery/camera/network/civilian{
-	dir = 4
-	},
-/turf/simulated/floor/carpet,
-/area/library)
 "Xo" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -41513,7 +41512,7 @@ xi
 yx
 zQ
 Az
-Xn
+oG
 zT
 EH
 AA
@@ -44234,7 +44233,7 @@ Nk
 Nl
 NJ
 NP
-oG
+oI
 KU
 bg
 Ok
@@ -44376,7 +44375,7 @@ Nl
 Nl
 NK
 NP
-oG
+oI
 KU
 bg
 Ok
@@ -44518,7 +44517,7 @@ Nm
 Nl
 NK
 NP
-oG
+oI
 KU
 bg
 Ok
