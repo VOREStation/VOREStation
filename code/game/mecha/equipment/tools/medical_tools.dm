@@ -803,4 +803,3 @@
 	required_type = list(/obj/mecha/medical)
 
 	tooltype = /obj/item/device/healthanalyzer/advanced
->>>>>>> e2e870f... Medical Expansion (#6465)
