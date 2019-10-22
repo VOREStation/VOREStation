@@ -35,6 +35,7 @@
 #define CE_ALCOHOL_TOXIC "alcotoxic" // Liver damage
 #define CE_SPEEDBOOST "gofast" // Hyperzine
 #define CE_SLOWDOWN "goslow" // Slowdown
+#define CE_ANTACID "nopuke" // Don't puke.
 
 #define REAGENTS_PER_SHEET 20
 

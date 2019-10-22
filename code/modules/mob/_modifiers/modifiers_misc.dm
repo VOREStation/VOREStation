@@ -182,6 +182,31 @@ the artifact triggers the rage.
 	accuracy_dispersion = 3		// Ditto.
 	evasion = -45				// Too angry to dodge.
 
+// Speedy, but not hasted.
+/datum/modifier/sprinting
+	name = "sprinting"
+	desc = "You are filled with energy!"
+
+	on_created_text = "<span class='warning'>You feel a surge of energy!</span>"
+	on_expired_text = "<span class='notice'>The energy high dies out.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+	slowdown = -1
+	disable_duration_percent = 0.8
+
+// Speedy, but not berserked.
+/datum/modifier/melee_surge
+	name = "melee surge"
+	desc = "You are filled with energy!"
+
+	on_created_text = "<span class='warning'>You feel a surge of energy!</span>"
+	on_expired_text = "<span class='notice'>The energy high dies out.</span>"
+	stacks = MODIFIER_STACK_ALLOWED
+
+	attack_speed_percent = 0.8
+	outgoing_melee_damage_percent = 1.1
+	disable_duration_percent = 0.8
+
 // Non-cult version of deep wounds.
 // Surprisingly, more dangerous.
 /datum/modifier/grievous_wounds
@@ -198,7 +223,6 @@ the artifact triggers the rage.
 	bleeding_rate_percent = 1.20	// 20% more bleeding.
 
 	accuracy_dispersion = 2			// A combination of fear and immense pain or damage reults in a twitching firing arm. Flee.
-
 
 
 
@@ -305,7 +329,7 @@ the artifact triggers the rage.
 
 	bleeding_rate_percent = 0.8
 
-	pulse_set_level = PULSE_SLOW
+	pulse_modifier = -1
 
 // Temperature Normalizer.
 /datum/modifier/homeothermic

@@ -150,18 +150,18 @@
 	catalysts = list("phoron" = 1)
 	result_amount = 2
 
-/datum/chemical_reaction/tramadol
-	name = "Tramadol"
-	id = "tramadol"
-	result = "tramadol"
-	required_reagents = list("inaprovaline" = 1, "ethanol" = 1, "oxygen" = 1)
-	result_amount = 3
-
 /datum/chemical_reaction/paracetamol
 	name = "Paracetamol"
 	id = "paracetamol"
 	result = "paracetamol"
-	required_reagents = list("tramadol" = 1, "sugar" = 1, "water" = 1)
+	required_reagents = list("inaprovaline" = 1, "nitrogen" = 1, "water" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/tramadol
+	name = "Tramadol"
+	id = "tramadol"
+	result = "tramadol"
+	required_reagents = list("paracetamol" = 1, "ethanol" = 1, "oxygen" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/oxycodone
@@ -464,6 +464,13 @@
 	result = "ethylredoxrazine"
 	required_reagents = list("oxygen" = 1, "anti_toxin" = 1, "carbon" = 1)
 	result_amount = 3
+
+/datum/chemical_reaction/calciumcarbonate
+	name = "Calcium Carbonate"
+	id = "calciumcarbonate"
+	result = "calciumcarbonate"
+	required_reagents = list("oxygen" = 3, "calcium" = 1, "carbon" = 1)
+	result_amount = 2
 
 /datum/chemical_reaction/soporific
 	name = "Soporific"

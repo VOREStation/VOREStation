@@ -94,6 +94,7 @@ var/list/name_to_material
 	var/door_icon_base = "metal"                         // Door base icon tag. See header.
 	var/icon_reinf = "reinf_metal"                       // Overlay used
 	var/list/stack_origin_tech = list(TECH_MATERIAL = 1) // Research level for stacks.
+	var/pass_stack_colors = FALSE                        // Will stacks made from this material pass their colors onto objects?
 
 	// Attributes
 	var/cut_delay = 0            // Delay in ticks when cutting through this wall.
@@ -866,6 +867,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/log
 	sheet_singular_name = null
 	sheet_plural_name = "pile"
+	pass_stack_colors = TRUE
 
 /material/wood/log/sif
 	name = MAT_SIFLOG
@@ -903,6 +905,7 @@ var/list/name_to_material
 	door_icon_base = "wood"
 	destruction_desc = "crumples"
 	radiation_resistance = 1
+	pass_stack_colors = TRUE
 
 /material/snow
 	name = MAT_SNOW
@@ -949,6 +952,7 @@ var/list/name_to_material
 	protectiveness = 1 // 4%
 	flags = MATERIAL_PADDING
 	conductive = 0
+	pass_stack_colors = TRUE
 
 /material/cult
 	name = "cult"

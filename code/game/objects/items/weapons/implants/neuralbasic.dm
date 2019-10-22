@@ -1,6 +1,7 @@
 /obj/item/weapon/implant/neural
 	name = "neural framework implant"
 	desc = "A small metal casing with numerous wires stemming off of it."
+	initialize_loc = BP_HEAD
 	var/obj/item/organ/internal/brain/my_brain = null
 	var/target_state = null
 	var/robotic_brain = FALSE
@@ -104,3 +105,10 @@ Implant Specifics:<BR>"}
 		my_brain.take_damage(15)
 		my_brain = null
 	return
+
+/obj/item/weapon/implant/neural/roundstart/Initialize()
+	invisibility = 100
+	..()
+	spawn(3)
+		if(!ishuman(loc) && !QDELETED(src))
+			qdel(src)

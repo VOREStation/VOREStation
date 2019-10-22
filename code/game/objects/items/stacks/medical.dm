@@ -11,6 +11,8 @@
 	var/heal_burn = 0
 	var/apply_sounds
 
+	var/upgrade_to	// The type path this stack can be upgraded to.
+
 /obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if (!istype(M))
 		user << "<span class='warning'>\The [src] cannot be applied to [M]!</span>"
@@ -59,6 +61,80 @@
 		use(1)
 
 	M.updatehealth()
+
+/obj/item/stack/medical/proc/upgrade_stack(var/upgrade_amount)
+	. = FALSE
+
+	var/turf/T = get_turf(src)
+
+	if(ispath(upgrade_to) && use(upgrade_amount))
+		var/obj/item/stack/medical/M = new upgrade_to(T, upgrade_amount)
+		return M
+
+	return .
+
+/obj/item/stack/medical/crude_pack
+	name = "crude bandage"
+	singular_name = "crude bandage length"
+	desc = "Some bandages to wrap around bloody stumps."
+	icon_state = "gauze"
+	origin_tech = list(TECH_BIO = 1)
+	no_variants = FALSE
+	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
+
+	upgrade_to = /obj/item/stack/medical/bruise_pack
+
+/obj/item/stack/medical/crude_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
+	if(..())
+		return 1
+
+	if (istype(M, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
+
+		if(affecting.open)
+			to_chat(user, "<span class='notice'>The [affecting.name] is cut open, you'll need more than a bandage!</span>")
+			return
+
+		if(affecting.is_bandaged())
+			to_chat(user, "<span class='warning'>The wounds on [M]'s [affecting.name] have already been bandaged.</span>")
+			return 1
+		else
+			user.visible_message("<span class='notice'>\The [user] starts bandaging [M]'s [affecting.name].</span>", \
+					             "<span class='notice'>You start bandaging [M]'s [affecting.name].</span>" )
+			var/used = 0
+			for (var/datum/wound/W in affecting.wounds)
+				if (W.internal)
+					continue
+				if(W.bandaged)
+					continue
+				if(used == amount)
+					break
+				if(!do_mob(user, M, W.damage/3))
+					to_chat(user, "<span class='notice'>You must stand still to bandage wounds.</span>")
+					break
+
+				if(affecting.is_bandaged()) // We do a second check after the delay, in case it was bandaged after the first check.
+					to_chat(user, "<span class='warning'>The wounds on [M]'s [affecting.name] have already been bandaged.</span>")
+					return 1
+
+				if (W.current_stage <= W.max_bleeding_stage)
+					user.visible_message("<span class='notice'>\The [user] bandages \a [W.desc] on [M]'s [affecting.name].</span>", \
+					                              "<span class='notice'>You bandage \a [W.desc] on [M]'s [affecting.name].</span>" )
+				else
+					user.visible_message("<span class='notice'>\The [user] places a bandage over \a [W.desc] on [M]'s [affecting.name].</span>", \
+					                              "<span class='notice'>You place a bandage over \a [W.desc] on [M]'s [affecting.name].</span>" )
+				W.bandage()
+				playsound(src, pick(apply_sounds), 25)
+				used++
+			affecting.update_damages()
+			if(used == amount)
+				if(affecting.is_bandaged())
+					to_chat(user, "<span class='warning'>\The [src] is used up.</span>")
+				else
+					to_chat(user, "<span class='warning'>\The [src] is used up, but there are more wounds to treat on \the [affecting.name].</span>")
+			use(used)
+
 /obj/item/stack/medical/bruise_pack
 	name = "roll of gauze"
 	singular_name = "gauze length"
@@ -67,6 +143,8 @@
 	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
+
+	upgrade_to = /obj/item/stack/medical/advanced/bruise_pack
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())

@@ -117,7 +117,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 				src << "<font color='red'>You feel extremely [word]</font>"
 		else if(blood_volume >= BLOOD_VOLUME_SURVIVE)
 			adjustOxyLoss(5 * dmg_coef)
-			adjustToxLoss(3 * dmg_coef)
+//			adjustToxLoss(3 * dmg_coef)
 			if(prob(15))
 				var/word = pick("dizzy","woosey","faint")
 				src << "<font color='red'>You feel extremely [word]</font>"
