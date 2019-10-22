@@ -17,3 +17,6 @@
 	centComm = 1
 	ks2type = /obj/item/device/encryptionkey/ert
 
+/obj/item/device/radio/headset
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/ears.dmi',
+						SPECIES_WEREBEAST = 'icons/mob/species/werebeast/ears.dmi')
