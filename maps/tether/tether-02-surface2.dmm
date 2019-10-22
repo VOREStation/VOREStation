@@ -23722,15 +23722,6 @@
 /obj/structure/cable/green,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
-"aSx" = (
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -25
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
 "aSy" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 6
@@ -43075,7 +43066,7 @@ aRd
 aRw
 aQa
 aSh
-aSx
+aSb
 aad
 abe
 aai
