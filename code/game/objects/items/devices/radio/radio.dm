@@ -247,10 +247,12 @@ var/global/list/default_medbay_channels = list(
 	if (!istype(connection))
 		return
 
-	var/mob/living/silicon/ai/A = new /mob/living/silicon/ai(src, null, null, 1)
-	A.fully_replace_character_name(null,from)
-	talk_into(A, message, channel,"states")
-	qdel(A)
+	var/static/mob/living/silicon/ai/announcer/A = new /mob/living/silicon/ai/announcer(src, null, null, 1)
+	A.SetName(from)
+	Broadcast_Message(connection, A,
+						0, "*garbled automated announcement*", src,
+						message, from, "Automated Announcement", from, "synthesized voice",
+						4, 0, list(0), connection.frequency, "states")
 
 // Interprets the message mode when talking into a radio, possibly returning a connection datum
 /obj/item/device/radio/proc/handle_message_mode(mob/living/M as mob, message, message_mode)
