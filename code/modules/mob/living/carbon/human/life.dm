@@ -1641,7 +1641,7 @@
 			if(R.volume >= R.overdose)
 				temp = PULSE_NONE
 
-	return round(temp * brain_modifier)
+	return max(0, round(temp * brain_modifier))
 
 /mob/living/carbon/human/proc/handle_heartbeat()
 	if(pulse == PULSE_NONE)

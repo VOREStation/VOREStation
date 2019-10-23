@@ -131,12 +131,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	..()
 
 /obj/item/organ/internal/brain/proc/get_control_efficiency()
-	. = 0
-
-	if(!is_broken())
-		. = 1 - (round(damage / max_damage * 10) / 10)
-
-	return .
+	. = max(0, 1 - (round(damage / max_damage * 10) / 10))
 
 /obj/item/organ/internal/brain/pariah_brain
 	name = "brain remnants"
