@@ -271,11 +271,7 @@ var/global/list/default_medbay_channels = list(
 	// If we were to send to a channel we don't have, drop it.
 	return null
 
-<<<<<<< HEAD
-/obj/item/device/radio/talk_into(mob/living/M, message, channel, var/verb = "says", var/datum/language/speaking = null)
-=======
 /obj/item/device/radio/talk_into(mob/living/M as mob, message, channel, var/verb = "says", var/datum/language/speaking = null)
->>>>>>> a422d8b... Merge pull request #6486 from Novacat/nova-runtimes
 	if(!on) return FALSE // the device has to be on
 	//  Fix for permacell radios, but kinda eh about actually fixing them.
 	if(!M || !message) return FALSE
@@ -481,7 +477,6 @@ var/global/list/default_medbay_channels = list(
 
 	//THIS IS TEMPORARY. YEAH RIGHT
 	if(!connection)	return FALSE	//~Carn
-<<<<<<< HEAD
 
 //VOREStation Add Start
 	if(bluespace_radio)
@@ -490,8 +485,6 @@ var/global/list/default_medbay_channels = list(
 					  0, signal.data["compression"], list(0), connection.frequency,verb,speaking)
 //VOREStation Add End
 
-=======
->>>>>>> a422d8b... Merge pull request #6486 from Novacat/nova-runtimes
 	return Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
 					  src, message, displayname, jobname, real_name, M.voice_name,
 					  filter_type, signal.data["compression"], GetConnectedZlevels(position.z), connection.frequency,verb,speaking)
