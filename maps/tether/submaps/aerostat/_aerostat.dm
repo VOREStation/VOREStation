@@ -58,7 +58,7 @@
 
 /obj/tether_away_spawner/aerostat_inside
 	name = "Aerostat Indoors Spawner"
-	faction = "hivebot"
+	faction = "aerostat_inside"
 	atmos_comp = TRUE
 	prob_spawn = 100
 	prob_fall = 50
@@ -81,61 +81,6 @@
 		/mob/living/simple_mob/vore/aggressive/corrupthound = 3,
 		/mob/living/simple_mob/mechanical/viscerator = 2,
 		/mob/living/simple_mob/vore/aggressive/corrupthound = 1
-	)
-
-/obj/tether_away_spawner/tank_hivebot
-	name = "Tank Hivebot Spawner"
-	faction = "hivebot"
-	atmos_comp = TRUE
-	prob_spawn = 100
-	prob_fall = 35
-	//guard = 20
-	mobs_to_pick_from = list(
-		/mob/living/simple_mob/mechanical/hivebot/tank/meatshield = 3,
-		/mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_bullet = 1,
-		/mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_laser = 2,
-		/mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_melee = 1
-	)
-
-/obj/tether_away_spawner/support_hivebot
-	name = "Support Hivebot Spawner"
-	faction = "hivebot"
-	atmos_comp = TRUE
-	prob_spawn = 100
-	prob_fall = 50
-	//guard = 20
-	mobs_to_pick_from = list(
-		/mob/living/simple_mob/mechanical/hivebot/support/logistics = 3,
-		/mob/living/simple_mob/mechanical/hivebot/support/commander = 1
-	)
-
-/obj/tether_away_spawner/ranged_hivebot
-	name = "Ranged Hivebot Spawner"
-	faction = "hivebot"
-	atmos_comp = TRUE
-	prob_spawn = 100
-	prob_fall = 25
-	//guard = 20
-	mobs_to_pick_from = list(
-		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/backline = 3,
-		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/dot = 2,
-		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser = 1,
-		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/rapid = 1,
-		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/basic = 2
-	)
-
-/obj/tether_away_spawner/ranged_hivebot_danger
-	name = "Dangerous Ranged Hivebot Spawner"
-	faction = "hivebot"
-	atmos_comp = TRUE
-	prob_spawn = 100
-	prob_fall = 50
-	//guard = 20
-	mobs_to_pick_from = list(
-		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/siege/emp = 3,
-		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/siege/fragmentation = 2,
-		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/siege/radiation = 2,
-		/mob/living/simple_mob/mechanical/hivebot/ranged_damage/strong/guard = 1
 	)
 
 /obj/structure/old_roboprinter
