@@ -21,9 +21,6 @@
 /obj/structure/metal_edge,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/tether_away/aerostat/surface/explored)
-"s" = (
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat/surface/explored)
 "A" = (
 /obj/structure/railing{
 	icon_state = "railing0";
@@ -8787,8 +8784,8 @@ X
 X
 X
 X
-s
-s
+I
+I
 X
 X
 X
@@ -10775,8 +10772,8 @@ A
 A
 A
 A
-s
-s
+I
+I
 A
 A
 A
