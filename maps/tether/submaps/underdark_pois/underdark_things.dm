@@ -48,7 +48,7 @@
 	faction = "underdark"
 	atmos_comp = TRUE
 	prob_spawn = 100
-	prob_fall = 50
+	prob_fall = 25
 	//guard = 20
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/animal/giant_spider/hunter = 1,
@@ -286,3 +286,9 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/kafel_full/yellow)
 	..()
 	for(var/obj/item/mecha_parts/mecha_tracking/B in src.contents)	//Deletes the beacon so it can't be found easily
 		qdel(B)
+
+// -- Areas -- //
+
+/area/mine/poi/abandoned_outpost
+	name = "\improper Abandoned Outpost POI"
+	requires_power = FALSE

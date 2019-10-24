@@ -77,12 +77,9 @@
 	invisibility = 0
 /obj/effect/step_trigger/teleporter/to_underdark/Initialize()
 	. = ..()
-	teleport_x = x
-	teleport_y = y
-	for(var/z_num in using_map.zlevels)
-		var/datum/map_z_level/Z = using_map.zlevels[z_num]
-		if(Z.name == "Underdark")
-			teleport_z = Z.z
+	teleport_x = 2
+	teleport_y = src.y
+	teleport_z = Z_LEVEL_UNDERDARK
 
 /obj/effect/step_trigger/teleporter/from_underdark
 	icon = 'icons/obj/stairs.dmi'
@@ -90,12 +87,9 @@
 	invisibility = 0
 /obj/effect/step_trigger/teleporter/from_underdark/Initialize()
 	. = ..()
-	teleport_x = x
-	teleport_y = y
-	for(var/z_num in using_map.zlevels)
-		var/datum/map_z_level/Z = using_map.zlevels[z_num]
-		if(Z.name == "Mining Outpost")
-			teleport_z = Z.z
+	teleport_x = world.maxy - 1
+	teleport_y = src.y
+	teleport_z = Z_LEVEL_SURFACE_MINE
 
 /obj/effect/step_trigger/teleporter/to_plains/New()
 	..()
