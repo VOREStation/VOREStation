@@ -20,8 +20,6 @@
 	onclose(user, "syndbeacon")
 
 /obj/machinery/syndicate_beacon/virgo/Topic(href, href_list)
-	if(..())
-		return
 	if(href_list["betraitor"])
 		if(charges < 1)
 			updateUsrDialog()

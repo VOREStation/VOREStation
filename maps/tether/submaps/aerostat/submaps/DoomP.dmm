@@ -448,7 +448,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/virgo2/DoomP)
 "bC" = (
-/obj/machinery/syndicate_beacon/virgo,
+/obj/machinery/syndicate_beacon/virgo{
+	charges = 2
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/virgo2/DoomP)
 "bD" = (
