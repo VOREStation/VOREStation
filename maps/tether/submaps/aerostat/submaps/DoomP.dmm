@@ -18,10 +18,6 @@
 "af" = (
 /turf/simulated/floor/lava,
 /area/submap/virgo2/DoomP)
-"ag" = (
-/obj/structure/flora/tree/sif,
-/turf/simulated/floor/outdoors/rocks,
-/area/submap/virgo2/DoomP)
 "ah" = (
 /obj/random/landmine,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
@@ -47,20 +43,14 @@
 /obj/random/landmine,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/DoomP)
-"ap" = (
-/obj/structure/flora/tree/sif,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/DoomP)
 "aq" = (
 /obj/machinery/light/small,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/DoomP)
-"ar" = (
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/DoomP)
 "as" = (
-/obj/machinery/porta_turret/poi,
+/obj/machinery/porta_turret/poi{
+	faction = "syndicate"
+	},
 /turf/simulated/floor/plating,
 /area/submap/virgo2/DoomP)
 "at" = (
@@ -273,10 +263,6 @@
 /mob/living/simple_mob/humanoid/merc/melee/sword/space,
 /turf/simulated/floor/tiled,
 /area/submap/virgo2/DoomP)
-"aY" = (
-/obj/structure/lattice,
-/turf/simulated/floor/lava,
-/area/submap/virgo2/DoomP)
 "aZ" = (
 /obj/machinery/vending/cola,
 /obj/effect/floor_decal/borderfloor/corner{
@@ -352,6 +338,7 @@
 "bn" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/box/syndie_kit/spy,
+/obj/item/weapon/card/id/syndicate,
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/virgo2/DoomP)
 "bo" = (
@@ -366,6 +353,8 @@
 /area/submap/virgo2/DoomP)
 "bq" = (
 /obj/structure/table/rack,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
 /turf/simulated/floor/tiled/techfloor,
@@ -542,6 +531,19 @@
 /obj/machinery/crystal/lava,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/DoomP)
+"mi" = (
+/obj/structure/barricade,
+/turf/simulated/floor/outdoors/rocks,
+/area/submap/virgo2/DoomP)
+"El" = (
+/obj/structure/barricade,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/DoomP)
+"Hh" = (
+/obj/effect/floor_decal/industrial/warning,
+/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced,
+/turf/simulated/floor/plating,
+/area/submap/virgo2/DoomP)
 
 (1,1,1) = {"
 aa
@@ -656,7 +658,7 @@ ac
 ac
 ac
 ab
-ag
+ac
 ac
 ac
 ac
@@ -1089,7 +1091,7 @@ ac
 aL
 af
 af
-aY
+bM
 af
 af
 af
@@ -1406,7 +1408,7 @@ af
 af
 ac
 ad
-ap
+ad
 ad
 ad
 ad
@@ -1548,7 +1550,7 @@ af
 ac
 ad
 ad
-ap
+ad
 ad
 ad
 ad
@@ -1599,11 +1601,11 @@ ad
 ad
 ad
 ad
-ar
-av
+ad
+Hh
 aw
 aD
-aX
+aP
 ba
 aP
 at
@@ -1734,10 +1736,10 @@ af
 af
 af
 af
-ac
-ad
-ah
-ad
+mi
+El
+El
+El
 ad
 ad
 aq
@@ -1784,7 +1786,7 @@ ac
 ac
 ad
 ad
-ad
+El
 ad
 ad
 ad
@@ -1829,9 +1831,9 @@ af
 ac
 am
 ad
+ah
 ad
-ad
-ad
+El
 ad
 ad
 ad
@@ -1878,7 +1880,7 @@ ad
 ad
 ad
 ad
-ac
+mi
 ad
 ad
 ad
@@ -1925,7 +1927,7 @@ ai
 ac
 ac
 am
-ac
+mi
 ac
 ad
 ad
@@ -1968,7 +1970,7 @@ ac
 ac
 ah
 ad
-ac
+am
 ac
 af
 af
@@ -2167,10 +2169,10 @@ af
 af
 af
 af
-aY
+bM
 af
 af
-aY
+bM
 af
 af
 af
