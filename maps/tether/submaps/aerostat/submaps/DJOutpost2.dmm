@@ -4,7 +4,7 @@
 /area/template_noop)
 "b" = (
 /turf/simulated/wall/virgo2,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "c" = (
 /obj/structure/grille/broken,
 /obj/item/weapon/material/shard,
@@ -13,19 +13,19 @@
 	},
 /obj/item/stack/rods,
 /turf/simulated/floor,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "d" = (
 /obj/structure/grille/broken,
 /obj/item/weapon/material/shard,
 /turf/simulated/floor,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "e" = (
 /turf/simulated/floor/wood/broken,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "f" = (
 /obj/structure/loot_pile/maint/technical,
 /turf/simulated/floor/wood/broken,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "g" = (
 /obj/structure/sign/goldenplaque{
 	desc = "An award given to Sif Free Radio for media excellency. It looks fake.";
@@ -33,7 +33,7 @@
 	pixel_y = 30
 	},
 /turf/simulated/floor/wood/broken,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "h" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -42,15 +42,15 @@
 	},
 /obj/structure/loot_pile/maint/technical,
 /turf/simulated/floor/wood/broken,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "i" = (
 /obj/structure/loot_pile/surface/bones,
 /turf/simulated/floor/wood/broken,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "k" = (
 /obj/structure/girder,
 /turf/simulated/floor,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "l" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -61,53 +61,53 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/wood/broken,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "m" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/device/radio/phone,
 /turf/simulated/floor/outdoors/dirt,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "n" = (
 /obj/item/stack/rods,
 /turf/template_noop,
 /area/template_noop)
 "o" = (
 /turf/simulated/floor/outdoors/dirt,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "p" = (
 /obj/structure/loot_pile/surface/bones,
 /turf/simulated/floor/outdoors/dirt,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "q" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/device/radio,
 /obj/structure/cable/yellow,
 /turf/simulated/floor/wood/broken,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "r" = (
 /turf/simulated/floor/outdoors/rocks,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "s" = (
 /obj/effect/overlay/snow/floor,
 /turf/simulated/floor{
 	outdoors = 1
 	},
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "u" = (
 /obj/effect/decal/cleanable/ash,
 /turf/simulated/floor/outdoors/dirt,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "w" = (
 /obj/structure/grille/broken,
 /obj/item/weapon/material/shard{
 	 icon_state = "shardmedium"
 	},
 /turf/simulated/floor,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "x" = (
 /obj/structure/girder,
 /turf/simulated/floor/outdoors/rocks,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "y" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/device/radio/intercom/syndicate{
@@ -115,15 +115,15 @@
 	name = "station intercom (General)"
 	},
 /turf/simulated/floor/outdoors/dirt,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "A" = (
 /obj/item/stack/rods,
 /turf/simulated/floor/outdoors/dirt,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "B" = (
 /obj/structure/door_assembly/door_assembly_ext,
 /turf/simulated/floor/outdoors/rocks,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "C" = (
 /obj/structure/grille/broken,
 /obj/item/weapon/material/shard{
@@ -135,7 +135,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "D" = (
 /obj/item/weapon/material/shard{
 	 icon_state = "shardmedium"
@@ -145,14 +145,14 @@
 "F" = (
 /obj/item/device/transfer_valve,
 /turf/simulated/floor/outdoors/rocks,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "G" = (
 /obj/structure/grille/broken,
 /obj/item/weapon/material/shard{
 	icon_state = "medium"
 	},
 /turf/simulated/floor,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "H" = (
 /obj/item/weapon/material/shard{
 	icon_state = "medium"
@@ -162,7 +162,7 @@
 "I" = (
 /obj/machinery/door/airlock/external,
 /turf/simulated/floor/wood/broken,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "J" = (
 /obj/item/weapon/material/shard,
 /turf/template_noop,
@@ -174,11 +174,11 @@
 	pixel_x = 15
 	},
 /turf/simulated/floor/wood/broken,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "L" = (
 /obj/item/weapon/storage/toolbox/mechanical,
 /turf/simulated/floor/outdoors/rocks,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "M" = (
 /obj/structure/grille/broken,
 /obj/item/weapon/material/shard{
@@ -186,24 +186,24 @@
 	},
 /obj/item/stack/rods,
 /turf/simulated/floor,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "N" = (
 /obj/structure/grille/broken,
 /obj/item/stack/rods,
 /turf/simulated/floor,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "O" = (
 /obj/structure/lattice,
 /turf/simulated/floor/outdoors/dirt,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "P" = (
 /obj/effect/decal/cleanable/ash,
 /turf/simulated/floor/wood/broken,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 "S" = (
 /obj/structure/girder,
 /turf/simulated/floor/outdoors/dirt,
-/area/submap/DJOutpost1)
+/area/submap/virgo2/DJOutpost1)
 
 (1,1,1) = {"
 a

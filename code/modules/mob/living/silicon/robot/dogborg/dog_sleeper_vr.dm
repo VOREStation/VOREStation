@@ -172,6 +172,8 @@
 
 /obj/item/device/dogborg/sleeper/proc/drain(var/amt = 3) //Slightly reduced cost (before, it was always injecting inaprov)
 	hound = src.loc
+	if(istype(hound,/obj/item/weapon/robot_module))
+		hound = hound.loc
 	hound.cell.charge = hound.cell.charge - amt
 
 /obj/item/device/dogborg/sleeper/attack_self(mob/user)

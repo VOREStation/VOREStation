@@ -43,6 +43,24 @@
 	build_path = /obj/item/weapon/surgical/scalpel/manager
 	sort_string = "KAAAD"
 
+/datum/design/item/medical/saw_manager
+	name = "Energetic Bone Diverter"
+	desc = "A strange development following the I.M.S., this heavy tool can split and open, or close and shut, intentional holes in bones."
+	id = "advanced_saw"
+	req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_DATA = 5)
+	materials = list (DEFAULT_WALL_MATERIAL = 12500, MAT_PLASTIC = 800, "silver" = 1500, "gold" = 1500, MAT_OSMIUM = 1000)
+	build_path = /obj/item/weapon/surgical/circular_saw/manager
+	sort_string = "KAAAE"
+
+/datum/design/item/medical/organ_ripper
+	name = "Organ Ripper"
+	desc = "A modern and horrifying take on an ancient practice, this tool is capable of rapidly removing an organ from a hopefully willing patient, without damaging it."
+	id = "organ_ripper"
+	req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 5, TECH_MAGNET = 4, TECH_ILLEGAL = 3)
+	materials = list (DEFAULT_WALL_MATERIAL = 12500, MAT_PLASTIC = 8000, MAT_OSMIUM = 2500)
+	build_path = /obj/item/weapon/surgical/scalpel/ripper
+	sort_string = "KAAAF"
+
 /datum/design/item/medical/bone_clamp
 	name = "Bone Clamp"
 	desc = "A miracle of modern science, this tool rapidly knits together bone, without the need for bone gel."
@@ -51,8 +69,6 @@
 	materials = list (DEFAULT_WALL_MATERIAL = 12500, "glass" = 7500, "silver" = 2500)
 	build_path = /obj/item/weapon/surgical/bone_clamp
 	sort_string = "KAABA"
-
-// Other medical equipment
 
 /datum/design/item/medical/medical_analyzer
 	name = "health analyzer"

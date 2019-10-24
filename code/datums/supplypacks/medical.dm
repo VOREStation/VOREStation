@@ -349,3 +349,24 @@
 	cost = 250
 	containertype = /obj/structure/largecrate
 	containername = "Industrial Chemical distiller crate"
+
+/datum/supply_pack/med/oxypump
+	name = "Oxygen pump crate"
+	contains = list(/obj/machinery/oxygen_pump/mobile = 1)
+	cost = 125
+	containertype = /obj/structure/largecrate
+	containername = "Oxygen pump crate"
+
+/datum/supply_pack/med/anestheticpump
+	name = "Anesthetic pump crate"
+	contains = list(/obj/machinery/oxygen_pump/mobile/anesthetic = 1)
+	cost = 130
+	containertype = /obj/structure/largecrate
+	containername = "Anesthetic pump crate"
+
+/datum/supply_pack/med/stablepump
+	name = "Portable stabilizer crate"
+	contains = list(/obj/machinery/oxygen_pump/mobile/stabilizer = 1)
+	cost = 175
+	containertype = /obj/structure/largecrate
+	containername = "Portable stabilizer crate"

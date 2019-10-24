@@ -570,6 +570,30 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 8000, "gold" = 2000, "silver" = 3000, "phoron" = 5000, "glass" = 3750)
 	build_path = /obj/item/mecha_parts/mecha_equipment/combat_shield
 
+/datum/design/item/mecha/crisis_drone
+	name = "Crisis Drone"
+	desc = "Deploys a small medical drone capable of patching small wounds in order to stabilize nearby patients."
+	id = "mech_med_droid"
+	req_tech = list(TECH_PHORON = 3, TECH_MAGNET = 6, TECH_BIO = 5, TECH_DATA = 4, TECH_ARCANE = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 8000, MAT_GOLD = 2000, MAT_SILVER = 3000, MAT_VERDANTIUM = 2500, MAT_GLASS = 3000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/crisis_drone
+
+/datum/design/item/mecha/rad_drone
+	name = "Hazmat Drone"
+	desc = "Deploys a small hazmat drone capable of purging minor radiation damage in order to stabilize nearby patients."
+	id = "mech_rad_droid"
+	req_tech = list(TECH_PHORON = 4, TECH_MAGNET = 5, TECH_BIO = 6, TECH_DATA = 4, TECH_ARCANE = 1)
+	materials = list(DEFAULT_WALL_MATERIAL = 8000, MAT_GOLD = 2000, MAT_URANIUM = 3000, MAT_VERDANTIUM = 2500, MAT_GLASS = 3000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/crisis_drone/rad
+
+/datum/design/item/mecha/medanalyzer
+	name = "Mounted Body Scanner"
+	desc = "An advanced mech-mounted device that is not quite as powerful as a stationary body scanner, though still suitably powerful."
+	id = "mech_med_analyzer"
+	req_tech = list(TECH_PHORON = 4, TECH_MAGNET = 5, TECH_BIO = 5, TECH_DATA = 4)
+	materials = list(MAT_PLASTEEL = 4500, MAT_GOLD = 2000, MAT_URANIUM = 3000, MAT_GLASS = 3000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/powertool/medanalyzer
+
 /datum/design/item/mecha/jetpack
 	name = "Ion Jetpack"
 	desc = "Using directed ion bursts and cunning solar wind reflection technique, this device enables controlled space flight."

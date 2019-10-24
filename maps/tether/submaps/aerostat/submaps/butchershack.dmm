@@ -3,11 +3,8 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/turf/simulated/wall/log_sif,
-/area/submap/ButcherShack)
-"c" = (
-/turf/simulated/floor/wood/sif,
-/area/submap/ButcherShack)
+/turf/simulated/wall/virgo2,
+/area/submap/virgo2/ButcherShack)
 "d" = (
 /obj/structure/closet,
 /obj/effect/decal/cleanable/cobweb,
@@ -15,12 +12,12 @@
 /obj/item/weapon/beartrap,
 /obj/item/weapon/packageWrap,
 /obj/item/weapon/material/knife/hook,
-/turf/simulated/floor/wood/sif,
-/area/submap/ButcherShack)
+/turf/simulated/floor/tiled,
+/area/submap/virgo2/ButcherShack)
 "e" = (
 /obj/structure/closet/secure_closet/freezer/meat,
-/turf/simulated/floor/wood/sif,
-/area/submap/ButcherShack)
+/turf/simulated/floor/tiled,
+/area/submap/virgo2/ButcherShack)
 "f" = (
 /obj/structure/closet/crate/freezer,
 /obj/effect/decal/cleanable/blood/gibs,
@@ -34,85 +31,86 @@
 /obj/random/meat,
 /obj/random/meat,
 /obj/random/meat,
-/turf/simulated/floor/wood/sif/broken,
-/area/submap/ButcherShack)
+/turf/simulated/floor/tiled,
+/area/submap/virgo2/ButcherShack)
 "g" = (
 /obj/machinery/gibber/autogibber,
-/turf/simulated/floor/wood/sif,
-/area/submap/ButcherShack)
+/turf/simulated/floor/tiled,
+/area/submap/virgo2/ButcherShack)
 "h" = (
-/turf/simulated/floor/wood/sif/broken,
-/area/submap/ButcherShack)
+/turf/simulated/floor/tiled,
+/area/submap/virgo2/ButcherShack)
 "i" = (
 /obj/structure/window/basic,
 /obj/structure/curtain,
 /turf/simulated/floor/wood/sif/broken,
-/area/submap/ButcherShack)
+/area/submap/virgo2/ButcherShack)
 "j" = (
 /turf/template_noop,
-/area/submap/ButcherShack)
-"k" = (
-/obj/structure/simple_door/sifwood,
-/turf/simulated/floor/wood/sif,
-/area/submap/ButcherShack)
+/area/submap/virgo2/ButcherShack)
 "l" = (
 /obj/structure/loot_pile/maint/trash,
-/turf/simulated/floor/outdoors/dirt,
-/area/submap/ButcherShack)
+/turf/simulated/mineral/floor/virgo2,
+/area/submap/virgo2/ButcherShack)
 "m" = (
 /obj/structure/kitchenspike,
 /obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/wood/sif,
-/area/submap/ButcherShack)
+/turf/simulated/floor/tiled,
+/area/submap/virgo2/ButcherShack)
 "n" = (
 /obj/structure/kitchenspike,
 /obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/wood/sif,
-/area/submap/ButcherShack)
+/turf/simulated/floor/tiled,
+/area/submap/virgo2/ButcherShack)
 "o" = (
 /obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/wood/sif,
-/area/submap/ButcherShack)
+/turf/simulated/floor/tiled,
+/area/submap/virgo2/ButcherShack)
 "p" = (
 /obj/structure/table/standard,
 /obj/item/clothing/suit/chef/classic,
-/turf/simulated/floor/wood/sif,
-/area/submap/ButcherShack)
+/turf/simulated/floor/tiled,
+/area/submap/virgo2/ButcherShack)
 "q" = (
 /obj/structure/table/standard,
 /obj/effect/decal/cleanable/blood,
 /obj/item/weapon/material/knife/butch,
-/turf/simulated/floor/wood/sif/broken,
-/area/submap/ButcherShack)
+/turf/simulated/floor/tiled,
+/area/submap/virgo2/ButcherShack)
 "r" = (
 /obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/food/snacks/cutlet,
 /obj/item/weapon/reagent_containers/food/snacks/cutlet,
 /obj/item/weapon/reagent_containers/food/snacks/cutlet,
 /obj/item/weapon/reagent_containers/food/snacks/sausage,
-/turf/simulated/floor/wood/sif,
-/area/submap/ButcherShack)
+/turf/simulated/floor/tiled,
+/area/submap/virgo2/ButcherShack)
 "s" = (
 /obj/structure/coatrack,
-/turf/simulated/floor/wood/sif,
-/area/submap/ButcherShack)
+/turf/simulated/floor/tiled,
+/area/submap/virgo2/ButcherShack)
 "t" = (
 /obj/structure/bed/padded,
 /obj/item/weapon/bedsheet/brown,
-/turf/simulated/floor/wood/sif,
-/area/submap/ButcherShack)
+/turf/simulated/floor/tiled,
+/area/submap/virgo2/ButcherShack)
 "u" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/wood/sif/broken,
-/area/submap/ButcherShack)
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/tiled,
+/area/submap/virgo2/ButcherShack)
 "v" = (
-/turf/simulated/floor/outdoors/dirt,
-/area/submap/ButcherShack)
+/turf/simulated/mineral/floor/virgo2,
+/area/submap/virgo2/ButcherShack)
 "w" = (
 /obj/structure/window/basic,
 /obj/structure/curtain,
 /turf/simulated/floor/wood/sif,
-/area/submap/ButcherShack)
+/area/submap/virgo2/ButcherShack)
+"x" = (
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/tiled,
+/area/submap/virgo2/ButcherShack)
 
 (1,1,1) = {"
 a
@@ -143,44 +141,44 @@ a
 b
 d
 h
-c
+h
 s
 b
 b
-v
+b
 a
 "}
 (4,1,1) = {"
 a
 b
 m
-c
+h
 p
 o
 u
-k
-v
+h
+x
 a
 "}
 (5,1,1) = {"
 a
 b
 n
-c
+h
 q
-c
+h
 b
 b
-v
+b
 a
 "}
 (6,1,1) = {"
 a
 b
 e
-c
+h
 r
-c
+h
 i
 l
 v
@@ -191,7 +189,7 @@ a
 b
 f
 o
-c
+h
 h
 w
 l
@@ -202,8 +200,8 @@ a
 a
 b
 g
-c
-c
+h
+h
 t
 b
 v

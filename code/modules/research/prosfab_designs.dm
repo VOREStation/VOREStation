@@ -202,6 +202,21 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 5625, "glass" = 1000)
 //	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
 
+/datum/design/item/prosfab/pros/internal/spleen
+	name = "Prosthetic Spleen"
+	id = "pros_spleen"
+	build_path = /obj/item/organ/internal/spleen
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 3000, MAT_GLASS = 750)
+//	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
+
+/datum/design/item/prosfab/pros/internal/larynx
+	name = "Prosthetic Larynx"
+	id = "pros_larynx"
+	build_path = /obj/item/organ/internal/voicebox
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, MAT_GLASS = 750, MAT_PLASTIC = 500)
+
 //////////////////// Cyborg Parts ////////////////////
 /datum/design/item/prosfab/cyborg
 	category = "Cyborg Parts"

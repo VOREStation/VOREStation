@@ -75,11 +75,11 @@
 	faction = "aerostat_surface"
 	atmos_comp = TRUE
 	prob_spawn = 100
-	prob_fall = 50
+	prob_fall = 30
 	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/aggressive/corrupthound = 3,
-		/mob/living/simple_mob/mechanical/viscerator = 2,
+		/mob/living/simple_mob/animal/space/jelly = 1,
+		/mob/living/simple_mob/mechanical/viscerator = 1,
 		/mob/living/simple_mob/vore/aggressive/corrupthound = 1
 	)
 
@@ -188,6 +188,14 @@ VIRGO2_TURF_CREATE(/turf/simulated/mineral/floor/ignore_mapgen)
 
 /area/tether_away/aerostat/inside
 	name = "\improper Away Mission - Aerostat Inside"
+	icon_state = "crew_quarters"
+	base_turf = /turf/simulated/floor/plating/virgo2
+	requires_power = TRUE
+	dynamic_lighting = TRUE
+	forced_ambience = list('sound/ambience/tension/tension.ogg', 'sound/ambience/tension/argitoth.ogg', 'sound/ambience/tension/burning_terror.ogg')
+
+/area/tether_away/aerostat/solars
+	name = "\improper Away Mission - Aerostat Solars"
 	icon_state = "crew_quarters"
 	base_turf = /turf/simulated/floor/plating/virgo2
 	dynamic_lighting = TRUE

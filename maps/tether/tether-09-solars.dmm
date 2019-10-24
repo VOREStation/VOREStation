@@ -6490,6 +6490,11 @@
 	dir = 8;
 	icon_state = "tube1"
 	},
+/obj/structure/extinguisher_cabinet{
+	dir = 4;
+	icon_state = "extinguisher_closed";
+	pixel_x = -30
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "lN" = (
@@ -6879,6 +6884,11 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning,
+/obj/structure/extinguisher_cabinet{
+	dir = 4;
+	icon_state = "extinguisher_closed";
+	pixel_x = -30
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "my" = (
@@ -7110,8 +7120,26 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "mQ" = (
-/obj/machinery/light,
-/obj/machinery/artifact_scanpad,
+/obj/machinery/camera/network/research_outpost{
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/super;
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 1;
+	icon_state = "extinguisher_closed";
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "mR" = (
@@ -7475,20 +7503,12 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "nE" = (
-/obj/machinery/camera/network/research_outpost{
-	dir = 4
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/super;
-	dir = 8;
-	name = "west bump";
-	pixel_x = -28
+/obj/machinery/light,
+/obj/machinery/artifact_scanpad,
+/obj/structure/extinguisher_cabinet{
+	dir = 1;
+	icon_state = "extinguisher_closed";
+	pixel_y = -32
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
@@ -8048,6 +8068,14 @@
 	},
 /turf/simulated/floor/wood,
 /area/rnd/outpost/breakroom)
+"oR" = (
+/obj/structure/extinguisher_cabinet{
+	dir = 1;
+	icon_state = "extinguisher_closed";
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/anomaly_lab)
 "oT" = (
 /obj/structure/bed/chair/wood{
 	dir = 8
@@ -21767,7 +21795,7 @@ jw
 nD
 nM
 kZ
-mQ
+nE
 jx
 ab
 ab
@@ -21904,7 +21932,7 @@ kx
 lA
 ka
 ol
-nE
+mQ
 jx
 no
 mD
@@ -23755,7 +23783,7 @@ ma
 nR
 mJ
 mW
-kZ
+oR
 jx
 ab
 ab

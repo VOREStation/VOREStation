@@ -9436,12 +9436,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/vacant_site)
 "aqj" = (
+/obj/structure/ladder/up,
 /obj/structure/catwalk,
-/obj/structure/closet,
-/obj/random/maintenance/clean,
-/obj/random/maintenance/cargo,
-/obj/random/maintenance/cargo,
-/obj/random/drinkbottle,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
 "aqk" = (
@@ -9867,12 +9864,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
-"aqS" = (
-/obj/structure/ladder/up,
-/obj/structure/catwalk,
-/obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/vacant_site)
 "aqT" = (
 /turf/simulated/wall/r_wall,
 /area/storage/surface_eva/external)
@@ -10008,20 +9999,7 @@
 /turf/simulated/floor/water/pool,
 /area/tether/surfacebase/atrium_one)
 "arh" = (
-/obj/structure/railing{
-	dir = 1
-	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/structure/cable/green{
-	d1 = 16;
-	d2 = 0;
-	icon_state = "16-0"
-	},
-/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
 "ari" = (
@@ -10057,16 +10035,6 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/vacant_site)
-"arm" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/random/trash_pile,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
 "arn" = (
@@ -10239,19 +10207,15 @@
 "arC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/vacant_site)
-"arD" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+	d1 = 16;
+	d2 = 0;
+	icon_state = "16-0"
 	},
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
 "arE" = (
@@ -31571,18 +31535,6 @@
 /obj/random/junk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
-"bcj" = (
-/obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/surgery,
-/obj/item/weapon/paper{
-	desc = "";
-	info = "Stop installing NIFs in here you clods! Unless it's on a synth. Otherwise, STOP DOING IT! You're killing people! -Management";
-	name = "note to science staff"
-	},
-/obj/item/device/robotanalyzer,
-/obj/item/device/robotanalyzer,
-/turf/simulated/floor/tiled/white,
-/area/space)
 "bck" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
@@ -31734,6 +31686,25 @@
 /obj/random/drinkbottle,
 /obj/random/maintenance/cargo,
 /turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/vacant_site)
+"lry" = (
+/obj/structure/catwalk,
+/obj/structure/closet,
+/obj/random/maintenance/clean,
+/obj/random/maintenance/cargo,
+/obj/random/maintenance/cargo,
+/obj/random/drinkbottle,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/vacant_site)
+"nlo" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/random/trash_pile,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
 "obY" = (
 /obj/machinery/alarm{
@@ -37881,7 +37852,7 @@ ajL
 ajL
 ajL
 ajL
-ajL
+akA
 ajL
 ajM
 akm
@@ -45849,7 +45820,7 @@ ahd
 amR
 aeJ
 aah
-bcj
+aah
 aah
 ahx
 ait
@@ -46427,8 +46398,8 @@ aah
 aah
 apF
 aqQ
+ari
 arh
-arD
 apF
 ash
 asx
@@ -46853,7 +46824,7 @@ aaU
 aaU
 aaU
 aql
-ari
+arh
 apF
 aah
 ash
@@ -47563,7 +47534,7 @@ aah
 apF
 apF
 aql
-arm
+nlo
 apF
 aah
 aah
@@ -47703,7 +47674,7 @@ aah
 aah
 aah
 apF
-aqj
+lry
 aql
 aql
 apF
@@ -47846,7 +47817,7 @@ aah
 aah
 apF
 aqk
-aqS
+aqj
 aql
 apF
 aah

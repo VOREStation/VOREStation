@@ -63,3 +63,7 @@
 
 /area/tether_away/debrisfield/unexplored
 	icon_state = "debrisunexplored"
+
+/area/tether_away/debrisfield/derelict
+	icon_state = "debrisexplored"
+	forced_ambience = list('sound/ambience/tension/tension.ogg', 'sound/ambience/tension/horror.ogg')

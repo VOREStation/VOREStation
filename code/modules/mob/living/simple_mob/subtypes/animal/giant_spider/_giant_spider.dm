@@ -74,6 +74,7 @@
 	health = 200
 	pass_flags = PASSTABLE
 	movement_cooldown = 10
+	movement_sound = 'sound/effects/spider_loop.ogg'
 	poison_resist = 0.5
 
 	see_in_dark = 10
