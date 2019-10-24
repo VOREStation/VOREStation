@@ -244,7 +244,7 @@
 			scanner_temperature = max(scanner_temperature - 5 - 10 * rand(), 0)
 		if(prob(0.75))
 			src.visible_message("<font color='blue'>\icon[src] [pick("plinks","hisses")][pick(" quietly"," softly"," sadly"," plaintively")].</font>", 2)
-			playsound_local(src, 'sound/effects/ding.ogg', 25)
+			playsound(loc, 'sound/effects/ding.ogg', 25)
 	last_process_worldtime = world.time
 
 /obj/machinery/radiocarbon_spectrometer/proc/stop_scanning()
