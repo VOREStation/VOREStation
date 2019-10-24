@@ -9,61 +9,74 @@
 /obj/tether_away_spawner/underdark_normal,
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
-"d" = (
-/turf/template_noop,
-/area/mine/explored/underdark)
 
 (1,1,1) = {"
-d
-d
-d
 b
-a
-a
+b
+b
+b
 b
 a
 b
 a
 b
-d
-d
-d
+a
+b
+b
+b
+b
 "}
 (2,1,1) = {"
 b
 b
 b
-a
+b
 a
 a
 b
 a
 b
 a
-c
+b
 b
 b
 b
 "}
 (3,1,1) = {"
-a
-a
-a
-a
-a
-b
-a
-a
-b
 b
 b
 b
 a
 a
+a
+b
+a
+b
+a
+c
+b
+b
+b
 "}
 (4,1,1) = {"
 a
 a
+a
+a
+a
+b
+a
+a
+b
+b
+b
+b
+a
+a
+"}
+(5,1,1) = {"
+a
+a
 b
 a
 b
@@ -77,7 +90,7 @@ a
 a
 a
 "}
-(5,1,1) = {"
+(6,1,1) = {"
 b
 b
 b
@@ -93,9 +106,9 @@ b
 b
 b
 "}
-(6,1,1) = {"
-d
-d
+(7,1,1) = {"
+b
+b
 b
 a
 a
@@ -106,6 +119,22 @@ a
 b
 a
 b
-d
-d
+b
+b
+"}
+(8,1,1) = {"
+b
+b
+b
+b
+a
+b
+b
+a
+b
+b
+b
+b
+b
+b
 "}

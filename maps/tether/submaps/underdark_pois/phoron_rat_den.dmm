@@ -14,6 +14,14 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/mine/explored/underdark)
+"e" = (
+/obj/effect/decal/cleanable/blood/tracks/paw,
+/mob/living/simple_mob/vore/aggressive/rat/phoron{
+	faction = "underdark";
+	min_oxy = 0
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
 "f" = (
 /obj/structure/barricade,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
@@ -34,7 +42,10 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/mine/explored/underdark)
 "k" = (
-/mob/living/simple_mob/vore/aggressive/rat/phoron,
+/mob/living/simple_mob/vore/aggressive/rat/phoron{
+	faction = "underdark";
+	min_oxy = 0
+	},
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/mine/explored/underdark)
 "l" = (
@@ -117,10 +128,10 @@ b
 b
 c
 g
-k
 g
 g
 k
+g
 g
 p
 c
@@ -157,7 +168,7 @@ c
 d
 d
 d
-i
+e
 j
 g
 g
