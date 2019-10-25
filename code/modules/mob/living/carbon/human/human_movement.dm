@@ -158,7 +158,7 @@
 			. += turf_move_cost
 
 	// Wind makes it easier or harder to move, depending on if you're with or against the wind.
-	if(T.outdoors)
+	if(T.outdoors && (T.z <= SSplanets.z_to_planet.len))
 		var/datum/planet/P = SSplanets.z_to_planet[z]
 		if(P)
 			var/datum/weather_holder/WH = P.weather_holder
