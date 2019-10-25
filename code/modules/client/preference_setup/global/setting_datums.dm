@@ -111,6 +111,12 @@ var/list/_client_preferences_by_type
 	enabled_description = "Audible"
 	disabled_description = "Silent"
 
+/datum/client_preference/air_pump_noise 
+	description ="Air Pump Ambient Noise" 
+	key = "SOUND_AIRPUMP" 
+	enabled_description = "Audible" 
+	disabled_description = "Silent" 
+
 /datum/client_preference/ghost_ears
 	description ="Ghost ears"
 	key = "CHAT_GHOSTEARS"
