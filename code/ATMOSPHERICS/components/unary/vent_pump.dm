@@ -47,9 +47,12 @@
 	var/radio_filter_out
 	var/radio_filter_in
 
+	var/datum/looping_sound/air_pump/soundloop
+
 /obj/machinery/atmospherics/unary/vent_pump/on
 	use_power = 1
 	icon_state = "map_vent_out"
+	soundloop.start()
 
 /obj/machinery/atmospherics/unary/vent_pump/siphon
 	pump_direction = 0
@@ -68,6 +71,10 @@
 	pressure_checks = 2
 	pressure_checks_default = 2
 
+/obj/machinery/atmospherics/unary/vent_pump/Initialize()
+	. = ..()
+	soundloop = new(list(src), FALSE)
+
 /obj/machinery/atmospherics/unary/vent_pump/New()
 	..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP
@@ -84,6 +91,7 @@
 	if(initial_loc)
 		initial_loc.air_vent_info -= id_tag
 		initial_loc.air_vent_names -= id_tag
+	QDEL_NULL(soundloop)
 	return ..()
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume
