@@ -52,7 +52,6 @@
 /obj/machinery/atmospherics/unary/vent_pump/on
 	use_power = 1
 	icon_state = "map_vent_out"
-	soundloop.start()
 
 /obj/machinery/atmospherics/unary/vent_pump/siphon
 	pump_direction = 0
@@ -77,6 +76,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/New()
 	..()
+	soundloop.start()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP
 
 	icon = null
