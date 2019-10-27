@@ -76,7 +76,6 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/New()
 	..()
-	soundloop.start()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP
 
 	icon = null
@@ -172,11 +171,15 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/proc/can_pump()
 	if(stat & (NOPOWER|BROKEN))
+		soundloop.stop()
 		return 0
 	if(!use_power)
+		soundloop.stop()
 		return 0
 	if(welded)
+		soundloop.stop()
 		return 0
+	soundloop.start()
 	return 1
 
 /obj/machinery/atmospherics/unary/vent_pump/process()
