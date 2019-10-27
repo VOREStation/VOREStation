@@ -70,10 +70,10 @@ var/list/gear_datums = list()
 			continue
 		if(max_cost && G.cost > max_cost)
 			continue
-		if(G.ckeywhitelist && !(preference_mob.ckey in G.ckeywhitelist)) //Vorestation Edit 
-			continue  //Vorestation Edit 
-		if(G.character_name && !(preference_mob.client.prefs.real_name in G.character_name))  //Vorestation Edit 
-			continue  //Vorestation Edit 
+		if(G.ckeywhitelist && !(preference_mob.ckey in G.ckeywhitelist)) //Vorestation Edit
+			continue  //Vorestation Edit
+		if(G.character_name && !(preference_mob.client.prefs.real_name in G.character_name))  //Vorestation Edit
+			continue  //Vorestation Edit
 		. += gear_name
 
 /datum/category_item/player_setup_item/loadout/sanitize_character()
@@ -271,4 +271,7 @@ var/list/gear_datums = list()
 	var/item = new gd.path(gd.location)
 	for(var/datum/gear_tweak/gt in gear_tweaks)
 		gt.tweak_item(item, metadata["[gt]"])
+	var/mob/M = location
+	if(istype(M) && exploitable) //Update exploitable info records for the mob without creating a duplicate object at their feet.
+		M.amend_exploitable(item)
 	return item
