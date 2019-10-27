@@ -209,6 +209,22 @@
 
 	feedback_add_details("admin_verb","TJukebox") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/verb/toggle_air_pump_hum() 
+	set name = "Air Pump Noise" 
+	set category = "Preferences" 
+	set desc = "Toggles Air Pumps humming" 
+ 
+	var/pref_path = /datum/client_preference/air_pump_noise 
+ 
+	toggle_preference(pref_path) 
+ 
+	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear air pumps hum, start, and stop." 
+ 
+	SScharacter_setup.queue_preferences_save(prefs) 
+ 
+	feedback_add_details("admin_verb","TAirPumpNoise") 
+ 
+
 /client/verb/toggle_be_special(role in be_special_flags)
 	set name = "Toggle SpecialRole Candidacy"
 	set category = "Preferences"
