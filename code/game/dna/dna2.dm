@@ -111,6 +111,8 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	// New stuff
 	var/species = SPECIES_HUMAN
 	var/list/body_markings = list()
+	var/list/body_descriptors = null
+	var/list/genetic_modifiers = list() // Modifiers with the MODIFIER_GENETIC flag are saved.  Note that only the type is saved, not an instance.
 
 // Make a copy of this strand.
 // USE THIS WHEN COPYING STUFF OR YOU'LL GET CORRUPTION!
