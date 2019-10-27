@@ -210,7 +210,7 @@
 	feedback_add_details("admin_verb","TJukebox") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_air_pump_hum() 
-	set name = "Air Pump Noise" 
+	set name = "Toggle Air Pump Noise" 
 	set category = "Preferences" 
 	set desc = "Toggles Air Pumps humming" 
  
