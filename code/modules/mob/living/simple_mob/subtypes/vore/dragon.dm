@@ -24,6 +24,7 @@
 	min_n2 = 0
 	max_n2 = 0
 	minbodytemp = 0
+	maxbodytemp = 700
 
 	old_x = -16
 	old_y = 0

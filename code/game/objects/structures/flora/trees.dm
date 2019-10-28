@@ -17,13 +17,30 @@
 
 /obj/structure/flora/tree/Initialize()
 	icon_state = choose_icon_state()
+
 	return ..()
+
+/obj/structure/flora/tree/update_transform()
+	var/matrix/M = matrix()
+	M.Scale(icon_scale_x, icon_scale_y)
+	M.Translate(0, 16*(icon_scale_y-1))
+	animate(src, transform = M, time = 10)
 
 // Override this for special icons.
 /obj/structure/flora/tree/proc/choose_icon_state()
 	return icon_state
 
+/obj/structure/flora/tree/can_harvest(var/obj/item/I)
+	. = FALSE
+	if(!is_stump && harvest_tool && istype(I, harvest_tool) && harvest_loot && harvest_loot.len && harvest_count < max_harvests)
+		. = TRUE
+	return .
+
 /obj/structure/flora/tree/attackby(var/obj/item/weapon/W, var/mob/living/user)
+	if(can_harvest(W))
+		..(W, user)
+		return
+
 	if(!istype(W))
 		return ..()
 
@@ -57,8 +74,11 @@
 /obj/structure/flora/tree/proc/hit_animation()
 	var/init_px = pixel_x
 	var/shake_dir = pick(-1, 1)
-	animate(src, transform=turn(matrix(), shake_animation_degrees * shake_dir), pixel_x=init_px + 2*shake_dir, time=1)
-	animate(transform=null, pixel_x=init_px, time=6, easing=ELASTIC_EASING)
+	var/matrix/M = matrix()
+	M.Scale(icon_scale_x, icon_scale_y)
+	M.Translate(0, 16*(icon_scale_y-1))
+	animate(src, transform=turn(M, shake_animation_degrees * shake_dir), pixel_x=init_px + 2*shake_dir, time=1)
+	animate(transform=M, pixel_x=init_px, time=6, easing=ELASTIC_EASING)
 
 // Used when the tree gets hurt.
 /obj/structure/flora/tree/proc/adjust_health(var/amount, var/damage_wood = FALSE)
@@ -247,13 +267,27 @@
 	base_state = "tree_sif"
 	product = /obj/item/stack/material/log/sif
 	catalogue_data = list(/datum/category_item/catalogue/flora/sif_tree)
+	randomize_size = TRUE
+
+	harvest_tool = /obj/item/weapon/material/knife
+	max_harvests = 2
+	min_harvests = -4
+	harvest_loot = list(
+		/obj/item/weapon/reagent_containers/food/snacks/siffruit = 5
+		)
+
+	var/light_shift = 0
+
+/obj/structure/flora/tree/sif/choose_icon_state()
+	light_shift = rand(0, 5)
+	return "[base_state][light_shift]"
 
 /obj/structure/flora/tree/sif/Initialize()
+	. = ..()
 	update_icon()
-	return ..()
 
 /obj/structure/flora/tree/sif/update_icon()
-	set_light(5, 1, "#33ccff")
-	var/image/glow = image(icon = 'icons/obj/flora/deadtrees.dmi', icon_state = "[base_state]_glow")
+	set_light(5 - light_shift, 1, "#33ccff")	// 5 variants, missing bulbs. 5th has no bulbs, so no glow.
+	var/image/glow = image(icon = icon, icon_state = "[base_state][light_shift]_glow")
 	glow.plane = PLANE_LIGHTING_ABOVE
 	overlays = list(glow)

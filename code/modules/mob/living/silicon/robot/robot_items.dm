@@ -97,12 +97,60 @@
 		flick("portable_analyzer_load", src)
 		icon_state = "portable_analyzer_full"
 
+/obj/item/weapon/portable_scanner
+	name = "Portable Resonant Analyzer"
+	icon = 'icons/obj/items.dmi'
+	icon_state = "portable_scanner"
+	desc = "An advanced scanning device used for analyzing objects without completely annihilating them for science. Unfortunately, it has no connection to any database like its angrier cousin."
+
+/obj/item/weapon/portable_scanner/afterattack(var/atom/target, var/mob/living/user, proximity)
+	if(!target)
+		return
+	if(!proximity)
+		return
+	if(istype(target,/obj/item))
+		var/obj/item/I = target
+		if(do_after(src, 5 SECONDS * I.w_class))
+			for(var/mob/M in viewers())
+				M.show_message(text("<span class='notice'>[user] sweeps \the [src] over \the [I].</span>"), 1)
+			flick("[initial(icon_state)]-scan", src)
+			if(I.origin_tech && I.origin_tech.len)
+				for(var/T in I.origin_tech)
+					to_chat(user, "<span class='notice'>\The [I] had level [I.origin_tech[T]] in [CallTechName(T)].</span>")
+			else
+				to_chat(user, "<span class='notice'>\The [I] cannot be scanned by \the [src].</span>")
+
 //This is used to unlock other borg covers.
 /obj/item/weapon/card/robot //This is not a child of id cards, as to avoid dumb typechecks on computers.
 	name = "access code transmission device"
 	icon_state = "id-robot"
 	desc = "A circuit grafted onto the bottom of an ID card.  It is used to transmit access codes into other robot chassis, \
 	allowing you to lock and unlock other robots' panels."
+
+	var/dummy_card = null
+	var/dummy_card_type = /obj/item/weapon/card/id/science/roboticist/dummy_cyborg
+
+/obj/item/weapon/card/robot/Initialize()
+	..()
+	dummy_card = new dummy_card_type(src)
+
+/obj/item/weapon/card/robot/Destroy()
+	qdel(dummy_card)
+	dummy_card = null
+	..()
+
+/obj/item/weapon/card/robot/GetID()
+	return dummy_card
+
+/obj/item/weapon/card/robot/syndi
+	dummy_card_type = /obj/item/weapon/card/id/syndicate/dummy_cyborg
+
+/obj/item/weapon/card/id/science/roboticist/dummy_cyborg
+	access = list(access_robotics)
+
+/obj/item/weapon/card/id/syndicate/dummy_cyborg/Initialize()
+	..()
+	access |= access_robotics
 
 //A harvest item for serviceborgs.
 /obj/item/weapon/robot_harvester

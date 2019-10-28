@@ -935,6 +935,12 @@
 	icon_state = "nymphplushie"
 	pokephrase = "Chirp!"
 
+/obj/item/toy/plushie/teshari
+	name = "teshari plush"
+	desc = "This is a plush teshari. Very soft, with a pompom on the tail. The toy is made well, as if alive. Looks like she is sleeping. Shhh!"
+	icon_state = "teshariplushie"
+	pokephrase = "Rya!"
+
 /obj/item/toy/plushie/mouse
 	name = "mouse plush"
 	desc = "A plushie of a delightful mouse! What was once considered a vile rodent is now your very best friend."

@@ -16,6 +16,29 @@
 		M.add_chemical_effect(CE_STABLE, 15)
 		M.add_chemical_effect(CE_PAINKILLER, 10)
 
+/datum/reagent/inaprovaline/topical
+	name = "Inaprovalaze"
+	id = "inaprovalaze"
+	description = "Inaprovalaze is a topical variant of Inaprovaline."
+	taste_description = "bitterness"
+	reagent_state = LIQUID
+	color = "#00BFFF"
+	overdose = REAGENTS_OVERDOSE * 2
+	metabolism = REM * 0.5
+	scannable = 1
+	touch_met = REM * 0.75
+	can_overdose_touch = TRUE
+
+/datum/reagent/inaprovaline/topical/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien != IS_DIONA)
+		..()
+		M.adjustToxLoss(2 * removed)
+
+/datum/reagent/inaprovaline/topical/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien != IS_DIONA)
+		M.add_chemical_effect(CE_STABLE, 20)
+		M.add_chemical_effect(CE_PAINKILLER, 12)
+
 /datum/reagent/bicaridine
 	name = "Bicaridine"
 	id = "bicaridine"
@@ -50,6 +73,53 @@
 					W.damage = max(W.damage - wound_heal, 0)
 					if(W.damage <= 0)
 						O.wounds -= W
+
+/datum/reagent/bicaridine/topical
+	name = "Bicaridaze"
+	id = "bicaridaze"
+	description = "Bicaridaze is a topical variant of the chemical Bicaridine."
+	taste_description = "bitterness"
+	taste_mult = 3
+	reagent_state = LIQUID
+	color = "#BF0000"
+	overdose = REAGENTS_OVERDOSE * 0.75
+	scannable = 1
+	touch_met = REM * 0.75
+	can_overdose_touch = TRUE
+
+/datum/reagent/bicaridine/topical/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
+	if(alien != IS_DIONA)
+		..(M, alien, removed * chem_effective)
+		M.adjustToxLoss(2 * removed)
+
+/datum/reagent/bicaridine/topical/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
+	if(alien != IS_DIONA)
+		M.heal_organ_damage(6 * removed * chem_effective, 0)
+
+/datum/reagent/calciumcarbonate
+	name = "calcium carbonate"
+	id = "calciumcarbonate"
+	description = "Calcium carbonate is a calcium salt commonly used as an antacid."
+	taste_description = "chalk"
+	reagent_state = SOLID
+	color = "#eae6e3"
+	overdose = REAGENTS_OVERDOSE * 0.8
+	metabolism = REM * 0.4
+	scannable = 1
+
+/datum/reagent/calciumcarbonate/affect_blood(var/mob/living/carbon/M, var/alien, var/removed) // Why would you inject this.
+	if(alien != IS_DIONA)
+		M.adjustToxLoss(3 * removed)
+
+/datum/reagent/calciumcarbonate/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien != IS_DIONA)
+		M.add_chemical_effect(CE_ANTACID, 3)
 
 /datum/reagent/kelotane
 	name = "Kelotane"
@@ -86,6 +156,34 @@
 		chem_effective = 0.75
 	if(alien != IS_DIONA)
 		M.heal_organ_damage(0, 8 * removed * chem_effective) //VOREStation edit
+
+/datum/reagent/dermaline/topical
+	name = "Dermalaze"
+	id = "dermalaze"
+	description = "Dermalaze is a topical variant of the chemical Dermaline."
+	taste_description = "bitterness"
+	taste_mult = 1.5
+	reagent_state = LIQUID
+	color = "#FF8000"
+	overdose = REAGENTS_OVERDOSE * 0.4
+	scannable = 1
+	touch_met = REM * 0.75
+	can_overdose_touch = TRUE
+
+/datum/reagent/dermaline/topical/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
+	if(alien != IS_DIONA)
+		..(M, alien, removed * chem_effective)
+		M.adjustToxLoss(2 * removed)
+
+/datum/reagent/dermaline/topical/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1
+	if(alien == IS_SLIME)
+		chem_effective = 0.75
+	if(alien != IS_DIONA)
+		M.heal_organ_damage(0, 12 * removed * chem_effective)
 
 /datum/reagent/dylovene
 	name = "Dylovene"
@@ -203,6 +301,46 @@
 		M.heal_organ_damage(1.5 * removed, 1.5 * removed * chem_effective)
 		M.adjustToxLoss(-1.5 * removed * chem_effective)
 
+/datum/reagent/tricordrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien != IS_DIONA)
+		affect_blood(M, alien, removed * 0.4)
+
+/datum/reagent/tricorlidaze
+	name = "Tricorlidaze"
+	id = "tricorlidaze"
+	description = "Tricorlidaze is a topical gel produced with tricordrazine and sterilizine."
+	taste_description = "bitterness"
+	reagent_state = SOLID
+	color = "#B060FF"
+	scannable = 1
+	can_overdose_touch = TRUE
+
+/datum/reagent/tricorlidaze/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien != IS_DIONA)
+		var/chem_effective = 1
+		if(alien == IS_SLIME)
+			chem_effective = 0.5
+		M.adjustOxyLoss(-2 * removed * chem_effective)
+		M.heal_organ_damage(1 * removed, 1 * removed * chem_effective)
+		M.adjustToxLoss(-2 * removed * chem_effective)
+
+/datum/reagent/tricorlidaze/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien != IS_DIONA)
+		M.adjustToxLoss(3 * removed)
+		affect_blood(M, alien, removed * 0.4)
+
+/datum/reagent/tricorlidaze/touch_obj(var/obj/O)
+	if(istype(O, /obj/item/stack/medical/bruise_pack) && round(volume) >= 5)
+		var/obj/item/stack/medical/bruise_pack/C = O
+		var/packname = C.name
+		var/to_produce = min(C.amount, round(volume / 5))
+
+		var/obj/item/stack/medical/M = C.upgrade_stack(to_produce)
+
+		if(M && M.amount)
+			holder.my_atom.visible_message("<span class='notice'>\The [packname] bubbles.</span>")
+			remove_self(to_produce * 5)
+
 /datum/reagent/cryoxadone
 	name = "Cryoxadone"
 	id = "cryoxadone"
@@ -253,6 +391,40 @@
 		M.adjustOxyLoss(-30 * removed * chem_effective)
 		M.heal_organ_damage(30 * removed, 30 * removed * chem_effective)
 		M.adjustToxLoss(-30 * removed * chem_effective)
+
+/datum/reagent/necroxadone
+	name = "Necroxadone"
+	id = "necroxadone"
+	description = "A liquid compound based upon that which is used in the cloning process. Utilized primarily in severe cases of toxic shock."
+	taste_description = "meat"
+	reagent_state = LIQUID
+	color = "#94B21C"
+	metabolism = REM * 0.5
+	mrate_static = TRUE
+	scannable = 1
+
+/datum/reagent/necroxadone/on_mob_life(var/mob/living/carbon/M, var/alien, var/datum/reagents/metabolism/location)
+	if(M.stat == DEAD && M.has_modifier_of_type(/datum/modifier/bloodpump_corpse))
+		affects_dead = TRUE
+	else
+		affects_dead = FALSE
+
+	. = ..(M, alien, location)
+
+/datum/reagent/necroxadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(M.bodytemperature < 170 || (M.stat == DEAD && M.has_modifier_of_type(/datum/modifier/bloodpump_corpse)))
+		var/chem_effective = 1
+		if(alien == IS_SLIME)
+			if(prob(10))
+				to_chat(M, "<span class='danger'>It's so cold. Something causes your cellular mass to harden sporadically, resulting in seizure-like twitching.</span>")
+			chem_effective = 0.5
+			M.Weaken(20)
+			M.silent = max(M.silent, 20)
+			M.make_jittery(4)
+		if(M.stat != DEAD)
+			M.adjustCloneLoss(-5 * removed * chem_effective)
+		M.adjustOxyLoss(-20 * removed * chem_effective)
+		M.adjustToxLoss(-40 * removed * chem_effective)
 
 /* Painkillers */
 
@@ -557,7 +729,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/obj/item/organ/I in H.internal_organs)
-			if(I.robotic >= ORGAN_ROBOT || !(I.organ_tag in list(O_APPENDIX, O_NUTRIENT, O_PLASMA, O_POLYP)))
+			if(I.robotic >= ORGAN_ROBOT || !(I.organ_tag in list(O_APPENDIX, O_STOMACH, O_INTESTINE, O_NUTRIENT, O_PLASMA, O_POLYP)))
 				continue
 			if(I.damage > 0)
 				I.damage = max(I.damage - 4 * removed * repair_strength, 0)
@@ -621,7 +793,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/obj/item/organ/I in H.internal_organs)
-			if(I.robotic >= ORGAN_ROBOT || !(I.organ_tag in list(O_HEART, O_RESPONSE, O_ANCHOR, O_EGG)))
+			if(I.robotic >= ORGAN_ROBOT || !(I.organ_tag in list(O_HEART, O_SPLEEN, O_RESPONSE, O_ANCHOR, O_EGG)))
 				continue
 			if(I.damage > 0)
 				I.damage = max(I.damage - 4 * removed * repair_strength, 0)
@@ -798,11 +970,11 @@
 	if(M.ingested)
 		for(var/datum/reagent/R in M.ingested.reagent_list)
 			if(istype(R, /datum/reagent/ethanol))
-				R.remove_self(removed * 5)
+				R.remove_self(removed * 30)
 	if(M.bloodstr)
 		for(var/datum/reagent/R in M.bloodstr.reagent_list)
 			if(istype(R, /datum/reagent/ethanol))
-				R.remove_self(removed * 15)
+				R.remove_self(removed * 20)
 
 /datum/reagent/hyronalin
 	name = "Hyronalin"
@@ -864,6 +1036,9 @@
 				data = world.time
 				to_chat(M, "<span class='warning'>Your senses feel unfocused, and divided.</span>")
 	M.add_chemical_effect(CE_ANTIBIOTIC, dose >= overdose ? ANTIBIO_OD : ANTIBIO_NORM)
+
+/datum/reagent/spaceacillin/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	affect_blood(M, alien, removed * 0.8) // Not 100% as effective as injections, though still useful.
 
 /datum/reagent/corophizine
 	name = "Corophizine"
@@ -931,6 +1106,54 @@
 	if(ishuman(M) && rand(1,10000) == 1) //VOREStation Edit (more rare)
 		var/obj/item/organ/external/eo = pick(H.organs) //Misleading variable name, 'organs' is only external organs
 		eo.fracture()
+
+/datum/reagent/spacomycaze
+	name = "Spacomycaze"
+	id = "spacomycaze"
+	description = "An all-purpose painkilling antibiotic gel."
+	taste_description = "oil"
+	reagent_state = SOLID
+	color = "#C1C1C8"
+	metabolism = REM * 0.4
+	mrate_static = TRUE
+	overdose = REAGENTS_OVERDOSE
+	scannable = 1
+	data = 0
+	can_overdose_touch = TRUE
+
+/datum/reagent/spacomycaze/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.add_chemical_effect(CE_PAINKILLER, 10)
+	M.adjustToxLoss(3 * removed)
+
+/datum/reagent/spacomycaze/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	affect_blood(M, alien, removed * 0.8)
+
+/datum/reagent/spacomycaze/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(alien == IS_SLIME)
+		if(volume <= 0.1 && data != -1)
+			data = -1
+			to_chat(M, "<span class='notice'>The itching fades...</span>")
+		else
+			var/delay = (2 MINUTES)
+			if(world.time > data + delay)
+				data = world.time
+				to_chat(M, "<span class='warning'>Your skin itches.</span>")
+
+	M.add_chemical_effect(CE_ANTIBIOTIC, dose >= overdose ? ANTIBIO_OD : ANTIBIO_NORM)
+	M.add_chemical_effect(CE_PAINKILLER, 20) // 5 less than paracetamol.
+
+/datum/reagent/spacomycaze/touch_obj(var/obj/O)
+	if(istype(O, /obj/item/stack/medical/crude_pack) && round(volume) >= 1)
+		var/obj/item/stack/medical/crude_pack/C = O
+		var/packname = C.name
+		var/to_produce = min(C.amount, round(volume))
+
+		var/obj/item/stack/medical/M = C.upgrade_stack(to_produce)
+
+		if(M && M.amount)
+			holder.my_atom.visible_message("<span class='notice'>\The [packname] bubbles.</span>")
+			remove_self(to_produce)
 
 /datum/reagent/sterilizine
 	name = "Sterilizine"

@@ -29,11 +29,12 @@ var/list/grass_types = list(
 	name = "growth"
 	icon_state = "grass_sif"
 	edge_blending_priority = 4
-	grass_chance = 0
+	grass_chance = 5
 	var/tree_chance = 2
 
 	grass_types = list(
-		/obj/structure/flora/sif/eyes
+		/obj/structure/flora/sif/eyes = 1,
+		/obj/structure/flora/sif/tendrils = 10
 		)
 
 	catalogue_data = list(/datum/category_item/catalogue/flora/sif_grass)
@@ -50,7 +51,7 @@ var/list/grass_types = list(
 		//edge_blending_priority++
 
 	if(grass_chance && prob(grass_chance) && !check_density())
-		var/grass_type = pick(grass_types)
+		var/grass_type = pickweight(grass_types)
 		new grass_type(src)
 	. = ..()
 

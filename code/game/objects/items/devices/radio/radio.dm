@@ -95,7 +95,7 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/interact(mob/user)
 	if(!user)
-		return 0
+		return FALSE
 
 	if(b_stat)
 		wires.Interact(user)
@@ -151,10 +151,10 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/proc/has_channel_access(var/mob/user, var/freq)
 	if(!user)
-		return 0
+		return FALSE
 
 	if(!(freq in internal_channels))
-		return 0
+		return FALSE
 
 	return user.has_internal_radio_channel_access(internal_channels[freq])
 
@@ -191,7 +191,7 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/Topic(href, href_list)
 	if(..())
-		return 1
+		return TRUE
 
 	usr.set_machine(src)
 	if (href_list["track"])
@@ -229,7 +229,7 @@ var/global/list/default_medbay_channels = list(
 			set_frequency(text2num(freq))
 		. = 1
 	if(href_list["nowindow"]) // here for pAIs, maybe others will want it, idk
-		return 1
+		return TRUE
 
 	if(.)
 		SSnanoui.update_uis(src)
@@ -245,8 +245,6 @@ var/global/list/default_medbay_channels = list(
 		connection = radio_connection
 		channel = null
 	if (!istype(connection))
-		return
-	if (!connection)
 		return
 
 	var/static/mob/living/silicon/ai/announcer/A = new /mob/living/silicon/ai/announcer(src, null, null, 1)
@@ -274,18 +272,18 @@ var/global/list/default_medbay_channels = list(
 	return null
 
 /obj/item/device/radio/talk_into(mob/living/M as mob, message, channel, var/verb = "says", var/datum/language/speaking = null)
-	if(!on) return 0 // the device has to be on
+	if(!on) return FALSE // the device has to be on
 	//  Fix for permacell radios, but kinda eh about actually fixing them.
-	if(!M || !message) return 0
+	if(!M || !message) return FALSE
 
-	if(speaking && (speaking.flags & (SIGNLANG|NONVERBAL))) return 0
+	if(speaking && (speaking.flags & (SIGNLANG|NONVERBAL))) return FALSE
 
 	if(istype(M)) M.trigger_aiming(TARGET_CAN_RADIO)
 
 	//  Uncommenting this. To the above comment:
 	// 	The permacell radios aren't suppose to be able to transmit, this isn't a bug and this "fix" is just making radio wires useless. -Giacom
 	if(wires.IsIndexCut(WIRE_TRANSMIT)) // The device has to have all its wires and shit intact
-		return 0
+		return FALSE
 
 	if(!radio_connection)
 		set_frequency(frequency)
@@ -304,9 +302,7 @@ var/global/list/default_medbay_channels = list(
 	//#### Grab the connection datum ####//
 	var/datum/radio_frequency/connection = handle_message_mode(M, message, channel)
 	if (!istype(connection))
-		return 0
-	if (!connection)
-		return 0
+		return FALSE
 
 	var/turf/position = get_turf(src)
 
@@ -360,13 +356,12 @@ var/global/list/default_medbay_channels = list(
 
 
   /* ###### Radio headsets can only broadcast through subspace ###### */
-
 	if(subspace_transmission)
 		var/list/jamming = is_jammed(src)
 		if(jamming)
 			var/distance = jamming["distance"]
 			to_chat(M,"<span class='danger'>\icon[src] You hear the [distance <= 2 ? "loud hiss" : "soft hiss"] of static.</span>")
-			return 0
+			return FALSE
 
 		// First, we want to generate a new radio signal
 		var/datum/signal/signal = new
@@ -414,6 +409,7 @@ var/global/list/default_medbay_channels = list(
 		for(var/obj/machinery/telecomms/allinone/R in telecomms_list)
 			R.receive_signal(signal)
 
+		// Receiving code can be located in Telecommunications.dm
 		if(signal.data["done"] && position.z in signal.data["level"])
 			return TRUE //Huzzah, sent via subspace
 
@@ -422,7 +418,7 @@ var/global/list/default_medbay_channels = list(
 			subspace_transmission = FALSE
 			return Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
 					  src, message, displayname, jobname, real_name, M.voice_name,
-					  signal.transmission_method, signal.data["compression"], list(position.z), connection.frequency,verb,speaking)
+					  signal.transmission_method, signal.data["compression"], GetConnectedZlevels(position.z), connection.frequency,verb,speaking)
 
   /* ###### Intercoms and station-bounced radios ###### */
 
@@ -474,13 +470,13 @@ var/global/list/default_medbay_channels = list(
 			to_chat(loc,"<span class='notice'>\The [src] pings as it reestablishes subspace communications.</span>")
 			subspace_transmission = TRUE
 		// we're done here.
-		return 1
+		return TRUE
 
 	// Oh my god; the comms are down or something because the signal hasn't been broadcasted yet in our level.
 	// Send a mundane broadcast with limited targets:
 
 	//THIS IS TEMPORARY. YEAH RIGHT
-	if(!connection)	return 0	//~Carn
+	if(!connection)	return FALSE	//~Carn
 
 //VOREStation Add Start
 	if(bluespace_radio)
@@ -491,7 +487,7 @@ var/global/list/default_medbay_channels = list(
 
 	return Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
 					  src, message, displayname, jobname, real_name, M.voice_name,
-					  filter_type, signal.data["compression"], list(position.z), connection.frequency,verb,speaking)
+					  filter_type, signal.data["compression"], GetConnectedZlevels(position.z), connection.frequency,verb,speaking)
 
 
 /obj/item/device/radio/hear_talk(mob/M as mob, msg, var/verb = "says", var/datum/language/speaking = null)
@@ -504,7 +500,7 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/proc/accept_rad(obj/item/device/radio/R as obj, message)
 
 	if ((R.frequency == frequency && message))
-		return 1
+		return TRUE
 	else if
 
 	else
@@ -526,9 +522,8 @@ var/global/list/default_medbay_channels = list(
 		return -1
 	if(!(0 in level))
 		var/turf/position = get_turf(src)
-		if(!position || !(position.z in level))
-			if(!bluespace_radio) //VOREStation Edit
-				return -1
+		if((!position || !(position.z in level)) && !bluespace_radio) //VOREStation Edit
+			return -1
 	if(freq in ANTAG_FREQS)
 		if(!(src.syndie))//Checks to see if it's allowed on that frequency, based on the encryption keys
 			return -1
@@ -545,7 +540,7 @@ var/global/list/default_medbay_channels = list(
 		if (!accept)
 			for (var/ch_name in channels)
 				var/datum/radio_frequency/RF = secure_radio_connections[ch_name]
-				if (RF.frequency==freq && (channels[ch_name]&FREQ_LISTENING))
+				if (RF && RF.frequency==freq && (channels[ch_name]&FREQ_LISTENING))
 					accept = 1
 					break
 		if (!accept)
@@ -696,7 +691,7 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/borg/Topic(href, href_list)
 	if(..())
-		return 1
+		return TRUE
 	if (href_list["mode"])
 		var/enable_subspace_transmission = text2num(href_list["mode"])
 		if(enable_subspace_transmission != subspace_transmission)

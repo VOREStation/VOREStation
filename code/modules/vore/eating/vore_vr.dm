@@ -19,12 +19,14 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 -Aro <3 */
 
+#define VORE_VERSION	2	//This is a Define so you don't have to worry about magic numbers.
+
 //
 // Overrides/additions to stock defines go here, as well as hooks. Sort them by
 // the object they are overriding. So all /mob/living together, etc.
 //
 /datum/configuration
-	var/items_survive_digestion = 1		//For configuring if the important_items survive digestion
+	var/items_survive_digestion = TRUE	//For configuring if the important_items survive digestion
 
 //
 // The datum type bolted onto normal preferences datums for storing Virgo stuff
@@ -35,17 +37,20 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 /hook/client_new/proc/add_prefs_vr(client/C)
 	C.prefs_vr = new/datum/vore_preferences(C)
 	if(C.prefs_vr)
-		return 1
+		return TRUE
 
-	return 0
+	return FALSE
 
 /datum/vore_preferences
 	//Actual preferences
 	var/digestable = TRUE
+	var/devourable = TRUE
+	var/feeding = TRUE
 	var/digest_leave_remains = FALSE
 	var/allowmobvore = TRUE
 	var/list/belly_prefs = list()
 	var/vore_taste = "nothing in particular"
+	var/permit_healbelly = TRUE
 	var/can_be_drop_prey = FALSE
 	var/can_be_drop_pred = FALSE
 
@@ -67,9 +72,9 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 /proc/is_vore_predator(var/mob/living/O)
 	if(istype(O,/mob/living))
 		if(O.vore_organs.len > 0)
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
 //
 //	Belly searching for simplifying other procs
@@ -88,30 +93,33 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 /datum/vore_preferences/proc/load_vore()
 	if(!client || !client_ckey)
-		return 0 //No client, how can we save?
+		return FALSE //No client, how can we save?
 	if(!client.prefs || !client.prefs.default_slot)
-		return 0 //Need to know what character to load!
+		return FALSE //Need to know what character to load!
 
 	slot = client.prefs.default_slot
 
 	load_path(client_ckey,slot)
 
-	if(!path) return 0 //Path couldn't be set?
+	if(!path) return FALSE //Path couldn't be set?
 	if(!fexists(path)) //Never saved before
 		save_vore() //Make the file first
-		return 1
+		return TRUE
 
 	var/list/json_from_file = json_decode(file2text(path))
 	if(!json_from_file)
-		return 0 //My concern grows
+		return FALSE //My concern grows
 
 	var/version = json_from_file["version"]
 	json_from_file = patch_version(json_from_file,version)
 
 	digestable = json_from_file["digestable"]
+	devourable = json_from_file["devourable"]
+	feeding = json_from_file["feeding"]
 	digest_leave_remains = json_from_file["digest_leave_remains"]
 	allowmobvore = json_from_file["allowmobvore"]
 	vore_taste = json_from_file["vore_taste"]
+	permit_healbelly = json_from_file["permit_healbelly"]
 	can_be_drop_prey = json_from_file["can_be_drop_prey"]
 	can_be_drop_pred = json_from_file["can_be_drop_pred"]
 	belly_prefs = json_from_file["belly_prefs"]
@@ -119,10 +127,16 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	//Quick sanitize
 	if(isnull(digestable))
 		digestable = TRUE
+	if(isnull(devourable))
+		devourable = TRUE
+	if(isnull(feeding))
+		feeding = TRUE
 	if(isnull(digest_leave_remains))
 		digest_leave_remains = FALSE
 	if(isnull(allowmobvore))
 		allowmobvore = TRUE
+	if(isnull(permit_healbelly))
+		permit_healbelly = TRUE
 	if(isnull(can_be_drop_prey))
 		allowmobvore = FALSE
 	if(isnull(can_be_drop_pred))
@@ -130,18 +144,21 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	if(isnull(belly_prefs))
 		belly_prefs = list()
 
-	return 1
+	return TRUE
 
 /datum/vore_preferences/proc/save_vore()
-	if(!path)				return 0
+	if(!path)				return FALSE
 
-	var/version = 1	//For "good times" use in the future
+	var/version = VORE_VERSION	//For "good times" use in the future
 	var/list/settings_list = list(
 			"version"				= version,
 			"digestable"			= digestable,
+			"devourable"			= devourable,
+			"feeding"				= feeding,
 			"digest_leave_remains"	= digest_leave_remains,
 			"allowmobvore"			= allowmobvore,
 			"vore_taste"			= vore_taste,
+			"permit_healbelly"		= permit_healbelly,
 			"can_be_drop_prey"		= can_be_drop_prey,
 			"can_be_drop_pred"		= can_be_drop_pred,
 			"belly_prefs"			= belly_prefs,
@@ -151,7 +168,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/json_to_file = json_encode(settings_list)
 	if(!json_to_file)
 		log_debug("Saving: [path] failed jsonencode")
-		return 0
+		return FALSE
 
 	//Write it out
 #ifdef RUST_G
@@ -164,9 +181,9 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 #endif
 	if(!fexists(path))
 		log_debug("Saving: [path] failed file write")
-		return 0
+		return FALSE
 
-	return 1
+	return TRUE
 
 //Can do conversions here
 /datum/vore_preferences/proc/patch_version(var/list/json_from_file,var/version)

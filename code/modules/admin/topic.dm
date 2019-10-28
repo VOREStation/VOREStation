@@ -516,7 +516,28 @@
 				jobs += "</tr><tr align='center'>"
 				counter = 0
 		jobs += "</tr></table>"
+	//VOREStation Edit Start
+	//Exploration (Purple)
+		counter = 0
+		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+		jobs += "<tr bgcolor='e79fff'><th colspan='[length(planet_positions)]'><a href='?src=\ref[src];jobban3=explorationdept;jobban4=\ref[M]'>Exploration Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in planet_positions)
+			if(!jobPos)	continue
+			var/datum/job/job = job_master.GetJob(jobPos)
+			if(!job) continue
 
+			if(jobban_isbanned(M, job.title))
+				jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=[job.title];jobban4=\ref[M]'><font color=red>[replacetext(job.title, " ", "&nbsp")]</font></a></td>"
+				counter++
+			else
+				jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=[job.title];jobban4=\ref[M]'>[replacetext(job.title, " ", "&nbsp")]</a></td>"
+				counter++
+
+			if(counter >= 5) //So things dont get squiiiiished!
+				jobs += "</tr><tr align='center'>"
+				counter = 0
+		jobs += "</tr></table>"
+	//VOREstation Edit End
 	//Civilian (Grey)
 		counter = 0
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
@@ -670,6 +691,14 @@
 					var/datum/job/temp = job_master.GetJob(jobPos)
 					if(!temp) continue
 					joblist += temp.title
+			//VOREStation Edit Start
+			if("explorationdept")
+				for(var/jobPos in planet_positions)
+					if(!jobPos)	continue
+					var/datum/job/temp = job_master.GetJob(jobPos)
+					if(!temp) continue
+					joblist += temp.title
+			//VOREStation Edit End
 			if("civiliandept")
 				for(var/jobPos in civilian_positions)
 					if(!jobPos)	continue
@@ -1028,7 +1057,7 @@
 		M.loc = prison_cell
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/prisoner = M
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), slot_w_uniform)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/prison(prisoner), slot_w_uniform)
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), slot_shoes)
 
 		M << "<font color='red'>You have been sent to the prison station!</font>"

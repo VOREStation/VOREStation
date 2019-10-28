@@ -340,7 +340,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/weapon/stock_parts/subspace/transmitter,
 		/obj/item/weapon/stock_parts/subspace/treatment,
 		/obj/item/frame,
-		/obj/item/broken_device,
+		/obj/item/broken_device/random,
 		/obj/item/borg/upgrade/restart,
 		/obj/item/weapon/cell,
 		/obj/item/weapon/cell/high,
@@ -781,7 +781,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 // Todo: Better loot.
 /obj/structure/loot_pile/mecha/gygax/dark/adv
 	icon_state = "darkgygax_adv-broken"
-	icon_scale = 1.5
+	icon_scale_x = 1.5
+	icon_scale_y = 1.5
 	pixel_y = 8
 
 /obj/structure/loot_pile/mecha/gygax/medgax

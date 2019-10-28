@@ -24,7 +24,6 @@
 	priority = 1
 	allowed_tools = list(
 		/obj/item/weapon/surgical/FixOVein = 100,
-		/obj/item/stack/nanopaste = 50,
 		/obj/item/stack/cable_coil = 40,
 		/obj/item/device/assembly/mousetrap = 5)
 

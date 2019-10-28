@@ -4,7 +4,7 @@
 
 /obj/item/clothing/head/helmet/space/rig
 	name = "helmet"
-	item_flags = THICKMATERIAL
+	item_flags = THICKMATERIAL|ALLOW_SURVIVALFOOD
 	flags_inv = 		 HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 	heat_protection =    HEAD|FACE|EYES
@@ -23,7 +23,7 @@
 
 /obj/item/clothing/gloves/gauntlets/rig
 	name = "gauntlets"
-	item_flags = THICKMATERIAL
+	item_flags = THICKMATERIAL|PHORONGUARD
 	body_parts_covered = HANDS
 	heat_protection =    HANDS
 	cold_protection =    HANDS

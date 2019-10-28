@@ -14,7 +14,7 @@
 	can_be_asked_input = 1
 	inputs = list()
 	outputs = list()
-	activators = list("on pressed" = IC_PINTYPE_PULSE_IN)
+	activators = list("on pressed" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 
@@ -31,7 +31,7 @@
 	can_be_asked_input = 1
 	inputs = list()
 	outputs = list("on" = IC_PINTYPE_BOOLEAN)
-	activators = list("on toggle" = IC_PINTYPE_PULSE_IN)
+	activators = list("on toggle" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/input/toggle_button/ask_for_input(mob/user) // Ditto.
@@ -48,7 +48,7 @@
 	can_be_asked_input = 1
 	inputs = list()
 	outputs = list("number entered" = IC_PINTYPE_NUMBER)
-	activators = list("on entered" = IC_PINTYPE_PULSE_IN)
+	activators = list("on entered" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 
@@ -67,7 +67,7 @@
 	can_be_asked_input = 1
 	inputs = list()
 	outputs = list("string entered" = IC_PINTYPE_STRING)
-	activators = list("on entered" = IC_PINTYPE_PULSE_IN)
+	activators = list("on entered" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 
@@ -86,7 +86,7 @@
 	can_be_asked_input = 1
 	inputs = list()
 	outputs = list("color entered" = IC_PINTYPE_COLOR)
-	activators = list("on entered" = IC_PINTYPE_PULSE_IN)
+	activators = list("on entered" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 4
 
@@ -308,11 +308,12 @@
 	var/list/valid_things = list()
 	if(isweakref(I.data))
 		var/atom/A = I.data.resolve()
-		var/desired_type = A.type
-		if(desired_type)
-			for(var/atom/thing in nearby_things)
-				if(thing.type == desired_type)
-					valid_things.Add(thing)
+		if(A)
+			var/desired_type = A.type
+			if(desired_type)
+				for(var/atom/thing in nearby_things)
+					if(thing.type == desired_type)
+						valid_things.Add(thing)
 	else if(istext(I.data))
 		var/DT = I.data
 		for(var/atom/thing in nearby_things)
@@ -540,7 +541,57 @@
 	if(translated)
 		activate_pin(2)
 
+/obj/item/integrated_circuit/input/microphone/sign
+	name = "sign-language translator"
+	desc = "Useful for spying on people or for sign activated machines."
+	extended_desc = "This will automatically translate galactic standard sign language it sees to Galactic Common.  \
+	The first activation pin is always pulsed when the circuit sees someone speak sign, while the second one \
+	is only triggered if it sees someone speaking a language other than sign language, which it will attempt to \
+	lip-read."
+	icon_state = "video_camera"
+	complexity = 12
+	inputs = list()
+	outputs = list(
+	"speaker" = IC_PINTYPE_STRING,
+	"message" = IC_PINTYPE_STRING
+	)
+	activators = list("on message received" = IC_PINTYPE_PULSE_OUT, "on translation" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_RESEARCH
+	power_draw_per_use = 30
 
+	var/list/my_langs = list()
+	var/list/readable_langs = list(
+		LANGUAGE_GALCOM,
+		LANGUAGE_SOL_COMMON,
+		LANGUAGE_TRADEBAND,
+		LANGUAGE_GUTTER,
+		LANGUAGE_TERMINUS
+		)
+
+/obj/item/integrated_circuit/input/microphone/sign/Initialize()
+	..()
+	for(var/lang in readable_langs)
+		var/datum/language/newlang = all_languages[lang]
+		my_langs |= newlang
+
+/obj/item/integrated_circuit/input/microphone/sign/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
+	var/translated = FALSE
+	if(M && msg)
+		if(speaking)
+			if(!((speaking.flags & NONVERBAL) || (speaking.flags & SIGNLANG)))
+				translated = TRUE
+				msg = speaking.scramble(msg, my_langs)
+		set_pin_data(IC_OUTPUT, 1, M.GetVoice())
+		set_pin_data(IC_OUTPUT, 2, msg)
+
+	push_data()
+	activate_pin(1)
+	if(translated)
+		activate_pin(2)
+
+/obj/item/integrated_circuit/input/microphone/sign/hear_signlang(text, verb, datum/language/speaking, mob/M as mob)
+	hear_talk(M, text, verb, speaking)
+	return
 
 /obj/item/integrated_circuit/input/sensor
 	name = "sensor"

@@ -145,6 +145,7 @@ What is the naming convention for planes or layers?
 	#define LAYER_HUD_ITEM		3 //Things sitting on HUD items (largely irrelevant because PLANE_PLAYER_HUD_ITEMS)
 	#define LAYER_HUD_ABOVE		4 //Things that reside above items (highlights)
 #define PLANE_PLAYER_HUD_ITEMS	96 //Separate layer with which to apply colorblindness
+#define PLANE_PLAYER_HUD_ABOVE	97 //Things above the player hud
 
 #define PLANE_ADMIN3			99 //Purely for shenanigans (above HUD)
 

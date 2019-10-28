@@ -146,7 +146,7 @@
 			return M
 	return 0
 
-/mob/proc/movement_delay()
+/mob/proc/movement_delay(oldloc, direct)
 	return 0
 
 /mob/proc/Life()
@@ -317,7 +317,7 @@
 	set src in usr
 	if(usr != src)
 		usr << "No."
-	var/msg = sanitize(input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",html_decode(flavor_text)) as message|null, extra = 0)
+	var/msg = sanitize(input(usr,"Set the flavor text in your 'examine' verb.","Flavor Text",html_decode(flavor_text)) as message|null, extra = 0)	//VOREStation Edit: separating out OOC notes
 
 	if(msg != null)
 		flavor_text = msg
@@ -431,7 +431,7 @@
 	src << browse('html/changelog.html', "window=changes;size=675x650")
 	if(prefs.lastchangelog != changelog_hash)
 		prefs.lastchangelog = changelog_hash
-		prefs.save_preferences()
+		SScharacter_setup.queue_preferences_save(prefs)
 		winset(src, "rpane.changelog", "background-color=none;font-style=;")
 
 /mob/verb/observe()
@@ -730,7 +730,7 @@
 				listed_turf = null
 			else
 				if(statpanel("Turf"))
-					stat("\icon[listed_turf]", listed_turf.name)
+					stat(listed_turf)
 					for(var/atom/A in listed_turf)
 						if(!A.mouse_opacity)
 							continue

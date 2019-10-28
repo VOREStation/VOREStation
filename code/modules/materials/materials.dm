@@ -94,6 +94,7 @@ var/list/name_to_material
 	var/door_icon_base = "metal"                         // Door base icon tag. See header.
 	var/icon_reinf = "reinf_metal"                       // Overlay used
 	var/list/stack_origin_tech = list(TECH_MATERIAL = 1) // Research level for stacks.
+	var/pass_stack_colors = FALSE                        // Will stacks made from this material pass their colors onto objects?
 
 	// Attributes
 	var/cut_delay = 0            // Delay in ticks when cutting through this wall.
@@ -107,7 +108,7 @@ var/list/name_to_material
 	var/explosion_resistance = 5 // Only used by walls currently.
 	var/negation = 0             // Objects that respect this will randomly absorb impacts with this var as the percent chance.
 	var/spatial_instability = 0  // Objects that have trouble staying in the same physical space by sheer laws of nature have this. Percent for respecting items to cause teleportation.
-	var/conductive = 1           // Objects with this var add CONDUCTS to flags on spawn.
+	var/conductive = 1           // Objects without this var add NOCONDUCT to flags on spawn.
 	var/conductivity = null      // How conductive the material is. Iron acts as the baseline, at 10.
 	var/list/composite_material  // If set, object matter var will be a list containing these values.
 	var/luminescence
@@ -259,6 +260,7 @@ var/list/name_to_material
 	icon_colour = "#00FFE1"
 	opacity = 0.4
 	reflectivity = 0.6
+	conductive = 0
 	conductivity = 1
 	shard_type = SHARD_SHARD
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
@@ -350,6 +352,7 @@ var/list/name_to_material
 	weight = 22
 	hardness = 55
 	protectiveness = 5 // 20%
+	conductive = 0
 	conductivity = 5
 	door_icon_base = "stone"
 	sheet_singular_name = "brick"
@@ -436,7 +439,7 @@ var/list/name_to_material
 // Very rare alloy that is reflective, should be used sparingly.
 /material/durasteel
 	name = "durasteel"
-	stack_type = /obj/item/stack/material/durasteel
+	stack_type = /obj/item/stack/material/durasteel/hull
 	integrity = 600
 	melting_point = 7000
 	icon_base = "metal"
@@ -458,6 +461,9 @@ var/list/name_to_material
 	explosion_resistance = 90
 	reflectivity = 0.9
 
+/material/durasteel/hull/place_sheet(var/turf/target) //Deconstructed into normal durasteel sheets.
+	new /obj/item/stack/material/durasteel(target)
+
 /material/plasteel/titanium
 	name = MAT_TITANIUM
 	stack_type = /obj/item/stack/material/titanium
@@ -473,6 +479,9 @@ var/list/name_to_material
 	icon_base = "hull"
 	icon_reinf = "reinf_mesh"
 
+/material/plasteel/titanium/hull/place_sheet(var/turf/target) //Deconstructed into normal titanium sheets.
+	new /obj/item/stack/material/titanium(target)
+
 /material/glass
 	name = "glass"
 	stack_type = /obj/item/stack/material/glass
@@ -485,6 +494,7 @@ var/list/name_to_material
 	hardness = 30
 	weight = 15
 	protectiveness = 0 // 0%
+	conductive = 0
 	conductivity = 1 // Glass shards don't conduct.
 	door_icon_base = "stone"
 	destruction_desc = "shatters"
@@ -626,6 +636,7 @@ var/list/name_to_material
 	hardness = 10
 	weight = 12
 	protectiveness = 5 // 20%
+	conductive = 0
 	conductivity = 2 // For the sake of material armor diversity, we're gonna pretend this plastic is a good insulator.
 	melting_point = T0C+371 //assuming heat resistant plastic
 	stack_origin_tech = list(TECH_MATERIAL = 3)
@@ -643,6 +654,7 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	conductivity = 100
 
 /material/tritium
 	name = "tritium"
@@ -652,6 +664,7 @@ var/list/name_to_material
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	is_fusion_fuel = 1
+	conductive = 0
 
 /material/deuterium
 	name = "deuterium"
@@ -661,6 +674,7 @@ var/list/name_to_material
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	is_fusion_fuel = 1
+	conductive = 0
 
 /material/mhydrogen
 	name = "mhydrogen"
@@ -730,6 +744,7 @@ var/list/name_to_material
 	icon_reinf = "reinf_metal"
 	protectiveness = 60
 	integrity = 300
+	conductive = 0
 	conductivity = 1.5
 	hardness = 90
 	shard_type = SHARD_SHARD
@@ -758,6 +773,7 @@ var/list/name_to_material
 	weight = 30
 	hardness = 45
 	negation = 2
+	conductive = 0
 	conductivity = 5
 	reflectivity = 0.5
 	radiation_resistance = 20
@@ -813,6 +829,7 @@ var/list/name_to_material
 	melting_point = T0C+300
 	sheet_singular_name = "blob"
 	sheet_plural_name = "blobs"
+	conductive = 0
 
 /material/resin/can_open_material_door(var/mob/living/user)
 	var/mob/living/carbon/M = user
@@ -833,6 +850,7 @@ var/list/name_to_material
 	hardness = 15
 	weight = 18
 	protectiveness = 8 // 28%
+	conductive = 0
 	conductivity = 1
 	melting_point = T0C+300 //okay, not melting in this case, but hot enough to destroy wood
 	ignition_point = T0C+288
@@ -849,6 +867,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/log
 	sheet_singular_name = null
 	sheet_plural_name = "pile"
+	pass_stack_colors = TRUE
 
 /material/wood/log/sif
 	name = MAT_SIFLOG
@@ -864,7 +883,7 @@ var/list/name_to_material
 
 /material/wood/sif
 	name = MAT_SIFWOOD
-//	stack_type = /obj/item/stack/material/wood/sif
+	stack_type = /obj/item/stack/material/wood/sif
 	icon_colour = "#0099cc" // Cyan-ish
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2) // Alien wood would presumably be more interesting to the analyzer.
 
@@ -879,12 +898,14 @@ var/list/name_to_material
 	hardness = 1
 	weight = 1
 	protectiveness = 0 // 0%
+	conductive = 0
 	ignition_point = T0C+232 //"the temperature at which book-paper catches fire, and burns." close enough
 	melting_point = T0C+232 //temperature at which cardboard walls would be destroyed
 	stack_origin_tech = list(TECH_MATERIAL = 1)
 	door_icon_base = "wood"
 	destruction_desc = "crumples"
 	radiation_resistance = 1
+	pass_stack_colors = TRUE
 
 /material/snow
 	name = MAT_SNOW
@@ -930,6 +951,8 @@ var/list/name_to_material
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
 	flags = MATERIAL_PADDING
+	conductive = 0
+	pass_stack_colors = TRUE
 
 /material/cult
 	name = "cult"
@@ -940,6 +963,7 @@ var/list/name_to_material
 	shard_type = SHARD_STONE_PIECE
 	sheet_singular_name = "brick"
 	sheet_plural_name = "bricks"
+	conductive = 0
 
 /material/cult/place_dismantled_girder(var/turf/target)
 	new /obj/structure/girder/cult(target, "cult")
@@ -963,6 +987,7 @@ var/list/name_to_material
 	ignition_point = T0C+300
 	melting_point = T0C+300
 	protectiveness = 3 // 13%
+	conductive = 0
 
 /material/carpet
 	name = "carpet"
@@ -975,6 +1000,7 @@ var/list/name_to_material
 	sheet_singular_name = "tile"
 	sheet_plural_name = "tiles"
 	protectiveness = 1 // 4%
+	conductive = 0
 
 /material/cotton
 	name = "cotton"
@@ -984,6 +1010,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
+	conductive = 0
 
 // This all needs to be OOP'd and use inheritence if its ever used in the future.
 /material/cloth_teal
@@ -995,6 +1022,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
+	conductive = 0
 
 /material/cloth_black
 	name = "black"
@@ -1005,6 +1033,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
+	conductive = 0
 
 /material/cloth_green
 	name = "green"
@@ -1015,6 +1044,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
+	conductive = 0
 
 /material/cloth_puple
 	name = "purple"
@@ -1025,6 +1055,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
+	conductive = 0
 
 /material/cloth_blue
 	name = "blue"
@@ -1035,6 +1066,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
+	conductive = 0
 
 /material/cloth_beige
 	name = "beige"
@@ -1045,6 +1077,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
+	conductive = 0
 
 /material/cloth_lime
 	name = "lime"
@@ -1055,6 +1088,7 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
+	conductive = 0
 
 /material/toy_foam
 	name = "foam"
@@ -1067,3 +1101,4 @@ var/list/name_to_material
 	hardness = 1
 	weight = 1
 	protectiveness = 0 // 0%
+	conductive = 0

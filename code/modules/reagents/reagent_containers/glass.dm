@@ -14,7 +14,7 @@
 	possible_transfer_amounts = list(5,10,15,25,30,60)
 	volume = 60
 	w_class = ITEMSIZE_SMALL
-	flags = OPENCONTAINER
+	flags = OPENCONTAINER | NOCONDUCT
 	unacidable = 1 //glass doesn't dissolve in acid
 
 	var/label_text = ""
@@ -44,7 +44,8 @@
 		/obj/machinery/smartfridge/,
 		/obj/machinery/biogenerator,
 		/obj/structure/frame,
-		/obj/machinery/radiocarbon_spectrometer
+		/obj/machinery/radiocarbon_spectrometer,
+		/obj/machinery/portable_atmospherics/powered/reagent_distillery
 		)
 
 /obj/item/weapon/reagent_containers/glass/Initialize()
@@ -131,12 +132,15 @@
 			update_name_label()
 	if(istype(W,/obj/item/weapon/storage/bag))
 		..()
+	if(W && W.w_class <= w_class && (flags & OPENCONTAINER))
+		to_chat(user, "<span class='notice'>You dip \the [W] into \the [src].</span>")
+		reagents.touch_obj(W, reagents.total_volume)
 
 /obj/item/weapon/reagent_containers/glass/proc/update_name_label()
 	if(label_text == "")
 		name = base_name
-	else if(length(label_text) > 10)
-		var/short_label_text = copytext(label_text, 1, 11)
+	else if(length(label_text) > 20)
+		var/short_label_text = copytext(label_text, 1, 21)
 		name = "[base_name] ([short_label_text]...)"
 	else
 		name = "[base_name] ([label_text])"

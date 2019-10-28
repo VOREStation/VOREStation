@@ -99,7 +99,7 @@
 	icon_state = "sheet-adamantine"
 	default_type = "lead"
 	apply_colour = 1
-	no_variants = TRUE
+	no_variants = FALSE
 
 /obj/item/stack/material/sandstone
 	name = "sandstone brick"
@@ -275,8 +275,10 @@
 	return
 
 /obj/item/stack/material/supermatter/attack_hand(mob/user)
+	. = ..()
+
 	update_mass()
-	radiation_repository.radiate(src, 5 + amount)
+	SSradiation.radiate(src, 5 + amount)
 	var/mob/living/M = user
 	if(!istype(M))
 		return
@@ -303,17 +305,18 @@
 
 /obj/item/stack/material/supermatter/ex_act(severity)	// An incredibly hard to manufacture material, SM chunks are unstable by their 'stabilized' nature.
 	if(prob((4 / severity) * 20))
-		radiation_repository.radiate(get_turf(src), amount * 4)
+		SSradiation.radiate(get_turf(src), amount * 4)
 		explosion(get_turf(src),round(amount / 12) , round(amount / 6), round(amount / 3), round(amount / 25))
 		qdel(src)
 		return
-	radiation_repository.radiate(get_turf(src), amount * 2)
+	SSradiation.radiate(get_turf(src), amount * 2)
 	..()
 
 /obj/item/stack/material/wood
 	name = "wooden plank"
 	icon_state = "sheet-wood"
 	default_type = MAT_WOOD
+	strict_color_stacking = TRUE
 
 /obj/item/stack/material/wood/sif
 	name = "alien wooden plank"
@@ -365,12 +368,16 @@
 	icon_state = "sheet-cloth"
 	default_type = "cloth"
 	no_variants = FALSE
+	pass_color = TRUE
+	strict_color_stacking = TRUE
 
 /obj/item/stack/material/cardboard
 	name = "cardboard"
 	icon_state = "sheet-card"
 	default_type = "cardboard"
 	no_variants = FALSE
+	pass_color = TRUE
+	strict_color_stacking = TRUE
 
 /obj/item/stack/material/snow
 	name = "snow"
@@ -390,6 +397,8 @@
 	icon_state = "sheet-leather"
 	default_type = "leather"
 	no_variants = FALSE
+	pass_color = TRUE
+	strict_color_stacking = TRUE
 
 /obj/item/stack/material/glass
 	name = "glass"

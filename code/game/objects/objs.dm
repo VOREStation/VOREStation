@@ -7,6 +7,7 @@
 	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
 	animate_movement = 2
 	var/throwforce = 1
+	var/catchable = 1	// can it be caught on throws/flying?
 	var/sharp = 0		// whether this object cuts
 	var/edge = 0		// whether this object is more likely to dismember
 	var/pry = 0			//Used in attackby() to open doors
@@ -54,7 +55,7 @@
 	CouldNotUseTopic(usr)
 	return 1
 
-/obj/CanUseTopic(var/mob/user, var/datum/topic_state/state)
+/obj/CanUseTopic(var/mob/user, var/datum/topic_state/state = default_state)
 	if(user.CanUseObjTopic(src))
 		return ..()
 	to_chat(user, "<span class='danger'>\icon[src]Access Denied!</span>")
@@ -171,6 +172,9 @@
 		mo.show_message(rendered, 2)
 		*/
 	return
+
+/obj/proc/hear_signlang(mob/M as mob, text, verb, datum/language/speaking) // Saycode gets worse every day.
+	return FALSE
 
 /obj/proc/see_emote(mob/M as mob, text, var/emote_type)
 	return

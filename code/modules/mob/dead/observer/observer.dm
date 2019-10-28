@@ -389,17 +389,17 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	return (T && T.holy) && (is_manifest || (mind in cult.current_antagonists))
 
-/mob/observer/dead/verb/jumptomob(target in getmobs()) //Moves the ghost instead of just changing the ghosts's eye -Nodrak
+/mob/observer/dead/verb/jumptomob(input in getmobs()) //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
 	set name = "Jump to Mob"
 	set desc = "Teleport to a mob"
 	set popup_menu = FALSE //VOREStation Edit - Declutter.
 	if(istype(usr, /mob/observer/dead)) //Make sure they're an observer!
-
+		var/target = getmobs()[input]
 		if (!target)//Make sure we actually have a target
 			return
 		else
-			var/mob/M = getmobs()[target] //Destination mob
+			var/mob/M = target //Destination mob
 			var/turf/T = get_turf(M) //Turf of the destination mob
 
 			if(T && isturf(T))	//Make sure the turf exists, then move the source to that destination.
@@ -466,7 +466,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/turf/t = get_turf(src)
 	if(t)
-		var/rads = radiation_repository.get_rads_at_turf(t)
+		var/rads = SSradiation.get_rads_at_turf(t)
 		to_chat(src, "<span class='notice'>Radiation level: [rads ? rads : "0"] Bq.</span>")
 
 

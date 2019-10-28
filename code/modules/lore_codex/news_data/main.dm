@@ -4,6 +4,40 @@
 	region. Each is labeled by date of publication and title. This list is self-updating, and from time to time the publisher will push new \
 	articles. You are encouraged to check back frequently."
 	children = list(
+		/datum/lore/codex/page/article66,
+		/datum/lore/codex/page/article65,
+		/datum/lore/codex/page/article64,
+		/datum/lore/codex/page/article63,
+		/datum/lore/codex/page/article62,
+		/datum/lore/codex/page/article61,
+		/datum/lore/codex/page/article60,
+		/datum/lore/codex/page/article59,
+		/datum/lore/codex/page/article58,
+		/datum/lore/codex/page/article57,
+		/datum/lore/codex/page/article56,
+		/datum/lore/codex/page/article55,
+		/datum/lore/codex/page/article54,
+		/datum/lore/codex/page/article53,
+		/datum/lore/codex/page/article52,
+		/datum/lore/codex/page/article51,
+		/datum/lore/codex/page/article50,
+		/datum/lore/codex/page/article49,
+		/datum/lore/codex/page/article48,
+		/datum/lore/codex/page/article47,
+		/datum/lore/codex/page/article46,
+		/datum/lore/codex/page/article45,
+		/datum/lore/codex/page/article44,
+		/datum/lore/codex/page/article43,
+		/datum/lore/codex/page/article42,
+		/datum/lore/codex/page/article41,
+		/datum/lore/codex/page/article40,
+		/datum/lore/codex/page/article39,
+		/datum/lore/codex/page/keldowinterview,
+		/datum/lore/codex/category/article38,
+		/datum/lore/codex/page/article37,
+		/datum/lore/codex/page/article36,
+		/datum/lore/codex/page/article35,
+		/datum/lore/codex/page/article34,
 		/datum/lore/codex/page/article33,
 		/datum/lore/codex/page/article32,
 		/datum/lore/codex/page/bjornretirement,
@@ -401,3 +435,350 @@
 	Vani Jee is running on a platform of free access to education, Sivian self-determination, and isolationist foreign policy. She has refused to make any strong statements regarding hot-button issues such as the Five Points.\
 	<br><br>\
 	She intends to resume her scheduled tour after a three day break."
+
+/datum/lore/codex/page/article34
+	name = "02/05/63 - Angessa Martei to Take Control of Eponymous Colony"
+	data = "Coming out of retirement and displacing the nameless Exalt of the Starlit Path, religious demagogue Angessa Martei has returned to the throne of the colony that bears her name. \
+	<br><br>\
+	'I had retired because of senescence brought on by my old age, high-stress lifestyle, and multiple resurrective clonings. As you may know, I recently had a procedure that renders these difficulties obsolete. Hereafter I will continue to control the automated facilities of the Pearl and claim responsibility for the collective action of my followers. Those who oppose my decision may oppose all they want. Feelings do not move mountains. I do. We shall seize the stars in our own hands. May you become who you wish to be, and grind all obstacles to dust, as I have done.'\
+	<br><br>\
+	Purportedly, this address was met with a standing ovation from the population of Angessa's Pearl. In a separate dispatch, Martei stated her intention to tour SolGov as a foreign dignitary protected by the Respect for Diplomats Act."
+
+/datum/lore/codex/page/article35
+	name = "02/07/63 - Vir Gubernatorial Candidate Barred from Breakfast TV"
+	data = "Infamously hot-headed Shadow Coalition candidate Phaedrus has reportedly been blacklisted from future appearances on morning television by several major networks. The ban comes after an advertised chat segment between Phaedrus and hosts of the West Sif Wakeup breakfast programme had to be pulled from broadcast after the candidate 'Flew into a expletive-laden mercurial rant' at the expense of rival candidate Mehmet Sao of the Icarus Front.\
+	<br><br>\
+	Recordings of the outburst quickly made their way onto social media, sparking outrage from opponents and network executives alike, prompting Occulum Media to issue a rare blacklist from major media outlets, restricting Phaedrus to 'appearances on alternative news sources' owned by the company.\
+	<br><br>\
+	Phaedrus, a long-time Vir Mercurial Progress Party member running for a major party for the first time, is said to have taken issue with candidate Sao's 'Blatant anti-synthetic' policies, though he did not use the word 'policies'."
+
+/datum/lore/codex/page/article36
+	name = "02/09/63 - SEO Candidate Embarks on Wilderness Tour"
+	data = "In an effort to stir up support for his promotion of natural resource extraction industries, Sol Economic Organization candidate Mason Keldow has embarked on an unorthodox tour of resource-rich sites across central Sif. Keldow has described the tour as an 'Old fashioned expedition', invoking images of hardy prospectors of centuries past, and intends to make the journey entirely by ground with only a small party of 'Adventurous outdoorspeople' to support his trek.\
+	<br><br>\
+	Critics of the plan have pointed out that the earliest surveys of Sif were largely performed by aerial drones, and the idea of ground-based survey teams is 'Frankly anachronistic'.  Rival Shadow Coalition candidate Selma Jorg - a staunch planetary environmentalist - has described the tour as 'Irresponsible and insane'.\
+	<br><br>\
+	The candidate intends to visit both unexploited sites and current corporate extraction facilities in order to 'Better understand the folks helping dig out Sif's hidden wealth' over the coming two weeks."
+
+/datum/lore/codex/page/article37
+	name = "02/09/63 - Zaddat Colony 'Bright' To Enter Vir"
+	data = "After several months of talks with Nanotrasen and other corporations in the system, the Colony Bright is to begin orbiting Sif and hardsuited Zaddat are to enter the Virite workforce. Executives in Nanotrasen Vir cite the reduction of their drone-automated and positronic workforce as a result of the Gray Hour as cause for them to reverse their previous decision against allowing the migrants into the system. Icarus officials within VGA are concerned that, if other Colonies are to follow the Bright, the native industry of Sif may be disrupted or suborned by Zaddat and Hegemony interests, and have made it clear that the Bright's presence in the system is highly conditional."
+
+/datum/lore/codex/category/article38
+	name = "02/11/63 - Mason Keldow in Ullran Expanse Close Call"
+	data = "Sol Economic Organization candidate Mason Keldow was rushed to nearby corporate medical facilities after a death-defying encounter with local wildlife in the Ullran Expanse this morning. The candidate had been planning to visit the nearby NanoTrasen mining facilities as part of his much publicized 'Wilderness Tour' when he and a local guide were set upon by the notoriously savage Sivian Savik. The animal was killed in the encounter, but not before Mr. Keldow suffered life-threatening injuries and had to be recovered by crew from the NLS Southern Cross, the closest facility on hand.\
+	<br><br>\
+	Following emergency surgery, Keldow was happy to provide news sources with a 'Good-natured' interview, in which he highlighted the dangers faced by rural workers on Sif and his plans to tackle them, as well as slamming rival Shadow Coalition candidate Selma Jorg for lacking tangible plans for the future.\
+	<br><br>\
+	Candidate Keldow is reported to have made a miraculous recovery, and is 'in good spirits'. Aides state that he is unlikely to suffer any long term effects from the injuries, in part thanks for the skilful work of NanoTrasen's Dr. Fuerte.\
+	<br><br>\
+	A full transcript of the interview follows:"
+	children = list(
+		/datum/lore/codex/page/keldowinterview
+		)
+
+/datum/lore/codex/page/keldowinterview
+	name = "Mason Keldow Interview Transcript"
+	data = "Blip asks, 'Subject Keldow. Pleasantries first. How do you feel after your ordeal on the planet's surface?'\
+	<br><br>\
+	Mason Keldow says, 'Ah that? You know I'd love to downplay it and pretend that it was just a walk in the park... But NT's medical staff probably will tell you otherwise, so there's no reason to hide it; things went pretty far south.'\
+	<br><br>\
+	Mason Keldow says, 'But that's how it goes, working on the surface of Sif isn't pleasant at times.'\
+	<br><br>\
+	Blip asks, 'Candidate Keldow, you have placed yourself quite firmly in the boots of the local TSC's explorer contingents today. Do you feel you will be attempting to live the life of any other labour intensive roles in the near future?'\
+	<br><br>\
+	Mason Keldow says, 'Blip, Let me tell you I do try to get a taste for a lot of the work done by these people... But admittedly this isn't the job I do every day. These are hard working fellows who do there damnedest day in and day out... I could try spending a week just working the mines, But-'\
+	<br><br>\
+	Mason Keldow says, 'As I was saying.. Many of the folks, Miners, Explorers, The work in and around the Ullran Expanse. They work in the mountains, Out in the fields.. It's a dangerous place and frankly its not a place average people wanna go too.'\
+	<br><br>\
+	Mason Keldow says, 'They told me on the way here. 'Keldow you're an idiot''\
+	<br><br>\
+	Mason Keldow says, 'Hell, Even Basman over here was wondering why I didn't ask for a detail.'\
+	<br><br>\
+	Mason Keldow says, 'So it's not a safe route... But when's the last time any of the other candidates actually came down to these outer stretches and tried earning their sweat.'\
+	<br><br>\
+	Blip asks, 'You indeed seem to be attempting to gain a unique, and firm understanding of the daily struggles of the working populace. How do you intend to translate this newfound knowledge into policy and direction if you take the Governorship in Vir?'\
+	<br><br>\
+	Mason Keldow says, 'You see, getting a grasp of the struggle is only step one, I paint myself as an every-man but that doesn't mean core issues aren't the problem either; Vir's economics, The small pay that sometimes offered. There is a lot to be tapped into.'\
+	<br><br>\
+	Mason Keldow says, 'Let's take for instance the spiders I've been hearing about.'\
+	<br><br>\
+	Mason Keldow says, 'People working in orbit say 'Don't go to the surface, Spiders are down there.''\
+	<br><br>\
+	Mason Keldow says, 'And apparently there was a big ol' purple one sitting right by a camp we had set up. A giant mother who'd - if I hadn't met that lovely mass of fur and ice instead - would have probably said its “hello” in the worst possible way.'\
+	<br><br>\
+	Mason Keldow says, 'They are a species that prevents anyone from actually working or otherwise making use of all that land. If I were in office, I'd make an effort to clear out the dangerous species that surround the outer regions of Sif – relocate them if possible - and use that territory for something productive.'\
+	<br><br>\
+	Mason Keldow says, 'New forms of Transit, new buildings, new jobs.'\
+	<br><br>\
+	Blip asks, 'Such implementation of infrastructure and security is not a cheap measure. How do you intend to find funds for such an endeavour?'\
+	<br><br>\
+	Mason Keldow says, 'Now obviously Vir is in a very interesting position, But thankfully it's in a wonderful position where business and partnerships are more than happy to come in and assist. The bottom line would make sure the average Taxpayer doesn't feel a dent, only the dividends.'\
+	<br><br>\
+	Mason Keldow says, 'If we break this down into economic plans, using new yet relatively safe tools being put out by Hepheastus, you could safely clear swaths of territory in the Expanse.'\
+	<br><br>\
+	Blip says, 'Thank you for your insight into your economic policies and plans. As a final question;'\
+	<br><br>\
+	Blip asks, 'A puff-piece question. Do you have anything positive to say about your rivals in the political race?'\
+	<br><br>\
+	Mason Keldow says, 'Ah yes, yes well... As for any candidate they need to show they're worth. Not simply as a politician but as a person who believes what they will do for for the betterment of Sif, And Vir as a whole.'\
+	<br><br>\
+	Mason Keldow says, 'Let's take a look Ms. Jorg.'\
+	<br><br>\
+	Mason Keldow says, 'She has LONG called me a Corporate sell-out, Saying I would poison the planet and other awful mudslinging.'\
+	<br><br>\
+	Mason Keldow says, 'She loves to claim she's here for the better of the misrepresented.'\
+	<br><br>\
+	Mason Keldow says, 'But when is the last time she's talked to a Tajaran and told them how they will help put food on the table, and money into their pockets.'\
+	<br><br>\
+	Mason Keldow says, 'When has she came and told the Unathi Exile, Your worth more than what the Hegemony is trying to convince you you're worth.'\
+	<br><br>\
+	Mason Keldow says, 'There's blood in the grass out there showing what I'm willing to do to make Sif and Vir a better more prosperous system. I wanna see what the other Candidates will do.'\
+	<br><br>\
+	Blip pings!\
+	<br><br>\
+	Blip says, 'Thank you for your time, Candidate Keldow. Unit looks forward to seeing where this race ends, and wishes Candidate the best of luck in his endeavours.'\
+	<br><br>\
+	Mason Keldow says, 'It's been a pleasure Blip.'"
+
+/datum/lore/codex/page/article39
+	name = "02/12/63 - VirGov Launches Election Website"
+	data = "The Vir Governmental Authority has launched this year's election information exonet site, unusually several months after campaigning began. The government election agency states that the delay was caused by an usually long process of finalizing candidates this cycle, and did not want to confuse voters with incorrect or outdated information.\
+	<br><br>\
+	The newly updated site includes information on candidates and political parties, and is planned to include information on local voting rights at a future date. It can be found at:\
+	<br><br>\
+	your-choice-vir.virgov.xo.vr\
+	<br><br>\
+	(( https://your-choice-vir.weebly.com/ ))"
+
+/datum/lore/codex/page/article40
+	name = "02/14/63 - Ultimatum Unmet: War With Almach!"
+	data = "The Solar Confederate Government has resumed a state of war against the secessionist Almach Association, after 4 months of tense ceasefire. The re-declaration comes after the Association failed to meet requirements set forth by the Colonial Assembly last November, which called for the cessation and destruction of all research that did not meet standards established by the Five Points of Human Sanctity.\
+	<br><br>\
+	The past few weeks have been marked by an increasing buildup of military forces on the Almach border as it became apparent that Almach had no intention of meeting Sol's demands. At 9am this morning, the deadline was met and initial reports from the frontline suggest relatively little action besides the destruction of  pre-existing Almach scout drones that had been placed on the border several months prior. The exact plans of the fleet going forward have not been made public, but civilian traffic to and from the Saint Columbia system has been entirely suspended.\
+	<br><br>\
+	How this development will influence the coming Vir election remains to be seen, though SEO candidate Mason Keldow has reportedly ended his planetary tour 10 days earlier than planned due to the tense political situation."
+
+/datum/lore/codex/page/article41
+	name = "02/22/63 - Militia Retreats: First Solar Victory"
+	data = "After a week of tense stand-offs and increasingly frequent skirmishes, the Association Militia has begun moving from their position around Saint Columbia further into the Almach Rim. The inciting incident for this shift seems to have been the first use of the MJOLNIR system, which instantly destroyed a large Almachi warship from half a system away. This demonstration was met with a standing ovation from much of Iserlohn, and Militia forces disengaged almost immediately. Admiral McMullen is unwilling to elaborate on pursuit or invasion plans at this moment, but 'hope(s) the MJOLNIR will continue to be a valuable asset for national defense.'"
+
+/datum/lore/codex/page/article42
+	name = "03/04/63 - Savik Slams Local Chat Host"
+	data = "Television sweetheart Sally, host of Chat With Sally has come under harsh criticism from independent Vir gubernatorial candidate Yole Savik after his 'humiliating' appearance on the show yesterday morning alongside Sol Economic Organization candidate Calvert Moravec. Savik - who is campaigning for Vir independence from both the SCG and corporate interests - alleges that the show, which has run for 13 years on select networks, is 'little more than a propaganda piece for high powered executives.' and that his appearance had been part of a 'smear campaign' against non-SEO candidates.\
+	<br><br>\
+	NanoTrasen, who have openly sponsored Sally since her inception deny these accusations. Jan Bhatt of the NT marketing division stated 'Chat With Sally has always been intended as light morning entertainment, and Sally a personality we can all relate to. The fact that Mr. Savik was unable to have a sense of humour about the whole thing and took the show as an opportunity to bloviate about dry politics is not an indictment of Sally, nor the corporation but rather a simple misunderstanding of the purpose of the segment. We had hoped Mr. Savik's appearance would help dismiss any claims of political bias in our programming and hope to host more civil candidates in the future.'\
+	<br><br>\
+	Catch Chat With Sally weekly at 5am SST."
+
+/datum/lore/codex/page/article43
+	name = "03/06/63 - Dark Triangle Goes Dark!"
+	data = "As of 0352 this morning, New Reykjavik time, SolGov officials confirmed that all communications coming from the so-called 'Dark Triangle' had ceased. The Dark Triangle is a disputed region of space home to the independent world Natuna, which has maintained a more or less neutral relationship with SolGov for a little more than a decade.\
+	<br><br>\
+	The announcement gives no cause for the communications blackout, though sources with inside knowledge claim that it was completely unforeseen. Some speculate that Natuna, who became an 'observer nation' of the Almach Association last November, is making a political statement, though experts in the telecommunications field are uncertain as to how such a complete blackout is possible.\
+	<br><br>\
+	Dr. Ina Lai from the Kara Interstellar Observatory states, 'we've never seen anything like this outside of the (Skrellian) Far Kingdoms, and frankly we're at a loss for who might be responsible,' adding that 'the tachyon signatures from the whole region are masked, even those from stellar phenomena or normal bluespace travel.' Independent explorers from the FTU have set out to the region in an attempt to re-establish communication with Natuna and smaller human settlements nearby."
+
+/datum/lore/codex/page/article44
+	name = "03/08/63 - Dark Triangle Overrun By Hegemony"
+	data = "FTU explorers have re-established exonet communications with the ruling bodies of Natuna and the Dark Triangle. Unfortunately, they also discovered that Natuna's previously autonomous townships have been subsumed into the Moghes Hegemony. \
+	<br><br>\
+	Bluespace-lensed telescopes throughout SolGov, including the Vir-based Kara Interstellar Observatory, can once again pick up on tachyon signatures in the region. Traffic has been described as 'lower than usual' and no significant fleet assets are believed to be present in the region, though fixed-placement Hegemony installations now litter the Triangle's major star systems. Systems with significant Hegemony presence include Natuna and Ukupanipo, home to the primitive Uehshad species. Some have speculated that the presence of the Uehshad is the reason for the unexpected Hegemony takeover, though Icarus Front General Secretary Mackenzie West was quick to decry the move as 'an obvious imperial land-grab.'\
+	<br><br>\
+	Hegemony diplomats on Luna and elsewhere have been quick to justify their actions. 'The Dark Triangle has been home to various criminal elements for several centuries,' says Aksere Eko Azaris, a major Hegemony diplomat since the early post-war years. 'Neither the Skrell nor the Solar Confederacy have proven any willingness to bring stability to the region. Local governments such as Natuna have actively encouraged piracy, smuggling, and other acts of banditry, instead of making any moves to legitimize themselves. This instability proved detrimental to the health and wellbeing of all living within striking distance of the pirates of Ue-Orsi, and it was deemed unfortunate, but necessary, that we step in and provide the guiding hand by which this region might be brought back into the fold of civilization, as is our duty as sapients.'\
+	<br><br>\
+	In a statement closer to home,Commander Iheraer Saelho of the Zaddat Escort Fleet has assured VirGov that 'we only took action to protect the innocents of the Dark Triangle and of neighboring systems'.He asserts that Hegemony rule will ultimately benefit all races of people within the Triangle, and promises that, 'the people of Vir, of Oasis, of the Golden Crescent writ large, have nothing to fear from our clients the Zaddat, or from the Hegemony vessels assigned to their protection.'\
+	<br><br>\
+	Only time will tell if Saelho's promised peace and stability will manifest in truth. \
+	<br><br>\
+	This newfound militancy of the Hegemony is likely to become a major campaign issue in the upcoming Vir elections, alongside involvement in the war with the Almach Association and traditionally Virite issues of corporate authority, minority-friendly infrastructure, and taxation."
+
+/datum/lore/codex/page/article45
+	name = "03/12/63 - Ue-Orsi Escapes Hegemony Triangle"
+	data = "The lawless 'Ue-Orsi' flotilla, home to hundreds of thousands of outcast Skrellian pirates, has departed from the Hegemony-controlled Dark Triangle after what appears to be a brief battle with several Unathi warships. The action damaged several important Orsian ships, including their massive and venerable solar array 'Suqot-Thoo'm', a development which is likely to increase the pirates' aggression in the coming months as they search for additional power sources. It is unclear exactly where the flotilla has fled, though best guesses indicate that they are presently in Skrell space, likely near the lightly-patrolled Xe'Teq system. The Moghes Hegemony is in negotiations with several Skrellian states to arrange for military action against their escaped subjects, but little headway has been made thus far.\
+	<br><br>\
+	This revelation has added more fuel to already heated Assembly arguments about SolGov response to the Unathi takeover. 'This is a prelude to invasion, nothing more and nothing less,' says New Seoul Representative Collin So-Yung, a noted Iconoclast. 'We must make it absolutely clear to the Hegemony that this is a threat we will not bow to, even in our present state of internal weakness. I suggest we pursue a fair peace with the Association, one where we can keep them as allies against this sort of encroachment instead of shattering our fleets during such a pivotal moment.'\
+	<br><br>\
+	Others took a more nuanced approach, including VGA Governor Bjorn Arielsson. 'What we have here is our punishment for how badly we've treated the people of the Triangle. I don't really see why we should have let the tired old racism of some Qerr-Katish oligarchs stop us from offering aid to their tired and huddled masses, such as it is. And because we have had a full century of ignoring their plight, they were defenceless to resist the Hegemony. I say we fling the doors open, let (the Orsians) settle some rock here, and show the unaligned powers of the galaxy that the Hegemony's way isn't the only way.'\
+	<br><br>\
+	Even more conciliatory was Speaker ISA-5, who Arielsson blames for mistreatment of the Ue-Katish. 'Our policy has always been that our defence budget cannot adequately defend the Dark Triangle from internal piracy, that Ue-Orsi is a criminal organization using their refugee status as a shield, and that we cannot lift the blockade of Natuna until they stop hosting these criminals and transition to a more sustainable economy. If Moghes has the power and the inclination to administer the Triangle, I see no reason why this state of affairs isn't better than the alternatives.'"
+
+/datum/lore/codex/page/article46
+	name = "03/26/63 - Almach Routed from Saint Columbia"
+	data = "The Saint Columbia system has been declared free of Association forces following a renewed SCG offensive in the region. Admiral McMullen of the Saint Columbia garrison - who has reportedly reclaimed his post at the system's naval base despite the facility suffering moderate damage in this week's fighting - says that the last secessionist vessels were driven from the system just over 24 hours ago, and remaining pockets of resistance have been quick to lay down their arms. At least 20 enemy vessels - mostly converted civilian ships - have been confirmed disabled or destroyed in-system, thanks in no small part to the deployment of the state-of-the-art MJOLNIR weapons system.\
+	<br><br>\
+	This more aggressive approach to the Almach front comes on the tail of aggressive Hegemony deployments in the Dark Triangle, which SolGov has conceded was 'Immediately threatening, but after some deliberation, has brought some form of policing to a lawless region.'.\
+	<br><br>\
+	Despite assurances, this recent action would appear to many to be an effort to quash the Association threat and return fleet forces to the now extended Hegemony border, and some critics of the Almach War have called for a second ceasefire 'In order to focus on the real threat to mankind.'"
+
+/datum/lore/codex/page/article47
+	name = "04/28/63 - Representative Hainirsdottir Reaffirms Pro-Vey Medical Manifesto"
+	data = "Incumbent Vir Representative Lusia Hainirsdottir has restated her dedication to advanced medical research at a public appearance at a Vey Medical facility in downtown New Reykjavik. Vey Medical has come under some criticism locally in the past year due to its 'accelerated' sapient trials, which Representative Hainirsdottir has strongly endorsed in her current term of office.\
+	<br><br>\
+	In her statement to staff at the New Reykjavik facility, Lusia promised that under her governorship, the company would not be reprimanded for the deadly Holburn's Disease outbreak in rural Sif this past June which claimed fifteen lives, and in which Vey-Med's involvement was only confirmed this week - as the outbreak 'directly lead' to the development of a new life-saving inoculation which has seen success galaxy-wide.\
+	<br><br>\
+	Hainirsdottir has long advocated for the promotion of scientific achievements that have taken place in, and undertaken by the people of Vir."
+
+/datum/lore/codex/page/article48
+	name = "05/06/63 - Isak Spar Withdraws from Vir Election"
+	data = "Independent gubernatorial candidate Isak Spar has withdrawn his name from the running following a 'Public Relations disaster' aboard an orbital NanoTrasen logistics facility. According to witnesses, Spar acted belligerently towards staff members and engaged in vandalism and assault with a deadly weapon during his scheduled visit to the station, which the candidate had opted to undertake alone due to the temporary illness of his campaign manager.\
+	<br><br>\
+	In a statement just hours after the alleged incident, Isak announced that he would no longer be pursuing Vir Governorship, due to 'The unexpected stresses of a political career.' before plugging his upcoming album, C*** End Savage Turbo Death A** Destruction. The NanoTrasen corporation has decided not to press charges due to Mr. Spar 'Suffering the consequences on a far more significant level than a mere fine.' but will not be inviting Spar back for future visitation.\
+	<br><br>\
+	Spar's label, Skull Wreck Music has declined to comment at this time but has agreed to pay damages to the victims on behalf of the self-described 'post-pseudo electro-death superstar'."
+
+/datum/lore/codex/page/article49
+	name = "05/15/63 - Solar Fleet Launches Offensive Against Almach"
+	data = "The first vessels of an SCG Fleet invasion force arrived in the Relan system this morning after a month-long intelligence operation to establish the Almach Association's most vulnerable positions, according to an announcement by Admiral McMullen just hours ago. Relan, which has long been fragmented between the neutral Republic of Taron and the once insurrectory Free Relan Federation - who now control the majority of the system and declared allegiance with Almach early in the crisis - is expected to fall to Confederate forces within 'a matter of weeks' due to its fractious political situation, and relative insignificance to Almach interests.\
+	<br><br>\
+	According to McMullen, the system's most populous habitat, the Carter Interstellar Spaceport is already under blockade and local resistance has thus far been minimal. The capture of Relan is expected to provide our forces with a major foothold in Almach territory and further advances are expected to be 'trivial', bypassing the Association's defensive positions in Angessa's Pearl.\
+	<br><br>\
+	The offensive comes weeks after sizable portions of the Fleet were publicly withdrawn from the frontline in order to reinforce the extended border with the Hegemony following their annexation of the Dark Triangle, and is a clear sign that - despite reduced numbers - Fleet command remains confident of Solar victory against the Mercurial rogue state."
+
+/datum/lore/codex/page/article50
+	name = "05/19/63 - 'Drone Operated' Shelfican Ships Storm Sol Siege"
+	data = "Blockading Solar vessels in the Relan system came under fire today from automated craft originating from the Shelf fleet. The flotilla of drones, described by one survivor as a 'swarm', launched electromagnetic pulse and so-called 'hatch buster' precision missiles against three SCG Defense vessels, inflicting systems damage, and casualties 'in the hundreds' with at least eight service people already confirmed killed in action. The drones are reported to have withdrawn after 'only a few minutes of protracted fire from both sides.'\
+	<br><br>\
+	The Shelf telops fleet, which was spotted by Fleet forces but not identified as an immediate threat, entered the system early this morning and were understood to be acting as observers to the ongoing battle for the Relan system due to Shelf's official stance of non-aggression -- despite aligning itself with the Association. Shelf has reportedly been unable to be reached for comment on their actions, and their alleged neutrality in matters of war has been seriously called into question by many in the Colonial Assembly.\
+	<br><br>\
+	The SCG-D Krishna and SCG-D Mogwai of the SCG fleet, and the assisting Oasis logistical vessel, the OG-L Cloud Nine have been withdrawn to an unspecified location for immediate medical assistance and repairs."
+
+/datum/lore/codex/page/article51
+	name = "05/20/63 - Fleet Withdraws - Sol On The Back Foot?"
+	data = "The Solar Colonial Assembly has confirmed that the Solar Fleet has withdrawn from the contested Relan system due to 'unexpected resistance' from Shelf tele-operated forces. This comes less than 24 hours after three Solar vessels were seriously damaged in an 'ambush' by a large number of Almach-aligned military drones. According to the Fleet, they were unprepared for any significant ship-to-ship combat in the system and will be consolidating their forces. 'This is not a defeat', according to Captain Silvain Astier of the SCG-R Hanoi, speaking unofficially to Occulum News sources 'This is merely a tactical withdrawal in order to reconvene and reassess our plans to restore order to the Almach Rim.'\
+	<br><br>\
+	A spokesperson for Shelf was quick to contact Fleet forces following the withdrawal with a formal apology for yesterday's incident, describing the previous day's attack as 'A terrible mistake.', blaming 'a miscommunication between our people in telops and the trigger-happy robots', though the veracity of their claims cannot be confirmed."
+
+/datum/lore/codex/page/article52
+	name = "05/21/63 - NanoTrasen Station to Host Major Election Debate"
+	data = "As the Vir Gubernatorial elections approach, and with several high-profile debates lined up between the leading candidates in the polls, the NanoTrasen corporation is set to host its very own televised event live from one of its major logistical stations in Vir. The NLS Southern Cross, primarily a traffic control outpost managing shipping in Sif orbit, has been selected by the company to host the debate - funded in full by the corporation - due to a series of minor political scandals that have taken place on the platform, and the suitability of unused space onboard.\
+	<br><br>\
+	Early in the election cycle, NanoTrasen came under fire for its alleged 'manhandling' of Icarus Front candidate Vani Jee, and the confiscation of to-be-televised recordings taken by a party drone. While the company apologised for the incident shortly thereafter, the corporation hopes to mend ties with the potential future representatives by showing that they are capable of hosting civil discourse. More recently, the NLS Southern Cross played host to the 'breakdown' of disgraced former candidate Isak Spar - an episode which was not addressed in NanoTrasen's official statement on the planned debate event."
+
+/datum/lore/codex/page/article53
+	name = "05/26/63 - SEO Candidate Advocates Murder On Live TV!"
+	data = "Sol Economic Organization candidate Freya Singh has been caught live on camera admitting that she would like to throw an innocent individual out of an airlock for a minor slight. During this afternoon's debate hosted aboard the NLS Southern Cross. Singh is quoted as having said that the event was 'the silliest concept for a debate I've encountered yet, and whoever came up with it should get a promotion, and then be fired out of an airlock.', a clear incitement of violence against Oculum Broadcast staff.\
+	<br><br>\
+	Magnus Dugal, 48 works for the Oculum Broadcast corporation and is credited with creating the concept for today's debate, the highest rated for this cycle so far. The father of three, who enjoys hoverboarding in his free time, says that he feels 'Threatened' by Singh's comments, and hopes that she will, 'at the bare minimum', issue an official apology to the company and himself.\
+	<br><br>\
+	Candidate Freya Singh, a career investment banker, spent much of today's debate advocating for reduced safety regulations and the apparent overturning of the Five Points, raising eyebrows across the system. Singh's office claims that her statements were 'a joke', but we do not feel that this is a laughing matter.\
+	<br><br>\
+	In related news, Shadow Coalition candidate Phaedrus remains under a profanity filter 'house arrest' for the remainder of the election."
+
+/datum/lore/codex/page/article54
+	name = "06/28/63 - Vir Finalizes Dates for Election Voting"
+	data = "The Vir Governmental Authority has confirmed that voting for Vir's governorship and Colonial Assembly seats will take place on the 29th and 30th of June, with an additional voting period set for Wednesday the 3rd of July to allow for out-of-system and full-time weekend employees to cast their votes. No exit poll information will be released until the final votes have been cast, and final results are expected to be announced within another week.\
+	<br><br>\
+	According to a Oculum poll, Lusia Hainirsdottir is expected to comfortably take a seat, though the certainty of her governor position is not hard set. Candidates Sao, Singh and Jorg are trailing not far behind, but will all have to make good showings this weekend if they hope for electoral success. In an unexpected surge among minority species, the Shadow Coalition's Tajaran candidate Kurah Zarshir is leading the polls in certain outlying and orbital communities.\
+	<br><br>\
+	Not sure how to vote, if you can vote, or who to vote for? Check out the official election website at your-choice-vir.virgov.xo.vr"
+
+/datum/lore/codex/page/article55
+	name = "06/29/63 - Morpheus Cyberkinetics To Split Assets"
+	data = "The Morpheus Cyberkenetics Corporation is to split into two distinct entities operating under a single board of trustees, in light of their Almach branch's apparent involvement in the ongoing war after last month's 'unintentional' corporate drone strikes. Citing 'Severe communications disruptions' between its operations and assets on either side of the cordon since it was put in place last year, the SolGov-side corporation is to become 'Morpheus Sol', retaining most assets and current corporate headquarters, and its Almach counterpart 'Morpheus Shelf', which is to be based out of the administration station MAS Sophia Jr., located in the El system.'\
+	<br><br>\
+	The principle victim of the Aetolian coup, Nanotrasen, has seen most of their considerable Almachi investment nationalized by the secessionist government, as has Xion and other major Almachi organizations. Most surviving corporate exclaves have been effectively written off by their parent company for the duration of the conflict, due to the severe difficulties effectively conducting trade across the militarized border. Before today, the sole exception was Morpheus, whose involvement in the secession prevented any seizing of their assets. It seems, however, that even the sardonic positronic corporation is not immune to the difficulties of doing business in the Almach Rim region.\
+	<br><br>\
+	Member of the Board Chock Full of Sardines introduced the proposal by saying, 'Our goal here is not being shot. Together with leading economic scientists, we've devised a scheme that will allow us to be shot for illegal smuggling almost ninety percent less often.' They defended the confusing and offensive choice of name in 'Sophia Jr.', seemingly intended as an insult to longstanding rival Sophia, by claiming, 'It's absolutely hilarious.'"
+
+/datum/lore/codex/page/article56
+	name = "06/30/63 - Almach Leak Confirms 'Super-weapon' in Whythe"
+	data = "Solar Confederate Government Intelligence has this afternoon confirmed the presence of a so-called 'Super-weapon' in the distant Whythe system, after an apparent intelligence leak was posted to the exonet in the early hours of this morning. According to a spokesperson for the Solar Fleet, the public were not made aware of the super-weapon as the military 'have no reason to believe that the weapon poses any threat to civilian targets within SolGov space at this time, and there is no reason to cause panic with what amounts to the announcement of an Almachi propaganda tool intended to sow discord with bold threats of overwhelming power. This morning's leak achieves nothing but serving the Association's schemes. Keeping this so-called super-weapon - and I hesitate to use that term - a secret seems to have been last on their list of priorities.'\
+	<br><br>\
+	According to the intelligence documents released this morning and widely spread within minutes of upload, the 'super-weapon' is a colossal space-bound structure equipped with 'newly developed bluespace technology', though its exact purpose or capabilities have not been confirmed by either side.\
+	<br><br>\
+	Additionally, the Solar Fleet has announced that an unnamed individual within the intelligence service has been placed under arrest in connection with the leak."
+
+/datum/lore/codex/page/article57
+	name = "07/04/63 - Exit Polls Suggest Shadow Coalition Win in Vir"
+	data = "According to the first exit poll data released after Vir Gubernatorial voting closed at midnight, local favourite the Shadow Coalition is expected to win at least two representative seats, with incumbent representative Lusia Hainirsdottir taking a comfortable lead.\
+	<br><br>\
+	Final results are not expected to be tallied until Saturday morning, but other frontrunners include the Icarus Front's Vani Jee and Mehmet Sao - running on drastically different platforms - alongside the Shadow Coalition's Selma Jorg. In an unexpected turn, sole Tajaran Candidate Kurah Zarshir of the Shadow Coalition has seen an immense surge in popularity among minority and more xenophilic voters. Could Vir be seeing its first Tajaran Representative? Experts say: 'Perhaps.'"
+
+/datum/lore/codex/page/article58
+	name = "07/07/63 - Vir Election Results"
+	data = "The results of the 2563 Vir Gubernatorial Elections are as follows:\
+	<br>\
+    Governor of Vir: Lusia Hainirsdottir (Shadow Coalition)\
+    <br>\
+    Vir Colonial Assembly Representative: Vani Jee (Icarus Front)\
+    <br>\
+    Vir Colonial Assembly Representative: Selma Jorg (Shadow Coalition)\
+    <br>\
+	Other candidates ranked: Sao (4), Zarshir (5), Keldow (6), Singh (7), Moravec (8), Phaedrus (9), Lye (10), Savik (11), Square (12), Wekstrom (13)\
+	<br><br>\
+	Voter turnout: 30,928,287 (63%)\
+	<br><br>\
+	The greatest upset this election cycle has been the unexpected popularity of 'alien rights' candidate Kurah Zarshir, who was eliminated in favour of Mehmet Sao (Icarus Front) in the 8th round of vote transfers by a margin of just 30 votes, or 0.000096%, prompting a rigourous recount process to confirm the result. A difference at this stage could have resulted in a significantly different final line-up.\
+	<br><br>\
+	This year's winners showed clear advantages in the first-choice votes, each gaining at least 15% of the popular vote before any transfers were calculated, though Sao made significant gains in the final count, falling only a few percent short of the Jorg's 3rd place position. By far the least popular candidate this cycle was Hal Wekstrom of the Sol Economic Organization, who received just 0.8% of the first-choice vote and was immediately eliminated. Also of note were Phaedrus, Apogee Lye and Yole Savik voters, each of whom had high (30%+) voter exhaustion rates, opting not to provide alternative choices; sending the message 'My candidate or none at all.'\
+	<br><br>\
+	The elected are to be sworn in at a ceremony on Luna in two weeks time."
+
+/datum/lore/codex/page/article59
+	name = "07/30/63 - Solar Fleet Data Breach"
+	data = "Last night, a number of files were spread on the Monsters From Beyond's exolife forums allegedly depicting the boarding and eventual scuttling of the SCG-TV Mariner's Cage during a voyage close to the Gavel system on the 12th of June, before the SCG had officially released any information regarding the event. The files contained undisclosed documents from the Solar Fleet investigation, some of which appear to contain audio and video recordings of the final moments of the crew before the vessel's bluespace drive was detonated. Due to the graphic violence depicted and their classified nature, we will not be sharing the files, however as a matter of public record we will explain the events recorded therein. The following description may be unsuitable for sensitive readers.\
+	<br><br>\
+	First, the navigation crew detects a drive signature on an apparent intercept course with their own, originating from across the SCG-Almachi border. It was not a large vessel, and is assumed to be some form of autonomous drone. The crew disregards it as a low level threat, instead continuing on their trajectory, leaving only the standard point defense armament locked on. This proved to be a lethal mistake, as the vessel appeared and near-instantly began accelerating toward the Mariner's Cage, before impacting the fore weapons array. The recording is cut, due to what was likely a power surge, however upon reconnection, reports indicate no damage related to any known warhead was apparent, aside from the initial impactor. The crew mistakenly assumes it to be a failed suicide drone strike, and dispatches minimal security personnel, and a large complement of response engineers.\
+	<br><br>\
+	Approximately thirty minutes after the response teams are dispatched to the impact zone, the teams begin losing contact, with those first arriving being the first to disappear. When the security responders intercept the path of communications blackouts, they are met with the blades of multiple Aetolian shock troopers. Two appear to be made from a 'living steel', with each limb taking the form of 'jagged cleavers' as one radio recording states, and three more of 'indeterminable classification'. The ship entered a red alert state, and moments later, the small contingent of marines aboard the supply vessel were dispatched to deal with the threat. All five members of the enemy boarding party were able to be rendered inert through sustained fire, though not without Sol casualties.\
+	<br><br>\
+	According to the next recordings, approximately three hours after the incident, the vessel received orders to interrogate the boarding 'Aetotheans'. The two noted to appear as the officers of the squad were rejuvenated within sealed interrogation chambers reinforced with supplies on hand, apparently capable of stopping sustained fire from multiple energy weapons. The first individual was a 'sapphire' according to information from NanoTrasen correspondants. It refused to speak in Galactic Common, and instead utilized an unknown frequency of biological transmission, and internal charge shifts. The individual was moved to a more permanent cell within the vessel's brig for transport, and the second was rejuvenated. Only the first half of the interrogation, which lasted approximately two and a half minutes, compared to four hours for the first, was recovered. The individual is rejuvenated, and is engaged in discussion with the interrogating officer when it suddenly stands, emits what is described as a 'wail', and detonates, destroying the transmitting camera, and presumably killing the officers involved in direct interrogation.\
+	<br><br>\
+	Final recordings originate from the ship's onboard A.I. housing, which was involved in continual discussions with presumably the 'sapphire', as it enacted the vessel's scuttling. It is unknown whether or not the individual was somehow capable of restoring the other individuals that fell in combat in order to free itself, or if it was able to incapacitate the transporting officers, and command crew of the vessel alone.\
+	<br><br>\
+	The Solar Fleet has expressed 'regret' that the files were leaked in their complete form, and have assured the public that an official report was due for release in the coming weeks. Concerns of 'Aetothean' attacks on civilian targets have been dismissed as 'improbable', but have affirmed that 'the threat is being taken very seriously'."
+
+/datum/lore/codex/page/article60
+	name = "08/03/63 - Hainirsdottir Sworn In As Governor of Vir"
+	data = "Following a short transitionary period for the previous administration, this year's election victors have been sworn in at an official ceremony at the Colonial Assembly Hall on Luna. During her welcoming address, Governor Hainirsdottir reaffirmed her plans for the future of the system, promising a 'Bright future for Vir as a hub for medical science.', and plans for an incentivisation program for the removal of invasive extra-terrestrial species that have long plagued the region - in particular the aggressive spiders that have become synonymous with certain regions of the Sivian wilderness.\
+	<br><br>\
+	Additionally, the newly elected representatives announced expected, but none-the-less significant changes to the administrative staff of the system. Notable figures include two defeated election hopefuls: Kurah Zarshir has been selected as the Shadow Coalition's Culture Secretary for the system, while Mehmet Sao has been brought aboard by the Representative Vani Jee as the Vir Icarus Front's Internal Security Advisor. It is expected that the former candidates may use their positions to further certain goals from their own campaigns, but under the watchful eyes of their perhaps more moderate superiors."
+
+/datum/lore/codex/page/article61
+	name = "08/04/63 - Former Independence Candidate Found Dead"
+	data = "It has been confirmed by a spokesperson for the Sivian Independence Front that a body found by hikers last week in the Ingolfskynn Mountains, approximately 200 miles northeast of New Reykjavik, belonged to party chair Yole Savik.\
+	<br><br>\
+	Savik, 68 - who had run for Vir Representative in the recent election - had not been seen since the 14th of July, shortly after the results were announced. Party officials claim that Mr. Savik frequently made 'off the grid' trips into the Sivian wilderness and his absence had not been treated as suspicious until investigators approached them to confirm the identity of the body. According to police, though Yole was publicly known as a 'seasoned frontiersman', Savik had succumbed to exposure at least two weeks prior to the grisly discovery. His death is not being treated as suspicious."
+
+/datum/lore/codex/page/article62
+	name = "08/07/63 - Almach Pirate Threat Vanishes - Analysts Baffled"
+	data = "Skrellian Xe'qua pirates operating in the far reaches of the Almach Association since the onset of hostilities last year, have inexplicably gone dark. The pirates, who were under close SolGov surveillance to monitor their impact on Almachi shipping, have drastically dropped in activity and numbers over the last month according to an official report released by the Solar Fleet today. The Fleet is unable to account for the cease in activity, which has now reached levels even lower than their pre-war baseline, as there have been no reports of Almach military operations in the area, nor any signs of decisive battle on the Almach border with pirate space.\
+	<br><br>\
+	The drop in activity roughly coincides with the leaked information on an Almach 'Super-weapon' in Whythe, though military sources do not believe that the weapon has been deployed in any capacity at this time. According to Hasan Drust, an expert on Skrellian foreign policy, the 'only feasible explanation (is) major anti-piracy action undertaken by the Skrellian Far Kingdoms', who occupy the space beyond the Xe'qua pirates' known range. The reasoning behind this action now, against pirates who have historically only targeted human space is not entirely clear, though Drust suggests that it may simply be a coincidence as pirates would be a 'trivial issue' for Far Kingdom military might."
+
+/datum/lore/codex/page/article63
+	name = "09/02/63 - Shock Almach Attack Routs Relan Front!"
+	data = "Following close to a month of reduced Almach activity, enemy Militia forces have today launched a staggering attack on Sol frontline forces in the region of the Relan system, disabling several SCG warships and forcing a major tactical retreat to Saint Columbia. The scale of this attack by Almach forces is unprecedented, but seems to be the result of the Association consolidating manpower previously dedicated to anti-piracy patrols on the far side of their territory. It is believed these vessels have become freed up due to the apparent but as of yet unconfirmed annihilation of Xe'qua criminal flotillas by Skrellian Far Kingdom police action.\
+	<br><br>\
+	The Solar fleet had been in position to blockade the Relan system in the hopes of forcing the Free Relan Federation to surrender and withdraw from the Association, but was unprepared for what has been described as an 'all-out attack' on their positions, which left the vessels SCG-D Liu Bei, SCG-D Wodehouse, SCG-TV Ceylon Hartal and SCG-TV Apoxpalon disabled and unable to retreat with the bulk of our forces, as well as inflicting severe damage to several other craft. According to initial reports, the strikes on many of the afflicted ships closely resembled scenes from the controversial 'Aetothean shock attacks' on the SCG-TV Mariner's Cage this June, which saw the ruthless deployment of gene-altered Promethean 'super-soldiers' by the Almach Association.\
+	<br><br>\
+	Fleet Admiral Ripon Latt, commanding officer of the assailed fleet, has confirmed that reinforcements are underway and the retreat 'shall not be a significant setback in the war effort', especially assuring citizens of the embattled Saint Columbia system and its neighbours that there is no cause for alarm and civilians have yet to be targeted.\
+	<br><br>\
+	The fates of the four missing ships have not been confirmed, and though the Fleet has not yet made an official statement, Sol casualties are cautiously estimated to be in the hundreds."
+
+/datum/lore/codex/page/article64
+	name = "09/23/63 - Fleet Refuses Inquiry Into Relan Losses"
+	data = "The SCG Fleet has refused to heed widespread calls from critics to launch an investigation into the heavy losses sustained by our forces in a major Almach attack early this month, citing that an investigation at this time would 'undermine the ongoing efforts of our troops in battles to come'.\
+	<br><br>\
+	The attack, which took place on the 2nd of September and at current count resulted in the loss of a staggering 1281 Sol lives, quickly drew criticism from experts for 'the total unpreparedness' of the fleet despite their public claims that all vessels were 'battle ready and prepared for a coming offensive.'. The specifics of the fleets apparent failings have been the focus of much speculation in the intervening weeks, with the blame placed on everything from a critically inexperienced officer core, to ongoing redeployments to and from the recently expanded Hegemony border.\
+	<br><br>\
+	Admiral Latt has condemned critics, stating that 'the last thing our brave troops need right now is murmuring from people who don't know the first thing what they're talking about. Their actions in following orders to fall back to the border have been nothing but commendable, and all effort was made to minimise loss of life. The fleet is undergoing reorganization at this time, and is in a better position than ever.'"
+
+/datum/lore/codex/page/article65
+	name = "09/27/63 - Almach Bypass Saint Columbia In Brazen Gavel Attack!"
+	data = "Almach Association fleet forces entered the Gavel system this afternoon, reportedly having evaded interdicting Sol forces from Saint Columbia in an apparent effort to skirt the range of the MJOLNIR weapon system in Saint Columbia and cut off that system from major shipping routes. Current reports from the system capital in New Xanadu are that the majority of outlying civilian stations have surrendered to invading forces with only minor incident, but that skirmishes with local defence forces - including Sol Fleet detachments - are ongoing, and it is too early to remark on the outcome of the battle. Official military reports are scarce at this time, but the Fleet in Saint Columbia is 'on the move and ready to repel the invaders'.\
+	<br><br>\
+	Accounts from the system's edge describe Almach forces 'firing indiscriminately' on anti-piracy emplacements including those mounted to the ILS Thurston, a Greyson Manufactories collection station with eight crew, killing all hands.\
+	<br><br>\
+	Open fighting in the Gavel system marks the furthest Almach encroachment on Sol territory to date. The system, which is a stone's throw from the Oasis and Vir systems is best known for the destruction of the moonlet 'Requiem' by a rogue nanoswarm in 2289, which was successfully  neutralized by government forces, and boasts only a small population relative to its neighbors."
+
+/datum/lore/codex/page/article66
+	name = "10/01/63 - 'Judgement Day' As Gavel Falls!"
+	data = "The government of New Xanadu has surrendered to Association invaders following a disastrous relief effort by the Solar Fleet, whose interdiction vessels are believed to have been captured by the invading force. The manoeuvre leaves the bulk of the Sol fleet isolated in the Saint Columbia system - though a breakout is expected - and has led to widespread outrage in the Colonial Assembly. Critics of the war have damned the Fleet for their 'inability to fight a civilian rabble, gene-modded or otherwise' and renewed calls for a peaceful arrangement between the Solar Confederate Government and Association.\
+	<br><br>\
+	ISA-5, current spokesperson for the Shadow Coalition has forwarded a motion today to resume discussions with Almachi heads of state, just hours after news of Gavel's surrender broke. The proposal which has yet to gain widespread traction, would call for a new ceasefire, and ISA-5 has stated they 'hope that a new agreement can be made to end the senseless loss of life over the particulars of a foreign government's right to autonomy.'.\
+	<br><br>\
+	Executive Sifat Unar of the Emergent Intelligence Oversight has voiced immediate concern over the motion, criticising the use of 'foreign government' in reference to Almach; 'Our Fleet has suffered a few defeats, but this conflict goes deeper than mere lasers and shells and to surrender to torturers, mind-hackers, and Machiavellian machines at this stage would be insanity. To allow a seccessionist state, particularly one so unabashedly guilty of crimes against humanity that go far beyond even our modern definitions of 'Human Sanctity', to exist unquestioned a stone's throw from some of our most precious member states, would be a failing not only of this government, but of humanity that would echo through history like a great shameful dirge for all to hear.'\
+	<br><br>\
+	A communications blackout has been instated on the Gavel system by the Almach Militia, though earlier reports indicate continued strikes on numerous civilian colonies who were unwilling, or unable to deactivate their automated defence systems prior to the invaders arrival."

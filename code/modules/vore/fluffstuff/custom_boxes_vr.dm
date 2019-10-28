@@ -57,13 +57,11 @@
 // bwoincognito:Tasald Corlethian
 /obj/item/weapon/storage/box/fluff/tasald
 	name = "Tasald's Kit"
-	desc = "A kit containing Talsald's equipment."
+	desc = "A kit containing Tasald's equipment."
 	has_items = list(
 		/obj/item/clothing/suit/storage/det_suit/fluff/tasald,
 		/obj/item/clothing/suit/storage/det_suit/fluff/tas_coat,
 		/obj/item/clothing/under/det/fluff/tasald,
-		//	/obj/item/clothing/accessory/permit/gun/fluff/tasald_corlethian,
-		//	/obj/item/weapon/gun/projectile/revolver/mateba/fluff/tasald_corlethian,
 		/obj/item/weapon/implanter/loyalty)
 
 //bwoincognito:Octavious Ward
@@ -149,11 +147,7 @@
 		new /obj/item/clothing/accessory/holster/hip(src)
 		new /obj/item/clothing/suit/storage/fluff/modernfedcoat(src)
 		new /obj/item/clothing/head/caphat/formal/fedcover(src)
-		new /obj/item/weapon/card/id/centcom/station/fluff/joanbadge(src)
-//		new /obj/item/weapon/gun/energy/gun/fluff/dominator(src)
 		new /obj/item/clothing/suit/armor/det_suit(src)
-//		new /obj/item/clothing/accessory/permit/gun/fluff/joanrisu(src)
-//		new /obj/item/weapon/sword/fluff/joanaria(src)
 		new /obj/item/weapon/flame/lighter/zippo/fluff/joan(src)
 		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 		new /obj/item/clothing/head/helmet/space/fluff/joan(src)
@@ -169,7 +163,6 @@
 		..()
 		new /obj/item/clothing/accessory/holster/hip(src)
 		new /obj/item/clothing/suit/storage/fluff/fedcoat(src)
-//		new /obj/item/weapon/gun/energy/gun/fluff/dominator(src)
 		new /obj/item/clothing/suit/armor/det_suit(src)
 		new /obj/item/clothing/accessory/storage/black_vest(src)
 		new /obj/item/weapon/material/knife/tacknife/combatknife/fluff/katarina(src)
@@ -192,32 +185,6 @@
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/clothing/under/swimsuit/)
 	has_items = list(/obj/item/clothing/under/swimsuit/fluff/penelope)
-
-// Aerowing:Sebastian Aji
-/obj/item/weapon/storage/box/fluff/sebastian_aji
-	name = "Sebastian's Lumoco Arms P3 Box"
-	has_items = list(
-		/obj/item/weapon/gun/projectile/pistol,
-		/obj/item/ammo_magazine/m9mm/compact/flash,
-		/obj/item/ammo_magazine/m9mm/compact/flash,
-		/obj/item/clothing/accessory/permit/gun/fluff/sebastian_aji)
-
-/*
-/obj/item/weapon/storage/box/fluff/briana_moore
-	name = "Briana's Derringer Box"
-	has_items = list(
-		/obj/item/weapon/gun/projectile/derringer/fluff/briana,
-		/obj/item/clothing/accessory/permit/gun/fluff/briana_moore)
-*/
-
-/*
-//SilencedMP5A5:Serdykov Antoz
-/obj/item/weapon/storage/box/fluff/serdykov_antoz
-	name = "Serdy's Weapon Box"
-	has_items = list(
-		/obj/item/clothing/accessory/permit/gun/fluff/silencedmp5a5,
-		/obj/item/weapon/gun/projectile/colt/fluff/serdy)
-*/
 
 // JackNoir413: Mor Xaina
 /obj/item/weapon/storage/box/fluff/morxaina

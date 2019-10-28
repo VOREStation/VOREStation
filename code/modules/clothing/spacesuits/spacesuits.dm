@@ -7,7 +7,7 @@
 	icon_state = "space"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment."
 	flags = PHORONGUARD
-	item_flags = THICKMATERIAL | AIRTIGHT
+	item_flags = THICKMATERIAL | AIRTIGHT | ALLOW_SURVIVALFOOD
 	permeability_coefficient = 0.01
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 50)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
@@ -30,23 +30,36 @@
 	brightness_on = 4
 	on = 0
 
-/obj/item/clothing/head/helmet/space/attack_self(mob/user)
+/obj/item/clothing/head/helmet/space/verb/toggle_camera()
+	set name = "Toggle Helmet Camera"
+	set desc = "Turn your helmet's camera on or off."
+	set category = "Object"
+	set src in usr
+	if(usr.stat || usr.restrained() || usr.incapacitated())
+		return
 
-	if(!camera && camera_networks)
+	if(camera_networks)
+		if(!camera)
+			camera = new /obj/machinery/camera(src)
+			camera.replace_networks(camera_networks)
+			camera.set_status(FALSE) //So the camera will activate in the following check.
 
-		camera = new /obj/machinery/camera(src)
-		camera.replace_networks(camera_networks)
-		camera.c_tag = user.name
-		user << "<font color='blue'>User scanned as [camera.c_tag]. Camera activated.</font>"
-		user.update_action_buttons()
-		return 1
+		if(camera.status == TRUE)
+			camera.set_status(FALSE)
+			to_chat(usr, "<font color='blue'>Camera deactivated.</font>")
+		else
+			camera.set_status(TRUE)
+			camera.c_tag = usr.name
+			to_chat(usr, "<font color='blue'>User scanned as [camera.c_tag]. Camera activated.</font>")
 
-	..()
+	else
+		to_chat(usr, "This helmet does not have a built-in camera.")
+		return
 
 /obj/item/clothing/head/helmet/space/examine()
 	..()
 	if(camera_networks && get_dist(usr,src) <= 1)
-		usr << "This helmet has a built-in camera. It's [camera ? "" : "in"]active."
+		to_chat(usr, "This helmet has a built-in camera. It's [camera ? "" : "in"]active.")
 
 /obj/item/clothing/suit/space
 	name = "Space suit"
@@ -95,18 +108,18 @@
 	if(user.wear_suit == src)
 		for(var/obj/item/organ/external/E in user.bad_external_organs)
 			if(E.is_broken() && E.apply_splint(src))
-				user << "You feel [src] constrict about your [E.name], supporting it."
+				to_chat(user, "You feel [src] constrict about your [E.name], supporting it.")
 				supporting_limbs |= E
 	else
 		// Otherwise, remove the splints.
 		for(var/obj/item/organ/external/E in supporting_limbs)
 			if(E.splinted == src && E.remove_splint(src))
-				user << "\The [src] stops supporting your [E.name]."
+				to_chat(user, "\The [src] stops supporting your [E.name].")
 		supporting_limbs.Cut()
 
 /obj/item/clothing/suit/space/proc/handle_fracture(var/mob/living/carbon/human/user, var/obj/item/organ/external/E)
 	if(!istype(user) || isnull(supporting_limbs))
 		return
 	if(E.is_broken() && E.apply_splint(src))
-		user << "You feel [src] constrict about your [E.name], supporting it."
+		to_chat(user, "You feel [src] constrict about your [E.name], supporting it.")
 		supporting_limbs |= E

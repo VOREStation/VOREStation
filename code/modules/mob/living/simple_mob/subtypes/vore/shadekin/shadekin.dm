@@ -8,7 +8,7 @@
 	faction = "shadekin"
 	ui_icons = 'icons/mob/shadekin_hud.dmi'
 	mob_class = MOB_CLASS_HUMANOID
-	mob_bump_flag = 0
+	mob_bump_flag = HUMAN
 
 	maxHealth = 200
 	health = 200

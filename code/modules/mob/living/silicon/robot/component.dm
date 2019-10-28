@@ -145,9 +145,6 @@
 /datum/robot_component/camera/update_power_state()
 	..()
 	if (camera)
-		//check if camera component was deactivated
-		if (!powered && camera.status != powered)
-			camera.kick_viewers()
 		camera.status = powered
 
 /datum/robot_component/camera/install()
@@ -157,12 +154,10 @@
 /datum/robot_component/camera/uninstall()
 	if (camera)
 		camera.status = 0
-		camera.kick_viewers()
 
 /datum/robot_component/camera/destroy()
 	if (camera)
 		camera.status = 0
-		camera.kick_viewers()
 
 // SELF DIAGNOSIS MODULE
 // Analyses cyborg's modules, providing damage readouts and basic information
@@ -213,6 +208,18 @@
 	name = "broken component"
 	icon = 'icons/obj/robot_component.dmi'
 	icon_state = "broken"
+	matter = list(DEFAULT_WALL_MATERIAL = 1000)
+
+/obj/item/broken_device/random
+	var/list/possible_icons = list("binradio_broken",
+									"motor_broken",
+									"armor_broken",
+									"camera_broken",
+									"analyser_broken",
+									"radio_broken")
+
+/obj/item/broken_device/random/Initialize()
+	icon_state = pick(possible_icons)
 
 /obj/item/robot_parts/robot_component
 	icon = 'icons/obj/robot_component.dmi'

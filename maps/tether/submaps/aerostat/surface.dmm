@@ -21,10 +21,6 @@
 /obj/structure/metal_edge,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/tether_away/aerostat/surface/explored)
-"s" = (
-/obj/structure/stairs/east,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
 "A" = (
 /obj/structure/railing{
 	icon_state = "railing0";
@@ -55,10 +51,6 @@
 	icon_state = "railing0";
 	dir = 4
 	},
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
-"Z" = (
-/obj/structure/stairs/west,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/tether_away/aerostat/surface/explored)
 
@@ -8792,8 +8784,8 @@ X
 X
 X
 X
-s
-s
+I
+I
 X
 X
 X
@@ -10780,8 +10772,8 @@ A
 A
 A
 A
-Z
-Z
+I
+I
 A
 A
 A

@@ -934,7 +934,7 @@
 			overeatduration -= 2 //doubled the unfat rate
 
 	if(noisy == TRUE && nutrition < 250 && prob(10)) //VOREStation edit for hunger noises.
-		var/growlsound = pick(hunger_sounds)
+		var/sound/growlsound = sound(get_sfx("hunger_sounds"))
 		var/growlmultiplier = 100 - (nutrition / 250 * 100)
 		playsound(src, growlsound, vol = growlmultiplier, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/client_preference/digestion_noises)
 	// VOREStation Edit End
@@ -994,7 +994,7 @@
 			var/brainOxPercent = 0.015		//Default 1.5% of your current oxyloss is applied as brain damage, 50 oxyloss is 1 brain damage
 			if(CE_STABLE in chem_effects)
 				brainOxPercent = 0.008		//Halved in effect
-			if(oxyloss >= 20 && prob(5))
+			if(oxyloss >= (getMaxHealth() * 0.3) && prob(5)) // If oxyloss exceeds 30% of your max health, you can take brain damage.
 				adjustBrainLoss(brainOxPercent * oxyloss)
 
 		if(halloss >= species.total_health)
@@ -1327,6 +1327,11 @@
 			if(found_welder)
 				client.screen |= global_hud.darkMask
 
+/mob/living/carbon/human/reset_view(atom/A)
+	..()
+	if(machine_visual && machine_visual != A)
+		machine_visual.remove_visual(src)
+
 /mob/living/carbon/human/handle_vision()
 	if(stat == DEAD)
 		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
@@ -1388,6 +1393,7 @@
 
 		if(machine)
 			var/viewflags = machine.check_eye(src)
+			machine.apply_visual(src)
 			if(viewflags < 0)
 				reset_view(null, 0)
 			else if(viewflags && !looking_elsewhere)
@@ -1563,6 +1569,8 @@
 
 	var/temp = PULSE_NORM
 
+	var/brain_modifier = 1
+
 	var/modifier_shift = 0
 	var/modifier_set
 
@@ -1594,6 +1602,14 @@
 
 	var/obj/item/organ/internal/heart/Pump = internal_organs_by_name[O_HEART]
 
+	var/obj/item/organ/internal/brain/Control = internal_organs_by_name[O_BRAIN]
+
+	if(Control)
+		brain_modifier = Control.get_control_efficiency()
+
+		if(brain_modifier <= 0.7 && brain_modifier >= 0.4) // 70%-40% control, things start going weird as the brain is failing.
+			brain_modifier = rand(5, 15) / 10
+
 	if(Pump)
 		temp += Pump.standard_pulse_level - PULSE_NORM
 
@@ -1621,7 +1637,7 @@
 			if(R.id in cheartstopper) //Conditional heart-stoppage
 				if(R.volume >= R.overdose)
 					temp = PULSE_NONE
-		return temp
+		return temp * brain_modifier
 	//handles different chems' influence on pulse
 	for(var/datum/reagent/R in reagents.reagent_list)
 		if(R.id in bradycardics)
@@ -1636,7 +1652,7 @@
 			if(R.volume >= R.overdose)
 				temp = PULSE_NONE
 
-	return temp
+	return max(0, round(temp * brain_modifier))
 
 /mob/living/carbon/human/proc/handle_heartbeat()
 	if(pulse == PULSE_NONE)
@@ -1795,12 +1811,6 @@
 	attempt_vr(src,"handle_hud_list_vr",list()) //VOREStation Add - Custom HUDs.
 
 	hud_updateflag = 0
-
-/mob/living/carbon/human/handle_stunned()
-	if(!can_feel_pain())
-		stunned = 0
-		return 0
-	return ..()
 
 /mob/living/carbon/human/handle_fire()
 	if(..())

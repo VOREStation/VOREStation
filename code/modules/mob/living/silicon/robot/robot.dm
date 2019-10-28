@@ -259,11 +259,16 @@
 	if(module)
 		return
 	var/list/modules = list()
-	modules.Add(robot_module_types)
-	if(crisis || security_level == SEC_LEVEL_RED || crisis_override) // VOREStation Edit
-		to_chat(src, "<font color='red'>Crisis mode active. Combat module available.</font>")
-		modules+="Combat"
-		modules+="ERT" //VOREStation Edit
+	//VOREStatation Edit Start: shell restrictions
+	if(shell)
+		modules.Add(shell_module_types)
+	else
+		modules.Add(robot_module_types)
+		if(crisis || security_level == SEC_LEVEL_RED || crisis_override)
+			to_chat(src, "<font color='red'>Crisis mode active. Combat module available.</font>")
+			modules+="Combat"
+			modules+="ERT"
+	//VOREStatation Edit End: shell restrictions
 	modtype = input("Please, select a module!", "Robot module", null, null) as null|anything in modules
 
 	if(module)
@@ -494,7 +499,7 @@
 		M.install(src, user)
 		return
 
-	if (istype(W, /obj/item/weapon/weldingtool))
+	if (istype(W, /obj/item/weapon/weldingtool) && user.a_intent != I_HURT)
 		if (src == user)
 			to_chat(user, "<span class='warning'>You lack the reach to be able to repair yourself.</span>")
 			return
@@ -526,7 +531,7 @@
 			for(var/mob/O in viewers(user, null))
 				O.show_message(text("<font color='red'>[user] has fixed some of the burnt wires on [src]!</font>"), 1)
 
-	else if (W.is_crowbar())	// crowbar means open or close the cover
+	else if (W.is_crowbar() && user.a_intent != I_HURT)	// crowbar means open or close the cover
 		if(opened)
 			if(cell)
 				to_chat(user, "You close the cover.")

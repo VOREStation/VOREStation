@@ -8,6 +8,7 @@
 	var/vantag_pref = VANTAG_NONE //What's my status?
 	var/impersonate_bodytype //For impersonating a bodytype
 	var/ability_flags = 0	//Shadekin stoof
+	var/sensorpref = 5
 
 /mob/living/carbon/human/proc/shadekin_get_eye_color()
 	var/datum/species/shadekin/SK = species

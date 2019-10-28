@@ -139,7 +139,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				else
 					O.robotize()
 
-	for(var/name in list(O_HEART,O_EYES,O_LUNGS,O_LIVER,O_KIDNEYS,O_BRAIN))
+	for(var/name in list(O_HEART,O_EYES,O_VOICE,O_LUNGS,O_LIVER,O_KIDNEYS,O_SPLEEN,O_STOMACH,O_INTESTINE,O_BRAIN))
 		var/status = pref.organ_data[name]
 		if(!status)
 			continue
@@ -237,6 +237,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				organ_name = "heart"
 			if(O_EYES)
 				organ_name = "eyes"
+			if(O_VOICE)
+				organ_name = "larynx"
 			if(O_BRAIN)
 				organ_name = "brain"
 			if(O_LUNGS)
@@ -245,6 +247,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				organ_name = "liver"
 			if(O_KIDNEYS)
 				organ_name = "kidneys"
+			if(O_SPLEEN)
+				organ_name = "spleen"
+			if(O_STOMACH)
+				organ_name = "stomach"
+			if(O_INTESTINE)
+				organ_name = "intestines"
 
 		if(status == "cyborg")
 			++ind
@@ -381,6 +389,16 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["set_species"])
 		user << browse(null, "window=species")
 		if(!pref.species_preview || !(pref.species_preview in all_species))
+			return TOPIC_NOACTION
+
+		var/datum/species/setting_species
+
+		if(all_species[href_list["set_species"]])
+			setting_species = all_species[href_list["set_species"]]
+		else
+			return TOPIC_NOACTION
+
+		if(((!(setting_species.spawn_flags & SPECIES_CAN_JOIN)) || (!is_alien_whitelisted(preference_mob(),setting_species))) && !check_rights(R_ADMIN, 0) && !(setting_species.spawn_flags & SPECIES_WHITELIST_SELECTABLE))	//VOREStation Edit: selectability
 			return TOPIC_NOACTION
 
 		var/prev_species = pref.species
@@ -698,7 +716,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["organs"])
 
-		var/organ_name = input(user, "Which internal function do you want to change?") as null|anything in list("Heart", "Eyes", "Lungs", "Liver", "Kidneys", "Brain")
+		var/organ_name = input(user, "Which internal function do you want to change?") as null|anything in list("Heart", "Eyes","Larynx", "Lungs", "Liver", "Kidneys", "Spleen", "Intestines", "Stomach", "Brain")
 		if(!organ_name) return
 
 		var/organ = null
@@ -707,12 +725,20 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				organ = O_HEART
 			if("Eyes")
 				organ = O_EYES
+			if("Larynx")
+				organ = O_VOICE
 			if("Lungs")
 				organ = O_LUNGS
 			if("Liver")
 				organ = O_LIVER
 			if("Kidneys")
 				organ = O_KIDNEYS
+			if("Spleen")
+				organ = O_SPLEEN
+			if("Intestines")
+				organ = O_INTESTINE
+			if("Stomach")
+				organ = O_STOMACH
 			if("Brain")
 				if(pref.organ_data[BP_HEAD] != "cyborg")
 					user << "<span class='warning'>You may only select a cybernetic or synthetic brain if you have a full prosthetic body.</span>"
@@ -808,7 +834,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	dat += "<center><h2>[current_species.name] \[<a href='?src=\ref[src];show_species=1'>change</a>\]</h2></center><hr/>"
 	dat += "<table padding='8px'>"
 	dat += "<tr>"
-	dat += "<td width = 400>[current_species.blurb]</td>"
+	//vorestation edit begin
+	if(current_species.wikilink)
+		dat += "<td width = 400>[current_species.blurb]<br><br>See <a href=[current_species.wikilink]>the wiki</a> for more details.</td>"
+	else
+		dat += "<td width = 400>[current_species.blurb]</td>"
+	//vorestation edit end
 	dat += "<td width = 200 align='center'>"
 	if("preview" in icon_states(current_species.icobase))
 		usr << browse_rsc(icon(current_species.icobase,"preview"), "species_preview_[current_species.name].png")
@@ -868,12 +899,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			dat += "<font color='red'><b>You cannot play as this species.</br><small>If you wish to be whitelisted, you can make an application post on <a href='?src=\ref[user];preference=open_whitelist_forum'>the forums</a>.</small></b></font></br>"
 		else if(restricted == 2)
 			dat += "<font color='red'><b>You cannot play as this species.</br><small>This species is not available for play as a station race..</small></b></font></br>"
-		//VOREStation Addition begin
-		else if(restricted == 3)
-			dat += "<font color='red'><b>You cannot play as this species.</br><small>You can however select it and set it up in case admin approves spawning you in.</small></b></font></br>"
-			restricted = 0
-		//VOREStation Addition end
-	if(!restricted || check_rights(R_ADMIN, 0))
+	if(!restricted || check_rights(R_ADMIN, 0) || current_species.spawn_flags & SPECIES_WHITELIST_SELECTABLE)	//VOREStation Edit: selectability
 		dat += "\[<a href='?src=\ref[src];set_species=[pref.species_preview]'>select</a>\]"
 	dat += "</center></body>"
 

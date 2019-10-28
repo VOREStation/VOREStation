@@ -32,6 +32,11 @@
 		icon_state = "mcontroller"
 		origin_tech = list(TECH_DATA = 4, TECH_COMBAT = 4)
 
+/obj/item/weapon/circuitboard/mecha/gygax/medical
+		name = T_BOARD_MECHA("Serenity medical control")
+		icon_state = "mcontroller"
+		origin_tech = list(TECH_DATA = 4, TECH_BIO = 4)
+
 /obj/item/weapon/circuitboard/mecha/gygax/main
 		name = T_BOARD_MECHA("Gygax central control")
 		icon_state = "mainboard"

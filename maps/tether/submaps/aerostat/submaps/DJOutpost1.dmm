@@ -1,0 +1,576 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/simulated/wall/virgo2,
+/area/submap/virgo2/DJOutpost1)
+"c" = (
+/obj/structure/grille/broken,
+/obj/item/weapon/material/shard,
+/obj/item/weapon/material/shard{
+	icon_state = "shardmedium"
+	},
+/obj/item/stack/rods,
+/turf/simulated/floor,
+/area/submap/virgo2/DJOutpost1)
+"d" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor,
+/area/submap/virgo2/DJOutpost1)
+"e" = (
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"f" = (
+/obj/machinery/telecomms/relay/preset/ruskie,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"g" = (
+/obj/structure/loot_pile/maint/technical,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"h" = (
+/obj/structure/sign/goldenplaque{
+	desc = "An award given to Sif Free Radio for media excellency. It looks fake.";
+	name = "Best Radio Station 2558";
+	pixel_y = 30
+	},
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"j" = (
+/obj/effect/decal/remains,
+/obj/effect/decal/cleanable/blood,
+/obj/item/clothing/under/frontier,
+/obj/item/weapon/material/knife/tacknife/combatknife,
+/obj/random_multi/single_item/sfr_headset,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"k" = (
+/obj/machinery/door/airlock/glass,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"l" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/device/radio/intercom{
+	icon_state = "intercom";
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"m" = (
+/obj/machinery/computer/message_monitor,
+/obj/item/weapon/paper/monitorkey,
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"n" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0
+	},
+/turf/simulated/floor,
+/area/submap/virgo2/DJOutpost1)
+"o" = (
+/obj/effect/overlay/snow/floor,
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor{
+	outdoors = 1
+	},
+/area/submap/virgo2/DJOutpost1)
+"p" = (
+/obj/structure/bed/chair/wood,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"q" = (
+/obj/effect/decal/remains,
+/obj/item/clothing/under/dress/blacktango,
+/obj/effect/decal/cleanable/blood,
+/obj/item/device/universal_translator/ear,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"s" = (
+/obj/structure/bed/chair/office/dark{
+	icon_state = "officechair_dark";
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"t" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	pixel_x = 0
+	},
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"u" = (
+/obj/effect/overlay/snow/floor,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/closet/crate,
+/obj/item/stack/material/phoron{
+	amount = 25
+	},
+/turf/simulated/floor{
+	outdoors = 1
+	},
+/area/submap/virgo2/DJOutpost1)
+"v" = (
+/obj/structure/table/woodentable,
+/obj/item/trash/candle,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"w" = (
+/obj/structure/bed/chair/wood{
+	icon_state = "wooden_chair";
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"x" = (
+/obj/structure/bookcase,
+/obj/item/weapon/book/codex/lore/vir,
+/obj/item/weapon/book/manual/excavation,
+/obj/item/weapon/book/manual/engineering_construction,
+/obj/item/weapon/storage/bible,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"y" = (
+/obj/item/weapon/storage/toolbox/mechanical,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"z" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/device/radio/phone,
+/obj/random_multi/single_item/sfr_headset,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"A" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/device/radio/intercom/syndicate{
+	desc = "Talk through this.";
+	name = "station intercom (General)"
+	},
+/obj/item/device/multitool,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"B" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/device/radio,
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/hyper;
+	dir = 4;
+	environ = 1;
+	equipment = 1;
+	lighting = 1;
+	locked = 0;
+	name = "Sif Free Radio APC";
+	operating = 0;
+	pixel_x = 24
+	},
+/obj/structure/cable/yellow,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"C" = (
+/obj/effect/overlay/snow/floor,
+/obj/machinery/power/port_gen/pacman,
+/obj/structure/cable/yellow,
+/turf/simulated/floor{
+	outdoors = 1
+	},
+/area/submap/virgo2/DJOutpost1)
+"D" = (
+/obj/machinery/door/airlock/glass,
+/obj/item/device/gps/internal/poi,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"E" = (
+/obj/machinery/biogenerator,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"F" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/obj/random_multi/single_item/sfr_headset,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"G" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	pixel_x = 0
+	},
+/obj/machinery/seed_extractor,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"H" = (
+/obj/structure/bed/chair/wood{
+	icon_state = "wooden_chair";
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"I" = (
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"J" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/material/knife/machete/hatchet,
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/weapon/material/minihoe,
+/obj/item/device/analyzer/plant_analyzer,
+/obj/random_multi/single_item/sfr_headset,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"K" = (
+/obj/structure/undies_wardrobe,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"L" = (
+/obj/structure/table/rack,
+/obj/item/clothing/shoes/boots/winter,
+/obj/item/clothing/suit/storage/hooded/wintercoat,
+/obj/random_multi/single_item/sfr_headset,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"M" = (
+/obj/machinery/light/flamp,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"N" = (
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 15
+	},
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"O" = (
+/obj/structure/bed/padded,
+/obj/item/weapon/bedsheet/clown,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"P" = (
+/obj/structure/table/rack,
+/obj/item/ammo_magazine/clip/c762/hunter,
+/obj/item/weapon/gun/projectile/shotgun/pump/rifle,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"Q" = (
+/obj/structure/table/rack,
+/obj/item/device/flashlight/lantern,
+/obj/item/device/gps{
+	gps_tag = "Sif Free Radio"
+	},
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"R" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+"Z" = (
+/obj/tether_away_spawner/aerostat_inside,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/DJOutpost1)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+b
+d
+b
+b
+b
+b
+b
+d
+b
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+b
+b
+e
+p
+v
+b
+p
+F
+H
+b
+b
+a
+a
+"}
+(4,1,1) = {"
+a
+b
+b
+e
+e
+Z
+w
+b
+e
+e
+e
+K
+b
+b
+a
+"}
+(5,1,1) = {"
+a
+c
+e
+e
+j
+e
+e
+b
+e
+e
+e
+e
+O
+d
+a
+"}
+(6,1,1) = {"
+a
+b
+e
+e
+e
+q
+x
+b
+e
+e
+b
+b
+b
+b
+a
+"}
+(7,1,1) = {"
+a
+b
+b
+b
+k
+b
+b
+b
+Z
+e
+b
+L
+P
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+f
+e
+e
+e
+e
+D
+e
+e
+I
+e
+Z
+I
+a
+"}
+(9,1,1) = {"
+a
+b
+g
+e
+Z
+e
+e
+b
+e
+e
+b
+M
+Q
+b
+a
+"}
+(10,1,1) = {"
+a
+b
+f
+e
+e
+e
+y
+b
+e
+e
+b
+b
+b
+b
+a
+"}
+(11,1,1) = {"
+a
+d
+g
+e
+l
+l
+z
+b
+e
+e
+e
+e
+R
+d
+a
+"}
+(12,1,1) = {"
+a
+b
+b
+h
+e
+s
+A
+b
+e
+e
+e
+N
+b
+b
+a
+"}
+(13,1,1) = {"
+a
+a
+b
+b
+m
+t
+B
+b
+E
+G
+J
+b
+b
+a
+a
+"}
+(14,1,1) = {"
+a
+a
+a
+b
+n
+b
+b
+b
+b
+b
+d
+b
+a
+a
+a
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+o
+u
+C
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(16,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

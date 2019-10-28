@@ -648,7 +648,7 @@
 	model_text = "Exploration"
 	departments = list("Exploration","Old Exploration")
 
-/obj/machinery/suit_cycler/exploreration/Initialize()
+/obj/machinery/suit_cycler/exploration/Initialize()
 	species -= SPECIES_TESHARI
 	return ..()
 
@@ -931,9 +931,10 @@
 
 /obj/machinery/suit_cycler/proc/finished_job()
 	var/turf/T = get_turf(src)
-	T.visible_message("\icon[src]<span class='notice'>The [src] pings loudly.</span>")
+	T.audible_message("\icon[src]<span class='notice'>The [src] beeps several times.</span>")
 	icon_state = initial(icon_state)
 	active = 0
+	playsound(src, 'sound/machines/boobeebeep.ogg', 50)
 	updateUsrDialog()
 
 /obj/machinery/suit_cycler/proc/repair_suit()

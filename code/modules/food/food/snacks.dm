@@ -11,21 +11,17 @@
 	var/slices_num
 	var/dried_type = null
 	var/dry = 0
+	var/survivalfood = FALSE
 	var/nutriment_amt = 0
 	var/list/nutriment_desc = list("food" = 1)
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = ITEMSIZE_SMALL
-	force = 1
+	force = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/Initialize()
 	. = ..()
 	if(nutriment_amt)
-		reagents.add_reagent("nutriment",nutriment_amt,nutriment_desc)
-
-/obj/item/weapon/reagent_containers/food/snacks/Initialize()
-	. = ..()
-	if(nutriment_amt)
-		reagents.add_reagent("nutriment", nutriment_amt)
+		reagents.add_reagent("nutriment",(nutriment_amt*2),nutriment_desc)
 
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
@@ -49,7 +45,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/attack(mob/M as mob, mob/user as mob, def_zone)
 	if(reagents && !reagents.total_volume)
-		user << "<span class='danger'>None of [src] left!</span>"
+		to_chat(user, "<span class='danger'>None of [src] left!</span>")
 		user.drop_from_inventory(src)
 		qdel(src)
 		return 0
@@ -62,38 +58,42 @@
 			if(istype(M,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
 				if(!H.check_has_mouth())
-					user << "Where do you intend to put \the [src]? You don't have a mouth!"
+					to_chat(user, "Where do you intend to put \the [src]? You don't have a mouth!")
 					return
-				var/obj/item/blocked = H.check_mouth_coverage()
+				var/obj/item/blocked = null
+				if(survivalfood)
+					blocked = H.check_mouth_coverage_survival()
+				else
+					blocked = H.check_mouth_coverage()
 				if(blocked)
-					user << "<span class='warning'>\The [blocked] is in the way!</span>"
+					to_chat(user, "<span class='warning'>\The [blocked] is in the way!</span>")
 					return
 
 			user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
 			//VOREStation Edit Begin
 			if (fullness <= 50)
-				M << "<span class='danger'>You hungrily chew out a piece of [src] and gobble it!</span>"
+				to_chat(M, "<span class='danger'>You hungrily chew out a piece of [src] and gobble it!</span>")
 			if (fullness > 50 && fullness <= 150)
-				M << "<span class='notice'>You hungrily begin to eat [src].</span>"
+				to_chat(M, "<span class='notice'>You hungrily begin to eat [src].</span>")
 			if (fullness > 150 && fullness <= 350)
-				M << "<span class='notice'>You take a bite of [src].</span>"
+				to_chat(M, "<span class='notice'>You take a bite of [src].</span>")
 			if (fullness > 350 && fullness <= 550)
-				M << "<span class='notice'>You unwillingly chew a bit of [src].</span>"
+				to_chat(M, "<span class='notice'>You unwillingly chew a bit of [src].</span>")
 			if (fullness > 550 && fullness <= 650)
-				M << "<span class='notice'>You swallow some more of the [src], causing your belly to swell out a little.</span>"
+				to_chat(M, "<span class='notice'>You swallow some more of the [src], causing your belly to swell out a little.</span>")
 			if (fullness > 650 && fullness <= 1000)
-				M << "<span class='notice'>You stuff yourself with the [src]. Your stomach feels very heavy.</span>"
+				to_chat(M, "<span class='notice'>You stuff yourself with the [src]. Your stomach feels very heavy.</span>")
 			if (fullness > 1000 && fullness <= 3000)
-				M << "<span class='notice'>You gluttonously swallow down the hunk of [src]. You're so gorged, it's hard to stand.</span>"
+				to_chat(M, "<span class='notice'>You gluttonously swallow down the hunk of [src]. You're so gorged, it's hard to stand.</span>")
 			if (fullness > 3000 && fullness <= 5500)
-				M << "<span class='danger'>You force the piece of [src] down your throat. You can feel your stomach getting firm as it reaches its limits.</span>"
+				to_chat(M, "<span class='danger'>You force the piece of [src] down your throat. You can feel your stomach getting firm as it reaches its limits.</span>")
 			if (fullness > 5500 && fullness <= 6000)
-				M << "<span class='danger'>You barely glug down the bite of [src], causing undigested food to force into your intestines. You can't take much more of this!</span>"
+				to_chat(M, "<span class='danger'>You barely glug down the bite of [src], causing undigested food to force into your intestines. You can't take much more of this!</span>")
 			if (fullness > 6000) // There has to be a limit eventually.
-				M << "<span class='danger'>Your stomach blorts and aches, prompting you to stop. You literally cannot force any more of [src] to go down your throat.</span>"
+				to_chat(M, "<span class='danger'>Your stomach blorts and aches, prompting you to stop. You literally cannot force any more of [src] to go down your throat.</span>")
 				return 0
 			/*if (fullness > (550 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
-				M << "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>"
+				to_chat(M, "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>")
 				return 0*/
 			//VOREStation Edit End
 
@@ -104,11 +104,23 @@
 			if(istype(M,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
 				if(!H.check_has_mouth())
-					user << "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!"
+					to_chat(user, "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!")
 					return
-				var/obj/item/blocked = H.check_mouth_coverage()
+				var/obj/item/blocked = null
+				var/unconcious = FALSE
+				blocked = H.check_mouth_coverage()
+				if(survivalfood)
+					blocked = H.check_mouth_coverage_survival()
+					if(H.stat && H.check_mouth_coverage())
+						unconcious = TRUE
+						blocked = H.check_mouth_coverage()
+
+				if(unconcious)
+					to_chat(user, "<span class='warning'>You can't feed [H] through \the [blocked] while they are unconcious!</span>")
+					return
+
 				if(blocked)
-					user << "<span class='warning'>\The [blocked] is in the way!</span>"
+					to_chat(user, "<span class='warning'>\The [blocked] is in the way!</span>")
 					return
 
 				/*if (fullness <= (550 * (1 + M.overeatduration / 1000))) // Vorestation edit
@@ -127,7 +139,7 @@
 				user.visible_message("<span class='danger'>[user] feeds [M] [src].</span>")
 
 			else
-				user << "This creature does not seem to have a mouth!"
+				to_chat(user, "This creature does not seem to have a mouth!")
 				return
 
 		if(reagents)								//Handle ingestion of the reagent.
@@ -149,11 +161,11 @@
 	if (bitecount==0)
 		return
 	else if (bitecount==1)
-		user << "<font color='blue'>\The [src] was bitten by someone!</font>"
+		to_chat(user, "<font color='blue'>\The [src] was bitten by someone!</font>")
 	else if (bitecount<=3)
-		user << "<font color='blue'>\The [src] was bitten [bitecount] times!</font>"
+		to_chat(user, "<font color='blue'>\The [src] was bitten [bitecount] times!</font>")
 	else
-		user << "<font color='blue'>\The [src] was bitten multiple times!</font>"
+		to_chat(user, "<font color='blue'>\The [src] was bitten multiple times!</font>")
 
 /obj/item/weapon/reagent_containers/food/snacks/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/storage))
@@ -168,7 +180,7 @@
 				U.create_reagents(5)
 
 			if (U.reagents.total_volume > 0)
-				user << "<font color='red'>You already have something on your [U].</font>"
+				to_chat(user, "<font color='red'>You already have something on your [U].</font>")
 				return
 
 			user.visible_message( \
@@ -698,17 +710,35 @@
 	bitesize = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/carpmeat
-	name = "carp fillet"
-	desc = "A fillet of spess carp meat"
+	name = "fillet"
+	desc = "A fillet of carp meat"
 	icon_state = "fishfillet"
 	filling_color = "#FFDEFE"
 	center_of_mass = list("x"=17, "y"=13)
 
+	var/toxin_type = "carpotoxin"
+	var/toxin_amount = 3
+
 /obj/item/weapon/reagent_containers/food/snacks/carpmeat/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 3)
-	reagents.add_reagent("carpotoxin", 3)
+	reagents.add_reagent(toxin_type, toxin_amount)
 	src.bitesize = 6
+
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif
+	desc = "A fillet of sivian fish meat."
+	filling_color = "#2c2cff"
+	color = "#2c2cff"
+	toxin_type = "neurotoxic_protein"
+	toxin_amount = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif/murkfish
+	toxin_type = "murk_protein"
+
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish
+	desc = "A fillet of fish meat."
+	toxin_type = "neurotoxic_protein"
+	toxin_amount = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/fishfingers
 	name = "Fish Fingers"
@@ -720,7 +750,18 @@
 /obj/item/weapon/reagent_containers/food/snacks/fishfingers/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 4)
-	reagents.add_reagent("carpotoxin", 3)
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/zestfish
+	name = "Zesty Fish"
+	desc = "Lightly seasoned fish fillets."
+	icon_state = "zestfish"
+	filling_color = "#FFDEFE"
+	center_of_mass = list("x"=16, "y"=13)
+
+/obj/item/weapon/reagent_containers/food/snacks/zestfish/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 4)
 	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice
@@ -942,7 +983,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/fishburger/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 6)
-	reagents.add_reagent("carpotoxin", 3)
 	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/tofuburger
@@ -1281,7 +1321,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/cubancarp/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 3)
-	reagents.add_reagent("carpotoxin", 3)
 	reagents.add_reagent("capsaicin", 3)
 	bitesize = 3
 
@@ -1942,7 +1981,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/fishandchips/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 3)
-	reagents.add_reagent("carpotoxin", 3)
 	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/sandwich
@@ -2177,6 +2215,21 @@
 	. = ..()
 	bitesize = 2
 
+/obj/item/weapon/reagent_containers/food/snacks/kudzudonburi
+	name = "Zhan-Kudzu Overtaker"
+	desc = "Seasoned Kudzu and fish donburi."
+	icon_state = "kudzudonburi"
+	trash = /obj/item/trash/snack_bowl
+	filling_color = "#FFFBDB"
+	center_of_mass = list("x"=17, "y"=11)
+	nutriment_amt = 16
+	nutriment_desc = list("rice" = 2, "gauze" = 4, "fish" = 10)
+
+/obj/item/weapon/reagent_containers/food/snacks/kudzudonburi/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 4)
+	bitesize = 2
+
 /obj/item/weapon/reagent_containers/food/snacks/pastatomato
 	name = "Spaghetti"
 	desc = "Spaghetti and crushed tomatoes. Just like your abusive father used to make!"
@@ -2323,6 +2376,14 @@
 /obj/item/weapon/reagent_containers/food/snacks/jellysandwich/cherry/Initialize()
 	. = ..()
 	reagents.add_reagent("cherryjelly", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/jellysandwich/peanutbutter
+	desc = "You wish you had some peanut butter to go with this... Oh wait!"
+	icon_state = "pbandj"
+
+/obj/item/weapon/reagent_containers/food/snacks/jellysandwich/peanutbutter/Initialize()
+	. = ..()
+	reagents.add_reagent("peanutbutter", 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/boiledslimecore
 	name = "Boiled slime Core"
@@ -2694,6 +2755,35 @@
 /obj/item/weapon/reagent_containers/food/snacks/slice/cheesecake/filled
 	filled = TRUE
 
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/peanutcake
+	name = "Peanut Cake"
+	desc = "DANGEROUSLY nutty. Sometimes literally."
+	icon_state = "peanutcake"
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/slice/peanutcake
+	slices_num = 5
+	filling_color = "#4F3500"
+	center_of_mass = list("x"=16, "y"=10)
+	nutriment_desc = list("cake" = 10, "peanuts" = 15)
+	nutriment_amt = 10
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/peanutcake/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 5)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/slice/peanutcake
+	name = "Peanut Cake slice"
+	desc = "Slice of nutty goodness."
+	icon_state = "peanutcake_slice"
+	trash = /obj/item/trash/plate
+	filling_color = "#4F3500"
+	bitesize = 2
+	center_of_mass = list("x"=16, "y"=14)
+	whole_path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/peanutcake
+
+/obj/item/weapon/reagent_containers/food/snacks/slice/peanutcake/filled
+	filled = TRUE
+
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake
 	name = "Vanilla Cake"
 	desc = "A plain cake, not a lie."
@@ -2993,6 +3083,7 @@
 	filling_color = "#F5DEB8"
 	center_of_mass = list("x"=16, "y"=6)
 	nutriment_desc = list("salt" = 1, "cracker" = 2)
+	w_class = ITEMSIZE_TINY
 	nutriment_amt = 1
 
 
@@ -3029,6 +3120,34 @@
 	whole_path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita
 
 /obj/item/weapon/reagent_containers/food/snacks/slice/margherita/filled
+	filled = TRUE
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/pineapple
+	name = "Hawaiian"
+	desc = "The accursed wheel from ancient times."
+	icon_state = "pizzamargherita"
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/slice/pineapple
+	slices_num = 6
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_desc = list("pizza crust" = 5, "tomato" = 5, "cheese" = 5, "pineapple" = 20)
+	nutriment_amt = 35
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/pineapple/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 5)
+	reagents.add_reagent("pineapplejuice", 6)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/slice/pineapple
+	name = "Hawaiian slice"
+	desc = "A slice of the accursed pizza."
+	icon_state = "pizzamargheritaslice"
+	filling_color = "#BAA14C"
+	bitesize = 2
+	center_of_mass = list("x"=16, "y"=13)
+	whole_path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/pineapple
+
+/obj/item/weapon/reagent_containers/food/snacks/slice/pineapple/filled
 	filled = TRUE
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza
@@ -3467,6 +3586,7 @@
 	center_of_mass = list("x"=21, "y"=12)
 	nutriment_amt = 4
 	nutriment_desc = list("cheese" = 2,"taco shell" = 2)
+
 /obj/item/weapon/reagent_containers/food/snacks/taco/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 3)
@@ -3543,7 +3663,11 @@
 /obj/item/weapon/reagent_containers/food/snacks/grown/attackby(obj/item/weapon/W, mob/user)
 	if(seed && seed.kitchen_tag && seed.kitchen_tag == "potato" && istype(W,/obj/item/weapon/material/knife))
 		new /obj/item/weapon/reagent_containers/food/snacks/rawsticks(get_turf(src))
-		user << "You cut the potato."
+		to_chat(user, "<span class='notice'>You cut the potato.</span>")
+		qdel(src)
+	else if(seed && seed.kitchen_tag && seed.kitchen_tag == "sunflower" && istype(W,/obj/item/weapon/material/knife))
+		new /obj/item/weapon/reagent_containers/food/snacks/rawsunflower(get_turf(src))
+		to_chat(user, "<span class='notice'>You remove the seeds from the flower, slightly damaging them.</span>")
 		qdel(src)
 	else
 		..()
@@ -3561,12 +3685,46 @@
 /obj/item/weapon/reagent_containers/food/snacks/rawsticks/Initialize()
 	. = ..()
 
+/obj/item/weapon/reagent_containers/food/snacks/rawsunflower
+	name = "sunflower seeds"
+	desc = "Raw sunflower seeds, alright. They look too damaged to plant."
+	icon = 'icons/obj/food_ingredients.dmi'
+	icon_state = "sunflowerseed"
+	bitesize = 1
+	center_of_mass = list("x"=17, "y"=18)
+	nutriment_amt = 1
+	nutriment_desc = list("starch" = 3)
+
+/obj/item/weapon/reagent_containers/food/snacks/rawsunflower/Initialize()
+	. = ..()
+
+/obj/item/weapon/reagent_containers/food/snacks/roastedsunflower
+	name = "sunflower seeds"
+	desc = "Sunflower seeds!"
+	icon = 'icons/obj/food.dmi'
+	icon_state = "sunflowerseed"
+	bitesize = 1
+	center_of_mass = list("x"=15, "y"=17)
+	nutriment_amt = 2
+	nutriment_desc = list("salt" = 3)
+
+/obj/item/weapon/reagent_containers/food/snacks/roastedpeanuts
+	name = "peanuts"
+	desc = "Stopped being the planetary airline food of Earth in 2120."
+	icon = 'icons/obj/food.dmi'
+	icon_state = "roastnuts"
+	bitesize = 1
+	center_of_mass = list("x"=15, "y"=17)
+	nutriment_amt = 2
+	nutriment_desc = list("salt" = 3)
+
 /obj/item/weapon/reagent_containers/food/snacks/liquidfood
 	name = "\improper LiquidFood Ration"
 	desc = "A prepackaged grey slurry of all the essential nutrients for a spacefarer on the go. Should this be crunchy?"
 	icon_state = "liquidfood"
 	trash = /obj/item/trash/liquidfood
 	filling_color = "#A8A8A8"
+	survivalfood = TRUE
 	center_of_mass = list("x"=16, "y"=15)
 	nutriment_amt = 20
 	nutriment_desc = list("chalk" = 6)
@@ -3575,6 +3733,51 @@
 	. = ..()
 	reagents.add_reagent("iron", 3)
 	bitesize = 4
+
+/obj/item/weapon/reagent_containers/food/snacks/liquidprotein
+	name = "\improper LiquidProtein Ration"
+	desc = "A variant of the liquidfood ration, designed for obligate carnivore species. Only barely more appealing than regular liquidfood. Should this be crunchy?"
+	icon_state = "liquidprotein"
+	trash = /obj/item/trash/liquidprotein
+	filling_color = "#A8A8A8"
+	survivalfood = TRUE
+	center_of_mass = list("x"=16, "y"=15)
+
+/obj/item/weapon/reagent_containers/food/snacks/liquidprotein/Initialize()
+	..()
+	reagents.add_reagent("protein", 30)
+	reagents.add_reagent("iron", 3)
+	bitesize = 4
+
+/obj/item/weapon/reagent_containers/food/snacks/liquidvitamin
+	name = "\improper VitaPaste Ration"
+	desc = "A variant of the liquidfood ration, designed for any carbon-based life. Somehow worse than regular liquidfood. Should this be crunchy?"
+	icon_state = "liquidvitamin"
+	trash = /obj/item/trash/liquidvitamin
+	filling_color = "#A8A8A8"
+	survivalfood = TRUE
+	center_of_mass = list("x"=16, "y"=15)
+
+/obj/item/weapon/reagent_containers/food/snacks/liquidvitamin/Initialize()
+	..()
+	reagents.add_reagent("flour", 20)
+	reagents.add_reagent("tricordrazine", 5)
+	reagents.add_reagent("paracetamol", 5)
+	reagents.add_reagent("enzyme", 1)
+	reagents.add_reagent("iron", 3)
+	bitesize = 4
+
+/obj/item/weapon/reagent_containers/food/snacks/meatcube
+	name = "cubed meat"
+	desc = "Fried, salted lean meat compressed into a cube. Not very appetizing."
+	icon_state = "meatcube"
+	filling_color = "#7a3d11"
+	center_of_mass = list("x"=16, "y"=16)
+
+/obj/item/weapon/reagent_containers/food/snacks/meatcube/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 15)
+	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/tastybread
 	name = "bread tube"
@@ -3643,7 +3846,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/sashimi
 	name = "carp sashimi"
-	desc = "Expertly prepared. Still toxic."
+	desc = "Expertly prepared. Hopefully toxin got removed though."
 	filling_color = "#FFDEFE"
 	icon_state = "sashimi"
 	nutriment_amt = 6
@@ -3651,7 +3854,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/sashimi/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 2)
-	reagents.add_reagent("carpotoxin", 2)
 	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/benedict
@@ -3733,6 +3935,21 @@
 	reagents.add_reagent("protein", 2)
 	bitesize = 2
 
+/obj/item/weapon/reagent_containers/food/snacks/devilledegg
+	name = "devilled eggs"
+	desc = "Spicy homestyle favorite."
+	icon_state = "devilledegg"
+	filling_color = "#799ACE"
+	center_of_mass = list("x"=17, "y"=16)
+	nutriment_amt = 8
+	nutriment_desc = list("egg" = 4, "chili" = 4)
+
+/obj/item/weapon/reagent_containers/food/snacks/devilledegg/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 6)
+	reagents.add_reagent("capsaicin", 2)
+	bitesize = 2
+
 /obj/item/weapon/reagent_containers/food/snacks/fruitsalad
 	name = "fruit salad"
 	desc = "Your standard fruit salad."
@@ -3744,6 +3961,33 @@
 /obj/item/weapon/reagent_containers/food/snacks/fruitsalad/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 10)
+	bitesize = 4
+
+/obj/item/weapon/reagent_containers/food/snacks/flowerchildsalad
+	name = "flowerchild salad"
+	desc = "A fragrant salad."
+	icon_state = "flowerchildsalad"
+	filling_color = "#FF3867"
+	nutriment_amt = 10
+	nutriment_desc = list("bittersweet" = 10)
+
+/obj/item/weapon/reagent_containers/food/snacks/flowerchildsalad/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 10)
+	bitesize = 4
+
+/obj/item/weapon/reagent_containers/food/snacks/rosesalad
+	name = "flowerchild salad"
+	desc = "A fragrant salad."
+	icon_state = "rosesalad"
+	filling_color = "#FF3867"
+	nutriment_amt = 5
+	nutriment_desc = list("bittersweet" = 10, "iron" = 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/rosesalad/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 10)
+	reagents.add_reagent("stoxin", 2)
 	bitesize = 4
 
 /obj/item/weapon/reagent_containers/food/snacks/eggbowl
@@ -3864,6 +4108,19 @@
 	reagents.add_reagent("capsaicin", 4)
 	bitesize = 2
 
+/obj/item/weapon/reagent_containers/food/snacks/curryrice
+	name = "curry rice"
+	desc = "That's some dangerously spicy rice."
+	icon_state = "curryrice"
+	nutriment_amt = 6
+	nutriment_desc = list("salt" = 1, "rice" = 2, "chili peppers" = 3)
+
+/obj/item/weapon/reagent_containers/food/snacks/curryrice/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 5)
+	reagents.add_reagent("capsaicin", 4)
+	bitesize = 2
+
 /obj/item/weapon/reagent_containers/food/snacks/piginblanket
 	name = "pig in a blanket"
 	desc = "A sausage embedded in soft, fluffy pastry. Free this pig from its blanket prison by eating it."
@@ -3876,3 +4133,78 @@
 	reagents.add_reagent("nutriment", 6)
 	reagents.add_reagent("protein", 4)
 	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/piginblanket
+	name = "pig in a blanket"
+	desc = "A sausage embedded in soft, fluffy pastry. Free this pig from its blanket prison by eating it."
+	icon_state = "piginblanket"
+	nutriment_amt = 6
+	nutriment_desc = list("meat" = 3, "pastry" = 3)
+
+/obj/item/weapon/reagent_containers/food/snacks/piginblanket/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 6)
+	reagents.add_reagent("protein", 4)
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/wormsickly
+	name = "sickly worm"
+	desc = "A worm, it doesn't look particularily healthy, but it will still serve as good fishing bait."
+	icon_state = "worm_sickly"
+	nutriment_amt = 1
+	nutriment_desc = list("bugflesh" = 1)
+	w_class = ITEMSIZE_TINY
+
+/obj/item/weapon/reagent_containers/food/snacks/wormsickly/Initialize()
+	. = ..()
+	reagents.add_reagent("fishbait", 10)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/worm
+	name = "strange worm"
+	desc = "A peculiar worm, freshly plucked from the earth."
+	icon_state = "worm"
+	nutriment_amt = 1
+	nutriment_desc = list("bugflesh" = 1)
+	w_class = ITEMSIZE_TINY
+
+/obj/item/weapon/reagent_containers/food/snacks/worm/Initialize()
+	. = ..()
+	reagents.add_reagent("fishbait", 20)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/wormdeluxe
+	name = "deluxe worm"
+	desc = "A fancy worm, genetically engineered to appeal to fish."
+	icon_state = "worm_deluxe"
+	nutriment_amt = 5
+	nutriment_desc = list("bugflesh" = 1)
+	w_class = ITEMSIZE_TINY
+
+/obj/item/weapon/reagent_containers/food/snacks/wormdeluxe/Initialize()
+	. = ..()
+	reagents.add_reagent("fishbait", 40)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/siffruit
+	name = "pulsing fruit"
+	desc = "A blue-ish sac encased in a tough black shell."
+	icon = 'icons/obj/flora/foraging.dmi'
+	icon_state = "siffruit"
+	nutriment_amt = 2
+	nutriment_desc = list("tart" = 1)
+	w_class = ITEMSIZE_TINY
+
+/obj/item/weapon/reagent_containers/food/snacks/siffruit/Initialize()
+	. = ..()
+	reagents.add_reagent("sifsap", 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/siffruit/afterattack(obj/O as obj, mob/user as mob, proximity)
+	if(istype(O,/obj/machinery/microwave))
+		return ..()
+	if(!(proximity && O.is_open_container()))
+		return
+	to_chat(user, "<span class='notice'>You tear \the [src]'s sac open, pouring it into \the [O].</span>")
+	reagents.trans_to(O, reagents.total_volume)
+	user.drop_from_inventory(src)
+	qdel(src)

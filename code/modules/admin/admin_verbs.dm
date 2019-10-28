@@ -38,6 +38,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_subtle_message,	//send an message to somebody as a 'voice in their head',
 	/client/proc/cmd_admin_delete,		//delete an instance/object/mob/etc,
 	/client/proc/cmd_admin_check_contents,	//displays the contents of an instance,
+	/client/proc/cmd_admin_check_player_logs,	//checks a player's attack logs,
+	/client/proc/cmd_admin_check_dialogue_logs,	//checks a player's dialogue logs,
 	/datum/admins/proc/access_news_network,	//allows access of newscasters,
 	/client/proc/giveruntimelog,		//allows us to give access to runtime logs to somebody,
 	/client/proc/getserverlog,			//allows us to fetch server logs (diary) for other days,
@@ -148,6 +150,7 @@ var/list/admin_verbs_spawn = list(
 	/datum/admins/proc/spawn_plant,
 	/datum/admins/proc/spawn_atom,		//allows us to spawn instances,
 	/client/proc/respawn_character,
+	/client/proc/spawn_character_mob,  //VOREStation Add,
 	/client/proc/virus2_editor,
 	/client/proc/spawn_chemdisp_cartridge,
 	/client/proc/map_template_load,
@@ -266,6 +269,8 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/view_atk_log,
 	/client/proc/cmd_admin_subtle_message,
 	/client/proc/cmd_admin_check_contents,
+	/client/proc/cmd_admin_check_player_logs,
+	/client/proc/cmd_admin_check_dialogue_logs,
 	/datum/admins/proc/access_news_network,
 	/client/proc/admin_call_shuttle,
 	/client/proc/admin_cancel_shuttle,
@@ -587,7 +592,7 @@ var/list/admin_verbs_event_manager = list(
 		prefs.ooccolor = input(src, "Please select your OOC colour.", "OOC colour") as color
 	else if(response == "Reset to default")
 		prefs.ooccolor = initial(prefs.ooccolor)
-	prefs.save_preferences()
+	SScharacter_setup.queue_preferences_save(prefs)
 
 	feedback_add_details("admin_verb","OC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
@@ -1064,7 +1069,7 @@ var/list/admin_verbs_event_manager = list(
 	if(alert("Are you sure you want to tell them to man up?","Confirmation","Deal with it","No")=="No") return
 
 	T << "<span class='notice'><b><font size=3>Man up and deal with it.</font></b></span>"
-	T << "<span class='notice'>Move on.</span>"
+	T << "<span class='notice'>Move along.</span>"
 
 	log_admin("[key_name(usr)] told [key_name(T)] to man up and deal with it.")
 	message_admins("<font color='blue'>[key_name_admin(usr)] told [key_name(T)] to man up and deal with it.</font>", 1)
@@ -1077,7 +1082,7 @@ var/list/admin_verbs_event_manager = list(
 	if(alert("Are you sure you want to tell the whole server up?","Confirmation","Deal with it","No")=="No") return
 
 	for (var/mob/T as mob in mob_list)
-		T << "<br><center><span class='notice'><b><font size=4>Man up.<br> Deal with it.</font></b><br>Move on.</span></center><br>"
+		T << "<br><center><span class='notice'><b><font size=4>Man up.<br> Deal with it.</font></b><br>Move along.</span></center><br>"
 		T << 'sound/voice/ManUp1.ogg'
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")

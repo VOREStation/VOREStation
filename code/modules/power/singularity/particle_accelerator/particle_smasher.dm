@@ -31,7 +31,7 @@
 	prepare_recipes()
 
 /obj/machinery/particle_smasher/Destroy()
-	for(var/datum/recipe/particle_smasher/D in recipes)
+	for(var/datum/particle_smasher_recipe/D in recipes)
 		qdel(D)
 	recipes.Cut()
 	..()
@@ -142,13 +142,13 @@
 /obj/machinery/particle_smasher/process()
 	if(!src.anchored)	// Rapidly loses focus.
 		if(energy)
-			radiation_repository.radiate(src, round(((src.energy-150)/50)*5,1))
+			SSradiation.radiate(src, round(((src.energy-150)/50)*5,1))
 			energy = max(0, energy - 30)
 			update_icon()
 		return
 
 	if(energy)
-		radiation_repository.radiate(src, round(((src.energy-150)/50)*5,1))
+		SSradiation.radiate(src, round(((src.energy-150)/50)*5,1))
 		energy = CLAMP(energy - 5, 0, max_energy)
 
 	return
@@ -156,19 +156,19 @@
 /obj/machinery/particle_smasher/proc/prepare_recipes()
 	if(!recipes)
 		recipes = list()
-		for(var/D in subtypesof(/datum/recipe/particle_smasher))
+		for(var/D in subtypesof(/datum/particle_smasher_recipe))
 			recipes += new D
 	else
-		for(var/datum/recipe/particle_smasher/D in recipes)
+		for(var/datum/particle_smasher_recipe/D in recipes)
 			qdel(D)
 		recipes.Cut()
-		for(var/D in subtypesof(/datum/recipe/particle_smasher))
+		for(var/D in subtypesof(/datum/particle_smasher_recipe))
 			recipes += new D
 
 /obj/machinery/particle_smasher/proc/TryCraft()
 
 	if(!recipes || !recipes.len)
-		recipes = typesof(/datum/recipe/particle_smasher)
+		recipes = typesof(/datum/particle_smasher_recipe)
 
 	if(!target)	// You are just blasting an empty machine.
 		visible_message("<span class='notice'>\The [src] shudders.</span>")
@@ -178,14 +178,14 @@
 	if(successful_craft)
 		visible_message("<span class='warning'>\The [src] fizzles.</span>")
 		if(prob(33))	// Why are you blasting it after it's already done!
-			radiation_repository.radiate(src, 10 + round(src.energy / 60, 1))
+			SSradiation.radiate(src, 10 + round(src.energy / 60, 1))
 			energy = max(0, energy - 30)
 		update_icon()
 		return
 
 	var/list/possible_recipes = list()
 	var/max_prob = 0
-	for(var/datum/recipe/particle_smasher/R in recipes)	// Only things for the smasher. Don't get things like the chef's cake recipes.
+	for(var/datum/particle_smasher_recipe/R in recipes)	// Only things for the smasher. Don't get things like the chef's cake recipes.
 		if(R.probability)	// It's actually a recipe you're supposed to be able to make.
 			if(istype(target, R.required_material))
 				if(energy >= R.required_energy_min && energy <= R.required_energy_max)	// The machine has enough Vaguely Defined 'Energy'.
@@ -204,7 +204,7 @@
 	if(possible_recipes.len)
 		var/local_prob = rand(0, max_prob - 1)%max_prob
 		var/cumulative = 0
-		for(var/datum/recipe/particle_smasher/R in possible_recipes)
+		for(var/datum/particle_smasher_recipe/R in possible_recipes)
 			cumulative += R.probability
 			if(local_prob < cumulative)
 				successful_craft = TRUE
@@ -212,7 +212,7 @@
 				break
 	update_icon()
 
-/obj/machinery/particle_smasher/proc/DoCraft(var/datum/recipe/particle_smasher/recipe)
+/obj/machinery/particle_smasher/proc/DoCraft(var/datum/particle_smasher_recipe/recipe)
 	if(!successful_craft || !recipe)
 		return
 
@@ -260,11 +260,11 @@
  * The special recipe datums used for the particle smasher.
  */
 
-/datum/recipe/particle_smasher
-	//reagents	//Commented out due to inheritance. Still a list, used as ex:	// example: = list("pacid" = 5)
-	//items		//Commented out due to inheritance. Still a list, used as ex:	// example: = list(/obj/item/weapon/tool/crowbar, /obj/item/weapon/welder) Place /foo/bar before /foo. Do not include fruit. Maximum of 3 items.
+/datum/particle_smasher_recipe
+	var/list/reagents	// example: = list("pacid" = 5)
+	var/list/items		// example: = list(/obj/item/weapon/tool/crowbar, /obj/item/weapon/welder) Place /foo/bar before /foo. Do not include fruit. Maximum of 3 items.
 
-	result = /obj/item/stack/material/iron		// The sheet this will produce.
+	var/result = /obj/item/stack/material/iron		// The sheet this will produce.
 	var/required_material = /obj/item/stack/material/iron	// The required material sheet.
 	var/required_energy_min = 0			// The minimum energy this recipe can process at.
 	var/required_energy_max = 600		// The maximum energy this recipe can process at.
@@ -272,7 +272,7 @@
 	var/required_atmos_temp_max = 600	// The maximum ambient atmospheric temperature required, in kelvin.
 	var/probability = 0					// The probability for the recipe to be produced. 0 will make it impossible.
 
-/datum/recipe/particle_smasher/check_items(var/obj/container as obj)
+/datum/particle_smasher_recipe/proc/check_items(var/obj/container as obj)
 	. = 1
 	if (items && items.len)
 		var/list/checklist = list()
@@ -295,7 +295,20 @@
 			. = -1
 	return .
 
-/datum/recipe/particle_smasher/deuterium_tritium
+/datum/particle_smasher_recipe/proc/check_reagents(var/datum/reagents/avail_reagents)
+	. = 1
+	for (var/r_r in reagents)
+		var/aval_r_amnt = avail_reagents.get_reagent_amount(r_r)
+		if (!(abs(aval_r_amnt - reagents[r_r])<0.5)) //if NOT equals
+			if (aval_r_amnt>reagents[r_r])
+				. = 0
+			else
+				return -1
+	if ((reagents?(reagents.len):(0)) < avail_reagents.reagent_list.len)
+		return 0
+	return .
+
+/datum/particle_smasher_recipe/deuterium_tritium
 	reagents = list("hydrogen" = 15)
 
 	result = /obj/item/stack/material/tritium
@@ -307,7 +320,7 @@
 	required_atmos_temp_max = 200
 	probability = 30
 
-/datum/recipe/particle_smasher/verdantium_morphium
+/datum/particle_smasher_recipe/verdantium_morphium
 	result = /obj/item/stack/material/morphium
 	required_material = /obj/item/stack/material/verdantium
 
@@ -315,7 +328,7 @@
 	required_energy_max = 500
 	probability = 20
 
-/datum/recipe/particle_smasher/plasteel_morphium
+/datum/particle_smasher_recipe/plasteel_morphium
 	items = list(/obj/item/prop/alien/junk)
 
 	result = /obj/item/stack/material/morphium
@@ -325,7 +338,7 @@
 	required_energy_max = 300
 	probability = 10
 
-/datum/recipe/particle_smasher/osmium_lead
+/datum/particle_smasher_recipe/osmium_lead
 	reagents = list("tungsten" = 10)
 
 	result = /obj/item/stack/material/lead
@@ -338,7 +351,7 @@
 	required_atmos_temp_max = 8000
 	probability = 50
 
-/datum/recipe/particle_smasher/phoron_valhollide
+/datum/particle_smasher_recipe/phoron_valhollide
 	reagents = list("phoron" = 10, "pacid" = 10)
 
 	result = /obj/item/stack/material/valhollide
@@ -351,7 +364,7 @@
 	required_atmos_temp_max = 100
 	probability = 10
 
-/datum/recipe/particle_smasher/valhollide_supermatter
+/datum/particle_smasher_recipe/valhollide_supermatter
 	reagents = list("phoron" = 300)
 
 	result = /obj/item/stack/material/supermatter

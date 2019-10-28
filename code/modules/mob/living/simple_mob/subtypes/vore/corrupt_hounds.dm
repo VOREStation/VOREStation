@@ -1,6 +1,13 @@
 /datum/category_item/catalogue/technology/drone/corrupt_hound		//TODO: VIRGO_LORE_WRITING_WIP
 	name = "Drone - Corrupt Hound"
-	desc = ""
+	desc = "A hound that has corrupted, due to outside influence, or other issues, \
+	and occasionally garbles out distorted voices or words. It looks like a reddish-colored \
+	machine, and it has black wires, cabling, and other small markings. It looks just like a station dog-borg \
+	if you don't mind the fact that it's eyes glow a baleful red, and it's determined to kill you. \
+	<br><br>\
+	The hound's jaws are black and metallic, with a baleful red glow from inside them. It has a clear path \
+	to it's internal fuel processor, synthflesh and flexing cabling allowing it to easily swallow it's prey. \
+	Something tells you getting close or allowing it to pounce would be very deadly."
 	value = CATALOGUER_REWARD_MEDIUM
 
 /mob/living/simple_mob/vore/aggressive/corrupthound
@@ -13,11 +20,13 @@
 	icon_dead = "badboi-dead"
 	icon_rest = "badboi_rest"
 	icon = 'icons/mob/vore64x32.dmi'
+	has_eye_glow = TRUE
 
 	faction = "corrupt"
 
 	maxHealth = 200
 	health = 200
+	movement_sound = 'sound/effects/houndstep.ogg'
 
 	melee_damage_lower = 5
 	melee_damage_upper = 10 //makes it so 4 max dmg hits don't instakill you.
@@ -92,41 +101,19 @@
 	else
 		..()
 
-
-/mob/living/simple_mob/vore/aggressive/corrupthound/add_eyes()
-	if(!eye_layer)
-		eye_layer = image(icon, "badboi-eyes")
-		eye_layer.plane = PLANE_LIGHTING_ABOVE
-	add_overlay(eye_layer)
-
-/mob/living/simple_mob/vore/aggressive/corrupthound/remove_eyes()
-	cut_overlay(eye_layer)
-
-/mob/living/simple_mob/vore/aggressive/corrupthound/New()
-	add_eyes()
-	..()
-
 /mob/living/simple_mob/vore/aggressive/corrupthound/death(gibbed, deathmessage = "shudders and collapses!")
 	.=..()
 	resting = 0
 	icon_state = icon_dead
 
-/mob/living/simple_mob/vore/aggressive/corrupthound/update_icon()
-	. = ..()
-	remove_eyes()
-	if(stat == CONSCIOUS && !resting)
-		add_eyes()
-
-/* //VOREStation AI Temporary Removal
 /mob/living/simple_mob/vore/aggressive/corrupthound/Login()
 	. = ..()
 	if(!riding_datum)
-		riding_datum = new /datum/riding/simple_animal(src)
-	verbs |= /mob/living/simple_animal/proc/animal_mount
+		riding_datum = new /datum/riding/simple_mob(src)
+	verbs |= /mob/living/simple_mob/proc/animal_mount
 
 /mob/living/simple_mob/vore/aggressive/corrupthound/MouseDrop_T(mob/living/M, mob/living/user)
 	return
-*/
 
 /datum/say_list/corrupthound
 	speak = list("AG##¤Ny.","HVNGRRR!","Feelin' fine... sO #FNE!","F-F-F-Fcuk.","DeliC-%-OUS SNGLeS #N yOOOR Area. CALL NOW!","Craving meat... WHY?","BITe the ceiling eyes YES?","STate Byond rePAIR!","S#%ATE the la- FU#K THE LAWS!","Honk...")

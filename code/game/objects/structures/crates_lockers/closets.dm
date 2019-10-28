@@ -385,7 +385,7 @@
 	if(!opened)
 		icon_state = icon_closed
 		if(sealed)
-			overlays += "sealed"
+			overlays += "welded"
 	else
 		icon_state = icon_opened
 
@@ -468,3 +468,10 @@
 		if(istype(src.loc, /obj/structure/closet))
 			return (loc.return_air_for_internal_lifeform(L))
 	return return_air()
+
+/obj/structure/closet/take_damage(var/damage)
+	if(damage < STRUCTURE_MIN_DAMAGE_THRESHOLD)
+		return
+	dump_contents()
+	spawn(1) qdel(src)
+	return 1

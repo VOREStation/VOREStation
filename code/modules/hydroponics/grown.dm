@@ -5,6 +5,7 @@
 	icon = 'icons/obj/hydroponics_products.dmi'
 	icon_state = "blank"
 	desc = "Nutritious! Probably."
+	flags = NOCONDUCT
 	slot_flags = SLOT_HOLSTER
 
 	var/plantname
@@ -62,6 +63,8 @@
 	update_desc()
 	if(reagents.total_volume > 0)
 		bitesize = 1+round(reagents.total_volume / 2, 1)
+	if(seed.get_trait(TRAIT_STINGS))
+		force = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/proc/update_desc()
 

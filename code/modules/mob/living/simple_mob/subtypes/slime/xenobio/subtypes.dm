@@ -450,7 +450,7 @@
 			continue
 		if(istype(L, /mob/living/simple_mob/slime/xenobio))
 			var/mob/living/simple_mob/slime/xenobio/X = L
-			X.adjust_nutrition(rand(15, 25))
+			X.adjust_nutrition(rand(15, 25), 0)
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			if(H.isSynthetic())
@@ -527,7 +527,7 @@
 	..()
 
 /mob/living/simple_mob/slime/xenobio/green/proc/irradiate()
-	radiation_repository.radiate(src, rads)
+	SSradiation.radiate(src, rads)
 
 
 

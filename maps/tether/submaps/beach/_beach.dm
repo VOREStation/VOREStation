@@ -93,7 +93,7 @@
 	atmos_comp = TRUE //Sets up their atmos tolerances to work in this setting, even if they don't normally (20% up/down tolerance for each gas, and heat)
 	prob_spawn = 50 //Chance of this spawner spawning a mob (once this is missed, the spawner is 'depleted' and won't spawn anymore)
 	prob_fall = 25 //Chance goes down by this much each time it spawns one (not defining and prob_spawn 100 means they spawn as soon as one dies)
-	guard = 40 //They'll stay within this range (not defining this disables them staying nearby and they will wander the map (and through step teleports))
+	//guard = 40 //They'll stay within this range (not defining this disables them staying nearby and they will wander the map (and through step teleports))
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/animal/passive/snake
 	)
@@ -104,7 +104,7 @@
 	atmos_comp = TRUE
 	prob_spawn = 100
 	prob_fall = 25
-	guard = 40
+	//guard = 40
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/vore/fennec
 	)
@@ -115,13 +115,13 @@
 	atmos_comp = TRUE
 	prob_spawn = 100
 	prob_fall = 40
-	guard = 20
+	//guard = 20
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/vore/aggressive/frog = 3, //Frogs are 3x more likely to spawn than,
 		/mob/living/simple_mob/vore/aggressive/deathclaw = 1, //these deathclaws are, with these values,
-		/mob/living/simple_mob/animal/giant_spider = 3,
+		/mob/living/simple_mob/animal/giant_spider = 2,
 		/mob/living/simple_mob/vore/aggressive/giant_snake = 1,
-		/mob/living/simple_mob/animal/giant_spider/ion = 2
+		/mob/living/simple_mob/animal/giant_spider/webslinger = 1
 	)
 
 // These are step-teleporters, for map edge transitions
@@ -155,6 +155,7 @@
 //And some special areas, including our shuttle landing spot (must be unique)
 /area/shuttle/excursion/away_beach
 	name = "\improper Excursion Shuttle - Beach"
+	base_turf = /turf/simulated/floor/beach/sand/desert
 	dynamic_lighting = 0
 
 /area/tether_away/beach

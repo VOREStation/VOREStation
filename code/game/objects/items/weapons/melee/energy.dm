@@ -12,6 +12,12 @@
 	var/lpower = 2
 	var/lcolor = "#0099FF"
 
+	// If it uses energy.
+	var/use_cell = FALSE
+	var/hitcost = 120
+	var/obj/item/weapon/cell/bcell = null
+	var/cell_type = /obj/item/weapon/cell/device
+
 /obj/item/weapon/melee/energy/proc/activate(mob/living/user)
 	if(active)
 		return
@@ -38,7 +44,31 @@
 	w_class = initial(w_class)
 	set_light(0,0)
 
+/obj/item/weapon/melee/energy/proc/use_charge(var/cost)
+	if(active)
+		if(bcell)
+			if(bcell.checked_use(cost))
+				return 1
+			else
+				return 0
+	return null
+
+/obj/item/weapon/melee/energy/examine(mob/user)
+	if(!..(user, 1))
+		return
+
+	if(use_cell)
+		if(bcell)
+			to_chat(user, "<span class='notice'>The blade is [round(bcell.percent())]% charged.</span>")
+		if(!bcell)
+			to_chat(user, "<span class='warning'>The blade does not have a power source installed.</span>")
+
 /obj/item/weapon/melee/energy/attack_self(mob/living/user as mob)
+	if(use_cell)
+		if((!bcell || bcell.charge < hitcost) && !active)
+			to_chat(user, "<span class='notice'>\The [src] does not seem to have power.</span>")
+			return
+
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 	if (active)
 		if ((CLUMSY in user.mutations) && prob(50))
@@ -63,6 +93,37 @@
 		user.visible_message(pick("<span class='danger'>\The [user] is slitting [TU.his] stomach open with \the [src]! It looks like [TU.he] [TU.is] trying to commit seppuku.</span>",\
 			"<span class='danger'>\The [user] is falling on \the [src]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>"))
 		return (BRUTELOSS|FIRELOSS)
+
+/obj/item/weapon/melee/energy/attack(mob/M, mob/user)
+	if(active && use_cell)
+		if(!use_charge(hitcost))
+			deactivate(user)
+			visible_message("<span class='notice'>\The [src]'s blade flickers, before deactivating.</span>")
+	return ..()
+
+/obj/item/weapon/melee/energy/attackby(obj/item/weapon/W, mob/user)
+	if(use_cell)
+		if(istype(W, cell_type))
+			if(!bcell)
+				user.drop_item()
+				W.loc = src
+				bcell = W
+				to_chat(user, "<span class='notice'>You install a cell in [src].</span>")
+				update_icon()
+			else
+				to_chat(user, "<span class='notice'>[src] already has a cell.</span>")
+		else if(W.is_screwdriver() && bcell)
+			bcell.update_icon()
+			bcell.forceMove(get_turf(loc))
+			bcell = null
+			to_chat(user, "<span class='notice'>You remove the cell from \the [src].</span>")
+			deactivate()
+			update_icon()
+			return
+	return ..()
+
+/obj/item/weapon/melee/energy/get_cell()
+	return bcell
 
 /*
  * Energy Axe
@@ -90,11 +151,13 @@
 
 /obj/item/weapon/melee/energy/axe/activate(mob/living/user)
 	..()
+	damtype = SEARING
 	icon_state = "axe1"
 	to_chat(user, "<span class='notice'>\The [src] is now energised.</span>")
 
 /obj/item/weapon/melee/energy/axe/deactivate(mob/living/user)
 	..()
+	damtype = BRUTE
 	icon_state = initial(icon_state)
 	to_chat(user, "<span class='notice'>\The [src] is de-energised. It's just a regular axe now.</span>")
 
@@ -102,6 +165,20 @@
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 	visible_message("<span class='warning'>\The [user] swings \the [src] towards [TU.his] head! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
 	return (BRUTELOSS|FIRELOSS)
+
+/obj/item/weapon/melee/energy/axe/charge
+	name = "charge axe"
+	desc = "An energised axe."
+	active_force = 35
+	active_throwforce = 20
+	force = 15
+
+	use_cell = TRUE
+	hitcost = 120
+
+/obj/item/weapon/melee/energy/axe/charge/loaded/New()
+	..()
+	bcell = new/obj/item/weapon/cell/device/weapon(src)
 
 /*
  * Energy Sword
@@ -126,6 +203,8 @@
 	var/blade_color
 	var/random_color = TRUE
 	var/active_state = "sword"
+
+	projectile_parry_chance = 65
 
 /obj/item/weapon/melee/energy/sword/dropped(var/mob/user)
 	..()
@@ -173,7 +252,7 @@
 	icon_state = initial(icon_state)
 
 /obj/item/weapon/melee/energy/sword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
-	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
+	if(active && default_parry_check(user, attacker, damage_source) && prob(60))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
 
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
@@ -181,7 +260,26 @@
 		spark_system.start()
 		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
 		return 1
+	if(active && unique_parry_check(user, attacker, damage_source) && prob(projectile_parry_chance))
+		user.visible_message("<span class='danger'>\The [user] deflects [attack_text] with \the [src]!</span>")
+
+		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+		spark_system.set_up(5, 0, user.loc)
+		spark_system.start()
+		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+		return 1
+
 	return 0
+
+/obj/item/weapon/melee/energy/sword/unique_parry_check(mob/user, mob/attacker, atom/damage_source)
+	if(user.incapacitated() || !istype(damage_source, /obj/item/projectile/))
+		return 0
+
+	var/bad_arc = reverse_direction(user.dir)
+	if(!check_shield_arc(user, bad_arc, damage_source, attacker))
+		return 0
+
+	return 1
 
 /obj/item/weapon/melee/energy/sword/pirate
 	name = "energy cutlass"
@@ -215,6 +313,7 @@
 	lpower = 2
 	lcolor = "#0000FF"
 	active_state = "ionic_rapier"
+	projectile_parry_chance = 30	// It's not specifically designed for cutting and slashing, but it can still, maybe, save your life.
 
 /obj/item/weapon/melee/energy/sword/ionic_rapier/afterattack(var/atom/movable/AM, var/mob/living/user, var/proximity)
 	if(istype(AM, /obj) && proximity && active)
@@ -250,65 +349,9 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_MAGNET = 3, TECH_ILLEGAL = 4)
 	active_force = 25
 	armor_penetration = 25
+	projectile_parry_chance = 40
 
-	var/hitcost = 75
-	var/obj/item/weapon/cell/bcell = null
-	var/cell_type = /obj/item/weapon/cell/device
-
-/obj/item/weapon/melee/energy/sword/charge/proc/use_charge(var/cost)
-	if(active)
-		if(bcell)
-			if(bcell.checked_use(cost))
-				return 1
-			else
-				return 0
-	return null
-
-/obj/item/weapon/melee/energy/sword/charge/examine(mob/user)
-	if(!..(user, 1))
-		return
-
-	if(bcell)
-		to_chat(user, "<span class='notice'>The blade is [round(bcell.percent())]% charged.</span>")
-	if(!bcell)
-		to_chat(user, "<span class='warning'>The blade does not have a power source installed.</span>")
-
-/obj/item/weapon/melee/energy/sword/charge/attack_self(mob/user as mob)
-	if((!bcell || bcell.charge < hitcost) && !active)
-		to_chat(user, "<span class='notice'>\The [src] does not seem to have power.</span>")
-		return
-	..()
-
-/obj/item/weapon/melee/energy/sword/charge/attack(mob/M, mob/user)
-	if(active)
-		if(!use_charge(hitcost))
-			deactivate(user)
-			visible_message("<span class='notice'>\The [src]'s blade flickers, before retracting.</span>")
-	return ..()
-
-/obj/item/weapon/melee/energy/sword/charge/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, cell_type))
-		if(!bcell)
-			user.drop_item()
-			W.loc = src
-			bcell = W
-			to_chat(user, "<span class='notice'>You install a cell in [src].</span>")
-			update_icon()
-		else
-			to_chat(user, "<span class='notice'>[src] already has a cell.</span>")
-	else if(W.is_screwdriver() && bcell)
-		bcell.update_icon()
-		bcell.forceMove(get_turf(loc))
-		bcell = null
-		to_chat(user, "<span class='notice'>You remove the cell from \the [src].</span>")
-		deactivate()
-		update_icon()
-		return
-	else
-		..()
-
-/obj/item/weapon/melee/energy/sword/charge/get_cell()
-	return bcell
+	hitcost = 75
 
 /obj/item/weapon/melee/energy/sword/charge/loaded/New()
 	..()
@@ -336,6 +379,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/mob/living/creator
 	var/datum/effect/effect/system/spark_spread/spark_system
+	projectile_parry_chance = 60
 	lcolor = "#00FF00"
 
 /obj/item/weapon/melee/energy/blade/New()
@@ -372,6 +416,37 @@
 			host.embedded -= src
 			host.drop_from_inventory(src)
 		spawn(1) if(src) qdel(src)
+
+/obj/item/weapon/melee/energy/blade/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	if(default_parry_check(user, attacker, damage_source) && prob(60))
+		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+
+		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+		spark_system.set_up(5, 0, user.loc)
+		spark_system.start()
+		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+		return 1
+	if(unique_parry_check(user, attacker, damage_source) && prob(projectile_parry_chance))
+		user.visible_message("<span class='danger'>\The [user] deflects [attack_text] with \the [src]!</span>")
+
+		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+		spark_system.set_up(5, 0, user.loc)
+		spark_system.start()
+		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+		return 1
+
+	return 0
+
+/obj/item/weapon/melee/energy/blade/unique_parry_check(mob/user, mob/attacker, atom/damage_source)
+
+	if(user.incapacitated() || !istype(damage_source, /obj/item/projectile/))
+		return 0
+
+	var/bad_arc = reverse_direction(user.dir)
+	if(!check_shield_arc(user, bad_arc, damage_source, attacker))
+		return 0
+
+	return 1
 
 /*
  *Energy Spear

@@ -4,9 +4,6 @@
 	tt_desc = "E Felis silvestris catus"
 	icon_state = "cat2"
 	item_state = "cat2"
-	icon_living = "cat2"
-	icon_dead = "cat2_dead"
-	icon_rest = "cat2_rest"
 
 	movement_cooldown = 0.5 SECONDS
 
@@ -21,7 +18,15 @@
 	has_langs = list("Cat")
 
 	var/mob/living/friend = null // Our best pal, who we'll follow. Meow.
+	var/named = FALSE //have I been named yet?
 	var/friend_name = null //VOREStation Edit - Lock befriending to this character
+
+/mob/living/simple_mob/animal/passive/cat/Initialize()
+	icon_living = "[initial(icon_state)]"
+	icon_dead = "[initial(icon_state)]_dead"
+	icon_rest = "[initial(icon_state)]_rest"
+	update_icon()
+	return ..()
 
 /mob/living/simple_mob/animal/passive/cat/handle_special()
 	if(!stat && prob(2)) // spooky
@@ -87,6 +92,7 @@
 		to_chat(L, span("notice", "[src] ignores you."))
 	//VOREStation Edit End
 
+
 //RUNTIME IS ALIVE! SQUEEEEEEEE~
 /mob/living/simple_mob/animal/passive/cat/runtime
 	name = "Runtime"
@@ -95,18 +101,14 @@
 	gender = FEMALE
 	icon_state = "cat"
 	item_state = "cat"
-	icon_living = "cat"
-	icon_dead = "cat_dead"
-	icon_rest = "cat_rest"
-	makes_dirt = FALSE	//VOREStation edit: no more dirt
+	named = TRUE
+	makes_dirt = 0 //Vorestation Edit
 
 /mob/living/simple_mob/animal/passive/cat/kitten
 	name = "kitten"
-	desc = "D'aaawwww"
+	desc = "D'aaawwww!"
 	icon_state = "kitten"
 	item_state = "kitten"
-	icon_living = "kitten"
-	icon_dead = "kitten_dead"
 	gender = NEUTER
 	holder_type = /obj/item/weapon/holder/cat/kitten //VOREStation Edit
 
@@ -114,6 +116,10 @@
 	if(gender == NEUTER)
 		gender = pick(MALE, FEMALE)
 	return ..()
+
+/mob/living/simple_mob/animal/passive/cat/black
+	icon_state = "cat"
+	item_state = "cat"
 
 // Leaving this here for now.
 /obj/item/weapon/holder/cat/fluff/bones
@@ -128,11 +134,13 @@
 	gender = MALE
 	icon_state = "cat3"
 	item_state = "cat3"
-	icon_living = "cat3"
-	icon_dead = "cat3_dead"
-	icon_rest = "cat3_rest"
+	named = TRUE
 	holder_type = /obj/item/weapon/holder/cat/fluff/bones
 
+// VOREStation Edit - Adds generic tactical kittens
+/obj/item/weapon/holder/cat/kitten
+	icon_state = "kitten"
+	w_class = ITEMSIZE_SMALL
 
 /datum/say_list/cat
 	speak = list("Meow!","Esp!","Purr!","HSSSSS")
@@ -141,7 +149,34 @@
 	say_maybe_target = list("Meow?","Mew?","Mao?")
 	say_got_target = list("MEOW!","HSSSS!","REEER!")
 
-// VOREStation Edit - Adds generic tactical kittens
-/obj/item/weapon/holder/cat/kitten
-	icon_state = "kitten"
-	w_class = ITEMSIZE_SMALL
+/mob/living/simple_mob/animal/passive/cat/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/flashlight/pen))
+		if(named)
+			to_chat(user, "<span class='notice'>\the [name] already has a name!</span>")
+		else
+			var/tmp_name = sanitizeSafe(input(user, "Give \the [name] a name", "Name"), MAX_NAME_LEN)
+			if(length(tmp_name) > 50)
+				to_chat(user, "<span class='notice'>The name can be at most 50 characters long.</span>")
+			else
+				to_chat(user, "<span class='notice'>You name \the [name]. Meow!</span>")
+				name = tmp_name
+				named = TRUE
+	else
+		..()
+
+/obj/item/weapon/cat_box
+	name = "faintly purring box"
+	desc = "This box is purring faintly. You're pretty sure there's a cat inside it."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "box"
+	var/cattype = /mob/living/simple_mob/animal/passive/cat
+
+/obj/item/weapon/cat_box/attack_self(var/mob/user)
+	var/turf/catturf = get_turf(src)
+	to_chat(user, "<span class='notice'>You peek into \the [name]-- and a cat jumps out!</span>")
+	new cattype(catturf)
+	new /obj/item/stack/material/cardboard(catturf) //if i fits i sits
+	qdel(src)
+
+/obj/item/weapon/cat_box/black
+	cattype = /mob/living/simple_mob/animal/passive/cat/black

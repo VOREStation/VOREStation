@@ -67,8 +67,22 @@
 		return
 
 	update_icon()
+	handle_leaking()
 	return
 
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging/set_leaking(var/new_leaking) // They already process, no need for manual processing toggles.
+	if(new_leaking && !leaking)
+		leaking = TRUE
+		if(parent)
+			parent.leaks |= src
+			if(parent.network)
+				parent.network.leaks |= src
+	else if (!new_leaking && leaking)
+		leaking = FALSE
+		if(parent)
+			parent.leaks -= src
+			if(parent.network)
+				parent.network.leaks -= src
 
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/process()
 	if(!parent)
@@ -180,4 +194,5 @@
 		return
 
 	update_icon()
+	handle_leaking()
 	return

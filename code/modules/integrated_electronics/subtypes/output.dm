@@ -136,6 +136,33 @@
 		var/obj/O = assembly ? loc : assembly
 		audible_message("\icon[O] \The [O.name] states, \"[text]\"")
 
+/obj/item/integrated_circuit/output/text_to_speech/advanced
+	name = "advanced text-to-speech circuit"
+	desc = "A miniature speaker is attached to this component. It is able to transpose any valid text to speech, matching a scanned target's voice."
+	complexity = 15
+	cooldown_per_use = 6 SECONDS
+	inputs = list("text" = IC_PINTYPE_STRING, "mimic target" = IC_PINTYPE_REF)
+	power_draw_per_use = 100
+
+	spawn_flags = IC_SPAWN_RESEARCH
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 4, TECH_ILLEGAL = 1)
+
+	var/mob/living/voice/my_voice
+
+/obj/item/integrated_circuit/output/text_to_speech/advanced/Initialize()
+	..()
+	my_voice = new (src)
+	my_voice.name = "TTS Circuit"
+
+/obj/item/integrated_circuit/output/text_to_speech/advanced/do_work()
+	text = get_pin_data(IC_INPUT, 1)
+	var/mob/living/target_mob = get_pin_data(IC_INPUT, 2)
+	my_voice.transfer_identity(target_mob)
+	if(!isnull(text) && !isnull(my_voice) && !isnull(my_voice.name))
+		my_voice.forceMove(get_turf(src))
+		my_voice.say("[text]")
+		my_voice.forceMove(src)
+
 /obj/item/integrated_circuit/output/sound
 	name = "speaker circuit"
 	desc = "A miniature speaker is attached to this component."
@@ -244,7 +271,7 @@
 	activators = list()
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_idle = 5 // Raises to 80 when on.
-	var/obj/machinery/camera/network/research/camera
+	var/obj/machinery/camera/network/circuits/camera
 
 /obj/item/integrated_circuit/output/video_camera/New()
 	..()

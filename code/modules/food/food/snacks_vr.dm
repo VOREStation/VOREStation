@@ -277,6 +277,113 @@
 	reagents.add_reagent("shockchem", 6)
 	bitesize = 7
 
+/obj/item/weapon/reagent_containers/food/snacks/lobster
+	name = "raw lobster"
+	desc = "a shifty lobster. You can try eating it, but its shell is extremely tough."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "lobster_raw"
+	nutriment_amt = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/lobster/Initialize()
+	..()
+	bitesize = 0.1
+
+/obj/item/weapon/reagent_containers/food/snacks/lobstercooked
+	name = "cooked lobster"
+	desc = "a luxurious plate of cooked lobster, its taste accentuated by lemon juice. Reinvigorating!"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "lobster_cooked"
+	trash = /obj/item/trash/plate
+	nutriment_amt = 20
+	nutriment_desc = list("lemon" = 2, "lobster" = 5, "salad" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/lobstercooked/Initialize()
+	..()
+	bitesize = 5
+	reagents.add_reagent("protein", 20)
+	reagents.add_reagent("tricordrazine", 5)
+	reagents.add_reagent("iron", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/cuttlefish
+	name = "raw cuttlefish"
+	desc = "it's an adorable squid! you can't possible be thinking about eating this right?"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "cuttlefish_raw"
+	nutriment_amt = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/cuttlefish/Initialize()
+	..()
+	bitesize = 10
+
+/obj/item/weapon/reagent_containers/food/snacks/cuttlefishcooked
+	name = "cooked cuttlefish"
+	desc = "it's a roasted cuttlefish. rubbery, squishy, an acquired taste."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "cuttlefish_cooked"
+	nutriment_amt = 20
+	nutriment_desc = list("cuttlefish" = 5, "rubber" = 5, "grease" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/cuttlefishcooked/Initialize()
+	..()
+	bitesize = 5
+	reagents.add_reagent("protein", 10)
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfish
+	name = "extra large monkfish"
+	desc = "it's a huge monkfish. better clean it first, you can't possibly eat it like this."
+	icon = 'icons/obj/food48x48_vr.dmi'
+	icon_state = "monkfish_raw"
+	nutriment_amt = 30
+	w_class = ITEMSIZE_HUGE //Is that a monkfish in your pocket, or are you just happy to see me?
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/monkfishfillet
+	slices_num = 6
+	trash = /obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfishremains
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfish/Initialize()
+	..()
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/monkfishfillet
+	name = "monkfish fillet"
+	desc = "it's a fillet sliced from a monkfish."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "monkfish_fillet"
+	nutriment_amt = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/monkfishfillet/Initialize()
+	..()
+	bitesize = 3
+	reagents.add_reagent("protein", 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/monkfishcooked
+	name = "seasoned monkfish"
+	desc = "a delicious slice of monkfish prepared with sweet chili and spring onion."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "monkfish_cooked"
+	nutriment_amt = 10
+	nutriment_desc = list("fish" = 3, "oil" = 1, "sweet chili" = 3, "spring onion" = 2)
+	trash = /obj/item/trash/fancyplate
+
+/obj/item/weapon/reagent_containers/food/snacks/monkfishcooked/Initialize()
+	..()
+	bitesize = 4
+	reagents.add_reagent("protein", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfishremains
+	name = "monkfish remains"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "monkfish_remains"
+	desc = "the work of a madman."
+	w_class = ITEMSIZE_LARGE
+	nutriment_amt = 10
+	slice_path = /obj/item/clothing/head/fish
+	slices_num = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfishremains/Initialize()
+	..()
+	bitesize = 0.01 //impossible to eat
+	reagents.add_reagent("carbon", 5)
+
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/sobakacube
 	name = "sobaka cube"
 	monkey_type = "Sobaka"
@@ -490,28 +597,13 @@
 	filled = TRUE
 
 /obj/item/pizzabox/margherita/Initialize()
-	pizza = new /obj/item/weapon/reagent_containers/food/snacks/pizza/margfrozen(src)
+	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margcargo(src)
 
 /obj/item/pizzabox/vegetable/Initialize()
-	pizza = new /obj/item/weapon/reagent_containers/food/snacks/pizza/vegfrozen(src)
+	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegcargo(src)
 
 /obj/item/pizzabox/mushroom/Initialize()
-	pizza = new /obj/item/weapon/reagent_containers/food/snacks/pizza/mushfrozen(src)
+	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushcargo(src)
 
 /obj/item/pizzabox/meat/Initialize()
-	pizza = new /obj/item/weapon/reagent_containers/food/snacks/pizza/meatfrozen(src)
-
-/obj/item/weapon/reagent_containers/food/snacks/liquidprotein
-	name = "\improper LiquidProtein Ration"
-	desc = "A variant of the liquidfood ration, designed for obligate carnivore species. Only barely more appealing than regular liquidfood. Should this be crunchy?"
-	icon = 'icons/obj/food_vr.dmi'
-	icon_state = "liquidprotein"
-	trash = /obj/item/trash/liquidprotein
-	filling_color = "#A8A8A8"
-	center_of_mass = list("x"=16, "y"=15)
-
-/obj/item/weapon/reagent_containers/food/snacks/liquidprotein/Initialize()
-	..()
-	reagents.add_reagent("protein", 20)
-	reagents.add_reagent("iron", 3)
-	bitesize = 4
+	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatcargo(src)

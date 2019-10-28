@@ -1048,6 +1048,14 @@ default behaviour is:
 			else
 				to_chat(src, "<span class='warning'>You feel nauseous...</span>")
 
+				if(ishuman(src))
+					var/mob/living/carbon/human/Hu = src
+					if(CE_ANTACID in Hu.chem_effects)
+						if(prob(min(90, Hu.chem_effects[CE_ANTACID] * 15)))
+							spawn(rand(30 SECONDS, 2 MINUTES))
+								lastpuke = FALSE
+							return
+
 				spawn()
 					if(!skip_wait)
 						sleep(150)	//15 seconds until second warning
@@ -1060,7 +1068,7 @@ default behaviour is:
 							var/mob/living/carbon/human/H = src
 							if(!H.isSynthetic())
 								var/obj/item/organ/internal/liver/L = H.internal_organs_by_name["liver"]
-								if(L.is_broken())
+								if(!L || L.is_broken())
 									blood_vomit = 1
 
 					Stun(5)
@@ -1174,18 +1182,19 @@ default behaviour is:
 
 /mob/living/update_transform()
 	// First, get the correct size.
-	var/desired_scale = size_multiplier //VOREStation edit
+	var/desired_scale_x = size_multiplier //VOREStation edit
+	var/desired_scale_y = size_multiplier //VOREStation edit
 	for(var/datum/modifier/M in modifiers)
-		if(!isnull(M.icon_scale_percent))
-			desired_scale *= M.icon_scale_percent
+		if(!isnull(M.icon_scale_x_percent))
+			desired_scale_x *= M.icon_scale_x_percent
+		if(!isnull(M.icon_scale_y_percent))
+			desired_scale_y *= M.icon_scale_y_percent
 
 	// Now for the regular stuff.
 	var/matrix/M = matrix()
-	M.Scale(desired_scale)
-	M.Translate(0, 16*(desired_scale-1))
-	src.transform = M
+	M.Scale(desired_scale_x, desired_scale_y)
+	M.Translate(0, 16*(desired_scale_y-1))
 	//animate(src, transform = M, time = 10) //VOREStation edit
-
 
 // This handles setting the client's color variable, which makes everything look a specific color.
 // This proc is here so it can be called without needing to check if the client exists, or if the client relogs.
@@ -1280,6 +1289,7 @@ default behaviour is:
 			var/turf/end_T = get_turf(target)
 			if(end_T)
 				add_attack_logs(src,M,"Thrown via grab to [end_T.x],[end_T.y],[end_T.z]")
+			src.drop_from_inventory(G)
 
 	src.drop_from_inventory(item)
 	if(!item || !isturf(item.loc))

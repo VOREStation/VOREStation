@@ -113,6 +113,7 @@
 #define MAX_RECORD_LENGTH	  24576
 #define MAX_LNAME_LEN         64
 #define MAX_NAME_LEN          52
+#define MAX_TEXTFILE_LENGTH 128000		// 512GQ file
 
 // Event defines.
 #define EVENT_LEVEL_MUNDANE  1
@@ -174,6 +175,7 @@
 #define MAT_LEAD			"lead"
 #define MAT_SUPERMATTER		"supermatter"
 #define MAT_METALHYDROGEN	"mhydrogen"
+#define MAT_OSMIUM			"osmium"
 
 #define SHARD_SHARD "shard"
 #define SHARD_SHRAPNEL "shrapnel"
@@ -191,6 +193,33 @@
 #define BOMBCAP_HEAVY_RADIUS (max_explosion_range/2)
 #define BOMBCAP_LIGHT_RADIUS max_explosion_range
 #define BOMBCAP_FLASH_RADIUS (max_explosion_range*1.5)
+									// NTNet module-configuration values. Do not change these. If you need to add another use larger number (5..6..7 etc)
+#define NTNET_SOFTWAREDOWNLOAD 1 	// Downloads of software from NTNet
+#define NTNET_PEERTOPEER 2			// P2P transfers of files between devices
+#define NTNET_COMMUNICATION 3		// Communication (messaging)
+#define NTNET_SYSTEMCONTROL 4		// Control of various systems, RCon, air alarm control, etc.
+
+// NTNet transfer speeds, used when downloading/uploading a file/program.
+#define NTNETSPEED_LOWSIGNAL 0.25	// GQ/s transfer speed when the device is wirelessly connected and on Low signal
+#define NTNETSPEED_HIGHSIGNAL 0.5	// GQ/s transfer speed when the device is wirelessly connected and on High signal
+#define NTNETSPEED_ETHERNET 1.0		// GQ/s transfer speed when the device is using wired connection
+#define NTNETSPEED_DOS_AMPLIFICATION 5	// Multiplier for Denial of Service program. Resulting load on NTNet relay is this multiplied by NTNETSPEED of the device
+
+// Program bitflags
+#define PROGRAM_ALL 15
+#define PROGRAM_CONSOLE 1
+#define PROGRAM_LAPTOP 2
+#define PROGRAM_TABLET 4
+#define PROGRAM_TELESCREEN 8
+
+#define PROGRAM_STATE_KILLED 0
+#define PROGRAM_STATE_BACKGROUND 1
+#define PROGRAM_STATE_ACTIVE 2
+
+// Caps for NTNet logging. Less than 10 would make logging useless anyway, more than 500 may make the log browser too laggy. Defaults to 100 unless user changes it.
+#define MAX_NTNET_LOGS 500
+#define MIN_NTNET_LOGS 10
+
 
 // Special return values from bullet_act(). Positive return values are already used to indicate the blocked level of the projectile.
 #define PROJECTILE_CONTINUE   -1 //if the projectile should continue flying after calling bullet_act()
@@ -319,7 +348,14 @@ var/global/list/##LIST_NAME = list();\
 #define RCD_MAX_CAPACITY			30 * RCD_SHEETS_PER_MATTER_UNIT
 
 // Radiation 'levels'. Used for the geiger counter, for visuals and sound. They are in different files so this goes here.
-#define RAD_LEVEL_LOW 0.01 // Around the level at which radiation starts to become harmful
-#define RAD_LEVEL_MODERATE 10
+#define RAD_LEVEL_LOW 0.5 // Around the level at which radiation starts to become harmful
+#define RAD_LEVEL_MODERATE 5
 #define RAD_LEVEL_HIGH 25
-#define RAD_LEVEL_VERY_HIGH 50
+#define RAD_LEVEL_VERY_HIGH 75
+
+#define RADIATION_THRESHOLD_CUTOFF 0.1	// Radiation will not affect a tile when below this value.
+
+//https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
+#define MOUSE_OPACITY_TRANSPARENT 0
+#define MOUSE_OPACITY_ICON 1
+#define MOUSE_OPACITY_OPAQUE 2

@@ -84,7 +84,7 @@
 
 /client/verb/drop_item()
 	set hidden = 1
-	if(!isrobot(mob) && mob.stat == CONSCIOUS && isturf(mob.loc))
+	if(!isrobot(mob) && mob.stat == CONSCIOUS && (isturf(mob.loc) || isbelly(mob.loc)))	// VOREStation Edit: dropping in bellies
 		return mob.drop_item()
 	return
 
@@ -203,7 +203,7 @@
 				mob.move_delay += config.run_speed
 			if("walk")
 				mob.move_delay += config.walk_speed
-		mob.move_delay += mob.movement_delay()
+		mob.move_delay += mob.movement_delay(n, direct)
 
 		if(istype(mob.buckled, /obj/vehicle) || istype(mob.buckled, /mob))	//VOREStation Edit: taur riding. I think.
 			//manually set move_delay for vehicles so we don't inherit any mob movement penalties
@@ -314,8 +314,10 @@
 	switch(mob.incorporeal_move)
 		if(1)
 			var/turf/T = get_step(mob, direct)
+			if(!T)
+				return
 			if(mob.check_holy(T))
-				mob << "<span class='warning'>You cannot get past holy grounds while you are in this plane of existence!</span>"
+				to_chat(mob, "<span class='warning'>You cannot get past holy grounds while you are in this plane of existence!</span>")
 				return
 			else
 				mob.forceMove(get_step(mob, direct))

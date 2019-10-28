@@ -81,7 +81,6 @@
 	if(riding_datum)
 		riding_datum.handle_ride(user, direction)
 
-
 /obj/vehicle/Moved()
 	. = ..()
 	if(riding_datum)
@@ -420,6 +419,15 @@
 	visible_message("<span class='danger'>[user] [attack_message] the [src]!</span>")
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
 	user.do_attack_animation(src)
+	src.health -= damage
+	if(mechanical && prob(10))
+		new /obj/effect/decal/cleanable/blood/oil(src.loc)
+	spawn(1) healthcheck()
+	return 1
+
+/obj/vehicle/take_damage(var/damage)
+	if(!damage)
+		return
 	src.health -= damage
 	if(mechanical && prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)

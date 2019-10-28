@@ -105,7 +105,8 @@
 	name = "siege engine hivebot"
 	desc = "A large robot capable of delivering long range bombardment."
 	projectiletype = /obj/item/projectile/arc/test
-	icon_scale = 2
+	icon_scale_x = 2
+	icon_scale_y = 2
 	icon_state = "red"
 	icon_living = "red"
 

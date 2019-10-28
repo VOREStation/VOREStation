@@ -21,7 +21,8 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ethanol,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sugar,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sacid,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tungsten
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tungsten,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/calcium
 		)
 
 /obj/machinery/chemical_dispenser/ert
@@ -111,6 +112,7 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tequila,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/vermouth,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cognac,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cider,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ale,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/mead
 		)

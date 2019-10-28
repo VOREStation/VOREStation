@@ -160,12 +160,30 @@
 				return
 
 		if(7)
-			if(istype(W, /obj/item/weapon/gun/energy/taser))
-				name = "taser ED-209 assembly"
+			if(istype(W, /obj/item/weapon/gun/energy/taser/xeno))
+				name = "xenotaser SL-ED-209 assembly"
+				item_state = "sled209_taser"
+				icon_state = "sled209_taser"
 				build_step++
 				to_chat(user, "<span class='notice'>You add [W] to [src].</span>")
+				user.drop_item()
+				qdel(W)
+				var/turf/T = get_turf(src)
+				var/obj/item/weapon/secbot_assembly/ed209_assembly/slime/S = new /obj/item/weapon/secbot_assembly/ed209_assembly/slime(T)
+				S.name = name
+				S.item_state = item_state
+				S.icon_state = icon_state
+				S.build_step = build_step
+				S.created_name = created_name
+				user.drop_from_inventory(src)
+				qdel(src)
+
+			else if(istype(W, /obj/item/weapon/gun/energy/taser))
+				name = "taser ED-209 assembly"
 				item_state = "ed209_taser"
 				icon_state = "ed209_taser"
+				build_step++
+				to_chat(user, "<span class='notice'>You add [W] to [src].</span>")
 				user.drop_item()
 				qdel(W)
 

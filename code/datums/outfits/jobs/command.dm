@@ -36,7 +36,7 @@
 	l_ear = /obj/item/device/radio/headset/headset_com
 	shoes = /obj/item/clothing/shoes/brown
 	id_type = /obj/item/weapon/card/id/silver/secretary
-	pda_type = /obj/item/device/pda/heads/hop
+	pda_type = /obj/item/device/pda/heads
 	r_hand = /obj/item/weapon/clipboard
 
 /decl/hierarchy/outfit/job/secretary/pre_equip(mob/living/carbon/human/H)

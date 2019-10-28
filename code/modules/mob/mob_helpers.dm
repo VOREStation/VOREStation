@@ -147,6 +147,8 @@ proc/getsensorlevel(A)
 	var/miss_chance = 10
 	if (zone in base_miss_chance)
 		miss_chance = base_miss_chance[zone]
+	if (zone == "eyes" || zone == "mouth")
+		miss_chance = base_miss_chance["head"]
 	miss_chance = max(miss_chance + miss_chance_mod, 0)
 	if(prob(miss_chance))
 		if(prob(70))
@@ -158,7 +160,7 @@ proc/getsensorlevel(A)
 /proc/stars(n, pr)
 	if (pr == null)
 		pr = 25
-	if (pr <= 0)
+	if (pr < 0)
 		return null
 	else
 		if (pr >= 100)

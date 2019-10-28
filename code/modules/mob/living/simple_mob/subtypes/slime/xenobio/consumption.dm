@@ -1,7 +1,7 @@
 // Handles hunger, starvation, growth, and eatting humans.
 
 // Might be best to make this a /mob/living proc and override.
-/mob/living/simple_mob/slime/xenobio/proc/adjust_nutrition(input)
+/mob/living/simple_mob/slime/xenobio/proc/adjust_nutrition(input, var/heal = 1)
 	nutrition = between(0, nutrition + input, get_max_nutrition())
 
 	if(input > 0)
@@ -12,11 +12,12 @@
 				adjustToxLoss(-10)
 
 		// Heal 1 point of damage per 5 nutrition coming in.
-		adjustBruteLoss(-input * 0.2)
-		adjustFireLoss(-input * 0.2)
-		adjustToxLoss(-input * 0.2)
-		adjustOxyLoss(-input * 0.2)
-		adjustCloneLoss(-input * 0.2)
+		if(heal)
+			adjustBruteLoss(-input * 0.2)
+			adjustFireLoss(-input * 0.2)
+			adjustToxLoss(-input * 0.2)
+			adjustOxyLoss(-input * 0.2)
+			adjustCloneLoss(-input * 0.2)
 
 
 /mob/living/simple_mob/slime/xenobio/proc/get_max_nutrition() // Can't go above it
@@ -139,6 +140,13 @@
 	if(L.getCloneLoss() >= L.getMaxHealth() * 1.5)
 		to_chat(src, "This subject does not have an edible life energy...")
 		return FALSE
+	//VOREStation Addition start
+	if(istype(L, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = L
+		if(H.species.flags & NO_SCAN)
+			to_chat(src, "This subject's life energy is beyond my reach...")
+			return FALSE
+	//VOREStation Addition end
 	if(L.has_buckled_mobs())
 		for(var/A in L.buckled_mobs)
 			if(istype(A, /mob/living/simple_mob/slime/xenobio))

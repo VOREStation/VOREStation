@@ -706,6 +706,7 @@
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/wine = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/cider = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/tomatojuice = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/limejuice = 5,
@@ -797,17 +798,17 @@
 					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 8,
 					/obj/item/weapon/reagent_containers/pill/diet = 8,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,
+					///obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,	//VOREStation Removal,
 					/obj/item/weapon/towel/random = 8)
 
 	prices = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 3,
 					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 3,
-					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 40, //VOREStation Edit,
+					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 40,	//VOREStation Edit,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 5,
 					/obj/item/weapon/reagent_containers/pill/diet = 25,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,
+					///obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,	//VOREStation Removal,
 					/obj/item/weapon/towel/random = 40)
 
 	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4)
@@ -1150,3 +1151,21 @@
 					/obj/item/toy/plushie/carp = 50,
 					/obj/item/toy/plushie/deer = 50,
 					/obj/item/toy/plushie/tabby_cat = 50)
+
+/obj/machinery/vending/fishing
+	name = "Loot Trawler"
+	desc = "A special vendor for fishing equipment."
+	product_ads = "Tired of trawling across the ocean floor? Get our loot!;Chum and rods.;Don't get baited into fishing without us!;Baby is your star-sign pisces? We'd make a perfect match.;Do not fear, plenty to catch around here.;Don't get reeled in helplessly, get your own rod today!"
+	icon_state = "fishvendor"
+	products = list(/obj/item/weapon/material/fishing_rod/modern/cheap = 6,
+					/obj/item/weapon/storage/box/wormcan = 4,
+					/obj/item/weapon/storage/box/wormcan/sickly = 10,
+					/obj/item/weapon/material/fishing_net = 2,
+					/obj/item/stack/cable_coil/random = 6)
+	prices = list(/obj/item/weapon/material/fishing_rod/modern/cheap = 50,
+					/obj/item/weapon/storage/box/wormcan = 12,
+					/obj/item/weapon/storage/box/wormcan/sickly = 6,
+					/obj/item/weapon/material/fishing_net = 40,
+					/obj/item/stack/cable_coil/random = 4)
+	premium = list(/obj/item/weapon/storage/box/wormcan/deluxe = 1)
+	contraband = list(/obj/item/weapon/storage/box/wormcan/deluxe = 1)

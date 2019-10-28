@@ -36,6 +36,7 @@
 #define SPECIES_MONKEY_SERGAL		"Saru"
 #define SPECIES_MONKEY_VULPKANIN	"Wolpin"
 
+#define SPECIES_WEREBEAST			"Werebeast"
 #define SPECIES_SHADEKIN			"Shadekin"
 #define SPECIES_SHADEKIN_BLUE		"Blue-eyed Shadekin"
 #define SPECIES_SHADEKIN_RED		"Red-eyed Shadekin"
@@ -43,3 +44,4 @@
 #define SPECIES_SHADEKIN_PURPLE		"Purple-eyed Shadekin"
 #define SPECIES_SHADEKIN_ORANGE		"Orange-eyed Shadekin"
 #define SPECIES_SHADEKIN_GREEN		"Green-eyed Shadekin"
+#define SPECIES_WEREBEAST			"Werebeast"

@@ -124,15 +124,22 @@
 		icon_state = material.door_icon_base
 
 /obj/structure/simple_door/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(istype(W,/obj/item/weapon/pickaxe))
 		var/obj/item/weapon/pickaxe/digTool = W
-		user << "You start digging the [name]."
+		visible_message("<span class='danger'>[user] starts digging [src]!</span>")
 		if(do_after(user,digTool.digspeed*hardness) && src)
-			user << "You finished digging."
+			visible_message("<span class='danger'>[user] finished digging [src]!</span>")
 			Dismantle()
 	else if(istype(W,/obj/item/weapon)) //not sure, can't not just weapons get passed to this proc?
-		hardness -= W.force/100
-		user << "You hit the [name] with your [W.name]!"
+		hardness -= W.force/10
+		visible_message("<span class='danger'>[user] hits [src] with [W]!</span>")
+		if(material == get_material_by_name("resin"))
+			playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
+		else if(material == (get_material_by_name(MAT_WOOD) || get_material_by_name(MAT_SIFWOOD)))
+			playsound(loc, 'sound/effects/woodcutting.ogg', 100, 1)
+		else
+			playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 		CheckHardness()
 	else if(istype(W,/obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
@@ -142,12 +149,33 @@
 		attack_hand(user)
 	return
 
+/obj/structure/simple_door/bullet_act(var/obj/item/projectile/Proj)
+	hardness -= Proj.force/10
+	CheckHardness()
+
+/obj/structure/simple_door/take_damage(var/damage)
+	hardness -= damage/10
+	CheckHardness()
+
+/obj/structure/simple_door/attack_generic(var/mob/user, var/damage, var/attack_verb)
+	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	if(material == get_material_by_name("resin"))
+		playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
+	else if(material == (get_material_by_name(MAT_WOOD) || get_material_by_name(MAT_SIFWOOD)))
+		playsound(loc, 'sound/effects/woodcutting.ogg', 100, 1)
+	else
+		playsound(src, 'sound/weapons/smash.ogg', 50, 1)
+	user.do_attack_animation(src)
+	hardness -= damage/10
+	CheckHardness()
+
 /obj/structure/simple_door/proc/CheckHardness()
 	if(hardness <= 0)
 		Dismantle(1)
 
 /obj/structure/simple_door/proc/Dismantle(devastated = 0)
 	material.place_dismantled_product(get_turf(src))
+	visible_message("<span class='danger'>The [src] is destroyed!</span>")
 	qdel(src)
 
 /obj/structure/simple_door/ex_act(severity = 1)
@@ -168,7 +196,7 @@
 /obj/structure/simple_door/process()
 	if(!material.radioactivity)
 		return
-	radiation_repository.radiate(src, round(material.radioactivity/3))
+	SSradiation.radiate(src, round(material.radioactivity/3))
 
 /obj/structure/simple_door/iron/New(var/newloc,var/material_name)
 	..(newloc, "iron")

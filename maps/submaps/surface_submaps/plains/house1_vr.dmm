@@ -284,6 +284,10 @@
 	},
 /turf/simulated/wall/wood,
 /area/submap/house1)
+"GN" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/wood,
+/area/submap/house1)
 
 (1,1,1) = {"
 aa
@@ -407,7 +411,7 @@ as
 ax
 ap
 ap
-ap
+GN
 ap
 ap
 ap

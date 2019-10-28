@@ -48,6 +48,8 @@ var/global/list/robot_modules = list(
 	apply_status_flags(R)
 
 	if(R.radio)
+		if(R.shell)
+			channels = R.mainframe.aiRadio.channels
 		R.radio.recalculateChannels()
 
 	vr_add_sprites() //Vorestation Edit: For vorestation only sprites
@@ -469,6 +471,10 @@ var/global/list/robot_modules = list(
 	var/obj/item/stack/tile/floor/cyborg/S = new /obj/item/stack/tile/floor/cyborg(src)
 	S.synths = list(metal)
 	src.modules += S
+
+	var/obj/item/stack/tile/roofing/cyborg/CT = new /obj/item/stack/tile/roofing/cyborg(src)
+	CT.synths = list(metal)
+	src.modules += CT
 
 	var/obj/item/stack/material/cyborg/glass/reinforced/RG = new (src)
 	RG.synths = list(metal, glass)

@@ -756,3 +756,10 @@ proc/dd_sortedTextList(list/incoming)
 	. = list()
 	for(var/i in L)
 		. |= i
+
+#define listequal(A, B) (A.len == B.len && !length(A^B))
+
+/proc/popleft(list/L)
+	if(L.len)
+		. = L[1]
+		L.Cut(1,2) 

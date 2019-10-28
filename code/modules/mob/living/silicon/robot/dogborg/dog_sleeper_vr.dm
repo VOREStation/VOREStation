@@ -42,6 +42,10 @@
 	flags |= NOBLUDGEON //No more attack messages
 	files = new /datum/research/techonly(src)
 
+/obj/item/device/dogborg/sleeper/Destroy()
+	go_out()
+	..()
+
 /obj/item/device/dogborg/sleeper/Exit(atom/movable/O)
 	return 0
 
@@ -168,6 +172,8 @@
 
 /obj/item/device/dogborg/sleeper/proc/drain(var/amt = 3) //Slightly reduced cost (before, it was always injecting inaprov)
 	hound = src.loc
+	if(istype(hound,/obj/item/weapon/robot_module))
+		hound = hound.loc
 	hound.cell.charge = hound.cell.charge - amt
 
 /obj/item/device/dogborg/sleeper/attack_self(mob/user)
@@ -592,7 +598,7 @@
 							var/total_material = T.matter[material]
 							if(istype(T,/obj/item/stack))
 								var/obj/item/stack/stack = T
-								total_material *= (0.5 * stack.get_amount())
+								total_material *= stack.get_amount()
 							if(material == DEFAULT_WALL_MATERIAL)
 								metal.add_charge(total_material)
 							if(material == "glass")

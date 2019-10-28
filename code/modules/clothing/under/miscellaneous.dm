@@ -453,6 +453,10 @@
 	icon_state = "sari_green"
 	item_state_slots = list(slot_r_hand_str = "dress_green", slot_l_hand_str = "dress_green")
 
+/obj/item/clothing/under/dress/lilacdress
+	name = "lilac dress"
+	desc = "A simple black dress adorned in fake purple lilacs."
+	icon_state = "lilacdress"
 
 /*
  * wedding stuff
@@ -904,3 +908,40 @@
 	name = "hazard cohesion suit"
 	desc = "An orange cohesion suit with yellow hazard stripes intended to assist Prometheans in maintaining their form and prevent direct skin exposure."
 	icon_state = "cohesionsuit_hazard"
+
+//Uniforms
+//On-mob sprites go in icons\mob\uniform.dmi with the format "white_ranger_uniform_s" - with 'white' replaced with green, cyan, etc... of course! Note the _s - this is not optional.
+//Item sprites go in icons\obj\clothing\ranger.dmi with the format "white_ranger_uniform"
+/obj/item/clothing/under/color/ranger
+	var/unicolor = "white"
+	name = "ranger uniform"
+	desc = "Made from a space-proof fibre and tight fitting, this uniform usually gives the agile Rangers all kinds of protection while not inhibiting their movement. \
+	This costume is instead made from genuine cotton fibre and is based on the season three uniform."
+	icon = 'icons/obj/clothing/ranger.dmi'
+	icon_state = "ranger_uniform"
+	rolled_down = 0
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/color/ranger/Initialize()
+	. = ..()
+	if(icon_state == "ranger_uniform") //allows for custom items
+		name = "[unicolor] ranger uniform"
+		icon_state = "[unicolor]_ranger_uniform"
+
+/obj/item/clothing/under/color/ranger/black
+	unicolor = "black"
+
+/obj/item/clothing/under/color/ranger/pink
+	unicolor = "pink"
+
+/obj/item/clothing/under/color/ranger/green
+	unicolor = "green"
+
+/obj/item/clothing/under/color/ranger/cyan
+	unicolor = "cyan"
+
+/obj/item/clothing/under/color/ranger/orange
+	unicolor = "orange"
+
+/obj/item/clothing/under/color/ranger/yellow
+	unicolor = "yellow"

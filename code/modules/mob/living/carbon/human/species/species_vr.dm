@@ -18,6 +18,7 @@
 	var/wing
 	var/wing_animation
 	var/icobase_wing
+	var/wikilink = null //link to wiki page for species
 
 /datum/species/proc/update_attack_types()
 	unarmed_attacks = list()

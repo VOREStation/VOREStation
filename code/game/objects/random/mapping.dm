@@ -65,10 +65,30 @@
 				prob(10);/obj/effect/mine/stun,
 				prob(10);/obj/effect/mine/incendiary,)
 
+/obj/random/humanoidremains
+	name = "Random Humanoid Remains"
+	desc = "This is a random pile of remains."
+	spawn_nothing_percentage = 15
+	icon = 'icons/effects/blood.dmi'
+	icon_state = "remains"
+
+/obj/random/humanoidremains/item_to_spawn()
+	return pick(prob(30);/obj/effect/decal/remains/human,
+				prob(25);/obj/effect/decal/remains/ribcage,
+				prob(25);/obj/effect/decal/remains/tajaran,
+				prob(10);/obj/effect/decal/remains/unathi,
+				prob(10);/obj/effect/decal/remains/posi
+				)
+
 /obj/random_multi/single_item/captains_spare_id
 	name = "Multi Point - Captain's Spare"
 	id = "Captain's spare id"
 	item_path = /obj/item/weapon/card/id/gold/captain/spare
+
+/obj/random_multi/single_item/hand_tele
+	name = "Multi Point - Hand Teleporter"
+	id = "hand tele"
+	item_path = /obj/item/weapon/hand_tele
 
 /obj/random_multi/single_item/sfr_headset
 	name = "Multi Point - headset"
@@ -391,5 +411,54 @@
 				/obj/item/clothing/mask/luchador/rudos,
 				/obj/item/clothing/mask/luchador/tecnicos,
 				/obj/structure/closet/crate
+			),
+			prob(1);list(
+				/obj/machinery/artifact,
+				/obj/structure/anomaly_container
+			),
+			prob(1);list(
+				/obj/random/curseditem,
+				/obj/random/humanoidremains,
+				/obj/structure/closet/crate
 			)
 		)
+
+/*
+ * Turf swappers.
+ */
+
+/obj/random/turf
+	name = "random Sif turf"
+	desc = "This is a random Sif turf."
+
+	spawn_nothing_percentage = 20
+
+	var/override_outdoors = FALSE	// Do we override our chosen turf's outdoors?
+	var/turf_outdoors = TRUE	// Will our turf be outdoors?
+
+/obj/random/turf/spawn_item()
+	var/build_path = item_to_spawn()
+
+	var/turf/T1 = get_turf(src)
+	T1.ChangeTurf(build_path, 1, 1, FALSE)
+
+	if(override_outdoors)
+		T1.outdoors = turf_outdoors
+
+/obj/random/turf/item_to_spawn()
+	return pick(prob(25);/turf/simulated/floor/outdoors/grass/sif,
+				prob(25);/turf/simulated/floor/outdoors/dirt,
+				prob(25);/turf/simulated/floor/outdoors/grass/sif/forest,
+				prob(25);/turf/simulated/floor/outdoors/rocks)
+
+/obj/random/turf/lava
+	name = "random Lava spawn"
+	desc = "This is a random lava spawn."
+
+	override_outdoors = TRUE
+	turf_outdoors = FALSE
+
+/obj/random/turf/lava/item_to_spawn()
+	return pick(prob(5);/turf/simulated/floor/lava,
+				prob(3);/turf/simulated/floor/outdoors/rocks/caves,
+				prob(1);/turf/simulated/mineral)

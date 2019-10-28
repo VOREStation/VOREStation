@@ -64,3 +64,25 @@
 	if(!.) // Not friendly, see if they're a baddie first.
 		if(L.mind && raiders.is_antagonist(L.mind))
 			return TRUE
+
+// Variant that is neutral, and thus on the station's side. It checks records.
+/mob/living/simple_mob/mechanical/viscerator/station
+	icon_state = "viscerator_b_attack"
+	icon_living = "viscerator_b_attack"
+
+	faction = "station"
+	maxHealth = 20
+	health = 20
+
+	melee_damage_lower = 2
+	melee_damage_upper = 5
+	base_attack_cooldown = 8
+
+/mob/living/simple_mob/mechanical/viscerator/station/IIsAlly(mob/living/L)
+	. = ..()
+	if(!.)
+		if(isrobot(L)) // They ignore synths.
+			return TRUE
+		if(istype(L, /mob/living/simple_mob/mechanical/ward/monitor/crew))	// Also ignore friendly monitor wards
+			return TRUE
+		return L.assess_perp(src, FALSE, FALSE, TRUE, FALSE) <= 3

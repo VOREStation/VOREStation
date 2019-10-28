@@ -92,6 +92,12 @@
 	taste_description = "egg"
 	color = "#FFFFAA"
 
+/datum/reagent/nutriment/protein/murk
+	name = "murkfin protein"
+	id = "murk_protein"
+	taste_description = "mud"
+	color = "#664330"
+
 /datum/reagent/nutriment/honey
 	name = "Honey"
 	id = "honey"
@@ -121,6 +127,14 @@
 			M.sleeping = max(M.sleeping, 20)
 			M.drowsyness = max(M.drowsyness, 60)
 
+/datum/reagent/nutriment/mayo
+	name = "mayonnaise"
+	id = "mayo"
+	description = "A thick, bitter sauce."
+	taste_description = "unmistakably mayonnaise"
+	nutriment_factor = 10
+	color = "#FFFFFF"
+
 /datum/reagent/nutriment/flour
 	name = "Flour"
 	id = "flour"
@@ -134,6 +148,24 @@
 	if(!istype(T, /turf/space))
 		new /obj/effect/decal/cleanable/flour(T)
 
+/datum/reagent/nutriment/coffee
+	name = "Coffee Powder"
+	id = "coffeepowder"
+	description = "A bitter powder made by grinding coffee beans."
+	taste_description = "bitterness"
+	taste_mult = 1.3
+	nutriment_factor = 1
+	color = "#482000"
+
+/datum/reagent/nutriment/tea
+	name = "Tea Powder"
+	id = "teapowder"
+	description = "A dark, tart powder made from black tea leaves."
+	taste_description = "tartness"
+	taste_mult = 1.3
+	nutriment_factor = 1
+	color = "#101000"
+
 /datum/reagent/nutriment/coco
 	name = "Coco Powder"
 	id = "coco"
@@ -143,6 +175,41 @@
 	reagent_state = SOLID
 	nutriment_factor = 5
 	color = "#302000"
+
+/datum/reagent/nutriment/instantjuice
+	name = "Juice Powder"
+	id = "instantjuice"
+	description = "Dehydrated, powdered juice of some kind."
+	taste_mult = 1.3
+	nutriment_factor = 1
+
+/datum/reagent/nutriment/instantjuice/grape
+	name = "Grape Juice Powder"
+	id = "instantgrape"
+	description = "Dehydrated, powdered grape juice."
+	taste_description = "dry grapes"
+	color = "#863333"
+
+/datum/reagent/nutriment/instantjuice/orange
+	name = "Orange Juice Powder"
+	id = "instantorange"
+	description = "Dehydrated, powdered orange juice."
+	taste_description = "dry oranges"
+	color = "#e78108"
+
+/datum/reagent/nutriment/instantjuice/watermelon
+	name = "Watermelon Juice Powder"
+	id = "instantwatermelon"
+	description = "Dehydrated, powdered watermelon juice."
+	taste_description = "dry sweet watermelon"
+	color = "#b83333"
+
+/datum/reagent/nutriment/instantjuice/apple
+	name = "Apple Juice Powder"
+	id = "instantapple"
+	description = "Dehydrated, powdered apple juice."
+	taste_description = "dry sweet apples"
+	color = "#c07c40"
 
 /datum/reagent/nutriment/soysauce
 	name = "Soysauce"
@@ -207,6 +274,76 @@
 
 	if(volume >= 3)
 		T.wet_floor()
+
+/datum/reagent/nutriment/peanutoil
+	name = "Peanut Oil"
+	id = "peanutoil"
+	description = "An oil derived from various types of nuts."
+	taste_description = "nuts"
+	taste_mult = 0.3
+	reagent_state = LIQUID
+	nutriment_factor = 15
+	color = "#4F3500"
+
+/datum/reagent/nutriment/peanutoil/touch_turf(var/turf/simulated/T)
+	if(!istype(T))
+		return
+
+	var/hotspot = (locate(/obj/fire) in T)
+	if(hotspot && !istype(T, /turf/space))
+		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
+		lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
+		lowertemp.react()
+		T.assume_air(lowertemp)
+		qdel(hotspot)
+
+	if(volume >= 5)
+		T.wet_floor()
+
+/datum/reagent/nutriment/peanutbutter
+	name = "Peanut Butter"
+	id = "peanutbutter"
+	description = "A butter derived from various types of nuts."
+	taste_description = "peanuts"
+	taste_mult = 0.5
+	reagent_state = LIQUID
+	nutriment_factor = 30
+	color = "#4F3500"
+
+/datum/reagent/nutriment/vanilla
+	name = "Vanilla Extract"
+	id = "vanilla"
+	description = "Vanilla extract. Tastes suspiciously like boring ice-cream."
+	taste_description = "vanilla"
+	taste_mult = 5
+	reagent_state = LIQUID
+	nutriment_factor = 2
+	color = "#0F0A00"
+
+/datum/reagent/nutriment/durian
+	name = "Durian Paste"
+	id = "durianpaste"
+	description = "A strangely sweet and savory paste."
+	taste_description = "sweet and savory"
+	color = "#757631"
+
+	glass_name = "durian paste"
+	glass_desc = "Durian paste. It smells horrific."
+
+/datum/reagent/nutriment/durian/touch_mob(var/mob/M, var/amount)
+	if(iscarbon(M) && !M.isSynthetic())
+		var/message = pick("Oh god, it smells disgusting here.", "What is that stench?", "That's an awful odor.")
+		to_chat(M,"<span class='alien'>[message]</span>")
+		if(prob(CLAMP(amount, 5, 90)))
+			var/mob/living/L = M
+			L.vomit()
+	return ..()
+
+/datum/reagent/nutriment/durian/touch_turf(var/turf/T, var/amount)
+	if(istype(T))
+		var/obj/effect/decal/cleanable/chemcoating/C = new /obj/effect/decal/cleanable/chemcoating(T)
+		C.reagents.add_reagent(id, amount)
+	return ..()
 
 /datum/reagent/nutriment/virus_food
 	name = "Virus Food"
@@ -552,6 +689,16 @@
 
 	glass_name = "berry juice"
 	glass_desc = "Berry juice. Or maybe it's jam. Who cares?"
+
+/datum/reagent/drink/juice/pineapple
+	name = "Pineapple Juice"
+	id = "pineapplejuice"
+	description = "A sour but refreshing juice from a pineapple."
+	taste_description = "pineapple"
+	color = "#C3AF00"
+
+	glass_name = "pineapple juice"
+	glass_desc = "Pineapple juice. Or maybe it's spineapple. Who cares?"
 
 /datum/reagent/drink/juice/carrot
 	name = "Carrot juice"
@@ -1074,6 +1221,42 @@
 	glass_desc = "Oh the nostalgia..."
 	glass_special = list(DRINK_FIZZ)
 
+/datum/reagent/drink/soda/melonade
+	name = "Melonade"
+	id = "melonade"
+	description = "Oh the.. nostalgia?"
+	taste_description = "watermelon"
+	color = "#FFB3BB"
+	adj_temp = -5
+
+	glass_name = "melonade"
+	glass_desc = "Oh the.. nostalgia?"
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/drink/soda/appleade
+	name = "Appleade"
+	id = "appleade"
+	description = "Applejuice, improved."
+	taste_description = "apples"
+	color = "#FFD1B3"
+	adj_temp = -5
+
+	glass_name = "appleade"
+	glass_desc = "Applejuice, improved."
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/drink/soda/pineappleade
+	name = "Pineappleade"
+	id = "pineappleade"
+	description = "Spineapple, juiced up."
+	taste_description = "sweet`n`sour pineapples"
+	color = "#FFFF00"
+	adj_temp = -5
+
+	glass_name = "pineappleade"
+	glass_desc = "Spineapple, juiced up."
+	glass_special = list(DRINK_FIZZ)
+
 /datum/reagent/drink/soda/kiraspecial
 	name = "Kira Special"
 	id = "kiraspecial"
@@ -1169,6 +1352,16 @@
 /datum/reagent/drink/milkshake/coffeeshake/overdose(var/mob/living/carbon/M, var/alien)
 	M.make_jittery(5)
 
+/datum/reagent/drink/milkshake/peanutshake
+	name = "Peanut Milkshake"
+	id = "peanutmilkshake"
+	description = "Savory cream in an ice-cold stature."
+	taste_description = "cold peanuts and cream"
+	color = "#8e6f44"
+
+	glass_name = "Peanut Milkshake"
+	glass_desc = "Savory cream in an ice-cold stature."
+
 /datum/reagent/drink/rewriter
 	name = "Rewriter"
 	id = "rewriter"
@@ -1211,6 +1404,7 @@
 	description = "Made in the modern day with proper pomegranate substitute. Who uses real fruit, anyways?"
 	taste_description = "100% pure pomegranate"
 	color = "#FF004F"
+	water_based = FALSE
 
 	glass_name = "grenadine syrup"
 	glass_desc = "Sweet and tangy, a bar syrup used to add color or flavor to drinks."
@@ -1278,7 +1472,6 @@
 	glass_name = "lemon lime soda"
 	glass_desc = "A tangy substance made of 0.5% natural citrus!"
 	glass_special = list(DRINK_FIZZ)
-
 
 /datum/reagent/drink/soda/gingerale
 	name = "Ginger Ale"
@@ -1503,6 +1696,18 @@
 	glass_desc = "A concoction that should probably be in an engine, rather than your stomach."
 	glass_icon = DRINK_ICON_NOISY
 
+/datum/reagent/drink/slimeslammer
+	name = "Slick Slimes Slammer"
+	id = "slimeslammer"
+	description = "A viscous, but savory, ooze."
+	taste_description = "peanuts`n`slime"
+	color = "#93604D"
+	water_based = FALSE
+
+	glass_name = "Slick Slime Slammer"
+	glass_desc = "A concoction that should probably be in an engine, rather than your stomach. Still."
+	glass_icon = DRINK_ICON_NOISY
+
 /datum/reagent/drink/eggnog
 	name = "Eggnog"
 	id = "eggnog"
@@ -1568,6 +1773,73 @@
 				var/datum/reagent/drink/D = R
 				if(D.water_based)
 					M.adjustToxLoss(removed * -2)
+
+/datum/reagent/drink/mojito
+	name = "Mojito"
+	id = "virginmojito"
+	description = "Mint, bubbly water, and citrus, made for sailing."
+	taste_description = "mint and lime"
+	color = "#FFF7B3"
+
+	glass_name = "mojito"
+	glass_desc = "Mint, bubbly water, and citrus, made for sailing."
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/drink/sexonthebeach
+	name = "Virgin Sex On The Beach"
+	id = "virginsexonthebeach"
+	description = "A secret combination of orange juice and pomegranate."
+	taste_description = "60% orange juice, 40% pomegranate"
+	color = "#7051E3"
+
+	glass_name = "sex on the beach"
+	glass_desc = "A secret combination of orange juice and pomegranate."
+
+/datum/reagent/drink/driverspunch
+	name = "Driver's Punch"
+	id = "driverspunch"
+	description = "A fruity punch!"
+	taste_description = "sharp, sour apples"
+	color = "#D2BA6E"
+
+	glass_name = "driver`s punch"
+	glass_desc = "A fruity punch!"
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/drink/berrycordial
+	name = "Berry Cordial"
+	id = "berrycordial"
+	description = "How <font face='comic sans ms'>berry cordial</font> of you."
+	taste_description = "sweet chivalry"
+	color = "#D26EB8"
+
+	glass_name = "berry cordial"
+	glass_desc = "How <font face='comic sans ms'>berry cordial</font> of you."
+	glass_icon = DRINK_ICON_NOISY
+
+/datum/reagent/drink/tropicalfizz
+	name = "Tropical Fizz"
+	id = "tropicalfizz"
+	description = "One sip and you're in the bahamas."
+	taste_description = "tropical"
+	color = "#69375C"
+
+	glass_name = "tropical fizz"
+	glass_desc = "One sip and you're in the bahamas."
+	glass_icon = DRINK_ICON_NOISY
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/drink/fauxfizz
+	name = "Faux Fizz"
+	id = "fauxfizz"
+	description = "One sip and you're in the bahamas... maybe."
+	taste_description = "slightly tropical"
+	color = "#69375C"
+
+	glass_name = "tropical fizz"
+	glass_desc = "One sip and you're in the bahamas... maybe."
+	glass_icon = DRINK_ICON_NOISY
+	glass_special = list(DRINK_FIZZ)
 
 /* Alcohol */
 
@@ -1656,6 +1928,17 @@
 		return
 	M.dizziness +=5
 
+/datum/reagent/ethanol/firepunch
+	name = "Fire Punch"
+	id = "firepunch"
+	description = "Yo ho ho and a jar of honey."
+	taste_description = "sharp butterscotch"
+	color = "#ECB633"
+	strength = 7
+
+	glass_name = "fire punch"
+	glass_desc = "Yo ho ho and a jar of honey."
+
 /datum/reagent/ethanol/gin
 	name = "Gin"
 	id = "gin"
@@ -1723,6 +2006,18 @@
 	glass_name = "melon liquor"
 	glass_desc = "A relatively sweet and fruity 46 proof liquor."
 
+/datum/reagent/ethanol/melonspritzer
+	name = "Melon Spritzer"
+	id = "melonspritzer"
+	description = "Melons: Citrus style."
+	taste_description = "sour melon"
+	color = "#934D5D"
+	strength = 10
+
+	glass_name = "melon spritzer"
+	glass_desc = "Melons: Citrus style."
+	glass_special = list(DRINK_FIZZ)
+
 /datum/reagent/ethanol/rum
 	name = "Rum"
 	id = "rum"
@@ -1745,6 +2040,17 @@
 
 	glass_name = "sake"
 	glass_desc = "A glass of sake."
+
+/datum/reagent/ethanol/sexonthebeach
+	name = "Sex On The Beach"
+	id = "sexonthebeach"
+	description = "A concoction of vodka and a secret combination of orange juice and pomegranate."
+	taste_description = "60% orange juice, 40% pomegranate, 100% alcohol"
+	color = "#7051E3"
+	strength = 15
+
+	glass_name = "sex on the beach"
+	glass_desc = "A concoction of vodka and a secret combination of orange juice and pomegranate."
 
 /datum/reagent/ethanol/tequila
 	name = "Tequila"
@@ -1848,6 +2154,7 @@
 
 	glass_name = "cider"
 	glass_desc = "The second most Irish drink."
+	glass_special = list(DRINK_FIZZ)
 
 // Cocktails
 

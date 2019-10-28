@@ -127,7 +127,7 @@
 	data["pillSprite"] = pillsprite
 	data["bottleSprite"] = bottlesprite
 
-	var/P[20] //how many pill sprites there are. Sprites are taken from chemical.dmi and can be found in nano/images/pill.png
+	var/P[24] //how many pill sprites there are. Sprites are taken from chemical.dmi and can be found in nano/images/pill.png
 	for(var/i = 1 to P.len)
 		P[i] = i
 	data["pillSpritesAmount"] = P
@@ -238,7 +238,7 @@
 			else
 				pill_cube = "pill"
 
-			var/name = sanitizeSafe(input(usr,"Name:","Name your [pill_cube]!","[reagents.get_master_reagent_name()] ([amount_per_pill] units)") as null|text, MAX_NAME_LEN)
+			var/name = sanitizeSafe(input(usr,"Name:","Name your [pill_cube]!","[reagents.get_master_reagent_name()] ([amount_per_pill]u)") as null|text, MAX_NAME_LEN)
 
 			if(!name) //Blank name (sanitized to nothing, or left empty) or cancel
 				return
@@ -257,6 +257,10 @@
 				else //If condi is on
 					P.icon_state = "bouilloncube"//Reskinned monkey cube
 					P.desc = "A dissolvable cube."
+
+				if(P.icon_state in list("pill1", "pill2", "pill3", "pill4")) // if using greyscale, take colour from reagent
+					P.color = reagents.get_color()
+
 				reagents.trans_to_obj(P,amount_per_pill)
 				if(src.loaded_pill_bottle)
 					if(loaded_pill_bottle.contents.len < loaded_pill_bottle.max_storage_space)
@@ -276,6 +280,28 @@
 			else
 				var/obj/item/weapon/reagent_containers/food/condiment/P = new/obj/item/weapon/reagent_containers/food/condiment(src.loc)
 				reagents.trans_to_obj(P,50)
+
+		else if (href_list["createpatch"])
+			if(reagents.total_volume < 1) //Sanity checking.
+				return
+
+			var/name = sanitizeSafe(input(usr,"Name:","Name your patch!","[reagents.get_master_reagent_name()] ([round(reagents.total_volume)]u)") as null|text, MAX_NAME_LEN)
+
+			if(!name) //Blank name (sanitized to nothing, or left empty) or cancel
+				return
+
+			if(reagents.total_volume < 1) //Sanity checking.
+				return
+			var/obj/item/weapon/reagent_containers/pill/patch/P = new/obj/item/weapon/reagent_containers/pill/patch(src.loc)
+			if(!name) name = reagents.get_master_reagent_name()
+			P.name = "[name] patch"
+			P.pixel_x = rand(-7, 7) //random position
+			P.pixel_y = rand(-7, 7)
+
+			reagents.trans_to_obj(P, 60)
+			if(src.loaded_pill_bottle)
+				if(loaded_pill_bottle.contents.len < loaded_pill_bottle.max_storage_space)
+					P.loc = loaded_pill_bottle
 
 		else if(href_list["pill_sprite"])
 			pillsprite = href_list["pill_sprite"]

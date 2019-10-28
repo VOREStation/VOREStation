@@ -60,29 +60,67 @@
 	metabolism_percent = 0.5
 	incoming_healing_percent = 0.6
 
-/datum/modifier/trait/larger
-	name = "Larger"
-	desc = "Your body is larger than average."
+/datum/modifier/trait/taller
+	name = "Taller"
+	desc = "Your body is taller than average."
+	icon_scale_x_percent = 1
+	icon_scale_y_percent = 1.09
 
-	icon_scale_percent = 1.1
+/datum/modifier/trait/tall
+	name = "Tall"
+	desc = "Your body is a bit taller than average."
+	icon_scale_x_percent = 1
+	icon_scale_y_percent = 1.05
 
-/datum/modifier/trait/large
-	name = "Large"
-	desc = "Your body is a bit larger than average."
+/datum/modifier/trait/short
+	name = "Short"
+	desc = "Your body is a bit shorter than average."
+	icon_scale_x_percent = 1
+	icon_scale_y_percent = 0.95
 
-	icon_scale_percent = 1.05
 
-/datum/modifier/trait/small
-	name = "Small"
-	desc = "Your body is a bit smaller than average."
+/datum/modifier/trait/shorter
+	name = "Shorter"
+	desc = "You are shorter than average."
+	icon_scale_x_percent = 1
+	icon_scale_y_percent = 0.915
 
-	icon_scale_percent = 0.95
+/datum/modifier/trait/fat
+	name = "Overweight"
+	desc = "You are heavier than average."
 
-/datum/modifier/trait/smaller
-	name = "Smaller"
-	desc = "Your body is smaller than average."
+	metabolism_percent = 1.2
+	icon_scale_x_percent = 1.054
+	icon_scale_y_percent = 1
+	slowdown = 1.1
+	max_health_percent = 1.05
 
-	icon_scale_percent = 0.9
+/datum/modifier/trait/obese
+	name = "Obese"
+	desc = "You are much heavier than average."
+	metabolism_percent = 1.4
+	icon_scale_x_percent = 1.095
+	icon_scale_y_percent = 1
+	slowdown = 1.2
+	max_health_percent = 1.10
+
+/datum/modifier/trait/thin
+	name = "Thin"
+	desc = "You are skinnier than average."
+	metabolism_percent = 0.8
+	icon_scale_x_percent = 0.945
+	icon_scale_y_percent = 1
+	max_health_percent = 0.95
+	outgoing_melee_damage_percent = 0.95
+
+/datum/modifier/trait/thinner
+	name = "Very Thin"
+	desc = "You are much skinnier than average."
+	metabolism_percent = 0.6
+	icon_scale_x_percent = 0.905
+	icon_scale_y_percent = 1
+	max_health_percent = 0.90
+	outgoing_melee_damage_percent = 0.9
 
 /datum/modifier/trait/colorblind_protanopia
 	name = "Protanopia"

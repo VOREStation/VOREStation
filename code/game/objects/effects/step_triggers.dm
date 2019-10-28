@@ -6,6 +6,8 @@
 	invisibility = 99 // nope cant see this shit
 	plane = ABOVE_PLANE
 	anchored = 1
+	icon = 'icons/mob/screen1.dmi' //VS Edit
+	icon_state = "centermarker" //VS Edit
 
 /obj/effect/step_trigger/proc/Trigger(var/atom/movable/A)
 	return 0
@@ -233,6 +235,10 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 		if(isobserver(A))
 			A.forceMove(T) // Harmlessly move ghosts.
 			return
+		//VOREStation Edit Start
+		if(!(A.can_fall()))
+			return // Phased shifted kin should not fall
+		//VOREStation Edit End
 
 		A.forceMove(T)
 		// Living things should probably be logged when they fall...

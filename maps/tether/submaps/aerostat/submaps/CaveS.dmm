@@ -12,11 +12,6 @@
 "d" = (
 /turf/simulated/mineral/ignore_mapgen/virgo2,
 /area/submap/virgo2/CaveS)
-"e" = (
-/obj/item/ammo_casing/a45,
-/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,
-/turf/template_noop,
-/area/submap/virgo2/CaveS)
 "f" = (
 /obj/tether_away_spawner/aerostat_surface,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
@@ -28,10 +23,6 @@
 "h" = (
 /obj/item/ammo_casing/a45,
 /obj/item/ammo_casing/a45,
-/turf/template_noop,
-/area/submap/virgo2/CaveS)
-"i" = (
-/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,
 /turf/template_noop,
 /area/submap/virgo2/CaveS)
 "j" = (
@@ -47,21 +38,12 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CaveS)
-"m" = (
-/mob/living/simple_mob/animal/giant_spider/lurker,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/CaveS)
 "n" = (
 /obj/effect/decal/cleanable/cobweb2,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CaveS)
 "o" = (
 /obj/effect/mine,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/CaveS)
-"q" = (
-/obj/effect/decal/cleanable/cobweb2,
-/mob/living/simple_mob/animal/giant_spider/lurker,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CaveS)
 "r" = (
@@ -84,6 +66,7 @@
 /area/submap/virgo2/CaveS)
 "x" = (
 /obj/structure/table/woodentable,
+/obj/item/device/survivalcapsule,
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
 "y" = (
@@ -107,6 +90,7 @@
 /obj/item/weapon/reagent_containers/pill/antitox,
 /obj/item/weapon/reagent_containers/pill/paracetamol,
 /obj/random/firstaid,
+/obj/item/weapon/storage/firstaid/combat,
 /turf/simulated/floor,
 /area/submap/virgo2/CaveS)
 "B" = (
@@ -130,11 +114,6 @@
 /obj/item/weapon/material/star,
 /obj/item/weapon/material/star,
 /turf/simulated/floor,
-/area/submap/virgo2/CaveS)
-"D" = (
-/obj/effect/spider/stickyweb,
-/mob/living/simple_mob/animal/giant_spider/lurker,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/CaveS)
 "E" = (
 /obj/structure/cable{
@@ -683,7 +662,7 @@ d
 d
 g
 r
-m
+r
 d
 r
 r
@@ -697,7 +676,7 @@ d
 r
 r
 d
-m
+r
 d
 d
 d
@@ -859,7 +838,7 @@ r
 r
 d
 d
-m
+r
 r
 r
 r
@@ -909,8 +888,8 @@ d
 d
 d
 g
-D
-r
+g
+f
 d
 d
 d
@@ -983,7 +962,7 @@ d
 l
 r
 r
-m
+r
 d
 d
 r
@@ -1014,7 +993,7 @@ b
 b
 b
 b
-i
+b
 b
 d
 d
@@ -1138,7 +1117,7 @@ b
 c
 b
 b
-r
+f
 r
 g
 d
@@ -1178,7 +1157,7 @@ b
 b
 b
 c
-e
+c
 d
 g
 r
@@ -1290,7 +1269,7 @@ u
 u
 r
 r
-m
+r
 d
 d
 d
@@ -1318,7 +1297,7 @@ d
 d
 d
 d
-q
+n
 r
 r
 d
@@ -1331,7 +1310,7 @@ y
 B
 E
 u
-r
+f
 r
 d
 d
@@ -1364,7 +1343,7 @@ d
 r
 r
 d
-m
+r
 r
 u
 u
@@ -1537,7 +1516,7 @@ d
 r
 r
 r
-r
+f
 r
 d
 d

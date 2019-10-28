@@ -355,8 +355,8 @@
 			//new_item = new /obj/item/weapon/fossil/base(src.loc)
 
 			//the replacement item propogation isn't working, and it's messy code anyway so just do it here
-			var/list/candidates = list("/obj/item/weapon/fossil/bone"=9,"/obj/item/weapon/fossil/skull"=3,
-			"/obj/item/weapon/fossil/skull/horned"=2)
+			var/list/candidates = list(/obj/item/weapon/fossil/bone = 9,/obj/item/weapon/fossil/skull = 3,
+			/obj/item/weapon/fossil/skull/horned = 2)
 			var/spawn_type = pickweight(candidates)
 			new_item = new spawn_type(src.loc)
 
@@ -511,6 +511,16 @@
 			desc = new_item.desc
 			item_type = new_item.name
 
+		if(39)
+			// Telecube.
+			if(prob(25))
+				apply_prefix = FALSE
+			if(prob(75))
+				apply_image_decorations = TRUE
+			if(prob(25))
+				apply_material_decorations = FALSE
+			new_item = new /obj/item/weapon/telecube/randomized(src.loc)
+
 	if(istype(new_item, /obj/item/weapon/material))
 		var/new_item_mat = pickweight(
 			DEFAULT_WALL_MATERIAL = 80,
@@ -604,6 +614,10 @@
 			new_item.talking_atom = new(new_item)
 			new_item.origin_tech[TECH_ARCANE] = 1
 			new_item.origin_tech[TECH_PRECURSOR] = 1
+
+		var/turf/simulated/mineral/T = get_turf(new_item)
+		if(istype(T))
+			T.last_find = new_item
 
 		qdel(src)
 

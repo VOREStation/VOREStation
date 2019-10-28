@@ -29,13 +29,9 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/GovPatrol)
 "i" = (
-/obj/item/clothing/under/utility/sifguard,
+/obj/item/clothing/under/solgov/utility/sifguard,
 /obj/item/clothing/shoes/boots/jackboots,
 /obj/effect/decal/remains,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/submap/virgo2/GovPatrol)
-"j" = (
-/obj/item/stack/material/wood/sif,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/GovPatrol)
 "k" = (
@@ -44,6 +40,10 @@
 /area/submap/virgo2/GovPatrol)
 "m" = (
 /obj/effect/decal/remains,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/GovPatrol)
+"v" = (
+/obj/random/multiple/voidsuit,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/GovPatrol)
 
@@ -102,7 +102,7 @@ d
 d
 d
 h
-j
+d
 d
 g
 a
@@ -130,7 +130,7 @@ d
 d
 d
 e
-d
+v
 i
 d
 d

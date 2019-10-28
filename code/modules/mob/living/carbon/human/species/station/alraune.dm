@@ -17,7 +17,7 @@
 	selects_bodytype = TRUE
 
 	body_temperature = T20C
-	breath_type = "carbon_dioxide"
+	breath_type = "oxygen"
 	poison_type = "phoron"
 	exhale_type = "oxygen"
 
@@ -170,7 +170,7 @@
 	var/failed_inhale = 0
 	var/failed_exhale = 0
 
-	inhaling = breath.gas[breath_type]
+	inhaling = breath.gas["carbon_dioxide"]
 	poison = breath.gas[poison_type]
 	exhaling = breath.gas[exhale_type]
 
@@ -194,7 +194,7 @@
 		H.oxygen_alert = 0
 
 	inhaled_gas_used = inhaling/6
-	breath.adjust_gas(breath_type, -inhaled_gas_used, update = 0) //update afterwards
+	breath.adjust_gas("carbon_dioxide", -inhaled_gas_used, update = 0) //update afterwards
 	breath.adjust_gas_temp(exhale_type, inhaled_gas_used, H.bodytemperature, update = 0) //update afterwards
 
 	//Now we handle CO2.

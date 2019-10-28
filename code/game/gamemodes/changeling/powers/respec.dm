@@ -7,7 +7,7 @@
 	if(!changeling)
 		return
 	if(src.mind.changeling.readapts <= 0)
-		to_chat(src, "<span class='warning'>We must first absorb another compatable creature!</span>")
+		to_chat(src, "<span class='warning'>We must first absorb another compatible creature!</span>")
 		src.mind.changeling.readapts = 0
 		return
 

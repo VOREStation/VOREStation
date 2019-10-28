@@ -6,7 +6,6 @@
 /obj/machinery/vending/security/New()
 	products += list(/obj/item/weapon/gun/energy/taser = 8,/obj/item/weapon/gun/energy/stunrevolver = 4,
 					/obj/item/weapon/reagent_containers/spray/pepper = 6,/obj/item/taperoll/police = 6,
-					/obj/item/weapon/gun/projectile/sec/flash = 4, /obj/item/ammo_magazine/m45/flash = 8,
 					/obj/item/clothing/glasses/omnihud/sec = 6)
 	..()
 
@@ -132,3 +131,18 @@
 	products += list(/obj/item/weapon/reagent_containers/food/snacks/liquidprotein = 8)
 	prices += list(/obj/item/weapon/reagent_containers/food/snacks/liquidprotein = 10)
 	..()
+
+/obj/machinery/vending/blood
+	name = "Blood-Onator"
+	desc = "Freezer-vendor for storage and quick dispensing of blood packs"
+	product_ads = "The true life juice!;Vampire's choice!;Home-grown blood only!;Donate today, be saved tomorrow!;Approved by Zeng-Hu Pharmaceuticals Incorporated!; Curse you, Vey-Med artificial blood!"
+	icon_state = "blood"
+	idle_power_usage = 211
+	req_access = list(access_medical)
+	products = list(/obj/item/weapon/reagent_containers/blood/prelabeled/APlus = 3,/obj/item/weapon/reagent_containers/blood/prelabeled/AMinus = 3,
+					/obj/item/weapon/reagent_containers/blood/prelabeled/BPlus = 3,/obj/item/weapon/reagent_containers/blood/prelabeled/BMinus = 3,
+					/obj/item/weapon/reagent_containers/blood/prelabeled/OPlus = 2,/obj/item/weapon/reagent_containers/blood/prelabeled/OMinus = 5,
+					/obj/item/weapon/reagent_containers/blood/empty = 5)
+	contraband = list(/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 2)
+	req_log_access = access_cmo
+	has_logs = 1

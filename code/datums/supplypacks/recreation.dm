@@ -55,7 +55,7 @@
 			/obj/item/weapon/wrapping_paper = 3
 			)
 	cost = 10
-	containertype = "/obj/structure/closet/crate"
+	containertype = /obj/structure/closet/crate
 	containername = "Arts and Crafts crate"
 
 /datum/supply_pack/recreation/painters
@@ -67,4 +67,34 @@
 			/obj/item/device/pipe_painter = 2,
 			/obj/item/device/floor_painter = 2,
 			/obj/item/device/closet_painter = 2
+			)
+
+/datum/supply_pack/recreation/cheapbait
+	name = "Cheap Fishing Bait"
+	cost = 10
+	containername = "cheap bait crate"
+	containertype = /obj/structure/closet/crate/freezer
+	contains = list(
+			/obj/item/weapon/storage/box/wormcan/sickly = 5
+			)
+
+/datum/supply_pack/randomised/recreation/cheapbait
+	name = "Deluxe Fishing Bait"
+	cost = 40
+	containername = "deluxe bait crate"
+	containertype = /obj/structure/closet/crate/freezer
+	num_contained = 8
+	contains = list(
+			/obj/item/weapon/storage/box/wormcan,
+			/obj/item/weapon/storage/box/wormcan/deluxe
+			)
+
+/datum/supply_pack/recreation/ltagturrets
+	name = "Laser Tag Turrets"
+	cost = 40
+	containername = "laser tag turret crate"
+	containertype = /obj/structure/closet/crate
+	contains = list(
+			/obj/machinery/porta_turret/lasertag/blue,
+			/obj/machinery/porta_turret/lasertag/red
 			)

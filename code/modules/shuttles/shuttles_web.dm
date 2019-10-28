@@ -147,7 +147,7 @@
 	var/new_name = input(user, "Please enter a new name for this vessel. Note that you can only set its name once, so choose wisely.", "Rename Shuttle", visible_name) as null|text
 	var/sanitized_name = sanitizeName(new_name, MAX_NAME_LEN, TRUE)
 	if(sanitized_name)
-		can_rename = FALSE
+		//can_rename = FALSE //VOREStation Removal
 		to_chat(user, "<span class='notice'>You've renamed the vessel to '[sanitized_name]'.</span>")
 		message_admins("[key_name_admin(user)] renamed shuttle '[visible_name]' to '[sanitized_name]'.")
 		visible_name = sanitized_name

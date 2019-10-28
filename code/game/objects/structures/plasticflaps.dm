@@ -8,6 +8,7 @@
 	layer = MOB_LAYER
 	plane = MOB_PLANE
 	explosion_resistance = 5
+	var/can_pass_lying = TRUE
 	var/list/mobs_can_pass = list(
 		/mob/living/bot,
 		/mob/living/simple_mob/slime/xenobio,
@@ -18,9 +19,9 @@
 /obj/structure/plasticflaps/attackby(obj/item/P, mob/user)
 	if(P.is_wirecutter())
 		playsound(src, P.usesound, 50, 1)
-		user << "<span class='notice'>You start to cut the plastic flaps.</span>"
+		to_chat(user, "<span class='notice'>You start to cut the plastic flaps.</span>")
 		if(do_after(user, 10 * P.toolspeed))
-			user << "<span class='notice'>You cut the plastic flaps.</span>"
+			to_chat(user, "<span class='notice'>You cut the plastic flaps.</span>")
 			var/obj/item/stack/material/plastic/A = new /obj/item/stack/material/plastic( src.loc )
 			A.amount = 4
 			qdel(src)
@@ -36,12 +37,12 @@
 	if (istype(A, /obj/structure/bed) && B.has_buckled_mobs())//if it's a bed/chair and someone is buckled, it will not pass
 		return 0
 
-	if(istype(A, /obj/vehicle)) //no vehicles
+	if(istype(A, /obj/vehicle) || istype (A, /obj/mecha)) //no vehicles
 		return 0
 
 	var/mob/living/M = A
 	if(istype(M))
-		if(M.lying)
+		if(M.lying && can_pass_lying)
 			return ..()
 		for(var/mob_type in mobs_can_pass)
 			if(istype(A, mob_type))
@@ -63,5 +64,6 @@
 
 /obj/structure/plasticflaps/mining //A specific type for mining that doesn't allow airflow because of them damn crates
 	name = "airtight plastic flaps"
-	desc = "Heavy duty, airtight, plastic flaps."
+	desc = "Heavy duty, airtight, plastic flaps. Have extra safety installed, preventing passage of living beings."
 	can_atmos_pass = ATMOS_PASS_NO
+	can_pass_lying = FALSE

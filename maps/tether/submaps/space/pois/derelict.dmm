@@ -1,0 +1,4457 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/space,
+/area/tether_away/debrisfield/explored)
+"ab" = (
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8;
+	health = 1e+006
+	},
+/obj/structure/grille,
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"ac" = (
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/structure/grille,
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"ad" = (
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/grille,
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"ae" = (
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8;
+	health = 1e+006
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/grille,
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"af" = (
+/obj/structure/prop/alien/computer/camera,
+/turf/simulated/floor/tiled/techfloor,
+/area/tether_away/debrisfield/derelict)
+"ag" = (
+/obj/structure/prop/alien/computer,
+/turf/simulated/floor/tiled/techfloor,
+/area/tether_away/debrisfield/derelict)
+"ah" = (
+/obj/structure/prop/alien/dispenser,
+/turf/simulated/floor/tiled/techfloor,
+/area/tether_away/debrisfield/derelict)
+"ai" = (
+/obj/structure/prop/alien/computer/camera/flipped,
+/turf/simulated/floor/tiled/techfloor,
+/area/tether_away/debrisfield/derelict)
+"aj" = (
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/grille,
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"ak" = (
+/turf/simulated/floor/tiled/techfloor,
+/area/tether_away/debrisfield/derelict)
+"al" = (
+/obj/tether_away_spawner/debrisfield/derelict,
+/turf/simulated/floor/tiled/techfloor,
+/area/tether_away/debrisfield/derelict)
+"am" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	alarms_hidden = 1;
+	dir = 2;
+	name = "south bump";
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/tether_away/debrisfield/derelict)
+"an" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/tether_away/debrisfield/derelict)
+"ao" = (
+/turf/simulated/wall/r_wall,
+/area/tether_away/debrisfield/derelict)
+"ap" = (
+/obj/machinery/door/airlock/alien/locked,
+/turf/simulated/floor/tiled/techfloor,
+/area/tether_away/debrisfield/derelict)
+"aq" = (
+/turf/simulated/wall,
+/area/tether_away/debrisfield/derelict)
+"ar" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/wall,
+/area/tether_away/debrisfield/derelict)
+"as" = (
+/turf/simulated/floor/tiled/monotile,
+/area/tether_away/debrisfield/derelict)
+"at" = (
+/obj/effect/decal/remains/human,
+/turf/simulated/floor/tiled/monotile,
+/area/tether_away/debrisfield/derelict)
+"au" = (
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether_away/debrisfield/derelict)
+"av" = (
+/obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm,
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/bluegrid,
+/area/tether_away/debrisfield/derelict)
+"aw" = (
+/obj/structure/prop/alien/power,
+/obj/structure/cable,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/machinery/power/fractal_reactor{
+	alpha = 0;
+	invisibility = 101
+	},
+/turf/simulated/floor/bluegrid,
+/area/tether_away/debrisfield/derelict)
+"ax" = (
+/obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm,
+/turf/simulated/floor/tiled/monotile,
+/area/tether_away/debrisfield/derelict)
+"ay" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/item/weapon/grenade/empgrenade,
+/turf/simulated/floor/bluegrid,
+/area/tether_away/debrisfield/derelict)
+"az" = (
+/obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/bluegrid,
+/area/tether_away/debrisfield/derelict)
+"aA" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/bluegrid,
+/area/tether_away/debrisfield/derelict)
+"aB" = (
+/obj/machinery/door/airlock/alien,
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"aC" = (
+/obj/machinery/door/airlock/alien,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"aD" = (
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"aE" = (
+/obj/machinery/door/airlock/alien,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether_away/debrisfield/derelict)
+"aF" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether_away/debrisfield/derelict)
+"aG" = (
+/turf/simulated/floor/tiled/monofloor,
+/area/tether_away/debrisfield/derelict)
+"aH" = (
+/obj/effect/decal/remains/human,
+/turf/simulated/floor/tiled/monofloor,
+/area/tether_away/debrisfield/derelict)
+"aI" = (
+/obj/structure/old_roboprinter,
+/turf/simulated/floor/tiled/monofloor,
+/area/tether_away/debrisfield/derelict)
+"aJ" = (
+/obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm,
+/turf/simulated/floor/tiled/monofloor,
+/area/tether_away/debrisfield/derelict)
+"aK" = (
+/turf/space,
+/area/tether_away/debrisfield/derelict)
+"aL" = (
+/obj/random/humanoidremains,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether_away/debrisfield/derelict)
+"aM" = (
+/obj/machinery/porta_turret/alien{
+	faction = "derelict";
+	use_power = 0
+	},
+/turf/space,
+/area/tether_away/debrisfield/derelict)
+"aN" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "burst_l";
+	dir = 8
+	},
+/turf/space,
+/area/tether_away/debrisfield/derelict)
+"aO" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "burst_l";
+	dir = 4
+	},
+/turf/space,
+/area/tether_away/debrisfield/derelict)
+"aP" = (
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"aQ" = (
+/obj/effect/decal/mecha_wreckage/gygax/adv,
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"aR" = (
+/obj/effect/map_effect/interval/effect_emitter/sparks/frequent,
+/obj/effect/map_effect/interval/effect_emitter/smoke,
+/obj/machinery/door/airlock/alien,
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"aS" = (
+/obj/effect/map_effect/interval/effect_emitter/sparks/frequent,
+/obj/structure/door_assembly/door_assembly_alien,
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"aT" = (
+/obj/machinery/door/airlock/alien,
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"aU" = (
+/obj/random/tool/alien,
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"aV" = (
+/obj/random/energy,
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"aW" = (
+/obj/random/humanoidremains,
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"aX" = (
+/mob/living/simple_mob/mechanical/infectionbot{
+	faction = "derelict"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"aY" = (
+/obj/random/humanoidremains,
+/obj/item/weapon/gun/energy/ionrifle,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/tether_away/debrisfield/derelict)
+"aZ" = (
+/turf/simulated/floor/tiled/steel_ridged,
+/area/tether_away/debrisfield/derelict)
+"ba" = (
+/obj/machinery/bomb_tester,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/tether_away/debrisfield/derelict)
+"bb" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "burst_l";
+	dir = 1
+	},
+/turf/space,
+/area/tether_away/debrisfield/derelict)
+"bc" = (
+/obj/structure/prop/alien/computer/camera,
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"bd" = (
+/obj/structure/prop/alien/power,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2";
+	pixel_y = 0
+	},
+/obj/machinery/power/fractal_reactor{
+	alpha = 0;
+	invisibility = 101
+	},
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"be" = (
+/obj/structure/prop/alien/power,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/fractal_reactor{
+	alpha = 0;
+	invisibility = 101
+	},
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"bf" = (
+/obj/structure/prop/alien/computer/camera/flipped,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"bg" = (
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"bh" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"bi" = (
+/turf/simulated/floor/tiled/steel_grid,
+/area/tether_away/debrisfield/derelict)
+"bj" = (
+/obj/machinery/transhuman/resleever,
+/turf/simulated/floor/tiled/steel_grid,
+/area/tether_away/debrisfield/derelict)
+"bk" = (
+/obj/machinery/artifact,
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"bl" = (
+/mob/living/simple_mob/mechanical/infectionbot{
+	faction = "derelict"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/tether_away/debrisfield/derelict)
+"bm" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"bn" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"bo" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"bp" = (
+/obj/tether_away_spawner/debrisfield/derelict,
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"bq" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether_away/debrisfield/derelict)
+"br" = (
+/obj/machinery/transhuman/synthprinter,
+/turf/simulated/floor/tiled/steel_grid,
+/area/tether_away/debrisfield/derelict)
+"bs" = (
+/obj/tether_away_spawner/debrisfield/derelict/mech_wizard,
+/turf/simulated/floor/tiled/steel_grid,
+/area/tether_away/debrisfield/derelict)
+"bt" = (
+/obj/machinery/vr_sleeper/alien,
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"bu" = (
+/obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm,
+/mob/living/simple_mob/mechanical/corrupt_maint_drone{
+	faction = "derelict"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/tether_away/debrisfield/derelict)
+"bv" = (
+/obj/effect/decal/remains/human,
+/turf/simulated/floor/tiled/steel_grid,
+/area/tether_away/debrisfield/derelict)
+"bw" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"bx" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"by" = (
+/obj/tether_away_spawner/debrisfield/derelict,
+/turf/simulated/floor/tiled/steel_grid,
+/area/tether_away/debrisfield/derelict)
+"bz" = (
+/obj/structure/old_roboprinter,
+/turf/simulated/floor/tiled/steel_grid,
+/area/tether_away/debrisfield/derelict)
+"bA" = (
+/obj/machinery/auto_cloner,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/tether_away/debrisfield/derelict)
+"bB" = (
+/obj/structure/old_roboprinter,
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"bC" = (
+/obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"bD" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"bE" = (
+/obj/machinery/door/airlock/alien,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"bF" = (
+/obj/machinery/door/airlock/alien,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether_away/debrisfield/derelict)
+"bG" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether_away/debrisfield/derelict)
+"bH" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether_away/debrisfield/derelict)
+"bI" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether_away/debrisfield/derelict)
+"bJ" = (
+/obj/effect/map_effect/interval/effect_emitter/sparks/frequent,
+/obj/structure/door_assembly/door_assembly_alien,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether_away/debrisfield/derelict)
+"bK" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether_away/debrisfield/derelict)
+"bL" = (
+/obj/random/humanoidremains,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether_away/debrisfield/derelict)
+"bM" = (
+/obj/machinery/door/airlock/alien,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether_away/debrisfield/derelict)
+"bN" = (
+/obj/machinery/door/airlock/alien,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"bO" = (
+/turf/template_noop,
+/area/tether_away/debrisfield/explored)
+"bP" = (
+/obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm,
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"bQ" = (
+/obj/machinery/door/airlock/alien,
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"bR" = (
+/turf/template_noop,
+/area/tether_away/debrisfield/unexplored)
+"bS" = (
+/obj/item/xenos_claw,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether_away/debrisfield/derelict)
+"bT" = (
+/obj/structure/old_roboprinter,
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"bU" = (
+/obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm,
+/mob/living/simple_mob/mechanical/corrupt_maint_drone{
+	faction = "derelict"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"bV" = (
+/obj/machinery/porta_turret/alien{
+	faction = "derelict";
+	use_power = 0
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"bW" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether_away/debrisfield/derelict)
+"bX" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether_away/debrisfield/derelict)
+"bY" = (
+/turf/simulated/floor/tiled/white,
+/area/tether_away/debrisfield/derelict)
+"bZ" = (
+/obj/machinery/implantchair,
+/turf/simulated/floor/tiled/white,
+/area/tether_away/debrisfield/derelict)
+"ca" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"cb" = (
+/obj/machinery/door/airlock/alien,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"cc" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"cd" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"ce" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether_away/debrisfield/derelict)
+"cf" = (
+/mob/living/simple_mob/mechanical/infectionbot{
+	faction = "derelict"
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether_away/debrisfield/derelict)
+"cg" = (
+/obj/machinery/dna_scannernew,
+/turf/simulated/floor/tiled/white,
+/area/tether_away/debrisfield/derelict)
+"ch" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"ci" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"cj" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether_away/debrisfield/derelict)
+"ck" = (
+/obj/machinery/optable,
+/obj/random/humanoidremains,
+/turf/simulated/floor/tiled/white,
+/area/tether_away/debrisfield/derelict)
+"cl" = (
+/obj/machinery/door/airlock/alien,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether_away/debrisfield/derelict)
+"cm" = (
+/obj/random/humanoidremains,
+/turf/simulated/floor/tiled/white,
+/area/tether_away/debrisfield/derelict)
+"cn" = (
+/obj/structure/prop/prism,
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"co" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"cp" = (
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	alarms_hidden = 1;
+	dir = 2;
+	name = "south bump";
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"cq" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"cr" = (
+/obj/machinery/replicator,
+/turf/simulated/floor/tiled/neutral,
+/area/tether_away/debrisfield/derelict)
+"cs" = (
+/turf/simulated/floor/tiled/neutral,
+/area/tether_away/debrisfield/derelict)
+"ct" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/neutral,
+/area/tether_away/debrisfield/derelict)
+"cu" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/neutral,
+/area/tether_away/debrisfield/derelict)
+"cv" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/neutral,
+/area/tether_away/debrisfield/derelict)
+"cw" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/neutral,
+/area/tether_away/debrisfield/derelict)
+"cx" = (
+/obj/structure/catwalk,
+/turf/space,
+/area/tether_away/debrisfield/derelict)
+"cy" = (
+/obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/tether_away/debrisfield/derelict)
+"cz" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"cA" = (
+/obj/random/humanoidremains,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"cB" = (
+/obj/effect/alien/egg,
+/obj/effect/alien/weeds,
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"cC" = (
+/obj/item/weapon/gun/energy/ionrifle,
+/turf/space,
+/area/tether_away/debrisfield/derelict)
+"cD" = (
+/obj/structure/shuttle/engine/heater,
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict)
+"cE" = (
+/obj/structure/prop/alien/pod,
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"cF" = (
+/obj/structure/ghost_pod/manual/lost_drone,
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"cG" = (
+/obj/item/weapon/grenade/empgrenade,
+/obj/item/weapon/grenade/empgrenade,
+/obj/item/weapon/grenade/empgrenade,
+/turf/space,
+/area/tether_away/debrisfield/derelict)
+"cH" = (
+/obj/structure/ghost_pod/manual/lost_drone/dogborg,
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"cI" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/space,
+/area/tether_away/debrisfield/derelict)
+"cJ" = (
+/obj/machinery/door/airlock/alien/locked,
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"cK" = (
+/obj/random/humanoidremains,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"cL" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"cM" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	alarms_hidden = 1;
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"cN" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"cO" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"cP" = (
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	alarms_hidden = 1;
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"cQ" = (
+/obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm,
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict)
+"cR" = (
+/obj/structure/ghost_pod/manual/lost_drone/dogborg,
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"cS" = (
+/obj/tether_away_spawner/debrisfield/derelict/mech_wizard,
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"cT" = (
+/obj/machinery/door/airlock/hatch{
+	icon_state = "door_locked";
+	id_tag = null;
+	locked = 1;
+	name = "AI Core";
+	req_access = list(16)
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"cU" = (
+/obj/machinery/door/airlock/hatch{
+	icon_state = "door_locked";
+	id_tag = null;
+	locked = 1;
+	name = "AI Core";
+	req_access = list(16)
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"cV" = (
+/turf/simulated/floor/greengrid,
+/area/tether_away/debrisfield/derelict)
+"cW" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	alarms_hidden = 1;
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 24
+	},
+/turf/simulated/floor/greengrid,
+/area/tether_away/debrisfield/derelict)
+"cX" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"cY" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"cZ" = (
+/obj/machinery/porta_turret/alien{
+	faction = "derelict";
+	use_power = 0
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/debrisfield/derelict)
+"da" = (
+/obj/structure/prop/prism,
+/turf/simulated/floor/greengrid,
+/area/tether_away/debrisfield/derelict)
+"db" = (
+/obj/structure/prop/blackbox/xenofrigate,
+/turf/simulated/floor/greengrid,
+/area/tether_away/debrisfield/derelict)
+"dc" = (
+/obj/machinery/porta_turret/alien{
+	faction = "derelict";
+	use_power = 0
+	},
+/turf/simulated/floor/greengrid,
+/area/tether_away/debrisfield/derelict)
+"dd" = (
+/obj/structure/prop/fake_ai,
+/turf/simulated/floor/greengrid,
+/area/tether_away/debrisfield/derelict)
+
+(1,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(2,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+aa
+bb
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(3,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+ao
+ao
+ao
+bg
+bg
+bg
+aq
+bg
+bg
+bg
+bp
+aq
+bB
+bB
+aq
+bp
+bg
+bg
+bg
+bg
+aq
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+cD
+aq
+cI
+aK
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(4,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+ao
+ao
+ao
+bc
+bg
+bg
+aq
+bg
+aq
+bg
+bg
+aq
+aq
+aq
+bg
+bg
+aq
+aq
+aq
+bg
+bg
+bg
+aq
+bg
+bg
+aq
+aq
+aq
+aq
+bg
+bg
+cD
+aq
+cI
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(5,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+ao
+ao
+ao
+bd
+bh
+bh
+ar
+bh
+bh
+bh
+bh
+ar
+bh
+bh
+bC
+bP
+bg
+bg
+bg
+bg
+aq
+bg
+bg
+bg
+bg
+aq
+bp
+bg
+aq
+bg
+bg
+cD
+aq
+cI
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(6,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+ao
+ao
+ao
+aq
+aq
+bg
+bg
+bg
+bg
+bg
+bg
+aq
+bD
+bg
+aq
+bg
+bg
+aq
+aq
+bg
+bg
+bg
+bg
+aq
+bg
+bg
+bg
+bg
+cD
+aq
+cI
+aK
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(7,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+aa
+bb
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+bE
+bQ
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(8,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+bD
+bg
+ao
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(9,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+bD
+bg
+ao
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(10,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+ao
+bD
+bg
+ao
+ao
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(11,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+ao
+ao
+bD
+bg
+ao
+ao
+ao
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+bO
+bO
+bO
+bO
+bO
+bO
+bO
+"}
+(12,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+bF
+aE
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+aa
+aa
+bO
+bO
+bO
+bO
+bO
+bO
+bO
+"}
+(13,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+ao
+aY
+aZ
+aD
+aD
+aD
+aD
+aq
+aD
+aD
+aD
+bi
+aq
+bG
+au
+aq
+bT
+aD
+aD
+aD
+aD
+aD
+aq
+cr
+cs
+aZ
+aZ
+cy
+aq
+cE
+aD
+aD
+aD
+aD
+cQ
+ao
+ao
+aa
+aa
+bO
+bO
+bO
+bO
+bO
+bO
+"}
+(14,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+ao
+aZ
+aq
+aD
+aq
+aW
+aD
+aq
+aD
+bt
+aq
+bi
+aq
+bG
+au
+aq
+aD
+aD
+aD
+aD
+aq
+aD
+aq
+cs
+cs
+aq
+aq
+aq
+aq
+aq
+aD
+aq
+aD
+aD
+aq
+ao
+ao
+ao
+aa
+aa
+bO
+bO
+bO
+bO
+bO
+"}
+(15,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+as
+as
+as
+as
+aD
+aD
+aG
+aG
+aG
+ao
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+aD
+aD
+aD
+aD
+aq
+aD
+aD
+aD
+aD
+aD
+aD
+bi
+aq
+bG
+au
+aq
+bU
+aD
+aq
+aD
+aD
+aD
+aq
+cs
+cu
+aC
+ch
+ch
+aC
+ch
+ch
+ch
+cK
+ci
+aP
+cT
+aP
+ao
+ao
+aa
+aa
+bO
+bO
+bO
+bO
+"}
+(16,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+as
+as
+aq
+aq
+aD
+aD
+aq
+aq
+aG
+ao
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+aD
+aq
+aD
+aD
+aD
+aD
+aD
+aW
+aq
+aq
+aq
+bi
+aq
+bG
+au
+aq
+aq
+aD
+aq
+aq
+aD
+aD
+aq
+cs
+cv
+aq
+aD
+aW
+aB
+aD
+aD
+aD
+aD
+cM
+aP
+ao
+aP
+aP
+ao
+ao
+aa
+aa
+bO
+bO
+bO
+"}
+(17,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+at
+as
+as
+aq
+aD
+aD
+aq
+aG
+aG
+ao
+aa
+aa
+aa
+aq
+aR
+aq
+aa
+aa
+aa
+ao
+aD
+aD
+aD
+aq
+aq
+aq
+aD
+aD
+aD
+aD
+aD
+bi
+aq
+bG
+au
+aq
+aD
+aD
+aD
+aD
+aD
+aD
+aB
+cs
+cv
+aq
+aZ
+aZ
+aq
+aD
+aq
+aP
+aP
+aq
+aP
+ao
+aP
+aP
+cZ
+ao
+ao
+aa
+aa
+bO
+bO
+"}
+(18,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+as
+ax
+at
+aq
+aD
+aD
+aq
+aH
+aJ
+ao
+aa
+aa
+aN
+aq
+aP
+aq
+aN
+aa
+aa
+ao
+aU
+aD
+aD
+aq
+bk
+aD
+aD
+aq
+aD
+aD
+aD
+bi
+aq
+bG
+au
+aq
+aD
+ca
+ch
+ch
+ch
+ch
+aC
+ct
+cw
+aq
+cy
+aZ
+aq
+cF
+aq
+aP
+aP
+aq
+cR
+ao
+cV
+cV
+cV
+dc
+ao
+ao
+aa
+aa
+bO
+"}
+(19,1,1) = {"
+aa
+ab
+ae
+ae
+ae
+ae
+ao
+aq
+aq
+aq
+aq
+aB
+aB
+aq
+aq
+aq
+ao
+aa
+aa
+aq
+aq
+aS
+aq
+aq
+aa
+aa
+ao
+aq
+aq
+aB
+aq
+aD
+aD
+aD
+aD
+aD
+aq
+aD
+bi
+aq
+bG
+au
+aq
+aB
+cb
+aq
+aq
+aq
+aq
+aq
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+cJ
+cJ
+ao
+ao
+ao
+cV
+cV
+cV
+cV
+dc
+ao
+ao
+aa
+aa
+"}
+(20,1,1) = {"
+aa
+ac
+af
+ak
+ak
+ak
+ap
+au
+au
+au
+au
+au
+au
+au
+au
+au
+ao
+aK
+aK
+aq
+aP
+aP
+aP
+aq
+aK
+aK
+ao
+aV
+aD
+aD
+aq
+aq
+aq
+aq
+aD
+aD
+bk
+aq
+by
+aq
+bG
+au
+aq
+aD
+cc
+ci
+aD
+aD
+cn
+bV
+ao
+cx
+cx
+cx
+cx
+cx
+cx
+cx
+cx
+cx
+cx
+cx
+ao
+cV
+cV
+cV
+cV
+cV
+dc
+ao
+ao
+aa
+"}
+(21,1,1) = {"
+aa
+ac
+ag
+ak
+ak
+ak
+ap
+au
+au
+au
+au
+au
+au
+au
+au
+au
+ao
+ao
+aM
+aq
+aQ
+aP
+aP
+aq
+aM
+ao
+ao
+aW
+aD
+aD
+aq
+bl
+bi
+bi
+bi
+bi
+bi
+by
+aq
+aq
+bG
+au
+aq
+bV
+aD
+cc
+ch
+ch
+ci
+aD
+ao
+cx
+aK
+aK
+aK
+aK
+aK
+aK
+aK
+aK
+aK
+cx
+ao
+cV
+cV
+cV
+cV
+cV
+cV
+dc
+ao
+aa
+"}
+(22,1,1) = {"
+aa
+ac
+ah
+ak
+ak
+ak
+aq
+aq
+aq
+aq
+aq
+aE
+aE
+aq
+aq
+aq
+aq
+ao
+ao
+aq
+aq
+aB
+aq
+aq
+ao
+ao
+ao
+aq
+aB
+aB
+aq
+aq
+aq
+aq
+aq
+aq
+aq
+aq
+aq
+aq
+aE
+aE
+aq
+aq
+aq
+aq
+aq
+aq
+cd
+aD
+ao
+cx
+aK
+aK
+aK
+aK
+aK
+aK
+aK
+aK
+aK
+cx
+ao
+cV
+cV
+da
+da
+cV
+cV
+cV
+ao
+aa
+"}
+(23,1,1) = {"
+aa
+ac
+ag
+ak
+al
+am
+aq
+av
+ay
+aA
+aB
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+bH
+bS
+aF
+bW
+aF
+aF
+aF
+cl
+co
+cp
+ao
+cx
+aK
+aK
+aK
+cC
+cG
+cG
+aK
+aK
+aK
+cx
+ao
+cV
+cV
+db
+dd
+cV
+cV
+dc
+ao
+aa
+"}
+(24,1,1) = {"
+aa
+ac
+ag
+ak
+ak
+an
+ar
+aw
+az
+aA
+aC
+aF
+aF
+aF
+aF
+aF
+aF
+aL
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+aF
+bq
+aF
+aF
+aF
+aF
+aF
+aF
+bI
+aF
+aF
+bX
+aF
+aF
+aF
+cl
+ch
+ci
+ao
+cx
+aK
+aK
+aK
+aK
+cG
+cG
+aK
+aK
+aK
+cx
+ao
+cV
+cV
+db
+dd
+cV
+cV
+dc
+ao
+aa
+"}
+(25,1,1) = {"
+aa
+ac
+ah
+ak
+ak
+ak
+aq
+aq
+aq
+aq
+aq
+aE
+aE
+aq
+aq
+aq
+aq
+ao
+ao
+aq
+aq
+aB
+aq
+aq
+ao
+ao
+ao
+aq
+aB
+aB
+aq
+aq
+aq
+aq
+aq
+aq
+aq
+aq
+aq
+aq
+bJ
+aE
+aq
+aq
+aq
+aq
+aq
+aq
+aW
+cd
+ao
+cx
+aK
+aK
+aK
+aK
+aK
+aK
+aK
+aK
+aK
+cx
+ao
+cV
+cV
+da
+da
+cV
+cV
+cV
+ao
+aa
+"}
+(26,1,1) = {"
+aa
+ac
+ag
+ak
+ak
+ak
+ap
+au
+au
+au
+au
+au
+au
+au
+au
+au
+ao
+ao
+aM
+aq
+aQ
+aP
+aP
+aq
+aM
+ao
+ao
+aX
+aD
+aW
+aD
+aD
+aD
+aD
+aU
+aq
+bu
+bz
+bz
+aq
+bK
+au
+aq
+bV
+ca
+ch
+ch
+ch
+ch
+cq
+ao
+cx
+aK
+aK
+aK
+aK
+aK
+aK
+aK
+aK
+aK
+cx
+ao
+cV
+cV
+cV
+cV
+cV
+cV
+dc
+ao
+aa
+"}
+(27,1,1) = {"
+aa
+ac
+ai
+ak
+ak
+ak
+ap
+au
+au
+au
+au
+au
+au
+au
+au
+au
+ao
+aa
+aa
+aq
+aP
+aP
+aP
+aq
+aa
+aa
+ao
+aX
+aD
+aD
+aD
+aD
+aD
+aD
+aD
+aq
+bv
+bi
+bi
+aq
+bK
+au
+aq
+aD
+cd
+aD
+aD
+aD
+cn
+bV
+ao
+cx
+cx
+cx
+cx
+cx
+cx
+cx
+cx
+cx
+cx
+cx
+ao
+cV
+cV
+cV
+cV
+cV
+dc
+ao
+ao
+aa
+"}
+(28,1,1) = {"
+aa
+ad
+aj
+aj
+aj
+aj
+ao
+aq
+aq
+aq
+aq
+aB
+aB
+aq
+aq
+aq
+ao
+aa
+aa
+aq
+aq
+aT
+aq
+aq
+aa
+aa
+ao
+aq
+aq
+aq
+aq
+aq
+aq
+aD
+aD
+aD
+bi
+bu
+bu
+aq
+bK
+au
+aq
+aB
+cb
+aq
+aq
+aq
+aq
+aq
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+cJ
+cJ
+ao
+ao
+ao
+cV
+cV
+cV
+cV
+dc
+ao
+ao
+aa
+aa
+"}
+(29,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+at
+as
+as
+aq
+aD
+aD
+aq
+aI
+aI
+ao
+aa
+aa
+aO
+aq
+aP
+aq
+aO
+aa
+aa
+ao
+aU
+aD
+aD
+aD
+aU
+aq
+aD
+aD
+aq
+aq
+aq
+aq
+aq
+bK
+au
+aq
+bY
+ce
+cj
+cj
+cj
+cj
+aC
+ct
+ct
+ch
+ci
+cB
+aq
+aD
+aD
+aD
+aD
+aD
+bk
+ao
+cW
+cV
+cV
+dc
+ao
+ao
+aa
+aa
+bO
+"}
+(30,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+as
+as
+at
+aq
+aD
+aD
+aq
+aG
+aG
+ao
+aa
+aa
+aa
+aq
+aT
+aq
+aa
+aa
+aa
+ao
+aD
+aD
+aq
+aD
+aD
+aD
+aW
+aD
+aD
+aD
+aD
+aD
+aq
+bK
+au
+aq
+bY
+bY
+bY
+bY
+bY
+bY
+aB
+cs
+cs
+aD
+cz
+aD
+aq
+aD
+aW
+aD
+aD
+aD
+aD
+ao
+cX
+aP
+cZ
+ao
+ao
+aa
+aa
+bO
+bO
+"}
+(31,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+as
+as
+aq
+aq
+aD
+aD
+aq
+aJ
+aJ
+ao
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+aD
+aD
+aD
+aD
+aD
+aD
+aD
+aD
+aD
+aD
+aD
+aD
+aq
+bL
+au
+aq
+bY
+aq
+ck
+aq
+cm
+bY
+aq
+cs
+cs
+aq
+cA
+ch
+aC
+ch
+ci
+aq
+aq
+aq
+aq
+ao
+cX
+aP
+ao
+ao
+aa
+aa
+bO
+bO
+bO
+"}
+(32,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+as
+as
+as
+as
+aD
+aD
+aG
+aG
+aG
+ao
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+aD
+aD
+aq
+aD
+aD
+aq
+aq
+aq
+aq
+aq
+aD
+aq
+aq
+bK
+au
+aq
+bY
+cf
+aq
+cf
+bY
+bY
+aq
+cs
+cs
+aq
+aq
+aq
+aq
+aD
+cc
+aC
+cL
+cN
+cL
+cU
+cY
+ao
+ao
+aa
+aa
+bO
+bO
+bO
+bO
+"}
+(33,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+ao
+aZ
+aq
+bi
+bi
+bi
+bi
+bi
+br
+aq
+aZ
+aZ
+aq
+bK
+au
+aq
+bY
+bY
+bY
+bY
+aq
+bY
+aq
+cs
+cs
+aZ
+aZ
+cy
+aq
+aD
+aD
+aq
+aP
+cO
+aP
+ao
+ao
+ao
+aa
+aa
+bO
+bO
+bO
+bO
+bO
+"}
+(34,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+ao
+ba
+aq
+bj
+bi
+bi
+bi
+bi
+bs
+aq
+aZ
+bA
+aq
+bK
+au
+aq
+bZ
+cg
+bY
+bY
+bY
+cf
+aq
+cr
+cs
+aZ
+aZ
+cy
+aq
+cH
+aD
+aq
+aP
+cP
+cS
+ao
+ao
+aa
+aa
+bO
+bO
+bO
+bO
+bO
+bO
+"}
+(35,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+bM
+aE
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+aa
+aa
+bO
+bO
+bO
+bO
+bO
+bO
+bO
+"}
+(36,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+ao
+ao
+bn
+bg
+ao
+ao
+ao
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+bO
+bO
+bO
+bO
+bO
+bO
+bO
+bO
+"}
+(37,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+ao
+bn
+bg
+ao
+ao
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(38,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+bn
+bg
+ao
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(39,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ao
+bn
+bg
+ao
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(40,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+aa
+bb
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+bN
+bQ
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(41,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+ao
+ao
+ao
+bm
+bh
+bh
+bh
+bh
+bw
+aq
+bm
+bh
+bo
+bg
+bg
+bg
+aq
+bp
+bg
+bg
+bg
+bg
+bg
+bp
+aq
+bg
+bg
+bg
+cD
+aq
+cI
+aK
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(42,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+ao
+ao
+ao
+be
+bg
+bn
+bg
+bg
+aq
+bg
+bn
+aq
+bn
+aq
+bg
+bg
+aq
+bg
+aq
+aq
+aq
+bg
+bg
+bg
+aq
+aq
+aq
+bg
+aq
+bg
+bg
+cD
+aq
+cI
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(43,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+ao
+ao
+ao
+bf
+bh
+bo
+aq
+bg
+aq
+bg
+bn
+aq
+bn
+aq
+bg
+bg
+aq
+bg
+bg
+bg
+bg
+bg
+aq
+bg
+bg
+bg
+bg
+bg
+aq
+bg
+bg
+cD
+aq
+cI
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(44,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+ao
+ao
+ao
+bp
+aq
+bg
+bg
+bg
+bx
+bh
+bo
+aq
+bP
+bP
+aq
+bg
+bg
+bg
+bg
+bg
+aq
+bg
+bg
+bg
+bg
+bg
+aq
+bg
+cD
+aq
+cI
+aK
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(45,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+aa
+bb
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}
+(46,1,1) = {"
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+"}

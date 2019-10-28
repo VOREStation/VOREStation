@@ -93,6 +93,42 @@
 	O.update()
 	. = ..()
 
+/obj/item/weapon/storage/box/syndie_kit/imp_aug
+	name = "boxed augment implant (with injector)"
+	var/case_type = /obj/item/weapon/implantcase/shades
+
+/obj/item/weapon/storage/box/syndie_kit/imp_aug/Initialize()
+	new /obj/item/weapon/implanter(src)
+	new case_type(src)
+	. = ..()
+
+/obj/item/weapon/storage/box/syndie_kit/imp_aug/taser
+	case_type = /obj/item/weapon/implantcase/taser
+
+/obj/item/weapon/storage/box/syndie_kit/imp_aug/laser
+	case_type = /obj/item/weapon/implantcase/laser
+
+/obj/item/weapon/storage/box/syndie_kit/imp_aug/dart
+	case_type = /obj/item/weapon/implantcase/dart
+
+/obj/item/weapon/storage/box/syndie_kit/imp_aug/toolkit
+	case_type = /obj/item/weapon/implantcase/toolkit
+
+/obj/item/weapon/storage/box/syndie_kit/imp_aug/medkit
+	case_type = /obj/item/weapon/implantcase/medkit
+
+/obj/item/weapon/storage/box/syndie_kit/imp_aug/surge
+	case_type = /obj/item/weapon/implantcase/surge
+
+/obj/item/weapon/storage/box/syndie_kit/imp_aug/analyzer
+	case_type = /obj/item/weapon/implantcase/analyzer
+
+/obj/item/weapon/storage/box/syndie_kit/imp_aug/sword
+	case_type = /obj/item/weapon/implantcase/sword
+
+/obj/item/weapon/storage/box/syndie_kit/imp_aug/sprinter
+	case_type = /obj/item/weapon/implantcase/sprinter
+
 /obj/item/weapon/storage/box/syndie_kit/space
 	name = "boxed space suit and helmet"
 	starts_with = list(

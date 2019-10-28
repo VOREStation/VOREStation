@@ -41,6 +41,9 @@
 	blurb = "Some amalgamation of different species from across the universe,with extremely unstable DNA, making them unfit for regular cloners. \
 	Widely known for their voracious nature and violent tendencies when stressed or left unfed for long periods of time. \
 	Most, if not all chimeras possess the ability to undergo some type of regeneration process, at the cost of energy."
+
+	wikilink = "https://wiki.vore-station.net/Xenochimera"
+
 	catalogue_data = list(/datum/category_item/catalogue/fauna/xenochimera)
 
 	hazard_low_pressure = -1 //Prevents them from dying normally in space. Special code handled below.
@@ -50,7 +53,7 @@
 
 	//primitive_form = "Farwa"
 
-	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED //Whitelisted as restricted is broken.
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE//Whitelisted as restricted is broken.
 	flags = NO_SCAN | NO_INFECT //Dying as a chimera is, quite literally, a death sentence. Well, if it wasn't for their revive, that is.
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
@@ -61,7 +64,9 @@
 		O_LIVER =    /obj/item/organ/internal/liver,
 		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
 		O_BRAIN =    /obj/item/organ/internal/brain,
-		O_EYES =     /obj/item/organ/internal/eyes
+		O_EYES =     /obj/item/organ/internal/eyes,
+		O_STOMACH =		/obj/item/organ/internal/stomach,
+		O_INTESTINE =	/obj/item/organ/internal/intestine
 		)
 
 	flesh_color = "#AFA59E"
@@ -342,6 +347,9 @@
 	from their mandible lined mouths.  They are a recent discovery by Nanotrasen, only being discovered roughly seven years ago.  \
 	Before they were found they built great cities out of their silk, being united and subjugated in warring factions under great Star Queens  \
 	Who forced the working class to build huge, towering cities to attempt to reach the stars, which they worship as gems of great spiritual and magical significance."
+
+	wikilink = "https://wiki.vore-station.net/Vasilissans"
+
 	catalogue_data = list(/datum/category_item/catalogue/fauna/vasilissan)
 
 	hazard_low_pressure = 20 //Prevents them from dying normally in space. Special code handled below.
@@ -376,3 +384,63 @@
 			H.eye_blurry = 5
 		H.shock_stage = min(H.shock_stage + coldshock, 160) //cold hurts and gives them pain messages, eventually weakening and paralysing, but doesn't damage.
 		return
+
+/datum/species/werebeast
+	name = SPECIES_WEREBEAST
+	name_plural = "Werebeasts"
+	icobase = 'icons/mob/human_races/r_werebeast.dmi'
+	deform = 'icons/mob/human_races/r_def_werebeast.dmi'
+	icon_template = 'icons/mob/human_races/r_werebeast.dmi'
+	tail = "tail"
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	total_health = 200
+	brute_mod = 0.85
+	burn_mod = 0.85
+	metabolic_rate = 2
+	item_slowdown_mod = 0.25
+	hunger_factor = 0.4
+	darksight = 8
+	mob_size = MOB_LARGE
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_CANILUNZT)
+	name_language = LANGUAGE_CANILUNZT
+	primitive_form = "Wolpin"
+	color_mult = 1
+
+	min_age = 18
+	max_age = 200
+
+	blurb = "Big buff werewolves. These are a limited functionality event species that are not balanced for regular gameplay. Adminspawn only."
+
+	wikilink="N/A"
+
+	catalogue_data = list(/datum/category_item/catalogue/fauna/vulpkanin)
+
+	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
+	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+	inherent_verbs = list(
+		/mob/living/proc/shred_limb,
+		/mob/living/proc/eat_trash)
+
+	flesh_color = "#AFA59E"
+	base_color = "#777777"
+
+	heat_discomfort_strings = list(
+		"Your fur prickles in the heat.",
+		"You feel uncomfortably warm.",
+		"Your overheated skin itches."
+		)
+
+	has_limbs = list(
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/vr/werebeast),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
+		)
