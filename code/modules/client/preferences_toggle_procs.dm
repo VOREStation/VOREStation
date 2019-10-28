@@ -203,7 +203,7 @@
 
 	toggle_preference(pref_path)
 
-	to_chat(src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear jukebox music.")
+	to_chat(src, "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear jukebox music.")
 
 	SScharacter_setup.queue_preferences_save(prefs)
 
@@ -218,7 +218,7 @@
  
 	toggle_preference(pref_path) 
  
-	to_chat(src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear air pumps hum, start, and stop.") 
+	to_chat(src, "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear air pumps hum, start, and stop.") 
  
 	SScharacter_setup.queue_preferences_save(prefs) 
  
