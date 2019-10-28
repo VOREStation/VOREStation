@@ -4,7 +4,7 @@
 	set name = "Set CKey"
 	set desc = "Mob to teleport"
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 
 	var/list/keys = list()

@@ -16,7 +16,7 @@
 				return
 			if (src.client)
 				if (client.prefs.muted & MUTE_IC)
-					src << "<font color='red'>You cannot send IC messages (muted).</font>"
+					to_chat(src, "<font color='red'>You cannot send IC messages (muted).</font>")
 					return
 			if (stat)
 				return
@@ -115,7 +115,7 @@
 			playsound(src.loc, 'sound/misc/nymphchirp.ogg', 50, 0)
 			m_type = 2
 		if("help")
-			src << "burp, chirp, choke, collapse, dance, drool, gasp, shiver, gnarl, jump, moan, nod, roll, scratch,\nscretch, shake, sign-#, sulk, sway, tail, twitch, whimper"
+			to_chat(src, "burp, chirp, choke, collapse, dance, drool, gasp, shiver, gnarl, jump, moan, nod, roll, scratch,\nscretch, shake, sign-#, sulk, sway, tail, twitch, whimper")
 		else
 			src << text("Invalid Emote: []", act)
 	if ((message && src.stat == 0))

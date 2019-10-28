@@ -19,13 +19,13 @@
 	if(istype(src,/mob/living/carbon))
 		var/mob/living/carbon/C = src
 		if(C.suiciding)
-			src << "You're committing suicide, this isn't going to work."
+			to_chat(src, "You're committing suicide, this isn't going to work.")
 			return 0
 		if(C.does_not_breathe == 0)
 			C.does_not_breathe = 1
-			src << "<span class='notice'>We stop breathing, as we no longer need to.</span>"
+			to_chat(src, "<span class='notice'>We stop breathing, as we no longer need to.</span>")
 			return 1
 		else
 			C.does_not_breathe = 0
-			src << "<span class='notice'>We resume breathing, as we now need to again.</span>"
+			to_chat(src, "<span class='notice'>We resume breathing, as we now need to again.</span>")
 	return 0

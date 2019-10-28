@@ -5,7 +5,7 @@
 		return null
 
 	if(amount_grown < max_grown)
-		src << "You are not yet ready for your growth..."
+		to_chat(src, "You are not yet ready for your growth...")
 		return null
 
 	src.split()

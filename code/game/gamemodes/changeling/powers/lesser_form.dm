@@ -13,13 +13,13 @@
 	if(!changeling)	return
 
 	if(src.has_brain_worms())
-		src << "<span class='warning'>We cannot perform this ability at the present time!</span>"
+		to_chat(src, "<span class='warning'>We cannot perform this ability at the present time!</span>")
 		return
 
 	var/mob/living/carbon/human/H = src
 
 	if(!istype(H) || !H.species.primitive_form)
-		src << "<span class='warning'>We cannot perform this ability in this form!</span>"
+		to_chat(src, "<span class='warning'>We cannot perform this ability in this form!</span>")
 		return
 
 	changeling.chem_charges--

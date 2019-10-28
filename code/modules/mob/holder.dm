@@ -156,11 +156,11 @@ var/list/holder_mob_icon_cache = list()
 
 	if(self_grab)
 		grabber << "<span class='notice'>\The [src] clambers onto you!</span>"
-		src << "<span class='notice'>You climb up onto \the [grabber]!</span>"
+		to_chat(src, "<span class='notice'>You climb up onto \the [grabber]!</span>")
 		grabber.equip_to_slot_if_possible(H, slot_back, 0, 1)
 	else
 		grabber << "<span class='notice'>You scoop up \the [src]!</span>"
-		src << "<span class='notice'>\The [grabber] scoops you up!</span>"
+		to_chat(src, "<span class='notice'>\The [grabber] scoops you up!</span>")
 
 	H.sync(src)
 	return H

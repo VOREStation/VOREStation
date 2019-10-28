@@ -2,7 +2,7 @@
 	if(local_transmit)
 		if (src.client)
 			if(client.prefs.muted & MUTE_IC)
-				src << "You cannot send IC messages (muted)."
+				to_chat(src, "You cannot send IC messages (muted).")
 				return 0
 
 		message = sanitize(message)

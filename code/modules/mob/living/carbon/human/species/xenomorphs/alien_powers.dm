@@ -22,20 +22,20 @@
 
 	var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name[O_PLASMA]
 	if(!istype(P))
-		src << "<span class='danger'>Your plasma vessel has been removed!</span>"
+		to_chat(src, "<span class='danger'>Your plasma vessel has been removed!</span>")
 		return
 
 	if(needs_organ)
 		var/obj/item/organ/internal/I = internal_organs_by_name[needs_organ]
 		if(!I)
-			src << "<span class='danger'>Your [needs_organ] has been removed!</span>"
+			to_chat(src, "<span class='danger'>Your [needs_organ] has been removed!</span>")
 			return
 		else if((I.status & ORGAN_CUT_AWAY) || I.is_broken())
-			src << "<span class='danger'>Your [needs_organ] is too damaged to function!</span>"
+			to_chat(src, "<span class='danger'>Your [needs_organ] is too damaged to function!</span>")
 			return
 
 	if(P.stored_plasma < cost)
-		src << "<span class='danger'>You don't have enough phoron stored to do that.</span>"
+		to_chat(src, "<span class='danger'>You don't have enough phoron stored to do that.</span>")
 		return 0
 
 	if(needs_foundation)
@@ -46,7 +46,7 @@
 			if(!(istype(T,/turf/space)))
 				has_foundation = 1
 		if(!has_foundation)
-			src << "<span class='danger'>You need a solid foundation to do that on.</span>"
+			to_chat(src, "<span class='danger'>You need a solid foundation to do that on.</span>")
 			return 0
 
 	P.stored_plasma -= cost
@@ -59,12 +59,12 @@
 	set category = "Abilities"
 
 	if (get_dist(src,M) <= 1)
-		src << "<span class='alium'>You need to be closer.</span>"
+		to_chat(src, "<span class='alium'>You need to be closer.</span>")
 		return
 
 	var/obj/item/organ/internal/xenos/plasmavessel/I = M.internal_organs_by_name[O_PLASMA]
 	if(!istype(I))
-		src << "<span class='alium'>Their plasma vessel is missing.</span>"
+		to_chat(src, "<span class='alium'>Their plasma vessel is missing.</span>")
 		return
 
 	var/amount = input("Amount:", "Transfer Plasma to [M]") as num
@@ -73,7 +73,7 @@
 		if(check_alien_ability(amount,0,O_PLASMA))
 			M.gain_plasma(amount)
 			M << "<span class='alium'>[src] has transfered [amount] plasma to you.</span>"
-			src << "<span class='alium'>You have transferred [amount] plasma to [M].</span>"
+			to_chat(src, "<span class='alium'>You have transferred [amount] plasma to [M].</span>")
 	return
 
 // Queen verbs.
@@ -84,12 +84,12 @@
 	set category = "Abilities"
 
 	if(!config.aliens_allowed)
-		src << "You begin to lay an egg, but hesitate. You suspect it isn't allowed."
+		to_chat(src, "You begin to lay an egg, but hesitate. You suspect it isn't allowed.")
 		verbs -= /mob/living/carbon/human/proc/lay_egg
 		return
 
 	if(locate(/obj/effect/alien/egg) in get_turf(src))
-		src << "There's already an egg here."
+		to_chat(src, "There's already an egg here.")
 		return
 
 	if(check_alien_ability(75,1,O_EGG))
@@ -105,7 +105,7 @@
 	set category = "Abilities"
 
 	if(alien_queen_exists())
-		src << "<span class='notice'>We already have an active queen.</span>"
+		to_chat(src, "<span class='notice'>We already have an active queen.</span>")
 		return
 
 	if(check_alien_ability(500))
@@ -154,7 +154,7 @@
 	set category = "Abilities"
 
 	if(!O in oview(1))
-		src << "<span class='alium'>[O] is too far away.</span>"
+		to_chat(src, "<span class='alium'>[O] is too far away.</span>")
 		return
 
 	// OBJ CHECK
@@ -175,7 +175,7 @@
 			cannot_melt = 1
 
 	if(cannot_melt)
-		src << "<span class='alium'>You cannot dissolve this object.</span>"
+		to_chat(src, "<span class='alium'>You cannot dissolve this object.</span>")
 		return
 
 	if(check_alien_ability(200,0,O_ACID))
@@ -259,7 +259,7 @@
 		return
 
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot leap in your current state."
+		to_chat(src, "You cannot leap in your current state.")
 		return
 
 	var/list/choices = list()
@@ -278,7 +278,7 @@
 		return
 
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot leap in your current state."
+		to_chat(src, "You cannot leap in your current state.")
 		return
 
 	last_special = world.time + 75
@@ -293,7 +293,7 @@
 	if(status_flags & LEAPING) status_flags &= ~LEAPING
 
 	if(!src.Adjacent(T))
-		src << "<span class='warning'>You miss!</span>"
+		to_chat(src, "<span class='warning'>You miss!</span>")
 		return
 
 	T.Weaken(3)
@@ -301,7 +301,7 @@
 	var/use_hand = "left"
 	if(l_hand)
 		if(r_hand)
-			src << "<span class='danger'>You need to have one hand free to grab someone.</span>"
+			to_chat(src, "<span class='danger'>You need to have one hand free to grab someone.</span>")
 			return
 		else
 			use_hand = "right"
@@ -327,16 +327,16 @@
 		return
 
 	if(stat || paralysis || stunned || weakened || lying)
-		src << "<span class='danger'>You cannot do that in your current state.</span>"
+		to_chat(src, "<span class='danger'>You cannot do that in your current state.</span>")
 		return
 
 	var/obj/item/weapon/grab/G = locate() in src
 	if(!G || !istype(G))
-		src << "<span class='danger'>You are not grabbing anyone.</span>"
+		to_chat(src, "<span class='danger'>You are not grabbing anyone.</span>")
 		return
 
 	if(G.state < GRAB_AGGRESSIVE)
-		src << "<span class='danger'>You must have an aggressive grab to gut your prey!</span>"
+		to_chat(src, "<span class='danger'>You must have an aggressive grab to gut your prey!</span>")
 		return
 
 	last_special = world.time + 50

@@ -154,7 +154,7 @@ var/list/infomorph_emotions = list(
 	// 20% chance to kill
 
 	src.silence_time = world.timeofday + 120 * 10		// Silence for 2 minutes
-	src << "<font color=green><b>Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging functionality will be unavailable until the reboot is complete.</b></font>"
+	to_chat(src, "<font color=green><b>Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging functionality will be unavailable until the reboot is complete.</b></font>")
 	if(prob(20))
 		var/turf/T = get_turf_or_move(src.loc)
 		for (var/mob/M in viewers(T))
@@ -337,7 +337,7 @@ var/list/infomorph_emotions = list(
 
 	resting = !resting
 	icon_state = resting ? "[chassis]_rest" : "[chassis]"
-	src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
+	to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
 
 	canmove = !resting
 
@@ -384,11 +384,11 @@ var/list/infomorph_emotions = list(
 
 	if(idaccessible == 0)
 		idaccessible = 1
-		src << "<span class='notice'>You allow access modifications.</span>"
+		to_chat(src, "<span class='notice'>You allow access modifications.</span>")
 
 	else
 		idaccessible = 0
-		src << "<span class='notice'>You block access modfications.</span>"
+		to_chat(src, "<span class='notice'>You block access modfications.</span>")
 
 /mob/living/silicon/infomorph/verb/wipe_software()
 	set name = "Suspend Self"
@@ -423,7 +423,7 @@ var/list/infomorph_emotions = list(
 
 /mob/living/silicon/infomorph/say(var/msg)
 	if(silence_time)
-		src << "<font color=green>Communication circuits remain uninitialized.</font>"
+		to_chat(src, "<font color=green>Communication circuits remain uninitialized.</font>")
 	else
 		..(msg)
 
@@ -594,7 +594,7 @@ var/global/list/default_infomorph_software = list()
 	if(silence_time)
 		if(world.timeofday >= silence_time)
 			silence_time = null
-			src << "<font color=green>Communication circuit reinitialized. Speech and messaging functionality restored.</font>"
+			to_chat(src, "<font color=green>Communication circuit reinitialized. Speech and messaging functionality restored.</font>")
 
 	handle_statuses()
 

@@ -129,19 +129,19 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 		return
 
 	if(src.stat > max_stat)
-		src << "<span class='warning'>We are incapacitated.</span>"
+		to_chat(src, "<span class='warning'>We are incapacitated.</span>")
 		return
 
 	if(changeling.absorbed_dna.len < required_dna)
-		src << "<span class='warning'>We require at least [required_dna] samples of compatible DNA.</span>"
+		to_chat(src, "<span class='warning'>We require at least [required_dna] samples of compatible DNA.</span>")
 		return
 
 	if(changeling.chem_charges < required_chems)
-		src << "<span class='warning'>We require at least [required_chems] units of chemicals to do that!</span>"
+		to_chat(src, "<span class='warning'>We require at least [required_chems] units of chemicals to do that!</span>")
 		return
 
 	if(changeling.geneticdamage > max_genetic_damage)
-		src << "<span class='warning'>Our genomes are still reassembling. We need time to recover first.</span>"
+		to_chat(src, "<span class='warning'>Our genomes are still reassembling. We need time to recover first.</span>")
 		return
 
 	return changeling
@@ -204,11 +204,11 @@ turf/proc/AdjacentTurfsRangedSting()
 	if(M.loc == src.loc)
 		return 1 //target and source are in the same thing
 	if(!isturf(src.loc) || !isturf(M.loc))
-		src << "<span class='warning'>We cannot reach \the [M] with a sting!</span>"
+		to_chat(src, "<span class='warning'>We cannot reach \the [M] with a sting!</span>")
 		return 0 //One is inside, the other is outside something.
 	// Maximum queued turfs set to 25; I don't *think* anything raises sting_range above 2, but if it does the 25 may need raising
 	if(!AStar(src.loc, M.loc, /turf/proc/AdjacentTurfsRangedSting, /turf/proc/Distance, max_nodes=25, max_node_depth=sting_range)) //If we can't find a path, fail
-		src << "<span class='warning'>We cannot find a path to sting \the [M] by!</span>"
+		to_chat(src, "<span class='warning'>We cannot find a path to sting \the [M] by!</span>")
 		return 0
 	return 1
 
@@ -225,7 +225,7 @@ turf/proc/AdjacentTurfsRangedSting()
 	if(!T)
 		return
 	if(T.isSynthetic())
-		src << "<span class='notice'>We are unable to pierce the outer shell of [T].</span>"
+		to_chat(src, "<span class='notice'>We are unable to pierce the outer shell of [T].</span>")
 		return
 	if(!(T in view(changeling.sting_range))) return
 	if(!sting_can_reach(T, changeling.sting_range)) return
@@ -236,7 +236,7 @@ turf/proc/AdjacentTurfsRangedSting()
 	src.verbs -= verb_path
 	spawn(10)	src.verbs += verb_path
 
-	src << "<span class='notice'>We stealthily sting [T].</span>"
+	to_chat(src, "<span class='notice'>We stealthily sting [T].</span>")
 	if(!T.mind || !T.mind.changeling)	return T	//T will be affected by the sting
 	T << "<span class='warning'>You feel a tiny prick.</span>"
 	return
