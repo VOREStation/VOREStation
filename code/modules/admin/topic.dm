@@ -1896,7 +1896,7 @@
 	else if(href_list["cryoplayer"])
 		if(!check_rights(R_ADMIN))	return
 
-		var/mob/M = locate(href_list["cryoplayer"])
+		var/mob/living/carbon/M = locate(href_list["cryoplayer"])
 		if(!istype(M))
 			to_chat(usr,"<span class='warning'>Mob doesn't exist!</span>")
 			return
