@@ -77,14 +77,7 @@
 		O_KIDNEYS =		/obj/item/organ/internal/kidneys,
 		O_BRAIN =		/obj/item/organ/internal/brain/shadekin,
 		O_EYES =		/obj/item/organ/internal/eyes
-		)
-
-	//SHADEKIN-UNIQUE STUFF GOES HERE
-	var/shadekin_eye_color = BLUE_EYES
-	var/list/shadekin_abilities = list(/datum/power/shadekin/phase_shift,
-									   /datum/power/shadekin/regenerate_other,
-									   /datum/power/shadekin/create_shade)
-	var/list/shadekin_ability_datums = list()
+		)	//TODO: Phoron-immune eyes
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
@@ -99,6 +92,13 @@
 		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
+
+	//SHADEKIN-UNIQUE STUFF GOES HERE
+	var/shadekin_eye_color = BLUE_EYES
+	var/list/shadekin_abilities = list(/datum/power/shadekin/phase_shift,
+									   /datum/power/shadekin/regenerate_other,
+									   /datum/power/shadekin/create_shade)
+	var/list/shadekin_ability_datums = list()
 
 /datum/species/shadekin/New()
 	..()
