@@ -271,4 +271,7 @@ var/list/gear_datums = list()
 	var/item = new gd.path(gd.location)
 	for(var/datum/gear_tweak/gt in gear_tweaks)
 		gt.tweak_item(item, metadata["[gt]"])
+	var/mob/M = location
+	if(istype(M) && exploitable) //Update exploitable info records for the mob without creating a duplicate object at their feet.
+		M.amend_exploitable(item)
 	return item

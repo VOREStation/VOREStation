@@ -66,8 +66,7 @@
 
 /obj/item/weapon/implant/proc/implant_loadout(var/mob/living/carbon/human/H)
 	if(H)
-		var/obj/item/organ/external/affected = H.organs_by_name[initialize_loc]
-		if(handle_implant(H, affected))
+		if(handle_implant(H, initialize_loc))
 			invisibility = initial(invisibility)
 			post_implant(H)
 
