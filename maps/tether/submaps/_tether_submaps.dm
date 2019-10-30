@@ -166,6 +166,24 @@
 	name = "Away Mission - Debris Field"
 	z = Z_LEVEL_DEBRISFIELD
 
+//////////////////////////////////////////////////////////////////////////////////////
+// Gateway submaps go here
+/datum/map_template/tether_lateload/gateway
+	name = "Gateway Submap"
+	desc = "Please do not use this."
+	mappath = null
+	associated_map_datum = null
+
+/datum/map_z_level/tether_lateload/gateway_destination
+	name = "Gateway Destination"
+	z = Z_LEVEL_GATEWAY
+
+#include "gateway/snow_outpost.dm"
+/datum/map_template/tether_lateload/gateway/snow_outpost
+	name = "Snow Outpost"
+	desc = "Big snowy area with various outposts."
+	mappath = 'gateway/snow_outpost.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
