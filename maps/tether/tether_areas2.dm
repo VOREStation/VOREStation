@@ -140,9 +140,11 @@
 /area/mine/unexplored/underdark
 	name = "\improper Mining Underdark"
 	base_turf = /turf/simulated/mineral/floor/virgo3b
+	forced_ambience = list('sound/ambience/mining_music/LRRMenu.ogg', 'sound/ambience/mining_music/LRRTrack1.ogg', 'sound/ambience/mining_music/LRRTrack2.ogg', 'sound/ambience/mining_music/LRRTrack3.ogg')
 /area/mine/explored/underdark
 	name = "\improper Mining Underdark"
 	base_turf = /turf/simulated/mineral/floor/virgo3b
+	forced_ambience = list('sound/ambience/mining_music/LRRMenu.ogg', 'sound/ambience/mining_music/LRRTrack1.ogg', 'sound/ambience/mining_music/LRRTrack2.ogg', 'sound/ambience/mining_music/LRRTrack3.ogg')
 
 // Mining outpost areas
 /area/outpost/mining_main/passage
