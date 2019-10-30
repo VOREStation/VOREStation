@@ -127,7 +127,7 @@
 /datum/gear/utility/implant/neural
 	display_name = "implant, neural assistance web"
 	description = "A complex web implanted into the subject, medically in order to compensate for neurological disease."
-	path = /obj/item/weapon/implant/neural/roundstart
+	path = /obj/item/weapon/implant/neural
 	cost = 6
 
 /datum/gear/utility/implant/dud1
