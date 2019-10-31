@@ -84,7 +84,6 @@
 	//	Weaken(5)
 
 	if(health < config.health_threshold_dead && src.stat != 2) //die only once
-		src.stat = 2
 		death()
 
 	if (src.stat != 2) //Alive.
@@ -105,7 +104,7 @@
 
 		AdjustConfused(-1)
 
-	else //Dead.
+	else //Dead or just unconscious.
 		src.blinded = 1
 
 	if (src.stuttering) src.stuttering--
