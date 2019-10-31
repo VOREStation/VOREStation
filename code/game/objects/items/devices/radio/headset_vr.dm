@@ -29,3 +29,18 @@
 	if(ismob(src.loc))
 		return ..(freq, level)
 	return -1
+
+/obj/item/device/radio/headset/mob_headset/afterattack(var/atom/movable/target, mob/living/user, proximity)
+	if(!proximity)
+		return
+	if(istype(target,/mob/living/simple_mob))
+		var/mob/living/simple_mob/M = target
+		if(!M.mob_radio)
+			forceMove(M)
+			M.mob_radio = src
+			return
+		if(M.mob_radio)
+			M.mob_radio.forceMove(M.loc)
+			M.mob_radio = null
+			return
+	..()
