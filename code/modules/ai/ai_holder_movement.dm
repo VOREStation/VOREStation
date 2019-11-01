@@ -142,7 +142,7 @@
 	if(isturf(holder.loc) && can_act())
 		wander_delay--
 		if(wander_delay <= 0)
-			if(!wander_when_pulled && (holder.pulledby | holder.grabbed_by.len))
+			if(!wander_when_pulled && (holder.pulledby || holder.grabbed_by.len))
 				ai_log("handle_wander_movement() : Being pulled and cannot wander. Exiting.", AI_LOG_DEBUG)
 				return
 
