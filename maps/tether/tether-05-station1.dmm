@@ -9224,21 +9224,21 @@
 /turf/simulated/wall,
 /area/maintenance/abandonedlibraryconference)
 "aqx" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
 	},
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/blue/border,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled,
-/area/hallway/station/atrium)
+/area/bridge/secondary/hallway)
 "aqy" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/cobweb,
@@ -12131,20 +12131,9 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/visitorhallway)
 "awh" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+/obj/structure/closet/emcloset,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/bridge/secondary/hallway)
@@ -12355,12 +12344,8 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/bridge/secondary/meeting_room)
 "awA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/bridge/secondary/hallway)
@@ -12842,7 +12827,15 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/spacedorm2)
 "axq" = (
-/obj/structure/closet/emcloset,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/bridge/secondary/hallway)
 "axr" = (
@@ -12987,8 +12980,26 @@
 /turf/simulated/floor/wood,
 /area/bridge/secondary/meeting_room)
 "axK" = (
-/obj/effect/landmark{
-	name = "lightsout"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 0;
+	pixel_y = 26
 	},
 /turf/simulated/floor/tiled,
 /area/bridge/secondary/hallway)
@@ -14865,6 +14876,12 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 5
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "aAA" = (
@@ -14958,21 +14975,15 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "aAE" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/effect/landmark{
+	name = "lightsout"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -25
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/lightgrey/border,
 /turf/simulated/floor/tiled,
-/area/hallway/station/atrium)
+/area/bridge/secondary/hallway)
 "aAF" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -33416,7 +33427,7 @@ adj
 avp
 avb
 avV
-axy
+awA
 ahj
 aqg
 aAs
@@ -33558,7 +33569,7 @@ auL
 auQ
 avb
 avW
-awA
+axq
 awN
 axh
 ata
@@ -33686,7 +33697,7 @@ amu
 amv
 acy
 acm
-aAE
+bdH
 acQ
 aBG
 aix
@@ -33841,7 +33852,7 @@ acV
 acV
 acV
 acV
-avY
+axK
 axy
 ahj
 auG
@@ -34126,7 +34137,7 @@ agy
 agK
 ahl
 avY
-axK
+aAE
 ahN
 aht
 auS
@@ -34680,7 +34691,7 @@ uiN
 adl
 acy
 acp
-aqx
+acN
 ahm
 adJ
 aej
@@ -34835,7 +34846,7 @@ aom
 asM
 axL
 afV
-awh
+aqx
 aAu
 ahN
 aia
@@ -34977,7 +34988,7 @@ agt
 agG
 ahk
 acV
-axq
+awh
 axy
 ahN
 aiI
