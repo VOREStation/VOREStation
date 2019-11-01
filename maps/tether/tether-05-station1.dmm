@@ -4843,9 +4843,6 @@
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/station/visitorhallway/office)
-"aih" = (
-/turf/simulated/wall/r_wall,
-/area/space)
 "aii" = (
 /obj/machinery/gateway{
 	dir = 10
@@ -11262,9 +11259,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/visitorhallway/office)
-"auP" = (
-/turf/simulated/mineral/vacuum,
-/area/bridge/secondary/meeting_room)
 "auQ" = (
 /obj/structure/cable/green,
 /obj/structure/cable/green{
@@ -12841,9 +12835,6 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
-/area/bridge/secondary/hallway)
-"axr" = (
-/turf/simulated/wall,
 /area/bridge/secondary/hallway)
 "axs" = (
 /turf/simulated/wall/r_wall,
@@ -33168,7 +33159,7 @@ aBL
 auM
 ail
 aBF
-aei
+auD
 aat
 aat
 aat
@@ -33310,7 +33301,7 @@ ahj
 ahj
 ail
 aBK
-aei
+auD
 aat
 aat
 aat
@@ -33452,7 +33443,7 @@ awW
 ahj
 ail
 aBL
-aei
+auD
 aat
 aat
 aat
@@ -33594,7 +33585,7 @@ awW
 axm
 ail
 aAr
-aei
+auD
 aat
 aat
 aat
@@ -33736,7 +33727,7 @@ axl
 ahj
 aBL
 ail
-aei
+auD
 aat
 aat
 aat
@@ -33878,7 +33869,7 @@ axl
 ahj
 aBz
 ail
-ahN
+auD
 aat
 aat
 aat
@@ -35010,12 +35001,12 @@ atc
 atP
 asG
 asG
-aqd
-aqd
-aqd
-aqd
-aqd
-auP
+asG
+asG
+asG
+asG
+asG
+ahN
 aat
 aat
 aaa
@@ -35143,8 +35134,8 @@ acV
 acV
 acV
 acV
-axr
-axr
+axs
+axs
 alN
 alN
 alN
@@ -35273,12 +35264,12 @@ amH
 acy
 acp
 aAJ
-aih
-aih
-aih
-aih
-aih
-aih
+acV
+acV
+acV
+acV
+acV
+acV
 alN
 ana
 ann
