@@ -175,7 +175,8 @@
 	name = "\improper Exploration Substation"
 /area/maintenance/tether_midpoint
 	name = "\improper Tether Midpoint Maint"
-
+/area/maintenance/commandmaint
+	name = "\improper Command Maintenance"
 
 /area/tether/surfacebase/medical
 	icon_state = "medical"
@@ -667,6 +668,27 @@
 	icon_state = "dk_yellow"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 
+/area/crew_quarters/sleep/spacedorm1
+	name = "\improper Visitor Lodging 1"
+	icon_state = "dk_yellow"
+	lightswitch = 0
+	flags = RAD_SHIELDED | BLUE_SHIELDED
+/area/crew_quarters/sleep/spacedorm2
+	name = "\improper Visitor Lodging 2"
+	icon_state = "dk_yellow"
+	lightswitch = 0
+	flags = RAD_SHIELDED | BLUE_SHIELDED
+/area/crew_quarters/sleep/spacedorm3
+	name = "\improper Visitor Lodging 3"
+	icon_state = "dk_yellow"
+	lightswitch = 0
+	flags = RAD_SHIELDED | BLUE_SHIELDED
+/area/crew_quarters/sleep/spacedorm4
+	name = "\improper Visitor Lodging 4"
+	icon_state = "dk_yellow"
+	lightswitch = 0
+	flags = RAD_SHIELDED | BLUE_SHIELDED
+
 /area/holodeck/holodorm/source_basic
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
@@ -762,8 +784,30 @@
 /area/bridge/secondary
 	name = "\improper Secondary Command Office"
 
+/area/bridge/secondary/hallway
+	name = "\improper Secondary Command Hallway"
 /area/bridge/secondary/meeting_room
 	name = "\improper Secondary Command Meeting Room"
+	lightswitch = 0
+/area/bridge/secondary/teleporter
+	name = "\improper Secondary Teleporter"
+	lightswitch = 0
+
+/area/tether/station/visitorhallway
+	name = "\improper Visitor Hallway"
+	icon_state = "dk_yellow"
+/area/tether/station/visitorhallway/office
+	name = "\improper Visitor Office"
+	icon_state = "dk_yellow"
+	lightswitch = 0
+/area/tether/station/visitorhallway/laundry
+	name = "\improper Space Laundry"
+	icon_state = "dk_yellow"
+	lightswitch = 0
+/area/tether/station/visitorhallway/lounge
+	name = "\improper Visitor Lounge"
+	icon_state = "dk_yellow"
+	lightswitch = 0
 
 /area/maintenance/station
 	icon_state = "fsmaint"
@@ -798,6 +842,13 @@
 /area/maintenance/abandonedlibraryconference
 	name = "\improper Abandoned Library Conference"
 	icon_state = "library"
+/area/maintenance/station/spacecommandmaint
+	name = "\improper Space Command Maintenance"
+	icon_state = "bridge"
+	sound_env = SEWER_PIPE
+/area/maintenance/substation/spacecommand
+	name = "\improper Space Command Substation"
+	icon_state = "substation"
 
 /area/shuttle/tether/crash1
 	name = "\improper Crash Site 1"

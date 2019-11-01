@@ -13,7 +13,7 @@
 /area/maintenance/lower/mining)
 "aae" = (
 /turf/simulated/wall/r_wall,
-/area/bridge/secondary/meeting_room)
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aaf" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/lowerhall)
@@ -48,8 +48,21 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "aak" = (
-/turf/simulated/floor/carpet/purcarpet,
-/area/bridge/secondary/meeting_room)
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/rust,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aal" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
@@ -66,9 +79,9 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
 "aam" = (
-/obj/structure/bed/chair/comfy/black,
-/turf/simulated/floor/carpet/purcarpet,
-/area/bridge/secondary/meeting_room)
+/obj/structure/stairs/south,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aan" = (
 /turf/simulated/wall,
 /area/maintenance/substation/medsec)
@@ -108,24 +121,14 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/surgery)
 "aat" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/floor/carpet/purcarpet,
-/area/bridge/secondary/meeting_room)
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/maintenance/common,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aau" = (
-/obj/structure/table/woodentable,
-/obj/item/weapon/book/manual/security_space_law,
-/turf/simulated/floor/carpet/purcarpet,
-/area/bridge/secondary/meeting_room)
-"aav" = (
-/obj/structure/table/woodentable,
-/obj/item/weapon/folder/blue,
-/turf/simulated/floor/carpet/purcarpet,
-/area/bridge/secondary/meeting_room)
+/obj/structure/stairs/west,
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/bar)
 "aaw" = (
 /obj/machinery/power/breakerbox/activated{
 	RCon_tag = "MedSec Substation Bypass"
@@ -271,33 +274,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
-"aaI" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 8
-	},
-/turf/simulated/floor/carpet/purcarpet,
-/area/bridge/secondary/meeting_room)
-"aaJ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/floor_decal/rust,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/public_garden_maintenence/upper)
 "aaK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2975,26 +2951,16 @@
 /turf/simulated/open,
 /area/tether/surfacebase/atrium_two)
 "agk" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/railing{
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/green/border,
+/obj/structure/disposalpipe/segment{
 	dir = 4
-	},
-/turf/simulated/open,
-/area/tether/surfacebase/atrium_two)
-"agl" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/green/border{
-	dir = 8
-	},
-/obj/structure/window/basic{
-	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
+"agl" = (
+/turf/simulated/wall/r_wall,
+/area/maintenance/commandmaint)
 "agm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -3658,13 +3624,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
-"ahO" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 8
-	},
-/obj/structure/stairs/west,
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/bar)
 "ahP" = (
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
@@ -4199,13 +4158,13 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
 "aiW" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/green/border,
+/obj/structure/disposalpipe/sortjunction{
+	dir = 4;
+	icon_state = "pipe-j1s";
+	name = "Command Meeting Room";
+	sortType = "Command Meeting Room"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
@@ -4795,12 +4754,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
-"akg" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 4
-	},
-/turf/simulated/floor/carpet/purcarpet,
-/area/bridge/secondary/meeting_room)
 "akh" = (
 /obj/machinery/firealarm{
 	dir = 2;
@@ -6589,20 +6542,11 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
 "anv" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/machinery/power/breakerbox/activated{
+	RCon_tag = "Command Substation Bypass"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/tether/surfacebase/atrium_two)
+/turf/simulated/floor/plating,
+/area/maintenance/substation/command)
 "anw" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -6616,9 +6560,34 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
+"anx" = (
+/obj/machinery/door/airlock/maintenance/common,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
 "any" = (
 /turf/simulated/mineral,
 /area/maintenance/lower/bar)
+"anz" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/structure/cable/green{
+	d1 = 16;
+	d2 = 0;
+	icon_state = "16-0"
+	},
+/obj/machinery/atmospherics/pipe/zpipe/up/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
 "anA" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -6704,6 +6673,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
+"anK" = (
+/turf/simulated/wall/r_wall,
+/area/teleporter)
 "anL" = (
 /obj/structure/railing{
 	dir = 4
@@ -6871,12 +6843,42 @@
 	hard_corner = 1
 	},
 /area/tether/elevator)
+"aoa" = (
+/obj/structure/dispenser{
+	phorontanks = 0
+	},
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
+"aob" = (
+/turf/simulated/wall/r_wall,
+/area/bridge_hallway)
+"aoc" = (
+/obj/machinery/suit_storage_unit/standard_unit,
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
 "aod" = (
 /obj/effect/floor_decal/corner_techfloor_grid{
 	dir = 6
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
+"aoe" = (
+/obj/machinery/suit_storage_unit/standard_unit,
+/obj/machinery/light/small{
+	icon_state = "bulb1";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
+"aof" = (
+/obj/structure/table/standard,
+/obj/item/weapon/hand_tele,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
 "aog" = (
 /obj/structure/railing{
 	dir = 4
@@ -7418,14 +7420,31 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
 "apg" = (
-/obj/effect/floor_decal/borderfloor/corner{
+/obj/structure/cable/green{
+	icon_state = "4-8";
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/green/bordercorner{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/techmaint,
-/area/tether/surfacebase/atrium_two)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"aph" = (
+/obj/item/weapon/stool/padded,
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	name = "Station Intercom (General)";
+	pixel_y = 21
+	},
+/turf/simulated/floor/tiled,
+/area/teleporter)
 "api" = (
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
@@ -7447,6 +7466,70 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
+"apk" = (
+/obj/machinery/computer/teleporter{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
+"apl" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"apm" = (
+/obj/structure/table/rack{
+	dir = 8;
+	layer = 2.9
+	},
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/device/gps/command,
+/obj/item/device/gps/command,
+/obj/item/device/gps/command,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
+"apn" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
+"apo" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
 "app" = (
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/tether/surfacebase/outside/outside2)
@@ -7741,6 +7824,89 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
+"apQ" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/maintenance/command{
+	req_access = list(19)
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/green{
+	icon_state = "1-2";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor,
+/area/bridge_hallway)
+"apR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
+"apS" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/green{
+	icon_state = "1-2";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
+"apT" = (
+/obj/structure/stairs/north,
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
+"apU" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"apV" = (
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23;
+	pixel_y = 0
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"apW" = (
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"apX" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/command)
+"apY" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/teleporter)
+"apZ" = (
+/obj/machinery/teleport/station{
+	dir = 2
+	},
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
 "aqa" = (
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
@@ -8042,6 +8208,29 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
+"aqH" = (
+/obj/machinery/shieldwallgen,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
+"aqI" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
+"aqJ" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/green/border{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/atrium_two)
+"aqK" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
 "aqL" = (
 /obj/structure/railing{
 	dir = 8
@@ -8329,9 +8518,57 @@
 "arl" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/east_stairs_two)
+"arm" = (
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
+"arn" = (
+/obj/machinery/teleport/hub{
+	dir = 2
+	},
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
 "aro" = (
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"arp" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"arq" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/camera/network/command{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	dir = 1;
+	on = 0;
+	pixel_x = -10;
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
+"arr" = (
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -32
+	},
+/obj/structure/cable/green{
+	d2 = 8;
+	dir = 2;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
 "ars" = (
 /obj/structure/railing{
 	dir = 4
@@ -8731,6 +8968,37 @@
 "arZ" = (
 /turf/simulated/wall,
 /area/maintenance/lower/south)
+"asa" = (
+/obj/machinery/shieldwallgen,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
+"asb" = (
+/obj/machinery/door/airlock/command{
+	name = "Teleport Access";
+	req_access = list(17)
+	},
+/obj/structure/cable/green{
+	icon_state = "1-2";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
+"asc" = (
+/turf/simulated/wall/r_wall,
+/area/bridge/meeting_room)
+"asd" = (
+/obj/machinery/door/airlock/command{
+	name = "Teleport Access";
+	req_access = list(17)
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/dark,
+/area/bridge/meeting_room)
 "ase" = (
 /obj/machinery/door/morgue{
 	dir = 2;
@@ -8739,6 +9007,21 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"asf" = (
+/obj/machinery/door/airlock/command{
+	name = "Teleport Access";
+	req_access = list(17)
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/green{
+	icon_state = "1-2";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/dark,
+/area/bridge/meeting_room)
 "asg" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -9229,6 +9512,34 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
+"asO" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
+"asP" = (
+/obj/machinery/keycard_auth{
+	pixel_y = 28
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
+"asQ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "asR" = (
 /obj/machinery/computer/rdservercontrol{
 	dir = 1
@@ -9570,6 +9881,18 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
+"atu" = (
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23;
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
 "atv" = (
 /obj/structure/railing{
 	dir = 8
@@ -10465,6 +10788,18 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
+"avj" = (
+/obj/machinery/light_switch{
+	dir = 2;
+	name = "light switch ";
+	pixel_x = 0;
+	pixel_y = 26
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "avk" = (
 /obj/effect/floor_decal/corner_techfloor_grid{
 	dir = 5
@@ -10529,6 +10864,24 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
+"avq" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/green{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
 "avr" = (
 /obj/structure/railing{
 	dir = 4
@@ -21501,192 +21854,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
-"aOW" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/structure/table/woodentable,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
-/turf/simulated/floor/carpet/purcarpet,
-/area/bridge/secondary/meeting_room)
-"aOX" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/structure/table/woodentable,
-/obj/item/weapon/folder/red,
-/turf/simulated/floor/carpet/purcarpet,
-/area/bridge/secondary/meeting_room)
-"aOY" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/bed/chair/comfy/black{
-	dir = 1
-	},
-/turf/simulated/floor/carpet/purcarpet,
-/area/bridge/secondary/meeting_room)
-"aOZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/bed/chair/comfy/black{
-	dir = 1
-	},
-/turf/simulated/floor/carpet/purcarpet,
-/area/bridge/secondary/meeting_room)
-"aPa" = (
-/obj/machinery/light_switch{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/simulated/floor/carpet/purcarpet,
-/area/bridge/secondary/meeting_room)
-"aPb" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24;
-	pixel_y = 0
-	},
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPc" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPd" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPe" = (
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPf" = (
-/obj/machinery/camera/network/command{
-	dir = 8
-	},
-/obj/structure/reagent_dispensers/water_cooler/full,
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPg" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 1;
-	icon_state = "pdoor0";
-	id = "secondary_bridge_blast";
-	name = "Secondary Command Office Blast Doors";
-	opacity = 0
-	},
-/obj/machinery/door/airlock/maintenance/command,
-/turf/simulated/floor/plating,
-/area/bridge/secondary/meeting_room)
-"aPh" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPi" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPj" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/machinery/hologram/holopad,
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPk" = (
-/obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/cups,
-/obj/machinery/alarm{
-	dir = 8;
-	icon_state = "alarm0";
-	pixel_x = 24
-	},
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPl" = (
-/obj/structure/cable/green,
-/obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/apc;
-	dir = 8;
-	name = "west bump";
-	pixel_x = -28
-	},
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPm" = (
-/obj/structure/table/woodentable,
-/obj/machinery/newscaster{
-	pixel_x = 28
-	},
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPn" = (
-/obj/machinery/keycard_auth{
-	pixel_x = -24
-	},
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPo" = (
-/obj/machinery/keycard_auth{
-	pixel_x = 24
-	},
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPp" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPq" = (
-/obj/machinery/photocopier,
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPr" = (
-/obj/structure/stairs/south,
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPs" = (
-/obj/structure/table/woodentable,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/item/weapon/folder/blue,
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPt" = (
-/obj/structure/table/woodentable,
-/obj/machinery/light,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
-"aPu" = (
-/obj/structure/filingcabinet/chestdrawer,
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
 "aPv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -23806,6 +23973,9 @@
 /obj/structure/cable/green,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
+"aSx" = (
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "aSy" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 6
@@ -27080,6 +27250,34 @@
 	},
 /turf/simulated/open,
 /area/maintenance/lower/rnd)
+"aWV" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/bridge/meeting_room)
+"aWW" = (
+/obj/structure/bed/chair/comfy/black,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/bridge/meeting_room)
+"aWX" = (
+/obj/structure/bed/chair/comfy/black,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/bridge/meeting_room)
+"aWY" = (
+/turf/simulated/floor/carpet/sblucarpet,
+/area/bridge/meeting_room)
+"aWZ" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
+/obj/structure/cable/green{
+	icon_state = "1-2";
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "aXa" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -27135,39 +27333,373 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lowerhallway)
+"aXd" = (
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23;
+	pixel_y = 0
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
+"aXe" = (
+/obj/structure/bed/chair/comfy/blue{
+	icon_state = "comfychair_preview";
+	dir = 4
+	},
+/obj/effect/landmark/start{
+	name = "Command Secretary"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/bridge/meeting_room)
+"aXf" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/book/manual/security_space_law,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/sblucarpet,
+/area/bridge/meeting_room)
+"aXg" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/folder/red,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/bridge/meeting_room)
+"aXh" = (
+/obj/structure/bed/chair/comfy/blue{
+	icon_state = "comfychair_preview";
+	dir = 8
+	},
+/turf/simulated/floor/carpet/sblucarpet,
+/area/bridge/meeting_room)
 "aXi" = (
 /obj/effect/floor_decal/chapel{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"aXj" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
+	},
+/obj/structure/cable/green,
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "aXk" = (
 /obj/effect/floor_decal/chapel{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"aXl" = (
+/obj/structure/stairs/north,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
+"aXm" = (
+/obj/structure/bed/chair/comfy/blue{
+	icon_state = "comfychair_preview";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/turf/simulated/floor/carpet/sblucarpet,
+/area/bridge/meeting_room)
+"aXn" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/weapon/pen,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/sblucarpet,
+/area/bridge/meeting_room)
+"aXo" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
+"aXp" = (
+/obj/machinery/alarm{
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 24
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/command)
 "aXq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"aXr" = (
+/turf/simulated/wall,
+/area/maintenance/substation/command)
+"aXs" = (
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
+/obj/structure/cable,
+/obj/machinery/power/smes/buildable{
+	charge = 0;
+	output_attempt = 0;
+	outputting = 0;
+	RCon_tag = "Substation - Command"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/command)
+"aXt" = (
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
 "aXu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"aXv" = (
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 0;
+	pixel_y = 26
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"aXw" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"aXx" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/folder/blue,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/bridge/meeting_room)
 "aXy" = (
 /obj/structure/table/bench/padded,
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"aXz" = (
+/obj/structure/bed/chair/comfy/blue{
+	icon_state = "comfychair_preview";
+	dir = 8
+	},
+/obj/effect/landmark/start{
+	name = "Command Secretary"
+	},
+/turf/simulated/floor/carpet/sblucarpet,
+/area/bridge/meeting_room)
+"aXA" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/green/border{
+	dir = 8
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/atrium_two)
+"aXB" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/green/border{
+	dir = 8
+	},
+/obj/structure/window/basic{
+	dir = 8
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/atrium_two)
+"aXC" = (
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/green/bordercorner{
+	dir = 1
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/atrium_two)
+"aXD" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/atrium_two)
+"aXE" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/command)
+"aXF" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/command)
+"aXG" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/green{
+	icon_state = "1-2";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
+"aXH" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
+"aXI" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
+"aXJ" = (
+/obj/structure/closet/firecloset,
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = 0
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
 "aXK" = (
 /turf/simulated/wall{
 	can_open = 1
 	},
 /area/maintenance/lower/bar)
+"aXL" = (
+/obj/structure/closet/emcloset,
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"aXM" = (
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
+"aXN" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"aXO" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/bridge/meeting_room)
+"aXP" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/sblucarpet,
+/area/bridge/meeting_room)
+"aXQ" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/bridge/meeting_room)
+"aXR" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/lattice,
+/turf/simulated/open,
+/area/tether/surfacebase/atrium_two)
+"aXS" = (
+/obj/structure/lattice,
+/turf/simulated/open,
+/area/tether/surfacebase/atrium_two)
 "aXT" = (
 /obj/structure/railing{
 	dir = 8
@@ -27178,6 +27710,76 @@
 /obj/random/trash_pile,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
+"aXU" = (
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
+"aXV" = (
+/obj/structure/railing,
+/obj/structure/lattice,
+/turf/simulated/open,
+/area/tether/surfacebase/atrium_two)
+"aXW" = (
+/obj/machinery/photocopier,
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
+"aXX" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
+"aXY" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
+"aXZ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
+"aYa" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/green{
+	icon_state = "1-2";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/machinery/hologram/holopad,
+/obj/effect/landmark{
+	name = "lightsout"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
+"aYb" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/disposal,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	pixel_x = 0
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
+"aYc" = (
+/obj/structure/table/woodentable,
+/obj/structure/flora/pottedplant/small{
+	pixel_y = 12
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "aYd" = (
 /turf/simulated/wall,
 /area/chapel/main)
@@ -27187,6 +27789,29 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"aYf" = (
+/obj/structure/table/woodentable,
+/obj/machinery/photocopier/faxmachine{
+	department = "Command Conf Room"
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
+"aYg" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Command Substation"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/command)
+"aYh" = (
+/obj/structure/table/woodentable,
+/obj/machinery/chemical_dispenser/bar_soft/full,
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "aYi" = (
 /obj/structure/table/bench/padded,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -27199,6 +27824,11 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"aYk" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/storage/box/cups,
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "aYl" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -27218,6 +27848,18 @@
 	},
 /turf/simulated/floor/lino,
 /area/chapel/office)
+"aYn" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
 "aYo" = (
 /obj/structure/morgue/crematorium,
 /obj/machinery/camera/network/civilian{
@@ -27237,6 +27879,42 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/chapel_morgue)
+"aYr" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
+"aYs" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -26
+	},
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
 "aYt" = (
 /obj/effect/floor_decal/chapel{
 	dir = 1
@@ -27297,6 +27975,41 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"aYz" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/structure/cable/green{
+	icon_state = "2-4"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
+"aYA" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "aYB" = (
 /obj/effect/landmark/start{
 	name = "Chaplain"
@@ -27309,6 +28022,24 @@
 	},
 /turf/simulated/floor/lino,
 /area/chapel/office)
+"aYC" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/camera/network/command{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
 "aYD" = (
 /obj/structure/morgue,
 /turf/simulated/floor/tiled/dark,
@@ -27358,6 +28089,16 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/lino,
 /area/chapel/office)
+"aYJ" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/light/small,
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
 "aYK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -27370,6 +28111,20 @@
 	},
 /turf/simulated/floor/lino,
 /area/chapel/office)
+"aYL" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/item/device/radio/intercom{
+	broadcasting = 1;
+	dir = 2;
+	frequency = 1473;
+	name = "Confession Intercom";
+	pixel_x = 0;
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
 "aYM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -27384,6 +28139,22 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/chapel_morgue)
+"aYN" = (
+/obj/machinery/atm{
+	pixel_y = 30
+	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	pixel_x = 0
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "aYO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -27445,6 +28216,19 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"aYT" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
+	},
+/obj/structure/cable/green{
+	d2 = 8;
+	dir = 2;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
 "aYU" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -27477,6 +28261,15 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/chapel_morgue)
+"aYX" = (
+/obj/machinery/button/windowtint{
+	dir = 1;
+	id = "meetingroom";
+	pixel_x = -25;
+	pixel_y = 0
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "aYY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -27508,6 +28301,22 @@
 	can_open = 0
 	},
 /area/maintenance/lower/bar)
+"aZb" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/maintenance/command{
+	req_access = list(19)
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/bridge_hallway)
 "aZc" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -27516,6 +28325,55 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/lino,
 /area/chapel/office)
+"aZd" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Command Substation"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/command)
+"aZe" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"aZf" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/light/small{
+	icon_state = "bulb1";
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"aZg" = (
+/turf/simulated/wall,
+/area/maintenance/commandmaint)
+"aZh" = (
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23;
+	pixel_y = 0
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
 "aZi" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -27574,6 +28432,22 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/office)
+"aZl" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -24
+	},
+/obj/structure/cable/green{
+	d2 = 8;
+	dir = 2;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/command)
 "aZm" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -27861,6 +28735,13 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
+"aZO" = (
+/obj/machinery/camera/network/command{
+	c_tag = "Command Meeting Room East";
+	dir = 9
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "aZP" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -27874,6 +28755,26 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/atrium_two)
+"aZQ" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"aZR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/atrium_two)
@@ -28309,6 +29210,141 @@
 	},
 /turf/simulated/floor/lino,
 /area/chapel/office)
+"baH" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"baI" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"baJ" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"baK" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"baL" = (
+/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/maintenance/commandmaint)
+"baM" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/green/border{
+	dir = 8
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/atrium_two)
+"baN" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "meetingroom"
+	},
+/turf/simulated/floor,
+/area/bridge/meeting_room)
+"baO" = (
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'WATCH YOUR STEP'.";
+	name = "\improper WATCH YOUR STEP"
+	},
+/turf/simulated/wall,
+/area/maintenance/commandmaint)
+"baP" = (
+/obj/structure/lattice,
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/turf/simulated/open,
+/area/tether/surfacebase/atrium_two)
+"baQ" = (
+/obj/machinery/power/sensor{
+	name = "Powernet Sensor - Surface Civilian Subgrid";
+	name_tag = "Surface Civilian Subgrid"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/green,
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/command)
+"baU" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/command)
+"baW" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/atrium_two)
 "baX" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -28343,6 +29379,26 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"bbl" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/green/border{
+	dir = 8
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/atrium_two)
 
 (1,1,1) = {"
 aaa
@@ -35048,7 +36104,7 @@ aac
 aac
 abn
 aal
-aaJ
+aak
 aaR
 abo
 abA
@@ -35190,7 +36246,7 @@ aae
 aae
 aae
 aae
-aPg
+aat
 aae
 aae
 aae
@@ -35327,16 +36383,16 @@ aac
 aac
 aac
 aae
-aak
-aat
-akg
-aak
-aPb
-aPh
-aPl
-aPn
-aPe
-aPr
+akn
+akn
+akn
+akn
+akn
+akn
+akn
+akn
+akn
+aam
 aae
 acW
 acW
@@ -35469,16 +36525,16 @@ aac
 aac
 aac
 aae
+akn
+akn
+akn
+akn
+akn
+akn
+akn
+akn
+akn
 aam
-aau
-aOW
-aOY
-aPc
-aPi
-aPe
-aPe
-aPe
-aPr
 aae
 acW
 acW
@@ -35611,16 +36667,16 @@ aac
 aac
 aac
 aae
-aam
-aav
-aOX
-aOZ
-aPd
-aPj
-aPe
-aPe
-aPp
-aPs
+akn
+akn
+akn
+akn
+akn
+akn
+akn
+akn
+akn
+akn
 aae
 acW
 acW
@@ -35753,16 +36809,16 @@ aac
 aac
 aac
 aae
-aak
-aaI
-aaI
-aPa
-aPe
-aPe
-aPe
-aPe
-aPe
-aPt
+akn
+akn
+akn
+akn
+akn
+akn
+akn
+akn
+akn
+akn
 aae
 acW
 acW
@@ -35899,12 +36955,12 @@ aae
 aae
 aae
 aae
-aPf
-aPk
-aPm
-aPo
-aPq
-aPu
+akn
+akn
+akn
+akn
+akn
+akn
 aae
 acW
 acW
@@ -39751,6 +40807,7 @@ afY
 agi
 agv
 agv
+aXR
 agv
 agv
 agv
@@ -39764,8 +40821,7 @@ agv
 agv
 agv
 agv
-agv
-agv
+aXR
 agv
 agv
 aoB
@@ -39893,6 +40949,7 @@ afY
 agj
 agw
 agw
+aXS
 agw
 agw
 agw
@@ -39906,8 +40963,7 @@ agw
 agw
 agw
 agw
-agw
-agw
+aXS
 agw
 agw
 aoC
@@ -40035,21 +41091,21 @@ afY
 agj
 agw
 agw
+aXS
 agw
 agw
 agw
 agw
 agw
 agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
+asc
+asc
+baN
+asc
+asc
+baN
+asc
+asc
 agw
 agw
 aoC
@@ -40177,24 +41233,24 @@ afY
 agj
 agw
 agw
+aXS
 agw
 agw
 agw
 agw
 agw
 agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-aoC
+asc
+asO
+aSx
+aXd
+aYX
+aSx
+aXW
+asc
+asc
+aXS
+aXV
 apf
 apN
 aqs
@@ -40315,27 +41371,27 @@ aen
 aeK
 afh
 afG
-afY
-agj
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
+agk
+agl
+agl
+agl
+agl
+aob
+aob
+aob
+aob
+aob
+aob
+asc
+asP
+aWV
+aXe
+aXm
+aXO
+aSx
+aYc
+baN
+aXS
 aoC
 apf
 apN
@@ -40457,27 +41513,27 @@ adY
 adY
 afi
 afG
-afY
-agj
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
+agk
+agl
+anz
+apV
+aXJ
+aob
+apT
+aXU
+atu
+aXU
+aXU
+asd
+asQ
+aWW
+aXf
+aXn
+aXP
+aSx
+aYf
+baN
+aXS
 aoC
 apf
 apN
@@ -40599,27 +41655,27 @@ aac
 adY
 afj
 afG
-afY
-agj
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
+agk
+agl
+apg
+apW
+aXL
+aob
+aXl
+aXU
+aYz
+apS
+avq
+asf
+aYA
+aWX
+aXg
+aXx
+aXQ
+aXX
+aYh
+baN
+aXS
 aoC
 apf
 apN
@@ -40741,28 +41797,28 @@ aac
 adY
 afk
 afG
-afY
-agj
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-aoC
+agk
+agl
+apl
+aXw
+aob
+aob
+aXo
+aXY
+aYC
+aob
+aZb
+asc
+avj
+aWY
+aXh
+aXz
+aWY
+aXZ
+aYk
+baN
+aXS
+aXV
 apf
 apN
 aqA
@@ -40883,27 +41939,27 @@ aac
 adY
 aff
 afH
-afY
-agj
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
+aiW
+anx
+apU
+arp
+apQ
+apS
+aXG
+aYa
+aYs
+aob
+aXN
+asc
+aYN
+aWZ
+aXj
+aXM
+aZO
+aYb
+asc
+asc
+aXS
 aoC
 apf
 apN
@@ -41025,28 +42081,28 @@ aac
 adY
 afl
 afG
-afY
-agj
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-aoC
+agk
+anK
+anK
+anK
+anK
+anK
+anK
+aYn
+aYL
+aob
+aXN
+asc
+asc
+asc
+asc
+asc
+asc
+asc
+asc
+aXS
+aXS
+aXV
 apf
 apN
 aqB
@@ -41167,26 +42223,26 @@ aad
 adY
 afm
 afG
-afY
-agj
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
+agk
+anK
+aoa
+apm
+aqH
+aqH
+anK
+aXI
+aYJ
+aob
+aZe
+aZh
+baH
+aZg
+aXS
+aXS
+aXS
+aXS
+aXS
+aXS
 agw
 aoC
 apf
@@ -41309,26 +42365,26 @@ aeo
 adY
 afn
 afG
-afY
-agj
+agk
+anK
+aoc
+apn
+aqI
+aXH
+asb
+aYr
+aYT
+aob
+aXv
+aXw
+baI
+aZg
+aXS
 agw
 agw
 agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
+aXS
+aXS
 agw
 aoC
 apf
@@ -41451,26 +42507,26 @@ aaG
 adY
 afo
 afG
-afY
-agj
+agk
+anK
+aoe
+apo
+aqK
+arq
+anK
+aob
+aob
+aob
+aZg
+aZf
+baI
+aZg
+baP
 agw
 agw
 agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
+adY
+aXS
 agw
 aoC
 apf
@@ -41593,28 +42649,28 @@ aaG
 adY
 acU
 afG
-afY
-agj
+agk
+anK
+aof
+apR
+arm
+arr
+anK
+anv
+aXs
+baQ
+aYg
+aXt
+baI
+baO
+aXS
 agw
 agw
 agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-aoC
+adY
+aXS
+aXS
+aXV
 apf
 apN
 aqq
@@ -41735,25 +42791,25 @@ aep
 adY
 afp
 afG
-afY
-agj
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
+agk
+anK
+aph
+apY
+apY
+aqH
+anK
+apX
+aXE
+aZl
+aXr
+apW
+baI
+baL
+aXS
+aXS
+aXS
+aXS
+adY
 agw
 agw
 aoC
@@ -41877,25 +42933,25 @@ aeq
 adY
 afq
 afI
-afY
-agj
+agk
+anK
+apk
+apZ
+arn
+asa
+anK
+aXp
+baU
+aXF
+aZd
+aZQ
+baJ
+baO
 agw
 agw
 agw
 agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
-agw
+adY
 agw
 agw
 aoC
@@ -42019,25 +43075,25 @@ aer
 aeL
 afr
 afJ
-afY
 agk
-agx
-agx
-agx
-agx
-agx
-agx
-agx
-agx
-agx
-agx
-agx
-agx
-agx
-agx
-agx
-agx
-agx
+anK
+anK
+anK
+anK
+anK
+anK
+aXr
+aXr
+aXr
+aXr
+aZg
+baK
+aZg
+adY
+adY
+adY
+adY
+adY
 agx
 agx
 aoD
@@ -42162,29 +43218,29 @@ aeM
 afs
 afK
 afZ
-agl
-agl
-agl
-agl
-agl
-agl
-agl
-agl
-agl
-agl
-agl
-agl
-agl
-agl
-agl
-agl
-agl
-agl
-agl
-agl
-agl
-apg
-anv
+aqJ
+aqJ
+aqJ
+aqJ
+aqJ
+aqJ
+aqJ
+aqJ
+aqJ
+aqJ
+aqJ
+bbl
+baM
+aXA
+aXA
+aXA
+aXA
+aXA
+aXB
+aXB
+aXB
+aXC
+aXD
 aqE
 adY
 aac
@@ -42314,8 +43370,8 @@ agm
 agm
 agm
 agm
-aiW
-ajo
+aZR
+baW
 ajo
 ajo
 ajR
@@ -42736,8 +43792,8 @@ adu
 agT
 adu
 ahv
-ahO
-ahO
+aau
+aau
 ahR
 adu
 ajp
