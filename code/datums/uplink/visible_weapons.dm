@@ -15,37 +15,17 @@
 	path = /obj/item/weapon/material/knife/tacknife/combatknife
 
 /datum/uplink_item/item/visible_weapons/energy_sword
-	name = "Energy Sword, Random"
+	name = "Energy Sword, Colorable"
 	item_cost = 40
 	path = /obj/item/weapon/melee/energy/sword
 
-/datum/uplink_item/item/visible_weapons/energy_sword_blue
-	name = "Energy Sword, Blue"
-	item_cost = 40
-	path = /obj/item/weapon/melee/energy/sword/blue
-
-/datum/uplink_item/item/visible_weapons/energy_sword_green
-	name = "Energy Sword, Green"
-	item_cost = 40
-	path = /obj/item/weapon/melee/energy/sword/green
-
-/datum/uplink_item/item/visible_weapons/energy_sword_red
-	name = "Energy Sword, Red"
-	item_cost = 40
-	path = /obj/item/weapon/melee/energy/sword/red
-
-/datum/uplink_item/item/visible_weapons/energy_sword_purple
-	name = "Energy Sword, Purple"
-	item_cost = 40
-	path = /obj/item/weapon/melee/energy/sword/purple
-
 /datum/uplink_item/item/visible_weapons/energy_sword_pirate
-	name = "Energy Cutlass"
+	name = "Energy Cutlass, Colorable"
 	item_cost = 40
 	path = /obj/item/weapon/melee/energy/sword/pirate
 
 /datum/uplink_item/item/visible_weapons/energy_spear
-	name = "Energy Spear"
+	name = "Energy Spear, Colorable"
 	item_cost = 50
 	path = /obj/item/weapon/melee/energy/spear
 
