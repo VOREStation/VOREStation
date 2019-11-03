@@ -347,6 +347,7 @@
 #include "code\datums\outfits\jobs\misc.dm"
 #include "code\datums\outfits\jobs\science.dm"
 #include "code\datums\outfits\jobs\security.dm"
+#include "code\datums\outfits\jobs\special_vr.dm"
 #include "code\datums\outfits\military\fleet.dm"
 #include "code\datums\outfits\military\marines.dm"
 #include "code\datums\outfits\military\military.dm"
