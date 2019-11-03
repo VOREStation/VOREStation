@@ -37,14 +37,14 @@
 	name = "\improper Tram Station"
 	icon_state = "dk_yellow"
 
-/area/tether/surfacebase/atrium_one
-	name = "\improper Atrium First Floor"
+/area/tether/surfacebase/surface_1_hall
+	name = "\improper First Floor Hallway"
 	icon_state = "dk_yellow"
-/area/tether/surfacebase/atrium_two
-	name = "\improper Atrium Second Floor"
+/area/tether/surfacebase/surface_2_hall
+	name = "\improper Second Floor Hallway"
 	icon_state = "dk_yellow"
-/area/tether/surfacebase/atrium_three
-	name = "\improper Atrium Third Floor"
+/area/tether/surfacebase/surface_3_hall
+	name = "\improper Third Floor Hallway"
 	icon_state = "dk_yellow"
 
 /area/tether/surfacebase/north_stairs_one
