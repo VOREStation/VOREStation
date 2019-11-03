@@ -37,13 +37,13 @@
 	name = "\improper Tram Station"
 	icon_state = "dk_yellow"
 
-/area/tether/surfacebase/surface_1_hall
+/area/tether/surfacebase/surface_one_hall
 	name = "\improper First Floor Hallway"
 	icon_state = "dk_yellow"
-/area/tether/surfacebase/surface_2_hall
+/area/tether/surfacebase/surface_two_hall
 	name = "\improper Second Floor Hallway"
 	icon_state = "dk_yellow"
-/area/tether/surfacebase/surface_3_hall
+/area/tether/surfacebase/surface_three_hall
 	name = "\improper Third Floor Hallway"
 	icon_state = "dk_yellow"
 
@@ -1116,9 +1116,9 @@
 // Exclude some more areas from the atmos leak event so people don't get trapped when spawning.
 /datum/event/atmos_leak/setup()
 	excluded |= /area/tether/surfacebase/tram
-	excluded |= /area/tether/surfacebase/atrium_one
-	excluded |= /area/tether/surfacebase/atrium_two
-	excluded |= /area/tether/surfacebase/atrium_three
+	excluded |= /area/tether/surfacebase/surface_one_hall
+	excluded |= /area/tether/surfacebase/surface_two_hall
+	excluded |= /area/tether/surfacebase/surface_three_hall
 	excluded |= /area/teleporter/departing
 	excluded |= /area/hallway/station/upper
 	..()
