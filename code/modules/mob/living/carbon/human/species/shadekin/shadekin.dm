@@ -1,6 +1,9 @@
 /datum/species/shadekin
 	name = SPECIES_SHADEKIN
 	name_plural = "Shadekin"
+	icobase = 'icons/mob/human_races/r_shadekin_vr.dmi'
+	deform = 'icons/mob/human_races/r_shadekin_vr.dmi'
+	tail = "tail"
 	blurb = "Waow! A shaadefluffer!"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/shadekin)
 
@@ -66,7 +69,7 @@
 	poison_type = null
 
 	vision_flags = SEE_SELF|SEE_MOBS
-	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_SKIN_COLOR | HAS_EYE_COLOR
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_SKIN_COLOR
 
 	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
 
@@ -76,7 +79,9 @@
 		O_LIVER =		/obj/item/organ/internal/liver,
 		O_KIDNEYS =		/obj/item/organ/internal/kidneys,
 		O_BRAIN =		/obj/item/organ/internal/brain/shadekin,
-		O_EYES =		/obj/item/organ/internal/eyes
+		O_EYES =		/obj/item/organ/internal/eyes,
+		O_STOMACH =		/obj/item/organ/internal/stomach,
+		O_INTESTINE =	/obj/item/organ/internal/intestine
 		)	//TODO: Phoron-immune eyes
 
 	has_limbs = list(
