@@ -113,7 +113,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
  * Library Computer
  */
 // TODO: Make this an actual /obj/machinery/computer that can be crafted from circuit boards and such
-// It is August 22nd, 2012... This TODO has already been here for months.. I wonder how long it'll last before someone does something about it.
+// It is August 22nd, 2012... This TODO has already been here for months.. I wonder how long it'll last before someone does something about it. // Nov 2019. Nope.
 /obj/machinery/librarycomp
 	name = "Check-In/Out Computer"
 	icon = 'icons/obj/library.dmi'
@@ -133,6 +133,40 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 
 	var/bibledelay = 0 // LOL NO SPAM (1 minute delay) -- Doohl
 
+	var/static/list/all_books
+
+	var/static/list/base_genre_books
+
+/obj/machinery/librarycomp/Initialize()
+	..()
+
+	if(!base_genre_books || !base_genre_books.len)
+		base_genre_books = list(
+			/obj/item/weapon/book/custom_library/fiction,
+			/obj/item/weapon/book/custom_library/nonfiction,
+			/obj/item/weapon/book/custom_library/reference,
+			/obj/item/weapon/book/custom_library/religious,
+			/obj/item/weapon/book/bundle/custom_library/fiction,
+			/obj/item/weapon/book/bundle/custom_library/nonfiction,
+			/obj/item/weapon/book/bundle/custom_library/reference,
+			/obj/item/weapon/book/bundle/custom_library/religious
+			)
+
+	if(!all_books || !all_books.len)
+		all_books = list()
+
+		for(var/path in subtypesof(/obj/item/weapon/book/codex/lore))
+			var/obj/item/weapon/book/C = new path(null)
+			all_books[C.name] = C
+
+		for(var/path in subtypesof(/obj/item/weapon/book/custom_library) - base_genre_books)
+			var/obj/item/weapon/book/B = new path(null)
+			all_books[B.title] = B
+
+		for(var/path in subtypesof(/obj/item/weapon/book/bundle/custom_library) - base_genre_books)
+			var/obj/item/weapon/book/M = new path(null)
+			all_books[M.title] = M
+
 /obj/machinery/librarycomp/attack_hand(var/mob/user as mob)
 	usr.set_machine(src)
 	var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
@@ -144,7 +178,8 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 			<A href='?src=\ref[src];switchscreen=3'>3. Check out a Book</A><BR>
 			<A href='?src=\ref[src];switchscreen=4'>4. Connect to External Archive</A><BR>
 			<A href='?src=\ref[src];switchscreen=5'>5. Upload New Title to Archive</A><BR>
-			<A href='?src=\ref[src];switchscreen=6'>6. Print a Bible</A><BR>"}
+			<A href='?src=\ref[src];switchscreen=6'>6. Print a Bible</A><BR>
+			<A href='?src=\ref[src];switchscreen=8'>8. Access NT Internal Archive</A><BR>"}
 			if(src.emagged)
 				dat += "<A href='?src=\ref[src];switchscreen=7'>7. Access the Forbidden Lore Vault</A><BR>"
 			if(src.arcanecheckout)
@@ -190,8 +225,11 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 			<A href='?src=\ref[src];checkout=1'>(Commit Entry)</A><BR>
 			<A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"}
 		if(4)
-			dat += "<h3>External Archive</h3>"
+			dat += "<h3>Deprecated Archive</h3>"
 			establish_old_db_connection()
+
+			dat += "<h3><font color=red>Warning: System Administrator has slated this archive for removal. Personal uploads should be taken to the NT board of internal literature.</font></h3>"
+
 			if(!dbcon_old.IsConnected())
 				dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"
 			else
@@ -210,6 +248,10 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				dat += "</table>"
 			dat += "<BR><A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 		if(5)
+			dat += "<H3>ERROR</H3>"
+			dat+= "<FONT color=red>Library Database is in Secure Management Mode.</FONT><BR>\
+			Contact a System Administrator for more information.<BR>"
+			/*
 			dat += "<H3>Upload a New Title</H3>"
 			if(!scanner)
 				for(var/obj/machinery/libraryscanner/S in range(9))
@@ -227,12 +269,30 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				dat += {"<TT>Author: </TT><A href='?src=\ref[src];setauthor=1'>[scanner.cache.author]</A><BR>
 				<TT>Category: </TT><A href='?src=\ref[src];setcategory=1'>[upload_category]</A><BR>
 				<A href='?src=\ref[src];upload=1'>\[Upload\]</A><BR>"}
+			*/
 			dat += "<A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 		if(7)
 			dat += {"<h3>Accessing Forbidden Lore Vault v 1.3</h3>
 			Are you absolutely sure you want to proceed? EldritchTomes Inc. takes no responsibilities for loss of sanity resulting from this action.<p>
 			<A href='?src=\ref[src];arccheckout=1'>Yes.</A><BR>
 			<A href='?src=\ref[src];switchscreen=0'>No.</A><BR>"}
+		if(8)
+			dat += "<h3>NT Internal Archive</h3>"
+			if(!all_books || !all_books.len)
+				dat +=	"<font color=red><b>ERROR</b> Something has gone seriously wrong. Contact System Administrator for more information.</font>"
+			else
+				dat += {"<table>
+				<tr><td><A href='?src=\ref[src];sort=author>AUTHOR</A></td><td><A href='?src=\ref[src];sort=title>TITLE</A></td><td><A href='?src=\ref[src];sort=category>CATEGORY</A></td><td></td></tr>"}
+
+				for(var/name in all_books)
+					var/obj/item/weapon/book/masterbook = all_books[name]
+					var/id = masterbook.type
+					var/author = masterbook.author
+					var/title = masterbook.name
+					var/category = masterbook.libcategory
+					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td><A href='?src=\ref[src];hardprint=[id]'>\[Order\]</A></td></tr>"
+				dat += "</table>"
+			dat += "<BR><A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 
 	//dat += "<A HREF='?src=\ref[user];mach_close=library'>Close</A><br><br>"
 	user << browse(dat, "window=library")
@@ -293,6 +353,8 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 
 			if("7")
 				screenstate = 7
+			if("8")
+				screenstate = 8
 	if(href_list["arccheckout"])
 		if(src.emagged)
 			src.arcanecheckout = 1
@@ -328,7 +390,8 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 		var/newcategory = input("Choose a category: ") in list("Fiction", "Non-Fiction", "Adult", "Reference", "Religion")
 		if(newcategory)
 			upload_category = newcategory
-	if(href_list["upload"])
+
+/*	if(href_list["upload"])
 		if(scanner)
 			if(scanner.cache)
 				var/choice = input("Are you certain you wish to upload this title to the Archive?") in list("Confirm", "Abort")
@@ -356,6 +419,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 							else
 								log_game("[usr.name]/[usr.key] has uploaded the book titled [scanner.cache.name], [length(scanner.cache.dat)] signs")
 								alert("Upload Complete.")
+*/
 
 	if(href_list["targetid"])
 		var/sqlid = sanitizeSQL(href_list["targetid"])
@@ -392,6 +456,10 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				spawn() src.Topic(nhref, params2list(nhref), src)
 	if(href_list["sort"] in list("author", "title", "category"))
 		sortby = href_list["sort"]
+	if(href_list["hardprint"])
+		var/newpath = href_list["hardprint"]
+		var/obj/item/weapon/book/NewBook = new newpath(get_turf(src))
+		NewBook.name = "Book: [NewBook.name]"
 	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	return
