@@ -66,17 +66,17 @@
 	var/weeds_plasma_rate = 5   // Plasma regen on weeds.
 
 	has_limbs = list(
-		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
-		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
-		BP_HEAD =   list("path" = /obj/item/organ/external/head/no_eyes),
-		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
-		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
-		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
-		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
-		BP_L_HAND = list("path" = /obj/item/organ/external/hand),
-		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right),
-		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
-		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest/unseverable/xeno),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin/unseverable/xeno),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/unseverable/xeno),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm/unseverable/xeno),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right/unseverable/xeno),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg/unseverable/xeno),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right/unseverable/xeno),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand/unseverable/xeno),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right/unseverable/xeno),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot/unseverable/xeno),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/unseverable/xeno)
 		)
 
 /datum/species/xenos/get_bodytype()
@@ -136,7 +136,7 @@
 		H.adjustOxyLoss(-heal_rate)
 		H.adjustToxLoss(-heal_rate)
 		if (prob(5))
-			H << "<span class='alium'>You feel a soothing sensation come over you...</span>"
+			H << "<span class='alien'>You feel a soothing sensation come over you...</span>"
 		return 1
 
 	//next internal organs
@@ -144,7 +144,7 @@
 		if(I.damage > 0)
 			I.damage = max(I.damage - heal_rate, 0)
 			if (prob(5))
-				H << "<span class='alium'>You feel a soothing sensation within your [I.parent_organ]...</span>"
+				H << "<span class='alien'>You feel a soothing sensation within your [I.parent_organ]...</span>"
 			return 1
 
 	//next mend broken bones, approx 10 ticks each
@@ -152,7 +152,7 @@
 		if (E.status & ORGAN_BROKEN)
 			if (prob(mend_prob))
 				if (E.mend_fracture())
-					H << "<span class='alium'>You feel something mend itself inside your [E.name].</span>"
+					H << "<span class='alien'>You feel something mend itself inside your [E.name].</span>"
 			return 1
 
 	return 0

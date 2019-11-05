@@ -152,6 +152,12 @@
  * Weeds
  */
 #define NODERANGE 3
+#define WEED_NORTH_EDGING "north"
+#define WEED_SOUTH_EDGING "south"
+#define WEED_EAST_EDGING "east"
+#define WEED_WEST_EDGING "west"
+#define WEED_NODE_GLOW "glow"
+#define WEED_NODE_BASE "nodebase"
 
 /obj/effect/alien/weeds
 	name = "weeds"
@@ -164,6 +170,18 @@
 	layer = ABOVE_TURF_LAYER
 	var/health = 15
 	var/obj/effect/alien/weeds/node/linked_node = null
+	var/static/list/weedImageCache
+
+/obj/effect/alien/weeds/Destroy()
+	var/turf/T = get_turf(src)
+	// To not mess up the overlay updates.
+	loc = null
+
+	for (var/obj/effect/alien/weeds/W in range(1,T))
+		W.updateWeedOverlays()
+
+	linked_node = null
+	..()
 
 /obj/effect/alien/weeds/node
 	icon_state = "weednode"
@@ -173,9 +191,22 @@
 	light_range = NODERANGE
 	var/node_range = NODERANGE
 
+	var/set_color = null
+
 /obj/effect/alien/weeds/node/New()
 	..(src.loc, src)
 
+/obj/effect/alien/weeds/node/Initialize()
+	..()
+	START_PROCESSING(SSobj, src)
+
+	spawn(1 SECOND)
+		if(color)
+			set_color = color
+
+/obj/effect/alien/weeds/node/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	..()
 
 /obj/effect/alien/weeds/New(pos, node)
 	..()
@@ -184,12 +215,45 @@
 		return
 	linked_node = node
 	if(icon_state == "weeds")icon_state = pick("weeds", "weeds1", "weeds2")
-	spawn(rand(150, 200))
-		if(src)
-			Life()
+
+	fullUpdateWeedOverlays()
+
+/obj/effect/alien/weeds/proc/updateWeedOverlays()
+
+	overlays.Cut()
+
+	if(!weedImageCache || !weedImageCache.len)
+		weedImageCache = list()
+//		weedImageCache.len = 4
+		weedImageCache[WEED_NORTH_EDGING] = image('icons/mob/alien.dmi', "weeds_side_n", layer=2.11, pixel_y = -32)
+		weedImageCache[WEED_SOUTH_EDGING] = image('icons/mob/alien.dmi', "weeds_side_s", layer=2.11, pixel_y = 32)
+		weedImageCache[WEED_EAST_EDGING] = image('icons/mob/alien.dmi', "weeds_side_e", layer=2.11, pixel_x = -32)
+		weedImageCache[WEED_WEST_EDGING] = image('icons/mob/alien.dmi', "weeds_side_w", layer=2.11, pixel_x = 32)
+
+	var/turf/N = get_step(src, NORTH)
+	var/turf/S = get_step(src, SOUTH)
+	var/turf/E = get_step(src, EAST)
+	var/turf/W = get_step(src, WEST)
+	if(!locate(/obj/effect/alien) in N.contents)
+		if(istype(N, /turf/simulated/floor))
+			overlays += weedImageCache[WEED_SOUTH_EDGING]
+	if(!locate(/obj/effect/alien) in S.contents)
+		if(istype(S, /turf/simulated/floor))
+			overlays += weedImageCache[WEED_NORTH_EDGING]
+	if(!locate(/obj/effect/alien) in E.contents)
+		if(istype(E, /turf/simulated/floor))
+			overlays += weedImageCache[WEED_WEST_EDGING]
+	if(!locate(/obj/effect/alien) in W.contents)
+		if(istype(W, /turf/simulated/floor))
+			overlays += weedImageCache[WEED_EAST_EDGING]
+
+/obj/effect/alien/weeds/proc/fullUpdateWeedOverlays()
+	for (var/obj/effect/alien/weeds/W in range(1,src))
+		W.updateWeedOverlays()
+
 	return
 
-/obj/effect/alien/weeds/proc/Life()
+/obj/effect/alien/weeds/process()
 	set background = 1
 	var/turf/U = get_turf(src)
 /*
@@ -211,6 +275,9 @@ Alien plants should do something if theres a lot of poison
 	if(!linked_node || (get_dist(linked_node, src) > linked_node.node_range) )
 		return
 
+	if(linked_node != src)
+		color = linked_node.set_color
+
 	direction_loop:
 		for(var/dirn in cardinal)
 			var/turf/T = get_step(src, dirn)
@@ -222,10 +289,33 @@ Alien plants should do something if theres a lot of poison
 	//			continue
 
 			for(var/obj/O in T)
-				if(O.density)
+				if(!O.CanZASPass(U))
 					continue direction_loop
 
-			new /obj/effect/alien/weeds(T, linked_node)
+			var/obj/effect/E = new /obj/effect/alien/weeds(T, linked_node)
+
+			E.color = color
+
+	if(istype(src, /obj/effect/alien/weeds/node))
+		var/obj/effect/alien/weeds/node/N = src
+		var/list/nearby_weeds = list()
+		for(var/obj/effect/alien/weeds/W in range(N.node_range,src))
+			nearby_weeds |= W
+
+		for(var/obj/effect/alien/weeds/W in nearby_weeds)
+			if(!W)
+				continue
+
+			if(!W.linked_node)
+				linked_node = src
+
+			W.color = W.linked_node.set_color
+
+			if(W == src)
+				continue
+
+			if(prob(max(10, 40 - (5 * nearby_weeds.len))))
+				W.process()
 
 
 /obj/effect/alien/weeds/ex_act(severity)
@@ -282,7 +372,12 @@ Alien plants should do something if theres a lot of poison
 		healthcheck()
 
 #undef NODERANGE
-
+#undef WEED_NORTH_EDGING
+#undef WEED_SOUTH_EDGING
+#undef WEED_EAST_EDGING
+#undef WEED_WEST_EDGING
+#undef WEED_NODE_GLOW
+#undef WEED_NODE_BASE
 
 /*
  * Acid
