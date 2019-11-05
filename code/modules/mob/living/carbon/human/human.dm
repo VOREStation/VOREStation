@@ -1283,6 +1283,9 @@
 	else if (affecting.robotic >= ORGAN_LIFELIKE)
 		. = 0
 		fail_msg = "Your needle refuses to penetrate more than a short distance..."
+	else if (affecting.thick_skin && prob(70 - round(affecting.brute_dam + affecting.burn_dam / 2)))	// Allows transplanted limbs with thick skin to maintain their resistance.
+		. = 0
+		fail_msg = "Your needle fails to penetrate \the [affecting]'s thick hide..."
 	else
 		switch(target_zone)
 			if(BP_HEAD)

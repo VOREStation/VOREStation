@@ -121,7 +121,9 @@
 
 	if(check_alien_ability(50,1,O_RESIN))
 		visible_message("<span class='alium'><B>[src] has planted some alien weeds!</B></span>")
-		new /obj/effect/alien/weeds/node(loc)
+		var/obj/O = new /obj/effect/alien/weeds/node(loc)
+		if(O)
+			O.color = "#321D37"
 	return
 
 /mob/living/carbon/human/proc/Spit(var/atom/A)
@@ -231,7 +233,7 @@
 	set desc = "Secrete tough malleable resin."
 	set category = "Abilities"
 
-	var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in list("resin door","resin wall","resin membrane","resin nest") //would do it through typesof but then the player choice would have the type path and we don't want the internal workings to be exposed ICly - Urist
+	var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in list("resin door","resin wall","resin membrane","resin nest","resin blob") //would do it through typesof but then the player choice would have the type path and we don't want the internal workings to be exposed ICly - Urist
 	if(!choice)
 		return
 
@@ -239,15 +241,24 @@
 		return
 
 	visible_message("<span class='warning'><B>[src] vomits up a thick purple substance and begins to shape it!</B></span>", "<span class='alium'>You shape a [choice].</span>")
+
+	var/obj/O
+
 	switch(choice)
 		if("resin door")
-			new /obj/structure/simple_door/resin(loc)
+			O = new /obj/structure/simple_door/resin(loc)
 		if("resin wall")
-			new /obj/effect/alien/resin/wall(loc)
+			O = new /obj/effect/alien/resin/wall(loc)
 		if("resin membrane")
-			new /obj/effect/alien/resin/membrane(loc)
+			O = new /obj/effect/alien/resin/membrane(loc)
 		if("resin nest")
-			new /obj/structure/bed/nest(loc)
+			O = new /obj/structure/bed/nest(loc)
+		if("resin blob")
+			O = new /obj/item/stack/material/resin(loc)
+
+	if(O)
+		O.color = "#321D37"
+
 	return
 
 /mob/living/carbon/human/proc/leap()
