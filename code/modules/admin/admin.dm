@@ -1305,7 +1305,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc = "Should fix any mob sprite update errors."
 
 	if (!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 
 	if(istype(H))

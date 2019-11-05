@@ -227,7 +227,7 @@
 	if(!(locate(O) in src.module.modules) && O != src.module.emag)
 		return
 	if(activated(O))
-		src << "<span class='notice'>Already activated</span>"
+		to_chat(src, "<span class='notice'>Already activated</span>")
 		return
 	if(!module_state_1)
 		module_state_1 = O
@@ -251,7 +251,7 @@
 		if(istype(module_state_3,/obj/item/borg/sight))
 			sight_mode |= module_state_3:sight_mode
 	else
-		src << "<span class='notice'>You need to disable a module first!</span>"
+		to_chat(src, "<span class='notice'>You need to disable a module first!</span>")
 
 /mob/living/silicon/robot/put_in_hands(var/obj/item/W) // No hands.
 	W.loc = get_turf(src)

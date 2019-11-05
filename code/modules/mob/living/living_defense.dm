@@ -29,15 +29,15 @@
 		armor = max(armor - armour_pen, 0)			//Armor pen makes armor less effective.
 		if(armor >= 100)
 			if(absorb_text)
-				src << "<span class='danger'>[absorb_text]</span>"
+				to_chat(src, "<span class='danger'>[absorb_text]</span>")
 			else
-				src << "<span class='danger'>Your armor absorbs the blow!</span>"
+				to_chat(src, "<span class='danger'>Your armor absorbs the blow!</span>")
 
 		else if(armor > 0)
 			if(soften_text)
-				src << "<span class='danger'>[soften_text]</span>"
+				to_chat(src, "<span class='danger'>[soften_text]</span>")
 			else
-				src << "<span class='danger'>Your armor softens the blow!</span>"
+				to_chat(src, "<span class='danger'>Your armor softens the blow!</span>")
 		if(Debug2)
 			world.log << "## DEBUG: Armor when [src] was attacked was [armor]."
 	return armor
