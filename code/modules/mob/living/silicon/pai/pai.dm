@@ -361,12 +361,8 @@
 	else
 		resting = !resting
 		icon_state = resting ? "[chassis]_rest" : "[chassis]"
-<<<<<<< HEAD
 		update_icon() //VOREStation edit
-		src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
-=======
 		to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
->>>>>>> 5719bea... Merge pull request #6503 from Rykka-Stormheart/shep-dev-chat-refactor
 
 	canmove = !resting
 
