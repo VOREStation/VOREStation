@@ -44,7 +44,7 @@
 
 	if(!src.client.holder)
 		if(!config.dsay_allowed)
-			src << "<span class='danger'>Deadchat is globally muted.</span>"
+			to_chat(src, "<span class='danger'>Deadchat is globally muted.</span>")
 			return
 
 	if(!is_preference_enabled(/datum/client_preference/show_dsay))

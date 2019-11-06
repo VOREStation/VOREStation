@@ -2,7 +2,7 @@
 	set category = null
 	set name = "Drop Everything"
 	if(!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 
 	var/confirm = alert(src, "Make [M] drop everything?", "Message", "Yes", "No")
@@ -20,7 +20,7 @@
 	set category = "Admin"
 	set name = "Prison"
 	if(!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 	if (ismob(M))
 		if(istype(M, /mob/living/silicon/ai))
@@ -48,7 +48,7 @@
 	set category = "Admin"
 	set name = "Check new Players"
 	if(!holder)
-		src << "Only staff members may use this command."
+		to_chat(src, "Only staff members may use this command.")
 
 	var/age = alert(src, "Age check", "Show accounts yonger then _____ days","7", "30" , "All")
 
@@ -70,12 +70,12 @@
 			msg += "[key_name(C, 1, 1, highlight_special_characters)]: account is [C.player_age] days old<br>"
 
 	if(missing_ages)
-		src << "Some accounts did not have proper ages set in their clients.  This function requires database to be present."
+		to_chat(src, "Some accounts did not have proper ages set in their clients.  This function requires database to be present.")
 
 	if(msg != "")
 		src << browse(msg, "window=Player_age_check")
 	else
-		src << "No matches for that age range found."
+		to_chat(src, "No matches for that age range found.")
 
 /client/proc/cmd_admin_subtle_message(mob/M as mob in mob_list)
 	set category = "Special Verbs"
@@ -83,7 +83,7 @@
 
 	if(!ismob(M))	return
 	if (!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 
 	var/msg = sanitize(input("Message:", text("Subtle PM to [M.key]")) as text)
@@ -106,7 +106,7 @@
 	set name = "Global Narrate"
 
 	if (!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 
 	var/msg = sanitize(input("Message:", text("Enter the text you wish to appear to everyone:")) as text)
@@ -123,7 +123,7 @@
 	set name = "Direct Narrate"
 
 	if(!holder)
-		src << "Only administrators and moderators may use this command."
+		to_chat(src, "Only administrators and moderators may use this command.")
 		return
 
 	if(!M)
@@ -148,7 +148,7 @@
 	set category = "Special Verbs"
 	set name = "Godmode"
 	if(!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 	M.status_flags ^= GODMODE
 	usr << "<font color='blue'> Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]</font>"
@@ -216,7 +216,7 @@ proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 	set category = "Fun"
 	set name = "Add Random AI Law"
 	if(!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm != "Yes") return
@@ -248,7 +248,7 @@ Ccomp's first proc.
 		any = 1                                                 //if no ghosts show up, any will just be 0
 	if(!any)
 		if(notify)
-			src << "There doesn't appear to be any ghosts for you to select."
+			to_chat(src, "There doesn't appear to be any ghosts for you to select.")
 		return
 
 	for(var/mob/M in mobs)
@@ -265,12 +265,12 @@ Ccomp's first proc.
 	set name = "Allow player to respawn"
 	set desc = "Let's the player bypass the wait to respawn or allow them to re-enter their corpse."
 	if(!holder)
-		src << "Only administrators and moderators may use this command."
+		to_chat(src, "Only administrators and moderators may use this command.")
 	var/list/ghosts= get_ghosts(1,1)
 
 	var/target = input("Please, select a ghost!", "COME BACK TO LIFE!", null, null) as null|anything in ghosts
 	if(!target)
-		src << "Hrm, appears you didn't select a ghost"		// Sanity check, if no ghosts in the list we don't want to edit a null variable and cause a runtime error.
+		to_chat(src, "Hrm, appears you didn't select a ghost")		// Sanity check, if no ghosts in the list we don't want to edit a null variable and cause a runtime error.
 		return
 
 	var/mob/observer/dead/G = ghosts[target]
@@ -295,7 +295,7 @@ Ccomp's first proc.
 	set desc = "Toggles antagHUD usage for observers"
 
 	if(!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 	var/action=""
 	if(config.antag_hud_allowed)
 		for(var/mob/observer/dead/g in get_ghosts())
@@ -306,7 +306,7 @@ Ccomp's first proc.
 				g.has_enabled_antagHUD = 2				// We'll allow them to respawn
 				g << "<font color='red'><B>The Administrator has disabled AntagHUD </B></font>"
 		config.antag_hud_allowed = 0
-		src << "<font color='red'><B>AntagHUD usage has been disabled</B></font>"
+		to_chat(src, "<font color='red'><B>AntagHUD usage has been disabled</B></font>")
 		action = "disabled"
 	else
 		for(var/mob/observer/dead/g in get_ghosts())
@@ -315,7 +315,7 @@ Ccomp's first proc.
 			g << "<font color='blue'><B>The Administrator has enabled AntagHUD </B></font>"	// Notify all observers they can now use AntagHUD
 		config.antag_hud_allowed = 1
 		action = "enabled"
-		src << "<font color='blue'><B>AntagHUD usage has been enabled</B></font>"
+		to_chat(src, "<font color='blue'><B>AntagHUD usage has been enabled</B></font>")
 
 
 	log_admin("[key_name(usr)] has [action] antagHUD usage for observers")
@@ -328,14 +328,14 @@ Ccomp's first proc.
 	set name = "Toggle antagHUD Restrictions"
 	set desc = "Restricts players that have used antagHUD from being able to join this round."
 	if(!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 	var/action=""
 	if(config.antag_hud_restricted)
 		for(var/mob/observer/dead/g in get_ghosts())
 			g << "<font color='blue'><B>The administrator has lifted restrictions on joining the round if you use AntagHUD</B></font>"
 		action = "lifted restrictions"
 		config.antag_hud_restricted = 0
-		src << "<font color='blue'><B>AntagHUD restrictions have been lifted</B></font>"
+		to_chat(src, "<font color='blue'><B>AntagHUD restrictions have been lifted</B></font>")
 	else
 		for(var/mob/observer/dead/g in get_ghosts())
 			g << "<font color='red'><B>The administrator has placed restrictions on joining the round if you use AntagHUD</B></font>"
@@ -344,7 +344,7 @@ Ccomp's first proc.
 			g.has_enabled_antagHUD = 0
 		action = "placed restrictions"
 		config.antag_hud_restricted = 1
-		src << "<font color='red'><B>AntagHUD restrictions have been enabled</B></font>"
+		to_chat(src, "<font color='red'><B>AntagHUD restrictions have been enabled</B></font>")
 
 	log_admin("[key_name(usr)] has [action] on joining the round if they use AntagHUD")
 	message_admins("Admin [key_name_admin(usr)] has [action] on joining the round if they use AntagHUD", 1)
@@ -359,7 +359,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Spawn Character"
 	set desc = "(Re)Spawn a client's loaded character."
 	if(!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 
 	//I frontload all the questions so we don't have a half-done process while you're reading.
@@ -443,7 +443,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	switch(location)
 		if("Right Here") //Spawn them on your turf
 			if(!src.mob)
-				src << "You can't use 'Right Here' when you are not 'Right Anywhere'!"
+				to_chat(src, "You can't use 'Right Here' when you are not 'Right Anywhere'!")
 				return
 
 			spawnloc = get_turf(src.mob)
@@ -452,19 +452,19 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			spawnloc = pick(latejoin)
 
 		else //I have no idea how you're here
-			src << "Invalid spawn location choice."
+			to_chat(src, "Invalid spawn location choice.")
 			return
 
 	//Did we actually get a loc to spawn them?
 	if(!spawnloc)
-		src << "Couldn't get valid spawn location."
+		to_chat(src, "Couldn't get valid spawn location.")
 		return
 
 	new_character = new(spawnloc)
 
 	//We were able to spawn them, right?
 	if(!new_character)
-		src << "Something went wrong and spawning failed."
+		to_chat(src, "Something went wrong and spawning failed.")
 		return
 
 	//Write the appearance and whatnot out to the character
@@ -517,7 +517,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Fun"
 	set name = "Add Custom AI law"
 	if(!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 	var/input = sanitize(input(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", "") as text|null)
 	if(!input)
@@ -545,7 +545,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Special Verbs"
 	set name = "Rejuvenate"
 	if(!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 	if(!mob)
 		return
@@ -567,7 +567,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Special Verbs"
 	set name = "Create Command Report"
 	if(!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 	var/input = sanitize(input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as message|null, extra = 0)
 	var/customname = sanitizeSafe(input(usr, "Pick a title for the report.", "Title") as text|null)
@@ -595,7 +595,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Delete"
 
 	if (!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 	admin_delete(O)
 
@@ -604,11 +604,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "List free slots"
 
 	if (!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 	if(job_master)
 		for(var/datum/job/job in job_master.occupations)
-			src << "[job.title]: [job.total_positions]"
+			to_chat(src, "[job.title]: [job.total_positions]")
 	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in world)
@@ -705,7 +705,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Manual Ban"
 	set category = "Special Verbs"
 	if(!authenticated || !holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 	var/mob/M = null
 	switch(alert("How would you like to ban someone today?", "Manual Ban", "Key List", "Enter Manually", "Cancel"))
@@ -777,7 +777,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Debug"
 	set name = "Stabilize Atmos."
 	if(!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 	feedback_add_details("admin_verb","STATM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 // DEFERRED
