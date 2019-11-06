@@ -119,12 +119,8 @@
 	var/obj/machinery/hologram/holopad/T = src.holo
 	if(T && T.masters[src])
 		var/rendered = "<span class='game say'><span class='name'>[name]</span> <span class='message'>[message]</span></span>"
-<<<<<<< HEAD
-		src << "<i><span class='game say'>Holopad action relayed, <span class='name'>[real_name]</span> <span class='message'>[message]</span></span></i>"
-		var/obj/effect/overlay/aiholo/hologram = T.masters[src] //VOREStation Add for people in the hologram to hear the messages
-=======
 		to_chat(src, "<i><span class='game say'>Holopad action relayed, <span class='name'>[real_name]</span> <span class='message'>[message]</span></span></i>")
->>>>>>> 5719bea... Merge pull request #6503 from Rykka-Stormheart/shep-dev-chat-refactor
+		var/obj/effect/overlay/aiholo/hologram = T.masters[src] //VOREStation Add for people in the hologram to hear the messages
 
 		//var/obj/effect/overlay/hologram = T.masters[src] //VOREStation edit. Done above.
 		var/list/in_range = get_mobs_and_objs_in_view_fast(get_turf(hologram), world.view, 2) //Emotes are displayed from the hologram, not the pad
