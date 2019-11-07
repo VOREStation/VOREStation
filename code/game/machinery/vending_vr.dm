@@ -698,7 +698,10 @@
 					/obj/item/clothing/under/utility/blue = 5,
 					/obj/item/clothing/under/fluff/v_nanovest = 5,
 					/obj/item/clothing/under/dress/westernbustle = 5,
-					/obj/item/clothing/under/wedding/bride_white = 5)
+					/obj/item/clothing/under/wedding/bride_white = 5,
+					/obj/item/weapon/storage/backpack/ = 5,
+					/obj/item/weapon/storage/backpack/messenger = 5,
+					/obj/item/weapon/storage/backpack/satchel = 5)
 	prices = list(/obj/item/clothing/under/bathrobe = 100,
 					/obj/item/clothing/under/dress/black_corset = 100,
 					/obj/item/clothing/under/blazer = 100,
@@ -862,7 +865,10 @@
 					/obj/item/clothing/under/utility/blue = 100,
 					/obj/item/clothing/under/fluff/v_nanovest = 100,
 					/obj/item/clothing/under/dress/westernbustle = 100,
-					/obj/item/clothing/under/wedding/bride_white = 100)
+					/obj/item/clothing/under/wedding/bride_white = 100,
+					/obj/item/weapon/storage/backpack/ = 100,
+					/obj/item/weapon/storage/backpack/messenger = 100,
+					/obj/item/weapon/storage/backpack/satchel = 100)
 	premium = list(/obj/item/clothing/under/color/rainbow = 1)
 	contraband = list(/obj/item/clothing/under/rank/clown = 1)
 /obj/machinery/vending/loadout/gadget
