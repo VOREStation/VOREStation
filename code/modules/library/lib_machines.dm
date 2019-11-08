@@ -248,9 +248,9 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				dat += "</table>"
 			dat += "<BR><A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 		if(5)
-			dat += "<H3>ERROR</H3>"
-			dat+= "<FONT color=red>Library Database is in Secure Management Mode.</FONT><BR>\
-			Contact a System Administrator for more information.<BR>"
+			//dat += "<H3>ERROR</H3>" //VOREStation Removal
+			//dat+= "<FONT color=red>Library Database is in Secure Management Mode.</FONT><BR>\ //VOREStation Removal
+			//Contact a System Administrator for more information.<BR>" //VOREStation Removal
 			//VOREstation Edit Start
 			dat += "<H3>Upload a New Title</H3>"
 			if(!scanner)
