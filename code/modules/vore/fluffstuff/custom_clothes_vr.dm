@@ -1899,3 +1899,19 @@ Departamental Swimsuits, for general use
 
 /obj/item/clothing/under/fluff/slime_skeleton/digest_act(var/atom/movable/item_storage = null)
 	return FALSE	//Indigestible
+
+//Bacon12366:Elly Brown
+/obj/item/clothing/accessory/sweater/fluff/star
+	name = "Star Sweater"
+	desc = "It's a white long sweater with a big yellow star at the chest. It seems like it's made of a soft material."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "star_sweater"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "star_sweater"
+
+	slot_flags = SLOT_OCLOTHING | SLOT_TIE
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	w_class = ITEMSIZE_NORMAL
+	slot = ACCESSORY_SLOT_OVER

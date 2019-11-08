@@ -939,3 +939,9 @@
 	display_name = "Nehi's Radio"
 	ckeywhitelist = list("zodiacshadow")
 	character_name = list("Nehi Maximus")
+
+/datum/gear/fluff/star_sweater
+	path = /obj/item/clothing/accessory/sweater/fluff/star
+	display_name = "Star Sweater"
+	ckeywhitelist = list("bacon12366")
+	character_name = list("Elly Brown")
