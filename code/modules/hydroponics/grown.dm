@@ -24,6 +24,8 @@
 	if(planttype)
 		plantname = planttype
 
+/obj/item/weapon/reagent_containers/food/snacks/grown/Initialize()
+	..()
 	if(!plantname)
 		return
 
@@ -48,9 +50,6 @@
 		return
 
 	potency = seed.get_trait(TRAIT_POTENCY)
-
-/obj/item/weapon/reagent_containers/food/snacks/grown/Initialize()
-	..()
 
 	for(var/rid in seed.chems)
 		var/list/reagent_data = seed.chems[rid]
