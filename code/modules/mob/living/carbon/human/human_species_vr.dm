@@ -30,5 +30,4 @@
 	..(new_loc, "Alraune")
 
 /mob/living/carbon/human/shadekin/New(var/new_loc)
-	h_style = "Bald"
 	..(new_loc, SPECIES_SHADEKIN)

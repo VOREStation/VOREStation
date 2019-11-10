@@ -29,6 +29,15 @@
 	var/extra_overlay // Icon state of an additional overlay to blend in.
 	var/desc = "You should not see this..."
 
+// Species-unique ears
+
+/datum/sprite_accessory/ears/shadekin
+	name = "Shadekin Ears, colorable"
+	desc = ""
+	icon_state = "shadekin"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 // Ears avaliable to anyone
 
 /datum/sprite_accessory/ears/squirrel_orange
@@ -386,6 +395,14 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "tesharilowinner"
 
+/datum/sprite_accessory/ears/inkling
+	name = "colorable mature inkling hair"
+	desc = ""
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_state = "inkling-colorable"
+	color_blend_mode = ICON_MULTIPLY
+	do_colouration = 1
+
 
 // Special snowflake ears go below here.
 
@@ -656,6 +673,17 @@
 	var/list/hide_body_parts = list() //Uses organ tag defines. Bodyparts in this list do not have their icons rendered, allowing for more spriter freedom when doing taur/digitigrade stuff.
 	var/icon/clip_mask_icon = null //Icon file used for clip mask.
 	var/clip_mask_state = null //Icon state to generate clip mask. Clip mask is used to 'clip' off the lower part of clothing such as jumpsuits & full suits.
+
+// Species-unique tails
+
+/datum/sprite_accessory/tail/shadekin_short
+	name = "Shadekin Short Tail, colorable"
+	desc = ""
+	icon_state = "shadekin-short"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+// Everyone tails
 
 /datum/sprite_accessory/tail/invisible
 	name = "hide species-sprite tail"

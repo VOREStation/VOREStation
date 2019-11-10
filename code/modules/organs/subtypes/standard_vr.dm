@@ -46,10 +46,7 @@
 			if(hair_style.do_colouration && islist(h_col) && h_col.len >= 3)
 				hair_s.Blend(rgb(h_col[1], h_col[2], h_col[3]), ICON_MULTIPLY)
 			overlays |= image(hair_s, "pixel_y" = head_offset)
-
-/obj/item/organ/external/head/sergal
-	eye_icon_location = 'icons/mob/human_face_vr.dmi'
-	eye_icon = "eyes_sergal"
+	return mob_icon
 
 /obj/item/organ/external/head/vr
 	var/eye_icons_vr = 'icons/mob/human_face_vr.dmi'
@@ -65,13 +62,9 @@
 	eye_icon_vr = "werebeast_eyes"
 	head_offset = 6
 
-/obj/item/organ/external/head/blankeyes
-	eye_icon_location = 'icons/mob/human_face_vr.dmi'
-	eye_icon = "blank_eyes"
-
-/obj/item/organ/external/head/shadekin
+/obj/item/organ/external/head/vr/shadekin
 	cannot_gib = 1
 	cannot_amputate = 1
 
-	eye_icon_location = 'icons/mob/human_face_vr.dmi'
-	eye_icon = "eyes_shadekin_blue"
+	eye_icons_vr = 'icons/mob/human_face_vr.dmi'
+	eye_icon_vr = "eyes_shadekin"

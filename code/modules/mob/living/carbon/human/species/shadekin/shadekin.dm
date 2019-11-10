@@ -4,18 +4,15 @@
 	icobase = 'icons/mob/human_races/r_shadekin_vr.dmi'
 	deform = 'icons/mob/human_races/r_shadekin_vr.dmi'
 	tail = "tail"
+	icobase_tail = 1
 	blurb = "Waow! A shaadefluffer!"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/shadekin)
 
 	language = LANGUAGE_SHADEKIN
 	assisted_langs = list()
 	unarmed_types = list(/datum/unarmed_attack/claws/shadekin/red)
-	hud_type = /datum/hud_data/shadekin
+	//hud_type = /datum/hud_data/shadekin
 	rarity_value = 15	//INTERDIMENSIONAL FLUFFERS
-
-	tail = "shadekintail"
-	tail_animation = 'icons/mob/species/shadekin/tail.dmi'
-	longtail = TRUE
 
 	has_fine_manipulation = 0
 	siemens_coefficient = 0
@@ -49,10 +46,11 @@
 	flesh_color = "#34AF10"		//TODO: set colors
 	blood_color = "#b3cbc3"
 	base_color = "#066000"
+	color_mult = 1
 
 	has_glowing_eyes = TRUE
 
-	death_message = "lets out a waning guttural screech, green blood bubbling from its maw."
+	death_message = "lets out a waning guttural screech, green blood bubbling from its maw."	//TODO: replace
 	male_cough_sounds = null
 	female_cough_sounds = null
 	male_sneeze_sound = null
@@ -69,7 +67,7 @@
 	poison_type = null
 
 	vision_flags = SEE_SELF|SEE_MOBS
-	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_SKIN_COLOR
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_UNDERWEAR
 
 	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
 
@@ -87,7 +85,7 @@
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
 		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
-		BP_HEAD =   list("path" = /obj/item/organ/external/head/shadekin),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/vr/shadekin),
 		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
 		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
 		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),

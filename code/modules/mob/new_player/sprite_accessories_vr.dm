@@ -8,7 +8,7 @@
 
 	//var/icon_add = 'icons/mob/human_face.dmi' //Already defined in sprite_accessories.dm line 49.
 	var/color_blend_mode = ICON_MULTIPLY
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_ZORREN_FLAT, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST) //This lets all races use the default hairstyles.
+	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_ZORREN_FLAT, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN) //This lets all races use the default hairstyles.
 
 	astolfo
 		name = "Astolfo"
@@ -474,6 +474,41 @@
 		species_allowed = list(SPECIES_XENOHYBRID)
 		gender = NEUTER
 
+// Shadekin stuffs
+
+	shadekin_hair_short
+		name = "Shadekin Short Hair"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+		icon_state = "shadekin_short"
+		species_allowed = list(SPECIES_SHADEKIN)
+		gender = NEUTER
+
+	shadekin_hair_poofy
+		name = "Shadekin Poofy Hair"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+		icon_state = "shadekin_poofy"
+		species_allowed = list(SPECIES_SHADEKIN)
+		gender = NEUTER
+
+	shadekin_hair_long
+		name = "Shadekin Long Hair"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+		icon_state = "shadekin_long"
+		species_allowed = list(SPECIES_SHADEKIN)
+		gender = NEUTER
+
+	shadekin_hair_rivyr
+		name = "Rivyr Hair"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+		icon_state = "shadekin_rivyr"
+		ckeys_allowed = list("verysoft")
+		species_allowed = list(SPECIES_SHADEKIN)
+		gender = NEUTER
+
 /datum/sprite_accessory/facial_hair
 	icon = 'icons/mob/human_face_or_vr.dmi'
 	var/color_blend_mode = ICON_MULTIPLY
@@ -548,15 +583,6 @@
 		icon_state = "vulp_facial_swift"
 		species_allowed = list(SPECIES_VULPKANIN)
 		gender = NEUTER
-
-//Special hairstyles
-/datum/sprite_accessory/ears/inkling
-	name = "colorable mature inkling hair"
-	desc = ""
-	icon = 'icons/mob/human_face_vr.dmi'
-	icon_state = "inkling-colorable"
-	color_blend_mode = ICON_MULTIPLY
-	do_colouration = 1
 
 //VOREStation Body Markings and Overrides
 //Reminder: BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD
