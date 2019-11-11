@@ -46,19 +46,19 @@
 /area/turbolift/t_surface/level2
 	name = "surface (level 2)"
 	lift_floor_label = "Surface 2"
-	lift_floor_name = "Atmos, Maintenance"
+	lift_floor_name = "Atmos, Chapel, Maintenance"
 	lift_announce_str = "Arriving at Base Level 2."
 
 /area/turbolift/t_surface/level3
 	name = "surface (level 3)"
 	lift_floor_label = "Surface 3"
-	lift_floor_name = "Science, Bar, Pool"
+	lift_floor_name = "Bridge, Science, Bar, Pool"
 	lift_announce_str = "Arriving at Base Level 3."
 
 /area/turbolift/t_station/level1
 	name = "asteroid (level 1)"
 	lift_floor_label = "Asteroid 1"
-	lift_floor_name = "Eng, Bridge, Chapel, Park, Cryo"
+	lift_floor_name = "Eng, Secondary Bridge, Park, Cryo, Visitor Offices"
 	lift_announce_str = "Arriving at Station Level 1."
 
 /area/turbolift/t_station/level2
