@@ -33,7 +33,7 @@
 	starts_with = list(/obj/item/device/encryptionkey/headset_com = 7)
 
 /obj/item/weapon/storage/box/servicekeys
-	name = "box of command keys"
+	name = "box of service keys"
 	desc = "A box full of service keys, for the HoP to give out as necessary."
 	starts_with = list(/obj/item/device/encryptionkey/headset_service = 7)
 
