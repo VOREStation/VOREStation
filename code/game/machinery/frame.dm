@@ -102,6 +102,11 @@
 	circuit = /obj/item/weapon/circuitboard/grinder
 	frame_size = 3
 
+/datum/frame/frame_types/reagent_distillery
+	name = "Distillery"
+	frame_class = FRAME_CLASS_MACHINE
+	frame_size = 4
+
 /datum/frame/frame_types/display
 	name = "Display"
 	frame_class = FRAME_CLASS_DISPLAY
@@ -186,13 +191,13 @@
 //////////////////////////////
 
 /obj/structure/frame
-	anchored = 0
+	anchored = FALSE
 	name = "frame"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "machine_0"
 	var/state = FRAME_PLACED
 	var/obj/item/weapon/circuitboard/circuit = null
-	var/need_circuit = 1
+	var/need_circuit = TRUE
 	var/datum/frame/frame_types/frame_type = new /datum/frame/frame_types/machine
 
 	var/list/components = null
@@ -201,8 +206,8 @@
 
 /obj/structure/frame/computer //used for maps
 	frame_type = new /datum/frame/frame_types/computer
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 /obj/structure/frame/examine(mob/user)
 	..()
@@ -254,14 +259,14 @@
 			pixel_y = (dir & 3)? (dir == NORTH ? -frame_type.y_offset : frame_type.y_offset) : 0
 
 		if(frame_type.circuit)
-			need_circuit = 0
+			need_circuit = FALSE
 			circuit = new frame_type.circuit(src)
 
 	if(frame_type.name == "Computer")
-		density = 1
+		density = TRUE
 
 	if(frame_type.frame_class == FRAME_CLASS_MACHINE)
-		density = 1
+		density = TRUE
 
 	update_icon()
 
@@ -271,7 +276,7 @@
 			to_chat(user, "<span class='notice'>You start to wrench the frame into place.</span>")
 			playsound(src.loc, P.usesound, 50, 1)
 			if(do_after(user, 20 * P.toolspeed))
-				anchored = 1
+				anchored = TRUE
 				if(!need_circuit && circuit)
 					state = FRAME_FASTENED
 					check_components()
@@ -284,7 +289,7 @@
 			playsound(src, P.usesound, 50, 1)
 			if(do_after(user, 20 * P.toolspeed))
 				to_chat(user, "<span class='notice'>You unfasten the frame.</span>")
-				anchored = 0
+				anchored = FALSE
 
 	else if(istype(P, /obj/item/weapon/weldingtool))
 		if(state == FRAME_PLACED)
@@ -581,11 +586,11 @@
 	set src in oview(1)
 
 	if(usr.incapacitated())
-		return 0
+		return FALSE
 
 	if(anchored)
 		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
-		return 0
+		return FALSE
 
 	src.set_dir(turn(src.dir, 90))
 
@@ -600,11 +605,11 @@
 	set src in oview(1)
 
 	if(usr.incapacitated())
-		return 0
+		return FALSE
 
 	if(anchored)
 		to_chat(usr, "It is fastened to the floor therefore you can't rotate it!")
-		return 0
+		return FALSE
 
 	src.set_dir(turn(src.dir, 270))
 

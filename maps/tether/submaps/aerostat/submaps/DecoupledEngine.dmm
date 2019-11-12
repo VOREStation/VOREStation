@@ -50,10 +50,7 @@
 /turf/template_noop,
 /area/submap/virgo2/DecoupledEngine)
 "an" = (
-/turf/simulated/floor/water{
-	color = "#ddaa77";
-	name = "shallow water(?)"
-	},
+/turf/simulated/floor/lava,
 /area/submap/virgo2/DecoupledEngine)
 "ao" = (
 /obj/structure/lattice,
@@ -131,6 +128,10 @@
 	dir = 4
 	},
 /turf/simulated/floor,
+/area/submap/virgo2/DecoupledEngine)
+"aC" = (
+/obj/structure/ghost_pod/manual/lost_drone/dogborg,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/DecoupledEngine)
 "aD" = (
 /obj/structure/lattice,
@@ -218,10 +219,7 @@
 	icon_state = "propulsion_r";
 	dir = 4
 	},
-/turf/simulated/floor/water{
-	color = "#ddaa77";
-	name = "shallow water(?)"
-	},
+/turf/simulated/floor/lava,
 /area/submap/virgo2/DecoupledEngine)
 "aP" = (
 /obj/effect/floor_decal/rust,
@@ -298,10 +296,7 @@
 /obj/structure/shuttle/engine/propulsion{
 	dir = 4
 	},
-/turf/simulated/floor/water{
-	color = "#ddaa77";
-	name = "shallow water(?)"
-	},
+/turf/simulated/floor/lava,
 /area/submap/virgo2/DecoupledEngine)
 "aZ" = (
 /obj/item/stack/material/steel,
@@ -981,7 +976,7 @@ ab
 ab
 ag
 ad
-ad
+aC
 ad
 ad
 aj

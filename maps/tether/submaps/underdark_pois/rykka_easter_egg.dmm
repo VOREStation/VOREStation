@@ -1,0 +1,66 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"b" = (
+/turf/simulated/mineral/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"c" = (
+/obj/structure/dogbed,
+/mob/living/simple_mob/animal/wolf/phoron{
+	attacktext = list("attacked, bites, gnaws");
+	color = "#6D5843";
+	desc = "This canine looks like a GSD. It has a collar tagged, 'Bitch'";
+	friendly = list("nuzzles, cuddles, rubs against");
+	name = "Rykka";
+	size_multiplier = 1.25;
+	tt_desc = "Canidae";
+	vore_bump_chance = 100;
+	vore_bump_emote = "clamps down on with iron jaws";
+	vore_default_contamination_color = "purple";
+	vore_default_contamination_flavor = "Acrid";
+	vore_digest_chance = 85;
+	vore_escape_chance = 5;
+	vore_pounce_chance = 100;
+	vore_pounce_maxhealth = 100;
+	vore_stomach_flavor = "A black-and-purple veined gut, pulsing warmly around you. Loud gurgles sound around you as the gut squishes inwards and attempts to crush you - Rykka seems intent on digesting you, like the meat you are.";
+	vore_stomach_name = "Gut"
+	},
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+
+(1,1,1) = {"
+b
+b
+a
+b
+b
+"}
+(2,1,1) = {"
+b
+a
+a
+a
+b
+"}
+(3,1,1) = {"
+a
+a
+c
+a
+a
+"}
+(4,1,1) = {"
+b
+a
+a
+a
+b
+"}
+(5,1,1) = {"
+b
+b
+a
+b
+b
+"}

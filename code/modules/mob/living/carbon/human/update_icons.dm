@@ -246,7 +246,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	for(var/organ_tag in species.has_limbs)
 		var/obj/item/organ/external/part = organs_by_name[organ_tag]
-		if(isnull(part) || part.is_stump())
+		if(isnull(part) || part.is_stump() || part.is_hidden_by_tail()) //VOREStation Edit allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
 			icon_key += "0"
 			continue
 		if(part)
@@ -289,13 +289,13 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		base_icon = chest.get_icon()
 
 		for(var/obj/item/organ/external/part in organs)
-			if(isnull(part) || part.is_stump())
+			if(isnull(part) || part.is_stump() || part.is_hidden_by_tail()) //VOREStation Edit allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
 				continue
 			var/icon/temp = part.get_icon(skeleton)
 			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
 			//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
 			if(part.icon_position & (LEFT | RIGHT))
-				var/icon/temp2 = new('icons/mob/human.dmi',"blank")
+				var/icon/temp2 = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi', icon_state = "blank") //VOREStation Edit.
 				temp2.Insert(new/icon(temp,dir=NORTH),dir=NORTH)
 				temp2.Insert(new/icon(temp,dir=SOUTH),dir=SOUTH)
 				if(!(part.icon_position & LEFT))
@@ -440,8 +440,13 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	// VOREStation Edit - START
 	var/icon/ears_s = get_ears_overlay()
-	if (ears_s)
+	if(ears_s)
 		face_standing.Blend(ears_s, ICON_OVERLAY)
+	if(istype(head_organ,/obj/item/organ/external/head/vr))
+		var/obj/item/organ/external/head/vr/head_organ_vr = head_organ
+		overlays_standing[HAIR_LAYER] = image(face_standing, layer = BODY_LAYER+HAIR_LAYER, "pixel_y" = head_organ_vr.head_offset)
+		apply_layer(HAIR_LAYER)
+		return
 	// VOREStation Edit - END
 
 	if(head_organ.nonsolid)
@@ -576,7 +581,15 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return //Wearing a suit that prevents uniform rendering
 
 	//Build a uniform sprite
-	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = INV_W_UNIFORM_DEF_ICON, default_layer = UNIFORM_LAYER)
+	//VOREStation Edit start.
+	var/icon/c_mask = null
+	if(tail_style && tail_style.clip_mask_icon && tail_style.clip_mask_state)
+		var/obj/item/clothing/suit/S = wear_suit
+		if(!(wear_suit && ((wear_suit.flags_inv & HIDETAIL) || (istype(S) && S.taurized)))) //Clip the lower half of the uniform off using the tail's clip mask.
+			c_mask = new /icon(tail_style.clip_mask_icon, tail_style.clip_mask_state)
+	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = INV_W_UNIFORM_DEF_ICON, default_layer = UNIFORM_LAYER, clip_mask = c_mask)
+	//VOREStation Edit end.
+
 	apply_layer(UNIFORM_LAYER)
 
 /mob/living/carbon/human/update_inv_wear_id()
@@ -657,6 +670,12 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	if(!shoes || (wear_suit && wear_suit.flags_inv & HIDESHOES) || (w_uniform && w_uniform.flags_inv & HIDESHOES))
 		return //Either nothing to draw, or it'd be hidden.
+
+	//VOREStation Edit
+	for(var/f in list(BP_L_FOOT, BP_R_FOOT))
+		var/obj/item/organ/external/foot/foot = get_organ(f)
+		if(istype(foot) && foot.is_hidden_by_tail()) //If either foot is hidden by the tail, don't render footwear.
+			return
 
 	//Allow for shoe layer toggle nonsense
 	var/shoe_layer = SHOES_LAYER
@@ -741,12 +760,21 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	// Part of splitting the suit sprites up
 	var/iconFile = INV_SUIT_DEF_ICON
+	var/obj/item/clothing/suit/S //VOREStation edit - break this var out a level for use below.
 	if(istype(wear_suit, /obj/item/clothing/suit))
-		var/obj/item/clothing/suit/S = wear_suit
+		S = wear_suit
 		if(S.update_icon_define)
 			iconFile = S.update_icon_define
 
-	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_suit_str, default_icon = iconFile, default_layer = SUIT_LAYER)
+	//VOREStation Edit start.
+	var/icon/c_mask = null
+	var/tail_is_rendered = (overlays_standing[TAIL_LAYER] || overlays_standing[TAIL_LAYER_ALT])
+	var/valid_clip_mask = (tail_style && tail_style.clip_mask_icon && tail_style.clip_mask_state)
+
+	if(tail_is_rendered && valid_clip_mask && !(S && S.taurized)) //Clip the lower half of the suit off using the tail's clip mask for taurs since taur bodies aren't hidden.
+		c_mask = new /icon(tail_style.clip_mask_icon, tail_style.clip_mask_state)
+	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_suit_str, default_icon = iconFile, default_layer = SUIT_LAYER, clip_mask = c_mask)
+	//VOREStation Edit end.
 
 	apply_layer(SUIT_LAYER)
 
@@ -921,7 +949,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	var/t_state = "[species.get_tail(src)]_once"
 	var/used_tail_layer = tail_alt ? TAIL_LAYER_ALT : TAIL_LAYER // VOREStation Edit - Alt Tail Layer
-	
+
 	var/image/tail_overlay = overlays_standing[used_tail_layer] // VOREStation Edit - Alt Tail Layer
 	if(tail_overlay && tail_overlay.icon_state == t_state)
 		return //let the existing animation finish
@@ -931,7 +959,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		spawn(20)
 			//check that the animation hasn't changed in the meantime
 			if(overlays_standing[used_tail_layer] == tail_overlay && tail_overlay.icon_state == t_state) // VOREStation Edit - Alt Tail Layer
-				animate_tail_stop()	
+				animate_tail_stop()
 
 /mob/living/carbon/human/proc/animate_tail_start()
 	if(QDESTROYING(src))
@@ -972,7 +1000,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(vr_wing_image)
 		vr_wing_image.layer = BODY_LAYER+WING_LAYER
 		overlays_standing[WING_LAYER] = vr_wing_image
-	
+
 	apply_layer(WING_LAYER)
 // VOREStation Edit end
 

@@ -14,6 +14,7 @@ var/list/organ_cache = list()
 	var/vital							// Lose a vital limb, die immediately.
 	var/damage = 0						// Current damage to the organ
 	var/robotic = 0
+	var/stapled_nerves = FALSE
 
 	// Reference data.
 	var/mob/living/carbon/human/owner	// Current mob owning the organ.
@@ -78,6 +79,7 @@ var/list/organ_cache = list()
 					if(E.internal_organs == null)
 						E.internal_organs = list()
 					E.internal_organs |= src
+					H.internal_organs_by_name[organ_tag] = src
 			if(dna)
 				if(!blood_DNA)
 					blood_DNA = list()
@@ -429,6 +431,8 @@ var/list/organ_cache = list()
 	if(status & ORGAN_DESTROYED)
 		return 0
 	if(robotic && robotic < ORGAN_LIFELIKE)	//Super fancy humanlike robotics probably have sensors, or something?
+		return 0
+	if(stapled_nerves)
 		return 0
 	return 1
 

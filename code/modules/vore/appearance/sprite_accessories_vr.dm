@@ -653,6 +653,9 @@
 	var/desc = "You should not see this..."
 	var/ani_state // State when wagging/animated
 	var/extra_overlay_w // Wagging state for extra overlay
+	var/list/hide_body_parts = list() //Uses organ tag defines. Bodyparts in this list do not have their icons rendered, allowing for more spriter freedom when doing taur/digitigrade stuff.
+	var/icon/clip_mask_icon = null //Icon file used for clip mask.
+	var/clip_mask_state = null //Icon state to generate clip mask. Clip mask is used to 'clip' off the lower part of clothing such as jumpsuits & full suits.
 
 /datum/sprite_accessory/tail/invisible
 	name = "hide species-sprite tail"
@@ -950,6 +953,9 @@
 	icon_state = "satyr"
 	color_blend_mode = ICON_MULTIPLY
 	do_colouration = 1
+	hide_body_parts = list(BP_L_LEG, BP_L_FOOT, BP_R_LEG, BP_R_FOOT) //Exclude pelvis just in case.
+	clip_mask_icon = 'icons/mob/vore/taurs_vr.dmi'
+	clip_mask_state = "taur_clip_mask_def" //Used to clip off the lower part of suits & uniforms.
 
 /datum/sprite_accessory/tail/tailmaw
 	name = "tailmaw, colorable"
@@ -975,6 +981,16 @@
 	ani_state = "straighttail_w"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/sneptail
+	name = "Snep/Furry Tail (vwag)"
+	desc = ""
+	icon_state = "sneptail"
+	ani_state = "sneptail_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "sneptail_mark"
+	extra_overlay_w = "sneptail_mark_w"
 
 /datum/sprite_accessory/tail/tiger_new
 	name = "tiger tail (vwag)"

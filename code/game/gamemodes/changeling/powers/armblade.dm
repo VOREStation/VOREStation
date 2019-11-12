@@ -14,7 +14,7 @@
 
 	if(src.mind.changeling.recursive_enhancement)
 		if(changeling_generic_weapon(/obj/item/weapon/melee/changeling/arm_blade/greater))
-			src << "<span class='notice'>We prepare an extra sharp blade.</span>"
+			to_chat(src, "<span class='notice'>We prepare an extra sharp blade.</span>")
 			return 1
 
 	else
@@ -39,7 +39,7 @@
 
 	if(src.mind.changeling.recursive_enhancement)
 		if(changeling_generic_weapon(/obj/item/weapon/melee/changeling/claw/greater, 1, 15))
-			src << "<span class='notice'>We prepare an extra sharp claw.</span>"
+			to_chat(src, "<span class='notice'>We prepare an extra sharp claw.</span>")
 			return 1
 
 	else

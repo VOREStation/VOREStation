@@ -1048,6 +1048,14 @@ default behaviour is:
 			else
 				to_chat(src, "<span class='warning'>You feel nauseous...</span>")
 
+				if(ishuman(src))
+					var/mob/living/carbon/human/Hu = src
+					if(CE_ANTACID in Hu.chem_effects)
+						if(prob(min(90, Hu.chem_effects[CE_ANTACID] * 15)))
+							spawn(rand(30 SECONDS, 2 MINUTES))
+								lastpuke = FALSE
+							return
+
 				spawn()
 					if(!skip_wait)
 						sleep(150)	//15 seconds until second warning
@@ -1060,7 +1068,7 @@ default behaviour is:
 							var/mob/living/carbon/human/H = src
 							if(!H.isSynthetic())
 								var/obj/item/organ/internal/liver/L = H.internal_organs_by_name["liver"]
-								if(L.is_broken())
+								if(!L || L.is_broken())
 									blood_vomit = 1
 
 					Stun(5)
@@ -1281,6 +1289,7 @@ default behaviour is:
 			var/turf/end_T = get_turf(target)
 			if(end_T)
 				add_attack_logs(src,M,"Thrown via grab to [end_T.x],[end_T.y],[end_T.z]")
+			src.drop_from_inventory(G)
 
 	src.drop_from_inventory(item)
 	if(!item || !isturf(item.loc))
@@ -1363,30 +1372,3 @@ default behaviour is:
 		BRAIN:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=brain'>[getBrainLoss()]</a>
 		</font>
 		"}
-//VOREStation edit, allows for custom say verbs
-/mob/living/verb/customsay()
-	set category = "IC"
-	set name = "Customise Say Verbs"
-	set desc = "Customise the text which appears when you type- e.g. 'says', 'asks', 'exclaims'."
-
-	if(src.client && src.client.holder)
-		var/customsaylist[] = list(
-				"Say",
-				"Whisper",
-				"Ask (?)",
-				"Exclaim/Shout/Yell (!)",
-				"Cancel"
-			)
-		var/sayselect = input("Which say-verb do you wish to customise?") as null|anything in customsaylist //we can't use alert() for this because there's too many terms
-
-		if(sayselect == "Say")
-			custom_say =  sanitize(input(usr, "This word or phrase will appear instead of 'says': [src] says, \"Hi.\"", "Custom Say", null)  as text)
-		else if(sayselect == "Whisper")
-			custom_whisper =  sanitize(input(usr, "This word or phrase will appear instead of 'whispers': [src] whispers, \"Hi...\"", "Custom Whisper", null)  as text)
-		else if(sayselect == "Ask (?)")
-			custom_ask =  sanitize(input(usr, "This word or phrase will appear instead of 'asks': [src] asks, \"Hi?\"", "Custom Ask", null)  as text)
-		else if(sayselect == "Exclaim/Shout/Yell (!)")
-			custom_exclaim =  sanitize(input(usr, "This word or phrase will appear instead of 'exclaims', 'shouts' or 'yells': [src] exclaims, \"Hi!\"", "Custom Exclaim", null)  as text)
-		else
-			return
-	//VOREStation edit ends

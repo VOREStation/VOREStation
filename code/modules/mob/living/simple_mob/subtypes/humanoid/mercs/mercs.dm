@@ -108,7 +108,7 @@
 	attack_edge = 1
 	attacktext = list("slashed")
 
-	loot_list = list(/obj/item/weapon/melee/energy/sword/red = 100, /obj/item/weapon/shield/energy = 100)
+	loot_list = list(/obj/item/weapon/melee/energy/sword = 100, /obj/item/weapon/shield/energy = 100)
 
 // They have a shield, so they try to block
 /mob/living/simple_mob/humanoid/merc/melee/sword/attackby(var/obj/item/O as obj, var/mob/user as mob)
@@ -157,6 +157,16 @@
 	icon_state = "syndicateranged_smg"
 	icon_living = "syndicateranged_smg"
 
+	loot_list = list(/obj/item/weapon/gun/projectile/automatic/c20r = 100)
+
+	base_attack_cooldown = 5 // Two attacks a second or so.
+	reload_max = 20
+
+/mob/living/simple_mob/humanoid/merc/ranged/smg/sol
+	icon_state = "bluforranged_smg"
+	icon_living = "blueforranged_smg"
+
+	corpse = /obj/effect/landmark/mobcorpse/solarpeacekeeper
 	loot_list = list(/obj/item/weapon/gun/projectile/automatic/c20r = 100)
 
 	base_attack_cooldown = 5 // Two attacks a second or so.

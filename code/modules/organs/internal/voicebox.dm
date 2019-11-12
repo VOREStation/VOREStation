@@ -1,7 +1,7 @@
 /*
  *	Voicebox/Vocal Synthesizers
  *	TL;DR: Assists with speaking languages that a species doesn't normally have,
- *	such as EAL. Not standard or organic, because at the moment it's undesireable to completely mute characters.
+ *	such as EAL. Not standard or organic, because at the moment it's undesireable to completely mute characters. - - Can now actually cause muting, if destroyed / removed.
  */
 
 /obj/item/organ/internal/voicebox
@@ -10,6 +10,7 @@
 	parent_organ = BP_TORSO		// We don't have a neck area
 	organ_tag = O_VOICE
 	will_assist_languages = list(LANGUAGE_GALCOM)
+	var/mute = FALSE
 
 /obj/item/organ/internal/voicebox/New()
 	..()

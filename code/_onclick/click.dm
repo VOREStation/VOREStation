@@ -114,6 +114,19 @@
 		trigger_aiming(TARGET_CAN_CLICK)
 		return 1
 
+	// VOREStation Addition Start: inbelly item interaction
+	if(isbelly(loc) && (loc == A.loc))
+		if(W)
+			var/resolved = W.resolve_attackby(A,src)
+			if(!resolved && A && W)
+				W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
+		else
+			if(ismob(A)) // No instant mob attacking
+				setClickCooldown(get_attack_speed())
+			UnarmedAttack(A, 1)
+		return
+	// VOREStation Addition End
+
 	if(!isturf(loc)) // This is going to stop you from telekinesing from inside a closet, but I don't shed many tears for that
 		return
 
@@ -170,7 +183,7 @@
 /mob/living/UnarmedAttack(var/atom/A, var/proximity_flag)
 
 	if(!ticker)
-		src << "You cannot attack people before the game has started."
+		to_chat(src, "You cannot attack people before the game has started.")
 		return 0
 
 	if(stat)
@@ -303,7 +316,7 @@
 		nutrition = max(nutrition - rand(1,5),0)
 		handle_regular_hud_updates()
 	else
-		src << "<span class='warning'>You're out of energy!  You need food!</span>"
+		to_chat(src, "<span class='warning'>You're out of energy!  You need food!</span>")
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
 /mob/proc/face_atom(var/atom/A)

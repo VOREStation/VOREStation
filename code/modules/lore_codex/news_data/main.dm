@@ -4,6 +4,19 @@
 	region. Each is labeled by date of publication and title. This list is self-updating, and from time to time the publisher will push new \
 	articles. You are encouraged to check back frequently."
 	children = list(
+		/datum/lore/codex/page/article66,
+		/datum/lore/codex/page/article65,
+		/datum/lore/codex/page/article64,
+		/datum/lore/codex/page/article63,
+		/datum/lore/codex/page/article62,
+		/datum/lore/codex/page/article61,
+		/datum/lore/codex/page/article60,
+		/datum/lore/codex/page/article59,
+		/datum/lore/codex/page/article58,
+		/datum/lore/codex/page/article57,
+		/datum/lore/codex/page/article56,
+		/datum/lore/codex/page/article55,
+		/datum/lore/codex/page/article54,
 		/datum/lore/codex/page/article53,
 		/datum/lore/codex/page/article52,
 		/datum/lore/codex/page/article51,
@@ -651,3 +664,121 @@
 	Candidate Freya Singh, a career investment banker, spent much of today's debate advocating for reduced safety regulations and the apparent overturning of the Five Points, raising eyebrows across the system. Singh's office claims that her statements were 'a joke', but we do not feel that this is a laughing matter.\
 	<br><br>\
 	In related news, Shadow Coalition candidate Phaedrus remains under a profanity filter 'house arrest' for the remainder of the election."
+
+/datum/lore/codex/page/article54
+	name = "06/28/63 - Vir Finalizes Dates for Election Voting"
+	data = "The Vir Governmental Authority has confirmed that voting for Vir's governorship and Colonial Assembly seats will take place on the 29th and 30th of June, with an additional voting period set for Wednesday the 3rd of July to allow for out-of-system and full-time weekend employees to cast their votes. No exit poll information will be released until the final votes have been cast, and final results are expected to be announced within another week.\
+	<br><br>\
+	According to a Oculum poll, Lusia Hainirsdottir is expected to comfortably take a seat, though the certainty of her governor position is not hard set. Candidates Sao, Singh and Jorg are trailing not far behind, but will all have to make good showings this weekend if they hope for electoral success. In an unexpected surge among minority species, the Shadow Coalition's Tajaran candidate Kurah Zarshir is leading the polls in certain outlying and orbital communities.\
+	<br><br>\
+	Not sure how to vote, if you can vote, or who to vote for? Check out the official election website at your-choice-vir.virgov.xo.vr"
+
+/datum/lore/codex/page/article55
+	name = "06/29/63 - Morpheus Cyberkinetics To Split Assets"
+	data = "The Morpheus Cyberkenetics Corporation is to split into two distinct entities operating under a single board of trustees, in light of their Almach branch's apparent involvement in the ongoing war after last month's 'unintentional' corporate drone strikes. Citing 'Severe communications disruptions' between its operations and assets on either side of the cordon since it was put in place last year, the SolGov-side corporation is to become 'Morpheus Sol', retaining most assets and current corporate headquarters, and its Almach counterpart 'Morpheus Shelf', which is to be based out of the administration station MAS Sophia Jr., located in the El system.'\
+	<br><br>\
+	The principle victim of the Aetolian coup, Nanotrasen, has seen most of their considerable Almachi investment nationalized by the secessionist government, as has Xion and other major Almachi organizations. Most surviving corporate exclaves have been effectively written off by their parent company for the duration of the conflict, due to the severe difficulties effectively conducting trade across the militarized border. Before today, the sole exception was Morpheus, whose involvement in the secession prevented any seizing of their assets. It seems, however, that even the sardonic positronic corporation is not immune to the difficulties of doing business in the Almach Rim region.\
+	<br><br>\
+	Member of the Board Chock Full of Sardines introduced the proposal by saying, 'Our goal here is not being shot. Together with leading economic scientists, we've devised a scheme that will allow us to be shot for illegal smuggling almost ninety percent less often.' They defended the confusing and offensive choice of name in 'Sophia Jr.', seemingly intended as an insult to longstanding rival Sophia, by claiming, 'It's absolutely hilarious.'"
+
+/datum/lore/codex/page/article56
+	name = "06/30/63 - Almach Leak Confirms 'Super-weapon' in Whythe"
+	data = "Solar Confederate Government Intelligence has this afternoon confirmed the presence of a so-called 'Super-weapon' in the distant Whythe system, after an apparent intelligence leak was posted to the exonet in the early hours of this morning. According to a spokesperson for the Solar Fleet, the public were not made aware of the super-weapon as the military 'have no reason to believe that the weapon poses any threat to civilian targets within SolGov space at this time, and there is no reason to cause panic with what amounts to the announcement of an Almachi propaganda tool intended to sow discord with bold threats of overwhelming power. This morning's leak achieves nothing but serving the Association's schemes. Keeping this so-called super-weapon - and I hesitate to use that term - a secret seems to have been last on their list of priorities.'\
+	<br><br>\
+	According to the intelligence documents released this morning and widely spread within minutes of upload, the 'super-weapon' is a colossal space-bound structure equipped with 'newly developed bluespace technology', though its exact purpose or capabilities have not been confirmed by either side.\
+	<br><br>\
+	Additionally, the Solar Fleet has announced that an unnamed individual within the intelligence service has been placed under arrest in connection with the leak."
+
+/datum/lore/codex/page/article57
+	name = "07/04/63 - Exit Polls Suggest Shadow Coalition Win in Vir"
+	data = "According to the first exit poll data released after Vir Gubernatorial voting closed at midnight, local favourite the Shadow Coalition is expected to win at least two representative seats, with incumbent representative Lusia Hainirsdottir taking a comfortable lead.\
+	<br><br>\
+	Final results are not expected to be tallied until Saturday morning, but other frontrunners include the Icarus Front's Vani Jee and Mehmet Sao - running on drastically different platforms - alongside the Shadow Coalition's Selma Jorg. In an unexpected turn, sole Tajaran Candidate Kurah Zarshir of the Shadow Coalition has seen an immense surge in popularity among minority and more xenophilic voters. Could Vir be seeing its first Tajaran Representative? Experts say: 'Perhaps.'"
+
+/datum/lore/codex/page/article58
+	name = "07/07/63 - Vir Election Results"
+	data = "The results of the 2563 Vir Gubernatorial Elections are as follows:\
+	<br>\
+    Governor of Vir: Lusia Hainirsdottir (Shadow Coalition)\
+    <br>\
+    Vir Colonial Assembly Representative: Vani Jee (Icarus Front)\
+    <br>\
+    Vir Colonial Assembly Representative: Selma Jorg (Shadow Coalition)\
+    <br>\
+	Other candidates ranked: Sao (4), Zarshir (5), Keldow (6), Singh (7), Moravec (8), Phaedrus (9), Lye (10), Savik (11), Square (12), Wekstrom (13)\
+	<br><br>\
+	Voter turnout: 30,928,287 (63%)\
+	<br><br>\
+	The greatest upset this election cycle has been the unexpected popularity of 'alien rights' candidate Kurah Zarshir, who was eliminated in favour of Mehmet Sao (Icarus Front) in the 8th round of vote transfers by a margin of just 30 votes, or 0.000096%, prompting a rigourous recount process to confirm the result. A difference at this stage could have resulted in a significantly different final line-up.\
+	<br><br>\
+	This year's winners showed clear advantages in the first-choice votes, each gaining at least 15% of the popular vote before any transfers were calculated, though Sao made significant gains in the final count, falling only a few percent short of the Jorg's 3rd place position. By far the least popular candidate this cycle was Hal Wekstrom of the Sol Economic Organization, who received just 0.8% of the first-choice vote and was immediately eliminated. Also of note were Phaedrus, Apogee Lye and Yole Savik voters, each of whom had high (30%+) voter exhaustion rates, opting not to provide alternative choices; sending the message 'My candidate or none at all.'\
+	<br><br>\
+	The elected are to be sworn in at a ceremony on Luna in two weeks time."
+
+/datum/lore/codex/page/article59
+	name = "07/30/63 - Solar Fleet Data Breach"
+	data = "Last night, a number of files were spread on the Monsters From Beyond's exolife forums allegedly depicting the boarding and eventual scuttling of the SCG-TV Mariner's Cage during a voyage close to the Gavel system on the 12th of June, before the SCG had officially released any information regarding the event. The files contained undisclosed documents from the Solar Fleet investigation, some of which appear to contain audio and video recordings of the final moments of the crew before the vessel's bluespace drive was detonated. Due to the graphic violence depicted and their classified nature, we will not be sharing the files, however as a matter of public record we will explain the events recorded therein. The following description may be unsuitable for sensitive readers.\
+	<br><br>\
+	First, the navigation crew detects a drive signature on an apparent intercept course with their own, originating from across the SCG-Almachi border. It was not a large vessel, and is assumed to be some form of autonomous drone. The crew disregards it as a low level threat, instead continuing on their trajectory, leaving only the standard point defense armament locked on. This proved to be a lethal mistake, as the vessel appeared and near-instantly began accelerating toward the Mariner's Cage, before impacting the fore weapons array. The recording is cut, due to what was likely a power surge, however upon reconnection, reports indicate no damage related to any known warhead was apparent, aside from the initial impactor. The crew mistakenly assumes it to be a failed suicide drone strike, and dispatches minimal security personnel, and a large complement of response engineers.\
+	<br><br>\
+	Approximately thirty minutes after the response teams are dispatched to the impact zone, the teams begin losing contact, with those first arriving being the first to disappear. When the security responders intercept the path of communications blackouts, they are met with the blades of multiple Aetolian shock troopers. Two appear to be made from a 'living steel', with each limb taking the form of 'jagged cleavers' as one radio recording states, and three more of 'indeterminable classification'. The ship entered a red alert state, and moments later, the small contingent of marines aboard the supply vessel were dispatched to deal with the threat. All five members of the enemy boarding party were able to be rendered inert through sustained fire, though not without Sol casualties.\
+	<br><br>\
+	According to the next recordings, approximately three hours after the incident, the vessel received orders to interrogate the boarding 'Aetotheans'. The two noted to appear as the officers of the squad were rejuvenated within sealed interrogation chambers reinforced with supplies on hand, apparently capable of stopping sustained fire from multiple energy weapons. The first individual was a 'sapphire' according to information from NanoTrasen correspondants. It refused to speak in Galactic Common, and instead utilized an unknown frequency of biological transmission, and internal charge shifts. The individual was moved to a more permanent cell within the vessel's brig for transport, and the second was rejuvenated. Only the first half of the interrogation, which lasted approximately two and a half minutes, compared to four hours for the first, was recovered. The individual is rejuvenated, and is engaged in discussion with the interrogating officer when it suddenly stands, emits what is described as a 'wail', and detonates, destroying the transmitting camera, and presumably killing the officers involved in direct interrogation.\
+	<br><br>\
+	Final recordings originate from the ship's onboard A.I. housing, which was involved in continual discussions with presumably the 'sapphire', as it enacted the vessel's scuttling. It is unknown whether or not the individual was somehow capable of restoring the other individuals that fell in combat in order to free itself, or if it was able to incapacitate the transporting officers, and command crew of the vessel alone.\
+	<br><br>\
+	The Solar Fleet has expressed 'regret' that the files were leaked in their complete form, and have assured the public that an official report was due for release in the coming weeks. Concerns of 'Aetothean' attacks on civilian targets have been dismissed as 'improbable', but have affirmed that 'the threat is being taken very seriously'."
+
+/datum/lore/codex/page/article60
+	name = "08/03/63 - Hainirsdottir Sworn In As Governor of Vir"
+	data = "Following a short transitionary period for the previous administration, this year's election victors have been sworn in at an official ceremony at the Colonial Assembly Hall on Luna. During her welcoming address, Governor Hainirsdottir reaffirmed her plans for the future of the system, promising a 'Bright future for Vir as a hub for medical science.', and plans for an incentivisation program for the removal of invasive extra-terrestrial species that have long plagued the region - in particular the aggressive spiders that have become synonymous with certain regions of the Sivian wilderness.\
+	<br><br>\
+	Additionally, the newly elected representatives announced expected, but none-the-less significant changes to the administrative staff of the system. Notable figures include two defeated election hopefuls: Kurah Zarshir has been selected as the Shadow Coalition's Culture Secretary for the system, while Mehmet Sao has been brought aboard by the Representative Vani Jee as the Vir Icarus Front's Internal Security Advisor. It is expected that the former candidates may use their positions to further certain goals from their own campaigns, but under the watchful eyes of their perhaps more moderate superiors."
+
+/datum/lore/codex/page/article61
+	name = "08/04/63 - Former Independence Candidate Found Dead"
+	data = "It has been confirmed by a spokesperson for the Sivian Independence Front that a body found by hikers last week in the Ingolfskynn Mountains, approximately 200 miles northeast of New Reykjavik, belonged to party chair Yole Savik.\
+	<br><br>\
+	Savik, 68 - who had run for Vir Representative in the recent election - had not been seen since the 14th of July, shortly after the results were announced. Party officials claim that Mr. Savik frequently made 'off the grid' trips into the Sivian wilderness and his absence had not been treated as suspicious until investigators approached them to confirm the identity of the body. According to police, though Yole was publicly known as a 'seasoned frontiersman', Savik had succumbed to exposure at least two weeks prior to the grisly discovery. His death is not being treated as suspicious."
+
+/datum/lore/codex/page/article62
+	name = "08/07/63 - Almach Pirate Threat Vanishes - Analysts Baffled"
+	data = "Skrellian Xe'qua pirates operating in the far reaches of the Almach Association since the onset of hostilities last year, have inexplicably gone dark. The pirates, who were under close SolGov surveillance to monitor their impact on Almachi shipping, have drastically dropped in activity and numbers over the last month according to an official report released by the Solar Fleet today. The Fleet is unable to account for the cease in activity, which has now reached levels even lower than their pre-war baseline, as there have been no reports of Almach military operations in the area, nor any signs of decisive battle on the Almach border with pirate space.\
+	<br><br>\
+	The drop in activity roughly coincides with the leaked information on an Almach 'Super-weapon' in Whythe, though military sources do not believe that the weapon has been deployed in any capacity at this time. According to Hasan Drust, an expert on Skrellian foreign policy, the 'only feasible explanation (is) major anti-piracy action undertaken by the Skrellian Far Kingdoms', who occupy the space beyond the Xe'qua pirates' known range. The reasoning behind this action now, against pirates who have historically only targeted human space is not entirely clear, though Drust suggests that it may simply be a coincidence as pirates would be a 'trivial issue' for Far Kingdom military might."
+
+/datum/lore/codex/page/article63
+	name = "09/02/63 - Shock Almach Attack Routs Relan Front!"
+	data = "Following close to a month of reduced Almach activity, enemy Militia forces have today launched a staggering attack on Sol frontline forces in the region of the Relan system, disabling several SCG warships and forcing a major tactical retreat to Saint Columbia. The scale of this attack by Almach forces is unprecedented, but seems to be the result of the Association consolidating manpower previously dedicated to anti-piracy patrols on the far side of their territory. It is believed these vessels have become freed up due to the apparent but as of yet unconfirmed annihilation of Xe'qua criminal flotillas by Skrellian Far Kingdom police action.\
+	<br><br>\
+	The Solar fleet had been in position to blockade the Relan system in the hopes of forcing the Free Relan Federation to surrender and withdraw from the Association, but was unprepared for what has been described as an 'all-out attack' on their positions, which left the vessels SCG-D Liu Bei, SCG-D Wodehouse, SCG-TV Ceylon Hartal and SCG-TV Apoxpalon disabled and unable to retreat with the bulk of our forces, as well as inflicting severe damage to several other craft. According to initial reports, the strikes on many of the afflicted ships closely resembled scenes from the controversial 'Aetothean shock attacks' on the SCG-TV Mariner's Cage this June, which saw the ruthless deployment of gene-altered Promethean 'super-soldiers' by the Almach Association.\
+	<br><br>\
+	Fleet Admiral Ripon Latt, commanding officer of the assailed fleet, has confirmed that reinforcements are underway and the retreat 'shall not be a significant setback in the war effort', especially assuring citizens of the embattled Saint Columbia system and its neighbours that there is no cause for alarm and civilians have yet to be targeted.\
+	<br><br>\
+	The fates of the four missing ships have not been confirmed, and though the Fleet has not yet made an official statement, Sol casualties are cautiously estimated to be in the hundreds."
+
+/datum/lore/codex/page/article64
+	name = "09/23/63 - Fleet Refuses Inquiry Into Relan Losses"
+	data = "The SCG Fleet has refused to heed widespread calls from critics to launch an investigation into the heavy losses sustained by our forces in a major Almach attack early this month, citing that an investigation at this time would 'undermine the ongoing efforts of our troops in battles to come'.\
+	<br><br>\
+	The attack, which took place on the 2nd of September and at current count resulted in the loss of a staggering 1281 Sol lives, quickly drew criticism from experts for 'the total unpreparedness' of the fleet despite their public claims that all vessels were 'battle ready and prepared for a coming offensive.'. The specifics of the fleets apparent failings have been the focus of much speculation in the intervening weeks, with the blame placed on everything from a critically inexperienced officer core, to ongoing redeployments to and from the recently expanded Hegemony border.\
+	<br><br>\
+	Admiral Latt has condemned critics, stating that 'the last thing our brave troops need right now is murmuring from people who don't know the first thing what they're talking about. Their actions in following orders to fall back to the border have been nothing but commendable, and all effort was made to minimise loss of life. The fleet is undergoing reorganization at this time, and is in a better position than ever.'"
+
+/datum/lore/codex/page/article65
+	name = "09/27/63 - Almach Bypass Saint Columbia In Brazen Gavel Attack!"
+	data = "Almach Association fleet forces entered the Gavel system this afternoon, reportedly having evaded interdicting Sol forces from Saint Columbia in an apparent effort to skirt the range of the MJOLNIR weapon system in Saint Columbia and cut off that system from major shipping routes. Current reports from the system capital in New Xanadu are that the majority of outlying civilian stations have surrendered to invading forces with only minor incident, but that skirmishes with local defence forces - including Sol Fleet detachments - are ongoing, and it is too early to remark on the outcome of the battle. Official military reports are scarce at this time, but the Fleet in Saint Columbia is 'on the move and ready to repel the invaders'.\
+	<br><br>\
+	Accounts from the system's edge describe Almach forces 'firing indiscriminately' on anti-piracy emplacements including those mounted to the ILS Thurston, a Greyson Manufactories collection station with eight crew, killing all hands.\
+	<br><br>\
+	Open fighting in the Gavel system marks the furthest Almach encroachment on Sol territory to date. The system, which is a stone's throw from the Oasis and Vir systems is best known for the destruction of the moonlet 'Requiem' by a rogue nanoswarm in 2289, which was successfully  neutralized by government forces, and boasts only a small population relative to its neighbors."
+
+/datum/lore/codex/page/article66
+	name = "10/01/63 - 'Judgement Day' As Gavel Falls!"
+	data = "The government of New Xanadu has surrendered to Association invaders following a disastrous relief effort by the Solar Fleet, whose interdiction vessels are believed to have been captured by the invading force. The manoeuvre leaves the bulk of the Sol fleet isolated in the Saint Columbia system - though a breakout is expected - and has led to widespread outrage in the Colonial Assembly. Critics of the war have damned the Fleet for their 'inability to fight a civilian rabble, gene-modded or otherwise' and renewed calls for a peaceful arrangement between the Solar Confederate Government and Association.\
+	<br><br>\
+	ISA-5, current spokesperson for the Shadow Coalition has forwarded a motion today to resume discussions with Almachi heads of state, just hours after news of Gavel's surrender broke. The proposal which has yet to gain widespread traction, would call for a new ceasefire, and ISA-5 has stated they 'hope that a new agreement can be made to end the senseless loss of life over the particulars of a foreign government's right to autonomy.'.\
+	<br><br>\
+	Executive Sifat Unar of the Emergent Intelligence Oversight has voiced immediate concern over the motion, criticising the use of 'foreign government' in reference to Almach; 'Our Fleet has suffered a few defeats, but this conflict goes deeper than mere lasers and shells and to surrender to torturers, mind-hackers, and Machiavellian machines at this stage would be insanity. To allow a seccessionist state, particularly one so unabashedly guilty of crimes against humanity that go far beyond even our modern definitions of 'Human Sanctity', to exist unquestioned a stone's throw from some of our most precious member states, would be a failing not only of this government, but of humanity that would echo through history like a great shameful dirge for all to hear.'\
+	<br><br>\
+	A communications blackout has been instated on the Gavel system by the Almach Militia, though earlier reports indicate continued strikes on numerous civilian colonies who were unwilling, or unable to deactivate their automated defence systems prior to the invaders arrival."

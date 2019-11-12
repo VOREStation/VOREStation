@@ -389,11 +389,9 @@ var/global/datum/controller/occupations/job_master
 							H << "<span class='warning'>Your current species, job or whitelist status does not permit you to spawn with [thing]!</span>"
 							continue
 
-						if(G.exploitable)
-							H.amend_exploitable(G.path)
-
 						if(G.slot == "implant")
 							var/obj/item/weapon/implant/I = G.spawn_item(H)
+							I.invisibility = 100
 							I.implant_loadout(H)
 							continue
 

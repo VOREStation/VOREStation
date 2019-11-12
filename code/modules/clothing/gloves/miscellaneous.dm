@@ -127,3 +127,35 @@
 	overgloves = 1
 	force = 5
 	punch_force = 5
+
+/obj/item/clothing/gloves/ranger
+	var/glovecolor = "white"
+	name = "ranger gloves"
+	desc = "The gloves of the Rangers are the least memorable part. They're not even insulated in the show, so children \
+	don't try and take apart a toaster with inadequate protection. They only serve to complete the fancy outfit."
+	icon = 'icons/obj/clothing/ranger.dmi'
+	icon_state = "ranger_gloves"
+
+/obj/item/clothing/gloves/ranger/Initialize()
+	. = ..()
+	if(icon_state == "ranger_gloves")
+		name = "[glovecolor] ranger gloves"
+		icon_state = "[glovecolor]_ranger_gloves"
+
+/obj/item/clothing/gloves/ranger/black
+	glovecolor = "black"
+
+/obj/item/clothing/gloves/ranger/pink
+	glovecolor = "pink"
+
+/obj/item/clothing/gloves/ranger/green
+	glovecolor = "green"
+
+/obj/item/clothing/gloves/ranger/cyan
+	glovecolor = "cyan"
+
+/obj/item/clothing/gloves/ranger/orange
+	glovecolor = "orange"
+
+/obj/item/clothing/gloves/ranger/yellow
+	glovecolor = "yellow"

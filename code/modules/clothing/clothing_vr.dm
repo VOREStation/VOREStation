@@ -4,6 +4,10 @@
 /obj/item/clothing/shoes
 	var/list/inside_emotes = list()
 	var/recent_squish = 0
+	sprite_sheets = list(
+		SPECIES_TESHARI = 'icons/mob/species/seromi/shoes.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/shoes.dmi',
+		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/feet.dmi')
 
 /obj/item/clothing/shoes/New()
 	inside_emotes = list(
@@ -50,6 +54,17 @@
 		to_chat(user,"<span class='notice'>You shake [M] out of \the [src]!</span>")
 
 	..()
+
+/obj/item/clothing/gloves
+	sprite_sheets = list(
+		SPECIES_TESHARI = 'icons/mob/species/seromi/gloves.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/gloves.dmi',
+		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/hands.dmi')
+
+/obj/item/clothing/ears
+	sprite_sheets = list(
+		SPECIES_TESHARI = 'icons/mob/species/seromi/ears.dmi',
+		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/ears.dmi')
 
 /obj/item/clothing/relaymove(var/mob/living/user,var/direction)
 
@@ -98,13 +113,18 @@
 		SPECIES_ZORREN_FLAT = 'icons/mob/species/fennec/mask_vr.dmi',
 		SPECIES_AKULA 		= 'icons/mob/species/akula/mask_vr.dmi',
 		SPECIES_VULPKANIN 	= 'icons/mob/species/vulpkanin/mask.dmi',
-		SPECIES_XENOCHIMERA	= 'icons/mob/species/tajaran/mask_vr.dmi'
+		SPECIES_XENOCHIMERA	= 'icons/mob/species/tajaran/mask_vr.dmi',
+		SPECIES_WEREBEAST	= 'icons/mob/species/werebeast/masks.dmi'
 		)
 //"Spider" 		= 'icons/mob/species/spider/mask_vr.dmi' Add this later when they have custom mask sprites and everything.
 
 //Switch to taur sprites if a taur equips
 /obj/item/clothing/suit
 	var/taurized = FALSE //Easier than trying to 'compare icons' to see if it's a taur suit
+	sprite_sheets = list(
+		SPECIES_TESHARI = 'icons/mob/species/seromi/suit.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi',
+		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/suit.dmi')
 
 /obj/item/clothing/suit/equipped(var/mob/user, var/slot)
 	var/normalize = TRUE
@@ -126,7 +146,7 @@
 	return ..()
 
 // Taur suits need to be shifted so its centered on their taur half.
-/obj/item/clothing/suit/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0)
+/obj/item/clothing/suit/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0,var/icon/clip_mask)
 	var/image/standing = ..()
 	if(taurized) //Special snowflake var on suits
 		standing.pixel_x = -16
@@ -137,6 +157,10 @@
 /obj/item/clothing/under
 	sensor_mode = 3
 	var/sensorpref = 5
+	sprite_sheets = list(
+		SPECIES_TESHARI = 'icons/mob/species/seromi/uniform.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/uniform.dmi',
+		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/uniform.dmi')
 
 //TFF 5/8/19 - define numbers and specifics for suit sensor settings
 /obj/item/clothing/under/New(var/mob/living/carbon/human/H)
@@ -151,3 +175,9 @@
 		else
 			sensor_mode = pick(0,1,2,3)
 			log_debug("Invalid switch for suit sensors, defaulting to random. [sensorpref] chosen")
+
+/obj/item/clothing/head
+	sprite_sheets = list(
+		SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/head.dmi',
+		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/head.dmi')

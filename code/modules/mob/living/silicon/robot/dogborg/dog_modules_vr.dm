@@ -158,6 +158,12 @@
 					reagent_volumes[T] = min(reagent_volumes[T] + 1, volume)
 	return 1
 
+/obj/item/weapon/reagent_containers/borghypo/hound/lost
+	name = "Hound hypospray"
+	desc = "An advanced chemical synthesizer and injection system utilizing carrier's reserves."
+	reagent_ids = list("tricordrazine", "inaprovaline", "bicaridine", "dexalin", "anti_toxin", "tramadol", "spaceacillin")
+
+
 //Tongue stuff
 /obj/item/device/dogborg/tongue
 	name = "synthetic tongue"
@@ -405,12 +411,12 @@
 
 	last_special = world.time + 10
 	status_flags |= LEAPING
-	pixel_y = 10
+	pixel_y = pixel_y + 10
 
 	src.visible_message("<span class='danger'>\The [src] leaps at [T]!</span>")
 	src.throw_at(get_step(get_turf(T),get_turf(src)), 4, 1, src)
 	playsound(src.loc, 'sound/mecha/mechstep2.ogg', 50, 1)
-	pixel_y = 0
+	pixel_y = default_pixel_y
 	cell.charge -= 750
 
 	sleep(5)

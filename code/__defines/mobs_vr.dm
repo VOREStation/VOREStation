@@ -35,3 +35,4 @@
 #define SPECIES_MONKEY_NEVREAN		"Sparra"
 #define SPECIES_MONKEY_SERGAL		"Saru"
 #define SPECIES_MONKEY_VULPKANIN	"Wolpin"
+#define SPECIES_WEREBEAST			"Werebeast"

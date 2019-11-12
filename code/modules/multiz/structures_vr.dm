@@ -49,9 +49,31 @@
 	if (!( target ))
 		qdel(src)
 		return
+	if (istype(target, /obj/structure/portal_subtle))
+		qdel(src)
+		return
 	if (istype(M, /atom/movable))
 		if(prob(failchance)) //oh dear a problem, put em in deep space
 			src.icon_state = "portal1"
 			do_noeffect_teleport(M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
 		else
-			do_noeffect_teleport(M, target, 1) ///You will appear adjacent to the beacon
+			do_noeffect_teleport(M, target, 0) ///You will appear on the beacon
+
+/obj/structure/portal_gateway
+	name = "portal"
+	desc = "Looks unstable. Best to test it with the clown."
+	icon = 'icons/obj/stationobjs_vr.dmi'
+	icon_state = "portalgateway"
+	density = 1
+	unacidable = 1//Can't destroy energy portals.
+	anchored = 1
+
+/obj/structure/portal_gateway/Bumped(mob/M as mob|obj)
+	if(istype(M,/mob) && !(istype(M,/mob/living)))
+		return	//do not send ghosts, zshadows, ai eyes, etc
+	var/obj/effect/landmark/dest = pick(eventdestinations)
+	if(dest)
+		M << 'sound/effects/phasein.ogg'
+		playsound(src, 'sound/effects/phasein.ogg', 100, 1)
+		M.forceMove(dest.loc)
+	return

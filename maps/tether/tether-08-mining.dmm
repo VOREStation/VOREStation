@@ -257,6 +257,7 @@
 	pixel_y = 24
 	},
 /obj/structure/cable/green{
+	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/machinery/light_switch{
@@ -291,7 +292,7 @@
 	},
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/item/weapon/storage/belt,
+/obj/item/weapon/storage/belt/utility,
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
 "aN" = (

@@ -1,5 +1,0 @@
-author: Atermonera
-delete-after: True
-changes: 
-  - bugfix: "Stasis bags don't squish organics with high pressure when organics try to seek shelter from flesh wounds."
-  - tweak: "Body- and stasis bags can be tread upon when open."

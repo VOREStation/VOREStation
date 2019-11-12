@@ -139,7 +139,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				else
 					O.robotize()
 
-	for(var/name in list(O_HEART,O_EYES,O_LUNGS,O_LIVER,O_KIDNEYS,O_BRAIN))
+	for(var/name in list(O_HEART,O_EYES,O_VOICE,O_LUNGS,O_LIVER,O_KIDNEYS,O_SPLEEN,O_STOMACH,O_INTESTINE,O_BRAIN))
 		var/status = pref.organ_data[name]
 		if(!status)
 			continue
@@ -237,6 +237,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				organ_name = "heart"
 			if(O_EYES)
 				organ_name = "eyes"
+			if(O_VOICE)
+				organ_name = "larynx"
 			if(O_BRAIN)
 				organ_name = "brain"
 			if(O_LUNGS)
@@ -245,6 +247,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				organ_name = "liver"
 			if(O_KIDNEYS)
 				organ_name = "kidneys"
+			if(O_SPLEEN)
+				organ_name = "spleen"
+			if(O_STOMACH)
+				organ_name = "stomach"
+			if(O_INTESTINE)
+				organ_name = "intestines"
 
 		if(status == "cyborg")
 			++ind
@@ -708,7 +716,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["organs"])
 
-		var/organ_name = input(user, "Which internal function do you want to change?") as null|anything in list("Heart", "Eyes", "Lungs", "Liver", "Kidneys", "Brain")
+		var/organ_name = input(user, "Which internal function do you want to change?") as null|anything in list("Heart", "Eyes","Larynx", "Lungs", "Liver", "Kidneys", "Spleen", "Intestines", "Stomach", "Brain")
 		if(!organ_name) return
 
 		var/organ = null
@@ -717,12 +725,20 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				organ = O_HEART
 			if("Eyes")
 				organ = O_EYES
+			if("Larynx")
+				organ = O_VOICE
 			if("Lungs")
 				organ = O_LUNGS
 			if("Liver")
 				organ = O_LIVER
 			if("Kidneys")
 				organ = O_KIDNEYS
+			if("Spleen")
+				organ = O_SPLEEN
+			if("Intestines")
+				organ = O_INTESTINE
+			if("Stomach")
+				organ = O_STOMACH
 			if("Brain")
 				if(pref.organ_data[BP_HEAD] != "cyborg")
 					user << "<span class='warning'>You may only select a cybernetic or synthetic brain if you have a full prosthetic body.</span>"

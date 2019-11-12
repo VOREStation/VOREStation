@@ -38,7 +38,7 @@
 	if(!total_radiation)
 		return
 
-	radiation_repository.radiate(src, total_radiation)
+	SSradiation.radiate(src, total_radiation)
 	return total_radiation
 
 
@@ -62,7 +62,7 @@
 
 /obj/structure/girder/update_icon()
 	if(anchored)
-		icon_state = "girder"
+		icon_state = initial(icon_state)
 	else
 		icon_state = "displaced"
 
@@ -320,6 +320,7 @@
 	name = "column"
 	icon= 'icons/obj/cult.dmi'
 	icon_state= "cultgirder"
+	max_health = 250
 	health = 250
 	cover = 70
 	girder_material = "cult"
@@ -354,6 +355,13 @@
 		new /obj/effect/decal/remains/human(get_turf(src))
 		dismantle()
 
+/obj/structure/girder/resin
+	name = "soft girder"
+	icon_state = "girder_resin"
+	max_health = 225
+	health = 225
+	cover = 60
+	girder_material = "resin"
 
 /obj/structure/girder/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
 	var/turf/simulated/T = get_turf(src)

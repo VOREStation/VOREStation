@@ -144,9 +144,9 @@
 
 /mob/observer/dead/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
 	if(speaker.name == speaker_name || antagHUD)
-		src << "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> ([ghost_follow_link(speaker, src)]) [message]</span></i>"
+		to_chat(src, "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> ([ghost_follow_link(speaker, src)]) [message]</span></i>")
 	else
-		src << "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> [message]</span></i>"
+		to_chat(src, "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> [message]</span></i>")
 
 /datum/language/proc/check_special_condition(var/mob/other)
 	return 1
@@ -164,6 +164,11 @@
 	if(name != "Noise")	// Audible Emotes
 		if(ishuman(speaker))
 			var/mob/living/carbon/human/H = speaker
+			if(H.species.has_organ[O_VOICE] && !(flags & SIGNLANG) && !(flags & NONVERBAL)) // Does the species need a voicebox? Is the language even spoken?
+				var/obj/item/organ/internal/voicebox/vocal = H.internal_organs_by_name[O_VOICE]
+				if(!vocal || vocal.is_broken() || vocal.mute)
+					return FALSE
+
 			if(src.name in H.species.assisted_langs)
 				. = FALSE
 				var/obj/item/organ/internal/voicebox/vox = locate() in H.internal_organs	// Only voiceboxes for now. Maybe someday it'll include other organs, but I'm not that clever

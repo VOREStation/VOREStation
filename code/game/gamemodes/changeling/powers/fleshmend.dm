@@ -22,10 +22,10 @@
 	var/heal_amount = 2
 	if(src.mind.changeling.recursive_enhancement)
 		heal_amount = heal_amount * 2
-		src << "<span class='notice'>We will heal much faster.</span>"
+		to_chat(src, "<span class='notice'>We will heal much faster.</span>")
 
 	spawn(0)
-		src << "<span class='notice'>We begin to heal ourselves.</span>"
+		to_chat(src, "<span class='notice'>We begin to heal ourselves.</span>")
 		for(var/i = 0, i<50,i++)
 			if(C)
 				C.adjustBruteLoss(-heal_amount)
@@ -35,7 +35,7 @@
 
 	src.verbs -= /mob/proc/changeling_fleshmend
 	spawn(50 SECONDS)
-		src << "<span class='notice'>Our regeneration has slowed to normal levels.</span>"
+		to_chat(src, "<span class='notice'>Our regeneration has slowed to normal levels.</span>")
 		src.verbs += /mob/proc/changeling_fleshmend
 	feedback_add_details("changeling_powers","FM")
 	return 1

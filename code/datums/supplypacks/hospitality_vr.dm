@@ -1,3 +1,6 @@
+/datum/supply_pack/randomised/hospitality/pizza
+	cost = 50
+
 /datum/supply_pack/randomised/hospitality/burgers_vr
 	num_contained = 5
 	contains = list(

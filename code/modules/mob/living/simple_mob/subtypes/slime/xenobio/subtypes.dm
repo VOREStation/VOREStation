@@ -527,7 +527,7 @@
 	..()
 
 /mob/living/simple_mob/slime/xenobio/green/proc/irradiate()
-	radiation_repository.radiate(src, rads)
+	SSradiation.radiate(src, rads)
 
 
 

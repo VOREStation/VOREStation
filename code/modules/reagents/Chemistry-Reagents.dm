@@ -20,6 +20,7 @@
 	var/max_dose = 0
 	var/overdose = 0		//Amount at which overdose starts
 	var/overdose_mod = 2	//Modifier to overdose damage
+	var/can_overdose_touch = FALSE	// Can the chemical OD when processing on touch?
 	var/scannable = 0 // Shows up on health analyzers.
 	var/affects_dead = 0
 	var/cup_icon_state = null
@@ -60,19 +61,25 @@
 	var/datum/reagents/metabolism/active_metab = location
 	var/removed = metabolism
 
+	var/ingest_rem_mult = 1
+	var/ingest_abs_mult = 1
+
 	if(!mrate_static == TRUE)
 		// Modifiers
 		for(var/datum/modifier/mod in M.modifiers)
 			if(!isnull(mod.metabolism_percent))
 				removed *= mod.metabolism_percent
+				ingest_rem_mult *= mod.metabolism_percent
 		// Species
 		removed *= M.species.metabolic_rate
+		ingest_rem_mult *= M.species.metabolic_rate
 		// Metabolism
 		removed *= active_metab.metabolism_speed
+		ingest_rem_mult *= active_metab.metabolism_speed
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.species.has_organ[O_HEART])
+			if(H.species.has_organ[O_HEART] && (active_metab.metabolism_class == CHEM_BLOOD))
 				var/obj/item/organ/internal/heart/Pump = H.internal_organs_by_name[O_HEART]
 				if(!Pump)
 					removed *= 0.1
@@ -80,14 +87,31 @@
 					removed *= 0.8
 				else	// Otherwise, chemicals process as per percentage of your current pulse, or, if you have no pulse but are alive, by a miniscule amount.
 					removed *= max(0.1, H.pulse / Pump.standard_pulse_level)
+
+			if(H.species.has_organ[O_STOMACH] && (active_metab.metabolism_class == CHEM_INGEST))
+				var/obj/item/organ/internal/stomach/Chamber = H.internal_organs_by_name[O_STOMACH]
+				if(Chamber)
+					ingest_rem_mult *= max(0.1, 1 - (Chamber.damage / Chamber.max_damage))
+				else
+					ingest_rem_mult = 0.1
+
+			if(H.species.has_organ[O_INTESTINE] && (active_metab.metabolism_class == CHEM_INGEST))
+				var/obj/item/organ/internal/intestine/Tube = H.internal_organs_by_name[O_INTESTINE]
+				if(Tube)
+					ingest_abs_mult *= max(0.1, 1 - (Tube.damage / Tube.max_damage))
+				else
+					ingest_abs_mult = 0.1
+
 			if(filtered_organs && filtered_organs.len)
 				for(var/organ_tag in filtered_organs)
 					var/obj/item/organ/internal/O = H.internal_organs_by_name[organ_tag]
 					if(O && !O.is_broken() && prob(max(0, O.max_damage - O.damage)))
 						removed *= 0.8
+						if(active_metab.metabolism_class == CHEM_INGEST)
+							ingest_rem_mult *= 0.8
 
 	if(ingest_met && (active_metab.metabolism_class == CHEM_INGEST))
-		removed = ingest_met
+		removed = ingest_met * ingest_rem_mult
 	if(touch_met && (active_metab.metabolism_class == CHEM_TOUCH))
 		removed = touch_met
 	removed = min(removed, volume)
@@ -98,10 +122,10 @@
 			if(CHEM_BLOOD)
 				affect_blood(M, alien, removed)
 			if(CHEM_INGEST)
-				affect_ingest(M, alien, removed)
+				affect_ingest(M, alien, removed * ingest_abs_mult)
 			if(CHEM_TOUCH)
 				affect_touch(M, alien, removed)
-	if(overdose && (volume > overdose) && (active_metab.metabolism_class != CHEM_TOUCH))
+	if(overdose && (volume > overdose) && (active_metab.metabolism_class != CHEM_TOUCH && !can_overdose_touch))
 		overdose(M, alien, removed)
 	remove_self(removed)
 	return

@@ -36,3 +36,15 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Virus sample crate"
 	access = access_medical_equip
+
+
+/datum/supply_pack/med/bloodpack
+	containertype = /obj/structure/closet/crate/medical/blood
+
+/datum/supply_pack/med/compactdefib
+	name = "Compact Defibrillator crate"
+	contains = list(/obj/item/device/defib_kit/compact = 1)
+	cost = 90
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Compact Defibrillator crate"
+	access = access_medical_equip

@@ -59,6 +59,8 @@ var/list/all_maps = list()
 	var/list/holomap_legend_x = list()
 	var/list/holomap_legend_y = list()
 	var/list/meteor_strike_areas	// VOREStation Edit - Areas meteor strikes may choose to hit.
+	var/ai_shell_restricted = FALSE			//VOREStation Addition - are there z-levels restricted?
+	var/ai_shell_allowed_levels = list()	//VOREStation Addition - which z-levels ARE we allowed to visit?
 
 	var/station_name  = "BAD Station"
 	var/station_short = "Baddy"
@@ -80,6 +82,8 @@ var/list/all_maps = list()
 
 	var/list/station_networks = list() 		// Camera networks that will show up on the console.
 	var/list/secondary_networks = list()	// Camera networks that exist, but don't show on regular camera monitors.
+
+	var/bot_patrolling = TRUE				// Determines if this map supports automated bot patrols
 
 	var/allowed_spawns = list("Arrivals Shuttle","Gateway", "Cryogenic Storage", "Cyborg Storage")
 

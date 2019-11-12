@@ -21,6 +21,10 @@
 	var/loaded_dna //Blood sample for DNA hashing.
 	var/malfunctioning = FALSE	// May cause rejection, or the printing of some alien limb instead!
 
+	var/complex_organs = FALSE	// Can it print more 'complex' organs?
+
+	var/anomalous_organs = FALSE	// Can it print anomalous organs?
+
 	// These should be subtypes of /obj/item/organ
 	// Costs roughly 20u Phoron (1 sheet) per internal organ, limbs are 60u for limb and extremity
 	var/list/products = list(
@@ -29,6 +33,7 @@
 		"Kidneys" = list(/obj/item/organ/internal/kidneys,20),
 		"Eyes"    = list(/obj/item/organ/internal/eyes,   20),
 		"Liver"   = list(/obj/item/organ/internal/liver,  20),
+		"Spleen"  = list(/obj/item/organ/internal/spleen, 20),
 		"Arm, Left"   = list(/obj/item/organ/external/arm,  40),
 		"Arm, Right"   = list(/obj/item/organ/external/arm/right,  40),
 		"Leg, Left"   = list(/obj/item/organ/external/leg,  40),
@@ -37,6 +42,18 @@
 		"Foot, Right"   = list(/obj/item/organ/external/foot/right,  20),
 		"Hand, Left"   = list(/obj/item/organ/external/hand,  20),
 		"Hand, Right"   = list(/obj/item/organ/external/hand/right,  20)
+		)
+
+	var/list/complex_products = list(
+		"Brain" = list(/obj/item/organ/internal/brain, 60),
+		"Larynx" = list(/obj/item/organ/internal/voicebox, 20),
+		"Head" = list(/obj/item/organ/external/head, 40)
+		)
+
+	var/list/anomalous_products = list(
+		"Lymphatic Complex" = list(/obj/item/organ/internal/immunehub, 120),
+		"Respiration Nexus" = list(/obj/item/organ/internal/lungs/replicant/mending, 80),
+		"Adrenal Valve Cluster" = list(/obj/item/organ/internal/heart/replicant/rage, 80)
 		)
 
 /obj/machinery/organ_printer/attackby(var/obj/item/O, var/mob/user)
@@ -90,6 +107,17 @@
 	else
 		malfunctioning = initial(malfunctioning)
 
+	if(manip_rating >= 3)
+		complex_organs = TRUE
+		if(manip_rating >= 4)
+			anomalous_organs = TRUE
+			if(manip_rating >= 5)
+				malfunctioning = TRUE
+	else
+		complex_organs = initial(complex_organs)
+		anomalous_organs = initial(anomalous_organs)
+		malfunctioning = initial(malfunctioning)
+
 	. = ..()
 
 /obj/machinery/organ_printer/attack_hand(mob/user)
@@ -113,7 +141,17 @@
 		to_chat(user, "<span class='warning'>\The [src] can't operate without a reagent reservoir!</span>")
 
 /obj/machinery/organ_printer/proc/printing_menu(mob/user)
-	var/choice = input("What would you like to print?") as null|anything in products
+	var/list/possible_list = list()
+
+	possible_list |= products
+
+	if(complex_organs)
+		possible_list |= complex_products
+
+	if(anomalous_organs)
+		possible_list |= anomalous_products
+
+	var/choice = input("What would you like to print?") as null|anything in possible_list
 
 	if(!choice || printing || (stat & (BROKEN|NOPOWER)))
 		return

@@ -44,7 +44,8 @@
 		/obj/machinery/smartfridge/,
 		/obj/machinery/biogenerator,
 		/obj/structure/frame,
-		/obj/machinery/radiocarbon_spectrometer
+		/obj/machinery/radiocarbon_spectrometer,
+		/obj/machinery/portable_atmospherics/powered/reagent_distillery
 		)
 
 /obj/item/weapon/reagent_containers/glass/Initialize()
@@ -131,6 +132,9 @@
 			update_name_label()
 	if(istype(W,/obj/item/weapon/storage/bag))
 		..()
+	if(W && W.w_class <= w_class && (flags & OPENCONTAINER))
+		to_chat(user, "<span class='notice'>You dip \the [W] into \the [src].</span>")
+		reagents.touch_obj(W, reagents.total_volume)
 
 /obj/item/weapon/reagent_containers/glass/proc/update_name_label()
 	if(label_text == "")

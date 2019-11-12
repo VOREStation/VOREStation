@@ -7,7 +7,7 @@
 	if(can_open == WALL_OPENING)
 		return
 
-	radiation_repository.resistance_cache.Remove(src)
+	SSradiation.resistance_cache.Remove(src)
 
 	if(density)
 		can_open = WALL_OPENING
@@ -93,8 +93,9 @@
 	if(..()) return 1
 
 	if(!can_open)
-		to_chat(user, "<span class='notice'>You push the wall, but nothing happens.</span>")
-		playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
+		if(!material.wall_touch_special(src, user))
+			to_chat(user, "<span class='notice'>You push the wall, but nothing happens.</span>")
+			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 	else
 		toggle_open(user)
 	return 0

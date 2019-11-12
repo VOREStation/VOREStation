@@ -34,15 +34,20 @@
 	var/list/threat_found_sounds = list('sound/voice/bcriminal.ogg', 'sound/voice/bjustice.ogg', 'sound/voice/bfreeze.ogg')
 	var/list/preparing_arrest_sounds = list('sound/voice/bgod.ogg', 'sound/voice/biamthelaw.ogg', 'sound/voice/bsecureday.ogg', 'sound/voice/bradio.ogg', 'sound/voice/bcreep.ogg')
 	var/list/fighting_sounds = list('sound/voice/biamthelaw.ogg', 'sound/voice/bradio.ogg', 'sound/voice/bjustice.ogg')
-//VOREStation Add - They don't like being pulled. This is going to fuck with slimesky, but meh.
+//VOREStation Add - They don't like being pulled. This is going to fuck with slimesky, but meh.	//Screw you. Just screw you and your 'meh'
 /mob/living/bot/secbot/Life()
 	..()
 	if(health > 0 && on && pulledby)
 		if(isliving(pulledby))
-			var/mob/living/L = pulledby
-			UnarmedAttack(L)
-			say("Do not interfere with active law enforcement routines!")
-			global_announcer.autosay("[src] was interfered with in <b>[get_area(src)]</b>, activating defense routines.", "[src]", "Security")
+			var/pull_allowed = FALSE
+			for(var/A in req_one_access)
+				if(A in pulledby.GetAccess())
+					pull_allowed = TRUE
+			if(!pull_allowed)
+				var/mob/living/L = pulledby
+				UnarmedAttack(L)
+				say("Do not interfere with active law enforcement routines!")
+				global_announcer.autosay("[src] was interfered with in <b>[get_area(src)]</b>, activating defense routines.", "[src]", "Security")
 //VOREStation Add End
 /mob/living/bot/secbot/beepsky
 	name = "Officer Beepsky"
@@ -90,7 +95,8 @@
 		dat += "Check Arrest Status: <A href='?src=\ref[src];operation=ignorearr'>[check_arrest ? "Yes" : "No"]</A><BR>"
 		dat += "Operating Mode: <A href='?src=\ref[src];operation=switchmode'>[arrest_type ? "Detain" : "Arrest"]</A><BR>"
 		dat += "Report Arrests: <A href='?src=\ref[src];operation=declarearrests'>[declare_arrests ? "Yes" : "No"]</A><BR>"
-		dat += "Auto Patrol: <A href='?src=\ref[src];operation=patrol'>[will_patrol ? "On" : "Off"]</A>"
+		if(using_map.bot_patrolling)
+			dat += "Auto Patrol: <A href='?src=\ref[src];operation=patrol'>[will_patrol ? "On" : "Off"]</A>"
 	var/datum/browser/popup = new(user, "autosec", "Securitron controls")
 	popup.set_content(jointext(dat,null))
 	popup.open()

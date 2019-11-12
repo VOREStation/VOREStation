@@ -148,6 +148,10 @@
 /obj/tether_away_spawner/aerostat_surface,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/BoomBase)
+"aJ" = (
+/obj/structure/ghost_pod/manual/lost_drone/dogborg,
+/turf/simulated/floor/plating/virgo2,
+/area/submap/virgo2/BoomBase)
 "aT" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
@@ -321,7 +325,7 @@ ax
 ay
 az
 an
-ae
+aJ
 aD
 ae
 aB

@@ -302,7 +302,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 	var/id = null
 
 	starts_with = list(
-		/obj/item/clothing/under/color/orange,
+		/obj/item/clothing/under/color/prison,
 		/obj/item/clothing/shoes/orange)
 
 

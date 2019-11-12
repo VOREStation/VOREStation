@@ -51,3 +51,8 @@
 	name = "Wire Synthesizer"
 	max_energy = 50
 	recharge_rate = 2
+
+/datum/matter_synth/bandage
+	name = "Bandage Synthesizer"
+	max_energy = 10
+	recharge_rate = 1

@@ -384,8 +384,15 @@
 /obj/mecha/Move()
 	. = ..()
 	if(.)
-		events.fireEvent("onMove",get_turf(src))
+		MoveAction()
 	return
+
+/obj/mecha/proc/MoveAction() //Allows mech equipment to do an action once the mech moves
+	if(!equipment.len)
+		return
+
+	for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
+		ME.MoveAction()
 
 /obj/mecha/relaymove(mob/user,direction)
 	if(user != src.occupant) //While not "realistic", this piece is player friendly.
@@ -621,6 +628,11 @@
 
 
 /obj/mecha/bullet_act(var/obj/item/projectile/Proj) //wrapper
+	if(istype(Proj, /obj/item/projectile/test))
+		var/obj/item/projectile/test/Test = Proj
+		Test.hit |= occupant // Register a hit on the occupant, for things like turrets, or in simple-mob cases stopping friendly fire in firing line mode.
+		return
+
 	src.log_message("Hit by projectile. Type: [Proj.name]([Proj.check_armour]).",1)
 	call((proc_res["dynbulletdamage"]||src), "dynbulletdamage")(Proj) //calls equipment
 	..()

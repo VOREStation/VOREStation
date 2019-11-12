@@ -581,10 +581,9 @@ var/list/global/slot_flags_enumeration = list(
 	if( !blood_overlay )
 		generate_blood_overlay()
 
-	//apply the blood-splatter overlay if it isn't already in there
-	if(!blood_DNA.len)
-		blood_overlay.color = blood_color
-		overlays += blood_overlay
+	//Make the blood_overlay have the proper color then apply it.
+	blood_overlay.color = blood_color
+	overlays += blood_overlay
 
 	//if this blood isn't already in the list, add it
 	if(istype(M))
@@ -592,6 +591,7 @@ var/list/global/slot_flags_enumeration = list(
 			return 0 //already bloodied with this blood. Cannot add more.
 		blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 	return 1 //we applied blood to the item
+
 
 /obj/item/proc/generate_blood_overlay()
 	if(blood_overlay)
@@ -716,7 +716,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	icon = 'icons/obj/device.dmi'
 
 //Worn icon generation for on-mob sprites
-/obj/item/proc/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer)
+/obj/item/proc/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer,var/icon/clip_mask = null) //VOREStation edit - add 'clip mask' argument.
 	//Get the required information about the base icon
 	var/icon/icon2use = get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name)
@@ -738,6 +738,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(!inhands)
 		apply_custom(standing_icon)		//Pre-image overridable proc to customize the thing
 		apply_addblends(icon2use,standing_icon)		//Some items have ICON_ADD blend shaders
+		if(istype(clip_mask)) //VOREStation Edit - For taur bodies/tails clipping off parts of uniforms and suits.
+			standing_icon = get_icon_difference(standing_icon, clip_mask, 1)
 
 	var/image/standing = image(standing_icon)
 	standing.alpha = alpha

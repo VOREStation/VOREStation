@@ -15,19 +15,33 @@
 	name = "mining point card"
 	desc = "A small card preloaded with mining points. Swipe your ID card over it to transfer the points, then discard."
 	icon_state = "data"
-	var/points = 500
+	var/mine_points = 500
+	var/survey_points = 0
 
 /obj/item/weapon/card/mining_point_card/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/weapon/card/id))
-		if(points)
-			var/obj/item/weapon/card/id/C = I
-			C.mining_points += points
-			to_chat(user, "<span class='info'>You transfer [points] points to [C].</span>")
-			points = 0
+		var/obj/item/weapon/card/id/C = I
+		if(mine_points)
+			C.mining_points += mine_points
+			to_chat(user, "<span class='info'>You transfer [mine_points] excavation points to [C].</span>")
+			mine_points = 0
 		else
-			to_chat(user, "<span class='info'>There's no points left on [src].</span>")
+			to_chat(user, "<span class='info'>There's no excavation points left on [src].</span>")
+
+		if(survey_points)
+			C.survey_points += survey_points
+			to_chat(user, "<span class='info'>You transfer [survey_points] survey points to [C].</span>")
+			survey_points = 0
+		else
+			to_chat(user, "<span class='info'>There's no survey points left on [src].</span>")
+
 	..()
 
 /obj/item/weapon/card/mining_point_card/examine(mob/user)
 	..(user)
-	to_chat(user, "There's [points] points on the card.")
+	to_chat(user, "There's [mine_points] excavation points on the card.")
+	to_chat(user, "There's [survey_points] survey points on the card.")
+
+/obj/item/weapon/card/mining_point_card/survey
+	mine_points = 0
+	survey_points = 50

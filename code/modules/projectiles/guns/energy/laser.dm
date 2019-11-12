@@ -24,6 +24,11 @@
 	use_external_power = 1
 	one_handed_penalty = 0 // Not sure if two-handing gets checked for mounted weapons, but better safe than sorry.
 
+/obj/item/weapon/gun/energy/laser/mounted/augment
+	use_external_power = FALSE
+	use_organic_power = TRUE
+	canremove = FALSE
+
 /obj/item/weapon/gun/energy/laser/practice
 	name = "practice laser carbine"
 	desc = "A modified version of the HI G40E, this one fires less concentrated energy bolts designed for target practice."

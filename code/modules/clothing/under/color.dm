@@ -30,13 +30,19 @@
 	icon_state = "grey"
 	rolled_sleeves = 0
 
+//TFF 5/8/19 - add a non perma-set orange jumpsuit, splits prison into its own obj with override var settings.
+//TFF 5/9/19 - add a different icon_state to both jumpsuits, orange and prison. Refactors orange and prison jumpsuit slightly.
 /obj/item/clothing/under/color/orange
 	name = "orange jumpsuit"
-	desc = "It's standardized prisoner-wear. Its suit sensors are permanently set to the \"Tracking\" position."
 	icon_state = "orange"
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/color/prison
+	name = "prison jumpsuit"
+	desc = "It's standardized prisoner-wear. Its suit sensors are permanently set to the \"Tracking\" position."
+	icon_state = "prison"
 	has_sensor = 2
 	sensor_mode = 3
-	rolled_sleeves = 0
 
 /obj/item/clothing/under/color/pink
 	name = "pink jumpsuit"

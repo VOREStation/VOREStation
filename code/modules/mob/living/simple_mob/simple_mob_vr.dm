@@ -1,9 +1,13 @@
 // Flags for specifying which states we have vore icon_states for.
 #define SA_ICON_LIVING	0x01
 #define SA_ICON_DEAD	0x02
-#define SA_ICON_REST	0x03
+#define SA_ICON_REST	0x04
 
 /mob/living/simple_mob
+	base_attack_cooldown = 15
+
+	var/temperature_range = 40			// How close will they get to environmental temperature before their body stops changing its heat
+
 	var/vore_active = 0					// If vore behavior is enabled for this mob
 
 	var/vore_capacity = 1				// The capacity (in people) this person can hold
@@ -40,6 +44,9 @@
 
 	var/mount_offset_x = 5				// Horizontal riding offset.
 	var/mount_offset_y = 8				// Vertical riding offset
+
+	var/obj/item/device/radio/headset/mob_headset/mob_radio		//Adminbus headset for simplemob shenanigans.
+	does_spin = FALSE
 
 // Release belly contents before being gc'd!
 /mob/living/simple_mob/Destroy()
@@ -128,9 +135,9 @@
 /mob/living/simple_mob/proc/CanPounceTarget(var/mob/living/M) //returns either FALSE or a %chance of success
 	if(!M.canmove || issilicon(M) || world.time < vore_pounce_cooldown) //eliminate situations where pouncing CANNOT happen
 		return FALSE
-	if(!prob(vore_pounce_chance)) //mob doesn't want to pounce
+	if(!prob(vore_pounce_chance) || !will_eat(M)) //mob doesn't want to pounce
 		return FALSE
-	if(will_eat(M) && vore_standing_too) //100% chance of hitting people we can eat on the spot
+	if(vore_standing_too) //100% chance of hitting people we can eat on the spot
 		return 100
 	var/TargetHealthPercent = (M.health/M.getMaxHealth())*100 //now we start looking at the target itself
 	if (TargetHealthPercent > vore_pounce_maxhealth) //target is too healthy to pounce
@@ -342,3 +349,81 @@
 		return
 	if(buckle_mob(M))
 		visible_message("<span class='notice'>[M] starts riding [name]!</span>")
+
+/mob/living/simple_mob/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
+	if(mob_radio)
+		switch(message_mode)
+			if("intercom")
+				for(var/obj/item/device/radio/intercom/I in view(1, null))
+					I.talk_into(src, message, verb, speaking)
+					used_radios += I
+			if("headset")
+				if(mob_radio && istype(mob_radio,/obj/item/device/radio/headset/mob_headset))
+					mob_radio.talk_into(src,message,null,verb,speaking)
+					used_radios += mob_radio
+			else
+				if(message_mode)
+					if(mob_radio && istype(mob_radio,/obj/item/device/radio/headset/mob_headset))
+						mob_radio.talk_into(src,message, message_mode, verb, speaking)
+						used_radios += mob_radio
+	else
+		..()
+
+/mob/living/simple_mob/proc/leap()
+	set name = "Pounce Target"
+	set category = "Abilities"
+	set desc = "Select a target to pounce at."
+
+	if(last_special > world.time)
+		to_chat(src, "Your legs need some more rest.")
+		return
+
+	if(incapacitated(INCAPACITATION_DISABLED))
+		to_chat(src, "You cannot leap in your current state.")
+		return
+
+	var/list/choices = list()
+	for(var/mob/living/M in view(3,src))
+		choices += M
+	choices -= src
+
+	var/mob/living/T = input(src,"Who do you wish to leap at?") as null|anything in choices
+
+	if(!T || !src || src.stat) return
+
+	if(get_dist(get_turf(T), get_turf(src)) > 3) return
+
+	if(last_special > world.time)
+		return
+
+	if(usr.incapacitated(INCAPACITATION_DISABLED))
+		to_chat(src, "You cannot leap in your current state.")
+		return
+
+	last_special = world.time + 10
+	status_flags |= LEAPING
+	pixel_y = pixel_y + 10
+
+	src.visible_message("<span class='danger'>\The [src] leaps at [T]!</span>")
+	src.throw_at(get_step(get_turf(T),get_turf(src)), 4, 1, src)
+	playsound(src.loc, 'sound/effects/bodyfall1.ogg', 50, 1)
+	pixel_y = default_pixel_y
+
+	sleep(5)
+
+	if(status_flags & LEAPING) status_flags &= ~LEAPING
+
+	if(!src.Adjacent(T))
+		to_chat(src, "<span class='warning'>You miss!</span>")
+		return
+
+	if(ishuman(T))
+		var/mob/living/carbon/human/H = T
+		if(H.species.lightweight == 1)
+			H.Weaken(3)
+			return
+	var/armor_block = run_armor_check(T, "melee")
+	var/armor_soak = get_armor_soak(T, "melee")
+	T.apply_damage(20, HALLOSS,, armor_block, armor_soak)
+	if(prob(33))
+		T.apply_effect(3, WEAKEN, armor_block)

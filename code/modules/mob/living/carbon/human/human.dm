@@ -715,7 +715,7 @@
 	if(species.has_fine_manipulation)
 		return 1
 	if(!silent)
-		src << "<span class='warning'>You don't have the dexterity to use that!</span>"
+		to_chat(src, "<span class='warning'>You don't have the dexterity to use that!</span>")
 	return 0
 
 /mob/living/carbon/human/abiotic(var/full_body = 0)
@@ -1057,7 +1057,7 @@
 			if(!istype(O,/obj/item/weapon/implant) && prob(5)) //Moving with things stuck in you could be bad.
 				// All kinds of embedded objects cause bleeding.
 				if(!can_feel_pain(organ.organ_tag))
-					src << "<span class='warning'>You feel [O] moving inside your [organ.name].</span>"
+					to_chat(src, "<span class='warning'>You feel [O] moving inside your [organ.name].</span>")
 				else
 					var/msg = pick( \
 						"<span class='warning'>A spike of pain jolts your [organ.name] as you bump [O] inside.</span>", \
@@ -1223,26 +1223,26 @@
 		verbs -= /mob/living/carbon/human/proc/bloody_doodle
 
 	if (src.gloves)
-		src << "<span class='warning'>Your [src.gloves] are getting in the way.</span>"
+		to_chat(src, "<span class='warning'>Your [src.gloves] are getting in the way.</span>")
 		return
 
 	var/turf/simulated/T = src.loc
 	if (!istype(T)) //to prevent doodling out of mechs and lockers
-		src << "<span class='warning'>You cannot reach the floor.</span>"
+		to_chat(src, "<span class='warning'>You cannot reach the floor.</span>")
 		return
 
 	var/direction = input(src,"Which way?","Tile selection") as anything in list("Here","North","South","East","West")
 	if (direction != "Here")
 		T = get_step(T,text2dir(direction))
 	if (!istype(T))
-		src << "<span class='warning'>You cannot doodle there.</span>"
+		to_chat(src, "<span class='warning'>You cannot doodle there.</span>")
 		return
 
 	var/num_doodles = 0
 	for (var/obj/effect/decal/cleanable/blood/writing/W in T)
 		num_doodles++
 	if (num_doodles > 4)
-		src << "<span class='warning'>There is no space to write on!</span>"
+		to_chat(src, "<span class='warning'>There is no space to write on!</span>")
 		return
 
 	var/max_length = bloody_hands * 30 //tweeter style
@@ -1255,7 +1255,7 @@
 
 		if (length(message) > max_length)
 			message += "-"
-			src << "<span class='warning'>You ran out of blood to write with!</span>"
+			to_chat(src, "<span class='warning'>You ran out of blood to write with!</span>")
 
 		var/obj/effect/decal/cleanable/blood/writing/W = new(T)
 		W.basecolor = (hand_blood_color) ? hand_blood_color : "#A10808"
@@ -1283,6 +1283,9 @@
 	else if (affecting.robotic >= ORGAN_LIFELIKE)
 		. = 0
 		fail_msg = "Your needle refuses to penetrate more than a short distance..."
+	else if (affecting.thick_skin && prob(70 - round(affecting.brute_dam + affecting.burn_dam / 2)))	// Allows transplanted limbs with thick skin to maintain their resistance.
+		. = 0
+		fail_msg = "Your needle fails to penetrate \the [affecting]'s thick hide..."
 	else
 		switch(target_zone)
 			if(BP_HEAD)
@@ -1412,7 +1415,7 @@
 		return
 
 	if(self)
-		src << "<span class='warning'>You brace yourself to relocate your [current_limb.joint]...</span>"
+		to_chat(src, "<span class='warning'>You brace yourself to relocate your [current_limb.joint]...</span>")
 	else
 		U << "<span class='warning'>You begin to relocate [S]'s [current_limb.joint]...</span>"
 
@@ -1422,7 +1425,7 @@
 		return
 
 	if(self)
-		src << "<span class='danger'>You pop your [current_limb.joint] back in!</span>"
+		to_chat(src, "<span class='danger'>You pop your [current_limb.joint] back in!</span>")
 	else
 		U << "<span class='danger'>You pop [S]'s [current_limb.joint] back in!</span>"
 		S << "<span class='danger'>[U] pops your [current_limb.joint] back in!</span>"
@@ -1507,11 +1510,11 @@
 	if(!UWC) return
 	var/datum/category_item/underwear/UWI = all_underwear[UWC.name]
 	if(!UWI || UWI.name == "None")
-		src << "<span class='notice'>You do not have [UWC.gender==PLURAL ? "[UWC.display_name]" : "\a [UWC.display_name]"].</span>"
+		to_chat(src, "<span class='notice'>You do not have [UWC.gender==PLURAL ? "[UWC.display_name]" : "a [UWC.display_name]"].</span>")
 		return
 	hide_underwear[UWC.name] = !hide_underwear[UWC.name]
 	update_underwear(1)
-	src << "<span class='notice'>You [hide_underwear[UWC.name] ? "take off" : "put on"] your [UWC.display_name].</span>"
+	to_chat(src, "<span class='notice'>You [hide_underwear[UWC.name] ? "take off" : "put on"] your [UWC.display_name].</span>")
 	return
 
 /mob/living/carbon/human/verb/pull_punches()
@@ -1521,7 +1524,7 @@
 
 	if(stat) return
 	pulling_punches = !pulling_punches
-	src << "<span class='notice'>You are now [pulling_punches ? "pulling your punches" : "not pulling your punches"].</span>"
+	to_chat(src, "<span class='notice'>You are now [pulling_punches ? "pulling your punches" : "not pulling your punches"].</span>")
 	return
 
 /mob/living/carbon/human/should_have_organ(var/organ_check)

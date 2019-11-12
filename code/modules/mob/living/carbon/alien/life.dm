@@ -150,7 +150,7 @@
 		adjustFireLoss((environment.temperature - (T0C+66))/5) // Might be too high, check in testing.
 		if (fire) fire.icon_state = "fire2"
 		if(prob(20))
-			src << "<font color='red'>You feel a searing heat!</font>"
+			to_chat(src, "<font color='red'>You feel a searing heat!</font>")
 	else
 		if (fire) fire.icon_state = "fire0"
 

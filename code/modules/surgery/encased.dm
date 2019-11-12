@@ -134,7 +134,7 @@
 	if (!hasorgans(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	return ..() && affected && affected.open == 3
+	return (..() && affected && affected.open == 3)
 
 /datum/surgery_step/open_encased/close/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (!hasorgans(target))
@@ -212,6 +212,96 @@
 
 	var/msg = "<font color='blue'>[user] applied \the [tool] to [target]'s [affected.encased].</font>"
 	var/self_msg = "<font color='blue'>You applied \the [tool] to [target]'s [affected.encased].</font>"
+	user.visible_message(msg, self_msg)
+
+	affected.open = 2
+
+///////////////////////////////////////////////////////////////
+// Saw/Retractor/Gel Combi-open and close.
+///////////////////////////////////////////////////////////////
+/datum/surgery_step/open_encased/advancedsaw_open
+	allowed_tools = list(
+		/obj/item/weapon/surgical/circular_saw/manager = 100
+	)
+
+	priority = 3
+
+	min_duration = 60
+	max_duration = 90
+
+/datum/surgery_step/open_encased/advancedsaw_open/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	return ..() && affected && affected.open >= 2 && affected.open < 3
+
+/datum/surgery_step/open_encased/advancedsaw_open/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+
+	user.visible_message("[user] begins to open [target]'s [affected.encased] with \the [tool].", \
+	"You begin to open [target]'s [affected.encased] with \the [tool].")
+	target.custom_pain("Something hurts horribly in your [affected.name]!", 60)
+	..()
+
+/datum/surgery_step/open_encased/advancedsaw_open/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+
+	user.visible_message("<font color='blue'>[user] has cut [target]'s [affected.encased] wide open with \the [tool].</font>", \
+	"<font color='blue'>You have cut [target]'s [affected.encased] wide open with \the [tool].</font>")
+	affected.open = 3
+
+/datum/surgery_step/open_encased/advancedsaw_open/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+
+	user.visible_message("<font color='red'>[user]'s hand slips, searing [target]'s [affected.encased] with \the [tool]!</font>" , \
+	"<font color='red'>Your hand slips, searing [target]'s [affected.encased] with \the [tool]!</font>" )
+
+	affected.createwound(CUT, 20)
+	affected.createwound(BURN, 15)
+	if(prob(affected.damage))
+		affected.fracture()
+
+
+/datum/surgery_step/open_encased/advancedsaw_mend
+	allowed_tools = list(
+		/obj/item/weapon/surgical/circular_saw/manager = 100
+	)
+
+	priority = 3
+
+	min_duration = 30
+	max_duration = 60
+
+/datum/surgery_step/open_encased/advancedsaw_mend/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	return (..() && affected && affected.open == 3)
+
+/datum/surgery_step/open_encased/advancedsaw_mend/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+
+	var/msg = "[user] starts sealing \the [target]'s [affected.encased] with \the [tool]."
+	var/self_msg = "You start sealing \the [target]'s [affected.encased] with \the [tool]."
+	user.visible_message(msg, self_msg)
+	target.custom_pain("Something hurts horribly in your [affected.name]!", 100)
+	..()
+
+/datum/surgery_step/open_encased/advancedsaw_mend/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+
+	var/msg = "<font color='blue'>[user] sealed \the [target]'s [affected.encased] with \the [tool].</font>"
+	var/self_msg = "<font color='blue'>You sealed \the [target]'s [affected.encased] with \the [tool].</font>"
 	user.visible_message(msg, self_msg)
 
 	affected.open = 2

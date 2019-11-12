@@ -1,0 +1,624 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"b" = (
+/obj/structure/sign/mining/survival{
+	dir = 1
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"c" = (
+/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
+/area/survivalpod)
+"d" = (
+/obj/structure/sign/mining/survival{
+	dir = 1
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
+/area/survivalpod)
+"e" = (
+/obj/structure/sign/mining/survival{
+	dir = 8
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
+/area/survivalpod)
+"f" = (
+/obj/structure/fans,
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/survivalpod)
+"g" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/voidcraft/survival_pod,
+/obj/effect/floor_decal/industrial/danger/full,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "shelterblast";
+	name = "Shelter Blast Doors";
+	opacity = 0
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"h" = (
+/obj/machinery/smartfridge/survival_pod,
+/obj/item/weapon/storage/firstaid/combat,
+/obj/item/weapon/storage/firstaid/insiderepair,
+/obj/item/weapon/storage/firstaid/adv,
+/obj/item/weapon/storage/firstaid/adv,
+/obj/item/weapon/storage/firstaid/combat,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/device/radio/emergency,
+/obj/item/device/survivalcapsule,
+/obj/item/device/survivalcapsule,
+/obj/item/device/survivalcapsule,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/gun/energy/frontier/locked/holdout,
+/obj/item/weapon/gun/energy/frontier/locked/holdout,
+/obj/item/device/subspaceradio,
+/obj/item/weapon/storage/box/survival/comp,
+/obj/item/weapon/storage/box/survival/comp,
+/obj/item/device/binoculars,
+/obj/item/device/perfect_tele,
+/obj/item/weapon/storage/pill_bottle/nutriment,
+/obj/item/weapon/storage/pill_bottle/iron,
+/obj/item/weapon/storage/pill_bottle/arithrazine,
+/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/device/fbp_backup_cell,
+/obj/item/device/fbp_backup_cell,
+/obj/item/device/fbp_backup_cell,
+/obj/item/device/fbp_backup_cell,
+/obj/item/device/fbp_backup_cell,
+/obj/item/weapon/storage/firstaid/combat,
+/obj/item/weapon/storage/firstaid/insiderepair,
+/obj/item/weapon/storage/pill_bottle/nutriment,
+/obj/item/weapon/storage/pill_bottle/iron,
+/obj/item/weapon/storage/pill_bottle/arithrazine,
+/obj/item/weapon/storage/pill_bottle/corophizine,
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
+/obj/item/weapon/extinguisher/mini,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/survivalpod)
+"i" = (
+/obj/item/device/gps/computer,
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/survivalpod)
+"j" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/personal,
+/obj/item/modular_computer/laptop/preset/custom_loadout/elite,
+/obj/item/ammo_magazine/m9mm/compact,
+/obj/item/ammo_magazine/m9mm/compact,
+/obj/item/ammo_magazine/m9mm/compact,
+/obj/item/ammo_magazine/m9mm/compact/flash,
+/obj/item/ammo_magazine/m9mm/compact/flash,
+/obj/item/weapon/gun/projectile/pistol,
+/obj/item/clothing/accessory/storage/black_vest,
+/obj/item/weapon/material/knife/tacknife/survival,
+/obj/item/weapon/storage/box/survival/comp,
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod)
+"k" = (
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/captain,
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod)
+"l" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/suit_cycler{
+	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control","Exploration","Pilot Blue","Pilot");
+	locked = 0
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"m" = (
+/obj/machinery/sleeper/survival_pod,
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/survivalpod)
+"n" = (
+/obj/machinery/optable,
+/obj/machinery/oxygen_pump/anesthetic{
+	pixel_x = 32
+	},
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/survivalpod)
+"o" = (
+/obj/machinery/mech_recharger,
+/obj/effect/floor_decal/industrial/warning/full,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"p" = (
+/obj/machinery/door/airlock/voidcraft/survival_pod,
+/obj/structure/fans/tiny,
+/obj/effect/floor_decal/industrial/danger/full,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "shelterblast";
+	name = "Shelter Blast Doors";
+	opacity = 0
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"q" = (
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"r" = (
+/obj/structure/sign/mining/survival{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"s" = (
+/obj/structure/table/survival_pod,
+/obj/item/weapon/storage/firstaid/surgery,
+/obj/structure/sink/kitchen{
+	icon_state = "sink_alt";
+	dir = 4;
+	pixel_x = -13
+	},
+/obj/machinery/recharger,
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/survivalpod)
+"t" = (
+/obj/machinery/recharge_station,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"u" = (
+/obj/machinery/door/airlock/voidcraft/survival_pod,
+/obj/effect/floor_decal/industrial/hatch,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/survivalpod)
+"v" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/item/weapon/soap/deluxe,
+/obj/structure/curtain/black,
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/survivalpod)
+"w" = (
+/obj/machinery/washing_machine,
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"x" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/survivalpod)
+"y" = (
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod)
+"z" = (
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning/full,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"A" = (
+/obj/structure/closet/hydrant{
+	pixel_y = 32
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"B" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/item/modular_computer/laptop/preset/custom_loadout/elite,
+/obj/item/ammo_magazine/m9mm/compact,
+/obj/item/ammo_magazine/m9mm/compact,
+/obj/item/ammo_magazine/m9mm/compact,
+/obj/item/ammo_magazine/m9mm/compact/flash,
+/obj/item/ammo_magazine/m9mm/compact/flash,
+/obj/item/weapon/gun/projectile/pistol,
+/obj/item/clothing/accessory/storage/black_vest,
+/obj/item/weapon/material/knife/tacknife/survival,
+/obj/item/weapon/storage/box/survival/comp{
+	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/survivalpod)
+"C" = (
+/obj/structure/closet/crate/freezer/rations,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"D" = (
+/obj/structure/table/steel_reinforced,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"E" = (
+/obj/structure/bed/chair/comfy/blue{
+	icon_state = "comfychair_preview";
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"F" = (
+/obj/structure/closet/crate/secure/engineering,
+/obj/item/stack/material/steel{
+	amount = 50
+	},
+/obj/item/stack/material/steel{
+	amount = 50
+	},
+/obj/item/stack/material/plasteel{
+	amount = 50
+	},
+/obj/item/stack/material/plasteel{
+	amount = 50
+	},
+/obj/item/stack/material/glass/reinforced{
+	amount = 50
+	},
+/obj/item/stack/material/glass/reinforced{
+	amount = 50
+	},
+/obj/item/stack/material/glass{
+	amount = 50
+	},
+/obj/item/stack/material/glass/phoronrglass{
+	amount = 50
+	},
+/obj/item/stack/material/glass/phoronrglass{
+	amount = 50
+	},
+/obj/item/stack/material/steel{
+	amount = 50
+	},
+/obj/item/stack/material/steel{
+	amount = 50
+	},
+/obj/item/stack/material/glass{
+	amount = 50
+	},
+/obj/item/weapon/storage/toolbox/syndicate/powertools,
+/obj/item/weapon/storage/toolbox/syndicate/powertools,
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/stack/material/steel{
+	amount = 50
+	},
+/obj/item/stack/material/steel{
+	amount = 50
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"G" = (
+/obj/structure/bed/chair/comfy/blue,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"H" = (
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/survivalpod)
+"I" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "shelterblast";
+	name = "Shelter Blast Doors";
+	pixel_y = 32
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"J" = (
+/obj/structure/sign/mining/survival{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
+/area/survivalpod)
+"K" = (
+/obj/machinery/autolathe{
+	hacked = 1;
+	name = "military autolathe"
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"L" = (
+/obj/structure/closet/secure_closet/guncabinet,
+/obj/item/weapon/gun/projectile/automatic/sts35,
+/obj/item/weapon/gun/projectile/automatic/sts35,
+/obj/item/weapon/gun/projectile/automatic/sts35,
+/obj/item/weapon/gun/projectile/automatic/sts35,
+/obj/item/weapon/gun/energy/laser,
+/obj/item/weapon/gun/energy/laser,
+/obj/item/weapon/gun/energy/laser,
+/obj/item/weapon/gun/energy/laser,
+/obj/item/weapon/gun/energy/sniperrifle,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"M" = (
+/obj/machinery/mech_recharger,
+/obj/effect/floor_decal/industrial/warning/full,
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"N" = (
+/obj/machinery/recharger/wallcharger{
+	pixel_y = 32
+	},
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"O" = (
+/obj/structure/sign/mining/survival{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"P" = (
+/obj/structure/sign/mining/survival,
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+"Q" = (
+/obj/structure/sign/mining/survival,
+/turf/simulated/shuttle/wall/voidcraft/survival/hard_corner,
+/area/survivalpod)
+"R" = (
+/obj/machinery/iv_drip,
+/obj/effect/floor_decal/industrial/loading{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/survivalpod)
+"S" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/obj/machinery/chemical_dispenser/ert,
+/turf/simulated/shuttle/floor/voidcraft/light,
+/area/survivalpod)
+"T" = (
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545/ap,
+/obj/item/ammo_magazine/m545/ap,
+/obj/item/ammo_magazine/m545/ap,
+/obj/item/ammo_magazine/m545/ap,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/machinery/light,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"U" = (
+/obj/structure/closet/crate/internals,
+/obj/item/clothing/suit/space/void/merc/odst,
+/obj/item/clothing/suit/space/void/merc/odst,
+/obj/item/clothing/suit/space/void/merc/odst,
+/obj/item/clothing/suit/space/void/merc/odst,
+/obj/item/clothing/head/helmet/space/void/merc/odst,
+/obj/item/clothing/head/helmet/space/void/merc/odst,
+/obj/item/clothing/head/helmet/space/void/merc/odst,
+/obj/item/clothing/head/helmet/space/void/merc/odst,
+/obj/item/weapon/tank/oxygen,
+/obj/item/weapon/tank/oxygen,
+/obj/item/weapon/tank/oxygen,
+/obj/item/weapon/tank/oxygen,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/turf/simulated/shuttle/floor/voidcraft/dark,
+/area/survivalpod)
+"Y" = (
+/obj/structure/sign/mining/survival{
+	dir = 8
+	},
+/turf/simulated/shuttle/wall/voidcraft/survival,
+/area/survivalpod)
+
+(1,1,1) = {"
+a
+Y
+c
+e
+c
+g
+c
+e
+c
+Y
+a
+"}
+(2,1,1) = {"
+b
+f
+m
+s
+c
+q
+o
+c
+v
+v
+P
+"}
+(3,1,1) = {"
+c
+h
+R
+H
+u
+q
+t
+c
+H
+x
+c
+"}
+(4,1,1) = {"
+d
+i
+n
+S
+c
+I
+M
+c
+u
+c
+Q
+"}
+(5,1,1) = {"
+c
+c
+c
+c
+c
+A
+U
+w
+q
+l
+c
+"}
+(6,1,1) = {"
+d
+j
+y
+y
+u
+q
+q
+q
+q
+q
+p
+"}
+(7,1,1) = {"
+c
+B
+k
+k
+c
+N
+G
+D
+E
+L
+c
+"}
+(8,1,1) = {"
+d
+c
+c
+c
+c
+N
+G
+D
+E
+T
+Q
+"}
+(9,1,1) = {"
+c
+j
+y
+y
+u
+q
+q
+q
+q
+q
+c
+"}
+(10,1,1) = {"
+b
+B
+k
+k
+c
+q
+F
+C
+K
+z
+P
+"}
+(11,1,1) = {"
+a
+O
+c
+J
+c
+g
+c
+J
+c
+r
+a
+"}

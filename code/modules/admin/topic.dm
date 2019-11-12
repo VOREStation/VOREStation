@@ -1057,7 +1057,7 @@
 		M.loc = prison_cell
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/prisoner = M
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), slot_w_uniform)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/prison(prisoner), slot_w_uniform)
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), slot_shoes)
 
 		M << "<font color='red'>You have been sent to the prison station!</font>"
@@ -1896,7 +1896,7 @@
 	else if(href_list["cryoplayer"])
 		if(!check_rights(R_ADMIN))	return
 
-		var/mob/M = locate(href_list["cryoplayer"])
+		var/mob/living/carbon/M = locate(href_list["cryoplayer"]) //VOREStation edit from just an all mob check to mob/living/carbon
 		if(!istype(M))
 			to_chat(usr,"<span class='warning'>Mob doesn't exist!</span>")
 			return

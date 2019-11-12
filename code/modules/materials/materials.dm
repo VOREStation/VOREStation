@@ -16,6 +16,7 @@
 			stone
 			metal
 			solid
+			resin
 			ONLY WALLS
 				cult
 				hull
@@ -94,6 +95,7 @@ var/list/name_to_material
 	var/door_icon_base = "metal"                         // Door base icon tag. See header.
 	var/icon_reinf = "reinf_metal"                       // Overlay used
 	var/list/stack_origin_tech = list(TECH_MATERIAL = 1) // Research level for stacks.
+	var/pass_stack_colors = FALSE                        // Will stacks made from this material pass their colors onto objects?
 
 	// Attributes
 	var/cut_delay = 0            // Delay in ticks when cutting through this wall.
@@ -237,6 +239,10 @@ var/list/name_to_material
 	return !!(flags & MATERIAL_BRITTLE)
 
 /material/proc/combustion_effect(var/turf/T, var/temperature)
+	return
+
+// Used by walls to do on-touch things, after checking for crumbling and open-ability.
+/material/proc/wall_touch_special(var/turf/simulated/wall/W, var/mob/living/L)
 	return
 
 // Datum definitions follow.
@@ -438,7 +444,7 @@ var/list/name_to_material
 // Very rare alloy that is reflective, should be used sparingly.
 /material/durasteel
 	name = "durasteel"
-	stack_type = /obj/item/stack/material/durasteel
+	stack_type = /obj/item/stack/material/durasteel/hull
 	integrity = 600
 	melting_point = 7000
 	icon_base = "metal"
@@ -460,6 +466,9 @@ var/list/name_to_material
 	explosion_resistance = 90
 	reflectivity = 0.9
 
+/material/durasteel/hull/place_sheet(var/turf/target) //Deconstructed into normal durasteel sheets.
+	new /obj/item/stack/material/durasteel(target)
+
 /material/plasteel/titanium
 	name = MAT_TITANIUM
 	stack_type = /obj/item/stack/material/titanium
@@ -474,6 +483,9 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/titanium/hull
 	icon_base = "hull"
 	icon_reinf = "reinf_mesh"
+
+/material/plasteel/titanium/hull/place_sheet(var/turf/target) //Deconstructed into normal titanium sheets.
+	new /obj/item/stack/material/titanium(target)
 
 /material/glass
 	name = "glass"
@@ -817,12 +829,18 @@ var/list/name_to_material
 /material/resin
 	name = "resin"
 	icon_colour = "#35343a"
+	icon_base = "resin"
 	dooropen_noise = 'sound/effects/attackblob.ogg'
 	door_icon_base = "resin"
+	icon_reinf = "reinf_mesh"
 	melting_point = T0C+300
 	sheet_singular_name = "blob"
 	sheet_plural_name = "blobs"
 	conductive = 0
+	explosion_resistance = 60
+	radiation_resistance = 10
+	stack_origin_tech = list(TECH_MATERIAL = 8, TECH_PHORON = 4, TECH_BLUESPACE = 4, TECH_BIO = 7)
+	stack_type = /obj/item/stack/material/resin
 
 /material/resin/can_open_material_door(var/mob/living/user)
 	var/mob/living/carbon/M = user
@@ -830,6 +848,17 @@ var/list/name_to_material
 		return 1
 	return 0
 
+/material/resin/wall_touch_special(var/turf/simulated/wall/W, var/mob/living/L)
+	var/mob/living/carbon/M = L
+	if(istype(M) && locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
+		to_chat(M, "<span class='alien'>\The [W] shudders under your touch, starting to become porous.</span>")
+		playsound(W, 'sound/effects/attackblob.ogg', 50, 1)
+		if(do_after(L, 5 SECONDS))
+			spawn(2)
+				playsound(W, 'sound/effects/attackblob.ogg', 100, 1)
+				W.dismantle_wall()
+		return 1
+	return 0
 
 /material/wood
 	name = MAT_WOOD
@@ -860,6 +889,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/log
 	sheet_singular_name = null
 	sheet_plural_name = "pile"
+	pass_stack_colors = TRUE
 
 /material/wood/log/sif
 	name = MAT_SIFLOG
@@ -897,6 +927,7 @@ var/list/name_to_material
 	door_icon_base = "wood"
 	destruction_desc = "crumples"
 	radiation_resistance = 1
+	pass_stack_colors = TRUE
 
 /material/snow
 	name = MAT_SNOW
@@ -943,6 +974,7 @@ var/list/name_to_material
 	protectiveness = 1 // 4%
 	flags = MATERIAL_PADDING
 	conductive = 0
+	pass_stack_colors = TRUE
 
 /material/cult
 	name = "cult"

@@ -137,3 +137,12 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-3"
 	prefill = list("unsorbitol" = 60)
+
+/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose
+	name = "glucose container"
+	desc = "A container of glucose. Used to treat bloodloss through a hardsuit in unconscious patients."
+
+/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose/Initialize()
+	. = ..()
+	reagents.add_reagent("glucose", 100)
+	on_reagent_change()

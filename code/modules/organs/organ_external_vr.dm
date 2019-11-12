@@ -13,3 +13,7 @@
 		min_broken_damage = o_min_broken_damage
 	else
 		return ..()
+
+/obj/item/organ/external/proc/is_hidden_by_tail()
+	if(owner && owner.tail_style && owner.tail_style.hide_body_parts && (organ_tag in owner.tail_style.hide_body_parts))
+		return 1

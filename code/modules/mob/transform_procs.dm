@@ -36,7 +36,7 @@
 	dna.SetSEState(MONKEYBLOCK,1)
 	dna.SetSEValueRange(MONKEYBLOCK,0xDAC, 0xFFF)
 
-	src << "<B>You are now [species.name]. </B>"
+	to_chat(src, "<B>You are now [species.name]. </B>")
 	qdel(animation)
 
 	return src
@@ -91,7 +91,7 @@
 	add_language(LANGUAGE_SCHECHI, 1)
 	add_language(LANGUAGE_SIGN, 1)
 	add_language(LANGUAGE_TERMINUS, 1)
-	add_language(LANGUAGE_ZADDAT = 0)
+	add_language(LANGUAGE_ZADDAT, 0)
 
 	// Lorefolks say it may be so.
 	if(O.client && O.client.prefs)
@@ -182,7 +182,7 @@
 		var/datum/preferences/B = O.client.prefs
 		for(var/language in B.alternate_languages)
 			O.add_language(language)
-		O.resize(B.size_multiplier, animate = FALSE)	//VOREStation Addition: add size prefs to borgs
+		O.resize(B.size_multiplier, animate = TRUE)		//VOREStation Addition: add size prefs to borgs
 		O.fuzzy = B.fuzzy								//VOREStation Addition: add size prefs to borgs
 
 	callHook("borgify", list(O))

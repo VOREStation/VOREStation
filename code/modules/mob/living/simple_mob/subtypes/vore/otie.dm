@@ -1,3 +1,11 @@
+/datum/category_item/catalogue/fauna/otie		//TODO: VIRGO_LORE_WRITING_WIP
+	name = "Creature - Otie"
+	desc = "A bioengineered longdog, the otie is very long, and very cute, depending on if you like dogs, \
+	especially long ones. They are black-and-grey furred, typically, and tanky, hard to kill. \
+	They seem hostile at first, but are also tame-able if you can approach one. Nipnipnip-ACK \
+	**the catalogue entry ends here.**"
+	value = CATALOGUER_REWARD_MEDIUM
+
 /mob/living/simple_mob/otie //Spawn this one only if you're looking for a bad time. Not friendly.
 	name = "otie"
 	desc = "The classic bioengineered longdog."

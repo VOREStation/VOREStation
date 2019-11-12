@@ -50,7 +50,7 @@
 						/mob/living/simple_mob/animal/wolf,
 						/mob/living/simple_mob/animal/space/bear;0.5,
 						/mob/living/simple_mob/animal/space/carp,
-						/mob/living/simple_mob/animal/space/mimic,
+						/mob/living/simple_mob/vore/aggressive/mimic,
 						/mob/living/simple_mob/vore/aggressive/rat,
 						/mob/living/simple_mob/vore/aggressive/rat/tame,
 //						/mob/living/simple_mob/otie;0.5

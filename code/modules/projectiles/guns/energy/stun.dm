@@ -11,6 +11,12 @@
 	self_recharge = 1
 	use_external_power = 1
 
+/obj/item/weapon/gun/energy/taser/mounted/augment
+	self_recharge = 1
+	use_external_power = 0
+	use_organic_power = TRUE
+	canremove = FALSE
+
 /obj/item/weapon/gun/energy/taser/mounted/cyborg
 	name = "taser gun"
 	charge_cost = 400

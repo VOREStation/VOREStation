@@ -24,7 +24,7 @@
 		will_point_blank = ai_holder.pointblank
 
 	var/potential_damage = 0
-	if(!projectiletype || ( get_dist(src, threatened >= 1) && !will_point_blank ) ) // Melee damage.
+	if(!projectiletype || ( ( get_dist(src, threatened) >= 1) && !will_point_blank ) ) // Melee damage.
 		potential_damage = (melee_damage_lower + melee_damage_upper) / 2
 
 		// Treat potential_damage as estimated DPS. If the enemy attacks twice as fast as usual, it will double the number.
@@ -69,7 +69,7 @@
 
 	var/friendly = threatened.faction == faction
 
-	var/threat = guess_threat_level()
+	var/threat = guess_threat_level(threatened)
 
 	// Hurt entities contribute less tension.
 	threat *= health
@@ -99,7 +99,120 @@
 
 	return threat
 
+// Carbon / mostly Human threat check.
+/mob/living/carbon/get_threat(var/mob/living/threatened)
+	. = ..()
 
+	if(has_AI())
+		if(!ai_holder.hostile)
+			return 0
+
+	if(incapacitated(INCAPACITATION_DISABLED))
+		return 0
+
+	var/friendly = (IIsAlly(threatened) && a_intent == I_HELP)
+
+	var/threat = guess_threat_level(threatened)
+
+	threat *= health
+	threat /= getMaxHealth()
+
+	// Allies reduce tension instead of adding.
+	if(friendly)
+		threat = -threat
+
+	else
+		if(threatened.invisibility > see_invisible)
+			threat /= 2 // Target cannot be seen by src.
+		if(invisibility > threatened.see_invisible)
+			threat *= 2 // Target cannot see src.
+
+	// Handle statuses.
+	if(confused)
+		threat /= 2
+
+	if(has_modifier_of_type(/datum/modifier/berserk))
+		threat *= 2
+
+	return threat
+
+/mob/living/carbon/guess_threat_level(var/mob/living/threatened)
+	var/threat_guess = 0
+
+	// First lets consider their attack ability.
+	var/will_point_blank = FALSE
+	if(has_AI())
+		will_point_blank = ai_holder.pointblank
+
+	. = ..()
+
+	var/obj/item/I = get_active_hand()
+	if(!I || !istype(I))
+		var/damage_guess = 0
+		if(ishuman(src) && ishuman(threatened))
+			var/mob/living/carbon/human/H = src
+			var/datum/unarmed_attack/attack = H.get_unarmed_attack(threatened, BP_TORSO)
+			if(!attack)
+				damage_guess += 5
+
+			var/punch_damage = attack.get_unarmed_damage(H)
+			if(H.gloves)
+				if(istype(H.gloves, /obj/item/clothing/gloves))
+					var/obj/item/clothing/gloves/G = H.gloves
+					punch_damage += G.punch_force
+
+			damage_guess += punch_damage
+
+		else
+			damage_guess += 5
+
+		for(var/datum/modifier/M in modifiers)
+			if(!isnull(M.outgoing_melee_damage_percent))
+				damage_guess *= M.outgoing_melee_damage_percent
+
+		threat_guess += damage_guess
+
+	else
+		var/weapon_attack_speed = get_attack_speed(I) / (1 SECOND)
+		var/weapon_damage = I.force
+
+		for(var/datum/modifier/M in modifiers)
+			if(!isnull(M.outgoing_melee_damage_percent))
+				weapon_damage *= M.outgoing_melee_damage_percent
+
+		if(istype(I, /obj/item/weapon/gun))
+			will_point_blank = TRUE
+			var/obj/item/weapon/gun/G = I
+			var/obj/item/projectile/P
+
+			P = new G.projectile_type()
+
+			if(P) // Does the gun even have a projectile type?
+				weapon_damage = P.damage
+				if(will_point_blank && a_intent == I_HURT)
+					weapon_damage *= 1.5
+				weapon_attack_speed = G.fire_delay / (1 SECOND)
+				qdel(P)
+
+		var/average_damage = weapon_damage / weapon_attack_speed
+
+		threat_guess += average_damage
+
+	// Consider intent.
+	switch(a_intent)
+		if(I_HELP) // Not likely to fight us.
+			threat_guess *= 0.4
+		if(I_DISARM) // Might engage us, but unlikely to be with the intent to kill.
+			threat_guess *= 0.8
+		if(I_GRAB) // May try to restrain us. This is here for reference, or later tweaking if needed.
+			threat_guess *= 1
+		if(I_HURT) // May try to hurt us.
+			threat_guess *= 1.25
+
+	// Then consider their defense.
+	threat_guess += getMaxHealth() / 5 // 100 health translates to 20 threat.
+
+	return threat_guess
 
 // Gives a rough idea of how much danger someone is in. Meant to be used for PvE things since PvP has too many unknown variables.
 /mob/living/proc/get_tension()

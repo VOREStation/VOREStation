@@ -196,7 +196,7 @@
 /obj/structure/simple_door/process()
 	if(!material.radioactivity)
 		return
-	radiation_repository.radiate(src, round(material.radioactivity/3))
+	SSradiation.radiate(src, round(material.radioactivity/3))
 
 /obj/structure/simple_door/iron/New(var/newloc,var/material_name)
 	..(newloc, "iron")

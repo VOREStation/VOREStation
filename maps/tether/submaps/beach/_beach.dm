@@ -119,9 +119,9 @@
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/vore/aggressive/frog = 3, //Frogs are 3x more likely to spawn than,
 		/mob/living/simple_mob/vore/aggressive/deathclaw = 1, //these deathclaws are, with these values,
-		/mob/living/simple_mob/animal/giant_spider = 3,
+		/mob/living/simple_mob/animal/giant_spider = 2,
 		/mob/living/simple_mob/vore/aggressive/giant_snake = 1,
-		/mob/living/simple_mob/animal/giant_spider/ion = 2
+		/mob/living/simple_mob/animal/giant_spider/webslinger = 1
 	)
 
 // These are step-teleporters, for map edge transitions
@@ -155,6 +155,7 @@
 //And some special areas, including our shuttle landing spot (must be unique)
 /area/shuttle/excursion/away_beach
 	name = "\improper Excursion Shuttle - Beach"
+	base_turf = /turf/simulated/floor/beach/sand/desert
 	dynamic_lighting = 0
 
 /area/tether_away/beach

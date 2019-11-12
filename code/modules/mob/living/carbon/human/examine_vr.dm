@@ -105,9 +105,11 @@
 			message = "<span class='warning'>[t_He] [t_is] extremely hungry. A deep growl occasionally rumbles from [t_his] empty stomach.</span>\n"
 		if(100 to 499)
 			return message //Well that's pretty normal, really.
-		if(500 to 1199) // Fat.
+		if(500 to 999) // Fat.
 			message = "[t_He] [t_has] a stuffed belly, bloated fat and round from eating too much.\n"
-		if(1200 to 1934) // One person fully digested.
+		if(1000 to 1399)
+			message = "[t_He] [t_has] a rotund, thick gut. It bulges from their body obscenely, close to sagging under its own weight.\n"
+		if(1400 to 1934) // One person fully digested.
 			message = "<span class='warning'>[t_He] [t_is] sporting a large, round, sagging stomach. It's contains at least their body weight worth of glorping slush.</span>\n"
 		if(1935 to 3004) // Two people.
 			message = "<span class='warning'>[t_He] [t_is] engorged with a huge stomach that sags and wobbles as they move. [t_He] must have consumed at least twice their body weight. It looks incredibly soft.</span>\n"
@@ -155,3 +157,40 @@
 /mob/living/carbon/human/proc/examine_nif(mob/living/carbon/human/H)
 	if(nif && nif.examine_msg) //If you have one set, anyway.
 		return "<span class='notice'>[nif.examine_msg]</span>\n"
+
+/mob/living/carbon/human/proc/examine_chimera(mob/living/carbon/human/H)
+	var/t_He 	= "It" //capitalised for use at the start of each line.
+	var/t_his 	= "its"
+	var/t_His 	= "Its"
+	var/t_appear 	= "appears"
+	var/t_has 	= "has"
+	switch(identifying_gender) //Gender is their "real" gender. Identifying_gender is their "chosen" gender.
+		if(MALE)
+			t_He 	= "He"
+			t_His 	= "His"
+			t_his 	= "his"
+		if(FEMALE)
+			t_He 	= "She"
+			t_His 	= "Her"
+			t_his 	= "her"
+		if(PLURAL)
+			t_He	= "They"
+			t_His 	= "Their"
+			t_his 	= "their"
+			t_appear 	= "appear"
+			t_has 	= "have"
+		if(NEUTER)
+			t_He 	= "It"
+			t_His 	= "Its"
+			t_his 	= "its"
+		if(HERM)
+			t_He 	= "Shi"
+			t_His 	= "Hir"
+			t_his 	= "hir"
+	if(revive_ready == REVIVING_NOW || revive_ready == REVIVING_DONE)
+		if(stat == DEAD)
+			return "<span class='warning'>[t_His] body is twitching subtly.</span>\n"
+		else
+			return "<span class='notice'>[t_He] [t_appear] to be in some sort of torpor.</span>\n"
+	if(feral)
+		return "<span class='warning'>[t_He] [t_has] a crazed, wild look in [t_his] eyes!</span>\n"

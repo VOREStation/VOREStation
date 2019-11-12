@@ -284,7 +284,7 @@ var/global/datum/controller/gameticker/ticker
 					var/mob/living/carbon/human/new_char = player.create_character()
 					if(new_char)
 						qdel(player)
-					if(istype(new_char))
+					if(istype(new_char) && !(new_char.mind.assigned_role=="Cyborg"))
 						data_core.manifest_inject(new_char)
 					//VOREStation Edit End
 
@@ -304,7 +304,7 @@ var/global/datum/controller/gameticker/ticker
 				if(!player_is_antag(player.mind, only_offstation_roles = 1))
 					job_master.EquipRank(player, player.mind.assigned_role, 0)
 					UpdateFactionList(player)
-					equip_custom_items(player)
+					//equip_custom_items(player)	//VOREStation Removal
 					//player.apply_traits() //VOREStation Removal
 		if(captainless)
 			for(var/mob/M in player_list)

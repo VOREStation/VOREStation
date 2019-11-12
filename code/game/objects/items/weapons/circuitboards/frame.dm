@@ -170,6 +170,15 @@
 							/obj/item/weapon/stock_parts/gear = 1,
 							/obj/item/weapon/reagent_containers/glass/beaker/large = 1)
 
+/obj/item/weapon/circuitboard/distiller
+	build_path = /obj/machinery/portable_atmospherics/powered/reagent_distillery
+	board_type = new /datum/frame/frame_types/reagent_distillery
+	req_components = list(
+							/obj/item/weapon/stock_parts/capacitor = 1,
+							/obj/item/weapon/stock_parts/micro_laser = 1,
+							/obj/item/weapon/stock_parts/motor = 2,
+							/obj/item/weapon/stock_parts/gear = 1)
+
 /obj/item/weapon/circuitboard/teleporter_hub
 	name = T_BOARD("teleporter hub")
 	build_path = /obj/machinery/teleport/hub

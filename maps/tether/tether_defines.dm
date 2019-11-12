@@ -1,26 +1,3 @@
-//Atmosphere properties
-#define VIRGO3B_ONE_ATMOSPHERE	82.4 //kPa
-#define VIRGO3B_AVG_TEMP	234 //kelvin
-
-#define VIRGO3B_PER_N2		0.16 //percent
-#define VIRGO3B_PER_O2		0.00
-#define VIRGO3B_PER_N2O		0.00 //Currently no capacity to 'start' a turf with this. See turf.dm
-#define VIRGO3B_PER_CO2		0.12
-#define VIRGO3B_PER_PHORON	0.72
-
-//Math only beyond this point
-#define VIRGO3B_MOL_PER_TURF	(VIRGO3B_ONE_ATMOSPHERE*CELL_VOLUME/(VIRGO3B_AVG_TEMP*R_IDEAL_GAS_EQUATION))
-#define VIRGO3B_MOL_N2			(VIRGO3B_MOL_PER_TURF * VIRGO3B_PER_N2)
-#define VIRGO3B_MOL_O2			(VIRGO3B_MOL_PER_TURF * VIRGO3B_PER_O2)
-#define VIRGO3B_MOL_N2O			(VIRGO3B_MOL_PER_TURF * VIRGO3B_PER_N2O)
-#define VIRGO3B_MOL_CO2			(VIRGO3B_MOL_PER_TURF * VIRGO3B_PER_CO2)
-#define VIRGO3B_MOL_PHORON		(VIRGO3B_MOL_PER_TURF * VIRGO3B_PER_PHORON)
-
-//Turfmakers
-#define VIRGO3B_SET_ATMOS	nitrogen=VIRGO3B_MOL_N2;oxygen=VIRGO3B_MOL_O2;carbon_dioxide=VIRGO3B_MOL_CO2;phoron=VIRGO3B_MOL_PHORON;temperature=VIRGO3B_AVG_TEMP
-#define VIRGO3B_TURF_CREATE(x)	x/virgo3b/nitrogen=VIRGO3B_MOL_N2;x/virgo3b/oxygen=VIRGO3B_MOL_O2;x/virgo3b/carbon_dioxide=VIRGO3B_MOL_CO2;x/virgo3b/phoron=VIRGO3B_MOL_PHORON;x/virgo3b/temperature=VIRGO3B_AVG_TEMP;x/virgo3b/outdoors=TRUE;x/virgo3b/update_graphic(list/graphic_add = null, list/graphic_remove = null) return 0
-#define VIRGO3B_TURF_CREATE_UN(x)	x/virgo3b/nitrogen=VIRGO3B_MOL_N2;x/virgo3b/oxygen=VIRGO3B_MOL_O2;x/virgo3b/carbon_dioxide=VIRGO3B_MOL_CO2;x/virgo3b/phoron=VIRGO3B_MOL_PHORON;x/virgo3b/temperature=VIRGO3B_AVG_TEMP
-
 //Normal map defs
 #define Z_LEVEL_SURFACE_LOW					1
 #define Z_LEVEL_SURFACE_MID					2
@@ -116,6 +93,8 @@
 							NETWORK_ALARM_FIRE
 							)
 
+	bot_patrolling = FALSE
+
 	allowed_spawns = list("Tram Station","Gateway","Cryogenic Storage","Cyborg Storage")
 	spawnpoint_died = /datum/spawnpoint/tram
 	spawnpoint_left = /datum/spawnpoint/tram
@@ -131,7 +110,8 @@
 		/area/crew_quarters/sleep/Dorm_1/holo,
 		/area/crew_quarters/sleep/Dorm_3/holo,
 		/area/crew_quarters/sleep/Dorm_5/holo,
-		/area/crew_quarters/sleep/Dorm_7/holo)
+		/area/crew_quarters/sleep/Dorm_7/holo,
+		/area/rnd/miscellaneous_lab)	//TFF 31/8/19 - exempt new construction site from unit tests
 	unit_test_exempt_from_atmos = list(
 		/area/engineering/atmos/intake, // Outside,
 		/area/rnd/external, //  Outside,
@@ -148,6 +128,23 @@
 		list("Debris Field - Z1 Space")
 		)
 
+	ai_shell_restricted = TRUE
+	ai_shell_allowed_levels = list(
+		Z_LEVEL_SURFACE_LOW,
+		Z_LEVEL_SURFACE_MID,
+		Z_LEVEL_SURFACE_HIGH,
+		Z_LEVEL_TRANSIT,
+		Z_LEVEL_SPACE_LOW,
+		Z_LEVEL_SPACE_MID,
+		Z_LEVEL_SPACE_HIGH,
+		Z_LEVEL_SURFACE_MINE,
+		Z_LEVEL_SOLARS,
+		Z_LEVEL_CENTCOM,
+		Z_LEVEL_MISC,
+		Z_LEVEL_SHIPS,
+		Z_LEVEL_BEACH
+		)
+
 	lateload_single_pick = null //Nothing right now.
 
 /datum/map/tether/perform_map_generation()
@@ -160,13 +157,23 @@
 
 	return 1
 
+/datum/planet/virgo3b
+	expected_z_levels = list(
+		Z_LEVEL_SURFACE_LOW,
+		Z_LEVEL_SURFACE_MID,
+		Z_LEVEL_SURFACE_HIGH,
+		Z_LEVEL_SURFACE_MINE,
+		Z_LEVEL_SOLARS,
+		Z_LEVEL_PLAINS
+	)
+
 // Short range computers see only the six main levels, others can see the surrounding surface levels.
 /datum/map/tether/get_map_levels(var/srcz, var/long_range = TRUE)
 	if (long_range && (srcz in map_levels))
 		return map_levels
-	else if (srcz == Z_LEVEL_TRANSIT || srcz == Z_LEVEL_MISC || srcz == Z_LEVEL_SHIPS) //Z4 and technical levels
+	else if (srcz == Z_LEVEL_MISC || srcz == Z_LEVEL_SHIPS) //technical levels
 		return list() // Nothing on these z-levels- sensors won't show, and GPSes won't see each other.
-	else if (srcz >= Z_LEVEL_SURFACE_LOW && srcz <= Z_LEVEL_SOLARS) //Zs 1-3, 5-9
+	else if (srcz >= Z_LEVEL_SURFACE_LOW && srcz <= Z_LEVEL_SOLARS) //Zs 1-3, 5-9, Z4 will return same list, but is not included into it
 		return list(
 			Z_LEVEL_SURFACE_LOW,
 			Z_LEVEL_SURFACE_MID,
