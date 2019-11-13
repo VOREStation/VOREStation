@@ -121,7 +121,7 @@
 									break
 							if (!theAPC)
 								switch(PRP)
-									if (1)
+									if (1) 
 										to_chat(src, "Unable to locate APC!")
 									else 
 										to_chat(src, "Lost connection with the APC!")

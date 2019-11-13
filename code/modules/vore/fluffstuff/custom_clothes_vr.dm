@@ -502,22 +502,6 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 
-// bwoincognito:Tasald Corlethian
-/obj/item/clothing/suit/storage/det_suit/fluff/tas_coat
-	name = "Armored Colony coat"
-	desc = "Dark green and grey colored sleeveless long coat with two thick metal shoulder pads. has seen some wear and tear, with noticeable patches in the fabric, scratches on the shoulder pads, but with a clean patch on the left upper chest. It has a red NT marked on the right shoulder pad and red Security on the left. "
-	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/device/flashlight/maglight,/obj/item/clothing/head/helmet)
-
-	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "tasaldcoat"
-
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "tasaldcoat_mob"
-
-	blood_overlay_type = "coat"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
-
 //Event Costumes Below
 /obj/item/clothing/head/helmet/fluff/freddy
 	name = "Animatronic Suit Helmet"
@@ -1915,3 +1899,19 @@ Departamental Swimsuits, for general use
 
 /obj/item/clothing/under/fluff/slime_skeleton/digest_act(var/atom/movable/item_storage = null)
 	return FALSE	//Indigestible
+
+//Bacon12366:Elly Brown
+/obj/item/clothing/accessory/sweater/fluff/star
+	name = "Star Sweater"
+	desc = "It's a white long sweater with a big yellow star at the chest. It seems like it's made of a soft material."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "star_sweater"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "star_sweater"
+
+	slot_flags = SLOT_OCLOTHING | SLOT_TIE
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	w_class = ITEMSIZE_NORMAL
+	slot = ACCESSORY_SLOT_OVER
