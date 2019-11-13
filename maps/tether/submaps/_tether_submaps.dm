@@ -185,6 +185,12 @@
 	mappath = 'gateway/snow_outpost.dmm'
 	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
 
+#include "gateway/zoo.dm"
+/datum/map_template/tether_lateload/gateway/zoo
+	name = "Zoo"
+	desc = "Gigantic space zoo"
+	mappath = 'gateway/zoo.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
 #if AWAY_MISSION_TEST

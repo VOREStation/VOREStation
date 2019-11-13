@@ -130,7 +130,8 @@
 		)
 
 	lateload_single_pick = list(
-		//list("Snow Outpost")
+		//list("Snow Outpost"),
+		list("Zoo")
 		)
 
 	ai_shell_restricted = TRUE
