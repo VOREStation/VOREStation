@@ -16965,14 +16965,10 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/testingrange)
 "aBJ" = (
-/obj/structure/cable/green{
-	icon_state = "1-4"
-	},
-/obj/machinery/camera/network/research{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/rnd/outpost/xenobiology/outpost_decon)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
 "aBK" = (
 /obj/machinery/door/firedoor/glass,
 /obj/effect/floor_decal/borderfloorblack,
@@ -23638,21 +23634,13 @@
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/pool)
 "aMJ" = (
-/obj/structure/table/glass,
-/obj/item/bodybag,
-/obj/item/device/healthanalyzer,
-/obj/item/weapon/storage/firstaid,
-/obj/random/medical,
-/obj/structure/closet/medical_wall{
-	pixel_y = 35
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24;
-	pixel_y = 0
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/structure/sink/kitchen{
+	name = "sink";
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/white,
-/area/rnd/outpost/xenobiology/outpost_first_aid)
+/area/rnd/outpost/xenobiology/outpost_decon)
 "aMK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -25618,15 +25606,19 @@
 /turf/simulated/floor/plating,
 /area/rnd/outpost/xenobiology/outpost_office)
 "aQR" = (
-/obj/structure/bed/roller,
-/obj/structure/extinguisher_cabinet{
-	dir = 4;
-	icon_state = "extinguisher_closed";
-	pixel_x = -30
-	},
 /obj/structure/table/glass,
-/obj/item/device/defib_kit,
-/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/bodybag,
+/obj/item/device/healthanalyzer,
+/obj/random/medical,
+/obj/structure/closet/medical_wall{
+	pixel_y = 35
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24;
+	pixel_y = 0
+	},
+/obj/item/weapon/storage/firstaid/regular,
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_first_aid)
 "aQS" = (
@@ -25833,8 +25825,13 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_main)
 "aRp" = (
+/obj/structure/cable/green{
+	icon_state = "1-4"
+	},
+/obj/machinery/camera/network/research{
+	dir = 1
+	},
 /obj/structure/closet/l3closet/scientist,
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_decon)
 "aRq" = (
@@ -26084,10 +26081,24 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_decon)
 "aRM" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
+/obj/structure/table/standard,
+/obj/item/toy/plushie/purple_fox,
+/obj/machinery/firealarm{
+	dir = 4;
+	layer = 3.3;
+	pixel_x = 26
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 28
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/weapon/reagent_containers/spray/cleaner,
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/outpost/xenobiology/outpost_storage)
 "aRN" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 1
@@ -26172,6 +26183,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_main)
+"aRY" = (
+/obj/structure/bed/roller,
+/obj/structure/extinguisher_cabinet{
+	dir = 4;
+	icon_state = "extinguisher_closed";
+	pixel_x = -30
+	},
+/obj/structure/table/glass,
+/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/device/defib_kit/loaded,
+/turf/simulated/floor/tiled/white,
+/area/rnd/outpost/xenobiology/outpost_first_aid)
 "aRZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -27039,25 +27062,6 @@
 /obj/structure/closet,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
-"aTt" = (
-/obj/structure/table/standard,
-/obj/item/toy/plushie/purple_fox,
-/obj/machinery/firealarm{
-	dir = 4;
-	layer = 3.3;
-	pixel_x = 26
-	},
-/obj/machinery/recharger/wallcharger{
-	pixel_x = 4;
-	pixel_y = 28
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/item/weapon/reagent_containers/spray,
-/obj/item/weapon/reagent_containers/spray,
-/turf/simulated/floor/tiled/techmaint,
-/area/rnd/outpost/xenobiology/outpost_storage)
 "aTw" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 4
@@ -36045,9 +36049,9 @@ aRa
 aRX
 aPF
 aSA
-aMJ
-aTa
 aQR
+aTa
+aRY
 aSA
 adG
 aOi
@@ -37600,7 +37604,7 @@ aQE
 aQO
 aDU
 aRe
-aRp
+aMJ
 aRD
 aRL
 aRe
@@ -37886,7 +37890,7 @@ azU
 aRe
 aRr
 aRF
-aBJ
+aRp
 aRe
 aSl
 aSx
@@ -38033,7 +38037,7 @@ aRV
 aSh
 aSy
 aSI
-aTt
+aRM
 aRt
 aRA
 aSI
@@ -45252,7 +45256,7 @@ aNk
 aNl
 aNJ
 aNP
-aRM
+aBJ
 aKU
 abg
 aOk
@@ -45394,7 +45398,7 @@ aNl
 aNl
 aNK
 aNP
-aRM
+aBJ
 aKU
 abg
 aOk
@@ -45536,7 +45540,7 @@ aNm
 aNl
 aNK
 aNP
-aRM
+aBJ
 aKU
 abg
 aOk
