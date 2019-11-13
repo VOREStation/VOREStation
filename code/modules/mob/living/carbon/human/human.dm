@@ -20,9 +20,6 @@
 	var/active_regen = FALSE //Used for the regenerate proc in human_powers.dm
 	var/active_regen_delay = 300
 
-	var/emoteDanger = 1 // What the current danger for spamming emotes is - shared between different types of emotes to keep people from just
-										// flip/snap/flip/snap.  Decays at a rate of 1 per second to a minimum of 1.
-
 /mob/living/carbon/human/Initialize(mapload, var/new_species = null)
 	if(!dna)
 		dna = new /datum/dna(null)

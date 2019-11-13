@@ -77,3 +77,9 @@
 		// Moving around increases germ_level faster
 		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
 			germ_level++
+
+/mob/living/carbon/human/Life()
+	var/timeSinceLastTick = world.time - lastLifeProc //Used to curb emote spam
+	//Used to determine if someone should get ass blasted for awoo'ing
+	emoteDanger = max(0, emoteDanger - (timeSinceLastTick / 10))
+	..()

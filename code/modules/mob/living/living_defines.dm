@@ -69,5 +69,3 @@
 	var/looking_elsewhere = FALSE //If the mob's view has been relocated to somewhere else, like via a camera or with binocs
 
 	var/image/selected_image = null // Used for buildmode AI control stuff.
-
-	var/lastLifeProc = 0    // Wallclock time of the last time this mob had life() called on them (at finish), used for tying variables to wallclock rather than tickcount
