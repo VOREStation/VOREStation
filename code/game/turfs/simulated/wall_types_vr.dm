@@ -44,3 +44,11 @@ var/list/flesh_overlay_cache = list()
 			if(istype(get_step(src, direction), /turf/simulated/flesh))
 				var/turf/simulated/flesh/F = get_step(src, direction)
 				F.update_icon()
+
+/turf/simulated/shuttle/wall/space_hulk 
+	icon = 'icons/turf/shuttle_void.dmi' 
+	icon_state = "void" 
+	base_state = "void" 
+	name = "Exterior Hull" 
+	desc = "The miles-thick exterior skin of the derelict. No way you're breaking this." 
+	block_tele = TRUE // Will be used for dungeons so this is needed to stop cheesing with handteles. 

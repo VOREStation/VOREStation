@@ -72,6 +72,7 @@
 #include "aerostat/aerostat.dmm"
 #include "aerostat/surface.dmm"
 #include "space/debrisfield.dmm"
+#include "space_hulk/space_hulk.dmm"
 #endif
 
 #include "beach/_beach.dm"
@@ -165,6 +166,25 @@
 /datum/map_z_level/tether_lateload/away_debrisfield
 	name = "Away Mission - Debris Field"
 	z = Z_LEVEL_DEBRISFIELD
+
+
+#include "space_hulk/spacehulk.dm"
+#include "space_hulk/pois/_templates.dm"
+#include "space_hulk/pois/space_hulk_things.dm"
+/datum/map_template/tether_lateload/away_space_hulk
+	name = "Space Hulk - Z1 Derelict"
+	desc = "Deep Darkspace Derelict away mission."
+	mappath = 'space_hulk/space_hulk.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/away_space_hulk
+
+/*/datum/map_template/tether_lateload/away_space_hulk/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(Z_LEVEL_SPACE_HULK), 200, /area/tether_away/space_hulk/unexplored, /datum/map_template/space_hulk)
+*/
+/datum/map_z_level/tether_lateload/away_space_hulk
+	name = "Away Mission - Space Hulk"
+	z = Z_LEVEL_SPACE_HULK
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////
