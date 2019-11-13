@@ -7134,6 +7134,10 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
+/obj/item/clothing/shoes/boots/jackboots{
+	desc = "This pair of Jackboots look worn and freshly used. They have several claw markings inside and you can read the initials D and M at the bottom";
+	name = "Dhaeleena's Jackboots"
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/recreation_area)
 "alP" = (
