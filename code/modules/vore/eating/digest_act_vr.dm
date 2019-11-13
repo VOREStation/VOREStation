@@ -108,9 +108,9 @@
 	if((. = ..()))
 		if(isbelly(item_storage))
 			var/obj/belly/B = item_storage
-			. += 5 * (B.digest_brute + B.digest_burn)
+			. += 2 * (B.digest_brute + B.digest_burn)
 		else
-			. += 70 //Organs give a little more
+			. += 30 //Organs give a little more
 
 /obj/item/weapon/storage/digest_act(var/atom/movable/item_storage = null)
 	for(var/obj/item/I in contents)

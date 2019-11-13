@@ -184,7 +184,8 @@
 				if((mode_flags & DM_FLAG_LEAVEREMAINS) && M.digest_leave_remains)
 					handle_remains_leaving(M)
 				digestion_death(M)
-				owner.update_icons()
+				if(!ishuman(owner))
+					owner.update_icons()
 				if(compensation > 0)
 					if(isrobot(owner))
 						var/mob/living/silicon/robot/R = owner

@@ -99,11 +99,11 @@
 	set desc = "If there is a powered, enabled fabricator in the game world with a prepared chassis, join as a maintenance drone."
 
 	if(ticker.current_state < GAME_STATE_PLAYING)
-		src << "<span class='danger'>The game hasn't started yet!</span>"
+		to_chat(src, "<span class='danger'>The game hasn't started yet!</span>")
 		return
 
 	if(!(config.allow_drone_spawn))
-		src << "<span class='danger'>That verb is not currently permitted.</span>"
+		to_chat(src, "<span class='danger'>That verb is not currently permitted.</span>")
 		return
 
 	if (!src.stat)
@@ -143,7 +143,7 @@
 			all_fabricators[DF.fabricator_tag] = DF
 
 	if(!all_fabricators.len)
-		src << "<span class='danger'>There are no available drone spawn points, sorry.</span>"
+		to_chat(src, "<span class='danger'>There are no available drone spawn points, sorry.</span>")
 		return
 
 	var/choice = input(src,"Which fabricator do you wish to use?") as null|anything in all_fabricators

@@ -264,11 +264,11 @@
 /obj/item/weapon/shield/energy,
 /obj/item/weapon/shield/energy,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/item/weapon/melee/energy/sword/blue,
-/obj/item/weapon/melee/energy/sword/blue,
-/obj/item/weapon/melee/energy/sword/blue,
-/obj/item/weapon/melee/energy/sword/blue,
-/obj/item/weapon/melee/energy/sword/blue,
+/obj/item/weapon/melee/energy/sword,
+/obj/item/weapon/melee/energy/sword,
+/obj/item/weapon/melee/energy/sword,
+/obj/item/weapon/melee/energy/sword,
+/obj/item/weapon/melee/energy/sword,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -3375,7 +3375,7 @@
 /obj/item/clothing/suit/armor/tdome/red,
 /obj/item/clothing/head/helmet/thunderdome,
 /obj/item/weapon/melee/baton/loaded,
-/obj/item/weapon/melee/energy/sword/red,
+/obj/item/weapon/melee/energy/sword,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -3426,7 +3426,7 @@
 /obj/item/clothing/suit/armor/tdome/green,
 /obj/item/clothing/head/helmet/thunderdome,
 /obj/item/weapon/melee/baton/loaded,
-/obj/item/weapon/melee/energy/sword/green,
+/obj/item/weapon/melee/energy/sword,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -4325,11 +4325,11 @@
 /obj/item/weapon/shield/energy,
 /obj/item/weapon/shield/energy,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/item/weapon/melee/energy/sword/blue,
-/obj/item/weapon/melee/energy/sword/blue,
-/obj/item/weapon/melee/energy/sword/blue,
-/obj/item/weapon/melee/energy/sword/blue,
-/obj/item/weapon/melee/energy/sword/blue,
+/obj/item/weapon/melee/energy/sword,
+/obj/item/weapon/melee/energy/sword,
+/obj/item/weapon/melee/energy/sword,
+/obj/item/weapon/melee/energy/sword,
+/obj/item/weapon/melee/energy/sword,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
