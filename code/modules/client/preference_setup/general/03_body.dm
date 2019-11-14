@@ -856,7 +856,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				dat += "</br><b>Unheard of on human stations.</b>"
 			else
 				dat += "</br><b>May be present on human stations.</b>"
-	if((current_species.spawn_flags & SPECIES_IS_WHITELISTED) || (current_species.spawn_flags & SPECIES_WHITELIST_SELECTABLE))	//VOREStation Edit
+	if(current_species.spawn_flags & SPECIES_IS_WHITELISTED)
 		dat += "</br><b>Whitelist restricted.</b>"
 	if(!current_species.has_organ[O_HEART])
 		dat += "</br><b>Does not have a circulatory system.</b>"
@@ -884,12 +884,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	var/restricted = 0
 
-
-	//VOREStation Addition begin
-	if(current_species.spawn_flags & SPECIES_WHITELIST_SELECTABLE)
-		restricted = 3
-	//VOREStation Addition end
-	else if(!(current_species.spawn_flags & SPECIES_CAN_JOIN))		//VOREStation Edit
+	if(!(current_species.spawn_flags & SPECIES_CAN_JOIN))		//VOREStation Edit
 		restricted = 2
 	else if(!is_alien_whitelisted(preference_mob(),current_species))
 		restricted = 1

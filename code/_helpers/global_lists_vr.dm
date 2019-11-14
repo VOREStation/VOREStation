@@ -407,7 +407,7 @@ var/global/list/contamination_colors = list("green",
 				"beige",
 				"pink")
 
-//For the mechanic of leaving remains. Ones listed below are basically ones that got no bones.
+//For the mechanic of leaving remains. Ones listed below are basically ones that got no bones or leave no trace after death.
 var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 				SPECIES_DIONA,
 				SPECIES_ALRAUNE,
@@ -427,13 +427,7 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 				SPECIES_XENO_QUEEN,
 				SPECIES_SHADOW,
 				SPECIES_GOLEM,					//Some special species that may or may not be ever used in event too,
-				SPECIES_SHADEKIN,
-				SPECIES_SHADEKIN_BLUE,
-				SPECIES_SHADEKIN_RED,
-				SPECIES_SHADEKIN_YELLOW,
-				SPECIES_SHADEKIN_PURPLE,
-				SPECIES_SHADEKIN_ORANGE,
-				SPECIES_SHADEKIN_GREEN)			//Shadefluffers just poof away
+				SPECIES_SHADEKIN)			//Shadefluffers just poof away
 
 /hook/startup/proc/init_vore_datum_ref_lists()
 	var/paths
@@ -479,7 +473,7 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 		if(species_name in blacklisted_icons)
 			continue
 		var/datum/species/S = all_species[species_name]
-		if((S.spawn_flags & SPECIES_IS_WHITELISTED) || (S.spawn_flags & SPECIES_WHITELIST_SELECTABLE))
+		if(S.spawn_flags & SPECIES_IS_WHITELISTED)
 			continue
 		custom_species_bases += species_name
 

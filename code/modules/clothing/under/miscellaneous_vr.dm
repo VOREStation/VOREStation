@@ -1,7 +1,3 @@
-/obj/item/clothing/under/harness
-	species_restricted = null
-
-
 /obj/item/clothing/var/hides_bulges = FALSE // OwO wats this?
 
 /obj/item/clothing/under/permit
@@ -10,7 +6,6 @@
 	icon = 'icons/obj/card.dmi'
 	icon_state = "guest"
 	body_parts_covered = 0
-	species_restricted = null
 
 	sprite_sheets = list()
 

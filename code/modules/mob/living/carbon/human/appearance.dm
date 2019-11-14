@@ -156,8 +156,6 @@
 				continue
 			if((current_species.spawn_flags & SPECIES_IS_WHITELISTED) && !is_alien_whitelisted(src, current_species))
 				continue
-			if((current_species.spawn_flags & SPECIES_WHITELIST_SELECTABLE) && !is_alien_whitelisted(src, current_species))	//VOREStation Addition
-				continue																									//VOREStation Addition
 
 		valid_species += current_species_name
 

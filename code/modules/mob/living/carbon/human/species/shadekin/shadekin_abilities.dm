@@ -80,12 +80,7 @@
 					to_chat(target,"<span class='warning'>\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
 
 		//Affect nearby lights
-		var/sk_eyecolor = shadekin_get_eye_color()
 		var/destroy_lights = 0
-		if(sk_eyecolor == RED_EYES)
-			destroy_lights = 80
-		if(sk_eyecolor == PURPLE_EYES)
-			destroy_lights = 25
 
 		for(var/obj/machinery/light/L in machines)
 			if(L.z != z || get_dist(src,L) > 10)

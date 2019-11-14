@@ -898,12 +898,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	//This one is actually not that bad I guess.
 	if(species_tail && !(wear_suit && wear_suit.flags_inv & HIDETAIL))
 		var/icon/tail_s = get_tail_icon()
-		//VOREStation Edit start: SHADEKIN
-		if(species.longtail)
-			overlays_standing[used_tail_layer] = image(icon = tail_s, icon_state = "[species_tail]_s", layer = BODY_LAYER+used_tail_layer, pixel_x = -16)
-		else
-			overlays_standing[used_tail_layer] = image(icon = tail_s, icon_state = "[species_tail]_s", layer = BODY_LAYER+used_tail_layer) // VOREStation Edit - Alt Tail Layer
-		//VOREStation Edit end: SHADEKIN
+		overlays_standing[used_tail_layer] = image(icon = tail_s, icon_state = "[species_tail]_s", layer = BODY_LAYER+used_tail_layer) // VOREStation Edit - Alt Tail Layer
 		animate_tail_reset()
 
 //TODO: Is this the appropriate place for this, and not on species...?

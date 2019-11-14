@@ -97,7 +97,6 @@
 		)
 
 	//SHADEKIN-UNIQUE STUFF GOES HERE
-	var/shadekin_eye_color = BLUE_EYES
 	var/list/shadekin_abilities = list(/datum/power/shadekin/phase_shift,
 									   /datum/power/shadekin/regenerate_other,
 									   /datum/power/shadekin/create_shade)
@@ -146,9 +145,6 @@
 					arguments = list()
 					)
 
-/datum/species/shadekin/proc/get_shadekin_eyecolor()
-	return shadekin_eye_color
-
 /datum/species/shadekin/proc/handle_shade(var/mob/living/carbon/human/H)
 	//Shifted kin don't gain/lose energy (and save time if we're at the cap)
 	var/darkness = 1
@@ -170,29 +166,9 @@
 			H.adjustFireLoss(-0.05)
 			H.adjustBruteLoss(-0.05)
 			H.adjustToxLoss(-0.05)
-
-		switch(get_shadekin_eyecolor())
-			//Blue has constant, steady (slow) regen and ignores darkness.
-			if(BLUE_EYES)
-				dark_gains = 0.5
-			//Red has extremely tiny energy buildup in dark, none in light, and hunts for energy.
-			if(RED_EYES)
-				if(darkness >= 0.75)
-					dark_gains = 0.25
-			//Purple eyes have moderate gains in darkness and loss in light.
-			if(PURPLE_EYES)
-				dark_gains = round((darkness - 0.5) * 2, 0.1)
-			//Yellow has extreme gains in darkness and loss in light.
-			if(YELLOW_EYES)
-				dark_gains = round((darkness - 0.5) * 4, 0.1)
-			//Similar to blues, but passive is less, and affected by dark
-			if(GREEN_EYES)
-				dark_gains = 0.25
-				dark_gains += round((darkness - 0.5), 0.1)
-			//More able to get energy out of the dark, worse attack gains tho
-			if(ORANGE_EYES)
-				if(darkness >= 0.65)
-					dark_gains = 0.30
+			dark_gains = 0.75
+		else
+			dark_gains = 0.25
 
 	set_energy(H, get_energy(H) + dark_gains)
 

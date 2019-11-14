@@ -186,7 +186,7 @@ var/global/list/string_slot_flags = list(
 
 		if(!(S.spawn_flags & SPECIES_IS_RESTRICTED))
 			playable_species += S.name
-		if((S.spawn_flags & SPECIES_IS_WHITELISTED) || (S.spawn_flags & SPECIES_WHITELIST_SELECTABLE))	//VOREStation Edit
+		if(S.spawn_flags & SPECIES_IS_WHITELISTED)
 			whitelisted_species += S.name
 
 	//Posters
