@@ -130,8 +130,11 @@
 		)
 
 	lateload_single_pick = list(
-		//list("Snow Outpost"),
-		list("Zoo")
+		//list("Snow Outpost"),		// Unplayable mapgen,
+		//list("Zoo"),				// Too big. way, way too big
+		list("Carp Farm"),
+		list("Snow Field"),
+		list("Listening Post")
 		)
 
 	ai_shell_restricted = TRUE

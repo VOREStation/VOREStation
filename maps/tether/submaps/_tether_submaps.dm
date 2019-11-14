@@ -191,6 +191,27 @@
 	desc = "Gigantic space zoo"
 	mappath = 'gateway/zoo.dmm'
 	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+#include "gateway/carpfarm.dm"
+/datum/map_template/tether_lateload/gateway/carpfarm
+	name = "Carp Farm"
+	desc = "Asteroid base surrounded by carp"
+	mappath = 'gateway/carpfarm.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+#include "gateway/snowfield.dm"
+/datum/map_template/tether_lateload/gateway/snowfield
+	name = "Snow Field"
+	desc = "An old base in middle of snowy wasteland"
+	mappath = 'gateway/snowfield.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+#include "gateway/listeningpost.dm"
+/datum/map_template/tether_lateload/gateway/listeningpost
+	name = "Listening Post"
+	desc = "Asteroid-bound mercenary listening post"
+	mappath = 'gateway/listeningpost.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
 #if AWAY_MISSION_TEST
