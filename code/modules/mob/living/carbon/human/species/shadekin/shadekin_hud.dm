@@ -1,27 +1,3 @@
-/datum/hud_data/shadekin
-	icon = 'icons/mob/shadekin_hud.dmi'
-	has_a_intent =  1
-	has_m_intent =  1
-	has_warnings =  1
-	has_hands =     1
-	has_drop =      1
-	has_throw =     1
-	has_resist =    1
-	has_pressure =  1
-	has_nutrition = 1
-	has_bodytemp =  1
-	has_internals = 0
-
-	gear = list(
-		"head" =			list("loc" = ui_shoes,     "name" = "Hat",        "slot" = slot_head,     "state" = "hair",   "toggle" = 1),
-		"suit storage" =	list("loc" = ui_sstore1,   "name" = "Uniform", "slot" = slot_w_uniform,   "state" = "center",   "toggle" = 1),
-		"id" =				list("loc" = ui_id,        "name" = "ID",          "slot" = slot_wear_id,      "state" = "id"),
-		"belt" =			list("loc" = ui_belt,      "name" = "Belt",         "slot" = slot_belt, "state" = "belt"),
-		"back" =			list("loc" = ui_back,      "name" = "Back",         "slot" = slot_back,      "state" = "back"),
-		"storage1" =		list("loc" = ui_storage1,  "name" = "Left Pocket",  "slot" = slot_l_store,   "state" = "pocket"),
-		"storage2" =		list("loc" = ui_storage2,  "name" = "Right Pocket", "slot" = slot_r_store,   "state" = "pocket")
-		)
-
 /obj/screen/shadekin
 	icon = 'icons/mob/shadekin_hud.dmi'
 	invisibility = 101

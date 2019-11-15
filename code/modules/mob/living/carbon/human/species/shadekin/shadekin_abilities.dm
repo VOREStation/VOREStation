@@ -3,6 +3,18 @@
 /////////////////////
 ///  PHASE SHIFT  ///
 /////////////////////
+//Visual effect for phase in/out
+/obj/effect/temp_visual/shadekin
+	randomdir = FALSE
+	duration = 5
+	icon = 'icons/mob/vore_shadekin.dmi'
+
+/obj/effect/temp_visual/shadekin/phase_in
+	icon_state = "tp_in"
+
+/obj/effect/temp_visual/shadekin/phase_out
+	icon_state = "tp_out"
+
 /datum/power/shadekin/phase_shift
 	name = "Phase Shift (100)"
 	desc = "Shift yourself out of alignment with realspace to travel quickly areas."
@@ -56,7 +68,6 @@
 			B.escapable = initial(B.escapable)
 
 		//overlays.Cut()
-		alpha = initial(alpha)
 		invisibility = initial(invisibility)
 		see_invisible = initial(see_invisible)
 		incorporeal_move = initial(incorporeal_move)
@@ -65,10 +76,13 @@
 		update_icon()
 
 		//Cosmetics mostly
-		flick("tp_in",src)
+		var/obj/effect/temp_visual/shadekin/phase_in/phaseanim = new /obj/effect/temp_visual/shadekin/phase_in(src.loc)
+		phaseanim.dir = dir
+		alpha = 0
 		custom_emote(1,"phases in!")
 		sleep(5) //The duration of the TP animation
 		canmove = original_canmove
+		alpha = initial(alpha)
 
 		//Potential phase-in vore
 		if(can_be_drop_pred) //Toggleable in vore panel
@@ -101,7 +115,9 @@
 			var/obj/belly/B = belly
 			B.escapable = FALSE
 
-		//flick("tp_out",src)
+		var/obj/effect/temp_visual/shadekin/phase_out/phaseanim = new /obj/effect/temp_visual/shadekin/phase_out(src.loc)
+		phaseanim.dir = dir
+		alpha = 0
 		sleep(5)
 		invisibility = INVISIBILITY_LEVEL_TWO
 		see_invisible = INVISIBILITY_LEVEL_TWO

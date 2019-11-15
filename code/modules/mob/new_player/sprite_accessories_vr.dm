@@ -1090,7 +1090,7 @@
 		name = "Heterochromia"
 		icon_state = "heterochromia"
 		body_parts = list(BP_HEAD)
-		species_allowed = list(SPECIES_HUMAN, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_ZORREN_FLAT, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST) //This lets all races use the default hairstyles.
+		species_allowed = list(SPECIES_HUMAN, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_ZORREN_FLAT, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN) //This lets all races use the default hairstyles.
 
 	werewolf_nose
 		name = "Werewolf nose"
@@ -1123,3 +1123,10 @@
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
 		species_allowed = list(SPECIES_WEREBEAST)
+
+	shadekin_snoot
+		name = "Shadekin Snoot"
+		icon_state = "shadekin-snoot"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+		species_allowed = list(SPECIES_SHADEKIN)

@@ -12,6 +12,7 @@
 /datum/sprite_accessory
 	// Ckey of person allowed to use this, if defined.
 	var/list/ckeys_allowed = null
+	var/apply_restrictions = FALSE		//whether to apply restrictions for specific tails/ears/wings
 
 /*
 ////////////////////////////
@@ -37,6 +38,8 @@
 	icon_state = "shadekin"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	apply_restrictions = TRUE
+	species_allowed = list(SPECIES_SHADEKIN)
 
 // Ears avaliable to anyone
 
@@ -682,6 +685,8 @@
 	icon_state = "shadekin-short"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	apply_restrictions = TRUE
+	species_allowed = list(SPECIES_SHADEKIN)
 
 // Everyone tails
 

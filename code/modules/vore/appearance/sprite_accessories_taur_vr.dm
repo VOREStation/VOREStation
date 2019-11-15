@@ -163,10 +163,11 @@
 	name = "Shadekin Tail (Shadekin)"
 	icon_state = "shadekin_s"
 	can_ride = 0
-	//ckeys_allowed = list("spoopylizz")
 	hide_body_parts = null
 	clip_mask_icon = null
 	clip_mask_state = null
+	apply_restrictions = TRUE
+	species_allowed = list(SPECIES_SHADEKIN)
 
 /datum/sprite_accessory/tail/taur/shadekin_tail/shadekin_tail_2c
 	name = "Shadekin Tail dual-color (Shadekin)"

@@ -887,7 +887,7 @@
 			for(var/obj/item/I in src)
 				if(I.contaminated)
 					if(check_belly(I)) continue //VOREStation Edit
-					if(src.species && src.species.get_bodytype() != "Vox")
+					if(src.species && src.species.get_bodytype() != "Vox" && src.species.get_bodytype() != "Shadekin")	//VOREStation Edit: shadekin
 						// This is hacky, I'm so sorry.
 						if(I != l_hand && I != r_hand)	//If the item isn't in your hands, you're probably wearing it. Full damage for you.
 							total_phoronloss += vsc.plc.CONTAMINATION_LOSS

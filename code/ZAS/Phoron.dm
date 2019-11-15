@@ -106,7 +106,7 @@ obj/var/contaminated = 0
 			updatehealth()
 
 	//Burn eyes if exposed.
-	if(vsc.plc.EYE_BURNS && (species.breath_type != "phoron"))
+	if(vsc.plc.EYE_BURNS && species.breath_type && (species.breath_type != "phoron"))		//VOREStation Edit: those who don't breathe
 		var/burn_eyes = 1
 
 		//Check for protective glasses

@@ -5,13 +5,17 @@
 	deform = 'icons/mob/human_races/r_shadekin_vr.dmi'
 	tail = "tail"
 	icobase_tail = 1
-	blurb = "Waow! A shaadefluffer!"
+	blurb = "Very little is known about these creatures. They appear to be largely mammalian in appearance. \
+	Seemingly very rare to encounter, there have been widespread myths of these creatures the galaxy over, \
+	but next to no verifiable evidence to their existence. However, they have recently been more verifiably \
+	documented in the Virgo system, following a mining bombardment of Virgo 3. The crew of NSB Adephagia have \
+	taken to calling these creatures 'Shadekin', and the name has generally stuck and spread. "		//TODO: Something that's not wiki copypaste
+	wikilink = "https://wiki.vore-station.net/Shadekin"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/shadekin)
 
 	language = LANGUAGE_SHADEKIN
 	assisted_langs = list()
-	unarmed_types = list(/datum/unarmed_attack/claws/shadekin/red)
-	//hud_type = /datum/hud_data/shadekin
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws/shadekin, /datum/unarmed_attack/bite/sharp/shadekin)
 	rarity_value = 15	//INTERDIMENSIONAL FLUFFERS
 
 	has_fine_manipulation = 0
@@ -41,16 +45,16 @@
 	flags =  NO_SCAN | NO_MINOR_CUT | NO_INFECT
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_WHITELIST_SELECTABLE
 
-	reagent_tag = IS_SHADEKIN		//TODO: shadekin-unqiue chem interactions
+	reagent_tag = IS_SHADEKIN		// for shadekin-unqiue chem interactions
 
-	flesh_color = "#34AF10"		//TODO: set colors
-	blood_color = "#b3cbc3"
-	base_color = "#066000"
+	flesh_color = "#FFC896"
+	blood_color = "#A10808"
+	base_color = "#f0f0f0"
 	color_mult = 1
 
 	has_glowing_eyes = TRUE
 
-	death_message = "lets out a waning guttural screech, green blood bubbling from its maw."	//TODO: replace
+	death_message = "phases to somewhere far away!"
 	male_cough_sounds = null
 	female_cough_sounds = null
 	male_sneeze_sound = null
@@ -80,7 +84,7 @@
 		O_EYES =		/obj/item/organ/internal/eyes,
 		O_STOMACH =		/obj/item/organ/internal/stomach,
 		O_INTESTINE =	/obj/item/organ/internal/intestine
-		)	//TODO: Phoron-immune eyes
+		)
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),

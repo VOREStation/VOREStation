@@ -884,7 +884,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	var/restricted = 0
 
-	if(!(current_species.spawn_flags & SPECIES_CAN_JOIN))		//VOREStation Edit
+	if(!(current_species.spawn_flags & SPECIES_CAN_JOIN))
 		restricted = 2
 	else if(!is_alien_whitelisted(preference_mob(),current_species))
 		restricted = 1
