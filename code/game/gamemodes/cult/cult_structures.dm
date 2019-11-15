@@ -116,6 +116,12 @@
 	return
 
 /obj/effect/gateway/Crossed(AM as mob|obj)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = AM
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	spawn(0)
 		return
 	return
@@ -148,6 +154,12 @@
 		qdel(src)
 
 /obj/effect/gateway/active/Crossed(var/atom/A)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = A
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	if(!istype(A, /mob/living))
 		return
 

@@ -83,6 +83,12 @@
 
 
 /obj/item/device/assembly/mousetrap/Crossed(AM as mob|obj)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = AM
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	if(armed)
 		if(ishuman(AM))
 			var/mob/living/carbon/H = AM

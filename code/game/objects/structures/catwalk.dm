@@ -87,6 +87,12 @@
 	return ..()
 
 /obj/structure/catwalk/Crossed()
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = usr
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	. = ..()
 	if(isliving(usr))
 		playsound(src, pick('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg', 'sound/effects/footstep/catwalk5.ogg'), 25, 1)

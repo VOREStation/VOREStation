@@ -70,6 +70,12 @@ var/global/list/image/splatter_cache=list()
 		desc = initial(desc)
 
 /obj/effect/decal/cleanable/blood/Crossed(mob/living/carbon/human/perp)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = perp
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	if (!istype(perp))
 		return
 	if(amount < 1)
