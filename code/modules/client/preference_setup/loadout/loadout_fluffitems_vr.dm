@@ -34,6 +34,12 @@
 	ckeywhitelist = list("aegisoa")
 	character_name = list("Xander Bevin")
 
+/datum/gear/fluff/xander_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Xander's Conduct Medal"
+	ckeywhitelist = list("aegisoa")
+	character_name = list("Xander Bevin")
+
 /datum/gear/fluff/lynn_penlight
 	path = /obj/item/device/flashlight/pen/fluff/lynn
 	display_name = "Lynn's Penlight"
@@ -85,6 +91,12 @@
 	ckeywhitelist = list("beyondmylife")
 	character_name = list("Ne'tra Ky'ram")
 
+/datum/gear/fluff/nolan_medal
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Nolan's Unity Medal"
+	ckeywhitelist = list("blakeryan")
+	character_name = list("Nolan Conaway")
+
 /datum/gear/fluff/xin_sovietuniform
 	path = /obj/item/clothing/under/soviet
 	display_name = "Xin's Soviet Uniform"
@@ -95,6 +107,24 @@
 /datum/gear/fluff/tasald_box
 	path = /obj/item/weapon/storage/box/fluff/tasald
 	display_name = "Tasald's Box"
+	ckeywhitelist = list("bwoincognito")
+	character_name = list("Tasald Corlethian")
+
+/datum/gear/fluff/tasald_cartographer_jumpsuit
+	path = /obj/item/clothing/under/solgov/utility/sifguard/officer/exploration
+	display_name = "Tasald's Cartographer's uniform - jumpsuit"
+	ckeywhitelist = list("bwoincognito")
+	character_name = list("Tasald Corlethian")
+
+/datum/gear/fluff/tasald_cartographer_jacket
+	path = /obj/item/clothing/suit/storage/service/sifguard/command
+	display_name = "Tasald's Cartographer's uniform - jacket"
+	ckeywhitelist = list("bwoincognito")
+	character_name = list("Tasald Corlethian")
+
+/datum/gear/fluff/tasald_cartographer_beret
+	path = /obj/item/clothing/head/beret/sol/expedition/command
+	display_name = "Tasald's Cartographer's uniform - beret"
 	ckeywhitelist = list("bwoincognito")
 	character_name = list("Tasald Corlethian")
 
@@ -209,6 +239,12 @@
 	display_name = "Verd's Medal"
 	ckeywhitelist = list("epigraphzero")
 	character_name = list("Verd Woodrow")
+
+/datum/gear/fluff/erik_medal
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Erik's Unity Medal"
+	ckeywhitelist = list("erikthedog")
+	character_name = list("Erik Ramadwood")
 
 //  F CKEYS
 
@@ -708,6 +744,12 @@
 	ckeywhitelist = list("techtypes")
 	character_name = list("Lasshseeki Korss")
 
+/datum/gear/fluff/nick_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Nick's Conduct Medal"
+	ckeywhitelist = list("thedavestdave")
+	character_name = list("Nick Sloan")
+
 /datum/gear/fluff/konor_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
 	display_name = "Konor's Unity Medal"
@@ -897,3 +939,9 @@
 	display_name = "Nehi's Radio"
 	ckeywhitelist = list("zodiacshadow")
 	character_name = list("Nehi Maximus")
+
+/datum/gear/fluff/star_sweater
+	path = /obj/item/clothing/accessory/sweater/fluff/star
+	display_name = "Star Sweater"
+	ckeywhitelist = list("bacon12366")
+	character_name = list("Elly Brown")

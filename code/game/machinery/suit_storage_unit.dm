@@ -931,7 +931,7 @@
 
 /obj/machinery/suit_cycler/proc/finished_job()
 	var/turf/T = get_turf(src)
-	T.audible_message("\icon[src]<span class='notice'>The [src] beeps several times.</span>")
+	T.visible_message("\icon[src]<span class='notice'>The [src] beeps several times.</span>")
 	icon_state = initial(icon_state)
 	active = 0
 	playsound(src, 'sound/machines/boobeebeep.ogg', 50)

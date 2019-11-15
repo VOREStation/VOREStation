@@ -19,7 +19,7 @@
 	var/mob/living/carbon/C = src
 
 	if(changeling.max_geneticpoints < 0) //Absorbed by another ling
-		src << "<span class='danger'>We have no genomes, not even our own, and cannot regenerate.</span>"
+		to_chat(src, "<span class='danger'>We have no genomes, not even our own, and cannot regenerate.</span>")
 		return 0
 
 	if(!C.stat && alert("Are we sure we wish to regenerate?  We will appear to be dead while doing so.","Revival","Yes","No") == "No")
@@ -44,7 +44,7 @@
 	spawn(rand(2 MINUTES, 4 MINUTES))
 		//The ling will now be able to choose when to revive
 		src.verbs += /mob/proc/changeling_revive
-		src << "<span class='notice'><font size='5'>We are ready to rise.  Use the <b>Revive</b> verb when you are ready.</font></span>"
+		to_chat(src, "<span class='notice'><font size='5'>We are ready to rise.  Use the <b>Revive</b> verb when you are ready.</font></span>")
 
 	feedback_add_details("changeling_powers","FD")
 	return 1

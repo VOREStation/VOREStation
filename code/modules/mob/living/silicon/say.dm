@@ -8,7 +8,7 @@
 	..()
 	if(message_mode)
 		if(!is_component_functioning("radio"))
-			src << "<span class='warning'>Your radio isn't functional at this time.</span>"
+			to_chat(src, "<span class='warning'>Your radio isn't functional at this time.</span>")
 			return 0
 		if(message_mode == "general")
 			message_mode = null
@@ -23,7 +23,7 @@
 		return holopad_talk(message, verb, speaking)
 	else if(message_mode)
 		if (aiRadio.disabledAi || aiRestorePowerRoutine || stat)
-			src << "<span class='danger'>System Error - Transceiver Disabled.</span>"
+			to_chat(src, "<span class='danger'>System Error - Transceiver Disabled.</span>")
 			return 0
 		if(message_mode == "general")
 			message_mode = null
@@ -82,11 +82,11 @@
 		if(speaking)
 			rendered_a = "<span class='game say'><span class='name'>[name]</span> [speaking.format_message(message, verb)]</span>"
 			rendered_b = "<span class='game say'><span class='name'>[voice_name]</span> [speaking.format_message(message_stars, verb)]</span>"
-			src << "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [speaking.format_message(message, verb)]</span></i>"//The AI can "hear" its own message.
+			to_chat(src, "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [speaking.format_message(message, verb)]</span></i>") //The AI can "hear" its own message.
 		else
 			rendered_a = "<span class='game say'><span class='name'>[name]</span> [verb], <span class='message'>\"[message]\"</span></span>"
 			rendered_b = "<span class='game say'><span class='name'>[voice_name]</span> [verb], <span class='message'>\"[message_stars]\"</span></span>"
-			src << "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [verb], <span class='message'><span class='body'>\"[message]\"</span></span></span></i>"//The AI can "hear" its own message.
+			to_chat(src, "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [verb], <span class='message'><span class='body'>\"[message]\"</span></span></span></i>") //The AI can "hear" its own message.
 		var/list/listeners = get_mobs_and_objs_in_view_fast(get_turf(T), world.view)
 		var/list/listening = listeners["mobs"]
 		var/list/listening_obj = listeners["objs"]
@@ -105,7 +105,7 @@
 		/*Radios "filter out" this conversation channel so we don't need to account for them.
 		This is another way of saying that we won't bother dealing with them.*/
 	else
-		src << "No holopad connected."
+		to_chat(src, "No holopad connected.")
 		return 0
 	return 1
 
@@ -119,7 +119,7 @@
 	var/obj/machinery/hologram/holopad/T = src.holo
 	if(T && T.masters[src])
 		var/rendered = "<span class='game say'><span class='name'>[name]</span> <span class='message'>[message]</span></span>"
-		src << "<i><span class='game say'>Holopad action relayed, <span class='name'>[real_name]</span> <span class='message'>[message]</span></span></i>"
+		to_chat(src, "<i><span class='game say'>Holopad action relayed, <span class='name'>[real_name]</span> <span class='message'>[message]</span></span></i>")
 		var/obj/effect/overlay/aiholo/hologram = T.masters[src] //VOREStation Add for people in the hologram to hear the messages
 
 		//var/obj/effect/overlay/hologram = T.masters[src] //VOREStation edit. Done above.
@@ -142,7 +142,7 @@
 		log_emote("(HPAD) [message]", src)
 
 	else //This shouldn't occur, but better safe then sorry.
-		src << "No holopad connected."
+		to_chat(src, "No holopad connected.")
 		return 0
 	return 1
 

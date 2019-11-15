@@ -23,7 +23,7 @@
 	for(var/i = 0, i < 3, i++)
 		var/turf/target = get_step(T, pick(alldirs))
 		if(target && istype(target, /turf/simulated/floor))
-			var/mob/living/simple_mob/corgi/Ian/doge = new(target)
+			var/mob/living/simple_mob/animal/passive/dog/corgi/Ian/doge = new(target)
 			doge.name = "Ian " + pick("Alpha", "Beta", "Chi", "Delta", "Epsilon", "Phi",
 				"Gamma", "Eta", "Iota", "Kappa", "Lambda", "Omicron", "Theta",
 				"Rho", "Sigma", "Tau", "Upsilon", "Omega", "Psi", "Zeta")
