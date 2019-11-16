@@ -283,6 +283,23 @@
 	preferred_interim_area = /area/shuttle/excursion/space_moving
 
 
+//Trade Ship
+
+/obj/machinery/computer/shuttle_control/merchant
+	name = "merchant shuttle control console"
+	icon_keyboard = "power_key"
+	icon_screen = "shuttle"
+	shuttle_tag = "Merchant"
+
+/datum/shuttle/ferry/merchant
+	name = "Merchant"
+	warmup_time = 0
+	docking_controller_tag = "trade_shuttle"
+	dock_target_station = "trade_shuttle_bay"
+	dock_target_offsite = "trade_shuttle_dock_airlock"
+	area_station = /area/shuttle/merchant/home
+	area_offsite = /area/shuttle/merchant/away
+
 ////////////////////////////////////
 //////// Specops Shuttle ///////////
 ////////////////////////////////////

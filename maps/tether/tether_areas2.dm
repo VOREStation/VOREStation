@@ -1112,6 +1112,135 @@
 	name = "Tether Shuttle Transit"
 	icon_state = "shuttle2"
 
+//Trade Ship
+
+/area/shuttle/merchant
+	icon_state = "shuttle"
+
+/area/shuttle/merchant/home
+	name = "\improper Merchant Vessel - Home"
+
+/area/shuttle/merchant/away
+	name = "\improper Merchant Vessel - Away"
+
+//Skipjack
+
+/area/skipjack_station
+	name = "Raider Outpost"
+	icon_state = "yellow"
+	requires_power = 0
+	dynamic_lighting = 0
+	flags = RAD_SHIELDED
+	ambience = AMBIENCE_HIGHSEC
+
+/area/skipjack_station/transit
+	name = "transit"
+	icon_state = "shuttlered"
+	base_turf = /turf/space/transit/north
+
+/area/skipjack_station/firstdeck
+	name = "north of first deck"
+	icon_state = "northwest"
+
+/area/skipjack_station/seconddeck
+	name = "west of second deck"
+	icon_state = "west"
+
+/area/skipjack_station/thirddeck
+	name = "east of third deck"
+	icon_state = "east"
+
+/area/skipjack_station/mining
+	name = "mining site"
+	icon_state = "shuttlered"
+
+/area/skipjack_station/planet
+	name = "planet"
+	icon_state = "shuttlered"
+	dynamic_lighting = 1
+	//base_turf = /turf/simulated/floor/outdoors/grass/sif/planetuse
+
+/area/skipjack_station/orbit
+	name = "in orbit of Sif"
+	icon_state = "shuttlegrn"
+	base_turf = /turf/space
+
+/area/skipjack_station/sky
+	name = "hovering over skies of sif"
+	icon_state = "shuttlegrn"
+	base_turf = /turf/simulated/sky/north
+
+/area/skipjack_station/sky_transit
+	name = "in flight over sif"
+	icon_state = "shuttlered"
+	base_turf = /turf/simulated/sky/moving/north
+
+/area/skipjack_station/arrivals_dock
+	name = "\improper docked with Southern Cross"
+	icon_state = "shuttle"
+
+// Ninja areas
+/area/ninja_dojo
+	name = "\improper Ninja Base"
+	icon_state = "green"
+	requires_power = 0
+	flags = RAD_SHIELDED
+	ambience = AMBIENCE_HIGHSEC
+
+/area/ninja_dojo/dojo
+	name = "\improper Clan Dojo"
+	dynamic_lighting = 0
+
+/area/ninja_dojo/start
+	name = "\improper Clan Dojo"
+	icon_state = "shuttlered"
+	base_turf = /turf/simulated/floor/plating
+
+/area/ninja_dojo/firstdeck
+	name = "south of first deck"
+	icon_state = "south"
+
+/area/ninja_dojo/seconddeck
+	name = "north of second deck"
+	icon_state = "north"
+
+/area/ninja_dojo/thirddeck
+	name = "west of third deck"
+	icon_state = "west"
+
+/area/ninja_dojo/mining
+	name = "mining site"
+	icon_state = "shuttlered"
+
+/area/ninja_dojo/planet
+	name = "planet outposts"
+	icon_state = "shuttlered"
+	//base_turf = /turf/simulated/floor/outdoors/grass/sif/planetuse
+
+/area/ninja_dojo/transit
+	name = "transit"
+	icon_state = "shuttlered"
+	base_turf = /turf/space/transit/north
+
+/area/ninja_dojo/orbit
+	name = "in orbit of Sif"
+	icon_state = "shuttlegrn"
+	base_turf = /turf/space
+
+/area/ninja_dojo/sky
+	name = "hovering over skies of sif"
+	icon_state = "shuttlegrn"
+	base_turf = /turf/simulated/sky/south
+
+/area/ninja_dojo/sky_transit
+	name = "in flight over sif"
+	icon_state = "shuttlered"
+	base_turf = /turf/simulated/sky/moving/south
+
+/area/ninja_dojo/arrivals_dock
+	name = "\improper docked with Southern Cross"
+	icon_state = "shuttle"
+	dynamic_lighting = 0
 
 // Exclude some more areas from the atmos leak event so people don't get trapped when spawning.
 /datum/event/atmos_leak/setup()
