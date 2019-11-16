@@ -210,6 +210,14 @@
 
 	shade_organ.max_dark_energy = new_max_energy
 
+/datum/species/shadekin/proc/check_infinite_energy(var/mob/living/carbon/human/H)
+	var/obj/item/organ/internal/brain/shadekin/shade_organ = H.internal_organs_by_name[O_BRAIN]
+
+	if(!istype(shade_organ))
+		return 0
+
+	return shade_organ.dark_energy_infinite
+
 /datum/species/shadekin/proc/update_shadekin_hud(var/mob/living/carbon/human/H)
 	var/turf/T = get_turf(H)
 	if(!T)
