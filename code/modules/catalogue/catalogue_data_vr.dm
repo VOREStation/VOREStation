@@ -60,6 +60,11 @@
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
 
+/datum/category_item/catalogue/fauna/shadekin
+	name = "Sapients - Shadekin"
+	desc = ""
+	value = CATALOGUER_REWARD_EASY
+
 /datum/category_item/catalogue/fauna/custom_species
 	name = "Sapients - Other"
 	desc = "Remote frontiers require people of all sorts of life...\

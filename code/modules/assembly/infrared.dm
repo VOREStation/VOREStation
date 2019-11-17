@@ -242,6 +242,12 @@
 	return
 
 /obj/effect/beam/i_beam/Crossed(atom/movable/AM as mob|obj)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = AM
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	if(istype(AM, /obj/effect/beam))
 		return
 	spawn(0)

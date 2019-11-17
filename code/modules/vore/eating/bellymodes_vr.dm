@@ -186,6 +186,8 @@
 				digestion_death(M)
 				if(!ishuman(owner))
 					owner.update_icons()
+				if(compensation == 0) //Slightly sloppy way at making sure certain mobs don't give ZERO nutrition (fish and so on)
+					compensation = 21 //This reads as 20*4.5 due to the calculations afterward, making the backup nutrition value 94.5 per mob. Not op compared to regular prey.
 				if(compensation > 0)
 					if(isrobot(owner))
 						var/mob/living/silicon/robot/R = owner

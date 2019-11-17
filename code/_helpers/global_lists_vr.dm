@@ -407,7 +407,7 @@ var/global/list/contamination_colors = list("green",
 				"beige",
 				"pink")
 
-//For the mechanic of leaving remains. Ones listed below are basically ones that got no bones.
+//For the mechanic of leaving remains. Ones listed below are basically ones that got no bones or leave no trace after death.
 var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 				SPECIES_DIONA,
 				SPECIES_ALRAUNE,
@@ -426,7 +426,8 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 				SPECIES_XENO_SENTINEL,
 				SPECIES_XENO_QUEEN,
 				SPECIES_SHADOW,
-				SPECIES_GOLEM)					//Some special species that may or may not be ever used in event too
+				SPECIES_GOLEM,					//Some special species that may or may not be ever used in event too,
+				SPECIES_SHADEKIN)			//Shadefluffers just poof away
 
 /hook/startup/proc/init_vore_datum_ref_lists()
 	var/paths
