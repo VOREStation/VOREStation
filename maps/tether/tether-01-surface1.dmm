@@ -31955,10 +31955,14 @@
 	},
 /area/holodeck_control)
 "bcU" = (
-/obj/machinery/door/airlock,
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
+/obj/machinery/door/airlock/maintenance/common,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/plating,
 /area/holodeck_control)
 "bcV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -31977,13 +31981,15 @@
 	},
 /area/holodeck_control)
 "bcX" = (
-/obj/machinery/door/airlock/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
+/obj/machinery/door/airlock/maintenance/common,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/area/holodeck_control)
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence)
 "bcY" = (
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 9
@@ -32144,13 +32150,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
 "bdn" = (
-/obj/machinery/door/airlock/maintenance/common,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/machinery/door/airlock,
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
 	},
-/turf/simulated/floor/plating,
 /area/holodeck_control)
 "bdo" = (
 /obj/structure/cable/green{
@@ -32161,14 +32165,14 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence)
 "bdp" = (
-/obj/machinery/door/airlock/maintenance/common,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/machinery/door/airlock/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
 	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/public_garden_maintenence)
+/area/holodeck_control)
 "bdq" = (
 /obj/structure/catwalk,
 /obj/structure/cable/green{
@@ -36768,12 +36772,12 @@ aah
 bcO
 akV
 bcO
-bcU
+bdn
 bcQ
 bcQ
 bcQ
 bcQ
-bcU
+bdn
 bcO
 bdc
 bcO
@@ -37059,7 +37063,7 @@ bda
 akY
 bcV
 bdA
-bcX
+bdp
 bcY
 akU
 ali
@@ -37193,7 +37197,7 @@ aad
 aah
 aah
 bcO
-bdn
+bcU
 bcO
 bcO
 bcO
@@ -37477,7 +37481,7 @@ aad
 aah
 ajL
 ajL
-bdp
+bcX
 ajS
 ajS
 ajS
