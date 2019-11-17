@@ -487,6 +487,12 @@
 	icon_state = "alurane-ears"
 	ckeys_allowed = list("natje")
 
+/datum/sprite_accessory/ears/elfs
+    name = "Frost antenna"
+    desc = ""
+    icon_state = "frosted_tips"
+    ckeys_allowed = list("tucker0666")
+
 /*
 ////////////////////////////
 /  =--------------------=  /
@@ -948,6 +954,18 @@
 	icon_state = "aronai"
 	ckeys_allowed = list("arokha")
 
+/datum/sprite_accessory/tail/cabletail
+    name = "cabletail"
+    desc = "cabletail"
+    icon_state = "cabletail"
+    ckeys_allowed = list("tucker0666")
+
+/datum/sprite_accessory/tail/featherfluff_tail
+    name = "featherfluff_tail"
+    desc = ""
+    icon_state = "featherfluff_tail"
+    ckeys_allowed = list("tucker0666")
+
 /datum/sprite_accessory/tail/ketrai_wag
 	name = "fennix tail (vwag)"
 	desc = ""
@@ -1024,6 +1042,7 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "sneptail_mark"
 	extra_overlay_w = "sneptail_mark_w"
+
 
 /datum/sprite_accessory/tail/tiger_new
 	name = "tiger tail (vwag)"
