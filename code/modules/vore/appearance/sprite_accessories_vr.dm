@@ -386,6 +386,14 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "tesharilowinner"
 
+/datum/sprite_accessory/ears/elfs
+	name = "Frost antenna"
+	desc = ""
+	icon_state = "frosted_tips"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+
 
 // Special snowflake ears go below here.
 
@@ -982,16 +990,6 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
-/datum/sprite_accessory/tail/sneptail
-	name = "Snep/Furry Tail (vwag)"
-	desc = ""
-	icon_state = "sneptail"
-	ani_state = "sneptail_w"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-	extra_overlay = "sneptail_mark"
-	extra_overlay_w = "sneptail_mark_w"
-
 /datum/sprite_accessory/tail/tiger_new
 	name = "tiger tail (vwag)"
 	desc = ""
@@ -1541,5 +1539,19 @@
 	desc = ""
 	icon_state = "tail_smooth"
 	ani_state = "tail_smooth_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/cabletail
+	name = "cabletail"
+	desc = "cabletail"
+	icon_state = "cabletail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/featherfluff_tail
+	name = "featherfluff_tail"
+	desc = ""
+	icon_state = "featherfluff_tail"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
