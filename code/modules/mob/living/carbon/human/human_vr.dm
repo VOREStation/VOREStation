@@ -12,7 +12,3 @@
 	alt_farmanimals -= src
 
 	. = ..()
-
-/mob/living/carbon/human
-	var/emoteDanger = 1 // What the current danger for spamming emotes is - shared between different types of emotes to keep people from just
-										// flip/snap/flip/snap.  Decays at a rate of 1 per second to a minimum of 1.
