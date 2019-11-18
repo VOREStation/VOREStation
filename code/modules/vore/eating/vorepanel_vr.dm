@@ -5,7 +5,7 @@
 #define BELLIES_MAX 30
 #define BELLIES_NAME_MIN 2
 #define BELLIES_NAME_MAX 12
-#define BELLIES_DESC_MAX 1024
+#define BELLIES_DESC_MAX 2048
 #define FLAVOR_MAX 40
 
 /mob/living/proc/insidePanel()
