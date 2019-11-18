@@ -65,7 +65,7 @@
 			var/list/involved_parts = list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)
 			//Check if they are physically capable
 			if(src.sleeping || src.resting || src.buckled || src.weakened || src.restrained() || involved_parts.len < 2)
-				src << "<span class='warning'>You can't *flip in your current state!</span>"
+				to_chat(src, "<span class='warning'>You can't *flip in your current state!</span>")
 				return 1
 			else
 				src.SpinAnimation(7,1)
@@ -81,7 +81,7 @@
 /mob/living/carbon/human/proc/toggle_tail_vr(var/setting,var/message = 0)
 	if(!tail_style || !tail_style.ani_state)
 		if(message)
-			src << "<span class='warning'>You don't have a tail that supports this.</span>"
+			to_chat(src, "<span class='warning'>You don't have a tail that supports this.</span>")
 		return 0
 
 	var/new_wagging = isnull(setting) ? !wagging : setting
@@ -93,7 +93,7 @@
 /mob/living/carbon/human/proc/toggle_wing_vr(var/setting,var/message = 0)
 	if(!wing_style || !wing_style.ani_state)
 		if(message)
-			src << "<span class='warning'>You don't have a tail that supports this.</span>"
+			to_chat(src, "<span class='warning'>You don't have a tail that supports this.</span>")
 		return 0
 
 	var/new_flapping = isnull(setting) ? !flapping : setting

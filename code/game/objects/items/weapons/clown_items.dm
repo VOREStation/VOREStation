@@ -9,6 +9,12 @@
  * Banana Peals
  */
 /obj/item/weapon/bananapeel/Crossed(AM as mob|obj)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = AM
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	if (istype(AM, /mob/living))
 		var/mob/living/M = AM
 		M.slip("the [src.name]",4)
@@ -24,6 +30,12 @@
 	reagents.add_reagent("cleaner", 5)
 
 /obj/item/weapon/soap/Crossed(AM as mob|obj)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = AM
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	if (istype(AM, /mob/living))
 		var/mob/living/M =	AM
 		M.slip("the [src.name]",3)

@@ -21,6 +21,12 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 	return
 
 /obj/effect/portal/Crossed(AM as mob|obj)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = AM
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	if(istype(AM,/mob) && !(istype(AM,/mob/living)))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	spawn(0)
