@@ -944,7 +944,7 @@
 /obj/item/toy/plushie/mouse
 	name = "mouse plush"
 	desc = "A plushie of a delightful mouse! What was once considered a vile rodent is now your very best friend."
-	icon_state = "mouseplushie"
+	icon_state = "mouseplushie"	//TFF 12/11/19 - updated icon to show a sprite that doesn't replicate a dead mouse. Heck you for that! >:C
 	pokephrase = "Squeak!"
 
 /obj/item/toy/plushie/kitten
