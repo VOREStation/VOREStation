@@ -307,7 +307,7 @@ Alien plants should do something if theres a lot of poison
 				continue
 
 			if(!W.linked_node)
-				linked_node = src
+				W.linked_node = src
 
 			W.color = W.linked_node.set_color
 
