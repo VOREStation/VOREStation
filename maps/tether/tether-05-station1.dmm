@@ -16458,6 +16458,17 @@
 /obj/structure/door_assembly,
 /turf/simulated/floor,
 /area/maintenance/station/abandonedholodeck)
+"aDe" = (
+/obj/machinery/cryopod,
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 5
+	},
+/obj/machinery/camera/network/tether,
+/turf/simulated/floor/tiled/techfloor,
+/area/crew_quarters/sleep/cryo)
 "aDh" = (
 /obj/machinery/door/airlock{
 	name = "Unit 3"
@@ -36430,7 +36441,7 @@ amg
 alA
 alA
 alo
-asN
+aDe
 asN
 asN
 asI

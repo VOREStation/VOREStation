@@ -6087,12 +6087,19 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence)
 "akL" = (
-/obj/machinery/computer/HolodeckControl{
-	icon_state = "computer";
-	dir = 4
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 24
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 8
 	},
 /turf/simulated/floor/tiled{
 	icon_state = "techmaint"
@@ -31940,15 +31947,15 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence)
 "bcT" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 24
+/obj/machinery/light/small{
+	dir = 1
 	},
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 9
+	},
+/obj/effect/floor_decal/techfloor/hole{
+	icon_state = "techfloor_hole_left";
+	dir = 4
 	},
 /turf/simulated/floor/tiled{
 	icon_state = "techmaint"
@@ -31965,16 +31972,18 @@
 /turf/simulated/floor/plating,
 /area/holodeck_control)
 "bcV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 1
+	},
 /turf/simulated/floor/tiled{
 	icon_state = "techmaint"
 	},
 /area/holodeck_control)
 "bcW" = (
-/obj/structure/table/standard,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
+/obj/machinery/hologram/holopad,
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
 	},
 /turf/simulated/floor/tiled{
 	icon_state = "techmaint"
@@ -32093,7 +32102,16 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
 "bde" = (
-/obj/machinery/hologram/holopad,
+/obj/machinery/computer/HolodeckControl{
+	icon_state = "computer";
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
+	},
 /turf/simulated/floor/tiled{
 	icon_state = "techmaint"
 	},
@@ -32165,7 +32183,9 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence)
 "bdp" = (
-/obj/machinery/door/airlock/glass,
+/obj/machinery/door/airlock/glass{
+	name = "Holodeck"
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor,
@@ -32279,25 +32299,59 @@
 /turf/simulated/floor/plating,
 /area/holodeck_control)
 "bdy" = (
-/obj/machinery/light/small{
-	dir = 1
+/obj/structure/table/standard,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
 	},
 /turf/simulated/floor/tiled{
 	icon_state = "techmaint"
 	},
 /area/holodeck_control)
 "bdz" = (
-/obj/machinery/light/small,
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
+	},
 /turf/simulated/floor/tiled{
 	icon_state = "techmaint"
 	},
 /area/holodeck_control)
 "bdA" = (
+/obj/machinery/light/small,
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 10
+	},
+/obj/effect/floor_decal/techfloor/hole/right{
+	icon_state = "techfloor_hole_right";
+	dir = 4
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 8
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/light_switch{
 	dir = 8;
 	pixel_x = 28
+	},
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 1
 	},
 /turf/simulated/floor/tiled{
 	icon_state = "techmaint"
@@ -36914,12 +36968,12 @@ aah
 bcO
 bcO
 bcO
-bdy
-bde
-akL
+bcT
 bcW
-bcR
+bde
+bdy
 bdz
+bdA
 bcO
 bcO
 ajS
@@ -37055,14 +37109,14 @@ aad
 aah
 aah
 bcO
-bcT
-bcR
+akL
+bcV
 bcR
 akO
 bda
 akY
-bcV
-bdA
+bdB
+bdC
 bdp
 bcY
 akU
