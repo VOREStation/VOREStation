@@ -1177,6 +1177,7 @@
 #include "code\game\objects\items\weapons\storage\backpack.dm"
 #include "code\game\objects\items\weapons\storage\backpack_vr.dm"
 #include "code\game\objects\items\weapons\storage\bags.dm"
+#include "code\game\objects\items\weapons\storage\bags_vr.dm"
 #include "code\game\objects\items\weapons\storage\belt.dm"
 #include "code\game\objects\items\weapons\storage\belt_vr.dm"
 #include "code\game\objects\items\weapons\storage\bible.dm"
