@@ -70,10 +70,11 @@ var/list/gear_datums = list()
 			continue
 		if(max_cost && G.cost > max_cost)
 			continue
-		if(G.ckeywhitelist && !(preference_mob.ckey in G.ckeywhitelist)) //Vorestation Edit 
-			continue  //Vorestation Edit 
-		if(G.character_name && !(preference_mob.client.prefs.real_name in G.character_name))  //Vorestation Edit 
-			continue  //Vorestation Edit 
+		if(preference_mob && preference_mob.client)	//Vorestation Edit
+			if(G.ckeywhitelist && !(preference_mob.mind.loaded_from_ckey in G.ckeywhitelist))	//Vorestation Edit
+				continue	//Vorestation Edit
+			if(G.character_name && !(preference_mob.client.prefs.real_name in G.character_name))	//Vorestation Edit
+				continue	//Vorestation Edit
 		. += gear_name
 
 /datum/category_item/player_setup_item/loadout/sanitize_character()
@@ -150,10 +151,11 @@ var/list/gear_datums = list()
 	. += "<tr><td colspan=3><hr></td></tr>"
 	for(var/gear_name in LC.gear)
 		var/datum/gear/G = LC.gear[gear_name]
-		if(G.ckeywhitelist && !(preference_mob.ckey in G.ckeywhitelist)) //Vorestation Edit
-			continue //Vorestation Edit
-		if(G.character_name && !(preference_mob.client.prefs.real_name in G.character_name)) //Vorestation Edit
-			continue //Vorestation Edit
+		if(preference_mob && preference_mob.client)	//Vorestation Edit
+			if(G.ckeywhitelist && !(preference_mob.ckey in G.ckeywhitelist)) //Vorestation Edit
+				continue //Vorestation Edit
+			if(G.character_name && !(preference_mob.client.prefs.real_name in G.character_name)) //Vorestation Edit
+				continue //Vorestation Edit
 		var/ticked = (G.display_name in pref.gear)
 		. += "<tr style='vertical-align:top;'><td width=25%><a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='?src=\ref[src];toggle_gear=[html_encode(G.display_name)]'>[G.display_name]</a></td>"
 		. += "<td width = 10% style='vertical-align:top'>[G.cost]</td>"
