@@ -72,7 +72,7 @@ var/list/gear_datums = list()
 			continue
 		//VOREStation Edit Start
 		if(preference_mob && preference_mob.client)
-			if(G.ckeywhitelist && !(preference_mob.mind.loaded_from_ckey in G.ckeywhitelist))
+			if(G.ckeywhitelist && !(preference_mob.ckey in G.ckeywhitelist))
 				continue
 			if(G.character_name && !(preference_mob.client.prefs.real_name in G.character_name))
 				continue
