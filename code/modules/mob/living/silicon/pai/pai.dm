@@ -35,10 +35,15 @@
 		"Fox" = "pai-fox",
 		"Parrot" = "pai-parrot",
 		"Rabbit" = "pai-rabbit",
-		"Bear" = "pai-bear",  //VOREStation Edit
-		"Fennec" = "pai-fen",  // VOREStation Edit - Rykka
-		"Fennec" = "pai-typezero"  //VOREStation Edit
+		//VOREStation Addition Start
+		"Bear" = "pai-bear",
+		"Fennec" = "pai-fen",
+		"Type Zero" = "pai-typezero",
+		"Raccoon" = "pai-raccoon",	//TFF 22/11/19 - CHOMPStation port of pAI additions,
+		"Rat" = "rat",
+		"Panther" = "panther"
 		)
+		//VOREStation Addition End
 
 	var/global/list/possible_say_verbs = list(
 		"Robotic" = list("states","declares","queries"),
@@ -46,7 +51,8 @@
 		"Beep" = list("beeps","beeps loudly","boops"),
 		"Chirp" = list("chirps","chirrups","cheeps"),
 		"Feline" = list("purrs","yowls","meows"),
-		"Canine" = list("yaps","barks","woofs")
+		"Canine" = list("yaps","barks","woofs"),
+		"Rodent" = list("squeaks", "SQUEAKS", "sqiks")	//VOREStation Edit - TFF 22/11/19 - CHOMPStation port of pAI additions,
 		)
 
 	var/obj/item/weapon/pai_cable/cable		// The cable we produce and use when door or camera jacking
@@ -320,6 +326,8 @@
 
 	close_up()
 
+//VOREStation Removal Start - TFF 22/11/19 - Refactored in pai_vr.dm
+/*
 /mob/living/silicon/pai/proc/choose_chassis()
 	set category = "pAI Commands"
 	set name = "Choose Chassis"
@@ -336,6 +344,8 @@
 
 	chassis = possible_chassis[choice]
 	verbs |= /mob/living/proc/hide
+//VOREStation Removal End
+*/
 
 /mob/living/silicon/pai/proc/choose_verbs()
 	set category = "pAI Commands"
