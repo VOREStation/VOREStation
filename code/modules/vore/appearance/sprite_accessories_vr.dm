@@ -487,7 +487,7 @@
 	icon_state = "alurane-ears"
 	ckeys_allowed = list("natje")
 
-/datum/sprite_accessory/ears/elfs
+/datum/sprite_accessory/ears/frost
     name = "Frost antenna"
     desc = ""
     icon_state = "frosted_tips"
