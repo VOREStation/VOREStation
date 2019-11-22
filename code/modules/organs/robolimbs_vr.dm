@@ -51,7 +51,7 @@
 /datum/robolimb/zenghu
     company = "Zeng-Hu"
     desc = "This limb has realistic synthetic flesh covering with 'blue accents'."
-    icon = 'icons/mob/human_races/cyberlimbs/_fluff_vr/frosty.dmi'
+    icon = 'icons/mob/human_races/cyberlimbs/_fluff_vr/Frosty.dmi'
     blood_color = "#45ccff"
     lifelike = 1
     skin_tone = 1
