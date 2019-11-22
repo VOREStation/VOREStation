@@ -225,7 +225,7 @@
 
 	//Clean up our own business
 	items_preserved.Cut()
-	if(isanimal(owner))
+	if(!ishuman(owner))
 		owner.update_icons()
 
 	//Print notifications/sound if necessary
@@ -273,7 +273,7 @@
 				Pred.bloodstr.trans_to(Prey, Pred.reagents.total_volume / absorbed_count)
 
 	//Clean up our own business
-	if(isanimal(owner))
+	if(!ishuman(owner))
 		owner.update_icons()
 
 	//Print notifications/sound if necessary

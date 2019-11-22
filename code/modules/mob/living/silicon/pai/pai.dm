@@ -36,7 +36,8 @@
 		"Parrot" = "pai-parrot",
 		"Rabbit" = "pai-rabbit",
 		"Bear" = "pai-bear",  //VOREStation Edit
-		"Fennec" = "pai-fen" // VOREStation Edit - Rykka
+		"Fennec" = "pai-fen",  // VOREStation Edit - Rykka
+		"Fennec" = "pai-typezero"  //VOREStation Edit
 		)
 
 	var/global/list/possible_say_verbs = list(
@@ -155,7 +156,7 @@
 		// 33% chance of no additional effect
 
 	src.silence_time = world.timeofday + 120 * 10		// Silence for 2 minutes
-	src << "<font color=green><b>Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging functionality will be unavailable until the reboot is complete.</b></font>"
+	to_chat(src, "<font color=green><b>Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging functionality will be unavailable until the reboot is complete.</b></font>")
 	if(prob(20))
 		var/turf/T = get_turf_or_move(src.loc)
 		for (var/mob/M in viewers(T))
@@ -166,7 +167,7 @@
 		if(1)
 			src.master = null
 			src.master_dna = null
-			src << "<font color=green>You feel unbound.</font>"
+			to_chat(src, "<font color=green>You feel unbound.</font>")
 		if(2)
 			var/command
 			if(severity  == 1)
@@ -174,9 +175,9 @@
 			else
 				command = pick("Serve", "Kill", "Love", "Hate", "Disobey", "Devour", "Fool", "Enrage", "Entice", "Observe", "Judge", "Respect", "Disrespect", "Consume", "Educate", "Destroy", "Disgrace", "Amuse", "Entertain", "Ignite", "Glorify", "Memorialize", "Analyze")
 			src.pai_law0 = "[command] your master."
-			src << "<font color=green>Pr1m3 d1r3c71v3 uPd473D.</font>"
+			to_chat(src, "<font color=green>Pr1m3 d1r3c71v3 uPd473D.</font>")
 		if(3)
-			src << "<font color=green>You feel an electric surge run through your circuitry and become acutely aware at how lucky you are that you can still feel at all.</font>"
+			to_chat(src, "<font color=green>You feel an electric surge run through your circuitry and become acutely aware at how lucky you are that you can still feel at all.</font>")
 
 /mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
 	if (!C)
@@ -234,7 +235,7 @@
 				cameralist[C.network] = C.network
 
 	src.network = input(usr, "Which network would you like to view?") as null|anything in cameralist
-	src << "<font color='blue'>Switched to [src.network] camera network.</font>"
+	to_chat(src, "<font color='blue'>Switched to [src.network] camera network.</font>")
 //End of code by Mord_Sith
 */
 
@@ -270,7 +271,7 @@
 
 	//I'm not sure how much of this is necessary, but I would rather avoid issues.
 	if(istype(card.loc,/obj/item/rig_module))
-		src << "There is no room to unfold inside this rig module. You're good and stuck."
+		to_chat(src, "There is no room to unfold inside this rig module. You're good and stuck.")
 		return 0
 	else if(istype(card.loc,/mob))
 		var/mob/holder = card.loc
@@ -362,7 +363,7 @@
 		resting = !resting
 		icon_state = resting ? "[chassis]_rest" : "[chassis]"
 		update_icon() //VOREStation edit
-		src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
+		to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
 
 	canmove = !resting
 
@@ -466,11 +467,11 @@
 
 	if(idaccessible == 0)
 		idaccessible = 1
-		src << "<span class='notice'>You allow access modifications.</span>"
+		to_chat(src, "<span class='notice'>You allow access modifications.</span>")
 
 	else
 		idaccessible = 0
-		src << "<span class='notice'>You block access modfications.</span>"
+		to_chat(src, "<span class='notice'>You block access modfications.</span>")
 
 /mob/living/silicon/pai/verb/wipe_software()
 	set name = "Wipe Software"

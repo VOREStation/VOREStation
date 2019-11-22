@@ -185,13 +185,13 @@
 			for(var/mob/M in range(mob, 1))
 				if(M.pulling == mob)
 					if(!M.restrained() && M.stat == 0 && M.canmove && mob.Adjacent(M))
-						src << "<font color='blue'>You're restrained! You can't move!</font>"
+						to_chat(src, "<font color='blue'>You're restrained! You can't move!</font>")
 						return 0
 					else
 						M.stop_pulling()
 
 		if(mob.pinned.len)
-			src << "<font color='blue'>You're pinned to a wall by [mob.pinned[1]]!</font>"
+			to_chat(src, "<font color='blue'>You're pinned to a wall by [mob.pinned[1]]!</font>")
 			return 0
 
 		mob.move_delay = world.time//set move delay
@@ -385,6 +385,11 @@
 ///Return 1 for movement 0 for none
 /mob/proc/Process_Spacemove(var/check_drift = 0)
 
+	//VOREStation Edit begin: SHADEKIN
+	if(shadekin_phasing_check())
+		return
+	//VOREStation Edit end: SHADEKIN
+
 	if(!Check_Dense_Object()) //Nothing to push off of so end here
 		update_floating(0)
 		return 0
@@ -396,7 +401,7 @@
 
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)) && !buckled)
-		src << "<font color='blue'><B>You slipped!</B></font>"
+		to_chat(src, "<font color='blue'><B>You slipped!</B></font>")
 		src.inertia_dir = src.last_move
 		step(src, src.inertia_dir)
 		return 0

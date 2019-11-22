@@ -322,6 +322,12 @@
 		qdel(src)
 
 /obj/item/toy/snappop/Crossed(H as mob|obj)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = H
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	if((ishuman(H))) //i guess carp and shit shouldn't set them off
 		var/mob/living/carbon/M = H
 		if(M.m_intent == "run")
@@ -938,7 +944,7 @@
 /obj/item/toy/plushie/mouse
 	name = "mouse plush"
 	desc = "A plushie of a delightful mouse! What was once considered a vile rodent is now your very best friend."
-	icon_state = "mouseplushie"
+	icon_state = "mouseplushie"	//TFF 12/11/19 - updated icon to show a sprite that doesn't replicate a dead mouse. Heck you for that! >:C
 	pokephrase = "Squeak!"
 
 /obj/item/toy/plushie/kitten

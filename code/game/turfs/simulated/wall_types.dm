@@ -59,6 +59,9 @@
 /turf/simulated/wall/snowbrick/New(var/newloc)
 	..(newloc,"packed snow")
 
+/turf/simulated/wall/resin/New(var/newloc)
+	..(newloc,"resin",null,"resin")
+
 // Kind of wondering if this is going to bite me in the butt.
 /turf/simulated/wall/skipjack/New(var/newloc)
 	..(newloc,"alienalloy")

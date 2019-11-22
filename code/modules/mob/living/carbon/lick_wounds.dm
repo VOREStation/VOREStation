@@ -9,7 +9,7 @@
 
 	if ( ! (istype(src, /mob/living/carbon/human) || \
 			istype(src, /mob/living/silicon)) )
-		src << "<span class='warning'>If you even have a tongue, it doesn't work that way.</span>"
+		to_chat(src, "<span class='warning'>If you even have a tongue, it doesn't work that way.</span>")
 		return
 
 	if (istype(M, /mob/living/carbon/human))
