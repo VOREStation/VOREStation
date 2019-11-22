@@ -318,6 +318,7 @@
 /obj/effect/floor_decal/corner/red/bordercorner2{
 	dir = 5
 	},
+/obj/machinery/camera/network/security,
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
 "aI" = (
@@ -553,6 +554,10 @@
 	name = "Cell 2 Door";
 	pixel_x = -28;
 	req_access = list(1,2)
+	},
+/obj/machinery/camera/network/security{
+	icon_state = "camera";
+	dir = 5
 	},
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)

@@ -9075,11 +9075,10 @@
 /turf/simulated/wall/r_wall,
 /area/bridge/meeting_room)
 "asd" = (
-/obj/machinery/door/airlock/command{
-	name = "Teleport Access";
-	req_access = list(17)
-	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/command{
+	name = "Command Meeting Room"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge/meeting_room)
 "ase" = (
@@ -9091,10 +9090,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
 "asf" = (
-/obj/machinery/door/airlock/command{
-	name = "Teleport Access";
-	req_access = list(17)
-	},
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
 	icon_state = "1-2";
@@ -9103,6 +9098,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/command{
+	name = "Command Meeting Room"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge/meeting_room)
 "asg" = (
