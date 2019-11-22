@@ -4001,9 +4001,8 @@
 /obj/effect/floor_decal/corner/lightgrey/border{
 	dir = 6
 	},
-/obj/machinery/camera/network/security{
-	icon_state = "camera";
-	dir = 8
+/obj/machinery/camera/network/tether{
+	dir = 9
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
