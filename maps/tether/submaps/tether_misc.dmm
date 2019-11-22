@@ -10290,8 +10290,9 @@
 /area/skipjack_station/start)
 "xQ" = (
 /obj/machinery/computer/shuttle_control/web/ninja{
-	icon_state = "flightcomp_center";
-	dir = 1
+	dir = 1;
+	icon = 'icons/obj/computer.dmi';
+	icon_state = "flightcomp_center"
 	},
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/ninja_dojo/start)
@@ -11131,7 +11132,9 @@
 	},
 /area/ninja_dojo/dojo)
 "Ge" = (
-/obj/machinery/computer/shuttle_control/web/heist,
+/obj/machinery/computer/shuttle_control/web/heist{
+	icon = 'icons/obj/computer.dmi'
+	},
 /turf/simulated/shuttle/floor/darkred,
 /area/skipjack_station/start)
 "Gi" = (

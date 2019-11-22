@@ -10,9 +10,6 @@
 	#include "tether_shuttles.dm"
 	#include "tether_telecomms.dm"
 
-	#include "shuttles/heist.dm"
-	#include "shuttles/ninja.dm"
-
 	#include "tether-01-surface1.dmm"
 	#include "tether-02-surface2.dmm"
 	#include "tether-03-surface3.dmm"
