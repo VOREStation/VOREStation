@@ -48,7 +48,7 @@
 
 
 // tucker0666 : Frost
-/datum/robolimb/zenghu
+/datum/robolimb/zenghu_frost
     company = "Zeng-Hu"
     desc = "This limb has realistic synthetic flesh covering with 'blue accents'."
     icon = 'icons/mob/human_races/cyberlimbs/_fluff_vr/Frosty.dmi'
@@ -59,8 +59,8 @@
     whitelisted_to = list("tucker0666")
 
 
-/obj/item/weapon/disk/limb/zenghu
-    company = "Zeng-Hu"
+/obj/item/weapon/disk/limb/zenghu_frost
+    company = "Zeng-Hu (Modified)"
     catalogue_data = list(/datum/category_item/catalogue/information/organization/zeng_hu)
 
 //////////////// General VS-only ones /////////////////
