@@ -3310,6 +3310,7 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
+#include "maps\RandomZLevels\blackmarketpackers.dm"
 #include "maps\southern_cross\southern_cross_jobs_vr.dm"
 #include "maps\southern_cross\items\encryptionkey_sc.dm"
 #include "maps\southern_cross\items\encryptionkey_vr.dm"

@@ -1088,7 +1088,7 @@
 	name = "Small Cruiser Shuttle - Station"
 	icon_state = "blue2"
 
-
+// ERT/Deathsquad Shuttle
 /area/shuttle/specialops/centcom
 	name = "Special Operations Shuttle - Centcom"
 	icon_state = "shuttlered"
@@ -1097,6 +1097,11 @@
 /area/shuttle/specialops/tether
 	name = "Special Operations Shuttle - Tether"
 	icon_state = "shuttlered"
+
+/area/shuttle/specialops/transit
+	name = "transit"
+	icon_state = "shuttlered"
+	base_turf = /turf/space/transit/east
 
 // Tether Map has this shuttle
 /area/shuttle/tether/surface
@@ -1112,6 +1117,59 @@
 	name = "Tether Shuttle Transit"
 	icon_state = "shuttle2"
 
+//Skipjack
+
+/area/skipjack_station
+	name = "Raider Outpost"
+	icon_state = "yellow"
+	requires_power = 0
+	dynamic_lighting = 0
+	flags = RAD_SHIELDED
+	ambience = AMBIENCE_HIGHSEC
+
+/area/skipjack_station/transit
+	name = "transit"
+	icon_state = "shuttlered"
+	base_turf = /turf/space/transit/north
+
+/area/skipjack_station/orbit
+	name = "near the Tether"
+	icon_state = "northwest"
+
+/area/skipjack_station/arrivals_dock
+	name = "\improper docked with Tether"
+	icon_state = "shuttle"
+
+// Ninja areas
+/area/ninja_dojo
+	name = "\improper Ninja Base"
+	icon_state = "green"
+	requires_power = 0
+	flags = RAD_SHIELDED
+	ambience = AMBIENCE_HIGHSEC
+
+/area/ninja_dojo/dojo
+	name = "\improper Clan Dojo"
+	dynamic_lighting = 0
+
+/area/ninja_dojo/start
+	name = "\improper Clan Dojo"
+	icon_state = "shuttlered"
+	base_turf = /turf/simulated/floor/plating
+
+/area/ninja_dojo/orbit
+	name = "near the Tether"
+	icon_state = "south"
+
+/area/ninja_dojo/transit
+	name = "transit"
+	icon_state = "shuttlered"
+	base_turf = /turf/space/transit/north
+
+/area/ninja_dojo/arrivals_dock
+	name = "\improper docked with Tether"
+	icon_state = "shuttle"
+	dynamic_lighting = 0
 
 // Exclude some more areas from the atmos leak event so people don't get trapped when spawning.
 /datum/event/atmos_leak/setup()
