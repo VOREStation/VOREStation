@@ -4852,7 +4852,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/maintenance/engi,
+/obj/machinery/door/airlock/maintenance/engi{
+	name = "Space Civ/Com Substation"
+	},
 /turf/simulated/floor,
 /area/maintenance/substation/spacecommand)
 "aio" = (
@@ -11108,7 +11110,7 @@
 /area/hallway/station/atrium)
 "aun" = (
 /obj/machinery/power/breakerbox/activated{
-	RCon_tag = "Civilian Substation Bypass"
+	RCon_tag = "Space Civ/Com Substation Bypass"
 	},
 /obj/machinery/light/small{
 	dir = 8;
@@ -11294,7 +11296,7 @@
 	charge = 0;
 	output_attempt = 0;
 	outputting = 0;
-	RCon_tag = "Substation - Civilian"
+	RCon_tag = "Substation - Space Civ/Com"
 	},
 /obj/structure/cable/green,
 /obj/structure/cable/green{
@@ -11352,17 +11354,14 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/stairs_one)
 "auQ" = (
-/obj/structure/cable/green,
+/obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/structure/cable/green{
+	d1 = 4;
 	d2 = 8;
-	icon_state = "0-8"
+	icon_state = "4-8"
 	},
-/obj/machinery/power/sensor{
-	name = "Powernet Sensor - Civilian Subgrid";
-	name_tag = "Civilian Subgrid"
+/obj/machinery/door/airlock/maintenance/engi{
+	name = "Space Civ/Com Substation"
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/spacecommand)
@@ -11603,12 +11602,17 @@
 /turf/simulated/floor/tiled,
 /area/engineering/workshop)
 "avp" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/maintenance/engi,
+/obj/structure/cable/green,
 /obj/structure/cable/green{
-	d1 = 4;
+	icon_state = "0-4"
+	},
+/obj/structure/cable/green{
 	d2 = 8;
-	icon_state = "4-8"
+	icon_state = "0-8"
+	},
+/obj/machinery/power/sensor{
+	name = "Powernet Sensor - Space Civ/Com Subgrid";
+	name_tag = "Space Civ/Com Subgrid"
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/spacecommand)
@@ -12452,6 +12456,11 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled,
 /area/bridge/secondary/hallway)
@@ -16404,6 +16413,39 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
+"aCW" = (
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/cable/green{
+	d1 = 16;
+	d2 = 0;
+	icon_state = "16-0"
+	},
+/turf/simulated/floor/tiled,
+/area/bridge/secondary/hallway)
+"aCX" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/device/radio/beacon,
+/turf/simulated/floor/tiled,
+/area/hallway/station/atrium)
+"aCY" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/item/device/radio/beacon,
+/turf/simulated/floor/tiled,
+/area/hallway/station/docks)
 "aDh" = (
 /obj/machinery/door/airlock{
 	name = "Unit 3"
@@ -29752,7 +29794,7 @@ bou
 azN
 aws
 aBb
-btF
+aCY
 aBZ
 aCJ
 aaa
@@ -33445,7 +33487,7 @@ adj
 adj
 adj
 adj
-avp
+auQ
 avb
 avV
 awA
@@ -33587,7 +33629,7 @@ adj
 ait
 aun
 auL
-auQ
+avp
 avb
 avW
 axq
@@ -34143,7 +34185,7 @@ acy
 adc
 adc
 acT
-acp
+aCX
 aCr
 acV
 aAv
@@ -34584,7 +34626,7 @@ azc
 ahe
 ahm
 avY
-axy
+aCW
 ahN
 aiE
 axI

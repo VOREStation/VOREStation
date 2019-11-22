@@ -20131,8 +20131,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/camera/network/cargo{
-	c_tag = "CRG - Cargo Warehouse";
-	dir = 9
+	icon_state = "camera";
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/lobby)
