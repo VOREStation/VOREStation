@@ -16628,6 +16628,16 @@
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"Sc" = (
+/obj/machinery/atm{
+	pixel_x = 0;
+	pixel_y = 26
+	},
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/centcom/specops)
 "Si" = (
 /obj/effect/floor_decal/derelict/d14,
 /turf/unsimulated/floor/steel,
@@ -32640,7 +32650,7 @@ aZ
 aG
 bH
 ah
-aX
+Sc
 aX
 aX
 ah
