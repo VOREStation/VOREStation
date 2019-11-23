@@ -25059,12 +25059,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/conveyor_switch/oneway{
+/obj/machinery/conveyor_switch{
 	id = "gloriouscargopipeline";
-	layer = 3.3;
-	name = "Surface delivery conveyor";
-	pixel_x = 14;
-	pixel_y = -3
+	name = "Mining Supply conveyor switch";
+	pixel_x = 0;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/steel,
 /area/quartermaster/warehouse)
