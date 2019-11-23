@@ -4785,9 +4785,6 @@
 /area/tether/surfacebase/mining_main/lobby)
 "ail" = (
 /obj/effect/floor_decal/rust,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
 /obj/structure/plasticflaps,
 /obj/machinery/disposal/deliveryChute{
 	dir = 4
@@ -4796,6 +4793,7 @@
 	dir = 4;
 	id = "gloriouscargopipeline"
 	},
+/obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/ore)
 "aim" = (
@@ -6864,9 +6862,6 @@
 /area/maintenance/lower/mining_eva)
 "alY" = (
 /obj/effect/floor_decal/rust,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/conveyor{
 	dir = 4;
 	id = "gloriouscargopipeline"
@@ -7067,15 +7062,8 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether/surfacebase/mining_main/ore)
 "ams" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "gloriouscargopipeline"
-	},
-/turf/simulated/floor/tiled/steel_dirty,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/wall,
 /area/tether/surfacebase/mining_main/ore)
 "amt" = (
 /obj/structure/cable/green{
@@ -7691,7 +7679,6 @@
 	name = "Mining Maintenance Access";
 	req_one_access = list(48)
 	},
-/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/ore)
 "anp" = (
@@ -21078,32 +21065,13 @@
 /turf/simulated/floor/lino,
 /area/crew_quarters/visitor_dining)
 "aIA" = (
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 1
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
 	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/brown/bordercorner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/brown/bordercorner2{
-	dir = 1
-	},
-/obj/machinery/light_switch{
-	dir = 2;
-	name = "light switch ";
-	pixel_x = 10;
-	pixel_y = 32
-	},
-/obj/machinery/conveyor_switch/oneway{
-	id = "gloriouscargopipeline";
-	layer = 3.3;
-	name = "outbound conveyor";
-	pixel_y = 14
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/mining_main/surfacecargo)
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining_eva)
 "aIB" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -31889,6 +31857,33 @@
 /obj/structure/closet/firecloset,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
+"bcO" = (
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/brown/bordercorner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/brown/bordercorner2{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	dir = 2;
+	name = "light switch ";
+	pixel_x = 10;
+	pixel_y = 32
+	},
+/obj/machinery/conveyor_switch{
+	id = "gloriouscargopipeline";
+	name = "Mining Supply conveyor switch";
+	pixel_x = 14;
+	pixel_y = -3
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/mining_main/surfacecargo)
 "cGJ" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
@@ -43331,8 +43326,8 @@ aeE
 age
 afD
 ail
-aer
-bbE
+ams
+aIA
 air
 bcg
 agM
@@ -43474,7 +43469,7 @@ aff
 alJ
 alY
 aer
-bbE
+bcf
 bcf
 bcg
 agM
@@ -43614,9 +43609,9 @@ aer
 afe
 agf
 agf
-ams
+amO
 ano
-bce
+bcf
 bcf
 cGJ
 agM
@@ -44468,7 +44463,7 @@ afi
 amv
 agj
 amw
-aIA
+bcO
 bbv
 bbC
 amc

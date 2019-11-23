@@ -15282,10 +15282,23 @@
 /turf/simulated/wall,
 /area/hydroponics)
 "azu" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
+/obj/structure/disposalpipe/sortjunction{
+	dir = 4;
+	icon_state = "pipe-j1s";
+	name = "Robotics";
+	sortType = "Robotics"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/assembly/robotics)
 "azv" = (
 /obj/structure/sign/double/barsign{
 	dir = 8
@@ -26566,6 +26579,11 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/steel,
 /area/rnd/outpost/xenobiology/outpost_first_aid)
+"aSC" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
 "aSD" = (
 /obj/structure/sign/redcross,
 /turf/simulated/wall,
@@ -30886,24 +30904,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/bridge)
-"baB" = (
-/obj/structure/disposalpipe/sortjunction{
-	dir = 4;
-	icon_state = "pipe-j1s";
-	name = "Command Meeting Room";
-	sortType = "Command Meeting Room"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/assembly/robotics)
 "baE" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/steeldecal/steel_decals7{
@@ -40435,7 +40435,7 @@ aCA
 aGT
 aHK
 aCz
-baB
+azu
 aJR
 aKK
 aLr
@@ -45274,7 +45274,7 @@ aNk
 aNl
 aNJ
 aNP
-azu
+aSC
 aKU
 abg
 aOk
@@ -45416,7 +45416,7 @@ aNl
 aNl
 aNK
 aNP
-azu
+aSC
 aKU
 abg
 aOk
@@ -45558,7 +45558,7 @@ aNm
 aNl
 aNK
 aNP
-azu
+aSC
 aKU
 abg
 aOk
