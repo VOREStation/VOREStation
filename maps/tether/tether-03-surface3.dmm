@@ -21551,12 +21551,10 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 1
 	},
+/obj/machinery/light,
 /obj/machinery/alarm{
 	dir = 1;
-	pixel_y = -25
-	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 1
+	pixel_y = -22
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
@@ -21593,17 +21591,10 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "aIE" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/lightgrey/border,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 8
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 1
-	},
-/obj/machinery/light,
-/turf/simulated/floor/tiled,
-/area/hallway/lower/third_south)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
 "aIF" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/closet/secure_closet/security,
@@ -26615,11 +26606,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge_hallway)
-"aSF" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
 "aSG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -43983,7 +43969,7 @@ aFX
 aAB
 aHl
 aHY
-aIB
+aIG
 ats
 aKf
 aKf
@@ -44693,7 +44679,7 @@ aGb
 awR
 aHo
 aIa
-aIE
+aIB
 ats
 aKk
 aKY
@@ -45273,7 +45259,7 @@ aNk
 aNl
 aNJ
 aNP
-aSF
+aIE
 aKU
 abg
 aOk
@@ -45415,7 +45401,7 @@ aNl
 aNl
 aNK
 aNP
-aSF
+aIE
 aKU
 abg
 aOk
@@ -45557,7 +45543,7 @@ aNm
 aNl
 aNK
 aNP
-aSF
+aIE
 aKU
 abg
 aOk
