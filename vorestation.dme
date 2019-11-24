@@ -2392,21 +2392,15 @@
 #include "code\modules\mob\living\silicon\robot\drone\drone_items.dm"
 #include "code\modules\mob\living\silicon\robot\drone\drone_manufacturer.dm"
 #include "code\modules\mob\living\silicon\robot\drone\drone_say.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\mob\living\silicon\robot\drone\drone_vr.dm"
-=======
 #include "code\modules\mob\living\silicon\robot\drone\swarm.dm"
 #include "code\modules\mob\living\silicon\robot\drone\swarm_abilities.dm"
 #include "code\modules\mob\living\silicon\robot\drone\swarm_items.dm"
->>>>>>> 7ecdcb4... Security / PseudoCargo Expansion (#6482):polaris.dme
 #include "code\modules\mob\living\silicon\robot\robot_modules\event.dm"
 #include "code\modules\mob\living\silicon\robot\robot_modules\event_vr.dm"
 #include "code\modules\mob\living\silicon\robot\robot_modules\station.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\mob\living\silicon\robot\robot_modules\station_vr.dm"
-=======
 #include "code\modules\mob\living\silicon\robot\robot_modules\swarm.dm"
->>>>>>> 7ecdcb4... Security / PseudoCargo Expansion (#6482):polaris.dme
 #include "code\modules\mob\living\silicon\robot\robot_modules\syndicate.dm"
 #include "code\modules\mob\living\silicon\robot\subtypes\gravekeeper.dm"
 #include "code\modules\mob\living\silicon\robot\subtypes\lost_drone.dm"
