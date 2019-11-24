@@ -20,3 +20,20 @@
 		if((I_HELP) && U.canClick()) //a little snowflakey, but makes it use the same cooldown as interacting with non-inventory objects
 			U.setClickCooldown(U.get_attack_speed()) //if there's a cleaner way in baycode, I'll change this
 			U.visible_message("<span class='notice'>[U] [M.response_help] \the [M].</span>")
+
+/mob/living/simple_mob/animal/passive/mouse/MouseDrop(var/obj/item/weapon/storage/S)
+	if(istype(S, /obj/item/weapon/storage))
+		var/obj/item/weapon/holder/H = new holder_type(get_turf(src)) //this works weird, but it creates an empty holder, to see if that holder can fit
+		if(S.can_be_inserted(H))
+			H.held_mob = src
+			src.forceMove(H)
+			visible_message("<span class='notice'>\the [src] squeezes into \the [S].</span>")
+			H.forceMove(S)
+			H.sync(src)
+			return 1
+		else
+			qdel(H) //this deletes the empty holder if it doesnt work
+			to_chat(usr,"<span class='notice'>You can't fit inside \the [S]!</span>")
+			return 0
+	else
+		..()
