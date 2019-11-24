@@ -234,9 +234,7 @@
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "Ballistic armor crate"
 	access = access_armory
-<<<<<<< HEAD
 /* VOREStation Removal - Howabout no ERT armor being orderable?
-=======
 
 /datum/supply_pack/security/bullet_resistant_plates
 	name = "Armor - Ballistic plates"
@@ -252,7 +250,6 @@
 	containername = "Ballistic armor crate"
 	access = access_armory
 
->>>>>>> 7ecdcb4... Security / PseudoCargo Expansion (#6482)
 /datum/supply_pack/security/combat_armor
 	name = "Armor - Combat"
 	contains = list(
@@ -578,8 +575,6 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Security biohazard gear"
 	access = access_security
-<<<<<<< HEAD
-=======
 
 /datum/supply_pack/security/posters
 	name = "Gear - Morale Posters"
@@ -590,4 +585,3 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Morale Posters"
 	access = access_maint_tunnels
->>>>>>> 7ecdcb4... Security / PseudoCargo Expansion (#6482)
