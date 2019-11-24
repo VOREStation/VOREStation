@@ -55,6 +55,10 @@
 			message = "lets out a hiss."
 			m_type = 2
 			playsound(loc, 'sound/voice/hiss.ogg', 50, 1, -1)
+		if ("squeak")
+			message = "lets out a squeak."
+			m_type = 2
+			playsound(loc, 'sound/effects/mouse_squeak.ogg', 50, 1, -1)
 		if ("nsay")
 			nsay()
 			return TRUE
