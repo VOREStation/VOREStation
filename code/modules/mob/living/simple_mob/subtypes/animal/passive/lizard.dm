@@ -22,3 +22,23 @@
 	speak_emote = list("hisses")
 
 	say_list_type = /datum/say_list/lizard
+
+/mob/living/simple_mob/animal/passive/lizard/large
+	desc = "A cute, big lizard."
+	maxHealth = 20
+	health = 20
+
+	melee_damage_lower = 5
+	melee_damage_upper = 15
+
+	attack_sharp = TRUE
+
+/mob/living/simple_mob/animal/passive/lizard/large/Initialize()
+	..()
+	adjust_scale(rand(12, 20) / 10)
+
+/mob/living/simple_mob/animal/passive/lizard/large/defensive
+	maxHealth = 30
+	health = 30
+
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative
