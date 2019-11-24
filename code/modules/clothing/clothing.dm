@@ -80,6 +80,16 @@
 				return 0
 	return 1
 
+/obj/item/clothing/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	. = ..()
+	if((. == 0) && LAZYLEN(accessories))
+		for(var/obj/item/I in accessories)
+			var/check = I.handle_shield(user, damage, damage_source, attacker, def_zone, attack_text)
+
+			if(check != 0)	// Projectiles sometimes use negatives IIRC, 0 is only returned if something is not blocked.
+				. = check
+				break
+
 /obj/item/clothing/proc/refit_for_species(var/target_species)
 	if(!species_restricted)
 		return //this item doesn't use the species_restricted system
