@@ -489,7 +489,7 @@ datum/species/harpy
 	siemens_coefficient = 0
 	darksight = 10
 
-	slowdown = 1.1
+	slowdown = 0.5
 	item_slowdown_mod = 1.5
 
 	total_health = 75
