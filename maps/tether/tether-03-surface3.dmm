@@ -684,14 +684,18 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "abw" = (
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 9
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 8
 	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 9
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 8
 	},
+/obj/machinery/camera/network/medbay{
+	icon_state = "camera";
+	dir = 4
+	},
+/obj/structure/table/glass,
+/obj/machinery/recharger,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "abx" = (
@@ -2217,8 +2221,6 @@
 /area/vacant/vacant_site2)
 "aea" = (
 /obj/structure/table/glass,
-/obj/item/bodybag/cryobag,
-/obj/item/bodybag/cryobag,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
@@ -2229,7 +2231,6 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 8
 	},
-/obj/item/device/sleevemate,
 /obj/item/device/radio/intercom/department/medbay{
 	dir = 8;
 	pixel_x = -24
@@ -2247,16 +2248,29 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/armory)
 "aec" = (
+/obj/structure/table/glass,
+/obj/item/weapon/storage/box/syringes,
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 8
+	dir = 10
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
-	dir = 8
+	dir = 10
+	},
+/obj/machinery/requests_console{
+	announcementConsole = 1;
+	department = "Medical Department";
+	departmentType = 3;
+	name = "Medical RC";
+	pixel_x = -30;
+	pixel_y = 0
 	},
 /obj/machinery/camera/network/medbay{
 	icon_state = "camera";
-	dir = 4
+	dir = 10
 	},
+/obj/item/bodybag/cryobag,
+/obj/item/bodybag/cryobag,
+/obj/item/device/sleevemate,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "aed" = (
@@ -15265,26 +15279,15 @@
 /turf/simulated/wall,
 /area/hydroponics)
 "azu" = (
-/obj/structure/table/glass,
-/obj/item/weapon/storage/box/syringes,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 10
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 9
 	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 10
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 9
 	},
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Medical Department";
-	departmentType = 3;
-	name = "Medical RC";
-	pixel_x = -30;
-	pixel_y = 0
-	},
-/obj/machinery/camera/network/medbay{
-	icon_state = "camera";
-	dir = 10
-	},
+/obj/machinery/mech_recharger,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "azv" = (
@@ -43641,7 +43644,7 @@ adM
 aea
 afb
 aga
-azu
+aec
 aag
 afF
 aja
@@ -43918,7 +43921,7 @@ aaD
 aag
 aao
 aeH
-aec
+abw
 aaH
 aaR
 aba
@@ -44067,7 +44070,7 @@ aaI
 aaS
 acc
 acO
-abw
+azu
 agn
 aiB
 aUV
