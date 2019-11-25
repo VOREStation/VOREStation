@@ -21591,10 +21591,11 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "aIE" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/library)
 "aIF" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/closet/secure_closet/security,
@@ -26606,6 +26607,11 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge_hallway)
+"aSF" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
 "aSG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -42397,7 +42403,7 @@ axg
 azP
 axg
 axg
-azT
+aIE
 aEP
 aEG
 azT
@@ -45259,7 +45265,7 @@ aNk
 aNl
 aNJ
 aNP
-aIE
+aSF
 aKU
 abg
 aOk
@@ -45401,7 +45407,7 @@ aNl
 aNl
 aNK
 aNP
-aIE
+aSF
 aKU
 abg
 aOk
@@ -45543,7 +45549,7 @@ aNm
 aNl
 aNK
 aNP
-aIE
+aSF
 aKU
 abg
 aOk
