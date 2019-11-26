@@ -37,7 +37,7 @@
 	if(istype(O, /obj/item/weapon/storage) && O.Adjacent(src)) //controls diving into storage
 		var/obj/item/weapon/storage/S = O
 		var/obj/item/weapon/holder/H = new holder_type(get_turf(src)) //this works weird, but it creates an empty holder, to see if that holder can fit
-		if(S.can_be_inserted(H))
+		if(S.can_be_inserted(H) && (src.size_multiplier <= 0.75))
 			H.held_mob = src
 			src.forceMove(H)
 			visible_message("<span class='notice'>\the [src] squeezes into \the [S].</span>")
