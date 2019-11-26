@@ -9,9 +9,14 @@
 
 	desc = "A small rodent, often seen hiding in maintenance areas and making a nuisance of itself. And stealing cheese, or annoying the chef. SQUEAK! <3"
 
-/mob/living/simple_mob/animal/passive/mouse/attack_hand(mob/living/hander)
-	if(hander.a_intent == I_HELP) //if lime intent
-		get_scooped(hander) //get scooped
+	size_multiplier = 0.25
+	movement_cooldown = 1 //roughly half the speed of a person
+	universal_understand = 1
+
+/mob/living/simple_mob/animal/passive/mouse/attack_hand(mob/living/L)
+	if(L.a_intent == I_HELP) //if lime intent
+		if(!src.attempt_to_scoop(L)) //the superior way to handle scooping, checks size
+			..() //mouse too big to grab? pet the large mouse instead
 	else
 		..()
 
@@ -21,8 +26,16 @@
 			U.setClickCooldown(U.get_attack_speed()) //if there's a cleaner way in baycode, I'll change this
 			U.visible_message("<span class='notice'>[U] [M.response_help] \the [M].</span>")
 
-/mob/living/simple_mob/animal/passive/mouse/MouseDrop(var/obj/item/weapon/storage/S)
-	if(istype(S, /obj/item/weapon/storage))
+
+/mob/living/simple_mob/animal/passive/mouse/MouseDrop(var/obj/O) //this proc would be very easy to apply to all mobs with holders
+	if(!(usr == src || O))
+		return ..()
+	if(istype(O, /mob/living) && O.Adjacent(src)) //controls scooping by mobs
+		var/mob/living/L = O
+		if(!src.attempt_to_scoop(L, (src == usr)))
+			return //this way it doesnt default to the generic animal pickup which isnt size restricted
+	if(istype(O, /obj/item/weapon/storage) && O.Adjacent(src)) //controls diving into storage
+		var/obj/item/weapon/storage/S = O
 		var/obj/item/weapon/holder/H = new holder_type(get_turf(src)) //this works weird, but it creates an empty holder, to see if that holder can fit
 		if(S.can_be_inserted(H))
 			H.held_mob = src
@@ -37,3 +50,8 @@
 			return 0
 	else
 		..()
+
+/mob/living/simple_mob/animal/passive/mouse/resize(var/new_size, var/animate = TRUE)
+	size_multiplier = max(size_multiplier + 0.75, 1) //keeps sprite sizes consistent, keeps multiplier values low
+	..()
+	size_multiplier = max(size_multiplier - 0.75, 0.25) //the limits here ensure no negative values or infinite shrinkage
