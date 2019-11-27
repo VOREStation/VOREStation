@@ -3,56 +3,28 @@
 /turf/unsimulated/wall/planetary/sif,
 /area/awaymission/snowfield/restricted)
 "ab" = (
-/turf/snow/snow2{
-	nitrogen = 93.7835;
-	oxygen = 20.7263;
-	temperature = 243.15
-	},
+/turf/simulated/floor/outdoors/snow,
 /area/awaymission/snowfield/restricted)
 "ac" = (
 /obj/effect/blocker,
-/turf/snow/snow2{
-	nitrogen = 93.7835;
-	oxygen = 20.7263;
-	temperature = 243.15
-	},
+/turf/simulated/floor/outdoors/snow,
 /area/awaymission/snowfield/restricted)
 "ad" = (
-/turf/snow/snow2{
-	nitrogen = 93.7835;
-	oxygen = 20.7263;
-	temperature = 243.15
-	},
+/turf/simulated/floor/outdoors/snow,
 /area/awaymission/snowfield/outside)
 "ae" = (
-/turf/snow/snow2{
-	nitrogen = 93.7835;
-	oxygen = 20.7263;
-	temperature = 243.15
-	},
+/turf/simulated/floor/outdoors/snow,
 /area/awaymission/snowfield)
 "af" = (
 /obj/effect/landmark/gateway_scatter,
-/turf/snow/snow2{
-	nitrogen = 93.7835;
-	oxygen = 20.7263;
-	temperature = 243.15
-	},
+/turf/simulated/floor/outdoors/snow,
 /area/awaymission/snowfield)
 "ag" = (
 /obj/machinery/light/small,
-/turf/snow/snow2{
-	nitrogen = 93.7835;
-	oxygen = 20.7263;
-	temperature = 243.15
-	},
+/turf/simulated/floor/outdoors/snow,
 /area/awaymission/snowfield/base)
 "ah" = (
-/turf/snow/snow2{
-	nitrogen = 93.7835;
-	oxygen = 20.7263;
-	temperature = 243.15
-	},
+/turf/simulated/floor/outdoors/snow,
 /area/awaymission/snowfield/base)
 "ai" = (
 /turf/simulated/wall/durasteel,
@@ -1369,13 +1341,6 @@
 /obj/effect/decal/remains/human,
 /turf/simulated/floor/tiled/neutral,
 /area/awaymission/snowfield/base)
-"dT" = (
-/turf/snow/snow2{
-	nitrogen = 93.7835;
-	oxygen = 20.7263;
-	temperature = 243.15
-	},
-/area/shuttle/awaymission/oldengbase)
 "dU" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/effect/decal/remains/human,
@@ -13521,7 +13486,7 @@ ad
 ad
 ad
 ad
-dT
+ad
 ad
 ad
 ad
