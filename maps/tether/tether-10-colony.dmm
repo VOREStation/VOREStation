@@ -666,6 +666,13 @@
 	join_group = "shuttle_ert"
 	},
 /area/shuttle/specialops/centcom)
+"bi" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/tool/screwdriver,
+/obj/item/weapon/tool/wrench,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "bk" = (
 /obj/machinery/iv_drip,
 /turf/unsimulated/floor{
@@ -1572,6 +1579,13 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"cJ" = (
+/turf/unsimulated/wall{
+	icon = 'icons/obj/doors/Dooruranium.dmi';
+	icon_state = "door_closed";
+	name = "Sealed Door"
+	},
+/area/houseboat)
 "cM" = (
 /obj/structure/table/reinforced,
 /obj/effect/floor_decal/industrial/outline/blue,
@@ -3341,6 +3355,16 @@
 	name = "plating"
 	},
 /area/centcom/control)
+"gj" = (
+/obj/machinery/computer/HolodeckControl/holodorm/one,
+/obj/effect/floor_decal/spline/plain{
+	dir = 4
+	},
+/obj/machinery/status_display{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "gk" = (
 /obj/structure/table/rack,
 /obj/item/clothing/under/color/red,
@@ -3450,6 +3474,17 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
+"gx" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/book/codex,
+/turf/simulated/floor/carpet/blue,
+/area/houseboat)
+"gz" = (
+/obj/item/device/defib_kit/jumper_kit,
+/obj/structure/table/steel_reinforced,
+/obj/item/device/robotanalyzer,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "gC" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -4383,6 +4418,12 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"iA" = (
+/obj/item/modular_computer/console/preset/ert{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/houseboat)
 "iB" = (
 /obj/machinery/door/blast/regular{
 	id = "thunderdomehea";
@@ -4417,6 +4458,17 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"iH" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"iJ" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/space,
+/area/houseboat)
 "iO" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -4662,6 +4714,12 @@
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"jt" = (
+/obj/structure/table/rack/shelf,
+/obj/item/device/defib_kit/compact/combat/loaded,
+/obj/item/device/defib_kit/compact/combat/loaded,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "ju" = (
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/unsimulated/floor/steel,
@@ -5484,6 +5542,12 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/security)
+"kP" = (
+/obj/machinery/computer/prisoner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "kQ" = (
 /obj/machinery/door/airlock/glass_medical{
 	name = "Virology Laboratory"
@@ -5933,6 +5997,10 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/security)
+"lE" = (
+/obj/machinery/cryopod/robot,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "lH" = (
 /obj/machinery/vending/snack,
 /obj/effect/floor_decal/borderfloorwhite{
@@ -7046,6 +7114,15 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/security)
+"nO" = (
+/obj/structure/table/rack/shelf,
+/obj/item/clothing/suit/space/void/medical/alt,
+/obj/item/clothing/head/helmet/space/void/medical/emt,
+/obj/item/weapon/tank/oxygen,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/mask/breath,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "nP" = (
 /obj/structure/table/standard,
 /obj/item/weapon/surgical/hemostat,
@@ -7152,34 +7229,6 @@
 	icon_state = "white"
 	},
 /area/centcom/medical)
-"nW" = (
-/obj/structure/table/glass,
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
-	pixel_x = -4;
-	pixel_y = 8
-	},
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
-	pixel_x = -3;
-	pixel_y = -2
-	},
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
-	pixel_x = 3;
-	pixel_y = 5
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/space)
 "nX" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
@@ -7682,6 +7731,12 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/security)
+"oN" = (
+/obj/machinery/computer/transhuman/resleeving{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "oO" = (
 /obj/structure/table/standard,
 /obj/item/weapon/surgical/bonesetter,
@@ -16062,6 +16117,53 @@
 	icon_state = "steel"
 	},
 /area/centcom/command)
+"Dn" = (
+/obj/machinery/seed_extractor,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Do" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen/prechilled,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Dq" = (
+/obj/machinery/mech_recharger,
+/turf/simulated/floor/bluegrid,
+/area/houseboat)
+"Du" = (
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/gun/energy/gun,
+/obj/item/weapon/gun/energy/gun,
+/obj/item/weapon/gun/energy/gun,
+/obj/item/weapon/gun/energy/gun,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Dx" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "burst_r";
+	dir = 8
+	},
+/turf/unsimulated/floor/shuttle_ceiling,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/specialops/centcom)
+"Dy" = (
+/obj/structure/table/rack/shelf,
+/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/advanced,
+/obj/item/device/healthanalyzer/advanced,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "DB" = (
 /obj/effect/landmark{
 	name = "Commando"
@@ -16078,6 +16180,33 @@
 	icon_state = "white"
 	},
 /area/centcom/medical)
+"DK" = (
+/obj/structure/table/steel_reinforced,
+/obj/fiftyspawner/phoron,
+/obj/machinery/reagentgrinder,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"DP" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/cell_charger,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"DT" = (
+/obj/structure/table/rack/shelf,
+/obj/item/rig_module/device/drill,
+/obj/item/rig_module/device/drill,
+/obj/item/rig_module/device/plasmacutter,
+/obj/item/rig_module/device/plasmacutter,
+/obj/item/rig_module/device/orescanner,
+/obj/item/rig_module/device/orescanner,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"DV" = (
+/obj/machinery/computer/message_monitor{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/houseboat)
 "Ea" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/storage/firstaid/clotting,
@@ -16087,10 +16216,30 @@
 	dir = 5
 	},
 /area/centcom/specops)
+"Eb" = (
+/obj/item/modular_computer/telescreen/preset/generic{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/houseboat)
+"Ec" = (
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/storage/backpack/dufflebag/syndie/med,
+/obj/item/weapon/storage/backpack/dufflebag/syndie/med,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"En" = (
+/obj/machinery/transhuman/resleever,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "Ev" = (
 /obj/effect/floor_decal/derelict/d5,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Ey" = (
+/obj/machinery/iv_drip,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "Ez" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/cell/hyper,
@@ -16109,6 +16258,20 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"EC" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/stamp/ward,
+/obj/item/weapon/stamp/denied{
+	pixel_x = 5
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"EG" = (
+/obj/machinery/computer/robotics{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/houseboat)
 "EI" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/launcher/rocket,
@@ -16125,12 +16288,62 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"EQ" = (
+/obj/machinery/computer/secure_data{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"ES" = (
+/obj/machinery/disposal,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"EU" = (
+/obj/structure/closet/crate/secure/gear,
+/obj/item/rig_module/chem_dispenser/injector/advanced,
+/obj/item/rig_module/vision/multi,
+/obj/item/weapon/rig/military/equipped,
+/obj/item/weapon/rig/pmc/commander,
+/obj/item/weapon/rig/pmc/medical,
+/obj/item/weapon/rig/pmc/engineer,
+/obj/item/weapon/rig/pmc/security,
+/obj/item/weapon/rig/pmc/security,
+/obj/item/weapon/rig/light/ninja,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"EV" = (
+/obj/structure/ghost_pod/manual/lost_drone/dogborg,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Fa" = (
+/obj/machinery/blackbox_recorder,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Fg" = (
+/turf/simulated/floor/tiled/steel_grid,
+/area/houseboat)
 "Fj" = (
 /obj/machinery/power/emitter,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"Fl" = (
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/gun/energy/laser,
+/obj/item/weapon/gun/energy/laser,
+/obj/item/weapon/gun/energy/laser,
+/obj/item/weapon/gun/energy/laser,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "Fo" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/storage/box/survival/comp{
@@ -16159,10 +16372,45 @@
 /obj/effect/floor_decal/derelict/d6,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Fq" = (
+/obj/item/weapon/storage/firstaid/toxin{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/weapon/storage/firstaid/toxin,
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Ft" = (
+/obj/machinery/computer/supplycomp{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/houseboat)
+"Fu" = (
+/obj/machinery/computer/communications{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/houseboat)
 "Fw" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Fx" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/houseboat)
+"FF" = (
+/obj/machinery/door_timer/cell_2{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "FL" = (
 /obj/structure/table/rack,
 /obj/item/clothing/accessory/storage/brown_vest,
@@ -16181,6 +16429,46 @@
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"FM" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"FN" = (
+/obj/machinery/teleport/station,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"FS" = (
+/obj/machinery/photocopier,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"FY" = (
+/obj/machinery/light,
+/turf/simulated/floor/reinforced{
+	name = "Holodeck Projector Floor"
+	},
+/area/houseboat)
+"Ge" = (
+/obj/machinery/seed_storage/xenobotany,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Gf" = (
+/obj/structure/bed/chair/wood{
+	icon_state = "wooden_chair";
+	dir = 8
+	},
+/turf/simulated/floor/carpet/blue,
+/area/houseboat)
+"Gh" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/weapon/reagent_containers/dropper,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Gi" = (
+/obj/machinery/transhuman/synthprinter,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "Gm" = (
 /obj/structure/table/rack,
 /obj/item/weapon/rig/ert/engineer,
@@ -16190,6 +16478,37 @@
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"Gs" = (
+/obj/structure/table/rack/shelf,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/ammo_magazine/m9mm/large/preban,
+/obj/item/weapon/gun/projectile/p92x,
+/obj/item/weapon/gun/projectile/p92x,
+/obj/item/weapon/gun/projectile/p92x,
+/obj/item/weapon/gun/projectile/p92x,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Gu" = (
+/obj/machinery/door/airlock/highsecurity,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Gy" = (
+/obj/machinery/cooker/candy,
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"GB" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/device/camera,
+/obj/item/device/retail_scanner/security,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "GG" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/launcher/grenade,
@@ -16198,12 +16517,22 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"GI" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/houseboat)
 "GL" = (
 /obj/machinery/pipedispenser/disposal/orderable,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"GN" = (
+/obj/machinery/vending/medical,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "GQ" = (
 /obj/effect/floor_decal/steeldecal/steel_decals9,
 /obj/effect/floor_decal/steeldecal/steel_decals9{
@@ -16211,6 +16540,12 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/living)
+"GY" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/houseboat)
 "He" = (
 /obj/machinery/door/blast/regular{
 	dir = 4
@@ -16225,12 +16560,28 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Hh" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/device/retail_scanner/security,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Hl" = (
+/obj/structure/table/rack/shelf,
+/obj/item/rig_module/mounted,
+/obj/item/rig_module/mounted,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "Hn" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"Hp" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/microwave,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "Ht" = (
 /obj/effect/floor_decal/derelict/d13,
 /turf/unsimulated/floor/steel,
@@ -16241,12 +16592,39 @@
 	icon_state = "steel"
 	},
 /area/centcom/command)
+"HE" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/recharger,
+/obj/item/weapon/tool/screwdriver,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"HG" = (
+/obj/structure/filingcabinet/chestdrawer,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "HL" = (
 /obj/machinery/telecomms/relay/preset/centcom/tether/midpoint,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
 /area/centcom/command)
+"HP" = (
+/obj/effect/floor_decal/spline/fancy/wood,
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"HQ" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 1;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/houseboat)
 "HU" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/energy/lasercannon,
@@ -16303,26 +16681,198 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Ik" = (
+/obj/structure/table/rack/shelf,
+/obj/item/rig_module/mounted/egun,
+/obj/item/rig_module/mounted/egun,
+/obj/item/rig_module/mounted/egun,
+/obj/item/rig_module/mounted/egun,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Iq" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "burst_l";
+	dir = 8
+	},
+/turf/unsimulated/floor/shuttle_ceiling,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/specialops/centcom)
+"It" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/cell_charger,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/hyper,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Iu" = (
+/obj/structure/table/glass,
+/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+	pixel_x = -3;
+	pixel_y = -2
+	},
+/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+	pixel_x = 3;
+	pixel_y = 5
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/centcom/medical)
+"Iv" = (
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/gun/energy/frontier/locked/carbine,
+/obj/item/weapon/gun/energy/frontier/locked/carbine,
+/obj/item/weapon/gun/energy/frontier/locked/carbine,
+/obj/item/weapon/gun/energy/frontier/locked/carbine,
+/obj/item/weapon/gun/energy/frontier/locked/holdout,
+/obj/item/weapon/gun/energy/frontier/locked/holdout,
+/obj/item/weapon/gun/energy/frontier/locked/holdout,
+/obj/item/weapon/gun/energy/frontier/locked/holdout,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Ix" = (
+/obj/machinery/door/blast/shutters{
+	density = 1;
+	dir = 8;
+	icon_state = "shutter1";
+	id = "dongleship_blast";
+	layer = 3.3;
+	name = "Blast Shutters";
+	opacity = 1
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 10;
+	icon_state = "fwindow"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating,
+/area/houseboat)
+"IA" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"IB" = (
+/obj/item/weapon/storage/firstaid/fire{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/weapon/storage/firstaid/fire,
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"ID" = (
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/storage/box/flashshells,
+/obj/item/weapon/storage/box/flashshells,
+/obj/item/weapon/storage/box/stunshells,
+/obj/item/weapon/storage/box/stunshells,
+/obj/item/weapon/storage/box/beanbags,
+/obj/item/weapon/storage/box/beanbags,
+/obj/item/weapon/storage/box/empshells/large,
+/obj/item/weapon/storage/box/empshells/large,
+/obj/item/weapon/storage/box/shotgunammo/large,
+/obj/item/weapon/storage/box/shotgunammo/large,
+/obj/item/weapon/storage/box/shotgunammo/large,
+/obj/item/weapon/storage/box/shotgunammo/large,
+/obj/item/weapon/storage/box/shotgunshells/large,
+/obj/item/weapon/storage/box/shotgunshells/large,
+/obj/item/weapon/storage/box/shotgunshells/large,
+/obj/item/weapon/storage/box/shotgunshells/large,
+/obj/item/weapon/gun/projectile/shotgun/pump/combat,
+/obj/item/weapon/gun/projectile/shotgun/pump/combat,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "IH" = (
 /obj/machinery/shield_capacitor,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"IV" = (
+/obj/structure/table/rack/shelf,
+/obj/item/rig_module/rescue_pharm,
+/obj/item/rig_module/rescue_pharm,
+/obj/item/rig_module/chem_dispenser/injector,
+/obj/item/rig_module/chem_dispenser/injector,
+/obj/item/rig_module/chem_dispenser/combat,
+/obj/item/rig_module/chem_dispenser/combat,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"IX" = (
+/obj/structure/table/rack/shelf,
+/obj/item/clothing/suit/armor/vest/ert/command,
+/obj/item/clothing/head/helmet/ert/command,
+/obj/item/weapon/storage/backpack/ert/commander,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "IZ" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner{
 	dir = 4
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
-"Jj" = (
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "burst_r";
-	dir = 8
-	},
-/turf/unsimulated/floor/shuttle_ceiling,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/specialops/centcom)
+"Jk" = (
+/obj/machinery/computer/gyrotron_control,
+/turf/simulated/floor/tiled/steel_grid,
+/area/houseboat)
+"Jm" = (
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Jo" = (
+/obj/machinery/r_n_d/destructive_analyzer,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Jp" = (
+/obj/structure/table/rack/shelf,
+/obj/item/clothing/glasses/graviton,
+/obj/item/clothing/glasses/graviton,
+/obj/item/clothing/glasses/graviton,
+/obj/item/clothing/glasses/night,
+/obj/item/clothing/glasses/night,
+/obj/item/clothing/glasses/night,
+/obj/item/clothing/glasses/night,
+/obj/item/weapon/storage/belt/security/tactical,
+/obj/item/weapon/storage/belt/security/tactical,
+/obj/item/weapon/storage/belt/security/tactical,
+/obj/item/weapon/storage/belt/security/tactical,
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "Ju" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -16330,6 +16880,21 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Jz" = (
+/obj/machinery/power/smes/buildable{
+	charge = 2e+007;
+	cur_coils = 4;
+	input_attempt = 1;
+	input_level = 500000;
+	output_level = 1e+006;
+	RCon = 0;
+	RCon_tag = "Weatherlight - Main"
+	},
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "JB" = (
 /obj/machinery/telecomms/relay/preset/centcom/tether/station_low,
 /turf/unsimulated/floor{
@@ -16342,6 +16907,33 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"JN" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/storage/box/pillbottles,
+/obj/item/weapon/storage/box/pillbottles,
+/obj/item/weapon/storage/box/beakers,
+/obj/item/weapon/storage/box/syringes,
+/obj/item/weapon/storage/box/syringes,
+/obj/item/weapon/tool/screwdriver,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"JR" = (
+/obj/structure/table/rack/shelf,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"JV" = (
+/obj/structure/table/rack/shelf,
+/obj/item/clothing/suit/armor/vest/ert/security,
+/obj/item/clothing/suit/armor/vest/ert/security,
+/obj/item/clothing/suit/armor/vest/ert/security,
+/obj/item/clothing/head/helmet/ert/security,
+/obj/item/clothing/head/helmet/ert/security,
+/obj/item/clothing/head/helmet/ert/security,
+/obj/item/weapon/storage/backpack/ert/security,
+/obj/item/weapon/storage/backpack/ert/security,
+/obj/item/weapon/storage/backpack/ert/security,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "JW" = (
 /obj/machinery/telecomms/relay/preset/centcom/tether/base_low,
 /turf/unsimulated/floor{
@@ -16360,6 +16952,13 @@
 	dir = 5
 	},
 /area/centcom/specops)
+"Kc" = (
+/obj/structure/bed/chair/shuttle{
+	icon_state = "shuttle_chair";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/houseboat)
 "Kd" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -16374,6 +16973,87 @@
 /area/centcom/security{
 	name = "\improper CentCom Residential Security"
 	})
+"Ke" = (
+/obj/structure/closet{
+	name = "mechanical equipment"
+	},
+/obj/item/weapon/storage/toolbox/syndicate/powertools,
+/obj/item/weapon/storage/toolbox/syndicate/powertools,
+/obj/item/clothing/head/welding{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/clothing/head/welding{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/clothing/glasses/welding,
+/obj/item/clothing/glasses/welding,
+/obj/item/weapon/storage/belt/utility,
+/obj/item/device/multitool{
+	pixel_x = 3
+	},
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/device/assembly/prox_sensor{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/device/assembly/prox_sensor{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/device/flash/synthetic,
+/obj/item/device/flash/synthetic,
+/obj/item/device/flash/synthetic,
+/obj/item/device/flash/synthetic,
+/obj/item/device/healthanalyzer,
+/obj/item/device/healthanalyzer,
+/obj/item/weapon/storage/firstaid/regular{
+	empty = 1;
+	name = "First-Aid (empty)"
+	},
+/obj/item/weapon/storage/firstaid/regular{
+	empty = 1;
+	name = "First-Aid (empty)"
+	},
+/obj/item/weapon/cell/high{
+	charge = 100;
+	maxcharge = 15000;
+	pixel_x = 5;
+	pixel_y = -5
+	},
+/obj/item/weapon/cell/high{
+	charge = 100;
+	maxcharge = 15000;
+	pixel_x = 5;
+	pixel_y = -5
+	},
+/obj/item/weapon/cell/high{
+	charge = 100;
+	maxcharge = 15000;
+	pixel_x = 5;
+	pixel_y = -5
+	},
+/obj/item/weapon/cell/high{
+	charge = 100;
+	maxcharge = 15000;
+	pixel_x = 5;
+	pixel_y = -5
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Kh" = (
+/obj/structure/table/rack/shelf,
+/obj/item/clothing/suit/space/void/atmos,
+/obj/item/clothing/head/helmet/space/void/atmos,
+/obj/item/weapon/tank/oxygen/red,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/mask/breath,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "Ku" = (
 /obj/effect/floor_decal/derelict/d1,
 /turf/unsimulated/floor/steel,
@@ -16390,6 +17070,22 @@
 	dir = 5
 	},
 /area/centcom/specops)
+"KE" = (
+/obj/structure/table/rack/steel,
+/obj/machinery/door/window/survival_pod{
+	dir = 8
+	},
+/obj/structure/window/reinforced/survival_pod,
+/obj/item/weapon/rig/ert/medical,
+/obj/item/weapon/rig/ert/medical,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"KG" = (
+/obj/structure/filingcabinet/chestdrawer{
+	name = "Scan Records"
+	},
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "KM" = (
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
@@ -16422,18 +17118,145 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Lg" = (
+/obj/machinery/r_n_d/circuit_imprinter,
+/obj/item/weapon/reagent_containers/glass/beaker/sulphuric,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Li" = (
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Ls" = (
+/obj/machinery/disposal,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Lu" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Lx" = (
+/obj/structure/closet/crate/secure/gear,
+/obj/item/device/subspaceradio,
+/obj/item/weapon/storage/firstaid/insiderepair,
+/obj/item/weapon/storage/firstaid/combat,
+/obj/item/weapon/storage/toolbox/syndicate/powertools,
+/obj/item/weapon/storage/box/syndie_kit/demolitions_super_heavy{
+	name = "Super Heavy Demolitions kit"
+	},
+/obj/item/weapon/storage/box/syndie_kit/demolitions_heavy{
+	name = "Heavy Demolitions kit"
+	},
+/obj/item/weapon/storage/box/syndie_kit/demolitions_heavy{
+	name = "Heavy Demolitions kit"
+	},
+/obj/item/weapon/storage/box/syndie_kit/demolitions_heavy{
+	name = "Heavy Demolitions kit"
+	},
+/obj/item/weapon/plastique,
+/obj/item/weapon/plastique,
+/obj/item/weapon/plastique,
+/obj/item/weapon/plastique,
+/obj/item/weapon/plastique,
+/obj/item/weapon/plastique,
+/obj/item/weapon/storage/box/emps{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/weapon/cell/device/weapon/recharge/alien,
+/obj/item/weapon/cell/device/weapon/recharge/alien,
+/obj/item/weapon/cell/device/weapon/recharge/alien,
+/obj/item/weapon/cell/device/weapon/recharge/alien,
+/obj/item/weapon/cell/device/weapon/recharge/alien,
+/obj/item/weapon/cell/device/weapon/recharge/alien,
+/obj/item/weapon/material/knife/machete/deluxe{
+	default_material = "durasteel"
+	},
+/obj/item/clothing/accessory/holster/machete,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Ly" = (
+/obj/item/weapon/storage/firstaid/o2{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/weapon/storage/firstaid/o2,
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "LD" = (
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"LE" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"LN" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/folder/red{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/obj/item/weapon/folder/red,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"LQ" = (
+/obj/machinery/autolathe{
+	desc = "Your typical Autolathe. It appears to have much more options than your regular one, however...";
+	hacked = 1;
+	name = "Centcom Autolathe"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"LR" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 10;
+	icon_state = "fwindow"
+	},
+/obj/machinery/door/blast/shutters{
+	density = 1;
+	dir = 1;
+	icon_state = "shutter1";
+	id = "dongleship_blast";
+	layer = 3.3;
+	name = "Blast Shutters";
+	opacity = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating,
+/area/houseboat)
 "LS" = (
 /obj/machinery/shieldgen,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"Mc" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Md" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/reagent_containers/glass/bottle/biomass,
+/obj/item/weapon/reagent_containers/glass/bottle/biomass,
+/obj/item/weapon/reagent_containers/glass/bottle/biomass,
+/obj/item/weapon/reagent_containers/glass/bottle/biomass,
+/obj/item/weapon/reagent_containers/glass/bottle/biomass,
+/obj/item/weapon/reagent_containers/glass/bottle/biomass,
+/obj/item/weapon/reagent_containers/glass/bottle/biomass,
+/obj/item/weapon/reagent_containers/glass/bottle/biomass,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "Me" = (
 /obj/item/weapon/storage/firstaid/regular,
 /turf/unsimulated/floor{
@@ -16441,6 +17264,20 @@
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"Mf" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/houseboat)
+"Mh" = (
+/obj/machinery/vending/food/arojoan{
+	density = 0;
+	pixel_x = 0;
+	pixel_y = -32
+	},
+/turf/simulated/floor/carpet/blue,
+/area/houseboat)
 "Mt" = (
 /obj/structure/table/rack,
 /obj/item/weapon/extinguisher/mini,
@@ -16452,17 +17289,86 @@
 	dir = 5
 	},
 /area/centcom/specops)
+"Mu" = (
+/turf/simulated/floor/carpet/blue,
+/area/houseboat)
 "Mw" = (
 /obj/machinery/shield_gen/external,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"MB" = (
+/obj/machinery/sleeper{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"MH" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced{
+	name = "Holodeck Projector Floor"
+	},
+/area/houseboat)
+"MI" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/recharger,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"MJ" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/houseboat)
+"MO" = (
+/obj/machinery/chem_master,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"MX" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "Nd" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /obj/machinery/light/flamp/noshade,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Nh" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Nj" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/device/defib_kit/compact/combat/loaded,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Nk" = (
+/obj/structure/table/rack/shelf,
+/obj/item/clothing/suit/space/void/exploration,
+/obj/item/clothing/head/helmet/space/void/exploration,
+/obj/item/weapon/tank/oxygen,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/mask/breath,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Nn" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/device/flashlight/lamp,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Nr" = (
+/obj/machinery/computer/transhuman{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "Nx" = (
 /obj/structure/table/rack,
 /obj/item/weapon/plastique,
@@ -16477,6 +17383,73 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"NA" = (
+/obj/machinery/door/blast/regular{
+	dir = 4;
+	id = "mechbay";
+	name = "Mech Bay"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"NE" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/door/window/westleft,
+/obj/machinery/door/window/eastright,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"NF" = (
+/obj/machinery/status_display{
+	pixel_y = -29
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"NG" = (
+/obj/effect/floor_decal/spline/fancy/wood,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"NJ" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"NK" = (
+/obj/machinery/computer/rdconsole/core,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"NN" = (
+/obj/structure/table/rack/shelf,
+/obj/item/rig_module/vision/multi,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"NO" = (
+/obj/item/weapon/gun/energy/gun/nuclear,
+/obj/item/weapon/gun/energy/gun/nuclear,
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/gun/energy/gun/nuclear,
+/obj/item/weapon/gun/energy/gun/nuclear,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"NR" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/storage/box/evidence,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"NU" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"NW" = (
+/obj/machinery/sleep_console{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"NY" = (
+/obj/machinery/chemical_dispenser/ert,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "Oc" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/reagent_containers/blood/OMinus,
@@ -16490,6 +17463,15 @@
 	dir = 5
 	},
 /area/centcom/specops)
+"Oe" = (
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/weapon/gun/energy/modular/cannon,
+/obj/item/weapon/gun/energy/modular/carbine,
+/obj/item/weapon/gun/energy/modular/pistol,
+/obj/item/weapon/gun/energy/medigun,
+/obj/item/weapon/gun/energy/captain,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "Og" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/projectile/automatic/l6_saw,
@@ -16506,6 +17488,30 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Ol" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/storage/box/bodybags,
+/obj/item/weapon/storage/box/bodybags{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Oo" = (
+/obj/effect/floor_decal/industrial/warning/corner,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Os" = (
+/obj/machinery/vending/loadout/uniform,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Oy" = (
+/obj/structure/bed/chair/wood{
+	icon_state = "wooden_chair";
+	dir = 4
+	},
+/turf/simulated/floor/carpet/blue,
+/area/houseboat)
 "OD" = (
 /obj/machinery/power/port_gen/pacman,
 /turf/unsimulated/floor{
@@ -16519,12 +17525,166 @@
 /obj/effect/floor_decal/derelict/d9,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"OK" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/door/window/brigdoor/southleft{
+	dir = 4;
+	id = "Cell A";
+	name = "Cell A";
+	req_access = list(2)
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "surfbriglockdown";
+	name = "Security Blast Doors";
+	opacity = 0
+	},
+/turf/simulated/floor/tiled/dark,
+/area/houseboat)
+"ON" = (
+/obj/machinery/status_display{
+	pixel_x = 32;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"OP" = (
+/obj/machinery/chemical_dispenser/full,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"OQ" = (
+/obj/machinery/status_display{
+	pixel_x = -32;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"OS" = (
+/obj/machinery/vending/blood,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"OT" = (
+/obj/structure/table/rack/shelf,
+/obj/item/rig_module/device/healthscanner,
+/obj/item/rig_module/device/healthscanner,
+/obj/item/rig_module/sprinter,
+/obj/item/rig_module/sprinter,
+/obj/item/rig_module/sprinter,
+/obj/item/rig_module/sprinter,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"OV" = (
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"OW" = (
+/obj/machinery/cooker/fryer,
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Pc" = (
+/obj/machinery/status_display{
+	pixel_y = 29
+	},
+/turf/simulated/floor/carpet/blue,
+/area/houseboat)
+"Pe" = (
+/obj/machinery/door_timer/cell_1{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "Pi" = (
 /obj/machinery/door/blast/regular{
 	dir = 1
 	},
 /turf/unsimulated/floor/techfloor_grid,
 /area/centcom/evac)
+"Pm" = (
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/rig/ert/medical,
+/obj/item/weapon/rig/ert/medical,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Po" = (
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/melee/baton/loaded,
+/obj/item/weapon/melee/baton/loaded,
+/obj/item/weapon/melee/baton/loaded,
+/obj/item/weapon/melee/baton/loaded,
+/obj/item/weapon/melee/energy/sword,
+/obj/item/weapon/melee/energy/sword,
+/obj/item/weapon/melee/energy/sword,
+/obj/item/weapon/melee/energy/sword,
+/obj/item/weapon/melee/energy/sword,
+/obj/item/weapon/shield/energy,
+/obj/item/weapon/shield/energy,
+/obj/item/weapon/shield/energy,
+/obj/item/weapon/shield/energy,
+/obj/item/weapon/shield/energy,
+/obj/item/weapon/material/knife/tacknife/survival,
+/obj/item/weapon/material/knife/tacknife/survival,
+/obj/item/weapon/material/knife/tacknife/survival,
+/obj/item/weapon/material/knife/tacknife/survival,
+/obj/item/weapon/material/knife/tacknife/survival,
+/obj/item/weapon/material/knife/machete,
+/obj/item/weapon/material/knife/machete,
+/obj/item/weapon/material/knife/machete,
+/obj/item/clothing/accessory/holster/machete,
+/obj/item/clothing/accessory/holster/machete,
+/obj/item/clothing/accessory/holster/machete,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Pp" = (
+/obj/item/weapon/storage/firstaid/combat{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/weapon/storage/firstaid/combat,
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Pr" = (
+/obj/structure/table/rack/shelf,
+/obj/item/clothing/suit/armor/vest/ert/engineer,
+/obj/item/clothing/suit/armor/vest/ert/engineer,
+/obj/item/clothing/head/helmet/ert/engineer,
+/obj/item/clothing/head/helmet/ert/engineer,
+/obj/item/weapon/storage/backpack/ert/engineer,
+/obj/item/weapon/storage/backpack/ert/engineer,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Pz" = (
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/weapon/rig/ert/assetprotection,
+/obj/item/weapon/rig/ert/assetprotection,
+/obj/item/clothing/glasses/thermal,
+/obj/item/clothing/glasses/thermal,
+/obj/item/weapon/gun/energy/protector,
+/obj/item/weapon/gun/energy/protector,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"PI" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "PJ" = (
 /obj/effect/floor_decal/corner_steel_grid/diagonal,
 /obj/effect/floor_decal/industrial/warning/dust/corner{
@@ -16533,17 +17693,107 @@
 /obj/machinery/light/flamp/noshade,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"PO" = (
+/obj/machinery/cooker/oven,
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "PP" = (
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"PQ" = (
+/obj/machinery/vending/dinnerware,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"PY" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion";
+	dir = 8
+	},
+/turf/unsimulated/floor/shuttle_ceiling,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/specialops/centcom)
+"Qg" = (
+/obj/machinery/power/fractal_reactor/fluff/converter,
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "Ql" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 1
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Qp" = (
+/obj/machinery/status_display{
+	pixel_y = 29
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Qy" = (
+/obj/structure/closet/crate/freezer,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"QA" = (
+/obj/structure/morgue{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"QB" = (
+/obj/item/weapon/storage/firstaid/regular{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/bodybag/cryobag{
+	pixel_x = 5
+	},
+/obj/item/bodybag/cryobag{
+	pixel_x = 5
+	},
+/obj/item/weapon/storage/firstaid/o2{
+	layer = 2.8;
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/weapon/storage/box/masks{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/obj/item/weapon/storage/box/gloves{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/weapon/storage/firstaid/fire{
+	layer = 2.9;
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/weapon/storage/firstaid/adv{
+	pixel_x = -2
+	},
+/obj/item/weapon/reagent_containers/blood/empty,
+/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/structure/closet/medical_wall{
+	pixel_y = -32
+	},
+/obj/item/weapon/storage/box/body_record_disk,
+/obj/item/weapon/storage/firstaid/insiderepair,
+/obj/item/weapon/storage/firstaid/clotting,
+/obj/item/weapon/storage/firstaid/bonemed,
+/obj/item/weapon/storage/firstaid/adv{
+	pixel_x = -2
+	},
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "QQ" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat,
@@ -16552,6 +17802,10 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"QY" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "QZ" = (
 /obj/effect/floor_decal/derelict/d12,
 /turf/unsimulated/floor/steel,
@@ -16572,6 +17826,45 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Rg" = (
+/obj/structure/closet/secure_closet/personal,
+/obj/machinery/button/remote/airlock{
+	id = "dorm1";
+	name = "Room 1 Lock";
+	pixel_x = -26;
+	pixel_y = -6;
+	specialfunctions = 4
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "dongleship_blast";
+	name = "exterior shutters";
+	pixel_x = -28;
+	pixel_y = 6
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Rj" = (
+/obj/structure/closet/secure_closet/medical2,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Rk" = (
+/obj/machinery/vending/boozeomat{
+	density = 0;
+	pixel_x = 0;
+	pixel_y = -32
+	},
+/turf/simulated/floor/carpet/blue,
+/area/houseboat)
+"Rp" = (
+/obj/item/weapon/storage/firstaid/regular{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/weapon/storage/firstaid/regular,
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "Rt" = (
 /obj/machinery/light/spot,
 /turf/unsimulated/floor/steel,
@@ -16587,6 +17880,32 @@
 	icon_state = "steel"
 	},
 /area/centcom/command)
+"RA" = (
+/obj/machinery/smartfridge,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"RC" = (
+/obj/structure/table/rack/shelf,
+/obj/item/ammo_magazine/m9mm/compact,
+/obj/item/ammo_magazine/m9mm/compact,
+/obj/item/ammo_magazine/m9mm/compact,
+/obj/item/ammo_magazine/m9mm/compact,
+/obj/item/ammo_magazine/m9mm/compact,
+/obj/item/ammo_magazine/m9mm/compact,
+/obj/item/ammo_magazine/m9mm/compact/flash,
+/obj/item/ammo_magazine/m9mm/compact/flash,
+/obj/item/ammo_magazine/m9mm/compact/flash,
+/obj/item/ammo_magazine/m9mm/compact/rubber,
+/obj/item/ammo_magazine/m9mm/compact/rubber,
+/obj/item/ammo_magazine/m9mm/compact/rubber,
+/obj/item/ammo_magazine/m9mm/compact/practice,
+/obj/item/ammo_magazine/m9mm/compact/practice,
+/obj/item/ammo_magazine/m9mm/compact/practice,
+/obj/item/weapon/gun/projectile/pistol,
+/obj/item/weapon/gun/projectile/pistol,
+/obj/item/weapon/gun/projectile/pistol,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "RD" = (
 /obj/machinery/shield_capacitor,
 /turf/unsimulated/floor{
@@ -16604,6 +17923,46 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"RG" = (
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/clothing/suit/space/void/merc/fire,
+/obj/item/clothing/head/helmet/space/void/merc/fire,
+/obj/item/clothing/suit/space/void/merc,
+/obj/item/clothing/head/helmet/space/void/merc,
+/obj/item/clothing/suit/space/void/merc,
+/obj/item/clothing/head/helmet/space/void/merc,
+/obj/item/clothing/suit/space/void/merc/odst,
+/obj/item/clothing/head/helmet/space/void/merc/odst,
+/obj/item/clothing/suit/space/void/security/fluff/hos,
+/obj/item/clothing/head/helmet/space/void/security/fluff/hos,
+/obj/item/weapon/tank/oxygen/yellow,
+/obj/item/weapon/tank/vox,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"RI" = (
+/obj/structure/table/rack/shelf,
+/obj/item/ammo_magazine/m545/ap,
+/obj/item/ammo_magazine/m545/ap,
+/obj/item/ammo_magazine/m545/ap,
+/obj/item/ammo_magazine/m545/ap,
+/obj/item/ammo_magazine/m545/ap,
+/obj/item/ammo_magazine/m545/ap,
+/obj/item/ammo_magazine/m545/ap,
+/obj/item/ammo_magazine/m545/ap,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/weapon/gun/projectile/automatic/sts35,
+/obj/item/weapon/gun/projectile/automatic/sts35,
+/obj/item/weapon/gun/projectile/automatic/sts35,
+/obj/item/weapon/gun/projectile/automatic/sts35,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "RJ" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/projectile/automatic/z8,
@@ -16622,6 +17981,10 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"RU" = (
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "RY" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/unsimulated/floor{
@@ -16638,6 +18001,29 @@
 	dir = 5
 	},
 /area/centcom/specops)
+"Sd" = (
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/weapon/gun/energy/pulse_rifle,
+/obj/item/weapon/gun/energy/pulse_rifle,
+/obj/item/weapon/gun/energy/pulse_rifle,
+/obj/item/weapon/gun/energy/pulse_rifle,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Sg" = (
+/obj/machinery/computer/cryopod/robot{
+	dir = 1;
+	pixel_y = -28
+	},
+/turf/simulated/floor/bluegrid,
+/area/houseboat)
 "Si" = (
 /obj/effect/floor_decal/derelict/d14,
 /turf/unsimulated/floor/steel,
@@ -16646,16 +18032,54 @@
 /obj/effect/floor_decal/derelict/d10,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Sm" = (
+/obj/machinery/body_scanconsole,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "Sp" = (
 /obj/machinery/telecomms/relay/preset/centcom/tether/station_high,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
 /area/centcom/command)
+"Sq" = (
+/obj/machinery/optable,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Ss" = (
+/obj/machinery/r_n_d/protolathe,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "Sv" = (
 /obj/effect/floor_decal/derelict/d11,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Sx" = (
+/obj/machinery/media/jukebox,
+/turf/simulated/floor/wood,
+/area/houseboat)
+"SC" = (
+/obj/machinery/computer/teleporter{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"SJ" = (
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/weapon/storage/box/frags,
+/obj/item/weapon/storage/box/frags,
+/obj/item/weapon/storage/box/teargas,
+/obj/item/weapon/storage/box/teargas,
+/obj/item/weapon/storage/box/empslite,
+/obj/item/weapon/storage/box/empslite,
+/obj/item/weapon/storage/box/smokes,
+/obj/item/weapon/storage/box/smokes,
+/obj/item/weapon/storage/box/flashbangs,
+/obj/item/weapon/storage/box/flashbangs,
+/obj/item/weapon/gun/launcher/grenade,
+/obj/item/weapon/gun/launcher/grenade,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "SP" = (
 /obj/structure/table/rack,
 /obj/item/bodybag/cryobag,
@@ -16669,10 +18093,89 @@
 	dir = 5
 	},
 /area/centcom/specops)
+"SR" = (
+/obj/machinery/atmospherics/unary/freezer{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"ST" = (
+/obj/machinery/pros_fabricator,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"SW" = (
+/obj/machinery/cooker/grill,
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"SY" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/teleport/hub,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"SZ" = (
+/obj/machinery/mineral/equipment_vendor,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Ta" = (
+/obj/structure/table/rack/shelf,
+/obj/item/ammo_magazine/m9mmp90,
+/obj/item/ammo_magazine/m9mmp90,
+/obj/item/ammo_magazine/m9mmp90,
+/obj/item/ammo_magazine/m9mmp90,
+/obj/item/ammo_magazine/m9mmp90,
+/obj/item/ammo_magazine/m9mmp90,
+/obj/item/ammo_magazine/m9mmp90,
+/obj/item/ammo_magazine/m9mmp90,
+/obj/item/weapon/gun/projectile/automatic/p90,
+/obj/item/weapon/gun/projectile/automatic/p90,
+/obj/item/ammo_magazine/m9mmt/flash,
+/obj/item/ammo_magazine/m9mmt/flash,
+/obj/item/ammo_magazine/m9mmt/flash,
+/obj/item/ammo_magazine/m9mmt/flash,
+/obj/item/ammo_magazine/m9mmt/rubber,
+/obj/item/ammo_magazine/m9mmt/rubber,
+/obj/item/ammo_magazine/m9mmt/rubber,
+/obj/item/ammo_magazine/m9mmt/rubber,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Te" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/device/radio/off,
+/obj/item/device/radio/off,
+/obj/item/device/radio/off,
+/obj/item/device/radio/off,
+/obj/item/device/radio/off,
+/obj/item/device/radio/off,
+/obj/item/device/radio/off,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Tl" = (
+/obj/machinery/oxygen_pump/anesthetic,
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/houseboat)
+"Tn" = (
+/obj/machinery/biogenerator,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "Tp" = (
 /obj/effect/floor_decal/derelict/d3,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Tq" = (
+/obj/machinery/disposal,
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "Tx" = (
 /obj/machinery/autolathe{
 	desc = "Your typical Autolathe. It appears to have much more options than your regular one, however...";
@@ -16683,20 +18186,128 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Tz" = (
+/obj/structure/closet/secure_closet/warden,
+/obj/item/weapon/gun/projectile/shotgun/pump/combat{
+	ammo_type = /obj/item/ammo_casing/a12g/beanbag;
+	desc = "Built for close quarters combat, the Hesphaistos Industries KS-40 is widely regarded as a weapon of choice for repelling boarders. This one has 'Property of the Warden' inscribed on the stock.";
+	name = "warden's shotgun"
+	},
+/obj/item/weapon/book/manual/security_space_law,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "TC" = (
 /obj/effect/floor_decal/derelict/d4,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"TE" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/weapon/clipboard,
+/obj/item/weapon/folder/red,
+/obj/item/weapon/pen,
+/obj/item/device/radio{
+	pixel_x = -4
+	},
+/obj/item/weapon/hand_labeler,
+/obj/item/weapon/tool/wrench,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"TF" = (
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/weapon/gun/projectile/automatic/l6_saw,
+/obj/item/weapon/gun/projectile/automatic/l6_saw,
+/obj/item/ammo_magazine/m545saw,
+/obj/item/ammo_magazine/m545saw,
+/obj/item/ammo_magazine/m545saw,
+/obj/item/ammo_magazine/m545saw,
+/obj/item/ammo_magazine/m545saw/ap,
+/obj/item/ammo_magazine/m545saw/ap,
+/obj/item/ammo_magazine/m545saw/ap,
+/obj/item/ammo_magazine/m545saw/ap,
+/obj/item/ammo_magazine/m545saw/ap,
+/obj/item/ammo_magazine/m545saw/ap,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"TL" = (
+/obj/structure/table/rack/steel,
+/obj/machinery/door/window/survival_pod{
+	dir = 8
+	},
+/obj/item/weapon/rig/ert/security,
+/obj/item/weapon/rig/ert/security,
+/obj/item/weapon/rig/ert/security,
+/obj/item/weapon/rig/ert/security,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"TO" = (
+/obj/structure/closet/secure_closet/freezer/meat,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"TS" = (
+/obj/structure/dispenser/oxygen,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "TW" = (
 /obj/machinery/shield_gen,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Ub" = (
+/obj/structure/table/rack/shelf,
+/obj/item/clothing/suit/armor/vest/ert/medical,
+/obj/item/clothing/suit/armor/vest/ert/medical,
+/obj/item/clothing/head/helmet/ert/medical,
+/obj/item/clothing/head/helmet/ert/medical,
+/obj/item/weapon/storage/backpack/ert/medical,
+/obj/item/weapon/storage/backpack/ert/medical,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Uk" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Uo" = (
+/obj/structure/table/rack/shelf,
+/obj/item/rig_module/grenade_launcher/smoke,
+/obj/item/rig_module/grenade_launcher/cleaner,
+/obj/item/rig_module/grenade_launcher,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "Ur" = (
 /obj/effect/floor_decal/derelict/d7,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Uu" = (
+/obj/machinery/mecha_part_fabricator,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Uw" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Uy" = (
+/obj/machinery/door/window/northleft,
+/obj/machinery/door/window/southleft,
+/obj/structure/table/steel_reinforced,
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Uz" = (
+/obj/machinery/door/blast/regular{
+	id = "mechbay-inner";
+	name = "Mech Bay"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "UC" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/stack/cable_coil,
@@ -16709,6 +18320,39 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"UI" = (
+/obj/structure/grille,
+/obj/machinery/door/blast/shutters{
+	density = 1;
+	dir = 4;
+	icon_state = "shutter1";
+	id = "dongleship_blast";
+	layer = 3.3;
+	name = "Blast Shutters";
+	opacity = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 10;
+	icon_state = "fwindow"
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating,
+/area/houseboat)
+"UK" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/weapon/pen,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"UL" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "UN" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
@@ -16725,14 +18369,89 @@
 	icon_state = "dark"
 	},
 /area/centcom/control)
-"UP" = (
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "burst_l";
+"UU" = (
+/obj/structure/closet/crate/secure/gear,
+/obj/item/stack/telecrystal{
+	amount = 240
+	},
+/obj/item/stack/telecrystal{
+	amount = 240
+	},
+/obj/item/stack/telecrystal{
+	amount = 240
+	},
+/obj/item/stack/telecrystal{
+	amount = 240
+	},
+/obj/item/weapon/card/mining_point_card{
+	mine_points = 50000
+	},
+/obj/item/weapon/card/mining_point_card{
+	mine_points = 50000
+	},
+/obj/item/weapon/card/mining_point_card{
+	mine_points = 50000
+	},
+/obj/item/weapon/card/mining_point_card{
+	mine_points = 50000
+	},
+/obj/item/weapon/card/mining_point_card/survey{
+	name = "survey point card";
+	survey_points = 5000
+	},
+/obj/item/weapon/card/mining_point_card/survey{
+	name = "survey point card";
+	survey_points = 5000
+	},
+/obj/item/weapon/card/mining_point_card/survey{
+	name = "survey point card";
+	survey_points = 5000
+	},
+/obj/item/weapon/card/mining_point_card/survey{
+	name = "survey point card";
+	survey_points = 5000
+	},
+/obj/item/device/survivalcapsule/military,
+/obj/item/device/survivalcapsule/military,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"UY" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/unsimulated/floor/shuttle_ceiling,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/specialops/centcom)
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "surfbriglockdown";
+	name = "Security Blast Doors";
+	opacity = 0
+	},
+/turf/simulated/floor/plating,
+/area/houseboat)
+"Vd" = (
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/material/minihoe,
+/obj/item/weapon/material/minihoe,
+/obj/item/weapon/material/knife,
+/obj/item/weapon/material/knife,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "Vf" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/box/frags,
@@ -16752,6 +18471,65 @@
 "Vq" = (
 /turf/unsimulated/wall/planetary/virgo3b,
 /area/centcom/bathroom)
+"Vt" = (
+/obj/machinery/clonepod/transhuman/full,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Vz" = (
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/weapon/gun/projectile/automatic/z8,
+/obj/item/weapon/gun/projectile/automatic/z8,
+/obj/item/weapon/gun/projectile/heavysniper,
+/obj/item/weapon/storage/box/sniperammo,
+/obj/item/weapon/storage/box/sniperammo,
+/obj/item/ammo_magazine/m762,
+/obj/item/ammo_magazine/m762,
+/obj/item/ammo_magazine/m762,
+/obj/item/ammo_magazine/m762,
+/obj/item/ammo_magazine/m762/ap,
+/obj/item/ammo_magazine/m762/ap,
+/obj/item/ammo_magazine/m762/ap,
+/obj/item/ammo_magazine/m762/ap,
+/obj/item/ammo_magazine/m762/ap,
+/obj/item/ammo_magazine/m762/ap,
+/obj/item/weapon/storage/box/sniperammo,
+/obj/item/weapon/storage/box/sniperammo,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"VG" = (
+/obj/structure/closet/crate/medical,
+/obj/item/stack/nanopaste/advanced,
+/obj/item/stack/nanopaste/advanced,
+/obj/item/stack/nanopaste/advanced,
+/obj/item/stack/nanopaste/advanced,
+/obj/item/stack/nanopaste/advanced,
+/obj/item/stack/nanopaste/advanced,
+/obj/item/stack/nanopaste/advanced,
+/obj/item/stack/nanopaste/advanced,
+/obj/item/stack/nanopaste/advanced,
+/obj/item/stack/nanopaste/advanced,
+/obj/item/device/mmi/digital/posibrain,
+/obj/item/device/mmi,
+/obj/item/weapon/book/manual/robotics_cyborgs,
+/obj/item/device/robotanalyzer,
+/obj/item/weapon/storage/toolbox/syndicate/powertools,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"VJ" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"VM" = (
+/obj/item/weapon/storage/firstaid/adv{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/weapon/storage/firstaid/adv,
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "VU" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
@@ -16761,6 +18539,45 @@
 	dir = 5
 	},
 /area/centcom/specops)
+"VY" = (
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"VZ" = (
+/obj/machinery/mineral/equipment_vendor/survey,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Wc" = (
+/obj/machinery/organ_printer/flesh,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Wg" = (
+/obj/structure/table/rack/steel,
+/obj/machinery/door/window/survival_pod{
+	dir = 8
+	},
+/obj/structure/window/reinforced/survival_pod{
+	dir = 1
+	},
+/obj/item/weapon/rig/ert,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Wn" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/storage/firstaid/surgery,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Wr" = (
+/obj/machinery/suit_cycler,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"WI" = (
+/turf/simulated/floor/wood,
+/area/houseboat)
 "WL" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/box/pillbottles,
@@ -16772,26 +18589,108 @@
 	dir = 5
 	},
 /area/centcom/specops)
+"WV" = (
+/obj/item/clothing/suit/space/void/atmos,
+/obj/structure/table/rack/shelf,
+/obj/item/clothing/head/helmet/space/void/atmos,
+/obj/item/weapon/tank/oxygen/red,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/mask/breath,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "Xa" = (
 /obj/machinery/space_heater,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Xe" = (
+/obj/machinery/atmospherics/unary/cryo_cell,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "Xi" = (
 /obj/machinery/telecomms/relay/preset/centcom/tether/base_mid,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
 /area/centcom/command)
-"Xs" = (
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion";
+"Xj" = (
+/obj/item/modular_computer/console/preset/ert{
 	dir = 8
 	},
-/turf/unsimulated/floor/shuttle_ceiling,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/specialops/centcom)
+/turf/simulated/floor/tiled/steel_grid,
+/area/houseboat)
+"Xk" = (
+/obj/structure/table/rack/steel,
+/obj/machinery/door/window/survival_pod{
+	dir = 8
+	},
+/obj/item/weapon/rig/ert/engineer,
+/obj/item/weapon/rig/ert/engineer,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Xl" = (
+/obj/structure/table/rack/shelf,
+/obj/item/rig_module/device/anomaly_scanner,
+/obj/item/rig_module/device/anomaly_scanner,
+/obj/item/rig_module/device/rcd,
+/obj/item/rig_module/device/rcd,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Xm" = (
+/obj/structure/reagent_dispensers/acid{
+	density = 0;
+	pixel_x = -30;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Xo" = (
+/obj/machinery/status_display{
+	pixel_y = 29
+	},
+/obj/item/modular_computer/console/preset/mercenary,
+/turf/simulated/floor/tiled/steel_grid,
+/area/houseboat)
+"Xq" = (
+/obj/structure/shuttle/engine/heater,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/houseboat)
+"Xu" = (
+/obj/structure/closet{
+	name = "materials"
+	},
+/obj/fiftyspawner/diamond,
+/obj/fiftyspawner/gold,
+/obj/fiftyspawner/phoron,
+/obj/fiftyspawner/plasteel,
+/obj/fiftyspawner/plastic,
+/obj/fiftyspawner/osmium,
+/obj/fiftyspawner/silver,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/uranium,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/durasteel,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Xv" = (
+/obj/structure/closet/crate/medical,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu13,
+/obj/item/weapon/storage/mre/menu13,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "XA" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/smes_coil,
@@ -16802,10 +18701,169 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"XB" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 4;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/houseboat)
+"XC" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/carpet/blue,
+/area/houseboat)
+"XD" = (
+/turf/simulated/floor/bluegrid,
+/area/houseboat)
+"XL" = (
+/obj/machinery/syndicate_beacon/virgo{
+	charges = 10
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"XN" = (
+/obj/machinery/smartfridge,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"XR" = (
+/obj/structure/table/steel_reinforced,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"XS" = (
+/turf/simulated/floor/reinforced/airless{
+	name = "outer hull"
+	},
+/area/space)
+"XT" = (
+/turf/simulated/floor/reinforced{
+	name = "Holodeck Projector Floor"
+	},
+/area/houseboat)
+"XX" = (
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat,
+/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid,
+/obj/item/ammo_casing/microbattery/medical/corpse_mend,
+/obj/item/ammo_casing/microbattery/medical/corpse_mend,
+/obj/item/slime_extract/pink,
+/obj/item/slime_extract/pink,
+/obj/item/slime_extract/pink,
+/obj/item/slime_extract/pink,
+/obj/item/slime_extract/pink,
+/obj/item/slime_extract/pink,
+/obj/item/weapon/cell/slime{
+	description_info = "This 'cell' holds a max charge of 20k and self recharges over time.";
+	icon = 'icons/obj/power.dmi';
+	icon_state = "icell";
+	maxcharge = 20000;
+	name = "slime core cell"
+	},
+/obj/item/weapon/cell/slime{
+	description_info = "This 'cell' holds a max charge of 20k and self recharges over time.";
+	icon = 'icons/obj/power.dmi';
+	icon_state = "icell";
+	maxcharge = 20000;
+	name = "slime core cell"
+	},
+/obj/item/weapon/cell/slime{
+	description_info = "This 'cell' holds a max charge of 20k and self recharges over time.";
+	icon = 'icons/obj/power.dmi';
+	icon_state = "icell";
+	maxcharge = 20000;
+	name = "slime core cell"
+	},
+/obj/item/weapon/cell/slime{
+	description_info = "This 'cell' holds a max charge of 20k and self recharges over time.";
+	icon = 'icons/obj/power.dmi';
+	icon_state = "icell";
+	maxcharge = 20000;
+	name = "slime core cell"
+	},
+/obj/item/slime_extract/pink,
+/obj/item/slime_extract/pink,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "XZ" = (
 /obj/machinery/light/flamp/noshade,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Yc" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Yh" = (
+/obj/machinery/bodyscanner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Yl" = (
+/obj/structure/closet/crate/secure/weapon,
+/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid,
+/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat,
+/obj/item/weapon/gun/energy/ionrifle/pistol,
+/obj/item/weapon/gun/energy/ionrifle/pistol,
+/obj/item/weapon/gun/energy/ionrifle,
+/obj/item/weapon/gun/energy/ionrifle,
+/obj/item/weapon/gun/energy/netgun,
+/obj/item/weapon/gun/energy/xray,
+/obj/item/weapon/gun/energy/xray,
+/obj/item/weapon/gun/energy/gun/burst,
+/obj/item/weapon/gun/energy/gun/burst,
+/obj/item/weapon/gun/energy/sniperrifle,
+/obj/item/weapon/gun/energy/sniperrifle,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Yn" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/door/window/brigdoor/southleft{
+	dir = 4;
+	id = "Cell B";
+	name = "Cell B";
+	req_access = list(2)
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "surfbriglockdown";
+	name = "Security Blast Doors";
+	opacity = 0
+	},
+/turf/simulated/floor/tiled/dark,
+/area/houseboat)
+"Yo" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/storage/toolbox/syndicate/powertools,
+/obj/item/device/multitool,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Yt" = (
+/obj/machinery/cooker/cereal,
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Yv" = (
+/obj/structure/table/rack/shelf,
+/obj/item/clothing/suit/space/void/engineering/salvage,
+/obj/item/clothing/head/helmet/space/void/engineering/salvage,
+/obj/item/weapon/tank/oxygen/red,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/mask/breath,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "YE" = (
 /obj/machinery/shieldwallgen,
 /turf/unsimulated/floor{
@@ -16816,6 +18874,12 @@
 /obj/effect/floor_decal/derelict/d2,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"YK" = (
+/obj/machinery/computer/operating{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "YL" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
@@ -16837,6 +18901,38 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"YV" = (
+/obj/structure/table/rack/shelf,
+/obj/item/clothing/suit/space/void/security/alt,
+/obj/item/clothing/head/helmet/space/void/security/alt,
+/obj/item/weapon/tank/oxygen,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/mask/breath,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"YY" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Zg" = (
+/obj/machinery/vending/security,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Zh" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Zj" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/weapon/storage/briefcase/inflatable,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "Zw" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/projectile/heavysniper,
@@ -16846,10 +18942,40 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Zz" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"ZC" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 8;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/houseboat)
 "ZJ" = (
 /obj/effect/floor_decal/derelict/d8,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"ZK" = (
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/storage/belt/medical/emt,
+/obj/item/weapon/storage/belt/medical/emt,
+/obj/item/weapon/storage/belt/medical/emt,
+/obj/item/weapon/storage/belt/medical/emt,
+/obj/item/weapon/storage/belt/medical/emt,
+/obj/item/weapon/storage/belt/medical/emt,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"ZL" = (
+/obj/machinery/porta_turret,
+/turf/simulated/floor/reinforced/airless{
+	name = "outer hull"
+	},
+/area/space)
 "ZQ" = (
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 1
@@ -16859,6 +18985,12 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/living)
+"ZX" = (
+/obj/structure/bed/chair/wood{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/blue,
+/area/houseboat)
 
 (1,1,1) = {"
 OF
@@ -17777,9 +19909,9 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
+MJ
+cJ
+MJ
 OF
 OF
 OF
@@ -17884,45 +20016,45 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+ZL
+XS
+MJ
+ZC
+MJ
+XS
+ZL
+XS
+XS
+XS
+XS
+XS
+ZL
+XS
+MJ
+ZC
+MJ
+XS
+ZL
+XS
+XS
+XS
+XS
+XS
+ZL
+XS
+MJ
+ZC
+MJ
+XS
+ZL
+MJ
+MJ
+MJ
+MJ
+MJ
+NJ
+MJ
+XS
 OF
 OF
 OF
@@ -18024,48 +20156,48 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+Ix
+Ix
+Ix
+Ix
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+Ix
+Ix
+Ix
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+UL
+Yc
+LE
+Fx
+Gu
+Fx
+MJ
+ZL
 OF
 OF
 OF
@@ -18166,48 +20298,48 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+MJ
+Xv
+VG
+MJ
+Tl
+Sq
+YK
+Wn
+MJ
+OS
+Qy
+KG
+HE
+Nj
+Ls
+MJ
+oN
+Nr
+Os
+Wc
+MJ
+GN
+jt
+ZK
+Dy
+Ls
+MJ
+Jo
+Xm
+Lg
+Yc
+ES
+MJ
+Jm
+Yc
+Yc
+lE
+MJ
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -18308,48 +20440,48 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+MJ
+OV
+OV
+MJ
+Ey
+OV
+OV
+Li
+MJ
+OV
+OV
+OV
+OV
+OV
+OV
+MJ
+OV
+OV
+OV
+QB
+MJ
+OV
+OV
+OV
+OV
+OV
+MJ
+NK
+Yc
+Ss
+Yc
+gz
+MJ
+Jm
+Yc
+Yc
+lE
+MJ
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -18444,54 +20576,54 @@ OF
 OF
 OF
 OF
+MJ
+cJ
+MJ
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+MJ
+Rj
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+Yc
+Yc
+Yc
+Yc
+Yc
+NA
+Yc
+XD
+XD
+Sg
+MJ
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -18579,61 +20711,61 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+ZL
+XS
+MJ
+Ix
+Ix
+MJ
+ZC
+MJ
+NJ
+MJ
+XS
+ZL
+XS
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+OV
+OV
+Yh
+OV
+NW
+OV
+MJ
+Li
+OV
+OV
+Gi
+MJ
+VM
+OV
+IB
+OV
+JR
+MJ
+ST
+Yc
+DP
+Yc
+Yc
+NA
+Yc
+Dq
+XD
+Dq
+MJ
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -18716,66 +20848,66 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+ZL
+MJ
+Ix
+Ix
+Ix
+Fx
+MJ
+MJ
+Ge
+Dn
+MJ
+MJ
+Fx
+Gu
+Fx
+MJ
+MJ
+MJ
+MJ
+Yc
+Yc
+MJ
+OP
+DK
+OV
+JN
+MJ
+OV
+OV
+Sm
+OV
+MB
+OV
+MJ
+Xe
+OV
+OV
+Vt
+MJ
+Fq
+OV
+Ly
+OV
+Ec
+MJ
+LQ
+Yc
+MI
+Yc
+Yc
+NA
+Yc
+XD
+XD
+XD
+MJ
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -18857,72 +20989,72 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+MJ
+MJ
+Fx
+WI
+WI
+WI
+WI
+MJ
+Vd
+Yc
+Yc
+LE
+MJ
+YV
+Yc
+YV
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+MO
+YY
+OV
+Ls
+RA
+OV
+OV
+OV
+OV
+OV
+OV
+MJ
+Md
+OV
+OV
+En
+MJ
+Pp
+OV
+Rp
+OV
+Pm
+MJ
+Uu
+Yc
+Yc
+Yc
+Yc
+MJ
+EV
+Dq
+XD
+Dq
+MJ
+Yc
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
 OF
 OF
 OF
@@ -18999,72 +21131,72 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+cJ
+Lu
+Gu
+WI
+WI
+WI
+WI
+MJ
+Uw
+Yc
+Yc
+Uw
+MJ
+Kh
+Yc
+Yv
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+NY
+Gh
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+OV
+Yc
+Yc
+Xu
+Ke
+Yc
+MJ
+EV
+XD
+XD
+XD
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Gu
+Lu
+cJ
 OF
 OF
 OF
@@ -19141,72 +21273,72 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+Fx
+MJ
+Fx
+WI
+WI
+WI
+WI
+MJ
+Uw
+Yc
+Yc
+Uw
+MJ
+nO
+Yc
+Nk
+MJ
+Yc
+MJ
+MJ
+MJ
+Fg
+Fx
+MJ
+MJ
+NE
+MJ
+Fx
+Yc
+Yc
+MJ
+Xe
+Li
+OV
+MJ
+OV
+OV
+OV
+Ls
+MJ
+SR
+Do
+MJ
+Yc
+Yc
+MJ
+MJ
+NE
+MJ
+MJ
+Yc
+MJ
+MJ
+MJ
+Uz
+Uz
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Fx
+MJ
+MJ
 OF
 OF
 OF
@@ -19283,71 +21415,71 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+HQ
+MJ
+WI
+WI
+WI
+WI
+WI
+MJ
+Uw
+Yc
+Yc
+Uw
+MJ
+Fx
+Yc
+Fx
+MJ
+Yc
+OQ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+NF
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+Yc
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -19425,71 +21557,71 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+Fx
+Fx
+WI
+WI
+WI
+WI
+WI
+MJ
+Uw
+Yc
+Yc
+Uw
+MJ
+Wr
+Yc
+TS
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Ol
+Yc
+Yc
+Yc
+RU
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -19567,71 +21699,71 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+ZL
+LR
+Sx
+WI
+WI
+WI
+WI
+MJ
+Uw
+Yc
+Yc
+Uw
+MJ
+Yo
+Yc
+FM
+MJ
+Yc
+Yc
+Fx
+MJ
+MJ
+MJ
+MJ
+MJ
+Gu
+MJ
+Fx
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+Fx
+MJ
+MJ
+MJ
+Yc
+MJ
+MJ
+MJ
+Fx
+Yc
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -19708,72 +21840,72 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+MJ
+MJ
+Fx
+Pc
+Mu
+Mu
+Mu
+Mu
+Fx
+Fx
+Yc
+Yc
+Fx
+Fx
+XR
+Yc
+Zj
+MJ
+Yc
+Yc
+MJ
+Yc
+Oo
+MX
+MJ
+UU
+Yc
+XX
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+QA
+QA
+QA
+QA
+QA
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Xo
+Fg
+Fg
+Fg
+Fg
+Fg
+Fg
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -19850,72 +21982,72 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+LR
+Yc
+NG
+Mu
+Oy
+ZX
+Oy
+Mu
+Mc
+Yc
+Yc
+Yc
+ES
+Fx
+Qp
+Yc
+Yc
+Fx
+Yc
+Yc
+MJ
+Yc
+QY
+SY
+MJ
+XL
+Yc
+Oe
+MJ
+Yc
+Yc
+MJ
+Yc
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+Yc
+MJ
+Yc
+Yc
+MJ
+Jk
+GI
+Fg
+Mf
+Mf
+Mf
+Mf
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -19992,73 +22124,73 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+LR
+Yc
+HP
+Mu
+XC
+gx
+XC
+Rk
+Fx
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+QY
+FN
+MJ
+SZ
+Yc
+Qg
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+Eb
+Fg
+Kc
+Xj
+Fu
+Ft
+Xj
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+XS
+ZL
 OF
 OF
 OF
@@ -20134,73 +22266,73 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+LR
+Yc
+HP
+Mu
+XC
+XC
+XC
+Mh
+Fx
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+QY
+SC
+MJ
+VZ
+Yc
+Jz
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+Eb
+Fg
+Kc
+iA
+DV
+EG
+iA
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+XS
+ZL
 OF
 OF
 OF
@@ -20276,72 +22408,72 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+LR
+Yc
+NG
+Mu
+Gf
+Gf
+Gf
+Mu
+Mc
+Yc
+Yc
+Yc
+Yc
+Fx
+Qp
+Yc
+Yc
+Fx
+Yc
+Yc
+MJ
+Yc
+QY
+Zz
+MJ
+Fa
+Yc
+EU
+MJ
+Yc
+Yc
+MJ
+Yc
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+Yc
+MJ
+Yc
+Yc
+MJ
+Jk
+GI
+Fg
+GY
+GY
+GY
+GY
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -20418,72 +22550,72 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+MJ
+MJ
+Fx
+Pc
+Mu
+Mu
+Mu
+Mu
+Fx
+Fx
+Yc
+Yc
+XN
+Fx
+Te
+Yc
+Zj
+MJ
+Yc
+Yc
+MJ
+Yc
+iH
+Uk
+MJ
+RG
+Yc
+Lx
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Xo
+Fg
+Fg
+Fg
+Fg
+Fg
+Fg
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -20561,71 +22693,71 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+ZL
+LR
+WI
+WI
+WI
+WI
+WI
+MJ
+Hp
+OV
+OV
+OV
+MJ
+Yo
+Yc
+FM
+MJ
+Yc
+Yc
+Fx
+MJ
+MJ
+MJ
+MJ
+MJ
+Gu
+MJ
+Fx
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+Fx
+MJ
+MJ
+MJ
+Yc
+MJ
+MJ
+MJ
+Fx
+Yc
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -20703,71 +22835,71 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+Fx
+Fx
+WI
+WI
+WI
+WI
+WI
+MJ
+PQ
+OV
+OV
+Tn
+MJ
+Wr
+Yc
+TS
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -20845,71 +22977,71 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+HQ
+MJ
+WI
+WI
+WI
+WI
+WI
+Uy
+OV
+OV
+OV
+OW
+MJ
+Fx
+Yc
+Fx
+MJ
+Yc
+ON
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+NF
+MJ
+MJ
+MJ
+MJ
+UY
+OK
+MJ
+UY
+Yn
+MJ
+MJ
+MJ
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -20987,72 +23119,72 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+Fx
+MJ
+Fx
+WI
+WI
+WI
+WI
+MJ
+Li
+OV
+OV
+PO
+MJ
+nO
+Yc
+Nk
+MJ
+Yc
+MJ
+MJ
+MJ
+Yc
+Fx
+MJ
+MJ
+MJ
+MJ
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+Pe
+Yc
+Yc
+FF
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+Gu
+Gu
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+Gu
+MJ
+MJ
+MJ
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Fx
+MJ
+MJ
 OF
 OF
 OF
@@ -21129,72 +23261,72 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+cJ
+VJ
+Gu
+WI
+WI
+WI
+WI
+MJ
+Li
+OV
+OV
+SW
+MJ
+WV
+Yc
+Yv
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Gu
+Yc
+Yc
+ID
+RI
+Ta
+Fl
+NO
+Du
+Yc
+MJ
+Tq
+Rg
+VY
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Gu
+VJ
+cJ
 OF
 OF
 OF
@@ -21271,72 +23403,72 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+MJ
+MJ
+Fx
+WI
+WI
+WI
+WI
+MJ
+NU
+OV
+OV
+TO
+MJ
+YV
+Yc
+YV
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+MJ
+MJ
+Yc
+MJ
+MJ
+MJ
+Yc
+MJ
+MJ
+MJ
+MJ
+MJ
+Yc
+MJ
+MJ
+MJ
+Gs
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+gj
+Nh
+PI
+MJ
+Yc
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
 OF
 OF
 OF
@@ -21414,66 +23546,66 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+ZL
+MJ
+UI
+UI
+UI
+Fx
+MJ
+MJ
+Gy
+Yt
+MJ
+MJ
+Fx
+Gu
+Fx
+MJ
+MJ
+MJ
+MJ
+Yc
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+Yc
+MJ
+ES
+GB
+Yc
+Zh
+Zh
+MJ
+FS
+HG
+Yc
+Tz
+Hh
+MJ
+RC
+Yc
+Po
+IX
+JV
+Pr
+Ub
+Jp
+Yc
+MJ
+MH
+XT
+XT
+MJ
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -21561,61 +23693,61 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+ZL
+XS
+MJ
+UI
+UI
+MJ
+XB
+MJ
+NJ
+MJ
+XS
+ZL
+XS
+MJ
+MJ
+MJ
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+Yc
+MJ
+LN
+Yc
+Yc
+Yc
+Yc
+MJ
+Yc
+Yc
+Yc
+Yc
+RU
+MJ
+Iv
+Yc
+SJ
+Pz
+TF
+Sd
+Vz
+Yl
+Yc
+MJ
+XT
+XT
+XT
+MJ
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -21710,54 +23842,54 @@ OF
 OF
 OF
 OF
+MJ
+cJ
+MJ
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Zh
+Yc
+Yc
+Yc
+Yc
+Zh
+Yc
+Yc
+Gu
+Yc
+Yc
+Uo
+Hl
+Ik
+Xl
+OT
+IV
+Yc
+MJ
+XT
+XT
+XT
+MJ
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -21858,48 +23990,48 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+Yc
+MJ
+NR
+Yc
+Nn
+RU
+UK
+MJ
+RU
+Yc
+EC
+TE
+EQ
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+XT
+XT
+FY
+MJ
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -22000,48 +24132,48 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+MJ
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
+MJ
+Yc
+MJ
+HG
+Yc
+Yc
+IA
+EQ
+MJ
+ES
+Yc
+IA
+Yc
+kP
+MJ
+It
+bi
+NN
+Wg
+TL
+Xk
+KE
+DT
+Zg
+MJ
+XT
+XT
+XT
+MJ
+Yc
+Yc
+Xq
+iJ
 OF
 OF
 OF
@@ -22142,48 +24274,48 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+UI
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+UI
+UI
+UI
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+MJ
+XT
+XT
+XT
+Fx
+Gu
+Fx
+Fx
+ZL
 OF
 OF
 OF
@@ -22286,45 +24418,45 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+ZL
+XS
+MJ
+XB
+MJ
+XS
+ZL
+XS
+XS
+XS
+XS
+XS
+ZL
+XS
+MJ
+XB
+MJ
+XS
+ZL
+XS
+XS
+XS
+XS
+XS
+ZL
+XS
+MJ
+XB
+MJ
+XS
+ZL
+MJ
+UI
+UI
+UI
+MJ
+NJ
+MJ
+XS
 OF
 OF
 OF
@@ -22463,9 +24595,9 @@ OF
 OF
 OF
 OF
-OF
-OF
-OF
+MJ
+cJ
+MJ
 OF
 OF
 OF
@@ -23393,713 +25525,713 @@ OF
 OF
 "}
 (47,1,1) = {"
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 "}
 (48,1,1) = {"
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
 "}
 (49,1,1) = {"
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
 "}
 (50,1,1) = {"
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
-OF
+aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
 "}
 (51,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
 aa
 "}
 (52,1,1) = {"
@@ -24459,28 +26591,28 @@ ac
 ac
 ac
 ac
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
 ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
+Vq
 ac
 ac
 ac
@@ -24574,6 +26706,14 @@ ac
 ac
 ac
 ac
+ei
+ei
+ei
+ei
+ei
+ei
+ei
+ei
 ac
 ac
 ac
@@ -24593,36 +26733,28 @@ ac
 ac
 ac
 ac
+ry
+vK
+wq
+wq
+xp
+xN
+vM
+yn
+ry
 ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-ac
-ac
-ac
-ac
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
-Vq
+ry
+yn
+vM
+xN
+vK
+wq
+wq
+xp
+ry
 ac
 ac
 ac
@@ -24671,148 +26803,6 @@ ac
 aa
 "}
 (56,1,1) = {"
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ei
-ei
-ei
-ei
-ei
-ei
-ei
-ei
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ry
-vK
-wq
-wq
-xp
-xN
-vM
-yn
-ry
-ac
-ac
-ac
-ac
-ry
-yn
-vM
-xN
-vK
-wq
-wq
-xp
-ry
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-aa
-"}
-(57,1,1) = {"
 aa
 ac
 ac
@@ -24954,7 +26944,7 @@ ac
 ac
 aa
 "}
-(58,1,1) = {"
+(57,1,1) = {"
 aa
 ac
 ac
@@ -25096,7 +27086,7 @@ ac
 ac
 aa
 "}
-(59,1,1) = {"
+(58,1,1) = {"
 aa
 ac
 ac
@@ -25238,7 +27228,7 @@ ac
 ac
 aa
 "}
-(60,1,1) = {"
+(59,1,1) = {"
 aa
 ac
 ac
@@ -25380,7 +27370,7 @@ ac
 ac
 aa
 "}
-(61,1,1) = {"
+(60,1,1) = {"
 aa
 ac
 ac
@@ -25522,7 +27512,7 @@ ac
 ac
 aa
 "}
-(62,1,1) = {"
+(61,1,1) = {"
 aa
 ac
 ac
@@ -25664,7 +27654,7 @@ ac
 ac
 aa
 "}
-(63,1,1) = {"
+(62,1,1) = {"
 aa
 ac
 ac
@@ -25806,7 +27796,7 @@ ac
 ac
 aa
 "}
-(64,1,1) = {"
+(63,1,1) = {"
 aa
 ac
 ac
@@ -25948,7 +27938,7 @@ ac
 ac
 aa
 "}
-(65,1,1) = {"
+(64,1,1) = {"
 aa
 ac
 ac
@@ -26090,7 +28080,7 @@ ac
 ac
 aa
 "}
-(66,1,1) = {"
+(65,1,1) = {"
 aa
 ac
 ac
@@ -26232,7 +28222,7 @@ ac
 ac
 aa
 "}
-(67,1,1) = {"
+(66,1,1) = {"
 aa
 ac
 ac
@@ -26374,7 +28364,7 @@ ac
 ac
 aa
 "}
-(68,1,1) = {"
+(67,1,1) = {"
 aa
 ac
 ac
@@ -26516,7 +28506,7 @@ ac
 ac
 aa
 "}
-(69,1,1) = {"
+(68,1,1) = {"
 aa
 ac
 ac
@@ -26658,7 +28648,7 @@ ac
 ac
 aa
 "}
-(70,1,1) = {"
+(69,1,1) = {"
 aa
 ac
 ac
@@ -26726,7 +28716,7 @@ mx
 mS
 np
 jK
-nW
+Iu
 kv
 pp
 kv
@@ -26800,7 +28790,7 @@ ac
 ac
 aa
 "}
-(71,1,1) = {"
+(70,1,1) = {"
 aa
 ac
 ac
@@ -26942,7 +28932,7 @@ ac
 ac
 aa
 "}
-(72,1,1) = {"
+(71,1,1) = {"
 aa
 ac
 ac
@@ -27084,7 +29074,7 @@ ac
 ac
 aa
 "}
-(73,1,1) = {"
+(72,1,1) = {"
 aa
 ac
 ac
@@ -27226,7 +29216,7 @@ ac
 ac
 aa
 "}
-(74,1,1) = {"
+(73,1,1) = {"
 aa
 ac
 ac
@@ -27368,7 +29358,7 @@ ac
 ac
 aa
 "}
-(75,1,1) = {"
+(74,1,1) = {"
 aa
 ac
 ac
@@ -27510,7 +29500,7 @@ ac
 ac
 aa
 "}
-(76,1,1) = {"
+(75,1,1) = {"
 aa
 ac
 ac
@@ -27652,7 +29642,7 @@ ac
 ac
 aa
 "}
-(77,1,1) = {"
+(76,1,1) = {"
 aa
 ac
 ac
@@ -27794,7 +29784,7 @@ ac
 ac
 aa
 "}
-(78,1,1) = {"
+(77,1,1) = {"
 aa
 ac
 ac
@@ -27936,7 +29926,7 @@ ac
 ac
 aa
 "}
-(79,1,1) = {"
+(78,1,1) = {"
 aa
 ac
 ac
@@ -28078,7 +30068,7 @@ ac
 ac
 aa
 "}
-(80,1,1) = {"
+(79,1,1) = {"
 aa
 ac
 ac
@@ -28220,7 +30210,7 @@ ac
 ac
 aa
 "}
-(81,1,1) = {"
+(80,1,1) = {"
 aa
 ac
 ac
@@ -28362,7 +30352,7 @@ ac
 ac
 aa
 "}
-(82,1,1) = {"
+(81,1,1) = {"
 aa
 ac
 ac
@@ -28504,7 +30494,7 @@ ac
 ac
 aa
 "}
-(83,1,1) = {"
+(82,1,1) = {"
 aa
 ac
 ac
@@ -28646,7 +30636,7 @@ ac
 ac
 aa
 "}
-(84,1,1) = {"
+(83,1,1) = {"
 aa
 ac
 ac
@@ -28788,7 +30778,7 @@ ac
 ac
 aa
 "}
-(85,1,1) = {"
+(84,1,1) = {"
 aa
 ac
 ac
@@ -28930,7 +30920,7 @@ ac
 ac
 aa
 "}
-(86,1,1) = {"
+(85,1,1) = {"
 aa
 ac
 ac
@@ -29072,7 +31062,7 @@ ac
 ac
 aa
 "}
-(87,1,1) = {"
+(86,1,1) = {"
 aa
 ac
 ac
@@ -29214,7 +31204,7 @@ ac
 ac
 aa
 "}
-(88,1,1) = {"
+(87,1,1) = {"
 aa
 ac
 ac
@@ -29356,7 +31346,7 @@ ac
 ac
 aa
 "}
-(89,1,1) = {"
+(88,1,1) = {"
 aa
 ac
 ac
@@ -29498,7 +31488,7 @@ ac
 ac
 aa
 "}
-(90,1,1) = {"
+(89,1,1) = {"
 aa
 ac
 ac
@@ -29640,7 +31630,7 @@ ac
 ac
 aa
 "}
-(91,1,1) = {"
+(90,1,1) = {"
 aa
 ac
 ac
@@ -29782,7 +31772,7 @@ ac
 ac
 aa
 "}
-(92,1,1) = {"
+(91,1,1) = {"
 aa
 ac
 ac
@@ -29924,7 +31914,7 @@ ac
 ac
 aa
 "}
-(93,1,1) = {"
+(92,1,1) = {"
 aa
 ac
 ac
@@ -30066,7 +32056,7 @@ ac
 ac
 aa
 "}
-(94,1,1) = {"
+(93,1,1) = {"
 aa
 ac
 ac
@@ -30208,7 +32198,7 @@ ac
 ac
 aa
 "}
-(95,1,1) = {"
+(94,1,1) = {"
 aa
 ac
 ac
@@ -30350,7 +32340,7 @@ ac
 ac
 aa
 "}
-(96,1,1) = {"
+(95,1,1) = {"
 aa
 ac
 ac
@@ -30492,7 +32482,7 @@ ac
 ac
 aa
 "}
-(97,1,1) = {"
+(96,1,1) = {"
 aa
 ac
 ac
@@ -30634,7 +32624,7 @@ ac
 ac
 aa
 "}
-(98,1,1) = {"
+(97,1,1) = {"
 aa
 ac
 ac
@@ -30776,7 +32766,7 @@ ac
 ac
 aa
 "}
-(99,1,1) = {"
+(98,1,1) = {"
 aa
 ac
 ac
@@ -30918,7 +32908,7 @@ ac
 ac
 aa
 "}
-(100,1,1) = {"
+(99,1,1) = {"
 aa
 ac
 ac
@@ -31060,7 +33050,7 @@ ac
 ac
 aa
 "}
-(101,1,1) = {"
+(100,1,1) = {"
 aa
 ac
 ac
@@ -31202,7 +33192,7 @@ ac
 ac
 aa
 "}
-(102,1,1) = {"
+(101,1,1) = {"
 aa
 ac
 ac
@@ -31344,7 +33334,7 @@ ac
 ac
 aa
 "}
-(103,1,1) = {"
+(102,1,1) = {"
 aa
 ac
 ac
@@ -31486,7 +33476,7 @@ ac
 ac
 aa
 "}
-(104,1,1) = {"
+(103,1,1) = {"
 aa
 ac
 ac
@@ -31628,7 +33618,7 @@ ac
 ac
 aa
 "}
-(105,1,1) = {"
+(104,1,1) = {"
 aa
 ac
 ac
@@ -31770,7 +33760,7 @@ ac
 ac
 aa
 "}
-(106,1,1) = {"
+(105,1,1) = {"
 aa
 ac
 ac
@@ -31912,7 +33902,7 @@ ac
 ac
 aa
 "}
-(107,1,1) = {"
+(106,1,1) = {"
 aa
 ac
 ac
@@ -32054,7 +34044,7 @@ ac
 ac
 aa
 "}
-(108,1,1) = {"
+(107,1,1) = {"
 aa
 ac
 ac
@@ -32196,7 +34186,7 @@ ac
 ac
 aa
 "}
-(109,1,1) = {"
+(108,1,1) = {"
 aa
 ac
 ac
@@ -32338,7 +34328,7 @@ ac
 ac
 aa
 "}
-(110,1,1) = {"
+(109,1,1) = {"
 aa
 ac
 ac
@@ -32480,7 +34470,7 @@ ac
 ac
 aa
 "}
-(111,1,1) = {"
+(110,1,1) = {"
 aa
 ac
 ac
@@ -32622,7 +34612,7 @@ ac
 ac
 aa
 "}
-(112,1,1) = {"
+(111,1,1) = {"
 aa
 ac
 ac
@@ -32764,7 +34754,7 @@ ac
 ac
 aa
 "}
-(113,1,1) = {"
+(112,1,1) = {"
 aa
 ac
 ac
@@ -32906,7 +34896,7 @@ ac
 ac
 aa
 "}
-(114,1,1) = {"
+(113,1,1) = {"
 aa
 ac
 ac
@@ -33048,7 +35038,7 @@ ac
 ac
 aa
 "}
-(115,1,1) = {"
+(114,1,1) = {"
 aa
 ac
 ac
@@ -33190,7 +35180,7 @@ ac
 ac
 aa
 "}
-(116,1,1) = {"
+(115,1,1) = {"
 aa
 ac
 ac
@@ -33332,7 +35322,7 @@ ac
 ac
 aa
 "}
-(117,1,1) = {"
+(116,1,1) = {"
 aa
 ac
 ac
@@ -33474,7 +35464,7 @@ ac
 ac
 aa
 "}
-(118,1,1) = {"
+(117,1,1) = {"
 aa
 ac
 ac
@@ -33616,7 +35606,7 @@ ac
 ac
 aa
 "}
-(119,1,1) = {"
+(118,1,1) = {"
 aa
 ac
 ac
@@ -33632,11 +35622,11 @@ ac
 ac
 ac
 ah
-UP
-Xs
-Xs
-Xs
-Jj
+Iq
+PY
+PY
+PY
+Dx
 ah
 av
 aG
@@ -33758,7 +35748,7 @@ ac
 ac
 aa
 "}
-(120,1,1) = {"
+(119,1,1) = {"
 aa
 ac
 ac
@@ -33900,7 +35890,7 @@ ac
 ac
 aa
 "}
-(121,1,1) = {"
+(120,1,1) = {"
 aa
 ac
 ac
@@ -34042,7 +36032,7 @@ ac
 ac
 aa
 "}
-(122,1,1) = {"
+(121,1,1) = {"
 aa
 ac
 ac
@@ -34184,7 +36174,7 @@ ac
 ac
 aa
 "}
-(123,1,1) = {"
+(122,1,1) = {"
 aa
 ac
 ac
@@ -34326,7 +36316,7 @@ ac
 ac
 aa
 "}
-(124,1,1) = {"
+(123,1,1) = {"
 aa
 ac
 ac
@@ -34468,7 +36458,7 @@ ac
 ac
 aa
 "}
-(125,1,1) = {"
+(124,1,1) = {"
 aa
 ac
 ac
@@ -34610,7 +36600,7 @@ ac
 ac
 aa
 "}
-(126,1,1) = {"
+(125,1,1) = {"
 aa
 ac
 ac
@@ -34752,7 +36742,7 @@ ac
 ac
 aa
 "}
-(127,1,1) = {"
+(126,1,1) = {"
 aa
 ac
 ac
@@ -34894,7 +36884,7 @@ ac
 ac
 aa
 "}
-(128,1,1) = {"
+(127,1,1) = {"
 aa
 ac
 ac
@@ -35036,7 +37026,7 @@ ac
 ac
 aa
 "}
-(129,1,1) = {"
+(128,1,1) = {"
 aa
 ac
 ac
@@ -35178,7 +37168,7 @@ ac
 ac
 aa
 "}
-(130,1,1) = {"
+(129,1,1) = {"
 aa
 ac
 ac
@@ -35320,7 +37310,7 @@ ac
 ac
 aa
 "}
-(131,1,1) = {"
+(130,1,1) = {"
 aa
 ac
 ac
@@ -35462,7 +37452,7 @@ ac
 ac
 aa
 "}
-(132,1,1) = {"
+(131,1,1) = {"
 aa
 ac
 ac
@@ -35604,7 +37594,7 @@ ac
 ac
 aa
 "}
-(133,1,1) = {"
+(132,1,1) = {"
 aa
 ac
 ac
@@ -35746,7 +37736,7 @@ ac
 ac
 aa
 "}
-(134,1,1) = {"
+(133,1,1) = {"
 aa
 ac
 ac
@@ -35888,7 +37878,7 @@ ac
 ac
 aa
 "}
-(135,1,1) = {"
+(134,1,1) = {"
 aa
 ac
 ac
@@ -36030,7 +38020,7 @@ ac
 ac
 aa
 "}
-(136,1,1) = {"
+(135,1,1) = {"
 aa
 ac
 ac
@@ -36172,7 +38162,7 @@ ac
 ac
 aa
 "}
-(137,1,1) = {"
+(136,1,1) = {"
 aa
 ac
 ac
@@ -36314,7 +38304,7 @@ ac
 ac
 aa
 "}
-(138,1,1) = {"
+(137,1,1) = {"
 aa
 ac
 ac
@@ -36424,6 +38414,148 @@ hX
 hX
 hX
 hX
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+"}
+(138,1,1) = {"
+aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
 ac
 ac
 ac
