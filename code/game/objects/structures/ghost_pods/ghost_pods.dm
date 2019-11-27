@@ -83,4 +83,13 @@
 		to_chat(user, "<span class='warning'>Another spirit appears to have gotten to \the [src] before you.  Sorry.</span>")
 		return
 
+	var/choice = input(user, "Are you certain you wish to activate this pod?", "Control Pod") as null|anything in list("Yes", "No")
+
+	if(!choice || choice == "No")
+		return
+
+	else if(used)
+		to_chat(user, "<span class='warning'>Another spirit appears to have gotten to \the [src] before you.  Sorry.</span>")
+		return
+
 	create_occupant(user)

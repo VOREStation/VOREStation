@@ -368,6 +368,13 @@
 				target.taunt(user)
 			target.adjustFireLoss(force * 6) // 30 Burn, for 50 total.
 
+/obj/item/weapon/melee/energy/sword/ionic_rapier/lance
+	name = "zero-point lance"
+	desc = "Designed specifically for disrupting electronics at relatively close range, however it is still capable of dealing some damage to living beings."
+	active_force = 20
+	armor_penetration = 15
+	reach = 2
+
 /*
  * Charge blade. Uses a cell, and costs energy per strike.
  */

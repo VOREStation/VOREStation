@@ -614,9 +614,17 @@
 	no_message = "These saddlebags seem to be fitted for someone else, and keep slipping off!"
 	action_button_name = "Toggle Mlembulance Mode"
 	var/ambulance = FALSE
+	var/datum/looping_sound/ambulance/soundloop
 	var/ambulance_state = FALSE
 	var/ambulance_last_switch = 0
-	var/ambulance_volume = 25	//Allows for varediting, just in case
+
+/obj/item/weapon/storage/backpack/saddlebag/tempest/Initialize()
+	soundloop = new(list(src), FALSE)
+	return ..()
+
+/obj/item/weapon/storage/backpack/saddlebag/tempest/Destroy()
+	QDEL_NULL(soundloop)
+	return ..()
 
 /obj/item/weapon/storage/backpack/saddlebag/tempest/ui_action_click()
 	ambulance = !(ambulance)
@@ -629,9 +637,7 @@
 			M.update_inv_back()
 		ambulance_state = FALSE
 		set_light(2, 1, "#FF0000")
-		while(ambulance)
-			playsound(src.loc, 'sound/items/amulanceweeoo.ogg', ambulance_volume, 0)
-			sleep(20)
+		soundloop.start()
 	else
 		item_state = "tempestsaddlebag"
 		icon_state = "tempestbag"
@@ -639,6 +645,7 @@
 			var/mob/M = loc
 			M.update_inv_back()
 		set_light(0)
+		soundloop.stop()
 
 /obj/item/weapon/storage/backpack/saddlebag/tempest/process()
 	if(!ambulance)
@@ -654,6 +661,11 @@
 			M.update_inv_back()
 		set_light(2, 1, newlight)
 		ambulance_last_switch = world.time
+
+/datum/looping_sound/ambulance
+	mid_sounds = list('sound/items/amulanceweeoo.ogg'=1)
+	mid_length = 20
+	volume = 25
 
 //WickedTempest: Chakat Tempest
 /obj/item/weapon/implant/reagent_generator/tempest

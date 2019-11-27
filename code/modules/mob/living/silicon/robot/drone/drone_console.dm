@@ -29,6 +29,9 @@
 	for(var/mob/living/silicon/robot/drone/D in mob_list)
 		if(D.z != src.z)
 			continue
+		if(D.foreign_droid)
+			continue
+
 		dat += "<BR>[D.real_name] ([D.stat == 2 ? "<font color='red'>INACTIVE</FONT>" : "<font color='green'>ACTIVE</FONT>"])"
 		dat += "<font dize = 9><BR>Cell charge: [D.cell.charge]/[D.cell.maxcharge]."
 		dat += "<BR>Currently located in: [get_area(D)]."

@@ -61,6 +61,7 @@ var/list/gamemode_cache = list()
 	var/list/player_requirements_secret = list() // Same as above, but for the secret gamemode.
 	var/humans_need_surnames = 0
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
+	var/enable_game_master = 0			// enables the 'smart' event system.
 	var/allow_ai = 1					// allow ai job
 	var/allow_ai_shells = FALSE			// allow AIs to enter and leave special borg shells at will, and for those shells to be buildable.
 	var/give_free_ai_shell = FALSE		// allows a specific spawner object to instantiate a premade AI Shell
@@ -548,6 +549,9 @@ var/list/gamemode_cache = list()
 
 				if("allow_random_events")
 					config.allow_random_events = 1
+
+				if("enable_game_master")
+					config.enable_game_master = 1
 
 				if("kick_inactive")
 					config.kick_inactive = text2num(value)

@@ -103,6 +103,17 @@
 	body_color = "brown"
 	icon_state = "mouse_brown"
 
+/mob/living/simple_mob/animal/passive/mouse/rat
+	name = "rat"
+	maxHealth = 20
+	health = 20
+
+	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
+
+/mob/living/simple_mob/animal/passive/mouse/rat/Initialize()
+	..()
+	adjust_scale(1.2)
+
 //TOM IS ALIVE! SQUEEEEEEEE~K :)
 /mob/living/simple_mob/animal/passive/mouse/brown/Tom
 	name = "Tom"
