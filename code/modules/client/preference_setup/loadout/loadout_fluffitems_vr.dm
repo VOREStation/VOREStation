@@ -345,7 +345,6 @@
 	ckeywhitelist = list("jertheace")
 	character_name = list("Jeremiah Acacius")
 	allowed_roles = list("Colony Director", "Warden", "Head of Security")
-*/
 
 /datum/gear/fluff/jeremiah_gun
 	path = /obj/item/weapon/gun/projectile/p92x/large/preban/hp
@@ -353,6 +352,7 @@
 	ckeywhitelist = list("jertheace")
 	character_name = list("Jeremiah Acacius")
 	allowed_roles = list("Colony Director", "Warden", "Head of Security")
+*/
 
 /datum/gear/fluff/jeremiah_ammo
 	path = /obj/item/ammo_magazine/m9mm/large/preban/hp //Spare ammo
@@ -890,7 +890,7 @@
 	character_name = list("Chakat Tempest Venosare")
 	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Field Medic")
 	slot = slot_glasses
-	
+
 /datum/gear/fluff/tempest_hypospray
 	path = /obj/item/weapon/reagent_containers/hypospray/vial/tempest
 	display_name = "Tempest's Hypospray"
@@ -898,14 +898,14 @@
 	character_name = list("Chakat Tempest Venosare")
 	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Field Medic")
 	slot = slot_belt
-	
+
 /datum/gear/fluff/tempest_backpack
 	path = /obj/item/weapon/storage/backpack/saddlebag/tempest
 	display_name = "Tempest's Saddlebag"
 	ckeywhitelist = list("wickedtemp")
 	character_name = list("Chakat Tempest Venosare")
 	slot = slot_back
-	
+
 /datum/gear/fluff/tempest_implant
 	path = /obj/item/weapon/implanter/reagent_generator/tempest
 	display_name = "Tempest's Implant"
