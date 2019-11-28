@@ -6682,6 +6682,10 @@
 "mQ" = (
 /turf/unsimulated/wall,
 /area/centcom/evac)
+"mR" = (
+/obj/machinery/sleeper/survival_pod,
+/turf/simulated/shuttle/floor/alien,
+/area/houseboat)
 "mS" = (
 /obj/machinery/shower{
 	dir = 4;
@@ -16214,6 +16218,9 @@
 /obj/machinery/reagentgrinder,
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
+"DL" = (
+/turf/simulated/shuttle/floor/alien,
+/area/houseboat)
 "DP" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/cell_charger,
@@ -16235,6 +16242,10 @@
 /obj/item/rig_module/device/orescanner,
 /obj/item/rig_module/device/orescanner,
 /turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"DU" = (
+/obj/structure/table/survival_pod,
+/turf/simulated/shuttle/floor/alien,
 /area/houseboat)
 "DV" = (
 /obj/machinery/computer/message_monitor{
@@ -16272,6 +16283,11 @@
 "En" = (
 /obj/machinery/transhuman/resleever,
 /turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Es" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/teleport/hub,
+/turf/simulated/shuttle/floor/voidcraft,
 /area/houseboat)
 "Ev" = (
 /obj/effect/floor_decal/derelict/d5,
@@ -16337,6 +16353,10 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"EN" = (
+/obj/structure/bed/chair/comfy/black,
+/turf/simulated/shuttle/floor/alien,
+/area/houseboat)
 "EQ" = (
 /obj/machinery/computer/secure_data{
 	dir = 1
@@ -16649,6 +16669,9 @@
 /obj/machinery/microwave,
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
+"Hq" = (
+/turf/simulated/shuttle/wall/alien/hard_corner,
+/area/houseboat)
 "Ht" = (
 /obj/effect/floor_decal/derelict/d13,
 /turf/unsimulated/floor/steel,
@@ -16910,7 +16933,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
 "Jk" = (
-/obj/machinery/computer/gyrotron_control,
+/obj/structure/prop/alien/computer{
+	icon_state = "console-c";
+	dir = 1
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/houseboat)
 "Jm" = (
@@ -16980,6 +17006,13 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"JF" = (
+/obj/item/device/perfect_tele_beacon/stationary{
+	tele_name = "Unknown";
+	tele_network = "unkfour"
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/houseboat)
 "JM" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -17032,6 +17065,10 @@
 	icon_state = "steel"
 	},
 /area/centcom/command)
+"JY" = (
+/obj/structure/prop/alien/power,
+/turf/simulated/shuttle/floor/alienplating,
+/area/houseboat)
 "Ka" = (
 /obj/machinery/vending/nifsoft_shop{
 	categories = 111;
@@ -17365,6 +17402,12 @@
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"LX" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/houseboat)
 "Mc" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
@@ -17396,6 +17439,9 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/houseboat)
+"Mg" = (
+/turf/simulated/shuttle/floor/alienplating,
+/area/houseboat)
 "Mh" = (
 /obj/machinery/vending/food/arojoan{
 	density = 0;
@@ -17403,6 +17449,11 @@
 	pixel_y = -32
 	},
 /turf/simulated/floor/carpet/blue,
+/area/houseboat)
+"Mi" = (
+/obj/structure/bed/double,
+/obj/item/weapon/bedsheet/rddouble,
+/turf/simulated/shuttle/floor/alien,
 /area/houseboat)
 "Ml" = (
 /obj/structure/closet/secure_closet/personal,
@@ -17535,6 +17586,10 @@
 /obj/item/clothing/mask/breath,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"Nl" = (
+/obj/structure/prop/alien/dispenser,
+/turf/simulated/shuttle/floor/alien,
+/area/houseboat)
 "Nn" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/device/flashlight/lamp,
@@ -17545,6 +17600,10 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Nt" = (
+/obj/machinery/door/airlock/alien/public,
+/turf/simulated/shuttle/floor/alienplating,
 /area/houseboat)
 "Nw" = (
 /obj/machinery/vending/hydronutrients,
@@ -17685,6 +17744,10 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Ok" = (
+/obj/structure/table/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/houseboat)
 "Ol" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/storage/box/bodybags,
@@ -17877,11 +17940,28 @@
 /obj/item/weapon/storage/backpack/ert/engineer,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"Pt" = (
+/obj/item/device/perfect_tele_beacon/stationary{
+	tele_name = "Unknown";
+	tele_network = "unktwo"
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/houseboat)
 "Pu" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/device/retail_scanner/security,
 /obj/item/device/retail_scanner/security,
 /turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Pw" = (
+/obj/machinery/shower{
+	pixel_y = 13
+	},
+/obj/structure/curtain/open/shower,
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
+	},
+/turf/simulated/shuttle/floor/alienplating,
 /area/houseboat)
 "Pz" = (
 /obj/structure/closet/crate/secure/weapon,
@@ -17948,12 +18028,23 @@
 /turf/unsimulated/floor/shuttle_ceiling,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/specialops/centcom)
+"Qe" = (
+/obj/item/device/perfect_tele_beacon/stationary{
+	tele_name = "Unknown";
+	tele_network = "unkone"
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/houseboat)
 "Qg" = (
 /obj/machinery/power/fractal_reactor/fluff/converter,
 /obj/structure/cable/green{
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Qk" = (
+/obj/structure/fans,
+/turf/simulated/shuttle/floor/alien,
 /area/houseboat)
 "Ql" = (
 /obj/machinery/door/airlock/multi_tile/glass{
@@ -18223,6 +18314,12 @@
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"RV" = (
+/obj/machinery/computer/teleporter{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/houseboat)
 "RY" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/unsimulated/floor{
@@ -18311,6 +18408,13 @@
 "SE" = (
 /obj/machinery/vending/sovietsoda,
 /turf/simulated/floor/wood,
+/area/houseboat)
+"SF" = (
+/obj/item/device/perfect_tele_beacon/stationary{
+	tele_name = "Unknown";
+	tele_network = "unkthree"
+	},
+/turf/simulated/shuttle/floor/alienplating,
 /area/houseboat)
 "SG" = (
 /obj/structure/table/steel_reinforced,
@@ -18441,6 +18545,10 @@
 	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Ts" = (
+/obj/machinery/recharge_station,
+/turf/simulated/shuttle/floor/alienplating,
 /area/houseboat)
 "Tx" = (
 /obj/machinery/autolathe{
@@ -18611,6 +18719,10 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/houseboat)
+"UJ" = (
+/obj/structure/closet/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/houseboat)
 "UK" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/paper_bin{
@@ -18654,6 +18766,24 @@
 /obj/item/stack/telecrystal{
 	amount = 240
 	},
+/obj/item/stack/telecrystal{
+	amount = 240
+	},
+/obj/item/stack/telecrystal{
+	amount = 240
+	},
+/obj/item/stack/telecrystal{
+	amount = 240
+	},
+/obj/item/stack/telecrystal{
+	amount = 240
+	},
+/obj/item/weapon/card/mining_point_card{
+	mine_points = 50000
+	},
+/obj/item/weapon/card/mining_point_card{
+	mine_points = 50000
+	},
 /obj/item/weapon/card/mining_point_card{
 	mine_points = 50000
 	},
@@ -18665,6 +18795,14 @@
 	},
 /obj/item/weapon/card/mining_point_card{
 	mine_points = 50000
+	},
+/obj/item/weapon/card/mining_point_card/survey{
+	name = "survey point card";
+	survey_points = 5000
+	},
+/obj/item/weapon/card/mining_point_card/survey{
+	name = "survey point card";
+	survey_points = 5000
 	},
 /obj/item/weapon/card/mining_point_card/survey{
 	name = "survey point card";
@@ -18880,6 +19018,10 @@
 /obj/item/weapon/rig/ert,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"Wi" = (
+/obj/structure/toilet,
+/turf/simulated/shuttle/floor/alienplating,
+/area/houseboat)
 "Wn" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/storage/firstaid/surgery,
@@ -18896,6 +19038,10 @@
 /obj/item/clothing/head/helmet/solgov,
 /obj/item/clothing/head/helmet/solgov,
 /turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"WC" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/shuttle/floor/alien,
 /area/houseboat)
 "WI" = (
 /turf/simulated/floor/wood,
@@ -18973,6 +19119,9 @@
 	},
 /obj/item/modular_computer/console/preset/mercenary,
 /turf/simulated/floor/tiled/steel_grid,
+/area/houseboat)
+"Xp" = (
+/turf/simulated/shuttle/wall/alien,
 /area/houseboat)
 "Xq" = (
 /obj/structure/shuttle/engine/heater,
@@ -19300,6 +19449,12 @@
 /obj/item/weapon/storage/briefcase/inflatable,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"Zn" = (
+/obj/structure/prop/alien/computer{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/houseboat)
 "Zw" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/projectile/heavysniper,
@@ -19363,6 +19518,32 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/living)
+"ZR" = (
+/obj/machinery/smartfridge/survival_pod,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu13,
+/obj/item/weapon/storage/mre/menu13,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu9,
+/obj/item/weapon/storage/mre/menu9,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
+/turf/simulated/shuttle/floor/alien,
+/area/houseboat)
+"ZS" = (
+/obj/machinery/teleport/station,
+/turf/simulated/shuttle/floor/alienplating,
+/area/houseboat)
 "ZX" = (
 /obj/structure/bed/chair/wood{
 	dir = 4
@@ -26762,6 +26943,19 @@ ac
 ac
 ac
 ac
+Hq
+Xp
+Hq
+Xp
+Xp
+Xp
+Xp
+Xp
+Xp
+Hq
+Xp
+Xp
+Hq
 ac
 ac
 ac
@@ -26862,32 +27056,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Hq
+Xp
+Hq
+Xp
+Xp
+Xp
+Xp
+Xp
+Xp
+Hq
+Xp
+Xp
+Hq
 ac
 ac
 ac
@@ -26904,19 +27085,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xp
+Ts
+Hq
+UJ
+mR
+DU
+Zn
+WC
+WC
+Hq
+DL
+Es
+Xp
 ac
 ac
 ac
@@ -27017,19 +27198,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xp
+Ts
+Hq
+UJ
+mR
+DU
+Zn
+WC
+WC
+Hq
+DL
+Es
+Xp
 ac
 ac
 ac
@@ -27046,19 +27227,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xp
+Mg
+Nt
+DL
+Mg
+SF
+Mg
+Mg
+DL
+Nt
+DL
+ZS
+Xp
 ac
 ac
 ac
@@ -27159,19 +27340,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xp
+Mg
+Nt
+DL
+Mg
+Qe
+Mg
+Mg
+DL
+Nt
+DL
+ZS
+Xp
 ac
 ac
 ac
@@ -27188,19 +27369,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xp
+Wi
+Hq
+Qk
+Mg
+Mg
+Mg
+Mg
+LX
+Hq
+DL
+RV
+Xp
 ac
 ac
 ac
@@ -27301,19 +27482,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xp
+Wi
+Hq
+Qk
+Mg
+Mg
+Mg
+Mg
+LX
+Hq
+DL
+RV
+Xp
 ac
 ac
 ac
@@ -27330,19 +27511,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xp
+Pw
+Xp
+ZR
+DL
+Mi
+Nl
+EN
+Ok
+Xp
+DL
+JY
+Xp
 ac
 ac
 ac
@@ -27443,19 +27624,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xp
+Pw
+Xp
+ZR
+DL
+Mi
+Nl
+EN
+Ok
+Xp
+DL
+JY
+Xp
 ac
 ac
 ac
@@ -27472,19 +27653,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Hq
+Xp
+Hq
+Xp
+Xp
+Xp
+Xp
+Xp
+Xp
+Hq
+Xp
+Xp
+Hq
 ac
 ac
 ac
@@ -27585,19 +27766,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Hq
+Xp
+Hq
+Xp
+Xp
+Xp
+Xp
+Xp
+Xp
+Hq
+Xp
+Xp
+Hq
 ac
 ac
 ac
@@ -28466,19 +28647,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Hq
+Xp
+Hq
+Xp
+Xp
+Xp
+Xp
+Xp
+Xp
+Hq
+Xp
+Xp
+Hq
 ac
 ac
 ac
@@ -28579,19 +28760,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Hq
+Xp
+Hq
+Xp
+Xp
+Xp
+Xp
+Xp
+Xp
+Hq
+Xp
+Xp
+Hq
 ac
 ac
 ac
@@ -28608,19 +28789,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xp
+Ts
+Hq
+UJ
+mR
+DU
+Zn
+WC
+WC
+Hq
+DL
+Es
+Xp
 ac
 ac
 ac
@@ -28721,19 +28902,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xp
+Ts
+Hq
+UJ
+mR
+DU
+Zn
+WC
+WC
+Hq
+DL
+Es
+Xp
 ac
 ac
 ac
@@ -28750,19 +28931,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xp
+Mg
+Nt
+DL
+Mg
+JF
+Mg
+Mg
+DL
+Nt
+DL
+ZS
+Xp
 ac
 ac
 ac
@@ -28863,19 +29044,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xp
+Mg
+Nt
+DL
+Mg
+Pt
+Mg
+Mg
+DL
+Nt
+DL
+ZS
+Xp
 ac
 ac
 ac
@@ -28892,19 +29073,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xp
+Wi
+Hq
+Qk
+Mg
+Mg
+Mg
+Mg
+LX
+Hq
+DL
+RV
+Xp
 ac
 ac
 ac
@@ -29005,19 +29186,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xp
+Wi
+Hq
+Qk
+Mg
+Mg
+Mg
+Mg
+LX
+Hq
+DL
+RV
+Xp
 ac
 ac
 ac
@@ -29034,19 +29215,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xp
+Pw
+Xp
+ZR
+DL
+Mi
+Nl
+EN
+Ok
+Xp
+DL
+JY
+Xp
 ac
 ac
 ac
@@ -29147,19 +29328,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Xp
+Pw
+Xp
+ZR
+DL
+Mi
+Nl
+EN
+Ok
+Xp
+DL
+JY
+Xp
 ac
 ac
 ac
@@ -29176,19 +29357,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Hq
+Xp
+Hq
+Xp
+Xp
+Xp
+Xp
+Xp
+Xp
+Hq
+Xp
+Xp
+Hq
 ac
 ac
 ac
@@ -29289,19 +29470,19 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+Hq
+Xp
+Hq
+Xp
+Xp
+Xp
+Xp
+Xp
+Xp
+Hq
+Xp
+Xp
+Hq
 ac
 ac
 ac

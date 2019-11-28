@@ -73,7 +73,7 @@
 /obj/item/weapon/storage/box/survival/space,
 /obj/item/weapon/extinguisher/mini,
 /obj/item/device/radio{
-	icon_state = "walkietalkieOLD";
+	icon_state = "walkietalkiebay";
 	name = "emergency radio"
 	},
 /obj/item/weapon/towel{

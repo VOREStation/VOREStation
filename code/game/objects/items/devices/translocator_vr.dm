@@ -12,6 +12,9 @@
 	var/charge_cost = 800 // cell/device/weapon has 2400
 	var/battery_lock = 0	//If set, weapon cannot switch batteries
 
+	var/longrange = 0 //Can teleport very long distances
+	var/abductor = 0 //Can be used on teleportation blocking turfs
+
 	var/list/beacons = list()
 	var/ready = 1
 	var/beacons_left = 3
@@ -181,13 +184,15 @@
 	if(!uT || !dT)
 		return FALSE
 
-	if( (uT.z != dT.z) && (!(dT.z in dat["z_level_detection"])) )
-		to_chat(user,"<span class='warning'>\The [src] can't teleport you that far!</span>")
-		return FALSE
+	if(!longrange)
+		if( (uT.z != dT.z) && (!(dT.z in dat["z_level_detection"])) )
+			to_chat(user,"<span class='warning'>\The [src] can't teleport you that far!</span>")
+			return FALSE
 
-	if(uT.block_tele || dT.block_tele)
-		to_chat(user,"<span class='warning'>Something is interfering with \the [src]!</span>")
-		return FALSE
+	if(!abductor)
+		if(uT.block_tele || dT.block_tele)
+			to_chat(user,"<span class='warning'>Something is interfering with \the [src]!</span>")
+			return FALSE
 
 	//Seems okay to me!
 	return TRUE
@@ -372,45 +377,15 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	charge_cost = 400
 	beacons_left = 6
 	failure_chance = 0 //Percent
-
-/obj/item/device/perfect_tele/alien/teleport_checks(mob/living/target,mob/living/user)
-	//Uhhuh, need that power source
-	if(!power_source)
-		to_chat(user,"<span class='warning'>\The [src] has no power source!</span>")
-		return FALSE
-
-	//Check for charge
-	if((!power_source.check_charge(charge_cost)) && (!power_source.fully_charged()))
-		to_chat(user,"<span class='warning'>\The [src] does not have enough power left!</span>")
-		return FALSE
-
-	//Only mob/living need apply.
-	if(!istype(user) || !istype(target))
-		return FALSE
-
-	//No, you can't teleport buckled people.
-	if(target.buckled)
-		to_chat(user,"<span class='warning'>The target appears to be attached to something...</span>")
-		return FALSE
-
-	//No, you can't teleport if it's not ready yet.
-	if(!ready)
-		to_chat(user,"<span class='warning'>\The [src] is still recharging!</span>")
-		return FALSE
-
-	//No, you can't teleport if there's no destination.
-	if(!destination)
-		to_chat(user,"<span class='warning'>\The [src] doesn't have a current valid destination set!</span>")
-		return FALSE
-
-	//Seems okay to me!
-	return TRUE
+	longrange = 1
+	abductor = 1
 
 /obj/item/device/perfect_tele/frontier
 	icon_state = "minitrans"
 	beacons_left = 1 //Just one
 	battery_lock = 1
 	unacidable = 1
+	failure_chance = 0 //Percent
 	var/loc_network = null
 	var/phase_power = 75
 	var/recharging = 0
@@ -443,6 +418,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	name = "centcom translocator"
 	desc = "Similar to translocator technology, however, most of its destinations are hardcoded."
 	loc_network = "centcom"
+	longrange = 1
 
 /obj/item/device/perfect_tele/frontier/staff/New()
 	..()
@@ -450,50 +426,23 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 		if(nb.tele_network == loc_network)
 			beacons[nb.tele_name] = nb
 
-/obj/item/device/perfect_tele/frontier/staff/teleport_checks(mob/living/target,mob/living/user)
-	//Uhhuh, need that power source
-	if(!power_source)
-		to_chat(user,"<span class='warning'>\The [src] has no power source!</span>")
-		return FALSE
+/obj/item/device/perfect_tele/frontier/unknown
+	name = "modified translocator"
+	desc = "This crank-charged translocator has only one beacon, but it already has a destination preprogrammed into it."
+	longrange = 1
+	abductor = 1
 
-	//Check for charge
-	if((!power_source.check_charge(charge_cost)) && (!power_source.fully_charged()))
-		to_chat(user,"<span class='warning'>\The [src] does not have enough power left!</span>")
-		return FALSE
+/obj/item/device/perfect_tele/frontier/unknown/New()
+	..()
+	for(var/obj/item/device/perfect_tele_beacon/stationary/nb in premade_tele_beacons)
+		if(nb.tele_network == loc_network)
+			beacons[nb.tele_name] = nb
 
-	//Only mob/living need apply.
-	if(!istype(user) || !istype(target))
-		return FALSE
-
-	//No, you can't teleport buckled people.
-	if(target.buckled)
-		to_chat(user,"<span class='warning'>The target appears to be attached to something...</span>")
-		return FALSE
-
-	//No, you can't teleport if it's not ready yet.
-	if(!ready)
-		to_chat(user,"<span class='warning'>\The [src] is still recharging!</span>")
-		return FALSE
-
-	//No, you can't teleport if there's no destination.
-	if(!destination)
-		to_chat(user,"<span class='warning'>\The [src] doesn't have a current valid destination set!</span>")
-		return FALSE
-
-	//No, you can't teleport if there's a jammer.
-	if(is_jammed(src) || is_jammed(destination))
-		to_chat(user,"<span class='warning'>\The [src] refuses to teleport you, due to strong interference!</span>")
-		return FALSE
-
-	//Can port to and from away areas (required for this to work) but teleporter blockers block it
-	var/turf/uT = get_turf(user)
-	var/turf/dT = get_turf(destination)
-	if(!uT || !dT)
-		return FALSE
-
-	if(uT.block_tele || dT.block_tele)
-		to_chat(user,"<span class='warning'>Something is interfering with \the [src]!</span>")
-		return FALSE
-
-	//Seems okay to me!
-	return TRUE
+/obj/item/device/perfect_tele/frontier/unknown/one
+	loc_network = "unkone"
+/obj/item/device/perfect_tele/frontier/unknown/two
+	loc_network = "unktwo"
+/obj/item/device/perfect_tele/frontier/unknown/three
+	loc_network = "unkthree"
+/obj/item/device/perfect_tele/frontier/unknown/four
+	loc_network = "unkfour"
