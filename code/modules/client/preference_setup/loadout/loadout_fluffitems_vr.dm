@@ -337,12 +337,15 @@
 	ckeywhitelist = list("jemli")
 	character_name = list("Jemli")
 
+//TFF 28/11/19 - Expired permit removal
+/*
 /datum/gear/fluff/jeremiah_permit
 	path = /obj/item/clothing/accessory/permit/gun/fluff/ace
 	display_name = "Ace's Gun Permit"
 	ckeywhitelist = list("jertheace")
 	character_name = list("Jeremiah Acacius")
 	allowed_roles = list("Colony Director", "Warden", "Head of Security")
+*/
 
 /datum/gear/fluff/jeremiah_gun
 	path = /obj/item/weapon/gun/projectile/p92x/large/preban/hp
