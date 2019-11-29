@@ -256,7 +256,7 @@
 		dat += " [selected.can_taste ? "Yes" : "No"]"
 
 		//Nutritional percentage
-		dat += "<br><a href='?src=\ref[src];b_nutritionpercent=\ref[selected]'>Nutritional Percentage:</a>"
+		dat += "<br><a href='?src=\ref[src];b_nutritionpercent=\ref[selected]'>Nutritional Gain:</a>"
 		dat += " [selected.nutrition_percent]%"
 
 		//How much brute damage
@@ -776,7 +776,7 @@
 			selected.shrink_grow_size = (new_grow*0.01)
 
 	if(href_list["b_nutritionpercent"])
-		var/new_damage = input(user, "Choose the percentage of nutrition you will recieve per tick from prey. Ranges from 0.01 to 100.", "Set Belly Brute Damage.", selected.digest_brute) as num|null
+		var/new_damage = input(user, "Choose the nutrition gain percentage you will recieve per tick from prey. Ranges from 0.01 to 100.", "Set Nutrition Gain Percentage.", selected.digest_brute) as num|null
 		if(new_damage == null)
 			return
 		var/new_new_damage = CLAMP(new_damage, 0.01, 100)
