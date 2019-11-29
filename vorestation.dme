@@ -1664,6 +1664,7 @@
 #include "code\modules\clothing\head\solgov_vr.dm"
 #include "code\modules\clothing\masks\boxing.dm"
 #include "code\modules\clothing\masks\breath.dm"
+#include "code\modules\clothing\masks\breath_vr.dm"
 #include "code\modules\clothing\masks\gasmask.dm"
 #include "code\modules\clothing\masks\gasmask_vr.dm"
 #include "code\modules\clothing\masks\miscellaneous.dm"
