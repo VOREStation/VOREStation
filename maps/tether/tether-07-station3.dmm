@@ -27071,13 +27071,15 @@
 /turf/simulated/floor,
 /area/maintenance/station/ai)
 "Qn" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/obj/machinery/door/window/southright{
+	req_access = list(58)
+	},
+/turf/simulated/floor/carpet,
+/area/crew_quarters/heads/hos)
 "Qo" = (
 /obj/item/weapon/storage/secure/safe{
 	pixel_x = -28
@@ -27093,15 +27095,15 @@
 /area/medical/virology)
 "Qp" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1/station)
 "Qq" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+	dir = 8
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -27123,6 +27125,14 @@
 /obj/structure/curtain/open/shower,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medical_restroom)
+"Qs" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
 "Qt" = (
 /turf/simulated/wall,
 /area/tether/exploration)
@@ -28357,16 +28367,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
-"TZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/obj/machinery/door/window/brigdoor/southright{
-	id = "tactical_pet_storage"
-	},
-/turf/simulated/floor/carpet,
-/area/crew_quarters/heads/hos)
 "Ua" = (
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -33898,7 +33898,7 @@ ZF
 je
 Ui
 iS
-TZ
+Qn
 Yu
 Vp
 Ve
@@ -39341,11 +39341,11 @@ MK
 Iy
 ab
 NL
-Qn
-Qp
-Qp
 Qp
 Qq
+Qq
+Qq
+Qs
 NL
 vt
 vt

@@ -13780,11 +13780,6 @@
 /area/tether/surfacebase/surface_one_hall)
 "axl" = (
 /obj/effect/floor_decal/borderfloor,
-/obj/machinery/power/apc{
-	dir = 2;
-	name = "south bump";
-	pixel_y = -28
-	},
 /obj/structure/cable{
 	d2 = 8;
 	icon_state = "0-8"
@@ -13795,6 +13790,9 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 8
+	},
+/obj/machinery/power/apc/high{
+	pixel_y = -28
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
@@ -19813,11 +19811,6 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 4
 	},
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
 /obj/structure/cable/green{
 	icon_state = "0-8"
 	},
@@ -19826,6 +19819,11 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
+	},
+/obj/machinery/power/apc/high{
+	dir = 4;
+	pixel_x = 28;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
@@ -19928,12 +19926,10 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
 "aGB" = (
-/obj/machinery/power/apc{
-	dir = 2;
-	name = "south bump";
+/obj/structure/cable/green,
+/obj/machinery/power/apc/high{
 	pixel_y = -28
 	},
-/obj/structure/cable/green,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
 "aGC" = (
