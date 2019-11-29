@@ -34,6 +34,11 @@
 	sort_category = "Xenowear"
 	whitelisted = "Vox"
 
+/datum/gear/mask/transparent
+	display_name = "transparent breath mask"
+	path = /obj/item/clothing/mask/breath/transparent
+	sort_category = "Xenowear"
+
 /datum/gear/uniform/loincloth
 	display_name = "loincloth"
 	path = /obj/item/clothing/suit/storage/fluff/loincloth
