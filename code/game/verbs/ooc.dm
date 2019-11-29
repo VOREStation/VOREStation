@@ -12,8 +12,25 @@
 		to_chat(src, "Guests may not use OOC.")
 		return
 
+	//VOREStation Addition Start - TFF 28/11/19 - Port CHOMPStation emoji parsing
+	//Uncomment this section if you want to allow OOC emojis.
+	//Comment out the second section of the following three lines of code.
+	/*
 	msg = sanitize(msg)
-	if(!msg)	return
+	if(!msg)
+		return
+
+	msg = emoji_parse(msg)
+	*/
+
+	if((copytext(msg, 1, 2) in list(".",";",":","#")) || (findtext(lowertext(copytext(msg, 1, 5)), "say")))
+		if(alert("Your message \"[msg]\" looks like it was meant for in game communication, say it in OOC?", "Meant for OOC?", "No", "Yes") != "Yes")
+			return
+	//VOREStation Addition End
+
+	msg = sanitize(msg)
+	if(!msg)
+		return
 
 	if(!is_preference_enabled(/datum/client_preference/show_ooc))
 		to_chat(src, "<span class='warning'>You have OOC muted.</span>")
@@ -34,11 +51,11 @@
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
-		//VOREStation Add - No talking during voting
+		//VOREStation Addition Start - No talking during voting
 		if(SSvote && SSvote.mode)
 			to_chat(src,"<span class='danger'>OOC is not allowed during voting.</span>")
 			return
-		//VOREStation Add End
+		//VOREStation Addition End
 
 	log_ooc(msg, src)
 
@@ -92,6 +109,10 @@
 	msg = sanitize(msg)
 	if(!msg)
 		return
+
+	//VOREStation Addition Start - TFF 28/11/19 - Port CHOMPStation emoji parsing
+	msg = emoji_parse(msg)
+	//VOREStation Addition End
 
 	if(!is_preference_enabled(/datum/client_preference/show_looc))
 		to_chat(src, "<span class='danger'>You have LOOC muted.</span>")

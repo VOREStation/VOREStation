@@ -1790,6 +1790,7 @@
 #include "code\modules\economy\price_list.dm"
 #include "code\modules\economy\retail_scanner.dm"
 #include "code\modules\economy\TradeDestinations.dm"
+#include "code\modules\emojis_vr\emojis_vr.dm"
 #include "code\modules\entopics_vr\alternate_appearance.dm"
 #include "code\modules\entopics_vr\entopics.dm"
 #include "code\modules\error_handler\_defines.dm"

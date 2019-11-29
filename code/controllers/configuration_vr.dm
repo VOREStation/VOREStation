@@ -10,6 +10,7 @@
 	var/limit_visitors = -1 //Unlimited by default
 	var/pto_cap = 100 //Hours
 	var/require_flavor = FALSE
+	var/emojis = 1	//TFF 28/11/19 - Ports CHOMPStation Emojis code for LOOC/OOC usage
 
 /hook/startup/proc/read_vs_config()
 	var/list/Lines = file2list("config/config.txt")
@@ -58,4 +59,8 @@
 				config.pto_job_change = TRUE
 			if ("require_flavor")
 				config.require_flavor = TRUE
+			//TFF 28/11/19 - Port CHOMPStation config code option for emoji usage.
+			if ("disable_emojis")
+				config.emojis = 0
+
 	return 1
