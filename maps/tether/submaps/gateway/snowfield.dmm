@@ -108,7 +108,6 @@
 	input_level = 250000;
 	inputting = 1;
 	output_level = 250000;
-	RCon_tag = "Telecommunications Satellite"
 	},
 /obj/structure/cable{
 	icon_state = "0-2";
