@@ -7,11 +7,16 @@
 /datum/category_item/player_setup_item/player_global/pai/load_preferences(var/savefile/S)
 	if(!candidate)
 		candidate = new()
-
-	if(!preference_mob())
+	var/preference_mob = preference_mob()
+	if(!preference_mob)// No preference mob - this happens when we're called from client/New() before it calls ..()  (via datum/preferences/New())
+		spawn()
+			preference_mob = preference_mob()
+			if(!preference_mob)
+				return
+			candidate.savefile_load(preference_mob)
 		return
 
-	candidate.savefile_load(preference_mob())
+	candidate.savefile_load(preference_mob)
 
 /datum/category_item/player_setup_item/player_global/pai/save_preferences(var/savefile/S)
 	if(!candidate)
