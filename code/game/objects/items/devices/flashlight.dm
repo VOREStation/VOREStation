@@ -295,7 +295,7 @@
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
 	force = 10
-	brightness_on = 5
+	brightness_on = 10	//TFF 27/11/19 - post refactor fix for intensity levels.
 	w_class = ITEMSIZE_LARGE
 	power_use = 0
 	on = 1
