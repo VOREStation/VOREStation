@@ -352,7 +352,6 @@
 	ckeywhitelist = list("jertheace")
 	character_name = list("Jeremiah Acacius")
 	allowed_roles = list("Colony Director", "Warden", "Head of Security")
-*/
 
 /datum/gear/fluff/jeremiah_ammo
 	path = /obj/item/ammo_magazine/m9mm/large/preban/hp //Spare ammo
@@ -360,6 +359,7 @@
 	ckeywhitelist = list("jertheace")
 	character_name = list("Jeremiah Acacius")
 	allowed_roles = list("Colony Director", "Warden", "Head of Security")
+*/
 
 /datum/gear/fluff/jeremiah_holster
 	path = /obj/item/clothing/accessory/holster/armpit
