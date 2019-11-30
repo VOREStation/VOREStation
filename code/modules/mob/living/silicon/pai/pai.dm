@@ -39,11 +39,11 @@
 		"Bear" = "pai-bear",
 		"Fennec" = "pai-fen",
 		"Type Zero" = "pai-typezero",
-		"Raccoon" = "pai-raccoon",	//TFF 22/11/19 - CHOMPStation port of pAI additions,
+		"Raccoon" = "pai-raccoon",
 		"Rat" = "rat",
 		"Panther" = "panther"
-		)
 		//VOREStation Addition End
+		)
 
 	var/global/list/possible_say_verbs = list(
 		"Robotic" = list("states","declares","queries"),
