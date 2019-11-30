@@ -19,6 +19,7 @@
 	var/human_prey_swallow_time = 100		// Time in deciseconds to swallow /mob/living/carbon/human
 	var/nonhuman_prey_swallow_time = 30		// Time in deciseconds to swallow anything else
 	var/emote_time = 60 SECONDS				// How long between stomach emotes at prey
+	var/nutrition_percent = 100				// Nutritional percentage per tick in digestion mode
 	var/digest_brute = 2					// Brute damage per tick in digestion mode
 	var/digest_burn = 2						// Burn damage per tick in digestion mode
 	var/immutable = FALSE					// Prevents this belly from being deleted
@@ -129,6 +130,7 @@
 		"human_prey_swallow_time",
 		"nonhuman_prey_swallow_time",
 		"emote_time",
+		"nutrition_percent",
 		"digest_brute",
 		"digest_burn",
 		"immutable",
@@ -478,7 +480,7 @@
 	if(!digested)
 		items_preserved |= item
 	else
-		owner.nutrition += (5 * digested)
+		owner.nutrition += ((nutrition_percent / 100) * 5 * digested)
 		if(isrobot(owner))
 			var/mob/living/silicon/robot/R = owner
 			R.cell.charge += (50 * digested)
@@ -661,6 +663,7 @@
 	dupe.human_prey_swallow_time = human_prey_swallow_time
 	dupe.nonhuman_prey_swallow_time = nonhuman_prey_swallow_time
 	dupe.emote_time = emote_time
+	dupe.nutrition_percent = nutrition_percent
 	dupe.digest_brute = digest_brute
 	dupe.digest_burn = digest_burn
 	dupe.immutable = immutable
