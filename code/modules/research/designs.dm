@@ -62,3 +62,12 @@ other types of metals and chemistry for reagents).
 
 /datum/design/item
 	build_type = PROTOLATHE
+
+//Make sure items don't get free power
+/datum/design/item/Fabricate()
+	var/obj/item/I = ..()
+	var/obj/item/weapon/cell/C = I.get_cell()
+	if(C)
+		C.charge = 0
+		I.update_icon()
+	return I
