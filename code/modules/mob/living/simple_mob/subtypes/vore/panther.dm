@@ -12,6 +12,7 @@
 	maxHealth = 200
 	health = 200
 	movement_cooldown = 4
+	see_in_dark = 8
 
 	melee_damage_lower = 5
 	melee_damage_upper = 15
@@ -39,16 +40,15 @@
 	vore_pounce_chance = 10
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
-/* //VOREStation AI Temporary Removal
-/mob/living/simple_animal/vore/panther/Login()
+/mob/living/simple_mob/vore/panther/Login()
 	. = ..()
 	if(!riding_datum)
-		riding_datum = new /datum/riding/simple_animal(src)
-	verbs |= /mob/living/simple_animal/proc/animal_mount
+		riding_datum = new /datum/riding/simple_mob(src)
+	verbs |= /mob/living/simple_mob/proc/animal_mount
+	movement_cooldown = 0
 
-/mob/living/simple_animal/vore/panther/MouseDrop_T(mob/living/M, mob/living/user)
+/mob/living/simple_mob/vore/panther/MouseDrop_T(mob/living/M, mob/living/user)
 	return
-*/
 
 /datum/say_list/panther
 	speak = list("RAWR!","Rawr!","GRR!","Growl!")
