@@ -40,14 +40,14 @@
 	vore_pounce_chance = 10
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
-/mob/living/simple_mob/vore/panther/Login()
+/mob/living/simple_mob/vore/aggressive/panther/Login()
 	. = ..()
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_mob(src)
 	verbs |= /mob/living/simple_mob/proc/animal_mount
 	movement_cooldown = 0
 
-/mob/living/simple_mob/vore/panther/MouseDrop_T(mob/living/M, mob/living/user)
+/mob/living/simple_mob/vore/aggressive/panther/MouseDrop_T(mob/living/M, mob/living/user)
 	return
 
 /datum/say_list/panther
