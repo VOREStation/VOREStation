@@ -27,6 +27,10 @@
 	minbodytemp = 0
 	maxbodytemp = 700
 
+	response_help = "pats"
+	response_disarm = "tries to shove"
+	response_harm = "hits"
+
 	old_x = -16
 	old_y = 0
 	default_pixel_x = -16

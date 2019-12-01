@@ -10,9 +10,9 @@
 	melee_damage_lower = 2
 	melee_damage_upper = 5
 
-	response_help = "pets the"
-	response_disarm = "gently baps the"
-	response_harm = "hits the"
+	response_help = "pets"
+	response_disarm = "gently baps"
+	response_harm = "hits"
 
 	attacktext = list("swatted","bapped")
 

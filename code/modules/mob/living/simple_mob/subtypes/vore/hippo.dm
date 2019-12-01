@@ -23,9 +23,9 @@
 		"bio" = 0,
 		"rad" = 0)
 
-	response_help = "pets the"
-	response_disarm = "gently pushes aside the"
-	response_harm = "hits the"
+	response_help = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm = "hits"
 	attacktext = list("bit")
 
 	melee_damage_upper = 12
