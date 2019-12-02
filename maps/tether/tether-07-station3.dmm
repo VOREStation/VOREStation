@@ -19733,7 +19733,6 @@
 /turf/simulated/floor/wood,
 /area/quartermaster/qm)
 "Et" = (
-/obj/structure/cable/green{
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/airless/carry,
