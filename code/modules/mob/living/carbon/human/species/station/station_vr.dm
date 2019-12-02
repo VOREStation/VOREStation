@@ -493,8 +493,8 @@ datum/species/harpy
 	item_slowdown_mod = 1.5
 
 	total_health = 75
-	brute_mod = 1.5 // Frail
-	burn_mod = 1.5	// Furry
+	brute_mod = 1.25 // Frail
+	burn_mod = 1.25	// Furry
 	blood_volume = 500
 	hunger_factor = 0.2
 
@@ -555,17 +555,17 @@ datum/species/harpy
 		)
 
 	has_limbs = list(
-		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
-		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
-		BP_HEAD =   list("path" = /obj/item/organ/external/head/vr/shadekin/crew),
-		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
-		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
-		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
-		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
-		BP_L_HAND = list("path" = /obj/item/organ/external/hand),
-		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right),
-		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
-		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest/crewkin),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin/crewkin),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/vr/crewkin),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm/crewkin),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right/crewkin),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg/crewkin),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right/crewkin),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand/crewkin),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right/crewkin),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot/crewkin),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/crewkin)
 		)
 
 /datum/species/shadekin/get_bodytype()

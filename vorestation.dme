@@ -2733,6 +2733,7 @@
 #include "code\modules\organs\subtypes\replicant.dm"
 #include "code\modules\organs\subtypes\seromi.dm"
 #include "code\modules\organs\subtypes\shadekin.dm"
+#include "code\modules\organs\subtypes\shadekin_vr.dm"
 #include "code\modules\organs\subtypes\slime.dm"
 #include "code\modules\organs\subtypes\standard.dm"
 #include "code\modules\organs\subtypes\standard_vr.dm"
