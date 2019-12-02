@@ -27,6 +27,9 @@
 	join_group = "shuttle_ert"
 	},
 /area/shuttle/specialops/centcom)
+"ag" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/eva)
 "ah" = (
 /turf/unsimulated/wall,
 /area/centcom/specops)
@@ -532,7 +535,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/bathroom2)
 "aW" = (
 /obj/structure/table/rack,
 /obj/item/clothing/accessory/storage/black_vest,
@@ -701,7 +704,7 @@
 /obj/item/weapon/tool/screwdriver,
 /obj/item/weapon/tool/wrench,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "bj" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -908,6 +911,12 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"by" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/mothership/dorm5)
 "bz" = (
 /obj/structure/table/rack,
 /obj/item/weapon/rig/ert/assetprotection,
@@ -1641,6 +1650,10 @@
 	name = "Sealed Door"
 	},
 /area/houseboat)
+"cL" = (
+/obj/structure/particle_accelerator/fuel_chamber,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
 "cM" = (
 /obj/structure/table/reinforced,
 /obj/effect/floor_decal/industrial/outline/blue,
@@ -1702,7 +1715,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "cU" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/clothing/gloves/yellow,
@@ -3439,17 +3452,17 @@
 	pixel_y = -29
 	},
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/dorm3)
 "gj" = (
-/obj/machinery/computer/HolodeckControl/holodorm/one,
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
 	},
 /obj/machinery/status_display{
 	pixel_y = 32
 	},
+/obj/machinery/computer/HolodeckControl/holodorm/warship,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/holodeck)
 "gk" = (
 /obj/structure/table/rack,
 /obj/item/clothing/under/color/red,
@@ -3571,11 +3584,12 @@
 /obj/structure/table/woodentable,
 /obj/item/weapon/book/codex,
 /turf/simulated/floor/carpet/blue,
-/area/houseboat)
+/area/mothership/breakroom)
 "gz" = (
 /obj/item/device/defib_kit/jumper_kit,
 /obj/structure/table/steel_reinforced,
 /obj/item/device/robotanalyzer,
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
 "gA" = (
@@ -3585,7 +3599,27 @@
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/kitchen)
+"gB" = (
+/obj/structure/grille,
+/obj/machinery/door/blast/shutters{
+	density = 1;
+	dir = 4;
+	icon_state = "shutter1";
+	id = "dongleship_blast";
+	layer = 3.3;
+	name = "Blast Shutters";
+	opacity = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 10;
+	icon_state = "fwindow"
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating,
+/area/mothership/breakroom)
 "gC" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -3769,6 +3803,12 @@
 /obj/item/device/mmi,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
+"gX" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/hydroponics)
 "gY" = (
 /turf/unsimulated/floor/steel,
 /area/shuttle/large_escape_pod2/centcom{
@@ -4196,7 +4236,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
-/area/houseboat)
+/area/mothership/cryotube)
 "hZ" = (
 /obj/effect/floor_decal/corner_steel_grid/diagonal,
 /turf/unsimulated/floor/steel,
@@ -4530,7 +4570,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/houseboat)
+/area/mothership/bridge)
 "iB" = (
 /obj/machinery/door/blast/regular{
 	id = "thunderdomehea";
@@ -4578,7 +4618,7 @@
 /area/houseboat)
 "iN" = (
 /turf/simulated/floor/carpet/oracarpet,
-/area/houseboat)
+/area/mothership/engineering)
 "iO" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -4842,11 +4882,17 @@
 	pixel_y = 28
 	},
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/dorm3)
 "jp" = (
 /obj/machinery/door/airlock/multi_tile/metal,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/eva)
+"jq" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/cryotube)
 "jt" = (
 /obj/structure/closet/secure_closet/medical3,
 /turf/simulated/floor/tiled/white,
@@ -5876,14 +5922,14 @@
 	icon_state = "computer"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "lj" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "lk" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/weapon/storage/box/evidence,
@@ -5902,7 +5948,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "lm" = (
 /obj/structure/table/woodentable,
 /obj/item/modular_computer/laptop/preset/custom_loadout/elite,
@@ -5910,7 +5956,7 @@
 	pixel_y = 29
 	},
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/dorm1)
 "lo" = (
 /obj/item/weapon/stool/padded,
 /turf/unsimulated/floor/steel{
@@ -6185,7 +6231,7 @@
 	pixel_y = 28
 	},
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/dorm4)
 "lH" = (
 /obj/machinery/vending/snack,
 /obj/effect/floor_decal/borderfloorwhite{
@@ -7040,7 +7086,7 @@
 /obj/item/weapon/pen/multi,
 /obj/item/weapon/folder/yellow_ce,
 /turf/simulated/floor/carpet/oracarpet,
-/area/houseboat)
+/area/mothership/engineering)
 "np" = (
 /obj/structure/sink{
 	icon_state = "sink";
@@ -7321,7 +7367,7 @@
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/eva)
 "nP" = (
 /obj/structure/table/standard,
 /obj/item/weapon/surgical/hemostat,
@@ -7428,6 +7474,12 @@
 	icon_state = "white"
 	},
 /area/centcom/medical)
+"nW" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/bathroom1)
 "nX" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
@@ -16225,6 +16277,14 @@
 	icon_state = "steel"
 	},
 /area/centcom/command)
+"Da" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/bridge)
 "Db" = (
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/blue/border,
@@ -16332,7 +16392,7 @@
 "Dn" = (
 /obj/machinery/seed_extractor,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/hydroponics)
 "Do" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
@@ -16364,7 +16424,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "Dw" = (
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -16392,7 +16452,7 @@
 	filtered_out = list("carbon_dioxide")
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "DB" = (
 /obj/effect/landmark{
 	name = "Commando"
@@ -16412,12 +16472,12 @@
 "DF" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "DG" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow,
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "DH" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	icon_state = "intact-supply";
@@ -16425,13 +16485,21 @@
 	},
 /obj/machinery/portable_atmospherics/powered/pump/filled,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
+"DI" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/dorm3)
 "DK" = (
 /obj/structure/table/steel_reinforced,
 /obj/fiftyspawner/phoron,
 /obj/machinery/reagentgrinder,
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/chemistry)
 "DL" = (
 /turf/simulated/shuttle/floor/alien,
 /area/houseboat)
@@ -16446,7 +16514,7 @@
 	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
 	},
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/dorm1)
 "DT" = (
 /obj/item/rig_module/device/drill,
 /obj/item/rig_module/device/drill,
@@ -16456,7 +16524,7 @@
 /obj/item/rig_module/device/orescanner,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "DU" = (
 /obj/structure/table/survival_pod,
 /turf/simulated/shuttle/floor/alien,
@@ -16466,7 +16534,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/houseboat)
+/area/mothership/bridge)
 "DW" = (
 /obj/structure/toilet{
 	dir = 1
@@ -16479,7 +16547,7 @@
 	},
 /obj/structure/cable/cyan,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/bathroom1)
 "DY" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -16507,7 +16575,7 @@
 	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/houseboat)
+/area/mothership/bridge)
 "Ec" = (
 /obj/item/device/healthanalyzer/advanced,
 /obj/item/device/healthanalyzer/advanced,
@@ -16520,10 +16588,30 @@
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
+"Eg" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/door/window/westleft,
+/obj/machinery/door/window/eastright,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/chemistry)
 "Eh" = (
 /obj/machinery/vending/robotics,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"Ej" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/floor/wood,
+/area/mothership/dorm4)
+"Ek" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Em" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/mothership/bridge)
 "En" = (
 /obj/machinery/transhuman/resleever,
 /turf/simulated/floor/tiled/white,
@@ -16540,7 +16628,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/bathroom1)
 "Es" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/teleport/hub,
@@ -16550,6 +16638,18 @@
 /obj/effect/floor_decal/derelict/d5,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Ew" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
+"Ex" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/dorm4)
 "Ey" = (
 /obj/machinery/iv_drip,
 /turf/simulated/floor/tiled/white,
@@ -16598,7 +16698,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/houseboat)
+/area/mothership/bridge)
 "EH" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/clothing/glasses/hud/security,
@@ -16623,6 +16723,10 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"EJ" = (
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/breakroom)
 "EN" = (
 /obj/structure/bed/chair/comfy/black,
 /turf/simulated/shuttle/floor/alien,
@@ -16633,7 +16737,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "EP" = (
 /obj/machinery/door/airlock/highsecurity,
 /obj/structure/cable/cyan{
@@ -16668,6 +16772,10 @@
 /area/houseboat)
 "EW" = (
 /obj/structure/closet/excavation,
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
 "EY" = (
@@ -16685,6 +16793,23 @@
 /obj/machinery/blackbox_recorder,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"Fc" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/dorm3)
+"Fd" = (
+/obj/item/weapon/bedsheet/captaindouble,
+/obj/structure/bed/double/padded,
+/turf/simulated/floor/wood,
+/area/mothership/dorm4)
+"Fe" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/dorm1)
 "Ff" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -16704,13 +16829,17 @@
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
 "Fg" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/houseboat)
+/area/mothership/bridge)
 "Fh" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/chemical_dispenser/bar_alc/full,
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/breakroom)
 "Fi" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
@@ -16743,7 +16872,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "Fo" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/storage/box/survival/comp{
@@ -16784,7 +16913,7 @@
 "Fr" = (
 /obj/machinery/gear_painter,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/cryotube)
 "Fs" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -16797,19 +16926,19 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/hydroponics)
 "Ft" = (
 /obj/machinery/computer/supplycomp{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/houseboat)
+/area/mothership/bridge)
 "Fu" = (
 /obj/machinery/computer/communications{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/houseboat)
+/area/mothership/bridge)
 "Fw" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /turf/unsimulated/floor/steel,
@@ -16825,13 +16954,20 @@
 "FB" = (
 /obj/machinery/vending/loadout/uniform,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/cryotube)
 "FF" = (
 /obj/machinery/door_timer/cell_2{
 	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"FH" = (
+/turf/unsimulated/wall{
+	icon = 'icons/obj/doors/Doorext.dmi';
+	icon_state = "door_locked";
+	name = "Sealed Door"
+	},
+/area/mothership/breakroom)
 "FL" = (
 /obj/structure/table/rack,
 /obj/item/clothing/accessory/storage/brown_vest,
@@ -16853,7 +16989,7 @@
 "FM" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/eva)
 "FN" = (
 /obj/machinery/teleport/station,
 /turf/simulated/floor/tiled/techmaint,
@@ -16866,40 +17002,60 @@
 /obj/structure/closet/toolcloset,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"FX" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
+	},
+/obj/structure/cable/cyan{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/chemistry)
 "FY" = (
 /obj/machinery/light,
 /turf/simulated/floor/reinforced{
 	name = "Holodeck Projector Floor"
 	},
-/area/houseboat)
+/area/mothership/holodeck/holo)
+"FZ" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/dorm5)
 "Gb" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Gd" = (
 /obj/structure/bed/chair/office/dark,
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/dorm3)
 "Ge" = (
 /obj/machinery/seed_storage/xenobotany,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/hydroponics)
 "Gf" = (
 /obj/structure/bed/chair/wood{
 	icon_state = "wooden_chair";
 	dir = 8
 	},
 /turf/simulated/floor/carpet/blue,
-/area/houseboat)
+/area/mothership/breakroom)
 "Gh" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
 /obj/item/weapon/reagent_containers/dropper,
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/chemistry)
 "Gi" = (
 /obj/machinery/transhuman/synthprinter,
 /turf/simulated/floor/tiled/white,
@@ -16913,7 +17069,7 @@
 	},
 /obj/machinery/portable_atmospherics/canister/empty/carbon_dioxide,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Gl" = (
 /obj/machinery/power/apc{
 	dir = 2;
@@ -16923,7 +17079,7 @@
 	},
 /obj/structure/cable/cyan,
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/kitchen)
 "Gm" = (
 /obj/structure/table/rack,
 /obj/item/weapon/rig/ert/engineer,
@@ -16933,10 +17089,18 @@
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"Go" = (
+/obj/structure/table/woodentable,
+/obj/item/modular_computer/laptop/preset/custom_loadout/elite,
+/obj/machinery/status_display{
+	pixel_y = 29
+	},
+/turf/simulated/floor/wood,
+/area/mothership/dorm6)
 "Gp" = (
 /obj/machinery/chem_master/condimaster,
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/kitchen)
 "Gs" = (
 /obj/item/ammo_magazine/m9mm/large/preban,
 /obj/item/ammo_magazine/m9mm/large/preban,
@@ -16952,7 +17116,7 @@
 /obj/item/weapon/gun/projectile/p92x,
 /obj/structure/closet/secure_closet/guncabinet,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "Gu" = (
 /obj/machinery/door/airlock/highsecurity,
 /turf/simulated/floor/tiled/techmaint,
@@ -16964,13 +17128,29 @@
 	filtered_out = list("sleeping_agent")
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
+"Gw" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/eva)
 "GB" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/device/camera,
 /obj/item/device/retail_scanner/security,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"GC" = (
+/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/bathroom2)
 "GG" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/launcher/grenade,
@@ -16984,7 +17164,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/houseboat)
+/area/mothership/bridge)
 "GK" = (
 /obj/item/weapon/bedsheet/rddouble,
 /obj/structure/bed/double/padded,
@@ -17004,7 +17184,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
-/area/houseboat)
+/area/mothership/cryotube)
 "GN" = (
 /obj/machinery/vending/medical,
 /turf/simulated/floor/tiled/white,
@@ -17012,7 +17192,7 @@
 "GP" = (
 /obj/machinery/vending/engineering,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "GQ" = (
 /obj/effect/floor_decal/steeldecal/steel_decals9,
 /obj/effect/floor_decal/steeldecal/steel_decals9{
@@ -17023,7 +17203,17 @@
 "GR" = (
 /obj/machinery/vending/loadout,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/cryotube)
+"GT" = (
+/obj/machinery/door/airlock/multi_tile/metal{
+	dir = 2
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hydroponics)
+"GU" = (
+/obj/structure/particle_accelerator/end_cap,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
 "GW" = (
 /obj/machinery/atmospherics/binary/passive_gate{
 	dir = 4;
@@ -17031,17 +17221,17 @@
 	unlocked = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "GX" = (
 /obj/machinery/vending/fitness,
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/breakroom)
 "GY" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/houseboat)
+/area/mothership/bridge)
 "GZ" = (
 /obj/structure/cable/cyan{
 	d2 = 8;
@@ -17055,6 +17245,18 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"Ha" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hydroponics)
+"Hc" = (
+/obj/structure/table/woodentable,
+/obj/item/modular_computer/laptop/preset/custom_loadout/elite,
+/obj/machinery/status_display{
+	pixel_y = 29
+	},
+/turf/simulated/floor/wood,
+/area/mothership/dorm5)
 "He" = (
 /obj/machinery/door/blast/regular{
 	dir = 4
@@ -17087,12 +17289,16 @@
 /obj/item/device/retail_scanner/security,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"Hk" = (
+/obj/structure/bed/chair/office/dark,
+/turf/simulated/floor/wood,
+/area/mothership/dorm4)
 "Hl" = (
 /obj/item/rig_module/mounted,
 /obj/item/rig_module/mounted,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "Hn" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/unsimulated/floor{
@@ -17105,13 +17311,17 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/light,
 /turf/simulated/floor/carpet/blue,
-/area/houseboat)
+/area/mothership/breakroom)
 "Hp" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/microwave,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/kitchen)
 "Hq" = (
 /turf/simulated/shuttle/wall/alien/hard_corner,
 /area/houseboat)
@@ -17130,8 +17340,19 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 9
 	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
+"Hz" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/engineering)
 "HB" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -17140,6 +17361,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
+"HC" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/engineering)
 "HD" = (
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -17147,7 +17374,7 @@
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/carpet/blue,
-/area/houseboat)
+/area/mothership/breakroom)
 "HE" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/recharger,
@@ -17161,7 +17388,7 @@
 "HH" = (
 /obj/machinery/vending/loadout/gadget,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/cryotube)
 "HI" = (
 /obj/machinery/atmospherics/trinary/mixer{
 	dir = 8;
@@ -17169,20 +17396,31 @@
 	node2_concentration = 0.79
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "HL" = (
 /obj/machinery/telecomms/relay/preset/centcom/tether/midpoint,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
 /area/centcom/command)
+"HN" = (
+/obj/structure/table/woodentable,
+/obj/item/modular_computer/laptop/preset/custom_loadout/elite,
+/obj/machinery/status_display{
+	pixel_y = -29
+	},
+/turf/simulated/floor/wood,
+/area/mothership/dorm4)
+"HO" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/breakroom)
 "HP" = (
 /obj/effect/floor_decal/spline/fancy/wood,
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/breakroom)
 "HQ" = (
 /obj/machinery/power/emitter/gyrotron/anchored{
 	desc = "It is a heavy duty pulse laser emitter.";
@@ -17219,6 +17457,10 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
+/area/mothership/cryotube)
+"HW" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
 "HX" = (
 /obj/machinery/door/airlock/multi_tile/glass{
@@ -17268,6 +17510,12 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Ia" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/holodeck)
 "Id" = (
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -17286,6 +17534,18 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"Ii" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/armory)
+"Ij" = (
+/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/dorm5)
 "Ik" = (
 /obj/item/rig_module/mounted/egun,
 /obj/item/rig_module/mounted/egun,
@@ -17293,7 +17553,7 @@
 /obj/item/rig_module/mounted/egun,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "Iq" = (
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "burst_l";
@@ -17314,7 +17574,7 @@
 /obj/item/weapon/cell/hyper,
 /obj/item/weapon/cell/hyper,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "Iu" = (
 /obj/structure/table/glass,
 /obj/item/weapon/reagent_containers/glass/bottle/biomass{
@@ -17354,7 +17614,7 @@
 /obj/item/weapon/gun/energy/frontier/locked/holdout,
 /obj/structure/closet/secure_closet/guncabinet,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "Iw" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	icon_state = "intact-supply";
@@ -17362,7 +17622,7 @@
 	},
 /obj/structure/closet/secure_closet/engineering_personal,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Ix" = (
 /obj/machinery/door/blast/shutters{
 	density = 1;
@@ -17383,6 +17643,11 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/houseboat)
+"Iy" = (
+/obj/item/weapon/bedsheet/captaindouble,
+/obj/structure/bed/double/padded,
+/turf/simulated/floor/wood,
+/area/mothership/dorm2)
 "IA" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -17424,7 +17689,11 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
+"IE" = (
+/obj/machinery/vending/security,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/armory)
 "IH" = (
 /obj/machinery/shield_capacitor,
 /turf/unsimulated/floor{
@@ -17458,11 +17727,17 @@
 	},
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "IS" = (
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/carpet/oracarpet,
-/area/houseboat)
+/area/mothership/engineering)
+"IT" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/breakroom)
 "IV" = (
 /obj/item/rig_module/rescue_pharm,
 /obj/item/rig_module/rescue_pharm,
@@ -17472,14 +17747,36 @@
 /obj/item/rig_module/chem_dispenser/combat,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
+"IW" = (
+/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/dorm3)
 "IX" = (
 /obj/item/clothing/suit/armor/vest/ert/command,
 /obj/item/clothing/head/helmet/ert/command,
 /obj/item/weapon/storage/backpack/ert/commander,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
+"IY" = (
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -28;
+	req_access = list(67)
+	},
+/obj/structure/cable/cyan{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/armory)
 "IZ" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner{
 	dir = 4
@@ -17495,7 +17792,7 @@
 "Jd" = (
 /obj/structure/undies_wardrobe,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/cryotube)
 "Je" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 4
@@ -17507,7 +17804,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Ji" = (
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
@@ -17518,7 +17815,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/houseboat)
+/area/mothership/bridge)
 "Jm" = (
 /obj/machinery/recharge_station,
 /turf/simulated/floor/tiled/techmaint,
@@ -17551,14 +17848,34 @@
 /obj/item/clothing/mask/breath,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
+"Jq" = (
+/obj/machinery/door/blast/shutters{
+	density = 1;
+	dir = 8;
+	icon_state = "shutter1";
+	id = "dongleship_blast";
+	layer = 3.3;
+	name = "Blast Shutters";
+	opacity = 1
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 10;
+	icon_state = "fwindow"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating,
+/area/mothership/breakroom)
 "Jr" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/red,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Jt" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -17579,6 +17896,28 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Jv" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hydroponics)
+"Jw" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 4;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/houseboat)
+"Jy" = (
+/obj/machinery/light,
+/turf/simulated/floor/bluegrid,
+/area/houseboat)
 "Jz" = (
 /obj/machinery/power/smes/buildable{
 	charge = 2e+007;
@@ -17595,6 +17934,15 @@
 /obj/structure/cable/cyan,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"JA" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/medical,
+/turf/simulated/floor/tiled/white,
+/area/mothership/chemistry)
 "JB" = (
 /obj/machinery/telecomms/relay/preset/centcom/tether/station_low,
 /turf/unsimulated/floor{
@@ -17612,7 +17960,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "JF" = (
 /obj/item/device/perfect_tele_beacon/stationary{
 	tele_name = "Unknown";
@@ -17628,7 +17976,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/bathroom1)
 "JM" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -17647,7 +17995,7 @@
 /obj/item/weapon/storage/box/pillbottles,
 /obj/item/weapon/storage/box/pillbottles,
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/chemistry)
 "JO" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
@@ -17658,7 +18006,20 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/hydroponics)
+"JP" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/eva)
 "JR" = (
 /obj/item/clothing/accessory/storage/white_vest,
 /obj/item/clothing/accessory/storage/white_vest,
@@ -17682,7 +18043,7 @@
 	},
 /obj/machinery/portable_atmospherics/canister/empty/sleeping_agent,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "JV" = (
 /obj/item/clothing/suit/armor/vest/ert/security,
 /obj/item/clothing/suit/armor/vest/ert/security,
@@ -17695,7 +18056,7 @@
 /obj/item/weapon/storage/backpack/ert/security,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "JW" = (
 /obj/machinery/telecomms/relay/preset/centcom/tether/base_low,
 /turf/unsimulated/floor{
@@ -17706,6 +18067,14 @@
 /obj/structure/prop/alien/power,
 /turf/simulated/shuttle/floor/alienplating,
 /area/houseboat)
+"JZ" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/armory)
 "Ka" = (
 /obj/machinery/vending/nifsoft_shop{
 	categories = 111;
@@ -17724,7 +18093,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/houseboat)
+/area/mothership/bridge)
 "Kd" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -17819,12 +18188,27 @@
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/eva)
+"Ki" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/kitchen)
+"Kj" = (
+/turf/simulated/floor/tiled/steel_grid,
+/area/mothership/bridge)
+"Kk" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/dorm6)
 "Kr" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/computer/skills,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Ks" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -17863,6 +18247,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"Kz" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/mothership/dorm2)
 "KB" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/supply{
 	icon_state = "map-supply";
@@ -17870,11 +18260,25 @@
 	},
 /obj/structure/closet/secure_closet/engineering_personal,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
+"KC" = (
+/obj/structure/closet/secure_closet/engineering_chief,
+/obj/item/weapon/rcd,
+/obj/item/weapon/rcd_ammo,
+/obj/item/weapon/rcd_ammo,
+/obj/item/weapon/rcd_ammo,
+/obj/item/weapon/rcd_ammo,
+/obj/item/weapon/rcd_ammo,
+/obj/item/weapon/rcd_ammo,
+/obj/item/weapon/rcd_ammo,
+/obj/item/weapon/rcd_ammo,
+/obj/item/weapon/rig/ce/equipped,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
 "KD" = (
 /obj/machinery/door/airlock/engineeringatmos,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "KE" = (
 /obj/structure/table/rack/steel,
 /obj/machinery/door/window/survival_pod{
@@ -17884,13 +18288,19 @@
 /obj/item/weapon/rig/ert/medical,
 /obj/item/weapon/rig/ert/medical,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "KG" = (
 /obj/structure/filingcabinet/chestdrawer{
 	name = "Scan Records"
 	},
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
+"KH" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/bridge)
 "KM" = (
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
@@ -17912,11 +18322,11 @@
 	},
 /obj/machinery/space_heater,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "KP" = (
 /obj/machinery/biogenerator,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/hydroponics)
 "KT" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	icon_state = "intact-supply";
@@ -17924,7 +18334,7 @@
 	},
 /obj/machinery/pipedispenser/orderable,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "KV" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/weapon/storage/box/flashbangs{
@@ -17947,7 +18357,7 @@
 	name = "Filter Bypass"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Lb" = (
 /obj/machinery/telecomms/relay/preset/centcom/tether/base_high,
 /turf/unsimulated/floor{
@@ -17958,7 +18368,7 @@
 /obj/structure/bed/pod,
 /obj/item/weapon/bedsheet/ce,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Le" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/energy/gun/burst,
@@ -17976,14 +18386,29 @@
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
+"Lj" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hydroponics)
 "Ll" = (
 /obj/structure/closet/secure_closet/detective,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"Lm" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/armory)
 "Lo" = (
 /obj/machinery/vending/snack,
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/breakroom)
 "Lr" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -18001,7 +18426,12 @@
 	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/breakroom)
+"Lv" = (
+/obj/item/weapon/bedsheet/captaindouble,
+/obj/structure/bed/double/padded,
+/turf/simulated/floor/wood,
+/area/mothership/dorm3)
 "Lx" = (
 /obj/structure/closet/crate/secure/gear,
 /obj/item/device/subspaceradio,
@@ -18071,11 +18501,17 @@
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/breakroom)
+"LA" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
 "LC" = (
 /obj/machinery/vending/loadout/loadout_misc,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/cryotube)
 "LD" = (
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /turf/unsimulated/floor{
@@ -18084,8 +18520,9 @@
 /area/centcom/control)
 "LE" = (
 /obj/structure/reagent_dispensers/watertank,
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/hydroponics)
 "LL" = (
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -18108,13 +18545,22 @@
 /obj/item/weapon/folder/red,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"LO" = (
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/cryotube)
 "LP" = (
 /obj/machinery/atmospherics/binary/pump/on{
 	dir = 2;
 	target_pressure = 200
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "LQ" = (
 /obj/machinery/autolathe{
 	desc = "Your typical Autolathe. It appears to have much more options than your regular one, however...";
@@ -18142,7 +18588,7 @@
 	dir = 1
 	},
 /turf/simulated/shuttle/plating,
-/area/houseboat)
+/area/mothership/breakroom)
 "LS" = (
 /obj/machinery/shieldgen,
 /turf/unsimulated/floor{
@@ -18167,13 +18613,13 @@
 "Mb" = (
 /obj/machinery/cryopod,
 /turf/simulated/floor/tiled/techfloor/grid,
-/area/houseboat)
+/area/mothership/cryotube)
 "Mc" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/hydroponics)
 "Md" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/reagent_containers/glass/bottle/biomass,
@@ -18184,6 +18630,9 @@
 /obj/item/weapon/reagent_containers/glass/bottle/biomass,
 /obj/item/weapon/reagent_containers/glass/bottle/biomass,
 /obj/item/weapon/reagent_containers/glass/bottle/biomass,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
 "Me" = (
@@ -18198,7 +18647,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/houseboat)
+/area/mothership/bridge)
 "Mg" = (
 /turf/simulated/shuttle/floor/alienplating,
 /area/houseboat)
@@ -18209,7 +18658,18 @@
 	pixel_y = -32
 	},
 /turf/simulated/floor/carpet/blue,
-/area/houseboat)
+/area/mothership/breakroom)
+"Mi" = (
+/obj/effect/floor_decal/spline/fancy/wood,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/breakroom)
+"Mj" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/space,
+/area/mothership/engineering)
 "Mk" = (
 /obj/machinery/door/airlock/research,
 /turf/simulated/floor/tiled/techmaint,
@@ -18217,18 +18677,22 @@
 "Ml" = (
 /obj/structure/closet/secure_closet/personal,
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/dorm1)
 "Mm" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
+"Mn" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/floor/wood,
+/area/mothership/dorm3)
 "Mr" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/chemical_dispenser/bar_coffee/full,
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/breakroom)
 "Mt" = (
 /obj/structure/table/rack,
 /obj/item/weapon/extinguisher/mini,
@@ -18242,19 +18706,29 @@
 /area/centcom/specops)
 "Mu" = (
 /turf/simulated/floor/carpet/blue,
-/area/houseboat)
+/area/mothership/breakroom)
 "Mv" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/dorm1)
 "Mw" = (
 /obj/machinery/shield_gen/external,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"MA" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 1;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/mothership/breakroom)
 "MB" = (
 /obj/machinery/sleeper{
 	dir = 4
@@ -18285,7 +18759,7 @@
 /turf/simulated/floor/reinforced{
 	name = "Holodeck Projector Floor"
 	},
-/area/houseboat)
+/area/mothership/holodeck/holo)
 "MI" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/recharger,
@@ -18300,7 +18774,14 @@
 "ML" = (
 /obj/machinery/vending/dinnerware,
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/breakroom)
+"MM" = (
+/obj/structure/closet/wardrobe/ert,
+/obj/item/weapon/storage/box/survival/comp{
+	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+	},
+/turf/simulated/floor/wood,
+/area/mothership/dorm6)
 "MN" = (
 /obj/machinery/power/apc{
 	dir = 2;
@@ -18317,7 +18798,7 @@
 "MO" = (
 /obj/machinery/chem_master,
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/chemistry)
 "MP" = (
 /obj/structure/closet/secure_closet/nanotrasen_commander,
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hos,
@@ -18339,7 +18820,19 @@
 /obj/item/weapon/material/knife/butch,
 /obj/item/weapon/material/kitchen/rollingpin,
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/kitchen)
+"MU" = (
+/obj/item/weapon/bedsheet/captaindouble,
+/obj/structure/bed/double/padded,
+/turf/simulated/floor/wood,
+/area/mothership/dorm6)
+"MW" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/chemistry)
 "MX" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -18351,11 +18844,11 @@
 /obj/machinery/reagentgrinder,
 /obj/item/weapon/storage/box/beakers,
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/kitchen)
 "Na" = (
 /obj/machinery/vending/loadout/overwear,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/cryotube)
 "Nd" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /obj/machinery/light/flamp/noshade,
@@ -18370,11 +18863,11 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/holodeck)
 "Ni" = (
 /obj/machinery/vending/cola,
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/breakroom)
 "Nj" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/device/defib_kit/compact/combat/loaded,
@@ -18388,7 +18881,7 @@
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/eva)
 "Nl" = (
 /obj/structure/prop/alien/dispenser,
 /turf/simulated/shuttle/floor/alien,
@@ -18408,10 +18901,14 @@
 /obj/machinery/door/airlock/alien/public,
 /turf/simulated/shuttle/floor/alienplating,
 /area/houseboat)
+"Nv" = (
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/eva)
 "Nw" = (
 /obj/machinery/vending/hydronutrients,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/hydroponics)
 "Nx" = (
 /obj/structure/table/rack,
 /obj/item/weapon/plastique,
@@ -18426,6 +18923,14 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Nz" = (
+/obj/structure/table/woodentable,
+/obj/item/modular_computer/laptop/preset/custom_loadout/elite,
+/obj/machinery/status_display{
+	pixel_y = 29
+	},
+/turf/simulated/floor/wood,
+/area/mothership/dorm2)
 "NA" = (
 /obj/machinery/door/blast/regular{
 	dir = 4;
@@ -18448,8 +18953,12 @@
 /area/houseboat)
 "NG" = (
 /obj/effect/floor_decal/spline/fancy/wood,
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/breakroom)
 "NJ" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	pixel_x = 0;
@@ -18465,7 +18974,7 @@
 /obj/item/rig_module/vision/multi,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "NO" = (
 /obj/item/weapon/gun/energy/gun/nuclear,
 /obj/item/weapon/gun/energy/gun/nuclear,
@@ -18478,7 +18987,16 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
+"NP" = (
+/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/cryotube)
 "NR" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/storage/box/evidence,
@@ -18489,21 +19007,24 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "NU" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/kitchen)
 "NW" = (
 /obj/machinery/sleep_console{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
+"NX" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/kitchen)
 "NY" = (
 /obj/machinery/chemical_dispenser/ert,
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/chemistry)
 "Oc" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/reagent_containers/blood/OMinus,
@@ -18562,7 +19083,7 @@
 	use_power = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Ok" = (
 /obj/structure/table/alien,
 /turf/simulated/shuttle/floor/alien,
@@ -18589,6 +19110,15 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
+"Or" = (
+/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/dorm2)
 "Os" = (
 /obj/machinery/vending/loadout/uniform,
 /turf/simulated/floor/tiled/white,
@@ -18602,7 +19132,7 @@
 	},
 /obj/machinery/portable_atmospherics/canister/empty/phoron,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Ou" = (
 /obj/structure/particle_accelerator/power_box,
 /turf/simulated/floor/tiled/techmaint,
@@ -18644,7 +19174,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/carpet/blue,
-/area/houseboat)
+/area/mothership/breakroom)
 "OA" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -18732,7 +19262,7 @@
 /obj/item/stack/rods,
 /obj/item/stack/rods,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "OC" = (
 /obj/machinery/mech_recharger,
 /obj/structure/ghost_pod/manual/lost_drone/dogborg,
@@ -18744,6 +19274,26 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"OE" = (
+/obj/structure/grille,
+/obj/machinery/door/blast/shutters{
+	density = 1;
+	dir = 4;
+	icon_state = "shutter1";
+	id = "dongleship_blast";
+	layer = 3.3;
+	name = "Blast Shutters";
+	opacity = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 10;
+	icon_state = "fwindow"
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating,
+/area/mothership/kitchen)
 "OF" = (
 /turf/space,
 /area/space)
@@ -18752,7 +19302,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "OI" = (
 /obj/effect/floor_decal/derelict/d9,
 /turf/unsimulated/floor/steel,
@@ -18763,7 +19313,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "OK" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -18808,7 +19358,7 @@
 "OP" = (
 /obj/machinery/chemical_dispenser/full,
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/chemistry)
 "OQ" = (
 /obj/machinery/status_display{
 	pixel_x = -32;
@@ -18816,6 +19366,9 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"OR" = (
+/turf/simulated/floor/wood,
+/area/mothership/breakroom)
 "OS" = (
 /obj/machinery/vending/blood,
 /turf/simulated/floor/tiled/white,
@@ -18829,7 +19382,14 @@
 /obj/item/rig_module/sprinter,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
+"OU" = (
+/turf/unsimulated/wall{
+	icon = 'icons/obj/doors/Doorext.dmi';
+	icon_state = "door_locked";
+	name = "Sealed Door"
+	},
+/area/mothership/engineering)
 "OV" = (
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
@@ -18840,7 +19400,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/kitchen)
 "OX" = (
 /obj/structure/sink/kitchen,
 /turf/simulated/shuttle/wall/voidcraft/blue{
@@ -18849,7 +19409,7 @@
 	name = "small craft wall hc";
 	stripe_color = "#45b3d8"
 	},
-/area/houseboat)
+/area/mothership/hydroponics)
 "Pa" = (
 /obj/machinery/power/apc{
 	dir = 2;
@@ -18862,7 +19422,7 @@
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/dorm2)
 "Pb" = (
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -18881,7 +19441,7 @@
 	pixel_y = 29
 	},
 /turf/simulated/floor/carpet/blue,
-/area/houseboat)
+/area/mothership/breakroom)
 "Pe" = (
 /obj/machinery/door_timer/cell_1{
 	pixel_x = -32
@@ -18908,7 +19468,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/bridge)
 "Pm" = (
 /obj/item/weapon/storage/belt/medical/emt,
 /obj/item/weapon/storage/belt/medical/emt,
@@ -18919,6 +19479,7 @@
 /obj/item/device/defib_kit/compact/combat/loaded,
 /obj/item/device/defib_kit/compact/combat/loaded,
 /obj/structure/table/rack/shelf/steel,
+/obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
 "Po" = (
@@ -18949,7 +19510,7 @@
 /obj/item/clothing/accessory/holster/machete,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "Pp" = (
 /obj/item/weapon/storage/firstaid/combat{
 	pixel_x = 2;
@@ -18968,7 +19529,7 @@
 /obj/item/weapon/storage/backpack/ert/engineer,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "Pt" = (
 /obj/item/device/perfect_tele_beacon/stationary{
 	tele_name = "Unknown";
@@ -18998,7 +19559,7 @@
 	name = "small craft wall";
 	stripe_color = "#45b3d8"
 	},
-/area/houseboat)
+/area/mothership/engineering)
 "Pz" = (
 /obj/structure/closet/crate/secure/weapon,
 /obj/item/weapon/rig/ert/assetprotection,
@@ -19010,7 +19571,10 @@
 /obj/item/clothing/head/helmet/merc,
 /obj/item/clothing/head/helmet/merc,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
+"PB" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/cryotube)
 "PC" = (
 /obj/structure/table/rack/shelf,
 /obj/item/clothing/suit/armor/pcarrier/blue/sol,
@@ -19029,7 +19593,16 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/bathroom1)
+"PF" = (
+/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/dorm4)
 "PH" = (
 /obj/machinery/power/apc{
 	dir = 2;
@@ -19042,7 +19615,7 @@
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/eva)
 "PI" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
@@ -19053,7 +19626,7 @@
 	pixel_y = -24
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/holodeck)
 "PJ" = (
 /obj/effect/floor_decal/corner_steel_grid/diagonal,
 /obj/effect/floor_decal/industrial/warning/dust/corner{
@@ -19062,6 +19635,19 @@
 /obj/machinery/light/flamp/noshade,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"PM" = (
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -28;
+	req_access = list(67)
+	},
+/obj/structure/cable/cyan{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/holodeck)
 "PN" = (
 /obj/structure/ladder,
 /turf/simulated/floor/tiled/techmaint,
@@ -19073,17 +19659,32 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/kitchen)
 "PP" = (
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"PQ" = (
+/obj/structure/sink/kitchen,
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/kitchen)
+"PR" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "PS" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/chemical_dispenser/bar_soft/full,
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/breakroom)
 "PW" = (
 /obj/machinery/door/airlock/research,
 /turf/simulated/floor/tiled/white,
@@ -19096,6 +19697,19 @@
 /turf/unsimulated/floor/shuttle_ceiling,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/specialops/centcom)
+"PZ" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 8;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/houseboat)
+"Qa" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/bathroom1)
 "Qc" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -19118,6 +19732,14 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"Qh" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/breakroom)
 "Qj" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	icon_state = "intact-supply";
@@ -19125,7 +19747,7 @@
 	},
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Qk" = (
 /obj/structure/fans,
 /turf/simulated/shuttle/floor/alien,
@@ -19145,11 +19767,19 @@
 	pixel_y = 29
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/eva)
+"Qq" = (
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hydroponics)
 "Qw" = (
 /obj/machinery/door/airlock/voidcraft/vertical,
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/cryotube)
 "Qy" = (
 /obj/structure/closet/crate/freezer,
 /turf/simulated/floor/tiled/white,
@@ -19221,14 +19851,21 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
+"QL" = (
+/turf/unsimulated/wall{
+	icon = 'icons/obj/doors/Doorext.dmi';
+	icon_state = "door_locked";
+	name = "Sealed Door"
+	},
+/area/mothership/eva)
 "QO" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/canister/empty/nitrogen,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "QQ" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat,
@@ -19237,6 +19874,21 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"QU" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/hydroponics)
+"QX" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
 "QY" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/techmaint,
@@ -19245,6 +19897,12 @@
 /obj/effect/floor_decal/derelict/d12,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Ra" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
 "Rc" = (
 /obj/structure/table/glass,
 /obj/item/device/defib_kit/compact/loaded,
@@ -19252,6 +19910,16 @@
 	icon_state = "white"
 	},
 /area/centcom/medical)
+"Rd" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 4;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/mothership/armory)
 "Re" = (
 /obj/structure/table/reinforced,
 /obj/item/device/binoculars,
@@ -19261,6 +19929,10 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Rf" = (
+/obj/structure/particle_accelerator/power_box,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
 "Rg" = (
 /obj/machinery/button/remote/airlock{
 	id = "dorm1";
@@ -19277,7 +19949,15 @@
 	pixel_y = 6
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/holodeck)
+"Ri" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/armory)
 "Rj" = (
 /obj/structure/closet/secure_closet/medical2,
 /turf/simulated/floor/tiled/white,
@@ -19289,14 +19969,20 @@
 	pixel_y = -32
 	},
 /turf/simulated/floor/carpet/blue,
-/area/houseboat)
+/area/mothership/breakroom)
 "Rn" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
+"Ro" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/bathroom2)
 "Rp" = (
 /obj/item/weapon/storage/firstaid/regular{
 	pixel_x = 2;
@@ -19315,6 +20001,10 @@
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Rv" = (
+/obj/machinery/light,
+/turf/simulated/floor/carpet/blue,
+/area/mothership/breakroom)
 "Rx" = (
 /obj/machinery/telecomms/relay/preset/centcom/underdark,
 /turf/unsimulated/floor{
@@ -19324,11 +20014,11 @@
 "Ry" = (
 /obj/machinery/door/airlock/command,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/bridge)
 "RA" = (
 /obj/machinery/smartfridge,
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/chemistry)
 "RC" = (
 /obj/item/ammo_magazine/m9mm/compact,
 /obj/item/ammo_magazine/m9mm/compact,
@@ -19350,7 +20040,7 @@
 /obj/item/weapon/gun/projectile/pistol,
 /obj/structure/closet/secure_closet/guncabinet,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "RD" = (
 /obj/machinery/shield_capacitor,
 /turf/unsimulated/floor{
@@ -19422,7 +20112,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "RJ" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/projectile/automatic/z8,
@@ -19444,7 +20134,7 @@
 "RP" = (
 /obj/machinery/vending/loadout/clothing,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/cryotube)
 "RU" = (
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/techmaint,
@@ -19464,7 +20154,7 @@
 "RZ" = (
 /obj/machinery/vending/coffee,
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/breakroom)
 "Sc" = (
 /obj/machinery/atm{
 	pixel_x = 0;
@@ -19492,7 +20182,15 @@
 /obj/item/weapon/gun/energy/protector,
 /obj/item/weapon/gun/energy/protector,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
+"Sf" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/kitchen)
 "Sg" = (
 /obj/machinery/computer/cryopod/robot{
 	dir = 1;
@@ -19500,6 +20198,12 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/houseboat)
+"Sh" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/eva)
 "Si" = (
 /obj/effect/floor_decal/derelict/d14,
 /turf/unsimulated/floor/steel,
@@ -19508,12 +20212,23 @@
 /obj/effect/floor_decal/derelict/d10,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Sk" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "Sl" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 5
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Sm" = (
 /obj/machinery/body_scanconsole,
 /turf/simulated/floor/tiled/white,
@@ -19521,7 +20236,7 @@
 "Sn" = (
 /obj/machinery/vending/loadout/accessory,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/cryotube)
 "Sp" = (
 /obj/machinery/telecomms/relay/preset/centcom/tether/station_high,
 /turf/unsimulated/floor{
@@ -19531,6 +20246,12 @@
 "Sq" = (
 /obj/machinery/optable,
 /turf/simulated/floor/tiled/white,
+/area/houseboat)
+"Sr" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
 "Ss" = (
 /obj/machinery/r_n_d/protolathe,
@@ -19543,7 +20264,35 @@
 "Sx" = (
 /obj/machinery/media/jukebox,
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/breakroom)
+"SA" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/dorm4)
+"SB" = (
+/obj/structure/grille,
+/obj/machinery/door/blast/shutters{
+	density = 1;
+	dir = 4;
+	icon_state = "shutter1";
+	id = "dongleship_blast";
+	layer = 3.3;
+	name = "Blast Shutters";
+	opacity = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 10;
+	icon_state = "fwindow"
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating,
+/area/mothership/holodeck)
 "SC" = (
 /obj/machinery/computer/teleporter{
 	dir = 1
@@ -19553,7 +20302,7 @@
 "SE" = (
 /obj/machinery/vending/sovietsoda,
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/breakroom)
 "SF" = (
 /obj/item/device/perfect_tele_beacon/stationary{
 	tele_name = "Unknown";
@@ -19588,7 +20337,7 @@
 /obj/item/weapon/gun/launcher/grenade,
 /obj/item/weapon/gun/launcher/grenade,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "SK" = (
 /obj/machinery/door/airlock/multi_tile/metal,
 /obj/structure/cable/cyan{
@@ -19598,20 +20347,13 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
-"SM" = (
-/obj/structure/closet/secure_closet/engineering_chief,
-/obj/item/weapon/rcd,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rig/ce/equipped,
-/turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+"SO" = (
+/obj/structure/closet/wardrobe/ert,
+/obj/item/weapon/storage/box/survival/comp{
+	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+	},
+/turf/simulated/floor/wood,
+/area/mothership/dorm2)
 "SP" = (
 /obj/structure/table/rack,
 /obj/item/bodybag/cryobag,
@@ -19630,7 +20372,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/carpet/oracarpet,
-/area/houseboat)
+/area/mothership/engineering)
 "SR" = (
 /obj/machinery/atmospherics/unary/freezer{
 	dir = 8
@@ -19647,8 +20389,12 @@
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/kitchen)
+"SX" = (
+/turf/simulated/floor/tiled/white,
+/area/mothership/chemistry)
 "SY" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/teleport/hub,
@@ -19684,7 +20430,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "Te" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/device/radio/off,
@@ -19695,7 +20441,11 @@
 /obj/item/device/radio/off,
 /obj/item/device/radio/off,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/eva)
+"Tg" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/floor/wood,
+/area/mothership/dorm2)
 "Th" = (
 /obj/machinery/atmospherics/trinary/atmos_filter{
 	dir = 4;
@@ -19703,7 +20453,7 @@
 	filtered_out = list("phoron")
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Tl" = (
 /obj/machinery/oxygen_pump/anesthetic,
 /turf/simulated/shuttle/wall/voidcraft/blue{
@@ -19719,7 +20469,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/kitchen)
 "Tp" = (
 /obj/effect/floor_decal/derelict/d3,
 /turf/unsimulated/floor/steel,
@@ -19732,7 +20482,7 @@
 	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/holodeck)
 "Ts" = (
 /obj/machinery/recharge_station,
 /turf/simulated/shuttle/floor/alienplating,
@@ -19768,10 +20518,19 @@
 /obj/structure/cable/cyan,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"TA" = (
+/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/dorm6)
 "TB" = (
 /obj/machinery/vending/tool,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "TC" = (
 /obj/effect/floor_decal/derelict/d4,
 /turf/unsimulated/floor/steel,
@@ -19807,7 +20566,21 @@
 /obj/item/ammo_magazine/m545saw/ap,
 /obj/item/ammo_magazine/m545saw/ap,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
+"TH" = (
+/obj/structure/cable/cyan{
+	d1 = 0;
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -28;
+	req_access = list(67)
+	},
+/turf/simulated/floor/wood,
+/area/mothership/dorm5)
 "TJ" = (
 /obj/structure/ghost_pod/manual/lost_drone/dogborg,
 /turf/simulated/floor/bluegrid,
@@ -19819,7 +20592,7 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/houseboat)
+/area/mothership/bridge)
 "TL" = (
 /obj/structure/table/rack/steel,
 /obj/machinery/door/window/survival_pod{
@@ -19830,7 +20603,7 @@
 /obj/item/weapon/rig/ert/security,
 /obj/item/weapon/rig/ert/security,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "TM" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -19844,10 +20617,26 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"TN" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hydroponics)
 "TO" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/kitchen)
+"TP" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/chemistry)
 "TR" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -19859,7 +20648,7 @@
 "TS" = (
 /obj/structure/dispenser/oxygen,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/eva)
 "TV" = (
 /obj/item/clothing/accessory/storage/black_vest,
 /obj/item/clothing/accessory/storage/black_vest,
@@ -19882,6 +20671,24 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"TX" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/armory)
+"TY" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "TZ" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -19895,6 +20702,9 @@
 /obj/structure/cable/cyan,
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
+"Ua" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
 "Ub" = (
 /obj/item/clothing/suit/armor/vest/ert/medical,
 /obj/item/clothing/suit/armor/vest/ert/medical,
@@ -19904,7 +20714,7 @@
 /obj/item/weapon/storage/backpack/ert/medical,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "Uc" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -19933,7 +20743,7 @@
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/bathroom2)
 "Uk" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -19946,7 +20756,7 @@
 	},
 /obj/machinery/power/thermoregulator,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Un" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -19966,7 +20776,20 @@
 /obj/item/rig_module/grenade_launcher,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
+"Up" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/armory)
 "Ur" = (
 /obj/effect/floor_decal/derelict/d7,
 /turf/unsimulated/floor/steel,
@@ -19977,7 +20800,15 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
+"Ut" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/cryotube)
 "Uu" = (
 /obj/machinery/mecha_part_fabricator,
 /turf/simulated/floor/tiled/techmaint,
@@ -19991,11 +20822,11 @@
 	},
 /obj/machinery/portable_atmospherics/canister/empty/oxygen,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Uw" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/hydroponics)
 "Uy" = (
 /obj/machinery/door/window/northleft,
 /obj/machinery/door/window/southleft,
@@ -20004,7 +20835,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/kitchen)
 "Uz" = (
 /obj/machinery/door/blast/regular{
 	id = "mechbay-inner";
@@ -20042,6 +20873,13 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"UD" = (
+/obj/structure/closet/wardrobe/ert,
+/obj/item/weapon/storage/box/survival/comp{
+	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+	},
+/turf/simulated/floor/wood,
+/area/mothership/dorm4)
 "UH" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -20087,6 +20925,12 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"UM" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/dorm2)
 "UN" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
@@ -20207,6 +21051,10 @@
 /obj/structure/closet/bombcloset/double,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"UX" = (
+/obj/machinery/disposal,
+/turf/simulated/floor/tiled/white,
+/area/mothership/chemistry)
 "UY" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -20257,7 +21105,7 @@
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/hydroponics)
 "Vf" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/box/frags,
@@ -20270,6 +21118,10 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Vh" = (
+/obj/machinery/disposal,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
 "Vi" = (
 /obj/effect/floor_decal/derelict/d16,
 /turf/unsimulated/floor/steel,
@@ -20277,7 +21129,7 @@
 "Vo" = (
 /obj/machinery/washing_machine,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/cryotube)
 "Vp" = (
 /obj/structure/table/bench/steel,
 /turf/simulated/floor/tiled/techmaint,
@@ -20289,6 +21141,13 @@
 /obj/machinery/clonepod/transhuman/full,
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
+"Vw" = (
+/obj/structure/closet/wardrobe/ert,
+/obj/item/weapon/storage/box/survival/comp{
+	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+	},
+/turf/simulated/floor/wood,
+/area/mothership/dorm3)
 "Vz" = (
 /obj/structure/closet/crate/secure/weapon,
 /obj/item/weapon/gun/projectile/automatic/z8,
@@ -20309,11 +21168,15 @@
 /obj/item/weapon/storage/box/sniperammo,
 /obj/item/weapon/storage/box/sniperammo,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "VD" = (
 /obj/machinery/vending/engivend,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
+"VE" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/floor/wood,
+/area/mothership/dorm5)
 "VG" = (
 /obj/structure/closet/crate/medical,
 /obj/item/stack/nanopaste/advanced,
@@ -20333,12 +21196,27 @@
 /obj/item/weapon/storage/toolbox/syndicate/powertools,
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
+"VH" = (
+/obj/machinery/door/airlock/multi_tile/metal{
+	dir = 2
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/kitchen)
+"VI" = (
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
 "VJ" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	pixel_x = 32
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/breakroom)
 "VM" = (
 /obj/item/weapon/storage/firstaid/adv{
 	pixel_x = 2;
@@ -20346,8 +21224,23 @@
 	},
 /obj/item/weapon/storage/firstaid/adv,
 /obj/structure/table/steel_reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
+"VN" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hydroponics)
+"VO" = (
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/bathroom2)
 "VQ" = (
 /obj/machinery/atmospherics/omni/atmos_filter{
 	tag_east = 2;
@@ -20356,7 +21249,15 @@
 	tag_west = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
+"VR" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/bathroom1)
 "VU" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
@@ -20370,7 +21271,24 @@
 /obj/machinery/atmospherics/pipe/manifold4w/visible/cyan,
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
+"VX" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/floor/wood,
+/area/mothership/dorm6)
+"VY" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -28;
+	req_access = list(67)
+	},
+/obj/structure/cable/cyan,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/bathroom2)
 "VZ" = (
 /obj/machinery/mineral/equipment_vendor/survey,
 /turf/simulated/floor/tiled/techmaint,
@@ -20385,7 +21303,7 @@
 	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/kitchen)
 "Wc" = (
 /obj/machinery/organ_printer/flesh,
 /turf/simulated/floor/tiled/white,
@@ -20409,7 +21327,7 @@
 	},
 /obj/item/weapon/rig/ert,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "Wh" = (
 /obj/machinery/atmospherics/unary/freezer{
 	dir = 1;
@@ -20417,11 +21335,17 @@
 	use_power = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Wi" = (
 /obj/structure/toilet,
 /turf/simulated/shuttle/floor/alienplating,
 /area/houseboat)
+"Wj" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/mothership/dorm6)
 "Wk" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/black{
 	icon_state = "map";
@@ -20429,12 +21353,19 @@
 	},
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Wn" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
+"Wo" = (
+/obj/structure/closet/wardrobe/ert,
+/obj/item/weapon/storage/box/survival/comp{
+	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+	},
+/turf/simulated/floor/wood,
+/area/mothership/dorm5)
 "Wq" = (
 /obj/machinery/door/airlock/external,
 /turf/simulated/floor/tiled/techmaint,
@@ -20442,7 +21373,7 @@
 "Wr" = (
 /obj/machinery/suit_cycler,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/eva)
 "Ws" = (
 /obj/structure/table/rack/shelf,
 /obj/item/clothing/head/helmet/solgov,
@@ -20451,12 +21382,29 @@
 /obj/item/clothing/head/helmet/solgov,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"Wt" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/houseboat)
 "Wu" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	icon_state = "intact-supply";
 	dir = 4
 	},
 /obj/machinery/pipedispenser/disposal/orderable,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
+"Wx" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
 "Wy" = (
@@ -20469,7 +21417,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
-/area/houseboat)
+/area/mothership/cryotube)
 "WC" = (
 /obj/structure/closet/secure_closet/personal,
 /turf/simulated/shuttle/floor/alien,
@@ -20499,7 +21447,15 @@
 	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/houseboat)
+/area/mothership/bridge)
+"WN" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/bathroom2)
 "WP" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -20520,7 +21476,7 @@
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/eva)
 "WW" = (
 /obj/structure/closet/secure_closet/scientist,
 /turf/simulated/floor/tiled/techmaint,
@@ -20539,6 +21495,12 @@
 /obj/machinery/atmospherics/unary/cryo_cell,
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
+"Xg" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/mothership/breakroom)
 "Xh" = (
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -20563,7 +21525,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/houseboat)
+/area/mothership/bridge)
 "Xk" = (
 /obj/structure/table/rack/steel,
 /obj/machinery/door/window/survival_pod{
@@ -20572,7 +21534,7 @@
 /obj/item/weapon/rig/ert/engineer,
 /obj/item/weapon/rig/ert/engineer,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "Xl" = (
 /obj/item/rig_module/device/anomaly_scanner,
 /obj/item/rig_module/device/anomaly_scanner,
@@ -20580,7 +21542,7 @@
 /obj/item/rig_module/device/rcd,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "Xm" = (
 /obj/structure/reagent_dispensers/acid{
 	density = 0;
@@ -20589,13 +21551,19 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"Xn" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
 "Xo" = (
 /obj/machinery/status_display{
 	pixel_y = 29
 	},
 /obj/item/modular_computer/console/preset/mercenary,
 /turf/simulated/floor/tiled/steel_grid,
-/area/houseboat)
+/area/mothership/bridge)
 "Xp" = (
 /turf/simulated/shuttle/wall/alien,
 /area/houseboat)
@@ -20612,12 +21580,12 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/kitchen)
 "Xs" = (
 /obj/item/weapon/bedsheet/captaindouble,
 /obj/structure/bed/double/padded,
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/dorm1)
 "Xu" = (
 /obj/structure/closet{
 	name = "materials"
@@ -20638,6 +21606,9 @@
 /obj/fiftyspawner/glass,
 /obj/fiftyspawner/glass,
 /obj/fiftyspawner/durasteel,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
 "Xv" = (
@@ -20682,11 +21653,11 @@
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
-/area/houseboat)
+/area/mothership/eva)
 "XC" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/carpet/blue,
-/area/houseboat)
+/area/mothership/breakroom)
 "XD" = (
 /turf/simulated/floor/bluegrid,
 /area/houseboat)
@@ -20702,7 +21673,27 @@
 	},
 /obj/structure/cable/cyan,
 /turf/simulated/floor/tiled/techfloor/grid,
-/area/houseboat)
+/area/mothership/cryotube)
+"XK" = (
+/obj/machinery/door/blast/shutters{
+	density = 1;
+	dir = 8;
+	icon_state = "shutter1";
+	id = "dongleship_blast";
+	layer = 3.3;
+	name = "Blast Shutters";
+	opacity = 1
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 10;
+	icon_state = "fwindow"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating,
+/area/mothership/hydroponics)
 "XL" = (
 /obj/machinery/syndicate_beacon/virgo{
 	charges = 10
@@ -20712,7 +21703,7 @@
 "XN" = (
 /obj/machinery/smartfridge,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/kitchen)
 "XO" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -20725,7 +21716,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/hydroponics)
 "XP" = (
 /obj/machinery/vending/nifsoft_shop{
 	categories = 111;
@@ -20734,14 +21725,14 @@
 	prices = list()
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "XR" = (
 /obj/structure/table/steel_reinforced,
 /obj/fiftyspawner/steel,
 /obj/fiftyspawner/steel,
 /obj/fiftyspawner/steel,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/eva)
 "XS" = (
 /turf/simulated/floor/reinforced/airless{
 	name = "outer hull"
@@ -20751,7 +21742,7 @@
 /turf/simulated/floor/reinforced{
 	name = "Holodeck Projector Floor"
 	},
-/area/houseboat)
+/area/mothership/holodeck/holo)
 "XU" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/weapon/storage/lockbox,
@@ -20772,14 +21763,14 @@
 "XV" = (
 /obj/machinery/vending/loadout/costume,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/cryotube)
 "XW" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "XX" = (
 /obj/structure/closet/crate/secure/weapon,
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat,
@@ -20824,17 +21815,28 @@
 /obj/item/slime_extract/pink,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"XY" = (
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/bathroom1)
 "XZ" = (
 /obj/machinery/light/flamp/noshade,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Yb" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/houseboat)
 "Yc" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
 "Yd" = (
 /obj/machinery/vending/assist,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Ye" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/recharger,
@@ -20849,13 +21851,22 @@
 	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Yh" = (
 /obj/machinery/bodyscanner{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
+"Yj" = (
+/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/dorm1)
 "Yl" = (
 /obj/structure/closet/crate/secure/weapon,
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid,
@@ -20872,7 +21883,7 @@
 /obj/item/weapon/gun/energy/sniperrifle,
 /obj/item/weapon/gun/energy/sniperrifle,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/armory)
 "Yn" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -20902,8 +21913,11 @@
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/storage/toolbox/syndicate/powertools,
 /obj/item/device/multitool,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/eva)
 "Ys" = (
 /obj/structure/window/reinforced{
 	dir = 4;
@@ -20912,6 +21926,9 @@
 /obj/structure/table/bench/steel,
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"Yu" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/bathroom2)
 "Yv" = (
 /obj/structure/table/rack/shelf,
 /obj/item/clothing/suit/space/void/engineering/salvage,
@@ -20919,8 +21936,9 @@
 /obj/item/weapon/tank/oxygen/red,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/eva)
 "Yw" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -20946,7 +21964,7 @@
 	req_access = list(67)
 	},
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/dorm1)
 "YB" = (
 /obj/machinery/door/airlock/engineeringatmos,
 /obj/structure/cable/cyan{
@@ -20955,7 +21973,15 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
+"YD" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/dorm6)
 "YE" = (
 /obj/machinery/shieldwallgen,
 /turf/unsimulated/floor{
@@ -21012,19 +22038,41 @@
 	req_access = list(67)
 	},
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/dorm6)
 "YO" = (
 /obj/machinery/cryopod{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
-/area/houseboat)
+/area/mothership/cryotube)
+"YP" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/eva)
+"YQ" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hydroponics)
+"YR" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/dorm5)
 "YS" = (
 /obj/machinery/vending/assist,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"YU" = (
+/obj/item/weapon/bedsheet/captaindouble,
+/obj/structure/bed/double/padded,
+/turf/simulated/floor/wood,
+/area/mothership/dorm5)
 "YV" = (
 /obj/structure/table/rack/shelf,
 /obj/item/clothing/suit/space/void/security/alt,
@@ -21033,13 +22081,20 @@
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/eva)
 "YY" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/houseboat)
+/area/mothership/chemistry)
+"Zc" = (
+/turf/simulated/floor/tiled/white,
+/area/mothership/kitchen)
+"Ze" = (
+/obj/machinery/disposal,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hydroponics)
 "Zg" = (
 /obj/machinery/vending/security,
 /turf/simulated/floor/tiled/techmaint,
@@ -21053,15 +22108,19 @@
 "Zi" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
 "Zj" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/storage/briefcase/inflatable,
 /obj/item/weapon/storage/briefcase/inflatable,
 /obj/item/weapon/storage/briefcase/inflatable,
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/eva)
 "Zn" = (
 /obj/structure/prop/alien/computer{
 	dir = 8
@@ -21081,6 +22140,22 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
+"Zr" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/cryotube)
+"Zs" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/eva)
 "Zt" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -21134,13 +22209,34 @@
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
-/area/houseboat)
+/area/mothership/eva)
 "ZF" = (
 /obj/item/modular_computer/console/preset/mercenary{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/houseboat)
+/area/mothership/engineering)
+"ZG" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/dorm1)
+"ZH" = (
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/armory)
 "ZI" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -21185,7 +22281,7 @@
 "ZP" = (
 /obj/machinery/disposal,
 /turf/simulated/floor/wood,
-/area/houseboat)
+/area/mothership/breakroom)
 "ZQ" = (
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 1
@@ -21221,12 +22317,33 @@
 /obj/machinery/teleport/station,
 /turf/simulated/shuttle/floor/alienplating,
 /area/houseboat)
+"ZU" = (
+/obj/structure/shuttle/engine/heater,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/mothership/engineering)
+"ZW" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/holodeck)
 "ZX" = (
 /obj/structure/bed/chair/wood{
 	dir = 4
 	},
 /turf/simulated/floor/carpet/blue,
-/area/houseboat)
+/area/mothership/breakroom)
+"ZY" = (
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/chemistry)
 
 (1,1,1) = {"
 OF
@@ -22255,7 +23372,7 @@ OF
 ZL
 XS
 MJ
-ZC
+PZ
 MJ
 XS
 ZL
@@ -22267,7 +23384,7 @@ XS
 ZL
 XS
 MJ
-ZC
+PZ
 MJ
 XS
 ZL
@@ -22279,7 +23396,7 @@ XS
 ZL
 XS
 MJ
-ZC
+PZ
 MJ
 XS
 ZL
@@ -22292,7 +23409,7 @@ NJ
 MJ
 ZL
 MJ
-ZC
+PZ
 MJ
 OF
 OF
@@ -22677,7 +23794,7 @@ OF
 OF
 OF
 MJ
-OV
+Wt
 OV
 MJ
 Ey
@@ -22685,14 +23802,14 @@ OV
 OV
 iR
 Fx
+Wt
 OV
 OV
 OV
 OV
-OV
-OV
+Ek
 Fx
-OV
+Wt
 OV
 OV
 QB
@@ -22812,9 +23929,9 @@ OF
 OF
 OF
 OF
-MJ
-cJ
-MJ
+Sh
+QL
+Sh
 OF
 OF
 OF
@@ -22823,7 +23940,7 @@ Rj
 OV
 Xc
 OV
-OV
+PR
 OV
 Zt
 Wd
@@ -22949,17 +24066,17 @@ OF
 OF
 ZL
 XS
-Fx
-Ix
-Ix
-MJ
+QU
+XK
+XK
+gX
 ZC
-MJ
-NJ
-MJ
+Sh
+Gw
+Sh
 ZL
-Fx
-MJ
+VR
+nW
 MJ
 MJ
 MJ
@@ -23085,32 +24202,32 @@ OF
 OF
 OF
 ZL
-Fx
-Ix
-Ix
-Ix
-Fx
-MJ
-MJ
+Qh
+Jq
+Jq
+Jq
+Qh
+gX
+gX
 Ge
 Nw
-MJ
-MJ
-Fx
-Wq
-Fx
-MJ
-Fx
+gX
+Sh
+Zs
+Nv
+Zs
+Sh
+VR
 Er
-MJ
+Fe
 Ml
 Xs
-MJ
+ZY
 OP
 DK
-OV
+MW
 JN
-MJ
+ZY
 ZI
 OV
 Sm
@@ -23138,7 +24255,7 @@ Yc
 NA
 XD
 XD
-XD
+Jy
 MJ
 Yc
 Yc
@@ -23225,33 +24342,33 @@ OF
 OF
 OF
 OF
-MJ
-MJ
-Fx
-WI
-WI
-WI
+IT
+IT
+Qh
+OR
+OR
+OR
 RZ
-MJ
+gX
 KP
-Yc
-Yc
+YQ
+YQ
 Dn
-MJ
+Sh
 YV
-Yc
+ag
 YV
-MJ
-Jm
-Yc
-MJ
+Sh
+XY
+Qa
+Fe
 lm
 Mv
-MJ
+ZY
 MO
 YY
-OV
-Ls
+SX
+UX
 RA
 Qc
 OV
@@ -23284,17 +24401,17 @@ Dq
 MJ
 Yc
 Yc
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
+HC
+HC
+HC
+HC
+HC
+HC
+HC
+HC
+HC
+HC
+HC
 OF
 OF
 OF
@@ -23367,37 +24484,37 @@ OF
 OF
 OF
 OF
-cJ
+FH
 Lu
-Wq
-WI
-WI
-WI
+EJ
+OR
+OR
+OR
 GX
-MJ
+gX
 Vd
-UH
-Yc
+Jv
+YQ
 LE
-MJ
+Sh
 Kh
-Yc
+ag
 Yv
-MJ
+Sh
 PE
 DW
-MJ
+Fe
 DQ
 YA
-MJ
+ZY
 NY
 Gh
-OV
-Zt
-Wd
+SX
+FX
+JA
 Ff
 HB
-HB
+Sk
 HB
 HB
 HB
@@ -23426,17 +24543,17 @@ MN
 MJ
 Yc
 Yc
-MJ
+HC
 ll
 ll
 ll
 QO
-Yc
-Yc
-Yc
-Wq
-Lu
-cJ
+QX
+Ua
+Ua
+VI
+LA
+OU
 OF
 OF
 OF
@@ -23509,34 +24626,34 @@ OF
 OF
 OF
 OF
-Fx
-MJ
-Fx
-WI
-WI
-WI
+Qh
+IT
+Qh
+Xg
+OR
+OR
 Ni
-MJ
+gX
 Uw
-TR
-Yc
+TN
+YQ
 Uw
-MJ
+Sh
 nO
-Yc
+ag
 Nk
-MJ
+Sh
 JH
 MJ
-Fx
-MJ
-JH
-Fx
-MJ
-MJ
-NE
-MJ
-Fx
+ZG
+Fe
+Yj
+TP
+ZY
+ZY
+Eg
+ZY
+TP
 TR
 Ph
 MJ
@@ -23568,7 +24685,7 @@ fP
 Fx
 TR
 MJ
-MJ
+HC
 Ul
 Mm
 VV
@@ -23576,9 +24693,9 @@ cT
 Sl
 Yd
 GP
-Fx
-MJ
-MJ
+Hz
+HC
+HC
 OF
 OF
 OF
@@ -23652,25 +24769,25 @@ OF
 OF
 OF
 HQ
-MJ
-WI
-WI
-WI
-WI
+IT
+OR
+OR
+OR
+OR
 Lo
-MJ
+gX
 Uw
-TR
-Yc
+TN
+YQ
 Uw
-MJ
-Fx
-Yc
-Fx
-MJ
+Sh
+Zs
+ag
+Zs
+Sh
 TR
 OQ
-Yc
+Yb
 Yc
 TR
 Yc
@@ -23678,7 +24795,7 @@ Yc
 Yc
 Yc
 Yc
-Yc
+Yb
 TR
 NF
 MJ
@@ -23696,13 +24813,13 @@ MJ
 MJ
 TR
 Yc
+Yb
 Yc
 Yc
 Yc
 Yc
 Yc
-Yc
-Yc
+Yb
 Yc
 Yc
 Yc
@@ -23710,17 +24827,17 @@ TR
 Yc
 TR
 ES
-MJ
+HC
 XW
 GW
 OG
 Jh
 HI
-Qn
-Oi
-Ou
-Xq
-iJ
+GU
+cL
+Rf
+ZU
+Mj
 OF
 OF
 OF
@@ -23793,39 +24910,39 @@ OF
 OF
 OF
 OF
-Fx
-Fx
-WI
-WI
-WI
-WI
+Qh
+Qh
+OR
+OR
+OR
+OR
 SE
-MJ
+gX
+Lj
+TN
+YQ
 Uw
-TR
-Yc
-Uw
-MJ
+Sh
 Wr
-Yc
+ag
 TS
-MJ
+Sh
 Hg
 Yw
 Yw
 Yw
 Xw
 Yw
-Yw
+Wx
 Yw
 Un
 Yw
 Yw
 ph
 UH
-MJ
-Xs
-Ml
+Fc
+Lv
+Mn
 MJ
 Ol
 YH
@@ -23833,9 +24950,9 @@ Lr
 Yc
 RU
 MJ
-Ml
-Xs
-MJ
+VE
+YU
+YR
 Pb
 Yw
 Yw
@@ -23849,7 +24966,7 @@ Yw
 Yw
 DY
 TM
-Yw
+Wx
 TM
 UH
 KD
@@ -23858,11 +24975,11 @@ Hw
 Jr
 VQ
 DG
-Qn
-Oi
-Ou
-Xq
-iJ
+GU
+cL
+Rf
+ZU
+Mj
 OF
 OF
 OF
@@ -23937,21 +25054,21 @@ OF
 OF
 ZL
 LR
-WI
-WI
-WI
-WI
+OR
+OR
+OR
+OR
 Lz
-MJ
+gX
 Uw
-TR
-Yc
+TN
+YQ
 Uw
-MJ
+Sh
 Yo
-Yc
+ag
 FM
-MJ
+Sh
 TR
 Yc
 Fx
@@ -23965,7 +25082,7 @@ MJ
 Fx
 Yc
 TR
-MJ
+Fc
 Gd
 gi
 MJ
@@ -23975,36 +25092,36 @@ Yc
 Yc
 Yc
 MJ
-lm
-Mv
-MJ
+Hc
+by
+YR
 TR
 Yc
-Fx
-MJ
-MJ
-Fx
+Da
+KH
+KH
+Da
 Ry
-Fx
-MJ
-MJ
-Fx
+Da
+KH
+KH
+Da
 TR
 Je
-Fx
-MJ
-JH
-MJ
-MJ
-MJ
+Zr
+jq
+NP
+jq
+jq
+jq
 DH
 La
 Uv
-Qn
-Oi
-Ou
-Xq
-iJ
+GU
+cL
+Rf
+ZU
+Mj
 OF
 OF
 OF
@@ -24076,24 +25193,24 @@ OF
 OF
 OF
 OF
-MJ
-MJ
-Fx
+IT
+IT
+Qh
 Pc
 Mu
 Mu
 Mu
 Ho
-Fx
+QU
 OX
-TR
-Ph
-Fx
-Fx
+TN
+GT
+QU
+Zs
 XR
-Yc
+ag
 Zj
-MJ
+Sh
 TR
 Yc
 MJ
@@ -24107,9 +25224,9 @@ XX
 MJ
 Yc
 TR
-MJ
+Fc
 jo
-DQ
+Vw
 MJ
 QA
 QA
@@ -24117,36 +25234,36 @@ QA
 QA
 QA
 MJ
-DQ
-YA
-MJ
+Wo
+TH
+YR
 TR
 Yc
-MJ
+KH
 Xo
 Fg
+Kj
+Kj
+Kj
 Fg
-Fg
-Fg
-Fg
-Fg
-MJ
+Kj
+KH
 TR
 RU
-MJ
+jq
 Vo
-TR
+Ut
 Jd
 Fr
-MJ
+jq
 KN
 Th
 Ot
-Qn
-Oi
-Ou
-Xq
-iJ
+GU
+cL
+Rf
+ZU
+Mj
 OF
 OF
 OF
@@ -24219,7 +25336,7 @@ OF
 OF
 OF
 LR
-Yc
+HO
 NG
 Mu
 Oy
@@ -24227,17 +25344,17 @@ ZX
 Oy
 HD
 JO
-Yw
+VN
 Fs
-Yc
-ES
-Fx
+YQ
+Ze
+Zs
 Qp
-Yc
-Yc
-Fx
+ag
+ag
+Zs
 TR
-Yc
+HW
 MJ
 ae
 QY
@@ -24247,10 +25364,11 @@ XL
 TR
 Oe
 MJ
-Yc
+Sr
 TR
-Fx
-JH
+DI
+IW
+Fc
 MJ
 MJ
 MJ
@@ -24258,37 +25376,36 @@ MJ
 MJ
 MJ
 MJ
-MJ
-MJ
-JH
-Fx
+YR
+Ij
+FZ
 TR
-Yc
-MJ
+HW
+KH
 Jk
 GI
-Fg
+Kj
 Mf
 Mf
 Mf
 Mf
-MJ
+KH
 TR
 Fi
-MJ
+jq
 RP
-Dw
+LO
 Wy
 XF
-MJ
+jq
 Wu
 Dz
 Gk
-Qn
-Oi
-Ou
-Xq
-iJ
+GU
+cL
+Rf
+ZU
+Mj
 OF
 OF
 OF
@@ -24361,22 +25478,22 @@ OF
 OF
 OF
 LR
-Yc
+HO
 HP
 Mu
 XC
 gx
 XC
 Rk
-Fx
-Yc
-TR
-Yc
-Yc
+QU
+YQ
+TN
+YQ
+YQ
 jp
-Yc
-Yc
-Yc
+ag
+ag
+ag
 jp
 ME
 Yw
@@ -24397,7 +25514,7 @@ Yw
 Yw
 Yw
 Yw
-Yw
+TY
 Yw
 Yw
 Yw
@@ -24406,29 +25523,29 @@ Uc
 Yw
 Zo
 PN
-MJ
+KH
 Eb
-Fg
+Kj
 Kc
 Xj
 Fu
 Ft
 Xj
-MJ
+KH
 TR
 Ng
-MJ
+jq
 Na
 Sn
 hY
 Mb
-MJ
+jq
 KT
 Gv
 JT
 OB
 Lc
-MJ
+HC
 XS
 ZL
 OF
@@ -24503,23 +25620,23 @@ OF
 OF
 OF
 LR
-Yc
+HO
 HP
 Mu
 XC
 XC
 XC
 Mh
-Fx
-Yc
-Dw
+QU
+YQ
+Qq
 XO
-Yw
-Yw
-Yw
-Yw
-XO
-Yw
+VN
+YP
+YP
+YP
+JP
+YP
 UB
 Yc
 Yc
@@ -24535,6 +25652,7 @@ PN
 TR
 Yc
 TR
+Ew
 Yc
 Yc
 Yc
@@ -24542,29 +25660,28 @@ Yc
 Yc
 Yc
 Yc
-Yc
-Yc
+Ew
 TR
 Yc
 TR
 PN
-MJ
+KH
 Eb
-Fg
+Kj
 Kc
 iA
 DV
 EG
 iA
-MJ
+KH
 TR
 UZ
-MJ
+jq
 FB
 LC
 hY
 YO
-MJ
+jq
 Qj
 NS
 Wk
@@ -24645,25 +25762,25 @@ OF
 OF
 OF
 LR
-Yc
-NG
+HO
+Mi
 Mu
 Gf
 Gf
 Gf
 Mu
 Mc
-Yc
-Yc
-TR
-Yc
-Fx
+YQ
+YQ
+TN
+Ha
+Zs
 Qp
-Yc
+ag
 PH
-Fx
+Zs
 TR
-Yc
+HW
 MJ
 Yc
 QY
@@ -24673,10 +25790,11 @@ Fa
 TR
 EU
 MJ
-Yc
+Sr
 TR
-Fx
-JH
+SA
+PF
+Ex
 MJ
 MJ
 MJ
@@ -24684,37 +25802,36 @@ MJ
 MJ
 MJ
 MJ
-MJ
-MJ
-JH
-Fx
+Kk
+TA
+YD
 TR
-Yc
-MJ
+HW
+KH
 Jk
 GI
-Fg
+Kj
 GY
 GY
 GY
 GY
-MJ
+KH
 TR
 Je
-MJ
+jq
 XV
-Yc
+PB
 HV
 GM
-MJ
+jq
 Qj
 JE
 Wh
-Qn
-Oi
-Ou
-Xq
-iJ
+GU
+cL
+Rf
+ZU
+Mj
 OF
 OF
 OF
@@ -24786,24 +25903,24 @@ OF
 OF
 OF
 OF
-MJ
-MJ
-Fx
+IT
+IT
+Qh
 Pc
 Mu
 Mu
 Mu
-Mu
-Fx
-OX
-Yc
-EY
+Rv
+Sf
+PQ
+NX
+VH
 XN
-Fx
+Zs
 Te
-Yc
+ag
 Zj
-MJ
+Sh
 TR
 Yc
 MJ
@@ -24817,9 +25934,9 @@ Lx
 MJ
 Yc
 TR
-MJ
+Ex
 lF
-DQ
+UD
 MJ
 Yc
 Yc
@@ -24827,36 +25944,36 @@ MJ
 Yc
 Yc
 MJ
-DQ
+MM
 YN
-MJ
+Kk
 TR
 Yc
-MJ
+KH
 Xo
-Fg
+Em
 WM
 TK
-Fg
-Fg
-Fg
-MJ
+Kj
+Em
+Kj
+KH
 TR
 RU
-MJ
+jq
 Vo
-Yc
+PB
 HH
 GR
-MJ
+jq
 Iw
 Us
 Oj
-Qn
-Oi
-Ou
-Xq
-iJ
+GU
+cL
+Rf
+ZU
+Mj
 OF
 OF
 OF
@@ -24931,21 +26048,21 @@ OF
 OF
 ZL
 LR
-WI
-WI
-WI
-WI
+OR
+OR
+OR
+OR
 ML
-MJ
+Ki
 Gp
-OV
+Zc
 gA
 Gl
-MJ
+Sh
 Yo
-Yc
+ag
 FM
-MJ
+Sh
 TR
 Yc
 Fx
@@ -24959,46 +26076,46 @@ MJ
 Fx
 Yc
 TR
-MJ
-Gd
-gi
-MJ
-Yc
-Yc
+Ex
+Hk
+HN
 MJ
 Yc
 Yc
 MJ
-lm
-Mv
+Yc
+Yc
 MJ
+Go
+Wj
+Kk
 TR
 Yc
-Fx
-MJ
-MJ
-Fx
+Da
+KH
+KH
+Da
 Pl
-Fx
-MJ
-MJ
-Fx
+Da
+KH
+KH
+Da
 TR
 Fi
-Fx
-MJ
+Zr
+jq
 Qw
-MJ
-MJ
-MJ
+jq
+jq
+jq
 KB
 EO
 lj
-Qn
-Oi
-Ou
-Xq
-iJ
+GU
+cL
+Rf
+ZU
+Mj
 OF
 OF
 OF
@@ -25071,49 +26188,49 @@ OF
 OF
 OF
 OF
-Fx
-Fx
-WI
-WI
-WI
+Qh
+Qh
+OR
+OR
+OR
 WI
 Fh
-MJ
+Ki
 Hp
-OV
-OV
+Zc
+Zc
 Tn
-MJ
+Sh
 Wr
-Yc
+ag
 TS
-MJ
+Sh
 Hg
 Yw
 Yw
 Yw
 LL
 Yw
-Yw
+TY
 Yw
 Xh
 Yw
 Yw
 Yw
 Zo
-MJ
-Xs
-Ml
-MJ
-Yc
-Yc
+Ex
+Fd
+Ej
 MJ
 Yc
 Yc
 MJ
-Ml
-Xs
+Yc
+Yc
 MJ
+VX
+MU
+Kk
 ME
 Yw
 Yw
@@ -25127,7 +26244,7 @@ Yw
 Yw
 ph
 DY
-Yw
+TY
 IK
 Yw
 YB
@@ -25136,11 +26253,11 @@ Zi
 OJ
 Gb
 IR
-Qn
-Oi
-Ou
-Xq
-iJ
+GU
+cL
+Rf
+ZU
+Mj
 OF
 OF
 OF
@@ -25213,26 +26330,26 @@ OF
 OF
 OF
 OF
-HQ
-MJ
+MA
+IT
 Sx
-WI
-WI
-WI
-WI
+OR
+OR
+OR
+OR
 Uy
-OV
-OV
-OV
+Zc
+Zc
+Zc
 OW
-MJ
-Fx
-Yc
-Fx
-MJ
+Sh
+Zs
+ag
+Zs
+Sh
 TR
 ON
-Yc
+Ew
 Yc
 TR
 Yc
@@ -25240,7 +26357,7 @@ Yc
 Yc
 Yc
 Yc
-Yc
+Ew
 Yc
 ZB
 MJ
@@ -25258,12 +26375,12 @@ MJ
 MJ
 TR
 Yc
+Ew
 Yc
 Yc
 Yc
 Yc
-Yc
-Yc
+Ew
 TR
 Yc
 Yc
@@ -25272,17 +26389,17 @@ TR
 Yc
 TR
 ES
-MJ
+HC
 Ye
 IS
 nn
-Yc
-SM
-Qn
-Oi
-Ou
-Xq
-iJ
+Ua
+Ua
+GU
+cL
+Rf
+ZU
+Mj
 OF
 OF
 OF
@@ -25355,28 +26472,28 @@ OF
 OF
 OF
 OF
-Fx
-MJ
-Fx
-WI
-WI
-WI
+Qh
+IT
+Qh
+Xg
+OR
+OR
 PS
-MJ
+Ki
 Wb
-OV
-OV
+Zc
+Zc
 PO
-MJ
+Sh
 nO
-Yc
+ag
 Nk
+Sh
+GC
 MJ
-JH
-MJ
-MJ
-MJ
-JH
+UM
+UM
+Or
 Fx
 MJ
 MJ
@@ -25414,17 +26531,17 @@ TR
 Fx
 TR
 MJ
-MJ
+HC
 Kr
 SQ
 iN
-Yc
-Yc
+Ua
+Ua
 VD
 TB
-Fx
-MJ
-MJ
+Hz
+HC
+HC
 OF
 OF
 OF
@@ -25497,27 +26614,27 @@ OF
 OF
 OF
 OF
-cJ
+FH
 VJ
-Wq
-WI
-WI
-WI
+EJ
+OR
+OR
+OR
 Mr
-MJ
+Ki
 MT
-OV
-OV
+Zc
+Zc
 SW
-MJ
+Sh
 WV
-Yc
+ag
 Yv
-MJ
+Sh
 Uh
-DW
-MJ
-DQ
+VY
+UM
+SO
 Pa
 MJ
 XU
@@ -25540,33 +26657,33 @@ DY
 Yw
 Yw
 Of
-Xw
-Yw
+ZH
+Lm
 ID
 RI
 Ta
 Fl
 NO
 Du
-Fs
-MJ
+Up
+TX
 Tq
 Rg
-PH
-MJ
+PM
+Ia
 Yc
 Yc
-MJ
-ES
+HC
+Vh
 li
 ZF
-Yc
-Yc
-Yc
-Yc
-Wq
-VJ
-cJ
+KC
+Ra
+Ua
+Ua
+VI
+Xn
+OU
 OF
 OF
 OF
@@ -25639,28 +26756,28 @@ OF
 OF
 OF
 OF
-MJ
-MJ
-Fx
-WI
-WI
-WI
+IT
+IT
+Qh
+OR
+OR
+OR
 ZP
-MJ
+Ki
 MZ
-OV
-OV
+Zc
+Zc
 Xr
-MJ
+Sh
 YV
-Yc
+ag
 YV
-MJ
-Jm
-Yc
-MJ
-lm
-Mv
+Sh
+VO
+Yu
+UM
+Nz
+Kz
 MJ
 EH
 Yc
@@ -25683,32 +26800,32 @@ MJ
 MJ
 Fx
 Gs
-Yc
-Yc
-Yc
-Yc
-Yc
-Yc
-Yc
-TR
-MJ
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
+JZ
+TX
 gj
 Nh
 PI
-MJ
+Ia
 Yc
 Yc
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
+HC
+HC
+HC
+HC
+HC
+HC
+HC
+HC
+HC
+HC
+HC
 OF
 OF
 OF
@@ -25783,26 +26900,26 @@ OF
 OF
 OF
 ZL
-Fx
-UI
-UI
-UI
-Fx
-MJ
-MJ
+Qh
+gB
+gB
+gB
+Qh
+Ki
+Ki
 TO
 NU
-MJ
-MJ
-Fx
-Wq
-Fx
-MJ
-Fx
+Ki
+Sh
+Zs
+Nv
+Zs
+Sh
+WN
 aV
-MJ
-Ml
-Xs
+UM
+Tg
+Iy
 MJ
 Yc
 Yc
@@ -25825,19 +26942,19 @@ Tz
 Hh
 MJ
 RC
-Yc
+Ii
 Po
 IX
 JV
 Pr
 Ub
 Jp
-TR
-MJ
+JZ
+TX
 MH
 XT
 XT
-MJ
+Ia
 Yc
 Yc
 Yc
@@ -25931,17 +27048,17 @@ OF
 OF
 ZL
 XS
-Fx
-UI
-UI
-MJ
+Sf
+OE
+OE
+Ki
 XB
-MJ
-NJ
-MJ
+Sh
+Gw
+Sh
 ZL
-Fx
-MJ
+WN
+Ro
 MJ
 MJ
 MJ
@@ -25967,19 +27084,19 @@ Yc
 RU
 Fx
 Iv
-Yc
+Ii
 SJ
 Pz
 TF
 Sd
 Vz
 Yl
-TR
-MJ
+IY
+TX
 XT
 XT
 XT
-MJ
+Ia
 Yc
 Yc
 Yc
@@ -26078,9 +27195,9 @@ OF
 OF
 OF
 OF
-MJ
-cJ
-MJ
+Sh
+QL
+Sh
 OF
 OF
 OF
@@ -26108,20 +27225,20 @@ Zh
 Yc
 Yc
 Gu
-Yc
-Yc
+Ii
+Ii
 Uo
 Hl
 Ik
 Xl
 OT
 IV
-TR
-MJ
+Ii
+TX
 XT
 XT
 XT
-MJ
+Ia
 Yc
 Yc
 Yc
@@ -26251,19 +27368,19 @@ TE
 EQ
 Fx
 XP
-Yc
-Yc
-Yc
-Yc
-Yc
-Yc
-Yc
-PH
-MJ
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
+Ii
+TX
 XT
 XT
 FY
-MJ
+Ia
 Yc
 Yc
 Yc
@@ -26400,12 +27517,12 @@ TL
 Xk
 KE
 DT
-Zg
-MJ
+IE
+TX
 XT
 XT
 XT
-MJ
+Ia
 Yc
 Yc
 Yc
@@ -26534,20 +27651,20 @@ UI
 UI
 MJ
 MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
-MJ
+TX
+TX
+TX
+TX
+TX
+TX
+TX
+TX
+TX
+TX
 XT
 XT
 XT
-Fx
+ZW
 Wq
 Fx
 MJ
@@ -26657,7 +27774,7 @@ OF
 ZL
 XS
 MJ
-XB
+Jw
 MJ
 XS
 ZL
@@ -26669,7 +27786,7 @@ XS
 ZL
 XS
 MJ
-XB
+Jw
 MJ
 XS
 ZL
@@ -26680,21 +27797,21 @@ XS
 XS
 ZL
 XS
-MJ
-XB
-MJ
+TX
+Rd
+TX
 XS
 ZL
-Fx
-UI
-UI
-UI
-MJ
+Ri
+SB
+SB
+SB
+Ia
 NJ
 MJ
 ZL
 MJ
-XB
+Jw
 MJ
 OF
 OF
