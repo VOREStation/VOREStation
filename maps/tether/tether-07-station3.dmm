@@ -19733,15 +19733,11 @@
 /turf/simulated/floor/wood,
 /area/quartermaster/qm)
 "Et" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/vehicle/train/engine,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled,
-/area/quartermaster/storage)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "Eu" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
@@ -20213,12 +20209,8 @@
 /area/quartermaster/warehouse)
 "Fk" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/vehicle/train/trolley,
-/obj/machinery/alarm{
-	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
+/obj/vehicle/train/engine{
+	dir = 1
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -20776,9 +20768,14 @@
 /area/medical/sleeper)
 "Gd" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/vehicle/train/trolley,
-/obj/machinery/light{
-	dir = 8
+/obj/vehicle/train/trolley{
+	dir = 1
+	},
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -21226,14 +21223,16 @@
 /area/quartermaster/warehouse)
 "GK" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/vehicle/train/trolley,
+/obj/vehicle/train/trolley{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/storage)
@@ -27003,10 +27002,20 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/storage)
 "Qh" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/vehicle/train/trolley{
+	dir = 1
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/storage)
 "Qi" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -40568,7 +40577,7 @@ Zy
 WG
 dj
 XA
-Qh
+Et
 ms
 Oz
 be
@@ -40710,7 +40719,7 @@ UJ
 Xb
 dj
 XN
-Qh
+Et
 ms
 Xq
 be
@@ -40852,7 +40861,7 @@ iW
 WS
 dj
 XN
-Qh
+Et
 ms
 Xq
 be
@@ -41135,7 +41144,7 @@ jZ
 WR
 Xo
 XN
-Qh
+Et
 cK
 ms
 Xq
@@ -41703,7 +41712,7 @@ ea
 kx
 dj
 XN
-Qh
+Et
 cK
 ms
 mq
@@ -41988,7 +41997,7 @@ kQ
 TG
 dj
 XN
-Qh
+Et
 ms
 mq
 be
@@ -42130,7 +42139,7 @@ kR
 Vd
 dj
 XN
-Qh
+Et
 ms
 QL
 be
@@ -42272,7 +42281,7 @@ ZE
 ZB
 dj
 XB
-Qh
+Et
 ms
 Sq
 be
@@ -42727,10 +42736,10 @@ SD
 Qg
 CI
 Dx
-Et
 Fk
 Gd
 GK
+Qh
 HA
 Mg
 EF
