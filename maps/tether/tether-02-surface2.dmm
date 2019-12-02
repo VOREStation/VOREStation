@@ -21937,6 +21937,20 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/engineering/drone_fabrication)
+"aPa" = (
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/machinery/camera/network/medbay{
+	dir = 1
+	},
+/obj/item/weapon/storage/box/gloves,
+/obj/item/weapon/storage/box/masks{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/storage)
 "aPb" = (
 /obj/machinery/button/remote/blast_door{
 	id = "xenobiopen5";
@@ -25159,14 +25173,6 @@
 /obj/structure/bed/padded,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/solitary)
-"aTK" = (
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/machinery/camera/network/medbay{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/storage)
 "aTL" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -45600,7 +45606,7 @@ aRk
 aRB
 aRU
 aSo
-aTK
+aPa
 aad
 aad
 aad
