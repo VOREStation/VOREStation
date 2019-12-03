@@ -1038,12 +1038,10 @@
 
 //////// Mothership areas ////////
 /area/mothership
-	name = "Warship"
 	requires_power = 1
 	flags = RAD_SHIELDED
 	base_turf = /turf/space
 	icon_state = "blue-red2"
-	lightswitch = TRUE
 
 /area/mothership/breakroom
 	name = "Warship - Breakroom"
@@ -1141,6 +1139,33 @@
 
 /area/mothership/engineering
 	name = "Warship - Engineering"
+
+/area/mothership/hallway
+	name = "Warship - Main Hallway"
+
+/area/mothership/telecomms1
+	name = "Warship - Telecommunications Main"
+
+/area/mothership/telecomms2
+	name = "Warship - Telecommunications Relay"
+
+//////// Abductor Areas ////////
+/area/unknown
+	requires_power = 0
+	flags = RAD_SHIELDED
+	icon_state = "red2"
+
+/area/unknown/dorm1
+	name = "Unknown Dorm 1"
+
+/area/unknown/dorm2
+	name = "Unknown Dorm 2"
+
+/area/unknown/dorm3
+	name = "Unknown Dorm 3"
+
+/area/unknown/dorm4
+	name = "Unknown Dorm 4"
 
 //////// Small Cruiser Areas ////////
 /area/houseboat
