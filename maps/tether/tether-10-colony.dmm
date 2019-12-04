@@ -716,6 +716,7 @@
 	icon_state = "0-2"
 	},
 /obj/structure/cable/cyan,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/sechallway)
 "bk" = (
@@ -915,6 +916,13 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -22
+	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm5)
 "bz" = (
@@ -1092,6 +1100,13 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 4;
+	icon_state = "map"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/resleeving)
@@ -1651,7 +1666,9 @@
 	},
 /area/mothership/telecomms1)
 "cL" = (
-/obj/structure/particle_accelerator/fuel_chamber,
+/obj/structure/particle_accelerator/fuel_chamber{
+	anchored = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "cM" = (
@@ -3583,6 +3600,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/mothership/treatment)
 "gx" = (
@@ -3595,6 +3613,10 @@
 /obj/structure/table/steel_reinforced,
 /obj/item/device/robotanalyzer,
 /obj/machinery/light,
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -22
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/rnd)
 "gA" = (
@@ -4181,6 +4203,15 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"hP" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/turf/simulated/floor/tiled/white,
+/area/mothership/treatment)
 "hQ" = (
 /obj/machinery/door/airlock/centcom{
 	name = "General Access";
@@ -4605,6 +4636,12 @@
 	dir = 5
 	},
 /area/centcom/security)
+"iE" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/robotics)
 "iF" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
@@ -4656,12 +4693,16 @@
 "iR" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/storage/box/gloves,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/surgery)
-"iS" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/station_low,
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/telecomms2)
 "iT" = (
 /obj/structure/table/rack,
 /obj/item/clothing/under/color/red,
@@ -4911,6 +4952,9 @@
 	name = "north bump";
 	pixel_x = 0;
 	pixel_y = 28
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm3)
@@ -5989,6 +6033,17 @@
 	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm1)
+"ln" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/telecomms1)
 "lo" = (
 /obj/item/weapon/stool/padded,
 /turf/unsimulated/floor/steel{
@@ -6261,6 +6316,9 @@
 	name = "north bump";
 	pixel_x = 0;
 	pixel_y = 28
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm4)
@@ -7398,6 +7456,12 @@
 /obj/item/weapon/tank/oxygen,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 4;
+	pixel_y = 26
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "nP" = (
@@ -8206,6 +8270,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "pi" = (
@@ -15990,6 +16055,17 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/command)
+"CD" = (
+/obj/machinery/door/blast/regular{
+	id = "mechbay-inner";
+	name = "Mech Bay"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/robotics)
 "CH" = (
 /obj/machinery/computer/card{
 	dir = 4
@@ -16369,6 +16445,12 @@
 /obj/machinery/portable_atmospherics/canister/oxygen/prechilled,
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
+"Dp" = (
+/obj/machinery/account_database{
+	name = "CentComm Accounts database"
+	},
+/turf/simulated/floor/bluegrid,
+/area/mothership/telecomms2)
 "Dq" = (
 /obj/machinery/mech_recharger,
 /turf/simulated/floor/bluegrid,
@@ -16437,7 +16519,10 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/machinery/door/airlock/highsecurity,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "DB" = (
@@ -16460,6 +16545,15 @@
 /obj/machinery/door/airlock/alien/public,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm1)
+"DE" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "DF" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black,
 /turf/simulated/floor/tiled/techmaint,
@@ -16528,6 +16622,10 @@
 	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm1)
+"DR" = (
+/obj/machinery/ntnet_relay,
+/turf/simulated/floor/bluegrid,
+/area/mothership/telecomms1)
 "DS" = (
 /obj/structure/bed/chair/comfy/black,
 /turf/simulated/shuttle/floor/alien,
@@ -16563,11 +16661,6 @@
 	req_access = list(67)
 	},
 /obj/structure/cable/cyan,
-/obj/machinery/firealarm{
-	dir = 4;
-	layer = 3.3;
-	pixel_x = 26
-	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/bathroom1)
 "DX" = (
@@ -16583,6 +16676,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/sechallway)
@@ -16662,8 +16758,17 @@
 /area/mothership/resleeving)
 "Eo" = (
 /obj/machinery/telecomms/relay/preset/centcom/tether/midpoint,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/bluegrid,
 /area/mothership/telecomms2)
+"Ep" = (
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 4;
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/teleporter)
 "Er" = (
 /obj/machinery/shower{
 	dir = 4;
@@ -16682,6 +16787,15 @@
 /obj/machinery/teleport/hub,
 /turf/simulated/shuttle/floor/voidcraft,
 /area/unknown/dorm4)
+"Et" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "Eu" = (
 /obj/machinery/disposal,
 /turf/simulated/floor/tiled/white,
@@ -16705,6 +16819,9 @@
 /area/mothership/dorm4)
 "Ey" = (
 /obj/machinery/iv_drip,
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/surgery)
 "Ez" = (
@@ -16725,6 +16842,12 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"EA" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/mothership/bridge)
 "EB" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -16746,6 +16869,34 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/warden)
+"ED" = (
+/obj/machinery/alarm{
+	alarm_id = "pen_nine";
+	breach_detection = 0;
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"EF" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/alarm{
+	alarm_id = "anomaly_testing";
+	breach_detection = 0;
+	dir = 8;
+	frequency = 1439;
+	pixel_x = 22;
+	pixel_y = 0;
+	report_danger_level = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/sechallway)
 "EG" = (
 /obj/machinery/computer/robotics{
 	dir = 4
@@ -16781,8 +16932,8 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/breakroom)
 "EK" = (
-/obj/machinery/telecomms/relay/preset/centcom/underdark,
-/turf/simulated/floor/tiled/techmaint,
+/obj/machinery/telecomms/relay/preset/centcom/tether/base_low,
+/turf/simulated/floor/bluegrid,
 /area/mothership/telecomms2)
 "EL" = (
 /obj/structure/prop/alien/power,
@@ -16807,6 +16958,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
 "EQ" = (
@@ -16816,9 +16970,15 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/processing)
 "ES" = (
-/obj/machinery/disposal,
+/obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/processing)
+"ET" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/treatment)
 "EU" = (
 /obj/structure/closet/crate/secure/gear,
 /obj/item/rig_module/chem_dispenser/injector/advanced,
@@ -16830,8 +16990,25 @@
 /obj/item/weapon/rig/pmc/security,
 /obj/item/weapon/rig/pmc/security,
 /obj/item/weapon/rig/light/ninja,
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -22
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/vault)
+"EV" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/armory)
 "EW" = (
 /obj/structure/closet/excavation,
 /obj/machinery/light{
@@ -16853,9 +17030,18 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
 "Fa" = (
-/obj/machinery/blackbox_recorder,
+/obj/structure/prop/blackbox,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/vault)
+"Fb" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/resleeving)
 "Fc" = (
 /turf/simulated/shuttle/wall/voidcraft/blue{
 	name = "small craft wall";
@@ -16865,6 +17051,10 @@
 "Fd" = (
 /obj/item/weapon/bedsheet/captaindouble,
 /obj/structure/bed/double/padded,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm4)
 "Fe" = (
@@ -16936,6 +17126,16 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
+"Fm" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5;
+	icon_state = "intact"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/resleeving)
 "Fo" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/storage/box/survival/comp{
@@ -17002,6 +17202,12 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
+"Fv" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/treatment)
 "Fw" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /turf/unsimulated/floor/steel,
@@ -17024,6 +17230,20 @@
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/warden)
+"FA" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/telecomms2)
 "FB" = (
 /obj/machinery/vending/loadout/uniform,
 /turf/simulated/floor/tiled/techmaint,
@@ -17081,10 +17301,6 @@
 /obj/machinery/teleport/station,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/teleporter)
-"FO" = (
-/obj/machinery/ntnet_relay,
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/telecomms1)
 "FP" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -17096,8 +17312,23 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/sechallway)
+"FR" = (
+/obj/machinery/power/smes/buildable{
+	charge = 2e+007;
+	cur_coils = 4;
+	input_attempt = 1;
+	input_level = 1e+006;
+	output_level = 1e+006
+	},
+/obj/structure/cable/cyan{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/vault)
 "FS" = (
 /obj/machinery/photocopier,
 /turf/simulated/floor/tiled/techmaint,
@@ -17114,6 +17345,15 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/surgery)
+"FV" = (
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 4;
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/warden)
 "FW" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -17157,6 +17397,12 @@
 /area/mothership/resleeving)
 "Gd" = (
 /obj/structure/bed/chair/office/dark,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm3)
 "Ge" = (
@@ -17226,7 +17472,7 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/kitchen)
 "Gr" = (
-/obj/machinery/disposal,
+/obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/rnd)
 "Gs" = (
@@ -17271,6 +17517,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
+"Gy" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/bluegrid,
+/area/mothership/robotics)
 "GB" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/device/camera,
@@ -17285,6 +17537,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/bathroom2)
 "GD" = (
@@ -17365,12 +17620,14 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
 "GU" = (
-/obj/structure/particle_accelerator/end_cap,
+/obj/structure/particle_accelerator/end_cap{
+	anchored = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "GV" = (
 /obj/machinery/telecomms/relay/preset/centcom/tether/station_high,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/bluegrid,
 /area/mothership/telecomms2)
 "GW" = (
 /obj/machinery/atmospherics/binary/passive_gate{
@@ -17454,6 +17711,9 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "Hh" = (
@@ -17475,6 +17735,12 @@
 /area/mothership/telecomms2)
 "Hk" = (
 /obj/structure/bed/chair/office/dark,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm4)
 "Hl" = (
@@ -17483,6 +17749,24 @@
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
+"Hm" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/alarm{
+	alarm_id = "anomaly_testing";
+	breach_detection = 0;
+	dir = 8;
+	frequency = 1439;
+	pixel_x = 22;
+	pixel_y = 0;
+	report_danger_level = 0
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "Hn" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/unsimulated/floor{
@@ -17517,12 +17801,29 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/medical,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/morgue)
 "Ht" = (
 /obj/effect/floor_decal/derelict/d13,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Hu" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/processing)
+"Hv" = (
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/treatment)
 "Hw" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
 /obj/machinery/atmospherics/pipe/simple/visible{
@@ -17605,6 +17906,10 @@
 /area/mothership/processing)
 "HH" = (
 /obj/machinery/vending/loadout/gadget,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/cryotube)
 "HI" = (
@@ -17615,6 +17920,22 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
+"HL" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "HN" = (
 /obj/structure/table/woodentable,
 /obj/item/modular_computer/laptop/preset/custom_loadout/elite,
@@ -17642,17 +17963,26 @@
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
-/area/houseboat)
+/area/mothership/breakroom)
 "HR" = (
-/obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+/obj/machinery/power/terminal{
+	icon_state = "term";
+	dir = 1
+	},
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2";
+	pixel_y = 0
 	},
 /obj/structure/cable/cyan{
-	d1 = 2;
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
 	d2 = 8;
-	icon_state = "2-8"
+	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/vault)
@@ -17662,18 +17992,6 @@
 	},
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm1)
-"HT" = (
-/obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -25
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/eva)
 "HU" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/energy/lasercannon,
@@ -17740,6 +18058,18 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"HZ" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5;
+	icon_state = "intact"
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/medical)
 "Ia" = (
 /turf/simulated/shuttle/wall/voidcraft/blue{
 	name = "small craft wall";
@@ -17765,15 +18095,21 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "If" = (
 /obj/machinery/door/airlock/medical,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/mothership/treatment)
 "Ig" = (
-/obj/structure/particle_accelerator/end_cap,
+/obj/structure/particle_accelerator/end_cap{
+	anchored = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "Ii" = (
@@ -17787,6 +18123,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/dorm5)
 "Ik" = (
@@ -17811,6 +18150,12 @@
 	},
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm1)
+"Ip" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "Iq" = (
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "burst_l";
@@ -17922,6 +18267,10 @@
 "Iy" = (
 /obj/item/weapon/bedsheet/captaindouble,
 /obj/structure/bed/double/padded,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm2)
 "IA" = (
@@ -17972,8 +18321,18 @@
 /area/mothership/armory)
 "IF" = (
 /obj/structure/table/steel_reinforced,
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/resleeving)
+"IG" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/sci_outpost,
+/turf/simulated/floor/bluegrid,
+/area/mothership/telecomms2)
 "IH" = (
 /obj/machinery/shield_capacitor,
 /turf/unsimulated/floor{
@@ -17987,6 +18346,18 @@
 	name = "Sealed Door"
 	},
 /area/mothership/telecomms2)
+"IJ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 4;
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/telecomms2)
 "IK" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -17998,6 +18369,9 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/sechallway)
 "IM" = (
@@ -18008,6 +18382,12 @@
 	name = "outer hull"
 	},
 /area/space)
+"IN" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/cryotube)
 "IO" = (
 /obj/structure/shuttle/engine/heater,
 /obj/structure/window/reinforced{
@@ -18026,6 +18406,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "IQ" = (
@@ -18084,6 +18465,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/dorm3)
 "IX" = (
@@ -18141,15 +18525,13 @@
 /area/mothership/rnd)
 "Jd" = (
 /obj/structure/undies_wardrobe,
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/cryotube)
-"Je" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/hallway)
 "Jf" = (
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/techmaint,
@@ -18314,19 +18696,8 @@
 /turf/simulated/floor/bluegrid,
 /area/mothership/robotics)
 "Jz" = (
-/obj/machinery/power/smes/buildable{
-	charge = 2e+007;
-	cur_coils = 4;
-	input_attempt = 1;
-	input_level = 500000;
-	output_level = 1e+006;
-	RCon = 0;
-	RCon_tag = "Weatherlight - Main"
-	},
-/obj/structure/cable/green{
-	icon_state = "0-8"
-	},
-/obj/structure/cable/cyan,
+/obj/machinery/power/fractal_reactor/fluff/converter,
+/obj/structure/cable,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/vault)
 "JA" = (
@@ -18379,6 +18750,13 @@
 	},
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm4)
+"JG" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/security)
 "JH" = (
 /obj/machinery/door/airlock/voidcraft/vertical,
 /obj/structure/cable/cyan{
@@ -18387,6 +18765,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/bathroom1)
 "JJ" = (
@@ -18397,6 +18778,13 @@
 /obj/structure/prop/alien/dispenser,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm3)
+"JL" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/warden)
 "JM" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -18414,6 +18802,11 @@
 /obj/item/weapon/tool/screwdriver,
 /obj/item/weapon/storage/box/pillbottles,
 /obj/item/weapon/storage/box/pillbottles,
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23;
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/chemistry)
 "JO" = (
@@ -18496,6 +18889,9 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/voidcraft/vertical,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/holodeck)
 "JY" = (
@@ -18507,6 +18903,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
@@ -18655,13 +19054,22 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/telecomms1)
+"Ko" = (
+/obj/machinery/mech_recharger,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
+/turf/simulated/floor/bluegrid,
+/area/mothership/robotics)
 "Kp" = (
 /obj/machinery/computer/rdservercontrol{
 	badmin = 1;
 	dir = 1;
 	name = "Master RnD Server Controller"
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/bluegrid,
 /area/mothership/telecomms1)
 "Kr" = (
 /obj/structure/table/steel_reinforced,
@@ -18678,6 +19086,9 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
@@ -18716,12 +19127,31 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/processing)
 "Ky" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/base_low,
+/obj/machinery/alarm{
+	alarm_id = "anomaly_testing";
+	breach_detection = 0;
+	dir = 8;
+	frequency = 1439;
+	pixel_x = 22;
+	pixel_y = 0;
+	report_danger_level = 0
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "Kz" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
+	},
+/obj/machinery/light/small,
+/obj/machinery/alarm{
+	alarm_id = "pen_nine";
+	breach_detection = 0;
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
 	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm2)
@@ -18762,6 +19192,17 @@
 /obj/item/weapon/rig/ert/medical,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
+"KF" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/mothership/bridge)
 "KG" = (
 /obj/structure/filingcabinet/chestdrawer{
 	name = "Scan Records"
@@ -18774,6 +19215,12 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/bridge)
+"KI" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/medical)
 "KK" = (
 /turf/simulated/shuttle/wall/alien/hard_corner,
 /area/unknown/dorm1)
@@ -18833,6 +19280,7 @@
 	},
 /obj/machinery/door/airlock/medical,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
 "KT" = (
@@ -18845,7 +19293,7 @@
 /area/mothership/engineering)
 "KU" = (
 /obj/machinery/telecomms/relay/preset/centcom/tether/base_mid,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/bluegrid,
 /area/mothership/telecomms2)
 "KV" = (
 /obj/structure/table/rack/shelf/steel,
@@ -18857,8 +19305,25 @@
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23;
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
+"KX" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "KY" = (
 /obj/effect/floor_decal/derelict/d15,
 /turf/unsimulated/floor/steel,
@@ -18890,6 +19355,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/medical)
 "Le" = (
@@ -18900,6 +19368,13 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"Lf" = (
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/armory)
 "Lg" = (
 /obj/machinery/r_n_d/circuit_imprinter,
 /obj/item/weapon/reagent_containers/glass/beaker/sulphuric,
@@ -18916,6 +19391,10 @@
 /area/mothership/breakroom)
 "Li" = (
 /obj/structure/table/steel_reinforced,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 9;
+	icon_state = "intact"
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/treatment)
 "Lj" = (
@@ -18925,6 +19404,20 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
+"Lk" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "Ll" = (
 /obj/structure/closet/secure_closet/detective,
 /turf/simulated/floor/tiled/techmaint,
@@ -18934,6 +19427,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
@@ -18966,7 +19462,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/teleporter)
 "Ls" = (
-/obj/machinery/disposal,
+/obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled/white,
 /area/mothership/treatment)
 "Lu" = (
@@ -18978,6 +19474,10 @@
 "Lv" = (
 /obj/item/weapon/bedsheet/captaindouble,
 /obj/structure/bed/double/padded,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm3)
 "Lw" = (
@@ -19024,6 +19524,10 @@
 	default_material = "durasteel"
 	},
 /obj/item/clothing/accessory/holster/machete,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/vault)
 "Ly" = (
@@ -19098,8 +19602,23 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
+"LM" = (
+/obj/machinery/alarm{
+	alarm_id = "anomaly_testing";
+	breach_detection = 0;
+	dir = 8;
+	frequency = 1439;
+	pixel_x = 22;
+	pixel_y = 0;
+	report_danger_level = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/processing)
 "LN" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/folder/red{
@@ -19192,8 +19711,19 @@
 /obj/structure/cable/cyan,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/rnd)
+"Ma" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/teleporter)
 "Mb" = (
 /obj/machinery/cryopod,
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -22
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/cryotube)
 "Mc" = (
@@ -19256,6 +19786,9 @@
 "Mk" = (
 /obj/machinery/door/airlock/research,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/rnd)
 "Ml" = (
@@ -19298,6 +19831,16 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
+/obj/machinery/alarm{
+	alarm_id = "pen_nine";
+	breach_detection = 0;
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm1)
 "Mw" = (
@@ -19306,16 +19849,6 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
-"MA" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 1;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/breakroom)
 "MB" = (
 /obj/machinery/sleeper{
 	dir = 4
@@ -19326,6 +19859,10 @@
 /obj/structure/closet/secure_closet/RD,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/rnd)
+"MD" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/white,
+/area/mothership/treatment)
 "ME" = (
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -19336,6 +19873,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
@@ -19430,6 +19970,10 @@
 "MU" = (
 /obj/item/weapon/bedsheet/captaindouble,
 /obj/structure/bed/double/padded,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm6)
 "MV" = (
@@ -19464,6 +20008,9 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "MZ" = (
@@ -19485,6 +20032,22 @@
 /obj/machinery/light/flamp/noshade,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Ne" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "Nf" = (
 /obj/machinery/light{
 	dir = 8;
@@ -19537,6 +20100,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "Nn" = (
@@ -19546,7 +20110,7 @@
 /area/mothership/processing)
 "No" = (
 /obj/machinery/telecomms/hub/preset_cent,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/bluegrid,
 /area/mothership/telecomms1)
 "Nq" = (
 /obj/machinery/alarm{
@@ -19573,13 +20137,19 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/resleeving)
+"Ns" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/medical)
 "Nt" = (
 /obj/machinery/door/airlock/alien/public,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm4)
 "Nu" = (
 /obj/machinery/telecomms/processor/preset_cent,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/bluegrid,
 /area/mothership/telecomms1)
 "Nv" = (
 /obj/machinery/door/airlock/external,
@@ -19627,6 +20197,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "NC" = (
@@ -19652,6 +20225,9 @@
 /obj/machinery/status_display{
 	pixel_y = -29
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "NG" = (
@@ -19674,10 +20250,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/rnd)
 "NL" = (
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/telecomms1)
-"NM" = (
-/obj/machinery/telecomms/broadcaster/preset_cent,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
 "NN" = (
@@ -19751,6 +20323,17 @@
 /obj/machinery/chemical_dispenser/ert,
 /turf/simulated/floor/tiled/white,
 /area/mothership/chemistry)
+"Ob" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "Oc" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/reagent_containers/blood/OMinus,
@@ -19771,6 +20354,11 @@
 /obj/item/weapon/gun/energy/modular/pistol,
 /obj/item/weapon/gun/energy/medigun,
 /obj/item/weapon/gun/energy/captain,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/vault)
 "Of" = (
@@ -19781,6 +20369,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
 "Og" = (
@@ -19800,7 +20389,9 @@
 	},
 /area/centcom/specops)
 "Oi" = (
-/obj/structure/particle_accelerator/fuel_chamber,
+/obj/structure/particle_accelerator/fuel_chamber{
+	anchored = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
 "Oj" = (
@@ -19835,6 +20426,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "Oo" = (
@@ -19853,7 +20445,7 @@
 /area/mothership/medical)
 "Oq" = (
 /obj/machinery/telecomms/server/presets/centcomm,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/bluegrid,
 /area/mothership/telecomms1)
 "Or" = (
 /obj/machinery/door/airlock/voidcraft/vertical,
@@ -19863,6 +20455,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/dorm2)
 "Os" = (
@@ -19880,7 +20475,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "Ou" = (
-/obj/structure/particle_accelerator/power_box,
+/obj/structure/particle_accelerator/power_box{
+	anchored = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
 "Ov" = (
@@ -19893,6 +20490,9 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
@@ -19918,6 +20518,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "Oy" = (
@@ -19932,6 +20533,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/resleeving)
@@ -20086,12 +20690,6 @@
 /area/mothership/engineering)
 "OK" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/door/window/brigdoor/southleft{
 	dir = 4;
@@ -20117,6 +20715,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/sechallway)
 "ON" = (
@@ -20185,6 +20784,25 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/hydroponics)
+"OY" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "OZ" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	pixel_x = 0;
@@ -20203,6 +20821,9 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm2)
 "Pb" = (
@@ -20215,6 +20836,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
@@ -20231,11 +20855,18 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/sechallway)
+"Pf" = (
+/obj/machinery/telecomms/relay/preset/centcom/underdark,
+/turf/simulated/floor/bluegrid,
+/area/mothership/telecomms2)
 "Ph" = (
 /obj/machinery/door/airlock/multi_tile/metal{
 	dir = 2
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/treatment)
 "Pi" = (
@@ -20244,6 +20875,20 @@
 	},
 /turf/unsimulated/floor/techfloor_grid,
 /area/centcom/evac)
+"Pj" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/tiled/white,
+/area/mothership/resleeving)
 "Pk" = (
 /obj/structure/closet/alien,
 /turf/simulated/shuttle/floor/alien,
@@ -20344,6 +20989,10 @@
 /obj/structure/table/steel_reinforced,
 /obj/item/device/retail_scanner/security,
 /obj/item/device/retail_scanner/security,
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_x = 0;
+	pixel_y = -30
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
 "Pv" = (
@@ -20390,6 +21039,10 @@
 /obj/item/clothing/suit/armor/pcarrier/blue/sol,
 /obj/item/clothing/suit/armor/pcarrier/blue/sol,
 /obj/item/clothing/suit/armor/pcarrier/blue/sol,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
 "PD" = (
@@ -20407,6 +21060,15 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 4;
+	pixel_y = 26
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/bathroom1)
 "PF" = (
@@ -20417,6 +21079,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/dorm4)
 "PH" = (
@@ -20441,6 +21106,7 @@
 	pixel_x = 0;
 	pixel_y = -24
 	},
+/obj/structure/closet/secure_closet/personal,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/holodeck)
 "PJ" = (
@@ -20474,6 +21140,10 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9;
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/holodeck)
 "PN" = (
@@ -20506,6 +21176,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/mothership/surgery)
 "PS" = (
@@ -20562,6 +21233,7 @@
 	icon_state = "alarm0";
 	pixel_y = -22
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/bathroom1)
 "Qc" = (
@@ -20572,6 +21244,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/treatment)
+"Qd" = (
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/security)
 "Qe" = (
 /obj/item/device/perfect_tele_beacon/stationary{
 	tele_name = "Unknown";
@@ -20585,13 +21265,6 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/robotics)
-"Qg" = (
-/obj/machinery/power/fractal_reactor/fluff/converter,
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/vault)
 "Qh" = (
 /turf/simulated/shuttle/wall/voidcraft/blue{
 	hard_corner = 1;
@@ -20618,8 +21291,28 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Qm" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/sechallway)
 "Qn" = (
-/obj/structure/particle_accelerator/end_cap,
+/obj/structure/particle_accelerator/end_cap{
+	anchored = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
 "Qp" = (
@@ -20642,11 +21335,17 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
 "Qt" = (
-/obj/structure/particle_accelerator/fuel_chamber,
+/obj/structure/particle_accelerator/fuel_chamber{
+	anchored = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "Qu" = (
-/obj/machinery/telecomms/receiver/preset_cent,
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23;
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
 "Qw" = (
@@ -20654,6 +21353,16 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/white,
 /area/mothership/cryotube)
+"Qx" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 8
+	},
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/mothership/bridge)
 "Qy" = (
 /obj/structure/closet/crate/freezer,
 /turf/simulated/floor/tiled/white,
@@ -20723,6 +21432,13 @@
 "QE" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
+"QF" = (
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_x = 0;
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/armory)
 "QH" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
@@ -20730,6 +21446,11 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
@@ -20772,6 +21493,15 @@
 "QR" = (
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm1)
+"QS" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/tiled/white,
+/area/mothership/treatment)
 "QT" = (
 /obj/machinery/door/airlock/alien/public,
 /turf/simulated/shuttle/floor/alienplating,
@@ -20837,7 +21567,9 @@
 	},
 /area/centcom/specops)
 "Rf" = (
-/obj/structure/particle_accelerator/power_box,
+/obj/structure/particle_accelerator/power_box{
+	anchored = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "Rg" = (
@@ -20855,6 +21587,7 @@
 	pixel_x = -28;
 	pixel_y = 6
 	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/holodeck)
 "Rh" = (
@@ -20885,6 +21618,10 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "Ro" = (
@@ -20908,12 +21645,21 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/sechallway)
 "Rr" = (
 /obj/machinery/telecomms/bus/preset_cent,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/bluegrid,
 /area/mothership/telecomms1)
+"Rs" = (
+/obj/machinery/mech_recharger,
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/turf/simulated/floor/bluegrid,
+/area/mothership/robotics)
 "Rt" = (
 /obj/machinery/light/spot,
 /turf/unsimulated/floor/steel,
@@ -20937,8 +21683,8 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/bridge)
 "Rz" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/sci_outpost,
-/turf/simulated/floor/tiled/techmaint,
+/obj/machinery/telecomms/relay/preset/centcom/tether/station_low,
+/turf/simulated/floor/bluegrid,
 /area/mothership/telecomms2)
 "RA" = (
 /obj/machinery/smartfridge,
@@ -21066,6 +21812,12 @@
 	},
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm1)
+"RL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/resleeving)
 "RM" = (
 /turf/simulated/shuttle/wall/alien,
 /area/unknown/dorm3)
@@ -21233,12 +21985,23 @@
 /area/mothership/rnd)
 "Su" = (
 /obj/machinery/telecomms/relay/preset/centcom/tether/base_high,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/bluegrid,
 /area/mothership/telecomms2)
 "Sv" = (
 /obj/effect/floor_decal/derelict/d11,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Sw" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "Sx" = (
 /obj/machinery/media/jukebox,
 /turf/simulated/floor/wood,
@@ -21337,6 +22100,12 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/teleporter)
+"SN" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/armory)
 "SO" = (
 /obj/structure/closet/wardrobe/ert,
 /obj/item/weapon/storage/box/survival/comp{
@@ -21434,6 +22203,12 @@
 /obj/item/device/radio/off,
 /obj/item/device/radio/off,
 /obj/item/device/radio/off,
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 4;
+	pixel_y = 26
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "Tf" = (
@@ -21455,7 +22230,7 @@
 /area/mothership/engineering)
 "Ti" = (
 /obj/machinery/r_n_d/server/centcom,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/bluegrid,
 /area/mothership/telecomms1)
 "Tl" = (
 /obj/machinery/oxygen_pump/anesthetic,
@@ -21489,12 +22264,12 @@
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
 "Tq" = (
-/obj/machinery/disposal,
 /obj/machinery/alarm{
 	dir = 4;
 	pixel_x = -23;
 	pixel_y = 0
 	},
+/obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/holodeck)
 "Tr" = (
@@ -21564,6 +22339,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/dorm6)
 "TB" = (
@@ -21621,6 +22399,9 @@
 	pixel_y = -28;
 	req_access = list(67)
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm5)
 "TI" = (
@@ -21661,6 +22442,9 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "TN" = (
@@ -21683,6 +22467,10 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/chemistry)
+"TQ" = (
+/obj/machinery/telecomms/broadcaster/preset_cent,
+/turf/simulated/floor/bluegrid,
+/area/mothership/telecomms1)
 "TR" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -21692,9 +22480,17 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "TS" = (
-/obj/structure/dispenser/oxygen,
+/obj/structure/dispenser/oxygen{
+	oxygentanks = 40
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
+"TT" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/resleeving)
 "TV" = (
 /obj/item/clothing/accessory/storage/black_vest,
 /obj/item/clothing/accessory/storage/black_vest,
@@ -21733,6 +22529,7 @@
 	dir = 8;
 	icon_state = "tube1"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "TZ" = (
@@ -21777,12 +22574,25 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "Uf" = (
-/obj/machinery/disposal,
+/obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/warden)
+"Ug" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 4;
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/telecomms1)
 "Uh" = (
 /obj/structure/sink{
 	pixel_y = 32
@@ -21791,6 +22601,15 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
+	},
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 4;
+	pixel_y = 26
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/bathroom2)
@@ -21802,7 +22621,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/medical)
 "Uj" = (
-/obj/machinery/disposal,
+/obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled/white,
 /area/mothership/resleeving)
 "Uk" = (
@@ -21829,6 +22648,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "Uo" = (
@@ -21848,6 +22668,9 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
@@ -21933,6 +22756,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "UC" = (
@@ -21965,7 +22789,7 @@
 /turf/space,
 /area/mothership/telecomms2)
 "UG" = (
-/obj/machinery/disposal,
+/obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "UH" = (
@@ -22038,6 +22862,11 @@
 /area/centcom/control)
 "UR" = (
 /obj/structure/closet/wardrobe/science_white,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/rnd)
 "UT" = (
@@ -22137,6 +22966,11 @@
 	desc = "An sleek tidy briefcase.";
 	name = "secure briefcase"
 	},
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/vault)
 "UV" = (
@@ -22144,7 +22978,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
 "UX" = (
-/obj/machinery/disposal,
+/obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled/white,
 /area/mothership/chemistry)
 "UY" = (
@@ -22226,10 +23060,10 @@
 /area/centcom/specops)
 "Vg" = (
 /obj/machinery/telecomms/relay/preset/centcom,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/bluegrid,
 /area/mothership/telecomms1)
 "Vh" = (
-/obj/machinery/disposal,
+/obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "Vi" = (
@@ -22298,6 +23132,10 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/morgue)
@@ -22393,6 +23231,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
 "VN" = (
@@ -22428,6 +23269,12 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/bathroom1)
+"VS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/rnd)
 "VU" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
@@ -22457,10 +23304,6 @@
 	req_access = list(67)
 	},
 /obj/structure/cable/cyan,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
-	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/bathroom2)
 "VZ" = (
@@ -22493,8 +23336,21 @@
 	},
 /obj/machinery/door/airlock/medical,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/mothership/surgery)
+"Wf" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 8;
+	icon_state = "map"
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/medical)
 "Wg" = (
 /obj/structure/table/rack/steel,
 /obj/machinery/door/window/survival_pod{
@@ -22521,6 +23377,13 @@
 "Wj" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -22
 	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm6)
@@ -22585,6 +23448,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/surgery)
 "Wu" = (
@@ -22604,6 +23470,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "Wy" = (
@@ -22619,8 +23486,15 @@
 /area/mothership/cryotube)
 "Wz" = (
 /obj/machinery/telecomms/relay/preset/centcom/tether/station_mid,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/bluegrid,
 /area/mothership/telecomms2)
+"WB" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/surgery)
 "WC" = (
 /obj/structure/closet/secure_closet/personal,
 /turf/simulated/shuttle/floor/alien,
@@ -22633,6 +23507,7 @@
 	},
 /obj/machinery/door/airlock/medical,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/white,
 /area/mothership/treatment)
 "WF" = (
@@ -22704,6 +23579,12 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/warden)
+"WT" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/resleeving)
 "WV" = (
 /obj/item/clothing/suit/space/void/atmos,
 /obj/structure/table/rack/shelf,
@@ -22715,8 +23596,19 @@
 /area/mothership/eva)
 "WW" = (
 /obj/structure/closet/secure_closet/scientist,
+/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/rnd)
+"WX" = (
+/obj/machinery/telecomms/receiver/preset_cent,
+/turf/simulated/floor/bluegrid,
+/area/mothership/telecomms1)
+"WY" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/treatment)
 "WZ" = (
 /obj/structure/toilet,
 /turf/simulated/shuttle/floor/alienplating,
@@ -22730,6 +23622,7 @@
 "Xc" = (
 /obj/machinery/door/airlock/medical,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/mothership/surgery)
 "Xe" = (
@@ -22759,6 +23652,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "Xj" = (
@@ -22825,6 +23719,10 @@
 "Xs" = (
 /obj/item/weapon/bedsheet/captaindouble,
 /obj/structure/bed/double/padded,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm1)
 "Xt" = (
@@ -22875,6 +23773,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
@@ -22938,6 +23839,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/white,
 /area/mothership/resleeving)
 "XK" = (
@@ -23000,6 +23902,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
 "XR" = (
@@ -23102,6 +24007,20 @@
 /obj/machinery/light/flamp/noshade,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Ya" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "Yb" = (
 /obj/machinery/light{
 	dir = 8;
@@ -23156,6 +24075,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/dorm1)
 "Yk" = (
@@ -23180,14 +24102,14 @@
 /obj/item/weapon/gun/energy/sniperrifle,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
+"Ym" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/treatment)
 "Yn" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/door/window/brigdoor/southleft{
 	dir = 4;
@@ -23218,6 +24140,24 @@
 /obj/machinery/sleeper/survival_pod,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm3)
+"Yq" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/white,
+/area/mothership/surgery)
+"Yr" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 4;
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/treatment)
 "Ys" = (
 /obj/structure/window/reinforced{
 	dir = 4;
@@ -23226,6 +24166,17 @@
 /obj/structure/table/bench/steel,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
+"Yt" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/treatment)
 "Yu" = (
 /obj/machinery/alarm{
 	alarm_id = "pen_nine";
@@ -23234,6 +24185,7 @@
 	icon_state = "alarm0";
 	pixel_y = -22
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/bathroom2)
 "Yv" = (
@@ -23273,6 +24225,9 @@
 	pixel_y = -28;
 	req_access = list(67)
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm1)
 "YB" = (
@@ -23283,6 +24238,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "YC" = (
@@ -23326,6 +24283,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/morgue)
 "YK" = (
@@ -23354,11 +24312,19 @@
 	pixel_y = -28;
 	req_access = list(67)
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm6)
 "YO" = (
 /obj/machinery/cryopod{
 	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/cryotube)
@@ -23388,6 +24354,10 @@
 "YU" = (
 /obj/item/weapon/bedsheet/captaindouble,
 /obj/structure/bed/double/padded,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm5)
 "YV" = (
@@ -23406,7 +24376,9 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/chemistry)
 "YZ" = (
-/obj/structure/particle_accelerator/power_box,
+/obj/structure/particle_accelerator/power_box{
+	anchored = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "Zb" = (
@@ -23416,7 +24388,10 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/machinery/door/airlock/highsecurity,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
 "Zc" = (
@@ -23429,12 +24404,12 @@
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm2)
 "Ze" = (
-/obj/machinery/disposal,
 /obj/machinery/alarm{
 	dir = 4;
 	pixel_x = -23;
 	pixel_y = 0
 	},
+/obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
 "Zf" = (
@@ -23496,8 +24471,15 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
+"Zq" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/rnd)
 "Zr" = (
 /turf/simulated/shuttle/wall/voidcraft/blue{
 	hard_corner = 1;
@@ -23524,6 +24506,9 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/surgery)
 "Zw" = (
@@ -23548,6 +24533,13 @@
 	tele_name = "Mothership";
 	tele_network = "centcom"
 	},
+/obj/machinery/alarm{
+	alarm_id = "pen_nine";
+	breach_detection = 0;
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/teleporter)
 "ZA" = (
@@ -23562,6 +24554,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
@@ -23580,6 +24575,12 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
@@ -23607,6 +24608,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
@@ -23658,7 +24662,7 @@
 	},
 /area/centcom/specops)
 "ZP" = (
-/obj/machinery/disposal,
+/obj/structure/closet/crate/bin,
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
 "ZQ" = (
@@ -23702,6 +24706,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "ZU" = (
@@ -23731,6 +24738,23 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/chemistry)
+"ZZ" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 
 (1,1,1) = {"
 OF
@@ -25076,7 +26100,7 @@ Jm
 Ic
 lE
 UE
-NL
+Ug
 Qu
 Rr
 Qn
@@ -25215,10 +26239,10 @@ Hb
 gz
 Ve
 Jm
-Ic
+iE
 lE
 UE
-NL
+WX
 NL
 Ti
 Qn
@@ -25324,22 +26348,22 @@ OF
 OF
 MJ
 Rj
-OV
+WB
 Xc
-OV
+Yq
 PR
-OV
+Yq
 Zt
 Wd
 gw
-LT
-LT
-LT
-LT
-LT
+Fv
+MD
+MD
+MD
+MD
 If
-Gc
-Gc
+TT
+RL
 Gc
 Gc
 LI
@@ -25357,11 +26381,11 @@ Hb
 Hb
 NA
 XD
-XD
+Gy
 Sg
 UE
+DR
 NL
-FO
 Nu
 Qn
 Oi
@@ -25473,15 +26497,15 @@ ZY
 ZY
 ZY
 TP
-Qc
-LT
+Yr
+WY
 Yh
 LT
 NW
 LT
 MG
 IF
-Gc
+WT
 Gc
 Gi
 Lp
@@ -25499,10 +26523,10 @@ Hb
 Hb
 NA
 Dq
-XD
-Dq
+Gy
+Ko
 UE
-QP
+TQ
 NL
 Oq
 Qn
@@ -25595,10 +26619,10 @@ Jq
 Jq
 Qh
 gX
-gX
+Sf
 Ge
 Nw
-gX
+Sf
 Sh
 Zs
 Nv
@@ -25616,36 +26640,36 @@ MW
 JN
 ZY
 ZI
-LT
+WY
 Sm
 LT
 MB
 LT
 Lw
 Nb
-Gc
+Fm
 Gc
 Vt
 Lp
 Fq
 Xt
 Ly
-Xt
+Ns
 Ec
 Lp
 LQ
 Hb
 MI
 WW
-Hb
+Zq
 Hb
 NA
 XD
-XD
+Gy
 Jy
 UE
-ZD
-NM
+QP
+NL
 Vg
 Qn
 Oi
@@ -25758,33 +26782,33 @@ SX
 UX
 RA
 Qc
+Ym
+ET
 LT
 LT
-LT
-LT
-LT
+Hv
 MG
 Md
-Gc
+Fb
 Gc
 En
 Lp
 Pp
 Xt
 Rp
-Xt
+KI
 Pm
 Lp
 Uu
 Hb
 Hb
 Hb
-Hb
+VS
 UR
 Ve
 OC
-XD
-Dq
+Gy
+Rs
 UE
 ZD
 No
@@ -25900,19 +26924,19 @@ SX
 FX
 JA
 Ff
-HB
+hP
 Sk
 HB
-HB
-HB
+Yt
+QS
 WD
 XJ
 bN
-bN
+Pj
 XJ
 KS
-To
-To
+Wf
+HZ
 TZ
 Ks
 To
@@ -25921,14 +26945,14 @@ LY
 Hb
 Xu
 Ke
-Hb
+VS
 Zx
 Ve
 TJ
-XD
+Gy
 MN
 UE
-ZD
+ln
 Kp
 HC
 ll
@@ -26067,7 +27091,7 @@ Mk
 MV
 MV
 Uz
-Uz
+CD
 fP
 Kn
 Zb
@@ -26082,7 +27106,7 @@ Yd
 GP
 Hz
 HC
-HC
+Hz
 OF
 OF
 OF
@@ -26172,11 +27196,11 @@ Zs
 GS
 Zs
 Sh
-TR
+Sw
 OQ
 Yb
 QE
-TR
+Sw
 QE
 QE
 QE
@@ -26198,21 +27222,21 @@ Zf
 Lp
 Lp
 Lp
-TR
+Sw
 QE
 Nf
 QE
 QE
 QE
 QE
-QE
+Ip
 Yb
 QE
 QE
-QE
+Ip
 TR
 QE
-TR
+Sw
 UG
 HC
 XW
@@ -26315,18 +27339,18 @@ ag
 TS
 Sh
 Hg
-Yw
-Yw
-Yw
+DE
+DE
+DE
 Xw
-Yw
+Hm
 Wx
-Yw
+DE
 Un
-Yw
+DE
 Nm
 ph
-UH
+Et
 Fc
 Lv
 Mn
@@ -26341,20 +27365,20 @@ VE
 YU
 YR
 Pb
-Yw
+DE
 Nm
-Yw
-Yw
+DE
+DE
 IP
-Yw
-Yw
-Yw
-Yw
-Yw
+DE
+Ob
+DE
+DE
+DE
 On
-TM
+Lk
 Wx
-TM
+ZZ
 UH
 KD
 Rn
@@ -26468,7 +27492,7 @@ OA
 Zl
 Ux
 QE
-TR
+Sw
 Fc
 Gd
 gi
@@ -26482,7 +27506,7 @@ Zf
 Hc
 by
 YR
-TR
+Sw
 QE
 Da
 KH
@@ -26494,7 +27518,7 @@ KH
 KH
 Da
 NB
-Je
+Yc
 Zr
 jq
 NP
@@ -26596,9 +27620,9 @@ QU
 Zs
 XR
 ag
-HT
+Zj
 Sh
-TR
+Sw
 QE
 Hi
 Tv
@@ -26610,7 +27634,7 @@ Tt
 XX
 Zl
 QE
-TR
+Sw
 Fc
 jo
 Vw
@@ -26624,7 +27648,7 @@ Zf
 Wo
 TH
 YR
-TR
+Sw
 QE
 KH
 Xo
@@ -26635,7 +27659,7 @@ Kj
 Fg
 Kj
 KH
-TR
+Sw
 FE
 jq
 Vo
@@ -26740,7 +27764,7 @@ Qp
 ag
 ag
 Zs
-TR
+Sw
 HW
 Hi
 ae
@@ -26752,7 +27776,7 @@ Tt
 Oe
 Zl
 Sr
-TR
+Sw
 DI
 IW
 Fc
@@ -26766,7 +27790,7 @@ Zf
 YR
 Ij
 FZ
-TR
+Sw
 HW
 KH
 Jk
@@ -26775,9 +27799,9 @@ Kj
 Mf
 Mf
 Mf
-Mf
+KF
 KH
-TR
+Sw
 Fi
 jq
 RP
@@ -26886,26 +27910,26 @@ ME
 Yw
 SK
 Lr
-QY
+Ma
 FN
 Zl
 SZ
 Tt
-Qg
+VZ
 Zl
 PN
 Id
 Nm
 Ox
-Yw
-Yw
-Yw
-Yw
+DE
+DE
+DE
+DE
 TY
-Yw
-Yw
-Yw
-Yw
+DE
+DE
+DE
+DE
 Uc
 Nm
 Zo
@@ -26919,7 +27943,7 @@ Fu
 Ft
 Xj
 KH
-TR
+Sw
 Ng
 jq
 Na
@@ -27031,14 +28055,14 @@ Tv
 QY
 SC
 Zl
-VZ
+FR
 HR
 Jz
 Zl
 PN
-TR
+Sw
 Yc
-TR
+Sw
 iL
 QE
 QE
@@ -27048,9 +28072,9 @@ QE
 QE
 QE
 iL
-TR
+Sw
 Yc
-TR
+Sw
 PN
 KH
 Eb
@@ -27061,7 +28085,7 @@ DV
 EG
 iA
 KH
-TR
+Sw
 UZ
 jq
 FB
@@ -27166,10 +28190,10 @@ Qp
 ag
 PH
 Zs
-TR
+Sw
 HW
 Hi
-Tv
+Ep
 QY
 Zz
 Zl
@@ -27178,7 +28202,7 @@ Tt
 EU
 Zl
 Sr
-TR
+Sw
 SA
 PF
 Ex
@@ -27192,22 +28216,22 @@ Hd
 Kk
 TA
 YD
-TR
+Sw
 HW
 KH
 Jk
 GI
-Kj
+EA
 GY
 GY
 GY
-GY
+Qx
 KH
-TR
+Sw
 JU
 jq
 XV
-PB
+IN
 HV
 GM
 jq
@@ -27308,8 +28332,8 @@ Te
 ag
 Zj
 Sh
-TR
-QE
+Sw
+ED
 Hi
 Tv
 iH
@@ -27320,7 +28344,7 @@ EB
 Lx
 Zl
 QE
-TR
+Sw
 Ex
 lF
 UD
@@ -27334,7 +28358,7 @@ Hd
 MM
 YN
 Kk
-TR
+Sw
 QE
 KH
 Xo
@@ -27345,7 +28369,7 @@ Kj
 Em
 Kj
 KH
-TR
+Sw
 FE
 jq
 Vo
@@ -27450,7 +28474,7 @@ Yo
 ag
 FM
 Sh
-TR
+Sw
 QE
 Fx
 Hi
@@ -27487,7 +28511,7 @@ Da
 KH
 KH
 Da
-TR
+Sw
 Fi
 Zr
 jq
@@ -27593,17 +28617,17 @@ ag
 TS
 Sh
 Hg
-Yw
+DE
 Nm
-Yw
+DE
 LL
-Yw
+DE
 TY
-Yw
+Ya
 Xh
-Yw
-Yw
-Yw
+DE
+DE
+DE
 Zo
 Ex
 Fd
@@ -27619,21 +28643,21 @@ VX
 MU
 Kk
 ME
-Yw
-Yw
-Yw
-Yw
-Yw
+DE
+DE
+DE
+DE
+DE
 TM
-Yw
+DE
 MY
-Yw
+DE
 Nm
-ph
-On
+HL
+Ne
 TY
-MY
-Yw
+OY
+KX
 YB
 QH
 Zi
@@ -27717,7 +28741,7 @@ OF
 OF
 OF
 OF
-MA
+HQ
 IT
 Sx
 OR
@@ -27734,11 +28758,11 @@ Zs
 GS
 Zs
 Sh
-TR
+Sw
 ON
 Ew
 QE
-TR
+Sw
 QE
 QE
 QE
@@ -27750,17 +28774,17 @@ ZB
 Hd
 Hd
 Hd
-Hd
+Hz
 UY
 OK
 Hd
 UY
 Yn
+Hz
 Hd
 Hd
 Hd
-Hd
-TR
+Sw
 QE
 iL
 QE
@@ -27768,13 +28792,13 @@ QE
 QE
 QE
 iL
-TR
+Sw
 QE
 Yc
 QE
-TR
+Sw
 QE
-TR
+Sw
 UG
 HC
 Ye
@@ -27928,7 +28952,7 @@ VD
 TB
 Hz
 HC
-HC
+Hz
 OF
 OF
 OF
@@ -28025,9 +29049,9 @@ SO
 Pa
 YF
 XU
-Sb
+JG
 TV
-Sb
+Qd
 Ji
 Sb
 Ov
@@ -28036,9 +29060,9 @@ Rq
 Rq
 IK
 FP
-Rq
+EF
 bj
-FP
+Qm
 Rq
 DY
 Rq
@@ -28187,7 +29211,7 @@ Ow
 Ow
 Ri
 Gs
-Ii
+SN
 Ii
 Ii
 Ii
@@ -28200,7 +29224,7 @@ gj
 Nh
 PI
 Hj
-ZT
+FA
 EK
 HC
 HC
@@ -28293,10 +29317,10 @@ gB
 gB
 Qh
 Ki
-Ki
+Sf
 TO
 NU
-Ki
+Sf
 Sh
 Zs
 Nv
@@ -28336,14 +29360,14 @@ JV
 Pr
 Ub
 Jp
-JZ
+EV
 TX
 MH
 XT
 XT
 Hj
-ZT
-iS
+Tr
+Gg
 Wz
 Ig
 Qt
@@ -28464,7 +29488,7 @@ UT
 UT
 UT
 Il
-Mp
+FV
 Mp
 Mp
 Mp
@@ -28484,7 +29508,7 @@ XT
 XT
 XT
 Hj
-Tr
+IG
 Gg
 GV
 Ig
@@ -28620,13 +29644,13 @@ Ik
 Xl
 OT
 IV
-Ii
+Lf
 TX
 XT
 XT
 XT
 Hj
-Gg
+Dp
 Gg
 Eo
 Ig
@@ -28748,7 +29772,7 @@ Nn
 RU
 UK
 Il
-Fz
+JL
 Mp
 EC
 TE
@@ -28762,13 +29786,13 @@ Ii
 Ii
 Ii
 Ii
-Ii
+QF
 TX
 XT
 XT
 FY
 Hj
-Gg
+Pf
 Gg
 Su
 Ig
@@ -28885,8 +29909,8 @@ Sb
 SG
 ZM
 HG
-UT
-UT
+Hu
+LM
 IA
 EQ
 Ow
@@ -28910,7 +29934,7 @@ XT
 XT
 XT
 Hj
-Gg
+IJ
 Ky
 KU
 Ig
