@@ -15187,6 +15187,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/exam_room)
+"wV" = (
+/obj/machinery/alarm{
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/turf/simulated/floor,
+/area/maintenance/station/micro)
 "wZ" = (
 /obj/effect/landmark/start{
 	name = "Medical Doctor"
@@ -34943,7 +34951,7 @@ sF
 sF
 yJ
 eT
-eT
+wV
 yJ
 yG
 sB
