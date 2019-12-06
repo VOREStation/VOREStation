@@ -23,6 +23,26 @@
 			slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
 			)
 
+/obj/item/weapon/melee/energy/sword/green/New()
+	colorable = FALSE
+	lcolor = "#008000"
+
+/obj/item/weapon/melee/energy/sword/red/New()
+	colorable = FALSE
+	lcolor = "#FF0000"
+
+/obj/item/weapon/melee/energy/sword/blue/New()
+	colorable = FALSE
+	lcolor = "#0000FF"
+
+/obj/item/weapon/melee/energy/sword/purple/New()
+	colorable = FALSE
+	lcolor = "#800080"
+
+/obj/item/weapon/melee/energy/sword/white/New()
+	colorable = FALSE
+	lcolor = "#FFFFFF"
+
 /obj/item/weapon/melee/energy/proc/activate(mob/living/user)
 	if(active)
 		return
@@ -147,11 +167,12 @@
 /obj/item/weapon/melee/energy/update_icon()
 	. = ..()
 	var/mutable_appearance/blade_overlay = mutable_appearance(icon, "[icon_state]_blade")
-	if(colorable)
-		blade_overlay.color = lcolor
-	if(rainbow || !colorable)
+	blade_overlay.color = lcolor
+	color = lcolor	
+	if(rainbow)
 		blade_overlay = mutable_appearance(icon, "[icon_state]_blade_rainbow")
 		blade_overlay.color = "FFFFFF"
+		color = "FFFFFF"
 	cut_overlays()		//So that it doesn't keep stacking overlays non-stop on top of each other
 	if(active)
 		add_overlay(blade_overlay)
