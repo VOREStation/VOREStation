@@ -157,11 +157,7 @@
 /mob/living/bot/Bump(var/atom/A)
 	if(on && botcard && istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
-<<<<<<< HEAD
-		if(!istype(D, /obj/machinery/door/firedoor) && !istype(D, /obj/machinery/door/blast) && !istype(D, /obj/machinery/door/airlock/lift) && D.check_access(botcard))	//VOREStation Edit: Elevator safety precaution
-=======
 		if(!istype(D, /obj/machinery/door/firedoor) && !istype(D, /obj/machinery/door/blast) && !istype(D, /obj/machinery/door/airlock/lift) && D.check_access(botcard))
->>>>>>> 0159551... Stops bots from opening elevator doors (#6557)
 			D.open()
 	else
 		..()
