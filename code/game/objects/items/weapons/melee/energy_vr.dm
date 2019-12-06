@@ -8,3 +8,18 @@
 /obj/item/weapon/melee/energy/sword/imperial/activate(mob/living/user)
 	..()
 	icon_state = "sword1"
+
+/obj/item/weapon/melee/energy/sword/green/New()
+	lcolor = "#008000"
+
+/obj/item/weapon/melee/energy/sword/red/New()
+	lcolor = "#FF0000"
+
+/obj/item/weapon/melee/energy/sword/blue/New()
+	lcolor = "#0000FF"
+
+/obj/item/weapon/melee/energy/sword/purple/New()
+	lcolor = "#800080"
+
+/obj/item/weapon/melee/energy/sword/white/New()
+	lcolor = "#FFFFFF"

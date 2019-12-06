@@ -271,10 +271,12 @@
 		if (src.active)
 			user << "<span class='notice'>You extend the plastic blade with a quick flick of your wrist.</span>"
 			playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+			src.item_state = "[icon_state]_blade"
 			src.w_class = ITEMSIZE_LARGE
 		else
 			user << "<span class='notice'>You push the plastic blade back down into the handle.</span>"
-			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1
+			src.item_state = "[icon_state]"
 			src.w_class = ITEMSIZE_SMALL
 		update_icon()
 		src.add_fingerprint(user)

@@ -264,7 +264,9 @@ datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/u
 
 /obj/item/weapon/holo/esword
 	desc = "May the force be within you. Sorta."
-	icon_state = "sword0"
+	icon_state = "esword"
+	var/lcolor
+	var/rainbow = FALSE
 	item_icons = list(
 			slot_l_hand_str = 'icons/mob/items/lefthand_melee.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
@@ -276,15 +278,14 @@ datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/u
 	w_class = ITEMSIZE_SMALL
 	flags = NOBLOODY
 	var/active = 0
-	var/item_color
 
 /obj/item/weapon/holo/esword/green
 	New()
-		item_color = "green"
+		lcolor = "#008000"
 
 /obj/item/weapon/holo/esword/red
 	New()
-		item_color = "red"
+		lcolor = "#FF0000"
 
 /obj/item/weapon/holo/esword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
@@ -297,31 +298,64 @@ datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/u
 		return TRUE
 	return FALSE
 
-/obj/item/weapon/holo/esword/New()
-	item_color = pick("red","blue","green","purple")
-
 /obj/item/weapon/holo/esword/attack_self(mob/living/user as mob)
 	active = !active
 	if (active)
 		force = 30
-		icon_state = "sword[item_color]"
+		item_state = "[icon_state]_blade"
 		w_class = ITEMSIZE_LARGE
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 		to_chat(user, "<span class='notice'>[src] is now active.</span>")
 	else
 		force = 3
-		icon_state = "sword0"
+		item_state = "[icon_state]"
 		w_class = ITEMSIZE_SMALL
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
 
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	update_icon()
+	add_fingerprint(user)
+	return
+
+/obj/item/weapon/holo/esword/attackby(obj/item/weapon/W, mob/user)
+	if(istype(W, /obj/item/device/multitool) && !active)
+		if(!rainbow)
+			rainbow = TRUE
+		else
+			rainbow = FALSE
+		to_chat(user, "<span class='notice'>You manipulate the color controller in [src].</span>")
+		update_icon()
+	return ..()
+
+/obj/item/weapon/holo/esword/update_icon()
+	. = ..()
+	var/mutable_appearance/blade_overlay = mutable_appearance(icon, "[icon_state]_blade")
+	blade_overlay.color = lcolor
+	cut_overlays()		//So that it doesn't keep stacking overlays non-stop on top of each other
+	if(active)
+		add_overlay(blade_overlay)
+	if(istype(usr,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = usr
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
 
-	add_fingerprint(user)
-	return
+/obj/item/weapon/holo/esword/AltClick(mob/living/user)
+	if(!in_range(src, user))	//Basic checks to prevent abuse
+		return
+	if(user.incapacitated() || !istype(user))
+		to_chat(user, "<span class='warning'>You can't do that right now!</span>")
+		return
+
+	if(alert("Are you sure you want to recolor your blade?", "Confirm Recolor", "Yes", "No") == "Yes")
+		var/energy_color_input = input(usr,"","Choose Energy Color",lcolor) as color|null
+		if(energy_color_input)
+			lcolor = sanitize_hexcolor(energy_color_input)
+		update_icon()
+
+
+/obj/item/weapon/holo/esword/examine(mob/user)
+	..()
+	to_chat(user, "<span class='notice'>Alt-click to recolor it.</span>")
 
 //BASKETBALL OBJECTS
 
