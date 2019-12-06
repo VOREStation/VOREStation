@@ -1133,6 +1133,7 @@
 	name = "Warship - Holodeck Controls"
 /area/mothership/holodeck/holo
 	name = "Warship - Holodeck"
+	icon_state = "dk_yellow"
 
 /area/mothership/cryotube
 	name = "Warship - Cryo chamber"

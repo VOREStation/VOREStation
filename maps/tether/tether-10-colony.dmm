@@ -538,6 +538,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 4
 	},
+/obj/structure/curtain/open/shower,
 /turf/simulated/floor/tiled/white,
 /area/mothership/bathroom2)
 "aW" = (
@@ -707,6 +708,10 @@
 /obj/item/weapon/tool/crowbar,
 /obj/item/weapon/tool/screwdriver,
 /obj/item/weapon/tool/wrench,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
 "bj" = (
@@ -928,6 +933,7 @@
 	dir = 1;
 	pixel_y = -22
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/wood,
 /area/mothership/dorm5)
 "bz" = (
@@ -1737,6 +1743,12 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"cR" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/security)
 "cS" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -3507,6 +3519,9 @@
 	pixel_y = 32
 	},
 /obj/machinery/computer/HolodeckControl/holodorm/warship,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/holodeck)
 "gk" = (
@@ -4060,19 +4075,6 @@
 "hw" = (
 /obj/structure/filingcabinet/filingcabinet,
 /turf/unsimulated/floor/steel,
-/area/centcom/control)
-"hx" = (
-/obj/machinery/button/remote/blast_door{
-	id = "ArmouryC5";
-	name = "Armoury Access";
-	pixel_x = 0;
-	pixel_y = -28;
-	req_access = list(3)
-	},
-/turf/unsimulated/floor{
-	icon_state = "vault";
-	dir = 5
-	},
 /area/centcom/control)
 "hy" = (
 /obj/machinery/button/remote/blast_door{
@@ -4671,6 +4673,11 @@
 	dir = 5
 	},
 /area/centcom/security)
+"iE" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/security)
 "iF" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
@@ -4686,6 +4693,10 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	icon_state = "warningcorner";
 	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/teleporter)
@@ -6071,15 +6082,10 @@
 /area/mothership/engineering)
 "lk" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/storage/box/evidence,
-/obj/item/weapon/storage/box/handcuffs{
-	pixel_x = 6;
-	pixel_y = -2
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = 0
 	},
-/obj/item/clothing/accessory/storage/pouches/large/blue,
-/obj/item/clothing/accessory/storage/pouches/large/blue,
-/obj/item/clothing/accessory/storage/pouches/large/blue,
-/obj/item/clothing/accessory/storage/pouches/large/blue,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
 "ll" = (
@@ -7546,18 +7552,12 @@
 /turf/unsimulated/floor/steel,
 /area/centcom/security)
 "nO" = (
-/obj/structure/table/rack/shelf,
 /obj/item/clothing/suit/space/void/medical/alt,
 /obj/item/clothing/head/helmet/space/void/medical/emt,
 /obj/item/weapon/tank/oxygen,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
-/obj/machinery/firealarm{
-	dir = 2;
-	layer = 3.3;
-	pixel_x = 4;
-	pixel_y = 26
-	},
+/obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "nP" = (
@@ -16557,6 +16557,14 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
+"Dm" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/cell_charger,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/security)
 "Dn" = (
 /obj/machinery/seed_extractor,
 /turf/simulated/floor/tiled/techmaint,
@@ -16614,7 +16622,9 @@
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/closet/secure_closet/guncabinet{
+	req_one_access = list(103)
+	},
 /obj/structure/cable/cyan{
 	d1 = 1;
 	d2 = 2;
@@ -16672,13 +16682,16 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/highsecurity,
+/obj/machinery/door/airlock/highsecurity{
+	req_one_access = list(101)
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "DB" = (
@@ -16788,6 +16801,8 @@
 	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/toolbox/emergency,
 /turf/simulated/floor/wood,
 /area/mothership/dorm1)
 "DR" = (
@@ -16806,6 +16821,10 @@
 /obj/item/rig_module/device/orescanner,
 /obj/item/rig_module/device/orescanner,
 /obj/structure/table/rack/shelf/steel,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
 "DU" = (
@@ -16925,6 +16944,20 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/mothership/treatment)
+"El" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/sechallway)
 "Em" = (
 /obj/machinery/light{
 	dir = 4
@@ -16959,6 +16992,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 1
 	},
+/obj/structure/curtain/open/shower,
 /turf/simulated/floor/tiled/white,
 /area/mothership/bathroom1)
 "Es" = (
@@ -17096,14 +17130,6 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
-"EH" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/clothing/glasses/hud/security,
-/obj/item/clothing/glasses/hud/security,
-/obj/item/clothing/glasses/hud/security,
-/obj/item/clothing/glasses/hud/security,
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/security)
 "EI" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/launcher/rocket,
@@ -17150,7 +17176,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "EP" = (
-/obj/machinery/door/airlock/highsecurity,
+/obj/machinery/door/airlock/highsecurity{
+	req_one_access = list(103)
+	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -17176,7 +17204,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/processing)
 "EU" = (
-/obj/structure/closet/crate/secure/gear,
+/obj/structure/closet/crate/secure/gear{
+	req_one_access = list(108)
+	},
 /obj/item/rig_module/chem_dispenser/injector/advanced,
 /obj/item/rig_module/vision/multi,
 /obj/item/weapon/rig/military/equipped,
@@ -17218,7 +17248,8 @@
 /area/mothership/robotics)
 "EY" = (
 /obj/machinery/door/airlock/multi_tile/metal{
-	dir = 2
+	dir = 2;
+	req_one_access = list(1)
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -17263,6 +17294,14 @@
 	dir = 4;
 	pixel_x = 26
 	},
+/obj/machinery/button/remote/airlock{
+	id = "ship-dorm4-door";
+	name = "Dorm 4 Lock";
+	pixel_x = -6;
+	pixel_y = 26;
+	specialfunctions = 4
+	},
+/obj/structure/curtain/open/bed,
 /turf/simulated/floor/wood,
 /area/mothership/dorm4)
 "Fe" = (
@@ -17315,6 +17354,12 @@
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"Fk" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/morgue)
 "Fl" = (
 /obj/item/weapon/gun/energy/laser,
 /obj/item/weapon/gun/energy/laser,
@@ -17328,7 +17373,9 @@
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/closet/secure_closet/guncabinet{
+	req_one_access = list(103)
+	},
 /obj/structure/cable/cyan{
 	d1 = 1;
 	d2 = 2;
@@ -17454,6 +17501,7 @@
 /area/unknown/dorm3)
 "Fz" = (
 /obj/structure/table/steel_reinforced,
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/warden)
 "FA" = (
@@ -17486,6 +17534,10 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
+"FD" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "FE" = (
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/techmaint,
@@ -17494,6 +17546,11 @@
 /obj/machinery/door_timer/cell_2{
 	id = "Cell M2";
 	pixel_x = -32
+	},
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/sechallway)
@@ -17504,6 +17561,15 @@
 	name = "Sealed Door"
 	},
 /area/mothership/breakroom)
+"FK" = (
+/obj/item/device/holowarrant,
+/obj/structure/closet/secure_closet/nanotrasen_security,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/security)
 "FL" = (
 /obj/structure/table/rack,
 /obj/item/clothing/accessory/storage/brown_vest,
@@ -17619,12 +17685,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/chemistry)
-"FY" = (
-/obj/machinery/light,
-/turf/simulated/floor/reinforced{
-	name = "Holodeck Projector Floor"
-	},
-/area/mothership/holodeck/holo)
 "FZ" = (
 /turf/simulated/shuttle/wall/voidcraft/blue{
 	hard_corner = 1;
@@ -17655,6 +17715,9 @@
 	},
 /obj/machinery/alarm{
 	pixel_y = 22
+	},
+/obj/machinery/light/small{
+	dir = 1
 	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm3)
@@ -17750,7 +17813,12 @@
 /obj/item/weapon/gun/projectile/p92x,
 /obj/item/weapon/gun/projectile/p92x,
 /obj/item/weapon/gun/projectile/p92x,
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/closet/secure_closet/guncabinet{
+	req_one_access = list(103)
+	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
 "Gt" = (
@@ -17765,7 +17833,9 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/treatment)
 "Gu" = (
-/obj/machinery/door/airlock/highsecurity,
+/obj/machinery/door/airlock/highsecurity{
+	req_one_access = list(103)
+	},
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
@@ -17787,6 +17857,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
+"Gx" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/security)
 "Gy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techmaint,
@@ -17803,7 +17879,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/processing)
 "GC" = (
-/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/machinery/door/airlock/voidcraft/vertical{
+	opacity = 1
+	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -17969,6 +18047,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/closet/secure_closet/pathfinder,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
 "Ha" = (
@@ -18057,6 +18136,9 @@
 	},
 /obj/machinery/alarm{
 	pixel_y = 22
+	},
+/obj/machinery/light/small{
+	dir = 1
 	},
 /turf/simulated/floor/wood,
 /area/mothership/dorm4)
@@ -18154,9 +18236,6 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 9
-	},
-/obj/machinery/light{
-	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
@@ -18472,7 +18551,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
 "Ij" = (
-/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/machinery/door/airlock/voidcraft/vertical{
+	id_tag = "ship-dorm5-door";
+	opacity = 1
+	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -18597,7 +18679,9 @@
 /obj/item/weapon/gun/energy/frontier/locked/holdout,
 /obj/item/weapon/gun/energy/frontier/locked/holdout,
 /obj/item/weapon/gun/energy/frontier/locked/holdout,
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/closet/secure_closet/guncabinet{
+	req_one_access = list(103)
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
 "Iw" = (
@@ -18636,6 +18720,14 @@
 	dir = 4;
 	pixel_x = 26
 	},
+/obj/machinery/button/remote/airlock{
+	id = "ship-dorm2-door";
+	name = "Dorm 2 Lock";
+	pixel_x = -6;
+	pixel_y = -26;
+	specialfunctions = 4
+	},
+/obj/structure/curtain/open/bed,
 /turf/simulated/floor/wood,
 /area/mothership/dorm2)
 "IA" = (
@@ -18672,7 +18764,9 @@
 /obj/item/weapon/storage/box/shotgunshells/large,
 /obj/item/weapon/gun/projectile/shotgun/pump/combat,
 /obj/item/weapon/gun/projectile/shotgun/pump/combat,
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/closet/secure_closet/guncabinet{
+	req_one_access = list(103)
+	},
 /obj/structure/cable/cyan{
 	d1 = 1;
 	d2 = 2;
@@ -18709,9 +18803,6 @@
 	},
 /area/mothership/telecomms2)
 "IJ" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/machinery/firealarm{
 	dir = 2;
 	layer = 3.3;
@@ -18824,7 +18915,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
 "IW" = (
-/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/machinery/door/airlock/voidcraft/vertical{
+	id_tag = "ship-dorm3-door";
+	opacity = 1
+	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -18880,7 +18974,8 @@
 /area/mothership/telecomms2)
 "Jb" = (
 /obj/machinery/door/airlock/multi_tile/metal/mait{
-	dir = 2
+	dir = 2;
+	req_one_access = list(103)
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -18888,6 +18983,17 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/machinery/door/blast/regular{
+	destroy_hits = 100;
+	id = "ship-armory";
+	name = "Armory"
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "ship-armory";
+	name = "Blast Doors Controls";
+	pixel_x = 0;
+	pixel_y = -28
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
@@ -19165,7 +19271,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
 "JH" = (
-/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/machinery/door/airlock/voidcraft/vertical{
+	opacity = 1
+	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -19182,6 +19290,10 @@
 /area/mothership/bathroom1)
 "JJ" = (
 /obj/machinery/door/airlock/external,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5;
+	icon_state = "intact"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "JK" = (
@@ -19195,6 +19307,9 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/warden)
@@ -19237,6 +19352,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/voidcraft,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
 "JP" = (
@@ -19328,7 +19444,8 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/voidcraft/vertical{
-	id_tag = "ship-holodeck-door"
+	id_tag = "ship-holodeck-door";
+	opacity = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -19354,6 +19471,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
 "Ka" = (
@@ -19475,12 +19593,12 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "Kh" = (
-/obj/structure/table/rack/shelf,
 /obj/item/clothing/suit/space/void/atmos,
 /obj/item/clothing/head/helmet/space/void/atmos,
 /obj/item/weapon/tank/oxygen/red,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
+/obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "Ki" = (
@@ -19498,6 +19616,17 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/dorm6)
+"Kl" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/telecomms1)
 "Km" = (
 /obj/machinery/sleeper/survival_pod,
 /turf/simulated/shuttle/floor/alien,
@@ -19527,6 +19656,23 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/mothership/telecomms1)
+"Kq" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "Kr" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/computer/skills,
@@ -19601,6 +19747,10 @@
 	pixel_y = 0;
 	report_danger_level = 0
 	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "Kz" = (
@@ -19651,12 +19801,14 @@
 /obj/machinery/door/airlock/engineeringatmos,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "KE" = (
 /obj/structure/table/rack/steel,
 /obj/machinery/door/window/survival_pod{
-	dir = 8
+	dir = 8;
+	req_one_access = list(103)
 	},
 /obj/structure/window/reinforced/survival_pod,
 /obj/item/weapon/rig/ert/medical,
@@ -19685,6 +19837,17 @@
 	name = "small craft wall";
 	stripe_color = "#45b3d8"
 	},
+/area/mothership/bridge)
+"KI" = (
+/obj/machinery/button/remote/airlock{
+	id = "ship-vault-door";
+	name = "Vault Lock";
+	pixel_x = -6;
+	pixel_y = -26;
+	req_one_access = list(108);
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
 "KK" = (
 /turf/simulated/shuttle/wall/alien/hard_corner,
@@ -19742,6 +19905,15 @@
 /obj/machinery/biogenerator,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
+"KR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/engineering)
 "KS" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -19783,8 +19955,19 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/item/clothing/accessory/storage/pouches/large/blue,
+/obj/item/clothing/accessory/storage/pouches/large/blue,
+/obj/item/clothing/accessory/storage/pouches/large/blue,
+/obj/item/clothing/accessory/storage/pouches/large/blue,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
+"KW" = (
+/obj/machinery/door/airlock/external,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
 "KX" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -19825,6 +20008,7 @@
 "Lc" = (
 /obj/structure/bed/pod,
 /obj/item/weapon/bedsheet/ce,
+/obj/structure/curtain/open/bed,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "Ld" = (
@@ -19906,6 +20090,9 @@
 /area/mothership/hallway)
 "Ll" = (
 /obj/structure/closet/secure_closet/detective,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
 "Lm" = (
@@ -19965,6 +20152,14 @@
 	dir = 8;
 	pixel_x = -24
 	},
+/obj/machinery/button/remote/airlock{
+	id = "ship-dorm3-door";
+	name = "Dorm 3 Lock";
+	pixel_x = 6;
+	pixel_y = 26;
+	specialfunctions = 4
+	},
+/obj/structure/curtain/open/bed,
 /turf/simulated/floor/wood,
 /area/mothership/dorm3)
 "Lw" = (
@@ -19974,7 +20169,9 @@
 	},
 /area/mothership/treatment)
 "Lx" = (
-/obj/structure/closet/crate/secure/gear,
+/obj/structure/closet/crate/secure/gear{
+	req_one_access = list(108)
+	},
 /obj/item/device/subspaceradio,
 /obj/item/weapon/storage/firstaid/insiderepair,
 /obj/item/weapon/storage/firstaid/combat,
@@ -20075,13 +20272,25 @@
 	pixel_y = -22
 	},
 /obj/machinery/button/remote/blast_door{
-	id = "ship-med-surgery";
+	id = "ship-hydroponics";
 	name = "Blast Doors Controls";
 	pixel_x = 20;
 	pixel_y = -28
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
+"LG" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1;
+	icon_state = "map"
+	},
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/telecomms1)
 "LI" = (
 /obj/machinery/door/airlock/medical,
 /obj/machinery/door/firedoor/glass,
@@ -20250,6 +20459,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/voidcraft,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
 "Md" = (
@@ -20321,6 +20531,15 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan{
 	dir = 1
 	},
+/obj/structure/closet/emcloset/legacy,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/box/syndie_kit/space,
+/obj/item/weapon/storage/box/syndie_kit/space,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "Mn" = (
@@ -20367,6 +20586,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/wood,
 /area/mothership/dorm1)
 "Mw" = (
@@ -20375,6 +20595,10 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"My" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/morgue)
 "MA" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -20409,9 +20633,21 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
+"MF" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10;
+	icon_state = "intact"
+	},
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/telecomms2)
 "MG" = (
 /turf/simulated/shuttle/wall/voidcraft/blue{
 	hard_corner = 1;
@@ -20420,14 +20656,6 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/treatment)
-"MH" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/reinforced{
-	name = "Holodeck Projector Floor"
-	},
-/area/mothership/holodeck/holo)
 "MI" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/recharger,
@@ -20456,6 +20684,8 @@
 	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/toolbox/emergency,
 /turf/simulated/floor/wood,
 /area/mothership/dorm6)
 "MN" = (
@@ -20482,9 +20712,6 @@
 "MP" = (
 /obj/structure/closet/secure_closet/nanotrasen_commander,
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hos,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
 "MQ" = (
@@ -20524,6 +20751,14 @@
 	dir = 4;
 	pixel_x = 26
 	},
+/obj/machinery/button/remote/airlock{
+	id = "ship-dorm6-door";
+	name = "Dorm 6 Lock";
+	pixel_x = -6;
+	pixel_y = -26;
+	specialfunctions = 4
+	},
+/obj/structure/curtain/open/bed,
 /turf/simulated/floor/wood,
 /area/mothership/dorm6)
 "MV" = (
@@ -20620,7 +20855,6 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/treatment)
 "Nk" = (
-/obj/structure/table/rack/shelf,
 /obj/item/clothing/suit/space/void/exploration,
 /obj/item/clothing/head/helmet/space/void/exploration,
 /obj/item/weapon/tank/oxygen,
@@ -20631,6 +20865,7 @@
 	pixel_x = 0;
 	pixel_y = -25
 	},
+/obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "Nl" = (
@@ -20840,7 +21075,9 @@
 /obj/item/weapon/gun/energy/gun/nuclear,
 /obj/item/weapon/gun/energy/gun/nuclear,
 /obj/item/weapon/gun/energy/gun/nuclear,
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/closet/secure_closet/guncabinet{
+	req_one_access = list(103)
+	},
 /obj/structure/cable/cyan{
 	d1 = 1;
 	d2 = 2;
@@ -20876,6 +21113,9 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/processing)
 "NS" = (
@@ -20886,6 +21126,7 @@
 /area/mothership/engineering)
 "NT" = (
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/teleporter)
 "NU" = (
@@ -20971,7 +21212,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
 "Oe" = (
-/obj/structure/closet/crate/secure/weapon,
+/obj/structure/closet/crate/secure/weapon{
+	req_one_access = list(108)
+	},
 /obj/item/weapon/gun/energy/modular/cannon,
 /obj/item/weapon/gun/energy/modular/carbine,
 /obj/item/weapon/gun/energy/modular/pistol,
@@ -20985,7 +21228,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/vault)
 "Of" = (
-/obj/machinery/door/airlock/highsecurity,
+/obj/machinery/door/airlock/highsecurity{
+	req_one_access = list(103)
+	},
 /obj/structure/cable/cyan{
 	d1 = 1;
 	d2 = 2;
@@ -21028,8 +21273,8 @@
 "Oj" = (
 /obj/machinery/atmospherics/unary/heater{
 	dir = 1;
-	icon_state = "heater_1";
-	use_power = 1
+	icon_state = "heater";
+	use_power = 0
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
@@ -21046,6 +21291,15 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/morgue)
+"Om" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/telecomms2)
 "On" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -21067,6 +21321,11 @@
 /area/mothership/hallway)
 "Oo" = (
 /obj/effect/floor_decal/industrial/warning/corner,
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/teleporter)
 "Op" = (
@@ -21084,7 +21343,10 @@
 /turf/simulated/floor/bluegrid,
 /area/mothership/telecomms1)
 "Or" = (
-/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/machinery/door/airlock/voidcraft/vertical{
+	id_tag = "ship-dorm2-door";
+	opacity = 1
+	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -21194,8 +21456,16 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/vault/bolted,
+/obj/machinery/door/airlock/vault/bolted{
+	id_tag = "ship-vault-door";
+	req_one_access = list(109)
+	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	destroy_hits = 100;
+	id = "ship-vault";
+	name = "Vault"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/vault)
 "OB" = (
@@ -21350,7 +21620,7 @@
 	density = 0;
 	dir = 1;
 	icon_state = "pdoor0";
-	id = "surfbriglockdown";
+	id = "ship-sec-cell1";
 	name = "Security Blast Doors";
 	opacity = 0
 	},
@@ -21529,7 +21799,8 @@
 /area/mothership/telecomms2)
 "Ph" = (
 /obj/machinery/door/airlock/multi_tile/metal{
-	dir = 2
+	dir = 2;
+	req_one_access = list(5)
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -21565,7 +21836,9 @@
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm1)
 "Pl" = (
-/obj/machinery/door/airlock/command,
+/obj/machinery/door/airlock/command{
+	req_one_access = list(101)
+	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -21703,7 +21976,9 @@
 	},
 /area/mothership/engineering)
 "Pz" = (
-/obj/structure/closet/crate/secure/weapon,
+/obj/structure/closet/crate/secure/weapon{
+	req_one_access = list(108)
+	},
 /obj/item/weapon/rig/ert/assetprotection,
 /obj/item/weapon/rig/ert/assetprotection,
 /obj/item/clothing/glasses/thermal,
@@ -21712,8 +21987,16 @@
 /obj/item/clothing/suit/armor/pcarrier/merc,
 /obj/item/clothing/head/helmet/merc,
 /obj/item/clothing/head/helmet/merc,
+/obj/item/weapon/storage/box/syndie_kit/combat_armor,
+/obj/item/weapon/storage/box/syndie_kit/combat_armor,
+/obj/item/weapon/storage/box/syndie_kit/combat_armor,
+/obj/item/weapon/storage/box/syndie_kit/combat_armor,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
+"PA" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/teleporter)
 "PB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -21721,7 +22004,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/cryotube)
 "PC" = (
-/obj/structure/table/rack/shelf,
 /obj/item/clothing/suit/armor/pcarrier/blue/sol,
 /obj/item/clothing/suit/armor/pcarrier/blue/sol,
 /obj/item/clothing/suit/armor/pcarrier/blue/sol,
@@ -21733,6 +22015,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
+/obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
 "PD" = (
@@ -21765,7 +22048,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/bathroom1)
 "PF" = (
-/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/machinery/door/airlock/voidcraft/vertical{
+	id_tag = "ship-dorm4-door";
+	opacity = 1
+	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -21812,6 +22098,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
+/obj/item/weapon/storage/box/survival/space,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/holodeck)
 "PJ" = (
@@ -21822,8 +22109,11 @@
 /obj/machinery/light/flamp/noshade,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"PK" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/processing)
 "PL" = (
-/obj/structure/table/rack/shelf,
 /obj/item/clothing/suit/space/void/security/alt,
 /obj/item/clothing/head/helmet/space/void/security/alt,
 /obj/item/weapon/tank/oxygen,
@@ -21832,6 +22122,7 @@
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
+/obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "PM" = (
@@ -21983,14 +22274,7 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/treatment)
 "Qd" = (
-/obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -23;
-	pixel_y = 0
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
+/obj/structure/closet/secure_closet/explorer,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
 "Qe" = (
@@ -22006,6 +22290,15 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/robotics)
+"Qg" = (
+/obj/machinery/button/remote/blast_door{
+	id = "ship-vault";
+	name = "Vault Blast Door Controls";
+	pixel_y = 28;
+	req_one_access = list(108)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/teleporter)
 "Qh" = (
 /turf/simulated/shuttle/wall/voidcraft/blue{
 	hard_corner = 1;
@@ -22057,6 +22350,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
+"Qo" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "Qp" = (
 /obj/machinery/status_display{
 	pixel_y = 29
@@ -22093,6 +22392,11 @@
 	pixel_x = -23;
 	pixel_y = 0
 	},
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
 "Qv" = (
@@ -22126,6 +22430,14 @@
 /obj/structure/closet/crate/freezer,
 /turf/simulated/floor/tiled/white,
 /area/mothership/treatment)
+"Qz" = (
+/obj/machinery/recharger,
+/obj/structure/table/steel_reinforced,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/security)
 "QA" = (
 /obj/structure/morgue{
 	dir = 8
@@ -22236,6 +22548,10 @@
 	pixel_x = -23;
 	pixel_y = 0
 	},
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "QI" = (
@@ -22327,6 +22643,27 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/hydroponics)
+"QW" = (
+/obj/structure/closet/walllocker{
+	name = "Janitor Locker";
+	pixel_x = 32
+	},
+/obj/item/weapon/storage/box/lights/mixed,
+/obj/item/weapon/storage/box/lights/mixed,
+/obj/item/weapon/mop,
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/weapon/grenade/chem_grenade/cleaner,
+/obj/item/weapon/grenade/chem_grenade/cleaner,
+/obj/item/weapon/grenade/chem_grenade/cleaner,
+/obj/item/weapon/grenade/chem_grenade/cleaner,
+/obj/item/weapon/soap/nanotrasen,
+/obj/item/weapon/soap/deluxe,
+/obj/item/weapon/soap,
+/obj/item/weapon/rig/ert/janitor,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "QX" = (
 /obj/machinery/light{
 	dir = 8;
@@ -22459,6 +22796,9 @@
 	dir = 4;
 	pixel_x = 26
 	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "Ro" = (
@@ -22523,7 +22863,9 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
 "Ry" = (
-/obj/machinery/door/airlock/command,
+/obj/machinery/door/airlock/command{
+	req_one_access = list(101)
+	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -22563,7 +22905,9 @@
 /obj/item/weapon/gun/projectile/pistol,
 /obj/item/weapon/gun/projectile/pistol,
 /obj/item/weapon/gun/projectile/pistol,
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/closet/secure_closet/guncabinet{
+	req_one_access = list(103)
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
 "RD" = (
@@ -22584,7 +22928,9 @@
 	},
 /area/centcom/specops)
 "RG" = (
-/obj/structure/closet/crate/secure/weapon,
+/obj/structure/closet/crate/secure/weapon{
+	req_one_access = list(108)
+	},
 /obj/item/clothing/suit/space/void/merc/fire,
 /obj/item/clothing/head/helmet/space/void/merc/fire,
 /obj/item/clothing/suit/space/void/merc,
@@ -22634,7 +22980,9 @@
 /obj/item/weapon/gun/projectile/automatic/sts35,
 /obj/item/weapon/gun/projectile/automatic/sts35,
 /obj/item/weapon/gun/projectile/automatic/sts35,
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/closet/secure_closet/guncabinet{
+	req_one_access = list(103)
+	},
 /obj/structure/cable/cyan{
 	d1 = 1;
 	d2 = 2;
@@ -22680,6 +23028,23 @@
 /obj/structure/table/alien,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm3)
+"RO" = (
+/obj/machinery/door/blast/regular{
+	id = "ArmouryC5";
+	name = "Armoury"
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "ArmouryC5";
+	name = "Armoury Access";
+	pixel_x = 0;
+	pixel_y = -28;
+	req_access = list(101)
+	},
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/centcom/control)
 "RP" = (
 /obj/machinery/vending/loadout/clothing,
 /turf/simulated/floor/tiled/techmaint,
@@ -22693,6 +23058,21 @@
 "RR" = (
 /turf/simulated/shuttle/wall/alien,
 /area/unknown/dorm2)
+"RS" = (
+/obj/structure/closet/hydrant{
+	pixel_x = -32
+	},
+/obj/item/clothing/suit/fire/firefighter,
+/obj/item/clothing/mask/gas,
+/obj/item/device/flashlight,
+/obj/item/weapon/tank/oxygen/red,
+/obj/item/weapon/tank/emergency/oxygen/double,
+/obj/item/weapon/extinguisher,
+/obj/item/weapon/extinguisher,
+/obj/item/clothing/head/hardhat/red,
+/obj/item/weapon/storage/toolbox/emergency,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "RT" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
@@ -22717,6 +23097,16 @@
 /obj/machinery/recharge_station,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm3)
+"RX" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10;
+	icon_state = "intact"
+	},
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/engineering)
 "RY" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/unsimulated/floor{
@@ -22763,7 +23153,9 @@
 	},
 /area/centcom/specops)
 "Sd" = (
-/obj/structure/closet/crate/secure/weapon,
+/obj/structure/closet/crate/secure/weapon{
+	req_one_access = list(108)
+	},
 /obj/item/weapon/gun/energy/pulse_rifle,
 /obj/item/weapon/gun/energy/pulse_rifle,
 /obj/item/weapon/gun/energy/pulse_rifle,
@@ -22948,6 +23340,10 @@
 	name = "Blast Doors Controls";
 	pixel_y = -28
 	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
 "SI" = (
@@ -22957,7 +23353,9 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/resleeving)
 "SJ" = (
-/obj/structure/closet/crate/secure/weapon,
+/obj/structure/closet/crate/secure/weapon{
+	req_one_access = list(108)
+	},
 /obj/item/weapon/storage/box/frags,
 /obj/item/weapon/storage/box/frags,
 /obj/item/weapon/storage/box/teargas,
@@ -22998,6 +23396,8 @@
 	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/toolbox/emergency,
 /turf/simulated/floor/wood,
 /area/mothership/dorm2)
 "SP" = (
@@ -23039,6 +23439,16 @@
 	},
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
+"SV" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 9;
+	icon_state = "intact"
+	},
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/engineering)
 "SW" = (
 /obj/machinery/cooker/grill,
 /obj/structure/table/steel_reinforced,
@@ -23079,7 +23489,9 @@
 /obj/item/ammo_magazine/m9mmt/rubber,
 /obj/item/ammo_magazine/m9mmt/rubber,
 /obj/item/ammo_magazine/m9mmt/rubber,
-/obj/structure/closet/secure_closet/guncabinet,
+/obj/structure/closet/secure_closet/guncabinet{
+	req_one_access = list(103)
+	},
 /obj/structure/cable/cyan{
 	d1 = 1;
 	d2 = 2;
@@ -23143,6 +23555,21 @@
 /obj/machinery/r_n_d/server/centcom,
 /turf/simulated/floor/bluegrid,
 /area/mothership/telecomms1)
+"Tk" = (
+/obj/structure/closet/hydrant{
+	pixel_x = 32
+	},
+/obj/item/clothing/suit/fire/firefighter,
+/obj/item/clothing/mask/gas,
+/obj/item/device/flashlight,
+/obj/item/weapon/tank/oxygen/red,
+/obj/item/weapon/tank/emergency/oxygen/double,
+/obj/item/weapon/extinguisher,
+/obj/item/weapon/extinguisher,
+/obj/item/clothing/head/hardhat/red,
+/obj/item/weapon/storage/toolbox/emergency,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
 "Tl" = (
 /obj/machinery/oxygen_pump/anesthetic,
 /turf/simulated/shuttle/wall/voidcraft/blue{
@@ -23265,7 +23692,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/warden)
 "TA" = (
-/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/machinery/door/airlock/voidcraft/vertical{
+	id_tag = "ship-dorm6-door";
+	opacity = 1
+	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -23311,7 +23741,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/warden)
 "TF" = (
-/obj/structure/closet/crate/secure/weapon,
+/obj/structure/closet/crate/secure/weapon{
+	req_one_access = list(108)
+	},
 /obj/item/weapon/gun/projectile/automatic/l6_saw,
 /obj/item/weapon/gun/projectile/automatic/l6_saw,
 /obj/item/ammo_magazine/m545saw,
@@ -23372,7 +23804,8 @@
 "TL" = (
 /obj/structure/table/rack/steel,
 /obj/machinery/door/window/survival_pod{
-	dir = 8
+	dir = 8;
+	req_one_access = list(103)
 	},
 /obj/item/weapon/rig/ert/security,
 /obj/item/weapon/rig/ert/security,
@@ -23550,6 +23983,22 @@
 "Uf" = (
 /obj/structure/closet/crate/bin,
 /obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "ship-sec-cell1";
+	name = "Cell 1 Blast Doors";
+	pixel_x = 28;
+	pixel_y = 6;
+	req_one_access = list(2)
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "ship-sec-cell2";
+	name = "Cell 2 Blast Doors";
+	pixel_x = 28;
+	pixel_y = -6;
+	req_one_access = list(2)
+	},
+/obj/machinery/button/remote/blast_door{
 	id = "ship-sec-warden";
 	name = "Blast Doors Controls";
 	pixel_y = 28
@@ -23557,9 +24006,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/warden)
 "Ug" = (
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/machinery/firealarm{
 	dir = 2;
 	layer = 3.3;
@@ -23756,8 +24202,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
@@ -23781,6 +24227,8 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/toolbox/emergency,
 /turf/simulated/floor/wood,
 /area/mothership/dorm4)
 "UE" = (
@@ -23806,6 +24254,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "UJ" = (
@@ -23847,6 +24296,15 @@
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"UP" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/engineering)
 "UQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -23857,11 +24315,30 @@
 /obj/structure/closet/wardrobe/science_white,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/rnd)
+"US" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1;
+	icon_state = "map"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "UT" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/processing)
 "UU" = (
-/obj/structure/closet/crate/secure/gear,
+/obj/structure/closet/crate/secure/gear{
+	req_one_access = list(108)
+	},
 /obj/item/stack/telecrystal{
 	amount = 240
 	},
@@ -23969,6 +24446,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/light,
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 3;
+	pixel_y = -29
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
 "UW" = (
@@ -24002,7 +24484,7 @@
 	density = 0;
 	dir = 1;
 	icon_state = "pdoor0";
-	id = "surfbriglockdown";
+	id = "ship-sec-cell1";
 	name = "Security Blast Doors";
 	opacity = 0
 	},
@@ -24023,6 +24505,13 @@
 	},
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm2)
+"Vc" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/telecomms2)
 "Vd" = (
 /obj/item/weapon/reagent_containers/glass/bucket,
 /obj/item/weapon/reagent_containers/glass/bucket,
@@ -24073,6 +24562,28 @@
 /obj/effect/floor_decal/derelict/d16,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"Vj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5;
+	icon_state = "intact"
+	},
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/engineering)
+"Vk" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1;
+	icon_state = "map"
+	},
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	hard_corner = 1;
+	icon_state = "void-hc";
+	name = "small craft wall hc";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/telecomms2)
 "Vl" = (
 /obj/machinery/alarm{
 	pixel_y = 22
@@ -24145,6 +24656,8 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/toolbox/emergency,
 /turf/simulated/floor/wood,
 /area/mothership/dorm3)
 "Vx" = (
@@ -24167,7 +24680,9 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm2)
 "Vz" = (
-/obj/structure/closet/crate/secure/weapon,
+/obj/structure/closet/crate/secure/weapon{
+	req_one_access = list(108)
+	},
 /obj/item/weapon/gun/projectile/automatic/z8,
 /obj/item/weapon/gun/projectile/automatic/z8,
 /obj/item/weapon/gun/projectile/heavysniper,
@@ -24227,6 +24742,12 @@
 /obj/item/weapon/book/manual/robotics_cyborgs,
 /obj/item/device/robotanalyzer,
 /obj/item/weapon/storage/toolbox/syndicate/powertools,
+/obj/item/weapon/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	name = "Surgery Cleaner";
+	pixel_x = 2;
+	pixel_y = 2
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/surgery)
 "VH" = (
@@ -24246,6 +24767,10 @@
 /area/mothership/kitchen)
 "VI" = (
 /obj/machinery/door/airlock/external,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10;
+	icon_state = "intact"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "VJ" = (
@@ -24267,6 +24792,12 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 12;
+	pixel_y = 8
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/surgery)
 "VM" = (
@@ -24289,6 +24820,10 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
@@ -24317,6 +24852,15 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/bathroom1)
+"VT" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/cryotube)
 "VU" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
@@ -24355,6 +24899,21 @@
 /obj/machinery/mineral/equipment_vendor/survey,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/vault)
+"Wa" = (
+/obj/structure/closet/hydrant{
+	pixel_x = 32
+	},
+/obj/item/clothing/suit/fire/firefighter,
+/obj/item/clothing/mask/gas,
+/obj/item/device/flashlight,
+/obj/item/weapon/tank/oxygen/red,
+/obj/item/weapon/tank/emergency/oxygen/double,
+/obj/item/weapon/extinguisher,
+/obj/item/weapon/extinguisher,
+/obj/item/clothing/head/hardhat/red,
+/obj/item/weapon/storage/toolbox/emergency,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "Wb" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
@@ -24406,7 +24965,8 @@
 "Wg" = (
 /obj/structure/table/rack/steel,
 /obj/machinery/door/window/survival_pod{
-	dir = 8
+	dir = 8;
+	req_one_access = list(103)
 	},
 /obj/structure/window/reinforced/survival_pod{
 	dir = 1
@@ -24417,8 +24977,8 @@
 "Wh" = (
 /obj/machinery/atmospherics/unary/freezer{
 	dir = 1;
-	icon_state = "freezer_1";
-	use_power = 1
+	icon_state = "freezer";
+	use_power = 0
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
@@ -24437,6 +24997,7 @@
 	dir = 1;
 	pixel_y = -22
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/wood,
 /area/mothership/dorm6)
 "Wk" = (
@@ -24450,6 +25011,12 @@
 "Wn" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/storage/firstaid/surgery,
+/obj/item/weapon/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	name = "Surgery Cleaner";
+	pixel_x = 2;
+	pixel_y = 2
+	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/surgery)
 "Wo" = (
@@ -24458,6 +25025,8 @@
 	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/toolbox/emergency,
 /turf/simulated/floor/wood,
 /area/mothership/dorm5)
 "Wp" = (
@@ -24483,6 +25052,10 @@
 /area/mothership/medical)
 "Wq" = (
 /obj/machinery/door/airlock/external,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 9;
+	icon_state = "intact"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
 "Wr" = (
@@ -24490,11 +25063,15 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "Ws" = (
-/obj/structure/table/rack/shelf,
 /obj/item/clothing/head/helmet/solgov,
 /obj/item/clothing/head/helmet/solgov,
 /obj/item/clothing/head/helmet/solgov,
 /obj/item/clothing/head/helmet/solgov,
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
 "Wt" = (
@@ -24531,11 +25108,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
-"Ww" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/security)
 "Wx" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -24691,15 +25263,15 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/resleeving)
-"WV" = (
-/obj/item/clothing/suit/space/void/atmos,
-/obj/structure/table/rack/shelf,
-/obj/item/clothing/head/helmet/space/void/atmos,
-/obj/item/weapon/tank/oxygen/red,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/mask/breath,
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/eva)
+"WU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/telecomms1)
 "WW" = (
 /obj/structure/closet/secure_closet/scientist,
 /turf/simulated/floor/tiled/techmaint,
@@ -24740,6 +25312,21 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/mothership/surgery)
+"Xd" = (
+/obj/structure/closet/hydrant{
+	pixel_x = -32
+	},
+/obj/item/clothing/suit/fire/firefighter,
+/obj/item/clothing/mask/gas,
+/obj/item/device/flashlight,
+/obj/item/weapon/tank/oxygen/red,
+/obj/item/weapon/tank/emergency/oxygen/double,
+/obj/item/weapon/extinguisher,
+/obj/item/weapon/extinguisher,
+/obj/item/clothing/head/hardhat/red,
+/obj/item/weapon/storage/toolbox/emergency,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
 "Xe" = (
 /obj/machinery/atmospherics/unary/cryo_cell,
 /turf/simulated/floor/tiled/white,
@@ -24780,7 +25367,8 @@
 "Xk" = (
 /obj/structure/table/rack/steel,
 /obj/machinery/door/window/survival_pod{
-	dir = 8
+	dir = 8;
+	req_one_access = list(103)
 	},
 /obj/item/weapon/rig/ert/engineer,
 /obj/item/weapon/rig/ert/engineer,
@@ -24842,6 +25430,14 @@
 	dir = 8;
 	pixel_x = -24
 	},
+/obj/machinery/button/remote/airlock{
+	id = "ship-dorm1-door";
+	name = "Dorm 1 Lock";
+	pixel_x = 6;
+	pixel_y = -26;
+	specialfunctions = 4
+	},
+/obj/structure/curtain/open/bed,
 /turf/simulated/floor/wood,
 /area/mothership/dorm1)
 "Xt" = (
@@ -24975,6 +25571,13 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
+"XI" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/engineering)
 "XJ" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -25053,6 +25656,11 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	destroy_hits = 100;
+	id = "ship-armory";
+	name = "Armory"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
 "XR" = (
@@ -25090,6 +25698,10 @@
 	pixel_x = -3;
 	pixel_y = -3
 	},
+/obj/item/clothing/glasses/hud/security,
+/obj/item/clothing/glasses/hud/security,
+/obj/item/clothing/glasses/hud/security,
+/obj/item/clothing/glasses/hud/security,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
 "XV" = (
@@ -25104,7 +25716,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "XX" = (
-/obj/structure/closet/crate/secure/weapon,
+/obj/structure/closet/crate/secure/weapon{
+	req_one_access = list(108)
+	},
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat,
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid,
 /obj/item/ammo_casing/microbattery/medical/corpse_mend,
@@ -25233,7 +25847,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
 "Yj" = (
-/obj/machinery/door/airlock/voidcraft/vertical,
+/obj/machinery/door/airlock/voidcraft/vertical{
+	id_tag = "ship-dorm1-door";
+	opacity = 1
+	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -25254,7 +25871,9 @@
 /turf/simulated/shuttle/floor/voidcraft,
 /area/unknown/dorm1)
 "Yl" = (
-/obj/structure/closet/crate/secure/weapon,
+/obj/structure/closet/crate/secure/weapon{
+	req_one_access = list(108)
+	},
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid,
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat,
 /obj/item/weapon/gun/energy/ionrifle/pistol,
@@ -25270,6 +25889,12 @@
 /obj/item/weapon/gun/energy/sniperrifle,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
+"Ym" = (
+/obj/structure/fireaxecabinet{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/mothership/bridge)
 "Yn" = (
 /obj/machinery/door/firedoor/glass,
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -25283,7 +25908,7 @@
 	density = 0;
 	dir = 1;
 	icon_state = "pdoor0";
-	id = "surfbriglockdown";
+	id = "ship-sec-cell2";
 	name = "Security Blast Doors";
 	opacity = 0
 	},
@@ -25353,13 +25978,13 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/bathroom2)
 "Yv" = (
-/obj/structure/table/rack/shelf,
 /obj/item/clothing/suit/space/void/engineering/salvage,
 /obj/item/clothing/head/helmet/space/void/engineering/salvage,
 /obj/item/weapon/tank/oxygen/red,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /obj/machinery/light,
+/obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "Yx" = (
@@ -25372,6 +25997,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 3;
+	pixel_y = -29
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
@@ -25451,6 +26080,13 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/morgue)
+"YI" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/shuttle/wall/voidcraft/blue{
+	name = "small craft wall";
+	stripe_color = "#45b3d8"
+	},
+/area/mothership/telecomms1)
 "YJ" = (
 /obj/structure/bed/chair/wood{
 	icon_state = "wooden_chair";
@@ -25555,17 +26191,34 @@
 	dir = 8;
 	pixel_x = -24
 	},
+/obj/machinery/button/remote/airlock{
+	id = "ship-dorm5-door";
+	name = "Dorm 5 Lock";
+	pixel_x = 6;
+	pixel_y = -26;
+	specialfunctions = 4
+	},
+/obj/structure/curtain/open/bed,
 /turf/simulated/floor/wood,
 /area/mothership/dorm5)
 "YV" = (
-/obj/structure/table/rack/shelf,
 /obj/item/clothing/suit/space/void/security/alt,
 /obj/item/clothing/head/helmet/space/void/security/alt,
 /obj/item/weapon/tank/oxygen,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
+/obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
+"YW" = (
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 12;
+	pixel_y = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/mothership/treatment)
 "YX" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -25591,13 +26244,16 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/highsecurity,
+/obj/machinery/door/airlock/highsecurity{
+	req_one_access = list(101)
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
 "Zc" = (
@@ -25640,10 +26296,6 @@
 "Zi" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
-	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "Zj" = (
@@ -25690,7 +26342,39 @@
 	},
 /turf/simulated/floor/carpet/blue,
 /area/mothership/breakroom)
+"Zq" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "ship-sec-cell2";
+	name = "Security Blast Doors";
+	opacity = 0
+	},
+/obj/structure/cable/cyan{
+	d1 = 0;
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/plating,
+/area/mothership/sechallway)
 "Zr" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/shuttle/wall/voidcraft/blue{
 	hard_corner = 1;
 	icon_state = "void-hc";
@@ -25720,6 +26404,24 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/mothership/surgery)
+"Zu" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/storage/box/evidence,
+/obj/item/weapon/storage/box/handcuffs{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/security)
+"Zv" = (
+/obj/structure/closet/radiation,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
 "Zw" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/projectile/heavysniper,
@@ -27193,7 +27895,7 @@ Ve
 FT
 EW
 UL
-Kn
+Kl
 Wq
 Kn
 UE
@@ -27335,7 +28037,7 @@ Ve
 Jm
 Ic
 lE
-UE
+WU
 Ug
 Qu
 Rr
@@ -27477,7 +28179,7 @@ Ve
 Jm
 Ic
 lE
-UE
+WU
 WX
 NL
 Ti
@@ -27619,7 +28321,7 @@ NA
 DM
 Gy
 Sg
-UE
+WU
 DR
 NL
 Nu
@@ -27761,7 +28463,7 @@ OM
 Dq
 XD
 Ko
-UE
+WU
 TQ
 NL
 Oq
@@ -27903,7 +28605,7 @@ Rm
 VC
 XD
 Jy
-UE
+WU
 QP
 QC
 Vg
@@ -28045,18 +28747,18 @@ Ve
 OC
 XD
 Rs
-UE
+WU
 ZD
 No
-HC
-HC
-HC
-HC
-HC
-HC
-HC
-HC
-HC
+KR
+XI
+XI
+XI
+XI
+XI
+XI
+XI
+Vj
 HC
 HC
 OF
@@ -28187,16 +28889,16 @@ Ve
 TJ
 Jx
 MN
-UE
+WU
 ln
 Kp
-HC
+UP
 ll
 ll
 ll
 QO
 QX
-Ua
+Xd
 Ua
 VI
 LA
@@ -28306,7 +29008,7 @@ Ph
 Lw
 Xe
 Li
-LT
+YW
 MG
 GN
 Oz
@@ -28329,10 +29031,10 @@ MV
 Uz
 CD
 fP
-Kn
+LG
 Zb
-UE
-HC
+YI
+SV
 Ul
 Mm
 VV
@@ -28438,7 +29140,7 @@ Yb
 QE
 Sw
 QE
-QE
+RS
 QE
 QE
 QE
@@ -28464,14 +29166,14 @@ Nf
 QE
 QE
 QE
-QE
+RS
 Xz
 Yb
 QE
 QK
 QK
 nk
-QE
+Qo
 Sw
 UG
 HC
@@ -28613,7 +29315,7 @@ ZE
 ZE
 On
 Lk
-Wx
+US
 ZZ
 UH
 KD
@@ -28733,11 +29435,11 @@ Fc
 Gd
 gi
 Zf
+Fk
 HF
 HF
 HF
-HF
-HF
+My
 Zf
 Hc
 by
@@ -28861,7 +29563,7 @@ Sh
 Sw
 QE
 Hi
-Tv
+Qg
 Oo
 MX
 Zl
@@ -28893,11 +29595,11 @@ Dr
 XM
 Kj
 Fg
-Kj
+Ym
 KH
 Sw
 FE
-jq
+VT
 Vo
 Ut
 Jd
@@ -29039,7 +29741,7 @@ KF
 KH
 Sw
 Fi
-jq
+VT
 RP
 LO
 Wy
@@ -29181,7 +29883,7 @@ Xj
 KH
 Sw
 Ng
-jq
+VT
 Na
 Sn
 hY
@@ -29285,9 +29987,9 @@ Wv
 JP
 FC
 UB
-QE
+FD
 NT
-Tv
+PA
 MK
 SC
 Zl
@@ -29300,13 +30002,13 @@ Sw
 Yc
 Sw
 iL
+Wa
 QE
 QE
+QW
 QE
 QE
-QE
-QE
-QE
+Wa
 iL
 Sw
 Yc
@@ -29323,7 +30025,7 @@ iA
 KH
 Sw
 UZ
-jq
+VT
 FB
 LC
 hY
@@ -29465,7 +30167,7 @@ Qx
 KH
 Sw
 JU
-jq
+VT
 XV
 IN
 HV
@@ -29603,11 +30305,11 @@ WM
 TK
 Kj
 Em
-Kj
+KI
 KH
 Sw
 FE
-jq
+VT
 Vo
 PB
 HH
@@ -29891,7 +30593,7 @@ ZE
 Nm
 HL
 Ne
-TY
+Kq
 OY
 KX
 YB
@@ -30000,7 +30702,7 @@ Ew
 QE
 Sw
 QE
-QE
+Wa
 QE
 QE
 QE
@@ -30014,7 +30716,7 @@ Hz
 UY
 OK
 Hd
-UY
+Zq
 Yn
 Hz
 Hd
@@ -30026,14 +30728,14 @@ iL
 QE
 QE
 QE
-QE
+Wa
 iL
 Sw
 QE
 Yc
 QE
 Sw
-QE
+Qo
 Sw
 UG
 HC
@@ -30041,7 +30743,7 @@ Ye
 IS
 nn
 Ua
-Ua
+Zv
 GU
 cL
 Rf
@@ -30175,10 +30877,10 @@ ZW
 Ia
 ZW
 JX
-KZ
+Vk
 DA
-Hj
-HC
+Vc
+Vj
 Kr
 SQ
 iN
@@ -30274,7 +30976,7 @@ Ib
 no
 SW
 Sh
-WV
+Kh
 iM
 Yv
 Sh
@@ -30286,14 +30988,14 @@ Pa
 YF
 XU
 JG
-TV
+Zu
 Qd
-Ji
+cR
 Sb
 Ov
 OL
 Rq
-Rq
+El
 IK
 FP
 EF
@@ -30301,7 +31003,7 @@ bj
 Qm
 Rq
 DY
-Rq
+El
 Rq
 Of
 ZH
@@ -30317,18 +31019,18 @@ TX
 Tq
 Rg
 PM
-Hj
+Om
 ZT
 Rz
-HC
+UP
 Vh
 li
 ZF
 KC
 Ra
+Tk
 Ua
-Ua
-VI
+KW
 Xn
 OU
 OF
@@ -30426,11 +31128,11 @@ UM
 Nz
 Kz
 YF
-EH
+TV
 FO
 Ji
+Qd
 gy
-Ji
 Sb
 GZ
 OH
@@ -30459,18 +31161,18 @@ TX
 gj
 Nh
 PI
-Hj
+Om
 FA
 EK
-HC
-HC
-HC
-HC
-HC
-HC
-HC
-HC
-HC
+RX
+XI
+XI
+XI
+XI
+XI
+XI
+XI
+SV
 HC
 HC
 OF
@@ -30568,11 +31270,11 @@ UM
 Tg
 Iy
 YF
-Sb
+Gx
 FO
 Sb
-gy
 Sb
+gy
 Sb
 UV
 ZM
@@ -30598,10 +31300,10 @@ Ub
 Jp
 EV
 TX
-MH
 XT
 XT
-Hj
+XT
+Om
 Tr
 YT
 Wz
@@ -30713,8 +31415,8 @@ YF
 Ys
 Ue
 Vp
-gy
 Sb
+Qz
 Sb
 Yz
 OH
@@ -30722,7 +31424,7 @@ LN
 UT
 EE
 UT
-UT
+PK
 Il
 FV
 Mp
@@ -30743,7 +31445,7 @@ TX
 XT
 XT
 XT
-Hj
+Om
 IG
 Gg
 GV
@@ -30855,8 +31557,8 @@ YF
 JM
 Td
 Vp
-gy
 Sb
+Dm
 Sb
 Fn
 MQ
@@ -30885,7 +31587,7 @@ TX
 XT
 XT
 XT
-Hj
+Om
 Dp
 Gg
 Eo
@@ -30997,8 +31699,8 @@ Qs
 Gz
 QJ
 Gz
-Ww
 Gz
+iE
 Gz
 Pu
 OH
@@ -31026,8 +31728,8 @@ QF
 TX
 XT
 XT
-FY
-Hj
+XT
+Om
 Pf
 Gg
 Su
@@ -31136,7 +31838,7 @@ YF
 Ws
 PC
 YF
-UA
+FK
 Vn
 UA
 MP
@@ -31169,7 +31871,7 @@ TX
 XT
 XT
 XT
-Hj
+Om
 IJ
 Ky
 KU
@@ -31280,7 +31982,7 @@ YF
 YF
 YF
 YF
-YF
+Dt
 PV
 PV
 PV
@@ -31292,7 +31994,7 @@ ZM
 ZM
 ZM
 Ow
-Ow
+Il
 JD
 JD
 JD
@@ -31311,7 +32013,7 @@ TX
 XT
 XT
 XT
-KZ
+MF
 JJ
 KZ
 Hj
@@ -41378,7 +42080,7 @@ em
 gs
 gO
 gO
-gO
+RO
 hU
 ho
 ho
@@ -41520,7 +42222,7 @@ em
 dm
 gP
 gP
-hx
+gP
 ho
 id
 iD
