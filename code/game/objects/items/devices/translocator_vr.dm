@@ -417,6 +417,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 /obj/item/device/perfect_tele/frontier/staff
 	name = "centcom translocator"
 	desc = "Similar to translocator technology, however, most of its destinations are hardcoded."
+	charge_cost = 1200 // Enough for one person and their partner
 	loc_network = "centcom"
 	longrange = 1
 
@@ -429,6 +430,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 /obj/item/device/perfect_tele/frontier/unknown
 	name = "modified translocator"
 	desc = "This crank-charged translocator has only one beacon, but it already has a destination preprogrammed into it."
+	charge_cost = 1200 // Enough for one person and their partner
 	longrange = 1
 	abductor = 1
 
