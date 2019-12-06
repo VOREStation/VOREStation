@@ -8550,10 +8550,19 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "nh" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/structure/catwalk,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/camera/network/command{
+	icon_state = "camera";
+	dir = 10
+	},
+/turf/simulated/floor,
+/area/maintenance/station/ai)
 "ni" = (
 /obj/structure/bookcase,
 /obj/item/weapon/book/manual/security_space_law,
@@ -19724,15 +19733,10 @@
 /turf/simulated/floor/wood,
 /area/quartermaster/qm)
 "Et" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/vehicle/train/engine,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled,
-/area/quartermaster/storage)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "Eu" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
@@ -20204,12 +20208,8 @@
 /area/quartermaster/warehouse)
 "Fk" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/vehicle/train/trolley,
-/obj/machinery/alarm{
-	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
+/obj/vehicle/train/engine{
+	dir = 1
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -20767,9 +20767,14 @@
 /area/medical/sleeper)
 "Gd" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/vehicle/train/trolley,
-/obj/machinery/light{
-	dir = 8
+/obj/vehicle/train/trolley{
+	dir = 1
+	},
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -21217,14 +21222,16 @@
 /area/quartermaster/warehouse)
 "GK" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/vehicle/train/trolley,
+/obj/vehicle/train/trolley{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/storage)
@@ -25059,12 +25066,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/conveyor_switch/oneway{
+/obj/machinery/conveyor_switch{
 	id = "gloriouscargopipeline";
-	layer = 3.3;
-	name = "Surface delivery conveyor";
-	pixel_x = 14;
-	pixel_y = -3
+	name = "Mining Supply conveyor switch";
+	pixel_x = 0;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/steel,
 /area/quartermaster/warehouse)
@@ -26995,13 +27001,20 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/storage)
 "Qh" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/vehicle/train/trolley{
+	dir = 1
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/storage)
 "Qi" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -27052,20 +27065,29 @@
 /turf/simulated/open,
 /area/security/brig)
 "Qm" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/structure/catwalk,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/obj/machinery/camera/network/command{
+	icon_state = "camera";
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/maintenance/station/ai)
 "Qn" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/obj/machinery/door/window/southright{
+	req_access = list(58)
+	},
+/turf/simulated/floor/carpet,
+/area/crew_quarters/heads/hos)
 "Qo" = (
 /obj/item/weapon/storage/secure/safe{
 	pixel_x = -28
@@ -27079,6 +27101,21 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
+"Qp" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
+"Qq" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
 "Qr" = (
 /obj/machinery/shower{
 	pixel_y = 10
@@ -27096,6 +27133,14 @@
 /obj/structure/curtain/open/shower,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medical_restroom)
+"Qs" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
 "Qt" = (
 /turf/simulated/wall,
 /area/tether/exploration)
@@ -27621,16 +27666,6 @@
 	},
 /obj/random/trash,
 /obj/effect/floor_decal/rust,
-/turf/simulated/floor,
-/area/maintenance/station/ai)
-"RL" = (
-/obj/structure/catwalk,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /turf/simulated/floor,
 /area/maintenance/station/ai)
 "RM" = (
@@ -28340,16 +28375,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
-"TZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/obj/machinery/door/window/brigdoor/southright{
-	id = "tactical_pet_storage"
-	},
-/turf/simulated/floor/carpet,
-/area/crew_quarters/heads/hos)
 "Ua" = (
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -33881,7 +33906,7 @@ ZF
 je
 Ui
 iS
-TZ
+Qn
 Yu
 Vp
 Ve
@@ -39324,11 +39349,11 @@ MK
 Iy
 ab
 NL
-Qh
-Qm
-Qm
-Qm
-Qn
+Qp
+Qq
+Qq
+Qq
+Qs
 NL
 vt
 vt
@@ -40551,7 +40576,7 @@ Zy
 WG
 dj
 XA
-nh
+Et
 ms
 Oz
 be
@@ -40693,7 +40718,7 @@ UJ
 Xb
 dj
 XN
-nh
+Et
 ms
 Xq
 be
@@ -40835,7 +40860,7 @@ iW
 WS
 dj
 XN
-nh
+Et
 ms
 Xq
 be
@@ -41118,7 +41143,7 @@ jZ
 WR
 Xo
 XN
-nh
+Et
 cK
 ms
 Xq
@@ -41686,7 +41711,7 @@ ea
 kx
 dj
 XN
-nh
+Et
 cK
 ms
 mq
@@ -41971,7 +41996,7 @@ kQ
 TG
 dj
 XN
-nh
+Et
 ms
 mq
 be
@@ -42113,7 +42138,7 @@ kR
 Vd
 dj
 XN
-nh
+Et
 ms
 QL
 be
@@ -42255,7 +42280,7 @@ ZE
 ZB
 dj
 XB
-nh
+Et
 ms
 Sq
 be
@@ -42710,10 +42735,10 @@ SD
 Qg
 CI
 Dx
-Et
 Fk
 Gd
 GK
+Qh
 HA
 Mg
 EF
@@ -42967,7 +42992,7 @@ Pk
 RA
 RA
 RG
-RL
+Qm
 Ry
 RR
 Ss
@@ -43100,7 +43125,7 @@ eI
 fp
 mT
 dx
-Rx
+nh
 dV
 fy
 fy

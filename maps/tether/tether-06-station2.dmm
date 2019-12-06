@@ -318,6 +318,7 @@
 /obj/effect/floor_decal/corner/red/bordercorner2{
 	dir = 5
 	},
+/obj/machinery/camera/network/security,
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
 "aI" = (
@@ -553,6 +554,10 @@
 	name = "Cell 2 Door";
 	pixel_x = -28;
 	req_access = list(1,2)
+	},
+/obj/machinery/camera/network/security{
+	icon_state = "camera";
+	dir = 5
 	},
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
@@ -13323,48 +13328,13 @@
 /turf/simulated/floor/plating,
 /area/medical/resleeving)
 "tU" = (
-/obj/structure/closet{
-	name = "spare clothes"
-	},
-/obj/item/clothing/under/color/black,
-/obj/item/clothing/under/color/black,
-/obj/item/clothing/under/color/black,
-/obj/item/clothing/under/color/grey,
-/obj/item/clothing/under/color/white,
-/obj/item/clothing/under/color/blue,
-/obj/item/clothing/under/color/green,
-/obj/item/clothing/under/color/lightpurple,
-/obj/item/clothing/under/color/yellow,
-/obj/item/clothing/under/color/lightred,
-/obj/item/clothing/shoes/black,
-/obj/item/clothing/shoes/black,
-/obj/item/clothing/shoes/black,
-/obj/item/clothing/shoes/black,
-/obj/item/clothing/shoes/white,
-/obj/item/clothing/shoes/blue,
-/obj/item/clothing/shoes/green,
-/obj/item/clothing/shoes/purple,
-/obj/item/clothing/shoes/yellow,
-/obj/item/clothing/shoes/red,
-/obj/item/device/radio/headset,
-/obj/item/device/radio/headset,
-/obj/item/device/radio/headset,
-/obj/item/device/radio/headset,
-/obj/item/device/radio/headset,
-/obj/item/device/radio/headset,
-/obj/item/device/radio/headset,
-/obj/item/device/radio/headset,
-/obj/item/device/radio/headset,
-/obj/item/device/radio/headset,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 9
 	},
-/obj/machinery/computer/guestpass{
-	pixel_y = 32
-	},
+/obj/machinery/vending/loadout/uniform,
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
 "tV" = (
@@ -15004,6 +14974,11 @@
 /obj/machinery/light,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
+/obj/machinery/computer/guestpass{
+	dir = 1;
+	icon_state = "guest";
+	pixel_y = -28
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
 "wG" = (
@@ -15171,28 +15146,27 @@
 /turf/simulated/floor,
 /area/maintenance/station/micro)
 "wS" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/maintenance/command{
+	req_access = list(19)
+	},
+/turf/simulated/floor,
+/area/maintenance/station/micro)
+"wT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/airlock/maintenance/common,
-/turf/simulated/floor,
-/area/maintenance/station/micro)
-"wT" = (
+/obj/machinery/door/airlock/maintenance/command{
+	req_access = list(19)
+	},
 /obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/maintenance/common,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
 /turf/simulated/floor,
 /area/maintenance/station/micro)
 "wU" = (
@@ -15213,6 +15187,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/exam_room)
+"wV" = (
+/obj/machinery/alarm{
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/turf/simulated/floor,
+/area/maintenance/station/micro)
 "wZ" = (
 /obj/effect/landmark/start{
 	name = "Medical Doctor"
@@ -34261,7 +34243,7 @@ yJ
 yJ
 yJ
 yJ
-wS
+wT
 sB
 ac
 ac
@@ -34969,7 +34951,7 @@ sF
 sF
 yJ
 eT
-eT
+wV
 yJ
 yG
 sB
@@ -35112,7 +35094,7 @@ xr
 wQ
 wR
 wR
-wT
+wS
 yI
 sB
 ac

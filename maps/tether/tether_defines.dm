@@ -19,7 +19,8 @@
 #define Z_LEVEL_AEROSTAT					18
 #define Z_LEVEL_AEROSTAT_SURFACE			19
 #define Z_LEVEL_DEBRISFIELD					20
-#define Z_LEVEL_SPACE_HULK					21
+#define Z_LEVEL_GATEWAY						21
+#define Z_LEVEL_SPACE_HULK					22
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -127,6 +128,14 @@
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
 		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
 		list("Debris Field - Z1 Space")
+		)
+
+	lateload_single_pick = list(
+		//list("Snow Outpost"),		// Unplayable mapgen,
+		//list("Zoo"),				// Too big. way, way too big
+		list("Carp Farm"),
+		list("Snow Field"),
+		list("Listening Post")
 		)
 
 	ai_shell_restricted = TRUE

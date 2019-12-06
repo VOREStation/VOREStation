@@ -167,7 +167,6 @@
 	name = "Away Mission - Debris Field"
 	z = Z_LEVEL_DEBRISFIELD
 
-
 #include "space_hulk/spacehulk.dm"
 #include "space_hulk/pois/_templates.dm"
 #include "space_hulk/pois/space_hulk_things.dm"
@@ -186,6 +185,53 @@
 	z = Z_LEVEL_SPACE_HULK
 
 
+
+//////////////////////////////////////////////////////////////////////////////////////
+// Gateway submaps go here
+/datum/map_template/tether_lateload/gateway
+	name = "Gateway Submap"
+	desc = "Please do not use this."
+	mappath = null
+	associated_map_datum = null
+
+/datum/map_z_level/tether_lateload/gateway_destination
+	name = "Gateway Destination"
+	z = Z_LEVEL_GATEWAY
+
+#include "gateway/snow_outpost.dm"
+/datum/map_template/tether_lateload/gateway/snow_outpost
+	name = "Snow Outpost"
+	desc = "Big snowy area with various outposts."
+	mappath = 'gateway/snow_outpost.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+#include "gateway/zoo.dm"
+/datum/map_template/tether_lateload/gateway/zoo
+	name = "Zoo"
+	desc = "Gigantic space zoo"
+	mappath = 'gateway/zoo.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+#include "gateway/carpfarm.dm"
+/datum/map_template/tether_lateload/gateway/carpfarm
+	name = "Carp Farm"
+	desc = "Asteroid base surrounded by carp"
+	mappath = 'gateway/carpfarm.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+#include "gateway/snowfield.dm"
+/datum/map_template/tether_lateload/gateway/snowfield
+	name = "Snow Field"
+	desc = "An old base in middle of snowy wasteland"
+	mappath = 'gateway/snowfield.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+#include "gateway/listeningpost.dm"
+/datum/map_template/tether_lateload/gateway/listeningpost
+	name = "Listening Post"
+	desc = "Asteroid-bound mercenary listening post"
+	mappath = 'gateway/listeningpost.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like

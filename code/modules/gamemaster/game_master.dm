@@ -15,12 +15,21 @@
 	var/next_action = 0					// Minimum amount of time of nothingness until the GM can pick something again.
 	var/last_department_used = null		// If an event was done for a specific department, it is written here, so it doesn't do it again.
 
-
 /datum/game_master/New()
 	..()
 	available_actions = init_subtypes(/datum/gm_action)
 	for(var/datum/gm_action/action in available_actions)
 		action.gm = src
+
+	var/config_setup_delay = TRUE
+	spawn(0)
+		while(config_setup_delay)
+			if(config)
+				config_setup_delay = FALSE
+				if(config.enable_game_master)
+					suspended = FALSE
+			else
+				sleep(30 SECONDS)
 
 /datum/game_master/process()
 	if(ticker && ticker.current_state == GAME_STATE_PLAYING && !suspended)

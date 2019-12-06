@@ -91,7 +91,7 @@
 		return
 	if(!my_kin.mend_other())
 		my_kin.energy += cost //Refund due to abort
-
+/*
 /datum/modifier/shadekin/heal_boop
 	name = "Shadekin Regen"
 	desc = "You feel serene and well rested."
@@ -110,6 +110,7 @@
 	holder.adjustToxLoss(-2)
 	holder.adjustOxyLoss(-2)
 	holder.adjustCloneLoss(-2)
+*/
 /////////////////////////////////////////////////////////////////
 /obj/effect/shadekin_ability/create_shade
 	ability_name = "Create Shade"
@@ -122,6 +123,7 @@
 	if(!..())
 		return
 	my_kin.add_modifier(/datum/modifier/shadekin/create_shade,20 SECONDS)
+/*
 /datum/modifier/shadekin/create_shade
 	name = "Shadekin Shadegen"
 	desc = "Darkness envelops you."
@@ -151,6 +153,7 @@
 	holder.glow_color = initial(holder.glow_color)
 	holder.set_light(0)
 	my_kin = null
+*/
 /*
 /////////////////////////////////////////////////////////////////
 /obj/effect/shadekin_ability/energy_feast

@@ -385,6 +385,11 @@
 ///Return 1 for movement 0 for none
 /mob/proc/Process_Spacemove(var/check_drift = 0)
 
+	//VOREStation Edit begin: SHADEKIN
+	if(shadekin_phasing_check())
+		return
+	//VOREStation Edit end: SHADEKIN
+
 	if(!Check_Dense_Object()) //Nothing to push off of so end here
 		update_floating(0)
 		return 0

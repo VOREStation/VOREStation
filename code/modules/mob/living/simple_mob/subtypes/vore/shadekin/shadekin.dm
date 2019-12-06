@@ -1,8 +1,3 @@
-/datum/category_item/catalogue/fauna/shadekin		//TODO: VIRGO_LORE_WRITING_WIP
-	name = "Sapients - Shadekin"
-	desc = ""
-	value = CATALOGUER_REWARD_EASY
-
 /mob/living/simple_mob/shadekin //Spawning the prototype spawns a random one, see initialize()
 	name = "shadekin"
 	desc = "Some sort of fluffer. Big ears, long tail."
@@ -41,9 +36,9 @@
 
 	say_list_type = /datum/say_list/shadekin
 
-	response_help = "pets the"
-	response_disarm = "bops the"
-	response_harm = "hits the"
+	response_help = "pets"
+	response_disarm = "bops"
+	response_harm = "hits"
 
 	attacktext = list("mauled","slashed","clawed")
 	friendly = list("boops", "pawbs", "mars softly at", "sniffs on")
@@ -449,14 +444,3 @@
 	say_maybe_target = list("...mar?")
 	say_got_target = list("MAR!!!")
 	//reactions = list("Mar?" = "Marrr!", "Mar!" = "Marrr???", "Mar." = "Marrr.")
-
-/datum/language/shadekin
-	name = "Shadekin Empathy"
-	desc = "Shadekin seem to always know what the others are thinking. This is probably why."
-	colour = "changeling"
-	speech_verb = "mars"
-	ask_verb = "mars"
-	exclaim_verb = "mars"
-	key = "m"
-	machine_understands = 0
-	flags = WHITELISTED | HIVEMIND

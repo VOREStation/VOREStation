@@ -157,6 +157,12 @@
 	overlays |= plant_icon
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/Crossed(var/mob/living/M)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = M
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	if(seed && seed.get_trait(TRAIT_JUICY) == 2)
 		if(istype(M))
 
