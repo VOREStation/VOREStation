@@ -6901,12 +6901,12 @@
 /obj/item/weapon/shield/energy,
 /obj/item/weapon/shield/energy,
 /obj/item/weapon/shield/energy,
-/obj/item/weapon/melee/energy/sword,
-/obj/item/weapon/melee/energy/sword,
-/obj/item/weapon/melee/energy/sword,
-/obj/item/weapon/melee/energy/sword,
-/obj/item/weapon/melee/energy/sword,
-/obj/item/weapon/melee/energy/sword,
+/obj/item/weapon/melee/energy/sword/red,
+/obj/item/weapon/melee/energy/sword/red,
+/obj/item/weapon/melee/energy/sword/red,
+/obj/item/weapon/melee/energy/sword/red,
+/obj/item/weapon/melee/energy/sword/red,
+/obj/item/weapon/melee/energy/sword/red,
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 5;
 	pixel_y = 32
