@@ -14,7 +14,10 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/shadekin)
 
 	language = LANGUAGE_SHADEKIN
-	assisted_langs = list()
+	name_language = LANGUAGE_SHADEKIN
+	species_language = LANGUAGE_SHADEKIN
+	secondary_langs = list(LANGUAGE_SHADEKIN)
+	num_alternate_languages = 3
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws/shadekin, /datum/unarmed_attack/bite/sharp/shadekin)
 	rarity_value = 15	//INTERDIMENSIONAL FLUFFERS
 
@@ -50,6 +53,8 @@
 	blood_color = "#A10808"
 	base_color = "#f0f0f0"
 	color_mult = 1
+
+	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 	has_glowing_eyes = TRUE
 

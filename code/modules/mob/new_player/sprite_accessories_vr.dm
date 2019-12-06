@@ -8,7 +8,7 @@
 
 	//var/icon_add = 'icons/mob/human_face.dmi' //Already defined in sprite_accessories.dm line 49.
 	var/color_blend_mode = ICON_MULTIPLY
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_ZORREN_FLAT, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN) //This lets all races use the default hairstyles.
+	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_ZORREN_FLAT, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW) //This lets all races use the default hairstyles.
 
 	astolfo
 		name = "Astolfo"
@@ -481,7 +481,7 @@
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
 		icon_state = "shadekin_short"
-		species_allowed = list(SPECIES_SHADEKIN)
+		species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
 		gender = NEUTER
 
 	shadekin_hair_poofy
@@ -489,7 +489,7 @@
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
 		icon_state = "shadekin_poofy"
-		species_allowed = list(SPECIES_SHADEKIN)
+		species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
 		gender = NEUTER
 
 	shadekin_hair_long
@@ -497,7 +497,7 @@
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
 		icon_state = "shadekin_long"
-		species_allowed = list(SPECIES_SHADEKIN)
+		species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
 		gender = NEUTER
 
 	shadekin_hair_rivyr
@@ -506,7 +506,7 @@
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
 		icon_state = "shadekin_rivyr"
 		ckeys_allowed = list("verysoft")
-		species_allowed = list(SPECIES_SHADEKIN)
+		species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
 		gender = NEUTER
 
 /datum/sprite_accessory/facial_hair
@@ -1096,7 +1096,7 @@
 		name = "Heterochromia"
 		icon_state = "heterochromia"
 		body_parts = list(BP_HEAD)
-		species_allowed = list(SPECIES_HUMAN, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_ZORREN_FLAT, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN) //This lets all races use the default hairstyles.
+		species_allowed = list(SPECIES_HUMAN, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_ZORREN_FLAT, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST) //This lets all races use the default hairstyles.
 
 	werewolf_nose
 		name = "Werewolf nose"
@@ -1135,4 +1135,4 @@
 		icon_state = "shadekin-snoot"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
-		species_allowed = list(SPECIES_SHADEKIN)
+		species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
