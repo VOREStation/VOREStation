@@ -279,12 +279,10 @@ datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/u
 	flags = NOBLOODY
 	var/active = 0
 
-/obj/item/weapon/holo/esword/green
-	New()
+/obj/item/weapon/holo/esword/green/New()
 		lcolor = "#008000"
 
-/obj/item/weapon/holo/esword/red
-	New()
+/obj/item/weapon/holo/esword/red/New()
 		lcolor = "#FF0000"
 
 /obj/item/weapon/holo/esword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
@@ -338,24 +336,6 @@ datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/u
 		var/mob/living/carbon/human/H = usr
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
-
-/obj/item/weapon/holo/esword/AltClick(mob/living/user)
-	if(!in_range(src, user))	//Basic checks to prevent abuse
-		return
-	if(user.incapacitated() || !istype(user))
-		to_chat(user, "<span class='warning'>You can't do that right now!</span>")
-		return
-
-	if(alert("Are you sure you want to recolor your blade?", "Confirm Recolor", "Yes", "No") == "Yes")
-		var/energy_color_input = input(usr,"","Choose Energy Color",lcolor) as color|null
-		if(energy_color_input)
-			lcolor = sanitize_hexcolor(energy_color_input)
-		update_icon()
-
-
-/obj/item/weapon/holo/esword/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Alt-click to recolor it.</span>")
 
 //BASKETBALL OBJECTS
 
