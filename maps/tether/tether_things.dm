@@ -317,6 +317,10 @@ var/global/list/latejoin_tram   = list()
 	name = "dorm seven holodeck control"
 	projection_area = /area/crew_quarters/sleep/Dorm_7/holo
 
+/obj/machinery/computer/HolodeckControl/holodorm/warship
+	name = "warship holodeck control"
+	projection_area = /area/mothership/holodeck/holo
+
 // Small Ship Holodeck
 /obj/machinery/computer/HolodeckControl/houseboat
 	projection_area = /area/houseboat/holodeck_area
