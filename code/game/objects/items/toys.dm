@@ -275,7 +275,7 @@
 			src.w_class = ITEMSIZE_LARGE
 		else
 			user << "<span class='notice'>You push the plastic blade back down into the handle.</span>"
-			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1
+			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 			src.item_state = "[icon_state]"
 			src.w_class = ITEMSIZE_SMALL
 		update_icon()
