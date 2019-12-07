@@ -4,5 +4,5 @@
 	icon_state = "impsword"
 	icon = 'icons/obj/weapons_vr.dmi'
 	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi')
-    colorable = FALSE
-    lcolor = "#FFFFFF"
+	colorable = FALSE
+	lcolor = "#FFFFFF"
