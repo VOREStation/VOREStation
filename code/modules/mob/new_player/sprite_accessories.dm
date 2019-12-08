@@ -65,24 +65,35 @@
 		name = "Big Afro"
 		icon_state = "hair_bigafro"
 
+	amazon
+		name = "Amazon"
+		icon_state = "hair_amazon"
+		flags = HAIR_TIEABLE
+
+	antenna
+		name = "Antenna"
+		icon_state = "hair_antenna"
+
 	bald
 		name = "Bald"
 		icon_state = "bald"
-		gender = MALE
 		flags = HAIR_VERY_SHORT
 		species_allowed = list(SPECIES_HUMAN,SPECIES_UNATHI,SPECIES_PROMETHEAN,SPECIES_HUMAN_VATBORN,SPECIES_VOX)
 
 	baldfade
 		name = "Balding Fade"
 		icon_state = "hair_baldfade"
-		gender = MALE
 		flags = HAIR_VERY_SHORT
 
 	balding
 		name = "Balding Hair"
 		icon_state = "hair_e"
-		gender = MALE
 		flags = HAIR_VERY_SHORT
+
+	beachwave
+		name = "Beach Waves"
+		icon_state = "hair_beachwave"
+		flags = HAIR_TIEABLE
 
 	bedhead
 		name = "Bedhead"
@@ -147,6 +158,10 @@
 		name = "Bowl 2"
 		icon_state = "hair_bowlcut2"
 
+	bowlcut2
+		name = "Bowl, Overeye"
+		icon_state = "hair_overeyebowl"
+
 	grandebraid
 		name = "Braid Grande"
 		icon_state = "hair_grande"
@@ -167,9 +182,20 @@
 		icon_state = "hair_braid"
 		flags = HAIR_TIEABLE
 
+	front_braid
+		name = "Braided front"
+		icon_state = "hair_braidfront"
+		flags = HAIR_TIEABLE
+
+	braidtail
+		name = "Braided Tail"
+		icon_state = "hair_braidtail"
+		flags = HAIR_TIEABLE
+
 	bun
 		name = "Bun"
 		icon_state = "hair_bun"
+		flags = HAIR_TIEABLE
 
 	bun2
 		name = "Bun 2"
@@ -179,9 +205,9 @@
 		name = "Bun 3"
 		icon_state = "hair_bun3"
 
-	bun
-		name = "Bun Casual"
-		icon_state = "hair_bun"
+	bunhead
+		name = "Bun Head "
+		icon_state = "hair_bunhead"
 		flags = HAIR_TIEABLE
 
 	doublebun
@@ -192,14 +218,38 @@
 	tightbun
 		name = "Bun Tight"
 		icon_state = "hair_tightbun"
-		gender = FEMALE
 		flags = HAIR_VERY_SHORT | HAIR_TIEABLE
+
+	business
+		name = "Business Hair"
+		icon_state = "hair_business"
+		flags = HAIR_VERY_SHORT
+
+	business2
+		name = "Business Hair 2"
+		icon_state = "hair_business2"
+		flags = HAIR_VERY_SHORT
+
+	business3
+		name = "Business Hair 3"
+		icon_state = "hair_business3"
+		flags = HAIR_VERY_SHORT
+
+	business4
+		name = "Business Hair 4"
+		icon_state = "hair_business4"
+		flags = HAIR_VERY_SHORT
 
 	buzz
 		name = "Buzzcut"
 		icon_state = "hair_buzzcut"
 		flags = HAIR_VERY_SHORT
 		species_allowed = list(SPECIES_HUMAN,SPECIES_PROMETHEAN,SPECIES_HUMAN_VATBORN,SPECIES_UNATHI)
+
+	celebcurls
+		name = "Celeb Curls"
+		icon_state = "hair_celebcurls"
+		flags = HAIR_TIEABLE
 
 	crono
 		name = "Chrono"
@@ -245,6 +295,10 @@
 	devillock
 		name = "Devil Lock"
 		icon_state = "hair_devilock"
+
+	donutbun
+		name = "Donut Bun"
+		icon_state = "hair_donutbun"
 
 	dreadlocks
 		name = "Dreadlocks"
@@ -350,6 +404,11 @@
 		icon_state = "hair_gentle"
 		flags = HAIR_TIEABLE
 
+	gentle
+		name = "Gentle 2, Long"
+		icon_state = "hair_gentle2long"
+		flags = HAIR_TIEABLE
+
 	glossy
 		name = "Glossy"
 		icon_state = "hair_glossy"
@@ -373,6 +432,11 @@
 		icon_state = "hair_himecut"
 		flags = HAIR_TIEABLE
 
+	himeup
+		name = "Hime Updo"
+		icon_state = "hair_himeup"
+		flags = HAIR_TIEABLE
+
 	shorthime
 		name = "Hime Cut Short"
 		icon_state = "hair_shorthime"
@@ -390,6 +454,12 @@
 		name = "Jensen"
 		icon_state = "hair_jensen"
 
+
+	jessica
+		name = "Jessica"
+		icon_state = "hair_jessica"
+		flags = HAIR_TIEABLE
+
 	joestar
 		name = "Joestar"
 		icon_state = "hair_joestar"
@@ -398,6 +468,10 @@
 		name = "Kagami"
 		icon_state = "hair_kagami"
 		flags = HAIR_TIEABLE
+
+	keanu
+		name = "Keanu Hair"
+		icon_state = "hair_keanu"
 
 	kusangi
 		name = "Kusanagi Hair"
@@ -423,15 +497,33 @@
 		icon_state = "hair_longeralt2"
 		flags = HAIR_TIEABLE
 
+	sidepartlongalt
+		name = "Long Side Part"
+		icon_state = "hair_longsidepart"
+		flags = HAIR_TIEABLE
+
 	longest
 		name = "Very Long Hair"
 		icon_state = "hair_longest"
+		flags = HAIR_TIEABLE
+
+	lowbraid
+		name = "Low Braid"
+		icon_state = "hair_hbraid"
 		flags = HAIR_TIEABLE
 
 	manbun
 		name = "Manbun"
 		icon_state = "hair_manbun"
 		flags = HAIR_TIEABLE
+
+	marysue
+		name = "Mary Sue"
+		icon_state = "hair_marysue"
+
+	miles
+		name = "Miles Hair"
+		icon_state = "hair_miles"
 
 	modern
 		name = "Modern"
@@ -512,6 +604,11 @@
 		name = "Parted Alt"
 		icon_state = "hair_partedalt"
 
+
+	pixie
+		name = "Pixie Cut"
+		icon_state = "hair_pixie"
+
 	pompadour
 		name = "Pompadour"
 		icon_state = "hair_pompadour"
@@ -570,6 +667,10 @@
 		icon_state = "hair_poofy2"
 		flags = HAIR_TIEABLE
 
+	proper
+		name = "Proper"
+		icon_state = "hair_proper"
+
 	quiff
 		name = "Quiff"
 		icon_state = "hair_quiff"
@@ -579,6 +680,11 @@
 		icon_state = "hair_nofade"
 		gender = MALE
 		flags = HAIR_VERY_SHORT
+
+	newyou
+		name = "New You"
+		icon_state = "hair_newyou"
+		flags = HAIR_TIEABLE
 
 	ronin
 		name = "Ronin"
@@ -666,6 +772,11 @@
 		icon_state = "hair_tressshoulder"
 		flags = HAIR_TIEABLE
 
+	sideundercut
+		name = "Side Undercut"
+		icon_state = "hair_sideundercut"
+		flags = HAIR_VERY_SHORT
+
 	skinhead
 		name = "Skinhead"
 		icon_state = "hair_skinhead"
@@ -676,10 +787,24 @@
 		icon_state = "hair_sleeze"
 		flags = HAIR_VERY_SHORT
 
+	protagonist
+		name = "Slightly Long"
+		icon_state = "hair_protagonist"
+		flags = HAIR_TIEABLE
+
 	spiky
 		name = "Spiky"
 		icon_state = "hair_spikey"
 		species_allowed = list(SPECIES_HUMAN,SPECIES_PROMETHEAN,SPECIES_HUMAN_VATBORN,SPECIES_UNATHI)
+
+	straightlong
+		name = "Straight Long"
+		icon_state = "hair_straightlong"
+		flags = HAIR_TIEABLE
+
+	sweepshave
+		name = "Sweep Shave"
+		icon_state = "hair_sweepshave"
 
 	thinning
 		name = "Thinning"
@@ -748,6 +873,10 @@
 	vegeta
 		name = "Vegeta"
 		icon_state = "hair_toriyama2"
+
+	vivi
+		name = "Vivi"
+		icon_state = "hair_vivi"
 
 	volaju
 		name = "Volaju"
