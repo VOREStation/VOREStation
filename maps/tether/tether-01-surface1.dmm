@@ -9851,8 +9851,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock{
-	id_tag = "spacedorm1";
-	name = "Room 1"
+	id_tag = "dorm2";
+	name = "Room 2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
