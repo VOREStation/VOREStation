@@ -17880,6 +17880,7 @@
 /area/mothership/processing)
 "GC" = (
 /obj/machinery/door/airlock/voidcraft/vertical{
+	glass = 0;
 	opacity = 1
 	},
 /obj/structure/cable/cyan{
@@ -18552,6 +18553,7 @@
 /area/mothership/armory)
 "Ij" = (
 /obj/machinery/door/airlock/voidcraft/vertical{
+	glass = 0;
 	id_tag = "ship-dorm5-door";
 	opacity = 1
 	},
@@ -18916,6 +18918,7 @@
 /area/mothership/armory)
 "IW" = (
 /obj/machinery/door/airlock/voidcraft/vertical{
+	glass = 0;
 	id_tag = "ship-dorm3-door";
 	opacity = 1
 	},
@@ -19272,6 +19275,7 @@
 /area/mothership/security)
 "JH" = (
 /obj/machinery/door/airlock/voidcraft/vertical{
+	glass = 0;
 	opacity = 1
 	},
 /obj/structure/cable/cyan{
@@ -21344,6 +21348,7 @@
 /area/mothership/telecomms1)
 "Or" = (
 /obj/machinery/door/airlock/voidcraft/vertical{
+	glass = 0;
 	id_tag = "ship-dorm2-door";
 	opacity = 1
 	},
@@ -22049,6 +22054,7 @@
 /area/mothership/bathroom1)
 "PF" = (
 /obj/machinery/door/airlock/voidcraft/vertical{
+	glass = 0;
 	id_tag = "ship-dorm4-door";
 	opacity = 1
 	},
@@ -23693,6 +23699,7 @@
 /area/mothership/warden)
 "TA" = (
 /obj/machinery/door/airlock/voidcraft/vertical{
+	glass = 0;
 	id_tag = "ship-dorm6-door";
 	opacity = 1
 	},
@@ -25848,6 +25855,7 @@
 /area/mothership/hydroponics)
 "Yj" = (
 /obj/machinery/door/airlock/voidcraft/vertical{
+	glass = 0;
 	id_tag = "ship-dorm1-door";
 	opacity = 1
 	},

@@ -417,8 +417,8 @@
 	req_one_access = list(access_cent_specops)
 
 /datum/shuttle/web_shuttle/specialops
-	name = "Special Operations Shuttle"
-	visible_name = "Special Operations Shuttle"
+	name = "NDV Phantom"
+	visible_name = "NDV Phantom"
 	current_area = /area/shuttle/specialops/centcom
 	docking_controller_tag = "specops_shuttle_hatch"
 	web_master_type = /datum/shuttle_web_master/specialops
