@@ -1465,6 +1465,14 @@
 		body_parts = list(BP_TORSO)
 		species_allowed = list(SPECIES_UNATHI)
 
+	//Tesh stuff.
+
+	teshi_fluff
+		name = "Underfluff (Teshari)"
+		icon_state = "teshi_fluff"
+		body_parts = list(BP_HEAD, BP_TORSO, BP_GROIN, BP_R_LEG, BP_L_LEG)
+		species_allowed = list(SPECIES_TESHARI)
+
 //skin styles - WIP
 //going to have to re-integrate this with surgery
 //let the icon_state hold an icon preview for now
