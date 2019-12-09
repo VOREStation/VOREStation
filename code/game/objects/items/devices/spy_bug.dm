@@ -60,7 +60,7 @@
 	name = "broken bug"
 	desc = ""	//Even when it's broken it's inconspicuous
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "eshield0"
+	icon_state = "eshield"
 	item_state = "nothing"
 	layer = TURF_LAYER+0.2
 	w_class = ITEMSIZE_TINY
@@ -75,7 +75,7 @@
 	name = "bug"
 	desc = ""	//Nothing to see here
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "eshield0"
+	icon_state = "eshield"
 	item_state = "nothing"
 	layer = TURF_LAYER+0.2
 	w_class = ITEMSIZE_TINY

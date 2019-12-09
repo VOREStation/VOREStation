@@ -49,6 +49,32 @@
 /mob/living/bot/medbot/handleAdjacentTarget()
 	UnarmedAttack(target)
 
+/mob/living/bot/medbot/handlePanic()	// Speed modification based on alert level.
+	. = 0
+	switch(get_security_level())
+		if("green")
+			. = 0
+
+		if("yellow")
+			. = 0
+
+		if("violet")
+			. = 1
+
+		if("orange")
+			. = 0
+
+		if("blue")
+			. = 1
+
+		if("red")
+			. = 2
+
+		if("delta")
+			. = 2
+
+	return .
+
 /mob/living/bot/medbot/lookForTargets()
 	for(var/mob/living/carbon/human/H in view(7, src)) // Time to find a patient!
 		if(confirmTarget(H))

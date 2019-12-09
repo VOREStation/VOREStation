@@ -3,7 +3,7 @@
 /turf/unsimulated/wall/planetary/sif,
 /area/awaymission/snowfield/restricted)
 "ab" = (
-/turf/snow/snow2{
+/turf/simulated/floor/outdoors/snow{
 	nitrogen = 93.7835;
 	oxygen = 20.7263;
 	temperature = 243.15
@@ -11,21 +11,21 @@
 /area/awaymission/snowfield/restricted)
 "ac" = (
 /obj/effect/blocker,
-/turf/snow/snow2{
+/turf/simulated/floor/outdoors/snow{
 	nitrogen = 93.7835;
 	oxygen = 20.7263;
 	temperature = 243.15
 	},
 /area/awaymission/snowfield/restricted)
 "ad" = (
-/turf/snow/snow2{
+/turf/simulated/floor/outdoors/snow{
 	nitrogen = 93.7835;
 	oxygen = 20.7263;
 	temperature = 243.15
 	},
 /area/awaymission/snowfield/outside)
 "ae" = (
-/turf/snow/snow2{
+/turf/simulated/floor/outdoors/snow{
 	nitrogen = 93.7835;
 	oxygen = 20.7263;
 	temperature = 243.15
@@ -33,7 +33,7 @@
 /area/awaymission/snowfield)
 "af" = (
 /obj/effect/landmark/gateway_scatter,
-/turf/snow/snow2{
+/turf/simulated/floor/outdoors/snow{
 	nitrogen = 93.7835;
 	oxygen = 20.7263;
 	temperature = 243.15
@@ -41,14 +41,14 @@
 /area/awaymission/snowfield)
 "ag" = (
 /obj/machinery/light/small,
-/turf/snow/snow2{
+/turf/simulated/floor/outdoors/snow{
 	nitrogen = 93.7835;
 	oxygen = 20.7263;
 	temperature = 243.15
 	},
 /area/awaymission/snowfield/base)
 "ah" = (
-/turf/snow/snow2{
+/turf/simulated/floor/outdoors/snow{
 	nitrogen = 93.7835;
 	oxygen = 20.7263;
 	temperature = 243.15
@@ -108,7 +108,6 @@
 	input_level = 250000;
 	inputting = 1;
 	output_level = 250000;
-	RCon_tag = "Telecommunications Satellite"
 	},
 /obj/structure/cable{
 	icon_state = "0-2";
@@ -1369,13 +1368,6 @@
 /obj/effect/decal/remains/human,
 /turf/simulated/floor/tiled/neutral,
 /area/awaymission/snowfield/base)
-"dT" = (
-/turf/snow/snow2{
-	nitrogen = 93.7835;
-	oxygen = 20.7263;
-	temperature = 243.15
-	},
-/area/shuttle/awaymission/oldengbase)
 "dU" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/effect/decal/remains/human,
@@ -13521,7 +13513,7 @@ ad
 ad
 ad
 ad
-dT
+ad
 ad
 ad
 ad

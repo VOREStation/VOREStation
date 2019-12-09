@@ -167,7 +167,7 @@
 	clip_mask_icon = null
 	clip_mask_state = null
 	apply_restrictions = TRUE
-	species_allowed = list(SPECIES_SHADEKIN)
+	species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
 
 /datum/sprite_accessory/tail/taur/shadekin_tail/shadekin_tail_2c
 	name = "Shadekin Tail dual-color (Shadekin)"
@@ -184,10 +184,21 @@
 	icon_state = "wolf_s"
 	suit_sprites = 'icons/mob/taursuits_wolf_vr.dmi'
 
+//TFF 22/11/19 - CHOMPStation port of fat taur sprites
+/datum/sprite_accessory/tail/taur/fatwolf
+	name = "Fat Wolf (Taur)"
+	icon_state = "fatwolf_s"
+
 /datum/sprite_accessory/tail/taur/wolf/wolf_2c
 	name = "Wolf dual-color (Taur)"
 	icon_state = "wolf_s"
 	extra_overlay = "wolf_markings"
+
+//TFF 22/11/19 - CHOMPStation port of fat taur sprites
+/datum/sprite_accessory/tail/taur/wolf/fatwolf_2c
+	name = "Fat Wolf dual-color (Taur)"
+	icon_state = "fatwolf_s"
+	extra_overlay = "fatwolf_markings"
 
 /datum/sprite_accessory/tail/taur/wolf/synthwolf
 	name = "SynthWolf dual-color (Taur)"
@@ -360,10 +371,26 @@
 	name = "Feline (Taur)"
 	icon_state = "feline_s"
 
+//TFF 22/11/19 - CHOMPStation port of fat taur sprites
+/datum/sprite_accessory/tail/taur/fatfeline
+	name = "Fat Feline (Taur)"
+	icon_state = "fatfeline_s"
+
+/datum/sprite_accessory/tail/taur/fatfeline_wag
+	name = "Fat Feline (Taur) (vwag)"
+	icon_state = "fatfeline_s"
+	ani_state = "fatfeline_w"
+
 /datum/sprite_accessory/tail/taur/feline/feline_2c
 	name = "Feline dual-color (Taur)"
 	icon_state = "feline_s"
 	extra_overlay = "feline_markings"
+
+//TFF 22/11/19 - CHOMPStation port of fat taur sprites
+/datum/sprite_accessory/tail/taur/feline/fatfeline_2c
+	name = "Fat Feline dual-color (Taur)"
+	icon_state = "fatfeline_s"
+	extra_overlay = "fatfeline_markings"
 
 /datum/sprite_accessory/tail/taur/feline/synthfeline
 	name = "SynthFeline dual-color (Taur)"

@@ -39,7 +39,7 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	apply_restrictions = TRUE
-	species_allowed = list(SPECIES_SHADEKIN)
+	species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
 
 // Ears avaliable to anyone
 
@@ -487,7 +487,7 @@
 	icon_state = "alurane-ears"
 	ckeys_allowed = list("natje")
 
-/datum/sprite_accessory/ears/elfs
+/datum/sprite_accessory/ears/frost
     name = "Frost antenna"
     desc = ""
     icon_state = "frosted_tips"
@@ -692,7 +692,7 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	apply_restrictions = TRUE
-	species_allowed = list(SPECIES_SHADEKIN)
+	species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
 
 // Everyone tails
 

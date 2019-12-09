@@ -26,6 +26,17 @@
 	light_color = "#3e0000"
 	var/obj/item/wepon = null
 
+	var/shatter_message = "The pylon shatters!"
+	var/impact_sound = 'sound/effects/Glasshit.ogg'
+	var/shatter_sound = 'sound/effects/Glassbr3.ogg'
+
+	var/activation_cooldown = 30 SECONDS
+	var/last_activation = 0
+
+/obj/structure/cult/pylon/Initialize()
+	..()
+	START_PROCESSING(SSobj, src)
+
 /obj/structure/cult/pylon/attack_hand(mob/M as mob)
 	attackpylon(M, 5)
 
@@ -44,46 +55,57 @@
 /obj/structure/cult/pylon/proc/pylonhit(var/damage)
 	if(!isbroken)
 		if(prob(1+ damage * 5))
-			visible_message("<span class='danger'>The pylon shatters!</span>")
-			playsound(get_turf(src), 'sound/effects/Glassbr3.ogg', 75, 1)
+			visible_message("<span class='danger'>[shatter_message]</span>")
+			STOP_PROCESSING(SSobj, src)
+			playsound(get_turf(src),shatter_sound, 75, 1)
 			isbroken = 1
 			density = 0
-			icon_state = "pylon-broken"
+			icon_state = "[initial(icon_state)]-broken"
 			set_light(0)
 
 /obj/structure/cult/pylon/proc/attackpylon(mob/user as mob, var/damage)
 	if(!isbroken)
 		if(prob(1+ damage * 5))
 			user.visible_message(
-				"<span class='danger'>[user] smashed the pylon!</span>",
-				"<span class='warning'>You hit the pylon, and its crystal breaks apart!</span>",
-				"You hear a tinkle of crystal shards"
+				"<span class='danger'>[user] smashed \the [src]!</span>",
+				"<span class='warning'>You hit \the [src], and its crystal breaks apart!</span>",
+				"You hear a tinkle of crystal shards."
 				)
+			STOP_PROCESSING(SSobj, src)
 			user.do_attack_animation(src)
-			playsound(get_turf(src), 'sound/effects/Glassbr3.ogg', 75, 1)
+			playsound(get_turf(src),shatter_sound, 75, 1)
 			isbroken = 1
 			density = 0
-			icon_state = "pylon-broken"
+			icon_state = "[initial(icon_state)]-broken"
 			set_light(0)
 		else
-			user << "You hit the pylon!"
-			playsound(get_turf(src), 'sound/effects/Glasshit.ogg', 75, 1)
+			user << "You hit \the [src]!"
+			playsound(get_turf(src),impact_sound, 75, 1)
 	else
 		if(prob(damage * 2))
-			user << "You pulverize what was left of the pylon!"
+			user << "You pulverize what was left of \the [src]!"
 			qdel(src)
 		else
-			user << "You hit the pylon!"
-		playsound(get_turf(src), 'sound/effects/Glasshit.ogg', 75, 1)
-
+			user << "You hit \the [src]!"
+		playsound(get_turf(src),impact_sound, 75, 1)
 
 /obj/structure/cult/pylon/proc/repair(mob/user as mob)
 	if(isbroken)
-		user << "You repair the pylon."
+		START_PROCESSING(SSobj, src)
+		user << "You repair \the [src]."
 		isbroken = 0
 		density = 1
-		icon_state = "pylon"
+		icon_state = initial(icon_state)
 		set_light(5)
+
+// Returns 1 if the pylon does something special.
+/obj/structure/cult/pylon/proc/pylon_unique()
+	last_activation = world.time
+	return 0
+
+/obj/structure/cult/pylon/process()
+	if(!isbroken && (last_activation < world.time + activation_cooldown) && pylon_unique())
+		flick("[initial(icon_state)]-surge",src)
 
 /obj/structure/cult/tome
 	name = "Desk"

@@ -129,7 +129,7 @@
 
 /obj/machinery/vending/fitness/New()
 	products += list(/obj/item/weapon/reagent_containers/food/snacks/liquidprotein = 8)
-	prices += list(/obj/item/weapon/reagent_containers/food/snacks/liquidprotein = 10)
+	prices += list(/obj/item/weapon/reagent_containers/food/snacks/liquidprotein = 5)
 	..()
 
 /obj/machinery/vending/blood

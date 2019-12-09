@@ -388,6 +388,12 @@
 /obj/structure/cable/heavyduty,
 /turf/simulated/floor/virgo3b_indoors,
 /area/tether/outpost/solars_shed)
+"aP" = (
+/obj/effect/landmark{
+	name = "bluespacerift"
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/tether/outpost/solars_outside)
 "aR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/solar_control,
@@ -24007,7 +24013,7 @@ ad
 ad
 ad
 ad
-ad
+aP
 ad
 ad
 ad

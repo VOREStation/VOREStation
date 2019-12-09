@@ -62,6 +62,8 @@
 	if(prob(1))
 		H.emote(pick("scratch","jump","roll","tail"))
 
+	..()
+
 /datum/species/monkey/get_random_name()
 	return "[lowertext(name)] ([rand(100,999)])"
 

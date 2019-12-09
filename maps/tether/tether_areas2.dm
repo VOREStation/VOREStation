@@ -1036,6 +1036,138 @@
 /area/bigship/teleporter
 	name = "Bigship Teleporter Room"
 
+//////// Mothership areas ////////
+/area/mothership
+	requires_power = 1
+	flags = RAD_SHIELDED
+	base_turf = /turf/space
+	icon_state = "blue-red2"
+
+/area/mothership/breakroom
+	name = "Warship - Breakroom"
+
+/area/mothership/hydroponics
+	name = "Warship - Hydroponics"
+
+/area/mothership/kitchen
+	name = "Warship - Kitchen"
+
+/area/mothership/eva
+	name = "Warship - EVA"
+
+/area/mothership/bathroom1
+	name = "Warship - Bathroom 1"
+
+/area/mothership/bathroom2
+	name = "Warship - Bathroom 2"
+
+/area/mothership/dorm1
+	name = "Warship - Dorm 1"
+
+/area/mothership/dorm2
+	name = "Warship - Dorm 2"
+
+/area/mothership/dorm3
+	name = "Warship - Dorm 3"
+
+/area/mothership/dorm4
+	name = "Warship - Dorm 4"
+
+/area/mothership/dorm5
+	name = "Warship - Dorm 5"
+
+/area/mothership/dorm6
+	name = "Warship - Dorm 6"
+
+/area/mothership/chemistry
+	name = "Warship - Chemistry"
+
+/area/mothership/surgery
+	name = "Warship - Surgery"
+
+/area/mothership/vault
+	name = "Warship - Vault"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
+
+/area/mothership/teleporter
+	name = "Warship - Teleporter Room"
+
+/area/mothership/security
+	name = "Warship - Security Equipment"
+
+/area/mothership/treatment
+	name = "Warship - Treatment Center"
+
+/area/mothership/medical
+	name = "Warship - Medical Equipment"
+
+/area/mothership/resleeving
+	name = "Warship - Resleeving"
+
+/area/mothership/morgue
+	name = "Warship - Morgue"
+
+/area/mothership/rnd
+	name = "Warship - Research"
+
+/area/mothership/robotics
+	name = "Warship - Robotics"
+
+/area/mothership/sechallway
+	name = "Warship - Security Hallway"
+
+/area/mothership/processing
+	name = "Warship - Processing"
+
+/area/mothership/warden
+	name = "Warship - Warden"
+
+/area/mothership/armory
+	name = "Warship - Armory"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
+
+/area/mothership/bridge
+	name = "Warship - Bridge"
+
+/area/mothership/holodeck
+	name = "Warship - Holodeck Controls"
+/area/mothership/holodeck/holo
+	name = "Warship - Holodeck"
+	icon_state = "dk_yellow"
+
+/area/mothership/cryotube
+	name = "Warship - Cryo chamber"
+
+/area/mothership/engineering
+	name = "Warship - Engineering"
+
+/area/mothership/hallway
+	name = "Warship - Main Hallway"
+
+/area/mothership/telecomms1
+	name = "Warship - Telecommunications Main"
+
+/area/mothership/telecomms2
+	name = "Warship - Telecommunications Relay"
+
+//////// Abductor Areas ////////
+/area/unknown
+	requires_power = 0
+	flags = RAD_SHIELDED
+	icon_state = "red2"
+
+/area/unknown/dorm1
+	name = "Unknown Dorm 1"
+
+/area/unknown/dorm2
+	name = "Unknown Dorm 2"
+
+/area/unknown/dorm3
+	name = "Unknown Dorm 3"
+
+/area/unknown/dorm4
+	name = "Unknown Dorm 4"
+
 //////// Small Cruiser Areas ////////
 /area/houseboat
 	name = "Small Cruiser"
@@ -1088,7 +1220,7 @@
 	name = "Small Cruiser Shuttle - Station"
 	icon_state = "blue2"
 
-
+// ERT/Deathsquad Shuttle
 /area/shuttle/specialops/centcom
 	name = "Special Operations Shuttle - Centcom"
 	icon_state = "shuttlered"
@@ -1097,6 +1229,11 @@
 /area/shuttle/specialops/tether
 	name = "Special Operations Shuttle - Tether"
 	icon_state = "shuttlered"
+
+/area/shuttle/specialops/transit
+	name = "transit"
+	icon_state = "shuttlered"
+	base_turf = /turf/space/transit/east
 
 // Tether Map has this shuttle
 /area/shuttle/tether/surface
@@ -1112,6 +1249,59 @@
 	name = "Tether Shuttle Transit"
 	icon_state = "shuttle2"
 
+//Skipjack
+
+/area/skipjack_station
+	name = "Raider Outpost"
+	icon_state = "yellow"
+	requires_power = 0
+	dynamic_lighting = 0
+	flags = RAD_SHIELDED
+	ambience = AMBIENCE_HIGHSEC
+
+/area/skipjack_station/transit
+	name = "transit"
+	icon_state = "shuttlered"
+	base_turf = /turf/space/transit/north
+
+/area/skipjack_station/orbit
+	name = "near the Tether"
+	icon_state = "northwest"
+
+/area/skipjack_station/arrivals_dock
+	name = "\improper docked with Tether"
+	icon_state = "shuttle"
+
+// Ninja areas
+/area/ninja_dojo
+	name = "\improper Ninja Base"
+	icon_state = "green"
+	requires_power = 0
+	flags = RAD_SHIELDED
+	ambience = AMBIENCE_HIGHSEC
+
+/area/ninja_dojo/dojo
+	name = "\improper Clan Dojo"
+	dynamic_lighting = 0
+
+/area/ninja_dojo/start
+	name = "\improper Clan Dojo"
+	icon_state = "shuttlered"
+	base_turf = /turf/simulated/floor/plating
+
+/area/ninja_dojo/orbit
+	name = "near the Tether"
+	icon_state = "south"
+
+/area/ninja_dojo/transit
+	name = "transit"
+	icon_state = "shuttlered"
+	base_turf = /turf/space/transit/north
+
+/area/ninja_dojo/arrivals_dock
+	name = "\improper docked with Tether"
+	icon_state = "shuttle"
+	dynamic_lighting = 0
 
 // Exclude some more areas from the atmos leak event so people don't get trapped when spawning.
 /datum/event/atmos_leak/setup()

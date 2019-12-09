@@ -12,7 +12,7 @@
 	var/closed = 0
 	var/scanning = 0
 	var/scanner_progress = 0
-	var/scanner_rate = 2.50
+	var/scanner_rate = 5
 	var/last_process_worldtime = 0
 	var/report_num = 0
 

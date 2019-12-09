@@ -23,6 +23,8 @@
 	maxHealth = 150
 	hovering = TRUE // Can fly.
 
+	projectile_dispersion = 10
+	projectile_accuracy = -30
 	projectiletype = /obj/item/projectile/beam
 	base_attack_cooldown = 2 SECONDS
 

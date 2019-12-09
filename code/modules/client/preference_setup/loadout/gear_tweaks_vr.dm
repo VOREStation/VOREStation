@@ -9,6 +9,6 @@
 
 /datum/gear_tweak/collar_tag/tweak_item(var/obj/item/clothing/accessory/collar/C, var/metadata)
 	if(metadata == "")
-		return
+		return ..()
 	else
 		C.initialize_tag(metadata)

@@ -108,3 +108,89 @@
 		list(mode_name="semiauto", burst=1, fire_delay=0, move_delay=null, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
 		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
 		)
+
+/obj/item/weapon/gun/magnetic/railgun/heater
+	name = "coil rifle"
+	desc = "A large rifle designed and produced after the Grey Hour."
+	description_info = "The MI-51B is a Martian weapon designed in the days after the Grey Hour, in preparation for the need for updated equipment by Solar forces.<br>\
+		The design is based upon a larger rail-type weapon design."
+	icon_state = "railgun_sec"
+	item_state = "cshotgun"
+
+	removable_components = TRUE
+
+	initial_cell_type = /obj/item/weapon/cell/high
+	initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor
+
+	fire_delay = 8
+
+	slot_flags = SLOT_BACK
+
+	slowdown = 0
+	slowdown_held = 0
+	slowdown_worn = 0
+
+	power_cost = 400
+	projectile_type = /obj/item/projectile/bullet/magnetic/heated
+	loaded = null
+	empty_sound = 'sound/weapons/smg_empty_alarm.ogg'
+
+	firemodes = list(
+		list(mode_name="high power", power_cost = 400, projectile_type = /obj/item/projectile/bullet/magnetic/heated, burst=1, fire_delay=8, move_delay=null, one_handed_penalty=15),
+		list(mode_name="low power", power_cost = 150, projectile_type = /obj/item/projectile/bullet/magnetic/heated/weak, burst=1, fire_delay=5, move_delay=null, one_handed_penalty=15),
+		)
+
+/obj/item/weapon/gun/magnetic/railgun/heater/pistol
+	name = "coil pistol"
+	desc = "A large pistol designed and produced after the Grey Hour."
+	description_info = "The MI-60D `Peacemaker` is a Martian weapon designed in the days after the Grey Hour, in preparation for the need for updated equipment by Solar forces.<br>\
+		The design is based upon a larger rail-type hybrid weapon design, though much smaller in scale."
+	icon_state = "peacemaker"
+	item_state = "revolver"
+
+	w_class = ITEMSIZE_NORMAL
+
+	initial_cell_type = /obj/item/weapon/cell/high
+	initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor
+
+	slot_flags = SLOT_BELT|SLOT_HOLSTER
+
+	firemodes = list(
+		list(mode_name="lethal", power_cost = 2000, projectile_type = /obj/item/projectile/bullet/magnetic/heated, burst=1, fire_delay=8, move_delay=null, one_handed_penalty=0),
+		list(mode_name="stun", power_cost = 1500, projectile_type = /obj/item/projectile/energy/electrode/stunshot, burst=1, fire_delay=5, move_delay=null, one_handed_penalty=0),
+		)
+
+/obj/item/weapon/gun/magnetic/railgun/heater/pistol/hos
+	name = "prototype peacemaker"
+
+	dna_lock = TRUE
+
+	description_antag = "This weapon starts with a DNA locking chip attached. Using an EMAG on the weapon will disarm it, and allow you to use the chip as your own."
+
+	firemodes = list(
+		list(mode_name="lethal", power_cost = 1500, projectile_type = /obj/item/projectile/bullet/magnetic/heated, burst=1, fire_delay=8, move_delay=null, one_handed_penalty=0),
+		list(mode_name="stun", power_cost = 1200, projectile_type = /obj/item/projectile/energy/electrode/stunshot, burst=1, fire_delay=5, move_delay=null, one_handed_penalty=0),
+		)
+
+/obj/item/weapon/gun/magnetic/railgun/flechette/sif
+	name = "shredder rifle"
+	desc = "The MI-12B Kaldr is a burst fire capable coilgun that fires modified slugs intended for damaging soft targets."
+	description_fluff = "The Kaldr is a weapon recently deployed to various outposts on Sif, as well as local hunting guilds for the rapid dispatching of invasive wildlife."
+	icon_state = "railgun_sifguard"
+	item_state = "z8carbine"
+
+	initial_cell_type = /obj/item/weapon/cell/high
+	initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor/adv
+
+	slot_flags = SLOT_BACK
+
+	slowdown = 0.3
+
+	power_cost = 200
+	projectile_type = /obj/item/projectile/bullet/magnetic/flechette/hunting
+	empty_sound = 'sound/weapons/smg_empty_alarm.ogg'
+
+	firemodes = list(
+		list(mode_name="semiauto", burst=1, fire_delay=0, move_delay=null, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
+		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
+		)

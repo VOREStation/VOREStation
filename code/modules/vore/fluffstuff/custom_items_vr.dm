@@ -614,9 +614,17 @@
 	no_message = "These saddlebags seem to be fitted for someone else, and keep slipping off!"
 	action_button_name = "Toggle Mlembulance Mode"
 	var/ambulance = FALSE
+	var/datum/looping_sound/ambulance/soundloop
 	var/ambulance_state = FALSE
 	var/ambulance_last_switch = 0
-	var/ambulance_volume = 25	//Allows for varediting, just in case
+
+/obj/item/weapon/storage/backpack/saddlebag/tempest/Initialize()
+	soundloop = new(list(src), FALSE)
+	return ..()
+
+/obj/item/weapon/storage/backpack/saddlebag/tempest/Destroy()
+	QDEL_NULL(soundloop)
+	return ..()
 
 /obj/item/weapon/storage/backpack/saddlebag/tempest/ui_action_click()
 	ambulance = !(ambulance)
@@ -629,9 +637,7 @@
 			M.update_inv_back()
 		ambulance_state = FALSE
 		set_light(2, 1, "#FF0000")
-		while(ambulance)
-			playsound(src.loc, 'sound/items/amulanceweeoo.ogg', ambulance_volume, 0)
-			sleep(20)
+		soundloop.start()
 	else
 		item_state = "tempestsaddlebag"
 		icon_state = "tempestbag"
@@ -639,6 +645,7 @@
 			var/mob/M = loc
 			M.update_inv_back()
 		set_light(0)
+		soundloop.stop()
 
 /obj/item/weapon/storage/backpack/saddlebag/tempest/process()
 	if(!ambulance)
@@ -654,6 +661,11 @@
 			M.update_inv_back()
 		set_light(2, 1, newlight)
 		ambulance_last_switch = world.time
+
+/datum/looping_sound/ambulance
+	mid_sounds = list('sound/items/amulanceweeoo.ogg'=1)
+	mid_length = 20
+	volume = 25
 
 //WickedTempest: Chakat Tempest
 /obj/item/weapon/implant/reagent_generator/tempest
@@ -1234,394 +1246,6 @@
 	overlay_state = "flops"
 	slot_flags = SLOT_TIE
 	slot = ACCESSORY_SLOT_DECOR
-
-//The perfect adminboos device?
-/obj/item/device/perfect_tele
-	name = "personal translocator"
-	desc = "Seems absurd, doesn't it? Yet, here we are. Generally considered dangerous contraband unless the user has permission from Central Command."
-	icon = 'icons/obj/device_alt.dmi'
-	icon_state = "hand_tele"
-	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 7)
-
-	var/cell_type = /obj/item/weapon/cell/device/weapon
-	var/obj/item/weapon/cell/power_source
-	var/charge_cost = 800 // cell/device/weapon has 2400
-
-	var/list/beacons = list()
-	var/ready = 1
-	var/beacons_left = 3
-	var/failure_chance = 5 //Percent
-	var/obj/item/device/perfect_tele_beacon/destination
-	var/datum/effect/effect/system/spark_spread/spk
-	var/list/warned_users = list()
-	var/list/logged_events = list()
-
-/obj/item/device/perfect_tele/New()
-	..()
-	flags |= NOBLUDGEON
-	if(cell_type)
-		power_source = new cell_type(src)
-	else
-		power_source = new /obj/item/weapon/cell/device(src)
-	spk = new(src)
-	spk.set_up(5, 0, src)
-	spk.attach(src)
-
-/obj/item/device/perfect_tele/Destroy()
-	// Must clear the beacon's backpointer or we won't GC. Someday maybe do something nicer even.
-	for(var/obj/item/device/perfect_tele_beacon/B in beacons)
-		B.tele_hand = null
-	beacons.Cut()
-	QDEL_NULL(power_source)
-	QDEL_NULL(spk)
-	return ..()
-
-/obj/item/device/perfect_tele/update_icon()
-	if(!power_source)
-		icon_state = "[initial(icon_state)]_o"
-	else if(ready && (power_source.check_charge(charge_cost) || power_source.fully_charged()))
-		icon_state = "[initial(icon_state)]"
-	else
-		icon_state = "[initial(icon_state)]_w"
-
-	..()
-
-/obj/item/device/perfect_tele/attack_hand(mob/user)
-	if(user.get_inactive_hand() == src && power_source)
-		to_chat(user,"<span class='notice'>You eject \the [power_source] from \the [src].</span>")
-		user.put_in_hands(power_source)
-		power_source = null
-		update_icon()
-	else
-		return ..()
-
-/obj/item/device/perfect_tele/attack_self(mob/user)
-	if(!(user.ckey in warned_users))
-		warned_users |= user.ckey
-		alert(user,"This device can be easily used to break ERP preferences due to the nature of teleporting \
-		and tele-vore. Make sure you carefully examine someone's OOC prefs before teleporting them if you are \
-		going to use this device for ERP purposes. This device records all warnings given and teleport events for \
-		admin review in case of pref-breaking, so just don't do it.","OOC WARNING")
-
-	var/choice = alert(user,"What do you want to do?","[src]","Create Beacon","Cancel","Target Beacon")
-	switch(choice)
-		if("Create Beacon")
-			if(beacons_left <= 0)
-				alert("The translocator can't support any more beacons!","Error")
-				return
-
-			var/new_name = html_encode(input(user,"New beacon's name (2-20 char):","[src]") as text|null)
-
-			if(length(new_name) > 20 || length(new_name) < 2)
-				alert("Entered name length invalid (must be longer than 2, no more than than 20).","Error")
-				return
-			if(new_name in beacons)
-				alert("No duplicate names, please. '[new_name]' exists already.","Error")
-				return
-
-			var/obj/item/device/perfect_tele_beacon/nb = new(get_turf(src))
-			nb.tele_name = new_name
-			nb.tele_hand = src
-			nb.creator = user.ckey
-			beacons[new_name] = nb
-			beacons_left--
-			if(isliving(user))
-				var/mob/living/L = user
-				L.put_in_any_hand_if_possible(nb)
-
-		if("Target Beacon")
-			if(!beacons.len)
-				to_chat(user,"<span class='warning'>\The [src] doesn't have any beacons!</span>")
-			else
-				var/target = input("Which beacon do you target?","[src]") in beacons|null
-				if(target && (target in beacons))
-					destination = beacons[target]
-					to_chat(user,"<span class='notice'>Destination set to '[target]'.</span>")
-		else
-			return
-
-/obj/item/device/perfect_tele/attackby(obj/W, mob/user)
-	if(istype(W,cell_type) && !power_source)
-		power_source = W
-		power_source.update_icon() //Why doesn't a cell do this already? :|
-		user.unEquip(power_source)
-		power_source.forceMove(src)
-		to_chat(user,"<span class='notice'>You insert \the [power_source] into \the [src].</span>")
-		update_icon()
-
-	else if(istype(W,/obj/item/device/perfect_tele_beacon))
-		var/obj/item/device/perfect_tele_beacon/tb = W
-		if(tb.tele_name in beacons)
-			to_chat(user,"<span class='notice'>You re-insert \the [tb] into \the [src].</span>")
-			beacons -= tb.tele_name
-			user.unEquip(tb)
-			qdel(tb)
-			beacons_left++
-		else
-			to_chat(user,"<span class='notice'>\The [tb] doesn't belong to \the [src].</span>")
-			return
-	else
-		..()
-
-/obj/item/device/perfect_tele/proc/teleport_checks(mob/living/target,mob/living/user)
-	//Uhhuh, need that power source
-	if(!power_source)
-		to_chat(user,"<span class='warning'>\The [src] has no power source!</span>")
-		return FALSE
-
-	//Check for charge
-	if((!power_source.check_charge(charge_cost)) && (!power_source.fully_charged()))
-		to_chat(user,"<span class='warning'>\The [src] does not have enough power left!</span>")
-		return FALSE
-
-	//Only mob/living need apply.
-	if(!istype(user) || !istype(target))
-		return FALSE
-
-	//No, you can't teleport buckled people.
-	if(target.buckled)
-		to_chat(user,"<span class='warning'>The target appears to be attached to something...</span>")
-		return FALSE
-
-	//No, you can't teleport if it's not ready yet.
-	if(!ready)
-		to_chat(user,"<span class='warning'>\The [src] is still recharging!</span>")
-		return FALSE
-
-	//No, you can't teleport if there's no destination.
-	if(!destination)
-		to_chat(user,"<span class='warning'>\The [src] doesn't have a current valid destination set!</span>")
-		return FALSE
-
-	//No, you can't teleport if there's a jammer.
-	if(is_jammed(src) || is_jammed(destination))
-		to_chat(user,"<span class='warning'>\The [src] refuses to teleport you, due to strong interference!</span>")
-		return FALSE
-
-	//No, you can't port to or from away missions. Stupidly complicated check.
-	var/turf/uT = get_turf(user)
-	var/turf/dT = get_turf(destination)
-	var/list/dat = list()
-	dat["z_level_detection"] = using_map.get_map_levels(uT.z)
-
-	if(!uT || !dT)
-		return FALSE
-
-	if( (uT.z != dT.z) && (!(dT.z in dat["z_level_detection"])) )
-		to_chat(user,"<span class='warning'>\The [src] can't teleport you that far!</span>")
-		return FALSE
-
-	if(uT.block_tele || dT.block_tele)
-		to_chat(user,"<span class='warning'>Something is interfering with \the [src]!</span>")
-		return FALSE
-
-	//Seems okay to me!
-	return TRUE
-
-/obj/item/device/perfect_tele/afterattack(mob/living/target, mob/living/user, proximity)
-	//No, you can't teleport people from over there.
-	if(!proximity)
-		return
-
-	if(!teleport_checks(target,user))
-		return //The checks proc can send them a message if it wants.
-
-	//Bzzt.
-	ready = 0
-	power_source.use(charge_cost)
-
-	//Failure chance
-	if(prob(failure_chance) && beacons.len >= 2)
-		var/list/wrong_choices = beacons - destination.tele_name
-		var/wrong_name = pick(wrong_choices)
-		destination = beacons[wrong_name]
-		to_chat(user,"<span class='warning'>\The [src] malfunctions and sends you to the wrong beacon!</span>")
-
-	//Destination beacon vore checking
-	var/turf/dT = get_turf(destination)
-	var/atom/real_dest = dT
-
-	var/atom/real_loc = destination.loc
-	if(isbelly(real_loc))
-		real_dest = real_loc
-	if(isliving(real_loc))
-		var/mob/living/L = real_loc
-		if(L.vore_selected)
-			real_dest = L.vore_selected
-		else if(L.vore_organs.len)
-			real_dest = pick(L.vore_organs)
-
-	//Confirm televore
-	var/televored = FALSE
-	if(isbelly(real_dest))
-		var/obj/belly/B = real_dest
-		if(!target.can_be_drop_prey && B.owner != user)
-			to_chat(target,"<span class='warning'>\The [src] narrowly avoids teleporting you right into \a [lowertext(real_dest.name)]!</span>")
-			real_dest = dT //Nevermind!
-		else
-			televored = TRUE
-			to_chat(target,"<span class='warning'>\The [src] teleports you right into \a [lowertext(real_dest.name)]!</span>")
-
-	//Phase-out effect
-	phase_out(target,get_turf(target))
-
-	//Move them
-	target.forceMove(real_dest)
-
-	//Phase-in effect
-	phase_in(target,get_turf(target))
-
-	//And any friends!
-	for(var/obj/item/weapon/grab/G in target.contents)
-		if(G.affecting && (G.state >= GRAB_AGGRESSIVE))
-
-			//Phase-out effect for grabbed person
-			phase_out(G.affecting,get_turf(G.affecting))
-
-			//Move them, and televore if necessary
-			G.affecting.forceMove(real_dest)
-			if(televored)
-				to_chat(target,"<span class='warning'>\The [src] teleports you right into \a [lowertext(real_dest.name)]!</span>")
-
-			//Phase-in effect for grabbed person
-			phase_in(G.affecting,get_turf(G.affecting))
-
-	update_icon()
-	spawn(30 SECONDS)
-		ready = 1
-		update_icon()
-
-	logged_events["[world.time]"] = "[user] teleported [target] to [real_dest] [televored ? "(Belly: [lowertext(real_dest.name)])" : null]"
-
-/obj/item/device/perfect_tele/proc/phase_out(var/mob/M,var/turf/T)
-
-	if(!M || !T)
-		return
-
-	spk.set_up(5, 0, M)
-	spk.attach(M)
-	playsound(T, "sparks", 50, 1)
-	anim(T,M,'icons/mob/mob.dmi',,"phaseout",,M.dir)
-
-/obj/item/device/perfect_tele/proc/phase_in(var/mob/M,var/turf/T)
-
-	if(!M || !T)
-		return
-
-	spk.start()
-	playsound(T, 'sound/effects/phasein.ogg', 25, 1)
-	playsound(T, 'sound/effects/sparks2.ogg', 50, 1)
-	anim(T,M,'icons/mob/mob.dmi',,"phasein",,M.dir)
-	spk.set_up(5, 0, src)
-	spk.attach(src)
-
-/obj/item/device/perfect_tele_beacon
-	name = "translocator beacon"
-	desc = "That's unusual."
-	icon = 'icons/obj/device_alt.dmi'
-	icon_state = "motion2"
-	w_class = ITEMSIZE_TINY
-
-	var/tele_name
-	var/obj/item/device/perfect_tele/tele_hand
-	var/creator
-	var/warned_users = list()
-
-/obj/item/device/perfect_tele_beacon/New()
-	..()
-	flags |= NOBLUDGEON
-
-/obj/item/device/perfect_tele_beacon/Destroy()
-	tele_name = null
-	tele_hand = null
-	return ..()
-
-/obj/item/device/perfect_tele_beacon/attack_hand(mob/user)
-	if((user.ckey != creator) && !(user.ckey in warned_users))
-		warned_users |= user.ckey
-		var/choice = alert(user,"This device is a translocator beacon. Having it on your person may mean that anyone \
-		who teleports to this beacon gets teleported into your selected vore-belly. If you are prey-only \
-		or don't wish to potentially have a random person teleported into you, it's suggested that you \
-		not carry this around.","OOC WARNING","Take It","Leave It")
-		if(choice == "Leave It")
-			return
-
-	..()
-
-/obj/item/device/perfect_tele_beacon/attack_self(mob/user)
-	if(!isliving(user))
-		return
-	var/mob/living/L = user
-	var/confirm = alert(user, "You COULD eat the beacon...", "Eat beacon?", "Eat it!", "No, thanks.")
-	if(confirm == "Eat it!")
-		var/obj/belly/bellychoice = input("Which belly?","Select A Belly") as null|anything in L.vore_organs
-		if(bellychoice)
-			user.visible_message("<span class='warning'>[user] is trying to stuff \the [src] into [user.gender == MALE ? "his" : user.gender == FEMALE ? "her" : "their"] [bellychoice]!</span>","<span class='notice'>You begin putting \the [src] into your [bellychoice]!</span>")
-			if(do_after(user,5 SECONDS,src))
-				user.unEquip(src)
-				forceMove(bellychoice)
-				user.visible_message("<span class='warning'>[user] eats a telebeacon!</span>","You eat the the beacon!")
-
-// A single-beacon variant for use by miners (or whatever)
-/obj/item/device/perfect_tele/one_beacon
-	name = "mini-translocator"
-	desc = "A more limited translocator with a single beacon, useful for some things, like setting the mining department on fire accidentally. Legal for use in the pursuit of NanoTrasen interests, namely mining and exploration."
-	icon_state = "minitrans"
-	beacons_left = 1 //Just one
-	cell_type = /obj/item/weapon/cell/device
-	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5)
-
-/*
-/obj/item/device/perfect_tele/one_beacon/teleport_checks(mob/living/target,mob/living/user)
-	var/turf/T = get_turf(destination)
-	if(T && user.z != T.z)
-		to_chat(user,"<span class='warning'>\The [src] is too far away from the beacon. Try getting closer first!</span>")
-		return FALSE
-	return ..()
-*/
-
-/obj/item/device/perfect_tele/admin
-	name = "alien translocator"
-	desc = "This strange device allows one to teleport people and objects across large distances."
-
-	cell_type = /obj/item/weapon/cell/device/weapon/recharge/alien
-	charge_cost = 400
-	beacons_left = 6
-	failure_chance = 0 //Percent
-
-/obj/item/device/perfect_tele/admin/teleport_checks(mob/living/target,mob/living/user)
-	//Uhhuh, need that power source
-	if(!power_source)
-		to_chat(user,"<span class='warning'>\The [src] has no power source!</span>")
-		return FALSE
-
-	//Check for charge
-	if((!power_source.check_charge(charge_cost)) && (!power_source.fully_charged()))
-		to_chat(user,"<span class='warning'>\The [src] does not have enough power left!</span>")
-		return FALSE
-
-	//Only mob/living need apply.
-	if(!istype(user) || !istype(target))
-		return FALSE
-
-	//No, you can't teleport buckled people.
-	if(target.buckled)
-		to_chat(user,"<span class='warning'>The target appears to be attached to something...</span>")
-		return FALSE
-
-	//No, you can't teleport if it's not ready yet.
-	if(!ready)
-		to_chat(user,"<span class='warning'>\The [src] is still recharging!</span>")
-		return FALSE
-
-	//No, you can't teleport if there's no destination.
-	if(!destination)
-		to_chat(user,"<span class='warning'>\The [src] doesn't have a current valid destination set!</span>")
-		return FALSE
-
-	//Seems okay to me!
-	return TRUE
 
 //InterroLouis: Ruda Lizden
 /obj/item/clothing/accessory/badge/holo/detective/ruda
