@@ -191,7 +191,6 @@ SUBSYSTEM_DEF(timer)
 		timers_to_remove += timer //remove it from the big list once we are done
 		if (!timer.callBack || timer.spent)
 			continue
-
 		bucket_count++
 		var/datum/timedevent/bucket_head = bucket_list[bucket_pos]
 		if (!bucket_head)
@@ -247,8 +246,6 @@ SUBSYSTEM_DEF(timer)
 			id = nextid++
 		while(SStimer.timer_id_dict["timerid" + num2text(id, 8)])
 		SStimer.timer_id_dict["timerid" + num2text(id, 8)] = src
-
-	name = "Timer: [id] (\ref[src]), TTR: [timeToRun], Flags: [jointext(bitfield2list(flags, list("TIMER_UNIQUE", "TIMER_OVERRIDE", "TIMER_CLIENT_TIME", "TIMER_STOPPABLE", "TIMER_NO_HASH_WAIT", "TIMER_LOOP")), ", ")], callBack: \ref[callBack], callBack.object: [callBack.object]\ref[callBack.object]([getcallingtype()]), callBack.delegate:[callBack.delegate]([callBack.arguments ? callBack.arguments.Join(", ") : ""])"
 
 	name = "Timer: " + num2text(id, 8) + ", TTR: [timeToRun], Flags: [jointext(bitfield2list(flags, list("TIMER_UNIQUE", "TIMER_OVERRIDE", "TIMER_CLIENT_TIME", "TIMER_STOPPABLE", "TIMER_NO_HASH_WAIT")), ", ")], callBack: \ref[callBack], callBack.object: [callBack.object]\ref[callBack.object]([getcallingtype()]), callBack.delegate:[callBack.delegate]([callBack.arguments ? callBack.arguments.Join(", ") : ""])"
 
@@ -385,6 +382,7 @@ SUBSYSTEM_DEF(timer)
 					if (hash_timer.flags & TIMER_STOPPABLE)
 						. = hash_timer.id
 					return
+
 
 	var/timeToRun = world.time + wait
 	if (flags & TIMER_CLIENT_TIME)
