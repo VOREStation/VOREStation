@@ -1919,8 +1919,7 @@ Departamental Swimsuits, for general use
 //Bacon12366:Elly Brown
 /obj/item/clothing/accessory/sweater/fluff/star
 	name = "Star Sweater"
-	desc = "It's a white long sweater with a big yellow star at the chest. It seems like it's made of a soft material."
-
+	desc = "It's a black long sweater with a big blue star at the chest area. It was made to show person's left shoulder.
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "star_sweater"
 
