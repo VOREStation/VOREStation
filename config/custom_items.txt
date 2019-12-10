@@ -482,7 +482,7 @@ item_path: /obj/item/clothing/accessory/storage/knifeharness
 
 {
 ckey: kitchifox
-character_name: Rana Uma
+character_name: Rana Starsong-Uma
 item_path: /obj/item/clothing/accessory/medal/silver/unity
 }
 
