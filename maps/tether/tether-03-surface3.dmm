@@ -13488,6 +13488,14 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "bridge blast";
+	name = "Bridge Blast Doors";
+	opacity = 0
+	},
 /turf/simulated/floor,
 /area/bridge_hallway)
 "awJ" = (
@@ -27205,6 +27213,42 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "aTt" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/glass_command{
+	dir = 1;
+	name = "Bridge";
+	req_access = list(19)
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "bridge blast";
+	name = "Bridge Blast Doors";
+	opacity = 0
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge)
+"aTu" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/glass_command{
+	name = "Bridge";
+	req_access = list(19)
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "bridge blast";
+	name = "Bridge Blast Doors";
+	opacity = 0
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge)
+"aTv" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
@@ -42852,7 +42896,7 @@ alj
 alj
 alj
 asT
-aYj
+aTt
 asT
 alX
 alX
@@ -45124,7 +45168,7 @@ ayx
 alo
 alo
 asT
-aYr
+aTu
 asT
 alZ
 alZ
@@ -45301,7 +45345,7 @@ aNk
 aNl
 aNJ
 aNP
-aTt
+aTv
 aKU
 abg
 aOk
@@ -45443,7 +45487,7 @@ aNl
 aNl
 aNK
 aNP
-aTt
+aTv
 aKU
 abg
 aOk
@@ -45585,7 +45629,7 @@ aNm
 aNl
 aNK
 aNP
-aTt
+aTv
 aKU
 abg
 aOk

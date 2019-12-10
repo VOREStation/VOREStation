@@ -2752,6 +2752,14 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 8;
+	icon_state = "pdoor0";
+	id = "secondary_bridge_blast";
+	name = "Secondary Command Office Blast Doors";
+	opacity = 0
+	},
 /turf/simulated/floor/tiled,
 /area/bridge/secondary)
 "afd" = (
@@ -4927,6 +4935,14 @@
 	name = "Secondary Command Office"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 8;
+	icon_state = "pdoor0";
+	id = "secondary_bridge_blast";
+	name = "Secondary Command Office Blast Doors";
+	opacity = 0
+	},
 /turf/simulated/floor/tiled,
 /area/bridge/secondary)
 "aix" = (
@@ -12417,6 +12433,14 @@
 	icon_state = "intact-scrubbers";
 	dir = 4
 	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "secondary_bridge_blast";
+	name = "Secondary Command Office Blast Doors";
+	opacity = 0
+	},
 /turf/simulated/floor,
 /area/bridge/secondary/hallway)
 "aws" = (
@@ -12940,6 +12964,14 @@
 "axm" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/maintenance/command,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 8;
+	icon_state = "pdoor0";
+	id = "secondary_bridge_blast";
+	name = "Secondary Command Office Blast Doors";
+	opacity = 0
+	},
 /turf/simulated/floor,
 /area/bridge/secondary/teleporter)
 "axn" = (
