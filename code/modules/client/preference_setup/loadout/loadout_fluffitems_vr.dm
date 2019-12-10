@@ -471,7 +471,7 @@
 	path = /obj/item/clothing/accessory/medal/silver/unity
 	display_name = "Rana's Unity Medal"
 	ckeywhitelist = list("kitchifox")
-	character_name = list("Rana Uma")
+	character_name = list("Rana Starsong-Uma")
 
 /datum/gear/fluff/taiga_uniform
 	path = /obj/item/clothing/under/fluff/taiga
