@@ -378,7 +378,7 @@
 		gender = NEUTER
 
 	vulp_hair_bun
-		name = "Bun"
+		name = "Vulp Bun"
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
 		icon_state = "bun"
