@@ -17623,7 +17623,8 @@
 	cur_coils = 4;
 	input_attempt = 1;
 	input_level = 1e+006;
-	output_level = 1e+006
+	output_level = 1e+006;
+	RCon = 0
 	},
 /obj/structure/cable/cyan{
 	d2 = 2;
