@@ -1901,6 +1901,7 @@
 	dir = 4;
 	scrub_id = "atrium"
 	},
+/obj/machinery/camera/network/research,
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora_storage)
 "ado" = (

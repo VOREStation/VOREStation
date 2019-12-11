@@ -15156,6 +15156,14 @@
 /obj/machinery/door/airlock/maintenance/command{
 	req_access = list(19)
 	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 8;
+	icon_state = "pdoor0";
+	id = "secondary_bridge_blast";
+	name = "Secondary Command Office Blast Doors";
+	opacity = 0
+	},
 /turf/simulated/floor,
 /area/maintenance/station/micro)
 "wT" = (
@@ -15167,6 +15175,14 @@
 	req_access = list(19)
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "secondary_bridge_blast";
+	name = "Secondary Command Office Blast Doors";
+	opacity = 0
+	},
 /turf/simulated/floor,
 /area/maintenance/station/micro)
 "wU" = (
