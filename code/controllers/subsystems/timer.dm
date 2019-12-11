@@ -71,7 +71,6 @@ SUBSYSTEM_DEF(timer)
 		for(var/I in second_queue)
 			log_world(get_timer_debug_string(I))
 
-	var/cut_start_index = 1
 	var/next_clienttime_timer_index = 0
 	var/len = length(clienttime_timers)
 
@@ -101,7 +100,7 @@ SUBSYSTEM_DEF(timer)
 
 
 	if (next_clienttime_timer_index)
-		clienttime_timers.Cut(cut_start_index,next_clienttime_timer_index+1)
+		clienttime_timers.Cut(1, next_clienttime_timer_index+1)
 
 	if (MC_TICK_CHECK)
 		return
@@ -259,7 +258,7 @@ SUBSYSTEM_DEF(timer)
 	if (!length(alltimers))
 		return
 
-	sortTim(alltimers, .proc/cmp_timer)
+	sortTim(alltimers, /proc/cmp_timer)
 
 	var/datum/timedevent/head = alltimers[1]
 
@@ -342,8 +341,8 @@ SUBSYSTEM_DEF(timer)
 
 	if (flags & TIMER_STOPPABLE)
 		id = num2text(nextid, 100)
-		if (nextid >= SHORT_REAL_LIMIT)
-			nextid += min(1, 2**round(nextid/SHORT_REAL_LIMIT))
+		if (nextid >= TIMER_ID_MAX)
+			nextid += min(1, 2**round(nextid/TIMER_ID_MAX))
 		else
 			nextid++
 		SStimer.timer_id_dict[id] = src
