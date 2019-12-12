@@ -26684,20 +26684,13 @@
 /turf/simulated/floor/airless,
 /area/medical/virology)
 "PA" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/glass_medical{
-	name = "Virology Laboratory";
-	req_access = list(39)
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow,
-/turf/simulated/floor/tiled/white,
-/area/medical/virology)
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
 "PB" = (
 /turf/simulated/wall/r_wall,
 /area/medical/virologyisolation)
@@ -27103,15 +27096,15 @@
 /area/medical/virology)
 "Qp" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+	dir = 8
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1/station)
 "Qq" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	dir = 8;
+	icon_state = "propulsion_r"
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -27134,13 +27127,21 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medical_restroom)
 "Qs" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/glass_medical{
+	name = "Virology Laboratory";
+	req_access = list(39)
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled/white,
+/area/medical/virology)
 "Qt" = (
 /turf/simulated/wall,
 /area/tether/exploration)
@@ -38506,7 +38507,7 @@ Pb
 Pi
 Pp
 Pv
-PA
+Qs
 PE
 PO
 PT
@@ -39349,11 +39350,11 @@ MK
 Iy
 ab
 NL
+PA
+Qp
+Qp
 Qp
 Qq
-Qq
-Qq
-Qs
 NL
 vt
 vt

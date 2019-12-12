@@ -2482,6 +2482,14 @@
 	name = "Atmospherics Substation"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "atmoslockdown";
+	name = "Atmospherics Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/substation/surface_atmos)
 "aek" = (
@@ -4936,6 +4944,14 @@
 	req_access = list(24)
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "atmoslockdown";
+	name = "Atmospherics Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/engineering/atmos)
 "aiC" = (
@@ -22133,6 +22149,13 @@
 	dir = 1;
 	pixel_y = 28
 	},
+/obj/machinery/button/remote/blast_door{
+	id = "atmoslockdown";
+	name = "Atmospherics Lockdown";
+	pixel_x = 0;
+	pixel_y = 0;
+	req_one_access = list(10,24)
+	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
 "aKn" = (
@@ -24610,6 +24633,14 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "atmoslockdown";
+	name = "Atmospherics Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/engineering/atmos/processing)
 "aOT" = (
@@ -27322,6 +27353,14 @@
 	req_access = list(24)
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "atmoslockdown";
+	name = "Atmospherics Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/engineering/atmos)
 "aTU" = (
@@ -28482,6 +28521,14 @@
 /obj/machinery/door/airlock/maintenance/engi{
 	name = "Atmospherics";
 	req_access = list(24)
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "atmoslockdown";
+	name = "Atmospherics Lockdown";
+	opacity = 0
 	},
 /turf/simulated/floor/plating,
 /area/engineering/atmos/processing)
