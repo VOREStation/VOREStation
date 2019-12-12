@@ -23,6 +23,7 @@
 #include "code\stylesheet.dm"
 #include "code\world.dm"
 #include "code\__datastructures\globals.dm"
+#include "code\__defines\__513_compatibility.dm"
 #include "code\__defines\_compile_options.dm"
 #include "code\__defines\_lists.dm"
 #include "code\__defines\_planes+layers.dm"
