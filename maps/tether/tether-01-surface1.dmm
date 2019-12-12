@@ -5347,7 +5347,7 @@
 	report_danger_level = 0
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "ajg" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -5358,13 +5358,13 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "ajh" = (
 /obj/machinery/atmospherics/unary/vent_scrubber{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "aji" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
@@ -27273,6 +27273,14 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "atmoslockdown";
+	name = "Atmospherics Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/engineering/atmos/processing)
 "aTK" = (
@@ -27283,6 +27291,14 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "atmoslockdown";
+	name = "Atmospherics Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/engineering/atmos/processing)
 "aTL" = (
@@ -27294,6 +27310,14 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "atmoslockdown";
+	name = "Atmospherics Lockdown";
+	opacity = 0
+	},
 /turf/simulated/floor/plating,
 /area/engineering/atmos/processing)
 "aTM" = (
@@ -27415,11 +27439,11 @@
 /area/crew_quarters/visitor_lodging)
 "aTW" = (
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "aTX" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "aTY" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/black,
 /turf/simulated/floor/tiled/techmaint,
@@ -27683,7 +27707,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "aUw" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 9
@@ -27692,19 +27716,19 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "aUx" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 9
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "aUy" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 5
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "aUz" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 5
@@ -27713,13 +27737,13 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "aUA" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 10
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "aUB" = (
 /obj/machinery/power/apc/super{
 	dir = 4;
@@ -27731,10 +27755,10 @@
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "aUC" = (
 /turf/simulated/wall/r_wall,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "aUD" = (
 /obj/machinery/atmospherics/pipe/simple/visible/purple,
 /obj/structure/cable/cyan{
@@ -27743,7 +27767,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "aUE" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
@@ -27867,7 +27891,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "aUS" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/light/small{
@@ -28051,6 +28075,14 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "atmoslockdown";
+	name = "Atmospherics Lockdown";
+	opacity = 0
 	},
 /turf/simulated/floor/plating,
 /area/engineering/atmos/processing)
@@ -28305,7 +28337,7 @@
 	id_tag = "atmos_intake"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "aVF" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/visible/purple{
@@ -28315,6 +28347,14 @@
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
 	dir = 8
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "atmoslockdown";
+	name = "Atmospherics Lockdown";
+	opacity = 0
 	},
 /turf/simulated/floor/plating,
 /area/engineering/atmos/processing)
@@ -28490,7 +28530,7 @@
 	use_power = 1
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "aVV" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
@@ -28500,6 +28540,14 @@
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
 	dir = 8
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "atmoslockdown";
+	name = "Atmospherics Lockdown";
+	opacity = 0
 	},
 /turf/simulated/floor/plating,
 /area/engineering/atmos/processing)
@@ -28859,7 +28907,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "aWP" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
@@ -29002,7 +29050,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/engineering/atmos/intake)
+/area/engineering/atmos_intake)
 "aXe" = (
 /obj/structure/table/bench/steel,
 /turf/simulated/floor/plating,
@@ -31928,6 +31976,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/surfacecargo)
+"bcP" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow,
+/obj/machinery/alarm{
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 24
+	},
+/turf/simulated/floor/plating,
+/area/engineering/atmos/processing)
 "cGJ" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
@@ -41159,7 +41216,7 @@ aRU
 aSC
 aTj
 aSC
-aSC
+bcP
 aSC
 aUS
 aVm

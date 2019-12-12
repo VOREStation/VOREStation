@@ -8548,16 +8548,8 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 1;
-	icon_state = "pdoor0";
-	id = "atmoslockdown";
-	name = "Atmospherics Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/plating,
-/area/engineering/lower/breakroom)
+/area/engineering/lower/lobby)
 "are" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -8577,49 +8569,21 @@
 	name = "Atmospherics"
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "atmoslockdown";
-	name = "Atmospherics Lockdown";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/engineering/lower/lobby)
 "arg" = (
 /turf/simulated/wall,
 /area/engineering/lower/breakroom)
 "arh" = (
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/airlock/glass{
+	name = "Atmospherics"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/airlock/glass_atmos{
-	name = "Atmospherics";
-	req_access = list(24)
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
+/obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 1;
-	icon_state = "pdoor0";
-	id = "atmoslockdown";
-	name = "Atmospherics Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/wood,
-/area/engineering/lower/breakroom)
+/turf/simulated/floor/tiled/steel_grid,
+/area/engineering/lower/lobby)
 "ari" = (
 /obj/structure/grille,
 /obj/structure/railing{
@@ -14139,23 +14103,11 @@
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "aAe" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/glass{
-	name = "Atmospherics"
-	},
-/obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "atmoslockdown";
-	name = "Atmospherics Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/engineering/lower/lobby)
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
+/area/engineering/lower/breakroom)
 "aAf" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
@@ -14751,18 +14703,26 @@
 /turf/simulated/open,
 /area/engineering/atmos)
 "aBg" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "atmoslockdown";
-	name = "Atmospherics Lockdown";
-	opacity = 0
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/simulated/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/airlock/glass_atmos{
+	name = "Atmospherics";
+	req_access = list(24)
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/wood,
 /area/engineering/lower/breakroom)
 "aBh" = (
 /obj/structure/railing{
@@ -40097,7 +40057,7 @@ adY
 aoZ
 afG
 aqs
-are
+ard
 arH
 asD
 ath
@@ -40239,7 +40199,7 @@ adY
 apa
 apI
 aqt
-are
+ard
 arH
 asE
 ath
@@ -40381,7 +40341,7 @@ aeK
 apb
 apJ
 aqs
-are
+ard
 arI
 asF
 ath
@@ -40807,7 +40767,7 @@ ajB
 ajB
 apL
 aqv
-are
+ard
 arL
 asF
 atj
@@ -40949,7 +40909,7 @@ aia
 ape
 apM
 aqw
-aAe
+arh
 arM
 asG
 atk
@@ -41234,11 +41194,11 @@ apf
 apN
 aqs
 arg
-ard
-ard
-arh
-ard
-ard
+aAe
+aAe
+aBg
+aAe
+aAe
 avf
 avN
 awB
@@ -41659,7 +41619,7 @@ aoC
 apf
 apN
 aqs
-aBg
+aAe
 arQ
 asK
 atp
@@ -41801,7 +41761,7 @@ aoC
 apf
 apN
 aqs
-aBg
+aAe
 arR
 asL
 atq
@@ -41943,7 +41903,7 @@ aoC
 apf
 apN
 aqs
-aBg
+aAe
 arS
 asK
 atp
