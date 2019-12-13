@@ -435,5 +435,5 @@
 	var/armor_block = run_armor_check(T, "melee")
 	var/armor_soak = get_armor_soak(T, "melee")
 	T.apply_damage(20, HALLOSS,, armor_block, armor_soak)
-	if(prob(33))
+	if(prob(99)) //for that 1% goodness
 		T.apply_effect(3, WEAKEN, armor_block)
