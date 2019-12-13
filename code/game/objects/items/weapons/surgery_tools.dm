@@ -128,6 +128,15 @@
 	icon_state = "scalpel_manager_on"
 	force = 7.5
 
+/obj/item/weapon/surgical/scalpel/ripper
+	name = "organ pincers"
+	desc = "A horrifying bladed tool with a large metal spike in its center. The tool is used for rapidly removing organs from hopefully willing patients."
+	icon_state = "organ_ripper"
+	item_state = "bone_setter"
+	force = 15.0
+	toolspeed = 0.75
+	origin_tech = list(TECH_MATERIAL = 5, TECH_BIO = 3, TECH_ILLEGAL = 2)
+
 /*
  * Circular Saw
  */
@@ -146,6 +155,19 @@
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharp = 1
 	edge = 1
+
+/obj/item/weapon/surgical/circular_saw/manager
+	name = "energetic bone diverter"
+	desc = "For heavy duty cutting (and sealing), with science!"
+	icon_state = "adv_saw"
+	item_state = "saw3"
+	hitsound = 'sound/weapons/emitter2.ogg'
+	damtype = SEARING
+	w_class = ITEMSIZE_LARGE
+	origin_tech = list(TECH_BIO = 4, TECH_MATERIAL = 6, TECH_MAGNET = 6)
+	matter = list(DEFAULT_WALL_MATERIAL = 12500)
+	attack_verb = list("attacked", "slashed", "seared", "cut")
+	toolspeed = 0.75
 
 //misc, formerly from code/defines/weapons.dm
 /obj/item/weapon/surgical/bonegel

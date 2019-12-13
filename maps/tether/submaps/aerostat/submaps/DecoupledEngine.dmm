@@ -50,10 +50,7 @@
 /turf/template_noop,
 /area/submap/virgo2/DecoupledEngine)
 "an" = (
-/turf/simulated/floor/water{
-	color = "#ddaa77";
-	name = "shallow water(?)"
-	},
+/turf/simulated/floor/lava,
 /area/submap/virgo2/DecoupledEngine)
 "ao" = (
 /obj/structure/lattice,
@@ -222,10 +219,7 @@
 	icon_state = "propulsion_r";
 	dir = 4
 	},
-/turf/simulated/floor/water{
-	color = "#ddaa77";
-	name = "shallow water(?)"
-	},
+/turf/simulated/floor/lava,
 /area/submap/virgo2/DecoupledEngine)
 "aP" = (
 /obj/effect/floor_decal/rust,
@@ -302,10 +296,7 @@
 /obj/structure/shuttle/engine/propulsion{
 	dir = 4
 	},
-/turf/simulated/floor/water{
-	color = "#ddaa77";
-	name = "shallow water(?)"
-	},
+/turf/simulated/floor/lava,
 /area/submap/virgo2/DecoupledEngine)
 "aZ" = (
 /obj/item/stack/material/steel,

@@ -196,7 +196,9 @@
 		O_KIDNEYS =	/obj/item/organ/internal/kidneys,
 		O_BRAIN =		/obj/item/organ/internal/brain,
 		O_APPENDIX = /obj/item/organ/internal/appendix,
-		O_EYES =		 /obj/item/organ/internal/eyes
+		O_EYES =		 /obj/item/organ/internal/eyes,
+		O_STOMACH =		/obj/item/organ/internal/stomach,
+		O_INTESTINE =	/obj/item/organ/internal/intestine
 		)
 	var/vision_organ										// If set, this organ is required for vision. Defaults to "eyes" if the species has them.
 	var/dispersed_eyes            // If set, the species will be affected by flashbangs regardless if they have eyes or not, as they see in large areas.
@@ -424,6 +426,10 @@
 
 // Called in life() when the mob has no client.
 /datum/species/proc/handle_npc(var/mob/living/carbon/human/H)
+	if(H.stat == CONSCIOUS && H.ai_holder)
+		if(H.resting)
+			H.resting = FALSE
+			H.update_canmove()
 	return
 
 // Called when lying down on a water tile.

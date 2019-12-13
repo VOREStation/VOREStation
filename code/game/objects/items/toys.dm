@@ -255,12 +255,14 @@
 	name = "toy sword"
 	desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up."
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "sword0"
+	icon_state = "esword"
+	var/lcolor
+	var/rainbow = FALSE
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_melee.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
 		)
-	var/active = 0.0
+	var/active = 0
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("attacked", "struck", "hit")
 
@@ -269,22 +271,54 @@
 		if (src.active)
 			user << "<span class='notice'>You extend the plastic blade with a quick flick of your wrist.</span>"
 			playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
-			src.icon_state = "swordblue"
+			src.item_state = "[icon_state]_blade"
 			src.w_class = ITEMSIZE_LARGE
 		else
 			user << "<span class='notice'>You push the plastic blade back down into the handle.</span>"
 			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
-			src.icon_state = "sword0"
+			src.item_state = "[icon_state]"
 			src.w_class = ITEMSIZE_SMALL
-
-		if(istype(user,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = user
-			H.update_inv_l_hand()
-			H.update_inv_r_hand()
-
+		update_icon()
 		src.add_fingerprint(user)
 		return
 
+/obj/item/toy/sword/update_icon()
+	. = ..()
+	var/mutable_appearance/blade_overlay = mutable_appearance(icon, "[icon_state]_blade")
+	blade_overlay.color = lcolor
+	cut_overlays()		//So that it doesn't keep stacking overlays non-stop on top of each other
+	if(active)
+		add_overlay(blade_overlay)
+	if(istype(usr,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = usr
+		H.update_inv_l_hand()
+		H.update_inv_r_hand()
+
+/obj/item/toy/sword/AltClick(mob/living/user)
+	if(!in_range(src, user))	//Basic checks to prevent abuse
+		return
+	if(user.incapacitated() || !istype(user))
+		to_chat(user, "<span class='warning'>You can't do that right now!</span>")
+		return
+
+	if(alert("Are you sure you want to recolor your blade?", "Confirm Recolor", "Yes", "No") == "Yes")
+		var/energy_color_input = input(usr,"","Choose Energy Color",lcolor) as color|null
+		if(energy_color_input)
+			lcolor = sanitize_hexcolor(energy_color_input)
+		update_icon()
+
+/obj/item/toy/sword/examine(mob/user)
+	..()
+	to_chat(user, "<span class='notice'>Alt-click to recolor it.</span>")
+
+/obj/item/toy/sword/attackby(obj/item/weapon/W, mob/user)
+	if(istype(W, /obj/item/device/multitool) && !active)
+		if(!rainbow)
+			rainbow = TRUE
+		else
+			rainbow = FALSE
+		to_chat(user, "<span class='notice'>You manipulate the color controller in [src].</span>")
+		update_icon()
 /obj/item/toy/katana
 	name = "replica katana"
 	desc = "Woefully underpowered in D20."
@@ -322,6 +356,12 @@
 		qdel(src)
 
 /obj/item/toy/snappop/Crossed(H as mob|obj)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = H
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	if((ishuman(H))) //i guess carp and shit shouldn't set them off
 		var/mob/living/carbon/M = H
 		if(M.m_intent == "run")
@@ -929,10 +969,16 @@
 	icon_state = "nymphplushie"
 	pokephrase = "Chirp!"
 
+/obj/item/toy/plushie/teshari
+	name = "teshari plush"
+	desc = "This is a plush teshari. Very soft, with a pompom on the tail. The toy is made well, as if alive. Looks like she is sleeping. Shhh!"
+	icon_state = "teshariplushie"
+	pokephrase = "Rya!"
+
 /obj/item/toy/plushie/mouse
 	name = "mouse plush"
 	desc = "A plushie of a delightful mouse! What was once considered a vile rodent is now your very best friend."
-	icon_state = "mouseplushie"
+	icon_state = "mouseplushie"	//TFF 12/11/19 - updated icon to show a sprite that doesn't replicate a dead mouse. Heck you for that! >:C
 	pokephrase = "Squeak!"
 
 /obj/item/toy/plushie/kitten

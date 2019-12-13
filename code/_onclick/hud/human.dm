@@ -293,6 +293,18 @@
 		mymob.nutrition_icon.screen_loc = ui_nutrition
 		hud_elements |= mymob.nutrition_icon
 
+	//VOREStation Addition begin
+	mymob.shadekin_dark_display = new /obj/screen/shadekin/darkness()
+	mymob.shadekin_dark_display.screen_loc = ui_shadekin_dark_display
+	mymob.shadekin_dark_display.icon_state = "dark"
+	hud_elements |= mymob.shadekin_dark_display
+
+	mymob.shadekin_energy_display = new /obj/screen/shadekin/energy()
+	mymob.shadekin_energy_display.screen_loc = ui_shadekin_energy_display
+	mymob.shadekin_energy_display.icon_state = "energy0"
+	hud_elements |= mymob.shadekin_energy_display
+	//VOREStation Addition end
+
 	mymob.ling_chem_display = new /obj/screen/ling/chems()
 	mymob.ling_chem_display.screen_loc = ui_ling_chemical_display
 	mymob.ling_chem_display.icon_state = "ling_chems"

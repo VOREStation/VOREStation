@@ -1048,6 +1048,14 @@ default behaviour is:
 			else
 				to_chat(src, "<span class='warning'>You feel nauseous...</span>")
 
+				if(ishuman(src))
+					var/mob/living/carbon/human/Hu = src
+					if(CE_ANTACID in Hu.chem_effects)
+						if(prob(min(90, Hu.chem_effects[CE_ANTACID] * 15)))
+							spawn(rand(30 SECONDS, 2 MINUTES))
+								lastpuke = FALSE
+							return
+
 				spawn()
 					if(!skip_wait)
 						sleep(150)	//15 seconds until second warning

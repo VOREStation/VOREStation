@@ -55,6 +55,12 @@
 	desc = "A small [body_color] rodent, often seen hiding in maintenance areas and making a nuisance of itself."
 
 /mob/living/simple_mob/animal/passive/mouse/Crossed(AM as mob|obj)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = AM
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	if( ishuman(AM) )
 		if(!stat)
 			var/mob/M = AM
@@ -96,6 +102,17 @@
 /mob/living/simple_mob/animal/passive/mouse/brown
 	body_color = "brown"
 	icon_state = "mouse_brown"
+
+/mob/living/simple_mob/animal/passive/mouse/rat
+	name = "rat"
+	maxHealth = 20
+	health = 20
+
+	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
+
+/mob/living/simple_mob/animal/passive/mouse/rat/Initialize()
+	..()
+	adjust_scale(1.2)
 
 //TOM IS ALIVE! SQUEEEEEEEE~K :)
 /mob/living/simple_mob/animal/passive/mouse/brown/Tom

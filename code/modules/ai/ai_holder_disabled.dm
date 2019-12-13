@@ -5,6 +5,9 @@
 
 // If our holder is able to do anything.
 /datum/ai_holder/proc/can_act()
+	if(!holder) // Holder missing.
+		SSai.processing -= src
+		return FALSE
 	if(holder.stat) // Dead or unconscious.
 		ai_log("can_act() : Stat was non-zero ([holder.stat]).", AI_LOG_TRACE)
 		return FALSE

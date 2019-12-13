@@ -334,10 +334,17 @@
 /turf/simulated/floor/virgo3b,
 /area/tether/outpost/solars_outside)
 "aK" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "2-8"
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/heavyduty{
+	icon_state = "0-8"
+	},
+/obj/structure/cable/heavyduty{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/sensor{
+	name = "Powernet Sensor - Solar Farm Output";
+	name_tag = "Solar Farm Output"
+	},
 /turf/simulated/floor/virgo3b,
 /area/tether/outpost/solars_outside)
 "aL" = (
@@ -382,28 +389,10 @@
 /turf/simulated/floor/virgo3b_indoors,
 /area/tether/outpost/solars_shed)
 "aP" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/effect/landmark{
+	name = "bluespacerift"
 	},
-/obj/machinery/power/sensor{
-	name = "Powernet Sensor - Solar Farm Input";
-	name_tag = "Solar Farm Input"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
-"aQ" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-2"
-	},
-/obj/machinery/power/sensor{
-	name = "Powernet Sensor - Solar Farm Output";
-	name_tag = "Solar Farm Output"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/virgo3b,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/tether/outpost/solars_outside)
 "aR" = (
 /obj/effect/decal/cleanable/dirt,
@@ -513,6 +502,14 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/sensor{
+	name = "Powernet Sensor - Solar Farm Input";
+	name_tag = "Solar Farm Input"
+	},
 /turf/simulated/floor/virgo3b,
 /area/tether/outpost/solars_outside)
 "bd" = (
@@ -18860,7 +18857,7 @@ ad
 ad
 at
 aI
-aP
+aW
 aW
 bc
 bf
@@ -20564,7 +20561,7 @@ ad
 ad
 ad
 aK
-aQ
+aX
 aX
 bl
 bn
@@ -24016,7 +24013,7 @@ ad
 ad
 ad
 ad
-ad
+aP
 ad
 ad
 ad

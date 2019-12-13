@@ -99,7 +99,7 @@
 		)
 
 /obj/item/weapon/rig/pmc/security
-	name = "ERT-S suit control module"
+	name = "PMC-S suit control module"
 	desc = "A suit worn by private military contractors. This one is setup for security. Armoured and space ready."
 	suit_type = "PMC security"
 	icon_state = "pmc_securitygrey_rig"

@@ -138,9 +138,9 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	if(isnull(permit_healbelly))
 		permit_healbelly = TRUE
 	if(isnull(can_be_drop_prey))
-		allowmobvore = FALSE
+		can_be_drop_prey = FALSE
 	if(isnull(can_be_drop_pred))
-		allowmobvore = FALSE
+		can_be_drop_pred = FALSE
 	if(isnull(belly_prefs))
 		belly_prefs = list()
 

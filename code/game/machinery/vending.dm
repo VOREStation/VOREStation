@@ -752,7 +752,7 @@
 	vend_power_usage = 85000 //85 kJ to heat a 250 mL cup of coffee
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 25,/obj/item/weapon/reagent_containers/food/drinks/tea = 25,/obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 25)
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/ice = 10)
-	prices = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 3, /obj/item/weapon/reagent_containers/food/drinks/tea = 3, /obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 3)
+	prices = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 2, /obj/item/weapon/reagent_containers/food/drinks/tea = 2, /obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 2) //VOREStation Edit
 
 /obj/machinery/vending/snack
 	name = "Getmore Chocolate Corp"
@@ -764,14 +764,17 @@
 					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 6,/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 6,/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 6,
 					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 6, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 6, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 3)
 	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6,/obj/item/weapon/reagent_containers/food/snacks/unajerky = 6,)
-	prices = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 1,/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 5,/obj/item/weapon/reagent_containers/food/snacks/chips = 1,
+	//VOREStation Edit Start
+	prices = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 1,/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 2,/obj/item/weapon/reagent_containers/food/snacks/chips = 1,
 					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 2,/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 1,/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 1,
-					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 1, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 2, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 4)
-
+					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 1, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 2, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 2)
+	//VOREStation Edit End
+					
 /obj/machinery/vending/cola
 	name = "Robust Softdrinks"
 	desc = "A softdrink vendor provided by Robust Industries, LLC."
 	icon_state = "Cola_Machine" //VOREStation Edit
+	icon_vend = "Cola_Machine-purchase" //VOREStation Edit
 	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
 	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not cola?;Please, have a drink!;Drink up!;The best drinks in space."
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 10,/obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind = 10,
@@ -793,7 +796,7 @@
 	icon_state = "fitness"
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 8,
 					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 8,
-					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 8,
+					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 16,	//VOREStation Edit,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 8,
@@ -801,15 +804,17 @@
 					///obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,	//VOREStation Removal,
 					/obj/item/weapon/towel/random = 8)
 
+	//VOREStation Edit Start
 	prices = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 3,
 					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 3,
-					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 40,	//VOREStation Edit,
-					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask = 1,
 					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 5,
 					/obj/item/weapon/reagent_containers/pill/diet = 25,
-					///obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,	//VOREStation Removal,
-					/obj/item/weapon/towel/random = 40)
+					///obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,
+					/obj/item/weapon/towel/random = 20)
+	//VOREStation Edit End
 
 	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4)
 

@@ -241,6 +241,8 @@
 	icon = 'icons/obj/beekeeping.dmi'
 	icon_state = "wax"
 	default_type = "wax"
+	pass_color = TRUE
+	strict_color_stacking = TRUE
 
 /obj/item/stack/material/wax/New()
 	..()
@@ -252,6 +254,7 @@
 	icon_colour = "#fff343"
 	melting_point = T0C+300
 	weight = 1
+	pass_stack_colors = TRUE
 
 var/global/list/datum/stack_recipe/wax_recipes = list( \
 	new/datum/stack_recipe("candle", /obj/item/weapon/flame/candle) \

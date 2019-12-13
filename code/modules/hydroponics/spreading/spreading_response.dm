@@ -20,6 +20,12 @@
 	manual_unbuckle(user)
 
 /obj/effect/plant/Crossed(atom/movable/O)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = O
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	if(isliving(O))
 		trodden_on(O)
 

@@ -1,6 +1,7 @@
 /obj/item/weapon/implant/neural
 	name = "neural framework implant"
 	desc = "A small metal casing with numerous wires stemming off of it."
+	initialize_loc = BP_HEAD
 	var/obj/item/organ/internal/brain/my_brain = null
 	var/target_state = null
 	var/robotic_brain = FALSE

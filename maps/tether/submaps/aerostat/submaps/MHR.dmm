@@ -62,12 +62,6 @@
 	outdoors = 0
 	},
 /area/submap/virgo2/MHR)
-"m" = (
-/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2{
-	outdoors = 0
-	},
-/area/submap/virgo2/MHR)
 "n" = (
 /obj/effect/decal/cleanable/spiderling_remains,
 /obj/tether_away_spawner/aerostat_surface,
@@ -98,13 +92,6 @@
 /obj/effect/decal/remains,
 /obj/item/clothing/mask/gas/explorer,
 /obj/item/weapon/material/twohanded/fireaxe,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2{
-	outdoors = 0
-	},
-/area/submap/virgo2/MHR)
-"s" = (
-/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,
-/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2{
 	outdoors = 0
 	},
@@ -296,7 +283,7 @@ e
 e
 e
 e
-m
+d
 d
 d
 n
@@ -323,7 +310,7 @@ d
 d
 d
 d
-s
+d
 e
 e
 e
@@ -366,7 +353,7 @@ e
 f
 d
 d
-s
+d
 d
 e
 e

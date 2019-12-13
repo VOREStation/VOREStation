@@ -25,6 +25,7 @@
 	var/burn_dam = 0                   // Actual current burn damage.
 	var/last_dam = -1                  // used in healing/processing calculations.
 	var/spread_dam = 0
+	var/thick_skin = 0                 // If a needle has a chance to fail to penetrate.
 
 	// Appearance vars.
 	var/nonsolid                       // Snowflake warning, reee. Used for slime limbs.
@@ -1031,7 +1032,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		W.germ_level = 0
 	return rval
 
-/obj/item/organ/external/proc/clamp()
+/obj/item/organ/external/proc/organ_clamp()
 	var/rval = 0
 	src.status &= ~ORGAN_BLEEDING
 	for(var/datum/wound/W in wounds)

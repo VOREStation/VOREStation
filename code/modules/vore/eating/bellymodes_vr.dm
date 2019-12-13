@@ -35,7 +35,7 @@
 					if(M.is_preference_enabled(/datum/client_preference/digestion_noises)) //then we check if the mob has sounds enabled at all
 						var/sound/preyloop = sound('sound/vore/sunesound/prey/loop.ogg')
 						M.playsound_local(get_turf(src),preyloop, 80,0, channel = CHANNEL_PREYLOOP)
-						M.next_preyloop = (world.time + 52 SECONDS)
+						M.next_preyloop = (world.time + (52 SECONDS))
 
 /////////////////////////// Sound Selections ///////////////////////////
 	var/sound/prey_digest
@@ -184,13 +184,16 @@
 				if((mode_flags & DM_FLAG_LEAVEREMAINS) && M.digest_leave_remains)
 					handle_remains_leaving(M)
 				digestion_death(M)
-				owner.update_icons()
+				if(!ishuman(owner))
+					owner.update_icons()
+				if(compensation == 0) //Slightly sloppy way at making sure certain mobs don't give ZERO nutrition (fish and so on)
+					compensation = 21 //This reads as 20*4.5 due to the calculations afterward, making the backup nutrition value 94.5 per mob. Not op compared to regular prey.
 				if(compensation > 0)
 					if(isrobot(owner))
 						var/mob/living/silicon/robot/R = owner
 						R.cell.charge += 25*compensation
 					else
-						owner.nutrition += 4.5*compensation
+						owner.nutrition += (nutrition_percent / 100)*4.5*compensation
 				to_update = TRUE
 
 				continue
@@ -210,9 +213,9 @@
 				var/mob/living/silicon/robot/R = owner
 				R.cell.charge += 25*damage_gain
 			if(offset) // If any different than default weight, multiply the % of offset.
-				owner.nutrition += offset*(4.5*(damage_gain)/difference) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
+				owner.nutrition += offset*((nutrition_percent / 100)*4.5*(damage_gain)/difference) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
 			else
-				owner.nutrition += 4.5*(damage_gain)/difference
+				owner.nutrition += (nutrition_percent / 100)*4.5*(damage_gain)/difference
 
 
 //////////////////////////// DM_ABSORB ////////////////////////////
@@ -354,9 +357,18 @@
 
 /////////////////////////// Make any noise ///////////////////////////
 	if(play_sound)
-		for(var/mob/M in hearers(4, owner)) //so we don't fill the whole room with the sound effect
-			if(M && M.client && (isturf(M.loc) || (M.loc != src.contents)) && M.is_preference_enabled(/datum/client_preference/digestion_noises)) //to avoid people on the inside getting the outside sounds and their direct sounds + built in sound pref check
-				SEND_SOUND(M, play_sound) //these are all external sound triggers now, so it's ok.
+		LAZYCLEARLIST(hearing_mobs)
+		for(var/mob/M in hearers(VORE_SOUND_RANGE, owner))
+			if(!M.client || !(M.is_preference_enabled(/datum/client_preference/digestion_noises)))
+				continue
+			LAZYADD(hearing_mobs, M)
+		for(var/mob/M in hearing_mobs) //so we don't fill the whole room with the sound effect
+			if(M && M.client && (isturf(M.loc) || (M.loc != src.contents))) //to avoid people on the inside getting the outside sounds and their direct sounds + built in sound pref check
+				if(fancy_vore)
+					M.playsound_local(owner.loc, play_sound, vol = 75, vary = 1, falloff = VORE_SOUND_FALLOFF)
+				else
+					M.playsound_local(owner.loc, play_sound, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF)
+				 //these are all external sound triggers now, so it's ok.
 	if(to_update)
 		for(var/mob/living/M in contents)
 			if(M.client)

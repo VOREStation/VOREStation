@@ -95,13 +95,13 @@
 	if(!changeling)	return 0
 
 	if(is_muzzled())
-		src << "<span class='danger'>Mmmf mrrfff!</span>"
+		to_chat(src, "<span class='danger'>Mmmf mrrfff!</span>")
 		return 0
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if(H.silent)
-			src << "<span class='danger'>You can't speak!</span>"
+			to_chat(src, "<span class='danger'>You can't speak!</span>")
 			return 0
 
 	if(world.time < (changeling.last_shriek + 10 SECONDS) )
@@ -125,7 +125,7 @@
 		range_med = range_med * 2
 		range_light = range_light * 2
 		range_long = range_long * 2
-		src << "<span class='notice'>We are extra loud.</span>"
+		to_chat(src, "<span class='notice'>We are extra loud.</span>")
 		src.mind.changeling.recursive_enhancement = 0
 
 	visible_message("<span class='notice'>[src] appears to shout.</span>")

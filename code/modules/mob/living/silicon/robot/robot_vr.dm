@@ -33,13 +33,27 @@
 					   "mechoid-Janitor",
 					   "mechoid-Combat",
 					   "mechoid-Combat-roll",
+					   "mechoid-Combat-shield",
 					   "Noble-CLN",
 					   "Noble-SRV",
 					   "Noble-DIG",
 					   "Noble-MED",
 					   "Noble-SEC",
 					   "Noble-ENG",
-					   "Noble-STD"
+					   "Noble-STD",
+					   "zoomba-standard",
+					   "zoomba-clerical",
+					   "zoomba-engineering",
+					   "zoomba-janitor",
+					   "zoomba-medical",
+					   "zoomba-crisis",
+					   "zoomba-miner",
+					   "zoomba-research",
+					   "zoomba-security",
+					   "zoomba-service",
+					   "zoomba-combat",
+					   "zoomba-combat-roll",
+					   "zoomba-combat-shield"
 					   )					//List of all used sprites that are in robots_vr.dmi
 
 

@@ -26,14 +26,16 @@
 
 	maxHealth = 200
 	health = 200
+	movement_sound = 'sound/effects/houndstep.ogg'
+	see_in_dark = 8
 
 	melee_damage_lower = 5
 	melee_damage_upper = 10 //makes it so 4 max dmg hits don't instakill you.
 	grab_resist = 100
 
-	response_help = "pets the"
-	response_disarm = "bops the"
-	response_harm = "hits the"
+	response_help = "pets"
+	response_disarm = "bops"
+	response_harm = "hits"
 	attacktext = list("ravaged")
 	friendly = list("nuzzles", "slobberlicks", "noses softly at", "noseboops", "headbumps against", "leans on", "nibbles affectionately on")
 
@@ -110,6 +112,7 @@
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_mob(src)
 	verbs |= /mob/living/simple_mob/proc/animal_mount
+	movement_cooldown = 0
 
 /mob/living/simple_mob/vore/aggressive/corrupthound/MouseDrop_T(mob/living/M, mob/living/user)
 	return

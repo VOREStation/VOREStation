@@ -335,6 +335,8 @@
 	R.name = R.dna.real_name
 	R.types = DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
 	R.languages = subject.languages
+	R.gender = subject.gender
+	R.body_descriptors = subject.descriptors
 	if(!brain_skip) //Brains don't have flavor text.
 		R.flavor = subject.flavor_texts.Copy()
 	else

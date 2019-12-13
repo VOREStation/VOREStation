@@ -347,8 +347,10 @@
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
 "J" = (
+/obj/structure/table/woodentable,
+/obj/machinery/camera/network/civilian,
 /turf/simulated/floor/wood,
-/area/space)
+/area/tether/midpoint)
 "K" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -373,6 +375,13 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
+/area/tether/midpoint)
+"N" = (
+/obj/structure/table/woodentable,
+/obj/machinery/camera/network/civilian{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
 /area/tether/midpoint)
 "O" = (
 /obj/structure/cable{
@@ -10768,7 +10777,7 @@ u
 g
 U
 q
-J
+q
 T
 n
 n
@@ -10908,7 +10917,7 @@ u
 u
 u
 g
-n
+J
 q
 q
 F
@@ -10917,7 +10926,7 @@ F
 F
 q
 q
-n
+N
 g
 u
 u

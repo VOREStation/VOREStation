@@ -1456,6 +1456,12 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	return ..()
 
 /obj/item/device/pda/clown/Crossed(AM as mob|obj) //Clown PDA is slippery.
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = AM
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	if (istype(AM, /mob/living))
 		var/mob/living/M = AM
 

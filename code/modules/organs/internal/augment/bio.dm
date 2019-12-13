@@ -1,44 +1,18 @@
-/*
- * Augments. This file contains the base, and organic-targeting augments.
- */
-
-/obj/item/organ/internal/augment
-	name = "augment"
-
-	icon_state = "cell_bay"
-
-	parent_organ = BP_TORSO
-
-	organ_verbs = list()	// Verbs added by the organ when present in the body.
-	target_parent_classes = list()	// Is the parent supposed to be organic, robotic, assisted?
-	forgiving_class = FALSE	// Will the organ give its verbs when it isn't a perfect match? I.E., assisted in organic, synthetic in organic.
-
-	var/obj/item/integrated_object	// Objects held by the organ, used for deployable things.
-	var/integrated_object_type	// Object type the organ will spawn.
-
-/obj/item/organ/internal/augment/Initialize()
-	..()
-	if(integrated_object_type)
-		integrated_object = new integrated_object_type(src)
-		integrated_object.canremove = FALSE
-
-/obj/item/organ/internal/augment/handle_organ_mod_special(var/removed = FALSE)
-	if(removed && integrated_object && integrated_object.loc != src)
-		if(isliving(integrated_object.loc))
-			var/mob/living/L = integrated_object.loc
-			L.drop_from_inventory(integrated_object)
-		integrated_object.forceMove(src)
-	..(removed)
-
 // The base organic-targeting augment.
 
 /obj/item/organ/internal/augment/bioaugment
 	name = "bioaugmenting implant"
 
-	robotic = ORGAN_ROBOT
+	icon_state = "augment_hybrid"
+	dead_icon = "augment_hybrid_dead"
+
+	robotic = ORGAN_ASSISTED
 	target_parent_classes = list(ORGAN_FLESH)
 
-// Jensen Shades. Your vision can be augmented.
+/* Jensen Shades. Your vision can be augmented.
+ * This, technically, no longer needs its unique organ verb, however I have chosen to leave it for posterity
+ * in the event it needs to be referenced, while still remaining perfectly functional with either system.
+ */
 
 /obj/item/organ/internal/augment/bioaugment/thermalshades
 	name = "integrated thermolensing implant"
@@ -48,20 +22,31 @@
 
 	w_class = ITEMSIZE_TINY
 
-	organ_tag = O_AUG_TSHADE
+	organ_tag = O_AUG_EYES
+
+	robotic = ORGAN_ROBOT
 
 	parent_organ = BP_HEAD
 
-	organ_verbs = list(/mob/living/carbon/human/proc/toggle_shades)
+	organ_verbs = list(
+		/mob/living/carbon/human/proc/augment_menu,
+		/mob/living/carbon/human/proc/toggle_shades)
 
 	integrated_object_type = /obj/item/clothing/glasses/hud/security/jensenshades
 
+/obj/item/organ/internal/augment/bioaugment/thermalshades/augment_action()
+	if(!owner)
+		return
+
+	owner.toggle_shades()
+
+// Here for posterity and example.
 /mob/living/carbon/human/proc/toggle_shades()
 	set name = "Toggle Integrated Thermoshades"
 	set desc = "Toggle your flash-proof, thermal-integrated sunglasses."
 	set category = "Augments"
 
-	var/obj/item/organ/internal/augment/aug = internal_organs_by_name[O_AUG_TSHADE]
+	var/obj/item/organ/internal/augment/aug = internal_organs_by_name[O_AUG_EYES]
 
 	if(glasses)
 		if(aug && aug.integrated_object == glasses)
@@ -90,3 +75,30 @@
 			var/obj/item/clothing/glasses/hud/security/jensenshades/J = new(get_turf(src))
 			equip_to_slot(J, slot_glasses, 1, 1)
 			to_chat(src, "<span class='notice'>Your [aug.integrated_object] deploy.</span>")
+
+/obj/item/organ/internal/augment/bioaugment/sprint_enhance
+	name = "locomotive optimization implant"
+	desc = "A chunk of meat and metal that can manage an individual's leg musculature."
+
+	organ_tag = O_AUG_PELVIC
+
+	parent_organ = BP_GROIN
+
+	target_parent_classes = list(ORGAN_FLESH, ORGAN_ASSISTED)
+
+	aug_cooldown = 2 MINUTES
+
+/obj/item/organ/internal/augment/bioaugment/sprint_enhance/augment_action()
+	if(!owner)
+		return
+
+	if(aug_cooldown)
+		if(last_activate <= world.time + aug_cooldown)
+			last_activate = world.time
+		else
+			return
+
+	if(istype(owner, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = owner
+		H.add_modifier(/datum/modifier/sprinting, 1 MINUTES)
+

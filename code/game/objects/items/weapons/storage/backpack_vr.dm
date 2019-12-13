@@ -129,3 +129,8 @@
 	name = "plain black dufflebag"
 	desc = "A large dufflebag for holding extra tactical supplies."
 	icon_state = "duffle_syndie"
+
+/obj/item/weapon/storage/backpack
+	sprite_sheets = list(
+		SPECIES_TESHARI = 'icons/mob/species/seromi/back.dmi',
+		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/back.dmi')
