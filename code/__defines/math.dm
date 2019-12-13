@@ -16,7 +16,6 @@
 #define TICK_USAGE_TO_MS(starting_tickusage) (TICK_DELTA_TO_MS(world.tick_usage - starting_tickusage))
 
 #define PERCENT(val) (round((val)*100, 0.1))
-#define CLAMP01(x) (CLAMP(x, 0, 1))
 
 //time of day but automatically adjusts to the server going into the next day within the same round.
 //for when you need a reliable time number that doesn't depend on byond time.
@@ -30,16 +29,11 @@
 // round() acts like floor(x, 1) by default but can't handle other values
 #define FLOOR(x, y) ( round((x) / (y)) * (y) )
 
-#define CLAMP(CLVALUE,CLMIN,CLMAX) ( max( (CLMIN), min((CLVALUE), (CLMAX)) ) )
-
 // Similar to clamp but the bottom rolls around to the top and vice versa. min is inclusive, max is exclusive
 #define WRAP(val, min, max) ( min == max ? min : (val) - (round(((val) - (min))/((max) - (min))) * ((max) - (min))) )
 
 // Real modulus that handles decimals
 #define MODULUS(x, y) ( (x) - (y) * round((x) / (y)) )
-
-// Tangent
-#define TAN(x) (sin(x) / cos(x))
 
 // Cotangent
 #define COT(x) (1 / TAN(x))
@@ -49,8 +43,6 @@
 
 // Cosecant
 #define CSC(x) (1 / sin(x))
-
-#define ATAN2(x, y) ( !(x) && !(y) ? 0 : (y) >= 0 ? arccos((x) / sqrt((x)*(x) + (y)*(y))) : -arccos((x) / sqrt((x)*(x) + (y)*(y))) )
 
 // Greatest Common Divisor - Euclid's algorithm
 /proc/GCD(a, b)
