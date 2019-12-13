@@ -18,7 +18,7 @@
 	if (!message)
 		return
 
-	message = speaker.say_emphasis(message)
+	message = encode_html_emphasis(message)
 
 	var/message_start = "<i><span class='game say'>[name], <span class='name'>[speaker.name]</span>"
 	var/message_body = "<span class='message'>[speaker.say_quote(message)], \"[message]\"</span></span></i>"
