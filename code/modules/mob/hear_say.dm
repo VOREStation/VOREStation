@@ -45,7 +45,7 @@
 	if(italics)
 		message = "<i>[message]</i>"
 
-	message = say_emphasis(message)
+	message = encode_html_emphasis(message)
 
 	var/track = null
 	if(istype(src, /mob/observer/dead))
@@ -115,36 +115,14 @@
 /mob/living/silicon/ai/special_mentions()
 	return list("AI") // AI door!
 
-// Converts specific characters, like +, |, and _ to formatted output.
-/mob/proc/say_emphasis(var/message)
-	message = encode_html_emphasis(message, "|", "i")
-	message = encode_html_emphasis(message, "+", "b")
-	message = encode_html_emphasis(message, "_", "u")
-	return message
-
-// Replaces a character inside message with html tags.  Note that html var must not include brackets.
-// Will not create an open html tag if it would not have a closing one.
-/proc/encode_html_emphasis(var/message, var/char, var/html)
-	var/i = 20 // Infinite loop safety.
-	var/pattern = "(?<!<)\\" + char
-	var/regex/re = regex(pattern,"i") // This matches results which do not have a < next to them, to avoid stripping slashes from closing html tags.
-	var/first = re.Find(message) // Find first occurance.
-	var/second = re.Find(message, first + 1) // Then the second.
-	while(first && second && i)
-		// Calculate how far foward the second char is, as the first replacetext() will displace it.
-		var/length_increase = length("<[html]>") - 1
-
-		// Now replace both.
-		message = replacetext(message, char, "<[html]>", first, first + 1)
-		message = replacetext(message, char, "</[html]>", second + length_increase, second + length_increase + 1)
-
-		// Check again to see if we need to keep going.
-		first = re.Find(message)
-		second = re.Find(message, first + 1)
-		i--
-	if(!i)
-		CRASH("Possible infinite loop occured in encode_html_emphasis().")
-	return message
+/proc/encode_html_emphasis(message)
+    var/tagged_message = message
+    for(var/delimiter in GLOB.speech_toppings)
+        var/regex/R = new("\\[delimiter](.+?)\\[delimiter]","g")
+        var/tag = GLOB.speech_toppings[delimiter]
+        tagged_message = R.Replace(tagged_message,"<[tag]>$1</[tag]>")
+        
+    return tagged_message
 
 /mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/part_c, var/mob/speaker = null, var/hard_to_hear = 0, var/vname ="")
 
@@ -240,7 +218,7 @@
 			speaker_name = "[speaker.real_name] ([speaker_name])"
 		track = "[speaker_name] ([ghost_follow_link(speaker, src)])"
 
-	message = say_emphasis(message)
+	message = encode_html_emphasis(message)
 
 	var/formatted
 	if(language)

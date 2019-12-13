@@ -91,6 +91,7 @@
 #include "code\_global_vars\mobs.dm"
 #include "code\_global_vars\sensitive.dm"
 #include "code\_global_vars\lists\mapping.dm"
+#include "code\_global_vars\lists\misc.dm"
 #include "code\_helpers\_global_objects.dm"
 #include "code\_helpers\_global_objects_vr.dm"
 #include "code\_helpers\_lists.dm"
