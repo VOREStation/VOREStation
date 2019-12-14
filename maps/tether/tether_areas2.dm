@@ -284,7 +284,8 @@
 	name = "Atmospherics Gas Storage"
 	icon_state = "atmos"
 
-/area/engineering/atmos/intake
+//TFF 11/12/19 - Minor refactor, makes mice spawn only in Atmos.
+/area/engineering/atmos_intake
 	name = "\improper Atmospherics Intake"
 	icon_state = "atmos"
 	sound_env = MOUNTAINS
