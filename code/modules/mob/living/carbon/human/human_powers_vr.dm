@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/purge_reagents()
+/mob/living/carbon/human/proc/reagent_purge()
 	set name = "Purge Reagents"
 	set desc = "Empty yourself of any reagents you may have consumed or come into contact with."
 	set category = "IC"
