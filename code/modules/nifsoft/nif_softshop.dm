@@ -217,3 +217,8 @@
 		currently_vending = null
 		SSnanoui.update_uis(src)
 	return 1
+
+//Can't throw intangible software at people.
+/obj/machinery/vending/nifsoft_shop/throw_item()
+	//TODO: Make it throw disks at people with random software? That might be fun. EVEN THE ILLEGAL ONES? ;o
+	return 0
