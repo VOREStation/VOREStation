@@ -177,7 +177,8 @@ var/global/list/robot_modules = list(
 					"Basic" = "robot_old",
 					"Android" = "droid",
 					"Drone" = "drone-standard",
-					"Insekt" = "insekt-Default"
+					"Insekt" = "insekt-Default",
+					"Usagi-II" = "tall2standard"
 					)
 
 
@@ -211,7 +212,8 @@ var/global/list/robot_modules = list(
 					"Needles" = "medicalrobot",
 					"Drone" = "drone-surgery",
 					"Handy" = "handy-med",
-					"Insekt" = "insekt-Med"
+					"Insekt" = "insekt-Med",
+					"Usagi-II" = "tall2medical"
 					)
 
 /obj/item/weapon/robot_module/robot/medical/surgeon/New()
@@ -282,7 +284,8 @@ var/global/list/robot_modules = list(
 					"Needles" = "medicalrobot",
 					"Drone - Medical" = "drone-medical",
 					"Drone - Chemistry" = "drone-chemistry",
-					"Insekt" = "insekt-Med"
+					"Insekt" = "insekt-Med",
+					"Usagi-II" = "tall2medical"
 					)
 
 /obj/item/weapon/robot_module/robot/medical/crisis/New()
@@ -356,7 +359,8 @@ var/global/list/robot_modules = list(
 					"Landmate - Treaded" = "engiborg+tread",
 					"Drone" = "drone-engineer",
 					"Treadwell" = "treadwell",
-					"Handy" = "handy-engineer"
+					"Handy" = "handy-engineer",
+					"Usagi-II" = "tall2engineer"
 					)
 
 /obj/item/weapon/robot_module/robot/engineering/construction
@@ -515,7 +519,8 @@ var/global/list/robot_modules = list(
 					"Basic" = "secborg",
 					"Black Knight" = "securityrobot",
 					"Drone" = "drone-sec",
-					"Insekt" = "insekt-Sec"
+					"Insekt" = "insekt-Sec",
+					"Usagi-II" = "tall2security"
 					)
 
 /obj/item/weapon/robot_module/robot/security/general/New()
@@ -558,7 +563,8 @@ var/global/list/robot_modules = list(
 					"Basic" = "JanBot2",
 					"Mopbot"  = "janitorrobot",
 					"Mop Gear Rex" = "mopgearrex",
-					"Drone" = "drone-janitor"
+					"Drone" = "drone-janitor",
+					"Usagi-II" = "tall2janitor"
 					)
 
 /obj/item/weapon/robot_module/robot/janitor/New()
@@ -615,7 +621,8 @@ var/global/list/robot_modules = list(
 					"Bro" = "Brobot",
 					"Rich" = "maximillion",
 					"Drone - Service" = "drone-service",
-					"Drone - Hydro" = "drone-hydro"
+					"Drone - Hydro" = "drone-hydro",
+					"Usagi-II" = "tall2service"
 				  	)
 
 /obj/item/weapon/robot_module/robot/clerical/butler/New()
@@ -667,7 +674,8 @@ var/global/list/robot_modules = list(
 					"Bro" = "Brobot",
 					"Rich" = "maximillion",
 					"Default" = "Service2",
-					"Drone" = "drone-blu"
+					"Drone" = "drone-blu",
+					"Usagi-II" = "tall2service"
 					)
 
 /obj/item/weapon/robot_module/robot/clerical/general/New()
@@ -703,7 +711,8 @@ var/global/list/robot_modules = list(
 					"Basic" = "Miner_old",
 					"Advanced Droid" = "droid-miner",
 					"Treadhead" = "Miner",
-					"Drone" = "drone-miner"
+					"Drone" = "drone-miner",
+					"Usagi-II" = "tall2miner"
 				)
 
 /obj/item/weapon/robot_module/robot/miner/New()
@@ -731,7 +740,8 @@ var/global/list/robot_modules = list(
 					"Droid" = "droid-science",
 					"Drone" = "drone-science",
 					"Handy" = "handy-science",
-					"Insekt" = "insekt-Sci"
+					"Insekt" = "insekt-Sci",
+					"Usagi-II" = "tall2peace"
 					)
 
 /obj/item/weapon/robot_module/robot/research/New()
