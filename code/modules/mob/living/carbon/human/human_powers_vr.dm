@@ -12,5 +12,5 @@
 	src.touching.clear_reagents()
 	to_chat(src, "<span class='notice'>Reagents purged!</span>")
 
-	return true
+	return TRUE
 	
