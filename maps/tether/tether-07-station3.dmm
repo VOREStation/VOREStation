@@ -22328,6 +22328,9 @@
 "Im" = (
 /obj/structure/closet/crate,
 /obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/camera/network/cargo{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/quartermaster/warehouse)
 "In" = (

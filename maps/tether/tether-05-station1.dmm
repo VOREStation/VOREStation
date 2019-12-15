@@ -6479,13 +6479,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/gateway/prep_room)
-"alm" = (
-/obj/machinery/light_switch{
-	dir = 4;
-	pixel_x = -28
-	},
-/turf/simulated/floor/wood,
-/area/bridge/secondary/meeting_room)
 "aln" = (
 /turf/simulated/floor/carpet/purcarpet,
 /area/bridge/secondary/meeting_room)
@@ -34283,7 +34276,7 @@ aia
 aiB
 aia
 aiH
-alm
+aia
 asH
 aia
 aia
