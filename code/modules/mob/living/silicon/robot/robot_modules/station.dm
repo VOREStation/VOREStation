@@ -46,6 +46,7 @@ var/global/list/robot_modules = list(
 	add_languages(R)
 	add_subsystems(R)
 	apply_status_flags(R)
+	handle_shell(R)
 
 	if(R.radio)
 		if(R.shell)
@@ -152,6 +153,19 @@ var/global/list/robot_modules = list(
 /obj/item/weapon/robot_module/proc/remove_status_flags(var/mob/living/silicon/robot/R)
 	if(!can_be_pushed)
 		R.status_flags |= CANPUSH
+
+/obj/item/weapon/robot_module/proc/handle_shell(var/mob/living/silicon/robot/R)
+	if(R.braintype == BORG_BRAINTYPE_AI_SHELL)
+		channels = list(
+			"Medical" = 1,
+			"Engineering" = 1,
+			"Security" = 1,
+			"Service" = 1,
+			"Supply" = 1,
+			"Science" = 1,
+			"Command" = 1,
+			"Explorer" = 1
+			)
 
 // Cyborgs (non-drones), default loadout. This will be given to every module.
 /obj/item/weapon/robot_module/robot/New()
@@ -586,7 +600,10 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/robot/clerical
 	name = "service robot module"
-	channels = list("Service" = 1)
+	channels = list(
+		"Service" = 1,
+		"Command" = 1
+		)
 	languages = list(
 					LANGUAGE_SOL_COMMON	= 1,
 					LANGUAGE_UNATHI		= 1,
