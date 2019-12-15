@@ -71,7 +71,8 @@ var/global/list/limb_icon_cache = list()
 		if(should_have_eyes)
 			//And we have them
 			if(eyes)
-				eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
+				if(has_eye_color)
+					eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
 			//They're gone!
 			else
 				eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
