@@ -7068,8 +7068,8 @@
 /obj/machinery/button/remote/blast_door{
 	id = "xenobiolockdown";
 	name = "Xenobiology Lockdown Control";
-	pixel_x = -35;
-	pixel_y = 0;
+	pixel_x = -40;
+	pixel_y = -18;
 	req_one_access = list(47,55)
 	},
 /turf/simulated/floor/tiled,
