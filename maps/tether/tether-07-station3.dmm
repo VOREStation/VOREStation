@@ -13829,15 +13829,10 @@
 /turf/simulated/floor,
 /area/maintenance/station/ai)
 "vp" = (
-/obj/structure/disposalpipe/sortjunction{
-	dir = 1;
-	icon_state = "pipe-j1s";
-	name = "QM Office";
-	sortType = "QM Office"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/quartermaster/office)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "vq" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -18686,16 +18681,15 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
 "CL" = (
-/obj/structure/disposalpipe/sortjunction/flipped{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 1;
-	sortType = "Cargo Bay";
-	name = "Cargo Bay"
+	icon_state = "pipe-j1s";
+	name = "Cargo Bay";
+	sortType = "Cargo Bay"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
-/area/quartermaster/storage)
+/area/quartermaster/office)
 "CM" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -19733,10 +19727,16 @@
 /turf/simulated/floor/wood,
 /area/quartermaster/qm)
 "Et" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/structure/disposalpipe/sortjunction/flipped{
+	dir = 1;
+	name = "QM Office";
+	sortType = "QM Office"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/storage)
 "Eu" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
@@ -40580,7 +40580,7 @@ Zy
 WG
 dj
 XA
-Et
+vp
 ms
 Oz
 be
@@ -40722,7 +40722,7 @@ UJ
 Xb
 dj
 XN
-Et
+vp
 ms
 Xq
 be
@@ -40864,7 +40864,7 @@ iW
 WS
 dj
 XN
-Et
+vp
 ms
 Xq
 be
@@ -41147,7 +41147,7 @@ jZ
 WR
 Xo
 XN
-Et
+vp
 cK
 ms
 Xq
@@ -41715,7 +41715,7 @@ ea
 kx
 dj
 XN
-Et
+vp
 cK
 ms
 mq
@@ -42000,7 +42000,7 @@ kQ
 TG
 dj
 XN
-Et
+vp
 ms
 mq
 be
@@ -42142,7 +42142,7 @@ kR
 Vd
 dj
 XN
-Et
+vp
 ms
 QL
 be
@@ -42284,7 +42284,7 @@ ZE
 ZB
 dj
 XB
-Et
+vp
 ms
 Sq
 be
@@ -43296,7 +43296,7 @@ rW
 sI
 tD
 uD
-vp
+CL
 uD
 uD
 xr
@@ -43305,7 +43305,7 @@ za
 zQ
 AS
 BT
-CL
+Et
 BT
 Ew
 Ew
