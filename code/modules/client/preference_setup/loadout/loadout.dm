@@ -66,7 +66,7 @@ var/list/gear_datums = list()
 	for(var/gear_name in gear_datums)
 		var/datum/gear/G = gear_datums[gear_name]
 
-		if(G.whitelisted && !is_alien_whitelisted(preference_mob, all_species[G.whitelisted]))
+		if(G.whitelisted && !is_alien_whitelisted(preference_mob, GLOB.all_species[G.whitelisted]))
 			continue
 		if(max_cost && G.cost > max_cost)
 			continue

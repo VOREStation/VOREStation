@@ -65,10 +65,14 @@ var/list/organ_cache = list()
 	if(istype(holder))
 		src.owner = holder
 		src.w_class = max(src.w_class + mob_size_difference(holder.mob_size, MOB_MEDIUM), 1) //smaller mobs have smaller organs.
-		species = all_species[SPECIES_HUMAN]
+		species = GLOB.all_species[SPECIES_HUMAN]
 		if(holder.dna)
 			dna = holder.dna.Clone()
+<<<<<<< HEAD
 			species = holder.species //VOREStation Edit - For custom species
+=======
+			species = GLOB.all_species[dna.species]
+>>>>>>> f14184f... Merge pull request #6558 from Mechoid/GlobSpecies
 		else
 			log_debug("[src] at [loc] spawned without a proper DNA.")
 		var/mob/living/carbon/human/H = holder
@@ -87,7 +91,7 @@ var/list/organ_cache = list()
 		if(internal)
 			holder.internal_organs |= src
 	else
-		species = all_species["Human"]
+		species = GLOB.all_species["Human"]
 
 	handle_organ_mod_special()
 
