@@ -27278,10 +27278,40 @@
 /turf/simulated/floor/plating,
 /area/rnd/outpost/xenobiology/outpost_first_aid)
 "aTy" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "hop_office"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 4;
+	icon_state = "rwindow";
+	id = "hop_office"
+	},
+/obj/structure/cable/green{
+	icon_state = "0-1";
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/heads/hop)
+"aTz" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/polarized/full{
+	id = "hop_office"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 4;
+	icon_state = "rwindow";
+	id = "hop_office"
+	},
+/obj/structure/cable/green,
+/obj/structure/cable/green{
+	icon_state = "0-1";
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/heads/hop)
 "aTA" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/wood,
@@ -27290,6 +27320,11 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_breakroom)
+"aTC" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
 "aTK" = (
 /obj/structure/table/glass,
 /obj/machinery/light{
@@ -30380,23 +30415,6 @@
 "aZC" = (
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
-"aZD" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized/full{
-	id = "hop_office"
-	},
-/obj/structure/window/reinforced/polarized{
-	icon_state = "rwindow";
-	dir = 4;
-	id = "iaa_office"
-	},
-/obj/structure/cable/green{
-	icon_state = "0-1";
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/crew_quarters/heads/hop)
 "aZE" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/light{
@@ -30529,24 +30547,6 @@
 /obj/item/weapon/folder/red,
 /obj/item/weapon/pen/multi,
 /turf/simulated/floor/carpet,
-/area/crew_quarters/heads/hop)
-"aZQ" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/polarized/full{
-	id = "hop_office"
-	},
-/obj/structure/window/reinforced/polarized{
-	icon_state = "rwindow";
-	dir = 4;
-	id = "iaa_office"
-	},
-/obj/structure/cable/green,
-/obj/structure/cable/green{
-	icon_state = "0-1";
-	dir = 1
-	},
-/turf/simulated/floor/plating,
 /area/crew_quarters/heads/hop)
 "aZR" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -44873,12 +44873,12 @@ bbt
 alk
 ayx
 ayx
-aZD
-aZQ
-aZQ
-aZQ
-aZQ
-aZQ
+aTy
+aTz
+aTz
+aTz
+aTz
+aTz
 aln
 ayx
 alo
@@ -45345,7 +45345,7 @@ aNk
 aNl
 aNJ
 aNP
-aTy
+aTC
 aKU
 abg
 aOk
@@ -45487,7 +45487,7 @@ aNl
 aNl
 aNK
 aNP
-aTy
+aTC
 aKU
 abg
 aOk
@@ -45629,7 +45629,7 @@ aNm
 aNl
 aNK
 aNP
-aTy
+aTC
 aKU
 abg
 aOk
