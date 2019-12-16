@@ -3,8 +3,4 @@
 #define TYPEID_NORMAL_LIST "f"
 //helper macros
 #define GET_TYPEID(ref) ( ( (length(ref) <= 10) ? "TYPEID_NULL" : copytext(ref, 4, length(ref)-6) ) )
-<<<<<<< HEAD
 #define IS_NORMAL_LIST(L) (GET_TYPEID("\ref[L]") == TYPEID_NORMAL_LIST)
-=======
-#define IS_NORMAL_LIST(L) (GET_TYPEID("\ref[L]") == TYPEID_NORMAL_LIST)
->>>>>>> af301e7b... Merge pull request #6563 from Novacat/nova-accessory
