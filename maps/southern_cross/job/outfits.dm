@@ -13,8 +13,13 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	l_ear = /obj/item/device/radio/headset/explorer
 	id_slot = slot_wear_id
 	pda_slot = slot_l_store
+<<<<<<< HEAD
 	pda_type = /obj/item/device/pda/explorer //VORESTation Edit - Better Brown
 	id_type = /obj/item/weapon/card/id/explorer/explorer //VOREStation Edit
+=======
+	pda_type = /obj/item/device/pda/cargo // Brown looks more rugged
+	id_type = /obj/item/weapon/card/id/civilian
+>>>>>>> 7b9bc5b... Merge pull request #6520 from Meghan-Rossi/idcleanup
 	id_pda_assignment = "Explorer"
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 	backpack_contents = list(/obj/item/clothing/accessory/permit/gun/planetside = 1)
@@ -46,8 +51,13 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	l_ear = /obj/item/device/radio/headset/pilot/alt
 	id_slot = slot_wear_id
 	pda_slot = slot_belt
+<<<<<<< HEAD
 	pda_type = /obj/item/device/pda //VOREStation Edit - Civilian
 	id_type = /obj/item/weapon/card/id/explorer/pilot //VOREStation Edit
+=======
+	pda_type = /obj/item/device/pda/cargo // Brown looks more rugged
+	id_type = /obj/item/weapon/card/id/civilian
+>>>>>>> 7b9bc5b... Merge pull request #6520 from Meghan-Rossi/idcleanup
 	id_pda_assignment = "Pilot"
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 
@@ -60,7 +70,13 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	l_hand = /obj/item/weapon/storage/firstaid/regular
 	belt = /obj/item/weapon/storage/belt/medical/emt
 	pda_slot = slot_l_store
+<<<<<<< HEAD
 	pda_type = /obj/item/device/pda/sar //VOREStation Add
 	id_type = /obj/item/weapon/card/id/medical/sar
 	id_pda_assignment = "Field Medic" //VOREStation Edit
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
+=======
+	id_type = /obj/item/weapon/card/id/medical
+	id_pda_assignment = "Search and Rescue"
+	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
+>>>>>>> 7b9bc5b... Merge pull request #6520 from Meghan-Rossi/idcleanup
