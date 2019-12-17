@@ -12232,15 +12232,15 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "sg" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/glass_medical{
-	id_tag = "MedbayWaiting";
-	name = "Medbay"
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
+	scrub_id = "sec_riot_control"
 	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/white,
-/area/medical/surgery_hallway)
+/obj/machinery/camera/network/security{
+	icon_state = "camera";
+	dir = 5
+	},
+/turf/simulated/floor/plating,
+/area/security/brig)
 "sh" = (
 /obj/structure/bookcase,
 /turf/simulated/floor/wood,
@@ -15211,6 +15211,32 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/micro)
+"wW" = (
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22
+	},
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
+	scrub_id = "sec_riot_control"
+	},
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/plating,
+/area/security/brig)
+"wX" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/glass_medical{
+	id_tag = "MedbayWaiting";
+	name = "Medbay"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery_hallway)
 "wZ" = (
 /obj/effect/landmark/start{
 	name = "Medical Doctor"
@@ -20446,20 +20472,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/security/brig)
-"Fx" = (
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
-	scrub_id = "sec_riot_control"
-	},
-/obj/machinery/camera/network/security{
-	icon_state = "camera";
-	dir = 5
-	},
-/turf/simulated/floor/plating,
-/area/security/brig)
 "Fy" = (
 /obj/structure/closet/secure_closet/explorer,
 /obj/effect/floor_decal/borderfloor,
@@ -21306,17 +21318,6 @@
 /obj/random/maintenance/engineering,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
-"Op" = (
-/obj/machinery/alarm{
-	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22
-	},
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
-	scrub_id = "sec_riot_control"
-	},
-/turf/simulated/floor/plating,
-/area/security/brig)
 "Or" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/catwalk,
@@ -29683,8 +29684,8 @@ eS
 fD
 Pm
 aS
-Fx
-Op
+sg
+wW
 hQ
 iu
 jd
@@ -32688,7 +32689,7 @@ ps
 qO
 rx
 sb
-sg
+wX
 sK
 ts
 tR

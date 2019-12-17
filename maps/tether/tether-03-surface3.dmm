@@ -21140,12 +21140,10 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "aHS" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/closet/firecloset,
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_south_airlock)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
 "aHT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -27348,10 +27346,17 @@
 /turf/simulated/floor/tiled/dark,
 /area/bridge)
 "aTD" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/closet/firecloset,
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 25;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_south_airlock)
 "aTK" = (
 /obj/structure/table/glass,
 /obj/machinery/light{
@@ -37402,7 +37407,7 @@ aNV
 aNZ
 aOf
 auz
-aHS
+aTD
 aHU
 aOf
 aPE
@@ -45349,7 +45354,7 @@ aNk
 aNl
 aNJ
 aNP
-aTD
+aHS
 aKU
 abg
 aOk
@@ -45491,7 +45496,7 @@ aNl
 aNl
 aNK
 aNP
-aTD
+aHS
 aKU
 abg
 aOk
@@ -45633,7 +45638,7 @@ aNm
 aNl
 aNK
 aNP
-aTD
+aHS
 aKU
 abg
 aOk
