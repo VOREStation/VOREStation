@@ -265,14 +265,8 @@
 	rank = "Quartermaster"
 
 /obj/item/weapon/card/id/assistant
-<<<<<<< HEAD
 	assignment = USELESS_JOB //VOREStation Edit - Visitor not Assistant
 	rank = USELESS_JOB //VOREStation Edit - Visitor not Assistant
-	job_access_type = /datum/job/assistant
-=======
-	assignment = "Assistant"
-	rank = "Assistant"
->>>>>>> 7b9bc5b... Merge pull request #6520 from Meghan-Rossi/idcleanup
 
 /obj/item/weapon/card/id/civilian
 	name = "identification card"
