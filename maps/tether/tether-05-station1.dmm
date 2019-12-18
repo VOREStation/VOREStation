@@ -6479,6 +6479,21 @@
 	},
 /turf/simulated/floor/tiled,
 /area/gateway/prep_room)
+"alm" = (
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 1
+	},
+/obj/machinery/camera/network/tether{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/stairs_one)
 "aln" = (
 /turf/simulated/floor/carpet/purcarpet,
 /area/bridge/secondary/meeting_room)
@@ -13032,11 +13047,17 @@
 /turf/simulated/floor,
 /area/crew_quarters/sleep/cryo)
 "axu" = (
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 8
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 5
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/stairs_one)
@@ -13612,16 +13633,24 @@
 /area/bridge/secondary/meeting_room)
 "ayw" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 4
+	dir = 8
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 9
+	dir = 5
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/tether/station/stairs_one)
 "ayx" = (
-/obj/structure/reagent_dispensers/watertank,
-/turf/simulated/floor/tiled,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock{
+	name = "Secondary Janitorial Closet";
+	req_access = list(26)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/steel_grid,
 /area/tether/station/stairs_one)
 "ayy" = (
 /obj/structure/stairs/south,
@@ -14578,19 +14607,24 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/visitorhallway/laundry)
 "azM" = (
-/obj/machinery/light_switch{
-	pixel_y = -25
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
 	},
-/obj/structure/table/steel,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/storage/box/lights/mixed,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 5
+	},
 /turf/simulated/floor/tiled,
 /area/tether/station/stairs_one)
 "azN" = (
-/obj/machinery/light/small,
-/obj/structure/mopbucket,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/weapon/mop,
+/obj/structure/reagent_dispensers/watertank,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/tether/station/stairs_one)
 "azO" = (
@@ -16060,12 +16094,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/gateway/prep_room)
 "aCp" = (
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 1
-	},
-/obj/machinery/camera/network/tether{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/tether/station/stairs_one)
 "aCq" = (
@@ -16513,6 +16542,29 @@
 /obj/item/device/radio/beacon,
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
+"aCZ" = (
+/obj/machinery/light_switch{
+	pixel_y = -25
+	},
+/obj/structure/table/steel,
+/obj/item/weapon/storage/box/lights/mixed,
+/obj/item/weapon/storage/box/lights/mixed,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	icon_state = "intact-supply";
+	dir = 5
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/stairs_one)
+"aDa" = (
+/obj/machinery/light/small,
+/obj/structure/mopbucket,
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/weapon/mop,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/stairs_one)
 "aDh" = (
 /obj/machinery/door/airlock{
 	name = "Unit 3"
@@ -20664,21 +20716,6 @@
 /obj/structure/stairs/east,
 /turf/simulated/floor/tiled,
 /area/engineering/foyer)
-"bgG" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/tether/station/stairs_one)
 "bgH" = (
 /obj/structure/cable{
 	d2 = 8;
@@ -20944,14 +20981,6 @@
 /obj/random/tech_supply,
 /turf/simulated/floor/tiled,
 /area/storage/tools)
-"bkm" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock{
-	name = "Secondary Janitorial Closet";
-	req_access = list(26)
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/tether/station/stairs_one)
 "bkp" = (
 /obj/machinery/vending/assist,
 /obj/machinery/light/small{
@@ -29711,12 +29740,12 @@ agR
 adT
 ajK
 awp
-aCp
-axu
-bkm
+alm
 ayw
-axR
+ayx
 azM
+aCp
+aCZ
 aws
 aBa
 btu
@@ -29853,12 +29882,12 @@ agQ
 adX
 bdi
 bfG
-bgG
+axu
 axv
 aws
-ayx
-bou
 azN
+bou
+aDa
 aws
 aBb
 aCY

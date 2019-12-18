@@ -126,6 +126,12 @@
 "aat" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
 "aau" = (
@@ -15050,6 +15056,26 @@
 /obj/machinery/vending/coffee,
 /turf/simulated/floor/tiled/monotile,
 /area/rnd/breakroom)
+"aBG" = (
+/obj/effect/floor_decal/borderfloor/shifted{
+	icon_state = "borderfloor_shifted";
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightorange/border/shifted{
+	icon_state = "bordercolor_shifted";
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightorange{
+	icon_state = "corner_white";
+	dir = 5
+	},
+/obj/structure/table/steel,
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/brig)
 "aBH" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -26045,10 +26071,11 @@
 	icon_state = "corner_white";
 	dir = 5
 	},
-/obj/structure/table/steel,
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
+/obj/structure/table/steel,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/brig)
 "aUW" = (
@@ -26824,24 +26851,40 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/security/brig)
 "aVT" = (
-/obj/effect/floor_decal/borderfloor/shifted{
-	icon_state = "borderfloor_shifted";
-	dir = 1
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
 	},
-/obj/effect/floor_decal/corner/lightorange/border/shifted{
-	icon_state = "bordercolor_shifted";
-	dir = 1
+/obj/effect/floor_decal/corner/red/border{
+	dir = 8
 	},
-/obj/effect/floor_decal/corner/lightorange{
-	icon_state = "corner_white";
-	dir = 5
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 10;
+	icon_state = "borderfloorcorner2";
+	pixel_x = 0
 	},
-/obj/machinery/alarm{
-	pixel_y = 22
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 10
 	},
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled/dark,
-/area/tether/surfacebase/security/brig)
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "Surf Cell 1";
+	name = "Cell A Door";
+	pixel_x = -28;
+	req_access = list(1,2)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/green,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/lowerhallway)
 "aVU" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -27049,45 +27092,6 @@
 /obj/effect/floor_decal/corner/red/bordercorner2{
 	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/machinery/button/remote/blast_door{
-	dir = 8;
-	id = "Surf Cell 1";
-	name = "Cell A Door";
-	pixel_x = -28;
-	req_access = list(1,2)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/green,
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/security/lowerhallway)
-"aWk" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 10;
-	icon_state = "borderfloorcorner2";
-	pixel_x = 0
-	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -27108,6 +27112,40 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/green,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/lowerhallway)
+"aWk" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 10;
+	icon_state = "borderfloorcorner2";
+	pixel_x = 0
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 10
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "Surf Cell 3";
+	name = "Cell C Door";
+	pixel_x = -28;
+	req_access = list(1,2)
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lowerhallway)
@@ -27177,41 +27215,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/brig)
 "aWr" = (
-/obj/effect/floor_decal/borderfloor{
+/obj/machinery/atmospherics/pipe/cap/visible/scrubbers{
 	dir = 8
 	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 10;
-	icon_state = "borderfloorcorner2";
-	pixel_x = 0
-	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/machinery/button/remote/blast_door{
-	dir = 8;
-	id = "Surf Cell 3";
-	name = "Cell C Door";
-	pixel_x = -28;
-	req_access = list(1,2)
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/security/lowerhallway)
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aWs" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -27579,6 +27590,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lowerhallway)
+"aWP" = (
+/obj/machinery/atmospherics/pipe/cap/visible/supply{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aWQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/segment{
@@ -36611,7 +36628,7 @@ akn
 akn
 akn
 akn
-akn
+aWr
 akn
 akn
 akn
@@ -36753,7 +36770,7 @@ akn
 akn
 akn
 akn
-akn
+aWP
 akn
 akn
 akn
@@ -38455,13 +38472,13 @@ aUg
 aTz
 aVq
 aUN
-aUV
+aBG
 aVm
 aUN
-aUV
+aBG
 aVU
 aUN
-aVT
+aUV
 aVm
 aUN
 acW
@@ -39023,13 +39040,13 @@ aTX
 aVi
 aUP
 aTA
-aWj
+aVT
 aWB
 aUG
-aWk
+aWj
 aWO
 aVD
-aWr
+aWk
 aXc
 aTr
 acW

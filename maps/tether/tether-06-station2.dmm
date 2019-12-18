@@ -515,52 +515,25 @@
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
 "aY" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
+/obj/effect/floor_decal/borderfloor/shifted{
+	icon_state = "borderfloor_shifted";
+	dir = 1
 	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 8
+/obj/effect/floor_decal/corner/lightorange/border/shifted{
+	icon_state = "bordercolor_shifted";
+	dir = 1
 	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 10;
-	icon_state = "borderfloorcorner2";
-	pixel_x = 0
-	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 10
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/machinery/button/remote/blast_door{
-	dir = 8;
-	id = "Cell 2";
-	name = "Cell 2 Door";
-	pixel_x = -28;
-	req_access = list(1,2)
-	},
-/obj/machinery/camera/network/security{
-	icon_state = "camera";
+/obj/effect/floor_decal/corner/lightorange{
+	icon_state = "corner_white";
 	dir = 5
 	},
-/turf/simulated/floor/tiled,
-/area/security/security_cell_hallway)
+/obj/structure/table/steel,
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/tiled/dark,
+/area/security/brig)
 "aZ" = (
 /obj/machinery/atmospherics/valve/digital,
 /obj/effect/decal/cleanable/dirt,
@@ -1905,24 +1878,53 @@
 /turf/simulated/floor/plating,
 /area/engineering/shaft)
 "cK" = (
-/obj/effect/floor_decal/borderfloor/shifted{
-	icon_state = "borderfloor_shifted";
-	dir = 1
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
 	},
-/obj/effect/floor_decal/corner/lightorange/border/shifted{
-	icon_state = "bordercolor_shifted";
-	dir = 1
+/obj/effect/floor_decal/corner/red/border{
+	dir = 8
 	},
-/obj/effect/floor_decal/corner/lightorange{
-	icon_state = "corner_white";
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 10;
+	icon_state = "borderfloorcorner2";
+	pixel_x = 0
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 10
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "Cell 2";
+	name = "Cell 2 Door";
+	pixel_x = -28;
+	req_access = list(1,2)
+	},
+/obj/machinery/camera/network/security{
+	icon_state = "camera";
 	dir = 5
 	},
-/obj/structure/table/steel,
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
-/turf/simulated/floor/tiled/dark,
-/area/security/brig)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled,
+/area/security/security_cell_hallway)
 "cL" = (
 /obj/random/trash,
 /obj/machinery/alarm{
@@ -30666,16 +30668,16 @@ aS
 am
 aF
 aS
-cK
+aY
 cO
 aS
-cK
+aY
 cO
 aS
-cK
+aY
 cO
 aS
-cK
+aY
 cO
 aS
 PJ
@@ -31240,7 +31242,7 @@ bH
 aX
 cT
 bJ
-aY
+cK
 KQ
 bQ
 bd
