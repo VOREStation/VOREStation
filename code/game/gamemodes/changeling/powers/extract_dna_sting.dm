@@ -24,15 +24,15 @@
 		return
 
 	if(!istype(T) || T.isSynthetic())
-		src << "<span class='warning'>\The [T] is not compatible with our biology.</span>"
+		to_chat(src, "<span class='warning'>\The [T] is not compatible with our biology.</span>")
 		return 0
 
 	if(T.species.flags & NO_SCAN)
-		src << "<span class='warning'>We do not know how to parse this creature's DNA!</span>"
+		to_chat(src, "<span class='warning'>We do not know how to parse this creature's DNA!</span>")
 		return 0
 
 	if(HUSK in T.mutations)
-		src << "<span class='warning'>This creature's DNA is ruined beyond useability!</span>"
+		to_chat(src, "<span class='warning'>This creature's DNA is ruined beyond useability!</span>")
 		return 0
 
 	add_attack_logs(src,T,"DNA extraction sting (changeling)")

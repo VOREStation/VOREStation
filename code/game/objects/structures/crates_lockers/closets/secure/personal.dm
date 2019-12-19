@@ -4,14 +4,18 @@
 	req_access = list(access_all_personal_lockers)
 	var/registered_name = null
 
+	/* //VOREStation Removal
 	starts_with = list(
 		/obj/item/device/radio/headset)
+	*/
 
 /obj/structure/closet/secure_closet/personal/Initialize()
+	/* //VOREStation Removal
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack
 	else
 		starts_with += /obj/item/weapon/storage/backpack/satchel/norm
+	*/
 	return ..()
 
 /obj/structure/closet/secure_closet/personal/patient

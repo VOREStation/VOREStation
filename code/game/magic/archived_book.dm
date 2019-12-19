@@ -37,7 +37,7 @@ datum/book_manager/proc/freeid()
 	set desc = "Permamently deletes a book from the database."
 	set category = "Admin"
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 
 	var/isbn = input("ISBN number?", "Delete Book") as num | null

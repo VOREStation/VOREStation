@@ -186,12 +186,14 @@
 				digestion_death(M)
 				if(!ishuman(owner))
 					owner.update_icons()
+				if(compensation == 0) //Slightly sloppy way at making sure certain mobs don't give ZERO nutrition (fish and so on)
+					compensation = 21 //This reads as 20*4.5 due to the calculations afterward, making the backup nutrition value 94.5 per mob. Not op compared to regular prey.
 				if(compensation > 0)
 					if(isrobot(owner))
 						var/mob/living/silicon/robot/R = owner
 						R.cell.charge += 25*compensation
 					else
-						owner.nutrition += 4.5*compensation
+						owner.nutrition += (nutrition_percent / 100)*4.5*compensation
 				to_update = TRUE
 
 				continue
@@ -211,9 +213,9 @@
 				var/mob/living/silicon/robot/R = owner
 				R.cell.charge += 25*damage_gain
 			if(offset) // If any different than default weight, multiply the % of offset.
-				owner.nutrition += offset*(4.5*(damage_gain)/difference) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
+				owner.nutrition += offset*((nutrition_percent / 100)*4.5*(damage_gain)/difference) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
 			else
-				owner.nutrition += 4.5*(damage_gain)/difference
+				owner.nutrition += (nutrition_percent / 100)*4.5*(damage_gain)/difference
 
 
 //////////////////////////// DM_ABSORB ////////////////////////////

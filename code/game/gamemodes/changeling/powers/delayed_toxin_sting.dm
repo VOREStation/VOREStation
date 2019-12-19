@@ -32,7 +32,7 @@
 	var/type_to_give = /datum/modifier/delayed_toxin_sting
 	if(src.mind.changeling.recursive_enhancement)
 		type_to_give = /datum/modifier/delayed_toxin_sting/strong
-		src << "<span class='notice'>Our toxin will be extra potent, when it strikes.</span>"
+		to_chat(src, "<span class='notice'>Our toxin will be extra potent, when it strikes.</span>")
 
 	T.add_modifier(type_to_give, 2 MINUTES)
 

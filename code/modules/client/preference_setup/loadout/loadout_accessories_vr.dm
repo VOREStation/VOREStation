@@ -6,6 +6,10 @@
 	slot = slot_tie
 	sort_category = "Accessories"
 
+/datum/gear/collar/New()
+	..()
+	gear_tweaks = list(gear_tweak_collar_tag)
+
 /datum/gear/collar/golden
 	display_name = "collar, golden"
 	path = /obj/item/clothing/accessory/collar/gold

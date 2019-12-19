@@ -180,7 +180,8 @@
 
 /mob/New()
 	..()
-	ability_master = new /obj/screen/movable/ability_master(src)
+	if(!ability_master)	//VOREStation Edit: S H A D E K I N
+		ability_master = new /obj/screen/movable/ability_master(src)
 
 ///////////ACTUAL ABILITIES////////////
 //This is what you click to do things//
@@ -282,7 +283,7 @@
 	if(!mob)
 		return // Paranoid.
 	if(isnull(slot) || !isnum(slot))
-		src << "<span class='warning'>.activate_ability requires a number as input, corrisponding to the slot you wish to use.</span>"
+		to_chat(src, "<span class='warning'>.activate_ability requires a number as input, corrisponding to the slot you wish to use.</span>")
 		return // Bad input.
 	if(!mob.ability_master)
 		return // No abilities.

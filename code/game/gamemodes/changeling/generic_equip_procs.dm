@@ -32,7 +32,7 @@
 		return 1
 
 	if(M.head || M.wear_suit) //Make sure our slots aren't full
-		src << "<span class='warning'>We require nothing to be on our head, and we cannot wear any external suits, or shoes.</span>"
+		to_chat(src, "<span class='warning'>We require nothing to be on our head, and we cannot wear any external suits, or shoes.</span>")
 		return 0
 
 	var/obj/item/clothing/suit/A = new armor_type(src)
@@ -242,7 +242,7 @@
 	var/mob/living/carbon/human/M = src
 
 	if(M.hands_are_full()) //Make sure our hands aren't full.
-		src << "<span class='warning'>Our hands are full.  Drop something first.</span>"
+		to_chat(src, "<span class='warning'>Our hands are full.  Drop something first.</span>")
 		return 0
 
 	var/obj/item/weapon/W = new weapon_type(src)

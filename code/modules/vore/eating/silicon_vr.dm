@@ -78,7 +78,7 @@
 		return
 
 	hologram.visible_message("[hologram] starts engulfing [prey] in hardlight holograms!")
-	src << "<span class='notice'>You begin engulfing [prey] in hardlight holograms.</span>" //Can't be part of the above, because the above is from the hologram.
+	to_chat(src, "<span class='notice'>You begin engulfing [prey] in hardlight holograms.</span>") //Can't be part of the above, because the above is from the hologram.
 	if(do_after(user=eyeobj,delay=50,target=prey,needhand=0) && holo && hologram && !hologram.bellied) //Didn't move and still projecting and effect exists and no other bellied people
 		hologram.get_prey(prey)
 

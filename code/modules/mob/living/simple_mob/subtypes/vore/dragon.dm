@@ -10,6 +10,7 @@
 	faction = "dragon"
 	maxHealth = 500 // Boss
 	health = 500
+	see_in_dark = 8
 
 	melee_damage_lower = 5
 	melee_damage_upper = 30
@@ -25,6 +26,10 @@
 	max_n2 = 0
 	minbodytemp = 0
 	maxbodytemp = 700
+
+	response_help = "pats"
+	response_disarm = "tries to shove"
+	response_harm = "hits"
 
 	old_x = -16
 	old_y = 0
@@ -55,16 +60,15 @@
 	health = 200
 	faction = "virgo3b"
 
-/* //VOREStation AI Temporary Removal
-/mob/living/simple_animal/hostile/dragon/Login()
+/mob/living/simple_mob/vore/aggressive/dragon/Login()
 	. = ..()
 	if(!riding_datum)
-		riding_datum = new /datum/riding/simple_animal(src)
-	verbs |= /mob/living/simple_animal/proc/animal_mount
+		riding_datum = new /datum/riding/simple_mob(src)
+	verbs |= /mob/living/simple_mob/proc/animal_mount
+	movement_cooldown = 0
 
-/mob/living/simple_animal/hostile/dragon/MouseDrop_T(mob/living/M, mob/living/user)
+/mob/living/simple_mob/vore/aggressive/dragon/MouseDrop_T(mob/living/M, mob/living/user)
 	return
-*/
 
 /datum/say_list/dragonboss
 	say_got_target = list("roars and snaps it jaws!")

@@ -14,7 +14,7 @@
 /decl/hierarchy/outfit/job/cargo/cargo_tech
 	name = OUTFIT_JOB_NAME("Cargo technician")
 	uniform = /obj/item/clothing/under/rank/cargotech
-	id_type = /obj/item/weapon/card/id/cargo/cargo_tech
+	id_type = /obj/item/weapon/card/id/cargo
 	pda_type = /obj/item/device/pda/cargo
 
 /decl/hierarchy/outfit/job/cargo/mining
@@ -23,7 +23,7 @@
 	l_ear = /obj/item/device/radio/headset/headset_mine
 	backpack = /obj/item/weapon/storage/backpack/industrial
 	satchel_one  = /obj/item/weapon/storage/backpack/satchel/eng
-	id_type = /obj/item/weapon/card/id/cargo/mining
+	id_type = /obj/item/weapon/card/id/cargo
 	pda_type = /obj/item/device/pda/shaftminer
 	backpack_contents = list(/obj/item/weapon/tool/crowbar = 1, /obj/item/weapon/storage/bag/ore = 1)
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL

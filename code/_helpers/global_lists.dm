@@ -35,6 +35,7 @@ var/list/mannequins_
 
 // Posters
 var/global/list/poster_designs = list()
+var/global/list/NT_poster_designs = list()
 
 // Uplinks
 var/list/obj/item/device/uplink/world_uplinks = list()
@@ -191,9 +192,15 @@ var/global/list/string_slot_flags = list(
 
 	//Posters
 	paths = typesof(/datum/poster) - /datum/poster
+	paths -= typesof(/datum/poster/nanotrasen)
 	for(var/T in paths)
 		var/datum/poster/P = new T
 		poster_designs += P
+
+	paths = typesof(/datum/poster/nanotrasen)
+	for(var/T in paths)
+		var/datum/poster/P = new T
+		NT_poster_designs += P
 
 	return 1
 

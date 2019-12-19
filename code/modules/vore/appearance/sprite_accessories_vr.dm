@@ -12,6 +12,7 @@
 /datum/sprite_accessory
 	// Ckey of person allowed to use this, if defined.
 	var/list/ckeys_allowed = null
+	var/apply_restrictions = FALSE		//whether to apply restrictions for specific tails/ears/wings
 
 /*
 ////////////////////////////
@@ -28,6 +29,17 @@
 	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
 	var/extra_overlay // Icon state of an additional overlay to blend in.
 	var/desc = "You should not see this..."
+
+// Species-unique ears
+
+/datum/sprite_accessory/ears/shadekin
+	name = "Shadekin Ears, colorable"
+	desc = ""
+	icon_state = "shadekin"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	apply_restrictions = TRUE
+	species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
 
 // Ears avaliable to anyone
 
@@ -386,6 +398,14 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "tesharilowinner"
 
+/datum/sprite_accessory/ears/inkling
+	name = "colorable mature inkling hair"
+	desc = ""
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_state = "inkling-colorable"
+	color_blend_mode = ICON_MULTIPLY
+	do_colouration = 1
+
 
 // Special snowflake ears go below here.
 
@@ -466,6 +486,12 @@
 	desc = ""
 	icon_state = "alurane-ears"
 	ckeys_allowed = list("natje")
+
+/datum/sprite_accessory/ears/frost
+    name = "Frost antenna"
+    desc = ""
+    icon_state = "frosted_tips"
+    ckeys_allowed = list("tucker0666")
 
 /*
 ////////////////////////////
@@ -656,6 +682,19 @@
 	var/list/hide_body_parts = list() //Uses organ tag defines. Bodyparts in this list do not have their icons rendered, allowing for more spriter freedom when doing taur/digitigrade stuff.
 	var/icon/clip_mask_icon = null //Icon file used for clip mask.
 	var/clip_mask_state = null //Icon state to generate clip mask. Clip mask is used to 'clip' off the lower part of clothing such as jumpsuits & full suits.
+
+// Species-unique tails
+
+/datum/sprite_accessory/tail/shadekin_short
+	name = "Shadekin Short Tail, colorable"
+	desc = ""
+	icon_state = "shadekin-short"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	apply_restrictions = TRUE
+	species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
+
+// Everyone tails
 
 /datum/sprite_accessory/tail/invisible
 	name = "hide species-sprite tail"
@@ -915,6 +954,18 @@
 	icon_state = "aronai"
 	ckeys_allowed = list("arokha")
 
+/datum/sprite_accessory/tail/cabletail
+    name = "cabletail"
+    desc = "cabletail"
+    icon_state = "cabletail"
+    ckeys_allowed = list("tucker0666")
+
+/datum/sprite_accessory/tail/featherfluff_tail
+    name = "featherfluff_tail"
+    desc = ""
+    icon_state = "featherfluff_tail"
+    ckeys_allowed = list("tucker0666")
+
 /datum/sprite_accessory/tail/ketrai_wag
 	name = "fennix tail (vwag)"
 	desc = ""
@@ -991,6 +1042,7 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "sneptail_mark"
 	extra_overlay_w = "sneptail_mark_w"
+
 
 /datum/sprite_accessory/tail/tiger_new
 	name = "tiger tail (vwag)"

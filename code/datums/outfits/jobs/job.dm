@@ -13,13 +13,11 @@
 
 	flags = OUTFIT_HAS_BACKPACK
 
-//VOREStation Edit START
 /decl/hierarchy/outfit/job/equip_id(mob/living/carbon/human/H, rank, assignment)
 	var/obj/item/weapon/card/id/C = ..()
 	var/datum/job/J = job_master.GetJob(rank)
 	if(J)
 		C.access = J.get_access()
-//VOREStation Edit END - fixes outfit system not giving centcom officers access on their id
 	if(H.mind)
 		var/datum/mind/M = H.mind
 		if(M.initial_account)

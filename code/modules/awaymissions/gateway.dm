@@ -168,6 +168,7 @@ obj/machinery/gateway/centerstation/process()
 	update_icon()
 	stationgate = locate(/obj/machinery/gateway/centerstation)
 	. = ..()
+	density = 1 //VOREStation Add
 
 
 /obj/machinery/gateway/centeraway/update_icon()

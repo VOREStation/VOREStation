@@ -50,8 +50,10 @@
 	if(H)
 		if(H.looksSynthetic())
 			return "flashing a 'system offline' light"
-		else
+		else if(!H.ai_holder)
 			return show_ssd
+		else
+			return
 
 /datum/species/proc/get_blood_colour(var/mob/living/carbon/human/H)
 	if(H)

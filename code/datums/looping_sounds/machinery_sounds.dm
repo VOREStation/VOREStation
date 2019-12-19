@@ -51,7 +51,7 @@
 	start_sound = 'sound/machines/air_pump/airpumpstart.ogg'
 	start_length = 10
 	mid_sounds = list('sound/machines/air_pump/airpumpidle.ogg' = 1)
-	mid_length = 10
+	mid_length = 4
 	end_sound = 'sound/machines/air_pump/airpumpshutdown.ogg'
-	volume = 20
+	volume = 15
 	pref_check = /datum/client_preference/air_pump_noise

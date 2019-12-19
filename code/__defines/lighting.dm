@@ -84,4 +84,4 @@
 #define LIGHT_COLOR_INCANDESCENT_FLASHLIGHT "#FFCC66"
 
 //Fake ambient occlusion filter
-#define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, border=4, color="#04080FAA")
+#define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, offset=4, color="#04080FAA")

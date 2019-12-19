@@ -13,6 +13,8 @@
 	patrol_speed = 2
 	target_speed = 3
 
+	density = 1
+
 	var/default_icon_state = "secbot"
 	var/idcheck = FALSE // If true, arrests for having weapons without authorization.
 	var/check_records = FALSE // If true, arrests people without a record.
@@ -53,6 +55,8 @@
 	name = "Officer Beepsky"
 	desc = "It's Officer Beep O'sky! Powered by a potato and a shot of whiskey."
 	will_patrol = TRUE
+	maxHealth = 130
+	health = 130
 
 /mob/living/bot/secbot/slime
 	name = "Slime Securitron"
@@ -70,6 +74,8 @@
 /mob/living/bot/secbot/slime/slimesky
 	name = "Doctor Slimesky"
 	desc = "An old friend of Officer Beep O'sky.  He prescribes beatings to rowdy slimes so that real doctors don't need to treat the xenobiologists."
+	maxHealth = 130
+	health = 130
 
 /mob/living/bot/secbot/update_icons()
 	if(on && busy)
@@ -232,6 +238,32 @@
 				action = "fighting"
 			global_announcer.autosay("[src] is [action] a level [threat] [action != "fighting" ? "suspect" : "threat"] <b>[target_name(target)]</b> in <b>[get_area(src)]</b>.", "[src]", "Security")
 		UnarmedAttack(target)
+
+/mob/living/bot/secbot/handlePanic()	// Speed modification based on alert level.
+	. = 0
+	switch(get_security_level())
+		if("green")
+			. = 0
+
+		if("yellow")
+			. = 0
+
+		if("violet")
+			. = 0
+
+		if("orange")
+			. = 0
+
+		if("blue")
+			. = 1
+
+		if("red")
+			. = 2
+
+		if("delta")
+			. = 2
+
+	return .
 
 // So Beepsky talks while beating up simple mobs.
 /mob/living/bot/secbot/proc/insult(var/mob/living/L)

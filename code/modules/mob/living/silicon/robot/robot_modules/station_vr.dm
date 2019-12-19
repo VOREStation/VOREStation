@@ -64,14 +64,16 @@
 /obj/item/weapon/robot_module/robot/medical/surgeon //VOREStation sprites
 	vr_sprites = list(
 						"Acheron" = "mechoid-Medical",
-						"Shellguard Noble" = "Noble-MED"
+						"Shellguard Noble" = "Noble-MED",
+						"ZOOM-BA" = "zoomba-medical"
 					 )
 
 /obj/item/weapon/robot_module/robot/medical/crisis //VOREStation sprites
 	vr_sprites = list(
 						"Handy" = "handy-med",
 						"Acheron" = "mechoid-Medical",
-						"Shellguard Noble" = "Noble-MED"
+						"Shellguard Noble" = "Noble-MED",
+						"ZOOM-BA" = "zoomba-crisis"
 					 )
 
 /obj/item/weapon/robot_module/robot/clerical/butler //VOREStation sprites
@@ -79,58 +81,67 @@
 						"Handy - Service" = "handy-service",
 						"Handy - Hydro" = "handy-hydro",
 						"Acheron" = "mechoid-Service",
-						"Shellguard Noble" = "Noble-SRV"
+						"Shellguard Noble" = "Noble-SRV",
+						"ZOOM-BA" = "zoomba-service"
 					 )
 
 /obj/item/weapon/robot_module/robot/clerical/general //VOREStation sprites
 	vr_sprites = list(
 						"Handy" = "handy-clerk",
 						"Acheron" = "mechoid-Service",
-						"Shellguard Noble" = "Noble-SRV"
+						"Shellguard Noble" = "Noble-SRV",
+						"ZOOM-BA" = "zoomba-clerical"
 					 )
 
 /obj/item/weapon/robot_module/robot/janitor //VOREStation sprites
 	vr_sprites = list(
 						"Handy" = "handy-janitor",
 						"Acheron" = "mechoid-Janitor",
-						"Shellguard Noble" = "Noble-CLN"
+						"Shellguard Noble" = "Noble-CLN",
+						"ZOOM-BA" = "zoomba-janitor"
 					 )
 
 /obj/item/weapon/robot_module/robot/security/general //VOREStation sprites
 	vr_sprites = list(
 						"Handy" = "handy-sec",
 						"Acheron" = "mechoid-Security",
-						"Shellguard Noble" = "Noble-SEC"
+						"Shellguard Noble" = "Noble-SEC",
+						"ZOOM-BA" = "zoomba-security"
 					 )
 
 /obj/item/weapon/robot_module/robot/miner //VOREStation sprites
 	vr_sprites = list(
 						"Handy" = "handy-miner",
 						"Acheron" = "mechoid-Miner",
-						"Shellguard Noble" = "Noble-DIG"
+						"Shellguard Noble" = "Noble-DIG",
+						"ZOOM-BA" = "zoomba-miner"
 					 )
 
 /obj/item/weapon/robot_module/robot/standard //VOREStation sprites
 	vr_sprites = list(
 						"Handy" = "handy-standard",
 						"Acheron" = "mechoid-Standard",
-						"Shellguard Noble" = "Noble-STD"
+						"Shellguard Noble" = "Noble-STD",
+						"ZOOM-BA" = "zoomba-standard"
 					 )
 
 /obj/item/weapon/robot_module/robot/engineering/general //VOREStation sprites
 	vr_sprites = list(
 						"Acheron" = "mechoid-Engineering",
-						"Shellguard Noble" = "Noble-ENG"
+						"Shellguard Noble" = "Noble-ENG",
+						"ZOOM-BA" = "zoomba-engineering"
 					 )
 
 /obj/item/weapon/robot_module/robot/research //VOREStation sprites
 	vr_sprites = list(
-						"Acheron" = "mechoid-Science"
+						"Acheron" = "mechoid-Science",
+						"ZOOM-BA" = "zoomba-research"
 					 )
 
 /obj/item/weapon/robot_module/robot/security/combat //VOREStation sprites
 	vr_sprites = list(
-						"Acheron" = "mechoid-Combat"
+						"Acheron" = "mechoid-Combat",
+						"ZOOM-BA" = "zoomba-combat"
 					 )
 
 /obj/item/weapon/robot_module/robot/knine
@@ -138,7 +149,8 @@
 	sprites = list(
 					"K9 hound" = "k9",
 					"K9 Alternative (Static)" = "k92",
-					"Secborg model V-2" = "secborg"
+					"Secborg model V-2" = "secborg",
+					"Borgi" = "borgi-sec"
 					)
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
@@ -210,7 +222,8 @@
 	sprites = list(
 					"Medical Hound" = "medihound",
 					"Dark Medical Hound (Static)" = "medihounddark",
-					"Mediborg model V-2" = "vale"
+					"Mediborg model V-2" = "vale",
+					"Borgi" = "borgi-medi"
 					)
 
 /obj/item/weapon/robot_module/robot/medihound/New(var/mob/living/silicon/robot/R)
@@ -261,7 +274,8 @@
 	networks = list(NETWORK_SECURITY)
 	can_be_pushed = 0
 	sprites = list(
-					"Standard" = "ert"
+					"Standard" = "ert",
+					"Borgi" = "borgi"
 					)
 
 /obj/item/weapon/robot_module/robot/ert/New(var/mob/living/silicon/robot/R)
@@ -305,6 +319,7 @@
 	name = "Custodial Hound module"
 	sprites = list(
 					"Custodial Hound" = "scrubpup",
+					"Borgi" = "borgi-jani"
 					)
 	channels = list("Service" = 1)
 	can_be_pushed = 0
@@ -385,6 +400,7 @@
 	name = "Research Hound Module"
 	sprites = list(
 					"Research Hound" = "science",
+					"Borgi" = "borgi-sci"
 					)
 	channels = list("Science" = 1)
 	can_be_pushed = 0
@@ -431,6 +447,7 @@
 	name = "Construction Hound module"
 	sprites = list(
 					"Pupdozer" = "pupdozer",
+					"Borgi" = "borgi-eng"
 					)
 	channels = list("Engineering" = 1)
 	networks = list(NETWORK_ENGINEERING)

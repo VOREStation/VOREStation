@@ -157,24 +157,48 @@
 	clip_mask_icon = 'icons/mob/vore/taurs_vr.dmi'
 	clip_mask_state = "taur_clip_mask_def" //Used to clip off the lower part of suits & uniforms.
 
-/datum/sprite_accessory/tail/taur/roiz_long_lizard // Not ACTUALLY a taur, but it uses 32x64 so it wouldn't fit in tails.dmi, and having it as a tail bugs up the sprite.
-	name = "Long Lizard Tail (Roiz Lizden)"
-	icon_state = "roiz_tail_s"
-	do_colouration = 0
-	ckeys_allowed = list("spoopylizz")
+// Species-unique long tails/taurhalves
+
+/datum/sprite_accessory/tail/taur/shadekin_tail
+	name = "Shadekin Tail (Shadekin)"
+	icon_state = "shadekin_s"
+	can_ride = 0
 	hide_body_parts = null
 	clip_mask_icon = null
 	clip_mask_state = null
+	apply_restrictions = TRUE
+	species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
+
+/datum/sprite_accessory/tail/taur/shadekin_tail/shadekin_tail_2c
+	name = "Shadekin Tail dual-color (Shadekin)"
+	extra_overlay = "shadekin_markings"
+
+/datum/sprite_accessory/tail/taur/shadekin_tail/shadekin_tail_long
+	name = "Shadekin Long Tail (Shadekin)"
+	icon_state = "shadekin_long_s"
+
+// Tails/taurhalves for everyone
 
 /datum/sprite_accessory/tail/taur/wolf
 	name = "Wolf (Taur)"
 	icon_state = "wolf_s"
 	suit_sprites = 'icons/mob/taursuits_wolf_vr.dmi'
 
+//TFF 22/11/19 - CHOMPStation port of fat taur sprites
+/datum/sprite_accessory/tail/taur/fatwolf
+	name = "Fat Wolf (Taur)"
+	icon_state = "fatwolf_s"
+
 /datum/sprite_accessory/tail/taur/wolf/wolf_2c
 	name = "Wolf dual-color (Taur)"
 	icon_state = "wolf_s"
 	extra_overlay = "wolf_markings"
+
+//TFF 22/11/19 - CHOMPStation port of fat taur sprites
+/datum/sprite_accessory/tail/taur/wolf/fatwolf_2c
+	name = "Fat Wolf dual-color (Taur)"
+	icon_state = "fatwolf_s"
+	extra_overlay = "fatwolf_markings"
 
 /datum/sprite_accessory/tail/taur/wolf/synthwolf
 	name = "SynthWolf dual-color (Taur)"
@@ -347,10 +371,26 @@
 	name = "Feline (Taur)"
 	icon_state = "feline_s"
 
+//TFF 22/11/19 - CHOMPStation port of fat taur sprites
+/datum/sprite_accessory/tail/taur/fatfeline
+	name = "Fat Feline (Taur)"
+	icon_state = "fatfeline_s"
+
+/datum/sprite_accessory/tail/taur/fatfeline_wag
+	name = "Fat Feline (Taur) (vwag)"
+	icon_state = "fatfeline_s"
+	ani_state = "fatfeline_w"
+
 /datum/sprite_accessory/tail/taur/feline/feline_2c
 	name = "Feline dual-color (Taur)"
 	icon_state = "feline_s"
 	extra_overlay = "feline_markings"
+
+//TFF 22/11/19 - CHOMPStation port of fat taur sprites
+/datum/sprite_accessory/tail/taur/feline/fatfeline_2c
+	name = "Fat Feline dual-color (Taur)"
+	icon_state = "fatfeline_s"
+	extra_overlay = "fatfeline_markings"
 
 /datum/sprite_accessory/tail/taur/feline/synthfeline
 	name = "SynthFeline dual-color (Taur)"
@@ -402,6 +442,49 @@
 	icon_state = "otie_s"
 	extra_overlay = "otie_markings"
 
+/datum/sprite_accessory/tail/taur/alraune/alraune_2c
+	name = "Alraune (dual color)"
+	icon_state = "alraunecolor_s"
+	ani_state = "alraunecolor_closed_s"
+	ckeys_allowed = null
+	do_colouration = 1
+	extra_overlay = "alraunecolor_markings"
+	extra_overlay_w = "alraunecolor_closed_markings"
+	clip_mask_state = "taur_clip_mask_alraune"
+
+/datum/sprite_accessory/tail/taur/wasp
+	name = "Wasp (dual color)"
+	icon_state = "wasp_s"
+	extra_overlay = "wasp_markings"
+	clip_mask_state = "taur_clip_mask_wasp"
+
+	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
+	msg_prey_disarm_run = "%owner pushes you down to the ground with their leg!"
+
+	msg_owner_disarm_walk = "You firmly push your leg down on %prey, painfully but harmlessly pinning them to the ground!"
+	msg_prey_disarm_walk = "%owner firmly pushes their leg down on you, quite painfully but harmlessly pinning you to the ground!"
+
+	msg_owner_harm_walk = "You methodically place your leg down upon %prey's body, slowly applying pressure, crushing them against the floor!"
+	msg_prey_harm_walk = "%owner methodically places their leg upon your body, slowly applying pressure, crushing you against the floor!"
+
+	msg_owner_grab_success = "You pin %prey down on the ground with your front leg before using your other leg to pick them up, trapping them between two of your front legs!"
+	msg_prey_grab_success = "%owner pins you down on the ground with their front leg before using their other leg to pick you up, trapping you between two of their front legs!"
+
+	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
+	msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
+
+// Special snowflake tails/taurhalves
+
+//spoopylizz: Roiz Lizden
+/datum/sprite_accessory/tail/taur/roiz_long_lizard // Not ACTUALLY a taur, but it uses 32x64 so it wouldn't fit in tails.dmi, and having it as a tail bugs up the sprite.
+	name = "Long Lizard Tail (Roiz Lizden)"
+	icon_state = "roiz_tail_s"
+	do_colouration = 0
+	ckeys_allowed = list("spoopylizz")
+	hide_body_parts = null
+	clip_mask_icon = null
+	clip_mask_state = null
+
 //wickedtemp: Chakat Tempest
 /datum/sprite_accessory/tail/taur/feline/tempest
 	name = "Feline (wickedtemp) (Taur)"
@@ -436,7 +519,7 @@
 	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
 	msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
 
-//liquidfirefly: Ariana Scol
+//natje:
 /datum/sprite_accessory/tail/taur/alraune
 	name = "Alraune (natje) (Taur)"
 	icon_state = "alraune_s"
@@ -467,34 +550,3 @@
 
 	msg_owner_grab_fail = "You step down onto %prey with one of your vines, forcing them onto the ground!"
 	msg_prey_grab_fail = "%owner steps down onto you with one of their vines, squishing you and forcing you onto the ground!"
-
-/datum/sprite_accessory/tail/taur/alraune/alraune_2c
-	name = "Alraune (dual color)"
-	icon_state = "alraunecolor_s"
-	ani_state = "alraunecolor_closed_s"
-	ckeys_allowed = null
-	do_colouration = 1
-	extra_overlay = "alraunecolor_markings"
-	extra_overlay_w = "alraunecolor_closed_markings"
-	clip_mask_state = "taur_clip_mask_alraune"
-
-/datum/sprite_accessory/tail/taur/wasp
-	name = "Wasp (dual color)"
-	icon_state = "wasp_s"
-	extra_overlay = "wasp_markings"
-	clip_mask_state = "taur_clip_mask_wasp"
-
-	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
-	msg_prey_disarm_run = "%owner pushes you down to the ground with their leg!"
-
-	msg_owner_disarm_walk = "You firmly push your leg down on %prey, painfully but harmlessly pinning them to the ground!"
-	msg_prey_disarm_walk = "%owner firmly pushes their leg down on you, quite painfully but harmlessly pinning you to the ground!"
-
-	msg_owner_harm_walk = "You methodically place your leg down upon %prey's body, slowly applying pressure, crushing them against the floor!"
-	msg_prey_harm_walk = "%owner methodically places their leg upon your body, slowly applying pressure, crushing you against the floor!"
-
-	msg_owner_grab_success = "You pin %prey down on the ground with your front leg before using your other leg to pick them up, trapping them between two of your front legs!"
-	msg_prey_grab_success = "%owner pins you down on the ground with their front leg before using their other leg to pick you up, trapping you between two of their front legs!"
-
-	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
-	msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"

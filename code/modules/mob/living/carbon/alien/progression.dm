@@ -12,11 +12,11 @@
 		return
 
 	if(handcuffed || legcuffed)
-		src << "<font color='red'>You cannot evolve when you are cuffed.</font>"
+		to_chat(src, "<font color='red'>You cannot evolve when you are cuffed.</font>")
 		return
 
 	if(amount_grown < max_grown)
-		src << "<font color='red'>You are not fully grown.</font>"
+		to_chat(src, "<font color='red'>You are not fully grown.</font>")
 		return
 
 	// confirm_evolution() handles choices and other specific requirements.

@@ -7,7 +7,6 @@
 	spawn_positions = 1
 	supervisors = "company officials and Corporate Regulations"
 	selection_color = "#1D1D4F"
-	idtype = /obj/item/weapon/card/id/centcom
 	access = list()
 	minimal_access = list()
 	minimal_player_age = 14

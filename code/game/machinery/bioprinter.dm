@@ -156,10 +156,10 @@
 	if(!choice || printing || (stat & (BROKEN|NOPOWER)))
 		return
 
-	if(!can_print(choice))
+	if(!can_print(choice, possible_list[choice][2]))
 		return
 
-	container.reagents.remove_reagent("biomass", products[choice][2])
+	container.reagents.remove_reagent("biomass", possible_list[choice][2])
 
 	use_power = 2
 	printing = 1
@@ -176,7 +176,7 @@
 	if(!choice || !src || (stat & (BROKEN|NOPOWER)))
 		return
 
-	print_organ(choice)
+	print_organ(possible_list[choice][1])
 
 	return
 
@@ -210,10 +210,10 @@
 
 	return biomass_count
 
-/obj/machinery/organ_printer/proc/can_print(var/choice)
+/obj/machinery/organ_printer/proc/can_print(var/choice, var/masscount = 0)
 	var/biomass = get_biomass_volume()
-	if(biomass < products[choice][2])
-		visible_message("<span class='notice'>\The [src] displays a warning: 'Not enough biomass. [biomass] stored and [products[choice][2]] needed.'</span>")
+	if(biomass < masscount)
+		visible_message("<span class='notice'>\The [src] displays a warning: 'Not enough biomass. [biomass] stored and [masscount] needed.'</span>")
 		return 0
 
 	if(!loaded_dna || !loaded_dna["donor"])
@@ -223,7 +223,7 @@
 	return 1
 
 /obj/machinery/organ_printer/proc/print_organ(var/choice)
-	var/new_organ = products[choice][1]
+	var/new_organ = choice
 	var/obj/item/organ/O = new new_organ(get_turf(src))
 	O.status |= ORGAN_CUT_AWAY
 	var/mob/living/carbon/human/C = loaded_dna["donor"]

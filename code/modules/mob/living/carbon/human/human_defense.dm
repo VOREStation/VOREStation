@@ -416,7 +416,7 @@ emp_act
 		//If the armor absorbs all of the damage, skip the rest of the calculations
 		var/soaked = get_armor_soak(affecting, "melee", O.armor_penetration)
 		if(soaked >= throw_damage)
-			src << "Your armor absorbs the force of [O.name]!"
+			to_chat(src, "Your armor absorbs the force of [O.name]!")
 			return
 
 		var/armor = run_armor_check(affecting, "melee", O.armor_penetration, "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here

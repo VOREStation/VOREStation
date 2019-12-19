@@ -60,6 +60,8 @@ var/list/mob_hat_cache = list()
 	var/serial_number = 0
 	var/name_override = 0
 
+	var/foreign_droid = FALSE
+
 	holder_type = /obj/item/weapon/holder/drone
 
 	can_be_antagged = FALSE
@@ -117,7 +119,8 @@ var/list/mob_hat_cache = list()
 	updatename()
 
 /mob/living/silicon/robot/drone/init()
-	aiCamera = new/obj/item/device/camera/siliconcam/drone_camera(src)
+	if(!scrambledcodes && !foreign_droid)
+		aiCamera = new/obj/item/device/camera/siliconcam/drone_camera(src)
 	additional_law_channels["Drone"] = ":d"
 	if(!laws) laws = new law_type
 	if(!module) module = new module_type(src)
@@ -252,10 +255,10 @@ var/list/mob_hat_cache = list()
 //For some goddamn reason robots have this hardcoded. Redefining it for our fragile friends here.
 /mob/living/silicon/robot/drone/updatehealth()
 	if(status_flags & GODMODE)
-		health = 35
+		health = maxHealth
 		stat = CONSCIOUS
 		return
-	health = 35 - (getBruteLoss() + getFireLoss())
+	health = maxHealth - (getBruteLoss() + getFireLoss())
 	return
 
 //Easiest to check this here, then check again in the robot proc.
@@ -329,15 +332,15 @@ var/list/mob_hat_cache = list()
 		player.mob.mind.transfer_to(src)
 
 	lawupdate = 0
-	src << "<b>Systems rebooted</b>. Loading base pattern maintenance protocol... <b>loaded</b>."
+	to_chat(src, "<b>Systems rebooted</b>. Loading base pattern maintenance protocol... <b>loaded</b>.")
 	full_law_reset()
 	welcome_drone()
 
 /mob/living/silicon/robot/drone/proc/welcome_drone()
-	src << "<b>You are a maintenance drone, a tiny-brained robotic repair machine</b>."
-	src << "You have no individual will, no personality, and no drives or urges other than your laws."
-	src << "Remember,  you are <b>lawed against interference with the crew</b>. Also remember, <b>you DO NOT take orders from the AI.</b>"
-	src << "Use <b>say ;Hello</b> to talk to other drones and <b>say Hello</b> to speak silently to your nearby fellows."
+	to_chat(src, "<b>You are a maintenance drone, a tiny-brained robotic repair machine</b>.")
+	to_chat(src, "You have no individual will, no personality, and no drives or urges other than your laws.")
+	to_chat(src, "Remember,  you are <b>lawed against interference with the crew</b>. Also remember, <b>you DO NOT take orders from the AI.</b>")
+	to_chat(src, "Use <b>say ;Hello</b> to talk to other drones and <b>say Hello</b> to speak silently to your nearby fellows.")
 
 /mob/living/silicon/robot/drone/add_robot_verbs()
 	src.verbs |= silicon_subsystems
@@ -346,10 +349,10 @@ var/list/mob_hat_cache = list()
 	src.verbs -= silicon_subsystems
 
 /mob/living/silicon/robot/drone/construction/welcome_drone()
-	src << "<b>You are a construction drone, an autonomous engineering and fabrication system.</b>."
-	src << "You are assigned to a Sol Central construction project. The name is irrelevant. Your task is to complete construction and subsystem integration as soon as possible."
-	src << "Use <b>:d</b> to talk to other drones and <b>say</b> to speak silently to your nearby fellows."
-	src << "<b>You do not follow orders from anyone; not the AI, not humans, and not other synthetics.</b>."
+	to_chat(src, "<b>You are a construction drone, an autonomous engineering and fabrication system.</b>.")
+	to_chat(src, "You are assigned to a Sol Central construction project. The name is irrelevant. Your task is to complete construction and subsystem integration as soon as possible.")
+	to_chat(src, "Use <b>:d</b> to talk to other drones and <b>say</b> to speak silently to your nearby fellows.")
+	to_chat(src, "<b>You do not follow orders from anyone; not the AI, not humans, and not other synthetics.</b>.")
 
 /mob/living/silicon/robot/drone/construction/init()
 	..()

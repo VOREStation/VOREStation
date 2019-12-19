@@ -4,8 +4,8 @@
 
 #define BELLIES_MAX 30
 #define BELLIES_NAME_MIN 2
-#define BELLIES_NAME_MAX 12
-#define BELLIES_DESC_MAX 1024
+#define BELLIES_NAME_MAX 20
+#define BELLIES_DESC_MAX 2048
 #define FLAVOR_MAX 40
 
 /mob/living/proc/insidePanel()
@@ -254,6 +254,10 @@
 		//Can belly taste?
 		dat += "<br><a href='?src=\ref[src];b_tastes=\ref[selected]'>Can Taste:</a>"
 		dat += " [selected.can_taste ? "Yes" : "No"]"
+
+		//Nutritional percentage
+		dat += "<br><a href='?src=\ref[src];b_nutritionpercent=\ref[selected]'>Nutritional Gain:</a>"
+		dat += " [selected.nutrition_percent]%"
 
 		//How much brute damage
 		dat += "<br><a href='?src=\ref[src];b_brute_dmg=\ref[selected]'>Digest Brute Damage:</a>"
@@ -770,6 +774,13 @@
 			to_chat(user,"<span class='notice'>Invalid size.</span>")
 		else if(new_grow)
 			selected.shrink_grow_size = (new_grow*0.01)
+
+	if(href_list["b_nutritionpercent"])
+		var/new_damage = input(user, "Choose the nutrition gain percentage you will recieve per tick from prey. Ranges from 0.01 to 100.", "Set Nutrition Gain Percentage.", selected.digest_brute) as num|null
+		if(new_damage == null)
+			return
+		var/new_new_damage = CLAMP(new_damage, 0.01, 100)
+		selected.nutrition_percent = new_new_damage
 
 	if(href_list["b_burn_dmg"])
 		var/new_damage = input(user, "Choose the amount of burn damage prey will take per tick. Ranges from 0 to 6.", "Set Belly Burn Damage.", selected.digest_burn) as num|null

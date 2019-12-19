@@ -20,7 +20,8 @@
 		if(eye_icon)
 			var/icon/eyes_icon = new/icon(eye_icons_vr, eye_icon_vr)
 			if(eyes)
-				eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
+				if(owner.species.appearance_flags & HAS_EYE_COLOR)
+					eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
 			else
 				eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
 			mob_icon.Blend(eyes_icon, ICON_OVERLAY)
@@ -46,7 +47,6 @@
 			if(hair_style.do_colouration && islist(h_col) && h_col.len >= 3)
 				hair_s.Blend(rgb(h_col[1], h_col[2], h_col[3]), ICON_MULTIPLY)
 			overlays |= image(hair_s, "pixel_y" = head_offset)
-
 	return mob_icon
 
 /obj/item/organ/external/head/vr
@@ -62,3 +62,10 @@
 	eye_icons_vr = 'icons/mob/werebeast_face_vr.dmi'
 	eye_icon_vr = "werebeast_eyes"
 	head_offset = 6
+
+/obj/item/organ/external/head/vr/shadekin
+	cannot_gib = 1
+	cannot_amputate = 1
+
+	eye_icons_vr = 'icons/mob/human_face_vr.dmi'
+	eye_icon_vr = "eyes_shadekin"

@@ -211,12 +211,16 @@
 		desc = initial(desc)
 	else
 		to_chat(user,"<span class='notice'>You set the [name]'s tag to '[str]'.</span>")
-		name = initial(name) + " ([str])"
-		if(istype(src,/obj/item/clothing/accessory/collar/holo))
-			desc = initial(desc) + " The tag says \"[str]\"."
-		else
-			desc = initial(desc) + " \"[str]\" has been engraved on the tag."
+		initialize_tag(str)
+
+/obj/item/clothing/accessory/collar/proc/initialize_tag(var/tag)
+		name = initial(name) + " ([tag])"
+		desc = initial(desc) + " \"[tag]\" has been engraved on the tag."
 		writtenon = 1
+
+/obj/item/clothing/accessory/collar/holo/initialize_tag(var/tag)
+		..()
+		desc = initial(desc) + " The tag says \"[tag]\"."
 
 /obj/item/clothing/accessory/collar/attackby(obj/item/I, mob/user)
 	if(istype(src,/obj/item/clothing/accessory/collar/holo))
