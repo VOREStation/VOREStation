@@ -4796,11 +4796,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
 "akg" = (
-/obj/machinery/vending/hydronutrients,
 /obj/machinery/camera/network/security{
 	icon_state = "camera";
 	dir = 5
 	},
+/obj/machinery/vending/hydronutrients/brig,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/brig)
 "akh" = (
@@ -15050,6 +15050,10 @@
 /obj/machinery/vending/coffee,
 /turf/simulated/floor/tiled/monotile,
 /area/rnd/breakroom)
+"aBG" = (
+/obj/machinery/seed_storage/brig,
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/brig)
 "aBH" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -26793,10 +26797,6 @@
 "aVP" = (
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/interrogation)
-"aVQ" = (
-/obj/machinery/seed_storage/garden,
-/turf/simulated/floor/tiled/dark,
-/area/tether/surfacebase/security/brig)
 "aVR" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/machinery/atmospherics/pipe/simple/hidden/green,
@@ -37749,7 +37749,7 @@ aUN
 aVg
 aVx
 akg
-aVQ
+aBG
 aWe
 aWo
 aUN
