@@ -145,13 +145,13 @@
 	var/prefix = copytext(message,1,2)
 	// This is for audible emotes
 	if(length(message) >= 1 && prefix == "!")
-		return all_languages["Noise"]
+		return GLOB.all_languages["Noise"]
 
 	if(length(message) >= 2 && is_language_prefix(prefix))
 		var/language_prefix = lowertext(copytext(message, 2 ,3))
-		var/datum/language/L = language_keys[language_prefix]
+		var/datum/language/L = GLOB.language_keys[language_prefix]
 		if (can_speak(L))
 			return L
 		else
-			return all_languages[LANGUAGE_GIBBERISH]
+			return GLOB.all_languages[LANGUAGE_GIBBERISH]
 	return null

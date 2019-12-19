@@ -16,7 +16,7 @@
 		if(prosfab.manufacturer)
 			var/datum/robolimb/manf = all_robolimbs[prosfab.manufacturer]
 			newspecies = manf.suggested_species
-		O.species = all_species[newspecies]
+		O.species = GLOB.all_species[newspecies]
 		if(istype(O,/obj/item/organ/external))
 			var/obj/item/organ/external/EO = O
 			if(EO.species.base_color)
@@ -54,7 +54,7 @@
 				EO.remove_rejuv()
 
 		for(var/obj/item/organ/external/O in H.organs)
-			O.species = all_species[newspecies] //VOREStation Edit with species suggestion above
+			O.species = GLOB.all_species[newspecies]
 			O.robotize(prosfab.manufacturer)
 			O.dna = new/datum/dna()
 			O.dna.ResetUI()

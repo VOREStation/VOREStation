@@ -183,7 +183,7 @@ proc/get_radio_key_from_channel(var/channel)
 		speaking = get_default_language()
 
 	if(!can_speak(speaking))
-		speaking = all_languages[LANGUAGE_GIBBERISH]
+		speaking = GLOB.all_languages[LANGUAGE_GIBBERISH]
 		var/babble_key = ",r"
 		message = babble_key + message
 

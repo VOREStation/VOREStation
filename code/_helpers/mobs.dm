@@ -75,7 +75,7 @@ proc/random_facial_hair_style(gender, species = SPECIES_HUMAN)
 proc/sanitize_name(name, species = SPECIES_HUMAN, robot = 0)
 	var/datum/species/current_species
 	if(species)
-		current_species = all_species[species]
+		current_species = GLOB.all_species[species]
 
 	return current_species ? current_species.sanitize_name(name, robot) : sanitizeName(name, MAX_NAME_LEN, robot)
 
@@ -83,7 +83,7 @@ proc/random_name(gender, species = SPECIES_HUMAN)
 
 	var/datum/species/current_species
 	if(species)
-		current_species = all_species[species]
+		current_species = GLOB.all_species[species]
 
 	if(!current_species || current_species.name_language == null)
 		if(gender==FEMALE)
