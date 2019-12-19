@@ -15,9 +15,8 @@
 		var/newspecies = "Human"
 		if(prosfab.manufacturer)
 			var/datum/robolimb/manf = all_robolimbs[prosfab.manufacturer]
-<<<<<<< HEAD
 			newspecies = manf.suggested_species
-		O.species = all_species[newspecies]
+		O.species = GLOB.all_species[newspecies]
 		if(istype(O,/obj/item/organ/external))
 			var/obj/item/organ/external/EO = O
 			if(EO.species.base_color)
@@ -26,11 +25,6 @@
 				var/b_skin = hex2num(copytext(EO.species.base_color,6,8))
 				EO.s_col = list(r_skin, g_skin, b_skin)
 		//VOREStation Edit End
-=======
-			O.species = GLOB.all_species["[manf.suggested_species]"]
-		else
-			O.species = GLOB.all_species["Human"]
->>>>>>> f14184f... Merge pull request #6558 from Mechoid/GlobSpecies
 		O.robotize(prosfab.manufacturer)
 		O.dna = new/datum/dna() //Uuughhhh... why do I have to do this?
 		O.dna.ResetUI()
@@ -60,11 +54,7 @@
 				EO.remove_rejuv()
 
 		for(var/obj/item/organ/external/O in H.organs)
-<<<<<<< HEAD
-			O.species = all_species[newspecies] //VOREStation Edit with species suggestion above
-=======
 			O.species = GLOB.all_species[newspecies]
->>>>>>> f14184f... Merge pull request #6558 from Mechoid/GlobSpecies
 			O.robotize(prosfab.manufacturer)
 			O.dna = new/datum/dna()
 			O.dna.ResetUI()

@@ -68,11 +68,7 @@ var/list/organ_cache = list()
 		species = GLOB.all_species[SPECIES_HUMAN]
 		if(holder.dna)
 			dna = holder.dna.Clone()
-<<<<<<< HEAD
 			species = holder.species //VOREStation Edit - For custom species
-=======
-			species = GLOB.all_species[dna.species]
->>>>>>> f14184f... Merge pull request #6558 from Mechoid/GlobSpecies
 		else
 			log_debug("[src] at [loc] spawned without a proper DNA.")
 		var/mob/living/carbon/human/H = holder
