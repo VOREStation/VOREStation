@@ -325,6 +325,8 @@
 #define SPECIES_SKELETON		"Skeleton"
 #define SPECIES_GOLEM			"Golem"
 #define SPECIES_EVENT1			"X Occursus"
+#define SPECIES_EVENT2			"X Anomalous"
+#define SPECIES_EVENT3			"X Unowas"
 
 // Replicant types. Currently only used for alien pods and events.
 #define SPECIES_REPLICANT		"Replicant"
