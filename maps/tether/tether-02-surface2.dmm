@@ -4037,29 +4037,18 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
 "aiC" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 1
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/north_staires_two)
+/obj/item/device/radio/beacon,
+/turf/simulated/floor/tiled/dark,
+/area/teleporter)
 "aiD" = (
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_staires_two)
 "aiE" = (
@@ -5727,15 +5716,14 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/maintenance/lower/bar)
 "alM" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
 	},
-/obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -25
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_staires_two)
 "alN" = (
@@ -8625,8 +8613,18 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/east_stairs_two)
 "arm" = (
-/turf/simulated/floor/tiled/dark,
-/area/teleporter)
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -25
+	},
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	icon_state = "intact-supply";
+	dir = 5
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/north_staires_two)
 "arn" = (
 /obj/machinery/teleport/hub{
 	dir = 2
@@ -11398,11 +11396,11 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
 /obj/machinery/camera/network/tether{
 	dir = 9
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
@@ -11842,27 +11840,6 @@
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /turf/simulated/floor/plating,
 /area/maintenance/engineering/pumpstation)
-"awJ" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/techmaint,
-/area/tether/surfacebase/east_stairs_two)
-"awK" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/tether/surfacebase/east_stairs_two)
 "awL" = (
 /obj/effect/floor_decal/corner_techfloor_grid{
 	dir = 9
@@ -39771,8 +39748,8 @@ agt
 agt
 agt
 agt
-aiC
-alM
+aiD
+arm
 age
 aik
 amw
@@ -39913,7 +39890,7 @@ agt
 agt
 agP
 agt
-aiD
+alM
 alN
 age
 ail
@@ -42893,7 +42870,7 @@ agk
 anK
 aof
 apR
-arm
+aiC
 arr
 anK
 anv
@@ -43064,7 +43041,7 @@ auc
 auM
 avh
 avT
-awJ
+axz
 axz
 axz
 ayQ
@@ -43206,7 +43183,7 @@ arY
 auN
 aAA
 avU
-awK
+arY
 axA
 arY
 ark

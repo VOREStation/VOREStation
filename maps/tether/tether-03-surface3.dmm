@@ -652,10 +652,12 @@
 "abt" = (
 /obj/structure/table/glass,
 /obj/item/device/flashlight/lamp/green,
+/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "abu" = (
 /obj/structure/table/glass,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "abv" = (
@@ -1100,6 +1102,15 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/patient_a)
 "acg" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/machinery/button/remote/airlock{
+	id = "ReadingRoom1";
+	name = "Room 1 Bolt";
+	pixel_x = -30
+	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "ach" = (
@@ -1110,6 +1121,9 @@
 	},
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
@@ -1589,24 +1603,37 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/patient_a)
 "acS" = (
-/obj/machinery/door/airlock{
-	name = "Room 1"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
 	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled,
+/obj/machinery/button/remote/airlock{
+	id = "ReadingRoom2";
+	name = "Room 2 Bolt";
+	pixel_x = -30
+	},
+/turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "acT" = (
-/obj/machinery/door/airlock{
-	name = "Room 2"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
 	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled,
+/obj/machinery/button/remote/airlock{
+	id = "ReadingRoom3";
+	name = "Room 3 Bolt";
+	pixel_x = -30
+	},
+/turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "acU" = (
 /obj/machinery/door/airlock{
-	name = "Room 3"
+	id_tag = "ReadingRoom1";
+	name = "Room 1"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/reading_room)
 "acV" = (
@@ -2316,17 +2343,8 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/frontdesk)
 "aeg" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "aeh" = (
@@ -2358,14 +2376,13 @@
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "aej" = (
-/obj/structure/bed/chair/office/light{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+	icon_state = "intact-supply";
+	dir = 5
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
@@ -27557,6 +27574,58 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "aTL" = (
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/reading_room)
+"aTM" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/reading_room)
+"aTN" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/reading_room)
+"aTO" = (
+/obj/machinery/door/airlock{
+	id_tag = "ReadingRoom2";
+	name = "Room 2"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/reading_room)
+"aTP" = (
+/obj/machinery/door/airlock{
+	id_tag = "ReadingRoom3";
+	name = "Room 3"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/reading_room)
+"aTQ" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
@@ -45397,7 +45466,7 @@ aNk
 aNl
 aNJ
 aNP
-aTL
+aTQ
 aKU
 abg
 aOk
@@ -45539,7 +45608,7 @@ aNl
 aNl
 aNK
 aNP
-aTL
+aTQ
 aKU
 abg
 aOk
@@ -45681,7 +45750,7 @@ aNm
 aNl
 aNK
 aNP
-aTL
+aTQ
 aKU
 abg
 aOk
@@ -45902,9 +45971,9 @@ aac
 abf
 abt
 acg
-acS
-acg
-acg
+acU
+aeg
+aej
 aeO
 afG
 agp
@@ -46046,7 +46115,7 @@ abu
 ach
 abe
 adB
-aeg
+aTL
 aeP
 afH
 agq
@@ -46327,10 +46396,10 @@ aac
 aac
 abf
 abt
-acg
-acT
-acg
-aeh
+acS
+aTO
+aeg
+aTM
 aeR
 abe
 ags
@@ -46753,10 +46822,10 @@ aac
 aac
 abf
 abt
-acg
-acU
-acg
-aej
+acT
+aTP
+aeg
+aTN
 adC
 abe
 aac
