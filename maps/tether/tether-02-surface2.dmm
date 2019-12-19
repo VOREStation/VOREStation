@@ -1021,6 +1021,37 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/north)
+"acf" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_two_hall)
+"acg" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_two_hall)
 "ach" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
@@ -3992,19 +4023,19 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_two_hall)
 "aiz" = (
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
-/obj/machinery/light{
-	dir = 1
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/effect/floor_decal/borderfloor{
+/obj/machinery/alarm{
 	dir = 1;
-	pixel_y = 0
+	pixel_y = -25
 	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 1
-	},
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_two_hall)
 "aiA" = (
@@ -5639,27 +5670,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -25
-	},
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/lightgrey/border,
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_two_hall)
-"alJ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -5670,8 +5680,21 @@
 	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_two_hall)
+"alJ" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Command Substation";
+	req_one_access = list(10,19)
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/command)
 "alK" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -11825,6 +11848,19 @@
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /turf/simulated/floor/plating,
 /area/maintenance/engineering/pumpstation)
+"awJ" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Command Substation";
+	req_one_access = list(10,19)
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/command)
 "awL" = (
 /obj/effect/floor_decal/corner_techfloor_grid{
 	dir = 9
@@ -28125,17 +28161,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/bridge/meeting_room)
-"aYg" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Command Substation"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/substation/command)
 "aYh" = (
 /obj/structure/table/woodentable,
 /obj/machinery/chemical_dispenser/bar_soft/full,
@@ -28585,18 +28610,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/lino,
 /area/chapel/office)
-"aZd" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Command Substation"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/substation/command)
 "aZe" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -39165,8 +39178,8 @@ agM
 agZ
 ahn
 adY
-aiy
-alI
+acf
+aiz
 adY
 adY
 adY
@@ -39307,8 +39320,8 @@ agN
 ahb
 aap
 adY
-aiz
-alJ
+acg
+alI
 adY
 ajx
 aix
@@ -42861,7 +42874,7 @@ anK
 anv
 aXs
 aVu
-aYg
+alJ
 aXt
 baI
 baO
@@ -43145,7 +43158,7 @@ anK
 aXp
 baU
 aXF
-aZd
+awJ
 aZQ
 baJ
 baO

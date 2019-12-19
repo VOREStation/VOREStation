@@ -6873,7 +6873,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/engineering{
 	name = "Exploration Substation";
-	req_one_access = list(11,24,5)
+	req_one_access = list(11,24,43)
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -6975,6 +6975,19 @@
 "kf" = (
 /turf/simulated/wall,
 /area/engineering/foyer_mezzenine)
+"kg" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/engineering{
+	name = "Exploration Substation";
+	req_one_access = list(11,24,43)
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor,
+/area/maintenance/substation/exploration)
 "ki" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -7629,19 +7642,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
-"lj" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/engineering{
-	name = "Exploration Substation";
-	req_one_access = list(11,24,5)
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor,
-/area/maintenance/substation/exploration)
 "lk" = (
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
@@ -35764,7 +35764,7 @@ ls
 jV
 jV
 jV
-lj
+kg
 jV
 DU
 DW

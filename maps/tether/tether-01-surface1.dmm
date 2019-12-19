@@ -6837,7 +6837,7 @@
 "alV" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Mining Substation";
-	req_one_access = list(11,24,47)
+	req_one_access = list(11,24)
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -7306,7 +7306,7 @@
 	},
 /obj/machinery/door/airlock/engineering{
 	name = "Mining Substation";
-	req_one_access = list(11,24,47)
+	req_one_access = list(11,24)
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/mining)
