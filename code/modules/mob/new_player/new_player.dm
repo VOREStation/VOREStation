@@ -185,21 +185,13 @@
 		else if(ticker && ticker.mode && ticker.mode.explosion_in_progress)
 			usr << "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>"
 			return
-<<<<<<< HEAD
-/*
-		if(!is_alien_whitelisted(src, all_species[client.prefs.species]))
-			src << alert("You are currently not whitelisted to play [client.prefs.species].")
-			return 0
-*/
-		var/datum/species/S = all_species[client.prefs.species]
-=======
 
 		if(!is_alien_whitelisted(src, GLOB.all_species[client.prefs.species]))
 			src << alert("You are currently not whitelisted to play [client.prefs.species].")
 			return 0
 
 		var/datum/species/S = GLOB.all_species[client.prefs.species]
->>>>>>> f14184f... Merge pull request #6558 from Mechoid/GlobSpecies
+		
 		if(!(S.spawn_flags & SPECIES_CAN_JOIN))
 			src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
 			return 0
