@@ -110,7 +110,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/red)
 "am" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1379;
 	icon_state = "door_locked";
@@ -119,6 +118,19 @@
 	name = "Security Fore Internal Access";
 	req_access = newlist();
 	req_one_access = list(1,2,18)
+	},
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	layer = 4;
+	name = "EXTERNAL AIRLOCK";
+	pixel_x = -32;
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5;
+	icon_state = "intact"
 	},
 /turf/simulated/floor,
 /area/security/eva)
@@ -248,32 +260,26 @@
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "ax" = (
-/obj/machinery/access_button{
-	command = "cycle_interior";
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/door/airlock/glass_external{
 	frequency = 1379;
-	master_tag = "sec_fore_airlock";
-	name = "interior access button";
-	pixel_x = 25;
-	pixel_y = 25;
-	req_one_access = list(13)
+	icon_state = "door_locked";
+	id_tag = "sec_fore_inner";
+	locked = 1;
+	name = "Security Fore Internal Access";
+	req_access = newlist();
+	req_one_access = list(1,2,18)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
+	dir = 10;
+	icon_state = "intact"
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor,
 /area/security/eva)
 "ay" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
+/obj/structure/closet/emcloset,
+/obj/effect/decal/cleanable/cobweb,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "az" = (
@@ -1126,8 +1132,7 @@
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
 "bJ" = (
-/obj/structure/closet/emcloset,
-/obj/effect/decal/cleanable/cobweb,
+/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "bK" = (
@@ -1560,8 +1565,22 @@
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
 "cp" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1379;
+	master_tag = "sec_fore_airlock";
+	name = "interior access button";
+	pixel_x = 25;
+	pixel_y = 25;
+	req_one_access = list(13)
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5;
+	icon_state = "intact"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
 	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
@@ -2463,10 +2482,16 @@
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "dX" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/security/eva)
 "dY" = (
 /obj/item/device/radio/intercom{
 	dir = 4;
@@ -4304,37 +4329,22 @@
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "gX" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
 	},
-/obj/machinery/camera/network/security{
-	icon_state = "camera";
-	dir = 10
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
 	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "gY" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "sec_fore_inner";
-	locked = 1;
-	name = "Security Fore Internal Access";
-	req_access = newlist();
-	req_one_access = list(1,2,18)
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
 	},
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
-	icon_state = "space";
-	layer = 4;
-	name = "EXTERNAL AIRLOCK";
-	pixel_x = -32;
-	pixel_y = 0
-	},
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/turf/simulated/floor,
+/turf/simulated/floor/tiled,
 /area/security/eva)
 "gZ" = (
 /obj/machinery/alarm{
@@ -4541,17 +4551,18 @@
 /turf/simulated/floor,
 /area/security/eva)
 "hv" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 5;
-	icon_state = "intact"
+/obj/machinery/light,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
 	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "hw" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 5;
-	icon_state = "intact"
+/obj/machinery/atmospherics/pipe/simple/hidden/universal{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
@@ -6619,12 +6630,13 @@
 /turf/simulated/wall/r_wall,
 /area/security/security_equiptment_storage)
 "kp" = (
-/obj/machinery/light,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/security{
+	icon_state = "camera";
+	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
+/obj/machinery/atmospherics/binary/passive_gate/on{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
@@ -18019,13 +18031,10 @@
 /turf/simulated/floor/plating,
 /area/medical/chemistry)
 "BK" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/hidden,
+/turf/simulated/floor/tiled,
+/area/security/eva)
 "BL" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	frequency = 1380;
@@ -26657,12 +26666,10 @@
 /turf/simulated/floor/airless,
 /area/medical/virology)
 "PA" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
-	},
-/turf/space,
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/area/shuttle/excursion/tether)
 "PB" = (
 /turf/simulated/wall/r_wall,
 /area/medical/virologyisolation)
@@ -27069,7 +27076,14 @@
 "Qp" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
-	icon_state = "propulsion_r"
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
+"Qq" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -27110,6 +27124,14 @@
 "Qt" = (
 /turf/simulated/wall,
 /area/tether/exploration)
+"Qu" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
 "Qw" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -28445,16 +28467,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/security/breakroom)
-"Ur" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/turf/simulated/floor/tiled,
-/area/security/eva)
 "Us" = (
 /obj/structure/bed/chair/shuttle,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -39105,9 +39117,9 @@ gj
 gl
 gx
 ar
+am
+bJ
 gY
-hv
-hP
 bm
 bz
 bw
@@ -39247,9 +39259,9 @@ gg
 ac
 ag
 ak
-am
 ax
-kp
+cp
+hv
 bm
 bA
 bW
@@ -39312,11 +39324,11 @@ MK
 Iy
 ab
 NL
-BK
-PA
-PA
-PA
 Qp
+Qq
+Qq
+Qq
+Qu
 NL
 vt
 vt
@@ -39390,8 +39402,8 @@ aU
 aU
 aU
 aU
-ay
-cp
+dX
+hw
 bm
 bB
 by
@@ -39531,9 +39543,9 @@ aa
 aa
 aa
 bc
-bJ
-Ur
+ay
 gX
+kp
 bm
 bm
 bm
@@ -39675,7 +39687,7 @@ aa
 bc
 gZ
 ha
-hw
+BK
 an
 dw
 fc
@@ -40539,7 +40551,7 @@ Zy
 WG
 dj
 XA
-dX
+PA
 ms
 Oz
 be
@@ -40681,7 +40693,7 @@ UJ
 Xb
 dj
 XN
-dX
+PA
 ms
 Xq
 be
@@ -40823,7 +40835,7 @@ iW
 WS
 dj
 XN
-dX
+PA
 ms
 Xq
 be
@@ -41106,7 +41118,7 @@ jZ
 WR
 Xo
 XN
-dX
+PA
 cK
 ms
 Xq
@@ -41674,7 +41686,7 @@ ea
 kx
 dj
 XN
-dX
+PA
 cK
 ms
 mq
@@ -41959,7 +41971,7 @@ kQ
 TG
 dj
 XN
-dX
+PA
 ms
 mq
 be
@@ -42101,7 +42113,7 @@ kR
 Vd
 dj
 XN
-dX
+PA
 ms
 QL
 be
@@ -42243,7 +42255,7 @@ ZE
 ZB
 dj
 XB
-dX
+PA
 ms
 Sq
 be
