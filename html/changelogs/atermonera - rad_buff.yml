@@ -1,0 +1,4 @@
+author: Atermonera
+delete-after: True
+changes: 
+  - bugfix: "Radiation has been made more potent and is no longer defeated by a thin sheet of lead."

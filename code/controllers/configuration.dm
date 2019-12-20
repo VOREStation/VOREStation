@@ -235,8 +235,14 @@ var/list/gamemode_cache = list()
 
 	var/show_human_death_message = 1
 
+	var/radiation_resistance_calc_mode = RAD_RESIST_CALC_SUB // 0:1 subtraction:division for computing effective radiation on a turf
 	var/radiation_decay_rate = 1 //How much radiation is reduced by each tick
+<<<<<<< HEAD
 	var/radiation_resistance_multiplier = 8.5 //VOREstation edit
+=======
+	var/radiation_resistance_multiplier = 6.5
+	var/radiation_material_resistance_divisor = 1
+>>>>>>> ac8dd55... Buffs radiation so it isn't defeated by a thin sheet of lead. (#6572)
 	var/radiation_lower_limit = 0.35 //If the radiation level for a turf would be below this, ignore it.
 
 	var/random_submap_orientation = FALSE // If true, submaps loaded automatically can be rotated.
@@ -783,6 +789,21 @@ var/list/gamemode_cache = list()
 				if("radiation_lower_limit")
 					radiation_lower_limit = text2num(value)
 
+				if("radiation_resistance_calc_divide")
+					radiation_resistance_calc_mode = RAD_RESIST_CALC_DIV
+
+				if("radiation_resistance_calc_subtract")
+					radiation_resistance_calc_mode = RAD_RESIST_CALC_SUB
+
+				if("radiation_resistance_multiplier")
+					radiation_resistance_multiplier = text2num(value)
+
+				if("radiation_material_resistance_divisor")
+					radiation_material_resistance_divisor = text2num(value)
+
+				if("radiation_decay_rate")
+					radiation_decay_rate = text2num(value)
+
 				if ("panic_bunker")
 					config.panic_bunker = 1
 
@@ -794,6 +815,8 @@ var/list/gamemode_cache = list()
 
 				if("autostart_solars")
 					config.autostart_solars = TRUE
+
+
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
