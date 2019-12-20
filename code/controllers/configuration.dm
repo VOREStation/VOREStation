@@ -237,12 +237,8 @@ var/list/gamemode_cache = list()
 
 	var/radiation_resistance_calc_mode = RAD_RESIST_CALC_SUB // 0:1 subtraction:division for computing effective radiation on a turf
 	var/radiation_decay_rate = 1 //How much radiation is reduced by each tick
-<<<<<<< HEAD
 	var/radiation_resistance_multiplier = 8.5 //VOREstation edit
-=======
-	var/radiation_resistance_multiplier = 6.5
 	var/radiation_material_resistance_divisor = 1
->>>>>>> ac8dd55... Buffs radiation so it isn't defeated by a thin sheet of lead. (#6572)
 	var/radiation_lower_limit = 0.35 //If the radiation level for a turf would be below this, ignore it.
 
 	var/random_submap_orientation = FALSE // If true, submaps loaded automatically can be rotated.
