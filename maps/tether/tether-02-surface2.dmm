@@ -4808,11 +4808,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
 "akg" = (
-/obj/machinery/vending/hydronutrients,
 /obj/machinery/camera/network/security{
 	icon_state = "camera";
 	dir = 5
 	},
+/obj/machinery/vending/hydronutrients/brig,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/brig)
 "akh" = (
