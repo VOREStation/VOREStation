@@ -175,7 +175,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] created</font>")
 	else
 		MessageNoRecipient(parsed_message)
-
+		send2adminchat() //VOREStation Add
 		//show it to the person adminhelping too
 		to_chat(C, "<span class='adminnotice'>PM to-<b>Admins</b>: [name]</span>")
 
@@ -184,7 +184,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		log_admin("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
 		if(admin_number_present <= 0)
 			to_chat(C, "<span class='notice'>No active admins are online, your adminhelp was sent to the admin irc.</span>")
-	send2adminchat() //VOREStation Add
 	GLOB.ahelp_tickets.active_tickets += src
 
 /datum/admin_help/Destroy()
