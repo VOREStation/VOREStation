@@ -1903,7 +1903,7 @@
 	},
 /obj/machinery/computer/area_atmos/tag{
 	dir = 4;
-	scrub_id = "atrium"
+	scrub_id = "rnd_can_store"
 	},
 /obj/machinery/camera/network/research,
 /turf/simulated/floor/tiled,
