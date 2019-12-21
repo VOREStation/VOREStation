@@ -13,6 +13,7 @@
 	icon_living = "deathclaw"
 	icon_state = "deathclaw"
 	icon = 'icons/mob/vore64x64.dmi'
+	vis_height = 64
 
 	attacktext = list("mauled")
 

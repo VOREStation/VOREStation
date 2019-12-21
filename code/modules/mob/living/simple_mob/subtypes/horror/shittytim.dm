@@ -8,6 +8,7 @@
 	icon_rest = "shitty_tim"
 	faction = "horror"
 	icon = 'icons/mob/horror_show/tallhorror.dmi'
+	vis_height = 64
 	icon_gib = "generic_gib"
 
 	attack_sound = 'sound/h_sounds/youknowwhoitis.ogg'

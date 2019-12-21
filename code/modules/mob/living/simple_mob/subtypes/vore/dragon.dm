@@ -6,6 +6,7 @@
 	icon_living = "reddragon"
 	icon_state = "reddragon"
 	icon = 'icons/mob/vore64x64.dmi'
+	vis_height = 64
 
 	faction = "dragon"
 	maxHealth = 500 // Boss

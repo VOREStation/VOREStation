@@ -29,6 +29,7 @@
 	var/can_be_drop_pred = TRUE			// Mobs are pred by default.
 	var/next_preyloop					// For Fancy sound internal loop
 	var/adminbus_trash = FALSE			// For abusing trash eater for event shenanigans.
+	var/vis_height = 32					// Sprite height used for resize features.
 
 //
 // Hook for generic creation of stuff on new creatures

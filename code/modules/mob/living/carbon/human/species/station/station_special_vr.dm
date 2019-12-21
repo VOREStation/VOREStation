@@ -406,6 +406,7 @@
 	name_language = LANGUAGE_CANILUNZT
 	primitive_form = "Wolpin"
 	color_mult = 1
+	icon_height = 64
 
 	min_age = 18
 	max_age = 200
