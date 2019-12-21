@@ -686,6 +686,7 @@
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/mug = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/wine = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/metaglass = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/gin = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao = 5,
@@ -769,7 +770,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 2,/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 1,/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 1,
 					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 1, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 2, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 2)
 	//VOREStation Edit End
-					
+
 /obj/machinery/vending/cola
 	name = "Robust Softdrinks"
 	desc = "A softdrink vendor provided by Robust Industries, LLC."
