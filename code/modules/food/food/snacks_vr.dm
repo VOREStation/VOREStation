@@ -384,6 +384,76 @@
 	bitesize = 0.01 //impossible to eat
 	reagents.add_reagent("carbon", 5)
 
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/sharkchunk
+	name = "chunk of shark meat"
+	desc = "still rough, needs to be cut into even smaller chunks."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "sharkmeat_chunk"
+	nutriment_amt = 15
+	w_class = ITEMSIZE_LARGE
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/sharkmeat
+	slices_num = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/sharkchunk/Initialize()
+	..()
+	bitesize = 3
+	reagents.add_reagent("protein", 20)
+
+/obj/item/weapon/reagent_containers/food/snacks/sharkmeat
+	name = "a slice of sharkmeat"
+	desc = "now it's small enough to cook with."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "sharkmeat"
+	nutriment_amt = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/sharkmeat/Initialize()
+	..()
+	bitesize = 3
+	reagents.add_reagent("protein", 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/sharkmeatcooked
+	name = "shark steak"
+	desc = "finally, some food for real men."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "sharkmeat_cooked"
+	nutriment_amt = 5
+	trash = /obj/item/trash/plate
+	nutriment_desc = list("manliness" = 1, "fish oil" = 2, "shark" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/sharkmeatcooked/Initialize()
+	..()
+	bitesize = 3
+	reagents.add_reagent("protein", 8)
+
+/obj/item/weapon/reagent_containers/food/snacks/sharkmeatdip
+	name = "hot shark shank"
+	desc = "a shank of shark meat dipped in hot sauce."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "sharkmeat_dip"
+	nutriment_amt = 5
+	trash = /obj/item/trash/snack_bowl
+	nutriment_desc = list("salt" = 1, "fish oil" = 2, "spicy shark" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/sharkmeatdip/Initialize()
+	..()
+	bitesize = 3
+	reagents.add_reagent("capsaicin", 4)
+	reagents.add_reagent("protein", 4)
+
+/obj/item/weapon/reagent_containers/food/snacks/sharkmeatcubes
+	name = "shark cubes"
+	desc = "foul scented fermented shark cubes, it's said to make men fly, or just make them really fat."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "sharkmeat_cubes"
+	nutriment_amt = 8
+	trash = /obj/item/trash/plate
+	nutriment_desc = list("viking spirit" = 1, "rot" = 2, "fermented sauce" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/sharkmeatcubes/Initialize()
+	..()
+	bitesize = 10
+	reagents.add_reagent("potatojuice", 30) // for people who want to get fat, FAST.
+
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/sobakacube
 	name = "sobaka cube"
 	monkey_type = "Sobaka"
