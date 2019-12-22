@@ -882,10 +882,6 @@
 #include "code\game\mecha\combat\marauder.dm"
 #include "code\game\mecha\combat\phazon.dm"
 #include "code\game\mecha\equipment\mecha_equipment.dm"
-<<<<<<< HEAD:vorestation.dme
-#include "code\game\mecha\equipment\tools\medical_tools.dm"
-#include "code\game\mecha\equipment\tools\medical_tools_vr.dm"
-=======
 #include "code\game\mecha\equipment\tools\armor_melee.dm"
 #include "code\game\mecha\equipment\tools\armor_ranged.dm"
 #include "code\game\mecha\equipment\tools\cable_layer.dm"
@@ -896,6 +892,7 @@
 #include "code\game\mecha\equipment\tools\extinguisher.dm"
 #include "code\game\mecha\equipment\tools\generator.dm"
 #include "code\game\mecha\equipment\tools\jetpack.dm"
+#include "code\game\mecha\equipment\tools\medigun_vr.dm"
 #include "code\game\mecha\equipment\tools\orescanner.dm"
 #include "code\game\mecha\equipment\tools\passenger.dm"
 #include "code\game\mecha\equipment\tools\rcd.dm"
@@ -905,7 +902,6 @@
 #include "code\game\mecha\equipment\tools\speedboost.dm"
 #include "code\game\mecha\equipment\tools\syringe_gun.dm"
 #include "code\game\mecha\equipment\tools\teleporter.dm"
->>>>>>> e749b79... Fixes mech projectile armor thinking test projectiles are dangerous (#6480):polaris.dme
 #include "code\game\mecha\equipment\tools\tools.dm"
 #include "code\game\mecha\equipment\tools\wormhole.dm"
 #include "code\game\mecha\equipment\tools\wrench.dm"
