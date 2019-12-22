@@ -23345,6 +23345,38 @@
 	dir = 1;
 	pixel_y = -24
 	},
+/obj/item/weapon/reagent_containers/food/drinks/metaglass{
+	step_x = 0;
+	step_y = 0
+	},
+/obj/item/weapon/reagent_containers/food/drinks/metaglass{
+	step_x = 0;
+	step_y = 0
+	},
+/obj/item/weapon/reagent_containers/food/drinks/metaglass{
+	step_x = 0;
+	step_y = 0
+	},
+/obj/item/weapon/reagent_containers/food/drinks/metaglass{
+	step_x = 0;
+	step_y = 0
+	},
+/obj/item/weapon/reagent_containers/food/drinks/metaglass{
+	step_x = 0;
+	step_y = 0
+	},
+/obj/item/weapon/reagent_containers/food/drinks/metaglass{
+	step_x = 0;
+	step_y = 0
+	},
+/obj/item/weapon/reagent_containers/food/drinks/metaglass{
+	step_x = 0;
+	step_y = 0
+	},
+/obj/item/weapon/reagent_containers/food/drinks/metaglass{
+	step_x = 0;
+	step_y = 0
+	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
 "aLF" = (

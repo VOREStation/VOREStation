@@ -18,3 +18,18 @@
 	sheet_plural_name = "fluffs"
 	hardness = 60
 	weight = 20 //Strong as iron.
+
+/material/metaglass
+	name = "metaglass"
+	display_name = "metamorphic glass"
+	flags = MATERIAL_BRITTLE
+	shard_type = SHARD_SHARD
+	stack_type = /obj/item/stack/material/metaglass
+	icon_colour = "#b2e1ff"
+	opacity = 0.3
+	integrity = 50 // specialised glass, inferior for construction.
+	hardness = 25
+	weight = 15
+	protectiveness = 0 // 0%
+	conductive = 0
+	conductivity = 1 // Glass shards don't conduct.
