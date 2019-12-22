@@ -380,7 +380,7 @@ var/global/datum/controller/occupations/job_master
 						else
 							permitted = 1
 
-						if(G.whitelisted && !is_alien_whitelisted(H, all_species[G.whitelisted]))
+						if(G.whitelisted && !is_alien_whitelisted(H, GLOB.all_species[G.whitelisted]))
 
 						//if(G.whitelisted && (G.whitelisted != H.species.name || !is_alien_whitelisted(H, G.whitelisted)))
 							permitted = 0
@@ -411,8 +411,6 @@ var/global/datum/controller/occupations/job_master
 			//Equip job items.
 			job.setup_account(H)
 			job.equip(H, H.mind ? H.mind.role_alt_title : "")
-			job.equip_backpack(H)
-//			job.equip_survival(H)
 			job.apply_fingerprints(H)
 			if(job.title != "Cyborg" && job.title != "AI")
 				H.equip_post_job()
@@ -499,9 +497,7 @@ var/global/datum/controller/occupations/job_master
 
 		if(job.supervisors)
 			H << "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>"
-
-		if(job.idtype)
-			spawnId(H, rank, alt_title)
+		if(job.has_headset)
 			H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), slot_l_ear)
 			H << "<b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b>"
 
@@ -542,48 +538,6 @@ var/global/datum/controller/occupations/job_master
 		BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 		BITSET(H.hud_updateflag, SPECIALROLE_HUD)
 		return H
-
-
-	proc/spawnId(var/mob/living/carbon/human/H, rank, title)
-		if(!H)	return 0
-		var/obj/item/weapon/card/id/C = H.get_equipped_item(slot_wear_id)
-		if(istype(C))  return 0
-
-		var/datum/job/job = null
-		for(var/datum/job/J in occupations)
-			if(J.title == rank)
-				job = J
-				break
-
-		if(job)
-			if(job.title == "Cyborg")
-				return
-			else
-				C = new job.idtype(H)
-				C.access = job.get_access()
-		else
-			C = new /obj/item/weapon/card/id(H)
-		if(C)
-			C.rank = rank
-			C.assignment = title ? title : rank
-			H.set_id_info(C)
-
-			//put the player's account number onto the ID
-			if(H.mind && H.mind.initial_account)
-				C.associated_account_number = H.mind.initial_account.account_number
-
-			H.equip_to_slot_or_del(C, slot_wear_id)
-
-//		H.equip_to_slot_or_del(new /obj/item/device/pda(H), slot_belt)
-		if(locate(/obj/item/device/pda,H))
-			var/obj/item/device/pda/pda = locate(/obj/item/device/pda,H)
-			pda.owner = H.real_name
-			pda.ownjob = C.assignment
-			pda.ownrank = C.rank
-			pda.name = "PDA-[H.real_name] ([pda.ownjob])"
-
-		return 1
-
 
 	proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
 		if(!config.load_jobs_from_txt)

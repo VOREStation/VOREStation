@@ -638,14 +638,16 @@
 			I.decontaminate()
 			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
 	items_preserved -= content
+	/* Disabling this part due to redundancy. Entered() on target belly will make the sound anyway.
 	if(!silent && target.vore_sound && !recent_sound)
 		var/soundfile
-		if(!fancy_vore)
+		if(!target.fancy_vore)
 			soundfile = classic_vore_sounds[target.vore_sound]
 		else
 			soundfile = fancy_vore_sounds[target.vore_sound]
 		if(soundfile)
 			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/digestion_noises)
+	*/
 	owner.updateVRPanel()
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()

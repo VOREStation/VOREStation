@@ -43,7 +43,7 @@
 			else if(mode == 2 && HP_percent < -0.4)
 				nif.notify("User Status: CRITICAL. Notifying medical, and starting emergency stasis!",TRUE)
 				mode = 3
-				if(!ishuman(H.loc)) //Not notified in case of vore, for gameplay purposes.
+				if(!isbelly(H.loc)) //Not notified in case of vore, for gameplay purposes.
 					var/turf/T = get_turf(H)
 					var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
 					a.autosay("[H.real_name] has been put in emergency stasis, located at ([T.x],[T.y],[T.z])!", "[H.real_name]'s NIF", "Medical")

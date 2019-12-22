@@ -289,7 +289,7 @@
 			usr << "This can only be done to instances of type /mob/living/carbon/human"
 			return
 
-		var/new_species = input("Please choose a new species.","Species",null) as null|anything in all_species
+		var/new_species = input("Please choose a new species.","Species",null) as null|anything in GLOB.all_species
 
 		if(!H)
 			usr << "Mob doesn't exist anymore"
@@ -308,7 +308,7 @@
 			usr << "This can only be done to instances of type /mob"
 			return
 
-		var/new_language = input("Please choose a language to add.","Language",null) as null|anything in all_languages
+		var/new_language = input("Please choose a language to add.","Language",null) as null|anything in GLOB.all_languages
 
 		if(!new_language)
 			return

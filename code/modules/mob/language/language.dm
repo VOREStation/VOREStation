@@ -179,7 +179,7 @@
 // Language handling.
 /mob/proc/add_language(var/language)
 
-	var/datum/language/new_language = all_languages[language]
+	var/datum/language/new_language = GLOB.all_languages[language]
 
 	if(!istype(new_language) || (new_language in languages))
 		return 0
@@ -188,12 +188,12 @@
 	return 1
 
 /mob/proc/remove_language(var/rem_language)
-	var/datum/language/L = all_languages[rem_language]
+	var/datum/language/L = GLOB.all_languages[rem_language]
 	. = (L in languages)
 	languages.Remove(L)
 
 /mob/living/remove_language(rem_language)
-	var/datum/language/L = all_languages[rem_language]
+	var/datum/language/L = GLOB.all_languages[rem_language]
 	if(default_language == L)
 		default_language = null
 	return ..()
@@ -205,10 +205,10 @@
 		log_debug("[src] attempted to speak a null language.")
 		return 0
 
-	if(speaking == all_languages["Noise"])
+	if(speaking == GLOB.all_languages["Noise"])
 		return 1
 
-	if (only_species_language && speaking != all_languages[species_language])
+	if (only_species_language && speaking != GLOB.all_languages[species_language])
 		return 0
 
 	if(speaking.can_speak_special(src))
@@ -268,7 +268,7 @@
 	if(href_list["default_lang"])
 		if(href_list["default_lang"] == "reset")
 			if (species_language)
-				set_default_language(all_languages[species_language])
+				set_default_language(GLOB.all_languages[species_language])
 			else
 				set_default_language(null)
 		else

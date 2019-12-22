@@ -150,9 +150,9 @@ datum/preferences/proc/set_biological_gender(var/gender)
 /datum/category_item/player_setup_item/general/basic/proc/get_genders()
 	var/datum/species/S
 	if(pref.species)
-		S = all_species[pref.species]
+		S = GLOB.all_species[pref.species]
 	else
-		S = all_species[SPECIES_HUMAN]
+		S = GLOB.all_species[SPECIES_HUMAN]
 	var/list/possible_genders = S.genders
 	if(!pref.organ_data || pref.organ_data[BP_TORSO] != "cyborg")
 		return possible_genders

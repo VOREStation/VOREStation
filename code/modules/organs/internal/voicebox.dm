@@ -18,7 +18,7 @@
 
 /obj/item/organ/internal/voicebox/proc/amend_assist_langs()	// Adds the list of language datums assisted by the voicebox to the list used in speaking
 	for(var/L in will_assist_languages)
-		assists_languages |= all_languages[L]
+		assists_languages |= GLOB.all_languages[L]
 
 /obj/item/organ/internal/voicebox/proc/add_assistable_langs(var/language)	// Adds a new language (by string/define) to the list of things the voicebox can assist
 	will_assist_languages |= language

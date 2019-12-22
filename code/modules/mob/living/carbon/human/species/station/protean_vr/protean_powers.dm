@@ -260,7 +260,7 @@
 		to_chat(src,"<span class='warning'>You must be awake and standing to perform this action!</span>")
 		return
 
-	var/new_species = input("Please select a species to emulate.", "Shapeshifter Body") as null|anything in playable_species
+	var/new_species = input("Please select a species to emulate.", "Shapeshifter Body") as null|anything in GLOB.playable_species
 	if(new_species)
 		impersonate_bodytype = new_species
 		regenerate_icons() //Expensive, but we need to recrunch all the icons we're wearing
