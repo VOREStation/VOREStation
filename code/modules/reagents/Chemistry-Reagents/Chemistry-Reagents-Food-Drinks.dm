@@ -1150,6 +1150,22 @@
 	..()
 	M.heal_organ_damage(0.5 * removed, 0)
 
+/datum/reagent/drink/decaf
+	name = "Decaf Coffee"
+	id = "decaf"
+	description = "Coffee with all the wake-up sucked out."
+	taste_description = "bad coffee"
+	taste_mult = 1.3
+	color = "#482000"
+	adj_temp = 25
+
+	cup_icon_state = "cup_coffee"
+	cup_name = "cup of decaf"
+	cup_desc = "Basically just brown, bitter water."
+
+	glass_name = "decaf coffee"
+	glass_desc = "Basically just brown, bitter water."
+
 /datum/reagent/drink/hot_coco
 	name = "Hot Chocolate"
 	id = "hot_coco"
