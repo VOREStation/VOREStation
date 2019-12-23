@@ -176,7 +176,7 @@
 /datum/recipe/sharksteak
 	reagents = list("blackpepper"= 1, "sodiumchloride" = 1)
 	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/sharkmeat
+		/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sharkmeatcooked
 
@@ -184,7 +184,7 @@
 	reagents = list("sodiumchloride" = 1)
 	fruit = list("chili" = 1)
 	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/sharkmeat
+		/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sharkmeatdip
 
@@ -192,7 +192,7 @@
 	reagents = list("soysauce" = 5, "sodiumchloride" = 1)
 	fruit = list("potato" = 1)
 	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/sharkmeat
+		/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sharkmeatcubes
 

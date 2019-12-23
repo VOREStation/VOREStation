@@ -399,12 +399,13 @@
 	bitesize = 3
 	reagents.add_reagent("protein", 20)
 
-/obj/item/weapon/reagent_containers/food/snacks/sharkmeat
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
 	name = "a slice of sharkmeat"
 	desc = "now it's small enough to cook with."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "sharkmeat"
 	nutriment_amt = 2
+	toxin_amount = null
 
 /obj/item/weapon/reagent_containers/food/snacks/sharkmeat/Initialize()
 	..()
