@@ -25,6 +25,7 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 	icon_living = "gaslamp"
 	icon_dead = "gaslamp-dead"
 	icon = 'icons/mob/vore32x64.dmi'
+	vis_height = 64
 
 	faction = "virgo3b"
 	maxHealth = 100

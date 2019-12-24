@@ -6,6 +6,7 @@
 	icon_living = "snake"
 	icon_state = "snake"
 	icon = 'icons/mob/vore64x64.dmi'
+	vis_height = 64
 
 	faction = "snake"
 	maxHealth = 200
