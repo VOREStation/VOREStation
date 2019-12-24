@@ -12687,7 +12687,8 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/command{
 	name = "Teleport Access";
-	req_access = list(17)
+	req_access = newlist();
+	req_one_access = list(17)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -12965,7 +12966,9 @@
 /area/bridge/secondary/teleporter)
 "axm" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/maintenance/command,
+/obj/machinery/door/airlock/maintenance/command{
+	req_one_access = list(17)
+	},
 /obj/machinery/door/blast/regular{
 	density = 0;
 	dir = 8;
