@@ -420,7 +420,7 @@
 		icon_state = "hair_gentle"
 		flags = HAIR_TIEABLE
 
-	gentle
+	gentle2
 		name = "Gentle 2, Long"
 		icon_state = "hair_gentle2long"
 		flags = HAIR_TIEABLE
