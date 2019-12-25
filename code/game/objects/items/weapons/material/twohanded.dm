@@ -157,3 +157,18 @@
 	fragile = 1	//It's a haphazard thing of glass, wire, and steel
 	reach = 2 // Spears are long.
 	attackspeed = 14
+
+//This is mostly for centaurs.
+/obj/item/weapon/material/twohanded/spear/lance
+	name = "lance"
+	desc = "End him rightly"
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "lance"
+	item_state = "lance"
+	force_divisor = 0.3
+	force = 10
+	thrown_force_divisor = 1
+	default_material = "DEFAULT_WALL_MATERIAL"
+	fragile = 0
+	sharp = 1
+	edge = 0

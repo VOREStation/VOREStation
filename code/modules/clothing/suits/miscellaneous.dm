@@ -40,6 +40,18 @@
 	item_state_slots = list(slot_r_hand_str = "greatcoat", slot_l_hand_str = "greatcoat")
 	body_parts_covered = UPPER_TORSO|ARMS
 
+/obj/item/clothing/suit/poncho
+	name = "poncho"
+	desc = "A simple, comfortable poncho."
+	icon = 'icons/mob/suit.dmi'
+	icon_state = "poncho"
+	item_state = "poncho"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_vr.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_vr.dmi',
+		)
+	body_parts_covered = UPPER_TORSO|ARMS
+
 /obj/item/clothing/suit/hgpirate
 	name = "pirate captain coat"
 	desc = "Yarr."
