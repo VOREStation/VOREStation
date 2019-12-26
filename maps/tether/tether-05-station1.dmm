@@ -12718,7 +12718,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/tiled,
 /area/bridge/secondary/teleporter)
 "awO" = (
 /obj/effect/floor_decal/steeldecal/steel_decals7{
@@ -12889,7 +12889,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/wood,
 /area/bridge/secondary/meeting_room)
 "axd" = (
 /obj/structure/bed/chair/comfy/black,
