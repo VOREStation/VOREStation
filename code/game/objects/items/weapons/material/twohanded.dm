@@ -162,7 +162,7 @@
 /obj/item/weapon/material/twohanded/spear/lance
 	name = "lance"
 	desc = "End him rightly"
-	icon = 'icons/obj/weapons.dmi'
+	icon = 'icons/obj/weapons_vr.dmi'
 	icon_state = "lance"
 	item_state = "lance"
 	force_divisor = 0.3
