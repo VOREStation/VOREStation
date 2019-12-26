@@ -435,3 +435,8 @@
  	icon_state = "fannypack_yellow"
  	item_state = "fannypack_yellow"
 
+/obj/item/weapon/storage/belt/ranger
+	name = "ranger belt"
+	desc = "The fancy utility-belt holding the tools, cuffs and gadgets of the Go Go ERT-Rangers. The belt buckle is not real phoron, but it is still surprisingly comfortable to wear."
+	icon = 'icons/obj/clothing/ranger.dmi'
+	icon_state = "ranger_belt"

@@ -6,7 +6,7 @@
 	touching = new/datum/reagents/metabolism/touch(500, src)
 	reagents = bloodstr
 	if (!default_language && species_language)
-		default_language = all_languages[species_language]
+		default_language = GLOB.all_languages[species_language]
 
 /mob/living/carbon/Life()
 	..()
@@ -362,7 +362,7 @@
 	if(buckled)
 		return 0
 	stop_pulling()
-	src << "<span class='warning'>You slipped on [slipped_on]!</span>"
+	to_chat(src, "<span class='warning'>You slipped on [slipped_on]!</span>")
 	playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 	Weaken(FLOOR(stun_duration/2, 1))
 	return 1
@@ -378,12 +378,12 @@
 		if(can_speak(default_language))
 			return default_language
 		else
-			return all_languages[LANGUAGE_GIBBERISH]
+			return GLOB.all_languages[LANGUAGE_GIBBERISH]
 
 	if(!species)
 		return null
 
-	return species.default_language ? all_languages[species.default_language] : null
+	return species.default_language ? GLOB.all_languages[species.default_language] : null
 
 /mob/living/carbon/proc/should_have_organ(var/organ_check)
 	return 0

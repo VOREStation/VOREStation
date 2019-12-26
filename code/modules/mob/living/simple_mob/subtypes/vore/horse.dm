@@ -40,16 +40,15 @@
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING
 
-/* //VOREStation AI Temporary Removal
-/mob/living/simple_animal/horse/Login()
+/mob/living/simple_mob/vore/horse/Login()
 	. = ..()
 	if(!riding_datum)
-		riding_datum = new /datum/riding/simple_animal(src)
-	verbs |= /mob/living/simple_animal/proc/animal_mount
+		riding_datum = new /datum/riding/simple_mob(src)
+	verbs |= /mob/living/simple_mob/proc/animal_mount
+	movement_cooldown = 0
 
-/mob/living/simple_animal/horse/MouseDrop_T(mob/living/M, mob/living/user)
+/mob/living/simple_mob/vore/horse/MouseDrop_T(mob/living/M, mob/living/user)
 	return
-*/
 
 /datum/say_list/horse
 	speak = list("NEHEHEHEHEH","Neh?")

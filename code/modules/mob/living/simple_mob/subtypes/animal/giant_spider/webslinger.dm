@@ -24,6 +24,10 @@
 	icon_dead = "webslinger_dead"
 	maxHealth = 90
 	health = 90
+
+	projectile_dispersion = 12
+	projectile_accuracy = -25
+
 	projectilesound = 'sound/weapons/thudswoosh.ogg'
 	projectiletype = /obj/item/projectile/webball
 	base_attack_cooldown = 10

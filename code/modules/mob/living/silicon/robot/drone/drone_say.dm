@@ -2,7 +2,7 @@
 	if(local_transmit)
 		if (src.client)
 			if(client.prefs.muted & MUTE_IC)
-				src << "You cannot send IC messages (muted)."
+				to_chat(src, "You cannot send IC messages (muted).")
 				return 0
 
 		message = sanitize(message)
@@ -14,7 +14,7 @@
 			return emote(copytext(message,2))
 
 		if(copytext(message,1,2) == ";")
-			var/datum/language/L = all_languages["Drone Talk"]
+			var/datum/language/L = GLOB.all_languages["Drone Talk"]
 			if(istype(L))
 				return L.broadcast(src,trim(copytext(message,2)))
 

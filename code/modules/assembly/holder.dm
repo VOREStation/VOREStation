@@ -104,6 +104,12 @@
 
 
 /obj/item/device/assembly_holder/Crossed(atom/movable/AM as mob|obj)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = AM
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	if(a_left)
 		a_left.Crossed(AM)
 	if(a_right)

@@ -458,6 +458,82 @@
 	desc = "A simple black dress adorned in fake purple lilacs."
 	icon_state = "lilacdress"
 
+/obj/item/clothing/under/dress/white
+	name = "white wedding dress"
+	desc = "A fancy white dress with a blue underdress."
+	icon_state = "whitedress1"
+	flags_inv = HIDESHOES
+
+/obj/item/clothing/under/dress/white2
+	name = "long dress"
+	desc = "A long dress."
+	icon_state = "whitedress2"
+	addblends = "whitedress2_a"
+	flags_inv = HIDESHOES
+
+/obj/item/clothing/under/dress/white3
+	name = "short dress"
+	desc = "A short, plain dress."
+	icon_state = "whitedress3"
+	addblends = "whitedress3_a"
+
+/obj/item/clothing/under/dress/white4
+	name = "long flared dress"
+	desc = "A long white dress that flares out at the bottom."
+	icon_state = "whitedress4"
+	addblends = "whitedress4_a"
+	flags_inv = HIDESHOES
+
+/obj/item/clothing/under/dress/darkred
+	name = "fancy dark red dress"
+	desc = "A short, red dress with a black belt. Fancy."
+	icon_state = "darkreddress"
+
+/obj/item/clothing/under/dress/polka
+	name = "polka dot dress"
+	desc = "A sleeveless, cream colored dress with red polka dots."
+	icon_state = "polka"
+
+/obj/item/clothing/under/dress/twistfront
+	name = "twistfront crop dress"
+	desc = "A black skirt and red twistfront croptop. Fancy!"
+	icon_state = "twistfront"
+
+/obj/item/clothing/under/dress/cropdress
+	name = "crop dress"
+	desc = "A red skirt and longsleeved button-up crop top."
+	icon_state = "cropdress"
+
+/obj/item/clothing/under/dress/vneck
+	name = "v-neck dress"
+	desc = "A black v-neck dress with an exaggerated neckline covered in a sheer mesh."
+	icon_state = "vneckdress"
+
+/obj/item/clothing/under/dress/bluedress
+	name = "blue dress"
+	desc = "A plain blue dress with a white belt."
+	icon_state = "bluedress"
+
+/obj/item/clothing/under/dress/wench
+	name = "wench's dress"
+	desc = "A white dress styled like a Ye Old Barmaid. Saucy!"
+	icon_state = "wench"
+
+/obj/item/clothing/under/dress/littleblackdress
+	name = "little black dress"
+	desc = "A little strapless black dress with a red ribbon and flower accessory."
+	icon_state = "littleblackdress"
+
+/obj/item/clothing/under/dress/pinktutu
+	name = "pink tutu"
+	desc = "A black leotard with a pink mesh tutu. Perfect for ballet practice."
+	icon_state = "pinktutu"
+
+/obj/item/clothing/under/dress/festivedress
+	name = "festive dress"
+	desc = "A red and white dress themed after some winter holidays. Tastefully festive!"
+	icon_state = "festivedress"
+
 /*
  * wedding stuff
  */
@@ -494,6 +570,10 @@
 	icon_state = "bride_white"
 	flags_inv = HIDESHOES
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/*
+Uniforms and such
+*/
 
 /obj/item/clothing/under/sundress
 	name = "sundress"
@@ -681,36 +761,10 @@
 	icon_state = "gear_harness"
 	body_parts_covered = 0
 
-/obj/item/clothing/under/dress/white
-	name = "white wedding dress"
-	desc = "A fancy white dress with a blue underdress."
-	icon_state = "whitedress1"
-	flags_inv = HIDESHOES
-
-/obj/item/clothing/under/dress/white2
-	name = "long dress"
-	desc = "A long dress."
-	icon_state = "whitedress2"
-	addblends = "whitedress2_a"
-	flags_inv = HIDESHOES
-
-/obj/item/clothing/under/dress/white3
-	name = "short dress"
-	desc = "A short, plain dress."
-	icon_state = "whitedress3"
-	addblends = "whitedress3_a"
-
-/obj/item/clothing/under/dress/white4
-	name = "long flared dress"
-	desc = "A long white dress that flares out at the bottom."
-	icon_state = "whitedress4"
-	addblends = "whitedress4_a"
-	flags_inv = HIDESHOES
-
-/obj/item/clothing/under/dress/darkred
-	name = "fancy dark red dress"
-	desc = "A short, red dress with a black belt. Fancy."
-	icon_state = "darkreddress"
+/obj/item/clothing/under/haltertop
+	name = "halter top"
+	desc = "Jean shorts and a black halter top. Perfect for casual Fridays!"
+	icon_state = "haltertop"
 
 /*
  * swimsuit
@@ -908,3 +962,40 @@
 	name = "hazard cohesion suit"
 	desc = "An orange cohesion suit with yellow hazard stripes intended to assist Prometheans in maintaining their form and prevent direct skin exposure."
 	icon_state = "cohesionsuit_hazard"
+
+//Ranger uniforms
+//On-mob sprites go in icons\mob\uniform.dmi with the format "white_ranger_uniform_s" - with 'white' replaced with green, cyan, etc... of course! Note the _s - this is not optional.
+//Item sprites go in icons\obj\clothing\ranger.dmi with the format "white_ranger_uniform"
+/obj/item/clothing/under/color/ranger
+	var/unicolor = "white"
+	name = "ranger uniform"
+	desc = "Made from a space-proof fibre and tight fitting, this uniform usually gives the agile Rangers all kinds of protection while not inhibiting their movement. \
+	This costume is instead made from genuine cotton fibre and is based on the season three uniform."
+	icon = 'icons/obj/clothing/ranger.dmi'
+	icon_state = "ranger_uniform"
+	rolled_down = 0
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/color/ranger/Initialize()
+	. = ..()
+	if(icon_state == "ranger_uniform") //allows for custom items
+		name = "[unicolor] ranger uniform"
+		icon_state = "[unicolor]_ranger_uniform"
+
+/obj/item/clothing/under/color/ranger/black
+	unicolor = "black"
+
+/obj/item/clothing/under/color/ranger/pink
+	unicolor = "pink"
+
+/obj/item/clothing/under/color/ranger/green
+	unicolor = "green"
+
+/obj/item/clothing/under/color/ranger/cyan
+	unicolor = "cyan"
+
+/obj/item/clothing/under/color/ranger/orange
+	unicolor = "orange"
+
+/obj/item/clothing/under/color/ranger/yellow
+	unicolor = "yellow"

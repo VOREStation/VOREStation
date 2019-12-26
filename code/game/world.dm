@@ -57,8 +57,8 @@
 	populate_robolimb_list()
 
 	//Must be done now, otherwise ZAS zones and lighting overlays need to be recreated.
-	createRandomZlevel()
-	
+	//createRandomZlevel()	//VOREStation Removal: Deprecated
+
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
 

@@ -32,6 +32,127 @@
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "Armor crate"
 
+/datum/supply_pack/randomised/security/carriers
+	name = "Armor - Plate carriers"
+	num_contained = 5
+	contains = list(
+			/obj/item/clothing/suit/armor/pcarrier,
+			/obj/item/clothing/suit/armor/pcarrier/blue,
+			/obj/item/clothing/suit/armor/pcarrier/green,
+			/obj/item/clothing/suit/armor/pcarrier/navy,
+			/obj/item/clothing/suit/armor/pcarrier/tan,
+			/obj/item/clothing/suit/armor/pcarrier/press
+			)
+	cost = 20
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Plate Carrier crate"
+
+/datum/supply_pack/security/carriertags
+	name = "Armor - Plate carrier tags"
+	contains = list(
+			/obj/item/clothing/accessory/armor/tag,
+			/obj/item/clothing/accessory/armor/tag/nt,
+			/obj/item/clothing/accessory/armor/tag/opos,
+			/obj/item/clothing/accessory/armor/tag/oneg,
+			/obj/item/clothing/accessory/armor/tag/apos,
+			/obj/item/clothing/accessory/armor/tag/aneg,
+			/obj/item/clothing/accessory/armor/tag/bpos,
+			/obj/item/clothing/accessory/armor/tag/bneg,
+			/obj/item/clothing/accessory/armor/tag/abpos,
+			/obj/item/clothing/accessory/armor/tag/abneg
+			)
+	cost = 20
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Plate Carrier crate"
+
+/datum/supply_pack/security/helmcovers
+	name = "Armor - Helmet covers"
+	contains = list(
+			/obj/item/clothing/accessory/armor/helmcover/blue,
+			/obj/item/clothing/accessory/armor/helmcover/blue,
+			/obj/item/clothing/accessory/armor/helmcover/navy,
+			/obj/item/clothing/accessory/armor/helmcover/navy,
+			/obj/item/clothing/accessory/armor/helmcover/green,
+			/obj/item/clothing/accessory/armor/helmcover/green,
+			/obj/item/clothing/accessory/armor/helmcover/tan,
+			/obj/item/clothing/accessory/armor/helmcover/tan
+			)
+	cost = 20
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Helmet Covers crate"
+
+/datum/supply_pack/randomised/security/armorplates
+	name = "Armor - Security armor plates"
+	num_contained = 5
+	contains = list(
+			/obj/item/clothing/accessory/armor/armorplate,
+			/obj/item/clothing/accessory/armor/armorplate/stab,
+			/obj/item/clothing/accessory/armor/armorplate,
+			/obj/item/clothing/accessory/armor/armorplate/stab,
+			/obj/item/clothing/accessory/armor/armorplate/medium,
+			/obj/item/clothing/accessory/armor/armorplate/medium,
+			/obj/item/clothing/accessory/armor/armorplate/tactical,
+			/obj/item/clothing/accessory/armor/armorplate/laserproof,
+			/obj/item/clothing/accessory/armor/armorplate/riot,
+			/obj/item/clothing/accessory/armor/armorplate/bulletproof
+			)
+	cost = 50
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Armor plate crate"
+
+/datum/supply_pack/randomised/security/carrierarms
+	name = "Armor - Security armguard attachments"
+	num_contained = 5
+	contains = list(
+			/obj/item/clothing/accessory/armor/armguards,
+			/obj/item/clothing/accessory/armor/armguards/blue,
+			/obj/item/clothing/accessory/armor/armguards/navy,
+			/obj/item/clothing/accessory/armor/armguards/green,
+			/obj/item/clothing/accessory/armor/armguards/tan,
+			/obj/item/clothing/accessory/armor/armguards/laserproof,
+			/obj/item/clothing/accessory/armor/armguards/riot,
+			/obj/item/clothing/accessory/armor/armguards/bulletproof
+			)
+	cost = 50
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Armor plate crate"
+
+/datum/supply_pack/randomised/security/carrierlegs
+	name = "Armor - Security legguard attachments"
+	num_contained = 5
+	contains = list(
+			/obj/item/clothing/accessory/armor/legguards,
+			/obj/item/clothing/accessory/armor/legguards/blue,
+			/obj/item/clothing/accessory/armor/legguards/navy,
+			/obj/item/clothing/accessory/armor/legguards/green,
+			/obj/item/clothing/accessory/armor/legguards/tan,
+			/obj/item/clothing/accessory/armor/legguards/laserproof,
+			/obj/item/clothing/accessory/armor/legguards/riot,
+			/obj/item/clothing/accessory/armor/legguards/bulletproof
+			)
+	cost = 50
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Armor plate crate"
+
+/datum/supply_pack/randomised/security/carrierbags
+	name = "Armor - Security pouch attachments"
+	num_contained = 5
+	contains = list(
+			/obj/item/clothing/accessory/storage/pouches,
+			/obj/item/clothing/accessory/storage/pouches/blue,
+			/obj/item/clothing/accessory/storage/pouches/navy,
+			/obj/item/clothing/accessory/storage/pouches/green,
+			/obj/item/clothing/accessory/storage/pouches/tan,
+			/obj/item/clothing/accessory/storage/pouches/large,
+			/obj/item/clothing/accessory/storage/pouches/large/blue,
+			/obj/item/clothing/accessory/storage/pouches/large/navy,
+			/obj/item/clothing/accessory/storage/pouches/large/green,
+			/obj/item/clothing/accessory/storage/pouches/large/tan
+			)
+	cost = 60
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Armor plate crate"
+
 /datum/supply_pack/security/riot_gear
 	name = "Gear - Riot"
 	contains = list(
@@ -60,6 +181,20 @@
 	containername = "Riot armor crate"
 	access = access_armory
 
+/datum/supply_pack/security/riot_plates
+	name = "Armor - Riot plates"
+	contains = list(
+			/obj/item/clothing/head/helmet/riot,
+			/obj/item/clothing/suit/armor/pcarrier,
+			/obj/item/clothing/accessory/armor/armorplate/riot,
+			/obj/item/clothing/accessory/armor/armguards/riot,
+			/obj/item/clothing/accessory/armor/legguards/riot
+			)
+	cost = 40
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Riot armor crate"
+	access = access_armory
+
 /datum/supply_pack/security/ablative_armor
 	name = "Armor - Ablative"
 	contains = list(
@@ -69,6 +204,20 @@
 			/obj/item/clothing/shoes/leg_guard/laserproof
 			)
 	cost = 40
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Ablative armor crate"
+	access = access_armory
+
+/datum/supply_pack/security/ablative_plates
+	name = "Armor - Ablative plates"
+	contains = list(
+			/obj/item/clothing/head/helmet/laserproof,
+			/obj/item/clothing/suit/armor/pcarrier,
+			/obj/item/clothing/accessory/armor/armorplate/laserproof,
+			/obj/item/clothing/accessory/armor/armguards/laserproof,
+			/obj/item/clothing/accessory/armor/legguards/laserproof
+			)
+	cost = 50
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "Ablative armor crate"
 	access = access_armory
@@ -86,6 +235,21 @@
 	containername = "Ballistic armor crate"
 	access = access_armory
 /* VOREStation Removal - Howabout no ERT armor being orderable?
+
+/datum/supply_pack/security/bullet_resistant_plates
+	name = "Armor - Ballistic plates"
+	contains = list(
+			/obj/item/clothing/head/helmet/bulletproof,
+			/obj/item/clothing/suit/armor/pcarrier,
+			/obj/item/clothing/accessory/armor/armorplate/bulletproof,
+			/obj/item/clothing/accessory/armor/armguards/bulletproof,
+			/obj/item/clothing/accessory/armor/legguards/bulletproof
+			)
+	cost = 50
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Ballistic armor crate"
+	access = access_armory
+
 /datum/supply_pack/security/combat_armor
 	name = "Armor - Combat"
 	contains = list(
@@ -209,9 +373,23 @@
 			/obj/item/weapon/storage/photo_album,
 			/obj/item/device/reagent_scanner,
 			/obj/item/device/flashlight/maglight,
-			/obj/item/weapon/storage/briefcase/crimekit
+			/obj/item/weapon/storage/briefcase/crimekit,
+			/obj/item/weapon/storage/bag/detective
 			)
 	cost = 20
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Forensic equipment"
+	access = access_forensics_lockers
+
+/datum/supply_pack/security/detectivescan
+	name = "Forensic - Scanning Equipment"
+	contains = list(
+			/obj/item/device/mass_spectrometer,
+			/obj/item/device/reagent_scanner,
+			/obj/item/weapon/storage/briefcase/crimekit,
+			/obj/item/device/detective_scanner
+			)
+	cost = 60
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Forensic equipment"
 	access = access_forensics_lockers
@@ -397,3 +575,13 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "Security biohazard gear"
 	access = access_security
+
+/datum/supply_pack/security/posters
+	name = "Gear - Morale Posters"
+	contains = list(
+			/obj/item/weapon/contraband/poster/nanotrasen = 6
+			)
+	cost = 20
+	containertype = /obj/structure/closet/crate/secure
+	containername = "Morale Posters"
+	access = access_maint_tunnels

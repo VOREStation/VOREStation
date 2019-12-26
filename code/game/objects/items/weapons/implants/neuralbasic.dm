@@ -105,10 +105,3 @@ Implant Specifics:<BR>"}
 		my_brain.take_damage(15)
 		my_brain = null
 	return
-
-/obj/item/weapon/implant/neural/roundstart/Initialize()
-	invisibility = 100
-	..()
-	spawn(3)
-		if(!ishuman(loc) && !QDELETED(src))
-			qdel(src)

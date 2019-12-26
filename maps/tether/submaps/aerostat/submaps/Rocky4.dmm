@@ -4,16 +4,20 @@
 /area/template_noop)
 "b" = (
 /turf/template_noop,
-/area/submap/Rocky4)
+/area/submap/virgo2/Rocky4)
 "c" = (
-/turf/simulated/mineral/ignore_mapgen,
-/area/submap/Rocky4)
+/turf/simulated/mineral/ignore_mapgen/virgo2,
+/area/submap/virgo2/Rocky4)
 "e" = (
 /turf/simulated/floor/outdoors/rocks,
-/area/submap/Rocky4)
+/area/submap/virgo2/Rocky4)
 "f" = (
-/turf/simulated/floor/water,
-/area/submap/Rocky4)
+/turf/simulated/floor/lava,
+/area/submap/virgo2/Rocky4)
+"Y" = (
+/obj/machinery/crystal/lava,
+/turf/simulated/floor/outdoors/rocks,
+/area/submap/virgo2/Rocky4)
 
 (1,1,1) = {"
 a
@@ -210,7 +214,7 @@ c
 c
 b
 b
-e
+Y
 e
 e
 e

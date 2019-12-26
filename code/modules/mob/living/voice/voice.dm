@@ -9,7 +9,7 @@
 
 /mob/living/voice/New(loc)
 	add_language(LANGUAGE_GALCOM)
-	set_default_language(all_languages[LANGUAGE_GALCOM])
+	set_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
 
 	if(istype(loc, /obj/item/device/communicator))
 		comm = loc
@@ -69,7 +69,7 @@
 	if(comm)
 		comm.close_connection(user = src, target = src, reason = "[src] hung up")
 	else
-		src << "You appear to not be inside a communicator.  This is a bug and you should report it."
+		to_chat(src, "You appear to not be inside a communicator.  This is a bug and you should report it.")
 
 // Verb: change_name()
 // Parameters: None
@@ -90,7 +90,7 @@
 		log_game(msg)
 		src.name = new_name
 	else
-		src << "<span class='warning'>Invalid name.  Rejected.</span>"
+		to_chat(src, "<span class='warning'>Invalid name.  Rejected.</span>")
 
 // Proc: Life()
 // Parameters: None

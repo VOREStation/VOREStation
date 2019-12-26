@@ -108,7 +108,7 @@
 	attack_edge = 1
 	attacktext = list("slashed")
 
-	loot_list = list(/obj/item/weapon/melee/energy/sword/red = 100, /obj/item/weapon/shield/energy = 100)
+	loot_list = list(/obj/item/weapon/melee/energy/sword = 100, /obj/item/weapon/shield/energy = 100)
 
 // They have a shield, so they try to block
 /mob/living/simple_mob/humanoid/merc/melee/sword/attackby(var/obj/item/O as obj, var/mob/user as mob)
@@ -159,6 +159,8 @@
 
 	loot_list = list(/obj/item/weapon/gun/projectile/automatic/c20r = 100)
 
+	projectile_dispersion = 7
+	projectile_accuracy = -20
 	base_attack_cooldown = 5 // Two attacks a second or so.
 	reload_max = 20
 
@@ -181,6 +183,8 @@
 
 	loot_list = list(/obj/item/weapon/gun/energy/laser = 100)
 
+	projectile_dispersion = 5
+	projectile_accuracy = -20
 	reload_max = 10
 
 // Ion Rifle
@@ -206,6 +210,8 @@
 	reload_max = 4
 	reload_time = 1.5 SECONDS	// It's a shotgun, it takes a moment
 
+	projectile_dispersion = 8
+	projectile_accuracy = -40
 	special_attack_charges = 5
 
 
@@ -255,6 +261,9 @@
 	min_n2 = 0
 	max_n2 = 0
 	minbodytemp = 0
+
+	projectile_dispersion = 7
+	projectile_accuracy = -20
 
 	corpse = /obj/effect/landmark/mobcorpse/syndicatecommando
 

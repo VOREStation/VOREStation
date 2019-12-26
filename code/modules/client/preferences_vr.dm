@@ -13,7 +13,7 @@ datum/preferences
 
 	toggle_preference(pref_path)
 
-	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear eating related vore noises."
+	to_chat(src, "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear eating related vore noises.")
 
 	SScharacter_setup.queue_preferences_save(prefs)
 
@@ -29,7 +29,7 @@ datum/preferences
 
 	toggle_preference(pref_path)
 
-	src << "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear digestion related vore noises."
+	to_chat(src, "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear digestion related vore noises.")
 
 	SScharacter_setup.queue_preferences_save(prefs)
 

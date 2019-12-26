@@ -87,7 +87,7 @@
 	max_universal_equip = 5
 	max_special_equip = 2
 
-/obj/mecha/combat/gorilla/New()
+/obj/mecha/combat/gorilla/Initialize()
 	..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay(src) // This thing basically cannot function without an external power supply.
 	ME.attach(src)

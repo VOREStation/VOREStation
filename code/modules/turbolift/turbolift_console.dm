@@ -90,7 +90,7 @@
 		return
 	light_up()
 	pressed(user)
-	if(floor == lift.current_floor)
+	if(floor == lift.current_floor && !(lift.target_floor))	//Make sure we're not going anywhere before opening doors
 		lift.open_doors()
 		spawn(3)
 			reset()

@@ -94,6 +94,11 @@
 	is_stack = TRUE
 	no_scale = TRUE //prevents material duplication exploits
 
+//TFF 24/12/19 - Let people print more spray bottles if needed.
+/datum/category_item/autolathe/general/spraybottle
+	name = "spray bottle"
+	path = /obj/item/weapon/reagent_containers/spray
+
 /datum/category_item/autolathe/general/knife
 	name = "kitchen knife"
 	path =/obj/item/weapon/material/knife

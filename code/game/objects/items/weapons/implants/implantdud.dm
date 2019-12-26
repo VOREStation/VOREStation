@@ -19,12 +19,3 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "implant"
 	roundstart = FALSE
-
-/obj/item/weapon/implant/dud/Initialize()
-	..()
-	if(roundstart)
-		invisibility = 100
-		..()
-		spawn(3)
-			if(!ishuman(loc) && !QDELETED(src))
-				qdel(src)

@@ -2478,13 +2478,13 @@
 	id = "virginsexonthebeach"
 	result = "virginsexonthebeach"
 	required_reagents = list("orangejuice" = 3, "grenadine" = 2)
-	result_amount = 4
+	result_amount = 5
 
 /datum/chemical_reaction/drinks/sexonthebeach
 	name = "Sex On The Beach"
 	id = "sexonthebeach"
 	result = "sexonthebeach"
-	required_reagents = list("orangejuice" = 3, "grenadine" = 2, "vodka" = 1)
+	required_reagents = list("virginsexonthebeach" = 5, "vodka" = 1)
 	result_amount = 6
 
 /datum/chemical_reaction/drinks/eggnog

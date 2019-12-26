@@ -7,7 +7,7 @@
 	if(!changeling)
 		return
 	if(src.mind.changeling.readapts <= 0)
-		to_chat(src, "<span class='warning'>We must first absorb another compatable creature!</span>")
+		to_chat(src, "<span class='warning'>We must first absorb another compatible creature!</span>")
 		src.mind.changeling.readapts = 0
 		return
 
@@ -26,6 +26,6 @@
 		H.remove_modifiers_of_type(/datum/modifier/endoarmor) //Revert endoarmor too.
 	src.make_changeling() //And give back our freebies.
 
-	src << "<span class='notice'>We have removed our evolutions from this form, and are now ready to readapt.</span>"
+	to_chat(src, "<span class='notice'>We have removed our evolutions from this form, and are now ready to readapt.</span>")
 
 	ling_datum.purchased_powers_history.Add("Re-adapt (Reset to [ling_datum.max_geneticpoints])")

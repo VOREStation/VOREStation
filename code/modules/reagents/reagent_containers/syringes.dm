@@ -183,8 +183,6 @@
 					if(H.wear_suit)
 						if(istype(H.wear_suit, /obj/item/clothing/suit/space))
 							injtime = injtime * 2
-						else if(!H.can_inject(user, 1))
-							return
 
 				else if(isliving(target))
 

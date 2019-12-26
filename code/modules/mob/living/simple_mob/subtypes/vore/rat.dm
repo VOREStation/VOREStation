@@ -23,10 +23,11 @@
 	melee_damage_lower = 2
 	melee_damage_upper = 7
 	grab_resist = 100
+	see_in_dark = 8
 
-	response_help = "pets the"
-	response_disarm = "bops the"
-	response_harm = "hits the"
+	response_help = "pets"
+	response_disarm = "bops"
+	response_harm = "hits"
 	attacktext = list("ravaged")
 	friendly = list("nuzzles", "licks", "noses softly at", "noseboops", "headbumps against", "leans on", "nibbles affectionately on")
 
@@ -168,16 +169,15 @@
 	playsound(src, 'sound/effects/mouse_squeak_loud.ogg', 50, 1)
 	..()
 
-/* //VOREStation AI Temporary Removal
-/mob/living/simple_mob/vore/rat/Login()
+/mob/living/simple_mob/vore/aggressive/rat/Login()
 	. = ..()
 	if(!riding_datum)
-		riding_datum = new /datum/riding/simple_animal(src)
-	verbs |= /mob/living/simple_animal/proc/animal_mount
+		riding_datum = new /datum/riding/simple_mob(src)
+	verbs |= /mob/living/simple_mob/proc/animal_mount
+	movement_cooldown = 0
 
 /mob/living/simple_mob/vore/aggressive/rat/MouseDrop_T(mob/living/M, mob/living/user)
 	return
-*/
 
 /mob/living/simple_mob/vore/aggressive/rat/phoron
 	name = "phoron rat"
@@ -194,6 +194,16 @@
 
 	melee_damage_lower = 8
 	melee_damage_upper = 16
+
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	minbodytemp = 0
 
 /datum/say_list/rat
 	speak = list("Squeek!","SQUEEK!","Squeek?")

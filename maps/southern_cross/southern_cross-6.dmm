@@ -220,7 +220,7 @@
 "el" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/automatic/z8,/obj/item/weapon/gun/projectile/automatic/z8,/turf/unsimulated/floor{icon_state = "dark"},/area/centcom/specops)
 "em" = (/obj/structure/table/rack,/obj/item/weapon/rig/ert/assetprotection,/obj/item/weapon/rig/ert/assetprotection,/obj/item/weapon/rig/ert/assetprotection,/obj/item/weapon/rig/ert/assetprotection,/obj/item/weapon/rig/ert/assetprotection,/obj/item/weapon/rig/ert/assetprotection,/turf/unsimulated/floor{icon_state = "dark"},/area/centcom/specops)
 "en" = (/obj/structure/table/rack,/obj/item/weapon/gun/energy/sniperrifle,/turf/unsimulated/floor{icon_state = "dark"},/area/centcom/specops)
-"eo" = (/obj/structure/table/rack,/obj/item/weapon/melee/energy/sword/blue,/obj/item/weapon/melee/energy/sword/blue,/obj/item/weapon/melee/energy/sword/blue,/obj/item/weapon/melee/energy/sword/blue,/turf/unsimulated/floor{icon_state = "dark"},/area/centcom/specops)
+"eo" = (/obj/structure/table/rack,/obj/item/weapon/melee/energy/sword,/turf/unsimulated/floor{icon_state = "dark"},/area/centcom/specops)
 "ep" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/automatic/l6_saw,/obj/item/ammo_magazine/m545saw,/obj/item/ammo_magazine/m545saw,/obj/item/ammo_magazine/m545saw,/obj/item/ammo_magazine/m545saw,/turf/unsimulated/floor{icon_state = "dark"},/area/centcom/specops)
 "eq" = (/obj/structure/table/rack,/obj/item/weapon/shield/energy,/obj/item/weapon/shield/energy,/obj/item/weapon/shield/energy,/obj/item/weapon/shield/energy,/turf/unsimulated/floor{icon_state = "dark"},/area/centcom/specops)
 "er" = (/obj/structure/table/rack,/obj/item/weapon/gun/energy/laser,/obj/item/weapon/gun/energy/laser,/turf/unsimulated/floor{icon_state = "dark"},/area/centcom/specops)
@@ -508,7 +508,7 @@
 "jN" = (/obj/machinery/door/airlock/external{frequency = 1380; icon_state = "door_locked"; id_tag = "escape_pod_1_recovery_hatch"; locked = 1; name = "Recovery Shuttle Dock 1"; req_access = list(13)},/turf/simulated/shuttle/floor/black,/area/centcom/evac)
 "jO" = (/obj/machinery/door/airlock/external{frequency = 1380; icon_state = "door_locked"; id_tag = "escape_pod_2_recovery_hatch"; locked = 1; name = "Recovery Shuttle Dock 2"; req_access = list(13)},/turf/simulated/shuttle/floor/black,/area/centcom/evac)
 "jP" = (/obj/machinery/door/airlock/command{name = "Thunderdome Administration"; req_access = list(102)},/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/tdome)
-"jQ" = (/obj/structure/table/rack,/obj/item/clothing/under/color/red,/obj/item/clothing/shoes/brown,/obj/item/clothing/suit/armor/tdome/red,/obj/item/clothing/head/helmet/thunderdome,/obj/item/weapon/melee/baton/loaded,/obj/item/weapon/melee/energy/sword/red,/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/tdome)
+"jQ" = (/obj/structure/table/rack,/obj/item/clothing/under/color/red,/obj/item/clothing/shoes/brown,/obj/item/clothing/suit/armor/tdome/red,/obj/item/clothing/head/helmet/thunderdome,/obj/item/weapon/melee/baton/loaded,/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/tdome)
 "jR" = (/obj/structure/closet/chefcloset,/obj/item/glass_jar,/obj/item/device/retail_scanner/civilian,/obj/item/weapon/soap/nanotrasen,/obj/item/device/destTagger{pixel_x = 4; pixel_y = 3},/obj/item/weapon/packageWrap,/obj/item/weapon/packageWrap,/obj/item/weapon/packageWrap,/obj/effect/floor_decal/corner/white/diagonal,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/bar)
 "jS" = (/obj/effect/floor_decal/corner/white/diagonal,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/bar)
 "jT" = (/turf/unsimulated/floor{icon_state = "freezerfloor"; dir = 2},/area/centcom/bar)
@@ -924,7 +924,7 @@
 "rN" = (/obj/machinery/computer/shuttle_control{name = "Beruang control console"; req_access = list(160); shuttle_tag = "Trade"},/turf/unsimulated/floor{icon_state = "steel"},/area/shuttle/trade)
 "rO" = (/obj/structure/closet/crate,/turf/unsimulated/floor{icon_state = "vault"; dir = 1},/area/shuttle/trade)
 "rP" = (/turf/unsimulated/floor{icon_state = "dark"},/area/shuttle/trade)
-"rQ" = (/obj/structure/table/rack,/obj/item/clothing/under/color/green,/obj/item/clothing/shoes/brown,/obj/item/clothing/suit/armor/tdome/green,/obj/item/clothing/head/helmet/thunderdome,/obj/item/weapon/melee/baton/loaded,/obj/item/weapon/melee/energy/sword/green,/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/tdome)
+"rQ" = (/obj/structure/table/rack,/obj/item/clothing/under/color/green,/obj/item/clothing/shoes/brown,/obj/item/clothing/suit/armor/tdome/green,/obj/item/clothing/head/helmet/thunderdome,/obj/item/weapon/melee/baton/loaded,/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/tdome)
 "rR" = (/obj/machinery/door/airlock/centcom{name = "Bridge Access"; opacity = 1; req_access = list(101)},/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/main_hall)
 "rS" = (/obj/machinery/door/airlock/glass_centcom{name = "Bridge Access"; req_access = list(101)},/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/main_hall)
 "rT" = (/obj/machinery/door/airlock{name = "Unit 2"},/turf/unsimulated/floor{icon_state = "freezerfloor"; dir = 2},/area/centcom/bar)
@@ -2520,4 +2520,3 @@ aaaaRfababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
-

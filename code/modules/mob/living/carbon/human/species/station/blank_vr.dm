@@ -51,7 +51,7 @@
 	return base_species
 
 /datum/species/custom/get_race_key()
-	var/datum/species/real = all_species[base_species]
+	var/datum/species/real = GLOB.all_species[base_species]
 	return real.race_key
 
 /datum/species/custom/proc/produceCopy(var/datum/species/to_copy,var/list/traits,var/mob/living/carbon/human/H)
@@ -61,7 +61,7 @@
 	if(ispath(to_copy))
 		to_copy = "[initial(to_copy.name)]"
 	if(istext(to_copy))
-		to_copy = all_species[to_copy]
+		to_copy = GLOB.all_species[to_copy]
 
 	var/datum/species/custom/new_copy = new()
 
