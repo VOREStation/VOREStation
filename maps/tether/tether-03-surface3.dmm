@@ -11594,11 +11594,26 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "atu" = (
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/corner/blue/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/blue/bordercorner2{
+	dir = 10
+	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "atv" = (
@@ -15977,9 +15992,6 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "aAn" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 5
 	},
@@ -15987,19 +15999,16 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/floor_decal/corner/blue/border{
-	dir = 8
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 6
 	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 10
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 1
 	},
-/obj/effect/floor_decal/corner/blue/bordercorner2{
-	dir = 10
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/structure/disposalpipe/junction{
-	dir = 2;
-	icon_state = "pipe-j2"
-	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "aAo" = (
@@ -18660,22 +18669,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/bridge)
 "aEd" = (
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 6
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 1
-	},
-/obj/structure/disposalpipe/sortjunction{
-	name = "HoP Office";
-	sortType = "HoP Office"
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
@@ -27706,6 +27702,18 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "aTS" = (
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
+"aTT" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
@@ -45510,8 +45518,8 @@ anL
 bdX
 avi
 avk
+atu
 aAn
-aEd
 baI
 baR
 baT
@@ -45546,7 +45554,7 @@ aNk
 aNl
 aNJ
 aNP
-aTS
+aTT
 aKU
 abg
 aOk
@@ -45652,9 +45660,9 @@ anL
 anL
 anL
 asB
+anL
 bbB
 atd
-anL
 atJ
 anL
 anL
@@ -45688,7 +45696,7 @@ aNl
 aNl
 aNK
 aNP
-aTS
+aTT
 aKU
 abg
 aOk
@@ -45795,8 +45803,8 @@ arG
 apS
 asC
 apS
-ajX
-atu
+aEd
+aTS
 atK
 auh
 auK
@@ -45830,7 +45838,7 @@ aNm
 aNl
 aNK
 aNP
-aTS
+aTT
 aKU
 abg
 aOk
