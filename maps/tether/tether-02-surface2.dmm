@@ -5534,7 +5534,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "alw" = (
-/obj/effect/floor_decal/rust,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
