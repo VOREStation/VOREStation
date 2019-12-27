@@ -143,6 +143,7 @@
 /obj/item/weapon/storage/toolbox/electrical,
 /obj/structure/cable,
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 8;
 	name = "west bump";
 	pixel_x = -24
