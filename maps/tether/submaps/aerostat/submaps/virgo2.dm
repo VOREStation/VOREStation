@@ -113,13 +113,13 @@
 	desc = "You REALLY shouldn't be near this."
 	mappath = 'Blackshuttledown.dmm'
 	cost = 30
-
+/*
 /datum/map_template/virgo2/Rockybase
 	name = "Rocky Base"
 	desc = "A guide to upsetting Icarus and the EIO"
 	mappath = 'Rockybase.dmm'
 	cost = 35
-
+*/
 /datum/map_template/virgo2/MHR
 	name = "Manhack Rock"
 	desc = "A rock filled with nasty Synthetics."
@@ -137,13 +137,13 @@
 	desc = "A damaged fission engine jettisoned from a starship long ago."
 	mappath = 'DecoupledEngine.dmm'
 	cost = 15
-
+/*
 /datum/map_template/virgo2/DoomP
 	name = "DoomP"
 	desc = "Witty description here."
 	mappath = 'DoomP.dmm'
 	cost = 30
-
+*/
 /datum/map_template/virgo2/Cave
 	name = "CaveS"
 	desc = "Chitter chitter!"
