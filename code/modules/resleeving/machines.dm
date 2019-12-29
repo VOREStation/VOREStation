@@ -137,10 +137,10 @@
 		else if(occupant.getCloneLoss() > 0)
 
 			 //Slowly get that clone healed and finished.
-			occupant.adjustCloneLoss(-4 * heal_rate)
+			occupant.adjustCloneLoss(-2 * heal_rate)
 
 			//Premature clones may have brain damage.
-			occupant.adjustBrainLoss(-(CEILING((heal_rate), 1)))
+			occupant.adjustBrainLoss(-(CEILING((0.5*heal_rate), 1)))
 
 			//So clones don't die of oxyloss in a running pod.
 			if(occupant.reagents.get_reagent_amount("inaprovaline") < 30)
