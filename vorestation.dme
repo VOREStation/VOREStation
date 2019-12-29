@@ -3093,6 +3093,7 @@
 #include "code\modules\resleeving\infomorph.dm"
 #include "code\modules\resleeving\infomorph_software.dm"
 #include "code\modules\resleeving\machines.dm"
+#include "code\modules\resleeving\resleeving_sickness.dm"
 #include "code\modules\resleeving\sleevecard.dm"
 #include "code\modules\rogueminer_vr\asteroid.dm"
 #include "code\modules\rogueminer_vr\controller.dm"

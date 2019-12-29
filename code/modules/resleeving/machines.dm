@@ -409,6 +409,7 @@
 	anchored = 1
 	var/blur_amount
 	var/confuse_amount
+	var/sickness_duration
 
 	var/mob/living/carbon/human/occupant = null
 	var/connected = null
@@ -437,6 +438,9 @@
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		manip_rating += M.rating
 	blur_amount = (48 - manip_rating * 8)
+
+	var/total_rating = manip_rating + scan_rating
+	sickness_duration = CLAMP((54 - (total_rating-4)*3) MINUTES, 15 MINUTES, 60 MINUTES)
 
 /obj/machinery/transhuman/resleever/attack_hand(mob/user as mob)
 	user.set_machine(src)
@@ -584,8 +588,9 @@
 	else
 		occupant << "<span class='warning'>You feel a small pain in your head as you're given a new backup implant. Oh, and a new body. It's disorienting, to say the least.</span>"
 
-	occupant.confused = max(occupant.confused, confuse_amount)
+	occupant.confused = max(occupant.confused, confuse_amount)	//Apply immedeate effects
 	occupant.eye_blurry = max(occupant.eye_blurry, blur_amount)
+	occupant.add_modifier(/datum/modifier/resleeving_sickness, sickness_duration)	//And more longterm ones
 
 	if(occupant.mind && occupant.original_player && ckey(occupant.mind.key) != occupant.original_player)
 		log_and_message_admins("is now a cross-sleeved character. Body originally belonged to [occupant.real_name]. Mind is now [occupant.mind.name].",occupant)
