@@ -134,13 +134,13 @@
 			connected_message("Clone Rejected: Deceased.")
 			return
 
-		else if(occupant.health < heal_level && occupant.getCloneLoss() > 0)
+		else if(occupant.getCloneLoss() > 0)
 
 			 //Slowly get that clone healed and finished.
-			occupant.adjustCloneLoss(-2 * heal_rate)
+			occupant.adjustCloneLoss(-4 * heal_rate)
 
 			//Premature clones may have brain damage.
-			occupant.adjustBrainLoss(-(CEILING((0.5*heal_rate), 1)))
+			occupant.adjustBrainLoss(-(CEILING((heal_rate), 1)))
 
 			//So clones don't die of oxyloss in a running pod.
 			if(occupant.reagents.get_reagent_amount("inaprovaline") < 30)
@@ -152,7 +152,7 @@
 			use_power(7500) //This might need tweaking.
 			return
 
-		else if(((occupant.health >= heal_level) || (occupant.health == occupant.maxHealth)) && (!eject_wait))
+		else if(((occupant.health == occupant.maxHealth)) && (!eject_wait))
 			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 			audible_message("\The [src] signals that the growing process is complete.")
 			connected_message("Growing Process Complete.")
