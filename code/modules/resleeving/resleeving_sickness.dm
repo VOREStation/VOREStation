@@ -10,7 +10,6 @@
 	incoming_fire_damage_percent = 1.3			// 30% more incoming burn damage.
 	incoming_oxy_damage_percent = 1.5			// 50% more incoming oxy damage
 	incoming_hal_damage_percent = 1.35			// 35% more incoming agony.
-	bleeding_rate_percent = 1.2					// 20% faster bleeding.
 	outgoing_melee_damage_percent = 0.75		// 25% less melee damage.
 	disable_duration_percent = 1.40 			// 40% longer stuns.
 	evasion = -20								// 20% easier to hit.
