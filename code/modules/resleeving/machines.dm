@@ -440,7 +440,7 @@
 	blur_amount = (48 - manip_rating * 8)
 
 	var/total_rating = manip_rating + scan_rating
-	sickness_duration = CLAMP((54 - (total_rating-4)*3) MINUTES, 15 MINUTES, 60 MINUTES)
+	sickness_duration = (45 - (total_rating-4)*1.875) MINUTES		// 45 minutes default, 30 minutes with max non-anomaly upgrades, 15 minutes with max anomaly ones
 
 /obj/machinery/transhuman/resleever/attack_hand(mob/user as mob)
 	user.set_machine(src)
