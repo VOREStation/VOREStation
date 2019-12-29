@@ -25767,6 +25767,8 @@
 	},
 /obj/item/slime_extract/pink,
 /obj/item/slime_extract/pink,
+/obj/item/weapon/deadringer,
+/obj/item/weapon/deadringer,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/vault)
 "XY" = (
