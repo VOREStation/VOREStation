@@ -134,7 +134,7 @@
 	..()
 	set_pixel_speed(0.5)
 
-#define ELECTRIC_ZAP_POWER 20000
+#define ELECTRIC_ZAP_POWER 15000 //VOREStation Edit
 
 // Charges a tesla shot, while emitting a dangerous electric field. The exosuit is immune to electric damage while this is ongoing.
 // It also briefly blinds anyone looking directly at the mech without flash protection.
