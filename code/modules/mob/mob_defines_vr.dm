@@ -7,3 +7,4 @@
 
 	var/obj/screen/shadekin/darkness/shadekin_dark_display = null
 	var/obj/screen/shadekin/energy/shadekin_energy_display = null
+	var/obj/screen/xenochimera/danger_level/xenochimera_danger_display = null
