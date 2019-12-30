@@ -357,7 +357,7 @@
 				t_him = "him"
 			if(FEMALE)
 				t_him = "her"
-	//VOREStation Edit Start- Headpats and Handshakes.
+	//VOREStation Edit Start - Headpats and Handshakes.
 	if(H.zone_sel.selecting == "head")
 		H.visible_message( \
 			"<span class='notice'>[H] pats [target] on the head.</span>", \
@@ -366,8 +366,7 @@
 		H.visible_message( \
 			"<span class='notice'>[H] shakes [target]'s hand.</span>", \
 			"<span class='notice'>You shake [target]'s hand.</span>", )
-	//VOREStation Edit End
-	//VOREStation Edit Start - TFF 15/12/19 - Port nose booping from CHOMPStation
+	//TFF 15/12/19 - Port nose booping from CHOMPStation
 	else if(H.zone_sel.selecting == "mouth")
 		H.visible_message( \
 			"<span class='notice'>[H] boops [target]'s nose.</span>", \
