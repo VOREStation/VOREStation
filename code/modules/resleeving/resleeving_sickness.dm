@@ -8,9 +8,9 @@
 
 	incoming_brute_damage_percent = 1.1			// 30% more incoming brute damage.
 	incoming_fire_damage_percent = 1.1			// 30% more incoming burn damage.
-	incoming_hal_damage_percent = 1.50			// 50% more incoming agony.
+	incoming_hal_damage_percent = 1.5			// 50% more incoming agony.
 	outgoing_melee_damage_percent = 0.75		// 25% less melee damage.
-	disable_duration_percent = 1.50 			// 50% longer stuns.
+	disable_duration_percent = 1.5	 			// 50% longer stuns.
 	evasion = -20								// 20% easier to hit.
 	accuracy = -30								// 30% less accurate.
 	accuracy_dispersion	= 15					// 15% less precise.
