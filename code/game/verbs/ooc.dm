@@ -48,14 +48,16 @@
 	var/ooc_style = "everyone"
 	if(holder && !holder.fakekey)
 		ooc_style = "elevated"
-		if(holder.rights & R_EVENT)
+		//VOREStation Block Edit Start
+		if(holder.rights & R_EVENT) //Retired Admins
 			ooc_style = "event_manager"
-		if(holder.rights & R_MOD)
+		if(holder.rights & R_ADMIN && !(holder.rights & R_BAN)) //Game Masters
 			ooc_style = "moderator"
-		if(holder.rights & R_DEBUG)
+		if(holder.rights & R_SERVER && !(holder.rights & R_BAN)) //Developers
 			ooc_style = "developer"
-		if(holder.rights & R_ADMIN)
+		if(holder.rights & R_ADMIN && holder.rights & R_BAN) //Admins
 			ooc_style = "admin"
+		//VOREStation Block Edit End
 
 	for(var/client/target in GLOB.clients)
 		if(target.is_preference_enabled(/datum/client_preference/show_ooc))

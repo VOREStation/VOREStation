@@ -114,7 +114,7 @@
 					for(var/slot in slots)
 						var/obj/item/I = H.get_equipped_item(slot = slot)
 						if(I)
-							H.unEquip(I,force = TRUE)
+							H.unEquip(I,force = FALSE)
 							if(contaminates || istype(I,/obj/item/weapon/card/id))
 								I.gurgle_contaminate(contents, contamination_flavor, contamination_color)
 							if(item_digest_mode == IM_HOLD)

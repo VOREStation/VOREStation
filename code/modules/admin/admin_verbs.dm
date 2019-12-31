@@ -358,52 +358,13 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/view_atk_log		//shows the server combat-log, doesn't do anything presently,
 )
 
+//VOREStation Edit Start - Highly Modified List
 var/list/admin_verbs_event_manager = list(
-	/client/proc/cmd_event_say,
-	/client/proc/cmd_admin_pm_context,
-	/client/proc/cmd_admin_pm_panel,
-	/datum/admins/proc/PlayerNotes,
-	/client/proc/admin_ghost,
-	/datum/admins/proc/show_player_info,
-	/client/proc/dsay,
-	/client/proc/cmd_admin_subtle_message,
-	/client/proc/debug_variables,
-	/client/proc/check_antagonists,
-	/client/proc/aooc,
-	/datum/admins/proc/paralyze_mob,
-	/client/proc/cmd_admin_direct_narrate,
-	/client/proc/allow_character_respawn,
-	/datum/admins/proc/sendFax,
-	/client/proc/respawn_character,
-	/proc/possess,
-	/proc/release,
-	/client/proc/callproc,
-	/client/proc/callproc_datum,
-	/client/proc/debug_controller,
-	/client/proc/show_gm_status,
-	/datum/admins/proc/change_weather,
-	/datum/admins/proc/change_time,
-	/client/proc/admin_give_modifier,
-	/client/proc/Jump,
-	/client/proc/jumptomob,
-	/client/proc/jumptocoord,
-	/client/proc/cmd_admin_delete,
-	/datum/admins/proc/delay,
-	/client/proc/Set_Holiday,
-	/client/proc/make_sound,
-	/client/proc/toggle_random_events,
-	/datum/admins/proc/cmd_admin_dress,
-	/client/proc/cmd_admin_gib_self,
-	/client/proc/drop_bomb,
-	/client/proc/cmd_admin_add_freeform_ai_law,
-	/client/proc/cmd_admin_add_random_ai_law,
-	/client/proc/make_sound,
-	/client/proc/toggle_random_events,
-	/client/proc/editappear,
-	/client/proc/roll_dices,
-	/datum/admins/proc/call_supply_drop,
-	/datum/admins/proc/call_drop_pod
+	/client/proc/cmd_admin_say,			//admin-only ooc chat,
+	/client/proc/cmd_mod_say,
+	/client/proc/cmd_event_say
 )
+//VOREStation Edit End
 
 /client/proc/add_admin_verbs()
 	if(holder)
