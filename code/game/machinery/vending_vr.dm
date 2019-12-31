@@ -272,6 +272,7 @@
 					/obj/item/clothing/shoes/rainbow = 1,)
 	contraband = list(/obj/item/clothing/shoes/syndigaloshes = 1,
 					/obj/item/clothing/shoes/clown_shoes = 1)
+
 /obj/machinery/vending/loadout/uniform
 	name = "The Basics"
 	desc = "A vendor using compressed matter cartridges to store large amounts of basic station uniforms."
@@ -299,6 +300,7 @@
 					/obj/item/clothing/under/color/yellow = 5,
 					/obj/item/clothing/shoes/black = 20,
 					/obj/item/clothing/shoes/white = 20)
+
 /obj/machinery/vending/loadout/accessory
 	name = "Looty Inc."
 	desc = "A special vendor for accessories."
@@ -528,6 +530,7 @@
 					/obj/item/clothing/mask/surgical = 200)
 	premium = list(/obj/item/weapon/bedsheet/rainbow = 1)
 	contraband = list(/obj/item/clothing/mask/gas/clown_hat = 1)
+
 /obj/machinery/vending/loadout/clothing
 	name = "General Jump"
 	desc = "A special vendor using compressed matter cartridges to store large amounts of clothing."
@@ -871,6 +874,7 @@
 					/obj/item/weapon/storage/backpack/satchel = 100)
 	premium = list(/obj/item/clothing/under/color/rainbow = 1)
 	contraband = list(/obj/item/clothing/under/rank/clown = 1)
+
 /obj/machinery/vending/loadout/gadget
 	name = "Chips Co."
 	desc = "A special vendor for devices and gadgets."
@@ -920,6 +924,7 @@
 					/obj/item/clothing/glasses/omnihud = 100)
 	premium = list(/obj/item/device/perfect_tele/one_beacon = 1)
 	contraband = list(/obj/item/weapon/disk/nifsoft/compliance = 1)
+
 /obj/machinery/vending/loadout/loadout_misc
 	name = "Bits and Bobs"
 	desc = "A special vendor for things and also stuff!"
@@ -949,6 +954,7 @@
 					/obj/item/weapon/melee/umbrella/random = 100)
 	premium = list(/obj/item/toy/bosunwhistle = 1)
 	contraband = list(/obj/item/toy/katana = 1)
+
 /obj/machinery/vending/loadout/overwear
 	name = "Big D's Best"
 	desc = "A special vendor using compressed matter cartridges to store large amounts of overwear!"
@@ -1132,6 +1138,7 @@
 					/obj/item/clothing/suit/storage/seromi/cloak/standard/white_grey = 200)
 	premium = list(/obj/item/clothing/suit/imperium_monk = 3)
 	contraband = list(/obj/item/toy/katana = 1)
+
 /obj/machinery/vending/loadout/costume
 	name = "Thespian's Delight"
 	desc = "Sometimes nerds need costumes!"
@@ -1243,7 +1250,11 @@
 					/obj/item/clothing/under/sexyclown = 200,
 					/obj/item/clothing/mask/gas/sexymime = 600,
 					/obj/item/clothing/under/sexymime = 200)
-	premium = list(/obj/item/clothing/suit/imperium_monk = 3)
+	premium = list(/obj/item/clothing/suit/imperium_monk = 3,
+					/obj/item/clothing/suit/barding/agatha = 2,
+					/obj/item/clothing/suit/barding/alt_agatha = 2,
+					/obj/item/clothing/suit/barding/mason = 2,
+					/obj/item/clothing/suit/drake_cloak = 2)
 	contraband = list(/obj/item/clothing/head/syndicatefake = 1,
 					/obj/item/clothing/suit/syndicatefake = 1)
 
