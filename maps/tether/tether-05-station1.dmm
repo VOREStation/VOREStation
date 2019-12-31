@@ -4945,22 +4945,27 @@
 /area/hallway/station/atrium)
 "ait" = (
 /obj/structure/cable{
-	icon_state = "2-4"
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/alarm{
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 24
 	},
 /turf/simulated/floor,
-/area/maintenance/substation/spacecommand)
+/area/maintenance/station/spacecommandmaint)
 "aiu" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+	icon_state = "2-4"
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22
 	},
+/obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor,
 /area/maintenance/substation/spacecommand)
 "aiv" = (
@@ -11179,12 +11184,21 @@
 /area/crew_quarters/sleep/cryo)
 "aup" = (
 /obj/structure/cable{
-	d1 = 2;
+	d1 = 1;
 	d2 = 8;
-	icon_state = "2-8"
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
 	},
 /turf/simulated/floor,
-/area/maintenance/station/spacecommandmaint)
+/area/maintenance/substation/spacecommand)
 "auq" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor,
@@ -11358,6 +11372,9 @@
 /obj/machinery/camera/network/engineering{
 	dir = 8
 	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
 /turf/simulated/floor,
 /area/maintenance/substation/spacecommand)
 "auL" = (
@@ -11384,6 +11401,9 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
 /turf/simulated/floor,
 /area/maintenance/substation/spacecommand)
 "auO" = (
@@ -11432,17 +11452,28 @@
 /obj/machinery/door/airlock/maintenance/engi{
 	name = "Space Civ/Com Substation"
 	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
+	dir = 4
+	},
 /turf/simulated/floor,
 /area/maintenance/substation/spacecommand)
 "auR" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
+/obj/structure/cable/green,
+/obj/structure/cable/green{
+	icon_state = "0-4"
 	},
 /obj/structure/cable/green{
 	d2 = 8;
 	icon_state = "0-8"
+	},
+/obj/machinery/power/sensor{
+	name = "Powernet Sensor - Space Civ/Com Subgrid";
+	name_tag = "Space Civ/Com Subgrid"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/spacecommand)
@@ -11682,17 +11713,19 @@
 /turf/simulated/floor/tiled,
 /area/engineering/workshop)
 "avp" = (
-/obj/structure/cable/green,
-/obj/structure/cable/green{
-	icon_state = "0-4"
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
 	},
 /obj/structure/cable/green{
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/sensor{
-	name = "Powernet Sensor - Space Civ/Com Subgrid";
-	name_tag = "Space Civ/Com Subgrid"
+/obj/random/junk,
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
+	dir = 1
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/spacecommand)
@@ -14999,6 +15032,14 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/bridge/secondary/hallway)
+"aAv" = (
+/obj/effect/floor_decal/rust,
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -25
+	},
+/turf/simulated/floor,
+/area/maintenance/station/spacecommandmaint)
 "aAw" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -33554,7 +33595,7 @@ aAt
 awW
 ahj
 ail
-aBL
+aAv
 auD
 aat
 aat
@@ -33679,10 +33720,10 @@ ail
 auj
 aBL
 adj
-ait
+aiu
 aun
 auL
-avp
+auR
 avb
 awE
 axq
@@ -33818,13 +33859,13 @@ acQ
 aBG
 aix
 aBx
-aup
+ait
 aut
 ain
-aiu
+aup
 auK
 auN
-auR
+avp
 avb
 aBS
 axy
