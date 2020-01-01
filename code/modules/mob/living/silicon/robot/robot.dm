@@ -687,10 +687,29 @@
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
-		if(H.species.can_shred(H))
-			attack_generic(H, rand(30,50), "slashed")
-			return
-
+		//if(H.species.can_shred(H))
+		//	attack_generic(H, rand(30,50), "slashed")
+		//	return
+		//Adding borg petting.  Help intent pets, Disarm intent taps, Grab should remove the battery for replacement, and Harm is punching(no damage)
+		switch(H.a_intent)
+			if(I_HELP)
+				visible_message("<span class='notice'>[H] pets [src].</span>")
+				return
+			if(I_HURT)
+				H.do_attack_animation(src)
+				if(H.species.can_shred(H))
+					attack_generic(H, rand(30,50), "slashed")
+					return
+				else
+					playsound(src.loc, 'sound/effects/bang.ogg', 10, 1)
+					visible_message("<span class='warning'>[H] punches [src], but doesn't leave a dent.</span>")
+					return
+			if(I_DISARM)
+				H.do_attack_animation(src)
+				playsound(src.loc, 'sound/effects/clang1.ogg', 10, 1)
+				visible_message("<span class='warning'>[H] taps [src].</span>")
+				return
+		//Addition of borg petting end
 	if(opened && !wiresexposed && (!istype(user, /mob/living/silicon)))
 		var/datum/robot_component/cell_component = components["power cell"]
 		if(cell)
