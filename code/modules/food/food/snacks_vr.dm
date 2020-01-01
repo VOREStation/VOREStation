@@ -746,9 +746,6 @@
 	nutriment_amt = 20
 	nutriment_desc = list("compost" = 50)
 
-/obj/item/weapon/reagent_containers/food/snacks/nutrimentslab/Initialize()
-	..()
-
 /obj/item/weapon/storage/box/wings/tray //Might as well re-use this code.
 	name = "ration cube tray"
 	desc = "A tray of food cubes, the label warns not to consume before adding water or mixing with virusfood."
