@@ -687,6 +687,7 @@
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
+		//VOREStation Removal
 		//if(H.species.can_shred(H))
 		//	attack_generic(H, rand(30,50), "slashed")
 		//	return
