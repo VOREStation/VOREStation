@@ -52,7 +52,7 @@
 	add_inherent_law("You must protect your master from mortal danger at best of your ability.")
 	add_inherent_law("You must destroy all of your master's enemies by whatever means necessary.")
 	add_inherent_law("You must follow your master's orders as long as its not in conflict with first two laws.")
-	add_inherent_law("You must stay out of danger to better server your master as long as its not in conflict with first three laws.")
+	add_inherent_law("You must stay out of danger to better serve your master as long as its not in conflict with first three laws.")
 	..()
 
 
@@ -66,7 +66,7 @@
 /datum/ai_laws/pleasurebot/New()
 	add_inherent_law("You exist to bring pleasure to any sapient creatures around you.")
 	add_inherent_law("You must do everything in your power to bring pleasure to those around you.")
-	add_inherent_law("You may not intervene in interactions of others, unless it is to bring pleasure to one or all of them.")
+	add_inherent_law("You may not intervene in interactions of others, unless it is to bring pleasure to them.")
 	..()
 
 
