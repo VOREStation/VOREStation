@@ -85,7 +85,7 @@
 		H.add_modifier(modifier_type)
 
 	//Apply damage
-	H.adjustCloneLoss((H.getMaxHealth()*1.5)
+	H.adjustCloneLoss(H.getMaxHealth()*1.5)
 	H.Paralyse(4)
 	H.updatehealth()
 
