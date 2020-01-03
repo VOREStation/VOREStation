@@ -299,21 +299,29 @@
 	dir = 1
 	},
 /obj/machinery/clonepod/transhuman,
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 4
-	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "aaI" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 9
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
-	dir = 6
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
 	},
-/obj/machinery/camera/network/medbay,
-/turf/simulated/floor/tiled/dark,
+/obj/structure/table/glass,
+/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "aaJ" = (
 /obj/effect/floor_decal/borderfloorwhite{
@@ -404,9 +412,27 @@
 /turf/simulated/floor,
 /area/maintenance/lower/north)
 "aaQ" = (
-/obj/machinery/atmospherics/unary/cryo_cell,
-/obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/structure/table/glass,
+/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/machinery/alarm{
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/item/device/flashlight/pen{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "aaR" = (
 /obj/effect/decal/cleanable/dirt,
@@ -462,42 +488,14 @@
 /turf/simulated/floor,
 /area/maintenance/substation/medsec)
 "aaW" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
 	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 6
 	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/obj/structure/table/glass,
-/obj/item/weapon/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 7;
-	pixel_y = 1
-	},
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
-	pixel_x = -4;
-	pixel_y = 8
-	},
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
-	pixel_x = -7;
-	pixel_y = 4
-	},
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
-	pixel_x = 6;
-	pixel_y = 8
-	},
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
-	pixel_x = 4;
-	pixel_y = 6
-	},
-/obj/machinery/alarm{
-	pixel_x = 0;
-	pixel_y = 28
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/simulated/floor/tiled/white,
+/obj/structure/curtain/open/shower/medical,
+/turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/resleeving)
 "aaX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -2060,10 +2058,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining)
 "aeu" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/canister/oxygen/prechilled,
 /obj/effect/floor_decal/techfloor{
 	dir = 5
 	},
@@ -2071,6 +2065,8 @@
 	icon_state = "bulb1";
 	dir = 1
 	},
+/obj/structure/table/standard,
+/obj/random/soap,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/resleeving)
 "aev" = (
@@ -22519,25 +22515,25 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "aPJ" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "aPK" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
+/obj/effect/floor_decal/techfloor{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/turf/simulated/floor/tiled/white,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/resleeving)
 "aPL" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	dir = 1
+/obj/effect/floor_decal/techfloor{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/white,
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/resleeving)
 "aPM" = (
 /obj/effect/floor_decal/borderfloorwhite{
@@ -22559,22 +22555,21 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "aPN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/obj/effect/floor_decal/techfloor{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
 	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
 	},
-/turf/simulated/floor/tiled/dark,
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "aPO" = (
-/obj/machinery/atmospherics/unary/freezer,
-/obj/effect/floor_decal/techfloor{
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark,
+/turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "aPP" = (
 /obj/effect/floor_decal/borderfloorwhite{
@@ -22862,39 +22857,10 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "aQl" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
-	dir = 5;
-	icon_state = "intact"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/resleeving)
-"aQm" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
-	dir = 4;
-	icon_state = "intact"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/resleeving)
-"aQn" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 10
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4,
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
-	dir = 4;
-	icon_state = "intact"
-	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
@@ -22903,7 +22869,7 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
-"aQo" = (
+"aQm" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/medical{
 	id_tag = null;
@@ -22913,17 +22879,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
-	icon_state = "intact";
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
-"aQp" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/cyan,
+"aQn" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
@@ -22935,11 +22896,7 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/resleeving)
-"aQq" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
-	dir = 9;
-	icon_state = "intact"
-	},
+"aQo" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
@@ -22960,6 +22917,30 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/resleeving)
+"aQp" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/lowerhall)
+"aQq" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/lowerhall)
 "aQr" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -23348,17 +23329,27 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aQS" = (
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 8
+/obj/structure/table/glass,
+/obj/item/weapon/book/manual/resleeving,
+/obj/item/device/radio/intercom{
+	dir = 2;
+	pixel_y = -24
+	},
+/obj/structure/sign/nosmoking_1{
+	pixel_x = 32
 	},
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 8
+	dir = 6
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
-	dir = 8
+	dir = 6
+	},
+/obj/item/device/sleevemate,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/resleeving)
 "aQT" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -23371,14 +23362,25 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "aQU" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/firedoor/glass/hidden/steel,
-/obj/effect/floor_decal/borderfloorwhite{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/floor_decal/corner/paleblue/border{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 2
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
@@ -23502,31 +23504,13 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "aRe" = (
-/obj/structure/table/glass,
-/obj/item/weapon/book/manual/resleeving,
-/obj/item/device/radio/intercom{
-	dir = 2;
-	pixel_y = -24
-	},
-/obj/structure/sign/nosmoking_1{
-	pixel_x = 32
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 6
-	},
-/obj/item/device/sleevemate,
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
 	},
-/obj/item/device/flashlight/pen{
-	pixel_x = -3;
-	pixel_y = -3
-	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/resleeving)
+/area/tether/surfacebase/medical/lowerhall)
 "aRf" = (
 /obj/machinery/washing_machine,
 /obj/effect/floor_decal/techfloor{
@@ -24228,29 +24212,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
-"aSf" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
 "aSg" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -24905,14 +24866,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
-"aTi" = (
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 2
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
 "aTj" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
@@ -42454,7 +42407,7 @@ aaf
 aaf
 aQc
 aQB
-aQS
+aQp
 aRr
 aPp
 aSa
@@ -42738,7 +42691,7 @@ aar
 aPC
 aaf
 aQD
-aQU
+aQq
 aRt
 aRG
 aSb
@@ -43734,9 +43687,9 @@ aah
 aah
 aah
 aah
-aSf
+aQU
 aTb
-aTi
+aRe
 aad
 aba
 aai
@@ -44013,7 +43966,7 @@ aab
 aac
 aah
 aaH
-aPJ
+aQK
 aQk
 aQK
 aRb
@@ -44154,9 +44107,9 @@ aab
 aab
 aab
 aah
-aaQ
-aPK
-aQl
+aaI
+aQK
+aPN
 aQL
 aRc
 aRx
@@ -44296,9 +44249,9 @@ aab
 aab
 aab
 aah
-aaW
-aPL
-aQm
+aaQ
+aPJ
+aPO
 aQM
 aRd
 aRw
@@ -44440,9 +44393,9 @@ aab
 aah
 aaE
 aPM
-aQn
+aQl
 aQN
-aRe
+aQS
 aah
 aQb
 aSh
@@ -44582,7 +44535,7 @@ aab
 aah
 aah
 aah
-aQo
+aQm
 aah
 aah
 aah
@@ -44722,9 +44675,9 @@ aab
 aab
 aab
 aah
-aaI
-aPN
-aQp
+aaW
+aPK
+aQn
 aQO
 aRf
 aah
@@ -44865,8 +44818,8 @@ aab
 aab
 aah
 aeu
-aPO
-aQq
+aPL
+aQo
 aQP
 aRg
 aah

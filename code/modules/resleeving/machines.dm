@@ -89,12 +89,6 @@
 	H.Paralyse(4)
 	H.updatehealth()
 
-	//Grower specific mutations
-	if(heal_level < 60)
-		randmutb(H)
-		H.dna.UpdateSE()
-		H.dna.UpdateUI()
-
 	//Update appearance, remake icons
 	H.UpdateAppearance()
 	H.sync_organ_dna()
