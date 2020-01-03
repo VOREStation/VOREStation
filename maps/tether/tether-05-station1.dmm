@@ -2209,8 +2209,9 @@
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
 "aei" = (
-/turf/simulated/wall/r_wall,
-/area/mine/explored/upper_level)
+/obj/structure/flora/pottedplant/smallcactus,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/heads/chief)
 "aej" = (
 /turf/simulated/floor/tiled/dark,
 /area/bridge/secondary)
@@ -28565,7 +28566,7 @@ aZg
 aQl
 aSu
 aBg
-aRV
+aei
 aRb
 bYj
 bYj
@@ -30978,7 +30979,7 @@ aaV
 aoJ
 aoJ
 aoJ
-aei
+aoJ
 aac
 afC
 agX
