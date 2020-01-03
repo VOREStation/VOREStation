@@ -17487,10 +17487,10 @@
 /turf/simulated/floor/plating,
 /area/quartermaster/storage)
 "AY" = (
-/turf/space,
-/area/supply/station{
-	dynamic_lighting = 0
-	})
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "AZ" = (
 /obj/structure/table/glass,
 /obj/item/weapon/storage/firstaid/regular,
@@ -26666,10 +26666,13 @@
 /turf/simulated/floor/airless,
 /area/medical/virology)
 "PA" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/area/shuttle/large_escape_pod1/station)
 "PB" = (
 /turf/simulated/wall/r_wall,
 /area/medical/virologyisolation)
@@ -27075,15 +27078,15 @@
 /area/medical/virology)
 "Qp" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+	dir = 8
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1/station)
 "Qq" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	dir = 8;
+	icon_state = "propulsion_r"
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -27124,14 +27127,6 @@
 "Qt" = (
 /turf/simulated/wall,
 /area/tether/exploration)
-"Qu" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
 "Qw" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -39324,11 +39319,11 @@ MK
 Iy
 ab
 NL
+PA
+Qp
+Qp
 Qp
 Qq
-Qq
-Qq
-Qu
 NL
 vt
 vt
@@ -40551,7 +40546,7 @@ Zy
 WG
 dj
 XA
-PA
+AY
 ms
 Oz
 be
@@ -40693,7 +40688,7 @@ UJ
 Xb
 dj
 XN
-PA
+AY
 ms
 Xq
 be
@@ -40835,7 +40830,7 @@ iW
 WS
 dj
 XN
-PA
+AY
 ms
 Xq
 be
@@ -41118,7 +41113,7 @@ jZ
 WR
 Xo
 XN
-PA
+AY
 cK
 ms
 Xq
@@ -41686,7 +41681,7 @@ ea
 kx
 dj
 XN
-PA
+AY
 cK
 ms
 mq
@@ -41971,7 +41966,7 @@ kQ
 TG
 dj
 XN
-PA
+AY
 ms
 mq
 be
@@ -42113,7 +42108,7 @@ kR
 Vd
 dj
 XN
-PA
+AY
 ms
 QL
 be
@@ -42255,7 +42250,7 @@ ZE
 ZB
 dj
 XB
-PA
+AY
 ms
 Sq
 be
@@ -44410,17 +44405,17 @@ vt
 vt
 vt
 vt
-AY
-AY
 CS
 CS
 CS
 CS
 CS
 CS
-AY
-AY
-AY
+CS
+CS
+CS
+CS
+CS
 ae
 ae
 aa
@@ -44552,18 +44547,18 @@ aa
 aa
 aa
 ae
-AY
-AY
 CS
 CS
 CS
 CS
 CS
 CS
-AY
-AY
-AY
-AY
+CS
+CS
+CS
+CS
+CS
+CS
 ae
 aa
 aa
@@ -44694,18 +44689,18 @@ aa
 aa
 aa
 ae
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
 ae
 aa
 aa
@@ -44836,18 +44831,18 @@ aa
 aa
 aa
 ae
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
 ae
 aa
 aa
@@ -44978,18 +44973,18 @@ aa
 aa
 aa
 aa
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
 ae
 aa
 aa
@@ -45120,18 +45115,18 @@ aa
 aa
 aa
 aa
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
 ae
 aa
 aa
@@ -45262,17 +45257,17 @@ aa
 aa
 aa
 aa
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
-AY
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
+CS
 ae
 ae
 aa
