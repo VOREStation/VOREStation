@@ -109,7 +109,7 @@
 	icon_rest = "poly-held"
 	icon_dead = "poly-dead"
 	tt_desc = "E Ara macao"
-	my_headset = /obj/item/device/radio/headset/headset_eng
+	//my_headset = /obj/item/device/radio/headset/headset_eng	//VOREStation Removal: shut up
 	say_list_type = /datum/say_list/bird/poly
 
 // Best Bird with best headset.

@@ -2209,8 +2209,10 @@
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
 "aei" = (
-/turf/simulated/wall/r_wall,
-/area/mine/explored/upper_level)
+/obj/structure/table/reinforced,
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/heads/chief)
 "aej" = (
 /turf/simulated/floor/tiled/dark,
 /area/bridge/secondary)
@@ -16032,13 +16034,15 @@
 /area/engineering/engineering_monitoring)
 "aCc" = (
 /obj/structure/table/reinforced,
+/obj/item/weapon/rcd,
+/obj/item/weapon/rcd_ammo,
+/obj/item/weapon/rcd_ammo,
+/obj/item/weapon/rcd_ammo,
+/obj/item/weapon/rcd_ammo,
 /obj/machinery/light_switch{
-	dir = 2;
-	name = "light switch ";
-	pixel_x = 10;
-	pixel_y = 36
+	pixel_x = -22;
+	pixel_y = 22
 	},
-/obj/machinery/camera/network/engineering,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "aCd" = (
@@ -16738,6 +16742,17 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
+"aDi" = (
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 25;
+	pixel_y = 0
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/grass/forest,
+/area/crew_quarters/heads/chief)
 "aDj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -19344,18 +19359,6 @@
 /obj/item/weapon/pen/multi,
 /turf/simulated/floor/carpet/oracarpet,
 /area/crew_quarters/heads/chief)
-"aTW" = (
-/obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 25;
-	pixel_y = 0
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/item/weapon/reagent_containers/food/snacks/snakesnack,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/crew_quarters/heads/chief)
 "aTX" = (
 /obj/machinery/computer/general_air_control{
 	dir = 4;
@@ -19818,15 +19821,6 @@
 "aYF" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/skills,
-/turf/simulated/floor/tiled,
-/area/crew_quarters/heads/chief)
-"aYH" = (
-/obj/structure/table/reinforced,
-/obj/item/weapon/rcd,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "aYJ" = (
@@ -27598,7 +27592,7 @@ atO
 aJm
 alL
 aRb
-aCc
+aei
 aQa
 aSa
 bft
@@ -27740,7 +27734,7 @@ aSC
 bds
 aLA
 agc
-aYH
+aCc
 aRV
 bcp
 bfv
@@ -28595,7 +28589,7 @@ aRb
 aZg
 aQl
 aSu
-aTW
+aDi
 vyI
 aRb
 bYj
@@ -31009,7 +31003,7 @@ aaV
 aoJ
 aoJ
 aoJ
-aei
+aoJ
 aac
 afC
 agX
