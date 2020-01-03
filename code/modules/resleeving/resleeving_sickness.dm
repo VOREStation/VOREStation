@@ -7,7 +7,7 @@
 	on_expired_text = "<span class='notice'><font size='3'>You feel your strength and focus return to you.</font></span>"
 
 	incoming_hal_damage_percent = 2				// 100% more incoming agony.
-	outgoing_melee_damage_percent = 0.6			// 60% less melee damage.
+	outgoing_melee_damage_percent = 0.4			// 60% less melee damage.
 	disable_duration_percent = 2	 			// 100% longer stuns.
 	evasion = -50								// 50% easier to hit.
 	accuracy = -66								// 66% less accurate.
