@@ -730,6 +730,7 @@
 	if(issmall(M))
 		effective_dose *= 2
 
+/* //VOREStation Removal - Assuming all juice has sugar is silly
 	if(alien == IS_UNATHI)
 		if(effective_dose < 2)
 			if(effective_dose == metabolism * 2 || prob(5))
@@ -743,6 +744,7 @@
 		else
 			M.sleeping = max(M.sleeping, 20)
 			M.drowsyness = max(M.drowsyness, 60)
+*/
 
 /datum/reagent/drink/juice/lemon
 	name = "Lemon Juice"

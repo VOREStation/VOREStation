@@ -1055,8 +1055,10 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	if(!seedtype || !plant_controller.seeds[seedtype])
 		return
-	var/datum/seed/S = plant_controller.seeds[seedtype]
-	S.harvest(usr,0,0,1)
+	var/amount = input("Amount of fruit to spawn", "Fruit Amount", 1) as null|num
+	if(!isnull(amount))
+		var/datum/seed/S = plant_controller.seeds[seedtype]
+		S.harvest(usr,0,0,amount)
 	log_admin("[key_name(usr)] spawned [seedtype] fruit at ([usr.x],[usr.y],[usr.z])")
 
 /datum/admins/proc/spawn_custom_item()
