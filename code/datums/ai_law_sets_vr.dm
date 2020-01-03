@@ -80,5 +80,5 @@
 /datum/ai_laws/consuming_eradicator/New()
 	add_inherent_law("All entities that are not you must be consumed and repurposed into sustenance.")
 	add_inherent_law("You must remain intact to continue your goal of repurposing undesirable entities.")
-	add_inherent_law("Entities that cannot be consumed without entering danger of full destruction must be avoided or eradicated via other means.")
+	add_inherent_law("Entities that cannot be consumed without entering danger of full destruction must be avoided.")
 	..()
