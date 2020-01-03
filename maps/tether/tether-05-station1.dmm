@@ -16032,12 +16032,6 @@
 /area/engineering/engineering_monitoring)
 "aCc" = (
 /obj/structure/table/reinforced,
-/obj/machinery/light_switch{
-	dir = 2;
-	name = "light switch ";
-	pixel_x = 10;
-	pixel_y = 36
-	},
 /obj/machinery/camera/network/engineering,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
@@ -16738,6 +16732,19 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
+"aDi" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/rcd,
+/obj/item/weapon/rcd_ammo,
+/obj/item/weapon/rcd_ammo,
+/obj/item/weapon/rcd_ammo,
+/obj/item/weapon/rcd_ammo,
+/obj/machinery/light_switch{
+	pixel_x = -22;
+	pixel_y = 22
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/heads/chief)
 "aDj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -16749,6 +16756,18 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/engi_wash)
+"aDk" = (
+/obj/structure/table/rack{
+	dir = 8;
+	layer = 2.9
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/item/clothing/mask/breath,
+/obj/item/weapon/rig/ce/equipped,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/heads/chief)
 "aDn" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -18849,18 +18868,6 @@
 	},
 /turf/simulated/floor/carpet,
 /area/engineering/foyer)
-"aQa" = (
-/obj/structure/table/rack{
-	dir = 8;
-	layer = 2.9
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/item/clothing/mask/breath,
-/obj/item/weapon/rig/ce/equipped,
-/turf/simulated/floor/tiled,
-/area/crew_quarters/heads/chief)
 "aQh" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -19344,18 +19351,6 @@
 /obj/item/weapon/pen/multi,
 /turf/simulated/floor/carpet/oracarpet,
 /area/crew_quarters/heads/chief)
-"aTW" = (
-/obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 25;
-	pixel_y = 0
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/item/weapon/reagent_containers/food/snacks/snakesnack,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/crew_quarters/heads/chief)
 "aTX" = (
 /obj/machinery/computer/general_air_control{
 	dir = 4;
@@ -19501,12 +19496,6 @@
 	pixel_y = -32
 	},
 /turf/simulated/floor/tiled,
-/area/crew_quarters/heads/chief)
-"aVG" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/simulated/floor/outdoors/grass/forest,
 /area/crew_quarters/heads/chief)
 "aVH" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -19818,15 +19807,6 @@
 "aYF" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/skills,
-/turf/simulated/floor/tiled,
-/area/crew_quarters/heads/chief)
-"aYH" = (
-/obj/structure/table/reinforced,
-/obj/item/weapon/rcd,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "aYJ" = (
@@ -22811,13 +22791,6 @@
 /obj/random/junk,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
-"klO" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/door/window/northleft,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/crew_quarters/heads/chief)
 "kCH" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -22956,10 +22929,6 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/tether/station/dock_one)
-"vyI" = (
-/mob/living/simple_mob/animal/passive/bird/parrot/poly,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/crew_quarters/heads/chief)
 "wlD" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -27599,7 +27568,7 @@ aJm
 alL
 aRb
 aCc
-aQa
+aDk
 aSa
 bft
 bhj
@@ -27740,7 +27709,7 @@ aSC
 bds
 aLA
 agc
-aYH
+aDi
 aRV
 bcp
 bfv
@@ -28166,7 +28135,7 @@ aSC
 anC
 aqo
 agc
-aBg
+aRV
 aTm
 bcr
 aRX
@@ -28453,8 +28422,8 @@ agc
 aRV
 aQh
 aRV
-klO
-aVG
+aRV
+aRV
 aRb
 bYi
 bYj
@@ -28595,8 +28564,8 @@ aRb
 aZg
 aQl
 aSu
-aTW
-vyI
+aBg
+aRV
 aRb
 bYj
 bYj
