@@ -22693,7 +22693,10 @@
 	icon_state = "intact";
 	dir = 4
 	},
-/obj/structure/disposalpipe/junction,
+/obj/structure/disposalpipe/sortjunction{
+	name = "Medical Primary Storage";
+	sortType = "Medical Primary Storage"
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "IO" = (
