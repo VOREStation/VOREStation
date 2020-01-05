@@ -26,7 +26,7 @@
 	name = "disabler"
 	desc = "An archaic device which attacks the target's nervous-system or control circuits."
 	projectile_type = /obj/item/projectile/beam/stun/disabler
-	charge_cost = 200
+	charge_cost = 800
 	recharge_time = 0.5 SECONDS
 
 /obj/item/weapon/gun/energy/stunrevolver
