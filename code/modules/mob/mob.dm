@@ -902,10 +902,10 @@
 	return
 
 /mob/proc/AdjustLosebreath(amount)
-	losebreath = CLAMP(0, losebreath + amount, 25)
+	losebreath = CLAMP(losebreath + amount, 0, 25)
 
 /mob/proc/SetLosebreath(amount)
-	losebreath = CLAMP(0, amount, 25)
+	losebreath = CLAMP(amount, 0, 25)
 
 /mob/proc/get_species()
 	return ""
