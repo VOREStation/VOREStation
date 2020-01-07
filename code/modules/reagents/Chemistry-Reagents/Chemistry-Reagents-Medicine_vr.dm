@@ -91,3 +91,4 @@
 
 /datum/reagent/sleevingcure/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.remove_a_modifier_of_type(/datum/modifier/resleeving_sickness)
+	M.remove_a_modifier_of_type(/datum/modifier/faux_resleeving_sickness)

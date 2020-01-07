@@ -1,6 +1,6 @@
 /datum/modifier/resleeving_sickness
 	name = "resleeving sickness"
-	desc = "You feel rather weak, having been sleeved not so long ago."
+	desc = "You feel rather weak and unfocused, having been sleeved not so long ago."
 	stacks = MODIFIER_STACK_EXTEND
 
 	on_created_text = "<span class='warning'><font size='3'>You feel weak and unfocused.</font></span>"
@@ -14,3 +14,11 @@
 	evasion = -50								// 50% easier to hit.
 	accuracy = -66								// 66% less accurate.
 	accuracy_dispersion	= 30					// 30% less precise.
+
+/datum/modifier/faux_resleeving_sickness
+	name = "resleeving sickness"
+	desc = "You feel somewhat weak and unfocused, having been sleeved not so long ago."
+	stacks = MODIFIER_STACK_EXTEND
+
+	on_created_text = "<span class='warning'>You feel slightly weak and unfocused.</font></span>"
+	on_expired_text = "<span class='notice'>You feel your strength and focus return to you.</font></span>"

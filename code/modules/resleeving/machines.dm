@@ -582,9 +582,13 @@
 	else
 		occupant << "<span class='warning'>You feel a small pain in your head as you're given a new backup implant. Oh, and a new body. It's disorienting, to say the least.</span>"
 
-	occupant.confused = max(occupant.confused, confuse_amount)	//Apply immedeate effects
+	occupant.confused = max(occupant.confused, confuse_amount)									// Apply immedeate effects
 	occupant.eye_blurry = max(occupant.eye_blurry, blur_amount)
-	occupant.add_modifier(/datum/modifier/resleeving_sickness, sickness_duration)	//And more longterm ones
+	if(!(occupant.mind.vore_death))
+		occupant.add_modifier(/datum/modifier/faux_resleeving_sickness, sickness_duration/3)	// And more longterm, though purely visual ones
+	else
+		occupant.add_modifier(/datum/modifier/resleeving_sickness, sickness_duration)			// Much more serious if it wasn't a death by vore though
+	occupant.mind.vore_death = FALSE		// Reset our death type. Just in case
 
 	if(occupant.mind && occupant.original_player && ckey(occupant.mind.key) != occupant.original_player)
 		log_and_message_admins("is now a cross-sleeved character. Body originally belonged to [occupant.real_name]. Mind is now [occupant.mind.name].",occupant)
