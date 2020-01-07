@@ -394,7 +394,7 @@
 	icon_state = "sharkmeat_chunk"
 	nutriment_amt = 15
 	w_class = ITEMSIZE_LARGE
-	slice_path = /obj/item/weapon/reagent_containers/food/snacks/sharkmeat
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
 	slices_num = 5
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/sharkchunk/Initialize()

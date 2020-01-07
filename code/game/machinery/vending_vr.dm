@@ -1325,7 +1325,8 @@
 	icon = 'icons/obj/vending_vr.dmi'
 	icon_state = "foodcube"
 	product_ads = "Afraid to starve?;Starvation is not an option!;Add water before consumption.;Let me take care of you.;Dire circumstances call for food cubes, do not let the taste deter you."
-	products = list(/obj/item/weapon/storage/box/wings/tray = 5)
+	products = list(/obj/item/weapon/storage/box/wings/tray = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 10)
 	contraband = list(/obj/item/weapon/storage/box/wings/tray = 5)
 
 /obj/machinery/vending/emergencyfood/filled
