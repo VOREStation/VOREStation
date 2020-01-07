@@ -20,5 +20,5 @@
 	desc = "You feel somewhat weak and unfocused, having been sleeved not so long ago."
 	stacks = MODIFIER_STACK_EXTEND
 
-	on_created_text = "<span class='warning'>You feel slightly weak and unfocused.</font></span>"
-	on_expired_text = "<span class='notice'>You feel your strength and focus return to you.</font></span>"
+	on_created_text = "<span class='warning'>You feel slightly weak and unfocused.</span>"
+	on_expired_text = "<span class='notice'>You feel your strength and focus return to you.</span>"
