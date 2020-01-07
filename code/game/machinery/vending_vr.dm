@@ -1318,3 +1318,16 @@
 	products = list(/obj/item/weapon/reagent_containers/glass/bottle/eznutrient = 6,/obj/item/weapon/reagent_containers/glass/bottle/left4zed = 4,/obj/item/weapon/reagent_containers/glass/bottle/robustharvest = 3,/obj/item/weapon/plantspray/pests = 20,
 					/obj/item/weapon/reagent_containers/glass/beaker = 4,/obj/item/weapon/storage/bag/plants = 5)
 	premium = list(/obj/item/weapon/reagent_containers/glass/bottle/ammonia = 10,/obj/item/weapon/reagent_containers/glass/bottle/diethylamine = 5)
+
+/obj/machinery/vending/emergencyfood
+	name = "Food Cube Dispenser"
+	desc = "An ominous machine dispensing food cubes. It will keep you fed, but at what cost?"
+	icon = 'icons/obj/vending_vr.dmi'
+	icon_state = "foodcube"
+	product_ads = "Afraid to starve?;Starvation is not an option!;Add water before consumption.;Let me take care of you.;Dire circumstances call for food cubes, do not let the taste deter you."
+	products = list(/obj/item/weapon/storage/box/wings/tray = 5)
+	contraband = list(/obj/item/weapon/storage/box/wings/tray = 5)
+
+/obj/machinery/vending/emergencyfood/filled
+	products = list(/obj/item/weapon/storage/box/wings/tray = 40)
+	contraband = list(/obj/item/weapon/storage/box/wings/tray = 20)

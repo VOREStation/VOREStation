@@ -17487,10 +17487,17 @@
 /turf/simulated/floor/plating,
 /area/quartermaster/storage)
 "AY" = (
+<<<<<<< refs/remotes/origin/master
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/excursion/tether)
+=======
+/turf/space,
+/area/supply/station{
+	dynamic_lighting = 0
+	})
+>>>>>>> woop
 "AZ" = (
 /obj/structure/table/glass,
 /obj/item/weapon/storage/firstaid/regular,
@@ -23957,11 +23964,18 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
 "La" = (
+<<<<<<< refs/remotes/origin/master
 /obj/machinery/washing_machine,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
+=======
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
+>>>>>>> woop
 "Lb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -26666,6 +26680,7 @@
 /turf/simulated/floor/airless,
 /area/medical/virology)
 "PA" = (
+<<<<<<< refs/remotes/origin/master
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_l"
@@ -26673,6 +26688,13 @@
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1/station)
+=======
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/machinery/vending/emergencyfood,
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/medbreak)
+>>>>>>> woop
 "PB" = (
 /turf/simulated/wall/r_wall,
 /area/medical/virologyisolation)
@@ -27078,15 +27100,24 @@
 /area/medical/virology)
 "Qp" = (
 /obj/structure/shuttle/engine/propulsion{
+<<<<<<< refs/remotes/origin/master
 	dir = 8
+=======
+	dir = 8;
+	icon_state = "propulsion_l"
+>>>>>>> woop
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1/station)
 "Qq" = (
 /obj/structure/shuttle/engine/propulsion{
+<<<<<<< refs/remotes/origin/master
 	dir = 8;
 	icon_state = "propulsion_r"
+=======
+	dir = 8
+>>>>>>> woop
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -27127,6 +27158,17 @@
 "Qt" = (
 /turf/simulated/wall,
 /area/tether/exploration)
+<<<<<<< refs/remotes/origin/master
+=======
+"Qu" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
+>>>>>>> woop
 "Qw" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -36897,7 +36939,11 @@ IE
 Jq
 Kd
 Jr
+<<<<<<< refs/remotes/origin/master
 La
+=======
+PA
+>>>>>>> woop
 LF
 Mj
 VA
@@ -39319,11 +39365,19 @@ MK
 Iy
 ab
 NL
+<<<<<<< refs/remotes/origin/master
 PA
 Qp
 Qp
 Qp
 Qq
+=======
+Qp
+Qq
+Qq
+Qq
+Qu
+>>>>>>> woop
 NL
 vt
 vt
@@ -40546,7 +40600,11 @@ Zy
 WG
 dj
 XA
+<<<<<<< refs/remotes/origin/master
 AY
+=======
+La
+>>>>>>> woop
 ms
 Oz
 be
@@ -40688,7 +40746,11 @@ UJ
 Xb
 dj
 XN
+<<<<<<< refs/remotes/origin/master
 AY
+=======
+La
+>>>>>>> woop
 ms
 Xq
 be
@@ -40830,7 +40892,11 @@ iW
 WS
 dj
 XN
+<<<<<<< refs/remotes/origin/master
 AY
+=======
+La
+>>>>>>> woop
 ms
 Xq
 be
@@ -41113,7 +41179,11 @@ jZ
 WR
 Xo
 XN
+<<<<<<< refs/remotes/origin/master
 AY
+=======
+La
+>>>>>>> woop
 cK
 ms
 Xq
@@ -41681,7 +41751,11 @@ ea
 kx
 dj
 XN
+<<<<<<< refs/remotes/origin/master
 AY
+=======
+La
+>>>>>>> woop
 cK
 ms
 mq
@@ -41966,7 +42040,11 @@ kQ
 TG
 dj
 XN
+<<<<<<< refs/remotes/origin/master
 AY
+=======
+La
+>>>>>>> woop
 ms
 mq
 be
@@ -42108,7 +42186,11 @@ kR
 Vd
 dj
 XN
+<<<<<<< refs/remotes/origin/master
 AY
+=======
+La
+>>>>>>> woop
 ms
 QL
 be
@@ -42250,7 +42332,11 @@ ZE
 ZB
 dj
 XB
+<<<<<<< refs/remotes/origin/master
 AY
+=======
+La
+>>>>>>> woop
 ms
 Sq
 be
@@ -44405,17 +44491,28 @@ vt
 vt
 vt
 vt
+<<<<<<< refs/remotes/origin/master
+=======
+AY
+AY
+>>>>>>> woop
 CS
 CS
 CS
 CS
 CS
 CS
+<<<<<<< refs/remotes/origin/master
 CS
 CS
 CS
 CS
 CS
+=======
+AY
+AY
+AY
+>>>>>>> woop
 ae
 ae
 aa
@@ -44547,18 +44644,30 @@ aa
 aa
 aa
 ae
+<<<<<<< refs/remotes/origin/master
+=======
+AY
+AY
+>>>>>>> woop
 CS
 CS
 CS
 CS
 CS
 CS
+<<<<<<< refs/remotes/origin/master
 CS
 CS
 CS
 CS
 CS
 CS
+=======
+AY
+AY
+AY
+AY
+>>>>>>> woop
 ae
 aa
 aa
@@ -44689,6 +44798,7 @@ aa
 aa
 aa
 ae
+<<<<<<< refs/remotes/origin/master
 CS
 CS
 CS
@@ -44701,6 +44811,20 @@ CS
 CS
 CS
 CS
+=======
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+>>>>>>> woop
 ae
 aa
 aa
@@ -44831,6 +44955,7 @@ aa
 aa
 aa
 ae
+<<<<<<< refs/remotes/origin/master
 CS
 CS
 CS
@@ -44843,6 +44968,20 @@ CS
 CS
 CS
 CS
+=======
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+>>>>>>> woop
 ae
 aa
 aa
@@ -44973,6 +45112,7 @@ aa
 aa
 aa
 aa
+<<<<<<< refs/remotes/origin/master
 CS
 CS
 CS
@@ -44985,6 +45125,20 @@ CS
 CS
 CS
 CS
+=======
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+>>>>>>> woop
 ae
 aa
 aa
@@ -45115,6 +45269,7 @@ aa
 aa
 aa
 aa
+<<<<<<< refs/remotes/origin/master
 CS
 CS
 CS
@@ -45127,6 +45282,20 @@ CS
 CS
 CS
 CS
+=======
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+>>>>>>> woop
 ae
 aa
 aa
@@ -45257,6 +45426,7 @@ aa
 aa
 aa
 aa
+<<<<<<< refs/remotes/origin/master
 CS
 CS
 CS
@@ -45268,6 +45438,19 @@ CS
 CS
 CS
 CS
+=======
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+AY
+>>>>>>> woop
 ae
 ae
 aa

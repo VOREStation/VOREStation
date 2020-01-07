@@ -117,23 +117,26 @@
 	desc = "A basket of chicken wings! Get some before they're all gone! Or maybe you're too late..."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "wings5"
+	var/icon_base = "wings"
 	var/startswith = 5
 	max_storage_space = ITEMSIZE_COST_SMALL * 5
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/chickenwing)
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/snacks/chickenwing = 5
+	)
 	foldable = null
 
 /obj/item/weapon/storage/box/wings/Initialize()
 	..()
 	for(var/i=1 to startswith)
-		new /obj/item/weapon/reagent_containers/food/snacks/chickenwing(src)
 	update_icon()
 	return
 
 /obj/item/weapon/storage/box/wings/update_icon()
 	var/i = 0
-	for(var/obj/item/weapon/reagent_containers/food/snacks/chickenwing/W in contents)
+	for(var/obj/item/weapon/reagent_containers/food/snacks/W in contents)
 		i++
-	icon_state = "wings[i]"
+	icon_state = "[icon_base][i]"
 
 /obj/item/weapon/reagent_containers/food/snacks/chickenwing
 	name = "chicken wing"
@@ -678,3 +681,82 @@
 
 /obj/item/pizzabox/meat/Initialize()
 	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatcargo(src)
+
+// food cubes
+/obj/item/weapon/reagent_containers/food/snacks/cube
+	name = "protein cube"
+	desc = "A colony of meat cells, Just add water!"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "proteincube"
+	w_class = ITEMSIZE_TINY
+	flags = OPENCONTAINER
+	bitesize = 12
+	filling_color = "#ADAC7F"
+	center_of_mass = list("x"=16, "y"=14)
+
+	var/food_type = "/obj/item/weapon/reagent_containers/food/snacks/proteinslab"
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/Initialize()
+	. = ..()
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/proc/Expand()
+	src.visible_message("<span class='notice'>\The [src] expands!</span>")
+	new food_type(get_turf(src))
+	qdel(src)
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/on_reagent_change()
+	if(reagents.has_reagent("water"))
+		Expand()
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/protein
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/protein/Initialize()
+	. = ..()
+	reagents.add_reagent("meatcolony", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/proteinslab
+	name = "Protein slab"
+	desc = "A slab of near pure protein, extremely artificial, and thoroughly disgusting."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "proteinslab"
+	bitesize = 10
+	nutriment_amt = 5
+	nutriment_desc = list("bitter chyme" = 50)
+
+/obj/item/weapon/reagent_containers/food/snacks/proteinslab/Initialize()
+	..()
+	reagents.add_reagent("protein", 30)
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/nutriment
+	name = "Nutriment cube"
+	desc = "A colony of plant cells, Just add water!"
+	icon_state = "nutrimentcube"
+	food_type = "/obj/item/weapon/reagent_containers/food/snacks/nutrimentslab"
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/nutriment/Initialize()
+	. = ..()
+	reagents.add_reagent("plantcolony", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/nutrimentslab
+	name = "Nutriment slab"
+	desc = "A slab of near pure plant-based nutrients, extremely artificial, and thoroughly disgusting."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "nutrimentslab"
+	bitesize = 10
+	nutriment_amt = 20
+	nutriment_desc = list("compost" = 50)
+
+/obj/item/weapon/storage/box/wings/tray //Might as well re-use this code.
+	name = "ration cube tray"
+	desc = "A tray of food cubes, the label warns not to consume before adding water or mixing with virusfood."
+	icon_state = "tray8"
+	icon_base = "tray"
+	startswith = 8
+	w_class = ITEMSIZE_SMALL
+	max_storage_space = ITEMSIZE_COST_TINY * 8
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/snacks/cube/protein = 4,
+		/obj/item/weapon/reagent_containers/food/snacks/cube/nutriment = 4
+	)
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/cube/protein,
+					/obj/item/weapon/reagent_containers/food/snacks/cube/nutriment)
