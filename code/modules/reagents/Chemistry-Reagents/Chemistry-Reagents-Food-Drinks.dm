@@ -3526,3 +3526,13 @@
 
 	glass_name = "fusionnaire"
 	glass_desc = "A relatively new cocktail, mostly served in the bars of NanoTrasen owned stations."
+
+/datum/reagent/nutriment/magicdust
+	name = "Magic Dust"
+	id = "magicdust"
+	description = "A dust harvested from gnomes, aptly named by pre-industrial civilizations."
+	taste_description = "something tingly"
+	taste_mult = 2
+	reagent_state = LIQUID
+	nutriment_factor = 40 //very filling
+	color = "#d169b2"
