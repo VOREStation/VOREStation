@@ -23957,11 +23957,10 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
 "La" = (
-/obj/machinery/washing_machine,
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/effect/floor_decal/corner/paleblue/diagonal,
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/medbreak)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "Lb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -26666,13 +26665,11 @@
 /turf/simulated/floor/airless,
 /area/medical/virology)
 "PA" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/machinery/vending/emergencyfood,
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/medbreak)
 "PB" = (
 /turf/simulated/wall/r_wall,
 /area/medical/virologyisolation)
@@ -36897,7 +36894,7 @@ IE
 Jq
 Kd
 Jr
-La
+PA
 LF
 Mj
 VA
@@ -40546,7 +40543,7 @@ Zy
 WG
 dj
 XA
-AY
+La
 ms
 Oz
 be
@@ -40688,7 +40685,7 @@ UJ
 Xb
 dj
 XN
-AY
+La
 ms
 Xq
 be
@@ -40830,7 +40827,7 @@ iW
 WS
 dj
 XN
-AY
+La
 ms
 Xq
 be
@@ -41113,7 +41110,7 @@ jZ
 WR
 Xo
 XN
-AY
+La
 cK
 ms
 Xq
@@ -41681,7 +41678,7 @@ ea
 kx
 dj
 XN
-AY
+La
 cK
 ms
 mq
@@ -41966,7 +41963,7 @@ kQ
 TG
 dj
 XN
-AY
+La
 ms
 mq
 be
@@ -42108,7 +42105,7 @@ kR
 Vd
 dj
 XN
-AY
+La
 ms
 QL
 be
@@ -42250,7 +42247,7 @@ ZE
 ZB
 dj
 XB
-AY
+La
 ms
 Sq
 be
