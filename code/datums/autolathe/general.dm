@@ -133,3 +133,8 @@
 	name = "handcuffs"
 	path =/obj/item/weapon/handcuffs
 	hidden = 1
+
+/datum/category_item/autolathe/general/legcuffs
+	name = "legcuffs"
+	path =/obj/item/weapon/handcuffs/legcuffs
+	hidden = 1
