@@ -61,7 +61,7 @@
 	exclaim_verb = "squeaks"
 	key = "m"
 	flags = RESTRICTED
-	machine_understands = 1 //interns got to testing the tech on lab rats
+	machine_understands = 0
 	space_chance = 100
 	syllables = list("squeak")	// , "gripes", "oi", "meow")
 
