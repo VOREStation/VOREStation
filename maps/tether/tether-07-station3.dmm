@@ -23957,9 +23957,9 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
 "La" = (
+/obj/machinery/washing_machine,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/machinery/vending/emergencyfood,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
 "Lb" = (
