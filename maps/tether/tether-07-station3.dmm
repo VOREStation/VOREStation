@@ -23957,18 +23957,15 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
 "La" = (
-<<<<<<< HEAD
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/machinery/vending/emergencyfood,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
-=======
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/excursion/tether)
->>>>>>> barsforthehungry
 "Lb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -26673,7 +26670,6 @@
 /turf/simulated/floor/airless,
 /area/medical/virology)
 "PA" = (
-<<<<<<< HEAD
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_l"
@@ -26681,13 +26677,11 @@
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1/station)
-=======
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/machinery/vending/emergencyfood,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medbreak)
->>>>>>> barsforthehungry
 "PB" = (
 /turf/simulated/wall/r_wall,
 /area/medical/virologyisolation)
@@ -40561,11 +40555,7 @@ Zy
 WG
 dj
 XA
-<<<<<<< HEAD
-AY
-=======
 La
->>>>>>> barsforthehungry
 ms
 Oz
 be
@@ -40707,11 +40697,7 @@ UJ
 Xb
 dj
 XN
-<<<<<<< HEAD
-AY
-=======
 La
->>>>>>> barsforthehungry
 ms
 Xq
 be
@@ -40853,11 +40839,7 @@ iW
 WS
 dj
 XN
-<<<<<<< HEAD
-AY
-=======
 La
->>>>>>> barsforthehungry
 ms
 Xq
 be
@@ -41140,11 +41122,7 @@ jZ
 WR
 Xo
 XN
-<<<<<<< HEAD
-AY
-=======
 La
->>>>>>> barsforthehungry
 cK
 ms
 Xq
@@ -41712,11 +41690,7 @@ ea
 kx
 dj
 XN
-<<<<<<< HEAD
-AY
-=======
 La
->>>>>>> barsforthehungry
 cK
 ms
 mq
@@ -42001,11 +41975,7 @@ kQ
 TG
 dj
 XN
-<<<<<<< HEAD
-AY
-=======
 La
->>>>>>> barsforthehungry
 ms
 mq
 be
@@ -42147,11 +42117,7 @@ kR
 Vd
 dj
 XN
-<<<<<<< HEAD
-AY
-=======
 La
->>>>>>> barsforthehungry
 ms
 QL
 be
@@ -42293,11 +42259,7 @@ ZE
 ZB
 dj
 XB
-<<<<<<< HEAD
-AY
-=======
 La
->>>>>>> barsforthehungry
 ms
 Sq
 be
