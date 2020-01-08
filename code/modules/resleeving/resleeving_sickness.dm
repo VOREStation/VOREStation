@@ -9,11 +9,11 @@
 	incoming_brute_damage_percent = 1.1			// 10% more brute damage
 	incoming_fire_damage_percent = 1.1			// 10% more burn damage
 	incoming_hal_damage_percent = 1.5			// 50% more incoming agony.
-	outgoing_melee_damage_percent = 0.4			// 60% less melee damage.
+	outgoing_melee_damage_percent = 0.5			// 50% less melee damage.
 	disable_duration_percent = 2	 			// 100% longer stuns.
-	evasion = -50								// 50% easier to hit.
-	accuracy = -66								// 66% less accurate.
-	accuracy_dispersion	= 30					// 30% less precise.
+	evasion = -40								// 40% easier to hit.
+	accuracy = -50								// 50% less accurate.
+	accuracy_dispersion	= 20					// 20% less precise.
 
 /datum/modifier/faux_resleeving_sickness
 	name = "resleeving sickness"
