@@ -130,7 +130,7 @@
 /obj/effect/temporary_effect/pulse/disintegrate/on_pulse()
 	var/turf/T = get_turf(src)
 	if(istype(T,/turf/simulated/wall))
-		explosion(get_turf(src), -1, -1, 1, 3, adminlog = 0)
+		T.take_damage(rand(20, 50))
 	else
 		qdel(src)
 

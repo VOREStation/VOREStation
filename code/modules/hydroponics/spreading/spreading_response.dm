@@ -40,6 +40,9 @@
 	seed.do_thorns(victim,src)
 	seed.do_sting(victim,src,pick("r_foot","l_foot","r_leg","l_leg"))
 
+	if(seed.get_trait(TRAIT_SPORING) && prob(round(seed.get_trait(TRAIT_POTENCY)/2)))
+		seed.create_spores(get_turf(victim))
+
 /obj/effect/plant/proc/unbuckle()
 	if(has_buckled_mobs())
 		for(var/A in buckled_mobs)

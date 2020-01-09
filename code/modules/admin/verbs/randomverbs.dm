@@ -615,7 +615,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Special Verbs"
 	set name = "Explosion"
 
-	if(!check_rights(R_DEBUG|R_FUN|R_EVENT))	return
+	if(!check_rights(R_DEBUG|R_FUN))	return //VOREStation Edit
 
 	var/devastation = input("Range of total devastation. -1 to none", text("Input"))  as num|null
 	if(devastation == null) return
@@ -643,7 +643,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Special Verbs"
 	set name = "EM Pulse"
 
-	if(!check_rights(R_DEBUG|R_FUN|R_EVENT))	return
+	if(!check_rights(R_DEBUG|R_FUN))	return //VOREStation Edit
 
 	var/heavy = input("Range of heavy pulse.", text("Input"))  as num|null
 	if(heavy == null) return
@@ -669,7 +669,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Special Verbs"
 	set name = "Gib"
 
-	if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
+	if(!check_rights(R_ADMIN|R_FUN))	return //VOREStation Edit
 
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm != "Yes") return
@@ -826,7 +826,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if ((!( ticker ) || !emergency_shuttle.location()))
 		return
 
-	if(!check_rights(R_ADMIN|R_EVENT))	return
+	if(!check_rights(R_ADMIN))	return //VOREStation Edit
 
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm != "Yes") return
@@ -855,7 +855,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Admin"
 	set name = "Cancel Shuttle"
 
-	if(!check_rights(R_ADMIN|R_EVENT))	return
+	if(!check_rights(R_ADMIN))	return //VOREStation Edit
 
 	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return
 
@@ -876,7 +876,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if (!ticker)
 		return
 
-	if(!check_rights(R_ADMIN|R_EVENT))	return
+	if(!check_rights(R_ADMIN))	return //VOREStation Edit
 
 	emergency_shuttle.deny_shuttle = !emergency_shuttle.deny_shuttle
 
@@ -932,7 +932,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Toggle random events on/off"
 
 	set desc = "Toggles random events such as meteors, black holes, blob (but not space dust) on/off"
-	if(!check_rights(R_SERVER|R_EVENT))	return
+	if(!check_rights(R_SERVER))	return //VOREStation Edit
 
 	if(!config.allow_random_events)
 		config.allow_random_events = 1

@@ -28,6 +28,7 @@
 				config_setup_delay = FALSE
 				if(config.enable_game_master)
 					suspended = FALSE
+					next_action = world.time + rand(15 MINUTES, 25 MINUTES)
 			else
 				sleep(30 SECONDS)
 
@@ -56,6 +57,9 @@
 		return FALSE
 	if(ignore_time_restrictions)
 		return TRUE
+	if(world.time < next_action) // Sanity.
+		log_debug("Game Master unable to start event: Time until next action is approximately [round((next_action - world.time) / (1 MINUTE))] minute(s)")
+		return FALSE
 	// Last minute antagging is bad for humans to do, so the GM will respect the start and end of the round.
 	var/mills = round_duration_in_ticks
 	var/mins = round((mills % 36000) / 600)

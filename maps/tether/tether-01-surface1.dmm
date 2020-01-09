@@ -14053,9 +14053,7 @@
 /obj/machinery/camera/network/research{
 	dir = 4
 	},
-/obj/structure/closet/secure_closet/hydroponics{
-	req_access = list(47)
-	},
+/obj/structure/closet/secure_closet/hydroponics/sci,
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora)
 "axG" = (
@@ -14562,9 +14560,7 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 8
 	},
-/obj/structure/closet/secure_closet/hydroponics{
-	req_access = list(47)
-	},
+/obj/structure/closet/secure_closet/hydroponics/sci,
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora)
 "ayu" = (

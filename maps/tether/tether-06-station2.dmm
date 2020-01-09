@@ -7211,6 +7211,7 @@
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/head/helmet/space/void/exploration,
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/item/weapon/tank/jetpack/carbondioxide,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
 "kE" = (
@@ -7241,6 +7242,7 @@
 	pixel_x = 0;
 	pixel_y = 26
 	},
+/obj/item/weapon/tank/jetpack/carbondioxide,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
 "kF" = (
@@ -7398,6 +7400,7 @@
 	pixel_x = 0;
 	pixel_y = 26
 	},
+/obj/item/weapon/tank/jetpack/carbondioxide,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
 "kS" = (
@@ -8574,6 +8577,7 @@
 /obj/item/clothing/suit/space/void/exploration,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/head/helmet/space/void/exploration,
+/obj/item/weapon/tank/jetpack/carbondioxide,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
 "mA" = (
@@ -37303,7 +37307,7 @@ DL
 pS
 ac
 ac
-ac
+aa
 aa
 oY
 Ei
