@@ -84,6 +84,9 @@
 	desc = "A rare cure provided by KHI that helps counteract negative side effects of using imperfect resleeving machinery."
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/sleevingcure = 7)
 
+/obj/item/weapon/storage/pill_bottle/sleevingcure/full
+	starts_with = list(/obj/item/weapon/reagent_containers/pill/sleevingcure = 14)
+
 /obj/item/weapon/storage/firstaid/insiderepair
 	name = "combat organ kit"
 	desc = "Contains advanced organ medical treatments."
@@ -100,3 +103,15 @@
 		/obj/item/weapon/storage/pill_bottle/arithrazine,
 		/obj/item/device/healthanalyzer/advanced
 	)
+
+/obj/item/weapon/storage/mrebag/pill
+	name = "vacuum-sealed pill"
+	desc = "A small vacuum-sealed package containing a singular pill. For emergencies only."
+	icon_state = "pouch_small"
+	max_w_class = ITEMSIZE_TINY
+	can_hold = list(/obj/item/weapon/reagent_containers/pill)
+
+/obj/item/weapon/storage/mrebag/pill/sleevingcure
+	name = "vacuum-sealed pill (Kitsuhanan Cure)"
+	desc = "A small vacuum-sealed package containing a singular pill. For emergencies only."
+	starts_with = list(/obj/item/weapon/reagent_containers/pill/sleevingcure)

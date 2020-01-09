@@ -82,7 +82,7 @@
 	name = "Kitsuhanan Cure"
 	id = "sleevingcure"
 	description = "A rare cure provided by KHI that helps counteract negative side effects of using imperfect resleeving machinery."
-	taste_description = "consequences"
+	taste_description = "chocolate peanut butter"
 	taste_mult = 2
 	reagent_state = LIQUID
 	color = "#b4dcdc"
