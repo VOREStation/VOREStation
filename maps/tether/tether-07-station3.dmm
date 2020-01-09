@@ -18762,10 +18762,13 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/nuke_storage)
 "CV" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/area/shuttle/large_escape_pod1/station)
 "CW" = (
 /obj/machinery/power/apc{
 	dir = 2;
@@ -39317,7 +39320,7 @@ MK
 Iy
 ab
 NL
-PA
+CV
 Qp
 Qp
 Qp
@@ -40544,7 +40547,7 @@ Zy
 WG
 dj
 XA
-CV
+AY
 ms
 Oz
 be
@@ -40686,7 +40689,7 @@ UJ
 Xb
 dj
 XN
-CV
+AY
 ms
 Xq
 be
@@ -40828,7 +40831,7 @@ iW
 WS
 dj
 XN
-CV
+AY
 ms
 Xq
 be
@@ -41111,7 +41114,7 @@ jZ
 WR
 Xo
 XN
-CV
+AY
 cK
 ms
 Xq
@@ -41679,7 +41682,7 @@ ea
 kx
 dj
 XN
-CV
+AY
 cK
 ms
 mq
@@ -41964,7 +41967,7 @@ kQ
 TG
 dj
 XN
-CV
+AY
 ms
 mq
 be
@@ -42106,7 +42109,7 @@ kR
 Vd
 dj
 XN
-CV
+AY
 ms
 QL
 be
@@ -42248,7 +42251,7 @@ ZE
 ZB
 dj
 XB
-CV
+AY
 ms
 Sq
 be
