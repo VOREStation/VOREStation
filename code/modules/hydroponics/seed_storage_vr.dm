@@ -45,7 +45,8 @@
 		/obj/item/seeds/wheatseed = 3,
 		/obj/item/seeds/whitebeetseed = 3,
 		/obj/item/seeds/shrinkshroom = 3,
-		/obj/item/seeds/megashroom = 3)
+		/obj/item/seeds/megashroom = 3,
+		/obj/item/seeds/gnomes = 1)
 
 /obj/machinery/seed_storage/xenobotany
 	name = "Xenobotany seed storage"
