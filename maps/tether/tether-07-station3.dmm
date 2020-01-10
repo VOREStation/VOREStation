@@ -2240,7 +2240,9 @@
 	pixel_x = 6;
 	pixel_y = 32
 	},
-/obj/machinery/light,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "dF" = (

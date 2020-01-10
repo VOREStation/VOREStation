@@ -1659,29 +1659,18 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "acW" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_three_hall)
+/obj/machinery/atmospherics/pipe/cap/visible/scrubbers,
+/turf/simulated/floor/plating,
+/area/vacant/vacant_site/gateway)
 "acX" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/structure/cable/green{
+	icon_state = "0-1";
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass/hidden/steel,
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_three_hall)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/cap/visible/supply,
+/turf/simulated/floor/plating,
+/area/vacant/vacant_site/gateway)
 "acY" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 5
@@ -15686,25 +15675,8 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "azP" = (
-/obj/machinery/door/morgue{
-	dir = 2;
-	name = "Private Study";
-	req_access = list(37)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/carpet,
-/area/library)
+/turf/simulated/wall,
+/area/tether/surfacebase/library/study)
 "azQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -23341,22 +23313,14 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/item/weapon/reagent_containers/food/drinks/metaglass{
-	},
-/obj/item/weapon/reagent_containers/food/drinks/metaglass{
-	},
-/obj/item/weapon/reagent_containers/food/drinks/metaglass{
-	},
-/obj/item/weapon/reagent_containers/food/drinks/metaglass{
-	},
-/obj/item/weapon/reagent_containers/food/drinks/metaglass{
-	},
-/obj/item/weapon/reagent_containers/food/drinks/metaglass{
-	},
-/obj/item/weapon/reagent_containers/food/drinks/metaglass{
-	},
-/obj/item/weapon/reagent_containers/food/drinks/metaglass{
-	},
+/obj/item/weapon/reagent_containers/food/drinks/metaglass,
+/obj/item/weapon/reagent_containers/food/drinks/metaglass,
+/obj/item/weapon/reagent_containers/food/drinks/metaglass,
+/obj/item/weapon/reagent_containers/food/drinks/metaglass,
+/obj/item/weapon/reagent_containers/food/drinks/metaglass,
+/obj/item/weapon/reagent_containers/food/drinks/metaglass,
+/obj/item/weapon/reagent_containers/food/drinks/metaglass,
+/obj/item/weapon/reagent_containers/food/drinks/metaglass,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
 "aLF" = (
@@ -27730,13 +27694,139 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "aTT" = (
+/obj/machinery/door/morgue{
+	dir = 2;
+	name = "Private Study";
+	req_access = list(37)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/carpet,
+/area/tether/surfacebase/library/study)
+"aTU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/heads/hop)
+"aTV" = (
+/turf/simulated/wall,
+/area/vacant/vacant_site/gateway)
+"aTW" = (
+/turf/simulated/floor/plating,
+/area/vacant/vacant_site/gateway)
+"aTX" = (
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/common)
+"aTY" = (
+/turf/simulated/wall/r_wall,
+/area/vacant/vacant_site/gateway)
+"aTZ" = (
+/turf/simulated/open,
+/area/vacant/vacant_site/gateway)
+"aUa" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	name = "Maintenance Access"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/surface_three_hall)
+"aUb" = (
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/surface_three_hall)
+"aUc" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
+"aUd" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
+"aUe" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
+"aUf" = (
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
+"aUg" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
 /area/shuttle/tether/surface)
-"aTX" = (
-/turf/simulated/floor/tiled/dark,
-/area/tether/surfacebase/security/common)
 "aUi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -30799,23 +30889,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
-"aZT" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/effect/landmark{
-	name = "lightsout"
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/tiled,
-/area/crew_quarters/heads/hop)
 "aZU" = (
 /obj/structure/table/woodentable,
 /obj/machinery/computer/skills{
@@ -38545,19 +38618,19 @@ aac
 aac
 aac
 aac
-aQW
-alo
-alo
-alo
-alo
-alo
-alo
-alo
-alo
-alo
-alo
-alo
-alo
+aac
+aac
+aac
+aTV
+aTV
+aTV
+aTV
+aTV
+aTV
+aTV
+agw
+agw
+agw
 aby
 aDW
 akn
@@ -38688,18 +38761,18 @@ aac
 aac
 aac
 aac
-alo
-aqO
-aqO
-aqO
-alY
-alY
-aqO
-aqO
-aqO
-aqO
-aqO
-alo
+aac
+aac
+aTV
+aTZ
+aTZ
+aTZ
+aTW
+aTW
+aTW
+aTW
+aTW
+agw
 abA
 aDW
 akn
@@ -38830,18 +38903,18 @@ aac
 aac
 aac
 aac
-alo
-aqO
-aqO
-aqO
-alY
-alY
-aqO
-aqO
-aqO
-aqO
-aqO
-alo
+aac
+aac
+aTV
+aTZ
+aTZ
+aTZ
+aTW
+aTW
+aTW
+aTW
+aTW
+agw
 air
 ajA
 akp
@@ -38971,19 +39044,19 @@ aac
 aac
 aac
 aac
-aac
-alo
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-alo
+aQW
+aTV
+aTV
+aTV
+aTV
+aTV
+aTV
+aTV
+aTW
+aTW
+aTW
+aTW
+agw
 air
 aDW
 akq
@@ -39114,20 +39187,20 @@ aac
 aac
 aac
 aac
-alo
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-alo
+aTV
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+agw
 air
-acW
+aUd
 akr
 akV
 alG
@@ -39256,20 +39329,20 @@ aac
 aac
 aac
 aac
-alo
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-alo
+aTV
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+agw
 agI
-acX
+aUe
 aks
 akT
 alE
@@ -39398,20 +39471,20 @@ aac
 aac
 aac
 aac
-alo
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-alo
-air
-aWF
+aTV
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+acW
+acX
+aUa
+aUc
+aUf
 akx
 akT
 acY
@@ -39540,18 +39613,18 @@ aac
 aac
 aac
 aac
-alo
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-alo
+aTV
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aUb
 air
 aWF
 aku
@@ -39682,18 +39755,18 @@ aac
 aac
 aac
 aac
-alo
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-aqO
-alo
+aTV
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+aTW
+agw
 ack
 ajF
 akv
@@ -39824,18 +39897,18 @@ aac
 aac
 aac
 aac
-alo
-alo
-alo
-alo
-alo
-alo
-alo
-aqO
-aqO
-aqO
-aqO
-alo
+aTV
+aTY
+aTY
+aTY
+aTY
+aTY
+aTY
+aTW
+aTW
+aTW
+aTW
+agw
 acl
 ajG
 aWN
@@ -39973,11 +40046,11 @@ afn
 adx
 agQ
 afc
-aqO
-aqO
-aqO
-aqO
-alo
+aTW
+aTW
+aTW
+aTW
+agw
 acn
 aWD
 aNE
@@ -40115,11 +40188,11 @@ afo
 age
 agR
 afc
-alo
-alo
-alo
-alo
-alo
+agw
+agw
+agw
+agw
+agw
 acV
 apS
 akx
@@ -42135,11 +42208,11 @@ auB
 avd
 avB
 aff
-axg
-axg
-axg
-axg
-axg
+azP
+azP
+azP
+azP
+azP
 axg
 axg
 axg
@@ -42277,11 +42350,11 @@ auC
 ave
 avC
 awe
-axg
+azP
 axU
 azi
 aAw
-axg
+azP
 aCG
 aEE
 aER
@@ -42419,11 +42492,11 @@ auD
 ave
 avC
 awf
-axg
+azP
 axV
 azj
 aAy
-axg
+azP
 aLP
 azT
 aEU
@@ -42561,11 +42634,11 @@ auE
 avf
 avD
 awg
-axg
+azP
 axW
 azm
 aCM
-axg
+azP
 aCH
 azT
 azT
@@ -42703,11 +42776,11 @@ auF
 avg
 ajX
 akx
-axg
-axg
 azP
-axg
-axg
+azP
+aTT
+azP
+azP
 aIE
 aEP
 aEG
@@ -42949,7 +43022,7 @@ abO
 acy
 abS
 adV
-aep
+aaE
 afm
 aXd
 ahx
@@ -44675,7 +44748,7 @@ aZo
 aYW
 aZb
 aZz
-aZT
+aTU
 baa
 bal
 bam
@@ -45570,7 +45643,7 @@ aNk
 aNl
 aNJ
 aNP
-aTT
+aUg
 aKU
 abg
 aOk
@@ -45712,7 +45785,7 @@ aNl
 aNl
 aNK
 aNP
-aTT
+aUg
 aKU
 abg
 aOk
@@ -45854,7 +45927,7 @@ aNm
 aNl
 aNK
 aNP
-aTT
+aUg
 aKU
 abg
 aOk
