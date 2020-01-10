@@ -223,21 +223,24 @@
 
 		for (var/target in touchable_mobs)
 			var/mob/living/M = target
-			if(prob(10)) //Less often than gurgles. People might leave this on forever.
-				if(M && M.client && M.is_preference_enabled(/datum/client_preference/digestion_noises))
-					SEND_SOUND(M,prey_digest)
-				play_sound = pick(pred_digest)
+			if(M.absorbable == FALSE)
+				return
+			else
+				if(prob(10)) //Less often than gurgles. People might leave this on forever.
+					if(M && M.client && M.is_preference_enabled(/datum/client_preference/digestion_noises))
+						SEND_SOUND(M,prey_digest)
+					play_sound = pick(pred_digest)
 
-			if(M.absorbed)
-				continue
+				if(M.absorbed)
+					continue
 
-			if(M.nutrition >= 100) //Drain them until there's no nutrients left. Slowly "absorb" them.
-				var/oldnutrition = (M.nutrition * 0.05)
-				M.nutrition = (M.nutrition * 0.95)
-				owner.nutrition += oldnutrition
-			else if(M.nutrition < 100) //When they're finally drained.
-				absorb_living(M)
-				to_update = TRUE
+				if(M.nutrition >= 100) //Drain them until there's no nutrients left. Slowly "absorb" them.
+					var/oldnutrition = (M.nutrition * 0.05)
+					M.nutrition = (M.nutrition * 0.95)
+					owner.nutrition += oldnutrition
+				else if(M.nutrition < 100) //When they're finally drained.
+					absorb_living(M)
+					to_update = TRUE
 
 //////////////////////////// DM_UNABSORB ////////////////////////////
 	else if(digest_mode == DM_UNABSORB)
