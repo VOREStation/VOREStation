@@ -23112,11 +23112,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
-"uiN" = (
-/obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/donut/chaos,
-/turf/simulated/floor/grass,
-/area/hallway/station/atrium)
 "uWS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -35589,7 +35584,7 @@ ald
 acr
 acy
 acy
-uiN
+afv
 adl
 acy
 acy
