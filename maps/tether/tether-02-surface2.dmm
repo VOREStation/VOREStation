@@ -928,8 +928,10 @@
 "abT" = (
 /obj/effect/floor_decal/techfloor,
 /obj/structure/table/steel,
-/obj/item/weapon/storage/firstaid/regular,
 /obj/random/medical/lite,
+/obj/machinery/vending/wallmed1/public{
+	pixel_y = -28
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining)
 "abU" = (
@@ -7268,9 +7270,6 @@
 "aoJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
-	},
-/obj/machinery/vending/wallmed1/public{
-	pixel_y = -28
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/fish_farm)

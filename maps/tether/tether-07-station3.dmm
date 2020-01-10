@@ -14604,9 +14604,6 @@
 /area/quartermaster/office)
 "wL" = (
 /obj/structure/flora/pottedplant/flower,
-/obj/machinery/vending/wallmed1/public{
-	pixel_y = 28
-	},
 /turf/simulated/floor/wood,
 /area/hallway/station/upper)
 "wM" = (
@@ -17356,9 +17353,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 1
 	},
-/obj/machinery/vending/wallmed1/public{
-	pixel_y = -28
-	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/foyer)
 "AL" = (
@@ -17496,9 +17490,6 @@
 	},
 /obj/effect/floor_decal/corner_steel_grid{
 	dir = 10
-	},
-/obj/machinery/vending/wallmed1/public{
-	pixel_y = 28
 	},
 /turf/simulated/floor/tiled,
 /area/teleporter/departing)

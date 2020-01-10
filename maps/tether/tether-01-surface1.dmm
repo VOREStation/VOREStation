@@ -10464,7 +10464,6 @@
 /area/tether/surfacebase/medical/first_aid_west)
 "arR" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/firstaid/regular,
 /obj/random/medical/lite,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/first_aid_west)
@@ -17483,9 +17482,6 @@
 	},
 /obj/effect/floor_decal/corner/lightgrey/border{
 	dir = 8
-	},
-/obj/machinery/vending/wallmed1/public{
-	pixel_x = -28
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker/laundry_arrival)
@@ -27834,6 +27830,9 @@
 	},
 /obj/structure/table/standard,
 /obj/item/clothing/head/soft/purple,
+/obj/machinery/vending/wallmed1/public{
+	pixel_x = 28
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/showers)
 "aUN" = (

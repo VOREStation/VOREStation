@@ -10197,21 +10197,10 @@
 /turf/simulated/floor/plating,
 /area/maintenance/station/eng_upper)
 "oW" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/machinery/vending/wallmed1/public{
-	pixel_y = 28
-	},
-/turf/simulated/floor/tiled,
-/area/hallway/station/starboard)
+/obj/structure/table/reinforced,
+/obj/random/tetheraid,
+/turf/simulated/floor/tiled/white,
+/area/maintenance/station/sec_lower)
 "oX" = (
 /obj/structure/sign/nosmoking_1,
 /turf/simulated/wall,
@@ -10475,9 +10464,6 @@
 	},
 /obj/effect/floor_decal/corner/lightgrey/bordercorner{
 	dir = 4
-	},
-/obj/machinery/vending/wallmed1/public{
-	pixel_x = 28
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
@@ -11307,9 +11293,6 @@
 	},
 /obj/effect/floor_decal/corner/lightgrey/bordercorner2{
 	dir = 1
-	},
-/obj/machinery/vending/wallmed1/public{
-	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/public_meeting_room)
@@ -21117,10 +21100,6 @@
 /obj/item/weapon/book/manual/medical_diagnostics_manual,
 /turf/simulated/floor/tiled/white,
 /area/maintenance/station/sec_lower)
-"Nb" = (
-/obj/structure/table/reinforced,
-/turf/simulated/floor/tiled/white,
-/area/maintenance/station/sec_lower)
 "Nc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -27783,7 +27762,7 @@ at
 NN
 QN
 GW
-Nb
+oW
 Ft
 Fe
 at
@@ -35615,7 +35594,7 @@ kt
 kt
 kt
 kt
-oW
+nl
 nR
 qC
 oY
