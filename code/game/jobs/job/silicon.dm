@@ -11,16 +11,9 @@
 	minimal_player_age = 7
 	account_allowed = 0
 	economic_modifier = 0
+	has_headset = FALSE
 
 /datum/job/ai/equip(var/mob/living/carbon/human/H)
-	if(!H)	return 0
-	return 1
-/*
-/datum/job/ai/equip_survival(var/mob/living/carbon/human/H)
-	if(!H)	return 0
-	return 1
-*/
-/datum/job/ai/equip_backpack(var/mob/living/carbon/human/H)
 	if(!H)	return 0
 	return 1
 
@@ -45,18 +38,10 @@
 	alt_titles = list("Robot", "Drone")
 	account_allowed = 0
 	economic_modifier = 0
+	has_headset = FALSE
 
 /datum/job/cyborg/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
-	return 1
-/*
-/datum/job/cyborg/equip_survival(var/mob/living/carbon/human/H)
-	if(!H)	return 0
-	return 1
-*/
-/datum/job/cyborg/equip_backpack(var/mob/living/carbon/human/H)
-	if(!H)	return 0
-	return 1
 	return 1
 
 /datum/job/cyborg/equip_preview(mob/living/carbon/human/H)

@@ -40,9 +40,11 @@
 	if(chassis in wide_chassis)
 		icon = 'icons/mob/pai_vr64x64.dmi'
 		pixel_x = -16
+		vis_height = 64
 	else
 		icon = 'icons/mob/pai_vr.dmi'
 		pixel_x = 0
+		vis_height = 32
 
 /mob/living/silicon/pai/update_icons() //And other functions cause this to occur, such as digesting someone.
 	..()

@@ -1263,3 +1263,58 @@ I said no!
 	reagents = list("milk" = 5, "flour" = 15, "sugar" = 15, "egg" = 9)
 	items = list(/obj/item/organ/internal/brain)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/braincake
+
+/datum/recipe/bagelplain
+	reagents = list("water" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/bun
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bagelplain
+
+/datum/recipe/bagelsunflower
+	reagents = list("water" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/bun,
+		/obj/item/weapon/reagent_containers/food/snacks/rawsunflower
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bagelsunflower
+
+/datum/recipe/bagelcheese
+	reagents = list("water" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/bun,
+		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bagelcheese
+
+/datum/recipe/bagelraisin
+	reagents = list("water" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/bun,
+		/obj/item/weapon/reagent_containers/food/snacks/no_raisin
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bagelraisin
+
+/datum/recipe/bagelpoppy
+	fruit = list("poppy" = 1)
+	reagents = list("water" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/bun
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bagelraisin
+
+/datum/recipe/bageleverything
+	reagents = list("water" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/bun,
+		/obj/item/weapon/fuel_assembly/supermatter
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bageleverything
+
+/datum/recipe/bageltwo
+	reagents = list("water" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/bun,
+		/obj/item/device/soulstone
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bageltwo

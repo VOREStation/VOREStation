@@ -74,12 +74,14 @@
 	default_pixel_x = -16
 	pixel_x = -16
 	pixel_y = 0
+	vis_height = 64
 
 	vore_capacity = 3
 	vore_pounce_chance = 75
 
 /mob/living/simple_mob/animal/space/alien/sentinel/praetorian
 	icon = 'icons/mob/vore64x64.dmi'
+	vis_height = 64
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
 /mob/living/simple_mob/animal/space/alien/queen/empress/mother

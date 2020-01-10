@@ -5,6 +5,8 @@
 	icon_state = "cleaner"
 	item_state = "cleaner"
 	flags = OPENCONTAINER|NOBLUDGEON
+	//TFF 24/12/19 - Let people print more spray bottles if needed.
+	matter = list("glass" = 300, DEFAULT_WALL_MATERIAL = 300)
 	slot_flags = SLOT_BELT
 	throwforce = 3
 	w_class = ITEMSIZE_SMALL

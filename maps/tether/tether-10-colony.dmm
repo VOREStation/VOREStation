@@ -2,6 +2,16 @@
 "aa" = (
 /turf/unsimulated/wall/planetary/virgo3b,
 /area/space)
+"ab" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 1;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/mothership/breakroom)
 "ac" = (
 /turf/unsimulated/mineral/virgo3b,
 /area/space)
@@ -15,6 +25,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 1;
 	name = "north bump";
 	pixel_x = 0;
@@ -716,6 +727,7 @@
 /area/mothership/armory)
 "bj" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 4;
 	name = "east bump";
 	pixel_x = 24
@@ -2048,6 +2060,14 @@
 	icon_state = "dark"
 	},
 /area/centcom/control)
+"dx" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "burst_l";
+	dir = 8
+	},
+/turf/unsimulated/floor/shuttle_ceiling,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/specialops/centcom)
 "dy" = (
 /obj/structure/bed/chair,
 /obj/item/weapon/handcuffs,
@@ -4076,6 +4096,14 @@
 /obj/structure/filingcabinet/filingcabinet,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
+"hx" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion";
+	dir = 8
+	},
+/turf/unsimulated/floor/shuttle_ceiling,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/specialops/centcom)
 "hy" = (
 /obj/machinery/button/remote/blast_door{
 	id = "ArmouryC4";
@@ -4741,6 +4769,14 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"iQ" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "burst_r";
+	dir = 8
+	},
+/turf/unsimulated/floor/shuttle_ceiling,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/specialops/centcom)
 "iR" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/storage/box/gloves,
@@ -5004,6 +5040,16 @@
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
+"jm" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 8;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/mothership/eva)
 "jn" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 4
@@ -5017,6 +5063,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 1;
 	name = "north bump";
 	pixel_x = 0;
@@ -5043,6 +5090,26 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/cryotube)
+"jr" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 4;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/mothership/eva)
+"js" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/storage/firstaid/clotting,
+/obj/item/weapon/storage/firstaid/bonemed,
+/obj/item/weapon/storage/pill_bottle/sleevingcure/full,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/centcom/specops)
 "jt" = (
 /obj/structure/closet/secure_closet/medical3,
 /turf/simulated/floor/tiled/white,
@@ -5077,6 +5144,16 @@
 /area/shuttle/large_escape_pod1/centcom{
 	base_turf = /turf/simulated/floor/tiled/steel_dirty/virgo3b
 	})
+"jz" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 8;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/mothership/surgery)
 "jA" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -6384,6 +6461,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 1;
 	name = "north bump";
 	pixel_x = 0;
@@ -7260,6 +7338,16 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
+"nl" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 4;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/mothership/security)
 "nm" = (
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
@@ -9571,6 +9659,16 @@
 /obj/structure/sign/warning/nosmoking_2,
 /turf/unsimulated/wall,
 /area/centcom/terminal)
+"rr" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 8;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/mothership/resleeving)
 "rs" = (
 /turf/unsimulated/wall,
 /area/centcom/terminal)
@@ -16162,6 +16260,26 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/robotics)
+"CE" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 4;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/mothership/warden)
+"CF" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 8;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/mothership/rnd)
 "CG" = (
 /obj/structure/bed/chair/wood{
 	icon_state = "wooden_chair";
@@ -16557,6 +16675,36 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
+"Dj" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 4;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/mothership/armory)
+"Dk" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 8;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/mothership/telecomms1)
+"Dl" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	desc = "It is a heavy duty pulse laser emitter.";
+	dir = 4;
+	icon_state = "emitter-off";
+	name = "pulse laser"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/mothership/telecomms2)
 "Dm" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/cell_charger,
@@ -16655,14 +16803,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/processing)
-"Dx" = (
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "burst_r";
-	dir = 8
-	},
-/turf/unsimulated/floor/shuttle_ceiling,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/specialops/centcom)
 "Dy" = (
 /obj/structure/closet/secure_closet/sar,
 /turf/simulated/floor/tiled/white,
@@ -16842,6 +16982,7 @@
 	dir = 1
 	},
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 2;
 	name = "south bump";
 	pixel_y = -28;
@@ -16880,15 +17021,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/warden)
-"Ea" = (
-/obj/structure/table/reinforced,
-/obj/item/weapon/storage/firstaid/clotting,
-/obj/item/weapon/storage/firstaid/bonemed,
-/turf/unsimulated/floor{
-	icon_state = "vault";
-	dir = 5
-	},
-/area/centcom/specops)
 "Eb" = (
 /obj/item/modular_computer/telescreen/preset/generic{
 	pixel_y = 28
@@ -17672,6 +17804,7 @@
 /area/mothership/warden)
 "FX" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 4;
 	name = "east bump";
 	pixel_x = 24
@@ -17762,6 +17895,7 @@
 /area/mothership/engineering)
 "Gl" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 2;
 	name = "south bump";
 	pixel_y = -28;
@@ -18038,6 +18172,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 2;
 	name = "south bump";
 	pixel_y = -28;
@@ -18375,16 +18510,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/breakroom)
-"HQ" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 1;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/breakroom)
 "HR" = (
 /obj/machinery/power/terminal{
 	icon_state = "term";
@@ -18606,14 +18731,6 @@
 	},
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm1)
-"Iq" = (
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "burst_l";
-	dir = 8
-	},
-/turf/unsimulated/floor/shuttle_ceiling,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/specialops/centcom)
 "Is" = (
 /obj/structure/closet/secure_closet/brig{
 	id = "Cell M2"
@@ -18856,6 +18973,7 @@
 /area/mothership/telecomms2)
 "IP" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 4;
 	name = "east bump";
 	pixel_x = 24
@@ -18946,6 +19064,7 @@
 /area/mothership/armory)
 "IY" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 2;
 	name = "south bump";
 	pixel_y = -28;
@@ -18966,16 +19085,6 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
-"Ja" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 4;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/telecomms2)
 "Jb" = (
 /obj/machinery/door/airlock/multi_tile/metal/mait{
 	dir = 2;
@@ -19001,16 +19110,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
-"Jc" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 8;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/rnd)
 "Jd" = (
 /obj/structure/undies_wardrobe,
 /obj/machinery/light{
@@ -19160,6 +19259,7 @@
 	dir = 4
 	},
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
 	name = "west bump";
@@ -19186,16 +19286,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
-"Jw" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 4;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/security)
 "Jx" = (
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
@@ -20110,16 +20200,6 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
-"Ln" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 8;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/resleeving)
 "Lo" = (
 /obj/machinery/vending/snack,
 /turf/simulated/floor/wood,
@@ -20237,6 +20317,7 @@
 /obj/random/mre,
 /obj/random/mre,
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 2;
 	name = "south bump";
 	pixel_y = -28;
@@ -20407,16 +20488,6 @@
 "LT" = (
 /turf/simulated/floor/tiled/white,
 /area/mothership/treatment)
-"LV" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 4;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/warden)
 "LW" = (
 /obj/machinery/recharge_station,
 /turf/simulated/shuttle/floor/alienplating,
@@ -20429,6 +20500,7 @@
 /area/unknown/dorm4)
 "LY" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 4;
 	name = "east bump";
 	pixel_x = 24
@@ -20695,6 +20767,7 @@
 /area/mothership/dorm6)
 "MN" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 2;
 	name = "south bump";
 	pixel_y = -28
@@ -21750,6 +21823,7 @@
 /area/mothership/telecomms2)
 "Pa" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 2;
 	name = "south bump";
 	pixel_y = -28;
@@ -22081,6 +22155,7 @@
 /area/mothership/kitchen)
 "PH" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 2;
 	name = "south bump";
 	pixel_y = -28;
@@ -22134,6 +22209,7 @@
 /area/mothership/eva)
 "PM" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 2;
 	name = "south bump";
 	pixel_y = -28;
@@ -22243,24 +22319,6 @@
 	},
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm1)
-"PY" = (
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion";
-	dir = 8
-	},
-/turf/unsimulated/floor/shuttle_ceiling,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/specialops/centcom)
-"PZ" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 8;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/surgery)
 "Qa" = (
 /obj/machinery/alarm{
 	alarm_id = "pen_nine";
@@ -22603,6 +22661,7 @@
 /area/mothership/engineering)
 "QP" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 1;
 	name = "north bump";
 	pixel_x = 0;
@@ -22704,16 +22763,6 @@
 	icon_state = "white"
 	},
 /area/centcom/medical)
-"Rd" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 4;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/armory)
 "Re" = (
 /obj/structure/table/reinforced,
 /obj/item/device/binoculars,
@@ -22951,6 +23000,7 @@
 /obj/item/weapon/tank/oxygen/yellow,
 /obj/item/weapon/tank/vox,
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 1;
 	name = "north bump";
 	pixel_x = 0;
@@ -23619,6 +23669,7 @@
 /area/mothership/holodeck)
 "Tr" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 1;
 	name = "north bump";
 	pixel_x = 0;
@@ -23690,6 +23741,7 @@
 /obj/item/weapon/book/manual/security_space_law,
 /obj/structure/closet/secure_closet/nanotrasen_warden,
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
 	name = "west bump";
@@ -23773,6 +23825,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 2;
 	name = "south bump";
 	pixel_y = -28;
@@ -23928,6 +23981,7 @@
 /area/mothership/hallway)
 "TZ" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 4;
 	name = "east bump";
 	pixel_x = 24
@@ -24529,6 +24583,7 @@
 /obj/item/weapon/material/knife,
 /obj/item/weapon/material/knife,
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 1;
 	name = "north bump";
 	pixel_x = 0;
@@ -24892,6 +24947,7 @@
 	dir = 1
 	},
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 2;
 	name = "south bump";
 	pixel_y = -28;
@@ -25222,6 +25278,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 4;
 	name = "east bump";
 	pixel_x = 24
@@ -25245,6 +25302,7 @@
 /area/unknown/dorm1)
 "WP" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 4;
 	name = "east bump";
 	pixel_x = 24
@@ -25533,16 +25591,6 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
-"XB" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 4;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/eva)
 "XC" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/carpet/blue,
@@ -25555,6 +25603,7 @@
 	dir = 8
 	},
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 2;
 	name = "south bump";
 	pixel_y = -28;
@@ -25767,6 +25816,8 @@
 	},
 /obj/item/slime_extract/pink,
 /obj/item/slime_extract/pink,
+/obj/item/weapon/deadringer,
+/obj/item/weapon/deadringer,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/vault)
 "XY" = (
@@ -25815,6 +25866,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 1;
 	name = "north bump";
 	pixel_x = 0;
@@ -25822,16 +25874,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
-"Yf" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 8;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/telecomms1)
 "Yg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -26020,6 +26062,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 2;
 	name = "south bump";
 	pixel_y = -28;
@@ -26077,6 +26120,7 @@
 /area/centcom/evac)
 "YH" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
 	name = "west bump";
@@ -26134,6 +26178,7 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 2;
 	name = "south bump";
 	pixel_y = -28;
@@ -26401,6 +26446,7 @@
 /area/mothership/eva)
 "Zt" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 4;
 	name = "east bump";
 	pixel_x = 24
@@ -26488,16 +26534,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
-"ZC" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 8;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/eva)
 "ZD" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -26556,6 +26592,7 @@
 /area/mothership/armory)
 "ZI" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 1;
 	name = "north bump";
 	pixel_x = 0;
@@ -27730,7 +27767,7 @@ OF
 ZL
 XS
 MJ
-PZ
+jz
 MJ
 XS
 ZL
@@ -27742,7 +27779,7 @@ XS
 ZL
 XS
 PD
-Ln
+rr
 PD
 XS
 ZL
@@ -27754,7 +27791,7 @@ XS
 ZL
 XS
 Ve
-Jc
+CF
 Ve
 XS
 ZL
@@ -27767,7 +27804,7 @@ NJ
 UE
 ZL
 UE
-Yf
+Dk
 UE
 OF
 OF
@@ -28428,7 +28465,7 @@ QU
 XK
 XK
 gX
-ZC
+jm
 Sh
 Gw
 Sh
@@ -29126,7 +29163,7 @@ OF
 OF
 OF
 OF
-HQ
+ab
 IT
 OR
 OR
@@ -30688,7 +30725,7 @@ OF
 OF
 OF
 OF
-HQ
+ab
 IT
 Sx
 OR
@@ -31410,7 +31447,7 @@ Sf
 OE
 OE
 Ki
-XB
+jr
 Sh
 Di
 Sh
@@ -32132,7 +32169,7 @@ OF
 ZL
 XS
 YF
-Jw
+nl
 YF
 XS
 ZL
@@ -32144,7 +32181,7 @@ XS
 ZL
 XS
 ZM
-LV
+CE
 Ow
 XS
 ZL
@@ -32156,7 +32193,7 @@ XS
 ZL
 XS
 TX
-Rd
+Dj
 TX
 XS
 ZL
@@ -32169,7 +32206,7 @@ OZ
 Hj
 ZL
 Hj
-Ja
+Dl
 Hj
 OF
 OF
@@ -41350,7 +41387,7 @@ ac
 ac
 ac
 ah
-Ea
+js
 aX
 aK
 aX
@@ -43333,11 +43370,11 @@ ac
 ac
 ac
 ah
-Iq
-PY
-PY
-PY
-Dx
+dx
+hx
+hx
+hx
+iQ
 ah
 av
 aG

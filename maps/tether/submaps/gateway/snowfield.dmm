@@ -131,6 +131,7 @@
 /area/awaymission/snowfield/base)
 "ar" = (
 /obj/machinery/power/apc{
+	alarms_hidden = 1;
 	dir = 8;
 	name = "west bump-derelict";
 	operating = 0;

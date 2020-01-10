@@ -272,6 +272,7 @@
 					/obj/item/clothing/shoes/rainbow = 1,)
 	contraband = list(/obj/item/clothing/shoes/syndigaloshes = 1,
 					/obj/item/clothing/shoes/clown_shoes = 1)
+
 /obj/machinery/vending/loadout/uniform
 	name = "The Basics"
 	desc = "A vendor using compressed matter cartridges to store large amounts of basic station uniforms."
@@ -299,6 +300,7 @@
 					/obj/item/clothing/under/color/yellow = 5,
 					/obj/item/clothing/shoes/black = 20,
 					/obj/item/clothing/shoes/white = 20)
+
 /obj/machinery/vending/loadout/accessory
 	name = "Looty Inc."
 	desc = "A special vendor for accessories."
@@ -528,6 +530,7 @@
 					/obj/item/clothing/mask/surgical = 200)
 	premium = list(/obj/item/weapon/bedsheet/rainbow = 1)
 	contraband = list(/obj/item/clothing/mask/gas/clown_hat = 1)
+
 /obj/machinery/vending/loadout/clothing
 	name = "General Jump"
 	desc = "A special vendor using compressed matter cartridges to store large amounts of clothing."
@@ -871,6 +874,7 @@
 					/obj/item/weapon/storage/backpack/satchel = 100)
 	premium = list(/obj/item/clothing/under/color/rainbow = 1)
 	contraband = list(/obj/item/clothing/under/rank/clown = 1)
+
 /obj/machinery/vending/loadout/gadget
 	name = "Chips Co."
 	desc = "A special vendor for devices and gadgets."
@@ -920,6 +924,7 @@
 					/obj/item/clothing/glasses/omnihud = 100)
 	premium = list(/obj/item/device/perfect_tele/one_beacon = 1)
 	contraband = list(/obj/item/weapon/disk/nifsoft/compliance = 1)
+
 /obj/machinery/vending/loadout/loadout_misc
 	name = "Bits and Bobs"
 	desc = "A special vendor for things and also stuff!"
@@ -949,6 +954,7 @@
 					/obj/item/weapon/melee/umbrella/random = 100)
 	premium = list(/obj/item/toy/bosunwhistle = 1)
 	contraband = list(/obj/item/toy/katana = 1)
+
 /obj/machinery/vending/loadout/overwear
 	name = "Big D's Best"
 	desc = "A special vendor using compressed matter cartridges to store large amounts of overwear!"
@@ -1132,6 +1138,7 @@
 					/obj/item/clothing/suit/storage/seromi/cloak/standard/white_grey = 200)
 	premium = list(/obj/item/clothing/suit/imperium_monk = 3)
 	contraband = list(/obj/item/toy/katana = 1)
+
 /obj/machinery/vending/loadout/costume
 	name = "Thespian's Delight"
 	desc = "Sometimes nerds need costumes!"
@@ -1243,6 +1250,85 @@
 					/obj/item/clothing/under/sexyclown = 200,
 					/obj/item/clothing/mask/gas/sexymime = 600,
 					/obj/item/clothing/under/sexymime = 200)
-	premium = list(/obj/item/clothing/suit/imperium_monk = 3)
+	premium = list(/obj/item/clothing/suit/imperium_monk = 3,
+					/obj/item/clothing/suit/barding/agatha = 2,
+					/obj/item/clothing/suit/barding/alt_agatha = 2,
+					/obj/item/clothing/suit/barding/mason = 2,
+					/obj/item/clothing/suit/drake_cloak = 2)
 	contraband = list(/obj/item/clothing/head/syndicatefake = 1,
 					/obj/item/clothing/suit/syndicatefake = 1)
+
+//TFF 19/12/19 - Brig version of a seed storage vendor
+/obj/machinery/seed_storage/brig
+	name = "Prisoners' food seed storage"
+	starting_seeds = list(
+		/obj/item/seeds/appleseed = 3,
+		/obj/item/seeds/bananaseed = 3,
+		/obj/item/seeds/berryseed = 3,
+		/obj/item/seeds/cabbageseed = 3,
+		/obj/item/seeds/carrotseed = 3,
+		/obj/item/seeds/celery = 3,
+		/obj/item/seeds/chantermycelium = 3,
+		/obj/item/seeds/cherryseed = 3,
+		/obj/item/seeds/chiliseed = 3,
+		/obj/item/seeds/cocoapodseed = 3,
+		/obj/item/seeds/cornseed = 3,
+		/obj/item/seeds/durian = 3,
+		/obj/item/seeds/eggplantseed = 3,
+		/obj/item/seeds/grapeseed = 3,
+		/obj/item/seeds/grassseed = 3,
+		/obj/item/seeds/replicapod = 3,
+		/obj/item/seeds/lavenderseed = 3,
+		/obj/item/seeds/lemonseed = 3,
+		/obj/item/seeds/lettuce = 3,
+		/obj/item/seeds/limeseed = 3,
+		/obj/item/seeds/mtearseed = 2,
+		/obj/item/seeds/orangeseed = 3,
+		/obj/item/seeds/onionseed = 3,
+		/obj/item/seeds/peanutseed = 3,
+		/obj/item/seeds/plumpmycelium = 3,
+		/obj/item/seeds/poppyseed = 3,
+		/obj/item/seeds/potatoseed = 3,
+		/obj/item/seeds/pumpkinseed = 3,
+		/obj/item/seeds/rhubarb = 3,
+		/obj/item/seeds/riceseed = 3,
+		/obj/item/seeds/rose = 3,
+		/obj/item/seeds/soyaseed = 3,
+		/obj/item/seeds/spineapple = 3,
+		/obj/item/seeds/sugarcaneseed = 3,
+		/obj/item/seeds/sunflowerseed = 3,
+		/obj/item/seeds/shandseed = 2,
+		/obj/item/seeds/tobaccoseed = 3,
+		/obj/item/seeds/tomatoseed = 3,
+		/obj/item/seeds/towermycelium = 3,
+		/obj/item/seeds/vanilla = 3,
+		/obj/item/seeds/watermelonseed = 3,
+		/obj/item/seeds/wheatseed = 3,
+		/obj/item/seeds/whitebeetseed = 3,
+		/obj/item/seeds/wabback = 2)
+
+//TFF 19/12/19 - Brig version of a Nutrimax
+/obj/machinery/vending/hydronutrients/brig
+	name = "Brig NutriMax"
+	desc = "A plant nutrients vendor. Seems some items aren't included."
+	product_slogans = "Aren't you glad you don't have to fertilize the natural way?;Now with 50% less stink!;Plants are people too!"
+	product_ads = "We like plants!;Don't you want some?;The greenest thumbs ever.;We like big plants.;Soft soil..."
+	icon_state = "nutri"
+	icon_deny = "nutri-deny"
+	products = list(/obj/item/weapon/reagent_containers/glass/bottle/eznutrient = 6,/obj/item/weapon/reagent_containers/glass/bottle/left4zed = 4,/obj/item/weapon/reagent_containers/glass/bottle/robustharvest = 3,/obj/item/weapon/plantspray/pests = 20,
+					/obj/item/weapon/reagent_containers/glass/beaker = 4,/obj/item/weapon/storage/bag/plants = 5)
+	premium = list(/obj/item/weapon/reagent_containers/glass/bottle/ammonia = 10,/obj/item/weapon/reagent_containers/glass/bottle/diethylamine = 5)
+
+/obj/machinery/vending/emergencyfood
+	name = "Food Cube Dispenser"
+	desc = "An ominous machine dispensing food cubes. It will keep you fed, but at what cost?"
+	icon = 'icons/obj/vending_vr.dmi'
+	icon_state = "foodcube"
+	product_ads = "Afraid to starve?;Starvation is not an option!;Add water before consumption.;Let me take care of you.;Dire circumstances call for food cubes, do not let the taste deter you."
+	products = list(/obj/item/weapon/storage/box/wings/tray = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 10)
+	contraband = list(/obj/item/weapon/storage/box/wings/tray = 5)
+
+/obj/machinery/vending/emergencyfood/filled
+	products = list(/obj/item/weapon/storage/box/wings/tray = 40)
+	contraband = list(/obj/item/weapon/storage/box/wings/tray = 20)

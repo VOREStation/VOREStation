@@ -11,8 +11,11 @@
 
 	var/thaler_earned
 
-/datum/gm_action/nanotrasen_budget_allocation/set_up()
+/datum/gm_action/nanotrasen_budget_allocation/New()
+	..()
 	SC = supply_controller
+
+/datum/gm_action/nanotrasen_budget_allocation/set_up()
 	running = TRUE
 	return
 

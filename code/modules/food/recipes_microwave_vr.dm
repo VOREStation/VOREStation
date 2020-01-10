@@ -173,6 +173,29 @@
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/monkfishcooked
 
+/datum/recipe/sharksteak
+	reagents = list("blackpepper"= 1, "sodiumchloride" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sharkmeatcooked
+
+/datum/recipe/sharkdip
+	reagents = list("sodiumchloride" = 1)
+	fruit = list("chili" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sharkmeatdip
+
+/datum/recipe/sharkcubes
+	reagents = list("soysauce" = 5, "sodiumchloride" = 1)
+	fruit = list("potato" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sharkmeatcubes
+
 /datum/recipe/margheritapizzacargo
 	reagents = list()
 	items = list(
@@ -200,3 +223,10 @@
 		/obj/item/weapon/reagent_containers/food/snacks/pizza/vegfrozen
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegcargo
+
+//// food cubes
+
+/datum/recipe/foodcubes
+	reagents = list("enzyme" = 20,"virusfood" = 5, "nutriment" = 15, "protein" = 15) // labor intensive
+	items = list()
+	result = /obj/item/weapon/storage/box/wings/tray

@@ -20,13 +20,13 @@
 /decl/hierarchy/outfit/job/science/scientist
 	name = OUTFIT_JOB_NAME("Scientist")
 	uniform = /obj/item/clothing/under/rank/scientist
-	id_type = /obj/item/weapon/card/id/science/scientist
+	id_type = /obj/item/weapon/card/id/science
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
 
 /decl/hierarchy/outfit/job/science/xenobiologist
 	name = OUTFIT_JOB_NAME("Xenobiologist")
 	uniform = /obj/item/clothing/under/rank/scientist
-	id_type = /obj/item/weapon/card/id/science/xenobiologist
+	id_type = /obj/item/weapon/card/id/science
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
 
 /decl/hierarchy/outfit/job/science/roboticist
@@ -34,7 +34,7 @@
 	uniform = /obj/item/clothing/under/rank/roboticist
 	shoes = /obj/item/clothing/shoes/black
 	belt = /obj/item/weapon/storage/belt/utility/full
-	id_type = /obj/item/weapon/card/id/science/roboticist
+	id_type = /obj/item/weapon/card/id/science
 	pda_slot = slot_r_store
 	pda_type = /obj/item/device/pda/roboticist
 	backpack = /obj/item/weapon/storage/backpack

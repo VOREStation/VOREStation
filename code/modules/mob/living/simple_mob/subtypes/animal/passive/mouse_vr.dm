@@ -10,16 +10,17 @@
 	desc = "A small rodent, often seen hiding in maintenance areas and making a nuisance of itself. And stealing cheese, or annoying the chef. SQUEAK! <3"
 
 	size_multiplier = 0.25
-	movement_cooldown = 1 //roughly half the speed of a person
+	movement_cooldown = 1.5 //roughly half the speed of a person
 	universal_understand = 1
 
 /mob/living/simple_mob/animal/passive/mouse/attack_hand(mob/living/L)
-	if(L.a_intent == I_HELP) //if lime intent
+	if(L.a_intent == I_HELP && !istype(loc, /obj/item/weapon/holder)) //if lime intent and not in a holder already
 		if(!src.attempt_to_scoop(L)) //the superior way to handle scooping, checks size
 			..() //mouse too big to grab? pet the large mouse instead
 	else
 		..()
 
+//No longer in use, as mice create a holder/micro object instead
 /obj/item/weapon/holder/mouse/attack_self(var/mob/U)
 	for(var/mob/living/simple_mob/M in src.contents)
 		if((I_HELP) && U.canClick()) //a little snowflakey, but makes it use the same cooldown as interacting with non-inventory objects
@@ -27,7 +28,7 @@
 			U.visible_message("<span class='notice'>[U] [M.response_help] \the [M].</span>")
 
 
-/mob/living/simple_mob/animal/passive/mouse/MouseDrop(var/obj/O) //this proc would be very easy to apply to all mobs with holders
+/mob/living/simple_mob/animal/passive/mouse/MouseDrop(var/obj/O) //this proc would be very easy to apply to all mobs, holders generate dynamically
 	if(!(usr == src || O))
 		return ..()
 	if(istype(O, /mob/living) && O.Adjacent(src)) //controls scooping by mobs

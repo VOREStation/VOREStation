@@ -14,7 +14,7 @@
 
 /obj/structure/closet/secure_closet/freezer/kitchen
 	name = "kitchen cabinet"
-	req_access = list(access_kitchen)
+	req_access = list()
 
 	starts_with = list(
 		/obj/item/weapon/reagent_containers/food/condiment/flour = 7,

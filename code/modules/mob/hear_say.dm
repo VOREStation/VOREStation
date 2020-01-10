@@ -97,7 +97,7 @@
 
 // Checks if the mob's own name is included inside message.  Handles both first and last names.
 /mob/proc/check_mentioned(var/message)
-	var/not_included = list("a", "the", "of", "in", "for", "through", "throughout", "therefore", "here", "there", "then", "now", "I", "you", "they", "he", "she", "by")
+	var/not_included = list("A", "The", "Of", "In", "For", "Through", "Throughout", "Therefore", "Here", "There", "Then", "Now", "I", "You", "They", "He", "She", "By")
 	var/list/valid_names = splittext(real_name, " ") // Should output list("John", "Doe") as an example.
 	valid_names -= not_included
 	var/list/nicknames = splittext(nickname, " ")

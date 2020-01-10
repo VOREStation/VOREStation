@@ -730,6 +730,7 @@
 	if(issmall(M))
 		effective_dose *= 2
 
+/* //VOREStation Removal - Assuming all juice has sugar is silly
 	if(alien == IS_UNATHI)
 		if(effective_dose < 2)
 			if(effective_dose == metabolism * 2 || prob(5))
@@ -743,6 +744,7 @@
 		else
 			M.sleeping = max(M.sleeping, 20)
 			M.drowsyness = max(M.drowsyness, 60)
+*/
 
 /datum/reagent/drink/juice/lemon
 	name = "Lemon Juice"
@@ -1149,6 +1151,22 @@
 /datum/reagent/drink/coffee/cafe_latte/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	M.heal_organ_damage(0.5 * removed, 0)
+
+/datum/reagent/drink/decaf
+	name = "Decaf Coffee"
+	id = "decaf"
+	description = "Coffee with all the wake-up sucked out."
+	taste_description = "bad coffee"
+	taste_mult = 1.3
+	color = "#482000"
+	adj_temp = 25
+
+	cup_icon_state = "cup_coffee"
+	cup_name = "cup of decaf"
+	cup_desc = "Basically just brown, bitter water."
+
+	glass_name = "decaf coffee"
+	glass_desc = "Basically just brown, bitter water."
 
 /datum/reagent/drink/hot_coco
 	name = "Hot Chocolate"
@@ -3508,3 +3526,13 @@
 
 	glass_name = "fusionnaire"
 	glass_desc = "A relatively new cocktail, mostly served in the bars of NanoTrasen owned stations."
+
+/datum/reagent/nutriment/magicdust
+	name = "Magic Dust"
+	id = "magicdust"
+	description = "A dust harvested from gnomes, aptly named by pre-industrial civilizations."
+	taste_description = "something tingly"
+	taste_mult = 2
+	reagent_state = LIQUID
+	nutriment_factor = 40 //very filling
+	color = "#d169b2"

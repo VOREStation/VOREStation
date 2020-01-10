@@ -192,8 +192,8 @@ proc/admin_notice(var/message, var/rights)
 	// language toggles
 	body += "<br><br><b>Languages:</b><br>"
 	var/f = 1
-	for(var/k in all_languages)
-		var/datum/language/L = all_languages[k]
+	for(var/k in GLOB.all_languages)
+		var/datum/language/L = GLOB.all_languages[k]
 		if(!(L.flags & INNATE))
 			if(!f) body += " | "
 			else f = 0
@@ -1055,8 +1055,10 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	if(!seedtype || !plant_controller.seeds[seedtype])
 		return
-	var/datum/seed/S = plant_controller.seeds[seedtype]
-	S.harvest(usr,0,0,1)
+	var/amount = input("Amount of fruit to spawn", "Fruit Amount", 1) as null|num
+	if(!isnull(amount))
+		var/datum/seed/S = plant_controller.seeds[seedtype]
+		S.harvest(usr,0,0,amount)
 	log_admin("[key_name(usr)] spawned [seedtype] fruit at ([usr.x],[usr.y],[usr.z])")
 
 /datum/admins/proc/spawn_custom_item()

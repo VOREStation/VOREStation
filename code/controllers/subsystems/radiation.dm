@@ -67,8 +67,10 @@ SUBSYSTEM_DEF(radiation)
 		var/datum/radiation_source/source = value
 		if(source.rad_power < .)
 			continue // Already being affected by a stronger source
+
 		if(source.source_turf.z != T.z)
 			continue // Radiation is not multi-z
+
 		if(source.respect_maint)
 			var/area/A = T.loc
 			if(A.flags & RAD_SHIELDED)
@@ -77,9 +79,10 @@ SUBSYSTEM_DEF(radiation)
 		var/dist = get_dist(source.source_turf, T)
 		if(dist > source.range)
 			continue // Too far to possibly affect
+
 		if(source.flat)
-			. = max(., source.rad_power)
-			continue // No need to ray trace for flat  field
+			. += source.rad_power
+			continue // No need to ray trace for flat field
 
 		// Okay, now ray trace to find resistence!
 		var/turf/origin = source.source_turf
@@ -88,13 +91,23 @@ SUBSYSTEM_DEF(radiation)
 			origin = get_step_towards(origin, T) //Raytracing
 			if(!resistance_cache[origin]) //Only get the resistance if we don't already know it.
 				origin.calc_rad_resistance()
+
 			if(origin.cached_rad_resistance)
-				working = round((working / (origin.cached_rad_resistance * config.radiation_resistance_multiplier)), 0.1)
-			if((working <= .) || (working <= RADIATION_THRESHOLD_CUTOFF))
-				break // Already affected by a stronger source (or its zero...)
-		. = max((working / (dist ** 2)), .) //Butchered version of the inverse square law. Works for this purpose
-		if(. <= RADIATION_THRESHOLD_CUTOFF)
-			. = 0
+				if(config.radiation_resistance_calc_mode == RAD_RESIST_CALC_DIV)
+					working = round((working / (origin.cached_rad_resistance * config.radiation_resistance_multiplier)), 0.01)
+				else if(config.radiation_resistance_calc_mode == RAD_RESIST_CALC_SUB)
+					working = round((working - (origin.cached_rad_resistance * config.radiation_resistance_multiplier)), 0.01)
+
+			if(working <= config.radiation_lower_limit) // Too far from this source
+				working = 0 // May as well be 0
+				break
+
+		// Accumulate radiation from all sources in range, not just the biggest.
+		// Shouldn't really ever have practical uses, but standing in a room literally made from uranium is more dangerous than standing next to a single uranium vase
+		. += working / (dist ** 2)
+
+	if(. <= config.radiation_lower_limit)
+		. = 0
 
 // Add a radiation source instance to the repository.  It will override any existing source on the same turf.
 /datum/controller/subsystem/radiation/proc/add_source(var/datum/radiation_source/S)

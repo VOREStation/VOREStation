@@ -3,9 +3,10 @@
 	real_name = "drone"
 	icon = 'icons/mob/swarmbot.dmi'
 	icon_state = "swarmer"
+	item_state = "repairbot"
 	faction = "swarmer"
-	maxHealth = 75
-	health = 75
+	maxHealth = 35
+	health = 35
 	cell_emp_mult = 0.5
 	universal_speak = 0
 	universal_understand = 1
@@ -25,6 +26,8 @@
 		/obj)
 
 	mob_always_swap = 1
+
+	speed = 3
 
 	softfall = TRUE
 
@@ -46,6 +49,8 @@
 	var/spell_setup = list(
 		/spell/aoe_turf/conjure/swarmer,
 		/spell/aoe_turf/conjure/forcewall/swarm,
+		/spell/aoe_turf/conjure/zeropointwell,
+		/spell/aoe_turf/conjure/zeropointbarricade,
 		/spell/aoe_turf/blink/swarm,
 		/spell/aoe_turf/conjure/swarmer/gunner,
 		/spell/aoe_turf/conjure/swarmer/melee
@@ -71,6 +76,11 @@
 	icon_state = "swarmer_ranged"
 	faction = "swarmer"
 
+	maxHealth = 50
+	health = 50
+
+	speed = 4
+
 	law_type = /datum/ai_laws/swarm_drone/soldier
 	module_type = /obj/item/weapon/robot_module/drone/swarm/ranged
 
@@ -86,6 +96,11 @@
 	icon = 'icons/mob/swarmbot.dmi'
 	icon_state = "swarmer_melee"
 	faction = "swarmer"
+
+	maxHealth = 70
+	health = 70
+
+	speed = 2
 
 	law_type = /datum/ai_laws/swarm_drone/soldier
 	module_type = /obj/item/weapon/robot_module/drone/swarm/melee

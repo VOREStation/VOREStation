@@ -6,6 +6,7 @@
 	icon_living = "reddragon"
 	icon_state = "reddragon"
 	icon = 'icons/mob/vore64x64.dmi'
+	vis_height = 64
 
 	faction = "dragon"
 	maxHealth = 500 // Boss
@@ -65,6 +66,7 @@
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_mob(src)
 	verbs |= /mob/living/simple_mob/proc/animal_mount
+	verbs |= /mob/living/proc/toggle_rider_reins
 	movement_cooldown = 0
 
 /mob/living/simple_mob/vore/aggressive/dragon/MouseDrop_T(mob/living/M, mob/living/user)

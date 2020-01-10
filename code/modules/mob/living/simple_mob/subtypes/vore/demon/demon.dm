@@ -7,6 +7,7 @@
 	icon_dead = "boxfox_dead"
 	icon_rest = "boxfox_rest"
 	icon = 'icons/mob/demon_vr.dmi'
+	vis_height = 47
 
 	faction = "demon"
 	maxHealth = 30

@@ -423,7 +423,9 @@
 	desc = "Enables the sending and receiving of messages on the Exonet with the EPv2 protocol."
 	extended_desc = "An EPv2 address is a string with the format of XXXX:XXXX:XXXX:XXXX.  Data can be send or received using the \
 	second pin on each side, with additonal data reserved for the third pin.  When a message is received, the second activaiton pin \
-	will pulse whatever's connected to it.  Pulsing the first activation pin will send a message."
+	will pulse whatever's connected to it.  Pulsing the first activation pin will send a message.\
+	\
+	When messaging Communicators, you must set data to send to the string `text` to avoid errors in reception."
 	icon_state = "signal"
 	complexity = 4
 	inputs = list(
@@ -571,7 +573,7 @@
 /obj/item/integrated_circuit/input/microphone/sign/Initialize()
 	..()
 	for(var/lang in readable_langs)
-		var/datum/language/newlang = all_languages[lang]
+		var/datum/language/newlang = GLOB.all_languages[lang]
 		my_langs |= newlang
 
 /obj/item/integrated_circuit/input/microphone/sign/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)

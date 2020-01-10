@@ -58,5 +58,5 @@
 /obj/machinery/chemical_dispenser/bar_coffee
 	dispense_reagents = list(
 		"coffee", "cafe_latte", "soy_latte", "hot_coco", "milk", "cream", "tea", "ice",
-		"orangejuice", "lemonjuice", "limejuice", "berryjuice", "mint"
+		"orangejuice", "lemonjuice", "limejuice", "berryjuice", "mint", "decaf"
 		)
