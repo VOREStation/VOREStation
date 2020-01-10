@@ -5641,6 +5641,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
+/obj/effect/floor_decal/rust,
 /turf/simulated/floor/virgo3b,
 /area/tether/surfacebase/outside/outside1)
 "ajE" = (
@@ -5648,6 +5649,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/catwalk,
+/obj/effect/floor_decal/rust,
 /turf/simulated/floor/virgo3b,
 /area/tether/surfacebase/outside/outside1)
 "ajF" = (
@@ -5656,12 +5658,14 @@
 	},
 /obj/structure/catwalk,
 /obj/structure/railing,
+/obj/effect/floor_decal/rust,
 /turf/simulated/floor/virgo3b,
 /area/tether/surfacebase/outside/outside1)
 "ajG" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
 	},
+/obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "ajH" = (
@@ -5670,6 +5674,7 @@
 	icon_state = "0-2";
 	d2 = 2
 	},
+/obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "ajI" = (
@@ -5679,6 +5684,7 @@
 	icon_state = "1-2";
 	pixel_y = 0
 	},
+/obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "ajJ" = (
@@ -5995,6 +6001,7 @@
 	pixel_x = -22;
 	pixel_y = 0
 	},
+/obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "akD" = (
@@ -10945,10 +10952,8 @@
 	icon_state = "1-2";
 	pixel_y = 0
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
+/obj/effect/floor_decal/rust,
+/obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "asI" = (
@@ -10958,7 +10963,11 @@
 	icon_state = "1-2";
 	pixel_y = 0
 	},
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "asJ" = (
@@ -30937,11 +30946,14 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/lobby)
 "bbc" = (
-/obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 25;
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
 	pixel_y = 0
 	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "bbd" = (
@@ -31526,7 +31538,16 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
 "bbT" = (
-/turf/simulated/mineral,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/rust,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "bbU" = (
 /obj/structure/table/rack,
@@ -31982,6 +32003,25 @@
 	},
 /turf/simulated/floor/plating,
 /area/engineering/atmos/processing)
+"bcQ" = (
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 25;
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining_eva)
+"bcR" = (
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining_eva)
+"bcS" = (
+/obj/structure/closet/crate,
+/obj/random/maintenance/cargo,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining_eva)
 "cGJ" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
@@ -41998,14 +42038,14 @@ ajI
 akC
 ajI
 ajI
-ajI
-ajI
 asH
+ajI
 asI
-asI
-asI
-asI
-asI
+bbc
+bbT
+bbT
+bbT
+bbc
 aup
 avl
 ahp
@@ -43144,7 +43184,7 @@ abT
 bbB
 bbe
 bce
-bbT
+bcS
 ahX
 aiZ
 afc
@@ -43711,7 +43751,7 @@ amO
 ano
 bcf
 bcf
-cGJ
+bcR
 agM
 aid
 anW
@@ -43852,7 +43892,7 @@ agg
 amN
 aer
 bcf
-bbc
+bcQ
 air
 agM
 aie

@@ -844,11 +844,11 @@
 	name = "\improper Abandoned Library Conference"
 	icon_state = "library"
 /area/maintenance/station/spacecommandmaint
-	name = "\improper Space Command Maintenance"
+	name = "\improper Asteroid Command Maintenance"
 	icon_state = "bridge"
 	sound_env = SEWER_PIPE
 /area/maintenance/substation/spacecommand
-	name = "\improper Space Command Substation"
+	name = "\improper Asteroid Command Substation"
 	icon_state = "substation"
 
 /area/shuttle/tether/crash1
