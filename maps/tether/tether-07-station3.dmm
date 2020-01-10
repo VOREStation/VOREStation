@@ -13152,9 +13152,10 @@
 /turf/simulated/floor/wood,
 /area/hallway/station/upper)
 "un" = (
-/obj/structure/flora/pottedplant/flower,
-/turf/simulated/floor/wood,
-/area/hallway/station/upper)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "uo" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -14602,16 +14603,9 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
 "wL" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/lightgrey/border,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 8
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/quartermaster/foyer)
+/obj/structure/flora/pottedplant/flower,
+/turf/simulated/floor/wood,
+/area/hallway/station/upper)
 "wM" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/table/reinforced,
@@ -17351,16 +17345,16 @@
 /turf/simulated/floor/wood,
 /area/quartermaster/qm)
 "AK" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
 	},
-/obj/effect/floor_decal/corner_steel_grid{
-	dir = 10
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
-/area/teleporter/departing)
+/area/quartermaster/foyer)
 "AL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -17489,10 +17483,16 @@
 /turf/simulated/floor/plating,
 /area/quartermaster/storage)
 "AY" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/corner_steel_grid{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/teleporter/departing)
 "AZ" = (
 /obj/structure/table/glass,
 /obj/item/weapon/storage/firstaid/regular,
@@ -35612,7 +35612,7 @@ Aa
 Bl
 SI
 Da
-AK
+AY
 EB
 Fp
 Gf
@@ -40428,7 +40428,7 @@ iV
 iV
 iV
 sq
-un
+wL
 va
 vQ
 wy
@@ -40553,7 +40553,7 @@ Zy
 WG
 dj
 XA
-AY
+un
 ms
 Oz
 be
@@ -40695,7 +40695,7 @@ UJ
 Xb
 dj
 XN
-AY
+un
 ms
 Xq
 be
@@ -40837,7 +40837,7 @@ iW
 WS
 dj
 XN
-AY
+un
 ms
 Xq
 be
@@ -41120,7 +41120,7 @@ jZ
 WR
 Xo
 XN
-AY
+un
 cK
 ms
 Xq
@@ -41688,7 +41688,7 @@ ea
 kx
 dj
 XN
-AY
+un
 cK
 ms
 mq
@@ -41712,7 +41712,7 @@ vW
 wD
 xk
 xY
-wL
+AK
 zJ
 zL
 Ep
@@ -41973,7 +41973,7 @@ kQ
 TG
 dj
 XN
-AY
+un
 ms
 mq
 be
@@ -42115,7 +42115,7 @@ kR
 Vd
 dj
 XN
-AY
+un
 ms
 QL
 be
@@ -42257,7 +42257,7 @@ ZE
 ZB
 dj
 XB
-AY
+un
 ms
 Sq
 be

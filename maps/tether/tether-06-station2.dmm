@@ -10197,24 +10197,10 @@
 /turf/simulated/floor/plating,
 /area/maintenance/station/eng_upper)
 "oW" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/effect/floor_decal/borderfloor/corner2,
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 9
-	},
-/obj/effect/floor_decal/borderfloor/corner{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2,
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/lightgrey/bordercorner{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/hallway/station/starboard)
+/obj/structure/table/reinforced,
+/obj/random/tetheraid,
+/turf/simulated/floor/tiled/white,
+/area/maintenance/station/sec_lower)
 "oX" = (
 /obj/structure/sign/nosmoking_1,
 /turf/simulated/wall,
@@ -10463,8 +10449,24 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
 "pt" = (
-/turf/simulated/wall/r_wall,
-/area/medical/surgery_hallway)
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/effect/floor_decal/borderfloor/corner2,
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2,
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/lightgrey/bordercorner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/starboard)
 "pu" = (
 /obj/structure/table/bench/wooden,
 /obj/effect/landmark/start{
@@ -13947,9 +13949,6 @@
 /area/medical/psych)
 "uW" = (
 /turf/simulated/wall,
-/area/medical/morgue)
-"uX" = (
-/turf/simulated/wall/r_wall,
 /area/medical/morgue)
 "uY" = (
 /obj/structure/table/woodentable,
@@ -21101,10 +21100,6 @@
 /obj/item/weapon/book/manual/medical_diagnostics_manual,
 /turf/simulated/floor/tiled/white,
 /area/maintenance/station/sec_lower)
-"Nb" = (
-/obj/structure/table/reinforced,
-/turf/simulated/floor/tiled/white,
-/area/maintenance/station/sec_lower)
 "Nc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -27767,7 +27762,7 @@ at
 NN
 QN
 GW
-Nb
+oW
 Ft
 Fe
 at
@@ -32767,8 +32762,8 @@ DS
 DV
 FB
 pU
-oW
 pt
+pp
 qP
 ry
 sc
@@ -32909,8 +32904,8 @@ DL
 DL
 DL
 DL
-uX
-uX
+uW
+uW
 uW
 uW
 uW

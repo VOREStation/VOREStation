@@ -16425,6 +16425,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/machinery/vending/wallmed1/public{
+	pixel_x = 28
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
 "aCE" = (
