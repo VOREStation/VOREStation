@@ -10197,21 +10197,18 @@
 /turf/simulated/floor/plating,
 /area/maintenance/station/eng_upper)
 "oW" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/effect/floor_decal/borderfloor/corner2,
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 9
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
 	},
-/obj/effect/floor_decal/borderfloor/corner{
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 4
 	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2,
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/lightgrey/bordercorner{
-	dir = 4
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/machinery/vending/wallmed1/public{
+	pixel_y = 28
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
@@ -10463,8 +10460,27 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
 "pt" = (
-/turf/simulated/wall/r_wall,
-/area/medical/surgery_hallway)
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/effect/floor_decal/borderfloor/corner2,
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2,
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/lightgrey/bordercorner{
+	dir = 4
+	},
+/obj/machinery/vending/wallmed1/public{
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/starboard)
 "pu" = (
 /obj/structure/table/bench/wooden,
 /obj/effect/landmark/start{
@@ -11291,6 +11307,9 @@
 	},
 /obj/effect/floor_decal/corner/lightgrey/bordercorner2{
 	dir = 1
+	},
+/obj/machinery/vending/wallmed1/public{
+	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/public_meeting_room)
@@ -13947,9 +13966,6 @@
 /area/medical/psych)
 "uW" = (
 /turf/simulated/wall,
-/area/medical/morgue)
-"uX" = (
-/turf/simulated/wall/r_wall,
 /area/medical/morgue)
 "uY" = (
 /obj/structure/table/woodentable,
@@ -32767,8 +32783,8 @@ DS
 DV
 FB
 pU
-oW
 pt
+pp
 qP
 ry
 sc
@@ -32909,8 +32925,8 @@ DL
 DL
 DL
 DL
-uX
-uX
+uW
+uW
 uW
 uW
 uW
@@ -35599,7 +35615,7 @@ kt
 kt
 kt
 kt
-nl
+oW
 nR
 qC
 oY

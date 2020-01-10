@@ -11250,6 +11250,9 @@
 	dir = 9
 	},
 /obj/effect/floor_decal/techfloor,
+/obj/machinery/vending/wallmed1/public{
+	pixel_y = -28
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/sleep/cryo)
 "aub" = (
@@ -17255,6 +17258,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor,
 /area/maintenance/station/spacecommandmaint)
+"aDS" = (
+/obj/machinery/vending/wallmed1/public{
+	pixel_x = -28
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/visitorhallway/lounge)
 "aDT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -31930,7 +31939,7 @@ aya
 ayZ
 azv
 aCl
-azP
+aDS
 azY
 aAg
 aAY

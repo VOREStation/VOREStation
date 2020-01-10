@@ -10101,6 +10101,9 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/first_aid_west)
 "arq" = (
+/obj/machinery/vending/wallmed1/public{
+	pixel_y = 28
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/first_aid_west)
 "arr" = (
@@ -17480,6 +17483,9 @@
 	},
 /obj/effect/floor_decal/corner/lightgrey/border{
 	dir = 8
+	},
+/obj/machinery/vending/wallmed1/public{
+	pixel_x = -28
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker/laundry_arrival)
@@ -28973,6 +28979,9 @@
 "aWW" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/grey/border,
+/obj/machinery/vending/wallmed1/public{
+	pixel_y = -28
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "aWX" = (

@@ -6205,12 +6205,18 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "ake" = (
-/obj/structure/bed/padded,
-/obj/effect/floor_decal/techfloor{
-	dir = 8
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 9
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/crew_quarters/panic_shelter)
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 6
+	},
+/obj/structure/table/standard,
+/obj/machinery/vending/wallmed1/public{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "akf" = (
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/panic_shelter)
@@ -8517,16 +8523,15 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "aof" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/machinery/light{
-	icon_state = "tube1";
+/obj/structure/bed/padded,
+/obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
-/turf/simulated/floor/wood,
-/area/crew_quarters/recreation_area)
+/obj/machinery/vending/wallmed1/public{
+	pixel_x = -28
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/crew_quarters/panic_shelter)
 "aog" = (
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_stairs_three)
@@ -23727,8 +23732,9 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/chargebay)
 "aMw" = (
-/obj/machinery/camera/network/civilian{
-	dir = 9
+/obj/structure/table/woodentable,
+/obj/machinery/vending/wallmed1/public{
+	pixel_x = 28
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/recreation_area)
@@ -27823,6 +27829,20 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "aUg" = (
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/recreation_area)
+"aUh" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
@@ -28303,16 +28323,6 @@
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 9
 	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_three_hall)
-"aVr" = (
-/obj/effect/floor_decal/corner/lightgrey{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/lightgrey{
-	dir = 6
-	},
-/obj/structure/table/standard,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "aVs" = (
@@ -40060,7 +40070,7 @@ amw
 aDX
 aDZ
 aob
-aof
+aUg
 akY
 apo
 apO
@@ -45587,7 +45597,7 @@ aUS
 aJl
 aVj
 aSP
-aVr
+ake
 aVu
 aix
 ajX
@@ -45643,7 +45653,7 @@ aNk
 aNl
 aNJ
 aNP
-aUg
+aUh
 aKU
 abg
 aOk
@@ -45785,7 +45795,7 @@ aNl
 aNl
 aNK
 aNP
-aUg
+aUh
 aKU
 abg
 aOk
@@ -45927,7 +45937,7 @@ aNm
 aNl
 aNK
 aNP
-aUg
+aUh
 aKU
 abg
 aOk
@@ -46726,7 +46736,7 @@ aac
 aac
 aio
 ajl
-ake
+aof
 akN
 als
 ame
