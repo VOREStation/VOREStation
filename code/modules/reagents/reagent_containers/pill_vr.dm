@@ -124,3 +124,13 @@
 	..()
 	reagents.add_reagent("healing_nanites", 30)
 	color = reagents.get_color()
+
+/obj/item/weapon/reagent_containers/pill/sleevingcure
+	name = "Kitsuhanan Cure pill"
+	desc = "A rare cure provided by KHI that helps counteract negative side effects of using imperfect resleeving machinery."
+	icon_state = "pill3"
+
+/obj/item/weapon/reagent_containers/pill/sleevingcure/Initialize()
+	..()
+	reagents.add_reagent("sleevingcure", 1)
+	color = reagents.get_color()
