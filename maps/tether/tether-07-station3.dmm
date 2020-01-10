@@ -18762,13 +18762,23 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/nuke_storage)
 "CV" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	icon_state = "map-scrubbers";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	icon_state = "intact";
+	dir = 4
+	},
+/obj/structure/disposalpipe/sortjunction{
+	name = "Primary Medical Storage";
+	sortType = "Primary Medical Storage"
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/sleeper)
 "CW" = (
 /obj/machinery/power/apc{
 	dir = 2;
@@ -22680,20 +22690,22 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "IN" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
+/obj/machinery/shower{
+	pixel_y = 10
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	icon_state = "map-scrubbers";
-	dir = 4
+/obj/effect/floor_decal/steeldecal/steel_decals5,
+/obj/effect/floor_decal/steeldecal/steel_decals5{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
-	icon_state = "intact";
-	dir = 4
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
 	},
-/obj/structure/disposalpipe/junction,
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 6
+	},
+/obj/structure/curtain/open/shower/medical,
 /turf/simulated/floor/tiled/white,
-/area/medical/sleeper)
+/area/crew_quarters/medical_restroom)
 "IO" = (
 /obj/machinery/power/breakerbox/activated{
 	RCon_tag = "Cargo Substation Bypass"
@@ -25540,6 +25552,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
 	},
+/obj/structure/curtain/open/shower/medical,
 /turf/simulated/floor/tiled/steel,
 /area/medical/virologyaccess)
 "NC" = (
@@ -27079,12 +27092,20 @@
 /area/medical/virology)
 "Qp" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1/station)
 "Qq" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
+"Qr" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_r"
@@ -27092,23 +27113,6 @@
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1/station)
-"Qr" = (
-/obj/machinery/shower{
-	pixel_y = 10
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals5,
-/obj/effect/floor_decal/steeldecal/steel_decals5{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 6
-	},
-/obj/structure/curtain/open/shower,
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/medical_restroom)
 "Qs" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_medical{
@@ -35337,7 +35341,7 @@ ab
 ab
 ab
 KE
-Qr
+IN
 Wv
 KE
 Vv
@@ -38172,7 +38176,7 @@ Gr
 GY
 Hs
 Ia
-IN
+CV
 Jx
 Kl
 KJ
@@ -39320,11 +39324,11 @@ MK
 Iy
 ab
 NL
-CV
-Qp
-Qp
 Qp
 Qq
+Qq
+Qq
+Qr
 NL
 vt
 vt
