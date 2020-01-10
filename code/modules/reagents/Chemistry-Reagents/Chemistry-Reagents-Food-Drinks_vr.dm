@@ -1,12 +1,39 @@
 /datum/reagent/nutriment
 	nutriment_factor = 10
 
+/datum/reagent/toxin/meatcolony
+	name = "A colony of meat cells"
+	id = "meatcolony"
+	description = "Specialised cells designed to produce a large amount of meat once activated, whilst manufacturers have managed to stop these cells from taking over the body when ingested, it's still poisonous."
+	taste_description = "a fibrous mess"
+	reagent_state = LIQUID
+	color = "#ff2424"
+	strength = 10
+
+/datum/reagent/toxin/plantcolony
+	name = "A colony of plant cells"
+	id = "plantcolony"
+	description = "Specialised cells designed to produce a large amount of nutriment once activated, whilst manufacturers have managed to stop these cells from taking over the body when ingested, it's still poisonous."
+	taste_description = "a fibrous mess"
+	reagent_state = LIQUID
+	color = "#7ce01f"
+	strength = 10
+
+/datum/reagent/nutriment/grubshake
+	name = "Grub shake"
+	id = "grubshake"
+	description = "An odd fluid made from grub guts, supposedly filling."
+	taste_description = "sparkles"
+	taste_mult = 1.3
+	nutriment_factor = 5
+	color = "#fff200"
+
 /datum/reagent/lipozine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.nutrition = max(M.nutrition - 20 * removed, 0)
 	M.overeatduration = 0
 	if(M.nutrition < 0)
 		M.nutrition = 0
-		
+
 /datum/reagent/ethanol/deathbell
 	name = "Deathbell"
 	id = "deathbell"
@@ -20,7 +47,7 @@
 
 	glass_name = "Deathbell"
 	glass_desc = "The perfect blend of the most alcoholic things a bartender can get their hands on."
-	
+
 /datum/reagent/ethanol/deathbell/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
@@ -49,7 +76,7 @@
 	if(M.species.gets_food_nutrition) //it's still food!
 		switch(alien)
 			if(IS_DIONA) //Diona don't get any nutrition from nutriment or protein.
-			if(IS_SKRELL) 
+			if(IS_SKRELL)
 				M.adjustToxLoss(0.25 * removed)  //Equivalent to half as much protein, since it's half protein.
 			if(IS_TESHARI)
 				M.nutrition += (alt_nutriment_factor * 1.2 * removed) //Give them the same nutrition they would get from protein.
@@ -57,7 +84,7 @@
 				M.nutrition += (alt_nutriment_factor * 1.125 * removed) //Give them the same nutrition they would get from protein.
 				//Takes into account the 0.5 factor for all nutriment which is applied on top of the 2.25 factor for protein.
 			//Chimera don't need their own case here since their factors for nutriment and protein cancel out.
-			else 
+			else
 				M.nutrition += (alt_nutriment_factor * removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M

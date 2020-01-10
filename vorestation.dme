@@ -391,6 +391,7 @@
 #include "code\datums\supplypacks\security.dm"
 #include "code\datums\supplypacks\security_vr.dm"
 #include "code\datums\supplypacks\supply.dm"
+#include "code\datums\supplypacks\supply_vr.dm"
 #include "code\datums\supplypacks\supplypacks.dm"
 #include "code\datums\supplypacks\voidsuits.dm"
 #include "code\datums\supplypacks\voidsuits_vr.dm"
