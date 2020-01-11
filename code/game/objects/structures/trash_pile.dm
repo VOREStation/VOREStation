@@ -131,7 +131,6 @@
 					prob(5);/obj/item/weapon/storage/backpack,
 					prob(5);/obj/item/weapon/storage/backpack/satchel/norm,
 					prob(5);/obj/item/weapon/storage/box,
-					prob(5);/obj/item/pizzavoucher,
 				//	prob(5);/obj/random/cigarettes,
 					prob(4);/obj/item/broken_device/random,
 					prob(4);/obj/item/clothing/head/hardhat,
@@ -213,7 +212,8 @@
 					prob(1);/obj/item/weapon/spacecash/c100,
 					prob(1);/obj/item/weapon/spacecash/c50,
 					prob(1);/obj/item/weapon/storage/backpack/dufflebag/syndie,
-					prob(1);/obj/item/weapon/storage/box/cups)
+					prob(1);/obj/item/weapon/storage/box/cups,
+					prob(1);/obj/item/pizzavoucher)
 
 	var/obj/item/I = new path()
 	return I
