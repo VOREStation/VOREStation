@@ -25,7 +25,7 @@
 	var/apply_color_to_mob = TRUE  // Do we color the mob to match the plant?
 	var/has_item_product           // Item products. (Eggy)
 	var/force_layer
-	var/harvest_sound = null
+	var/harvest_sound = null		//Vorestation edit - sound the plant makes when harvested
 
 // Making the assumption anything in HYDRO-ponics is capable of processing water, and nutrients commonly associated with it, leaving us with the below to be tweaked.
 	var/list/beneficial_reagents   // Reagents considered uniquely 'beneficial' by a plant.
@@ -770,7 +770,7 @@
 		var/turf/T = get_turf(user)
 		create_spores(T)
 
-	if(harvest_sound)
+	if(harvest_sound)//Vorestation edit
 		var/turf/M = get_turf(user)
 		playsound(M, harvest_sound, 50, 1, -1)
 

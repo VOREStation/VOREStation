@@ -102,3 +102,11 @@
 	if(M.species.gets_food_nutrition)
 		if(alien == IS_SLIME || alien == IS_CHIMERA) //slimes and chimera can get nutrition from injected nutriment and protein
 			M.nutrition += (alt_nutriment_factor * removed)
+
+
+
+/datum/reagent/nutriment/magicdust/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	playsound(M.loc, 'sound/items/hooh.ogg', 50, 1, -1)
+	if(prob(5))
+		to_chat(M, "<span class='warning'>You feel like you've been gnomed...</span>")
