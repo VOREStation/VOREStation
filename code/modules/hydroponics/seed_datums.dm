@@ -1503,6 +1503,7 @@
 	display_name = "gnomes"
 	force_layer = 3
 	chems = list("magicdust" = list(5,20))
+	harvest_sound = 'sound/items/hooh.ogg'
 
 /datum/seed/gnomes/New()
 	..()

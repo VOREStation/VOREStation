@@ -25,6 +25,7 @@
 	var/apply_color_to_mob = TRUE  // Do we color the mob to match the plant?
 	var/has_item_product           // Item products. (Eggy)
 	var/force_layer
+	var/harvest_sound = null
 
 // Making the assumption anything in HYDRO-ponics is capable of processing water, and nutrients commonly associated with it, leaving us with the below to be tweaked.
 	var/list/beneficial_reagents   // Reagents considered uniquely 'beneficial' by a plant.
@@ -768,6 +769,10 @@
 	if(get_trait(TRAIT_SPORING) && prob(round(30 * yield_mod)))
 		var/turf/T = get_turf(user)
 		create_spores(T)
+
+	if(harvest_sound)
+		var/turf/M = get_turf(user)
+		playsound(M, harvest_sound, 50, 1, -1)
 
 	if(!force_amount && get_trait(TRAIT_YIELD) == 0 && !harvest_sample)
 		if(istype(user)) user << "<span class='danger'>You fail to harvest anything useful.</span>"

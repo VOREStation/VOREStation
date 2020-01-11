@@ -243,7 +243,8 @@
 					prob(1);/obj/item/weapon/material/knife/tacknife,
 					prob(1);/obj/item/weapon/storage/box/survival/space,
 					prob(1);/obj/item/weapon/storage/secure/briefcase/trashmoney,
-					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
+					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid,
+					prob(1);/obj/item/seeds/gnomes)
 
 	var/obj/item/I = new path()
 	return I
