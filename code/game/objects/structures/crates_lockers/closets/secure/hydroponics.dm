@@ -42,7 +42,7 @@
 /obj/structure/closet/secure_closet/hydroponics/sci/Initialize()
 	starts_with += /obj/item/clothing/head/bio_hood/scientist
 	starts_with += /obj/item/clothing/suit/bio_suit/scientist
-	starts_with += /obj/item/clothing/mask/gas/clear
+	starts_with += /obj/item/clothing/mask/gas					// VOREStation Edit: Gasmasks we use are different
 
 	if(prob(1))
 		starts_with += /obj/item/weapon/chainsaw

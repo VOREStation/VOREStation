@@ -201,9 +201,6 @@
 /area/tether/surfacebase/medical/patient_b
 	name = "\improper Surface Patient Room B"
 	lightswitch = 0
-/area/tether/surfacebase/medical/patient_c
-	name = "\improper Surface Patient Room C"
-	lightswitch = 0
 /area/tether/surfacebase/medical/lowerhall
 	name = "\improper Surface Medical Lower Hall"
 /area/tether/surfacebase/medical/storage
