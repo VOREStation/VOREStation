@@ -6193,6 +6193,9 @@
 /area/gateway)
 "akF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/gateway)
 "akG" = (
@@ -17252,6 +17255,23 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor,
 /area/maintenance/station/spacecommandmaint)
+"aDS" = (
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = 28;
+	pixel_y = 0
+	},
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 11;
+	pixel_y = 0
+	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/sleep/engi_wash)
 "aDT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -17491,6 +17511,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/visitorhallway/laundry)
+"aEk" = (
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/abandonedlibrary)
 "aEl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -17515,6 +17541,18 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/dock_two)
+"aEo" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/effect/landmark{
+	name = "morphspawn"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
@@ -17904,20 +17942,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
-"aGx" = (
-/obj/structure/mirror{
-	dir = 4;
-	pixel_x = 28;
-	pixel_y = 0
-	},
-/obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/sleep/engi_wash)
 "aGy" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -31321,7 +31345,7 @@ auz
 aBE
 aLj
 aEM
-aGx
+aDS
 aIn
 aKl
 aMp
@@ -31501,7 +31525,7 @@ aHw
 aDK
 aEn
 aEO
-aFt
+aEo
 aGb
 aIR
 bPF
@@ -37031,7 +37055,7 @@ amU
 aoK
 anY
 apk
-anp
+aEk
 aqc
 amU
 aac

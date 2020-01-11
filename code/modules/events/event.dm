@@ -49,6 +49,7 @@
 	var/isRunning		= 1 //If this event is currently running. You should not change this.
 	var/startedAt		= 0 //When this event started.
 	var/endedAt			= 0 //When this event ended.
+	var/processing_active = TRUE		//VOREStation Addition
 	var/datum/event_meta/event_meta = null
 
 /datum/event/nothing

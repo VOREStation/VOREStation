@@ -9656,12 +9656,20 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/server)
 "asU" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 6
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 4;
+	pixel_y = 26
 	},
-/obj/structure/flora/pottedplant/dead,
-/turf/simulated/floor/tiled/techfloor,
-/area/server)
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/paramed)
 "asV" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8;
@@ -15018,21 +15026,15 @@
 /turf/simulated/floor/plating,
 /area/engineering/drone_fabrication)
 "aBC" = (
-/obj/machinery/light_switch{
-	pixel_y = 28
+/obj/effect/floor_decal/techfloor{
+	dir = 6
 	},
-/obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 8
+/obj/structure/flora/pottedplant/dead,
+/obj/effect/landmark{
+	name = "morphspawn"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/engineering/drone_fabrication)
+/turf/simulated/floor/tiled/techfloor,
+/area/server)
 "aBD" = (
 /obj/structure/railing{
 	dir = 4
@@ -22683,17 +22685,24 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aPW" = (
-/obj/machinery/firealarm{
-	dir = 2;
-	layer = 3.3;
-	pixel_x = 4;
-	pixel_y = 26
+/obj/machinery/light_switch{
+	pixel_y = 28
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/paramed)
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/plating,
+/area/engineering/drone_fabrication)
 "aPX" = (
 /obj/machinery/alarm{
 	pixel_x = 0;
@@ -36510,7 +36519,7 @@ aqf
 aqP
 arx
 asj
-asU
+aBC
 aok
 aul
 aui
@@ -39362,7 +39371,7 @@ ayG
 azp
 aDs
 aAU
-aBC
+aPW
 aCa
 aCA
 aCA
@@ -41290,7 +41299,7 @@ aab
 aab
 aac
 aNz
-aPW
+asU
 ahh
 aan
 ahd

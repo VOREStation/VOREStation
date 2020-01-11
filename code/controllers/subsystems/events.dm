@@ -21,7 +21,8 @@ SUBSYSTEM_DEF(events)
 
 /datum/controller/subsystem/events/fire(resumed)
 	for(var/datum/event/E in active_events)
-		E.process()
+		if(E.processing_active)		//VOREStation Edit
+			E.process()				//VOREStation Edit
 
 	for(var/i = EVENT_LEVEL_MUNDANE to EVENT_LEVEL_MAJOR)
 		var/list/datum/event_container/EC = event_containers[i]

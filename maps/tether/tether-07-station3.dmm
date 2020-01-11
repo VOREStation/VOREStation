@@ -4560,6 +4560,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "hw" = (
@@ -6365,11 +6368,10 @@
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
 "jV" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/maintenance/station/cargo)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "jW" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -13152,10 +13154,17 @@
 /turf/simulated/floor/wood,
 /area/hallway/station/upper)
 "un" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
+	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/tiled,
+/area/security/security_bathroom)
 "uo" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -17512,11 +17521,14 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/stairs_three)
 "Bb" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/machinery/light/small{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/dark,
-/area/security/nuke_storage)
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/tiled,
+/area/maintenance/station/cargo)
 "Bc" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -27093,24 +27105,24 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "Qp" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/security/nuke_storage)
 "Qq" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/effect/landmark{
+	name = "morphspawn"
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/medical_restroom)
 "Qr" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
-	icon_state = "propulsion_r"
+	icon_state = "propulsion_l"
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -27134,6 +27146,21 @@
 "Qt" = (
 /turf/simulated/wall,
 /area/tether/exploration)
+"Qu" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
+"Qv" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
 "Qw" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -34189,7 +34216,7 @@ xw
 xw
 zf
 zT
-Bb
+Qp
 BW
 CU
 xw
@@ -35489,7 +35516,7 @@ Qx
 Nl
 Md
 Nl
-Nl
+Qq
 Yz
 vt
 vt
@@ -39326,11 +39353,11 @@ MK
 Iy
 ab
 NL
-Qp
-Qq
-Qq
-Qq
 Qr
+Qu
+Qu
+Qu
+Qv
 NL
 vt
 vt
@@ -39417,7 +39444,7 @@ TX
 WB
 uL
 Uw
-UV
+un
 fG
 af
 fc
@@ -40553,7 +40580,7 @@ Zy
 WG
 dj
 XA
-un
+jV
 ms
 Oz
 be
@@ -40578,7 +40605,7 @@ vv
 xS
 fF
 AH
-jV
+Bb
 yP
 AH
 Ai
@@ -40695,7 +40722,7 @@ UJ
 Xb
 dj
 XN
-un
+jV
 ms
 Xq
 be
@@ -40837,7 +40864,7 @@ iW
 WS
 dj
 XN
-un
+jV
 ms
 Xq
 be
@@ -41120,7 +41147,7 @@ jZ
 WR
 Xo
 XN
-un
+jV
 cK
 ms
 Xq
@@ -41688,7 +41715,7 @@ ea
 kx
 dj
 XN
-un
+jV
 cK
 ms
 mq
@@ -41973,7 +42000,7 @@ kQ
 TG
 dj
 XN
-un
+jV
 ms
 mq
 be
@@ -42115,7 +42142,7 @@ kR
 Vd
 dj
 XN
-un
+jV
 ms
 QL
 be
@@ -42257,7 +42284,7 @@ ZE
 ZB
 dj
 XB
-un
+jV
 ms
 Sq
 be
