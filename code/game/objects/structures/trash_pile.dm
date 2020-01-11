@@ -131,6 +131,7 @@
 					prob(5);/obj/item/weapon/storage/backpack,
 					prob(5);/obj/item/weapon/storage/backpack/satchel/norm,
 					prob(5);/obj/item/weapon/storage/box,
+					prob(5);/obj/item/pizzavoucher,
 				//	prob(5);/obj/random/cigarettes,
 					prob(4);/obj/item/broken_device/random,
 					prob(4);/obj/item/clothing/head/hardhat,
