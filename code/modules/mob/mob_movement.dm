@@ -212,6 +212,10 @@
 			//drunk driving
 			if(mob.confused && prob(20)) //vehicles tend to keep moving in the same direction
 				direct = turn(direct, pick(90, -90))
+			if(istype(mob.buckled, /mob)) //VOREStation Edit to prevent mob riding speed exploit.
+				var/mob/M = mob.buckled
+				if(M.move_delay > mob.move_delay - 10)
+					return
 			return mob.buckled.relaymove(mob,direct)
 
 		if(istype(mob.machine, /obj/machinery))
