@@ -49,6 +49,10 @@
 			if(alert(user, "Are you sure you want to touch \the [src]?", "Confirm", "No", "Yes") == "No")
 				return
 		trigger()
+		// VOREStation Addition Start
+		if(!used)
+			activated = TRUE
+		// VOREStation Addition End
 
 /obj/structure/ghost_pod/manual/attack_ai(var/mob/living/silicon/user)
 	if(Adjacent(user))
