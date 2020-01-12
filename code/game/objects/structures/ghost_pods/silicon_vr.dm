@@ -1,4 +1,5 @@
 /obj/structure/ghost_pod/manual/lost_drone/dogborg
+	remains_active = TRUE
 
 /obj/structure/ghost_pod/manual/lost_drone/dogborg/create_occupant(var/mob/M)
 	var/response = alert(M, "What type of lost drone are you? Do note, that dogborgs may have experienced different type of corruption ((Potential for having vore-related laws))", "Drone Type", "Regular", "Dogborg")
