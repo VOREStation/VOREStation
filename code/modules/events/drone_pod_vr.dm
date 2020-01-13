@@ -28,4 +28,4 @@
 	if(!land_target)
 		kill()
 
-	new /datum/random_map/droppod/supply(null, land_target.x-2, land_target.y-2, land_target.z, supplied_drops = list(/obj/structure/ghost_pod/manual/lost_drone))
+	new /datum/random_map/droppod/supply(null, land_target.x-2, land_target.y-2, land_target.z, supplied_drops = list(/obj/structure/ghost_pod/manual/lost_drone/dogborg))
