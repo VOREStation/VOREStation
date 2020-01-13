@@ -19,3 +19,16 @@
 	containertype = /obj/structure/largecrate/animal/catgirl
 	containername = "Catgirl crate"
 	contraband = 1
+
+/datum/supply_pack/randomised/hospitality/pizzavouchers //WE ALWAYS DELIVER WE ALWAYS DELIVER WE ALWAYS DELIVER WE ALWAYS DELIVER WE ALWAYS DELIVER
+	num_contained = 3
+	contains = list(
+			/obj/item/pizzavoucher,
+			/obj/item/pizzavoucher,
+			/obj/item/pizzavoucher
+			)
+	name = "FANTASTIC PIZZA PIE VOUCHER CRATE!"
+	cost = 60
+	containertype = /obj/structure/closet/crate
+	containername = "WE ALWAYS DELIVER!"
+	contraband = 1

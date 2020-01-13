@@ -33,3 +33,8 @@
 /datum/gear/suit/gntop
 	display_name = "GN crop jacket"
 	path = /obj/item/clothing/suit/storage/fluff/gntop
+
+/datum/gear/suit/old_poncho //This is made from an old sprite which has been here for quite some time. Called old poncho because duplicates
+	display_name = "Colorful poncho"
+	description = "A mexican looking poncho. It look like it fits wolf taurs as well."
+	path = /obj/item/clothing/suit/poncho
