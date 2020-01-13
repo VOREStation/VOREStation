@@ -117,7 +117,7 @@
 		return
 
 	// VOREStation Addition Start
-	if(isnum(src.client.player_age))
+	if(config.use_age_restriction_for_jobs && isnum(src.client.player_age))
 		var/time_till_play = max(0, 3 - src.client.player_age)
 		if(time_till_play)
 			to_chat(usr, "<span class='danger'>You have not been playing on the server long enough to join as drone.</span>")
