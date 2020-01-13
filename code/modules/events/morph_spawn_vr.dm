@@ -1,6 +1,7 @@
 /datum/event/morph_spawn
 	startWhen = 1
 	announceWhen = 20
+	endWhen = 30
 	var/announceProb = 50
 
 /datum/event/morph_spawn/start()
