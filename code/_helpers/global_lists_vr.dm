@@ -428,6 +428,8 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 				SPECIES_GOLEM,					//Some special species that may or may not be ever used in event too,
 				SPECIES_SHADEKIN)			//Shadefluffers just poof away
 
+/var/global/list/existing_solargrubs = list()
+
 /hook/startup/proc/init_vore_datum_ref_lists()
 	var/paths
 
