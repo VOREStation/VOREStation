@@ -1,6 +1,6 @@
 /datum/event/morph_spawn
 	startWhen = 1
-	announceWhen = 15
+	announceWhen = 20
 	var/announceProb = 50
 
 /datum/event/morph_spawn/start()
@@ -18,6 +18,7 @@
 
 	if(!spawnspot)
 		processing_active = TRUE
+		kill()		// To prevent fake announcements
 		return
 
 	var/datum/ghost_query/Q = new /datum/ghost_query/morph()
@@ -37,6 +38,7 @@
 		newMorph.visible_message("<span class='warning'>A morph appears to crawl out of somewhere.</span>")
 	else
 		processing_active = TRUE
+		kill()		// To prevent fake announcements
 		return
 
 	processing_active = TRUE
