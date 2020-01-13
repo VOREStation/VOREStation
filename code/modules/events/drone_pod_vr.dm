@@ -1,10 +1,10 @@
 /datum/event/drone_pod_drop
-	announceWhen = 1
 	var/turf/land_target = null
 	var/attempt_amount = 10
 
 /datum/event/drone_pod_drop/setup()
 	startWhen = rand(8,15)
+	announceWhen = startWhen + 5
 	if(LAZYLEN(using_map.meteor_strike_areas))
 		var/turf/potential_target = null
 		for(var/i=1, i <= attempt_amount, i++)
