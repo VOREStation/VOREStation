@@ -28,7 +28,7 @@
 			/obj/item/pizzavoucher
 			)
 	name = "FANTASTIC PIZZA PIE VOUCHER CRATE!"
-	cost = 40
+	cost = 60
 	containertype = /obj/structure/closet/crate
 	containername = "WE ALWAYS DELIVER!"
 	contraband = 1
