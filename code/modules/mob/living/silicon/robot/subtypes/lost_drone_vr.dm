@@ -32,7 +32,7 @@
 	..()
 	laws = give_random_lawset_vore()
 
-/mob/living/silicon/proc/give_random_lawset_vore()		// Should be filled out with more vorish possibilities later
+/mob/living/silicon/proc/give_random_lawset_vore()
 	// Decide what kind of laws we want to draw from.
 	var/law_class = pick(
 		prob(25);"good",
@@ -41,7 +41,7 @@
 		prob(15);"corrupted",
 		prob(10);"bad")
 
-	var/vore_law = prob(50)		// 1/2 chance of having vore-related laws
+	var/vore_law = prob(80)		// 4/5 chance of having vore-related laws
 
 	if(vore_law)
 		switch(law_class)
