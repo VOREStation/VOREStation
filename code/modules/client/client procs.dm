@@ -168,10 +168,19 @@
 	hook_vr("client_new",list(src)) //VOREStation Code
 	
 	if(config.paranoia_logging)
+		var/alert = FALSE //VOREStation Edit start.
 		if(isnum(player_age) && player_age == 0)
 			log_and_message_admins("PARANOIA: [key_name(src)] has connected here for the first time.")
+			alert = TRUE
 		if(isnum(account_age) && account_age <= 2)
 			log_and_message_admins("PARANOIA: [key_name(src)] has a very new BYOND account ([account_age] days).")
+			alert = TRUE
+		if(alert)
+			for(var/client/X in admins)
+				if(X.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
+					X << 'sound/voice/bcriminal.ogg'
+				window_flash(X)
+		//VOREStation Edit end.
 
 	//////////////
 	//DISCONNECT//
