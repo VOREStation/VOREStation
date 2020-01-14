@@ -11,4 +11,8 @@
 			            access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_eva, access_network)
 
 /datum/job/scientist
+	spawn_positions = 5
 	alt_titles = list("Xenoarcheologist", "Anomalist", "Phoron Researcher", "Circuit Designer")
+
+/datum/job/xenobiologist
+	spawn_positions = 3
