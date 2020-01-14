@@ -16,3 +16,6 @@
 
 /datum/job/xenobiologist
 	spawn_positions = 3
+
+/datum/job/roboticist
+	total_positions = 3
