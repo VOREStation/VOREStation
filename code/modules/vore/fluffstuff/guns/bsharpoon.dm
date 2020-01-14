@@ -62,18 +62,25 @@
 	var/turf/FromTurf = mode ? get_turf(user) : get_turf(A)
 	var/turf/ToTurf = mode ? get_turf(A) : get_turf(user)
 
-	for(var/obj/O in FromTurf)
-		if(O.anchored) continue
-		if(prob(5))
-			O.forceMove(pick(trange(24,user)))
-		else
-			O.forceMove(ToTurf)
+	if(mode)
+		if(user in FromTurf)
+			if(prob(5))
+				user.forceMove(pick(trange(24,user)))
+			else
+				user.forceMove(ToTurf)
+	else
+		for(var/obj/O in FromTurf)
+			if(O.anchored) continue
+			if(prob(5))
+				O.forceMove(pick(trange(24,user)))
+			else
+				O.forceMove(ToTurf)
 
-	for(var/mob/living/M in FromTurf)
-		if(prob(5))
-			M.forceMove(pick(trange(24,user)))
-		else
-			M.forceMove(ToTurf)
+		for(var/mob/living/M in FromTurf)
+			if(prob(5))
+				M.forceMove(pick(trange(24,user)))
+			else
+				M.forceMove(ToTurf)
 
 /obj/item/weapon/bluespace_harpoon/attack_self(mob/living/user as mob)
 	return chande_fire_mode(user)
