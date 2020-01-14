@@ -61,6 +61,7 @@ var/list/gamemode_cache = list()
 	var/list/player_requirements_secret = list() // Same as above, but for the secret gamemode.
 	var/humans_need_surnames = 0
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
+	var/enable_game_master = 0			// enables the 'smart' event system.
 	var/allow_ai = 1					// allow ai job
 	var/allow_ai_shells = FALSE			// allow AIs to enter and leave special borg shells at will, and for those shells to be buildable.
 	var/give_free_ai_shell = FALSE		// allows a specific spawner object to instantiate a premade AI Shell
@@ -234,8 +235,10 @@ var/list/gamemode_cache = list()
 
 	var/show_human_death_message = 1
 
+	var/radiation_resistance_calc_mode = RAD_RESIST_CALC_SUB // 0:1 subtraction:division for computing effective radiation on a turf
 	var/radiation_decay_rate = 1 //How much radiation is reduced by each tick
 	var/radiation_resistance_multiplier = 8.5 //VOREstation edit
+	var/radiation_material_resistance_divisor = 1
 	var/radiation_lower_limit = 0.35 //If the radiation level for a turf would be below this, ignore it.
 
 	var/random_submap_orientation = FALSE // If true, submaps loaded automatically can be rotated.
@@ -549,6 +552,9 @@ var/list/gamemode_cache = list()
 				if("allow_random_events")
 					config.allow_random_events = 1
 
+				if("enable_game_master")
+					config.enable_game_master = 1
+
 				if("kick_inactive")
 					config.kick_inactive = text2num(value)
 
@@ -779,6 +785,21 @@ var/list/gamemode_cache = list()
 				if("radiation_lower_limit")
 					radiation_lower_limit = text2num(value)
 
+				if("radiation_resistance_calc_divide")
+					radiation_resistance_calc_mode = RAD_RESIST_CALC_DIV
+
+				if("radiation_resistance_calc_subtract")
+					radiation_resistance_calc_mode = RAD_RESIST_CALC_SUB
+
+				if("radiation_resistance_multiplier")
+					radiation_resistance_multiplier = text2num(value)
+
+				if("radiation_material_resistance_divisor")
+					radiation_material_resistance_divisor = text2num(value)
+
+				if("radiation_decay_rate")
+					radiation_decay_rate = text2num(value)
+
 				if ("panic_bunker")
 					config.panic_bunker = 1
 
@@ -790,6 +811,8 @@ var/list/gamemode_cache = list()
 
 				if("autostart_solars")
 					config.autostart_solars = TRUE
+
+
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

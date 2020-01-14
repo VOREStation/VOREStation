@@ -34,6 +34,7 @@
 	desc = "Absolutely gigantic, this creature is horror itself."
 	tt_desc = "X Brachypelma phorus tyrannus"
 	icon = 'icons/mob/64x64.dmi'
+	vis_height = 64
 	icon_state = "spider_queen"
 	icon_living = "spider_queen"
 	icon_dead = "spider_queen_dead"

@@ -138,6 +138,12 @@
 	return
 
 /obj/effect/ebeam/deadly/Crossed(atom/A)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = A
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	..()
 	A.ex_act(1)
 
@@ -157,6 +163,12 @@
 		on_contact(A)
 
 /obj/effect/ebeam/reactive/Crossed(atom/A)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = A
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	..()
 	on_contact(A)
 

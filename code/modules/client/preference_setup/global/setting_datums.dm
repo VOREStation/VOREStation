@@ -135,6 +135,12 @@ var/list/_client_preferences_by_type
 	enabled_description = "Show"
 	disabled_description = "Hide"
 
+/datum/client_preference/air_pump_noise 
+	description ="Air Pump Ambient Noise" 
+	key = "SOUND_AIRPUMP" 
+	enabled_description = "Audible" 
+	disabled_description = "Silent" 
+
 /datum/client_preference/mob_tooltips
 	description ="Mob tooltips"
 	key = "MOB_TOOLTIPS"

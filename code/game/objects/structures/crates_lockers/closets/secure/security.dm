@@ -113,7 +113,7 @@
 		/obj/item/weapon/storage/belt/security,
 		/obj/item/device/flash,
 		/obj/item/weapon/melee/baton/loaded,
-		/obj/item/weapon/gun/energy/gun,
+		/obj/item/weapon/gun/magnetic/railgun/heater/pistol/hos,
 		/obj/item/weapon/cell/device/weapon,
 		/obj/item/clothing/accessory/holster/waist,
 		/obj/item/weapon/melee/telebaton,
@@ -223,6 +223,8 @@
 		starts_with += /obj/item/weapon/storage/backpack/satchel/sec
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/dufflebag/sec
+	if(prob(30))
+		starts_with += /obj/item/weapon/contraband/poster/nanotrasen
 	return ..()
 
 /obj/structure/closet/secure_closet/security/cargo/Initialize()
@@ -271,6 +273,7 @@
 		/obj/item/weapon/reagent_containers/food/drinks/flask/detflask,
 		/obj/item/weapon/storage/briefcase/crimekit,
 		/obj/item/device/taperecorder,
+		/obj/item/weapon/storage/bag/detective,
 		/obj/item/device/tape/random = 3)
 
 /obj/structure/closet/secure_closet/detective/update_icon()
@@ -305,6 +308,17 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 		/obj/item/clothing/under/color/prison,
 		/obj/item/clothing/shoes/orange)
 
+/obj/structure/closet/secure_closet/posters
+	name = "morale storage"
+	req_access = list(access_security)
+	anchored = 1
+
+	starts_with = list(
+		/obj/item/weapon/contraband/poster/nanotrasen,
+		/obj/item/weapon/contraband/poster/nanotrasen,
+		/obj/item/weapon/contraband/poster/nanotrasen,
+		/obj/item/weapon/contraband/poster/nanotrasen,
+		/obj/item/weapon/contraband/poster/nanotrasen)
 
 /obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"

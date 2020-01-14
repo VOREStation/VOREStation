@@ -6,6 +6,7 @@
 	icon_living = "snake"
 	icon_state = "snake"
 	icon = 'icons/mob/vore64x64.dmi'
+	vis_height = 64
 
 	faction = "snake"
 	maxHealth = 200
@@ -13,6 +14,10 @@
 
 	melee_damage_lower = 5
 	melee_damage_upper = 12
+
+	response_help = "pats"
+	response_disarm = "tries to shove"
+	response_harm = "hits"
 
 	old_x = -16
 	old_y = -16

@@ -316,6 +316,7 @@
 	name = "wooden plank"
 	icon_state = "sheet-wood"
 	default_type = MAT_WOOD
+	strict_color_stacking = TRUE
 
 /obj/item/stack/material/wood/sif
 	name = "alien wooden plank"
@@ -367,12 +368,25 @@
 	icon_state = "sheet-cloth"
 	default_type = "cloth"
 	no_variants = FALSE
+	pass_color = TRUE
+	strict_color_stacking = TRUE
+
+/obj/item/stack/material/resin
+	name = "resin"
+	icon_state = "sheet-resin"
+	default_type = "resin"
+	no_variants = TRUE
+	apply_colour = TRUE
+	pass_color = TRUE
+	strict_color_stacking = TRUE
 
 /obj/item/stack/material/cardboard
 	name = "cardboard"
 	icon_state = "sheet-card"
 	default_type = "cardboard"
 	no_variants = FALSE
+	pass_color = TRUE
+	strict_color_stacking = TRUE
 
 /obj/item/stack/material/snow
 	name = "snow"
@@ -392,6 +406,8 @@
 	icon_state = "sheet-leather"
 	default_type = "leather"
 	no_variants = FALSE
+	pass_color = TRUE
+	strict_color_stacking = TRUE
 
 /obj/item/stack/material/glass
 	name = "glass"

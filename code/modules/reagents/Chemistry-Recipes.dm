@@ -150,18 +150,18 @@
 	catalysts = list("phoron" = 1)
 	result_amount = 2
 
-/datum/chemical_reaction/tramadol
-	name = "Tramadol"
-	id = "tramadol"
-	result = "tramadol"
-	required_reagents = list("inaprovaline" = 1, "ethanol" = 1, "oxygen" = 1)
-	result_amount = 3
-
 /datum/chemical_reaction/paracetamol
 	name = "Paracetamol"
 	id = "paracetamol"
 	result = "paracetamol"
-	required_reagents = list("tramadol" = 1, "sugar" = 1, "water" = 1)
+	required_reagents = list("inaprovaline" = 1, "nitrogen" = 1, "water" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/tramadol
+	name = "Tramadol"
+	id = "tramadol"
+	result = "tramadol"
+	required_reagents = list("paracetamol" = 1, "ethanol" = 1, "oxygen" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/oxycodone
@@ -465,6 +465,13 @@
 	required_reagents = list("oxygen" = 1, "anti_toxin" = 1, "carbon" = 1)
 	result_amount = 3
 
+/datum/chemical_reaction/calciumcarbonate
+	name = "Calcium Carbonate"
+	id = "calciumcarbonate"
+	result = "calciumcarbonate"
+	required_reagents = list("oxygen" = 3, "calcium" = 1, "carbon" = 1)
+	result_amount = 2
+
 /datum/chemical_reaction/soporific
 	name = "Soporific"
 	id = "stoxin"
@@ -545,6 +552,20 @@
 	result = "diethylamine"
 	required_reagents = list ("ammonia" = 1, "ethanol" = 1)
 	result_amount = 2
+
+/datum/chemical_reaction/left4zed
+	name = "Left4Zed"
+	id = "left4zed"
+	result = "left4zed"
+	required_reagents = list ("diethylamine" = 2, "mutagen" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/robustharvest
+	name = "RobustHarvest"
+	id = "robustharvest"
+	result = "robustharvest"
+	required_reagents = list ("ammonia" = 1, "calcium" = 1, "neurotoxic_protein" = 1)
+	result_amount = 3
 
 /datum/chemical_reaction/space_cleaner
 	name = "Space cleaner"
@@ -2471,13 +2492,13 @@
 	id = "virginsexonthebeach"
 	result = "virginsexonthebeach"
 	required_reagents = list("orangejuice" = 3, "grenadine" = 2)
-	result_amount = 4
+	result_amount = 5
 
 /datum/chemical_reaction/drinks/sexonthebeach
 	name = "Sex On The Beach"
 	id = "sexonthebeach"
 	result = "sexonthebeach"
-	required_reagents = list("orangejuice" = 3, "grenadine" = 2, "vodka" = 1)
+	required_reagents = list("virginsexonthebeach" = 5, "vodka" = 1)
 	result_amount = 6
 
 /datum/chemical_reaction/drinks/eggnog

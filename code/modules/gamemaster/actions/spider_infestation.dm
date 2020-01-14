@@ -7,21 +7,28 @@
 
 	var/spawncount = 1
 
-/datum/gm_action/spider_infestation/set_up()
-	spawn(rand(600, 6000))
-		announce()
+	var/spawntype = /obj/effect/spider/spiderling
 
-	if(prob(40))
-		severity = rand(2,3)
-	else
-		severity = 1
+/datum/gm_action/spider_infestation/set_up()
+	severity = pickweight(EVENT_LEVEL_MUNDANE = max(1,(12 - (3 * metric.count_people_in_department(ROLE_SECURITY)))),
+	EVENT_LEVEL_MODERATE = (7 + (2 * metric.count_people_in_department(ROLE_SECURITY))),
+	EVENT_LEVEL_MAJOR = (1 + (2 * metric.count_people_in_department(ROLE_SECURITY)))
+	)
+
+	switch(severity)
+		if(EVENT_LEVEL_MUNDANE)
+			spawntype = /obj/effect/spider/spiderling/stunted
+		if(EVENT_LEVEL_MODERATE)
+			spawntype = /obj/effect/spider/spiderling
+		if(EVENT_LEVEL_MAJOR)
+			spawntype = /obj/effect/spider/spiderling
 
 	spawncount = rand(4 * severity, 6 * severity)
 
 /datum/gm_action/spider_infestation/announce()
 	command_announcement.Announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')
 
-	if(severity >= 3)
+	if(severity >= EVENT_LEVEL_MAJOR)
 		spawn(rand(600, 3000))
 			command_announcement.Announce("Unidentified lifesigns previously detected coming aboard [station_name()] have been classified as a swarm of arachnids. Extreme caution is advised.", "Arachnid Alert")
 

@@ -182,6 +182,12 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 /obj/item/seeds/plumpmycelium
 	seed_type = "plumphelmet"
 
+/obj/item/seeds/plastellmycelium
+	seed_type = "plastic"
+
+/obj/item/seeds/sporemycelium
+	seed_type = "sporeshroom"
+
 /obj/item/seeds/nettleseed
 	seed_type = "nettle"
 
@@ -217,6 +223,9 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 
 /obj/item/seeds/ambrosiadeusseed
 	seed_type = "ambrosiadeus"
+
+/obj/item/seeds/ambrosiainfernusseed
+	seed_type = "ambrosiainfernus"
 
 /obj/item/seeds/whitebeetseed
 	seed_type = "whitebeet"
@@ -322,3 +331,6 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 
 /obj/item/seeds/rose/blood
 	seed_type = "bloodrose"
+
+/obj/item/seeds/gnomes
+	seed_type = "gnomes"

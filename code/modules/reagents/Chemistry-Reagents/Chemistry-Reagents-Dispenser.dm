@@ -7,6 +7,15 @@
 	reagent_state = SOLID
 	color = "#A8A8A8"
 
+/datum/reagent/calcium
+	name = "Calcium"
+	id = "calcium"
+	description = "A chemical element, the building block of bones."
+	taste_description = "metallic chalk" // Apparently, calcium tastes like calcium.
+	taste_mult = 1.3
+	reagent_state = SOLID
+	color = "#e9e6e4"
+
 /datum/reagent/carbon
 	name = "Carbon"
 	id = "carbon"

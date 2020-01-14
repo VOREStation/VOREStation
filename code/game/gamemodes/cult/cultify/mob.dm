@@ -12,7 +12,7 @@
 		icon_state = "ghost-narsie"
 		overlays = 0
 		invisibility = 0
-		src << "<span class='sinister'>Even as a non-corporal being, you can feel Nar-Sie's presence altering you. You are now visible to everyone.</span>"
+		to_chat(src, "<span class='sinister'>Even as a non-corporal being, you can feel Nar-Sie's presence altering you. You are now visible to everyone.</span>")
 
 /mob/living/cultify()
 	if(iscultist(src) && client)

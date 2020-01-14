@@ -46,7 +46,7 @@
 
 	// Reagent information for process(), consider moving this to a controller along
 	// with cycle information under 'mechanical concerns' at some point.
-	var/global/list/toxic_reagents = list(
+	var/static/list/toxic_reagents = list(
 		"anti_toxin" =     -2,
 		"toxin" =           2,
 		"fluorine" =        2.5,
@@ -57,7 +57,7 @@
 		"cryoxadone" =     -3,
 		"radium" =          2
 		)
-	var/global/list/nutrient_reagents = list(
+	var/static/list/nutrient_reagents = list(
 		"milk" =            0.1,
 		"beer" =            0.25,
 		"phosphorus" =      0.1,
@@ -71,7 +71,7 @@
 		"robustharvest" =   1,
 		"left4zed" =        1
 		)
-	var/global/list/weedkiller_reagents = list(
+	var/static/list/weedkiller_reagents = list(
 		"fluorine" =       -4,
 		"chlorine" =       -3,
 		"phosphorus" =     -2,
@@ -81,12 +81,12 @@
 		"plantbgone" =     -8,
 		"adminordrazine" = -5
 		)
-	var/global/list/pestkiller_reagents = list(
+	var/static/list/pestkiller_reagents = list(
 		"sugar" =           2,
 		"diethylamine" =   -2,
 		"adminordrazine" = -5
 		)
-	var/global/list/water_reagents = list(
+	var/static/list/water_reagents = list(
 		"water" =           1,
 		"adminordrazine" =  1,
 		"milk" =            0.9,
@@ -98,8 +98,8 @@
 		"sodawater" =       1,
 		)
 
-	// Beneficial reagents also have values for modifying yield_mod and mut_mod (in that order).
-	var/global/list/beneficial_reagents = list(
+	// Beneficial reagents also have values for modifying health, yield_mod and mut_mod (in that order).
+	var/static/list/beneficial_reagents = list(
 		"beer" =           list( -0.05, 0,   0  ),
 		"fluorine" =       list( -2,    0,   0  ),
 		"chlorine" =       list( -1,    0,   0  ),
@@ -120,7 +120,7 @@
 
 	// Mutagen list specifies minimum value for the mutation to take place, rather
 	// than a bound as the lists above specify.
-	var/global/list/mutagenic_reagents = list(
+	var/static/list/mutagenic_reagents = list(
 		"radium" =  8,
 		"mutagen" = 15
 		)
@@ -250,23 +250,36 @@
 		var/reagent_total = temp_chem_holder.reagents.get_reagent_amount(R.id)
 
 		if(seed && !dead)
-			//Handle some general level adjustments.
-			if(toxic_reagents[R.id])
-				toxins += toxic_reagents[R.id]         * reagent_total
-			if(weedkiller_reagents[R.id])
-				weedlevel -= weedkiller_reagents[R.id] * reagent_total
-			if(pestkiller_reagents[R.id])
-				pestlevel += pestkiller_reagents[R.id] * reagent_total
-
 			// Beneficial reagents have a few impacts along with health buffs.
-			if(beneficial_reagents[R.id])
+			if(seed.beneficial_reagents && seed.beneficial_reagents[R.id])
+				health += seed.beneficial_reagents[R.id][1]       * reagent_total
+				yield_mod += seed.beneficial_reagents[R.id][2]    * reagent_total
+				mutation_mod += seed.beneficial_reagents[R.id][3] * reagent_total
+
+			else if(beneficial_reagents[R.id])
 				health += beneficial_reagents[R.id][1]       * reagent_total
 				yield_mod += beneficial_reagents[R.id][2]    * reagent_total
 				mutation_mod += beneficial_reagents[R.id][3] * reagent_total
 
 			// Mutagen is distinct from the previous types and mostly has a chance of proccing a mutation.
-			if(mutagenic_reagents[R.id])
+			if(seed.mutagenic_reagents && seed.mutagenic_reagents[R.id])
+				mutation_level += reagent_total*seed.mutagenic_reagents[R.id]+mutation_mod
+
+			else if(mutagenic_reagents[R.id])
 				mutation_level += reagent_total*mutagenic_reagents[R.id]+mutation_mod
+
+			// Toxic reagents can possibly differ between plants.
+			if(seed.toxic_reagents && seed.toxic_reagents[R.id])
+				toxins += seed.toxic_reagents[R.id] * reagent_total
+
+			else if(toxic_reagents[R.id])
+				toxins += toxic_reagents[R.id] * reagent_total
+
+		//Handle some general level adjustments. These values are independent of plants existing.
+		if(weedkiller_reagents[R.id])
+			weedlevel -= weedkiller_reagents[R.id] * reagent_total
+		if(pestkiller_reagents[R.id])
+			pestlevel += pestkiller_reagents[R.id] * reagent_total
 
 		// Handle nutrient refilling.
 		if(nutrient_reagents[R.id])

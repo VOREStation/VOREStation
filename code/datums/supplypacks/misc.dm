@@ -170,3 +170,12 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "emergency rations"
+
+/datum/supply_pack/misc/medical_rations
+	name = "Emergency - VitaPaste"
+	contains = list(
+			/obj/item/weapon/storage/mre/menu13 = 2
+			)
+	cost = 40
+	containertype = /obj/structure/closet/crate/freezer
+	containername = "emergency rations"

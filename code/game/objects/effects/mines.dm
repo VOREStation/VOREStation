@@ -36,6 +36,12 @@
 	..()
 
 /obj/effect/mine/Crossed(AM as mob|obj)
+	//VOREStation Edit begin: SHADEKIN
+	var/mob/SK = AM
+	if(istype(SK))
+		if(SK.shadekin_phasing_check())
+			return
+	//VOREStation Edit end: SHADEKIN
 	Bumped(AM)
 
 /obj/effect/mine/Bumped(mob/M as mob|obj)

@@ -20,7 +20,8 @@
 		if(eye_icon)
 			var/icon/eyes_icon = new/icon(eye_icons_vr, eye_icon_vr)
 			if(eyes)
-				eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
+				if(owner.species.appearance_flags & HAS_EYE_COLOR)
+					eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
 			else
 				eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
 			mob_icon.Blend(eyes_icon, ICON_OVERLAY)
@@ -37,7 +38,7 @@
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
 				facial_s.Blend(rgb(owner.r_facial, owner.g_facial, owner.b_facial), ICON_ADD)
-			overlays |= facial_s
+			overlays |= image(facial_s, "pixel_y" = head_offset)
 
 	if(owner.h_style && !(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR)))
 		var/datum/sprite_accessory/hair_style = hair_styles_list[owner.h_style]
@@ -45,14 +46,26 @@
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration && islist(h_col) && h_col.len >= 3)
 				hair_s.Blend(rgb(h_col[1], h_col[2], h_col[3]), ICON_MULTIPLY)
-			overlays |= hair_s
-
+			overlays |= image(hair_s, "pixel_y" = head_offset)
 	return mob_icon
 
 /obj/item/organ/external/head/vr
 	var/eye_icons_vr = 'icons/mob/human_face_vr.dmi'
 	var/eye_icon_vr = "blank_eyes"
+	var/head_offset = 0
 	eye_icon = "blank_eyes"
 
 /obj/item/organ/external/head/vr/sergal
 	eye_icon_vr = "eyes_sergal"
+
+/obj/item/organ/external/head/vr/werebeast
+	eye_icons_vr = 'icons/mob/werebeast_face_vr.dmi'
+	eye_icon_vr = "werebeast_eyes"
+	head_offset = 6
+
+/obj/item/organ/external/head/vr/shadekin
+	cannot_gib = 1
+	cannot_amputate = 1
+
+	eye_icons_vr = 'icons/mob/human_face_vr.dmi'
+	eye_icon_vr = "eyes_shadekin"

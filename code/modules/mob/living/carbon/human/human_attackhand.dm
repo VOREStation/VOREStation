@@ -98,7 +98,7 @@
 				if(istype(H) && health > config.health_threshold_dead)
 					adjustOxyLoss(-(min(getOxyLoss(), 5)))
 					updatehealth()
-					src << "<span class='notice'>You feel a breath of fresh air enter your lungs. It feels good.</span>"
+					to_chat(src, "<span class='notice'>You feel a breath of fresh air enter your lungs. It feels good.</span>")
 
 			else if(!(M == src && apply_pressure(M, M.zone_sel.selecting)))
 				help_shake_act(M)

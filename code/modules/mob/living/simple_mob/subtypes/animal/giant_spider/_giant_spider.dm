@@ -74,6 +74,7 @@
 	health = 200
 	pass_flags = PASSTABLE
 	movement_cooldown = 10
+	movement_sound = 'sound/effects/spider_loop.ogg'
 	poison_resist = 0.5
 
 	see_in_dark = 10
@@ -116,3 +117,17 @@
 	if(prob(poison_chance))
 		to_chat(L, "<span class='warning'>You feel a tiny prick.</span>")
 		L.reagents.add_reagent(poison_type, poison_per_bite)
+
+/mob/living/simple_mob/animal/giant_spider/proc/make_spiderling()
+	adjust_scale(icon_scale_x * 0.7, icon_scale_y * 0.7)
+	maxHealth = round(maxHealth * 0.5)
+	health = round(health * 0.5)
+	melee_damage_lower *= 0.7
+	melee_damage_upper *= 0.7
+
+	response_harm = "kicks"
+
+	see_in_dark = max(2, round(see_in_dark * 0.6))
+
+	if(poison_per_bite)
+		poison_per_bite *= 1.3

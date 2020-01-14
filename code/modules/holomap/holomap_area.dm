@@ -33,7 +33,8 @@
 
 /area/engineering
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
-/area/engineering/atmos/intake
+//TFF 11/12/19 - Minor refactor, makes mice spawn only in Atmos.
+/area/engineering/atmos_intake
 	holomap_color = null
 /area/maintenance/substation/engineering
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING

@@ -111,3 +111,10 @@
 	item_state = "tajblind_meson"
 	off_state = "tajblind"
 	body_parts_covered = EYES
+
+/obj/item/clothing/glasses
+	sprite_sheets = list(
+		SPECIES_TESHARI = 'icons/mob/species/seromi/eyes.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/eyes.dmi',
+		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/eyes.dmi'
+		)

@@ -1,3 +1,38 @@
+
+/*
+ * Modifiers applied by Medical sources.
+ */
+
+/datum/modifier/bloodpump
+	name = "external blood pumping"
+	desc = "Your blood flows thanks to the wonderful power of science."
+
+	on_created_text = "<span class='notice'>You feel alive.</span>"
+	on_expired_text = "<span class='notice'>You feel.. less alive.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+	pulse_set_level = PULSE_NORM
+
+/datum/modifier/bloodpump/check_if_valid()
+	..()
+	if(holder.stat == DEAD)
+		src.expire()
+
+/datum/modifier/bloodpump_corpse
+	name = "forced blood pumping"
+	desc = "Your blood flows thanks to the wonderful power of science."
+
+	on_created_text = "<span class='notice'>You feel alive.</span>"
+	on_expired_text = "<span class='notice'>You feel.. less alive.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+	pulse_set_level = PULSE_SLOW
+
+/datum/modifier/bloodpump/corpse/check_if_valid()
+	..()
+	if(holder.stat != DEAD)
+		src.expire()
+
 /*
  * Modifiers caused by chemicals or organs specifically.
  */

@@ -85,20 +85,21 @@
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
 	usr.set_machine(src)
+	var/list/node_connects = get_node_connect_dirs()
 	var/dat = {"<b>Power: </b><a href='?src=\ref[src];power=1'>[use_power?"On":"Off"]</a><br>
 				<b>Set Flow Rate Limit: </b>
 				[set_flow_rate]L/s | <a href='?src=\ref[src];set_press=1'>Change</a>
 				<br>
 				<b>Flow Rate: </b>[round(last_flow_rate, 0.1)]L/s
 				<br><hr>
-				<b>Node 1 Concentration:</b>
+				<b>Node 1 ([dir_name(node_connects[1],TRUE)]) Concentration:</b>
 				<a href='?src=\ref[src];node1_c=-0.1'><b>-</b></a>
 				<a href='?src=\ref[src];node1_c=-0.01'>-</a>
 				[mixing_inputs[air1]]([mixing_inputs[air1]*100]%)
 				<a href='?src=\ref[src];node1_c=0.01'><b>+</b></a>
 				<a href='?src=\ref[src];node1_c=0.1'>+</a>
 				<br>
-				<b>Node 2 Concentration:</b>
+				<b>Node 2 ([dir_name(node_connects[2],TRUE)]) Concentration:</b>
 				<a href='?src=\ref[src];node2_c=-0.1'><b>-</b></a>
 				<a href='?src=\ref[src];node2_c=-0.01'>-</a>
 				[mixing_inputs[air2]]([mixing_inputs[air2]*100]%)

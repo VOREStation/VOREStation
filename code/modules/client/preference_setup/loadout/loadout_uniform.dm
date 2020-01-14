@@ -517,3 +517,43 @@
 /datum/gear/uniform/lilacdress
 	display_name = "lilac dress"
 	path = /obj/item/clothing/under/dress/lilacdress
+
+/datum/gear/uniform/polka
+	display_name = "polka dot dress"
+	path = /obj/item/clothing/under/dress/polka
+
+/datum/gear/uniform/twistfront
+	display_name = "twistfront crop dress"
+	path = /obj/item/clothing/under/dress/twistfront
+
+/datum/gear/uniform/cropdress
+	display_name = "crop dress"
+	path = /obj/item/clothing/under/dress/cropdress
+
+/datum/gear/uniform/vneckdress
+	display_name = "v-neck dress"
+	path = /obj/item/clothing/under/dress/vneck
+
+/datum/gear/uniform/bluedress
+	display_name = "blue dress"
+	path = /obj/item/clothing/under/dress/bluedress
+
+/datum/gear/uniform/wench
+	display_name = "wench's dress"
+	path = /obj/item/clothing/under/dress/wench
+
+/datum/gear/uniform/littleblackdress
+	display_name = "little black dress"
+	path = /obj/item/clothing/under/dress/littleblackdress
+
+/datum/gear/uniform/pinktutu
+	display_name = "pink tutu"
+	path = /obj/item/clothing/under/dress/pinktutu
+
+/datum/gear/uniform/festivedress
+	display_name = "festive dress"
+	path = /obj/item/clothing/under/dress/festivedress
+
+/datum/gear/uniform/haltertop
+	display_name = "halter top"
+	path = /obj/item/clothing/under/haltertop

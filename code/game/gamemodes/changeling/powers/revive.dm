@@ -9,7 +9,7 @@
 		return 0
 
 	if(changeling.max_geneticpoints < 0) //Absorbed by another ling
-		src << "<span class='danger'>You have no genomes, not even your own, and cannot revive.</span>"
+		to_chat(src, "<span class='danger'>You have no genomes, not even your own, and cannot revive.</span>")
 		return 0
 
 	if(src.stat == DEAD)

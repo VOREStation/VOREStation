@@ -9,7 +9,7 @@
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
-			src << "<font color='red'>You cannot speak in IC (muted).</font>"
+			to_chat(src, "<font color='red'>You cannot speak in IC (muted).</font>")
 			return
 
 	if(istype(src.loc, /mob/living/simple_mob/animal/borer))
@@ -22,7 +22,7 @@
 			return say_dead(message)
 
 		var/mob/living/simple_mob/animal/borer/B = src.loc
-		src << "You whisper silently, \"[message]\""
+		to_chat(src, "You whisper silently, \"[message]\"")
 		B.host << "The captive mind of [src] whispers, \"[message]\""
 
 		for (var/mob/M in player_list)

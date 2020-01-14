@@ -8,6 +8,7 @@
 	icon_rest = "Helix"
 	faction = "horror"
 	icon = 'icons/mob/horror_show/master.dmi'
+	vis_height = 64
 	icon_gib = "generic_gib"
 	anchored = 1
 

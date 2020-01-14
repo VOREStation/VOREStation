@@ -60,7 +60,7 @@
 		src.has_power = 1
 	else
 		if (src.has_power)
-			src << "<font color='red'>You are now running on emergency backup power.</font>"
+			to_chat(src, "<font color='red'>You are now running on emergency backup power.</font>")
 		src.has_power = 0
 		if(lights_on) // Light is on but there is no power!
 			lights_on = 0
@@ -104,9 +104,8 @@
 
 		AdjustConfused(-1)
 
-	else //Dead.
+	else //Dead or just unconscious.
 		src.blinded = 1
-		src.stat = 2
 
 	if (src.stuttering) src.stuttering--
 
@@ -320,7 +319,7 @@
 		killswitch_time --
 		if(killswitch_time <= 0)
 			if(src.client)
-				src << "<span class='danger'>Killswitch Activated</span>"
+				to_chat(src, "<span class='danger'>Killswitch Activated</span>")
 			killswitch = 0
 			spawn(5)
 				gib()
@@ -331,7 +330,7 @@
 		weaponlock_time --
 		if(weaponlock_time <= 0)
 			if(src.client)
-				src << "<span class='danger'>Weapon Lock Timed Out!</span>"
+				to_chat(src, "<span class='danger'>Weapon Lock Timed Out!</span>")
 			weapon_lock = 0
 			weaponlock_time = 120
 

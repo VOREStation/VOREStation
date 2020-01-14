@@ -48,3 +48,10 @@
 
 /obj/item/organ/internal/brain/unathi
 	color = "#b3cbc3"
+
+/obj/item/organ/internal/stomach/unathi
+	color = "#b3cbc3"
+	max_acid_volume = 40
+
+/obj/item/organ/internal/intestine/unathi
+	color = "#b3cbc3"
