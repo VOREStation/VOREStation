@@ -41,7 +41,7 @@
 		prob(15);"corrupted",
 		prob(10);"bad")
 
-	var/vore_law = prob(80)		// 4/5 chance of having vore-related laws
+	var/vore_law = prob(60)		// 3/5 chance of having vore-related laws
 
 	if(vore_law)
 		switch(law_class)
