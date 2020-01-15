@@ -307,7 +307,7 @@
 		else
 			log_admin("Couldn't perform IP check on [key] with [address]")
 
-	// VOREStation Edit Start - Department Hoursn
+	// VOREStation Edit Start - Department Hours
 	if(config.time_off)
 		var/DBQuery/query_hours = dbcon.NewQuery("SELECT department, hours FROM vr_player_hours WHERE ckey = '[sql_ckey]'")
 		query_hours.Execute()
