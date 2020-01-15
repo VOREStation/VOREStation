@@ -432,9 +432,7 @@
 			else
 				message = "moans!"
 				m_type = 2
-				//vorestation edit start
-				playsound(loc, 'sound/voice/moan.ogg', 50, 1, -1)
-				//vorestation edit stop
+				playsound(loc, 'sound/voice/moan.ogg', 50, 1, -1) //vorestation edit adds sound
 
 		if ("johnny")
 			var/M
