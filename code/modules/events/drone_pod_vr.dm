@@ -1,10 +1,10 @@
 /datum/event/drone_pod_drop
-	announceWhen = 1
 	var/turf/land_target = null
 	var/attempt_amount = 10
 
 /datum/event/drone_pod_drop/setup()
 	startWhen = rand(8,15)
+	announceWhen = startWhen + 5
 	if(LAZYLEN(using_map.meteor_strike_areas))
 		var/turf/potential_target = null
 		for(var/i=1, i <= attempt_amount, i++)
@@ -28,4 +28,4 @@
 	if(!land_target)
 		kill()
 
-	new /datum/random_map/droppod/supply(null, land_target.x-2, land_target.y-2, land_target.z, supplied_drops = list(/obj/structure/ghost_pod/manual/lost_drone))
+	new /datum/random_map/droppod/supply(null, land_target.x-2, land_target.y-2, land_target.z, supplied_drops = list(/obj/structure/ghost_pod/manual/lost_drone/dogborg))
