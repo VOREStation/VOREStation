@@ -69,14 +69,11 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 	// Languages and comms.
 	languages = AI.languages.Copy()
 	speech_synthesizer_langs = AI.speech_synthesizer_langs.Copy()
-	//VOREStation Edit Start
-	if(radio && AI.aiRadio && module) //AI keeps all channels, including Syndie if it is an Infiltrator.
+	if(radio && AI.aiRadio) //AI keeps all channels, including Syndie if it is an Infiltrator.
 //		if(AI.radio.syndie)
 //			radio.make_syndie()
 		radio.subspace_transmission = TRUE
-		module.channels = AI.aiRadio.channels
-		radio.recalculateChannels()
-	//VOREStation Edit End
+		radio.channels = AI.aiRadio.channels
 
 // Called after the AI transfers over.
 /mob/living/silicon/robot/proc/post_deploy()
@@ -97,8 +94,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 	mainframe.deployed_shell = null
 	SetName("[modtype] AI Shell [num2text(ident)]")
 //	undeployment_action.Remove(src)
-	if(radio && module) //Return radio to normal	//VOREStation Edit
-		module.channels = initial(module.channels)	//VOREStation Edit
+	if(radio) //Return radio to normal
 		radio.recalculateChannels()
 	if(!QDELETED(camera))
 		camera.c_tag = real_name	//update the camera name too
