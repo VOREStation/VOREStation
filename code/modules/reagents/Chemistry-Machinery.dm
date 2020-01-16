@@ -14,6 +14,7 @@
 	anchored = 1
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
+	circuit = /obj/item/weapon/circuitboard/chem_master
 	use_power = 1
 	idle_power_usage = 20
 	var/beaker = null
@@ -71,6 +72,10 @@
 		to_chat(user, "You add \the [loaded_pill_bottle] into the dispenser slot.")
 
 	else if(default_unfasten_wrench(user, B, 20))
+		return
+	if(default_deconstruction_screwdriver(user, B))
+		return
+	if(default_deconstruction_crowbar(user, B))
 		return
 
 	return
