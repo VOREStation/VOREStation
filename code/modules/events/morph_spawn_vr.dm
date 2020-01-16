@@ -5,7 +5,6 @@
 	var/announceProb = 50
 
 /datum/event/morph_spawn/start()
-	processing_active = FALSE
 
 	var/obj/effect/landmark/spawnspot = null
 	var/list/possibleSpawnspots = list()
@@ -18,7 +17,6 @@
 			break
 
 	if(!spawnspot)
-		processing_active = TRUE
 		kill()		// To prevent fake announcements
 		return
 
@@ -38,11 +36,9 @@
 		newMorph.ckey = D.ckey
 		newMorph.visible_message("<span class='warning'>A morph appears to crawl out of somewhere.</span>")
 	else
-		processing_active = TRUE
 		kill()		// To prevent fake announcements
 		return
 
-	processing_active = TRUE
 
 /datum/event/morph_spawn/announce()
 	if(announceProb)
