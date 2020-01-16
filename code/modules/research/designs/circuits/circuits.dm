@@ -102,6 +102,13 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/clonescanner
 	sort_string = "FAGAG"
 
+/datum/design/circuit/chem_master
+	name = "ChemMaster 3000"
+	id = "chemmaster"
+	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 2)
+	build_path = /obj/item/weapon/circuitboard/chem_master
+	sort_string = "FAGAH"
+
 /datum/design/circuit/crewconsole
 	name = "crew monitoring console"
 	id = "crewconsole"

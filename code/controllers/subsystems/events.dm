@@ -21,8 +21,8 @@ SUBSYSTEM_DEF(events)
 
 /datum/controller/subsystem/events/fire(resumed)
 	for(var/datum/event/E in active_events)
-		if(E.processing_active)		//VOREStation Edit
-			E.process()				//VOREStation Edit
+		if(E.processing_active)
+			E.process()
 
 	for(var/i = EVENT_LEVEL_MUNDANE to EVENT_LEVEL_MAJOR)
 		var/list/datum/event_container/EC = event_containers[i]
@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(events)
 	if(EM.add_to_queue)
 		EC.available_events += EM
 
-	log_debug("Event '[EM.name]' has completed at [worldtime2stationtime(world.time)].")
+	log_debug("Event '[EM.name]' has completed at [stationtime2text()].")
 
 /datum/controller/subsystem/events/proc/delay_events(var/severity, var/delay)
 	var/list/datum/event_container/EC = event_containers[severity]

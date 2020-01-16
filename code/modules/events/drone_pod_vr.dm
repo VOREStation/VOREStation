@@ -18,7 +18,7 @@
 	if(!land_target)
 		kill()
 
-/datum/event/meteor_strike/announce()
+/datum/event/drone_pod_drop/announce()
 	command_announcement.Announce("An unidentified drone pod has been detected landing near the surface facilty. Open and examine at your own risk.", "NanoTrasen Orbital Monitoring")
 
 /datum/event/drone_pod_drop/start()
