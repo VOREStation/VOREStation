@@ -827,6 +827,7 @@
 			log_admin("[key_name(usr)] booted [key_name(M)] for reason: '[reason]'.")
 			message_admins("<font color='blue'>[key_name_admin(usr)] booted [key_name_admin(M)] for reason '[reason]'.</font>", 1)
 			//M.client = null
+			admin_action_message(usr.key, M.key, "kicked", reason, 0) //VOREStation Add
 			qdel(M.client)
 
 	else if(href_list["removejobban"])

@@ -119,6 +119,7 @@ var/savefile/Banlist
 		Banlist["temp"] << temp
 		if (temp)
 			Banlist["minutes"] << bantimestamp
+	admin_action_message(bannedby, ckey, "banned", reason, temp ? minutes : -1) //VOREStation Add
 	return 1
 
 /proc/RemoveBan(foldername)
@@ -147,7 +148,7 @@ var/savefile/Banlist
 			Banlist.cd = "/base"
 			Banlist.dir.Remove(A)
 			continue
-
+	admin_action_message(usr.key, key, "unbanned", "\[Unban\]", 0) //VOREStation Add
 	return 1
 
 /proc/GetExp(minutes as num)
