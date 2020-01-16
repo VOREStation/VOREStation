@@ -46,7 +46,7 @@ SUBSYSTEM_DEF(events)
 	if(EM.add_to_queue)
 		EC.available_events += EM
 
-	log_debug("Event '[EM.name]' has completed at [worldtime2stationtime(world.time)].")
+	log_debug("Event '[EM.name]' has completed at [stationtime2text()].")
 
 /datum/controller/subsystem/events/proc/delay_events(var/severity, var/delay)
 	var/list/datum/event_container/EC = event_containers[severity]
