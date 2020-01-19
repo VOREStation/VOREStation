@@ -16229,6 +16229,10 @@
 /obj/machinery/disposal,
 /turf/simulated/floor/plating,
 /area/engineering/drone_fabrication)
+"aDX" = (
+/obj/structure/railing,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/lowerhall)
 "aDY" = (
 /obj/structure/railing{
 	dir = 8
@@ -23012,6 +23016,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/paramed)
 "aQx" = (
@@ -23135,6 +23143,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 5
 	},
+/obj/machinery/recharge_station,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "aQE" = (
@@ -24676,6 +24685,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "aSR" = (
@@ -27807,11 +27820,13 @@
 /turf/simulated/floor/carpet/sblucarpet,
 /area/bridge/meeting_room)
 "aXo" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
+/obj/effect/floor_decal/rust,
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 1
 	},
-/turf/simulated/floor/tiled/dark,
-/area/bridge_hallway)
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/mining)
 "aXp" = (
 /obj/machinery/alarm{
 	dir = 8;
@@ -28170,11 +28185,24 @@
 	},
 /turf/simulated/floor/wood,
 /area/bridge/meeting_room)
+"aYg" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
 "aYh" = (
 /obj/structure/table/woodentable,
 /obj/machinery/chemical_dispenser/bar_soft/full,
 /turf/simulated/floor/wood,
 /area/bridge/meeting_room)
+"aYi" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
 "aYj" = (
 /obj/machinery/alarm{
 	pixel_y = 22
@@ -41886,7 +41914,7 @@ apW
 aXL
 aob
 aXl
-aXU
+aYi
 aYz
 apS
 avq
@@ -42027,7 +42055,7 @@ apl
 aXw
 aob
 aob
-aXo
+aYg
 aXY
 aqy
 aob
@@ -42142,7 +42170,7 @@ aab
 aac
 aaf
 aao
-aao
+aDX
 aQa
 aRo
 aap
@@ -43721,7 +43749,7 @@ acw
 aad
 aTg
 adf
-abt
+aXo
 adY
 afu
 afM
