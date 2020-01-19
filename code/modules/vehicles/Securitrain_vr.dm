@@ -23,7 +23,8 @@
 
 	var/car_limit = 0	//how many cars an engine can pull before performance degrades. This should be 0 to prevent trailers from unhitching.
 	active_engines = 1
-	var/obj/item/weapon/key/security/key
+	var/obj/item/weapon/key/key	//TFF 19/1/20 - Bugfix for key being prevented from getting used again
+	var/key_type = /obj/item/weapon/key/security
 	var/siren = 0 //This is for eventually getting the siren sprite to work.
 
 /obj/item/weapon/key/security
@@ -61,7 +62,7 @@
 /obj/vehicle/train/security/engine/New()
 	..()
 	cell = new /obj/item/weapon/cell/high(src)
-	key = new(src)
+	key = new key_type(src)	//TFF 19/1/20 - Bugfix for key being prevented from getting used again
 	var/image/I = new(icon = 'icons/obj/vehicles.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs
 	overlays += I
 	turn_off()	//so engine verbs are correctly set
@@ -90,7 +91,7 @@
 		..()
 
 /obj/vehicle/train/security/engine/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/key/cargo_train))
+	if(istype(W, key_type))	//TFF 19/1/20 - Bugfix for key being prevented from getting used again
 		if(!key)
 			user.drop_item()
 			W.forceMove(src)
