@@ -14162,8 +14162,11 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/yellow/border,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/disposalpipe/sortjunction{
+	dir = 4;
+	icon_state = "pipe-j1s";
+	name = "Drone Fabrication";
+	sortType = "Drone Fabrication"
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
@@ -14648,6 +14651,7 @@
 	req_access = list(24)
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/engineering/drone_fabrication)
 "aAW" = (
@@ -15009,11 +15013,13 @@
 	icon_state = "1-8"
 	},
 /obj/effect/floor_decal/industrial/warning,
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/plating,
 /area/engineering/drone_fabrication)
@@ -15025,11 +15031,12 @@
 	icon_state = "warningcorner";
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
 /obj/machinery/light/small{
 	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/plating,
 /area/engineering/drone_fabrication)
@@ -15293,8 +15300,8 @@
 	icon_state = "warning";
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/rust,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/engineering/drone_fabrication)
 "aCb" = (
@@ -15511,7 +15518,7 @@
 	icon_state = "warning";
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/engineering/drone_fabrication)
 "aCB" = (
@@ -15794,12 +15801,13 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/engineering/drone_fabrication)
 "aDc" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9;
 	pixel_y = 0
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	icon_state = "map-scrubbers";
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/drone_fabrication)
@@ -15995,6 +16003,7 @@
 /area/engineering/drone_fabrication)
 "aDv" = (
 /obj/effect/decal/cleanable/blood/oil,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/drone_fabrication)
 "aDw" = (
@@ -16122,10 +16131,15 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/engineering/drone_fabrication)
 "aDK" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/drone_fabrication)
 "aDL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/drone_fabrication)
 "aDM" = (
@@ -16195,37 +16209,24 @@
 	icon_state = "warning";
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/machinery/cryopod/robot,
-/turf/simulated/floor/plating,
-/area/engineering/drone_fabrication)
-"aDW" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /obj/machinery/computer/cryopod/robot{
 	pixel_y = -32
 	},
 /turf/simulated/floor/plating,
 /area/engineering/drone_fabrication)
-"aDX" = (
+"aDW" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	icon_state = "warningcorner";
 	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
 	},
 /obj/machinery/light/small{
 	dir = 4
 	},
 /obj/effect/floor_decal/rust,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal,
 /turf/simulated/floor/plating,
 /area/engineering/drone_fabrication)
 "aDY" = (
@@ -39084,7 +39085,7 @@ aCz
 aDb
 aDu
 aDK
-aDV
+aDU
 aAT
 aEC
 aEQ
@@ -39226,7 +39227,7 @@ aBZ
 aDc
 aDv
 aDL
-aDW
+aDV
 aAT
 aED
 aEp
@@ -39368,7 +39369,7 @@ aCA
 aCA
 aCA
 aCa
-aDX
+aDW
 aAT
 aEo
 aEz
