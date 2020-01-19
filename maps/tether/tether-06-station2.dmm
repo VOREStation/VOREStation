@@ -14174,6 +14174,10 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
+	dir = 1
+	},
 /turf/simulated/floor/tiled/monofloor{
 	dir = 1
 	},
