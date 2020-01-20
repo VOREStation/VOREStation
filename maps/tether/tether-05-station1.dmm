@@ -1125,14 +1125,16 @@
 /area/hallway/station/atrium)
 "abY" = (
 /obj/effect/floor_decal/borderfloor{
-	dir = 1
+	dir = 5
 	},
 /obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 1
+	dir = 5
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/lightgrey/bordercorner2{
+	dir = 5
 	},
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled,
@@ -1256,21 +1258,10 @@
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
 "acl" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 5
-	},
+/obj/machinery/camera/network/civilian,
 /obj/machinery/gear_painter,
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/lightgrey/bordercorner2{
-	dir = 5
-	},
 /turf/simulated/floor/tiled,
-/area/hallway/station/atrium)
+/area/tether/station/visitorhallway/laundry)
 "acm" = (
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
@@ -16384,11 +16375,6 @@
 /obj/machinery/camera/network/civilian,
 /turf/simulated/floor/tiled,
 /area/tether/station/visitorhallway/lounge)
-"aCm" = (
-/obj/machinery/washing_machine,
-/obj/machinery/camera/network/civilian,
-/turf/simulated/floor/tiled,
-/area/tether/station/visitorhallway/laundry)
 "aCn" = (
 /obj/machinery/camera/network/civilian{
 	dir = 4
@@ -33382,7 +33368,7 @@ ayt
 ayX
 azt
 azx
-aCm
+acl
 azW
 aAf
 aAU
@@ -37338,7 +37324,7 @@ asI
 asI
 bhJ
 aus
-abY
+age
 aao
 aax
 bqb
@@ -37480,7 +37466,7 @@ baT
 bcO
 bir
 aus
-acl
+abY
 aap
 aex
 aAk
