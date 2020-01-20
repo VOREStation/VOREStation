@@ -493,7 +493,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether_away/debrisfield/derelict/interior)
 "bD" = (
-/obj/machinery/auto_cloner,
+/obj/structure/loot_pile/surface/alien/engineering,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/tether_away/debrisfield/derelict/interior)
 "bE" = (
@@ -921,9 +921,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether_away/debrisfield/derelict/ai_access_port)
 "cP" = (
-/obj/structure/ghost_pod/manual/lost_drone,
-/turf/simulated/floor/tiled/dark,
-/area/tether_away/debrisfield/derelict/ai_access_port)
+/obj/structure/loot_pile/surface/alien/medical,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/tether_away/debrisfield/derelict/interior)
 "cQ" = (
 /obj/item/weapon/grenade/empgrenade,
 /obj/item/weapon/grenade/empgrenade,
@@ -1140,6 +1140,10 @@
 /obj/structure/prop/fake_ai,
 /turf/simulated/floor/greengrid,
 /area/tether_away/debrisfield/derelict/ai_chamber)
+"dx" = (
+/obj/structure/ghost_pod/manual/lost_drone/dogborg,
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict/ai_access_port)
 
 (1,1,1) = {"
 bR
@@ -1346,8 +1350,8 @@ bi
 bi
 bi
 bi
+ao
 cL
-av
 cS
 cB
 aa
@@ -1421,8 +1425,8 @@ av
 av
 bi
 bi
+ao
 cL
-av
 cS
 aa
 aa
@@ -1495,8 +1499,8 @@ bi
 av
 bi
 bi
+ao
 cL
-av
 cS
 aa
 aa
@@ -1568,8 +1572,8 @@ bi
 bi
 bi
 bi
+ao
 cL
-av
 cS
 cB
 aa
@@ -2456,7 +2460,7 @@ av
 cC
 bb
 cH
-cP
+dx
 cH
 cT
 cT
@@ -3621,8 +3625,8 @@ bk
 bk
 bv
 av
-bb
 bD
+cP
 av
 bN
 aw
@@ -4158,8 +4162,8 @@ av
 bi
 bi
 bi
+ao
 cL
-av
 cS
 cB
 aa
@@ -4233,8 +4237,8 @@ bi
 av
 bi
 bi
+ao
 cL
-av
 cS
 aa
 aa
@@ -4307,8 +4311,8 @@ bi
 av
 bi
 bi
+ao
 cL
-av
 cS
 aa
 aa
@@ -4380,8 +4384,8 @@ bi
 bi
 av
 bi
+ao
 cL
-av
 cS
 cB
 aa
