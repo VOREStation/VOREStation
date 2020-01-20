@@ -9628,6 +9628,9 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/machinery/newscaster{
+	pixel_x = 28
+	},
 /turf/simulated/floor/tiled,
 /area/storage/surface_eva)
 "aqr" = (
