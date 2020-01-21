@@ -1,3 +1,4 @@
+/*
 /datum/map_template/asteroid_belt
 	name = "Belt Miner Content"
 	desc = "For seeding submaps in the Asteroid Belt"
@@ -71,6 +72,7 @@
 	name = "Belt Space Cave"
 	mappath = 'space_cave.dmm'
 	cost = 5
+*/
 
 /*
 /datum/map_template/asteroid_belt/whatever_treasure
