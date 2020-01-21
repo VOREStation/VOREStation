@@ -1,12 +1,115 @@
-"a" = (/turf/space,/area/mine/explored/belt_miner)
-"b" = (/turf/simulated/mineral/ignore_cavegen,/area/mine/explored/belt_miner)
-"c" = (/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored/belt_miner)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/space,
+/area/mine/explored/belt_miner)
+"b" = (
+/turf/simulated/mineral/ignore_cavegen,
+/area/mine/explored/belt_miner)
+"c" = (
+/turf/simulated/mineral/floor/ignore_mapgen/vacuum,
+/area/mine/explored/belt_miner)
 
 (1,1,1) = {"
-aaaaaaaaaaaaa
-aaaaaaaaaaaaa
-bbccccbbbbbaa
-cccccccccccaa
-ccccccccccbaa
-ccccccccccbaa
+a
+a
+b
+c
+c
+c
+"}
+(2,1,1) = {"
+a
+a
+b
+c
+c
+c
+"}
+(3,1,1) = {"
+a
+a
+c
+c
+c
+c
+"}
+(4,1,1) = {"
+a
+a
+c
+c
+c
+c
+"}
+(5,1,1) = {"
+a
+a
+c
+c
+c
+c
+"}
+(6,1,1) = {"
+a
+a
+c
+c
+c
+c
+"}
+(7,1,1) = {"
+a
+a
+b
+c
+c
+c
+"}
+(8,1,1) = {"
+a
+a
+b
+c
+c
+c
+"}
+(9,1,1) = {"
+a
+a
+b
+c
+c
+c
+"}
+(10,1,1) = {"
+a
+a
+b
+c
+c
+c
+"}
+(11,1,1) = {"
+a
+a
+b
+c
+b
+b
+"}
+(12,1,1) = {"
+a
+a
+a
+a
+a
+a
+"}
+(13,1,1) = {"
+a
+a
+a
+a
+a
+a
 "}

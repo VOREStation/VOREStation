@@ -1,17 +1,135 @@
-"a" = (/turf/template_noop,/area/mine/explored/belt_miner)
-"b" = (/turf/simulated/mineral/ignore_cavegen,/area/mine/explored/belt_miner)
-"c" = (/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored/belt_miner)
-"d" = (/obj/sc_away_spawner/belt_normal,/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored/belt_miner)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/mine/explored/belt_miner)
+"b" = (
+/turf/simulated/mineral/ignore_cavegen,
+/area/mine/explored/belt_miner)
+"c" = (
+/turf/simulated/mineral/floor/ignore_mapgen/vacuum,
+/area/mine/explored/belt_miner)
+"d" = (
+/obj/sc_away_spawner/belt_normal,
+/turf/simulated/mineral/floor/ignore_mapgen/vacuum,
+/area/mine/explored/belt_miner)
 
 (1,1,1) = {"
-aaabbcbaaa
-aaabccbaaa
-aaabccbaaa
-bbbbcbbbbb
-cccccccccc
-ccccdccccc
-bbbbcbbbbb
-aaabccbaaa
-aaabccbaaa
-aaabccbaaa
+a
+a
+a
+b
+c
+c
+b
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+b
+c
+c
+b
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+b
+c
+c
+b
+a
+a
+a
+"}
+(4,1,1) = {"
+b
+b
+b
+b
+c
+c
+b
+b
+b
+b
+"}
+(5,1,1) = {"
+b
+c
+c
+c
+c
+d
+c
+c
+c
+c
+"}
+(6,1,1) = {"
+c
+c
+c
+b
+c
+c
+b
+c
+c
+c
+"}
+(7,1,1) = {"
+b
+b
+b
+b
+c
+c
+b
+b
+b
+b
+"}
+(8,1,1) = {"
+a
+a
+a
+b
+c
+c
+b
+a
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+b
+c
+c
+b
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+b
+c
+c
+b
+a
+a
+a
 "}

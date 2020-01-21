@@ -1,23 +1,159 @@
-"a" = (/mob/living/simple_mob/animal/giant_spider/frost/space,/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored/belt_miner)
-"b" = (/turf/simulated/mineral/ignore_cavegen,/area/mine/explored/belt_miner)
-"c" = (/turf/template_noop,/area/mine/explored/belt_miner)
-"d" = (/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored/belt_miner)
-"e" = (/obj/effect/spider/spiderling/frost,/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored/belt_miner)
-"f" = (/obj/effect/spider/stickyweb/dark,/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored/belt_miner)
-"g" = (/obj/effect/spider/stickyweb,/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored/belt_miner)
-"h" = (/obj/effect/decal/cleanable/spiderling_remains,/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored/belt_miner)
-"i" = (/obj/effect/spider/eggcluster/small/frost,/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored/belt_miner)
-"j" = (/obj/effect/spider/cocoon,/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored/belt_miner)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/mob/living/simple_mob/animal/giant_spider/frost/space,
+/turf/simulated/mineral/floor/ignore_mapgen/vacuum,
+/area/mine/explored/belt_miner)
+"b" = (
+/turf/simulated/mineral/ignore_cavegen,
+/area/mine/explored/belt_miner)
+"c" = (
+/turf/template_noop,
+/area/mine/explored/belt_miner)
+"d" = (
+/turf/simulated/mineral/floor/ignore_mapgen/vacuum,
+/area/mine/explored/belt_miner)
+"e" = (
+/obj/effect/spider/spiderling/frost,
+/turf/simulated/mineral/floor/ignore_mapgen/vacuum,
+/area/mine/explored/belt_miner)
+"f" = (
+/obj/effect/spider/stickyweb/dark,
+/turf/simulated/mineral/floor/ignore_mapgen/vacuum,
+/area/mine/explored/belt_miner)
+"g" = (
+/obj/effect/spider/stickyweb,
+/turf/simulated/mineral/floor/ignore_mapgen/vacuum,
+/area/mine/explored/belt_miner)
+"h" = (
+/obj/effect/decal/cleanable/spiderling_remains,
+/turf/simulated/mineral/floor/ignore_mapgen/vacuum,
+/area/mine/explored/belt_miner)
+"i" = (
+/obj/effect/spider/eggcluster/small/frost,
+/turf/simulated/mineral/floor/ignore_mapgen/vacuum,
+/area/mine/explored/belt_miner)
+"j" = (
+/obj/effect/spider/cocoon,
+/turf/simulated/mineral/floor/ignore_mapgen/vacuum,
+/area/mine/explored/belt_miner)
 
 (1,1,1) = {"
-bbbbbccccc
-badefgcccc
-bddddefccc
-bddehddgcc
-bgdddddegc
-bghdadgdfb
-bidddddddb
-biddddehdb
-bdaddgddjb
-bbbbbbbbbb
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+"}
+(2,1,1) = {"
+b
+a
+d
+d
+g
+g
+i
+i
+d
+b
+"}
+(3,1,1) = {"
+b
+d
+d
+d
+d
+h
+d
+d
+a
+b
+"}
+(4,1,1) = {"
+b
+e
+d
+e
+d
+d
+d
+d
+d
+b
+"}
+(5,1,1) = {"
+b
+f
+d
+h
+d
+a
+d
+d
+d
+b
+"}
+(6,1,1) = {"
+c
+g
+e
+d
+d
+d
+d
+d
+g
+b
+"}
+(7,1,1) = {"
+c
+c
+f
+d
+d
+g
+d
+e
+d
+b
+"}
+(8,1,1) = {"
+c
+c
+c
+g
+e
+d
+d
+h
+d
+b
+"}
+(9,1,1) = {"
+c
+c
+c
+c
+g
+f
+d
+d
+j
+b
+"}
+(10,1,1) = {"
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
 "}

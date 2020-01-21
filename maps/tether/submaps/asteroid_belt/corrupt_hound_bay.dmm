@@ -1,25 +1,216 @@
-"a" = (/obj/machinery/door/airlock/sandstone,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
-"b" = (/turf/simulated/wall,/area/mine/explored/belt_miner)
-"c" = (/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
-"d" = (/obj/structure/dogbed,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
-"e" = (/obj/machinery/door/airlock/sandstone,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
-"f" = (/obj/machinery/mech_recharger,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
-"g" = (/obj/machinery/light/flicker,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
-"h" = (/obj/machinery/implantchair,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
-"i" = (/obj/machinery/compressor,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
-"j" = (/obj/machinery/auto_cloner,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
-"k" = (/obj/structure/old_roboprinter,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
-"l" = (/obj/sc_away_spawner/belt_hard,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
-"m" = (/obj/sc_away_spawner/asteroid_drone_swarm,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
-"n" = (/mob/living/simple_mob/vore/aggressive/corrupthound,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/door/airlock/sandstone,
+/turf/simulated/floor/airless,
+/area/mine/explored/belt_miner)
+"b" = (
+/turf/simulated/wall,
+/area/mine/explored/belt_miner)
+"c" = (
+/turf/simulated/floor/tiled/dark,
+/area/mine/explored/belt_miner)
+"d" = (
+/obj/structure/dogbed,
+/turf/simulated/floor/tiled/dark,
+/area/mine/explored/belt_miner)
+"e" = (
+/obj/machinery/door/airlock/sandstone,
+/turf/simulated/floor/tiled/dark,
+/area/mine/explored/belt_miner)
+"f" = (
+/obj/machinery/mech_recharger,
+/turf/simulated/floor/tiled/dark,
+/area/mine/explored/belt_miner)
+"g" = (
+/obj/machinery/light/flicker,
+/turf/simulated/floor/tiled/dark,
+/area/mine/explored/belt_miner)
+"h" = (
+/obj/machinery/implantchair,
+/turf/simulated/floor/tiled/dark,
+/area/mine/explored/belt_miner)
+"i" = (
+/obj/machinery/compressor,
+/turf/simulated/floor/tiled/dark,
+/area/mine/explored/belt_miner)
+"j" = (
+/obj/machinery/auto_cloner,
+/turf/simulated/floor/tiled/dark,
+/area/mine/explored/belt_miner)
+"k" = (
+/obj/structure/old_roboprinter,
+/turf/simulated/floor/tiled/dark,
+/area/mine/explored/belt_miner)
+"l" = (
+/obj/sc_away_spawner/belt_hard,
+/turf/simulated/floor/tiled/dark,
+/area/mine/explored/belt_miner)
+"m" = (
+/obj/sc_away_spawner/asteroid_drone_swarm,
+/turf/simulated/floor/tiled/dark,
+/area/mine/explored/belt_miner)
+"n" = (
+/mob/living/simple_mob/vore/aggressive/corrupthound,
+/turf/simulated/floor/tiled/dark,
+/area/mine/explored/belt_miner)
 
 (1,1,1) = {"
-bbbbaabbbbaabbbb
-bcceccbncbccbchb
-bncbccbccbccbccb
-bicbcccccccceccb
-bbbbccccccccbbbb
-bkcmccblcbcccccb
-bfccgcbdjbcgccfb
-bbbbbbbbbbbbbbbb
+b
+b
+b
+b
+b
+b
+b
+b
+"}
+(2,1,1) = {"
+b
+c
+n
+i
+b
+k
+f
+b
+"}
+(3,1,1) = {"
+b
+c
+c
+c
+b
+c
+c
+b
+"}
+(4,1,1) = {"
+b
+e
+b
+b
+b
+m
+c
+b
+"}
+(5,1,1) = {"
+a
+c
+c
+c
+c
+c
+g
+b
+"}
+(6,1,1) = {"
+a
+c
+c
+c
+c
+c
+c
+b
+"}
+(7,1,1) = {"
+b
+b
+b
+c
+c
+b
+b
+b
+"}
+(8,1,1) = {"
+b
+n
+c
+c
+c
+l
+d
+b
+"}
+(9,1,1) = {"
+b
+c
+c
+c
+c
+c
+j
+b
+"}
+(10,1,1) = {"
+b
+b
+b
+c
+c
+b
+b
+b
+"}
+(11,1,1) = {"
+a
+c
+c
+c
+c
+c
+c
+b
+"}
+(12,1,1) = {"
+a
+c
+c
+c
+c
+c
+g
+b
+"}
+(13,1,1) = {"
+b
+b
+b
+e
+b
+c
+c
+b
+"}
+(14,1,1) = {"
+b
+c
+c
+c
+b
+c
+c
+b
+"}
+(15,1,1) = {"
+b
+h
+c
+c
+b
+c
+f
+b
+"}
+(16,1,1) = {"
+b
+b
+b
+b
+b
+b
+b
+b
 "}
