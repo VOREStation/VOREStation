@@ -106,10 +106,6 @@
 		/obj/item/rig_module/self_destruct
 		)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 9684db1... Merge pull request #6636 from SpaceManiac/patch/syntax
 /obj/item/clothing/gloves/gauntlets/rig/light/ninja
 	name = "insulated gloves"
 	siemens_coefficient = 0
