@@ -288,7 +288,11 @@
 			log_admin("Skipping IP reputation check on [key] with [address] because of player age")
 		else if(update_ip_reputation()) //It is set now
 			if(ip_reputation >= config.ipr_bad_score) //It's bad
+<<<<<<< HEAD
 				
+=======
+
+>>>>>>> ea8bf0a... Merge pull request #6630 from Novacat/nova-alerts
 				//Log it
 				if(config.paranoia_logging) //We don't block, but we want paranoia log messages
 					log_and_message_admins("[key] at [address] has bad IP reputation: [ip_reputation]. Will be kicked if enabled in config.")
@@ -297,7 +301,11 @@
 
 				//Take action if required
 				if(config.ipr_block_bad_ips && config.ipr_allow_existing) //We allow players of an age, but you don't meet it
+<<<<<<< HEAD
 					to_chat(src,"Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accomidate this.")
+=======
+					to_chat(src,"Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accommodate this.")
+>>>>>>> ea8bf0a... Merge pull request #6630 from Novacat/nova-alerts
 					qdel(src)
 					return 0
 				else if(config.ipr_block_bad_ips) //We don't allow players of any particular age
@@ -307,6 +315,7 @@
 		else
 			log_admin("Couldn't perform IP check on [key] with [address]")
 
+<<<<<<< HEAD
 	// VOREStation Edit Start - Department Hours
 	if(config.time_off)
 		var/DBQuery/query_hours = dbcon.NewQuery("SELECT department, hours FROM vr_player_hours WHERE ckey = '[sql_ckey]'")
@@ -316,6 +325,8 @@
 			department_hours[query_hours.item[1]] = text2num(query_hours.item[2])
 	// VOREStation Edit End - Department Hours
 
+=======
+>>>>>>> ea8bf0a... Merge pull request #6630 from Novacat/nova-alerts
 	if(sql_id)
 		//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
 		var/DBQuery/query_update = dbcon.NewQuery("UPDATE erro_player SET lastseen = Now(), ip = '[sql_ip]', computerid = '[sql_computerid]', lastadminrank = '[sql_admin_rank]' WHERE id = [sql_id]")
