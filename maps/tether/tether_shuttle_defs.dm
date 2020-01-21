@@ -204,9 +204,9 @@
 	area_station = /area/shuttle/beltferry/station
 	area_offsite = /area/shuttle/beltferry/belt
 	area_transition = /area/shuttle/beltferry/transit
-	docking_controller_tag = "beltferry_station"
-	dock_target_station = "beltferry_nodocking" //Fake tags to prevent the shuttle from opening doors.
-	dock_target_offsite = "beltferry_nodocking"
+	docking_controller_tag = "beltferry"
+	dock_target_station = "beltferry_station" // OPEN THOSE DOORS BAY-BAY
+	dock_target_offsite = "beltferry_outpost"
 
 /datum/shuttle/ferry/beltferry/New()
 	move_time = move_time + rand(10, 40)
