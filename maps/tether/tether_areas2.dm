@@ -1200,10 +1200,12 @@
 /area/shuttle/beltferry/station
 	name = "Belter M2.0 Landed"
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/reinforced
 
 /area/shuttle/beltferry/belt // This is our "dock" area for the Belter M2.0
 	name = "Belter M2.0 Holding Position"
 	icon_state = "shuttle2"
+	base_turf = /turf/space
 
 /area/shuttle/beltferry/transit // Transit Area - the in-between.
 	name = "Belter M2.0 Transit"
