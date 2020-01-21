@@ -26,12 +26,8 @@
 
 /obj/vehicle/train/trolley
 	name = "cargo train trolley"
-<<<<<<< HEAD
-	icon = 'icons/obj/vehicles_vr.dmi'	//VOREStation Edit
-=======
 	desc = "A large, flat platform made for putting things on. Or people."
-	icon = 'icons/obj/vehicles.dmi'
->>>>>>> 5d5e361... Merge pull request #6621 from Shadow-Quill/Desc-Adds
+	icon = 'icons/obj/vehicles_vr.dmi'	//VOREStation Edit
 	icon_state = "cargo_trailer"
 	anchored = 0
 	passenger_allowed = 0
