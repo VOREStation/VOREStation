@@ -100,7 +100,6 @@
 		slot_r_hand_str = "engiewelding",
 		)
 
-
 /*
  * Cakehat
  */

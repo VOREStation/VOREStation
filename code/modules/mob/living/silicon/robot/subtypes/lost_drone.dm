@@ -104,7 +104,7 @@
 
 		if("corrupted") // Load them up with ion laws.
 			var/datum/ai_laws/laws = new() // Start with an empty lawset.
-			for(1 to rand(1, 3))
+			for(var/i in 1 to rand(1, 3))
 				laws.add_ion_law(generate_ion_law(exclude_crew_names = TRUE))
 			return laws
 
