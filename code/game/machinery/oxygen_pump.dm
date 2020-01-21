@@ -231,6 +231,7 @@
 
 /obj/machinery/oxygen_pump/anesthetic
 	name = "anesthetic pump"
+	desc = "A wall mounted anesthetic pump with a retractable mask that someone can pull over your face to knock you out."
 	spawn_type = /obj/item/weapon/tank/anesthetic
 	icon_state = "anesthetic_tank"
 	icon_state_closed = "anesthetic_tank"
@@ -266,6 +267,7 @@
 
 /obj/machinery/oxygen_pump/mobile/anesthetic
 	name = "portable anesthetic pump"
+	desc = "A portable anesthetic pump with a retractable mask that someone can pull over your face to knock you out."
 	spawn_type = /obj/item/weapon/tank/anesthetic
 	icon_state = "medpump_n2o"
 	icon_state_closed = "medpump_n2o"

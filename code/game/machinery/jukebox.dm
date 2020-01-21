@@ -10,6 +10,7 @@
 
 /obj/machinery/media/jukebox/
 	name = "space jukebox"
+	desc = "Filled with songs both past and present!"
 	icon = 'icons/obj/jukebox.dmi'
 	icon_state = "jukebox2-nopower"
 	var/state_base = "jukebox2"

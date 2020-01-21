@@ -34,6 +34,7 @@
 
 /obj/machinery/alarm
 	name = "alarm"
+	desc = "Used to control various station atmospheric systems. The light indicates the current air status of the area."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "alarm0"
 	plane = TURF_PLANE

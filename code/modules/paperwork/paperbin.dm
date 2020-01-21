@@ -1,5 +1,6 @@
 /obj/item/weapon/paper_bin
 	name = "paper bin"
+	desc = "A plastic bin full of paper. It seems to have both regular and carbon-copy paper to choose from."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "paper_bin1"
 	item_icons = list(
