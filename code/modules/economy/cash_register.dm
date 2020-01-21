@@ -536,8 +536,4 @@
 	account_to_connect = "Cargo"
 
 /obj/machinery/cash_register/civilian
-<<<<<<< HEAD
 	account_to_connect = "Civilian"
-=======
-	account_to_connect = "Civilian"
->>>>>>> 9684db1... Merge pull request #6636 from SpaceManiac/patch/syntax
