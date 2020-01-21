@@ -15,8 +15,8 @@
 	var/broken = 0 // ={0,1,2} How broken is it???
 	var/circuit_item_capacity = 1 //how many items does the circuit add to max number of items
 	var/item_level = 0 // items microwave can handle, 0 foodstuff, 1 materials
-	var/global/list/datum/recipe/available_recipes // List of the recipes you can use
 	var/global/list/acceptable_items // List of the items you can put in
+	var/global/list/datum/recipe/microwave/available_recipes // List of the recipes you can use
 	var/global/list/acceptable_reagents // List of the reagents you can put in
 	var/global/max_n_of_items = 0
 	var/datum/looping_sound/microwave/soundloop
@@ -39,11 +39,11 @@
 
 	if (!available_recipes)
 		available_recipes = new
-		for (var/type in (typesof(/datum/recipe)-/datum/recipe))
+		for (var/type in (typesof(/datum/recipe/microwave)-/datum/recipe/microwave))
 			available_recipes+= new type
 		acceptable_items = new
 		acceptable_reagents = new
-		for (var/datum/recipe/recipe in available_recipes)
+		for (var/datum/recipe/microwave/recipe in available_recipes)
 			for (var/item in recipe.items)
 				acceptable_items |= item
 			for (var/reagent in recipe.reagents)
@@ -257,7 +257,7 @@
 		abort()
 		return
 
-	var/datum/recipe/recipe = select_recipe(available_recipes,src)
+	var/datum/recipe/microwave/recipe = select_recipe(available_recipes,src)
 	var/obj/cooked
 	if (!recipe)
 		dirty += 1
@@ -422,4 +422,4 @@
 
 /obj/machinery/microwave/advanced/Initialize()
 	..()
-	reagents.maximum_volume = 1000
+	reagents.maximum_volume = 1000 

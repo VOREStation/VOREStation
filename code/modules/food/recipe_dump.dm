@@ -16,7 +16,7 @@
 		qdel(CR)
 
 	//////////////////////// FOOD
-	var/list/food_recipes = typesof(/datum/recipe) - /datum/recipe
+	var/list/food_recipes = typesof(/datum/recipe/microwave) - /datum/recipe/microwave
 	//Build a useful list
 	for(var/Rp in food_recipes)
 		//Lists don't work with datum-stealing no-instance initial() so we have to.
