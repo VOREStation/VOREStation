@@ -173,6 +173,7 @@
 
 /obj/item/weapon/storage/secure/safe
 	name = "secure safe"
+	desc = "It doesn't seem all that secure. Oh well, it'll do."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "safe"
 	icon_opened = "safe0"

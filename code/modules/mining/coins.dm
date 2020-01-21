@@ -3,6 +3,7 @@
 /obj/item/weapon/coin
 	icon = 'icons/obj/items.dmi'
 	name = "Coin"
+	desc = "A simple coin you can flip."
 	icon_state = "coin"
 	force = 0.0
 	throwforce = 0.0

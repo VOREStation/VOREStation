@@ -357,6 +357,7 @@
 	icon_state = "vialbox6"
 	icon_type = "vial"
 	name = "vial storage box"
+	desc = "A helpful rack to hold test tubes."
 	storage_slots = 6
 	can_hold = list(/obj/item/weapon/reagent_containers/glass/beaker/vial)
 	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/vial = 6)

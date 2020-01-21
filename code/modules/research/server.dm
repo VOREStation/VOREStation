@@ -150,6 +150,7 @@
 
 /obj/machinery/computer/rdservercontrol
 	name = "R&D Server Controller"
+	desc = "Manage the research designs and servers. Can also modify upload/download permissions to R&D consoles."
 	icon_keyboard = "rd_key"
 	icon_screen = "rdcomp"
 	light_color = "#a97faa"

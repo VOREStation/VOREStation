@@ -25,8 +25,14 @@ var/global/list/default_medbay_channels = list(
 //VOREStation Edit End
 
 /obj/item/device/radio
+<<<<<<< HEAD
 	icon = 'icons/obj/radio_vr.dmi' //VOREStation Edit
 	name = "shortwave radio" //VOREStation Edit
+=======
+	icon = 'icons/obj/radio.dmi'
+	name = "station bounced radio"
+	desc = "Used to talk to people when headsets don't function. Range is limited."
+>>>>>>> 5d5e361... Merge pull request #6621 from Shadow-Quill/Desc-Adds
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
 	item_state = "radio"

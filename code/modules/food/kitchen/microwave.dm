@@ -1,5 +1,6 @@
 /obj/machinery/microwave
 	name = "microwave"
+	desc = "Studies are inconclusive on whether pressing your face against the glass is harmful."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "mw"
 	density = 1

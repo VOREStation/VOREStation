@@ -1,6 +1,11 @@
 /obj/machinery/sleep_console
 	name = "sleeper console"
+<<<<<<< HEAD
 	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - Better icon.
+=======
+	desc = "A control panel to operate a linked sleeper with."
+	icon = 'icons/obj/Cryogenic2.dmi'
+>>>>>>> 5d5e361... Merge pull request #6621 from Shadow-Quill/Desc-Adds
 	icon_state = "sleeperconsole"
 	var/obj/machinery/sleeper/sleeper
 	anchored = 1 //About time someone fixed this.

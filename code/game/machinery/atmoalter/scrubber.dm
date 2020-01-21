@@ -1,5 +1,6 @@
 /obj/machinery/portable_atmospherics/powered/scrubber
 	name = "Portable Air Scrubber"
+	desc = "Similar to room scrubbers, this device contains an internal tank to scrub gasses from the atmosphere."
 
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "pscrubber:0"
@@ -144,7 +145,11 @@
 //Huge scrubber
 /obj/machinery/portable_atmospherics/powered/scrubber/huge
 	name = "Huge Air Scrubber"
+<<<<<<< HEAD
 	icon = 'icons/obj/atmos_vr.dmi' //VOREStation Edit - New Sprite
+=======
+	desc = "A larger variation of the portable scrubber, for industrial scrubbing of air. Must be turned on from a remote terminal."
+>>>>>>> 5d5e361... Merge pull request #6621 from Shadow-Quill/Desc-Adds
 	icon_state = "scrubber:0"
 	anchored = 1
 	volume = 500000
@@ -238,6 +243,10 @@
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary
 	name = "Stationary Air Scrubber"
+
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/Initialize()
+	. = ..()
+	desc += "This one seems to be tightly secured with large bolts."
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if(I.is_wrench())

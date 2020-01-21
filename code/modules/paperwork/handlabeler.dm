@@ -1,5 +1,6 @@
 /obj/item/weapon/hand_labeler
 	name = "hand labeler"
+	desc = "Label everything like you've always wanted to! Stuck to the side is a label reading \'Labeler\'. Seems you're too late for that one."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler0"
 	var/label = null

@@ -13,6 +13,7 @@
 
 /obj/structure/bookcase
 	name = "bookcase"
+	desc = "A set of wooden shelves, perfect for placing books on."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "book-0"
 	anchored = 1

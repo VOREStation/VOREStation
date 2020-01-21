@@ -1,5 +1,6 @@
 /obj/machinery/computer/aifixer
 	name = "\improper AI system integrity restorer"
+	desc = "Restores AI units to working condition, assuming you have one inside!"
 	icon_keyboard = "rd_key"
 	icon_screen = "ai-fixer"
 	light_color = "#a97faa"
