@@ -410,3 +410,15 @@
 		if ("dispose")
 			dispose()
 	return
+
+/obj/machinery/microwave/advanced // specifically for complex recipes
+	name = "deluxe microwave"
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "mw-deluxe"
+	circuit = /obj/item/weapon/circuitboard/microwave/advanced
+	circuit_item_capacity = 100
+	item_level = 1
+
+/obj/machinery/microwave/advanced/Initialize()
+	..()
+	reagents.maximum_volume = 1000 
