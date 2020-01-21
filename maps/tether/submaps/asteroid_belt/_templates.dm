@@ -1,9 +1,9 @@
-/*
+
 /datum/map_template/asteroid_belt
 	name = "Belt Miner Content"
 	desc = "For seeding submaps in the Asteroid Belt"
 	allow_duplicates = TRUE
-
+/*
 /datum/map_template/asteroid_belt/normal_cave
 	name = "Belt Normal Mob Cave"
 	mappath = 'normal_cave.dmm'
