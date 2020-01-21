@@ -145,11 +145,8 @@
 //Huge scrubber
 /obj/machinery/portable_atmospherics/powered/scrubber/huge
 	name = "Huge Air Scrubber"
-<<<<<<< HEAD
 	icon = 'icons/obj/atmos_vr.dmi' //VOREStation Edit - New Sprite
-=======
 	desc = "A larger variation of the portable scrubber, for industrial scrubbing of air. Must be turned on from a remote terminal."
->>>>>>> 5d5e361... Merge pull request #6621 from Shadow-Quill/Desc-Adds
 	icon_state = "scrubber:0"
 	anchored = 1
 	volume = 500000
