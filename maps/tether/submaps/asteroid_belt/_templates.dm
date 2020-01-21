@@ -3,7 +3,7 @@
 	name = "Belt Miner Content"
 	desc = "For seeding submaps in the Asteroid Belt"
 	allow_duplicates = TRUE
-/*
+
 /datum/map_template/asteroid_belt/normal_cave
 	name = "Belt Normal Mob Cave"
 	mappath = 'normal_cave.dmm'
@@ -52,9 +52,9 @@
 	mappath = 'large_cave.dmm'
 	cost = 15
 
-/datum/map_template/asteroid_belt/mimicry
+/datum/map_template/asteroid_belt/belt_mimicry
 	name = "Belt Mimic Cave"
-	mappath = 'mimicry.dmm'
+	mappath = 'belt_mimicry.dmm'
 	cost = 5
 
 /datum/map_template/asteroid_belt/mysterious_cavern
@@ -72,7 +72,7 @@
 	name = "Belt Space Cave"
 	mappath = 'space_cave.dmm'
 	cost = 5
-*/
+
 
 /*
 /datum/map_template/asteroid_belt/whatever_treasure

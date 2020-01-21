@@ -1,6 +1,6 @@
 "a" = (/turf/space,/area/mine/explored/belt_miner)
-"b" = (/turf/simulated/mineral/vacuum,/area/mine/explored/belt_miner)
-"c" = (/turf/simulated/mineral/floor/vacuum,/area/mine/explored/belt_miner)
+"b" = (/turf/simulated/mineral/ignore_cavegen,/area/mine/explored/belt_miner)
+"c" = (/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored/belt_miner)
 
 (1,1,1) = {"
 aaaaaaaaaaaaa

@@ -9,8 +9,8 @@
 "i" = (/obj/machinery/compressor,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
 "j" = (/obj/machinery/auto_cloner,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
 "k" = (/obj/structure/old_roboprinter,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
-"l" = (/obj/tether_away_spawner/belt_hard,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
-"m" = (/obj/tether_away_spawner/asteroid_drone_swarm,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
+"l" = (/obj/sc_away_spawner/belt_hard,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
+"m" = (/obj/sc_away_spawner/asteroid_drone_swarm,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
 "n" = (/mob/living/simple_mob/vore/aggressive/corrupthound,/turf/simulated/floor/tiled/dark,/area/mine/explored/belt_miner)
 
 (1,1,1) = {"
