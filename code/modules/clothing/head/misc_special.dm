@@ -99,7 +99,10 @@
 		slot_l_hand_str = "engiewelding",
 		slot_r_hand_str = "engiewelding",
 		)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9684db1... Merge pull request #6636 from SpaceManiac/patch/syntax
 
 /*
  * Cakehat
