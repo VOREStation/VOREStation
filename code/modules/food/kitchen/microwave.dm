@@ -12,6 +12,8 @@
 	var/operating = 0 // Is it on?
 	var/dirty = 0 // = {0..100} Does it need cleaning?
 	var/broken = 0 // ={0,1,2} How broken is it???
+	var/circuit_item_capacity = 1 //how many items does the circuit add to max number of items
+	var/item_level = 0 // items microwave can handle, 0 foodstuff, 1 materials
 	var/global/list/datum/recipe/available_recipes // List of the recipes you can use
 	var/global/list/acceptable_items // List of the items you can put in
 	var/global/list/acceptable_reagents // List of the reagents you can put in
@@ -124,7 +126,7 @@
 			to_chat(user, "<span class='warning'>It's dirty!</span>")
 			return 1
 	else if(is_type_in_list(O,acceptable_items))
-		if (contents.len>=(max_n_of_items + component_parts.len + 1))	//Adds component_parts to the maximum number of items.	The 1 is from the circuit
+		if (contents.len>=(max_n_of_items + component_parts.len + circuit_item_capacity))	//Adds component_parts to the maximum number of items. changed 1 to actually just be the circuit item capacity var.
 			to_chat(user, "<span class='warning'>This [src] is full of ingredients, you cannot put more.</span>")
 			return 1
 		if(istype(O, /obj/item/stack) && O:get_amount() > 1) // This is bad, but I can't think of how to change it
@@ -308,14 +310,26 @@
 		sleep(5) //VOREStation Edit - Quicker Microwaves
 	return 1
 
-/obj/machinery/microwave/proc/has_extra_item()
-	for (var/obj/O in ((contents - component_parts) - circuit))
-		if ( \
-				!istype(O,/obj/item/weapon/reagent_containers/food) && \
-				!istype(O, /obj/item/weapon/grown) \
-			)
-			return 1
-	return 0
+/obj/machinery/microwave/proc/has_extra_item() //- coded to have different microwaves be able to handle different items
+	if(item_level == 0)
+		for (var/obj/O in ((contents - component_parts) - circuit))
+			if ( \
+					!istype(O,/obj/item/weapon/reagent_containers/food) && \
+					!istype(O, /obj/item/weapon/grown) \
+				)
+				return 1
+		return 0
+	if(item_level == 1)
+		for (var/obj/O in ((contents - component_parts) - circuit))
+			if ( \
+					!istype(O, /obj/item/weapon/reagent_containers/food) && \
+					!istype(O, /obj/item/weapon/grown) && \
+					!istype(O, /obj/item/slime_extract) && \
+					!istype(O, /obj/item/organ) && \
+					!istype(O, /obj/item/stack/material) \
+				)
+				return 1
+		return 0
 
 /obj/machinery/microwave/proc/start()
 	src.visible_message("<span class='notice'>The microwave turns on.</span>", "<span class='notice'>You hear a microwave.</span>")
@@ -396,3 +410,15 @@
 		if ("dispose")
 			dispose()
 	return
+
+/obj/machinery/microwave/advanced // specifically for complex recipes
+	name = "deluxe microwave"
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "mw-deluxe"
+	circuit = /obj/item/weapon/circuitboard/microwave/advanced
+	circuit_item_capacity = 100
+	item_level = 1
+
+/obj/machinery/microwave/advanced/Initialize()
+	..()
+	reagents.maximum_volume = 1000

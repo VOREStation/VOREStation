@@ -1931,8 +1931,12 @@
 #include "code\modules\food\food\lunch.dm"
 #include "code\modules\food\food\sandwich.dm"
 #include "code\modules\food\food\snacks.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\food\food\snacks_vr.dm"
 #include "code\modules\food\food\z_custom_food_vr.dm"
+=======
+#include "code\modules\food\food\thecake.dm"
+>>>>>>> 0dbcdf6... Merge pull request #6628 from Ketrai/cakebranch:polaris.dme
 #include "code\modules\food\food\drinks\bottle.dm"
 #include "code\modules\food\food\drinks\cup.dm"
 #include "code\modules\food\food\drinks\drinkingglass.dm"
