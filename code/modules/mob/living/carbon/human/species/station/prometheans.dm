@@ -71,6 +71,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 	rarity_value = 5
 	siemens_coefficient = 0.8
 
+	water_resistance = 0
+
 	genders = list(MALE, FEMALE, NEUTER, PLURAL)
 
 	unarmed_types = list(/datum/unarmed_attack/slime_glomp)
@@ -171,8 +173,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 	var/regen_burn = TRUE
 	var/regen_tox = TRUE
 	var/regen_oxy = TRUE
-	if(H.fire_stacks < 0)	// If you're soaked, you're melting.
-		H.adjustToxLoss(3 * heal_rate)	// Tripled because 0.5 is miniscule, and fire_stacks are capped in both directions
+	if(H.fire_stacks < 0 && H.get_water_protection() <= 0.5)	// If over half your body is soaked, you're melting.
+		H.adjustToxLoss(max(0,(3 - (3 * H.get_water_protection())) * heal_rate))	// Tripled because 0.5 is miniscule, and fire_stacks are capped in both directions.
 		healing = FALSE
 
 	//Prometheans automatically clean every surface they're in contact with every life tick - this includes the floor without shoes.
