@@ -1,5 +1,6 @@
 /obj/structure/curtain
 	name = "curtain"
+	desc = "The show must go on! At least, until you close these."
 	icon = 'icons/obj/curtain.dmi'
 	icon_state = "closed"
 	plane = MOB_PLANE

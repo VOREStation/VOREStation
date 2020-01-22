@@ -26,6 +26,7 @@
 
 /obj/vehicle/train/trolley
 	name = "cargo train trolley"
+	desc = "A large, flat platform made for putting things on. Or people."
 	icon = 'icons/obj/vehicles_vr.dmi'	//VOREStation Edit
 	icon_state = "cargo_trailer"
 	anchored = 0

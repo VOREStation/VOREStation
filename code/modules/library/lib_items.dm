@@ -13,6 +13,7 @@
 
 /obj/structure/bookcase
 	name = "bookcase"
+	desc = "A set of wooden shelves, perfect for placing books on."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "book-0"
 	anchored = 1
@@ -297,7 +298,7 @@
 		user << browse(dat + "<html><head><title>[P.name]</title></head>" \
 		+ "<body style='overflow:hidden'>" \
 		+ "<div> <img src='tmp_photo.png' width = '180'" \
-		+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : ]"\
+		+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : null]"\
 		+ "</body></html>", "window=[name]")
 	else if(!isnull(pages[page]))
 		if(!(istype(usr, /mob/living/carbon/human) || isobserver(usr) || istype(usr, /mob/living/silicon)))

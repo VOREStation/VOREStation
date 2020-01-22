@@ -51,6 +51,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "server"
 	name = "Messaging Server"
+	desc = "Facilitates both PDA messages and request console functions."
 	density = 1
 	anchored = 1.0
 	use_power = 1
@@ -79,6 +80,11 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	message_servers -= src
 	..()
 	return
+
+/obj/machinery/message_server/examine(mob/user, distance, infix, suffix)
+	if(..())
+		to_chat(user, "It appears to be [active ? "online" : "offline"].")
+	
 
 /obj/machinery/message_server/proc/GenerateKey()
 	//Feel free to move to Helpers.
@@ -231,6 +237,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "blackbox"
 	name = "Blackbox Recorder"
+	desc = "Records all radio communications, as well as various other information in case of the worst."
 	density = 1
 	anchored = 1.0
 	use_power = 1

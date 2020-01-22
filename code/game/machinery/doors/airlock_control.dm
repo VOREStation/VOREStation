@@ -145,6 +145,7 @@ obj/machinery/airlock_sensor
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_sensor_off"
 	name = "airlock sensor"
+	desc = "Sends atmospheric readings to a nearby controller."
 
 	anchored = 1
 	power_channel = ENVIRON

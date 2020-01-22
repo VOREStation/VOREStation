@@ -614,6 +614,13 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/aicore
 	sort_string = "XAAAA"
 
+/datum/design/circuit/microwave/advanced
+	name = "deluxe microwave"
+	id = "deluxe microwave"
+	req_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 5, TECH_BLUESPACE = 4)
+	build_path = /obj/item/weapon/circuitboard/microwave/advanced
+	sort_string = "MAAAC"
+
 
 /* I have no idea how this was even running before, but it doesn't seem to be necessary.
 ///////////////////////////////////

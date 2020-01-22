@@ -29,6 +29,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 /obj/machinery/computer/rdconsole
 	name = "R&D control console"
+	desc = "Science, in a computer! Experiment results not guaranteed."
 	icon_keyboard = "rd_key"
 	icon_screen = "rdcomp"
 	light_color = "#a97faa"
@@ -393,7 +394,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			var/obj/item/weapon/paper/PR = new/obj/item/weapon/paper
 			PR.name = "list of researched technologies"
 			PR.info = "<center><b>[station_name()] Science Laboratories</b>"
-			PR.info += "<h2>[ (text2num(href_list["print"]) == 2) ? "Detailed" : ] Research Progress Report</h2>"
+			PR.info += "<h2>[ (text2num(href_list["print"]) == 2) ? "Detailed" : null] Research Progress Report</h2>"
 			PR.info += "<i>report prepared at [stationtime2text()] station time</i></center><br>"
 			if(text2num(href_list["print"]) == 2)
 				PR.info += GetResearchListInfo()

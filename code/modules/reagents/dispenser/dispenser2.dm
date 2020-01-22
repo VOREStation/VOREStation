@@ -1,5 +1,6 @@
 /obj/machinery/chemical_dispenser
 	name = "chemical dispenser"
+	desc = "Automagically fabricates chemicals from electricity."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dispenser"
 
