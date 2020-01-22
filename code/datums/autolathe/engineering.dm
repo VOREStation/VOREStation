@@ -102,3 +102,7 @@
 /datum/category_item/autolathe/engineering/camera_assembly
 	name = "camera assembly"
 	path =/obj/item/weapon/camera_assembly
+
+/datum/category_item/autolathe/engineering/rpd
+	name = "rapid piping device"
+	path =/obj/item/weapon/pipe_dispenser
