@@ -9,7 +9,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/vacuum,
 /area/mine/explored/belt_miner)
 "d" = (
-/obj/sc_away_spawner/belt_normal,
+/obj/tether_away_spawner/belt_normal,
 /turf/simulated/mineral/floor/ignore_mapgen/vacuum,
 /area/mine/explored/belt_miner)
 

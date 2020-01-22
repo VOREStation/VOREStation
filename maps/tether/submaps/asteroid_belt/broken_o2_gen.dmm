@@ -1,295 +1,39 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/simulated/floor/airless,
-/area/mine/explored/belt_miner)
-"b" = (
-/turf/simulated/wall,
-/area/mine/explored/belt_miner)
-"c" = (
-/obj/structure/door_assembly/door_assembly_eng,
-/turf/simulated/mineral/floor/ignore_mapgen/vacuum,
-/area/mine/explored/belt_miner)
-"d" = (
-/obj/structure/ghost_pod/manual/lost_drone/dogborg,
-/turf/simulated/floor/airless,
-/area/mine/explored/belt_miner)
-"e" = (
-/obj/structure/old_roboprinter,
-/turf/simulated/floor/airless,
-/area/mine/explored/belt_miner)
-"f" = (
-/obj/machinery/door/airlock/glass_engineering,
-/turf/simulated/mineral/floor/ignore_mapgen/vacuum,
-/area/mine/explored/belt_miner)
-"g" = (
-/turf/simulated/mineral/floor/ignore_mapgen/vacuum,
-/area/mine/explored/belt_miner)
-"h" = (
-/obj/structure/barricade,
-/turf/simulated/mineral/floor/ignore_mapgen/vacuum,
-/area/mine/explored/belt_miner)
-"i" = (
-/obj/machinery/atmospherics/pipe/tank/air{
-	dir = 1
-	},
-/turf/simulated/floor/airless,
-/area/mine/explored/belt_miner)
-"j" = (
-/obj/machinery/atmospherics/unary/heater,
-/turf/simulated/floor/airless,
-/area/mine/explored/belt_miner)
-"k" = (
-/obj/machinery/atmospherics/unary/freezer,
-/turf/simulated/floor/airless,
-/area/mine/explored/belt_miner)
-"l" = (
-/obj/machinery/atmospherics/pipe/simple/visible,
-/turf/simulated/floor/airless,
-/area/mine/explored/belt_miner)
-"m" = (
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 5
-	},
-/turf/simulated/floor/airless,
-/area/mine/explored/belt_miner)
-"n" = (
-/obj/machinery/atmospherics/pipe/manifold/visible{
-	dir = 1
-	},
-/turf/simulated/floor/airless,
-/area/mine/explored/belt_miner)
-"o" = (
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 9
-	},
-/turf/simulated/floor/airless,
-/area/mine/explored/belt_miner)
-"p" = (
-/obj/machinery/atmospherics/pipe/simple/visible{
-	icon_state = "intact";
-	dir = 6
-	},
-/turf/simulated/floor/airless,
-/area/mine/explored/belt_miner)
-"q" = (
-/obj/machinery/atmospherics/pipe/simple/visible{
-	dir = 4
-	},
-/turf/simulated/floor/airless,
-/area/mine/explored/belt_miner)
-"r" = (
-/obj/machinery/auto_cloner,
-/turf/simulated/floor/airless,
-/area/mine/explored/belt_miner)
-"s" = (
-/obj/machinery/crystal/ice,
-/turf/simulated/mineral/floor/ignore_mapgen/vacuum,
-/area/mine/explored/belt_miner)
-"t" = (
-/obj/machinery/gravity_generator,
-/turf/simulated/floor/airless,
-/area/mine/explored/belt_miner)
-"u" = (
-/obj/machinery/particle_smasher,
-/turf/simulated/floor/airless,
-/area/mine/explored/belt_miner)
-"v" = (
-/obj/sc_away_spawner/asteroid_drone_swarm,
-/turf/simulated/floor/airless,
-/area/mine/explored/belt_miner)
+"a" = (/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"b" = (/turf/simulated/wall,/area/mine/explored/belt_miner)
+"c" = (/obj/structure/door_assembly/door_assembly_eng,/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored/belt_miner)
+"d" = (/obj/structure/ghost_pod/manual/lost_drone/dogborg,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"e" = (/obj/structure/old_roboprinter,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"f" = (/obj/machinery/door/airlock/glass_engineering,/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored/belt_miner)
+"g" = (/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored/belt_miner)
+"h" = (/obj/structure/barricade,/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored/belt_miner)
+"i" = (/obj/machinery/atmospherics/pipe/tank/air{dir = 1},/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"j" = (/obj/machinery/atmospherics/unary/heater,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"k" = (/obj/machinery/atmospherics/unary/freezer,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"l" = (/obj/machinery/atmospherics/pipe/simple/visible,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"m" = (/obj/machinery/atmospherics/pipe/simple/visible{dir = 5},/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"n" = (/obj/machinery/atmospherics/pipe/manifold/visible{dir = 1},/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"o" = (/obj/machinery/atmospherics/pipe/simple/visible{dir = 9},/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"p" = (/obj/machinery/atmospherics/pipe/simple/visible{icon_state = "intact"; dir = 6},/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"q" = (/obj/machinery/atmospherics/pipe/simple/visible{dir = 4},/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"r" = (/obj/random/multiple/underdark/treasure,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"s" = (/obj/machinery/crystal/ice,/turf/simulated/mineral/floor/ignore_mapgen/vacuum,/area/mine/explored/belt_miner)
+"t" = (/obj/machinery/gravity_generator,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"u" = (/obj/machinery/particle_smasher,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"v" = (/obj/tether_away_spawner/asteroid_drone_swarm,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
+"w" = (/obj/random/asteroid_belt,/turf/simulated/floor/airless,/area/mine/explored/belt_miner)
 
 (1,1,1) = {"
-b
-b
-b
-b
-b
-b
-b
-b
-g
-g
-g
-g
-g
-"}
-(2,1,1) = {"
-b
-e
-e
-a
-r
-p
-i
-b
-g
-g
-s
-g
-g
-"}
-(3,1,1) = {"
-b
-a
-a
-a
-a
-q
-a
-b
-h
-g
-g
-g
-g
-"}
-(4,1,1) = {"
-b
-v
-v
-a
-a
-q
-v
-c
-h
-g
-g
-g
-g
-"}
-(5,1,1) = {"
-b
-a
-a
-a
-a
-a
-a
-b
-h
-g
-g
-g
-g
-"}
-(6,1,1) = {"
-b
-t
-a
-a
-a
-q
-a
-b
-g
-g
-g
-g
-s
-"}
-(7,1,1) = {"
-b
-a
-a
-d
-a
-q
-a
-f
-g
-g
-s
-g
-g
-"}
-(8,1,1) = {"
-b
-a
-a
-a
-a
-q
-a
-b
-g
-g
-g
-g
-g
-"}
-(9,1,1) = {"
-b
-a
-a
-a
-a
-q
-a
-b
-h
-g
-g
-g
-g
-"}
-(10,1,1) = {"
-b
-j
-l
-l
-m
-q
-v
-c
-h
-g
-s
-g
-g
-"}
-(11,1,1) = {"
-b
-a
-a
-a
-n
-o
-a
-b
-h
-g
-g
-g
-g
-"}
-(12,1,1) = {"
-b
-k
-l
-l
-o
-a
-u
-b
-g
-g
-g
-s
-g
-"}
-(13,1,1) = {"
-b
-b
-b
-b
-b
-b
-b
-b
-g
-g
-g
-g
-g
+bbbbbbbbbbbbb
+beavataaajakb
+beavaaaaalalb
+braaaadaalalb
+bwaaaaaaamnob
+bpqqaqqqqqoab
+biavaaaaavaub
+bbbcbbfbbcbbb
+gghhhggghhhgg
+ggggggggggggg
+gsggggsggsggg
+gggggggggggsg
+gggggsggggggg
 "}

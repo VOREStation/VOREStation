@@ -51,6 +51,15 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/grass/sif)
 	oxygen = 0
 	nitrogen = 0
 	temperature	= TCMB
+/turf/simulated/mineral/ignore_mapgen/vacuum // Rykka adds vacuum mapgen ignore turfs for POIs in space with ROCK WALLS.
+	oxygen = 0
+	nitrogen = 0
+	temperature = TCMB
+/turf/simulated/mineral/floor/ignore_mapgen/vacuum // Rykka adds vacuum mapgen ignore turfs for POIs in space with SAND.
+	oxygen = 0
+	nitrogen = 0
+	temperature = TCMB
+
 
 VIRGO3B_TURF_CREATE(/turf/simulated/mineral)
 VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
