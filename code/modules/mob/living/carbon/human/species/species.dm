@@ -481,8 +481,4 @@
 	amount *= 1 - H.get_water_protection()
 	amount *= water_damage_mod
 	if(amount > 0)
-<<<<<<< HEAD
 		H.adjustToxLoss(amount)
-=======
-		H.adjustToxLoss(amount)
->>>>>>> b2c5524... Merge pull request #6648 from Mechoid/OhMyGodMechoid
