@@ -125,7 +125,7 @@
 	for(var/atom/movable/AM in contents)
 		AM.water_act(amount)
 	remove_modifiers_of_type(/datum/modifier/fire)
-	inflict_water_damage(20 * amount) // Only things vulnerable to water will actually be harmed (slimes/prommies).
+	//inflict_water_damage(20 * amount) // Only things vulnerable to water will actually be harmed (slimes/prommies).	//VOREStation  Removal: Polaris dum
 
 var/list/shoreline_icon_cache = list()
 
