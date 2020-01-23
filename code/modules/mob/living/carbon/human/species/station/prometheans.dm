@@ -174,9 +174,13 @@ var/datum/species/shapeshifter/promethean/prometheans
 	var/regen_burn = TRUE
 	var/regen_tox = TRUE
 	var/regen_oxy = TRUE
+	// VOREStation Removal Start
+	/*
 	if(H.fire_stacks < 0 && H.get_water_protection() <= 0.5)	// If over half your body is soaked, you're melting.
 		H.adjustToxLoss(max(0,(3 - (3 * H.get_water_protection())) * heal_rate))	// Tripled because 0.5 is miniscule, and fire_stacks are capped in both directions.
 		healing = FALSE
+	*/
+	//VOREStation Removal End
 
 	//Prometheans automatically clean every surface they're in contact with every life tick - this includes the floor without shoes.
 	//They gain nutrition from doing this.

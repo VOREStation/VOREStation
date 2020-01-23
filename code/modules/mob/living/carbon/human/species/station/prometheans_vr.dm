@@ -4,6 +4,7 @@
 	push_flags = ~HEAVY
 	swap_flags = ~HEAVY
 	gluttonous = 0
+	water_damage_mod = 0		//No water damage
 	valid_transform_species = list(
 		"Human", "Unathi", "Tajara", "Skrell",
 		"Diona", "Teshari", "Monkey","Sergal",
