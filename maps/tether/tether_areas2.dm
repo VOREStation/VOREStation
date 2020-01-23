@@ -918,6 +918,11 @@
 	name = "\improper Excursion Shuttle - Virgo3b Sky"
 	base_turf = /turf/simulated/sky/virgo3b/south
 
+// Belter Dock
+
+/area/quartermaster/belterdock
+	name = "\improper Cargo Belter Access"
+	icon_state = "mining"
 // Elevator area //
 
 /area/tether/elevator
