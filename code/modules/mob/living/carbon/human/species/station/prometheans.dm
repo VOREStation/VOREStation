@@ -72,6 +72,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	siemens_coefficient = 0.8
 
 	water_resistance = 0
+	water_damage_mod = 0.3
 
 	genders = list(MALE, FEMALE, NEUTER, PLURAL)
 
