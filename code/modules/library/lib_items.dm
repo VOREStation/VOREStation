@@ -96,7 +96,34 @@
 	else
 		icon_state = "book-5"
 
+/*
+Book Cart
+*/
 
+/obj/structure/bookcase/bookcart
+	name = "book cart"
+	icon = 'icons/obj/library.dmi'
+	icon_state = "bookcart-0"
+	anchored = 0
+	opacity = 0
+
+/obj/structure/bookcase/bookcart/attackby(obj/item/O as obj, mob/user as mob)
+	if(istype(O, /obj/item/weapon/book))
+		user.drop_item()
+		O.loc = src
+		update_icon()
+	else
+		return
+
+/obj/structure/bookcase/bookcart/update_icon()
+	if(contents.len < 5)
+		icon_state = "bookcart-[contents.len]"
+	else
+		icon_state = "bookcart-5"
+
+/*
+Book Cart End
+*/
 
 /obj/structure/bookcase/manuals/medical
 	name = "Medical Manuals bookcase"
