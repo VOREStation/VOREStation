@@ -452,7 +452,7 @@
 	var/additional_chems = rand(0,5)
 
 	if(additional_chems)
-		//VOREStation Edit Start TFF 24/1/20 - More chems too the blacklist for prefs reasoning.
+		//VOREStation Edit Start TFF 24/1/20 - More chems to the blacklist for prefs reasoning.
 		var/list/banned_chems = list(
 			"adminordrazine",
 			"nutriment",
