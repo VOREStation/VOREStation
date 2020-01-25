@@ -12,6 +12,7 @@ var/prison_shuttle_timeleft = 0
 
 /obj/machinery/computer/prison_shuttle
 	name = "prison shuttle control console"
+	desc = "Used to move the prison shuttle to and from its destination."
 	icon_keyboard = "security_key"
 	icon_screen = "syndishuttle"
 	light_color = "#00ffff"

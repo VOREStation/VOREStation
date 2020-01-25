@@ -116,6 +116,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 // It is August 22nd, 2012... This TODO has already been here for months.. I wonder how long it'll last before someone does something about it. // Nov 2019. Nope.
 /obj/machinery/librarycomp
 	name = "Check-In/Out Computer"
+	desc = "Print books from the archives! (You aren't quite sure how they're printed by it, though.)"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "computer"
 	anchored = 1
@@ -521,23 +522,41 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
  */
 /obj/machinery/bookbinder
 	name = "Book Binder"
+	desc = "Bundles up a stack of inserted paper into a convenient book format."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "binder"
 	anchored = 1
 	density = 1
 
 /obj/machinery/bookbinder/attackby(var/obj/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/paper))
-		user.drop_item()
-		O.loc = src
-		user.visible_message("[user] loads some paper into [src].", "You load some paper into [src].")
-		src.visible_message("[src] begins to hum as it warms up its printing drums.")
-		sleep(rand(200,400))
-		src.visible_message("[src] whirs as it prints and binds a new book.")
-		var/obj/item/weapon/book/b = new(src.loc)
-		b.dat = O:info
-		b.name = "Print Job #" + "[rand(100, 999)]"
-		b.icon_state = "book[rand(1,7)]"
-		qdel(O)
+	if(istype(O, /obj/item/weapon/paper) || istype(O, /obj/item/weapon/paper_bundle))
+		if(istype(O, /obj/item/weapon/paper))
+			user.drop_item()
+			O.loc = src
+			user.visible_message("[user] loads some paper into [src].", "You load some paper into [src].")
+			src.visible_message("[src] begins to hum as it warms up its printing drums.")
+			sleep(rand(200,400))
+			src.visible_message("[src] whirs as it prints and binds a new book.")
+			var/obj/item/weapon/book/b = new(src.loc)
+			b.dat = O:info
+			b.name = "Print Job #" + "[rand(100, 999)]"
+			b.icon_state = "book[rand(1,7)]"
+			qdel(O)
+		else
+			user.drop_item()
+			O.loc = src
+			user.visible_message("[user] loads some paper into [src].", "You load some paper into [src].")
+			src.visible_message("[src] begins to hum as it warms up its printing drums.")
+			sleep(rand(300,500))
+			src.visible_message("[src] whirs as it prints and binds a new book.")
+			var/obj/item/weapon/book/bundle/b = new(src.loc)
+			b.pages = O:pages
+			for(var/obj/item/weapon/paper/P in O.contents)
+				P.forceMove(b)
+			for(var/obj/item/weapon/photo/P in O.contents)
+				P.forceMove(b)
+			b.name = "Print Job #" + "[rand(100, 999)]"
+			b.icon_state = "book[rand(1,7)]"
+			qdel(O)
 	else
 		..()

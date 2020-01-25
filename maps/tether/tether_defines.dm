@@ -102,6 +102,8 @@
 	spawnpoint_stayed = /datum/spawnpoint/cryo
 
 	meteor_strike_areas = list(/area/tether/surfacebase/outside/outside3)
+	drop_pod_allowed_z = list(Z_LEVEL_SURFACE_HIGH)
+
 
 	unit_test_exempt_areas = list(
 		/area/tether/surfacebase/outside/outside1,
@@ -113,8 +115,9 @@
 		/area/crew_quarters/sleep/Dorm_5/holo,
 		/area/crew_quarters/sleep/Dorm_7/holo,
 		/area/rnd/miscellaneous_lab)	//TFF 31/8/19 - exempt new construction site from unit tests
+	//TFF 11/12/19 - Minor refactor, makes mice spawn only in Atmos.
 	unit_test_exempt_from_atmos = list(
-		/area/engineering/atmos/intake, // Outside,
+		/area/engineering/atmos_intake, // Outside,
 		/area/rnd/external, //  Outside,
 		/area/tether/surfacebase/mining_main/external, // Outside,
 		/area/tether/surfacebase/mining_main/airlock, //  Its an airlock,

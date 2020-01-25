@@ -197,6 +197,9 @@ var/last_chew = 0
 	breakouttime = 200
 	cuff_type = "duct tape"
 
+/obj/item/weapon/handcuffs/cable/tape/cyborg
+	dispenser = TRUE
+
 //Legcuffs. Not /really/ handcuffs, but its close enough.
 /obj/item/weapon/handcuffs/legcuffs
 	name = "legcuffs"

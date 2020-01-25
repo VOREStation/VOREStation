@@ -22,7 +22,7 @@
 		to_chat(src,"<span class='warning'>You have not set your scale yet. Do this on the VORE tab in character setup.</span>")
 
 	//Can they play?
-	if(!is_alien_whitelisted(src,all_species[client.prefs.species]) && !check_rights(R_ADMIN, 0))
+	if(!is_alien_whitelisted(src,GLOB.all_species[client.prefs.species]) && !check_rights(R_ADMIN, 0))
 		pass = FALSE
 		to_chat(src,"<span class='warning'>You are not allowed to spawn in as this species.</span>")
 

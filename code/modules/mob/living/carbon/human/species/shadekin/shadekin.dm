@@ -14,7 +14,10 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/shadekin)
 
 	language = LANGUAGE_SHADEKIN
-	assisted_langs = list()
+	name_language = LANGUAGE_SHADEKIN
+	species_language = LANGUAGE_SHADEKIN
+	secondary_langs = list(LANGUAGE_SHADEKIN)
+	num_alternate_languages = 3
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws/shadekin, /datum/unarmed_attack/bite/sharp/shadekin)
 	rarity_value = 15	//INTERDIMENSIONAL FLUFFERS
 
@@ -50,6 +53,8 @@
 	blood_color = "#A10808"
 	base_color = "#f0f0f0"
 	color_mult = 1
+
+	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 	has_glowing_eyes = TRUE
 
@@ -209,6 +214,14 @@
 		return 0
 
 	shade_organ.max_dark_energy = new_max_energy
+
+/datum/species/shadekin/proc/check_infinite_energy(var/mob/living/carbon/human/H)
+	var/obj/item/organ/internal/brain/shadekin/shade_organ = H.internal_organs_by_name[O_BRAIN]
+
+	if(!istype(shade_organ))
+		return 0
+
+	return shade_organ.dark_energy_infinite
 
 /datum/species/shadekin/proc/update_shadekin_hud(var/mob/living/carbon/human/H)
 	var/turf/T = get_turf(H)

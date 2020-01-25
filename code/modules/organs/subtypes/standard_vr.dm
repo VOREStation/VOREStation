@@ -20,7 +20,8 @@
 		if(eye_icon)
 			var/icon/eyes_icon = new/icon(eye_icons_vr, eye_icon_vr)
 			if(eyes)
-				eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
+				if(owner.species.appearance_flags & HAS_EYE_COLOR)
+					eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
 			else
 				eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
 			mob_icon.Blend(eyes_icon, ICON_OVERLAY)

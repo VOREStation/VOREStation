@@ -54,6 +54,11 @@
 	var/failmsg = ""
 	var/charge = 0
 
+	// Eating used bulbs gives us bulb shards
+	var/bulb_shards = 0
+	// when we get this many shards, we get a free bulb.
+	var/shards_required = 4
+
 /obj/item/device/lightreplacer/New()
 	failmsg = "The [name]'s refill light blinks red."
 	..()
@@ -76,17 +81,54 @@
 			to_chat(user, "<span class='warning'>You need one sheet of glass to replace lights.</span>")
 
 	if(istype(W, /obj/item/weapon/light))
+		var/new_bulbs = 0
 		var/obj/item/weapon/light/L = W
 		if(L.status == 0) // LIGHT OKAY
 			if(uses < max_uses)
+				if(!user.unEquip(W))
+					return
 				add_uses(1)
-				to_chat(user, "You insert \the [L.name] into \the [src.name]. You have [uses] light\s remaining.")
-				user.drop_item()
 				qdel(L)
-				return
 		else
-			to_chat(user, "You need a working light.")
+			if(!user.unEquip(W))
+				return
+			new_bulbs += AddShards(1)
+			qdel(L)
+		if(new_bulbs != 0)
+			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+		to_chat(user, "You insert \the [L.name] into \the [src.name]. You have [uses] light\s remaining.")
+		return
+
+	if(istype(W, /obj/item/weapon/storage))
+		var/obj/item/weapon/storage/S = W
+		var/found_lightbulbs = FALSE
+		var/replaced_something = TRUE
+
+		for(var/obj/item/I in S.contents)
+			if(istype(I,/obj/item/weapon/light))
+				var/obj/item/weapon/light/L = I
+				found_lightbulbs = TRUE
+				if(src.uses >= max_uses)
+					break
+				if(L.status == LIGHT_OK)
+					replaced_something = TRUE
+					add_uses(1)
+					qdel(L)
+
+				else if(L.status == LIGHT_BROKEN || L.status == LIGHT_BURNED)
+					replaced_something = TRUE
+					AddShards(1)
+					qdel(L)
+
+		if(!found_lightbulbs)
+			to_chat(user, "<span class='warning'>\The [S] contains no bulbs.</span>")
 			return
+
+		if(!replaced_something && src.uses == max_uses)
+			to_chat(user, "<span class='warning'>\The [src] is full!</span>")
+			return
+
+		to_chat(user, "<span class='notice'>You fill \the [src] with lights from \the [S].</span>")
 
 /obj/item/device/lightreplacer/attack_self(mob/user)
 	/* // This would probably be a bit OP. If you want it though, uncomment the code.
@@ -113,6 +155,15 @@
 /obj/item/device/lightreplacer/proc/add_uses(var/amount = 1)
 	uses = min(max(uses + amount, 0), max_uses)
 
+
+/obj/item/device/lightreplacer/proc/AddShards(amount = 1)
+	bulb_shards += amount
+	var/new_bulbs = round(bulb_shards / shards_required)
+	if(new_bulbs > 0)
+		add_uses(new_bulbs)
+	bulb_shards = bulb_shards % shards_required
+	return new_bulbs
+
 /obj/item/device/lightreplacer/proc/Charge(var/mob/user, var/amount = 1)
 	charge += amount
 	if(charge > 6)
@@ -121,18 +172,41 @@
 
 /obj/item/device/lightreplacer/proc/ReplaceLight(var/obj/machinery/light/target, var/mob/living/U)
 
-	if(target.status == LIGHT_OK)
+	if(target.status != LIGHT_OK)
+		if(CanUse(U))
+			if(!Use(U)) return
+			to_chat(U, "<span class='notice'>You replace the [target.get_fitting_name()] with the [src].</span>")
+
+			if(target.status != LIGHT_EMPTY)
+				var/new_bulbs = AddShards(1)
+				if(new_bulbs != 0)
+					to_chat(U, "<span class='notice'>\The [src] has fabricated a new bulb from the broken bulbs it has stored. It now has [uses] uses.</span>")
+					playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+				target.status = LIGHT_EMPTY
+				target.update()
+
+			var/obj/item/weapon/light/L2 = new target.light_type()
+
+			target.status = L2.status
+			target.switchcount = L2.switchcount
+			target.rigged = emagged
+			target.brightness_range = L2.brightness_range
+			target.brightness_power = L2.brightness_power
+			target.brightness_color = L2.brightness_color
+			target.on = target.has_power()
+			target.update()
+			qdel(L2)
+
+			if(target.on && target.rigged)
+				target.explode()
+			return
+
+		else
+			to_chat(U, failmsg)
+			return
+	else
 		to_chat(U, "There is a working [target.get_fitting_name()] already inserted.")
-	else if(!CanUse(U))
-		to_chat(U, failmsg)
-	else if(Use(U))
-		to_chat(U, "<span class='notice'>You replace the [target.get_fitting_name()] with the [src].</span>")
-
-		if(target.status != LIGHT_EMPTY)
-			target.remove_bulb()
-
-		var/obj/item/weapon/light/L = new target.light_type()
-		target.insert_bulb(L)
+		return
 
 /obj/item/device/lightreplacer/emag_act(var/remaining_charges, var/mob/user)
 	emagged = !emagged

@@ -353,7 +353,9 @@ var/global/list/##LIST_NAME = list();\
 #define RAD_LEVEL_HIGH 25
 #define RAD_LEVEL_VERY_HIGH 75
 
-#define RADIATION_THRESHOLD_CUTOFF 0.1	// Radiation will not affect a tile when below this value.
+// Calculation modes for effective radiation
+#define RAD_RESIST_CALC_DIV 0 // Each turf absorbs some fraction of the working radiation level
+#define RAD_RESIST_CALC_SUB 1 // Each turf absorbs a fixed amount of radiation
 
 //https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
 #define MOUSE_OPACITY_TRANSPARENT 0

@@ -4208,3 +4208,96 @@
 	reagents.trans_to(O, reagents.total_volume)
 	user.drop_from_inventory(src)
 	qdel(src)
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelplain
+	name = "plain bagel"
+	desc = "This bread's got chutzpah!"
+	icon_state = "bagelplain"
+	nutriment_amt = 3
+	nutriment_desc = list("bread" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelplain/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelsunflower
+	name = "sunflower seed bagel"
+	desc = "This bread's got chutzpah - and sunflower seeds!"
+	icon_state = "bagelsunflower"
+	nutriment_amt = 4
+	nutriment_desc = list("bread" = 1, "sunflower seeds" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelsunflower/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelcheese
+	name = "cheese bagel"
+	desc = "This bread's got cheese n' chutzpah!"
+	icon_state = "bagelcheese"
+	nutriment_amt = 4
+	nutriment_desc = list("bread" = 1, "cheese" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelcheese/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 4)
+	reagents.add_reagent("nutriment", 4)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelraisin
+	name = "cinnamon raisin bagel"
+	desc = "This bread's got... Raisins!"
+	icon_state = "bagelraisin"
+	nutriment_amt = 5
+	nutriment_desc = list("bread" = 1, "sweetness" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelraisin/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelpoppy
+	name = "poppy seed bagel"
+	desc = "This bread's got Chutzpah, and poppy seeds!"
+	icon_state = "bagelpoppy"
+	nutriment_amt = 5
+	nutriment_desc = list("bread" = 1, "sweetness" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelpoppy/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/bageleverything
+	name = "everything bagel"
+	desc = "Mmm... Immeasurably unfathomable!"
+	icon_state = "bageleverything"
+	nutriment_amt = 40
+	nutriment_desc = list("life" = 1, "death" = 1, "entropy" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/bageleverything/Initialize()
+	. = ..()
+	reagents.add_reagent("phoron", 5)
+	reagents.add_reagent("defective_nanites", 5)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/bageltwo
+	name = "two bagels"
+	desc = "Noo! ...Two bagels!"
+	icon_state = "bagelplain"
+
+/obj/item/weapon/reagent_containers/food/snacks/bageltwo/Initialize()
+	. = ..()
+	spawn_bagels()
+	spawn_bagels()
+	sleep(30)
+	qdel(src)
+
+/obj/item/weapon/reagent_containers/food/snacks/bageltwo/proc/spawn_bagels()
+	var/build_path = /obj/item/weapon/reagent_containers/food/snacks/bagelplain
+	var/atom/A = new build_path(get_turf(src))
+	if(pixel_x || pixel_y)
+		A.pixel_x = pixel_x
+		A.pixel_y = pixel_y

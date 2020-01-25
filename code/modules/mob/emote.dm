@@ -22,7 +22,7 @@
 
 
 	if (message)
-		message = say_emphasis(message)
+		message = encode_html_emphasis(message)
 
  // Hearing gasp and such every five seconds is not good emotes were not global for a reason.
  // Maybe some people are okay with that.
@@ -81,7 +81,7 @@
 	else
 		input = message
 
-	input = say_emphasis(input)
+	input = encode_html_emphasis(input)
 
 	if(input)
 		log_ghostemote(input, src)

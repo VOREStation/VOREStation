@@ -1,5 +1,6 @@
 /obj/machinery/sleep_console
 	name = "sleeper console"
+	desc = "A control panel to operate a linked sleeper with."
 	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - Better icon.
 	icon_state = "sleeperconsole"
 	var/obj/machinery/sleeper/sleeper

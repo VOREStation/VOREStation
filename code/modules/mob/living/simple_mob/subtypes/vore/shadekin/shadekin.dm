@@ -36,9 +36,9 @@
 
 	say_list_type = /datum/say_list/shadekin
 
-	response_help = "pets the"
-	response_disarm = "bops the"
-	response_harm = "hits the"
+	response_help = "pets"
+	response_disarm = "bops"
+	response_harm = "hits"
 
 	attacktext = list("mauled","slashed","clawed")
 	friendly = list("boops", "pawbs", "mars softly at", "sniffs on")

@@ -17,13 +17,13 @@
 
 /datum/power/shadekin/phase_shift
 	name = "Phase Shift (100)"
-	desc = "Shift yourself out of alignment with realspace to travel quickly areas."
+	desc = "Shift yourself out of alignment with realspace to travel quickly to different areas."
 	verbpath = /mob/living/carbon/human/proc/phase_shift
 	ability_icon_state = "tech_passwall"
 
 /mob/living/carbon/human/proc/phase_shift()
 	set name = "Phase Shift (100)"
-	set desc = "Shift yourself out of alignment with realspace to travel quickly areas."
+	set desc = "Shift yourself out of alignment with realspace to travel quickly to different areas."
 	set category = "Shadekin"
 
 	var/ability_cost = 100

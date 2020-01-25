@@ -71,7 +71,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		var/duration = (abs(change)+0.25) SECONDS
 		var/matrix/resize = matrix() // Defines the matrix to change the player's size
 		resize.Scale(new_size) //Change the size of the matrix
-		resize.Translate(0, 16 * (new_size - 1)) //Move the player up in the tile so their feet align with the bottom
+		resize.Translate(0, (vis_height/2) * (new_size - 1)) //Move the player up in the tile so their feet align with the bottom
 		animate(src, transform = resize, time = duration) //Animate the player resizing
 
 		var/aura_grow_to = change > 0 ? 2 : 0.5
@@ -85,9 +85,11 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		update_transform() //Lame way
 
 /mob/living/carbon/human/resize(var/new_size, var/animate = TRUE)
+	if(species)
+		vis_height = species.icon_height
 	. = ..()
 	if(LAZYLEN(hud_list) && has_huds)
-		var/new_y_offset = 32 * (size_multiplier - 1)
+		var/new_y_offset = vis_height * (size_multiplier - 1)
 		for(var/index = 1 to hud_list.len)
 			var/image/HI = grab_hud(index)
 			HI.pixel_y = new_y_offset
@@ -125,7 +127,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  * Attempt to scoop up this mob up into H's hands, if the size difference is large enough.
  * @return false if normal code should continue, 1 to prevent normal code.
  */
-/mob/living/proc/attempt_to_scoop(var/mob/living/M)
+/mob/living/proc/attempt_to_scoop(var/mob/living/M, var/mob/living/G) //second one is for the Grabber, only exists for animals to self-grab
 	var/size_diff = M.get_effective_size() - get_effective_size()
 	if(!holder_default && holder_type)
 		holder_default = holder_type
@@ -140,7 +142,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		return 0
 	if(size_diff >= 0.50)
 		holder_type = /obj/item/weapon/holder/micro
-		var/obj/item/weapon/holder/m_holder = get_scooped(M)
+		var/obj/item/weapon/holder/m_holder = get_scooped(M, G)
 		holder_type = holder_default
 		if (m_holder)
 			return 1

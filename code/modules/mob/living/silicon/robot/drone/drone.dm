@@ -60,6 +60,8 @@ var/list/mob_hat_cache = list()
 	var/serial_number = 0
 	var/name_override = 0
 
+	var/foreign_droid = FALSE
+
 	holder_type = /obj/item/weapon/holder/drone
 
 	can_be_antagged = FALSE
@@ -117,7 +119,8 @@ var/list/mob_hat_cache = list()
 	updatename()
 
 /mob/living/silicon/robot/drone/init()
-	aiCamera = new/obj/item/device/camera/siliconcam/drone_camera(src)
+	if(!scrambledcodes && !foreign_droid)
+		aiCamera = new/obj/item/device/camera/siliconcam/drone_camera(src)
 	additional_law_channels["Drone"] = ":d"
 	if(!laws) laws = new law_type
 	if(!module) module = new module_type(src)
@@ -252,10 +255,10 @@ var/list/mob_hat_cache = list()
 //For some goddamn reason robots have this hardcoded. Redefining it for our fragile friends here.
 /mob/living/silicon/robot/drone/updatehealth()
 	if(status_flags & GODMODE)
-		health = 35
+		health = maxHealth
 		stat = CONSCIOUS
 		return
-	health = 35 - (getBruteLoss() + getFireLoss())
+	health = maxHealth - (getBruteLoss() + getFireLoss())
 	return
 
 //Easiest to check this here, then check again in the robot proc.

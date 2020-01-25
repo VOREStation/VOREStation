@@ -15,6 +15,10 @@
 	icon_state = "wolf"
 	icon = 'icons/mob/vore.dmi'
 
+	response_help = "pets"
+	response_disarm = "bops"
+	response_harm = "hits"
+
 	movement_cooldown = 5
 
 	harm_intent_damage = 5

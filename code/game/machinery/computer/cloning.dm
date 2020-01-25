@@ -1,5 +1,6 @@
 /obj/machinery/computer/cloning
 	name = "cloning control console"
+	desc = "Used to start cloning cycles, as well as manage clone records."
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
 	light_color = "#315ab4"

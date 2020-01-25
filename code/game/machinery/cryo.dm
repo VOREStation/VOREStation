@@ -2,6 +2,7 @@
 
 /obj/machinery/atmospherics/unary/cryo_cell
 	name = "cryo cell"
+	desc = "Used to cool people down for medical reasons. Totally."
 	icon = 'icons/obj/cryogenics.dmi' // map only
 	icon_state = "pod_preview"
 	density = 1

@@ -337,6 +337,8 @@
 	ckeywhitelist = list("jemli")
 	character_name = list("Jemli")
 
+//TFF 28/11/19 - Expired permit removal
+/*
 /datum/gear/fluff/jeremiah_permit
 	path = /obj/item/clothing/accessory/permit/gun/fluff/ace
 	display_name = "Ace's Gun Permit"
@@ -357,6 +359,7 @@
 	ckeywhitelist = list("jertheace")
 	character_name = list("Jeremiah Acacius")
 	allowed_roles = list("Colony Director", "Warden", "Head of Security")
+*/
 
 /datum/gear/fluff/jeremiah_holster
 	path = /obj/item/clothing/accessory/holster/armpit
@@ -468,7 +471,7 @@
 	path = /obj/item/clothing/accessory/medal/silver/unity
 	display_name = "Rana's Unity Medal"
 	ckeywhitelist = list("kitchifox")
-	character_name = list("Rana Uma")
+	character_name = list("Rana Starsong-Uma")
 
 /datum/gear/fluff/taiga_uniform
 	path = /obj/item/clothing/under/fluff/taiga
@@ -887,7 +890,7 @@
 	character_name = list("Chakat Tempest Venosare")
 	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Field Medic")
 	slot = slot_glasses
-	
+
 /datum/gear/fluff/tempest_hypospray
 	path = /obj/item/weapon/reagent_containers/hypospray/vial/tempest
 	display_name = "Tempest's Hypospray"
@@ -895,14 +898,14 @@
 	character_name = list("Chakat Tempest Venosare")
 	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Field Medic")
 	slot = slot_belt
-	
+
 /datum/gear/fluff/tempest_backpack
 	path = /obj/item/weapon/storage/backpack/saddlebag/tempest
 	display_name = "Tempest's Saddlebag"
 	ckeywhitelist = list("wickedtemp")
 	character_name = list("Chakat Tempest Venosare")
 	slot = slot_back
-	
+
 /datum/gear/fluff/tempest_implant
 	path = /obj/item/weapon/implanter/reagent_generator/tempest
 	display_name = "Tempest's Implant"

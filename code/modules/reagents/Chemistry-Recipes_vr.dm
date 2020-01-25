@@ -129,6 +129,22 @@
 	required_reagents = list("whiskey" = 1, "protein" = 1)
 	result_amount = 2
 
+///////////////////////////////////////////////////////////////////////////////////
+/// Reagent colonies.
+/datum/chemical_reaction/meatcolony
+	name = "protein"
+	id = "meatcolony"
+	result = "protein"
+	required_reagents = list("meatcolony" = 5, "virusfood" = 5)
+	result_amount = 60
+
+/datum/chemical_reaction/plantcolony
+	name = "nutriment"
+	id = "plantcolony"
+	result = "nutriment"
+	required_reagents = list("plantcolony" = 5, "virusfood" = 5)
+	result_amount = 60
+
 ///////////////////////////////
 //SLIME CORES BELOW HERE///////
 ///////////////////////////////

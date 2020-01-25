@@ -50,8 +50,10 @@
 	if(H)
 		if(H.looksSynthetic())
 			return "flashing a 'system offline' light"
-		else
+		else if(!H.ai_holder)
 			return show_ssd
+		else
+			return
 
 /datum/species/proc/get_blood_colour(var/mob/living/carbon/human/H)
 	if(H)
@@ -95,9 +97,9 @@
 		else
 			return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 
-	var/datum/language/species_language = all_languages[name_language]
+	var/datum/language/species_language = GLOB.all_languages[name_language]
 	if(!species_language)
-		species_language = all_languages[default_language]
+		species_language = GLOB.all_languages[default_language]
 	if(!species_language)
 		return "unknown"
 	return species_language.get_random_name(gender)

@@ -15,8 +15,8 @@
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
-	mobcountmax = 100
-	floracountmax = 7000
+	mobcountmax = 40
+	floracountmax = 2000
 
 	valid_mobs = list(/mob/living/simple_mob/animal/sif/sakimm/polar, /mob/living/simple_mob/animal/sif/diyaab/polar,
 					/mob/living/simple_mob/animal/sif/shantak/polar, /mob/living/simple_mob/animal/space/bear/polar,
@@ -30,7 +30,7 @@
 /area/awaymission/snowfield/restricted // No mob spawns!
 	icon_state = "red"
 	mobcountmax = 1 // Hacky fix.
-	floracountmax = 100
+	floracountmax = 120
 	valid_mobs = list(/obj/structure/flora/tree/pine) // Hacky fix.
 	valid_flora = list(/obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine,
 					/obj/structure/flora/tree/dead, /obj/structure/flora/grass/brown, /obj/structure/flora/grass/green,

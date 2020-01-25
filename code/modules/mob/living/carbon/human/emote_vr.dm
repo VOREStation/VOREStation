@@ -35,7 +35,7 @@
 			message = "peeps like a bird."
 			m_type = 2
 			playsound(loc, 'sound/voice/peep.ogg', 50, 1, -1)
-		if("chirp")
+		if ("chirp")
 			message = "chirps!"
 			playsound(src.loc, 'sound/misc/nymphchirp.ogg', 50, 0)
 			m_type = 2
@@ -55,6 +55,10 @@
 			message = "lets out a hiss."
 			m_type = 2
 			playsound(loc, 'sound/voice/hiss.ogg', 50, 1, -1)
+		if ("squeak")
+			message = "lets out a squeak."
+			m_type = 2
+			playsound(loc, 'sound/effects/mouse_squeak.ogg', 50, 1, -1)
 		if ("nsay")
 			nsay()
 			return TRUE
@@ -71,6 +75,8 @@
 				src.SpinAnimation(7,1)
 				message = "does a flip!"
 				m_type = 1
+		if ("vhelp") //Help for Virgo-specific emotes.
+			to_chat(src, "vwag, vflap, mlem, awoo, nya, peep, chirp, weh, merp, bark, hiss, squeak, nsay, nme, flip")
 
 	if (message)
 		custom_emote(m_type,message)

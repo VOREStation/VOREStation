@@ -9,6 +9,7 @@
 
 /obj/machinery/computer/telecomms/monitor
 	name = "Telecommunications Monitor"
+	desc = "Used to traverse a telecommunication network. Helpful for debugging connection issues."
 	icon_screen = "comm_monitor"
 
 	var/screen = 0				// the screen number:

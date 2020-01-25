@@ -24,17 +24,11 @@ var/global/list/turfs = list()						//list of all turfs
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM) //VOREStaton Edit
 #define all_genders_text_list list("Male","Female","Plural","Neuter","Herm") //VOREStation Edit
 
-//Languages/species/whitelist.
-var/global/list/all_species[0]
-var/global/list/all_languages[0]
-var/global/list/language_keys[0]					// Table of say codes for all languages
-var/global/list/whitelisted_species = list(SPECIES_HUMAN) // Species that require a whitelist check.
-var/global/list/playable_species = list(SPECIES_CUSTOM, SPECIES_HUMAN)    // A list of ALL playable species, whitelisted, latejoin or otherwise. //VOREStation Edit - Making sure custom species is obvious.
-
 var/list/mannequins_
 
 // Posters
 var/global/list/poster_designs = list()
+var/global/list/NT_poster_designs = list()
 
 // Uplinks
 var/list/obj/item/device/uplink/world_uplinks = list()
@@ -163,12 +157,12 @@ var/global/list/string_slot_flags = list(
 	paths = typesof(/datum/language)-/datum/language
 	for(var/T in paths)
 		var/datum/language/L = new T
-		all_languages[L.name] = L
+		GLOB.all_languages[L.name] = L
 
-	for (var/language_name in all_languages)
-		var/datum/language/L = all_languages[language_name]
+	for (var/language_name in GLOB.all_languages)
+		var/datum/language/L = GLOB.all_languages[language_name]
 		if(!(L.flags & NONGLOBAL))
-			language_keys[lowertext(L.key)] = L
+			GLOB.language_keys[lowertext(L.key)] = L
 
 	var/rkey = 0
 	paths = typesof(/datum/species)
@@ -182,18 +176,24 @@ var/global/list/string_slot_flags = list(
 
 		S = new T
 		S.race_key = rkey //Used in mob icon caching.
-		all_species[S.name] = S
+		GLOB.all_species[S.name] = S
 
 		if(!(S.spawn_flags & SPECIES_IS_RESTRICTED))
-			playable_species += S.name
+			GLOB.playable_species += S.name
 		if(S.spawn_flags & SPECIES_IS_WHITELISTED)
-			whitelisted_species += S.name
+			GLOB.whitelisted_species += S.name
 
 	//Posters
 	paths = typesof(/datum/poster) - /datum/poster
+	paths -= typesof(/datum/poster/nanotrasen)
 	for(var/T in paths)
 		var/datum/poster/P = new T
 		poster_designs += P
+
+	paths = typesof(/datum/poster/nanotrasen)
+	for(var/T in paths)
+		var/datum/poster/P = new T
+		NT_poster_designs += P
 
 	return 1
 

@@ -13,6 +13,7 @@
 	icon_living = "deathclaw"
 	icon_state = "deathclaw"
 	icon = 'icons/mob/vore64x64.dmi'
+	vis_height = 64
 
 	attacktext = list("mauled")
 
@@ -20,6 +21,7 @@
 
 	maxHealth = 200
 	health = 200
+	see_in_dark = 8
 
 	melee_damage_lower = 5
 	melee_damage_upper = 30
@@ -48,16 +50,16 @@
 	vore_pounce_chance = 0 // Beat them into crit before eating.
 	vore_icons = SA_ICON_LIVING
 
-/* //VOREStation AI Temporary Removal
-/mob/living/simple_animal/hostile/deathclaw/Login()
+/mob/living/simple_mob/vore/aggressive/deathclaw/Login()
 	. = ..()
 	if(!riding_datum)
-		riding_datum = new /datum/riding/simple_animal(src)
-	verbs |= /mob/living/simple_animal/proc/animal_mount
+		riding_datum = new /datum/riding/simple_mob(src)
+	verbs |= /mob/living/simple_mob/proc/animal_mount
+	verbs |= /mob/living/proc/toggle_rider_reins
+	movement_cooldown = 0
 
-/mob/living/simple_animal/hostile/deathclaw/MouseDrop_T(mob/living/M, mob/living/user)
+/mob/living/simple_mob/vore/aggressive/deathclaw/MouseDrop_T(mob/living/M, mob/living/user)
 	return
-*/
 
 /datum/ai_holder/simple_mob/melee/deathclaw
 	can_breakthrough = TRUE

@@ -14,6 +14,10 @@
 			if(H.wear_suit.body_parts_covered & LEGS)
 				H << "<span class='warning'>You can't wear \the [src] with \the [H.wear_suit], it's in the way.</span>"
 				return 0
+			for(var/obj/item/clothing/accessory/A in H.wear_suit)
+				if(A.body_parts_covered & LEGS)
+					to_chat(H, "<span class='warning'>You can't wear \the [src] with \the [H.wear_suit]'s [A], it's in the way.</span>")
+					return 0
 		return 1
 
 /obj/item/clothing/shoes/leg_guard/laserproof

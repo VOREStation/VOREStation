@@ -77,6 +77,7 @@
 
 /obj/machinery/computer/guestpass
 	name = "guest pass terminal"
+	desc = "Used to print temporary passes for people. Handy!"
 	icon_state = "guest"
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER

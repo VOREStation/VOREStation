@@ -80,6 +80,11 @@
 		verbs -= /mob/living/carbon/proc/release_control
 
 	callHook("death", list(src, gibbed))
+	
+	if(mind)
+		for(var/mob/observer/dead/O in mob_list)
+			if(O.client && O.client.is_preference_enabled(/datum/client_preference/show_dsay))
+				to_chat(O, "<span class='deadsay'><b>[src]</b> has died in <b>[get_area(src)]</b>. [ghost_follow_link(src, O)] </span>")
 
 	if(!gibbed && species.death_sound)
 		playsound(loc, species.death_sound, 80, 1, 1)

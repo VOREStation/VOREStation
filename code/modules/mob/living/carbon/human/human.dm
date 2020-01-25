@@ -1120,7 +1120,7 @@
 			dna.species = new_species
 
 	// No more invisible screaming wheelchairs because of set_species() typos.
-	if(!all_species[new_species])
+	if(!GLOB.all_species[new_species])
 		new_species = SPECIES_HUMAN
 
 	if(species)
@@ -1137,7 +1137,7 @@
 		species.remove_inherent_verbs(src)
 		holder_type = null
 
-	species = all_species[new_species]
+	species = GLOB.all_species[new_species]
 
 	if(species.language)
 		add_language(species.language)
@@ -1186,7 +1186,7 @@
 	if(LAZYLEN(species.descriptors))
 		descriptors = list()
 		for(var/desctype in species.descriptors)
-			var/datum/mob_descriptor.descriptor = species.descriptors[desctype]
+			var/datum/mob_descriptor/descriptor = species.descriptors[desctype]
 			descriptors[desctype] = descriptor.default_value
 
 	spawn(0)

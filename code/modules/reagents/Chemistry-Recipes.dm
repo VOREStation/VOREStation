@@ -553,6 +553,20 @@
 	required_reagents = list ("ammonia" = 1, "ethanol" = 1)
 	result_amount = 2
 
+/datum/chemical_reaction/left4zed
+	name = "Left4Zed"
+	id = "left4zed"
+	result = "left4zed"
+	required_reagents = list ("diethylamine" = 2, "mutagen" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/robustharvest
+	name = "RobustHarvest"
+	id = "robustharvest"
+	result = "robustharvest"
+	required_reagents = list ("ammonia" = 1, "calcium" = 1, "neurotoxic_protein" = 1)
+	result_amount = 3
+
 /datum/chemical_reaction/space_cleaner
 	name = "Space cleaner"
 	id = "cleaner"
@@ -2196,6 +2210,13 @@
 	required_reagents = list("sake" = 1, "melonliquor" = 1)
 	result_amount = 2
 
+/datum/chemical_reaction/drinks/deathbell
+	name = "Deathbell"
+	id = "deathbell"
+	result = "deathbell"
+	required_reagents = list("antifreeze" = 1, "gargleblaster" = 1, "syndicatebomb" =1)
+	result_amount = 3
+
 /datum/chemical_reaction/bitters
 	name = "Bitters"
 	id = "bitters"
@@ -2478,13 +2499,13 @@
 	id = "virginsexonthebeach"
 	result = "virginsexonthebeach"
 	required_reagents = list("orangejuice" = 3, "grenadine" = 2)
-	result_amount = 4
+	result_amount = 5
 
 /datum/chemical_reaction/drinks/sexonthebeach
 	name = "Sex On The Beach"
 	id = "sexonthebeach"
 	result = "sexonthebeach"
-	required_reagents = list("orangejuice" = 3, "grenadine" = 2, "vodka" = 1)
+	required_reagents = list("virginsexonthebeach" = 5, "vodka" = 1)
 	result_amount = 6
 
 /datum/chemical_reaction/drinks/eggnog

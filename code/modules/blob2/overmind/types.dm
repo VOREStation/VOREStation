@@ -423,7 +423,7 @@
 		var/protection = H.get_cold_protection(50)
 		if(protection < 1)
 			var/temp_change = 80 // Each hit can reduce temperature by up to 80 kelvin.
-			var/datum/species/baseline = all_species["Human"]
+			var/datum/species/baseline = GLOB.all_species["Human"]
 			var/temp_cap = baseline.cold_level_3 - 5 // Can't go lower than this.
 
 			var/cold_factor = abs(protection - 1)

@@ -73,6 +73,7 @@
 	cream		spawn_reagent = "cream"
 	mint		spawn_reagent = "mint"
 	berry		spawn_reagent = "berryjuice"
+	decaf		spawn_reagent = "decaf"
 
 	// ERT
 	inaprov		spawn_reagent = "inaprovaline"

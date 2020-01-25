@@ -1,7 +1,7 @@
 /obj/machinery/chemical_dispenser/xenoflora
 	name = "xenoflora chem dispenser"
 	dispense_reagents = list(
-		"water", "sugar", "ethanol", "radium", "ammonia", "diethylamine", "plantbgone", "mutagen"
+		"water", "sugar", "ethanol", "radium", "ammonia", "diethylamine", "plantbgone", "mutagen", "calcium"
 		)
 
 /obj/machinery/chemical_dispenser/xenoflora/full
@@ -13,5 +13,6 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ammonia,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/diethylamine,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/plantbgone,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/mutagen
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/mutagen,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/calcium
 		)

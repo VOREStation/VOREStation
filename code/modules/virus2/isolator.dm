@@ -5,6 +5,7 @@
 
 /obj/machinery/disease2/isolator/
 	name = "pathogenic isolator"
+	desc = "Used to isolate and identify diseases, allowing for comparison with a remote database."
 	density = 1
 	anchored = 1
 	icon = 'icons/obj/virology.dmi'

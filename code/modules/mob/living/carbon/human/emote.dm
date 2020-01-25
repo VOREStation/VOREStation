@@ -732,7 +732,7 @@
 					twitch_v, vomit, whimper, wink, yawn. Synthetics: beep, buzz, yes, no, rcough, rsneeze, ping")
 
 		else
-			to_chat(src, "<font color='blue'>Unusable emote '[act]'. Say *help for a list.</font>")
+			to_chat(src, "<font color='blue'>Unusable emote '[act]'. Say *help or *vhelp for a list.</font>") //VOREStation Edit, mention *vhelp for Virgo-specific emotes located in emote_vr.dm.
 
 	if (message)
 		custom_emote(m_type,message)

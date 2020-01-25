@@ -67,3 +67,19 @@
 /area/tether_away/debrisfield/derelict
 	icon_state = "debrisexplored"
 	forced_ambience = list('sound/ambience/tension/tension.ogg', 'sound/ambience/tension/horror.ogg')
+
+//TFF 26/12/19 - Sub-areas for the APCs.
+/area/tether_away/debrisfield/derelict/ai_access_port
+	name = "POI - Abandoned Derelict AI Acess Port"
+
+/area/tether_away/debrisfield/derelict/ai_access_starboard
+	name = "POI - Abandoned Derelict AI Access Starboard"
+
+/area/tether_away/debrisfield/derelict/ai_chamber
+	name = "POI - Abandoned Derelict AI Chamber"
+
+/area/tether_away/debrisfield/derelict/bridge
+	name = "POI - Abandoned Derelict Bridge"
+
+/area/tether_away/debrisfield/derelict/interior
+	name = "POI - Abandoned Derelict Interior"

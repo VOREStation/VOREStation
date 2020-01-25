@@ -63,6 +63,11 @@
 		if(ghost.exonet)
 			im_contacts_ui[++im_contacts_ui.len] = list("name" = sanitize(ghost.name), "address" = ghost.exonet.address, "ref" = "\ref[ghost]")
 
+	for(var/obj/item/integrated_circuit/input/EPv2/CIRC in im_contacts)
+		if(CIRC.exonet && CIRC.assembly)
+			im_contacts_ui[++im_contacts_ui.len] = list("name" = sanitize(CIRC.assembly.name), "address" = CIRC.exonet.address, "ref" = "\ref[CIRC]")
+
+
 	//Actual messages.
 	for(var/I in im_list)
 		im_list_ui[++im_list_ui.len] = list("address" = I["address"], "to_address" = I["to_address"], "im" = I["im"])

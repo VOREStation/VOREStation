@@ -845,7 +845,6 @@
 	armor = list(melee = 50, bullet = 40, laser = 45, energy = 25, bomb = 50, bio = 100, rad = 50) //These values were taken from the combat rigs and adjusted to be weaker than said rigs.
 	slowdown = 0
 	allowed = list(/obj/item/weapon/gun,/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton)
-	w_class = ITEMSIZE_NORMAL
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "joansuit"
@@ -1903,10 +1902,10 @@ Departamental Swimsuits, for general use
 //Bacon12366:Elly Brown
 /obj/item/clothing/accessory/sweater/fluff/star
 	name = "Star Sweater"
-	desc = "It's a white long sweater with a big yellow star at the chest. It seems like it's made of a soft material."
-
+	desc = "It's a black long sweater with a big blue star at the chest area. It was made to show person's left shoulder."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "star_sweater"
+
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "star_sweater"

@@ -46,8 +46,10 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/head/sync_colour_to_human(var/mob/living/carbon/human/human)
 	..()
-	var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
-	if(eyes) eyes.update_colour()
+
+	if(owner)
+		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
+		if(eyes) eyes.update_colour()
 
 /obj/item/organ/external/head/get_icon()
 	..()
@@ -69,7 +71,8 @@ var/global/list/limb_icon_cache = list()
 		if(should_have_eyes)
 			//And we have them
 			if(eyes)
-				eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
+				if(has_eye_color)
+					eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
 			//They're gone!
 			else
 				eyes_icon.Blend(rgb(128,0,0), ICON_ADD)

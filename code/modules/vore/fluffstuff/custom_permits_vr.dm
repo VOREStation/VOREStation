@@ -6,10 +6,13 @@
 	to_chat(user, "You cannot reset the naming locks on [src]. It's issued by CentCom and totally tamper-proof!")
 	return
 
+//TFF 28/11/19 - Remove expired permit
+/*
 // jertheace:Jeremiah 'Ace' Acacius
 /obj/item/clothing/accessory/permit/gun/fluff/ace
 	name = "Jeremiah Acacius's Sidearm Permit"
 	desc = "A card indicating that the owner is allowed to carry a sidearm. It is issued by CentCom, so it is valid until it expires on November 10th, 2563."
+*/
 
 // ValiTheWolf: Vakashi
 /obj/item/clothing/accessory/permit/gun/fluff/Vakashi
