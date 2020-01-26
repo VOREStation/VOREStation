@@ -171,11 +171,7 @@
 /obj/machinery/power/supermatter/proc/announce_warning()
 	var/integrity = get_integrity()
 	var/alert_msg = " Integrity at [integrity]%"
-<<<<<<< HEAD
-	var/message_sound = 'sound/ambience/matteralarm.ogg' // VOREStation Edit - Rykka adds SM Delam alarm
-=======
 	var/message_sound = 'sound/ambience/matteralarm.ogg'
->>>>>>> 09a8cde... Merge pull request #6603 from Rykka-Stormheart/shep-dev-sm-delam-alarm
 
 	if(damage > emergency_point)
 		alert_msg = emergency_alert + alert_msg
@@ -196,16 +192,10 @@
 		//Public alerts
 		if((damage > emergency_point) && !public_alert)
 			global_announcer.autosay("WARNING: SUPERMATTER CRYSTAL DELAMINATION IMMINENT!", "Supermatter Monitor")
-<<<<<<< HEAD
-			for(var/mob/M in player_list) // VOREStation Edit - Rykka adds SM Delam alarm
-				if(!istype(M,/mob/new_player) && !isdeaf(M)) // VOREStation Edit - Rykka adds SM Delam alarm
-					M << message_sound // VOREStation Edit - Rykka adds SM Delam alarm
-			admin_chat_message(message = "SUPERMATTER DELAMINATING!", color = "#FF2222") //VOREStation Add
-=======
 			for(var/mob/M in player_list) // Rykka adds SM Delam alarm
 				if(!istype(M,/mob/new_player) && !isdeaf(M)) // Rykka adds SM Delam alarm
 					M << message_sound // Rykka adds SM Delam alarm
->>>>>>> 09a8cde... Merge pull request #6603 from Rykka-Stormheart/shep-dev-sm-delam-alarm
+			admin_chat_message(message = "SUPERMATTER DELAMINATING!", color = "#FF2222") //VOREStation Add
 			public_alert = 1
 			log_game("SUPERMATTER([x],[y],[z]) Emergency PUBLIC announcement. Power:[power], Oxygen:[oxygen], Damage:[damage], Integrity:[get_integrity()]")
 		else if(safe_warned && public_alert)
