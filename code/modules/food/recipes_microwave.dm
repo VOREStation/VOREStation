@@ -1301,7 +1301,7 @@ I said no!
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun
 	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/bagelraisin
+	result = /obj/item/weapon/reagent_containers/food/snacks/bagelpoppy
 
 /datum/recipe/microwave/bageleverything
 	reagents = list("water" = 5)
