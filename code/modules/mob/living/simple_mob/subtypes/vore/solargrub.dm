@@ -1,5 +1,5 @@
 /*
-A work in progress, lore will go here later.
+A work in progress, lore will go here later. "Later." // Rykka waz here. *pawstamp*
 List of things solar grubs should be able to do:
 
 2. have three stages of growth depending on time. (Or energy drained altho that seems like a hard one to code)
@@ -12,19 +12,26 @@ List of things solar grubs should be able to do:
 	name = "Solargrub"
 	desc = "Some form of mutated space larva, they seem to crop up on space stations wherever there is power. \
 	They seem to have the chance to cocoon and mutate if left alone, but no recorded instances of this have happened yet. \
-	Therefore, if you see the grubs, kill them while they're small, or things might escalate." // TODO: PORT SOLAR MOTHS - Rykka
+	Therefore, if you see the grubs, kill them while they're small, or things might escalate." // TODO: PORT SOLAR MOTHS - Rykka // NOT A TODO ANYMORE, NERDS!
 	value = CATALOGUER_REWARD_EASY
 
 #define SINK_POWER 1
+var/global/list/moth_amount = 0 // Rykka waz here. *pawstamp*
 
 /mob/living/simple_mob/vore/solargrub
 	name = "juvenile solargrub"
 	desc = "A young sparkling solargrub"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/solargrub)
-	icon = 'icons/mob/vore.dmi' //all of these are placeholders
+	icon = 'icons/mob/vore.dmi' //all of these are placeholders - placeholder much? Been ages. :p // Rykka waz here. *pawstamp*
 	icon_state = "solargrub"
 	icon_living = "solargrub"
 	icon_dead = "solargrub-dead"
+
+	// Rykka waz here. *pawstamp*
+	var/charge = null // The amount of power we sucked off, in K as in THOUSANDS.
+	var/can_evolve = 1 // VAR to decide whether this subspecies is allowed to become a queen
+	var/adult_forms = list(/mob/living/simple_mob/vore/solarmoth = 60, /mob/living/simple_mob/vore/solarmoth/lunarmoth = 40)  // VAR that decides what mob the queen form is. ex /mob/living/simple_mob/subtypes/vore/solarmoth
+	// Rykka waz here. *pawstamp*
 
 	faction = "grubs"
 	maxHealth = 50 //grubs can take a lot of harm
@@ -50,6 +57,7 @@ List of things solar grubs should be able to do:
 	var/datum/powernet/PN            // Our powernet
 	var/obj/structure/cable/attached        // the attached cable
 	var/shock_chance = 10 // Beware
+	var/powerdraw = 100000 // previous value 150000 // Rykka waz here. *pawstamp*
 
 /datum/say_list/solargrub
 	emote_see = list("squelches", "squishes")
@@ -76,7 +84,8 @@ List of things solar grubs should be able to do:
 				sparks.start()
 			anchored = 1
 			PN = attached.powernet
-			PN.draw_power(100000) // previous value 150000
+			PN.draw_power(powerdraw) // previous value 150000 // Rykka waz here. *pawstamp*
+			charge = charge + (powerdraw/1000) //This adds raw powerdraw to charge(Charge is in Ks as in 1 = 1000) // Rykka waz here. *pawstamp*
 			var/apc_drain_rate = 750 //Going to see if grubs are better as a minimal bother. previous value : 4000
 			for(var/obj/machinery/power/terminal/T in PN.nodes)
 				if(istype(T.master, /obj/machinery/power/apc))
@@ -88,6 +97,22 @@ List of things solar grubs should be able to do:
 		else if(!attached && anchored)
 			anchored = 0
 			PN = null
+
+		// Rykka waz here. *pawstamp*
+		if(prob(1) && charge >= 32000 && can_evolve == 1 && moth_amount <= 1) //it's reading from the moth_amount global list to determine if it can evolve.
+			anchored = 0
+			PN = attached.powernet
+			release_vore_contents()
+			prey_excludes.Cut()
+			moth_amount++
+			death_star()
+
+/mob/living/simple_mob/vore/solargrub/proc/death_star()
+	visible_message("<span class='warning'>\The [src]'s shell rips open and evolves!</span>")
+	var/chosen_form = pickweight(adult_forms)
+	new chosen_form(get_turf(src))
+	qdel(src)
+// Rykka waz here. *pawstamp*
 
 /mob/living/simple_mob/vore/solargrub //active noms
 	vore_bump_chance = 50
