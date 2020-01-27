@@ -1093,7 +1093,8 @@
 /obj/machinery/button/remote/airlock{
 	id = "ReadingRoom1";
 	name = "Room 1 Bolt";
-	pixel_x = -30
+	pixel_x = -30;
+	specialfunctions = 4
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
@@ -1594,7 +1595,8 @@
 /obj/machinery/button/remote/airlock{
 	id = "ReadingRoom2";
 	name = "Room 2 Bolt";
-	pixel_x = -30
+	pixel_x = -30;
+	specialfunctions = 4
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
@@ -1606,7 +1608,8 @@
 /obj/machinery/button/remote/airlock{
 	id = "ReadingRoom3";
 	name = "Room 3 Bolt";
-	pixel_x = -30
+	pixel_x = -30;
+	specialfunctions = 4
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
