@@ -2,6 +2,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "gsensor1"
 	name = "Gas Sensor"
+	desc = "Senses atmospheric conditions."
 
 	anchored = 1
 	var/state = 0
@@ -77,6 +78,7 @@ obj/machinery/air_sensor/Destroy()
 	icon_keyboard = "atmos_key"
 	icon_screen = "tank"
 	name = "Computer"
+	desc = "Control atmospheric systems, remotely."
 	var/frequency = 1439
 	var/list/sensors = list()
 	var/list/sensor_information = list()

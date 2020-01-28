@@ -1,5 +1,6 @@
 /obj/machinery/pipedispenser
 	name = "Pipe Dispenser"
+	desc = "A large machine that can rapidly dispense pipes."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
 	density = 1
@@ -105,6 +106,7 @@
 
 /obj/machinery/pipedispenser/disposal
 	name = "Disposal Pipe Dispenser"
+	desc = "A large machine that can rapidly dispense pipes. This one seems to dispsense disposal pipes."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
 	density = 1

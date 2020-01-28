@@ -417,6 +417,14 @@
 	src.modules += new /obj/item/weapon/tool/screwdriver/cyborg(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
 	src.modules += new /obj/item/weapon/storage/part_replacer(src)
+	src.modules += new /obj/item/weapon/card/robot(src)
+	src.modules += new /obj/item/weapon/gripper/no_use/organ/robotics(src)
+	src.modules += new /obj/item/weapon/gripper/no_use/mech(src)
+	src.modules += new /obj/item/device/robotanalyzer(src)
+	src.modules += new /obj/item/weapon/weldingtool/electric/mounted/cyborg(src)
+	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
+	src.modules += new /obj/item/weapon/tool/wirecutters/cyborg(src)
+	src.modules += new /obj/item/device/multitool(src)
 	src.emag = new /obj/item/weapon/hand_tele(src)
 
 	var/datum/matter_synth/water = new /datum/matter_synth(500)
@@ -432,6 +440,21 @@
 	var/obj/item/device/dogborg/sleeper/compactor/analyzer/B = new /obj/item/device/dogborg/sleeper/compactor/analyzer(src)
 	B.water = water
 	src.modules += B
+
+	var/datum/matter_synth/nanite = new /datum/matter_synth/nanite(10000)
+	synths += nanite
+	var/datum/matter_synth/wire = new /datum/matter_synth/wire()
+	synths += wire
+
+	var/obj/item/stack/nanopaste/N = new /obj/item/stack/nanopaste(src)
+	N.uses_charge = 1
+	N.charge_costs = list(1000)
+	N.synths = list(nanite)
+	src.modules += N
+
+	var/obj/item/stack/cable_coil/cyborg/C = new /obj/item/stack/cable_coil/cyborg(src)
+	C.synths = list(wire)
+	src.modules += C
 
 	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
@@ -452,7 +475,8 @@
 	name = "Construction Hound module"
 	sprites = list(
 					"Pupdozer" = "pupdozer",
-					"Borgi" = "borgi-eng"
+					"Borgi" = "borgi-eng",
+					"V2 Engidog" = "thottbot"
 					)
 	channels = list("Engineering" = 1)
 	networks = list(NETWORK_ENGINEERING)
@@ -467,13 +491,21 @@
 	src.modules += new /obj/item/weapon/tool/wirecutters/cyborg(src)
 	src.modules += new /obj/item/device/multitool(src)
 	src.modules += new /obj/item/device/t_scanner(src)
+	src.modules += new /obj/item/device/analyzer(src)
 	src.modules += new /obj/item/taperoll/engineering(src)
 	src.modules += new /obj/item/weapon/inflatable_dispenser/robot(src)
+	src.modules += new /obj/item/device/pipe_painter(src)
+	src.modules += new /obj/item/device/floor_painter(src)
+	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
 	src.modules += new /obj/item/weapon/pickaxe(src)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
 	src.modules += new /obj/item/device/dogborg/boop_module(src)
 	src.modules += new /obj/item/weapon/gripper(src)
 	src.modules += new /obj/item/weapon/gripper/circuit(src)
+	src.modules += new /obj/item/device/analyzer(src)
+	src.modules += new /obj/item/device/pipe_painter(src)
+	src.modules += new /obj/item/device/floor_painter(src)
+	src.modules += new /obj/item/device/geiger(src)
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src)
 
 	//Painfully slow charger regen but high capacity. Also starts with low amount.
@@ -497,6 +529,11 @@
 	plastic.recharge_rate = 100
 	plastic.max_energy = 50000
 	plastic.energy = 10000
+	var/datum/matter_synth/plasteel = new /datum/matter_synth/plasteel()
+	plasteel.name = "Plasteel reserves"// Adding plasteel synthesizer to move in-line with Engiborg.
+	plasteel.recharge_rate = 100
+	plasteel.max_energy = 20000
+	plasteel.energy = 10000
 	var/datum/matter_synth/water = new /datum/matter_synth(500)
 	water.name = "Water reserves"
 	water.recharge_rate = 0
@@ -509,6 +546,7 @@
 	synths += plastic
 	synths += wire
 	synths += water
+	synths += plasteel
 
 	var/obj/item/device/dogborg/tongue/T = new /obj/item/device/dogborg/tongue(src)
 	T.water = water
@@ -561,6 +599,10 @@
 	var/obj/item/stack/material/cyborg/plastic/PL = new (src)
 	PL.synths = list(plastic)
 	src.modules += PL
+
+	var/obj/item/stack/material/cyborg/plasteel/PS = new (src)
+	PS.synths = list(plasteel)
+	src.modules += PS
 
 	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'

@@ -10,6 +10,7 @@
 
 /obj/machinery/chem_master
 	name = "ChemMaster 3000"
+	desc = "Used to seperate and package chemicals in to patches, pills, or bottles. Warranty void if used to create Space Drugs."
 	density = 1
 	anchored = 1
 	icon = 'icons/obj/chemical.dmi'
@@ -327,6 +328,7 @@
 /obj/machinery/reagentgrinder
 
 	name = "All-In-One Grinder"
+	desc = "Grinds stuff into itty bitty bits."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "juicer1"
 	density = 0

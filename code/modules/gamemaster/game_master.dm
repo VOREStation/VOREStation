@@ -101,7 +101,7 @@
 	if(action.length)
 		spawn(action.length)
 			action.end()
-	next_action = world.time + rand(15 MINUTES, 30 MINUTES)
+	next_action = world.time + rand(5 MINUTES, 20 MINUTES)
 	last_department_used = action.departments[1]
 
 

@@ -575,9 +575,8 @@ emp_act
 	return perm
 
 // This is for preventing harm by being covered in water, which only prometheans need to deal with.
-// This is not actually used for now since the code for prometheans gets changed a lot.
 /mob/living/carbon/human/get_water_protection()
-	var/protection = ..() // Todo: Replace with species var later.
+	var/protection = species.water_resistance
 	if(protection == 1) // No point doing permeability checks if it won't matter.
 		return protection
 	// Wearing clothing with a low permeability_coefficient can protect from water.
@@ -585,8 +584,15 @@ emp_act
 	var/converted_protection = 1 - protection
 	var/perm = reagent_permeability()
 	converted_protection *= perm
-	return 1-converted_protection
+	return CLAMP(1-converted_protection, 0, 1)
 
+/mob/living/carbon/human/water_act(amount)
+	adjust_fire_stacks(-amount * 5)
+	for(var/atom/movable/AM in contents)
+		AM.water_act(amount)
+	remove_modifiers_of_type(/datum/modifier/fire)
+
+	species.handle_water_damage(src, amount)
 
 /mob/living/carbon/human/shank_attack(obj/item/W, obj/item/weapon/grab/G, mob/user, hit_zone)
 

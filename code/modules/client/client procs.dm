@@ -288,7 +288,7 @@
 			log_admin("Skipping IP reputation check on [key] with [address] because of player age")
 		else if(update_ip_reputation()) //It is set now
 			if(ip_reputation >= config.ipr_bad_score) //It's bad
-				
+
 				//Log it
 				if(config.paranoia_logging) //We don't block, but we want paranoia log messages
 					log_and_message_admins("[key] at [address] has bad IP reputation: [ip_reputation]. Will be kicked if enabled in config.")
@@ -297,7 +297,7 @@
 
 				//Take action if required
 				if(config.ipr_block_bad_ips && config.ipr_allow_existing) //We allow players of an age, but you don't meet it
-					to_chat(src,"Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accomidate this.")
+					to_chat(src,"Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accommodate this.")
 					qdel(src)
 					return 0
 				else if(config.ipr_block_bad_ips) //We don't allow players of any particular age

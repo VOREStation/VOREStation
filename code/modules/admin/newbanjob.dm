@@ -154,7 +154,7 @@ var/savefile/Banlistjob
 		Banlistjob["temp"] << temp
 		if (temp)
 			Banlistjob["minutes"] << bantimestamp
-
+	admin_action_message(bannedby, ckey, "jobbanned-"+rank, reason, temp ? minutes : -1) //VOREStation Add
 	return 1
 
 /proc/RemoveBanjob(foldername)
@@ -185,7 +185,7 @@ var/savefile/Banlistjob
 			Banlistjob.cd = "/base"
 			Banlistjob.dir.Remove(A)
 			continue
-
+	admin_action_message(usr.key, key, "unjobbanned-"+rank, "\[Unban\]", 0) //VOREStation Add
 	return 1
 
 /proc/GetBanExpjob(minutes as num)

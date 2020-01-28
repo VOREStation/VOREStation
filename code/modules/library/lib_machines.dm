@@ -116,6 +116,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 // It is August 22nd, 2012... This TODO has already been here for months.. I wonder how long it'll last before someone does something about it. // Nov 2019. Nope.
 /obj/machinery/librarycomp
 	name = "Check-In/Out Computer"
+	desc = "Print books from the archives! (You aren't quite sure how they're printed by it, though.)"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "computer"
 	anchored = 1
@@ -521,6 +522,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
  */
 /obj/machinery/bookbinder
 	name = "Book Binder"
+	desc = "Bundles up a stack of inserted paper into a convenient book format."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "binder"
 	anchored = 1

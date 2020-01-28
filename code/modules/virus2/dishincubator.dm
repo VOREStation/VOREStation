@@ -1,5 +1,6 @@
 /obj/machinery/disease2/incubator/
 	name = "pathogenic incubator"
+	desc = "Encourages the growth of diseases. This model comes with a dispenser system and a small radiation generator."
 	density = 1
 	anchored = 1
 	icon = 'icons/obj/virology.dmi'

@@ -340,6 +340,8 @@
 	name = "\improper Public Garden Maintenence"
 /area/maintenance/lower/public_garden_maintenence/upper
 	name = "\improper Upper Public Garden Maintenence"
+/area/maintenance/lower/medsec_maintenance
+	name = "\improper Surface MedSec Maintenance"
 
 // Research
 /area/rnd/xenobiology/xenoflora/lab_atmos

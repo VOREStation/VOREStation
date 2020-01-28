@@ -103,6 +103,7 @@
 
 /obj/item/weapon/storage/box/beakers
 	name = "box of beakers"
+	desc = "A box full of beakers."
 	icon_state = "beaker"
 	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker = 7)
 

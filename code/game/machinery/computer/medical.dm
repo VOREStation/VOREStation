@@ -549,7 +549,7 @@
 
 /obj/machinery/computer/med_data/laptop
 	name = "Medical Laptop"
-	desc = "A cheap laptop."
+	desc = "A cheap laptop. It seems to have only the medical records program."
 	icon_state = "laptop"
 	icon_keyboard = "laptop_key"
 	icon_screen = "medlaptop"

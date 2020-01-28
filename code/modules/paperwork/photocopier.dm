@@ -1,5 +1,6 @@
 /obj/machinery/photocopier
 	name = "photocopier"
+	desc = "Copy all your important papers here!"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "bigscanner"
 	var/insert_anim = "bigscanner1"
@@ -23,6 +24,10 @@
 	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
 	RefreshParts()
+
+/obj/machinery/photocopier/examine(mob/user as mob)
+	if(..(user, 1))
+		to_chat(user, "The screen shows there's [toner ? "[toner]" : "no"] toner left in the printer.")
 
 /obj/machinery/photocopier/attack_ai(mob/user as mob)
 	return attack_hand(user)

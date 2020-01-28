@@ -244,7 +244,7 @@
 
 /obj/machinery/computer/security/wooden_tv
 	name = "security camera monitor"
-	desc = "An old TV hooked into the stations camera network."
+	desc = "An old TV hooked into the station's camera network."
 	icon_state = "television"
 	icon_keyboard = null
 	icon_screen = "detective_tv"
@@ -254,7 +254,7 @@
 
 /obj/machinery/computer/security/mining
 	name = "outpost camera monitor"
-	desc = "Used to access the various cameras on the outpost."
+	desc = "Used to watch over mining operations."
 	icon_keyboard = "mining_key"
 	icon_screen = "mining"
 	network = list("Mining Outpost")
