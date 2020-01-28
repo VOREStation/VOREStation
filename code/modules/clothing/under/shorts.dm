@@ -4,6 +4,7 @@
 	desc = "95% Polyester, 5% Spandex!"
 	gender = PLURAL
 	body_parts_covered = LOWER_TORSO
+	index = 1
 
 /obj/item/clothing/under/shorts/red
 	name = "red athletic shorts"
@@ -99,6 +100,7 @@
 	icon_state = "skirt_short_black"
 	body_parts_covered = LOWER_TORSO
 	rolled_sleeves = -1
+	index = 1
 
 /obj/item/clothing/under/skirt/khaki
 	name = "khaki skirt"
