@@ -102,8 +102,6 @@
 	spawnpoint_stayed = /datum/spawnpoint/cryo
 
 	meteor_strike_areas = list(/area/tether/surfacebase/outside/outside3)
-	drop_pod_allowed_z = list(Z_LEVEL_SURFACE_HIGH)
-
 
 	unit_test_exempt_areas = list(
 		/area/tether/surfacebase/outside/outside1,
