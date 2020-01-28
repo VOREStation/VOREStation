@@ -15561,14 +15561,22 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "aAM" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = 28;
+	pixel_y = 0
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 11;
+	pixel_y = 0
 	},
-/turf/simulated/floor/tiled,
-/area/tether/station/visitorhallway/laundry)
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/sleep/engi_wash)
 "aAN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -16375,6 +16383,17 @@
 /obj/machinery/camera/network/civilian,
 /turf/simulated/floor/tiled,
 /area/tether/station/visitorhallway/lounge)
+"aCm" = (
+/obj/machinery/alarm{
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 24
+	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/stairs_one)
 "aCn" = (
 /obj/machinery/camera/network/civilian{
 	dir = 4
@@ -17904,6 +17923,35 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
+"aEB" = (
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 11;
+	pixel_y = 0
+	},
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = 28;
+	pixel_y = 0
+	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/toilet)
+"aEC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/visitorhallway/laundry)
 "aEE" = (
 /obj/structure/toilet{
 	dir = 4
@@ -18247,20 +18295,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
-"aGx" = (
-/obj/structure/mirror{
-	dir = 4;
-	pixel_x = 28;
-	pixel_y = 0
-	},
-/obj/structure/sink{
-	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/sleep/engi_wash)
 "aGy" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -21742,14 +21776,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
-"bou" = (
-/obj/machinery/alarm{
-	dir = 8;
-	icon_state = "alarm0";
-	pixel_x = 24
-	},
-/turf/simulated/floor/tiled,
-/area/tether/station/stairs_one)
 "bpd" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -30226,7 +30252,7 @@ axu
 axv
 aws
 azN
-bou
+aCm
 aDa
 aws
 aBb
@@ -31485,7 +31511,7 @@ auz
 aBE
 aLj
 aEM
-aGx
+aAM
 aIn
 aKl
 aMp
@@ -33087,7 +33113,7 @@ aEj
 azK
 azU
 aAd
-aAM
+aEC
 aBe
 aBj
 ahW
@@ -37472,7 +37498,7 @@ aex
 aAk
 brX
 btr
-bvs
+aEB
 aCD
 bvs
 amU

@@ -14,7 +14,8 @@
 		if(possibleSpawnspots.len)
 			spawnspot = pick(possibleSpawnspots)
 		else
-			break
+			kill()		// To prevent fake announcements
+			return
 
 	if(!spawnspot)
 		kill()		// To prevent fake announcements
@@ -32,7 +33,8 @@
 		You are wary of environment around you, but your primal hunger still calls for you to find prey. Seek a convincing disguise, \
 		using your amorphous form to traverse vents to find and consume weak prey.</span>")
 		to_chat(D, "<span class='notice'>You can use shift + click on objects to disguise yourself as them, but your strikes are nearly useless when you are disguised. \
-		You can undisguise yourself by shift + clicking yourself, but disguise being switched, or turned on and off has a short cooldown.</span>")
+		You can undisguise yourself by shift + clicking yourself, but disguise being switched, or turned on and off has a short cooldown. You can also ventcrawl, \
+		by using alt + click on the vent or scrubber.</span>")
 		newMorph.ckey = D.ckey
 		newMorph.visible_message("<span class='warning'>A morph appears to crawl out of somewhere.</span>")
 	else

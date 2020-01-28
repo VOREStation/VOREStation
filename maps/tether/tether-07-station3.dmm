@@ -2492,6 +2492,9 @@
 	icon_state = "intact-scrubbers";
 	dir = 4
 	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "dY" = (
@@ -2819,10 +2822,20 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "ew" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/tiled/white,
+/area/security/security_bathroom)
 "ex" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
@@ -6344,11 +6357,10 @@
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
 "jV" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/maintenance/station/cargo)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "jW" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -26355,13 +26367,11 @@
 /turf/simulated/floor/bluegrid,
 /area/ai_core_foyer)
 "OY" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/effect/landmark{
+	name = "morphspawn"
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/turf/simulated/floor/tiled/dark,
+/area/security/nuke_storage)
 "OZ" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -26972,12 +26982,14 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medical_restroom)
 "Qg" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/machinery/light/small{
+	dir = 1
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/tiled,
+/area/maintenance/station/cargo)
 "Qh" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/vehicle/train/trolley{
@@ -27080,9 +27092,22 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "Qp" = (
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/medical_restroom)
+"Qq" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
-	icon_state = "propulsion_r"
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
+"Qr" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -27106,6 +27131,14 @@
 "Qt" = (
 /turf/simulated/wall,
 /area/tether/exploration)
+"Qu" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
 "Qw" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -28850,18 +28883,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
-"VJ" = (
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "west bump";
-	pixel_x = -28
-	},
-/turf/simulated/floor/tiled/white,
-/area/security/security_bathroom)
 "VK" = (
 /obj/structure/table/woodentable,
 /obj/machinery/light{
@@ -34292,7 +34313,7 @@ vt
 xw
 xw
 zg
-zT
+OY
 Bc
 BX
 PA
@@ -36019,7 +36040,7 @@ KE
 KE
 KE
 MP
-Nl
+Qp
 KE
 ab
 ab
@@ -39092,7 +39113,7 @@ dS
 dd
 SX
 ST
-VJ
+ew
 UT
 fb
 UV
@@ -39288,11 +39309,11 @@ MK
 Iy
 ab
 NL
-OY
-Qg
-Qg
-Qg
-Qp
+Qq
+Qr
+Qr
+Qr
+Qu
 NL
 vt
 vt
@@ -40515,7 +40536,7 @@ Zy
 WG
 dj
 XA
-ew
+jV
 ms
 Oz
 be
@@ -40540,7 +40561,7 @@ he
 xS
 un
 AH
-jV
+Qg
 yP
 AH
 Ai
@@ -40657,7 +40678,7 @@ UJ
 Xb
 dj
 XN
-ew
+jV
 ms
 Xq
 be
@@ -40799,7 +40820,7 @@ iW
 WS
 dj
 XN
-ew
+jV
 ms
 Xq
 be
@@ -41082,7 +41103,7 @@ jZ
 WR
 Xo
 XN
-ew
+jV
 cK
 ms
 Xq
@@ -41650,7 +41671,7 @@ ea
 kx
 dj
 XN
-ew
+jV
 cK
 ms
 mq
@@ -41935,7 +41956,7 @@ kQ
 TG
 dj
 XN
-ew
+jV
 ms
 mq
 be
@@ -42077,7 +42098,7 @@ kR
 Vd
 dj
 XN
-ew
+jV
 ms
 QL
 be
@@ -42219,7 +42240,7 @@ ZE
 ZB
 dj
 XB
-ew
+jV
 ms
 Sq
 be
