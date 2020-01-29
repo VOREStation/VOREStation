@@ -224,23 +224,16 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/debrisfield/derelict/interior)
 "aI" = (
-/turf/simulated/floor/tiled/monofloor,
+/obj/structure/old_roboprinter,
+/turf/simulated/floor/tiled/monotile,
 /area/tether_away/debrisfield/derelict/interior)
 "aJ" = (
-/obj/effect/decal/remains/human,
-/turf/simulated/floor/tiled/monofloor,
+/obj/structure/shuttle/engine/heater,
+/turf/simulated/floor/reinforced/airless,
 /area/tether_away/debrisfield/derelict/interior)
 "aK" = (
 /turf/space,
 /area/tether_away/debrisfield/derelict)
-"aL" = (
-/obj/structure/old_roboprinter,
-/turf/simulated/floor/tiled/monofloor,
-/area/tether_away/debrisfield/derelict/interior)
-"aM" = (
-/obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm,
-/turf/simulated/floor/tiled/monofloor,
-/area/tether_away/debrisfield/derelict/interior)
 "aN" = (
 /obj/random/humanoidremains,
 /obj/structure/cable{
@@ -900,10 +893,6 @@
 /obj/item/weapon/gun/energy/ionrifle,
 /turf/space,
 /area/tether_away/debrisfield/derelict/interior)
-"cL" = (
-/obj/structure/shuttle/engine/heater,
-/turf/simulated/floor/reinforced,
-/area/tether_away/debrisfield/derelict/interior)
 "cM" = (
 /obj/structure/prop/alien/pod,
 /turf/simulated/floor/tiled/dark,
@@ -1351,7 +1340,7 @@ bi
 bi
 bi
 ao
-cL
+aJ
 cS
 cB
 aa
@@ -1426,7 +1415,7 @@ av
 bi
 bi
 ao
-cL
+aJ
 cS
 aa
 aa
@@ -1500,7 +1489,7 @@ av
 bi
 bi
 ao
-cL
+aJ
 cS
 aa
 aa
@@ -1573,7 +1562,7 @@ bi
 bi
 bi
 ao
-cL
+aJ
 cS
 cB
 aa
@@ -2195,9 +2184,9 @@ at
 at
 aF
 aF
-aI
-aI
-aI
+at
+at
+at
 ao
 aa
 aa
@@ -2271,7 +2260,7 @@ aF
 aF
 av
 av
-aI
+at
 ao
 aa
 aa
@@ -2344,8 +2333,8 @@ av
 aF
 aF
 av
-aI
-aI
+at
+at
 ao
 aa
 aa
@@ -2418,8 +2407,8 @@ av
 aF
 aF
 av
-aJ
-aM
+au
+az
 ao
 aa
 aa
@@ -3232,8 +3221,8 @@ av
 aF
 aF
 av
-aL
-aL
+aI
+aI
 ao
 aa
 aa
@@ -3306,8 +3295,8 @@ av
 aF
 aF
 av
-aI
-aI
+at
+at
 ao
 aa
 aa
@@ -3380,8 +3369,8 @@ av
 aF
 aF
 av
-aM
-aM
+az
+az
 ao
 aa
 aa
@@ -3453,9 +3442,9 @@ at
 at
 aF
 aF
-aI
-aI
-aI
+at
+at
+at
 ao
 aa
 aa
@@ -4163,7 +4152,7 @@ bi
 bi
 bi
 ao
-cL
+aJ
 cS
 cB
 aa
@@ -4238,7 +4227,7 @@ av
 bi
 bi
 ao
-cL
+aJ
 cS
 aa
 aa
@@ -4312,7 +4301,7 @@ av
 bi
 bi
 ao
-cL
+aJ
 cS
 aa
 aa
@@ -4385,7 +4374,7 @@ bi
 av
 bi
 ao
-cL
+aJ
 cS
 cB
 aa
