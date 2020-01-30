@@ -58,7 +58,7 @@
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
 "o" = (
-/obj/item/weapon/archaeological_find,
+/obj/random/multiple/underdark,
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
 
