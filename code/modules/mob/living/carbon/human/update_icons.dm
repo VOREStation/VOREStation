@@ -590,19 +590,14 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		uniform_sprite = "[INV_W_UNIFORM_DEF_ICON].dmi"
 
 	//Build a uniform sprite
-<<<<<<< HEAD
 	//VOREStation Edit start.
 	var/icon/c_mask = null
 	if(tail_style && tail_style.clip_mask_icon && tail_style.clip_mask_state)
 		var/obj/item/clothing/suit/S = wear_suit
 		if(!(wear_suit && ((wear_suit.flags_inv & HIDETAIL) || (istype(S) && S.taurized)))) //Clip the lower half of the uniform off using the tail's clip mask.
 			c_mask = new /icon(tail_style.clip_mask_icon, tail_style.clip_mask_state)
-	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = INV_W_UNIFORM_DEF_ICON, default_layer = UNIFORM_LAYER, clip_mask = c_mask)
+	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = uniform_sprite, default_layer = UNIFORM_LAYER, clip_mask = c_mask)
 	//VOREStation Edit end.
-
-=======
-	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = uniform_sprite, default_layer = UNIFORM_LAYER)
->>>>>>> 3af55c5... Merge pull request #6651 from Cerebulon/ClothingExpansionPort
 	apply_layer(UNIFORM_LAYER)
 
 /mob/living/carbon/human/update_inv_wear_id()
