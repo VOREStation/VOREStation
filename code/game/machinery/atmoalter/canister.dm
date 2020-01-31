@@ -324,6 +324,18 @@ update_flag
 			else
 				release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the <font color='red'><b>air</b></font><br>"
 				log_open()
+				//VOREStation Evil Edit
+				if(istype(src,/obj/machinery/portable_atmospherics/canister/phoron))
+					if(usr.client)
+						var/client/C = usr.client
+						if(C.player_age < 1)
+							message_admins("[key_name(usr)] has attempted to open a phoron canister as a newjoin. ([usr ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>" : "null"])")
+							if(ishuman(usr))
+								var/mob/living/carbon/human/H = usr
+								for(var/obj/item/organ/external/hand/HA in H.organs)
+									HA.droplimb()
+							return
+				//VOREStation Evil Edit End
 		valve_open = !valve_open
 
 	if (href_list["remove_tank"])

@@ -60,6 +60,17 @@
 
 /obj/machinery/power/emitter/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
+	//VOREStation Evil Edit
+	if(user.client)
+		var/client/C = user.client
+		if(C.player_age < 1)
+			message_admins("[key_name(user)] has attempted to toggle an emitter as a newjoin. ([user ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>" : "null"])")
+			if(ishuman(user))
+				var/mob/living/carbon/human/H = user
+				for(var/obj/item/organ/external/hand/HA in H.organs)
+					HA.droplimb()
+				return
+	//VOREStation Evil Edit End
 	activate(user)
 
 /obj/machinery/power/emitter/proc/activate(mob/user as mob)
