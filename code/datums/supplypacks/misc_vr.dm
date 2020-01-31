@@ -6,12 +6,16 @@
 			/obj/item/weapon/cell/device/weapon = 2,
 			/obj/item/weapon/storage/firstaid/regular = 1,
 			/obj/item/device/gps = 2,
-			/obj/item/weapon/storage/box/traumainjectors = 1
+			/obj/item/weapon/storage/box/traumainjectors = 1,
+			/obj/item/weapon/tank/jetpack = 1,
+			/obj/item/device/binoculars = 1
 			)
-	cost = 50
+	cost = 80
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "Belt-miner gear crate"
-	access = access_mining
+	access = list(access_mining,
+				  access_xenoarch)
+	one_access = TRUE
 
 /datum/supply_pack/misc/eva_rig
 	name = "eva hardsuit (empty)"
