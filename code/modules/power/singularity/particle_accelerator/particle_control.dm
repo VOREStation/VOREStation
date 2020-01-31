@@ -221,7 +221,7 @@
 		//VOREStation Evil Edit
 		if(usr.client)
 			var/client/C = usr.client
-			if(C.player_age)
+			if(!isnull(C.player_age))
 				if(C.player_age < 1)
 					message_admins("[key_name(usr)] has attempted to toggle a particle accelerator as a newjoin. ([usr ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>" : "null"])")
 					if(ishuman(usr))

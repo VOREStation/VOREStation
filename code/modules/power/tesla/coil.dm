@@ -121,7 +121,7 @@
 	//VOREStation Evil Edit
 	if(anchored && user.client)
 		var/client/C = user.client
-		if(C.player_age)
+		if(!isnull(C.player_age))
 			if(C.player_age < 1)
 				message_admins("[key_name(user)] has attempted to tamper with an anchored grounding rod as a newjoin. ([user ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>" : "null"])")
 				if(ishuman(user))
