@@ -287,22 +287,31 @@
 		if(config.ipr_allow_existing && player_age >= config.ipr_minimum_age)
 			log_admin("Skipping IP reputation check on [key] with [address] because of player age")
 		else if(update_ip_reputation()) //It is set now
+			log_admin("[key] with [address] IP reputation: [ip_reputation]")
 			if(ip_reputation >= config.ipr_bad_score) //It's bad
-
-				//Log it
-				if(config.paranoia_logging) //We don't block, but we want paranoia log messages
-					log_and_message_admins("[key] at [address] has bad IP reputation: [ip_reputation]. Will be kicked if enabled in config.")
-				else //We just log it
-					log_admin("[key] at [address] has bad IP reputation: [ip_reputation]. Will be kicked if enabled in config.")
+				
+				var/verbose_message = "[key] at [address] has bad IP reputation: [ip_reputation] >= [config.ipr_bad_score]"
 
 				//Take action if required
+				var/kicked = FALSE
 				if(config.ipr_block_bad_ips && config.ipr_allow_existing) //We allow players of an age, but you don't meet it
-					to_chat(src,"Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accommodate this.")
+					to_chat(src,"Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accomodate this.")
 					qdel(src)
-					return 0
+					kicked = TRUE
+					verbose_message += " and was kicked due to insufficient player age"
 				else if(config.ipr_block_bad_ips) //We don't allow players of any particular age
 					to_chat(src,"Sorry, we do not accept connections from users via VPN/Proxy/Tor connections.")
 					qdel(src)
+					kicked = TRUE
+					verbose_message += " and was kicked"
+
+				//Log it
+				if(config.paranoia_logging) //Show to admins ingame and log
+					log_and_message_admins(verbose_message)
+				else //We just log it
+					log_admin(verbose_message)
+
+				if(kicked)
 					return 0
 		else
 			log_admin("Couldn't perform IP check on [key] with [address]")
