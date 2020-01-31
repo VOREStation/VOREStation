@@ -7,10 +7,9 @@
 			/obj/item/weapon/storage/firstaid/regular = 1,
 			/obj/item/device/gps = 2,
 			/obj/item/weapon/storage/box/traumainjectors = 1,
-			/obj/item/weapon/tank/jetpack = 1,
 			/obj/item/device/binoculars = 1
 			)
-	cost = 80
+	cost = 60
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "Belt-miner gear crate"
 	access = list(access_mining,
@@ -82,3 +81,18 @@
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "advanced voidsuit crate"
 	access = access_ce
+
+/datum/supply_pack/misc/jetpack
+	name = "jetpack (empty)"
+	contains = list(
+			/obj/item/weapon/tank/jetpack = 1
+			)
+	cost = 75
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "jetpack crate"
+	access = list(access_mining,
+				  access_xenoarch,
+				  access_eva,
+				  access_explorer,
+				  access_pilot)
+	one_access = TRUE
