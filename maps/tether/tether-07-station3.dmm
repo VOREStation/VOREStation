@@ -28751,6 +28751,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/item/device/binoculars,
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock)
 "TG" = (
@@ -29125,7 +29126,7 @@
 	dir = 4
 	},
 /obj/structure/table/rack,
-/obj/item/device/binoculars,
+/obj/item/weapon/tank/jetpack,
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock)
 "Uw" = (
