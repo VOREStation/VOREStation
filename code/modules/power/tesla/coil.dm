@@ -121,13 +121,14 @@
 	//VOREStation Evil Edit
 	if(anchored && user.client)
 		var/client/C = user.client
-		if(C.player_age < 1)
-			message_admins("[key_name(user)] has attempted to tamper with an anchored grounding rod as a newjoin. ([user ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>" : "null"])")
-			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
-				for(var/obj/item/organ/external/hand/HA in H.organs)
-					HA.droplimb()
-			return 0
+		if(C.player_age)
+			if(C.player_age < 1)
+				message_admins("[key_name(user)] has attempted to tamper with an anchored grounding rod as a newjoin. ([user ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>" : "null"])")
+				if(ishuman(user))
+					var/mob/living/carbon/human/H = user
+					for(var/obj/item/organ/external/hand/HA in H.organs)
+						HA.droplimb()
+				return 0
 	//VOREStation Evil Edit End
 	//if(default_deconstruction_screwdriver(user, "grounding_rod_open[anchored]", "grounding_rod[anchored]", W))
 	if(default_deconstruction_screwdriver(user, W))

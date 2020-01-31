@@ -328,13 +328,14 @@ update_flag
 				if(istype(src,/obj/machinery/portable_atmospherics/canister/phoron))
 					if(usr.client)
 						var/client/C = usr.client
-						if(C.player_age < 1)
-							message_admins("[key_name(usr)] has attempted to open a phoron canister as a newjoin. ([usr ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>" : "null"])")
-							if(ishuman(usr))
-								var/mob/living/carbon/human/H = usr
-								for(var/obj/item/organ/external/hand/HA in H.organs)
-									HA.droplimb()
-							return
+						if(C.player_age)
+							if(C.player_age < 1)
+								message_admins("[key_name(usr)] has attempted to open a phoron canister as a newjoin. ([usr ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>" : "null"])")
+								if(ishuman(usr))
+									var/mob/living/carbon/human/H = usr
+									for(var/obj/item/organ/external/hand/HA in H.organs)
+										HA.droplimb()
+								return
 				//VOREStation Evil Edit End
 		valve_open = !valve_open
 

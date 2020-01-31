@@ -221,13 +221,14 @@
 		//VOREStation Evil Edit
 		if(usr.client)
 			var/client/C = usr.client
-			if(C.player_age < 1)
-				message_admins("[key_name(usr)] has attempted to toggle a particle accelerator as a newjoin. ([usr ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>" : "null"])")
-				if(ishuman(usr))
-					var/mob/living/carbon/human/H = usr
-					for(var/obj/item/organ/external/hand/HA in H.organs)
-						HA.droplimb()
-				return 0
+			if(C.player_age)
+				if(C.player_age < 1)
+					message_admins("[key_name(usr)] has attempted to toggle a particle accelerator as a newjoin. ([usr ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>" : "null"])")
+					if(ishuman(usr))
+						var/mob/living/carbon/human/H = usr
+						for(var/obj/item/organ/external/hand/HA in H.organs)
+							HA.droplimb()
+					return 0
 		//VOREStation Evil Edit End
 		update_use_power(1)
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
