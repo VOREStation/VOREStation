@@ -28598,6 +28598,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock)
 "Tp" = (
@@ -28700,7 +28701,6 @@
 "Tz" = (
 /obj/structure/table/standard,
 /obj/item/weapon/paper/rogueminer,
-/obj/item/device/binoculars,
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock)
 "TA" = (
@@ -28938,12 +28938,13 @@
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "TZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 4
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
-/turf/simulated/floor/tiled,
-/area/quartermaster/belterdock)
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/belter/station)
 "Ua" = (
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -29119,13 +29120,14 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
 "Uv" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/belter/station)
+/obj/structure/table/rack,
+/obj/item/device/binoculars,
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock)
 "Uw" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -43564,7 +43566,7 @@ QA
 QA
 Ty
 TH
-TZ
+Uv
 UD
 vt
 vt
@@ -44273,7 +44275,7 @@ SZ
 Ts
 QA
 TC
-Uv
+TZ
 Vy
 Vy
 Vy
