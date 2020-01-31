@@ -13,6 +13,7 @@
 
 	log_admin(log_output)
 	ip_reputation = worst
+	return TRUE
 
 //Service returns a single float in html body
 /client/proc/ipr_getipintel()
