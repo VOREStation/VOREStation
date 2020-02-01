@@ -5110,9 +5110,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
-"aiE" = (
-/turf/simulated/wall/r_wall,
-/area/rnd/staircase/thirdfloor)
 "aiF" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
 /obj/item/device/radio/intercom{
@@ -8457,7 +8454,7 @@
 /area/crew_quarters/recreation_area)
 "aoy" = (
 /obj/structure/sign/department/xenolab,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/rnd/staircase/thirdfloor)
 "aoz" = (
 /obj/effect/floor_decal/borderfloor,
@@ -14217,7 +14214,7 @@
 /obj/structure/sign/directions/evac{
 	dir = 1
 	},
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/rnd/research)
 "ayo" = (
 /obj/machinery/door/firedoor/glass,
@@ -14931,7 +14928,7 @@
 	name = "\improper Surface Civilian Substation"
 	})
 "azo" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/rnd/research/researchdivision)
 "azp" = (
 /obj/structure/disposalpipe/segment,
@@ -15129,7 +15126,7 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research_foyer)
 "azD" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/assembly/chargebay)
 "azE" = (
 /turf/simulated/wall,
@@ -30856,15 +30853,9 @@
 "kKY" = (
 /turf/simulated/wall/r_wall,
 /area/rnd/outpost/xenobiology/outpost_storage)
-"pnU" = (
-/turf/simulated/wall/r_wall,
-/area/assembly/robotics)
 "qnz" = (
 /turf/simulated/wall/r_wall,
 /area/rnd/outpost/xenobiology/outpost_autopsy)
-"rNc" = (
-/turf/simulated/wall/r_wall,
-/area/rnd/research_foyer)
 "uCB" = (
 /turf/simulated/wall/r_wall,
 /area/rnd/outpost/xenobiology/outpost_office)
@@ -37897,16 +37888,16 @@ aac
 aac
 aac
 aac
-afM
+ahh
 ahp
 ahp
 ahp
-afM
-aiE
-aiE
-aiE
-aiE
-aiE
+ahh
+afK
+afK
+afK
+afK
+afK
 aoy
 amT
 aBp
@@ -38465,7 +38456,7 @@ aac
 aac
 aac
 aac
-afM
+ahh
 ahU
 atr
 atY
@@ -39620,14 +39611,14 @@ azE
 aBn
 aJg
 aBn
-pnU
-pnU
+azE
+azE
 azH
 azH
 azH
-pnU
-pnU
-pnU
+azE
+azE
+azE
 aac
 aac
 aac
@@ -39769,7 +39760,7 @@ ayq
 aMP
 aNe
 aNs
-pnU
+azE
 aac
 aac
 aac
@@ -40337,7 +40328,7 @@ aMu
 atX
 aNh
 aNw
-pnU
+azE
 aac
 aac
 aac
@@ -40477,9 +40468,9 @@ aLv
 aLY
 azD
 azD
-pnU
-pnU
-pnU
+azE
+azE
+azE
 aac
 aac
 aac
@@ -40598,11 +40589,11 @@ aux
 avY
 aud
 atT
-atT
+atU
 auY
 awy
 auY
-atT
+atU
 aym
 atU
 aAg
@@ -40744,16 +40735,16 @@ atT
 azk
 aGB
 azk
-atT
+atU
 ayn
-atT
-rNc
+atU
+azB
 azb
-rNc
-pnU
-pnU
+azB
+azE
+azE
 aHP
-pnU
+azE
 azD
 asl
 aKP

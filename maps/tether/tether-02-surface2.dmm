@@ -10158,7 +10158,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "aum" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/rnd/workshop)
 "aun" = (
 /obj/structure/railing{
@@ -10786,7 +10786,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "avt" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/rnd/staircase/secondfloor)
 "avu" = (
 /obj/machinery/light{
@@ -13586,9 +13586,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/janitor)
-"azQ" = (
-/turf/simulated/wall/r_wall,
-/area/rnd/research)
 "azR" = (
 /obj/structure/railing{
 	dir = 8
@@ -28524,9 +28521,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
-"joA" = (
-/turf/simulated/wall/r_wall,
-/area/rnd/breakroom/bathroom)
 
 (1,1,1) = {"
 aaa
@@ -36132,13 +36126,13 @@ atz
 avt
 awg
 awS
-joA
-joA
-joA
-joA
-joA
-joA
-joA
+axK
+axK
+axK
+axK
+axK
+axK
+axK
 aka
 aka
 aDn
@@ -36274,13 +36268,13 @@ atz
 avt
 awh
 awT
-joA
+axK
 ayz
 azd
 azZ
 aAO
 aBt
-joA
+axK
 aCq
 aCP
 aDo
@@ -36416,13 +36410,13 @@ atz
 avt
 awg
 awU
-joA
+axK
 ayA
 aze
 azZ
 axK
 axK
-joA
+axK
 aCr
 aCQ
 aDp
@@ -36547,7 +36541,7 @@ anU
 aoq
 aoQ
 apA
-aqm
+aqk
 aqk
 aqk
 asr
@@ -36555,16 +36549,16 @@ aqk
 atB
 atB
 atB
-auv
+atB
 awi
-auv
-auv
+atB
+atB
 ayB
 azf
 azZ
 aAP
 aBu
-joA
+axK
 aCs
 aCR
 aka
@@ -36689,7 +36683,7 @@ anU
 aor
 aoR
 auK
-aqm
+aqk
 aqU
 arA
 ass
@@ -36706,7 +36700,7 @@ azg
 axK
 axK
 axK
-joA
+axK
 aCr
 aCS
 aka
@@ -36831,7 +36825,7 @@ anU
 aos
 aoS
 apC
-aqm
+aqk
 aqV
 arB
 ast
@@ -36848,7 +36842,7 @@ azh
 aAa
 azZ
 aBv
-joA
+axK
 aCt
 aCT
 aka
@@ -36973,7 +36967,7 @@ anV
 aot
 anU
 apD
-aqm
+aqk
 aqW
 arC
 asu
@@ -36990,7 +36984,7 @@ azi
 axK
 aAQ
 aBw
-joA
+axK
 aCu
 aCU
 aka
@@ -37127,12 +37121,12 @@ atF
 awm
 awY
 atB
-auv
-joA
-joA
-joA
-joA
-joA
+atB
+axK
+axK
+axK
+axK
+axK
 aCv
 aCV
 aBV
@@ -37257,7 +37251,7 @@ anX
 aov
 anX
 apF
-aqm
+aqk
 aqU
 arE
 asw
@@ -37269,7 +37263,7 @@ atF
 awn
 awZ
 axM
-auv
+atB
 auk
 aAb
 aAR
@@ -37402,7 +37396,7 @@ apG
 aqm
 aqm
 aqm
-aqm
+aqk
 aqk
 atH
 aus
@@ -37553,7 +37547,7 @@ aut
 aut
 atJ
 axN
-auv
+atB
 azk
 aAd
 auk
@@ -37970,9 +37964,9 @@ aox
 aox
 anZ
 arF
-arF
-azQ
-auv
+arG
+atb
+atB
 auv
 auv
 auv

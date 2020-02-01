@@ -1293,8 +1293,8 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_dining)
 "acs" = (
-/turf/simulated/wall/r_wall,
-/area/tether/surfacebase/medical/first_aid_west)
+/turf/simulated/wall,
+/area/rnd/xenoarch_storage)
 "act" = (
 /obj/machinery/door/airlock/maintenance/common{
 	name = "Tram Maintenance Access"
@@ -9836,12 +9836,6 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/sleep/Dorm_2)
-"aqT" = (
-/turf/simulated/wall/r_wall,
-/area/hallway/lower/first_west)
-"aqU" = (
-/turf/simulated/wall/r_wall,
-/area/rnd/miscellaneous_lab)
 "aqV" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/first_aid_west)
@@ -12687,7 +12681,7 @@
 /area/rnd/hallway)
 "avH" = (
 /obj/structure/sign/department/anomaly,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/hallway/lower/first_west)
 "avI" = (
 /obj/effect/floor_decal/borderfloor{
@@ -12801,7 +12795,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
 "avQ" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/rnd/xenobiology/xenoflora/lab_atmos)
 "avR" = (
 /obj/structure/railing{
@@ -13039,7 +13033,7 @@
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "awn" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/rnd/hallway)
 "awo" = (
 /obj/machinery/vending/snack,
@@ -13486,7 +13480,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
 "awV" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/rnd/xenobiology/xenoflora)
 "awW" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
@@ -21817,7 +21811,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "aKa" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/maintenance/asmaint2)
 "aKb" = (
 /obj/effect/floor_decal/industrial/warning/dust,
@@ -22217,7 +22211,7 @@
 /turf/simulated/floor/lino,
 /area/crew_quarters/visitor_dining)
 "aKL" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/rnd/external)
 "aKM" = (
 /obj/structure/cable/green{
@@ -35844,7 +35838,7 @@ agv
 agv
 azs
 aAw
-aqU
+aBv
 aah
 aah
 aah
@@ -35986,7 +35980,7 @@ aip
 aiJ
 azs
 aaT
-aqU
+aBv
 aah
 aah
 aah
@@ -36128,7 +36122,7 @@ ais
 aiK
 azs
 aAu
-aqU
+aBv
 aah
 aah
 aah
@@ -36270,7 +36264,7 @@ aiH
 aiL
 azs
 aAw
-aqU
+aBv
 aah
 aah
 aah
@@ -36398,11 +36392,11 @@ agU
 aqV
 aqV
 aqV
+aqV
 acs
-asz
-asz
-asz
-asz
+acs
+acs
+acs
 asz
 agV
 ahh
@@ -36412,7 +36406,7 @@ aiI
 aiM
 azs
 aAu
-aqU
+aBv
 aah
 aah
 aah
@@ -36540,7 +36534,7 @@ aqV
 arn
 arE
 arP
-acs
+aqV
 agk
 agp
 atD
@@ -36554,16 +36548,16 @@ agv
 agv
 azs
 aAx
-aqU
-aqU
-aqU
-aqU
-aqU
-aqU
-aqU
-aqU
-aqU
-aqU
+aBv
+aBv
+aBv
+aBv
+aBv
+aBv
+aBv
+aBv
+aBv
+aBv
 aah
 aah
 aah
@@ -36682,7 +36676,7 @@ aqV
 aro
 arF
 arQ
-acs
+aqV
 asA
 asW
 asW
@@ -36705,7 +36699,7 @@ aES
 ajB
 aFY
 aGd
-aqU
+aBv
 aah
 aah
 aah
@@ -36824,12 +36818,12 @@ aqV
 arp
 arF
 arR
-acs
+aqV
 asB
 asX
 asX
 agw
-asz
+acs
 abg
 avF
 awm
@@ -36847,7 +36841,7 @@ aET
 aCe
 aFZ
 aGJ
-aqU
+aBv
 aah
 aah
 aah
@@ -36966,16 +36960,16 @@ aqV
 arq
 arG
 arS
-acs
+aqV
 asC
 ags
 agt
 auh
-asz
+acs
 aDr
 avG
 ahT
-azs
+auK
 axC
 awV
 awV
@@ -36989,7 +36983,7 @@ awV
 awV
 aGa
 aGN
-aqU
+aBv
 aah
 aah
 aah
@@ -37108,16 +37102,16 @@ aqV
 arr
 arH
 arT
-acs
-aqT
-aqT
-aqT
-aqT
-aqT
+aqV
+ahl
+ahl
+ahl
+ahl
+ahl
 ava
 avH
 awn
-azs
+auK
 avh
 awV
 azu
@@ -37131,7 +37125,7 @@ aEU
 awV
 aGb
 aGM
-aqU
+aBv
 aah
 aah
 aah
@@ -37273,11 +37267,11 @@ aEV
 awV
 aGc
 aGN
-aqU
-aqU
-aqU
-aqU
-aqU
+aBv
+aBv
+aBv
+aBv
+aBv
 aKL
 aLo
 bbo
