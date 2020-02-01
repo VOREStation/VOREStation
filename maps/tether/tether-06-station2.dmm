@@ -21693,6 +21693,9 @@
 	},
 /turf/simulated/floor/plating,
 /area/security/riot_control)
+"Ys" = (
+/turf/simulated/wall,
+/area/storage/tech)
 "Yw" = (
 /turf/simulated/floor/airless,
 /area/mine/explored/upper_level)
@@ -27351,7 +27354,7 @@ mF
 lw
 lw
 lw
-lw
+Ys
 pG
 pG
 pG
@@ -27493,7 +27496,7 @@ mG
 pN
 nZ
 oa
-lw
+Ys
 pG
 pG
 pG
@@ -27635,7 +27638,7 @@ mH
 kK
 oa
 oG
-lw
+Ys
 pG
 qk
 qX
@@ -27777,7 +27780,7 @@ mI
 nw
 ob
 oH
-lw
+Ys
 pG
 qk
 qY
@@ -27919,7 +27922,7 @@ mJ
 nx
 kK
 oI
-lw
+Ys
 pG
 ql
 ed
@@ -28061,7 +28064,7 @@ mK
 ny
 oc
 oJ
-lw
+Ys
 pH
 qm
 AO
@@ -28203,7 +28206,7 @@ mK
 kK
 oc
 oK
-lw
+Ys
 pI
 pG
 rb
@@ -28345,7 +28348,7 @@ mK
 nz
 qI
 oL
-lw
+Ys
 pJ
 pG
 rc
@@ -28480,14 +28483,14 @@ it
 jb
 jF
 fX
-lw
-lw
-lw
+Ys
+Ys
+Ys
 mL
-lw
-lw
-lw
-lw
+Ys
+Ys
+Ys
+Ys
 kf
 qn
 rd
