@@ -115,10 +115,9 @@
 	},
 /obj/machinery/door/firedoor/glass/hidden/steel,
 /obj/machinery/door/blast/regular{
-	airflow_od = "enginelock";
 	density = 0;
 	dir = 4;
-	id = enginelock;
+	id = "enginelock";
 	name = "Engine Room Lockdown";
 	opacity = 0
 	},
@@ -285,10 +284,9 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
-	airflow_od = "enginelock";
 	density = 0;
 	dir = 4;
-	id = enginelock;
+	id = "enginelock";
 	name = "Engine Room Lockdown";
 	opacity = 0
 	},
@@ -347,10 +345,9 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
-	airflow_od = "enginelock";
 	density = 0;
 	dir = 4;
-	id = enginelock;
+	id = "enginelock";
 	name = "Engine Room Lockdown";
 	opacity = 0
 	},
@@ -2447,10 +2444,9 @@
 	req_access = list(11)
 	},
 /obj/machinery/door/blast/regular{
-	airflow_od = "enginelock";
 	density = 0;
 	dir = 4;
-	id = enginelock;
+	id = "enginelock";
 	name = "Engine Room Lockdown";
 	opacity = 0
 	},
@@ -2510,6 +2506,13 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2;
 	icon_state = "pipe-c"
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "enginelock";
+	name = "Engine Room Lockdown";
+	pixel_x = 24;
+	req_access = list(11);
+	req_one_access = list(11)
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
@@ -3304,10 +3307,9 @@
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
-	airflow_od = "enginelock";
 	density = 0;
 	dir = 4;
-	id = enginelock;
+	id = "enginelock";
 	name = "Engine Room Lockdown";
 	opacity = 0
 	},
@@ -4543,10 +4545,9 @@
 	req_one_access = list(11)
 	},
 /obj/machinery/door/blast/regular{
-	airflow_od = "enginelock";
 	density = 0;
 	dir = 4;
-	id = enginelock;
+	id = "enginelock";
 	name = "Engine Room Lockdown";
 	opacity = 0
 	},
@@ -6304,10 +6305,9 @@
 	dir = 8
 	},
 /obj/machinery/door/blast/regular{
-	airflow_od = "enginelock";
 	density = 0;
 	dir = 4;
-	id = enginelock;
+	id = "enginelock";
 	name = "Engine Room Lockdown";
 	opacity = 0
 	},
@@ -9458,30 +9458,6 @@
 /obj/machinery/atmospherics/pipe/simple/visible/red,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/backup)
-"aqM" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 6
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/button/remote/blast_door{
-	id = "enginelock";
-	name = "Engine Room Lockdown";
-	pixel_x = 24;
-	req_access = list(11);
-	req_one_access = list(11)
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/hallway)
 "aqN" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -30206,7 +30182,7 @@ acq
 adq
 acq
 aeD
-aqM
+aeV
 afm
 aCj
 aeV
