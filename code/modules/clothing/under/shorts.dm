@@ -2,6 +2,7 @@
 /obj/item/clothing/under/shorts
 	name = "athletic shorts"
 	desc = "95% Polyester, 5% Spandex!"
+	icon_state = "redshorts" // Hackyfix for icon states until someone wants to come do a recolor later.
 	gender = PLURAL
 	body_parts_covered = LOWER_TORSO
 
