@@ -425,7 +425,7 @@
 /mob/living/proc/perform_the_nom(var/mob/living/user, var/mob/living/prey, var/mob/living/pred, var/obj/belly/belly, var/delay)
 	//Sanity
 	if(!user || !prey || !pred || !istype(belly) || !(belly in pred.vore_organs))
-		log_debug("[user] attempted to feed [prey] to [pred], via [lowertext(belly.name)] but it went wrong.")
+		log_debug("[user] attempted to feed [prey] to [pred], via [belly ? lowertext(belly.name) : "*null*"] but it went wrong.")
 		return
 
 	// The belly selected at the time of noms
