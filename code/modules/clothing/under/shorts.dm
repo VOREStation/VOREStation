@@ -5,6 +5,7 @@
 	icon_state = "redshorts" // Hackyfix for icon states until someone wants to come do a recolor later.
 	gender = PLURAL
 	body_parts_covered = LOWER_TORSO
+	index = 1
 
 /obj/item/clothing/under/shorts/red
 	name = "red athletic shorts"
@@ -100,6 +101,7 @@
 	icon_state = "skirt_short_black"
 	body_parts_covered = LOWER_TORSO
 	rolled_sleeves = -1
+	index = 1
 
 /obj/item/clothing/under/skirt/khaki
 	name = "khaki skirt"

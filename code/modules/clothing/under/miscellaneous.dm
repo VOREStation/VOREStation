@@ -357,6 +357,7 @@
 	name = "maid costume"
 	desc = "Maid in China."
 	icon_state = "maid"
+	index = 1
 
 /obj/item/clothing/under/dress/maid/janitor
 	name = "maid uniform"
