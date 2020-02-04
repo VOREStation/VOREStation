@@ -405,7 +405,7 @@
 		return
 
 	else if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
-		A.reagents.trans_to(src, 10)
+		A.reagents.trans_to_obj(src, 10)
 		user << "<span class='notice'>You refill your flower!</span>"
 		return
 
