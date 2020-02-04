@@ -636,6 +636,9 @@
 		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi'
 		)
 
+	valid_accessory_slots = (ACCESSORY_SLOT_OVER | ACCESSORY_SLOT_ARMBAND)
+	restricted_accessory_slots = (ACCESSORY_SLOT_ARMBAND)
+
 /obj/item/clothing/suit/set_clothing_index()
 	..()
 
@@ -649,9 +652,6 @@
 		return 1
 
 	return 0
-
-	valid_accessory_slots = (ACCESSORY_SLOT_OVER | ACCESSORY_SLOT_ARMBAND)
-	restricted_accessory_slots = (ACCESSORY_SLOT_ARMBAND)
 
 /obj/item/clothing/suit/update_clothing_icon()
 	if (ismob(src.loc))
