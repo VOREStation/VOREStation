@@ -50,6 +50,36 @@
 		plushies[initial(plushie_type.name)] = plushie_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(plushies))
 
+/datum/gear/figure
+	display_name = "action figure selection"
+	description = "A \"Space Life\" brand action figure."
+	path = /obj/item/toy/figure/
+
+/datum/gear/figure/New()
+	..()
+	var/list/figures = list()
+	for(var/figure in typesof(/obj/item/toy/figure/) - /obj/item/toy/figure)
+		var/obj/item/toy/figure/figure_type = figure
+		figures[initial(figure_type.name)] = figure_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(figures))
+
+/datum/gear/toy
+	display_name = "toy selection"
+	description = "Choose from a number of toys."
+	path = /obj/item/toy/
+
+/datum/gear/toy/New()
+	..()
+	var/toytype = list()
+	toytype["Blink toy"] = /obj/item/toy/blink
+	toytype["Gravitational singularity"] = /obj/item/toy/spinningtoy
+	toytype["Water flower"] = /obj/item/toy/waterflower
+	toytype["Bosun's whistle"] = /obj/item/toy/bosunwhistle
+	toytype["Magic 8 Ball"] = /obj/item/toy/eight_ball
+	toytype["Magic Conch shell"] = /obj/item/toy/eight_ball/conch
+	gear_tweaks += new/datum/gear_tweak/path(toytype)
+
+
 /datum/gear/flask
 	display_name = "flask"
 	path = /obj/item/weapon/reagent_containers/food/drinks/flask/barflask

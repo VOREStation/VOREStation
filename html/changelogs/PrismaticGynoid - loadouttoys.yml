@@ -1,0 +1,6 @@
+author: PrismaticGynoid
+
+delete-after: True
+
+changes: 
+  - rscadd: "Adds a few toys to the loadout."
