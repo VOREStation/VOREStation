@@ -411,12 +411,12 @@
 
 	last_special = world.time + 10
 	status_flags |= LEAPING
-	pixel_y = 10
+	pixel_y = pixel_y + 10
 
 	src.visible_message("<span class='danger'>\The [src] leaps at [T]!</span>")
 	src.throw_at(get_step(get_turf(T),get_turf(src)), 4, 1, src)
 	playsound(src.loc, 'sound/mecha/mechstep2.ogg', 50, 1)
-	pixel_y = 0
+	pixel_y = default_pixel_y
 	cell.charge -= 750
 
 	sleep(5)
@@ -435,5 +435,5 @@
 	var/armor_block = run_armor_check(T, "melee")
 	var/armor_soak = get_armor_soak(T, "melee")
 	T.apply_damage(20, HALLOSS,, armor_block, armor_soak)
-	if(prob(33))
-		T.apply_effect(3, WEAKEN, armor_block)
+	if(prob(75)) //75% chance to stun for 5 seconds, really only going to be 4 bcus click cooldown+animation.
+		T.apply_effect(5, WEAKEN, armor_block)

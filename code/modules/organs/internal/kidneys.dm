@@ -22,6 +22,13 @@
 		else if(is_broken())
 			owner.adjustToxLoss(0.3 * PROCESS_ACCURACY)
 
+/obj/item/organ/internal/kidneys/handle_organ_proc_special()
+	. = ..()
+
+	if(owner && owner.getToxLoss() <= owner.getMaxHealth() * 0.1) // If you have less than 10 tox damage (for a human), your kidneys can help purge it.
+		if(prob(owner.getToxLoss()))
+			owner.adjustToxLoss(rand(-1,-3))
+
 /obj/item/organ/internal/kidneys/handle_germ_effects()
 	. = ..() //Up should return an infection level as an integer
 	if(!.) return

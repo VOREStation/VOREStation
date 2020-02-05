@@ -6,6 +6,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 /obj/machinery/photocopier/faxmachine
 	name = "fax machine"
+	desc = "Sent papers and pictures far away! Or to your co-worker's office a few doors down."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "fax"
 	insert_anim = "faxsend"
@@ -117,6 +118,37 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		authenticated = 0
 
 	SSnanoui.update_uis(src)
+
+/obj/machinery/photocopier/faxmachine/attackby(obj/item/O as obj, mob/user as mob)
+	if(istype(O, /obj/item/weapon/paper) || istype(O, /obj/item/weapon/photo) || istype(O, /obj/item/weapon/paper_bundle))
+		if(!copyitem)
+			user.drop_item()
+			copyitem = O
+			O.loc = src
+			to_chat(user, "<span class='notice'>You insert \the [O] into \the [src].</span>")
+			playsound(loc, "sound/machines/click.ogg", 100, 1)
+			flick(insert_anim, src)
+		else
+			to_chat(user, "<span class='notice'>There is already something in \the [src].</span>")
+	else if(istype(O, /obj/item/device/multitool) && panel_open)
+		var/input = sanitize(input(usr, "What Department ID would you like to give this fax machine?", "Multitool-Fax Machine Interface", department))
+		if(!input)
+			to_chat(usr, "No input found. Please hang up and try your call again.")
+			return
+		department = input
+		if( !(("[department]" in alldepartments) || ("[department]" in admin_departments)) && !(department == "Unknown"))
+			alldepartments |= department
+	else if(O.is_wrench())
+		playsound(loc, O.usesound, 50, 1)
+		anchored = !anchored
+		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+
+	else if(default_deconstruction_screwdriver(user, O))
+		return
+	else if(default_deconstruction_crowbar(user, O))
+		return
+
+	return
 
 /obj/machinery/photocopier/faxmachine/proc/sendfax(var/destination)
 	if(stat & (BROKEN|NOPOWER))

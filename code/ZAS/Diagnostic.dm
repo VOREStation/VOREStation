@@ -10,10 +10,10 @@ client/proc/ZoneTick()
 
 	var/result = air_master.Tick()
 	if(result)
-		src << "Successfully Processed."
+		to_chat(src, "Successfully Processed.")
 
 	else
-		src << "Failed to process! ([air_master.tick_progress])"
+		to_chat(src, "Failed to process! ([air_master.tick_progress])")
 	*/
 
 client/proc/Zone_Info(turf/T as null|turf)

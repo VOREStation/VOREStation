@@ -1,6 +1,11 @@
 /mob/living/silicon/pai
 	var/people_eaten = 0
 	icon = 'icons/mob/pai_vr.dmi'
+	//TFF 22/11/19 - CHOMPStation port of pAI additions.
+	var/global/list/wide_chassis = list(
+		"rat",
+		"panther"
+		)
 
 /mob/living/silicon/pai/proc/pai_nom(var/mob/living/T in oview(1))
 	set name = "pAI Nom"
@@ -31,6 +36,16 @@
 	else if(people_eaten && resting)
 		icon_state = "[chassis]_rest_full"
 
+	//TFF 22/11/19 - CHOMPStation port of pAI additions.
+	if(chassis in wide_chassis)
+		icon = 'icons/mob/pai_vr64x64.dmi'
+		pixel_x = -16
+		vis_height = 64
+	else
+		icon = 'icons/mob/pai_vr.dmi'
+		pixel_x = 0
+		vis_height = 32
+
 /mob/living/silicon/pai/update_icons() //And other functions cause this to occur, such as digesting someone.
 	..()
 	update_fullness_pai()
@@ -42,3 +57,22 @@
 		icon_state = "[chassis]_full"
 	else if(people_eaten && resting)
 		icon_state = "[chassis]_rest_full"
+
+	//TFF 22/11/19 - CHOMPStation port of pAI additions.
+	if(chassis in wide_chassis)
+		icon = 'icons/mob/pai_vr64x64.dmi'
+		pixel_x = -16
+	else
+		icon = 'icons/mob/pai_vr.dmi'
+		pixel_x = 0
+//proc override to avoid pAI players being invisible while the chassis selection window is open
+/mob/living/silicon/pai/proc/choose_chassis()
+	set category = "pAI Commands"
+	set name = "Choose Chassis"
+	var/choice
+
+	choice = input(usr,"What would you like to use for your mobile chassis icon?") as null|anything in possible_chassis
+	if(!choice) return
+	chassis = possible_chassis[choice]
+	verbs |= /mob/living/proc/hide
+	update_icon()

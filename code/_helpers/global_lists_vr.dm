@@ -169,7 +169,6 @@ var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/weapon/pen,
 				/obj/item/weapon/photo,
 				/obj/item/weapon/reagent_containers/food,
-				/obj/item/weapon/reagent_containers/glass/bottle,
 				/obj/item/weapon/reagent_containers/glass/rag,
 				/obj/item/weapon/soap,
 				/obj/item/weapon/spacecash,
@@ -407,7 +406,7 @@ var/global/list/contamination_colors = list("green",
 				"beige",
 				"pink")
 
-//For the mechanic of leaving remains. Ones listed below are basically ones that got no bones.
+//For the mechanic of leaving remains. Ones listed below are basically ones that got no bones or leave no trace after death.
 var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 				SPECIES_DIONA,
 				SPECIES_ALRAUNE,
@@ -426,7 +425,10 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 				SPECIES_XENO_SENTINEL,
 				SPECIES_XENO_QUEEN,
 				SPECIES_SHADOW,
-				SPECIES_GOLEM)					//Some special species that may or may not be ever used in event too
+				SPECIES_GOLEM,					//Some special species that may or may not be ever used in event too,
+				SPECIES_SHADEKIN)			//Shadefluffers just poof away
+
+/var/global/list/existing_solargrubs = list()
 
 /hook/startup/proc/init_vore_datum_ref_lists()
 	var/paths
@@ -468,10 +470,10 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 
 	// Custom species icon bases
 	var/list/blacklisted_icons = list(SPECIES_CUSTOM,SPECIES_PROMETHEAN) //Just ones that won't work well.
-	for(var/species_name in playable_species)
+	for(var/species_name in GLOB.playable_species)
 		if(species_name in blacklisted_icons)
 			continue
-		var/datum/species/S = all_species[species_name]
+		var/datum/species/S = GLOB.all_species[species_name]
 		if(S.spawn_flags & SPECIES_IS_WHITELISTED)
 			continue
 		custom_species_bases += species_name

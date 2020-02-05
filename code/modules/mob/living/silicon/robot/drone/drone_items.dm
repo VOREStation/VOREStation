@@ -56,6 +56,22 @@
 	/obj/item/weapon/stock_parts
 	)
 
+/obj/item/weapon/gripper/security
+	name = "security gripper"
+	desc = "A simple grasping tool for corporate security work."
+	icon_state = "gripper-sec"
+
+	can_hold = list(
+	/obj/item/weapon/paper,
+	/obj/item/weapon/paper_bundle,
+	/obj/item/weapon/pen,
+	/obj/item/weapon/sample,
+	/obj/item/weapon/forensics/sample_kit,
+	/obj/item/device/taperecorder,
+	/obj/item/device/tape,
+	/obj/item/device/uv_light
+	)
+
 /obj/item/weapon/gripper/paperwork
 	name = "paperwork gripper"
 	desc = "A simple grasping tool for clerical work."

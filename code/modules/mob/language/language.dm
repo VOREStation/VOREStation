@@ -144,9 +144,9 @@
 
 /mob/observer/dead/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
 	if(speaker.name == speaker_name || antagHUD)
-		src << "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> ([ghost_follow_link(speaker, src)]) [message]</span></i>"
+		to_chat(src, "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> ([ghost_follow_link(speaker, src)]) [message]</span></i>")
 	else
-		src << "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> [message]</span></i>"
+		to_chat(src, "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> [message]</span></i>")
 
 /datum/language/proc/check_special_condition(var/mob/other)
 	return 1
@@ -164,6 +164,11 @@
 	if(name != "Noise")	// Audible Emotes
 		if(ishuman(speaker))
 			var/mob/living/carbon/human/H = speaker
+			if(H.species.has_organ[O_VOICE] && !(flags & SIGNLANG) && !(flags & NONVERBAL)) // Does the species need a voicebox? Is the language even spoken?
+				var/obj/item/organ/internal/voicebox/vocal = H.internal_organs_by_name[O_VOICE]
+				if(!vocal || vocal.is_broken() || vocal.mute)
+					return FALSE
+
 			if(src.name in H.species.assisted_langs)
 				. = FALSE
 				var/obj/item/organ/internal/voicebox/vox = locate() in H.internal_organs	// Only voiceboxes for now. Maybe someday it'll include other organs, but I'm not that clever
@@ -174,7 +179,7 @@
 // Language handling.
 /mob/proc/add_language(var/language)
 
-	var/datum/language/new_language = all_languages[language]
+	var/datum/language/new_language = GLOB.all_languages[language]
 
 	if(!istype(new_language) || (new_language in languages))
 		return 0
@@ -183,12 +188,12 @@
 	return 1
 
 /mob/proc/remove_language(var/rem_language)
-	var/datum/language/L = all_languages[rem_language]
+	var/datum/language/L = GLOB.all_languages[rem_language]
 	. = (L in languages)
 	languages.Remove(L)
 
 /mob/living/remove_language(rem_language)
-	var/datum/language/L = all_languages[rem_language]
+	var/datum/language/L = GLOB.all_languages[rem_language]
 	if(default_language == L)
 		default_language = null
 	return ..()
@@ -200,10 +205,10 @@
 		log_debug("[src] attempted to speak a null language.")
 		return 0
 
-	if(speaking == all_languages["Noise"])
+	if(speaking == GLOB.all_languages["Noise"])
 		return 1
 
-	if (only_species_language && speaking != all_languages[species_language])
+	if (only_species_language && speaking != GLOB.all_languages[species_language])
 		return 0
 
 	if(speaking.can_speak_special(src))
@@ -263,7 +268,7 @@
 	if(href_list["default_lang"])
 		if(href_list["default_lang"] == "reset")
 			if (species_language)
-				set_default_language(all_languages[species_language])
+				set_default_language(GLOB.all_languages[species_language])
 			else
 				set_default_language(null)
 		else

@@ -34,6 +34,7 @@
 
 /obj/machinery/alarm
 	name = "alarm"
+	desc = "Used to control various station atmospheric systems. The light indicates the current air status of the area."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "alarm0"
 	plane = TURF_PLANE
@@ -767,17 +768,24 @@
 		return
 
 	if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
-		if(stat & (NOPOWER|BROKEN))
-			user << "It does nothing"
-			return
-		else
-			if(allowed(usr) && !wires.IsIndexCut(AALARM_WIRE_IDSCAN))
-				locked = !locked
-				user << "<span class='notice'>You [ locked ? "lock" : "unlock"] the Air Alarm interface.</span>"
-			else
-				user << "<span class='warning'>Access denied.</span>"
-			return
+		togglelock()
 	return ..()
+
+/obj/machinery/alarm/verb/togglelock(mob/user as mob)
+	if(stat & (NOPOWER|BROKEN))
+		to_chat(user, "It does nothing.")
+		return
+	else
+		if(allowed(usr) && !wires.IsIndexCut(AALARM_WIRE_IDSCAN))
+			locked = !locked
+			to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the Air Alarm interface.</span>")
+		else
+			to_chat(user, "<span class='warning'>Access denied.</span>")
+		return
+
+/obj/machinery/alarm/AltClick()
+	..()
+	togglelock()
 
 /obj/machinery/alarm/power_change()
 	..()

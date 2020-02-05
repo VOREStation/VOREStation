@@ -1,4 +1,5 @@
 #define VORE_SOUND_FALLOFF 0.1
+#define VORE_SOUND_RANGE 3
 
 //
 //  Belly system 2.0, now using objects instead of datums because EH at datums.
@@ -18,6 +19,7 @@
 	var/human_prey_swallow_time = 100		// Time in deciseconds to swallow /mob/living/carbon/human
 	var/nonhuman_prey_swallow_time = 30		// Time in deciseconds to swallow anything else
 	var/emote_time = 60 SECONDS				// How long between stomach emotes at prey
+	var/nutrition_percent = 100				// Nutritional percentage per tick in digestion mode
 	var/digest_brute = 2					// Brute damage per tick in digestion mode
 	var/digest_burn = 2						// Burn damage per tick in digestion mode
 	var/immutable = FALSE					// Prevents this belly from being deleted
@@ -57,6 +59,7 @@
 	var/tmp/list/items_preserved = list()		// Stuff that wont digest so we shouldn't process it again.
 	var/tmp/next_emote = 0						// When we're supposed to print our next emote, as a belly controller tick #
 	var/tmp/recent_sound = FALSE				// Prevent audio spam
+	var/tmp/list/hearing_mobs
 
 	// Don't forget to watch your commas at the end of each line if you change these.
 	var/list/struggle_messages_outside = list(
@@ -127,6 +130,7 @@
 		"human_prey_swallow_time",
 		"nonhuman_prey_swallow_time",
 		"emote_time",
+		"nutrition_percent",
 		"digest_brute",
 		"digest_burn",
 		"immutable",
@@ -223,7 +227,7 @@
 
 	//Clean up our own business
 	items_preserved.Cut()
-	if(isanimal(owner))
+	if(!ishuman(owner))
 		owner.update_icons()
 
 	//Print notifications/sound if necessary
@@ -248,7 +252,7 @@
 
 	//Place them into our drop_location
 	M.forceMove(drop_location())
-	
+
 	items_preserved -= M
 
 	//Special treatment for absorbed prey
@@ -271,7 +275,7 @@
 				Pred.bloodstr.trans_to(Prey, Pred.reagents.total_volume / absorbed_count)
 
 	//Clean up our own business
-	if(isanimal(owner))
+	if(!ishuman(owner))
 		owner.update_icons()
 
 	//Print notifications/sound if necessary
@@ -389,6 +393,8 @@
 	//M.death(1) // "Stop it he's already dead..." Basically redundant and the reason behind screaming mouse carcasses.
 	if(M.ckey)
 		message_admins("[key_name(owner)] has digested [key_name(M)] in their [lowertext(name)] ([owner ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[owner.x];Y=[owner.y];Z=[owner.z]'>JMP</a>" : "null"])")
+		if(M.mind)
+			M.mind.vore_death = TRUE
 
 	// If digested prey is also a pred... anyone inside their bellies gets moved up.
 	if(is_vore_predator(M))
@@ -476,7 +482,7 @@
 	if(!digested)
 		items_preserved |= item
 	else
-		owner.nutrition += (5 * digested)
+		owner.nutrition += ((nutrition_percent / 100) * 5 * digested)
 		if(isrobot(owner))
 			var/mob/living/silicon/robot/R = owner
 			R.cell.charge += (50 * digested)
@@ -634,14 +640,16 @@
 			I.decontaminate()
 			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
 	items_preserved -= content
+	/* Disabling this part due to redundancy. Entered() on target belly will make the sound anyway.
 	if(!silent && target.vore_sound && !recent_sound)
 		var/soundfile
-		if(!fancy_vore)
+		if(!target.fancy_vore)
 			soundfile = classic_vore_sounds[target.vore_sound]
 		else
 			soundfile = fancy_vore_sounds[target.vore_sound]
 		if(soundfile)
 			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/digestion_noises)
+	*/
 	owner.updateVRPanel()
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
@@ -659,6 +667,7 @@
 	dupe.human_prey_swallow_time = human_prey_swallow_time
 	dupe.nonhuman_prey_swallow_time = nonhuman_prey_swallow_time
 	dupe.emote_time = emote_time
+	dupe.nutrition_percent = nutrition_percent
 	dupe.digest_brute = digest_brute
 	dupe.digest_burn = digest_burn
 	dupe.immutable = immutable

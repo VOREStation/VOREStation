@@ -7,9 +7,9 @@
 	icon_dead = "bee-dead"
 	icon = 'icons/mob/vore.dmi'
 
-	response_help = "pets the"
-	response_disarm = "gently pushes aside the"
-	response_harm = "hits the"
+	response_help = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm = "hits"
 
 	movement_cooldown = 5
 //	speed = 5

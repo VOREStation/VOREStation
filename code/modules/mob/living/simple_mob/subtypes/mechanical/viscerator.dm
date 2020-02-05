@@ -36,6 +36,7 @@
 	mob_swap_flags = 0
 	mob_push_flags = 0
 
+	melee_attack_delay = null // No attack delay, as their movement is functionally an attack.
 	melee_damage_lower = 4 // Approx 8 DPS.
 	melee_damage_upper = 4
 	base_attack_cooldown = 5 // Two attacks a second or so.

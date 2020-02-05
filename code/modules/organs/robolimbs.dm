@@ -123,6 +123,12 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon = 'icons/mob/human_races/cyberlimbs/cybersolutions/cybersolutions_alt1.dmi'
 	unavailable_to_build = 1
 
+/datum/robolimb/einstein
+	company = "Einstein Engines"
+	desc = "This limb is lightweight with a sleek design."
+	icon = 'icons/mob/human_races/cyberlimbs/einstein/einstein_main.dmi'
+	unavailable_to_build = 1
+
 /datum/robolimb/grayson
 	company = "Grayson"
 	desc = "This limb has a sturdy and heavy build to it."

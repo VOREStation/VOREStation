@@ -28,10 +28,7 @@ var/datum/admin_secrets/admin_secrets = new()
 /datum/admin_secret_category
 	var/name = ""
 	var/desc = ""
-	var/list/datum/admin_secret_item/items
-
-/datum/admin_secret_category
-	items = list()
+	var/list/datum/admin_secret_item/items = list()
 
 /datum/admin_secret_category/proc/can_view(var/mob/user)
 	for(var/datum/admin_secret_item/item in items)
@@ -99,18 +96,18 @@ var/datum/admin_secrets/admin_secrets = new()
 /datum/admin_secret_item/admin_secret
 	category = /datum/admin_secret_category/admin_secrets
 	log = 0
-	permissions = R_ADMIN|R_EVENT
+	permissions = R_ADMIN //VOREStation Edit
 
 /datum/admin_secret_item/random_event
 	category = /datum/admin_secret_category/random_events
-	permissions = R_FUN|R_EVENT
+	permissions = R_FUN //VOREStation Edit
 	warn_before_use = 1
 
 /datum/admin_secret_item/fun_secret
 	category = /datum/admin_secret_category/fun_secrets
-	permissions = R_FUN|R_EVENT
+	permissions = R_FUN //VOREStation Edit
 	warn_before_use = 1
 
 /datum/admin_secret_item/final_solution
 	category = /datum/admin_secret_category/final_solutions
-	permissions = R_FUN|R_SERVER|R_ADMIN|R_EVENT
+	permissions = R_FUN|R_SERVER|R_ADMIN //VOREStation Edit

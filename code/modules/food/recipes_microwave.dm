@@ -3,7 +3,7 @@
 
 
 /* No telebacon. just no...
-/datum/recipe/telebacon
+/datum/recipe/microwave/telebacon
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/meat,
 		/obj/item/device/assembly/signaler
@@ -11,7 +11,7 @@
 	result = /obj/item/weapon/reagent_containers/food/snacks/telebacon
 
 I said no!
-/datum/recipe/syntitelebacon
+/datum/recipe/microwave/syntitelebacon
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh,
 		/obj/item/device/assembly/signaler
@@ -19,21 +19,21 @@ I said no!
 	result = /obj/item/weapon/reagent_containers/food/snacks/telebacon
 */
 
-/datum/recipe/friedegg
+/datum/recipe/microwave/friedegg
 	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/egg
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/friedegg
 
-/datum/recipe/boiledegg
+/datum/recipe/microwave/boiledegg
 	reagents = list("water" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/egg
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/boiledegg
 
-/datum/recipe/devilledegg
+/datum/recipe/microwave/devilledegg
 	fruit = list("chili" = 1)
 	reagents = list("sodiumchloride" = 2, "mayo" = 5)
 	items = list(
@@ -42,125 +42,125 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/devilledegg
 
-/datum/recipe/dionaroast
+/datum/recipe/microwave/dionaroast
 	fruit = list("apple" = 1)
 	reagents = list("pacid" = 5) //It dissolves the carapace. Still poisonous, though.
 	items = list(/obj/item/weapon/holder/diona)
 	result = /obj/item/weapon/reagent_containers/food/snacks/dionaroast
 
-/datum/recipe/jellydonut
+/datum/recipe/microwave/jellydonut
 	reagents = list("berryjuice" = 5, "sugar" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donut/jelly
 
-/datum/recipe/jellydonut/slime
+/datum/recipe/microwave/jellydonut/slime
 	reagents = list("slimejelly" = 5, "sugar" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly
 
-/datum/recipe/jellydonut/cherry
+/datum/recipe/microwave/jellydonut/cherry
 	reagents = list("cherryjelly" = 5, "sugar" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donut/cherryjelly
 
-/datum/recipe/donut
+/datum/recipe/microwave/donut
 	reagents = list("sugar" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donut/normal
 
-/datum/recipe/humanburger
+/datum/recipe/microwave/humanburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/meat/human,
 		/obj/item/weapon/reagent_containers/food/snacks/bun
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/human/burger
 
-/datum/recipe/plainburger
+/datum/recipe/microwave/plainburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
-		/obj/item/weapon/reagent_containers/food/snacks/meat //do not place this recipe before /datum/recipe/humanburger
+		/obj/item/weapon/reagent_containers/food/snacks/meat //do not place this recipe before /datum/recipe/microwave/humanburger
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/monkeyburger
 
-/datum/recipe/brainburger
+/datum/recipe/microwave/brainburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
 		/obj/item/organ/internal/brain
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/brainburger
 
-/datum/recipe/roburger
+/datum/recipe/microwave/roburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
 		/obj/item/robot_parts/head
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/roburger
 
-/datum/recipe/xenoburger
+/datum/recipe/microwave/xenoburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
 		/obj/item/weapon/reagent_containers/food/snacks/xenomeat
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/xenoburger
 
-/datum/recipe/fishburger
+/datum/recipe/microwave/fishburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
 		/obj/item/weapon/reagent_containers/food/snacks/carpmeat
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/fishburger
 
-/datum/recipe/tofuburger
+/datum/recipe/microwave/tofuburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
 		/obj/item/weapon/reagent_containers/food/snacks/tofu
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/tofuburger
 
-/datum/recipe/ghostburger
+/datum/recipe/microwave/ghostburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
 		/obj/item/weapon/ectoplasm //where do you even find this stuff
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/ghostburger
 
-/datum/recipe/clownburger
+/datum/recipe/microwave/clownburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
 		/obj/item/clothing/mask/gas/clown_hat
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/clownburger
 
-/datum/recipe/mimeburger
+/datum/recipe/microwave/mimeburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
 		/obj/item/clothing/head/beret
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/mimeburger
 
-/datum/recipe/bunbun
+/datum/recipe/microwave/bunbun
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
 		/obj/item/weapon/reagent_containers/food/snacks/bun
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/bunbun
 
-/datum/recipe/hotdog
+/datum/recipe/microwave/hotdog
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
 		/obj/item/weapon/reagent_containers/food/snacks/sausage
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/hotdog
 
-/datum/recipe/waffles
+/datum/recipe/microwave/waffles
 	reagents = list("sugar" = 10)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
@@ -168,7 +168,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/waffles
 
-/datum/recipe/donkpocket
+/datum/recipe/microwave/donkpocket
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
 		/obj/item/weapon/reagent_containers/food/snacks/meatball
@@ -181,7 +181,7 @@ I said no!
 		warm_up(being_cooked)
 		return being_cooked
 
-/datum/recipe/donkpocket/warm
+/datum/recipe/microwave/donkpocket/warm
 	reagents = list() //This is necessary since this is a child object of the above recipe and we don't want donk pockets to need flour
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/donkpocket
@@ -193,7 +193,7 @@ I said no!
 			warm_up(being_cooked)
 		return being_cooked
 
-/datum/recipe/meatbread
+/datum/recipe/microwave/meatbread
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
@@ -207,7 +207,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/meatbread
 
-/datum/recipe/xenomeatbread
+/datum/recipe/microwave/xenomeatbread
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
@@ -221,7 +221,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/xenomeatbread
 
-/datum/recipe/bananabread
+/datum/recipe/microwave/bananabread
 	fruit = list("banana" = 1)
 	reagents = list("milk" = 5, "sugar" = 15)
 	items = list(
@@ -231,7 +231,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread
 
-/datum/recipe/omelette
+/datum/recipe/microwave/omelette
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/egg,
 		/obj/item/weapon/reagent_containers/food/snacks/egg,
@@ -240,14 +240,14 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/omelette
 
-/datum/recipe/muffin
+/datum/recipe/microwave/muffin
 	reagents = list("milk" = 5, "sugar" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/muffin
 
-/datum/recipe/eggplantparm
+/datum/recipe/microwave/eggplantparm
 	fruit = list("eggplant" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
@@ -255,12 +255,12 @@ I said no!
 		)
 	result = /obj/item/weapon/reagent_containers/food/snacks/eggplantparm
 
-/datum/recipe/soylenviridians
+/datum/recipe/microwave/soylenviridians
 	fruit = list("soybeans" = 1)
 	reagents = list("flour" = 10)
 	result = /obj/item/weapon/reagent_containers/food/snacks/soylenviridians
 
-/datum/recipe/soylentgreen
+/datum/recipe/microwave/soylentgreen
 	reagents = list("flour" = 10)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/meat/human,
@@ -268,34 +268,34 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/soylentgreen
 
-/datum/recipe/meatpie
+/datum/recipe/microwave/meatpie
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
 		/obj/item/weapon/reagent_containers/food/snacks/meat,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/meatpie
 
-/datum/recipe/tofupie
+/datum/recipe/microwave/tofupie
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
 		/obj/item/weapon/reagent_containers/food/snacks/tofu,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/tofupie
 
-/datum/recipe/xemeatpie
+/datum/recipe/microwave/xemeatpie
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
 		/obj/item/weapon/reagent_containers/food/snacks/xenomeat,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/xemeatpie
 
-/datum/recipe/pie
+/datum/recipe/microwave/pie
 	fruit = list("banana" = 1)
 	reagents = list("sugar" = 5)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough)
 	result = /obj/item/weapon/reagent_containers/food/snacks/pie
 
-/datum/recipe/cherrypie
+/datum/recipe/microwave/cherrypie
 	fruit = list("cherries" = 1)
 	reagents = list("sugar" = 10)
 	items = list(
@@ -303,28 +303,28 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/cherrypie
 
-/datum/recipe/berryclafoutis
+/datum/recipe/microwave/berryclafoutis
 	fruit = list("berries" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/berryclafoutis
 
-/datum/recipe/wingfangchu
+/datum/recipe/microwave/wingfangchu
 	reagents = list("soysauce" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/xenomeat,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/wingfangchu
 
-/datum/recipe/chaosdonut
+/datum/recipe/microwave/chaosdonut
 	reagents = list("frostoil" = 5, "capsaicin" = 5, "sugar" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donut/chaos
 
-/datum/recipe/humankabob
+/datum/recipe/microwave/humankabob
 	items = list(
 		/obj/item/stack/rods,
 		/obj/item/weapon/reagent_containers/food/snacks/meat/human,
@@ -332,7 +332,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/human/kabob
 
-/datum/recipe/kabob	//Do not put before humankabob
+/datum/recipe/microwave/kabob	//Do not put before humankabob
 	items = list(
 		/obj/item/stack/rods,
 		/obj/item/weapon/reagent_containers/food/snacks/meat,
@@ -340,7 +340,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/monkeykabob
 
-/datum/recipe/tofukabob
+/datum/recipe/microwave/tofukabob
 	items = list(
 		/obj/item/stack/rods,
 		/obj/item/weapon/reagent_containers/food/snacks/tofu,
@@ -348,7 +348,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/tofukabob
 
-/datum/recipe/tofubread
+/datum/recipe/microwave/tofubread
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
@@ -362,44 +362,44 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/tofubread
 
-/datum/recipe/loadedbakedpotato
+/datum/recipe/microwave/loadedbakedpotato
 	fruit = list("potato" = 1)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/cheesewedge)
 	result = /obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato
 
-/datum/recipe/mashedpotato
+/datum/recipe/microwave/mashedpotato
 	fruit = list("potato" = 1)
 	result = /obj/item/weapon/reagent_containers/food/snacks/mashedpotato
 
-/datum/recipe/bangersandmash
+/datum/recipe/microwave/bangersandmash
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/mashedpotato,
 		/obj/item/weapon/reagent_containers/food/snacks/sausage,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/bangersandmash
 
-/datum/recipe/cheesymash
+/datum/recipe/microwave/cheesymash
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/mashedpotato,
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/cheesymash
 
-/datum/recipe/blackpudding
+/datum/recipe/microwave/blackpudding
 	reagents = list("blood" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sausage,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/blackpudding
 
-/datum/recipe/cheesyfries
+/datum/recipe/microwave/cheesyfries
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/fries,
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/cheesyfries
 
-/datum/recipe/cubancarp
+/datum/recipe/microwave/cubancarp
 	fruit = list("chili" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
@@ -407,11 +407,11 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/cubancarp
 
-/datum/recipe/popcorn
+/datum/recipe/microwave/popcorn
 	fruit = list("corn" = 1)
 	result = /obj/item/weapon/reagent_containers/food/snacks/popcorn
 
-/datum/recipe/cookie
+/datum/recipe/microwave/cookie
 	reagents = list("milk" = 5, "sugar" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
@@ -419,7 +419,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/cookie
 
-/datum/recipe/fortunecookie
+/datum/recipe/microwave/fortunecookie
 	reagents = list("sugar" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/doughslice,
@@ -443,12 +443,12 @@ I said no!
 				return 0
 		return .
 
-/datum/recipe/meatsteak
+/datum/recipe/microwave/meatsteak
 	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/meat)
 	result = /obj/item/weapon/reagent_containers/food/snacks/meatsteak
 
-/datum/recipe/pizzamargherita
+/datum/recipe/microwave/pizzamargherita
 	fruit = list("tomato" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
@@ -459,7 +459,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita
 
-/datum/recipe/pizzahawaiian
+/datum/recipe/microwave/pizzahawaiian
 	fruit = list("tomato" = 1, "pineapple" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
@@ -468,7 +468,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/pineapple
 
-/datum/recipe/meatpizza
+/datum/recipe/microwave/meatpizza
 	fruit = list("tomato" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
@@ -479,7 +479,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza
 
-/datum/recipe/mushroompizza
+/datum/recipe/microwave/mushroompizza
 	fruit = list("mushroom" = 5, "tomato" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
@@ -487,7 +487,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza
 
-/datum/recipe/vegetablepizza
+/datum/recipe/microwave/vegetablepizza
 	fruit = list("eggplant" = 1, "carrot" = 1, "corn" = 1, "tomato" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
@@ -495,11 +495,11 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza
 
-/datum/recipe/spacylibertyduff
+/datum/recipe/microwave/spacylibertyduff
 	reagents = list("water" = 5, "vodka" = 5, "psilocybin" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/spacylibertyduff
 
-/datum/recipe/amanitajelly
+/datum/recipe/microwave/amanitajelly
 	reagents = list("water" = 5, "vodka" = 5, "amatoxin" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/amanitajelly
 	make_food(var/obj/container as obj)
@@ -507,18 +507,18 @@ I said no!
 		being_cooked.reagents.del_reagent("amatoxin")
 		return being_cooked
 
-/datum/recipe/meatballsoup
+/datum/recipe/microwave/meatballsoup
 	fruit = list("carrot" = 1, "potato" = 1)
 	reagents = list("water" = 10)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/meatball)
 	result = /obj/item/weapon/reagent_containers/food/snacks/meatballsoup
 
-/datum/recipe/vegetablesoup
+/datum/recipe/microwave/vegetablesoup
 	fruit = list("carrot" = 1, "potato" = 1, "corn" = 1, "eggplant" = 1)
 	reagents = list("water" = 10)
 	result = /obj/item/weapon/reagent_containers/food/snacks/vegetablesoup
 
-/datum/recipe/nettlesoup
+/datum/recipe/microwave/nettlesoup
 	fruit = list("nettle" = 1, "potato" = 1)
 	reagents = list("water" = 10)
 	items = list(
@@ -526,45 +526,45 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/nettlesoup
 
-/datum/recipe/wishsoup
+/datum/recipe/microwave/wishsoup
 	reagents = list("water" = 20)
 	result= /obj/item/weapon/reagent_containers/food/snacks/wishsoup
 
-/datum/recipe/hotchili
+/datum/recipe/microwave/hotchili
 	fruit = list("chili" = 1, "tomato" = 1)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/meat)
 	result = /obj/item/weapon/reagent_containers/food/snacks/hotchili
 
-/datum/recipe/coldchili
+/datum/recipe/microwave/coldchili
 	fruit = list("icechili" = 1, "tomato" = 1)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/meat)
 	result = /obj/item/weapon/reagent_containers/food/snacks/coldchili
 
-/datum/recipe/amanita_pie
+/datum/recipe/microwave/amanita_pie
 	reagents = list("amatoxin" = 5)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough)
 	result = /obj/item/weapon/reagent_containers/food/snacks/amanita_pie
 
-/datum/recipe/plump_pie
+/datum/recipe/microwave/plump_pie
 	fruit = list("plumphelmet" = 1)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough)
 	result = /obj/item/weapon/reagent_containers/food/snacks/plump_pie
 
-/datum/recipe/spellburger
+/datum/recipe/microwave/spellburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/monkeyburger,
 		/obj/item/clothing/head/wizard/fake,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/spellburger
 
-/datum/recipe/spellburger
+/datum/recipe/microwave/spellburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/monkeyburger,
 		/obj/item/clothing/head/wizard,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/spellburger
 
-/datum/recipe/bigbiteburger
+/datum/recipe/microwave/bigbiteburger
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/monkeyburger,
 		/obj/item/weapon/reagent_containers/food/snacks/meat,
@@ -574,12 +574,12 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/bigbiteburger
 
-/datum/recipe/enchiladas
+/datum/recipe/microwave/enchiladas
 	fruit = list("chili" = 2, "corn" = 1)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/cutlet)
 	result = /obj/item/weapon/reagent_containers/food/snacks/enchiladas
 
-/datum/recipe/creamcheesebread
+/datum/recipe/microwave/creamcheesebread
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
@@ -588,7 +588,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/creamcheesebread
 
-/datum/recipe/monkeysdelight
+/datum/recipe/microwave/monkeysdelight
 	fruit = list("banana" = 1)
 	reagents = list("sodiumchloride" = 1, "blackpepper" = 1, "flour" = 10)
 	items = list(
@@ -596,7 +596,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/monkeysdelight
 
-/datum/recipe/baguette
+/datum/recipe/microwave/baguette
 	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
@@ -604,26 +604,26 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/baguette
 
-/datum/recipe/croissant
+/datum/recipe/microwave/croissant
 	reagents = list("sodiumchloride" = 1, "water" = 5, "milk" = 5)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/dough)
 	result = /obj/item/weapon/reagent_containers/food/snacks/croissant
 
-/datum/recipe/fishandchips
+/datum/recipe/microwave/fishandchips
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/fries,
 		/obj/item/weapon/reagent_containers/food/snacks/carpmeat,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/fishandchips
 
-/datum/recipe/bread
+/datum/recipe/microwave/bread
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
 		/obj/item/weapon/reagent_containers/food/snacks/egg
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/bread
 
-/datum/recipe/sandwich
+/datum/recipe/microwave/sandwich
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/meatsteak,
 		/obj/item/weapon/reagent_containers/food/snacks/slice/bread,
@@ -632,13 +632,13 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sandwich
 
-/datum/recipe/toastedsandwich
+/datum/recipe/microwave/toastedsandwich
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sandwich
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/toastedsandwich
 
-/datum/recipe/peanutbutterjellysandwich
+/datum/recipe/microwave/peanutbutterjellysandwich
 	reagents = list("berryjuice" = 5, "peanutbutter" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/slice/bread,
@@ -646,7 +646,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/jellysandwich/peanutbutter
 
-/datum/recipe/grilledcheese
+/datum/recipe/microwave/grilledcheese
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/slice/bread,
 		/obj/item/weapon/reagent_containers/food/snacks/slice/bread,
@@ -654,12 +654,12 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/grilledcheese
 
-/datum/recipe/tomatosoup
+/datum/recipe/microwave/tomatosoup
 	fruit = list("tomato" = 2)
 	reagents = list("water" = 10)
 	result = /obj/item/weapon/reagent_containers/food/snacks/tomatosoup
 
-/datum/recipe/rofflewaffles
+/datum/recipe/microwave/rofflewaffles
 	reagents = list("psilocybin" = 5, "sugar" = 10)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
@@ -667,27 +667,27 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/rofflewaffles
 
-/datum/recipe/stew
+/datum/recipe/microwave/stew
 	fruit = list("potato" = 1, "tomato" = 1, "carrot" = 1, "eggplant" = 1, "mushroom" = 1)
 	reagents = list("water" = 10)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/meat)
 	result = /obj/item/weapon/reagent_containers/food/snacks/stew
 
-/datum/recipe/slimetoast
+/datum/recipe/microwave/slimetoast
 	reagents = list("slimejelly" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/slice/bread,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/jelliedtoast/slime
 
-/datum/recipe/jelliedtoast
+/datum/recipe/microwave/jelliedtoast
 	reagents = list("cherryjelly" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/slice/bread,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/jelliedtoast/cherry
 
-/datum/recipe/milosoup
+/datum/recipe/microwave/milosoup
 	reagents = list("water" = 10)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/soydope,
@@ -697,7 +697,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/milosoup
 
-/datum/recipe/stewedsoymeat
+/datum/recipe/microwave/stewedsoymeat
 	fruit = list("carrot" = 1, "tomato" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/soydope,
@@ -705,39 +705,39 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/stewedsoymeat
 
-/*/datum/recipe/spagetti We have the processor now
+/*/datum/recipe/microwave/spagetti We have the processor now
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/doughslice
 	)
 	result= /obj/item/weapon/reagent_containers/food/snacks/spagetti*/
 
-/datum/recipe/boiledspagetti
+/datum/recipe/microwave/boiledspagetti
 	reagents = list("water" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/spagetti,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/boiledspagetti
 
-/datum/recipe/boiledrice
+/datum/recipe/microwave/boiledrice
 	reagents = list("water" = 5, "rice" = 10)
 	result = /obj/item/weapon/reagent_containers/food/snacks/boiledrice
 
-/datum/recipe/ricepudding
+/datum/recipe/microwave/ricepudding
 	reagents = list("milk" = 5, "rice" = 10)
 	result = /obj/item/weapon/reagent_containers/food/snacks/ricepudding
 
-/datum/recipe/pastatomato
+/datum/recipe/microwave/pastatomato
 	fruit = list("tomato" = 2)
 	reagents = list("water" = 5)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/spagetti)
 	result = /obj/item/weapon/reagent_containers/food/snacks/pastatomato
 
-/datum/recipe/poppypretzel
+/datum/recipe/microwave/poppypretzel
 	fruit = list("poppy" = 1)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/dough)
 	result = /obj/item/weapon/reagent_containers/food/snacks/poppypretzel
 
-/datum/recipe/meatballspagetti
+/datum/recipe/microwave/meatballspagetti
 	reagents = list("water" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/spagetti,
@@ -746,7 +746,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/meatballspagetti
 
-/datum/recipe/spesslaw
+/datum/recipe/microwave/spesslaw
 	reagents = list("water" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/spagetti,
@@ -757,7 +757,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/spesslaw
 
-/datum/recipe/superbiteburger
+/datum/recipe/microwave/superbiteburger
 	fruit = list("tomato" = 1)
 	reagents = list("sodiumchloride" = 5, "blackpepper" = 5)
 	items = list(
@@ -769,31 +769,31 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/superbiteburger
 
-/datum/recipe/candiedapple
+/datum/recipe/microwave/candiedapple
 	fruit = list("apple" = 1)
 	reagents = list("water" = 5, "sugar" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/candiedapple
 
-/datum/recipe/applepie
+/datum/recipe/microwave/applepie
 	fruit = list("apple" = 1)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough)
 	result = /obj/item/weapon/reagent_containers/food/snacks/applepie
 
-/datum/recipe/slimeburger
+/datum/recipe/microwave/slimeburger
 	reagents = list("slimejelly" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/jellyburger/slime
 
-/datum/recipe/jellyburger
+/datum/recipe/microwave/jellyburger
 	reagents = list("cherryjelly" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/jellyburger/cherry
 
-/datum/recipe/twobread
+/datum/recipe/microwave/twobread
 	reagents = list("wine" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/slice/bread,
@@ -801,7 +801,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/twobread
 
-/datum/recipe/slimesandwich
+/datum/recipe/microwave/slimesandwich
 	reagents = list("slimejelly" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/slice/bread,
@@ -809,7 +809,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/jellysandwich/slime
 
-/datum/recipe/cherrysandwich
+/datum/recipe/microwave/cherrysandwich
 	reagents = list("cherryjelly" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/slice/bread,
@@ -817,37 +817,37 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/jellysandwich/cherry
 
-/datum/recipe/bloodsoup
+/datum/recipe/microwave/bloodsoup
 	reagents = list("blood" = 30)
 	result = /obj/item/weapon/reagent_containers/food/snacks/bloodsoup
 
-/datum/recipe/slimesoup
+/datum/recipe/microwave/slimesoup
 	reagents = list("water" = 10, "slimejelly" = 5)
 	items = list()
 	result = /obj/item/weapon/reagent_containers/food/snacks/slimesoup
 
-/datum/recipe/boiledslimeextract
+/datum/recipe/microwave/boiledslimeextract
 	reagents = list("water" = 5)
 	items = list(
 		/obj/item/slime_extract,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/boiledslimecore
 
-/datum/recipe/chocolateegg
+/datum/recipe/microwave/chocolateegg
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/egg,
 		/obj/item/weapon/reagent_containers/food/snacks/chocolatebar,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/chocolateegg
 
-/datum/recipe/sausage
+/datum/recipe/microwave/sausage
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/meatball,
 		/obj/item/weapon/reagent_containers/food/snacks/cutlet,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sausage
 
-/datum/recipe/fishfingers
+/datum/recipe/microwave/fishfingers
 	reagents = list("flour" = 10)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/egg,
@@ -855,7 +855,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/fishfingers
 
-/datum/recipe/zestfish
+/datum/recipe/microwave/zestfish
 	fruit = list("lemon" = 1)
 	reagents = list("sodiumchloride" = 3)
 	items = list(
@@ -863,7 +863,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/zestfish
 
-/datum/recipe/limezestfish
+/datum/recipe/microwave/limezestfish
 	fruit = list("lime" = 1)
 	reagents = list("sodiumchloride" = 3)
 	items = list(
@@ -871,7 +871,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/zestfish
 
-/datum/recipe/kudzudonburi
+/datum/recipe/microwave/kudzudonburi
 	fruit = list("kudzu" = 1)
 	reagents = list("rice" = 10)
 	items = list(
@@ -879,7 +879,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/kudzudonburi
 
-/datum/recipe/mysterysoup
+/datum/recipe/microwave/mysterysoup
 	reagents = list("water" = 10)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/badrecipe,
@@ -889,22 +889,22 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/mysterysoup
 
-/datum/recipe/pumpkinpie
+/datum/recipe/microwave/pumpkinpie
 	fruit = list("pumpkin" = 1)
 	reagents = list("milk" = 5, "sugar" = 5, "egg" = 3, "flour" = 10)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pumpkinpie
 
-/datum/recipe/plumphelmetbiscuit
+/datum/recipe/microwave/plumphelmetbiscuit
 	fruit = list("plumphelmet" = 1)
 	reagents = list("water" = 5, "flour" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/plumphelmetbiscuit
 
-/datum/recipe/mushroomsoup
+/datum/recipe/microwave/mushroomsoup
 	fruit = list("mushroom" = 1)
 	reagents = list("water" = 5, "milk" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/mushroomsoup
 
-/datum/recipe/chawanmushi
+/datum/recipe/microwave/chawanmushi
 	fruit = list("mushroom" = 1)
 	reagents = list("water" = 5, "soysauce" = 5)
 	items = list(
@@ -913,12 +913,12 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/chawanmushi
 
-/datum/recipe/beetsoup
+/datum/recipe/microwave/beetsoup
 	fruit = list("whitebeet" = 1, "cabbage" = 1)
 	reagents = list("water" = 10)
 	result = /obj/item/weapon/reagent_containers/food/snacks/beetsoup
 
-/datum/recipe/appletart
+/datum/recipe/microwave/appletart
 	fruit = list("goldapple" = 1)
 	reagents = list("sugar" = 5, "milk" = 5, "flour" = 10)
 	items = list(
@@ -926,29 +926,29 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/appletart
 
-/datum/recipe/tossedsalad
+/datum/recipe/microwave/tossedsalad
 	fruit = list("cabbage" = 2, "tomato" = 1, "carrot" = 1, "apple" = 1)
 	result = /obj/item/weapon/reagent_containers/food/snacks/tossedsalad
 
-/datum/recipe/flowersalad
+/datum/recipe/microwave/flowersalad
 	fruit = list("harebell" = 1, "poppy" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/roastedsunflower
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/flowerchildsalad
 
-/datum/recipe/rosesalad
+/datum/recipe/microwave/rosesalad
 	fruit = list("harebell" = 1, "rose" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/roastedsunflower
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/rosesalad
 
-/datum/recipe/aesirsalad
+/datum/recipe/microwave/aesirsalad
 	fruit = list("goldapple" = 1, "ambrosiadeus" = 1)
 	result = /obj/item/weapon/reagent_containers/food/snacks/aesirsalad
 
-/datum/recipe/validsalad
+/datum/recipe/microwave/validsalad
 	fruit = list("potato" = 1, "ambrosia" = 3)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/meatball)
 	result = /obj/item/weapon/reagent_containers/food/snacks/validsalad
@@ -957,21 +957,21 @@ I said no!
 		being_cooked.reagents.del_reagent("toxin")
 		return being_cooked
 
-/datum/recipe/cracker
+/datum/recipe/microwave/cracker
 	reagents = list("sodiumchloride" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/doughslice
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/cracker
 
-/datum/recipe/stuffing
+/datum/recipe/microwave/stuffing
 	reagents = list("water" = 5, "sodiumchloride" = 1, "blackpepper" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/stuffing
 
-/datum/recipe/tofurkey
+/datum/recipe/microwave/tofurkey
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/tofu,
 		/obj/item/weapon/reagent_containers/food/snacks/tofu,
@@ -980,18 +980,18 @@ I said no!
 	result = /obj/item/weapon/reagent_containers/food/snacks/tofurkey
 
 // Fuck Science!
-/datum/recipe/ruinedvirusdish
+/datum/recipe/microwave/ruinedvirusdish
 	items = list(
 		/obj/item/weapon/virusdish
 	)
 	result = /obj/item/weapon/ruinedvirusdish
 
-/datum/recipe/onionrings
+/datum/recipe/microwave/onionrings
 	fruit = list("onion" = 1)
 	reagents = list("flour" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/onionrings
 
-/datum/recipe/onionsoup
+/datum/recipe/microwave/onionsoup
 	fruit = list("onion" = 1)
 	reagents = list("water" = 10)
 	result = /obj/item/weapon/reagent_containers/food/snacks/onionsoup
@@ -1000,7 +1000,7 @@ I said no!
 // bs12 food port stuff
 //////////////////////////////////////////
 
-/datum/recipe/taco
+/datum/recipe/microwave/taco
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/doughslice,
 		/obj/item/weapon/reagent_containers/food/snacks/cutlet,
@@ -1008,56 +1008,56 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/taco
 
-/datum/recipe/bun
+/datum/recipe/microwave/bun
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/bun
 
-/datum/recipe/flatbread
+/datum/recipe/microwave/flatbread
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/flatbread
 
-/datum/recipe/meatball
+/datum/recipe/microwave/meatball
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/rawmeatball
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/meatball
 
-/datum/recipe/cutlet
+/datum/recipe/microwave/cutlet
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/rawcutlet
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/cutlet
 
-/datum/recipe/fries
+/datum/recipe/microwave/fries
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/rawsticks
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/fries
 
-/datum/recipe/roastedsunflowerseeds
+/datum/recipe/microwave/roastedsunflowerseeds
 	reagents = list("sodiumchloride" = 1, "cornoil" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/rawsunflower
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/roastedsunflower
 
-/datum/recipe/roastedpeanutsunflowerseeds
+/datum/recipe/microwave/roastedpeanutsunflowerseeds
 	reagents = list("sodiumchloride" = 1, "peanutoil" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/rawsunflower
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/roastedsunflower
 
-/datum/recipe/roastedpeanuts
+/datum/recipe/microwave/roastedpeanuts
 	fruit = list("peanut" = 2)
 	reagents = list("sodiumchloride" = 2, "cornoil" = 1)
 	result = /obj/item/weapon/reagent_containers/food/snacks/roastedpeanuts
 
-/datum/recipe/mint
+/datum/recipe/microwave/mint
 	reagents = list("sugar" = 5, "frostoil" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/mint
 
@@ -1065,7 +1065,7 @@ I said no!
 // TGstation food ports
 ////////////////////////
 
-/datum/recipe/meatbun
+/datum/recipe/microwave/meatbun
 	fruit = list("cabbage" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/meatball,
@@ -1073,14 +1073,14 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/meatbun
 
-/datum/recipe/sashimi
+/datum/recipe/microwave/sashimi
 	reagents = list("soysauce" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/carpmeat
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sashimi
 
-/datum/recipe/benedict
+/datum/recipe/microwave/benedict
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/cutlet,
 		/obj/item/weapon/reagent_containers/food/snacks/friedegg,
@@ -1088,19 +1088,19 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/benedict
 
-/datum/recipe/bakedbeans
+/datum/recipe/microwave/bakedbeans
 	fruit = list("soybeans" = 2)
 	reagents = list("ketchup" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/beans
 
-/datum/recipe/sugarcookie
+/datum/recipe/microwave/sugarcookie
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough
 	)
 	reagents = list("sugar" = 5, "egg" = 3)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sugarcookie
 
-/datum/recipe/berrymuffin
+/datum/recipe/microwave/berrymuffin
 	reagents = list("milk" = 5, "sugar" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough
@@ -1108,7 +1108,7 @@ I said no!
 	fruit = list("berries" = 1)
 	result = /obj/item/weapon/reagent_containers/food/snacks/berrymuffin
 
-/datum/recipe/ghostmuffin
+/datum/recipe/microwave/ghostmuffin
 	reagents = list("milk" = 5, "sugar" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
@@ -1117,7 +1117,7 @@ I said no!
 	fruit = list("berries" = 1)
 	result = /obj/item/weapon/reagent_containers/food/snacks/ghostmuffin
 
-/datum/recipe/eggroll
+/datum/recipe/microwave/eggroll
 	reagents = list("soysauce" = 10)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/friedegg
@@ -1125,28 +1125,28 @@ I said no!
 	fruit = list("cabbage" = 1)
 	result = /obj/item/weapon/reagent_containers/food/snacks/eggroll
 
-/datum/recipe/fruitsalad
+/datum/recipe/microwave/fruitsalad
 	fruit = list("orange" = 1, "apple" = 1, "grapes" = 1, "watermelon" = 1)
 	result = /obj/item/weapon/reagent_containers/food/snacks/fruitsalad
 
-/datum/recipe/eggbowl
+/datum/recipe/microwave/eggbowl
 	reagents = list("water" = 5, "rice" = 10, "egg" = 3)
 	result = /obj/item/weapon/reagent_containers/food/snacks/eggbowl
 
-/datum/recipe/porkbowl
+/datum/recipe/microwave/porkbowl
 	reagents = list("water" = 5, "rice" = 10)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/cutlet
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/porkbowl
 
-/datum/recipe/tortilla
+/datum/recipe/microwave/tortilla
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/tortilla
 
-/datum/recipe/meatburrito
+/datum/recipe/microwave/meatburrito
 	fruit = list("soybeans" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/tortilla,
@@ -1155,7 +1155,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/meatburrito
 
-/datum/recipe/cheeseburrito
+/datum/recipe/microwave/cheeseburrito
 	fruit = list("soybeans" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/tortilla,
@@ -1164,21 +1164,21 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/cheeseburrito
 
-/datum/recipe/fuegoburrito
+/datum/recipe/microwave/fuegoburrito
 	fruit = list("soybeans" = 1, "chili" = 2)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/tortilla
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/fuegoburrito
 
-/datum/recipe/nachos
+/datum/recipe/microwave/nachos
 	reagents = list("sodiumchloride" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/tortilla
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/nachos
 
-/datum/recipe/cheesenachos
+/datum/recipe/microwave/cheesenachos
 	reagents = list("sodiumchloride" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/tortilla,
@@ -1186,7 +1186,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/cheesenachos
 
-/datum/recipe/cubannachos
+/datum/recipe/microwave/cubannachos
 	fruit = list("chili" = 1)
 	reagents = list("ketchup" = 5)
 	items = list(
@@ -1194,12 +1194,12 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/cubannachos
 
-/datum/recipe/curryrice
+/datum/recipe/microwave/curryrice
 	fruit = list("chili" = 1)
 	reagents = list("rice" = 10)
 	result = /obj/item/weapon/reagent_containers/food/snacks/curryrice
 
-/datum/recipe/piginblanket
+/datum/recipe/microwave/piginblanket
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
 		/obj/item/weapon/reagent_containers/food/snacks/sausage
@@ -1207,16 +1207,16 @@ I said no!
 	result = /obj/item/weapon/reagent_containers/food/snacks/piginblanket
 
 // Cakes.
-/datum/recipe/cake
+/datum/recipe/microwave/cake
 	reagents = list("milk" = 5, "flour" = 15, "sugar" = 15, "egg" = 9, "vanilla" = 1)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake
 
-/datum/recipe/cake/carrot
+/datum/recipe/microwave/cake/carrot
 	fruit = list("carrot" = 1)
 	reagents = list("milk" = 5, "flour" = 15, "egg" = 9,"sugar" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/carrotcake
 
-/datum/recipe/cake/cheese
+/datum/recipe/microwave/cake/cheese
 	reagents = list("milk" = 5, "flour" = 15, "sugar" = 15, "egg" = 9)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
@@ -1224,42 +1224,97 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesecake
 
-/datum/recipe/cake/peanut
+/datum/recipe/microwave/cake/peanut
 	fruit = list("peanut" = 3)
 	reagents = list("milk" = 5, "flour" = 10, "sugar" = 5, "egg" = 6, "peanutbutter" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/peanutcake
 
-/datum/recipe/cake/orange
+/datum/recipe/microwave/cake/orange
 	fruit = list("orange" = 1)
 	reagents = list("milk" = 5, "flour" = 15, "egg" = 9,"sugar" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/orangecake
 
-/datum/recipe/cake/lime
+/datum/recipe/microwave/cake/lime
 	fruit = list("lime" = 1)
 	reagents = list("milk" = 5, "flour" = 15, "egg" = 9,"sugar" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/limecake
 
-/datum/recipe/cake/lemon
+/datum/recipe/microwave/cake/lemon
 	fruit = list("lemon" = 1)
 	reagents = list("milk" = 5, "flour" = 15, "egg" = 9,"sugar" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/lemoncake
 
-/datum/recipe/cake/chocolate
+/datum/recipe/microwave/cake/chocolate
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/chocolatebar)
 	reagents = list("milk" = 5, "flour" = 15, "egg" = 9,"sugar" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/chocolatecake
 
-/datum/recipe/cake/birthday
+/datum/recipe/microwave/cake/birthday
 	reagents = list("milk" = 5, "flour" = 15, "sugar" = 15, "egg" = 9)
 	items = list(/obj/item/clothing/head/cakehat)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/birthdaycake
 
-/datum/recipe/cake/apple
+/datum/recipe/microwave/cake/apple
 	fruit = list("apple" = 1)
 	reagents = list("milk" = 5, "flour" = 15, "egg" = 9,"sugar" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/applecake
 
-/datum/recipe/cake/brain
+/datum/recipe/microwave/cake/brain
 	reagents = list("milk" = 5, "flour" = 15, "sugar" = 15, "egg" = 9)
 	items = list(/obj/item/organ/internal/brain)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/braincake
+
+/datum/recipe/microwave/bagelplain
+	reagents = list("water" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/bun
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bagelplain
+
+/datum/recipe/microwave/bagelsunflower
+	reagents = list("water" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/bun,
+		/obj/item/weapon/reagent_containers/food/snacks/rawsunflower
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bagelsunflower
+
+/datum/recipe/microwave/bagelcheese
+	reagents = list("water" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/bun,
+		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bagelcheese
+
+/datum/recipe/microwave/bagelraisin
+	reagents = list("water" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/bun,
+		/obj/item/weapon/reagent_containers/food/snacks/no_raisin
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bagelraisin
+
+/datum/recipe/microwave/bagelpoppy
+	fruit = list("poppy" = 1)
+	reagents = list("water" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/bun
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bagelpoppy
+
+/datum/recipe/microwave/bageleverything
+	reagents = list("water" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/bun,
+		/obj/item/weapon/fuel_assembly/supermatter
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bageleverything
+
+/datum/recipe/microwave/bageltwo
+	reagents = list("water" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/bun,
+		/obj/item/device/soulstone
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bageltwo

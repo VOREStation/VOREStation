@@ -1,4 +1,6 @@
 /datum/gm_action/ionstorm
+	name = "ion storm"
+	departments = list(ROLE_SYNTHETIC)
 	var/botEmagChance = 0.5
 	var/list/players = list()
 	var/active = FALSE
@@ -41,3 +43,8 @@
 	spawn(rand(5000,8000))
 		if(prob(50))
 			ion_storm_announcement()
+
+/datum/gm_action/ionstorm/get_weight()
+	var/bots = metric.count_people_in_department(ROLE_SYNTHETIC)
+	var/weight = 5 + (bots * 20)
+	return weight

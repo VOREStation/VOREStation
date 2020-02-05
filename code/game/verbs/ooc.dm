@@ -9,28 +9,28 @@
 
 	if(!mob)	return
 	if(IsGuestKey(key))
-		src << "Guests may not use OOC."
+		to_chat(src, "Guests may not use OOC.")
 		return
 
 	msg = sanitize(msg)
 	if(!msg)	return
 
 	if(!is_preference_enabled(/datum/client_preference/show_ooc))
-		src << "<span class='warning'>You have OOC muted.</span>"
+		to_chat(src, "<span class='warning'>You have OOC muted.</span>")
 		return
 
 	if(!holder)
 		if(!config.ooc_allowed)
-			src << "<span class='danger'>OOC is globally muted.</span>"
+			to_chat(src, "<span class='danger'>OOC is globally muted.</span>")
 			return
 		if(!config.dooc_allowed && (mob.stat == DEAD))
 			usr << "<span class='danger'>OOC for dead mobs has been turned off.</span>"
 			return
 		if(prefs.muted & MUTE_OOC)
-			src << "<span class='danger'>You cannot use OOC (muted).</span>"
+			to_chat(src, "<span class='danger'>You cannot use OOC (muted).</span>")
 			return
 		if(findtext(msg, "byond://"))
-			src << "<B>Advertising other servers is not allowed.</B>"
+			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
@@ -48,14 +48,16 @@
 	var/ooc_style = "everyone"
 	if(holder && !holder.fakekey)
 		ooc_style = "elevated"
-		if(holder.rights & R_EVENT)
+		//VOREStation Block Edit Start
+		if(holder.rights & R_EVENT) //Retired Admins
 			ooc_style = "event_manager"
-		if(holder.rights & R_MOD)
+		if(holder.rights & R_ADMIN && !(holder.rights & R_BAN)) //Game Masters
 			ooc_style = "moderator"
-		if(holder.rights & R_DEBUG)
+		if(holder.rights & R_SERVER && !(holder.rights & R_BAN)) //Developers
 			ooc_style = "developer"
-		if(holder.rights & R_ADMIN)
+		if(holder.rights & R_ADMIN && holder.rights & R_BAN) //Admins
 			ooc_style = "admin"
+		//VOREStation Block Edit End
 
 	for(var/client/target in GLOB.clients)
 		if(target.is_preference_enabled(/datum/client_preference/show_ooc))
@@ -86,7 +88,7 @@
 		return
 
 	if(IsGuestKey(key))
-		src << "Guests may not use OOC."
+		to_chat(src, "Guests may not use OOC.")
 		return
 
 	msg = sanitize(msg)
@@ -94,21 +96,21 @@
 		return
 
 	if(!is_preference_enabled(/datum/client_preference/show_looc))
-		src << "<span class='danger'>You have LOOC muted.</span>"
+		to_chat(src, "<span class='danger'>You have LOOC muted.</span>")
 		return
 
 	if(!holder)
 		if(!config.looc_allowed)
-			src << "<span class='danger'>LOOC is globally muted.</span>"
+			to_chat(src, "<span class='danger'>LOOC is globally muted.</span>")
 			return
 		if(!config.dooc_allowed && (mob.stat == DEAD))
 			usr << "<span class='danger'>OOC for dead mobs has been turned off.</span>"
 			return
 		if(prefs.muted & MUTE_OOC)
-			src << "<span class='danger'>You cannot use OOC (muted).</span>"
+			to_chat(src, "<span class='danger'>You cannot use OOC (muted).</span>")
 			return
 		if(findtext(msg, "byond://"))
-			src << "<B>Advertising other servers is not allowed.</B>"
+			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return

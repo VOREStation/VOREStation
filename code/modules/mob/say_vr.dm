@@ -23,7 +23,7 @@
 
 /mob/proc/custom_emote_vr(var/m_type=1,var/message = null) //This would normally go in emote.dm
 	if(stat || !use_me && usr == src)
-		src << "You are unable to emote."
+		to_chat(src, "You are unable to emote.")
 		return
 
 	var/muzzled = is_muzzled()
@@ -42,7 +42,7 @@
 		return
 
 	if (message)
-		message = say_emphasis(message)
+		message = encode_html_emphasis(message)
 
 		var/list/vis = get_mobs_and_objs_in_view_fast(get_turf(src),1,2) //Turf, Range, and type 2 is emote
 		var/list/vis_mobs = vis["mobs"]

@@ -459,7 +459,7 @@
 	if(ispath(to_copy))
 		to_copy = "[initial(to_copy.name)]"
 	if(istext(to_copy))
-		to_copy = all_species[to_copy]
+		to_copy = GLOB.all_species[to_copy]
 
 	var/datum/species/alraune/new_copy = new()
 
@@ -495,5 +495,5 @@
 	return base_species
 
 /datum/species/alraune/get_race_key()
-	var/datum/species/real = all_species[base_species]
+	var/datum/species/real = GLOB.all_species[base_species]
 	return real.race_key

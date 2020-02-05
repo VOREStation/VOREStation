@@ -137,3 +137,79 @@
 		if(ishuman(owner))
 			H = owner
 			color = H.species.blood_color
+
+
+// XENOMORPH EXTERNAL ORGANS
+
+/obj/item/organ/external/chest/unseverable/xeno
+	cannot_gib = 1
+	cannot_amputate = 1
+	thick_skin = TRUE
+
+/obj/item/organ/external/groin/unseverable/xeno
+	cannot_gib = 1
+	cannot_amputate = 1
+	encased = TRUE
+	thick_skin = TRUE
+
+/obj/item/organ/external/arm/unseverable/xeno
+	cannot_gib = 1
+	cannot_amputate = 1
+	stapled_nerves = TRUE
+	encased = TRUE
+	thick_skin = TRUE
+
+/obj/item/organ/external/arm/right/unseverable/xeno
+	cannot_gib = 1
+	cannot_amputate = 1
+	stapled_nerves = TRUE
+	encased = TRUE
+	thick_skin = TRUE
+
+/obj/item/organ/external/leg/unseverable/xeno
+	cannot_gib = 1
+	cannot_amputate = 1
+	stapled_nerves = TRUE
+	encased = TRUE
+	thick_skin = TRUE
+
+/obj/item/organ/external/leg/right/unseverable/xeno
+	cannot_gib = 1
+	cannot_amputate = 1
+	stapled_nerves = TRUE
+	encased = TRUE
+	thick_skin = TRUE
+
+/obj/item/organ/external/foot/unseverable/xeno
+	cannot_gib = 1
+	cannot_amputate = 1
+	stapled_nerves = TRUE
+	encased = TRUE
+	thick_skin = TRUE
+
+/obj/item/organ/external/foot/right/unseverable/xeno
+	cannot_gib = 1
+	cannot_amputate = 1
+	stapled_nerves = TRUE
+	encased = TRUE
+	thick_skin = TRUE
+
+/obj/item/organ/external/hand/unseverable/xeno
+	cannot_gib = 1
+	cannot_amputate = 1
+	stapled_nerves = TRUE
+	encased = TRUE
+	thick_skin = TRUE
+
+/obj/item/organ/external/hand/right/unseverable/xeno
+	cannot_gib = 1
+	cannot_amputate = 1
+	stapled_nerves = TRUE
+	encased = TRUE
+	thick_skin = TRUE
+
+/obj/item/organ/external/head/unseverable/xeno
+	cannot_gib = 1
+	cannot_amputate = 1
+	thick_skin = TRUE
+	eye_icon = "blank_eyes"

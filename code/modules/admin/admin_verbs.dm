@@ -184,7 +184,8 @@ var/list/admin_verbs_server = list(
 	/client/proc/modify_server_news,
 	/client/proc/recipe_dump,
 	/client/proc/panicbunker,
-	/client/proc/paranoia_logging
+	/client/proc/paranoia_logging,
+	/client/proc/ip_reputation
 	)
 
 var/list/admin_verbs_debug = list(
@@ -358,52 +359,13 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/view_atk_log		//shows the server combat-log, doesn't do anything presently,
 )
 
+//VOREStation Edit Start - Highly Modified List
 var/list/admin_verbs_event_manager = list(
-	/client/proc/cmd_event_say,
-	/client/proc/cmd_admin_pm_context,
-	/client/proc/cmd_admin_pm_panel,
-	/datum/admins/proc/PlayerNotes,
-	/client/proc/admin_ghost,
-	/datum/admins/proc/show_player_info,
-	/client/proc/dsay,
-	/client/proc/cmd_admin_subtle_message,
-	/client/proc/debug_variables,
-	/client/proc/check_antagonists,
-	/client/proc/aooc,
-	/datum/admins/proc/paralyze_mob,
-	/client/proc/cmd_admin_direct_narrate,
-	/client/proc/allow_character_respawn,
-	/datum/admins/proc/sendFax,
-	/client/proc/respawn_character,
-	/proc/possess,
-	/proc/release,
-	/client/proc/callproc,
-	/client/proc/callproc_datum,
-	/client/proc/debug_controller,
-	/client/proc/show_gm_status,
-	/datum/admins/proc/change_weather,
-	/datum/admins/proc/change_time,
-	/client/proc/admin_give_modifier,
-	/client/proc/Jump,
-	/client/proc/jumptomob,
-	/client/proc/jumptocoord,
-	/client/proc/cmd_admin_delete,
-	/datum/admins/proc/delay,
-	/client/proc/Set_Holiday,
-	/client/proc/make_sound,
-	/client/proc/toggle_random_events,
-	/datum/admins/proc/cmd_admin_dress,
-	/client/proc/cmd_admin_gib_self,
-	/client/proc/drop_bomb,
-	/client/proc/cmd_admin_add_freeform_ai_law,
-	/client/proc/cmd_admin_add_random_ai_law,
-	/client/proc/make_sound,
-	/client/proc/toggle_random_events,
-	/client/proc/editappear,
-	/client/proc/roll_dices,
-	/datum/admins/proc/call_supply_drop,
-	/datum/admins/proc/call_drop_pod
+	/client/proc/cmd_admin_say,			//admin-only ooc chat,
+	/client/proc/cmd_mod_say,
+	/client/proc/cmd_event_say
 )
+//VOREStation Edit End
 
 /client/proc/add_admin_verbs()
 	if(holder)
@@ -451,7 +413,7 @@ var/list/admin_verbs_event_manager = list(
 	verbs.Remove(/client/proc/hide_most_verbs, admin_verbs_hideable)
 	verbs += /client/proc/show_verbs
 
-	src << "<span class='interface'>Most of your adminverbs have been hidden.</span>"
+	to_chat(src, "<span class='interface'>Most of your adminverbs have been hidden.</span>")
 	feedback_add_details("admin_verb","HMV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
@@ -462,7 +424,7 @@ var/list/admin_verbs_event_manager = list(
 	remove_admin_verbs()
 	verbs += /client/proc/show_verbs
 
-	src << "<span class='interface'>Almost all of your adminverbs have been hidden.</span>"
+	to_chat(src, "<span class='interface'>Almost all of your adminverbs have been hidden.</span>")
 	feedback_add_details("admin_verb","TAVVH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
@@ -473,7 +435,7 @@ var/list/admin_verbs_event_manager = list(
 	verbs -= /client/proc/show_verbs
 	add_admin_verbs()
 
-	src << "<span class='interface'>All of your adminverbs are now visible.</span>"
+	to_chat(src, "<span class='interface'>All of your adminverbs are now visible.</span>")
 	feedback_add_details("admin_verb","TAVVS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -493,7 +455,7 @@ var/list/admin_verbs_event_manager = list(
 		feedback_add_details("admin_verb","P") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	else if(istype(mob,/mob/new_player))
-		src << "<font color='red'>Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.</font>"
+		to_chat(src, "<font color='red'>Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.</font>")
 	else
 		//ghostize
 		var/mob/body = mob
@@ -655,7 +617,7 @@ var/list/admin_verbs_event_manager = list(
 	else	D = preferences_datums[warned_ckey]
 
 	if(!D)
-		src << "<font color='red'>Error: warn(): No such ckey found.</font>"
+		to_chat(src, "<font color='red'>Error: warn(): No such ckey found.</font>")
 		return
 
 	if(++D.warns >= MAX_WARNS)					//uh ohhhh...you'reee iiiiin trouuuubble O:)
@@ -818,7 +780,7 @@ var/list/admin_verbs_event_manager = list(
 		deadmin_holder.reassociate()
 		log_admin("[src] re-admined themself.")
 		message_admins("[src] re-admined themself.", 1)
-		src << "<span class='interface'>You now have the keys to control the planet, or atleast a small space station</span>"
+		to_chat(src, "<span class='interface'>You now have the keys to control the planet, or atleast a small space station</span>")
 		verbs -= /client/proc/readmin_self
 
 /client/proc/deadmin_self()
@@ -830,7 +792,7 @@ var/list/admin_verbs_event_manager = list(
 			log_admin("[src] deadmined themself.")
 			message_admins("[src] deadmined themself.", 1)
 			deadmin()
-			src << "<span class='interface'>You are now a normal player.</span>"
+			to_chat(src, "<span class='interface'>You are now a normal player.</span>")
 			verbs |= /client/proc/readmin_self
 	feedback_add_details("admin_verb","DAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -841,10 +803,10 @@ var/list/admin_verbs_event_manager = list(
 	if(config)
 		if(config.log_hrefs)
 			config.log_hrefs = 0
-			src << "<b>Stopped logging hrefs</b>"
+			to_chat(src, "<b>Stopped logging hrefs</b>")
 		else
 			config.log_hrefs = 1
-			src << "<b>Started logging hrefs</b>"
+			to_chat(src, "<b>Started logging hrefs</b>")
 
 /client/proc/check_ai_laws()
 	set name = "Check AI Laws"
@@ -1039,11 +1001,11 @@ var/list/admin_verbs_event_manager = list(
 	if(config)
 		if(config.cult_ghostwriter)
 			config.cult_ghostwriter = 0
-			src << "<b>Disallowed ghost writers.</b>"
+			to_chat(src, "<b>Disallowed ghost writers.</b>")
 			message_admins("Admin [key_name_admin(usr)] has disabled ghost writers.", 1)
 		else
 			config.cult_ghostwriter = 1
-			src << "<b>Enabled ghost writers.</b>"
+			to_chat(src, "<b>Enabled ghost writers.</b>")
 			message_admins("Admin [key_name_admin(usr)] has enabled ghost writers.", 1)
 
 /client/proc/toggledrones()
@@ -1053,11 +1015,11 @@ var/list/admin_verbs_event_manager = list(
 	if(config)
 		if(config.allow_drone_spawn)
 			config.allow_drone_spawn = 0
-			src << "<b>Disallowed maint drones.</b>"
+			to_chat(src, "<b>Disallowed maint drones.</b>")
 			message_admins("Admin [key_name_admin(usr)] has disabled maint drones.", 1)
 		else
 			config.allow_drone_spawn = 1
-			src << "<b>Enabled maint drones.</b>"
+			to_chat(src, "<b>Enabled maint drones.</b>")
 			message_admins("Admin [key_name_admin(usr)] has enabled maint drones.", 1)
 
 /client/proc/man_up(mob/T as mob in mob_list)

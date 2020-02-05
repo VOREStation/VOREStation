@@ -94,7 +94,10 @@
 		return list(
 			Z_LEVEL_STATION_ONE,
 			Z_LEVEL_STATION_TWO,
-			Z_LEVEL_STATION_THREE)
+			Z_LEVEL_STATION_THREE,
+			Z_LEVEL_SURFACE,
+			Z_LEVEL_SURFACE_MINE,
+			Z_LEVEL_SURFACE_WILD)
 	else if(srcz in list(Z_LEVEL_SURFACE, Z_LEVEL_SURFACE_MINE, Z_LEVEL_SURFACE_WILD)) // Being on the surface lets you see other surface Zs.
 		return list(
 			Z_LEVEL_SURFACE,

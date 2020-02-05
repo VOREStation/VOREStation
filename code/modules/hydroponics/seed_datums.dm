@@ -168,7 +168,7 @@
 	name = "bloodtomato"
 	seed_name = "blood tomato"
 	display_name = "blood tomato plant"
-	mutants = list("killer")
+	mutants = list("killertomato")
 	chems = list("nutriment" = list(1,10), "blood" = list(1,5))
 	splat_type = /obj/effect/decal/cleanable/blood/splatter
 
@@ -317,13 +317,26 @@
 	seed_name = "ambrosia deus"
 	display_name = "ambrosia deus"
 	kitchen_tag = "ambrosiadeus"
-	mutants = null
+	mutants = list("ambrosiainfernus")
 	chems = list("nutriment" = list(1), "bicaridine" = list(1,8), "synaptizine" = list(1,8,1), "hyperzine" = list(1,10,1), "space_drugs" = list(1,10))
 
 /datum/seed/ambrosia/deus/New()
 	..()
 	set_trait(TRAIT_PRODUCT_COLOUR,"#A3F0AD")
 	set_trait(TRAIT_PLANT_COLOUR,"#2A9C61")
+
+/datum/seed/ambrosia/infernus
+	name = "ambrosiainfernus"
+	seed_name = "ambrosia infernus"
+	display_name = "ambrosia infernus"
+	kitchen_tag = "ambrosiainfernus"
+	mutants = null
+	chems = list("nutriment" = list(1,3), "oxycodone" = list(1,8), "impedrezene" = list(1,10), "mindbreaker" = list(1,10))
+
+/datum/seed/ambrosia/infernus/New()
+	..()
+	set_trait(TRAIT_PRODUCT_COLOUR,"#dc143c")
+	set_trait(TRAIT_PLANT_COLOUR,"#b22222")
 
 //Mushrooms/varieties.
 /datum/seed/mushroom
@@ -506,6 +519,25 @@
 	set_trait(TRAIT_PRODUCT_COLOUR,"#E6E6E6")
 	set_trait(TRAIT_PLANT_COLOUR,"#E6E6E6")
 	set_trait(TRAIT_PLANT_ICON,"mushroom10")
+
+/datum/seed/mushroom/spore
+	name = "sporeshroom"
+	seed_name = "corpellian"
+	display_name = "corpellian"
+	mutants = null
+	chems = list("serotrotium" = list(5,10), "mold" = list(1,10))
+
+/datum/seed/mushroom/spore/New()
+	..()
+	set_trait(TRAIT_MATURATION,15)
+	set_trait(TRAIT_PRODUCTION,5)
+	set_trait(TRAIT_YIELD,4)
+	set_trait(TRAIT_POTENCY,20)
+	set_trait(TRAIT_PRODUCT_ICON,"mushroom5")
+	set_trait(TRAIT_PRODUCT_COLOUR,"#e29cd2")
+	set_trait(TRAIT_PLANT_COLOUR,"#f8e6f4")
+	set_trait(TRAIT_PLANT_ICON,"mushroom9")
+	set_trait(TRAIT_SPORING, TRUE)
 
 //Flowers/varieties
 /datum/seed/flower
@@ -746,7 +778,7 @@
 	seed_name = "peanut"
 	display_name = "peanut vines"
 	kitchen_tag = "peanut"
-	chems = list("nutriment" = list(1,10), "peanutoil" = list(1,3))
+	chems = list("nutriment" = list(1,10), "peanutoil" = list(3,10))
 
 /datum/seed/peanuts/New()
 	..()
@@ -755,7 +787,7 @@
 	set_trait(TRAIT_PRODUCTION,6)
 	set_trait(TRAIT_YIELD,6)
 	set_trait(TRAIT_POTENCY,10)
-	set_trait(TRAIT_PRODUCT_ICON,"potato")
+	set_trait(TRAIT_PRODUCT_ICON,"nuts")
 	set_trait(TRAIT_PRODUCT_COLOUR,"#C4AE7A")
 	set_trait(TRAIT_PLANT_ICON,"bush2")
 	set_trait(TRAIT_IDEAL_LIGHT, 6)
@@ -765,7 +797,7 @@
 	seed_name = "vanilla"
 	display_name = "vanilla"
 	kitchen_tag = "vanilla"
-	chems = list("nutriment" = list(1,10), "vanilla" = list(0,3), "sugar" = list(0, 1))
+	chems = list("nutriment" = list(1,10), "vanilla" = list(2,8), "sugar" = list(1, 4))
 
 /datum/seed/vanilla/New()
 	..()
@@ -829,7 +861,7 @@
 	seed_name = "corn"
 	display_name = "ears of corn"
 	kitchen_tag = "corn"
-	chems = list("nutriment" = list(1,10), "cornoil" = list(1,10))
+	chems = list("nutriment" = list(1,10), "cornoil" = list(3,15))
 	trash_type = /obj/item/weapon/corncob
 
 /datum/seed/corn/New()
@@ -906,7 +938,7 @@
 	seed_name = "wheat"
 	display_name = "wheat stalks"
 	kitchen_tag = "wheat"
-	chems = list("nutriment" = list(1,25), "flour" = list(15,15))
+	chems = list("nutriment" = list(1,25), "flour" = list(10,30))
 
 /datum/seed/wheat/New()
 	..()
@@ -1463,3 +1495,29 @@
 	set_trait(TRAIT_YIELD,-1)
 	set_trait(TRAIT_SPREAD,2)
 	set_trait(TRAIT_POTENCY,50)
+
+// Gnomes
+/datum/seed/gnomes
+	name = "gnomes"
+	seed_name = "gnomes"
+	display_name = "gnomes"
+	force_layer = 3
+	chems = list("magicdust" = list(5,20))
+
+/datum/seed/gnomes/New()
+	..()
+	set_trait(TRAIT_HARVEST_REPEAT,1)
+	set_trait(TRAIT_PLANT_ICON,"gnomes")
+	set_trait(TRAIT_PRODUCT_ICON,"gnomes")
+	set_trait(TRAIT_PRODUCT_COLOUR,"")
+	set_trait(TRAIT_FLESH_COLOUR,"")
+	set_trait(TRAIT_PLANT_COLOUR,"")
+	set_trait(TRAIT_BIOLUM_COLOUR,"#fff200")
+	set_trait(TRAIT_MATURATION,8)
+	set_trait(TRAIT_PRODUCTION,6)
+	set_trait(TRAIT_BIOLUM,1)
+	set_trait(TRAIT_YIELD,2)
+	set_trait(TRAIT_SPREAD,1)
+	set_trait(TRAIT_POTENCY,10)
+	set_trait(TRAIT_REQUIRES_NUTRIENTS,0)
+	set_trait(TRAIT_REQUIRES_WATER,0)

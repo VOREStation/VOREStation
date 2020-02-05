@@ -7,11 +7,15 @@
 	icon_dead = "boxfox_dead"
 	icon_rest = "boxfox_rest"
 	icon = 'icons/mob/demon_vr.dmi'
+	vis_height = 47
 
 	faction = "demon"
 	maxHealth = 30
 	health = 30
 	movement_cooldown = 0
+
+	see_in_dark = 10
+	seedarkness = FALSE
 
 	min_oxy = 0
 	max_oxy = 0

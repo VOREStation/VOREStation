@@ -20,7 +20,7 @@ Thus, the two variables affect pump operation are set in New():
 	level = 1
 
 	name = "gas pump"
-	desc = "A pump"
+	desc = "A pump that moves gas from one place to another."
 
 	var/target_pressure = ONE_ATMOSPHERE
 

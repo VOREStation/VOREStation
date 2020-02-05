@@ -60,7 +60,9 @@
 		O_BRAIN =		/obj/item/organ/internal/brain/replicant,
 		O_EYES =		/obj/item/organ/internal/eyes/replicant,
 		O_AREJECT =		/obj/item/organ/internal/immunehub/replicant,
-		O_VRLINK = 		/obj/item/organ/internal/brainmirror
+		O_VRLINK = 		/obj/item/organ/internal/brainmirror,
+		O_STOMACH =		/obj/item/organ/internal/stomach,
+		O_INTESTINE =	/obj/item/organ/internal/intestine
 		)
 
 /datum/species/shapeshifter/replicant/alpha
@@ -95,7 +97,9 @@
 		O_AREJECT =		/obj/item/organ/internal/immunehub/replicant,
 		O_PLASMA = 		/obj/item/organ/internal/xenos/plasmavessel/replicant,
 		O_ACID = 		/obj/item/organ/internal/xenos/acidgland/replicant,
-		O_VRLINK =		/obj/item/organ/internal/brainmirror
+		O_VRLINK =		/obj/item/organ/internal/brainmirror,
+		O_STOMACH =		/obj/item/organ/internal/stomach,
+		O_INTESTINE =	/obj/item/organ/internal/intestine
 		)
 
 /datum/species/shapeshifter/replicant/beta
@@ -119,5 +123,7 @@
 		O_VENTC =		/obj/item/organ/internal/metamorphgland/replicant,
 		O_PLASMA =		/obj/item/organ/internal/xenos/plasmavessel/replicant,
 		O_RESIN =		/obj/item/organ/internal/xenos/resinspinner/replicant,
-		O_VRLINK =		/obj/item/organ/internal/brainmirror
+		O_VRLINK =		/obj/item/organ/internal/brainmirror,
+		O_STOMACH =		/obj/item/organ/internal/stomach,
+		O_INTESTINE =	/obj/item/organ/internal/intestine
 		)

@@ -1,5 +1,6 @@
 /obj/machinery/computer/shuttle_control
 	name = "shuttle control console"
+	desc = "Used to control a linked shuttle."
 	icon_keyboard = "atmos_key"
 	icon_screen = "shuttle"
 	circuit = null

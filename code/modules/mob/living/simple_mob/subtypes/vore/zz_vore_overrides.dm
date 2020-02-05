@@ -31,6 +31,9 @@
 	icon_dead = "xenohunter-dead"
 	icon_gib = "gibbed-a"
 	vore_icons = SA_ICON_LIVING
+	response_help = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm = "hits"
 
 /mob/living/simple_mob/animal/space/alien/drone
 	vore_active = 1
@@ -71,12 +74,14 @@
 	default_pixel_x = -16
 	pixel_x = -16
 	pixel_y = 0
+	vis_height = 64
 
 	vore_capacity = 3
 	vore_pounce_chance = 75
 
 /mob/living/simple_mob/animal/space/alien/sentinel/praetorian
 	icon = 'icons/mob/vore64x64.dmi'
+	vis_height = 64
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
 /mob/living/simple_mob/animal/space/alien/queen/empress/mother
@@ -90,6 +95,9 @@
 	icon_dead = "spacebear-dead"
 	icon_gib = "bear-gib"
 	vore_icons = SA_ICON_LIVING
+	response_help = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm = "hits"
 
 /mob/living/simple_mob/animal/space/bear/hudson
 	name = "Hudson"
@@ -108,6 +116,9 @@
 	icon = 'icons/mob/vore.dmi'
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING
+	response_help = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm = "hits"
 
 /* //VOREStation AI Temporary removal
 /mob/living/simple_mob/hostile/creature/vore
@@ -225,11 +236,17 @@
 	vore_active = 1
 	// NO VORE SPRITES
 	vore_max_size = RESIZE_SMALL
+	response_help = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm = "hits"
 
 /mob/living/simple_mob/animal/passive/penguin
 	vore_active = 1
 	// NO VORE SPRITES
 	vore_max_size = RESIZE_SMALL
+	response_help = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm = "hits"
 
 
 /mob/living/simple_mob/hostile/carp/pike

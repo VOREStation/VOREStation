@@ -115,10 +115,10 @@
 #define INV_BACK_DEF_ICON 'icons/mob/back.dmi'
 #define INV_L_HAND_DEF_ICON 'icons/mob/items/lefthand.dmi'
 #define INV_R_HAND_DEF_ICON 'icons/mob/items/righthand.dmi'
-#define INV_W_UNIFORM_DEF_ICON 'icons/mob/uniform.dmi'
+#define INV_W_UNIFORM_DEF_ICON "icons/mob/uniform"
 #define INV_ACCESSORIES_DEF_ICON 'icons/mob/ties.dmi'
 #define INV_TIE_DEF_ICON 'icons/mob/ties.dmi'
-#define INV_SUIT_DEF_ICON 'icons/mob/suit.dmi'
+#define INV_SUIT_DEF_ICON "icons/mob/suit"
 #define INV_SPACESUIT_DEF_ICON 'icons/mob/spacesuit.dmi'
 #define INV_WEAR_ID_DEF_ICON 'icons/mob/mob.dmi'
 #define INV_GLOVES_DEF_ICON 'icons/mob/hands.dmi'
@@ -194,10 +194,24 @@
 #define O_KIDNEYS  "kidneys"
 #define O_APPENDIX "appendix"
 #define O_VOICE    "voicebox"
-#define O_STANDARD list(O_EYES, O_HEART, O_LUNGS, O_BRAIN, O_LIVER, O_KIDNEYS, O_APPENDIX, O_VOICE)
+#define O_SPLEEN   "spleen"
+#define O_STOMACH  "stomach"
+#define O_INTESTINE "intestine"
+#define O_STANDARD list(O_EYES, O_HEART, O_LUNGS, O_BRAIN, O_LIVER, O_KIDNEYS, O_SPLEEN, O_APPENDIX, O_VOICE, O_STOMACH, O_INTESTINE)
 
 // Augments
-#define O_AUG_TSHADE "integrated thermolensing implant"
+#define O_AUG_EYES "occular augment"
+
+#define O_AUG_L_FOREARM "left forearm augment"
+#define O_AUG_R_FOREARM "right forearm augment"
+#define O_AUG_L_UPPERARM "left upperarm augment"
+#define O_AUG_R_UPPERARM "right upperarm augment"
+#define O_AUG_L_HAND "left hand augment"
+#define O_AUG_R_HAND "right hand augment"
+
+#define O_AUG_RIBS "rib augment"
+#define O_AUG_SPINE "spinal augment"
+#define O_AUG_PELVIC "pelvic augment"
 
 // Non-Standard organs
 #define O_MOUTH    "mouth"
@@ -311,6 +325,8 @@
 #define SPECIES_SKELETON		"Skeleton"
 #define SPECIES_GOLEM			"Golem"
 #define SPECIES_EVENT1			"X Occursus"
+#define SPECIES_EVENT2			"X Anomalous"
+#define SPECIES_EVENT3			"X Unowas"
 
 // Replicant types. Currently only used for alien pods and events.
 #define SPECIES_REPLICANT		"Replicant"

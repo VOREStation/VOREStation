@@ -29,6 +29,7 @@
 
 	starts_with = list(
 		/obj/item/weapon/gun/energy/phasegun = 2,
+		/obj/item/weapon/gun/energy/phasegun/pistol,
 		/obj/item/weapon/cell/device/weapon = 2,
 		/obj/item/clothing/accessory/permit/gun/planetside)
 

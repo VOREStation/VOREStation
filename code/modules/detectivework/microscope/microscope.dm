@@ -32,7 +32,7 @@
 
 	user << "<span class='notice'>The microscope whirrs as you examine \the [sample].</span>"
 
-	if(!do_after(user, 25) || !sample)
+	if(!do_after(user, 2 SECONDS) || !sample)
 		user << "<span class='notice'>You stop examining \the [sample].</span>"
 		return
 
@@ -71,8 +71,8 @@
 			report.info += "Surface analysis has determined unique fingerprint strings:<br><br>"
 			for(var/prints in card.evidence)
 				report.info += "<span class='notice'>Fingerprint string: </span>"
-				if(!is_complete_print(prints))
-					report.info += "INCOMPLETE PRINT"
+				if(!is_complete_print(card.evidence[prints]))
+					report.info += "INCOMPLETE PRINT:[card.evidence[prints]]"
 				else
 					report.info += "[prints]"
 				report.info += "<br>"

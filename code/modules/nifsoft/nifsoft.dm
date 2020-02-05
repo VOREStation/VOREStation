@@ -61,13 +61,15 @@
 
 //Called when the software is installed in the NIF
 /datum/nifsoft/proc/install()
+	if(!nif)
+		return
 	return nif.install(src)
 
 //Called when the software is removed from the NIF
 /datum/nifsoft/proc/uninstall()
-	if(active)
-		deactivate()
 	if(nif)
+		if(active)
+			deactivate()
 		. = nif.uninstall(src)
 		nif = null
 	if(!QDESTROYING(src))

@@ -10,6 +10,24 @@
 	icon_state = "pouches"
 	w_class = ITEMSIZE_NORMAL
 
+/obj/item/clothing/accessory/armor/on_attached(var/obj/item/clothing/S, var/mob/user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.wear_suit == S)
+			if((body_parts_covered & ARMS) && istype(H.gloves, /obj/item/clothing))
+				var/obj/item/clothing/G = H.gloves
+				if(G.body_parts_covered & ARMS)
+					to_chat(H, "<span class='warning'>You can't wear \the [src] with \the [G], it's in the way.</span>")
+					S.accessories -= src
+					return
+			else if((body_parts_covered & LEGS) && istype(H.shoes, /obj/item/clothing))
+				var/obj/item/clothing/Sh = H.shoes
+				if(Sh.body_parts_covered & LEGS)
+					to_chat(H, "<span class='warning'>You can't wear \the [src] with \the [Sh], it's in the way.</span>")
+					S.accessories -= src
+					return
+	..()
+
 ///////////
 //Pouches
 ///////////
@@ -74,6 +92,13 @@
 	armor = list(melee = 30, bullet = 15, laser = 40, energy = 10, bomb = 25, bio = 0, rad = 0)
 	slot = ACCESSORY_SLOT_ARMOR_C
 
+/obj/item/clothing/accessory/armor/armorplate/stab
+	name = "mesh armor plate"
+	desc = "A mesh armor plate made of steel-reinforced synthetic fibers, great for dealing with small blades. Attaches to a plate carrier."
+	icon_state = "armor_stab"
+	armor = list(melee = 25, bullet = 5, laser = 20, energy = 10, bomb = 15, bio = 0, rad = 0)
+	armorsoak = list(melee = 7, bullet = 5, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+
 /obj/item/clothing/accessory/armor/armorplate/medium
 	name = "medium armor plate"
 	desc = "A plasteel-reinforced synthetic armor plate, providing good protection. Attaches to a plate carrier."
@@ -91,6 +116,56 @@
 	desc = "A ceramics-reinforced synthetic armor plate, providing state of of the art protection. Attaches to a plate carrier."
 	icon_state = "armor_merc"
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
+
+/obj/item/clothing/accessory/armor/armorplate/bulletproof
+	name = "ballistic armor plate"
+	desc = "A woven armor plate with additional plating, providing good protection against high-velocity trauma. Attaches to a plate carrier."
+	icon_state = "armor_ballistic"
+	slowdown = 0.6
+	armor = list(melee = 10, bullet = 70, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
+	armorsoak = list(melee = 0, bullet = 10, laser = 0, energy = 5, bomb = 0, bio = 0, rad = 0)
+	siemens_coefficient = 0.7
+
+/obj/item/clothing/accessory/armor/armorplate/riot
+	name = "riot armor plate"
+	desc = "A thick armor plate with additional padding, providing good protection against low-velocity trauma. Attaches to a plate carrier."
+	icon_state = "armor_riot"
+	slowdown = 0.6
+	armor = list(melee = 70, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
+	armorsoak = list(melee = 10, bullet = 0, laser = 0, energy = 5, bomb = 0, bio = 0, rad = 0)
+	siemens_coefficient = 0.7
+
+/obj/item/clothing/accessory/armor/armorplate/laserproof
+	name = "ablative armor plate"
+	desc = "A durasteel-scaled synthetic armor plate, providing good protection against lasers. Attaches to a plate carrier."
+	icon_state = "armor_medium"
+	slowdown = 0.6
+	armor = list(melee = 10, bullet = 10, laser = 70, energy = 50, bomb = 0, bio = 0, rad = 0)
+	armorsoak = list(melee = 0, bullet = 0, laser = 10, energy = 15, bomb = 0, bio = 0, rad = 0)
+	siemens_coefficient = 0.1
+
+/obj/item/clothing/accessory/armor/armorplate/ablative/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
+		var/obj/item/projectile/P = damage_source
+
+		if(P.reflected)
+			return ..()
+
+		var/reflectchance = 40 - round(damage/3)
+		if(!(def_zone in list(BP_TORSO, BP_GROIN)))
+			reflectchance /= 2
+		if(P.starting && prob(reflectchance))
+			visible_message("<span class='danger'>\The [user]'s [src.name] reflects [attack_text]!</span>")
+
+
+			var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
+			var/new_y = P.starting.y + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
+			var/turf/curloc = get_turf(user)
+
+			P.redirect(new_x, new_y, curloc, user)
+			P.reflected = 1
+
+			return PROJECTILE_CONTINUE
 
 //////////////
 //Arm guards

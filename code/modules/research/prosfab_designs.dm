@@ -16,7 +16,7 @@
 		if(prosfab.manufacturer)
 			var/datum/robolimb/manf = all_robolimbs[prosfab.manufacturer]
 			newspecies = manf.suggested_species
-		O.species = all_species[newspecies]
+		O.species = GLOB.all_species[newspecies]
 		if(istype(O,/obj/item/organ/external))
 			var/obj/item/organ/external/EO = O
 			if(EO.species.base_color)
@@ -54,7 +54,7 @@
 				EO.remove_rejuv()
 
 		for(var/obj/item/organ/external/O in H.organs)
-			O.species = all_species[newspecies] //VOREStation Edit with species suggestion above
+			O.species = GLOB.all_species[newspecies]
 			O.robotize(prosfab.manufacturer)
 			O.dna = new/datum/dna()
 			O.dna.ResetUI()
@@ -201,6 +201,21 @@
 	time = 15
 	materials = list(DEFAULT_WALL_MATERIAL = 5625, "glass" = 1000)
 //	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
+
+/datum/design/item/prosfab/pros/internal/spleen
+	name = "Prosthetic Spleen"
+	id = "pros_spleen"
+	build_path = /obj/item/organ/internal/spleen
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 3000, MAT_GLASS = 750)
+//	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
+
+/datum/design/item/prosfab/pros/internal/larynx
+	name = "Prosthetic Larynx"
+	id = "pros_larynx"
+	build_path = /obj/item/organ/internal/voicebox
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, MAT_GLASS = 750, MAT_PLASTIC = 500)
 
 //////////////////// Cyborg Parts ////////////////////
 /datum/design/item/prosfab/cyborg

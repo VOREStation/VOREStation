@@ -12,9 +12,9 @@
 	maxHealth = 60
 	health = 60
 
-	response_help = "pats the"
-	response_disarm = "gently pushes aside the"
-	response_harm = "hits the"
+	response_help = "pats"
+	response_disarm = "gently pushes aside"
+	response_harm = "hits"
 
 	harm_intent_damage = 20
 	melee_damage_lower = 1

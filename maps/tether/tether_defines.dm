@@ -19,6 +19,7 @@
 #define Z_LEVEL_AEROSTAT					18
 #define Z_LEVEL_AEROSTAT_SURFACE			19
 #define Z_LEVEL_DEBRISFIELD					20
+#define Z_LEVEL_GATEWAY						21
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -101,6 +102,8 @@
 	spawnpoint_stayed = /datum/spawnpoint/cryo
 
 	meteor_strike_areas = list(/area/tether/surfacebase/outside/outside3)
+	drop_pod_allowed_z = list(Z_LEVEL_SURFACE_HIGH)
+
 
 	unit_test_exempt_areas = list(
 		/area/tether/surfacebase/outside/outside1,
@@ -112,8 +115,9 @@
 		/area/crew_quarters/sleep/Dorm_5/holo,
 		/area/crew_quarters/sleep/Dorm_7/holo,
 		/area/rnd/miscellaneous_lab)	//TFF 31/8/19 - exempt new construction site from unit tests
+	//TFF 11/12/19 - Minor refactor, makes mice spawn only in Atmos.
 	unit_test_exempt_from_atmos = list(
-		/area/engineering/atmos/intake, // Outside,
+		/area/engineering/atmos_intake, // Outside,
 		/area/rnd/external, //  Outside,
 		/area/tether/surfacebase/mining_main/external, // Outside,
 		/area/tether/surfacebase/mining_main/airlock, //  Its an airlock,
@@ -126,6 +130,14 @@
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
 		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
 		list("Debris Field - Z1 Space")
+		)
+
+	lateload_single_pick = list(
+		//list("Snow Outpost"),		// Unplayable mapgen,
+		//list("Zoo"),				// Too big. way, way too big
+		list("Carp Farm"),
+		list("Snow Field"),
+		list("Listening Post")
 		)
 
 	ai_shell_restricted = TRUE

@@ -24,7 +24,7 @@
 		var/healing_amount = 40
 		if(src.mind.changeling.recursive_enhancement)
 			healing_amount = C.maxHealth
-			src << "<span class='notice'>We completely heal ourselves.</span>"
+			to_chat(src, "<span class='notice'>We completely heal ourselves.</span>")
 		spawn(0)
 			C.adjustBruteLoss(-healing_amount)
 			C.adjustFireLoss(-healing_amount)

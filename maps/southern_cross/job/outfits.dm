@@ -14,7 +14,7 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	id_slot = slot_wear_id
 	pda_slot = slot_l_store
 	pda_type = /obj/item/device/pda/explorer //VORESTation Edit - Better Brown
-	id_type = /obj/item/weapon/card/id/explorer/explorer //VOREStation Edit
+	id_type = /obj/item/weapon/card/id/explorer //VOREStation Edit
 	id_pda_assignment = "Explorer"
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 	backpack_contents = list(/obj/item/clothing/accessory/permit/gun/planetside = 1)
@@ -47,7 +47,6 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	id_slot = slot_wear_id
 	pda_slot = slot_belt
 	pda_type = /obj/item/device/pda //VOREStation Edit - Civilian
-	id_type = /obj/item/weapon/card/id/explorer/pilot //VOREStation Edit
 	id_pda_assignment = "Pilot"
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 
@@ -61,6 +60,5 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	belt = /obj/item/weapon/storage/belt/medical/emt
 	pda_slot = slot_l_store
 	pda_type = /obj/item/device/pda/sar //VOREStation Add
-	id_type = /obj/item/weapon/card/id/medical/sar
 	id_pda_assignment = "Field Medic" //VOREStation Edit
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL

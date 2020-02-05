@@ -85,15 +85,9 @@
 		H.add_modifier(modifier_type)
 
 	//Apply damage
-	H.adjustCloneLoss((H.getMaxHealth() - config.health_threshold_dead)*0.75)
+	H.adjustCloneLoss(H.getMaxHealth()*1.5)
 	H.Paralyse(4)
 	H.updatehealth()
-
-	//Grower specific mutations
-	if(heal_level < 60)
-		randmutb(H)
-		H.dna.UpdateSE()
-		H.dna.UpdateUI()
 
 	//Update appearance, remake icons
 	H.UpdateAppearance()
@@ -134,10 +128,10 @@
 			connected_message("Clone Rejected: Deceased.")
 			return
 
-		else if(occupant.health < heal_level && occupant.getCloneLoss() > 0)
+		else if(occupant.getCloneLoss() > 0)
 
 			 //Slowly get that clone healed and finished.
-			occupant.adjustCloneLoss(-2 * heal_rate)
+			occupant.adjustCloneLoss(-3 * heal_rate)
 
 			//Premature clones may have brain damage.
 			occupant.adjustBrainLoss(-(CEILING((0.5*heal_rate), 1)))
@@ -152,7 +146,7 @@
 			use_power(7500) //This might need tweaking.
 			return
 
-		else if(((occupant.health >= heal_level) || (occupant.health == occupant.maxHealth)) && (!eject_wait))
+		else if(((occupant.health == occupant.maxHealth)) && (!eject_wait))
 			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 			audible_message("\The [src] signals that the growing process is complete.")
 			connected_message("Growing Process Complete.")
@@ -409,6 +403,7 @@
 	anchored = 1
 	var/blur_amount
 	var/confuse_amount
+	var/sickness_duration
 
 	var/mob/living/carbon/human/occupant = null
 	var/connected = null
@@ -437,6 +432,9 @@
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		manip_rating += M.rating
 	blur_amount = (48 - manip_rating * 8)
+
+	var/total_rating = manip_rating + scan_rating
+	sickness_duration = (45 - (total_rating-4)*1.875) MINUTES		// 45 minutes default, 30 minutes with max non-anomaly upgrades, 15 minutes with max anomaly ones
 
 /obj/machinery/transhuman/resleever/attack_hand(mob/user as mob)
 	user.set_machine(src)
@@ -584,8 +582,13 @@
 	else
 		occupant << "<span class='warning'>You feel a small pain in your head as you're given a new backup implant. Oh, and a new body. It's disorienting, to say the least.</span>"
 
-	occupant.confused = max(occupant.confused, confuse_amount)
+	occupant.confused = max(occupant.confused, confuse_amount)									// Apply immedeate effects
 	occupant.eye_blurry = max(occupant.eye_blurry, blur_amount)
+	if(!(occupant.mind.vore_death))
+		occupant.add_modifier(/datum/modifier/faux_resleeving_sickness, sickness_duration/3)	// And more longterm, though purely visual ones
+	else
+		occupant.add_modifier(/datum/modifier/resleeving_sickness, sickness_duration)			// Much more serious if it wasn't a death by vore though
+	occupant.mind.vore_death = FALSE		// Reset our death type. Just in case
 
 	if(occupant.mind && occupant.original_player && ckey(occupant.mind.key) != occupant.original_player)
 		log_and_message_admins("is now a cross-sleeved character. Body originally belonged to [occupant.real_name]. Mind is now [occupant.mind.name].",occupant)

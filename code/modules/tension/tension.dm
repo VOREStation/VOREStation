@@ -24,7 +24,7 @@
 		will_point_blank = ai_holder.pointblank
 
 	var/potential_damage = 0
-	if(!projectiletype || ( get_dist(src, threatened >= 1) && !will_point_blank ) ) // Melee damage.
+	if(!projectiletype || ( ( get_dist(src, threatened) >= 1) && !will_point_blank ) ) // Melee damage.
 		potential_damage = (melee_damage_lower + melee_damage_upper) / 2
 
 		// Treat potential_damage as estimated DPS. If the enemy attacks twice as fast as usual, it will double the number.

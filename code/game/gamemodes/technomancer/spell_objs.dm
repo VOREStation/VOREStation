@@ -292,7 +292,7 @@
 			if(l_spell.aspect == ASPECT_CHROMATIC) //Check the other hand too.
 				l_spell.on_combine_cast(S, src)
 		else //Welp
-			src << "<span class='warning'>You require a free hand to use this function.</span>"
+			to_chat(src, "<span class='warning'>You require a free hand to use this function.</span>")
 			return 0
 
 	if(S.run_checks())

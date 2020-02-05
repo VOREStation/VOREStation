@@ -6,6 +6,7 @@
 
 /obj/machinery/computer/telecomms/traffic
 	name = "Telecommunications Traffic Control"
+	desc = "Used to upload code to telecommunication consoles for execution."
 	icon_screen = "generic"
 
 	var/screen = 0				// the screen number:

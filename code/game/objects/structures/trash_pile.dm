@@ -212,7 +212,8 @@
 					prob(1);/obj/item/weapon/spacecash/c100,
 					prob(1);/obj/item/weapon/spacecash/c50,
 					prob(1);/obj/item/weapon/storage/backpack/dufflebag/syndie,
-					prob(1);/obj/item/weapon/storage/box/cups)
+					prob(1);/obj/item/weapon/storage/box/cups,
+					prob(1);/obj/item/pizzavoucher)
 
 	var/obj/item/I = new path()
 	return I
@@ -221,6 +222,7 @@
 	var/path = pick(prob(6);/obj/item/weapon/storage/pill_bottle/tramadol,
 					prob(4);/obj/item/weapon/storage/pill_bottle/happy,
 					prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
+					prob(4);/obj/item/seeds/ambrosiavulgarisseed,
 					prob(4);/obj/item/weapon/gun/energy/sizegun,
 					prob(3);/obj/item/weapon/material/butterfly,
 					prob(3);/obj/item/weapon/material/butterfly/switchblade,

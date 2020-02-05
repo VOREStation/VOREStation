@@ -23,9 +23,9 @@
 		"bio" = 0,
 		"rad" = 0)
 
-	response_help = "pets the"
-	response_disarm = "gently pushes aside the"
-	response_harm = "hits the"
+	response_help = "pets"
+	response_disarm = "gently pushes aside"
+	response_harm = "hits"
 	attacktext = list("bit")
 
 	melee_damage_upper = 12
@@ -66,13 +66,16 @@
 	vore_stomach_flavor	= "You are squeezed into the sweltering insides of the herbivore rumen."
 	vore_icons = SA_ICON_LIVING
 
-/* //VOREStation AI Temporary Removal
 /mob/living/simple_mob/vore/hippo/Login()
 	. = ..()
 	if(!riding_datum)
-		riding_datum = new /datum/riding/simple_animal(src)
-	verbs |= /mob/living/simple_animal/proc/animal_mount
-*/
+		riding_datum = new /datum/riding/simple_mob(src)
+	verbs |= /mob/living/simple_mob/proc/animal_mount
+	verbs |= /mob/living/proc/toggle_rider_reins
+	movement_cooldown = 0
+
+/mob/living/simple_mob/vore/hippo/MouseDrop_T(mob/living/M, mob/living/user)
+	return
 
 /mob/living/simple_mob/vore/hippo/MouseDrop_T(mob/living/M, mob/living/user)
 	return

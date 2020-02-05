@@ -134,6 +134,8 @@
 	var/travelling_in_vent = 0
 	var/list/grow_as = list(/mob/living/simple_mob/animal/giant_spider, /mob/living/simple_mob/animal/giant_spider/nurse, /mob/living/simple_mob/animal/giant_spider/hunter)
 
+	var/stunted = FALSE
+
 /obj/effect/spider/spiderling/frost
 	grow_as = list(/mob/living/simple_mob/animal/giant_spider/frost)
 
@@ -261,8 +263,16 @@
 					break
 		if(amount_grown >= 100)
 			var/spawn_type = pick(grow_as)
-			new spawn_type(src.loc, src)
+			var/mob/living/simple_mob/animal/giant_spider/GS = new spawn_type(src.loc, src)
+			if(stunted)
+				spawn(2)
+					GS.make_spiderling()
 			qdel(src)
+
+/obj/effect/spider/spiderling/stunted
+	stunted = TRUE
+
+	grow_as = list(/mob/living/simple_mob/animal/giant_spider, /mob/living/simple_mob/animal/giant_spider/hunter)
 
 /obj/effect/decal/cleanable/spiderling_remains
 	name = "spiderling remains"

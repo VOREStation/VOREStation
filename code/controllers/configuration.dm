@@ -61,6 +61,7 @@ var/list/gamemode_cache = list()
 	var/list/player_requirements_secret = list() // Same as above, but for the secret gamemode.
 	var/humans_need_surnames = 0
 	var/allow_random_events = 0			// enables random events mid-round when set to 1
+	var/enable_game_master = 0			// enables the 'smart' event system.
 	var/allow_ai = 1					// allow ai job
 	var/allow_ai_shells = FALSE			// allow AIs to enter and leave special borg shells at will, and for those shells to be buildable.
 	var/give_free_ai_shell = FALSE		// allows a specific spawner object to instantiate a premade AI Shell
@@ -102,6 +103,13 @@ var/list/gamemode_cache = list()
 	var/debugparanoid = 0
 	var/panic_bunker = 0
 	var/paranoia_logging = 0
+
+	var/ip_reputation = FALSE		//Should we query IPs to get scores? Generates HTTP traffic to an API service.
+	var/ipr_email					//Left null because you MUST specify one otherwise you're making the internet worse.
+	var/ipr_block_bad_ips = FALSE	//Should we block anyone who meets the minimum score below? Otherwise we just log it (If paranoia logging is on, visibly in chat).
+	var/ipr_bad_score = 1			//The API returns a value between 0 and 1 (inclusive), with 1 being 'definitely VPN/Tor/Proxy'. Values equal/above this var are considered bad.
+	var/ipr_allow_existing = FALSE 	//Should we allow known players to use VPNs/Proxies? If the player is already banned then obviously they still can't connect.
+	var/ipr_minimum_age = 5			//How many days before a player is considered 'fine' for the purposes of allowing them to use VPNs.
 
 	var/serverurl
 	var/server
@@ -234,8 +242,10 @@ var/list/gamemode_cache = list()
 
 	var/show_human_death_message = 1
 
+	var/radiation_resistance_calc_mode = RAD_RESIST_CALC_SUB // 0:1 subtraction:division for computing effective radiation on a turf
 	var/radiation_decay_rate = 1 //How much radiation is reduced by each tick
 	var/radiation_resistance_multiplier = 8.5 //VOREstation edit
+	var/radiation_material_resistance_divisor = 1
 	var/radiation_lower_limit = 0.35 //If the radiation level for a turf would be below this, ignore it.
 
 	var/random_submap_orientation = FALSE // If true, submaps loaded automatically can be rotated.
@@ -549,6 +559,9 @@ var/list/gamemode_cache = list()
 				if("allow_random_events")
 					config.allow_random_events = 1
 
+				if("enable_game_master")
+					config.enable_game_master = 1
+
 				if("kick_inactive")
 					config.kick_inactive = text2num(value)
 
@@ -779,17 +792,52 @@ var/list/gamemode_cache = list()
 				if("radiation_lower_limit")
 					radiation_lower_limit = text2num(value)
 
+				if("radiation_resistance_calc_divide")
+					radiation_resistance_calc_mode = RAD_RESIST_CALC_DIV
+
+				if("radiation_resistance_calc_subtract")
+					radiation_resistance_calc_mode = RAD_RESIST_CALC_SUB
+
+				if("radiation_resistance_multiplier")
+					radiation_resistance_multiplier = text2num(value)
+
+				if("radiation_material_resistance_divisor")
+					radiation_material_resistance_divisor = text2num(value)
+
+				if("radiation_decay_rate")
+					radiation_decay_rate = text2num(value)
+
 				if ("panic_bunker")
 					config.panic_bunker = 1
 
 				if ("paranoia_logging")
 					config.paranoia_logging = 1
 
+				if("ip_reputation")
+					config.ip_reputation = 1
+
+				if("ipr_email")
+					config.ipr_email = value
+
+				if("ipr_block_bad_ips")
+					config.ipr_block_bad_ips = 1
+
+				if("ipr_bad_score")
+					config.ipr_bad_score = text2num(value)
+
+				if("ipr_allow_existing")
+					config.ipr_allow_existing = 1
+
+				if("ipr_minimum_age")
+					config.ipr_minimum_age = text2num(value)
+
 				if("random_submap_orientation")
 					config.random_submap_orientation = 1
 
 				if("autostart_solars")
 					config.autostart_solars = TRUE
+
+
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

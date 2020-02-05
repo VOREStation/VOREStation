@@ -30,6 +30,7 @@
 	ethanol		spawn_reagent = "ethanol"
 	sacid		spawn_reagent = "sacid"
 	tungsten	spawn_reagent = "tungsten"
+	calcium		spawn_reagent = "calcium"
 
 	// Bar, alcoholic
 	beer		spawn_reagent = "beer"
@@ -72,6 +73,7 @@
 	cream		spawn_reagent = "cream"
 	mint		spawn_reagent = "mint"
 	berry		spawn_reagent = "berryjuice"
+	decaf		spawn_reagent = "decaf"
 
 	// ERT
 	inaprov		spawn_reagent = "inaprovaline"

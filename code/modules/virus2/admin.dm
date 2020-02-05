@@ -86,8 +86,8 @@
 		<b>Infectable Species:</b><br />
 		"}
 		var/f = 1
-		for(var/k in all_species)
-			var/datum/species/S = all_species[k]
+		for(var/k in GLOB.all_species)
+			var/datum/species/S = GLOB.all_species[k]
 			if(S.get_virus_immune())
 				continue
 			if(!f) H += " | "

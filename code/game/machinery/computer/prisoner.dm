@@ -2,6 +2,7 @@
 
 /obj/machinery/computer/prisoner
 	name = "prisoner management console"
+	desc = "Used to keep those sneaky prisoners in line, if they have an implant."
 	icon_keyboard = "security_key"
 	icon_screen = "explosive"
 	light_color = "#a91515"
