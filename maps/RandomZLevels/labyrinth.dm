@@ -10,7 +10,7 @@
 
 /area/awaymission/labyrinth/temple
 	icon_state = "away"
-	ambience = null // Todo: Add better ambience.
+	ambience = list() // Todo: Add better ambience.
 
 /area/awaymission/labyrinth/temple/entry
 	icon_state = "chapel"
