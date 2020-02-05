@@ -252,10 +252,6 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
-"aaD" = (
-/obj/structure/disposalpipe/segment,
-/turf/simulated/wall,
-/area/tether/surfacebase/mining_main/refinery)
 "aaE" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/wall,

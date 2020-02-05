@@ -28805,6 +28805,9 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 9
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/paramed{
 	name = "\improper Surface EMT Bay"
@@ -28933,6 +28936,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/paramed{
 	name = "\improper Surface EMT Bay"
+	})
+"qfp" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/open,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Upper"
 	})
 "qkk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -41119,14 +41130,14 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+ajM
+ajM
+ajM
+ajM
+ajM
+ajM
+ajM
+ajM
 aQx
 cdI
 oox
@@ -41261,11 +41272,11 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
+ajM
+ajM
+ajM
+ajM
+ajM
 aOx
 aOx
 aOx
@@ -41403,11 +41414,11 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
+ajM
+ajM
+ajM
+ajM
+ajM
 aOx
 uKh
 wTu
@@ -41545,11 +41556,11 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
+ajM
+ajM
+ajM
+ajM
+ajM
 aOx
 sXD
 qlJ
@@ -41687,13 +41698,13 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
+ajM
+ajM
+ajM
+ajM
+ajM
 aOx
-tYr
+qfp
 tYr
 aaf
 aao
@@ -41829,11 +41840,11 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
+ajM
+ajM
+ajM
+ajM
+ajM
 aOx
 tYr
 tYr
@@ -41971,11 +41982,11 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
+ajM
+ajM
+ajM
+ajM
+ajM
 aOx
 aOx
 aOx
@@ -42115,9 +42126,9 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
+ajM
+ajM
+ajM
 eCu
 gVM
 fWU
@@ -42257,9 +42268,9 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
+ajM
+ajM
+ajM
 eCu
 wxW
 qkk
@@ -42399,9 +42410,9 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
+ajM
+ajM
+ajM
 eCu
 epZ
 qkk
@@ -42541,9 +42552,9 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
+ajM
+ajM
+ajM
 eCu
 efT
 sXo
@@ -42683,9 +42694,9 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
+ajM
+ajM
+ajM
 eCu
 eCu
 eCu
@@ -42825,12 +42836,12 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
+ajM
+ajM
+ajM
+ajM
+ajM
+ajM
 aag
 aaC
 aPF
@@ -42967,12 +42978,12 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
+ajM
+ajM
+ajM
+ajM
+ajM
+ajM
 aag
 aaD
 aPG
