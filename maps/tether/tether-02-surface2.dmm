@@ -415,7 +415,6 @@
 	pixel_y = 28
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/item/weapon/book/manual/resleeving,
 /obj/item/device/sleevemate,
 /obj/item/weapon/reagent_containers/glass/bottle/biomass{
 	pixel_x = 6;
@@ -21194,7 +21193,10 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/syringegun,
+/obj/item/weapon/storage/box/syringegun{
+	pixel_x = 3;
+	pixel_y = 5
+	},
 /obj/item/weapon/gun/launcher/syringe,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
@@ -21582,8 +21584,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "aPC" = (
-/obj/machinery/light/small,
-/obj/structure/closet/firecloset,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/lowerhall)
 "aPD" = (
@@ -21742,7 +21750,10 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/nifsofts_medical,
+/obj/item/weapon/storage/box/nifsofts_medical{
+	pixel_x = 2;
+	pixel_y = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aPR" = (
@@ -21757,7 +21768,9 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/weapon/storage/firstaid/regular,
+/obj/item/weapon/storage/firstaid/regular{
+	pixel_x = 5
+	},
 /obj/item/weapon/storage/secure/briefcase/ml3m_pack_med,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
@@ -21799,10 +21812,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 1
 	},
-/obj/structure/table/standard,
-/obj/item/weapon/cane,
-/obj/item/weapon/cane,
-/obj/structure/bedsheetbin,
+/obj/machinery/vending/blood,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aPV" = (
@@ -21815,13 +21825,7 @@
 /obj/structure/table/standard,
 /obj/item/weapon/storage/box/lights/mixed,
 /obj/item/device/flashlight,
-/obj/item/weapon/tool/screwdriver,
 /obj/item/weapon/tool/wrench,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/storage/briefcase/inflatable,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aPW" = (
@@ -22106,6 +22110,13 @@
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 8
+	},
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12
+	},
+/obj/structure/mirror{
+	pixel_x = -28
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
@@ -22487,7 +22498,10 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 8
 	},
-/obj/machinery/vending/blood,
+/obj/structure/table/standard,
+/obj/item/weapon/cane,
+/obj/item/weapon/cane,
+/obj/structure/bedsheetbin,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aQR" = (
@@ -23504,19 +23518,25 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aSp" = (
+/obj/structure/closet/crate{
+	name = "Grenade Crate"
+	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
 	},
-/obj/structure/table/standard,
-/obj/item/weapon/storage/box/beakers,
-/obj/random/medical,
-/obj/item/roller,
-/obj/item/roller{
-	pixel_y = 8
-	},
+/obj/item/weapon/grenade/chem_grenade,
+/obj/item/weapon/grenade/chem_grenade,
+/obj/item/weapon/grenade/chem_grenade,
+/obj/item/device/assembly/timer,
+/obj/item/device/assembly/timer,
+/obj/item/device/assembly/timer,
+/obj/item/device/assembly/igniter,
+/obj/item/device/assembly/igniter,
+/obj/item/device/assembly/igniter,
+/obj/item/weapon/tool/screwdriver,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aSq" = (
@@ -23603,11 +23623,42 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 10
 	},
+/obj/structure/table/standard,
+/obj/item/weapon/storage/briefcase/inflatable{
+	pixel_x = 2;
+	pixel_y = 8
+	},
+/obj/item/weapon/storage/briefcase/inflatable{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/obj/item/weapon/storage/briefcase/inflatable{
+	pixel_x = 2
+	},
+/obj/item/device/radio{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/device/radio{
+	pixel_x = -8;
+	pixel_y = 3
+	},
+/obj/item/device/radio{
+	pixel_x = -8
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aSA" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
+/obj/structure/table/standard,
+/obj/item/roller,
+/obj/item/roller{
+	pixel_y = 8
+	},
+/obj/item/roller{
+	pixel_y = 16
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aSB" = (
@@ -23619,21 +23670,24 @@
 	pixel_y = -28;
 	req_access = list(67)
 	},
+/obj/structure/table/standard,
+/obj/machinery/recharger,
+/obj/item/weapon/tool/screwdriver,
+/obj/item/device/defib_kit/loaded,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aSC" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/gloves,
-/obj/item/weapon/storage/box/masks{
-	pixel_x = 5;
-	pixel_y = 5
-	},
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
 	pixel_y = -32
 	},
+/obj/item/weapon/book/manual/resleeving{
+	pixel_y = 5
+	},
+/obj/item/device/sleevemate,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aSD" = (
@@ -23652,10 +23706,22 @@
 	dir = 6
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/bodybags,
-/obj/item/weapon/backup_implanter,
-/obj/item/weapon/backup_implanter,
-/obj/item/weapon/backup_implanter,
+/obj/item/weapon/storage/box/bodybags{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/weapon/storage/box/beakers{
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/obj/item/weapon/storage/box/masks{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/item/weapon/storage/box/gloves{
+	pixel_x = -3;
+	pixel_y = -2
+	},
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
 /turf/simulated/floor/tiled/white,
@@ -28732,14 +28798,14 @@
 	name = "\improper Surface EMT EVA Maintenance Upper"
 	})
 "goe" = (
-/obj/machinery/door/airlock/medical{
-	name = "Surface Medical EVA Access"
-	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/glass_medical{
+	name = "Surface Medical EVA Access"
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
@@ -29117,10 +29183,10 @@
 	name = "\improper Surface EMT EVA Upper"
 	})
 "vfX" = (
-/obj/machinery/door/airlock/medical{
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/glass_medical{
 	name = "Surface Medical EVA Access"
 	},
-/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "vxO" = (
@@ -42133,7 +42199,7 @@ eCu
 gVM
 fWU
 qzS
-aPz
+aPC
 aPz
 aQd
 aQC
@@ -42276,7 +42342,7 @@ wxW
 qkk
 aaf
 aar
-aPC
+aar
 aaf
 aQD
 aQq

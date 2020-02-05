@@ -14701,9 +14701,6 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/biostorage)
 "xa" = (
-/obj/structure/bed/chair/wheelchair{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -14717,6 +14714,9 @@
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
+	},
+/obj/structure/bed/chair/wheelchair{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/biostorage)
@@ -14877,9 +14877,6 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
 "xo" = (
-/obj/structure/bed/chair/wheelchair{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -14893,6 +14890,9 @@
 	},
 /obj/machinery/camera/network/medbay{
 	dir = 9
+	},
+/obj/structure/bed/chair/wheelchair{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/biostorage)
