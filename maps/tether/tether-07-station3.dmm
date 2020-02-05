@@ -19695,7 +19695,9 @@
 	dir = 9
 	},
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "Fj" = (
 /turf/simulated/wall,
 /area/quartermaster/warehouse)
@@ -19883,7 +19885,9 @@
 /area/medical/medbay_emt_bay)
 "Fz" = (
 /turf/simulated/wall/r_wall,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "FA" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
@@ -20137,15 +20141,10 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "FU" = (
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Chief Medical Officer's Desk";
-	departmentType = 5;
-	name = "Chief Medical Officer RC";
-	pixel_y = 30
-	},
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "FV" = (
 /obj/machinery/light{
 	dir = 1
@@ -20155,23 +20154,24 @@
 	pixel_y = 26
 	},
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "FW" = (
-/obj/machinery/keycard_auth{
-	pixel_y = 28
-	},
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "FX" = (
-/obj/item/modular_computer/console/preset/command{
-	dir = 8
-	},
 /obj/item/device/radio/intercom{
 	dir = 4;
 	pixel_x = 24
 	},
+/obj/structure/frame/computer,
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "FY" = (
 /obj/machinery/power/sensor{
 	name = "Powernet Sensor - Cargo Subgrid";
@@ -20591,13 +20591,15 @@
 /turf/simulated/wall,
 /area/maintenance/substation/cargo)
 "GD" = (
-/obj/machinery/photocopier,
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -24
 	},
+/obj/structure/frame,
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "GE" = (
 /obj/structure/bed/chair/office/light,
 /obj/machinery/button/remote/blast_door{
@@ -20607,13 +20609,6 @@
 	pixel_x = -36;
 	req_access = list(5)
 	},
-/obj/machinery/button/remote/airlock{
-	desc = "A remote control switch for the CMO's office.";
-	id = "cmodoor";
-	name = "CMO Office Door Control";
-	pixel_x = -36;
-	pixel_y = -8
-	},
 /obj/machinery/button/remote/blast_door{
 	desc = "A remote control-switch for shutters.";
 	id = "virologyquar";
@@ -20622,15 +20617,21 @@
 	req_access = list(5)
 	},
 /obj/machinery/button/windowtint{
-	id = "cmo_office";
+	id = "cmo_office_old";
 	pixel_x = -26;
 	pixel_y = -10
 	},
-/obj/effect/landmark/start{
-	name = "Chief Medical Officer"
+/obj/machinery/button/remote/airlock{
+	desc = "A remote control switch for the CMO's old office.";
+	id = "cmodoor_old";
+	name = "Old CMO Office Door Control";
+	pixel_x = -36;
+	pixel_y = -8
 	},
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "GF" = (
 /obj/structure/closet/crate,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -20760,12 +20761,11 @@
 	pixel_x = 24
 	},
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "GT" = (
 /obj/structure/table/glass,
-/obj/machinery/photocopier/faxmachine{
-	department = "CMO's Office"
-	},
 /obj/machinery/newscaster{
 	layer = 3.3;
 	pixel_x = -27
@@ -20774,8 +20774,11 @@
 	layer = 4;
 	pixel_y = 32
 	},
+/obj/item/frame,
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "GU" = (
 /obj/machinery/iv_drip,
 /obj/machinery/power/apc{
@@ -20876,30 +20879,30 @@
 /area/medical/medbay_emt_bay)
 "Hb" = (
 /obj/structure/table/glass,
-/obj/item/weapon/folder/white_cmo,
-/obj/item/weapon/stamp/cmo,
+/obj/item/weapon/paper{
+	desc = "";
+	info = "Your new office is located on the surface medbay. Please use that.";
+	name = "Note to CMO's"
+	},
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "Hc" = (
 /obj/structure/table/glass,
 /obj/item/weapon/paper_bin,
 /obj/item/weapon/pen,
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "Hd" = (
 /obj/structure/table/glass,
-/obj/machinery/computer/skills{
-	dir = 8;
-	pixel_x = 4;
-	pixel_y = -3
-	},
-/obj/machinery/computer/med_data/laptop{
-	dir = 8;
-	pixel_x = -4;
-	pixel_y = 4
-	},
+/obj/item/weapon/folder/white_cmo,
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "He" = (
 /obj/machinery/door/airlock/maintenance/common,
 /obj/machinery/door/firedoor/glass,
@@ -21432,10 +21435,13 @@
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced/polarized/full{
-	id = "cmo_office"
+	id = "cmo_office_old";
+	opacity = 1
 	},
 /turf/simulated/floor/plating,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "HO" = (
 /obj/machinery/light{
 	dir = 1
@@ -21459,11 +21465,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/weapon/storage/box,
-/obj/item/weapon/storage/box{
-	pixel_x = 5;
-	pixel_y = -2
-	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 5
 	},
@@ -21471,20 +21472,26 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "HQ" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "HR" = (
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 24
 	},
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "HS" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -21858,7 +21865,9 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "Ix" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -21873,9 +21882,10 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
 	},
-/mob/living/simple_mob/animal/passive/cat/runtime,
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "Iy" = (
 /turf/simulated/wall,
 /area/medical/sleeper)
@@ -21886,7 +21896,9 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "IA" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -21898,7 +21910,9 @@
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "IB" = (
 /obj/machinery/vending/medical,
 /obj/effect/floor_decal/borderfloorwhite{
@@ -22276,7 +22290,6 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "Jf" = (
-/obj/structure/flora/pottedplant/stoutbush,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
 	},
@@ -22290,7 +22303,9 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "Jg" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 4
@@ -22299,11 +22314,15 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "Jh" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "Ji" = (
 /obj/machinery/atmospherics/unary/cryo_cell,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -22320,7 +22339,9 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "Jk" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -22568,8 +22589,8 @@
 "JG" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/command{
-	id_tag = "cmodoor";
-	name = "Chief Medical Officer";
+	id_tag = "cmodoor_old";
+	name = "Old CMO Office";
 	req_access = list(40);
 	req_one_access = list()
 	},
@@ -22588,7 +22609,9 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "JH" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -22625,7 +22648,9 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "JK" = (
 /obj/structure/closet/crate/medical,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -22684,7 +22709,9 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "JQ" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -22701,7 +22728,9 @@
 	dir = 4
 	},
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "JR" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -22719,14 +22748,18 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "JS" = (
 /obj/structure/filingcabinet/chestdrawer,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "JT" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -23017,7 +23050,6 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "Ku" = (
-/obj/structure/flora/pottedplant/stoutbush,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 10
 	},
@@ -23031,31 +23063,34 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "Kv" = (
-/obj/structure/closet/secure_closet/CMO,
-/obj/item/weapon/storage/belt/medical,
-/obj/item/device/flashlight/pen,
-/obj/item/clothing/accessory/stethoscope,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/device/defib_kit/compact/combat/loaded,
-/obj/item/weapon/cmo_disk_holder,
-/obj/item/weapon/storage/secure/briefcase/ml3m_pack_cmo,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 6
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 6
 	},
+/obj/structure/closet/secure_closet/CMO{
+	desc = "It's an immobile card-locked storage unit for the Chief Medical Officer. There is a note on it that indicates that the good stuff is in the surface locker.";
+	name = "Barely-Stocked CMO Locker";
+	starts_with = list(/obj/item/clothing/under/rank/chief_medical_officer,/obj/item/clothing/under/rank/chief_medical_officer/skirt,/obj/item/clothing/suit/storage/toggle/labcoat/cmo,/obj/item/clothing/suit/storage/toggle/labcoat/cmoalt,/obj/item/clothing/gloves/sterile/latex,/obj/item/clothing/shoes/brown,/obj/item/device/radio/headset/heads/cmo,/obj/item/device/radio/headset/heads/cmo/alt,/obj/item/clothing/suit/storage/hooded/wintercoat/medical,/obj/item/clothing/shoes/boots/winter/medical,/obj/item/weapon/storage/box/freezer,/obj/item/clothing/mask/gas,/obj/item/taperoll/medical,/obj/item/clothing/suit/bio_suit/cmo,/obj/item/clothing/head/bio_hood/cmo,/obj/item/clothing/shoes/white,/obj/item/weapon/reagent_containers/glass/beaker/vial)
+	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "Kw" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 1
 	},
 /obj/machinery/light,
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "Kx" = (
 /obj/structure/bed/psych{
 	name = "couch"
@@ -23064,14 +23099,18 @@
 	dir = 5
 	},
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "Ky" = (
 /obj/structure/table/glass,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "Kz" = (
 /obj/structure/railing{
 	dir = 8
@@ -23106,11 +23145,6 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/virologyisolation)
 "KC" = (
-/obj/structure/dogbed{
-	desc = "Runtime's bed. Some of her disappointment seems to have rubbed off on it.";
-	name = "cat bed"
-	},
-/obj/item/toy/plushie/mouse/fluff,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
 	},
@@ -23121,7 +23155,9 @@
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "KD" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 2
@@ -23500,16 +23536,15 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/sortjunction/flipped{
-	dir = 4;
-	name = "CMO Office";
-	sortType = "CMO Office"
-	},
 /obj/effect/floor_decal/borderfloorwhite/corner{
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/paleblue/bordercorner{
 	dir = 4
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 4;
+	icon_state = "pipe-j2"
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
@@ -27619,9 +27654,11 @@
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hos)
 "Uj" = (
-/obj/machinery/papershredder,
+/obj/structure/frame,
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "Uk" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -28485,7 +28522,9 @@
 "XM" = (
 /obj/structure/table/glass,
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "XN" = (
 /obj/structure/shuttle/engine/heater,
 /obj/structure/window/reinforced{
@@ -28535,7 +28574,9 @@
 /area/shuttle/excursion/tether)
 "Yb" = (
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "Yf" = (
 /obj/machinery/computer/supplycomp/control,
 /turf/simulated/floor/wood,
@@ -28742,7 +28783,9 @@
 "Zs" = (
 /obj/structure/bookcase,
 /turf/simulated/floor/wood,
-/area/crew_quarters/heads/cmo)
+/area/crew_quarters/heads/cmo{
+	name = "\improper Medbay - Abandoned CMO Office"
+	})
 "Zu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -39464,7 +39507,7 @@ zD
 ou
 EQ
 Fz
-FU
+Yb
 Yb
 Yb
 Yb
@@ -39748,7 +39791,7 @@ Cy
 DU
 ES
 Fz
-FW
+Yb
 GE
 Hc
 HQ
