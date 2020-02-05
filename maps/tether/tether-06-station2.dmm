@@ -12180,6 +12180,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
+/obj/item/weapon/hand_labeler,
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "sO" = (
@@ -12839,8 +12840,6 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
 "tV" = (
-/obj/structure/table/glass,
-/obj/item/device/sleevemate,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
@@ -12848,6 +12847,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 1
 	},
+/obj/machinery/gear_painter,
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
 "tW" = (
@@ -12881,6 +12881,7 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
+/obj/item/device/sleevemate,
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
 "tY" = (
@@ -15324,18 +15325,13 @@
 /area/medical/surgery)
 "ya" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/spray/cleaner{
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
-	name = "Surgery Cleaner";
-	pixel_x = 2;
-	pixel_y = 2
-	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
 	},
 /obj/effect/floor_decal/corner/white/border{
 	dir = 9
 	},
+/obj/item/device/defib_kit/loaded,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "yb" = (
@@ -15419,18 +15415,13 @@
 /area/medical/surgery2)
 "ys" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/spray/cleaner{
-	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
-	name = "Surgery Cleaner";
-	pixel_x = 2;
-	pixel_y = 2
-	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 5
 	},
 /obj/effect/floor_decal/corner/white/border{
 	dir = 5
 	},
+/obj/item/device/defib_kit/loaded,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
 "yt" = (
@@ -15480,6 +15471,7 @@
 	},
 /obj/effect/floor_decal/borderfloorwhite/corner2,
 /obj/effect/floor_decal/corner/white/bordercorner2,
+/obj/item/stack/nanopaste,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
 "yy" = (
@@ -16148,7 +16140,6 @@
 /area/medical/surgery2)
 "zO" = (
 /obj/structure/table/standard,
-/obj/item/device/healthanalyzer,
 /obj/item/device/radio/intercom{
 	pixel_y = -24
 	},
@@ -16158,7 +16149,6 @@
 /area/medical/surgery2)
 "zP" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/surgery,
 /obj/item/device/radio/intercom/department/medbay{
 	pixel_y = -24
 	},
@@ -16449,6 +16439,12 @@
 /obj/machinery/status_display{
 	layer = 4;
 	pixel_x = -32
+	},
+/obj/item/weapon/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	name = "Surgery Cleaner";
+	pixel_x = 2;
+	pixel_y = 2
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
@@ -19499,6 +19495,12 @@
 /obj/machinery/status_display{
 	layer = 4;
 	pixel_x = 32
+	},
+/obj/item/weapon/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	name = "Surgery Cleaner";
+	pixel_x = 2;
+	pixel_y = 2
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)

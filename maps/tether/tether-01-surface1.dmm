@@ -22,9 +22,10 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/surfacebase/mining_main/external)
 "aag" = (
-/obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/surfacebase/mining_main/external)
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
 "aah" = (
 /turf/simulated/mineral,
 /area/tether/surfacebase/outside/outside1)
@@ -49,33 +50,32 @@
 /turf/simulated/floor/virgo3b,
 /area/tether/surfacebase/outside/outside1)
 "aak" = (
-/obj/machinery/light,
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/surfacebase/mining_main/external)
+/turf/simulated/wall,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
 "aal" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/effect/floor_decal/industrial/loading{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/surfacebase/mining_main/external)
-"aam" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/effect/floor_decal/industrial/loading,
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/surfacebase/mining_main/external)
-"aan" = (
-/obj/machinery/camera/network/cargo{
+/obj/machinery/conveyor{
 	dir = 1;
-	name = "security camera"
-	},
-/obj/machinery/conveyor_switch/oneway{
-	convdir = -1;
-	id = "mining_inbound";
-	name = "inbound conveyor"
+	id = "mining_outbound"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/surfacebase/mining_main/external)
+/area/tether/surfacebase/mining_main/refinery)
+"aam" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "mining_inbound"
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/mining_main/refinery)
+"aan" = (
+/obj/machinery/camera/network/medbay{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
 "aao" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/mining_main/airlock)
@@ -100,11 +100,6 @@
 	id_tag = "mining_airlock_outer";
 	locked = 1
 	},
-/obj/machinery/access_button/airlock_exterior{
-	master_tag = "mining_airlock";
-	pixel_x = 25;
-	pixel_y = 8
-	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/mining_main/airlock)
 "aar" = (
@@ -115,6 +110,7 @@
 	dir = 1;
 	id = "mining_inbound"
 	},
+/obj/structure/plasticflaps,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/surfacebase/mining_main/refinery)
 "aat" = (
@@ -122,6 +118,7 @@
 	dir = 1;
 	id = "mining_outbound"
 	},
+/obj/structure/plasticflaps,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/surfacebase/mining_main/refinery)
 "aau" = (
@@ -206,15 +203,17 @@
 	dir = 1;
 	id = "mining_outbound"
 	},
-/obj/structure/plasticflaps,
+/obj/structure/disposaloutlet{
+	dir = 1
+	},
+/obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/virgo3b,
 /area/tether/surfacebase/mining_main/refinery)
 "aaz" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "mining_inbound"
+/obj/machinery/disposal/deliveryChute{
+	dir = 1
 	},
-/obj/structure/plasticflaps,
+/obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/virgo3b,
 /area/tether/surfacebase/mining_main/refinery)
 "aaA" = (
@@ -254,22 +253,12 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
 "aaD" = (
-/obj/structure/disposaloutlet{
-	dir = 1
-	},
-/obj/structure/disposalpipe/trunk,
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "mining_outbound"
-	},
-/turf/simulated/floor/virgo3b,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/wall,
 /area/tether/surfacebase/mining_main/refinery)
 "aaE" = (
-/obj/machinery/disposal/deliveryChute{
-	dir = 1
-	},
-/obj/structure/disposalpipe/trunk,
-/turf/simulated/floor/virgo3b,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/wall,
 /area/tether/surfacebase/mining_main/refinery)
 "aaF" = (
 /obj/random/maintenance/cargo,
@@ -5698,9 +5687,14 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence)
 "ajW" = (
-/obj/structure/disposalpipe/segment,
-/turf/simulated/wall,
-/area/tether/surfacebase/mining_main/refinery)
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
+	frequency = 1379;
+	scrub_id = "surface_med_airlock_scrubber"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
 "ajX" = (
 /obj/machinery/door/airlock/maintenance/common,
 /obj/machinery/door/firedoor/glass,
@@ -31599,24 +31593,380 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/external)
+"bfd" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
+	},
+/obj/structure/cable/green{
+	icon_state = "16-0"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"bCL" = (
+/obj/structure/cable/green{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/north{
+	name = "\improper Surface EMT EVA Maintenance Lower"
+	})
+"cpW" = (
+/obj/machinery/camera/network/medbay{
+	dir = 9
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"cpZ" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
 "cuX" = (
 /turf/simulated/wall/r_wall,
 /area/crew_quarters/sleep/Dorm_3)
 "cGJ" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
+"cIn" = (
+/obj/machinery/embedded_controller/radio/airlock/phoron{
+	id_tag = "surface_med_airlock";
+	pixel_y = -25
+	},
+/obj/machinery/airlock_sensor/phoron{
+	id_tag = "surface_med_airlock";
+	pixel_y = -35
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"dln" = (
+/obj/structure/grille,
+/obj/structure/railing,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	frequency = 1379;
+	id_tag = "surface_med_airlock_pump"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"dFk" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/mining_main/external)
+"dJI" = (
+/obj/effect/floor_decal/borderfloorwhite/corner{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner{
+	dir = 8
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"dKa" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/cyan{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/north{
+	name = "\improper Surface EMT EVA Maintenance Lower"
+	})
+"dVA" = (
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
+	frequency = 1379;
+	scrub_id = "surface_med_airlock_scrubber"
+	},
+/obj/structure/sign/fire{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"eoz" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"fhz" = (
+/obj/machinery/door/airlock/glass_external{
+	frequency = 1379;
+	icon_state = "door_locked";
+	id_tag = "surface_med_airlock_outer";
+	locked = 1
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"fAG" = (
+/obj/machinery/conveyor_switch/oneway{
+	convdir = -1;
+	id = "mining_inbound";
+	name = "inbound conveyor"
+	},
+/obj/machinery/camera/network/cargo{
+	dir = 1;
+	name = "security camera"
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/mining_main/external)
+"fEh" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/effect/floor_decal/rust,
+/obj/machinery/atmospherics/binary/passive_gate/on{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/north{
+	name = "\improper Surface EMT EVA Maintenance Lower"
+	})
 "guV" = (
 /obj/structure/closet,
 /obj/random/drinkbottle,
 /obj/random/maintenance/cargo,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/vacant_site)
+"gNQ" = (
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 6
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 5
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"hbS" = (
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/cyan,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"hdM" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/mining_main/external)
+"hDs" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"hIt" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 5
+	},
+/obj/machinery/alarm{
+	pixel_y = 28
+	},
+/obj/structure/cable/green{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"hLH" = (
+/obj/random/maintenance/cargo,
+/obj/random/junk,
+/obj/random/junk,
+/obj/item/toy/figure/md,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/mining_main/refinery)
 "ipb" = (
 /turf/simulated/wall/r_wall,
 /area/tether/surfacebase/outside/outside1)
+"iMT" = (
+/turf/simulated/wall,
+/area/maintenance/lower/north{
+	name = "\improper Surface EMT EVA Maintenance Lower"
+	})
+"iYL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/north{
+	name = "\improper Surface EMT EVA Maintenance Lower"
+	})
+"jdq" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 9
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/north{
+	name = "\improper Surface EMT EVA Maintenance Lower"
+	})
+"jHD" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/tank/air{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/north{
+	name = "\improper Surface EMT EVA Maintenance Lower"
+	})
 "jXc" = (
 /turf/simulated/wall/r_wall,
 /area/crew_quarters/sleep/Dorm_1)
+"lnv" = (
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
+	frequency = 1379;
+	scrub_id = "surface_med_airlock_scrubber"
+	},
+/obj/structure/sign/nosmoking_2{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
 "lry" = (
 /obj/structure/catwalk,
 /obj/structure/closet,
@@ -31626,6 +31976,95 @@
 /obj/random/drinkbottle,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
+"lJX" = (
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"lWT" = (
+/obj/machinery/door/airlock/glass_external{
+	frequency = 1379;
+	icon_state = "door_locked";
+	id_tag = "surface_med_airlock_inner";
+	locked = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"mnf" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/universal,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/north{
+	name = "\improper Surface EMT EVA Maintenance Lower"
+	})
+"muW" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"mEd" = (
+/obj/structure/ladder/up,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/north{
+	name = "\improper Surface EMT EVA Maintenance Lower"
+	})
+"mRo" = (
+/obj/effect/floor_decal/borderfloorwhite/corner{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"ncR" = (
+/obj/effect/floor_decal/industrial/loading{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/mining_main/external)
 "nlo" = (
 /obj/structure/railing{
 	dir = 1
@@ -31636,15 +32075,291 @@
 /obj/random/trash_pile,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
+"nLh" = (
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"oac" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/north{
+	name = "\improper Surface EMT EVA Maintenance Lower"
+	})
 "obY" = (
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/substation/mining)
+"oyK" = (
+/obj/machinery/access_button/airlock_interior{
+	master_tag = "surface_med_airlock";
+	pixel_y = 25;
+	req_one_access = list(5)
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"oJx" = (
+/obj/effect/floor_decal/industrial/loading,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/mining_main/external)
+"pHo" = (
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"qid" = (
+/obj/structure/stairs/west,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"qDH" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
+	},
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/cyan{
+	dir = 4
+	},
+/obj/machinery/meter,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/north{
+	name = "\improper Surface EMT EVA Maintenance Lower"
+	})
+"rqy" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 10
+	},
+/obj/machinery/floodlight,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/north{
+	name = "\improper Surface EMT EVA Maintenance Lower"
+	})
+"rMT" = (
+/obj/machinery/door/airlock/glass_external{
+	frequency = 1379;
+	icon_state = "door_locked";
+	id_tag = "surface_med_airlock_inner";
+	locked = 1
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"skW" = (
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"svW" = (
+/obj/structure/sign/department/medbay,
+/turf/simulated/wall,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"sxd" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"tTx" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/maintenance/medical{
+	name = "Medical Maintenance Access"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"upG" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/north{
+	name = "\improper Surface EMT EVA Maintenance Lower"
+	})
+"uue" = (
+/turf/simulated/wall,
+/area/tether/surfacebase/mining_main/external)
+"uzk" = (
+/obj/machinery/access_button/airlock_exterior{
+	master_tag = "mining_airlock";
+	pixel_x = 25;
+	pixel_y = -8
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/mining_main/external)
+"uTV" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing,
+/obj/structure/cable/green{
+	d1 = 32;
+	d2 = 4;
+	icon_state = "32-4"
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers,
+/obj/machinery/atmospherics/pipe/zpipe/up/supply,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/north{
+	name = "\improper Surface EMT EVA Maintenance Lower"
+	})
+"uYN" = (
+/obj/machinery/access_button/airlock_exterior{
+	master_tag = "surface_med_airlock";
+	pixel_x = 25;
+	pixel_y = -8;
+	req_one_access = list(5)
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
+"vGt" = (
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/cyan,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
 "vNx" = (
 /turf/simulated/floor/plating,
 /area/maintenance/substation/mining)
+"wjc" = (
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23
+	},
+/obj/machinery/atmospherics/pipe/tank/air{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/north{
+	name = "\improper Surface EMT EVA Maintenance Lower"
+	})
+"wPV" = (
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/north{
+	name = "\improper Surface EMT EVA Maintenance Lower"
+	})
+"xvn" = (
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
 "yiv" = (
 /obj/structure/closet/crate,
 /obj/random/maintenance/cargo,
@@ -42461,7 +43176,7 @@ aae
 aae
 aae
 aae
-aae
+aaf
 aaf
 aai
 aap
@@ -42602,10 +43317,10 @@ aae
 aae
 aae
 aae
-aae
-aae
 aaf
 aaf
+aaf
+uzk
 aaq
 aax
 aaO
@@ -42746,8 +43461,8 @@ aaf
 aaf
 aaf
 aaf
-aaf
-aak
+hdM
+aar
 aar
 aar
 aar
@@ -42888,12 +43603,12 @@ aaf
 aaf
 aaf
 aaf
-aaf
+ncR
 aal
 aat
 aay
-aaD
-ajW
+aaE
+aka
 aka
 aka
 aba
@@ -43030,12 +43745,12 @@ aaf
 aaf
 aaf
 aaf
-aaf
+oJx
 aam
 aas
 aaz
 aaE
-ajW
+aka
 aka
 aba
 akc
@@ -43172,8 +43887,8 @@ aaf
 aaf
 aaf
 aaf
-aaf
-aan
+fAG
+aar
 aar
 aar
 aar
@@ -43306,16 +44021,16 @@ aae
 aae
 aae
 aae
-aae
-aae
-aae
-aae
-aae
-aae
-aaf
-aag
 aaf
 aaf
+aaf
+aaf
+aaf
+aaf
+dFk
+aaf
+aaf
+uue
 aah
 aah
 aar
@@ -43449,15 +44164,15 @@ aae
 aae
 aae
 aae
-aae
-aae
-aae
-aae
-aae
 aaf
 aaf
 aaf
 aaf
+aaf
+aaf
+aaf
+aaf
+uue
 aah
 aah
 aar
@@ -43591,15 +44306,15 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aah
+aag
+aan
+uYN
+nLh
+nLh
+hDs
+aaf
+aaf
+uue
 aah
 aah
 aar
@@ -43733,17 +44448,17 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aah
-aah
-aah
-aah
+aak
+aak
+aak
+fhz
+fhz
+svW
+aar
+aar
+aar
+aar
+aar
 aar
 aaF
 aar
@@ -43875,18 +44590,18 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aah
-aah
-aah
-aah
-aar
+aak
+ajW
+dln
+gNQ
+xvn
+aak
+hLH
+aaF
+aaF
+aaF
+aaF
+aaF
 aaF
 ajX
 abd
@@ -44017,17 +44732,17 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aah
-aah
-aah
-aah
+aak
+dVA
+dln
+hbS
+lJX
+aak
+aak
+aak
+aak
+aar
+aar
 aar
 ajX
 aar
@@ -44159,15 +44874,15 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aah
-aah
+aak
+lnv
+dln
+hbS
+lJX
+aak
+qid
+qid
+aak
 aah
 aah
 aar
@@ -44301,15 +45016,15 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aah
-aah
+aak
+ajW
+dln
+vGt
+cIn
+aak
+pHo
+pHo
+aak
 aah
 aah
 aar
@@ -44443,15 +45158,15 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aah
-aah
+aak
+aak
+aak
+lWT
+rMT
+aak
+eoz
+skW
+aak
 aah
 aah
 aar
@@ -44587,13 +45302,13 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aah
-aah
+aak
+oyK
+dJI
+cpZ
+mRo
+skW
+aak
 aah
 aah
 aar
@@ -44729,13 +45444,13 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aah
+aak
+hIt
+bfd
+cpW
+sxd
+muW
+aak
 aah
 aah
 aar
@@ -44871,13 +45586,13 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aah
+aak
+tTx
+aak
+aak
+aak
+aak
+aak
 aah
 aah
 aar
@@ -45013,13 +45728,13 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aah
+iMT
+upG
+jHD
+wjc
+uTV
+mEd
+iMT
 aah
 aah
 aar
@@ -45155,13 +45870,13 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aah
+iMT
+bCL
+dKa
+jdq
+wPV
+oac
+iMT
 aah
 aah
 aar
@@ -45297,13 +46012,13 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aah
+iMT
+rqy
+qDH
+fEh
+mnf
+iYL
+iMT
 aah
 aah
 aar
@@ -45439,13 +46154,13 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
+iMT
+iMT
+iMT
+iMT
+iMT
+iMT
+iMT
 aah
 aah
 aar
