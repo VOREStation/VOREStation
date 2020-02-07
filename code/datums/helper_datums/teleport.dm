@@ -158,6 +158,13 @@
 		precision = rand(1,100)
 
 	var/list/bagholding = teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)
+	//VOREStation Addition Start: Prevent taurriding abuse
+	if(istype(teleatom, /mob/living))
+		var/mob/living/L = teleatom
+		if(LAZYLEN(L.buckled_mobs))
+			for(var/mob/rider in L.buckled_mobs)
+				bagholding += rider.search_contents_for(/obj/item/weapon/storage/backpack/holding)
+	//VOREStation Addition End: Prevent taurriding abuse
 	if(bagholding.len)
 		precision = max(rand(1,100)*bagholding.len,100)
 		if(istype(teleatom, /mob/living))
