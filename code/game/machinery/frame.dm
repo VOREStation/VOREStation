@@ -429,6 +429,7 @@
 				circuit = null
 				if(frame_type.frame_class == FRAME_CLASS_MACHINE)
 					req_components = null
+				update_desc()
 
 		else if(state == FRAME_WIRED)
 			if(frame_type.frame_class == FRAME_CLASS_MACHINE)
@@ -498,27 +499,21 @@
 
 	else if(P.is_wirecutter())
 		if(state == FRAME_WIRED)
-			if(frame_type.frame_class == FRAME_CLASS_COMPUTER)
+			if( \
+				frame_type.frame_class == FRAME_CLASS_COMPUTER || \
+				frame_type.frame_class == FRAME_CLASS_DISPLAY || \
+				frame_type.frame_class == FRAME_CLASS_ALARM || \
+				frame_type.frame_class == FRAME_CLASS_MACHINE \
+			)
 				playsound(src, P.usesound, 50, 1)
-				to_chat(user, "<span class='notice'>You remove the cables.</span>")
-				state = FRAME_FASTENED
-				new /obj/item/stack/cable_coil(src.loc, 5)
-
-			else if(frame_type.frame_class == FRAME_CLASS_DISPLAY)
-				playsound(src, P.usesound, 50, 1)
-				to_chat(user, "<span class='notice'>You remove the cables.</span>")
-				state = FRAME_FASTENED
-				new /obj/item/stack/cable_coil(src.loc, 5)
-
-			else if(frame_type.frame_class == FRAME_CLASS_ALARM)
-				playsound(src, P.usesound, 50, 1)
-				to_chat(user, "<span class='notice'>You remove the cables.</span>")
-				state = FRAME_FASTENED
-				new /obj/item/stack/cable_coil(src.loc, 5)
-
-			else if(frame_type.frame_class == FRAME_CLASS_MACHINE)
-				playsound(src, P.usesound, 50, 1)
-				to_chat(user, "<span class='notice'>You remove the cables.</span>")
+				if (components.len == 0)
+					to_chat(user, "<span class='notice'>You remove the cables.</span>")
+				else
+					to_chat(user, "<span class='notice'>You remove the cables and components.</span>")
+					for(var/obj/item/weapon/W in components)
+						W.forceMove(src.loc)
+					check_components()
+					update_desc()
 				state = FRAME_FASTENED
 				new /obj/item/stack/cable_coil(src.loc, 5)
 
