@@ -47,7 +47,6 @@
 	var/cache_key = "[base_icon]-[material.name]"
 	if(isnull(stool_cache[cache_key]))
 		var/image/I = image(icon, base_icon)
-		//var/image/I = image('icons/obj/furniture.dmi', base_icon) //From Polaris Sync. Not sure if this is a better way of doing it or not. Uncomment if so.
 		if(applies_material_colour) //VOREStation Add - Goes with added var
 			I.color = material.icon_colour
 		stool_cache[cache_key] = I
