@@ -46,12 +46,7 @@
 	// Base icon.
 	var/cache_key = "[base_icon]-[material.name]"
 	if(isnull(stool_cache[cache_key]))
-<<<<<<< HEAD
-		var/image/I = image(icon, base_icon) //VOREStation Edit
-		//var/image/I = image('icons/obj/furniture.dmi', base_icon) //From Polaris Sync. Not sure if this is a better way of doing it or not. Uncomment if so.
-=======
 		var/image/I = image(icon, base_icon)
->>>>>>> 792245a... Merge pull request #6665 from Woodratt/02022020_civilianmaptweak
 		if(applies_material_colour) //VOREStation Add - Goes with added var
 			I.color = material.icon_colour
 		stool_cache[cache_key] = I
