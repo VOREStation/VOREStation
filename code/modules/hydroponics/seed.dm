@@ -455,7 +455,7 @@
 		var/list/banned_chems = list(
 			"adminordrazine",
 			"nutriment",
-			"macrocillin",		//VOREStation Edit Start 24/1/20 - More chems to the blacklist for prefs reasoning,
+			"macrocillin",		//VOREStation Edit: TFF 24/1/20 - More chems to the blacklist for prefs reasoning,
 			"microcillin",
 			"normalcillin",
 			"magicdust"			//VOREStation Edit: Meme reagent as adminspawn only.
