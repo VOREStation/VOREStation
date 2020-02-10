@@ -452,14 +452,16 @@
 	var/additional_chems = rand(0,5)
 
 	if(additional_chems)
+		// VOREStation Edit Start: Modified exclusion list
 		var/list/banned_chems = list(
 			"adminordrazine",
 			"nutriment",
-			"macrocillin",		//VOREStation Edit: TFF 24/1/20 - More chems to the blacklist for prefs reasoning,
+			"macrocillin",
 			"microcillin",
 			"normalcillin",
-			"magicdust"			//VOREStation Edit: Meme reagent as adminspawn only.
+			"magicdust"
 			)
+		// VOREStation Edit End: Modified exclusion list
 
 		for(var/x=1;x<=additional_chems;x++)
 
