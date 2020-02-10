@@ -78,3 +78,11 @@
 /obj/item/weapon/storage/box/glass_extras/sticks
 	name = "box of drink sticks"
 	extra_type = /obj/item/weapon/glass_extra/stick
+
+/obj/item/weapon/storage/box/glasses/coffeecup
+	name = "box of coffee cups"
+	glass_type = /obj/item/weapon/reagent_containers/food/drinks/cup
+
+/obj/item/weapon/storage/box/glasses/coffeemug
+	name = "box of coffee mugs"
+	glass_type = /obj/item/weapon/reagent_containers/food/drinks/britcup

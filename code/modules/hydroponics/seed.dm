@@ -452,11 +452,16 @@
 	var/additional_chems = rand(0,5)
 
 	if(additional_chems)
-
+		// VOREStation Edit Start: Modified exclusion list
 		var/list/banned_chems = list(
 			"adminordrazine",
-			"nutriment"
+			"nutriment",
+			"macrocillin",
+			"microcillin",
+			"normalcillin",
+			"magicdust"
 			)
+		// VOREStation Edit End: Modified exclusion list
 
 		for(var/x=1;x<=additional_chems;x++)
 

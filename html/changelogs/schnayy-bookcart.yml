@@ -1,0 +1,6 @@
+  author: schnayy
+
+delete-after: True
+
+changes: 
+  - rscadd: "Adds book cart to library."
