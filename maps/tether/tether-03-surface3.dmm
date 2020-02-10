@@ -554,12 +554,17 @@
 /turf/simulated/floor/wood,
 /area/maintenance/lower/medsec_maintenance)
 "abn" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/medsec_maintenance)
+/obj/effect/floor_decal/techfloor{
+	dir = 6
+	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/medical/triage)
 "abo" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -6421,14 +6426,15 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "aky" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom)
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/medsec_maintenance)
 "akz" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -8497,6 +8503,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/panic_shelter)
 "aog" = (
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_stairs_three)
 "aoh" = (
@@ -12224,11 +12233,17 @@
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/tether/elevator)
 "auy" = (
-/obj/effect/landmark{
-	name = "droppod_landing"
+/obj/machinery/light{
+	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/surfacebase/outside/outside3)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/recreation_area_restroom)
 "auz" = (
 /obj/item/device/radio/intercom{
 	dir = 1;
@@ -26648,14 +26663,11 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_main)
 "aSu" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
+/obj/effect/landmark{
+	name = "droppod_landing"
 	},
-/obj/effect/floor_decal/techfloor{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/dark,
-/area/tether/surfacebase/medical/triage)
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside3)
 "aSv" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -27926,6 +27938,12 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/medsec_maintenance)
 "aUu" = (
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/tether/surfacebase/shuttle_pad)
+"aUv" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
@@ -35750,7 +35768,7 @@ aac
 aac
 aac
 aac
-aac
+aSu
 aac
 aac
 aac
@@ -36602,7 +36620,7 @@ aac
 aac
 aac
 aac
-auy
+aac
 aac
 aac
 aac
@@ -40286,7 +40304,7 @@ app
 ajR
 aiD
 afj
-aky
+auy
 agF
 afP
 awM
@@ -41759,7 +41777,7 @@ aac
 aac
 aac
 aac
-auy
+aac
 aac
 aac
 aac
@@ -42189,7 +42207,7 @@ aac
 aac
 aac
 aac
-aac
+aSu
 aac
 aac
 aac
@@ -43663,7 +43681,7 @@ aac
 aac
 aac
 aaF
-abn
+aky
 abS
 acy
 adb
@@ -44877,7 +44895,7 @@ aOv
 aKg
 aKj
 aPt
-aPM
+aUu
 aKj
 aKj
 aac
@@ -45579,7 +45597,7 @@ aNk
 aNl
 aNJ
 aNP
-aUu
+aUv
 aKU
 abg
 aOk
@@ -45649,7 +45667,7 @@ aab
 aaq
 aag
 aSo
-aSu
+abn
 aaz
 aca
 aca
@@ -45721,7 +45739,7 @@ aNl
 aNl
 aNK
 aNP
-aUu
+aUv
 aKU
 abg
 aOk
@@ -45863,7 +45881,7 @@ aNm
 aNl
 aNK
 aNP
-aUu
+aUv
 aKU
 abg
 aOk
