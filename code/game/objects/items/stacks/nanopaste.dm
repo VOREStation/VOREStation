@@ -29,10 +29,6 @@
 	if (istype(M,/mob/living/carbon/human))		//Repairing robolimbs
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.get_organ(user.zone_sel.selecting)
-<<<<<<< HEAD
-		//VOREStation Edit Start
-=======
-
 		if(!S)
 			to_chat(user, "<span class='warning'>No body part there to work on!</span>")
 			return 1
@@ -46,7 +42,7 @@
 				to_chat(user, "<span class='warning'>You can't apply [src] through [H.wear_suit]!</span>")
 				return 1
 
->>>>>>> d0159d3... Merge pull request #6666 from Heroman3003/synthpair-fix
+		//VOREStation Edit Start
 		if (S && (S.robotic >= ORGAN_ROBOT))
 			if(!S.get_damage())
 				to_chat(user, "<span class='notice'>Nothing to fix here.</span>")
