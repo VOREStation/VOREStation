@@ -151,7 +151,7 @@
 					rm_controller.dbg("ZM(pa): Replacing [P.type] with [T].")
 					var/turf/newturf = P.ChangeTurf(T)
 					switch(newturf.type)
-						if(/turf/simulated/mineral)
+						if(/turf/simulated/mineral/vacuum)
 							place_resources(newturf)
 
 					newturf.update_icon(1)
@@ -167,7 +167,7 @@
 	#define ARTIFACTSPAWNNUM_LOWER 6
 	#define ARTIFACTSPAWNNUM_UPPER 12 //Replace with difficulty-based ones.
 
-	if(!M.mineral && prob(rm_controller.diffstep_nums[rm_controller.diffstep]/10)) //Difficulty translates directly into ore chance
+	if(!M.mineral && prob(rm_controller.diffstep_chances[rm_controller.diffstep])) //Difficulty translates directly into ore chance
 		rm_controller.dbg("ZM(par): Adding mineral to [M.x],[M.y].")
 		M.make_ore(rm_controller.diffstep >= 3 ? 1 : 0)
 		mineral_rocks += M
@@ -293,7 +293,7 @@
 					break
 		if(SP)
 			rm_controller.dbg("ZM(p): Got a mob spawnpoint, so picking a type.")
-			var/mobchoice = pick(rm_controller.mobs["tier[rm_controller.diffstep]"])
+			var/mobchoice = pickweight(rm_controller.mobs["tier[rm_controller.diffstep]"])
 			rm_controller.dbg("ZM(p): Picked [mobchoice] to spawn.")
 			var/mob/living/newmob = new mobchoice(get_turf(SP))
 			newmob.faction = "asteroid_belt"
@@ -321,7 +321,7 @@
 	mobspawns.Cut()
 	rm_controller.dbg("ZM(rs): Now [mobspawns.len] mobspawns.")
 	for(var/obj/rogue_mobspawner/SP in myarea.mob_spawns)
-		if(prob(rm_controller.diffstep_nums[rm_controller.diffstep]/10))
+		if(prob(rm_controller.diffstep_chances[rm_controller.diffstep]))
 			mobspawns += SP
 			original_mobs++
 	rm_controller.dbg("ZM(rs): Picked [mobspawns.len] new mobspawns with [chance]% chance.")
@@ -380,10 +380,10 @@
 	var/ignored = list(
 	/obj/asteroid_spawner,
 	/obj/rogue_mobspawner,
-	/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onleft,
-	/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onright,
-	/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/ontop,
-	/obj/effect/step_trigger/teleporter/random/rogue/fourbyfour/onbottom)
+	/obj/effect/step_trigger/teleporter/roguemine_loop/north,
+	/obj/effect/step_trigger/teleporter/roguemine_loop/south,
+	/obj/effect/step_trigger/teleporter/roguemine_loop/east,
+	/obj/effect/step_trigger/teleporter/roguemine_loop/west)
 
 	for(var/atom/I in myarea.contents)
 		if(I.type == /turf/space)
@@ -396,7 +396,10 @@
 
 	//A deletion so nice that I give it twice
 	for(var/atom/I in myarea.contents)
-		if(I.type in ignored)
+		if(I.type == /turf/space)
+			I.overlays.Cut()
+			continue
+		else if(I.type in ignored)
 			continue
 		qdel(I)
 		sleep(delay)

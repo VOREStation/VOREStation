@@ -3115,6 +3115,7 @@
 #include "code\modules\rogueminer_vr\controller.dm"
 #include "code\modules\rogueminer_vr\debug.dm"
 #include "code\modules\rogueminer_vr\landmarks.dm"
+#include "code\modules\rogueminer_vr\roguemines_mobs.dm"
 #include "code\modules\rogueminer_vr\wrappers.dm"
 #include "code\modules\rogueminer_vr\zone_console.dm"
 #include "code\modules\rogueminer_vr\zonemaster.dm"
