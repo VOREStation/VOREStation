@@ -10,6 +10,7 @@
 	var/limit_visitors = -1 //Unlimited by default
 	var/pto_cap = 100 //Hours
 	var/require_flavor = FALSE
+	var/ipqualityscore_apikey //API key for ipqualityscore.com
 
 /hook/startup/proc/read_vs_config()
 	var/list/Lines = file2list("config/config.txt")
@@ -58,4 +59,6 @@
 				config.pto_job_change = TRUE
 			if ("require_flavor")
 				config.require_flavor = TRUE
+			if ("ipqualityscore_apikey")
+				config.ipqualityscore_apikey = value
 	return 1

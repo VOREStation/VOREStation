@@ -6036,6 +6036,9 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
 	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
 "akG" = (
@@ -9490,6 +9493,9 @@
 	dir = 8;
 	icon_state = "alarm0";
 	pixel_x = 24
+	},
+/obj/effect/landmark{
+	name = "morphspawn"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_stairs_one)
@@ -21909,6 +21915,9 @@
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
 	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/rnd/xenobiology/xenoflora_storage)
 "aJC" = (
@@ -32133,6 +32142,9 @@
 	dir = 4;
 	pixel_x = -23;
 	pixel_y = 0
+	},
+/obj/effect/landmark{
+	name = "morphspawn"
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)

@@ -133,6 +133,14 @@ obj/machinery/gateway/centerstation/process()
 		M.set_dir(SOUTH)
 		return
 	else
+		//VOREStation Addition Start: Prevent taurriding abuse
+		if(istype(M, /mob/living))
+			var/mob/living/L = M
+			if(LAZYLEN(L.buckled_mobs))
+				var/datum/riding/R = L.riding_datum
+				for(var/rider in L.buckled_mobs)
+					R.force_dismount(rider)
+		//VOREStation Addition End: Prevent taurriding abuse
 		var/obj/effect/landmark/dest = pick(awaydestinations)
 		if(dest)
 			M.forceMove(dest.loc)

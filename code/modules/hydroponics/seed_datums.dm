@@ -168,7 +168,7 @@
 	name = "bloodtomato"
 	seed_name = "blood tomato"
 	display_name = "blood tomato plant"
-	mutants = list("killer")
+	mutants = list("killertomato")
 	chems = list("nutriment" = list(1,10), "blood" = list(1,5))
 	splat_type = /obj/effect/decal/cleanable/blood/splatter
 

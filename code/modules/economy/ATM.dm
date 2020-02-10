@@ -64,7 +64,7 @@ log transactions
 		break
 
 /obj/machinery/atm/emag_act(var/remaining_charges, var/mob/user)
-	if(!emagged)
+	if(emagged)
 		return
 
 	//short out the machine, shoot sparks, spew money!
