@@ -26663,10 +26663,11 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_main)
 "aSu" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
+/obj/effect/landmark{
+	name = "droppod_landing"
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside3)
 "aSv" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -27942,6 +27943,11 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/shuttle_pad)
+"aUv" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether/surface)
 "aUx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -35762,7 +35768,7 @@ aac
 aac
 aac
 aac
-aac
+aSu
 aac
 aac
 aac
@@ -42201,7 +42207,7 @@ aac
 aac
 aac
 aac
-aac
+aSu
 aac
 aac
 aac
@@ -45591,7 +45597,7 @@ aNk
 aNl
 aNJ
 aNP
-aSu
+aUv
 aKU
 abg
 aOk
@@ -45733,7 +45739,7 @@ aNl
 aNl
 aNK
 aNP
-aSu
+aUv
 aKU
 abg
 aOk
@@ -45875,7 +45881,7 @@ aNm
 aNl
 aNK
 aNP
-aSu
+aUv
 aKU
 abg
 aOk

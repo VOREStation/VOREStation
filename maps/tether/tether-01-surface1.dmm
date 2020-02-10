@@ -32271,6 +32271,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/external)
+"bcV" = (
+/obj/effect/landmark{
+	name = "droppod_landing"
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside1)
 "cGJ" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
@@ -33633,7 +33639,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -34602,7 +34608,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -34981,7 +34987,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -38123,7 +38129,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -40135,7 +40141,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -45224,7 +45230,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -47661,7 +47667,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -50335,7 +50341,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -50669,7 +50675,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -50866,7 +50872,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
