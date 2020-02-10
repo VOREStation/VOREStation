@@ -20,6 +20,8 @@
 		return 0
 	if (!(affected.robotic == ORGAN_ROBOT || affected.robotic == ORGAN_LIFELIKE)) //VOREStation Edit - No good on ORGAN_NANOFORM
 		return 0
+	if(coverage_check(user, target, affected, tool))
+		return 0
 	return 1
 
 ///////////////////////////////////////////////////////////////
