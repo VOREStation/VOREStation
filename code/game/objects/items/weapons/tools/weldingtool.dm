@@ -67,6 +67,15 @@
 		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
 			return ..()
 
+		if(S.organ_tag == BP_HEAD)
+			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
+				to_chat(user, "<span class='warning'>You can't apply [src] through [H.head]!</span>")
+				return 1
+		else
+			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
+				to_chat(user, "<span class='warning'>You can't apply [src] through [H.wear_suit]!</span>")
+				return 1
+
 		if(!welding)
 			to_chat(user, "<span class='warning'>You'll need to turn [src] on to patch the damage on [H]'s [S.name]!</span>")
 			return 1

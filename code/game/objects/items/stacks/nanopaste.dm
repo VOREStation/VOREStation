@@ -29,6 +29,19 @@
 	if (istype(M,/mob/living/carbon/human))		//Repairing robolimbs
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/S = H.get_organ(user.zone_sel.selecting)
+		if(!S)
+			to_chat(user, "<span class='warning'>No body part there to work on!</span>")
+			return 1
+
+		if(S.organ_tag == BP_HEAD)
+			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
+				to_chat(user, "<span class='warning'>You can't apply [src] through [H.head]!</span>")
+				return 1
+		else
+			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
+				to_chat(user, "<span class='warning'>You can't apply [src] through [H.wear_suit]!</span>")
+				return 1
+
 		//VOREStation Edit Start
 		if (S && (S.robotic >= ORGAN_ROBOT))
 			if(!S.get_damage())
