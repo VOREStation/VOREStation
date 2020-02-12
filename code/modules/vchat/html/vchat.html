@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html debug="true">
+<head>
+	<title>VChat</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<!-- Styles -->
+	<link rel="stylesheet" type="text/css" href="semantic.min.css" />
+	<link rel="stylesheet" type="text/css" href="vchat-font-embedded.css" />
+	<link rel="stylesheet" type="text/css" href="ss13styles.css" />
+
+	<!-- Important scripts -->
+	<script type="text/javascript" src="polyfills.js"></script>
+	<script type="text/javascript" src="vue.min.js"></script>
+	<script type="text/javascript" src="vchat.js"></script>
+</head>
+
+<body>
+<div id="loader">
+	<p>VChat is still loading. If you see this for a very long time, try the OOC 'Reload VChat' verb, or reconnecting.</p>
+	<p>Sometimes if you're still caching resources, it will take longer than usual.</p>
+</div>
+<div id="app" @mouseup="on_mouseup" style="display: none;">
+
+	<!-- Top menu -->
+	<div class="ui top fixed pointing menu" :class="{ inverted: inverted }">
+		<div v-for="tab in tabs" class="item" :class="{ active: tab.active, inverted: inverted }" @click="switchtab(tab)" @click.ctrl="editmode">
+			{{tab.name}}
+			<div class="ui empty circular label" :class="tab_unread_classes(tab)"></div>
+		</div>
+		
+		<div class="right menu">
+			<div class="item" :class="{ inverted: inverted }" @click="newtab" title="New Tab"><i class="icon-folder-add"></i></div>
+			<div class="item" :class="{ inverted: inverted }" @click="pause" title="Pause Autoscroll">
+				<i class="icon-pause-outline" :class="{ blinkwarn: paused }"></i>
+			</div>
+			<div class="item" :class="{ inverted: inverted }" @click="editmode" title="Edit Mode">
+				<i class="icon-cog-outline" :class="{ blinkwarn: editing }"></i>
+			</div>
+			<div class="item"><span class="ui circular label" title="VChat Latency (Not exactly network latency)" :class="ping_classes">{{latency}}ms</span></div>
+		</div>
+		
+	</div>
+	
+	<!-- Editor box -->
+	<div id="contentbox">
+		<div v-show="editing" id="editbox" class="ui segment" :class="{ inverted: inverted }">
+			<div class="ui internally celled grid">
+				<div class="row">
+					<div class="sixteen wide column">
+						<div class="ui center aligned header" :class="{ inverted: inverted }">
+							<h2>VChat Settings</h2>
+						</div>
+						<div style="text-align: center;"><a href="#" @click="editmode">Close Settings</a></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="eight wide column">
+						<h3>'{{active_tab.name}}' Tab Settings</h3>
+						<span v-show="active_tab.immutable">This tab is immutable. You cannot make changes.</span>
+						<div v-show="!active_tab.immutable">
+							<a href="#" @click="renametab">Rename Tab</a> - <a href="#" @click="deltab">Delete Tab</a>
+							<h5>Messages to display:</h5>
+							<div class="ui form">
+								<div class="grouped fields">
+									<div class="field" v-for="type in type_table">
+										<div v-show="!type.admin || is_admin" class="ui slider checkbox" :class="{ inverted: inverted, disabled: type.required || active_tab.immutable, checked: type.required || active_tab.immutable }">
+											<input type="checkbox" id="type.becomes" :value="type.becomes" v-model="active_tab.classes" :disabled="type.required || active_tab.immutable" :checked="type.required || active_tab.immutable"><label :for="type.becomes">{{type.pretty}}</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="eight wide column">
+						<h3>Global Settings</h3>
+						<div class="ui form" :class="{ inverted: inverted }">
+							<div class="grouped fields">
+								<div class="field">
+									<div class="ui slider checkbox" :class="{ inverted: inverted }">
+										<input type="checkbox" id="darkmode" v-model="inverted"><label for="darkmode">Dark Mode</label>
+									</div>
+								</div>
+								<div class="field">
+									<div class="ui slider checkbox" :class="{ inverted: inverted }">
+										<input type="checkbox" id="combining" v-model="crushing"><label for="combining">Combine Messages</label>
+									</div>
+								</div>
+								<div class="field">
+									<div class="ui slider checkbox" :class="{ inverted: inverted }">
+										<input type="checkbox" id="combining" v-model="animated"><label for="animated">Animate Messages</label>
+									</div>
+								</div>
+							</div>
+							<div class="inline fields">
+								<label>Font Size</label>
+								<div class="field">
+									<div class="ui radio checkbox">
+										<input type="radio" id="fssmall" name="fontsize" v-model="fontsize" value="zoom_less">
+										<label for="fssmall">Small</label>
+									</div>
+								</div>
+								<div class="field">
+									<div class="ui radio checkbox">
+										<input type="radio" id="fsstd" name="fontsize" v-model="fontsize" value="zoom_normal">
+										<label for="fsstd">Standard</label>
+									</div>
+								</div>
+								<div class="field">
+									<div class="ui radio checkbox">
+										<input type="radio" id="fslarge" name="fontsize" v-model="fontsize" value="zoom_more">
+										<label for="fslarge">Large</label>
+									</div>
+								</div>
+							</div>
+							<div class="inline fields">
+								<div class="field">
+									<label># Shown Messages</label>
+									<input :class="{ inverted: inverted }" type="number" name="showingnum" placeholder="200" title="Will affect performance!" v-model.lazy.number="showingnum" required style="width: 5em; padding: 0.1em;">
+								</div>
+							</div>
+						</div>
+						<button class="ui button" :class="{ inverted: inverted }" @click="save_chatlog">Export Chatlog</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Messages box -->
+		<div v-show="!editing" id="messagebox" class="ui segment" :class="active_classes" @click="click_message">
+			<div v-show="messages.length > showingnum" class="vc_system">
+				<span class='notice'>[ {{messages.length - showingnum}} previous messages hidden due to display settings. ]</span>
+			</div>
+			<transition-group name="msgsanim" tag="span" :css="animated">
+				<div v-for="message in shown_messages" :class="[message.category, fontsize]" :key="message.id">
+					<span v-html="message.content"></span>
+					<span v-show="message.repeats > 1" class="ui grey circular label">x{{message.repeats}}</span>
+				</div>
+			</transition-group>
+		</div>
+
+	</div>
+	<!--
+		Tab: {{active_tab}}<br>
+		Classes: {{active_classes}}<br>
+		Fontsize: {{fontsize}}<br>
+	-->
+	
+
+</div>
+
+<script type="text/javascript">
+	//Document Ready
+	(function(){
+		start_vchat();
+		document.getElementById("loader").style.display = 'none';
+		document.getElementById("app").style.display = 'block';
+	})();
+</script>
+</body>
+</html>

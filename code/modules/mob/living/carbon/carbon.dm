@@ -143,8 +143,8 @@
 			var/mob/living/carbon/human/H = src
 			var/datum/gender/T = gender_datums[H.get_visible_gender()]
 			src.visible_message( \
-				"<font color='blue'>[src] examines [T.himself].</font>", \
-				"<font color='blue'>You check yourself for injuries.</font>" \
+				"<span class='notice'>[src] examines [T.himself].</span>", \
+				"<span class='notice'>You check yourself for injuries.</span>" \
 				)
 
 			for(var/obj/item/organ/external/org in H.organs)
