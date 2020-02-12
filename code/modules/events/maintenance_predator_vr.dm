@@ -7,7 +7,6 @@
 								  "Voracious Lizard" = /mob/living/simple_mob/vore/aggressive/dino,
 								  "Giant Frog" = /mob/living/simple_mob/vore/aggressive/frog,
 								  "Giant Rat" = /mob/living/simple_mob/vore/aggressive/rat,
-								  "Crate Mimic" = /mob/living/simple_mob/vore/aggressive/mimic,
 								  "Juvenile Solargrub" = /mob/living/simple_mob/vore/solargrub,
 								  "Red Panda" = /mob/living/simple_mob/vore/redpanda,
 								  "Fennec" = /mob/living/simple_mob/vore/fennec,
