@@ -291,7 +291,7 @@
 
 		var/damage = 0
 		radiation -= 1 * RADIATION_SPEED_COEFFICIENT
-		if(prob(25))
+		if(radiation > 2.5 && prob(25)) // Safe for a little over 2m at the recommended maximum safe dosage of 0.05Bq
 			damage = 1
 
 		if (radiation > 50)
