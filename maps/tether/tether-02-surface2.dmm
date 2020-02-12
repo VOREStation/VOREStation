@@ -2142,6 +2142,9 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
 "aeD" = (
@@ -14060,6 +14063,9 @@
 /obj/effect/floor_decal/corner_techfloor_grid/full{
 	dir = 4
 	},
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
 "azV" = (
@@ -21558,6 +21564,13 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
+"aOt" = (
+/obj/structure/catwalk,
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "aOw" = (
@@ -39158,7 +39171,7 @@ aMq
 aMq
 aDS
 aNG
-aEp
+aOt
 aDS
 aac
 aac

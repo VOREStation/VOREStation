@@ -32277,6 +32277,20 @@
 	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/tether/surfacebase/outside/outside1)
+"bcW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/research)
+"bcX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
 "cGJ" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
@@ -41487,7 +41501,7 @@ aah
 aah
 aah
 aBO
-aHZ
+bcW
 aHc
 aJF
 aKk
@@ -42650,7 +42664,7 @@ aUT
 aVn
 aVn
 aTZ
-aUE
+bcX
 aVn
 aVn
 aXz

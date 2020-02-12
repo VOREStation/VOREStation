@@ -29232,13 +29232,11 @@
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
 "UD" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/effect/landmark{
+	name = "maint_pred"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/belter/station)
+/turf/simulated/floor,
+/area/maintenance/station/ai)
 "UE" = (
 /obj/structure/bed/chair/shuttle,
 /turf/simulated/floor/tiled,
@@ -29415,12 +29413,12 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock)
 "UY" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/structure/catwalk,
+/obj/effect/landmark{
+	name = "maint_pred"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/belter/station)
+/turf/simulated/floor,
+/area/maintenance/cargo)
 "UZ" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 8
@@ -29651,7 +29649,7 @@
 "Vz" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
-	icon_state = "propulsion_r"
+	icon_state = "propulsion_l"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -29683,12 +29681,11 @@
 /area/shuttle/excursion/tether)
 "VC" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+	dir = 8
 	},
-/turf/space,
+/turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/area/shuttle/belter/station)
 "VD" = (
 /obj/machinery/atmospherics/binary/pump,
 /obj/machinery/atmospherics/pipe/simple/hidden/universal{
@@ -29766,15 +29763,23 @@
 /area/ai_core_foyer)
 "VN" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/belter/station)
+"VO" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1/station)
-"VO" = (
+"VP" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+	dir = 8
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -29792,6 +29797,14 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
+"VS" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
 "VU" = (
 /obj/machinery/firealarm{
 	dir = 2;
@@ -40184,11 +40197,11 @@ MK
 Iy
 ab
 NL
-VC
-VN
-VN
-VN
 VO
+VP
+VP
+VP
+VS
 NL
 vt
 vt
@@ -41415,7 +41428,7 @@ jV
 ms
 Oz
 be
-nx
+UY
 RT
 dT
 Se
@@ -44109,7 +44122,7 @@ du
 fy
 fy
 RI
-gK
+UD
 fp
 RN
 eI
@@ -44297,11 +44310,11 @@ Ty
 TL
 QG
 Ue
-UD
-UY
-UY
-UY
 Vz
+VC
+VC
+VC
+VN
 VH
 vt
 vt
