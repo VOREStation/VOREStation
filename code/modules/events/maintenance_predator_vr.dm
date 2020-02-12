@@ -55,6 +55,8 @@
 
 		var/mobtype = possible_mobs[choice]
 		var/mob/living/simple_mob/newPred = new mobtype(get_turf(spawnspot))
+		qdel(newPred.ai_holder)
+		newPred.ai_holder = null
 		newPred.movement_cooldown = 0			// Remove the needless artificial speed cap
 		if(D.mind)
 			D.mind.transfer_to(newPred)
