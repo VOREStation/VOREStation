@@ -29,11 +29,11 @@
 	if(headphones_on)
 		icon_state = "[base_icon]_off"
 		headphones_on = 0
-		usr << "<span class='notice'>You turn the music off.</span>"
+		to_chat(usr, "<span class='notice'>You turn the music off.</span>")
 	else
 		icon_state = "[base_icon]_on"
 		headphones_on = 1
-		usr << "<span class='notice'>You turn the music on.</span>"
+		to_chat(usr, "<span class='notice'>You turn the music on.</span>")
 
 	update_clothing_icon()
 

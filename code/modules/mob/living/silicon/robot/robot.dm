@@ -939,7 +939,7 @@
 								cleaned_human.shoes.clean_blood()
 								cleaned_human.update_inv_shoes(0)
 							cleaned_human.clean_blood(1)
-							cleaned_human << "<font color='red'>[src] cleans your face!</font>"
+							to_chat(cleaned_human, "<font color='red'>[src] cleans your face!</font>")
 
 		if((module_state_1 && istype(module_state_1, /obj/item/weapon/storage/bag/ore)) || (module_state_2 && istype(module_state_2, /obj/item/weapon/storage/bag/ore)) || (module_state_3 && istype(module_state_3, /obj/item/weapon/storage/bag/ore))) //Borgs and drones can use their mining bags ~automagically~ if they're deployed in a slot. Only mining bags, as they're optimized for mass use.
 			var/obj/item/weapon/storage/bag/ore/B = null
@@ -979,7 +979,7 @@
 
 	if(R)
 		R.UnlinkSelf()
-		R << "Buffers flushed and reset. Camera system shutdown.  All systems operational."
+		to_chat(R, "Buffers flushed and reset. Camera system shutdown.  All systems operational.")
 		src.verbs -= /mob/living/silicon/robot/proc/ResetSecurityCodes
 
 /mob/living/silicon/robot/proc/SetLockdown(var/state = 1)
@@ -1088,14 +1088,14 @@
 		return // No point annoying the AI/s about renames and module resets for shells.
 	switch(notifytype)
 		if(ROBOT_NOTIFICATION_NEW_UNIT) //New Robot
-			connected_ai << "<br><br><span class='notice'>NOTICE - New [lowertext(braintype)] connection detected: <a href='byond://?src=\ref[connected_ai];track2=\ref[connected_ai];track=\ref[src]'>[name]</a></span><br>"
+			to_chat(connected_ai, "<br><br><span class='notice'>NOTICE - New [lowertext(braintype)] connection detected: <a href='byond://?src=\ref[connected_ai];track2=\ref[connected_ai];track=\ref[src]'>[name]</a></span><br>")
 		if(ROBOT_NOTIFICATION_NEW_MODULE) //New Module
-			connected_ai << "<br><br><span class='notice'>NOTICE - [braintype] module change detected: [name] has loaded the [first_arg].</span><br>"
+			to_chat(connected_ai, "<br><br><span class='notice'>NOTICE - [braintype] module change detected: [name] has loaded the [first_arg].</span><br>")
 		if(ROBOT_NOTIFICATION_MODULE_RESET)
-			connected_ai << "<br><br><span class='notice'>NOTICE - [braintype] module reset detected: [name] has unloaded the [first_arg].</span><br>"
+			to_chat(connected_ai, "<br><br><span class='notice'>NOTICE - [braintype] module reset detected: [name] has unloaded the [first_arg].</span><br>")
 		if(ROBOT_NOTIFICATION_NEW_NAME) //New Name
 			if(first_arg != second_arg)
-				connected_ai << "<br><br><span class='notice'>NOTICE - [braintype] reclassification detected: [first_arg] is now designated as [second_arg].</span><br>"
+				to_chat(connected_ai, "<br><br><span class='notice'>NOTICE - [braintype] reclassification detected: [first_arg] is now designated as [second_arg].</span><br>")
 		if(ROBOT_NOTIFICATION_AI_SHELL) //New Shell
 			to_chat(connected_ai, "<br><br><span class='notice'>NOTICE - New AI shell detected: <a href='?src=[REF(connected_ai)];track2=[html_encode(name)]'>[name]</a></span><br>")
 

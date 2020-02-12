@@ -44,7 +44,7 @@ var/global/ingredientLimit = 20
 			to_chat(user, "<span class='warning'>As uniquely original as that idea is, you can't figure out how to perform it.</span>")
 			return
 		/*if(!user.drop_item())
-			user << "<span class='warning'>\The [I] is stuck to your hands!</span>"
+			to_chat(user, "<span class='warning'>\The [I] is stuck to your hands!</span>")
 			return*/
 		user.drop_item()
 		I.forceMove(src)

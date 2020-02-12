@@ -111,13 +111,13 @@
 
 /obj/item/weapon/pen/crayon/attack(mob/M as mob, mob/user as mob)
 	if(M == user)
-		user << "You take a bite of the crayon and swallow it."
+		to_chat(user, "You take a bite of the crayon and swallow it.")
 		user.nutrition += 1
 		user.reagents.add_reagent("crayon_dust",min(5,uses)/3)
 		if(uses)
 			uses -= 5
 			if(uses <= 0)
-				to_chat(user,"<span class='warning'>You ate your crayon!</span>")
+				to_chat(user, "<span class='warning'>You ate your crayon!</span>")
 				qdel(src)
 	else
 		..()
@@ -203,7 +203,7 @@
 		if(uses)
 			uses -= 5
 			if(uses <= 0)
-				to_chat(user,"<span class='warning'>You ate the marker!</span>")
+				to_chat(user, "<span class='warning'>You ate the marker!</span>")
 				qdel(src)
 	else
 		..()

@@ -33,7 +33,7 @@
 		if(H.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(!temp || !temp.is_usable())
-			H << "<font color='red'>You can't use your hand.</font>"
+			to_chat(H, "<font color='red'>You can't use your hand.</font>")
 			return
 	if(H.lying)
 		return
@@ -68,16 +68,16 @@
 			// VOREStation Edit - End
 			if(istype(H) && health < config.health_threshold_crit)
 				if(!H.check_has_mouth())
-					H << "<span class='danger'>You don't have a mouth, you cannot perform CPR!</span>"
+					to_chat(H, "<span class='danger'>You don't have a mouth, you cannot perform CPR!</span>")
 					return
 				if(!check_has_mouth())
-					H << "<span class='danger'>They don't have a mouth, you cannot perform CPR!</span>"
+					to_chat(H, "<span class='danger'>They don't have a mouth, you cannot perform CPR!</span>")
 					return
 				if((H.head && (H.head.body_parts_covered & FACE)) || (H.wear_mask && (H.wear_mask.body_parts_covered & FACE)))
-					H << "<span class='notice'>Remove your mask!</span>"
+					to_chat(H, "<span class='notice'>Remove your mask!</span>")
 					return 0
 				if((head && (head.body_parts_covered & FACE)) || (wear_mask && (wear_mask.body_parts_covered & FACE)))
-					H << "<span class='notice'>Remove [src]'s mask!</span>"
+					to_chat(H, "<span class='notice'>Remove [src]'s mask!</span>")
 					return 0
 
 				if (!cpr_time)
@@ -93,7 +93,7 @@
 					return
 
 				H.visible_message("<span class='danger'>\The [H] performs CPR on \the [src]!</span>")
-				H << "<span class='warning'>Repeat at least every 7 seconds.</span>"
+				to_chat(H, "<span class='warning'>Repeat at least every 7 seconds.</span>")
 
 				if(istype(H) && health > config.health_threshold_dead)
 					adjustOxyLoss(-(min(getOxyLoss(), 5)))
@@ -109,14 +109,14 @@
 				return 0
 			for(var/obj/item/weapon/grab/G in src.grabbed_by)
 				if(G.assailant == M)
-					M << "<span class='notice'>You already grabbed [src].</span>"
+					to_chat(M, "<span class='notice'>You already grabbed [src].</span>")
 					return
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
 
 			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
 			if(buckled)
-				M << "<span class='notice'>You cannot grab [src], [TT.he] is buckled in!</span>"
+				to_chat(M, "<span class='notice'>You cannot grab [src], [TT.he] is buckled in!</span>")
 				return
 			if(!G)	//the grab will delete itself in New if affecting is anchored
 				return
@@ -141,7 +141,7 @@
 					G.activate(M)
 					update_inv_wear_mask()
 				else
-					M << "<span class='warning'>\The [G] is already primed! Run!</span>"
+					to_chat(M, "<span class='warning'>\The [G] is already primed! Run!</span>")
 				return
 
 			if(!istype(H))
@@ -155,7 +155,7 @@
 			var/obj/item/organ/external/affecting = get_organ(hit_zone)
 
 			if(!affecting || affecting.is_stump())
-				M << "<span class='danger'>They are missing that limb!</span>"
+				to_chat(M, "<span class='danger'>They are missing that limb!</span>")
 				return TRUE
 
 			switch(src.a_intent)
@@ -408,7 +408,7 @@
 		return FALSE
 
 	if(organ.applied_pressure)
-		user << "<span class='warning'>Someone is already applying pressure to [user == src? "your [organ.name]" : "[src]'s [organ.name]"].</span>"
+		to_chat(user,"<span class='warning'>Someone is already applying pressure to [user == src? "your [organ.name]" : "[src]'s [organ.name]"].</span>")
 		return FALSE
 
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]

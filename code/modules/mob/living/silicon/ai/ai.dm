@@ -197,7 +197,7 @@ var/list/ai_verbs_default = list(
 		if(i != common_radio.channels.len)
 			radio_text += ", "
 
-	src << radio_text
+	to_chat(src,radio_text)
 
 	// Vorestation Edit: Meta Info for AI's. Mostly used for Holograms
 	if (client)
@@ -416,13 +416,13 @@ var/list/ai_verbs_default = list(
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 	if(emergency_message_cooldown)
-		usr << "<span class='warning'>Arrays recycling. Please stand by.</span>"
+		to_chat(usr, "<span class='warning'>Arrays recycling. Please stand by.</span>")
 		return
 	var/input = sanitize(input(usr, "Please choose a message to transmit to [using_map.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 	if(!input)
 		return
 	CentCom_announce(input, usr)
-	usr << "<span class='notice'>Message transmitted.</span>"
+	to_chat(usr, "<span class='notice'>Message transmitted.</span>")
 	log_game("[key_name(usr)] has made an IA [using_map.boss_short] announcement: [input]")
 	emergency_message_cooldown = 1
 	spawn(300)
@@ -775,7 +775,7 @@ var/list/ai_verbs_default = list(
 		var/obj/effect/overlay/aiholo/hologram = holo.masters[src]
 		walk(hologram, 0)
 	//VOREStation Add End
-	usr << "Your hologram will [hologram_follow ? "follow" : "no longer follow"] you now."
+	to_chat(usr, "Your hologram will [hologram_follow ? "follow" : "no longer follow"] you now.")
 
 
 /mob/living/silicon/ai/proc/check_unable(var/flags = 0, var/feedback = 1)

@@ -601,7 +601,7 @@
 
 		if (temp_adj > BODYTEMP_HEATING_MAX) temp_adj = BODYTEMP_HEATING_MAX
 		if (temp_adj < BODYTEMP_COOLING_MAX) temp_adj = BODYTEMP_COOLING_MAX
-		//world << "Breath: [breath.temperature], [src]: [bodytemperature], Adjusting: [temp_adj]"
+		//to_world("Breath: [breath.temperature], [src]: [bodytemperature], Adjusting: [temp_adj]")
 		bodytemperature += temp_adj
 
 	else if(breath.temperature >= species.heat_discomfort_level)
@@ -794,18 +794,18 @@
 		if(nutrition >= 2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
 			nutrition -= 2
 		var/recovery_amt = max((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), BODYTEMP_AUTORECOVERY_MINIMUM)
-		//world << "Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]"
+		//to_world("Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
 //				log_debug("Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
 		bodytemperature += recovery_amt
 	else if(species.cold_level_1 <= bodytemperature && bodytemperature <= species.heat_level_1)
 		var/recovery_amt = body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR
-		//world << "Norm. Difference = [body_temperature_difference]. Recovering [recovery_amt]"
+		//to_world("Norm. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
 //				log_debug("Norm. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
 		bodytemperature += recovery_amt
 	else if(bodytemperature > species.heat_level_1) //360.15 is 310.15 + 50, the temperature where you start to feel effects.
 		//We totally need a sweat system cause it totally makes sense...~
 		var/recovery_amt = min((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), -BODYTEMP_AUTORECOVERY_MINIMUM)	//We're dealing with negative numbers
-		//world << "Hot. Difference = [body_temperature_difference]. Recovering [recovery_amt]"
+		//to_world("Hot. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
 //				log_debug("Hot. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
 		bodytemperature += recovery_amt
 

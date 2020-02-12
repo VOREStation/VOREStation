@@ -144,7 +144,7 @@
 	user.visible_message("<font color='blue'>[user] puts \the [tool] inside [target]'s [get_cavity(affected)] cavity.</font>", \
 	"<font color='blue'>You put \the [tool] inside [target]'s [get_cavity(affected)] cavity.</font>" )
 	if (tool.w_class > get_max_wclass(affected)/2 && prob(50) && (affected.robotic < ORGAN_ROBOT))
-		user << "<font color='red'> You tear some blood vessels trying to fit such a big object in this cavity.</font>"
+		to_chat(user, "<font color='red'> You tear some blood vessels trying to fit such a big object in this cavity.</font>")
 		var/datum/wound/internal_bleeding/I = new (10)
 		affected.wounds += I
 		affected.owner.custom_pain("You feel something rip in your [affected.name]!", 1)

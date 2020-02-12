@@ -137,7 +137,7 @@
 		return 0
 	var/zone = user.zone_sel.selecting
 	if(zone in M.op_stage.in_progress) //Can't operate on someone repeatedly.
-		user << "<span class='warning'>You can't operate on this area while surgery is already in progress.</span>"
+		to_chat(user, "<span class='warning'>You can't operate on this area while surgery is already in progress.</span>")
 		return 1
 	for(var/datum/surgery_step/S in surgery_steps)
 		//check if tool is right or close enough and if this step is possible

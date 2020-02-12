@@ -29,7 +29,7 @@
 
 	examine(mob/user)
 		if(..(user, 1))
-			user << text("The service panel is [src.open ? "open" : "closed"].")
+			to_chat(user, "The service panel is [src.open ? "open" : "closed"].")
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(locked)

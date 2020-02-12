@@ -33,7 +33,7 @@
 		return
 
 	target.verbs |= /client/proc/getruntimelog
-	target << "<font color='red'>You have been granted access to runtime logs. Please use them responsibly or risk being banned.</font>"
+	to_chat(target, "<font color='red'>You have been granted access to runtime logs. Please use them responsibly or risk being banned.</font>")
 	return
 
 
@@ -100,7 +100,7 @@
 	set name = "Show Server Attack Log"
 	set desc = "Shows today's server attack log."
 
-	to_chat(usr,"This verb doesn't actually do anything.")
+	to_chat(usr, "This verb doesn't actually do anything.")
 
 	/*
 	var/path = "data/logs/[time2text(world.realtime,"YYYY/MM-Month/DD-Day")] Attack.log"

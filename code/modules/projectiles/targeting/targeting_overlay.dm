@@ -72,7 +72,7 @@
 		else
 			return
 
-	owner << "<span class='[use_span]'>[aiming_at ? "\The [aiming_at] is" : "Your targets are"] [message].</span>"
+	to_chat(owner, "<span class='[use_span]'>[aiming_at ? "\The [aiming_at] is" : "Your targets are"] [message].</span>")
 	if(aiming_at)
 		to_chat(aiming_at, "<span class='[use_span]'>You are [message].</span>")
 

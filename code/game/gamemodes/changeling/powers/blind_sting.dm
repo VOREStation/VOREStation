@@ -16,7 +16,7 @@
 	if(!T)
 		return 0
 	add_attack_logs(src,T,"Blind sting (changeling)")
-	T << "<span class='danger'>Your eyes burn horrificly!</span>"
+	to_chat(T, "<span class='danger'>Your eyes burn horrificly!</span>")
 	T.disabilities |= NEARSIGHTED
 	var/duration = 300
 	if(src.mind.changeling.recursive_enhancement)

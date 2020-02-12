@@ -332,7 +332,7 @@
 /datum/reagent/nutriment/durian/touch_mob(var/mob/M, var/amount)
 	if(iscarbon(M) && !M.isSynthetic())
 		var/message = pick("Oh god, it smells disgusting here.", "What is that stench?", "That's an awful odor.")
-		to_chat(M,"<span class='alien'>[message]</span>")
+		to_chat(M, "<span class='alien'>[message]</span>")
 		if(prob(CLAMP(amount, 5, 90)))
 			var/mob/living/L = M
 			L.vomit()
@@ -476,7 +476,7 @@
 			return
 
 	if(dose < 5 && (dose == metabolism || prob(5)))
-		M << "<span class='danger'>Your insides feel uncomfortably hot!</span>"
+		to_chat(M, "<span class='danger'>Your insides feel uncomfortably hot!</span>")
 	if(dose >= 5)
 		M.apply_effect(2, AGONY, 0)
 		if(prob(5))
@@ -620,7 +620,7 @@
 		if(!H.can_feel_pain())
 			return
 	if(dose == metabolism)
-		M << "<span class='danger'>You feel like your insides are burning!</span>"
+		to_chat(M, "<span class='danger'>You feel like your insides are burning!</span>")
 	else
 		M.apply_effect(4, AGONY, 0)
 		if(prob(5))

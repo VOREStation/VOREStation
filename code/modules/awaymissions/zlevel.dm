@@ -38,12 +38,12 @@ proc/createRandomZlevel()
 		admin_notice("<font color='red'><B>Loading away mission...</B></font>", R_DEBUG)
 
 		var/map = pick(potentialRandomZlevels)
-		world.log << "Away mission picked: [map]" //VOREStation Add for debugging
+		to_world_log("Away mission picked: [map]") //VOREStation Add for debugging
 		var/file = file(map)
 		if(isfile(file))
 			var/datum/map_template/template = new(file, "away mission")
 			template.load_new_z()
-			world.log << "away mission loaded: [map]"
+			to_world_log("away mission loaded: [map]")
 		/* VOREStation Removal - We do this in the special landmark init instead.
 		for(var/obj/effect/landmark/L in landmarks_list)
 			if (L.name != "awaystart")

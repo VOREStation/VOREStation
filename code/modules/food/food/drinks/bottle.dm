@@ -87,12 +87,12 @@
 	if(!choice)
 		return
 	if(!(choice.density && usr.Adjacent(choice)))
-		usr << "<span class='warning'>You must stay close to your target! You moved away from \the [choice]</span>"
+		to_chat(usr, "<span class='warning'>You must stay close to your target! You moved away from \the [choice]</span>")
 		return
 
 	usr.put_in_hands(src.smash(usr.loc, choice))
 	usr.visible_message("<span class='danger'>\The [usr] smashed \the [src] on \the [choice]!</span>")
-	usr << "<span class='danger'>You smash \the [src] on \the [choice]!</span>"
+	to_chat(usr, "<span class='danger'>You smash \the [src] on \the [choice]!</span>")
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/attackby(obj/item/W, mob/user)
 	if(!rag && istype(W, /obj/item/weapon/reagent_containers/glass/rag))
@@ -112,7 +112,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/proc/insert_rag(obj/item/weapon/reagent_containers/glass/rag/R, mob/user)
 	if(!isGlass || rag) return
 	if(user.unEquip(R))
-		user << "<span class='notice'>You stuff [R] into [src].</span>"
+		to_chat(user, "<span class='notice'>You stuff [R] into [src].</span>")
 		rag = R
 		rag.forceMove(src)
 		flags &= ~OPENCONTAINER

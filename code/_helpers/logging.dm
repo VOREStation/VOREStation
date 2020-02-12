@@ -22,16 +22,16 @@
 	#endif
 
 /proc/error(msg)
-	world.log << "## ERROR: [msg]"
+	to_world_log("## ERROR: [msg]")
 
 #define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [src] usr: [usr].")
 //print a warning message to world.log
 /proc/warning(msg)
-	world.log << "## WARNING: [msg]"
+	to_world_log("## WARNING: [msg]")
 
 //print a testing-mode debug message to world.log
 /proc/testing(msg)
-	world.log << "## TESTING: [msg]"
+	to_world_log("## TESTING: [msg]")
 
 /proc/log_admin(text)
 	admin_log.Add(text)
@@ -49,7 +49,7 @@
 
 	for(var/client/C in admins)
 		if(C.is_preference_enabled(/datum/client_preference/debug/show_debug_logs))
-			C << "DEBUG: [text]"
+			to_chat(C, "DEBUG: [text]")
 
 /proc/log_game(text)
 	if (config.log_game)
@@ -154,12 +154,12 @@
 
 
 /proc/log_to_dd(text)
-	world.log << text //this comes before the config check because it can't possibly runtime
+	to_world_log(text) //this comes before the config check because it can't possibly runtime
 	if(config.log_world_output)
 		WRITE_LOG(diary, "DD_OUTPUT: [text]")
 
 /proc/log_error(text)
-	world.log << text
+	to_world_log(text)
 	WRITE_LOG(error_log, "RUNTIME: [text]")
 
 /proc/log_misc(text)
@@ -174,7 +174,7 @@
 	WRITE_LOG(href_logfile, "HREF: [text]")
 
 /proc/log_unit_test(text)
-	world.log << "## UNIT_TEST: [text]"
+	to_world_log("## UNIT_TEST: [text]")
 
 /proc/report_progress(var/progress_message)
 	admin_notice("<span class='boldannounce'>[progress_message]</span>", R_DEBUG)

@@ -10,6 +10,6 @@
 	var/turf/T = get_turf(hit_atom)
 	if(T)
 		new spawner_type(T)
-		user << "<span class='notice'>You shift \the [src] onto \the [T].</span>"
+		to_chat(user, "<span class='notice'>You shift \the [src] onto \the [T].</span>")
 		log_and_message_admins("has casted [src] at [T.x],[T.y],[T.z].")
 		qdel(src)

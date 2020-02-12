@@ -10,7 +10,7 @@ Slime cube lives here.
 
 /obj/item/slime_cube/attack_self(mob/user as mob)
 	if(!searching)
-		user << "<span class='warning'>You stare at the slimy cube, watching as some activity occurs.</span>"
+		to_chat(user, "<span class='warning'>You stare at the slimy cube, watching as some activity occurs.</span>")
 		request_player()
 
 /obj/item/slime_cube/proc/request_player()
@@ -38,7 +38,7 @@ Slime cube lives here.
 	src.searching = 2
 	var/mob/living/carbon/human/S = new(get_turf(src))
 	S.client = candidate.client
-	S. << "<b>You are a promethean, brought into existence on [station_name()].</b>"
+	to_chat(S., "<b>You are a promethean, brought into existence on [station_name()].</b>")
 	S.mind.assigned_role = "Promethean"
 	S.set_species("Promethean")
 	S.shapeshifter_set_colour("#05FF9B")

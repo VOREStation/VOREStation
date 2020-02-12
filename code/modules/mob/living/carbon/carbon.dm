@@ -91,7 +91,7 @@
 		if (H.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
-			H << "<font color='red'>You can't use your [temp.name]</font>"
+			to_chat(H, "<font color='red'>You can't use your [temp.name]</font>")
 			return
 
 	return
@@ -343,7 +343,7 @@
 	set category = "IC"
 
 	if(usr.sleeping)
-		usr << "<font color='red'>You are already sleeping</font>"
+		to_chat(usr, "<font color='red'>You are already sleeping</font>")
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
 		usr.sleeping = 20 //Short nap

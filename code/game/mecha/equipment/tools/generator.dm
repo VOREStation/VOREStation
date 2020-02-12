@@ -88,7 +88,7 @@
 	if(isnull(result))
 		user.visible_message("[user] tries to shove [weapon] into [src]. What a dumb-ass.","<span class='warning'>[fuel] traces minimal. [weapon] cannot be used as fuel.</span>")
 	else if(!result)
-		user << "Unit is full."
+		to_chat(user, "Unit is full.")
 	else
 		user.visible_message("[user] loads [src] with [fuel].","[result] unit\s of [fuel] successfully loaded.")
 	return
