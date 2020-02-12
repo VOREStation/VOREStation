@@ -50,9 +50,10 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 	if(query.NextRow())
 		validckey = 1
 	if(!validckey)
-		if(!banned_mob || (banned_mob && !IsGuestKey(banned_mob.key)))
-			message_admins("<font color='red'>The validmob system attempted to block [key_name_admin(usr)] from banning [ckey], but the devs jammed a screwdriver into its workings. Please ban whomever deserves it.</font>",1) //VOREStation Edit
-			//return //VOREStation Edit
+		if(!banned_mob || (banned_mob && !IsGuestKey(banned_mob.key))) //VOREStation Edit Start.
+			var/confirm = alert(usr, "This ckey hasn't been seen, are you sure?", "Confirm Badmin" , "Yes", "No")
+			if(confirm == "No")
+				return //VOREStation Edit End
 
 	var/a_ckey
 	var/a_computerid
