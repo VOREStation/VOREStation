@@ -28,7 +28,7 @@
 			var/obj/item/weapon/sample/print/P = new /obj/item/weapon/sample/print(user.loc)
 			P.attack(M, user)
 			to_chat(user,"<span class='notice'>Done printing.</span>")
-	//		user << "<span class='notice'>[M]'s Fingerprints: [md5(M.dna.uni_identity)]</span>"
+	//		to_chat(user,"<span class='notice'>[M]'s Fingerprints: [md5(M.dna.uni_identity)]</span>")
 
 	if(reveal_blood && M.blood_DNA && M.blood_DNA.len)
 		to_chat(user,"<span class='notice'>Blood found on [M]. Analysing...</span>")
@@ -139,7 +139,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	world << "usr is [usr]"
+	to_world("usr is [usr]")
 	display_data(usr)
 
 /obj/item/device/detective_scanner/proc/display_data(var/mob/user)

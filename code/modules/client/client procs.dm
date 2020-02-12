@@ -27,16 +27,16 @@
 		return
 
 	#if defined(TOPIC_DEBUGGING)
-	world << "[src]'s Topic: [href] destined for [hsrc]."
+	to_world("[src]'s Topic: [href] destined for [hsrc].")
 
 	if(href_list["nano_err"]) //nano throwing errors
-		world << "## NanoUI, Subject [src]: " + html_decode(href_list["nano_err"]) //NANO DEBUG HOOK
+		to_world("## NanoUI, Subject [src]: " + html_decode(href_list["nano_err")]) //NANO DEBUG HOOK
 
 	#endif
 
 	//search the href for script injection
 	if( findtext(href,"<script",1,0) )
-		world.log << "Attempted use of scripts within a topic call, by [src]"
+		to_world_log("Attempted use of scripts within a topic call, by [src]")
 		message_admins("Attempted use of scripts within a topic call, by [src]")
 		//del(usr)
 		return
@@ -52,10 +52,10 @@
 
 	if(href_list["irc_msg"])
 		if(!holder && received_irc_pm < world.time - 6000) //Worse they can do is spam IRC for 10 minutes
-			usr << "<span class='warning'>You are no longer able to use this, it's been more then 10 minutes since an admin on IRC has responded to you</span>"
+			to_chat(usr,"<span class='warning'>You are no longer able to use this, it's been more then 10 minutes since an admin on IRC has responded to you</span>")
 			return
 		if(mute_irc)
-			usr << "<span class='warning'You cannot use this as your client has been muted from sending messages to the admins on IRC</span>"
+			to_chat(usr,"<span class='warning'You cannot use this as your client has been muted from sending messages to the admins on IRC</span>")
 			return
 		send2adminirc(href_list["irc_msg"])
 		return
@@ -64,7 +64,7 @@
 
 	//Logs all hrefs
 	if(config && config.log_hrefs && href_logfile)
-		href_logfile << "[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]"
+		to_chat(href_logfile,"[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]")
 
 	switch(href_list["_src_"])
 		if("holder")	hsrc = holder
@@ -449,9 +449,9 @@ client/verb/character_setup()
 	var/http[] = world.Export(request)
 
 	/* Debug
-	world.log << "Requested this: [request]"
+	to_world_log("Requested this: [request]")
 	for(var/entry in http)
-		world.log << "[entry] : [http[entry]]"
+		to_world_log("[entry] : [http[entry]]")
 	*/
 
 	if(!http || !islist(http)) //If we couldn't check, the service might be down, fail-safe.

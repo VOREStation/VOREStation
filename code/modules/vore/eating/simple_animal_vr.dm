@@ -36,7 +36,7 @@
 	if(!istype(user) || user.stat) return
 
 	if(ai_holder.retaliate || (ai_holder.hostile && faction != user.faction))
-		user << "<span class='warning'>This predator isn't friendly, and doesn't give a shit about your opinions of it digesting you.</span>"
+		to_chat(user,"<span class='warning'>This predator isn't friendly, and doesn't give a shit about your opinions of it digesting you.</span>")
 		return
 	if(vore_selected.digest_mode == DM_HOLD)
 		var/confirm = alert(user, "Enabling digestion on [name] will cause it to digest all stomach contents. Using this to break OOC prefs is against the rules. Digestion will reset after 20 minutes.", "Enabling [name]'s Digestion", "Enable", "Cancel")

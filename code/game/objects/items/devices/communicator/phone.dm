@@ -369,7 +369,7 @@
 		while(user.machine == video_source && Adjacent(user))
 			var/turf/T = get_turf(video_source)
 			if(!T || !is_on_same_plane_or_station(T.z, user.z) || !video_source.can_use())
-				user << "<span class='warning'>The screen bursts into static, then goes black.</span>"
+				to_chat(user,"<span class='warning'>The screen bursts into static, then goes black.</span>")
 				video_cleanup(user)
 				return
 			sleep(10)

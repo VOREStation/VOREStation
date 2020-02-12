@@ -47,7 +47,7 @@
 		return 1
 
 	if(!target.reagents.get_free_space())
-		user << "<span class='warning'>[target] is already full.</span>"
+		to_chat(user,"<span class='warning'>[target] is already full.</span>")
 		return 1
 
 	var/trans = supply.trans_to(target, 15)

@@ -852,13 +852,13 @@
 		area.power_environ = (environ >= POWERCHAN_ON)
 //		if (area.name == "AI Chamber")
 //			spawn(10)
-//				world << " [area.name] [area.power_equip]"
+//				to_world(" [area.name] [area.power_equip]")
 	else
 		area.power_light = 0
 		area.power_equip = 0
 		area.power_environ = 0
 //		if (area.name == "AI Chamber")
-//			world << "[area.power_equip]"
+//			to_world("[area.power_equip]")
 	area.power_change()
 
 /obj/machinery/power/apc/proc/isWireCut(var/wireIndex)

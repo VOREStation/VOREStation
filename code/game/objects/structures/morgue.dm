@@ -219,7 +219,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 
 /obj/structure/morgue/crematorium/attack_hand(mob/user as mob)
 	if (cremating)
-		usr << "<span class='warning'>It's locked.</span>"
+		to_chat(usr,"<span class='warning'>It's locked.</span>")
 		return
 	if ((src.connected) && (src.locked == 0))
 		for(var/atom/movable/A as mob|obj in src.connected.loc)

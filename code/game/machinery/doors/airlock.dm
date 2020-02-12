@@ -873,9 +873,9 @@ About the new airlock wires panel:
 			electrify(-1 * activate, 1)
 		if("open")
 			if(src.welded)
-				to_chat(usr,text("The airlock has been welded shut!"))
+				to_chat(usr,"The airlock has been welded shut!")
 			else if(src.locked)
-				to_chat(usr,text("The door bolts are down!"))
+				to_chat(usr,"The door bolts are down!")
 			else if(activate && density)
 				open()
 			else if(!activate && !density)
@@ -885,7 +885,7 @@ About the new airlock wires panel:
 		if("timing")
 			// Door speed control
 			if(src.isWireCut(AIRLOCK_WIRE_SPEED))
-				to_chat(usr,text("The timing wire is cut - Cannot alter timing."))
+				to_chat(usr,"The timing wire is cut - Cannot alter timing.")
 			else if (activate && src.normalspeed)
 				normalspeed = 0
 			else if (!activate && !src.normalspeed)
@@ -908,7 +908,7 @@ About the new airlock wires panel:
 	return src.p_open && (operating < 0 || (!operating && welded && !src.arePowerSystemsOn() && density && (!src.locked || (stat & BROKEN))))
 
 /obj/machinery/door/airlock/attackby(obj/item/C, mob/user as mob)
-	//world << text("airlock attackby src [] obj [] mob []", src, C, user)
+	//to_world("airlock attackby src [src] obj [C] mob [user]")
 	if(!istype(usr, /mob/living/silicon))
 		if(src.isElectrified())
 			if(src.shock(user, 75))

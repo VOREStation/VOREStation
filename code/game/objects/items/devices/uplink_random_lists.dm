@@ -114,5 +114,5 @@ var/datum/uplink_random_selection/all_uplink_selection = new/datum/uplink_random
 
 /proc/debug_uplink_item_assoc_list()
 	for(var/key in uplink.items_assoc)
-		world << "[key] - [uplink.items_assoc[key]]"
+		to_world("[key] - [uplink.items_assoc[key]]")
 #endif

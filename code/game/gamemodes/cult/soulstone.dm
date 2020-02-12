@@ -25,11 +25,11 @@
 	if(istype(M, /mob/living/carbon/human/dummy))
 		return..()
 	if(jobban_isbanned(M, "cultist"))
-		user << "<span class='warning'>This person's soul is too corrupt and cannot be captured!</span>"
+		to_chat(user,"<span class='warning'>This person's soul is too corrupt and cannot be captured!</span>")
 		return..()
 
 	if(M.has_brain_worms()) //Borer stuff - RR
-		user << "<span class='warning'>This being is corrupted by an alien intelligence and cannot be soul trapped.</span>"
+		to_chat(user,"<span class='warning'>This being is corrupted by an alien intelligence and cannot be soul trapped.</span>")
 		return..()
 
 	add_attack_logs(user,M,"Soulstone'd with [src.name]")
@@ -76,7 +76,7 @@
 			for(var/mob/living/simple_mob/construct/shade/A in src)
 				A.status_flags &= ~GODMODE
 				A.canmove = 1
-				A << "<b>You have been released from your prison, but you are still bound to [U.name]'s will. Help them suceed in their goals at all costs.</b>"
+				to_chat(A,"<b>You have been released from your prison, but you are still bound to [U.name]'s will. Help them suceed in their goals at all costs.</b>")
 				A.forceMove(U.loc)
 				A.cancel_camera()
 				src.icon_state = "soulstone"
@@ -107,16 +107,16 @@
 	if(!istype(T))
 		return;
 	if(src.imprinted != "empty")
-		U << "<span class='danger'>Capture failed!</span>: The soul stone has already been imprinted with [src.imprinted]'s mind!"
+		to_chat(U,"<span class='danger'>Capture failed!</span>: The soul stone has already been imprinted with [src.imprinted]'s mind!")
 		return
 	if ((T.health + T.halloss) > config.health_threshold_crit && T.stat != DEAD)
-		U << "<span class='danger'>Capture failed!</span>: Kill or maim the victim first!"
+		to_chat(U,"<span class='danger'>Capture failed!</span>: Kill or maim the victim first!")
 		return
 	if(T.client == null)
-		U << "<span class='danger'>Capture failed!</span>: The soul has already fled it's mortal frame."
+		to_chat(U,"<span class='danger'>Capture failed!</span>: The soul has already fled it's mortal frame.")
 		return
 	if(src.contents.len)
-		U << "<span class='danger'>Capture failed!</span>: The soul stone is full! Use or free an existing soul to make room."
+		to_chat(U,"<span class='danger'>Capture failed!</span>: The soul stone is full! Use or free an existing soul to make room.")
 		return
 
 	for(var/obj/item/W in T)

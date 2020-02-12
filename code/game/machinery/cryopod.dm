@@ -458,7 +458,7 @@
 		// them win or lose based on cryo is silly so we remove the objective.
 		if(O.target == to_despawn.mind)
 			if(O.owner && O.owner.current)
-				O.owner.current << "<span class='warning'>You get the feeling your target is no longer within your reach...</span>"
+				to_chat(O.owner.current,"<span class='warning'>You get the feeling your target is no longer within your reach...</span>")
 			qdel(O)
 
 	//VOREStation Edit - Resleeving.
@@ -697,8 +697,8 @@
 
 		icon_state = occupied_icon_state
 
-		M << "<span class='notice'>[on_enter_occupant_message]</span>"
-		M << "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>"
+		to_chat(M,"<span class='notice'>[on_enter_occupant_message]</span>")
+		to_chat(M,"<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>")
 		set_occupant(M)
 		time_entered = world.time
 		if(ishuman(M) && applies_stasis)

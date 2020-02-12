@@ -1489,14 +1489,14 @@
 /obj/item/weapon/melee/baton/fluff/stunstaff/attack_self(mob/user)
 	if(bcell && bcell.charge > hitcost)
 		status = !status
-		user << "<span class='notice'>[src] is now [status ? "on" : "off"].</span>"
+		to_chat(user,"<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
 		if(status == 0)
 			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 		else
 			playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 	else
 		status = 0
-		user << "<span class='warning'>[src] is out of charge.</span>"
+		to_chat(user,"<span class='warning'>[src] is out of charge.</span>")
 	update_held_icon()
 	add_fingerprint(user)
 

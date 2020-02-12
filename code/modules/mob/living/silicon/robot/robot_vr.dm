@@ -140,7 +140,7 @@
 								cleaned_human.shoes.clean_blood()
 								cleaned_human.update_inv_shoes(0)
 							cleaned_human.clean_blood(1)
-							cleaned_human << "<span class='warning'>[src] cleans your face!</span>"
+							to_chat(cleaned_human,"<span class='warning'>[src] cleans your face!</span>")
 	return
 
 /mob/living/silicon/robot/proc/vr_sprite_check()

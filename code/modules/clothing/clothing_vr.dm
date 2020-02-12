@@ -26,7 +26,7 @@
 			recent_squish = 0
 		for(var/mob/living/M in contents)
 			var/emote = pick(inside_emotes)
-			M << emote
+			to_chat(M,emote)
 	return
 */
 
@@ -79,14 +79,14 @@
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/H = src.loc
 		if(H.shoes == src)
-			H << "<font color='red'>[user]'s tiny body presses against you in \the [src], squirming!</font>"
-			user << "<font color='red'>Your body presses out against [H]'s form! Well, what little you can get to!</font>"
+			to_chat(H,"<font color='red'>[user]'s tiny body presses against you in \the [src], squirming!</font>")
+			to_chat(user,"<font color='red'>Your body presses out against [H]'s form! Well, what little you can get to!</font>")
 		else
-			H << "<font color='red'>[user]'s form shifts around in the \the [src], squirming!</font>"
-			user << "<font color='red'>You move around inside the [src], to no avail.</font>"
+			to_chat(H,"<font color='red'>[user]'s form shifts around in the \the [src], squirming!</font>")
+			to_chat(user,"<font color='red'>You move around inside the [src], to no avail.</font>")
 	else
 		src.visible_message("<font color='red'>\The [src] moves a little!</font>")
-		user << "<font color='red'>You throw yourself against the inside of \the [src]!</font>"
+		to_chat(user,"<font color='red'>You throw yourself against the inside of \the [src]!</font>")
 
 //Mask
 /obj/item/clothing/mask

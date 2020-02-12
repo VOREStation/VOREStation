@@ -572,7 +572,7 @@
 			M.UpdateAppearance()
 		if(prob(removed * 40)) //Additionally, let's make it so there's an 8% chance per tick for a random cosmetic/not guranteed good/bad mutation.
 			randmuti(M)//This should equate to 4 random cosmetic mutations per 10 injected/20 ingested/30 touching units
-			M << "<span class='warning'>You feel odd!</span>"
+			to_chat(M,"<span class='warning'>You feel odd!</span>")
 	M.apply_effect(10 * removed, IRRADIATE, 0)
 
 /datum/reagent/slimejelly
@@ -595,7 +595,7 @@
 			M.add_chemical_effect(CE_PAINKILLER, 60)
 	else
 		if(prob(10))
-			M << "<span class='danger'>Your insides are burning!</span>"
+			to_chat(M,"<span class='danger'>Your insides are burning!</span>")
 			M.adjustToxLoss(rand(100, 300) * removed)
 		else if(prob(40))
 			M.heal_organ_damage(25 * removed, 0)
@@ -949,7 +949,7 @@ datum/reagent/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/re
 			M.UpdateAppearance()
 		if(prob(removed * 40))
 			randmuti(M)
-			M << "<span class='warning'>You feel odd!</span>"
+			to_chat(M,"<span class='warning'>You feel odd!</span>")
 	M.apply_effect(16 * removed, IRRADIATE, 0)
 
 /datum/reagent/aslimetoxin
@@ -979,7 +979,7 @@ datum/reagent/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/re
 			M.UpdateAppearance()
 		if(prob(removed * 40))
 			randmuti(M)
-			M << "<span class='warning'>You feel odd!</span>"
+			to_chat(M,"<span class='warning'>You feel odd!</span>")
 	M.apply_effect(6 * removed, IRRADIATE, 0)
 
 /*

@@ -375,7 +375,7 @@
 		ui_interact(usr)
 
 	if (WS.moving_status != SHUTTLE_IDLE)
-		usr << "<font color='blue'>[WS.visible_name] is busy moving.</font>"
+		to_chat(usr,"<font color='blue'>[WS.visible_name] is busy moving.</font>")
 		return
 
 	if(href_list["rename_command"])
@@ -417,7 +417,7 @@
 			return
 
 		if((WS.last_move + WS.cooldown) > world.time)
-			usr << "<font color='red'>The ship's drive is inoperable while the engines are charging.</font>"
+			to_chat(usr,"<font color='red'>The ship's drive is inoperable while the engines are charging.</font>")
 			return
 
 		var/index = text2num(href_list["traverse"])
