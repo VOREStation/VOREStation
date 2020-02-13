@@ -64,7 +64,7 @@
 
 	//Logs all hrefs
 	if(config && config.log_hrefs && href_logfile)
-		to_chat(href_logfile, "[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]")
+		WRITE_LOG(href_logfile, "[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]")
 
 	switch(href_list["_src_"])
 		if("holder")	hsrc = holder
