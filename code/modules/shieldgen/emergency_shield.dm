@@ -258,14 +258,14 @@
 		return
 
 	if (src.active)
-		user.visible_message("<font color='blue'>\icon[src] [user] deactivated the shield generator.</font>", \
-			"<font color='blue'>\icon[src] You deactivate the shield generator.</font>", \
+		user.visible_message("<font color='blue'>[bicon(src)] [user] deactivated the shield generator.</font>", \
+			"<font color='blue'>[bicon(src)] You deactivate the shield generator.</font>", \
 			"You hear heavy droning fade out.")
 		src.shields_down()
 	else
 		if(anchored)
-			user.visible_message("<font color='blue'>\icon[src] [user] activated the shield generator.</font>", \
-				"<font color='blue'>\icon[src] You activate the shield generator.</font>", \
+			user.visible_message("<font color='blue'>[bicon(src)] [user] activated the shield generator.</font>", \
+				"<font color='blue'>[bicon(src)] You activate the shield generator.</font>", \
 				"You hear heavy droning.")
 			src.shields_up()
 		else

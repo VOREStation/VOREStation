@@ -146,7 +146,7 @@ datum/uplink_item/dd_SortValue()
 
 /datum/uplink_item/item/log_icon()
 	var/obj/I = path
-	return "\icon[I]"
+	return "[bicon(I)]"
 
 /********************************
 *                           	*
@@ -160,7 +160,7 @@ datum/uplink_item/dd_SortValue()
 	if(!default_abstract_uplink_icon)
 		default_abstract_uplink_icon = image('icons/obj/pda.dmi', "pda-syn")
 
-	return "\icon[default_abstract_uplink_icon]"
+	return "[bicon(default_abstract_uplink_icon)]"
 
 /****************
 * Support procs *
