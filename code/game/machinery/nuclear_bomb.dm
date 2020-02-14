@@ -393,13 +393,13 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 		ticker.station_explosion_cinematic(off_station,null)
 		if(ticker.mode)
 			ticker.mode.explosion_in_progress = 0
-			world << "<B>The station was destoyed by the nuclear blast!</B>"
+			to_world("<B>The station was destoyed by the nuclear blast!</B>")
 
 			ticker.mode.station_was_nuked = (off_station<2)	//offstation==1 is a draw. the station becomes irradiated and needs to be evacuated.
 															//kinda shit but I couldn't  get permission to do what I wanted to do.
 
 			if(!ticker.mode.check_finished())//If the mode does not deal with the nuke going off so just reboot because everyone is stuck as is
-				world << "<B>Resetting in 30 seconds!</B>"
+				to_world("<B>Resetting in 30 seconds!</B>")
 
 				feedback_set_details("end_error","nuke - unhandled ending")
 

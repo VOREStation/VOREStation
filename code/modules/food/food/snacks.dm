@@ -581,7 +581,7 @@
 		return ..()
 	if(!(proximity && O.is_open_container()))
 		return
-	user << "You crack \the [src] into \the [O]."
+	to_chat(user, "You crack \the [src] into \the [O].")
 	reagents.trans_to(O, reagents.total_volume)
 	user.drop_from_inventory(src)
 	qdel(src)
@@ -599,10 +599,10 @@
 		var/clr = C.colourName
 
 		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
-			usr << "<font color='blue'>The egg refuses to take on this color!</font>"
+			to_chat(usr, "<font color='blue'>The egg refuses to take on this color!</font>")
 			return
 
-		usr << "<font color='blue'>You color \the [src] [clr]</font>"
+		to_chat(usr, "<font color='blue'>You color \the [src] [clr]</font>")
 		icon_state = "egg-[clr]"
 	else
 		..()
@@ -897,12 +897,12 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket/attack_self(mob/user)
 	if(has_been_heated)
-		user << "<span class='notice'>The heating chemicals have already been spent.</span>"
+		to_chat(user, "<span class='notice'>The heating chemicals have already been spent.</span>")
 		return
 	has_been_heated = 1
 	user.visible_message("<span class='notice'>[user] crushes \the [src] package.</span>", "You crush \the [src] package and feel a comfortable heat build up.")
 	spawn(200)
-		user << "You think \the [src] is ready to eat about now."
+		to_chat(user, "You think \the [src] is ready to eat about now.")
 		heat()
 
 /obj/item/weapon/reagent_containers/food/snacks/brainburger
@@ -1343,7 +1343,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/popcorn/On_Consume()
 	if(prob(unpopped))	//lol ...what's the point?
-		usr << "<font color='red'>You bite down on an un-popped kernel!</font>"
+		to_chat(usr, "<font color='red'>You bite down on an un-popped kernel!</font>")
 		unpopped = max(0, unpopped-1)
 	..()
 
@@ -3480,7 +3480,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/dough/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/material/kitchen/rollingpin))
 		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough(src)
-		user << "You flatten the dough."
+		to_chat(user, "You flatten the dough.")
 		qdel(src)
 
 // slicable into 3xdoughslices
@@ -3530,21 +3530,21 @@
 	// Bun + meatball = burger
 	if(istype(W,/obj/item/weapon/reagent_containers/food/snacks/meatball))
 		new /obj/item/weapon/reagent_containers/food/snacks/monkeyburger(src)
-		user << "You make a burger."
+		to_chat(user, "You make a burger.")
 		qdel(W)
 		qdel(src)
 
 	// Bun + cutlet = hamburger
 	else if(istype(W,/obj/item/weapon/reagent_containers/food/snacks/cutlet))
 		new /obj/item/weapon/reagent_containers/food/snacks/monkeyburger(src)
-		user << "You make a burger."
+		to_chat(user, "You make a burger.")
 		qdel(W)
 		qdel(src)
 
 	// Bun + sausage = hotdog
 	else if(istype(W,/obj/item/weapon/reagent_containers/food/snacks/sausage))
 		new /obj/item/weapon/reagent_containers/food/snacks/hotdog(src)
-		user << "You make a hotdog."
+		to_chat(user, "You make a hotdog.")
 		qdel(W)
 		qdel(src)
 
@@ -3552,7 +3552,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/monkeyburger/attackby(obj/item/weapon/reagent_containers/food/snacks/cheesewedge/W as obj, mob/user as mob)
 	if(istype(W))// && !istype(src,/obj/item/weapon/reagent_containers/food/snacks/cheesewedge))
 		new /obj/item/weapon/reagent_containers/food/snacks/cheeseburger(src)
-		user << "You make a cheeseburger."
+		to_chat(user, "You make a cheeseburger.")
 		qdel(W)
 		qdel(src)
 		return
@@ -3563,7 +3563,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/human/burger/attackby(obj/item/weapon/reagent_containers/food/snacks/cheesewedge/W as obj, mob/user as mob)
 	if(istype(W))
 		new /obj/item/weapon/reagent_containers/food/snacks/cheeseburger(src)
-		user << "You make a cheeseburger."
+		to_chat(user, "You make a cheeseburger.")
 		qdel(W)
 		qdel(src)
 		return

@@ -67,7 +67,7 @@
 	if (istype(W, /obj/item/weapon/shovel))
 		user.visible_message("<span class='notice'>[user] begins to shovel away \the [src].</span>")
 		if(do_after(user, 40))
-			user << "<span class='notice'>You have finished shoveling!</span>"
+			to_chat(user, "<span class='notice'>You have finished shoveling!</span>")
 			qdel(src)
 		return
 

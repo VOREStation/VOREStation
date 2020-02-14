@@ -40,7 +40,7 @@
 			var/turf/T = get_turf(A)
 			if(T)
 				T.clean_deploy(src)
-			user << "<span class='notice'>You have finished mopping!</span>"
+			to_chat(user, "<span class='notice'>You have finished mopping!</span>")
 
 /obj/effect/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/mop_deploy) || istype(I, /obj/item/weapon/soap))

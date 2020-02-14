@@ -81,7 +81,7 @@
 			var/mob/living/M = G.affecting
 			var/obj/occupied = turf_is_crowded()
 			if(occupied)
-				user << "<span class='danger'>There's \a [occupied] in the way.</span>"
+				to_chat(user, "<span class='danger'>There's \a [occupied] in the way.</span>")
 				return
 			if(!user.Adjacent(M))
 				return
@@ -104,7 +104,7 @@
 							if(prob(2))
 								M.embed(S, def_zone = BP_HEAD)
 				else
-					user << "<span class='danger'>You need a better grip to do that!</span>"
+					to_chat(user, "<span class='danger'>You need a better grip to do that!</span>")
 					return
 			else if(G.state > GRAB_AGGRESSIVE || world.time >= (G.last_action + UPGRADE_COOLDOWN))
 				M.forceMove(get_turf(src))
@@ -136,7 +136,7 @@
 		return
 
 	if(can_plate && !material)
-		user << "<span class='warning'>There's nothing to put \the [W] on! Try adding plating to \the [src] first.</span>"
+		to_chat(user, "<span class='warning'>There's nothing to put \the [W] on! Try adding plating to \the [src] first.</span>")
 		return
 
 	if(item_place)

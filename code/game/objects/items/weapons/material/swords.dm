@@ -19,7 +19,7 @@
 
 /obj/item/weapon/material/sword/suicide_act(mob/user)
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	viewers(user) << "<span class='danger'>[user] is falling on the [src.name]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>"
+	to_chat(viewers(user),"<span class='danger'>[user] is falling on the [src.name]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
 	return(BRUTELOSS)
 
 /obj/item/weapon/material/sword/katana

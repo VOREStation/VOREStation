@@ -35,14 +35,14 @@
 	if(!M.mind)	return 0
 	var/job = M.mind.assigned_role
 	if(job != "Detective" && job != "Security Officer" && job != "Warden" && job != "Head of Security")
-		M << "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>"
+		to_chat(M, "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>")
 		return 0
 
 	var/input = sanitizeSafe(input("What do you want to name the gun?", ,""), MAX_NAME_LEN)
 
 	if(src && input && !M.stat && in_range(M,src))
 		name = input
-		M << "You name the gun [input]. Say hello to your new friend."
+		to_chat(M, "You name the gun [input]. Say hello to your new friend.")
 		return 1
 
 /obj/item/weapon/gun/projectile/colt/detective/verb/reskin_gun()
@@ -65,7 +65,7 @@
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]
 		unique_reskin = options[choice]
-		M << "Your gun is now sprited as [choice]. Say hello to your new friend."
+		to_chat(M, "Your gun is now sprited as [choice]. Say hello to your new friend.")
 		return 1
 
 /*//apart of reskins that have two sprites, touching may result in frustration and breaks
@@ -200,7 +200,7 @@
 			if(!user.item_is_in_hands(src))
 				..()
 				return
-			user << "<span class='notice'>You unscrew [silenced] from [src].</span>"
+			to_chat(user, "<span class='notice'>You unscrew [silenced] from [src].</span>")
 			user.put_in_hands(silenced)
 			silenced = 0
 			w_class = ITEMSIZE_SMALL
@@ -211,10 +211,10 @@
 /obj/item/weapon/gun/projectile/pistol/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/weapon/silencer))
 		if(!user.item_is_in_hands(src))	//if we're not in his hands
-			user << "<span class='notice'>You'll need [src] in your hands to do that.</span>"
+			to_chat(user, "<span class='notice'>You'll need [src] in your hands to do that.</span>")
 			return
 		user.drop_item()
-		user << "<span class='notice'>You screw [I] onto [src].</span>"
+		to_chat(user, "<span class='notice'>You screw [I] onto [src].</span>")
 		silenced = I	//dodgy?
 		w_class = ITEMSIZE_NORMAL
 		I.loc = src		//put the silencer into the gun

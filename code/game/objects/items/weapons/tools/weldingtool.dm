@@ -558,11 +558,11 @@
 /obj/item/weapon/weldingtool/electric/examine(mob/user)
 	if(get_dist(src, user) > 1)
 		to_chat(user, desc)
-	else					// The << need to stay, for some reason
+	else
 		if(power_supply)
-			user << text("\icon[] The [] has [] charge left.", src, src.name, get_fuel())
+			to_chat(user, "\icon[src] The [src.name] has [get_fuel()] charge left.")
 		else
-			user << text("\icon[] The [] has no power cell!", src, src.name)
+			to_chat(user, "\icon[src] The [src.name] has no power cell!")
 
 /obj/item/weapon/weldingtool/electric/get_fuel()
 	if(use_external_power)

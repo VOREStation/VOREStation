@@ -19,7 +19,7 @@
 	to_chat(src, "You begin disconnecting from [host]'s synapses and prodding at their internal ear canal.")
 
 	if(!host.stat)
-		host << "An odd, uncomfortable pressure begins to build inside your skull, behind your ear..."
+		to_chat(host, "An odd, uncomfortable pressure begins to build inside your skull, behind your ear...")
 
 	spawn(100)
 
@@ -32,8 +32,8 @@
 		to_chat(src, "You wiggle out of [host]'s ear and plop to the ground.")
 		if(host.mind)
 			if(!host.stat)
-				host << "<span class='danger'>Something slimy wiggles out of your ear and plops to the ground!</span>"
-			host << "<span class='danger'>As though waking from a dream, you shake off the insidious mind control of the brain worm. Your thoughts are your own again.</span>"
+				to_chat(host, "<span class='danger'>Something slimy wiggles out of your ear and plops to the ground!</span>")
+			to_chat(host, "<span class='danger'>As though waking from a dream, you shake off the insidious mind control of the brain worm. Your thoughts are your own again.</span>")
 
 		detatch()
 		leave_host()
@@ -85,7 +85,7 @@
 			to_chat(src, "You cannot get through that host's protective gear.")
 			return
 
-	M << "Something slimy begins probing at the opening of your ear canal..."
+	to_chat(M, "Something slimy begins probing at the opening of your ear canal...")
 	to_chat(src, "You slither up [M] and begin probing at their ear canal...")
 
 	if(!do_after(src,30))
@@ -101,7 +101,7 @@
 	if(M in view(1, src))
 		to_chat(src, "You wiggle into [M]'s ear.")
 		if(!M.stat)
-			M << "Something disgusting and slimy wiggles into your ear!"
+			to_chat(M, "Something disgusting and slimy wiggles into your ear!")
 
 		src.host = M
 		src.forceMove(M)
@@ -261,7 +261,7 @@
 		return
 
 	to_chat(src, "<font color='red'>You focus your psychic lance on [M] and freeze their limbs with a wave of terrible dread.</font>")
-	M << "<font color='red'>You feel a creeping, horrible sense of dread come over you, freezing your limbs and setting your heart racing.</font>"
+	to_chat(M, "<font color='red'>You feel a creeping, horrible sense of dread come over you, freezing your limbs and setting your heart racing.</font>")
 	M.Weaken(10)
 
 	used_dominate = world.time
@@ -292,7 +292,7 @@
 		else
 
 			to_chat(src, "<font color='red'><B>You plunge your probosci deep into the cortex of the host brain, interfacing directly with their nervous system.</B></font>")
-			host << "<font color='red'><B>You feel a strange shifting sensation behind your eyes as an alien consciousness displaces yours.</B></font>"
+			to_chat(host, "<font color='red'><B>You feel a strange shifting sensation behind your eyes as an alien consciousness displaces yours.</B></font>")
 			host.add_language("Cortical Link")
 
 			// host -> brain
@@ -342,7 +342,7 @@
 	set desc = "Send a jolt of electricity through your host, reviving them."
 
 	if(stat != 2)
-		usr << "Your host is already alive."
+		to_chat(usr, "Your host is already alive.")
 		return
 
 	verbs -= /mob/living/carbon/human/proc/jumpstart

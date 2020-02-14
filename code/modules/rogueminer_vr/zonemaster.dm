@@ -302,7 +302,7 @@
 				sleep(delay)
 
 	rm_controller.dbg("ZM(p): Zone generation done.")
-	world.log << "RM(stats): PREP [myarea] at [world.time] with [spawned_mobs.len] mobs, [mineral_rocks.len] minrocks, total of [rockspawns.len] rockspawns, [mobspawns.len] mobspawns." //DEBUG code for playtest stats gathering.
+	to_world_log("RM(stats): PREP [myarea] at [world.time] with [spawned_mobs.len] mobs, [mineral_rocks.len] minrocks, total of [rockspawns.len] rockspawns, [mobspawns.len] mobspawns.") //DEBUG code for playtest stats gathering.
 	prepared_at = world.time
 	rm_controller.mark_ready(src)
 	return myarea
@@ -362,13 +362,13 @@
 
 	rm_controller.adjust_difficulty(tally)
 	rm_controller.dbg("ZM(sz): Finished scoring and adjusted by [tally].")
-	world.log << "RM(stats): SCORE [myarea] for [tally]." //DEBUG code for playtest stats gathering.
+	to_world_log("RM(stats): SCORE [myarea] for [tally].") //DEBUG code for playtest stats gathering.
 	return tally
 
 //Overall 'destroy' proc (marks as unready)
 /datum/rogue/zonemaster/proc/clean_zone(var/delay = 1)
 	rm_controller.dbg("ZM(cz): Cleaning zone with area [myarea].")
-	world.log << "RM(stats): CLEAN start [myarea] at [world.time] prepared at [prepared_at]." //DEBUG code for playtest stats gathering.
+	to_world_log("RM(stats): CLEAN start [myarea] at [world.time] prepared at [prepared_at].") //DEBUG code for playtest stats gathering.
 	rm_controller.unmark_ready(src)
 
 	//Cut these lists so qdel can dereference the things properly
@@ -409,7 +409,7 @@
 	original_mobs = 0
 	prepared_at = 0
 
-	world.log << "RM(stats): CLEAN done [myarea] at [world.time]." //DEBUG code for playtest stats gathering.
+	to_world_log("RM(stats): CLEAN done [myarea] at [world.time].") //DEBUG code for playtest stats gathering.
 
 	rm_controller.dbg("ZM(cz): Finished cleaning up zone area [myarea].")
 	rm_controller.mark_clean(src)

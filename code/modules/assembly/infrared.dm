@@ -64,9 +64,9 @@
 			I.vis_spread(visible)
 			spawn(0)
 				if(I)
-					//world << "infra: setting limit"
+					//to_world("infra: setting limit")
 					I.limit = 8
-					//world << "infra: processing beam \ref[I]"
+					//to_world("infra: processing beam \ref[I]")
 					I.process()
 				return
 	return
@@ -173,11 +173,11 @@
 	return
 
 /obj/effect/beam/i_beam/proc/vis_spread(v)
-	//world << "i_beam \ref[src] : vis_spread"
+	//to_world("i_beam \ref[src] : vis_spread")
 	visible = v
 	spawn(0)
 		if(next)
-			//world << "i_beam \ref[src] : is next [next.type] \ref[next], calling spread"
+			//to_world("i_beam \ref[src] : is next [next.type] \ref[next], calling spread")
 			next.vis_spread(v)
 		return
 	return
@@ -199,34 +199,34 @@
 		invisibility = 0
 
 
-	//world << "now [src.left] left"
+	//to_world("now [src.left] left")
 	var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam(loc)
 	I.master = master
 	I.density = 1
 	I.set_dir(dir)
-	//world << "created new beam \ref[I] at [I.x] [I.y] [I.z]"
+	//to_world("created new beam \ref[I] at [I.x] [I.y] [I.z]")
 	step(I, I.dir)
 
 	if(I)
-		//world << "step worked, now at [I.x] [I.y] [I.z]"
+		//to_world("step worked, now at [I.x] [I.y] [I.z]")
 		if(!(next))
-			//world << "no next"
+			//to_world("no next")
 			I.density = 0
-			//world << "spreading"
+			//to_world("spreading")
 			I.vis_spread(visible)
 			next = I
 			spawn(0)
-				//world << "limit = [limit] "
+				//to_world("limit = [limit] ")
 				if((I && limit > 0))
 					I.limit = limit - 1
-					//world << "calling next process"
+					//to_world("calling next process")
 					I.process()
 				return
 		else
-			//world << "is a next: \ref[next], deleting beam \ref[I]"
+			//to_world("is a next: \ref[next], deleting beam \ref[I]")
 			qdel(I)
 	else
-		//world << "step failed, deleting \ref[next]"
+		//to_world("step failed, deleting \ref[next]")
 		qdel(next)
 	spawn(10)
 		process()

@@ -80,10 +80,10 @@
 	if(ishuman(M))
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if (E && E.damage >= E.min_bruised_damage)
-			M << "<span class='danger'>Your eyes start to burn badly!</span>"
+			to_chat(M, "<span class='danger'>Your eyes start to burn badly!</span>")
 			if(!banglet && !(istype(src , /obj/item/weapon/grenade/flashbang/clusterbang)))
 				if (E.damage >= E.min_broken_damage)
-					M << "<span class='danger'>You can't see anything!</span>"
+					to_chat(M, "<span class='danger'>You can't see anything!</span>")
 	if (M.ear_damage >= 15)
 		to_chat(M, "<span class='danger'>Your ears start to ring badly!</span>")
 		if(!banglet && !(istype(src , /obj/item/weapon/grenade/flashbang/clusterbang)))

@@ -108,12 +108,12 @@
 
 	log_say("(COMMUNE to [key_name(M)]) [text]",src)
 
-	M << "<font color='blue'>Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]</font>"
+	to_chat(M, "<font color='blue'>Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]</font>")
 	if(istype(M,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name == src.species.name)
 			return
-		H << "<font color='red'>Your nose begins to bleed...</font>"
+		to_chat(H, "<font color='red'>Your nose begins to bleed...</font>")
 		H.drip(1)
 
 /mob/living/carbon/human/proc/regurgitate()
@@ -137,7 +137,7 @@
 	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
 	if(msg)
 		log_say("(PWHISPER to [key_name(M)]) [msg]", src)
-		M << "<font color='green'>You hear a strange, alien voice in your head... <i>[msg]</i></font>"
+		to_chat(M, "<font color='green'>You hear a strange, alien voice in your head... <i>[msg]</i></font>")
 		to_chat(src, "<font color='green'>You said: \"[msg]\" to [M]</font>")
 	return
 
@@ -215,7 +215,7 @@
 		else
 			output += "[IO.name] - <span style='color:green;'>OK</span>\n"
 
-	src << output
+	to_chat(src,output)
 
 /mob/living/carbon/human
 	var/next_sonar_ping = 0
@@ -261,7 +261,7 @@
 		else // No need to check distance if they're standing right on-top of us
 			feedback += "right on top of you."
 		feedback += "</span>"
-		src << jointext(feedback,null)
+		to_chat(src,jointext(feedback,null))
 	if(!heard_something)
 		to_chat(src, "<span class='notice'>You hear no movement but your own.</span>")
 

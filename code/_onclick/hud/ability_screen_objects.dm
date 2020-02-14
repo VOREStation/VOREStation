@@ -270,7 +270,7 @@
 
 // Makes the ability be triggered.  The subclasses of this are responsible for carrying it out in whatever way it needs to.
 /obj/screen/ability/proc/activate()
-	world << "[src] had activate() called."
+	to_world("[src] had activate() called.")
 	return
 
 // This checks if the ability can be used.
@@ -305,7 +305,7 @@
 	if(object_used && verb_to_call)
 		call(object_used,verb_to_call)(arguments_to_use)
 //		call(object_used,verb_to_call)(arguments_to_use)
-//		world << "Attempted to call([object_used],[verb_to_call])([arguments_to_use])"
+//		to_world("Attempted to call([object_used],[verb_to_call])([arguments_to_use])")
 //		if(hascall(object_used, verb_to_call))
 //			call(object_used,verb_to_call)(arguments_to_use)
 //		else

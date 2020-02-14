@@ -478,7 +478,7 @@
 		if(cash_stored)
 			overlays += "register_cash"
 	else
-		usr << "<span class='warning'>The cash box is locked.</span>"
+		to_chat(usr, "<span class='warning'>The cash box is locked.</span>")
 
 
 /obj/machinery/cash_register/proc/toggle_anchors(obj/item/weapon/tool/wrench/W, mob/user)

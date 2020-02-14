@@ -27,7 +27,7 @@
 // Stole hacky terrible code from doublebarrel shotgun. -Spades
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/ceremonial/attackby(var/obj/item/A as obj, mob/user as mob)
 	if(istype(A, /obj/item/weapon/surgical/circular_saw) || istype(A, /obj/item/weapon/melee/energy) || istype(A, /obj/item/weapon/pickaxe/plasmacutter) && w_class != ITEMSIZE_NORMAL)
-		user << "<span class='notice'>You begin to shorten the barrel and stock of \the [src].</span>"
+		to_chat(user, "<span class='notice'>You begin to shorten the barrel and stock of \the [src].</span>")
 		if(loaded.len)
 			afterattack(user, user)
 			playsound(user, fire_sound, 50, 1)

@@ -1088,10 +1088,10 @@
 		var/clr = C.colourName
 
 		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
-			to_chat(user,"<span class='warning'>The egg refuses to take on this color!</span>")
+			to_chat(user, "<span class='warning'>The egg refuses to take on this color!</span>")
 			return
 
-		to_chat(user,"<span class='notice'>You color \the [src] [clr]</span>")
+		to_chat(user, "<span class='notice'>You color \the [src] [clr]</span>")
 		icon_state = "egg_roiz_[clr]"
 		desc = "It's a large lizard egg. It has been colored [clr]!"
 		if (clr == "rainbow")
@@ -1303,7 +1303,7 @@
 			H.monkeyize()
 			qdel(src) //One time use.
 	else //If not, do nothing.
-		to_chat(user,"<span class='warning'>You are unable to inject other people.</span>")
+		to_chat(user, "<span class='warning'>You are unable to inject other people.</span>")
 
 /obj/item/weapon/fluff/injector/numb_bite
 	name = "Numbing Venom Injector"
@@ -1317,7 +1317,7 @@
 			H.species.give_numbing_bite() //This was annoying, but this is the easiest way of performing it.
 			qdel(src) //One time use.
 	else //If not, do nothing.
-		to_chat(user,"<span class='warning'>You are unable to inject other people.</span>")
+		to_chat(user, "<span class='warning'>You are unable to inject other people.</span>")
 
 //For 2 handed fluff weapons.
 /obj/item/weapon/material/twohanded/fluff //Twohanded fluff items.
@@ -1489,14 +1489,14 @@
 /obj/item/weapon/melee/baton/fluff/stunstaff/attack_self(mob/user)
 	if(bcell && bcell.charge > hitcost)
 		status = !status
-		user << "<span class='notice'>[src] is now [status ? "on" : "off"].</span>"
+		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
 		if(status == 0)
 			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 		else
 			playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 	else
 		status = 0
-		user << "<span class='warning'>[src] is out of charge.</span>"
+		to_chat(user, "<span class='warning'>[src] is out of charge.</span>")
 	update_held_icon()
 	add_fingerprint(user)
 

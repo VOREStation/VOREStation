@@ -52,7 +52,7 @@
 
 /obj/item/device/assembly/mousetrap/attack_self(mob/living/user as mob)
 	if(!armed)
-		user << "<span class='notice'>You arm [src].</span>"
+		to_chat(user, "<span class='notice'>You arm [src].</span>")
 	else
 		if((CLUMSY in user.mutations) && prob(50))
 			var/which_hand = "l_hand"

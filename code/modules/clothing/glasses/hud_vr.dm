@@ -35,7 +35,7 @@
 
 /obj/item/clothing/glasses/omnihud/proc/flashed()
 	if(flash_prot && ishuman(loc))
-		loc << "<span class='warning'>Your [src.name] darken to try and protect your eyes!</span>"
+		to_chat(loc, "<span class='warning'>Your [src.name] darken to try and protect your eyes!</span>")
 
 /obj/item/clothing/glasses/omnihud/prescribe(var/mob/user)
 	prescription = !prescription
@@ -53,10 +53,10 @@
 
 	var/mob/living/carbon/human/H = user
 	if(!H.glasses || !(H.glasses == src))
-		user << "<span class='warning'>You must be wearing the [src] to see the display.</span>"
+		to_chat(user, "<span class='warning'>You must be wearing the [src] to see the display.</span>")
 	else
 		if(!ar_interact(H))
-			user << "<span class='warning'>The [src] does not have any kind of special display.</span>"
+			to_chat(user, "<span class='warning'>The [src] does not have any kind of special display.</span>")
 
 /obj/item/clothing/glasses/omnihud/proc/ar_interact(var/mob/living/carbon/human/user)
 	return 0 //The base models do nothing.
@@ -145,13 +145,13 @@
 			icon_state = off_state
 			item_state = "[initial(item_state)]-off"
 			usr.update_inv_glasses()
-			usr << "You deactivate the retinal projector on the [src]."
+			to_chat(usr, "You deactivate the retinal projector on the [src].")
 		else
 			active = 1
 			icon_state = initial(icon_state)
 			item_state = initial(item_state)
 			usr.update_inv_glasses()
-			usr << "You activate the retinal projector on the [src]."
+			to_chat(usr, "You activate the retinal projector on the [src].")
 		usr.update_action_buttons()
 
 /obj/item/clothing/glasses/omnihud/all

@@ -363,13 +363,13 @@
 	if(!Adjacent(user) || !video_source) return
 	user.set_machine(video_source)
 	user.reset_view(video_source)
-	to_chat(user,"<span class='notice'>Now viewing video session. To leave camera view, close the communicator window OR: OOC -> Cancel Camera View</span>")
-	to_chat(user,"<span class='notice'>To return to an active video session, use the communicator in your hand.</span>")
+	to_chat(user, "<span class='notice'>Now viewing video session. To leave camera view, close the communicator window OR: OOC -> Cancel Camera View</span>")
+	to_chat(user, "<span class='notice'>To return to an active video session, use the communicator in your hand.</span>")
 	spawn(0)
 		while(user.machine == video_source && Adjacent(user))
 			var/turf/T = get_turf(video_source)
 			if(!T || !is_on_same_plane_or_station(T.z, user.z) || !video_source.can_use())
-				user << "<span class='warning'>The screen bursts into static, then goes black.</span>"
+				to_chat(user, "<span class='warning'>The screen bursts into static, then goes black.</span>")
 				video_cleanup(user)
 				return
 			sleep(10)

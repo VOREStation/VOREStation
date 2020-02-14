@@ -30,11 +30,11 @@
 		return
 
 	if(contents.len <= 0)
-		user << "There are no [icon_type]s left in the box."
+		to_chat(user, "There are no [icon_type]s left in the box.")
 	else if(contents.len == 1)
-		user << "There is one [icon_type] left in the box."
+		to_chat(user, "There is one [icon_type] left in the box.")
 	else
-		user << "There are [contents.len] [icon_type]s in the box."
+		to_chat(user, "There are [contents.len] [icon_type]s in the box.")
 
 	return
 
@@ -245,7 +245,7 @@
 		var/obj/item/clothing/mask/smokable/cigarette/cig = locate() in src
 
 		if(cig == null)
-			user << "<span class='notice'>Looks like the packet is out of cigarettes.</span>"
+			to_chat(user, "<span class='notice'>Looks like the packet is out of cigarettes.</span>")
 			return
 
 		// Instead of running equip_to_slot_if_possible() we check here first,
@@ -259,7 +259,7 @@
 		user.equip_to_slot(cig, slot_wear_mask)
 
 		reagents.maximum_volume = 15 * contents.len
-		user << "<span class='notice'>You take a cigarette out of the pack.</span>"
+		to_chat(user, "<span class='notice'>You take a cigarette out of the pack.</span>")
 		update_icon()
 	else
 		..()

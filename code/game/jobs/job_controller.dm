@@ -18,7 +18,7 @@ var/global/datum/controller/occupations/job_master
 		//var/list/all_jobs = typesof(/datum/job)
 		var/list/all_jobs = list(/datum/job/assistant) | using_map.allowed_jobs
 		if(!all_jobs.len)
-			world << "<span class='warning'>Error setting up jobs, no job datums found!</span>"
+			to_world("<span class='warning'>Error setting up jobs, no job datums found!</span>")
 			return 0
 		for(var/J in all_jobs)
 			var/datum/job/job = new J()
@@ -386,7 +386,7 @@ var/global/datum/controller/occupations/job_master
 							permitted = 0
 
 						if(!permitted)
-							H << "<span class='warning'>Your current species, job or whitelist status does not permit you to spawn with [thing]!</span>"
+							to_chat(H, "<span class='warning'>Your current species, job or whitelist status does not permit you to spawn with [thing]!</span>")
 							continue
 
 						if(G.slot == "implant")
@@ -402,7 +402,7 @@ var/global/datum/controller/occupations/job_master
 							if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
 								custom_equip_leftovers += thing
 							else if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
-								H << "<span class='notice'>Equipping you with \the [thing]!</span>"
+								to_chat(H, "<span class='notice'>Equipping you with \the [thing]!</span>")
 								custom_equip_slots.Add(G.slot)
 							else
 								custom_equip_leftovers.Add(thing)
@@ -423,12 +423,12 @@ var/global/datum/controller/occupations/job_master
 				else
 					var/metadata = H.client.prefs.gear[G.display_name]
 					if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
-						H << "<span class='notice'>Equipping you with \the [thing]!</span>"
+						to_chat(H, "<span class='notice'>Equipping you with \the [thing]!</span>")
 						custom_equip_slots.Add(G.slot)
 					else
 						spawn_in_storage += thing
 		else
-			H << "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator."
+			to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
 
 		H.job = rank
 		log_game("JOINED [key_name(H)] as \"[rank]\"")
@@ -469,12 +469,12 @@ var/global/datum/controller/occupations/job_master
 
 				if(!isnull(B))
 					for(var/thing in spawn_in_storage)
-						H << "<span class='notice'>Placing \the [thing] in your [B.name]!</span>"
+						to_chat(H, "<span class='notice'>Placing \the [thing] in your [B.name]!</span>")
 						var/datum/gear/G = gear_datums[thing]
 						var/metadata = H.client.prefs.gear[G.display_name]
 						G.spawn_item(B, metadata)
 				else
-					H << "<span class='danger'>Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.</span>"
+					to_chat(H, "<span class='danger'>Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.</span>")
 
 		if(istype(H)) //give humans wheelchairs, if they need them.
 			var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
@@ -493,16 +493,16 @@ var/global/datum/controller/occupations/job_master
 					W.color = R.color
 					qdel(R)
 
-		H << "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>"
+		to_chat(H, "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>")
 
 		if(job.supervisors)
-			H << "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>"
+			to_chat(H, "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
 		if(job.has_headset)
 			H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), slot_l_ear)
-			H << "<b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b>"
+			to_chat(H, "<b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b>")
 
 		if(job.req_admin_notify)
-			H << "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>"
+			to_chat(H, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
 
 		// EMAIL GENERATION
 		// Email addresses will be created under this domain name. Mostly for the looks.
@@ -623,7 +623,7 @@ var/global/datum/controller/occupations/job_master
 			.["turf"] = spawnpos.get_spawn_position()
 			.["msg"] = spawnpos.msg
 		else
-			to_chat(C,"Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead.")
+			to_chat(C, "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead.")
 			var/spawning = pick(latejoin)
 			.["turf"] = get_turf(spawning)
 			.["msg"] = "will arrive at the station shortly"  //VOREStation Edit - Grammar but mostly 'shuttle' reference removal, and this also applies to notified spawn-character verb use

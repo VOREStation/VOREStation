@@ -69,8 +69,8 @@
 
 	suicide_act(mob/user)
 		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-		viewers(user) << pick("<span class='danger'>\The [user] is pressing \the [src] to [TU.his] temple and activating it! It looks like [TU.hes] trying to commit suicide.</span>",
-		                       "<span class='danger'>\The [user] is pressing \the [src] to [TU.his] chest and activating it! It looks like [TU.hes] trying to commit suicide.</span>")
+		to_chat(viewers(user),pick("<span class='danger'>\The [user] is pressing \the [src] to [TU.his] temple and activating it! It looks like [TU.hes] trying to commit suicide.</span>",
+		                       "<span class='danger'>\The [user] is pressing \the [src] to [TU.his] chest and activating it! It looks like [TU.hes] trying to commit suicide.</span>"))
 		return (BRUTELOSS)
 
 /*
@@ -94,9 +94,9 @@
 
 	suicide_act(mob/user)
 		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-		viewers(user) << pick("<span class='danger'>\The [user] is slitting [TU.his] wrists with the [src.name]! It looks like [TU.hes] trying to commit suicide.</span>", \
+		to_chat(viewers(user),pick("<span class='danger'>\The [user] is slitting [TU.his] wrists with the [src.name]! It looks like [TU.hes] trying to commit suicide.</span>", \
 		                      "<span class='danger'>\The [user] is slitting [TU.his] throat with the [src.name]! It looks like [TU.hes] trying to commit suicide.</span>", \
-		                      "<span class='danger'>\The [user] is slitting [TU.his] stomach open with the [src.name]! It looks like [TU.hes] trying to commit seppuku.</span>")
+		                      "<span class='danger'>\The [user] is slitting [TU.his] stomach open with the [src.name]! It looks like [TU.hes] trying to commit seppuku.</span>"))
 		return (BRUTELOSS)
 
 /*

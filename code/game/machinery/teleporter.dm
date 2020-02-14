@@ -246,7 +246,7 @@
 	if(istype(M, /mob/living))
 		var/mob/living/MM = M
 		if(MM.check_contents_for(/obj/item/weapon/disk/nuclear))
-			MM << "<span class='warning'>Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through.</span>"
+			to_chat(MM, "<span class='warning'>Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through.</span>")
 			return
 	var/disky = 0
 	for (var/atom/O in M.contents) //I'm pretty sure this accounts for the maximum amount of container in container stacking. --NeoFite
@@ -273,7 +273,7 @@
 	if(istype(M, /mob/living))
 		var/mob/living/MM = M
 		if(MM.check_contents_for(/obj/item/weapon/storage/backpack/holding))
-			MM << "<span class='warning'>The Bluespace interface on your Bag of Holding interferes with the teleport!</span>"
+			to_chat(MM, "<span class='warning'>The Bluespace interface on your Bag of Holding interferes with the teleport!</span>")
 			precision = rand(1,100)
 	if(istype(M, /obj/item/weapon/storage/backpack/holding))
 		precision = rand(1,100)
