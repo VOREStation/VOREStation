@@ -200,7 +200,7 @@
 	var/need_circuit = TRUE
 	var/datum/frame/frame_types/frame_type = new /datum/frame/frame_types/machine
 
-	var/list/components = null
+	var/list/components = list()
 	var/list/req_components = null
 	var/list/req_component_names = null
 
