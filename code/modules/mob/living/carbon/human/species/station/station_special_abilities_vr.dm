@@ -745,6 +745,8 @@
 			to_chat(src,"<span class='warning'>Looks like you lost your chance...</span>")
 			return
 
+		T.add_modifier(/datum/modifier/gory_devourment, 10 SECONDS)
+
 		//Removing an internal organ
 		if(T_int && T_int.damage >= 25) //Internal organ and it's been severely damaged
 			T.apply_damage(15, BRUTE, T_ext) //Damage the external organ they're going through.
