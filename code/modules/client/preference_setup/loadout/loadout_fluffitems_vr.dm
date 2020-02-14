@@ -51,14 +51,14 @@
 	display_name  = "centcom medical uniform"
 	description = "A medical uniform straight from Central Command."
 	ckeywhitelist = list("arokha")
-	character_name = list("Aronai Kadigan")
+	character_name = list("Aronai Sieyes")
 
 /datum/gear/fluff/aronai_ccmedjacket
 	path = /obj/item/clothing/suit/storage/service/sifguard/medical/command
 	display_name  = "centcom medical jacket"
 	description = "A medical jacket straight from Central Command."
 	ckeywhitelist = list("arokha")
-	character_name = list("Aronai Kadigan")
+	character_name = list("Aronai Sieyes")
 
 //  B CKEYS
 /datum/gear/fluff/yuuko_kimono

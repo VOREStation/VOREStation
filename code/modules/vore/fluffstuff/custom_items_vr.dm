@@ -315,7 +315,7 @@
 		to_chat(user, "<span class='warning'>This isn't even an ID card you idiot.</span>")
 		return
 
-//arokha:Aronai Kadigan - Centcom ID (Medical dept)
+//arokha:Aronai Sieyes - Centcom ID (Medical dept)
 /obj/item/weapon/card/id/centcom/station/fluff/aronai
 	registered_name = "CONFIGURE ME"
 	assignment = "CC Medical"
