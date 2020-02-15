@@ -26,10 +26,11 @@
 		desc = desc + " This one seems to be used-up."
 		spent = TRUE
 		if(special_delivery)
-			var/delivery = pick(prob(25);/obj/item/pizzabox/meat,
-				prob(25);/obj/item/pizzabox/margherita,
-				prob(25);/obj/item/pizzabox/vegetable,
-				prob(25);/obj/item/pizzabox/mushroom)
+			var/delivery = pick(prob(20);/obj/item/pizzabox/meat,
+				prob(20);/obj/item/pizzabox/margherita,
+				prob(20);/obj/item/pizzabox/vegetable,
+				prob(20);/obj/item/pizzabox/mushroom,
+				prob(20);/obj/item/pizzabox/pineapple)
 			command_announcement.Announce("SPECIAL DELIVERY PIZZA ORDER #[rand(1000,9999)]-[rand(100,999)] HAS BEEN RECIEVED. SHIPMENT DISPATCHED VIA BALLISTIC SUPPLY POD FOR IMMEDIATE DELIVERY! THANK YOU AND ENJOY YOUR PIZZA!", "WE ALWAYS DELIVER!")
 			var/crash_x = user.x
 			var/crash_y = user.y
