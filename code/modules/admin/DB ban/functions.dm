@@ -50,9 +50,10 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 	if(query.NextRow())
 		validckey = 1
 	if(!validckey)
-		if(!banned_mob || (banned_mob && !IsGuestKey(banned_mob.key)))
-			message_admins("<font color='red'>[key_name_admin(usr)] attempted to ban [ckey], but [ckey] has not been seen yet. Please only ban actual players.</font>",1)
-			return
+		if(!banned_mob || (banned_mob && !IsGuestKey(banned_mob.key))) //VOREStation Edit Start.
+			var/confirm = alert(usr, "This ckey hasn't been seen, are you sure?", "Confirm Badmin" , "Yes", "No")
+			if(confirm == "No")
+				return //VOREStation Edit End
 
 	var/a_ckey
 	var/a_computerid
