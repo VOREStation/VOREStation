@@ -102,7 +102,7 @@
 	HTML += "Categories:"
 	for(var/category in SScircuit.circuit_fabricator_recipe_list)
 		if(category != current_category)
-			HTML += " <a href='?src=\ref[src];category=[category]'>\[[category]\]</a> "
+			HTML += " <a href='byond://?src=\ref[src];category=[category]'>\[[category]\]</a> "
 		else // Bold the button if it's already selected.
 			HTML += " <b>\[[category]\]</b> "
 	HTML += "<hr>"
@@ -117,7 +117,7 @@
 			if((initial(IC.spawn_flags) & IC_SPAWN_RESEARCH) && (!(initial(IC.spawn_flags) & IC_SPAWN_DEFAULT)) && !upgraded)
 				can_build = FALSE
 		if(can_build)
-			HTML += "<A href='?src=\ref[src];build=[path]'>\[[initial(O.name)]\]</A>: [initial(O.desc)]<br>"
+			HTML += "<A href='byond://?src=\ref[src];build=[path]'>\[[initial(O.name)]\]</A>: [initial(O.desc)]<br>"
 		else
 			HTML += "<s>\[[initial(O.name)]\]</s>: [initial(O.desc)]<br>"
 

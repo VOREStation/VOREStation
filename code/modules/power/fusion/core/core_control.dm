@@ -46,22 +46,22 @@
 
 	if(cur_viewed_device)
 		dat += {"
-			<a href='?src=\ref[src];goto_scanlist=1'>Back to overview</a><hr>
+			<a href='byond://?src=\ref[src];goto_scanlist=1'>Back to overview</a><hr>
 			Device ident '[cur_viewed_device.id_tag]' <span style='color: [cur_viewed_device.owned_field ? "green" : "red"]'>[cur_viewed_device.owned_field ? "active" : "inactive"].</span><br>
 			<b>Power status:</b> [cur_viewed_device.avail()]/[cur_viewed_device.active_power_usage] W<br>
 			<hr>
-			<a href='?src=\ref[src];toggle_active=1'>Bring field [cur_viewed_device.owned_field ? "offline" : "online"].</a><br>
+			<a href='byond://?src=\ref[src];toggle_active=1'>Bring field [cur_viewed_device.owned_field ? "offline" : "online"].</a><br>
 			<hr>
 			<b>Field power density (W.m<sup>-3</sup>):</b><br>
-			<a href='?src=\ref[src];str=-1000'>----</a>
-			<a href='?src=\ref[src];str=-100'>--- </a>
-			<a href='?src=\ref[src];str=-10'>--  </a>
-			<a href='?src=\ref[src];str=-1'>-   </a>
-			<a href='?src=\ref[src];str=0'>[cur_viewed_device.field_strength]</a>
-			<a href='?src=\ref[src];str=1'>+   </a>
-			<a href='?src=\ref[src];str=10'>++  </a>
-			<a href='?src=\ref[src];str=100'>+++ </a>
-			<a href='?src=\ref[src];str=1000'>++++</a><hr>
+			<a href='byond://?src=\ref[src];str=-1000'>----</a>
+			<a href='byond://?src=\ref[src];str=-100'>--- </a>
+			<a href='byond://?src=\ref[src];str=-10'>--  </a>
+			<a href='byond://?src=\ref[src];str=-1'>-   </a>
+			<a href='byond://?src=\ref[src];str=0'>[cur_viewed_device.field_strength]</a>
+			<a href='byond://?src=\ref[src];str=1'>+   </a>
+			<a href='byond://?src=\ref[src];str=10'>++  </a>
+			<a href='byond://?src=\ref[src];str=100'>+++ </a>
+			<a href='byond://?src=\ref[src];str=1000'>++++</a><hr>
 		"}
 
 		if(cur_viewed_device.owned_field)

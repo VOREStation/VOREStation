@@ -64,11 +64,11 @@
 	else
 		for(var/atom/movable/O in processing)
 			dat += "Item inserted: [O]<HR>"
-		dat += "<A href='?src=\ref[src];select=1'>Select new color.</A><BR>"
+		dat += "<A href='byond://?src=\ref[src];select=1'>Select new color.</A><BR>"
 		dat += "Color: <font color='[activecolor]'>&#9899;</font>"
-		dat += "<A href='?src=\ref[src];paint=1'>Apply new color.</A><BR><BR>"
-		dat += "<A href='?src=\ref[src];clear=1'>Remove paintjob.</A><BR><BR>"
-		dat += "<A href='?src=\ref[src];eject=1'>Eject item.</A><BR><BR>"
+		dat += "<A href='byond://?src=\ref[src];paint=1'>Apply new color.</A><BR><BR>"
+		dat += "<A href='byond://?src=\ref[src];clear=1'>Remove paintjob.</A><BR><BR>"
+		dat += "<A href='byond://?src=\ref[src];eject=1'>Eject item.</A><BR><BR>"
 
 	var/datum/browser/menu = new(user, "colormate","Color Mate Control Panel", 400, 600, src)
 	menu.set_content(dat)

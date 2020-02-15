@@ -50,12 +50,12 @@
 
 /datum/category_item/player_setup_item/vore/size/content(var/mob/user)
 	. += "<br>"
-	. += "<b>Scale:</b> <a href='?src=\ref[src];size_multiplier=1'>[round(pref.size_multiplier*100)]%</a><br>"
-	. += "<b>Scaled Appearance:</b> <a [pref.fuzzy ? "" : ""] href='?src=\ref[src];toggle_fuzzy=1'><b>[pref.fuzzy ? "Fuzzy" : "Sharp"]</b></a><br>"
+	. += "<b>Scale:</b> <a href='byond://?src=\ref[src];size_multiplier=1'>[round(pref.size_multiplier*100)]%</a><br>"
+	. += "<b>Scaled Appearance:</b> <a [pref.fuzzy ? "" : ""] href='byond://?src=\ref[src];toggle_fuzzy=1'><b>[pref.fuzzy ? "Fuzzy" : "Sharp"]</b></a><br>"
 	. += "<br>"
-	. += "<b>Relative Weight:</b>  <a href='?src=\ref[src];weight=1'>[pref.weight_vr]</a><br>"
-	. += "<b>Weight Gain Rate:</b> <a href='?src=\ref[src];weight_gain=1'>[pref.weight_gain]</a><br>"
-	. += "<b>Weight Loss Rate:</b> <a href='?src=\ref[src];weight_loss=1'>[pref.weight_loss]</a><br>"
+	. += "<b>Relative Weight:</b>  <a href='byond://?src=\ref[src];weight=1'>[pref.weight_vr]</a><br>"
+	. += "<b>Weight Gain Rate:</b> <a href='byond://?src=\ref[src];weight_gain=1'>[pref.weight_gain]</a><br>"
+	. += "<b>Weight Loss Rate:</b> <a href='byond://?src=\ref[src];weight_loss=1'>[pref.weight_loss]</a><br>"
 
 /datum/category_item/player_setup_item/vore/size/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["size_multiplier"])

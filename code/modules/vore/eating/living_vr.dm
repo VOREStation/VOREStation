@@ -104,7 +104,7 @@
 			if((src == G.assailant) && (is_vore_predator(src)))
 				if(!(G.affecting.devourable))
 					to_chat(user, "<span class='notice'>They aren't able to be devoured.</span>")
-					log_and_message_admins("[key_name(src)] ([src.real_name]) attempted to devour [key_name(G.affecting)] ([G.affecting.real_name]) against their prefs ([G.affecting ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[G.affecting.x];Y=[G.affecting.y];Z=[G.affecting.z]'>JMP</a>" : "null"])")
+					log_and_message_admins("[key_name(src)] ([src.real_name]) attempted to devour [key_name(G.affecting)] ([G.affecting.real_name]) against their prefs ([G.affecting ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[G.affecting.x];Y=[G.affecting.y];Z=[G.affecting.z]'>JMP</a>" : "null"])")
 
 					return FALSE
 				if(src.feed_grabbed_to_self(src, G.affecting))
@@ -117,7 +117,7 @@
 			else if((src == G.affecting) && (attacker.a_intent == I_GRAB) && (attacker.zone_sel.selecting == BP_TORSO) && (is_vore_predator(G.affecting)))
 				if(!(G.affecting.feeding))
 					to_chat(user, "<span class='notice'>[G.affecting] isn't willing to be fed.</span>")
-					log_and_message_admins("[key_name(src)] ([src.real_name]) attempted to feed themselves to [key_name(G.affecting)] ([G.affecting.real_name]) against their prefs ([G.affecting ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[G.affecting.x];Y=[G.affecting.y];Z=[G.affecting.z]'>JMP</a>" : "null"])")
+					log_and_message_admins("[key_name(src)] ([src.real_name]) attempted to feed themselves to [key_name(G.affecting)] ([G.affecting.real_name]) against their prefs ([G.affecting ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[G.affecting.x];Y=[G.affecting.y];Z=[G.affecting.z]'>JMP</a>" : "null"])")
 					return FALSE
 				if (attacker.feed_self_to_grabbed(attacker, G.affecting))
 					qdel(G)
@@ -129,11 +129,11 @@
 			else if((src != G.affecting) && (src != G.assailant) && (is_vore_predator(src)))
 				if(!(src.feeding))
 					to_chat(user, "<span class='notice'>[src] isn't willing to be fed.</span>")
-					log_and_message_admins("[key_name(attacker)] ([attacker.real_name]) attempted to feed [key_name(G.affecting)] ([G.affecting.real_name]) to [key_name(src)] ([src.real_name]) against predator's prefs ([src ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>" : "null"])")
+					log_and_message_admins("[key_name(attacker)] ([attacker.real_name]) attempted to feed [key_name(G.affecting)] ([G.affecting.real_name]) to [key_name(src)] ([src.real_name]) against predator's prefs ([src ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>" : "null"])")
 					return FALSE
 				if(!(G.affecting.devourable))
 					to_chat(user, "<span class='notice'>[G.affecting] isn't able to be devoured.</span>")
-					log_and_message_admins("[key_name(attacker)] ([attacker.real_name]) attempted to feed [key_name(G.affecting)] ([G.affecting.real_name]) to [key_name(src)] ([src.real_name]) against prey's prefs ([G.affecting ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[G.affecting.x];Y=[G.affecting.y];Z=[G.affecting.z]'>JMP</a>" : "null"])")
+					log_and_message_admins("[key_name(attacker)] ([attacker.real_name]) attempted to feed [key_name(G.affecting)] ([G.affecting.real_name]) to [key_name(src)] ([src.real_name]) against prey's prefs ([G.affecting ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[G.affecting.x];Y=[G.affecting.y];Z=[G.affecting.z]'>JMP</a>" : "null"])")
 					return FALSE
 
 				if (attacker.feed_grabbed_to_other(attacker, G.affecting, src))
@@ -371,7 +371,7 @@
 		forceMove(get_turf(src)) //Just move me up to the turf, let's not cascade through bellies, there's been a problem, let's just leave.
 		for(var/mob/living/simple_mob/SA in range(10))
 			SA.prey_excludes[src] = world.time
-		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(B.owner)] ([B.owner ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[B.owner.x];Y=[B.owner.y];Z=[B.owner.z]'>JMP</a>" : "null"])")
+		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(B.owner)] ([B.owner ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[B.owner.x];Y=[B.owner.y];Z=[B.owner.z]'>JMP</a>" : "null"])")
 
 		if(!ishuman(B.owner))
 			B.owner.update_icons()
@@ -385,14 +385,14 @@
 		if(!confirm == "Okay" || loc != belly)
 			return
 		//Actual escaping
-		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (BORG) ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
+		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (BORG) ([pred ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
 		belly.go_out(src) //Just force-ejects from the borg as if they'd clicked the eject button.
 
 	//You're in an AI hologram!
 	else if(istype(loc, /obj/effect/overlay/aiholo))
 		var/obj/effect/overlay/aiholo/holo = loc
 		holo.drop_prey() //Easiest way
-		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(holo.master)] (AI HOLO) ([holo ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[holo.x];Y=[holo.y];Z=[holo.z]'>JMP</a>" : "null"])")
+		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(holo.master)] (AI HOLO) ([holo ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[holo.x];Y=[holo.y];Z=[holo.z]'>JMP</a>" : "null"])")
 
 	//Don't appear to be in a vore situation
 	else
@@ -598,7 +598,7 @@
 	if(is_type_in_list(I,edible_trash) | adminbus_trash)
 		if(I.hidden_uplink)
 			to_chat(src, "<span class='warning'>You really should not be eating this.</span>")
-			message_admins("[key_name(src)] has attempted to ingest an uplink item. ([src ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>" : "null"])")
+			message_admins("[key_name(src)] has attempted to ingest an uplink item. ([src ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>" : "null"])")
 			return
 		if(istype(I,/obj/item/device/pda))
 			var/obj/item/device/pda/P = I
@@ -696,7 +696,7 @@
 /mob/living/examine(mob/user, distance, infix, suffix)
 	. = ..(user, distance, infix, suffix)
 	if(showvoreprefs)
-		to_chat(user, "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>")
+		to_chat(user, "<span class='deptradio'><a href='byond://?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>")
 
 /mob/living/Topic(href, href_list)	//Can't find any instances of Topic() being overridden by /mob/living in polaris' base code, even though /mob/living/carbon/human's Topic() has a ..() call
 	if(href_list["vore_prefs"])

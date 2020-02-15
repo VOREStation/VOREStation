@@ -47,15 +47,15 @@
 	else
 		dat += "<b>Energy cell</b>: None<br>"
 	if(auth_card)
-		dat += "<A href='?src=\ref[src];ejectcard=1'>\[[auth_card]\]<a><br>"
+		dat += "<A href='byond://?src=\ref[src];ejectcard=1'>\[[auth_card]\]<a><br>"
 		if(!locked)
-			dat += "<b><A href='?src=\ref[src];toggle_field=1'>[suspension_field ? "Disable" : "Enable"] field</a></b><br>"
+			dat += "<b><A href='byond://?src=\ref[src];toggle_field=1'>[suspension_field ? "Disable" : "Enable"] field</a></b><br>"
 		else
 			dat += "<br>"
 	else
-		dat += "<A href='?src=\ref[src];insertcard=1'>\[------\]<a><br>"
+		dat += "<A href='byond://?src=\ref[src];insertcard=1'>\[------\]<a><br>"
 		if(!locked)
-			dat += "<b><A href='?src=\ref[src];toggle_field=1'>[suspension_field ? "Disable" : "Enable"] field</a></b><br>"
+			dat += "<b><A href='byond://?src=\ref[src];toggle_field=1'>[suspension_field ? "Disable" : "Enable"] field</a></b><br>"
 		else
 			dat += "Enter your ID to begin.<br>"
 
@@ -63,11 +63,11 @@
 	dat += "<hr>"
 	dat += "<font color='blue'><b>Always wear safety gear and consult a field manual before operation.</b></font><br>"
 	if(!locked)
-		dat += "<A href='?src=\ref[src];lock=1'>Lock console</A><br>"
+		dat += "<A href='byond://?src=\ref[src];lock=1'>Lock console</A><br>"
 	else
 		dat += "<br>"
-	dat += "<A href='?src=\ref[src];refresh=1'>Refresh console</A><br>"
-	dat += "<A href='?src=\ref[src];close=1'>Close console</A>"
+	dat += "<A href='byond://?src=\ref[src];refresh=1'>Refresh console</A><br>"
+	dat += "<A href='byond://?src=\ref[src];close=1'>Close console</A>"
 	user << browse(dat, "window=suspension;size=500x400")
 	onclose(user, "suspension")
 

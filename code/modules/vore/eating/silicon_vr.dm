@@ -105,6 +105,6 @@
 	//If you need an ooc_notes copy paste, this is NOT the one to use.
 	var/ooc_notes = master.ooc_notes
 	if(ooc_notes)
-		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[master];ooc_notes=1'>\[View\]</a>\n"
+		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='byond://?src=\ref[master];ooc_notes=1'>\[View\]</a>\n"
 
 	to_chat(user,msg)

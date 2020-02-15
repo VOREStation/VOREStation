@@ -36,7 +36,7 @@
 
 	// VOREStation Edit: Start
 	if(ooc_notes)
-		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a>\n"
+		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='byond://?src=\ref[src];ooc_notes=1'>\[View\]</a>\n"
 	// VOREStation Edit: End
 
 	msg += "*---------*"

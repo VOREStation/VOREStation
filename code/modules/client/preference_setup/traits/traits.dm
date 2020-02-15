@@ -55,7 +55,7 @@ var/list/trait_categories = list() // The categories available for the trait men
 		if(category == current_tab)
 			. += " <span class='linkOn'>[category]</span> "
 		else
-			. += " <a href='?src=\ref[src];select_category=[category]'>[category]</a> "
+			. += " <a href='byond://?src=\ref[src];select_category=[category]'>[category]</a> "
 	. += "</center></td></tr>"
 
 
@@ -70,7 +70,7 @@ var/list/trait_categories = list() // The categories available for the trait men
 			style_class = "linkOff"
 		else if(ticked)
 			style_class = "linkOn"
-		. += "<tr style='vertical-align:top;'><td width=25%><div align='center'><a style='white-space:normal;' [style_class ? "class='[style_class]' " : ""]href='?src=\ref[src];toggle_trait=[html_encode(T.name)]'>[T.name]</a></div></td>"
+		. += "<tr style='vertical-align:top;'><td width=25%><div align='center'><a style='white-space:normal;' [style_class ? "class='[style_class]' " : ""]href='byond://?src=\ref[src];toggle_trait=[html_encode(T.name)]'>[T.name]</a></div></td>"
 //		. += "<td width = 10% style='vertical-align:top'>[G.cost]</td>"
 
 		var/invalidity = T.test_for_invalidity(src)
@@ -86,7 +86,7 @@ var/list/trait_categories = list() // The categories available for the trait men
 //		if(ticked)
 //			. += "<tr><td colspan=3>"
 //			for(var/datum/gear_tweak/tweak in G.gear_tweaks)
-//				. += " <a href='?src=\ref[src];gear=[G.display_name];tweak=\ref[tweak]'>[tweak.get_contents(get_tweak_metadata(G, tweak))]</a>"
+//				. += " <a href='byond://?src=\ref[src];gear=[G.display_name];tweak=\ref[tweak]'>[tweak.get_contents(get_tweak_metadata(G, tweak))]</a>"
 //			. += "</td></tr>"
 	. += "</table>"
 	. = jointext(., null)

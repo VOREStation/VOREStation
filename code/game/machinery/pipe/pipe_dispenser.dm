@@ -23,9 +23,9 @@
 		lines += "<b>[category]:</b><BR>"
 		if(category == "Pipes")
 			// Stupid hack. Fix someday. So tired right now.
-			lines += "<a class='[p_layer == PIPING_LAYER_REGULAR ? "linkOn" : "linkOff"]' href='?src=\ref[src];setlayer=[PIPING_LAYER_REGULAR]'>Regular</a> "
-			lines += "<a class='[p_layer == PIPING_LAYER_SUPPLY ? "linkOn" : "linkOff"]' href='?src=\ref[src];setlayer=[PIPING_LAYER_SUPPLY]'>Supply</a> "
-			lines += "<a class='[p_layer == PIPING_LAYER_SCRUBBER ? "linkOn" : "linkOff"]' href='?src=\ref[src];setlayer=[PIPING_LAYER_SCRUBBER]'>Scrubber</a> "
+			lines += "<a class='[p_layer == PIPING_LAYER_REGULAR ? "linkOn" : "linkOff"]' href='byond://?src=\ref[src];setlayer=[PIPING_LAYER_REGULAR]'>Regular</a> "
+			lines += "<a class='[p_layer == PIPING_LAYER_SUPPLY ? "linkOn" : "linkOff"]' href='byond://?src=\ref[src];setlayer=[PIPING_LAYER_SUPPLY]'>Supply</a> "
+			lines += "<a class='[p_layer == PIPING_LAYER_SCRUBBER ? "linkOn" : "linkOff"]' href='byond://?src=\ref[src];setlayer=[PIPING_LAYER_SCRUBBER]'>Scrubber</a> "
 			lines += "<br>"
 		for(var/datum/pipe_recipe/PI in atmos_pipe_recipes[category])
 			lines += PI.Render(src)
@@ -140,21 +140,21 @@ Nah
 
 ///// Z-Level stuff
 	var/dat = {"<b>Disposal Pipes</b><br><br>
-<A href='?src=\ref[src];dmake=0'>Pipe</A><BR>
-<A href='?src=\ref[src];dmake=1'>Bent Pipe</A><BR>
-<A href='?src=\ref[src];dmake=2'>Junction</A><BR>
-<A href='?src=\ref[src];dmake=3'>Y-Junction</A><BR>
-<A href='?src=\ref[src];dmake=4'>Trunk</A><BR>
-<A href='?src=\ref[src];dmake=5'>Bin</A><BR>
-<A href='?src=\ref[src];dmake=6'>Outlet</A><BR>
-<A href='?src=\ref[src];dmake=7'>Chute</A><BR>
-<A href='?src=\ref[src];dmake=21'>Upwards</A><BR>
-<A href='?src=\ref[src];dmake=22'>Downwards</A><BR>
-<A href='?src=\ref[src];dmake=8'>Sorting</A><BR>
-<A href='?src=\ref[src];dmake=9'>Sorting (Wildcard)</A><BR>
-<A href='?src=\ref[src];dmake=10'>Sorting (Untagged)</A><BR>
-<A href='?src=\ref[src];dmake=11'>Tagger</A><BR>
-<A href='?src=\ref[src];dmake=12'>Tagger (Partial)</A><BR>
+<A href='byond://?src=\ref[src];dmake=0'>Pipe</A><BR>
+<A href='byond://?src=\ref[src];dmake=1'>Bent Pipe</A><BR>
+<A href='byond://?src=\ref[src];dmake=2'>Junction</A><BR>
+<A href='byond://?src=\ref[src];dmake=3'>Y-Junction</A><BR>
+<A href='byond://?src=\ref[src];dmake=4'>Trunk</A><BR>
+<A href='byond://?src=\ref[src];dmake=5'>Bin</A><BR>
+<A href='byond://?src=\ref[src];dmake=6'>Outlet</A><BR>
+<A href='byond://?src=\ref[src];dmake=7'>Chute</A><BR>
+<A href='byond://?src=\ref[src];dmake=21'>Upwards</A><BR>
+<A href='byond://?src=\ref[src];dmake=22'>Downwards</A><BR>
+<A href='byond://?src=\ref[src];dmake=8'>Sorting</A><BR>
+<A href='byond://?src=\ref[src];dmake=9'>Sorting (Wildcard)</A><BR>
+<A href='byond://?src=\ref[src];dmake=10'>Sorting (Untagged)</A><BR>
+<A href='byond://?src=\ref[src];dmake=11'>Tagger</A><BR>
+<A href='byond://?src=\ref[src];dmake=12'>Tagger (Partial)</A><BR>
 "}
 ///// Z-Level stuff
 

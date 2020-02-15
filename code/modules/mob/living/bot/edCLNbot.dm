@@ -77,17 +77,17 @@
 	add_fingerprint(usr)
 
 	dat += "<TT><B>Automatic Station Cleaner v2.0</B></TT><BR><BR>"
-	dat += "Status: <A href='?src=\ref[src];operation=start'>[on ? "On" : "Off"]</A><BR>"
+	dat += "Status: <A href='byond://?src=\ref[src];operation=start'>[on ? "On" : "Off"]</A><BR>"
 	dat += "Behaviour controls are [locked ? "locked" : "unlocked"]<BR>"
 	dat += "Maintenance panel is [open ? "opened" : "closed"]"
 	if(!locked || issilicon(user))
-		dat += "<BR>Cleans Blood: <A href='?src=\ref[src];operation=blood'>[blood ? "Yes" : "No"]</A><BR>"
+		dat += "<BR>Cleans Blood: <A href='byond://?src=\ref[src];operation=blood'>[blood ? "Yes" : "No"]</A><BR>"
 		if(using_map.bot_patrolling)
-			dat += "<BR>Patrol station: <A href='?src=\ref[src];operation=patrol'>[will_patrol ? "Yes" : "No"]</A><BR>"
+			dat += "<BR>Patrol station: <A href='byond://?src=\ref[src];operation=patrol'>[will_patrol ? "Yes" : "No"]</A><BR>"
 	if(open && !locked)
-		dat += "<BR>Red Switch: <A href='?src=\ref[src];operation=red_switch'>[red_switch ? "On" : "Off"]</A><BR>"
-		dat += "<BR>Green Switch: <A href='?src=\ref[src];operation=green_switch'>[green_switch ? "On" : "Off"]</A><BR>"
-		dat += "<BR>Blue Switch: <A href='?src=\ref[src];operation=blue_switch'>[blue_switch ? "On" : "Off"]</A>"
+		dat += "<BR>Red Switch: <A href='byond://?src=\ref[src];operation=red_switch'>[red_switch ? "On" : "Off"]</A><BR>"
+		dat += "<BR>Green Switch: <A href='byond://?src=\ref[src];operation=green_switch'>[green_switch ? "On" : "Off"]</A><BR>"
+		dat += "<BR>Blue Switch: <A href='byond://?src=\ref[src];operation=blue_switch'>[blue_switch ? "On" : "Off"]</A>"
 
 	user << browse("<HEAD><TITLE>Cleaner v2.0 controls</TITLE></HEAD>[dat]", "window=autocleaner")
 	onclose(user, "autocleaner")

@@ -81,13 +81,13 @@
 						//That's an absorbed person you're checking
 						if(M.absorbed)
 							if(user.absorbed)
-								dat += "<a href='?src=\ref[src];outsidepick=\ref[O];outsidebelly=\ref[inside_belly]'><span style='color:purple;'>[O]</span></a>"
+								dat += "<a href='byond://?src=\ref[src];outsidepick=\ref[O];outsidebelly=\ref[inside_belly]'><span style='color:purple;'>[O]</span></a>"
 								continue
 							else
 								continue
 
 					//Anything else
-					dat += "<a href='?src=\ref[src];outsidepick=\ref[O];outsidebelly=\ref[inside_belly]'>[O]&#8203;</a>"
+					dat += "<a href='byond://?src=\ref[src];outsidepick=\ref[O];outsidebelly=\ref[inside_belly]'>[O]&#8203;</a>"
 
 					//Zero-width space, for wrapping
 					dat += "&#8203;"
@@ -100,9 +100,9 @@
 	for(var/belly in user.vore_organs)
 		var/obj/belly/B = belly
 		if(B == selected)
-			dat += "<li style='float: left'><a href='?src=\ref[src];bellypick=\ref[B]'><b>[B.name]</b>"
+			dat += "<li style='float: left'><a href='byond://?src=\ref[src];bellypick=\ref[B]'><b>[B.name]</b>"
 		else
-			dat += "<li style='float: left'><a href='?src=\ref[src];bellypick=\ref[B]'>[B.name]"
+			dat += "<li style='float: left'><a href='byond://?src=\ref[src];bellypick=\ref[B]'>[B.name]"
 
 		var/spanstyle
 		switch(B.digest_mode)
@@ -152,7 +152,7 @@
 		dat += "<span style='[spanstyle]'> ([B.contents.len])</span></a></li>"
 
 	if(user.vore_organs.len < BELLIES_MAX)
-		dat += "<li style='float: left'><a href='?src=\ref[src];newbelly=1'>New+</a></li>"
+		dat += "<li style='float: left'><a href='byond://?src=\ref[src];newbelly=1'>New+</a></li>"
 	dat += "</ol>"
 	dat += "<HR>"
 
@@ -170,39 +170,39 @@
 
 					//Absorbed gets special color OOoOOOOoooo
 					if(M.absorbed)
-						dat += "<a href='?src=\ref[src];insidepick=\ref[O]'><span style='color:purple;'>[O]</span></a>"
+						dat += "<a href='byond://?src=\ref[src];insidepick=\ref[O]'><span style='color:purple;'>[O]</span></a>"
 						continue
 
 				//Anything else
-				dat += "<a href='?src=\ref[src];insidepick=\ref[O]'>[O]</a>"
+				dat += "<a href='byond://?src=\ref[src];insidepick=\ref[O]'>[O]</a>"
 
 				//Zero-width space, for wrapping
 				dat += "&#8203;"
 
 			//If there's more than one thing, add an [All] button
 			if(selected.contents.len > 1)
-				dat += "<a href='?src=\ref[src];insidepick=1;pickall=1'>\[All\]</a>"
+				dat += "<a href='byond://?src=\ref[src];insidepick=1;pickall=1'>\[All\]</a>"
 
 			dat += "<HR>"
 
 		//Belly Name Button
-		dat += "<a href='?src=\ref[src];b_name=\ref[selected]'>Name:</a>"
+		dat += "<a href='byond://?src=\ref[src];b_name=\ref[selected]'>Name:</a>"
 		dat += " '[selected.name]'"
 
 		//Belly Type button
-		dat += "<br><a href='?src=\ref[src];b_wetness=\ref[selected]'>Is this belly fleshy:</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_wetness=\ref[selected]'>Is this belly fleshy:</a>"
 		dat += "[selected.is_wet ? "Yes" : "No"]"
 		if(selected.is_wet)
-			dat += "<br><a href='?src=\ref[src];b_wetloop=\ref[selected]'>Internal loop for prey?:</a>"
+			dat += "<br><a href='byond://?src=\ref[src];b_wetloop=\ref[selected]'>Internal loop for prey?:</a>"
 			dat += "[selected.wet_loop ? "Yes" : "No"]"
 
 		//Digest Mode Button
-		dat += "<br><a href='?src=\ref[src];b_mode=\ref[selected]'>Belly Mode:</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_mode=\ref[selected]'>Belly Mode:</a>"
 		var/mode = selected.digest_mode
 		dat += " [mode == DM_TRANSFORM ? selected.tf_mode : mode]"
 
 		//Mode addons button
-		dat += "<br><a href='?src=\ref[src];b_addons=\ref[selected]'>Mode Addons:</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_addons=\ref[selected]'>Mode Addons:</a>"
 		var/list/flag_list = list()
 		for(var/flag_name in selected.mode_flag_list)
 			if(selected.mode_flags & selected.mode_flag_list[flag_name])
@@ -213,161 +213,161 @@
 			dat += " None"
 
 		//Item Digest Mode Button
-		dat += "<br><a href='?src=\ref[src];b_item_mode=\ref[selected]'>Item Mode:</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_item_mode=\ref[selected]'>Item Mode:</a>"
 		dat += "[selected.item_digest_mode]"
 
 		//Will it contaminate contents?
-		dat += "<br><a href='?src=\ref[src];b_contaminates=\ref[selected]'>Contaminates:</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_contaminates=\ref[selected]'>Contaminates:</a>"
 		dat += " [selected.contaminates ? "Yes" : "No"]"
 
 		if(selected.contaminates)
 			//Contamination descriptors
-			dat += "<br><a href='?src=\ref[src];b_contamination_flavor=\ref[selected]'>Contamination Flavor:</a>"
+			dat += "<br><a href='byond://?src=\ref[src];b_contamination_flavor=\ref[selected]'>Contamination Flavor:</a>"
 			dat += "[selected.contamination_flavor]"
 			//Contamination color
-			dat += "<br><a href='?src=\ref[src];b_contamination_color=\ref[selected]'>Contamination Color:</a>"
+			dat += "<br><a href='byond://?src=\ref[src];b_contamination_color=\ref[selected]'>Contamination Color:</a>"
 			dat += "[selected.contamination_color]"
 
 		//Belly verb
-		dat += "<br><a href='?src=\ref[src];b_verb=\ref[selected]'>Vore Verb:</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_verb=\ref[selected]'>Vore Verb:</a>"
 		dat += " '[selected.vore_verb]'"
 
 		//Inside flavortext
-		dat += "<br><a href='?src=\ref[src];b_desc=\ref[selected]'>Flavor Text:</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_desc=\ref[selected]'>Flavor Text:</a>"
 		dat += " '[selected.desc]'"
 
 		//Belly Sound Fanciness
-		dat += "<br><a href='?src=\ref[src];b_fancy_sound=\ref[selected]'>Use Fancy Sounds:</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_fancy_sound=\ref[selected]'>Use Fancy Sounds:</a>"
 		dat += "[selected.fancy_vore ? "Yes" : "No"]"
 
 		//Belly sound
-		dat += "<br><a href='?src=\ref[src];b_sound=\ref[selected]'>Vore Sound: [selected.vore_sound]</a>"
-		dat += "<a href='?src=\ref[src];b_soundtest=\ref[selected]'>Test</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_sound=\ref[selected]'>Vore Sound: [selected.vore_sound]</a>"
+		dat += "<a href='byond://?src=\ref[src];b_soundtest=\ref[selected]'>Test</a>"
 
 		//Release sound
-		dat += "<br><a href='?src=\ref[src];b_release=\ref[selected]'>Release Sound: [selected.release_sound]</a>"
-		dat += "<a href='?src=\ref[src];b_releasesoundtest=\ref[selected]'>Test</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_release=\ref[selected]'>Release Sound: [selected.release_sound]</a>"
+		dat += "<a href='byond://?src=\ref[src];b_releasesoundtest=\ref[selected]'>Test</a>"
 
 		//Belly messages
-		dat += "<br><a href='?src=\ref[src];b_msgs=\ref[selected]'>Belly Messages</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_msgs=\ref[selected]'>Belly Messages</a>"
 
 		//Can belly taste?
-		dat += "<br><a href='?src=\ref[src];b_tastes=\ref[selected]'>Can Taste:</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_tastes=\ref[selected]'>Can Taste:</a>"
 		dat += " [selected.can_taste ? "Yes" : "No"]"
 
 		//Nutritional percentage
-		dat += "<br><a href='?src=\ref[src];b_nutritionpercent=\ref[selected]'>Nutritional Gain:</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_nutritionpercent=\ref[selected]'>Nutritional Gain:</a>"
 		dat += " [selected.nutrition_percent]%"
 
 		//How much brute damage
-		dat += "<br><a href='?src=\ref[src];b_brute_dmg=\ref[selected]'>Digest Brute Damage:</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_brute_dmg=\ref[selected]'>Digest Brute Damage:</a>"
 		dat += " [selected.digest_brute]"
 
 		//How much burn damage
-		dat += "<br><a href='?src=\ref[src];b_burn_dmg=\ref[selected]'>Digest Burn Damage:</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_burn_dmg=\ref[selected]'>Digest Burn Damage:</a>"
 		dat += " [selected.digest_burn]"
 
 		//Minimum size prey must be to show up.
-		dat += "<br><a href='?src=\ref[src];b_bulge_size=\ref[selected]'>Required examine size:</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_bulge_size=\ref[selected]'>Required examine size:</a>"
 		dat += " [selected.bulge_size*100]%"
 
 		//Size that prey will be grown/shrunk to.
-		dat += "<br><a href='?src=\ref[src];b_grow_shrink=\ref[selected]'>Shrink/Grow size:</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_grow_shrink=\ref[selected]'>Shrink/Grow size:</a>"
 		dat += "[selected.shrink_grow_size*100]%"
 
 		//Belly escapability
-		dat += "<br><a href='?src=\ref[src];b_escapable=\ref[selected]'>Belly Interactions ([selected.escapable ? "On" : "Off"])</a>"
+		dat += "<br><a href='byond://?src=\ref[src];b_escapable=\ref[selected]'>Belly Interactions ([selected.escapable ? "On" : "Off"])</a>"
 		if(selected.escapable)
-			dat += "<a href='?src=\ref[src];show_int=\ref[selected]'>[show_interacts ? "Hide" : "Show"]</a>"
+			dat += "<a href='byond://?src=\ref[src];show_int=\ref[selected]'>[show_interacts ? "Hide" : "Show"]</a>"
 
 		if(show_interacts && selected.escapable)
 			dat += "<HR>"
-			dat += "Interaction Settings <a href='?src=\ref[src];int_help=\ref[selected]'>?</a>"
-			dat += "<br><a href='?src=\ref[src];b_escapechance=\ref[selected]'>Set Belly Escape Chance</a>"
+			dat += "Interaction Settings <a href='byond://?src=\ref[src];int_help=\ref[selected]'>?</a>"
+			dat += "<br><a href='byond://?src=\ref[src];b_escapechance=\ref[selected]'>Set Belly Escape Chance</a>"
 			dat += " [selected.escapechance]%"
 
-			dat += "<br><a href='?src=\ref[src];b_escapetime=\ref[selected]'>Set Belly Escape Time</a>"
+			dat += "<br><a href='byond://?src=\ref[src];b_escapetime=\ref[selected]'>Set Belly Escape Time</a>"
 			dat += " [selected.escapetime/10]s"
 
 			//Special <br> here to add a gap
 			dat += "<br style='line-height:5px;'>"
-			dat += "<br><a href='?src=\ref[src];b_transferchance=\ref[selected]'>Set Belly Transfer Chance</a>"
+			dat += "<br><a href='byond://?src=\ref[src];b_transferchance=\ref[selected]'>Set Belly Transfer Chance</a>"
 			dat += " [selected.transferchance]%"
 
-			dat += "<br><a href='?src=\ref[src];b_transferlocation=\ref[selected]'>Set Belly Transfer Location</a>"
+			dat += "<br><a href='byond://?src=\ref[src];b_transferlocation=\ref[selected]'>Set Belly Transfer Location</a>"
 			dat += " [selected.transferlocation ? selected.transferlocation : "Disabled"]"
 
 			//Special <br> here to add a gap
 			dat += "<br style='line-height:5px;'>"
-			dat += "<br><a href='?src=\ref[src];b_absorbchance=\ref[selected]'>Set Belly Absorb Chance</a>"
+			dat += "<br><a href='byond://?src=\ref[src];b_absorbchance=\ref[selected]'>Set Belly Absorb Chance</a>"
 			dat += " [selected.absorbchance]%"
 
-			dat += "<br><a href='?src=\ref[src];b_digestchance=\ref[selected]'>Set Belly Digest Chance</a>"
+			dat += "<br><a href='byond://?src=\ref[src];b_digestchance=\ref[selected]'>Set Belly Digest Chance</a>"
 			dat += " [selected.digestchance]%"
 			dat += "<HR>"
 
 		//Delete button
-		dat += "<br><a style='background:#990000;' href='?src=\ref[src];b_del=\ref[selected]'>Delete Belly</a>"
+		dat += "<br><a style='background:#990000;' href='byond://?src=\ref[src];b_del=\ref[selected]'>Delete Belly</a>"
 
 	dat += "<HR>"
 
 	switch(user.digestable)
 		if(TRUE)
-			dat += "<a style='background:#173d15;' href='?src=\ref[src];toggledg=1'>Toggle Digestable (Currently: ON)</a>"
+			dat += "<a style='background:#173d15;' href='byond://?src=\ref[src];toggledg=1'>Toggle Digestable (Currently: ON)</a>"
 		if(FALSE)
-			dat += "<a style='background:#990000;' href='?src=\ref[src];toggledg=1'>Toggle Digestable (Currently: OFF)</a>"
+			dat += "<a style='background:#990000;' href='byond://?src=\ref[src];toggledg=1'>Toggle Digestable (Currently: OFF)</a>"
 	switch(user.devourable)
 		if(TRUE)
-			dat += "<a style='background:#173d15;' href='?src=\ref[src];toggleddevour=1'>Toggle Devourable (Currently: ON)</a>"
+			dat += "<a style='background:#173d15;' href='byond://?src=\ref[src];toggleddevour=1'>Toggle Devourable (Currently: ON)</a>"
 		if(FALSE)
-			dat += "<a style='background:#990000;' href='?src=\ref[src];toggleddevour=1'>Toggle Devourable (Currently: OFF)</a>"
+			dat += "<a style='background:#990000;' href='byond://?src=\ref[src];toggleddevour=1'>Toggle Devourable (Currently: OFF)</a>"
 	switch(user.feeding)
 		if(TRUE)
-			dat += "<br><a style='background:#173d15;' href='?src=\ref[src];toggledfeed=1'>Toggle Feeding (Currently: ON)</a>"
+			dat += "<br><a style='background:#173d15;' href='byond://?src=\ref[src];toggledfeed=1'>Toggle Feeding (Currently: ON)</a>"
 		if(FALSE)
-			dat += "<br><a style='background:#990000;' href='?src=\ref[src];toggledfeed=1'>Toggle Feeding (Currently: OFF)</a>"
+			dat += "<br><a style='background:#990000;' href='byond://?src=\ref[src];toggledfeed=1'>Toggle Feeding (Currently: OFF)</a>"
 	switch(user.absorbable)
 		if(TRUE)
-			dat += "<a style='background:#173d15;' href='?src=\ref[src];toggleabsorbable=1'>Toggle Absorbtion Permission (Currently: ON)</a>"
+			dat += "<a style='background:#173d15;' href='byond://?src=\ref[src];toggleabsorbable=1'>Toggle Absorbtion Permission (Currently: ON)</a>"
 		if(FALSE)
-			dat += "<a style='background:#990000;' href='?src=\ref[src];toggleabsorbable=1'>Toggle Absorbtion Permission (Currently: OFF)</a>"
+			dat += "<a style='background:#990000;' href='byond://?src=\ref[src];toggleabsorbable=1'>Toggle Absorbtion Permission (Currently: OFF)</a>"
 	switch(user.digest_leave_remains)
 		if(TRUE)
-			dat += "<a style='background:#173d15;' href='?src=\ref[src];toggledlm=1'>Toggle Leaving Remains (Currently: ON)</a>"
+			dat += "<a style='background:#173d15;' href='byond://?src=\ref[src];toggledlm=1'>Toggle Leaving Remains (Currently: ON)</a>"
 		if(FALSE)
-			dat += "<a style='background:#990000;' href='?src=\ref[src];toggledlm=1'>Toggle Leaving Remains (Currently: OFF)</a>"
+			dat += "<a style='background:#990000;' href='byond://?src=\ref[src];toggledlm=1'>Toggle Leaving Remains (Currently: OFF)</a>"
 	switch(user.allowmobvore)
 		if(TRUE)
-			dat += "<br><a style='background:#173d15;' href='?src=\ref[src];togglemv=1'>Toggle Mob Vore (Currently: ON)</a>"
+			dat += "<br><a style='background:#173d15;' href='byond://?src=\ref[src];togglemv=1'>Toggle Mob Vore (Currently: ON)</a>"
 		if(FALSE)
-			dat += "<br><a style='background:#990000;' href='?src=\ref[src];togglemv=1'>Toggle Mob Vore (Currently: OFF)</a>"
+			dat += "<br><a style='background:#990000;' href='byond://?src=\ref[src];togglemv=1'>Toggle Mob Vore (Currently: OFF)</a>"
 	switch(user.permit_healbelly)
 		if(TRUE)
-			dat += "<a style='background:#173d15;' href='?src=\ref[src];togglehealbelly=1'>Toggle Healbelly Permission (Currently: ON)</a>"
+			dat += "<a style='background:#173d15;' href='byond://?src=\ref[src];togglehealbelly=1'>Toggle Healbelly Permission (Currently: ON)</a>"
 		if(FALSE)
-			dat += "<a style='background:#990000;' href='?src=\ref[src];togglehealbelly=1'>Toggle Healbelly Permission (Currently: OFF)</a>"
+			dat += "<a style='background:#990000;' href='byond://?src=\ref[src];togglehealbelly=1'>Toggle Healbelly Permission (Currently: OFF)</a>"
 
 	switch(user.can_be_drop_prey)
 		if(TRUE)
-			dat += "<br><a style='background:#173d15;' href='?src=\ref[src];toggle_dropnom_prey=1'>Toggle Prey Spontaneous Vore (Currently: ON)</a>"
+			dat += "<br><a style='background:#173d15;' href='byond://?src=\ref[src];toggle_dropnom_prey=1'>Toggle Prey Spontaneous Vore (Currently: ON)</a>"
 		if(FALSE)
-			dat += "<br><a style='background:#990000;' href='?src=\ref[src];toggle_dropnom_prey=1'>Toggle Prey Spontaneous Vore (Currently: OFF)</a>"
+			dat += "<br><a style='background:#990000;' href='byond://?src=\ref[src];toggle_dropnom_prey=1'>Toggle Prey Spontaneous Vore (Currently: OFF)</a>"
 
 	switch(user.can_be_drop_pred)
 		if(TRUE)
-			dat += "<a style='background:#173d15;' href='?src=\ref[src];toggle_dropnom_pred=1'>Toggle Pred Spontaneous Vore (Currently: ON)</a>"
+			dat += "<a style='background:#173d15;' href='byond://?src=\ref[src];toggle_dropnom_pred=1'>Toggle Pred Spontaneous Vore (Currently: ON)</a>"
 		if(FALSE)
-			dat += "<a style='background:#990000;' href='?src=\ref[src];toggle_dropnom_pred=1'>Toggle Pred Spontaneous Vore (Currently: OFF)</a>"
+			dat += "<a style='background:#990000;' href='byond://?src=\ref[src];toggle_dropnom_pred=1'>Toggle Pred Spontaneous Vore (Currently: OFF)</a>"
 
-	dat += "<br><a href='?src=\ref[src];setflavor=1'>Set Your Taste</a>"
-	dat += "<a href='?src=\ref[src];togglenoisy=1'>Toggle Hunger Noises</a>"
+	dat += "<br><a href='byond://?src=\ref[src];setflavor=1'>Set Your Taste</a>"
+	dat += "<a href='byond://?src=\ref[src];togglenoisy=1'>Toggle Hunger Noises</a>"
 
 	dat += "<HR>"
 
 	//Under the last HR, save and stuff.
-	dat += "<a href='?src=\ref[src];saveprefs=1'>Save Prefs</a>"
-	dat += "<a href='?src=\ref[src];refresh=1'>Refresh</a>"
-	dat += "<a href='?src=\ref[src];applyprefs=1'>Reload Slot Prefs</a>"
+	dat += "<a href='byond://?src=\ref[src];saveprefs=1'>Save Prefs</a>"
+	dat += "<a href='byond://?src=\ref[src];refresh=1'>Refresh</a>"
+	dat += "<a href='byond://?src=\ref[src];applyprefs=1'>Reload Slot Prefs</a>"
 
 	//Returns the dat html to the vore_look
 	return dat
@@ -935,7 +935,7 @@
 			if("Prevent Digestion")
 				user.digestable = FALSE
 
-		message_admins("[key_name(user)] toggled their digestability to [user.digestable] ([user ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[user.loc.];Y=[user.loc.y];Z=[user.loc.z]'>JMP</a>" : "null"])")
+		message_admins("[key_name(user)] toggled their digestability to [user.digestable] ([user ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.loc.];Y=[user.loc.y];Z=[user.loc.z]'>JMP</a>" : "null"])")
 
 		if(user.client.prefs_vr)
 			user.client.prefs_vr.digestable = user.digestable
@@ -1002,7 +1002,7 @@
 			if("Prevent Mob Predation")
 				user.allowmobvore = FALSE
 
-		message_admins("[key_name(user)] toggled their mob vore preference to [user.allowmobvore] ([user ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[user.loc.];Y=[user.loc.y];Z=[user.loc.z]'>JMP</a>" : "null"])")
+		message_admins("[key_name(user)] toggled their mob vore preference to [user.allowmobvore] ([user ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.loc.];Y=[user.loc.y];Z=[user.loc.z]'>JMP</a>" : "null"])")
 
 		if(user.client.prefs_vr)
 			user.client.prefs_vr.allowmobvore = user.allowmobvore

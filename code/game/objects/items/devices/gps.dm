@@ -129,9 +129,9 @@ var/list/GPS_list = list()
 	var/list/gps_data = display_list()
 
 	dat += "Current location: [gps_data["my_area_name"]] <b>([gps_data["curr_x"]], [gps_data["curr_y"]], [gps_data["curr_z_name"]])</b>"
-	dat += "[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'. <a href='?src=\ref[src];tag=1'>\[Change Tag\]</a> \
-	<a href='?src=\ref[src];range=1'>\[Toggle Scan Range\]</a> \
-	[can_hide_signal ? "<a href='?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]"
+	dat += "[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'. <a href='byond://?src=\ref[src];tag=1'>\[Change Tag\]</a> \
+	<a href='byond://?src=\ref[src];range=1'>\[Toggle Scan Range\]</a> \
+	[can_hide_signal ? "<a href='byond://?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]"
 
 	if(gps_data["gps_list"].len)
 		dat += "Detected signals;"
@@ -266,9 +266,9 @@ var/list/GPS_list = list()
 	var/list/gps_data = display_list()
 
 	dat += "Current location: [gps_data["my_area_name"]] <b>([gps_data["curr_x"]], [gps_data["curr_y"]], [gps_data["curr_z_name"]])</b>"
-	dat += "[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'. <a href='?src=\ref[src];tag=1'>\[Change Tag\]</a> \
-	<a href='?src=\ref[src];range=1'>\[Toggle Scan Range\]</a> \
-	[can_hide_signal ? "<a href='?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]"
+	dat += "[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'. <a href='byond://?src=\ref[src];tag=1'>\[Change Tag\]</a> \
+	<a href='byond://?src=\ref[src];range=1'>\[Toggle Scan Range\]</a> \
+	[can_hide_signal ? "<a href='byond://?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]"
 
 	if(gps_data["gps_list"].len)
 		dat += "Detected signals;"

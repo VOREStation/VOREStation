@@ -228,10 +228,10 @@
 			dat += "<font color='green'>Engines ready.</font><br>"
 
 		if(WS.can_cloak)
-			dat += "<br><b><A href='?src=\ref[src];toggle_cloak=[1]'>Toggle cloaking field</A></b><br>"
+			dat += "<br><b><A href='byond://?src=\ref[src];toggle_cloak=[1]'>Toggle cloaking field</A></b><br>"
 
 		for(var/datum/shuttle_route/route in WS.current_destination.routes)
-			dat += "<b><a href='?src=\ref[src];traverse=\ref[route]'>[route.display_route(WS.current_destination)]</a></b><br>"
+			dat += "<b><a href='byond://?src=\ref[src];traverse=\ref[route]'>[route.display_route(WS.current_destination)]</a></b><br>"
 
 
 	//Docking
@@ -256,13 +256,13 @@
 			if(override_en)
 				dat += " <font color='red'>(Override Enabled)</font>"
 
-			dat += ". <A href='?src=\ref[src];refresh=[1]'>\[Refresh\]</A><br><br>"
+			dat += ". <A href='byond://?src=\ref[src];refresh=[1]'>\[Refresh\]</A><br><br>"
 
 			switch(docking_status)
 				if("undocked")
-					dat += "<b><A href='?src=\ref[src];dock_command=[1]'>Dock</A></b>"
+					dat += "<b><A href='byond://?src=\ref[src];dock_command=[1]'>Dock</A></b>"
 				if("docked")
-					dat += "<b><A href='?src=\ref[src];undock_command=[1]'>Undock</A></b>"
+					dat += "<b><A href='byond://?src=\ref[src];undock_command=[1]'>Undock</A></b>"
 		dat += "</center>"
 
 	user << browse(dat.Join(), "window=[shuttle_tag]shuttlecontrol;size=300x300")

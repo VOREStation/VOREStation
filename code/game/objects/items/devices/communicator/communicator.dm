@@ -103,7 +103,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 /obj/item/device/communicator/examine(mob/user)
 	. = ..(user, 1)
 	if(. && video_source)
-		to_chat(user, "<span class='notice'>It looks like it's on a video call: <a href='?src=\ref[src];watchvideo=1'>\[view\]</a></span>")
+		to_chat(user, "<span class='notice'>It looks like it's on a video call: <a href='byond://?src=\ref[src];watchvideo=1'>\[view\]</a></span>")
 
 // Proc: initialize_exonet()
 // Parameters: 1 (user - the person the communicator belongs to)

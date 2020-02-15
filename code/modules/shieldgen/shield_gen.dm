@@ -113,38 +113,38 @@
 			t += "Capacitor #[i]: [capacitor.active ? "<font color=green>Online.</font>" : "<font color=red>Offline.</font>"] \
 			Charge: [round(capacitor.stored_charge/1000, 0.1)] kJ ([100 * round(capacitor.stored_charge/capacitor.max_charge, 0.01)]%) \
 			Status: [capacitor.time_since_fail > 2 ? "<font color=green>OK.</font>" : "<font color=red>Discharging!</font>"]<br>"
-		t += "This generator is: [active ? "<font color=green>Online</font>" : "<font color=red>Offline</font>" ] <a href='?src=\ref[src];toggle=1'>[active ? "\[Deactivate\]" : "\[Activate\]"]</a><br>"
+		t += "This generator is: [active ? "<font color=green>Online</font>" : "<font color=red>Offline</font>" ] <a href='byond://?src=\ref[src];toggle=1'>[active ? "\[Deactivate\]" : "\[Activate\]"]</a><br>"
 		t += "Field Status: [time_since_fail > 2 ? "<font color=green>Stable</font>" : "<font color=red>Unstable</font>"]<br>"
 		t += "Coverage Radius (restart required): \
-		<a href='?src=\ref[src];change_radius=-50'>---</a> \
-		<a href='?src=\ref[src];change_radius=-5'>--</a> \
-		<a href='?src=\ref[src];change_radius=-1'>-</a> \
+		<a href='byond://?src=\ref[src];change_radius=-50'>---</a> \
+		<a href='byond://?src=\ref[src];change_radius=-5'>--</a> \
+		<a href='byond://?src=\ref[src];change_radius=-1'>-</a> \
 		[field_radius] m \
-		<a href='?src=\ref[src];change_radius=1'>+</a> \
-		<a href='?src=\ref[src];change_radius=5'>++</a> \
-		<a href='?src=\ref[src];change_radius=50'>+++</a><br>"
+		<a href='byond://?src=\ref[src];change_radius=1'>+</a> \
+		<a href='byond://?src=\ref[src];change_radius=5'>++</a> \
+		<a href='byond://?src=\ref[src];change_radius=50'>+++</a><br>"
 		if(HasAbove(src.z) || HasBelow(src.z)) // Won't show up on maps lacking MultiZ support.
 			t += "Vertical Shielding (restart required): \
-			<a href='?src=\ref[src];z_range=-1'>-</a> \
+			<a href='byond://?src=\ref[src];z_range=-1'>-</a> \
 			[z_range] Vertical Range \
-			<a href='?src=\ref[src];z_range=1'>+</a><br>"
+			<a href='byond://?src=\ref[src];z_range=1'>+</a><br>"
 		t += "Overall Field Strength: [round(average_field_strength, 0.01)] Renwick ([target_field_strength ? round(100 * average_field_strength / target_field_strength, 0.1) : "NA"]%)<br>"
 		t += "Upkeep Power: [format_SI(round(field.len * max(average_field_strength * dissipation_rate, min_dissipation) / energy_conversion_rate), "W")]<br>"
-		t += "Charge Rate: <a href='?src=\ref[src];strengthen_rate=-0.1'>--</a> \
+		t += "Charge Rate: <a href='byond://?src=\ref[src];strengthen_rate=-0.1'>--</a> \
 		[strengthen_rate] Renwick/s \
-		<a href='?src=\ref[src];strengthen_rate=0.1'>++</a><br>"
+		<a href='byond://?src=\ref[src];strengthen_rate=0.1'>++</a><br>"
 		t += "Shield Generation Power: [format_SI(round(field.len * min(strengthen_rate, target_field_strength - average_field_strength) / energy_conversion_rate), "W")]<br>"
 		t += "Maximum Field Strength: \
-		<a href='?src=\ref[src];target_field_strength=-10'>\[min\]</a> \
-		<a href='?src=\ref[src];target_field_strength=-5'>--</a> \
-		<a href='?src=\ref[src];target_field_strength=-1'>-</a> \
+		<a href='byond://?src=\ref[src];target_field_strength=-10'>\[min\]</a> \
+		<a href='byond://?src=\ref[src];target_field_strength=-5'>--</a> \
+		<a href='byond://?src=\ref[src];target_field_strength=-1'>-</a> \
 		[target_field_strength] Renwick \
-		<a href='?src=\ref[src];target_field_strength=1'>+</a> \
-		<a href='?src=\ref[src];target_field_strength=5'>++</a> \
-		<a href='?src=\ref[src];target_field_strength=10'>\[max\]</a><br>"
+		<a href='byond://?src=\ref[src];target_field_strength=1'>+</a> \
+		<a href='byond://?src=\ref[src];target_field_strength=5'>++</a> \
+		<a href='byond://?src=\ref[src];target_field_strength=10'>\[max\]</a><br>"
 	t += "<hr>"
-	t += "<A href='?src=\ref[src]'>Refresh</A> "
-	t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
+	t += "<A href='byond://?src=\ref[src]'>Refresh</A> "
+	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 	user << browse(t, "window=shield_generator;size=500x400")
 	user.set_machine(src)
 

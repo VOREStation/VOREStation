@@ -101,13 +101,13 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	HTML += "<div align='center'>"
 	HTML += "<table border='1' style='undefined;table-layout: fixed; width: 80%'>"
 
-	HTML += "<br><a href='?src=\ref[src];return=1'>\[Return to Assembly\]</a>"
+	HTML += "<br><a href='byond://?src=\ref[src];return=1'>\[Return to Assembly\]</a>"
 
-	HTML += "<br><a href='?src=\ref[src];'>\[Refresh\]</a>  |  "
-	HTML += "<a href='?src=\ref[src];rename=1'>\[Rename\]</a>  |  "
-	HTML += "<a href='?src=\ref[src];scan=1'>\[Scan with Device\]</a>  |  "
+	HTML += "<br><a href='byond://?src=\ref[src];'>\[Refresh\]</a>  |  "
+	HTML += "<a href='byond://?src=\ref[src];rename=1'>\[Rename\]</a>  |  "
+	HTML += "<a href='byond://?src=\ref[src];scan=1'>\[Scan with Device\]</a>  |  "
 	if(src.removable)
-		HTML += "<a href='?src=\ref[src];remove=1'>\[Remove\]</a><br>"
+		HTML += "<a href='byond://?src=\ref[src];remove=1'>\[Remove\]</a><br>"
 
 	HTML += "<colgroup>"
 	HTML += "<col style='width: [table_edge_width]'>"

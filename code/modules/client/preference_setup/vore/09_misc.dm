@@ -24,8 +24,8 @@
 
 /datum/category_item/player_setup_item/vore/misc/content(var/mob/user)
 	. += "<br>"
-	. += "<b>Appear in Character Directory:</b> <a [pref.show_in_directory ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_show_in_directory=1'><b>[pref.show_in_directory ? "Yes" : "No"]</b></a><br>"
-	. += "<b>Suit Sensors Preference:</b> <a [pref.sensorpref ? "" : ""] href='?src=\ref[src];toggle_sensor_setting=1'><b>[sensorpreflist[pref.sensorpref]]</b></a><br>"	//TFF 5/8/19 - Allow selection of sensor settings from off, binary, vitals, tracking, or random
+	. += "<b>Appear in Character Directory:</b> <a [pref.show_in_directory ? "class='linkOn'" : ""] href='byond://?src=\ref[src];toggle_show_in_directory=1'><b>[pref.show_in_directory ? "Yes" : "No"]</b></a><br>"
+	. += "<b>Suit Sensors Preference:</b> <a [pref.sensorpref ? "" : ""] href='byond://?src=\ref[src];toggle_sensor_setting=1'><b>[sensorpreflist[pref.sensorpref]]</b></a><br>"	//TFF 5/8/19 - Allow selection of sensor settings from off, binary, vitals, tracking, or random
 
 /datum/category_item/player_setup_item/vore/misc/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["toggle_show_in_directory"])

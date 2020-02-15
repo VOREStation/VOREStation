@@ -72,12 +72,12 @@
 	var/HTML = list()
 
 	HTML += "<html><head><title>[src.name]</title></head><body>"
-	HTML += "<br><a href='?src=\ref[src]'>\[Refresh\]</a>  |  "
-	HTML += "<a href='?src=\ref[src];rename=1'>\[Rename\]</a><br>"
+	HTML += "<br><a href='byond://?src=\ref[src]'>\[Refresh\]</a>  |  "
+	HTML += "<a href='byond://?src=\ref[src];rename=1'>\[Rename\]</a><br>"
 	HTML += "[total_parts]/[max_components] ([round((total_parts / max_components) * 100, 0.1)]%) space taken up in the assembly.<br>"
 	HTML += "[total_complexity]/[max_complexity] ([round((total_complexity / max_complexity) * 100, 0.1)]%) maximum complexity.<br>"
 	if(battery)
-		HTML += "[round(battery.charge, 0.1)]/[battery.maxcharge] ([round(battery.percent(), 0.1)]%) cell charge. <a href='?src=\ref[src];remove_cell=1'>\[Remove\]</a><br>"
+		HTML += "[round(battery.charge, 0.1)]/[battery.maxcharge] ([round(battery.percent(), 0.1)]%) cell charge. <a href='byond://?src=\ref[src];remove_cell=1'>\[Remove\]</a><br>"
 		HTML += "Net energy: [format_SI(net_power / CELLRATE, "W")]."
 	else
 		HTML += "<span class='danger'>No powercell detected!</span>"

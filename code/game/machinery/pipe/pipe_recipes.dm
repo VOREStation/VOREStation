@@ -58,7 +58,7 @@ var/global/list/atmos_pipe_recipes = null
 
 // Render an HTML link to select this pipe type. Returns text.
 /datum/pipe_recipe/proc/Render(dispenser)
-	return "<A href='?src=\ref[dispenser]&[Params()]'>[name]</A><BR>"
+	return "<A href='byond://?src=\ref[dispenser]&[Params()]'>[name]</A><BR>"
 
 // Parameters for the Topic link returned by Render().  Returns text.
 /datum/pipe_recipe/proc/Params()
@@ -84,7 +84,7 @@ var/global/list/atmos_pipe_recipes = null
 	// This makes it impossble to spawn bent versions of bendable pipes.
 	// We add a "Bent" pipe type with a preset diagonal direction to work around it.
 	if(istype(dispenser, /obj/machinery/pipedispenser) && (dirtype == PIPE_BENDABLE))
-		dat += "<A href='?src=\ref[dispenser]&[Params()]&dir=[NORTHEAST]'>Bent [name]</A><BR>"
+		dat += "<A href='byond://?src=\ref[dispenser]&[Params()]&dir=[NORTHEAST]'>Bent [name]</A><BR>"
 	return dat
 
 /datum/pipe_recipe/pipe/Params()

@@ -124,28 +124,28 @@
 		dat += "<br><center>Simulation in progress! Please wait for results.</center>"
 
 	else
-		dat += "<br><center>Mode: [sim_mode==MODE_SINGLE?"Single Tank":"<A href='?src=\ref[src];set_mode=1'>Single Tank</a>"] -- [sim_mode==MODE_DOUBLE?"Transfer Valve":"<A href='?src=\ref[src];set_mode=2'>Transfer Valve</a>"] -- [sim_mode==MODE_CANISTER?"Canister":"<A href='?src=\ref[src];set_mode=3'>Canister</a>"]</center>"
+		dat += "<br><center>Mode: [sim_mode==MODE_SINGLE?"Single Tank":"<A href='byond://?src=\ref[src];set_mode=1'>Single Tank</a>"] -- [sim_mode==MODE_DOUBLE?"Transfer Valve":"<A href='byond://?src=\ref[src];set_mode=2'>Transfer Valve</a>"] -- [sim_mode==MODE_CANISTER?"Canister":"<A href='byond://?src=\ref[src];set_mode=3'>Canister</a>"]</center>"
 		dat += "<br>"
 		dat += "<br><center><u>Gas Sources</u></center>"
-		dat += "<br><center><A href='?src=\ref[src];tank=1'>[tank1?"\[[tank1.name]\]":"\[Primary Slot\]"]</a> -- <A href='?src=\ref[src];tank=2'>[tank2?"\[[tank2.name]\]":"\[Secondary Slot\]"]</a></center>"
-		dat += "<br><center>Connected Canister: [test_canister?"[test_canister.name] -- ":"None -- "]<A href='?src=\ref[src];canister_scan=1'>[test_canister?"\[Rescan\]":"\[Scan for canister\]"]</a></center>"
+		dat += "<br><center><A href='byond://?src=\ref[src];tank=1'>[tank1?"\[[tank1.name]\]":"\[Primary Slot\]"]</a> -- <A href='byond://?src=\ref[src];tank=2'>[tank2?"\[[tank2.name]\]":"\[Secondary Slot\]"]</a></center>"
+		dat += "<br><center>Connected Canister: [test_canister?"[test_canister.name] -- ":"None -- "]<A href='byond://?src=\ref[src];canister_scan=1'>[test_canister?"\[Rescan\]":"\[Scan for canister\]"]</a></center>"
 		if(test_canister)
 			dat += "<br><center>Canister Release Pressure: [sim_canister_output] Kilopascals</center>"
 
 			dat += "<br><center>"
-			dat += "<A href='?src=\ref[src];set_can_pressure=-1000'>-1000</a>|"
-			dat += "<A href='?src=\ref[src];set_can_pressure=-100'>-100</a>|"
-			dat += "<A href='?src=\ref[src];set_can_pressure=-10'>-10</a>|"
-			dat += "<A href='?src=\ref[src];set_can_pressure=-1'>-1</a> ||| "
+			dat += "<A href='byond://?src=\ref[src];set_can_pressure=-1000'>-1000</a>|"
+			dat += "<A href='byond://?src=\ref[src];set_can_pressure=-100'>-100</a>|"
+			dat += "<A href='byond://?src=\ref[src];set_can_pressure=-10'>-10</a>|"
+			dat += "<A href='byond://?src=\ref[src];set_can_pressure=-1'>-1</a> ||| "
 
-			dat += "<A href='?src=\ref[src];set_can_pressure=1'>+1</a>|"
-			dat += "<A href='?src=\ref[src];set_can_pressure=10'>+10</a>|"
-			dat += "<A href='?src=\ref[src];set_can_pressure=100'>+100</a>|"
-			dat += "<A href='?src=\ref[src];set_can_pressure=1000'>+1000</a>"
+			dat += "<A href='byond://?src=\ref[src];set_can_pressure=1'>+1</a>|"
+			dat += "<A href='byond://?src=\ref[src];set_can_pressure=10'>+10</a>|"
+			dat += "<A href='byond://?src=\ref[src];set_can_pressure=100'>+100</a>|"
+			dat += "<A href='byond://?src=\ref[src];set_can_pressure=1000'>+1000</a>"
 			dat += "</center>"
 
 		dat += "<br><br>"
-		dat += "<br><center><font size='6'><b><A href='?src=\ref[src];start_sim=1'>BEGIN SIMULATION</a></b></font></center>"
+		dat += "<br><center><font size='6'><b><A href='byond://?src=\ref[src];start_sim=1'>BEGIN SIMULATION</a></b></font></center>"
 
 	user.set_machine(src)
 	user << browse(dat, "window=bomb_tester")

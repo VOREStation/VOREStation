@@ -140,7 +140,7 @@
 		return
 	user.set_machine(src)
 	var/dat = {"<TT>
-			<A href='?src=\ref[src];power=1'>Turn [on ? "Off" : "On"]</A><BR>
+			<A href='byond://?src=\ref[src];power=1'>Turn [on ? "Off" : "On"]</A><BR>
 			<B>Frequency/Code</B> for collar:<BR>
 			Frequency:
 			<A href='byond://?src=\ref[src];freq=-10'>-</A>
@@ -155,7 +155,7 @@
 			<A href='byond://?src=\ref[src];code=5'>+</A><BR>
 
 			Tag:
-			<A href='?src=\ref[src];tag=1'>Set tag</A><BR>
+			<A href='byond://?src=\ref[src];tag=1'>Set tag</A><BR>
 			</TT>"}
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")

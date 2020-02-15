@@ -11,20 +11,20 @@
 
 	var/HTML = "<html><head><title>Game Master AI</title></head><body>"
 
-	HTML += "<a href='?src=\ref[src];toggle_time_restrictions=1'>\[Toggle Time Restrictions\]</a> | \
-	<a href='?src=\ref[src];suspend=1'>\[Toggle GM\]</a> | \
-	<a href='?src=\ref[src];force_choose_event=1'>\[Force Event Decision\]</a><br>"
+	HTML += "<a href='byond://?src=\ref[src];toggle_time_restrictions=1'>\[Toggle Time Restrictions\]</a> | \
+	<a href='byond://?src=\ref[src];suspend=1'>\[Toggle GM\]</a> | \
+	<a href='byond://?src=\ref[src];force_choose_event=1'>\[Force Event Decision\]</a><br>"
 
 	HTML += "Status: [pre_action_checks() ? "Ready" : "Suppressed"]<br><br>"
 
-	HTML += "Staleness: [staleness] <a href='?src=\ref[src];adjust_staleness=1'>\[Adjust\]</a><br>"
-	HTML += "Danger: [danger] <a href='?src=\ref[src];adjust_danger=1'>\[Adjust\]</a><br><br>"
+	HTML += "Staleness: [staleness] <a href='byond://?src=\ref[src];adjust_staleness=1'>\[Adjust\]</a><br>"
+	HTML += "Danger: [danger] <a href='byond://?src=\ref[src];adjust_danger=1'>\[Adjust\]</a><br><br>"
 
 	HTML += "Actions available;<br>"
 	for(var/datum/gm_action/action in available_actions)
 		if(action.enabled == FALSE)
 			continue
-		HTML += "[action.name] ([english_list(action.departments)]) (weight: [action.get_weight()]) <a href='?src=\ref[action];force=1'>\[Force\]</a> <br>"
+		HTML += "[action.name] ([english_list(action.departments)]) (weight: [action.get_weight()]) <a href='byond://?src=\ref[action];force=1'>\[Force\]</a> <br>"
 
 	HTML += "<br>"
 	HTML += "All living mobs activity: [metric.assess_all_living_mobs()]%<br>"

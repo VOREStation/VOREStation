@@ -97,12 +97,12 @@
 
 /datum/category_item/player_setup_item/vore/traits/content(var/mob/user)
 	. += "<b>Custom Species Name:</b> "
-	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
+	. += "<a href='byond://?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
 
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
 		. += "<b>Icon Base: </b> "
-		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
+		. += "<a href='byond://?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
 
 	if(pref.species == SPECIES_CUSTOM)
 		var/points_left = pref.starting_trait_points
@@ -116,29 +116,29 @@
 		if(points_left < 0 || traits_left < 0 || !pref.custom_species)
 			. += "<span style='color:red;'><b>^ Fix things! ^</b></span><br>"
 
-		. += "<a href='?src=\ref[src];add_trait=[POSITIVE_MODE]'>Positive Trait +</a><br>"
+		. += "<a href='byond://?src=\ref[src];add_trait=[POSITIVE_MODE]'>Positive Trait +</a><br>"
 		. += "<ul>"
 		for(var/T in pref.pos_traits)
 			var/datum/trait/trait = positive_traits[T]
-			. += "<li>- <a href='?src=\ref[src];clicked_pos_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
+			. += "<li>- <a href='byond://?src=\ref[src];clicked_pos_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
 		. += "</ul>"
 
-		. += "<a href='?src=\ref[src];add_trait=[NEUTRAL_MODE]'>Neutral Trait +</a><br>"
+		. += "<a href='byond://?src=\ref[src];add_trait=[NEUTRAL_MODE]'>Neutral Trait +</a><br>"
 		. += "<ul>"
 		for(var/T in pref.neu_traits)
 			var/datum/trait/trait = neutral_traits[T]
-			. += "<li>- <a href='?src=\ref[src];clicked_neu_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
+			. += "<li>- <a href='byond://?src=\ref[src];clicked_neu_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
 		. += "</ul>"
 
-		. += "<a href='?src=\ref[src];add_trait=[NEGATIVE_MODE]'>Negative Trait +</a><br>"
+		. += "<a href='byond://?src=\ref[src];add_trait=[NEGATIVE_MODE]'>Negative Trait +</a><br>"
 		. += "<ul>"
 		for(var/T in pref.neg_traits)
 			var/datum/trait/trait = negative_traits[T]
-			. += "<li>- <a href='?src=\ref[src];clicked_neg_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
+			. += "<li>- <a href='byond://?src=\ref[src];clicked_neg_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
 		. += "</ul>"
 	. += "<b>Blood Color: </b>" //People that want to use a certain species to have that species traits (xenochimera/promethean/spider) should be able to set their own blood color.
-	. += "<a href='?src=\ref[src];blood_color=1'>Set Color</a>"
-	. += "<a href='?src=\ref[src];blood_reset=1'>R</a><br>"
+	. += "<a href='byond://?src=\ref[src];blood_color=1'>Set Color</a>"
+	. += "<a href='byond://?src=\ref[src];blood_reset=1'>R</a><br>"
 
 /datum/category_item/player_setup_item/vore/traits/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(!CanUseTopic(user))

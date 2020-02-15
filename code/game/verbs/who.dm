@@ -48,7 +48,7 @@
 				entry += "[round(seconds / 60)] minutes, "
 				entry += "[seconds % 60] seconds)"
 
-			entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
+			entry += " (<A href='byond://?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
 			Lines += entry
 	else
 		for(var/client/C in GLOB.clients)

@@ -67,7 +67,7 @@
 	var/list/used_viruses_links = list()
 	var/list/used_viruses_text = list()
 	for(var/datum/disease2/disease/D in used_viruses)
-		used_viruses_links += "<a href='?src=\ref[D];info=1'>[D.name()]</a>"
+		used_viruses_links += "<a href='byond://?src=\ref[D];info=1'>[D.name()]</a>"
 		used_viruses_text += D.name()
 
 	var/list/used_candidates_links = list()

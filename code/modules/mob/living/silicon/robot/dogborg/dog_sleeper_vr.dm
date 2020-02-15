@@ -123,7 +123,7 @@
 				trashman.reset_view(src)
 				START_PROCESSING(SSobj, src)
 				user.visible_message("<span class='warning'>[hound.name]'s [src.name] groans lightly as [trashman] slips inside.</span>", "<span class='notice'>Your [src.name] groans lightly as [trashman] slips inside.</span>")
-				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(hound, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 				if(delivery)
 					if(islist(deliverylists[delivery_tag]))
@@ -154,7 +154,7 @@
 				update_patient()
 				START_PROCESSING(SSobj, src)
 				user.visible_message("<span class='warning'>[hound.name]'s [src.name] lights up as [H.name] slips inside.</span>", "<span class='notice'>Your [src] lights up as [H] slips inside. Life support functions engaged.</span>")
-				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(hound, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 
 /obj/item/device/dogborg/sleeper/proc/go_out(var/target)
@@ -198,7 +198,7 @@
 			for(var/re in injection_chems)
 				var/datum/reagent/C = SSchemistry.chemical_reagents[re]
 				if(C)
-					dat += "<A href='?src=\ref[src];inject=[C.id]'>Inject [C.name]</A><BR>"
+					dat += "<A href='byond://?src=\ref[src];inject=[C.id]'>Inject [C.name]</A><BR>"
 		else
 			for(var/re in injection_chems)
 				var/datum/reagent/C = SSchemistry.chemical_reagents[re]
@@ -206,18 +206,18 @@
 					dat += "<span class='linkOff'>Inject [C.name]</span><BR>"
 
 	dat += "<h3>[name] Status</h3>"
-	dat += "<A id='refbutton' href='?src=\ref[src];refresh=1'>Refresh</A>"
-	dat += "<A href='?src=\ref[src];eject=1'>Eject All</A>"
-	dat += "<A href='?src=\ref[src];port=1'>Eject port: [eject_port]</A>"
+	dat += "<A id='refbutton' href='byond://?src=\ref[src];refresh=1'>Refresh</A>"
+	dat += "<A href='byond://?src=\ref[src];eject=1'>Eject All</A>"
+	dat += "<A href='byond://?src=\ref[src];port=1'>Eject port: [eject_port]</A>"
 	if(!cleaning)
-		dat += "<A href='?src=\ref[src];clean=1'>Self-Clean</A>"
+		dat += "<A href='byond://?src=\ref[src];clean=1'>Self-Clean</A>"
 	else
 		dat += "<span class='linkOff'>Self-Clean</span>"
 	if(delivery)
 		dat += "<BR><h3>Cargo Compartment</h3><BR>"
-		dat += "<A href='?src=\ref[src];deliveryslot=1'>Active Slot: [delivery_tag]</A>"
+		dat += "<A href='byond://?src=\ref[src];deliveryslot=1'>Active Slot: [delivery_tag]</A>"
 		if(islist(deliverylists[delivery_tag]))
-			dat += "<A href='?src=\ref[src];slot_eject=1'>Eject Slot</A>"
+			dat += "<A href='byond://?src=\ref[src];slot_eject=1'>Eject Slot</A>"
 
 	dat += "<div class='statusDisplay'>"
 
@@ -240,7 +240,7 @@
 		dat += "<font color='red'>([list2text(contents - (deliveryslot_1 + deliveryslot_2 + deliveryslot_3),", ")])</font><BR><BR>"
 
 	if(analyzer && !synced)
-		dat += "<A href='?src=\ref[src];sync=1'>Sync Files</A><BR>"
+		dat += "<A href='byond://?src=\ref[src];sync=1'>Sync Files</A><BR>"
 
 	//Cleaning and there are still un-preserved items
 	if(cleaning && length(contents - items_preserved))
@@ -538,7 +538,7 @@
 				water.add_charge(damage_gain)
 				if(T.stat == DEAD)
 					if(ishuman(T))
-						message_admins("[key_name(hound)] has digested [key_name(T)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+						message_admins("[key_name(hound)] has digested [key_name(T)] as a dogborg. ([hound ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 					to_chat(hound, "<span class='notice'>You feel your belly slowly churn around [T], breaking them down into a soft slurry to be used as power for your systems.</span>")
 					to_chat(T, "<span class='notice'>You feel [hound]'s belly slowly churn around your form, breaking you down into a soft slurry to be used as power for [hound]'s systems.</span>")
 					var/deathsound = pick(

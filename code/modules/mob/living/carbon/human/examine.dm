@@ -411,8 +411,8 @@
 			if(R.fields["name"] == perpname)
 				criminal = R.fields["criminal"]
 
-		msg += "<span class = 'deptradio'>Criminal status:</span> <a href='?src=\ref[src];criminal=1'>\[[criminal]\]</a><br>"
-		msg += "<span class = 'deptradio'>Security records:</span> <a href='?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a><br>"
+		msg += "<span class = 'deptradio'>Criminal status:</span> <a href='byond://?src=\ref[src];criminal=1'>\[[criminal]\]</a><br>"
+		msg += "<span class = 'deptradio'>Security records:</span> <a href='byond://?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='byond://?src=\ref[src];secrecordadd=`'>\[Add comment\]</a><br>"
 
 	if(hasHUD(user,"medical"))
 		var/perpname = name
@@ -430,8 +430,8 @@
 			if (R.fields["name"] == perpname)
 				medical = R.fields["p_stat"]
 
-		msg += "<span class = 'deptradio'>Physical status:</span> <a href='?src=\ref[src];medical=1'>\[[medical]\]</a><br>"
-		msg += "<span class = 'deptradio'>Medical records:</span> <a href='?src=\ref[src];medrecord=`'>\[View\]</a> <a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a><br>"
+		msg += "<span class = 'deptradio'>Physical status:</span> <a href='byond://?src=\ref[src];medical=1'>\[[medical]\]</a><br>"
+		msg += "<span class = 'deptradio'>Medical records:</span> <a href='byond://?src=\ref[src];medrecord=`'>\[View\]</a> <a href='byond://?src=\ref[src];medrecordadd=`'>\[Add comment\]</a><br>"
 
 
 	if(print_flavor_text())
@@ -439,9 +439,9 @@
 
 	// VOREStation Start
 	if(ooc_notes)
-		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a>\n"
+		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='byond://?src=\ref[src];ooc_notes=1'>\[View\]</a>\n"
 
-	msg += "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>\n"
+	msg += "<span class='deptradio'><a href='byond://?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>\n"
 
 	// VOREStation End
 	msg += "*---------*</span><br>"
