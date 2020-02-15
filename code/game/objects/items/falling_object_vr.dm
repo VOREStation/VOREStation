@@ -59,8 +59,9 @@
 
 /obj/effect/falling_effect/pizza_delivery/Initialize(mapload)
 	..()
-	falling_type = pick(prob(25);/obj/item/pizzabox/meat,
-				prob(25);/obj/item/pizzabox/margherita,
-				prob(25);/obj/item/pizzabox/vegetable,
-				prob(25);/obj/item/pizzabox/mushroom)
+	falling_type = pick(prob(20);/obj/item/pizzabox/meat,
+				prob(20);/obj/item/pizzabox/margherita,
+				prob(20);/obj/item/pizzabox/vegetable,
+				prob(20);/obj/item/pizzabox/mushroom,
+				prob(20);/obj/item/pizzabox/pineapple)
 	return INITIALIZE_HINT_LATELOAD
