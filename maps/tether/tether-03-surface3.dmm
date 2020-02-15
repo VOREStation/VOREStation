@@ -37,6 +37,13 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	icon_state = "shutter0";
+	id = "surfmedlockdown";
+	layer = 3.1;
+	name = "Medical Lockdown Shutters"
+	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/triage)
 "aai" = (
@@ -983,6 +990,13 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	icon_state = "shutter0";
+	id = "surfmedlockdown";
+	layer = 3.1;
+	name = "Medical Lockdown Shutters"
+	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/patient_a)
 "acb" = (
@@ -1497,18 +1511,15 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
+/obj/structure/disposalpipe/junction,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "acQ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/junction{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/triage)
+/area/tether/surfacebase/medical/lobby)
 "acR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -1922,6 +1933,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "adz" = (
@@ -2244,6 +2256,7 @@
 	layer = 3.1;
 	name = "Medical Shutters"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/monofloor{
 	dir = 8
 	},
@@ -2632,12 +2645,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 1
 	},
+/obj/structure/disposalpipe/junction,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "aeM" = (
@@ -2646,10 +2657,10 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/junction,
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "aeN" = (
@@ -2797,6 +2808,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
+/obj/machinery/button/remote/blast_door{
+	desc = "A remote control-switch for shutters.";
+	id = "surfmedlockdown";
+	name = "Medbay Emergency Lockdown Control";
+	pixel_x = 8;
+	pixel_y = 24;
+	req_access = list(40)
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/medsec_maintenance)
 "afa" = (
@@ -2815,6 +2834,13 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	icon_state = "shutter0";
+	id = "surfmedlockdown";
+	layer = 3.1;
+	name = "Medical Lockdown Shutters"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/tether/surfacebase/medical/triage)
@@ -3112,6 +3138,14 @@
 /obj/effect/landmark/start{
 	name = "Medical Doctor"
 	},
+/obj/machinery/button/remote/blast_door{
+	desc = "A remote control-switch for shutters.";
+	id = "surfmedlockdown";
+	name = "Medbay Emergency Lockdown Control";
+	pixel_x = 16;
+	pixel_y = -24;
+	req_access = list(5)
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "afA" = (
@@ -3136,6 +3170,7 @@
 "afB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "afC" = (
@@ -3525,6 +3560,13 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	icon_state = "shutter0";
+	id = "surfmedlockdown";
+	layer = 3.1;
+	name = "Medical Lockdown Shutters"
+	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/patient_b)
 "agj" = (
@@ -3572,6 +3614,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "agn" = (
@@ -4010,9 +4053,10 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "agY" = (
-/obj/structure/disposalpipe/junction{
-	dir = 2;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/sortjunction{
+	dir = 1;
+	name = "Surface Chemistry";
+	sortType = "Surface Chemistry"
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
@@ -4515,6 +4559,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "ahN" = (
@@ -4818,6 +4863,13 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
 	dir = 4
+	},
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	icon_state = "shutter0";
+	id = "surfmedlockdown";
+	layer = 3.1;
+	name = "Medical Lockdown Shutters"
 	},
 /turf/simulated/floor/tiled/monofloor{
 	dir = 4
@@ -5399,6 +5451,14 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/machinery/button/remote/blast_door{
+	desc = "A remote control-switch for shutters.";
+	id = "surfmedlockdown";
+	name = "Medbay Emergency Lockdown Control";
+	pixel_x = 8;
+	pixel_y = 24;
+	req_access = list(40)
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "ajd" = (
@@ -5440,6 +5500,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "ajg" = (
@@ -5949,8 +6010,9 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "ajY" = (
-/obj/structure/disposalpipe/junction{
-	dir = 8
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
@@ -26190,6 +26252,10 @@
 /obj/effect/landmark{
 	name = "lightsout"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "aST" = (
@@ -26203,6 +26269,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
@@ -27374,6 +27444,13 @@
 	layer = 3.1;
 	name = "Medical Shutters"
 	},
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	icon_state = "shutter0";
+	id = "surfmedlockdown";
+	layer = 3.1;
+	name = "Medical Lockdown Shutters"
+	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/lobby)
 "aUV" = (
@@ -27537,6 +27614,7 @@
 /area/tether/surfacebase/medical/chemistry)
 "aVk" = (
 /obj/machinery/hologram/holopad,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "aVl" = (
@@ -27617,6 +27695,14 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
 	dir = 8
 	},
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	icon_state = "shutter0";
+	id = "surfmedlockdown";
+	layer = 3.1;
+	name = "Medical Lockdown Shutters"
+	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/monofloor{
 	dir = 8
 	},
@@ -30847,6 +30933,13 @@
 "iHr" = (
 /turf/simulated/wall/r_wall,
 /area/rnd/outpost/xenobiology/outpost_stairs)
+"iSE" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "kqV" = (
 /turf/simulated/wall/r_wall,
 /area/rnd/outpost/xenobiology/outpost_decon)
@@ -43685,7 +43778,7 @@ aVk
 ahM
 aVt
 ajf
-ajX
+iSE
 akn
 alk
 aZt
@@ -43817,13 +43910,13 @@ aaT
 abc
 aSN
 aST
-acQ
+aba
 adz
 aUI
 aeM
 agY
 afC
-agY
+acQ
 ahN
 aii
 aiV

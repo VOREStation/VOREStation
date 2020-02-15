@@ -31633,6 +31633,32 @@
 /area/maintenance/lower/north{
 	name = "\improper Surface EMT EVA Maintenance Lower"
 	})
+"cmP" = (
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/machinery/button/remote/blast_door{
+	desc = "A remote control-switch for shutters.";
+	dir = 1;
+	id = "surfmedlockdown";
+	name = "Medbay Emergency Lockdown Control";
+	pixel_x = 16;
+	pixel_y = -24;
+	req_access = list(5)
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/medical{
+	name = "\improper Surface EMT EVA Lower"
+	})
 "cpW" = (
 /obj/machinery/camera/network/medbay{
 	dir = 9
@@ -31773,6 +31799,13 @@
 	icon_state = "door_locked";
 	id_tag = "surface_med_airlock_outer";
 	locked = 1
+	},
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	icon_state = "shutter0";
+	id = "surfmedlockdown";
+	layer = 3.1;
+	name = "Medical Lockdown Shutters"
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/medical{
@@ -32278,6 +32311,15 @@
 	pixel_x = 25;
 	pixel_y = -8;
 	req_one_access = list(5)
+	},
+/obj/machinery/button/remote/blast_door{
+	desc = "A remote control-switch for shutters.";
+	dir = 8;
+	id = "surfmedlockdown";
+	name = "Medbay Emergency Lockdown Control";
+	pixel_x = 24;
+	pixel_y = 8;
+	req_access = list(40)
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/surfacebase/medical{
@@ -44874,7 +44916,7 @@ aak
 lnv
 dln
 hbS
-lJX
+cmP
 aak
 qid
 qid
