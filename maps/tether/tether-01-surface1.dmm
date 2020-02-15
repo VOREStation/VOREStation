@@ -31774,14 +31774,6 @@
 	id_tag = "surface_med_airlock_outer";
 	locked = 1
 	},
-/obj/machinery/door/blast/shutters{
-	density = 0;
-	dir = 2;
-	icon_state = "shutter0";
-	id = "surfmedbayquar";
-	name = "Medbay Emergency Lockdown Shutters";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/medical{
 	name = "\improper Surface EMT EVA Lower"
@@ -31909,30 +31901,9 @@
 /obj/item/toy/figure/md,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/mining_main/refinery)
-"hOE" = (
-/obj/machinery/button/remote/airlock{
-	id = "surface_eva_ladder";
-	pixel_x = 24
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/north{
-	name = "\improper Surface EMT EVA Maintenance Lower"
-	})
-"ifQ" = (
-/turf/simulated/floor/plating,
-/area/maintenance/lower/north{
-	name = "\improper Surface EMT EVA Maintenance Lower"
-	})
 "ipb" = (
 /turf/simulated/wall/r_wall,
 /area/tether/surfacebase/outside/outside1)
-"iIo" = (
-/obj/structure/ladder/up,
-/obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/north{
-	name = "\improper Surface EMT EVA Maintenance Lower"
-	})
 "iMT" = (
 /turf/simulated/wall,
 /area/maintenance/lower/north{
@@ -32182,11 +32153,6 @@
 /area/maintenance/lower/north{
 	name = "\improper Surface EMT EVA Maintenance Lower"
 	})
-"qVW" = (
-/turf/simulated/wall/r_wall,
-/area/maintenance/lower/north{
-	name = "\improper Surface EMT EVA Maintenance Lower"
-	})
 "rqy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10
@@ -32213,11 +32179,6 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical{
 	name = "\improper Surface EMT EVA Lower"
-	})
-"ssE" = (
-/turf/simulated/floor/tiled/steel_grid,
-/area/maintenance/lower/north{
-	name = "\improper Surface EMT EVA Maintenance Lower"
 	})
 "svW" = (
 /obj/structure/sign/department/medbay,
@@ -32321,23 +32282,6 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/surfacebase/medical{
 	name = "\improper Surface EMT EVA Lower"
-	})
-"uZi" = (
-/obj/machinery/camera/network/cargo{
-	dir = 1;
-	name = "security camera"
-	},
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/surfacebase/outside/outside1)
-"vpE" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait{
-	id_tag = "surface_eva_ladder";
-	name = "Maintenance Access";
-	req_one_access = list(12,32)
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/maintenance/lower/north{
-	name = "\improper Surface EMT EVA Maintenance Lower"
 	})
 "vGt" = (
 /obj/effect/floor_decal/steeldecal/steel_decals7{
@@ -45352,8 +45296,8 @@ aad
 aad
 aad
 aad
-vpE
-iIo
+aad
+aad
 aak
 oyK
 dJI
@@ -45494,8 +45438,8 @@ aad
 aad
 aad
 aad
-ssE
-hOE
+aad
+aad
 aak
 hIt
 bfd
@@ -45635,9 +45579,9 @@ aad
 aad
 aad
 aad
-uZi
-qVW
-qVW
+aad
+aad
+aad
 aak
 tTx
 aak
@@ -45778,8 +45722,8 @@ aad
 aad
 aad
 aad
-qVW
-ifQ
+aad
+aad
 iMT
 upG
 jHD
@@ -45920,8 +45864,8 @@ aad
 aad
 aad
 aad
-qVW
-ifQ
+aad
+aad
 iMT
 bCL
 dKa
@@ -46062,8 +46006,8 @@ aad
 aad
 aad
 aad
-qVW
-ifQ
+aad
+aad
 iMT
 rqy
 qDH
@@ -46204,8 +46148,8 @@ aad
 aad
 aad
 aad
-qVW
-ifQ
+aad
+aad
 iMT
 iMT
 iMT
@@ -46346,16 +46290,16 @@ aad
 aad
 aad
 aad
-qVW
-ifQ
-ifQ
-ifQ
-ifQ
-ifQ
-ifQ
-ifQ
-ifQ
-iMT
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
 aah
 aar
 aaM
@@ -46488,16 +46432,16 @@ aad
 aad
 aad
 aad
-qVW
-ifQ
-ifQ
-ifQ
-ifQ
-ifQ
-ifQ
-ifQ
-ifQ
-iMT
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
 aah
 aar
 aaN
@@ -46630,16 +46574,16 @@ aad
 aad
 aad
 aad
-qVW
-qVW
-qVW
-qVW
-qVW
-qVW
-qVW
-qVW
-iMT
-iMT
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
 aah
 aar
 aar
