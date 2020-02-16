@@ -76,7 +76,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 
 	if(!winexists(owner, "htmloutput"))
 		spawn()
-			alert(owner.mob, "Updated chat window does not exist. If you are using a custom skin file please allow the game to update.")
+			alert(owner, "Updated chat window does not exist. If you are using a custom skin file please allow the game to update.")
 		become_broken()
 		return FALSE
 
