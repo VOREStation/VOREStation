@@ -219,7 +219,7 @@
 	return I
 
 /obj/structure/trash_pile/proc/produce_beta_item()
-	var/path = pick(prob(6);/obj/item/weapon/storage/pill_bottle/tramadol,
+	var/path = pick(prob(6);/obj/item/weapon/storage/pill_bottle/paracetamol,
 					prob(4);/obj/item/weapon/storage/pill_bottle/happy,
 					prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
 					prob(4);/obj/item/seeds/ambrosiavulgarisseed,
