@@ -258,7 +258,7 @@
 
 /obj/item/weapon/reagent_containers/glass/bucket/attackby(var/obj/item/D, mob/user as mob)
 	if(isprox(D))
-		user << "You add [D] to [src]."
+		to_chat(user, "You add [D] to [src].")
 		qdel(D)
 		user.put_in_hands(new /obj/item/weapon/bucket_sensor)
 		user.drop_from_inventory(src)
@@ -314,7 +314,7 @@ obj/item/weapon/reagent_containers/glass/bucket/wood
 
 /obj/item/weapon/reagent_containers/glass/bucket/wood/attackby(var/obj/D, mob/user as mob)
 	if(isprox(D))
-		user << "This wooden bucket doesn't play well with electronics."
+		to_chat(user, "This wooden bucket doesn't play well with electronics.")
 		return
 	else if(istype(D, /obj/item/weapon/material/knife/machete/hatchet))
 		to_chat(user, "<span class='notice'>You cut a big hole in \the [src] with \the [D].  It's kinda useless as a bucket now.</span>")

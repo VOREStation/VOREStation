@@ -107,7 +107,7 @@
 
 	if(confirm == "Yes")
 		suiciding = 1
-		viewers(loc) << "<span class='danger'>[src]'s brain is growing dull and lifeless. It looks like it's lost the will to live.</span>"
+		to_chat(viewers(loc),"<span class='danger'>[src]'s brain is growing dull and lifeless. It looks like it's lost the will to live.</span>")
 		spawn(50)
 			death(0)
 			suiciding = 0
@@ -127,7 +127,7 @@
 
 	if(confirm == "Yes")
 		suiciding = 1
-		viewers(src) << "<span class='danger'>[src] is powering down. It looks like they're trying to commit suicide.</span>"
+		to_chat(viewers(src),"<span class='danger'>[src] is powering down. It looks like they're trying to commit suicide.</span>")
 		//put em at -175
 		adjustOxyLoss(max(getMaxHealth() * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()
@@ -147,7 +147,7 @@
 
 	if(confirm == "Yes")
 		suiciding = 1
-		viewers(src) << "<span class='danger'>[src] is powering down. It looks like they're trying to commit suicide.</span>"
+		to_chat(viewers(src),"<span class='danger'>[src] is powering down. It looks like they're trying to commit suicide.</span>")
 		//put em at -175
 		adjustOxyLoss(max(getMaxHealth() * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()

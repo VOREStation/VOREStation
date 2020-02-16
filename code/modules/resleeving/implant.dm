@@ -69,14 +69,14 @@
 		return
 
 	if(imps.len)
-		user << "<span class='notice'>You eject a backup implant.</span>"
+		to_chat(user, "<span class='notice'>You eject a backup implant.</span>")
 		var/obj/item/weapon/implant/backup/imp = imps[imps.len]
 		imp.forceMove(get_turf(user))
 		imps -= imp
 		user.put_in_any_hand_if_possible(imp)
 		update()
 	else
-		user << "<span class='warning'>\The [src] is empty.</span>"
+		to_chat(user, "<span class='warning'>\The [src] is empty.</span>")
 
 	return
 
@@ -88,9 +88,9 @@
 			W.germ_level = 0
 			W.forceMove(src)
 			update()
-			user << "<span class='notice'>You load \the [W] into \the [src].</span>"
+			to_chat(user, "<span class='notice'>You load \the [W] into \the [src].</span>")
 		else
-			user << "<span class='warning'>\The [src] is already full!</span>"
+			to_chat(user, "<span class='warning'>\The [src] is already full!</span>")
 
 /obj/item/weapon/backup_implanter/attack(mob/M as mob, mob/user as mob)
 	if (!istype(M, /mob/living/carbon))

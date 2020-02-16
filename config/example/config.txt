@@ -69,6 +69,9 @@ LOG_ATTACK
 ## log pda messages
 LOG_PDA
 
+## log graffiti drawings
+LOG_GRAFFITI
+
 ## log world.log messages
 # LOG_WORLD_OUTPUT
 

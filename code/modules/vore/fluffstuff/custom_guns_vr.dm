@@ -139,7 +139,7 @@
 	consume_next_projectile()
 		if(chambered)
 			return chambered.BB
-		usr << "<span class='warning'>It's a single action revolver, pull the hammer back!</span>"
+		to_chat(usr, "<span class='warning'>It's a single action revolver, pull the hammer back!</span>")
 		return null
 	attack_self(mob/living/user as mob)
 		if(world.time >= recentpump + 10)

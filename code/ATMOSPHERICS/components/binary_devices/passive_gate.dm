@@ -67,6 +67,8 @@
 			pressure_delta = input_starting_pressure - target_pressure
 		if (REGULATE_OUTPUT)
 			pressure_delta = target_pressure - output_starting_pressure
+		if (REGULATE_NONE)
+			pressure_delta = input_starting_pressure - output_starting_pressure
 
 	//-1 if pump_gas() did not move any gas, >= 0 otherwise
 	var/returnval = -1
@@ -82,9 +84,46 @@
 				transfer_moles = min(transfer_moles, calculate_transfer_moles(air2, air1, pressure_delta, (network1)? network1.volume : 0))
 			if (REGULATE_OUTPUT)
 				transfer_moles = min(transfer_moles, calculate_transfer_moles(air1, air2, pressure_delta, (network2)? network2.volume : 0))
+			if (REGULATE_NONE)
+				var/source = air1
+				var/sink = air2
+				// If node1 is a network of more than 1 pipe, we want to transfer from that whole network, otw use just node1, as current
+				if(istype(node1, /obj/machinery/atmospherics/pipe))
+					var/obj/machinery/atmospherics/pipe/p = node1
+					if(istype(p.parent, /datum/pipeline)) // Nested if-blocks to avoid the mystical :
+						var/datum/pipeline/l = p.parent
+						if(istype(l.air, /datum/gas_mixture))
+							source = l.air
+				// If node2 is a network of more than 1 pipe, we want to transfer to that whole network, otw use just node2, as current
+				if(istype(node2, /obj/machinery/atmospherics/pipe))
+					var/obj/machinery/atmospherics/pipe/p = node2
+					if(istype(p.parent, /datum/pipeline))
+						var/datum/pipeline/l = p.parent
+						if(istype(l.air, /datum/gas_mixture))
+							sink = l.air
+				transfer_moles = max(0, calculate_equalize_moles(source, sink)) // Not regulated, don't care about flow rate
 
 		//pump_gas() will return a negative number if no flow occurred
-		returnval = pump_gas_passive(src, air1, air2, transfer_moles)
+		if(regulate_mode == REGULATE_NONE) // ACTUALLY move gases from the whole network, not just the immediate pipes
+			var/source = air1
+			var/sink = air2
+			// If node1 is a network of more than 1 pipe, we want to transfer from that whole network, otw use just node1, as current
+			if(istype(node1, /obj/machinery/atmospherics/pipe))
+				var/obj/machinery/atmospherics/pipe/p = node1
+				if(istype(p.parent, /datum/pipeline)) // Nested if-blocks to avoid the mystical :
+					var/datum/pipeline/l = p.parent
+					if(istype(l.air, /datum/gas_mixture))
+						source = l.air
+			// If node2 is a network of more than 1 pipe, we want to transfer to that whole network, otw use just node2, as current
+			if(istype(node2, /obj/machinery/atmospherics/pipe))
+				var/obj/machinery/atmospherics/pipe/p = node2
+				if(istype(p.parent, /datum/pipeline))
+					var/datum/pipeline/l = p.parent
+					if(istype(l.air, /datum/gas_mixture))
+						sink = l.air
+			returnval = pump_gas_passive(src, source, sink, transfer_moles)
+		else
+			returnval = pump_gas_passive(src, air1, air2, transfer_moles)
 
 	if (returnval >= 0)
 		if(network1)

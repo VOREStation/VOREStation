@@ -12704,10 +12704,21 @@
 /turf/simulated/floor/plating,
 /area/engineering/atmos/storage)
 "ayf" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
-/area/engineering/atmos/storage)
+/obj/machinery/alarm{
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/paramed)
 "ayg" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
@@ -16205,15 +16216,13 @@
 /turf/simulated/floor/plating,
 /area/engineering/drone_fabrication)
 "aDV" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 1
-	},
-/obj/machinery/computer/cryopod/robot{
-	pixel_y = -32
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark{
+	name = "morphspawn"
 	},
 /turf/simulated/floor/plating,
-/area/engineering/drone_fabrication)
+/area/engineering/atmos/storage)
 "aDW" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	icon_state = "warningcorner";
@@ -21500,6 +21509,19 @@
 /obj/machinery/camera/network/command,
 /turf/simulated/floor/tiled/dark,
 /area/bridge_hallway)
+"aOp" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
+/obj/machinery/computer/cryopod/robot{
+	pixel_y = -32
+	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
+/turf/simulated/floor/plating,
+/area/engineering/drone_fabrication)
 "aOq" = (
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced/full,
@@ -22420,19 +22442,6 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/paramed)
-"aPX" = (
-/obj/machinery/alarm{
-	pixel_x = 0;
-	pixel_y = 28
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/paramed)
@@ -38979,7 +38988,7 @@ aBZ
 aDc
 aDv
 aDL
-aDV
+aOp
 aAT
 aED
 aEp
@@ -41185,7 +41194,7 @@ aab
 aab
 aac
 aNz
-aPX
+ayf
 aQv
 aan
 aaz
@@ -41524,7 +41533,7 @@ avf
 avO
 awE
 axu
-ayf
+aDV
 avK
 azC
 aAx

@@ -173,7 +173,7 @@
 			visible_message("<span class='warning'>Arcs of electricity strike [S]!</span>",
 			"<span class='warning'>Our hand channels raw electricity into [S]</span>",
 			"<span class='italics'>You hear sparks!</span>")
-			S << "<span class='danger'>Warning: Electrical surge detected!</span>"
+			to_chat(S, "<span class='danger'>Warning: Electrical surge detected!</span>")
 		//qdel(src)
 		user.mind.changeling.chem_charges -= 10
 		return 1

@@ -12,6 +12,8 @@
 		return 0
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(coverage_check(user, target, affected, tool))
+		return 0
 	return affected && !(affected.robotic >= ORGAN_ROBOT) && affected.encased && affected.open >= 2
 
 ///////////////////////////////////////////////////////////////

@@ -103,7 +103,7 @@
 			loaded_vial.update_icon()
 			user.put_in_hands(loaded_vial)
 			loaded_vial = null
-			user << "<span class='notice'>You remove the vial from the [src].</span>"
+			to_chat(user, "<span class='notice'>You remove the vial from the [src].</span>")
 			update_icon()
 			playsound(src.loc, 'sound/weapons/flipblade.ogg', 50, 1)
 			return
@@ -129,7 +129,7 @@
 			update_icon()
 			playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 		else
-			user << "<span class='notice'>\The [src] already has a vial.</span>"
+			to_chat(user, "<span class='notice'>\The [src] already has a vial.</span>")
 	else
 		..()
 

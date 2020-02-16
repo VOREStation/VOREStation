@@ -21,7 +21,7 @@
 
 /obj/item/device/analyzer/xeno_analyzer/proc/print_report(var/mob/living/user)
 	if(!last_data)
-		user << "There is no scan data to print."
+		to_chat(user, "There is no scan data to print.")
 		return
 	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
 	P.name = "paper - [form_title]"
@@ -65,7 +65,7 @@
 		prod_reagents = P.reagents
 
 	if(!trait_info)
-		user << "<span class='danger'>[src] can tell you nothing about \the [target].</span>"
+		to_chat(user, "<span class='danger'>[src] can tell you nothing about \the [target].</span>")
 		return
 
 	form_title = "[targetName]"

@@ -769,7 +769,7 @@
 			if(prob(5))
 				H.vomit(1)
 			else if(prob(5))
-				to_chat(H,"<span class='danger'>Something churns inside you.</span>")
+				to_chat(H, "<span class='danger'>Something churns inside you.</span>")
 				H.adjustToxLoss(10 * removed)
 				H.vomit(0, 1)
 		else
@@ -1283,11 +1283,11 @@
 		return
 	if(volume <= 0.1 && data != -1)
 		data = -1
-		M << "<span class='warning'>You lose focus...</span>"
+		to_chat(M, "<span class='warning'>You lose focus...</span>")
 	else
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
-			M << "<span class='notice'>Your mind feels focused and undivided.</span>"
+			to_chat(M, "<span class='notice'>Your mind feels focused and undivided.</span>")
 
 /datum/reagent/citalopram
 	name = "Citalopram"
@@ -1306,11 +1306,11 @@
 		return
 	if(volume <= 0.1 && data != -1)
 		data = -1
-		M << "<span class='warning'>Your mind feels a little less stable...</span>"
+		to_chat(M, "<span class='warning'>Your mind feels a little less stable...</span>")
 	else
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
-			M << "<span class='notice'>Your mind feels stable... a little stable.</span>"
+			to_chat(M, "<span class='notice'>Your mind feels stable... a little stable.</span>")
 
 /datum/reagent/paroxetine
 	name = "Paroxetine"
@@ -1329,14 +1329,14 @@
 		return
 	if(volume <= 0.1 && data != -1)
 		data = -1
-		M << "<span class='warning'>Your mind feels much less stable...</span>"
+		to_chat(M, "<span class='warning'>Your mind feels much less stable...</span>")
 	else
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
 			if(prob(90))
-				M << "<span class='notice'>Your mind feels much more stable.</span>"
+				to_chat(M, "<span class='notice'>Your mind feels much more stable.</span>")
 			else
-				M << "<span class='warning'>Your mind breaks apart...</span>"
+				to_chat(M, "<span class='warning'>Your mind breaks apart...</span>")
 				M.hallucination += 200
 
 /datum/reagent/qerr_quem

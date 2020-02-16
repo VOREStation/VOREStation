@@ -78,7 +78,7 @@
 	var/radiation = (energy*2)
 	M.apply_effect((radiation*3),IRRADIATE,0)
 	M.updatehealth()
-	//M << "<font color='red'>You feel odd.</font>"
+	//to_chat(M, "<font color='red'>You feel odd.</font>")
 
 
 /obj/effect/accelerated_particle/proc/move(var/lag)

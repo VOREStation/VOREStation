@@ -490,6 +490,7 @@
 	name = "wolpin cube"
 	monkey_type = "Wolpin"
 
+/*
 /obj/item/weapon/reagent_containers/food/snacks/pizza/margfrozen
 	name = "frozen margherita pizza"
 	desc = "It's frozen rock solid, better thaw it in a microwave."
@@ -669,18 +670,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/slice/vegcargo/filled
 	filled = TRUE
-
-/obj/item/pizzabox/margherita/Initialize()
-	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margcargo(src)
-
-/obj/item/pizzabox/vegetable/Initialize()
-	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegcargo(src)
-
-/obj/item/pizzabox/mushroom/Initialize()
-	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushcargo(src)
-
-/obj/item/pizzabox/meat/Initialize()
-	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatcargo(src)
+*/
 
 // food cubes
 /obj/item/weapon/reagent_containers/food/snacks/cube

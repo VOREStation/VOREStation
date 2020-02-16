@@ -61,7 +61,7 @@
 		msg += "[line]\n"
 
 	msg += "<b>Total Players: [length(Lines)]</b>"
-	src << msg
+	to_chat(src,msg)
 
 /client/verb/staffwho()
 	set category = "Admin"
@@ -207,4 +207,4 @@
 	if(config.show_event_managers)
 		msg += "\n<b> Current Miscellaneous ([num_event_managers_online]):</b>\n" + eventMmsg //VOREStation Edit
 
-	src << msg
+	to_chat(src,msg)

@@ -13,6 +13,7 @@
 	var/id = null
 	var/on_icon = "sign_on"
 	var/off_icon = "sign_off"
+	var/signlight = "#E9E4AF"
 
 /obj/machinery/holosign/proc/toggle()
 	if(stat & (BROKEN|NOPOWER))
@@ -24,13 +25,17 @@
 /obj/machinery/holosign/update_icon()
 	if(!lit)
 		icon_state = off_icon
+		set_light(0)
 	else
 		icon_state = on_icon
+		set_light(2, 0.25, signlight)
 
 /obj/machinery/holosign/power_change()
+	..()
 	if(stat & NOPOWER)
 		lit = 0
 		use_power = 0
+
 	update_icon()
 
 /obj/machinery/holosign/surgery
@@ -49,7 +54,7 @@
 	icon_state = "barclosed"
 	on_icon = "baropen"
 	off_icon = "barclosed"
-
+	signlight = "#b1edf9"
 
 ////////////////////SWITCH///////////////////////////////////////
 

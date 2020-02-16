@@ -7,6 +7,7 @@
 
 	icon_state = "cell_bay"
 
+	robotic = ORGAN_ROBOT
 	parent_organ = BP_TORSO
 
 	organ_verbs = list(/mob/living/carbon/human/proc/augment_menu)	// Verbs added by the organ when present in the body.
@@ -144,6 +145,12 @@
 		return 0
 
 	var/mob/living/carbon/human/M = src
+
+	if(buckled)
+		var/obj/Ob = buckled
+		if(Ob.buckle_lying)
+			to_chat(M, "<span class='notice'>You cannot use your augments when restrained.</span>")
+			return 0
 
 	if((slot == slot_l_hand && l_hand) || (slot == slot_r_hand && r_hand))
 		to_chat(M,"<span class='warning'>Your hand is full.  Drop something first.</span>")

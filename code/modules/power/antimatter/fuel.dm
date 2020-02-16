@@ -26,7 +26,7 @@
 		if(istype(F, /obj/item/weapon/fuel/antiH))
 			src.fuel += F.fuel
 			F.fuel = 0
-			user << "You have added the anti-Hydrogen to the storage ring, it now contains [src.fuel]kg"
+			to_chat(user, "You have added the anti-Hydrogen to the storage ring, it now contains [src.fuel]kg")
 		if(istype(F, /obj/item/weapon/fuel/H))
 			src.fuel += F.fuel
 			qdel(F)
@@ -35,7 +35,7 @@
 		if(istype(F, /obj/item/weapon/fuel/H))
 			src.fuel += F.fuel
 			F.fuel = 0
-			user << "You have added the Hydrogen to the storage ring, it now contains [src.fuel]kg"
+			to_chat(user, "You have added the Hydrogen to the storage ring, it now contains [src.fuel]kg")
 		if(istype(F, /obj/item/weapon/fuel/antiH))
 			src.fuel += F.fuel
 			qdel(src)
@@ -69,14 +69,14 @@
 
 /obj/item/weapon/fuel/examine(mob/user)
 	if(get_dist(src, user) <= 1)
-		user << "A magnetic storage ring, it contains [fuel]kg of [content ? content : "nothing"]."
+		to_chat(user, "A magnetic storage ring, it contains [fuel]kg of [content ? content : "nothing"].")
 
 /obj/item/weapon/fuel/proc/injest(mob/M as mob)
 	switch(content)
 		if("Anti-Hydrogen")
 			M.gib() //Yikes!
 		if("Hydrogen")
-			M << "<font color='blue'>You feel very light, as if you might just float away...</font>"
+			to_chat(M, "<font color='blue'>You feel very light, as if you might just float away...</font>")
 	qdel(src)
 	return
 

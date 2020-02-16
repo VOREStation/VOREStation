@@ -67,6 +67,15 @@
 		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
 			return ..()
 
+		if(S.organ_tag == BP_HEAD)
+			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
+				to_chat(user, "<span class='warning'>You can't apply [src] through [H.head]!</span>")
+				return 1
+		else
+			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
+				to_chat(user, "<span class='warning'>You can't apply [src] through [H.wear_suit]!</span>")
+				return 1
+
 		if(!welding)
 			to_chat(user, "<span class='warning'>You'll need to turn [src] on to patch the damage on [H]'s [S.name]!</span>")
 			return 1
@@ -549,11 +558,11 @@
 /obj/item/weapon/weldingtool/electric/examine(mob/user)
 	if(get_dist(src, user) > 1)
 		to_chat(user, desc)
-	else					// The << need to stay, for some reason
+	else
 		if(power_supply)
-			user << text("\icon[] The [] has [] charge left.", src, src.name, get_fuel())
+			to_chat(user, "\icon[src] The [src.name] has [get_fuel()] charge left.")
 		else
-			user << text("\icon[] The [] has no power cell!", src, src.name)
+			to_chat(user, "\icon[src] The [src.name] has no power cell!")
 
 /obj/item/weapon/weldingtool/electric/get_fuel()
 	if(use_external_power)

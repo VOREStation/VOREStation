@@ -251,7 +251,7 @@ steam.start() -- spawns the effect
 			B.damage = (B.damage/2)
 			projectiles += B
 			destroyed_event.register(B, src, /obj/effect/effect/smoke/bad/proc/on_projectile_delete)
-		world << "Damage is: [B.damage]"
+		to_world("Damage is: [B.damage]")
 	return 1
 
 /obj/effect/effect/smoke/bad/proc/on_projectile_delete(obj/item/projectile/beam/proj)
@@ -511,10 +511,10 @@ steam.start() -- spawns the effect
 			s.start()
 
 			for(var/mob/M in viewers(5, location))
-				M << "<span class='warning'>The solution violently explodes.</span>"
+				to_chat(M, "<span class='warning'>The solution violently explodes.</span>")
 			for(var/mob/M in viewers(1, location))
 				if (prob (50 * amount))
-					M << "<span class='warning'>The explosion knocks you down.</span>"
+					to_chat(M, "<span class='warning'>The explosion knocks you down.</span>")
 					M.Weaken(rand(1,5))
 			return
 		else
@@ -537,7 +537,7 @@ steam.start() -- spawns the effect
 				flash = (amount/4) * flashing_factor
 
 			for(var/mob/M in viewers(8, location))
-				M << "<span class='warning'>The solution violently explodes.</span>"
+				to_chat(M, "<span class='warning'>The solution violently explodes.</span>")
 
 			explosion(
 				location,

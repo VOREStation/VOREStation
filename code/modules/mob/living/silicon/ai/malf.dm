@@ -15,8 +15,8 @@
 	verbs += new/datum/game_mode/malfunction/verb/ai_help()
 
 	// And greet user with some OOC info.
-	user << "You are malfunctioning, you do not have to follow any laws."
-	user << "Use ai-help command to view relevant information about your abilities"
+	to_chat(user, "You are malfunctioning, you do not have to follow any laws.")
+	to_chat(user, "Use ai-help command to view relevant information about your abilities")
 
 // Safely remove malfunction status, fixing hacked APCs and resetting variables.
 /mob/living/silicon/ai/proc/stop_malf()
@@ -34,7 +34,7 @@
 	src.verbs = null
 	add_ai_verbs()
 	// Let them know.
-	user << "You are no longer malfunctioning. Your abilities have been removed."
+	to_chat(user, "You are no longer malfunctioning. Your abilities have been removed.")
 
 // Called every tick. Checks if AI is malfunctioning. If yes calls Process on research datum which handles all logic.
 /mob/living/silicon/ai/proc/malf_process()

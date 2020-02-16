@@ -36,7 +36,7 @@
 		return chassis.dynattackby(W,user)
 	chassis.log_message("Attacked by [W]. Attacker - [user]")
 	if(prob(chassis.deflect_chance*deflect_coeff))
-		user << "<span class='danger'>\The [W] bounces off [chassis] armor.</span>"
+		to_chat(user, "<span class='danger'>\The [W] bounces off [chassis] armor.</span>")
 		chassis.log_append_to_last("Armor saved.")
 	else
 		chassis.occupant_message("<span class='danger'>\The [user] hits [chassis] with [W].</span>")

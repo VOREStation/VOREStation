@@ -259,7 +259,7 @@ default behaviour is:
 //sort of a legacy burn method for /electrocute, /shock, and the e_chair
 /mob/living/proc/burn_skin(burn_amount)
 	if(istype(src, /mob/living/carbon/human))
-		//world << "DEBUG: burn_skin(), mutations=[mutations]"
+		//to_world("DEBUG: burn_skin(), mutations=[mutations]")
 		if(mShock in src.mutations) //shockproof
 			return 0
 		if (COLD_RESISTANCE in src.mutations) //fireproof
@@ -293,7 +293,7 @@ default behaviour is:
 		if(actual < desired)
 			temperature = desired
 //	if(istype(src, /mob/living/carbon/human))
-//		world << "[src] ~ [src.bodytemperature] ~ [temperature]"
+//		to_world("[src] ~ [src.bodytemperature] ~ [temperature]")
 	return temperature
 
 
@@ -773,7 +773,7 @@ default behaviour is:
 		else
 			to_chat(usr, "[src] does not have any stored infomation!")
 	else
-		usr << "OOC Metadata is not supported by this server!"
+		to_chat(usr, "OOC Metadata is not supported by this server!")
 	//VOREStation Edit End - Making it so SSD people have prefs with fallback to original style.
 	return
 

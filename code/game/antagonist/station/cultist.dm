@@ -96,13 +96,13 @@ var/datum/antagonist/cultist/cult
 		runerandom()
 
 	var/wordexp = "[cultwords[word]] is [word]..."
-	cult_mob << "<span class='warning'>You remember one thing from the dark teachings of your master... [wordexp]</span>"
+	to_chat(cult_mob, "<span class='warning'>You remember one thing from the dark teachings of your master... [wordexp]</span>")
 	cult_mob.mind.store_memory("You remember that <B>[wordexp]</B>", 0, 0)
 
 /datum/antagonist/cultist/remove_antagonist(var/datum/mind/player, var/show_message, var/implanted)
 	if(!..())
 		return 0
-	player.current << "<span class='danger'>An unfamiliar white light flashes through your mind, cleansing the taint of the dark-one and the memories of your time as his servant with it.</span>"
+	to_chat(player.current, "<span class='danger'>An unfamiliar white light flashes through your mind, cleansing the taint of the dark-one and the memories of your time as his servant with it.</span>")
 	player.memory = ""
 	if(show_message)
 		player.current.visible_message("<FONT size = 3>[player.current] looks like they just reverted to their old faith!</FONT>")
@@ -110,7 +110,7 @@ var/datum/antagonist/cultist/cult
 /datum/antagonist/cultist/add_antagonist(var/datum/mind/player)
 	. = ..()
 	if(.)
-		player << "You catch a glimpse of the Realm of Nar-Sie, the Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of That Which Waits. Assist your new compatriots in their dark dealings. Their goals are yours, and yours are theirs. You serve the Dark One above all else. Bring It back."
+		to_chat(player, "You catch a glimpse of the Realm of Nar-Sie, the Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of That Which Waits. Assist your new compatriots in their dark dealings. Their goals are yours, and yours are theirs. You serve the Dark One above all else. Bring It back.")
 		if(player.current && !istype(player.current, /mob/living/simple_mob/construct))
 			player.current.add_language(LANGUAGE_CULT)
 

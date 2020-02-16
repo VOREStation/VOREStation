@@ -86,23 +86,23 @@
 // This builds destination instances connected to this instance, recursively.
 /datum/shuttle_destination/proc/build_destinations(var/list/already_made = list())
 	already_made += src.type
-	world << "SHUTTLES: [name] is going to build destinations.  already_made list is \[[english_list(already_made)]\]"
+	to_world("SHUTTLES: [name] is going to build destinations.  already_made list is \[[english_list(already_made)]\]")
 	for(var/type_to_make in destinations_to_create)
 		if(type_to_make in already_made) // Avoid circular initializations.
-			world << "SHUTTLES: [name] can't build [type_to_make] due to being a duplicate."
+			to_world("SHUTTLES: [name] can't build [type_to_make] due to being a duplicate.")
 			continue
 
 		// Instance the new destination, and call this proc on their 'downstream' destinations.
 		var/datum/shuttle_destination/new_dest = new type_to_make()
-		world << "SHUTTLES: [name] has created [new_dest.name] and will make it build their own destinations."
+		to_world("SHUTTLES: [name] has created [new_dest.name] and will make it build their own destinations.")
 		already_made += new_dest.build_destinations(already_made)
 
 		// Now link our new destination to us.
 		var/travel_delay = destinations_to_create[type_to_make]
 		link_destinations(new_dest, preferred_interim_area, travel_delay)
-		world << "SHUTTLES: [name] has linked themselves to [new_dest.name]"
+		to_world("SHUTTLES: [name] has linked themselves to [new_dest.name]")
 
-	world << "SHUTTLES: [name] has finished building destinations.  already_made list is \[[english_list(already_made)]\]."
+	to_world("SHUTTLES: [name] has finished building destinations.  already_made list is \[[english_list(already_made)]\].")
 	return already_made
 
 /datum/shuttle_destination/proc/enter(var/datum/shuttle_destination/old_destination)

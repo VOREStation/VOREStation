@@ -2,9 +2,6 @@
 // The zone control console, fluffed ingame as
 // a scanner console for the asteroid belt
 //////////////////////////////
-#define OUTPOST_Z 5
-#define TRANSIT_Z 2
-#define BELT_Z 7
 
 /obj/machinery/computer/roguezones
 	name = "asteroid belt scanning computer"
@@ -25,6 +22,8 @@
 
 /obj/machinery/computer/roguezones/Initialize()
 	. = ..()
+	if(!rm_controller)
+		rm_controller = new /datum/controller/rogue()
 	shuttle_control = locate(/obj/machinery/computer/shuttle_control/belter)
 
 /obj/machinery/computer/roguezones/attack_ai(mob/user as mob)
@@ -56,19 +55,19 @@
 	if(!shuttle_control)
 		data["shuttle_location"] = "Unknown"
 		data["shuttle_at_station"] = 0
-	else if(shuttle_control.z == OUTPOST_Z)
+	else if(shuttle_control.z in using_map.belter_docked_z)
 		data["shuttle_location"] = "Landed"
 		data["shuttle_at_station"] = 1
-	else if(shuttle_control.z == TRANSIT_Z)
+	else if(shuttle_control.z == using_map.belter_transit_z)
 		data["shuttle_location"] = "In-transit"
 		data["shuttle_at_station"] = 0
-	else if(shuttle_control.z == BELT_Z)
+	else if(shuttle_control.z == using_map.belter_belt_z)
 		data["shuttle_location"] = "Belt"
 		data["shuttle_at_station"] = 0
 
 	var/can_scan = 0
 	if(chargePercent >= 100) //Keep having weird problems with these in one 'if' statement
-		if(shuttle_control && shuttle_control.z == OUTPOST_Z) //Even though I put them all in parens to avoid OoO problems...
+		if(shuttle_control && (shuttle_control.z in using_map.belter_docked_z)) //Even though I put them all in parens to avoid OoO problems...
 			if(!curZoneOccupied) //Not sure why.
 				if(!scanning)
 					can_scan = 1
@@ -77,7 +76,7 @@
 	data["scan_ready"] = can_scan
 
 	// Permit emergency recall of the shuttle if its stranded in a zone with just dead people.
-	data["can_recall_shuttle"] = (shuttle_control && shuttle_control.z == BELT_Z && !curZoneOccupied)
+	data["can_recall_shuttle"] = (shuttle_control && (shuttle_control.z in using_map.belter_belt_z) && !curZoneOccupied)
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -141,7 +140,7 @@
 /obj/machinery/computer/roguezones/proc/failsafe_shuttle_recall()
 	if(!shuttle_control)
 		return // Shuttle computer has been destroyed
-	if (shuttle_control.z != BELT_Z)
+	if (!(shuttle_control.z in using_map.belter_belt_z))
 		return // Usable only when shuttle is away
 	if(rm_controller.current_zone && rm_controller.current_zone.is_occupied())
 		return // Not usable if shuttle is in occupied zone

@@ -62,7 +62,7 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 /obj/item/seeds/examine(mob/user)
 	..(user)
 	if(seed && !seed.roundstart)
-		user << "It's tagged as variety #[seed.uid]."
+		to_chat(user, "It's tagged as variety #[seed.uid].")
 
 /obj/item/seeds/cutting
 	name = "cuttings"

@@ -115,10 +115,10 @@
 #define INV_BACK_DEF_ICON 'icons/mob/back.dmi'
 #define INV_L_HAND_DEF_ICON 'icons/mob/items/lefthand.dmi'
 #define INV_R_HAND_DEF_ICON 'icons/mob/items/righthand.dmi'
-#define INV_W_UNIFORM_DEF_ICON 'icons/mob/uniform.dmi'
+#define INV_W_UNIFORM_DEF_ICON "icons/mob/uniform"
 #define INV_ACCESSORIES_DEF_ICON 'icons/mob/ties.dmi'
 #define INV_TIE_DEF_ICON 'icons/mob/ties.dmi'
-#define INV_SUIT_DEF_ICON 'icons/mob/suit.dmi'
+#define INV_SUIT_DEF_ICON "icons/mob/suit"
 #define INV_SPACESUIT_DEF_ICON 'icons/mob/spacesuit.dmi'
 #define INV_WEAR_ID_DEF_ICON 'icons/mob/mob.dmi'
 #define INV_GLOVES_DEF_ICON 'icons/mob/hands.dmi'

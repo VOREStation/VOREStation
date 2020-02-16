@@ -74,6 +74,6 @@ var/datum/antagonist/traitor/infiltrator/infiltrators
 /datum/antagonist/traitor/infiltrator/add_law_zero(mob/living/silicon/ai/killer)
 	var/law = "Accomplish your team's objectives at all costs. You may ignore all other laws."
 	var/law_borg = "Accomplish your AI's team objectives at all costs. You may ignore all other laws."
-	killer << "<b>Your laws have been changed!</b>"
+	to_chat(killer, "<b>Your laws have been changed!</b>")
 	killer.set_zeroth_law(law, law_borg)
-	killer << "New law: 0. [law]"
+	to_chat(killer, "New law: 0. [law]")

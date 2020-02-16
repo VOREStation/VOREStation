@@ -1146,7 +1146,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	if(L)
 		if(reception_message)
-			L << reception_message
+			to_chat(L,reception_message)
 		SSnanoui.update_user_uis(L, src) // Update the receiving user's PDA UI so that they can see the new message
 
 /obj/item/device/pda/proc/new_news(var/message)
@@ -1389,11 +1389,11 @@ var/global/list/obj/item/device/pda/PDAs = list()
 					var/reagents_length = A.reagents.reagent_list.len
 					to_chat(user, "<span class='notice'>[reagents_length] chemical agent[reagents_length > 1 ? "s" : ""] found.</span>")
 					for (var/re in A.reagents.reagent_list)
-						to_chat(user,"<span class='notice'>    [re]</span>")
+						to_chat(user, "<span class='notice'>    [re]</span>")
 				else
-					to_chat(user,"<span class='notice'>No active chemical agents found in [A].</span>")
+					to_chat(user, "<span class='notice'>No active chemical agents found in [A].</span>")
 			else
-				to_chat(user,"<span class='notice'>No significantchemical agents found in [A].</span>")
+				to_chat(user, "<span class='notice'>No significantchemical agents found in [A].</span>")
 
 		if(5)
 			analyze_gases(A, user)
@@ -1445,7 +1445,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		// feature to the PDA, which would better convey the availability of the feature, but this will work for now.
 
 		// Inform the user
-		to_chat(user,"<span class='notice'>Paper scanned and OCRed to notekeeper.</span>") //concept of scanning paper copyright brainoblivion 2009
+		to_chat(user, "<span class='notice'>Paper scanned and OCRed to notekeeper.</span>") //concept of scanning paper copyright brainoblivion 2009
 
 
 /obj/item/device/pda/proc/explode() //This needs tuning. //Sure did.
