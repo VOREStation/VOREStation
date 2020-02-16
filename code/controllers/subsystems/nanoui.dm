@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(nanoui)
 		for(var/filename in filenames)
 			if(copytext(filename, length(filename)) != "/") // filenames which end in "/" are actually directories, which we want to ignore
 				if(fexists(path + filename))
-					asset_files.Add(fcopy_rsc(path + filename)) // add this file to asset_files for sending to clients when they connect
+					asset_files[filename] = fcopy_rsc(path + filename) // add this file to asset_files for sending to clients when they connect
 	.=..()
 	for(var/i in GLOB.clients)
 		send_resources(i)
@@ -49,5 +49,4 @@ SUBSYSTEM_DEF(nanoui)
 /datum/controller/subsystem/nanoui/proc/send_resources(client)
 	if(!subsystem_initialized)
 		return
-	for(var/file in asset_files)
-		client << browse_rsc(file)	// send the file to the client
+	getFilesSlow(client, asset_files)
