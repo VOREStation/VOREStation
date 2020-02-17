@@ -1,6 +1,5 @@
 
 /**********************Ore box**************************/
-//Why the hell is this file called satchel_ore_boxdm.dm? -CK
 /obj/structure/ore_box
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "orebox0"
@@ -41,11 +40,7 @@
 
 /obj/structure/ore_box/examine(mob/user)
 	to_chat(user, "That's an [src].")
-	to_chat(user,desc)
-
-	// Borgs can now check contents too.
-	if((!istype(user, /mob/living/carbon/human)) && (!istype(user, /mob/living/silicon/robot)))
-		return
+	to_chat(user, desc)
 
 	if(!Adjacent(user)) //Can only check the contents of ore boxes if you can physically reach them.
 		return
@@ -70,11 +65,11 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(!istype(usr, /mob/living/carbon/human) && !istype(usr, /mob/living/silicon/robot)) //Only living, intelligent creatures with gripping aparatti can empty ore boxes.
-		to_chat(usr, "<font color='red'>You are physically incapable of emptying the ore box.</font>")
+	if(!ishuman(usr) && !isrobot(usr)) //Only living, intelligent creatures with gripping aparatti can empty ore boxes.
+		to_chat(usr, "<span class='warning'>You are physically incapable of emptying the ore box.</span>")
 		return
 
-	if( usr.stat || usr.restrained() )
+	if(usr.stat || usr.restrained())
 		return
 
 	if(!Adjacent(usr)) //You can only empty the box if you can physically reach it
@@ -84,13 +79,13 @@
 	add_fingerprint(usr)
 
 	if(contents.len < 1)
-		to_chat(usr, "<font color='red'>The ore box is empty.</font>")
+		to_chat(usr, "<span class='warning'>The ore box is empty.</span>")
 		return
 
 	for (var/obj/item/weapon/ore/O in contents)
 		contents -= O
 		O.loc = src.loc
-	to_chat(usr, "<font color='blue'>You empty the ore box.</font>")
+	to_chat(usr, "<span class='notice'>You empty the ore box.</span>")
 
 	return
 
