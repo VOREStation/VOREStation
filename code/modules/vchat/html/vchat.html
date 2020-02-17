@@ -27,7 +27,7 @@
 	<div class="ui top fixed pointing menu" :class="{ inverted: inverted }">
 		<div v-for="tab in tabs" class="item" :class="{ active: tab.active, inverted: inverted }" @click="switchtab(tab)" @click.ctrl="editmode">
 			{{tab.name}}
-			<div class="ui empty circular label" :class="tab_unread_classes(tab)"></div>
+			<div v-if="tab_unread_count(tab) > 0" class="ui top right attached red label">{{tab_unread_count(tab)}}</div>
 		</div>
 		
 		<div class="right menu">

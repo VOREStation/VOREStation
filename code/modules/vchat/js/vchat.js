@@ -312,7 +312,7 @@ function start_vue() {
 				tab.active = true;
 
 				tab.classes.forEach( function(cls) {
-					this.unread_messages[cls] = false;
+					this.unread_messages[cls] = 0;
 				}, this);
 			},
 			//Toggle edit mode
@@ -354,6 +354,16 @@ function start_vue() {
 				this.switchtab(this.tabs[0]);
 				this.tabs.splice(this.tabs.indexOf(doomed_tab), 1);
 			},
+			tab_unread_count: function(tab) {
+				var unreads = 0;
+				var thisum = this.unread_messages;
+				tab.classes.find( function(cls){
+					if(thisum[cls]) {
+						unreads += thisum[cls];
+					}
+				});
+				return unreads;
+			},
 			tab_unread_classes: function(tab) {
 				var unreads = false;
 				var thisum = this.unread_messages;
@@ -378,7 +388,10 @@ function start_vue() {
 				//Get a category
 				newmessage.category = this.get_category(newmessage.content);
 				if(!this.active_tab.classes.some(function(cls) { return (cls == newmessage.category || cls == "vc_showall"); })) {
-					this.unread_messages[newmessage.category] = true;
+					if (isNaN(this.unread_messages[newmessage.category])) {
+						this.unread_messages[newmessage.category] = 0;
+					}
+					this.unread_messages[newmessage.category] += 1;
 				}
 
 				//Try to crush it with one of the last few
