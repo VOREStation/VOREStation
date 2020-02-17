@@ -2,7 +2,6 @@
 	set category = null
 	set name = "Drop Everything"
 	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
 		return
 
 	var/confirm = alert(src, "Make [M] drop everything?", "Message", "Yes", "No")
@@ -20,8 +19,8 @@
 	set category = "Admin"
 	set name = "Prison"
 	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
 		return
+
 	if (ismob(M))
 		if(istype(M, /mob/living/silicon/ai))
 			alert("The AI can't be sent to prison you jerk!", null, null, null, null, null)
@@ -48,7 +47,7 @@
 	set category = "Admin"
 	set name = "Check new Players"
 	if(!holder)
-		to_chat(src, "Only staff members may use this command.")
+		return
 
 	var/age = alert(src, "Age check", "Show accounts yonger then _____ days","7", "30" , "All")
 
@@ -83,7 +82,6 @@
 
 	if(!ismob(M))	return
 	if (!holder)
-		to_chat(src, "Only administrators may use this command.")
 		return
 
 	var/msg = sanitize(input("Message:", text("Subtle PM to [M.key]")) as text)
@@ -106,7 +104,6 @@
 	set name = "Global Narrate"
 
 	if (!holder)
-		to_chat(src, "Only administrators may use this command.")
 		return
 
 	var/msg = sanitize(input("Message:", text("Enter the text you wish to appear to everyone:")) as text)
@@ -123,7 +120,6 @@
 	set name = "Direct Narrate"
 
 	if(!holder)
-		to_chat(src, "Only administrators and moderators may use this command.")
 		return
 
 	if(!M)
@@ -147,9 +143,10 @@
 /client/proc/cmd_admin_godmode(mob/M as mob in mob_list)
 	set category = "Special Verbs"
 	set name = "Godmode"
+	
 	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
 		return
+	
 	M.status_flags ^= GODMODE
 	to_chat(usr, "<font color='blue'> Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]</font>")
 
@@ -215,9 +212,10 @@ proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 /client/proc/cmd_admin_add_random_ai_law()
 	set category = "Fun"
 	set name = "Add Random AI Law"
+
 	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
 		return
+	
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm != "Yes") return
 	log_admin("[key_name(src)] has added a random AI law.")
@@ -264,8 +262,10 @@ Ccomp's first proc.
 	set category = "Special Verbs"
 	set name = "Allow player to respawn"
 	set desc = "Let's the player bypass the wait to respawn or allow them to re-enter their corpse."
+	
 	if(!holder)
-		to_chat(src, "Only administrators and moderators may use this command.")
+		return
+	
 	var/list/ghosts= get_ghosts(1,1)
 
 	var/target = input("Please, select a ghost!", "COME BACK TO LIFE!", null, null) as null|anything in ghosts
@@ -295,7 +295,8 @@ Ccomp's first proc.
 	set desc = "Toggles antagHUD usage for observers"
 
 	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
+		return
+
 	var/action=""
 	if(config.antag_hud_allowed)
 		for(var/mob/observer/dead/g in get_ghosts())
@@ -327,8 +328,10 @@ Ccomp's first proc.
 	set category = "Server"
 	set name = "Toggle antagHUD Restrictions"
 	set desc = "Restricts players that have used antagHUD from being able to join this round."
+	
 	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
+		return
+	
 	var/action=""
 	if(config.antag_hud_restricted)
 		for(var/mob/observer/dead/g in get_ghosts())
@@ -358,8 +361,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Special Verbs"
 	set name = "Spawn Character"
 	set desc = "(Re)Spawn a client's loaded character."
+	
 	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
 		return
 
 	//I frontload all the questions so we don't have a half-done process while you're reading.
@@ -516,9 +519,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /client/proc/cmd_admin_add_freeform_ai_law()
 	set category = "Fun"
 	set name = "Add Custom AI law"
+
 	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
 		return
+	
 	var/input = sanitize(input(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", "") as text|null)
 	if(!input)
 		return
@@ -544,9 +548,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /client/proc/cmd_admin_rejuvenate(mob/living/M as mob in mob_list)
 	set category = "Special Verbs"
 	set name = "Rejuvenate"
+
 	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
 		return
+	
 	if(!mob)
 		return
 	if(!istype(M))
@@ -566,9 +571,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /client/proc/cmd_admin_create_centcom_report()
 	set category = "Special Verbs"
 	set name = "Create Command Report"
+
 	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
 		return
+
 	var/input = sanitize(input(usr, "Please enter anything you want. Anything. Serious.", "What?", "") as message|null, extra = 0)
 	var/customname = sanitizeSafe(input(usr, "Pick a title for the report.", "Title") as text|null)
 	if(!input)
@@ -595,8 +601,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Delete"
 
 	if (!holder)
-		to_chat(src, "Only administrators may use this command.")
 		return
+
 	admin_delete(O)
 
 /client/proc/cmd_admin_list_open_jobs()
@@ -604,8 +610,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "List free slots"
 
 	if (!holder)
-		to_chat(src, "Only administrators may use this command.")
 		return
+
 	if(job_master)
 		for(var/datum/job/job in job_master.occupations)
 			to_chat(src, "[job.title]: [job.total_positions]")
@@ -690,6 +696,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Gibself"
 	set category = "Fun"
 
+	if(!holder)
+		return
+
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm == "Yes")
 		if (istype(mob, /mob/observer/dead)) // so they don't spam gibs everywhere
@@ -767,6 +776,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Check Contents"
 	set popup_menu = FALSE //VOREStation Edit - Declutter.
 
+	if(!holder)
+		return
+
 	var/list/L = M.get_contents()
 	for(var/t in L)
 		to_chat(usr, "[t]")
@@ -808,6 +820,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Change View Range"
 	set desc = "switches between 1x and custom views"
 
+	if(!holder)
+		return
+
 	if(view == world.view)
 		view = input("Select view range:", "FUCK YE", 7) in list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,128)
 	else
@@ -819,7 +834,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","CVRA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/admin_call_shuttle()
-
 	set category = "Admin"
 	set name = "Call Shuttle"
 
@@ -930,8 +944,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /client/proc/toggle_random_events()
 	set category = "Server"
 	set name = "Toggle random events on/off"
-
 	set desc = "Toggles random events such as meteors, black holes, blob (but not space dust) on/off"
+
 	if(!check_rights(R_SERVER))	return //VOREStation Edit
 
 	if(!config.allow_random_events)
