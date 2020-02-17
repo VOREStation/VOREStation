@@ -146,7 +146,7 @@
 	return pick(prob(10);/obj/item/weapon/contraband/poster,\
 				prob(8);/obj/item/weapon/haircomb,\
 				prob(6);/obj/item/weapon/material/wirerod,\
-				prob(6);/obj/item/weapon/storage/pill_bottle/tramadol,\
+				prob(6);/obj/item/weapon/storage/pill_bottle/paracetamol,\
 				prob(6);/obj/item/weapon/material/butterflyblade,\
 				prob(6);/obj/item/weapon/material/butterflyhandle,\
 				prob(4);/obj/item/weapon/storage/pill_bottle/happy,\

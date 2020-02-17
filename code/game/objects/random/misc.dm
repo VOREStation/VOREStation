@@ -229,7 +229,7 @@
 	icon_state = "purplecomb"
 	spawn_nothing_percentage = 50
 /obj/random/contraband/item_to_spawn()
-	return pick(prob(6);/obj/item/weapon/storage/pill_bottle/tramadol,
+	return pick(prob(6);/obj/item/weapon/storage/pill_bottle/paracetamol, //VOREStation Edit,
 				prob(8);/obj/item/weapon/haircomb,
 				prob(4);/obj/item/weapon/storage/pill_bottle/happy,
 				prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
