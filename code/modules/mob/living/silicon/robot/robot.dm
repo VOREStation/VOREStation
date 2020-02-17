@@ -903,6 +903,7 @@
 /mob/living/silicon/robot/proc/radio_menu()
 	radio.interact(src)//Just use the radio's Topic() instead of bullshit special-snowflake code
 
+<<<<<<< HEAD
 
 /mob/living/silicon/robot/Move(a, b, flag)
 
@@ -954,6 +955,8 @@
 				B.gather_all(tile, src, 1) //Shhh, unless the bag fills, don't spam the borg's chat with stuff that's going on every time they move!
 		return
 
+=======
+>>>>>>> a862d55... Fixes mining borg ore box movement on sand with a mining satchel equipped (#6693)
 /mob/living/silicon/robot/proc/self_destruct()
 	gib()
 	return
