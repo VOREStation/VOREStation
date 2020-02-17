@@ -27,6 +27,10 @@
 	cursor: pointer;
 }
 
+.icon-left-open-outline:hover, .icon-right-open-outline:hover, .icon-cancel-circled-outline:hover {
+	color: red;
+}
+
 body.inverted {
 	background-color: #111111;
 }

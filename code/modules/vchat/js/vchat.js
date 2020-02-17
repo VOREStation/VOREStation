@@ -346,13 +346,23 @@ function start_vue() {
 				tabtorename.name = newname;
 			},
 			//Delete the currently active tab
-			deltab: function() {
-				if(this.active_tab.immutable) {
+			deltab: function(tab) {
+				if(!tab) {
+					tab = this.active_tab;
+				}
+				if(tab.immutable) {
 					return;
 				}
-				var doomed_tab = this.active_tab;
 				this.switchtab(this.tabs[0]);
-				this.tabs.splice(this.tabs.indexOf(doomed_tab), 1);
+				this.tabs.splice(this.tabs.indexOf(tab), 1);
+			},
+			movetab: function(tab, shift) {
+				if(!tab || tab.immutable) {
+					return;
+				}
+				var at = this.tabs.indexOf(tab);
+				var to = at + shift;
+				this.tabs.splice(to, 0, this.tabs.splice(at, 1)[0]);
 			},
 			tab_unread_count: function(tab) {
 				var unreads = 0;
@@ -703,77 +713,3 @@ function doWinset(control_id, params) {
 	}).join("&");
 	window.location = url;
 }
-
-/***********
-*
-* Vue Components
-*
-************/
-
-
-/*
-	Classes of note (02-06-2020 vorestation):
-	------ 'Local Chat' ------
-	.say = say (includes whispers which just have <i>)
-	.emote = emote (includes subtles which just have <i>)
-	.ooc .looc = looc
-
-	------ 'Radio' ------
-	.alert = global announcer (join messages, etc, the fake radios)
-	.syndradio
-	.centradio
-	.airadioc
-	.entradio
-	.comradio
-	.secradio
-	.engradio
-	.medradio
-	.sciradio
-	.supradio
-	.srvradio
-	.expradio
-	.radio = radio fallback
-
-	------ 'Warnings' ------
-	.critical = BIGGEST warnings?? rarely used
-	.danger = generally BIG warnings
-	.userdanger = ??
-	.warning = generally smol warnings
-	.italics = stupid, should be replaced with warning
-
-	------ 'Info' ------
-	.notice = generally notifications
-	.adminnotice = server malfunctions
-	.info = antag role info only?
-	.sinister = cult things, equivalent of fancy notice
-	.cult = cult things, equivalent of fancy notice
-
-	------ 'Deadchat' ------
-	.deadsay = dsay
-
-	------ 'Global OOC' ------
-	.ooc :not(.looc) = ooc (global)
-
-	------ 'Admin PM' ------
-	.pm = adminpm
-
-	------ 'Admin Chat' ------
-	.admin_channel = asay
-
-	------ 'Mod Chat' ------
-	.mod_channel = msay
-
-	------ 'Event Chat' ------
-	.event_channel = esay
-
-	------ 'System' ------
-	.boldannounce = server announcements/bootup messages
-
-	//Unused for now
-	.ooc .aooc = aooc
-	.ooc .admin = admin speaking in ooc
-	.ooc .event_manager = em speaking in ooc
-	.ooc .developer = dev speaking in ooc
-	.ooc .moderator = mod speaking in ooc
-	.ooc .elevated = staff that it can't find a style for speaking in ooc
-*/
