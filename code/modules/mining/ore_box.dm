@@ -40,15 +40,11 @@
 
 /obj/structure/ore_box/examine(mob/user)
 	to_chat(user, "That's an [src].")
-<<<<<<< HEAD:code/modules/mining/satchel_ore_boxdm.dm
-	to_chat(user,desc)
+	to_chat(user, desc)
 
 	// Borgs can now check contents too.
 	if((!istype(user, /mob/living/carbon/human)) && (!istype(user, /mob/living/silicon/robot)))
 		return
-=======
-	to_chat(user, desc)
->>>>>>> a862d55... Fixes mining borg ore box movement on sand with a mining satchel equipped (#6693):code/modules/mining/ore_box.dm
 
 	if(!Adjacent(user)) //Can only check the contents of ore boxes if you can physically reach them.
 		return
