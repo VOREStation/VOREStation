@@ -42,10 +42,6 @@
 	to_chat(user, "That's an [src].")
 	to_chat(user, desc)
 
-	// Borgs can now check contents too.
-	if((!istype(user, /mob/living/carbon/human)) && (!istype(user, /mob/living/silicon/robot)))
-		return
-
 	if(!Adjacent(user)) //Can only check the contents of ore boxes if you can physically reach them.
 		return
 
@@ -69,13 +65,8 @@
 	set category = "Object"
 	set src in view(1)
 
-<<<<<<< HEAD:code/modules/mining/satchel_ore_boxdm.dm
-	if(!istype(usr, /mob/living/carbon/human) && !istype(usr, /mob/living/silicon/robot)) //Only living, intelligent creatures with gripping aparatti can empty ore boxes.
-		to_chat(usr, "<font color='red'>You are physically incapable of emptying the ore box.</font>")
-=======
 	if(!ishuman(usr) && !isrobot(usr)) //Only living, intelligent creatures with gripping aparatti can empty ore boxes.
 		to_chat(usr, "<span class='warning'>You are physically incapable of emptying the ore box.</span>")
->>>>>>> a862d55... Fixes mining borg ore box movement on sand with a mining satchel equipped (#6693):code/modules/mining/ore_box.dm
 		return
 
 	if(usr.stat || usr.restrained())
@@ -88,21 +79,13 @@
 	add_fingerprint(usr)
 
 	if(contents.len < 1)
-<<<<<<< HEAD:code/modules/mining/satchel_ore_boxdm.dm
-		to_chat(usr, "<font color='red'>The ore box is empty.</font>")
-=======
 		to_chat(usr, "<span class='warning'>The ore box is empty.</span>")
->>>>>>> a862d55... Fixes mining borg ore box movement on sand with a mining satchel equipped (#6693):code/modules/mining/ore_box.dm
 		return
 
 	for (var/obj/item/weapon/ore/O in contents)
 		contents -= O
 		O.loc = src.loc
-<<<<<<< HEAD:code/modules/mining/satchel_ore_boxdm.dm
-	to_chat(usr, "<font color='blue'>You empty the ore box.</font>")
-=======
 	to_chat(usr, "<span class='notice'>You empty the ore box.</span>")
->>>>>>> a862d55... Fixes mining borg ore box movement on sand with a mining satchel equipped (#6693):code/modules/mining/ore_box.dm
 
 	return
 
