@@ -32,8 +32,6 @@
 	var/datum/robot_component/actuator/A = get_component("actuator")
 	if (cell_use_power(A.active_usage))
 		return ..()
-<<<<<<< HEAD
-=======
 
 /mob/living/silicon/robot/Move(a, b, flag)
 
@@ -84,4 +82,3 @@
 			if(isturf(tile))
 				B.gather_all(tile, src, 1) //Shhh, unless the bag fills, don't spam the borg's chat with stuff that's going on every time they move!
 	return
->>>>>>> a862d55... Fixes mining borg ore box movement on sand with a mining satchel equipped (#6693)
