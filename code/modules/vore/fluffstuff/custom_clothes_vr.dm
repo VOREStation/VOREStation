@@ -1914,3 +1914,8 @@ Departamental Swimsuits, for general use
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	w_class = ITEMSIZE_NORMAL
 	slot = ACCESSORY_SLOT_OVER
+
+//KillerDragn:Excess
+/obj/item/clothing/accessory/collar/pink/fluff/warning
+	name = "Warning Collar (AGGRESSIVE)"
+	desc = "A bright red warning collar with white text - \"AGGRESSIVE\"."
