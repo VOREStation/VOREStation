@@ -21560,6 +21560,14 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
+"aOt" = (
+/obj/machinery/optable,
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/surgery)
 "aOw" = (
 /obj/machinery/camera/network/command{
 	icon_state = "camera";
@@ -22233,14 +22241,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/surgery)
-"aPF" = (
-/obj/machinery/optable,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/surgery)
 "aPG" = (
@@ -43039,7 +43039,7 @@ aab
 aab
 aag
 aaC
-aPF
+aOt
 aQg
 aQG
 aQX
