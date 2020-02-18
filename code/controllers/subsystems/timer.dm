@@ -27,6 +27,8 @@ SUBSYSTEM_DEF(timer)
 	var/last_invoke_tick = 0
 	var/static/last_invoke_warning = 0
 	var/static/bucket_auto_reset = TRUE
+	var/static/datum/timedevent/timer // VOREStation Edit - For debugging this goes here.
+	var/super_debug = FALSE // VOREStation Edit - Temporary Debugging
 
 /datum/controller/subsystem/timer/PreInit()
 	bucket_list.len = BUCKET_LEN
@@ -103,10 +105,11 @@ SUBSYSTEM_DEF(timer)
 		clienttime_timers.Cut(1, next_clienttime_timer_index+1)
 
 	if (MC_TICK_CHECK)
+		log_world("Timer bailing before execution at world.time=[world.time] with last_invoke_tick=[last_invoke_tick]") // VOREStation Edit - Debugging
 		return
 
 	var/static/list/spent = list()
-	var/static/datum/timedevent/timer
+	// var/static/datum/timedevent/timer VOREStation Edit - for debugging purpose putting this as datum scope
 	if (practical_offset > BUCKET_LEN)
 		head_offset += TICKS2DS(BUCKET_LEN)
 		practical_offset = 1
@@ -139,7 +142,14 @@ SUBSYSTEM_DEF(timer)
 				last_invoke_tick = world.time
 
 			if (MC_TICK_CHECK)
+				if (super_debug) log_world("Bailing from execution with practical_offset=[practical_offset] and timer=[timer]") // VOREStation Edit - Super Debug
 				return
+
+			// VOREStation Edit Start - Debugging
+			if (timer.next == timer && timer.next != head)
+				log_world("Self-looping out of bucket timer failure condition X occurred")
+				CRASH("Invalid timer: [get_timer_debug_string(timer)] world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
+			// VOREStation Edit End - Debugging
 
 			timer = timer.next
 			if (timer == head)
@@ -235,6 +245,11 @@ SUBSYSTEM_DEF(timer)
 
 /datum/controller/subsystem/timer/proc/reset_buckets()
 	var/list/bucket_list = src.bucket_list
+	// VOREStation Edit Start - Debugging
+	log_world("Beginning Timer bucket reset. bucket_list.len=[length(bucket_list)], BUCKET_LEN=[BUCKET_LEN], \
+		world.tick_lag = [world.tick_lag], bucket_resolution=[bucket_resolution], world.time: [world.time], \
+		head_offset: [head_offset], practical_offset: [practical_offset]")
+	// VOREStation Edit End - Debugging
 	var/list/alltimers = list()
 	//collect the timers currently in the bucket
 	for (var/bucket_head in bucket_list)
@@ -256,6 +271,11 @@ SUBSYSTEM_DEF(timer)
 
 	alltimers += second_queue
 	if (!length(alltimers))
+		// VOREStation Edit Start - Debugging
+		log_world("Finished Timer bucket reset. bucket_list.len=[length(bucket_list)], BUCKET_LEN=[BUCKET_LEN], \
+			world.tick_lag = [world.tick_lag], bucket_resolution=[bucket_resolution], world.time: [world.time], \
+			head_offset: [head_offset], practical_offset: [practical_offset] (NO TIMERS)")
+		// VOREStation Edit End - Debugging
 		return
 
 	sortTim(alltimers, /proc/cmp_timer)
@@ -302,7 +322,11 @@ SUBSYSTEM_DEF(timer)
 		alltimers.Cut(1, i+1)
 	second_queue = alltimers
 	bucket_count = new_bucket_count
-
+	// VOREStation Edit Start - Debugging
+	log_world("Finished Timer bucket reset. bucket_list.len=[length(bucket_list)], BUCKET_LEN=[BUCKET_LEN], \
+		world.tick_lag = [world.tick_lag], bucket_resolution=[bucket_resolution], world.time: [world.time], \
+		head_offset: [head_offset], practical_offset: [practical_offset]")
+	// VOREStation Edit End - Debugging
 
 /datum/controller/subsystem/timer/Recover()
 	second_queue |= SStimer.second_queue
@@ -396,6 +420,8 @@ SUBSYSTEM_DEF(timer)
 	var/datum/timedevent/buckethead
 	if(bucketpos > 0)
 		buckethead = bucket_list[bucketpos]
+	else // VOREStation Edit - Debugging
+		log_world("WARNING: non-positive bucket pos [bucketpos] for [src]! next=[next ? next : "NULL"] prev=[prev ? prev : "NULL"]") // VOREStation Edit - Debugging
 	if(buckethead == src)
 		bucket_list[bucketpos] = next
 		SStimer.bucket_count--
