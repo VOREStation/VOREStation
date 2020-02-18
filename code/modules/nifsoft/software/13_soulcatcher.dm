@@ -71,12 +71,12 @@
 	proc/notify_into(var/message)
 		var/sound = nif.good_sound
 
-		to_chat(nif.human,"<b>\[[bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice'>[message]</span>\"")
+		to_chat(nif.human,"<b>\[[bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"")
 		nif.human << sound
 
 		for(var/brainmob in brainmobs)
 			var/mob/living/carbon/brain/caught_soul/CS = brainmob
-			to_chat(CS,"<b>\[[bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice'>[message]</span>\"")
+			to_chat(CS,"<b>\[[bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"")
 			brainmob << sound
 
 	proc/say_into(var/message, var/mob/living/sender, var/mob/eyeobj)
@@ -88,10 +88,10 @@
 
 		//Not AR Projecting
 		else
-			to_chat(nif.human,"<b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"")
+			to_chat(nif.human,"<span class='game say nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
 			for(var/brainmob in brainmobs)
 				var/mob/living/carbon/brain/caught_soul/CS = brainmob
-				to_chat(CS,"<b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"")
+				to_chat(CS,"<span class='game say nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
 
 		log_nsay(message,nif.human.real_name,sender)
 
@@ -104,10 +104,10 @@
 
 		//Not AR Projecting
 		else
-			to_chat(nif.human,"<b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]")
+			to_chat(nif.human,"<span class='emote nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
 			for(var/brainmob in brainmobs)
 				var/mob/living/carbon/brain/caught_soul/CS = brainmob
-				to_chat(CS,"<b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]")
+				to_chat(CS,"<span class='emote nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
 
 		log_nme(message,nif.human.real_name,sender)
 

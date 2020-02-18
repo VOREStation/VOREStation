@@ -147,6 +147,15 @@ function start_vue() {
 					required: false,
 					admin: false
 				},
+				//VOREStation Add Start
+				{
+					matches: ".nif",
+					becomes: "vc_nif",
+					pretty: "NIF Messages",
+					required: false,
+					admin: false
+				},
+				//VOREStation Add End
 				{
 					matches: ".pm",
 					becomes: "vc_adminpm",
