@@ -1,5 +1,6 @@
 /obj/machinery/pipedispenser
 	name = "Pipe Dispenser"
+	desc = "A large machine that can rapidly dispense pipes."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
 	density = 1
@@ -70,14 +71,14 @@
 /obj/machinery/pipedispenser/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	src.add_fingerprint(usr)
 	if (istype(W, /obj/item/pipe) || istype(W, /obj/item/pipe_meter))
-		usr << "<span class='notice'>You put [W] back to [src].</span>"
+		to_chat(usr, "<span class='notice'>You put [W] back to [src].</span>")
 		user.drop_item()
 		qdel(W)
 		return
 	else if(W.is_wrench())
 		if (unwrenched==0)
 			playsound(src, W.usesound, 50, 1)
-			user << "<span class='notice'>You begin to unfasten \the [src] from the floor...</span>"
+			to_chat(user, "<span class='notice'>You begin to unfasten \the [src] from the floor...</span>")
 			if (do_after(user, 40 * W.toolspeed))
 				user.visible_message( \
 					"<span class='notice'>[user] unfastens \the [src].</span>", \
@@ -90,7 +91,7 @@
 					usr << browse(null, "window=pipedispenser")
 		else /*if (unwrenched==1)*/
 			playsound(src, W.usesound, 50, 1)
-			user << "<span class='notice'>You begin to fasten \the [src] to the floor...</span>"
+			to_chat(user, "<span class='notice'>You begin to fasten \the [src] to the floor...</span>")
 			if (do_after(user, 20 * W.toolspeed))
 				user.visible_message( \
 					"<span class='notice'>[user] fastens \the [src].</span>", \
@@ -105,6 +106,7 @@
 
 /obj/machinery/pipedispenser/disposal
 	name = "Disposal Pipe Dispenser"
+	desc = "A large machine that can rapidly dispense pipes. This one seems to dispsense disposal pipes."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
 	density = 1

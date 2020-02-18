@@ -239,9 +239,9 @@
 				if(EQUIP_SPECIAL)
 					chassis.special_equipment -= src
 				//VOREStation Addition begin: MICROMECHS
-				if(EQUIP_UTILITY)
+				if(EQUIP_MICRO_UTILITY)
 					chassis.micro_utility_equipment -= src
-				if(EQUIP_SPECIAL)
+				if(EQUIP_MICRO_WEAPON)
 					chassis.micro_weapon_equipment -= src
 				//VOREStation Addition end: MICROMECHS
 		if(chassis.selected == src)

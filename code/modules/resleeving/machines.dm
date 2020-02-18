@@ -340,13 +340,13 @@
 /obj/machinery/transhuman/synthprinter/attack_hand(mob/user as mob)
 	if((busy == 0) || (stat & NOPOWER))
 		return
-	user << "Current print cycle is [busy]% complete."
+	to_chat(user, "Current print cycle is [busy]% complete.")
 	return
 
 /obj/machinery/transhuman/synthprinter/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 	if(busy)
-		user << "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>"
+		to_chat(user, "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>")
 		return
 	if(default_deconstruction_screwdriver(user, W))
 		return
@@ -355,15 +355,15 @@
 	if(default_part_replacement(user, W))
 		return
 	if(panel_open)
-		user << "<span class='notice'>You can't load \the [src] while it's opened.</span>"
+		to_chat(user, "<span class='notice'>You can't load \the [src] while it's opened.</span>")
 		return
 	if(!istype(W, /obj/item/stack/material))
-		user << "<span class='notice'>You cannot insert this item into \the [src]!</span>"
+		to_chat(user, "<span class='notice'>You cannot insert this item into \the [src]!</span>")
 		return
 
 	var/obj/item/stack/material/S = W
 	if(!(S.material.name in stored_material))
-		user << "<span class='warning'>\the [src] doesn't accept [S.material]!</span>"
+		to_chat(user, "<span class='warning'>\the [src] doesn't accept [S.material]!</span>")
 		return
 
 	var/amnt = S.perunit
@@ -374,9 +374,9 @@
 				stored_material[S.material.name] += amnt
 				S.use(1)
 				count++
-			user << "You insert [count] [S.name] into \the [src]."
+			to_chat(user, "You insert [count] [S.name] into \the [src].")
 	else
-		user << "\the [src] cannot hold more [S.name]."
+		to_chat(user, "\the [src] cannot hold more [S.name].")
 
 	updateUsrDialog()
 	return
@@ -474,7 +474,7 @@
 			return
 		for(var/mob/living/carbon/slime/M in range(1, G.affecting))
 			if(M.Victim == G.affecting)
-				usr << "[G.affecting:name] will not fit into the [src.name] because they have a slime latched onto their head."
+				to_chat(usr, "[G.affecting:name] will not fit into the [src.name] because they have a slime latched onto their head.")
 				return
 		var/mob/M = G.affecting
 		if(put_mob(M))
@@ -487,7 +487,7 @@
 		C.removePersonality()
 		qdel(C)
 		sleevecards++
-		to_chat(user,"<span class='notice'>You store \the [C] in \the [src].</span>")
+		to_chat(user, "<span class='notice'>You store \the [C] in \the [src].</span>")
 		return
 
 	return ..()
@@ -541,7 +541,7 @@
 
 	//In case they already had a mind!
 	if(occupant && occupant.mind)
-		occupant << "<span class='warning'>You feel your mind being overwritten...</span>"
+		to_chat(occupant, "<span class='warning'>You feel your mind being overwritten...</span>")
 		log_and_message_admins("was resleeve-wiped from their body.",occupant.mind)
 		occupant.ghostize()
 
@@ -555,7 +555,7 @@
 	occupant.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.
 	if(MR.one_time)
 		var/how_long = round((world.time - MR.last_update)/10/60)
-		to_chat(occupant,"<span class='danger'>Your mind backup was a 'one-time' backup. \
+		to_chat(occupant, "<span class='danger'>Your mind backup was a 'one-time' backup. \
 		You will not be able to remember anything since the backup, [how_long] minutes ago.</span>")
 
 	//Re-supply a NIF if one was backed up with them.
@@ -578,9 +578,9 @@
 
 	//Inform them and make them a little dizzy.
 	if(confuse_amount + blur_amount <= 16)
-		occupant << "<span class='notice'>You feel a small pain in your head as you're given a new backup implant. Your new body feels comfortable already, however.</span>"
+		to_chat(occupant, "<span class='notice'>You feel a small pain in your head as you're given a new backup implant. Your new body feels comfortable already, however.</span>")
 	else
-		occupant << "<span class='warning'>You feel a small pain in your head as you're given a new backup implant. Oh, and a new body. It's disorienting, to say the least.</span>"
+		to_chat(occupant, "<span class='warning'>You feel a small pain in your head as you're given a new backup implant. Oh, and a new body. It's disorienting, to say the least.</span>")
 
 	occupant.confused = max(occupant.confused, confuse_amount)									// Apply immedeate effects
 	occupant.eye_blurry = max(occupant.eye_blurry, blur_amount)
@@ -611,10 +611,10 @@
 
 /obj/machinery/transhuman/resleever/proc/put_mob(mob/living/carbon/human/M as mob)
 	if(!ishuman(M))
-		usr << "<span class='warning'>\The [src] cannot hold this!</span>"
+		to_chat(usr, "<span class='warning'>\The [src] cannot hold this!</span>")
 		return
 	if(src.occupant)
-		usr << "<span class='warning'>\The [src] is already occupied!</span>"
+		to_chat(usr, "<span class='warning'>\The [src] is already occupied!</span>")
 		return
 	if(M.client)
 		M.client.perspective = EYE_PERSPECTIVE

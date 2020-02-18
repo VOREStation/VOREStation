@@ -224,23 +224,16 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether_away/debrisfield/derelict/interior)
 "aI" = (
-/turf/simulated/floor/tiled/monofloor,
+/obj/structure/old_roboprinter,
+/turf/simulated/floor/tiled/monotile,
 /area/tether_away/debrisfield/derelict/interior)
 "aJ" = (
-/obj/effect/decal/remains/human,
-/turf/simulated/floor/tiled/monofloor,
+/obj/structure/shuttle/engine/heater,
+/turf/simulated/floor/reinforced/airless,
 /area/tether_away/debrisfield/derelict/interior)
 "aK" = (
 /turf/space,
 /area/tether_away/debrisfield/derelict)
-"aL" = (
-/obj/structure/old_roboprinter,
-/turf/simulated/floor/tiled/monofloor,
-/area/tether_away/debrisfield/derelict/interior)
-"aM" = (
-/obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm,
-/turf/simulated/floor/tiled/monofloor,
-/area/tether_away/debrisfield/derelict/interior)
 "aN" = (
 /obj/random/humanoidremains,
 /obj/structure/cable{
@@ -493,7 +486,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether_away/debrisfield/derelict/interior)
 "bD" = (
-/obj/machinery/auto_cloner,
+/obj/structure/loot_pile/surface/alien/engineering,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/tether_away/debrisfield/derelict/interior)
 "bE" = (
@@ -900,10 +893,6 @@
 /obj/item/weapon/gun/energy/ionrifle,
 /turf/space,
 /area/tether_away/debrisfield/derelict/interior)
-"cL" = (
-/obj/structure/shuttle/engine/heater,
-/turf/simulated/floor/reinforced,
-/area/tether_away/debrisfield/derelict/interior)
 "cM" = (
 /obj/structure/prop/alien/pod,
 /turf/simulated/floor/tiled/dark,
@@ -921,9 +910,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether_away/debrisfield/derelict/ai_access_port)
 "cP" = (
-/obj/structure/ghost_pod/manual/lost_drone,
-/turf/simulated/floor/tiled/dark,
-/area/tether_away/debrisfield/derelict/ai_access_port)
+/obj/structure/loot_pile/surface/alien/medical,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/tether_away/debrisfield/derelict/interior)
 "cQ" = (
 /obj/item/weapon/grenade/empgrenade,
 /obj/item/weapon/grenade/empgrenade,
@@ -1140,6 +1129,10 @@
 /obj/structure/prop/fake_ai,
 /turf/simulated/floor/greengrid,
 /area/tether_away/debrisfield/derelict/ai_chamber)
+"dx" = (
+/obj/structure/ghost_pod/manual/lost_drone/dogborg,
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict/ai_access_port)
 
 (1,1,1) = {"
 bR
@@ -1346,8 +1339,8 @@ bi
 bi
 bi
 bi
-cL
-av
+ao
+aJ
 cS
 cB
 aa
@@ -1421,8 +1414,8 @@ av
 av
 bi
 bi
-cL
-av
+ao
+aJ
 cS
 aa
 aa
@@ -1495,8 +1488,8 @@ bi
 av
 bi
 bi
-cL
-av
+ao
+aJ
 cS
 aa
 aa
@@ -1568,8 +1561,8 @@ bi
 bi
 bi
 bi
-cL
-av
+ao
+aJ
 cS
 cB
 aa
@@ -2191,9 +2184,9 @@ at
 at
 aF
 aF
-aI
-aI
-aI
+at
+at
+at
 ao
 aa
 aa
@@ -2267,7 +2260,7 @@ aF
 aF
 av
 av
-aI
+at
 ao
 aa
 aa
@@ -2340,8 +2333,8 @@ av
 aF
 aF
 av
-aI
-aI
+at
+at
 ao
 aa
 aa
@@ -2414,8 +2407,8 @@ av
 aF
 aF
 av
-aJ
-aM
+au
+az
 ao
 aa
 aa
@@ -2456,7 +2449,7 @@ av
 cC
 bb
 cH
-cP
+dx
 cH
 cT
 cT
@@ -3228,8 +3221,8 @@ av
 aF
 aF
 av
-aL
-aL
+aI
+aI
 ao
 aa
 aa
@@ -3302,8 +3295,8 @@ av
 aF
 aF
 av
-aI
-aI
+at
+at
 ao
 aa
 aa
@@ -3376,8 +3369,8 @@ av
 aF
 aF
 av
-aM
-aM
+az
+az
 ao
 aa
 aa
@@ -3449,9 +3442,9 @@ at
 at
 aF
 aF
-aI
-aI
-aI
+at
+at
+at
 ao
 aa
 aa
@@ -3621,8 +3614,8 @@ bk
 bk
 bv
 av
-bb
 bD
+cP
 av
 bN
 aw
@@ -4158,8 +4151,8 @@ av
 bi
 bi
 bi
-cL
-av
+ao
+aJ
 cS
 cB
 aa
@@ -4233,8 +4226,8 @@ bi
 av
 bi
 bi
-cL
-av
+ao
+aJ
 cS
 aa
 aa
@@ -4307,8 +4300,8 @@ bi
 av
 bi
 bi
-cL
-av
+ao
+aJ
 cS
 aa
 aa
@@ -4380,8 +4373,8 @@ bi
 bi
 av
 bi
-cL
-av
+ao
+aJ
 cS
 cB
 aa

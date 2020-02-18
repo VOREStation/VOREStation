@@ -14,6 +14,8 @@
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (!affected || (affected.robotic >= ORGAN_ROBOT) || !(affected.open >= 3))
 		return 0
+	if(coverage_check(user, target, affected, tool))
+		return 0
 	return target_zone == BP_HEAD
 
 /////////////////////////////

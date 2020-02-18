@@ -116,6 +116,7 @@
 // Panel. Lists floors (HTML), moves with the elevator, schedules a move to a given floor.
 /obj/structure/lift/panel
 	name = "elevator control panel"
+	desc = "A control panel for moving the elevator. There's a slot for swiping IDs to enable additional controls."
 	icon_state = "panel"
 	req_access = list(access_eva)
 	req_one_access = list(access_heads, access_atmospherics, access_medical)

@@ -897,7 +897,7 @@
 	var/location = get_turf(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
-		M << "<span class='warning'>The solution spews out foam!</span>"
+		to_chat(M, "<span class='warning'>The solution spews out foam!</span>")
 
 	var/datum/effect/effect/system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 0)
@@ -919,7 +919,7 @@
 	var/location = get_turf(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
-		M << "<span class='warning'>The solution spews out a metalic foam!</span>"
+		to_chat(M, "<span class='warning'>The solution spews out a metalic foam!</span>")
 
 	var/datum/effect/effect/system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 1)
@@ -937,7 +937,7 @@
 	var/location = get_turf(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
-		M << "<span class='warning'>The solution spews out a metalic foam!</span>"
+		to_chat(M, "<span class='warning'>The solution spews out a metalic foam!</span>")
 
 	var/datum/effect/effect/system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 2)
@@ -2209,6 +2209,13 @@
 	result = "chrysanthemum"
 	required_reagents = list("sake" = 1, "melonliquor" = 1)
 	result_amount = 2
+
+/datum/chemical_reaction/drinks/deathbell
+	name = "Deathbell"
+	id = "deathbell"
+	result = "deathbell"
+	required_reagents = list("antifreeze" = 1, "gargleblaster" = 1, "syndicatebomb" =1)
+	result_amount = 3
 
 /datum/chemical_reaction/bitters
 	name = "Bitters"

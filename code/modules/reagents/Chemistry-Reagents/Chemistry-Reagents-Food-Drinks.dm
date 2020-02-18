@@ -332,7 +332,7 @@
 /datum/reagent/nutriment/durian/touch_mob(var/mob/M, var/amount)
 	if(iscarbon(M) && !M.isSynthetic())
 		var/message = pick("Oh god, it smells disgusting here.", "What is that stench?", "That's an awful odor.")
-		to_chat(M,"<span class='alien'>[message]</span>")
+		to_chat(M, "<span class='alien'>[message]</span>")
 		if(prob(CLAMP(amount, 5, 90)))
 			var/mob/living/L = M
 			L.vomit()
@@ -476,7 +476,7 @@
 			return
 
 	if(dose < 5 && (dose == metabolism || prob(5)))
-		M << "<span class='danger'>Your insides feel uncomfortably hot!</span>"
+		to_chat(M, "<span class='danger'>Your insides feel uncomfortably hot!</span>")
 	if(dose >= 5)
 		M.apply_effect(2, AGONY, 0)
 		if(prob(5))
@@ -620,7 +620,7 @@
 		if(!H.can_feel_pain())
 			return
 	if(dose == metabolism)
-		M << "<span class='danger'>You feel like your insides are burning!</span>"
+		to_chat(M, "<span class='danger'>You feel like your insides are burning!</span>")
 	else
 		M.apply_effect(4, AGONY, 0)
 		if(prob(5))
@@ -3526,6 +3526,28 @@
 
 	glass_name = "fusionnaire"
 	glass_desc = "A relatively new cocktail, mostly served in the bars of NanoTrasen owned stations."
+
+/datum/reagent/ethanol/deathbell
+	name = "Deathbell"
+	id = "deathbell"
+	description = "A successful experiment to make the most alcoholic thing possible."
+	taste_description = "your brains smashed out by a smooth brick of hard, ice cold alcohol"
+	color = "#9f6aff"
+	taste_mult = 5
+	strength = 10
+	adj_temp = 10
+	targ_temp = 330
+
+	glass_name = "Deathbell"
+	glass_desc = "The perfect blend of the most alcoholic things a bartender can get their hands on."
+
+/datum/reagent/ethanol/deathbell/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+
+	if(dose * strength >= strength) // Early warning
+		M.make_dizzy(24) // Intentionally higher than normal to compensate for it's previous effects.
+	if(dose * strength >= strength * 2.5) // Slurring takes longer. Again, intentional.
+		M.slurring = max(M.slurring, 30)
 
 /datum/reagent/nutriment/magicdust
 	name = "Magic Dust"

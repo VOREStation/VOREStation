@@ -2,6 +2,7 @@
 
 /obj/machinery/computer/operating
 	name = "patient monitoring console"
+	desc = "Used to monitor the vitals of a patient."
 	density = 1
 	anchored = 1.0
 	icon_keyboard = "med_key"

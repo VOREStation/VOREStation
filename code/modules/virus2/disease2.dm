@@ -172,6 +172,7 @@
 	disease.stageprob = stageprob
 	disease.antigen   = antigen
 	disease.uniqueID = uniqueID
+	disease.resistance = resistance
 	disease.affected_species = affected_species.Copy()
 	for(var/datum/disease2/effectholder/holder in effects)
 		var/datum/disease2/effectholder/newholder = new /datum/disease2/effectholder

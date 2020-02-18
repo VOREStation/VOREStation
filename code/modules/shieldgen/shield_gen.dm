@@ -48,7 +48,7 @@
 /obj/machinery/shield_gen/emag_act(var/remaining_charges, var/mob/user)
 	if(prob(75))
 		src.locked = !src.locked
-		user << "Controls are now [src.locked ? "locked." : "unlocked."]"
+		to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 		. = 1
 		updateDialog()
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -60,10 +60,10 @@
 		var/obj/item/weapon/card/id/C = W
 		if(access_captain in C.access || access_security in C.access || access_engine in C.access)
 			src.locked = !src.locked
-			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
+			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 			updateDialog()
 		else
-			user << "<font color='red'>Access denied.</font>"
+			to_chat(user, "<font color='red'>Access denied.</font>")
 	else if(W.is_wrench())
 		src.anchored = !src.anchored
 		playsound(src, W.usesound, 75, 1)
@@ -213,7 +213,7 @@
 		return
 	else if( href_list["toggle"] )
 		if (!active && !anchored)
-			usr << "<font color='red'>The [src] needs to be firmly secured to the floor first.</font>"
+			to_chat(usr, "<font color='red'>The [src] needs to be firmly secured to the floor first.</font>")
 			return
 		toggle()
 	else if( href_list["change_radius"] )
@@ -248,7 +248,7 @@
 		covered_turfs = null
 
 		for(var/mob/M in view(5,src))
-			M << "\icon[src] You hear heavy droning start up."
+			to_chat(M, "\icon[src] You hear heavy droning start up.")
 		for(var/obj/effect/energy_field/E in field) // Update the icons here to ensure all the shields have been made already.
 			E.update_icon()
 	else
@@ -258,7 +258,7 @@
 			qdel(D)
 
 		for(var/mob/M in view(5,src))
-			M << "\icon[src] You hear heavy droning fade out."
+			to_chat(M, "\icon[src] You hear heavy droning fade out.")
 
 /obj/machinery/shield_gen/update_icon()
 	if(stat & BROKEN)

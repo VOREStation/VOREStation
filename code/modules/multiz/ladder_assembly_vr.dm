@@ -70,7 +70,7 @@
 						state = CONSTRUCTION_WRENCHED
 						to_chat(user, "You cut \the [src] free from the floor.")
 				else
-					user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
+					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 		return
 
 // Try to construct this into a real stairway.

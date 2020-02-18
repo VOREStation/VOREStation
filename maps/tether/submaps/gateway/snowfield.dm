@@ -40,7 +40,7 @@
 
 /area/awaymission/snowfield/base
 	icon_state = "away"
-	ambience = null // Todo: Add better ambience.
+	ambience = list() // Todo: Add better ambience.
 
 // -- Mobs -- //
 

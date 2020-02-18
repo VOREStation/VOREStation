@@ -67,6 +67,18 @@
 
 	return 1
 
+// Let's check if stuff blocks us from doing surgery on them
+// TODO: make it based on area coverage rather than just forbid spacesuits?
+// Returns true if target organ is covered
+/datum/surgery_step/proc/coverage_check(mob/living/user, mob/living/carbon/human/target, obj/item/organ/external/affected, obj/item/tool)
+	if(affected.organ_tag == BP_HEAD)
+		if(target.head && istype(target.head,/obj/item/clothing/head/helmet/space))
+			return TRUE
+	else
+		if(target.wear_suit && istype(target.wear_suit,/obj/item/clothing/suit/space))
+			return TRUE
+
+	return FALSE
 
 // checks whether this step can be applied with the given user and target
 /datum/surgery_step/proc/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -125,7 +137,7 @@
 		return 0
 	var/zone = user.zone_sel.selecting
 	if(zone in M.op_stage.in_progress) //Can't operate on someone repeatedly.
-		user << "<span class='warning'>You can't operate on this area while surgery is already in progress.</span>"
+		to_chat(user, "<span class='warning'>You can't operate on this area while surgery is already in progress.</span>")
 		return 1
 	for(var/datum/surgery_step/S in surgery_steps)
 		//check if tool is right or close enough and if this step is possible

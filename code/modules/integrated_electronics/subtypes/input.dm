@@ -567,7 +567,8 @@
 		LANGUAGE_SOL_COMMON,
 		LANGUAGE_TRADEBAND,
 		LANGUAGE_GUTTER,
-		LANGUAGE_TERMINUS
+		LANGUAGE_TERMINUS,
+		LANGUAGE_SIGN
 		)
 
 /obj/item/integrated_circuit/input/microphone/sign/Initialize()
@@ -587,7 +588,8 @@
 		set_pin_data(IC_OUTPUT, 2, msg)
 
 	push_data()
-	activate_pin(1)
+	if(!translated)
+		activate_pin(1)
 	if(translated)
 		activate_pin(2)
 

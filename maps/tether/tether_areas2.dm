@@ -340,6 +340,8 @@
 	name = "\improper Public Garden Maintenence"
 /area/maintenance/lower/public_garden_maintenence/upper
 	name = "\improper Upper Public Garden Maintenence"
+/area/maintenance/lower/medsec_maintenance
+	name = "\improper Surface MedSec Maintenance"
 
 // Research
 /area/rnd/xenobiology/xenoflora/lab_atmos
@@ -916,6 +918,11 @@
 	name = "\improper Excursion Shuttle - Virgo3b Sky"
 	base_turf = /turf/simulated/sky/virgo3b/south
 
+// Belter Dock
+
+/area/quartermaster/belterdock
+	name = "\improper Cargo Belter Access"
+	icon_state = "mining"
 // Elevator area //
 
 /area/tether/elevator

@@ -106,7 +106,7 @@ var/savefile/Banlist
 
 	Banlist.cd = "/base"
 	if ( Banlist.dir.Find("[ckey][computerid]") )
-		usr << text("<font color='red'>Ban already exists.</font>")
+		to_chat(usr, "<font color='red'>Ban already exists.</font>")
 		return 0
 	else
 		Banlist.dir.Add("[ckey][computerid]")
@@ -119,6 +119,7 @@ var/savefile/Banlist
 		Banlist["temp"] << temp
 		if (temp)
 			Banlist["minutes"] << bantimestamp
+	admin_action_message(bannedby, ckey, "banned", reason, temp ? minutes : -1) //VOREStation Add
 	return 1
 
 /proc/RemoveBan(foldername)
@@ -147,7 +148,7 @@ var/savefile/Banlist
 			Banlist.cd = "/base"
 			Banlist.dir.Remove(A)
 			continue
-
+	admin_action_message(usr.key, key, "unbanned", "\[Unban\]", 0) //VOREStation Add
 	return 1
 
 /proc/GetExp(minutes as num)
@@ -207,17 +208,17 @@ var/savefile/Banlist
 			Banlist.cd = "/base"
 			Banlist.dir.Add("trash[i]trashid[i]")
 			Banlist.cd = "/base/trash[i]trashid[i]"
-			Banlist["key"] << "trash[i]"
+			to_chat(Banlist["key"], "trash[i]")
 		else
 			Banlist.cd = "/base"
 			Banlist.dir.Add("[last]trashid[i]")
 			Banlist.cd = "/base/[last]trashid[i]"
 			Banlist["key"] << last
-		Banlist["id"] << "trashid[i]"
-		Banlist["reason"] << "Trashban[i]."
+		to_chat(Banlist["id"], "trashid[i]")
+		to_chat(Banlist["reason"], "Trashban[i].")
 		Banlist["temp"] << a
 		Banlist["minutes"] << CMinutes + rand(1,2000)
-		Banlist["bannedby"] << "trashmin"
+		to_chat(Banlist["bannedby"], "trashmin")
 		last = "trash[i]"
 
 	Banlist.cd = "/base"

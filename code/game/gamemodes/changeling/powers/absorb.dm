@@ -52,7 +52,7 @@
 			if(3)
 				to_chat(src, "<span class='notice'>We stab [T] with the proboscis.</span>")
 				src.visible_message("<span class='danger'>[src] stabs [T] with the proboscis!</span>")
-				T << "<span class='danger'>You feel a sharp stabbing pain!</span>"
+				to_chat(T, "<span class='danger'>You feel a sharp stabbing pain!</span>")
 				add_attack_logs(src,T,"Absorbed (changeling)")
 				var/obj/item/organ/external/affecting = T.get_organ(src.zone_sel.selecting)
 				if(affecting.take_damage(39,0,1,0,"large organic needle"))
@@ -66,7 +66,7 @@
 
 	to_chat(src, "<span class='notice'>We have absorbed [T]!</span>")
 	src.visible_message("<span class='danger'>[src] sucks the fluids from [T]!</span>")
-	T << "<span class='danger'>You have been absorbed by the changeling!</span>"
+	to_chat(T, "<span class='danger'>You have been absorbed by the changeling!</span>")
 	if(src.nutrition < 400)
 		src.nutrition = min((src.nutrition + T.nutrition), 400)
 	changeling.chem_charges += 10

@@ -181,13 +181,13 @@ Any-Mode: (hotkey doesn't need to be on)
 </font>"}
 
 	if(isrobot(src.mob))
-		src << robot_hotkey_mode
-		src << robot_other
+		to_chat(src,robot_hotkey_mode)
+		to_chat(src,robot_other)
 	else
-		src << hotkey_mode
-		src << other
+		to_chat(src,hotkey_mode)
+		to_chat(src,other)
 	if(holder)
-		src << admin
+		to_chat(src,admin)
 
 // Set the DreamSeeker input macro to the type appropriate for its mob
 /client/proc/set_hotkeys_macro(macro_name = "macro", hotkey_macro_name = "hotkeymode", hotkeys_enabled = null)

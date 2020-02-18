@@ -26,7 +26,7 @@
 						M.use(1)
 						count++
 
-					user << "You insert [count] metal sheet\s into the fabricator."
+					to_chat(user, "You insert [count] metal sheet\s into the fabricator.")
 					overlays -= "fab-load-metal"
 					updateDialog()
 		else

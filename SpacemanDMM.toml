@@ -1,0 +1,5 @@
+[diagnostics]
+macro_redefined = "off"
+macro_undefined_no_definition = "off"
+as_local_var = "off"
+tmp_no_effect = "off"

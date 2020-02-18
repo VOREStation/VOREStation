@@ -88,7 +88,7 @@
 
 /obj/machinery/partslathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(busy)
-		user << "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>"
+		to_chat(user, "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>")
 		return 1
 	if(default_deconstruction_screwdriver(user, O))
 		return
@@ -99,11 +99,11 @@
 	if(inoperable())
 		return
 	if(panel_open)
-		user << "<span class='notice'>You can't load \the [src] while it's opened.</span>"
+		to_chat(user, "<span class='notice'>You can't load \the [src] while it's opened.</span>")
 		return
 	if(istype(O, /obj/item/weapon/circuitboard))
 		if(copy_board)
-			user << "<span class='warning'>There is already a board inserted in \the [src].</span>"
+			to_chat(user, "<span class='warning'>There is already a board inserted in \the [src].</span>")
 			return
 		if(!user.unEquip(O))
 			return
@@ -115,7 +115,7 @@
 	if(try_load_materials(user, O))
 		return
 	else
-		user << "<span class='notice'>You cannot insert this item into \the [src]!</span>"
+		to_chat(user, "<span class='notice'>You cannot insert this item into \the [src]!</span>")
 		return
 
 // Attept to load materials.  Returns 0 if item wasn't a stack of materials, otherwise 1 (even if failed to load)
@@ -123,7 +123,7 @@
 	if(!istype(S))
 		return 0
 	if(!(S.material.name in materials))
-		user << "<span class='warning'>The [src] doesn't accept [S.material]!</span>"
+		to_chat(user, "<span class='warning'>The [src] doesn't accept [S.material]!</span>")
 		return 1
 	if(S.amount < 1)
 		return 1 // Does this even happen? Sanity check I guess.
@@ -138,7 +138,7 @@
 		flick("partslathe-load-[S.material.name]", src)
 		updateUsrDialog()
 	else
-		user << "<span class='warning'>\The [src] cannot hold more [S.name].</span>"
+		to_chat(user, "<span class='warning'>\The [src] cannot hold more [S.name].</span>")
 	return 1
 
 /obj/machinery/partslathe/process()
@@ -326,7 +326,7 @@
 		return
 
 	if(busy)
-		usr << "<span class='notice'>\The [src]is busy. Please wait for completion of previous operation.</span>"
+		to_chat(usr, "<span class='notice'>\The [src]is busy. Please wait for completion of previous operation.</span>")
 		return
 
 	if(href_list["ejectBoard"])

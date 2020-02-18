@@ -68,6 +68,14 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if(..(user, 1))
 		to_chat(user, "The time [stationtime2text()] is displayed in the corner of the screen.")
 
+/obj/item/device/pda/CtrlClick()
+	if(issilicon(usr))
+		return
+	
+	if(can_use(usr))
+		remove_pen()
+		return
+	..()
 
 /obj/item/device/pda/AltClick()
 	if(issilicon(usr))
@@ -1043,6 +1051,19 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			id.loc = get_turf(src)
 		id = null
 
+/obj/item/device/pda/proc/remove_pen()
+	var/obj/item/weapon/pen/O = locate() in src
+	if(O)
+		if(istype(loc, /mob))
+			var/mob/M = loc
+			if(M.get_active_hand() == null)
+				M.put_in_hands(O)
+				to_chat(usr, "<span class='notice'>You remove \the [O] from \the [src].</span>")
+				return
+		O.loc = get_turf(src)
+	else
+		to_chat(usr, "<span class='notice'>This PDA does not have a pen in it.</span>")
+
 /obj/item/device/pda/proc/create_message(var/mob/living/U = usr, var/obj/item/device/pda/P, var/tap = 1)
 	if(tap)
 		U.visible_message("<span class='notice'>\The [U] taps on their PDA's screen.</span>")
@@ -1125,7 +1146,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	if(L)
 		if(reception_message)
-			L << reception_message
+			to_chat(L,reception_message)
 		SSnanoui.update_user_uis(L, src) // Update the receiving user's PDA UI so that they can see the new message
 
 /obj/item/device/pda/proc/new_news(var/message)
@@ -1203,17 +1224,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		return
 
 	if ( can_use(usr) )
-		var/obj/item/weapon/pen/O = locate() in src
-		if(O)
-			if (istype(loc, /mob))
-				var/mob/M = loc
-				if(M.get_active_hand() == null)
-					M.put_in_hands(O)
-					to_chat(usr, "<span class='notice'>You remove \the [O] from \the [src].</span>")
-					return
-			O.loc = get_turf(src)
-		else
-			to_chat(usr, "<span class='notice'>This PDA does not have a pen in it.</span>")
+		remove_pen()
 	else
 		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")
 
@@ -1378,11 +1389,11 @@ var/global/list/obj/item/device/pda/PDAs = list()
 					var/reagents_length = A.reagents.reagent_list.len
 					to_chat(user, "<span class='notice'>[reagents_length] chemical agent[reagents_length > 1 ? "s" : ""] found.</span>")
 					for (var/re in A.reagents.reagent_list)
-						to_chat(user,"<span class='notice'>    [re]</span>")
+						to_chat(user, "<span class='notice'>    [re]</span>")
 				else
-					to_chat(user,"<span class='notice'>No active chemical agents found in [A].</span>")
+					to_chat(user, "<span class='notice'>No active chemical agents found in [A].</span>")
 			else
-				to_chat(user,"<span class='notice'>No significantchemical agents found in [A].</span>")
+				to_chat(user, "<span class='notice'>No significantchemical agents found in [A].</span>")
 
 		if(5)
 			analyze_gases(A, user)
@@ -1434,7 +1445,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		// feature to the PDA, which would better convey the availability of the feature, but this will work for now.
 
 		// Inform the user
-		to_chat(user,"<span class='notice'>Paper scanned and OCRed to notekeeper.</span>") //concept of scanning paper copyright brainoblivion 2009
+		to_chat(user, "<span class='notice'>Paper scanned and OCRed to notekeeper.</span>") //concept of scanning paper copyright brainoblivion 2009
 
 
 /obj/item/device/pda/proc/explode() //This needs tuning. //Sure did.

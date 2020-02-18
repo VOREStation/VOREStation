@@ -115,3 +115,9 @@
 	name = "vacuum-sealed pill (Kitsuhanan Cure)"
 	desc = "A small vacuum-sealed package containing a singular pill. For emergencies only."
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/sleevingcure)
+
+/obj/item/weapon/storage/pill_bottle/paracetamol
+	name = "pill bottle (Paracetamol)"
+	desc = "Contains over the counter medicine to treat pain."
+	starts_with = list(/obj/item/weapon/reagent_containers/pill/paracetamol = 7)
+	wrapper_color = COLOR_GRAY

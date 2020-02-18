@@ -125,7 +125,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 
 	var/datum/changeling/changeling = src.mind.changeling
 	if(!changeling)
-		world.log << "[src] has the changeling_transform() verb but is not a changeling."
+		to_world_log("[src] has the changeling_transform() verb but is not a changeling.")
 		return
 
 	if(src.stat > max_stat)
@@ -238,5 +238,5 @@ turf/proc/AdjacentTurfsRangedSting()
 
 	to_chat(src, "<span class='notice'>We stealthily sting [T].</span>")
 	if(!T.mind || !T.mind.changeling)	return T	//T will be affected by the sting
-	T << "<span class='warning'>You feel a tiny prick.</span>"
+	to_chat(T, "<span class='warning'>You feel a tiny prick.</span>")
 	return

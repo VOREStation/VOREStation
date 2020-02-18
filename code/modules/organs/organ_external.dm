@@ -151,7 +151,7 @@
 		for(var/obj/item/I in contents)
 			if(istype(I, /obj/item/organ))
 				continue
-			usr << "<span class='danger'>There is \a [I] sticking out of it.</span>"
+			to_chat(usr, "<span class='danger'>There is \a [I] sticking out of it.</span>")
 	return
 
 /obj/item/organ/external/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
@@ -411,11 +411,11 @@
 		else return 0
 
 	if(!damage_amount)
-		user << "<span class='notice'>Nothing to fix!</span>"
+		to_chat(user, "<span class='notice'>Nothing to fix!</span>")
 		return 0
 
 	if(brute_dam + burn_dam >= min_broken_damage) //VOREStation Edit - Makes robotic limb damage scalable
-		user << "<span class='danger'>The damage is far too severe to patch over externally.</span>"
+		to_chat(user, "<span class='danger'>The damage is far too severe to patch over externally.</span>")
 		return 0
 
 	if(user == src.owner)
@@ -426,12 +426,12 @@
 			grasp = "r_hand"
 
 		if(grasp)
-			user << "<span class='warning'>You can't reach your [src.name] while holding [tool] in your [owner.get_bodypart_name(grasp)].</span>"
+			to_chat(user, "<span class='warning'>You can't reach your [src.name] while holding [tool] in your [owner.get_bodypart_name(grasp)].</span>")
 			return 0
 
 	user.setClickCooldown(user.get_attack_speed(tool))
 	if(!do_mob(user, owner, 10))
-		user << "<span class='warning'>You must stand still to do that.</span>"
+		to_chat(user, "<span class='warning'>You must stand still to do that.</span>")
 		return 0
 
 	switch(damage_type)
@@ -690,7 +690,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(. >= 3 && antibiotics < ANTIBIO_OD)	//INFECTION_LEVEL_THREE
 		if (!(status & ORGAN_DEAD))
 			status |= ORGAN_DEAD
-			owner << "<span class='notice'>You can't feel your [name] anymore...</span>"
+			to_chat(owner, "<span class='notice'>You can't feel your [name] anymore...</span>")
 			owner.update_icons_body()
 			for (var/obj/item/organ/external/child in children)
 				child.germ_level += 110 //Burst of infection from a parent organ becoming necrotic

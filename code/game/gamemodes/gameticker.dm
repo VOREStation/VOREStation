@@ -101,7 +101,7 @@ var/global/datum/controller/gameticker/ticker
 	job_master.DivideOccupations() // Apparently important for new antagonist system to register specific job antags properly.
 
 	if(!src.mode.can_start())
-		world << "<B>Unable to start [mode.name].</B> Not enough players readied, [config.player_requirements[mode.config_tag]] players needed. Reverting to pregame lobby."
+		to_world("<B>Unable to start [mode.name].</B> Not enough players readied, [config.player_requirements[mode.config_tag]] players needed. Reverting to pregame lobby.")
 		current_state = GAME_STATE_PREGAME
 		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		mode.fail_setup()
@@ -110,7 +110,7 @@ var/global/datum/controller/gameticker/ticker
 		return 0
 
 	if(hide_mode)
-		world << "<B>The current game mode is - Secret!</B>"
+		to_world("<B>The current game mode is - Secret!</B>")
 		if(runnable_modes.len)
 			var/list/tmpmodes = new
 			for (var/datum/game_mode/M in runnable_modes)
@@ -383,43 +383,43 @@ var/global/datum/controller/gameticker/ticker
 		return 1
 
 /datum/controller/gameticker/proc/declare_completion()
-	world << "<br><br><br><H1>A round of [mode.name] has ended!</H1>"
+	to_world("<br><br><br><H1>A round of [mode.name] has ended!</H1>")
 	for(var/mob/Player in player_list)
 		if(Player.mind && !isnewplayer(Player))
 			if(Player.stat != DEAD)
 				var/turf/playerTurf = get_turf(Player)
 				if(emergency_shuttle.departed && emergency_shuttle.evac)
 					if(isNotAdminLevel(playerTurf.z))
-						Player << "<font color='blue'><b>You survived the round, but remained on [station_name()] as [Player.real_name].</b></font>"
+						to_chat(Player, "<font color='blue'><b>You survived the round, but remained on [station_name()] as [Player.real_name].</b></font>")
 					else
-						Player << "<font color='green'><b>You managed to survive the events on [station_name()] as [Player.real_name].</b></font>"
+						to_chat(Player, "<font color='green'><b>You managed to survive the events on [station_name()] as [Player.real_name].</b></font>")
 				else if(isAdminLevel(playerTurf.z))
-					Player << "<font color='green'><b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b></font>"
+					to_chat(Player, "<font color='green'><b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b></font>")
 				else if(issilicon(Player))
-					Player << "<font color='green'><b>You remain operational after the events on [station_name()] as [Player.real_name].</b></font>"
+					to_chat(Player, "<font color='green'><b>You remain operational after the events on [station_name()] as [Player.real_name].</b></font>")
 				else
-					Player << "<font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font>"
+					to_chat(Player, "<font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font>")
 			else
 				if(istype(Player,/mob/observer/dead))
 					var/mob/observer/dead/O = Player
 					if(!O.started_as_observer)
-						Player << "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
+						to_chat(Player, "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>")
 				else
-					Player << "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
-	world << "<br>"
+					to_chat(Player, "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>")
+	to_world("<br>")
 
 	for (var/mob/living/silicon/ai/aiPlayer in mob_list)
 		if (aiPlayer.stat != 2)
-			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>"
+			to_world("<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>")
 		else
-			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>"
+			to_world("<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>")
 		aiPlayer.show_laws(1)
 
 		if (aiPlayer.connected_robots.len)
 			var/robolist = "<b>The AI's loyal minions were:</b> "
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
 				robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.key]), ":" (Played by: [robo.key]), "]"
-			world << "[robolist]"
+			to_world("[robolist]")
 
 	var/dronecount = 0
 
@@ -431,15 +431,15 @@ var/global/datum/controller/gameticker/ticker
 
 		if (!robo.connected_ai)
 			if (robo.stat != 2)
-				world << "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less stationbound synthetic! Its laws were:</b>"
+				to_world("<b>[robo.name] (Played by: [robo.key]) survived as an AI-less stationbound synthetic! Its laws were:</b>")
 			else
-				world << "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a stationbound synthetic without an AI. Its laws were:</b>"
+				to_world("<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a stationbound synthetic without an AI. Its laws were:</b>")
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				robo.laws.show_laws(world)
 
 	if(dronecount)
-		world << "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.</b>"
+		to_world("<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.</b>")
 
 	mode.declare_completion()//To declare normal completion.
 

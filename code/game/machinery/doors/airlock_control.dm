@@ -145,6 +145,7 @@ obj/machinery/airlock_sensor
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_sensor_off"
 	name = "airlock sensor"
+	desc = "Sends atmospheric readings to a nearby controller."
 
 	anchored = 1
 	power_channel = ENVIRON
@@ -258,7 +259,7 @@ obj/machinery/access_button/attackby(obj/item/I as obj, mob/user as mob)
 obj/machinery/access_button/attack_hand(mob/user)
 	add_fingerprint(usr)
 	if(!allowed(user))
-		user << "<span class='warning'>Access Denied</span>"
+		to_chat(user, "<span class='warning'>Access Denied</span>")
 
 	else if(radio_connection)
 		var/datum/signal/signal = new

@@ -109,12 +109,12 @@
 /obj/item/weapon/gun/energy/proc/load_ammo(var/obj/item/C, mob/user)
 	if(istype(C, /obj/item/weapon/cell))
 		if(self_recharge || battery_lock)
-			user << "<span class='notice'>[src] does not have a battery port.</span>"
+			to_chat(user, "<span class='notice'>[src] does not have a battery port.</span>")
 			return
 		if(istype(C, accept_cell_type))
 			var/obj/item/weapon/cell/P = C
 			if(power_supply)
-				user << "<span class='notice'>[src] already has a power cell.</span>"
+				to_chat(user, "<span class='notice'>[src] already has a power cell.</span>")
 			else
 				user.visible_message("[user] is reloading [src].", "<span class='notice'>You start to insert [P] into [src].</span>")
 				if(do_after(user, 5 * P.w_class))
@@ -126,12 +126,12 @@
 					update_icon()
 					update_held_icon()
 		else
-			user << "<span class='notice'>This cell is not fitted for [src].</span>"
+			to_chat(user, "<span class='notice'>This cell is not fitted for [src].</span>")
 	return
 
 /obj/item/weapon/gun/energy/proc/unload_ammo(mob/user)
 	if(self_recharge || battery_lock)
-		user << "<span class='notice'>[src] does not have a battery port.</span>"
+		to_chat(user, "<span class='notice'>[src] does not have a battery port.</span>")
 		return
 	if(power_supply)
 		user.put_in_hands(power_supply)
@@ -142,7 +142,7 @@
 		update_icon()
 		update_held_icon()
 	else
-		user << "<span class='notice'>[src] does not have a power cell.</span>"
+		to_chat(user, "<span class='notice'>[src] does not have a power cell.</span>")
 
 /obj/item/weapon/gun/energy/attackby(var/obj/item/A as obj, mob/user as mob)
 	..()

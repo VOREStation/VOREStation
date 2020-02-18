@@ -102,14 +102,14 @@ var/list/trait_categories = list() // The categories available for the trait men
 
 	for(var/trait_name in pref.traits)
 		if(!trait_datums[trait_name])
-			preference_mob << "<span class='warning'>You cannot have more than one of trait: [trait_name]</span>"
+			to_chat(preference_mob, "<span class='warning'>You cannot have more than one of trait: [trait_name]</span>")
 			pref.traits -= trait_name
 		else
 			var/datum/trait/T = trait_datums[trait_name]
 			var/invalidity = T.test_for_invalidity(src)
 			if(invalidity)
 				pref.traits -= trait_name
-				preference_mob << "<span class='warning'>You cannot take the [trait_name] trait.  Reason: [invalidity]</span>"
+				to_chat(preference_mob, "<span class='warning'>You cannot take the [trait_name] trait.  Reason: [invalidity]</span>")
 
 			var/conflicts = T.test_for_trait_conflict(pref.traits)
 			if(conflicts)

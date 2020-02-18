@@ -122,7 +122,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 					CutWireColour(colour)
 					playsound(holder, I.usesound, 20, 1)
 				else
-					L << "<span class='error'>You need wirecutters!</span>"
+					to_chat(L, "<span class='error'>You need wirecutters!</span>")
 
 			else if(href_list["pulse"])
 				if(istype(I, /obj/item/device/multitool))
@@ -130,7 +130,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 					PulseColour(colour)
 					playsound(holder, 'sound/weapons/empty.ogg', 20, 1)
 				else
-					L << "<span class='error'>You need a multitool!</span>"
+					to_chat(L, "<span class='error'>You need a multitool!</span>")
 
 			else if(href_list["attach"])
 				var/colour = href_list["attach"]
@@ -146,7 +146,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 						L.drop_item()
 						Attach(colour, I)
 					else
-						L << "<span class='error'>You need a remote signaller!</span>"
+						to_chat(L, "<span class='error'>You need a remote signaller!</span>")
 
 
 

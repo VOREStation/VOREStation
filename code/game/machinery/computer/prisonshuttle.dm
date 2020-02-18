@@ -12,6 +12,7 @@ var/prison_shuttle_timeleft = 0
 
 /obj/machinery/computer/prison_shuttle
 	name = "prison shuttle control console"
+	desc = "Used to move the prison shuttle to and from its destination."
 	icon_keyboard = "security_key"
 	icon_screen = "syndishuttle"
 	light_color = "#00ffff"
@@ -27,10 +28,10 @@ var/prison_shuttle_timeleft = 0
 
 	attack_hand(var/mob/user as mob)
 		if(!src.allowed(user) && (!hacked))
-			user << "<span class='warning'>Access Denied.</span>"
+			to_chat(user, "<span class='warning'>Access Denied.</span>")
 			return
 		if(prison_break)
-			user << "<span class='warning'>Unable to locate shuttle.</span>"
+			to_chat(user, "<span class='warning'>Unable to locate shuttle.</span>")
 			return
 		if(..())
 			return
@@ -59,11 +60,11 @@ var/prison_shuttle_timeleft = 0
 
 		if (href_list["sendtodock"])
 			if (!prison_can_move())
-				usr << "<span class='warning'>The prison shuttle is unable to leave.</span>"
+				to_chat(usr, "<span class='warning'>The prison shuttle is unable to leave.</span>")
 				return
 			if(!prison_shuttle_at_station|| prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison) return
 			post_signal("prison")
-			usr << "<span class='notice'>The prison shuttle has been called and will arrive in [(PRISON_MOVETIME/10)] seconds.</span>"
+			to_chat(usr, "<span class='notice'>The prison shuttle has been called and will arrive in [(PRISON_MOVETIME/10)] seconds.</span>")
 			src.temp += "Shuttle sent.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 			src.updateUsrDialog()
 			prison_shuttle_moving_to_prison = 1
@@ -73,11 +74,11 @@ var/prison_shuttle_timeleft = 0
 
 		else if (href_list["sendtostation"])
 			if (!prison_can_move())
-				usr << "<span class='warning'>The prison shuttle is unable to leave.</span>"
+				to_chat(usr, "<span class='warning'>The prison shuttle is unable to leave.</span>")
 				return
 			if(prison_shuttle_at_station || prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison) return
 			post_signal("prison")
-			usr << "<span class='notice'>The prison shuttle has been called and will arrive in [(PRISON_MOVETIME/10)] seconds.</span>"
+			to_chat(usr, "<span class='notice'>The prison shuttle has been called and will arrive in [(PRISON_MOVETIME/10)] seconds.</span>")
 			src.temp += "Shuttle sent.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 			src.updateUsrDialog()
 			prison_shuttle_moving_to_station = 1
@@ -145,7 +146,7 @@ var/prison_shuttle_timeleft = 0
 				if (prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison) return
 
 				if (!prison_can_move())
-					usr << "<span class='warning'>The prison shuttle is unable to leave.</span>"
+					to_chat(usr, "<span class='warning'>The prison shuttle is unable to leave.</span>")
 					return
 
 				var/area/start_location = locate(/area/shuttle/prison/prison)
@@ -174,7 +175,7 @@ var/prison_shuttle_timeleft = 0
 				if (prison_shuttle_moving_to_station || prison_shuttle_moving_to_prison) return
 
 				if (!prison_can_move())
-					usr << "<span class='warning'>The prison shuttle is unable to leave.</span>"
+					to_chat(usr, "<span class='warning'>The prison shuttle is unable to leave.</span>")
 					return
 
 				var/area/start_location = locate(/area/shuttle/prison/station)
@@ -210,5 +211,5 @@ var/prison_shuttle_timeleft = 0
 /obj/machinery/computer/prison_shuttle/emag_act(var/charges, var/mob/user)
 	if(!hacked)
 		hacked = 1
-		user << "<span class='notice'>You disable the lock.</span>"
+		to_chat(user, "<span class='notice'>You disable the lock.</span>")
 		return 1

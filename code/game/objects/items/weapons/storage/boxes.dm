@@ -48,7 +48,7 @@
 	if ( !found )	// User is too far away
 		return
 	// Now make the cardboard
-	user << "<span class='notice'>You fold [src] flat.</span>"
+	to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
 	new foldable(get_turf(src))
 	qdel(src)
 
@@ -103,6 +103,7 @@
 
 /obj/item/weapon/storage/box/beakers
 	name = "box of beakers"
+	desc = "A box full of beakers."
 	icon_state = "beaker"
 	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker = 7)
 

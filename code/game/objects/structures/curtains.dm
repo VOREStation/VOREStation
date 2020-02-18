@@ -1,5 +1,6 @@
 /obj/structure/curtain
 	name = "curtain"
+	desc = "The show must go on! At least, until you close these."
 	icon = 'icons/obj/curtain.dmi'
 	icon_state = "closed"
 	plane = MOB_PLANE
@@ -39,9 +40,9 @@
 /obj/structure/curtain/attackby(obj/item/P, mob/user)
 	if(P.is_wirecutter())
 		playsound(src, P.usesound, 50, 1)
-		user << "<span class='notice'>You start to cut the shower curtains.</span>"
+		to_chat(user, "<span class='notice'>You start to cut the shower curtains.</span>")
 		if(do_after(user, 10))
-			user << "<span class='notice'>You cut the shower curtains.</span>"
+			to_chat(user, "<span class='notice'>You cut the shower curtains.</span>")
 			var/obj/item/stack/material/plastic/A = new /obj/item/stack/material/plastic( src.loc )
 			A.amount = 3
 			qdel(src)

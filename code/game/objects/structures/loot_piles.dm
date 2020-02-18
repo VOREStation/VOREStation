@@ -258,7 +258,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/weapon/reagent_containers/syringe/steroid,
 		/obj/item/weapon/storage/pill_bottle/zoom,
 		/obj/item/weapon/storage/pill_bottle/happy,
-		/obj/item/weapon/storage/pill_bottle/tramadol
+		/obj/item/weapon/storage/pill_bottle/paracetamol //VOREStation Edit
 	)
 
 // Contains loads of different types of boxes, which may have items inside!

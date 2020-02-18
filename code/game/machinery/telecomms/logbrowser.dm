@@ -5,6 +5,7 @@
 
 /obj/machinery/computer/telecomms/server
 	name = "Telecommunications Server Monitor"
+	desc = "View communication logs here. Translation not guaranteed."
 	icon_screen = "comm_logs"
 
 	var/screen = 0				// the screen number:
@@ -156,7 +157,7 @@
 		if(href_list["delete"])
 
 			if(!src.allowed(usr) && !emagged)
-				usr << "<span class='warning'>ACCESS DENIED.</span>"
+				to_chat(usr, "<span class='warning'>ACCESS DENIED.</span>")
 				return
 
 			if(SelectedServer)
@@ -193,6 +194,6 @@
 	if(!emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
-		user << "<span class='notice'>You you disable the security protocols</span>"
+		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
 		src.updateUsrDialog()
 		return 1

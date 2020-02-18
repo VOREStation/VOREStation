@@ -16,7 +16,7 @@
 
 /obj/item/weapon/beartrap/suicide_act(mob/user)
 	var/datum/gender/T = gender_datums[user.get_visible_gender()]
-	viewers(user) << "<span class='danger'>[user] is putting the [src.name] on [T.his] head! It looks like [T.hes] trying to commit suicide.</span>"
+	to_chat(viewers(user),"<span class='danger'>[user] is putting the [src.name] on [T.his] head! It looks like [T.hes] trying to commit suicide.</span>")
 	return (BRUTELOSS)
 
 /obj/item/weapon/beartrap/proc/can_use(mob/user)
@@ -101,7 +101,7 @@
 	can_buckle = 1
 	buckle_mob(L)
 	L.Stun(stun_length)
-	L << "<span class='danger'>The steel jaws of \the [src] bite into you, trapping you in place!</span>"
+	to_chat(L, "<span class='danger'>The steel jaws of \the [src] bite into you, trapping you in place!</span>")
 	deployed = 0
 	can_buckle = initial(can_buckle)
 

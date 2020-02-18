@@ -212,6 +212,7 @@
 
 /obj/item/weapon/packageWrap
 	name = "package wrapper"
+	desc = "Like wrapping paper, but less festive."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "deliveryPaper"
 	w_class = ITEMSIZE_NORMAL

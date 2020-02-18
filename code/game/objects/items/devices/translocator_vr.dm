@@ -209,6 +209,14 @@
 	ready = 0
 	power_source.use(charge_cost)
 
+	//Unbuckle taur riders
+	if(istype(target, /mob/living))
+		var/mob/living/L = target
+		if(LAZYLEN(L.buckled_mobs))
+			var/datum/riding/R = L.riding_datum
+			for(var/rider in L.buckled_mobs)
+				R.force_dismount(rider)
+
 	//Failure chance
 	if(prob(failure_chance) && beacons.len >= 2)
 		var/list/wrong_choices = beacons - destination.tele_name

@@ -3,6 +3,7 @@
 //--------------------------------------------
 /obj/machinery/atmospherics/omni/atmos_filter
 	name = "omni gas filter"
+	desc = "An advanced version of the gas filter, able to be configured for filtering of multiple gasses."
 	icon_state = "map_filter"
 	pipe_state = "omni_filter"
 

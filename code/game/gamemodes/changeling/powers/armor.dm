@@ -81,13 +81,13 @@
 		magpulse = 0
 		set_slowdown()
 		force = 3
-		user << "We release our grip on the floor."
+		to_chat(user, "We release our grip on the floor.")
 	else
 		item_flags |= NOSLIP
 		magpulse = 1
 		set_slowdown()
 		force = 5
-		user << "We cling to the terrain below us."
+		to_chat(user, "We cling to the terrain below us.")
 
 /obj/item/clothing/shoes/magboots/changeling/dropped()
 	..()
@@ -134,8 +134,8 @@
 	siemens_coefficient = 0
 
 /obj/item/clothing/shoes/boots/combat/changeling //Noslips
-	desc = "chitinous boots"
-	name = "Footwear made out of a hard, black chitinous material.  The bottoms of these appear to have spikes that can protrude or extract itself into and out \
+	name = "chitinous boots"
+	desc = "Footwear made out of a hard, black chitinous material.  The bottoms of these appear to have spikes that can protrude or extract itself into and out \
 	of the floor at will, granting the wearer stability."
 	icon_state = "lingboots"
 	armor = list(melee = 75, bullet = 60, laser = 70,energy = 60, bomb = 60, bio = 0, rad = 0)

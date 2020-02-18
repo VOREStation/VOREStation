@@ -1,5 +1,6 @@
 /obj/machinery/computer/gyrotron_control
 	name = "gyrotron control console"
+	desc = "Used to control the R-UST stability beams."
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "engine"
 	light_color = COLOR_BLUE

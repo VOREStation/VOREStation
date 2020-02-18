@@ -18,17 +18,17 @@
 	if(!attached_lock.controller_lock)
 
 		if(!attached_lock.stored_dna && !(M.dna in attached_lock.stored_dna))
-			M << "<span class='warning'>\The [src] buzzes and displays a symbol showing the gun already contains your DNA.</span>"
+			to_chat(M, "<span class='warning'>\The [src] buzzes and displays a symbol showing the gun already contains your DNA.</span>")
 			return 0
 		else
 			attached_lock.stored_dna += M.dna
-			M << "<span class='notice'>\The [src] pings and a needle flicks out from the grip, taking a DNA sample from you.</span>"
+			to_chat(M, "<span class='notice'>\The [src] pings and a needle flicks out from the grip, taking a DNA sample from you.</span>")
 			if(!attached_lock.controller_dna)
 				attached_lock.controller_dna = M.dna
-				M << "<span class='notice'>\The [src] processes the dna sample and pings, acknowledging you as the primary controller.</span>"
+				to_chat(M, "<span class='notice'>\The [src] processes the dna sample and pings, acknowledging you as the primary controller.</span>")
 			return 1
 	else
-		M << "<span class='warning'>\The [src] buzzes and displays a locked symbol. It is not allowing DNA samples at this time.</span>"
+		to_chat(M, "<span class='warning'>\The [src] buzzes and displays a locked symbol. It is not allowing DNA samples at this time.</span>")
 		return 0
 
 /obj/item/weapon/gun/verb/give_dna()
@@ -41,19 +41,19 @@
 	var/mob/living/M = user
 	if(!attached_lock.controller_lock)
 		if(!authorized_user(M))
-			M << "<span class='warning'>\The [src] buzzes and displays an invalid user symbol.</span>"
+			to_chat(M, "<span class='warning'>\The [src] buzzes and displays an invalid user symbol.</span>")
 			return 0
 		else
 			attached_lock.stored_dna -= user.dna
-			M << "<span class='notice'>\The [src] beeps and clears the DNA it has stored.</span>"
+			to_chat(M, "<span class='notice'>\The [src] beeps and clears the DNA it has stored.</span>")
 			if(M.dna == attached_lock.controller_dna)
 				attached_lock.controller_dna = null
-				M << "<span class='notice'>\The [src] beeps and removes you as the primary controller.</span>"
+				to_chat(M, "<span class='notice'>\The [src] beeps and removes you as the primary controller.</span>")
 				if(attached_lock.controller_lock)
 					attached_lock.controller_lock = 0
 			return 1
 	else
-		M << "<span class='warning'>\The [src] buzzes and displays a locked symbol. It is not allowing DNA modifcation at this time.</span>"
+		to_chat(M, "<span class='warning'>\The [src] buzzes and displays a locked symbol. It is not allowing DNA modifcation at this time.</span>")
 		return 0
 
 /obj/item/weapon/gun/verb/remove_dna()
@@ -67,12 +67,12 @@
 	if(authorized_user(M) && user.dna == attached_lock.controller_dna)
 		if(!attached_lock.controller_lock)
 			attached_lock.controller_lock = 1
-			M << "<span class='notice'>\The [src] beeps and displays a locked symbol, informing you it will no longer allow DNA samples.</span>"
+			to_chat(M, "<span class='notice'>\The [src] beeps and displays a locked symbol, informing you it will no longer allow DNA samples.</span>")
 		else
 			attached_lock.controller_lock = 0
-			M << "<span class='notice'>\The [src] beeps and displays an unlocked symbol, informing you it will now allow DNA samples.</span>"
+			to_chat(M, "<span class='notice'>\The [src] beeps and displays an unlocked symbol, informing you it will now allow DNA samples.</span>")
 	else
-		M << "<span class='warning'>\The [src] buzzes and displays an invalid user symbol.</span>"
+		to_chat(M, "<span class='warning'>\The [src] buzzes and displays an invalid user symbol.</span>")
 
 /obj/item/weapon/gun/verb/allow_dna()
 	set name = "Toggle DNA Samples Allowance"

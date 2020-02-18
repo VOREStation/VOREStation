@@ -452,11 +452,16 @@
 	var/additional_chems = rand(0,5)
 
 	if(additional_chems)
-
+		// VOREStation Edit Start: Modified exclusion list
 		var/list/banned_chems = list(
 			"adminordrazine",
-			"nutriment"
+			"nutriment",
+			"macrocillin",
+			"microcillin",
+			"normalcillin",
+			"magicdust"
 			)
+		// VOREStation Edit End: Modified exclusion list
 
 		for(var/x=1;x<=additional_chems;x++)
 
@@ -775,9 +780,11 @@
 		playsound(M, harvest_sound, 50, 1, -1)
 
 	if(!force_amount && get_trait(TRAIT_YIELD) == 0 && !harvest_sample)
-		if(istype(user)) user << "<span class='danger'>You fail to harvest anything useful.</span>"
+		if(istype(user))
+			to_chat(user, "<span class='danger'>You fail to harvest anything useful.</span>")
 	else
-		if(istype(user)) user << "You [harvest_sample ? "take a sample" : "harvest"] from the [display_name]."
+		if(istype(user))
+			to_chat(user, "You [harvest_sample ? "take a sample" : "harvest"] from the [display_name].")
 
 		//This may be a new line. Update the global if it is.
 		if(name == "new line" || !(name in plant_controller.seeds))

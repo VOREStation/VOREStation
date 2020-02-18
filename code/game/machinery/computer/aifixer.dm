@@ -1,5 +1,6 @@
 /obj/machinery/computer/aifixer
 	name = "\improper AI system integrity restorer"
+	desc = "Restores AI units to working condition, assuming you have one inside!"
 	icon_keyboard = "rd_key"
 	icon_screen = "ai-fixer"
 	light_color = "#a97faa"
@@ -18,8 +19,8 @@
 		return
 
 	// Transfer over the AI.
-	transfer << "You have been transferred into a stationary terminal. Sadly, there is no remote access from here."
-	user << "<span class='notice'>Transfer successful:</span> [transfer.name] placed within stationary terminal."
+	to_chat(transfer, "You have been transferred into a stationary terminal. Sadly, there is no remote access from here.")
+	to_chat(user, "<span class='notice'>Transfer successful:</span> [transfer.name] placed within stationary terminal.")
 
 	transfer.loc = src
 	transfer.cancel_camera()
@@ -36,7 +37,7 @@
 	if(istype(I, /obj/item/device/aicard))
 
 		if(stat & (NOPOWER|BROKEN))
-			user << "This terminal isn't functioning right now."
+			to_chat(user, "This terminal isn't functioning right now.")
 			return
 
 		var/obj/item/device/aicard/card = I
@@ -45,7 +46,7 @@
 
 		if(istype(comp_ai))
 			if(active)
-				user << "<span class='danger'>ERROR:</span> Reconstruction in progress."
+				to_chat(user, "<span class='danger'>ERROR:</span> Reconstruction in progress.")
 				return
 			card.grab_ai(comp_ai, user)
 			if(!(locate(/mob/living/silicon/ai) in src)) occupant = null

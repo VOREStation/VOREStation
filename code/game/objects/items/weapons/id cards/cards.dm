@@ -98,9 +98,9 @@
 	if(istype(O, /obj/item/stack/telecrystal))
 		var/obj/item/stack/telecrystal/T = O
 		if(T.amount < 1)
-			usr << "<span class='notice'>You are not adding enough telecrystals to fuel \the [src].</span>"
+			to_chat(usr, "<span class='notice'>You are not adding enough telecrystals to fuel \the [src].</span>")
 			return
 		uses += T.amount/2 //Gives 5 uses per 10 TC
 		uses = CEILING(uses, 1) //Ensures no decimal uses nonsense, rounds up to be nice
-		usr << "<span class='notice'>You add \the [O] to \the [src]. Increasing the uses of \the [src] to [uses].</span>"
+		to_chat(usr, "<span class='notice'>You add \the [O] to \the [src]. Increasing the uses of \the [src] to [uses].</span>")
 		qdel(O)
