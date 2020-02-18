@@ -71,6 +71,9 @@
 // TODO: make it based on area coverage rather than just forbid spacesuits?
 // Returns true if target organ is covered
 /datum/surgery_step/proc/coverage_check(mob/living/user, mob/living/carbon/human/target, obj/item/organ/external/affected, obj/item/tool)
+	if(!affected)
+		return FALSE
+
 	if(affected.organ_tag == BP_HEAD)
 		if(target.head && istype(target.head,/obj/item/clothing/head/helmet/space))
 			return TRUE
@@ -122,17 +125,12 @@
 		return 0
 	if(!ishuman(M))
 		return 1
-	var/mob/living/carbon/human/H = M
-	var/obj/item/organ/external/affected = H.get_organ(user.zone_sel.selecting)
-	if(affected)
-		for(var/datum/surgery_step/S in surgery_steps)
-			if(!affected.open && S.req_open)
-				continue
-			else
-				return 1
-	return 0
+
+	return 1
 
 /obj/item/proc/do_surgery(mob/living/carbon/M, mob/living/user)
+	if(!can_do_surgery(M, user))
+		return 0
 	if(!istype(M))
 		return 0
 	if (user.a_intent == I_HURT)	//check for Hippocratic Oath
