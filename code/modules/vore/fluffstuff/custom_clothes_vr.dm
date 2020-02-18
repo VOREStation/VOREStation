@@ -1919,3 +1919,32 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/accessory/collar/pink/fluff/warning
 	name = "Warning Collar (AGGRESSIVE)"
 	desc = "A bright red warning collar with white text - \"AGGRESSIVE\"."
+
+//KillerDragn:Excess
+/obj/item/clothing/under/fluff/excess
+	name = "XS-21E Labeled Latex Clothing"
+	desc = "A latex navy blue tube-top and matching compression shorts, with a bright yellow stripe down the side. \"XS-21E\" is written on the thigh. \"Warning\" is written in yellow by the stripe on the top."
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	icon = 'icons/mob/human.dmi'
+	icon_state = "compression_shorts"
+	item_icons = list()
+	default_worn_icon = 'icons/mob/human.dmi'
+	color = COLOR_NAVY
+	sprite_sheets = null
+
+/obj/item/clothing/under/fluff/excess/get_worn_icon_state(var/slot_name)
+	. = ..()
+	. = copytext(. , 1 , lentext( . ) - 1)  //get rid of the extra "_s" added by /obj/item/clothing/under/get_worn_icon_state()
+
+/obj/item/clothing/under/fluff/excess/update_icon()
+	. = ..()
+	overlays += image("icon" = 'icons/mob/human.dmi', "icon_state" = "tubetop")
+
+/obj/item/clothing/under/fluff/excess/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer,var/icon/clip_mask = null)
+	var/image/standing = ..()
+	standing.add_overlay(image("icon" = 'icons/mob/human.dmi', "icon_state" = "tubetop"))
+	return standing
+
+/obj/item/clothing/under/fluff/excess/New()
+	. = ..()
+	overlays += image("icon" = 'icons/mob/human.dmi', "icon_state" = "tubetop")
