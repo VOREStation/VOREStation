@@ -6357,9 +6357,14 @@
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
 "jV" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
+/obj/machinery/light,
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "jW" = (
 /obj/structure/bed/chair/office/dark{
@@ -29232,13 +29237,14 @@
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
 "UD" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/belter/station)
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
 "UE" = (
 /obj/structure/bed/chair/shuttle,
 /turf/simulated/floor/tiled,
@@ -29415,12 +29421,11 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock)
 "UY" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/structure/bed/chair/shuttle{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/belter/station)
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
 "UZ" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 8
@@ -29546,14 +29551,9 @@
 /turf/simulated/floor/outdoors/grass/forest,
 /area/quartermaster/qm)
 "Vm" = (
-/obj/structure/bed/chair/shuttle{
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/excursion/tether)
 "Vn" = (
 /obj/structure/bed/chair/office/dark{
@@ -29642,16 +29642,16 @@
 /turf/simulated/shuttle/floor/yellow/airless,
 /area/shuttle/belter/station)
 "Vy" = (
-/obj/structure/bed/chair/shuttle{
-	icon_state = "shuttle_chair";
-	dir = 1
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
-/turf/simulated/shuttle/floor/yellow/airless,
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/belter/station)
 "Vz" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -29682,13 +29682,11 @@
 /turf/simulated/floor/plating,
 /area/shuttle/excursion/tether)
 "VC" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/structure/bed/chair/shuttle{
+	dir = 1
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1/station)
+/turf/simulated/shuttle/floor/yellow/airless,
+/area/shuttle/belter/station)
 "VD" = (
 /obj/machinery/atmospherics/binary/pump,
 /obj/machinery/atmospherics/pipe/simple/hidden/universal{
@@ -29766,15 +29764,23 @@
 /area/ai_core_foyer)
 "VN" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/belter/station)
+"VO" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1/station)
-"VO" = (
+"VP" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+	dir = 8
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -29792,6 +29798,14 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/tether)
+"VS" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1/station)
 "VU" = (
 /obj/machinery/firealarm{
 	dir = 2;
@@ -30269,13 +30283,6 @@
 	can_open = 0
 	},
 /area/crew_quarters/medical_restroom)
-"Ys" = (
-/obj/structure/bed/chair/shuttle{
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/excursion/tether)
 "Yu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -30328,17 +30335,6 @@
 /obj/machinery/microwave,
 /turf/simulated/floor/wood,
 /area/security/breakroom)
-"YI" = (
-/obj/structure/bed/chair/shuttle{
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
-/obj/item/device/radio/intercom{
-	pixel_y = -24
-	},
-/obj/machinery/light,
-/turf/simulated/floor/tiled,
-/area/shuttle/excursion/tether)
 "YQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -40184,11 +40180,11 @@ MK
 Iy
 ab
 NL
-VC
-VN
-VN
-VN
 VO
+VP
+VP
+VP
+VS
 NL
 vt
 vt
@@ -41411,7 +41407,7 @@ Zy
 WG
 dj
 XA
-jV
+Vm
 ms
 Oz
 be
@@ -41553,7 +41549,7 @@ UJ
 Xb
 dj
 XN
-jV
+Vm
 ms
 Xq
 be
@@ -41695,7 +41691,7 @@ iW
 WS
 dj
 XN
-jV
+Vm
 ms
 Xq
 be
@@ -41829,7 +41825,7 @@ Tu
 Vi
 Wo
 Wg
-YI
+jV
 dj
 VU
 Zk
@@ -41971,14 +41967,14 @@ ZL
 dj
 Us
 fi
-Vm
+UD
 dj
 Xa
 jZ
 WR
 Xo
 XN
-jV
+Vm
 cK
 ms
 Xq
@@ -42113,7 +42109,7 @@ fj
 ea
 UE
 fj
-Ys
+UY
 ea
 iW
 ka
@@ -42546,7 +42542,7 @@ ea
 kx
 dj
 XN
-jV
+Vm
 cK
 ms
 mq
@@ -42831,7 +42827,7 @@ kQ
 TG
 dj
 XN
-jV
+Vm
 ms
 mq
 be
@@ -42973,7 +42969,7 @@ kR
 Vd
 dj
 XN
-jV
+Vm
 ms
 QL
 be
@@ -43115,7 +43111,7 @@ ZE
 ZB
 dj
 XB
-jV
+Vm
 ms
 Sq
 be
@@ -44297,11 +44293,11 @@ Ty
 TL
 QG
 Ue
-UD
-UY
-UY
-UY
+Vy
 Vz
+Vz
+Vz
+VN
 VH
 vt
 vt
@@ -44868,7 +44864,7 @@ Ue
 UG
 Vc
 Vc
-Vy
+VC
 UF
 VH
 aa
@@ -45010,7 +45006,7 @@ Ue
 UF
 Vh
 Vc
-Vy
+VC
 UF
 VH
 aa
@@ -45152,7 +45148,7 @@ Ue
 UF
 Vh
 Vc
-Vy
+VC
 UF
 VH
 aa

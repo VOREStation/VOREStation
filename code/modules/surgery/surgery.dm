@@ -127,7 +127,9 @@
 	if(affected)
 		for(var/datum/surgery_step/S in surgery_steps)
 			if(!affected.open && S.req_open)
-				return 0
+				continue
+			else
+				return 1
 	return 0
 
 /obj/item/proc/do_surgery(mob/living/carbon/M, mob/living/user)
