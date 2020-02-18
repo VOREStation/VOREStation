@@ -61,6 +61,7 @@ body.inverted {
 #messagebox.vc_modchat .vc_modchat 			{ display: block; }
 #messagebox.vc_eventchat .vc_eventchat 		{ display: block; }
 #messagebox.vc_system .vc_system 			{ display: block; }
+#messagebox.vc_nif .vc_nif					{ display: block; } /* VOREStation Add */
 
 
 /* SS13 Styles */
@@ -135,6 +136,7 @@ body.inverted {
 .emote					{}
 .alert					{color: #ff0000;}
 h1.alert, h2.alert		{color: #000000;}
+.nif					{} /* VOREStation Add */
 
 /* Game Messages */
 
