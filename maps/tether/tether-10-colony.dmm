@@ -19585,13 +19585,6 @@
 /obj/structure/closet/secure_closet/personal,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm2)
-"Kc" = (
-/obj/structure/bed/chair/shuttle{
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/mothership/bridge)
 "Kd" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -29921,7 +29914,7 @@ PN
 KH
 Eb
 Kj
-Kc
+GI
 Xj
 Fu
 Ft
@@ -30063,7 +30056,7 @@ PN
 KH
 Eb
 Kj
-Kc
+GI
 iA
 DV
 EG
