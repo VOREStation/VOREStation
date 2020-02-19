@@ -85,7 +85,6 @@ obj/machinery/gateway/centerstation/process()
 	if(linked.len != 8)	return
 	if(!powered())		return
 	if(!awaygate)
-<<<<<<< HEAD
 		to_chat(user, "<span class='notice'>Error: No destination found. Please program gateway.</span>")
 		return
 	if(world.time < wait)
@@ -93,12 +92,6 @@ obj/machinery/gateway/centerstation/process()
 		return
 	if(!awaygate.calibrated && !LAZYLEN(awaydestinations)) //VOREStation Edit
 		to_chat(user, "<span class='notice'>Error: Destination gate uncalibrated. Gateway unsafe to use without far-end calibration update.</span>")
-=======
-		to_chat(user, "<span class='notice'>Error: No destination found.</span>")
-		return
-	if(world.time < wait)
-		to_chat(user, "<span class='notice'>Error: Warpspace triangulation in progress. Estimated time to completion: [round(((wait - world.time) / 10) / 60)] minutes.</span>")
->>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 		return
 
 	for(var/obj/machinery/gateway/G in linked)
