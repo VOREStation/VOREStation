@@ -188,6 +188,11 @@ datum/gear/suit/duster
 		ponchos[initial(poncho.name)] = poncho
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(ponchos))
 
+/datum/gear/suit/roles/poncho
+	display_name = "poncho, cargo"
+	path = /obj/item/clothing/accessory/poncho/roles/cargo
+	cost = 1
+
 /datum/gear/suit/roles/poncho/security
 	display_name = "poncho, security"
 	path = /obj/item/clothing/accessory/poncho/roles/security
@@ -203,10 +208,6 @@ datum/gear/suit/duster
 /datum/gear/suit/roles/poncho/science
 	display_name = "poncho, science"
 	path = /obj/item/clothing/accessory/poncho/roles/science
-
-/datum/gear/suit/roles/poncho/cargo
-	display_name = "poncho, cargo"
-	path = /obj/item/clothing/accessory/poncho/roles/cargo
 
 /datum/gear/suit/roles/poncho/cloak/hos
 	display_name = "cloak, head of security"
