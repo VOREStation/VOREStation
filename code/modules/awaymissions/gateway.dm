@@ -149,7 +149,6 @@ obj/machinery/gateway/centerstation/process()
 
 /obj/machinery/gateway/centerstation/attackby(obj/item/device/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/device/multitool))
-<<<<<<< HEAD
 		if(!awaygate)
 			awaygate = locate(/obj/machinery/gateway/centeraway)
 			if(!awaygate) // We still can't find the damn thing because there is no destination.
@@ -159,10 +158,6 @@ obj/machinery/gateway/centerstation/process()
 		else
 			to_chat(user, "<font color='black'>The gate is already calibrated, there is no work for you to do here.</font>")
 			return
-=======
-		to_chat(user, "<font color='black'>The gate is already calibrated, there is no work for you to do here.</font>")
-		return
->>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 
 /////////////////////////////////////Away////////////////////////
 
@@ -217,13 +212,8 @@ obj/machinery/gateway/centerstation/process()
 /obj/machinery/gateway/centeraway/proc/toggleon(mob/user as mob)
 	if(!ready)			return
 	if(linked.len != 8)	return
-<<<<<<< HEAD
 	if(!stationgate || !calibrated) // Vorestation edit. Not like Polaris ever touches this anyway.
 		to_chat(user, "<span class='notice'>Error: No destination found. Please calibrate gateway.</span>")
-=======
-	if(!stationgate)
-		to_chat(user, "<span class='notice'>Error: No destination found.</span>")
->>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 		return
 
 	for(var/obj/machinery/gateway/G in linked)
@@ -267,7 +257,6 @@ obj/machinery/gateway/centerstation/process()
 
 /obj/machinery/gateway/centeraway/attackby(obj/item/device/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/device/multitool))
-<<<<<<< HEAD
 		if(calibrated && stationgate)
 			to_chat(user, "<font color='black'>The gate is already calibrated, there is no work for you to do here.</font>")
 			return
@@ -282,12 +271,3 @@ obj/machinery/gateway/centerstation/process()
 				to_chat(user, "<font color='blue'><b>Recalibration successful!</b>:</font><font color='black'> This gate's systems have been fine tuned. Travel to this gate will now be on target.</font>")
 				calibrated = 1
 				return
-=======
-		if(calibrated)
-			to_chat(user, "<font color='black'>The gate is already calibrated, there is no work for you to do here.</font>")
-			return
-		else
-			to_chat(user, "<font color='blue'><b>Recalibration successful!</b>:</font><font color='black'> This gate's systems have been fine tuned. Travel to this gate will now be on target.</font>")
-			calibrated = 1
-			return
->>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
