@@ -1,4 +1,0 @@
-author: Atermonera
-delete-after: True
-changes: 
-  - rscadd: "Shutoff valve monitoring console can now remotely control shutoff valves."
