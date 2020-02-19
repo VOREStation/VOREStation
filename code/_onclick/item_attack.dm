@@ -46,10 +46,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		return 0
 	if(can_operate(src) && I.do_surgery(src,user))
 		return 1
-<<<<<<< HEAD
 	if(attempt_vr(src,"vore_attackby",args)) return //VOREStation Add - The vore, of course.
-=======
->>>>>>> 7825217... Merge pull request #6707 from Heroman3003/surgfix
 	return I.attack(src, user, user.zone_sel.selecting, attack_modifier)
 
 // Used to get how fast a mob should attack, and influences click delay.
