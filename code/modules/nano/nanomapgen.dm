@@ -54,8 +54,11 @@
 		sleep(3)
 		return NANOMAP_TERMINALERR
 
+<<<<<<< HEAD
 	Tile.Scale((endX - startX + 1) * NANOMAP_ICON_SIZE, (endY - startY + 1) * NANOMAP_ICON_SIZE) // VOREStation Edit - Scale image to actual size mapped.
 
+=======
+>>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 	to_world_log("NanoMapGen: <B>GENERATE MAP ([startX],[startY],[currentZ]) to ([endX],[endY],[currentZ])</B>")
 	to_chat(usr, "NanoMapGen: <B>GENERATE MAP ([startX],[startY],[currentZ]) to ([endX],[endY],[currentZ])</B>")
 

@@ -156,6 +156,7 @@
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 			to_chat(usr, "<font color='red'>The round is either not ready, or has already finished...</font>")
 			return
+<<<<<<< HEAD
 /*
 		if(client.prefs.species != "Human" && !check_rights(R_ADMIN, 0)) //VORESTATION EDITS: THE COMMENTED OUT AREAS FROM LINE 154 TO 178
 			if (config.usealienwhitelist)
@@ -163,6 +164,8 @@
 					alert(src, "You are currently not whitelisted to Play [client.prefs.species].")
 					return 0
 */
+=======
+>>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 		LateChoices()
 
 	if(href_list["manifest"])
@@ -175,7 +178,11 @@
 		for (var/mob/living/carbon/human/C in mob_list)
 			var/char_name = client.prefs.real_name
 			if(char_name == C.real_name)
+<<<<<<< HEAD
 				to_chat(usr, "<span class='notice'>There is a character that already exists with the same name - <b>[C.real_name]</b>, please join with a different one, or use Quit the Round with the previous character.</span>") //VOREStation Edit
+=======
+				to_chat(usr, "<span class='notice'>There is a character that already exists with the same name - <b>[C.real_name]</b>, please join with a different one.</span>")
+>>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 				return
 		*/ //Vorestation Removal End
 

@@ -774,7 +774,11 @@ default behaviour is:
 			to_chat(usr, "[src] does not have any stored infomation!")
 	else
 		to_chat(usr, "OOC Metadata is not supported by this server!")
+<<<<<<< HEAD
 	//VOREStation Edit End - Making it so SSD people have prefs with fallback to original style.
+=======
+	
+>>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 	return
 
 /mob/living/Move(a, b, flag)

@@ -105,7 +105,11 @@ SUBSYSTEM_DEF(vote)
 						factor = 1.4
 				choices["Initiate Crew Transfer"] = round(choices["Initiate Crew Transfer"] * factor)
 				to_world("<font color='purple'>Crew Transfer Factor: [factor]</font>")
+<<<<<<< HEAD
 				greatest_votes = max(choices["Initiate Crew Transfer"], choices["Extend the Shift"]) //VOREStation Edit
+=======
+				greatest_votes = max(choices["Initiate Crew Transfer"], choices["Continue The Round"])
+>>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 
 	. = list() // Get all options with that many votes and return them in a list
 	if(greatest_votes)

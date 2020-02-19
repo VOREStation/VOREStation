@@ -317,7 +317,11 @@
 	set src in usr
 	if(usr != src)
 		to_chat(usr, "No.")
+<<<<<<< HEAD
 	var/msg = sanitize(input(usr,"Set the flavor text in your 'examine' verb.","Flavor Text",html_decode(flavor_text)) as message|null, extra = 0)	//VOREStation Edit: separating out OOC notes
+=======
+	var/msg = sanitize(input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",html_decode(flavor_text)) as message|null, extra = 0)
+>>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 
 	if(msg != null)
 		flavor_text = msg

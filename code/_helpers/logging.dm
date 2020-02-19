@@ -22,16 +22,28 @@
 	#endif
 
 /proc/error(msg)
+<<<<<<< HEAD
 	to_world_log("## ERROR: [msg]")
+=======
+	to_world_log("## ERROR: [msg][log_end]")
+>>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 
 #define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [src] usr: [usr].")
 //print a warning message to world.log
 /proc/warning(msg)
+<<<<<<< HEAD
 	to_world_log("## WARNING: [msg]")
 
 //print a testing-mode debug message to world.log
 /proc/testing(msg)
 	to_world_log("## TESTING: [msg]")
+=======
+	to_world_log("## WARNING: [msg][log_end]")
+
+//print a testing-mode debug message to world.log
+/proc/testing(msg)
+	to_world_log("## TESTING: [msg][log_end]")
+>>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 
 /proc/log_admin(text)
 	admin_log.Add(text)
@@ -160,7 +172,11 @@
 
 /proc/log_error(text)
 	to_world_log(text)
+<<<<<<< HEAD
 	WRITE_LOG(error_log, "RUNTIME: [text]")
+=======
+	error_log << "\[[time_stamp()]]RUNTIME: [text][log_end]"
+>>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 
 /proc/log_misc(text)
 	WRITE_LOG(diary, "MISC: [text]")

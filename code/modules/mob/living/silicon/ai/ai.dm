@@ -198,12 +198,15 @@ var/list/ai_verbs_default = list(
 			radio_text += ", "
 
 	to_chat(src,radio_text)
+<<<<<<< HEAD
 
 	// Vorestation Edit: Meta Info for AI's. Mostly used for Holograms
 	if (client)
 		var/meta_info = client.prefs.metadata
 		if (meta_info)
 			ooc_notes = meta_info
+=======
+>>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 
 	if (malf && !(mind in malf.current_antagonists))
 		show_laws()
@@ -770,11 +773,14 @@ var/list/ai_verbs_default = list(
 	set desc = "Toggles hologram movement based on moving with your virtual eye."
 
 	hologram_follow = !hologram_follow
+<<<<<<< HEAD
 	//VOREStation Add - Required to stop movement because we use walk_to(wards) in hologram.dm
 	if(holo)
 		var/obj/effect/overlay/aiholo/hologram = holo.masters[src]
 		walk(hologram, 0)
 	//VOREStation Add End
+=======
+>>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 	to_chat(usr, "Your hologram will [hologram_follow ? "follow" : "no longer follow"] you now.")
 
 

@@ -51,7 +51,11 @@
 		to_chat(user, "<span class='danger'>The injector is full, empty it first!</span>")
 		return
 
+<<<<<<< HEAD
 	if(!(istype(victim, /mob/living/simple_mob/xeno)) && !emagged)
+=======
+	if(!(istype(victim, /mob/living/simple_animal/xeno)) && !emagged)
+>>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 		to_chat(user, "<span class='danger'>This is not a suitable subject for the injector!</span>")
 		return
 

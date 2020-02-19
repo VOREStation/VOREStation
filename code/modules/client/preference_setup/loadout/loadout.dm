@@ -95,7 +95,11 @@ var/list/gear_datums = list()
 			to_chat(preference_mob, "<span class='warning'>You cannot have more than one of the \the [gear_name]</span>")
 			pref.gear -= gear_name
 		else if(!(gear_name in valid_gear_choices()))
+<<<<<<< HEAD
 			to_chat(preference_mob, "<span class='warning'>You cannot take \the [gear_name] as you are not whitelisted for the species or item.</span>")		//Vorestation Edit
+=======
+			to_chat(preference_mob, "<span class='warning'>You cannot take \the [gear_name] as you are not whitelisted for the species.</span>")
+>>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 			pref.gear -= gear_name
 		else
 			var/datum/gear/G = gear_datums[gear_name]

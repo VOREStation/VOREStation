@@ -44,7 +44,11 @@ proc/createRandomZlevel()
 			var/datum/map_template/template = new(file, "away mission")
 			template.load_new_z()
 			to_world_log("away mission loaded: [map]")
+<<<<<<< HEAD
 		/* VOREStation Removal - We do this in the special landmark init instead.
+=======
+
+>>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 		for(var/obj/effect/landmark/L in landmarks_list)
 			if (L.name != "awaystart")
 				continue

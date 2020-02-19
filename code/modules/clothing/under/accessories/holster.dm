@@ -17,8 +17,12 @@
 			to_chat(user, "<span class='warning'>[I] won't fit in [src]!</span>")
 			return
 
+<<<<<<< HEAD
 	else if (!(I.slot_flags & SLOT_HOLSTER))
 	//VOREStation Edit End
+=======
+	if (!(I.slot_flags & SLOT_HOLSTER))
+>>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 		to_chat(user, "<span class='warning'>[I] won't fit in [src]!</span>")
 		return
 

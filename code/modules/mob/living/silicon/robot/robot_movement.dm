@@ -68,7 +68,7 @@
 								cleaned_human.shoes.clean_blood()
 								cleaned_human.update_inv_shoes(0)
 							cleaned_human.clean_blood(1)
-							cleaned_human << "<font color='red'>[src] cleans your face!</font>"
+							to_chat(cleaned_human, "<font color='red'>[src] cleans your face!</font>")
 
 		if((module_state_1 && istype(module_state_1, /obj/item/weapon/storage/bag/ore)) || (module_state_2 && istype(module_state_2, /obj/item/weapon/storage/bag/ore)) || (module_state_3 && istype(module_state_3, /obj/item/weapon/storage/bag/ore))) //Borgs and drones can use their mining bags ~automagically~ if they're deployed in a slot. Only mining bags, as they're optimized for mass use.
 			var/obj/item/weapon/storage/bag/ore/B = null
