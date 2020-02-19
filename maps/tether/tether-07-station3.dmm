@@ -16994,19 +16994,10 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/chemistry)
 "An" = (
-/obj/structure/table/reinforced,
-/obj/item/weapon/storage/box/beakers,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/chemistry)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "Ao" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -17984,6 +17975,16 @@
 /area/medical/chemistry)
 "BF" = (
 /obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/machinery/chemical_dispenser/biochemistry/full,
 /turf/simulated/floor/tiled/white,
 /area/medical/chemistry)
 "BG" = (
@@ -29551,10 +29552,10 @@
 /turf/simulated/floor/outdoors/grass/forest,
 /area/quartermaster/qm)
 "Vm" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/structure/table/reinforced,
+/obj/item/weapon/storage/box/beakers,
+/turf/simulated/floor/tiled/white,
+/area/medical/chemistry)
 "Vn" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -38028,8 +38029,8 @@ Ah
 Bt
 Cc
 yI
-An
 BF
+Vm
 Do
 Eh
 Fb
@@ -41407,7 +41408,7 @@ Zy
 WG
 dj
 XA
-Vm
+An
 ms
 Oz
 be
@@ -41549,7 +41550,7 @@ UJ
 Xb
 dj
 XN
-Vm
+An
 ms
 Xq
 be
@@ -41691,7 +41692,7 @@ iW
 WS
 dj
 XN
-Vm
+An
 ms
 Xq
 be
@@ -41974,7 +41975,7 @@ jZ
 WR
 Xo
 XN
-Vm
+An
 cK
 ms
 Xq
@@ -42542,7 +42543,7 @@ ea
 kx
 dj
 XN
-Vm
+An
 cK
 ms
 mq
@@ -42827,7 +42828,7 @@ kQ
 TG
 dj
 XN
-Vm
+An
 ms
 mq
 be
@@ -42969,7 +42970,7 @@ kR
 Vd
 dj
 XN
-Vm
+An
 ms
 QL
 be
@@ -43111,7 +43112,7 @@ ZE
 ZB
 dj
 XB
-Vm
+An
 ms
 Sq
 be
