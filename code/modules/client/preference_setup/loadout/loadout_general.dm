@@ -6,6 +6,14 @@
 	display_name = "white cane"
 	path = /obj/item/weapon/cane/whitecane
 
+/datum/gear/cane/white2
+	display_name = "telescopic white cane"
+	path = /obj/item/weapon/melee/collapsable_whitecane
+
+/datum/gear/crutch
+	display_name = "crutch"
+	path = /obj/item/weapon/cane/crutch
+
 /datum/gear/dice
 	display_name = "dice pack"
 	path = /obj/item/weapon/storage/pill_bottle/dice
