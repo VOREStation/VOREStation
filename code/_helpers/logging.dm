@@ -160,7 +160,7 @@
 
 /proc/log_error(text)
 	to_world_log(text)
-	error_log << "\[[time_stamp()]]RUNTIME: [text][log_end]"
+	WRITE_LOG(error_log, "RUNTIME: [text]")
 
 /proc/log_misc(text)
 	WRITE_LOG(diary, "MISC: [text]")
