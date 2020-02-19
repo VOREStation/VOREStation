@@ -414,11 +414,7 @@
 		to_chat(user, "<span class='notice'>Nothing to fix!</span>")
 		return 0
 
-<<<<<<< HEAD
 	if(brute_dam + burn_dam >= min_broken_damage) //VOREStation Edit - Makes robotic limb damage scalable
-=======
-	if(brute_dam + burn_dam >= ROBOLIMB_REPAIR_CAP)
->>>>>>> a8776af... Merge pull request #6692 from VOREStation/aro-tochat
 		to_chat(user, "<span class='danger'>The damage is far too severe to patch over externally.</span>")
 		return 0
 
