@@ -89,8 +89,8 @@
 
 	// Cut out all but the youngest three
 	while(news.len > 3)
-		var/oldest = min(news[0]["time_stamp"], news[1]["time_stamp"], news[2]["time_stamp"], news[3]["time_stamp"])
-		for(var/i = 0, i < 4, i++)
+		var/oldest = min(news[1]["time_stamp"], news[2]["time_stamp"], news[3]["time_stamp"], news[4]["time_stamp"])
+		for(var/i = 1, i <= 4, i++)
 			if(news[i]["time_stamp"] == oldest)
 				news.Remove(news[i])
 
