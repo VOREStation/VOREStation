@@ -4617,6 +4617,7 @@
 	icon_state = "camera";
 	dir = 5
 	},
+/obj/item/weapon/storage/box/holowarrants,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_equiptment_storage)
 "hD" = (
