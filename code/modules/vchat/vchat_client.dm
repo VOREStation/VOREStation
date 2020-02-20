@@ -201,9 +201,15 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 			data = bancheck(arglist(params))
 		if("unloading")
 			loaded = FALSE
+		if("debug")
+			data = debugmsg(arglist(params))
 
 	if(data)
 		send_event(event = data)
+
+//Print a message that was an error from a client
+/datum/chatOutput/proc/debugmsg(var/message = "No String Provided")
+	log_debug("VChat: [owner] got: [message]")
 
 //Check relevant client info reported from JS
 /datum/chatOutput/proc/bancheck(var/clientdata)

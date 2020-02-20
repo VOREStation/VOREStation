@@ -1,5 +1,27 @@
 //The 'V' is for 'VORE' but you can pretend it's for Vue.js if you really want.
 
+(function(){
+    var oldLog = console.log;
+    console.log = function (message) {
+        send_debug(message);
+        oldLog.apply(console, arguments);
+    };
+    var oldError = console.error;
+    console.error = function (message) {
+        send_debug(message);
+        oldError.apply(console, arguments);
+    }
+    window.onerror = function (message, url, line, col, error) {
+	var stacktrace = "";
+	if(error && error.stack) {
+		stacktrace = error.stack;
+	}
+        send_debug(message+" ("+url+"@"+line+":"+col+") "+error+"|UA: "+navigator.userAgent+"|Stack: "+stacktrace);
+	return true;
+    }
+})();
+
+
 //Options for vchat
 var vchat_opts = {
 	crush_messages: 3, //How many messages back should we try to combine if crushing is on
@@ -57,7 +79,10 @@ var vchat_state = {
 	lastPingReply: 0,
 	missedPings: 0,
 	latency: 0,
-	reconnecting: false
+	reconnecting: false,
+
+	//Last ID
+	lastId: 0
 }
 
 function start_vchat() {
@@ -76,6 +101,11 @@ function start_vchat() {
 	//Commence the pingening
 	send_ping();
 	setInterval(send_ping, vchat_opts.pingThisOften);
+
+	//For fun
+	send_debug("VChat Loaded!");
+	//throw new Error("VChat Loaded!");
+
 }
 
 //Loads vue for chat usage
@@ -213,7 +243,7 @@ function start_vue() {
 				var stringymessages = JSON.stringify(varthis.messages);
 				var unstringy = JSON.parse(stringymessages);
 				unstringy.forEach( function(message) {
-					message.id = (varthis.messages.length + 1);
+					message.id = ++vchat_state.lastId;
 					varthis.messages.push(message);	
 				});
 				varthis.internal_message("Now have " + varthis.messages.length + " messages in array.");
@@ -426,7 +456,7 @@ function start_vue() {
 				}
 
 				//Append to vue's messages
-				newmessage.id = (this.messages.length + 1);
+				newmessage.id = ++vchat_state.lastId;
 				this.messages.push(newmessage);
 			},
 			//Push an internally generated message into our array
@@ -436,7 +466,7 @@ function start_vue() {
 					category: "vc_system",
 					content: "<span class='notice'>[VChat Internal] " + message + "</span>"
 				};
-				newmessage.id = (this.messages.length + 1);
+				newmessage.id = ++vchat_state.lastId;
 				this.messages.push(newmessage);
 			},
 			on_mouseup: function(event) {
@@ -576,6 +606,11 @@ function push_Topic(topic_uri) {
 //Tells byond client to focus the main map window.
 function focusMapWindow() {
 	window.location = 'byond://winset?mapwindow.map.focus=true';
+}
+
+//Debug event
+function send_debug(message) {
+	push_Topic("debug&param[message]="+encodeURIComponent(message));
 }
 
 //A side-channel to send events over that aren't just chat messages, if necessary.
