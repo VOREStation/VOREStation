@@ -30,8 +30,8 @@
 	blood_volume =	0
 	min_age =		18
 	max_age =		200
-	brute_mod =		1
-	burn_mod =		1.4
+	brute_mod =		0.8
+	burn_mod =		1.5
 	oxy_mod =		0
 	item_slowdown_mod = 1.33
 
