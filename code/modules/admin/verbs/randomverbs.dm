@@ -779,6 +779,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!holder)
 		return
 
+	if(!holder)
+		return
+
 	var/list/L = M.get_contents()
 	for(var/t in L)
 		to_chat(usr, "[t]")
@@ -946,7 +949,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Toggle random events on/off"
 	set desc = "Toggles random events such as meteors, black holes, blob (but not space dust) on/off"
 
+<<<<<<< HEAD
 	if(!check_rights(R_SERVER))	return //VOREStation Edit
+=======
+	if(!check_rights(R_SERVER|R_EVENT))	return
+>>>>>>> 6f3cc50... Merge pull request #6703 from VOREStation/randomverbs
 
 	if(!config.allow_random_events)
 		config.allow_random_events = 1
