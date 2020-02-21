@@ -123,7 +123,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 /obj/machinery/newscaster
 	name = "newscaster"
 	desc = "A standard newsfeed handler for use on commercial space stations. All the news you absolutely have no use for, in one place!"
-	icon = 'icons/obj/terminals.dmi'
+	icon = 'icons/obj/terminals_vr.dmi' //VOREStation Edit
 	icon_state = "newscaster_normal"
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
