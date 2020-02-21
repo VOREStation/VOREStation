@@ -685,8 +685,8 @@
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/pint = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/mug = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/wine = 10,
-					/obj/item/weapon/reagent_containers/food/drinks/glass2/carafe = 2, //VOREStation Add
-					/obj/item/weapon/reagent_containers/food/drinks/glass2/pitcher = 2, //VOREStation Add
+					/obj/item/weapon/reagent_containers/food/drinks/glass2/carafe = 2,
+					/obj/item/weapon/reagent_containers/food/drinks/glass2/pitcher = 2,
 					/obj/item/weapon/reagent_containers/food/drinks/metaglass = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/gin = 5,
@@ -728,7 +728,7 @@
 					/obj/item/weapon/reagent_containers/food/drinks/ice = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/tea = 15,
 					/obj/item/weapon/glass_extra/stick = 30,
-					/obj/item/weapon/glass_extra/straw = 30)
+					/obj/item/weapon/glass_extra/straw = 30) //VOREStation Add - Carafes and Pitchers
 	contraband = list()
 	vend_delay = 15
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
