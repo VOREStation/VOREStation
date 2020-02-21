@@ -1,7 +1,7 @@
 /obj/machinery/photocopier
 	name = "photocopier"
 	desc = "Copy all your important papers here!"
-	icon = 'icons/obj/library.dmi'
+	icon = 'icons/obj/library_vr.dmi' //VOREStation Edit
 	icon_state = "bigscanner"
 	var/insert_anim = "bigscanner1"
 	anchored = 1

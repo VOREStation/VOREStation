@@ -7,7 +7,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 /obj/machinery/photocopier/faxmachine
 	name = "fax machine"
 	desc = "Sent papers and pictures far away! Or to your co-worker's office a few doors down."
-	icon = 'icons/obj/library.dmi'
+	icon = 'icons/obj/library_vr.dmi' //VOREStation Edit
 	icon_state = "fax"
 	insert_anim = "faxsend"
 	req_one_access = list(access_lawyer, access_heads, access_armory, access_qm)

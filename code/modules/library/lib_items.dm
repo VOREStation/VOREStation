@@ -14,7 +14,7 @@
 /obj/structure/bookcase
 	name = "bookcase"
 	desc = "A set of wooden shelves, perfect for placing books on."
-	icon = 'icons/obj/library.dmi'
+	icon = 'icons/obj/library_vr.dmi' //VOREStation Edit
 	icon_state = "book-0"
 	anchored = 1
 	density = 1
@@ -102,7 +102,7 @@ Book Cart
 
 /obj/structure/bookcase/bookcart
 	name = "book cart"
-	icon = 'icons/obj/library.dmi'
+	icon = 'icons/obj/library_vr.dmi' //VOREStation Edit
 	icon_state = "bookcart-0"
 	anchored = 0
 	opacity = 0
@@ -165,7 +165,7 @@ Book Cart End
  */
 /obj/item/weapon/book
 	name = "book"
-	icon = 'icons/obj/library.dmi'
+	icon = 'icons/obj/library_vr.dmi' //VOREStation Edit
 	icon_state ="book"
 	throw_speed = 1
 	throw_range = 5
@@ -363,7 +363,7 @@ Book Cart End
  */
 /obj/item/weapon/barcodescanner
 	name = "barcode scanner"
-	icon = 'icons/obj/library.dmi'
+	icon = 'icons/obj/library_vr.dmi' //VOREStation Edit
 	icon_state ="scanner"
 	throw_speed = 1
 	throw_range = 5

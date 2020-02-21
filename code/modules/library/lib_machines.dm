@@ -22,7 +22,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
  */
 /obj/machinery/librarypubliccomp
 	name = "visitor computer"
-	icon = 'icons/obj/library.dmi'
+	icon = 'icons/obj/library_vr.dmi' //VOREStation Edit
 	icon_state = "computer"
 	anchored = 1
 	density = 1
@@ -117,7 +117,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 /obj/machinery/librarycomp
 	name = "Check-In/Out Computer"
 	desc = "Print books from the archives! (You aren't quite sure how they're printed by it, though.)"
-	icon = 'icons/obj/library.dmi'
+	icon = 'icons/obj/library_vr.dmi' //VOREStation Edit
 	icon_state = "computer"
 	anchored = 1
 	density = 1
@@ -471,7 +471,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
  */
 /obj/machinery/libraryscanner
 	name = "scanner"
-	icon = 'icons/obj/library.dmi'
+	icon = 'icons/obj/library_vr.dmi' //VOREStation Edit
 	icon_state = "bigscanner"
 	anchored = 1
 	density = 1
@@ -523,7 +523,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 /obj/machinery/bookbinder
 	name = "Book Binder"
 	desc = "Bundles up a stack of inserted paper into a convenient book format."
-	icon = 'icons/obj/library.dmi'
+	icon = 'icons/obj/library_vr.dmi' //VOREStation Edit
 	icon_state = "binder"
 	anchored = 1
 	density = 1
