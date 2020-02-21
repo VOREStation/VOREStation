@@ -312,8 +312,8 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 /obj/item/weapon/disk/limb
 	name = "Limb Blueprints"
 	desc = "A disk containing the blueprints for prosthetics."
-	icon = 'icons/obj/cloning.dmi'
-	icon_state = "datadisk2"
+	icon = 'icons/obj/discs.dmi' //VOREStation Edit
+	icon_state = "data-white" //VOREStation Edit
 	var/company = ""
 
 /obj/item/weapon/disk/limb/New(var/newloc)

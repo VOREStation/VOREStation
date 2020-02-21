@@ -371,8 +371,8 @@
 	desc = "It has a small label: \n\
 	\"Portable Body Record Storage Disk. \n\
 	Insert into resleeving control console\""
-	icon = 'icons/obj/cloning.dmi'
-	icon_state = "datadisk2"
+	icon = 'icons/obj/discs.dmi'
+	icon_state = "data-green"
 	item_state = "card-id"
 	w_class = ITEMSIZE_SMALL
 	var/datum/transhuman/body_record/stored = null
