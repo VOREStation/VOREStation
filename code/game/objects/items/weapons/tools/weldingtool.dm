@@ -4,7 +4,7 @@
  */
 /obj/item/weapon/weldingtool
 	name = "\improper welding tool"
-	icon = 'icons/obj/tools.dmi'
+	icon = 'icons/obj/tools_vr.dmi' //VOREStation Edit
 	icon_state = "welder"
 	item_state = "welder"
 	slot_flags = SLOT_BELT
@@ -375,6 +375,7 @@
 /obj/item/weapon/weldingtool/mini
 	name = "emergency welding tool"
 	desc = "A miniature welder used during emergencies."
+	icon = 'icons/obj/tools.dmi' //VOREStation Edit
 	icon_state = "miniwelder"
 	max_fuel = 10
 	w_class = ITEMSIZE_SMALL
@@ -428,6 +429,7 @@
 /obj/item/weapon/weldingtool/experimental
 	name = "experimental welding tool"
 	desc = "An experimental welder capable of synthesizing its own fuel from waste compounds. It can output a flame hotter than regular welders."
+	icon = 'icons/obj/tools.dmi' //VOREStation Edit
 	icon_state = "exwelder"
 	max_fuel = 40
 	w_class = ITEMSIZE_NORMAL
@@ -448,6 +450,7 @@
 /obj/item/weapon/weldingtool/experimental/hybrid
 	name = "strange welding tool"
 	desc = "An experimental welder capable of synthesizing its own fuel from spatial waveforms. It's like welding with a star!"
+	icon = 'icons/obj/tools.dmi' //VOREStation Edit
 	icon_state = "hybwelder"
 	max_fuel = 20
 	eye_safety_modifier = -2	// Brighter than the sun. Literally, you can look at the sun with a welding mask of proper grade, this will burn through that.
@@ -465,6 +468,7 @@
 /obj/item/weapon/weldingtool/tubefed
 	name = "tube-fed welding tool"
 	desc = "A bulky, cooler-burning welding tool that draws from a worn welding tank."
+	icon = 'icons/obj/tools.dmi' //VOREStation Edit
 	icon_state = "tubewelder"
 	max_fuel = 10
 	w_class = ITEMSIZE_NO_CONTAINER
@@ -528,6 +532,7 @@
 /obj/item/weapon/weldingtool/electric	//AND HIS WELDING WAS ELECTRIC
 	name = "electric welding tool"
 	desc = "A welder which runs off of electricity."
+	icon = 'icons/obj/tools.dmi' //VOREStation Edit
 	icon_state = "arcwelder"
 	max_fuel = 0	//We'll handle the consumption later.
 	item_state = "ewelder"
