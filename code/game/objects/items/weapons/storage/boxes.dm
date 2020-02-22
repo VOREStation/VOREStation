@@ -24,6 +24,7 @@
 	desc = "It's just an ordinary box."
 	icon_state = "box"
 	item_state = "syringe_kit"
+	center_of_mass = list("x" = 13,"y" = 10)
 	var/foldable = /obj/item/stack/material/cardboard	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	max_w_class = ITEMSIZE_SMALL
 	max_storage_space = INVENTORY_BOX_SPACE

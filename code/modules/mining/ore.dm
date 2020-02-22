@@ -2,6 +2,7 @@
 	name = "small rock"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "ore2"
+	randpixel = 8
 	w_class = ITEMSIZE_SMALL
 	var/datum/geosample/geologic_data
 	var/material
@@ -113,8 +114,7 @@
 	material = null
 
 /obj/item/weapon/ore/New()
-	pixel_x = rand(0,16)-8
-	pixel_y = rand(0,8)-8
+	randpixel_xy()
 
 /obj/item/weapon/ore/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/device/core_sampler))

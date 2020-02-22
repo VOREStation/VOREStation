@@ -28,13 +28,13 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	return
 
 //I would prefer to rename this to attack(), but that would involve touching hundreds of files.
-/obj/item/proc/resolve_attackby(atom/A, mob/user, var/attack_modifier = 1)
+/obj/item/proc/resolve_attackby(atom/A, mob/user, var/attack_modifier = 1, var/click_parameters)
 	pre_attack(A, user)
 	add_fingerprint(user)
-	return A.attackby(src, user, attack_modifier)
+	return A.attackby(src, user, attack_modifier, click_parameters)
 
 // No comment
-/atom/proc/attackby(obj/item/W, mob/user, var/attack_modifier)
+/atom/proc/attackby(obj/item/W, mob/user, var/attack_modifier, var/click_parameters)
 	return
 
 /atom/movable/attackby(obj/item/W, mob/user, var/attack_modifier)

@@ -70,10 +70,10 @@
 	origin_tech = list(TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 	var/uses = 10
 
-/obj/item/weapon/card/emag/resolve_attackby(atom/A, mob/user)
+/obj/item/weapon/card/emag/resolve_attackby(atom/A, mob/user, var/click_parameters)
 	var/used_uses = A.emag_act(uses, user, src)
 	if(used_uses < 0)
-		return ..(A, user)
+		return ..(A, user, click_parameters)
 
 	uses -= used_uses
 	A.add_fingerprint(user)

@@ -13,6 +13,8 @@
 	gender = PLURAL
 	origin_tech = list(TECH_MATERIAL = 1)
 	icon = 'icons/obj/stacks.dmi'
+	randpixel = 7
+	center_of_mass = null
 	var/list/datum/stack_recipe/recipes
 	var/singular_name
 	var/amount = 1

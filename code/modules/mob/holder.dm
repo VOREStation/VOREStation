@@ -5,6 +5,8 @@ var/list/holder_mob_icon_cache = list()
 	name = "holder"
 	desc = "You shouldn't ever see this."
 	icon = 'icons/obj/objects.dmi'
+	randpixel = 0
+	center_of_mass = null
 	slot_flags = SLOT_HEAD | SLOT_HOLSTER
 	show_messages = 1
 
