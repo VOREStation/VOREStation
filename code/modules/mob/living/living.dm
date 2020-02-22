@@ -775,7 +775,6 @@ default behaviour is:
 	else
 		to_chat(usr, "OOC Metadata is not supported by this server!")
 	//VOREStation Edit End - Making it so SSD people have prefs with fallback to original style.
-	return
 
 /mob/living/Move(a, b, flag)
 	if (buckled && buckled.loc != a) //not updating position
@@ -1305,6 +1304,9 @@ default behaviour is:
 		src.inertia_dir = get_dir(target, src)
 		step(src, inertia_dir)
 
+	if(istype(item,/obj/item))
+		var/obj/item/W = item
+		W.randpixel_xy()
 
 /*
 	if(istype(src.loc, /turf/space) || (src.flags & NOGRAV)) //they're in space, move em one space in the opposite direction

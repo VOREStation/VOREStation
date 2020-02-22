@@ -295,6 +295,7 @@
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
 	force = 10
+	center_of_mass = list("x" = 13,"y" = 11)
 	brightness_on = 10	//TFF 27/11/19 - post refactor fix for intensity levels.
 	w_class = ITEMSIZE_LARGE
 	power_use = 0
@@ -305,6 +306,7 @@
 /obj/item/device/flashlight/lamp/green
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampgreen"
+	center_of_mass = list("x" = 15,"y" = 11)
 	brightness_on = 5
 	flashlight_colour = "#FFC58F"
 

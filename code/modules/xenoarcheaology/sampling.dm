@@ -3,14 +3,14 @@
 	desc = "It looks extremely delicate."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "sliver1"
+	randpixel = 8
 	w_class = ITEMSIZE_TINY
 	sharp = 1
 	var/datum/geosample/geological_data
 
 /obj/item/weapon/rocksliver/New()
 	icon_state = "sliver[rand(1, 3)]"
-	pixel_x = rand(-8, 8)
-	pixel_y = rand(-8 ,0)
+	randpixel_xy()
 
 /datum/geosample
 	var/age = 0
