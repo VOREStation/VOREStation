@@ -21316,7 +21316,7 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/cmo)
 "GU" = (
-/obj/machinery/iv_drip,
+/obj/structure/medical_stand,
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
@@ -23871,7 +23871,7 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "KP" = (
-/obj/machinery/iv_drip,
+/obj/structure/medical_stand,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
 	},
