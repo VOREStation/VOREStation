@@ -774,12 +774,7 @@ default behaviour is:
 			to_chat(usr, "[src] does not have any stored infomation!")
 	else
 		to_chat(usr, "OOC Metadata is not supported by this server!")
-<<<<<<< HEAD
 	//VOREStation Edit End - Making it so SSD people have prefs with fallback to original style.
-=======
-
->>>>>>> 48eba82... Merge pull request #6710 from Cerebulon/precisionplacement
-	return
 
 /mob/living/Move(a, b, flag)
 	if (buckled && buckled.loc != a) //not updating position
