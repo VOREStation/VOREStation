@@ -95,10 +95,6 @@
 	path =/obj/item/weapon/rcd_ammo
 	no_scale = TRUE //prevents material duplication exploits
 
-/datum/category_item/autolathe/engineering/rcd
-	name = "rapid construction device"
-	path =/obj/item/weapon/rcd
-
 /datum/category_item/autolathe/engineering/camera_assembly
 	name = "camera assembly"
 	path =/obj/item/weapon/camera_assembly

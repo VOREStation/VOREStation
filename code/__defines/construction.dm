@@ -56,6 +56,7 @@
 #define PIPING_DEFAULT_LAYER_ONLY 4			//can only exist at PIPING_LAYER_DEFAULT
 #define PIPING_CARDINAL_AUTONORMALIZE 8		//north/south east/west doesn't matter, auto normalize on build.
 
+//VOREStation Addition Start
 // Disposals Construction and RPD Additions
 #define DISPOSAL_PIPE_STRAIGHT 0
 #define DISPOSAL_PIPE_CORNER 1
@@ -72,6 +73,7 @@
 #define DISPOSAL_PIPE_DOWNWARD 12
 #define DISPOSAL_PIPE_TAGGER 13
 #define DISPOSAL_PIPE_TAGGER_PARTIAL 14
+//VOREStation Addition End
 
 #define DISPOSAL_SORT_NORMAL 0
 #define DISPOSAL_SORT_WILDCARD 1

@@ -1130,7 +1130,7 @@
 #include "code\game\objects\items\weapons\paiwire.dm"
 #include "code\game\objects\items\weapons\policetape.dm"
 #include "code\game\objects\items\weapons\RCD.dm"
-#include "code\game\objects\items\weapons\RPD.dm"
+#include "code\game\objects\items\weapons\RPD_vr.dm"
 #include "code\game\objects\items\weapons\RSF.dm"
 #include "code\game\objects\items\weapons\scrolls.dm"
 #include "code\game\objects\items\weapons\shields.dm"

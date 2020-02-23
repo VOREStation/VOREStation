@@ -14,10 +14,12 @@
 	level = 2
 	var/sortType = ""
 	var/ptype = 0
+	// 0=straight, 1=bent, 2=junction-j1, 3=junction-j2, 4=junction-y, 5=trunk, 6=disposal bin, 7=outlet, 8=inlet 9=pipe-j1s 10=pipe-j2s	//VOREStation Removal
 	var/subtype = 0
 	var/dpdir = 0	// directions as disposalpipe
 	var/base_state = "pipe-s"
 
+//VOREStation Addition Start
 /obj/structure/disposalconstruct/New(var/newturf, var/newtype, var/newdir, var/flipped, var/newsubtype)
 	..(newturf)
 	ptype = newtype
@@ -44,6 +46,7 @@
 		do_a_flip()
 	else
 		update() // do_a_flip() calls update anyway, so, lazy way of catching unupdated pipe!
+//VOREStation Addition End
 
 // update iconstate and dpdir due to dir and type
 /obj/structure/disposalconstruct/proc/update()
@@ -51,6 +54,7 @@
 	var/left = turn(dir, 90)
 	var/right = turn(dir, -90)
 
+//VOREStation Edit Start
 	switch(ptype)
 		if(DISPOSAL_PIPE_STRAIGHT)
 			base_state = "pipe-s"
@@ -110,6 +114,7 @@
 ///// Z-Level stuff
 	if(!(ptype in list(DISPOSAL_PIPE_BIN, DISPOSAL_PIPE_OUTLET, DISPOSAL_PIPE_CHUTE, DISPOSAL_PIPE_UPWARD, DISPOSAL_PIPE_DOWNWARD, DISPOSAL_PIPE_TAGGER, DISPOSAL_PIPE_TAGGER_PARTIAL)))
 ///// Z-Level stuff
+//VOREstation Edit End
 		icon_state = "con[base_state]"
 	else
 		icon_state = base_state
@@ -128,9 +133,9 @@
 
 
 // flip and rotate verbs
-/obj/structure/disposalconstruct/verb/rotate()
+/obj/structure/disposalconstruct/verb/rotate()	//VOREStation Edit
 	set category = "Object"
-	set name = "Rotate Pipe"
+	set name = "Rotate Pipe"	//VOREStation Edit
 	set src in view(1)
 
 	if(usr.stat)
@@ -140,7 +145,7 @@
 		to_chat(usr, "You must unfasten the pipe before rotating it.")
 		return
 
-	set_dir(turn(dir, -90))
+	set_dir(turn(dir, -90))	//VOREStation Edit
 	update()
 
 /obj/structure/disposalconstruct/verb/flip()
@@ -154,6 +159,7 @@
 		to_chat(usr, "You must unfasten the pipe before flipping it.")
 		return
 
+//VOREStation Edit Start
 	do_a_flip()
 
 /obj/structure/disposalconstruct/proc/do_a_flip()
@@ -210,6 +216,7 @@
 		if(DISPOSAL_PIPE_TAGGER)
 			return /obj/structure/disposalpipe/tagger
 		if(DISPOSAL_PIPE_TAGGER_PARTIAL)
+//VOREStation Edit End
 			return /obj/structure/disposalpipe/tagger/partial
 	return
 
@@ -224,6 +231,7 @@
 	var/ispipe = 0 // Indicates if we should change the level of this pipe
 	src.add_fingerprint(user)
 	switch(ptype)
+		//VOREStation Edit Start
 		if(DISPOSAL_PIPE_BIN)
 			nicetype = "disposal bin"
 		if(DISPOSAL_PIPE_OUTLET)
@@ -243,6 +251,7 @@
 			nicetype = "tagging pipe"
 			ispipe = 1
 		if(DISPOSAL_PIPE_TAGGER_PARTIAL)
+		//VOREStation Edit End
 			nicetype = "partial tagging pipe"
 			ispipe = 1
 		else
@@ -256,6 +265,7 @@
 
 	var/obj/structure/disposalpipe/CP = locate() in T
 
+	// wrench: (un)anchor	//VOREStation Removal
 	if(I.is_wrench())
 		if(anchored)
 			anchored = 0
@@ -266,7 +276,7 @@
 				density = 1
 			to_chat(user, "You detach the [nicetype] from the underfloor.")
 		else
-			if(ptype == DISPOSAL_PIPE_BIN || ptype == DISPOSAL_PIPE_OUTLET || ptype == DISPOSAL_PIPE_CHUTE) // Disposal or outlet
+			if(ptype == DISPOSAL_PIPE_BIN || ptype == DISPOSAL_PIPE_OUTLET || ptype == DISPOSAL_PIPE_CHUTE) // Disposal or outlet	//VOREStation Edit
 				if(CP) // There's something there
 					if(!istype(CP,/obj/structure/disposalpipe/trunk))
 						to_chat(user, "The [nicetype] requires a trunk underneath it in order to work.")
@@ -294,6 +304,7 @@
 		playsound(loc, I.usesound, 100, 1)
 		update()
 
+	// weldingtool: convert to real pipe	//VOREStation Removal
 	else if(istype(I, /obj/item/weapon/weldingtool))
 		if(anchored)
 			var/obj/item/weapon/weldingtool/W = I
@@ -315,19 +326,19 @@
 						P.updateicon()
 
 						//Needs some special treatment ;)
-						if(ptype==DISPOSAL_PIPE_SORTER || ptype==DISPOSAL_PIPE_SORTER_FLIPPED)
+						if(ptype==DISPOSAL_PIPE_SORTER || ptype==DISPOSAL_PIPE_SORTER_FLIPPED)	//VOREStation Edit
 							var/obj/structure/disposalpipe/sortjunction/SortP = P
 							SortP.sortType = sortType
 							SortP.updatedir()
 							SortP.updatedesc()
 							SortP.updatename()
 
-					else if(ptype==DISPOSAL_PIPE_BIN)
+					else if(ptype==DISPOSAL_PIPE_BIN)	//VOREStation Edit
 						var/obj/machinery/disposal/P = new /obj/machinery/disposal(src.loc)
 						src.transfer_fingerprints_to(P)
 						P.mode = 0 // start with pump off
 
-					else if(ptype==DISPOSAL_PIPE_OUTLET)
+					else if(ptype==DISPOSAL_PIPE_OUTLET)	//VOREStation Edit
 
 						var/obj/structure/disposaloutlet/P = new /obj/structure/disposaloutlet(src.loc)
 						src.transfer_fingerprints_to(P)
@@ -335,7 +346,7 @@
 						var/obj/structure/disposalpipe/trunk/Trunk = CP
 						Trunk.linked = P
 
-					else if(ptype==DISPOSAL_PIPE_CHUTE)
+					else if(ptype==DISPOSAL_PIPE_CHUTE)	//VOREStation Edit
 
 						var/obj/machinery/disposal/deliveryChute/P = new /obj/machinery/disposal/deliveryChute(src.loc)
 						src.transfer_fingerprints_to(P)
@@ -356,6 +367,7 @@
 	else
 		return 0
 
+//VOREStation Edit Start
 /obj/structure/disposalconstruct/proc/is_pipe()
 	return (ptype != DISPOSAL_PIPE_BIN && ptype != DISPOSAL_PIPE_OUTLET && ptype != DISPOSAL_PIPE_CHUTE)
 
@@ -372,3 +384,4 @@
 			return FALSE
 
 	return TRUE
+//VOREStation Edit End

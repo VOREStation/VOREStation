@@ -134,6 +134,7 @@ Nah
 
 	qdel(pipe)
 
+//VOREStation Edit Start
 /obj/machinery/pipedispenser/disposal/interact(mob/user)
 	user.set_machine(src)
 
@@ -159,7 +160,8 @@ Nah
 			var/pdir = (href_list["dir"] ? text2num(href_list["dir"]) : NORTH)
 			var/psub = (href_list["sort"] ? text2num(href_list["sort"]) : 0)
 			var/obj/structure/disposalconstruct/C = new (src.loc, ptype, pdir, 0, psub)
-			
+//VOREStation Edit End
+
 			C.add_fingerprint(usr)
 			C.update()
 			wait = 1

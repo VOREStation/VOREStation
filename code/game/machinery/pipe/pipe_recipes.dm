@@ -3,11 +3,12 @@
 //
 
 var/global/list/atmos_pipe_recipes = null
-var/global/list/disposal_pipe_recipes = null
-var/global/list/all_pipe_recipes = null
+var/global/list/disposal_pipe_recipes = null	//VOREStation Edit
+var/global/list/all_pipe_recipes = null	///VOREStation Edit
 
 /hook/startup/proc/init_pipe_recipes()
 	global.atmos_pipe_recipes = list(
+	//VOREStation Edit Start
 		"Pipes" = list(
 			new /datum/pipe_recipe/pipe("Pipe",					/obj/machinery/atmospherics/pipe/simple, TRUE),
 			new /datum/pipe_recipe/pipe("Manifold",				/obj/machinery/atmospherics/pipe/manifold, TRUE),
@@ -21,31 +22,37 @@ var/global/list/all_pipe_recipes = null
 			new /datum/pipe_recipe/pipe("Downward Pipe",		/obj/machinery/atmospherics/pipe/zpipe/down, TRUE),
 			new /datum/pipe_recipe/pipe("Universal Pipe Adaptor",/obj/machinery/atmospherics/pipe/simple/visible/universal, TRUE),
 		),
+	//VOREStation Edit End
 		"Devices" = list(
 			new /datum/pipe_recipe/pipe("Connector",			/obj/machinery/atmospherics/portables_connector),
 			new /datum/pipe_recipe/pipe("Unary Vent",			/obj/machinery/atmospherics/unary/vent_pump),
+			//VOREStation Edit Start,
 			new /datum/pipe_recipe/pipe("Passive Vent",			/obj/machinery/atmospherics/pipe/vent),
 			new /datum/pipe_recipe/pipe("Injector",				/obj/machinery/atmospherics/unary/outlet_injector),
 			new /datum/pipe_recipe/pipe("Gas Pump",				/obj/machinery/atmospherics/binary/pump),
 			new /datum/pipe_recipe/pipe("Pressure Regulator",	/obj/machinery/atmospherics/binary/passive_gate),
 			new /datum/pipe_recipe/pipe("High Power Gas Pump",	/obj/machinery/atmospherics/binary/pump/high_power),
 			new /datum/pipe_recipe/pipe("Scrubber",				/obj/machinery/atmospherics/unary/vent_scrubber),
+			//VOREStation Edit End,
 			new /datum/pipe_recipe/meter("Meter"),
 			new /datum/pipe_recipe/pipe("Gas Filter",			/obj/machinery/atmospherics/trinary/atmos_filter),
 			new /datum/pipe_recipe/pipe("Gas Mixer",			/obj/machinery/atmospherics/trinary/mixer),
 			new /datum/pipe_recipe/pipe("Gas Mixer 'T'",		/obj/machinery/atmospherics/trinary/mixer/t_mixer),
 			new /datum/pipe_recipe/pipe("Omni Gas Mixer",		/obj/machinery/atmospherics/omni/mixer),
-			new /datum/pipe_recipe/pipe("Omni Gas Filter",		/obj/machinery/atmospherics/omni/atmos_filter),
+			new /datum/pipe_recipe/pipe("Omni Gas Filter",		/obj/machinery/atmospherics/omni/atmos_filter),	//VOREStation Edit,
 		),
 		"Heat Exchange" = list(
+			//VOREStation Edit Start
 			new /datum/pipe_recipe/pipe("Pipe",					/obj/machinery/atmospherics/pipe/simple/heat_exchanging),
 			new /datum/pipe_recipe/pipe("Junction",				/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction),
+			//VOREStation Edit End
 			new /datum/pipe_recipe/pipe("Heat Exchanger",		/obj/machinery/atmospherics/unary/heat_exchanger),
 		),
 		"Insulated pipes" = list(
-			new /datum/pipe_recipe/pipe("Pipe",					/obj/machinery/atmospherics/pipe/simple/insulated),
+			new /datum/pipe_recipe/pipe("Pipe",					/obj/machinery/atmospherics/pipe/simple/insulated),	//VOREStation Edit
 		)
 	)
+	//VOREStation Addition Start
 	global.disposal_pipe_recipes = list(
 		"Disposal Pipes" = list(
 			new /datum/pipe_recipe/disposal("Pipe",				DISPOSAL_PIPE_STRAIGHT, "conpipe-s", PIPE_STRAIGHT),
@@ -66,6 +73,7 @@ var/global/list/all_pipe_recipes = null
 		)
 	)
 	global.all_pipe_recipes = disposal_pipe_recipes + atmos_pipe_recipes
+	//VOREStation Addition End
 	return TRUE
 
 //
@@ -73,6 +81,7 @@ var/global/list/all_pipe_recipes = null
 // 	every pipe type has a datum instance which describes its name, placement rules and construction method, dispensing etc.
 // The advantages are obvious, mostly in simplifying the code of the dispenser, and the ability to add new pipes without hassle.
 //
+//VOREStation Edit Start
 /datum/pipe_recipe
 	var/name = "Abstract Pipe (fixme)"		// Recipe name
 	var/pipe_type							// The type PATH of what actual pipe the fitting becomes, used by RCD to print the pipe.
@@ -82,6 +91,7 @@ var/global/list/all_pipe_recipes = null
 	var/dirtype								// If using an RPD, this tells more about what previews to show.
 	var/subtype = 0							// Used for certain disposals pipes types.
 	var/paintable = FALSE					// If TRUE, allow the RPD to paint this pipe.
+//VOREStation Edit End
 
 // Render an HTML link to select this pipe type. Returns text.
 /datum/pipe_recipe/proc/Render(dispenser)
@@ -96,16 +106,18 @@ var/global/list/all_pipe_recipes = null
 //
 /datum/pipe_recipe/pipe
 	var/obj/item/pipe/construction_type 		// The type PATH to the type of pipe fitting object the recipe makes.
-
-/datum/pipe_recipe/pipe/New(var/label, var/obj/machinery/atmospherics/path, var/colorable=FALSE)
+//	var/obj/machinery/atmospherics/pipe_type	// The type PATH of what actual pipe the fitting becomes.	//VOREStation Removal
+/datum/pipe_recipe/pipe/New(var/label, var/obj/machinery/atmospherics/path, var/colorable=FALSE)	//VOREStation Edit
 	name = label
 	pipe_type = path
 	construction_type = initial(path.construction_type)
+	//VOREStation Edit Start
 	icon_state = initial(path.pipe_state)
 	dirtype = initial(construction_type.dispenser_class)
 	if (dirtype == PIPE_TRIN_M)
 		icon_state_m = "[icon_state]m"
 	paintable = colorable
+	//VOREStation Edit End
 
 // Render an HTML link to select this pipe type
 /datum/pipe_recipe/pipe/Render(dispenser)
@@ -125,7 +137,7 @@ var/global/list/all_pipe_recipes = null
 //
 /datum/pipe_recipe/meter
 	dirtype = PIPE_ONEDIR
-	icon_state = "meter"
+	icon_state = "meter"	//VOREStation Addition
 
 /datum/pipe_recipe/meter/New(label)
 	name = label
@@ -133,6 +145,7 @@ var/global/list/all_pipe_recipes = null
 /datum/pipe_recipe/meter/Params()
 	return "makemeter=1"
 
+//VOREStation Addition Start
 //
 // Subtype for disposal pipes
 //
@@ -162,3 +175,4 @@ var/global/list/all_pipe_recipes = null
 	if (subtype)
 		param += "&sort=[subtype]"
 	return param
+//VOREStation Addition End
