@@ -424,6 +424,16 @@
 	items -= announce // or the autosay radio.
 
 	for(var/obj/item/W in items)
+		//VOREStation Addition Start
+		if(istype(W, /obj/item/device/pda))
+			var/obj/item/device/pda/found_pda = W
+			found_pda.delete_id = TRUE
+		else
+			var/list/pdas_found = W.search_contents_for(/obj/item/device/pda)
+			if(pdas_found.len)
+				for(var/obj/item/device/pda/found_pda in pdas_found)
+					found_pda.delete_id = TRUE
+		//VOREStation Addition End
 
 		var/preserve = 0
 
