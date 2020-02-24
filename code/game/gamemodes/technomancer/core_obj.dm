@@ -287,7 +287,7 @@
 		if(prob(30))
 			give_energy(round(amount / 2))
 			if(amount >= 50) // Managing to recover less than half of this isn't worth telling the user about.
-				wearer << "<span class='notice'>\The [src] has recovered [amount/2 >= 1000 ? "a lot of" : "some"] energy.</span>"
+				to_chat(wearer, "<span class='notice'>\The [src] has recovered [amount/2 >= 1000 ? "a lot of" : "some"] energy.</span>")
 	return success
 
 // For those dedicated to summoning hoards of things.

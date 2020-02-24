@@ -24,16 +24,16 @@
 
 	if(!Adjacent(target))
 		to_chat(src, "<span class='warning'>You need to stay in reaching distance while giving an object.</span>")
-		target << "<span class='warning'>\The [src] moved too far away.</span>"
+		to_chat(target, "<span class='warning'>\The [src] moved too far away.</span>")
 		return
 
 	if(I.loc != src || !src.item_is_in_hands(I))
 		to_chat(src, "<span class='warning'>You need to keep the item in your hands.</span>")
-		target << "<span class='warning'>\The [src] seems to have given up on passing \the [I] to you.</span>"
+		to_chat(target, "<span class='warning'>\The [src] seems to have given up on passing \the [I] to you.</span>")
 		return
 
 	if(target.hands_are_full())
-		target << "<span class='warning'>Your hands are full.</span>"
+		to_chat(target, "<span class='warning'>Your hands are full.</span>")
 		to_chat(src, "<span class='warning'>Their hands are full.</span>")
 		return
 

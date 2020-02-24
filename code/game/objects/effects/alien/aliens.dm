@@ -109,7 +109,7 @@
 /obj/effect/alien/resin/attack_hand()
 	usr.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if (HULK in usr.mutations)
-		usr << "<span class='notice'>You easily destroy the [name].</span>"
+		to_chat(usr, "<span class='notice'>You easily destroy the [name].</span>")
 		for(var/mob/O in oviewers(src))
 			O.show_message("<span class='warning'>[usr] destroys the [name]!</span>", 1)
 		health = 0
@@ -125,7 +125,7 @@
 				healthcheck()
 				return
 
-		usr << "<span class='notice'>You claw at the [name].</span>"
+		to_chat(usr, "<span class='notice'>You claw at the [name].</span>")
 		for(var/mob/O in oviewers(src))
 			O.show_message("<span class='warning'>[usr] claws at the [name]!</span>", 1)
 		health -= rand(5,10)
@@ -476,14 +476,14 @@ Alien plants should do something if theres a lot of poison
 
 	switch(status)
 		if(BURST)
-			user << "<span class='warning'>You clear the hatched egg.</span>"
+			to_chat(user, "<span class='warning'>You clear the hatched egg.</span>")
 			qdel(src)
 			return
 /*		if(GROWING)
-			user << "<span class='warning'>The child is not developed yet.</span>"
+			to_chat(user, "<span class='warning'>The child is not developed yet.</span>")
 			return
 		if(GROWN)
-			user << "<span class='warning'>You retrieve the child.</span>"
+			to_chat(user, "<span class='warning'>You retrieve the child.</span>")
 			Burst(0)
 			return
 

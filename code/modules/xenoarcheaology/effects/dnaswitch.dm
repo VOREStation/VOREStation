@@ -14,13 +14,13 @@
 /datum/artifact_effect/dnaswitch/DoEffectTouch(var/mob/toucher)
 	var/weakness = GetAnomalySusceptibility(toucher)
 	if(ishuman(toucher) && prob(weakness * 100))
-		toucher << pick("<font color='green'>You feel a little different.</font>",
+		to_chat(toucher,pick("<font color='green'>You feel a little different.</font>",
 		"<font color='green'>You feel very strange.</font>",
 		"<font color='green'>Your stomach churns.</font>",
 		"<font color='green'>Your skin feels loose.</font>",
 		"<font color='green'>You feel a stabbing pain in your head.</font>",
 		"<font color='green'>You feel a tingling sensation in your chest.</font>",
-		"<font color='green'>Your entire body vibrates.</font>")
+		"<font color='green'>Your entire body vibrates.</font>"))
 		if(prob(75))
 			scramble(1, toucher, weakness * severity)
 		else
@@ -34,13 +34,13 @@
 			var/weakness = GetAnomalySusceptibility(H)
 			if(prob(weakness * 100))
 				if(prob(30))
-					H << pick("<font color='green'>You feel a little different.</font>",
+					to_chat(H, pick("<font color='green'>You feel a little different.</font>",
 					"<font color='green'>You feel very strange.</font>",
 					"<font color='green'>Your stomach churns.</font>",
 					"<font color='green'>Your skin feels loose.</font>",
 					"<font color='green'>You feel a stabbing pain in your head.</font>",
 					"<font color='green'>You feel a tingling sensation in your chest.</font>",
-					"<font color='green'>Your entire body vibrates.</font>")
+					"<font color='green'>Your entire body vibrates.</font>"))
 				if(prob(50))
 					scramble(1, H, weakness * severity)
 				else
@@ -53,13 +53,13 @@
 			var/weakness = GetAnomalySusceptibility(H)
 			if(prob(weakness * 100))
 				if(prob(75))
-					H << pick("<font color='green'> You feel a little different.</font>",
+					to_chat(H, pick("<font color='green'> You feel a little different.</font>",
 					"<font color='green'> You feel very strange.</font>",
 					"<font color='green'> Your stomach churns.</font>",
 					"<font color='green'> Your skin feels loose.</font>",
 					"<font color='green'> You feel a stabbing pain in your head.</font>",
 					"<font color='green'> You feel a tingling sensation in your chest.</font>",
-					"<font color='green'> Your entire body vibrates.</font>")
+					"<font color='green'> Your entire body vibrates.</font>"))
 				if(prob(25))
 					if(prob(75))
 						scramble(1, H, weakness * severity)

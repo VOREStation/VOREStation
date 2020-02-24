@@ -6357,9 +6357,14 @@
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
 "jV" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
+/obj/machinery/light,
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/excursion/tether)
 "jW" = (
 /obj/structure/bed/chair/office/dark{
@@ -29232,11 +29237,14 @@
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
 "UD" = (
-/obj/effect/landmark{
-	name = "maint_pred"
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
 	},
-/turf/simulated/floor,
-/area/maintenance/station/ai)
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
 "UE" = (
 /obj/structure/bed/chair/shuttle,
 /turf/simulated/floor/tiled,
@@ -29413,12 +29421,11 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock)
 "UY" = (
-/obj/structure/catwalk,
-/obj/effect/landmark{
-	name = "maint_pred"
+/obj/structure/bed/chair/shuttle{
+	dir = 1
 	},
-/turf/simulated/floor,
-/area/maintenance/cargo)
+/turf/simulated/floor/tiled,
+/area/shuttle/excursion/tether)
 "UZ" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 8
@@ -29544,14 +29551,9 @@
 /turf/simulated/floor/outdoors/grass/forest,
 /area/quartermaster/qm)
 "Vm" = (
-/obj/structure/bed/chair/shuttle{
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/excursion/tether)
 "Vn" = (
 /obj/structure/bed/chair/office/dark{
@@ -29640,16 +29642,16 @@
 /turf/simulated/shuttle/floor/yellow/airless,
 /area/shuttle/belter/station)
 "Vy" = (
-/obj/structure/bed/chair/shuttle{
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
-/turf/simulated/shuttle/floor/yellow/airless,
-/area/shuttle/belter/station)
-"Vz" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_l"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/belter/station)
+"Vz" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -29680,11 +29682,10 @@
 /turf/simulated/floor/plating,
 /area/shuttle/excursion/tether)
 "VC" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/structure/bed/chair/shuttle{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
+/turf/simulated/shuttle/floor/yellow/airless,
 /area/shuttle/belter/station)
 "VD" = (
 /obj/machinery/atmospherics/binary/pump,
@@ -30282,13 +30283,6 @@
 	can_open = 0
 	},
 /area/crew_quarters/medical_restroom)
-"Ys" = (
-/obj/structure/bed/chair/shuttle{
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/excursion/tether)
 "Yu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -30341,17 +30335,6 @@
 /obj/machinery/microwave,
 /turf/simulated/floor/wood,
 /area/security/breakroom)
-"YI" = (
-/obj/structure/bed/chair/shuttle{
-	icon_state = "shuttle_chair";
-	dir = 1
-	},
-/obj/item/device/radio/intercom{
-	pixel_y = -24
-	},
-/obj/machinery/light,
-/turf/simulated/floor/tiled,
-/area/shuttle/excursion/tether)
 "YQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -30535,6 +30518,19 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"ZP" = (
+/obj/structure/catwalk,
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor,
+/area/maintenance/cargo)
+"ZQ" = (
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor,
+/area/maintenance/station/ai)
 "ZT" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/alarm{
@@ -41424,11 +41420,11 @@ Zy
 WG
 dj
 XA
-jV
+Vm
 ms
 Oz
 be
-UY
+ZP
 RT
 dT
 Se
@@ -41566,7 +41562,7 @@ UJ
 Xb
 dj
 XN
-jV
+Vm
 ms
 Xq
 be
@@ -41708,7 +41704,7 @@ iW
 WS
 dj
 XN
-jV
+Vm
 ms
 Xq
 be
@@ -41842,7 +41838,7 @@ Tu
 Vi
 Wo
 Wg
-YI
+jV
 dj
 VU
 Zk
@@ -41984,14 +41980,14 @@ ZL
 dj
 Us
 fi
-Vm
+UD
 dj
 Xa
 jZ
 WR
 Xo
 XN
-jV
+Vm
 cK
 ms
 Xq
@@ -42126,7 +42122,7 @@ fj
 ea
 UE
 fj
-Ys
+UY
 ea
 iW
 ka
@@ -42559,7 +42555,7 @@ ea
 kx
 dj
 XN
-jV
+Vm
 cK
 ms
 mq
@@ -42844,7 +42840,7 @@ kQ
 TG
 dj
 XN
-jV
+Vm
 ms
 mq
 be
@@ -42986,7 +42982,7 @@ kR
 Vd
 dj
 XN
-jV
+Vm
 ms
 QL
 be
@@ -43128,7 +43124,7 @@ ZE
 ZB
 dj
 XB
-jV
+Vm
 ms
 Sq
 be
@@ -44122,7 +44118,7 @@ du
 fy
 fy
 RI
-UD
+ZQ
 fp
 RN
 eI
@@ -44310,10 +44306,10 @@ Ty
 TL
 QG
 Ue
+Vy
 Vz
-VC
-VC
-VC
+Vz
+Vz
 VN
 VH
 vt
@@ -44881,7 +44877,7 @@ Ue
 UG
 Vc
 Vc
-Vy
+VC
 UF
 VH
 aa
@@ -45023,7 +45019,7 @@ Ue
 UF
 Vh
 Vc
-Vy
+VC
 UF
 VH
 aa
@@ -45165,7 +45161,7 @@ Ue
 UF
 Vh
 Vc
-Vy
+VC
 UF
 VH
 aa

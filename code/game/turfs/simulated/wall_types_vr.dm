@@ -1,3 +1,19 @@
+/turf/simulated/shuttle/wall/alien/blue
+	name = "hybrid wall"
+	desc = "Seems slightly more friendly than if the wall were ominous purple."
+	icon = 'icons/turf/shuttle_alien_blue.dmi'
+	light_color = "#1fdbf4" // Cyan-ish
+
+/turf/simulated/shuttle/wall/alien/blue/hard_corner
+	name = "hybrid wall"
+	icon_state = "alien-hc"
+	hard_corner = 1
+
+/turf/simulated/shuttle/wall/alien/blue/no_join
+	name = "hybrid wall"
+	icon_state = "alien-nj"
+	join_group = null
+
 /turf/simulated/flesh
 	name = "flesh wall"
 	desc = "The fleshy surface of this wall squishes nicely under your touch but looks and feels extremly strong"

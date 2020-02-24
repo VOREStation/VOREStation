@@ -29,7 +29,7 @@
 			h_user.drop_from_inventory(src)
 			h_user.drop_from_inventory(SC)
 			h_user.put_in_hands(SC)
-		user << "<span class='notice'>You combine the Thalers to a bundle of [SC.worth] Thalers.</span>"
+		to_chat(user, "<span class='notice'>You combine the Thalers to a bundle of [SC.worth] Thalers.</span>")
 		qdel(src)
 
 /obj/item/weapon/spacecash/update_icon()
@@ -158,4 +158,4 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 /obj/item/weapon/spacecash/ewallet/examine(mob/user)
 	..(user)
 	if (!(user in view(2)) && user!=src.loc) return
-	user << "<font color='blue'>Charge card's owner: [src.owner_name]. Thalers remaining: [src.worth].</font>"
+	to_chat(user, "<font color='blue'>Charge card's owner: [src.owner_name]. Thalers remaining: [src.worth].</font>")

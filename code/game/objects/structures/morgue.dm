@@ -219,7 +219,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 
 /obj/structure/morgue/crematorium/attack_hand(mob/user as mob)
 	if (cremating)
-		usr << "<span class='warning'>It's locked.</span>"
+		to_chat(usr, "<span class='warning'>It's locked.</span>")
 		return
 	if ((src.connected) && (src.locked == 0))
 		for(var/atom/movable/A as mob|obj in src.connected.loc)
@@ -285,16 +285,16 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 
 	if(contents.len <= 0)
 		for (var/mob/M in viewers(src))
-			to_chat(M,"<span class='warning'>You hear a hollow crackle.</span>")
+			to_chat(M, "<span class='warning'>You hear a hollow crackle.</span>")
 			return
 
 	else
 		if(!isemptylist(src.search_contents_for(/obj/item/weapon/disk/nuclear)))
-			to_chat(user,"You get the feeling that you shouldn't cremate one of the items in the cremator.")
+			to_chat(user, "You get the feeling that you shouldn't cremate one of the items in the cremator.")
 			return
 
 		for (var/mob/M in viewers(src))
-			to_chat(M,"<span class='warning'>You hear a roar as the crematorium activates.</span>")
+			to_chat(M, "<span class='warning'>You hear a roar as the crematorium activates.</span>")
 
 		cremating = 1
 		locked = 1
@@ -349,4 +349,4 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 				if (!C.cremating)
 					C.cremate(user)
 	else
-		to_chat(user,"<span class='warning'>Access denied.</span>")
+		to_chat(user, "<span class='warning'>Access denied.</span>")

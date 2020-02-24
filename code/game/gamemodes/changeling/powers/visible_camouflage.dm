@@ -30,7 +30,7 @@
 		changeling.chem_charges -= 10
 		var/old_regen_rate = H.mind.changeling.chem_recharge_rate
 
-		H << "<span class='notice'>We vanish from sight, and will remain hidden, so long as we move carefully.</span>"
+		to_chat(H, "<span class='notice'>We vanish from sight, and will remain hidden, so long as we move carefully.</span>")
 		H.mind.changeling.cloaked = 1
 		H.mind.changeling.chem_recharge_rate = 0
 		animate(src,alpha = 255, alpha = 10, time = 10)

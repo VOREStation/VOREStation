@@ -19,17 +19,16 @@
 	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
 		if(L == user)
-			user << "<span class='warning'>Clever as you may seem, this won't work on yourself while alive.</span>"
+			to_chat(user, "<span class='warning'>Clever as you may seem, this won't work on yourself while alive.</span>")
 			return 0
 		if(L.stat != DEAD)
-			user << "<span class='warning'>\The [L] isn't dead!</span>"
+			to_chat(user, "<span class='warning'>\The [L] isn't dead!</span>")
 			return 0
 		if(pay_energy(5000))
 			if(L.tod > world.time + 30 MINUTES)
-				user << "<span class='danger'>\The [L]'s been dead for too long, even this function cannot replace cloning at \
-				this point.</span>"
+				to_chat(user, "<span class='danger'>\The [L]'s been dead for too long, even this function cannot replace cloning at this point.</span>")
 				return 0
-			user << "<span class='notice'>You stab \the [L] with a hidden integrated hypo, attempting to bring them back...</span>"
+			to_chat(user, "<span class='notice'>You stab \the [L] with a hidden integrated hypo, attempting to bring them back...</span>")
 			if(istype(L, /mob/living/simple_mob))
 				var/mob/living/simple_mob/SM = L
 				SM.health = SM.getMaxHealth() / 3
@@ -44,9 +43,9 @@
 				if(!H.client && H.mind) //Don't force the dead person to come back if they don't want to.
 					for(var/mob/observer/dead/ghost in player_list)
 						if(ghost.mind == H.mind)
-							ghost << "<b><font color = #330033><font size = 3>The Technomancer [user.real_name] is trying to \
+							to_chat(ghost, "<b><font color = #330033><font size = 3>The Technomancer [user.real_name] is trying to \
 							revive you. Return to your body if you want to be resurrected!</b> \
-							(Verbs -> Ghost -> Re-enter corpse)</font></font>"
+							(Verbs -> Ghost -> Re-enter corpse)</font></font>")
 							break
 
 				H.adjustBruteLoss(-40)
@@ -59,9 +58,9 @@
 					living_mob_list += H
 					H.timeofdeath = null
 					visible_message("<span class='danger'>\The [H]'s eyes open!</span>")
-					user << "<span class='notice'>It's alive!</span>"
+					to_chat(user, "<span class='notice'>It's alive!</span>")
 					adjust_instability(50)
 					log_and_message_admins("has resurrected [H].")
 				else
-					user << "<span class='warning'>The body of \the [H] doesn't seem to respond, perhaps you could try again?</span>"
+					to_chat(user, "<span class='warning'>The body of \the [H] doesn't seem to respond, perhaps you could try again?</span>")
 					adjust_instability(10)

@@ -9,7 +9,7 @@
 	artifact_find_type = pick(
 	5;/obj/machinery/power/supermatter,
 	5;/obj/structure/constructshell,
-	5;/obj/machinery/syndicate_beacon,
+	5;/obj/machinery/syndicate_beacon/virgo,	// VOREStation Edit: use virgo-specific subtype that doesn't create 'real' antags,
 	25;/obj/machinery/power/supermatter/shard,
 	50;/obj/structure/cult/pylon,
 	100;/obj/machinery/auto_cloner,

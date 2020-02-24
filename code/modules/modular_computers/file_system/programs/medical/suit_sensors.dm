@@ -22,7 +22,7 @@
 	if(..()) return 1
 	var/turf/T = get_turf(nano_host())	// TODO: Allow setting any using_map.contact_levels from the interface.
 	if (!T || !(T.z in using_map.player_levels))
-		usr << "<span class='warning'>Unable to establish a connection</span>: You're too far away from the station!"
+		to_chat(usr, "<span class='warning'>Unable to establish a connection</span>: You're too far away from the station!")
 		return 0
 	if(href_list["track"])
 		if(isAI(usr))

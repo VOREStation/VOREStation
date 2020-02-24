@@ -308,4 +308,4 @@
 
 /obj/machinery/atmospherics/valve/examine(mob/user)
 	..()
-	user << "It is [open ? "open" : "closed"]."
+	to_chat(user, "It is [open ? "open" : "closed"].")

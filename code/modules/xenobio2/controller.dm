@@ -8,11 +8,11 @@
 	if(!holder)	return
 
 	if(!xenobio_controller || !xenobio_controller.gene_tag_masks)
-		usr << "Gene masks not set."
+		to_chat(usr, "Gene masks not set.")
 		return
 
 	for(var/mask in xenobio_controller.gene_tag_masks)
-		usr << "[mask]: [xenobio_controller.gene_tag_masks[mask]]"
+		to_chat(usr, "[mask]: [xenobio_controller.gene_tag_masks[mask]]")
 
 var/global/datum/controller/xenobio/xenobio_controller // Set in New().
 

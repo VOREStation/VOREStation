@@ -51,14 +51,14 @@
 	display_name  = "centcom medical uniform"
 	description = "A medical uniform straight from Central Command."
 	ckeywhitelist = list("arokha")
-	character_name = list("Aronai Kadigan")
+	character_name = list("Aronai Sieyes")
 
 /datum/gear/fluff/aronai_ccmedjacket
 	path = /obj/item/clothing/suit/storage/service/sifguard/medical/command
 	display_name  = "centcom medical jacket"
 	description = "A medical jacket straight from Central Command."
 	ckeywhitelist = list("arokha")
-	character_name = list("Aronai Kadigan")
+	character_name = list("Aronai Sieyes")
 
 //  B CKEYS
 /datum/gear/fluff/yuuko_kimono
@@ -461,6 +461,12 @@
 	ckeywhitelist = list("kisukegema")
 	character_name = list("Kisuke Gema")
 
+/datum/gear/fluff/excess_collar
+	path = /obj/item/clothing/accessory/collar/pink/fluff/warning
+	display_name = "Excess's Collar"
+	ckeywhitelist = list("killerdragn")
+	character_name = list("Excess")
+
 /datum/gear/fluff/lassara_sheath
 	path = /obj/item/clothing/accessory/storage/knifeharness
 	display_name = "Lassara's Knife Harness"
@@ -752,6 +758,18 @@
 	display_name = "Nick's Conduct Medal"
 	ckeywhitelist = list("thedavestdave")
 	character_name = list("Nick Sloan")
+
+/datum/gear/fluff/roy_medal
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Roy's Unity Medal"
+	ckeywhitelist = list("thedavestdave")
+	character_name = list("Roy Tilton")
+
+/datum/gear/fluff/monty_balaclava
+	path = /obj/item/clothing/mask/balaclava
+	display_name = "Monty's Balaclava"
+	ckeywhitelist = list("theskringdinger")
+	character_name = list("Monty Kopic")
 
 /datum/gear/fluff/konor_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity

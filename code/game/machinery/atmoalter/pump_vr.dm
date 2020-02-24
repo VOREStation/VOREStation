@@ -85,12 +85,12 @@
 /obj/machinery/portable_atmospherics/powered/pump/huge/attackby(var/obj/item/I, var/mob/user)
 	if(I.is_wrench())
 		if(on)
-			user << "<span class='warning'>Turn \the [src] off first!</span>"
+			to_chat(user, "<span class='warning'>Turn \the [src] off first!</span>")
 			return
 
 		anchored = !anchored
 		playsound(get_turf(src), I.usesound, 50, 1)
-		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
+		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 
 		return
 
@@ -112,7 +112,7 @@
 
 /obj/machinery/portable_atmospherics/powered/pump/huge/stationary/attackby(var/obj/item/I, var/mob/user)
 	if(I.is_wrench())
-		user << "<span class='warning'>The bolts are too tight for you to unscrew!</span>"
+		to_chat(user, "<span class='warning'>The bolts are too tight for you to unscrew!</span>")
 		return
 
 	..()

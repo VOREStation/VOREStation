@@ -11,11 +11,11 @@
 	for(var/obj/effect/landmark/newSpawnspot in landmarks_list)
 		if(newSpawnspot.name == "morphspawn")
 			possibleSpawnspots += newSpawnspot
-		if(possibleSpawnspots.len)
-			spawnspot = pick(possibleSpawnspots)
-		else
-			kill()		// To prevent fake announcements
-			return
+	if(possibleSpawnspots.len)
+		spawnspot = pick(possibleSpawnspots)
+	else
+		kill()		// To prevent fake announcements
+		return
 
 	if(!spawnspot)
 		kill()		// To prevent fake announcements
@@ -43,5 +43,5 @@
 
 
 /datum/event/morph_spawn/announce()
-	if(announceProb)
+	if(prob(announceProb))
 		command_announcement.Announce("Unknown entitity detected boarding [station_name()]. Exercise extra caution.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')

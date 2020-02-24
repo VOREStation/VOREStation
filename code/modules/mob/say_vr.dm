@@ -8,7 +8,7 @@
 	set desc = "Emote to nearby people (and your pred/prey)"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "Speech is currently admin-disabled."
+		to_chat(usr, "Speech is currently admin-disabled.")
 		return
 
 	message = sanitize_or_reflect(message,src) //VOREStation Edit - Reflect too-long messages (within reason)
@@ -81,11 +81,11 @@
 
 /proc/fail_to_chat(user,message)
 	if(!message)
-		to_chat(user,"<span class='danger'>Your message was NOT SENT, either because it was FAR too long, or sanitized to nothing at all.</span>")
+		to_chat(user, "<span class='danger'>Your message was NOT SENT, either because it was FAR too long, or sanitized to nothing at all.</span>")
 		return
 
 	var/length = length(message)
 	var/posts = CEILING((length/MAX_MESSAGE_LEN), 1)
 	to_chat(user,message)
-	to_chat(user,"<span class='danger'>^ This message was NOT SENT ^ -- It was [length] characters, and the limit is [MAX_MESSAGE_LEN]. It would fit in [posts] separate messages.</span>")
+	to_chat(user, "<span class='danger'>^ This message was NOT SENT ^ -- It was [length] characters, and the limit is [MAX_MESSAGE_LEN]. It would fit in [posts] separate messages.</span>")
 #undef MAX_HUGE_MESSAGE_LEN

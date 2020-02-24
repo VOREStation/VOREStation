@@ -9,7 +9,7 @@
 	var/scan_time = 5 SECONDS
 
 /obj/item/weapon/mining_scanner/attack_self(mob/user as mob)
-	user << "You begin sweeping \the [src] about, scanning for metal deposits."
+	to_chat(user, "You begin sweeping \the [src] about, scanning for metal deposits.")
 	playsound(loc, 'sound/items/goggles_charge.ogg', 50, 1, -6)
 
 	if(!do_after(user, scan_time))

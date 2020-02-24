@@ -48,11 +48,11 @@
 
 /obj/machinery/xenobio2/manualinjector/proc/move_into_injector(var/mob/user,var/mob/living/victim)
 	if(src.occupant)
-		user << "<span class='danger'>The injector is full, empty it first!</span>"
+		to_chat(user, "<span class='danger'>The injector is full, empty it first!</span>")
 		return
 
 	if(!(istype(victim, /mob/living/simple_mob/xeno)) && !emagged)
-		user << "<span class='danger'>This is not a suitable subject for the injector!</span>"
+		to_chat(user, "<span class='danger'>This is not a suitable subject for the injector!</span>")
 		return
 
 	user.visible_message("<span class='danger'>[user] starts to put [victim] into the injector!</span>")
@@ -116,14 +116,14 @@
 				var/obj/machinery/computer/xenobio2/C = P.connectable
 				computer = C
 				C.injector = src
-				user << "<span class='warning'> You link the [src] to the [P.connectable]!</span>"
+				to_chat(user, "<span class='warning'> You link the [src] to the [P.connectable]!</span>")
 		else
-			user << "<span class='warning'> You store the [src] in the [P]'s buffer!</span>"
+			to_chat(user, "<span class='warning'> You store the [src] in the [P]'s buffer!</span>")
 			P.connectable = src
 		return
 
 	if(panel_open)
-		user << "<span class='warning'>Close the panel first!</span>"
+		to_chat(user, "<span class='warning'>Close the panel first!</span>")
 
 	var/obj/item/weapon/grab/G = W
 
@@ -131,7 +131,7 @@
 		return ..()
 
 	if(G.state < 2)
-		user << "<span class='danger'>You need a better grip to do that!</span>"
+		to_chat(user, "<span class='danger'>You need a better grip to do that!</span>")
 		return
 
 	move_into_injector(user,G.affecting)

@@ -20877,7 +20877,7 @@
 	pixel_y = -25
 	},
 /obj/structure/bed/chair/sofa/corner{
-	dir = 1
+	dir = 4
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
@@ -31563,11 +31563,11 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "bbC" = (
-/obj/structure/bed/chair/sofa/left{
-	dir = 1
-	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
+/obj/structure/bed/chair/sofa/right{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/surfacecargo)
 "bbD" = (
