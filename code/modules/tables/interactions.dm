@@ -140,7 +140,7 @@
 		return
 
 // Placing stuff on tables
-	if(user.unEquip(W, 0, src.loc))
+	if(user.unEquip(W, 0, src.loc) && user.is_preference_enabled(/datum/client_preference/precision_placement))
 		auto_align(W, click_parameters)
 		return 1
 
