@@ -168,6 +168,14 @@
 	containername = "Magnetic weapon crate"
 	access = access_security
 
+/datum/supply_pack/munitions/mshells
+	name = "Weapons - Magnetic Shells"
+	contains = list(/obj/item/weapon/magnetic_ammo = 3)
+	cost = 100
+	containertype = /obj/structure/closet/crate/secure/weapon
+	containername = "Magnetic ammunition crate"
+	access = access_security
+
 /datum/supply_pack/munitions/shotgunammo
 	name = "Ammunition - Shotgun shells"
 	contains = list(
