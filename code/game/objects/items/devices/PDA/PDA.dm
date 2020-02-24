@@ -71,7 +71,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /obj/item/device/pda/CtrlClick()
 	if(issilicon(usr))
 		return
-	
+
 	if(can_use(usr))
 		remove_pen()
 		return
@@ -1458,7 +1458,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/Destroy()
 	PDAs -= src
-	if (src.id && prob(100)) //IDs are kept in 90% of the cases //VOREStation Edit - 100% of the cases
+	if (src.id && prob(100) && !delete_id) //IDs are kept in 90% of the cases //VOREStation Edit - 100% of the cases, excpet when specified otherwise
 		src.id.forceMove(get_turf(src.loc))
 	else
 		QDEL_NULL(src.id)
