@@ -27,7 +27,11 @@
 #include "code\__defines\_compile_options.dm"
 #include "code\__defines\_lists.dm"
 #include "code\__defines\_planes+layers.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\__defines\_planes+layers_vr.dm"
+=======
+#include "code\__defines\_protect.dm"
+>>>>>>> 97f8c1d... Merge pull request #6719 from Neerti/feedback_system:polaris.dme
 #include "code\__defines\_tick.dm"
 #include "code\__defines\admin.dm"
 #include "code\__defines\admin_vr.dm"
@@ -68,7 +72,11 @@
 #include "code\__defines\roguemining_vr.dm"
 #include "code\__defines\sound.dm"
 #include "code\__defines\species_languages.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\__defines\species_languages_vr.dm"
+=======
+#include "code\__defines\sqlite_defines.dm"
+>>>>>>> 97f8c1d... Merge pull request #6719 from Neerti/feedback_system:polaris.dme
 #include "code\__defines\stat_tracking.dm"
 #include "code\__defines\subsystems.dm"
 #include "code\__defines\subsystems_vr.dm"
@@ -246,6 +254,7 @@
 #include "code\controllers\subsystems\planets.dm"
 #include "code\controllers\subsystems\radiation.dm"
 #include "code\controllers\subsystems\shuttles.dm"
+#include "code\controllers\subsystems\sqlite.dm"
 #include "code\controllers\subsystems\sun.dm"
 #include "code\controllers\subsystems\time_track.dm"
 #include "code\controllers\subsystems\timer.dm"
@@ -320,6 +329,9 @@
 #include "code\datums\looping_sounds\machinery_sounds.dm"
 #include "code\datums\looping_sounds\sequence.dm"
 #include "code\datums\looping_sounds\weather_sounds.dm"
+#include "code\datums\managed_browsers\_managed_browser.dm"
+#include "code\datums\managed_browsers\feedback_form.dm"
+#include "code\datums\managed_browsers\feedback_viewer.dm"
 #include "code\datums\observation\_debug.dm"
 #include "code\datums\observation\_defines.dm"
 #include "code\datums\observation\destroyed.dm"
@@ -3373,6 +3385,7 @@
 #include "code\unit_tests\map_tests.dm"
 #include "code\unit_tests\mob_tests.dm"
 #include "code\unit_tests\research_tests.dm"
+#include "code\unit_tests\sqlite_tests.dm"
 #include "code\unit_tests\unit_test.dm"
 #include "code\unit_tests\unit_test_vr.dm"
 #include "code\unit_tests\vore_tests_vr.dm"

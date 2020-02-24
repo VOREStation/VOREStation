@@ -252,6 +252,17 @@ var/list/gamemode_cache = list()
 	var/random_submap_orientation = FALSE // If true, submaps loaded automatically can be rotated.
 	var/autostart_solars = FALSE // If true, specifically mapped in solar control computers will set themselves up when the round starts.
 
+	// New shiny SQLite stuff.
+	// The basics.
+	var/sqlite_enabled = FALSE // If it should even be active. SQLite can be ran alongside other databases but you should not have them do the same functions.
+
+	// In-Game Feedback.
+	var/sqlite_feedback = FALSE // Feedback cannot be submitted if this is false.
+	var/list/sqlite_feedback_topics = list("General") // A list of 'topics' that feedback can be catagorized under by the submitter.
+	var/sqlite_feedback_privacy = FALSE // If true, feedback submitted can have its author name be obfuscated. This is not 100% foolproof (it's md5 ffs) but can stop casual snooping.
+	var/sqlite_feedback_cooldown = 0 // How long one must wait, in days, to submit another feedback form. Used to help prevent spam, especially with privacy active. 0 = No limit.
+	var/sqlite_feedback_min_age = 0 // Used to block new people from giving feedback. This metric is very bad but it can help slow down spammers.
+
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
 	for (var/T in L)
@@ -840,6 +851,23 @@ var/list/gamemode_cache = list()
 
 				if("autostart_solars")
 					config.autostart_solars = TRUE
+
+				if("sqlite_enabled")
+					config.sqlite_enabled = TRUE
+
+				if("sqlite_feedback")
+					config.sqlite_feedback = TRUE
+
+				if("sqlite_feedback_topics")
+					config.sqlite_feedback_topics = splittext(value, ";")
+					if(!config.sqlite_feedback_topics.len)
+						config.sqlite_feedback_topics += "General"
+
+				if("sqlite_feedback_privacy")
+					config.sqlite_feedback_privacy = TRUE
+
+				if("sqlite_feedback_cooldown")
+					config.sqlite_feedback_cooldown = text2num(value)
 
 
 
