@@ -30518,6 +30518,19 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"ZP" = (
+/obj/structure/catwalk,
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor,
+/area/maintenance/cargo)
+"ZQ" = (
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor,
+/area/maintenance/station/ai)
 "ZT" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/alarm{
@@ -41411,7 +41424,7 @@ Vm
 ms
 Oz
 be
-nx
+ZP
 RT
 dT
 Se
@@ -44105,7 +44118,7 @@ du
 fy
 fy
 RI
-gK
+ZQ
 fp
 RN
 eI

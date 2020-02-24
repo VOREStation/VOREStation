@@ -15688,6 +15688,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/biostorage)
+"xL" = (
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
 "xO" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/box/syringegun,
@@ -32131,7 +32137,7 @@ aP
 at
 TW
 OY
-RS
+xL
 at
 RS
 RS

@@ -1871,6 +1871,7 @@
 #include "code\modules\events\ian_storm_vr.dm"
 #include "code\modules\events\infestation.dm"
 #include "code\modules\events\ion_storm.dm"
+#include "code\modules\events\maintenance_predator_vr.dm"
 #include "code\modules\events\meteor_strike_vr.dm"
 #include "code\modules\events\meteors.dm"
 #include "code\modules\events\money_hacker.dm"
