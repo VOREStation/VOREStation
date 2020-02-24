@@ -35,7 +35,7 @@
 /obj/item/clothing/head/helmet/space/verb/toggle_camera()
 	set name = "Toggle Helmet Camera"
 	set desc = "Turn your helmet's camera on or off."
-	set category = "Object"
+	set category = "Hardsuit"
 	set src in usr
 	if(usr.stat || usr.restrained() || usr.incapacitated())
 		return
