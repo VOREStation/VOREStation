@@ -1823,6 +1823,17 @@
 	glass_desc = "A fruity punch!"
 	glass_special = list(DRINK_FIZZ)
 
+/datum/reagent/drink/mintapplesparkle
+	name = "Mint Apple Sparkle"
+	id = "mintapplesparkle"
+	description = "Delicious appleade with a touch of mint."
+	taste_description = "minty apples"
+	color = "#FDDA98"
+
+	glass_name = "mint apple sparkle"
+	glass_desc = "Delicious appleade with a touch of mint."
+	glass_special = list(DRINK_FIZZ)
+
 /datum/reagent/drink/berrycordial
 	name = "Berry Cordial"
 	id = "berrycordial"
