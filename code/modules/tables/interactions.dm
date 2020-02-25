@@ -65,13 +65,11 @@
 		return ..()
 	if(isrobot(user))
 		return
-	user.drop_item()
-	if (O.loc != src.loc)
-		step(O, get_dir(O, src))
+	user.unEquip(O, 0, src.loc)
 	return
 
 
-/obj/structure/table/attackby(obj/item/W as obj, mob/user as mob, var/click_parameters)
+/obj/structure/table/attackby(obj/item/W as obj, mob/user as mob, var/hit_modifier, var/click_parameters)
 	if (!W) return
 
 	// Handle harm intent grabbing/tabling.
