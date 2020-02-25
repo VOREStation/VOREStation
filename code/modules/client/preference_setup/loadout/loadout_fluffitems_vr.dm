@@ -467,6 +467,12 @@
 	ckeywhitelist = list("killerdragn")
 	character_name = list("Excess")
 
+/datum/gear/fluff/excess_uniform
+	path = /obj/item/clothing/under/fluff/excess
+	display_name = "Excess's Uniform"
+	ckeywhitelist = list("killerdragn")
+	character_name = list("Excess")
+
 /datum/gear/fluff/lassara_sheath
 	path = /obj/item/clothing/accessory/storage/knifeharness
 	display_name = "Lassara's Knife Harness"

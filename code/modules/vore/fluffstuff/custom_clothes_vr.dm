@@ -1919,3 +1919,19 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/accessory/collar/pink/fluff/warning
 	name = "Warning Collar (AGGRESSIVE)"
 	desc = "A bright red warning collar with white text - \"AGGRESSIVE\"."
+
+//KillerDragn:Excess
+/obj/item/clothing/under/fluff/excess
+	name = "XS-21E Labeled Latex Clothing"
+	desc = "A latex navy blue tube-top and matching compression shorts, with a bright yellow stripe down the side. \"XS-21E\" is written on the thigh. \"Warning\" is written in yellow by the stripe on the top."
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "latex_clothes"
+	item_icons = list()
+	default_worn_icon = 'icons/vore/custom_clothes_vr.dmi'
+	color = COLOR_NAVY
+	sprite_sheets = null
+
+/obj/item/clothing/under/fluff/excess/get_worn_icon_state(var/slot_name)
+	. = ..()
+	. = copytext(. , 1 , lentext( . ) - 1)  //get rid of the extra "_s" added by /obj/item/clothing/under/get_worn_icon_state()
