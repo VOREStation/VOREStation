@@ -207,11 +207,7 @@
 /datum/map_template/surface/plains/Oldhouse
 	name = "Old House"
 	desc = "Someones old library it seems.."
-<<<<<<< HEAD
 	mappath = 'maps/submaps/surface_submaps/plains/Oldhouse_vr.dmm' //VOREStation Edit
-	cost = 15
-=======
-	mappath = 'maps/submaps/surface_submaps/plains/Oldhouse.dmm'
 	cost = 15
 
 /datum/map_template/surface/plains/ChemSpill1
@@ -219,4 +215,3 @@
 	desc = "A dumped chemical canister. Looks dangerous."
 	mappath = 'maps/submaps/surface_submaps/plains/chemspill1.dmm'
 	cost = 10
->>>>>>> 609dc75... Merge pull request #6718 from Cerebulon/ChemPoIs
