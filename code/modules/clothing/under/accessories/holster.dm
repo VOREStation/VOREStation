@@ -5,12 +5,9 @@
 	slot = ACCESSORY_SLOT_TORSO //Legacy/balance purposes
 	concealed_holster = 1
 	var/obj/item/holstered = null
-<<<<<<< HEAD
 	var/list/can_hold //VOREStation Add
-=======
 	var/holster_in = 'sound/items/holsterin.ogg'
 	var/holster_out = 'sound/items/holsterout.ogg'
->>>>>>> 0792f74... Merge pull request #6726 from listerla/more-sounds
 
 /obj/item/clothing/accessory/holster/proc/holster(var/obj/item/I, var/mob/living/user)
 	if(holstered && istype(user))
