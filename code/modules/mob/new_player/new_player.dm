@@ -172,10 +172,7 @@
 
 	if(href_list["SelectedJob"])
 
-<<<<<<< HEAD
 		/* Vorestation Removal Start
-=======
->>>>>>> 97f8c1d... Merge pull request #6719 from Neerti/feedback_system
 		//Prevents people rejoining as same character.
 		for (var/mob/living/carbon/human/C in mob_list)
 			var/char_name = client.prefs.real_name
