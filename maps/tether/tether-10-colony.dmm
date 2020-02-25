@@ -16823,7 +16823,7 @@
 	},
 /area/centcom/medical)
 "DD" = (
-/obj/machinery/door/airlock/alien/blue/public,
+/obj/machinery/door/airlock/alien/public,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm1)
 "DE" = (
@@ -19978,7 +19978,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
 "KK" = (
-/turf/simulated/shuttle/wall/alien/blue/hard_corner,
+/turf/simulated/shuttle/wall/alien/hard_corner,
 /area/unknown/dorm1)
 "KL" = (
 /obj/machinery/smartfridge/survival_pod,
@@ -23180,7 +23180,7 @@
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
 "RR" = (
-/turf/simulated/shuttle/wall/alien/blue,
+/turf/simulated/shuttle/wall/alien,
 /area/unknown/dorm2)
 "RS" = (
 /obj/structure/closet/hydrant{
@@ -23849,7 +23849,7 @@
 /turf/unsimulated/floor/steel,
 /area/centcom/evac)
 "TD" = (
-/turf/simulated/shuttle/wall/alien/blue/hard_corner,
+/turf/simulated/shuttle/wall/alien/hard_corner,
 /area/unknown/dorm2)
 "TE" = (
 /obj/structure/table/steel_reinforced,
@@ -24810,7 +24810,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/morgue)
 "Vy" = (
-/obj/machinery/door/airlock/alien/blue/public,
+/obj/machinery/door/airlock/alien/public,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm2)
 "Vz" = (
@@ -26115,7 +26115,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "Yx" = (
-/turf/simulated/shuttle/wall/alien/blue,
+/turf/simulated/shuttle/wall/alien,
 /area/unknown/dorm1)
 "Yz" = (
 /obj/structure/closet/wardrobe/red,
