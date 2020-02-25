@@ -1,0 +1,57 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill2)
+"c" = (/turf/simulated/floor/snow,/area/submap/ChemSpill2)
+"d" = (/turf/simulated/floor/outdoors/mud,/area/submap/ChemSpill2)
+"e" = (/turf/simulated/floor/outdoors/ice,/area/submap/ChemSpill2)
+"f" = (/turf/simulated/floor/water/contaminated,/area/submap/ChemSpill2)
+"g" = (/turf/template_noop,/area/submap/ChemSpill2)
+"h" = (/turf/simulated/floor/outdoors/rocks,/area/submap/ChemSpill1)
+"i" = (/obj/structure/prop/poicanister,/turf/simulated/floor/water/contaminated,/area/submap/ChemSpill2)
+"j" = (/turf/simulated/floor/outdoors/rocks,/area/submap/ChemSpill2)
+"k" = (/obj/random/trash,/turf/simulated/floor/outdoors/rocks,/area/submap/ChemSpill2)
+"l" = (/obj/effect/decal/remains/deer,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill2)
+"m" = (/obj/structure/prop/poicanister,/turf/simulated/floor/outdoors/mud,/area/submap/ChemSpill2)
+"n" = (/obj/effect/decal/remains/ribcage,/turf/simulated/floor/water/contaminated,/area/submap/ChemSpill2)
+"o" = (/obj/item/stack/rods,/turf/simulated/floor/water/contaminated,/area/submap/ChemSpill2)
+"p" = (/obj/random/firstaid,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill2)
+"q" = (/obj/random/tech_supply,/obj/random/energy,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill2)
+"r" = (/obj/random/humanoidremains,/obj/random/rigsuit,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill2)
+"s" = (/obj/effect/decal/remains/lizard,/turf/simulated/floor/outdoors/mud,/area/submap/ChemSpill2)
+"t" = (/obj/item/weapon/storage/mre/random,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill2)
+"u" = (/obj/effect/decal/remains/mouse,/turf/simulated/floor/outdoors/mud,/area/submap/ChemSpill2)
+"v" = (/obj/effect/decal/cleanable/blood/oil,/turf/simulated/floor/outdoors/rocks,/area/submap/ChemSpill2)
+"w" = (/obj/effect/decal/remains/xeno,/turf/simulated/floor/outdoors/mud,/area/submap/ChemSpill2)
+"x" = (/obj/effect/decal/cleanable/blood/oil,/turf/simulated/floor/outdoors/ice,/area/submap/ChemSpill2)
+
+(1,1,1) = {"
+aaaaaaaaaaabbaaaaaaaaaaaaaaaaa
+aaaaaaaabbbbbbbbaabbbcdddbbaaa
+aaaabbbbbcddbbbbbbbccdefddbgaa
+aaaabbddddffdbddddccdefifjbgaa
+aaaabbdfffffdfdfffddddfffjbbaa
+aabbbdeffffffffffffjjkddjjbbaa
+aabbbdffffffffffffffffjdbbbbaa
+aalbcdeffdmfffffffnffjddbbbbaa
+aabbcdeffdddfffffffffjddbbbbaa
+aaaadeeefffffffffffffjjdbblbaa
+aaaddeefffffffffffffffedbbbbaa
+aabcdefffffffeefffffffedbbbbaa
+aabcddffffofbbbeebbffffdljbbaa
+abbbcdefffbbbbbbbbbbffddbbbbaa
+aabbcddfffecbbbbbbbfffdcbbbbaa
+aaaacddfffeecpbbbbbffddcbbaaaa
+aaaacdefffccbqrbbbbffsdcbaaaaa
+aaacbdffffbbbbbtbbeffddbaaaaaa
+aaacjjjfffbbbbbbbbfffddbbbaaaa
+aaabujjfffibbebbbffffddbbbaaaa
+aaabbdjfffffffbffffffdsbbbaaaa
+aaaabdvefffffffffffffddbjjaaaa
+aaaabddeeffffffffffffddjjjbaaa
+aaaabdjjjefffffffffffedbbjbaaa
+aaabbccjjddkjfffffffffdccjbaaa
+aaabbbbddccjjjwjfffddfejccbaaa
+aaaabbbbbbbbddcdddieeexjbbbaaa
+aaaablbaaabbbaaacdddddjjhaaaaa
+aaaaaaaaaaaaaaaaabccbaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}
