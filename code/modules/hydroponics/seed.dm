@@ -99,7 +99,7 @@
 		return
 
 	var/datum/reagents/R = new/datum/reagents(100)
-	if(chems.len)
+	if(chems && chems.len)
 		for(var/rid in chems)
 			var/injecting = min(5,max(1,get_trait(TRAIT_POTENCY)/3))
 			R.add_reagent(rid,injecting)
@@ -193,7 +193,7 @@
 			if(!flesh_colour) flesh_colour = get_trait(TRAIT_PRODUCT_COLOUR)
 			if(flesh_colour) splat.color = get_trait(TRAIT_PRODUCT_COLOUR)
 
-	if(chems)
+	if(chems && chems.len)
 		for(var/mob/living/M in T.contents)
 			if(!M.reagents)
 				continue
