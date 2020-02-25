@@ -455,16 +455,11 @@
 		// VOREStation Edit Start: Modified exclusion list
 		var/list/banned_chems = list(
 			"adminordrazine",
-<<<<<<< HEAD
 			"nutriment",
 			"macrocillin",
 			"microcillin",
 			"normalcillin",
 			"magicdust"
-=======
-			"magicdust",
-			"nutriment"
->>>>>>> b227b07... Merge pull request #6683 from Heroman3003/plantblacklist
 			)
 		// VOREStation Edit End: Modified exclusion list
 
