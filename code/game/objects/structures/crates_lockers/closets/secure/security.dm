@@ -114,6 +114,7 @@
 		/obj/item/device/flash,
 		/obj/item/weapon/melee/baton/loaded,
 		/obj/item/weapon/gun/magnetic/railgun/heater/pistol/hos,
+		/obj/item/weapon/rcd_ammo/large,
 		/obj/item/weapon/cell/device/weapon,
 		/obj/item/clothing/accessory/holster/waist,
 		/obj/item/weapon/melee/telebaton,
