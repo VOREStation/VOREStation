@@ -45,11 +45,6 @@
 	desc = ""
 	value = CATALOGUER_REWARD_TRIVIAL
 
-/datum/category_item/catalogue/fauna/highzorren
-	name = "Sapients - Highlander Zorren"
-	desc = ""
-	value = CATALOGUER_REWARD_TRIVIAL
-
 /datum/category_item/catalogue/fauna/shadekin
 	name = "Sapients - Shadekin"
 	desc = ""

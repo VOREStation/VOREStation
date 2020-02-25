@@ -179,8 +179,7 @@
 	have adjusted better to their new lives. Though similar fox-like beings have been seen they are different than the Zorren."
 	wikilink="https://wiki.vore-station.net/Zorren"
 
-	catalogue_data = list(/datum/category_item/catalogue/fauna/zorren,
-						/datum/category_item/catalogue/fauna/highzorren)
+	catalogue_data = list(/datum/category_item/catalogue/fauna/zorren)
 
 	//primitive_form = "" //We don't have fox-monkey sprites.
 
