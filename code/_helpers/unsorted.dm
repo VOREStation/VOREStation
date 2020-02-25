@@ -1577,3 +1577,11 @@ var/mob/dview/dview_mob = new
 			else
 				return "\[[url_encode(thing.tag)]\]"
 	return "\ref[input]"
+
+// Painlessly creates an <a href=...> element.
+// First argument is where to send the Topic call to when clicked. Should be a reference to an object. This is generally src, but not always.
+// Second one is for all the params that will be sent. Uses an assoc list (e.g. "value" = "5").
+// Note that object refs will be converted to text, as if \ref[thing] was done. To get the ref back on Topic() side, you will need to use locate().
+// Third one is the text that will be clickable.
+/proc/href(href_src, list/href_params, href_text)
+	return "<a href='?src=\ref[href_src];[list2params(href_params)]'>[href_text]</a>"
