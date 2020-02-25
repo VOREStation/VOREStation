@@ -90,8 +90,6 @@
 		SPECIES_VASILISSAN,
 		SPECIES_VULPKANIN,
 		SPECIES_XENOCHIMERA,
-		SPECIES_XENOHYBRID,
-		SPECIES_ZORREN_FLAT,
 		SPECIES_ZORREN_HIGH
 	)
 /obj/item/clothing/suit/space/void/explorer/Initialize()
@@ -114,8 +112,6 @@
 		SPECIES_VASILISSAN,
 		SPECIES_VULPKANIN,
 		SPECIES_XENOCHIMERA,
-		SPECIES_XENOHYBRID,
-		SPECIES_ZORREN_FLAT,
 		SPECIES_ZORREN_HIGH
 	)
 /obj/item/clothing/head/helmet/space/void/explorer/Initialize()
