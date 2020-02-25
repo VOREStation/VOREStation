@@ -27,11 +27,8 @@
 #include "code\__defines\_compile_options.dm"
 #include "code\__defines\_lists.dm"
 #include "code\__defines\_planes+layers.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\__defines\_planes+layers_vr.dm"
-=======
 #include "code\__defines\_protect.dm"
->>>>>>> 97f8c1d... Merge pull request #6719 from Neerti/feedback_system:polaris.dme
 #include "code\__defines\_tick.dm"
 #include "code\__defines\admin.dm"
 #include "code\__defines\admin_vr.dm"
@@ -72,11 +69,8 @@
 #include "code\__defines\roguemining_vr.dm"
 #include "code\__defines\sound.dm"
 #include "code\__defines\species_languages.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\__defines\species_languages_vr.dm"
-=======
 #include "code\__defines\sqlite_defines.dm"
->>>>>>> 97f8c1d... Merge pull request #6719 from Neerti/feedback_system:polaris.dme
 #include "code\__defines\stat_tracking.dm"
 #include "code\__defines\subsystems.dm"
 #include "code\__defines\subsystems_vr.dm"
