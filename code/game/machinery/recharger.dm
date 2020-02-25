@@ -72,11 +72,7 @@
 			if(EW.use_external_power)
 				to_chat(user, "<span class='notice'>\The [EW] has no recharge port.</span>")
 				return
-<<<<<<< HEAD
-		else if(!G.get_cell() && !istype(G, /obj/item/ammo_casing/microbattery))	//VOREStation Edit: NSFW charging
-=======
-		if(!G.get_cell())
->>>>>>> 72f8a9c... Merge pull request #6722 from Heroman3003/powerfix
+		if(!G.get_cell() && !istype(G, /obj/item/ammo_casing/microbattery))	//VOREStation Edit: NSFW charging
 			to_chat(user, "\The [G] does not have a battery installed.")
 			return
 
