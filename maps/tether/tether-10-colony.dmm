@@ -4320,6 +4320,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 1
 	},
+/obj/machinery/washing_machine,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/cryotube)
 "hZ" = (
@@ -16633,6 +16634,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "Dj" = (
@@ -17398,6 +17400,16 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/robotics)
+"EX" = (
+/obj/structure/table/standard,
+/obj/item/weapon/soap,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 10
+	},
+/turf/unsimulated/floor/steel{
+	icon_state = "white"
+	},
+/area/centcom/bathroom)
 "EY" = (
 /obj/machinery/door/airlock/multi_tile/metal{
 	dir = 2;
@@ -18010,6 +18022,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "Gx" = (
@@ -18867,6 +18880,16 @@
 /obj/structure/curtain/open/bed,
 /turf/simulated/floor/wood,
 /area/mothership/dorm2)
+"Iz" = (
+/obj/structure/table/standard,
+/obj/item/weapon/soap,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 9
+	},
+/turf/unsimulated/floor/steel{
+	icon_state = "white"
+	},
+/area/centcom/bathroom)
 "IA" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -20238,6 +20261,10 @@
 	pixel_x = -32
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume,
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/breakroom)
 "Lv" = (
@@ -20346,6 +20373,10 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
@@ -20890,6 +20921,15 @@
 /obj/machinery/atmospherics/unary/cryo_cell,
 /turf/simulated/floor/tiled/white,
 /area/mothership/resleeving)
+"Nc" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 8
+	},
+/turf/unsimulated/floor/steel{
+	icon_state = "white"
+	},
+/area/centcom/bathroom)
 "Nd" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /obj/machinery/light/flamp/noshade,
@@ -21131,6 +21171,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
 "NK" = (
@@ -21825,6 +21866,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "Pa" = (
@@ -22444,6 +22486,23 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
+"Qr" = (
+/obj/structure/sink{
+	icon_state = "sink";
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/structure/mirror{
+	pixel_x = -28
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 10
+	},
+/turf/unsimulated/floor/steel{
+	icon_state = "white"
+	},
+/area/centcom/bathroom)
 "Qs" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/security,
@@ -22653,6 +22712,15 @@
 	name = "Sealed Door"
 	},
 /area/mothership/eva)
+"QM" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 8
+	},
+/obj/structure/closet/crate/bin,
+/turf/unsimulated/floor/steel{
+	icon_state = "white"
+	},
+/area/centcom/bathroom)
 "QN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -23717,6 +23785,9 @@
 "Tv" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/teleporter)
+"Tw" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/cryotube)
 "Tx" = (
 /obj/machinery/autolathe{
 	desc = "Your typical Autolathe. It appears to have much more options than your regular one, however...";
@@ -23817,6 +23888,14 @@
 /obj/item/ammo_magazine/m545saw/ap,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/armory)
+"TG" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 8
+	},
+/turf/unsimulated/floor/steel{
+	icon_state = "white"
+	},
+/area/centcom/bathroom)
 "TH" = (
 /obj/structure/cable/cyan{
 	d1 = 0;
@@ -24673,10 +24752,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/security)
-"Vo" = (
-/obj/machinery/washing_machine,
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/cryotube)
 "Vp" = (
 /obj/structure/table/bench/steel,
 /turf/simulated/floor/tiled/techmaint,
@@ -24837,6 +24912,10 @@
 	pixel_x = 32
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume,
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = 0
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/breakroom)
 "VK" = (
@@ -25458,6 +25537,10 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = 0
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
@@ -29639,7 +29722,7 @@ KH
 Sw
 FE
 VT
-Vo
+Sn
 Ut
 Jd
 Fr
@@ -29924,7 +30007,7 @@ Sw
 Ng
 VT
 Na
-Sn
+Tw
 hY
 Mb
 jq
@@ -30066,7 +30149,7 @@ Sw
 UZ
 VT
 FB
-LC
+Tw
 hY
 YO
 jq
@@ -30349,7 +30432,7 @@ KH
 Sw
 FE
 VT
-Vo
+LC
 PB
 HH
 GR
@@ -34479,22 +34562,22 @@ vK
 wq
 wq
 xp
-xN
-vM
-yn
+QM
+TG
+EX
 ry
 ac
 ac
 ac
 ac
 ry
-yn
-vM
-xN
-vK
+Iz
+TG
+Nc
 wq
 wq
-xp
+wq
+Qr
 ry
 ac
 ac
