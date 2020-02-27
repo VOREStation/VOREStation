@@ -1112,6 +1112,28 @@ var/list/name_to_material
 	protectiveness = 1 // 4%
 	conductive = 0
 
+/material/cloth_yellow
+	name = "yellow"
+	display_name = "yellow"
+	use_name = "yellow cloth"
+	icon_colour = "#EEF573"
+	flags = MATERIAL_PADDING
+	ignition_point = T0C+232
+	melting_point = T0C+300
+	protectiveness = 1 // 4%
+	conductive = 0
+
+/material/cloth_orange
+	name = "orange"
+	display_name = "orange"
+	use_name = "orange cloth"
+	icon_colour = "#E3BF49"
+	flags = MATERIAL_PADDING
+	ignition_point = T0C+232
+	melting_point = T0C+300
+	protectiveness = 1 // 4%
+	conductive = 0
+
 /material/toy_foam
 	name = "foam"
 	display_name = "foam"
