@@ -439,6 +439,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if(2) icon = 'icons/obj/pda_slim.dmi'
 		if(3) icon = 'icons/obj/pda_old.dmi'
 		if(4) icon = 'icons/obj/pda_rugged.dmi'
+		if(5) icon = 'icons/obj/pda_holo.dmi'
 		else
 			icon = 'icons/obj/pda_old.dmi'
 			log_debug("Invalid switch for PDA, defaulting to old PDA icons. [pdachoice] chosen.")
