@@ -42,7 +42,11 @@
 		new/datum/stack_recipe("yellow sofa middle", /obj/structure/bed/chair/sofa/yellow, 1, one_per_turf = 1, on_floor = 1), \
 		new/datum/stack_recipe("yellow sofa left", /obj/structure/bed/chair/sofa/yellow/left, 1, one_per_turf = 1, on_floor = 1), \
 		new/datum/stack_recipe("yellow sofa right", /obj/structure/bed/chair/sofa/yellow/right, 1, one_per_turf = 1, on_floor = 1), \
-		new/datum/stack_recipe("yellow sofa corner", /obj/structure/bed/chair/sofa/yellow/corner, 1, one_per_turf = 1, on_floor = 1) \
+		new/datum/stack_recipe("yellow sofa corner", /obj/structure/bed/chair/sofa/yellow/corner, 1, one_per_turf = 1, on_floor = 1), \
+		new/datum/stack_recipe("yellow sofa middle", /obj/structure/bed/chair/sofa/orange, 1, one_per_turf = 1, on_floor = 1), \
+		new/datum/stack_recipe("yellow sofa left", /obj/structure/bed/chair/sofa/orange/left, 1, one_per_turf = 1, on_floor = 1), \
+		new/datum/stack_recipe("yellow sofa right", /obj/structure/bed/chair/sofa/orange/right, 1, one_per_turf = 1, on_floor = 1), \
+		new/datum/stack_recipe("yellow sofa corner", /obj/structure/bed/chair/sofa/orange/corner, 1, one_per_turf = 1, on_floor = 1), \
 		))
 
 /material/durasteel/generate_recipes()
