@@ -340,6 +340,14 @@
 	if(inactivity > duration)	return inactivity
 	return 0
 
+//Called when the client performs a drag-and-drop operation.
+/client/MouseDrop(start_object,end_object,start_location,end_location,start_control,end_control,params)
+	if(buildmode && start_control == "mapwindow.map" && start_control == end_control)
+		build_drag(src,buildmode,start_object,end_object,start_location,end_location,start_control,end_control,params)
+	else
+		. = ..()
+
+
 // Byond seemingly calls stat, each tick.
 // Calling things each tick can get expensive real quick.
 // So we slow this down a little.

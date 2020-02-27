@@ -16,7 +16,7 @@
 	dsma.blend_mode = BLEND_ADD
 	dsoverlay.appearance = dsma
 
-	selected_image = image(icon = 'icons/mob/screen1.dmi', loc = src, icon_state = "centermarker")
+	selected_image = image(icon = buildmode_hud, loc = src, icon_state = "ai_sel")
 
 /mob/living/Destroy()
 	dsoverlay.loc = null //I'll take my coat with me
