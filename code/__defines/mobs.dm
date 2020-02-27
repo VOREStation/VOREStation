@@ -394,7 +394,9 @@
 #define VIS_OBJS			20
 #define VIS_MOBS			21
 
-#define VIS_COUNT			21 //Must be highest number from above.
+#define VIS_BUILDMODE		22
+
+#define VIS_COUNT			22 //Must be highest number from above.
 
 //Some mob icon layering defines
 #define BODY_LAYER		-100

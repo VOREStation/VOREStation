@@ -130,6 +130,8 @@ What is the naming convention for planes or layers?
 
 #define PLANE_ADMIN2			33 //Purely for shenanigans (above lighting)
 
+#define PLANE_BUILDMODE			39 //Things that only show up when you have buildmode on
+
 //Fullscreen overlays under inventory
 #define PLANE_FULLSCREEN		90 //Blindness, mesons, druggy, etc
 	#define OBFUSCATION_LAYER	5 //Where images covering the view for eyes are put

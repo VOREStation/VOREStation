@@ -1551,6 +1551,7 @@
 #include "code\modules\ai\_defines.dm"
 #include "code\modules\ai\ai_holder.dm"
 #include "code\modules\ai\ai_holder_combat.dm"
+#include "code\modules\ai\ai_holder_combat_unseen.dm"
 #include "code\modules\ai\ai_holder_communication.dm"
 #include "code\modules\ai\ai_holder_cooperation.dm"
 #include "code\modules\ai\ai_holder_debug.dm"
