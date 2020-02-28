@@ -7744,7 +7744,7 @@
 /obj/effect/floor_decal/corner_steel_grid{
 	dir = 10
 	},
-/obj/machinery/computer/transhuman,
+/obj/machinery/computer/transhuman/designer,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
@@ -21047,7 +21047,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/sechallway)
 "Nr" = (
-/obj/machinery/computer/transhuman{
+/obj/machinery/computer/transhuman/designer{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
