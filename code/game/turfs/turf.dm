@@ -64,6 +64,10 @@
 /turf/proc/is_intact()
 	return 0
 
+// Used by shuttle code to check if this turf is empty enough to not crush want it lands on.
+/turf/proc/is_solid_structure()
+	return 1
+
 /turf/attack_hand(mob/user)
 	if(!(user.canmove) || user.restrained() || !(user.pulling))
 		return 0

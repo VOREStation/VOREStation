@@ -150,6 +150,9 @@
 	var/turf/below = GetBelow(src)
 	return !below || below.is_space()
 
+/turf/simulated/open/is_solid_structure()
+	return locate(/obj/structure/lattice, src) //counts as solid structure if it has a lattice (same as space)
+
 /turf/simulated/open/is_safe_to_enter(mob/living/L)
 	if(L.can_fall())
 		if(!locate(/obj/structure/stairs) in GetBelow(src))

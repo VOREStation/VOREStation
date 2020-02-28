@@ -15,6 +15,9 @@
 //#define ZASDBG	 	// Uncomment to turn on super detailed ZAS debugging that probably won't even compile.
 #define MULTIZAS		// Uncomment to turn on Multi-Z ZAS Support!
 
+// Comment/Uncomment this to turn off/on shuttle code debugging logs
+#define DEBUG_SHUTTLES
+
 // If we are doing the map test build, do not include the main maps, only the submaps.
 #if MAP_TEST
 	#define USING_MAP_DATUM /datum/map
