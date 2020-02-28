@@ -19,6 +19,9 @@
 	var/obj/item/weapon/shockpaddles/linked/paddles
 	var/obj/item/weapon/cell/bcell = null
 
+/obj/item/device/defib_kit/get_cell()
+	return bcell
+
 /obj/item/device/defib_kit/New() //starts without a cell for rnd
 	..()
 	if(ispath(paddles))
