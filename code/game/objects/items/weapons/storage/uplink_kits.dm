@@ -142,15 +142,7 @@
 	name = "chameleon kit"
 	desc = "Comes with all the clothes you need to impersonate most people.  Acting lessons sold seperately."
 	starts_with = list(
-		/obj/item/clothing/under/chameleon,
-		/obj/item/clothing/head/chameleon,
-		/obj/item/clothing/suit/chameleon,
-		/obj/item/clothing/shoes/chameleon,
-		/obj/item/weapon/storage/backpack/chameleon,
-		/obj/item/clothing/gloves/chameleon,
-		/obj/item/clothing/mask/chameleon,
-		/obj/item/clothing/glasses/chameleon,
-		/obj/item/clothing/accessory/chameleon,
+		/obj/item/weapon/storage/backpack/chameleon/full,
 		/obj/item/weapon/gun/energy/chameleon
 	)
 
