@@ -72,6 +72,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	var/datum/exonet_protocol/exonet = null
 	var/list/communicating = list()
 	var/update_ticks = 0
+	var/newsfeed_channel = 0
 
 // Proc: New()
 // Parameters: None
