@@ -59,9 +59,6 @@
 	applies_material_colour = 0
 
 // Baystation12 chairs with their larger update_icons proc
-/obj/structure/bed/chair/bay
-	anchored = 1
-
 /obj/structure/bed/chair/bay/update_icon()
 	// Strings.
 	desc = initial(desc)
@@ -210,13 +207,6 @@
 
 /obj/structure/bed/chair/bay/comfy/yellow/New(var/newloc, var/new_material, var/new_padding_material)
 	..(newloc, new_material, "yellow")
-
-/obj/structure/bed/chair/bay/comfy/captain
-	name = "captain chair"
-	desc = "It's a chair. Only for the highest ranked asses."
-	icon_state = "capchair_preview"
-	base_icon = "capchair"
-	buckle_movable = 1
 
 /obj/structure/bed/chair/bay/comfy/captain
 	name = "captain chair"
