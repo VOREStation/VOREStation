@@ -7,7 +7,6 @@
 	//gas stuff
 	var/obj/item/weapon/tank/tank
 	var/mob/living/carbon/human/breather
-	var/obj/screen/internalsHud
 	var/obj/item/clothing/mask/breath/contained
 
 	var/spawn_type = null
@@ -76,8 +75,7 @@
 	STOP_PROCESSING(SSobj,src)
 	if(breather)
 		breather.internal = null
-		if(internalsHud)
-			internalsHud.icon_state = "internal0"
+		breather.internals?.icon_state = "internal0"
 	if(tank)
 		qdel(tank)
 	if(breather)
@@ -203,8 +201,7 @@
 					src.visible_message("<span class='notice'>\The [user] closes valve on \the [src]!</span>",
 						"<span class='notice'>You close valve on \the [src].</span>")
 					if(breather)
-						if(internalsHud)
-							internalsHud.icon_state = "internal0"
+						breather.internals?.icon_state = "internal0"
 						breather.internal = null
 					valve_opened = FALSE
 					update_icon()
@@ -213,8 +210,7 @@
 										"<span class='notice'>You open valve on \the [src].</span>")
 					if(breather)
 						breather.internal = tank
-						if(internalsHud)
-							internalsHud.icon_state = "internal1"
+						breather.internals?.icon_state = "internal1"
 					valve_opened = TRUE
 					//playsound(get_turf(src), 'sound/effects/internals.ogg', 100, 1)
 					update_icon()
@@ -254,8 +250,6 @@
 			if(tank)
 				tank.forceMove(C)
 			breather = C
-			//if(breather.HUDneed.Find("internal"))
-				//internalsHud = breather.HUDneed["internal"]
 			return TRUE
 
 /obj/structure/medical_stand/proc/can_apply_to_target(var/mob/living/carbon/human/target, var/mob/user)
@@ -386,11 +380,9 @@
 		if(valve_opened)
 			if (tank)
 				breather.internal = tank
-				if(internalsHud)
-					internalsHud.icon_state = "internal1"
+				breather.internals?.icon_state = "internal1"
 		else
-			if(internalsHud)
-				internalsHud.icon_state = "internal0"
+			breather.internals?.icon_state = "internal0"
 			breather.internal = null
 	else if (valve_opened)
 		var/datum/gas_mixture/removed = tank.remove_air(0.01)
