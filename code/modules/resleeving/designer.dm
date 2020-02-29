@@ -371,7 +371,7 @@
 	desc = "It has a small label: \n\
 	\"Portable Body Record Storage Disk. \n\
 	Insert into resleeving control console\""
-	icon = 'icons/obj/discs.dmi'
+	icon = 'icons/obj/discs_vr.dmi'
 	icon_state = "data-green"
 	item_state = "card-id"
 	w_class = ITEMSIZE_SMALL

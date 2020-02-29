@@ -212,7 +212,7 @@
 
 /obj/item/weapon/disk
 	name = "disk"
-	icon = 'icons/obj/discs.dmi' //VOREStation Edit
+	icon = 'icons/obj/discs_vr.dmi' //VOREStation Edit
 
 /obj/item/weapon/disk/nuclear
 	name = "nuclear authentication disk"

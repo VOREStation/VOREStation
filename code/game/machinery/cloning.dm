@@ -484,7 +484,7 @@
 //TO-DO: Make the genetics machine accept them.
 /obj/item/weapon/disk/data
 	name = "Cloning Data Disk"
-	icon = 'icons/obj/discs.dmi' //VOREStation Edit
+	icon = 'icons/obj/discs_vr.dmi' //VOREStation Edit
 	icon_state = "data-red" //VOREStation Edit
 	item_state = "card-id"
 	w_class = ITEMSIZE_SMALL
