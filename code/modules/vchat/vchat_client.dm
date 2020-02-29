@@ -100,7 +100,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	owner << browse(file2text("code/modules/vchat/html/vchat.html"), "window=htmloutput")
 	
 	//Check back later
-	spawn(60 SECONDS)
+	spawn(15 SECONDS)
 		if(!src)
 			return
 		if(!src.loaded)
