@@ -7,7 +7,7 @@
 	path = "virgo_minitest"
 
 	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("title")
+	lobby_screens = list("tether2_night")
 
 	admin_levels = list()
 	sealed_levels = list()

@@ -79,7 +79,7 @@
 #define COLOR_DEEP_SKY_BLUE     "#00e1ff"
 
 
-
+#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : null))
 
 //	Shuttles.
 
