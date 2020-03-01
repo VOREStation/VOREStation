@@ -519,6 +519,9 @@
 		return TRUE
 	return FALSE
 
+/atom/proc/is_incorporeal()
+	return FALSE
+
 /atom/proc/drop_location()
 	var/atom/L = loc
 	if(!L)
