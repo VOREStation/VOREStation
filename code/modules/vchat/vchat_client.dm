@@ -244,10 +244,11 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 
 	var/static/list/bicon_cache = list()
 	if (isicon(obj))
-		if (!bicon_cache["\ref[obj]"]) // Doesn't exist yet, make it.
-			bicon_cache["\ref[obj]"] = icon2base64(obj)
+		//Icon refs get reused all the time especially on temporarily made ones like chat tags, too difficult to cache.
+		//if (!bicon_cache["\ref[obj]"]) // Doesn't exist yet, make it.
+			//bicon_cache["\ref[obj]"] = icon2base64(obj)
 
-		return "<img [class] src='data:image/png;base64,[bicon_cache["\ref[obj]"]]'>"
+		return "<img [class] src='data:image/png;base64,[icon2base64(obj)]'>"
 
 	// Either an atom or somebody fucked up and is gonna get a runtime, which I'm fine with.
 	var/atom/A = obj
