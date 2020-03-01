@@ -16425,7 +16425,7 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "zt" = (
-/obj/machinery/iv_drip,
+/obj/structure/medical_stand,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 4
@@ -16446,7 +16446,7 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "zu" = (
-/obj/machinery/iv_drip,
+/obj/structure/medical_stand,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8

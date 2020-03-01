@@ -526,7 +526,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/houseboat)
 "bE" = (
-/obj/machinery/iv_drip,
+/obj/structure/medical_stand,
 /turf/simulated/floor/tiled/white,
 /area/houseboat)
 "bF" = (

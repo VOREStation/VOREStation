@@ -23196,7 +23196,7 @@
 	pixel_x = 0;
 	pixel_y = -26
 	},
-/obj/machinery/iv_drip,
+/obj/structure/medical_stand,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/surgery)
 "aQZ" = (

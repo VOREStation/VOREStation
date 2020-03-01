@@ -2514,7 +2514,7 @@
 /turf/simulated/floor/plating,
 /area/syndicate_station/start)
 "gH" = (
-/obj/machinery/iv_drip,
+/obj/structure/medical_stand,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -4108,7 +4108,7 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
 "kg" = (
-/obj/machinery/iv_drip,
+/obj/structure/medical_stand,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
 "kh" = (
@@ -9522,7 +9522,7 @@
 	},
 /area/antag/antag_base)
 "tX" = (
-/obj/machinery/iv_drip,
+/obj/structure/medical_stand,
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 8
 	},

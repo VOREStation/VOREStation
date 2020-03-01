@@ -735,7 +735,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/sechallway)
 "bk" = (
-/obj/machinery/iv_drip,
+/obj/structure/medical_stand,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -9054,7 +9054,7 @@
 	},
 /area/centcom/medical)
 "qs" = (
-/obj/machinery/iv_drip,
+/obj/structure/medical_stand,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
 /turf/unsimulated/floor/steel{
@@ -17176,7 +17176,7 @@
 	},
 /area/mothership/dorm4)
 "Ey" = (
-/obj/machinery/iv_drip,
+/obj/structure/medical_stand,
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
