@@ -449,7 +449,7 @@
 			to_chat(usr, "This can only be done on mobs with clients")
 			return
 
-		SSnanoui.send_resources(H.client)
+		H.client.send_resources()
 
 		to_chat(usr, "Resource files sent")
 		to_chat(H, "Your NanoUI Resource files have been refreshed")
