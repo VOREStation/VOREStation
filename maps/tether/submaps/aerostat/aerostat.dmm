@@ -1630,9 +1630,17 @@
 /obj/random/contraband,
 /turf/simulated/floor/plating/virgo2,
 /area/tether_away/aerostat/inside)
+"fH" = (
+/obj/structure/salvageable/implant_container,
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/tether_away/aerostat/inside)
 "gD" = (
 /obj/tether_away_spawner/aerostat_inside,
 /turf/simulated/floor/plating/virgo2,
+/area/tether_away/aerostat/inside)
+"gX" = (
+/obj/structure/salvageable/data,
+/turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
 "hd" = (
 /obj/random/contraband,
@@ -1656,6 +1664,10 @@
 /area/tether_away/aerostat/inside)
 "xA" = (
 /obj/random/firstaid,
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/tether_away/aerostat/inside)
+"yy" = (
+/obj/structure/salvageable/autolathe,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
 "AS" = (
@@ -1714,6 +1726,14 @@
 /obj/structure/table/standard,
 /obj/effect/decal/cleanable/cobweb2,
 /obj/random/contraband,
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/tether_away/aerostat/inside)
+"QE" = (
+/obj/structure/salvageable/machine,
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/tether_away/aerostat/inside)
+"TR" = (
+/obj/structure/salvageable/computer,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
 "UC" = (
@@ -9480,7 +9500,7 @@ ci
 bv
 at
 bK
-bK
+QE
 bK
 au
 bv
@@ -11483,7 +11503,7 @@ bv
 cD
 cB
 bK
-bK
+yy
 bv
 bj
 aw
@@ -11585,7 +11605,7 @@ aw
 aw
 bq
 bv
-bK
+gX
 bK
 cz
 cD
@@ -11727,7 +11747,7 @@ aw
 aw
 bq
 bv
-bK
+fH
 bK
 cz
 cD
@@ -11767,7 +11787,7 @@ bv
 cD
 cB
 bK
-bK
+TR
 bv
 bj
 aw
@@ -11909,7 +11929,7 @@ bv
 cD
 cB
 bK
-bK
+TR
 bv
 bj
 aw
@@ -13882,7 +13902,7 @@ ci
 bv
 Gs
 bK
-bK
+QE
 bK
 Lw
 bv
