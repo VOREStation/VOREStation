@@ -23768,12 +23768,12 @@
 /area/tether/surfacebase/shuttle_pad)
 "aME" = (
 /turf/simulated/shuttle/wall,
-/area/shuttle/tether/surface)
+/area/shuttle/tether)
 "aMF" = (
 /obj/structure/shuttle/window,
 /obj/structure/grille,
 /turf/simulated/shuttle/plating/airless,
-/area/shuttle/tether/surface)
+/area/shuttle/tether)
 "aMG" = (
 /obj/structure/railing{
 	dir = 4
@@ -23972,15 +23972,15 @@
 "aMZ" = (
 /obj/structure/closet/firecloset,
 /turf/simulated/shuttle/floor/black,
-/area/shuttle/tether/surface)
+/area/shuttle/tether)
 "aNa" = (
 /obj/machinery/computer/shuttle_control/tether_backup,
 /turf/simulated/shuttle/floor/black,
-/area/shuttle/tether/surface)
+/area/shuttle/tether)
 "aNb" = (
 /obj/structure/closet/emcloset,
 /turf/simulated/shuttle/floor/black,
-/area/shuttle/tether/surface)
+/area/shuttle/tether)
 "aNc" = (
 /obj/machinery/alarm{
 	dir = 8;
@@ -24075,10 +24075,10 @@
 	dir = 4
 	},
 /turf/simulated/shuttle/floor/black,
-/area/shuttle/tether/surface)
+/area/shuttle/tether)
 "aNl" = (
 /turf/simulated/shuttle/floor/black,
-/area/shuttle/tether/surface)
+/area/shuttle/tether)
 "aNm" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 8
@@ -24091,7 +24091,7 @@
 	tag_door = "tether_shuttle_hatch"
 	},
 /turf/simulated/shuttle/floor/black,
-/area/shuttle/tether/surface)
+/area/shuttle/tether)
 "aNn" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -24229,7 +24229,7 @@
 	name = "Shuttle Hatch"
 	},
 /turf/simulated/shuttle/floor/black,
-/area/shuttle/tether/surface)
+/area/shuttle/tether)
 "aNA" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -24322,13 +24322,13 @@
 	pixel_y = 0
 	},
 /turf/simulated/shuttle/floor/black,
-/area/shuttle/tether/surface)
+/area/shuttle/tether)
 "aNK" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 1
 	},
 /turf/simulated/shuttle/floor/black,
-/area/shuttle/tether/surface)
+/area/shuttle/tether)
 "aNL" = (
 /obj/structure/window/basic/full,
 /obj/structure/grille,
@@ -24359,7 +24359,7 @@
 	dir = 1
 	},
 /turf/simulated/shuttle/plating/airless,
-/area/shuttle/tether/surface)
+/area/shuttle/tether)
 "aNQ" = (
 /obj/machinery/firealarm{
 	dir = 4;
@@ -27962,7 +27962,7 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether/surface)
+/area/shuttle/tether)
 "aUx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -31728,6 +31728,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"uSA" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/tether/surfacebase/shuttle_pad;
+	base_turf = /turf/simulated/floor/reinforced;
+	docking_controller = "tether_pad_airlock";
+	landmark_tag = "tether_backup_low";
+	name = "Surface Hangar"
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/tether)
 
 (1,1,1) = {"
 aaa
@@ -45595,7 +45605,7 @@ aKU
 aMF
 aMZ
 aNk
-aNl
+uSA
 aNJ
 aNP
 aUw

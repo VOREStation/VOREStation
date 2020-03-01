@@ -4,8 +4,8 @@
 
 /datum/shuttle_destination/excursion/virgo2orbit
 	name = "Virgo 2 Orbit"
-	my_area = /area/shuttle/excursion/space
-	preferred_interim_area = /area/shuttle/excursion/space_moving
+	my_landmark = "tether_excursion_space"
+	preferred_interim_tag = "tether_excursion_transit_space"
 	skip_me = TRUE
 
 	routes_to_make = list(
@@ -15,19 +15,20 @@
 
 /datum/shuttle_destination/excursion/aerostat
 	name = "Remmi Aerostat"
-	my_area = /area/shuttle/excursion/away_aerostat
-	preferred_interim_area = /area/shuttle/excursion/space_moving
+	my_landmark = "tether_excursion_aerostat"
+	preferred_interim_tag = "tether_excursion_transit_space"
 	skip_me = TRUE
 
 	routes_to_make = list(
 		/datum/shuttle_destination/excursion/virgo2orbit = 30 SECONDS
 	)
 
-/datum/shuttle/ferry/aerostat
+/datum/shuttle/autodock/ferry/aerostat
 	name = "Aerostat Ferry"
+	shuttle_area = /area/shuttle/aerostat
 	warmup_time = 10	//want some warmup time so people can cancel.
-	area_station = /area/shuttle/aerostat/docked
-	area_offsite = /area/shuttle/aerostat/landed
+	landmark_station = "aerostat_up"
+	landmark_offsite = "aerostat_down"
 
 /datum/random_map/noise/ore/virgo2
 	descriptor = "virgo 2 ore distribution map"

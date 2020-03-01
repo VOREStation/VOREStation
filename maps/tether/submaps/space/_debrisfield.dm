@@ -2,8 +2,8 @@
 
 /datum/shuttle_destination/excursion/debrisfield
 	name = "Debris Field"
-	my_area = /area/shuttle/excursion/debrisfield
-	preferred_interim_area = /area/shuttle/excursion/space_moving
+	my_landmark = "tether_excursion_debrisfield"
+	preferred_interim_tag = "tether_excursion_transit_space"
 	skip_me = TRUE
 
 	routes_to_make = list(
