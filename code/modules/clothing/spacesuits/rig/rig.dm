@@ -232,6 +232,24 @@
 			update_airtight(piece, 0) // Unseal
 	update_icon(1)
 
+/obj/item/weapon/rig/proc/cut_suit()
+	offline = 2
+	canremove = 1
+	for(var/obj/item/piece in list(helmet,boots,gloves,chest))
+		if(!piece) continue
+		piece.icon_state = "[suit_state]"
+		if(airtight)
+			update_airtight(piece, 0) // Unseal
+		piece.canremove = 1
+		if(istype(loc, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = loc
+			H.drop_from_inventory(piece)
+		piece.forceMove(get_turf(src))
+		piece.dropped()
+		piece.canremove = 0
+		piece.forceMove(src)
+	update_icon(1)
+
 /obj/item/weapon/rig/proc/toggle_seals(var/mob/living/carbon/human/M,var/instant)
 
 	if(sealing) return
