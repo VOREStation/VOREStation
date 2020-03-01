@@ -20876,7 +20876,7 @@
 	pixel_x = 0;
 	pixel_y = -25
 	},
-/obj/structure/bed/chair/sofa/corner{
+/obj/structure/bed/chair/sofa/brown/corner{
 	dir = 4
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -31432,7 +31432,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/structure/bed/chair/sofa/left{
+/obj/structure/bed/chair/sofa/brown/left{
 	dir = 4
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -31565,7 +31565,7 @@
 "bbC" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
-/obj/structure/bed/chair/sofa/right{
+/obj/structure/bed/chair/sofa/brown/right{
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
