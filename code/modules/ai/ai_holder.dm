@@ -224,6 +224,10 @@
 /datum/ai_holder/proc/handle_stance_strategical()
 	ai_log("++++++++++ Slow Process Beginning ++++++++++", AI_LOG_TRACE)
 	ai_log("handle_stance_strategical() : Called.", AI_LOG_TRACE)
+	
+	//We got left around for some reason. Goodbye cruel world.
+	if(!holder)
+		qdel(src)
 
 	ai_log("handle_stance_strategical() : LTT=[lose_target_time]", AI_LOG_TRACE)
 	if(lose_target_time && (lose_target_time + lose_target_timeout < world.time)) // We were tracking an enemy but they are gone.

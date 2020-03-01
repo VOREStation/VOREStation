@@ -115,7 +115,7 @@
 			sorted_targets += A
 	return sorted_targets
 
-/datum/ai_holder/proc/can_attack(atom/movable/the_target, vision_required = TRUE)
+/datum/ai_holder/proc/can_attack(atom/movable/the_target, var/vision_required = TRUE)
 	if(!can_see_target(the_target) && vision_required)
 		return FALSE
 

@@ -167,7 +167,7 @@
 			return 1 // Melee (eat) the target if dead/dying, don't shoot it.
 	return ..()
 
-/datum/ai_holder/simple_mob/xenobio_slime/can_attack(atom/movable/AM)
+/datum/ai_holder/simple_mob/xenobio_slime/can_attack(atom/movable/AM, var/vision_required = TRUE)
 	. = ..()
 	if(.) // Do some additional checks because we have Special Code(tm).
 		if(ishuman(AM))
