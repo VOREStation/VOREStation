@@ -599,6 +599,12 @@
 	ckeywhitelist = list("phoaly")
 	character_name = list("Lily Maximus")
 
+/datum/gear/fluff/pip_cloak
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/hop/fluff/pip
+	display_name = "Pip's Cloak"
+	ckeywhitelist = list("phoaly")
+	character_name = list("Pip Shyner")
+
 /datum/gear/fluff/lucuis_battery
 	path = /obj/item/weapon/fluff/dragor_dot
 	display_name = "Lucuis' Spare Battery"
