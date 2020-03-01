@@ -213,5 +213,5 @@
 /datum/map_template/surface/plains/ChemSpill1
 	name = "Ruptured Canister"
 	desc = "A dumped chemical canister. Looks dangerous."
-	mappath = 'maps/submaps/surface_submaps/plains/chemspill1.dmm'
+	mappath = 'maps/submaps/surface_submaps/plains/chemspill1_vr.dmm' //VOREStation Edit
 	cost = 10
