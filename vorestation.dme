@@ -2697,6 +2697,7 @@
 #include "code\modules\modular_computers\computers\subtypes\preset_laptop.dm"
 #include "code\modules\modular_computers\computers\subtypes\preset_laptop_vr.dm"
 #include "code\modules\modular_computers\computers\subtypes\preset_tablet.dm"
+#include "code\modules\modular_computers\computers\subtypes\preset_tablet_vr.dm"
 #include "code\modules\modular_computers\computers\subtypes\preset_telescreen.dm"
 #include "code\modules\modular_computers\file_system\computer_file.dm"
 #include "code\modules\modular_computers\file_system\data.dm"
