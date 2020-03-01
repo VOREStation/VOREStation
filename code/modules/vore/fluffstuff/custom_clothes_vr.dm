@@ -1931,3 +1931,16 @@ Departamental Swimsuits, for general use
 	default_worn_icon = 'icons/vore/custom_clothes_vr.dmi'
 	color = COLOR_NAVY
 	sprite_sheets = null
+
+//SweetBlueSylveon:Pip Shyner
+/obj/item/clothing/accessory/poncho/roles/cloak/hop/fluff/pip
+	name = "Pip's Cloak"
+	desc = "A brightly colored cloak, similar in pattern to the CRO's cloak. It's colored White, Pink, and Blue, with Gold buttons."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "pipcloak"
+	item_state = "pipcloak_mob"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+
+/obj/item/clothing/accessory/poncho/roles/cloak/hop/fluff/pip/equipped()		//Because otherwise it gets reset every time
+	..()
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
