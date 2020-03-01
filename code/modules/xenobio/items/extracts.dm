@@ -53,7 +53,7 @@
 	var/obj/item/slime_extract/T = holder.my_atom
 	T.uses--
 	if(T.uses <= 0)
-		T.visible_message("\icon[T]<span class='notice'>\The [T] goes inert.</span>")
+		T.visible_message("[bicon(T)]<span class='notice'>\The [T] goes inert.</span>")
 		T.name = "inert [initial(T.name)]"
 
 

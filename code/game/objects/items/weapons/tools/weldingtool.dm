@@ -57,7 +57,7 @@
 /obj/item/weapon/weldingtool/examine(mob/user)
 	if(..(user, 0))
 		if(max_fuel)
-			to_chat(user, text("\icon[] The [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel ))
+			to_chat(user, "[bicon(src)] The [src.name] contains [get_fuel()]/[src.max_fuel] units of fuel!")
 
 /obj/item/weapon/weldingtool/attack(atom/A, mob/living/user, def_zone)
 	if(ishuman(A) && user.a_intent == I_HELP)
@@ -560,9 +560,9 @@
 		to_chat(user, desc)
 	else
 		if(power_supply)
-			to_chat(user, "\icon[src] The [src.name] has [get_fuel()] charge left.")
+			to_chat(user, "[bicon(src)] The [src.name] has [get_fuel()] charge left.")
 		else
-			to_chat(user, "\icon[src] The [src.name] has no power cell!")
+			to_chat(user, "[bicon(src)] The [src.name] has no power cell!")
 
 /obj/item/weapon/weldingtool/electric/get_fuel()
 	if(use_external_power)

@@ -2142,6 +2142,9 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
 "aeD" = (
@@ -14060,6 +14063,9 @@
 /obj/effect/floor_decal/corner_techfloor_grid/full{
 	dir = 4
 	},
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
 "azV" = (
@@ -21561,6 +21567,13 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "aOt" = (
+/obj/structure/catwalk,
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
+"aOu" = (
 /obj/machinery/optable,
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/light{
@@ -23183,7 +23196,7 @@
 	pixel_x = 0;
 	pixel_y = -26
 	},
-/obj/machinery/iv_drip,
+/obj/structure/medical_stand,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/surgery)
 "aQZ" = (
@@ -39158,7 +39171,7 @@ aMq
 aMq
 aDS
 aNG
-aEp
+aOt
 aDS
 aac
 aac
@@ -43039,7 +43052,7 @@ aab
 aab
 aag
 aaC
-aOt
+aOu
 aQg
 aQG
 aQX

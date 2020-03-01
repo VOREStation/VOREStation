@@ -6,6 +6,7 @@
 	desc = "You can be totally screwwy with this."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver"
+	center_of_mass = list("x" = 13,"y" = 7)
 	slot_flags = SLOT_BELT | SLOT_EARS
 	force = 6
 	w_class = ITEMSIZE_TINY

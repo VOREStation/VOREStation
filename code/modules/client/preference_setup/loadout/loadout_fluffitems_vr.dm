@@ -467,6 +467,12 @@
 	ckeywhitelist = list("killerdragn")
 	character_name = list("Excess")
 
+/datum/gear/fluff/excess_uniform
+	path = /obj/item/clothing/under/fluff/excess
+	display_name = "Excess's Uniform"
+	ckeywhitelist = list("killerdragn")
+	character_name = list("Excess")
+
 /datum/gear/fluff/lassara_sheath
 	path = /obj/item/clothing/accessory/storage/knifeharness
 	display_name = "Lassara's Knife Harness"
@@ -592,6 +598,12 @@
 	display_name = "Lily's Unity Medal"
 	ckeywhitelist = list("phoaly")
 	character_name = list("Lily Maximus")
+
+/datum/gear/fluff/pip_cloak
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/hop/fluff/pip
+	display_name = "Pip's Cloak"
+	ckeywhitelist = list("phoaly")
+	character_name = list("Pip Shyner")
 
 /datum/gear/fluff/lucuis_battery
 	path = /obj/item/weapon/fluff/dragor_dot

@@ -83,12 +83,12 @@
 				name = "Salt Shaker"
 				desc = "Salt. From space oceans, presumably."
 				icon_state = "saltshaker"
-				center_of_mass = list("x"=16, "y"=10)
+				center_of_mass = list("x"=17, "y"=11)
 			if("blackpepper")
 				name = "Pepper Mill"
 				desc = "Often used to flavor food or make people sneeze."
 				icon_state = "peppermillsmall"
-				center_of_mass = list("x"=16, "y"=10)
+				center_of_mass = list("x"=17, "y"=11)
 			if("cornoil")
 				name = "Corn Oil"
 				desc = "A delicious oil used in cooking. Made from corn."
@@ -159,6 +159,7 @@
 	name = "salt shaker"											//	a large one.
 	desc = "Salt. From space oceans, presumably."
 	icon_state = "saltshakersmall"
+	center_of_mass = list("x"=17, "y"=11)
 
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker/Initialize()
 	. = ..()
@@ -168,6 +169,7 @@
 	name = "pepper mill"
 	desc = "Often used to flavor food or make people sneeze."
 	icon_state = "peppermillsmall"
+	center_of_mass = list("x"=17, "y"=11)
 
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill/Initialize()
 	. = ..()
@@ -379,6 +381,7 @@
 	desc = "A big bag of flour. Good for baking!"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "flour"
+	center_of_mass = list("x"=16, "y"=8)
 
 /obj/item/weapon/reagent_containers/food/condiment/flour/on_reagent_change()
 	return
@@ -386,5 +389,4 @@
 /obj/item/weapon/reagent_containers/food/condiment/flour/Initialize()
 	. = ..()
 	reagents.add_reagent("flour", 30)
-	src.pixel_x = rand(-10.0, 10)
-	src.pixel_y = rand(-10.0, 10)
+	randpixel_xy()

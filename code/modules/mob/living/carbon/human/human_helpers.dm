@@ -63,6 +63,8 @@
 		for(var/obj/item/rig_module/stealth_field/cloaker in suit.installed_modules)
 			if(cloaker.active)
 				cloaker.deactivate()
+	for(var/obj/item/weapon/deadringer/dr in src)
+		dr.uncloak()
 
 /mob/living/carbon/human/is_cloaked()
 	if(mind && mind.changeling && mind.changeling.cloaked) // Ling camo.
@@ -72,6 +74,9 @@
 		for(var/obj/item/rig_module/stealth_field/cloaker in suit.installed_modules)
 			if(cloaker.active)
 				return TRUE
+	for(var/obj/item/weapon/deadringer/dr in src)
+		if(dr.timer > 20)
+			return TRUE
 	return ..()
 
 /mob/living/carbon/human/get_ear_protection()

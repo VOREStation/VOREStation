@@ -27150,6 +27150,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/weapon/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'";
+	name = "Chemistry Cleaner"
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
 "aTe" = (
@@ -27944,6 +27948,17 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/shuttle_pad)
 "aUv" = (
+/obj/structure/table/reinforced,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 8
+	},
+/obj/machinery/chemical_dispenser/biochemistry/full,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/chemistry)
+"aUw" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
@@ -28006,20 +28021,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
-"aUC" = (
-/obj/structure/table/reinforced,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 8
-	},
-/obj/item/weapon/reagent_containers/spray/cleaner{
-	desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'";
-	name = "Chemistry Cleaner"
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/chemistry)
 "aUD" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
@@ -45109,7 +45110,7 @@ ahO
 aSP
 aSZ
 aTn
-aUC
+aUv
 aUJ
 aUP
 aUY
@@ -45597,7 +45598,7 @@ aNk
 aNl
 aNJ
 aNP
-aUv
+aUw
 aKU
 abg
 aOk
@@ -45739,7 +45740,7 @@ aNl
 aNl
 aNK
 aNP
-aUv
+aUw
 aKU
 abg
 aOk
@@ -45881,7 +45882,7 @@ aNm
 aNl
 aNK
 aNP
-aUv
+aUw
 aKU
 abg
 aOk

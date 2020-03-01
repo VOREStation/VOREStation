@@ -77,7 +77,7 @@
 		if(rabid)
 			return
 		var/justified = my_slime.is_justified_to_discipline() // This will also consider the AI-side of that proc.
-		lost_target() // Stop attacking.
+		remove_target() // Stop attacking.
 
 		if(justified)
 			obedience++
@@ -137,7 +137,7 @@
 
 // Called when using a pacification agent (or it's Kendrick being initalized).
 /datum/ai_holder/simple_mob/xenobio_slime/proc/pacify()
-	lost_target() // So it stops trying to kill them.
+	remove_target() // So it stops trying to kill them.
 	rabid = FALSE
 	hostile = FALSE
 	retaliate = FALSE
@@ -247,7 +247,7 @@
 				else
 					delayed_say("Fine...", speaker)
 					adjust_discipline(1, TRUE) // This must come before losing the target or it will be unjustified.
-					lost_target()
+					remove_target()
 
 
 			if(leader) // We're being asked to stop following someone.

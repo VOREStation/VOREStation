@@ -89,6 +89,21 @@
 
 	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/verb/toggle_precision_placement()
+	set name = "Enable/Disable Precision Placement"
+	set category = "Preferences"
+	set desc = "Toggles precise placement of objects on tables."
+
+	var/pref_path = /datum/client_preference/precision_placement
+
+	toggle_preference(pref_path)
+
+	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] place items where your cursor is on the table.")
+
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	feedback_add_details("admin_verb","TPIP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /client/verb/toggle_typing()
 	set name = "Show/Hide Typing Indicator"
 	set category = "Preferences"
@@ -224,20 +239,20 @@
 
 	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/verb/toggle_air_pump_hum() 
-	set name = "Toggle Air Pump Noise" 
-	set category = "Preferences" 
-	set desc = "Toggles Air Pumps humming" 
+/client/verb/toggle_air_pump_hum()
+	set name = "Toggle Air Pump Noise"
+	set category = "Preferences"
+	set desc = "Toggles Air Pumps humming"
 
-	var/pref_path = /datum/client_preference/air_pump_noise 
+	var/pref_path = /datum/client_preference/air_pump_noise
 
-	toggle_preference(pref_path) 
+	toggle_preference(pref_path)
 
-	to_chat(src, "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear air pumps hum, start, and stop.") 
+	to_chat(src, "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear air pumps hum, start, and stop.")
 
-	SScharacter_setup.queue_preferences_save(prefs) 
+	SScharacter_setup.queue_preferences_save(prefs)
 
-	feedback_add_details("admin_verb","TAirPumpNoise") 
+	feedback_add_details("admin_verb","TAirPumpNoise")
 
 /client/verb/toggle_safe_firing()
 	set name = "Toggle Gun Firing Intent Requirement"

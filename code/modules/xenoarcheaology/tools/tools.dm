@@ -133,7 +133,7 @@
 
 			positive_locations.Add(D)
 
-			to_chat(user, "<span class='notice'>\icon[src] [src] pings.</span>")
+			to_chat(user, "<span class='notice'>[bicon(src)] [src] pings.</span>")
 
 	else if(istype(A, /obj/structure/boulder))
 		var/obj/structure/boulder/B = A
@@ -151,7 +151,7 @@
 
 			positive_locations.Add(D)
 
-			to_chat(user, "<span class='notice'>\icon[src] [src] pings [pick("madly","wildly","excitedly","crazily")]!</span>")
+			to_chat(user, "<span class='notice'>[bicon(src)] [src] pings [pick("madly","wildly","excitedly","crazily")]!</span>")
 
 /obj/item/device/depth_scanner/attack_self(var/mob/living/user)
 	interact(user)
@@ -267,9 +267,9 @@
 						scan_ticks = 0
 						var/turf/T = get_turf(src)
 						if(target_radio)
-							T.visible_message("\icon[src] [src] [pick("chirps","chirrups","cheeps")] happily.")
+							T.visible_message("[bicon(src)] [src] [pick("chirps","chirrups","cheeps")] happily.")
 						else
-							T.visible_message("\icon[src] [src] [pick("chirps","chirrups","cheeps")] sadly.")
+							T.visible_message("[bicon(src)] [src] [pick("chirps","chirrups","cheeps")] sadly.")
 		else
 			icon_state = "pinoff"
 

@@ -107,7 +107,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/fixatmos,
 	/datum/admins/proc/quick_nif, //VOREStation Add,
 	/datum/admins/proc/sendFax,
-	/client/proc/despawn_player
+	/client/proc/despawn_player,
+	/datum/admins/proc/view_feedback
 	)
 
 var/list/admin_verbs_ban = list(
@@ -234,7 +235,8 @@ var/list/admin_verbs_debug = list(
 	/datum/admins/proc/change_weather,
 	/datum/admins/proc/change_time,
 	/client/proc/admin_give_modifier,
-	/client/proc/simple_DPS
+	/client/proc/simple_DPS,
+	/datum/admins/proc/view_feedback
 	)
 
 var/list/admin_verbs_paranoid_debug = list(

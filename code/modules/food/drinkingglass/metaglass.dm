@@ -647,6 +647,10 @@ Drinks Data
 	glass_icon_state = "appleade"
 	glass_center_of_mass = list("x"=16, "y"=8)
 
+/datum/reagent/drink/mintapplesparkle
+	glass_icon_state = "mintapplesparkle"
+	glass_center_of_mass = list("x"=16, "y"=8)
+
 /datum/reagent/drink/soda/pineappleade
 	glass_icon_state = "pineappleade"
 	glass_center_of_mass = list("x"=16, "y"=8)

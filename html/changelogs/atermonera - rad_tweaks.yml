@@ -1,5 +1,0 @@
-author: Atermonera
-delete-after: True
-changes: 
-  - tweak: "Radiation has to accumulate at least a little bit before it starts to become damaging. Very low levels of radiation can be safe for a number of minutes before you are at risk of injury."
-  - bugfix: "Unless you idle for several minutes near the supermatter before it's been turned on, you should no longer be at risk of taking toxloss (Including those few spots in cargo maintenance)."

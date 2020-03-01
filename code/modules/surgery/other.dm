@@ -225,7 +225,7 @@
 		rig = target.belt
 		if(!istype(rig))
 			return
-	rig.reset()
+	rig.cut_suit()
 	user.visible_message("<span class='notice'>[user] has cut through the support systems of \the [rig] on [target] with \the [tool].</span>", \
 		"<span class='notice'>You have cut through the support systems of \the [rig] on [target] with \the [tool].</span>")
 

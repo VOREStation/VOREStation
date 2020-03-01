@@ -12,7 +12,7 @@
 /obj/item/weapon/pen
 	desc = "It's a normal black ink pen."
 	name = "pen"
-	icon = 'icons/obj/bureaucracy.dmi'
+	icon = 'icons/obj/bureaucracy_vr.dmi' //VOREStation Edit
 	icon_state = "pen"
 	item_state = "pen"
 	slot_flags = SLOT_BELT | SLOT_EARS
@@ -24,6 +24,9 @@
 	var/colour = "black"	//what colour the ink is!
 	pressure_resistance = 2
 
+/obj/item/weapon/pen/attack_self(var/mob/user)
+	to_chat(user, "<span class='notice'>Click.</span>")
+	playsound(loc, 'sound/items/penclick.ogg', 50, 1)
 
 /obj/item/weapon/pen/blue
 	desc = "It's a normal blue ink pen."

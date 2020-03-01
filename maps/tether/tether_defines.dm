@@ -40,7 +40,7 @@
 	zlevel_datum_type = /datum/map_z_level/tether
 
 	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("tether")
+	lobby_screens = list("tether2_night")
 	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
 	holomap_smoosh = list(list(
@@ -168,6 +168,8 @@
 								 Z_LEVEL_ROGUEMINE_4)
 
 	lateload_single_pick = null //Nothing right now.
+
+	planet_datums_to_make = list(/datum/planet/virgo3b)
 
 /datum/map/tether/perform_map_generation()
 

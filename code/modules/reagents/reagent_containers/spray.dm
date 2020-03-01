@@ -4,6 +4,7 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cleaner"
 	item_state = "cleaner"
+	center_of_mass = list("x" = 16,"y" = 10)
 	flags = OPENCONTAINER|NOBLUDGEON
 	//TFF 24/12/19 - Let people print more spray bottles if needed.
 	matter = list("glass" = 300, DEFAULT_WALL_MATERIAL = 300)
@@ -122,6 +123,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "pepperspray"
 	item_state = "pepperspray"
+	center_of_mass = list("x" = 16,"y" = 16)
 	possible_transfer_amounts = null
 	volume = 40
 	var/safety = TRUE
@@ -164,6 +166,7 @@
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "chemsprayer"
 	item_state = "chemsprayer"
+	center_of_mass = list("x" = 16,"y" = 16)
 	throwforce = 3
 	w_class = ITEMSIZE_NORMAL
 	possible_transfer_amounts = null

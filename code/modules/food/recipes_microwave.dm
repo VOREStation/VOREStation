@@ -1201,7 +1201,7 @@ I said no!
 
 /datum/recipe/microwave/piginblanket
 	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
+		/obj/item/weapon/reagent_containers/food/snacks/doughslice,
 		/obj/item/weapon/reagent_containers/food/snacks/sausage
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/piginblanket

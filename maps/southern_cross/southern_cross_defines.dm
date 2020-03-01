@@ -83,6 +83,8 @@
 
 	unit_test_exempt_from_atmos = list(/area/tcomm/chamber)
 
+	planet_datums_to_make = list(/datum/planet/sif)
+
 
 // Short range computers see only the six main levels, others can see the surrounding surface levels.
 /datum/map/southern_cross/get_map_levels(var/srcz, var/long_range = TRUE)

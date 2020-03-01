@@ -6,6 +6,8 @@ var/global/list/stool_cache = list() //haha stool
 	desc = "Apply butt."
 	icon = 'icons/obj/furniture_vr.dmi' //VOREStation Edit - new Icons
 	icon_state = "stool_preview" //set for the map
+	randpixel = 0
+	center_of_mass = null
 	force = 10
 	throwforce = 10
 	w_class = ITEMSIZE_HUGE
@@ -47,7 +49,7 @@ var/global/list/stool_cache = list() //haha stool
 	if(padding_material)
 		var/padding_cache_key = "stool-padding-[padding_material.name]"
 		if(isnull(stool_cache[padding_cache_key]))
-			var/image/I =  image(icon, "stool_padding")
+			var/image/I =  image(icon, "[base_icon]_padding") //VOREStation Edit
 			I.color = padding_material.icon_colour
 			stool_cache[padding_cache_key] = I
 		overlays |= stool_cache[padding_cache_key]

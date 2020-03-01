@@ -104,8 +104,9 @@ SUBSYSTEM_DEF(timer)
 	if (next_clienttime_timer_index)
 		clienttime_timers.Cut(1, next_clienttime_timer_index+1)
 
+	var/pre_state = src.state
 	if (MC_TICK_CHECK)
-		log_world("Timer bailing before execution at world.time=[world.time] with last_invoke_tick=[last_invoke_tick]") // VOREStation Edit - Debugging
+		log_world("Timer bailing before execution at world.time=[world.time] with LIT=[last_invoke_tick], TICK_USAGE=[TICK_USAGE], current_ticklimit=[Master.current_ticklimit], state=[pre_state] -> [src.state], queued_priority=[queued_priority] tick_overrun=[tick_overrun]") // VOREStation Edit - Debugging
 		return
 
 	var/static/list/spent = list()

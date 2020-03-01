@@ -97,7 +97,7 @@
 		//dat += "<a href='?src=\ref[src];item=1'>Recover object</a>.<br>" //VOREStation Removal - Just log them.
 		//dat += "<a href='?src=\ref[src];allitems=1'>Recover all objects</a>.<br>" //VOREStation Removal
 
-	to_chat(user, browse(dat, "window=cryopod_console"))
+	user << browse(dat, "window=cryopod_console")
 	onclose(user, "cryopod_console")
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
@@ -116,7 +116,7 @@
 			dat += "[person]<br/>"
 		dat += "<hr/>"
 
-		to_chat(user, browse(dat, "window=cryolog"))
+		user << browse(dat, "window=cryolog")
 
 	if(href_list["view"])
 		if(!allow_items) return
@@ -128,7 +128,7 @@
 		//VOREStation Edit End
 		dat += "<hr/>"
 
-		to_chat(user, browse(dat, "window=cryoitems"))
+		user << browse(dat, "window=cryoitems")
 
 	else if(href_list["item"])
 		if(!allow_items) return
@@ -424,6 +424,16 @@
 	items -= announce // or the autosay radio.
 
 	for(var/obj/item/W in items)
+		//VOREStation Addition Start
+		if(istype(W, /obj/item/device/pda))
+			var/obj/item/device/pda/found_pda = W
+			found_pda.delete_id = TRUE
+		else
+			var/list/pdas_found = W.search_contents_for(/obj/item/device/pda)
+			if(pdas_found.len)
+				for(var/obj/item/device/pda/found_pda in pdas_found)
+					found_pda.delete_id = TRUE
+		//VOREStation Addition End
 
 		var/preserve = 0
 

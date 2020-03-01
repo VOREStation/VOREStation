@@ -195,7 +195,7 @@
 /obj/structure/bed/roller
 	name = "roller bed"
 	desc = "A portable bed-on-wheels made for transporting medical patients."
-	icon = 'icons/obj/rollerbed.dmi'
+	icon = 'icons/obj/rollerbed_vr.dmi' //VOREStation Edit
 	icon_state = "rollerbed"
 	anchored = 0
 	surgery_odds = 75
@@ -229,8 +229,9 @@
 /obj/item/roller
 	name = "roller bed"
 	desc = "A collapsed roller bed that can be carried around."
-	icon = 'icons/obj/rollerbed.dmi'
+	icon = 'icons/obj/rollerbed_vr.dmi' //VOREStation Edit
 	icon_state = "folded_rollerbed"
+	center_of_mass = list("x" = 17,"y" = 7)
 	slot_flags = SLOT_BACK
 	w_class = ITEMSIZE_LARGE
 	var/rollertype = /obj/item/roller

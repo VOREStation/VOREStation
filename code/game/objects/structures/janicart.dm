@@ -25,7 +25,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 
 /obj/structure/janitorialcart/examine(mob/user)
 	if(..(user, 1))
-		to_chat(user, "[src] \icon[src] contains [reagents.total_volume] unit\s of liquid!")
+		to_chat(user, "[src] [bicon(src)] contains [reagents.total_volume] unit\s of liquid!")
 	//everything else is visible, so doesn't need to be mentioned
 
 
@@ -189,7 +189,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	if(!..(user, 1))
 		return
 
-	to_chat(user, "\icon[src] This [callme] contains [reagents.total_volume] unit\s of water!")
+	to_chat(user, "[bicon(src)] This [callme] contains [reagents.total_volume] unit\s of water!")
 	if(mybag)
 		to_chat(user, "\A [mybag] is hanging on the [callme].")
 

@@ -4617,6 +4617,7 @@
 	icon_state = "camera";
 	dir = 5
 	},
+/obj/item/weapon/storage/box/holowarrants,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_equiptment_storage)
 "hD" = (
@@ -16994,19 +16995,10 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/chemistry)
 "An" = (
-/obj/structure/table/reinforced,
-/obj/item/weapon/storage/box/beakers,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/chemistry)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/tether)
 "Ao" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -17984,6 +17976,16 @@
 /area/medical/chemistry)
 "BF" = (
 /obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/machinery/chemical_dispenser/biochemistry/full,
 /turf/simulated/floor/tiled/white,
 /area/medical/chemistry)
 "BG" = (
@@ -21316,7 +21318,7 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/cmo)
 "GU" = (
-/obj/machinery/iv_drip,
+/obj/structure/medical_stand,
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
@@ -23871,7 +23873,7 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "KP" = (
-/obj/machinery/iv_drip,
+/obj/structure/medical_stand,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
 	},
@@ -29551,10 +29553,10 @@
 /turf/simulated/floor/outdoors/grass/forest,
 /area/quartermaster/qm)
 "Vm" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/tether)
+/obj/structure/table/reinforced,
+/obj/item/weapon/storage/box/beakers,
+/turf/simulated/floor/tiled/white,
+/area/medical/chemistry)
 "Vn" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -30518,6 +30520,19 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"ZP" = (
+/obj/structure/catwalk,
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor,
+/area/maintenance/cargo)
+"ZQ" = (
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor,
+/area/maintenance/station/ai)
 "ZT" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/alarm{
@@ -38028,8 +38043,8 @@ Ah
 Bt
 Cc
 yI
-An
 BF
+Vm
 Do
 Eh
 Fb
@@ -41407,11 +41422,11 @@ Zy
 WG
 dj
 XA
-Vm
+An
 ms
 Oz
 be
-nx
+ZP
 RT
 dT
 Se
@@ -41549,7 +41564,7 @@ UJ
 Xb
 dj
 XN
-Vm
+An
 ms
 Xq
 be
@@ -41691,7 +41706,7 @@ iW
 WS
 dj
 XN
-Vm
+An
 ms
 Xq
 be
@@ -41974,7 +41989,7 @@ jZ
 WR
 Xo
 XN
-Vm
+An
 cK
 ms
 Xq
@@ -42542,7 +42557,7 @@ ea
 kx
 dj
 XN
-Vm
+An
 cK
 ms
 mq
@@ -42827,7 +42842,7 @@ kQ
 TG
 dj
 XN
-Vm
+An
 ms
 mq
 be
@@ -42969,7 +42984,7 @@ kR
 Vd
 dj
 XN
-Vm
+An
 ms
 QL
 be
@@ -43111,7 +43126,7 @@ ZE
 ZB
 dj
 XB
-Vm
+An
 ms
 Sq
 be
@@ -44105,7 +44120,7 @@ du
 fy
 fy
 RI
-gK
+ZQ
 fp
 RN
 eI

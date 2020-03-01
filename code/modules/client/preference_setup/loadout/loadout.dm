@@ -272,12 +272,12 @@ var/list/gear_datums = list()
 
 /datum/gear/proc/spawn_item(var/location, var/metadata)
 	var/datum/gear_data/gd = new(path, location)
-	for(var/datum/gear_tweak/gt in gear_tweaks)
-		if(gear_tweaks.len)
+	if(length(gear_tweaks) && metadata)
+		for(var/datum/gear_tweak/gt in gear_tweaks)
 			gt.tweak_gear_data(metadata["[gt]"], gd)
 	var/item = new gd.path(gd.location)
-	for(var/datum/gear_tweak/gt in gear_tweaks)
-		if(gear_tweaks.len)
+	if(length(gear_tweaks) && metadata)
+		for(var/datum/gear_tweak/gt in gear_tweaks)
 			gt.tweak_item(item, metadata["[gt]"])
 	var/mob/M = location
 	if(istype(M) && exploitable) //Update exploitable info records for the mob without creating a duplicate object at their feet.

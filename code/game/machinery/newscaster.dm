@@ -15,6 +15,7 @@
 	var/backup_author = ""
 	var/icon/backup_img = null
 	var/icon/backup_caption = ""
+	var/post_time = 0
 
 /datum/feed_channel
 	var/channel_name=""
@@ -78,6 +79,7 @@
 	newMsg.body = msg
 	newMsg.time_stamp = "[stationtime2text()]"
 	newMsg.is_admin_message = adminMessage
+	newMsg.post_time = round_duration_in_ticks // Should be almost universally unique
 	if(message_type)
 		newMsg.message_type = message_type
 	if(photo)
@@ -123,7 +125,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 /obj/machinery/newscaster
 	name = "newscaster"
 	desc = "A standard newsfeed handler for use on commercial space stations. All the news you absolutely have no use for, in one place!"
-	icon = 'icons/obj/terminals.dmi'
+	icon = 'icons/obj/terminals_vr.dmi' //VOREStation Edit
 	icon_state = "newscaster_normal"
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER

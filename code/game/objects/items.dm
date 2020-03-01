@@ -4,6 +4,7 @@
 	w_class = ITEMSIZE_NORMAL
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
+	var/randpixel = 6
 	var/abstract = 0
 	var/r_speed = 1.0
 	var/health = null
@@ -282,6 +283,8 @@
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
+	pixel_x = 0
+	pixel_y = 0
 	return
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
@@ -710,6 +713,16 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 // Called when you swap hands away from the item
 /obj/item/proc/in_inactive_hand(mob/user)
 	return
+
+//Used for selecting a random pixel placement, usually on initialize. Checks for pixel_x/y to not interfere with mapped in items.
+/obj/item/proc/randpixel_xy()
+	if(!pixel_x && !pixel_y)
+		pixel_x = rand(-randpixel, randpixel)
+		pixel_y = rand(-randpixel, randpixel)
+		return TRUE
+	else
+		return FALSE
+
 
 // My best guess as to why this is here would be that it does so little. Still, keep it under all the procs, for sanity's sake.
 /obj/item/device

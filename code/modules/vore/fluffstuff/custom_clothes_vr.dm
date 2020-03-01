@@ -1919,3 +1919,28 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/accessory/collar/pink/fluff/warning
 	name = "Warning Collar (AGGRESSIVE)"
 	desc = "A bright red warning collar with white text - \"AGGRESSIVE\"."
+
+//KillerDragn:Excess
+/obj/item/clothing/under/fluff/excess
+	name = "XS-21E Labeled Latex Clothing"
+	desc = "A latex navy blue tube-top and matching compression shorts, with a bright yellow stripe down the side. \"XS-21E\" is written on the thigh. \"Warning\" is written in yellow by the stripe on the top."
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "latex_clothes"
+	item_icons = list()
+	default_worn_icon = 'icons/vore/custom_clothes_vr.dmi'
+	color = COLOR_NAVY
+	sprite_sheets = null
+
+//SweetBlueSylveon:Pip Shyner
+/obj/item/clothing/accessory/poncho/roles/cloak/hop/fluff/pip
+	name = "Pip's Cloak"
+	desc = "A brightly colored cloak, similar in pattern to the CRO's cloak. It's colored White, Pink, and Blue, with Gold buttons."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "pipcloak"
+	item_state = "pipcloak_mob"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+
+/obj/item/clothing/accessory/poncho/roles/cloak/hop/fluff/pip/equipped()		//Because otherwise it gets reset every time
+	..()
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'

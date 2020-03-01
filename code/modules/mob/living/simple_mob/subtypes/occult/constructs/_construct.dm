@@ -134,7 +134,7 @@
 
 /mob/living/simple_mob/construct/examine(mob/user)
 	..(user)
-	var/msg = "<span cass='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n"
+	var/msg = "<span cass='info'>*---------*\nThis is [bicon(src)] \a <EM>[src]</EM>!\n"
 	if (src.health < src.getMaxHealth())
 		msg += "<span class='warning'>"
 		if (src.health >= src.getMaxHealth()/2)

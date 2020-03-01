@@ -66,9 +66,11 @@
 	else
 		output += "<p><a href='byond://?src=\ref[src];shownews=1'>Show News</A></p>"
 
+	if(SSsqlite.can_submit_feedback(client))
+		output += "<p>[href(src, list("give_feedback" = 1), "Give Feedback")]</p>"
 	output += "</div>"
 
-	panel = new(src, "Welcome","Welcome", 210, 280, src)
+	panel = new(src, "Welcome","Welcome", 210, 300, src)
 	panel.set_window_options("can_close=0")
 	panel.set_content(output)
 	panel.open()
@@ -306,6 +308,15 @@
 		show_hidden_jobs = !show_hidden_jobs
 		LateChoices()
 
+	if(href_list["give_feedback"])
+		if(!SSsqlite.can_submit_feedback(my_client))
+			return
+
+		if(client.feedback_form)
+			client.feedback_form.display() // In case they closed the form early.
+		else
+			client.feedback_form = new(client)
+
 /mob/new_player/proc/handle_server_news()
 	if(!client)
 		return
@@ -324,6 +335,7 @@
 		var/datum/browser/popup = new(src, "Server News", "Server News", 450, 300, src)
 		popup.set_content(dat)
 		popup.open()
+
 
 /mob/new_player/proc/IsJobAvailable(rank)
 	var/datum/job/job = job_master.GetJob(rank)

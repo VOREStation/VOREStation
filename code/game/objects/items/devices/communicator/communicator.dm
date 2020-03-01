@@ -72,6 +72,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	var/datum/exonet_protocol/exonet = null
 	var/list/communicating = list()
 	var/update_ticks = 0
+	var/newsfeed_channel = 0
 
 // Proc: New()
 // Parameters: None
@@ -312,7 +313,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 /obj/item/device/communicator/Destroy()
 	for(var/mob/living/voice/voice in contents)
 		voice_mobs.Remove(voice)
-		to_chat(voice, "<span class='danger'>\icon[src] Connection timed out with remote host.</span>")
+		to_chat(voice, "<span class='danger'>[bicon(src)] Connection timed out with remote host.</span>")
 		qdel(voice)
 	close_connection(reason = "Connection timed out")
 
