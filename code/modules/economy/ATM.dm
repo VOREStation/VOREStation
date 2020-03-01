@@ -17,7 +17,7 @@ log transactions
 /obj/machinery/atm
 	name = "Automatic Teller Machine"
 	desc = "For all your monetary needs!"
-	icon = 'icons/obj/terminals.dmi'
+	icon = 'icons/obj/terminals_vr.dmi' //VOREStation Edit
 	icon_state = "atm"
 	anchored = 1
 	use_power = 1
