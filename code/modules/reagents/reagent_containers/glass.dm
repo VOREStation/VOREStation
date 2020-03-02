@@ -35,6 +35,7 @@
 		/mob/living/bot/medbot,
 		/obj/item/weapon/storage/secure/safe,
 		/obj/machinery/iv_drip,
+		/obj/structure/medical_stand, //VOREStation Add,
 		/obj/machinery/disease2/incubator,
 		/obj/machinery/disposal,
 		/mob/living/simple_mob/animal/passive/cow,
