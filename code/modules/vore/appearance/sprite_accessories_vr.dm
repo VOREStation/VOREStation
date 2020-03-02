@@ -497,7 +497,7 @@
     name = "sylveon ears and ribbons (Pip Shyner)"
     desc = ""
     icon_state = "pipears"
-    ckeys_allowed = list("Phoaly")
+    ckeys_allowed = list("phoaly")
 
 
 /*
