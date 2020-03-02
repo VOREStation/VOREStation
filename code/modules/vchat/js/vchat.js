@@ -139,6 +139,7 @@ function start_vue() {
 					matches: ".say, .emote",
 					becomes: "vc_localchat",
 					pretty: "Local Chat",
+					tooltip: "In-character local messages (say, emote, etc)",
 					required: false,
 					admin: false
 				},
@@ -146,6 +147,7 @@ function start_vue() {
 					matches: ".alert, .syndradio, .centradio, .airadio, .entradio, .comradio, .secradio, .engradio, .medradio, .sciradio, .supradio, .srvradio, .expradio, .radio, .deptradio, .newscaster",
 					becomes: "vc_radio",
 					pretty: "Radio Comms",
+					tooltip: "All departments of radio messages",
 					required: false,
 					admin: false
 				},
@@ -153,6 +155,7 @@ function start_vue() {
 					matches: ".notice, .adminnotice, .info, .sinister, .cult",
 					becomes: "vc_info",
 					pretty: "Notices",
+					tooltip: "Non-urgent messages from the game and items",
 					required: false,
 					admin: false
 				},
@@ -160,6 +163,7 @@ function start_vue() {
 					matches: ".critical, .danger, .userdanger, .warning, .italics",
 					becomes: "vc_warnings",
 					pretty: "Warnings",
+					tooltip: "Urgent messages from the game and items",
 					required: false,
 					admin: false
 				},
@@ -167,6 +171,7 @@ function start_vue() {
 					matches: ".deadsay",
 					becomes: "vc_deadchat",
 					pretty: "Deadchat",
+					tooltip: "All of deadchat",
 					required: false,
 					admin: false
 				},
@@ -174,6 +179,7 @@ function start_vue() {
 					matches: ".ooc:not(.looc)",
 					becomes: "vc_globalooc",
 					pretty: "Global OOC",
+					tooltip: "The bluewall of global OOC messages",
 					required: false,
 					admin: false
 				},
@@ -190,6 +196,7 @@ function start_vue() {
 					matches: ".pm",
 					becomes: "vc_adminpm",
 					pretty: "Admin PMs",
+					tooltip: "Messages to/from admins ('adminhelps')",
 					required: false,
 					admin: false
 				},
@@ -197,6 +204,7 @@ function start_vue() {
 					matches: ".admin_channel",
 					becomes: "vc_adminchat",
 					pretty: "Admin Chat",
+					tooltip: "ASAY messages",
 					required: false,
 					admin: true
 				},
@@ -204,6 +212,7 @@ function start_vue() {
 					matches: ".mod_channel",
 					becomes: "vc_modchat",
 					pretty: "Mod Chat",
+					tooltip: "MSAY messages",
 					required: false,
 					admin: true
 				},
@@ -211,6 +220,7 @@ function start_vue() {
 					matches: ".event_channel",
 					becomes: "vc_eventchat",
 					pretty: "Event Chat",
+					tooltip: "ESAY messages",
 					required: false,
 					admin: true
 				},
@@ -218,12 +228,14 @@ function start_vue() {
 					matches: ".ooc.looc, .ooc .looc", //Dumb game
 					becomes: "vc_looc",
 					pretty: "Local OOC",
+					tooltip: "Local OOC messages, always enabled",
 					required: true
 				},
 				{
 					matches: ".boldannounce",
 					becomes: "vc_system",
 					pretty: "System Messages",
+					tooltip: "Messages from your client, always enabled",
 					required: true
 				}
 			],

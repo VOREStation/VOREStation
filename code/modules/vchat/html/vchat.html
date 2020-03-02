@@ -67,7 +67,7 @@
 							<h5>Messages to display:</h5>
 							<div class="ui form">
 								<div class="grouped fields">
-									<div class="field" v-for="type in type_table">
+									<div class="field" v-for="type in type_table" :title="type.tooltip">
 										<div v-show="!type.admin || is_admin" class="ui slider checkbox" :class="{ inverted: inverted, disabled: type.required || active_tab.immutable, checked: type.required || active_tab.immutable }">
 											<input type="checkbox" id="type.becomes" :value="type.becomes" v-model="active_tab.classes" :disabled="type.required || active_tab.immutable" :checked="type.required || active_tab.immutable"><label :for="type.becomes">{{type.pretty}}</label>
 										</div>
