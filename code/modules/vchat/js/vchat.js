@@ -191,6 +191,7 @@ function start_vue() {
 					matches: ".nif",
 					becomes: "vc_nif",
 					pretty: "NIF Messages",
+					tooltip: "Messages from the NIF itself and people inside",
 					required: false,
 					admin: false
 				},
