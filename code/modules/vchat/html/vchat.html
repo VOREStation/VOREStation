@@ -24,7 +24,7 @@
 <div id="app" @mouseup="on_mouseup" style="display: none;">
 
 	<!-- Top menu -->
-	<div class="ui top fixed pointing menu" :class="{ inverted: inverted }">
+	<div id="topmenu" class="ui top fixed menu" :class="{ inverted: inverted }">
 		<div v-for="(tab,index) in tabs" class="item" :class="{ active: tab.active, inverted: inverted }" @click="switchtab(tab)" @click.ctrl="editmode">
 			<i v-show="editing && !tab.immutable && index >= 2" class="icon-left-open-outline" @click.stop.prevent="movetab(tab,-1)" title="Move tab left"></i>
 			{{tab.name}}

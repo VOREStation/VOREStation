@@ -366,7 +366,7 @@ function start_vue() {
 			newtab: function() {
 				this.tabs.push({
 					name: "New Tab",
-					classes: this.always_show,
+					classes: this.always_show.slice(),
 					immutable: false,
 					active: false
 				});
