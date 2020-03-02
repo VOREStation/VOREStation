@@ -129,9 +129,9 @@ function start_vue() {
 			//Settings
 			inverted: false, //Dark mode
 			crushing: true, //Combine similar messages
-			showingnum: 200, //How many messages to show
 			animated: true, //Small CSS animations for new messages
-			fontsize: "zoom_normal", //Font size nudging
+			fontsize: 0.9, //Font size nudging
+			showingnum: 200, //How many messages to show
 
 			//The table to map game css classes to our vchat classes
 			type_table: [
@@ -296,11 +296,20 @@ function start_vue() {
 			animated: function (newSetting) {
 				set_storage("animated",newSetting);
 			},
-			fontsize: function (newSetting) {
+			fontsize: function (newSetting, oldSetting) {
+				if(isNaN(newSetting)) { //Numbers only
+					this.fontsize = oldSetting;
+					return;
+				}
+				if(newSetting < 0.2) {
+					this.fontsize = 0.2;
+				} else if(newSetting > 5) {
+					this.fontsize = 5;
+				}
 				set_storage("fontsize",newSetting);
 			},
 			showingnum: function (newSetting, oldSetting) {
-				if(!isFinite(newSetting)) {
+				if(!isFinite(newSetting)) { //Integers only
 					this.showingnum = oldSetting;
 					return;
 				}
@@ -352,9 +361,9 @@ function start_vue() {
 			load_settings: function() {
 				this.inverted = get_storage("darkmode", false);
 				this.crushing = get_storage("crushing", true);
-				this.showingnum = get_storage("showingnum", 200);
 				this.animated = get_storage("animated", true);
-				this.fontsize = get_storage("fontsize", 'zoom_normal');
+				this.showingnum = get_storage("showingnum", 200);
+				this.fontsize = get_storage("fontsize", 0.9);
 			},
 			//Change to another tab
 			switchtab: function(tab) {
@@ -688,10 +697,14 @@ function get_localstorage(key, deffo) {
 	//localstorage only stores strings.
 	if(value === "null" || value === null) {
 		value = deffo;
+	//Coerce bools back into their native forms
 	} else if(value === "true") {
 		value = true;
 	} else if(value === "false") {
 		value = false;
+	//Coerce numbers back into numerical form
+	} else if(!isNaN(value)) {
+		value = +value;
 	}
 	return value;
 }
@@ -720,6 +733,8 @@ function get_cookie(key, deffo) {
 			right = true;
 		} else if(right === "false") {
 			right = false;
+		} else if(!isNaN(right)) {
+			right = +right;
 		}
 		cookie_object[left] = right; //Stick into object
 	});

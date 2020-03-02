@@ -97,30 +97,15 @@
 								</div>
 							</div>
 							<div class="inline fields">
-								<label>Font Size</label>
-								<div class="field">
-									<div class="ui radio checkbox">
-										<input type="radio" id="fssmall" name="fontsize" v-model="fontsize" value="zoom_less">
-										<label for="fssmall">Small</label>
-									</div>
-								</div>
-								<div class="field">
-									<div class="ui radio checkbox">
-										<input type="radio" id="fsstd" name="fontsize" v-model="fontsize" value="zoom_normal">
-										<label for="fsstd">Standard</label>
-									</div>
-								</div>
-								<div class="field">
-									<div class="ui radio checkbox">
-										<input type="radio" id="fslarge" name="fontsize" v-model="fontsize" value="zoom_more">
-										<label for="fslarge">Large</label>
-									</div>
+								<div class="field" title="Font size (Min 0.2, Max 5, Default 0.9)">
+									<label>Font Scale</label>
+									<input class="inputbox" :class="{ inverted: inverted }" type="number" name="fontsize" placeholder="0.9" v-model.lazy.number="fontsize" required>
 								</div>
 							</div>
 							<div class="inline fields">
-								<div class="field">
+								<div class="field" title="Hides messages for performance (Min 50, Max 2000, Default 200)">
 									<label># Shown Messages</label>
-									<input :class="{ inverted: inverted }" type="number" name="showingnum" placeholder="200" title="Will affect performance!" v-model.lazy.number="showingnum" required style="width: 5em; padding: 0.1em;">
+									<input class="inputbox" :class="{ inverted: inverted }" type="number" name="showingnum" placeholder="200" v-model.lazy.number="showingnum" required>
 								</div>
 							</div>
 						</div>
@@ -131,12 +116,12 @@
 		</div>
 
 		<!-- Messages box -->
-		<div v-show="!editing" id="messagebox" class="ui segment" :class="active_classes" @click="click_message">
+		<div v-show="!editing" id="messagebox" class="ui segment" :class="active_classes" @click="click_message" :style="{fontSize: fontsize+'em'}">
 			<div v-show="messages.length > showingnum" class="vc_system">
 				<span class='notice'>[ {{messages.length - showingnum}} previous messages hidden due to display settings. ]</span>
 			</div>
 			<transition-group name="msgsanim" tag="span" :css="animated">
-				<div v-for="message in shown_messages" :class="[message.category, fontsize]" :key="message.id">
+				<div v-for="message in shown_messages" :class="[message.category]" :key="message.id">
 					<span v-html="message.content"></span>
 					<span v-show="message.repeats > 1" class="ui grey circular label">x{{message.repeats}}</span>
 				</div>
