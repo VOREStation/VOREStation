@@ -71,6 +71,7 @@ body.inverted {
 #messagebox h1, #messagebox h2, #messagebox h3, #messagebox h4, #messagebox h5, #messagebox h6	{color: #0000ff; font-family: Georgia, Verdana, sans-serif;}
 
 #messagebox em						{font-style: normal; font-weight: bold;}
+#messagebox a 						{text-decoration: underline;}
 
 .motd					{color: #638500;font-family: Verdana, sans-serif;}
 .motd h1, .motd h2, .motd h3, .motd h4, .motd h5, .motd h6
@@ -88,7 +89,7 @@ body.inverted {
 
 .ooc .everyone			{color: #002eb8;}
 .inverted .ooc .everyone {color: #004ed8;} /* Dark mode */
-.ooc .looc				{color: #3A9696;}
+.looc				    {color: #3A9696;}
 .ooc .elevated			{color: #2e78d9;}
 .ooc .moderator			{color: #184880;}
 .ooc .developer			{color: #1b521f;}
