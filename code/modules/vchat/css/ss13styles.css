@@ -1,6 +1,15 @@
 /* VChat Styles */
+body.inverted {
+	background-color: #111111;
+}
+
+#topmenu {
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
 #contentbox {
-	margin-top: 3rem; /* Make room for the fixed top menu */
+	margin-top: 3.3rem; /* Make room for the fixed top menu */
 	overflow-wrap: break-word;
 	word-wrap: break-word; /* IE, blah */
 }
@@ -18,21 +27,12 @@
 	font-size: 10px;
 }
 
-#app > .menu {
-        overflow-x: auto;
-        overflow-y: hidden;
-}
-
 .item {
 	cursor: pointer;
 }
 
 .icon-left-open-outline:hover, .icon-right-open-outline:hover, .icon-cancel-circled-outline:hover {
 	color: red;
-}
-
-body.inverted {
-	background-color: #111111;
 }
 
 .blinkwarn {
@@ -56,6 +56,7 @@ body.inverted {
 #messagebox.vc_info .vc_info 				{ display: block; }
 #messagebox.vc_deadchat .vc_deadchat  		{ display: block; }
 #messagebox.vc_globalooc .vc_globalooc 		{ display: block; }
+#messagebox.vc_looc .vc_looc 				{ display: block; }
 #messagebox.vc_adminpm .vc_adminpm 			{ display: block; }
 #messagebox.vc_adminchat .vc_adminchat 		{ display: block; }
 #messagebox.vc_modchat .vc_modchat 			{ display: block; }
