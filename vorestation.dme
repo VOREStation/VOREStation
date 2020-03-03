@@ -1034,8 +1034,11 @@
 #include "code\game\objects\items\toys.dm"
 #include "code\game\objects\items\trash.dm"
 #include "code\game\objects\items\trash_material.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\game\objects\items\trash_vr.dm"
 #include "code\game\objects\items\devices\advnifrepair.dm"
+=======
+>>>>>>> 0dd194e... Salvageable machines (#6768):polaris.dme
 #include "code\game\objects\items\devices\ai_detector.dm"
 #include "code\game\objects\items\devices\aicard.dm"
 #include "code\game\objects\items\devices\binoculars.dm"
