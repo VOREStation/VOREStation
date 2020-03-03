@@ -56,14 +56,14 @@
 	var/mob/M = usr
 	if(!M.mind)	return 0
 	if(!M.mind.assigned_role == "Detective")
-		M << "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>"
+		to_chat(M, "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>")
 		return 0
 
 	var/input = sanitizeSafe(input("What do you want to name the gun?", ,""), MAX_NAME_LEN)
 
 	if(src && input && !M.stat && in_range(M,src))
 		name = input
-		M << "You name the gun [input]. Say hello to your new friend."
+		to_chat(M, "You name the gun [input]. Say hello to your new friend.")
 		return 1
 
 /obj/item/weapon/gun/projectile/revolver/detective45
@@ -85,14 +85,14 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 	if(!M.mind)	return 0
 	var/job = M.mind.assigned_role
 	if(job != "Detective")
-		M << "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>"
+		to_chat(M, "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>")
 		return 0
 
 	var/input = sanitizeSafe(input("What do you want to name the gun?", ,""), MAX_NAME_LEN)
 
 	if(src && input && !M.stat && in_range(M,src))
 		name = input
-		M << "You name the gun [input]. Say hello to your new friend."
+		to_chat(M, "You name the gun [input]. Say hello to your new friend.")
 		return 1
 
 /obj/item/weapon/gun/projectile/revolver/detective45/verb/reskin_gun()
@@ -114,7 +114,7 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 	var/choice = input(M,"Choose your sprite!","Resprite Gun") in options
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]
-		M << "Your gun is now sprited as [choice]. Say hello to your new friend."
+		to_chat(M, "Your gun is now sprited as [choice]. Say hello to your new friend.")
 		return 1
 
 

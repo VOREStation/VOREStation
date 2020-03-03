@@ -236,7 +236,7 @@
 <A href='?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
 "}
 
-	to_chat(user, browse("<HEAD><TITLE>Microwave Controls</TITLE></HEAD><TT>[dat]</TT>", "window=microwave"))
+	user << browse("<HEAD><TITLE>Microwave Controls</TITLE></HEAD><TT>[dat]</TT>", "window=microwave")
 	onclose(user, "microwave")
 	return
 
@@ -351,7 +351,7 @@
 	if (src.reagents.total_volume)
 		src.dirty++
 	src.reagents.clear_reagents()
-	usr << "<span class='notice'>You dispose of the microwave contents.</span>"
+	to_chat(usr, "<span class='notice'>You dispose of the microwave contents.</span>")
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/muck_start()
@@ -422,4 +422,4 @@
 
 /obj/machinery/microwave/advanced/Initialize()
 	..()
-	reagents.maximum_volume = 1000 
+	reagents.maximum_volume = 1000

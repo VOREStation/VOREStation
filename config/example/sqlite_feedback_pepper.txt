@@ -1,0 +1,11 @@
+# This is used to alter the hash for in-game feedback authors.
+# The reason for this is that doing this stops admins trying to 
+# guess who submitted a specific piece of feedback by feeding
+# a list of ckeys into an MD5 hasher.
+# In order for this to work, this file must contain a string, to be 
+# added onto the ckey before hashing, and ideally as few people as 
+# possible should know the string. It is also recommended to utilize 
+# file permissions (e.g. chown) to only allow the game to access 
+# this file, and forbid people with access to the server directly 
+# from just opening the file (even if they use sudo, it'll make a log).
+# Make sure the string doesn't start with a #, or it'll be commented out.

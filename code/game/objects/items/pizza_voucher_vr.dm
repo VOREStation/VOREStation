@@ -25,19 +25,11 @@
 		user.visible_message("<span class='notice'>[user] presses a button on [src]!</span>")
 		desc = desc + " This one seems to be used-up."
 		spent = TRUE
+		user.visible_message("<span class='notice'>A small bluespace rift opens just above your head and spits out a pizza box!</span>")
 		if(special_delivery)
-			var/delivery = pick(prob(25);/obj/item/pizzabox/meat,
-				prob(25);/obj/item/pizzabox/margherita,
-				prob(25);/obj/item/pizzabox/vegetable,
-				prob(25);/obj/item/pizzabox/mushroom)
-			command_announcement.Announce("SPECIAL DELIVERY PIZZA ORDER #[rand(1000,9999)]-[rand(100,999)] HAS BEEN RECIEVED. SHIPMENT DISPATCHED VIA BALLISTIC SUPPLY POD FOR IMMEDIATE DELIVERY! THANK YOU AND ENJOY YOUR PIZZA!", "WE ALWAYS DELIVER!")
-			var/crash_x = user.x
-			var/crash_y = user.y
-			var/crash_z = user.z
-			spawn(rand(30, 75))
-				new /datum/random_map/droppod/pizza(null, crash_x, crash_y, crash_z, automated = TRUE, supplied_drop = delivery) // Splat.
+			command_announcement.Announce("SPECIAL DELIVERY PIZZA ORDER #[rand(1000,9999)]-[rand(100,999)] HAS BEEN RECIEVED. SHIPMENT DISPATCHED VIA EXTRA-POWERFUL BALLISTIC LAUNCHERS FOR IMMEDIATE DELIVERY! THANK YOU AND ENJOY YOUR PIZZA!", "WE ALWAYS DELIVER!")
+			new /obj/effect/falling_effect/pizza_delivery/special(user.loc)
 		else
-			user.visible_message("<span class='notice'>A small bluespace rift opens just above your head and spits out a pizza box!</span>")
 			new /obj/effect/falling_effect/pizza_delivery(user.loc)
 	else
 		to_chat(user, "<span class='warning'>The [src] is spent!</span>")
@@ -53,9 +45,18 @@
 	else
 		to_chat(user, "<span class='warning'>The [src] is already in special delivery mode!</span>")
 
+/obj/effect/falling_effect/pizza_delivery
+	name = "PIZZA PIE POWER!"
+	crushing = FALSE
 
-/datum/random_map/droppod/pizza
-	placement_explosion_dev =   0
-	placement_explosion_heavy = 1
-	placement_explosion_light = 2
-	placement_explosion_flash = 4
+/obj/effect/falling_effect/pizza_delivery/Initialize(mapload)
+	..()
+	falling_type = pick(prob(20);/obj/item/pizzabox/meat,
+				prob(20);/obj/item/pizzabox/margherita,
+				prob(20);/obj/item/pizzabox/vegetable,
+				prob(20);/obj/item/pizzabox/mushroom,
+				prob(20);/obj/item/pizzabox/pineapple)
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/effect/falling_effect/pizza_delivery/special
+	crushing = TRUE

@@ -27,16 +27,21 @@
 		return
 
 	#if defined(TOPIC_DEBUGGING)
-	world << "[src]'s Topic: [href] destined for [hsrc]."
+	to_world("[src]'s Topic: [href] destined for [hsrc].")
 
 	if(href_list["nano_err"]) //nano throwing errors
-		world << "## NanoUI, Subject [src]: " + html_decode(href_list["nano_err"]) //NANO DEBUG HOOK
+		to_world("## NanoUI, Subject [src]: " + html_decode(href_list["nano_err")]) //NANO DEBUG HOOK
 
 	#endif
 
+	if(href_list["asset_cache_confirm_arrival"])
+		var/job = text2num(href_list["asset_cache_confirm_arrival"])
+		completed_asset_jobs += job
+		return
+
 	//search the href for script injection
 	if( findtext(href,"<script",1,0) )
-		world.log << "Attempted use of scripts within a topic call, by [src]"
+		to_world_log("Attempted use of scripts within a topic call, by [src]")
 		message_admins("Attempted use of scripts within a topic call, by [src]")
 		//del(usr)
 		return
@@ -52,25 +57,28 @@
 
 	if(href_list["irc_msg"])
 		if(!holder && received_irc_pm < world.time - 6000) //Worse they can do is spam IRC for 10 minutes
-			usr << "<span class='warning'>You are no longer able to use this, it's been more then 10 minutes since an admin on IRC has responded to you</span>"
+			to_chat(usr, "<span class='warning'>You are no longer able to use this, it's been more then 10 minutes since an admin on IRC has responded to you</span>")
 			return
 		if(mute_irc)
-			usr << "<span class='warning'You cannot use this as your client has been muted from sending messages to the admins on IRC</span>"
+			to_chat(usr, "<span class='warning'You cannot use this as your client has been muted from sending messages to the admins on IRC</span>")
 			return
 		send2adminirc(href_list["irc_msg"])
 		return
 
-
-
 	//Logs all hrefs
 	if(config && config.log_hrefs && href_logfile)
-		href_logfile << "[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]"
+		WRITE_LOG(href_logfile, "[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]")
 
 	switch(href_list["_src_"])
 		if("holder")	hsrc = holder
 		if("usr")		hsrc = mob
 		if("prefs")		return prefs.process_link(usr,href_list)
 		if("vars")		return view_var_Topic(href,href_list,hsrc)
+		if("chat")		return chatOutput.Topic(href, href_list)
+
+	switch(href_list["action"])
+		if("openLink")
+			src << link(href_list["link"])
 
 	..()	//redirect to hsrc.Topic()
 
@@ -105,8 +113,14 @@
 		del(src)
 		return
 
-	to_chat(src, "<font color='red'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</font>")
+	chatOutput = new /datum/chatOutput(src) //veechat
+	chatOutput.send_resources()
+	spawn()
+		chatOutput.start()
 
+	//Only show this if they are put into a new_player mob. Otherwise, "what title screen?"
+	if(isnewplayer(src.mob))
+		to_chat(src, "<font color='red'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</font>")
 
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
@@ -136,6 +150,8 @@
 		to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
 		to_chat(src, "<br>")
 
+	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
+		to_chat(src, "<span class='warning'>Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you.</span>")
 
 	if(holder)
 		add_admin_verbs()
@@ -152,21 +168,20 @@
 	log_client_to_db()
 
 	send_resources()
-	SSnanoui.send_resources(src)
 
 	if(!void)
 		void = new()
 		void.MakeGreed()
 	screen += void
 
-	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
+	if((prefs.lastchangelog != changelog_hash) && isnewplayer(src.mob)) //bolds the changelog button on the interface so we know there are updates.
 		to_chat(src, "<span class='info'>You have unread updates in the changelog.</span>")
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 		if(config.aggressive_changelog)
 			src.changes()
 
 	hook_vr("client_new",list(src)) //VOREStation Code
-	
+
 	if(config.paranoia_logging)
 		var/alert = FALSE //VOREStation Edit start.
 		if(isnum(player_age) && player_age == 0)
@@ -297,11 +312,11 @@
 
 				//Take action if required
 				if(config.ipr_block_bad_ips && config.ipr_allow_existing) //We allow players of an age, but you don't meet it
-					to_chat(src,"Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accommodate this.")
+					to_chat(src, "Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accommodate this.")
 					qdel(src)
 					return 0
 				else if(config.ipr_block_bad_ips) //We don't allow players of any particular age
-					to_chat(src,"Sorry, we do not accept connections from users via VPN/Proxy/Tor connections.")
+					to_chat(src, "Sorry, we do not accept connections from users via VPN/Proxy/Tor connections.")
 					qdel(src)
 					return 0
 		else
@@ -340,6 +355,14 @@
 	if(inactivity > duration)	return inactivity
 	return 0
 
+//Called when the client performs a drag-and-drop operation.
+/client/MouseDrop(start_object,end_object,start_location,end_location,start_control,end_control,params)
+	if(buildmode && start_control == "mapwindow.map" && start_control == end_control)
+		build_drag(src,buildmode,start_object,end_object,start_location,end_location,start_control,end_control,params)
+	else
+		. = ..()
+
+
 // Byond seemingly calls stat, each tick.
 // Calling things each tick can get expensive real quick.
 // So we slow this down a little.
@@ -356,56 +379,9 @@
 
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
 /client/proc/send_resources()
-
-	getFiles(
-		'html/search.js',
-		'html/panels.css',
-		'html/images/loading.gif',
-		'html/images/ntlogo.png',
-		'html/images/sglogo.png',
-		'html/images/talisman.png',
-		'html/images/paper_bg.png',
-		'html/images/no_image32.png',
-		'icons/pda_icons/pda_atmos.png',
-		'icons/pda_icons/pda_back.png',
-		'icons/pda_icons/pda_bell.png',
-		'icons/pda_icons/pda_blank.png',
-		'icons/pda_icons/pda_boom.png',
-		'icons/pda_icons/pda_bucket.png',
-		'icons/pda_icons/pda_crate.png',
-		'icons/pda_icons/pda_cuffs.png',
-		'icons/pda_icons/pda_eject.png',
-		'icons/pda_icons/pda_exit.png',
-		'icons/pda_icons/pda_flashlight.png',
-		'icons/pda_icons/pda_honk.png',
-		'icons/pda_icons/pda_mail.png',
-		'icons/pda_icons/pda_medical.png',
-		'icons/pda_icons/pda_menu.png',
-		'icons/pda_icons/pda_mule.png',
-		'icons/pda_icons/pda_notes.png',
-		'icons/pda_icons/pda_power.png',
-		'icons/pda_icons/pda_rdoor.png',
-		'icons/pda_icons/pda_reagent.png',
-		'icons/pda_icons/pda_refresh.png',
-		'icons/pda_icons/pda_scanner.png',
-		'icons/pda_icons/pda_signaler.png',
-		'icons/pda_icons/pda_status.png',
-		'icons/spideros_icons/sos_1.png',
-		'icons/spideros_icons/sos_2.png',
-		'icons/spideros_icons/sos_3.png',
-		'icons/spideros_icons/sos_4.png',
-		'icons/spideros_icons/sos_5.png',
-		'icons/spideros_icons/sos_6.png',
-		'icons/spideros_icons/sos_7.png',
-		'icons/spideros_icons/sos_8.png',
-		'icons/spideros_icons/sos_9.png',
-		'icons/spideros_icons/sos_10.png',
-		'icons/spideros_icons/sos_11.png',
-		'icons/spideros_icons/sos_12.png',
-		'icons/spideros_icons/sos_13.png',
-		'icons/spideros_icons/sos_14.png'
-		)
-
+	spawn (10) //removing this spawn causes all clients to not get verbs.
+		//Precache the client with all other assets slowly, so as to not block other browse() calls
+		getFilesSlow(src, SSassets.preload, register_asset = FALSE)
 
 mob/proc/MayRespawn()
 	return 0
@@ -441,6 +417,26 @@ client/verb/character_setup()
 		return FALSE
 	return ..()
 
+/client/verb/reload_vchat()
+	set name = "Reload VChat"
+	set category = "OOC"
+
+	//Timing
+	if(src.chatOutputLoadedAt > (world.time - 10 SECONDS))
+		alert(src, "You can only try to reload VChat every 10 seconds at most.")
+		return
+	
+	//Log, disable
+	log_debug("[key_name(src)] reloaded VChat.")
+	
+	//The hard way
+	qdel_null(src.chatOutput)
+	chatOutput = new /datum/chatOutput(src) //veechat
+	chatOutput.send_resources()
+	spawn()
+		chatOutput.start()
+	
+
 //This is for getipintel.net.
 //You're welcome to replace this proc with your own that does your own cool stuff.
 //Just set the client's ip_reputation var and make sure it makes sense with your config settings (higher numbers are worse results)
@@ -449,9 +445,9 @@ client/verb/character_setup()
 	var/http[] = world.Export(request)
 
 	/* Debug
-	world.log << "Requested this: [request]"
+	to_world_log("Requested this: [request]")
 	for(var/entry in http)
-		world.log << "[entry] : [http[entry]]"
+		to_world_log("[entry] : [http[entry]]")
 	*/
 
 	if(!http || !islist(http)) //If we couldn't check, the service might be down, fail-safe.

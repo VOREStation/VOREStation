@@ -13,7 +13,7 @@
 	if(!T)
 		return 0
 	add_attack_logs(src,T,"Paralysis sting (changeling)")
-	T << "<span class='danger'>Your muscles begin to painfully tighten.</span>"
+	to_chat(T, "<span class='danger'>Your muscles begin to painfully tighten.</span>")
 	T.Weaken(20)
 	feedback_add_details("changeling_powers","PS")
 	return 1

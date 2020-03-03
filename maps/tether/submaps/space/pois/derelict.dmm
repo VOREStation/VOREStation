@@ -1133,6 +1133,30 @@
 /obj/structure/ghost_pod/manual/lost_drone/dogborg,
 /turf/simulated/floor/tiled/dark,
 /area/tether_away/debrisfield/derelict/ai_access_port)
+"dF" = (
+/obj/structure/salvageable/server,
+/turf/simulated/floor/greengrid,
+/area/tether_away/debrisfield/derelict/ai_chamber)
+"oS" = (
+/obj/structure/salvageable/server,
+/turf/simulated/floor/tiled/monotile,
+/area/tether_away/debrisfield/derelict/interior)
+"tR" = (
+/obj/structure/salvageable/computer,
+/turf/simulated/floor/tiled/dark,
+/area/tether_away/debrisfield/derelict/interior)
+"HB" = (
+/obj/structure/salvageable/implant_container,
+/turf/simulated/floor/tiled/white,
+/area/tether_away/debrisfield/derelict/interior)
+"QE" = (
+/obj/structure/salvageable/autolathe,
+/turf/simulated/floor/tiled/steel_grid,
+/area/tether_away/debrisfield/derelict/interior)
+"ZJ" = (
+/obj/structure/salvageable/personal,
+/turf/simulated/floor/tiled/monotile,
+/area/tether_away/debrisfield/derelict/interior)
 
 (1,1,1) = {"
 bR
@@ -2217,7 +2241,7 @@ av
 bX
 aF
 av
-aF
+tR
 aF
 aF
 av
@@ -2333,7 +2357,7 @@ av
 aF
 aF
 av
-at
+ZJ
 at
 ao
 aa
@@ -2400,7 +2424,7 @@ aa
 aa
 aa
 ao
-at
+oS
 az
 au
 av
@@ -2752,7 +2776,7 @@ cB
 cB
 cA
 dk
-do
+dF
 do
 dt
 dt
@@ -2826,7 +2850,7 @@ cB
 cB
 cA
 dk
-do
+dF
 do
 du
 dw
@@ -2900,7 +2924,7 @@ cB
 cB
 cA
 dk
-do
+dF
 do
 du
 dw
@@ -2974,7 +2998,7 @@ cB
 cB
 cA
 dk
-do
+dF
 do
 dt
 dt
@@ -3216,7 +3240,7 @@ aa
 ao
 au
 at
-at
+oS
 av
 aF
 aF
@@ -3536,7 +3560,7 @@ av
 bk
 bk
 bk
-bk
+QE
 bk
 bu
 av
@@ -3623,7 +3647,7 @@ av
 cc
 cj
 cb
-cb
+HB
 cb
 ci
 av

@@ -1,5 +1,7 @@
 /datum/preferences/update_preview_icon() // Lines up and un-overlaps character edit previews. Also un-splits taurs.
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
+	if(!mannequin.dna) // Special handling for preview icons before SSAtoms has initailized.
+		mannequin.dna = new /datum/dna(null)
 	mannequin.delete_inventory(TRUE)
 	dress_preview_mob(mannequin)
 	COMPILE_OVERLAYS(mannequin)

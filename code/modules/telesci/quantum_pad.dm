@@ -36,15 +36,15 @@
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		E += M.rating
 	power_efficiency = E
-	
+
 	E = 0
 	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
 		E += C.rating
-	
+
 	teleport_speed = initial(teleport_speed)
-	teleport_speed -= (E*10)
+	teleport_speed = max(15, (teleport_speed - (E * 10)))
 	teleport_cooldown = initial(teleport_cooldown)
-	teleport_cooldown -= (E * 100)
+	teleport_cooldown = max(50, (teleport_cooldown - (E * 100)))
 
 /obj/machinery/power/quantumpad/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, I))
@@ -86,7 +86,7 @@
 	if(panel_open)
 		to_chat(user, "<span class='warning'>The panel must be closed before operating this machine!</span>")
 		return
-	
+
 	if(istype(get_area(src), /area/shuttle))
 		to_chat(user, "<span class='warning'>This is too unstable a platform for \the [src] to operate on!</span>")
 		return

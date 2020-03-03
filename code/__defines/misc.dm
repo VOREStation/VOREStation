@@ -79,7 +79,7 @@
 #define COLOR_DEEP_SKY_BLUE     "#00e1ff"
 
 
-
+#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : null))
 
 //	Shuttles.
 
@@ -113,6 +113,7 @@
 #define MAX_RECORD_LENGTH	  24576
 #define MAX_LNAME_LEN         64
 #define MAX_NAME_LEN          52
+#define MAX_FEEDBACK_LENGTH      4096
 #define MAX_TEXTFILE_LENGTH 128000		// 512GQ file
 
 // Event defines.

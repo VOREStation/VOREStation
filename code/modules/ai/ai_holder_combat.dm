@@ -9,46 +9,22 @@
 	var/violent_breakthrough = TRUE			// If false, the AI is not allowed to destroy things like windows or other structures in the way. Requires above var to be true.
 
 	var/stand_ground = FALSE				// If true, the AI won't try to get closer to an enemy if out of range.
-
-
+	
 // This does the actual attacking.
 /datum/ai_holder/proc/engage_target()
 	ai_log("engage_target() : Entering.", AI_LOG_DEBUG)
 
 	// Can we still see them?
-//	if(!target || !can_attack(target) || (!(target in list_targets())) )
 	if(!target || !can_attack(target))
 		ai_log("engage_target() : Lost sight of target.", AI_LOG_TRACE)
-		lose_target() // We lost them.
-
-		if(!find_target()) // If we can't get a new one, then wait for a bit and then time out.
-			set_stance(STANCE_IDLE)
-			lost_target()
-			ai_log("engage_target() : No more targets. Exiting.", AI_LOG_DEBUG)
+		if(lose_target()) // We lost them (returns TRUE if we found something else to do)
+			ai_log("engage_target() : Pursuing other options (last seen, or a new target).", AI_LOG_TRACE)
 			return
-	//		if(lose_target_time + lose_target_timeout < world.time)
-	//			ai_log("engage_target() : Unseen enemy timed out.", AI_LOG_TRACE)
-	//			set_stance(STANCE_IDLE) // It must've been the wind.
-	//			lost_target()
-	//			ai_log("engage_target() : Exiting.", AI_LOG_DEBUG)
-	//			return
-
-	//		// But maybe we do one last ditch effort.
-	//		if(!target_last_seen_turf || intelligence_level < AI_SMART)
-	//			ai_log("engage_target() : No last known position or is too dumb to fight unseen enemies.", AI_LOG_TRACE)
-	//			set_stance(STANCE_IDLE)
-	//		else
-	//			ai_log("engage_target() : Fighting unseen enemy.", AI_LOG_TRACE)
-	//			engage_unseen_enemy()
-		else
-			ai_log("engage_target() : Got new target ([target]).", AI_LOG_TRACE)
 
 	var/distance = get_dist(holder, target)
 	ai_log("engage_target() : Distance to target ([target]) is [distance].", AI_LOG_TRACE)
 	holder.face_atom(target)
 	last_conflict_time = world.time
-
-	request_help() // Call our allies.
 
 	// Do a 'special' attack, if one is allowed.
 //	if(prob(special_attack_prob) && (distance >= special_attack_min_range) && (distance <= special_attack_max_range))
@@ -198,12 +174,8 @@
 	// Make sure we can still chase/attack them.
 	if(!target || !can_attack(target))
 		ai_log("walk_to_target() : Lost target.", AI_LOG_INFO)
-		if(!find_target())
-			lost_target()
-			ai_log("walk_to_target() : Exiting.", AI_LOG_DEBUG)
-			return
-		else
-			ai_log("walk_to_target() : Found new target ([target]).", AI_LOG_INFO)
+		lose_target()
+		return
 
 	// Find out where we're going.
 	var/get_to = closest_distance(target)
@@ -219,7 +191,6 @@
 		set_stance(STANCE_FIGHT)
 		ai_log("walk_to_target() : Exiting.", AI_LOG_DEBUG)
 		return
-
 
 	// Otherwise keep walking.
 	if(!stand_ground)

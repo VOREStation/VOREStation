@@ -97,7 +97,7 @@
 		//dat += "<a href='?src=\ref[src];item=1'>Recover object</a>.<br>" //VOREStation Removal - Just log them.
 		//dat += "<a href='?src=\ref[src];allitems=1'>Recover all objects</a>.<br>" //VOREStation Removal
 
-	to_chat(user, browse(dat, "window=cryopod_console"))
+	user << browse(dat, "window=cryopod_console")
 	onclose(user, "cryopod_console")
 
 /obj/machinery/computer/cryopod/Topic(href, href_list)
@@ -116,7 +116,7 @@
 			dat += "[person]<br/>"
 		dat += "<hr/>"
 
-		to_chat(user, browse(dat, "window=cryolog"))
+		user << browse(dat, "window=cryolog")
 
 	if(href_list["view"])
 		if(!allow_items) return
@@ -128,7 +128,7 @@
 		//VOREStation Edit End
 		dat += "<hr/>"
 
-		to_chat(user, browse(dat, "window=cryoitems"))
+		user << browse(dat, "window=cryoitems")
 
 	else if(href_list["item"])
 		if(!allow_items) return
@@ -424,6 +424,16 @@
 	items -= announce // or the autosay radio.
 
 	for(var/obj/item/W in items)
+		//VOREStation Addition Start
+		if(istype(W, /obj/item/device/pda))
+			var/obj/item/device/pda/found_pda = W
+			found_pda.delete_id = TRUE
+		else
+			var/list/pdas_found = W.search_contents_for(/obj/item/device/pda)
+			if(pdas_found.len)
+				for(var/obj/item/device/pda/found_pda in pdas_found)
+					found_pda.delete_id = TRUE
+		//VOREStation Addition End
 
 		var/preserve = 0
 
@@ -458,7 +468,7 @@
 		// them win or lose based on cryo is silly so we remove the objective.
 		if(O.target == to_despawn.mind)
 			if(O.owner && O.owner.current)
-				O.owner.current << "<span class='warning'>You get the feeling your target is no longer within your reach...</span>"
+				to_chat(O.owner.current, "<span class='warning'>You get the feeling your target is no longer within your reach...</span>")
 			qdel(O)
 
 	//VOREStation Edit - Resleeving.
@@ -666,7 +676,7 @@
 	if(!M)
 		return
 	if(occupant)
-		to_chat(user,"<span class='warning'>\The [src] is already occupied.</span>")
+		to_chat(user, "<span class='warning'>\The [src] is already occupied.</span>")
 		return
 
 	var/willing = null //We don't want to allow people to be forced into despawning.
@@ -686,7 +696,7 @@
 
 		if(do_after(user, 20))
 			if(occupant)
-				to_chat(user,"<span class='warning'>\The [src] is already occupied.</span>")
+				to_chat(user, "<span class='warning'>\The [src] is already occupied.</span>")
 				return
 			M.forceMove(src)
 
@@ -697,8 +707,8 @@
 
 		icon_state = occupied_icon_state
 
-		M << "<span class='notice'>[on_enter_occupant_message]</span>"
-		M << "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>"
+		to_chat(M, "<span class='notice'>[on_enter_occupant_message]</span>")
+		to_chat(M, "<span class='notice'><b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b></span>")
 		set_occupant(M)
 		time_entered = world.time
 		if(ishuman(M) && applies_stasis)

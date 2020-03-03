@@ -16,12 +16,12 @@
 /obj/item/slime_extract/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/slimesteroid2))
 		if(enhanced == 1)
-			user << "<span class='warning'> This extract has already been enhanced!</span>"
+			to_chat(user, "<span class='warning'> This extract has already been enhanced!</span>")
 			return ..()
 		if(Uses == 0)
-			user << "<span class='warning'> You can't enhance a used extract!</span>"
+			to_chat(user, "<span class='warning'> You can't enhance a used extract!</span>")
 			return ..()
-		user <<"You apply the enhancer. It now has triple the amount of uses."
+		to_chat(user, "You apply the enhancer. It now has triple the amount of uses.")
 		Uses = 3
 		enhanced = 1
 		qdel(O)
@@ -131,16 +131,16 @@
 
 /obj/item/slimepotion/docility/attack(mob/living/carbon/slime/M as mob, mob/user as mob)
 	if(!istype(M, /mob/living/carbon/slime))//If target is not a slime.
-		user << "<span class='warning'> The potion only works on slimes!</span>"
+		to_chat(user, "<span class='warning'> The potion only works on slimes!</span>")
 		return ..()
 //	if(M.is_adult) //Can't tame adults
-//		user << "<span class='warning'> Only baby slimes can be tamed!</span>"
+//		to_chat(user, "<span class='warning'> Only baby slimes can be tamed!</span>")
 //		return..()
 	if(M.stat)
-		user << "<span class='warning'> The slime is dead!</span>"
+		to_chat(user, "<span class='warning'> The slime is dead!</span>")
 		return..()
 	if(M.mind)
-		user << "<span class='warning'> The slime resists!</span>"
+		to_chat(user, "<span class='warning'> The slime resists!</span>")
 		return ..()
 	var/mob/living/simple_mob/slime/pet = new /mob/living/simple_mob/slime(M.loc)
 	pet.icon_state = "[M.colour] [M.is_adult ? "adult" : "baby"] slime"
@@ -188,20 +188,20 @@
 
 	attack(mob/living/carbon/slime/M as mob, mob/user as mob)
 		if(!istype(M, /mob/living/carbon/slime/))//If target is not a slime.
-			user << "<span class='warning'> The potion only works on slimes!</span>"
+			to_chat(user, "<span class='warning'> The potion only works on slimes!</span>")
 			return ..()
 		if(M.stat)
-			user << "<span class='warning'> The slime is dead!</span>"
+			to_chat(user, "<span class='warning'> The slime is dead!</span>")
 			return..()
 		if(M.mind)
-			user << "<span class='warning'> The slime resists!</span>"
+			to_chat(user, "<span class='warning'> The slime resists!</span>")
 			return ..()
 		var/mob/living/simple_mob/adultslime/pet = new /mob/living/simple_mob/adultslime(M.loc)
 		pet.icon_state = "[M.colour] adult slime"
 		pet.icon_living = "[M.colour] adult slime"
 		pet.icon_dead = "[M.colour] baby slime dead"
 		pet.colour = "[M.colour]"
-		user <<"You feed the slime the potion, removing it's powers and calming it."
+		to_chat(user, "You feed the slime the potion, removing it's powers and calming it.")
 		qdel(M)
 		var/newname = sanitize(input(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime") as null|text, MAX_NAME_LEN)
 
@@ -220,19 +220,19 @@
 
 	attack(mob/living/carbon/slime/M as mob, mob/user as mob)
 		if(!istype(M, /mob/living/carbon/slime))//If target is not a slime.
-			user << "<span class='warning'> The steroid only works on baby slimes!</span>"
+			to_chat(user, "<span class='warning'> The steroid only works on baby slimes!</span>")
 			return ..()
 		if(M.is_adult) //Can't tame adults
-			user << "<span class='warning'> Only baby slimes can use the steroid!</span>"
+			to_chat(user, "<span class='warning'> Only baby slimes can use the steroid!</span>")
 			return..()
 		if(M.stat)
-			user << "<span class='warning'> The slime is dead!</span>"
+			to_chat(user, "<span class='warning'> The slime is dead!</span>")
 			return..()
 		if(M.cores == 3)
-			user <<"<span class='warning'> The slime already has the maximum amount of extract!</span>"
+			to_chat(user, "<span class='warning'> The slime already has the maximum amount of extract!</span>")
 			return..()
 
-		user <<"You feed the slime the steroid. It now has triple the amount of extract."
+		to_chat(user, "You feed the slime the steroid. It now has triple the amount of extract.")
 		M.cores = 3
 		qdel(src)
 
@@ -245,12 +245,12 @@
 	/*afterattack(obj/target, mob/user , flag)
 		if(istype(target, /obj/item/slime_extract))
 			if(target.enhanced == 1)
-				user << "<span class='warning'> This extract has already been enhanced!</span>"
+				to_chat(user, "<span class='warning'> This extract has already been enhanced!</span>")
 				return ..()
 			if(target.Uses == 0)
-				user << "<span class='warning'> You can't enhance a used extract!</span>"
+				to_chat(user, "<span class='warning'> You can't enhance a used extract!</span>")
 				return ..()
-			user <<"You apply the enhancer. It now has triple the amount of uses."
+			to_chat(user, "You apply the enhancer. It now has triple the amount of uses.")
 			target.Uses = 3
 			target.enahnced = 1
 			qdel(src)*/
@@ -288,12 +288,12 @@
 			ghost = O
 			break
 		if(!ghost)
-			user << "The rune fizzles uselessly. There is no spirit nearby."
+			to_chat(user, "The rune fizzles uselessly. There is no spirit nearby.")
 			return
 		var/mob/living/carbon/human/G = new(src.loc)
 		G.set_species("Golem")
 		G.key = ghost.key
-		G << "You are an adamantine golem. You move slowly, but are highly resistant to heat and cold as well as blunt trauma. You are unable to wear clothes, but can still use most tools. Serve [user], and assist them in completing their goals at any cost."
+		to_chat(G, "You are an adamantine golem. You move slowly, but are highly resistant to heat and cold as well as blunt trauma. You are unable to wear clothes, but can still use most tools. Serve [user], and assist them in completing their goals at any cost.")
 		qdel(src)
 
 
@@ -302,7 +302,7 @@
 			if(G.client)
 				var/area/A = get_area(src)
 				if(A)
-					G << "Golem rune created in [A.name]."
+					to_chat(G, "Golem rune created in [A.name].")
 
 /mob/living/carbon/slime/has_eyes()
 	return 0

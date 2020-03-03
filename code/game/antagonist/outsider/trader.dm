@@ -37,8 +37,8 @@ var/datum/antagonist/trader/traders
 /datum/antagonist/trader/greet(var/datum/mind/player)
 	if(!..())
 		return
-	player.current << "The Beruang is an independent cargo hauler, unless you decide otherwise. You're on your way to [station_name()]."
-	player.current << "You may want to discuss a collective story with the rest of your crew. More members may be joining, so don't move out straight away!"
+	to_chat(player.current, "The Beruang is an independent cargo hauler, unless you decide otherwise. You're on your way to [station_name()].")
+	to_chat(player.current, "You may want to discuss a collective story with the rest of your crew. More members may be joining, so don't move out straight away!")
 
 /datum/antagonist/trader/equip(var/mob/living/carbon/human/player)
 	player.equip_to_slot_or_del(new /obj/item/clothing/under/rank/cargotech(src), slot_w_uniform)

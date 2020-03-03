@@ -402,9 +402,9 @@
 
 	if(OCCUPANT.client)
 		if(user != OCCUPANT)
-			OCCUPANT << "<font color='blue'>The machine kicks you out!</font>"
+			to_chat(OCCUPANT, "<font color='blue'>The machine kicks you out!</font>")
 		if(user.loc != src.loc)
-			OCCUPANT << "<font color='blue'>You leave the not-so-cozy confines of the SSU.</font>"
+			to_chat(OCCUPANT, "<font color='blue'>You leave the not-so-cozy confines of the SSU.</font>")
 
 		OCCUPANT.client.eye = OCCUPANT.client.mob
 		OCCUPANT.client.perspective = MOB_PERSPECTIVE
@@ -931,7 +931,7 @@
 
 /obj/machinery/suit_cycler/proc/finished_job()
 	var/turf/T = get_turf(src)
-	T.visible_message("\icon[src]<span class='notice'>The [src] beeps several times.</span>")
+	T.visible_message("[bicon(src)]<span class='notice'>The [src] beeps several times.</span>")
 	icon_state = initial(icon_state)
 	active = 0
 	playsound(src, 'sound/machines/boobeebeep.ogg', 50)
@@ -959,7 +959,7 @@
 /obj/machinery/suit_cycler/proc/eject_occupant(mob/user as mob)
 
 	if(locked || active)
-		user << "<span class='warning'>The cycler is locked.</span>"
+		to_chat(user, "<span class='warning'>The cycler is locked.</span>")
 		return
 
 	if(!occupant)

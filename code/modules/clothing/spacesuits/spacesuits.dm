@@ -6,6 +6,8 @@
 	name = "Space helmet"
 	icon_state = "space"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment."
+	randpixel = 0
+	center_of_mass = null
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL | AIRTIGHT | ALLOW_SURVIVALFOOD
 	permeability_coefficient = 0.01
@@ -33,7 +35,7 @@
 /obj/item/clothing/head/helmet/space/verb/toggle_camera()
 	set name = "Toggle Helmet Camera"
 	set desc = "Turn your helmet's camera on or off."
-	set category = "Object"
+	set category = "Hardsuit"
 	set src in usr
 	if(usr.stat || usr.restrained() || usr.incapacitated())
 		return

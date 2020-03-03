@@ -106,12 +106,12 @@
 	if(istype(A, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = A
 		if(!(load_method & AM.mag_type) || caliber != AM.caliber || allowed_magazines && !is_type_in_list(A, allowed_magazines))
-			user << "<span class='warning'>[AM] won't load into [src]!</span>"
+			to_chat(user, "<span class='warning'>[AM] won't load into [src]!</span>")
 			return
 		switch(AM.mag_type)
 			if(MAGAZINE)
 				if(ammo_magazine)
-					user << "<span class='warning'>[src] already has a magazine loaded.</span>" //already a magazine here
+					to_chat(user, "<span class='warning'>[src] already has a magazine loaded.</span>") //already a magazine here
 					return
 				user.remove_from_mob(AM)
 				AM.loc = src
@@ -120,7 +120,7 @@
 				playsound(src.loc, 'sound/weapons/flipblade.ogg', 50, 1)
 			if(SPEEDLOADER)
 				if(loaded.len >= max_shells)
-					user << "<span class='warning'>[src] is full!</span>"
+					to_chat(user, "<span class='warning'>[src] is full!</span>")
 					return
 				var/count = 0
 				for(var/obj/item/ammo_casing/C in AM.stored_ammo)
@@ -140,7 +140,7 @@
 		if(!(load_method & SINGLE_CASING) || caliber != C.caliber)
 			return //incompatible
 		if(loaded.len >= max_shells)
-			user << "<span class='warning'>[src] is full.</span>"
+			to_chat(user, "<span class='warning'>[src] is full.</span>")
 			return
 
 		user.remove_from_mob(C)
@@ -154,7 +154,7 @@
 		if(!(load_method & SINGLE_CASING))
 			return //incompatible
 
-		user << "<span class='notice'>You start loading \the [src].</span>"
+		to_chat(user, "<span class='notice'>You start loading \the [src].</span>")
 		sleep(1 SECOND)
 		for(var/obj/item/ammo_casing/ammo in storage.contents)
 			if(caliber != ammo.caliber)
@@ -163,7 +163,7 @@
 			load_ammo(ammo, user)
 
 			if(loaded.len >= max_shells)
-				user << "<span class='warning'>[src] is full.</span>"
+				to_chat(user, "<span class='warning'>[src] is full.</span>")
 				break
 			sleep(1 SECOND)
 
@@ -196,7 +196,7 @@
 			user.visible_message("[user] removes \a [C] from [src].", "<span class='notice'>You remove \a [C] from [src].</span>")
 		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
 	else
-		user << "<span class='warning'>[src] is empty.</span>"
+		to_chat(user, "<span class='warning'>[src] is empty.</span>")
 	update_icon()
 
 /obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
@@ -232,8 +232,8 @@
 /obj/item/weapon/gun/projectile/examine(mob/user)
 	..(user)
 	if(ammo_magazine)
-		user << "It has \a [ammo_magazine] loaded."
-	user << "Has [getAmmo()] round\s remaining."
+		to_chat(user, "It has \a [ammo_magazine] loaded.")
+	to_chat(user, "Has [getAmmo()] round\s remaining.")
 	return
 
 /obj/item/weapon/gun/projectile/proc/getAmmo()

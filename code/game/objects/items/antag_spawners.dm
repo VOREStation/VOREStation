@@ -49,7 +49,7 @@
 	ghost_query_type = /datum/ghost_query/apprentice
 
 /obj/item/weapon/antag_spawner/technomancer_apprentice/attack_self(mob/user)
-	user << "<span class='notice'>Teleporter attempting to lock on to your apprentice.</span>"
+	to_chat(user, "<span class='notice'>Teleporter attempting to lock on to your apprentice.</span>")
 	request_player()
 
 /obj/item/weapon/antag_spawner/technomancer_apprentice/request_player()
@@ -68,10 +68,10 @@
 	C.prefs.copy_to(H)
 	H.key = C.key
 
-	H << "<b>You are the Technomancer's apprentice!  Your goal is to assist them in their mission at the [station_name()].</b>"
-	H << "<b>Your service has not gone unrewarded, however. Studying under them, you have learned how to use a Manipulation Core \
-	of your own.  You also have a catalog, to purchase your own functions and equipment as you see fit.</b>"
-	H << "<b>It would be wise to speak to your master, and learn what their plans are for today.</b>"
+	to_chat(H, "<b>You are the Technomancer's apprentice!  Your goal is to assist them in their mission at the [station_name()].</b>")
+	to_chat(H, "<b>Your service has not gone unrewarded, however. Studying under them, you have learned how to use a Manipulation Core \
+	of your own.  You also have a catalog, to purchase your own functions and equipment as you see fit.</b>")
+	to_chat(H, "<b>It would be wise to speak to your master, and learn what their plans are for today.</b>")
 
 	spawn(1)
 		technomancers.add_antagonist(H.mind, 0, 1, 0, 0, 0)

@@ -143,7 +143,7 @@
 	if(!istype(player))
 		message_admins("[uppertext(ticker.mode.name)]: Failed to find a candidate for [role_text].")
 		return 0
-	player.current << "<span class='danger'><i>You have been selected this round as an antagonist!</i></span>"
+	to_chat(player.current, "<span class='danger'><i>You have been selected this round as an antagonist!</i></span>")
 	message_admins("[uppertext(ticker.mode.name)]: Selected [player] as a [role_text].")
 	if(istype(player.current, /mob/observer/dead))
 		create_default(player.current)

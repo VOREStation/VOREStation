@@ -10,7 +10,7 @@
 	if(user)
 		if (istype(user, /mob/living/silicon/robot))
 			var/mob/living/silicon/robot/R = user
-			R << "<font color='red'>Your systems report severe damage has been inflicted!</font>"
+			to_chat(R, "<font color='red'>Your systems report severe damage has been inflicted!</font>")
 			R.adjustBruteLoss(rand(10,50))
 			R.adjustFireLoss(rand(10,50))
 			return 1
@@ -20,7 +20,7 @@
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/silicon/robot/M in range(src.effectrange,T))
 			if(world.time - last_message > 200)
-				M << "<font color='red'>SYSTEM ALERT: Harmful energy field detected!</font>"
+				to_chat(M, "<font color='red'>SYSTEM ALERT: Harmful energy field detected!</font>")
 				last_message = world.time
 			M.adjustBruteLoss(1)
 			M.adjustFireLoss(1)
@@ -32,7 +32,7 @@
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/silicon/robot/M in range(src.effectrange,T))
 			if(world.time - last_message > 200)
-				M << "<font color='red'>SYSTEM ALERT: Structural damage inflicted by energy pulse!</font>"
+				to_chat(M, "<font color='red'>SYSTEM ALERT: Structural damage inflicted by energy pulse!</font>")
 				last_message = world.time
 			M.adjustBruteLoss(10)
 			M.adjustFireLoss(10)

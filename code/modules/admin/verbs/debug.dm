@@ -388,33 +388,33 @@
 	var/list/areas_without_intercom = areas_all - areas_with_intercom
 	var/list/areas_without_camera = areas_all - areas_with_camera
 
-	world << "<b>AREAS WITHOUT AN APC:</b>"
+	to_world("<b>AREAS WITHOUT AN APC:</b>")
 	for(var/areatype in areas_without_APC)
-		world << "* [areatype]"
+		to_world("* [areatype]")
 
-	world << "<b>AREAS WITHOUT AN AIR ALARM:</b>"
+	to_world("<b>AREAS WITHOUT AN AIR ALARM:</b>")
 	for(var/areatype in areas_without_air_alarm)
-		world << "* [areatype]"
+		to_world("* [areatype]")
 
-	world << "<b>AREAS WITHOUT A REQUEST CONSOLE:</b>"
+	to_world("<b>AREAS WITHOUT A REQUEST CONSOLE:</b>")
 	for(var/areatype in areas_without_RC)
-		world << "* [areatype]"
+		to_world("* [areatype]")
 
-	world << "<b>AREAS WITHOUT ANY LIGHTS:</b>"
+	to_world("<b>AREAS WITHOUT ANY LIGHTS:</b>")
 	for(var/areatype in areas_without_light)
-		world << "* [areatype]"
+		to_world("* [areatype]")
 
-	world << "<b>AREAS WITHOUT A LIGHT SWITCH:</b>"
+	to_world("<b>AREAS WITHOUT A LIGHT SWITCH:</b>")
 	for(var/areatype in areas_without_LS)
-		world << "* [areatype]"
+		to_world("* [areatype]")
 
-	world << "<b>AREAS WITHOUT ANY INTERCOMS:</b>"
+	to_world("<b>AREAS WITHOUT ANY INTERCOMS:</b>")
 	for(var/areatype in areas_without_intercom)
-		world << "* [areatype]"
+		to_world("* [areatype]")
 
-	world << "<b>AREAS WITHOUT ANY CAMERAS:</b>"
+	to_world("<b>AREAS WITHOUT ANY CAMERAS:</b>")
 	for(var/areatype in areas_without_camera)
-		world << "* [areatype]"
+		to_world("* [areatype]")
 
 /datum/admins/proc/cmd_admin_dress(input in getmobs())
 	set category = "Fun"
@@ -638,13 +638,14 @@
 		return
 
 	var/datum/planet/planet = input(usr, "Which planet do you want to modify the weather on?", "Change Weather") in SSplanets.planets
-	var/datum/weather/new_weather = input(usr, "What weather do you want to change to?", "Change Weather") as null|anything in planet.weather_holder.allowed_weather_types
-	if(new_weather)
-		planet.weather_holder.change_weather(new_weather)
-		planet.weather_holder.rebuild_forecast()
-		var/log = "[key_name(src)] changed [planet.name]'s weather to [new_weather]."
-		message_admins(log)
-		log_admin(log)
+	if(istype(planet))
+		var/datum/weather/new_weather = input(usr, "What weather do you want to change to?", "Change Weather") as null|anything in planet.weather_holder.allowed_weather_types
+		if(new_weather)
+			planet.weather_holder.change_weather(new_weather)
+			planet.weather_holder.rebuild_forecast()
+			var/log = "[key_name(src)] changed [planet.name]'s weather to [new_weather]."
+			message_admins(log)
+			log_admin(log)
 
 /datum/admins/proc/change_time()
 	set category = "Debug"
@@ -655,20 +656,20 @@
 		return
 
 	var/datum/planet/planet = input(usr, "Which planet do you want to modify time on?", "Change Time") in SSplanets.planets
+	if(istype(planet))
+		var/datum/time/current_time_datum = planet.current_time
+		var/new_hour = input(usr, "What hour do you want to change to?", "Change Time", text2num(current_time_datum.show_time("hh"))) as null|num
+		if(!isnull(new_hour))
+			var/new_minute = input(usr, "What minute do you want to change to?", "Change Time", text2num(current_time_datum.show_time("mm")) ) as null|num
+			if(!isnull(new_minute))
+				var/type_needed = current_time_datum.type
+				var/datum/time/new_time = new type_needed()
+				new_time = new_time.add_hours(new_hour)
+				new_time = new_time.add_minutes(new_minute)
+				planet.current_time = new_time
+				spawn(1)
+					planet.update_sun()
 
-	var/datum/time/current_time_datum = planet.current_time
-	var/new_hour = input(usr, "What hour do you want to change to?", "Change Time", text2num(current_time_datum.show_time("hh"))) as null|num
-	if(!isnull(new_hour))
-		var/new_minute = input(usr, "What minute do you want to change to?", "Change Time", text2num(current_time_datum.show_time("mm")) ) as null|num
-		if(!isnull(new_minute))
-			var/type_needed = current_time_datum.type
-			var/datum/time/new_time = new type_needed()
-			new_time = new_time.add_hours(new_hour)
-			new_time = new_time.add_minutes(new_minute)
-			planet.current_time = new_time
-			spawn(1)
-				planet.update_sun()
-
-			var/log = "[key_name(src)] changed [planet.name]'s time to [planet.current_time.show_time("hh:mm")]."
-			message_admins(log)
-			log_admin(log)
+				var/log = "[key_name(src)] changed [planet.name]'s time to [planet.current_time.show_time("hh:mm")]."
+				message_admins(log)
+				log_admin(log)

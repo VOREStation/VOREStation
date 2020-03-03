@@ -72,7 +72,7 @@
 		amount = abs(round(amount))
 		if(check_alien_ability(amount,0,O_PLASMA))
 			M.gain_plasma(amount)
-			M << "<span class='alium'>[src] has transfered [amount] plasma to you.</span>"
+			to_chat(M, "<span class='alium'>[src] has transfered [amount] plasma to you.</span>")
 			to_chat(src, "<span class='alium'>You have transferred [amount] plasma to [M].</span>")
 	return
 

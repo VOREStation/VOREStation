@@ -57,7 +57,7 @@
 		if(M.connectable && istype(M.connectable, /obj/machinery/button/doorbell))
 			var/obj/machinery/button/doorbell/B = M.connectable
 			id_tag = B.id
-			user << "<span class='notice'>You upload the data from \the [W]'s buffer.</span>"
+			to_chat(user, "<span class='notice'>You upload the data from \the [W]'s buffer.</span>")
 		return
 	..()
 

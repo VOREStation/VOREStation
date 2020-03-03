@@ -19,9 +19,9 @@
 		return 1
 	if(feedback)
 		if(status[1] == HUMAN_EATING_NO_MOUTH)
-			feeder << "Where do you intend to put \the [food]? \The [src] doesn't have a mouth!"
+			to_chat(feeder, "Where do you intend to put \the [food]? \The [src] doesn't have a mouth!")
 		else if(status[1] == HUMAN_EATING_BLOCKED_MOUTH)
-			feeder << "<span class='warning'>\The [status[2]] is in the way!</span>"
+			to_chat(feeder, "<span class='warning'>\The [status[2]] is in the way!</span>")
 	return 0
 
 /mob/living/carbon/human/proc/can_eat_status()
@@ -63,6 +63,8 @@
 		for(var/obj/item/rig_module/stealth_field/cloaker in suit.installed_modules)
 			if(cloaker.active)
 				cloaker.deactivate()
+	for(var/obj/item/weapon/deadringer/dr in src)
+		dr.uncloak()
 
 /mob/living/carbon/human/is_cloaked()
 	if(mind && mind.changeling && mind.changeling.cloaked) // Ling camo.
@@ -72,6 +74,9 @@
 		for(var/obj/item/rig_module/stealth_field/cloaker in suit.installed_modules)
 			if(cloaker.active)
 				return TRUE
+	for(var/obj/item/weapon/deadringer/dr in src)
+		if(dr.timer > 20)
+			return TRUE
 	return ..()
 
 /mob/living/carbon/human/get_ear_protection()

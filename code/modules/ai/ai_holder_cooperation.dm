@@ -74,7 +74,7 @@
 
 	ai_log("request_help() : Exiting.", AI_LOG_DEBUG)
 
-// What allies receive when someone else is calling for help.
+// What allies receive when someone else is calling for help.1
 /datum/ai_holder/proc/help_requested(mob/living/friend)
 	ai_log("help_requested() : Entering.", AI_LOG_DEBUG)
 	if(stance == STANCE_SLEEP)
@@ -92,24 +92,26 @@
 	if(!holder.IIsAlly(friend)) // Extra sanity.
 		ai_log("help_requested() : Help requested by [friend] but we hate them.", AI_LOG_INFO)
 		return
-	if(friend.ai_holder && friend.ai_holder.target && !can_attack(friend.ai_holder.target))
-		ai_log("help_requested() : Help requested by [friend] but we don't want to fight their target.", AI_LOG_INFO)
-		return
-	if(get_dist(holder, friend) <= follow_distance)
-		ai_log("help_requested() : Help requested by [friend] but we're already here.", AI_LOG_INFO)
-		return
-	if(get_dist(holder, friend) <= vision_range) // Within our sight.
-		ai_log("help_requested() : Help requested by [friend], and within target sharing range.", AI_LOG_INFO)
-		if(friend.ai_holder) // AI calling for help.
-			if(friend.ai_holder.target && can_attack(friend.ai_holder.target)) // Friend wants us to attack their target.
-				last_conflict_time = world.time // So we attack immediately and not threaten.
-				give_target(friend.ai_holder.target) // This will set us to the appropiate stance.
-				ai_log("help_requested() : Given target [target] by [friend]. Exiting", AI_LOG_DEBUG)
-				return
+	var/their_target = friend?.ai_holder?.target
+	if(their_target) // They have a target and aren't just shouting for no reason
+		if(!can_attack(their_target, vision_required = FALSE))
+			ai_log("help_requested() : Help requested by [friend] but we don't want to fight their target.", AI_LOG_INFO)
+			return
+		if(get_dist(holder, friend) <= follow_distance)
+			ai_log("help_requested() : Help requested by [friend] but we're already here.", AI_LOG_INFO)
+			return
+		if(get_dist(holder, friend) <= vision_range) // Within our sight.
+			ai_log("help_requested() : Help requested by [friend], and within target sharing range.", AI_LOG_INFO)
+			last_conflict_time = world.time // So we attack immediately and not threaten.
+			give_target(their_target, urgent = TRUE) // This will set us to the appropiate stance.
+			ai_log("help_requested() : Given target [target] by [friend]. Exiting", AI_LOG_DEBUG)
+			return
 
 	// Otherwise they're outside our sight, lack a target, or aren't AI controlled, but within call range.
 	// So assuming we're AI controlled, we'll go to them and see whats wrong.
 	ai_log("help_requested() : Help requested by [friend], going to go to friend.", AI_LOG_INFO)
+	if(their_target)
+		add_attacker(their_target) // We won't wait and 'warn' them while they're stabbing our ally
 	set_follow(friend, 10 SECONDS)
 	ai_log("help_requested() : Exiting.", AI_LOG_DEBUG)
 

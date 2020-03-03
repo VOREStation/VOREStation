@@ -727,6 +727,9 @@
 /area/construction/seconddeck/construction1
 	name = "\improper Second Deck Engineering Construction Area 1"
 
+/area/construction/seconddeck/construction2
+	name = "\improper Abandoned Locker Room"
+
 /area/crew_quarters/seconddeck/locker
 	name = "\improper Locker Room"
 	icon_state = "locker"

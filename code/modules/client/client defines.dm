@@ -24,6 +24,8 @@
 	var/area			= null
 	var/time_died_as_mouse = null //when the client last died as a mouse
 	var/datum/tooltip/tooltips 	= null
+	var/datum/chatOutput/chatOutput
+	var/chatOutputLoadedAt
 
 	var/adminhelped = 0
 

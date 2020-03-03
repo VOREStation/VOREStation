@@ -117,7 +117,7 @@
 		if("help")
 			to_chat(src, "burp, chirp, choke, collapse, dance, drool, gasp, shiver, gnarl, jump, moan, nod, roll, scratch,\nscretch, shake, sign-#, sulk, sway, tail, twitch, whimper")
 		else
-			src << text("Invalid Emote: []", act)
+			to_chat(src, "Invalid Emote: [act]")
 	if ((message && src.stat == 0))
 		log_emote(message, src)
 		if (m_type & 1)

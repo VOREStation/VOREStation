@@ -90,7 +90,7 @@
 
 /obj/item/weapon/melee/changeling/suicide_act(mob/user)
 	var/datum/gender/T = gender_datums[user.get_visible_gender()]
-	viewers(user) << "<span class='danger'>[user] is impaling [T.himself] with the [src.name]! It looks like [T.he] [T.is] trying to commit suicide.</span>"
+	user.visible_message("<span class='danger'>[user] is impaling [T.himself] with the [src.name]! It looks like [T.he] [T.is] trying to commit suicide.</span>")
 	return(BRUTELOSS)
 
 /obj/item/weapon/melee/changeling/process()  //Stolen from ninja swords.

@@ -35,6 +35,7 @@
 		/mob/living/bot/medbot,
 		/obj/item/weapon/storage/secure/safe,
 		/obj/machinery/iv_drip,
+		/obj/structure/medical_stand, //VOREStation Add,
 		/obj/machinery/disease2/incubator,
 		/obj/machinery/disposal,
 		/mob/living/simple_mob/animal/passive/cow,
@@ -152,6 +153,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "beaker"
 	item_state = "beaker"
+	center_of_mass = list("x" = 15,"y" = 11)
 	matter = list("glass" = 500)
 
 /obj/item/weapon/reagent_containers/glass/beaker/Initialize()
@@ -200,6 +202,7 @@
 	name = "large beaker"
 	desc = "A large beaker."
 	icon_state = "beakerlarge"
+	center_of_mass = list("x" = 16,"y" = 11)
 	matter = list("glass" = 5000)
 	volume = 120
 	amount_per_transfer_from_this = 10
@@ -210,6 +213,7 @@
 	name = "cryostasis beaker"
 	desc = "A cryostasis beaker that allows for chemical storage without reactions."
 	icon_state = "beakernoreact"
+	center_of_mass = list("x" = 16,"y" = 13)
 	matter = list("glass" = 500)
 	volume = 60
 	amount_per_transfer_from_this = 10
@@ -219,6 +223,7 @@
 	name = "bluespace beaker"
 	desc = "A bluespace beaker, powered by experimental bluespace technology."
 	icon_state = "beakerbluespace"
+	center_of_mass = list("x" = 16,"y" = 11)
 	matter = list("glass" = 5000)
 	volume = 300
 	amount_per_transfer_from_this = 10
@@ -229,6 +234,7 @@
 	name = "vial"
 	desc = "A small glass vial."
 	icon_state = "vial"
+	center_of_mass = list("x" = 15,"y" = 9)
 	matter = list("glass" = 250)
 	volume = 30
 	w_class = ITEMSIZE_TINY
@@ -248,6 +254,7 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "bucket"
 	item_state = "bucket"
+	center_of_mass = list("x" = 16,"y" = 10)
 	matter = list(DEFAULT_WALL_MATERIAL = 200)
 	w_class = ITEMSIZE_NORMAL
 	amount_per_transfer_from_this = 20
@@ -258,7 +265,7 @@
 
 /obj/item/weapon/reagent_containers/glass/bucket/attackby(var/obj/item/D, mob/user as mob)
 	if(isprox(D))
-		user << "You add [D] to [src]."
+		to_chat(user, "You add [D] to [src].")
 		qdel(D)
 		user.put_in_hands(new /obj/item/weapon/bucket_sensor)
 		user.drop_from_inventory(src)
@@ -304,6 +311,7 @@ obj/item/weapon/reagent_containers/glass/bucket/wood
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "woodbucket"
 	item_state = "woodbucket"
+	center_of_mass = list("x" = 16,"y" = 8)
 	matter = list("wood" = 50)
 	w_class = ITEMSIZE_LARGE
 	amount_per_transfer_from_this = 20
@@ -314,7 +322,7 @@ obj/item/weapon/reagent_containers/glass/bucket/wood
 
 /obj/item/weapon/reagent_containers/glass/bucket/wood/attackby(var/obj/D, mob/user as mob)
 	if(isprox(D))
-		user << "This wooden bucket doesn't play well with electronics."
+		to_chat(user, "This wooden bucket doesn't play well with electronics.")
 		return
 	else if(istype(D, /obj/item/weapon/material/knife/machete/hatchet))
 		to_chat(user, "<span class='notice'>You cut a big hole in \the [src] with \the [D].  It's kinda useless as a bucket now.</span>")

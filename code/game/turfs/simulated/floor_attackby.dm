@@ -156,4 +156,6 @@
 		return
 	if(flooring)
 		return
+	if(!istype(W))
+		return
 	attackby(T, user)

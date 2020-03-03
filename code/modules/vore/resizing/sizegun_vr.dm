@@ -43,15 +43,15 @@
 
 	var/size_select = input("Put the desired size (25-200%)", "Set Size", size_set_to*100) as num
 	if(size_select>200 || size_select<25)
-		usr << "<span class='notice'>Invalid size.</span>"
+		to_chat(usr, "<span class='notice'>Invalid size.</span>")
 		return
 	size_set_to = (size_select/100)
-	usr << "<span class='notice'>You set the size to [size_select]%</span>"
+	to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
 
 /obj/item/weapon/gun/energy/sizegun/examine(mob/user)
 	..()
 	var/size_examine = (size_set_to*100)
-	user << "<span class='info'>It is currently set at [size_examine]%</span>"
+	to_chat(user, "<span class='info'>It is currently set at [size_examine]%</span>")
 
 //
 // Beams for size gun

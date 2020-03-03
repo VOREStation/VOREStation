@@ -156,12 +156,12 @@
 			src.anchored = 0
 			disconnect_from_network()
 		else
-			user << "<font color='red'>Once bolted and linked to a shielding unit it the [src.name] is unable to be moved!</font>"
+			to_chat(user, "<font color='red'>Once bolted and linked to a shielding unit it the [src.name] is unable to be moved!</font>")
 		return
 
 	if(istype(W, /obj/item/weapon/am_containment))
 		if(fueljar)
-			user << "<font color='red'>There is already a [fueljar] inside!</font>"
+			to_chat(user, "<font color='red'>There is already a [fueljar] inside!</font>")
 			return
 		fueljar = W
 		user.remove_from_mob(W)
