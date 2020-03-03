@@ -6,7 +6,7 @@
 	level = 1
 
 	name = "high power gas pump"
-	desc = "A pump. Has double the power rating of the standard gas pump."
+	desc = "A pump that moves gas from one place to another. Has double the power rating of the standard gas pump."
 
 	power_rating = 15000	//15000 W ~ 20 HP
 

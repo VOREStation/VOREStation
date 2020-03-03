@@ -19,7 +19,7 @@
 					slowdown = initial(slowdown)
 				return 1
 			else
-				H << "<span class='warning'>[no_message]</span>"
+				to_chat(H, "<span class='warning'>[no_message]</span>")
 				return 0
 
 /* If anyone wants to make some... this is how you would.
@@ -102,7 +102,7 @@
 					slowdown = initial(slowdown)
 				return 1
 			else
-				H << "<span class='warning'>[no_message]</span>"
+				to_chat(H, "<span class='warning'>[no_message]</span>")
 				return 0
 
 /obj/item/weapon/storage/backpack/saddlebag_common/robust //Shared bag for other taurs with sturdy backs
@@ -129,3 +129,8 @@
 	name = "plain black dufflebag"
 	desc = "A large dufflebag for holding extra tactical supplies."
 	icon_state = "duffle_syndie"
+
+/obj/item/weapon/storage/backpack
+	sprite_sheets = list(
+		SPECIES_TESHARI = 'icons/mob/species/seromi/back.dmi',
+		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/back.dmi')

@@ -258,7 +258,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/weapon/reagent_containers/syringe/steroid,
 		/obj/item/weapon/storage/pill_bottle/zoom,
 		/obj/item/weapon/storage/pill_bottle/happy,
-		/obj/item/weapon/storage/pill_bottle/tramadol
+		/obj/item/weapon/storage/pill_bottle/paracetamol //VOREStation Edit
 	)
 
 // Contains loads of different types of boxes, which may have items inside!
@@ -680,7 +680,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		)
 
 	uncommon_loot = list(
-		/obj/item/mecha_parts/mecha_equipment/tool/safety_clamp,
+		/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/safety,
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/riggedlaser,
 		/obj/item/mecha_parts/mecha_equipment/repair_droid,
 		/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay

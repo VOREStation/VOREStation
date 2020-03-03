@@ -55,7 +55,7 @@
 	wreckage = /obj/effect/decal/mecha_wreckage/mauler
 	mech_faction = MECH_FACTION_SYNDI
 
-/obj/mecha/combat/marauder/New()
+/obj/mecha/combat/marauder/Initialize()
 	..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse
 	ME.attach(src)
@@ -69,7 +69,7 @@
 	src.smoke_system.attach(src)
 	return
 
-/obj/mecha/combat/marauder/seraph/New()
+/obj/mecha/combat/marauder/seraph/Initialize()
 	..()//Let it equip whatever is needed.
 	var/obj/item/mecha_parts/mecha_equipment/ME
 	if(equipment.len)//Now to remove it and equip anew.
@@ -95,7 +95,7 @@
 /obj/mecha/combat/marauder/relaymove(mob/user,direction)
 	if(user != src.occupant) //While not "realistic", this piece is player friendly.
 		user.loc = get_turf(src)
-		user << "You climb out from [src]"
+		to_chat(user, "You climb out from [src]")
 		return 0
 	if(!can_move)
 		return 0

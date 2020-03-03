@@ -46,6 +46,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/digestable = TRUE
 	var/devourable = TRUE
 	var/feeding = TRUE
+	var/absorbable = TRUE	//TFF 14/12/19 - choose whether allowing absorbing
 	var/digest_leave_remains = FALSE
 	var/allowmobvore = TRUE
 	var/list/belly_prefs = list()
@@ -116,6 +117,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	digestable = json_from_file["digestable"]
 	devourable = json_from_file["devourable"]
 	feeding = json_from_file["feeding"]
+	absorbable = json_from_file["absorbable"]	//TFF 14/12/19 - choose whether allowing absorbing
 	digest_leave_remains = json_from_file["digest_leave_remains"]
 	allowmobvore = json_from_file["allowmobvore"]
 	vore_taste = json_from_file["vore_taste"]
@@ -131,6 +133,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		devourable = TRUE
 	if(isnull(feeding))
 		feeding = TRUE
+	if(isnull(absorbable))
+		absorbable = TRUE
 	if(isnull(digest_leave_remains))
 		digest_leave_remains = FALSE
 	if(isnull(allowmobvore))
@@ -138,9 +142,9 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	if(isnull(permit_healbelly))
 		permit_healbelly = TRUE
 	if(isnull(can_be_drop_prey))
-		allowmobvore = FALSE
+		can_be_drop_prey = FALSE
 	if(isnull(can_be_drop_pred))
-		allowmobvore = FALSE
+		can_be_drop_pred = FALSE
 	if(isnull(belly_prefs))
 		belly_prefs = list()
 
@@ -154,6 +158,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"version"				= version,
 			"digestable"			= digestable,
 			"devourable"			= devourable,
+			"absorbable"			= absorbable,
 			"feeding"				= feeding,
 			"digest_leave_remains"	= digest_leave_remains,
 			"allowmobvore"			= allowmobvore,

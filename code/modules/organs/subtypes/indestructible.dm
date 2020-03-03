@@ -63,3 +63,9 @@
 	cannot_amputate = 1
 	cannot_break = 1
 	dislocated = -1
+
+/obj/item/organ/external/head/no_eyes/indestructible
+	cannot_gib = 1
+	cannot_amputate = 1
+	cannot_break = 1
+	dislocated = -1

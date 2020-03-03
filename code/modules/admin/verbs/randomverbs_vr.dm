@@ -2,8 +2,8 @@
 	set category = "Special Verbs"
 	set name = "Spawn Character As Mob"
 	set desc = "Spawn a specified ckey as a chosen mob."
+	
 	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
 		return
 
 	var/client/picked_client = input(src, "Who are we spawning as a mob?", "Client", "Cancel") as null|anything in GLOB.clients

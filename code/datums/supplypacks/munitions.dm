@@ -144,6 +144,38 @@
  	containername = "Ballistic Weapons crate"
  	access = access_armory //VOREStation Edit - Guns are for the armory.
 
+/datum/supply_pack/munitions/mrifle
+	name = "Weapons - Magnetic Rifles"
+	contains = list(/obj/item/weapon/gun/magnetic/railgun/heater = 2)
+	cost = 120
+	containertype = /obj/structure/closet/crate/secure/weapon
+	containername = "Magnetic weapon crate"
+	access = access_armory
+
+/datum/supply_pack/munitions/mpistol
+	name = "Weapons - Magnetic Pistols"
+	contains = list(/obj/item/weapon/gun/magnetic/railgun/heater/pistol = 2)
+	cost = 200
+	containertype = /obj/structure/closet/crate/secure/weapon
+	containername = "Magnetic weapon crate"
+	access = access_armory
+
+/datum/supply_pack/munitions/mcarbine
+	name = "Weapons - Magnetic Carbines"
+	contains = list(/obj/item/weapon/gun/magnetic/railgun/flechette/sif = 2)
+	cost = 130
+	containertype = /obj/structure/closet/crate/secure/weapon
+	containername = "Magnetic weapon crate"
+	access = access_security
+
+/datum/supply_pack/munitions/mshells
+	name = "Weapons - Magnetic Shells"
+	contains = list(/obj/item/weapon/magnetic_ammo = 3)
+	cost = 100
+	containertype = /obj/structure/closet/crate/secure/weapon
+	containername = "Magnetic ammunition crate"
+	access = access_security
+
 /datum/supply_pack/munitions/shotgunammo
 	name = "Ammunition - Shotgun shells"
 	contains = list(

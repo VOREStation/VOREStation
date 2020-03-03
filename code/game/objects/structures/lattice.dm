@@ -63,14 +63,14 @@
 		var/obj/item/weapon/weldingtool/WT = C
 		if(WT.welding == 1)
 			if(WT.remove_fuel(0, user))
-				user << "<span class='notice'>Slicing lattice joints ...</span>"
+				to_chat(user, "<span class='notice'>Slicing lattice joints ...</span>")
 			new /obj/item/stack/rods(src.loc)
 			qdel(src)
 		return
 	if (istype(C, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = C
 		if(R.use(2))
-			user << "<span class='notice'>You start connecting \the [R.name] to \the [src.name] ...</span>"
+			to_chat(user, "<span class='notice'>You start connecting \the [R.name] to \the [src.name] ...</span>")
 			if(do_after(user, 5 SECONDS))
 				src.alpha = 0 // Note: I don't know why this is set, Eris did it, just trusting for now. ~Leshana
 				new /obj/structure/catwalk(src.loc)

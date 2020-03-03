@@ -176,13 +176,12 @@
 
 //////////////////////////////////////////////////////////////
 // RogueMiner "Belter: Shuttle
-// TODO - Not implemented yet on new map
-/*
+
 /datum/shuttle/ferry/belter
 	name = "Belter"
 	location = 0
-	warmup_time = 6
-	move_time = 60
+	warmup_time = 5
+	move_time = 30
 	area_station = /area/shuttle/belter/station
 	area_offsite = /area/shuttle/belter/belt/zone1
 	area_transition = /area/shuttle/belter/transit
@@ -191,12 +190,13 @@
 	dock_target_offsite = "belter_nodocking"
 
 /datum/shuttle/ferry/belter/New()
-	move_time = move_time + rand(10, 40)
+	move_time = move_time + rand(-5, 5)
 	..()
-*/
+
 
 //////////////////////////////////////////////////////////////
 // CC Lewdship shuttle
+/*
 /datum/shuttle/ferry/cruiser_shuttle
 	name = "Cruiser Shuttle"
 	location = 1
@@ -206,3 +206,4 @@
 	docking_controller_tag = "cruiser_shuttle"
 	dock_target_station = "d1a1_dock"
 	dock_target_offsite = "cruiser_shuttle_bay"
+*/

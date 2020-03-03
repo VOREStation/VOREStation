@@ -60,9 +60,7 @@
 	desc = "A kit containing Tasald's equipment."
 	has_items = list(
 		/obj/item/clothing/suit/storage/det_suit/fluff/tasald,
-		/obj/item/clothing/suit/storage/det_suit/fluff/tas_coat,
-		/obj/item/clothing/under/det/fluff/tasald,
-		/obj/item/weapon/implanter/loyalty)
+		/obj/item/clothing/under/det/fluff/tasald)
 
 //bwoincognito:Octavious Ward
 /obj/item/weapon/storage/box/fluff/octavious

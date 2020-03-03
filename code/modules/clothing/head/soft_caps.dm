@@ -16,10 +16,10 @@
 	flipped = !flipped
 	if(flipped)
 		icon_state = "[icon_state]_flipped"
-		user << "You flip the hat backwards."
+		to_chat(user, "You flip the hat backwards.")
 	else
 		icon_state = initial(icon_state)
-		user << "You flip the hat back in normal position."
+		to_chat(user, "You flip the hat back in normal position.")
 	update_clothing_icon()	//so our mob-overlays update
 
 /obj/item/clothing/head/soft/red

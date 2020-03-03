@@ -1,5 +1,6 @@
 /obj/machinery/disease2/incubator/
 	name = "pathogenic incubator"
+	desc = "Encourages the growth of diseases. This model comes with a dispenser system and a small radiation generator."
 	density = 1
 	anchored = 1
 	icon = 'icons/obj/virology.dmi'
@@ -21,7 +22,7 @@
 	if(istype(O, /obj/item/weapon/reagent_containers/glass) || istype(O,/obj/item/weapon/reagent_containers/syringe))
 
 		if(beaker)
-			user << "\The [src] is already loaded."
+			to_chat(user, "\The [src] is already loaded.")
 			return
 
 		beaker = O
@@ -37,7 +38,7 @@
 	if(istype(O, /obj/item/weapon/virusdish))
 
 		if(dish)
-			user << "The dish tray is aleady full!"
+			to_chat(user, "The dish tray is aleady full!")
 			return
 
 		dish = O

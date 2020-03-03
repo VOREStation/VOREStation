@@ -123,6 +123,12 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon = 'icons/mob/human_races/cyberlimbs/cybersolutions/cybersolutions_alt1.dmi'
 	unavailable_to_build = 1
 
+/datum/robolimb/einstein
+	company = "Einstein Engines"
+	desc = "This limb is lightweight with a sleek design."
+	icon = 'icons/mob/human_races/cyberlimbs/einstein/einstein_main.dmi'
+	unavailable_to_build = 1
+
 /datum/robolimb/grayson
 	company = "Grayson"
 	desc = "This limb has a sturdy and heavy build to it."
@@ -306,8 +312,8 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 /obj/item/weapon/disk/limb
 	name = "Limb Blueprints"
 	desc = "A disk containing the blueprints for prosthetics."
-	icon = 'icons/obj/cloning.dmi'
-	icon_state = "datadisk2"
+	icon = 'icons/obj/discs_vr.dmi' //VOREStation Edit
+	icon_state = "data-white" //VOREStation Edit
 	var/company = ""
 
 /obj/item/weapon/disk/limb/New(var/newloc)

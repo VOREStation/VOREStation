@@ -129,6 +129,22 @@
 	required_reagents = list("whiskey" = 1, "protein" = 1)
 	result_amount = 2
 
+///////////////////////////////////////////////////////////////////////////////////
+/// Reagent colonies.
+/datum/chemical_reaction/meatcolony
+	name = "protein"
+	id = "meatcolony"
+	result = "protein"
+	required_reagents = list("meatcolony" = 5, "virusfood" = 5)
+	result_amount = 60
+
+/datum/chemical_reaction/plantcolony
+	name = "nutriment"
+	id = "plantcolony"
+	result = "nutriment"
+	required_reagents = list("plantcolony" = 5, "virusfood" = 5)
+	result_amount = 60
+
 ///////////////////////////////
 //SLIME CORES BELOW HERE///////
 ///////////////////////////////
@@ -242,7 +258,7 @@
 		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 		for(var/mob/living/M in range (get_turf(holder.my_atom), 7))
 			M.bodytemperature -= 140
-			M << "<span class='notice'> You suddenly feel a chill!</span>"
+			to_chat(M, "<span class='notice'> You suddenly feel a chill!</span>")
 
 
 
@@ -291,7 +307,7 @@
 	required_reagents = list("phoron" = 10, "bicaridine" = 10, "kelotane" = 10, "inaprovaline" = 10, "slimejelly" = 10)
 	on_reaction(var/datum/reagents/holder, var/created_volume)
 		for (var/mob/living/carbon/C in viewers(get_turf(holder.my_atom), null))
-			C << "<span class='notice'>A wave of energy suddenly invigorates you.</span>"
+			to_chat(C, "<span class='notice'>A wave of energy suddenly invigorates you.</span>")
 			C.adjustBruteLoss(-25)
 			C.adjustFireLoss(-25)
 			C.adjustToxLoss(-25)

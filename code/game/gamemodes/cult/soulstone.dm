@@ -25,11 +25,11 @@
 	if(istype(M, /mob/living/carbon/human/dummy))
 		return..()
 	if(jobban_isbanned(M, "cultist"))
-		user << "<span class='warning'>This person's soul is too corrupt and cannot be captured!</span>"
+		to_chat(user, "<span class='warning'>This person's soul is too corrupt and cannot be captured!</span>")
 		return..()
 
 	if(M.has_brain_worms()) //Borer stuff - RR
-		user << "<span class='warning'>This being is corrupted by an alien intelligence and cannot be soul trapped.</span>"
+		to_chat(user, "<span class='warning'>This being is corrupted by an alien intelligence and cannot be soul trapped.</span>")
 		return..()
 
 	add_attack_logs(user,M,"Soulstone'd with [src.name]")
@@ -76,7 +76,7 @@
 			for(var/mob/living/simple_mob/construct/shade/A in src)
 				A.status_flags &= ~GODMODE
 				A.canmove = 1
-				A << "<b>You have been released from your prison, but you are still bound to [U.name]'s will. Help them suceed in their goals at all costs.</b>"
+				to_chat(A, "<b>You have been released from your prison, but you are still bound to [U.name]'s will. Help them suceed in their goals at all costs.</b>")
 				A.forceMove(U.loc)
 				A.cancel_camera()
 				src.icon_state = "soulstone"
@@ -107,16 +107,16 @@
 	if(!istype(T))
 		return;
 	if(src.imprinted != "empty")
-		U << "<span class='danger'>Capture failed!</span>: The soul stone has already been imprinted with [src.imprinted]'s mind!"
+		to_chat(U, "<span class='danger'>Capture failed!</span>: The soul stone has already been imprinted with [src.imprinted]'s mind!")
 		return
 	if ((T.health + T.halloss) > config.health_threshold_crit && T.stat != DEAD)
-		U << "<span class='danger'>Capture failed!</span>: Kill or maim the victim first!"
+		to_chat(U, "<span class='danger'>Capture failed!</span>: Kill or maim the victim first!")
 		return
 	if(T.client == null)
-		U << "<span class='danger'>Capture failed!</span>: The soul has already fled it's mortal frame."
+		to_chat(U, "<span class='danger'>Capture failed!</span>: The soul has already fled it's mortal frame.")
 		return
 	if(src.contents.len)
-		U << "<span class='danger'>Capture failed!</span>: The soul stone is full! Use or free an existing soul to make room."
+		to_chat(U, "<span class='danger'>Capture failed!</span>: The soul stone is full! Use or free an existing soul to make room.")
 		return
 
 	for(var/obj/item/W in T)
@@ -181,7 +181,7 @@
 /obj/item/device/soulstone/proc/transfer_construct(var/obj/structure/constructshell/T,var/mob/U)
 	var/mob/living/simple_mob/construct/shade/A = locate() in src
 	if(!A)
-		to_chat(U,"<span class='danger'>Capture failed!</span>: The soul stone is empty! Go kill someone!")
+		to_chat(U, "<span class='danger'>Capture failed!</span>: The soul stone is empty! Go kill someone!")
 		return;
 	var/construct_class = input(U, "Please choose which type of construct you wish to create.") as null|anything in possible_constructs
 	switch(construct_class)
@@ -191,8 +191,8 @@
 			if(iscultist(U))
 				cult.add_antagonist(Z.mind)
 			qdel(T)
-			to_chat(Z,"<B>You are playing a Juggernaut. Though slow, you can withstand extreme punishment, and rip apart enemies and walls alike.</B>")
-			to_chat(Z,"<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>")
+			to_chat(Z, "<B>You are playing a Juggernaut. Though slow, you can withstand extreme punishment, and rip apart enemies and walls alike.</B>")
+			to_chat(Z, "<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>")
 			Z.cancel_camera()
 			qdel(src)
 		if("Wraith")
@@ -201,8 +201,8 @@
 			if(iscultist(U))
 				cult.add_antagonist(Z.mind)
 			qdel(T)
-			to_chat(Z,"<B>You are playing a Wraith. Though relatively fragile, you are fast, deadly, and even able to phase through walls.</B>")
-			to_chat(Z,"<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>")
+			to_chat(Z, "<B>You are playing a Wraith. Though relatively fragile, you are fast, deadly, and even able to phase through walls.</B>")
+			to_chat(Z, "<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>")
 			Z.cancel_camera()
 			qdel(src)
 		if("Artificer")
@@ -211,8 +211,8 @@
 			if(iscultist(U))
 				cult.add_antagonist(Z.mind)
 			qdel(T)
-			to_chat(Z,"<B>You are playing an Artificer. You are incredibly weak and fragile, but you are able to construct fortifications, repair allied constructs (by clicking on them), and even create new constructs</B>")
-			to_chat(Z,"<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>")
+			to_chat(Z, "<B>You are playing an Artificer. You are incredibly weak and fragile, but you are able to construct fortifications, repair allied constructs (by clicking on them), and even create new constructs</B>")
+			to_chat(Z, "<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>")
 			Z.cancel_camera()
 			qdel(src)
 		if("Harvester")
@@ -221,8 +221,8 @@
 			if(iscultist(U))
 				cult.add_antagonist(Z.mind)
 			qdel(T)
-			to_chat(Z,"<B>You are playing a Harvester. You are relatively weak, but your physical frailty is made up for by your ranged abilities.</B>")
-			to_chat(Z,"<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>")
+			to_chat(Z, "<B>You are playing a Harvester. You are relatively weak, but your physical frailty is made up for by your ranged abilities.</B>")
+			to_chat(Z, "<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>")
 			Z.cancel_camera()
 			qdel(src)
 		if("Behemoth")
@@ -231,8 +231,8 @@
 			if(iscultist(U))
 				cult.add_antagonist(Z.mind)
 			qdel(T)
-			to_chat(Z,"<B>You are playing a Behemoth. You are incredibly slow, though your slowness is made up for by the fact your shell is far larger than any of your bretheren. You are the Unstoppable Force, and Immovable Object.</B>")
-			to_chat(Z,"<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>")
+			to_chat(Z, "<B>You are playing a Behemoth. You are incredibly slow, though your slowness is made up for by the fact your shell is far larger than any of your bretheren. You are the Unstoppable Force, and Immovable Object.</B>")
+			to_chat(Z, "<B>You are still bound to serve your creator, follow their orders and help them complete their goals at all costs.</B>")
 			Z.cancel_camera()
 			qdel(src)
 

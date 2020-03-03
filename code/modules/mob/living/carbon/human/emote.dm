@@ -30,10 +30,10 @@
 				m_type = 1
 
 		//Machine-only emotes
-		if("ping", "beep", "buzz", "yes", "ye", "no", "rcough", "rsneeze")
+		if("ping", "beep", "buzz", "yes", "ye", "dwoop", "no", "rcough", "rsneeze")
 
 			if(!isSynthetic())
-				src << "<span class='warning'>You are not a synthetic.</span>"
+				to_chat(src, "<span class='warning'>You are not a synthetic.</span>")
 				return
 
 			var/M = null
@@ -56,6 +56,9 @@
 			else if(act == "yes" || act == "ye")
 				display_msg = "emits an affirmative blip"
 				use_sound = 'sound/machines/synth_yes.ogg'
+			else if(act == "dwoop")
+				display_msg = "chirps happily"
+				use_sound = 'sound/machines/dwoop.ogg'
 			else if(act == "no")
 				display_msg = "emits a negative blip"
 				use_sound = 'sound/machines/synth_no.ogg'
@@ -83,13 +86,22 @@
 		if("squish")
 			/* VOREStation Removal Start - Eh. People can squish maybe.
 			if(species.bump_flag != SLIME) //This should definitely do it.
-				src << "<span class='warning'>You are not a slime thing!</span>"
+				to_chat(src, "<span class='warning'>You are not a slime thing!</span>")
 				return
 			*/ //VOREStation Removal End
 			playsound(src.loc, 'sound/effects/slime_squish.ogg', 50, 0) //Credit to DrMinky (freesound.org) for the sound.
 			message = "squishes."
 			m_type = 1
 
+		//Skrell-only emotes
+		if("warble")
+			if(species.name != SPECIES_SKRELL)
+				to_chat(src, "<span class='warning'>You are not a Skrell!</span>")
+				return
+
+			playsound(src.loc, 'sound/effects/warble.ogg', 50, 0) // Copyright CC BY 3.0 alienistcog (freesound.org) for the sound.
+			message = "warbles."
+			m_type = 2
 
 		if ("blink")
 			message = "blinks."
@@ -139,7 +151,7 @@
 
 			if (src.client)
 				if (client.prefs.muted & MUTE_IC)
-					src << "<font color='red'>You cannot send IC messages (muted).</font>"
+					to_chat(src, "<font color='red'>You cannot send IC messages (muted).</font>")
 					return
 			if (stat)
 				return
@@ -706,7 +718,7 @@
 
 		if("vomit")
 			if(isSynthetic())
-				src << "<span class='warning'>You are unable to vomit.</span>"
+				to_chat(src, "<span class='warning'>You are unable to vomit.</span>")
 				return
 			vomit()
 			return
@@ -726,13 +738,13 @@
 				message = "makes a light spitting noise, a poor attempt at a whistle."
 
 		if ("help")
-			src << "blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough, cry, custom, deathgasp, drool, eyebrow, fastsway/qwag, \
+			to_chat(src, "blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough, cry, custom, deathgasp, drool, eyebrow, fastsway/qwag, \
 					frown, gasp, giggle, glare-(none)/mob, grin, groan, grumble, handshake, hug-(none)/mob, laugh, look-(none)/mob, moan, mumble, nod, pale, point-atom, \
 					raise, salute, scream, sneeze, shake, shiver, shrug, sigh, signal-#1-10, slap-(none)/mob, smile, sneeze, sniff, snore, stare-(none)/mob, stopsway/swag, sway/wag, swish, tremble, twitch, \
-					twitch_v, vomit, whimper, wink, yawn. Synthetics: beep, buzz, yes, no, rcough, rsneeze, ping"
+					twitch_v, vomit, whimper, wink, yawn. Prometheans: squish Synthetics: beep, buzz, dwoop, yes, no, rcough, rsneeze, ping. Skrell: warble")
 
 		else
-			src << "<font color='blue'>Unusable emote '[act]'. Say *help for a list.</font>"
+			to_chat(src, "<font color='blue'>Unusable emote '[act]'. Say *help or *vhelp for a list.</font>") //VOREStation Edit, mention *vhelp for Virgo-specific emotes located in emote_vr.dm.
 
 	if (message)
 		custom_emote(m_type,message)

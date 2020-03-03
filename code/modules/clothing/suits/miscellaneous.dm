@@ -40,6 +40,18 @@
 	item_state_slots = list(slot_r_hand_str = "greatcoat", slot_l_hand_str = "greatcoat")
 	body_parts_covered = UPPER_TORSO|ARMS
 
+/obj/item/clothing/suit/poncho
+	name = "poncho"
+	desc = "A simple, comfortable poncho."
+	icon = 'icons/mob/suit.dmi'
+	icon_state = "poncho"
+	item_state = "poncho"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_vr.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_vr.dmi',
+		)
+	body_parts_covered = UPPER_TORSO|ARMS
+
 /obj/item/clothing/suit/hgpirate
 	name = "pirate captain coat"
 	desc = "Yarr."
@@ -730,11 +742,11 @@ obj/item/clothing/suit/kamishimo
 	if(rolled == 0)
 		rolled = 1
 		body_parts_covered &= ~(ARMS)
-		usr << "<span class='notice'>You roll up the sleeves of your [src].</span>"
+		to_chat(usr, "<span class='notice'>You roll up the sleeves of your [src].</span>")
 	else
 		rolled = 0
 		body_parts_covered = initial(body_parts_covered)
-		usr << "<span class='notice'>You roll down the sleeves of your [src].</span>"
+		to_chat(usr, "<span class='notice'>You roll down the sleeves of your [src].</span>")
 	update_icon()
 
 /obj/item/clothing/suit/storage/flannel/verb/tuck()
@@ -746,10 +758,10 @@ obj/item/clothing/suit/kamishimo
 
 	if(tucked == 0)
 		tucked = 1
-		usr << "<span class='notice'>You tuck in your your [src].</span>"
+		to_chat(usr, "<span class='notice'>You tuck in your your [src].</span>")
 	else
 		tucked = 0
-		usr << "<span class='notice'>You untuck your [src].</span>"
+		to_chat(usr, "<span class='notice'>You untuck your [src].</span>")
 	update_icon()
 
 /obj/item/clothing/suit/storage/flannel/verb/button()
@@ -762,11 +774,11 @@ obj/item/clothing/suit/kamishimo
 	if(buttoned == 0)
 		buttoned = 1
 		flags_inv = HIDETIE|HIDEHOLSTER
-		usr << "<span class='notice'>You button your [src].</span>"
+		to_chat(usr, "<span class='notice'>You button your [src].</span>")
 	else
 		buttoned = 0
 		flags_inv = HIDEHOLSTER
-		usr<<"<span class='notice'>You unbutton your [src].</span>"
+		to_chat(usr, "<span class='notice'>You unbutton your [src].</span>")
 	update_icon()
 
 /obj/item/clothing/suit/storage/flannel/update_icon()

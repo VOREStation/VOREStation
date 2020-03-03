@@ -1,11 +1,11 @@
 /mob/living/carbon/alien/diona/confirm_evolution()
 
-	if(!is_alien_whitelisted(src, all_species[SPECIES_DIONA]))
-		src << alert("You are currently not whitelisted to play as a full diona.")
+	if(!is_alien_whitelisted(src, GLOB.all_species[SPECIES_DIONA]))
+		alert(src, "You are currently not whitelisted to play as a full diona.")
 		return null
 
 	if(amount_grown < max_grown)
-		src << "You are not yet ready for your growth..."
+		to_chat(src, "You are not yet ready for your growth...")
 		return null
 
 	src.split()

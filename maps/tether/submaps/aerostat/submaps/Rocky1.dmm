@@ -4,23 +4,23 @@
 /area/template_noop)
 "b" = (
 /turf/template_noop,
-/area/submap/Rocky1)
+/area/submap/virgo2/Rocky1)
 "c" = (
-/turf/simulated/floor/outdoors/dirt,
-/area/submap/Rocky1)
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/Rocky1)
 "d" = (
 /obj/structure/boulder,
-/turf/simulated/floor/outdoors/dirt,
-/area/submap/Rocky1)
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/Rocky1)
 "e" = (
-/turf/simulated/mineral,
-/area/submap/Rocky1)
+/turf/simulated/mineral/ignore_mapgen/virgo2,
+/area/submap/virgo2/Rocky1)
 "g" = (
 /obj/random/handgun/sec,
 /obj/effect/decal/remains/human,
-/obj/item/weapon/spacecash/c200,
-/turf/simulated/floor/outdoors/dirt,
-/area/submap/Rocky1)
+/obj/item/weapon/storage/secure/briefcase/money,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/Rocky1)
 
 (1,1,1) = {"
 a

@@ -9,7 +9,7 @@
 		return 0
 
 	if(changeling.max_geneticpoints < 0) //Absorbed by another ling
-		src << "<span class='danger'>You have no genomes, not even your own, and cannot revive.</span>"
+		to_chat(src, "<span class='danger'>You have no genomes, not even your own, and cannot revive.</span>")
 		return 0
 
 	if(src.stat == DEAD)
@@ -75,7 +75,7 @@
 
 	C.halloss = 0
 	C.shock_stage = 0 //Pain
-	C << "<span class='notice'>We have regenerated.</span>"
+	to_chat(C, "<span class='notice'>We have regenerated.</span>")
 	C.update_canmove()
 	C.mind.changeling.purchased_powers -= C
 	feedback_add_details("changeling_powers","CR")

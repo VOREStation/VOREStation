@@ -24,7 +24,7 @@
 			if(H.isSynthetic() || H.does_not_breathe) // It's hard to choke a robot or something that doesn't breathe.
 				on_expire()
 				return
-			H << "<span class='warning'>You are having difficulty breathing!</span>"
+			to_chat(H, "<span class='warning'>You are having difficulty breathing!</span>")
 			var/pulses = 3
 			var/warned_victim = 0
 			while(pulses)
@@ -34,7 +34,7 @@
 				H.adjustOxyLoss(5)
 				var/health_lost = H.getMaxHealth() - H.getOxyLoss() + H.getToxLoss() + H.getFireLoss() + H.getBruteLoss() + H.getCloneLoss()
 				H.adjustOxyLoss(round(abs(health_lost * 0.25)))
-				//world << "Inflicted [round(abs(health_lost * 0.25))] damage!"
+				//to_world("Inflicted [round(abs(health_lost * 0.25))] damage!")
 				pulses--
 			if(src) //We might've been dispelled at this point and deleted, better safe than sorry.
 				on_expire()
@@ -63,13 +63,13 @@
 		return .(pulses_remaining, victim, previous_damage)
 	// Now check if our damage predictions are going to cause the victim to go into crit if no healing occurs.
 	if(previous_damage + health_lost >= victim.getMaxHealth()) // We're probably going to hardcrit
-		victim << "<span class='danger'><font size='3'>A feeling of immense dread starts to overcome you as everything starts \
-		to fade to black...</font></span>"
-		//world << "Predicted hardcrit."
+		to_chat(victim, "<span class='danger'><font size='3'>A feeling of immense dread starts to overcome you as everything starts \
+		to fade to black...</font></span>")
+		//to_world("Predicted hardcrit.")
 		return 1
 	else if(predicted_damage >= victim.species.total_health / 2) // Or perhaps we're gonna go into 'oxy crit'.
-		victim << "<span class='danger'>You feel really light-headed, and everything seems to be fading...</span>"
-		//world << "Predicted oxycrit."
+		to_chat(victim, "<span class='danger'>You feel really light-headed, and everything seems to be fading...</span>")
+		//to_world("Predicted oxycrit.")
 		return 1
 	//If we're at this point, the spell is not going to result in critting.
 	return 0

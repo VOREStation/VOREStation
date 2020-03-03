@@ -22,7 +22,7 @@
 			I.forceMove(src)
 			inserted = I
 		else if(inserted)
-			user << "<span class='warning'>There is already ID card inside.</span>"
+			to_chat(user, "<span class='warning'>There is already ID card inside.</span>")
 		return
 	..()
 

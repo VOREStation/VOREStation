@@ -2,6 +2,9 @@
 	total_positions = 2 //IT TAKES A LOT TO MAKE A STEW
 	spawn_positions = 2 //A PINCH OF SALT AND LAUGHTER, TOO
 
+/datum/job/hydro
+	spawn_positions = 2
+
 /datum/job/cargo_tech
 	total_positions = 3
 	spawn_positions = 3

@@ -167,13 +167,13 @@
 			switch(halpick)
 				if(0 to 15) //15% chance
 					//Screwy HUD
-					//src << "Screwy HUD"
+					//to_chat(src, "Screwy HUD")
 					hal_screwyhud = pick(1,2,3,3,4,4)
 					spawn(rand(100,250))
 						hal_screwyhud = 0
 				if(16 to 25) //10% chance
 					//Strange items
-					//src << "Traitor Items"
+					//to_chat(src, "Traitor Items")
 					if(!halitem)
 						halitem = new
 						var/list/slots_free = list(ui_lhand,ui_rhand)
@@ -221,7 +221,7 @@
 								halitem = null
 				if(26 to 35) //10% chance
 					//Flashes of danger
-					//src << "Danger Flash"
+					//to_chat(src, "Danger Flash")
 					if(!halimage)
 						var/list/possible_points = list()
 						for(var/turf/simulated/floor/F in view(src,world.view))
@@ -231,13 +231,13 @@
 
 							switch(rand(1,3))
 								if(1)
-									//src << "Space"
+									//to_chat(src, "Space")
 									halimage = image('icons/turf/space.dmi',target,"[rand(1,25)]",TURF_LAYER)
 								if(2)
-									//src << "Fire"
+									//to_chat(src, "Fire")
 									halimage = image('icons/effects/fire.dmi',target,"1",TURF_LAYER)
 								if(3)
-									//src << "C4"
+									//to_chat(src, "C4")
 									halimage = image('icons/obj/assemblies.dmi',target,"plastic-explosive2",OBJ_LAYER+0.01)
 
 
@@ -248,7 +248,7 @@
 
 				if(36 to 55) //20% chance
 					//Strange audio
-					//src << "Strange Audio"
+					//to_chat(src, "Strange Audio")
 					switch(rand(1,12))
 						if(1) src << 'sound/machines/airlock.ogg'
 						if(2)
@@ -282,7 +282,7 @@
 							src << pick(creepyasssounds)
 				if(56 to 60) //5% chance
 					//Flashes of danger
-					//src << "Danger Flash"
+					//to_chat(src, "Danger Flash")
 					if(!halbody)
 						var/list/possible_points = list()
 						for(var/turf/simulated/floor/F in view(src,world.view))
@@ -358,7 +358,7 @@
 		return
 
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot bite anyone in your current state!"
+		to_chat(src, "You cannot bite anyone in your current state!")
 		return
 
 	var/list/choices = list()
@@ -376,10 +376,10 @@
 	if(last_special > world.time) return
 
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		src << "You cannot bite in your current state."
+		to_chat(src, "You cannot bite in your current state.")
 		return
 	if(B.vessel.total_volume <= 0 || B.isSynthetic()) //Do they have any blood in the first place, and are they synthetic?
-		src << "<font color='red'>There appears to be no blood in this prey...</font>"
+		to_chat(src, "<font color='red'>There appears to be no blood in this prey...</font>")
 		return
 
 	last_special = world.time + 600
@@ -744,6 +744,8 @@
 		if(can_shred(T) != T)
 			to_chat(src,"<span class='warning'>Looks like you lost your chance...</span>")
 			return
+
+		T.add_modifier(/datum/modifier/gory_devourment, 10 SECONDS)
 
 		//Removing an internal organ
 		if(T_int && T_int.damage >= 25) //Internal organ and it's been severely damaged

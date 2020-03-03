@@ -17,10 +17,10 @@
 	power_environ = 0
 	mobcountmax = 100
 	floracountmax = 7000
-	/*
-	valid_mobs = list(/mob/living/simple_mob/hostile/samak/polar, /mob/living/simple_mob/hostile/diyaab/polar,
-					/mob/living/simple_mob/hostile/shantak/polar, /mob/living/simple_mob/animal/space/bear/polar,
-					/mob/living/simple_mob/hostile/wolf)*/ //VORESTATION AI TEMPORARY REMOVAL
+
+	valid_mobs = list(/mob/living/simple_mob/animal/sif/sakimm/polar, /mob/living/simple_mob/animal/sif/diyaab/polar,
+					/mob/living/simple_mob/animal/sif/shantak/polar, /mob/living/simple_mob/animal/space/bear/polar,
+					/mob/living/simple_mob/animal/wolf)
 	valid_flora = list(/obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine,
 					/obj/structure/flora/tree/dead, /obj/structure/flora/grass/brown, /obj/structure/flora/grass/green,
 					/obj/structure/flora/grass/both, /obj/structure/flora/bush, /obj/structure/flora/ausbushes/grassybush,
@@ -40,7 +40,7 @@
 
 /area/awaymission/snowfield/base
 	icon_state = "away"
-	ambience = null // Todo: Add better ambience.
+	ambience = list() // Todo: Add better ambience.
 
 // -- Mobs -- //
 
@@ -86,13 +86,13 @@
 	desc = "This bastard sure isn't drinking Space Cola anymore."
 	..()
 
-/mob/living/simple_mob/hostile/samak/polar
+/mob/living/simple_mob/animal/sif/sakimm/polar
 	faction = "polar"
 
-/mob/living/simple_mob/hostile/diyaab/polar
+/mob/living/simple_mob/animal/sif/diyaab/polar
 	faction = "polar"
 
-/mob/living/simple_mob/hostile/shantak/polar
+/mob/living/simple_mob/animal/sif/shantak/polar
 	faction = "polar"
 
 // -- Items -- //

@@ -15,10 +15,10 @@
 	if(!changeling)
 		return 0
 	if(src.mind.changeling.recursive_enhancement)
-		src << "<span class='warning'>We will no longer empower our abilities.</span>"
+		to_chat(src, "<span class='warning'>We will no longer empower our abilities.</span>")
 		src.mind.changeling.recursive_enhancement = 0
 		return 0
-	src << "<span class='notice'>We empower ourselves. Our abilities will now be extra potent.</span>"
+	to_chat(src, "<span class='notice'>We empower ourselves. Our abilities will now be extra potent.</span>")
 	src.mind.changeling.recursive_enhancement = 1
 	feedback_add_details("changeling_powers","RE")
 	return 1

@@ -64,6 +64,57 @@
 	seed_submaps(list(Z_LEVEL_PLAINS), 120, /area/tether/outpost/exploration_plains, /datum/map_template/surface/plains)
 
 //////////////////////////////////////////////////////////////////////////////
+//Rogue Mines Stuff
+
+/datum/map_template/tether_lateload/tether_roguemines1
+	name = "Asteroid Belt 1"
+	desc = "Mining, but rogue. Zone 1"
+	mappath = 'rogue_mines/rogue_mine1.dmm'
+
+	associated_map_datum = /datum/map_z_level/tether_lateload/roguemines1
+
+/datum/map_z_level/tether_lateload/roguemines1
+	name = "Belt 1"
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	z = Z_LEVEL_ROGUEMINE_1
+
+/datum/map_template/tether_lateload/tether_roguemines2
+	name = "Asteroid Belt 2"
+	desc = "Mining, but rogue. Zone 2"
+	mappath = 'rogue_mines/rogue_mine2.dmm'
+
+	associated_map_datum = /datum/map_z_level/tether_lateload/roguemines2
+
+/datum/map_z_level/tether_lateload/roguemines2
+	name = "Belt 2"
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	z = Z_LEVEL_ROGUEMINE_2
+
+/datum/map_template/tether_lateload/tether_roguemines3
+	name = "Asteroid Belt 3"
+	desc = "Mining, but rogue. Zone 3"
+	mappath = 'rogue_mines/rogue_mine3.dmm'
+
+	associated_map_datum = /datum/map_z_level/tether_lateload/roguemines3
+
+/datum/map_z_level/tether_lateload/roguemines3
+	name = "Belt 3"
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	z = Z_LEVEL_ROGUEMINE_3
+
+/datum/map_template/tether_lateload/tether_roguemines4
+	name = "Asteroid Belt 4"
+	desc = "Mining, but rogue. Zone 4"
+	mappath = 'rogue_mines/rogue_mine4.dmm'
+
+	associated_map_datum = /datum/map_z_level/tether_lateload/roguemines4
+
+/datum/map_z_level/tether_lateload/roguemines4
+	name = "Belt 4"
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	z = Z_LEVEL_ROGUEMINE_4
+
+//////////////////////////////////////////////////////////////////////////////
 /// Away Missions
 #if AWAY_MISSION_TEST
 #include "beach/beach.dmm"
@@ -166,7 +217,52 @@
 	name = "Away Mission - Debris Field"
 	z = Z_LEVEL_DEBRISFIELD
 
+//////////////////////////////////////////////////////////////////////////////////////
+// Gateway submaps go here
+/datum/map_template/tether_lateload/gateway
+	name = "Gateway Submap"
+	desc = "Please do not use this."
+	mappath = null
+	associated_map_datum = null
 
+/datum/map_z_level/tether_lateload/gateway_destination
+	name = "Gateway Destination"
+	z = Z_LEVEL_GATEWAY
+
+#include "gateway/snow_outpost.dm"
+/datum/map_template/tether_lateload/gateway/snow_outpost
+	name = "Snow Outpost"
+	desc = "Big snowy area with various outposts."
+	mappath = 'gateway/snow_outpost.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+#include "gateway/zoo.dm"
+/datum/map_template/tether_lateload/gateway/zoo
+	name = "Zoo"
+	desc = "Gigantic space zoo"
+	mappath = 'gateway/zoo.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+#include "gateway/carpfarm.dm"
+/datum/map_template/tether_lateload/gateway/carpfarm
+	name = "Carp Farm"
+	desc = "Asteroid base surrounded by carp"
+	mappath = 'gateway/carpfarm.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+#include "gateway/snowfield.dm"
+/datum/map_template/tether_lateload/gateway/snowfield
+	name = "Snow Field"
+	desc = "An old base in middle of snowy wasteland"
+	mappath = 'gateway/snowfield.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+#include "gateway/listeningpost.dm"
+/datum/map_template/tether_lateload/gateway/listeningpost
+	name = "Listening Post"
+	desc = "Asteroid-bound mercenary listening post"
+	mappath = 'gateway/listeningpost.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
 #if AWAY_MISSION_TEST

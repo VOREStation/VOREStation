@@ -35,11 +35,11 @@
 		if(!src.imp)	return
 		if(!src.imp.allow_reagents)	return
 		if(src.imp.reagents.total_volume >= src.imp.reagents.maximum_volume)
-			user << "<span class='warning'>\The [src] is full.</span>"
+			to_chat(user, "<span class='warning'>\The [src] is full.</span>")
 		else
 			spawn(5)
 				I.reagents.trans_to_obj(src.imp, 5)
-				user << "<span class='notice'>You inject 5 units of the solution. The syringe now contains [I.reagents.total_volume] units.</span>"
+				to_chat(user, "<span class='notice'>You inject 5 units of the solution. The syringe now contains [I.reagents.total_volume] units.</span>")
 	else if (istype(I, /obj/item/weapon/implanter))
 		var/obj/item/weapon/implanter/M = I
 		if (M.imp)
@@ -177,5 +177,105 @@
 
 /obj/item/weapon/implantcase/language/eal/New()
 	src.imp = new /obj/item/weapon/implant/language/eal( src )
+	..()
+	return
+
+/obj/item/weapon/implantcase/shades
+	name = "glass case - 'Integrated Shades'"
+	desc = "A case containing a nanite fabricator implant."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/shades/New()
+	src.imp = new /obj/item/weapon/implant/organ( src )
+	..()
+	return
+
+/obj/item/weapon/implantcase/taser
+	name = "glass case - 'Taser'"
+	desc = "A case containing a nanite fabricator implant."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/taser/New()
+	src.imp = new /obj/item/weapon/implant/organ/limbaugment( src )
+	..()
+	return
+
+/obj/item/weapon/implantcase/laser
+	name = "glass case - 'Laser'"
+	desc = "A case containing a nanite fabricator implant."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/laser/New()
+	src.imp = new /obj/item/weapon/implant/organ/limbaugment/laser( src )
+	..()
+	return
+
+/obj/item/weapon/implantcase/dart
+	name = "glass case - 'Dart'"
+	desc = "A case containing a nanite fabricator implant."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/dart/New()
+	src.imp = new /obj/item/weapon/implant/organ/limbaugment/dart( src )
+	..()
+	return
+
+/obj/item/weapon/implantcase/toolkit
+	name = "glass case - 'Toolkit'"
+	desc = "A case containing a nanite fabricator implant."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/toolkit/New()
+	src.imp = new /obj/item/weapon/implant/organ/limbaugment/upperarm( src )
+	..()
+	return
+
+/obj/item/weapon/implantcase/medkit
+	name = "glass case - 'Toolkit'"
+	desc = "A case containing a nanite fabricator implant."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/medkit/New()
+	src.imp = new /obj/item/weapon/implant/organ/limbaugment/upperarm/medkit( src )
+	..()
+	return
+
+/obj/item/weapon/implantcase/surge
+	name = "glass case - 'Muscle Overclocker'"
+	desc = "A case containing a nanite fabricator implant."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/surge/New()
+	src.imp = new /obj/item/weapon/implant/organ/limbaugment/upperarm/surge( src )
+	..()
+	return
+
+/obj/item/weapon/implantcase/analyzer
+	name = "glass case - 'Scanner'"
+	desc = "A case containing a nanite fabricator implant."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/analyzer/New()
+	src.imp = new /obj/item/weapon/implant/organ/limbaugment/wrist( src )
+	..()
+	return
+
+/obj/item/weapon/implantcase/sword
+	name = "glass case - 'Scanner'"
+	desc = "A case containing a nanite fabricator implant."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/sword/New()
+	src.imp = new /obj/item/weapon/implant/organ/limbaugment/wrist/sword( src )
+	..()
+	return
+
+/obj/item/weapon/implantcase/sprinter
+	name = "glass case - 'Sprinter'"
+	desc = "A case containing a nanite fabricator implant."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/sprinter/New()
+	src.imp = new /obj/item/weapon/implant/organ/pelvic( src )
 	..()
 	return

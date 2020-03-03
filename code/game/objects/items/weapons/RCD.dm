@@ -243,6 +243,13 @@
 	electric_cost_coefficent = 41.66 // Twice as efficent, out of pity.
 	toolspeed = 0.5 // Twice as fast, since borg versions typically have this.
 
+/obj/item/weapon/rcd/electric/mounted/borg/swarm
+	can_remove_rwalls = FALSE
+	name = "Rapid Assimilation Device"
+	ranged = TRUE
+	toolspeed = 0.7
+	material_to_use = MAT_STEELHULL
+
 /obj/item/weapon/rcd/electric/mounted/borg/lesser
 	can_remove_rwalls = FALSE
 

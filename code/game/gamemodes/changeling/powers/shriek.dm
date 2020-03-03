@@ -58,20 +58,20 @@
 			if(!M.mind || !M.mind.changeling)
 				if(M.get_ear_protection() >= 2)
 					continue
-				M << "<span class='danger'>You hear an extremely loud screeching sound!  It \
-				[pick("confuses","confounds","perturbs","befuddles","dazes","unsettles","disorients")] you.</span>"
+				to_chat(M, "<span class='danger'>You hear an extremely loud screeching sound!  It \
+				[pick("confuses","confounds","perturbs","befuddles","dazes","unsettles","disorients")] you.</span>")
 				M.adjustEarDamage(0,30)
 				M.Confuse(20)
 				M << sound('sound/effects/screech.ogg')
 				affected += M
 			else
 				if(M != src)
-					M << "<span class='notice'>You hear a familiar screech from nearby.  It has no effect on you.</span>"
+					to_chat(M, "<span class='notice'>You hear a familiar screech from nearby.  It has no effect on you.</span>")
 				M << sound('sound/effects/screech.ogg')
 
 		if(issilicon(M))
 			M << sound('sound/weapons/flash.ogg')
-			M << "<span class='notice'>Auditory input overloaded.  Reinitializing...</span>"
+			to_chat(M, "<span class='notice'>Auditory input overloaded.  Reinitializing...</span>")
 			M.Weaken(rand(5,10))
 			affected += M
 
@@ -95,13 +95,13 @@
 	if(!changeling)	return 0
 
 	if(is_muzzled())
-		src << "<span class='danger'>Mmmf mrrfff!</span>"
+		to_chat(src, "<span class='danger'>Mmmf mrrfff!</span>")
 		return 0
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		if(H.silent)
-			src << "<span class='danger'>You can't speak!</span>"
+			to_chat(src, "<span class='danger'>You can't speak!</span>")
 			return 0
 
 	if(world.time < (changeling.last_shriek + 10 SECONDS) )
@@ -125,7 +125,7 @@
 		range_med = range_med * 2
 		range_light = range_light * 2
 		range_long = range_long * 2
-		src << "<span class='notice'>We are extra loud.</span>"
+		to_chat(src, "<span class='notice'>We are extra loud.</span>")
 		src.mind.changeling.recursive_enhancement = 0
 
 	visible_message("<span class='notice'>[src] appears to shout.</span>")

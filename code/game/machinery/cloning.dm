@@ -113,6 +113,8 @@
 	if(!R.dna.real_name)	//to prevent null names
 		R.dna.real_name = "clone ([rand(0,999)])"
 	H.real_name = R.dna.real_name
+	H.gender = R.gender
+	H.descriptors = R.body_descriptors
 
 	//Get the clone body ready
 	H.adjustCloneLoss(150) // New damage var so you can't eject a clone early then stab them to abuse the current damage system --NeoFite
@@ -482,8 +484,8 @@
 //TO-DO: Make the genetics machine accept them.
 /obj/item/weapon/disk/data
 	name = "Cloning Data Disk"
-	icon = 'icons/obj/cloning.dmi'
-	icon_state = "datadisk0" //Gosh I hope syndies don't mistake them for the nuke disk.
+	icon = 'icons/obj/discs_vr.dmi' //VOREStation Edit
+	icon_state = "data-red" //VOREStation Edit
 	item_state = "card-id"
 	w_class = ITEMSIZE_SMALL
 	var/datum/dna2/record/buf = null

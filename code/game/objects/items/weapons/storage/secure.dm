@@ -29,7 +29,7 @@
 
 	examine(mob/user)
 		if(..(user, 1))
-			user << text("The service panel is [src.open ? "open" : "closed"].")
+			to_chat(user, "The service panel is [src.open ? "open" : "closed"].")
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(locked)
@@ -173,6 +173,7 @@
 
 /obj/item/weapon/storage/secure/safe
 	name = "secure safe"
+	desc = "It doesn't seem all that secure. Oh well, it'll do."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "safe"
 	icon_opened = "safe0"

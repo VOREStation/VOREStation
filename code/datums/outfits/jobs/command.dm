@@ -7,7 +7,7 @@
 	backpack = /obj/item/weapon/storage/backpack/captain
 	satchel_one = /obj/item/weapon/storage/backpack/satchel/cap
 	messenger_bag = /obj/item/weapon/storage/backpack/messenger/com
-	id_type = /obj/item/weapon/card/id/gold/captain
+	id_type = /obj/item/weapon/card/id/gold
 	pda_type = /obj/item/device/pda/captain
 
 /decl/hierarchy/outfit/job/captain/post_equip(var/mob/living/carbon/human/H)
@@ -28,14 +28,14 @@
 	uniform = /obj/item/clothing/under/rank/head_of_personnel
 	l_ear = /obj/item/device/radio/headset/heads/hop
 	shoes = /obj/item/clothing/shoes/brown
-	id_type = /obj/item/weapon/card/id/silver/hop
+	id_type = /obj/item/weapon/card/id/silver
 	pda_type = /obj/item/device/pda/heads/hop
 
 /decl/hierarchy/outfit/job/secretary
 	name = OUTFIT_JOB_NAME("Command Secretary")
 	l_ear = /obj/item/device/radio/headset/headset_com
 	shoes = /obj/item/clothing/shoes/brown
-	id_type = /obj/item/weapon/card/id/silver/secretary
+	id_type = /obj/item/weapon/card/id/silver
 	pda_type = /obj/item/device/pda/heads
 	r_hand = /obj/item/weapon/clipboard
 

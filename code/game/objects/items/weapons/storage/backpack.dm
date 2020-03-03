@@ -53,7 +53,7 @@
 
 /obj/item/weapon/storage/backpack/holding/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/storage/backpack/holding))
-		user << "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>"
+		to_chat(user, "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>")
 		qdel(W)
 		return
 	. = ..()
@@ -422,3 +422,10 @@
 			H.visible_message("<span class='notice'>\The [src] decides not to unpack \the [src]!</span>", \
 					"<span class='notice'>You decide not to unpack \the [src]!</span>")
 	return
+
+/obj/item/weapon/storage/backpack/satchel/ranger
+	name = "ranger satchel"
+	desc = "A satchel designed for the Go Go ERT Rangers series to allow for slightly bigger carry capacity for the ERT-Rangers.\
+	 Unlike the show claims, it is not a phoron-enhanced satchel of holding with plot-relevant content."
+	icon = 'icons/obj/clothing/ranger.dmi'
+	icon_state = "ranger_satchel"

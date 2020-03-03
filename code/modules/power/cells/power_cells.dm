@@ -18,6 +18,7 @@
 /obj/item/weapon/cell/secborg/empty/New()
 	..()
 	charge = 0
+	update_icon()
 
 /obj/item/weapon/cell/apc
 	name = "heavy-duty power cell"
@@ -35,6 +36,7 @@
 /obj/item/weapon/cell/high/empty/New()
 	..()
 	charge = 0
+	update_icon()
 
 /obj/item/weapon/cell/super
 	name = "super-capacity power cell"
@@ -46,6 +48,7 @@
 /obj/item/weapon/cell/super/empty/New()
 	..()
 	charge = 0
+	update_icon()
 
 /obj/item/weapon/cell/hyper
 	name = "hyper-capacity power cell"
@@ -57,6 +60,7 @@
 /obj/item/weapon/cell/hyper/empty/New()
 	..()
 	charge = 0
+	update_icon()
 
 /obj/item/weapon/cell/infinite
 	name = "infinite-capacity power cell!"

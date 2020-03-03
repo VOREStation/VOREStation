@@ -4,21 +4,18 @@
 /area/template_noop)
 "b" = (
 /turf/template_noop,
-/area/submap/Epod4)
+/area/submap/virgo2/Epod4)
 "c" = (
-/turf/simulated/floor/outdoors/dirt,
-/area/submap/Epod4)
-"f" = (
-/turf/simulated/floor/water,
-/area/submap/Epod4)
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/Epod4)
 "h" = (
 /turf/simulated/shuttle/wall,
-/area/submap/Epod4)
+/area/submap/virgo2/Epod4)
 "i" = (
 /obj/structure/shuttle/window,
 /obj/structure/grille,
 /turf/simulated/shuttle/plating,
-/area/submap/Epod4)
+/area/submap/virgo2/Epod4)
 "k" = (
 /obj/structure/bed/chair{
 	icon_state = "chair_preview";
@@ -31,11 +28,8 @@
 	pixel_y = 0
 	},
 /obj/structure/loot_pile/maint/junk,
-/turf/simulated/floor/water,
-/area/submap/Epod4)
-"l" = (
-/turf/simulated/floor/water/deep,
-/area/submap/Epod4)
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/Epod4)
 "m" = (
 /obj/structure/bed/chair{
 	icon_state = "chair_preview";
@@ -56,8 +50,8 @@
 /obj/item/clothing/shoes/brown,
 /obj/item/clothing/under/mbill,
 /obj/item/clothing/head/soft/mbill,
-/turf/simulated/floor/water,
-/area/submap/Epod4)
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/Epod4)
 "n" = (
 /obj/structure/bed/chair{
 	icon_state = "chair_preview";
@@ -74,18 +68,21 @@
 	name = "exotic seeds crate";
 	starts_with = list(/obj/item/seeds/random = 6, /obj/item/seeds/replicapod = 2, /obj/item/seeds/ambrosiavulgarisseed = 2, /obj/item/seeds/kudzuseed, /obj/item/seeds/libertymycelium, /obj/item/seeds/reishimycelium)
 	},
-/turf/simulated/floor/water,
-/area/submap/Epod4)
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/Epod4)
 "o" = (
 /obj/structure/shuttle/engine/propulsion/burst,
 /turf/simulated/shuttle/wall,
-/area/submap/Epod4)
+/area/submap/virgo2/Epod4)
 "p" = (
 /obj/structure/door_assembly/door_assembly_ext{
 	anchored = 1
 	},
-/turf/simulated/floor/water,
-/area/submap/Epod4)
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/Epod4)
+"Y" = (
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/virgo2/Epod4)
 
 (1,1,1) = {"
 a
@@ -128,10 +125,10 @@ c
 c
 c
 c
-f
-f
-f
-f
+c
+c
+c
+c
 c
 c
 c
@@ -144,13 +141,13 @@ b
 c
 c
 c
-f
-f
-l
-l
-l
-f
-f
+c
+c
+c
+c
+c
+c
+c
 c
 c
 a
@@ -160,15 +157,15 @@ a
 b
 c
 c
-f
+c
 h
 h
 h
 h
 o
-l
-l
-f
+c
+c
+c
 c
 a
 "}
@@ -177,22 +174,22 @@ a
 b
 c
 c
-f
+c
 i
 k
 m
 n
 p
-l
-l
-f
+c
+c
+c
 c
 a
 "}
 (7,1,1) = {"
 a
 b
-c
+Y
 c
 c
 h
@@ -200,9 +197,9 @@ h
 h
 h
 o
-l
-f
-f
+c
+c
+c
 c
 a
 "}
@@ -214,10 +211,10 @@ c
 c
 c
 c
-f
-f
-f
-f
+c
+c
+c
+c
 c
 c
 c

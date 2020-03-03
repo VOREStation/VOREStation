@@ -3,6 +3,7 @@
 //--------------------------------------------
 /obj/machinery/atmospherics/omni/atmos_filter
 	name = "omni gas filter"
+	desc = "An advanced version of the gas filter, able to be configured for filtering of multiple gasses."
 	icon_state = "map_filter"
 	pipe_state = "omni_filter"
 
@@ -87,7 +88,7 @@
 	return 1
 
 /obj/machinery/atmospherics/omni/atmos_filter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	usr.set_machine(src)
+	user.set_machine(src)
 
 	var/list/data = new()
 

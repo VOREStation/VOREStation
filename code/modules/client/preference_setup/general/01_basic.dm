@@ -88,7 +88,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 				pref.real_name = new_name
 				return TOPIC_REFRESH
 			else
-				user << "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>"
+				to_chat(user, "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>")
 				return TOPIC_NOACTION
 
 	else if(href_list["random_name"])
@@ -107,7 +107,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 				pref.nickname = new_nickname
 				return TOPIC_REFRESH
 			else
-				user << "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>"
+				to_chat(user, "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>")
 				return TOPIC_NOACTION
 
 	else if(href_list["bio_gender"])
@@ -150,9 +150,9 @@ datum/preferences/proc/set_biological_gender(var/gender)
 /datum/category_item/player_setup_item/general/basic/proc/get_genders()
 	var/datum/species/S
 	if(pref.species)
-		S = all_species[pref.species]
+		S = GLOB.all_species[pref.species]
 	else
-		S = all_species[SPECIES_HUMAN]
+		S = GLOB.all_species[SPECIES_HUMAN]
 	var/list/possible_genders = S.genders
 	if(!pref.organ_data || pref.organ_data[BP_TORSO] != "cyborg")
 		return possible_genders

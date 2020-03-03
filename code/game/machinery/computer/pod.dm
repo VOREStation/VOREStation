@@ -29,7 +29,7 @@
 		return
 
 	if(!( connected ))
-		viewers(null, null) << "Cannot locate mass driver connector. Cancelling firing sequence!"
+		to_chat(viewers(null, null),"Cannot locate mass driver connector. Cancelling firing sequence!")
 		return
 
 	for(var/obj/machinery/door/blast/M in machines)
@@ -80,7 +80,7 @@
 				A.anchored = 1
 				qdel(src)
 			else
-				to_chat(user << "<span class='notice'>You disconnect the monitor.</span>")
+				to_chat(to_chat(user, "<span class='notice'>You disconnect the monitor.</span>"))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( loc )
 
 				//generate appropriate circuitboard. Accounts for /pod/old computer types

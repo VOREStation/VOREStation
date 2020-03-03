@@ -17,6 +17,7 @@
 	//self-recharging
 	var/self_recharge = 0	//if set, the weapon will recharge itself
 	var/use_external_power = 0 //if set, the weapon will look for an external power source to draw from, otherwise it recharges magically
+	var/use_organic_power = 0 // If set, the weapon will draw from nutrition or blood.
 	var/recharge_time = 4
 	var/charge_tick = 0
 	var/charge_delay = 75	//delay between firing and charging
@@ -61,6 +62,27 @@
 				if(!external || !external.use(rechargeamt)) //Take power from the borg...
 					return 0
 
+			if(use_organic_power)
+				var/mob/living/carbon/human/H
+				if(ishuman(loc))
+					H = loc
+
+				if(istype(loc, /obj/item/organ))
+					var/obj/item/organ/O = loc
+					if(O.owner)
+						H = O.owner
+
+				if(istype(H))
+					var/start_nutrition = H.nutrition
+					var/end_nutrition = 0
+
+					H.nutrition -= rechargeamt / 10
+
+					end_nutrition = H.nutrition
+
+					if(start_nutrition - max(0, end_nutrition) < rechargeamt / 10)
+						H.remove_blood((rechargeamt / 10) - (start_nutrition - max(0, end_nutrition)))
+
 			power_supply.give(rechargeamt) //... to recharge 1/5th the battery
 			update_icon()
 		else
@@ -87,12 +109,12 @@
 /obj/item/weapon/gun/energy/proc/load_ammo(var/obj/item/C, mob/user)
 	if(istype(C, /obj/item/weapon/cell))
 		if(self_recharge || battery_lock)
-			user << "<span class='notice'>[src] does not have a battery port.</span>"
+			to_chat(user, "<span class='notice'>[src] does not have a battery port.</span>")
 			return
 		if(istype(C, accept_cell_type))
 			var/obj/item/weapon/cell/P = C
 			if(power_supply)
-				user << "<span class='notice'>[src] already has a power cell.</span>"
+				to_chat(user, "<span class='notice'>[src] already has a power cell.</span>")
 			else
 				user.visible_message("[user] is reloading [src].", "<span class='notice'>You start to insert [P] into [src].</span>")
 				if(do_after(user, 5 * P.w_class))
@@ -104,12 +126,12 @@
 					update_icon()
 					update_held_icon()
 		else
-			user << "<span class='notice'>This cell is not fitted for [src].</span>"
+			to_chat(user, "<span class='notice'>This cell is not fitted for [src].</span>")
 	return
 
 /obj/item/weapon/gun/energy/proc/unload_ammo(mob/user)
 	if(self_recharge || battery_lock)
-		user << "<span class='notice'>[src] does not have a battery port.</span>"
+		to_chat(user, "<span class='notice'>[src] does not have a battery port.</span>")
 		return
 	if(power_supply)
 		user.put_in_hands(power_supply)
@@ -120,7 +142,7 @@
 		update_icon()
 		update_held_icon()
 	else
-		user << "<span class='notice'>[src] does not have a power cell.</span>"
+		to_chat(user, "<span class='notice'>[src] does not have a power cell.</span>")
 
 /obj/item/weapon/gun/energy/attackby(var/obj/item/A as obj, mob/user as mob)
 	..()

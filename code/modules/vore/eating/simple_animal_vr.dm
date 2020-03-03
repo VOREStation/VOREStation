@@ -16,7 +16,7 @@
 	if (istype(src,/mob/living/simple_mob/animal/passive/mouse) && T.ckey == null)
 		return
 	if (client && IsAdvancedToolUser())
-		to_chat(src,"<span class='warning'>Put your hands to good use instead!</span>")
+		to_chat(src, "<span class='warning'>Put your hands to good use instead!</span>")
 		return
 	feed_grabbed_to_self(src,T)
 	update_icon()
@@ -24,9 +24,9 @@
 
 //
 // Simple proc for animals to have their digestion toggled on/off externally
+// Added as a verb in /mob/living/simple_mob/init_vore() if vore is enabled for this mob.
 //
-
-/mob/living/simple_mob/verb/toggle_digestion()
+/mob/living/simple_mob/proc/toggle_digestion()
 	set name = "Toggle Animal's Digestion"
 	set desc = "Enables digestion on this mob for 20 minutes."
 	set category = "OOC"
@@ -35,8 +35,11 @@
 	var/mob/living/carbon/human/user = usr
 	if(!istype(user) || user.stat) return
 
+	if(!vore_selected)
+		to_chat(user, "<span class='warning'>[src] isn't planning on eating anything much less digesting it.</span>")
+		return
 	if(ai_holder.retaliate || (ai_holder.hostile && faction != user.faction))
-		user << "<span class='warning'>This predator isn't friendly, and doesn't give a shit about your opinions of it digesting you.</span>"
+		to_chat(user, "<span class='warning'>This predator isn't friendly, and doesn't give a shit about your opinions of it digesting you.</span>")
 		return
 	if(vore_selected.digest_mode == DM_HOLD)
 		var/confirm = alert(user, "Enabling digestion on [name] will cause it to digest all stomach contents. Using this to break OOC prefs is against the rules. Digestion will reset after 20 minutes.", "Enabling [name]'s Digestion", "Enable", "Cancel")
@@ -49,7 +52,8 @@
 		if(confirm == "Disable")
 			vore_selected.digest_mode = DM_HOLD
 
-/mob/living/simple_mob/verb/toggle_fancygurgle()
+// Added as a verb in /mob/living/simple_mob/init_vore() if vore is enabled for this mob.
+/mob/living/simple_mob/proc/toggle_fancygurgle()
 	set name = "Toggle Animal's Gurgle sounds"
 	set desc = "Switches between Fancy and Classic sounds on this mob."
 	set category = "OOC"
@@ -57,6 +61,9 @@
 
 	var/mob/living/user = usr	//I mean, At least ghosts won't use it.
 	if(!istype(user) || user.stat) return
+	if(!vore_selected)
+		to_chat(user, "<span class='warning'>[src] isn't vore capable.</span>")
+		return
 
 	vore_selected.fancy_vore = !vore_selected.fancy_vore
 	to_chat(user, "[src] is now using [vore_selected.fancy_vore ? "Fancy" : "Classic"] vore sounds.")

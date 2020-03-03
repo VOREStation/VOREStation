@@ -31,7 +31,7 @@
 	silicon_mob_list |= src
 	..()
 	add_language(LANGUAGE_GALCOM)
-	set_default_language(all_languages[LANGUAGE_GALCOM])
+	set_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
 	init_id()
 	init_subsystems()
 
@@ -72,8 +72,8 @@
 			src.take_organ_damage(0,5,emp=1)
 			Confuse(2)
 	flash_eyes(affect_silicon = 1)
-	src << "<span class='danger'><B>*BZZZT*</B></span>"
-	src << "<span class='danger'>Warning: Electromagnetic pulse detected.</span>"
+	to_chat(src, "<span class='danger'><B>*BZZZT*</B></span>")
+	to_chat(src, "<span class='danger'>Warning: Electromagnetic pulse detected.</span>")
 	..()
 
 /mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount)
@@ -175,7 +175,7 @@
 /mob/living/silicon/proc/show_station_manifest()
 	var/dat = "<div align='center'>"
 	if(!data_core)
-		to_chat(src,"<span class='notice'>There is no data to form a manifest with. Contact your Nanotrasen administrator.</span>")
+		to_chat(src, "<span class='notice'>There is no data to form a manifest with. Contact your Nanotrasen administrator.</span>")
 		return
 	dat += data_core.get_manifest(1) //The 1 makes it monochrome.
 
@@ -186,7 +186,7 @@
 //can't inject synths
 /mob/living/silicon/can_inject(var/mob/user, var/error_msg)
 	if(error_msg)
-		user << "<span class='alert'>The armoured plating is too tough.</span>"
+		to_chat(user, "<span class='alert'>The armoured plating is too tough.</span>")
 	return 0
 
 
@@ -196,7 +196,7 @@
 	return universal_speak || (speaking in src.speech_synthesizer_langs) || (speaking.name == "Noise")	//need speech synthesizer support to vocalize a language
 
 /mob/living/silicon/add_language(var/language, var/can_speak=1)
-	var/var/datum/language/added_language = all_languages[language]
+	var/var/datum/language/added_language = GLOB.all_languages[language]
 	if(!added_language)
 		return
 
@@ -206,7 +206,7 @@
 		return 1
 
 /mob/living/silicon/remove_language(var/rem_language)
-	var/var/datum/language/removed_language = all_languages[rem_language]
+	var/var/datum/language/removed_language = GLOB.all_languages[rem_language]
 	if(!removed_language)
 		return
 
@@ -253,7 +253,7 @@
 				plane_holder.set_vis(VIS_CH_STATUS,FALSE)
 				plane_holder.set_vis(VIS_CH_HEALTH,FALSE)
 
-			to_chat(src,"<span class='notice'>Security records overlay enabled.</span>")
+			to_chat(src, "<span class='notice'>Security records overlay enabled.</span>")
 		if ("Medical")
 			if(plane_holder)
 				//Disable Security planes
@@ -267,7 +267,7 @@
 				plane_holder.set_vis(VIS_CH_STATUS,TRUE)
 				plane_holder.set_vis(VIS_CH_HEALTH,TRUE)
 
-			to_chat(src,"<span class='notice'>Life signs monitor overlay enabled.</span>")
+			to_chat(src, "<span class='notice'>Life signs monitor overlay enabled.</span>")
 		if ("Disable")
 			if(plane_holder)
 				//Disable Security planes
@@ -280,7 +280,7 @@
 				//Disable Medical planes
 				plane_holder.set_vis(VIS_CH_STATUS,FALSE)
 				plane_holder.set_vis(VIS_CH_HEALTH,FALSE)
-			to_chat(src,"Sensor augmentations disabled.")
+			to_chat(src, "Sensor augmentations disabled.")
 
 	hudmode = sensor_type //This is checked in examine.dm on humans, so they can see medical/security records depending on mode
 
@@ -353,7 +353,7 @@
 					alarm_raised = 1
 					if(!reported)
 						reported = 1
-						src << "<span class='warning'>--- [AH.category] Detected ---</span>"
+						to_chat(src, "<span class='warning'>--- [AH.category] Detected ---</span>")
 					raised_alarm(A)
 
 		for(var/datum/alarm_handler/AH in queued_alarms)
@@ -363,24 +363,24 @@
 				if(alarms[A] == -1)
 					if(!reported)
 						reported = 1
-						src << "<span class='notice'>--- [AH.category] Cleared ---</span>"
-					src << "\The [A.alarm_name()]."
+						to_chat(src, "<span class='notice'>--- [AH.category] Cleared ---</span>")
+					to_chat(src, "\The [A.alarm_name()].")
 
 		if(alarm_raised)
-			src << "<A HREF=?src=\ref[src];showalerts=1>\[Show Alerts\]</A>"
+			to_chat(src, "<A HREF=?src=\ref[src];showalerts=1>\[Show Alerts\]</A>")
 
 		for(var/datum/alarm_handler/AH in queued_alarms)
 			var/list/alarms = queued_alarms[AH]
 			alarms.Cut()
 
 /mob/living/silicon/proc/raised_alarm(var/datum/alarm/A)
-	src << "[A.alarm_name()]!"
+	to_chat(src, "[A.alarm_name()]!")
 
 /mob/living/silicon/ai/raised_alarm(var/datum/alarm/A)
 	var/cameratext = ""
 	for(var/obj/machinery/camera/C in A.cameras())
 		cameratext += "[(cameratext == "")? "" : "|"]<A HREF=?src=\ref[src];switchcamera=\ref[C]>[C.c_tag]</A>"
-	src << "[A.alarm_name()]! ([(cameratext)? cameratext : "No Camera"])"
+	to_chat(src, "[A.alarm_name()]! ([(cameratext)? cameratext : "No Camera"])")
 
 
 /mob/living/silicon/proc/is_traitor()

@@ -8,7 +8,7 @@
 	set desc = "Emote to nearby people (and your pred/prey)"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		usr << "Speech is currently admin-disabled."
+		to_chat(usr, "Speech is currently admin-disabled.")
 		return
 
 	message = sanitize_or_reflect(message,src) //VOREStation Edit - Reflect too-long messages (within reason)
@@ -23,7 +23,7 @@
 
 /mob/proc/custom_emote_vr(var/m_type=1,var/message = null) //This would normally go in emote.dm
 	if(stat || !use_me && usr == src)
-		src << "You are unable to emote."
+		to_chat(src, "You are unable to emote.")
 		return
 
 	var/muzzled = is_muzzled()
@@ -37,12 +37,12 @@
 
 	if(input)
 		log_subtle(message,src)
-		message = "<B>[src]</B> <I>[input]</I>"
+		message = "<span class='emote'><B>[src]</B> <I>[input]</I></span>"
 	else
 		return
 
 	if (message)
-		message = say_emphasis(message)
+		message = encode_html_emphasis(message)
 
 		var/list/vis = get_mobs_and_objs_in_view_fast(get_turf(src),1,2) //Turf, Range, and type 2 is emote
 		var/list/vis_mobs = vis["mobs"]
@@ -81,11 +81,11 @@
 
 /proc/fail_to_chat(user,message)
 	if(!message)
-		to_chat(user,"<span class='danger'>Your message was NOT SENT, either because it was FAR too long, or sanitized to nothing at all.</span>")
+		to_chat(user, "<span class='danger'>Your message was NOT SENT, either because it was FAR too long, or sanitized to nothing at all.</span>")
 		return
 
 	var/length = length(message)
 	var/posts = CEILING((length/MAX_MESSAGE_LEN), 1)
 	to_chat(user,message)
-	to_chat(user,"<span class='danger'>^ This message was NOT SENT ^ -- It was [length] characters, and the limit is [MAX_MESSAGE_LEN]. It would fit in [posts] separate messages.</span>")
+	to_chat(user, "<span class='danger'>^ This message was NOT SENT ^ -- It was [length] characters, and the limit is [MAX_MESSAGE_LEN]. It would fit in [posts] separate messages.</span>")
 #undef MAX_HUGE_MESSAGE_LEN

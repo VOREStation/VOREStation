@@ -39,3 +39,6 @@
 	set_trait(TRAIT_PRODUCT_ICON,"mushroom6")
 	set_trait(TRAIT_PLANT_ICON,"tree")
 	set_trait(TRAIT_PRODUCT_COLOUR,"#DADA00")
+
+/datum/seed/gnomes
+	harvest_sound = 'sound/items/hooh.ogg'

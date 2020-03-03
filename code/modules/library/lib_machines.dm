@@ -113,9 +113,10 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
  * Library Computer
  */
 // TODO: Make this an actual /obj/machinery/computer that can be crafted from circuit boards and such
-// It is August 22nd, 2012... This TODO has already been here for months.. I wonder how long it'll last before someone does something about it.
+// It is August 22nd, 2012... This TODO has already been here for months.. I wonder how long it'll last before someone does something about it. // Nov 2019. Nope.
 /obj/machinery/librarycomp
 	name = "Check-In/Out Computer"
+	desc = "Print books from the archives! (You aren't quite sure how they're printed by it, though.)"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "computer"
 	anchored = 1
@@ -133,6 +134,40 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 
 	var/bibledelay = 0 // LOL NO SPAM (1 minute delay) -- Doohl
 
+	var/static/list/all_books
+
+	var/static/list/base_genre_books
+
+/obj/machinery/librarycomp/Initialize()
+	..()
+
+	if(!base_genre_books || !base_genre_books.len)
+		base_genre_books = list(
+			/obj/item/weapon/book/custom_library/fiction,
+			/obj/item/weapon/book/custom_library/nonfiction,
+			/obj/item/weapon/book/custom_library/reference,
+			/obj/item/weapon/book/custom_library/religious,
+			/obj/item/weapon/book/bundle/custom_library/fiction,
+			/obj/item/weapon/book/bundle/custom_library/nonfiction,
+			/obj/item/weapon/book/bundle/custom_library/reference,
+			/obj/item/weapon/book/bundle/custom_library/religious
+			)
+
+	if(!all_books || !all_books.len)
+		all_books = list()
+
+		for(var/path in subtypesof(/obj/item/weapon/book/codex/lore))
+			var/obj/item/weapon/book/C = new path(null)
+			all_books[C.name] = C
+
+		for(var/path in subtypesof(/obj/item/weapon/book/custom_library) - base_genre_books)
+			var/obj/item/weapon/book/B = new path(null)
+			all_books[B.title] = B
+
+		for(var/path in subtypesof(/obj/item/weapon/book/bundle/custom_library) - base_genre_books)
+			var/obj/item/weapon/book/M = new path(null)
+			all_books[M.title] = M
+
 /obj/machinery/librarycomp/attack_hand(var/mob/user as mob)
 	usr.set_machine(src)
 	var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
@@ -144,13 +179,14 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 			<A href='?src=\ref[src];switchscreen=3'>3. Check out a Book</A><BR>
 			<A href='?src=\ref[src];switchscreen=4'>4. Connect to External Archive</A><BR>
 			<A href='?src=\ref[src];switchscreen=5'>5. Upload New Title to Archive</A><BR>
-			<A href='?src=\ref[src];switchscreen=6'>6. Print a Bible</A><BR>"}
+			<A href='?src=\ref[src];switchscreen=6'>6. Print a Bible</A><BR>
+			<A href='?src=\ref[src];switchscreen=8'>8. Access NT Internal Archive</A><BR>"}
 			if(src.emagged)
 				dat += "<A href='?src=\ref[src];switchscreen=7'>7. Access the Forbidden Lore Vault</A><BR>"
 			if(src.arcanecheckout)
 				new /obj/item/weapon/book/tome(src.loc)
 				var/datum/gender/T = gender_datums[user.get_visible_gender()]
-				user << "<span class='warning'>Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a dusty old tome sitting on the desk. You don't really remember printing it.</span>"
+				to_chat(user, "<span class='warning'>Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a dusty old tome sitting on the desk. You don't really remember printing it.</span>")
 				user.visible_message("<span class='notice'>\The [user] stares at the blank screen for a few moments, [T.his] expression frozen in fear. When [T.he] finally awakens from it, [T.he] looks a lot older.</span>", 2)
 				src.arcanecheckout = 0
 		if(1)
@@ -190,8 +226,11 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 			<A href='?src=\ref[src];checkout=1'>(Commit Entry)</A><BR>
 			<A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"}
 		if(4)
-			dat += "<h3>External Archive</h3>"
+			dat += "<h3>External Archive</h3>" //VOREStation Edit
 			establish_old_db_connection()
+
+//			dat += "<h3><font color=red>Warning: System Administrator has slated this archive for removal. Personal uploads should be taken to the NT board of internal literature.</font></h3>"	//VOREStation Removal TFF 29/1/20 - Redundant warning, we're not removing our library entries.
+
 			if(!dbcon_old.IsConnected())
 				dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"
 			else
@@ -210,6 +249,10 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				dat += "</table>"
 			dat += "<BR><A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 		if(5)
+			//dat += "<H3>ERROR</H3>" //VOREStation Removal
+			//dat+= "<FONT color=red>Library Database is in Secure Management Mode.</FONT><BR>\ //VOREStation Removal
+			//Contact a System Administrator for more information.<BR>" //VOREStation Removal
+			//VOREstation Edit Start
 			dat += "<H3>Upload a New Title</H3>"
 			if(!scanner)
 				for(var/obj/machinery/libraryscanner/S in range(9))
@@ -227,12 +270,30 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				dat += {"<TT>Author: </TT><A href='?src=\ref[src];setauthor=1'>[scanner.cache.author]</A><BR>
 				<TT>Category: </TT><A href='?src=\ref[src];setcategory=1'>[upload_category]</A><BR>
 				<A href='?src=\ref[src];upload=1'>\[Upload\]</A><BR>"}
+			//VOREStation Edit End
 			dat += "<A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 		if(7)
 			dat += {"<h3>Accessing Forbidden Lore Vault v 1.3</h3>
 			Are you absolutely sure you want to proceed? EldritchTomes Inc. takes no responsibilities for loss of sanity resulting from this action.<p>
 			<A href='?src=\ref[src];arccheckout=1'>Yes.</A><BR>
 			<A href='?src=\ref[src];switchscreen=0'>No.</A><BR>"}
+		if(8)
+			dat += "<h3>NT Internal Archive</h3>"
+			if(!all_books || !all_books.len)
+				dat +=	"<font color=red><b>ERROR</b> Something has gone seriously wrong. Contact System Administrator for more information.</font>"
+			else
+				dat += {"<table>
+				<tr><td><A href='?src=\ref[src];sort=author>AUTHOR</A></td><td><A href='?src=\ref[src];sort=title>TITLE</A></td><td><A href='?src=\ref[src];sort=category>CATEGORY</A></td><td></td></tr>"}
+
+				for(var/name in all_books)
+					var/obj/item/weapon/book/masterbook = all_books[name]
+					var/id = masterbook.type
+					var/author = masterbook.author
+					var/title = masterbook.name
+					var/category = masterbook.libcategory
+					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td><A href='?src=\ref[src];hardprint=[id]'>\[Order\]</A></td></tr>"
+				dat += "</table>"
+			dat += "<BR><A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 
 	//dat += "<A HREF='?src=\ref[user];mach_close=library'>Close</A><br><br>"
 	user << browse(dat, "window=library")
@@ -247,7 +308,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	if(istype(W, /obj/item/weapon/barcodescanner))
 		var/obj/item/weapon/barcodescanner/scanner = W
 		scanner.computer = src
-		user << "[scanner]'s associated machine has been set to [src]."
+		to_chat(user, "[scanner]'s associated machine has been set to [src].")
 		for (var/mob/V in hearers(src))
 			V.show_message("[src] lets out a low, short blip.", 2)
 	else
@@ -293,6 +354,8 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 
 			if("7")
 				screenstate = 7
+			if("8")
+				screenstate = 8
 	if(href_list["arccheckout"])
 		if(src.emagged)
 			src.arcanecheckout = 1
@@ -328,6 +391,8 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 		var/newcategory = input("Choose a category: ") in list("Fiction", "Non-Fiction", "Adult", "Reference", "Religion")
 		if(newcategory)
 			upload_category = newcategory
+
+	//VOREStation Edit Start
 	if(href_list["upload"])
 		if(scanner)
 			if(scanner.cache)
@@ -352,10 +417,11 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 							var/sqlcategory = sanitizeSQL(upload_category)
 							var/DBQuery/query = dbcon_old.NewQuery("INSERT INTO library (author, title, content, category) VALUES ('[sqlauthor]', '[sqltitle]', '[sqlcontent]', '[sqlcategory]')")
 							if(!query.Execute())
-								usr << query.ErrorMsg()
+								to_chat(usr,query.ErrorMsg())
 							else
 								log_game("[usr.name]/[usr.key] has uploaded the book titled [scanner.cache.name], [length(scanner.cache.dat)] signs")
 								alert("Upload Complete.")
+	//VOREStation Edit End
 
 	if(href_list["targetid"])
 		var/sqlid = sanitizeSQL(href_list["targetid"])
@@ -392,6 +458,10 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				spawn() src.Topic(nhref, params2list(nhref), src)
 	if(href_list["sort"] in list("author", "title", "category"))
 		sortby = href_list["sort"]
+	if(href_list["hardprint"])
+		var/newpath = href_list["hardprint"]
+		var/obj/item/weapon/book/NewBook = new newpath(get_turf(src))
+		NewBook.name = "Book: [NewBook.name]"
 	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	return
@@ -452,23 +522,41 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
  */
 /obj/machinery/bookbinder
 	name = "Book Binder"
+	desc = "Bundles up a stack of inserted paper into a convenient book format."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "binder"
 	anchored = 1
 	density = 1
 
 /obj/machinery/bookbinder/attackby(var/obj/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/paper))
-		user.drop_item()
-		O.loc = src
-		user.visible_message("[user] loads some paper into [src].", "You load some paper into [src].")
-		src.visible_message("[src] begins to hum as it warms up its printing drums.")
-		sleep(rand(200,400))
-		src.visible_message("[src] whirs as it prints and binds a new book.")
-		var/obj/item/weapon/book/b = new(src.loc)
-		b.dat = O:info
-		b.name = "Print Job #" + "[rand(100, 999)]"
-		b.icon_state = "book[rand(1,7)]"
-		qdel(O)
+	if(istype(O, /obj/item/weapon/paper) || istype(O, /obj/item/weapon/paper_bundle))
+		if(istype(O, /obj/item/weapon/paper))
+			user.drop_item()
+			O.loc = src
+			user.visible_message("[user] loads some paper into [src].", "You load some paper into [src].")
+			src.visible_message("[src] begins to hum as it warms up its printing drums.")
+			sleep(rand(200,400))
+			src.visible_message("[src] whirs as it prints and binds a new book.")
+			var/obj/item/weapon/book/b = new(src.loc)
+			b.dat = O:info
+			b.name = "Print Job #" + "[rand(100, 999)]"
+			b.icon_state = "book[rand(1,7)]"
+			qdel(O)
+		else
+			user.drop_item()
+			O.loc = src
+			user.visible_message("[user] loads some paper into [src].", "You load some paper into [src].")
+			src.visible_message("[src] begins to hum as it warms up its printing drums.")
+			sleep(rand(300,500))
+			src.visible_message("[src] whirs as it prints and binds a new book.")
+			var/obj/item/weapon/book/bundle/b = new(src.loc)
+			b.pages = O:pages
+			for(var/obj/item/weapon/paper/P in O.contents)
+				P.forceMove(b)
+			for(var/obj/item/weapon/photo/P in O.contents)
+				P.forceMove(b)
+			b.name = "Print Job #" + "[rand(100, 999)]"
+			b.icon_state = "book[rand(1,7)]"
+			qdel(O)
 	else
 		..()

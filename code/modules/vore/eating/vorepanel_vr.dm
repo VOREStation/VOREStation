@@ -4,8 +4,8 @@
 
 #define BELLIES_MAX 30
 #define BELLIES_NAME_MIN 2
-#define BELLIES_NAME_MAX 12
-#define BELLIES_DESC_MAX 1024
+#define BELLIES_NAME_MAX 20
+#define BELLIES_DESC_MAX 2048
 #define FLAVOR_MAX 40
 
 /mob/living/proc/insidePanel()
@@ -255,6 +255,10 @@
 		dat += "<br><a href='?src=\ref[src];b_tastes=\ref[selected]'>Can Taste:</a>"
 		dat += " [selected.can_taste ? "Yes" : "No"]"
 
+		//Nutritional percentage
+		dat += "<br><a href='?src=\ref[src];b_nutritionpercent=\ref[selected]'>Nutritional Gain:</a>"
+		dat += " [selected.nutrition_percent]%"
+
 		//How much brute damage
 		dat += "<br><a href='?src=\ref[src];b_brute_dmg=\ref[selected]'>Digest Brute Damage:</a>"
 		dat += " [selected.digest_brute]"
@@ -322,6 +326,11 @@
 			dat += "<br><a style='background:#173d15;' href='?src=\ref[src];toggledfeed=1'>Toggle Feeding (Currently: ON)</a>"
 		if(FALSE)
 			dat += "<br><a style='background:#990000;' href='?src=\ref[src];toggledfeed=1'>Toggle Feeding (Currently: OFF)</a>"
+	switch(user.absorbable)
+		if(TRUE)
+			dat += "<a style='background:#173d15;' href='?src=\ref[src];toggleabsorbable=1'>Toggle Absorbtion Permission (Currently: ON)</a>"
+		if(FALSE)
+			dat += "<a style='background:#990000;' href='?src=\ref[src];toggleabsorbable=1'>Toggle Absorbtion Permission (Currently: OFF)</a>"
 	switch(user.digest_leave_remains)
 		if(TRUE)
 			dat += "<a style='background:#173d15;' href='?src=\ref[src];toggledlm=1'>Toggle Leaving Remains (Currently: ON)</a>"
@@ -771,6 +780,13 @@
 		else if(new_grow)
 			selected.shrink_grow_size = (new_grow*0.01)
 
+	if(href_list["b_nutritionpercent"])
+		var/new_damage = input(user, "Choose the nutrition gain percentage you will recieve per tick from prey. Ranges from 0.01 to 100.", "Set Nutrition Gain Percentage.", selected.digest_brute) as num|null
+		if(new_damage == null)
+			return
+		var/new_new_damage = CLAMP(new_damage, 0.01, 100)
+		selected.nutrition_percent = new_new_damage
+
 	if(href_list["b_burn_dmg"])
 		var/new_damage = input(user, "Choose the amount of burn damage prey will take per tick. Ranges from 0 to 6.", "Set Belly Burn Damage.", selected.digest_burn) as num|null
 		if(new_damage == null)
@@ -949,6 +965,19 @@
 
 		if(user.client.prefs_vr)
 			user.client.prefs_vr.feeding = user.feeding
+
+	if(href_list["toggleabsorbable"])
+		var/choice = alert(user, "This button allows preds to know whether you prefer or don't prefer to be absorbed. Currently you are [user.absorbable? "" : "not"] giving permission.", "", "Allow absorption", "Cancel", "Disallow absorption")
+		switch(choice)
+			if("Cancel")
+				return FALSE
+			if("Allow absorption")
+				user.absorbable = TRUE
+			if("Disallow absorption")
+				user.absorbable = FALSE
+
+		if(user.client.prefs_vr)
+			user.client.prefs_vr.absorbable = user.absorbable
 
 	if(href_list["toggledlm"])
 		var/choice = alert(user, "This button allows preds to have your remains be left in their belly after you are digested. This will only happen if pred sets their belly to do so. Remains consist of skeletal parts. Currently you are [user.digest_leave_remains? "" : "not"] leaving remains.", "", "Allow Post-digestion Remains", "Cancel", "Disallow Post-digestion Remains")

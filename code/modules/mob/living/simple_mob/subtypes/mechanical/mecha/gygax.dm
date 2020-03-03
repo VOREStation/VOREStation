@@ -31,6 +31,7 @@
 				"rad"		= 100
 				)
 
+	projectile_dispersion = 8
 	projectiletype = /obj/item/projectile/beam/midlaser
 
 	ai_holder_type = /datum/ai_holder/simple_mob/intentional/adv_dark_gygax
@@ -80,3 +81,4 @@
 	icon_state = "medgax"
 	wreckage = /obj/structure/loot_pile/mecha/gygax/medgax
 
+	projectile_dispersion = 8

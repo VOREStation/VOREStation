@@ -6,6 +6,7 @@
 	w_class = ITEMSIZE_NORMAL
 	throw_speed = 3
 	throw_range = 3
+	center_of_mass = null
 	max_amount = 50
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_material.dmi',
@@ -19,8 +20,7 @@
 
 /obj/item/stack/material/New()
 	..()
-	pixel_x = rand(0,4)-4
-	pixel_y = rand(0,4)-4
+	randpixel_xy()
 
 	if(!default_type)
 		default_type = DEFAULT_WALL_MATERIAL
@@ -316,6 +316,7 @@
 	name = "wooden plank"
 	icon_state = "sheet-wood"
 	default_type = MAT_WOOD
+	strict_color_stacking = TRUE
 
 /obj/item/stack/material/wood/sif
 	name = "alien wooden plank"
@@ -367,12 +368,25 @@
 	icon_state = "sheet-cloth"
 	default_type = "cloth"
 	no_variants = FALSE
+	pass_color = TRUE
+	strict_color_stacking = TRUE
+
+/obj/item/stack/material/resin
+	name = "resin"
+	icon_state = "sheet-resin"
+	default_type = "resin"
+	no_variants = TRUE
+	apply_colour = TRUE
+	pass_color = TRUE
+	strict_color_stacking = TRUE
 
 /obj/item/stack/material/cardboard
 	name = "cardboard"
 	icon_state = "sheet-card"
 	default_type = "cardboard"
 	no_variants = FALSE
+	pass_color = TRUE
+	strict_color_stacking = TRUE
 
 /obj/item/stack/material/snow
 	name = "snow"
@@ -392,6 +406,8 @@
 	icon_state = "sheet-leather"
 	default_type = "leather"
 	no_variants = FALSE
+	pass_color = TRUE
+	strict_color_stacking = TRUE
 
 /obj/item/stack/material/glass
 	name = "glass"

@@ -93,8 +93,9 @@
 	if(..()) return 1
 
 	if(!can_open)
-		to_chat(user, "<span class='notice'>You push the wall, but nothing happens.</span>")
-		playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
+		if(!material.wall_touch_special(src, user))
+			to_chat(user, "<span class='notice'>You push the wall, but nothing happens.</span>")
+			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 	else
 		toggle_open(user)
 	return 0
@@ -137,7 +138,7 @@
 /turf/simulated/wall/attackby(obj/item/weapon/W as obj, mob/user as mob)
 
 	user.setClickCooldown(user.get_attack_speed(W))
-	if (!user.)
+	if (!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 

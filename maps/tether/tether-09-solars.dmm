@@ -1,16 +1,16 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
 /turf/unsimulated/wall/planetary/virgo3b,
-/area/space)
+/area/mine/explored)
 "ab" = (
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "ac" = (
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/shuttle/antag_ground/solars)
 "ad" = (
 /turf/simulated/floor/outdoors/dirt/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "ae" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -178,18 +178,6 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
-"at" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/outdoors/dirt/virgo3b,
-/area/tether/outpost/solars_outside)
 "au" = (
 /turf/simulated/wall,
 /area/tether/outpost/solars_shed)
@@ -204,14 +192,17 @@
 "aw" = (
 /mob/living/simple_mob/animal/passive/gaslamp,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "ax" = (
-/obj/machinery/power/tracker,
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
 	},
-/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/simulated/floor/virgo3b,
 /area/tether/outpost/solars_outside)
 "ay" = (
@@ -311,6 +302,15 @@
 /turf/simulated/floor/virgo3b_indoors,
 /area/tether/outpost/solars_shed)
 "aI" = (
+/obj/machinery/power/tracker,
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/virgo3b,
+/area/tether/outpost/solars_outside)
+"aJ" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
@@ -329,15 +329,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/virgo3b,
 /area/tether/outpost/solars_outside)
-"aJ" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
 "aK" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "2-8"
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/heavyduty{
+	icon_state = "0-8"
+	},
+/obj/structure/cable/heavyduty{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/sensor{
+	name = "Powernet Sensor - Solar Farm Output";
+	name_tag = "Solar Farm Output"
+	},
 /turf/simulated/floor/virgo3b,
 /area/tether/outpost/solars_outside)
 "aL" = (
@@ -382,29 +385,23 @@
 /turf/simulated/floor/virgo3b_indoors,
 /area/tether/outpost/solars_shed)
 "aP" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/effect/landmark{
+	name = "bluespacerift"
 	},
-/obj/machinery/power/sensor{
-	name = "Powernet Sensor - Solar Farm Input";
-	name_tag = "Solar Farm Input"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored)
 "aQ" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-2"
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
 	},
-/obj/machinery/power/sensor{
-	name = "Powernet Sensor - Solar Farm Output";
-	name_tag = "Solar Farm Output"
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/obj/machinery/vending/wallmed_airlock{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost)
 "aR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/solar_control,
@@ -464,6 +461,10 @@
 /turf/simulated/floor/virgo3b_indoors,
 /area/tether/outpost/solars_shed)
 "aW" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/virgo3b,
+/area/tether/outpost/solars_outside)
+"aX" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -472,37 +473,19 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/virgo3b,
 /area/tether/outpost/solars_outside)
-"aX" = (
+"aY" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/virgo3b,
 /area/tether/outpost/solars_outside)
-"aY" = (
+"aZ" = (
 /obj/structure/railing,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/virgo3b,
 /area/tether/outpost/solars_outside)
-"aZ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/airlock/multi_tile/metal/mait,
-/turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_shed)
 "ba" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_shed)
-"bb" = (
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'HIGH VOLTAGE'";
-	icon_state = "shock";
-	name = "HIGH VOLTAGE";
-	pixel_y = 0
-	},
-/turf/simulated/wall,
-/area/tether/outpost/solars_shed)
-"bc" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -513,15 +496,48 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/sensor{
+	name = "Powernet Sensor - Solar Farm Input";
+	name_tag = "Solar Farm Input"
+	},
 /turf/simulated/floor/virgo3b,
 /area/tether/outpost/solars_outside)
+"bb" = (
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'HIGH VOLTAGE'";
+	icon_state = "shock";
+	name = "HIGH VOLTAGE";
+	pixel_y = 0
+	},
+/turf/simulated/wall,
+/area/tether/outpost/solars_shed)
+"bc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/airlock/multi_tile/metal/mait,
+/turf/simulated/floor/virgo3b_indoors,
+/area/tether/outpost/solars_shed)
 "bd" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
+	},
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = 0
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/virgo3b,
+/area/tether/outpost/solars_outside)
+"be" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
-"be" = (
+"bf" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner{
 	dir = 4
 	},
@@ -537,7 +553,7 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
-"bf" = (
+"bg" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
 	},
@@ -548,24 +564,15 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
-"bg" = (
+"bh" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
 	},
 /obj/machinery/camera/network/engineering,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
-"bh" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
 "bi" = (
 /obj/effect/floor_decal/industrial/warning/dust{
-	dir = 1
-	},
-/obj/machinery/light/small{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -573,32 +580,26 @@
 "bj" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "bk" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/outpost/solars_outside)
+"bl" = (
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/outpost/solars_outside)
+"bm" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
-"bl" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-2"
-	},
-/obj/machinery/light/small{
-	dir = 8;
-	pixel_x = 0
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
-"bm" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "4-8"
-	},
-/obj/structure/railing,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/virgo3b,
 /area/tether/outpost/solars_outside)
 "bn" = (
 /obj/effect/floor_decal/rust,
@@ -623,7 +624,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "bp" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
@@ -634,23 +635,26 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "bq" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "4-8"
+	},
+/obj/structure/railing,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/virgo3b,
+/area/tether/outpost/solars_outside)
+"br" = (
+/mob/living/simple_mob/animal/passive/gaslamp,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/outpost/solars_outside)
+"bs" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
-"br" = (
-/obj/effect/floor_decal/industrial/warning/dust,
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
-"bs" = (
-/obj/effect/floor_decal/industrial/warning/dust,
-/obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
 "bt" = (
@@ -665,32 +669,17 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "bu" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 8
-	},
+/obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
 "bv" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/effect/floor_decal/industrial/warning/dust,
+/obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
 "bw" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
@@ -703,6 +692,30 @@
 /area/tether/outpost/solars_outside)
 "bx" = (
 /obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/outpost/solars_outside)
+"by" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/outpost/solars_outside)
+"bz" = (
+/obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
@@ -714,7 +727,7 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
-"by" = (
+"bA" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
 	},
@@ -725,7 +738,7 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
-"bz" = (
+"bB" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 4;
@@ -738,7 +751,7 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
-"bA" = (
+"bC" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
 	},
@@ -754,7 +767,7 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
-"bB" = (
+"bD" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 10
 	},
@@ -765,7 +778,7 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
-"bC" = (
+"bE" = (
 /obj/effect/floor_decal/industrial/warning/dust,
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -774,7 +787,13 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
-"bD" = (
+"bF" = (
+/turf/simulated/mineral/virgo3b,
+/area/mine/unexplored)
+"bG" = (
+/turf/simulated/mineral/virgo3b,
+/area/mine/explored)
+"bH" = (
 /obj/effect/floor_decal/industrial/warning/dust,
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -786,27 +805,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
-"bE" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 6
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
-"bF" = (
-/turf/simulated/mineral/virgo3b,
-/area/mine/unexplored)
-"bG" = (
-/turf/simulated/mineral/virgo3b,
-/area/tether/outpost/solars_outside)
-"bH" = (
-/mob/living/simple_mob/animal/passive/gaslamp,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
 "bI" = (
@@ -821,11 +819,11 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "bJ" = (
 /mob/living/simple_mob/animal/passive/gaslamp,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "bK" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-4"
@@ -836,12 +834,12 @@
 /obj/structure/railing,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "bL" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/step_trigger/teleporter/from_solars,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/space)
+/area/mine/explored)
 "bM" = (
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/shuttle/tether/crash1)
@@ -867,7 +865,7 @@
 /obj/structure/railing,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "bR" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/cable/heavyduty{
@@ -876,7 +874,7 @@
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "bS" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
@@ -884,7 +882,7 @@
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "bT" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
@@ -893,7 +891,7 @@
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "bU" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
@@ -907,12 +905,12 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "bV" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "bW" = (
 /turf/simulated/wall,
 /area/rnd/outpost/mixing)
@@ -920,24 +918,24 @@
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/corner_steel_grid,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "bY" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/corner_steel_grid{
 	dir = 10
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "bZ" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/corner_steel_grid{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "ca" = (
 /turf/simulated/wall,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "cb" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -1019,7 +1017,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "cn" = (
 /obj/effect/floor_decal/corner/purple{
 	dir = 5
@@ -1462,25 +1460,25 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "de" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 6
 	},
 /turf/simulated/floor/outdoors/dirt/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "df" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/dirt/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "dg" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 10
 	},
 /turf/simulated/floor/outdoors/dirt/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "dh" = (
 /obj/machinery/atmospherics/portables_connector,
 /obj/effect/floor_decal/industrial/outline/blue,
@@ -1678,13 +1676,13 @@
 	dir = 5
 	},
 /turf/simulated/floor/outdoors/dirt/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "dG" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/dirt/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "dH" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/blue,
 /obj/machinery/meter,
@@ -1899,7 +1897,7 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "ed" = (
 /obj/machinery/telecomms/relay/preset/tether/sci_outpost,
 /turf/simulated/floor,
@@ -1925,7 +1923,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "eg" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
@@ -1938,13 +1936,13 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "eh" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 9
 	},
 /turf/simulated/floor/outdoors/dirt/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "ei" = (
 /obj/machinery/atmospherics/valve,
 /turf/simulated/floor/tiled/white,
@@ -2150,7 +2148,7 @@
 /obj/effect/floor_decal/rust,
 /obj/structure/anomaly_container,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "eC" = (
 /obj/structure/table/rack,
 /obj/item/device/suit_cooling_unit,
@@ -2180,13 +2178,13 @@
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "eG" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 9
 	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "eH" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/blue{
 	dir = 8
@@ -3291,7 +3289,7 @@
 "gj" = (
 /obj/structure/lattice,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "gk" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
@@ -3396,7 +3394,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/reinforced/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "gv" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/red{
 	icon_state = "map";
@@ -3633,7 +3631,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/reinforced/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "gO" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 4
@@ -3888,7 +3886,7 @@
 "hj" = (
 /obj/machinery/atmospherics/pipe/vent/high_volume,
 /turf/simulated/floor/reinforced/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "hk" = (
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
@@ -4361,7 +4359,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/reinforced/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "hX" = (
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
@@ -4534,7 +4532,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/reinforced/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "ir" = (
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced{
@@ -4721,7 +4719,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/reinforced/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "iO" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/red,
 /obj/machinery/meter,
@@ -4823,19 +4821,19 @@
 	dir = 5
 	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "iX" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 9
 	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "iY" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "iZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -5062,7 +5060,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "jv" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -5313,7 +5311,7 @@
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "jV" = (
 /obj/structure/anomaly_container,
 /obj/effect/floor_decal/rust,
@@ -5321,14 +5319,14 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "jW" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 5
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "jX" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -6770,9 +6768,14 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "mm" = (
-/obj/structure/table/standard,
+/obj/structure/table/woodentable,
+/obj/item/weapon/storage/box/donkpockets,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -28
+	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/anomaly_lab)
+/area/rnd/outpost/breakroom)
 "mn" = (
 /obj/machinery/washing_machine,
 /obj/structure/window/reinforced{
@@ -6865,7 +6868,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "mv" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
@@ -6875,7 +6878,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "mw" = (
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
@@ -7169,14 +7172,10 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "mV" = (
-/obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
-/obj/item/weapon/reagent_containers/dropper,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/anomaly_lab)
+/obj/effect/floor_decal/rust,
+/obj/structure/reagent_dispensers/coolanttank,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/rnd/outpost/storage)
 "mW" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
@@ -7240,13 +7239,12 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "nf" = (
-/obj/structure/table/standard,
-/obj/item/weapon/storage/box/beakers,
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/structure/table/woodentable,
+/obj/machinery/vending/wallmed1{
+	pixel_x = -30
 	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/anomaly_lab)
+/area/rnd/outpost/breakroom)
 "ng" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -7260,11 +7258,12 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "ni" = (
-/obj/structure/table/standard,
-/obj/machinery/chemical_dispenser/full,
-/obj/machinery/light,
+/obj/structure/table/woodentable,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/anomaly_lab)
+/area/rnd/outpost/breakroom)
 "nj" = (
 /obj/structure/filingcabinet/chestdrawer,
 /obj/structure/window/reinforced{
@@ -7480,7 +7479,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/railing,
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "nC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -7724,7 +7723,7 @@
 	},
 /obj/structure/railing,
 /turf/simulated/floor/virgo3b,
-/area/tether/outpost/solars_outside)
+/area/mine/explored)
 "oc" = (
 /obj/item/device/radio/intercom{
 	dir = 4;
@@ -7762,14 +7761,12 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
 "of" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/purple/border{
-	dir = 4
+/obj/structure/table/standard,
+/obj/machinery/vending/wallmed1{
+	pixel_y = 30
 	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost)
+/area/rnd/outpost/anomaly_lab)
 "og" = (
 /obj/structure/dispenser/oxygen,
 /turf/simulated/floor/tiled,
@@ -7913,10 +7910,12 @@
 /turf/simulated/floor/wood,
 /area/rnd/outpost/breakroom)
 "ow" = (
-/obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/watertank,
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/breakroom)
+/area/rnd/outpost/anomaly_lab)
 "ox" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -7987,10 +7986,13 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
 "oH" = (
-/obj/structure/table/woodentable,
-/obj/machinery/microwave,
+/obj/structure/table/standard,
+/obj/machinery/light,
+/obj/item/weapon/storage/box/beakers,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/weapon/reagent_containers/dropper,
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/breakroom)
+/area/rnd/outpost/anomaly_lab)
 "oI" = (
 /obj/structure/table/woodentable,
 /obj/machinery/microwave,
@@ -8076,6 +8078,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
+"oS" = (
+/obj/structure/table/standard,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/acid{
+	pixel_y = -32
+	},
+/obj/machinery/reagentgrinder,
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/anomaly_lab)
 "oT" = (
 /obj/structure/bed/chair/wood{
 	dir = 8
@@ -8121,17 +8134,16 @@
 /turf/simulated/wall,
 /area/rnd/outpost/breakroom)
 "pa" = (
-/obj/structure/table/woodentable,
-/obj/machinery/light{
-	dir = 8
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 6
 	},
-/obj/machinery/light_switch{
-	dir = 4;
-	pixel_x = -28
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
 	},
-/obj/item/weapon/storage/box/donkpockets,
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/breakroom)
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/outpost/solars_outside)
 "pb" = (
 /obj/machinery/alarm{
 	dir = 8;
@@ -12331,20 +12343,20 @@ ai
 ai
 ai
 an
-bd
-bd
-bu
-bw
-bw
-bw
+be
+be
 bw
 by
-bu
+by
+by
+by
+bA
 bw
-bw
-bw
-bw
-bB
+by
+by
+by
+by
+bD
 ad
 ad
 ad
@@ -12486,7 +12498,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -12617,18 +12629,18 @@ ak
 ao
 al
 al
-bv
-bx
-bx
-bx
 bx
 bz
-bv
+bz
+bz
+bz
+bB
 bx
-bx
-bx
-bx
-bD
+bz
+bz
+bz
+bz
+bH
 ad
 ad
 ad
@@ -12770,7 +12782,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -12901,18 +12913,18 @@ ak
 ao
 al
 al
-bv
-bx
-bx
-bx
 bx
 bz
-bv
+bz
+bz
+bz
+bB
 bx
-bx
-bx
-bx
-bD
+bz
+bz
+bz
+bz
+bH
 ad
 ad
 ad
@@ -13054,7 +13066,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -13196,7 +13208,7 @@ al
 al
 al
 al
-bC
+bE
 ad
 ad
 ad
@@ -13327,18 +13339,18 @@ ak
 ao
 al
 al
-bv
-bx
-bx
-bx
 bx
 bz
-bv
+bz
+bz
+bz
+bB
 bx
-bx
-bx
-bx
-bD
+bz
+bz
+bz
+bz
+bH
 ad
 ad
 ad
@@ -13480,7 +13492,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -13611,18 +13623,18 @@ ak
 ao
 al
 al
-bv
-bx
-bx
-bx
 bx
 bz
-bv
+bz
+bz
+bz
+bB
 bx
-bx
-bx
-bx
-bD
+bz
+bz
+bz
+bz
+bH
 ad
 ad
 ad
@@ -13764,7 +13776,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -13895,18 +13907,18 @@ ak
 ao
 al
 al
-bv
-bx
-bx
-bx
 bx
 bz
-bv
+bz
+bz
+bz
+bB
 bx
-bx
-bx
-bx
-bD
+bz
+bz
+bz
+bz
+bH
 ad
 ad
 ad
@@ -14048,7 +14060,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -14190,7 +14202,7 @@ al
 al
 al
 al
-bC
+bE
 ad
 ad
 ad
@@ -14321,18 +14333,18 @@ ak
 ao
 al
 al
-bv
-bx
-bx
-bx
 bx
 bz
-bv
+bz
+bz
+bz
+bB
 bx
-bx
-bx
-bx
-bD
+bz
+bz
+bz
+bz
+bH
 ad
 ad
 ad
@@ -14474,7 +14486,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -14605,18 +14617,18 @@ ak
 ao
 al
 al
-bv
-bx
-bx
-bx
 bx
 bz
-bv
+bz
+bz
+bz
+bB
 bx
-bx
-bx
-bx
-bD
+bz
+bz
+bz
+bz
+bH
 ad
 ad
 ad
@@ -14758,7 +14770,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -14889,18 +14901,18 @@ ak
 ao
 al
 al
-bv
-bx
-bx
-bx
 bx
 bz
-bv
+bz
+bz
+bz
+bB
 bx
-bx
-bx
-bx
-bD
+bz
+bz
+bz
+bz
+bH
 ad
 ad
 ad
@@ -15042,7 +15054,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -15184,7 +15196,7 @@ al
 al
 al
 al
-bC
+bE
 ad
 ad
 ad
@@ -15314,19 +15326,19 @@ ak
 ak
 ao
 al
-bH
-bv
-bx
-bx
-bx
+br
 bx
 bz
-bv
+bz
+bz
+bz
+bB
 bx
-bx
-bx
-bx
-bD
+bz
+bz
+bz
+bz
+bH
 ad
 ad
 ad
@@ -15468,7 +15480,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -15599,18 +15611,18 @@ ak
 ao
 al
 al
-bv
-bx
-bx
-bx
 bx
 bz
-bv
+bz
+bz
+bz
+bB
 bx
-bx
-bx
-bx
-bD
+bz
+bz
+bz
+bz
+bH
 ad
 ad
 ad
@@ -15752,7 +15764,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -15883,18 +15895,18 @@ ak
 ao
 al
 al
-bv
-bx
-bx
-bx
 bx
 bz
-bv
+bz
+bz
+bz
+bB
 bx
-bx
-bx
-bx
-bD
+bz
+bz
+bz
+bz
+bH
 ad
 ad
 ad
@@ -16036,7 +16048,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -16178,7 +16190,7 @@ al
 al
 al
 al
-bC
+bE
 ad
 ad
 ad
@@ -16309,18 +16321,18 @@ ak
 ao
 al
 al
-bv
-bx
-bx
-bx
 bx
 bz
-bv
+bz
+bz
+bz
+bB
 bx
-bx
-bx
-bx
-bD
+bz
+bz
+bz
+bz
+bH
 ad
 ad
 ad
@@ -16462,7 +16474,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -16593,18 +16605,18 @@ ak
 ao
 al
 al
-bv
-bx
-bx
-bx
 bx
 bz
-bv
+bz
+bz
+bz
+bB
 bx
-bx
-bx
-bx
-bD
+bz
+bz
+bz
+bz
+bH
 ad
 ad
 ad
@@ -16746,7 +16758,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -16877,18 +16889,18 @@ ak
 ao
 al
 al
-bv
-bx
-bx
-bx
 bx
 bz
-bv
+bz
+bz
+bz
+bB
 bx
-bx
-bx
-bx
-bD
+bz
+bz
+bz
+bz
+bH
 ad
 ad
 ad
@@ -17030,7 +17042,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -17172,7 +17184,7 @@ al
 al
 al
 al
-bC
+bE
 ad
 ad
 ad
@@ -17303,18 +17315,18 @@ ak
 ao
 al
 al
-bv
-bx
-bx
-bx
 bx
 bz
-bv
+bz
+bz
+bz
+bB
 bx
-bx
-bx
-bx
-bD
+bz
+bz
+bz
+bz
+bH
 ad
 ad
 ad
@@ -17456,7 +17468,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -17587,18 +17599,18 @@ ak
 ao
 al
 al
-bv
-bx
-bx
-bx
 bx
 bz
-bv
+bz
+bz
+bz
+bB
 bx
-bx
-bx
-bx
-bD
+bz
+bz
+bz
+bz
+bH
 ad
 ad
 ad
@@ -17740,7 +17752,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -17871,18 +17883,18 @@ ak
 ao
 al
 al
-bv
-bx
-bx
-bx
 bx
 bz
-bv
+bz
+bz
+bz
+bB
 bx
-bx
-bx
-bx
-bD
+bz
+bz
+bz
+bz
+bH
 ad
 ad
 ad
@@ -18024,7 +18036,7 @@ aj
 aj
 aj
 aj
-bC
+bE
 ad
 ad
 ad
@@ -18153,20 +18165,20 @@ am
 am
 am
 am
-be
-bq
+bf
+bs
 am
 am
 am
 am
 am
-bA
+bC
 am
 am
 am
 am
 am
-bE
+pa
 ad
 ad
 ad
@@ -18296,7 +18308,7 @@ ad
 ad
 ad
 af
-br
+bu
 ad
 ad
 ad
@@ -18438,7 +18450,7 @@ ad
 ad
 ad
 af
-br
+bu
 ad
 ad
 ad
@@ -18580,7 +18592,7 @@ ad
 ad
 ad
 af
-br
+bu
 ad
 ad
 ad
@@ -18717,12 +18729,12 @@ ad
 ad
 ad
 ad
-ax
-aJ
-aJ
-aY
+aI
+aW
+aW
+aZ
 af
-br
+bu
 ad
 ad
 ad
@@ -18858,13 +18870,13 @@ ad
 ad
 ad
 ad
-at
-aI
-aP
-aW
-bc
-bf
-bs
+ax
+aJ
+aX
+aX
+ba
+bg
+bv
 ad
 ad
 ad
@@ -19005,8 +19017,8 @@ ay
 au
 au
 au
-bg
-bj
+bh
+bl
 ad
 ad
 ad
@@ -19147,8 +19159,8 @@ az
 aL
 aR
 au
-bh
-bj
+bi
+bl
 ad
 ad
 ad
@@ -19289,8 +19301,8 @@ aA
 aE
 aS
 au
-bh
-bs
+bi
+bv
 ad
 ad
 ad
@@ -19431,8 +19443,8 @@ aB
 aE
 aE
 au
-bh
-bs
+bi
+bv
 ad
 ad
 ad
@@ -19573,8 +19585,8 @@ aC
 aE
 aT
 au
-bi
-bs
+bk
+bv
 ad
 ad
 ad
@@ -19714,9 +19726,9 @@ av
 aD
 aE
 aE
-aZ
-bj
-bj
+bc
+bl
+bl
 ad
 ad
 ad
@@ -19856,9 +19868,9 @@ av
 aE
 aE
 aE
-ba
+aE
 al
-bs
+bv
 ad
 ad
 ad
@@ -19999,8 +20011,8 @@ aF
 aM
 aU
 bP
-bk
-bj
+bm
+bl
 ad
 ad
 ad
@@ -20141,8 +20153,8 @@ aG
 aN
 aU
 bb
-bj
-bs
+bl
+bv
 ad
 ad
 ad
@@ -20283,8 +20295,8 @@ aG
 aO
 aV
 au
-bj
-bj
+bl
+bl
 ad
 ad
 ad
@@ -20426,7 +20438,7 @@ au
 au
 au
 al
-bj
+bl
 ad
 ad
 ad
@@ -20564,11 +20576,11 @@ ad
 ad
 ad
 aK
-aQ
-aX
-bl
+aY
+aY
+bd
 bn
-bj
+bl
 ad
 ad
 ad
@@ -20705,12 +20717,12 @@ ad
 ad
 ad
 ad
-aJ
-aJ
-aJ
-aJ
-bm
-bs
+aW
+aW
+aW
+aW
+bq
+bv
 ad
 ad
 ad
@@ -22505,7 +22517,7 @@ jE
 ml
 mG
 mU
-ni
+oH
 jx
 ab
 ab
@@ -22644,10 +22656,10 @@ ng
 nV
 lH
 jE
-mm
+of
 mG
-mV
-nf
+ow
+oS
 jx
 ab
 ab
@@ -24016,7 +24028,7 @@ ad
 ad
 ad
 ad
-ad
+aP
 ad
 ad
 ad
@@ -24611,7 +24623,7 @@ dD
 ch
 lS
 oc
-of
+aQ
 fd
 fy
 fQ
@@ -24629,9 +24641,9 @@ ft
 lc
 oZ
 oI
-ow
-oH
-pa
+mm
+nf
+ni
 oG
 oP
 oX
@@ -25339,7 +25351,7 @@ iU
 jf
 jo
 ji
-hM
+mV
 hM
 ov
 op

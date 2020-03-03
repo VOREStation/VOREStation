@@ -1,5 +1,6 @@
 /obj/machinery/computer/cloning
 	name = "cloning control console"
+	desc = "Used to start cloning cycles, as well as manage clone records."
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
 	light_color = "#315ab4"
@@ -335,6 +336,8 @@
 	R.name = R.dna.real_name
 	R.types = DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
 	R.languages = subject.languages
+	R.gender = subject.gender
+	R.body_descriptors = subject.descriptors
 	if(!brain_skip) //Brains don't have flavor text.
 		R.flavor = subject.flavor_texts.Copy()
 	else

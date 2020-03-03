@@ -79,7 +79,7 @@
 #define COLOR_DEEP_SKY_BLUE     "#00e1ff"
 
 
-
+#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : null))
 
 //	Shuttles.
 
@@ -113,6 +113,7 @@
 #define MAX_RECORD_LENGTH	  24576
 #define MAX_LNAME_LEN         64
 #define MAX_NAME_LEN          52
+#define MAX_FEEDBACK_LENGTH      4096
 #define MAX_TEXTFILE_LENGTH 128000		// 512GQ file
 
 // Event defines.
@@ -353,7 +354,9 @@ var/global/list/##LIST_NAME = list();\
 #define RAD_LEVEL_HIGH 25
 #define RAD_LEVEL_VERY_HIGH 75
 
-#define RADIATION_THRESHOLD_CUTOFF 0.1	// Radiation will not affect a tile when below this value.
+// Calculation modes for effective radiation
+#define RAD_RESIST_CALC_DIV 0 // Each turf absorbs some fraction of the working radiation level
+#define RAD_RESIST_CALC_SUB 1 // Each turf absorbs a fixed amount of radiation
 
 //https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
 #define MOUSE_OPACITY_TRANSPARENT 0

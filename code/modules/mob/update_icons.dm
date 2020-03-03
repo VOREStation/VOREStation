@@ -90,3 +90,4 @@
 
 /mob/proc/update_targeted()
 	return
+

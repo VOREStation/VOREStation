@@ -9,11 +9,11 @@
 				var/output = replacetext(config.wikisearchurl, "%s", url_encode(query))
 				src << link(output)
 			else
-				src << "<span class='warning'> The wiki search URL is not set in the server configuration.</span>"
+				to_chat(src, "<span class='warning'> The wiki search URL is not set in the server configuration.</span>")
 		else
 			src << link(config.wikiurl)
 	else
-		src << "<span class='warning'>The wiki URL is not set in the server configuration.</span>"
+		to_chat(src, "<span class='warning'>The wiki URL is not set in the server configuration.</span>")
 		return
 
 /client/verb/forum()
@@ -25,7 +25,7 @@
 			return
 		src << link(config.forumurl)
 	else
-		src << "<span class='warning'>The forum URL is not set in the server configuration.</span>"
+		to_chat(src, "<span class='warning'>The forum URL is not set in the server configuration.</span>")
 		return
 
 /client/verb/rules()
@@ -38,7 +38,7 @@
 			return
 		src << link(config.rulesurl)
 	else
-		src << "<span class='danger'>The rules URL is not set in the server configuration.</span>"
+		to_chat(src, "<span class='danger'>The rules URL is not set in the server configuration.</span>")
 	return
 
 /client/verb/map()
@@ -51,7 +51,7 @@
 			return
 		src << link(config.mapurl)
 	else
-		src << "<span class='danger'>The map URL is not set in the server configuration.</span>"
+		to_chat(src, "<span class='danger'>The map URL is not set in the server configuration.</span>")
 	return
 
 /client/verb/github()
@@ -64,7 +64,7 @@
 			return
 		src << link(config.githuburl)
 	else
-		src << "<span class='danger'>The GitHub URL is not set in the server configuration.</span>"
+		to_chat(src, "<span class='danger'>The GitHub URL is not set in the server configuration.</span>")
 	return
 
 /client/verb/hotkeys_help()
@@ -181,13 +181,13 @@ Any-Mode: (hotkey doesn't need to be on)
 </font>"}
 
 	if(isrobot(src.mob))
-		src << robot_hotkey_mode
-		src << robot_other
+		to_chat(src,robot_hotkey_mode)
+		to_chat(src,robot_other)
 	else
-		src << hotkey_mode
-		src << other
+		to_chat(src,hotkey_mode)
+		to_chat(src,other)
 	if(holder)
-		src << admin
+		to_chat(src,admin)
 
 // Set the DreamSeeker input macro to the type appropriate for its mob
 /client/proc/set_hotkeys_macro(macro_name = "macro", hotkey_macro_name = "hotkeymode", hotkeys_enabled = null)

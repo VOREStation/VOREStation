@@ -26,17 +26,17 @@
 		if(istype(W,/obj/item/stack/cable_coil))
 			var/obj/item/stack/cable_coil/CC = W
 			if (get_amount() < 1 || CC.get_amount() < 5)
-				user << "<span class='warning'>You need five lengths of coil and one sheet of glass to make wired glass.</span>"
+				to_chat(user, "<span class='warning'>You need five lengths of coil and one sheet of glass to make wired glass.</span>")
 				return
 
 			CC.use(5)
 			use(1)
-			user << "<span class='notice'>You attach wire to the [name].</span>"
+			to_chat(user, "<span class='notice'>You attach wire to the [name].</span>")
 			new /obj/item/stack/light_w(user.loc)
 		else if(istype(W, /obj/item/stack/rods))
 			var/obj/item/stack/rods/V  = W
 			if (V.get_amount() < 1 || get_amount() < 1)
-				user << "<span class='warning'>You need one rod and one sheet of glass to make reinforced glass.</span>"
+				to_chat(user, "<span class='warning'>You need one rod and one sheet of glass to make reinforced glass.</span>")
 				return
 
 			var/obj/item/stack/material/glass/reinforced/RG = new (user.loc)

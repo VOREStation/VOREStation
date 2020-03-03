@@ -818,7 +818,6 @@
 		if(3)
 			if(diff==FORWARD)
 				user.visible_message("[user] installs the external armor layer to [holder].", "You install the external armor layer to [holder].")
-				qdel(I)
 				holder.icon_state = "gygax18"
 			else
 				user.visible_message("[user] cuts internal armor layer from [holder].", "You cut the internal armor layer from [holder].")
@@ -829,7 +828,8 @@
 				holder.icon_state = "gygax19-s"
 			else
 				user.visible_message("[user] pries the external armor layer from [holder].", "You pry the external armor layer from [holder].")
-				new /obj/item/mecha_parts/part/gygax_armour(get_turf(holder))
+				var/obj/item/stack/material/plasteel/MS = new /obj/item/stack/material/plasteel(get_turf(holder)) // Fixes serenity giving Gygax Armor Plates for the reverse action...
+				MS.amount = 5
 				holder.icon_state = "gygax17"
 		if(1)
 			if(diff==FORWARD)

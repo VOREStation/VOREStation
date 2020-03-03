@@ -130,7 +130,6 @@
 	for(var/obj/screen/spell/spell in spell_objects)
 		spell.update_charge(forced)
 
-
 /obj/screen/movable/spell_master/genetic
 	name = "Mutant Powers"
 	icon_state = "genetic_spell_ready"
@@ -139,6 +138,13 @@
 	closed_state = "genetics_closed"
 
 	screen_loc = ui_genetic_master
+
+/obj/screen/movable/spell_master/swarm
+	name = "Swarm Abilities"
+	icon_state = "nano_spell_ready"
+
+	open_state = "swarm_open"
+	closed_state = "swarm_closed"
 
 //////////////ACTUAL SPELLS//////////////
 //This is what you click to cast things//

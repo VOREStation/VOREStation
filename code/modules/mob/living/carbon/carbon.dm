@@ -6,7 +6,7 @@
 	touching = new/datum/reagents/metabolism/touch(500, src)
 	reagents = bloodstr
 	if (!default_language && species_language)
-		default_language = all_languages[species_language]
+		default_language = GLOB.all_languages[species_language]
 
 /mob/living/carbon/Life()
 	..()
@@ -91,7 +91,7 @@
 		if (H.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
-			H << "<font color='red'>You can't use your [temp.name]</font>"
+			to_chat(H, "<font color='red'>You can't use your [temp.name]</font>")
 			return
 
 	return
@@ -143,8 +143,8 @@
 			var/mob/living/carbon/human/H = src
 			var/datum/gender/T = gender_datums[H.get_visible_gender()]
 			src.visible_message( \
-				"<font color='blue'>[src] examines [T.himself].</font>", \
-				"<font color='blue'>You check yourself for injuries.</font>" \
+				"<span class='notice'>[src] examines [T.himself].</span>", \
+				"<span class='notice'>You check yourself for injuries.</span>" \
 				)
 
 			for(var/obj/item/organ/external/org in H.organs)
@@ -290,7 +290,7 @@
 /mob/living/carbon/can_use_hands()
 	if(handcuffed)
 		return 0
-	if(buckled && ! istype(buckled, /obj/structure/bed/chair)) // buckling does not restrict hands
+	if(buckled && istype(buckled, /obj/structure/bed/nest)) // buckling does not restrict hands
 		return 0
 	return 1
 
@@ -343,7 +343,7 @@
 	set category = "IC"
 
 	if(usr.sleeping)
-		usr << "<font color='red'>You are already sleeping</font>"
+		to_chat(usr, "<font color='red'>You are already sleeping</font>")
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
 		usr.sleeping = 20 //Short nap
@@ -362,7 +362,7 @@
 	if(buckled)
 		return 0
 	stop_pulling()
-	src << "<span class='warning'>You slipped on [slipped_on]!</span>"
+	to_chat(src, "<span class='warning'>You slipped on [slipped_on]!</span>")
 	playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 	Weaken(FLOOR(stun_duration/2, 1))
 	return 1
@@ -378,12 +378,12 @@
 		if(can_speak(default_language))
 			return default_language
 		else
-			return all_languages[LANGUAGE_GIBBERISH]
+			return GLOB.all_languages[LANGUAGE_GIBBERISH]
 
 	if(!species)
 		return null
 
-	return species.default_language ? all_languages[species.default_language] : null
+	return species.default_language ? GLOB.all_languages[species.default_language] : null
 
 /mob/living/carbon/proc/should_have_organ(var/organ_check)
 	return 0

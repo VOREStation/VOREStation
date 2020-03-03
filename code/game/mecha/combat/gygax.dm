@@ -45,7 +45,7 @@
 	max_universal_equip = 1
 	max_special_equip = 2
 
-/obj/mecha/combat/gygax/dark/New()
+/obj/mecha/combat/gygax/dark/Initialize()
 	..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
 	ME.attach(src)

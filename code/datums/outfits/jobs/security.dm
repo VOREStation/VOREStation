@@ -20,7 +20,7 @@
 	name = OUTFIT_JOB_NAME("Warden")
 	uniform = /obj/item/clothing/under/rank/warden
 	l_pocket = /obj/item/device/flash
-	id_type = /obj/item/weapon/card/id/security/warden
+	id_type = /obj/item/weapon/card/id/security
 	pda_type = /obj/item/device/pda/warden
 
 /decl/hierarchy/outfit/job/security/detective
@@ -31,20 +31,23 @@
 	l_pocket = /obj/item/weapon/flame/lighter/zippo
 	shoes = /obj/item/clothing/shoes/laceup
 	r_hand = /obj/item/weapon/storage/briefcase/crimekit
-	id_type = /obj/item/weapon/card/id/security/detective
+	id_type = /obj/item/weapon/card/id/security
 	pda_type = /obj/item/device/pda/detective
 	backpack = /obj/item/weapon/storage/backpack
 	satchel_one = /obj/item/weapon/storage/backpack/satchel/norm
 	backpack_contents = list(/obj/item/weapon/storage/box/evidence = 1)
 
+//VOREStation Edit - More cyberpunky
 /decl/hierarchy/outfit/job/security/detective/forensic
 	name = OUTFIT_JOB_NAME("Forensic technician")
-	head = null
-	suit = /obj/item/clothing/suit/storage/forensics/blue
+	head = /obj/item/clothing/head/helmet/detective_alt
+	suit = null
+	uniform = /obj/item/clothing/under/detective_alt
+//VOREStation Edit End
 
 /decl/hierarchy/outfit/job/security/officer
 	name = OUTFIT_JOB_NAME("Security Officer")
 	uniform = /obj/item/clothing/under/rank/security
 	l_pocket = /obj/item/device/flash
-	id_type = /obj/item/weapon/card/id/security/officer
+	id_type = /obj/item/weapon/card/id/security
 	pda_type = /obj/item/device/pda/security

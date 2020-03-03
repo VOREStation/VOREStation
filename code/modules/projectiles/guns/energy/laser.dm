@@ -24,6 +24,11 @@
 	use_external_power = 1
 	one_handed_penalty = 0 // Not sure if two-handing gets checked for mounted weapons, but better safe than sorry.
 
+/obj/item/weapon/gun/energy/laser/mounted/augment
+	use_external_power = FALSE
+	use_organic_power = TRUE
+	canremove = FALSE
+
 /obj/item/weapon/gun/energy/laser/practice
 	name = "practice laser carbine"
 	desc = "A modified version of the HI G40E, this one fires less concentrated energy bolts designed for target practice."
@@ -229,7 +234,7 @@
 /obj/item/weapon/gun/energy/lasertag/special_check(var/mob/living/carbon/human/M)
 	if(ishuman(M))
 		if(!istype(M.wear_suit, required_vest))
-			M << "<span class='warning'>You need to be wearing your laser tag vest!</span>"
+			to_chat(M, "<span class='warning'>You need to be wearing your laser tag vest!</span>")
 			return 0
 	return ..()
 

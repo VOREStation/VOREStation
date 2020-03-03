@@ -34,6 +34,7 @@
 
 /obj/machinery/alarm
 	name = "alarm"
+	desc = "Used to control various station atmospheric systems. The light indicates the current air status of the area."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "alarm0"
 	plane = TURF_PLANE
@@ -397,7 +398,7 @@
 	signal.data["sigtype"] = "command"
 
 	radio_connection.post_signal(src, signal, RADIO_FROM_AIRALARM)
-//			world << text("Signal [] Broadcasted to []", command, target)
+//			to_world("Signal [command] Broadcasted to [target]")
 
 	return 1
 
@@ -605,7 +606,7 @@
 
 /obj/machinery/alarm/CanUseTopic(var/mob/user, var/datum/topic_state/state, var/href_list = list())
 	if(aidisabled && isAI(user))
-		user << "<span class='warning'>AI control for \the [src] interface has been disabled.</span>"
+		to_chat(user, "<span class='warning'>AI control for \the [src] interface has been disabled.</span>")
 		return STATUS_CLOSE
 
 	. = shorted ? STATUS_DISABLED : STATUS_INTERACTIVE
@@ -642,7 +643,7 @@
 		var/input_temperature = input("What temperature would you like the system to mantain? (Capped between [min_temperature] and [max_temperature]C)", "Thermostat Controls", target_temperature - T0C) as num|null
 		if(isnum(input_temperature))
 			if(input_temperature > max_temperature || input_temperature < min_temperature)
-				usr << "Temperature must be between [min_temperature]C and [max_temperature]C"
+				to_chat(usr, "Temperature must be between [min_temperature]C and [max_temperature]C")
 			else
 				target_temperature = input_temperature + T0C
 		return 1
@@ -767,17 +768,24 @@
 		return
 
 	if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
-		if(stat & (NOPOWER|BROKEN))
-			user << "It does nothing"
-			return
-		else
-			if(allowed(usr) && !wires.IsIndexCut(AALARM_WIRE_IDSCAN))
-				locked = !locked
-				user << "<span class='notice'>You [ locked ? "lock" : "unlock"] the Air Alarm interface.</span>"
-			else
-				user << "<span class='warning'>Access denied.</span>"
-			return
+		togglelock()
 	return ..()
+
+/obj/machinery/alarm/verb/togglelock(mob/user as mob)
+	if(stat & (NOPOWER|BROKEN))
+		to_chat(user, "It does nothing.")
+		return
+	else
+		if(allowed(usr) && !wires.IsIndexCut(AALARM_WIRE_IDSCAN))
+			locked = !locked
+			to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the Air Alarm interface.</span>")
+		else
+			to_chat(user, "<span class='warning'>Access denied.</span>")
+		return
+
+/obj/machinery/alarm/AltClick()
+	..()
+	togglelock()
 
 /obj/machinery/alarm/power_change()
 	..()

@@ -12,14 +12,16 @@
 	name = "rolled-up poster"
 	desc = "The poster comes with its own automatic adhesive mechanism, for easy pinning to any vertical surface."
 	icon_state = "rolled_poster"
-	var/serial_number = 0
+	var/serial_number = null
 
+	var/poster_type = /obj/structure/sign/poster
 
 /obj/item/weapon/contraband/poster/New(turf/loc, var/given_serial = 0)
-	if(given_serial == 0)
-		serial_number = rand(1, poster_designs.len)
-	else
-		serial_number = given_serial
+	if(!serial_number)
+		if(given_serial == 0)
+			serial_number = rand(1, poster_designs.len)
+		else
+			serial_number = given_serial
 	name += " - No. [serial_number]"
 	..(loc)
 
@@ -31,12 +33,12 @@
 	//must place on a wall and user must not be inside a closet/mecha/whatever
 	var/turf/W = A
 	if (!iswall(W) || !isturf(user.loc))
-		user << "<span class='warning'>You can't place this here!</span>"
+		to_chat(user, "<span class='warning'>You can't place this here!</span>")
 		return
 
 	var/placement_dir = get_dir(user, W)
 	if (!(placement_dir in cardinal))
-		user << "<span class='warning'>You must stand directly in front of the wall you wish to place that on.</span>"
+		to_chat(user, "<span class='warning'>You must stand directly in front of the wall you wish to place that on.</span>")
 		return
 
 	//just check if there is a poster on or adjacent to the wall
@@ -52,12 +54,12 @@
 			break
 
 	if (stuff_on_wall)
-		user << "<span class='notice'>There is already a poster there!</span>"
+		to_chat(user, "<span class='notice'>There is already a poster there!</span>")
 		return
 
-	user << "<span class='notice'>You start placing the poster on the wall...</span>" //Looks like it's uncluttered enough. Place the poster.
+	to_chat(user, "<span class='notice'>You start placing the poster on the wall...</span>") //Looks like it's uncluttered enough. Place the poster.
 
-	var/obj/structure/sign/poster/P = new(user.loc, placement_dir=get_dir(user, W), serial=serial_number)
+	var/obj/structure/sign/poster/P = new poster_type(user.loc, placement_dir=get_dir(user, W), serial=serial_number, itemtype = src.type)
 
 	flick("poster_being_set", P)
 	//playsound(W, 'sound/items/poster_being_created.ogg', 100, 1) //why the hell does placing a poster make printer sounds?
@@ -68,11 +70,23 @@
 		if(!P) return
 
 		if(iswall(W) && user && P.loc == user.loc) //Let's check if everything is still there
-			user << "<span class='notice'>You place the poster!</span>"
+			to_chat(user, "<span class='notice'>You place the poster!</span>")
 		else
 			P.roll_and_drop(P.loc)
 
 	qdel(oldsrc)	//delete it now to cut down on sanity checks afterwards. Agouri's code supports rerolling it anyway
+
+//NT subtype
+/obj/item/weapon/contraband/poster/nanotrasen
+	icon_state = "rolled_poster_nt"
+	poster_type = /obj/structure/sign/poster/nanotrasen
+
+/obj/item/weapon/contraband/poster/nanotrasen/New(turf/loc, var/given_serial = 0)
+	if(given_serial == 0)
+		serial_number = rand(1, NT_poster_designs.len)
+	else
+		serial_number = given_serial
+	..(loc)
 
 //############################## THE ACTUAL DECALS ###########################
 
@@ -85,15 +99,22 @@
 	var/poster_type		//So mappers can specify a desired poster
 	var/ruined = 0
 
-/obj/structure/sign/poster/New(var/newloc, var/placement_dir=null, var/serial=null)
+	var/roll_type
+	var/poster_set = FALSE
+
+/obj/structure/sign/poster/New(var/newloc, var/placement_dir=null, var/serial=null, var/itemtype = /obj/item/weapon/contraband/poster)
 	..(newloc)
 
 	if(!serial)
 		serial = rand(1, poster_designs.len) //use a random serial if none is given
 
-	serial_number = serial
-	var/datum/poster/design = poster_designs[serial_number]
-	set_poster(design)
+	if(!poster_set)
+		serial_number = serial
+		var/datum/poster/design = poster_designs[serial_number]
+		set_poster(design)
+
+	if(itemtype || !roll_type)
+		roll_type = itemtype
 
 	switch (placement_dir)
 		if (NORTH)
@@ -121,17 +142,18 @@
 	desc = "[initial(desc)] [design.desc]"
 	icon_state = design.icon_state // poster[serial_number]
 
+	poster_set = TRUE
+
 /obj/structure/sign/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(W.is_wirecutter())
 		playsound(src.loc, W.usesound, 100, 1)
 		if(ruined)
-			user << "<span class='notice'>You remove the remnants of the poster.</span>"
+			to_chat(user, "<span class='notice'>You remove the remnants of the poster.</span>")
 			qdel(src)
 		else
-			user << "<span class='notice'>You carefully remove the poster from the wall.</span>"
+			to_chat(user, "<span class='notice'>You carefully remove the poster from the wall.</span>")
 			roll_and_drop(user.loc)
 		return
-
 
 /obj/structure/sign/poster/attack_hand(mob/user as mob)
 
@@ -152,7 +174,7 @@
 		add_fingerprint(user)
 
 /obj/structure/sign/poster/proc/roll_and_drop(turf/newloc)
-	var/obj/item/weapon/contraband/poster/P = new(src, serial_number)
+	var/obj/item/weapon/contraband/poster/P = new roll_type(src, serial_number)
 	P.loc = newloc
 	src.loc = P
 	qdel(src)
@@ -163,3 +185,17 @@
 	// Description suffix
 	var/desc=""
 	var/icon_state=""
+
+// NT poster subtype.
+/obj/structure/sign/poster/nanotrasen
+	roll_type = /obj/item/weapon/contraband/poster/nanotrasen
+
+/obj/structure/sign/poster/nanotrasen/New(var/newloc, var/placement_dir=null, var/serial=null, var/itemtype = /obj/item/weapon/contraband/poster/nanotrasen)
+	if(!serial)
+		serial = rand(1, NT_poster_designs.len)
+
+	serial_number = serial
+	var/datum/poster/design = NT_poster_designs[serial_number]
+	set_poster(design)
+
+	..(newloc, placement_dir, serial, itemtype)

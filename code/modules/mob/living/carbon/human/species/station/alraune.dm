@@ -303,7 +303,7 @@
 
 		if (temp_adj > BODYTEMP_HEATING_MAX) temp_adj = BODYTEMP_HEATING_MAX
 		if (temp_adj < BODYTEMP_COOLING_MAX) temp_adj = BODYTEMP_COOLING_MAX
-		//world << "Breath: [breath.temperature], [src]: [bodytemperature], Adjusting: [temp_adj]"
+		//to_world("Breath: [breath.temperature], [src]: [bodytemperature], Adjusting: [temp_adj]")
 		H.bodytemperature += temp_adj
 
 	else if(breath.temperature >= heat_discomfort_level)
@@ -459,7 +459,7 @@
 	if(ispath(to_copy))
 		to_copy = "[initial(to_copy.name)]"
 	if(istext(to_copy))
-		to_copy = all_species[to_copy]
+		to_copy = GLOB.all_species[to_copy]
 
 	var/datum/species/alraune/new_copy = new()
 
@@ -495,5 +495,5 @@
 	return base_species
 
 /datum/species/alraune/get_race_key()
-	var/datum/species/real = all_species[base_species]
+	var/datum/species/real = GLOB.all_species[base_species]
 	return real.race_key

@@ -34,6 +34,10 @@
 	has_color = TRUE
 
 
+/datum/category_item/underwear/undershirt/fishnet_simple
+	name = "Fishnet shirt"
+	icon_state = "fishnet_simple"
+
 /datum/category_item/underwear/undershirt/tank_top
 	name = "Tank top"
 	icon_state = "tanktop"
@@ -52,6 +56,11 @@
 /datum/category_item/underwear/undershirt/tank_top_alt_fem_vneck
 	name = "Tank top, feminine, v-neck"
 	icon_state = "tanktop_alt_fem_vneck"
+	has_color = TRUE
+
+/datum/category_item/underwear/undershirt/tank_cropped_vneck
+	name = "Tank top, feminine, cropped & v-neck"
+	icon_state = "tanktop_cropped_vneck"
 	has_color = TRUE
 
 /datum/category_item/underwear/undershirt/tank_top_fire

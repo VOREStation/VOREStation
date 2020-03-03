@@ -14,6 +14,8 @@
 	mob_swap_flags = ~HEAVY
 	mob_push_flags = ~HEAVY
 
+	has_huds = TRUE // We do show AI status huds for buildmode players
+
 	var/tt_desc = null //Tooltip description
 
 	//Settings for played mobs
@@ -106,7 +108,7 @@
 	var/attack_sharp = FALSE			// Is the attack sharp?
 	var/attack_edge = FALSE				// Does the attack have an edge?
 
-	var/melee_attack_delay = null			// If set, the mob will do a windup animation and can miss if the target moves out of the way.
+	var/melee_attack_delay = 2			// If set, the mob will do a windup animation and can miss if the target moves out of the way.
 	var/ranged_attack_delay = null
 	var/special_attack_delay = null
 
@@ -160,7 +162,7 @@
 	health = maxHealth
 
 	for(var/L in has_langs)
-		languages |= all_languages[L]
+		languages |= GLOB.all_languages[L]
 	if(languages.len)
 		default_language = languages[1]
 
@@ -296,3 +298,8 @@
 
 /mob/living/simple_mob/get_nametag_desc(mob/user)
 	return "<i>[tt_desc]</i>"
+
+/mob/living/simple_mob/make_hud_overlays()
+	hud_list[STATUS_HUD]  = gen_hud_image(buildmode_hud, src, "ai_0", plane = PLANE_BUILDMODE)
+	hud_list[LIFE_HUD]	  = gen_hud_image(buildmode_hud, src, "ais_1", plane = PLANE_BUILDMODE)
+	add_overlay(hud_list)

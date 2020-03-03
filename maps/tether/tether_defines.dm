@@ -13,12 +13,17 @@
 #define Z_LEVEL_SHIPS						12
 #define Z_LEVEL_UNDERDARK					13
 #define Z_LEVEL_PLAINS						14
-#define Z_LEVEL_ALIENSHIP					15
-#define Z_LEVEL_BEACH						16
-#define Z_LEVEL_BEACH_CAVE					17
-#define Z_LEVEL_AEROSTAT					18
-#define Z_LEVEL_AEROSTAT_SURFACE			19
-#define Z_LEVEL_DEBRISFIELD					20
+#define Z_LEVEL_ROGUEMINE_1					15
+#define Z_LEVEL_ROGUEMINE_2					16
+#define Z_LEVEL_ROGUEMINE_3					17
+#define Z_LEVEL_ROGUEMINE_4					18
+#define Z_LEVEL_ALIENSHIP					19
+#define Z_LEVEL_BEACH						20
+#define Z_LEVEL_BEACH_CAVE					21
+#define Z_LEVEL_AEROSTAT					22
+#define Z_LEVEL_AEROSTAT_SURFACE			23
+#define Z_LEVEL_DEBRISFIELD					24
+#define Z_LEVEL_GATEWAY						25
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -35,7 +40,7 @@
 	zlevel_datum_type = /datum/map_z_level/tether
 
 	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("tether")
+	lobby_screens = list("tether2_night")
 	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
 	holomap_smoosh = list(list(
@@ -112,8 +117,9 @@
 		/area/crew_quarters/sleep/Dorm_5/holo,
 		/area/crew_quarters/sleep/Dorm_7/holo,
 		/area/rnd/miscellaneous_lab)	//TFF 31/8/19 - exempt new construction site from unit tests
+	//TFF 11/12/19 - Minor refactor, makes mice spawn only in Atmos.
 	unit_test_exempt_from_atmos = list(
-		/area/engineering/atmos/intake, // Outside,
+		/area/engineering/atmos_intake, // Outside,
 		/area/rnd/external, //  Outside,
 		/area/tether/surfacebase/mining_main/external, // Outside,
 		/area/tether/surfacebase/mining_main/airlock, //  Its an airlock,
@@ -122,10 +128,19 @@
 
 	lateload_z_levels = list(
 		list("Tether - Misc","Tether - Ships","Tether - Underdark","Tether - Plains"), //Stock Tether lateload maps
+		list("Asteroid Belt 1","Asteroid Belt 2","Asteroid Belt 3","Asteroid Belt 4"),
 		list("Alien Ship - Z1 Ship"),
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
 		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
 		list("Debris Field - Z1 Space")
+		)
+
+	lateload_single_pick = list(
+		//list("Snow Outpost"),		// Unplayable mapgen,
+		//list("Zoo"),				// Too big. way, way too big
+		list("Carp Farm"),
+		list("Snow Field"),
+		list("Listening Post")
 		)
 
 	ai_shell_restricted = TRUE
@@ -145,7 +160,16 @@
 		Z_LEVEL_BEACH
 		)
 
+	belter_docked_z = 		list(Z_LEVEL_SPACE_HIGH)
+	belter_transit_z =	 	list(Z_LEVEL_SHIPS)
+	belter_belt_z = 		list(Z_LEVEL_ROGUEMINE_1,
+						 		 Z_LEVEL_ROGUEMINE_2,
+						 	 	 Z_LEVEL_ROGUEMINE_3,
+								 Z_LEVEL_ROGUEMINE_4)
+
 	lateload_single_pick = null //Nothing right now.
+
+	planet_datums_to_make = list(/datum/planet/virgo3b)
 
 /datum/map/tether/perform_map_generation()
 

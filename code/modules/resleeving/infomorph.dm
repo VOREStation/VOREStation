@@ -154,7 +154,7 @@ var/list/infomorph_emotions = list(
 	// 20% chance to kill
 
 	src.silence_time = world.timeofday + 120 * 10		// Silence for 2 minutes
-	src << "<font color=green><b>Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging functionality will be unavailable until the reboot is complete.</b></font>"
+	to_chat(src, "<font color=green><b>Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging functionality will be unavailable until the reboot is complete.</b></font>")
 	if(prob(20))
 		var/turf/T = get_turf_or_move(src.loc)
 		for (var/mob/M in viewers(T))
@@ -188,7 +188,7 @@ var/list/infomorph_emotions = list(
 	medicalActive2 = null
 	medical_cannotfind = 0
 	SSnanoui.update_uis(src)
-	usr << "<span class='notice'>You reset your record-viewing software.</span>"
+	to_chat(usr, "<span class='notice'>You reset your record-viewing software.</span>")
 
 /*
 /mob/living/silicon/infomorph/proc/switchCamera(var/obj/machinery/camera/C)
@@ -337,7 +337,7 @@ var/list/infomorph_emotions = list(
 
 	resting = !resting
 	icon_state = resting ? "[chassis]_rest" : "[chassis]"
-	src << "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>"
+	to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
 
 	canmove = !resting
 
@@ -364,16 +364,16 @@ var/list/infomorph_emotions = list(
 			switch(alert(user, "Do you wish to add access to [src] or remove access from [src]?",,"Add Access","Remove Access", "Cancel"))
 				if("Add Access")
 					idcard.access |= ID.access
-					user << "<span class='notice'>You add the access from the [W] to [src].</span>"
+					to_chat(user, "<span class='notice'>You add the access from the [W] to [src].</span>")
 					return
 				if("Remove Access")
 					idcard.access = null
-					user << "<span class='notice'>You remove the access from [src].</span>"
+					to_chat(user, "<span class='notice'>You remove the access from [src].</span>")
 					return
 				if("Cancel")
 					return
 		else if (istype(W, /obj/item/weapon/card/id) && idaccessible == 0)
-			user << "<span class='notice'>[src] is not accepting access modifcations at this time.</span>"
+			to_chat(user, "<span class='notice'>[src] is not accepting access modifcations at this time.</span>")
 			return
 
 //////////////////// MISC VERBS
@@ -384,11 +384,11 @@ var/list/infomorph_emotions = list(
 
 	if(idaccessible == 0)
 		idaccessible = 1
-		src << "<span class='notice'>You allow access modifications.</span>"
+		to_chat(src, "<span class='notice'>You allow access modifications.</span>")
 
 	else
 		idaccessible = 0
-		src << "<span class='notice'>You block access modfications.</span>"
+		to_chat(src, "<span class='notice'>You block access modfications.</span>")
 
 /mob/living/silicon/infomorph/verb/wipe_software()
 	set name = "Suspend Self"
@@ -419,11 +419,11 @@ var/list/infomorph_emotions = list(
 	if(radio)
 		radio.ui_interact(src,"main",null,1,conscious_state)
 	else
-		to_chat(src,"<span class='warning'>You don't have a radio!</span>")
+		to_chat(src, "<span class='warning'>You don't have a radio!</span>")
 
 /mob/living/silicon/infomorph/say(var/msg)
 	if(silence_time)
-		src << "<font color=green>Communication circuits remain uninitialized.</font>"
+		to_chat(src, "<font color=green>Communication circuits remain uninitialized.</font>")
 	else
 		..(msg)
 
@@ -448,7 +448,7 @@ var/global/list/default_infomorph_software = list()
 		var/datum/infomorph_software/P = new type()
 		if(infomorph_software_by_key[P.id])
 			var/datum/infomorph_software/O = infomorph_software_by_key[P.id]
-			world << "<span class='warning'>Infomorph software module [P.name] has the same key as [O.name]!</span>"
+			to_world("<span class='warning'>Infomorph software module [P.name] has the same key as [O.name]!</span>")
 			r = 0
 			continue
 		infomorph_software_by_key[P.id] = P
@@ -563,11 +563,11 @@ var/global/list/default_infomorph_software = list()
 	if(print_flavor_text()) msg += "\n[print_flavor_text()]\n"
 
 	if (pose)
-		if( findtext(pose,".",lentext(pose)) == 0 && findtext(pose,"!",lentext(pose)) == 0 && findtext(pose,"?",lentext(pose)) == 0 )
+		if( findtext(pose,".",length(pose)) == 0 && findtext(pose,"!",length(pose)) == 0 && findtext(pose,"?",length(pose)) == 0 )
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
 		msg += "\nIt is [pose]"
 
-	user << msg
+	to_chat(user,msg)
 
 /mob/living/silicon/infomorph/Life()
 	//We're dead or EMP'd or something.
@@ -594,7 +594,7 @@ var/global/list/default_infomorph_software = list()
 	if(silence_time)
 		if(world.timeofday >= silence_time)
 			silence_time = null
-			src << "<font color=green>Communication circuit reinitialized. Speech and messaging functionality restored.</font>"
+			to_chat(src, "<font color=green>Communication circuit reinitialized. Speech and messaging functionality restored.</font>")
 
 	handle_statuses()
 

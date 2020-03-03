@@ -23,9 +23,20 @@
 	for(var/mob/living/carbon/human/O in contents)
 		O.show_inv(usr)
 
-/obj/item/weapon/holder/micro/attack_self(var/mob/living/user)
-	for(var/mob/living/carbon/human/M in contents)
-		M.help_shake_act(user)
+/obj/item/weapon/holder/micro/attack_self(mob/living/carbon/user) //reworked so it works w/ nonhumans
+	for(var/L in contents)
+		if(!isliving(L))
+			continue
+		if(ishuman(L) && user.canClick())
+			var/mob/living/carbon/human/H = L
+			H.help_shake_act(user)
+			user.setClickCooldown(user.get_attack_speed()) //uses the same cooldown as regular attack_hand
+			return
+		if(istype(L, /mob/living/simple_mob) && user.canClick())
+			var/mob/living/simple_mob/S = L
+			user.visible_message("<span class='notice'>[user] [S.response_help] \the [S].</span>")
+			user.setClickCooldown(user.get_attack_speed())
+			
 
 /obj/item/weapon/holder/micro/update_state()
 	if(istype(loc,/turf) || !(held_mob) || !(held_mob.loc == src))

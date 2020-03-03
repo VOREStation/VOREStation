@@ -49,6 +49,10 @@
 			if(alert(user, "Are you sure you want to touch \the [src]?", "Confirm", "No", "Yes") == "No")
 				return
 		trigger()
+		// VOREStation Addition Start
+		if(!used)
+			activated = TRUE
+		// VOREStation Addition End
 
 /obj/structure/ghost_pod/manual/attack_ai(var/mob/living/silicon/user)
 	if(Adjacent(user))
@@ -80,6 +84,15 @@
 
 /obj/structure/ghost_pod/ghost_activated/attack_ghost(var/mob/observer/dead/user)
 	if(used)
+		to_chat(user, "<span class='warning'>Another spirit appears to have gotten to \the [src] before you.  Sorry.</span>")
+		return
+
+	var/choice = input(user, "Are you certain you wish to activate this pod?", "Control Pod") as null|anything in list("Yes", "No")
+
+	if(!choice || choice == "No")
+		return
+
+	else if(used)
 		to_chat(user, "<span class='warning'>Another spirit appears to have gotten to \the [src] before you.  Sorry.</span>")
 		return
 

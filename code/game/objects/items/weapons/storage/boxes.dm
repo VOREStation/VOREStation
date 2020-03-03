@@ -24,6 +24,7 @@
 	desc = "It's just an ordinary box."
 	icon_state = "box"
 	item_state = "syringe_kit"
+	center_of_mass = list("x" = 13,"y" = 10)
 	var/foldable = /obj/item/stack/material/cardboard	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	max_w_class = ITEMSIZE_SMALL
 	max_storage_space = INVENTORY_BOX_SPACE
@@ -48,7 +49,7 @@
 	if ( !found )	// User is too far away
 		return
 	// Now make the cardboard
-	user << "<span class='notice'>You fold [src] flat.</span>"
+	to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
 	new foldable(get_turf(src))
 	qdel(src)
 
@@ -103,6 +104,7 @@
 
 /obj/item/weapon/storage/box/beakers
 	name = "box of beakers"
+	desc = "A box full of beakers."
 	icon_state = "beaker"
 	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker = 7)
 
@@ -326,6 +328,13 @@
 	icon_state = "donk_kit"
 	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket = 7)
 
+/obj/item/weapon/storage/box/buns
+	name = "box of bread buns"
+	desc = "Freshly baked at some point in the past few months."
+	icon_state = "bun_box"
+	max_storage_space = ITEMSIZE_COST_NORMAL * 5
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/bun = 12)
+
 /obj/item/weapon/storage/box/monkeycubes
 	name = "monkey cube box"
 	desc = "Drymate brand monkey cubes. Just add water!"
@@ -346,7 +355,7 @@
 
 /obj/item/weapon/storage/box/monkeycubes/neaeracubes
 	name = "neaera cube box"
-	desc = "Drymate brand neaera cubes, shipped from Jargon 4. Just add water!"
+	desc = "Drymate brand neaera cubes, shipped from Qerr'balak. Just add water!"
 	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube = 4)
 
 /obj/item/weapon/storage/box/ids

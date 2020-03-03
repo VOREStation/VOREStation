@@ -63,6 +63,11 @@
 		if(ghost.exonet)
 			im_contacts_ui[++im_contacts_ui.len] = list("name" = sanitize(ghost.name), "address" = ghost.exonet.address, "ref" = "\ref[ghost]")
 
+	for(var/obj/item/integrated_circuit/input/EPv2/CIRC in im_contacts)
+		if(CIRC.exonet && CIRC.assembly)
+			im_contacts_ui[++im_contacts_ui.len] = list("name" = sanitize(CIRC.assembly.name), "address" = CIRC.exonet.address, "ref" = "\ref[CIRC]")
+
+
 	//Actual messages.
 	for(var/I in im_list)
 		im_list_ui[++im_list_ui.len] = list("address" = I["address"], "to_address" = I["to_address"], "im" = I["im"])
@@ -116,7 +121,9 @@
 	data["flashlight"] = fon
 	data["manifest"] = PDA_Manifest
 	data["feeds"] = compile_news()
-	//data["latest_news"] = get_recent_news()	//VOREStation Edit, bandaid for catastrophic runtime lag in helper.dm
+	data["latest_news"] = get_recent_news()
+	if(newsfeed_channel)
+		data["target_feed"] = data["feeds"][newsfeed_channel]
 	if(cartridge) // If there's a cartridge, we need to grab the information from it
 		data["cart_devices"] = cartridge.get_device_status()
 		data["cart_templates"] = cartridge.ui_templates
@@ -274,6 +281,9 @@
 	if(href_list["toggle_device"])
 		var/obj/O = cartridge.internal_devices[text2num(href_list["toggle_device"])]
 		cartridge.active_devices ^= list(O) // Exclusive or, will toggle its presence
+
+	if(href_list["newsfeed"])
+		newsfeed_channel = text2num(href_list["newsfeed"])
 
 	if(href_list["cartridge_topic"] && cartridge) // Has to have a cartridge to perform these functions
 		cartridge.Topic(href, href_list)

@@ -3,7 +3,7 @@
 //m_type == 2 --> audible
 /mob/proc/custom_emote(var/m_type=1,var/message = null,var/range=world.view)
 	if(stat || !use_me && usr == src)
-		src << "You are unable to emote."
+		to_chat(src, "You are unable to emote.")
 		return
 
 	var/muzzled = is_muzzled()
@@ -16,13 +16,13 @@
 		input = message
 	if(input)
 		log_emote(message,src) //Log before we add junk
-		message = "<B>[src]</B> [input]"
+		message = "<span class='emote'><B>[src]</B> [input]</span>"
 	else
 		return
 
 
 	if (message)
-		message = say_emphasis(message)
+		message = encode_html_emphasis(message)
 
  // Hearing gasp and such every five seconds is not good emotes were not global for a reason.
  // Maybe some people are okay with that.
@@ -62,16 +62,16 @@
 /mob/proc/emote_dead(var/message)
 
 	if(client.prefs.muted & MUTE_DEADCHAT)
-		src << "<span class='danger'>You cannot send deadchat emotes (muted).</span>"
+		to_chat(src, "<span class='danger'>You cannot send deadchat emotes (muted).</span>")
 		return
 
 	if(!is_preference_enabled(/datum/client_preference/show_dsay))
-		src << "<span class='danger'>You have deadchat muted.</span>"
+		to_chat(src, "<span class='danger'>You have deadchat muted.</span>")
 		return
 
 	if(!src.client.holder)
 		if(!config.dsay_allowed)
-			src << "<span class='danger'>Deadchat is globally muted.</span>"
+			to_chat(src, "<span class='danger'>Deadchat is globally muted.</span>")
 			return
 
 
@@ -81,7 +81,7 @@
 	else
 		input = message
 
-	input = say_emphasis(input)
+	input = encode_html_emphasis(input)
 
 	if(input)
 		log_ghostemote(input, src)

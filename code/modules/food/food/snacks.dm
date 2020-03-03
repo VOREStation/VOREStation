@@ -581,7 +581,7 @@
 		return ..()
 	if(!(proximity && O.is_open_container()))
 		return
-	user << "You crack \the [src] into \the [O]."
+	to_chat(user, "You crack \the [src] into \the [O].")
 	reagents.trans_to(O, reagents.total_volume)
 	user.drop_from_inventory(src)
 	qdel(src)
@@ -599,10 +599,10 @@
 		var/clr = C.colourName
 
 		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
-			usr << "<font color='blue'>The egg refuses to take on this color!</font>"
+			to_chat(usr, "<font color='blue'>The egg refuses to take on this color!</font>")
 			return
 
-		usr << "<font color='blue'>You color \the [src] [clr]</font>"
+		to_chat(usr, "<font color='blue'>You color \the [src] [clr]</font>")
 		icon_state = "egg-[clr]"
 	else
 		..()
@@ -897,12 +897,12 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket/attack_self(mob/user)
 	if(has_been_heated)
-		user << "<span class='notice'>The heating chemicals have already been spent.</span>"
+		to_chat(user, "<span class='notice'>The heating chemicals have already been spent.</span>")
 		return
 	has_been_heated = 1
 	user.visible_message("<span class='notice'>[user] crushes \the [src] package.</span>", "You crush \the [src] package and feel a comfortable heat build up.")
 	spawn(200)
-		user << "You think \the [src] is ready to eat about now."
+		to_chat(user, "You think \the [src] is ready to eat about now.")
 		heat()
 
 /obj/item/weapon/reagent_containers/food/snacks/brainburger
@@ -1343,7 +1343,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/popcorn/On_Consume()
 	if(prob(unpopped))	//lol ...what's the point?
-		usr << "<font color='red'>You bite down on an un-popped kernel!</font>"
+		to_chat(usr, "<font color='red'>You bite down on an un-popped kernel!</font>")
 		unpopped = max(0, unpopped-1)
 	..()
 
@@ -1645,7 +1645,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/slimesoup
 	name = "slime soup"
 	desc = "If no water is available, you may substitute tears."
-	icon_state = "slimesoup" //nonexistant?
+	icon_state = "rorosoup" //nonexistant? - 3/1/2020 FIXED. roro's live on.
 	filling_color = "#C4DBA0"
 
 /obj/item/weapon/reagent_containers/food/snacks/slimesoup/Initialize()
@@ -3265,6 +3265,7 @@
 	desc = "A box suited for pizzas."
 	icon = 'icons/obj/food.dmi'
 	icon_state = "pizzabox1"
+	center_of_mass = list("x" = 16,"y" = 6)
 
 	var/open = 0 // Is the box open?
 	var/ismessy = 0 // Fancy mess on the lid
@@ -3436,6 +3437,10 @@
 	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza(src)
 	boxtag = "Meatlover's Supreme"
 
+/obj/item/pizzabox/pineapple/Initialize()
+	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/pineapple(src)
+	boxtag = "Hawaiian Sunrise"
+
 /obj/item/pizzabox/old/Initialize()
 	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/oldpizza(src)
 	boxtag = "Deluxe Gourmet"
@@ -3476,7 +3481,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/dough/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/material/kitchen/rollingpin))
 		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough(src)
-		user << "You flatten the dough."
+		to_chat(user, "You flatten the dough.")
 		qdel(src)
 
 // slicable into 3xdoughslices
@@ -3526,21 +3531,21 @@
 	// Bun + meatball = burger
 	if(istype(W,/obj/item/weapon/reagent_containers/food/snacks/meatball))
 		new /obj/item/weapon/reagent_containers/food/snacks/monkeyburger(src)
-		user << "You make a burger."
+		to_chat(user, "You make a burger.")
 		qdel(W)
 		qdel(src)
 
 	// Bun + cutlet = hamburger
 	else if(istype(W,/obj/item/weapon/reagent_containers/food/snacks/cutlet))
 		new /obj/item/weapon/reagent_containers/food/snacks/monkeyburger(src)
-		user << "You make a burger."
+		to_chat(user, "You make a burger.")
 		qdel(W)
 		qdel(src)
 
 	// Bun + sausage = hotdog
 	else if(istype(W,/obj/item/weapon/reagent_containers/food/snacks/sausage))
 		new /obj/item/weapon/reagent_containers/food/snacks/hotdog(src)
-		user << "You make a hotdog."
+		to_chat(user, "You make a hotdog.")
 		qdel(W)
 		qdel(src)
 
@@ -3548,7 +3553,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/monkeyburger/attackby(obj/item/weapon/reagent_containers/food/snacks/cheesewedge/W as obj, mob/user as mob)
 	if(istype(W))// && !istype(src,/obj/item/weapon/reagent_containers/food/snacks/cheesewedge))
 		new /obj/item/weapon/reagent_containers/food/snacks/cheeseburger(src)
-		user << "You make a cheeseburger."
+		to_chat(user, "You make a cheeseburger.")
 		qdel(W)
 		qdel(src)
 		return
@@ -3559,7 +3564,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/human/burger/attackby(obj/item/weapon/reagent_containers/food/snacks/cheesewedge/W as obj, mob/user as mob)
 	if(istype(W))
 		new /obj/item/weapon/reagent_containers/food/snacks/cheeseburger(src)
-		user << "You make a cheeseburger."
+		to_chat(user, "You make a cheeseburger.")
 		qdel(W)
 		qdel(src)
 		return
@@ -3746,6 +3751,24 @@
 /obj/item/weapon/reagent_containers/food/snacks/liquidprotein/Initialize()
 	..()
 	reagents.add_reagent("protein", 30)
+	reagents.add_reagent("iron", 3)
+	bitesize = 4
+
+/obj/item/weapon/reagent_containers/food/snacks/liquidvitamin
+	name = "\improper VitaPaste Ration"
+	desc = "A variant of the liquidfood ration, designed for any carbon-based life. Somehow worse than regular liquidfood. Should this be crunchy?"
+	icon_state = "liquidvitamin"
+	trash = /obj/item/trash/liquidvitamin
+	filling_color = "#A8A8A8"
+	survivalfood = TRUE
+	center_of_mass = list("x"=16, "y"=15)
+
+/obj/item/weapon/reagent_containers/food/snacks/liquidvitamin/Initialize()
+	..()
+	reagents.add_reagent("flour", 20)
+	reagents.add_reagent("tricordrazine", 5)
+	reagents.add_reagent("paracetamol", 5)
+	reagents.add_reagent("enzyme", 1)
 	reagents.add_reagent("iron", 3)
 	bitesize = 4
 
@@ -4190,3 +4213,96 @@
 	reagents.trans_to(O, reagents.total_volume)
 	user.drop_from_inventory(src)
 	qdel(src)
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelplain
+	name = "plain bagel"
+	desc = "This bread's got chutzpah!"
+	icon_state = "bagelplain"
+	nutriment_amt = 3
+	nutriment_desc = list("bread" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelplain/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelsunflower
+	name = "sunflower seed bagel"
+	desc = "This bread's got chutzpah - and sunflower seeds!"
+	icon_state = "bagelsunflower"
+	nutriment_amt = 4
+	nutriment_desc = list("bread" = 1, "sunflower seeds" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelsunflower/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelcheese
+	name = "cheese bagel"
+	desc = "This bread's got cheese n' chutzpah!"
+	icon_state = "bagelcheese"
+	nutriment_amt = 4
+	nutriment_desc = list("bread" = 1, "cheese" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelcheese/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 4)
+	reagents.add_reagent("nutriment", 4)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelraisin
+	name = "cinnamon raisin bagel"
+	desc = "This bread's got... Raisins!"
+	icon_state = "bagelraisin"
+	nutriment_amt = 5
+	nutriment_desc = list("bread" = 1, "sweetness" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelraisin/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelpoppy
+	name = "poppy seed bagel"
+	desc = "This bread's got Chutzpah, and poppy seeds!"
+	icon_state = "bagelpoppy"
+	nutriment_amt = 5
+	nutriment_desc = list("bread" = 1, "sweetness" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/bagelpoppy/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/bageleverything
+	name = "everything bagel"
+	desc = "Mmm... Immeasurably unfathomable!"
+	icon_state = "bageleverything"
+	nutriment_amt = 40
+	nutriment_desc = list("life" = 1, "death" = 1, "entropy" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/bageleverything/Initialize()
+	. = ..()
+	reagents.add_reagent("phoron", 5)
+	reagents.add_reagent("defective_nanites", 5)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/bageltwo
+	name = "two bagels"
+	desc = "Noo! ...Two bagels!"
+	icon_state = "bagelplain"
+
+/obj/item/weapon/reagent_containers/food/snacks/bageltwo/Initialize()
+	. = ..()
+	spawn_bagels()
+	spawn_bagels()
+	sleep(30)
+	qdel(src)
+
+/obj/item/weapon/reagent_containers/food/snacks/bageltwo/proc/spawn_bagels()
+	var/build_path = /obj/item/weapon/reagent_containers/food/snacks/bagelplain
+	var/atom/A = new build_path(get_turf(src))
+	if(pixel_x || pixel_y)
+		A.pixel_x = pixel_x
+		A.pixel_y = pixel_y

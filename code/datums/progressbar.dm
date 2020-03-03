@@ -29,7 +29,7 @@
 	return ..()
 
 /datum/progressbar/proc/update(progress)
-	//world << "Update [progress] - [goal] - [(progress / goal)] - [((progress / goal) * 100)] - [round(((progress / goal) * 100), 5)]"
+	//to_world("Update [progress] - [goal] - [(progress / goal)] - [((progress / goal) * 100)] - [round(((progress / goal) * 100), 5)]")
 	if (!user || !user.client)
 		shown = 0
 		return

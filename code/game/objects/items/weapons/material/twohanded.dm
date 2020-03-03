@@ -51,7 +51,7 @@
 	force_unwielded = round(force_wielded*unwielded_force_divisor)
 	force = force_unwielded
 	throwforce = round(force*thrown_force_divisor)
-	//world << "[src] has unwielded force [force_unwielded], wielded force [force_wielded] and throwforce [throwforce] when made from default material [material.name]"
+	//to_world("[src] has unwielded force [force_unwielded], wielded force [force_wielded] and throwforce [throwforce] when made from default material [material.name]")
 
 /obj/item/weapon/material/twohanded/New()
 	..()
@@ -157,3 +157,18 @@
 	fragile = 1	//It's a haphazard thing of glass, wire, and steel
 	reach = 2 // Spears are long.
 	attackspeed = 14
+
+//This is mostly for centaurs.
+/obj/item/weapon/material/twohanded/spear/lance
+	name = "lance"
+	desc = "End him rightly"
+	icon = 'icons/obj/weapons_vr.dmi'
+	icon_state = "lance"
+	item_state = "lance"
+	force_divisor = 0.3
+	force = 10
+	thrown_force_divisor = 1
+	default_material = "DEFAULT_WALL_MATERIAL"
+	fragile = 0
+	sharp = 1
+	edge = 0
