@@ -1645,7 +1645,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/slimesoup
 	name = "slime soup"
 	desc = "If no water is available, you may substitute tears."
-	icon_state = "slimesoup" //nonexistant?
+	icon_state = "rorosoup" //nonexistant? - 3/1/2020 FIXED. roro's live on.
 	filling_color = "#C4DBA0"
 
 /obj/item/weapon/reagent_containers/food/snacks/slimesoup/Initialize()
