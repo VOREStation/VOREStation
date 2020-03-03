@@ -1,6 +1,6 @@
 /datum/gm_action/spacevine
 	name = "space-vine infestation"
-	departments = list(ROLE_ENGINEERING)
+	departments = list(DEPARTMENT_ENGINEERING)
 	chaotic = 2
 
 /datum/gm_action/spacevine/start()
@@ -11,4 +11,4 @@
 	level_seven_announcement()
 
 /datum/gm_action/spacevine/get_weight()
-	return 20 + (metric.count_people_in_department(ROLE_ENGINEERING) * 20) + (metric.count_people_in_department(ROLE_EVERYONE) * 10)
+	return 20 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 20) + (metric.count_people_in_department(DEPARTMENT_EVERYONE) * 10)

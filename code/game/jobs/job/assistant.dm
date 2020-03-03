@@ -1,7 +1,8 @@
 /datum/job/assistant
 	title = "Assistant"
 	flag = ASSISTANT
-	department = "Civilian"
+	departments = list(DEPARTMENT_CIVILIAN)
+	sorting_order = -1
 	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = -1

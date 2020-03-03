@@ -237,17 +237,20 @@
 #define ANTAG_SHARED	"Shared"
 #define ANTAG_KNOWN		"Known"
 
-// Job groups
-#define ROLE_COMMAND			"command"
-#define ROLE_SECURITY			"security"
-#define ROLE_ENGINEERING		"engineering"
-#define ROLE_MEDICAL			"medical"
-#define ROLE_RESEARCH			"research"
-#define ROLE_CARGO				"cargo"
-#define ROLE_CIVILIAN			"civilian"
-#define ROLE_SYNTHETIC			"synthetic"
-#define ROLE_UNKNOWN			"unknown"
-#define ROLE_EVERYONE			"everyone"
+// Departments.
+#define DEPARTMENT_COMMAND			"Command"
+#define DEPARTMENT_SECURITY			"Security"
+#define DEPARTMENT_ENGINEERING		"Engineering"
+#define DEPARTMENT_MEDICAL			"Medical"
+#define DEPARTMENT_RESEARCH			"Research"
+#define DEPARTMENT_CARGO			"Cargo"
+#define DEPARTMENT_CIVILIAN			"Civilian"
+#define DEPARTMENT_PLANET			"Planetside" // I hate having this be here and not in a SC file. Hopefully someday the manifest can be rewritten to be map-agnostic.
+#define DEPARTMENT_SYNTHETIC		"Synthetic"
+
+// These are mostly for the department guessing code and event system.
+#define DEPARTMENT_UNKNOWN			"Unknown"
+#define DEPARTMENT_EVERYONE			"Everyone"
 
 // Canonical spellings of TSCs, so typos never have to happen again due to human error.
 #define TSC_NT		"NanoTrasen"

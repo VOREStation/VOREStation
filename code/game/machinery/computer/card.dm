@@ -101,7 +101,9 @@
 	data["centcom_access"] = is_centcom()
 	data["all_centcom_access"] = null
 	data["regions"] = null
+	data["id_rank"] = modify && modify.assignment ? modify.assignment : "Unassigned"
 
+<<<<<<< HEAD
 	data["jobs"] = list(
 				list("cat" = "Engineering", "jobs" = format_jobs(engineering_positions)),
 				list("cat" = "Medical", "jobs" = format_jobs(medical_positions)),
@@ -112,6 +114,18 @@
 				list("cat" = "Civilian", "jobs" = format_jobs(civilian_positions)),
 				list("cat" = "CentCom", "jobs" = format_jobs(get_all_centcom_jobs()))
 			)
+=======
+	var/list/departments = list()
+	for(var/D in SSjob.get_all_department_datums())
+		var/datum/department/dept = D
+		if(!dept.assignable) // No AI ID cards for you.
+			continue
+		if(dept.centcom_only && !is_centcom())
+			continue
+		departments[++departments.len] = list("department_name" = dept.name, "jobs" = format_jobs(SSjob.get_job_titles_in_department(dept.name)) )
+
+	data["departments"] = departments
+>>>>>>> 24fbd0b... Half-Refactors Jobs (#6762)
 
 	if (modify && is_centcom())
 		var/list/all_centcom_access = list()
@@ -208,16 +222,10 @@
 					if(is_centcom())
 						access = get_centcom_access(t1)
 					else
-						var/datum/job/jobdatum
-						for(var/jobtype in typesof(/datum/job))
-							var/datum/job/J = new jobtype
-							if(ckey(J.title) == ckey(t1))
-								jobdatum = J
-								break
+						var/datum/job/jobdatum = SSjob.get_job(t1)
 						if(!jobdatum)
 							to_chat(usr, "<span class='warning'>No log exists for this job: [t1]</span>")
 							return
-
 						access = jobdatum.get_access()
 
 					modify.access = access

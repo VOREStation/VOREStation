@@ -239,6 +239,7 @@
 #include "code\controllers\subsystems\garbage.dm"
 #include "code\controllers\subsystems\holomaps.dm"
 #include "code\controllers\subsystems\inactivity.dm"
+#include "code\controllers\subsystems\job.dm"
 #include "code\controllers\subsystems\lighting.dm"
 #include "code\controllers\subsystems\machines.dm"
 #include "code\controllers\subsystems\mapping_vr.dm"
@@ -705,7 +706,11 @@
 #include "code\game\jobs\job\captain_vr.dm"
 #include "code\game\jobs\job\civilian.dm"
 #include "code\game\jobs\job\civilian_chaplain.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\game\jobs\job\civilian_vr.dm"
+=======
+#include "code\game\jobs\job\department.dm"
+>>>>>>> 24fbd0b... Half-Refactors Jobs (#6762):polaris.dme
 #include "code\game\jobs\job\engineering.dm"
 #include "code\game\jobs\job\engineering_vr.dm"
 #include "code\game\jobs\job\job.dm"

@@ -1,6 +1,6 @@
 /datum/gm_action/window_break
 	name = "window breach"
-	departments = list(ROLE_ENGINEERING)
+	departments = list(DEPARTMENT_ENGINEERING)
 	chaotic = 5
 	var/obj/structure/window/chosen_window
 	var/list/obj/structure/window/collateral_windows
@@ -75,4 +75,4 @@
 		command_announcement.Announce("Structural integrity of windows at [chosen_location.loc.name] is failing. Immediate repair or replacement is advised.", "Structural Alert")
 
 /datum/gm_action/window_break/get_weight()
-	return 20 * metric.count_people_in_department(ROLE_ENGINEERING)
+	return 20 * metric.count_people_in_department(DEPARTMENT_ENGINEERING)

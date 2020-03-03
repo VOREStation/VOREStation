@@ -1,6 +1,6 @@
 /datum/gm_action/blob
 	name = "blob infestation"
-	departments = list(ROLE_ENGINEERING, ROLE_SECURITY, ROLE_MEDICAL)
+	departments = list(DEPARTMENT_ENGINEERING, DEPARTMENT_SECURITY, DEPARTMENT_MEDICAL)
 	chaotic = 25
 
 	var/list/area/excluded = list(
@@ -62,9 +62,9 @@
 		command_announcement.Announce("Confirmed outbreak of level 7 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak7.ogg')
 
 /datum/gm_action/blob/get_weight()
-	var/engineers = metric.count_people_in_department(ROLE_ENGINEERING)
-	var/security = metric.count_people_in_department(ROLE_SECURITY)
-	var/medical = metric.count_people_in_department(ROLE_MEDICAL)
+	var/engineers = metric.count_people_in_department(DEPARTMENT_ENGINEERING)
+	var/security = metric.count_people_in_department(DEPARTMENT_SECURITY)
+	var/medical = metric.count_people_in_department(DEPARTMENT_MEDICAL)
 
 	var/assigned_staff = engineers + security
 	if(engineers || security)	// Medical only counts if one of the other two exists, and even then they count as half.

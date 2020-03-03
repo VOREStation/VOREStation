@@ -44,14 +44,16 @@
 		data["id_owner"] = id_card && id_card.registered_name ? id_card.registered_name : "-----"
 		data["id_name"] = id_card ? id_card.name : "-----"
 
-	data["command_jobs"] = format_jobs(command_positions)
-	data["engineering_jobs"] = format_jobs(engineering_positions)
-	data["medical_jobs"] = format_jobs(medical_positions)
-	data["science_jobs"] = format_jobs(science_positions)
-	data["security_jobs"] = format_jobs(security_positions)
-	data["cargo_jobs"] = format_jobs(cargo_positions)
-	data["civilian_jobs"] = format_jobs(civilian_positions)
-	data["centcom_jobs"] = format_jobs(get_all_centcom_jobs())
+	var/list/departments = list()
+	for(var/D in SSjob.get_all_department_datums())
+		var/datum/department/dept = D
+		if(!dept.assignable) // No AI ID cards for you.
+			continue
+		if(dept.centcom_only && !is_centcom)
+			continue
+		departments[++departments.len] = list("department_name" = dept.name, "jobs" = format_jobs(SSjob.get_job_titles_in_department(dept.name)) )
+
+	data["departments"] = departments
 
 	data["all_centcom_access"] = is_centcom ? get_accesses(1) : null
 	data["regions"] = get_accesses()
