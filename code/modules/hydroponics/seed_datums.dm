@@ -80,6 +80,7 @@
 /datum/seed/berry/poison
 	name = "poisonberries"
 	seed_name = "poison berry"
+	kitchen_tag = "poisonberries"
 	display_name = "poison berry bush"
 	mutants = list("deathberries")
 	chems = list("nutriment" = list(1), "toxin" = list(3,5), "poisonberryjuice" = list(10,5))
