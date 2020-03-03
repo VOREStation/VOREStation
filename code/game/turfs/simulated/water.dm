@@ -161,3 +161,17 @@ var/list/shoreline_icon_cache = list()
 	if(L.get_water_protection() < 1)
 		return FALSE
 	return ..()
+
+/turf/simulated/floor/water/contaminated
+	desc = "This water smells pretty acrid."
+	var poisonlevel = 10
+
+turf/simulated/floor/water/contaminated/Entered(atom/movable/AM, atom/oldloc)
+	..()
+	if(istype(AM, /mob/living))
+		var/mob/living/L = AM
+		if(L.isSynthetic())
+			return
+		poisonlevel *= 1 - L.get_water_protection()
+		if(poisonlevel > 0)
+			L.adjustToxLoss(poisonlevel)

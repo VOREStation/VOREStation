@@ -234,11 +234,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, "<span class='warning'>You have no body.</span>")
 		return
 	if(mind.current.key && copytext(mind.current.key,1,2)!="@")	//makes sure we don't accidentally kick any clients
-		usr << "<span class='warning'>Another consciousness is in your body... it is resisting you.</span>"
+		to_chat(usr, "<span class='warning'>Another consciousness is in your body... it is resisting you.</span>")
 		return
 	//VOREStation Add
 	if(prevent_respawns.Find(mind.name))
-		to_chat(usr,"<span class='warning'>You already quit this round as this character, sorry!</span>")
+		to_chat(usr, "<span class='warning'>You already quit this round as this character, sorry!</span>")
 		return
 	//VOREStation Add End
 	if(mind.current.ajourn && mind.current.stat != DEAD) //check if the corpse is astral-journeying (it's client ghosted using a cultist rune).
@@ -248,7 +248,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				found_rune = 1
 				break
 		if(!found_rune)
-			usr << "<span class='warning'>The astral cord that ties your body and your spirit has been severed. You are likely to wander the realm beyond until your body is finally dead and thus reunited with you.</span>"
+			to_chat(usr, "<span class='warning'>The astral cord that ties your body and your spirit has been severed. You are likely to wander the realm beyond until your body is finally dead and thus reunited with you.</span>")
 			return
 	mind.current.ajourn=0
 	mind.current.key = key
@@ -271,7 +271,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	medHUD = !medHUD
 	plane_holder.set_vis(VIS_CH_HEALTH, medHUD)
 	plane_holder.set_vis(VIS_CH_STATUS_OOC, medHUD)
-	to_chat(src,"<font color='blue'><B>Medical HUD [medHUD ? "Enabled" : "Disabled"]</B></font>")
+	to_chat(src, "<font color='blue'><B>Medical HUD [medHUD ? "Enabled" : "Disabled"]</B></font>")
 
 /mob/observer/dead/verb/toggle_antagHUD()
 	set category = "Ghost"
@@ -293,7 +293,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	antagHUD = !antagHUD
 	plane_holder.set_vis(VIS_CH_SPECIAL, antagHUD)
-	to_chat(src,"<font color='blue'><B>AntagHUD [antagHUD ? "Enabled" : "Disabled"]</B></font>")
+	to_chat(src, "<font color='blue'><B>AntagHUD [antagHUD ? "Enabled" : "Disabled"]</B></font>")
 
 /mob/observer/dead/proc/dead_tele(var/area/A in return_sorted_areas())
 	set category = "Ghost"
@@ -301,7 +301,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Teleport to a location"
 
 	if(!istype(usr, /mob/observer/dead))
-		usr << "Not when you're not dead!"
+		to_chat(usr, "Not when you're not dead!")
 		return
 
 	usr.forceMove(pick(get_area_turfs(A)))
@@ -323,7 +323,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/turf/targetloc = get_turf(target)
 	if(check_holy(targetloc))
-		usr << "<span class='warning'>You cannot follow a mob standing on holy grounds!</span>"
+		to_chat(usr, "<span class='warning'>You cannot follow a mob standing on holy grounds!</span>")
 		return
 	if(target != src)
 		if(following && following == target)
@@ -516,7 +516,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		announce_ghost_joinleave(src, 0, "They are now a mouse.")
 		host.ckey = src.ckey
 		host.add_ventcrawl(vent_found)
-		host << "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>"
+		to_chat(host, "<span class='info'>You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent.</span>")
 
 /mob/observer/dead/verb/view_manfiest()
 	set name = "Show Crew Manifest"
@@ -622,7 +622,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	is_manifest = TRUE
 	verbs |= /mob/observer/dead/proc/toggle_visibility
 	verbs |= /mob/observer/dead/proc/ghost_whisper
-	to_chat(src,"<font color='purple'>As you are now in the realm of the living, you can whisper to the living with the <b>Spectral Whisper</b> verb, inside the IC tab.</font>")
+	to_chat(src, "<font color='purple'>As you are now in the realm of the living, you can whisper to the living with the <b>Spectral Whisper</b> verb, inside the IC tab.</font>")
 	if(plane != PLANE_WORLD)
 		user.visible_message( \
 			"<span class='warning'>\The [user] drags ghost, [src], to our plane of reality!</span>", \
@@ -695,7 +695,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	ghostvision = !ghostvision
 	updateghostsight()
-	to_chat(src,"You [ghostvision ? "now" : "no longer"] have ghost vision.")
+	to_chat(src, "You [ghostvision ? "now" : "no longer"] have ghost vision.")
 
 /mob/observer/dead/verb/toggle_darkness()
 	set name = "Toggle Darkness"
@@ -703,7 +703,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	seedarkness = !seedarkness
 	updateghostsight()
-	to_chat(src,"You [seedarkness ? "now" : "no longer"] see darkness.")
+	to_chat(src, "You [seedarkness ? "now" : "no longer"] see darkness.")
 
 /mob/observer/dead/proc/updateghostsight()
 	plane_holder.set_vis(VIS_FULLBRIGHT, !seedarkness) //Inversion, because "not seeing" the darkness is "seeing" the lighting plane master.
@@ -754,7 +754,7 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 		var/msg = sanitize(input(src, "Message:", "Spectral Whisper") as text|null)
 		if(msg)
 			log_say("(SPECWHISP to [key_name(M)]): [msg]", src)
-			M << "<span class='warning'> You hear a strange, unidentifiable voice in your head... <font color='purple'>[msg]</font></span>"
+			to_chat(M, "<span class='warning'> You hear a strange, unidentifiable voice in your head... <font color='purple'>[msg]</font></span>")
 			to_chat(src, "<span class='warning'> You said: '[msg]' to [M].</span>")
 		else
 			return

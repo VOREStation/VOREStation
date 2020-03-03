@@ -88,7 +88,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 				pref.real_name = new_name
 				return TOPIC_REFRESH
 			else
-				user << "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>"
+				to_chat(user, "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>")
 				return TOPIC_NOACTION
 
 	else if(href_list["random_name"])
@@ -107,7 +107,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 				pref.nickname = new_nickname
 				return TOPIC_REFRESH
 			else
-				user << "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>"
+				to_chat(user, "<span class='warning'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</span>")
 				return TOPIC_NOACTION
 
 	else if(href_list["bio_gender"])

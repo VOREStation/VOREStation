@@ -202,6 +202,23 @@
 			playsound(src.loc, 'sound/machines/synth_yes.ogg', 50, 0)
 			m_type = 1
 
+		if("dwoop")
+			var/M = null
+			if(param)
+				for (var/mob/A in view(null, null))
+					M = A
+					break
+			if(!M)
+				param = null
+
+			if (param)
+				message = "chirps happily at [param]"
+			else
+				message = "chirps happily."
+			playsound(src.loc, 'sound/machines/dwoop.ogg', 50, 0)
+			m_type = 1
+
+
 		if("no")
 			var/M = null
 			if(param)
@@ -238,7 +255,7 @@
 				to_chat(src, "You are not security.")
 
 		if ("help")
-			to_chat(src, "salute, bow-(none)/mob, clap, flap, aflap, twitch, twitch_s, nod, deathgasp, glare-(none)/mob, stare-(none)/mob, look, beep, ping, \nbuzz, law, halt, yes, no")
+			to_chat(src, "salute, bow-(none)/mob, clap, flap, aflap, twitch, twitch_s, nod, deathgasp, glare-(none)/mob, stare-(none)/mob, look, beep, ping, \nbuzz, law, halt, yes, dwoop, no")
 		else
 			to_chat(src, "<font color='blue'>Unusable emote '[act]'. Say *help for a list.</font>")
 

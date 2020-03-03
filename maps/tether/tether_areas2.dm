@@ -783,15 +783,8 @@
 
 /area/bridge/secondary
 	name = "\improper Secondary Command Office"
-
-/area/bridge/secondary/hallway
-	name = "\improper Secondary Command Hallway"
 /area/bridge/secondary/meeting_room
 	name = "\improper Secondary Command Meeting Room"
-	lightswitch = 0
-/area/bridge/secondary/teleporter
-	name = "\improper Secondary Teleporter"
-	lightswitch = 0
 
 /area/tether/station/visitorhallway
 	name = "\improper Visitor Hallway"
@@ -843,12 +836,9 @@
 	name = "\improper Abandoned Library Conference"
 	icon_state = "library"
 /area/maintenance/station/spacecommandmaint
-	name = "\improper Asteroid Command Maintenance"
+	name = "\improper Secondary Command Maintenance"
 	icon_state = "bridge"
 	sound_env = SEWER_PIPE
-/area/maintenance/substation/spacecommand
-	name = "\improper Asteroid Command Substation"
-	icon_state = "substation"
 
 /area/shuttle/tether/crash1
 	name = "\improper Crash Site 1"
@@ -918,6 +908,11 @@
 	name = "\improper Excursion Shuttle - Virgo3b Sky"
 	base_turf = /turf/simulated/sky/virgo3b/south
 
+// Belter Dock
+
+/area/quartermaster/belterdock
+	name = "\improper Cargo Belter Access"
+	icon_state = "mining"
 // Elevator area //
 
 /area/tether/elevator

@@ -12,7 +12,7 @@
 /obj/item/weapon/pen
 	desc = "It's a normal black ink pen."
 	name = "pen"
-	icon = 'icons/obj/bureaucracy.dmi'
+	icon = 'icons/obj/bureaucracy_vr.dmi' //VOREStation Edit
 	icon_state = "pen"
 	item_state = "pen"
 	slot_flags = SLOT_BELT | SLOT_EARS
@@ -24,6 +24,9 @@
 	var/colour = "black"	//what colour the ink is!
 	pressure_resistance = 2
 
+/obj/item/weapon/pen/attack_self(var/mob/user)
+	to_chat(user, "<span class='notice'>Click.</span>")
+	playsound(loc, 'sound/items/penclick.ogg', 50, 1)
 
 /obj/item/weapon/pen/blue
 	desc = "It's a normal blue ink pen."
@@ -55,7 +58,7 @@
 	else
 		icon_state = "pen_[colour]"
 
-	user << "<span class='notice'>Changed color to '[colour].'</span>"
+	to_chat(user, "<span class='notice'>Changed color to '[colour].'</span>")
 
 /obj/item/weapon/pen/invisible
 	desc = "It's an invisble pen marker."
@@ -164,7 +167,7 @@
 				colour = COLOR_WHITE
 			else
 				colour = COLOR_BLACK
-		usr << "<span class='info'>You select the [lowertext(selected_type)] ink container.</span>"
+		to_chat(usr, "<span class='info'>You select the [lowertext(selected_type)] ink container.</span>")
 
 
 /*
@@ -186,7 +189,7 @@
 
 /obj/item/weapon/pen/crayon/suicide_act(mob/user)
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	viewers(user) << "<font color='red'><b>[user] is jamming the [src.name] up [TU.his] nose and into [TU.his] brain. It looks like [TU.he] [TU.is] trying to commit suicide.</b></font>"
+	to_chat(viewers(user),"<font color='red'><b>[user] is jamming the [src.name] up [TU.his] nose and into [TU.his] brain. It looks like [TU.he] [TU.is] trying to commit suicide.</b></font>")
 	return (BRUTELOSS|OXYLOSS)
 
 /obj/item/weapon/pen/crayon/New()

@@ -15,6 +15,7 @@
 	var/backup_author = ""
 	var/icon/backup_img = null
 	var/icon/backup_caption = ""
+	var/post_time = 0
 
 /datum/feed_channel
 	var/channel_name=""
@@ -78,6 +79,7 @@
 	newMsg.body = msg
 	newMsg.time_stamp = "[stationtime2text()]"
 	newMsg.is_admin_message = adminMessage
+	newMsg.post_time = round_duration_in_ticks // Should be almost universally unique
 	if(message_type)
 		newMsg.message_type = message_type
 	if(photo)
@@ -123,7 +125,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 /obj/machinery/newscaster
 	name = "newscaster"
 	desc = "A standard newsfeed handler for use on commercial space stations. All the news you absolutely have no use for, in one place!"
-	icon = 'icons/obj/terminals.dmi'
+	icon = 'icons/obj/terminals_vr.dmi' //VOREStation Edit
 	icon_state = "newscaster_normal"
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
@@ -253,8 +255,8 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 		node = get_exonet_node()
 
 	if(!node || !node.on || !node.allow_external_newscasters)
-		user << "<span class='danger'>Error: Cannot connect to external content.  Please try again in a few minutes.  If this error persists, please \
-		contact the system administrator.</span>"
+		to_chat(user, "<span class='danger'>Error: Cannot connect to external content.  Please try again in a few minutes.  If this error persists, please \
+		contact the system administrator.</span>")
 		return 0
 
 	if(!user.IsAdvancedToolUser())
@@ -883,7 +885,7 @@ obj/item/weapon/newspaper/attack_self(mob/user as mob)
 		human_user << browse(dat, "window=newspaper_main;size=300x400")
 		onclose(human_user, "newspaper_main")
 	else
-		user << "The paper is full of intelligible symbols!"
+		to_chat(user, "The paper is full of intelligible symbols!")
 
 obj/item/weapon/newspaper/Topic(href, href_list)
 	var/mob/living/U = usr
@@ -919,7 +921,7 @@ obj/item/weapon/newspaper/Topic(href, href_list)
 obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/pen))
 		if(scribble_page == curr_page)
-			user << "<FONT COLOR='blue'>There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?</FONT>"
+			to_chat(user, "<FONT COLOR='blue'>There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?</FONT>")
 		else
 			var/s = sanitize(input(user, "Write something", "Newspaper", ""))
 			s = sanitize(s)

@@ -7,8 +7,8 @@
 		</div>
 		<div class="itemContent" style="width:55%;">
 			<span style="display:inline-block;width:45%;min-width:150px;">
-				{{:helper.link(value.open ? 'Open' : 'Closed', 'alert', null, 'disabled', value.open ? 'greenButton' : 'redButton')}}
-				{{:helper.link(value.enable ? 'Enabled' : 'Disabled', 'alert', null, 'disabled', value.enable ? 'greenButton' : 'redButton')}}
+				{{:helper.link(value.open   ? 'Open'    : 'Closed',   'alert', {'toggle_open'   : value.ref})}}
+				{{:helper.link(value.enable ? 'Enabled' : 'Disabled', 'alert', {'toggle_enable' : value.ref})}}
 			</span>
 			<span style="display:inline-block;width:55%;min-width:150px;">
 				Coordinates: ({{:value.x}}, {{:value.y}}, {{:value.z}})

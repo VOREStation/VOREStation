@@ -453,4 +453,5 @@
 		update_icon()
 
 /obj/item/weapon/hand/pickup(mob/user as mob)
+	..()
 	src.update_icon()

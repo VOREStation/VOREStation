@@ -195,37 +195,61 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 	<h3>News</h3>
 	<HR>
 	
-	{{if data.feeds.length}}	
-		<!--Most recent three posts -->
-		<h4>Recent News</h4>
-		<div class="statusDisplay" style="height: 250px; overflow: auto;">
-		{{for data.latest_news}}
-			<h6>{{:value.channel}}</h6>
-			-{{:value.body}}<br>
-			{{if value.has_image}}
-				<img src='pda_news_tmp_photo_{{:data.feed.channel}}_{{:value.index}}.png' width = '180'><br>
-				{{if value.caption}}
-					<span class="caption">{{:value.caption}}</span><br>
-				{{/if}}
-			{{/if}}
-			<span class="footer">
-				{{:helper.link('Go to', 'arrow', {'newsfeed' : value.channel})}}
-				[{{:value.message_type}} by <span class="average">{{:value.author}}</span> - {{:value.time_stamp}}]</span>
-			<br>
-		{{empty}}
-		{{/for}}
-		</div>
-		<HR>
-
-		<!--List all newsfeeds -->		
-		<h4>News Feeds</h4>
-		<div>
-		{{for data.feeds}}
-			<div class='itemContent'>
-				{{:helper.link(value.name, 'arrow',  {'newsfeed' : value.name})}}
+	{{if data.feeds.length}}
+		{{if data.target_feed}}
+			{{:helper.link('Back', 'arrow', {'newsfeed' : 0})}}
+			<h4>{{:data.target_feed.name}}</h4>
+			<h5>By: {{:data.target_feed.author}}</h5>
+			<div class="statusDisplay" style="overflow: auto;">
+				{{for data.target_feed.messages}}
+					-{{:value.body}}<br>
+					{{if value.has_image}}
+						<img src='pda_news_tmp_photo_{{:data.feed.channel}}_{{:value.index}}.png' width = '180'><br>
+						{{if value.caption}}
+							<span class="caption">{{:value.caption}}</span><br>
+						{{/if}}
+					{{/if}}
+					<span class="footer">
+						[{{:value.message_type}} by <span class="average">{{:value.author}}</span> - {{:value.time_stamp}}]
+					</span>
+					<br>
+				{{empty}}
+				{{/for}}
 			</div>
-		{{/for}}
-		</div>
+
+		{{else}}
+			<!--Most recent three posts -->
+			<h4>Recent News</h4>
+			<div class="statusDisplay" style="height: 250px; overflow: auto;">
+				{{for data.latest_news}}
+					<h6>{{:value.channel}}</h6>
+					-{{:value.body}}<br>
+					{{if value.has_image}}
+						<img src='pda_news_tmp_photo_{{:data.feed.channel}}_{{:value.index}}.png' width = '180'><br>
+						{{if value.caption}}
+							<span class="caption">{{:value.caption}}</span><br>
+						{{/if}}
+					{{/if}}
+					<span class="footer">
+						{{:helper.link('Go to', 'arrow', {'newsfeed' : value.channel})}}
+						[{{:value.message_type}} by <span class="average">{{:value.author}}</span> - {{:value.time_stamp}}]
+					</span>
+					<br>
+				{{empty}}
+				{{/for}}
+			</div>
+			<HR>
+
+			<!--List all newsfeeds -->		
+			<h4>News Feeds</h4>
+			<div>
+				{{for data.feeds}}
+					<div class='itemContent'>
+						{{:helper.link(value.name, 'arrow',  {'newsfeed' : value.index})}}
+					</div>
+				{{/for}}
+			</div>
+		{{/if}}
 	{{else}}
 	<!--No news feeds -->
 		<div class="item">
@@ -233,7 +257,7 @@ Used In File(s): code\game\objects\items\devices\communicator\communicator.dm
 				Error
 			</div>
 			<div class="itemContent">
-				No weather reports available. Please try again later.
+				No newsfeeds available. Please try again later.
 			</div>
 		</div>
 	{{/if}}

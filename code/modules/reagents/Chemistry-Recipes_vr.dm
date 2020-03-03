@@ -258,7 +258,7 @@
 		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 		for(var/mob/living/M in range (get_turf(holder.my_atom), 7))
 			M.bodytemperature -= 140
-			M << "<span class='notice'> You suddenly feel a chill!</span>"
+			to_chat(M, "<span class='notice'> You suddenly feel a chill!</span>")
 
 
 
@@ -307,7 +307,7 @@
 	required_reagents = list("phoron" = 10, "bicaridine" = 10, "kelotane" = 10, "inaprovaline" = 10, "slimejelly" = 10)
 	on_reaction(var/datum/reagents/holder, var/created_volume)
 		for (var/mob/living/carbon/C in viewers(get_turf(holder.my_atom), null))
-			C << "<span class='notice'>A wave of energy suddenly invigorates you.</span>"
+			to_chat(C, "<span class='notice'>A wave of energy suddenly invigorates you.</span>")
 			C.adjustBruteLoss(-25)
 			C.adjustFireLoss(-25)
 			C.adjustToxLoss(-25)

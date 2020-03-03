@@ -5,7 +5,7 @@
 /datum/artifact_effect/teleport/DoEffectTouch(var/mob/user)
 	var/weakness = GetAnomalySusceptibility(user)
 	if(prob(100 * weakness))
-		user << "<font color='red'>You are suddenly zapped away elsewhere!</font>"
+		to_chat(user, "<font color='red'>You are suddenly zapped away elsewhere!</font>")
 		if (user.buckled)
 			user.buckled.unbuckle_mob()
 
@@ -25,7 +25,7 @@
 		for (var/mob/living/M in range(src.effectrange,T))
 			var/weakness = GetAnomalySusceptibility(M)
 			if(prob(100 * weakness))
-				M << "<font color='red'>You are displaced by a strange force!</font>"
+				to_chat(M, "<font color='red'>You are displaced by a strange force!</font>")
 				if(M.buckled)
 					M.buckled.unbuckle_mob()
 
@@ -44,7 +44,7 @@
 		for (var/mob/living/M in range(src.effectrange, T))
 			var/weakness = GetAnomalySusceptibility(M)
 			if(prob(100 * weakness))
-				M << "<font color='red'>You are displaced by a strange force!</font>"
+				to_chat(M, "<font color='red'>You are displaced by a strange force!</font>")
 				if(M.buckled)
 					M.buckled.unbuckle_mob()
 

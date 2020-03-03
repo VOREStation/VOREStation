@@ -71,7 +71,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /obj/item/device/pda/CtrlClick()
 	if(issilicon(usr))
 		return
-	
+
 	if(can_use(usr))
 		remove_pen()
 		return
@@ -439,6 +439,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if(2) icon = 'icons/obj/pda_slim.dmi'
 		if(3) icon = 'icons/obj/pda_old.dmi'
 		if(4) icon = 'icons/obj/pda_rugged.dmi'
+		if(5) icon = 'icons/obj/pda_holo.dmi'
 		else
 			icon = 'icons/obj/pda_old.dmi'
 			log_debug("Invalid switch for PDA, defaulting to old PDA icons. [pdachoice] chosen.")
@@ -647,8 +648,9 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	// auto update every Master Controller tick
 	ui.set_auto_update(auto_update)
 
-//NOTE: graphic resources are loaded on client login
 /obj/item/device/pda/attack_self(mob/user as mob)
+	var/datum/asset/assets = get_asset_datum(/datum/asset/simple/pda)
+	assets.send(user)
 
 	user.set_machine(src)
 
@@ -1135,7 +1137,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if (!beep_silent)
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
 		for (var/mob/O in hearers(2, loc))
-			O.show_message(text("\icon[src] *[message_tone]*"))
+			O.show_message(text("[bicon(src)] *[message_tone]*"))
 	//Search for holder of the PDA.
 	var/mob/living/L = null
 	if(loc && isliving(loc))
@@ -1146,11 +1148,11 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	if(L)
 		if(reception_message)
-			L << reception_message
+			to_chat(L,reception_message)
 		SSnanoui.update_user_uis(L, src) // Update the receiving user's PDA UI so that they can see the new message
 
 /obj/item/device/pda/proc/new_news(var/message)
-	new_info(news_silent, newstone, news_silent ? "" : "\icon[src] <b>[message]</b>")
+	new_info(news_silent, newstone, news_silent ? "" : "[bicon(src)] <b>[message]</b>")
 
 	if(!news_silent)
 		new_news = 1
@@ -1165,7 +1167,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	new_message(sending_device, sending_device.owner, sending_device.ownjob, message)
 
 /obj/item/device/pda/proc/new_message(var/sending_unit, var/sender, var/sender_job, var/message, var/reply = 1)
-	var/reception_message = "\icon[src] <b>Message from [sender] ([sender_job]), </b>\"[message]\" ([reply ? "<a href='byond://?src=\ref[src];choice=Message;notap=[istype(loc, /mob/living/silicon)];skiprefresh=1;target=\ref[sending_unit]'>Reply</a>" : "Unable to Reply"])"
+	var/reception_message = "[bicon(src)] <b>Message from [sender] ([sender_job]), </b>\"[message]\" ([reply ? "<a href='byond://?src=\ref[src];choice=Message;notap=[istype(loc, /mob/living/silicon)];skiprefresh=1;target=\ref[sending_unit]'>Reply</a>" : "Unable to Reply"])"
 	new_info(message_silent, ttone, reception_message)
 
 	log_pda("(PDA: [sending_unit]) sent \"[message]\" to [name]", usr)
@@ -1177,7 +1179,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if(ismob(sending_unit.loc) && isAI(loc))
 		track = "(<a href='byond://?src=\ref[loc];track=\ref[sending_unit.loc];trackname=[html_encode(sender)]'>Follow</a>)"
 
-	var/reception_message = "\icon[src] <b>Message from [sender] ([sender_job]), </b>\"[message]\" (<a href='byond://?src=\ref[src];choice=Message;notap=1;skiprefresh=1;target=\ref[sending_unit]'>Reply</a>) [track]"
+	var/reception_message = "[bicon(src)] <b>Message from [sender] ([sender_job]), </b>\"[message]\" (<a href='byond://?src=\ref[src];choice=Message;notap=1;skiprefresh=1;target=\ref[sending_unit]'>Reply</a>) [track]"
 	new_info(message_silent, newstone, reception_message)
 
 	log_pda("(PDA: [sending_unit]) sent \"[message]\" to [name]",usr)
@@ -1389,11 +1391,11 @@ var/global/list/obj/item/device/pda/PDAs = list()
 					var/reagents_length = A.reagents.reagent_list.len
 					to_chat(user, "<span class='notice'>[reagents_length] chemical agent[reagents_length > 1 ? "s" : ""] found.</span>")
 					for (var/re in A.reagents.reagent_list)
-						to_chat(user,"<span class='notice'>    [re]</span>")
+						to_chat(user, "<span class='notice'>    [re]</span>")
 				else
-					to_chat(user,"<span class='notice'>No active chemical agents found in [A].</span>")
+					to_chat(user, "<span class='notice'>No active chemical agents found in [A].</span>")
 			else
-				to_chat(user,"<span class='notice'>No significantchemical agents found in [A].</span>")
+				to_chat(user, "<span class='notice'>No significantchemical agents found in [A].</span>")
 
 		if(5)
 			analyze_gases(A, user)
@@ -1445,7 +1447,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		// feature to the PDA, which would better convey the availability of the feature, but this will work for now.
 
 		// Inform the user
-		to_chat(user,"<span class='notice'>Paper scanned and OCRed to notekeeper.</span>") //concept of scanning paper copyright brainoblivion 2009
+		to_chat(user, "<span class='notice'>Paper scanned and OCRed to notekeeper.</span>") //concept of scanning paper copyright brainoblivion 2009
 
 
 /obj/item/device/pda/proc/explode() //This needs tuning. //Sure did.
@@ -1458,7 +1460,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/Destroy()
 	PDAs -= src
-	if (src.id && prob(100)) //IDs are kept in 90% of the cases //VOREStation Edit - 100% of the cases
+	if (src.id && prob(100) && !delete_id) //IDs are kept in 90% of the cases //VOREStation Edit - 100% of the cases, excpet when specified otherwise
 		src.id.forceMove(get_turf(src.loc))
 	else
 		QDEL_NULL(src.id)

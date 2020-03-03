@@ -44,10 +44,10 @@
 /obj/item/weapon/material/butterfly/attack_self(mob/user)
 	active = !active
 	if(active)
-		user << "<span class='notice'>You flip out \the [src].</span>"
+		to_chat(user, "<span class='notice'>You flip out \the [src].</span>")
 		playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
 	else
-		user << "<span class='notice'>\The [src] can now be concealed.</span>"
+		to_chat(user, "<span class='notice'>\The [src] can now be concealed.</span>")
 	update_force()
 	add_fingerprint(user)
 
@@ -68,9 +68,9 @@
 
 /obj/item/weapon/material/knife/suicide_act(mob/user)
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	viewers(user) << pick("<span class='danger'>\The [user] is slitting [TU.his] wrists with \the [src]! It looks like [TU.hes] trying to commit suicide.</span>", \
+	to_chat(viewers(user), pick("<span class='danger'>\The [user] is slitting [TU.his] wrists with \the [src]! It looks like [TU.hes] trying to commit suicide.</span>", \
 	                      "<span class='danger'>\The [user] is slitting [TU.his] throat with \the [src]! It looks like [TU.hes] trying to commit suicide.</span>", \
-	                      "<span class='danger'>\The [user] is slitting [TU.his] stomach open with \the [src]! It looks like [TU.hes] trying to commit seppuku.</span>")
+	                      "<span class='danger'>\The [user] is slitting [TU.his] stomach open with \the [src]! It looks like [TU.hes] trying to commit seppuku.</span>"))
 	return (BRUTELOSS)
 
 // These no longer inherit from hatchets.

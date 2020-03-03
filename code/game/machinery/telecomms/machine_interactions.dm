@@ -105,7 +105,7 @@
 
 	dat += "</font>"
 	temp = ""
-	to_chat(user, browse(dat, "window=tcommachine;size=520x500;can_resize=0"))
+	user << browse(dat, "window=tcommachine;size=520x500;can_resize=0")
 	onclose(user, "dormitory")
 
 

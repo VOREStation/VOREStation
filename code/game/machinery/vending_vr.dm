@@ -300,6 +300,7 @@
 					/obj/item/clothing/under/color/yellow = 5,
 					/obj/item/clothing/shoes/black = 20,
 					/obj/item/clothing/shoes/white = 20)
+	prices = list()
 
 /obj/machinery/vending/loadout/accessory
 	name = "Looty Inc."

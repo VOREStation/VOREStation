@@ -25,11 +25,11 @@
 /area/tether_away/debrisfield/explored)
 "h" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/frame,
+/obj/structure/salvageable/personal,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/debrisfield/explored)
 "i" = (
-/obj/structure/frame,
+/obj/structure/salvageable/implant_container,
 /turf/simulated/shuttle/floor/airless,
 /area/tether_away/debrisfield/explored)
 "j" = (
@@ -117,9 +117,7 @@
 /turf/simulated/shuttle/floor/airless,
 /area/tether_away/debrisfield/explored)
 "z" = (
-/obj/structure/frame/computer{
-	dir = 1
-	},
+/obj/structure/salvageable/data,
 /turf/simulated/shuttle/floor/airless,
 /area/tether_away/debrisfield/explored)
 "A" = (

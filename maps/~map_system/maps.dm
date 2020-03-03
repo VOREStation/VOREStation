@@ -59,9 +59,14 @@ var/list/all_maps = list()
 	var/list/holomap_legend_x = list()
 	var/list/holomap_legend_y = list()
 	var/list/meteor_strike_areas	// VOREStation Edit - Areas meteor strikes may choose to hit.
-	var/list/drop_pod_allowed_z		// VOREStation Edit - Which z-levels to target with droppods?
 	var/ai_shell_restricted = FALSE			//VOREStation Addition - are there z-levels restricted?
 	var/ai_shell_allowed_levels = list()	//VOREStation Addition - which z-levels ARE we allowed to visit?
+
+	//VOREStation Addition Start - belter stuff
+	var/list/belter_docked_z = list()
+	var/list/belter_transit_z = list()
+	var/list/belter_belt_z = list()
+	//VOREStation Addition End - belter stuff
 
 	var/station_name  = "BAD Station"
 	var/station_short = "Baddy"
@@ -106,6 +111,8 @@ var/list/all_maps = list()
 	var/list/unit_test_exempt_from_atmos = list()
 	var/list/unit_test_exempt_from_apc = list()
 	var/list/unit_test_z_levels //To test more than Z1, set your z-levels to test here.
+
+	var/list/planet_datums_to_make = list() // Types of `/datum/planet`s that will be instantiated by SSPlanets.
 
 /datum/map/New()
 	..()

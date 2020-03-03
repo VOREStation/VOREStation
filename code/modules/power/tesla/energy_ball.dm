@@ -168,6 +168,8 @@
 	C.electrocute_act(500, src, def_zone = BP_TORSO)
 
 /proc/tesla_zap(atom/source, zap_range = 3, power, explosive = FALSE, stun_mobs = TRUE)
+	if(!source) // Some mobs and maybe some objects delete themselves when they die.
+		return
 	. = source.dir
 	if(power < 1000)
 		return

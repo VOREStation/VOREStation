@@ -40,7 +40,7 @@
 	var/old_outdoors = outdoors
 	var/old_dangerous_objects = dangerous_objects
 
-	//world << "Replacing [src.type] with [N]"
+	//to_world("Replacing [src.type] with [N]")
 
 	if(connections) connections.erase_all()
 

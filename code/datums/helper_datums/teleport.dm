@@ -158,11 +158,18 @@
 		precision = rand(1,100)
 
 	var/list/bagholding = teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)
+	//VOREStation Addition Start: Prevent taurriding abuse
+	if(istype(teleatom, /mob/living))
+		var/mob/living/L = teleatom
+		if(LAZYLEN(L.buckled_mobs))
+			for(var/mob/rider in L.buckled_mobs)
+				bagholding += rider.search_contents_for(/obj/item/weapon/storage/backpack/holding)
+	//VOREStation Addition End: Prevent taurriding abuse
 	if(bagholding.len)
 		precision = max(rand(1,100)*bagholding.len,100)
 		if(istype(teleatom, /mob/living))
 			var/mob/living/MM = teleatom
-			MM << "<span class='danger'>The Bluespace interface on your [teleatom] interferes with the teleport!</span>"
+			to_chat(MM, "<span class='danger'>The Bluespace interface on your [teleatom] interferes with the teleport!</span>")
 	return 1
 
 /datum/teleport/instant/science/teleportChecks()
@@ -181,7 +188,7 @@
 	if(destination.z in using_map.admin_levels) //CentCom z-level
 		if(istype(teleatom, /obj/mecha))
 			var/obj/mecha/MM = teleatom
-			MM.occupant << "<span class='danger'>\The [MM] would not survive the jump to a location so far away!</span>"
+			to_chat(MM.occupant, "<span class='danger'>\The [MM] would not survive the jump to a location so far away!</span>")
 			return 0
 		if(!isemptylist(teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)))
 			teleatom.visible_message("<span class='danger'>\The [teleatom] bounces off of the portal!</span>")

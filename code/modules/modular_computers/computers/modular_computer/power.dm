@@ -16,6 +16,12 @@
 		return TRUE
 	return FALSE
 
+/obj/item/modular_computer/get_cell()
+	if(battery_module)
+		return battery_module.battery
+	else
+		..()
+
 // Tries to use power from APC, if present.
 /obj/item/modular_computer/proc/apc_power(var/power_usage = 0)
 	apc_powered = TRUE

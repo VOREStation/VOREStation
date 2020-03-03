@@ -131,19 +131,19 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 				if(2)
 					if(!Console.silent)
 						playsound(Console.loc, 'sound/machines/twobeep.ogg', 50, 1)
-						Console.audible_message(text("\icon[Console] *The Requests Console beeps: 'PRIORITY Alert in [sender]'"),,5)
+						Console.audible_message(text("[bicon(Console)] *The Requests Console beeps: 'PRIORITY Alert in [sender]'"),,5)
 					Console.message_log += "<B><FONT color='red'>High Priority message from <A href='?src=\ref[Console];write=[sender]'>[sender]</A></FONT></B><BR>[authmsg]"
 				else
 					if(!Console.silent)
 						playsound(Console.loc, 'sound/machines/twobeep.ogg', 50, 1)
-						Console.audible_message(text("\icon[Console] *The Requests Console beeps: 'Message from [sender]'"),,4)
+						Console.audible_message(text("[bicon(Console)] *The Requests Console beeps: 'Message from [sender]'"),,4)
 					Console.message_log += "<B>Message from <A href='?src=\ref[Console];write=[sender]'>[sender]</A></B><BR>[authmsg]"
 			Console.set_light(2)
 
 
 /obj/machinery/message_server/attack_hand(user as mob)
-//	user << "<font color='blue'>There seem to be some parts missing from this server. They should arrive on the station in a few days, give or take a few CentCom delays.</font>"
-	user << "You toggle PDA message passing from [active ? "On" : "Off"] to [active ? "Off" : "On"]"
+//	to_chat(user, "<font color='blue'>There seem to be some parts missing from this server. They should arrive on the station in a few days, give or take a few CentCom delays.</font>")
+	to_chat(user, "You toggle PDA message passing from [active ? "On" : "Off"] to [active ? "Off" : "On"]")
 	active = !active
 	update_icon()
 
@@ -155,7 +155,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 		spamfilter_limit += round(MESSAGE_SERVER_DEFAULT_SPAM_LIMIT / 2)
 		user.drop_item()
 		qdel(O)
-		user << "You install additional memory and processors into message server. Its filtering capabilities been enhanced."
+		to_chat(user, "You install additional memory and processors into message server. Its filtering capabilities been enhanced.")
 	else
 		..(O, user)
 

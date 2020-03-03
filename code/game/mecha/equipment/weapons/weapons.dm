@@ -72,7 +72,7 @@
 		var/obj/item/projectile/P = A
 		P.dispersion = deviation
 		process_accuracy(P, chassis.occupant, target)
-		P.launch_projectile_from_turf(target, chassis.occupant.zone_sel.selecting, chassis.occupant, params)
+		P.launch_projectile_from_turf(target, chassis.get_pilot_zone_sel(), chassis.occupant, params)
 	else if(istype(A, /atom/movable))
 		var/atom/movable/AM = A
 		AM.throw_at(target, 7, 1, chassis)

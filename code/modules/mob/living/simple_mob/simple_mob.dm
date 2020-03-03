@@ -14,6 +14,8 @@
 	mob_swap_flags = ~HEAVY
 	mob_push_flags = ~HEAVY
 
+	has_huds = TRUE // We do show AI status huds for buildmode players
+
 	var/tt_desc = null //Tooltip description
 
 	//Settings for played mobs
@@ -296,3 +298,8 @@
 
 /mob/living/simple_mob/get_nametag_desc(mob/user)
 	return "<i>[tt_desc]</i>"
+
+/mob/living/simple_mob/make_hud_overlays()
+	hud_list[STATUS_HUD]  = gen_hud_image(buildmode_hud, src, "ai_0", plane = PLANE_BUILDMODE)
+	hud_list[LIFE_HUD]	  = gen_hud_image(buildmode_hud, src, "ais_1", plane = PLANE_BUILDMODE)
+	add_overlay(hud_list)

@@ -15,7 +15,7 @@
 /datum/ai_holder/proc/should_threaten()
 	if(!threaten)
 		return FALSE // We don't negotiate.
-	if(target in attackers)
+	if(check_attacker(target))
 		return FALSE // They (or someone like them) attacked us before, escalate immediately.
 	if(!will_threaten(target))
 		return FALSE // Pointless to threaten an animal, a mindless drone, or an object.

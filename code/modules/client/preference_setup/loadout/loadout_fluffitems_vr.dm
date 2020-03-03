@@ -51,14 +51,14 @@
 	display_name  = "centcom medical uniform"
 	description = "A medical uniform straight from Central Command."
 	ckeywhitelist = list("arokha")
-	character_name = list("Aronai Kadigan")
+	character_name = list("Aronai Sieyes")
 
 /datum/gear/fluff/aronai_ccmedjacket
 	path = /obj/item/clothing/suit/storage/service/sifguard/medical/command
 	display_name  = "centcom medical jacket"
 	description = "A medical jacket straight from Central Command."
 	ckeywhitelist = list("arokha")
-	character_name = list("Aronai Kadigan")
+	character_name = list("Aronai Sieyes")
 
 //  B CKEYS
 /datum/gear/fluff/yuuko_kimono
@@ -461,6 +461,18 @@
 	ckeywhitelist = list("kisukegema")
 	character_name = list("Kisuke Gema")
 
+/datum/gear/fluff/excess_collar
+	path = /obj/item/clothing/accessory/collar/pink/fluff/warning
+	display_name = "Excess's Collar"
+	ckeywhitelist = list("killerdragn")
+	character_name = list("Excess")
+
+/datum/gear/fluff/excess_uniform
+	path = /obj/item/clothing/under/fluff/excess
+	display_name = "Excess's Uniform"
+	ckeywhitelist = list("killerdragn")
+	character_name = list("Excess")
+
 /datum/gear/fluff/lassara_sheath
 	path = /obj/item/clothing/accessory/storage/knifeharness
 	display_name = "Lassara's Knife Harness"
@@ -586,6 +598,12 @@
 	display_name = "Lily's Unity Medal"
 	ckeywhitelist = list("phoaly")
 	character_name = list("Lily Maximus")
+
+/datum/gear/fluff/pip_cloak
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/hop/fluff/pip
+	display_name = "Pip's Cloak"
+	ckeywhitelist = list("phoaly")
+	character_name = list("Pip Shyner")
 
 /datum/gear/fluff/lucuis_battery
 	path = /obj/item/weapon/fluff/dragor_dot
@@ -753,6 +771,18 @@
 	ckeywhitelist = list("thedavestdave")
 	character_name = list("Nick Sloan")
 
+/datum/gear/fluff/roy_medal
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Roy's Unity Medal"
+	ckeywhitelist = list("thedavestdave")
+	character_name = list("Roy Tilton")
+
+/datum/gear/fluff/monty_balaclava
+	path = /obj/item/clothing/mask/balaclava
+	display_name = "Monty's Balaclava"
+	ckeywhitelist = list("theskringdinger")
+	character_name = list("Monty Kopic")
+
 /datum/gear/fluff/konor_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
 	display_name = "Konor's Unity Medal"
@@ -888,7 +918,7 @@
 	display_name = "Tempest's Medical Hud"
 	ckeywhitelist = list("wickedtemp")
 	character_name = list("Chakat Tempest Venosare")
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Field Medic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Field Medic", "Off-duty Medic")
 	slot = slot_glasses
 
 /datum/gear/fluff/tempest_hypospray
@@ -896,7 +926,7 @@
 	display_name = "Tempest's Hypospray"
 	ckeywhitelist = list("wickedtemp")
 	character_name = list("Chakat Tempest Venosare")
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Field Medic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Field Medic", "Off-duty Medic")
 	slot = slot_belt
 
 /datum/gear/fluff/tempest_backpack

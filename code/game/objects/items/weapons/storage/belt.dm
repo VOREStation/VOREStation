@@ -17,7 +17,7 @@
 	set category = "Object"
 
 	if(show_above_suit == -1)
-		usr << "<span class='notice'>\The [src] cannot be worn above your suit!</span>"
+		to_chat(usr, "<span class='notice'>\The [src] cannot be worn above your suit!</span>")
 		return
 	show_above_suit = !show_above_suit
 	update_icon()
@@ -162,6 +162,7 @@
 		/obj/item/weapon/melee/baton,
 		/obj/item/weapon/gun/energy/taser,
 		/obj/item/weapon/gun/energy/stunrevolver,
+		/obj/item/weapon/gun/magnetic/railgun/heater/pistol,
 		/obj/item/weapon/gun/energy/gun,
 		/obj/item/weapon/flame/lighter,
 		/obj/item/device/flashlight,

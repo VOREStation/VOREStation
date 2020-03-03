@@ -39,13 +39,15 @@
 /obj/item/device/holowarrant/attackby(obj/item/weapon/W, mob/user)
 	if(active)
 		var/obj/item/weapon/card/id/I = W.GetIdCard()
-		if(I)
+		if(access_hos in I.access) // VOREStation edit
 			var/choice = alert(user, "Would you like to authorize this warrant?","Warrant authorization","Yes","No")
 			if(choice == "Yes")
 				active.fields["auth"] = "[I.registered_name] - [I.assignment ? I.assignment : "(Unknown)"]"
 			user.visible_message("<span class='notice'>You swipe \the [I] through the [src].</span>", \
 					"<span class='notice'>[user] swipes \the [I] through the [src].</span>")
 			return 1
+		to_chat(user, "<span class='warning'>You don't have the access to do this!</span>") // VOREStation edit
+		return 1
 	..()
 
 //hit other people with it
@@ -108,3 +110,12 @@
 		</BODY></HTML>
 		"}
 		show_browser(user, output, "window=Search warrant for [active.fields["namewarrant"]]")
+
+/obj/item/weapon/storage/box/holowarrants // VOREStation addition starts
+	name = "holowarrant devices"
+	desc = "A box of holowarrant diplays for security use."
+
+/obj/item/weapon/storage/box/holowarrants/New() 
+	..()
+	for(var/i = 0 to 3)
+		new /obj/item/device/holowarrant(src) // VOREStation addition ends

@@ -33,3 +33,31 @@
 /mob/living/simple_mob/animal/wolf
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING
+
+// Space edition, stronger and bitier
+/mob/living/simple_mob/animal/wolf/space
+	name = "space wolf"
+	tt_desc = "Canis lupus aetherius"
+
+	health = 40
+	maxHealth = 40
+
+	movement_cooldown = 3
+
+	harm_intent_damage = 5
+	melee_damage_lower = 10
+	melee_damage_upper = 15
+
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	minbodytemp = 0
+	maxbodytemp = 700
+
+/mob/living/simple_mob/animal/wolf/space/Process_Spacemove(var/check_drift = 0)
+	return TRUE

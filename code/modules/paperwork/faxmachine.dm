@@ -237,7 +237,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	for(var/client/C in admins)
 		if(check_rights((R_ADMIN|R_MOD),0,C))
-			C << msg
+			to_chat(C,msg)
 			C << 'sound/effects/printer.ogg'
 
 	// VoreStation Edit Start

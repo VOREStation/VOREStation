@@ -6036,6 +6036,9 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
 	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
 "akG" = (
@@ -9490,6 +9493,9 @@
 	dir = 8;
 	icon_state = "alarm0";
 	pixel_x = 24
+	},
+/obj/effect/landmark{
+	name = "morphspawn"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_stairs_one)
@@ -20870,8 +20876,8 @@
 	pixel_x = 0;
 	pixel_y = -25
 	},
-/obj/structure/bed/chair/sofa/corner{
-	dir = 1
+/obj/structure/bed/chair/sofa/brown/corner{
+	dir = 4
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
@@ -21908,6 +21914,9 @@
 "aJB" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
+	},
+/obj/effect/landmark{
+	name = "morphspawn"
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/rnd/xenobiology/xenoflora_storage)
@@ -31423,7 +31432,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/structure/bed/chair/sofa/left{
+/obj/structure/bed/chair/sofa/brown/left{
 	dir = 4
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -31554,11 +31563,11 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "bbC" = (
-/obj/structure/bed/chair/sofa/left{
-	dir = 1
-	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
+/obj/structure/bed/chair/sofa/brown/right{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/surfacecargo)
 "bbD" = (
@@ -32134,6 +32143,9 @@
 	pixel_x = -23;
 	pixel_y = 0
 	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "bcJ" = (
@@ -32259,6 +32271,26 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/external)
+"bcV" = (
+/obj/effect/landmark{
+	name = "droppod_landing"
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"bcW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/research)
+"bcX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
 "cGJ" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
@@ -33621,7 +33653,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -34590,7 +34622,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -34969,7 +35001,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -38111,7 +38143,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -40123,7 +40155,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -41469,7 +41501,7 @@ aah
 aah
 aah
 aBO
-aHZ
+bcW
 aHc
 aJF
 aKk
@@ -42632,7 +42664,7 @@ aUT
 aVn
 aVn
 aTZ
-aUE
+bcX
 aVn
 aVn
 aXz
@@ -45212,7 +45244,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -47649,7 +47681,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -50323,7 +50355,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -50657,7 +50689,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -50854,7 +50886,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad

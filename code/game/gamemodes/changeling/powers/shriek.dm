@@ -58,20 +58,20 @@
 			if(!M.mind || !M.mind.changeling)
 				if(M.get_ear_protection() >= 2)
 					continue
-				M << "<span class='danger'>You hear an extremely loud screeching sound!  It \
-				[pick("confuses","confounds","perturbs","befuddles","dazes","unsettles","disorients")] you.</span>"
+				to_chat(M, "<span class='danger'>You hear an extremely loud screeching sound!  It \
+				[pick("confuses","confounds","perturbs","befuddles","dazes","unsettles","disorients")] you.</span>")
 				M.adjustEarDamage(0,30)
 				M.Confuse(20)
 				M << sound('sound/effects/screech.ogg')
 				affected += M
 			else
 				if(M != src)
-					M << "<span class='notice'>You hear a familiar screech from nearby.  It has no effect on you.</span>"
+					to_chat(M, "<span class='notice'>You hear a familiar screech from nearby.  It has no effect on you.</span>")
 				M << sound('sound/effects/screech.ogg')
 
 		if(issilicon(M))
 			M << sound('sound/weapons/flash.ogg')
-			M << "<span class='notice'>Auditory input overloaded.  Reinitializing...</span>"
+			to_chat(M, "<span class='notice'>Auditory input overloaded.  Reinitializing...</span>")
 			M.Weaken(rand(5,10))
 			affected += M
 

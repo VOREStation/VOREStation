@@ -177,7 +177,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			to_chat(usr,"<span class='warning'>There is already someone's mind stored inside</span>")
 			return
 
-		var/choice = alert(usr,"This will remove the target's mind from their body. The only way to put it back is via a resleeving pod. Continue?","Confirmation","Continue","Cancel")
+		var/choice = alert(usr,"This will remove the target's mind from their body (and from the game as long as they're in the sleevemate). You can put them into a (mindless) body, a NIF, or back them up for normal resleeving, but you should probably have a plan in advance so you don't leave them unable to interact for too long. Continue?","Confirmation","Continue","Cancel")
 		if(choice == "Continue" && usr.get_active_hand() == src && usr.Adjacent(target))
 
 			usr.visible_message("<span class='warning'>[usr] begins downloading [target]'s mind!</span>","<span class='notice'>You begin downloading [target]'s mind!</span>")
@@ -229,7 +229,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 		if(istype(target, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = target
-			if(H.resleeve_lock && stored_mind.loaded_from_ckey  != H.resleeve_lock)
+			if(H.resleeve_lock && stored_mind.loaded_from_ckey != H.resleeve_lock)
 				to_chat(usr,"<span class='warning'>\[H] is protected from impersonation!</span>")
 				return
 
@@ -261,8 +261,6 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 				to_chat(usr,"<span class='notice'>Mind downloaded!</span>")
 				return
 		to_chat(usr,"<span class='notice'>Unable to find that mind in Soulcatcher!</span>")
-
-
 
 /obj/item/device/sleevemate/update_icon()
 	if(stored_mind)

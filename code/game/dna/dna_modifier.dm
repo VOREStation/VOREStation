@@ -108,13 +108,13 @@
 	if (usr.stat != 0)
 		return
 	if (!ishuman(usr) && !issmall(usr)) //Make sure they're a mob that has dna
-		usr << "<span class='notice'>Try as you might, you can not climb up into the scanner.</span>"
+		to_chat(usr, "<span class='notice'>Try as you might, you can not climb up into the scanner.</span>")
 		return
 	if (src.occupant)
-		usr << "<span class='warning'>The scanner is already occupied!</span>"
+		to_chat(usr, "<span class='warning'>The scanner is already occupied!</span>")
 		return
 	if (usr.abiotic())
-		usr << "<span class='warning'>The subject cannot have abiotic items on.</span>"
+		to_chat(usr, "<span class='warning'>The subject cannot have abiotic items on.</span>")
 		return
 	usr.stop_pulling()
 	usr.client.perspective = EYE_PERSPECTIVE
@@ -150,7 +150,7 @@
 			user.visible_message("\The [user] adds \a [item] to \the [src]!", "You add \a [item] to \the [src]!")
 			return
 		else
-			to_chat(user,"\The [brain] is not acceptable for genetic sampling!")
+			to_chat(user, "\The [brain] is not acceptable for genetic sampling!")
 
 	else if (!istype(item, /obj/item/weapon/grab))
 		return
@@ -271,7 +271,7 @@
 			user.drop_item()
 			I.loc = src
 			src.disk = I
-			user << "You insert [I]."
+			to_chat(user, "You insert [I].")
 			SSnanoui.update_uis(src) // update all UIs attached to src
 			return
 	else

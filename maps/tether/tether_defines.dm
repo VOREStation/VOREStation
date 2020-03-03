@@ -13,13 +13,17 @@
 #define Z_LEVEL_SHIPS						12
 #define Z_LEVEL_UNDERDARK					13
 #define Z_LEVEL_PLAINS						14
-#define Z_LEVEL_ALIENSHIP					15
-#define Z_LEVEL_BEACH						16
-#define Z_LEVEL_BEACH_CAVE					17
-#define Z_LEVEL_AEROSTAT					18
-#define Z_LEVEL_AEROSTAT_SURFACE			19
-#define Z_LEVEL_DEBRISFIELD					20
-#define Z_LEVEL_GATEWAY						21
+#define Z_LEVEL_ROGUEMINE_1					15
+#define Z_LEVEL_ROGUEMINE_2					16
+#define Z_LEVEL_ROGUEMINE_3					17
+#define Z_LEVEL_ROGUEMINE_4					18
+#define Z_LEVEL_ALIENSHIP					19
+#define Z_LEVEL_BEACH						20
+#define Z_LEVEL_BEACH_CAVE					21
+#define Z_LEVEL_AEROSTAT					22
+#define Z_LEVEL_AEROSTAT_SURFACE			23
+#define Z_LEVEL_DEBRISFIELD					24
+#define Z_LEVEL_GATEWAY						25
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -36,7 +40,7 @@
 	zlevel_datum_type = /datum/map_z_level/tether
 
 	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("tether")
+	lobby_screens = list("tether2_night")
 	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
 	holomap_smoosh = list(list(
@@ -102,8 +106,6 @@
 	spawnpoint_stayed = /datum/spawnpoint/cryo
 
 	meteor_strike_areas = list(/area/tether/surfacebase/outside/outside3)
-	drop_pod_allowed_z = list(Z_LEVEL_SURFACE_HIGH)
-
 
 	unit_test_exempt_areas = list(
 		/area/tether/surfacebase/outside/outside1,
@@ -126,6 +128,7 @@
 
 	lateload_z_levels = list(
 		list("Tether - Misc","Tether - Ships","Tether - Underdark","Tether - Plains"), //Stock Tether lateload maps
+		list("Asteroid Belt 1","Asteroid Belt 2","Asteroid Belt 3","Asteroid Belt 4"),
 		list("Alien Ship - Z1 Ship"),
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
 		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
@@ -157,7 +160,16 @@
 		Z_LEVEL_BEACH
 		)
 
+	belter_docked_z = 		list(Z_LEVEL_SPACE_HIGH)
+	belter_transit_z =	 	list(Z_LEVEL_SHIPS)
+	belter_belt_z = 		list(Z_LEVEL_ROGUEMINE_1,
+						 		 Z_LEVEL_ROGUEMINE_2,
+						 	 	 Z_LEVEL_ROGUEMINE_3,
+								 Z_LEVEL_ROGUEMINE_4)
+
 	lateload_single_pick = null //Nothing right now.
+
+	planet_datums_to_make = list(/datum/planet/virgo3b)
 
 /datum/map/tether/perform_map_generation()
 

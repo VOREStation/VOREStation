@@ -69,10 +69,10 @@
 /obj/item/clothing/head/helmet/riot/attack_self(mob/user as mob)
 	if(src.icon_state == initial(icon_state))
 		src.icon_state = "[icon_state]up"
-		user << "You raise the visor on the riot helmet."
+		to_chat(user, "You raise the visor on the riot helmet.")
 	else
 		src.icon_state = initial(icon_state)
-		user << "You lower the visor on the riot helmet."
+		to_chat(user, "You lower the visor on the riot helmet.")
 	update_clothing_icon()	//so our mob-overlays update
 
 /obj/item/clothing/head/helmet/laserproof

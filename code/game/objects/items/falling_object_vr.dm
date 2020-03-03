@@ -51,16 +51,3 @@
 
 /obj/effect/falling_effect/ex_act()
 	return
-
-
-/obj/effect/falling_effect/pizza_delivery
-	name = "PIZZA PIE POWER!"
-	crushing = FALSE
-
-/obj/effect/falling_effect/pizza_delivery/Initialize(mapload)
-	..()
-	falling_type = pick(prob(25);/obj/item/pizzabox/meat,
-				prob(25);/obj/item/pizzabox/margherita,
-				prob(25);/obj/item/pizzabox/vegetable,
-				prob(25);/obj/item/pizzabox/mushroom)
-	return INITIALIZE_HINT_LATELOAD

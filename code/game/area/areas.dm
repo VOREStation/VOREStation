@@ -335,7 +335,7 @@ var/list/mob/living/forced_ambiance_list = new
 		else
 			H.AdjustStunned(3)
 			H.AdjustWeakened(3)
-		mob << "<span class='notice'>The sudden appearance of gravity makes you fall to the floor!</span>"
+		to_chat(mob, "<span class='notice'>The sudden appearance of gravity makes you fall to the floor!</span>")
 		playsound(get_turf(src), "bodyfall", 50, 1)
 
 /area/proc/prison_break()
