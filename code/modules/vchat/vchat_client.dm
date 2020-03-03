@@ -1,5 +1,3 @@
-#define BACKLOG_LENGTH 20 MINUTES
-
 //The 'V' is for 'VORE' but you can pretend it's for Vue.js if you really want.
 
 //These are sent to the client via browse_rsc() in advance so the HTML can access them.
@@ -124,10 +122,14 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 //Perform DB shenanigans
 /datum/chatOutput/proc/load_database()
 	set waitfor = FALSE
-	var/list/results = vchat_get_messages(owner.ckey, world.time - BACKLOG_LENGTH)
+	var/list/results = vchat_get_messages(owner.ckey) //If there's bad performance on reconnects, look no further
 	for(var/list/message in results)
+		var/count = 10
 		to_chat_immediate(owner, message["time"], message["message"])
-		CHECK_TICK
+		count++
+		if(count >= 10)
+			count = 0
+			CHECK_TICK
 
 //It din work
 /datum/chatOutput/proc/become_broken()
@@ -325,5 +327,3 @@ var/to_chat_src
 
 		var/list/tojson = list("time" = time, "message" = message);
 		target << output(jsEncode(tojson), "htmloutput:putmessage")
-
-#undef BACKLOG_LENGTH
