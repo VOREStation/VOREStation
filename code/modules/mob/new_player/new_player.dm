@@ -91,8 +91,10 @@
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
+			var/datum/job/refJob = null
 			for(var/mob/new_player/player in player_list)
-				stat("[player.key]", (player.ready)?("(Playing)"):(null))
+				refJob = player.client.prefs.get_highest_job()
+				stat("[player.key]", (player.ready)?("(Playing as: [(refJob)?(refJob.title):("Unknown")])"):(null))
 				totalPlayers++
 				if(player.ready)totalPlayersReady++
 
