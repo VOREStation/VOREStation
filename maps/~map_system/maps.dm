@@ -99,6 +99,11 @@ var/list/all_maps = list()
 	var/datum/spawnpoint/spawnpoint_stayed = /datum/spawnpoint/cryo 	// Used if you end the round on the station.
 	// VOREStation Edit End
 
+	var/use_overmap = 0          // If overmap should be used (including overmap space travel override)
+	var/overmap_size = 20		 // Dimensions of overmap zlevel if overmap is used.
+	var/overmap_z = 0		     // If 0 will generate overmap zlevel on init. Otherwise will populate the zlevel provided.
+	var/overmap_event_areas = 0  // How many event "clouds" will be generated
+
 	var/lobby_icon = 'icons/misc/title.dmi' // The icon which contains the lobby image(s)
 	var/list/lobby_screens = list("mockingjay00")                 // The list of lobby screen to pick() from. If left unset the first icon state is always selected.
 
