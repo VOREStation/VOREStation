@@ -83,8 +83,6 @@ GLOBAL_DATUM(vchatdb, /database)
 	//Byond is so great half the time it doesn't delete the file
 	var/cleanup = "DROP TABLE IF EXISTS messages"
 	vchat_exec_update(cleanup)
-	cleanup = "VACUUM"
-	vchat_exec_update(cleanup)
 
 	//Messages table
 	var/tabledef = "CREATE TABLE messages(\

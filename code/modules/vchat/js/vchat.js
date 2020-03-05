@@ -24,10 +24,9 @@
 
 //Options for vchat
 var vchat_opts = {
-	crush_messages: 3, //How many messages back should we try to combine if crushing is on
-	pingThisOften: 10000, //ms
-	pingDropsAllowed: 2,
-	cookiePrefix: "vst-" //If you're another server, you can change this if you want.
+	msBeforeDropped: 30000, //No ping for this long, and the server must be gone
+	cookiePrefix: "vst-", //If you're another server, you can change this if you want.
+	alwaysShow: ["vc_looc", "vc_system"] //Categories to always display on every tab
 };
 
 var DARKMODE_COLORS = {
@@ -75,11 +74,8 @@ var vchat_state = {
 	byond_ckey: null,
 
 	//Ping status
-	lastPingAttempt: 0,
-	lastPingReply: 0,
-	missedPings: 0,
-	latency: 0,
-	reconnecting: false,
+	lastPingReceived: 0,
+	latency_sent: 0,
 
 	//Last ID
 	lastId: 0
@@ -99,8 +95,7 @@ function start_vchat() {
 	doWinset("chatloadlabel", {"is-visible": false});
 	
 	//Commence the pingening
-	send_ping();
-	setInterval(send_ping, vchat_opts.pingThisOften);
+	setInterval(check_ping, vchat_opts.msBeforeDropped);
 
 	//For fun
 	send_debug("VChat Loaded!");
@@ -115,30 +110,35 @@ function start_vue() {
 		el: '#app',
 		data: {
 			messages: [], //List o messages from byond
+			shown_messages: [], //Used on filtered tabs, but not "Main" because it has 0len categories list, which bypasses filtering for speed
+			unshown_messages: 0, //How many messages in archive would be shown but aren't
+			archived_messages: [], //Too old to show
 			tabs: [ //Our tabs
-				{name: "Main", classes: ["vc_showall"], immutable: true, active: true}
+				{name: "Main", categories: [], immutable: true, active: true}
 			],
-			always_show: ["vc_looc", "vc_system"], //Classes to always display on every tab
 			unread_messages: {}, //Message categories that haven't been looked at since we got one of them
 			editing: false, //If we're in settings edit mode
 			paused: false, //Autoscrolling
 			latency: 0, //Not necessarily network latency, since the game server has to align the responses into ticks
+			reconnecting: false, //If we've lost our connection
 			ext_styles: "", //Styles for chat downloaded files
 			is_admin: false,
 
 			//Settings
 			inverted: false, //Dark mode
-			crushing: true, //Combine similar messages
+			crushing: 3, //Combine similar messages
+			animated: false, //Small CSS animations for new messages
+			fontsize: 0.9, //Font size nudging
+			lineheight: 130,
 			showingnum: 200, //How many messages to show
-			animated: true, //Small CSS animations for new messages
-			fontsize: "zoom_normal", //Font size nudging
 
-			//The table to map game css classes to our vchat classes
+			//The table to map game css classes to our vchat categories
 			type_table: [
 				{
 					matches: ".say, .emote",
 					becomes: "vc_localchat",
 					pretty: "Local Chat",
+					tooltip: "In-character local messages (say, emote, etc)",
 					required: false,
 					admin: false
 				},
@@ -146,6 +146,7 @@ function start_vue() {
 					matches: ".alert, .syndradio, .centradio, .airadio, .entradio, .comradio, .secradio, .engradio, .medradio, .sciradio, .supradio, .srvradio, .expradio, .radio, .deptradio, .newscaster",
 					becomes: "vc_radio",
 					pretty: "Radio Comms",
+					tooltip: "All departments of radio messages",
 					required: false,
 					admin: false
 				},
@@ -153,6 +154,7 @@ function start_vue() {
 					matches: ".notice, .adminnotice, .info, .sinister, .cult",
 					becomes: "vc_info",
 					pretty: "Notices",
+					tooltip: "Non-urgent messages from the game and items",
 					required: false,
 					admin: false
 				},
@@ -160,6 +162,7 @@ function start_vue() {
 					matches: ".critical, .danger, .userdanger, .warning, .italics",
 					becomes: "vc_warnings",
 					pretty: "Warnings",
+					tooltip: "Urgent messages from the game and items",
 					required: false,
 					admin: false
 				},
@@ -167,6 +170,7 @@ function start_vue() {
 					matches: ".deadsay",
 					becomes: "vc_deadchat",
 					pretty: "Deadchat",
+					tooltip: "All of deadchat",
 					required: false,
 					admin: false
 				},
@@ -174,6 +178,7 @@ function start_vue() {
 					matches: ".ooc:not(.looc)",
 					becomes: "vc_globalooc",
 					pretty: "Global OOC",
+					tooltip: "The bluewall of global OOC messages",
 					required: false,
 					admin: false
 				},
@@ -182,6 +187,7 @@ function start_vue() {
 					matches: ".nif",
 					becomes: "vc_nif",
 					pretty: "NIF Messages",
+					tooltip: "Messages from the NIF itself and people inside",
 					required: false,
 					admin: false
 				},
@@ -190,6 +196,7 @@ function start_vue() {
 					matches: ".pm",
 					becomes: "vc_adminpm",
 					pretty: "Admin PMs",
+					tooltip: "Messages to/from admins ('adminhelps')",
 					required: false,
 					admin: false
 				},
@@ -197,6 +204,7 @@ function start_vue() {
 					matches: ".admin_channel",
 					becomes: "vc_adminchat",
 					pretty: "Admin Chat",
+					tooltip: "ASAY messages",
 					required: false,
 					admin: true
 				},
@@ -204,6 +212,7 @@ function start_vue() {
 					matches: ".mod_channel",
 					becomes: "vc_modchat",
 					pretty: "Mod Chat",
+					tooltip: "MSAY messages",
 					required: false,
 					admin: true
 				},
@@ -211,6 +220,7 @@ function start_vue() {
 					matches: ".event_channel",
 					becomes: "vc_eventchat",
 					pretty: "Event Chat",
+					tooltip: "ESAY messages",
 					required: false,
 					admin: true
 				},
@@ -218,37 +228,17 @@ function start_vue() {
 					matches: ".ooc.looc, .ooc .looc", //Dumb game
 					becomes: "vc_looc",
 					pretty: "Local OOC",
+					tooltip: "Local OOC messages, always enabled",
 					required: true
 				},
 				{
 					matches: ".boldannounce",
 					becomes: "vc_system",
 					pretty: "System Messages",
+					tooltip: "Messages from your client, always enabled",
 					required: true
 				}
 			],
-		},
-		created: function() {
-			/*Dog mode
-			setTimeout(function(){
-				document.body.className += " woof";
-			},5000);
-			*/
-			/* Stress test
-			var varthis = this;
-			setInterval( function() {
-				if(varthis.messages.length > 10000) {
-					return;
-				}
-				var stringymessages = JSON.stringify(varthis.messages);
-				var unstringy = JSON.parse(stringymessages);
-				unstringy.forEach( function(message) {
-					message.id = ++vchat_state.lastId;
-					varthis.messages.push(message);	
-				});
-				varthis.internal_message("Now have " + varthis.messages.length + " messages in array.");
-			}, 10000);
-			*/
 		},
 		mounted: function() {
 			//Load our settings
@@ -267,6 +257,13 @@ function start_vue() {
 			}
 		},
 		watch: {
+			reconnecting: function(newSetting, oldSetting) {
+				if(newSetting == true && oldSetting == false) {
+					this.internal_message("Your client has lost connection to the server, or there is severe lag. Your client will reconnect if possible.");
+				} else if (newSetting == false && oldSetting == true) {
+					this.internal_message("Your client has reconnected to the server.");
+				}
+			},
 			//Save the inverted setting to LS
 			inverted: function (newSetting) {
 				set_storage("darkmode",newSetting);
@@ -284,22 +281,50 @@ function start_vue() {
 			animated: function (newSetting) {
 				set_storage("animated",newSetting);
 			},
-			fontsize: function (newSetting) {
+			fontsize: function (newSetting, oldSetting) {
+				if(isNaN(newSetting)) { //Numbers only
+					this.fontsize = oldSetting;
+					return;
+				}
+				if(newSetting < 0.2) {
+					this.fontsize = 0.2;
+				} else if(newSetting > 5) {
+					this.fontsize = 5;
+				}
 				set_storage("fontsize",newSetting);
 			},
+			lineheight: function (newSetting, oldSetting) {
+				if(!isFinite(newSetting)) { //Integers only
+					this.lineheight = oldSetting;
+					return;
+				}
+				if(newSetting < 100) {
+					this.lineheight = 100;
+				} else if(newSetting > 200) {
+					this.lineheight = 200;
+				}
+				set_storage("lineheight",newSetting);
+			},
 			showingnum: function (newSetting, oldSetting) {
-				if(!isFinite(newSetting)) {
+				if(!isFinite(newSetting)) { //Integers only
 					this.showingnum = oldSetting;
 					return;
 				}
 				
 				newSetting = Math.floor(newSetting);
-				if(newSetting <= 50) {
+				if(newSetting < 50) {
 					this.showingnum = 50;
 				} else if(newSetting > 2000) {
 					this.showingnum = 2000;
 				}
+
 				set_storage("showingnum",this.showingnum);
+				this.attempt_archive();
+			},
+			current_categories: function(newSetting, oldSetting) {
+				if(newSetting.length) {
+					this.apply_filter(newSetting);
+				}
 			}
 		},
 		computed: {
@@ -311,27 +336,23 @@ function start_vue() {
 				});
 				return tab;
 			},
-			//Which classes does the active tab need?
-			active_classes: function() {
-				let classarray = this.active_tab.classes;
-				let classtext = classarray.toString(); //Convert to a string
-				let classproper = classtext.replace(/,/g," ");
-				if(this.inverted) classproper += " inverted";
-				return classproper; //Swap commas for spaces
-			},
 			//What color does the latency pip get?
 			ping_classes: function() {
-				if(this.latency === 0) { return "grey"; }
+				if(!this.latency) {
+					return this.reconnecting ? "red" : "green"; //Standard
+				} 
+
+				if (this.latency == "?") { return "grey"; } //Waiting for latency test reply
 				else if(this.latency < 0 ) {return "red"; }
 				else if(this.latency <= 200) { return "green"; }
 				else if(this.latency <= 400) { return "yellow"; }
-				else { return "red"; }
+				else { return "grey"; }
 			},
-			shown_messages: function() {
-				if(this.messages.length <= this.showingnum) {
-					return this.messages;
+			current_categories: function() {
+				if(this.active_tab == this.tabs[0]) {
+					return []; //Everything, no filtering, special case for speed.
 				} else {
-					return this.messages.slice(-1*this.showingnum);
+					return this.active_tab.categories.concat(vchat_opts.alwaysShow);
 				}
 			}
 		},
@@ -339,10 +360,14 @@ function start_vue() {
 			//Load the chat settings
 			load_settings: function() {
 				this.inverted = get_storage("darkmode", false);
-				this.crushing = get_storage("crushing", true);
+				this.crushing = get_storage("crushing", 3);
+				this.animated = get_storage("animated", false);
+				this.fontsize = get_storage("fontsize", 0.9);
+				this.lineheight = get_storage("lineheight", 130);
 				this.showingnum = get_storage("showingnum", 200);
-				this.animated = get_storage("animated", true);
-				this.fontsize = get_storage("fontsize", 'zoom_normal');
+
+				if(isNaN(this.crushing)){this.crushing = 3;} //This used to be a bool (03-02-2020)
+				if(isNaN(this.fontsize)){this.fontsize = 0.9;} //This used to be a string (03-02-2020)
 			},
 			//Change to another tab
 			switchtab: function(tab) {
@@ -350,9 +375,11 @@ function start_vue() {
 				this.active_tab.active = false;
 				tab.active = true;
 
-				tab.classes.forEach( function(cls) {
+				tab.categories.forEach( function(cls) {
 					this.unread_messages[cls] = 0;
 				}, this);
+
+				this.apply_filter(this.current_categories);
 			},
 			//Toggle edit mode
 			editmode: function() {
@@ -366,7 +393,7 @@ function start_vue() {
 			newtab: function() {
 				this.tabs.push({
 					name: "New Tab",
-					classes: this.always_show.slice(),
+					categories: [],
 					immutable: false,
 					active: false
 				});
@@ -406,17 +433,17 @@ function start_vue() {
 			tab_unread_count: function(tab) {
 				var unreads = 0;
 				var thisum = this.unread_messages;
-				tab.classes.find( function(cls){
+				tab.categories.find( function(cls){
 					if(thisum[cls]) {
 						unreads += thisum[cls];
 					}
 				});
 				return unreads;
 			},
-			tab_unread_classes: function(tab) {
+			tab_unread_categories: function(tab) {
 				var unreads = false;
 				var thisum = this.unread_messages;
-				tab.classes.find( function(cls){
+				tab.categories.find( function(cls){
 					if(thisum[cls]) {
 						unreads = true;
 						return true;
@@ -424,6 +451,39 @@ function start_vue() {
 				});
 
 				return { red: unreads, grey: !unreads};
+			},
+			attempt_archive: function() {
+				var wiggle = 20; //Wiggle room to prevent hysterisis effects. Slice off 20 at a time.
+				//Pushing out old messages
+				if(this.messages.length > this.showingnum) {//Time to slice off old messages
+					var too_old = this.messages.splice(0,wiggle); //We do a few at a time to avoid doing it too often
+					Array.prototype.push.apply(this.archived_messages, too_old); //ES6 adds spread operator. I'd use it if I could.
+				}/*
+				//Pulling back old messages
+				} else if(this.messages.length < (this.showingnum - wiggle)) { //Sigh, repopulate old messages
+					var too_new = this.archived_messages.splice(this.messages.length - (this.showingnum - wiggle));
+					Array.prototype.shift.apply(this.messages, too_new);
+				}
+				*/
+			},
+			apply_filter: function(cat_array) {
+				//Clean up the array
+				this.shown_messages.splice(0);
+				this.unshown_messages = 0;
+
+				//For each message, try to find it's category in the categories we're showing
+				this.messages.forEach( function(msg){
+					if(cat_array.indexOf(msg.category) > -1) { //Returns the position in the array, and -1 for not found
+						this.shown_messages.push(msg);
+					}
+				}, this);
+
+				//For each message, try to find it's category in the categories we're showing
+				this.archived_messages.forEach( function(msg){
+					if(cat_array.indexOf(msg.category) > -1) { //Returns the position in the array, and -1 for not found
+						this.unshown_messages++;
+					}
+				}, this);
 			},
 			//Push a new message into our array
 			add_message: function(message) {
@@ -434,18 +494,13 @@ function start_vue() {
 					content: message.message,
 					repeats: 1
 				};
+
 				//Get a category
 				newmessage.category = this.get_category(newmessage.content);
-				if(!this.active_tab.classes.some(function(cls) { return (cls == newmessage.category || cls == "vc_showall"); })) {
-					if (isNaN(this.unread_messages[newmessage.category])) {
-						this.unread_messages[newmessage.category] = 0;
-					}
-					this.unread_messages[newmessage.category] += 1;
-				}
 
 				//Try to crush it with one of the last few
 				if(this.crushing) {
-					let crushwith = this.messages.slice(-(vchat_opts.crush_messages));
+					let crushwith = this.messages.slice(-(this.crushing));
 					for (let i = crushwith.length - 1; i >= 0; i--) {
 						let oldmessage = crushwith[i];
 						if(oldmessage.content == newmessage.content) {
@@ -455,8 +510,19 @@ function start_vue() {
 					}
 				}
 
+				//Unread indicator and insertion into current tab shown messages if sensible
+				if(this.current_categories.length && (this.current_categories.indexOf(newmessage.category) < 0)) { //Not in the current categories
+					if (isNaN(this.unread_messages[newmessage.category])) {
+						this.unread_messages[newmessage.category] = 0;
+					}
+					this.unread_messages[newmessage.category] += 1;
+				} else if(this.current_categories.length) { //Is in the current categories
+					this.shown_messages.push(newmessage);
+				}
+
 				//Append to vue's messages
 				newmessage.id = ++vchat_state.lastId;
+				this.attempt_archive();
 				this.messages.push(newmessage);
 			},
 			//Push an internally generated message into our array
@@ -518,7 +584,10 @@ function start_vue() {
 			},
 			save_chatlog: function() {
 				var textToSave = "<html><head><style>"+this.ext_styles+"</style></head><body>";
-				this.messages.forEach( function(message) {
+				
+				var messagesToSave = this.archived_messages.concat(this.messages);
+
+				messagesToSave.forEach( function(message) {
 					textToSave += message.content;
 					if(message.repeats > 1) {
 						textToSave += "(x"+message.repeats+")";
@@ -530,17 +599,40 @@ function start_vue() {
 				hiddenElement.href = 'data:attachment/text,' + encodeURI(textToSave);
 				hiddenElement.target = '_blank';
 
-				var filename = "chat_export.html";
+				var fileprefix = "chat_export";
+				var extension =".html";
+
+				var now = new Date();
+				var hours = String(now.getHours());
+				var minutes = String(now.getMinutes());
+				var dayofmonth = String(now.getDate());
+				if(dayofmonth.length < 2) {
+					dayofmonth = "0" + dayofmonth;
+				}
+				var month = String(now.getMonth()+1); //0-11
+				if(month.length < 2) {
+					month = "0" + month;
+				}
+				var year = String(now.getFullYear());
+				var datesegment = "_"+hours+minutes+"_"+dayofmonth+"_"+month+"_"+year;
+
+				var filename = fileprefix+datesegment+extension;
 
 				//Unlikely to work unfortunately, not supported in any version of IE, only Edge
-				if (hiddenElement.download !== undefined){
+				if (hiddenElement.download !== undefined) {
             		hiddenElement.download = filename;
             		hiddenElement.click();
         		//Probably what will end up getting used
         		} else {
         			let blob = new Blob([textToSave], {type: 'text/html;charset=utf8;'});
-        			saved = window.navigator.msSaveBlob(blob, filename);
+        			saved = window.navigator.msSaveOrOpenBlob(blob, filename);
         		}
+			},
+			do_latency_test: function() {
+				send_latency_check();
+			},
+			blur_this: function(event) {
+				event.target.blur();
 			}
 		}
 	});
@@ -551,21 +643,37 @@ function start_vue() {
 * Actual Methods
 *
 ************/
-//Send a 'ping' to byond and check to see if we got the last one back in a timely manner
-function send_ping() {
-	vchat_state.latency = (Math.min(Math.max(vchat_state.lastPingReply - vchat_state.lastPingAttempt, -1), 999));
-	//If their last reply was in the previous ping window or earlier.
-	if(vchat_state.latency < 0) {
-		vchat_state.missedPings++;
-		if((vchat_state.missedPings >= vchat_opts.pingDropsAllowed) && !vchat_state.reconnecting) {
-			system_message("Your client has lost connection with the server. It will reconnect automatically if possible.");
-			vchat_state.reconnecting = true;
+function check_ping() {
+	var time_ago = Date.now() - vchat_state.lastPingReceived;
+	if(time_ago > vchat_opts.msBeforeDropped)
+		vueapp.reconnecting = true;
+}
+
+//Send a 'ping' to byond
+function send_latency_check() {
+	if(vchat_state.latency_sent)
+			return;
+	
+	vchat_state.latency_sent = Date.now();
+	vueapp.latency = "?";
+	push_Topic("ping");
+	setTimeout(function() {
+		if(vchat_state.latency_ms == "?") {
+			vchat_state.latency_ms = 999;
 		}
+	}, 1000); // 1 second to reply otherwise we mark it as bad
+	setTimeout(function() {
+		vchat_state.latency_sent = 0;
+		vueapp.latency = 0;
+	}, 5000); //5 seconds to display ping time overall
+}
+
+function get_latency_check() {
+	if(!vchat_state.latency_sent) {
+		return; //Too late
 	}
 
-	vueapp.latency = vchat_state.latency;
-	push_Topic("keepalive_client");
-	vchat_state.lastPingAttempt = Date.now();
+	vueapp.latency = Date.now() - vchat_state.latency_sent;
 }
 
 //We accept double-url-encoded JSON strings because Byond is garbage and UTF-8 encoded url_encode() text has crazy garbage in it.
@@ -616,7 +724,7 @@ function send_debug(message) {
 //A side-channel to send events over that aren't just chat messages, if necessary.
 function get_event(event) {
 	if(!vchat_state.ready) {
-		push_Topic('not_ready');
+		push_Topic("not_ready");
 		return;
 	}
 
@@ -642,10 +750,19 @@ function get_event(event) {
 			break;
 
 		//Just a ping.
-		case 'keepalive_server':
-			vchat_state.lastPingReply = Date.now();
-			vchat_state.missedPings = 0;
-			reconnecting = false;
+		case 'keepalive':
+			vchat_state.lastPingReceived = Date.now();
+			vueapp.reconnecting = false;
+			break;
+
+		//Response to a latency test.
+		case 'pong':
+			get_latency_check();
+			break;
+
+		//The server doesn't know if we're loaded or not (we bail above if we're not, so we must be).
+		case 'availability':
+			push_Topic("done_loading");
 			break;
 	
 		default: 
@@ -676,10 +793,14 @@ function get_localstorage(key, deffo) {
 	//localstorage only stores strings.
 	if(value === "null" || value === null) {
 		value = deffo;
+	//Coerce bools back into their native forms
 	} else if(value === "true") {
 		value = true;
 	} else if(value === "false") {
 		value = false;
+	//Coerce numbers back into numerical form
+	} else if(!isNaN(value)) {
+		value = +value;
 	}
 	return value;
 }
@@ -708,6 +829,8 @@ function get_cookie(key, deffo) {
 			right = true;
 		} else if(right === "false") {
 			right = false;
+		} else if(!isNaN(right)) {
+			right = +right;
 		}
 		cookie_object[left] = right; //Stick into object
 	});

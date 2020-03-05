@@ -2,7 +2,7 @@
 	name = "Move a Shuttle"
 
 /datum/admin_secret_item/admin_secret/move_shuttle/can_execute(var/mob/user)
-	if(!shuttle_controller) return 0
+	if(!SSshuttles) return 0
 	return ..()
 
 /datum/admin_secret_item/admin_secret/move_shuttle/execute(var/mob/user)
@@ -13,16 +13,15 @@
 	if (confirm == "Cancel")
 		return
 
-	var/shuttle_tag = input(user, "Which shuttle do you want to jump?") as null|anything in shuttle_controller.shuttles
+	var/shuttle_tag = input(user, "Which shuttle do you want to jump?") as null|anything in SSshuttles.shuttles
 	if (!shuttle_tag) return
 
-	var/datum/shuttle/S = shuttle_controller.shuttles[shuttle_tag]
+	var/datum/shuttle/S = SSshuttles.shuttles[shuttle_tag]
 
-	var/origin_area = input(user, "Which area is the shuttle at now? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in world
-	if (!origin_area) return
+	var/destination_tag = input(user, "Which landmark do you want to jump to? (IF YOU GET THIS WRONG THINGS WILL BREAK)") as null|anything in SSshuttles.registered_shuttle_landmarks
+	if (!destination_tag) return
+	var/destination_location = SSshuttles.get_landmark(destination_tag)
+	if (!destination_location) return
 
-	var/destination_area = input(user, "Which area is the shuttle at now? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in world
-	if (!destination_area) return
-
-	S.move(origin_area, destination_area)
+	S.attempt_move(destination_location)
 	log_and_message_admins("moved the [shuttle_tag] shuttle", user)
