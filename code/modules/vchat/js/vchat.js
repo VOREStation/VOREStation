@@ -592,16 +592,33 @@ function start_vue() {
 				hiddenElement.href = 'data:attachment/text,' + encodeURI(textToSave);
 				hiddenElement.target = '_blank';
 
-				var filename = "chat_export.html";
+				var fileprefix = "chat_export";
+				var extension =".html";
+
+				var now = new Date();
+				var hours = String(now.getHours());
+				var minutes = String(now.getMinutes());
+				var dayofmonth = String(now.getDate());
+				if(dayofmonth.length < 2) {
+					dayofmonth = "0" + dayofmonth;
+				}
+				var month = String(now.getMonth()+1); //0-11
+				if(month.length < 2) {
+					month = "0" + month;
+				}
+				var year = String(now.getFullYear());
+				var datesegment = "_"+hours+minutes+"_"+dayofmonth+"_"+month+"_"+year;
+
+				var filename = fileprefix+datesegment+extension;
 
 				//Unlikely to work unfortunately, not supported in any version of IE, only Edge
-				if (hiddenElement.download !== undefined){
+				if (hiddenElement.download !== undefined) {
             		hiddenElement.download = filename;
             		hiddenElement.click();
         		//Probably what will end up getting used
         		} else {
         			let blob = new Blob([textToSave], {type: 'text/html;charset=utf8;'});
-        			saved = window.navigator.msSaveBlob(blob, filename);
+        			saved = window.navigator.msSaveOrOpenBlob(blob, filename);
         		}
 			}
 		}
