@@ -178,6 +178,14 @@
 	icon = 'icons/obj/doors/Doorext.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_ext
 
+/obj/machinery/door/airlock/external/glass/bolted
+	icon_state = "door_locked" // So it looks visibly bolted in map editor
+	locked = 1
+
+// For convenience in making docking ports: one that is pre-bolted with frequency set!
+/obj/machinery/door/airlock/external/glass/bolted/cycling
+	frequency = 1379
+
 /obj/machinery/door/airlock/glass_external
 	name = "External Airlock"
 	icon = 'icons/obj/doors/Doorextglass.dmi'

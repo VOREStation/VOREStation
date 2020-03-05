@@ -7,8 +7,14 @@
 /turf/space,
 /area/asteroid/rogue/zone4)
 "c" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/asteroid/rogue/zone4;
+	base_turf = /turf/space;
+	landmark_tag = "belter_zone4";
+	name = "Belter Area"
+	},
 /turf/space,
-/area/shuttle/belter/belt/zone4)
+/area/asteroid/rogue/zone4)
 "d" = (
 /obj/effect/step_trigger/teleporter/roguemine_loop/west,
 /turf/space,
@@ -9469,11 +9475,11 @@ a
 a
 a
 a
-c
-c
-c
-c
-c
+a
+a
+a
+a
+a
 a
 a
 a
@@ -9611,11 +9617,11 @@ a
 a
 a
 a
-c
-c
-c
-c
-c
+a
+a
+a
+a
+a
 a
 a
 a
@@ -9753,11 +9759,11 @@ a
 a
 a
 a
-c
-c
-c
-c
-c
+a
+a
+a
+a
+a
 a
 a
 a
@@ -9895,11 +9901,11 @@ a
 a
 a
 a
-c
-c
-c
-c
-c
+a
+a
+a
+a
+a
 a
 a
 a
@@ -10037,11 +10043,11 @@ a
 a
 a
 a
-c
-c
-c
-c
-c
+a
+a
+a
+a
+a
 a
 a
 a
@@ -10179,11 +10185,11 @@ a
 a
 a
 a
-c
-c
-c
-c
-c
+a
+a
+a
+a
+a
 a
 a
 a
@@ -10321,11 +10327,11 @@ a
 a
 a
 a
-c
-c
-c
-c
-c
+a
+a
+a
+a
+a
 a
 a
 a
@@ -10463,11 +10469,11 @@ a
 a
 a
 a
-c
-c
-c
-c
-c
+a
+a
+a
+a
+a
 a
 a
 a
@@ -10605,11 +10611,11 @@ a
 a
 a
 a
-c
-c
-c
-c
-c
+a
+a
+a
+a
+a
 a
 a
 a
@@ -10748,9 +10754,9 @@ a
 a
 a
 a
+a
 c
-c
-c
+a
 a
 a
 a

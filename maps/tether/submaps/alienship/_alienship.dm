@@ -2,8 +2,8 @@
 
 /datum/shuttle_destination/excursion/alienship
 	name = "Unknown Ship"
-	my_area = /area/shuttle/excursion/away_alienship
-	preferred_interim_area = /area/shuttle/excursion/space_moving
+	my_landmark = "tether_excursion_alienship"
+	preferred_interim_tag = "tether_excursion_transit_space"
 	skip_me = TRUE
 
 	routes_to_make = list(

@@ -13,7 +13,7 @@
 /area/shuttle/tether/crash2)
 "ae" = (
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/shuttle/antag_ground/mining)
+/area/shuttle/antag_ground)
 "af" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
