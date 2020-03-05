@@ -18,8 +18,8 @@
 
 <body>
 <div id="loader">
-	<p>VChat is still loading. If you see this for a very long time, try the OOC 'Reload VChat' verb, or reconnecting.</p>
-	<p>Sometimes if you're still caching resources, it will take longer than usual.</p>
+	<p>You probably shouldn't see this page. This generally means chat is very broken.</p>
+	<p>You can wait a few seconds to see if it loads, or try OOC > Reload VChat.</p>
 </div>
 <div id="app" @mouseup="on_mouseup" style="display: none;" :class="{ inverted: inverted }">
 
@@ -41,7 +41,13 @@
 			<div class="item" @click="editmode" title="Edit Mode">
 				<i class="icon-cog-outline" :class="{ blinkwarn: editing }"></i>
 			</div>
-			<div class="item"><span class="ui circular label" title="VChat Latency (Not exactly network latency)" :class="ping_classes">{{latency}}ms</span></div>
+			<div class="item" title="Click to test latency">
+				<span class="ui circular label" :class="ping_classes" @click="do_latency_test">
+					<template v-if="latency">
+						{{latency}}ms
+					</template>
+				</span>
+			</div>
 		</div>
 		
 	</div>
@@ -78,7 +84,6 @@
 					</div>
 					<div class="eight wide column">
 						<h3>Global Settings</h3>
-						<p>Clicking anywhere in VChat saves your settings.</p>
 						<div class="ui form" :class="{ inverted: inverted }">
 							<div class="grouped fields">
 								<div class="field">
@@ -116,19 +121,19 @@
 							<div class="inline fields">
 								<div class="field" title="Font size (Min 0.2, Max 5, Default 0.9)">
 									<label>Font Scale</label>
-									<input class="inputbox" type="number" name="fontsize" placeholder="0.9" v-model.lazy.number="fontsize" required>
+									<input class="inputbox" type="number" name="fontsize" placeholder="0.9" v-model.lazy.number="fontsize" required @keyup.enter="blur_this($event)">
 								</div>
 							</div>
 							<div class="inline fields">
 								<div class="field" title="Line height % (Min 100, Max 200, Default 130)">
 									<label>Line Height %</label>
-									<input class="inputbox" type="number" name="lineheight" placeholder="130" v-model.lazy.number="lineheight" required>
+									<input class="inputbox" type="number" name="lineheight" placeholder="130" v-model.lazy.number="lineheight" required @keyup.enter="blur_this($event)">
 								</div>
 							</div>
 							<div class="inline fields">
 								<div class="field" title="Hides messages for performance (Min 50, Max 2000, Default 200)">
 									<label># Stored Messages</label>
-									<input class="inputbox" type="number" name="showingnum" placeholder="200" v-model.lazy.number="showingnum" required>
+									<input class="inputbox" type="number" name="showingnum" placeholder="200" v-model.lazy.number="showingnum" required @keyup.enter="blur_this($event)">
 								</div>
 							</div>
 						</div>
