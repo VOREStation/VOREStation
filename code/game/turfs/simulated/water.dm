@@ -16,6 +16,8 @@
 
 	var/depth = 1 // Higher numbers indicates deeper water.
 
+	var/reagent_type = "water"
+
 /turf/simulated/floor/water/Initialize()
 	. = ..()
 	update_icon()
@@ -32,6 +34,21 @@
 
 /turf/simulated/floor/water/get_edge_icon_state()
 	return "water_shallow"
+
+/turf/simulated/floor/water/attackby(obj/item/O as obj, mob/user as mob)
+	var/obj/item/weapon/reagent_containers/RG = O
+	if (istype(RG) && RG.is_open_container())
+		RG.reagents.add_reagent(reagent_type, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
+		user.visible_message("<span class='notice'>[user] fills \the [RG] using \the [src].</span>","<span class='notice'>You fill \the [RG] using \the [src].</span>")
+		return 1
+
+	else if(istype(O, /obj/item/weapon/mop))
+		O.reagents.add_reagent(reagent_type, 5)
+		to_chat(user, "<span class='notice'>You wet \the [O] in \the [src].</span>")
+		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+		return 1
+
+	else return ..()
 
 /turf/simulated/floor/water/return_air_for_internal_lifeform(var/mob/living/L)
 	if(L && L.lying)
