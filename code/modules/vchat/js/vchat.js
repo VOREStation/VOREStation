@@ -24,8 +24,7 @@
 
 //Options for vchat
 var vchat_opts = {
-	pingThisOften: 10000, //ms
-	pingDropsAllowed: 2,
+	msBeforeDropped: 30000, //No ping for this long, and the server must be gone
 	cookiePrefix: "vst-", //If you're another server, you can change this if you want.
 	alwaysShow: ["vc_looc", "vc_system"] //Categories to always display on every tab
 };
@@ -75,11 +74,8 @@ var vchat_state = {
 	byond_ckey: null,
 
 	//Ping status
-	lastPingAttempt: 0,
-	lastPingReply: 0,
-	missedPings: 0,
-	latency: 0,
-	reconnecting: false,
+	lastPingReceived: 0,
+	latency_sent: 0,
 
 	//Last ID
 	lastId: 0
@@ -99,8 +95,7 @@ function start_vchat() {
 	doWinset("chatloadlabel", {"is-visible": false});
 	
 	//Commence the pingening
-	send_ping();
-	setInterval(send_ping, vchat_opts.pingThisOften);
+	setInterval(check_ping, vchat_opts.msBeforeDropped);
 
 	//For fun
 	send_debug("VChat Loaded!");
@@ -125,6 +120,7 @@ function start_vue() {
 			editing: false, //If we're in settings edit mode
 			paused: false, //Autoscrolling
 			latency: 0, //Not necessarily network latency, since the game server has to align the responses into ticks
+			reconnecting: false, //If we've lost our connection
 			ext_styles: "", //Styles for chat downloaded files
 			is_admin: false,
 
@@ -261,6 +257,13 @@ function start_vue() {
 			}
 		},
 		watch: {
+			reconnecting: function(newSetting, oldSetting) {
+				if(newSetting == true && oldSetting == false) {
+					this.internal_message("Your client has lost connection to the server, or there is severe lag. Your client will reconnect if possible.");
+				} else if (newSetting == false && oldSetting == true) {
+					this.internal_message("Your client has reconnected to the server.");
+				}
+			},
 			//Save the inverted setting to LS
 			inverted: function (newSetting) {
 				set_storage("darkmode",newSetting);
@@ -335,11 +338,15 @@ function start_vue() {
 			},
 			//What color does the latency pip get?
 			ping_classes: function() {
-				if(this.latency === 0) { return "grey"; }
+				if(!this.latency) {
+					return this.reconnecting ? "red" : "green"; //Standard
+				} 
+
+				if (this.latency == "?") { return "grey"; } //Waiting for latency test reply
 				else if(this.latency < 0 ) {return "red"; }
 				else if(this.latency <= 200) { return "green"; }
 				else if(this.latency <= 400) { return "yellow"; }
-				else { return "red"; }
+				else { return "grey"; }
 			},
 			current_categories: function() {
 				if(this.active_tab == this.tabs[0]) {
@@ -620,6 +627,12 @@ function start_vue() {
         			let blob = new Blob([textToSave], {type: 'text/html;charset=utf8;'});
         			saved = window.navigator.msSaveOrOpenBlob(blob, filename);
         		}
+			},
+			do_latency_test: function() {
+				send_latency_check();
+			},
+			blur_this: function(event) {
+				event.target.blur();
 			}
 		}
 	});
@@ -630,21 +643,37 @@ function start_vue() {
 * Actual Methods
 *
 ************/
-//Send a 'ping' to byond and check to see if we got the last one back in a timely manner
-function send_ping() {
-	vchat_state.latency = (Math.min(Math.max(vchat_state.lastPingReply - vchat_state.lastPingAttempt, -1), 999));
-	//If their last reply was in the previous ping window or earlier.
-	if(vchat_state.latency < 0) {
-		vchat_state.missedPings++;
-		if((vchat_state.missedPings >= vchat_opts.pingDropsAllowed) && !vchat_state.reconnecting) {
-			system_message("Your client has lost connection with the server. It will reconnect automatically if possible.");
-			vchat_state.reconnecting = true;
+function check_ping() {
+	var time_ago = Date.now() - vchat_state.lastPingReceived;
+	if(time_ago > vchat_opts.msBeforeDropped)
+		vueapp.reconnecting = true;
+}
+
+//Send a 'ping' to byond
+function send_latency_check() {
+	if(vchat_state.latency_sent)
+			return;
+	
+	vchat_state.latency_sent = Date.now();
+	vueapp.latency = "?";
+	push_Topic("ping");
+	setTimeout(function() {
+		if(vchat_state.latency_ms == "?") {
+			vchat_state.latency_ms = 999;
 		}
+	}, 1000); // 1 second to reply otherwise we mark it as bad
+	setTimeout(function() {
+		vchat_state.latency_sent = 0;
+		vueapp.latency = 0;
+	}, 5000); //5 seconds to display ping time overall
+}
+
+function get_latency_check() {
+	if(!vchat_state.latency_sent) {
+		return; //Too late
 	}
 
-	vueapp.latency = vchat_state.latency;
-	push_Topic("keepalive_client");
-	vchat_state.lastPingAttempt = Date.now();
+	vueapp.latency = Date.now() - vchat_state.latency_sent;
 }
 
 //We accept double-url-encoded JSON strings because Byond is garbage and UTF-8 encoded url_encode() text has crazy garbage in it.
@@ -695,7 +724,7 @@ function send_debug(message) {
 //A side-channel to send events over that aren't just chat messages, if necessary.
 function get_event(event) {
 	if(!vchat_state.ready) {
-		push_Topic('not_ready');
+		push_Topic("not_ready");
 		return;
 	}
 
@@ -721,10 +750,19 @@ function get_event(event) {
 			break;
 
 		//Just a ping.
-		case 'keepalive_server':
-			vchat_state.lastPingReply = Date.now();
-			vchat_state.missedPings = 0;
-			reconnecting = false;
+		case 'keepalive':
+			vchat_state.lastPingReceived = Date.now();
+			vueapp.reconnecting = false;
+			break;
+
+		//Response to a latency test.
+		case 'pong':
+			get_latency_check();
+			break;
+
+		//The server doesn't know if we're loaded or not (we bail above if we're not, so we must be).
+		case 'availability':
+			push_Topic("done_loading");
 			break;
 	
 		default: 
