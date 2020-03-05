@@ -786,7 +786,7 @@
 
 /area/bridge/secondary/hallway
 	name = "\improper Secondary Command Hallway"
-	/area/bridge/secondary/meeting_room
+/area/bridge/secondary/meeting_room
 	name = "\improper Secondary Command Meeting Room"
 	lightswitch = 0
 /area/bridge/secondary/teleporter
