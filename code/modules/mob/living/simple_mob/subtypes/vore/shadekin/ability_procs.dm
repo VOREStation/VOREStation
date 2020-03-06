@@ -19,6 +19,7 @@
 	//Shifting in
 	if(ability_flags & AB_PHASE_SHIFTED)
 		ability_flags &= ~AB_PHASE_SHIFTED
+		mouse_opacity = 2
 		name = real_name
 		for(var/belly in vore_organs)
 			var/obj/belly/B = belly
@@ -70,6 +71,7 @@
 	//Shifting out
 	else
 		ability_flags |= AB_PHASE_SHIFTED
+		mouse_opacity = 0
 		custom_emote(1,"phases out!")
 		real_name = name
 		name = "Something"

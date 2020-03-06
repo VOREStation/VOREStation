@@ -185,12 +185,8 @@ steam.start() -- spawns the effect
 				qdel(src)
 
 /obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob )
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = M
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
+	if(M.is_incorporeal())
+		return
 	..()
 	if(istype(M))
 		affect(M)

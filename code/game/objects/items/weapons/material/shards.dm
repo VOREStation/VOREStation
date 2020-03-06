@@ -106,14 +106,10 @@
 		qdel(src)
 	return
 
-/obj/item/weapon/material/shard/Crossed(AM as mob|obj)
+/obj/item/weapon/material/shard/Crossed(atom/movable/AM as mob|obj)
 	..()
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = AM
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
+	if(AM.is_incorporeal())
+		return
 	if(isliving(AM))
 		var/mob/M = AM
 

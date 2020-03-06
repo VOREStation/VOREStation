@@ -134,12 +134,6 @@
 	// A is a turf or is on a turf, or in something on a turf (pen in a box); but not something in something on a turf (pen in a box in a backpack)
 	sdepth = A.storage_depth_turf()
 	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= 1))
-		//VOREStation Edit begin: SHADEKIN
-		var/mob/SK = src
-		if(istype(SK))
-			if(SK.shadekin_phasing_check())
-				return
-		//VOREStation Edit end: SHADEKIN
 		if(A.Adjacent(src) || (W && W.attack_can_reach(src, A, W.reach)) ) // see adjacent.dm
 			if(W)
 				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
@@ -187,6 +181,9 @@
 	return
 
 /mob/living/UnarmedAttack(var/atom/A, var/proximity_flag)
+
+	if(is_incorporeal())
+		return 0
 
 	if(!ticker)
 		to_chat(src, "You cannot attack people before the game has started.")
