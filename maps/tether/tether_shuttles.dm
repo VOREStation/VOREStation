@@ -220,7 +220,7 @@
 	my_landmark = "tether_excursion_hangar"
 
 	radio_announce = 1
-	announcer = "Excursion Shuttle"
+	announcer = "Docking System"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/excursion/outside_tether = 0,
@@ -249,7 +249,7 @@
 	my_landmark = "tether_excursion_dockarm"
 
 	radio_announce = 1
-	announcer = "Excursion Shuttle"
+	announcer = "Docking System"
 
 /datum/shuttle_destination/excursion/docked_tether/get_arrival_message()
 	return "Attention, [master.my_shuttle.visible_name] has arrived at Docking Arm One."
@@ -272,6 +272,73 @@
 /datum/shuttle_destination/excursion/virgo3b_sky
 	name = "Skies of Virgo 3B"
 	my_landmark = "tether_excursion_virgo3bsky"
+
+////////// Aliems!!
+/obj/machinery/computer/shuttle_control/web/excursion/blue
+	name = "shuttle control console"
+	icon = 'icons/obj/flight_computer_vr.dmi'
+	icon_state = "center"
+	shuttle_tag = "Hybrid Shuttle"
+	req_access = list()
+	req_one_access = list(access_pilot)
+	wait_time = 0
+	var/setup = FALSE
+
+/obj/machinery/computer/shuttle_control/web/excursion/blue/ui_interact()
+	if(!setup && alert("Steal the excursion shuttle's destinations and copy them to this shuttle?","Shuttle Setup","Yes","Cancel") == "Yes")
+		var/datum/shuttle/autodock/web_shuttle/HS = shuttle_controller.shuttles[shuttle_tag]
+		var/datum/shuttle/autodock/web_shuttle/ES = shuttle_controller.shuttles["Excursion Shuttle"]
+		if(!ES.web_master.destinations.len)
+			return
+		
+		// First, instantiate all the destination subtypes relevant to this datum.
+		for(var/new_type in ES.web_master.destinations)
+			var/datum/shuttle_destination/D = new_type
+			//if(D.skip_me) //Don't care
+			//	continue
+			HS.web_master.destinations += new D.type(HS.web_master)
+
+		// Now start the process of connecting all of them.
+		for(var/datum/shuttle_destination/D in HS.web_master.destinations)
+			for(var/type_to_link in D.routes_to_make)
+				var/travel_delay = D.routes_to_make[type_to_link]
+				D.link_destinations(HS.web_master.get_destination_by_type(type_to_link), D.preferred_interim_tag, travel_delay)
+
+		HS.web_master.current_destination = HS.web_master.get_destination_by_type(/datum/shuttle_destination/excursion/deepish_space)
+		setup = TRUE
+		..()
+	else
+		return ..()
+
+/datum/shuttle/autodock/web_shuttle/excursion/blue
+	name = "Hybrid Shuttle"
+	visible_name = "XN-39 Prototype"
+	warmup_time = 0
+	current_location = "bluefo_start"
+	docking_controller_tag = "hybrid_shuttle_docker"
+	web_master_type = /datum/shuttle_web_master/excursion/blue
+	shuttle_area = /area/shuttle/blue_fo
+	abduct_chance = 0
+	flags = SHUTTLE_FLAGS_NONE
+
+/datum/shuttle_web_master/excursion/blue
+	destination_class = /datum/shuttle_destination/excursion
+	starting_destination = /datum/shuttle_destination/excursion/deepish_space
+
+/datum/shuttle_web_master/excursion/blue/build_destinations()
+	return
+
+/datum/shuttle_destination/excursion/deepish_space
+	name = "Deepish Space"
+	my_landmark = "bluefo_start"
+	preferred_interim_tag = "tether_excursion_transit_space"
+	routes_to_make = list(
+		/datum/shuttle_destination/excursion/bluespace = 0
+	)
+
+/datum/shuttle_destination/excursion/deepish_space/link_destinations(var/datum/shuttle_destination/other_place, var/interim_tag, var/travel_time = 0)
+	var/datum/shuttle_route/new_route = new(src, other_place, interim_tag, travel_time)
+	routes += new_route
 
 ////////// Distant Destinations
 /datum/shuttle_destination/excursion/bluespace

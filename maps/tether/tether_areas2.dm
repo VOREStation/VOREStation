@@ -878,6 +878,11 @@
 	icon_state = "shuttle2"
 	requires_power = 1
 
+/area/shuttle/blue_fo
+	name = "\improper Hybrid Shuttle"
+	icon_state = "shuttle2"
+	requires_power = 1
+
 // Belter Dock
 
 /area/quartermaster/belterdock

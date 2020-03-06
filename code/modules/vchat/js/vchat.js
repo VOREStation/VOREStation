@@ -599,12 +599,18 @@ function start_vue() {
 				hiddenElement.href = 'data:attachment/text,' + encodeURI(textToSave);
 				hiddenElement.target = '_blank';
 
-				var fileprefix = "chat_export";
+				var fileprefix = "log";
 				var extension =".html";
 
 				var now = new Date();
 				var hours = String(now.getHours());
+				if(hours.length < 2) {
+					hours = "0" + hours;
+				}
 				var minutes = String(now.getMinutes());
+				if(minutes.length < 2) {
+					minutes = "0" + minutes;
+				}
 				var dayofmonth = String(now.getDate());
 				if(dayofmonth.length < 2) {
 					dayofmonth = "0" + dayofmonth;
@@ -614,7 +620,7 @@ function start_vue() {
 					month = "0" + month;
 				}
 				var year = String(now.getFullYear());
-				var datesegment = "_"+hours+minutes+"_"+dayofmonth+"_"+month+"_"+year;
+				var datesegment = " "+year+"-"+month+"-"+dayofmonth+" ("+hours+" "+minutes+")";
 
 				var filename = fileprefix+datesegment+extension;
 

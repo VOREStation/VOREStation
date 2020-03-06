@@ -74,12 +74,8 @@
 			qdel(src)
 
 /obj/effect/effect/foam/Crossed(var/atom/movable/AM)
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = AM
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
+	if(AM.is_incorporeal())
+		return
 	if(metal)
 		return
 	if(istype(AM, /mob/living))
