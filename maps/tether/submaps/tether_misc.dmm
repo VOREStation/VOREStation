@@ -3,6 +3,14 @@
 /obj/machinery/vending/coffee,
 /turf/unsimulated/beach/sand,
 /area/beach)
+"ab" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 9
+	},
+/obj/structure/closet/secure_closet/guncabinet/excursion,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "ag" = (
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
@@ -10092,6 +10100,17 @@
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/skipjack)
+"vB" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 1
+	},
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/shuttle/blue_fo)
 "vC" = (
 /obj/machinery/light{
 	dir = 4;
@@ -10205,6 +10224,15 @@
 	dir = 2
 	},
 /area/skipjack_station)
+"wn" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 1;
+	icon_state = "sofaend_left";
+	sofa_material = "black"
+	},
+/obj/effect/floor_decal/techfloor/orange,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "wq" = (
 /obj/structure/undies_wardrobe,
 /turf/unsimulated/floor{
@@ -10281,6 +10309,9 @@
 "xt" = (
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
+"xz" = (
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "xD" = (
 /obj/structure/flight_left{
 	dir = 1
@@ -10295,6 +10326,17 @@
 	icon_state = "steel"
 	},
 /area/skipjack_station)
+"xJ" = (
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "xL" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced,
@@ -10384,6 +10426,17 @@
 	icon_state = "wood"
 	},
 /area/ninja_dojo/dojo)
+"yj" = (
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 1
+	},
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "yl" = (
 /obj/machinery/teleport/station,
 /turf/simulated/shuttle/plating,
@@ -10438,6 +10491,21 @@
 	name = "snow"
 	},
 /area/ninja_dojo/dojo)
+"yS" = (
+/obj/structure/bed/chair/bay/shuttle{
+	icon_state = "shuttle_chair_preview";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"yY" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 8
+	},
+/obj/structure/railing,
+/turf/simulated/shuttle/floor/alien,
+/area/shuttle/blue_fo)
 "zb" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/recharger{
@@ -10445,6 +10513,20 @@
 	},
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/shuttle/ninja)
+"zc" = (
+/obj/machinery/mech_recharger{
+	icon = 'icons/turf/shuttle_alien_blue.dmi'
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"zl" = (
+/obj/structure/prop/alien/computer/hybrid,
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "zn" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/launcher/crossbow,
@@ -10484,6 +10566,10 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
+"zS" = (
+/obj/machinery/door/airlock/alien/blue,
+/turf/simulated/shuttle/floor/alien,
+/area/shuttle/blue_fo)
 "zT" = (
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/Dooruranium.dmi'
@@ -10530,6 +10616,14 @@
 	},
 /turf/space,
 /area/space)
+"Ah" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 4
+	},
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "Ai" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -10661,6 +10755,16 @@
 /obj/random/energy,
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
+"Bb" = (
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "Bd" = (
 /turf/unsimulated/floor{
 	icon_state = "steel_dirty"
@@ -10708,12 +10812,52 @@
 	name = "plating"
 	},
 /area/skipjack_station)
+"Bm" = (
+/obj/structure/bed/chair/sofa/right{
+	sofa_material = "black"
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "Bo" = (
 /obj/machinery/bodyscanner{
 	dir = 8
 	},
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/skipjack)
+"Bq" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/obj/structure/table/alien/blue,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"Bs" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/obj/structure/bed/chair/bay/shuttle{
+	icon_state = "shuttle_chair_preview";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"Bv" = (
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
 "Bw" = (
 /turf/unsimulated/beach/water,
 /area/beach)
@@ -10736,6 +10880,9 @@
 	icon_state = "wood"
 	},
 /area/ninja_dojo/dojo)
+"BF" = (
+/turf/simulated/shuttle/wall/alien/blue/hard_corner,
+/area/shuttle/blue_fo)
 "BH" = (
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
 	frequency = 1331;
@@ -10770,6 +10917,23 @@
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/trade)
+"BR" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"BZ" = (
+/obj/effect/map_effect/perma_light/brighter,
+/obj/item/device/perfect_tele_beacon/stationary{
+	icon_state = "beacon";
+	tele_name = "Hybrid Shuttle";
+	tele_network = "hybridshuttle"
+	},
+/obj/effect/floor_decal/industrial/outline/grey,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "Cf" = (
 /obj/structure/toilet{
 	dir = 4
@@ -10828,12 +10992,40 @@
 	dir = 2
 	},
 /area/ninja_dojo/dojo)
+"Ct" = (
+/obj/machinery/sleep_console,
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "Cu" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/shuttle/ninja)
+"Cv" = (
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/structure/closet/emcloset/legacy,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
 "CE" = (
 /obj/machinery/atmospherics/pipe/simple/visible,
 /turf/simulated/shuttle/plating,
@@ -10854,6 +11046,9 @@
 	icon_state = "cult"
 	},
 /area/skipjack_station)
+"CL" = (
+/turf/simulated/shuttle/wall/alien/blue,
+/area/shuttle/blue_fo)
 "Da" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
@@ -10891,6 +11086,13 @@
 	dir = 2
 	},
 /area/ninja_dojo/dojo)
+"Dh" = (
+/obj/structure/fans/hardlight,
+/obj/structure/window/reinforced/full,
+/turf/simulated/shuttle/floor/alienplating/blue/half{
+	dir = 8
+	},
+/area/shuttle/blue_fo)
 "Dk" = (
 /obj/structure/bed/padded,
 /obj/item/weapon/bedsheet/hop,
@@ -10898,6 +11100,13 @@
 	icon_state = "wood"
 	},
 /area/skipjack_station)
+"Do" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/shuttle/blue_fo)
 "Dw" = (
 /obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/food/snacks/chips,
@@ -10934,6 +11143,10 @@
 	name = "plating"
 	},
 /area/skipjack_station)
+"DL" = (
+/obj/structure/table/alien/blue,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
 "DM" = (
 /obj/structure/kitchenspike,
 /turf/unsimulated/floor{
@@ -10944,6 +11157,14 @@
 /obj/structure/flight_left,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/skipjack)
+"DT" = (
+/obj/machinery/computer/shuttle_control/web/excursion/blue,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"DW" = (
+/obj/structure/flight_right,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
 "DZ" = (
 /obj/machinery/gibber,
 /turf/unsimulated/floor{
@@ -10959,6 +11180,17 @@
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/skipjack)
+"Ek" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 8
+	},
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/shuttle/blue_fo)
 "Eo" = (
 /obj/structure/closet/crate,
 /obj/item/clothing/gloves/vox,
@@ -11010,6 +11242,14 @@
 	icon_state = "white"
 	},
 /area/ninja_dojo/dojo)
+"Ez" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 4
+	},
+/obj/structure/table/alien/blue,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "EA" = (
 /turf/unsimulated/floor{
 	icon_state = "plating";
@@ -11029,6 +11269,14 @@
 	icon_state = "wood"
 	},
 /area/skipjack_station)
+"EJ" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 5
+	},
+/obj/structure/bed/chair/bay/shuttle,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "EN" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -11047,6 +11295,10 @@
 	icon_state = "cult"
 	},
 /area/skipjack_station)
+"EY" = (
+/obj/effect/floor_decal/techfloor/orange,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "EZ" = (
 /turf/unsimulated/floor{
 	icon_state = "asteroid"
@@ -11195,6 +11447,22 @@
 "Gq" = (
 /turf/unsimulated/wall,
 /area/beach)
+"Gv" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/obj/structure/table/alien/blue,
+/obj/item/device/perfect_tele/alien/bluefo{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/device/perfect_tele/alien/bluefo{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "Gw" = (
 /obj/effect/overlay/palmtree_l,
 /turf/unsimulated/beach/sand,
@@ -11240,6 +11508,22 @@
 /obj/random/rigsuit,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/skipjack)
+"Hi" = (
+/obj/structure/table/alien/blue,
+/obj/item/device/perfect_tele/alien/bluefo{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/device/perfect_tele/alien/bluefo{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"Hl" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "Hm" = (
 /obj/item/weapon/ore,
 /turf/unsimulated/floor{
@@ -11254,6 +11538,17 @@
 	icon_state = "wood"
 	},
 /area/ninja_dojo/dojo)
+"Hs" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 4
+	},
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/shuttle/blue_fo)
 "HD" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/cell_charger,
@@ -11293,6 +11588,19 @@
 	icon_state = "asteroid"
 	},
 /area/skipjack_station)
+"HO" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
 "HS" = (
 /obj/item/robot_parts/head,
 /turf/simulated/shuttle/plating,
@@ -11539,6 +11847,13 @@
 	icon_state = "dark"
 	},
 /area/ninja_dojo/dojo)
+"JF" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 5
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "JJ" = (
 /obj/machinery/door/airlock/hatch{
 	req_access = list(150)
@@ -11559,6 +11874,19 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
+"JN" = (
+/obj/effect/map_effect/perma_light/brighter,
+/obj/structure/handrail{
+	icon_state = "handrail";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"JR" = (
+/obj/structure/fans/hardlight,
+/obj/structure/window/reinforced/full,
+/turf/simulated/shuttle/floor/alienplating/blue/half,
+/area/shuttle/blue_fo)
 "JW" = (
 /turf/unsimulated/beach/water{
 	density = 1;
@@ -11579,11 +11907,73 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
+"Kb" = (
+/obj/structure/bed/chair/bay/shuttle{
+	icon_state = "shuttle_chair_preview";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"Kc" = (
+/obj/machinery/door/airlock/alien/blue,
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"Kd" = (
+/obj/effect/map_effect/perma_light/brighter,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"Ke" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"Kf" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/obj/structure/bed/chair/bay/shuttle{
+	icon_state = "shuttle_chair_preview";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "Kh" = (
 /obj/item/weapon/bedsheet/orange,
 /obj/structure/bed/padded,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/skipjack)
+"Kl" = (
+/obj/effect/map_effect/perma_light/brighter,
+/obj/structure/bed/chair/bay/shuttle{
+	icon_state = "shuttle_chair_preview";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"Kz" = (
+/turf/simulated/shuttle/wall/alien/blue{
+	interior_corner = 1
+	},
+/area/shuttle/blue_fo)
+"KD" = (
+/obj/machinery/door/airlock/alien/blue{
+	frequency = 1380;
+	id_tag = "hybrid_shuttle_afts"
+	},
+/obj/structure/fans/hardlight,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
 "KH" = (
 /obj/machinery/light{
 	dir = 8;
@@ -11593,6 +11983,13 @@
 /obj/machinery/computer/station_alert,
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/shuttle/ninja)
+"KK" = (
+/obj/structure/bed/alien{
+	icon = 'icons/obj/abductor_vr.dmi'
+	},
+/obj/item/weapon/bedsheet/blue,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
 "KL" = (
 /obj/structure/table/rack,
 /obj/item/weapon/melee/energy/sword/pirate,
@@ -11656,6 +12053,14 @@
 /obj/machinery/floodlight,
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
+"Lx" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 4
+	},
+/obj/structure/railing,
+/turf/simulated/shuttle/floor/alien,
+/area/shuttle/blue_fo)
 "Ly" = (
 /obj/effect/floor_decal/carpet,
 /obj/effect/floor_decal/carpet{
@@ -11757,6 +12162,19 @@
 	icon_state = "carpet"
 	},
 /area/skipjack_station)
+"Mb" = (
+/obj/machinery/power/smes/buildable/hybrid,
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"Me" = (
+/obj/effect/floor_decal/techfloor/orange,
+/obj/structure/table/alien/blue,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "Mg" = (
 /turf/unsimulated/wall{
 	desc = "That looks like it doesn't open easily.";
@@ -11832,6 +12250,11 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
+"MU" = (
+/obj/effect/map_effect/perma_light/brighter,
+/obj/structure/table/alien/blue,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "Ng" = (
 /turf/unsimulated/floor{
 	icon = 'icons/turf/flooring/wood.dmi';
@@ -11849,6 +12272,14 @@
 	icon_state = "wood"
 	},
 /area/skipjack_station)
+"Nl" = (
+/obj/effect/floor_decal/techfloor/orange/corner,
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
 "No" = (
 /obj/item/weapon/beach_ball,
 /turf/unsimulated/beach/sand,
@@ -11924,6 +12355,14 @@
 /obj/item/weapon/card/emag,
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
+"Ob" = (
+/obj/effect/floor_decal/techfloor/orange/corner,
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "Od" = (
 /obj/structure/sink{
 	dir = 4;
@@ -11953,6 +12392,20 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
+"On" = (
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor/orange/corner,
+/obj/effect/shuttle_landmark{
+	base_area = /area/space;
+	base_turf = /turf/space;
+	landmark_tag = "bluefo_start";
+	name = "Deepish Space"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
 "Oo" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/space,
@@ -12112,6 +12565,25 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
+"Ql" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 1;
+	icon_state = "sofaend_right";
+	sofa_material = "black"
+	},
+/obj/effect/floor_decal/techfloor/orange,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"Qo" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"Qs" = (
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
 "Qw" = (
 /turf/unsimulated/wall{
 	icon = 'icons/obj/doors/Dooruranium.dmi';
@@ -12175,6 +12647,15 @@
 	icon_state = "cult"
 	},
 /area/skipjack_station)
+"Rd" = (
+/obj/structure/prop/alien/pod/hybrid,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"Ri" = (
+/obj/machinery/sleep_console,
+/obj/effect/floor_decal/techfloor/orange,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "Rn" = (
 /obj/item/weapon/storage/box/syndie_kit/spy,
 /turf/unsimulated/floor{
@@ -12202,6 +12683,10 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
+"RE" = (
+/obj/structure/table/alien/blue,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "RN" = (
 /obj/structure/inflatable,
 /turf/unsimulated/floor{
@@ -12288,6 +12773,34 @@
 	},
 /turf/simulated/wall/skipjack,
 /area/shuttle/skipjack)
+"SA" = (
+/obj/structure/flight_left{
+	icon = 'icons/obj/flight_computer_vr.dmi'
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"SB" = (
+/obj/machinery/power/terminal{
+	icon_state = "term";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"SH" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 30
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 20
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "SI" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/box/glasses/square{
@@ -12339,6 +12852,16 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
+"SV" = (
+/obj/structure/bed/chair/sofa/left{
+	sofa_material = "black"
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "Te" = (
 /obj/effect/floor_decal/carpet{
 	dir = 1
@@ -12366,6 +12889,13 @@
 	icon_state = "carpet"
 	},
 /area/skipjack_station)
+"Tk" = (
+/obj/structure/fans/hardlight,
+/obj/structure/window/reinforced/full,
+/turf/simulated/shuttle/floor/alienplating/blue/half{
+	dir = 4
+	},
+/area/shuttle/blue_fo)
 "Tn" = (
 /obj/structure/table/standard,
 /obj/item/clothing/under/color/rainbow,
@@ -12397,6 +12927,17 @@
 	icon_state = "steel"
 	},
 /area/skipjack_station)
+"TA" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 8
+	},
+/obj/structure/bed/chair/bay/shuttle{
+	icon_state = "shuttle_chair_preview";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "TF" = (
 /obj/structure/bed/chair,
 /obj/effect/landmark{
@@ -12421,6 +12962,16 @@
 	icon_state = "wood"
 	},
 /area/ninja_dojo/dojo)
+"Uc" = (
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "Ue" = (
 /obj/item/weapon/ore,
 /turf/unsimulated/floor{
@@ -12483,6 +13034,26 @@
 /obj/item/stack/medical/advanced/bruise_pack,
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/skipjack)
+"UZ" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 1
+	},
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/shuttle/blue_fo)
+"Vs" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 1
+	},
+/turf/simulated/shuttle/wall/alien/blue{
+	interior_corner = 1
+	},
+/area/shuttle/blue_fo)
 "Vx" = (
 /turf/unsimulated/floor{
 	icon_state = "wood"
@@ -12509,6 +13080,13 @@
 	icon_state = "wood"
 	},
 /area/ninja_dojo/dojo)
+"VK" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "VT" = (
 /obj/machinery/door/airlock/hatch{
 	req_access = list(150)
@@ -12618,6 +13196,18 @@
 	icon_state = "wood_broken2"
 	},
 /area/ninja_dojo/dojo)
+"Xf" = (
+/obj/machinery/door/airlock/alien/blue,
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "Xo" = (
 /obj/structure/table/steel,
 /obj/item/clothing/glasses/regular,
@@ -12706,6 +13296,14 @@
 /obj/structure/closet,
 /turf/unsimulated/beach/sand,
 /area/beach)
+"Yb" = (
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor/orange/corner,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
 "Yd" = (
 /obj/structure/bed/padded,
 /obj/item/weapon/bedsheet/green,
@@ -12786,6 +13384,10 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
+"Yx" = (
+/obj/machinery/door/airlock/alien/blue,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "Yz" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/storage/toolbox/syndicate{
@@ -12849,6 +13451,24 @@
 	icon_state = "white"
 	},
 /area/skipjack_station)
+"Zy" = (
+/obj/structure/table/alien/blue,
+/obj/machinery/button/remote/airlock{
+	name = "Aft Door Bolts";
+	pixel_x = 6;
+	pixel_y = 2;
+	id = "hybrid_shuttle_afts";
+	specialfunctions = 4
+	},
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	pixel_x = -6;
+	pixel_y = 0;
+	id_tag = "hybrid_shuttle_docker";
+	frequency = 1380;
+	tag_door = "hybrid_shuttle_afts"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
 "ZA" = (
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/skipjack)
@@ -25606,35 +26226,35 @@ mv
 mv
 mv
 mv
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
 ap
 ap
 ap
@@ -25776,7 +26396,7 @@ ap
 ap
 ap
 ap
-ap
+gp
 ap
 ap
 ap
@@ -25918,7 +26538,7 @@ ap
 ap
 ap
 ap
-ap
+gp
 ap
 ap
 ap
@@ -26060,7 +26680,7 @@ ap
 ap
 ap
 ap
-ap
+gp
 ap
 ap
 ap
@@ -26202,7 +26822,7 @@ ap
 ap
 ap
 ap
-ap
+gp
 ap
 ap
 ap
@@ -26344,7 +26964,7 @@ ap
 ap
 ap
 ap
-ap
+gp
 ap
 ap
 ap
@@ -26486,7 +27106,7 @@ ap
 ap
 ap
 ap
-ap
+gp
 ap
 ap
 ap
@@ -26609,6 +27229,18 @@ ap
 ap
 ap
 ap
+CL
+CL
+BF
+Dh
+Dh
+Dh
+BF
+CL
+CL
+KD
+CL
+CL
 ap
 ap
 ap
@@ -26616,19 +27248,7 @@ ap
 ap
 ap
 ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+gp
 ap
 ap
 ap
@@ -26750,27 +27370,27 @@ ap
 ap
 ap
 ap
+CL
+Kz
+DL
+CL
+Uc
+Ke
+Bb
+CL
+ab
+TA
+Bv
+Ke
+Vs
+CL
 ap
 ap
 ap
 ap
 ap
 ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+gp
 ap
 ap
 ap
@@ -26892,27 +27512,27 @@ ap
 ap
 ap
 ap
+CL
+SA
+Qs
+CL
+Ct
+xz
+Ri
+CL
+Bq
+RE
+xz
+zc
+Do
+CL
 ap
 ap
 ap
 ap
 ap
 ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+gp
 ap
 ap
 ap
@@ -27034,27 +27654,27 @@ ap
 ap
 ap
 ap
+CL
+DT
+Kl
+CL
+BR
+BZ
+EY
+CL
+SH
+Kd
+xz
+zc
+vB
+CL
 ap
 ap
 ap
 ap
 ap
 ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+gp
 ap
 ap
 ap
@@ -27176,27 +27796,27 @@ ap
 ap
 ap
 ap
+CL
+DW
+Qs
+Yx
+yj
+xz
+Ob
+Xf
+yj
+xz
+xz
+xz
+Yb
+KD
 ap
 ap
 ap
 ap
 ap
 ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+gp
 ap
 ap
 ap
@@ -27318,27 +27938,27 @@ ap
 ap
 ap
 ap
+CL
+DL
+DL
+CL
+yY
+xz
+Ek
+CL
+Kf
+Kb
+Kb
+xz
+Me
+JR
 ap
 ap
 ap
 ap
 ap
 ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+gp
 ap
 ap
 ap
@@ -27460,27 +28080,27 @@ ap
 ap
 ap
 ap
+CL
+CL
+CL
+CL
+CL
+zS
+CL
+CL
+Gv
+Hi
+Zy
+Kd
+Me
+JR
 ap
 ap
 ap
 ap
 ap
 ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+gp
 ap
 ap
 ap
@@ -27602,27 +28222,27 @@ ap
 ap
 ap
 ap
+CL
+Rd
+KK
+CL
+Lx
+xz
+Hs
+CL
+Bs
+yS
+yS
+xz
+Me
+JR
 ap
 ap
 ap
 ap
 ap
 ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+gp
 ap
 ap
 ap
@@ -27744,27 +28364,27 @@ ap
 ap
 ap
 ap
+CL
+Cv
+Qs
+Yx
+xJ
+xz
+Ob
+Kc
+xJ
+xz
+xz
+xz
+Nl
+KD
 ap
 ap
 ap
 ap
 ap
 ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+gp
 ap
 ap
 aB
@@ -27886,27 +28506,27 @@ ap
 ap
 ap
 ap
+CL
+HO
+JN
+CL
+Bm
+MU
+wn
+CL
+zl
+Kd
+xz
+Hl
+UZ
+CL
 ap
 ap
 ap
 ap
 ap
 ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+gp
 ap
 ap
 aB
@@ -28028,27 +28648,27 @@ ap
 ap
 ap
 ap
+CL
+Mb
+SB
+CL
+SV
+RE
+Ql
+CL
+BR
+xz
+xz
+Hl
+Do
+CL
 ap
 ap
 ap
 ap
 ap
 ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+gp
 ap
 aB
 aB
@@ -28170,27 +28790,27 @@ ap
 ap
 ap
 ap
+CL
+Kz
+DL
+CL
+JF
+Ah
+VK
+CL
+EJ
+Ez
+On
+Qo
+Vs
+CL
 ap
 ap
 ap
 ap
 ap
 ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+gp
 ap
 aB
 aB
@@ -28313,6 +28933,18 @@ ap
 ap
 ap
 ap
+CL
+CL
+BF
+Tk
+Tk
+Tk
+BF
+CL
+CL
+KD
+CL
+CL
 ap
 ap
 ap
@@ -28320,19 +28952,7 @@ ap
 ap
 ap
 ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+gp
 ap
 aB
 aB
@@ -28474,7 +29094,7 @@ ap
 ap
 ap
 ap
-ap
+gp
 aB
 aB
 oX
@@ -28616,7 +29236,7 @@ ap
 ap
 ap
 ap
-ap
+gp
 aB
 aB
 oX
@@ -28757,8 +29377,8 @@ ap
 ap
 ap
 ap
-ap
-ap
+gp
+gp
 aB
 aB
 oX
@@ -28899,7 +29519,7 @@ ap
 ap
 ap
 ap
-ap
+gp
 aB
 aB
 aB
@@ -29041,7 +29661,7 @@ ap
 ap
 ap
 ap
-ap
+gp
 aB
 aB
 aB
@@ -29183,7 +29803,7 @@ ap
 ap
 ap
 ap
-ap
+gp
 aB
 aB
 aB
@@ -29298,34 +29918,34 @@ ap
 ap
 ap
 mv
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+gp
 aB
 aB
 aB
