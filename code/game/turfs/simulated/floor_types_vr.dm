@@ -29,3 +29,16 @@
 
 /turf/simulated/floor/flesh/ex_act(severity)
 	return
+
+/turf/simulated/floor/flock
+	icon = 'icons/goonstation/featherzone.dmi'
+	icon_state = "floor"
+
+/turf/simulated/floor/flock/Crossed(var/atom/movable/AM)
+	. = ..()
+	if(isliving(AM))
+		icon_state = "floor-on"
+		set_light(3,3,"#26c5a9")
+		spawn(5 SECONDS)
+			icon_state = "floor"
+			set_light(0,0,"#ffffff")
