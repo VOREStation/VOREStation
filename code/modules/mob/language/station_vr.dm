@@ -98,10 +98,10 @@
 	name = LANGUAGE_SLAVIC
 	desc = "The official language of the Independent Colonial Confederation of Gilgamesh, originally established in 2122 by the short-lived United Slavic Confederation on Earth."
 	speech_verb = "govorit" // All Russian for "says" "asks" and "shouts". Mostly here as a joke.
-	ask_verb = "voprosy"
+	ask_verb = "sprashivaet"
 	exclaim_verb = "krichit"
 	whisper_verb = "shepchet"
-	colour = "attack" // Red for slav
+	colour = "attack" // Red for slav!
 	key = "s"
 	syllables = list(
 		"rus", "zem", "ave", "blyat", "cyk", "groz", "ski", "ska", "ven", "konst", "pol", "lin", "svy",
