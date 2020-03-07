@@ -102,7 +102,7 @@
 	exclaim_verb = "krichit"
 	whisper_verb = "shepchet"
 	colour = "attack" // Red for slav
-	key = "r"
+	key = "s"
 	syllables = list(
 		"rus", "zem", "ave", "blyat", "cyk", "groz", "ski", "ska", "ven", "konst", "pol", "lin", "svy",
 		"danya", "da", "mied", "kuz,", "zan", "das", "krem", "myka", "to", "st", "no", "na", "ni",
