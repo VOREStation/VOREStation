@@ -31,6 +31,11 @@ body.inverted {
 	cursor: pointer;
 }
 
+.inputbox {
+	width: 5em !important;
+	padding: 0.1em !important;
+}
+
 .icon-left-open-outline:hover, .icon-right-open-outline:hover, .icon-cancel-circled-outline:hover {
 	color: red;
 }
@@ -45,25 +50,6 @@ body.inverted {
 		visibility: hidden;
 	}
 }
-
-/* The chat message display classes */
-#messagebox div 							{ display: none; } /* Hide messages by default */
-#messagebox.vc_showall div 					{ display: block; } /* Unless we have vc_showall */
-
-#messagebox.vc_localchat .vc_localchat 		{ display: block; }
-#messagebox.vc_radio .vc_radio 				{ display: block; }
-#messagebox.vc_warnings .vc_warnings  		{ display: block; }
-#messagebox.vc_info .vc_info 				{ display: block; }
-#messagebox.vc_deadchat .vc_deadchat  		{ display: block; }
-#messagebox.vc_globalooc .vc_globalooc 		{ display: block; }
-#messagebox.vc_looc .vc_looc 				{ display: block; }
-#messagebox.vc_adminpm .vc_adminpm 			{ display: block; }
-#messagebox.vc_adminchat .vc_adminchat 		{ display: block; }
-#messagebox.vc_modchat .vc_modchat 			{ display: block; }
-#messagebox.vc_eventchat .vc_eventchat 		{ display: block; }
-#messagebox.vc_system .vc_system 			{ display: block; }
-#messagebox.vc_nif .vc_nif					{ display: block; } /* VOREStation Add */
-
 
 /* SS13 Styles */
 #messagebox				{font-family: Verdana, sans-serif;}
@@ -188,7 +174,7 @@ h1.alert, h2.alert		{color: #000000;}
 img.icon				{vertical-align: middle; max-height: 1em;}
 img.icon.bigicon		{max-height: 32px;}
 
-/* Zoom levels */
+/* Zoom levels - Replaced with arbitrary font sizes
 .zoom_normal {
 	font-size: 0.9em;
 	line-height: 1.35;
@@ -201,6 +187,7 @@ img.icon.bigicon		{max-height: 32px;}
 	font-size: 0.8em;
 	line-height: 1.2;
 }
+*/
 
 /* Debug Logs */
 .debug_error					{color:#FF0000; font-weight:bold}

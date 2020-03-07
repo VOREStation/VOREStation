@@ -17,3 +17,5 @@
 /obj/structure/table/darkglass/dismantle(obj/item/weapon/wrench/W, mob/user)
 	to_chat(user, "<span class='warning'>You cannot dismantle \the [src].</span>")
 	return
+/obj/structure/table/alien/blue
+	icon = 'icons/turf/shuttle_alien_blue.dmi'

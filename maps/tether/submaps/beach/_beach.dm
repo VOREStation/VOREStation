@@ -3,8 +3,8 @@
 //We're including two new shuttle destinations. One is in orbit of our 'desert planet'
 /datum/shuttle_destination/excursion/virgo4orbit //Must be a unique path
 	name = "Virgo 4 Orbit" //The name of the destination
-	my_area = /area/shuttle/excursion/space //The area the shuttle goes when it's settled at this destination
-	preferred_interim_area = /area/shuttle/excursion/space_moving //The area the shuttle goes while it's moving there
+	my_landmark = "tether_excursion_space" //The area the shuttle goes when it's settled at this destination
+	preferred_interim_tag = "tether_excursion_transit_space" //The area the shuttle goes while it's moving there
 	skip_me = TRUE //Must be TRUE on all away-mission destinations for reasons
 
 	routes_to_make = list( //These are routes the shuttle connects to,
@@ -14,8 +14,8 @@
 //The other destination is landed on the surface
 /datum/shuttle_destination/excursion/beach
 	name = "Remote Coastal Area"
-	my_area = /area/shuttle/excursion/away_beach
-	preferred_interim_area = /area/shuttle/excursion/sand_moving
+	my_landmark = "tether_excursion_beach"
+	preferred_interim_tag = "tether_excursion_transit_sand"
 	skip_me = TRUE
 
 	routes_to_make = list(

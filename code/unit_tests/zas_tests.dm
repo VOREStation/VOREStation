@@ -78,12 +78,12 @@
 	return 1
 
 /datum/unit_test/zas_area_test/supply_centcomm
-	name = "ZAS: Supply Shuttle (CentCom)"
-	area_path = /area/supply/dock
+	name = "ZAS: Supply Shuttle"
+	area_path = /area/shuttle/supply
 
 /datum/unit_test/zas_area_test/emergency_shuttle
 	name = "ZAS: Emergency Shuttle"
-	area_path = /area/shuttle/escape/centcom
+	area_path = /area/shuttle/escape
 
 /datum/unit_test/zas_area_test/ai_chamber
 	name = "ZAS: AI Chamber"

@@ -1226,7 +1226,7 @@ window "outputwindow"
 		background-color = #222222
 		is-visible = true
 		saved-params = ""
-		text = "Chat is loading.\nIf nothing happens after 60s,\nuse OOC > \"Reload VChat\"."
+		text = "Chat is loading.\nIf nothing happens after 20s,\nuse OOC > \"Reload VChat\"."
 	elem "htmloutput"
 		type = BROWSER
 		pos = 0,0

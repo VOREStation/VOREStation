@@ -47,13 +47,12 @@
 		var/cache_key = "[base_icon]-armrest-[padding_material ? padding_material.name : "no_material"]"
 		if(isnull(stool_cache[cache_key]))
 			var/image/I = image(icon, "[base_icon]_armrest")
-			I.layer = MOB_LAYER + 0.1
 			I.plane = MOB_PLANE
+			I.layer = ABOVE_MOB_LAYER
 			if(padding_material)
 				I.color = padding_material.icon_colour
-			 stool_cache[cache_key] = I
-		overlays |= stool_cache[cache_key]
-
+			stool_cache[cache_key] = I
+		add_overlay(stool_cache[cache_key])
 
 /obj/structure/bed/chair/proc/update_layer()
 	if(src.dir == NORTH)
@@ -226,8 +225,8 @@
 
 /obj/structure/bed/chair/sofa/update_icon()
 	if(applies_material_colour && sofa_material)
-		material = get_material_by_name(sofa_material)
-		color = material.icon_colour
+		var/material/color_material = get_material_by_name(sofa_material)
+		color = color_material.icon_colour
 
 		if(sofa_material == "carpet")
 			name = "red [initial(name)]"
