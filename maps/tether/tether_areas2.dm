@@ -783,8 +783,15 @@
 
 /area/bridge/secondary
 	name = "\improper Secondary Command Office"
+
+/area/bridge/secondary/hallway
+	name = "\improper Secondary Command Hallway"
 /area/bridge/secondary/meeting_room
 	name = "\improper Secondary Command Meeting Room"
+	lightswitch = 0
+/area/bridge/secondary/teleporter
+	name = "\improper Secondary Teleporter"
+	lightswitch = 0
 
 /area/tether/station/visitorhallway
 	name = "\improper Visitor Hallway"
@@ -839,6 +846,9 @@
 	name = "\improper Secondary Command Maintenance"
 	icon_state = "bridge"
 	sound_env = SEWER_PIPE
+/area/maintenance/substation/spacecommand
+	name = "\improper Secondary Command Substation"
+	icon_state = "substation"
 
 /area/shuttle/tether/crash1
 	name = "\improper Crash Site 1"
