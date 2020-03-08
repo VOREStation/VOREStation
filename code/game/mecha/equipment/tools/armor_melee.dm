@@ -11,6 +11,30 @@
 
 	equip_type = EQUIP_HULL
 
+/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/get_equip_info()
+	if(!chassis) return
+	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name]"
+
+/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/handle_melee_contact(var/obj/item/weapon/W, var/mob/living/user, var/inc_damage = null)
+	if(!action_checks(user))
+		return inc_damage
+	chassis.log_message("Attacked by [W]. Attacker - [user]")
+	if(prob(chassis.deflect_chance*deflect_coeff))
+		to_chat(user, "<span class='danger'>\The [W] bounces off \the [chassis]'s armor.</span>")
+		chassis.log_append_to_last("Armor saved.")
+		inc_damage = 0
+	else
+		chassis.occupant_message("<span class='danger'>\The [user] hits [chassis] with [W].</span>")
+		user.visible_message("<span class='danger'>\The [user] hits [chassis] with [W].</span>", "<span class='danger'>You hit [src] with [W].</span>")
+		inc_damage *= damage_coeff
+	set_ready_state(0)
+	chassis.use_power(energy_drain)
+	spawn()
+		do_after_cooldown()
+	return max(0, inc_damage)
+
+/*
+
 /obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/can_attach(obj/mecha/M as obj)
 	if(..())
 		if(!M.proc_res["dynattackby"])
@@ -26,10 +50,6 @@
 	chassis.proc_res["dynattackby"] = null
 	..()
 	return
-
-/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/get_equip_info()
-	if(!chassis) return
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name]"
 
 /obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/proc/dynattackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(!action_checks(user))
@@ -47,3 +67,4 @@
 	chassis.use_power(energy_drain)
 	do_after_cooldown()
 	return
+*/
