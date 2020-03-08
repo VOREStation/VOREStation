@@ -104,7 +104,7 @@
 	var/projectile_type = /obj/item/projectile
 	var/penetrating = 0 //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
 		//Effects
-	var/incendiary = 0 //1 for ignite on hit, 2 for trail of fire. 3 maybe later for burst of fire around the impact point. - Mech
+	var/incendiary = 0 //1 for ignite on hit, 2 for trail of fire. 3 for intense fire. - Mech
 	var/flammability = 0 //Amount of fire stacks to add for the above.
 	var/combustion = TRUE	//Does this set off flammable objects on fire/hit?
 	var/stun = 0

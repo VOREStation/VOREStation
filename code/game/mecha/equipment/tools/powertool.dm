@@ -39,3 +39,17 @@
 	icon_state = "mecha_crowbar"
 	tooltype = /obj/item/weapon/tool/crowbar/power
 	ready_sound = 'sound/mecha/gasdisconnected.ogg'
+
+/obj/item/mecha_parts/mecha_equipment/tool/powertool/cutter
+	name = "pneumatic cablecutter"
+	desc = "An exosuit-mounted pneumatic cablecutter."
+	icon_state = "mecha_cablecutter"
+	tooltype = /obj/item/weapon/tool/wirecutters/power
+	ready_sound = 'sound/mecha/gasdisconnected.ogg'
+
+/obj/item/mecha_parts/mecha_equipment/tool/powertool/screwdriver
+	name = "pneumatic screwdriver"
+	desc = "An exosuit-mounted pneumatic screwdriver."
+	icon_state = "mecha_screwdriver"
+	tooltype = /obj/item/weapon/tool/screwdriver/power
+	ready_sound = 'sound/mecha/gasdisconnected.ogg'

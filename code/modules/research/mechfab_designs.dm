@@ -680,6 +680,46 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 4000, "osmium" = 3000, "glass" = 1000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/powertool/prybar
 
+/datum/design/item/mecha/powercutters
+	name = "hydraulic cable cutter"
+	desc = "A large, hydraulic cablecutter."
+	id = "mech_wirecutter"
+	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "osmium" = 3000, "glass" = 1000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/powertool/cutter
+
+/datum/design/item/mecha/powerscrewdriver
+	name = "hydraulic screwdriver"
+	desc = "A large, hydraulic screwdriver."
+	id = "mech_screwdriver"
+	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "osmium" = 3000, "glass" = 1000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/powertool/screwdriver
+
+/datum/design/item/mecha/powerwelder
+	name = "welding laser"
+	desc = "A large welding laser."
+	id = "mech_welder"
+	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, MAT_PHORON = 3000, "glass" = 1000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/powertool/welding
+
+/datum/design/item/mecha/inflatables
+	name = "inflatables deployer"
+	desc = "A large pneumatic inflatable deployer."
+	id = "mech_inflatables"
+	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, MAT_PLASTIC = 4000, "glass" = 1000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/powertool/inflatables
+
+/datum/design/item/mecha/hardpoint_clamp
+	name = "hardpoint actuator"
+	desc = "A complex device used to commandeer equipment from the ground."
+	id = "mech_hardpoint_clamp"
+	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_POWER = 5, TECH_COMBAT = 2, TECH_MAGNET = 4)
+	materials = list(MAT_PLASTEEL = 2500, MAT_PLASTIC = 3000, MAT_OSMIUM = 1500, MAT_SILVER = 2000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/hardpoint_actuator
+
 /datum/design/item/mecha/generator_nuclear
 	name = "Nuclear Reactor"
 	desc = "Exosuit-held nuclear reactor. Converts uranium and everyone's health to energy."

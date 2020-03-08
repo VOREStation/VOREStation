@@ -245,7 +245,7 @@
 	icon_state = "bullet_alt"
 	damage = 15
 	damage_type = BURN
-	incendiary = 1
+	incendiary = 0.5
 	flammability = 2
 
 /obj/item/projectile/bullet/incendiary/flamethrower
@@ -261,7 +261,9 @@
 	vacuum_traversal = 0
 
 /obj/item/projectile/bullet/incendiary/flamethrower/large
-	damage = 15
+	damage = 5
+	incendiary = 3
+	flammability = 2
 	range = 6
 
 /* Practice rounds and blanks */
