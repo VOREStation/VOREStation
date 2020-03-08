@@ -148,8 +148,11 @@
 // return a knot cable (O-X) if one is present in the turf
 // null if there's none
 /turf/proc/get_cable_node()
+<<<<<<< HEAD
 	//if(!istype(src, /turf/simulated/floor)) //VOREStation Removal - Why?
 		//return null //VOREStation Removal - Why?
+=======
+>>>>>>> 167f947... Boring minor things (#6792)
 	for(var/obj/structure/cable/C in src)
 		if(C.d1 == 0)
 			return C
