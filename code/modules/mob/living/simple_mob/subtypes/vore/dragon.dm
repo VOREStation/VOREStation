@@ -63,6 +63,7 @@
 	vore_icons = SA_ICON_LIVING
 
 /mob/living/simple_mob/vore/aggressive/dragon/virgo3b
+	name = "phoron dragon"
 	maxHealth = 300
 	health = 300
 	faction = "virgo3b"
