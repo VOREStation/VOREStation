@@ -656,9 +656,6 @@
 /obj/item/weapon/weldingtool/electric/mounted/cyborg
 	toolspeed = 0.5
 
-<<<<<<< HEAD
-#undef WELDER_FUEL_BURN_INTERVAL
-=======
 /obj/item/weapon/weldingtool/electric/mounted/exosuit
 	var/obj/item/mecha_parts/mecha_equipment/equip_mount = null
 	flame_intensity = 1
@@ -682,4 +679,3 @@
 			setWelding(FALSE, M.occupant)
 
 #undef WELDER_FUEL_BURN_INTERVAL
->>>>>>> 51fd39f... Exosuit Expansion: Return of the Ripley (#6767)
