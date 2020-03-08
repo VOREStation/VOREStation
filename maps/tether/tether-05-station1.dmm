@@ -13406,7 +13406,6 @@
 /area/bridge/secondary/teleporter)
 "awY" = (
 /obj/structure/table/standard,
-/obj/item/weapon/hand_tele,
 /turf/simulated/floor/tiled/dark,
 /area/bridge/secondary/teleporter)
 "awZ" = (
