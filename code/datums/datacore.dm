@@ -75,7 +75,7 @@
 			department = 1
 		//VOREStation Add Begin
 		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_PLANET))
-			car[name] = rank
+			pla[name] = rank
 			department = 1
 		//VOREStation Add End
 		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_CIVILIAN))
