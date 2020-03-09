@@ -66,6 +66,10 @@
 	else
 		update_icon()
 
+/mob/living/simple_mob/protean_blob/Login()
+	. = ..()
+	copy_from_prefs_vr(bellies = FALSE) //Load vore prefs
+
 /mob/living/simple_mob/protean_blob/Destroy()
 	humanform = null
 	refactory = null
