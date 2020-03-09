@@ -1,6 +1,6 @@
 /datum/job/centcom_officer //For Business
 	title = "CentCom Officer"
-	departments = list(DEPARTMENT_CENTCOM)
+	departments = list("Central Command")
 	head_position = 1
 	faction = "Station"
 	total_positions = 2

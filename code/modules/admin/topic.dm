@@ -693,7 +693,7 @@
 					joblist += temp.title
 			//VOREStation Edit Start
 			if("explorationdept")
-				for(var/jobPos in planet_positions)
+				for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_PLANET))
 					if(!jobPos)	continue
 					var/datum/job/temp = job_master.GetJob(jobPos)
 					if(!temp) continue

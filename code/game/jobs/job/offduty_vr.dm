@@ -60,7 +60,7 @@
 	timeoff_factor = -1
 	total_positions = -1
 	faction = "Station"
-	departments = list(DEPARTMENT_SCIENCE)
+	departments = list(DEPARTMENT_RESEARCH)
 	supervisors = "nobody! Enjoy your time off"
 	selection_color = "#633D63"
 	access = list(access_maint_tunnels)
