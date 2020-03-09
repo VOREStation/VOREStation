@@ -19,18 +19,7 @@
 	
 {{else}}
 	<div class='item'>
-<<<<<<< HEAD
-	  <div class='itemLabel'>
-		<!-- VOREStation Edit Start -->
-		Dismissals:
-	  </div>
-	  <div class='itemContent'>
-		{{:helper.link('Dismiss ' + data.id_owner, 'gear', {'action' : 'terminate'}, data.id_rank == "Dismissed" ? 'disabled' : null, data.id_rank == "Dismissed" ? 'disabled' : 'linkDanger')}}
-	  </div>
-		<!-- VOREStation Edit End -->
-=======
 		<h2>Access Modification</h2>
->>>>>>> 24fbd0b... Half-Refactors Jobs (#6762)
 	</div>
 
 	{{if !data.has_id}}
@@ -74,13 +63,15 @@
 			</div>
 			
 			<div class='item'>
+				<!-- VOREStation Edit Start -->
 				<div class='itemLabel'>
-					Terminations:
+					Dismissals:
 				</div>
 				
 				<div class='itemContent'>
-					{{:helper.link('Terminate ' + data.id_owner, 'gear', {'action' : 'terminate'}, data.id_rank == "Terminated" ? 'disabled' : null, data.id_rank == "Terminated" ? 'disabled' : 'linkDanger')}}
+					{{:helper.link('Dismiss ' + data.id_owner, 'gear', {'action' : 'terminate'}, data.id_rank == "Terminated" ? 'disabled' : null, data.id_rank == "Dismissed" ? 'disabled' : 'linkDanger')}}
 				</div>
+				<!-- VOREStation Edit End -->
 			</div>
 			
 			<div class='item'>
