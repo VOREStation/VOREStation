@@ -520,8 +520,8 @@
 	//Exploration (Purple)
 		counter = 0
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		jobs += "<tr bgcolor='e79fff'><th colspan='[length(planet_positions)]'><a href='?src=\ref[src];jobban3=explorationdept;jobban4=\ref[M]'>Exploration Positions</a></th></tr><tr align='center'>"
-		for(var/jobPos in planet_positions)
+		jobs += "<tr bgcolor='e79fff'><th colspan='[length(SSjob.get_job_titles_in_department(DEPARTMENT_PLANET))]'><a href='?src=\ref[src];jobban3=sciencedept;jobban4=\ref[M]'>Science Positions</a></th></tr><tr align='center'>"
+		for(var/jobPos in SSjob.get_job_titles_in_department(DEPARTMENT_PLANET))
 			if(!jobPos)	continue
 			var/datum/job/job = job_master.GetJob(jobPos)
 			if(!job) continue

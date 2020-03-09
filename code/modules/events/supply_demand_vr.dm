@@ -23,20 +23,20 @@
 	// Decide what items are requried!
 	// We base this on what departmets are most active, excluding departments we don't have
 	var/list/notHaveDeptList = metric.departments.Copy()
-	notHaveDeptList.Remove(list(ROLE_ENGINEERING, ROLE_MEDICAL, ROLE_RESEARCH, ROLE_CARGO, ROLE_CIVILIAN))
+	notHaveDeptList.Remove(list(DEPARTMENT_ENGINEERING, DEPARTMENT_MEDICAL, DEPARTMENT_RESEARCH, DEPARTMENT_CARGO, DEPARTMENT_CIVILIAN))
 	var/deptActivity = metric.assess_all_departments(severity * 2, notHaveDeptList)
 	for(var/dept in deptActivity)
 		switch(dept)
-			if(ROLE_ENGINEERING)
+			if(DEPARTMENT_ENGINEERING)
 				choose_atmos_items(severity + 1)
-			if(ROLE_MEDICAL)
+			if(DEPARTMENT_MEDICAL)
 				choose_chemistry_items(roll(severity, 2))
-			if(ROLE_RESEARCH) // Would be nice to differentiate between research diciplines
+			if(DEPARTMENT_RESEARCH) // Would be nice to differentiate between research diciplines
 				choose_research_items(roll(severity, 2))
 				choose_robotics_items(roll(1, severity))
-			if(ROLE_CARGO)
+			if(DEPARTMENT_CARGO)
 				choose_alloy_items(rand(1, severity))
-			if(ROLE_CIVILIAN) // Would be nice to separate out chef/gardener/bartender
+			if(DEPARTMENT_CIVILIAN) // Would be nice to separate out chef/gardener/bartender
 				choose_food_items(roll(severity, 2))
 				choose_bar_items(roll(severity, 2))
 	if(required_items.len == 0)
