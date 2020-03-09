@@ -24,20 +24,17 @@
 // "Tram" Emergency Shuttler
 // Becuase the tram only has its own doors and no corresponding station doors, a docking controller is overkill.
 // Just open the gosh darn doors!  Also we avoid having a physical docking controller obj for gameplay reasons.
-/datum/shuttle/ferry/emergency
+/datum/shuttle/autodock/ferry/emergency
 	var/tag_door_station = "escape_shuttle_hatch_station"
 	var/tag_door_offsite = "escape_shuttle_hatch_offsite"
 	var/frequency = 1380 // Why this frequency? BECAUSE! Thats what someone decided once.
 	var/datum/radio_frequency/radio_connection
 
-/datum/shuttle/ferry/emergency/init_docking_controllers()
-	docking_controller_tag = null
-	dock_target_station = null
-	dock_target_offsite = null
+/datum/shuttle/autodock/ferry/emergency/New()
 	radio_connection = radio_controller.add_object(src, frequency, null)
 	..()
 
-/datum/shuttle/ferry/emergency/dock()
+/datum/shuttle/autodock/ferry/emergency/dock()
 	..()
 	// Open Doorsunes
 	var/datum/signal/signal = new
@@ -45,7 +42,7 @@
 	signal.data["command"] = "secure_open"
 	post_signal(signal)
 
-/datum/shuttle/ferry/emergency/undock()
+/datum/shuttle/autodock/ferry/emergency/undock()
 	..()
 	// Close Doorsunes
 	var/datum/signal/signal = new
@@ -53,7 +50,7 @@
 	signal.data["command"] = "secure_close"
 	post_signal(signal)
 
-/datum/shuttle/ferry/emergency/proc/post_signal(datum/signal/signal, var/filter = null)
+/datum/shuttle/autodock/ferry/emergency/proc/post_signal(datum/signal/signal, var/filter = null)
 	signal.transmission_method = TRANSMISSION_RADIO
 	if(radio_connection)
 		return radio_connection.post_signal(src, signal, filter)
@@ -185,30 +182,32 @@
 
 	. = ..()
 
-/datum/shuttle/web_shuttle/excursion
+/datum/shuttle/autodock/web_shuttle/excursion
 	name = "Excursion Shuttle"
 	warmup_time = 0
-	current_area = /area/shuttle/excursion/tether
+	current_location = "tether_excursion_hangar"
 	docking_controller_tag = "expshuttle_docker"
 	web_master_type = /datum/shuttle_web_master/excursion
+	shuttle_area = /area/shuttle/excursion
 	var/abduct_chance = 0 //Prob
 
-/datum/shuttle/web_shuttle/excursion/long_jump(var/area/departing, var/area/destination, var/area/interim, var/travel_time, var/direction)
+/datum/shuttle/autodock/web_shuttle/excursion/long_jump(var/obj/effect/shuttle_landmark/destination, var/obj/effect/shuttle_landmark/interim, var/travel_time)
 	if(prob(abduct_chance))
 		abduct_chance = 0
 		var/list/occupants = list()
-		for(var/mob/living/L in departing)
-			occupants += key_name(L)
+		for(var/area/A in shuttle_area)
+			for(var/mob/living/L in A)
+				occupants += key_name(L)
 		log_and_message_admins("Shuttle abduction occuring with (only mobs on turfs): [english_list(occupants)]")
 		//Build the route to the alien ship
 		var/obj/shuttle_connector/alienship/ASC = new /obj/shuttle_connector/alienship(null)
 		ASC.setup_routes()
 
 		//Redirect us onto that route instead
-		var/datum/shuttle/web_shuttle/WS = shuttle_controller.shuttles[name]
+		var/datum/shuttle/autodock/web_shuttle/WS = shuttle_controller.shuttles[name]
 		var/datum/shuttle_destination/ASD = WS.web_master.get_destination_by_type(/datum/shuttle_destination/excursion/alienship)
 		WS.web_master.future_destination = ASD
-		. = ..(departing,ASD.my_area,interim,travel_time,direction)
+		. = ..(ASD.my_landmark,interim,travel_time)
 	else
 		. = ..()
 
@@ -218,11 +217,10 @@
 
 /datum/shuttle_destination/excursion/tether
 	name = "NSB Adephagia Excursion Hangar"
-	my_area = /area/shuttle/excursion/tether
+	my_landmark = "tether_excursion_hangar"
 
-	dock_target = "expshuttle_dock"
 	radio_announce = 1
-	announcer = "Excursion Shuttle"
+	announcer = "Docking System"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/excursion/outside_tether = 0,
@@ -237,8 +235,8 @@
 
 /datum/shuttle_destination/excursion/outside_tether
 	name = "Nearby NSB Adephagia"
-	my_area = /area/shuttle/excursion/tether_nearby
-	preferred_interim_area = /area/shuttle/excursion/space_moving
+	my_landmark = "tether_excursion_nearby"
+	preferred_interim_tag = "tether_excursion_transit_space"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/excursion/docked_tether = 0,
@@ -248,11 +246,10 @@
 
 /datum/shuttle_destination/excursion/docked_tether
 	name = "NSB Adephagia Docking Arm"
-	my_area = /area/shuttle/excursion/tether_dockarm
+	my_landmark = "tether_excursion_dockarm"
 
-	dock_target = "d1a2_dock"
 	radio_announce = 1
-	announcer = "Excursion Shuttle"
+	announcer = "Docking System"
 
 /datum/shuttle_destination/excursion/docked_tether/get_arrival_message()
 	return "Attention, [master.my_shuttle.visible_name] has arrived at Docking Arm One."
@@ -263,8 +260,8 @@
 
 /datum/shuttle_destination/excursion/virgo3b_orbit
 	name = "Virgo 3B Orbit"
-	my_area = /area/shuttle/excursion/space
-	preferred_interim_area = /area/shuttle/excursion/space_moving
+	my_landmark = "tether_excursion_space"
+	preferred_interim_tag = "tether_excursion_transit_space"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/excursion/virgo3b_sky = 30 SECONDS,
@@ -274,13 +271,80 @@
 
 /datum/shuttle_destination/excursion/virgo3b_sky
 	name = "Skies of Virgo 3B"
-	my_area = /area/shuttle/excursion/virgo3b_sky
+	my_landmark = "tether_excursion_virgo3bsky"
+
+////////// Aliems!!
+/obj/machinery/computer/shuttle_control/web/excursion/blue
+	name = "shuttle control console"
+	icon = 'icons/obj/flight_computer_vr.dmi'
+	icon_state = "center"
+	shuttle_tag = "Hybrid Shuttle"
+	req_access = list()
+	req_one_access = list(access_pilot)
+	wait_time = 0
+	var/setup = FALSE
+
+/obj/machinery/computer/shuttle_control/web/excursion/blue/ui_interact()
+	if(!setup && alert("Steal the excursion shuttle's destinations and copy them to this shuttle?","Shuttle Setup","Yes","Cancel") == "Yes")
+		var/datum/shuttle/autodock/web_shuttle/HS = shuttle_controller.shuttles[shuttle_tag]
+		var/datum/shuttle/autodock/web_shuttle/ES = shuttle_controller.shuttles["Excursion Shuttle"]
+		if(!ES.web_master.destinations.len)
+			return
+		
+		// First, instantiate all the destination subtypes relevant to this datum.
+		for(var/new_type in ES.web_master.destinations)
+			var/datum/shuttle_destination/D = new_type
+			//if(D.skip_me) //Don't care
+			//	continue
+			HS.web_master.destinations += new D.type(HS.web_master)
+
+		// Now start the process of connecting all of them.
+		for(var/datum/shuttle_destination/D in HS.web_master.destinations)
+			for(var/type_to_link in D.routes_to_make)
+				var/travel_delay = D.routes_to_make[type_to_link]
+				D.link_destinations(HS.web_master.get_destination_by_type(type_to_link), D.preferred_interim_tag, travel_delay)
+
+		HS.web_master.current_destination = HS.web_master.get_destination_by_type(/datum/shuttle_destination/excursion/deepish_space)
+		setup = TRUE
+		..()
+	else
+		return ..()
+
+/datum/shuttle/autodock/web_shuttle/excursion/blue
+	name = "Hybrid Shuttle"
+	visible_name = "XN-39 Prototype"
+	warmup_time = 0
+	current_location = "bluefo_start"
+	docking_controller_tag = "hybrid_shuttle_docker"
+	web_master_type = /datum/shuttle_web_master/excursion/blue
+	shuttle_area = /area/shuttle/blue_fo
+	abduct_chance = 0
+	flags = SHUTTLE_FLAGS_NONE
+
+/datum/shuttle_web_master/excursion/blue
+	destination_class = /datum/shuttle_destination/excursion
+	starting_destination = /datum/shuttle_destination/excursion/deepish_space
+
+/datum/shuttle_web_master/excursion/blue/build_destinations()
+	return
+
+/datum/shuttle_destination/excursion/deepish_space
+	name = "Deepish Space"
+	my_landmark = "bluefo_start"
+	preferred_interim_tag = "tether_excursion_transit_space"
+	routes_to_make = list(
+		/datum/shuttle_destination/excursion/bluespace = 0
+	)
+
+/datum/shuttle_destination/excursion/deepish_space/link_destinations(var/datum/shuttle_destination/other_place, var/interim_tag, var/travel_time = 0)
+	var/datum/shuttle_route/new_route = new(src, other_place, interim_tag, travel_time)
+	routes += new_route
 
 ////////// Distant Destinations
 /datum/shuttle_destination/excursion/bluespace
 	name = "Bluespace Jump"
-	my_area = /area/shuttle/excursion/bluespace
-	preferred_interim_area = /area/shuttle/excursion/space_moving
+	my_landmark = "tether_excursion_bluespace"
+	preferred_interim_tag = "tether_excursion_transit_space"
 
 // Heist
 /obj/machinery/computer/shuttle_control/web/heist
@@ -288,14 +352,14 @@
 	req_access = list(access_syndicate)
 	shuttle_tag = "Skipjack"
 
-/datum/shuttle/web_shuttle/heist
+/datum/shuttle/autodock/web_shuttle/heist
 	name = "Skipjack"
+	current_location = "skipjack_base"
+	shuttle_area = /area/shuttle/skipjack
+	web_master_type = /datum/shuttle_web_master/heist
 	warmup_time = 0
 	can_cloak = TRUE
 	cloaked = TRUE
-	current_area = /area/skipjack_station/start
-//	docking_controller_tag = "skipjack_shuttle"
-	web_master_type = /datum/shuttle_web_master/heist
 
 /datum/shuttle_web_master/heist
 	destination_class = /datum/shuttle_destination/heist
@@ -303,46 +367,21 @@
 
 /datum/shuttle_destination/heist/root
 	name = "Raider Outpost"
-	my_area = /area/skipjack_station/start
-	preferred_interim_area = /area/skipjack_station/transit
-
-//	dock_target = "skipjack_base"
+	my_landmark = "skipjack_base"
+	preferred_interim_tag = "skipjack_transit"
 
 	routes_to_make = list(
-		/datum/shuttle_destination/heist/outside_Tether = 1 MINUTE,
-		// /datum/shuttle_destination/heist/docked_Tether = 1 MINUTE
+		/datum/shuttle_destination/heist/outside_tether = 1 MINUTE
 	)
 
-/datum/shuttle_destination/heist/outside_Tether
+/datum/shuttle_destination/heist/outside_tether
 	name = "NSB Adephagia - Nearby"
-	my_area = /area/skipjack_station/orbit
-	preferred_interim_area = /area/skipjack_station/transit
+	my_landmark = "skipjack_outside"
+	preferred_interim_tag = "skipjack_transit"
 
 	routes_to_make = list(
-		/datum/shuttle_destination/heist/root = 1 MINUTE,
-		// /datum/shuttle_destination/heist/docked_Tether = 0
+		/datum/shuttle_destination/heist/root = 1 MINUTE
 	)
-
-/*
-/datum/shuttle_destination/heist/docked_Tether
-	name = "NSB Adephagia - Arrivals Docking Port"
-	my_area = /area/skipjack_station/arrivals_dock
-	preferred_interim_area = /area/skipjack_station/transit
-
-//	dock_target = "skipjack_shuttle_dock_airlock"
-	announcer = "NSB Adephagia Docking Computer"
-
-	routes_to_make = list(
-		/datum/shuttle_destination/heist/root = 1 MINUTE,
-		/datum/shuttle_destination/heist/outside_Tether = 0
-	)
-
-/datum/shuttle_destination/heist/docked_SC/get_arrival_message()
-	return "Attention, [master.my_shuttle.visible_name] has arrived to the Arrivals Dock."
-
-/datum/shuttle_destination/heist/docked_SC/get_departure_message()
-	return "Attention, [master.my_shuttle.visible_name] has departed the Arrivals Dock."
-*/
 
 // Ninja
 /obj/machinery/computer/shuttle_control/web/ninja
@@ -350,15 +389,16 @@
 	req_access = list(access_syndicate)
 	shuttle_tag = "Ninja"
 
-/datum/shuttle/web_shuttle/ninja
+/datum/shuttle/autodock/web_shuttle/ninja
 	name = "Ninja"
 	visible_name = "Unknown Vessel"
+	current_location = "ninja_base"
+	shuttle_area = /area/shuttle/ninja
+	docking_controller_tag = "ninja_shuttle"
+	web_master_type = /datum/shuttle_web_master/ninja
 	warmup_time = 0
 	can_cloak = TRUE
 	cloaked = TRUE
-	current_area = /area/ninja_dojo/start
-	docking_controller_tag = "ninja_shuttle"
-	web_master_type = /datum/shuttle_web_master/ninja
 
 /datum/shuttle_web_master/ninja
 	destination_class = /datum/shuttle_destination/ninja
@@ -366,45 +406,21 @@
 
 /datum/shuttle_destination/ninja/root
 	name = "Dojo Outpost"
-	my_area = /area/ninja_dojo/start
-	preferred_interim_area = /area/ninja_dojo/transit
-
-	dock_target = "ninja_base"
+	my_landmark = "ninja_base"
+	preferred_interim_tag = "ninja_transit"
 
 	routes_to_make = list(
-		/datum/shuttle_destination/ninja/outside_Tether = 30 SECONDS,
-		// /datum/shuttle_destination/ninja/docked_Tether = 30 SECONDS
+		/datum/shuttle_destination/ninja/outside_tether = 30 SECONDS
 	)
 
-/datum/shuttle_destination/ninja/outside_Tether
+/datum/shuttle_destination/ninja/outside_tether
 	name = "NSB Adephagia - Nearby"
-	my_area = /area/ninja_dojo/orbit
-	preferred_interim_area = /area/ninja_dojo/transit
+	my_landmark = "ninja_outside"
+	preferred_interim_tag = "ninja_transit"
 
 	routes_to_make = list(
-		/datum/shuttle_destination/ninja/root = 30 SECONDS,
-		// /datum/shuttle_destination/ninja/docked_Tether = 0
+		/datum/shuttle_destination/ninja/root = 30 SECONDS
 	)
-/*
-/datum/shuttle_destination/ninja/docked_Tether
-	name = "NSB Adephagia - Arrivals Docking Port"
-	my_area = /area/ninja_dojo/arrivals_dock
-	preferred_interim_area = /area/ninja_dojo/transit
-
-	dock_target = "ninja_shuttle_dock_airlock"
-	announcer = "NSB Adephagia Docking Computer"
-
-	routes_to_make = list(
-		/datum/shuttle_destination/ninja/root = 30 SECONDS,
-		/datum/shuttle_destination/ninja/outside_Tether = 0
-	)
-
-/datum/shuttle_destination/syndie/docked_SC/get_arrival_message()
-	return "Attention, [master.my_shuttle.visible_name] has arrived to the Arrivals Dock."
-
-/datum/shuttle_destination/syndie/docked_SC/get_departure_message()
-	return "Attention, [master.my_shuttle.visible_name] has departed the Arrivals Dock."
-*/
 
 ////////////////////////////////////
 //////// Specops Shuttle ///////////
@@ -416,10 +432,11 @@
 	req_access = list()
 	req_one_access = list(access_cent_specops)
 
-/datum/shuttle/web_shuttle/specialops
+/datum/shuttle/autodock/web_shuttle/specialops
 	name = "Special Operations Shuttle"
 	visible_name = "NDV Phantom"
-	current_area = /area/shuttle/specialops/centcom
+	current_location = "specops_base"
+	shuttle_area = /area/shuttle/specialops
 	docking_controller_tag = "specops_shuttle_hatch"
 	web_master_type = /datum/shuttle_web_master/specialops
 	can_rename = FALSE
@@ -432,10 +449,9 @@
 
 /datum/shuttle_destination/specialops/tether
 	name = "NSB Adephagia Docking Arm 2"
-	my_area = /area/shuttle/specialops/tether
-	preferred_interim_area = /area/shuttle/specialops/transit
+	my_landmark = "specops_tether"
+	preferred_interim_tag = "specops_transit"
 
-	dock_target = "specops_dock"
 	radio_announce = 1
 	announcer = "A.L.I.C.E."
 
@@ -452,8 +468,8 @@
 
 /datum/shuttle_destination/specialops/centcom
 	name = "Central Command"
-	my_area = /area/shuttle/specialops/centcom
-	preferred_interim_area = /area/shuttle/specialops/transit
+	my_landmark = "specops_base"
+	preferred_interim_tag = "specops_transit"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/specialops/tether = 15

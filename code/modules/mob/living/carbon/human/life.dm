@@ -618,10 +618,8 @@
 	//Stuff like the xenomorph's plasma regen happens here.
 	species.handle_environment_special(src)
 
-	//VOREStation Edit begin: SHADEKIN
-	if(shadekin_phasing_check())
+	if(is_incorporeal())
 		return
-	//VOREStation Edit end: SHADEKIN
 
 	//Moved pressure calculations here for use in skip-processing check.
 	var/pressure = environment.return_pressure()

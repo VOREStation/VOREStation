@@ -29,6 +29,10 @@
 		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
 		return 0
 
+	if(is_incorporeal())
+		forceMove(destination)
+		return 1
+
 	if(!start.CanZPass(src, direction))
 		to_chat(src, "<span class='warning'>\The [start] is in the way.</span>")
 		return 0
@@ -124,7 +128,7 @@
 /mob/living/can_ztravel()
 	if(incapacitated())
 		return FALSE
-	return hovering
+	return (hovering || is_incorporeal())
 
 /mob/living/carbon/human/can_ztravel()
 	if(incapacitated())
@@ -273,6 +277,8 @@
 		return FALSE
 
 /mob/living/can_fall()
+	if(is_incorporeal())
+		return FALSE
 	if(hovering)
 		return FALSE
 	return ..()

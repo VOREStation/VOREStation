@@ -783,8 +783,15 @@
 
 /area/bridge/secondary
 	name = "\improper Secondary Command Office"
+
+/area/bridge/secondary/hallway
+	name = "\improper Secondary Command Hallway"
 /area/bridge/secondary/meeting_room
 	name = "\improper Secondary Command Meeting Room"
+	lightswitch = 0
+/area/bridge/secondary/teleporter
+	name = "\improper Secondary Teleporter"
+	lightswitch = 0
 
 /area/tether/station/visitorhallway
 	name = "\improper Visitor Hallway"
@@ -839,6 +846,9 @@
 	name = "\improper Secondary Command Maintenance"
 	icon_state = "bridge"
 	sound_env = SEWER_PIPE
+/area/maintenance/substation/spacecommand
+	name = "\improper Secondary Command Substation"
+	icon_state = "substation"
 
 /area/shuttle/tether/crash1
 	name = "\improper Crash Site 1"
@@ -876,43 +886,19 @@
 /area/shuttle/excursion
 	name = "\improper Excursion Shuttle"
 	icon_state = "shuttle2"
-	base_turf = /turf/space
 	requires_power = 1
 
-/area/shuttle/excursion/tether
-	name = "\improper Excursion Shuttle - Tether"
-	base_turf = /turf/simulated/floor/reinforced
-
-/area/shuttle/excursion/tether_nearby
-	name = "\improper Excursion Shuttle - Tether Near"
-
-/area/shuttle/excursion/tether_dockarm
-	name = "\improper Excursion Shuttle - Tether Arm"
-
-/area/shuttle/excursion/space
-	name = "\improper Excursion Shuttle - Space"
-
-/area/shuttle/excursion/space_moving
-	name = "\improper Excursion Shuttle - Space Moving"
-	base_turf = /turf/space/transit/north
-
-/area/shuttle/excursion/bluespace
-	name = "\improper Excursion Shuttle - Bluespace"
-	base_turf = /turf/space/bluespace
-
-/area/shuttle/excursion/sand_moving
-	name = "\improper Excursion Shuttle - Sand Transit"
-	base_turf = /turf/space/sandyscroll
-
-/area/shuttle/excursion/virgo3b_sky
-	name = "\improper Excursion Shuttle - Virgo3b Sky"
-	base_turf = /turf/simulated/sky/virgo3b/south
+/area/shuttle/blue_fo
+	name = "\improper Hybrid Shuttle"
+	icon_state = "shuttle2"
+	requires_power = 1
 
 // Belter Dock
 
 /area/quartermaster/belterdock
 	name = "\improper Cargo Belter Access"
 	icon_state = "mining"
+
 // Elevator area //
 
 /area/tether/elevator
@@ -933,34 +919,30 @@
 	requires_power = 0
 	dynamic_lighting = 0
 
-/area/shuttle/antag_space/base
-	name = "\improper Syndicate PS - Base"
-	icon_state = "shuttle2"
-/area/shuttle/antag_space/transit
-	name = "\improper Syndicate PS - Transit"
-	icon_state = "shuttle2"
-/area/shuttle/antag_space/north
-	name = "\improper Syndicate PS - Nearby"
-	icon_state = "shuttle2"
-/area/shuttle/antag_space/docks
-	name = "\improper Syndicate PS - Docks"
+//Antag space shuttle
+/area/shuttle/antag_space
+	name = "\improper Syndicate PS"
 	icon_state = "shuttle2"
 
-/area/shuttle/antag_ground/base
-	name = "\improper Syndicate LC - Base"
+//Antag ground 'shuttle'
+/area/shuttle/antag_ground
+	name = "\improper Syndicate LC"
 	icon_state = "shuttle2"
-/area/shuttle/antag_ground/transit
-	name = "\improper Syndicate LC - Transit"
-	icon_state = "shuttle2"
-/area/shuttle/antag_ground/solars
-	name = "\improper Syndicate LC - Solars"
-	icon_state = "shuttle2"
-	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
-/area/shuttle/antag_ground/mining
-	name = "\improper Syndicate LC - Mining"
-	icon_state = "shuttle2"
-	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
 
+//Merc shuttle
+/area/shuttle/mercenary
+	name = "\improper Mercenary Shuttle"
+	icon_state = "shuttle2"
+
+//Vox shuttle
+/area/shuttle/skipjack
+	name = "\improper Skipjack"
+	icon_state = "shuttle2"
+
+//Ninja shuttle
+/area/shuttle/ninja
+	name = "\improper Ninjacraft"
+	icon_state = "shuttle2"
 
 //TFF 28/8/19 - cleanup of areas placement
 /area/teleporter/departing
@@ -1231,17 +1213,8 @@
 	base_turf = /turf/space/transit/east
 
 // Tether Map has this shuttle
-/area/shuttle/tether/surface
-	name = "Tether Shuttle Landed"
-	icon_state = "shuttle"
-	base_turf = /turf/simulated/floor/reinforced
-
-/area/shuttle/tether/station
-	name = "Tether Shuttle Dock"
-	icon_state = "shuttle2"
-
-/area/shuttle/tether/transit
-	name = "Tether Shuttle Transit"
+/area/shuttle/tether
+	name = "Tether Shuttle"
 	icon_state = "shuttle2"
 
 //Skipjack

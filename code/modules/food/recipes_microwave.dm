@@ -55,6 +55,13 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donut/jelly
 
+/datum/recipe/microwave/jellydonut/poisonberry
+	reagents = list("poisonberryjuice" = 5, "sugar" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/dough
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/poisonberry
+
 /datum/recipe/microwave/jellydonut/slime
 	reagents = list("slimejelly" = 5, "sugar" = 5)
 	items = list(
@@ -308,7 +315,14 @@ I said no!
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
 	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/berryclafoutis
+	result = /obj/item/weapon/reagent_containers/food/snacks/berryclafoutis/berry
+
+/datum/recipe/microwave/poisonberryclafoutis
+	fruit = list("poisonberries" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/berryclafoutis/poison
 
 /datum/recipe/microwave/wingfangchu
 	reagents = list("soysauce" = 5)
@@ -639,7 +653,7 @@ I said no!
 	result = /obj/item/weapon/reagent_containers/food/snacks/toastedsandwich
 
 /datum/recipe/microwave/peanutbutterjellysandwich
-	reagents = list("berryjuice" = 5, "peanutbutter" = 5)
+	reagents = list("cherryjelly" = 5, "peanutbutter" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/slice/bread,
 		/obj/item/weapon/reagent_containers/food/snacks/slice/bread
@@ -1106,7 +1120,15 @@ I said no!
 		/obj/item/weapon/reagent_containers/food/snacks/dough
 	)
 	fruit = list("berries" = 1)
-	result = /obj/item/weapon/reagent_containers/food/snacks/berrymuffin
+	result = /obj/item/weapon/reagent_containers/food/snacks/berrymuffin/berry
+
+/datum/recipe/microwave/poisonberrymuffin
+	reagents = list("milk" = 5, "sugar" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/dough
+	)
+	fruit = list("poisonberries" = 1)
+	result = /obj/item/weapon/reagent_containers/food/snacks/berrymuffin/poison
 
 /datum/recipe/microwave/ghostmuffin
 	reagents = list("milk" = 5, "sugar" = 5)
@@ -1115,7 +1137,16 @@ I said no!
 		/obj/item/weapon/ectoplasm
 	)
 	fruit = list("berries" = 1)
-	result = /obj/item/weapon/reagent_containers/food/snacks/ghostmuffin
+	result = /obj/item/weapon/reagent_containers/food/snacks/ghostmuffin/berry
+
+/datum/recipe/microwave/poisonghostmuffin
+	reagents = list("milk" = 5, "sugar" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/dough,
+		/obj/item/weapon/ectoplasm
+	)
+	fruit = list("poisonberries" = 1)
+	result = /obj/item/weapon/reagent_containers/food/snacks/ghostmuffin/poison
 
 /datum/recipe/microwave/eggroll
 	reagents = list("soysauce" = 10)

@@ -18,6 +18,9 @@
 
 #define LAZYOR(L, I) if(!L) { L = list(); } L |= I;
 
+// Adds I to L, initalizing L if necessary, if I is not already in L
+#define LAZYDISTINCTADD(L, I) if(!L) { L = list(); } L |= I;
+
 #define LAZYFIND(L, V) L ? L.Find(V) : 0
 
 // Reads I from L safely - Works with both associative and traditional lists.

@@ -55,7 +55,7 @@
 
 	return new_dest
 
-/obj/landed_holder/proc/leave_turf()
+/obj/landed_holder/proc/leave_turf(var/turf/base_turf = null)
 	var/turf/new_source
 	//Change our source to whatever it was before
 	if(turf_type)
@@ -67,7 +67,7 @@
 		new_source.underlays = underlays
 		new_source.decals = decals
 	else
-		new_source = my_turf.ChangeTurf(get_base_turf_by_area(my_turf),,1)
+		new_source = my_turf.ChangeTurf(base_turf ? base_turf : get_base_turf_by_area(my_turf),,1)
 
 	return new_source
 

@@ -6,7 +6,8 @@
 /datum/rogue/zonemaster
 	//our area
 	var/area/asteroid/rogue/myarea
-	var/area/shuttle/belter/myshuttle
+	// var/area/shuttle/belter/myshuttle
+	var/obj/effect/shuttle_landmark/myshuttle_landmark
 
 	//world.time
 	var/prepared_at = 0
@@ -32,7 +33,9 @@
 /datum/rogue/zonemaster/New(var/area/A)
 	ASSERT(A)
 	myarea = A
-	myshuttle = locate(myarea.shuttle_area)
+	myshuttle_landmark = locate(/obj/effect/shuttle_landmark) in myarea
+	if(!istype(myshuttle_landmark))
+		warning("Zonemaster cannot find a shuttle landmark in its area '[A]'")
 	spawn(10) //This is called from controller New() and freaks out if this calls back too fast.
 		rm_controller.mark_clean(src)
 
@@ -46,7 +49,7 @@
 		if(H.stat >= DEAD) //Conditions for exclusion here, like if disconnected people start blocking it.
 			continue
 		var/area/A = get_area(H)
-		if((A == myarea) || (A == myshuttle)) //The loc of a turf is the area it is in.
+		if(A == myarea) //The loc of a turf is the area it is in.
 			humans++
 	return humans
 
@@ -380,6 +383,7 @@
 	var/ignored = list(
 	/obj/asteroid_spawner,
 	/obj/rogue_mobspawner,
+	/obj/effect/shuttle_landmark,
 	/obj/effect/step_trigger/teleporter/roguemine_loop/north,
 	/obj/effect/step_trigger/teleporter/roguemine_loop/south,
 	/obj/effect/step_trigger/teleporter/roguemine_loop/east,
@@ -388,6 +392,8 @@
 	for(var/atom/I in myarea.contents)
 		if(I.type == /turf/space)
 			I.overlays.Cut()
+			continue
+		else if(!I.simulated)
 			continue
 		else if(I.type in ignored)
 			continue
@@ -398,6 +404,8 @@
 	for(var/atom/I in myarea.contents)
 		if(I.type == /turf/space)
 			I.overlays.Cut()
+			continue
+		else if(!I.simulated)
 			continue
 		else if(I.type in ignored)
 			continue

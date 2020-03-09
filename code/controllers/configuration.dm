@@ -31,6 +31,7 @@ var/list/gamemode_cache = list()
 	var/allow_admin_jump = 1			// allows admin jumping
 	var/allow_admin_spawning = 1		// allows admin item spawning
 	var/allow_admin_rev = 1				// allows admin revives
+	var/pregame_time = 180				// pregame time in seconds
 	var/vote_delay = 6000				// minimum time between voting sessions (deciseconds, 10 minute default)
 	var/vote_period = 600				// length of voting period (deciseconds, default 1 minute)
 	var/vote_autotransfer_initial = 108000 // Length of time before the first autotransfer vote is called
@@ -419,6 +420,9 @@ var/list/gamemode_cache = list()
 
 				if ("default_no_vote")
 					config.vote_no_default = 1
+
+				if ("pregame_time")
+					config.pregame_time = text2num(value)
 
 				if ("vote_delay")
 					config.vote_delay = text2num(value)

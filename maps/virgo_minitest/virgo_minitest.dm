@@ -3,6 +3,7 @@
 	#include "virgo_minitest-1.dmm"
 
 	#include "virgo_minitest_defines.dm"
+	#include "virgo_minitest_shuttles.dm"
 
 	#define USING_MAP_DATUM /datum/map/virgo_minitest
 
