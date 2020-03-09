@@ -160,7 +160,7 @@
 	B.emote_lists[DM_DIGEST] = list(
 		"Your rubbery confines suddenly toss and tumble you about, the twice-corrupted hound unevenly galloping off in search of more edible cuddle partners as its current one processes away!",
 		"A harsh, high-pitched attempt of a bark escapes your captor, a cheerily mad sound, as its thick, flexible stomach walls relentlessly churn you down!",
-		"The mechanical canine's content panting cuts away into a pleased "rurr..." before being interrupted by a reverberating, acrid belch, yet more breatheable air slipping away!",
+		"The mechanical canine's content panting cuts away into a pleased 'rurr...' before being interrupted by a reverberating, acrid belch, yet more breatheable air slipping away!",
 		"The all-encapsulating, rubber-like walls churning over you seem to feel softer than before, though, on the outside, the broken hound's belly slowly rounds out!",
 		"The longer you spend stewing away in the pool of hot, clingy juices, constantly rumbled into by the hound's attempted purr, the weaker and more distracted you feel!",
 		"'I FEEL SOFT. Y*U FEEL SOFT', the twice-corrupted canine states as its plush, rubbery interior grinds down over your curled-up body, squeezing inwards more and more easily with each repetition!")
