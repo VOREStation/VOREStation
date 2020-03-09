@@ -24,10 +24,15 @@ var/const/SAR 				=(1<<14)
 	primary_color = rgb(47,189,189)
 	secondary_color = rgb(127,223,223)
 
+/datum/department/planetside
+	name = DEPARTMENT_PLANET
+	color = "#555555"
+	sorting_order = 2 // Same as cargo in importance.
+
 /datum/job/pathfinder
 	title = "Pathfinder"
 	flag = PATHFINDER
-	department = "Exploration"
+	departments = list(DEPARTMENT_PLANET)
 	head_position = 1
 	department_flag = MEDSCI
 	faction = "Station"
@@ -45,7 +50,7 @@ var/const/SAR 				=(1<<14)
 /datum/job/pilot
 	title = "Pilot"
 	flag = PILOT
-	department = "Exploration"
+	departments = list(DEPARTMENT_PLANET)
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
@@ -61,7 +66,7 @@ var/const/SAR 				=(1<<14)
 /datum/job/explorer
 	title = "Explorer"
 	flag = EXPLORER
-	department = "Exploration"
+	departments = list(DEPARTMENT_PLANET)
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 3
@@ -76,7 +81,7 @@ var/const/SAR 				=(1<<14)
 /datum/job/sar
 	title = "Field Medic"
 	flag = SAR
-	department = "Exploration"
+	departments = list(DEPARTMENT_PLANET)
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
@@ -95,7 +100,7 @@ var/const/SAR 				=(1<<14)
 	timeoff_factor = -1
 	total_positions = -1
 	faction = "Station"
-	department = "Exploration"
+	departments = list(DEPARTMENT_PLANET)
 	supervisors = "nobody! Enjoy your time off"
 	selection_color = "#999440"
 	access = list(access_maint_tunnels, access_external_airlocks)
