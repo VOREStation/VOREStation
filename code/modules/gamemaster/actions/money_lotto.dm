@@ -1,6 +1,6 @@
 /datum/gm_action/money_lotto
 	name = "lottery win"
-	departments = list(ROLE_EVERYONE)
+	departments = list(DEPARTMENT_EVERYONE)
 	var/winner_name = "John Smith"
 	var/winner_sum = 0
 	var/deposit_success = 0
@@ -36,4 +36,4 @@
 	news_network.SubmitArticle(body, author, channel, null, 1)
 
 /datum/gm_action/money_lotto/get_weight()
-	return 25 * metric.count_people_in_department(ROLE_EVERYONE)
+	return 25 * metric.count_people_in_department(DEPARTMENT_EVERYONE)

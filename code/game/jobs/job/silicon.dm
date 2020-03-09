@@ -1,6 +1,8 @@
 /datum/job/ai
 	title = "AI"
 	flag = AI
+	departments = list(DEPARTMENT_SYNTHETIC)
+	sorting_order = 1 // Be above their borgs.
 	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 0 // Not used for AI, see is_position_available below and modules/mob/living/silicon/ai/latejoin.dm
@@ -12,6 +14,7 @@
 	account_allowed = 0
 	economic_modifier = 0
 	has_headset = FALSE
+	assignable = FALSE
 
 /datum/job/ai/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -28,6 +31,7 @@
 /datum/job/cyborg
 	title = "Cyborg"
 	flag = CYBORG
+	departments = list(DEPARTMENT_SYNTHETIC)
 	department_flag = ENGSEC
 	faction = "Station"
 	total_positions = 2
@@ -39,6 +43,7 @@
 	account_allowed = 0
 	economic_modifier = 0
 	has_headset = FALSE
+	assignable = FALSE
 
 /datum/job/cyborg/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0

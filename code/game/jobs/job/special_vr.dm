@@ -1,6 +1,6 @@
 /datum/job/centcom_officer //For Business
 	title = "CentCom Officer"
-	department = "Command"
+	departments = list(DEPARTMENT_COMMAND)
 	head_position = 1
 	faction = "Station"
 	total_positions = 2
@@ -66,7 +66,7 @@
 /datum/job/clown
 	title = "Clown"
 	flag = CLOWN
-	department = "Civilian"
+	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = -1
@@ -90,7 +90,7 @@
 /datum/job/mime
 	title = "Mime"
 	flag = MIME
-	department = "Civilian"
+	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = -1

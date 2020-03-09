@@ -2,7 +2,8 @@
 	title = "Chief Medical Officer"
 	flag = CMO
 	head_position = 1
-	department = "Medical"
+	departments = list(DEPARTMENT_MEDICAL, DEPARTMENT_COMMAND)
+	sorting_order = 2
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 1
@@ -27,7 +28,7 @@
 /datum/job/doctor
 	title = "Medical Doctor"
 	flag = DOCTOR
-	department = "Medical"
+	departments = list(DEPARTMENT_MEDICAL)
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 5
@@ -48,7 +49,7 @@
 /datum/job/chemist
 	title = "Chemist"
 	flag = CHEMIST
-	department = "Medical"
+	departments = list(DEPARTMENT_MEDICAL)
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
@@ -68,7 +69,7 @@
 /datum/job/geneticist
 	title = "Geneticist"
 	flag = GENETICIST
-	department = "Medical"
+	departments = list(DEPARTMENT_MEDICAL, DEPARTMENT_RESEARCH)
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 0
@@ -85,7 +86,7 @@
 /datum/job/psychiatrist
 	title = "Psychiatrist"
 	flag = PSYCHIATRIST
-	department = "Medical"
+	departments = list(DEPARTMENT_MEDICAL)
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 1
@@ -101,7 +102,7 @@
 /datum/job/paramedic
 	title = "Paramedic"
 	flag = PARAMEDIC
-	department = "Medical"
+	departments = list(DEPARTMENT_MEDICAL)
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2

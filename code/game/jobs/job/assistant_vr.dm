@@ -1,7 +1,7 @@
 /datum/job/intern
 	title = "Intern"
 	flag = INTERN
-	department = "Civilian"
+	departments = list(DEPARTMENT_CIVILIAN)
 	department_flag = ENGSEC // Ran out of bits
 	faction = "Station"
 	total_positions = -1
