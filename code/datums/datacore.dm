@@ -73,16 +73,12 @@
 		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_CARGO))
 			car[name] = rank
 			department = 1
-<<<<<<< HEAD
-		//VOREStation Edit Begin
-		if(real_rank in planet_positions)
-			pla[name] = rank
+		//VOREStation Add Begin
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_PLANET))
+			car[name] = rank
 			department = 1
-		//VOREStation Edit End
-		if(real_rank in civilian_positions)
-=======
+		//VOREStation Add End
 		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_CIVILIAN))
->>>>>>> 24fbd0b... Half-Refactors Jobs (#6762)
 			civ[name] = rank
 			department = 1
 		if(!department && !(name in heads))
