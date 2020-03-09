@@ -26,7 +26,7 @@ var/const/SAR 				=(1<<14)
 
 /datum/department/planetside
 	name = DEPARTMENT_PLANET
-	color = "#555555"
+	color = "#bab421"
 	sorting_order = 2 // Same as cargo in importance.
 
 /datum/job/pathfinder
@@ -34,6 +34,7 @@ var/const/SAR 				=(1<<14)
 	flag = PATHFINDER
 	departments = list(DEPARTMENT_PLANET)
 	head_position = 1
+	sorting_order = 1 // above the other explorers
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 1
