@@ -245,7 +245,7 @@
 #define DEPARTMENT_RESEARCH			"Research"
 #define DEPARTMENT_CARGO			"Cargo"
 #define DEPARTMENT_CIVILIAN			"Civilian"
-#define DEPARTMENT_PLANET			"Planetside" // I hate having this be here and not in a SC file. Hopefully someday the manifest can be rewritten to be map-agnostic.
+#define DEPARTMENT_PLANET			"Exploration" //VOREStation Edit // I hate having this be here and not in a SC file. Hopefully someday the manifest can be rewritten to be map-agnostic.
 #define DEPARTMENT_SYNTHETIC		"Synthetic"
 
 // These are mostly for the department guessing code and event system.
