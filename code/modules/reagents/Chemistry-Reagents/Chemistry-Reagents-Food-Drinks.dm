@@ -134,6 +134,14 @@
 	nutriment_factor = 10
 	color = "#FFFFFF"
 
+/datum/reagent/nutriment/yeast
+	name = "Yeast"
+	id = "yeast"
+	description = "For making bread rise!"
+	taste_description = "yeast"
+	nutriment_factor = 1
+	color = "#D3AF70"
+
 /datum/reagent/nutriment/flour
 	name = "Flour"
 	id = "flour"

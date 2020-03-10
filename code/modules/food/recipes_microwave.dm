@@ -611,7 +611,7 @@ I said no!
 	result = /obj/item/weapon/reagent_containers/food/snacks/monkeysdelight
 
 /datum/recipe/microwave/baguette
-	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)
+	reagents = list("sodiumchloride" = 1, "blackpepper" = 1, "yeast" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
@@ -619,7 +619,7 @@ I said no!
 	result = /obj/item/weapon/reagent_containers/food/snacks/baguette
 
 /datum/recipe/microwave/croissant
-	reagents = list("sodiumchloride" = 1, "water" = 5, "milk" = 5)
+	reagents = list("sodiumchloride" = 1, "water" = 5, "milk" = 5, "yeast" = 5)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/dough)
 	result = /obj/item/weapon/reagent_containers/food/snacks/croissant
 
@@ -631,10 +631,8 @@ I said no!
 	result = /obj/item/weapon/reagent_containers/food/snacks/fishandchips
 
 /datum/recipe/microwave/bread
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/dough,
-		/obj/item/weapon/reagent_containers/food/snacks/egg
-	)
+	reagents = list("yeast" = 5)
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/dough)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/bread
 
 /datum/recipe/microwave/sandwich
