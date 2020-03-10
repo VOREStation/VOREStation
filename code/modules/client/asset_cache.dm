@@ -257,6 +257,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	var/list/common_dirs = list(
 		"nano/css/",
 		"nano/images/",
+		"nano/images/modular_computers/",
 		"nano/js/"
 	)
 	var/list/uncommon_dirs = list(
