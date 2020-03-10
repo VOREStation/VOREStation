@@ -1378,8 +1378,6 @@
 	M.adjustOxyLoss(-4 * removed)
 	M.adjustToxLoss(-2 * removed)
 	M.adjustCloneLoss(-2 * removed)
-<<<<<<< HEAD
-=======
 
 /datum/reagent/menthol
 	name = "Menthol"
@@ -1391,4 +1389,3 @@
 	metabolism = REM * 0.002
 	overdose = REAGENTS_OVERDOSE * 0.25
 	scannable = 1
->>>>>>> aee62cf... Merge pull request #6797 from Cerebulon/mentholfix
