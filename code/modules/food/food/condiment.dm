@@ -98,6 +98,21 @@
 				name = "Sugar"
 				desc = "Tastey space sugar!"
 				center_of_mass = list("x"=16, "y"=6)
+			if("peanutbutter")
+				name = "Peanut Butter"
+				desc = "A jar of smooth peanut butter."
+				icon_state = "peanutbutter"
+				center_of_mass = list("x"=16, "y"=6)
+			if("mayo")
+				name = "Mayonnaise"
+				desc = "A jar of mayonnaise!"
+				icon_state = "mayo"
+				center_of_mass = list("x"=16, "y"=6)
+			if("yeast")
+				name = "Yeast"
+				desc = "This is what you use to make bread fluffy."
+				icon_state = "yeast"
+				center_of_mass = list("x"=16, "y"=6)
 			else
 				name = "Misc Condiment Bottle"
 				if (reagents.reagent_list.len==1)
@@ -134,6 +149,9 @@
 	. = ..()
 	reagents.add_reagent("capsaicin", 50)
 
+/obj/item/weapon/reagent_containers/food/condiment/cornoil
+	name = "Corn Oil"
+
 /obj/item/weapon/reagent_containers/food/condiment/cornoil/Initialize()
 	. = ..()
 	reagents.add_reagent("cornoil", 50)
@@ -145,6 +163,13 @@
 /obj/item/weapon/reagent_containers/food/condiment/soysauce/Initialize()
 	. = ..()
 	reagents.add_reagent("soysauce", 50)
+
+/obj/item/weapon/reagent_containers/food/condiment/yeast
+	name = "Yeast"
+
+/obj/item/weapon/reagent_containers/food/condiment/yeast/Initialize()
+	. = ..()
+	reagents.add_reagent("yeast", 50)
 
 /obj/item/weapon/reagent_containers/food/condiment/small
 	possible_transfer_amounts = list(1,20)
