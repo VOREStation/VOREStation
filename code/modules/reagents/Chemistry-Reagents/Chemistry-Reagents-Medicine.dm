@@ -1378,3 +1378,14 @@
 	M.adjustOxyLoss(-4 * removed)
 	M.adjustToxLoss(-2 * removed)
 	M.adjustCloneLoss(-2 * removed)
+
+/datum/reagent/menthol
+	name = "Menthol"
+	id = "menthol"
+	description = "Tastes naturally minty, and imparts a very mild numbing sensation."
+	taste_description = "mint"
+	reagent_state = LIQUID
+	color = "#80af9c"
+	metabolism = REM * 0.002
+	overdose = REAGENTS_OVERDOSE * 0.25
+	scannable = 1
