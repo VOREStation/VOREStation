@@ -1378,3 +1378,17 @@
 	M.adjustOxyLoss(-4 * removed)
 	M.adjustToxLoss(-2 * removed)
 	M.adjustCloneLoss(-2 * removed)
+<<<<<<< HEAD
+=======
+
+/datum/reagent/menthol
+	name = "Menthol"
+	id = "menthol"
+	description = "Tastes naturally minty, and imparts a very mild numbing sensation."
+	taste_description = "mint"
+	reagent_state = LIQUID
+	color = "#80af9c"
+	metabolism = REM * 0.002
+	overdose = REAGENTS_OVERDOSE * 0.25
+	scannable = 1
+>>>>>>> aee62cf... Merge pull request #6797 from Cerebulon/mentholfix
