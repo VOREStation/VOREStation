@@ -1,7 +1,7 @@
 /datum/job/centcom_officer //For Business
 	title = "CentCom Officer"
 	departments = list(DEPARTMENT_COMMAND)
-	head_position = 1
+	department_accounts = list(DEPARTMENT_COMMAND, DEPARTMENT_ENGINEERING, DEPARTMENT_MEDICAL, DEPARTMENT_RESEARCH, DEPARTMENT_SECURITY, DEPARTMENT_CARGO, DEPARTMENT_PLANET, DEPARTMENT_CIVILIAN)
 	faction = "Station"
 	total_positions = 2
 	spawn_positions = 1
