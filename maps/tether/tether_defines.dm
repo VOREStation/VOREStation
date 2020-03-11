@@ -246,7 +246,8 @@
 		"tether_space_SE", //station1, bottom right of space,
 		"tether_space_NE", //station1, top right of space,
 		"tether_space_SW", //station3, bottom left of space,
-		"tether_excursion_hangar" //Excursion shuttle hangar
+		"tether_excursion_hangar", //Excursion shuttle hangar,
+		"tourbus_dock" //Surface large hangar
 		)
 
 // For making the 6-in-1 holomap, we calculate some offsets
