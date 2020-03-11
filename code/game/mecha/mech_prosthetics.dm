@@ -13,8 +13,8 @@
 
 	var/speed = 1
 	var/mat_efficiency = 1
-	var/list/materials = list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0, "plastic" = 0, MAT_PLASTEEL = 0, "gold" = 0, "silver" = 0, MAT_LEAD = 0, "osmium" = 0, "diamond" = 0, MAT_DURASTEEL = 0, "phoron" = 0, "uranium" = 0, MAT_VERDANTIUM = 0, MAT_MORPHIUM = 0)
-	var/list/hidden_materials = list(MAT_DURASTEEL, MAT_VERDANTIUM, MAT_MORPHIUM)
+	var/list/materials = list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0, "plastic" = 0, MAT_GRAPHITE = 0, MAT_PLASTEEL = 0, "gold" = 0, "silver" = 0, MAT_LEAD = 0, "osmium" = 0, "diamond" = 0, MAT_DURASTEEL = 0, "phoron" = 0, "uranium" = 0, MAT_VERDANTIUM = 0, MAT_MORPHIUM = 0)
+	var/list/hidden_materials = list(MAT_DURASTEEL, MAT_GRAPHITE, MAT_VERDANTIUM, MAT_MORPHIUM)
 	var/res_max_amount = 200000
 
 	var/datum/research/files
