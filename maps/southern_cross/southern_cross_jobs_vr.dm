@@ -33,7 +33,7 @@ var/const/SAR 				=(1<<14)
 	title = "Pathfinder"
 	flag = PATHFINDER
 	departments = list(DEPARTMENT_PLANET)
-	head_position = 1
+	departments_managed = list(DEPARTMENT_PLANET)
 	sorting_order = 1 // above the other explorers
 	department_flag = MEDSCI
 	faction = "Station"
@@ -47,6 +47,7 @@ var/const/SAR 				=(1<<14)
 	access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_research, access_gateway)
 	minimal_access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_research, access_gateway)
 	outfit_type = /decl/hierarchy/outfit/job/pathfinder
+	job_description = "	The Pathfinder's job is to lead and manage expeditions, and is the primary authority on all off-station expeditions."
 
 /datum/job/pilot
 	title = "Pilot"
@@ -63,6 +64,7 @@ var/const/SAR 				=(1<<14)
 	access = list(access_pilot)
 	minimal_access = list(access_pilot)
 	outfit_type = /decl/hierarchy/outfit/job/pilot
+	job_description = "A Pilot flies the various shuttles in the Virgo-Erigone System."
 
 /datum/job/explorer
 	title = "Explorer"
@@ -78,6 +80,7 @@ var/const/SAR 				=(1<<14)
 	access = list(access_explorer, access_research)
 	minimal_access = list(access_explorer, access_research)
 	outfit_type = /decl/hierarchy/outfit/job/explorer2
+	job_description = "An Explorer searches for interesting things, and returns them to the station."
 
 /datum/job/sar
 	title = "Field Medic"
@@ -94,6 +97,7 @@ var/const/SAR 				=(1<<14)
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_eva, access_maint_tunnels, access_external_airlocks, access_pilot)
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_pilot)
 	outfit_type = /decl/hierarchy/outfit/job/medical/sar
+	job_description = "A Field medic works as the field doctor of expedition teams." 
 
 /datum/job/offduty_exploration
 	title = "Off-duty Explorer"
