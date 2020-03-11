@@ -16,7 +16,11 @@ SUBSYSTEM_DEF(inactivity)
 		var/client/C = client_list[client_list.len]
 		client_list.len--
 		if(!C.holder && C.is_afk(config.kick_inactive MINUTES) && !isobserver(C.mob))
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> 0150255... Merge pull request #6805 from Novacat/nova-accessory
 			to_chat(C, "<span class='warning'>You have been inactive for more than [config.kick_inactive] minute\s and have been disconnected.</span>")
 
 			var/information
@@ -55,4 +59,8 @@ SUBSYSTEM_DEF(inactivity)
 			return
 
 /datum/controller/subsystem/inactivity/stat_entry()
+<<<<<<< HEAD
 	..("Kicked: [number_kicked]")
+=======
+	..("Kicked: [number_kicked]")
+>>>>>>> 0150255... Merge pull request #6805 from Novacat/nova-accessory
