@@ -1,26 +1,11 @@
 // -- Datums -- //
 
-//We're including two new shuttle destinations. One is in orbit of our 'desert planet'
-/datum/shuttle_destination/excursion/virgo4orbit //Must be a unique path
-	name = "Virgo 4 Orbit" //The name of the destination
-	my_landmark = "tether_excursion_space" //The area the shuttle goes when it's settled at this destination
-	preferred_interim_tag = "tether_excursion_transit_space" //The area the shuttle goes while it's moving there
-	skip_me = TRUE //Must be TRUE on all away-mission destinations for reasons
-
-	routes_to_make = list( //These are routes the shuttle connects to,
-		/datum/shuttle_destination/excursion/bluespace = 30 SECONDS //This is a normal destination that's part of Tether
-	)
-
-//The other destination is landed on the surface
-/datum/shuttle_destination/excursion/beach
-	name = "Remote Coastal Area"
-	my_landmark = "tether_excursion_beach"
-	preferred_interim_tag = "tether_excursion_transit_sand"
-	skip_me = TRUE
-
-	routes_to_make = list(
-		/datum/shuttle_destination/excursion/virgo4orbit = 30 SECONDS //This is the above one
-	)
+/obj/effect/overmap/visitable/sector/virgo4
+	name = "Virgo 4"
+	desc = "Home to sand, and things with big fluffy ears."
+	icon_state = "globe"
+	color = "#ffd300" //Sandy
+	initial_generic_waypoints = list("beach_e", "beach_c", "beach_nw")
 
 //This is a special subtype of the thing that generates ores on a map
 //It will generate more rich ores because of the lower numbers than the normal one
@@ -57,14 +42,6 @@
 		return 1
 
 // -- Objs -- //
-
-//This is a special type of object which will build our shuttle paths, only if this map loads
-//You do need to place this object on the map somewhere.
-/obj/shuttle_connector/beach
-	name = "shuttle connector - beach"
-	shuttle_name = "Excursion Shuttle"
-	//This list needs to be in the correct order, and start with the one that connects to the rest of the shuttle 'network'
-	destinations = list(/datum/shuttle_destination/excursion/virgo4orbit, /datum/shuttle_destination/excursion/beach)
 
 //This object simply performs any map setup that needs to happen on our map if it loads.
 //As with the above, you do need to place this object on the map somewhere.

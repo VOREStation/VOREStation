@@ -37,16 +37,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/backup)
-"aaf" = (
-/obj/effect/shuttle_landmark{
-	base_area = /area/space;
-	base_turf = /turf/space;
-	docking_controller = null;
-	landmark_tag = "tether_excursion_nearby";
-	name = "Nearby Tether"
-	},
-/turf/space,
-/area/space)
 "aag" = (
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
@@ -7048,7 +7038,7 @@
 /obj/machinery/access_button{
 	command = "cycle_interior";
 	frequency = 1380;
-	master_tag = "tether_dock";
+	master_tag = "dock_d2a1";
 	name = "interior access button";
 	pixel_x = -28;
 	pixel_y = 26;
@@ -7514,16 +7504,6 @@
 /obj/structure/flora/ausbushes/brflowers,
 /turf/simulated/floor/grass,
 /area/hallway/station/atrium)
-"amK" = (
-/obj/effect/shuttle_landmark{
-	base_area = /area/space;
-	base_turf = /turf/space;
-	docking_controller = "specops_dock";
-	landmark_tag = "specops_tether";
-	name = "Tether Docking Arm"
-	},
-/turf/space,
-/area/space)
 "amL" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -14118,9 +14098,9 @@
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
 	base_turf = /turf/space;
-	docking_controller = "d1a2_dock";
-	landmark_tag = "tether_excursion_dockarm";
-	name = "Tether Docking Arm"
+	docking_controller = "dock_d1a2";
+	landmark_tag = "tether_dockarm_d1a2";
+	name = "Tether Dock D1A2"
 	},
 /turf/space,
 /area/space)
@@ -15947,7 +15927,7 @@
 /obj/machinery/access_button{
 	command = "cycle_interior";
 	frequency = 1380;
-	master_tag = "trade_shuttle_dock_airlock";
+	master_tag = "dock_d1l";
 	name = "interior access button";
 	pixel_x = -28;
 	pixel_y = -26;
@@ -16302,7 +16282,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
 	frequency = 1380;
-	id_tag = "trade_shuttle_dock_pump"
+	id_tag = "dock_d1l_pump"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
@@ -17726,7 +17706,7 @@
 /obj/machinery/access_button{
 	command = "cycle_interior";
 	frequency = 1380;
-	master_tag = "tether_dock";
+	master_tag = "dock_d1a3";
 	name = "interior access button";
 	pixel_x = 28;
 	pixel_y = 26;
@@ -18765,9 +18745,9 @@
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
 	base_turf = /turf/space;
-	docking_controller = "trade_shuttle_dock_airlock";
-	landmark_tag = "trade_station";
-	name = "Tether Docking Arm"
+	docking_controller = "dock_d1l";
+	landmark_tag = "tether_dockarm_d1l";
+	name = "Tether Dock D1L"
 	},
 /turf/space,
 /area/space)
@@ -22036,9 +22016,9 @@
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
 	base_turf = /turf/space;
-	docking_controller = "tether_dock_airlock";
-	landmark_tag = "tether_backup_high";
-	name = "Tether Docking Arm"
+	docking_controller = "dock_d1a3";
+	landmark_tag = "tether_dockarm_d1a3";
+	name = "Tether Dock D1A3"
 	},
 /turf/space,
 /area/space)
@@ -22210,7 +22190,7 @@
 /obj/machinery/access_button{
 	command = "cycle_exterior";
 	frequency = 1380;
-	master_tag = "d1a2_dock";
+	master_tag = "dock_d1a2";
 	name = "exterior access button";
 	pixel_x = -5;
 	pixel_y = -26;
@@ -22219,7 +22199,7 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "d1a2_dock_outer";
+	id_tag = "dock_d1a2_outer";
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -22229,7 +22209,7 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "d1a2_dock_inner";
+	id_tag = "dock_d1a2_inner";
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -22242,25 +22222,25 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
 	frequency = 1380;
-	id_tag = "d1a2_dock_pump"
+	id_tag = "dock_d1a2_pump"
 	},
 /obj/machinery/light/small,
 /obj/machinery/airlock_sensor{
 	frequency = 1380;
-	id_tag = "d1a2_dock_sensor";
+	id_tag = "dock_d1a2_sensor";
 	pixel_x = 0;
 	pixel_y = -25
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	frequency = 1380;
-	id_tag = "d1a2_dock";
+	id_tag = "dock_d1a2";
 	pixel_x = 0;
 	pixel_y = 30;
 	req_one_access = list(13);
-	tag_airpump = "d1a2_dock_pump";
-	tag_chamber_sensor = "d1a2_dock_sensor";
-	tag_exterior_door = "d1a2_dock_outer";
-	tag_interior_door = "d1a2_dock_inner"
+	tag_airpump = "dock_d1a2_pump";
+	tag_chamber_sensor = "dock_d1a2_sensor";
+	tag_exterior_door = "dock_d1a2_outer";
+	tag_interior_door = "dock_d1a2_inner"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
@@ -22268,7 +22248,7 @@
 /obj/machinery/access_button{
 	command = "cycle_interior";
 	frequency = 1380;
-	master_tag = "d1a2_dock";
+	master_tag = "dock_d1a2";
 	name = "interior access button";
 	pixel_x = -28;
 	pixel_y = 26;
@@ -22297,14 +22277,14 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "specops_dock_outer";
+	id_tag = "dock_d2a2_outer";
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
 /obj/machinery/access_button{
 	command = "cycle_exterior";
 	frequency = 1380;
-	master_tag = "specops_dock";
+	master_tag = "dock_d2a2";
 	name = "exterior access button";
 	pixel_x = -5;
 	pixel_y = -26;
@@ -22316,7 +22296,7 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "specops_dock_inner";
+	id_tag = "dock_d2a2_inner";
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -22329,23 +22309,23 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
 	frequency = 1380;
-	id_tag = "specops_dock_pump"
+	id_tag = "dock_d2a2_pump"
 	},
 /obj/machinery/light/small,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	frequency = 1380;
-	id_tag = "specops_dock";
+	id_tag = "dock_d2a2";
 	pixel_x = 0;
 	pixel_y = 30;
 	req_one_access = list(13);
-	tag_airpump = null;
-	tag_chamber_sensor = null;
-	tag_exterior_door = null;
-	tag_interior_door = null
+	tag_airpump = "dock_d2a2_pump";
+	tag_chamber_sensor = "dock_d2a2_sensor";
+	tag_exterior_door = "dock_d2a2_outer";
+	tag_interior_door = "dock_d2a2_inner"
 	},
 /obj/machinery/airlock_sensor{
 	frequency = 1380;
-	id_tag = "specops_dock_sensor";
+	id_tag = "dock_d2a2_sensor";
 	pixel_x = 0;
 	pixel_y = -25
 	},
@@ -22362,7 +22342,7 @@
 /obj/machinery/access_button{
 	command = "cycle_interior";
 	frequency = 1380;
-	master_tag = "specops_dock";
+	master_tag = "dock_d2a2";
 	name = "interior access button";
 	pixel_x = -28;
 	pixel_y = 26;
@@ -22455,7 +22435,7 @@
 /obj/machinery/access_button{
 	command = "cycle_exterior";
 	frequency = 1380;
-	master_tag = "d1a1_dock";
+	master_tag = "dock_d1a1";
 	name = "exterior access button";
 	pixel_x = -5;
 	pixel_y = -26;
@@ -22464,7 +22444,7 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "d1a1_dock_outer";
+	id_tag = "dock_d1a1_outer";
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -22477,7 +22457,7 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "d1a1_dock_inner";
+	id_tag = "dock_d1a1_inner";
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -22487,25 +22467,25 @@
 /obj/machinery/light/small,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	frequency = 1380;
-	id_tag = "d1a1_dock";
+	id_tag = "dock_d1a1";
 	pixel_x = 0;
 	pixel_y = 30;
 	req_one_access = list(13);
-	tag_airpump = "d1a1_dock_pump";
-	tag_chamber_sensor = "d1a1_dock_sensor";
-	tag_exterior_door = "d1a1_dock_outer";
-	tag_interior_door = "d1a1_dock_inner"
+	tag_airpump = "dock_d1a1_pump";
+	tag_chamber_sensor = "dock_d1a1_sensor";
+	tag_exterior_door = "dock_d1a1_outer";
+	tag_interior_door = "dock_d1a1_inner"
 	},
 /obj/machinery/airlock_sensor{
 	frequency = 1380;
-	id_tag = "d1a1_dock_sensor";
+	id_tag = "dock_d1a1_sensor";
 	pixel_x = 0;
 	pixel_y = -25
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
 	frequency = 1380;
-	id_tag = "d1a1_dock_pump"
+	id_tag = "dock_d1a1_pump"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
@@ -22513,7 +22493,7 @@
 /obj/machinery/access_button{
 	command = "cycle_interior";
 	frequency = 1380;
-	master_tag = "d1a1_dock";
+	master_tag = "dock_d1a1";
 	name = "interior access button";
 	pixel_x = -28;
 	pixel_y = 26;
@@ -22529,7 +22509,7 @@
 /obj/machinery/access_button{
 	command = "cycle_exterior";
 	frequency = 1380;
-	master_tag = "d2a1_dock";
+	master_tag = "dock_d2a1";
 	name = "exterior access button";
 	pixel_x = -5;
 	pixel_y = -26;
@@ -22538,7 +22518,7 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "d2a1_dock_outer";
+	id_tag = "dock_d2a1_outer";
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -22548,7 +22528,7 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "d2a1_dock_inner";
+	id_tag = "dock_d2a1_inner";
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -22561,25 +22541,25 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
 	frequency = 1380;
-	id_tag = "d2a1_dock_pump"
+	id_tag = "dock_d2a1_pump"
 	},
 /obj/machinery/light/small,
 /obj/machinery/airlock_sensor{
 	frequency = 1380;
-	id_tag = "d2a1_dock_sensor";
+	id_tag = "dock_d2a1_sensor";
 	pixel_x = 0;
 	pixel_y = -25
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	frequency = 1380;
-	id_tag = "d2a1_dock_airlock";
+	id_tag = "dock_d2a1";
 	pixel_x = 0;
 	pixel_y = 30;
 	req_one_access = list(13);
-	tag_airpump = "d2a1_dock_pump";
-	tag_chamber_sensor = "d2a1_dock_sensor";
-	tag_exterior_door = "d2a1_dock_outer";
-	tag_interior_door = "d2a1_dock_inner"
+	tag_airpump = "dock_d2a1_pump";
+	tag_chamber_sensor = "dock_d2a1_sensor";
+	tag_exterior_door = "dock_d2a1_outer";
+	tag_interior_door = "dock_d2a1_inner"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_two)
@@ -22631,7 +22611,7 @@
 /obj/machinery/access_button{
 	command = "cycle_interior";
 	frequency = 1380;
-	master_tag = "nuke_shuttle_dock";
+	master_tag = "dock_d2l";
 	name = "interior access button";
 	pixel_x = 26;
 	pixel_y = -26;
@@ -22644,7 +22624,7 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "trade_shuttle_dock_inner";
+	id_tag = "dock_d1l_inner";
 	locked = 1;
 	name = "Dock One Internal Access"
 	},
@@ -22654,7 +22634,7 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "trade_shuttle_dock_inner";
+	id_tag = "dock_d1l_inner";
 	locked = 1;
 	name = "Dock One Internal Access"
 	},
@@ -22668,7 +22648,7 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "nuke_shuttle_dock_inner";
+	id_tag = "dock_d2l_inner";
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -22679,7 +22659,7 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "nuke_shuttle_dock_inner";
+	id_tag = "dock_d2l_inner";
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -22695,14 +22675,14 @@
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	frequency = 1380;
-	id_tag = "trade_shuttle_dock_airlock";
+	id_tag = "dock_d1l";
 	pixel_x = 28;
 	pixel_y = 0;
 	req_one_access = list(13);
-	tag_airpump = "trade_shuttle_dock_pump";
-	tag_chamber_sensor = "trade_shuttle_dock_sensor";
-	tag_exterior_door = "trade_shuttle_dock_outer";
-	tag_interior_door = "trade_shuttle_dock_inner"
+	tag_airpump = "dock_d1l_pump";
+	tag_chamber_sensor = "dock_d1l_sensor";
+	tag_exterior_door = "dock_d1l_outer";
+	tag_interior_door = "dock_d1l_inner"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
@@ -22722,14 +22702,14 @@
 "bQk" = (
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	frequency = 1380;
-	id_tag = "nuke_shuttle_dock";
+	id_tag = "dock_d2l";
 	pixel_x = -28;
 	pixel_y = 0;
 	req_one_access = list(13);
-	tag_airpump = null;
-	tag_chamber_sensor = null;
-	tag_exterior_door = null;
-	tag_interior_door = null
+	tag_airpump = "dock_d2l_pump";
+	tag_chamber_sensor = "dock_d2l_sensor";
+	tag_exterior_door = "dock_d2l_outer";
+	tag_interior_door = "dock_d2l_inner"
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
@@ -22760,11 +22740,11 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
 	frequency = 1380;
-	id_tag = "trade_shuttle_dock_pump"
+	id_tag = "dock_d1l_pump"
 	},
 /obj/machinery/airlock_sensor{
 	frequency = 1380;
-	id_tag = "trade_shuttle_dock_sensor";
+	id_tag = "dock_d1l_sensor";
 	pixel_x = 30;
 	pixel_y = 8
 	},
@@ -22774,11 +22754,11 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
 	frequency = 1380;
-	id_tag = "nuke_shuttle_dock_pump"
+	id_tag = "dock_d2l_pump"
 	},
 /obj/machinery/airlock_sensor{
 	frequency = 1380;
-	id_tag = "nuke_shuttle_dock_sensor";
+	id_tag = "dock_d2l_sensor";
 	pixel_x = -30;
 	pixel_y = 8
 	},
@@ -22791,7 +22771,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
 	frequency = 1380;
-	id_tag = "nuke_shuttle_dock_pump"
+	id_tag = "dock_d2l_pump"
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
@@ -22819,7 +22799,7 @@
 /obj/machinery/access_button{
 	command = "cycle_exterior";
 	frequency = 1380;
-	master_tag = "trade_shuttle_dock_airlock";
+	master_tag = "dock_d1l";
 	name = "exterior access button";
 	pixel_x = 28;
 	pixel_y = -6;
@@ -22828,7 +22808,7 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "trade_shuttle_dock_outer";
+	id_tag = "dock_d1l_outer";
 	locked = 1;
 	name = "Dock One External Access"
 	},
@@ -22838,7 +22818,7 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "trade_shuttle_dock_outer";
+	id_tag = "dock_d1l_outer";
 	locked = 1;
 	name = "Dock One External Access"
 	},
@@ -22848,14 +22828,14 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "nuke_shuttle_dock_outer";
+	id_tag = "dock_d2l_outer";
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
 /obj/machinery/access_button{
 	command = "cycle_exterior";
 	frequency = 1380;
-	master_tag = "nuke_shuttle_dock";
+	master_tag = "dock_d2l";
 	name = "exterior access button";
 	pixel_x = -28;
 	pixel_y = -6;
@@ -22884,7 +22864,7 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "nuke_shuttle_dock_outer";
+	id_tag = "dock_d2l_outer";
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -23005,9 +22985,9 @@
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
 	base_turf = /turf/space;
-	docking_controller = "nuke_shuttle_dock_airlock";
-	landmark_tag = "merc_tether_dock";
-	name = "Tether Docking Arm"
+	docking_controller = "dock_d2l";
+	landmark_tag = "tether_dockarm_d2l";
+	name = "Tether Dock D2L"
 	},
 /turf/space,
 /area/space)
@@ -23177,6 +23157,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/station/dock_two)
+"cwR" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/space;
+	base_turf = /turf/space;
+	landmark_tag = "tether_space_NE";
+	name = "Near Tether (NE)"
+	},
+/turf/space,
+/area/space)
 "dlV" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -23222,7 +23211,7 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "tether_dock_inner";
+	id_tag = "dock_d1a3_inner";
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -23253,25 +23242,25 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
 	frequency = 1380;
-	id_tag = "tether_dock_pump"
+	id_tag = "dock_d1a3_pump"
 	},
 /obj/machinery/light/small,
 /obj/machinery/airlock_sensor{
 	frequency = 1380;
-	id_tag = "tether_dock_sensor";
+	id_tag = "dock_d1a3_sensor";
 	pixel_x = 0;
 	pixel_y = -25
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	frequency = 1380;
-	id_tag = "tether_dock_airlock";
+	id_tag = "dock_d1a3";
 	pixel_x = 0;
 	pixel_y = 30;
 	req_one_access = list(13);
-	tag_airpump = "tether_dock_pump";
-	tag_chamber_sensor = "tether_dock_sensor";
-	tag_exterior_door = "tether_dock_outer";
-	tag_interior_door = "tether_dock_inner"
+	tag_airpump = "dock_d1a3_pump";
+	tag_chamber_sensor = "dock_d1a3_sensor";
+	tag_exterior_door = "dock_d1a3_outer";
+	tag_interior_door = "dock_d1a3_inner"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
@@ -23287,6 +23276,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/station/dock_one)
+"mnt" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/space;
+	base_turf = /turf/space;
+	landmark_tag = "tether_space_SW";
+	name = "Near Tether (SW)"
+	},
+/turf/space,
+/area/space)
 "mNU" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -23307,6 +23305,16 @@
 /obj/random/tech_supply,
 /turf/simulated/floor,
 /area/engineering/shaft)
+"odO" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/space;
+	base_turf = /turf/space;
+	docking_controller = "dock_d1a1";
+	landmark_tag = "tether_dockarm_d1a1";
+	name = "Tether Dock D1A1"
+	},
+/turf/space,
+/area/space)
 "oEH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -23314,6 +23322,16 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
+"pQN" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/space;
+	base_turf = /turf/space;
+	docking_controller = "dock_d2a2";
+	landmark_tag = "tether_dockarm_d2a2";
+	name = "Tether Dock D2A2"
+	},
+/turf/space,
+/area/space)
 "qBc" = (
 /obj/structure/disposalpipe/junction{
 	dir = 1;
@@ -23328,20 +23346,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_one)
-"ssv" = (
-/obj/effect/shuttle_landmark{
-	base_area = /area/space;
-	base_turf = /turf/space;
-	landmark_tag = "skipjack_outside";
-	name = "Skipjack Near Tether"
-	},
-/turf/space,
-/area/space)
 "tKI" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
 	frequency = 1380;
-	master_tag = "tether_dock";
+	master_tag = "dock_d1a3";
 	name = "exterior access button";
 	pixel_x = -5;
 	pixel_y = -26;
@@ -23350,7 +23359,7 @@
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "tether_dock_outer";
+	id_tag = "dock_d1a3_outer";
 	locked = 1;
 	name = "Docking Port Airlock"
 	},
@@ -23366,6 +23375,16 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/tether/station/dock_one)
+"vmt" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/space;
+	base_turf = /turf/space;
+	docking_controller = "dock_d2a1";
+	landmark_tag = "tether_dockarm_d2a1";
+	name = "Tether Dock D2A1"
+	},
+/turf/space,
+/area/space)
 "vyI" = (
 /mob/living/simple_mob/animal/passive/bird/parrot/poly,
 /turf/simulated/floor/outdoors/grass/forest,
@@ -28043,7 +28062,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+odO
 aaa
 aaa
 aaa
@@ -30875,6 +30894,7 @@ aaa
 aaa
 aaa
 aaa
+pQN
 aaa
 aaa
 aaa
@@ -30882,8 +30902,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+vmt
 aaa
 aaa
 aaa
@@ -31017,7 +31036,7 @@ aaa
 aaa
 aaa
 aaa
-amK
+aaa
 aaa
 aaa
 aaa
@@ -31453,7 +31472,7 @@ aIA
 bXl
 bPx
 bXl
-aCF
+aCK
 aCK
 aaa
 aaa
@@ -34635,7 +34654,7 @@ aaa
 aaa
 aaa
 aaa
-aaf
+aaa
 aaa
 aaa
 aaa
@@ -39278,7 +39297,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+mnt
 aaa
 aaa
 aaa
@@ -39751,7 +39770,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+cwR
 aaa
 aaa
 aaa
@@ -40888,7 +40907,7 @@ aaa
 aaa
 aaa
 aaa
-ssv
+aaa
 aaa
 aaa
 aaa

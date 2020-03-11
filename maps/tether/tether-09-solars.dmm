@@ -5,9 +5,6 @@
 "ab" = (
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/mine/explored)
-"ac" = (
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/shuttle/antag_ground)
 "ad" = (
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/mine/explored)
@@ -846,15 +843,6 @@
 "bN" = (
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/shuttle/tether/crash1)
-"bO" = (
-/obj/effect/shuttle_landmark{
-	base_area = /area/mine/explored;
-	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b;
-	landmark_tag = "merc_tether_solars";
-	name = "Tether Solar Farm"
-	},
-/turf/simulated/floor/outdoors/dirt/virgo3b,
-/area/mine/explored)
 "bP" = (
 /obj/structure/symbol/em,
 /turf/simulated/wall,
@@ -8185,6 +8173,24 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
+"zg" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/mine/explored;
+	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b;
+	landmark_tag = "tether_solars_sw";
+	name = "Tether Solar Farm (SW)"
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/mine/explored)
+"SO" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/mine/explored;
+	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b;
+	landmark_tag = "tether_solars_ne";
+	name = "Tether Solar Farm (NE)"
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/mine/explored)
 
 (1,1,1) = {"
 aa
@@ -10616,16 +10622,16 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -10758,16 +10764,16 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -10900,16 +10906,16 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -11042,16 +11048,16 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -11145,7 +11151,7 @@ ab
 ab
 ab
 ab
-ab
+zg
 ab
 ab
 ab
@@ -11184,16 +11190,16 @@ ab
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ab
 ab
 ab
@@ -22125,7 +22131,7 @@ ab
 ab
 ad
 ad
-bO
+ad
 ad
 ad
 ad
@@ -23113,7 +23119,7 @@ ab
 ab
 ab
 ab
-ab
+SO
 ab
 ab
 ab

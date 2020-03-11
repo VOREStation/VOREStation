@@ -37,6 +37,10 @@
 	full_name = "NSB Adephagia"
 	path = "tether"
 
+	use_overmap = TRUE
+	overmap_z = Z_LEVEL_MISC
+	overmap_size = 20
+
 	zlevel_datum_type = /datum/map_z_level/tether
 
 	lobby_icon = 'icons/misc/title_vr.dmi'
@@ -106,6 +110,8 @@
 	spawnpoint_stayed = /datum/spawnpoint/cryo
 
 	meteor_strike_areas = list(/area/tether/surfacebase/outside/outside3)
+
+	default_skybox = /datum/skybox_settings/tether
 
 	unit_test_exempt_areas = list(
 		/area/tether/surfacebase/outside/outside1,
@@ -181,6 +187,10 @@
 
 	return 1
 
+/datum/skybox_settings/tether
+	icon_state = "space5"
+	use_stars = FALSE
+
 /datum/planet/virgo3b
 	expected_z_levels = list(
 		Z_LEVEL_SURFACE_LOW,
@@ -217,6 +227,27 @@
 			Z_LEVEL_AEROSTAT_SURFACE)
 	else
 		return list(srcz) //prevents runtimes when using CMC. any Z-level not defined above will be 'isolated' and only show to GPSes/CMCs on that same Z (e.g. CentCom).
+
+// Overmap represetation of tether
+/obj/effect/overmap/visitable/sector/virgo3b
+	name = "Virgo 3B"
+	desc = "Full of phoron, and home to the NSB Adephagia, where you can dock and refuel your craft."
+	base = 1
+	icon_state = "globe"
+	color = "#d35b5b"
+	initial_generic_waypoints = list(
+		"tether_dockarm_d1a1", //Bottom left,
+		"tether_dockarm_d1a2", //Top left,
+		"tether_dockarm_d1a3", //Left on inside,
+		"tether_dockarm_d2a1", //Bottom right,
+		"tether_dockarm_d2a2", //Top right,
+		"tether_dockarm_d1l", //End of left arm,
+		"tether_dockarm_d2l", //End of right arm,
+		"tether_space_SE", //station1, bottom right of space,
+		"tether_space_NE", //station1, top right of space,
+		"tether_space_SW", //station3, bottom left of space,
+		"tether_excursion_hangar" //Excursion shuttle hangar
+		)
 
 // For making the 6-in-1 holomap, we calculate some offsets
 #define TETHER_MAP_SIZE 140 // Width and height of compiled in tether z levels.
@@ -304,44 +335,3 @@
 	z = Z_LEVEL_MISC
 	name = "Misc"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_XENOARCH_EXEMPT
-
-/*
-/datum/map_z_level/tether/wilderness
-	name = "Wilderness"
-	flags = MAP_LEVEL_PLAYER
-	var/activated = 0
-	var/list/frozen_mobs = list()
-
-/datum/map_z_level/tether/wilderness/proc/activate_mobs()
-	if(activated && isemptylist(frozen_mobs))
-		return
-	activated = 1
-	for(var/mob/living/simple_mob/M in frozen_mobs)
-		M.life_disabled = 0
-		frozen_mobs -= M
-	frozen_mobs.Cut()
-
-/datum/map_z_level/tether/wilderness/wild_1
-	z = Z_LEVEL_SURFACE_WILDERNESS_1
-
-/datum/map_z_level/tether/wilderness/wild_2
-	z = Z_LEVEL_SURFACE_WILDERNESS_2
-
-/datum/map_z_level/tether/wilderness/wild_3
-	z = Z_LEVEL_SURFACE_WILDERNESS_3
-
-/datum/map_z_level/tether/wilderness/wild_4
-	z = Z_LEVEL_SURFACE_WILDERNESS_4
-
-/datum/map_z_level/tether/wilderness/wild_5
-	z = Z_LEVEL_SURFACE_WILDERNESS_5
-
-/datum/map_z_level/tether/wilderness/wild_6
-	z = Z_LEVEL_SURFACE_WILDERNESS_6
-
-/datum/map_z_level/tether/wilderness/wild_crash
-	z = Z_LEVEL_SURFACE_WILDERNESS_CRASH
-
-/datum/map_z_level/tether/wilderness/wild_ruins
-	z = Z_LEVEL_SURFACE_WILDERNESS_RUINS
-*/
