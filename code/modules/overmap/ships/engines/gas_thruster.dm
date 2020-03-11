@@ -68,12 +68,12 @@
 
 	use_power = USE_POWER_OFF
 	power_channel = EQUIP
-	idle_power_usage = 21600 //6 Wh per tick for default 2 capacitor. Gives them a reason to turn it off, really to nerf backup battery
+	idle_power_usage = 1000
 
 	var/datum/ship_engine/gas_thruster/controller
 	var/thrust_limit = 1		//Value between 1 and 0 to limit the resulting thrust
 	var/volume_per_burn = 15	//20 litres(with bin)
-	var/charge_per_burn = 36000	//10Wh for default 2 capacitor, chews through that battery power! Makes a trade off of fuel efficient vs energy efficient
+	var/charge_per_burn = 3600
 	var/boot_time = 35
 	var/next_on
 	var/blockage

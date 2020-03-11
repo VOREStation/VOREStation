@@ -46,7 +46,7 @@
 	var/datum/ship_engine/ion/controller
 	var/thrust_limit = 1
 	var/on = 1
-	var/burn_cost = 750
+	var/burn_cost = 7500
 	var/generated_thrust = 2.5
 
 /obj/machinery/ion_engine/Initialize()
