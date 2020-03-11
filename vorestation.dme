@@ -702,7 +702,11 @@
 #include "code\game\jobs\job_controller.dm"
 #include "code\game\jobs\jobs.dm"
 #include "code\game\jobs\whitelist.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\game\jobs\whitelist_vr.dm"
+=======
+#include "code\game\jobs\job\_alt_title.dm"
+>>>>>>> 9436bdb... Merge pull request #6725 from Meghan-Rossi/job_description_alt:polaris.dme
 #include "code\game\jobs\job\assistant.dm"
 #include "code\game\jobs\job\assistant_vr.dm"
 #include "code\game\jobs\job\captain.dm"

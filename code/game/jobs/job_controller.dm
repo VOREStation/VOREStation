@@ -11,7 +11,8 @@ var/global/datum/controller/occupations/job_master
 	var/list/unassigned = list()
 		//Debug info
 	var/list/job_debug = list()
-
+		//Cache of icons for job info window
+	var/list/job_icons = list()
 
 	proc/SetupOccupations(var/faction = "Station")
 		occupations = list()
@@ -435,14 +436,14 @@ var/global/datum/controller/occupations/job_master
 		log_game("SPECIES [key_name(H)] is a: \"[H.species.name]\"") //VOREStation Add
 
 		// If they're head, give them the account info for their department
-		if(H.mind && job.head_position && LAZYLEN(job.departments))
+		if(H.mind && job.department_accounts)
 			var/remembered_info = ""
-			var/datum/money_account/department_account = department_accounts[job.departments[1]]
-
-			if(department_account)
-				remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"
-				remembered_info += "<b>Your department's account pin is:</b> [department_account.remote_access_pin]<br>"
-				remembered_info += "<b>Your department's account funds are:</b> $[department_account.money]<br>"
+			for(var/D in job.department_accounts)
+				var/datum/money_account/department_account = department_accounts[D]
+				if(department_account)
+					remembered_info += "<b>Department account number ([D]):</b> #[department_account.account_number]<br>"
+					remembered_info += "<b>Department account pin ([D]):</b> [department_account.remote_access_pin]<br>"
+					remembered_info += "<b>Department account funds ([D]):</b> $[department_account.money]<br>"
 
 			H.mind.store_memory(remembered_info)
 
