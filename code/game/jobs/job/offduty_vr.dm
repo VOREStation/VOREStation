@@ -14,6 +14,10 @@
 	access = list(access_maint_tunnels)
 	minimal_access = list(access_maint_tunnels)
 	outfit_type = /decl/hierarchy/outfit/job/assistant/worker
+	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
+
+/datum/alt_title/offduty_civ
+	title = "Off-duty Worker"
 
 /datum/job/offduty_cargo
 	title = "Off-duty Cargo"
@@ -27,6 +31,10 @@
 	access = list(access_maint_tunnels)
 	minimal_access = list(access_maint_tunnels)
 	outfit_type = /decl/hierarchy/outfit/job/assistant/cargo
+	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
+
+/datum/alt_title/offduty_crg
+	title = "Off-duty Cargo"
 
 /datum/job/offduty_engineering
 	title = "Off-duty Engineer"
@@ -40,6 +48,10 @@
 	access = list(access_maint_tunnels, access_external_airlocks, access_construction)
 	minimal_access = list(access_maint_tunnels, access_external_airlocks)
 	outfit_type = /decl/hierarchy/outfit/job/assistant/engineer
+	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
+
+/datum/alt_title/offduty_eng
+	title = "Off-duty Engineer"
 
 /datum/job/offduty_medical
 	title = "Off-duty Medic"
@@ -53,6 +65,10 @@
 	access = list(access_maint_tunnels, access_external_airlocks)
 	minimal_access = list(access_maint_tunnels, access_external_airlocks)
 	outfit_type = /decl/hierarchy/outfit/job/assistant/medic
+	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
+
+/datum/alt_title/offduty_med
+	title = "Off-duty Medic"
 
 /datum/job/offduty_science
 	title = "Off-duty Scientist"
@@ -66,6 +82,10 @@
 	access = list(access_maint_tunnels)
 	minimal_access = list(access_maint_tunnels)
 	outfit_type = /decl/hierarchy/outfit/job/assistant/scientist
+	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
+
+/datum/alt_title/offduty_sci
+	title = "Off-duty Scientist"
 
 /datum/job/offduty_security
 	title = "Off-duty Officer"
@@ -79,3 +99,7 @@
 	access = list(access_maint_tunnels)
 	minimal_access = list(access_maint_tunnels)
 	outfit_type = /decl/hierarchy/outfit/job/assistant/officer
+	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
+
+/datum/alt_title/offduty_sec
+	title = "Off-duty Officer"

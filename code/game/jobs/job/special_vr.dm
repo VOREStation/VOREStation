@@ -14,6 +14,7 @@
 	whitelist_only = 1
 	latejoin_only = 1
 	outfit_type = /decl/hierarchy/outfit/job/centcom_officer
+	job_description = "A Central Command Officer is there on official business. Most of time. Whatever it is, they're a VIP."
 
 	minimum_character_age = 25
 	ideal_character_age = 40
@@ -76,10 +77,20 @@
 	economic_modifier = 1
 	access = list()
 	minimal_access = list()
-	alt_titles = list("Comedian","Jester")
+	job_description = "A Clown is there to entertain the crew and keep high morale using various harmless pranks and ridiculous jokes!"
+	alt_titles = list("Clown" = /datum/alt_title/clown, "Comedian" = /datum/alt_title/comedian, "Jester" = /datum/alt_title/jester)
 	whitelist_only = 1
 	latejoin_only = 1
 	outfit_type = /decl/hierarchy/outfit/job/clown
+
+/datum/alt_title/clown
+	title = "Clown"
+
+/datum/alt_title/comedian
+	title = "Comedian"
+
+/datum/alt_title/jester
+	title = "Jester"
 
 /datum/job/clown/get_access()
 	if(config.assistant_maint)
@@ -100,10 +111,20 @@
 	economic_modifier = 1
 	access = list()
 	minimal_access = list()
-	alt_titles = list("Performer","Interpretive Dancer")
+	job_description = "A Mime is there to entertain the crew and keep high morale using unbelievable performances and acting skills!"
+	alt_titles = list("Mime" = /datum/alt_title/mime, "Performer" = /datum/alt_title/performer, "Interpretive Dancer" = /datum/alt_title/interpretive_dancer)
 	whitelist_only = 1
 	latejoin_only = 1
 	outfit_type = /decl/hierarchy/outfit/job/mime
+
+/datum/alt_title/mime
+	title = "Mime"
+
+/datum/alt_title/performer
+	title = "Performer"
+
+/datum/alt_title/interpretive_dancer
+	title = "Interpretive Dancer"
 
 /datum/job/mime/get_access()
 	if(config.assistant_maint)
