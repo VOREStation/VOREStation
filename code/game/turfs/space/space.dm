@@ -3,18 +3,32 @@
 	name = "\proper space"
 	icon_state = "0"
 	dynamic_lighting = 0
+	plane = SPACE_PLANE
 
 	temperature = T20C
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
 	can_build_into_floor = TRUE
 	var/keep_sprite = FALSE
 //	heat_capacity = 700000 No.
+	var/static/list/dust_cache
+
+/turf/space/proc/build_dust_cache()
+	LAZYINITLIST(dust_cache)
+	for (var/i in 0 to 25)
+		var/image/im = image('icons/turf/space_dust.dmi', "[i]")
+		im.plane = DUST_PLANE
+		im.alpha = 128 //80
+		im.blend_mode = BLEND_ADD
+		dust_cache["[i]"] = im
 
 /turf/space/Initialize()
 	. = ..()
 	if(!keep_sprite)
-		icon_state = "[((x + y) ^ ~(x * y) + z) % 25]"
+		icon_state = "white"
 	update_starlight()
+	if (!dust_cache)
+		build_dust_cache()
+	add_overlay(dust_cache["[((x + y) ^ ~(x * y) + z) % 25]"])
 
 /turf/space/is_space()
 	return 1
