@@ -397,12 +397,12 @@
 "bc" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/firstaid/o2{
-	step_x = 2;
-	step_y = 2
+	pixel_x = 2;
+	pixel_y = 2
 	},
 /obj/item/weapon/storage/firstaid/regular{
-	step_x = -2;
-	step_y = -2
+	pixel_x = -2;
+	pixel_y = -2
 	},
 /obj/item/bodybag/cryobag,
 /turf/simulated/floor/tiled/steel_dirty,
