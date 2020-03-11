@@ -343,6 +343,8 @@ var/list/admin_verbs_mod = list(
 	/client/proc/cmd_mod_say,
 	/client/proc/cmd_event_say,
 	/datum/admins/proc/show_player_info,
+	/datum/admins/proc/show_traitor_panel,
+	/client/proc/colorooc,
 	/client/proc/player_panel_new,
 	/client/proc/dsay,
 	/datum/admins/proc/show_skills,
