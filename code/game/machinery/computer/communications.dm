@@ -65,10 +65,7 @@
 			src.state = STATE_DEFAULT
 		if("login")
 			var/mob/M = usr
-			var/obj/item/weapon/card/id/I = M.get_active_hand()
-			if (istype(I, /obj/item/device/pda))
-				var/obj/item/device/pda/pda = I
-				I = pda.id
+			var/obj/item/weapon/card/id/I = M.GetIdCard()
 			if (I && istype(I))
 				if(src.check_access(I))
 					authenticated = 1
@@ -109,7 +106,7 @@
 				if(message_cooldown)
 					to_chat(usr, "Please allow at least one minute to pass between announcements")
 					return
-				var/input = input(usr, "Please write a message to announce to the station crew.", "Priority Announcement")
+				var/input = input(usr, "Please write a message to announce to the station crew.", "Priority Announcement") as null|message
 				if(!input || !(usr in view(1,src)))
 					return
 				crew_announcement.Announce(input)
@@ -188,7 +185,10 @@
 				if(centcomm_message_cooldown)
 					to_chat(usr, "<font color='red'>Arrays recycling.  Please stand by.</font>")
 					return
-				var/input = sanitize(input("Please choose a message to transmit to [using_map.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
+				var/input = sanitize(input("Please choose a message to transmit to [using_map.boss_short] via quantum entanglement. \
+				Please be aware that this process is very expensive, and abuse will lead to... termination.  \
+				Transmission does not guarantee a response. \
+				There is a 30 second delay before you may send another message, be clear, full and concise.", "Central Command Quantum Messaging") as null|message)
 				if(!input || !(usr in view(1,src)))
 					return
 				CentCom_announce(input, usr)
