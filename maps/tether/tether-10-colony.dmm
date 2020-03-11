@@ -24178,7 +24178,7 @@
 /area/mothership/hallway)
 "Uo" = (
 /obj/item/rig_module/grenade_launcher/smoke,
-/obj/item/rig_module/grenade_launcher/cleaner,
+/obj/item/rig_module/cleaner_launcher,
 /obj/item/rig_module/grenade_launcher,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
