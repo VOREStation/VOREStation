@@ -142,3 +142,30 @@
 
 /obj/machinery/computer/shuttle_control/emp_act()
 	return
+
+
+GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/weapon/paper/dockingcodes)
+/hook/roundstart/proc/populate_dockingcodes()
+	for(var/paper in global.papers_dockingcode)
+		var/obj/item/weapon/paper/dockingcodes/dcp = paper
+		dcp.populate_info()
+	return TRUE
+
+/obj/item/weapon/paper/dockingcodes
+	name = "Docking Codes"
+	var/codes_from_z = null //So you can put codes from the station other places to give to antags or whatever
+
+/obj/item/weapon/paper/dockingcodes/proc/populate_info()
+	var/dockingcodes = null
+	var/z_to_check = codes_from_z ? codes_from_z : z
+	if(using_map.use_overmap)
+		var/obj/effect/overmap/visitable/location = map_sectors["[z_to_check]"]
+		if(location && location.docking_codes)
+			dockingcodes = location.docking_codes
+
+	if(!dockingcodes)
+		info = "<center><h2>Daily Docking Codes</h2></center><br>The docking security system is down for maintenance. Please exercise caution when shuttles dock and depart."
+	else
+		info = "<center><h2>Daily Docking Codes</h2></center><br>The docking codes for this shift are '[dockingcodes]'.<br>These codes are secret, as they will allow hostile shuttles to dock with impunity if discovered.<br>"
+	info_links = info
+	icon_state = "paper_words"
