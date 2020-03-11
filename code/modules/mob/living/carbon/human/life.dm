@@ -1523,7 +1523,7 @@
 	else
 		shock_stage = min(shock_stage, 160)
 		shock_stage = max(shock_stage-1, 0)
-		return
+		//vorestation removes return that caused the code to not keep going
 
 	if(stat)
 		return 0
