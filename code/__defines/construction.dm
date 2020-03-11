@@ -38,6 +38,7 @@
 #define CONNECT_TYPE_SUPPLY		2
 #define CONNECT_TYPE_SCRUBBER	4
 #define CONNECT_TYPE_HE			8
+#define CONNECT_TYPE_FUEL		16 // TODO - Implement this! Its piping so better ask Leshana
 
 // We are based on the three named layers of supply, regular, and scrubber.
 #define PIPING_LAYER_SUPPLY		1
