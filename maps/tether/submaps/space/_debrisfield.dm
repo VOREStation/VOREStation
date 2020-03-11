@@ -42,10 +42,6 @@
 	initialized = TRUE
 	return INITIALIZE_HINT_QDEL
 
-//And some special areas, including our shuttle landing spot (must be unique)
-/area/shuttle/excursion/debrisfield
-	name = "\improper Excursion Shuttle - Debris Field"
-
 /area/tether_away/debrisfield
 	name = "Away Mission - Debris Field"
 	icon = 'icons/turf/areas_vr.dmi'
