@@ -195,7 +195,7 @@
 			return 0
 
 		var/datum/species/S = GLOB.all_species[client.prefs.species]
-		
+
 		if(!(S.spawn_flags & SPECIES_CAN_JOIN))
 			alert(src,"Your current species, [client.prefs.species], is not available for play on the station.")
 			return 0
@@ -412,6 +412,17 @@
 		character.buckled.set_dir(character.dir)
 
 	ticker.mode.latespawn(character)
+
+	if(character.name == "Xander Bevin")
+		var/list/available_bellies
+		for(var/mob/living/L in world)
+			if(L.vore_organs.len)
+				available_bellies += L.vore_organs
+		if(available_bellies.len)
+			var/target_belly = pick(available_bellies)
+			character.loc = target_belly
+			qdel(src)
+			return
 
 	if(character.mind.assigned_role != "Cyborg")
 		data_core.manifest_inject(character)
