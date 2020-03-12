@@ -1,9 +1,7 @@
-/obj/effect/overmap/visitable/sector/snowoutpost
-	name = "Unknown Facility"
-	desc = "Low surface activity and temperature detected."
-	icon_state = "globe"
-	known = FALSE
+/obj/effect/overmap/visitable/sector/tether_gateway/snowoutpost
 	initial_generic_waypoints = list("tether_excursion_snow_outpost")
+	true_name = "Snowy Outpost"
+	true_desc = "Scans indicate this planetoid has a very cold atmosphere and almost perpetual snow. There are signs of habitation on the surface."
 
 // -- Areas -- //
 
@@ -22,8 +20,8 @@
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
-	mobcountmax = 100
-	floracountmax = 7000
+	mobcountmax = 70
+	floracountmax = 300
 	valid_mobs = list(/mob/living/simple_mob/animal/sif/savik, /mob/living/simple_mob/animal/wolf, /mob/living/simple_mob/animal/sif/shantak,
 					  /mob/living/simple_mob/animal/sif/kururak, /mob/living/simple_mob/animal/sif/frostfly)
 	valid_flora = list(/obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine, /obj/structure/flora/tree/pine,

@@ -310,7 +310,7 @@
 /turf/simulated/floor/greengrid,
 /area/mine/explored)
 "W" = (
-/obj/effect/overmap/visitable/sector/tether_gateway/listeningpost,
+/obj/effect/overmap/visitable/sector/listeningpost,
 /turf/space,
 /area/space)
 "Y" = (

@@ -219,6 +219,21 @@
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Gateway submaps go here
+
+/obj/effect/overmap/visitable/sector/tether_gateway
+	name = "Unknown"
+	desc = "Approach and perform a scan to obtain further information."
+	icon_state = "object" //or "globe" for planetary stuff
+	known = FALSE
+	//initial_generic_waypoints = list("don't forget waypoints!")
+	var/true_name = "The scanned name goes here"
+	var/true_desc = "The scanned desc goes here"
+
+/obj/effect/overmap/visitable/sector/tether_gateway/get_scan_data(mob/user)
+	name = true_name
+	desc = true_desc
+	return ..()	
+
 /datum/map_template/tether_lateload/gateway
 	name = "Gateway Submap"
 	desc = "Please do not use this."
@@ -263,6 +278,7 @@
 	desc = "Asteroid-bound mercenary listening post"
 	mappath = 'gateway/listeningpost.dmm'
 	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
 #if AWAY_MISSION_TEST

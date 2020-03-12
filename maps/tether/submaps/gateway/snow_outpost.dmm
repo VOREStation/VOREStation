@@ -2698,6 +2698,19 @@
 "je" = (
 /turf/unsimulated/mineral,
 /area/awaymission/snow_outpost/restricted)
+"Jn" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/awaymission/snow_outpost/outside;
+	base_turf = /turf/simulated/floor/snow/snow2;
+	landmark_tag = "tether_excursion_snow_outpost";
+	name = "Snowy Landing Site"
+	},
+/turf/simulated/floor/snow/snow2,
+/area/awaymission/snow_outpost/outside)
+"Uy" = (
+/obj/effect/overmap/visitable/sector/tether_gateway/snowoutpost,
+/turf/simulated/mineral/ignore_mapgen,
+/area/awaymission/snow_outpost/outside)
 
 (1,1,1) = {"
 in
@@ -2980,7 +2993,7 @@ cd
 cd
 cd
 cd
-cd
+Uy
 in
 "}
 (3,1,1) = {"
@@ -21553,7 +21566,7 @@ ab
 ab
 ab
 ab
-ab
+Jn
 ab
 ab
 ab
