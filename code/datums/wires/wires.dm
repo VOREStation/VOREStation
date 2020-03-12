@@ -45,6 +45,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 		else
 			var/list/wires = same_wires[holder_type]
 			src.wires = wires // Reference the wires list.
+	make_wire_hints()
 
 /datum/wires/Destroy()
 	holder = null
@@ -108,29 +109,42 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 
 	return html
 
+// Override to spawn the wire hints here, to avoid touching New().
+/datum/wires/proc/make_wire_hints()
+	return
+
 /datum/wires/Topic(href, href_list)
 	..()
 	if(in_range(holder, usr) && isliving(usr))
 
 		var/mob/living/L = usr
 		if(CanUse(L) && href_list["action"])
-			var/obj/item/I = L.get_active_hand()
 			holder.add_hiddenprint(L)
+
+			var/list/items = L.get_all_held_items()
+			var/success = FALSE
+
 			if(href_list["cut"]) // Toggles the cut/mend status
-				if(I?.is_wirecutter())
-					var/colour = href_list["cut"]
-					CutWireColour(colour)
-					playsound(holder, I.usesound, 20, 1)
-				else
-					to_chat(L, "<span class='error'>You need wirecutters!</span>")
+				for(var/obj/item/I in items) // Paranoid about someone somehow grabbing a non-/obj/item, lets play it safe.
+					if(I.is_wirecutter())
+						var/colour = href_list["cut"]
+						CutWireColour(colour)
+						playsound(holder, I.usesound, 20, 1)
+						success = TRUE
+						break
+				if(!success)
+					to_chat(L, span("warning", "You need wirecutters!"))
 
 			else if(href_list["pulse"])
-				if(istype(I, /obj/item/device/multitool))
-					var/colour = href_list["pulse"]
-					PulseColour(colour)
-					playsound(holder, 'sound/weapons/empty.ogg', 20, 1)
-				else
-					to_chat(L, "<span class='error'>You need a multitool!</span>")
+				for(var/obj/item/I in items)
+					if(I.is_multitool())
+						var/colour = href_list["pulse"]
+						PulseColour(colour)
+						playsound(holder, 'sound/weapons/empty.ogg', 20, 1)
+						success = TRUE
+						break
+				if(!success)
+					to_chat(L, span("warning", "You need a multitool!"))
 
 			else if(href_list["attach"])
 				var/colour = href_list["attach"]
@@ -142,11 +156,12 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 
 				// Attach
 				else
-					if(istype(I, /obj/item/device/assembly/signaler))
-						L.drop_item()
-						Attach(colour, I)
+					var/obj/item/device/assembly/signaler/S = L.is_holding_item_of_type(/obj/item/device/assembly/signaler)
+					if(istype(S))
+						L.drop_from_inventory(S)
+						Attach(colour, S)
 					else
-						to_chat(L, "<span class='error'>You need a remote signaller!</span>")
+						to_chat(L, span("warning", "You need a remote signaller!"))
 
 
 

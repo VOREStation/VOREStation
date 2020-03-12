@@ -7,6 +7,23 @@
 	holder_type = /obj/machinery/seed_storage
 	wire_count = 4
 	random = 1
+	var/datum/wire_hint/zap_hint
+	var/datum/wire_hint/smart_hint
+	var/datum/wire_hint/hacked_hint
+	var/datum/wire_hint/lockdown_hint
+
+/datum/wires/seedstorage/make_wire_hints()
+	zap_hint = new("The orange light is off.", "The orange light is on.")
+	smart_hint = new("The red light is off.", "The red light is blinking.")
+	hacked_hint = new("The green light is on.", "The green light is off.")
+	lockdown_hint = new("The keypad lock is deployed.", "The keypad lock is retracted.")
+
+/datum/wires/seedstorage/Destroy()
+	zap_hint = null
+	smart_hint = null
+	hacked_hint = null
+	lockdown_hint = null
+	return ..()
 
 /datum/wires/seedstorage/CanUse(var/mob/living/L)
 	var/obj/machinery/seed_storage/V = holder
@@ -17,10 +34,10 @@
 /datum/wires/seedstorage/GetInteractWindow()
 	var/obj/machinery/seed_storage/V = holder
 	. += ..()
-	. += "<BR>The orange light is [V.seconds_electrified ? "off" : "on"].<BR>"
-	. += "The red light is [V.smart ? "off" : "blinking"].<BR>"
-	. += "The green light is [(V.hacked || V.emagged) ? "on" : "off"].<BR>"
-	. += "The keypad lock is [V.lockdown ? "deployed" : "retracted"].<BR>"
+	. += zap_hint.show(V.seconds_electrified)
+	. += smart_hint.show(V.smart)
+	. += hacked_hint.show(V.hacked || V.emagged)
+	. += lockdown_hint.show(V.lockdown)
 
 /datum/wires/seedstorage/UpdatePulsed(var/index)
 	var/obj/machinery/seed_storage/V = holder
