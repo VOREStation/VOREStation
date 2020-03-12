@@ -19,6 +19,8 @@
 	minimum_character_age = 25
 	ideal_character_age = 40
 
+	pto_earning = PTO_CIVILIAN
+
 	get_access()
 		return get_all_accesses().Copy()
 
@@ -82,6 +84,7 @@
 	whitelist_only = 1
 	latejoin_only = 1
 	outfit_type = /decl/hierarchy/outfit/job/clown
+	pto_earning = PTO_CIVILIAN
 
 /datum/alt_title/clown
 	title = "Clown"
@@ -116,6 +119,7 @@
 	whitelist_only = 1
 	latejoin_only = 1
 	outfit_type = /decl/hierarchy/outfit/job/mime
+	pto_earning = PTO_CIVILIAN
 
 /datum/alt_title/mime
 	title = "Mime"

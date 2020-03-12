@@ -15,6 +15,7 @@
 	minimal_access = list(access_maint_tunnels)
 	outfit_type = /decl/hierarchy/outfit/job/assistant/worker
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
+	pto_earning = PTO_CIVILIAN
 
 /datum/alt_title/offduty_civ
 	title = "Off-duty Worker"
@@ -32,6 +33,7 @@
 	minimal_access = list(access_maint_tunnels)
 	outfit_type = /decl/hierarchy/outfit/job/assistant/cargo
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
+	pto_earning = PTO_CARGO
 
 /datum/alt_title/offduty_crg
 	title = "Off-duty Cargo"
@@ -49,6 +51,7 @@
 	minimal_access = list(access_maint_tunnels, access_external_airlocks)
 	outfit_type = /decl/hierarchy/outfit/job/assistant/engineer
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
+	pto_earning = PTO_ENGINEERING
 
 /datum/alt_title/offduty_eng
 	title = "Off-duty Engineer"
@@ -66,6 +69,7 @@
 	minimal_access = list(access_maint_tunnels, access_external_airlocks)
 	outfit_type = /decl/hierarchy/outfit/job/assistant/medic
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
+	pto_earning = PTO_MEDICAL
 
 /datum/alt_title/offduty_med
 	title = "Off-duty Medic"
@@ -83,6 +87,7 @@
 	minimal_access = list(access_maint_tunnels)
 	outfit_type = /decl/hierarchy/outfit/job/assistant/scientist
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
+	pto_earning = PTO_SCIENCE
 
 /datum/alt_title/offduty_sci
 	title = "Off-duty Scientist"
@@ -100,6 +105,7 @@
 	minimal_access = list(access_maint_tunnels)
 	outfit_type = /decl/hierarchy/outfit/job/assistant/officer
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
+	pto_earning = PTO_SECURITY
 
 /datum/alt_title/offduty_sec
 	title = "Off-duty Officer"
