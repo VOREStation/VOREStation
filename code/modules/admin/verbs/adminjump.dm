@@ -8,7 +8,7 @@
 	set name = "Jump to Area"
 	set desc = "Area to jump to"
 	set category = "Admin"
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 
 	if(config.allow_admin_jump)
@@ -24,7 +24,7 @@
 /client/proc/jumptoturf(var/turf/T in turfs)
 	set name = "Jump to Turf"
 	set category = "Admin"
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 	if(config.allow_admin_jump)
 		log_admin("[key_name(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
@@ -39,8 +39,13 @@
 /client/proc/jumptomob(var/mob/M in mob_list)
 	set category = "Admin"
 	set name = "Jump to Mob"
+<<<<<<< HEAD
 	set popup_menu = FALSE //VOREStation Edit - Declutter.
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+=======
+
+	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
+>>>>>>> 0021a3b... Merge pull request #6818 from Neerti/event_manager_fix_electric_boogaloo
 		return
 
 	if(config.allow_admin_jump)
@@ -62,7 +67,7 @@
 	set category = "Admin"
 	set name = "Jump to Coordinate"
 
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 
 	if (config.allow_admin_jump)
@@ -82,7 +87,7 @@
 	set category = "Admin"
 	set name = "Jump to Key"
 
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 
 	if(config.allow_admin_jump)
@@ -106,7 +111,7 @@
 	set category = "Admin"
 	set name = "Get Mob"
 	set desc = "Mob to teleport"
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 	if(config.allow_admin_jump)
 		log_admin("[key_name(usr)] jumped to [key_name(M)]")
@@ -124,7 +129,7 @@
 	set name = "Get Key"
 	set desc = "Key to teleport"
 
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 
 	if(config.allow_admin_jump)
@@ -152,7 +157,7 @@
 /client/proc/sendmob(var/mob/M in sortmobs())
 	set category = "Admin"
 	set name = "Send Mob"
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
+	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 	var/area/A = input(usr, "Pick an area.", "Pick an area") in return_sorted_areas()
 	if(A)

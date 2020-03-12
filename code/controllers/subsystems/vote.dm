@@ -191,7 +191,7 @@ SUBSYSTEM_DEF(vote)
 
 /datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, automatic = FALSE, time = config.vote_period)
 	if(!mode)
-		if(started_time != null && !(check_rights(R_ADMIN) || automatic))
+		if(started_time != null && !(check_rights(R_ADMIN|R_EVENT) || automatic))
 			var/next_allowed_time = (started_time + config.vote_delay)
 			if(next_allowed_time > world.time)
 				return 0
@@ -213,7 +213,7 @@ SUBSYSTEM_DEF(vote)
 					additional_text.Add("<td align = 'center'>[M.required_players]</td>")
 				gamemode_names["secret"] = "Secret"
 			if(VOTE_CREW_TRANSFER)
-				if(!check_rights(R_ADMIN|R_MOD, 0)) // The gods care not for the affairs of the mortals
+				if(!check_rights(R_ADMIN|R_MOD|R_EVENT, 0)) // The gods care not for the affairs of the mortals
 					if(get_security_level() == "red" || get_security_level() == "delta")
 						to_chat(initiator_key, "The current alert status is too high to call for a crew transfer!")
 						return 0
@@ -269,7 +269,7 @@ SUBSYSTEM_DEF(vote)
 		return
 	var/admin = FALSE
 	if(C.holder)
-		if(C.holder.rights & R_ADMIN)
+		if(C.holder.rights & R_ADMIN|R_EVENT)
 			admin = TRUE
 
 	. = "<html><head><title>Voting Panel</title></head><body>"

@@ -83,7 +83,7 @@ proc/getsensorlevel(A)
 
 
 /proc/is_admin(var/mob/user)
-	return check_rights(R_ADMIN, 0, user) != 0
+	return check_rights(R_ADMIN|R_EVENT, 0, user) != 0
 
 
 /proc/hsl2rgb(h, s, l)

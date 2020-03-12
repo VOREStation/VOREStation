@@ -240,7 +240,7 @@ var/list/_client_preferences_by_type
 * Staff Preferences *
 ********************/
 /datum/client_preference/admin/may_toggle(var/mob/preference_mob)
-	return check_rights(R_ADMIN, 0, preference_mob)
+	return check_rights(R_ADMIN|R_EVENT, 0, preference_mob)
 
 /datum/client_preference/mod/may_toggle(var/mob/preference_mob)
 	return check_rights(R_MOD|R_ADMIN, 0, preference_mob)

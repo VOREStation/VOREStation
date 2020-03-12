@@ -1,6 +1,7 @@
 //admin verb groups - They can overlap if you so wish. Only one of each verb will exist in the verbs list regardless
 var/list/admin_verbs_default = list(
 	/datum/admins/proc/show_player_panel,	//shows an interface for individual players, with various links (links require additional flags,
+	/client/proc/player_panel_new, //shows an interface for all players, with links to various panels,
 	/client/proc/player_panel,
 	/client/proc/deadmin_self,			//destroys our own admin datum so we can play as a regular player,
 	/client/proc/hide_verbs,			//hides all our adminverbs,
@@ -15,7 +16,6 @@ var/list/admin_verbs_default = list(
 	)
 
 var/list/admin_verbs_admin = list(
-	/client/proc/player_panel_new, //shows an interface for all players, with links to various panels,
 	/datum/admins/proc/set_tcrystals,
 	/datum/admins/proc/add_tcrystals,
 	/client/proc/invisimin,				//allows our mob to go invisible/visible,
@@ -141,7 +141,7 @@ var/list/admin_verbs_fun = list(
 	/datum/admins/proc/call_drop_pod,
 	/client/proc/smite_vr, //VOREStation Add,
 	/client/proc/smite,
-	/client/proc/admin_lightning_strike
+	/client/proc/admin_lightning_strike,
 	)
 
 var/list/admin_verbs_spawn = list(
@@ -365,9 +365,142 @@ var/list/admin_verbs_mod = list(
 
 //VOREStation Edit Start - Highly Modified List
 var/list/admin_verbs_event_manager = list(
+<<<<<<< HEAD
 	/client/proc/cmd_admin_say,			//admin-only ooc chat,
 	/client/proc/cmd_mod_say,
 	/client/proc/cmd_event_say
+=======
+	/client/proc/cmd_event_say,
+	/client/proc/cmd_admin_pm_context,
+	/client/proc/cmd_admin_pm_panel,
+	/client/proc/admin_ghost,
+	/datum/admins/proc/show_player_info,
+	/client/proc/dsay,
+	/client/proc/cmd_admin_subtle_message,
+	/client/proc/debug_variables,
+	/client/proc/check_antagonists,
+	/client/proc/aooc,
+	/datum/admins/proc/paralyze_mob,
+	/client/proc/cmd_admin_direct_narrate,
+	/client/proc/allow_character_respawn,
+	/datum/admins/proc/sendFax,
+	/client/proc/respawn_character,
+	/proc/possess,
+	/proc/release,
+	/datum/admins/proc/change_weather,
+	/datum/admins/proc/change_time,
+	/client/proc/admin_give_modifier,
+	/client/proc/Jump,
+	/client/proc/jumptomob,
+	/client/proc/jumptocoord,
+	/client/proc/cmd_admin_delete,
+	/datum/admins/proc/delay,
+	/client/proc/Set_Holiday,
+	/client/proc/make_sound,
+	/client/proc/toggle_random_events,
+	/datum/admins/proc/cmd_admin_dress,
+	/client/proc/cmd_admin_gib_self,
+	/client/proc/drop_bomb,
+	/client/proc/cmd_admin_add_freeform_ai_law,
+	/client/proc/cmd_admin_add_random_ai_law,
+	/client/proc/make_sound,
+	/client/proc/toggle_random_events,
+	/client/proc/editappear,
+	/client/proc/roll_dices,
+	/datum/admins/proc/call_supply_drop,
+	/datum/admins/proc/call_drop_pod,
+	/datum/admins/proc/PlayerNotes,
+	/client/proc/callproc,
+	/client/proc/callproc_datum,
+	/client/proc/debug_controller,
+	/client/proc/show_gm_status,
+	/datum/admins/proc/change_weather,
+	/datum/admins/proc/change_time,
+	/client/proc/admin_give_modifier,
+	/datum/admins/proc/cmd_admin_dress,
+	/client/proc/cmd_admin_gib_self,
+	/datum/admins/proc/set_tcrystals,
+	/datum/admins/proc/add_tcrystals,
+	/client/proc/invisimin,                         //allows our mob to go invisible/visible,
+	/datum/admins/proc/show_traitor_panel,  //interface which shows a mob's mind.,
+	/datum/admins/proc/show_game_mode,  //Configuration window for the current game mode.,
+	/datum/admins/proc/force_mode_latespawn, //Force the mode to try a latespawn proc,
+	/datum/admins/proc/force_antag_latespawn, //Force a specific template to try a latespawn proc,
+	/datum/admins/proc/announce,            //priority announce something to all clients.,
+	/datum/admins/proc/intercom,            //send a fake intercom message, like an arrivals announcement,
+	/datum/admins/proc/intercom_convo,      //send a fake intercom conversation, like an ATC exchange,
+	/client/proc/colorooc,                          //allows us to set a custom colour for everythign we say in ooc,
+	/client/proc/admin_ghost,                       //allows us to ghost/reenter body at will,
+	/client/proc/toggle_view_range,         //changes how far we can see,
+	/client/proc/cmd_admin_pm_context,      //right-click adminPM interface,
+	/client/proc/cmd_admin_pm_panel,        //admin-pm list,
+	/client/proc/cmd_admin_subtle_message,  //send an message to somebody as a 'voice in their head',
+	/client/proc/cmd_admin_delete,          //delete an instance/object/mob/etc,
+	/client/proc/cmd_admin_check_contents,  //displays the contents of an instance,
+	/client/proc/cmd_admin_check_player_logs,       //checks a player's attack logs,
+	/client/proc/cmd_admin_check_dialogue_logs,     //checks a player's dialogue logs,
+	/datum/admins/proc/access_news_network, //allows access of newscasters,
+	/client/proc/jumptocoord,                       //we ghost and jump to a coordinate,
+	/client/proc/Getmob,                            //teleports a mob to our location,
+	/client/proc/Getkey,                            //teleports a mob with a certain ckey to our location,
+	/client/proc/Jump,
+	/client/proc/jumptokey,                         //allows us to jump to the location of a mob with a certain ckey,
+	/client/proc/jumptomob,                         //allows us to jump to a specific mob,
+	/client/proc/jumptoturf,                        //allows us to jump to a specific turf,
+	/client/proc/admin_call_shuttle,        //allows us to call the emergency shuttle,
+	/client/proc/admin_cancel_shuttle,      //allows us to cancel the emergency shuttle, sending it back to CentCom,
+	/client/proc/cmd_admin_direct_narrate,  //send text directly to a player with no padding. Useful for narratives and fluff-text,
+	/client/proc/cmd_admin_world_narrate,   //sends text to all players with no padding,
+	/client/proc/cmd_admin_create_centcom_report,
+	/client/proc/check_words,                       //displays cult-words,
+	/client/proc/check_ai_laws,                     //shows AI and borg laws,
+	/client/proc/rename_silicon,            //properly renames silicons,
+	/client/proc/manage_silicon_laws,       // Allows viewing and editing silicon laws. ,
+	/client/proc/check_antagonists,
+	/client/proc/admin_memo,                        //admin memo system. show/delete/write. +SERVER needed to delete admin memos of others,
+	/client/proc/dsay,                                      //talk in deadchat using our ckey/fakekey,
+	/client/proc/secrets,
+	/client/proc/game_panel,                        //game panel, allows to change game-mode etc,
+	/client/proc/cmd_mod_say,
+	/client/proc/cmd_event_say,
+	/datum/admins/proc/show_player_info,
+	/client/proc/free_slot,                 //frees slot for chosen job,
+	/client/proc/cmd_admin_change_custom_event,
+	/client/proc/cmd_admin_rejuvenate,
+	/client/proc/toggleghostwriters,
+	/datum/admins/proc/show_skills,
+	/client/proc/man_up,
+	/client/proc/global_man_up,
+	/client/proc/response_team, // Response Teams admin verb,
+	/client/proc/trader_ship, // Trader ship admin verb,
+	/client/proc/allow_character_respawn,    // Allows a ghost to respawn ,
+	/client/proc/event_manager_panel,
+	/client/proc/aooc,
+	/client/proc/change_human_appearance_admin,     // Allows an admin to change the basic appearance of human-based mobs ,
+	/client/proc/change_human_appearance_self,      // Allows the human-based mob itself change its basic appearance ,
+	/client/proc/change_security_level,
+	/client/proc/makePAI,
+	/client/proc/toggle_debug_logs,
+	/client/proc/toggle_attack_logs,
+	/datum/admins/proc/paralyze_mob,
+	/client/proc/fixatmos,
+	/datum/admins/proc/sendFax,
+	/client/proc/despawn_player,
+	/datum/admins/proc/view_feedback,
+	/datum/admins/proc/capture_map,
+	/client/proc/Set_Holiday,
+	/datum/admins/proc/startnow,
+	/datum/admins/proc/restart,
+	/datum/admins/proc/delay,
+	/client/proc/cmd_mod_say,
+	/datum/admins/proc/immreboot,
+	/client/proc/everyone_random,
+	/client/proc/cmd_admin_delete,		//delete an instance/object/mob/etc,
+	/client/proc/cmd_debug_del_all,
+	/client/proc/toggle_random_events,
+	/client/proc/modify_server_news
+
+>>>>>>> 0021a3b... Merge pull request #6818 from Neerti/event_manager_fix_electric_boogaloo
 )
 //VOREStation Edit End
 
@@ -822,7 +955,7 @@ var/list/admin_verbs_event_manager = list(
 	set name = "Rename Silicon"
 	set category = "Admin"
 
-	if(!check_rights(R_ADMIN)) return
+	if(!check_rights(R_ADMIN|R_FUN|R_EVENT)) return
 
 	var/mob/living/silicon/S = input("Select silicon.", "Rename Silicon.") as null|anything in silicon_mob_list
 	if(!S) return
@@ -837,7 +970,7 @@ var/list/admin_verbs_event_manager = list(
 	set name = "Manage Silicon Laws"
 	set category = "Admin"
 
-	if(!check_rights(R_ADMIN)) return
+	if(!check_rights(R_ADMIN|R_EVENT)) return
 
 	var/mob/living/silicon/S = input("Select silicon.", "Manage Silicon Laws") as null|anything in silicon_mob_list
 	if(!S) return
@@ -889,7 +1022,7 @@ var/list/admin_verbs_event_manager = list(
 	set desc = "Sets the station security level"
 	set category = "Admin"
 
-	if(!check_rights(R_ADMIN))	return
+	if(!check_rights(R_ADMIN|R_EVENT))	return
 	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","yellow","violet","orange","blue","red","delta")-get_security_level())
 	if(alert("Switch from code [get_security_level()] to code [sec_level]?","Change security level?","Yes","No") == "Yes")
 		set_security_level(sec_level)

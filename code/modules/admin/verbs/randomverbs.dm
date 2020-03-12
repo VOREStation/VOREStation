@@ -147,10 +147,10 @@
 /client/proc/cmd_admin_godmode(mob/M as mob in mob_list)
 	set category = "Special Verbs"
 	set name = "Godmode"
-	
+
 	if(!holder)
 		return
-	
+
 	M.status_flags ^= GODMODE
 	to_chat(usr, "<font color='blue'> Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]</font>")
 
@@ -219,7 +219,7 @@ proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 
 	if(!holder)
 		return
-	
+
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm != "Yes") return
 	log_admin("[key_name(src)] has added a random AI law.")
@@ -266,10 +266,10 @@ Ccomp's first proc.
 	set category = "Special Verbs"
 	set name = "Allow player to respawn"
 	set desc = "Let's the player bypass the wait to respawn or allow them to re-enter their corpse."
-	
+
 	if(!holder)
 		return
-	
+
 	var/list/ghosts= get_ghosts(1,1)
 
 	var/target = input("Please, select a ghost!", "COME BACK TO LIFE!", null, null) as null|anything in ghosts
@@ -332,10 +332,10 @@ Ccomp's first proc.
 	set category = "Server"
 	set name = "Toggle antagHUD Restrictions"
 	set desc = "Restricts players that have used antagHUD from being able to join this round."
-	
+
 	if(!holder)
 		return
-	
+
 	var/action=""
 	if(config.antag_hud_restricted)
 		for(var/mob/observer/dead/g in get_ghosts())
@@ -365,7 +365,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Special Verbs"
 	set name = "Spawn Character"
 	set desc = "(Re)Spawn a client's loaded character."
-	
+
 	if(!holder)
 		return
 
@@ -526,7 +526,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!holder)
 		return
-	
+
 	var/input = sanitize(input(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", "") as text|null)
 	if(!input)
 		return
@@ -555,7 +555,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!holder)
 		return
-	
+
 	if(!mob)
 		return
 	if(!istype(M))
@@ -968,7 +968,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set desc = "Removes a player from the round as if they'd cryo'd."
 	set popup_menu = FALSE
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ADMIN|R_EVENT))
 		return
 
 	if(!M)
