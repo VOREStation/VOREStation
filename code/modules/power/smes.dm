@@ -13,6 +13,7 @@
 	anchored = 1
 	use_power = 0
 	circuit = /obj/item/weapon/circuitboard/smes
+	clicksound = "switch"
 
 	var/capacity = 5e6 // maximum charge
 	var/charge = 1e6 // actual charge

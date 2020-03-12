@@ -1,6 +1,9 @@
 /datum/wires/alarm
 	holder_type = /obj/machinery/alarm
 	wire_count = 5
+	var/datum/wire_hint/lock_hint
+	var/datum/wire_hint/power_hint
+	var/datum/wire_hint/ai_control_hint
 
 var/const/AALARM_WIRE_IDSCAN = 1
 var/const/AALARM_WIRE_POWER = 2
@@ -8,6 +11,17 @@ var/const/AALARM_WIRE_SYPHON = 4
 var/const/AALARM_WIRE_AI_CONTROL = 8
 var/const/AALARM_WIRE_AALARM = 16
 
+
+/datum/wires/alarm/make_wire_hints()
+	lock_hint = new("The Air Alarm is locked.", "The Air Alarm is unlocked.")
+	power_hint = new("The Air Alarm is offline.", "The Air Alarm is working properly!")
+	ai_control_hint = new("The 'AI control allowed' light is off.", "The 'AI control allowed' light is on.")
+
+/datum/wires/alarm/Destroy()
+	lock_hint = null
+	power_hint = null
+	ai_control_hint = null
+	return ..()
 
 /datum/wires/alarm/CanUse(var/mob/living/L)
 	var/obj/machinery/alarm/A = holder
@@ -18,7 +32,9 @@ var/const/AALARM_WIRE_AALARM = 16
 /datum/wires/alarm/GetInteractWindow()
 	var/obj/machinery/alarm/A = holder
 	. += ..()
-	. += text("<br>\n[(A.locked ? "The Air Alarm is locked." : "The Air Alarm is unlocked.")]<br>\n[((A.shorted || (A.stat & (NOPOWER|BROKEN))) ? "The Air Alarm is offline." : "The Air Alarm is working properly!")]<br>\n[(A.aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]")
+	. += lock_hint.show(A.locked)
+	. += power_hint.show(A.shorted || (A.stat & (NOPOWER|BROKEN)))
+	. += ai_control_hint.show(A.aidisabled)
 
 /datum/wires/alarm/UpdateCut(var/index, var/mended)
 	var/obj/machinery/alarm/A = holder

@@ -1,16 +1,32 @@
 /datum/wires/apc
 	holder_type = /obj/machinery/power/apc
 	wire_count = 4
+	var/datum/wire_hint/lock_hint
+	var/datum/wire_hint/power_hint
+	var/datum/wire_hint/ai_control_hint
 
 #define APC_WIRE_IDSCAN 1
 #define APC_WIRE_MAIN_POWER1 2
 #define APC_WIRE_MAIN_POWER2 4
 #define APC_WIRE_AI_CONTROL 8
 
+/datum/wires/apc/make_wire_hints()
+	lock_hint = new("The APC is locked.", "The APC is unlocked.")
+	power_hint = new("The APCs power has been shorted.", "The APC is working properly!")
+	ai_control_hint = new("The 'AI control allowed' light is off.", "The 'AI control allowed' light is on.")
+
+/datum/wires/apc/Destroy()
+	lock_hint = null
+	power_hint = null
+	ai_control_hint = null
+	return ..()
+
 /datum/wires/apc/GetInteractWindow()
 	var/obj/machinery/power/apc/A = holder
 	. += ..()
-	. += text("<br>\n[(A.locked ? "The APC is locked." : "The APC is unlocked.")]<br>\n[(A.shorted ? "The APCs power has been shorted." : "The APC is working properly!")]<br>\n[(A.aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]")
+	. += lock_hint.show(A.locked)
+	. += power_hint.show(A.shorted)
+	. += ai_control_hint.show(A.aidisabled)
 
 
 /datum/wires/apc/CanUse(var/mob/living/L)

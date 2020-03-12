@@ -36,15 +36,13 @@ SUBSYSTEM_DEF(persist)
 
 		// Try and detect job and department of mob
 		var/datum/job/J = detect_job(M)
-		if(!istype(J) || !J.departments[1] || !J.timeoff_factor)
+		if(!istype(J) || !J.pto_earning || !J.timeoff_factor)
 			if (MC_TICK_CHECK)
 				return
 			continue
 
 		// Do not collect useless PTO
-		var/department_earning = J.departments[1]
-		if(J.departments[1] == DEPARTMENT_COMMAND)
-			department_earning = DEPARTMENT_CIVILIAN
+		var/department_earning = J.pto_earning
 		clear_unused_pto(M)
 
 		// Update client whatever

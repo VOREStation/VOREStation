@@ -1,6 +1,20 @@
 /datum/wires/grid_checker
 	holder_type = /obj/machinery/power/grid_checker
 	wire_count = 8
+	var/datum/wire_hint/power_failure_hint
+	var/datum/wire_hint/lock_out_hint
+	var/datum/wire_hint/ready_hint
+
+/datum/wires/grid_checker/make_wire_hints()
+	power_failure_hint = new("The green light is off.", "The green light is on.")
+	lock_out_hint = new("The red light is on.", "The red light is off.")
+	ready_hint = new("The blue light is on.", "The blue light is off.")
+
+/datum/wires/grid_checker/Destroy()
+	power_failure_hint = null
+	lock_out_hint = null
+	ready_hint = null
+	return ..()
 
 var/const/GRID_CHECKER_WIRE_REBOOT	= 1			// This wire causes the grid-check to end, if pulsed.
 var/const/GRID_CHECKER_WIRE_LOCKOUT	= 2			// If cut or pulsed, locks the user out for half a minute.
@@ -22,9 +36,9 @@ var/const/GRID_CHECKER_WIRE_NOTHING_2 = 128		// Does nothing, but makes it a bit
 /datum/wires/grid_checker/GetInteractWindow()
 	var/obj/machinery/power/grid_checker/G = holder
 	. += ..()
-	. += "The green light is [G.power_failing ? "off" : "on"].<br>"
-	. += "The red light is [G.wire_locked_out ? "on" : "off"].<br>"
-	. += "The blue light is [G.wire_allow_manual_1 && G.wire_allow_manual_2 && G.wire_allow_manual_3 ? "on" : "off"]."
+	. += power_failure_hint.show(G.power_failing)
+	. += lock_out_hint.show(G.wire_locked_out)
+	. += ready_hint.show(G.wire_allow_manual_1 && G.wire_allow_manual_2 && G.wire_allow_manual_3)
 
 
 /datum/wires/grid_checker/UpdateCut(var/index, var/mended)

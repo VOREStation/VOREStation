@@ -2,6 +2,21 @@
 	random = 1
 	holder_type = /obj/machinery/media/jukebox
 	wire_count = 11
+	var/datum/wire_hint/power_hint
+	var/datum/wire_hint/parental_hint
+	var/datum/wire_hint/reverse_hint
+
+/datum/wires/jukebox/make_wire_hints()
+	power_hint = new("The power light is off.", "The power light is on.")
+	parental_hint = new("The parental guidance light is off.", "The parental guidance light is on.")
+	reverse_hint = new("The data light is hauntingly dark.", "The data light is glowing softly.")
+
+/datum/wires/jukebox/Destroy()
+	power_hint = null
+	parental_hint = null
+	reverse_hint = null
+	return ..()
+
 
 var/const/WIRE_POWER = 1
 var/const/WIRE_HACK = 2
@@ -25,9 +40,9 @@ var/const/WIRE_NEXT = 1024
 /datum/wires/jukebox/GetInteractWindow()
 	var/obj/machinery/media/jukebox/A = holder
 	. += ..()
-	. += "<BR>The power light is [(A.stat & (BROKEN|NOPOWER)) ? "off" : "on"].<BR>"
-	. += "The parental guidance light is [A.hacked ? "off" : "on"].<BR>"
-	. += "The data light is [IsIndexCut(WIRE_REVERSE) ? "hauntingly dark" : "glowing sloftly"].<BR>"
+	. += power_hint.show(A.stat & (BROKEN|NOPOWER))
+	. += parental_hint.show(A.hacked)
+	. += reverse_hint.show(IsIndexCut(WIRE_REVERSE))
 
 // Give a hint as to what each wire does
 /datum/wires/jukebox/UpdatePulsed(var/index)

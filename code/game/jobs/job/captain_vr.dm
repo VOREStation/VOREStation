@@ -1,9 +1,11 @@
 /datum/job/captain
 	disallow_jobhop = TRUE
+	pto_earning = PTO_CIVILIAN
 
 /datum/job/hop
-
 	disallow_jobhop = TRUE
+	pto_earning = PTO_CIVILIAN
+
 	alt_titles = list("Head of Personnel" = /datum/alt_title/hop,
 					  "Crew Resources Officer" = /datum/alt_title/cro,
 					  "Deputy Director" = /datum/alt_title/deputy_director)
@@ -26,3 +28,4 @@
 
 /datum/job/secretary
 	disallow_jobhop = TRUE
+	pto_earning = PTO_CIVILIAN

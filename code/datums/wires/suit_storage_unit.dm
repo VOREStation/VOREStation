@@ -1,6 +1,20 @@
 /datum/wires/suit_storage_unit
 	holder_type = /obj/machinery/suit_cycler
 	wire_count = 3
+	var/datum/wire_hint/zap_hint
+	var/datum/wire_hint/safeties_hint
+	var/datum/wire_hint/locked_hint
+
+/datum/wires/suit_storage_unit/make_wire_hints()
+	zap_hint = new("The orange light is off.", "The orange light is on.")
+	safeties_hint = new("The red light is off.", "The red light is blinking.")
+	locked_hint = new("The yellow light is on.", "The yellow light is off.")
+
+/datum/wires/suit_storage_unit/Destroy()
+	zap_hint = null
+	safeties_hint = null
+	locked_hint = null
+	return ..()
 
 var/const/SUIT_STORAGE_WIRE_ELECTRIFY	= 1
 var/const/SUIT_STORAGE_WIRE_SAFETY		= 2
@@ -19,9 +33,9 @@ var/const/SUIT_STORAGE_WIRE_LOCKED		= 4
 /datum/wires/suit_storage_unit/GetInteractWindow()
 	var/obj/machinery/suit_cycler/S = holder
 	. += ..()
-	. += "<BR>The orange light is [S.electrified ? "off" : "on"].<BR>"
-	. += "The red light is [S.safeties ? "off" : "blinking"].<BR>"
-	. += "The yellow light is [S.locked ? "on" : "off"].<BR>"
+	. += zap_hint.show(S.electrified)
+	. += safeties_hint.show(S.safeties)
+	. += locked_hint.show(S.locked)
 
 /datum/wires/suit_storage_unit/UpdatePulsed(var/index)
 	var/obj/machinery/suit_cycler/S = holder

@@ -8,6 +8,8 @@
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100
+	clicksound = "button"
+	clickvol = "30"
 	flags = OPENCONTAINER | NOREACT
 	circuit = /obj/item/weapon/circuitboard/microwave
 	var/operating = 0 // Is it on?
@@ -414,8 +416,8 @@
 
 /obj/machinery/microwave/advanced // specifically for complex recipes
 	name = "deluxe microwave"
-	icon = 'icons/obj/kitchen.dmi'
-	icon_state = "mw-deluxe"
+	icon = 'icons/obj/deluxemicrowave.dmi'
+	icon_state = "mw"
 	circuit = /obj/item/weapon/circuitboard/microwave/advanced
 	circuit_item_capacity = 100
 	item_level = 1

@@ -145,6 +145,12 @@
 		return 1
 	if((slot_flags & SLOT_BELT) && M.get_equipped_item(slot_belt) == src)
 		return 1
+	//VOREStation Add Start - RIGSuit compatability
+	if((slot_flags & SLOT_BACK) && M.get_equipped_item(slot_s_store) == src)
+		return 1
+	if((slot_flags & SLOT_BELT) && M.get_equipped_item(slot_s_store) == src)
+		return 1
+	//VOREStation Add End
 
 	return 0
 

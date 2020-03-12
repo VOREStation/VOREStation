@@ -172,6 +172,7 @@
 			return
 		if(contents.len == 0)
 			user.unEquip(W, src)
+			W.forceMove(src)
 	update_icon()
 
 // Walls hide stuff inside them, but we want to be visible.
