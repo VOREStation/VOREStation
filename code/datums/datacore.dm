@@ -55,30 +55,30 @@
 			//to_world("[name]: [rank]")
 			//cael - to prevent multiple appearances of a player/job combination, add a continue after each line
 		var/department = 0
-		if(real_rank in command_positions)
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_COMMAND))
 			heads[name] = rank
 			department = 1
-		if(real_rank in security_positions)
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_SECURITY))
 			sec[name] = rank
 			department = 1
-		if(real_rank in engineering_positions)
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_ENGINEERING))
 			eng[name] = rank
 			department = 1
-		if(real_rank in medical_positions)
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_MEDICAL))
 			med[name] = rank
 			department = 1
-		if(real_rank in science_positions)
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_RESEARCH))
 			sci[name] = rank
 			department = 1
-		if(real_rank in cargo_positions)
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_CARGO))
 			car[name] = rank
 			department = 1
-		//VOREStation Edit Begin
-		if(real_rank in planet_positions)
+		//VOREStation Add Begin
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_PLANET))
 			pla[name] = rank
 			department = 1
-		//VOREStation Edit End
-		if(real_rank in civilian_positions)
+		//VOREStation Add End
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_CIVILIAN))
 			civ[name] = rank
 			department = 1
 		if(!department && !(name in heads))

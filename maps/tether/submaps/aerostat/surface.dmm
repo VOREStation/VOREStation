@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/away_mission_init/aerostat,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
 "b" = (
 /turf/unsimulated/wall/planetary/virgo2,
 /area/tether_away/aerostat/surface)
@@ -47,7 +43,7 @@
 /obj/effect/shuttle_landmark{
 	base_area = /area/tether_away/aerostat/surface/explored;
 	base_turf = /turf/simulated/floor/tiled/techfloor/virgo2;
-	landmark_tag = "aerostat_down";
+	landmark_tag = "aerostat_surface";
 	name = "Virgo 2 Surface"
 	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
@@ -8504,7 +8500,7 @@ i
 i
 i
 i
-a
+i
 i
 i
 i

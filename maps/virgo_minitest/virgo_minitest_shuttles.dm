@@ -3,10 +3,18 @@
 */
 
 // Shared landmark for docking at the station
-/obj/effect/shuttle_landmark/station_dockpoint
-	name = "Station Docking Point"
-	landmark_tag = "nav_station_docking"
+/obj/effect/shuttle_landmark/station_dockpoint1
+	name = "Station Docking Point 1"
+	landmark_tag = "nav_station_docking1"
 	docking_controller = "station_dock1"
+	base_turf = /turf/space
+	base_area = /area/space
+
+
+/obj/effect/shuttle_landmark/station_dockpoint2
+	name = "Station Docking Point 2"
+	landmark_tag = "nav_station_docking2"
+	docking_controller = "station_dock2"
 	base_turf = /turf/space
 	base_area = /area/space
 
@@ -33,7 +41,7 @@
 	warmup_time = 0
 	shuttle_area = /area/shuttle/ferrydemo
 	docking_controller_tag = "ferrydemo_shuttle"
-	landmark_station = "nav_station_docking"
+	landmark_station = "nav_station_docking1"
 	landmark_offsite = "nav_ferrydemo_space"
 
 /area/shuttle/ferrydemo
@@ -66,7 +74,7 @@
 	shuttle_area = /area/shuttle/multidemo
 	docking_controller_tag = "multidemo_shuttle"
 	current_location = "nav_multidemo_start"
-	destination_tags = list("nav_multidemo_start", "nav_shared_space", "nav_station_docking", "nav_multidemo_nearby")
+	destination_tags = list("nav_station_docking2", "nav_shared_space", "nav_station_docking1", "nav_multidemo_nearby")
 	can_cloak = TRUE
 
 /area/shuttle/multidemo
@@ -81,7 +89,7 @@
 	base_area = /area/space
 
 /obj/effect/shuttle_landmark/multidemo_nearby
-	name = "Multi-Demo Starting Point"
+	name = "Multi-Demo Nearby"
 	landmark_tag = "nav_multidemo_nearby"
 	flags = SLANDMARK_FLAG_AUTOSET
 
@@ -133,7 +141,7 @@
 
 /datum/shuttle_destination/webdemo/docked_bridge
 	name = "Bridge docking pylon"
-	my_landmark = "nav_station_docking"
+	my_landmark = "nav_station_docking1"
 	radio_announce = TRUE
 	announcer = "Shuttle Authority"
 

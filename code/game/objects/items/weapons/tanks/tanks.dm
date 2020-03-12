@@ -328,6 +328,9 @@ var/list/global/tank_gauge_cache = list()
 /obj/item/weapon/tank/remove_air(amount)
 	return air_contents.remove(amount)
 
+/obj/item/weapon/tank/proc/remove_air_by_flag(flag, amount)
+	return air_contents.remove_by_flag(flag, amount)
+
 /obj/item/weapon/tank/return_air()
 	return air_contents
 

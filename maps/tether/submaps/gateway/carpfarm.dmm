@@ -763,6 +763,19 @@
 	},
 /turf/simulated/floor/airless,
 /area/space)
+"sI" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/space;
+	base_turf = /turf/space;
+	landmark_tag = "tether_excursion_carpfarm";
+	name = "Outside Facility (SW)"
+	},
+/turf/space,
+/area/space)
+"Fi" = (
+/obj/effect/overmap/visitable/sector/carpfarm,
+/turf/space,
+/area/space)
 
 (1,1,1) = {"
 aa
@@ -1045,7 +1058,7 @@ aa
 aa
 aa
 aa
-aa
+Fi
 aa
 "}
 (3,1,1) = {"
@@ -4579,7 +4592,7 @@ aa
 aa
 aa
 aa
-aa
+sI
 aa
 aa
 aa

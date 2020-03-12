@@ -128,7 +128,7 @@
 /mob/living/can_ztravel()
 	if(incapacitated())
 		return FALSE
-	return hovering
+	return (hovering || is_incorporeal())
 
 /mob/living/carbon/human/can_ztravel()
 	if(incapacitated())

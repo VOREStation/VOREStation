@@ -1,6 +1,6 @@
 /datum/gm_action/pda_spam
 	name = "PDA spam"
-	departments = list(ROLE_EVERYONE)
+	departments = list(DEPARTMENT_EVERYONE)
 	reusable = TRUE
 	var/last_spam_time = 0
 	var/obj/machinery/message_server/useMS
@@ -128,4 +128,4 @@
 					to_chat(L, "[bicon(P)] <b>Message from [sender] (Unknown / spam?), </b>\"[message]\" (Unable to Reply)")
 
 /datum/gm_action/pda_spam/get_weight()
-	return 25 * metric.count_people_in_department(ROLE_EVERYONE)
+	return 25 * metric.count_people_in_department(DEPARTMENT_EVERYONE)

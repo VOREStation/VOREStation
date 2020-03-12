@@ -4,11 +4,11 @@
 
 /datum/gm_action/canister_leak
 	name = "Canister Leak"
-	departments = list(ROLE_ENGINEERING)
+	departments = list(DEPARTMENT_ENGINEERING)
 	chaotic = 20
 
 /datum/gm_action/canister_leak/get_weight()
-	return metric.count_people_in_department(ROLE_ENGINEERING) * 30
+	return metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 30
 
 /datum/gm_action/canister_leak/start()
 	..()

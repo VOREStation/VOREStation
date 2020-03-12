@@ -2,7 +2,7 @@
 
 /datum/gm_action/surprise_carp_attack
 	name = "surprise carp attack"
-	departments = list(ROLE_EVERYONE)
+	departments = list(DEPARTMENT_EVERYONE)
 	reusable = TRUE
 	chaotic = 10
 	var/mob/living/victim = null

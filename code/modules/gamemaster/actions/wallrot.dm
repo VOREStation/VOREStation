@@ -1,6 +1,6 @@
 /datum/gm_action/wallrot
 	name = "wall rot"
-	departments = list(ROLE_ENGINEERING)
+	departments = list(DEPARTMENT_ENGINEERING)
 	reusable = TRUE
 	var/turf/simulated/wall/center
 	severity = 1
@@ -40,4 +40,4 @@
 						break
 
 /datum/gm_action/wallrot/get_weight()
-	return 60 + (metric.count_people_in_department(ROLE_ENGINEERING) * 35)
+	return 60 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 35)

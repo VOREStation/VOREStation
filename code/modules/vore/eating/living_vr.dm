@@ -243,7 +243,7 @@
 //
 //	Proc for applying vore preferences, given bellies
 //
-/mob/living/proc/copy_from_prefs_vr()
+/mob/living/proc/copy_from_prefs_vr(var/bellies = TRUE)
 	if(!client || !client.prefs_vr)
 		to_chat(src,"<span class='warning'>You attempted to apply your vore prefs but somehow you're in this character without a client.prefs_vr variable. Tell a dev.</span>")
 		return FALSE
@@ -261,10 +261,11 @@
 	can_be_drop_prey = P.can_be_drop_prey
 	can_be_drop_pred = P.can_be_drop_pred
 
-	release_vore_contents(silent = TRUE)
-	vore_organs.Cut()
-	for(var/entry in P.belly_prefs)
-		list_to_object(entry,src)
+	if(bellies)
+		release_vore_contents(silent = TRUE)
+		vore_organs.Cut()
+		for(var/entry in P.belly_prefs)
+			list_to_object(entry,src)
 
 	return TRUE
 

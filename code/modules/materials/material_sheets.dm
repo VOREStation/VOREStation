@@ -136,6 +136,13 @@
 	default_type = "plastic"
 	no_variants = FALSE
 
+/obj/item/stack/material/graphite
+	name = "graphite"
+	icon_state = "sheet-silver"
+	default_type = MAT_GRAPHITE
+	apply_colour = 1
+	no_variants = FALSE
+
 /obj/item/stack/material/gold
 	name = "gold"
 	icon_state = "sheet-gold"

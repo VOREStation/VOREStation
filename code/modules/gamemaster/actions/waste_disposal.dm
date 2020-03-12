@@ -2,8 +2,8 @@
 
 /datum/gm_action/waste_disposal
 	name = "waste disposal"
-	departments = list(ROLE_CARGO)
+	departments = list(DEPARTMENT_CARGO)
 	chaotic = 0
 
 /datum/gm_action/waste_disposal/get_weight()
-	return metric.count_people_in_department(ROLE_CARGO) * 50
+	return metric.count_people_in_department(DEPARTMENT_CARGO) * 50

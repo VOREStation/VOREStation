@@ -84,7 +84,7 @@
 		if (job)
 			data["job_datum"] = list(
 				"title" = job.title,
-				"department" = job.department,
+				"department" = job.departments[1],
 				"selection_color" = job.selection_color,
 				"economic_modifier" = job.economic_modifier,
 				"timeoff_factor" = job.timeoff_factor
@@ -92,7 +92,7 @@
 		if(config.time_off && config.pto_job_change)
 			data["allow_change_job"] = TRUE
 			if(job && job.timeoff_factor < 0) // Currently are Off Duty, so gotta lookup what on-duty jobs are open
-				data["job_choices"] = getOpenOnDutyJobs(user, job.department)
+				data["job_choices"] = getOpenOnDutyJobs(user, job.departments[1])
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -141,7 +141,7 @@
 	var/list/available_jobs = list()
 	for(var/datum/job/job in job_master.occupations)
 		if(job && job.is_position_available() && !job.whitelist_only && !jobban_isbanned(user,job.title) && job.player_old_enough(user.client))
-			if(job.department == department && !job.disallow_jobhop && job.timeoff_factor > 0)
+			if(job.departments[1] == department && !job.disallow_jobhop && job.timeoff_factor > 0)
 				available_jobs += job.title
 				if(job.alt_titles)
 					for(var/alt_job in job.alt_titles)
@@ -182,12 +182,12 @@
 			break
 	if(!foundjob)
 		return
-	var/real_dept = foundjob.department
+	var/real_dept = foundjob.departments[1]
 	if(real_dept && real_dept == "Command")
 		real_dept = "Civilian"
 	var/datum/job/ptojob = null
 	for(var/datum/job/job in job_master.occupations)
-		if(job.department == real_dept && job.timeoff_factor < 0)
+		if(job.departments[1] == real_dept && job.timeoff_factor < 0)
 			ptojob = job
 			break
 	if(ptojob && card)

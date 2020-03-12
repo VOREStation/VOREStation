@@ -783,8 +783,15 @@
 
 /area/bridge/secondary
 	name = "\improper Secondary Command Office"
+
+/area/bridge/secondary/hallway
+	name = "\improper Secondary Command Hallway"
 /area/bridge/secondary/meeting_room
 	name = "\improper Secondary Command Meeting Room"
+	lightswitch = 0
+/area/bridge/secondary/teleporter
+	name = "\improper Secondary Teleporter"
+	lightswitch = 0
 
 /area/tether/station/visitorhallway
 	name = "\improper Visitor Hallway"
@@ -839,6 +846,9 @@
 	name = "\improper Secondary Command Maintenance"
 	icon_state = "bridge"
 	sound_env = SEWER_PIPE
+/area/maintenance/substation/spacecommand
+	name = "\improper Secondary Command Substation"
+	icon_state = "substation"
 
 /area/shuttle/tether/crash1
 	name = "\improper Crash Site 1"
@@ -874,14 +884,31 @@
 	name = "\improper Exploration Showers"
 
 /area/shuttle/excursion
-	name = "\improper Excursion Shuttle"
-	icon_state = "shuttle2"
 	requires_power = 1
+	icon_state = "shuttle2"
 
-/area/shuttle/blue_fo
-	name = "\improper Hybrid Shuttle"
-	icon_state = "shuttle2"
+/area/shuttle/excursion/general
+	name = "\improper Excursion Shuttle"
+
+/area/shuttle/excursion/cockpit
+	name = "\improper Excursion Shuttle Cockpit"
+
+/area/shuttle/excursion/cargo
+	name = "\improper Excursion Shuttle Cockpit"
+
+/area/shuttle/tourbus
 	requires_power = 1
+	icon_state = "shuttle2"
+
+/area/shuttle/tourbus/general
+	name = "\improper Tour Bus"
+	
+/area/shuttle/tourbus/cockpit
+	name = "\improper Tour Bus Cockpit"
+
+/area/shuttle/tourbus/engines
+	name = "\improper Tour Bus Engines"
+
 
 // Belter Dock
 
@@ -908,16 +935,6 @@
 	name = "\improper Syndicate Outpost"
 	requires_power = 0
 	dynamic_lighting = 0
-
-//Antag space shuttle
-/area/shuttle/antag_space
-	name = "\improper Syndicate PS"
-	icon_state = "shuttle2"
-
-//Antag ground 'shuttle'
-/area/shuttle/antag_ground
-	name = "\improper Syndicate LC"
-	icon_state = "shuttle2"
 
 //Merc shuttle
 /area/shuttle/mercenary

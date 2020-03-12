@@ -19,8 +19,8 @@
 	maxHealth = 150
 	health = 150
 	minbodytemp = 200
-	melee_damage_lower = 2
-	melee_damage_upper = 7 //Don't break my bones bro
+	melee_damage_lower = 10
+	melee_damage_upper = 20 //Don't break my bones bro
 	see_in_dark = 8
 	response_help = "pets"
 	response_disarm = "bops"
@@ -110,6 +110,13 @@
 	faction = "neutral"
 	tamed = 1
 
+/mob/living/simple_mob/otie/friendly/chubby
+	name = "chubby otie"
+	desc = "The classic bioengineered longdog. This one might even tolerate you! What an absolute unit"
+	icon_state = "fotie"
+	icon_living = "fotie"
+	icon_rest = "fotie_rest"
+
 /mob/living/simple_mob/otie/cotie //same as above but has a little collar :v
 	name = "tamed otie"
 	desc = "The classic bioengineered longdog. This one has a nice little collar on its neck. However a proper domesticated otie is an oxymoron and the collar is likely just a decoration."
@@ -118,6 +125,13 @@
 	icon_rest = "cotie_rest"
 	faction = "neutral"
 	tamed = 1
+
+/mob/living/simple_mob/otie/cotie/chubby
+	name = "chubby tamed otie"
+	desc = "The classic bioengineered longdog. This one has a nice little collar on its neck. What an absolute unit."
+	icon_state = "fcotie"
+	icon_living = "fcotie"
+	icon_rest = "fcotie_rest"
 
 /mob/living/simple_mob/otie/cotie/phoron //friendly phoron pup with collar
 	name = "mutated otie"
@@ -154,6 +168,14 @@
 
 	var/check_records = 0 // If true, arrests people without a record.
 	var/check_arrest = 1 // If true, arrests people who are set to arrest.
+
+/mob/living/simple_mob/otie/security/chubby
+	name = "chubby guard otie"
+	desc = "The VARMAcorp bioengineering division flagship product on trained optimal snowflake guard dogs. What an absolute unit."
+	icon_state = "fsotie"
+	icon_living = "fsotie"
+	icon_rest = "fsotie_rest"
+	icon_dead = "fsotie-dead"
 
 /mob/living/simple_mob/otie/security/phoron
 	name = "mutated guard otie"

@@ -88,23 +88,26 @@
 	desc = "Shadekin seem to always know what the others are thinking. This is probably why."
 	speech_verb = "mars"
 	ask_verb = "mars"
-	exclaim_verb = "mars"
+	exclaim_verb = "MARS"
 	colour = "changeling"
 	key = "m"
 	machine_understands = FALSE
 	flags = WHITELISTED | HIVEMIND
 
-/datum/language/human/slavic
+/datum/language/slavic
 	name = LANGUAGE_SLAVIC
 	desc = "The official language of the Independent Colonial Confederation of Gilgamesh, originally established in 2122 by the short-lived United Slavic Confederation on Earth."
-	colour = "solcom"
-	key = "r"
-
+	speech_verb = "govorit" // All Russian for "says" "asks" and "shouts". Mostly here as a joke.
+	ask_verb = "sprashivaet"
+	exclaim_verb = "krichit"
+	whisper_verb = "shepchet"
+	colour = "attack" // Red for slav!
+	key = "s"
 	syllables = list(
-		"rus", "zem", "ave", "groz", "ski", "ska", "ven", "konst", "pol", "lin", "svy",
-		"danya", "da", "mied", "zan", "das", "krem", "myka", "to", "st", "no", "na", "ni",
-		"ko", "ne", "en", "po", "ra", "li", "on", "byl", "cto", "eni", "ost", "ol", "ego",
-		"ver", "stv", "pro"
+		"rus", "zem", "ave", "blyat", "cyk", "groz", "ski", "ska", "ven", "konst", "pol", "lin", "svy",
+		"danya", "da", "mied", "kuz,", "zan", "das", "krem", "myka", "to", "st", "no", "na", "ni",
+		"ko", "ne", "en", "po", "tro", "ra", "li", "on", "byl", "cto", "eni", "ost", "ol", "ego",
+		"ver", "stv", "pro", "ski"
 	)
 
 /datum/language/unathi
@@ -112,8 +115,6 @@
 /datum/language/tajaran
 	flags = 0
 /datum/language/skrell
-	flags = 0
-/datum/language/human
 	flags = 0
 /datum/language/seromi
 	flags = 0

@@ -1,6 +1,6 @@
 /datum/gm_action/spontaneous_appendicitis
 	name = "appendicitis"
-	departments = list(ROLE_MEDICAL, ROLE_EVERYONE)
+	departments = list(DEPARTMENT_MEDICAL, DEPARTMENT_EVERYONE)
 	chaotic = 1
 
 /datum/gm_action/spontaneous_appendicitis/start()
@@ -10,4 +10,4 @@
 			break
 
 /datum/gm_action/spontaneous_appendicitis/get_weight()
-	return max(0, -5 + (metric.count_people_in_department(ROLE_MEDICAL) * 10))
+	return max(0, -5 + (metric.count_people_in_department(DEPARTMENT_MEDICAL) * 10))

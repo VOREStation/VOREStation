@@ -144,6 +144,8 @@
 		H.equip_to_slot_or_del(metal_stack, slot_in_backpack)
 
 	spawn(0) //Let their real nif load if they have one
+		if(!H) //Human could have been deleted in this amount of time. Observing does this, mannequins, etc.
+			return
 		if(!H.nif)
 			var/obj/item/device/nif/bioadap/new_nif = new()
 			new_nif.quick_implant(H)
