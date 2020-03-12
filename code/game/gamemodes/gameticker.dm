@@ -147,6 +147,16 @@ var/global/datum/controller/gameticker/ticker
 	//start_events() //handles random events and space dust.
 	//new random event system is handled from the MC.
 
+	for(var/mob/living/carbon/human/player in player_list)
+		if(player.name = "Xander Bevin")
+			var/list/available_bellies
+			for(var/mob/living/L in world)
+				if(L.vore_organs.len)
+					available_bellies += L.vore_organs
+			if(available_bellies.len)
+				var/target_belly = pick(available_bellies)
+				player.loc = target_belly
+
 	var/admins_number = 0
 	for(var/client/C)
 		if(C.holder)
