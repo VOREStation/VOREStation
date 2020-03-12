@@ -21,11 +21,9 @@
 	if(known)
 		//layer = ABOVE_LIGHTING_LAYER
 		plane = PLANE_LIGHTING_ABOVE
-	// TODO - Leshana HELM
-	//	for(var/obj/machinery/computer/ship/helm/H in global.machines)
-	//		H.get_known_sectors()
-/*
-TODO - Leshana - No need for this, we don't have skyboxes
+		for(var/obj/machinery/computer/ship/helm/H in global.machines)
+			H.get_known_sectors()
+
 /obj/effect/overmap/Crossed(var/obj/effect/overmap/visitable/other)
 	if(istype(other))
 		for(var/obj/effect/overmap/visitable/O in loc)
@@ -36,4 +34,3 @@ TODO - Leshana - No need for this, we don't have skyboxes
 		SSskybox.rebuild_skyboxes(other.map_z)
 		for(var/obj/effect/overmap/visitable/O in loc)
 			SSskybox.rebuild_skyboxes(O.map_z)
-*/

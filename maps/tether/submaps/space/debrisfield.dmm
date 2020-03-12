@@ -6,7 +6,7 @@
 /turf/space,
 /area/tether_away/debrisfield/explored)
 "c" = (
-/obj/shuttle_connector/debrisfield,
+/obj/effect/overmap/visitable/sector/debrisfield,
 /turf/space,
 /area/tether_away/debrisfield/explored)
 "e" = (

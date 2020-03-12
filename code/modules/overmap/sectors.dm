@@ -50,9 +50,11 @@
 //This is called later in the init order by SSshuttles to populate sector objects. Importantly for subtypes, shuttles will be created by then.
 /obj/effect/overmap/visitable/proc/populate_sector_objects()
 
-// TODO - Leshana - Implement
-///obj/effect/overmap/visitable/proc/get_areas()
-//	return get_filtered_areas(list(/proc/area_belongs_to_zlevels = map_z))
+/obj/effect/overmap/visitable/proc/get_areas()
+	. = list()
+	for(var/area/A)
+		if (A.z in map_z)
+			. += A
 
 /obj/effect/overmap/visitable/proc/find_z_levels()
 	map_z = GetConnectedZlevels(z)
@@ -117,7 +119,7 @@
 		return 1
 
 	testing("Building overmap...")
-	world.maxz++
+	world.increment_max_z()
 	global.using_map.overmap_z = world.maxz
 
 	testing("Putting overmap on [global.using_map.overmap_z]")

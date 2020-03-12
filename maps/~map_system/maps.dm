@@ -104,6 +104,8 @@ var/list/all_maps = list()
 	var/overmap_z = 0		     // If 0 will generate overmap zlevel on init. Otherwise will populate the zlevel provided.
 	var/overmap_event_areas = 0  // How many event "clouds" will be generated
 
+	var/default_skybox = /datum/skybox_settings // What skybox do we use if a zlevel doesn't have a custom one?
+
 	var/lobby_icon = 'icons/misc/title.dmi' // The icon which contains the lobby image(s)
 	var/list/lobby_screens = list("mockingjay00")                 // The list of lobby screen to pick() from. If left unset the first icon state is always selected.
 
@@ -179,6 +181,33 @@ var/list/all_maps = list()
 	var/datum/map_z_level/Z = zlevels["[index]"]
 	return Z.name
 
+// Access check is of the type requires one. These have been carefully selected to avoid allowing the janitor to see channels he shouldn't
+// This list needs to be purged but people insist on adding more cruft to the radio.
+/datum/map/proc/default_internal_channels()
+	return list(
+		num2text(PUB_FREQ)   = list(),
+		num2text(AI_FREQ)    = list(access_synth),
+		num2text(ENT_FREQ)   = list(),
+		num2text(ERT_FREQ)   = list(access_cent_specops),
+		num2text(COMM_FREQ)  = list(access_heads),
+		num2text(ENG_FREQ)   = list(access_engine_equip, access_atmospherics),
+		num2text(MED_FREQ)   = list(access_medical_equip),
+		num2text(MED_I_FREQ) = list(access_medical_equip),
+		num2text(SEC_FREQ)   = list(access_security),
+		num2text(SEC_I_FREQ) = list(access_security),
+		num2text(SCI_FREQ)   = list(access_tox,access_robotics,access_xenobiology),
+		num2text(SUP_FREQ)   = list(access_cargo),
+		num2text(SRV_FREQ)   = list(access_janitor, access_hydroponics),
+	)
+
+/datum/map/proc/get_skybox_datum(z)
+	if(map_levels["[z]"])
+		var/datum/map_z_level/picked = map_levels["[z]"]
+		if(picked.custom_skybox)
+			return new picked.custom_skybox
+
+	return new default_skybox
+
 // Another way to setup the map datum that can be convenient.  Just declare all your zlevels as subtypes of a common
 // subtype of /datum/map_z_level and set zlevel_datum_type on /datum/map to have the lists auto-initialized.
 
@@ -195,6 +224,9 @@ var/list/all_maps = list()
 	var/holomap_offset_y = -1	// Number of pixels to offset the map up (for centering) for this z
 	var/holomap_legend_x = 96	// x position of the holomap legend for this z
 	var/holomap_legend_y = 96	// y position of the holomap legend for this z
+
+// Skybox
+	var/custom_skybox = null  // Can override skybox type here for this z
 
 // Default constructor applies itself to the parent map datum
 /datum/map_z_level/New(var/datum/map/map)
@@ -235,22 +267,3 @@ var/list/all_maps = list()
 	if (using_map.zlevels["[z]"] == src)
 		using_map.zlevels -= "[z]"
 	return ..()
-
-// Access check is of the type requires one. These have been carefully selected to avoid allowing the janitor to see channels he shouldn't
-// This list needs to be purged but people insist on adding more cruft to the radio.
-/datum/map/proc/default_internal_channels()
-	return list(
-		num2text(PUB_FREQ)   = list(),
-		num2text(AI_FREQ)    = list(access_synth),
-		num2text(ENT_FREQ)   = list(),
-		num2text(ERT_FREQ)   = list(access_cent_specops),
-		num2text(COMM_FREQ)  = list(access_heads),
-		num2text(ENG_FREQ)   = list(access_engine_equip, access_atmospherics),
-		num2text(MED_FREQ)   = list(access_medical_equip),
-		num2text(MED_I_FREQ) = list(access_medical_equip),
-		num2text(SEC_FREQ)   = list(access_security),
-		num2text(SEC_I_FREQ) = list(access_security),
-		num2text(SCI_FREQ)   = list(access_tox,access_robotics,access_xenobiology),
-		num2text(SUP_FREQ)   = list(access_cargo),
-		num2text(SRV_FREQ)   = list(access_janitor, access_hydroponics),
-	)
