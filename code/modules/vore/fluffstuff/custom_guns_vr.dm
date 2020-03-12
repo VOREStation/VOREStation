@@ -809,7 +809,7 @@
 /obj/item/weapon/gun/energy/frontier/locked/special_check(mob/user)
 	if(locked)
 		var/turf/T = get_turf(src)
-		if(T.z in using_map.map_levels)
+		if(T.z in GLOB.using_map.map_levels)
 			to_chat(user, "<span class='warning'>The safety device prevents the gun from firing this close to the facility.</span>")
 			return 0
 	return ..()

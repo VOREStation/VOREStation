@@ -292,7 +292,7 @@
 		log_game("Extra z-level [src] has no associated map datum")
 		return
 
-	new associated_map_datum(using_map, z)
+	new associated_map_datum(GLOB.using_map, z)
 
 /datum/map_z_level/tether_lateload
 	z = 0

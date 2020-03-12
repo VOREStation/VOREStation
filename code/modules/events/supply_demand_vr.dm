@@ -17,7 +17,7 @@
 	endWhen = 1800 // Aproximately 1 hour in master controller ticks, refined by end_time
 
 /datum/event/supply_demand/setup()
-	my_department = "[using_map.company_name] Supply Division" // Can't have company name in initial value (not const)
+	my_department = "[GLOB.using_map.company_name] Supply Division" // Can't have company name in initial value (not const)
 	end_time = world.time + 1 HOUR + (severity * 30 MINUTES)
 	running_demand_events += src
 	// Decide what items are requried!
@@ -43,7 +43,7 @@
 		choose_bar_items(rand(5, 10)) // Really? Well add drinks. If a crew can't even get the bar open they suck.
 
 /datum/event/supply_demand/announce()
-	var/message = "[using_map.company_short] is comparing accounts and the bean counters found our division "
+	var/message = "[GLOB.using_map.company_short] is comparing accounts and the bean counters found our division "
 	if(severity <= EVENT_LEVEL_MUNDANE)
 		message += "is a few items short. "
 	else if(severity == EVENT_LEVEL_MODERATE)

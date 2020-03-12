@@ -25,14 +25,14 @@ SUBSYSTEM_DEF(mapping)
 
 	if(config.generate_map)
 		// Map-gen is still very specific to the map, however putting it here should ensure it loads in the correct order.
-		if(using_map.perform_map_generation())
-			using_map.refresh_mining_turfs()
+		if(GLOB.using_map.perform_map_generation())
+			GLOB.using_map.refresh_mining_turfs()
 
 	loadEngine()
 	preloadShelterTemplates()
 	// Mining generation probably should be here too
 	// TODO - Other stuff related to maps and areas could be moved here too.  Look at /tg
-	if(using_map)
+	if(GLOB.using_map)
 		loadLateMaps()
 	..()
 
@@ -78,8 +78,8 @@ SUBSYSTEM_DEF(mapping)
 	chosen_type.load(T)
 
 /datum/controller/subsystem/mapping/proc/loadLateMaps()
-	var/list/deffo_load = using_map.lateload_z_levels
-	var/list/maybe_load = using_map.lateload_single_pick
+	var/list/deffo_load = GLOB.using_map.lateload_z_levels
+	var/list/maybe_load = GLOB.using_map.lateload_single_pick
 
 	for(var/list/maplist in deffo_load)
 		if(!islist(maplist))
