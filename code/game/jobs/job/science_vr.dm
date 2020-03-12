@@ -1,5 +1,6 @@
 /datum/job/rd
 	disallow_jobhop = TRUE
+	pto_earning = PTO_SCIENCE
 
 	access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
 			            access_tox_storage, access_teleporter, access_sec_doors,
@@ -12,6 +13,7 @@
 
 /datum/job/scientist
 	spawn_positions = 5
+	pto_earning = PTO_SCIENCE
 	alt_titles = list("Scientist" = /datum/alt_title/scientist, "Xenoarchaeologist" = /datum/alt_title/xenoarch, "Anomalist" = /datum/alt_title/anomalist, \
 						"Phoron Researcher" = /datum/alt_title/phoron_research, "Circuit Designer" = /datum/alt_title/circuit_designer)
 
@@ -22,6 +24,8 @@
 
 /datum/job/xenobiologist
 	spawn_positions = 3
+	pto_earning = PTO_SCIENCE
 
 /datum/job/roboticist
 	total_positions = 3
+	pto_earning = PTO_SCIENCE
