@@ -20,7 +20,7 @@
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
-	mobcountmax = 70
+	mobcountmax = 50
 	floracountmax = 300
 	valid_mobs = list(/mob/living/simple_mob/animal/sif/savik, /mob/living/simple_mob/animal/wolf, /mob/living/simple_mob/animal/sif/shantak,
 					  /mob/living/simple_mob/animal/sif/kururak, /mob/living/simple_mob/animal/sif/frostfly)
