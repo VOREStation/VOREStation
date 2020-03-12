@@ -104,7 +104,7 @@ var/list/all_maps = list()
 	var/overmap_z = 0		     // If 0 will generate overmap zlevel on init. Otherwise will populate the zlevel provided.
 	var/overmap_event_areas = 0  // How many event "clouds" will be generated
 
-	var/default_skybox = /datum/skybox_settings // What skybox do we use if a zlevel doesn't have a custom one?
+	var/datum/skybox_settings/default_skybox // What skybox do we use if a zlevel doesn't have a custom one? Provide a type.
 
 	var/lobby_icon = 'icons/misc/title.dmi' // The icon which contains the lobby image(s)
 	var/list/lobby_screens = list("mockingjay00")                 // The list of lobby screen to pick() from. If left unset the first icon state is always selected.
@@ -130,6 +130,10 @@ var/list/all_maps = list()
 		map_levels = station_levels.Copy()
 	if(!allowed_jobs || !allowed_jobs.len)
 		allowed_jobs = subtypesof(/datum/job)
+	if(default_skybox) //Type was specified
+		default_skybox = new default_skybox()
+	else
+		default_skybox = new()
 
 /datum/map/proc/setup_map()
 	return
@@ -204,9 +208,9 @@ var/list/all_maps = list()
 	if(map_levels["[z]"])
 		var/datum/map_z_level/picked = map_levels["[z]"]
 		if(picked.custom_skybox)
-			return new picked.custom_skybox
+			return picked.custom_skybox
 
-	return new default_skybox
+	return default_skybox
 
 // Another way to setup the map datum that can be convenient.  Just declare all your zlevels as subtypes of a common
 // subtype of /datum/map_z_level and set zlevel_datum_type on /datum/map to have the lists auto-initialized.
@@ -226,7 +230,7 @@ var/list/all_maps = list()
 	var/holomap_legend_y = 96	// y position of the holomap legend for this z
 
 // Skybox
-	var/custom_skybox = null  // Can override skybox type here for this z
+	var/datum/skybox_settings/custom_skybox  // Can override skybox type here for this z
 
 // Default constructor applies itself to the parent map datum
 /datum/map_z_level/New(var/datum/map/map)
@@ -259,6 +263,8 @@ var/list/all_maps = list()
 	LIST_NUMERIC_SET(map.holomap_offset_y, z, holomap_offset_y)
 	LIST_NUMERIC_SET(map.holomap_legend_x, z, holomap_legend_x)
 	LIST_NUMERIC_SET(map.holomap_legend_y, z, holomap_legend_y)
+	if(custom_skybox)
+		custom_skybox = new custom_skybox()
 
 /datum/map_z_level/Destroy(var/force)
 	crash_with("Attempt to delete a map_z_level instance [log_info_line(src)]")
