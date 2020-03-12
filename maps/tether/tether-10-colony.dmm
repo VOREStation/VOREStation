@@ -422,8 +422,6 @@
 /area/centcom/specops)
 "aK" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/pill_bottle/nutriment,
-/obj/item/weapon/storage/pill_bottle/nutriment,
 /obj/item/weapon/storage/pill_bottle/iron,
 /obj/item/weapon/storage/pill_bottle/iron,
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
@@ -444,6 +442,7 @@
 "aM" = (
 /obj/machinery/chemical_dispenser/ert,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/structure/table/reinforced,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -622,12 +621,12 @@
 "bc" = (
 /obj/structure/table/rack,
 /obj/structure/window/reinforced,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/ammo,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/ammo,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/ammo,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/ammo,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/ammo,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/ammo,
+/obj/item/weapon/gun/projectile/revolver/detective45,
+/obj/item/weapon/gun/projectile/revolver/detective45,
+/obj/item/ammo_magazine/s45,
+/obj/item/ammo_magazine/s45,
+/obj/item/ammo_magazine/s45,
+/obj/item/ammo_magazine/s45,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -658,12 +657,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/weapon/gun/projectile/revolver/detective45,
-/obj/item/weapon/gun/projectile/revolver/detective45,
-/obj/item/ammo_magazine/s45,
-/obj/item/ammo_magazine/s45,
-/obj/item/ammo_magazine/s45,
-/obj/item/ammo_magazine/s45,
 /obj/item/weapon/gun/projectile/p92x,
 /obj/item/weapon/gun/projectile/p92x,
 /obj/item/weapon/gun/projectile/p92x,
@@ -1022,17 +1015,6 @@
 	pixel_y = 2
 	},
 /obj/item/weapon/storage/firstaid/o2,
-/turf/unsimulated/floor{
-	icon_state = "vault";
-	dir = 5
-	},
-/area/centcom/specops)
-"bG" = (
-/obj/structure/table/rack,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/med,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/med,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/med,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/med,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 5
@@ -23579,6 +23561,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
+"Tc" = (
+/obj/structure/table/reinforced,
+/obj/machinery/chemical_dispenser/biochemistry/full,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/centcom/specops)
 "Td" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -41983,7 +41973,7 @@ ac
 ac
 ac
 ah
-bl
+Tc
 aX
 aX
 aX
@@ -42130,7 +42120,7 @@ aX
 aP
 aY
 bq
-bG
+bl
 ah
 bX
 aX
