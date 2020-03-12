@@ -1944,3 +1944,17 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/accessory/poncho/roles/cloak/hop/fluff/pip/equipped()		//Because otherwise it gets reset every time
 	..()
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	
+//CappyCat:Cappy Fuzzlyfeathers
+/obj/item/clothing/accessory/watch
+	name = "silver pocket watch"
+	desc = "A fancy silver-plated digital pocket watch. Looks expensive."
+	icon = 'icons/obj/deadringer.dmi'
+	icon_state = "deadringer"
+	w_class = ITEMSIZE_SMALL
+	slot_flags = SLOT_ID | SLOT_BELT | SLOT_TIE
+	
+//Pimientopyro:Zaku Fyodorovna
+/obj/item/clothing/suit/varsity/green/sweater_vest
+	name = "green sweater vest"
+	desc = "A green argyle sweater vest with a white undershirt, a must for long winter nights and looking like a dork."
