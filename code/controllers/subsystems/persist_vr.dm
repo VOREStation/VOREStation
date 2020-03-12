@@ -93,3 +93,7 @@ SUBSYSTEM_DEF(persist)
 	if(C.department_hours[DEPARTMENT_COMMAND])
 		C.department_hours[DEPARTMENT_COMMAND] = null
 		C.department_hours.Remove(DEPARTMENT_COMMAND)
+	if(C.department_hours["Science"])
+		C.department_hours[DEPARTMENT_RESEARCH] = C.department_hours["Science"]
+		C.department_hours["Science"] = null
+		C.department_hours.Remove("Science")
