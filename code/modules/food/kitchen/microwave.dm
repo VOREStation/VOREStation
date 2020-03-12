@@ -416,8 +416,8 @@
 
 /obj/machinery/microwave/advanced // specifically for complex recipes
 	name = "deluxe microwave"
-	icon = 'icons/obj/kitchen.dmi'
-	icon_state = "mw-deluxe"
+	icon = 'icons/obj/deluxemicrowave.dmi'
+	icon_state = "mw"
 	circuit = /obj/item/weapon/circuitboard/microwave/advanced
 	circuit_item_capacity = 100
 	item_level = 1
