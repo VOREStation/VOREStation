@@ -26,7 +26,8 @@
 var vchat_opts = {
 	msBeforeDropped: 30000, //No ping for this long, and the server must be gone
 	cookiePrefix: "vst-", //If you're another server, you can change this if you want.
-	alwaysShow: ["vc_looc", "vc_system"] //Categories to always display on every tab
+	alwaysShow: ["vc_looc", "vc_system"], //Categories to always display on every tab
+	vchatTabsVer: 1.0 //Version of vchat tabs save 'file'
 };
 
 var DARKMODE_COLORS = {
@@ -368,6 +369,50 @@ function start_vue() {
 
 				if(isNaN(this.crushing)){this.crushing = 3;} //This used to be a bool (03-02-2020)
 				if(isNaN(this.fontsize)){this.fontsize = 0.9;} //This used to be a string (03-02-2020)
+
+				this.load_tabs();
+			},
+			load_tabs: function() {
+				var loadstring = get_storage("tabs")
+				if(!loadstring)
+					return;
+				var loadfile = JSON.parse(loadstring);
+				//Malformed somehow.
+				if(!loadfile.version || !loadfile.tabs) {
+					this.internal_message("There was a problem loading your tabs. Any new ones you make will be saved, however.");
+					return;
+				}
+				//Version is old? Sorry.
+				if(!loadfile.version == vchat_opts.vchatTabsVer) {
+					this.internal_message("Your saved tabs are for an older version of VChat and must be recreated, sorry.");
+					return;
+				}
+
+				this.tabs.push.apply(this.tabs, loadfile.tabs);
+			},
+			save_tabs: function() {
+				var savefile = {
+					version: vchat_opts.vchatTabsVer,
+					tabs: []
+				}
+
+				//The tabs contain a bunch of vue stuff that gets funky when you try to serialize it with stringify, so we 'purify' it
+				this.tabs.forEach(function(tab){
+					if(tab.immutable)
+						return;
+					
+					var name = tab.name;
+					
+					var categories = [];
+					tab.categories.forEach(function(category){categories.push(category);});
+
+					var cleantab = {name: name, categories: categories, immutable: false, active: false}
+
+					savefile.tabs.push(cleantab);
+				});
+
+				var savestring = JSON.stringify(savefile);
+				set_storage("tabs", savestring);
 			},
 			//Change to another tab
 			switchtab: function(tab) {
@@ -384,6 +429,7 @@ function start_vue() {
 			//Toggle edit mode
 			editmode: function() {
 				this.editing = !this.editing;
+				this.save_tabs();
 			},
 			//Toggle autoscroll
 			pause: function() {
