@@ -894,7 +894,7 @@
 	name = "\improper Excursion Shuttle Cockpit"
 
 /area/shuttle/excursion/cargo
-	name = "\improper Excursion Shuttle Cockpit"
+	name = "\improper Excursion Shuttle Cargo"
 
 /area/shuttle/tourbus
 	requires_power = 1
