@@ -8,6 +8,7 @@
 	icon_state = "generic"
 	anchored = 1
 	density = 1
+	clicksound = "button"
 
 	var/icon_vend //Icon_state when vending
 	var/icon_deny //Icon_state when denying access
@@ -253,6 +254,7 @@
  */
 /obj/machinery/vending/proc/pay_with_ewallet(var/obj/item/weapon/spacecash/ewallet/wallet)
 	visible_message("<span class='info'>\The [usr] swipes \the [wallet] through \the [src].</span>")
+	playsound(src.loc, 'sound/machines/id_swipe.ogg', 50, 1)
 	if(currently_vending.price > wallet.worth)
 		status_message = "Insufficient funds on chargecard."
 		status_error = 1
@@ -273,6 +275,7 @@
 		visible_message("<span class='info'>\The [usr] swipes \the [I] through \the [src].</span>")
 	else
 		visible_message("<span class='info'>\The [usr] swipes \the [ID_container] through \the [src].</span>")
+	playsound(src.loc, 'sound/machines/id_swipe.ogg', 50, 1)
 	var/datum/money_account/customer_account = get_account(I.associated_account_number)
 	if(!customer_account)
 		status_message = "Error: Unable to access account. Please contact technical support if problem persists."

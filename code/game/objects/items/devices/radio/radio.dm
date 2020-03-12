@@ -128,6 +128,11 @@ var/global/list/default_medbay_channels = list(
 		ui.set_initial_data(data)
 		ui.open()
 
+/obj/item/device/radio/CouldUseTopic(var/mob/user)
+	..()
+	if(iscarbon(user))
+		playsound(src, "button", 10)
+
 /obj/item/device/radio/proc/list_channels(var/mob/user)
 	return list_internal_channels(user)
 

@@ -16,6 +16,8 @@
 	active_power_usage = 200
 	buckle_lying = FALSE
 	buckle_dir = SOUTH
+	clicksound = 'sound/machines/buttonbeep.ogg'
+	clickvol = 30
 
 	var/temperature_archived
 	var/mob/living/carbon/occupant = null
