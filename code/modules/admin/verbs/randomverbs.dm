@@ -445,15 +445,17 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/mob/living/carbon/human/new_character
 	var/spawnloc
+	var/sparks
 
 	//Where did you want to spawn them?
 	switch(location)
 		if("Right Here") //Spawn them on your turf
-			if(!src.mob)
-				to_chat(src, "You can't use 'Right Here' when you are not 'Right Anywhere'!")
-				return
-
 			spawnloc = get_turf(src.mob)
+			sparks = alert(src,"Sparks like they teleported in?", "Showy", "Yes", "No", "Cancel")
+			if(sparks == "Cancel")
+				return
+			if(sparks == "No")
+				sparks = FALSE
 
 		if("Arrivals") //Spawn them at a latejoin spawnpoint
 			spawnloc = pick(latejoin)
@@ -468,6 +470,14 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	new_character = new(spawnloc)
+	
+	if(sparks)
+		anim(spawnloc,new_character,'icons/mob/mob.dmi',,"phasein",,new_character.dir)
+		playsound(spawnloc, "sparks", 50, 1)
+		var/datum/effect/effect/system/spark_spread/spk = new(new_character)
+		spk.set_up(5, 0, new_character)
+		spk.attach(new_character)
+		spk.start()
 
 	//We were able to spawn them, right?
 	if(!new_character)
