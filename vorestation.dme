@@ -453,6 +453,7 @@
 #include "code\datums\wires\suit_storage_unit.dm"
 #include "code\datums\wires\tesla_coil.dm"
 #include "code\datums\wires\vending.dm"
+#include "code\datums\wires\wire_hint.dm"
 #include "code\datums\wires\wires.dm"
 #include "code\defines\gases.dm"
 #include "code\defines\obj.dm"
