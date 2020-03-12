@@ -87,6 +87,11 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		else
 			to_chat(usr, "<span class='notice'>This PDA does not have an ID in it.</span>")
 
+//Bloop when using:
+/obj/item/device/pda/CouldUseTopic(var/mob/user)
+	..()
+	if(iscarbon(user))
+		playsound(src, 'sound/machines/pda_click.ogg', 20)
 
 /obj/item/device/pda/medical
 	default_cartridge = /obj/item/weapon/cartridge/medical
