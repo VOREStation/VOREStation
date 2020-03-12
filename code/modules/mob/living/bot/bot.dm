@@ -54,7 +54,7 @@
 	access_scanner.req_access = req_access.Copy()
 	access_scanner.req_one_access = req_one_access.Copy()
 
-	if(!using_map.bot_patrolling)
+	if(!GLOB.using_map.bot_patrolling)
 		will_patrol = FALSE
 
 // Make sure mapped in units start turned on.

@@ -61,7 +61,7 @@
 					"You have (1) new message!",\
 					"You have (2) new profile views!")
 				if(3)
-					sender = pick("Galactic Payments Association","Better Business Bureau","[using_map.starsys_name] E-Payments","NAnoTransen Finance Deparmtent","Luxury Replicas")
+					sender = pick("Galactic Payments Association","Better Business Bureau","[GLOB.using_map.starsys_name] E-Payments","NAnoTransen Finance Deparmtent","Luxury Replicas")
 					message = pick("Luxury watches for Blowout sale prices!",\
 					"Watches, Jewelry & Accessories, Bags & Wallets !",\
 					"Deposit 100$ and get 300$ totally free!",\
@@ -71,7 +71,7 @@
 				if(4)
 					sender = pick("Buy Dr. Maxman","Having dysfuctional troubles?")
 					message = pick("DR MAXMAN: REAL Doctors, REAL Science, REAL Results!",\
-					"Dr. Maxman was created by George Acuilar, M.D, a [using_map.boss_short] Certified Urologist who has treated over 70,000 patients sector wide with 'male problems'.",\
+					"Dr. Maxman was created by George Acuilar, M.D, a [GLOB.using_map.boss_short] Certified Urologist who has treated over 70,000 patients sector wide with 'male problems'.",\
 					"After seven years of research, Dr Acuilar and his team came up with this simple breakthrough male enhancement formula.",\
 					"Men of all species report AMAZING increases in length, width and stamina.")
 				if(5)
@@ -84,11 +84,11 @@
 					"Due to my lack of agents I require an off-world financial account to immediately deposit the sum of 1 POINT FIVE MILLION credits.",\
 					"Greetings sir, I regretfully to inform you that as I lay dying here due to my lack ofheirs I have chosen you to recieve the full sum of my lifetime savings of 1.5 billion credits")
 				if(6)
-					sender = pick("[using_map.company_name] Morale Divison","Feeling Lonely?","Bored?","www.wetskrell.nt")
-					message = pick("The [using_map.company_name] Morale Division wishes to provide you with quality entertainment sites.",\
+					sender = pick("[GLOB.using_map.company_name] Morale Divison","Feeling Lonely?","Bored?","www.wetskrell.nt")
+					message = pick("The [GLOB.using_map.company_name] Morale Division wishes to provide you with quality entertainment sites.",\
 					"WetSkrell.nt is a xenophillic website endorsed by NT for the use of male crewmembers among it's many stations and outposts.",\
-					"Wetskrell.nt only provides the higest quality of male entertaiment to [using_map.company_name] Employees.",\
-					"Simply enter your [using_map.company_name] Bank account system number and pin. With three easy steps this service could be yours!")
+					"Wetskrell.nt only provides the higest quality of male entertaiment to [GLOB.using_map.company_name] Employees.",\
+					"Simply enter your [GLOB.using_map.company_name] Bank account system number and pin. With three easy steps this service could be yours!")
 				if(7)
 					sender = pick("You have won free tickets!","Click here to claim your prize!","You are the 1000th vistor!","You are our lucky grand prize winner!")
 					message = pick("You have won tickets to the newest ACTION JAXSON MOVIE!",\

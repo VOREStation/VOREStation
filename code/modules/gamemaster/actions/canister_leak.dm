@@ -15,7 +15,7 @@
 	// List of all non-destroyed canisters on station levels
 	var/list/all_canisters = list()
 	for(var/obj/machinery/portable_atmospherics/canister/C in machines)
-		if(!C.destroyed && (C.z in using_map.station_levels) && C.air_contents.total_moles >= MOLES_CELLSTANDARD)
+		if(!C.destroyed && (C.z in GLOB.using_map.station_levels) && C.air_contents.total_moles >= MOLES_CELLSTANDARD)
 			all_canisters += C
 	var/obj/machinery/portable_atmospherics/canister/C = pick(all_canisters)
 	log_debug("canister_leak event: Canister [C] ([C.x],[C.y],[C.z]) destroyed.")

@@ -12,7 +12,7 @@
 
 /obj/item/weapon/circuitboard/security/New()
 	..()
-	network = using_map.station_networks
+	network = GLOB.using_map.station_networks
 
 /obj/item/weapon/circuitboard/security/tv
 	name = T_BOARD("security camera monitor - television")

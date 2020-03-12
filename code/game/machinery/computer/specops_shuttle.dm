@@ -88,7 +88,7 @@ var/specops_shuttle_timeleft = 0
 
 	for(var/turf/T in get_area_turfs(end_location) )
 		var/mob/M = locate(/mob) in T
-		to_chat(M, "<span class='notice'>You have arrived at [using_map.boss_name]. Operation has ended!</span>")
+		to_chat(M, "<span class='notice'>You have arrived at [GLOB.using_map.boss_name]. Operation has ended!</span>")
 
 	specops_shuttle_at_station = 0
 
@@ -285,14 +285,14 @@ var/specops_shuttle_timeleft = 0
 		if(!specops_shuttle_at_station|| specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom) return
 
 		if (!specops_can_move())
-			to_chat(usr, "<span class='notice'>[using_map.boss_name] will not allow the Special Operations shuttle to return yet.</span>")
+			to_chat(usr, "<span class='notice'>[GLOB.using_map.boss_name] will not allow the Special Operations shuttle to return yet.</span>")
 			if(world.timeofday <= specops_shuttle_timereset)
 				if (((world.timeofday - specops_shuttle_timereset)/10) > 60)
 					to_chat(usr, "<span class='notice'>[-((world.timeofday - specops_shuttle_timereset)/10)/60] minutes remain!</span>")
 				to_chat(usr, "<span class='notice'>[-(world.timeofday - specops_shuttle_timereset)/10] seconds remain!</span>")
 			return
 
-		to_chat(usr, "<span class='notice'>The Special Operations shuttle will arrive at [using_map.boss_name] in [(SPECOPS_MOVETIME/10)] seconds.</span>")
+		to_chat(usr, "<span class='notice'>The Special Operations shuttle will arrive at [GLOB.using_map.boss_name] in [(SPECOPS_MOVETIME/10)] seconds.</span>")
 
 		temp += "Shuttle departing.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 		updateUsrDialog()

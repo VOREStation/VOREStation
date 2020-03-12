@@ -376,7 +376,7 @@
 
 
 /obj/machinery/power/smes/proc/ion_act()
-	if(src.z in using_map.station_levels)
+	if(src.z in GLOB.using_map.station_levels)
 		if(prob(1)) //explosion
 			for(var/mob/M in viewers(src))
 				M.show_message("<font color='red'>The [src.name] is making strange noises!</font>", 3, "<font color='red'>You hear sizzling electronics.</font>", 2)

@@ -32,13 +32,13 @@
 	find_z_levels()     // This populates map_z and assigns z levels to the ship.
 	register_z_levels() // This makes external calls to update global z level information.
 
-	if(!global.using_map.overmap_z)
+	if(!GLOB.using_map.overmap_z)
 		build_overmap()
 
-	start_x = start_x || rand(OVERMAP_EDGE, global.using_map.overmap_size - OVERMAP_EDGE)
-	start_y = start_y || rand(OVERMAP_EDGE, global.using_map.overmap_size - OVERMAP_EDGE)
+	start_x = start_x || rand(OVERMAP_EDGE, GLOB.using_map.overmap_size - OVERMAP_EDGE)
+	start_y = start_y || rand(OVERMAP_EDGE, GLOB.using_map.overmap_size - OVERMAP_EDGE)
 
-	forceMove(locate(start_x, start_y, global.using_map.overmap_z))
+	forceMove(locate(start_x, start_y, GLOB.using_map.overmap_z))
 
 	docking_codes = "[ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))]"
 
@@ -63,13 +63,13 @@
 	for(var/zlevel in map_z)
 		map_sectors["[zlevel]"] = src
 
-	global.using_map.player_levels |= map_z
+	GLOB.using_map.player_levels |= map_z
 	if(!in_space)
-		global.using_map.sealed_levels |= map_z
+		GLOB.using_map.sealed_levels |= map_z
 	if(base)
-		global.using_map.station_levels |= map_z
-		global.using_map.contact_levels |= map_z
-		global.using_map.map_levels |= map_z
+		GLOB.using_map.station_levels |= map_z
+		GLOB.using_map.contact_levels |= map_z
+		GLOB.using_map.map_levels |= map_z
 
 //Helper for init.
 /obj/effect/overmap/visitable/proc/check_ownership(obj/object)
@@ -115,24 +115,24 @@
 /obj/effect/overmap/visitable/sector/hide()
 
 /proc/build_overmap()
-	if(!global.using_map.use_overmap)
+	if(!GLOB.using_map.use_overmap)
 		return 1
 
 	testing("Building overmap...")
 	world.increment_max_z()
-	global.using_map.overmap_z = world.maxz
+	GLOB.using_map.overmap_z = world.maxz
 
-	testing("Putting overmap on [global.using_map.overmap_z]")
+	testing("Putting overmap on [GLOB.using_map.overmap_z]")
 	var/area/overmap/A = new
-	for (var/square in block(locate(1,1,global.using_map.overmap_z), locate(global.using_map.overmap_size,global.using_map.overmap_size,global.using_map.overmap_z)))
+	for (var/square in block(locate(1,1,GLOB.using_map.overmap_z), locate(GLOB.using_map.overmap_size,GLOB.using_map.overmap_size,GLOB.using_map.overmap_z)))
 		var/turf/T = square
-		if(T.x == global.using_map.overmap_size || T.y == global.using_map.overmap_size)
+		if(T.x == GLOB.using_map.overmap_size || T.y == GLOB.using_map.overmap_size)
 			T = T.ChangeTurf(/turf/unsimulated/map/edge)
 		else
 			T = T.ChangeTurf(/turf/unsimulated/map)
 		ChangeArea(T, A)
 
-	global.using_map.sealed_levels |= global.using_map.overmap_z
+	GLOB.using_map.sealed_levels |= GLOB.using_map.overmap_z
 
 	testing("Overmap build complete.")
 	return 1

@@ -601,7 +601,7 @@
 
 	if(!check_rights(R_DEBUG))
 		return
-	debug_variables(using_map)
+	debug_variables(GLOB.using_map)
 
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(var/mob/M,var/block)

@@ -16,7 +16,7 @@
 
 /obj/machinery/computer/security/New()
 	if(!network)
-		network = using_map.station_networks.Copy()
+		network = GLOB.using_map.station_networks.Copy()
 	..()
 	if(network.len)
 		current_network = network[1]
@@ -47,7 +47,7 @@
 		data["cameras"] = camera_repository.cameras_in_network(current_network)
 	if(current_camera)
 		switch_to_camera(user, current_camera)
-	data["map_levels"] = using_map.get_map_levels(src.z)
+	data["map_levels"] = GLOB.using_map.get_map_levels(src.z)
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -91,7 +91,7 @@
 		. = ..()
 
 /obj/machinery/computer/security/attack_hand(var/mob/user as mob)
-	if (using_map && !(src.z in using_map.contact_levels))
+	if (GLOB.using_map && !(src.z in GLOB.using_map.contact_levels))
 		to_chat(user, "<span class='danger'>Unable to establish a connection:</span> You're too far away from the station!")
 		return
 	if(stat & (NOPOWER|BROKEN))	return

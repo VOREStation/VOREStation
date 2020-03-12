@@ -15,7 +15,7 @@
 /obj/item/weapon/implant/backup/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
-<b>Name:</b> [using_map.company_name] Employee Backup Implant<BR>
+<b>Name:</b> [GLOB.using_map.company_name] Employee Backup Implant<BR>
 <b>Life:</b> ~8 hours.<BR>
 <b>Important Notes:</b> Implant is life-limited due to KHI licensing restrictions. Dissolves into harmless biomaterial after around ~8 hours, the typical work shift.<BR>
 <HR>

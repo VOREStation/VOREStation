@@ -34,7 +34,7 @@
 	ASSERT(istype(target))
 
 	// Blow up the target area?
-	//command_announcement.Announce(departure_message,(announcer ? announcer : "[using_map.boss_name]"))
+	//command_announcement.Announce(departure_message,(announcer ? announcer : "[GLOB.using_map.boss_name]"))
 
 	//What people are we dealing with here
 	var/list/victims = list()

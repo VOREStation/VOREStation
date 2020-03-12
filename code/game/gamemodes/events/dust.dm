@@ -82,7 +82,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 				endy = rand(TRANSITIONEDGE,world.maxy-TRANSITIONEDGE)
 				endx = world.maxx-TRANSITIONEDGE
 		//VOREStation Edit - No space dust outside of space
-		var/list/z_levels = using_map.station_levels.Copy()
+		var/list/z_levels = GLOB.using_map.station_levels.Copy()
 		for(var/datum/planet/P in SSplanets.planets)
 			z_levels.Remove(P.expected_z_levels)
 		var/z_level = pick(z_levels)

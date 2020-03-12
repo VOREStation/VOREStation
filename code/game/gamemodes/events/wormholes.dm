@@ -2,7 +2,7 @@
 	spawn()
 		var/list/pick_turfs = list()
 		var/list/Z_choices = list()
-		Z_choices |= using_map.get_map_levels(1, FALSE)
+		Z_choices |= GLOB.using_map.get_map_levels(1, FALSE)
 		for(var/turf/simulated/floor/T in turfs)
 			if(T.z in Z_choices)
 				if(!T.block_tele)

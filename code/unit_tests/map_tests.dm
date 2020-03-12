@@ -35,11 +35,11 @@
 						)
 
 	// Some maps have areas specific to the map, so include those.
-	exempt_areas += using_map.unit_test_exempt_areas.Copy()
-	exempt_from_atmos += using_map.unit_test_exempt_from_atmos.Copy()
-	exempt_from_apc += using_map.unit_test_exempt_from_apc.Copy()
+	exempt_areas += GLOB.using_map.unit_test_exempt_areas.Copy()
+	exempt_from_atmos += GLOB.using_map.unit_test_exempt_from_atmos.Copy()
+	exempt_from_apc += GLOB.using_map.unit_test_exempt_from_apc.Copy()
 
-	var/list/zs_to_test = using_map.unit_test_z_levels || list(1) //Either you set it, or you just get z1
+	var/list/zs_to_test = GLOB.using_map.unit_test_z_levels || list(1) //Either you set it, or you just get z1
 
 	for(var/area/A in all_areas)
 		if((A.z in zs_to_test) && !(A.type in exempt_areas))

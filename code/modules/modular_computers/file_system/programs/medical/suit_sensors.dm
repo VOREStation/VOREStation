@@ -20,8 +20,8 @@
 
 /datum/nano_module/crew_monitor/Topic(href, href_list)
 	if(..()) return 1
-	var/turf/T = get_turf(nano_host())	// TODO: Allow setting any using_map.contact_levels from the interface.
-	if (!T || !(T.z in using_map.player_levels))
+	var/turf/T = get_turf(nano_host())	// TODO: Allow setting any GLOB.using_map.contact_levels from the interface.
+	if (!T || !(T.z in GLOB.using_map.player_levels))
 		to_chat(usr, "<span class='warning'>Unable to establish a connection</span>: You're too far away from the station!")
 		return 0
 	if(href_list["track"])
@@ -37,7 +37,7 @@
 	var/turf/T = get_turf(nano_host())
 
 	data["isAI"] = isAI(user)
-	data["map_levels"] = using_map.get_map_levels(T.z, FALSE)
+	data["map_levels"] = GLOB.using_map.get_map_levels(T.z, FALSE)
 	data["crewmembers"] = list()
 	for(var/z in data["map_levels"])			// VOREStation Edit
 		data["crewmembers"] += crew_repository.health_data(z)

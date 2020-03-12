@@ -12,7 +12,7 @@
 			D.money += winner_sum
 
 			var/datum/transaction/T = new()
-			T.target_name = "The [using_map.starsys_name] Times Grand Slam -Stellar- Lottery"
+			T.target_name = "The [GLOB.using_map.starsys_name] Times Grand Slam -Stellar- Lottery"
 			T.purpose = "Winner!"
 			T.amount = winner_sum
 			T.date = current_date_string
@@ -23,11 +23,11 @@
 			deposit_success = 1
 
 /datum/event/money_lotto/announce()
-	var/author = "[using_map.company_name] Editor"
-	var/channel = "The [using_map.starsys_name] Times"
+	var/author = "[GLOB.using_map.company_name] Editor"
+	var/channel = "The [GLOB.using_map.starsys_name] Times"
 
-	var/body = "The [using_map.starsys_name] Times wishes to congratulate <b>[winner_name]</b> for recieving the [using_map.starsys_name] Stellar Slam Lottery, and receiving the out of this world sum of [winner_sum] credits!"
+	var/body = "The [GLOB.using_map.starsys_name] Times wishes to congratulate <b>[winner_name]</b> for recieving the [GLOB.using_map.starsys_name] Stellar Slam Lottery, and receiving the out of this world sum of [winner_sum] credits!"
 	if(!deposit_success)
-		body += "<br>Unfortunately, we were unable to verify the account details provided, so we were unable to transfer the money. Send a cheque containing the sum of 5000 Thalers to ND 'Stellar Slam' office on the The [using_map.starsys_name] Times gateway containing updated details, and your winnings'll be re-sent within the month."
+		body += "<br>Unfortunately, we were unable to verify the account details provided, so we were unable to transfer the money. Send a cheque containing the sum of 5000 Thalers to ND 'Stellar Slam' office on the The [GLOB.using_map.starsys_name] Times gateway containing updated details, and your winnings'll be re-sent within the month."
 
 	news_network.SubmitArticle(body, author, channel, null, 1)

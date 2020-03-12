@@ -40,7 +40,7 @@
 
 /datum/gm_action/radiation_storm/proc/radiate()
 	var/radiation_level = rand(15, 35)
-	for(var/z in using_map.station_levels)
+	for(var/z in GLOB.using_map.station_levels)
 		SSradiation.z_radiate(locate(1, 1, z), radiation_level, 1)
 
 	for(var/mob/living/carbon/C in living_mob_list)

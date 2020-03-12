@@ -2,7 +2,7 @@
 /proc/get_camera_access(var/network)
 	if(!network)
 		return 0
-	. = using_map.get_network_access(network)
+	. = GLOB.using_map.get_network_access(network)
 	if(.)
 		return
 
@@ -16,7 +16,7 @@
 		if(NETWORK_ERT)
 			return access_cent_specops
 
-	if(network in using_map.station_networks)
+	if(network in GLOB.using_map.station_networks)
 		return access_security // Default for all other station networks
 	else
 		return 999	//Inaccessible if not a station network and not mentioned above
@@ -45,13 +45,13 @@
 	data["current_network"] = current_network
 
 	var/list/all_networks[0]
-	for(var/network in using_map.station_networks)
+	for(var/network in GLOB.using_map.station_networks)
 		if(can_access_network(user, get_camera_access(network), 1))
 			all_networks.Add(list(list(
 								"tag" = network,
 								"has_access" = 1
 								)))
-	for(var/network in using_map.secondary_networks)
+	for(var/network in GLOB.using_map.secondary_networks)
 		if(can_access_network(user, get_camera_access(network), 0))
 			all_networks.Add(list(list(
 								"tag" = network,
@@ -105,7 +105,7 @@
 
 	else if(href_list["switch_network"])
 		// Either security access, or access to the specific camera network's department is required in order to access the network.
-		if(can_access_network(usr, get_camera_access(href_list["switch_network"]), (href_list["switch_network"] in using_map.station_networks)))
+		if(can_access_network(usr, get_camera_access(href_list["switch_network"]), (href_list["switch_network"] in GLOB.using_map.station_networks)))
 			current_network = href_list["switch_network"]
 		else
 			to_chat(usr, "\The [nano_host()] shows an \"Network Access Denied\" error message.")

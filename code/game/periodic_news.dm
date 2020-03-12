@@ -12,7 +12,7 @@
 
 	New() // I'm sorry...
 		..()
-		channel_name = "The [using_map.starsys_name] Times"
+		channel_name = "The [GLOB.using_map.starsys_name] Times"
 
 	revolution_inciting_event
 

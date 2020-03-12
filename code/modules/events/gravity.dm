@@ -5,7 +5,7 @@
 /datum/event/gravity/setup()
 	endWhen = rand(15, 60)
 	// Setup which levels we will disrupt gravit on.
-	zLevels = using_map.station_levels.Copy()
+	zLevels = GLOB.using_map.station_levels.Copy()
 	for(var/datum/planet/P in SSplanets.planets)
 		zLevels -= P.expected_z_levels
 

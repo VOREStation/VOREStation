@@ -40,11 +40,11 @@
 			if(check_for_passengers(area_offsite)) // No point arriving with an empty shuttle.
 				warmup_time = initial(warmup_time)
 				launch()
-				message_passengers(area_offsite, "Arriving at [using_map.station_name] in thirty seconds...")
+				message_passengers(area_offsite, "Arriving at [GLOB.using_map.station_name] in thirty seconds...")
 				spawn(10 SECONDS)
-					message_passengers(area_offsite, "Arriving at [using_map.station_name] in twenty seconds.")
+					message_passengers(area_offsite, "Arriving at [GLOB.using_map.station_name] in twenty seconds.")
 					spawn(10 SECONDS)
-						message_passengers(area_offsite, "Arriving at [using_map.station_name] in ten seconds.  Please buckle up.")
+						message_passengers(area_offsite, "Arriving at [GLOB.using_map.station_name] in ten seconds.  Please buckle up.")
 
 		else // We are at the station.
 			if(!check_for_passengers(area_station)) // Don't leave with anyone.

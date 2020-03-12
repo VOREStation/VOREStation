@@ -54,9 +54,9 @@
 /datum/shuttle/autodock/multi/proc/announce_departure()
 	if(cloaked || isnull(departure_message))
 		return
-	command_announcement.Announce(departure_message, (announcer ? announcer : "[using_map.boss_name]"))
+	command_announcement.Announce(departure_message, (announcer ? announcer : "[GLOB.using_map.boss_name]"))
 
 /datum/shuttle/autodock/multi/proc/announce_arrival()
 	if(cloaked || isnull(arrival_message))
 		return
-	command_announcement.Announce(arrival_message, (announcer ? announcer : "[using_map.boss_name]"))
+	command_announcement.Announce(arrival_message, (announcer ? announcer : "[GLOB.using_map.boss_name]"))

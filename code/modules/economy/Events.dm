@@ -73,7 +73,7 @@
 				body = "A small [pick("pirate","Nation of Mars","Revolutionary Solar People's Party","mercenary")] fleet has precise-jumped into proximity with [affected_dest.name], [pick("for a smash-and-grab operation","in a hit and run attack","in an overt display of hostilities")]. Much damage was done, and security has been tightened since the incident."
 			if(ALIEN_RAIDERS)
 				if(prob(20))
-					body = "Ue-Katish pirates exiled from Ue'Orsi have raided [affected_dest.name] today, no doubt on orders from their enigmatic masters. Stealing wildlife, farm animals, medical research materials and kidnapping civilians. [using_map.company_name] authorities are standing by to counter attempts at bio-terrorism."
+					body = "Ue-Katish pirates exiled from Ue'Orsi have raided [affected_dest.name] today, no doubt on orders from their enigmatic masters. Stealing wildlife, farm animals, medical research materials and kidnapping civilians. [GLOB.using_map.company_name] authorities are standing by to counter attempts at bio-terrorism."
 				else
 					body = "The Vox have raided [affected_dest.name] today, stealing wildlife, farm animals, medical research materials and kidnapping civilians. Fleet assets have moved to reinforce the effected region."
 			if(AI_LIBERATION)
@@ -83,7 +83,7 @@
 			if(CULT_CELL_REVEALED)
 				body = "A [pick("dastardly","blood-thirsty","villanous","crazed")] doomsday cult has [pick("been discovered","been revealed","revealed themselves","gone public")] on [affected_dest.name] earlier today. Public morale has been shaken due to [pick("certain","several","one or two")] [pick("high-profile","well known","popular")] individuals [pick("performing illegal acts","claiming allegiance to the cult","swearing loyalty to the cult leader","promising to aid to the cult")] before those involved could be brought to justice."
 			if(SECURITY_BREACH)
-				body = "There was [pick("a security breach in","an unauthorised access in","an attempted theft in","an anarchist attack in","violent sabotage of")] a [pick("high-security","restricted access","classified")] [pick("section","zone","area")] this morning. Security was tightened on [affected_dest.name] after the incident, and the editor reassures all [using_map.company_name] personnel that such lapses are rare."
+				body = "There was [pick("a security breach in","an unauthorised access in","an attempted theft in","an anarchist attack in","violent sabotage of")] a [pick("high-security","restricted access","classified")] [pick("section","zone","area")] this morning. Security was tightened on [affected_dest.name] after the incident, and the editor reassures all [GLOB.using_map.company_name] personnel that such lapses are rare."
 			if(ANIMAL_RIGHTS_RAID)
 				body = "[pick("Militant animal rights activists","Members of the terrorist group Galactic Organization for Animal Rights")] have [pick("launched a campaign of terror","unleashed a swathe of destruction","raided farms and pastures","forced entry to an animal processing plant")] on [affected_dest.name] earlier today, freeing numerous [pick("farm animals","animals")]. Prices for tame and breeding animals have spiked as a result."
 			if(FESTIVAL)

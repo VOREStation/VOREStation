@@ -106,7 +106,7 @@
 			data["tempMsg"] = "Telepad undergoing physical maintenance operations."
 
 		data["sectorOptions"] = list()
-		for(var/z in using_map.player_levels)
+		for(var/z in GLOB.using_map.player_levels)
 			data["sectorOptions"] += z
 
 		if(last_tele_data)
@@ -291,7 +291,7 @@
 		telefail()
 		temp_msg = "ERROR!<BR>No distance selected!"
 		return
-	if(!(z_co in using_map.player_levels))
+	if(!(z_co in GLOB.using_map.player_levels))
 		telefail()
 		temp_msg = "ERROR! Sector is outside known time and space!"
 		return
@@ -332,7 +332,7 @@
 
 	if(href_list["setz"])
 		var/new_z = text2num(href_list["setz"])
-		if(new_z in using_map.player_levels)
+		if(new_z in GLOB.using_map.player_levels)
 			z_co = new_z
 
 	if(href_list["ejectGPS"])

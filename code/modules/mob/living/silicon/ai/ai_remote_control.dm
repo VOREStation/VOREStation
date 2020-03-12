@@ -27,7 +27,7 @@
 
 	for(var/borgie in GLOB.available_ai_shells)
 		var/mob/living/silicon/robot/R = borgie
-		if(R.shell && !R.deployed && (R.stat != DEAD) && (!R.connected_ai || (R.connected_ai == src) )  && !(using_map.ai_shell_restricted && !(R.z in using_map.ai_shell_allowed_levels)) )	//VOREStation Edit: shell restrictions
+		if(R.shell && !R.deployed && (R.stat != DEAD) && (!R.connected_ai || (R.connected_ai == src) )  && !(GLOB.using_map.ai_shell_restricted && !(R.z in GLOB.using_map.ai_shell_allowed_levels)) )	//VOREStation Edit: shell restrictions
 			possible += R
 
 	if(!LAZYLEN(possible))

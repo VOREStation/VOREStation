@@ -16,7 +16,7 @@
 	for(var/mob/living/L in player_list)
 		var/turf/T = get_turf(L)
 		if(istype(T, /turf/space) && istype(T.loc, /area/space))
-			if(respect_z && !(L.z in using_map.station_levels))
+			if(respect_z && !(L.z in GLOB.using_map.station_levels))
 				continue
 			if(assess_player_activity(L) >= cutoff)
 				num++

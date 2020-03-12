@@ -74,10 +74,10 @@
 
 		var/newlevel = get_security_level()
 		for(var/obj/machinery/firealarm/FA in machines)
-			if(FA.z in using_map.contact_levels)
+			if(FA.z in GLOB.using_map.contact_levels)
 				FA.set_security_level(newlevel)
 		for(var/obj/machinery/status_display/FA in machines)
-			if(FA.z in using_map.contact_levels)
+			if(FA.z in GLOB.using_map.contact_levels)
 				FA.on_alert_changed(newlevel)
 
 		if(level >= SEC_LEVEL_RED)

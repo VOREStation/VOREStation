@@ -17,7 +17,7 @@ var/global/datum/controller/occupations/job_master
 	proc/SetupOccupations(var/faction = "Station")
 		occupations = list()
 		//var/list/all_jobs = typesof(/datum/job)
-		var/list/all_jobs = list(/datum/job/assistant) | using_map.allowed_jobs
+		var/list/all_jobs = list(/datum/job/assistant) | GLOB.using_map.allowed_jobs
 		if(!all_jobs.len)
 			to_world("<span class='warning'>Error setting up jobs, no job datums found!</span>")
 			return 0
@@ -611,7 +611,7 @@ var/global/datum/controller/occupations/job_master
 
 	//Spawn them at their preferred one
 	if(C && C.prefs.spawnpoint)
-		if(!(C.prefs.spawnpoint in using_map.allowed_spawns))
+		if(!(C.prefs.spawnpoint in GLOB.using_map.allowed_spawns))
 			to_chat(C, "<span class='warning'>Your chosen spawnpoint ([C.prefs.spawnpoint]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead.</span>")
 			spawnpos = null
 		else

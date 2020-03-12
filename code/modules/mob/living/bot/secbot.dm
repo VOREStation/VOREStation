@@ -101,7 +101,7 @@
 		dat += "Check Arrest Status: <A href='?src=\ref[src];operation=ignorearr'>[check_arrest ? "Yes" : "No"]</A><BR>"
 		dat += "Operating Mode: <A href='?src=\ref[src];operation=switchmode'>[arrest_type ? "Detain" : "Arrest"]</A><BR>"
 		dat += "Report Arrests: <A href='?src=\ref[src];operation=declarearrests'>[declare_arrests ? "Yes" : "No"]</A><BR>"
-		if(using_map.bot_patrolling)
+		if(GLOB.using_map.bot_patrolling)
 			dat += "Auto Patrol: <A href='?src=\ref[src];operation=patrol'>[will_patrol ? "On" : "Off"]</A>"
 	var/datum/browser/popup = new(user, "autosec", "Securitron controls")
 	popup.set_content(jointext(dat,null))

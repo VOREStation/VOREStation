@@ -61,7 +61,7 @@
 			"y" = alarm.y,
 			"z" = alarm.z)
 	data["alarms"] = alarms
-	data["map_levels"] = using_map.get_map_levels(T.z)
+	data["map_levels"] = GLOB.using_map.get_map_levels(T.z)
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)

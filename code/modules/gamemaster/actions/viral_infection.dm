@@ -46,7 +46,7 @@
 	for(var/mob/living/carbon/human/G in player_list)
 		if(G.mind && G.stat != DEAD && G.is_client_active(5) && !player_is_antag(G.mind))
 			var/turf/T = get_turf(G)
-			if(T.z in using_map.station_levels)
+			if(T.z in GLOB.using_map.station_levels)
 				candidates += G
 	if(!candidates.len)	return
 	candidates = shuffle(candidates)//Incorporating Donkie's list shuffle

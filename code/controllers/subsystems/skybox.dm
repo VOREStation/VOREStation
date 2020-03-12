@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(skybox)
 /datum/controller/subsystem/skybox/proc/get_skybox(z)
 	if(!skybox_cache["[z]"])
 		skybox_cache["[z]"] = generate_skybox(z)
-		if(global.using_map.use_overmap)
+		if(GLOB.using_map.use_overmap)
 			var/obj/effect/overmap/visitable/O = map_sectors["[z]"]
 			if(istype(O))
 				for(var/zlevel in O.map_z)
@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(skybox)
 	return skybox_cache["[z]"]
 
 /datum/controller/subsystem/skybox/proc/generate_skybox(z)
-	var/datum/skybox_settings/settings = global.using_map.get_skybox_datum(z)
+	var/datum/skybox_settings/settings = GLOB.using_map.get_skybox_datum(z)
 
 	var/image/res = image(settings.icon)
 	res.appearance_flags = KEEP_TOGETHER
@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(skybox)
 
 	res.overlays += base
 
-	if(global.using_map.use_overmap && settings.use_overmap_details)
+	if(GLOB.using_map.use_overmap && settings.use_overmap_details)
 		var/obj/effect/overmap/visitable/O = map_sectors["[z]"]
 		if(istype(O))
 			var/image/overmap = image(settings.icon_state)

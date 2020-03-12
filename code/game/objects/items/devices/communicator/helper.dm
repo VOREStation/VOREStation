@@ -225,7 +225,7 @@
 	// Minor tweaks for efficiency and cleanliness
 	var/turf/T = get_turf(src)
 	if(T)
-		var/list/levels = using_map.get_map_levels(T.z, FALSE)
+		var/list/levels = GLOB.using_map.get_map_levels(T.z, FALSE)
 		for(var/obj/machinery/power/sensor/S in machines)
 			if((S.long_range) || (S.loc.z in levels) || (S.loc.z == T.z)) // Consoles have range on their Z-Level. Sensors with long_range var will work between Z levels.
 				if(S.name_tag == "#UNKN#") // Default name. Shouldn't happen!
@@ -297,7 +297,7 @@
 	// User's location
 	var/turf/userloc = get_turf(src)
 	if(isturf(userloc))
-		janidata[++janidata.len] = list("field" = "Current Location", "val" = "<span class='good'>[userloc.x], [userloc.y], [using_map.get_zlevel_name(userloc.z)]</span>")
+		janidata[++janidata.len] = list("field" = "Current Location", "val" = "<span class='good'>[userloc.x], [userloc.y], [GLOB.using_map.get_zlevel_name(userloc.z)]</span>")
 	else
 		janidata[++janidata.len] = list("field" = "Current Location", "val" = "<span class='bad'>Unknown</span>")
 		return janidata // If the user isn't on a valid turf, then it shouldn't be able to find anything anyways
@@ -305,23 +305,23 @@
 	// Mops, mop buckets, janitorial carts.
 	for(var/obj/C in cleaningList)
 		var/turf/T = get_turf(C)
-		if(isturf(T) )//&& T.z in using_map.get_map_levels(userloc, FALSE))
+		if(isturf(T) )//&& T.z in GLOB.using_map.get_map_levels(userloc, FALSE))
 			if(T.z == userloc.z)
-				janidata[++janidata.len] = list("field" = apply_text_macros("\proper [C.name]"), "val" = "<span class='good'>[T.x], [T.y], [using_map.get_zlevel_name(T.z)]</span>")
+				janidata[++janidata.len] = list("field" = apply_text_macros("\proper [C.name]"), "val" = "<span class='good'>[T.x], [T.y], [GLOB.using_map.get_zlevel_name(T.z)]</span>")
 			else
-				janidata[++janidata.len] = list("field" = apply_text_macros("\proper [C.name]"), "val" = "<span class='average'>[T.x], [T.y], [using_map.get_zlevel_name(T.z)]</span>")
+				janidata[++janidata.len] = list("field" = apply_text_macros("\proper [C.name]"), "val" = "<span class='average'>[T.x], [T.y], [GLOB.using_map.get_zlevel_name(T.z)]</span>")
 
 	// Cleanbots
 	for(var/mob/living/bot/cleanbot/B in living_mob_list)
 		var/turf/T = get_turf(B)
-		if(isturf(T) )//&& T.z in using_map.get_map_levels(userloc, FALSE))
+		if(isturf(T) )//&& T.z in GLOB.using_map.get_map_levels(userloc, FALSE))
 			var/textout = ""
 			if(B.on)
 				textout += "Status: <span class='good'>Online</span><br>"
 				if(T.z == userloc.z)
-					textout += "<span class='good'>[T.x], [T.y], [using_map.get_zlevel_name(T.z)]</span>"
+					textout += "<span class='good'>[T.x], [T.y], [GLOB.using_map.get_zlevel_name(T.z)]</span>"
 				else
-					textout += "<span class='average'>[T.x], [T.y], [using_map.get_zlevel_name(T.z)]</span>"
+					textout += "<span class='average'>[T.x], [T.y], [GLOB.using_map.get_zlevel_name(T.z)]</span>"
 			else
 				textout += "Status: <span class='bad'>Offline</span>"
 

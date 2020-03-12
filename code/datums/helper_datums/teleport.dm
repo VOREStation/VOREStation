@@ -185,7 +185,7 @@
 			teleatom.visible_message("<span class='danger'>\The [teleatom] bounces off of the portal!</span>")
 		return 0
 	/* VOREStation Removal
-	if(destination.z in using_map.admin_levels) //CentCom z-level
+	if(destination.z in GLOB.using_map.admin_levels) //CentCom z-level
 		if(istype(teleatom, /obj/mecha))
 			var/obj/mecha/MM = teleatom
 			to_chat(MM.occupant, "<span class='danger'>\The [MM] would not survive the jump to a location so far away!</span>")
@@ -197,7 +197,7 @@
 	//VOREStation Edit Start
 	var/obstructed = 0
 	var/turf/dest_turf = get_turf(destination)
-	if(local && !(dest_turf.z in using_map.player_levels))
+	if(local && !(dest_turf.z in GLOB.using_map.player_levels))
 		if(istype(teleatom, /mob/living))
 			to_chat(teleatom, "<span class='warning'>The portal refuses to carry you that far away!</span>")
 		return 0
