@@ -5,6 +5,9 @@
 	icon_state = "wm_10"
 	density = 1
 	anchored = 1.0
+	clicksound = "button"
+	clickvol = 40
+
 	circuit = /obj/item/weapon/circuitboard/washing
 	var/state = 1
 	//1 = empty, open door

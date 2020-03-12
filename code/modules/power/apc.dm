@@ -68,6 +68,7 @@
 	layer = ABOVE_TURF_LAYER
 	anchored = 1
 	use_power = 0
+	clicksound = "switch"
 	req_access = list(access_engine_equip)
 	var/area/area
 	var/areastring = null
@@ -535,7 +536,7 @@
 
 	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
 		togglelock()
-		
+
 	else if (istype(W, /obj/item/stack/cable_coil) && !terminal && opened && has_electronics!=2)
 		var/turf/T = loc
 		if(istype(T) && !T.is_plating())

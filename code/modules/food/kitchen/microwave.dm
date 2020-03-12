@@ -8,6 +8,8 @@
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100
+	clicksound = "button"
+	clickvol = "30"
 	flags = OPENCONTAINER | NOREACT
 	circuit = /obj/item/weapon/circuitboard/microwave
 	var/operating = 0 // Is it on?
