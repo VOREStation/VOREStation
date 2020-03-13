@@ -144,7 +144,8 @@
 
 	if(under_ma)
 		if(ispath(under,/turf/space)) //Scramble space turfs
-			under_ma.icon_state = "[rand(1,25)]"
+			under_ma.icon_state = "white"
+			under_ma.plane = SPACE_PLANE
 		us.underlays = list(under_ma)
 
 	appearance = us
