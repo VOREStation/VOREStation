@@ -134,7 +134,7 @@
 	if(incapacitated())
 		return FALSE
 
-	if(hovering)
+	if(hovering || is_incorporeal())
 		return TRUE
 
 	if(flying) //VOREStation Edit. Allows movement up/down with wings.
