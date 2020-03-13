@@ -98,6 +98,16 @@
 	landed_holder = null
 	..()
 
+// For joined corners touching static lighting turfs, add an overlay to cancel out that part of our lighting overlay.
+/turf/simulated/shuttle/proc/update_breaklights()
+	if(join_flags in cornerdirs) //We're joined at an angle
+		//Dynamic lighting dissolver
+		var/turf/T = get_step(src, turn(join_flags,180))
+		if(!T || !T.dynamic_lighting || !get_area(T).dynamic_lighting)
+			add_overlay(antilight_cache["[join_flags]"], TRUE)
+		else
+			cut_overlay(antilight_cache["[join_flags]"], TRUE)
+
 /turf/simulated/shuttle/proc/underlay_update()
 	if(!takes_underlays)
 		//Basically, if it's not forced, and we don't care, don't do it.
@@ -118,6 +128,7 @@
 		landed_on.plane = FLOAT_PLANE //Not turf
 		us.underlays = list(landed_on)
 		appearance = us
+		update_breaklights()
 		return
 
 	if(!under)
@@ -160,12 +171,7 @@
 
 	appearance = us
 
-	//Dynamic lighting dissolver
-	var/turf/T = get_step(src, turn(join_flags,180))
-	if(!T || !T.dynamic_lighting || !get_area(T).dynamic_lighting)
-		add_overlay(antilight_cache["[join_flags]"], TRUE)
-	else
-		cut_overlay(antilight_cache["[join_flags]"], TRUE)
+	update_breaklights()
 
 	return under
 
