@@ -446,3 +446,4 @@
 
 #include "om_ships/hybridshuttle.dm"
 #include "om_ships/screebarge.dm"
+#include "om_ships/aro.dm"
