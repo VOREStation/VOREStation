@@ -36,13 +36,16 @@
 	damage = 30
 	damage_type = SEARING
 	embed_chance = 0
+	armor_penetration = 40
+	penetrating = 1
 
 /obj/item/projectile/bullet/magnetic/heated/weak
 	icon_state = "gauss_silenced"
 	damage = 15
 	agony = 5
 	embed_chance = 0
-	armor_penetration = 50
+	armor_penetration = 30
+	penetrating = 0
 
 /obj/item/projectile/bullet/magnetic/fuelrod
 	name = "fuel rod"
