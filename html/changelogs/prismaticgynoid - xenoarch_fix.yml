@@ -1,0 +1,6 @@
+author: PrismaticGynoid
+
+delete-after: True
+
+changes: 
+  - bugfix: "Fixes xenoarch artifacts breaking when performing excavation correctly."
