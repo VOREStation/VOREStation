@@ -48,6 +48,4 @@
 	if(!istype(SK))
 		return 0
 
-	if(amount > 0 || !(SK.check_infinite_energy(src)))
-		var/new_amount = SK.get_energy(src) + amount
-		SK.set_energy(src, new_amount)
+	SK.set_energy(src, SK.get_energy(src) + amount)
