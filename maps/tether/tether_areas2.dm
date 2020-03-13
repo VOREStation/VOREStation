@@ -1152,58 +1152,6 @@
 /area/unknown/dorm4
 	name = "Unknown Dorm 4"
 
-//////// Small Cruiser Areas ////////
-/area/houseboat
-	name = "Small Cruiser"
-	requires_power = 0
-	flags = RAD_SHIELDED
-	base_turf = /turf/space
-	icon_state = "red2"
-	lightswitch = TRUE
-
-/area/houseboat/holodeck_area
-	name = "Small Cruiser - Holodeck"
-	icon_state = "blue2"
-
-/area/houseboat/holodeck/off
-	name = "Small Cruiser Holo - Off"
-	icon_state = "blue2"
-/area/houseboat/holodeck/beach
-	name = "Small Cruiser Holo - Beach"
-	icon_state = "blue2"
-/area/houseboat/holodeck/snow
-	name = "Small Cruiser Holo - Snow"
-	icon_state = "blue2"
-/area/houseboat/holodeck/desert
-	name = "Small Cruiser Holo - Desert"
-	icon_state = "blue2"
-/area/houseboat/holodeck/picnic
-	name = "Small Cruiser Holo - Picnic"
-	icon_state = "blue2"
-/area/houseboat/holodeck/thunderdome
-	name = "Small Cruiser Holo - Thunderdome"
-	icon_state = "blue2"
-/area/houseboat/holodeck/basketball
-	name = "Small Cruiser Holo - Basketball"
-	icon_state = "blue2"
-/area/houseboat/holodeck/gaming
-	name = "Small Cruiser Holo - Gaming Table"
-	icon_state = "blue2"
-/area/houseboat/holodeck/space
-	name = "Small Cruiser Holo - Space"
-	icon_state = "blue2"
-/area/houseboat/holodeck/bunking
-	name = "Small Cruiser Holo - Bunking"
-	icon_state = "blue2"
-
-/area/shuttle/cruiser/cruiser
-	name = "Small Cruiser Shuttle - Cruiser"
-	icon_state = "blue2"
-	base_turf = /turf/simulated/floor/tiled/techfloor
-/area/shuttle/cruiser/station
-	name = "Small Cruiser Shuttle - Station"
-	icon_state = "blue2"
-
 // ERT/Deathsquad Shuttle
 /area/shuttle/specialops/centcom
 	name = "Special Operations Shuttle - Centcom"

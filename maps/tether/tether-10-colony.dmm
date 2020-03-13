@@ -25271,9 +25271,6 @@
 	},
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm3)
-"WI" = (
-/turf/simulated/floor/wood,
-/area/houseboat)
 "WL" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/box/pillbottles,
@@ -30606,7 +30603,7 @@ Qh
 So
 OR
 OR
-WI
+OR
 Fh
 Ki
 Hp
