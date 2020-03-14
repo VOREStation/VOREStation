@@ -33,6 +33,14 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 		if(!R.unavailable_at_chargen)
 			chargen_robolimbs[R.company] = R //List only main brands and solo parts.
 
+	for(var/company in all_robolimbs)
+		var/datum/robolimb/R = all_robolimbs[company]
+		if(R.species_alternates)
+			for(var/species in R.species_alternates)
+				var/species_company = R.species_alternates[species]
+				if(species_company in all_robolimbs)
+					R.species_alternates[species] = all_robolimbs[species_company]
+
 /datum/robolimb
 	var/company = "Unbranded"                            // Shown when selecting the limb.
 	var/desc = "A generic unbranded robotic prosthesis." // Seen when examining a limb.
@@ -40,9 +48,11 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	var/unavailable_at_chargen                           // If set, not available at chargen.
 	var/unavailable_to_build							 // If set, can't be constructed.
 	var/lifelike										 // If set, appears organic.
-	var/skin_tone										 // If set, applies skin tone rather than part color
+	var/skin_tone										 // If set, applies skin tone rather than part color Overrides color.
+	var/skin_color										 // If set, applies skin color rather than part color.
 	var/blood_color = "#030303"
 	var/list/species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_XENOCHIMERA)	 //VOREStation Edit
+	var/list/species_alternates = list(SPECIES_TAJ = "Unbranded - Tajaran", SPECIES_UNATHI = "Unbranded - Unathi")				 //"Species Name" = "Robolimb Company" , List, when initialized, will become "Species Name" = RobolimbDatum, used for alternate species sprites.
 	var/list/monitor_styles			 		 			 //If empty, the model of limbs offers a head compatible with monitors.
 	var/parts = BP_ALL						 			 //Defines what parts said brand can replace on a body.
 	var/health_hud_intensity = 1						 // Intensity modifier for the health GUI indicator.
@@ -72,10 +82,45 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon = 'icons/mob/human_races/cyberlimbs/unbranded/unbranded_alt2.dmi'
 	unavailable_to_build = 1
 
+/datum/robolimb/unbranded_tajaran
+	company = "Unbranded - Tajaran"
+	species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_HUMAN, SPECIES_VOX, SPECIES_HUMAN_VATBORN, SPECIES_UNATHI, SPECIES_SKRELL, SPECIES_ZADDAT)
+	suggested_species = SPECIES_TAJ
+	desc = "A simple robotic limb with feline design. Seems rather stiff."
+	icon = 'icons/mob/human_races/cyberlimbs/unbranded/unbranded_tajaran.dmi'
+	unavailable_to_build = 1
+
+/datum/robolimb/unbranded_unathi
+	company = "Unbranded - Unathi"
+	species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_HUMAN, SPECIES_VOX, SPECIES_HUMAN_VATBORN, SPECIES_TAJ, SPECIES_SKRELL, SPECIES_ZADDAT)
+	suggested_species = SPECIES_UNATHI
+	desc = "A simple robotic limb with reptilian design. Seems rather stiff."
+	icon = 'icons/mob/human_races/cyberlimbs/unbranded/unbranded_unathi.dmi'
+	unavailable_to_build = 1
+
 /datum/robolimb/nanotrasen
 	company = "NanoTrasen"
 	desc = "A simple but efficient robotic limb, created by NanoTrasen."
 	icon = 'icons/mob/human_races/cyberlimbs/nanotrasen/nanotrasen_main.dmi'
+	species_alternates = list(SPECIES_TAJ = "NanoTrasen - Tajaran", SPECIES_UNATHI = "NanoTrasen - Unathi")
+
+/datum/robolimb/nanotrasen_tajaran
+	company = "NanoTrasen - Tajaran"
+	species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_HUMAN, SPECIES_VOX, SPECIES_HUMAN_VATBORN, SPECIES_UNATHI, SPECIES_SKRELL, SPECIES_ZADDAT)
+	species_alternates = list(SPECIES_HUMAN = "NanoTrasen")
+	suggested_species = SPECIES_TAJ
+	desc = "A simple but efficient robotic limb, created by NanoTrasen."
+	icon = 'icons/mob/human_races/cyberlimbs/nanotrasen/nanotrasen_tajaran.dmi'
+	unavailable_to_build = 1
+
+/datum/robolimb/nanotrasen_unathi
+	company = "NanoTrasen - Unathi"
+	species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_HUMAN, SPECIES_VOX, SPECIES_HUMAN_VATBORN, SPECIES_TAJ, SPECIES_SKRELL, SPECIES_ZADDAT)
+	species_alternates = list(SPECIES_HUMAN = "NanoTrasen")
+	suggested_species = SPECIES_UNATHI
+	desc = "A simple but efficient robotic limb, created by NanoTrasen."
+	icon = 'icons/mob/human_races/cyberlimbs/nanotrasen/nanotrasen_unathi.dmi'
+	unavailable_to_build = 1
 
 /datum/robolimb/bishop
 	company = "Bishop"
@@ -103,6 +148,19 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)
 	monitor_styles = standard_monitor_styles
+
+/datum/robolimb/gestaltframe
+	company = "Skrellian Exoskeleton"
+	desc = "This limb looks to be more like a strange.. puppet, than a prosthetic."
+	icon = 'icons/mob/human_races/cyberlimbs/veymed/dionaea/skrellian.dmi'
+	blood_color = "#63b521"
+	speech_bubble_appearance = "machine"
+	unavailable_to_build = 1
+	species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_TAJ, SPECIES_HUMAN, SPECIES_VOX, SPECIES_HUMAN_VATBORN, SPECIES_UNATHI, SPECIES_SKRELL, SPECIES_ZADDAT)
+	suggested_species = SPECIES_DIONA
+	// Dionaea are naturally very tanky, so the robotic limbs are actually far weaker than their normal bodies.
+	robo_brute_mod = 1.3
+	robo_burn_mod = 1.3
 
 /datum/robolimb/cybersolutions
 	company = "Cyber Solutions"
@@ -224,10 +282,24 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	unavailable_to_build = 1
 	lifelike = 1
 	skin_tone = 1
+	species_alternates = list(SPECIES_SKRELL = "Vey-Med - Skrell")
 	blood_color = "#CCCCCC"
 	speech_bubble_appearance = "normal"
 	//robo_brute_mod = 1.1 //VOREStation Edit
 	//robo_burn_mod = 1.1 //VOREStation Edit
+
+/datum/robolimb/veymed_skrell
+	company = "Vey-Med - Skrell"
+	desc = "This high quality limb is nearly indistinguishable from an organic one."
+	icon = 'icons/mob/human_races/cyberlimbs/veymed/veymed_skrell.dmi'
+	unavailable_to_build = 1
+	lifelike = 1
+	skin_color = TRUE
+	species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_TAJ, SPECIES_HUMAN, SPECIES_VOX, SPECIES_HUMAN_VATBORN, SPECIES_UNATHI, SPECIES_DIONA, SPECIES_ZADDAT)
+	blood_color = "#4451cf"
+	speech_bubble_appearance = "normal"
+	robo_brute_mod = 1.05
+	robo_burn_mod = 1.05
 
 /datum/robolimb/wardtakahashi
 	company = "Ward-Takahashi"
@@ -343,6 +415,10 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	company = "Vey-Med"
 	catalogue_data = list(/datum/category_item/catalogue/information/organization/vey_med)
 
+// Bus disk for Diona mech parts.
+/obj/item/weapon/disk/limb/veymed/diona
+	company = "Skrellian Exoskeleton"
+
 /obj/item/weapon/disk/limb/wardtakahashi
 	company = "Ward-Takahashi"
 	catalogue_data = list(/datum/category_item/catalogue/information/organization/ward_takahashi)
@@ -358,3 +434,34 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 /obj/item/weapon/disk/limb/nanotrasen
 	company = "NanoTrasen"
 	catalogue_data = list(/datum/category_item/catalogue/information/organization/nanotrasen)
+
+/obj/item/weapon/disk/species
+	name = "Species Bioprints"
+	desc = "A disk containing the blueprints for species-specific prosthetics."
+	icon = 'icons/obj/cloning.dmi'
+	icon_state = "datadisk2"
+	var/species = SPECIES_HUMAN
+
+/obj/item/weapon/disk/species/Initialize()
+	..()
+	if(species)
+		name = "[species] [initial(name)]"
+
+/obj/item/weapon/disk/species/skrell
+	species = SPECIES_SKRELL
+
+/obj/item/weapon/disk/species/unathi
+	species = SPECIES_UNATHI
+
+/obj/item/weapon/disk/species/tajaran
+	species = SPECIES_TAJ
+
+/obj/item/weapon/disk/species/teshari
+	species = SPECIES_TESHARI
+
+// In case of bus, presently.
+/obj/item/weapon/disk/species/diona
+	species = SPECIES_DIONA
+
+/obj/item/weapon/disk/species/zaddat
+	species = SPECIES_ZADDAT

@@ -482,6 +482,7 @@
 	has_organ = list(
 		O_NUTRIENT = /obj/item/organ/internal/diona/nutrients,
 		O_STRATA =   /obj/item/organ/internal/diona/strata,
+		O_BRAIN = /obj/item/organ/internal/brain/cephalon,
 		O_RESPONSE = /obj/item/organ/internal/diona/node,
 		O_GBLADDER = /obj/item/organ/internal/diona/bladder,
 		O_POLYP =    /obj/item/organ/internal/diona/polyp,
@@ -555,6 +556,16 @@
 
 	if(H.isSynthetic())
 		H.visible_message("<span class='danger'>\The [H] collapses into parts, revealing a solitary diona nymph at the core.</span>")
+
+		H.species = GLOB.all_species[SPECIES_HUMAN] // This is hard-set to default the body to a normal FBP, without changing anything.
+
+		for(var/obj/item/organ/internal/diona/Org in H.internal_organs) // Remove Nymph organs.
+			qdel(Org)
+
+		// Purge the diona verbs.
+		H.verbs -= /mob/living/carbon/human/proc/diona_split_nymph
+		H.verbs -= /mob/living/carbon/human/proc/regenerate
+
 		return
 
 	for(var/mob/living/carbon/alien/diona/D in H.contents)

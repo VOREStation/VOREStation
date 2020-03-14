@@ -25,6 +25,8 @@
 	var/list/categories = list()
 	var/category = null
 	var/manufacturer = null
+	var/species_types = list("Human")
+	var/species = "Human"
 	var/sync_message = ""
 
 /obj/machinery/pros_fabricator/New()
@@ -100,11 +102,14 @@
 	data["buildable"] = get_build_options()
 	data["category"] = category
 	data["categories"] = categories
+	data["species_types"] = species_types
+	data["species"] = species
 	if(all_robolimbs)
 		var/list/T = list()
 		for(var/A in all_robolimbs)
 			var/datum/robolimb/R = all_robolimbs[A]
 			if(R.unavailable_to_build) continue
+			if(species in R.species_cannot_use) continue
 			T += list(list("id" = A, "company" = R.company))
 		data["manufacturers"] = T
 		data["manufacturer"] = manufacturer
@@ -134,6 +139,10 @@
 	if(href_list["category"])
 		if(href_list["category"] in categories)
 			category = href_list["category"]
+
+	if(href_list["species"])
+		if(href_list["species"] in species_types)
+			species = href_list["species"]
 
 	if(href_list["manufacturer"])
 		if(href_list["manufacturer"] in all_robolimbs)
@@ -170,6 +179,18 @@
 				var/datum/robolimb/R = all_robolimbs[D.company]
 				R.unavailable_to_build = 0
 				to_chat(user, "<span class='notice'>Installed [D.company] blueprints!</span>")
+				qdel(I)
+		return
+
+	if(istype(I,/obj/item/weapon/disk/species))
+		var/obj/item/weapon/disk/species/D = I
+		if(!D.species || !(D.species in GLOB.all_species))
+			to_chat(user, "<span class='warning'>This disk seems to be corrupted!</span>")
+		else
+			to_chat(user, "<span class='notice'>Uploading modification files for [D.species]...</span>")
+			if(do_after(user,50,src))
+				species_types |= D.species
+				to_chat(user, "<span class='notice'>Uploaded [D.species] files!</span>")
 				qdel(I)
 		return
 
