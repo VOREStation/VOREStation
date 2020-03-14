@@ -1,0 +1,13 @@
+
+name: Label PRs based on files changed
+on: [pull_request]
+
+jobs:
+  label:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/labeler@v2 # See: https://github.com/actions/labeler
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"

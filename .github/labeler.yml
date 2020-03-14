@@ -1,0 +1,7 @@
+# Map changes
+"Type: Map":
+  - maps/**/*
+
+# Icon Changes
+"Type: Icon":
+  - icons/**/*
