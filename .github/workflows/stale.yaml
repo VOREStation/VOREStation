@@ -1,0 +1,19 @@
+name: Mark and close stale issues
+
+on:
+  schedule:
+  - cron: "0 0 * * *"
+
+jobs:
+  stale:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/stale@v1 # See: https://github.com/actions/stale
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        stale-issue-message: "This issue has been open for over a year with no activity. If it receives no updates within 30 days, it will be closed."
+        stale-issue-label: "Status: No Response"
+        days-before-stale: 365
+        days-before-close: 30
