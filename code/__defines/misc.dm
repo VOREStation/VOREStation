@@ -268,6 +268,7 @@
 
 #define WORLD_ICON_SIZE 32 //Needed for the R-UST port
 #define PIXEL_MULTIPLIER WORLD_ICON_SIZE/32 //Needed for the R-UST port
+#define MAX_CLIENT_VIEW	34  // Maximum effective value of client.view (According to DM references)
 
 // Maploader bounds indices
 #define MAP_MINX 1
