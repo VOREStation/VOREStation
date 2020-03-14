@@ -2009,6 +2009,9 @@
 /obj/effect/floor_decal/industrial/outline/blue,
 /obj/machinery/atmospherics/portables_connector,
 /obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/general)
 "dj" = (
@@ -2189,21 +2192,11 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/cargo)
 "dC" = (
-/obj/structure/bed/chair/comfy/blue{
-	icon_state = "comfychair_preview";
-	dir = 1
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
 /obj/machinery/alarm{
 	dir = 4;
 	pixel_x = -23;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled,
-/area/shuttle/excursion/cockpit)
-"dD" = (
 /obj/machinery/button/remote/blast_door{
 	name = "Shuttle Blast Doors";
 	dir = 8;
@@ -2212,30 +2205,31 @@
 	req_access = list(67);
 	id = "shuttle blast"
 	},
+/obj/structure/bed/chair/bay/comfy/blue{
+	icon_state = "bay_comfychair_preview";
+	dir = 1;
+	pixel_y = 5
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/shuttle/excursion/cockpit)
+"dD" = (
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/steel_grid,
 /area/shuttle/excursion/cockpit)
 "dE" = (
-/obj/structure/bed/chair/comfy/blue{
-	icon_state = "comfychair_preview";
-	dir = 1
-	},
-/obj/item/device/radio/intercom{
-	pixel_y = -24
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -2248,7 +2242,15 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/tiled,
+/obj/structure/bed/chair/bay/comfy/blue{
+	icon_state = "bay_comfychair_preview";
+	dir = 1;
+	pixel_y = 5
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/excursion/cockpit)
 "dF" = (
 /obj/effect/floor_decal/borderfloor{
@@ -2533,24 +2535,21 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/cargo)
 "ea" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/plating,
+/obj/machinery/computer/ship/engines{
+	dir = 1;
+	icon_state = "computer"
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/excursion/cockpit)
 "eb" = (
-/obj/machinery/door/airlock/hatch{
-	req_one_access = list(67)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/firedoor/glass,
 /obj/structure/cable/cyan{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/steel_ridged,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/steel_grid,
 /area/shuttle/excursion/cockpit)
 "ec" = (
 /obj/structure/cable/yellow{
@@ -2857,15 +2856,10 @@
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/structure/cable/cyan{
 	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/steel_grid,
 /area/shuttle/excursion/general)
 "ey" = (
 /turf/simulated/floor/carpet,
@@ -3289,11 +3283,10 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
 "fg" = (
-/obj/structure/closet/crate/freezer/rations,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu10,
-/obj/machinery/alarm{
-	pixel_y = 22
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/general)
@@ -3497,6 +3490,11 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/excursion/general)
@@ -28672,6 +28670,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/general)
 "Tr" = (
@@ -28936,9 +28935,6 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock)
 "TT" = (
-/obj/machinery/door/airlock/hatch{
-	req_one_access = newlist()
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor/glass,
@@ -28946,6 +28942,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list(67)
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/excursion/general)
@@ -29008,12 +29007,9 @@
 	icon_state = "intact-scrubbers";
 	dir = 4
 	},
-/obj/structure/handrail,
 /obj/machinery/light,
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/item/device/radio/intercom{
+	pixel_y = -24
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/general)
@@ -29351,6 +29347,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/general)
@@ -29972,10 +29973,6 @@
 /turf/simulated/wall/rshull,
 /area/shuttle/excursion/cargo)
 "Wt" = (
-/obj/machinery/computer/ship/engines{
-	icon_state = "computer";
-	dir = 4
-	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/cargo)
 "Wv" = (
@@ -30178,13 +30175,10 @@
 	icon_state = "intact-scrubbers";
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
-	pixel_y = -24
-	},
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/general)
@@ -30227,6 +30221,18 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/yellow,
 /turf/simulated/wall/rshull,
 /area/shuttle/excursion/cargo)
+"Xt" = (
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list(67)
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/shuttle/excursion/general)
 "Xz" = (
 /obj/machinery/atmospherics/unary/engine{
 	dir = 1
@@ -30322,7 +30328,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "XZ" = (
-/obj/machinery/computer/shuttle_control/explore/excursion,
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/cockpit)
 "Yb" = (
@@ -30335,6 +30341,11 @@
 "Yg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/universal{
 	dir = 4
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/general)
@@ -30377,8 +30388,13 @@
 	},
 /obj/structure/cable/cyan{
 	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/general)
@@ -30449,9 +30465,6 @@
 /turf/simulated/floor/wood,
 /area/security/breakroom)
 "YK" = (
-/obj/machinery/door/airlock/hatch{
-	req_one_access = list(67)
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -30459,13 +30472,10 @@
 	icon_state = "intact-scrubbers";
 	dir = 4
 	},
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/plating,
 /area/shuttle/excursion/general)
 "YQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -30512,6 +30522,27 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/excursion/cargo)
+"Zc" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	cycle_to_external_air = 1;
+	frequency = 1380;
+	id_tag = "expshuttle_docker";
+	pixel_y = 26;
+	req_one_access = list(19,43,67);
+	tag_airpump = "expshuttle_vent";
+	tag_chamber_sensor = "expshuttle_sensor";
+	tag_exterior_door = "expshuttle_door_Ro";
+	tag_exterior_sensor = "expshuttle_exterior_sensor";
+	tag_interior_door = "expshuttle_door_Ri"
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/tether/exploration)
 "Zd" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -30638,7 +30669,11 @@
 /turf/simulated/mineral/vacuum,
 /area/crew_quarters/heads/hos)
 "ZG" = (
-/turf/simulated/wall/rshull,
+/obj/machinery/computer/shuttle_control/explore/excursion{
+	dir = 1;
+	icon_state = "computer"
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/excursion/cockpit)
 "ZL" = (
 /obj/machinery/door/airlock/hatch{
@@ -30722,6 +30757,9 @@
 	dir = 4;
 	pixel_y = 0
 	},
+/obj/structure/closet/crate/freezer/rations,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu10,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/general)
 "ZY" = (
@@ -42834,7 +42872,7 @@ VB
 Tq
 ec
 Xk
-dj
+Xt
 fg
 Yg
 VD
@@ -43552,7 +43590,7 @@ dk
 dF
 dF
 dF
-dF
+Zc
 dF
 dk
 db
