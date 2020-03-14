@@ -2210,6 +2210,9 @@
 	dir = 1;
 	pixel_y = 5
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/excursion/cockpit)
 "dD" = (
@@ -2217,6 +2220,12 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/shuttle/excursion/cockpit)
@@ -2237,6 +2246,9 @@
 	icon_state = "bay_comfychair_preview";
 	dir = 1;
 	pixel_y = 5
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/excursion/cockpit)
@@ -2527,9 +2539,6 @@
 	dir = 1;
 	icon_state = "computer"
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/cockpit)
 "eb" = (
@@ -2538,12 +2547,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel_grid,
 /area/shuttle/excursion/cockpit)
 "ec" = (
@@ -30667,9 +30672,6 @@
 /obj/machinery/computer/shuttle_control/explore/excursion{
 	dir = 1;
 	icon_state = "computer"
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/cockpit)
