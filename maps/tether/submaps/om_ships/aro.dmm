@@ -3349,6 +3349,9 @@
 /obj/effect/overmap/visitable/ship/aro,
 /turf/space,
 /area/space)
+"qR" = (
+/turf/simulated/shuttle/wall/alien/blue,
+/area/space)
 
 (1,1,1) = {"
 aa
@@ -11631,9 +11634,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+qR
+qR
+qR
 aa
 aa
 aa
@@ -11772,10 +11775,10 @@ aa
 aa
 aa
 aa
+qR
+qR
 aa
-aa
-aa
-aa
+qR
 aa
 aa
 aa
@@ -11914,10 +11917,10 @@ aa
 aa
 aa
 aa
+qR
 aa
 aa
-aa
-aa
+qR
 aa
 aa
 aa
@@ -12056,10 +12059,10 @@ aa
 aa
 aa
 aa
+qR
 aa
-aa
-aa
-aa
+qR
+qR
 aa
 aa
 aa
@@ -12198,9 +12201,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+qR
+qR
+qR
 aa
 aa
 aa
@@ -12340,8 +12343,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+qR
+qR
 aa
 aa
 aa
