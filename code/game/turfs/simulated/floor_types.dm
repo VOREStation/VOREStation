@@ -105,8 +105,8 @@
 		var/turf/T = get_step(src, turn(join_flags,180))
 		if(!T || !T.dynamic_lighting || !get_area(T).dynamic_lighting)
 			add_overlay(antilight_cache["[join_flags]"], TRUE)
-		else
-			cut_overlay(antilight_cache["[join_flags]"], TRUE)
+			return
+	cut_overlay(antilight_cache["[join_flags]"], TRUE)
 
 /turf/simulated/shuttle/proc/underlay_update()
 	if(!takes_underlays)
@@ -164,7 +164,7 @@
 		under_ma = new(under)
 
 	if(under_ma)
-		if(ispath(under,/turf/space)) //Space gets weird treatment
+		if(ispath(under,/turf/space) || istype(under,/turf/space)) //Space gets weird treatment
 			under_ma.icon_state = "white"
 			under_ma.plane = SPACE_PLANE
 		us.underlays = list(under_ma)
