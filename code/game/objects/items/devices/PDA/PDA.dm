@@ -48,6 +48,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	var/list/conversations = list()    // For keeping up with who we have PDA messsages from.
 	var/new_message = 0			//To remove hackish overlay check
 	var/new_news = 0
+	var/touch_silent = 0 //If 1, no beeps on interacting.
 
 	var/active_feed				// The selected feed
 	var/list/warrant			// The warrant as we last knew it
@@ -90,7 +91,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 //Bloop when using:
 /obj/item/device/pda/CouldUseTopic(var/mob/user)
 	..()
-	if(iscarbon(user))
+	if(iscarbon(user) && !touch_silent)
 		playsound(src, 'sound/machines/pda_click.ogg', 20)
 
 /obj/item/device/pda/medical
@@ -504,6 +505,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	data["note"] = note					// current pda notes
 	data["message_silent"] = message_silent					// does the pda make noise when it receives a message?
 	data["news_silent"] = news_silent					// does the pda make noise when it receives news?
+	data["touch_silent"] = touch_silent					// does the pda make noise when it receives news?
 	data["toff"] = toff					// is the messenger function turned off?
 	data["active_conversation"] = active_conversation	// Which conversation are we following right now?
 
@@ -773,6 +775,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				scanmode = 0
 			else if((!isnull(cartridge)) && (cartridge.access_atmos))
 				scanmode = 5
+		if("Toggle Beeping")
+			touch_silent = !touch_silent
 
 //MESSENGER/NOTE FUNCTIONS===================================
 
