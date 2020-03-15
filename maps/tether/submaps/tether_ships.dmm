@@ -29,10 +29,14 @@
 /obj/effect/floor_decal/transit/orange{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor/grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "bB" = (
-/turf/simulated/floor/maglev,
+/turf/simulated/floor/maglev{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "dJ" = (
 /turf/unsimulated/wall/seperator,
@@ -332,7 +336,9 @@
 	name = "thrower_escapeshuttletop(right)";
 	tiles = 0
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor/grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "kd" = (
 /obj/effect/step_trigger/teleporter/random{
@@ -363,7 +369,9 @@
 	dir = 8
 	},
 /obj/effect/step_trigger/lost_in_space/tram,
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor/grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "qv" = (
 /obj/effect/floor_decal/transit/orange{
@@ -380,7 +388,9 @@
 	stopper = 0;
 	tiles = 0
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor/grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "ue" = (
 /obj/effect/step_trigger/thrower{
@@ -391,7 +401,9 @@
 	stopper = 0;
 	tiles = 0
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor/grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "yn" = (
 /obj/effect/shuttle_landmark/transit{
@@ -404,7 +416,9 @@
 /area/space)
 "yO" = (
 /obj/effect/step_trigger/lost_in_space/tram,
-/turf/simulated/floor/maglev,
+/turf/simulated/floor/maglev{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "AG" = (
 /obj/effect/floor_decal/transit/orange{
@@ -421,7 +435,9 @@
 	stopper = 0;
 	tiles = 0
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor/grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "BP" = (
 /obj/effect/step_trigger/thrower{
@@ -432,10 +448,14 @@
 	stopper = 0;
 	tiles = 0
 	},
-/turf/simulated/floor/maglev,
+/turf/simulated/floor/maglev{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "Eh" = (
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor/grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "GJ" = (
 /obj/effect/floor_decal/transit/orange{
@@ -449,7 +469,9 @@
 	stopper = 0;
 	tiles = 0
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor/grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "Hq" = (
 /obj/effect/transit/light{
@@ -475,7 +497,9 @@
 /area/space)
 "Ii" = (
 /obj/effect/step_trigger/lost_in_space/tram,
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor/grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "Js" = (
 /obj/effect/shuttle_landmark/transit{
@@ -498,7 +522,9 @@
 	stopper = 0;
 	tiles = 0
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor/grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "LA" = (
 /obj/effect/step_trigger/teleporter/random{
@@ -534,13 +560,17 @@
 /obj/effect/transit/light{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor/grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "NY" = (
 /obj/effect/floor_decal/transit/orange{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor/grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "Qz" = (
 /obj/effect/shuttle_landmark{
@@ -550,7 +580,9 @@
 	landmark_tag = "escape_transit";
 	name = "Escape Transit"
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor/grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "QF" = (
 /obj/effect/step_trigger/thrower{
@@ -559,7 +591,9 @@
 	name = "thrower_escapeshuttletop(right)";
 	tiles = 0
 	},
-/turf/simulated/floor/maglev,
+/turf/simulated/floor/maglev{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "RD" = (
 /turf/space/transit/west,
@@ -582,7 +616,9 @@
 	name = "thrower_escapeshuttletop(left)";
 	tiles = 0
 	},
-/turf/simulated/floor/maglev,
+/turf/simulated/floor/maglev{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "UN" = (
 /obj/effect/shuttle_landmark/transit{
@@ -598,7 +634,9 @@
 	dir = 4
 	},
 /obj/effect/step_trigger/lost_in_space/tram,
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor/grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "XP" = (
 /obj/effect/step_trigger/thrower{
@@ -607,7 +645,9 @@
 	name = "thrower_escapeshuttletop(left)";
 	tiles = 0
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor/grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "XR" = (
 /obj/effect/floor_decal/transit/orange{
@@ -616,7 +656,9 @@
 /obj/effect/transit/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor/grid{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
 /area/centcom/ferry)
 "YC" = (
 /obj/effect/step_trigger/thrower{
