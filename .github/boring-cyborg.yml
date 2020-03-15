@@ -22,7 +22,12 @@ labelPRBasedOnFilePath:
 
   # Add 'Type: Fluff' to any change to *custom_items*
   "Type: Fluff":
-    - "**custom_items**"
+    - '**custom_items**'
+
+  # Contains changes to system folders
+  "Type: .git or .github"
+    - '.github/**'
+    - '.git/**'
 
 ##### Greetings ########################################################################################################
 # Comment to be posted to welcome users when they open their first PR
