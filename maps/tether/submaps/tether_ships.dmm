@@ -30,7 +30,8 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
 "bB" = (
@@ -337,7 +338,8 @@
 	tiles = 0
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
 "kd" = (
@@ -370,7 +372,8 @@
 	},
 /obj/effect/step_trigger/lost_in_space/tram,
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
 "qv" = (
@@ -389,7 +392,8 @@
 	tiles = 0
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
 "ue" = (
@@ -402,7 +406,8 @@
 	tiles = 0
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
 "yn" = (
@@ -436,7 +441,8 @@
 	tiles = 0
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
 "BP" = (
@@ -454,7 +460,8 @@
 /area/centcom/ferry)
 "Eh" = (
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
 "GJ" = (
@@ -470,7 +477,8 @@
 	tiles = 0
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
 "Hq" = (
@@ -498,7 +506,8 @@
 "Ii" = (
 /obj/effect/step_trigger/lost_in_space/tram,
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
 "Js" = (
@@ -523,7 +532,8 @@
 	tiles = 0
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
 "LA" = (
@@ -561,7 +571,8 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
 "NY" = (
@@ -569,7 +580,8 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
 "Qz" = (
@@ -581,7 +593,8 @@
 	name = "Escape Transit"
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
 "QF" = (
@@ -635,7 +648,8 @@
 	},
 /obj/effect/step_trigger/lost_in_space/tram,
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
 "XP" = (
@@ -646,7 +660,8 @@
 	tiles = 0
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
 "XR" = (
@@ -657,7 +672,8 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi'
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
 "YC" = (
