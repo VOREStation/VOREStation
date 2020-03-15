@@ -141,6 +141,12 @@ var/list/_client_preferences_by_type
 	enabled_description = "Audible"
 	disabled_description = "Silent"
 
+/datum/client_preference/drop_sounds
+	description = "Dropped Item Sounds"
+	key = "SOUND_DROPPED"
+	enabled_description = "Enabled"
+	disabled_description = "Disabled"
+
 /datum/client_preference/mob_tooltips
 	description ="Mob tooltips"
 	key = "MOB_TOOLTIPS"

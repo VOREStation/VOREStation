@@ -93,6 +93,8 @@
 
 /obj/structure/bed/chair/wheelchair/Move()
 	..()
+	cut_overlays()
+	playsound(src, 'sound/effects/roll.ogg', 75, 1)
 	if(has_buckled_mobs())
 		for(var/A in buckled_mobs)
 			var/mob/living/occupant = A

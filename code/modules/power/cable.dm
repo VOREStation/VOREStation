@@ -515,6 +515,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	item_state = "coil"
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	stacktype = /obj/item/stack/cable_coil
+	drop_sound = 'sound/items/drop/accessory.ogg'
 
 /obj/item/stack/cable_coil/cyborg
 	name = "cable coil synthesizer"

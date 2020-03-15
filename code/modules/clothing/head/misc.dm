@@ -17,6 +17,7 @@
 	desc = "A nice hair pin."
 	slot_flags = SLOT_HEAD | SLOT_EARS
 	body_parts_covered = 0
+	drop_sound = 'sound/items/drop/ring.ogg'
 
 /obj/item/clothing/head/pin/pink
 	icon_state = "pinkpin"
@@ -168,6 +169,7 @@
 	icon_state = "cardborg_h"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
 	body_parts_covered = HEAD|FACE|EYES
+	drop_sound = 'sound/items/drop/box.ogg'
 
 /obj/item/clothing/head/justice
 	name = "justice hat"
@@ -420,6 +422,7 @@
 	desc = "A jeweled headpiece originating in India."
 	icon_state = "maangtikka"
 	body_parts_covered = 0
+	drop_sound = 'sound/items/drop/accessory.ogg'
 
 /obj/item/clothing/head/jingasa
 	name = "jingasa"
@@ -427,7 +430,7 @@
 	icon_state = "jingasa"
 	body_parts_covered = 0
 	item_state_slots = list(slot_r_hand_str = "taq", slot_l_hand_str = "taq")
-	
+
 /obj/item/clothing/head/cowl
 	name = "black cowl"
 	desc = "A gold-lined black cowl. It gives off uncomfortable cult vibes, but fancy."

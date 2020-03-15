@@ -137,6 +137,7 @@
 			if ("button") soundin = pick('sound/machines/button1.ogg','sound/machines/button2.ogg','sound/machines/button3.ogg','sound/machines/button4.ogg')
 			if ("switch") soundin = pick('sound/machines/switch1.ogg','sound/machines/switch2.ogg','sound/machines/switch3.ogg','sound/machines/switch4.ogg')
 			if ("casing_sound") soundin = pick('sound/weapons/casingfall1.ogg','sound/weapons/casingfall2.ogg','sound/weapons/casingfall3.ogg')
+<<<<<<< HEAD
 			//VORESTATION EDIT - vore sounds for better performance
 			if ("hunger_sounds") soundin = pick('sound/vore/growl1.ogg','sound/vore/growl2.ogg','sound/vore/growl3.ogg','sound/vore/growl4.ogg','sound/vore/growl5.ogg')
 
@@ -177,6 +178,9 @@
 					'sound/vore/sunesound/prey/death_07.ogg','sound/vore/sunesound/prey/death_08.ogg','sound/vore/sunesound/prey/death_09.ogg',
 					'sound/vore/sunesound/prey/death_10.ogg')
 			//END VORESTATION EDIT
+=======
+			if ("pickaxe") soundin = pick('sound/weapons/mine/pickaxe1.ogg', 'sound/weapons/mine/pickaxe2.ogg','sound/weapons/mine/pickaxe3.ogg','sound/weapons/mine/pickaxe4.ogg')
+>>>>>>> 22e28f2... Merge pull request #6804 from Cerebulon/bigsounds
 	return soundin
 
 //Are these even used?

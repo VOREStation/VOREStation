@@ -222,6 +222,7 @@ var/global/list/PDA_Manifest = list()
 	throwforce = 0.0
 	throw_speed = 1
 	throw_range = 20
+	drop_sound = 'sound/items/drop/rubber.ogg'
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
 		user.drop_item()

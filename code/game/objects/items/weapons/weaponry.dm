@@ -9,6 +9,7 @@
 	throw_range = 4
 	throwforce = 10
 	w_class = ITEMSIZE_SMALL
+	drop_sound = 'sound/items/drop/sword.ogg'
 
 	suicide_act(mob/user)
 		var/datum/gender/T = gender_datums[user.get_visible_gender()]

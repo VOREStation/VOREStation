@@ -15,6 +15,7 @@
 	throw_range = 5
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	usesound = 'sound/items/screwdriver.ogg'
+	drop_sound = 'sound/items/drop/scrap.ogg'
 	matter = list(DEFAULT_WALL_MATERIAL = 75)
 	attack_verb = list("stabbed")
 	sharp  = 1

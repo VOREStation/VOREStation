@@ -26,6 +26,7 @@
 	throw_speed = 4
 	throw_range = 20
 	force = 0
+	drop_sound = 'sound/items/drop/gloves.ogg'
 
 
 /*
@@ -36,6 +37,7 @@
 	desc = "A translucent balloon. There's nothing in it."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "waterballoon-e"
+	drop_sound = 'sound/items/drop/rubber.ogg'
 
 /obj/item/toy/balloon/New()
 	var/datum/reagents/R = new/datum/reagents(10)
@@ -99,6 +101,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "syndballoon"
 	w_class = ITEMSIZE_LARGE
+	drop_sound = 'sound/items/drop/rubber.ogg'
 
 /obj/item/toy/nanotrasenballoon
 	name = "criminal balloon"
@@ -110,6 +113,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "ntballoon"
 	w_class = ITEMSIZE_LARGE
+	drop_sound = 'sound/items/drop/rubber.ogg'
 
 /*
  * Fake telebeacon
@@ -147,6 +151,7 @@
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("attacked", "struck", "hit")
 	var/bullets = 5
+	drop_sound = 'sound/items/drop/gun.ogg'
 
 	examine(mob/user)
 		if(..(user, 2) && bullets)
@@ -239,6 +244,7 @@
 	icon_state = "foamdart"
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
+	drop_sound = 'sound/items/drop/food.ogg'
 
 /obj/effect/foam_dart_dummy
 	name = ""
@@ -256,6 +262,7 @@
 	desc = "A cheap, plastic replica of an energy sword. Realistic sounds! Ages 8 and up."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "esword"
+	drop_sound = 'sound/items/drop/gun.ogg'
 	var/lcolor
 	var/rainbow = FALSE
 	item_icons = list(
@@ -344,6 +351,7 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "snappop"
 	w_class = ITEMSIZE_TINY
+	drop_sound = null
 
 	throw_impact(atom/hit_atom)
 		..()
@@ -378,6 +386,7 @@
 	name = "water flower"
 	desc = "A seemingly innocent sunflower...with a twist."
 	icon = 'icons/obj/device.dmi'
+	drop_sound = 'sound/items/drop/food.ogg'
 	icon_state = "sunflower"
 	item_state = "sunflower"
 	var/empty = 0
@@ -448,6 +457,7 @@
 	desc = "A genuine Admiral Krush Bosun's Whistle, for the aspiring ship's captain! Suitable for ages 8 and up, do not swallow."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "bosunwhistle"
+	drop_sound = 'sound/items/drop/card.ogg'
 	var/cooldown = 0
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS | SLOT_HOLSTER
@@ -465,6 +475,7 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "ripleytoy"
 	var/cooldown = 0
+	drop_sound = 'sound/mecha/mechstep.ogg'
 
 //all credit to skasi for toy mech fun ideas
 /obj/item/toy/prize/attack_self(mob/user as mob)
@@ -546,6 +557,7 @@
 	icon_state = "nuketoy"
 	var/cooldown = 0
 	var/toysay = "What the fuck did you do?"
+	drop_sound = 'sound/items/drop/accessory.ogg'
 
 /obj/item/toy/figure/New()
 	..()
@@ -879,14 +891,14 @@
 	var/searching = FALSE
 	var/opened = FALSE	// has this been slit open? this will allow you to store an object in a plushie.
 	var/obj/item/stored_item	// Note: Stored items can't be bigger than the plushie itself.
-	
+
 /obj/structure/plushie/examine(mob/user)
 	..()
 	if(opened)
 		to_chat(user, "<i>You notice an incision has been made on [src].</i>")
 		if(in_range(user, src) && stored_item)
 			to_chat(user, "<i>You can see something in there...</i>")
-			
+
 /obj/structure/plushie/attack_hand(mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
@@ -900,7 +912,7 @@
 			return
 		else
 			searching = FALSE
-			
+
 	if(user.a_intent == I_HELP)
 		user.visible_message("<span class='notice'><b>\The [user]</b> hugs [src]!</span>","<span class='notice'>You hug [src]!</span>")
 	else if (user.a_intent == I_HURT)
@@ -927,7 +939,7 @@
 		if(stored_item)
 			to_chat(user, "There is already something in here.")
 			return
-	
+
 		if(!(I.w_class > w_class))
 			to_chat(user, "You place [I] inside [src].")
 			user.drop_from_inventory(I, src)
@@ -970,6 +982,7 @@
 	desc = "A small toy plushie. It's very cute."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "nymphplushie"
+	drop_sound = 'sound/items/drop/plushie.ogg'
 	w_class = ITEMSIZE_TINY
 	var/last_message = 0
 	var/pokephrase = "Uww!"
@@ -1007,6 +1020,7 @@
 		user.visible_message("<span class='warning'><b>\The [user]</b> attempts to strangle [src]!</span>","<span class='warning'>You attempt to strangle [src]!</span>")
 	else
 		user.visible_message("<span class='notice'><b>\The [user]</b> pokes [src].</span>","<span class='notice'>You poke [src].</span>")
+		playsound(src, 'sound/items/drop/plushie.ogg', 25, 0)
 		visible_message("[src] says, \"[pokephrase]\"")
 	last_message = world.time
 
@@ -1030,7 +1044,7 @@
 		user.visible_message("<span class='notice'>[user] makes \the [I] kiss \the [src]!.</span>", \
 		"<span class='notice'>You make \the [I] kiss \the [src]!.</span>")
 		return
-		
+
 
 	if(istype(I, /obj/item/device/threadneedle) && opened)
 		to_chat(user, "You sew the hole underneath [src].")
@@ -1053,7 +1067,7 @@
 		stored_item = I
 		to_chat(user, "You placed [I] into [src].")
 		return
-		
+
 	return ..()
 
 /obj/item/toy/plushie/nymph
@@ -1488,6 +1502,7 @@
 	icon_state = "inflatable"
 	icon = 'icons/obj/clothing/belts.dmi'
 	slot_flags = SLOT_BELT
+	drop_sound = 'sound/items/drop/rubber.ogg'
 
 /obj/item/toy/xmastree
 	name = "Miniature Christmas tree"
@@ -1497,3 +1512,4 @@
 	w_class = ITEMSIZE_TINY
 	force = 1
 	throwforce = 1
+	drop_sound = 'sound/items/drop/box.ogg'

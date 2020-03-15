@@ -3,6 +3,7 @@
 	desc = "A folded membrane which rapidly expands into a large cubical shape on activation."
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "folded_wall"
+	drop_sound = 'sound/items/drop/rubber.ogg'
 	w_class = ITEMSIZE_NORMAL
 	var/deploy_path = /obj/structure/inflatable
 

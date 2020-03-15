@@ -92,6 +92,8 @@
 	var/icon/default_worn_icon	//Default on-mob icon
 	var/worn_layer				//Default on-mob layer
 
+	var/drop_sound = 'sound/items/drop/device.ogg' // drop sound - this is the default
+
 /obj/item/New()
 	..()
 	if(embed_chance < 0)
@@ -273,6 +275,11 @@
 
 /obj/item/proc/moved(mob/user as mob, old_loc as turf)
 	return
+
+/obj/item/throw_impact(atom/hit_atom)
+	..()
+	if(drop_sound)
+		playsound(src, drop_sound, 50, 0, preference = /datum/client_preference/drop_sounds)
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
 /obj/item/proc/dropped(mob/user as mob)
