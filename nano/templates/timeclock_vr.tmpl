@@ -31,8 +31,8 @@
 			</div>
 		</div>
 		<div class='item'>
-			<div class='itemLabel'>Department:</div>
-			<div class='itemContent'>{{:data.job_datum.department}}</div>
+			<div class='itemLabel'>Departments:</div>
+			<div class='itemContent'>{{:data.job_datum.departments}}</div>
 		</div>
 		<div class='item'>
 			<div class='itemLabel'>Pay Scale:</div>
@@ -42,11 +42,11 @@
 			<div class='itemLabel'>PTO Eligibility:</div>
 			{{if data.job_datum.timeoff_factor > 0 }}
 				<div class='itemContent' title='Hours working this position will earn time off for its department.' style='cursor: help;'>
-					Earns PTO
+					Earns PTO - {{:data.job_datum.pto_department}}
 				</div>
 			{{else data.job_datum.timeoff_factor < 0}}
 				<div class='itemContent' title='Hours spent in this position are deducted from your time off for its department.' style='cursor: help;'>
-					Requires PTO
+					Requires PTO - {{:data.job_datum.pto_department}}
 				</div>
 			{{else}}
 				<div class='itemContent' title='This job neither requires nor earnts time off hours.' style='cursor: help;'>
