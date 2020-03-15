@@ -1,13 +1,34 @@
 ##### Labeler ##########################################################################################################
 # Enable "labeler" for your PR that would add labels to PRs based on the paths that are modified in the PR.
-labelPRBasedOnFilePath:
-  # Add 'Type: Map' to any changes within 'maps' folder or any subfolders
-  "Type: Map":
-    - maps/**/*
+# * matches anything but /
+# ** matches anything including /
 
-  # Add 'Type: Map' to any changes within 'maps' folder or any subfolders
+labelPRBasedOnFilePath:
+  # Add 'Type: Map' to any changes to .dmm files
+  "Type: Map":
+    - '**.dmm'
+
+  # Add 'Type: Map' to any changes to image files
   "Type: Icon":
-    - icons/**/*
+    - '**.dmi'
+    - '**.png'
+    - '**.jpg'
+
+  # Add 'Type: Sound' to any change to sound files
+  "Type: Sound":
+    - '**.ogg'
+    - '**.mp3'
+    - '**.wav'
+
+  # Add 'Type: Fluff' to any change to *custom_items*
+  "Type: Fluff":
+    - '**custom_items**'
+    - '**loadout_fluff**'
+
+  # Contains changes to system folders
+  "Type: .git or .github"
+    - '.github/**'
+    - '.git/**'
 
 ##### Greetings ########################################################################################################
 # Comment to be posted to welcome users when they open their first PR
