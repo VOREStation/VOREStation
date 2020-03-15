@@ -6,7 +6,7 @@
 	set name = "View Feedback"
 	set desc = "Open the Feedback Viewer"
 
-	if(!check_rights(R_ADMIN|R_DEBUG))
+	if(!check_rights(R_ADMIN|R_DEBUG|R_EVENT))
 		return
 
 	if(usr.client.feedback_viewer)
@@ -23,7 +23,7 @@
 	var/database/query/last_query = null
 
 /datum/managed_browser/feedback_viewer/New(client/new_client)
-	if(!check_rights(R_ADMIN|R_DEBUG, new_client)) // Just in case someone figures out a way to spawn this as non-staff.
+	if(!check_rights(R_ADMIN|R_DEBUG|R_EVENT, new_client)) // Just in case someone figures out a way to spawn this as non-staff.
 		message_admins("[new_client] tried to view feedback with insufficent permissions.")
 		qdel(src)
 

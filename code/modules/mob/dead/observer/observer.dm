@@ -384,7 +384,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return 0
 
 /mob/observer/dead/check_holy(var/turf/T)
-	if(check_rights(R_ADMIN|R_FUN, 0, src))
+	if(check_rights(R_ADMIN|R_FUN|R_EVENT, 0, src))
 		return 0
 
 	return (T && T.holy) && (is_manifest || (mind in cult.current_antagonists))
@@ -559,7 +559,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(cult.current_antagonists.len > config.cult_ghostwriter_req_cultists)
 			ghosts_can_write = 1
 
-	if(!ghosts_can_write && !check_rights(R_ADMIN, 0)) //Let's allow for admins to write in blood for events and the such.
+	if(!ghosts_can_write && !check_rights(R_ADMIN|R_EVENT|R_FUN, 0)) //Let's allow for admins to write in blood for events and the such.
 		to_chat(src, "<font color='red'>The veil is not thin enough for you to do that.</font>")
 		return
 
@@ -687,7 +687,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return 1
 
 /mob/observer/dead/proc/can_admin_interact()
-	return check_rights(R_ADMIN, 0, src)
+	return check_rights(R_ADMIN|R_EVENT, 0, src)
 
 /mob/observer/dead/verb/toggle_ghostsee()
 	set name = "Toggle Ghost Vision"
