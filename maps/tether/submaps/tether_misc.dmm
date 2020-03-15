@@ -21887,7 +21887,7 @@
 /area/centcom/simulated/main_hall)
 "aSW" = (
 /obj/item/device/perfect_tele_beacon/stationary{
-	tele_name = "CentCom";
+	tele_name = "Transfer";
 	tele_network = "centcom"
 	},
 /obj/machinery/light{
