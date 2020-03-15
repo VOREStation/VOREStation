@@ -12438,7 +12438,7 @@
 	frequency = 1380;
 	master_tag = "ert1_control";
 	pixel_x = 24;
-	req_one_access = list(150)
+	req_one_access = list(103)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
@@ -24273,6 +24273,7 @@
 	frequency = 1380;
 	id_tag = "ert1_control";
 	pixel_x = -25;
+	req_access = list(103);
 	tag_airpump = "ert1_vent";
 	tag_chamber_sensor = "ert1_sensor";
 	tag_exterior_door = "ert1_shuttle_outer";
@@ -24787,8 +24788,7 @@
 "bbd" = (
 /obj/machinery/door/airlock/glass_medical{
 	name = "Medical Bay";
-	req_access = list(160);
-	req_one_access = newlist()
+	req_access = list(103)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
@@ -24855,7 +24855,7 @@
 "bbl" = (
 /obj/machinery/door/window/southleft{
 	name = "Cargo Hold";
-	req_access = list(160)
+	req_access = list(103)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
@@ -24876,7 +24876,7 @@
 "bbo" = (
 /obj/machinery/door/window/southright{
 	name = "Cargo Hold";
-	req_access = list(160)
+	req_access = list(103)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
@@ -24895,7 +24895,7 @@
 "bbr" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 4;
-	req_access = list(160)
+	req_access = list(103)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
@@ -25039,7 +25039,9 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "bbE" = (
-/obj/machinery/door/airlock/multi_tile/glass,
+/obj/machinery/door/airlock/multi_tile/glass{
+	req_access = list(103)
+	},
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/specops/centcom)
 "bbF" = (
@@ -25179,7 +25181,7 @@
 "bbU" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2;
-	req_access = list(160)
+	req_access = list(103)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
@@ -25343,8 +25345,7 @@
 "bch" = (
 /obj/machinery/door/airlock/command{
 	name = "Bridge";
-	req_access = list(160);
-	req_one_access = newlist()
+	req_access = list(103)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
@@ -25461,7 +25462,7 @@
 	master_tag = "ert1_control";
 	pixel_x = -22;
 	pixel_y = 32;
-	req_one_access = list(150)
+	req_one_access = list(103)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
@@ -25627,7 +25628,7 @@
 "bcG" = (
 /obj/machinery/door/window/northleft{
 	name = "Cargo Hold";
-	req_access = list(160)
+	req_access = list(103)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
@@ -25650,7 +25651,7 @@
 "bcI" = (
 /obj/machinery/door/window/northright{
 	name = "Cargo Hold";
-	req_access = list(160)
+	req_access = list(103)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
@@ -25737,8 +25738,7 @@
 "bcU" = (
 /obj/machinery/door/airlock/glass_engineering{
 	name = "Engineering";
-	req_access = list(160);
-	req_one_access = newlist()
+	req_access = list(103)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
@@ -25749,7 +25749,7 @@
 	master_tag = "ert2_control";
 	pixel_x = -22;
 	pixel_y = -32;
-	req_one_access = list(150)
+	req_one_access = list(103)
 	},
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 1
@@ -25829,8 +25829,7 @@
 "bdi" = (
 /obj/machinery/door/airlock/command{
 	name = "Captain's Quarters";
-	req_access = list(160);
-	req_one_access = newlist()
+	req_access = list(103)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
@@ -25958,7 +25957,7 @@
 	frequency = 1381;
 	id_tag = "ert2_control";
 	pixel_x = -24;
-	req_access = list(150);
+	req_access = list(103);
 	tag_airpump = "ert2_vent";
 	tag_chamber_sensor = "ert2_sensor";
 	tag_exterior_door = "ert2_shuttle_outer";
@@ -26104,7 +26103,7 @@
 	frequency = 1381;
 	master_tag = "ert2_control";
 	pixel_x = 24;
-	req_one_access = list(150)
+	req_one_access = list(103)
 	},
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1381;
