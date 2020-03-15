@@ -493,10 +493,7 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/cmd_debug_del_all,
 	/client/proc/toggle_random_events,
 	/client/proc/modify_server_news
-
->>>>>>> 0021a3b... Merge pull request #6818 from Neerti/event_manager_fix_electric_boogaloo
 )
-//VOREStation Edit End
 
 /client/proc/add_admin_verbs()
 	if(holder)
