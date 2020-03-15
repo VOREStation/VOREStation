@@ -23,6 +23,7 @@ labelPRBasedOnFilePath:
   # Add 'Type: Fluff' to any change to *custom_items*
   "Type: Fluff":
     - '**custom_items**'
+    - '**loadout_fluff**'
 
   # Contains changes to system folders
   "Type: .git or .github"
