@@ -8,22 +8,21 @@
 #define Z_LEVEL_SPACE_HIGH					7
 #define Z_LEVEL_SURFACE_MINE				8
 #define Z_LEVEL_SOLARS						9
-#define Z_LEVEL_CENTCOM						10
-#define Z_LEVEL_MISC						11
-#define Z_LEVEL_SHIPS						12
-#define Z_LEVEL_UNDERDARK					13
-#define Z_LEVEL_PLAINS						14
-#define Z_LEVEL_ROGUEMINE_1					15
-#define Z_LEVEL_ROGUEMINE_2					16
-#define Z_LEVEL_ROGUEMINE_3					17
-#define Z_LEVEL_ROGUEMINE_4					18
-#define Z_LEVEL_ALIENSHIP					19
-#define Z_LEVEL_BEACH						20
-#define Z_LEVEL_BEACH_CAVE					21
-#define Z_LEVEL_AEROSTAT					22
-#define Z_LEVEL_AEROSTAT_SURFACE			23
-#define Z_LEVEL_DEBRISFIELD					24
-#define Z_LEVEL_GATEWAY						25
+#define Z_LEVEL_MISC						10
+#define Z_LEVEL_SHIPS						11
+#define Z_LEVEL_UNDERDARK					12
+#define Z_LEVEL_PLAINS						13
+#define Z_LEVEL_ROGUEMINE_1					14
+#define Z_LEVEL_ROGUEMINE_2					15
+#define Z_LEVEL_ROGUEMINE_3					16
+#define Z_LEVEL_ROGUEMINE_4					17
+#define Z_LEVEL_ALIENSHIP					18
+#define Z_LEVEL_BEACH						19
+#define Z_LEVEL_BEACH_CAVE					20
+#define Z_LEVEL_AEROSTAT					21
+#define Z_LEVEL_AEROSTAT_SURFACE			22
+#define Z_LEVEL_DEBRISFIELD					23
+#define Z_LEVEL_GATEWAY						24
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -160,7 +159,6 @@
 		Z_LEVEL_SPACE_HIGH,
 		Z_LEVEL_SURFACE_MINE,
 		Z_LEVEL_SOLARS,
-		Z_LEVEL_CENTCOM,
 		Z_LEVEL_MISC,
 		Z_LEVEL_SHIPS,
 		Z_LEVEL_BEACH
@@ -347,13 +345,3 @@
 	name = "Solar Field"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
 	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
-
-/datum/map_z_level/tether/colony
-	z = Z_LEVEL_CENTCOM
-	name = "Colony"
-	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
-
-/datum/map_z_level/tether/misc
-	z = Z_LEVEL_MISC
-	name = "Misc"
-	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_XENOARCH_EXEMPT
