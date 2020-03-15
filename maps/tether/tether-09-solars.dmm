@@ -5,6 +5,25 @@
 "ab" = (
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/mine/explored)
+"ac" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
+	frequency = 1379;
+	scrub_id = "sci_outpost_scrubber"
+	},
+/turf/simulated/floor/plating,
+/area/rnd/outpost/airlock)
 "ad" = (
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/mine/explored)
@@ -175,6 +194,17 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
+"at" = (
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
+	frequency = 1379;
+	scrub_id = "sci_outpost_scrubber"
+	},
+/turf/simulated/floor/plating,
+/area/rnd/outpost/airlock)
 "au" = (
 /turf/simulated/wall,
 /area/tether/outpost/solars_shed)
@@ -843,6 +873,19 @@
 "bN" = (
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/shuttle/tether/crash1)
+"bO" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/camera/network/research_outpost{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
+	frequency = 1379;
+	scrub_id = "sci_outpost_scrubber"
+	},
+/turf/simulated/floor/plating,
+/area/rnd/outpost/airlock)
 "bP" = (
 /obj/structure/symbol/em,
 /turf/simulated/wall,
@@ -1156,22 +1199,12 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/eva)
 "cC" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 28
-	},
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
 /obj/structure/railing{
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
 	frequency = 1379;
-	scrub_id = "sci_outpost_scrubber";
-	scrubbing_gas = list("phoron")
+	scrub_id = "sci_outpost_scrubber"
 	},
 /turf/simulated/floor/plating,
 /area/rnd/outpost/airlock)
@@ -1190,14 +1223,15 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/airlock)
 "cF" = (
-/obj/structure/railing,
+/obj/structure/railing{
+	dir = 1
+	},
 /obj/structure/railing{
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
 	frequency = 1379;
-	scrub_id = "sci_outpost_scrubber";
-	scrubbing_gas = list("phoron")
+	scrub_id = "sci_outpost_scrubber"
 	},
 /turf/simulated/floor/plating,
 /area/rnd/outpost/airlock)
@@ -1394,20 +1428,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/eva)
-"cZ" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/machinery/camera/network/research_outpost{
-	dir = 4
-	},
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
-	frequency = 1379;
-	scrub_id = "sci_outpost_scrubber";
-	scrubbing_gas = list("phoron")
-	},
-/turf/simulated/floor/plating,
-/area/rnd/outpost/airlock)
 "da" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 2;
@@ -1610,17 +1630,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/eva)
-"dA" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
-	frequency = 1379;
-	scrub_id = "sci_outpost_scrubber";
-	scrubbing_gas = list("phoron")
-	},
-/turf/simulated/floor/plating,
-/area/rnd/outpost/airlock)
 "dB" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 4;
@@ -1645,20 +1654,6 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/airlock)
-"dD" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
-	frequency = 1379;
-	scrub_id = "sci_outpost_scrubber";
-	scrubbing_gas = list("phoron")
-	},
-/turf/simulated/floor/plating,
 /area/rnd/outpost/airlock)
 "dE" = (
 /turf/simulated/wall,
@@ -24201,9 +24196,9 @@ ad
 bj
 bX
 ch
+ac
+bO
 cC
-cZ
-dA
 dZ
 ex
 ft
@@ -24627,9 +24622,9 @@ ad
 bV
 bZ
 ch
-cF
+at
 dc
-dD
+cF
 ch
 lS
 oc

@@ -12348,6 +12348,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
+"auW" = (
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
+	frequency = 1379;
+	scrub_id = "rnd_s_airlock_scrubber"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/external)
 "auX" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/tether/surfacebase/tram;
@@ -22833,14 +22840,6 @@
 	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/visitor_dining)
-"aLm" = (
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
-	frequency = 1379;
-	scrub_id = "rnd_s_airlock_scrubber";
-	scrubbing_gas = list("phoron")
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/rnd/external)
 "aLn" = (
 /obj/structure/grille,
 /obj/structure/railing{
@@ -37672,8 +37671,8 @@ aah
 aah
 aah
 aKL
-aLm
-aLm
+auW
+auW
 aKL
 aah
 aah
@@ -38666,8 +38665,8 @@ aID
 aJv
 aJZ
 aKL
-aLm
-aLm
+auW
+auW
 aKL
 aah
 aah
