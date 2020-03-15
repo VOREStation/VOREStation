@@ -41,16 +41,28 @@ SUBSYSTEM_DEF(job)
 	for(var/D in department_datums)
 		var/datum/department/dept = department_datums[D]
 		sortTim(dept.jobs, /proc/cmp_job_datums, TRUE)
+		sortTim(dept.primary_jobs, /proc/cmp_job_datums, TRUE)
 
 	return TRUE
 
 /datum/controller/subsystem/job/proc/add_to_departments(datum/job/J)
+	// Adds to the regular job lists in the departments, which allow multiple departments for a job.
 	for(var/D in J.departments)
 		var/datum/department/dept = LAZYACCESS(department_datums, D)
 		if(!istype(dept))
 			job_debug_message("Job '[J.title]' is defined as being inside department '[D]', but it does not exist.")
 			continue
 		dept.jobs[J.title] = J
+
+	// Now for the 'primary' department for a job, which is defined as being the first department in the list for a job.
+	// This results in no duplicates, which can be useful in some situations.
+	if(LAZYLEN(J.departments))
+		var/primary_department = J.departments[1]
+		var/datum/department/dept = LAZYACCESS(department_datums, primary_department)
+		if(!istype(dept))
+			job_debug_message("Job '[J.title]' has their primary department be '[primary_department]', but it does not exist.")
+		else
+			dept.primary_jobs[J.title] = J
 
 /datum/controller/subsystem/job/proc/setup_departments()
 	for(var/t in subtypesof(/datum/department))
@@ -95,7 +107,29 @@ SUBSYSTEM_DEF(job)
 	job_debug_message("Was asked to get job titles for a non-existant department '[target_department_name]'.")
 	return list()
 
+// Returns a reference to the primary department datum that a job is in.
+// Can receive job datum refs, typepaths, or job title strings.
+/datum/controller/subsystem/job/proc/get_primary_department_of_job(datum/job/J)
+	if(!istype(J, /datum/job))
+		if(ispath(J))
+			J = get_job_type(J)
+		else if(istext(J))
+			J = get_job(J)
 
+	if(!istype(J))
+		job_debug_message("Was asked to get department for job '[J]', but input could not be resolved into a job datum.")
+		return
+
+	if(!LAZYLEN(J.departments))
+		return
+
+	var/primary_department = J.departments[1]
+	var/datum/department/dept = LAZYACCESS(department_datums, primary_department)
+	if(!istype(dept))
+		job_debug_message("Job '[J.title]' has their primary department be '[primary_department]', but it does not exist.")
+		return
+
+	return department_datums[primary_department]
 
 // Someday it might be good to port code/game/jobs/job_controller.dm to here and clean it up.
 

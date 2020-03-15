@@ -98,7 +98,7 @@ var/const/access_explorer = 43
 /datum/job/sar
 	title = "Search and Rescue"
 	flag = SAR
-	departments = list(DEPARTMENT_MEDICAL, DEPARTMENT_PLANET)
+	departments = list(DEPARTMENT_PLANET, DEPARTMENT_MEDICAL)
 	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 2
