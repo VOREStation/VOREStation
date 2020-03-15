@@ -31,6 +31,7 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
 	icon = 'icons/turf/transit_vr.dmi';
+	initial_flooring = null;
 	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
@@ -339,6 +340,7 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
 	icon = 'icons/turf/transit_vr.dmi';
+	initial_flooring = null;
 	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
@@ -373,6 +375,7 @@
 /obj/effect/step_trigger/lost_in_space/tram,
 /turf/simulated/floor/tiled/techfloor/grid{
 	icon = 'icons/turf/transit_vr.dmi';
+	initial_flooring = null;
 	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
@@ -393,6 +396,7 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
 	icon = 'icons/turf/transit_vr.dmi';
+	initial_flooring = null;
 	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
@@ -407,6 +411,7 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
 	icon = 'icons/turf/transit_vr.dmi';
+	initial_flooring = null;
 	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
@@ -442,6 +447,7 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
 	icon = 'icons/turf/transit_vr.dmi';
+	initial_flooring = null;
 	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
@@ -461,6 +467,7 @@
 "Eh" = (
 /turf/simulated/floor/tiled/techfloor/grid{
 	icon = 'icons/turf/transit_vr.dmi';
+	initial_flooring = null;
 	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
@@ -478,6 +485,7 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
 	icon = 'icons/turf/transit_vr.dmi';
+	initial_flooring = null;
 	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
@@ -507,6 +515,7 @@
 /obj/effect/step_trigger/lost_in_space/tram,
 /turf/simulated/floor/tiled/techfloor/grid{
 	icon = 'icons/turf/transit_vr.dmi';
+	initial_flooring = null;
 	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
@@ -533,6 +542,7 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
 	icon = 'icons/turf/transit_vr.dmi';
+	initial_flooring = null;
 	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
@@ -572,6 +582,7 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
 	icon = 'icons/turf/transit_vr.dmi';
+	initial_flooring = null;
 	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
@@ -581,6 +592,7 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
 	icon = 'icons/turf/transit_vr.dmi';
+	initial_flooring = null;
 	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
@@ -594,6 +606,7 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
 	icon = 'icons/turf/transit_vr.dmi';
+	initial_flooring = null;
 	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
@@ -649,6 +662,7 @@
 /obj/effect/step_trigger/lost_in_space/tram,
 /turf/simulated/floor/tiled/techfloor/grid{
 	icon = 'icons/turf/transit_vr.dmi';
+	initial_flooring = null;
 	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
@@ -661,6 +675,7 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
 	icon = 'icons/turf/transit_vr.dmi';
+	initial_flooring = null;
 	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
@@ -673,6 +688,7 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid{
 	icon = 'icons/turf/transit_vr.dmi';
+	initial_flooring = null;
 	icon_state = "techfloor_grid"
 	},
 /area/centcom/ferry)
