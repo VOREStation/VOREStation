@@ -14,6 +14,7 @@
 	siemens_coefficient = 0.7
 	w_class = ITEMSIZE_NORMAL
 	ear_protection = 1
+	drop_sound = 'sound/items/drop/helm.ogg'
 
 /obj/item/clothing/head/helmet/solgov
 	name = "\improper Solar Confederate Government helmet"

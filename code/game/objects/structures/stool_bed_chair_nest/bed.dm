@@ -288,6 +288,7 @@
 
 /obj/structure/bed/roller/Move()
 	..()
+	playsound(src, 'sound/effects/roll.ogg', 100, 1)
 	if(has_buckled_mobs())
 		for(var/A in buckled_mobs)
 			var/mob/living/L = A

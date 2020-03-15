@@ -37,6 +37,7 @@
 	var/burned_fuel_for = 0 // Keeps track of how long the welder's been on, used to gradually empty the welder if left one, without RNG.
 	var/always_process = FALSE // If true, keeps the welder on the process list even if it's off.  Used for when it needs to regenerate fuel.
 	toolspeed = 1
+	drop_sound = 'sound/items/drop/scrap.ogg'
 
 /obj/item/weapon/weldingtool/Initialize()
 	. = ..()

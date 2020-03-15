@@ -49,6 +49,7 @@
 	origin_tech = list(TECH_COMBAT = 1)
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
+	drop_sound = 'sound/items/drop/gun.ogg'
 
 	var/automatic = 0
 	var/burst = 1

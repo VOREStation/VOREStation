@@ -8,6 +8,17 @@
 /*
  * Classic Baton
  */
+
+/obj/item/weapon/melee
+	name = "weapon"
+	desc = "Murder device."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "baton"
+	item_state = "classic_baton"
+	slot_flags = SLOT_BELT
+	force = 10
+	drop_sound = 'sound/items/drop/metalweapon.ogg'
+
 /obj/item/weapon/melee/classic_baton
 	name = "police baton"
 	desc = "A wooden truncheon for beating criminal scum."

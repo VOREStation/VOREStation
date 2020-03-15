@@ -9,6 +9,7 @@
 	attack_verb = list("patted", "tapped")
 	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
 	thrown_force_divisor = 0.25 // 5 when thrown with weight 20 (steel)
+	drop_sound = 'sound/items/drop/knife.ogg'
 
 /obj/item/weapon/material/butterfly/update_force()
 	if(active)
@@ -65,6 +66,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 12000)
 	origin_tech = list(TECH_MATERIAL = 1)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	drop_sound = 'sound/items/drop/knife.ogg'
 
 /obj/item/weapon/material/knife/suicide_act(mob/user)
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
