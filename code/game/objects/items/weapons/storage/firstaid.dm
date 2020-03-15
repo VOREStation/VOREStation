@@ -15,12 +15,8 @@
 	throw_speed = 2
 	throw_range = 8
 	max_storage_space = ITEMSIZE_COST_SMALL * 7 // 14
-<<<<<<< HEAD
 //	var/list/icon_variety // VOREStation edit
-=======
-	var/list/icon_variety
 	drop_sound = 'sound/items/drop/box.ogg'
->>>>>>> 22e28f2... Merge pull request #6804 from Cerebulon/bigsounds
 
 /obj/item/weapon/storage/firstaid/Initialize()
 	. = ..()
