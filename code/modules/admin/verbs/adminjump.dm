@@ -39,13 +39,9 @@
 /client/proc/jumptomob(var/mob/M in mob_list)
 	set category = "Admin"
 	set name = "Jump to Mob"
-<<<<<<< HEAD
 	set popup_menu = FALSE //VOREStation Edit - Declutter.
-	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))
-=======
 
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
->>>>>>> 0021a3b... Merge pull request #6818 from Neerti/event_manager_fix_electric_boogaloo
 		return
 
 	if(config.allow_admin_jump)

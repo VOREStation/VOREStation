@@ -363,14 +363,8 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/view_atk_log		//shows the server combat-log, doesn't do anything presently,
 )
 
-//VOREStation Edit Start - Highly Modified List
 var/list/admin_verbs_event_manager = list(
-<<<<<<< HEAD
-	/client/proc/cmd_admin_say,			//admin-only ooc chat,
-	/client/proc/cmd_mod_say,
-	/client/proc/cmd_event_say
-=======
-	/client/proc/cmd_event_say,
+	/client/proc/cmd_admin_say,			//VOREStation Edit - Event managers can use asay,
 	/client/proc/cmd_admin_pm_context,
 	/client/proc/cmd_admin_pm_panel,
 	/client/proc/admin_ghost,
