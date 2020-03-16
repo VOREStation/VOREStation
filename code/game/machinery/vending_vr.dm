@@ -1,4 +1,79 @@
-//Tweaked existing vendors
+// Extra icons we have that Polaris doesn't
+/obj/machinery/vending/boozeomat
+	icon_state = "fridge_dark"
+	icon_deny = "fridge_dark-deny"
+
+/obj/machinery/vending/coffee
+	icon_deny = "coffee-deny"
+
+/obj/machinery/vending/snack
+	icon_vend = "snack-vend"
+	icon_deny = "snack-deny"
+
+/obj/machinery/vending/cola
+	icon_state = "Soda_Machine"
+	icon_vend = "Sode_Machine-vend"
+	icon_deny = "Sode_Machine-deny"
+
+/obj/machinery/vending/fitness
+	icon_vend = "fitness-vend"
+	icon_deny = "fitness-deny"
+
+/obj/machinery/vending/cart
+	icon_vend = "cart-vend"
+
+/obj/machinery/vending/cigarette
+	icon_vend = "cigs-vend"
+	icon_deny = "cigs-deny"
+
+/obj/machinery/vending/medical
+	icon_vend = "med-vend"
+
+/obj/machinery/vending/wallmed1
+	icon_vend = "wallmed-vend"
+
+/obj/machinery/vending/wallmed2
+	icon_vend = "wallmed-vend"
+
+/obj/machinery/vending/security
+	icon_vend = "sec-vend"
+
+/obj/machinery/vending/hydronutrients
+	icon_state = "nutri_generic"
+	icon_vend = "nutri_generic-vend"
+	icon_deny = "nutri_generic-deny"
+
+/obj/machinery/vending/hydroseeds
+	icon_state = "seeds_generic"
+	icon_vend = "seeds_generic-vend"
+	icon_deny = "seeds_generic-deny"
+
+/obj/machinery/vending/magivend
+	icon_vend = "MagiVend-vend"
+	icon_deny = "MagiVend-deny"
+
+/obj/machinery/vending/sovietsoda
+	icon_vend = "sovietsoda-vend"
+	icon_deny = "sovietsoda-deny"
+
+/obj/machinery/vending/tool
+	icon_vend = "tool-vend"
+
+/obj/machinery/vending/engivend
+	icon_vend = "engivend-vend"
+
+/obj/machinery/vending/engineering
+	icon_vend = "engi-vend"
+
+/obj/machinery/vending/robotics
+	icon_vend = "robotics-vend"
+
+/obj/machinery/vending/giftvendor
+	icon_state = "generic" //I can't find a file with an iconstate for this one, Polaris, Bay, or VR
+	icon_vend = "generic-vend"
+	icon_deny = "generic-deny"
+
+// Item tweaks to existing vendors
 /obj/machinery/vending/hydroseeds/New()
 	products += list(/obj/item/seeds/shrinkshroom = 3,/obj/item/seeds/megashroom = 3)
 	..()
@@ -22,7 +97,7 @@
 					/obj/item/clothing/glasses/omnihud/med = 4, /obj/item/device/glasses_kit = 1,  /obj/item/weapon/storage/quickdraw/syringe_case = 4)
 	..()
 
-//Custom vendors
+// Custom vendors
 /obj/machinery/vending/dinnerware
 	name = "Dinnerware"
 	desc = "A kitchen and restaurant equipment vendor."
@@ -55,8 +130,9 @@
 /obj/machinery/vending/food
 	name = "Food-O-Mat"
 	desc = "A technological marvel, supposedly able to cook or mix a large variety of food or drink."
-	icon_state = "boozeomat"
-	icon_deny = "boozeomat-deny"
+	icon_state = "hotfood"
+	icon_deny = "hotfood-deny"
+	icon_vend = "hotfood-vend"
 	products = list(/obj/item/weapon/tray = 8,
 					/obj/item/weapon/material/kitchen/utensil/fork = 6,
 					/obj/item/weapon/material/knife/plastic = 6,
@@ -89,8 +165,6 @@
 /obj/machinery/vending/food/arojoan //Fluff vendor for the lewd houseboat.
 	name = "Custom Food-O-Mat"
 	desc = "Do you think Joan cooks? Of course not. Lazy squirrel!"
-	icon_state = "boozeomat"
-	icon_deny = "boozeomat-deny"
 	products = list(/obj/item/weapon/tray = 6,
 					/obj/item/weapon/material/kitchen/utensil/fork = 6,
 					/obj/item/weapon/material/knife/plastic = 6,
