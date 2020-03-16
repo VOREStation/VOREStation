@@ -4,31 +4,14 @@
 	random = 1
 	holder_type = /obj/machinery/camera
 	wire_count = 6
-	var/datum/wire_hint/view_hint
-	var/datum/wire_hint/power_hint
-	var/datum/wire_hint/light_hint
-	var/datum/wire_hint/alarm_hint
-
-/datum/wires/camera/make_wire_hints()
-	view_hint = new("The focus light is on.", "The focus light is off.")
-	power_hint = new("The power link light is on.", "The power link light is off.")
-	light_hint = new("The camera light is off.", "The camera light is on.")
-	alarm_hint = new("The alarm light is on.", "The alarm light is off.")
-
-/datum/wires/camera/Destroy()
-	view_hint = null
-	power_hint = null
-	light_hint = null
-	alarm_hint = null
-	return ..()
 
 /datum/wires/camera/GetInteractWindow()
 	. = ..()
 	var/obj/machinery/camera/C = holder
-	. += view_hint.show(C.view_range == initial(C.view_range))
-	. += power_hint.show(C.can_use())
-	. += light_hint.show(C.light_disabled)
-	. += alarm_hint.show(C.alarm_on)
+	. += show_hint(0x1, C.view_range == initial(C.view_range), "The focus light is on.", "The focus light is off.")
+	. += show_hint(0x2, C.can_use(), "The power link light is on.", "The power link light is off.")
+	. += show_hint(0x4, C.light_disabled, "The camera light is off.", "The camera light is on.")
+	. += show_hint(0x8, C.alarm_on, "The alarm light is on.", "The alarm light is off.")
 	return .
 
 /datum/wires/camera/CanUse(var/mob/living/L)

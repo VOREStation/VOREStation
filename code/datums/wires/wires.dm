@@ -17,6 +17,9 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 	var/wire_count = 0 // Max is 16
 	var/wires_status = 0 // BITFLAG OF WIRES
 
+	var/hint_states = 0 // BITFLAG OF HINT STATES (For tracking if they changed for bolding in UI)
+	var/hint_states_initialized = FALSE // False until first time window is rendered.
+
 	var/list/wires = list()
 	var/list/signallers = list()
 
@@ -25,6 +28,19 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 	var/row_options2 = " width='260px'"
 	var/window_x = 370
 	var/window_y = 470
+
+// Note: Its assumed states are boolean.  If you ever have a multi-state hint, you must implement that yourself.
+/datum/wires/proc/show_hint(flag, current_state, true_text, false_text)
+	var/state_changed = FALSE
+	if(hint_states_initialized)
+		if(!(hint_states & flag) != !current_state) // NOT-ing to convert to boolean
+			state_changed = TRUE
+	if(current_state)
+		hint_states |= flag
+		return state_changed ? "<br><b>[true_text]</b>" : "<br>[true_text]"
+	else
+		hint_states &= ~flag
+		return state_changed ? "<br><b>[false_text]</b>" : "<br>[false_text]"
 
 /datum/wires/New(var/atom/holder)
 	..()
@@ -45,7 +61,6 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 		else
 			var/list/wires = same_wires[holder_type]
 			src.wires = wires // Reference the wires list.
-	make_wire_hints()
 
 /datum/wires/Destroy()
 	holder = null
@@ -76,6 +91,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 	var/html = null
 	if(holder && CanUse(user))
 		html = GetInteractWindow()
+		hint_states_initialized = TRUE
 	if(html)
 		user.set_machine(holder)
 	else
@@ -108,10 +124,6 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 		html += "<i>\The [holder] appears to have tamper-resistant electronics installed.</i><br><br>" //maybe this could be more generic?
 
 	return html
-
-// Override to spawn the wire hints here, to avoid touching New().
-/datum/wires/proc/make_wire_hints()
-	return
 
 /datum/wires/Topic(href, href_list)
 	..()
