@@ -178,6 +178,7 @@ var/list/station_departments = list("Command", "Medical", "Engineering", "Scienc
 //Icons for in-game HUD glasses. Why don't we just share these a little bit?
 var/static/icon/ingame_hud = icon('icons/mob/hud.dmi')
 var/static/icon/ingame_hud_med = icon('icons/mob/hud_med.dmi')
+var/static/icon/buildmode_hud = icon('icons/misc/buildmode.dmi')
 
 //Keyed list for caching icons so you don't need to make them for records, IDs, etc all separately.
 //Could be useful for AI impersonation or something at some point?

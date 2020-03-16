@@ -11,6 +11,7 @@
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
 	volume = 5
+	drop_sound = 'sound/items/drop/glass.ogg'
 
 /obj/item/weapon/reagent_containers/dropper/examine(var/mob/user)
 	if(!..(user, 2))

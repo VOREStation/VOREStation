@@ -205,9 +205,9 @@
 	if(prob(20))
 		for(var/mob/living/silicon/ai/AI in player_list)
 			if(T.loc)
-				AI << "<font color = red><b>Network Alert: Brute-force encryption crack in progress in [T.loc].</b></font>"
+				to_chat(AI, "<font color = red><b>Network Alert: Brute-force encryption crack in progress in [T.loc].</b></font>")
 			else
-				AI << "<font color = red><b>Network Alert: Brute-force encryption crack in progress. Unable to pinpoint location.</b></font>"
+				to_chat(AI, "<font color = red><b>Network Alert: Brute-force encryption crack in progress. Unable to pinpoint location.</b></font>")
 
 	var/obj/machinery/door/D = cable.machine
 	if(!istype(D))
@@ -328,7 +328,7 @@
 		if(href_list["send"])
 			P.sradio.send_signal("ACTIVATE")
 			for(var/mob/O in hearers(1, P.loc))
-				O.show_message(text("\icon[] *beep* *beep*", P), 3, "*beep* *beep*", 2)
+				O.show_message("[bicon(P)] *beep* *beep*", 3, "*beep* *beep*", 2)
 			return 1
 
 		else if(href_list["freq"])

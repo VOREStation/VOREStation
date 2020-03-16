@@ -61,13 +61,13 @@
 	if(awaygate)
 		user.loc = awaygate.loc
 	else
-		user << "[src] has no destination."
+		to_chat(user, "[src] has no destination.")
 
 /obj/machinery/gateway/centeraway/attack_ghost(mob/user as mob)
 	if(stationgate)
 		user.loc = stationgate.loc
 	else
-		user << "[src] has no destination."
+		to_chat(user, "[src] has no destination.")
 
 // -------------------------------------------
 // This was supposed to be used by adminghosts

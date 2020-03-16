@@ -39,6 +39,9 @@
 	if (SSatoms.initialized == INITIALIZATION_INSSATOMS)
 		return // let proper initialisation handle it later
 
+	var/prev_shuttle_queue_state = SSshuttles.block_init_queue
+	SSshuttles.block_init_queue = TRUE
+
 	var/list/atom/atoms = list()
 	var/list/area/areas = list()
 	var/list/obj/structure/cable/cables = list()
@@ -70,6 +73,9 @@
 	for(var/I in areas)
 		var/area/A = I
 		A.power_change()
+
+	SSshuttles.block_init_queue = prev_shuttle_queue_state
+	SSshuttles.process_init_queues() // We will flush the queue unless there were other blockers, in which case they will do it.
 
 	admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
 
@@ -235,7 +241,7 @@
 				var/area/new_area = get_area(check)
 				if(!(istype(new_area, whitelist)))
 					valid = FALSE // Probably overlapping something important.
-			//		world << "Invalid due to overlapping with area [new_area.type] at ([check.x], [check.y], [check.z]), when attempting to place at ([T.x], [T.y], [T.z])."
+			//		to_world("Invalid due to overlapping with area [new_area.type] at ([check.x], [check.y], [check.z]), when attempting to place at ([T.x], [T.y], [T.z]).")
 					break
 				CHECK_TICK
 

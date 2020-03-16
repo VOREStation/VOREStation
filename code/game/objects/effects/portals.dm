@@ -20,13 +20,9 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 		return
 	return
 
-/obj/effect/portal/Crossed(AM as mob|obj)
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = AM
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
+/obj/effect/portal/Crossed(atom/movable/AM as mob|obj)
+	if(AM.is_incorporeal())
+		return
 	if(istype(AM,/mob) && !(istype(AM,/mob/living)))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	spawn(0)
@@ -60,6 +56,14 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 		qdel(src)
 		return
 	if (istype(M, /atom/movable))
+		//VOREStation Addition Start: Prevent taurriding abuse
+		if(istype(M, /mob/living))
+			var/mob/living/L = M
+			if(LAZYLEN(L.buckled_mobs))
+				var/datum/riding/R = L.riding_datum
+				for(var/rider in L.buckled_mobs)
+					R.force_dismount(rider)
+		//VOREStation Addition End: Prevent taurriding abuse
 		if(prob(failchance)) //oh dear a problem, put em in deep space
 			src.icon_state = "portal1"
 			do_teleport(M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)

@@ -25,16 +25,18 @@ var/global/datum/controller/plants/plant_controller // Set in New().
 
 	var/plants_per_tick = PLANTS_PER_TICK
 	var/plant_tick_time = PLANT_TICK_TIME
-	var/list/product_descs = list()         // Stores generated fruit descs.
-	var/list/plant_queue = list()           // All queued plants.
-	var/list/seeds = list()                 // All seed data stored here.
-	var/list/gene_tag_masks = list()        // Gene obfuscation for delicious trial and error goodness.
-	var/list/plant_icon_cache = list()      // Stores images of growth, fruits and seeds.
-	var/list/plant_sprites = list()         // List of all harvested product sprites.
-	var/list/plant_product_sprites = list() // List of all growth sprites plus number of growth stages.
-	var/processing = 0                      // Off/on.
-	var/list/gene_masked_list = list()		// Stored gene masked list, rather than recreating it when needed.
-	var/list/plant_gene_datums = list()		// Stored datum versions of the gene masked list.
+	var/list/product_descs = list()					// Stores generated fruit descs.
+	var/list/plant_queue = list()					// All queued plants.
+	var/list/seeds = list()							// All seed data stored here.
+	var/list/gene_tag_masks = list()				// Gene obfuscation for delicious trial and error goodness.
+	var/list/plant_icon_cache = list()				// Stores images of growth, fruits and seeds.
+	var/list/plant_sprites = list()					// List of all growth sprites plus number of growth stages.
+	var/list/accessible_plant_sprites = list()		// List of all plant sprites allowed to appear in random generation.
+	var/list/plant_product_sprites = list()			// List of all harvested product sprites.
+	var/list/accessible_product_sprites = list()	// List of all product sprites allowed to appear in random generation.
+	var/processing = 0                     			// Off/on.
+	var/list/gene_masked_list = list()				// Stored gene masked list, rather than recreating it when needed.
+	var/list/plant_gene_datums = list()				// Stored datum versions of the gene masked list.
 
 /datum/controller/plants/New()
 	if(plant_controller && plant_controller != src)
@@ -66,11 +68,16 @@ var/global/datum/controller/plants/plant_controller // Set in New().
 
 		if(!(plant_sprites[base]) || (plant_sprites[base]<ikey))
 			plant_sprites[base] = ikey
+			if(!(base in GLOB.forbidden_plant_growth_sprites))
+				accessible_plant_sprites[base] = ikey
 
 	for(var/icostate in icon_states('icons/obj/hydroponics_products.dmi'))
 		var/split = findtext(icostate,"-")
+		var/base = copytext(icostate,1,split)
 		if(split)
-			plant_product_sprites |= copytext(icostate,1,split)
+			plant_product_sprites |= base
+			if(!(base in GLOB.forbidden_plant_product_sprites))
+				accessible_product_sprites |= base
 
 	// Populate the global seed datum list.
 	for(var/type in typesof(/datum/seed)-/datum/seed)

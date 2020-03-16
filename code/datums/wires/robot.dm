@@ -2,6 +2,23 @@
 	random = 1
 	holder_type = /mob/living/silicon/robot
 	wire_count = 5
+	var/datum/wire_hint/lawsync_hint
+	var/datum/wire_hint/connected_ai_hint
+	var/datum/wire_hint/camera_hint
+	var/datum/wire_hint/lockdown_hint
+
+/datum/wires/robot/make_wire_hints()
+	lawsync_hint = new("The LawSync light is on.", "The LawSync light is off.")
+	connected_ai_hint = new("The AI link light is on.", "The AI link light is off.")
+	camera_hint = new("The camera light is on.", "The camera light is off.")
+	lockdown_hint = new("The lockdown light is on.", "The lockdown light is off.")
+
+/datum/wires/robot/Destroy()
+	lawsync_hint = null
+	connected_ai_hint = null
+	camera_hint = null
+	lockdown_hint = null
+	return ..()
 
 var/const/BORG_WIRE_LAWCHECK = 1
 var/const/BORG_WIRE_MAIN_POWER = 2 // The power wires do nothing whyyyyyyyyyyyyy
@@ -10,13 +27,12 @@ var/const/BORG_WIRE_AI_CONTROL = 8
 var/const/BORG_WIRE_CAMERA = 16
 
 /datum/wires/robot/GetInteractWindow()
-
 	. = ..()
 	var/mob/living/silicon/robot/R = holder
-	. += text("<br>\n[(R.lawupdate ? "The LawSync light is on." : "The LawSync light is off.")]")
-	. += text("<br>\n[(R.connected_ai ? "The AI link light is on." : "The AI link light is off.")]")
-	. += text("<br>\n[((!isnull(R.camera) && R.camera.status == 1) ? "The Camera light is on." : "The Camera light is off.")]")
-	. += text("<br>\n[(R.lockdown ? "The lockdown light is on." : "The lockdown light is off.")]")
+	. += lawsync_hint.show(R.lawupdate)
+	. += connected_ai_hint.show(R.connected_ai)
+	. += camera_hint.show((!isnull(R.camera) && R.camera.status == 1))
+	. += lockdown_hint.show(R.lockdown)
 	return .
 
 /datum/wires/robot/UpdateCut(var/index, var/mended)
@@ -26,7 +42,7 @@ var/const/BORG_WIRE_CAMERA = 16
 		if(BORG_WIRE_LAWCHECK) //Cut the law wire, and the borg will no longer receive law updates from its AI
 			if(!mended)
 				if (R.lawupdate == 1)
-					R << "LawSync protocol engaged."
+					to_chat(R, "LawSync protocol engaged.")
 					R.show_laws()
 			else
 				if (R.lawupdate == 0 && !R.emagged)
@@ -59,7 +75,7 @@ var/const/BORG_WIRE_CAMERA = 16
 		if (BORG_WIRE_CAMERA)
 			if(!isnull(R.camera) && R.camera.can_use() && !R.scrambledcodes)
 				R.visible_message("[R]'s camera lense focuses loudly.")
-				R << "Your camera lense focuses loudly."
+				to_chat(R, "Your camera lense focuses loudly.")
 
 		if(BORG_WIRE_LOCKED_DOWN)
 			R.SetLockdown(!R.lockdown) // Toggle

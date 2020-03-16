@@ -205,6 +205,37 @@
 /obj/item/organ/internal/diona/node/removed()
 	return
 
+// A 'brain' for the tree, still becomes a mindless nymph when removed like any other. Satisfies the FBP code.
+/obj/item/organ/internal/brain/cephalon
+	name = "cephalon mass"
+	parent_organ = BP_TORSO
+	vital = TRUE
+
+/obj/item/organ/internal/brain/cephalon/Initialize()
+	..()
+	spawn(30 SECONDS)	// FBP Dionaea need some way to be disassembled through surgery, if absolutely necessary.
+		if(!owner.isSynthetic())
+			vital = FALSE
+
+/obj/item/organ/internal/brain/cephalon/robotize()
+	return
+
+/obj/item/organ/internal/brain/cephalon/mechassist()
+	return
+
+/obj/item/organ/internal/brain/cephalon/digitize()
+	return
+
+/obj/item/organ/internal/brain/cephalon/removed(var/mob/living/user, var/skip_nymph)
+	if(robotic >= ORGAN_ROBOT)
+		return ..()
+	var/mob/living/carbon/human/H = owner
+	..()
+	if(!istype(H) || !H.organs || !H.organs.len)
+		H.death()
+	if(prob(50) && !skip_nymph && spawn_diona_nymph(get_turf(src)))
+		qdel(src)
+
 /obj/item/organ/external/head/no_eyes/diona
 	max_damage = 50
 	min_broken_damage = 25

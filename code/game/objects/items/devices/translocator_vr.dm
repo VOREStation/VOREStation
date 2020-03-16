@@ -16,6 +16,7 @@
 	var/abductor = 0 //Can be used on teleportation blocking turfs
 
 	var/list/beacons = list()
+	var/loc_network = null //Used if you want to create pre-made beacons on the maps
 	var/ready = 1
 	var/beacons_left = 3
 	var/failure_chance = 5 //Percent
@@ -24,8 +25,9 @@
 	var/list/warned_users = list()
 	var/list/logged_events = list()
 
-/obj/item/device/perfect_tele/New()
-	..()
+
+/obj/item/device/perfect_tele/Initialize()
+	. = ..()
 	flags |= NOBLUDGEON
 	if(cell_type)
 		power_source = new cell_type(src)
@@ -73,6 +75,12 @@
 		to_chat(user,"<span class='notice'>[src] does not have a power cell.</span>")
 
 /obj/item/device/perfect_tele/attack_self(mob/user)
+	if(loc_network)
+		for(var/obj/item/device/perfect_tele_beacon/stationary/nb in premade_tele_beacons)
+			if(nb.tele_network == loc_network)
+				beacons[nb.tele_name] = nb
+		loc_network = null //Consumed
+
 	if(!(user.ckey in warned_users))
 		warned_users |= user.ckey
 		alert(user,"This device can be easily used to break ERP preferences due to the nature of teleporting \
@@ -208,6 +216,14 @@
 	//Bzzt.
 	ready = 0
 	power_source.use(charge_cost)
+
+	//Unbuckle taur riders
+	if(istype(target, /mob/living))
+		var/mob/living/L = target
+		if(LAZYLEN(L.buckled_mobs))
+			var/datum/riding/R = L.riding_datum
+			for(var/rider in L.buckled_mobs)
+				R.force_dismount(rider)
 
 	//Failure chance
 	if(prob(failure_chance) && beacons.len >= 2)
@@ -372,6 +388,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 /obj/item/device/perfect_tele/alien
 	name = "alien translocator"
 	desc = "This strange device allows one to teleport people and objects across large distances."
+	icon_state = "alientele"
 
 	cell_type = /obj/item/weapon/cell/device/weapon/recharge/alien
 	charge_cost = 400
@@ -380,13 +397,26 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	longrange = 1
 	abductor = 1
 
+/obj/item/device/perfect_tele/alien/bluefo
+	name = "hybrid translocator"
+	desc = "This strange device allows one to teleport people and objects across large distances. It has only a single preprogrammed destination, though."
+	icon_state = "alientele"
+
+	cell_type = /obj/item/weapon/cell/device/weapon/recharge/alien
+	charge_cost = 400
+	beacons_left = 0
+	failure_chance = 0
+	longrange = 1
+	abductor = 1
+	loc_network = "hybridshuttle"
+
 /obj/item/device/perfect_tele/frontier
-	icon_state = "minitrans"
+	icon_state = "frontiertrans"
 	beacons_left = 1 //Just one
 	battery_lock = 1
 	unacidable = 1
 	failure_chance = 0 //Percent
-	var/loc_network = null
+	
 	var/phase_power = 75
 	var/recharging = 0
 
@@ -421,24 +451,12 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	loc_network = "centcom"
 	longrange = 1
 
-/obj/item/device/perfect_tele/frontier/staff/New()
-	..()
-	for(var/obj/item/device/perfect_tele_beacon/stationary/nb in premade_tele_beacons)
-		if(nb.tele_network == loc_network)
-			beacons[nb.tele_name] = nb
-
 /obj/item/device/perfect_tele/frontier/unknown
 	name = "modified translocator"
 	desc = "This crank-charged translocator has only one beacon, but it already has a destination preprogrammed into it."
 	charge_cost = 1200 // Enough for one person and their partner
 	longrange = 1
 	abductor = 1
-
-/obj/item/device/perfect_tele/frontier/unknown/New()
-	..()
-	for(var/obj/item/device/perfect_tele_beacon/stationary/nb in premade_tele_beacons)
-		if(nb.tele_network == loc_network)
-			beacons[nb.tele_name] = nb
 
 /obj/item/device/perfect_tele/frontier/unknown/one
 	loc_network = "unkone"

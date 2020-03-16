@@ -19,6 +19,9 @@
 	var/obj/item/weapon/shockpaddles/linked/paddles
 	var/obj/item/weapon/cell/bcell = null
 
+/obj/item/device/defib_kit/get_cell()
+	return bcell
+
 /obj/item/device/defib_kit/New() //starts without a cell for rnd
 	..()
 	if(ispath(paddles))
@@ -142,6 +145,12 @@
 		return 1
 	if((slot_flags & SLOT_BELT) && M.get_equipped_item(slot_belt) == src)
 		return 1
+	//VOREStation Add Start - RIGSuit compatability
+	if((slot_flags & SLOT_BACK) && M.get_equipped_item(slot_s_store) == src)
+		return 1
+	if((slot_flags & SLOT_BELT) && M.get_equipped_item(slot_s_store) == src)
+		return 1
+	//VOREStation Add End
 
 	return 0
 

@@ -104,6 +104,8 @@
 			if((src == G.assailant) && (is_vore_predator(src)))
 				if(!(G.affecting.devourable))
 					to_chat(user, "<span class='notice'>They aren't able to be devoured.</span>")
+					log_and_message_admins("[key_name(src)] ([src.real_name]) attempted to devour [key_name(G.affecting)] ([G.affecting.real_name]) against their prefs ([G.affecting ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[G.affecting.x];Y=[G.affecting.y];Z=[G.affecting.z]'>JMP</a>" : "null"])")
+
 					return FALSE
 				if(src.feed_grabbed_to_self(src, G.affecting))
 					qdel(G)
@@ -115,6 +117,7 @@
 			else if((src == G.affecting) && (attacker.a_intent == I_GRAB) && (attacker.zone_sel.selecting == BP_TORSO) && (is_vore_predator(G.affecting)))
 				if(!(G.affecting.feeding))
 					to_chat(user, "<span class='notice'>[G.affecting] isn't willing to be fed.</span>")
+					log_and_message_admins("[key_name(src)] ([src.real_name]) attempted to feed themselves to [key_name(G.affecting)] ([G.affecting.real_name]) against their prefs ([G.affecting ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[G.affecting.x];Y=[G.affecting.y];Z=[G.affecting.z]'>JMP</a>" : "null"])")
 					return FALSE
 				if (attacker.feed_self_to_grabbed(attacker, G.affecting))
 					qdel(G)
@@ -126,12 +129,11 @@
 			else if((src != G.affecting) && (src != G.assailant) && (is_vore_predator(src)))
 				if(!(src.feeding))
 					to_chat(user, "<span class='notice'>[src] isn't willing to be fed.</span>")
+					log_and_message_admins("[key_name(attacker)] ([attacker.real_name]) attempted to feed [key_name(G.affecting)] ([G.affecting.real_name]) to [key_name(src)] ([src.real_name]) against predator's prefs ([src ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>" : "null"])")
 					return FALSE
 				if(!(G.affecting.devourable))
 					to_chat(user, "<span class='notice'>[G.affecting] isn't able to be devoured.</span>")
-					return FALSE
-				if(!(G.affecting.feeding))
-					to_chat(user, "<span class='notice'>[src] isn't able to be fed to someone.</span>")
+					log_and_message_admins("[key_name(attacker)] ([attacker.real_name]) attempted to feed [key_name(G.affecting)] ([G.affecting.real_name]) to [key_name(src)] ([src.real_name]) against prey's prefs ([G.affecting ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[G.affecting.x];Y=[G.affecting.y];Z=[G.affecting.z]'>JMP</a>" : "null"])")
 					return FALSE
 
 				if (attacker.feed_grabbed_to_other(attacker, G.affecting, src))
@@ -241,7 +243,7 @@
 //
 //	Proc for applying vore preferences, given bellies
 //
-/mob/living/proc/copy_from_prefs_vr()
+/mob/living/proc/copy_from_prefs_vr(var/bellies = TRUE)
 	if(!client || !client.prefs_vr)
 		to_chat(src,"<span class='warning'>You attempted to apply your vore prefs but somehow you're in this character without a client.prefs_vr variable. Tell a dev.</span>")
 		return FALSE
@@ -259,10 +261,11 @@
 	can_be_drop_prey = P.can_be_drop_prey
 	can_be_drop_pred = P.can_be_drop_pred
 
-	release_vore_contents(silent = TRUE)
-	vore_organs.Cut()
-	for(var/entry in P.belly_prefs)
-		list_to_object(entry,src)
+	if(bellies)
+		release_vore_contents(silent = TRUE)
+		vore_organs.Cut()
+		for(var/entry in P.belly_prefs)
+			list_to_object(entry,src)
 
 	return TRUE
 

@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(ai)
 	//	var/mob/living/L = currentrun[currentrun.len]
 		var/datum/ai_holder/A = currentrun[currentrun.len]
 		--currentrun.len
-		if(!A || QDELETED(A)) // Doesn't exist or won't exist soon.
+		if(!A || QDELETED(A) || A.busy) // Doesn't exist or won't exist soon or not doing it this tick
 			continue
 		if(times_fired % 4 == 0 && A.holder.stat != DEAD)
 			A.handle_strategicals()

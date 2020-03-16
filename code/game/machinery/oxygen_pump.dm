@@ -294,8 +294,21 @@
 				breather.internals.icon_state = "internal0"
 
 		if(breather)	// Safety.
-			if(ishuman(breather))
+			if(ishuman(breather) && !(breather.isSynthetic()))
 				var/mob/living/carbon/human/H = breather
+
+				if(H.internal_organs_by_name[O_LUNGS])
+					var/obj/item/organ/internal/L = H.internal_organs_by_name[O_LUNGS]
+					if(L)
+						if(!(L.status & ORGAN_DEAD))
+							H.adjustOxyLoss(-(rand(10,15)))
+
+							if(L.is_bruised() && prob(30))
+								L.take_damage(-1)
+							else
+								H.AdjustLosebreath(-(rand(1, 5)))
+						else
+							H.adjustOxyLoss(-(rand(1,8)))
 
 				if(H.stat == DEAD)
 					H.add_modifier(/datum/modifier/bloodpump_corpse, 6 SECONDS)

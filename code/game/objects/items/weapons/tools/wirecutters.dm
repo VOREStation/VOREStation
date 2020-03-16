@@ -6,6 +6,7 @@
 	desc = "This cuts wires."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters"
+	center_of_mass = list("x" = 18,"y" = 10)
 	slot_flags = SLOT_BELT
 	force = 6
 	throw_speed = 2
@@ -16,6 +17,7 @@
 	attack_verb = list("pinched", "nipped")
 	hitsound = 'sound/items/wirecutter.ogg'
 	usesound = 'sound/items/wirecutter.ogg'
+	drop_sound = 'sound/items/drop/knife.ogg'
 	sharp = 1
 	edge = 1
 	toolspeed = 1

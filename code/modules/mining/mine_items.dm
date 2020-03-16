@@ -23,7 +23,7 @@
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
-	var/drill_sound = 'sound/weapons/Genhit.ogg'
+	var/drill_sound = "pickaxe"
 	var/drill_verb = "drilling"
 	sharp = 1
 
@@ -201,11 +201,11 @@
 
 	var/turf/T = get_turf(src)
 	if(!T || !istype(T,/turf/simulated/mineral))
-		user << "The flag won't stand up in this terrain."
+		to_chat(user, "The flag won't stand up in this terrain.")
 		return
 
 	if(F && F.upright)
-		user << "There is already a flag here."
+		to_chat(user, "There is already a flag here.")
 		return
 
 	var/obj/item/stack/flag/newflag = new src.type(T)

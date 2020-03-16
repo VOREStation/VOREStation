@@ -26,6 +26,7 @@
 #define QDEL_IN(item, time) addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, item), time, TIMER_STOPPABLE)
 #define QDEL_IN_CLIENT_TIME(item, time) addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, item), time, TIMER_STOPPABLE | TIMER_CLIENT_TIME)
 #define QDEL_NULL(item) qdel(item); item = null
+#define QDEL_NULL_LIST QDEL_LIST_NULL
 #define QDEL_LIST_NULL(x) if(x) { for(var/y in x) { qdel(y) } ; x = null }
 #define QDEL_LIST(L) if(L) { for(var/I in L) qdel(I); L.Cut(); }
 #define QDEL_LIST_IN(L, time) addtimer(CALLBACK(GLOBAL_PROC, .proc/______qdel_list_wrapper, L), time, TIMER_STOPPABLE)

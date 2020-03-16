@@ -128,6 +128,11 @@ var/global/list/default_medbay_channels = list(
 		ui.set_initial_data(data)
 		ui.open()
 
+/obj/item/device/radio/CouldUseTopic(var/mob/user)
+	..()
+	if(iscarbon(user))
+		playsound(src, "button", 10)
+
 /obj/item/device/radio/proc/list_channels(var/mob/user)
 	return list_internal_channels(user)
 
@@ -239,7 +244,7 @@ var/global/list/default_medbay_channels = list(
 	var/datum/radio_frequency/connection = null
 	if(channel && channels && channels.len > 0)
 		if (channel == "department")
-			//world << "DEBUG: channel=\"[channel]\" switching to \"[channels[1]]\""
+			//to_world("DEBUG: channel=\"[channel]\" switching to \"[channels[1]]\"")
 			channel = channels[1]
 		connection = secure_radio_connections[channel]
 	else
@@ -361,7 +366,7 @@ var/global/list/default_medbay_channels = list(
 		var/list/jamming = is_jammed(src)
 		if(jamming)
 			var/distance = jamming["distance"]
-			to_chat(M,"<span class='danger'>\icon[src] You hear the [distance <= 2 ? "loud hiss" : "soft hiss"] of static.</span>")
+			to_chat(M, "<span class='danger'>[bicon(src)] You hear the [distance <= 2 ? "loud hiss" : "soft hiss"] of static.</span>")
 			return FALSE
 
 		// First, we want to generate a new radio signal
@@ -415,7 +420,7 @@ var/global/list/default_medbay_channels = list(
 			return TRUE //Huzzah, sent via subspace
 
 		else if(adhoc_fallback) //Less huzzah, we have to fallback
-			to_chat(loc,"<span class='warning'>\The [src] pings as it falls back to local radio transmission.</span>")
+			to_chat(loc, "<span class='warning'>\The [src] pings as it falls back to local radio transmission.</span>")
 			subspace_transmission = FALSE
 			return Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
 					  src, message, displayname, jobname, real_name, M.voice_name,
@@ -468,7 +473,7 @@ var/global/list/default_medbay_channels = list(
 
 	if(signal.data["done"] && position.z in signal.data["level"])
 		if(adhoc_fallback)
-			to_chat(loc,"<span class='notice'>\The [src] pings as it reestablishes subspace communications.</span>")
+			to_chat(loc, "<span class='notice'>\The [src] pings as it reestablishes subspace communications.</span>")
 			subspace_transmission = TRUE
 		// we're done here.
 		return TRUE

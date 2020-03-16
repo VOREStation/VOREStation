@@ -41,14 +41,14 @@
 /obj/item/modular_computer/proc/install_default_programs()
 	return 1
 
-/obj/item/modular_computer/New()
+/obj/item/modular_computer/Initialize()
 	START_PROCESSING(SSobj, src)
 	install_default_hardware()
 	if(hard_drive)
 		install_default_programs()
 	update_icon()
 	update_verbs()
-	..()
+	. = ..()
 
 /obj/item/modular_computer/Destroy()
 	kill_program(1)

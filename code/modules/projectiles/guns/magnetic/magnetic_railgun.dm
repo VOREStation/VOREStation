@@ -119,7 +119,7 @@
 
 	removable_components = TRUE
 
-	initial_cell_type = /obj/item/weapon/cell/high
+	initial_cell_type = /obj/item/weapon/cell/device/weapon
 	initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor
 
 	fire_delay = 8
@@ -127,7 +127,7 @@
 	slot_flags = SLOT_BACK
 
 	slowdown = 0
-	slowdown_held = 0
+	slowdown_held = 0.3
 	slowdown_worn = 0
 
 	power_cost = 400
@@ -150,14 +150,16 @@
 
 	w_class = ITEMSIZE_NORMAL
 
-	initial_cell_type = /obj/item/weapon/cell/high
+	slowdown_held = 0.1
+
+	initial_cell_type = /obj/item/weapon/cell/device/weapon
 	initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor
 
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 
 	firemodes = list(
-		list(mode_name="lethal", power_cost = 2000, projectile_type = /obj/item/projectile/bullet/magnetic/heated, burst=1, fire_delay=8, move_delay=null, one_handed_penalty=0),
-		list(mode_name="stun", power_cost = 1500, projectile_type = /obj/item/projectile/energy/electrode/stunshot, burst=1, fire_delay=5, move_delay=null, one_handed_penalty=0),
+		list(mode_name="lethal", power_cost = 500, projectile_type = /obj/item/projectile/bullet/magnetic/heated, burst=1, fire_delay=10, move_delay=null, one_handed_penalty=0),
+		list(mode_name="stun", power_cost = 350, projectile_type = /obj/item/projectile/energy/electrode/strong, burst=1, fire_delay=7, move_delay=null, one_handed_penalty=0),
 		)
 
 /obj/item/weapon/gun/magnetic/railgun/heater/pistol/hos
@@ -168,8 +170,8 @@
 	description_antag = "This weapon starts with a DNA locking chip attached. Using an EMAG on the weapon will disarm it, and allow you to use the chip as your own."
 
 	firemodes = list(
-		list(mode_name="lethal", power_cost = 1500, projectile_type = /obj/item/projectile/bullet/magnetic/heated, burst=1, fire_delay=8, move_delay=null, one_handed_penalty=0),
-		list(mode_name="stun", power_cost = 1200, projectile_type = /obj/item/projectile/energy/electrode/stunshot, burst=1, fire_delay=5, move_delay=null, one_handed_penalty=0),
+		list(mode_name="lethal", power_cost = 400, projectile_type = /obj/item/projectile/bullet/magnetic/heated, burst=1, fire_delay=8, move_delay=null, one_handed_penalty=0),
+		list(mode_name="stun", power_cost = 300, projectile_type = /obj/item/projectile/energy/electrode/strong, burst=1, fire_delay=5, move_delay=null, one_handed_penalty=0),
 		)
 
 /obj/item/weapon/gun/magnetic/railgun/flechette/sif
@@ -184,9 +186,9 @@
 
 	slot_flags = SLOT_BACK
 
-	slowdown = 0.3
+	slowdown_held = 0.3
 
-	power_cost = 200
+	power_cost = 300
 	projectile_type = /obj/item/projectile/bullet/magnetic/flechette/hunting
 	empty_sound = 'sound/weapons/smg_empty_alarm.ogg'
 

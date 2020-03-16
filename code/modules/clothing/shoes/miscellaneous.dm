@@ -24,6 +24,7 @@
 	item_flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN+1
 	species_restricted = null
+	drop_sound = 'sound/items/drop/rubber.ogg'
 
 /obj/item/clothing/shoes/dress
 	name = "dress shoes"
@@ -98,6 +99,7 @@
 	force = 0
 	species_restricted = null
 	w_class = ITEMSIZE_SMALL
+	drop_sound = 'sound/items/drop/clothing.ogg'
 
 /obj/item/clothing/shoes/slippers_worn
 	name = "worn bunny slippers"
@@ -155,6 +157,7 @@
 	force = 0
 	w_class = ITEMSIZE_SMALL
 	species_restricted = null
+	drop_sound = 'sound/items/drop/clothing.ogg'
 
 /obj/item/clothing/shoes/boots/ranger
 	var/bootcolor = "white"

@@ -26,7 +26,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	name = "requests console"
 	desc = "A console intended to send requests to different departments on the station."
 	anchored = 1
-	icon = 'icons/obj/terminals.dmi'
+	icon = 'icons/obj/terminals_vr.dmi' //VOREStation Edit
 	icon_state = "req_comp0"
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
@@ -176,7 +176,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 			screen = RCS_SENTPASS
 			message_log += "<B>Message sent to [recipient]</B><BR>[message]"
 		else
-			audible_message(text("\icon[src] *The Requests Console beeps: 'NOTICE: No server detected!'"),,4)
+			audible_message(text("[bicon(src)] *The Requests Console beeps: 'NOTICE: No server detected!'"),,4)
 
 	//Handle printing
 	if (href_list["print"])

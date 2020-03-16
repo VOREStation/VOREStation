@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/away_mission_init/aerostat,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
 "b" = (
 /turf/unsimulated/wall/planetary/virgo2,
 /area/tether_away/aerostat/surface)
@@ -19,6 +15,10 @@
 	dir = 1
 	},
 /obj/structure/metal_edge,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/tether_away/aerostat/surface/explored)
+"q" = (
+/obj/structure/salvageable/personal,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/tether_away/aerostat/surface/explored)
 "A" = (
@@ -40,8 +40,14 @@
 /area/tether_away/aerostat/surface/explored)
 "Q" = (
 /obj/effect/floor_decal/rust,
+/obj/effect/shuttle_landmark{
+	base_area = /area/tether_away/aerostat/surface/explored;
+	base_turf = /turf/simulated/floor/tiled/techfloor/virgo2;
+	landmark_tag = "aerostat_surface";
+	name = "Virgo 2 Surface"
+	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
-/area/shuttle/aerostat/landed)
+/area/tether_away/aerostat/surface/explored)
 "V" = (
 /obj/structure/railing,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
@@ -8494,7 +8500,7 @@ i
 i
 i
 i
-a
+i
 i
 i
 i
@@ -8640,7 +8646,7 @@ i
 i
 i
 i
-i
+q
 i
 i
 i
@@ -9490,17 +9496,17 @@ i
 V
 I
 I
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
 I
 I
 I
@@ -9632,17 +9638,17 @@ i
 V
 I
 I
+I
+I
+I
+I
+I
 Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
+I
+I
+I
+I
+I
 I
 I
 I
@@ -9774,17 +9780,17 @@ i
 V
 I
 I
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
 I
 I
 I
@@ -9916,17 +9922,17 @@ i
 V
 I
 I
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
 I
 I
 I
@@ -10058,17 +10064,17 @@ i
 V
 I
 I
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
-Q
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
+I
 I
 I
 I

@@ -28,6 +28,7 @@
 	var/base_state
 	flash_protection = FLASH_PROTECTION_MAJOR
 	tint = TINT_HEAVY
+	drop_sound = 'sound/items/drop/helm.ogg'
 
 /obj/item/clothing/head/welding/attack_self()
 	toggle()
@@ -150,10 +151,10 @@
 /obj/item/clothing/head/ushanka/attack_self(mob/user as mob)
 	if(src.icon_state == "ushankadown")
 		src.icon_state = "ushankaup"
-		user << "You raise the ear flaps on the ushanka."
+		to_chat(user, "You raise the ear flaps on the ushanka.")
 	else
 		src.icon_state = "ushankadown"
-		user << "You lower the ear flaps on the ushanka."
+		to_chat(user, "You lower the ear flaps on the ushanka.")
 
 /*
  * Pumpkin head
@@ -167,6 +168,7 @@
 	brightness_on = 2
 	light_overlay = "helmet_light"
 	w_class = ITEMSIZE_NORMAL
+	drop_sound = 'sound/items/drop/herb.ogg'
 
 /*
  * Kitty ears

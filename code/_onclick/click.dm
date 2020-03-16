@@ -103,7 +103,7 @@
 	var/sdepth = A.storage_depth(src)
 	if((!isturf(A) && A == loc) || (sdepth != -1 && sdepth <= 1))
 		if(W)
-			var/resolved = W.resolve_attackby(A, src)
+			var/resolved = W.resolve_attackby(A, src, click_parameters = params)
 			if(!resolved && A && W)
 				W.afterattack(A, src, 1, params) // 1 indicates adjacency
 		else
@@ -134,16 +134,10 @@
 	// A is a turf or is on a turf, or in something on a turf (pen in a box); but not something in something on a turf (pen in a box in a backpack)
 	sdepth = A.storage_depth_turf()
 	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= 1))
-		//VOREStation Edit begin: SHADEKIN
-		var/mob/SK = src
-		if(istype(SK))
-			if(SK.shadekin_phasing_check())
-				return
-		//VOREStation Edit end: SHADEKIN
 		if(A.Adjacent(src) || (W && W.attack_can_reach(src, A, W.reach)) ) // see adjacent.dm
 			if(W)
 				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
-				var/resolved = W.resolve_attackby(A,src)
+				var/resolved = W.resolve_attackby(A,src, click_parameters = params)
 				if(!resolved && A && W)
 					W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
 			else
@@ -187,6 +181,9 @@
 	return
 
 /mob/living/UnarmedAttack(var/atom/A, var/proximity_flag)
+
+	if(is_incorporeal())
+		return 0
 
 	if(!ticker)
 		to_chat(src, "You cannot attack people before the game has started.")

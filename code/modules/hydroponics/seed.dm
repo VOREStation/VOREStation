@@ -99,7 +99,7 @@
 		return
 
 	var/datum/reagents/R = new/datum/reagents(100)
-	if(chems.len)
+	if(chems && chems.len)
 		for(var/rid in chems)
 			var/injecting = min(5,max(1,get_trait(TRAIT_POTENCY)/3))
 			R.add_reagent(rid,injecting)
@@ -193,7 +193,7 @@
 			if(!flesh_colour) flesh_colour = get_trait(TRAIT_PRODUCT_COLOUR)
 			if(flesh_colour) splat.color = get_trait(TRAIT_PRODUCT_COLOUR)
 
-	if(chems)
+	if(chems && chems.len)
 		for(var/mob/living/M in T.contents)
 			if(!M.reagents)
 				continue
@@ -409,8 +409,8 @@
 	seed_noun = pick("spores","nodes","cuttings","seeds")
 
 	set_trait(TRAIT_POTENCY,rand(5,30),200,0)
-	set_trait(TRAIT_PRODUCT_ICON,pick(plant_controller.plant_product_sprites))
-	set_trait(TRAIT_PLANT_ICON,pick(plant_controller.plant_sprites))
+	set_trait(TRAIT_PRODUCT_ICON,pick(plant_controller.accessible_product_sprites))
+	set_trait(TRAIT_PLANT_ICON,pick(plant_controller.accessible_plant_sprites))
 	set_trait(TRAIT_PLANT_COLOUR,"#[get_random_colour(0,75,190)]")
 	set_trait(TRAIT_PRODUCT_COLOUR,"#[get_random_colour(0,75,190)]")
 	update_growth_stages()
@@ -452,15 +452,16 @@
 	var/additional_chems = rand(0,5)
 
 	if(additional_chems)
-		//VOREStation Edit Start TFF 24/1/20 - More chems to the blacklist for prefs reasoning.
+		// VOREStation Edit Start: Modified exclusion list
 		var/list/banned_chems = list(
 			"adminordrazine",
 			"nutriment",
 			"macrocillin",
 			"microcillin",
-			"normalcillin"
+			"normalcillin",
+			"magicdust"
 			)
-		//VOREStation Edit End
+		// VOREStation Edit End: Modified exclusion list
 
 		for(var/x=1;x<=additional_chems;x++)
 
@@ -779,9 +780,11 @@
 		playsound(M, harvest_sound, 50, 1, -1)
 
 	if(!force_amount && get_trait(TRAIT_YIELD) == 0 && !harvest_sample)
-		if(istype(user)) user << "<span class='danger'>You fail to harvest anything useful.</span>"
+		if(istype(user))
+			to_chat(user, "<span class='danger'>You fail to harvest anything useful.</span>")
 	else
-		if(istype(user)) user << "You [harvest_sample ? "take a sample" : "harvest"] from the [display_name]."
+		if(istype(user))
+			to_chat(user, "You [harvest_sample ? "take a sample" : "harvest"] from the [display_name].")
 
 		//This may be a new line. Update the global if it is.
 		if(name == "new line" || !(name in plant_controller.seeds))

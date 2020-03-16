@@ -1,10 +1,11 @@
 /obj/item/weapon/folder
 	name = "folder"
 	desc = "A folder."
-	icon = 'icons/obj/bureaucracy.dmi'
+	icon = 'icons/obj/bureaucracy_vr.dmi' //VOREStation Edit
 	icon_state = "folder"
 	w_class = ITEMSIZE_SMALL
 	pressure_resistance = 2
+	drop_sound = 'sound/items/drop/paper.ogg'
 
 /obj/item/weapon/folder/blue
 	desc = "A blue folder."
@@ -64,7 +65,7 @@
 	if(istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/weapon/photo) || istype(W, /obj/item/weapon/paper_bundle))
 		user.drop_item()
 		W.loc = src
-		user << "<span class='notice'>You put the [W] into \the [src].</span>"
+		to_chat(user, "<span class='notice'>You put the [W] into \the [src].</span>")
 		update_icon()
 	else if(istype(W, /obj/item/weapon/pen))
 		var/n_name = sanitizeSafe(input(usr, "What would you like to label the folder?", "Folder Labelling", null)  as text, MAX_NAME_LEN)

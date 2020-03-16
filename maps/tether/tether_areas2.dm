@@ -843,11 +843,11 @@
 	name = "\improper Abandoned Library Conference"
 	icon_state = "library"
 /area/maintenance/station/spacecommandmaint
-	name = "\improper Asteroid Command Maintenance"
+	name = "\improper Secondary Command Maintenance"
 	icon_state = "bridge"
 	sound_env = SEWER_PIPE
 /area/maintenance/substation/spacecommand
-	name = "\improper Asteroid Command Substation"
+	name = "\improper Secondary Command Substation"
 	icon_state = "substation"
 
 /area/shuttle/tether/crash1
@@ -884,39 +884,37 @@
 	name = "\improper Exploration Showers"
 
 /area/shuttle/excursion
-	name = "\improper Excursion Shuttle"
-	icon_state = "shuttle2"
-	base_turf = /turf/space
 	requires_power = 1
+	icon_state = "shuttle2"
 
-/area/shuttle/excursion/tether
-	name = "\improper Excursion Shuttle - Tether"
-	base_turf = /turf/simulated/floor/reinforced
+/area/shuttle/excursion/general
+	name = "\improper Excursion Shuttle"
 
-/area/shuttle/excursion/tether_nearby
-	name = "\improper Excursion Shuttle - Tether Near"
+/area/shuttle/excursion/cockpit
+	name = "\improper Excursion Shuttle Cockpit"
 
-/area/shuttle/excursion/tether_dockarm
-	name = "\improper Excursion Shuttle - Tether Arm"
+/area/shuttle/excursion/cargo
+	name = "\improper Excursion Shuttle Cargo"
 
-/area/shuttle/excursion/space
-	name = "\improper Excursion Shuttle - Space"
+/area/shuttle/tourbus
+	requires_power = 1
+	icon_state = "shuttle2"
 
-/area/shuttle/excursion/space_moving
-	name = "\improper Excursion Shuttle - Space Moving"
-	base_turf = /turf/space/transit/north
+/area/shuttle/tourbus/general
+	name = "\improper Tour Bus"
+	
+/area/shuttle/tourbus/cockpit
+	name = "\improper Tour Bus Cockpit"
 
-/area/shuttle/excursion/bluespace
-	name = "\improper Excursion Shuttle - Bluespace"
-	base_turf = /turf/space/bluespace
+/area/shuttle/tourbus/engines
+	name = "\improper Tour Bus Engines"
 
-/area/shuttle/excursion/sand_moving
-	name = "\improper Excursion Shuttle - Sand Transit"
-	base_turf = /turf/space/sandyscroll
 
-/area/shuttle/excursion/virgo3b_sky
-	name = "\improper Excursion Shuttle - Virgo3b Sky"
-	base_turf = /turf/simulated/sky/virgo3b/south
+// Belter Dock
+
+/area/quartermaster/belterdock
+	name = "\improper Cargo Belter Access"
+	icon_state = "mining"
 
 // Elevator area //
 
@@ -938,34 +936,20 @@
 	requires_power = 0
 	dynamic_lighting = 0
 
-/area/shuttle/antag_space/base
-	name = "\improper Syndicate PS - Base"
-	icon_state = "shuttle2"
-/area/shuttle/antag_space/transit
-	name = "\improper Syndicate PS - Transit"
-	icon_state = "shuttle2"
-/area/shuttle/antag_space/north
-	name = "\improper Syndicate PS - Nearby"
-	icon_state = "shuttle2"
-/area/shuttle/antag_space/docks
-	name = "\improper Syndicate PS - Docks"
+//Merc shuttle
+/area/shuttle/mercenary
+	name = "\improper Mercenary Shuttle"
 	icon_state = "shuttle2"
 
-/area/shuttle/antag_ground/base
-	name = "\improper Syndicate LC - Base"
+//Vox shuttle
+/area/shuttle/skipjack
+	name = "\improper Skipjack"
 	icon_state = "shuttle2"
-/area/shuttle/antag_ground/transit
-	name = "\improper Syndicate LC - Transit"
-	icon_state = "shuttle2"
-/area/shuttle/antag_ground/solars
-	name = "\improper Syndicate LC - Solars"
-	icon_state = "shuttle2"
-	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
-/area/shuttle/antag_ground/mining
-	name = "\improper Syndicate LC - Mining"
-	icon_state = "shuttle2"
-	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
 
+//Ninja shuttle
+/area/shuttle/ninja
+	name = "\improper Ninjacraft"
+	icon_state = "shuttle2"
 
 //TFF 28/8/19 - cleanup of areas placement
 /area/teleporter/departing
@@ -1168,58 +1152,6 @@
 /area/unknown/dorm4
 	name = "Unknown Dorm 4"
 
-//////// Small Cruiser Areas ////////
-/area/houseboat
-	name = "Small Cruiser"
-	requires_power = 0
-	flags = RAD_SHIELDED
-	base_turf = /turf/space
-	icon_state = "red2"
-	lightswitch = TRUE
-
-/area/houseboat/holodeck_area
-	name = "Small Cruiser - Holodeck"
-	icon_state = "blue2"
-
-/area/houseboat/holodeck/off
-	name = "Small Cruiser Holo - Off"
-	icon_state = "blue2"
-/area/houseboat/holodeck/beach
-	name = "Small Cruiser Holo - Beach"
-	icon_state = "blue2"
-/area/houseboat/holodeck/snow
-	name = "Small Cruiser Holo - Snow"
-	icon_state = "blue2"
-/area/houseboat/holodeck/desert
-	name = "Small Cruiser Holo - Desert"
-	icon_state = "blue2"
-/area/houseboat/holodeck/picnic
-	name = "Small Cruiser Holo - Picnic"
-	icon_state = "blue2"
-/area/houseboat/holodeck/thunderdome
-	name = "Small Cruiser Holo - Thunderdome"
-	icon_state = "blue2"
-/area/houseboat/holodeck/basketball
-	name = "Small Cruiser Holo - Basketball"
-	icon_state = "blue2"
-/area/houseboat/holodeck/gaming
-	name = "Small Cruiser Holo - Gaming Table"
-	icon_state = "blue2"
-/area/houseboat/holodeck/space
-	name = "Small Cruiser Holo - Space"
-	icon_state = "blue2"
-/area/houseboat/holodeck/bunking
-	name = "Small Cruiser Holo - Bunking"
-	icon_state = "blue2"
-
-/area/shuttle/cruiser/cruiser
-	name = "Small Cruiser Shuttle - Cruiser"
-	icon_state = "blue2"
-	base_turf = /turf/simulated/floor/tiled/techfloor
-/area/shuttle/cruiser/station
-	name = "Small Cruiser Shuttle - Station"
-	icon_state = "blue2"
-
 // ERT/Deathsquad Shuttle
 /area/shuttle/specialops/centcom
 	name = "Special Operations Shuttle - Centcom"
@@ -1236,17 +1168,8 @@
 	base_turf = /turf/space/transit/east
 
 // Tether Map has this shuttle
-/area/shuttle/tether/surface
-	name = "Tether Shuttle Landed"
-	icon_state = "shuttle"
-	base_turf = /turf/simulated/floor/reinforced
-
-/area/shuttle/tether/station
-	name = "Tether Shuttle Dock"
-	icon_state = "shuttle2"
-
-/area/shuttle/tether/transit
-	name = "Tether Shuttle Transit"
+/area/shuttle/tether
+	name = "Tether Shuttle"
 	icon_state = "shuttle2"
 
 //Skipjack

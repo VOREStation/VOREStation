@@ -155,7 +155,7 @@
 
 /obj/item/weapon/shield/energy/attack_self(mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << "<span class='warning'>You beat yourself in the head with [src].</span>"
+		to_chat(user, "<span class='warning'>You beat yourself in the head with [src].</span>")
 		user.take_organ_damage(5)
 	active = !active
 	if (active)
@@ -164,7 +164,7 @@
 		w_class = ITEMSIZE_LARGE
 		slot_flags = null
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
-		user << "<span class='notice'>\The [src] is now active.</span>"
+		to_chat(user, "<span class='notice'>\The [src] is now active.</span>")
 
 	else
 		force = 3
@@ -172,7 +172,7 @@
 		w_class = ITEMSIZE_TINY
 		slot_flags = SLOT_EARS
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
-		user << "<span class='notice'>\The [src] can now be concealed.</span>"
+		to_chat(user, "<span class='notice'>\The [src] can now be concealed.</span>")
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
@@ -241,14 +241,14 @@
 		throw_speed = 2
 		w_class = ITEMSIZE_LARGE
 		slot_flags = SLOT_BACK
-		user << "<span class='notice'>You extend \the [src].</span>"
+		to_chat(user, "<span class='notice'>You extend \the [src].</span>")
 	else
 		force = 3
 		throwforce = 3
 		throw_speed = 3
 		w_class = ITEMSIZE_NORMAL
 		slot_flags = null
-		user << "<span class='notice'>[src] can now be concealed.</span>"
+		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user

@@ -25,6 +25,8 @@
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!affected) return
+	if(coverage_check(user, target, affected, tool))
+		return 0
 	var/internal_bleeding = 0
 	for(var/datum/wound/W in affected.wounds) if(W.internal)
 		internal_bleeding = 1
@@ -41,8 +43,8 @@
 
 /datum/surgery_step/fix_vein/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("<font color='blue'>[user] has patched the damaged vein in [target]'s [affected.name] with \the [tool].</font>", \
-		"<font color='blue'>You have patched the damaged vein in [target]'s [affected.name] with \the [tool].</font>")
+	user.visible_message("<span class='notice'>[user] has patched the damaged vein in [target]'s [affected.name] with \the [tool].</span>", \
+		"<span class='notice'>You have patched the damaged vein in [target]'s [affected.name] with \the [tool].</span>")
 
 	for(var/datum/wound/W in affected.wounds) if(W.internal)
 		affected.wounds -= W
@@ -51,8 +53,8 @@
 
 /datum/surgery_step/fix_vein/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("<font color='red'>[user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.name]!</font>" , \
-	"<font color='red'>Your hand slips, smearing [tool] in the incision in [target]'s [affected.name]!</font>")
+	user.visible_message("<span class='danger'>[user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.name]!</span>" , \
+	"<span class='danger'>Your hand slips, smearing [tool] in the incision in [target]'s [affected.name]!</span>")
 	affected.take_damage(5, 0)
 
 ///////////////////////////////////////////////////////////////
@@ -80,6 +82,8 @@
 		return 0
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(coverage_check(user, target, affected, tool))
+		return 0
 
 	return affected && affected.open >= 2 && (affected.status & ORGAN_DEAD)
 
@@ -92,14 +96,14 @@
 
 /datum/surgery_step/fix_dead_tissue/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("<font color='blue'>[user] has cut away necrotic tissue in [target]'s [affected.name] with \the [tool].</font>", \
-		"<font color='blue'>You have cut away necrotic tissue in [target]'s [affected.name] with \the [tool].</font>")
+	user.visible_message("<span class='notice'>[user] has cut away necrotic tissue in [target]'s [affected.name] with \the [tool].</span>", \
+		"<span class='notice'>You have cut away necrotic tissue in [target]'s [affected.name] with \the [tool].</span>")
 	affected.open = 3
 
 /datum/surgery_step/fix_dead_tissue/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("<font color='red'>[user]'s hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!</font>", \
-	"<font color='red'>Your hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!</font>")
+	user.visible_message("<span class='danger'>[user]'s hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!</span>", \
+	"<span class='danger'>Your hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!</span>")
 	affected.createwound(CUT, 20, 1)
 
 ///////////////////////////////////////////////////////////////
@@ -136,6 +140,8 @@
 		return 0
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(coverage_check(user, target, affected, tool))
+		return 0
 	return affected && affected.open == 3 && (affected.status & ORGAN_DEAD)
 
 /datum/surgery_step/treat_necrosis/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -158,8 +164,8 @@
 		affected.status &= ~ORGAN_DEAD
 		affected.owner.update_icons_body()
 
-		user.visible_message("<font color='blue'>[user] applies [trans] units of the solution to affected tissue in [target]'s [affected.name].</font>", \
-			"<font color='blue'>You apply [trans] units of the solution to affected tissue in [target]'s [affected.name] with \the [tool].</font>")
+		user.visible_message("<span class='notice'>[user] applies [trans] units of the solution to affected tissue in [target]'s [affected.name].</span>", \
+			"<span class='notice'>You apply [trans] units of the solution to affected tissue in [target]'s [affected.name] with \the [tool].</span>")
 
 /datum/surgery_step/treat_necrosis/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -171,8 +177,8 @@
 
 	var/trans = container.reagents.trans_to_mob(target, container.amount_per_transfer_from_this, CHEM_BLOOD)
 
-	user.visible_message("<font color='red'>[user]'s hand slips, applying [trans] units of the solution to the wrong place in [target]'s [affected.name] with the [tool]!</font>" , \
-	"<font color='red'>Your hand slips, applying [trans] units of the solution to the wrong place in [target]'s [affected.name] with the [tool]!</font>")
+	user.visible_message("<span class='danger'>[user]'s hand slips, applying [trans] units of the solution to the wrong place in [target]'s [affected.name] with the [tool]!</span>" , \
+	"<span class='danger'>Your hand slips, applying [trans] units of the solution to the wrong place in [target]'s [affected.name] with the [tool]!</span>")
 
 	//no damage or anything, just wastes medicine
 
@@ -219,7 +225,7 @@
 		rig = target.belt
 		if(!istype(rig))
 			return
-	rig.reset()
+	rig.cut_suit()
 	user.visible_message("<span class='notice'>[user] has cut through the support systems of \the [rig] on [target] with \the [tool].</span>", \
 		"<span class='notice'>You have cut through the support systems of \the [rig] on [target] with \the [tool].</span>")
 

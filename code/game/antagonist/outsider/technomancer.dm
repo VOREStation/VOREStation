@@ -77,8 +77,7 @@ var/datum/antagonist/technomancer/technomancers
 		break
 	if(!survivor)
 		feedback_set_details("round_end_result","loss - technomancer killed")
-		world << "<span class='danger'><font size = 3>The [(current_antagonists.len>1)?"[role_text_plural] have":"[role_text] has"] been \
-		killed!</font></span>"
+		to_world("<span class='danger'><font size = 3>The [(current_antagonists.len>1)?"[role_text_plural] have":"[role_text] has"] been killed!</font></span>")
 
 /datum/antagonist/technomancer/print_player_summary()
 	..()
@@ -87,7 +86,7 @@ var/datum/antagonist/technomancer/technomancers
 			continue // Only want abandoned cores.
 		if(!core.spells.len)
 			continue // Cores containing spells only.
-		world << "Abandoned [core] had [english_list(core.spells)].<br>"
+		to_world("Abandoned [core] had [english_list(core.spells)].<br>")
 
 /datum/antagonist/technomancer/print_player_full(var/datum/mind/player)
 	var/text = print_player_lite(player)

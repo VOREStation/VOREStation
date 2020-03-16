@@ -3,11 +3,20 @@
 /datum/wires/airlock/secure
 	random = 1
 	wire_count = 14
+	window_y = 680
 
 /datum/wires/airlock
 	holder_type = /obj/machinery/door/airlock
 	wire_count = 12
 	window_y = 570
+	var/datum/wire_hint/bolt_lock_hint
+	var/datum/wire_hint/bolt_light_hint
+	var/datum/wire_hint/power_hint
+	var/datum/wire_hint/backup_power_hint
+	var/datum/wire_hint/ai_control_hint
+	var/datum/wire_hint/safeties_hint
+	var/datum/wire_hint/speed_hint
+	var/datum/wire_hint/id_scan_hint
 
 var/const/AIRLOCK_WIRE_IDSCAN = 1
 var/const/AIRLOCK_WIRE_MAIN_POWER1 = 2
@@ -21,6 +30,27 @@ var/const/AIRLOCK_WIRE_ELECTRIFY = 256
 var/const/AIRLOCK_WIRE_SAFETY = 512
 var/const/AIRLOCK_WIRE_SPEED = 1024
 var/const/AIRLOCK_WIRE_LIGHT = 2048
+
+/datum/wires/airlock/make_wire_hints()
+	bolt_lock_hint = new("The door bolts have fallen!", "The door bolts look up.")
+	bolt_light_hint = new("The door bolt lights are on.", "The door bolt lights are off!")
+	power_hint = new("The test light is on.", "The test light is off!")
+	backup_power_hint = new("The backup power light is off!", "The backup power light is on.")
+	ai_control_hint = new("The 'AI control allowed' light is on.", "The 'AI control allowed' light is off.")
+	safeties_hint = new("The 'Check Wiring' light is on.", "The 'Check Wiring' light is off.")
+	speed_hint = new("The 'Check Timing Mechanism' light is on.", "The 'Check Timing Mechanism' light is off.")
+	id_scan_hint = new("The IDScan light is on.", "The IDScan light is off.")
+
+/datum/wires/airlock/Destroy()
+	bolt_lock_hint = null
+	bolt_light_hint = null
+	power_hint = null
+	backup_power_hint = null
+	ai_control_hint = null
+	safeties_hint = null
+	speed_hint = null
+	id_scan_hint = null
+	return ..()
 
 /datum/wires/airlock/CanUse(var/mob/living/L)
 	var/obj/machinery/door/airlock/A = holder
@@ -37,15 +67,14 @@ var/const/AIRLOCK_WIRE_LIGHT = 2048
 	var/haspower = A.arePowerSystemsOn() //If there's no power, then no lights will be on.
 
 	. += ..()
-	. += text("<br>\n[]<br>\n[]<br>\n[]<br>\n[]<br>\n[]<br>\n[]<br>\n[]<br>\n[]",
-	(A.locked ? "The door bolts have fallen!" : "The door bolts look up."),
-	((A.lights && haspower) ? "The door bolt lights are on." : "The door bolt lights are off!"),
-	((haspower) ? "The test light is on." : "The test light is off!"),
-	((A.backup_power_lost_until) ? "The backup power light is off!" : "The backup power light is on."),
-	((A.aiControlDisabled==0 && !A.emagged && haspower)? "The 'AI control allowed' light is on." : "The 'AI control allowed' light is off."),
-	((A.safe==0 && haspower)? "The 'Check Wiring' light is on." : "The 'Check Wiring' light is off."),
-	((A.normalspeed==0 && haspower)? "The 'Check Timing Mechanism' light is on." : "The 'Check Timing Mechanism' light is off."),
-	((A.aiDisabledIdScanner==0 && haspower)? "The IDScan light is on." : "The IDScan light is off."))
+	. += bolt_lock_hint.show(A.locked)
+	. += bolt_light_hint.show(A.lights && haspower)
+	. += power_hint.show(haspower)
+	. += backup_power_hint.show(A.backup_power_lost_until)
+	. += ai_control_hint.show(A.aiControlDisabled == 0 && !A.emagged && haspower)
+	. += safeties_hint.show(A.safe == 0 && haspower)
+	. += speed_hint.show(A.normalspeed == 0 && haspower)
+	. += id_scan_hint.show(A.aiDisabledIdScanner == 0 && haspower)
 
 /datum/wires/airlock/UpdateCut(var/index, var/mended)
 

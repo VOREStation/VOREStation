@@ -9,6 +9,7 @@
 	edge = 1
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
+	drop_sound = 'sound/items/drop/sword.ogg'
 
 /obj/item/weapon/material/sword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(unique_parry_check(user, attacker, damage_source) && prob(50))
@@ -19,7 +20,7 @@
 
 /obj/item/weapon/material/sword/suicide_act(mob/user)
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	viewers(user) << "<span class='danger'>[user] is falling on the [src.name]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>"
+	to_chat(viewers(user),"<span class='danger'>[user] is falling on the [src.name]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
 	return(BRUTELOSS)
 
 /obj/item/weapon/material/sword/katana

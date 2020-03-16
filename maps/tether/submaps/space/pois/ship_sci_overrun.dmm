@@ -388,6 +388,18 @@
 /mob/living/simple_mob/slime/feral/dark_blue,
 /turf/simulated/floor/airless,
 /area/tether_away/debrisfield/explored)
+"rR" = (
+/obj/structure/salvageable/autolathe,
+/turf/simulated/floor/airless,
+/area/tether_away/debrisfield/explored)
+"Hf" = (
+/obj/structure/salvageable/machine,
+/turf/simulated/floor/tiled/white/airless,
+/area/tether_away/debrisfield/explored)
+"Ow" = (
+/obj/structure/salvageable/implant_container,
+/turf/simulated/floor/tiled/white/airless,
+/area/tether_away/debrisfield/explored)
 
 (1,1,1) = {"
 aa
@@ -531,7 +543,7 @@ aa
 ab
 as
 as
-ac
+rR
 ac
 bi
 bj
@@ -837,7 +849,7 @@ ad
 ad
 ad
 ab
-ad
+Hf
 ad
 ad
 ab
@@ -864,7 +876,7 @@ ad
 ad
 ad
 ab
-ad
+Hf
 ad
 aX
 ab
@@ -1004,7 +1016,7 @@ ad
 ad
 ad
 ad
-ad
+Ow
 ab
 aa
 aa

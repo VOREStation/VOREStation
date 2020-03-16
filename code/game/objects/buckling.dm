@@ -113,7 +113,7 @@
 //Wrapper procs that handle sanity and user feedback
 /atom/movable/proc/user_buckle_mob(mob/living/M, mob/user, var/forced = FALSE, var/silent = FALSE)
 	if(!ticker)
-		user << "<span class='warning'>You can't buckle anyone in before the game starts.</span>"
+		to_chat(user, "<span class='warning'>You can't buckle anyone in before the game starts.</span>")
 		return FALSE // Is this really needed?
 	if(!user.Adjacent(M) || user.restrained() || user.stat || istype(user, /mob/living/silicon/pai))
 		return FALSE
@@ -133,6 +133,7 @@
 	//		step_towards(M, src)
 
 	. = buckle_mob(M, forced)
+	playsound(src.loc, 'sound/effects/seatbelt.ogg', 50, 1)
 	if(.)
 		var/reveal_message = list("buckled_mob" = null, "buckled_to" = null) //VORE EDIT: This being a list and messages existing for the buckle target atom.
 		if(!silent)
@@ -160,6 +161,7 @@
 
 /atom/movable/proc/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
 	var/mob/living/M = unbuckle_mob(buckled_mob)
+	playsound(src.loc, 'sound/effects/seatbelt.ogg', 50, 1)
 	if(M)
 		if(M != user)
 			M.visible_message(\

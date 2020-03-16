@@ -236,8 +236,8 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	msg += "Receiving '[sent.name]' via secure connection ... <a href='?_src_=holder;AdminFaxView=\ref[sent]'>view message</a></span>"
 
 	for(var/client/C in admins)
-		if(check_rights((R_ADMIN|R_MOD),0,C))
-			C << msg
+		if(check_rights((R_ADMIN|R_MOD|R_EVENT),0,C))
+			to_chat(C,msg)
 			C << 'sound/effects/printer.ogg'
 
 	// VoreStation Edit Start

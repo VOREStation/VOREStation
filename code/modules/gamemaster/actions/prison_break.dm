@@ -1,6 +1,6 @@
 /datum/gm_action/prison_break
 	name = "prison break"
-	departments = list(ROLE_SECURITY, ROLE_SYNTHETIC)
+	departments = list(DEPARTMENT_SECURITY, DEPARTMENT_SYNTHETIC)
 
 	var/start_time = 0
 	var/active = FALSE					// Are we doing stuff?
@@ -14,7 +14,7 @@
 
 /datum/gm_action/prison_break/get_weight()
 	var/afflicted_staff = 0
-	var/assigned_staff = metric.count_people_in_department(ROLE_ENGINEERING)
+	var/assigned_staff = metric.count_people_in_department(DEPARTMENT_ENGINEERING)
 	for(var/department in departments)
 		afflicted_staff += round(metric.count_people_in_department(department) / 2)
 
@@ -27,14 +27,14 @@
 
 /datum/gm_action/prison_break/virology
 	name = "virology breakout"
-	departments = list(ROLE_MEDICAL, ROLE_SYNTHETIC)
+	departments = list(DEPARTMENT_MEDICAL, DEPARTMENT_SYNTHETIC)
 	eventDept = "Medical"
 	areaName = list("Virology")
 	areaType = list(/area/medical/virology, /area/medical/virologyaccess)
 
 /datum/gm_action/prison_break/xenobiology
 	name = "xenobiology breakout"
-	departments = list(ROLE_RESEARCH, ROLE_SYNTHETIC)
+	departments = list(DEPARTMENT_RESEARCH, DEPARTMENT_SYNTHETIC)
 	eventDept = "Science"
 	areaName = list("Xenobiology")
 	areaType = list(/area/rnd/xenobiology)
@@ -42,7 +42,7 @@
 
 /datum/gm_action/prison_break/station
 	name = "station-wide breakout"
-	departments = list(ROLE_SECURITY, ROLE_MEDICAL, ROLE_RESEARCH, ROLE_SYNTHETIC)
+	departments = list(DEPARTMENT_SECURITY, DEPARTMENT_MEDICAL, DEPARTMENT_RESEARCH, DEPARTMENT_SYNTHETIC)
 	eventDept = "Station"
 	areaName = list("Brig","Virology","Xenobiology")
 	areaType = list(/area/security/prison, /area/security/brig, /area/medical/virology, /area/medical/virologyaccess, /area/rnd/xenobiology)
@@ -70,10 +70,10 @@
 		for(var/obj/machinery/message_server/MS in machines)
 			MS.send_rc_message("Engineering", my_department, rc_message, "", "", 2)
 		for(var/mob/living/silicon/ai/A in player_list)
-			A << "<span class='danger'>Malicious program detected in the [english_list(areaName)] lighting and airlock control systems by [my_department].</span>"
+			to_chat(A, "<span class='danger'>Malicious program detected in the [english_list(areaName)] lighting and airlock control systems by [my_department].</span>")
 
 	else
-		world.log << "ERROR: Could not initate grey-tide. Unable to find suitable containment area."
+		to_world_log("ERROR: Could not initate grey-tide. Unable to find suitable containment area.")
 
 	if(areas && areas.len > 0)
 		spawn()

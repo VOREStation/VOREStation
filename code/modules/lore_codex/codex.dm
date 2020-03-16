@@ -40,6 +40,7 @@
 	w_class = ITEMSIZE_SMALL
 	root_type = /datum/lore/codex/category/main_news
 	libcategory = "Reference"
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /* //VORESTATION REMOVAL
 // Combines SOP/Regs/Law

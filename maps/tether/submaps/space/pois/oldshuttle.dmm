@@ -126,7 +126,6 @@
 /area/tether_away/debrisfield/explored)
 "av" = (
 /obj/structure/bed/chair/shuttle{
-	icon_state = "shuttle_chair";
 	dir = 1
 	},
 /turf/simulated/shuttle/floor/black/airless,

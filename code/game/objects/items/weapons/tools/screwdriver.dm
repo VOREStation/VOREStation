@@ -6,6 +6,7 @@
 	desc = "You can be totally screwwy with this."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver"
+	center_of_mass = list("x" = 13,"y" = 7)
 	slot_flags = SLOT_BELT | SLOT_EARS
 	force = 6
 	w_class = ITEMSIZE_TINY
@@ -14,6 +15,7 @@
 	throw_range = 5
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	usesound = 'sound/items/screwdriver.ogg'
+	drop_sound = 'sound/items/drop/scrap.ogg'
 	matter = list(DEFAULT_WALL_MATERIAL = 75)
 	attack_verb = list("stabbed")
 	sharp  = 1
@@ -22,8 +24,8 @@
 
 /obj/item/weapon/tool/screwdriver/suicide_act(mob/user)
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	viewers(user) << pick("<span class='danger'>\The [user] is stabbing the [src.name] into [TU.his] temple! It looks like [TU.hes] trying to commit suicide.</span>", \
-						"<span class='danger'>\The [user] is stabbing the [src.name] into [TU.his] heart! It looks like [TU.hes] trying to commit suicide.</span>")
+	to_chat(viewers(user), pick("<span class='danger'>\The [user] is stabbing the [src.name] into [TU.his] temple! It looks like [TU.hes] trying to commit suicide.</span>", \
+						"<span class='danger'>\The [user] is stabbing the [src.name] into [TU.his] heart! It looks like [TU.hes] trying to commit suicide.</span>"))
 	return(BRUTELOSS)
 
 /obj/item/weapon/tool/screwdriver/New()

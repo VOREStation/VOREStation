@@ -84,15 +84,16 @@
 		if (job)
 			data["job_datum"] = list(
 				"title" = job.title,
-				"department" = job.department,
+				"departments" = english_list(job.departments),
 				"selection_color" = job.selection_color,
 				"economic_modifier" = job.economic_modifier,
-				"timeoff_factor" = job.timeoff_factor
+				"timeoff_factor" = job.timeoff_factor,
+				"pto_department" = job.pto_earning
 			)
 		if(config.time_off && config.pto_job_change)
 			data["allow_change_job"] = TRUE
 			if(job && job.timeoff_factor < 0) // Currently are Off Duty, so gotta lookup what on-duty jobs are open
-				data["job_choices"] = getOpenOnDutyJobs(user, job.department)
+				data["job_choices"] = getOpenOnDutyJobs(user, job.pto_earning)
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -141,23 +142,17 @@
 	var/list/available_jobs = list()
 	for(var/datum/job/job in job_master.occupations)
 		if(job && job.is_position_available() && !job.whitelist_only && !jobban_isbanned(user,job.title) && job.player_old_enough(user.client))
-			if(job.department == department && !job.disallow_jobhop && job.timeoff_factor > 0)
+			if(job.pto_earning == department && !job.disallow_jobhop && job.timeoff_factor > 0)
 				available_jobs += job.title
 				if(job.alt_titles)
 					for(var/alt_job in job.alt_titles)
-						available_jobs += alt_job
+						if(alt_job != job.title)
+							available_jobs += alt_job
 	return available_jobs
 
 /obj/machinery/computer/timeclock/proc/makeOnDuty(var/newjob)
-	var/datum/job/foundjob = null
-	for(var/datum/job/job in job_master.occupations)
-		if(newjob == job.title)
-			foundjob = job
-			break
-		if(newjob in job.alt_titles)
-			foundjob = job
-			break
-	if(!newjob in getOpenOnDutyJobs(usr, job_master.GetJob(card.rank).department))
+	var/datum/job/foundjob = job_master.GetJob(card.rank)
+	if(!newjob in getOpenOnDutyJobs(usr, foundjob.pto_earning))
 		return
 	if(foundjob && card)
 		card.access = foundjob.get_access()
@@ -175,19 +170,13 @@
 	return
 
 /obj/machinery/computer/timeclock/proc/makeOffDuty()
-	var/datum/job/foundjob = null
-	for(var/datum/job/job in job_master.occupations)
-		if(card.rank == job.title)
-			foundjob = job
-			break
+	var/datum/job/foundjob = job_master.GetJob(card.rank)
 	if(!foundjob)
 		return
-	var/real_dept = foundjob.department
-	if(real_dept && real_dept == "Command")
-		real_dept = "Civilian"
+	var/new_dept = foundjob.pto_earning || PTO_CIVILIAN
 	var/datum/job/ptojob = null
 	for(var/datum/job/job in job_master.occupations)
-		if(job.department == real_dept && job.timeoff_factor < 0)
+		if(job.pto_earning == new_dept && job.timeoff_factor < 0)
 			ptojob = job
 			break
 	if(ptojob && card)

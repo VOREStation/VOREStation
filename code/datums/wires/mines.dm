@@ -23,15 +23,15 @@
 
 	switch(index)
 		if(WIRE_DETONATE)
-			C.visible_message("\icon[C] *BEEE-*", "\icon[C] *BEEE-*")
+			C.visible_message("[bicon(C)] *BEEE-*", "[bicon(C)] *BEEE-*")
 			C.explode()
 
 		if(WIRE_TIMED_DET)
-			C.visible_message("\icon[C] *BEEE-*", "\icon[C] *BEEE-*")
+			C.visible_message("[bicon(C)] *BEEE-*", "[bicon(C)] *BEEE-*")
 			C.explode()
 
 		if(WIRE_DISARM)
-			C.visible_message("\icon[C] *click!*", "\icon[C] *click!*")
+			C.visible_message("[bicon(C)] *click!*", "[bicon(C)] *click!*")
 			new C.mineitemtype(get_turf(C))
 			spawn(0)
 				qdel(C)
@@ -45,7 +45,7 @@
 			return
 
 		if(WIRE_BADDISARM)
-			C.visible_message("\icon[C] *BEEPBEEPBEEP*", "\icon[C] *BEEPBEEPBEEP*")
+			C.visible_message("[bicon(C)] *BEEPBEEPBEEP*", "[bicon(C)] *BEEPBEEPBEEP*")
 			spawn(20)
 				C.explode()
 	return
@@ -56,24 +56,24 @@
 		return
 	switch(index)
 		if(WIRE_DETONATE)
-			C.visible_message("\icon[C] *beep*", "\icon[C] *beep*")
+			C.visible_message("[bicon(C)] *beep*", "[bicon(C)] *beep*")
 
 		if(WIRE_TIMED_DET)
-			C.visible_message("\icon[C] *BEEPBEEPBEEP*", "\icon[C] *BEEPBEEPBEEP*")
+			C.visible_message("[bicon(C)] *BEEPBEEPBEEP*", "[bicon(C)] *BEEPBEEPBEEP*")
 			spawn(20)
 				C.explode()
 
 		if(WIRE_DISARM)
-			C.visible_message("\icon[C] *ping*", "\icon[C] *ping*")
+			C.visible_message("[bicon(C)] *ping*", "[bicon(C)] *ping*")
 
 		if(WIRE_DUMMY_1)
-			C.visible_message("\icon[C] *ping*", "\icon[C] *ping*")
+			C.visible_message("[bicon(C)] *ping*", "[bicon(C)] *ping*")
 
 		if(WIRE_DUMMY_2)
-			C.visible_message("\icon[C] *beep*", "\icon[C] *beep*")
+			C.visible_message("[bicon(C)] *beep*", "[bicon(C)] *beep*")
 
 		if(WIRE_BADDISARM)
-			C.visible_message("\icon[C] *ping*", "\icon[C] *ping*")
+			C.visible_message("[bicon(C)] *ping*", "[bicon(C)] *ping*")
 	return
 
 /datum/wires/mines/CanUse(var/mob/living/L)

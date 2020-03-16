@@ -7,26 +7,11 @@
 /turf/space/transit/attackby(obj/O as obj, mob/user as mob)
 	return
 
-//generates a list used to randomize transit animations so they aren't in lockstep
-/turf/space/transit/proc/get_cross_shift_list(var/size)
-	var/list/result = list()
-
-	result += rand(0, 14)
-	for(var/i in 2 to size)
-		var/shifts = list(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
-		shifts -= result[i - 1] //consecutive shifts should not be equal
-		if(i == size)
-			shifts -= result[1] //because shift list is a ring buffer
-		result += pick(shifts)
-
-	return result
-
 //------------------------
 
 /turf/space/transit/north // moving to the north
 	icon_state = "arrow-north"
 	pushdirection = SOUTH  // south because the space tile is scrolling south
-	var/static/list/phase_shift_by_x
 
 /turf/space/transit/north/New()
 	..()
@@ -42,7 +27,6 @@
 /turf/space/transit/south // moving to the south
 	icon_state = "arrow-south"
 	pushdirection = SOUTH  // south because the space tile is scrolling south
-	var/static/list/phase_shift_by_x
 
 /turf/space/transit/south/New()
 	..()
@@ -60,7 +44,6 @@
 /turf/space/transit/east // moving to the east
 	icon_state = "arrow-east"
 	pushdirection = WEST
-	var/static/list/phase_shift_by_y
 
 /turf/space/transit/east/New()
 	..()
@@ -76,7 +59,6 @@
 /turf/space/transit/west // moving to the west
 	icon_state = "arrow-west"
 	pushdirection = WEST
-	var/static/list/phase_shift_by_y
 
 /turf/space/transit/west/New()
 	..()

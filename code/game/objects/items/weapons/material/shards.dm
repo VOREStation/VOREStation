@@ -5,6 +5,7 @@
 	icon = 'icons/obj/shards.dmi'
 	desc = "Made of nothing. How does this even exist?" // set based on material, if this desc is visible it's a bug (shards default to being made of glass)
 	icon_state = "large"
+	randpixel = 8
 	sharp = 1
 	edge = 1
 	w_class = ITEMSIZE_SMALL
@@ -18,8 +19,8 @@
 
 /obj/item/weapon/material/shard/suicide_act(mob/user)
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	viewers(user) << pick("<span class='danger'>\The [user] is slitting [TU.his] wrists with \the [src]! It looks like [TU.hes] trying to commit suicide.</span>",
-	                      "<span class='danger'>\The [user] is slitting [TU.his] throat with \the [src]! It looks like [TU.hes] trying to commit suicide.</span>")
+	to_chat(viewers(user), pick("<span class='danger'>\The [user] is slitting [TU.his] wrists with \the [src]! It looks like [TU.hes] trying to commit suicide.</span>",
+	                      "<span class='danger'>\The [user] is slitting [TU.his] throat with \the [src]! It looks like [TU.hes] trying to commit suicide.</span>"))
 	return (BRUTELOSS)
 
 /obj/item/weapon/material/shard/set_material(var/new_material)
@@ -28,8 +29,7 @@
 		return
 
 	icon_state = "[material.shard_icon][pick("large", "medium", "small")]"
-	pixel_x = rand(-8, 8)
-	pixel_y = rand(-8, 8)
+	randpixel_xy()
 	update_icon()
 
 	if(material.shard_type)
@@ -106,14 +106,10 @@
 		qdel(src)
 	return
 
-/obj/item/weapon/material/shard/Crossed(AM as mob|obj)
+/obj/item/weapon/material/shard/Crossed(atom/movable/AM as mob|obj)
 	..()
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = AM
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
+	if(AM.is_incorporeal())
+		return
 	if(isliving(AM))
 		var/mob/M = AM
 

@@ -4,6 +4,7 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "red"
 	item_state_slots = list(slot_r_hand_str = "toolbox_red", slot_l_hand_str = "toolbox_red")
+	center_of_mass = list("x" = 16,"y" = 11)
 	force = 10
 	throwforce = 10
 	throw_speed = 1
@@ -13,6 +14,8 @@
 	max_storage_space = ITEMSIZE_COST_SMALL * 7 //enough to hold all starting contents
 	origin_tech = list(TECH_COMBAT = 1)
 	attack_verb = list("robusted")
+	use_sound = 'sound/items/storage/toolbox.ogg'
+	drop_sound = 'sound/items/drop/metalboots.ogg'
 
 /obj/item/weapon/storage/toolbox/emergency
 	name = "emergency toolbox"

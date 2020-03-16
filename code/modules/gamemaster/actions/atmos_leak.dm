@@ -1,6 +1,6 @@
 /datum/gm_action/atmos_leak
 	name = "atmospherics leak"
-	departments = list(ROLE_ENGINEERING, ROLE_SYNTHETIC)
+	departments = list(DEPARTMENT_ENGINEERING, DEPARTMENT_SYNTHETIC)
 	var/area/target_area	// Chosen target area
 	var/area/target_turf	// Chosen target turf in target_area
 	var/gas_type			// Chosen gas to release
@@ -74,4 +74,4 @@
 		playsound(target_turf, 'sound/effects/smoke.ogg', 50, 1)
 
 /datum/gm_action/atmos_leak/get_weight()
-	return 15 + (metric.count_people_in_department(ROLE_ENGINEERING) * 10 + metric.count_people_in_department(ROLE_SYNTHETIC) * 30)	// Synthetics are counted in higher value because they can wirelessly connect to alarms.
+	return 15 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 10 + metric.count_people_in_department(DEPARTMENT_SYNTHETIC) * 30)	// Synthetics are counted in higher value because they can wirelessly connect to alarms.

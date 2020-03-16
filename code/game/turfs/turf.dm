@@ -64,6 +64,10 @@
 /turf/proc/is_intact()
 	return 0
 
+// Used by shuttle code to check if this turf is empty enough to not crush want it lands on.
+/turf/proc/is_solid_structure()
+	return 1
+
 /turf/attack_hand(mob/user)
 	if(!(user.canmove) || user.restrained() || !(user.pulling))
 		return 0
@@ -146,7 +150,7 @@ var/const/enterloopsanity = 100
 /turf/Entered(atom/atom as mob|obj)
 
 	if(movement_disabled)
-		usr << "<span class='warning'>Movement is admin-disabled.</span>" //This is to identify lag problems
+		to_chat(usr, "<span class='warning'>Movement is admin-disabled.</span>") //This is to identify lag problems
 		return
 	..()
 
@@ -194,7 +198,7 @@ var/const/enterloopsanity = 100
 //There's a lot of QDELETED() calls here if someone can figure out how to optimize this but not runtime when something gets deleted by a Bump/CanPass/Cross call, lemme know or go ahead and fix this mess - kevinz000
 /turf/Enter(atom/movable/mover, atom/oldloc)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		usr << "<span class='warning'>Movement is admin-disabled.</span>" //This is to identify lag problems
+		to_chat(usr, "<span class='warning'>Movement is admin-disabled.</span>") //This is to identify lag problems
 		return
 	// Do not call ..()
 	// Byond's default turf/Enter() doesn't have the behaviour we want with Bump()
@@ -319,7 +323,7 @@ var/const/enterloopsanity = 100
 			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 				qdel(O)
 	else
-		user << "<span class='warning'>\The [source] is too dry to wash that.</span>"
+		to_chat(user, "<span class='warning'>\The [source] is too dry to wash that.</span>")
 	source.reagents.trans_to_turf(src, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
 
 /turf/proc/update_blood_overlays()

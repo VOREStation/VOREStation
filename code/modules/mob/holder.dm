@@ -5,6 +5,8 @@ var/list/holder_mob_icon_cache = list()
 	name = "holder"
 	desc = "You shouldn't ever see this."
 	icon = 'icons/obj/objects.dmi'
+	randpixel = 0
+	center_of_mass = null
 	slot_flags = SLOT_HEAD | SLOT_HOLSTER
 	show_messages = 1
 
@@ -160,11 +162,11 @@ var/list/holder_mob_icon_cache = list()
 	grabber.put_in_hands(H)
 
 	if(self_grab)
-		grabber << "<span class='notice'>\The [src] clambers onto you!</span>"
+		to_chat(grabber, "<span class='notice'>\The [src] clambers onto you!</span>")
 		to_chat(src, "<span class='notice'>You climb up onto \the [grabber]!</span>")
 		grabber.equip_to_slot_if_possible(H, slot_back, 0, 1)
 	else
-		grabber << "<span class='notice'>You scoop up \the [src]!</span>"
+		to_chat(grabber, "<span class='notice'>You scoop up \the [src]!</span>")
 		to_chat(src, "<span class='notice'>\The [grabber] scoops you up!</span>")
 
 	H.sync(src)

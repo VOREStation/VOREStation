@@ -71,6 +71,31 @@
 	power_change()		// all machines set to current power level, also updates lighting icon
 	return INITIALIZE_HINT_LATELOAD
 
+// Changes the area of T to A. Do not do this manually.
+// Area is expected to be a non-null instance.
+/proc/ChangeArea(var/turf/T, var/area/A)
+	if(!istype(A))
+		CRASH("Area change attempt failed: invalid area supplied.")
+	var/area/old_area = get_area(T)
+	if(old_area == A)
+		return
+	// NOTE: BayStation calles area.Exited/Entered for the TURF T.  So far we don't do that.s
+	// NOTE: There probably won't be any atoms in these turfs, but just in case we should call these procs.
+	A.contents.Add(T)
+	if(old_area)
+		// Handle dynamic lighting update if 
+		if(T.dynamic_lighting && old_area.dynamic_lighting != A.dynamic_lighting)
+			if(A.dynamic_lighting)
+				T.lighting_build_overlay()
+			else
+				T.lighting_clear_overlay()
+		for(var/atom/movable/AM in T)
+			old_area.Exited(AM, A)
+	for(var/atom/movable/AM in T)
+		A.Entered(AM, old_area)
+	for(var/obj/machinery/M in T)
+		M.power_change()
+
 /area/proc/get_contents()
 	return contents
 
@@ -335,7 +360,7 @@ var/list/mob/living/forced_ambiance_list = new
 		else
 			H.AdjustStunned(3)
 			H.AdjustWeakened(3)
-		mob << "<span class='notice'>The sudden appearance of gravity makes you fall to the floor!</span>"
+		to_chat(mob, "<span class='notice'>The sudden appearance of gravity makes you fall to the floor!</span>")
 		playsound(get_turf(src), "bodyfall", 50, 1)
 
 /area/proc/prison_break()

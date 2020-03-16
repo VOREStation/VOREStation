@@ -2,6 +2,21 @@
 	random = 1
 	holder_type = /obj/machinery/media/jukebox
 	wire_count = 11
+	var/datum/wire_hint/power_hint
+	var/datum/wire_hint/parental_hint
+	var/datum/wire_hint/reverse_hint
+
+/datum/wires/jukebox/make_wire_hints()
+	power_hint = new("The power light is off.", "The power light is on.")
+	parental_hint = new("The parental guidance light is off.", "The parental guidance light is on.")
+	reverse_hint = new("The data light is hauntingly dark.", "The data light is glowing softly.")
+
+/datum/wires/jukebox/Destroy()
+	power_hint = null
+	parental_hint = null
+	reverse_hint = null
+	return ..()
+
 
 var/const/WIRE_POWER = 1
 var/const/WIRE_HACK = 2
@@ -25,25 +40,25 @@ var/const/WIRE_NEXT = 1024
 /datum/wires/jukebox/GetInteractWindow()
 	var/obj/machinery/media/jukebox/A = holder
 	. += ..()
-	. += "<BR>The power light is [(A.stat & (BROKEN|NOPOWER)) ? "off" : "on"].<BR>"
-	. += "The parental guidance light is [A.hacked ? "off" : "on"].<BR>"
-	. += "The data light is [IsIndexCut(WIRE_REVERSE) ? "hauntingly dark" : "glowing sloftly"].<BR>"
+	. += power_hint.show(A.stat & (BROKEN|NOPOWER))
+	. += parental_hint.show(A.hacked)
+	. += reverse_hint.show(IsIndexCut(WIRE_REVERSE))
 
 // Give a hint as to what each wire does
 /datum/wires/jukebox/UpdatePulsed(var/index)
 	var/obj/machinery/media/jukebox/A = holder
 	switch(index)
 		if(WIRE_POWER)
-			holder.visible_message("<span class='notice'>\icon[holder] The power light flickers.</span>")
+			holder.visible_message("<span class='notice'>[bicon(holder)] The power light flickers.</span>")
 			A.shock(usr, 90)
 		if(WIRE_HACK)
-			holder.visible_message("<span class='notice'>\icon[holder] The parental guidance light flickers.</span>")
+			holder.visible_message("<span class='notice'>[bicon(holder)] The parental guidance light flickers.</span>")
 		if(WIRE_REVERSE)
-			holder.visible_message("<span class='notice'>\icon[holder] The data light blinks ominously.</span>")
+			holder.visible_message("<span class='notice'>[bicon(holder)] The data light blinks ominously.</span>")
 		if(WIRE_SPEEDUP)
-			holder.visible_message("<span class='notice'>\icon[holder] The speakers squeaks.</span>")
+			holder.visible_message("<span class='notice'>[bicon(holder)] The speakers squeaks.</span>")
 		if(WIRE_SPEEDDOWN)
-			holder.visible_message("<span class='notice'>\icon[holder] The speakers rumble.</span>")
+			holder.visible_message("<span class='notice'>[bicon(holder)] The speakers rumble.</span>")
 		if(WIRE_START)
 			A.StartPlaying()
 		if(WIRE_STOP)

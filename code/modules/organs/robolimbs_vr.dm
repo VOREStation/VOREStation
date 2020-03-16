@@ -4,7 +4,7 @@
 	var/list/whitelisted_to		//List of ckeys that are allowed to pick this in charsetup.
 
 //////////////// For-specific-character fluff ones /////////////////
-// arokha : Aronai Kadigan
+// arokha : Aronai Sieyes
 /datum/robolimb/kitsuhana
 	company = "Kitsuhana"
 	desc = "This limb seems rather vulpine and fuzzy, with realistic-feeling flesh."

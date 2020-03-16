@@ -14,7 +14,7 @@
 
 /datum/gm_action/infestation
 	name = "animal infestation"
-	departments = list(ROLE_EVERYONE)
+	departments = list(DEPARTMENT_EVERYONE)
 	var/location
 	var/locstring
 	var/vermin
@@ -100,7 +100,7 @@
 	command_announcement.Announce("Bioscans indicate that [vermstring] have been breeding in [locstring]. Clear them out, before this starts to affect productivity.", "Vermin infestation")
 
 /datum/gm_action/infestation/get_weight()
-	return 5 + (metric.count_people_in_department(ROLE_EVERYONE) * 20)
+	return 5 + (metric.count_people_in_department(DEPARTMENT_EVERYONE) * 20)
 
 #undef LOC_KITCHEN
 #undef LOC_ATMOS

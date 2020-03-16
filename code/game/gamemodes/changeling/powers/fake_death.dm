@@ -24,7 +24,7 @@
 
 	if(!C.stat && alert("Are we sure we wish to regenerate?  We will appear to be dead while doing so.","Revival","Yes","No") == "No")
 		return
-	C << "<span class='notice'>We will attempt to regenerate our form.</span>"
+	to_chat(C, "<span class='notice'>We will attempt to regenerate our form.</span>")
 
 	C.update_canmove()
 	C.remove_changeling_powers()

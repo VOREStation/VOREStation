@@ -13,3 +13,13 @@
 
 /turf/simulated/mineral/floor/ignore_cavegen
 	ignore_cavegen = TRUE
+
+/turf/simulated/mineral/vacuum
+	oxygen = 0
+	nitrogen = 0
+	temperature	= TCMB
+
+/turf/simulated/mineral/floor/vacuum
+	oxygen = 0
+	nitrogen = 0
+	temperature	= TCMB

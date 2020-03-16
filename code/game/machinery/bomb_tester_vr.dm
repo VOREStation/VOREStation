@@ -301,6 +301,8 @@
 	simulation_results = "<center><h1><b>Tank Transfer Valve Mixture Test</b></h1></center>"
 	simulation_results += "<hr>"
 
+	simulation_results += "<br>Initial gas tank status (primary slot):<br>[format_gas_for_results(tank1.air_contents)]"
+	simulation_results += "<br>Initial gas tank status (secondary slot):<br>[format_gas_for_results(tank2.air_contents)]"
 	simulation_results += "<br>Initial gas mixture status:<br>[format_gas_for_results(faketank)]"
 
 	var/intervals = 0

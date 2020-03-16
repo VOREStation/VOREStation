@@ -12,6 +12,7 @@
 	force = 10
 	matter = list(DEFAULT_WALL_MATERIAL = 90)
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
+	drop_sound = 'sound/items/drop/gascan.ogg'
 
 	var/spray_particles = 3
 	var/spray_amount = 10	//units of liquid per particle
@@ -40,7 +41,7 @@
 
 /obj/item/weapon/extinguisher/examine(mob/user)
 	if(..(user, 0))
-		to_chat(user, text("\icon[] [] contains [] units of water left!", src, src.name, src.reagents.total_volume))
+		to_chat(user, "[bicon(src)] [src.name] contains [src.reagents.total_volume] units of water left!")
 
 /obj/item/weapon/extinguisher/attack_self(mob/user as mob)
 	safety = !safety
@@ -72,13 +73,13 @@
 	if( istype(target, /obj/structure/reagent_dispensers/watertank) && flag)
 		var/obj/o = target
 		var/amount = o.reagents.trans_to_obj(src, 50)
-		user << "<span class='notice'>You fill [src] with [amount] units of the contents of [target].</span>"
+		to_chat(user, "<span class='notice'>You fill [src] with [amount] units of the contents of [target].</span>")
 		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 		return
 
 	if (!safety)
 		if (src.reagents.total_volume < 1)
-			usr << "<span class='notice'>\The [src] is empty.</span>"
+			to_chat(usr, "<span class='notice'>\The [src] is empty.</span>")
 			return
 
 		if (world.time < src.last_use + 20)

@@ -20,12 +20,8 @@
 	manual_unbuckle(user)
 
 /obj/effect/plant/Crossed(atom/movable/O)
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = O
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
+	if(O.is_incorporeal())
+		return
 	if(isliving(O))
 		trodden_on(O)
 
@@ -104,6 +100,6 @@
 			victim.forceMove(src.loc)
 			buckle_mob(victim)
 			victim.set_dir(pick(cardinal))
-			victim << "<span class='danger'>Tendrils [pick("wind", "tangle", "tighten")] around you!</span>"
+			to_chat(victim, "<span class='danger'>Tendrils [pick("wind", "tangle", "tighten")] around you!</span>")
 			victim.Weaken(0.5)
 			seed.do_thorns(victim,src)

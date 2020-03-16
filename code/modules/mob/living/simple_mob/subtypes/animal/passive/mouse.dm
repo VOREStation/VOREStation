@@ -54,17 +54,13 @@
 	icon_rest = "mouse_[body_color]_sleep"
 	desc = "A small [body_color] rodent, often seen hiding in maintenance areas and making a nuisance of itself."
 
-/mob/living/simple_mob/animal/passive/mouse/Crossed(AM as mob|obj)
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = AM
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
+/mob/living/simple_mob/animal/passive/mouse/Crossed(atom/movable/AM as mob|obj)
+	if(AM.is_incorporeal())
+		return
 	if( ishuman(AM) )
 		if(!stat)
 			var/mob/M = AM
-			M.visible_message("<font color='blue'>\icon[src] Squeek!</font>")
+			M.visible_message("<font color='blue'>[bicon(src)] Squeek!</font>")
 			playsound(src, 'sound/effects/mouse_squeak.ogg', 35, 1)
 	..()
 

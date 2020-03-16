@@ -62,7 +62,7 @@
 		var/new_size = input(user, "Choose your character's size, ranging from 25% to 200%", "Set Size") as num|null
 		if (!ISINRANGE(new_size,25,200))
 			pref.size_multiplier = 1
-			user << "<span class='notice'>Invalid size.</span>"
+			to_chat(user, "<span class='notice'>Invalid size.</span>")
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 		else if(new_size)
 			pref.size_multiplier = (new_size/100)
