@@ -119,6 +119,11 @@
 		icon_state = "hair_long_bedhead"
 		flags = HAIR_TIEABLE
 
+	bedheadlongest
+		name = "Bedhead Longest"
+		icon_state = "hair_longest_bedhead"
+		flags = HAIR_TIEABLE
+
 	beehive
 		name = "Beehive"
 		icon_state = "hair_beehive"
@@ -742,6 +747,11 @@
 		name = "Row Braid"
 		icon_state = "hair_rowbraid"
 		flags = HAIR_TIEABLE
+
+	sabitsuki
+		name = "Sabitsuki"
+		icon_state = "hair_sabitsuki"
+		flags = HAIR_VERY_SHORT
 
 	scully
 		name = "Scully"
