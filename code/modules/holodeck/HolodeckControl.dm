@@ -268,7 +268,7 @@
 		loadProgram(powerdown_program, 0)
 
 		if(!linkedholodeck.has_gravity)
-			linkedholodeck.gravitychange(1,linkedholodeck)
+			linkedholodeck.gravitychange(1)
 
 		active = 0
 		use_power = 1
@@ -365,16 +365,16 @@
 	use_power = 1
 
 	if(A.has_gravity)
-		A.gravitychange(0,A)
+		A.gravitychange(0)
 	else
-		A.gravitychange(1,A)
+		A.gravitychange(1)
 
 /obj/machinery/computer/HolodeckControl/proc/emergencyShutdown()
 	//Turn it back to the regular non-holographic room
 	loadProgram(powerdown_program, 0)
 
 	if(!linkedholodeck.has_gravity)
-		linkedholodeck.gravitychange(1,linkedholodeck)
+		linkedholodeck.gravitychange(1)
 
 	active = 0
 	use_power = 1

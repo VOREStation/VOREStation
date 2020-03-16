@@ -335,10 +335,10 @@ var/list/mob/living/forced_ambiance_list = new
 			L << sound(sound, repeat = 0, wait = 0, volume = 50, channel = CHANNEL_AMBIENCE)
 			L.client.time_last_ambience_played = world.time
 
-/area/proc/gravitychange(var/gravitystate = 0, var/area/A)
-	A.has_gravity = gravitystate
+/area/proc/gravitychange(var/gravitystate = 0)
+	src.has_gravity = gravitystate
 
-	for(var/mob/M in A)
+	for(var/mob/M in src)
 		if(has_gravity)
 			thunk(M)
 		M.update_floating( M.Check_Dense_Object() )

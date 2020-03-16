@@ -20,7 +20,7 @@
 	gravity_is_on = 0
 	for(var/area/A in all_areas)
 		if(A.z in zLevels)
-			A.gravitychange(gravity_is_on, A)
+			A.gravitychange(gravity_is_on)
 
 /datum/gm_action/gravity/end()
 	if(!gravity_is_on)
@@ -28,7 +28,7 @@
 
 		for(var/area/A in all_areas)
 			if(A.z in zLevels)
-				A.gravitychange(gravity_is_on, A)
+				A.gravitychange(gravity_is_on)
 
 		command_announcement.Announce("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.", "Gravity Restored")
 
