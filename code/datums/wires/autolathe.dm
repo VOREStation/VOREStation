@@ -2,31 +2,17 @@
 
 	holder_type = /obj/machinery/autolathe
 	wire_count = 6
-	var/datum/wire_hint/disable_hint
-	var/datum/wire_hint/shock_hint
-	var/datum/wire_hint/hack_hint
 
 var/const/AUTOLATHE_HACK_WIRE = 1
 var/const/AUTOLATHE_SHOCK_WIRE = 2
 var/const/AUTOLATHE_DISABLE_WIRE = 4
 
-/datum/wires/autolathe/make_wire_hints()
-	disable_hint = new("The red light is off.", "The red light is on.")
-	shock_hint = new("The green light is off.", "The green light is on.")
-	hack_hint = new("The blue light is off.", "The blue light is on.")
-
-/datum/wires/autolathe/Destroy()
-	disable_hint = null
-	shock_hint = null
-	hack_hint = null
-	return ..()
-
 /datum/wires/autolathe/GetInteractWindow()
 	var/obj/machinery/autolathe/A = holder
 	. += ..()
-	. += disable_hint.show(A.disabled)
-	. += shock_hint.show(A.shocked)
-	. += hack_hint.show(A.hacked)
+	. += show_hint(0x1, A.disabled,	"The red light is off.", "The red light is on.")
+	. += show_hint(0x2, A.shocked,	"The green light is off.", "The green light is on.")
+	. += show_hint(0x4, A.hacked,	"The blue light is off.", "The blue light is on.")
 
 /datum/wires/autolathe/CanUse()
 	var/obj/machinery/autolathe/A = holder
