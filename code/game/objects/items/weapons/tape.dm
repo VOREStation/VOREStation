@@ -4,6 +4,7 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "taperoll"
 	w_class = ITEMSIZE_TINY
+	drop_sound = 'sound/items/drop/box.ogg'
 
 	toolspeed = 2 //It is now used in surgery as a not awful, but probably dangerous option, due to speed.
 
@@ -141,6 +142,7 @@
 	w_class = ITEMSIZE_TINY
 	plane = MOB_PLANE
 	anchored = FALSE
+	drop_sound = null
 
 	var/obj/item/weapon/stuck = null
 

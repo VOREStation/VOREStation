@@ -19,9 +19,9 @@ var/const/SUIT_STORAGE_WIRE_LOCKED		= 4
 /datum/wires/suit_storage_unit/GetInteractWindow()
 	var/obj/machinery/suit_cycler/S = holder
 	. += ..()
-	. += "<BR>The orange light is [S.electrified ? "off" : "on"].<BR>"
-	. += "The red light is [S.safeties ? "off" : "blinking"].<BR>"
-	. += "The yellow light is [S.locked ? "on" : "off"].<BR>"
+	. += show_hint(0x1, S.electrified,	"The orange light is off.",	"The orange light is on.")
+	. += show_hint(0x2, S.safeties, 	"The red light is off.",	"The red light is blinking.")
+	. += show_hint(0x4, S.locked,		"The yellow light is on.",	"The yellow light is off.")
 
 /datum/wires/suit_storage_unit/UpdatePulsed(var/index)
 	var/obj/machinery/suit_cycler/S = holder

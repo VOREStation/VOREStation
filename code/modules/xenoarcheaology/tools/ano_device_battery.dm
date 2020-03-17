@@ -102,9 +102,9 @@
 					if(interval > 0)
 						//apply the touch effect to the holder
 						if(holder)
-							to_chat(holder, "the \icon[src] [src] held by [holder] shudders in your grasp.")
+							to_chat(holder, "the [bicon(src)] [src] held by [holder] shudders in your grasp.")
 						else
-							src.loc.visible_message("the \icon[src] [src] shudders.")
+							src.loc.visible_message("the [bicon(src)] [src] shudders.")
 						inserted_battery.battery_effect.DoEffectTouch(holder)
 
 						//consume power
@@ -130,13 +130,13 @@
 
 			//work out if we need to shutdown
 			if(inserted_battery.stored_charge <= 0)
-				src.loc.visible_message("<font color='blue'>\icon[src] [src] buzzes.</font>", "<font color='blue'>\icon[src] You hear something buzz.</font>")
+				src.loc.visible_message("<font color='blue'>[bicon(src)] [src] buzzes.</font>", "<font color='blue'>[bicon(src)] You hear something buzz.</font>")
 				shutdown_emission()
 			else if(world.time > time_end)
-				src.loc.visible_message("<font color='blue'>\icon[src] [src] chimes.</font>", "<font color='blue'>\icon[src] You hear something chime.</font>")
+				src.loc.visible_message("<font color='blue'>[bicon(src)] [src] chimes.</font>", "<font color='blue'>[bicon(src)] You hear something chime.</font>")
 				shutdown_emission()
 		else
-			src.visible_message("<font color='blue'>\icon[src] [src] buzzes.</font>", "<font color='blue'>\icon[src] You hear something buzz.</font>")
+			src.visible_message("<font color='blue'>[bicon(src)] [src] buzzes.</font>", "<font color='blue'>[bicon(src)] You hear something buzz.</font>")
 			shutdown_emission()
 		last_process = world.time
 
@@ -163,7 +163,7 @@
 	if(href_list["startup"])
 		if(inserted_battery && inserted_battery.battery_effect && (inserted_battery.stored_charge > 0) )
 			activated = 1
-			src.visible_message("<font color='blue'>\icon[src] [src] whirrs.</font>", "\icon[src]<font color='blue'>You hear something whirr.</font>")
+			src.visible_message("<font color='blue'>[bicon(src)] [src] whirrs.</font>", "[bicon(src)]<font color='blue'>You hear something whirr.</font>")
 			if(!inserted_battery.battery_effect.activated)
 				inserted_battery.battery_effect.ToggleActivate(1)
 			time_end = world.time + duration

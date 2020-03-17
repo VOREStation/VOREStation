@@ -19,9 +19,9 @@ var/const/SMARTFRIDGE_WIRE_IDSCAN		= 4
 /datum/wires/smartfridge/GetInteractWindow()
 	var/obj/machinery/smartfridge/S = holder
 	. += ..()
-	. += "<BR>The orange light is [S.seconds_electrified ? "off" : "on"].<BR>"
-	. += "The red light is [S.shoot_inventory ? "off" : "blinking"].<BR>"
-	. += "A [S.scan_id ? "purple" : "yellow"] light is on.<BR>"
+	. += show_hint(0x1, S.seconds_electrified,	"The orange light is off.",	"The orange light is on.")
+	. += show_hint(0x2, S.shoot_inventory,		"The red light is off.",	"The red light is blinking.")
+	. += show_hint(0x4, S.scan_id,				"A purple light is on.",	"A yellow light is on.")
 
 /datum/wires/smartfridge/UpdatePulsed(var/index)
 	var/obj/machinery/smartfridge/S = holder

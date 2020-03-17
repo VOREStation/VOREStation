@@ -1,3 +1,10 @@
+/obj/effect/overmap/visitable/sector/listeningpost
+	name = "Unknown Facility"
+	desc = "High levels of radio frequency emissions."
+	icon_state = "object"
+	known = FALSE
+	initial_generic_waypoints = list("tether_excursion_listeningpost")
+
 /obj/item/weapon/paper/listneningpost/mission
 	name = "\improper Operation: Watchtower"
 	info = {"<b>Mission Details</b>: You have been assigned to a newly constructed listening post

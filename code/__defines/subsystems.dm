@@ -52,10 +52,11 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 // Subsystem init_order, from highest priority to lowest priority
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
-#define INIT_ORDER_SQLITE		19
-#define INIT_ORDER_CHEMISTRY	18
-#define INIT_ORDER_MAPPING		17
-#define INIT_ORDER_DECALS		16
+#define INIT_ORDER_SQLITE		40
+#define INIT_ORDER_CHEMISTRY	35
+#define INIT_ORDER_SKYBOX		30
+#define INIT_ORDER_MAPPING		25
+#define INIT_ORDER_DECALS		20
 #define INIT_ORDER_ATOMS		15
 #define INIT_ORDER_MACHINES		10
 #define INIT_ORDER_SHUTTLES		3
@@ -63,12 +64,15 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_DEFAULT		0
 #define INIT_ORDER_LIGHTING		0
 #define INIT_ORDER_AIR			-1
+#define INIT_ORDER_ASSETS		-3
 #define INIT_ORDER_PLANETS		-4
 #define INIT_ORDER_HOLOMAPS		-5
 #define INIT_ORDER_OVERLAY		-6
 #define INIT_ORDER_XENOARCH		-20
 #define INIT_ORDER_CIRCUIT		-21
 #define INIT_ORDER_AI			-22
+#define INIT_ORDER_JOB			-23
+#define INIT_ORDER_CHAT			-100 //Should be last to ensure chat remains smooth during init.
 
 
 // Subsystem fire priority, from lowest to highest priority
@@ -88,6 +92,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define FIRE_PRIORITY_PLANETS		75
 #define FIRE_PRIORITY_MACHINES		100
 #define FIRE_PRIORITY_PROJECTILES	150
+#define FIRE_PRIORITY_CHAT			400
 #define FIRE_PRIORITY_OVERLAYS		500
 
 // Macro defining the actual code applying our overlays lists to the BYOND overlays list. (I guess a macro for speed)

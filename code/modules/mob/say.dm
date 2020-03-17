@@ -148,7 +148,7 @@
 		return GLOB.all_languages["Noise"]
 
 	if(length(message) >= 2 && is_language_prefix(prefix))
-		var/language_prefix = lowertext(copytext(message, 2 ,3))
+		var/language_prefix = copytext(message, 2 ,3)
 		var/datum/language/L = GLOB.language_keys[language_prefix]
 		if (can_speak(L))
 			return L

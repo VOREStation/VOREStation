@@ -92,6 +92,8 @@
 	var/icon/default_worn_icon	//Default on-mob icon
 	var/worn_layer				//Default on-mob layer
 
+	var/drop_sound = 'sound/items/drop/device.ogg' // drop sound - this is the default
+
 /obj/item/New()
 	..()
 	if(embed_chance < 0)
@@ -273,6 +275,11 @@
 
 /obj/item/proc/moved(mob/user as mob, old_loc as turf)
 	return
+
+/obj/item/throw_impact(atom/hit_atom)
+	..()
+	if(drop_sound)
+		playsound(src, drop_sound, 50, 0, preference = /datum/client_preference/drop_sounds)
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
 /obj/item/proc/dropped(mob/user as mob)
@@ -627,6 +634,8 @@ modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
 //Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
+/obj/item/var/ignore_visor_zoom_restriction = FALSE
+
 /obj/item/proc/zoom(var/tileoffset = 14,var/viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 
 	var/devicename
@@ -654,7 +663,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(!zoom && !cannotzoom)
 		if(H.hud_used.hud_shown)
 			H.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
-		H.client.view = viewsize
+		H.set_viewsize(viewsize)
 		zoom = 1
 
 		var/tilesize = 32
@@ -675,11 +684,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				H.client.pixel_y = 0
 
 		H.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [src.name]" : "[src.name]"].")
-		H.looking_elsewhere = TRUE
+		if(!ignore_visor_zoom_restriction)
+			H.looking_elsewhere = TRUE
 		H.handle_vision()
 
 	else
-		H.client.view = world.view
+		H.set_viewsize() // Reset to default
 		if(!H.hud_used.hud_shown)
 			H.toggle_zoom_hud()
 		zoom = 0

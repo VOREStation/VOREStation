@@ -10,6 +10,7 @@
 	var/on = 0
 	var/set_temperature = T0C + 20	//K
 	var/heating_power = 40000
+	clicksound = "switch"
 
 /obj/machinery/space_heater/New()
 	..()

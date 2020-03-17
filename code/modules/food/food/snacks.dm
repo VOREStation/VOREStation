@@ -526,6 +526,25 @@
 		src.name = "Frosted Jelly Donut"
 		reagents.add_reagent("sprinkles", 2)
 
+/obj/item/weapon/reagent_containers/food/snacks/donut/poisonberry
+	name = "Jelly Donut"
+	desc = "You jelly?"
+	icon_state = "jdonut1"
+	filling_color = "#ED1169"
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_amt = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/poisonberry/Initialize()
+	. = ..()
+	reagents.add_reagent("sprinkles", 1)
+	reagents.add_reagent("poisonberryjuice", 5)
+	bitesize = 5
+	if(prob(30))
+		src.icon_state = "jdonut2"
+		src.overlay_state = "box-donut2"
+		src.name = "Frosted Jelly Donut"
+		reagents.add_reagent("sprinkles", 2)
+
 /obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly
 	name = "Jelly Donut"
 	desc = "You jelly?"
@@ -1121,8 +1140,15 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/berryclafoutis/Initialize()
 	. = ..()
-	reagents.add_reagent("berryjuice", 5)
 	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/berryclafoutis/berry/Initialize()
+	. = ..()
+	reagents.add_reagent("berryjuice", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/berryclafoutis/poison/Initialize()
+	. = ..()
+	reagents.add_reagent("poisonberryjuice", 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/waffles
 	name = "waffles"
@@ -1645,7 +1671,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/slimesoup
 	name = "slime soup"
 	desc = "If no water is available, you may substitute tears."
-	icon_state = "slimesoup" //nonexistant?
+	icon_state = "rorosoup" //nonexistant? - 3/1/2020 FIXED. roro's live on.
 	filling_color = "#C4DBA0"
 
 /obj/item/weapon/reagent_containers/food/snacks/slimesoup/Initialize()
@@ -3904,12 +3930,20 @@
 	filling_color = "#E0CF9B"
 	center_of_mass = list("x"=17, "y"=4)
 	nutriment_amt = 6
-	nutriment_desc = list("sweetness" = 2, "muffin" = 2, "berries" = 2)
+	nutriment_desc = list("sweetness" = 2, "muffin" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/berrymuffin/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 6)
 	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/berrymuffin/berry/Initialize()
+	. = ..()
+	reagents.add_reagent("berryjuice", 3)
+
+/obj/item/weapon/reagent_containers/food/snacks/berrymuffin/poison/Initialize()
+	. = ..()
+	reagents.add_reagent("poisonberryjuice", 3)
 
 /obj/item/weapon/reagent_containers/food/snacks/ghostmuffin
 	name = "booberry muffin"
@@ -3923,6 +3957,16 @@
 /obj/item/weapon/reagent_containers/food/snacks/ghostmuffin/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 6)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/ghostmuffin/berry/Initialize()
+	. = ..()
+	reagents.add_reagent("berryjuice", 3)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/ghostmuffin/poison/Initialize()
+	. = ..()
+	reagents.add_reagent("poisonberryjuice", 3)
 	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/eggroll

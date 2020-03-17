@@ -40,6 +40,18 @@
 	health -= damage
 	healthcheck()
 
+/obj/effect/spider/spiderling/attack_hand(mob/living/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.do_attack_animation(src)
+	if(prob(20))
+		visible_message("<span class='warning'>\The [user] tries to stomp on \the [src], but misses!</span>")
+		var/list/nearby = oview(2, src)
+		if(length(nearby))
+			walk_to(src, pick(nearby), 2)
+			return
+	visible_message("<span class='warning'>\The [user] stomps \the [src] dead!</span>")
+	die()
+
 /obj/effect/spider/bullet_act(var/obj/item/projectile/Proj)
 	..()
 	health -= Proj.get_structure_damage()

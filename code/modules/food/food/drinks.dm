@@ -5,6 +5,7 @@
 	name = "drink"
 	desc = "yummy"
 	icon = 'icons/obj/drinks.dmi'
+	drop_sound = 'sound/items/drop/bottle.ogg'
 	icon_state = null
 	flags = OPENCONTAINER
 	amount_per_transfer_from_this = 5
@@ -116,6 +117,7 @@
 	icon_state = "milk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
+	drop_sound = 'sound/items/drop/box.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/milk/Initialize()
 	. = ..()
@@ -127,6 +129,8 @@
 	icon_state = "soymilk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
+	drop_sound = 'sound/items/drop/box.ogg'
+
 /obj/item/weapon/reagent_containers/food/drinks/soymilk/Initialize()
 	. = ..()
 	reagents.add_reagent("soymilk", 50)
@@ -138,6 +142,8 @@
 	icon_state = "mini-milk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
+	drop_sound = 'sound/items/drop/box.ogg'
+
 /obj/item/weapon/reagent_containers/food/drinks/smallmilk/Initialize()
 	. = ..()
 	reagents.add_reagent("milk", 30)
@@ -149,6 +155,8 @@
 	icon_state = "mini-milk_choco"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
+	drop_sound = 'sound/items/drop/box.ogg'
+
 /obj/item/weapon/reagent_containers/food/drinks/smallchocmilk/Initialize()
 	. = ..()
 	reagents.add_reagent("chocolate_milk", 30)
@@ -158,6 +166,8 @@
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
 	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
+	drop_sound = 'sound/items/drop/box.ogg'
+
 /obj/item/weapon/reagent_containers/food/drinks/coffee/Initialize()
 	. = ..()
 	reagents.add_reagent("coffee", 30)
@@ -209,6 +219,7 @@
 	possible_transfer_amounts = null
 	volume = 10
 	center_of_mass = list("x"=16, "y"=12)
+	drop_sound = 'sound/items/drop/paper.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/sillycup/Initialize()
 	. = ..()

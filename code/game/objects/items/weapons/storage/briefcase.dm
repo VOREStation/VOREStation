@@ -8,6 +8,8 @@
 	w_class = ITEMSIZE_LARGE
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = ITEMSIZE_COST_NORMAL * 4
+	use_sound = 'sound/items/storage/briefcase.ogg'
+	drop_sound = 'sound/items/drop/backpack.ogg'
 
 /obj/item/weapon/storage/briefcase/clutch
 	name = "clutch purse"

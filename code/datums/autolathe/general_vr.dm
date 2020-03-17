@@ -30,3 +30,12 @@
 	name = "metamorphic glass"
 	path =/obj/item/weapon/reagent_containers/food/drinks/metaglass
 	is_stack = TRUE
+
+/datum/category_item/autolathe/general/drinkingglass_carafe
+	name = "glass carafe"
+	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/carafe
+
+/datum/category_item/autolathe/general/drinkingglass_pitcher
+	name = "plastic pitcher"
+	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/pitcher
+	

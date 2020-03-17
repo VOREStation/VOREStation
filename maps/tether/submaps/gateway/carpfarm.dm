@@ -1,3 +1,10 @@
+/obj/effect/overmap/visitable/sector/carpfarm
+	name = "Unknown Facility"
+	desc = "Seems to be a carp farm of some sort."
+	icon_state = "object"
+	known = FALSE
+	initial_generic_waypoints = list("tether_excursion_carpfarm")
+
 /area/awaymission/carpfarm
 	icon_state = "blank"
 	requires_power = 0

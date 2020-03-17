@@ -53,6 +53,7 @@
 	desc = "A delicate golden chain worn by female skrell to decorate their head tails."
 	icon_state = "skrell_chain"
 	item_state_slots = list(slot_r_hand_str = "egg5", slot_l_hand_str = "egg5")
+	drop_sound = 'sound/items/drop/accessory.ogg'
 
 /obj/item/clothing/ears/skrell/chain/silver
 	name = "Silver headtail chains"
@@ -83,6 +84,7 @@
 	desc = "Golden metallic bands worn by male skrell to adorn their head tails."
 	icon_state = "skrell_band"
 	item_state_slots = list(slot_r_hand_str = "egg5", slot_l_hand_str = "egg5")
+	drop_sound = 'sound/items/drop/accessory.ogg'
 
 /obj/item/clothing/ears/skrell/band/silver
 	name = "Silver headtail bands"

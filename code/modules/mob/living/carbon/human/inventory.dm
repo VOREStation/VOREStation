@@ -398,3 +398,11 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(istype(I, typepath))
 			return I
 	return FALSE
+
+// Returns a list of items held in both hands.
+/mob/living/carbon/human/get_all_held_items()
+	. = list()
+	if(l_hand)
+		. += l_hand
+	if(r_hand)
+		. += r_hand

@@ -1,3 +1,11 @@
+/obj/effect/overmap/visitable/sector/snowfield
+	name = "Unknown Facility"
+	desc = "Wet, boring, and cold."
+	icon_state = "globe"
+	known = FALSE
+	initial_generic_waypoints = list("tether_excursion_snowfield")
+
+
 // -- Areas -- //
 
 /area/awaymission/snowfield

@@ -6,13 +6,12 @@
 	wire_count = 6
 
 /datum/wires/camera/GetInteractWindow()
-
 	. = ..()
 	var/obj/machinery/camera/C = holder
-	. += "<br>\n[(C.view_range == initial(C.view_range) ? "The focus light is on." : "The focus light is off.")]"
-	. += "<br>\n[(C.can_use() ? "The power link light is on." : "The power link light is off.")]"
-	. += "<br>\n[(C.light_disabled ? "The camera light is off." : "The camera light is on.")]"
-	. += "<br>\n[(C.alarm_on ? "The alarm light is on." : "The alarm light is off.")]"
+	. += show_hint(0x1, C.view_range == initial(C.view_range), "The focus light is on.", "The focus light is off.")
+	. += show_hint(0x2, C.can_use(), "The power link light is on.", "The power link light is off.")
+	. += show_hint(0x4, C.light_disabled, "The camera light is off.", "The camera light is on.")
+	. += show_hint(0x8, C.alarm_on, "The alarm light is on.", "The alarm light is off.")
 	return .
 
 /datum/wires/camera/CanUse(var/mob/living/L)
@@ -61,7 +60,7 @@ var/const/CAMERA_WIRE_NOTHING2 = 32
 			C.light_disabled = !C.light_disabled
 
 		if(CAMERA_WIRE_ALARM)
-			C.visible_message("\icon[C] *beep*", "\icon[C] *beep*")
+			C.visible_message("[bicon(C)] *beep*", "[bicon(C)] *beep*")
 	return
 
 /datum/wires/camera/proc/CanDeconstruct()

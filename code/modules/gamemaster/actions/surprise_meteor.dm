@@ -2,11 +2,11 @@
 
 /datum/gm_action/surprise_meteors
 	name = "surprise meteors"
-	departments = list(ROLE_ENGINEERING)
+	departments = list(DEPARTMENT_ENGINEERING)
 	chaotic = 25
 
 /datum/gm_action/surprise_meteors/get_weight()
-	var/engineers = metric.count_people_in_department(ROLE_ENGINEERING)
+	var/engineers = metric.count_people_in_department(DEPARTMENT_ENGINEERING)
 	var/weight = (max(engineers - 1, 0) * 25) // If only one engineer exists, no meteors for now.
 	return weight
 

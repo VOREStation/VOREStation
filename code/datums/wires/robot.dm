@@ -10,13 +10,12 @@ var/const/BORG_WIRE_AI_CONTROL = 8
 var/const/BORG_WIRE_CAMERA = 16
 
 /datum/wires/robot/GetInteractWindow()
-
 	. = ..()
 	var/mob/living/silicon/robot/R = holder
-	. += text("<br>\n[(R.lawupdate ? "The LawSync light is on." : "The LawSync light is off.")]")
-	. += text("<br>\n[(R.connected_ai ? "The AI link light is on." : "The AI link light is off.")]")
-	. += text("<br>\n[((!isnull(R.camera) && R.camera.status == 1) ? "The Camera light is on." : "The Camera light is off.")]")
-	. += text("<br>\n[(R.lockdown ? "The lockdown light is on." : "The lockdown light is off.")]")
+	. += show_hint(0x1, R.lawupdate, "The LawSync light is on.", "The LawSync light is off.")
+	. += show_hint(0x2, R.connected_ai, "The AI link light is on.", "The AI link light is off.")
+	. += show_hint(0x4, (!isnull(R.camera) && R.camera.status == 1), "The camera light is on.", "The camera light is off.")
+	. += show_hint(0x8, R.lockdown, "The lockdown light is on.", "The lockdown light is off.")
 	return .
 
 /datum/wires/robot/UpdateCut(var/index, var/mended)

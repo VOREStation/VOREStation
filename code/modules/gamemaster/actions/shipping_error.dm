@@ -1,10 +1,10 @@
 /datum/gm_action/shipping_error
 	name = "shipping error"
-	departments = list(ROLE_CARGO)
+	departments = list(DEPARTMENT_CARGO)
 	reusable = TRUE
 
 /datum/gm_action/shipping_error/get_weight()
-	var/cargo = metric.count_people_in_department(ROLE_CARGO)
+	var/cargo = metric.count_people_in_department(DEPARTMENT_CARGO)
 	var/weight = (cargo * 40)
 	return weight
 

@@ -841,7 +841,7 @@
 					var/chancetokill = 30*traitors_aboard-(5*alive) //eg: 30*2-(10) = 50%, 2 traitorss, 2 crew is 50% chance
 					if(prob(chancetokill))
 						var/deadguy = remove_crewmember()
-						eventdat += "<br>The traitor[trait2 ? "s":""] run[trait2 ? "":"s"] up to [deadguy] and murder them!"
+						eventdat += "<br>The traitor[trait2 ? "s":""] run[trait2 ? "":"s"] up to [deadguy] and murder[trait2 ? "" : "s"] them!"
 					else
 						eventdat += "<br>You valiantly fight off the traitor[trait2 ? "s":""]!"
 						eventdat += "<br>You cut the traitor[trait2 ? "s":""] up into meat... Eww"

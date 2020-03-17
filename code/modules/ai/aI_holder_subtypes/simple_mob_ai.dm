@@ -150,3 +150,40 @@
 // Simple mobs that retaliate and support others in their faction who get attacked.
 /datum/ai_holder/simple_mob/retaliate/cooperative
 	cooperative = TRUE
+
+// With all the bells and whistles
+/datum/ai_holder/simple_mob/humanoid
+	intelligence_level = AI_SMART //Purportedly
+	retaliate = TRUE //If attacked, attack back
+	threaten = TRUE //Verbal threats
+	firing_lanes = TRUE //Avoid shooting allies
+	conserve_ammo = TRUE //Don't shoot when it can't hit target
+	can_breakthrough = TRUE //Can break through doors
+	violent_breakthrough = FALSE //Won't try to break through walls (humans can, but usually don't)
+	speak_chance = 2 //Babble chance
+	cooperative = TRUE //Assist each other
+	wander = TRUE //Wander around
+	returns_home = TRUE //But not too far
+	use_astar = TRUE //Path smartly
+	home_low_priority = TRUE //Following/helping is more important
+
+// The hostile subtype is implied to be trained combatants who use ""tactics""
+/datum/ai_holder/simple_mob/humanoid/hostile
+	var/run_if_this_close = 4 // If anything gets within this range, it'll try to move away.
+	hostile = TRUE //Attack!
+
+// Juke
+/datum/ai_holder/simple_mob/humanoid/hostile/post_melee_attack(atom/A)
+	holder.IMove(get_step(holder, pick(alldirs)))
+	holder.face_atom(A)
+
+/datum/ai_holder/simple_mob/humanoid/hostile/post_ranged_attack(atom/A)
+	//Pick a random turf to step into
+	var/turf/T = get_step(holder, pick(alldirs))
+	if(check_trajectory(A, T)) // Can we even hit them from there?
+		holder.IMove(T)
+		holder.face_atom(A)
+
+	if(get_dist(holder, A) < run_if_this_close)
+		holder.IMove(get_step_away(holder, A))
+		holder.face_atom(A)

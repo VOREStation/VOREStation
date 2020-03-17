@@ -3,7 +3,7 @@
 	set name = "AOOC"
 	set desc = "Antagonist OOC"
 
-	var/is_admin = check_rights(R_ADMIN|R_MOD, show_msg = 0)
+	var/is_admin = check_rights(R_ADMIN|R_MOD|R_EVENT, show_msg = 0)
 	var/is_antag = usr.mind && usr.mind.special_role
 
 	if(!is_antag && !is_admin) // Non-antagonists and non-admins have no business using this.
@@ -30,7 +30,7 @@
 	var/player_display = (is_admin && !is_antag) ? "[display_name]([usr.client.holder.rank])" : display_name
 
 	for(var/mob/M in mob_list)
-		if(check_rights(R_ADMIN|R_MOD, 0, M)) // Staff can see AOOC unconditionally, and with more details.
+		if(check_rights(R_ADMIN|R_MOD|R_EVENT, 0, M)) // Staff can see AOOC unconditionally, and with more details.
 			to_chat(M, "<span class='ooc'><span class='aooc'>[create_text_tag("aooc", "Antag-OOC:", M.client)] <EM>[get_options_bar(src, 0, 1, 1)]([admin_jump_link(usr, M.client.holder)]):</EM> <span class='message'>[msg]</span></span></span>")
 		else if(M.client) // Players can only see AOOC if observing, or if they are an antag type allowed to use AOOC.
 			var/datum/antagonist/A = null

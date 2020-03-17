@@ -1,6 +1,6 @@
 /datum/gm_action/radiation_storm
 	name = "radiation storm"
-	departments = list(ROLE_EVERYONE)
+	departments = list(DEPARTMENT_EVERYONE)
 	reusable = TRUE
 
 	var/enterBelt			= 30
@@ -64,4 +64,4 @@
 		revoke_maint_all_access()
 
 /datum/gm_action/radiation_storm/get_weight()
-	return 20 + (metric.count_people_in_department(ROLE_MEDICAL) * 10) + (metric.count_all_space_mobs() * 40) + (metric.count_people_in_department(ROLE_EVERYONE) * 20)
+	return 20 + (metric.count_people_in_department(DEPARTMENT_MEDICAL) * 10) + (metric.count_all_space_mobs() * 40) + (metric.count_people_in_department(DEPARTMENT_EVERYONE) * 20)

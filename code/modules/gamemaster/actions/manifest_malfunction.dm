@@ -1,7 +1,7 @@
 /datum/gm_action/manifest_malfunction
 	name = "manifest malfunction"
 	enabled = TRUE
-	departments = list(ROLE_SECURITY, ROLE_SYNTHETIC, ROLE_EVERYONE)
+	departments = list(DEPARTMENT_SECURITY, DEPARTMENT_SYNTHETIC, DEPARTMENT_EVERYONE)
 	chaotic = 3
 	reusable = FALSE
 	length = 0
@@ -21,10 +21,10 @@
 /datum/gm_action/manifest_malfunction/get_weight()
 	. = -10
 
-	var/security = metric.count_people_in_department(ROLE_SECURITY)
+	var/security = metric.count_people_in_department(DEPARTMENT_SECURITY)
 
 	if(security && data_core)
-		. += (metric.count_people_in_department(ROLE_EVERYONE) * 5) - (metric.count_people_in_department(ROLE_SYNTHETIC) * 5)
+		. += (metric.count_people_in_department(DEPARTMENT_EVERYONE) * 5) - (metric.count_people_in_department(DEPARTMENT_SYNTHETIC) * 5)
 
 	return .
 

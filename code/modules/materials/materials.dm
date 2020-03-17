@@ -652,6 +652,22 @@ var/list/name_to_material
 	stack_type = null
 	shard_type = SHARD_NONE
 
+/material/graphite
+	name = MAT_GRAPHITE
+	stack_type = /obj/item/stack/material/graphite
+	flags = MATERIAL_BRITTLE
+	icon_base = "solid"
+	icon_reinf = "reinf_mesh"
+	icon_colour = "#333333"
+	hardness = 75
+	weight = 15
+	integrity = 175
+	protectiveness = 15
+	conductivity = 18
+	melting_point = T0C+3600
+	radiation_resistance = 15
+	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 2)
+
 /material/osmium
 	name = "osmium"
 	stack_type = /obj/item/stack/material/osmium
@@ -1106,6 +1122,28 @@ var/list/name_to_material
 	display_name = "lime"
 	use_name = "lime cloth"
 	icon_colour = "#62E36C"
+	flags = MATERIAL_PADDING
+	ignition_point = T0C+232
+	melting_point = T0C+300
+	protectiveness = 1 // 4%
+	conductive = 0
+
+/material/cloth_yellow
+	name = "yellow"
+	display_name = "yellow"
+	use_name = "yellow cloth"
+	icon_colour = "#EEF573"
+	flags = MATERIAL_PADDING
+	ignition_point = T0C+232
+	melting_point = T0C+300
+	protectiveness = 1 // 4%
+	conductive = 0
+
+/material/cloth_orange
+	name = "orange"
+	display_name = "orange"
+	use_name = "orange cloth"
+	icon_colour = "#E3BF49"
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300

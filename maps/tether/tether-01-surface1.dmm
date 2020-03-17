@@ -12349,15 +12349,22 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
 "auW" = (
-/turf/simulated/floor/maglev,
-/area/shuttle/escape/station{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
+	frequency = 1379;
+	scrub_id = "rnd_s_airlock_scrubber"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/external)
 "auX" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/tether/surfacebase/tram;
+	base_turf = /turf/simulated/floor/tiled/techfloor/grid;
+	docking_controller = null;
+	landmark_tag = "escape_station";
+	name = "Tether Surface Base"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
-/area/shuttle/escape/station{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
+/area/tether/surfacebase/tram)
 "auY" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -20876,7 +20883,7 @@
 	pixel_x = 0;
 	pixel_y = -25
 	},
-/obj/structure/bed/chair/sofa/corner{
+/obj/structure/bed/chair/sofa/brown/corner{
 	dir = 4
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -22833,14 +22840,6 @@
 	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/visitor_dining)
-"aLm" = (
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
-	frequency = 1379;
-	scrub_id = "rnd_s_airlock_scrubber";
-	scrubbing_gas = list("phoron")
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/rnd/external)
 "aLn" = (
 /obj/structure/grille,
 /obj/structure/railing{
@@ -31432,7 +31431,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/structure/bed/chair/sofa/left{
+/obj/structure/bed/chair/sofa/brown/left{
 	dir = 4
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -31565,7 +31564,7 @@
 "bbC" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
-/obj/structure/bed/chair/sofa/right{
+/obj/structure/bed/chair/sofa/brown/right{
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
@@ -35669,12 +35668,12 @@ aah
 aah
 auK
 aAt
-aBv
-aBv
-aBv
-aBv
-aBv
-aBv
+auK
+auK
+auK
+auK
+auK
+auK
 aah
 aah
 aah
@@ -35811,7 +35810,7 @@ aah
 aah
 auK
 aAu
-aBv
+auK
 aah
 aah
 aah
@@ -35953,7 +35952,7 @@ aah
 aah
 auK
 aAu
-aBv
+auK
 aah
 aah
 aah
@@ -36095,7 +36094,7 @@ aah
 aah
 auK
 abB
-aBv
+auK
 aah
 aah
 aah
@@ -36237,7 +36236,7 @@ aah
 aah
 auK
 aAu
-aBv
+auK
 aah
 aah
 aah
@@ -36379,7 +36378,7 @@ aah
 aah
 auK
 aAv
-aBv
+auK
 aah
 aah
 aah
@@ -36521,7 +36520,7 @@ agv
 agv
 azs
 aAw
-aBv
+auK
 aah
 aah
 aah
@@ -36663,7 +36662,7 @@ aip
 aiJ
 azs
 aaT
-aBv
+auK
 aah
 aah
 aah
@@ -36805,7 +36804,7 @@ ais
 aiK
 azs
 aAu
-aBv
+auK
 aah
 aah
 aah
@@ -36947,7 +36946,7 @@ aiH
 aiL
 azs
 aAw
-aBv
+auK
 aah
 aah
 aah
@@ -37089,7 +37088,7 @@ aiI
 aiM
 azs
 aAu
-aBv
+auK
 aah
 aah
 aah
@@ -37231,7 +37230,7 @@ agv
 agv
 azs
 aAx
-aBv
+auK
 aBv
 aBv
 aBv
@@ -37672,8 +37671,8 @@ aah
 aah
 aah
 aKL
-aLm
-aLm
+auW
+auW
 aKL
 aah
 aah
@@ -38666,8 +38665,8 @@ aID
 aJv
 aJZ
 aKL
-aLm
-aLm
+auW
+auW
 aKL
 aah
 aah
@@ -49293,20 +49292,20 @@ atz
 aud
 aud
 aud
+aud
+aud
+aud
+aud
+aud
+aud
 auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
+aud
+aud
+aud
+aud
+aud
+aud
+aud
 aud
 aud
 atz
@@ -49434,22 +49433,22 @@ aad
 atA
 aue
 aue
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
 aue
 atA
 aad
@@ -49576,22 +49575,22 @@ aad
 atB
 aud
 aud
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
 aud
 atB
 aad
@@ -49718,22 +49717,22 @@ aad
 atB
 aud
 aud
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
 aud
 atB
 aad
@@ -49860,22 +49859,22 @@ aad
 atB
 aud
 aud
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
 aud
 atB
 aad
@@ -50002,22 +50001,22 @@ aad
 atB
 aud
 aud
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
 aud
 atB
 aad
@@ -50144,22 +50143,22 @@ aad
 atA
 aue
 aue
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
-auW
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
+aue
 aue
 atA
 aad
@@ -50287,20 +50286,20 @@ atz
 aud
 aud
 aud
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
-auX
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
+aud
 aud
 aud
 atz

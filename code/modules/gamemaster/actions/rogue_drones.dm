@@ -1,6 +1,6 @@
 /datum/gm_action/rogue_drone
 	name = "rogue drones"
-	departments = list(ROLE_SECURITY)
+	departments = list(DEPARTMENT_SECURITY)
 	chaotic = 60
 	length = 20 MINUTES
 	var/list/drones_list = list()
@@ -60,4 +60,4 @@
 		command_announcement.Announce("We're disappointed at the loss of the drones, but the survivors have been recovered.", "Rogue drone alert")
 
 /datum/gm_action/rogue_drone/get_weight()
-	return 20 + (metric.count_people_in_department(ROLE_SECURITY) * 10) + (metric.count_all_space_mobs() * 30)
+	return 20 + (metric.count_people_in_department(DEPARTMENT_SECURITY) * 10) + (metric.count_all_space_mobs() * 30)

@@ -61,7 +61,7 @@
 
 /datum/uplink_item/item/visible_weapons/riggedlaser
 	name = "Exosuit Rigged Laser"
-	item_cost = 60
+	item_cost = 30
 	path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/riggedlaser
 
 /datum/uplink_item/item/visible_weapons/revolver
@@ -146,7 +146,7 @@
 
 /datum/uplink_item/item/visible_weapons/egun
 	name = "Energy Gun"
-	item_cost = 60
+	item_cost = 30
 	path = /obj/item/weapon/gun/energy/gun
 
 /datum/uplink_item/item/visible_weapons/lasercannon
@@ -171,5 +171,17 @@
 
 /datum/uplink_item/item/visible_weapons/xray
 	name = "Xray Gun"
-	item_cost = 85
+	item_cost = 60
 	path = /obj/item/weapon/gun/energy/xray
+
+/datum/uplink_item/item/visible_weapons/flamethrower
+	name = "Heavy Flamethrower"
+	desc = "A large flamethrower that runs on pressurized, gaseous phoron and electric charge."
+	item_cost = 60
+	path = /obj/item/weapon/storage/secure/briefcase/flamer
+
+/datum/uplink_item/item/visible_weapons/concussion_grenades
+	name = "Concussion Grenades (8)"
+	desc = "A box of eight concussion grenades."
+	item_cost = 30
+	path = /obj/item/weapon/storage/box/syndie_kit/concussion_grenade

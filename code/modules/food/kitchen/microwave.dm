@@ -8,6 +8,8 @@
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100
+	clicksound = "button"
+	clickvol = "30"
 	flags = OPENCONTAINER | NOREACT
 	circuit = /obj/item/weapon/circuitboard/microwave
 	var/operating = 0 // Is it on?
@@ -236,7 +238,7 @@
 <A href='?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
 "}
 
-	to_chat(user, browse("<HEAD><TITLE>Microwave Controls</TITLE></HEAD><TT>[dat]</TT>", "window=microwave"))
+	user << browse("<HEAD><TITLE>Microwave Controls</TITLE></HEAD><TT>[dat]</TT>", "window=microwave")
 	onclose(user, "microwave")
 	return
 
@@ -414,12 +416,12 @@
 
 /obj/machinery/microwave/advanced // specifically for complex recipes
 	name = "deluxe microwave"
-	icon = 'icons/obj/kitchen.dmi'
-	icon_state = "mw-deluxe"
+	icon = 'icons/obj/deluxemicrowave.dmi'
+	icon_state = "mw"
 	circuit = /obj/item/weapon/circuitboard/microwave/advanced
 	circuit_item_capacity = 100
 	item_level = 1
 
 /obj/machinery/microwave/advanced/Initialize()
 	..()
-	reagents.maximum_volume = 1000 
+	reagents.maximum_volume = 1000

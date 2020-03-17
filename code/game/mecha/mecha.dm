@@ -281,7 +281,7 @@
 	if(equipment && equipment.len)
 		to_chat(user, "It's equipped with:")
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
-			to_chat(user, "\icon[ME] [ME]")
+			to_chat(user, "[bicon(ME)] [ME]")
 	return
 
 
@@ -622,7 +622,12 @@
 	else if(istype(A, /obj))
 		var/obj/O = A
 		if(O.throwforce)
-			src.take_damage(O.throwforce)
+
+			var/pass_damage = O.throwforce
+			for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
+				pass_damage = ME.handle_ranged_contact(A, pass_damage)
+
+			src.take_damage(pass_damage)
 			src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	return
 
@@ -652,7 +657,12 @@
 		var/ignore_threshold
 		if(istype(Proj, /obj/item/projectile/beam/pulse))
 			ignore_threshold = 1
-		src.take_damage(Proj.damage, Proj.check_armour)
+
+		var/pass_damage = Proj.damage
+		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
+			pass_damage = ME.handle_projectile_contact(Proj, pass_damage)
+
+		src.take_damage(pass_damage, Proj.check_armour)
 		if(prob(25)) spark_system.start()
 		src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),ignore_threshold)
 
@@ -748,7 +758,11 @@
 	else
 		src.occupant_message("<font color='red'><b>[user] hits [src] with [W].</b></font>")
 		user.visible_message("<font color='red'><b>[user] hits [src] with [W].</b></font>", "<font color='red'><b>You hit [src] with [W].</b></font>")
-		src.take_damage(W.force,W.damtype)
+
+		var/pass_damage = W.force
+		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
+			pass_damage = ME.handle_projectile_contact(W, user, pass_damage)
+		src.take_damage(pass_damage,W.damtype)
 		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	return
 
@@ -1596,7 +1610,7 @@
 /obj/mecha/proc/occupant_message(message as text)
 	if(message)
 		if(src.occupant && src.occupant.client)
-			to_chat(src.occupant, "\icon[src] [message]")
+			to_chat(src.occupant, "[bicon(src)] [message]")
 	return
 
 /obj/mecha/proc/log_message(message as text,red=null)

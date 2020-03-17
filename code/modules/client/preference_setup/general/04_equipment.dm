@@ -40,7 +40,7 @@
 		pref.backbag = 1 //Same as above
 	character.backbag = pref.backbag
 
-	if(pref.pdachoice > 4 || pref.pdachoice < 1)
+	if(pref.pdachoice > 5 || pref.pdachoice < 1)
 		pref.pdachoice = 1
 	character.pdachoice = pref.pdachoice
 

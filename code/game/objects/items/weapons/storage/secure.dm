@@ -26,6 +26,7 @@
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_SMALL
 	max_storage_space = ITEMSIZE_SMALL * 7
+	use_sound = 'sound/items/storage/briefcase.ogg'
 
 	examine(mob/user)
 		if(..(user, 1))

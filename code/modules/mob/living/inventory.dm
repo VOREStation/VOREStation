@@ -33,8 +33,25 @@
 
 //Drops the item in our active hand. TODO: rename this to drop_active_hand or something
 /mob/living/drop_item(var/atom/Target)
-	if(hand)	return drop_l_hand(Target)
-	else		return drop_r_hand(Target)
+	var/obj/item/item_dropped = null
+
+	if (hand)
+		item_dropped = l_hand
+		. = drop_l_hand(Target)
+	else
+		item_dropped = r_hand
+		. = drop_r_hand(Target)
+
+	if (istype(item_dropped) && !QDELETED(item_dropped) && is_preference_enabled(/datum/client_preference/drop_sounds))
+		addtimer(CALLBACK(src, .proc/make_item_drop_sound, item_dropped), 1)
+
+/mob/proc/make_item_drop_sound(obj/item/I)
+	if(QDELETED(I))
+		return
+
+	if(I.drop_sound)
+		playsound(I, I.drop_sound, 25, 0, preference = /datum/client_preference/drop_sounds)
+
 
 //Drops the item in our left hand
 /mob/living/drop_l_hand(var/atom/Target)

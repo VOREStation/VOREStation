@@ -12,7 +12,7 @@
 
 /datum/map_z_level/tether_lateload/misc
 	name = "Misc"
-	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED
+	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 
 /datum/map_template/tether_lateload/tether_ships
 	name = "Tether - Ships"
@@ -440,3 +440,10 @@
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/shadekin
 	)
+
+//////////////////////////////////////////////////////////////////////////////
+//Overmap ship spawns
+
+#include "om_ships/hybridshuttle.dm"
+#include "om_ships/screebarge.dm"
+#include "om_ships/aro.dm"

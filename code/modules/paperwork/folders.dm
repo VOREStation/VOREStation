@@ -1,10 +1,11 @@
 /obj/item/weapon/folder
 	name = "folder"
 	desc = "A folder."
-	icon = 'icons/obj/bureaucracy.dmi'
+	icon = 'icons/obj/bureaucracy_vr.dmi' //VOREStation Edit
 	icon_state = "folder"
 	w_class = ITEMSIZE_SMALL
 	pressure_resistance = 2
+	drop_sound = 'sound/items/drop/paper.ogg'
 
 /obj/item/weapon/folder/blue
 	desc = "A blue folder."

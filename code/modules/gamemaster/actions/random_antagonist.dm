@@ -1,7 +1,7 @@
 // The random spawn proc on the antag datum will handle announcing the spawn and whatnot.
 /datum/gm_action/random_antag
 	name = "random antagonist"
-	departments = list(ROLE_EVERYONE)
+	departments = list(DEPARTMENT_EVERYONE)
 	chaotic = 30
 	reusable = TRUE
 
@@ -19,5 +19,5 @@
 /datum/gm_action/random_antag/get_weight()
 	. = ..()
 	if(gm)
-		var/weight = max(0, (metric.count_people_in_department(ROLE_SECURITY) * 20) + (metric.count_people_in_department(ROLE_EVERYONE) * 5) + gm.staleness)
+		var/weight = max(0, (metric.count_people_in_department(DEPARTMENT_SECURITY) * 20) + (metric.count_people_in_department(DEPARTMENT_EVERYONE) * 5) + gm.staleness)
 		return weight

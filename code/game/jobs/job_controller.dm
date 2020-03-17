@@ -11,7 +11,8 @@ var/global/datum/controller/occupations/job_master
 	var/list/unassigned = list()
 		//Debug info
 	var/list/job_debug = list()
-
+		//Cache of icons for job info window
+	var/list/job_icons = list()
 
 	proc/SetupOccupations(var/faction = "Station")
 		occupations = list()
@@ -120,7 +121,7 @@ var/global/datum/controller/occupations/job_master
 			if(istype(job, GetJob(USELESS_JOB))) // We don't want to give him assistant, that's boring! //VOREStation Edit - Visitor not Assistant
 				continue
 
-			if(job.title in command_positions) //If you want a command position, select it!
+			if(SSjob.is_job_in_department(job.title, DEPARTMENT_COMMAND)) //If you want a command position, select it!
 				continue
 
 			if(jobban_isbanned(player, job.title))
@@ -156,7 +157,7 @@ var/global/datum/controller/occupations/job_master
 	///This proc is called before the level loop of DivideOccupations() and will try to select a head, ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check
 	proc/FillHeadPosition()
 		for(var/level = 1 to 3)
-			for(var/command_position in command_positions)
+			for(var/command_position in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND))
 				var/datum/job/job = GetJob(command_position)
 				if(!job)	continue
 				var/list/candidates = FindOccupationCandidates(job, level)
@@ -196,7 +197,7 @@ var/global/datum/controller/occupations/job_master
 
 	///This proc is called at the start of the level loop of DivideOccupations() and will cause head jobs to be checked before any other jobs of the same level
 	proc/CheckHeadPositions(var/level)
-		for(var/command_position in command_positions)
+		for(var/command_position in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND))
 			var/datum/job/job = GetJob(command_position)
 			if(!job)	continue
 			var/list/candidates = FindOccupationCandidates(job, level)
@@ -435,14 +436,14 @@ var/global/datum/controller/occupations/job_master
 		log_game("SPECIES [key_name(H)] is a: \"[H.species.name]\"") //VOREStation Add
 
 		// If they're head, give them the account info for their department
-		if(H.mind && job.head_position)
+		if(H.mind && job.department_accounts)
 			var/remembered_info = ""
-			var/datum/money_account/department_account = department_accounts[job.department]
-
-			if(department_account)
-				remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"
-				remembered_info += "<b>Your department's account pin is:</b> [department_account.remote_access_pin]<br>"
-				remembered_info += "<b>Your department's account funds are:</b> $[department_account.money]<br>"
+			for(var/D in job.department_accounts)
+				var/datum/money_account/department_account = department_accounts[D]
+				if(department_account)
+					remembered_info += "<b>Department account number ([D]):</b> #[department_account.account_number]<br>"
+					remembered_info += "<b>Department account pin ([D]):</b> [department_account.remote_access_pin]<br>"
+					remembered_info += "<b>Department account funds ([D]):</b> $[department_account.money]<br>"
 
 			H.mind.store_memory(remembered_info)
 

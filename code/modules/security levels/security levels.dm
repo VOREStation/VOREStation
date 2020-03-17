@@ -78,8 +78,7 @@
 				FA.set_security_level(newlevel)
 		for(var/obj/machinery/status_display/FA in machines)
 			if(FA.z in using_map.contact_levels)
-				FA.display_alert(newlevel)
-				FA.mode = 3
+				FA.on_alert_changed(newlevel)
 
 		if(level >= SEC_LEVEL_RED)
 			atc.reroute_traffic(yes = 1) // Tell them fuck off we're busy.

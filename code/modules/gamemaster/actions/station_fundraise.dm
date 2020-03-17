@@ -1,6 +1,6 @@
 /datum/gm_action/station_fund_raise
 	name = "local funding drive"
-	departments = list(ROLE_SECURITY, ROLE_CARGO, ROLE_EVERYONE)
+	departments = list(DEPARTMENT_SECURITY, DEPARTMENT_CARGO, DEPARTMENT_EVERYONE)
 
 /datum/gm_action/station_fund_raise/announce()
 	spawn(rand(1 MINUTE, 2 MINUTES))
@@ -11,4 +11,4 @@
 	if(station_account.money <= 80000)
 		weight_modifier = 1
 
-	return (max(-20, 10 + gm.staleness) + ((metric.count_people_in_department(ROLE_SECURITY) + (metric.count_people_in_department(ROLE_CARGO))) * 5) + (metric.count_people_in_department(ROLE_EVERYONE) * 3)) * weight_modifier
+	return (max(-20, 10 + gm.staleness) + ((metric.count_people_in_department(DEPARTMENT_SECURITY) + (metric.count_people_in_department(DEPARTMENT_CARGO))) * 5) + (metric.count_people_in_department(DEPARTMENT_EVERYONE) * 3)) * weight_modifier

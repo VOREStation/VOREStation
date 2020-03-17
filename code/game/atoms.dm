@@ -183,7 +183,7 @@
 		else
 			f_name += "oil-stained [name][infix]."
 
-	to_chat(user, "\icon[src] That's [f_name] [suffix]")
+	to_chat(user, "[bicon(src)] That's [f_name] [suffix]")
 	to_chat(user,desc)
 
 	return distance == -1 || (get_dist(src, user) <= distance)
@@ -517,6 +517,9 @@
 	var/area/A = get_area(T)
 	if(A && A.has_gravity())
 		return TRUE
+	return FALSE
+
+/atom/proc/is_incorporeal()
 	return FALSE
 
 /atom/proc/drop_location()

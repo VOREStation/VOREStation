@@ -516,6 +516,15 @@
 /obj/tether_away_spawner/aerostat_surface,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/DecoupledEngine)
+"SB" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	icon_state = "intact";
+	dir = 6
+	},
+/obj/effect/floor_decal/rust,
+/obj/structure/salvageable/server,
+/turf/simulated/floor,
+/area/submap/virgo2/DecoupledEngine)
 
 (1,1,1) = {"
 aa
@@ -1045,7 +1054,7 @@ ad
 ad
 ad
 aq
-az
+SB
 aM
 aW
 az

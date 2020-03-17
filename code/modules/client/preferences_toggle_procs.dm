@@ -254,6 +254,21 @@
 
 	feedback_add_details("admin_verb","TAirPumpNoise")
 
+/client/verb/toggle_drop_sounds()
+	set name = "Toggle Dropped Item Sounds"
+	set category = "Preferences"
+	set desc = "Toggles sounds when items are dropped or thrown."
+
+	var/pref_path = /datum/client_preference/drop_sounds
+
+	toggle_preference(pref_path)
+
+	to_chat(src, "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear sounds when items are dropped or thrown.")
+
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	feedback_add_details("admin_verb", "TDropSounds")
+
 /client/verb/toggle_safe_firing()
 	set name = "Toggle Gun Firing Intent Requirement"
 	set category = "Preferences"

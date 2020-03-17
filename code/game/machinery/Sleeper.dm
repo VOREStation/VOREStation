@@ -11,6 +11,8 @@
 	idle_power_usage = 40
 	interact_offline = 1
 	circuit = /obj/item/weapon/circuitboard/sleeper_console
+	clicksound = 'sound/machines/buttonbeep.ogg'
+	clickvol = 30
 
 /obj/machinery/sleep_console/New()
 	..()

@@ -134,3 +134,6 @@
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/mob/species/seromi/back.dmi',
 		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/back.dmi')
+
+/obj/item/weapon/storage/backpack/ert
+	max_storage_space = INVENTORY_DUFFLEBAG_SPACE

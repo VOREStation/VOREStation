@@ -5,7 +5,6 @@
 	#include "tether_things.dm"
 	#include "tether_phoronlock.dm"
 	#include "tether_areas.dm"
-	#include "tether_areas2.dm"
 	#include "tether_shuttle_defs.dm"
 	#include "tether_shuttles.dm"
 	#include "tether_telecomms.dm"
@@ -19,7 +18,6 @@
 	#include "tether-07-station3.dmm"
 	#include "tether-08-mining.dmm"
 	#include "tether-09-solars.dmm"
-	#include "tether-10-colony.dmm"
 
 	#include "submaps/_tether_submaps.dm"
 

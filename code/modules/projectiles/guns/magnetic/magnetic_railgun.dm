@@ -150,7 +150,7 @@
 
 	w_class = ITEMSIZE_NORMAL
 
-	slowdown_held = 0
+	slowdown_held = 0.1
 
 	initial_cell_type = /obj/item/weapon/cell/device/weapon
 	initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor
@@ -159,7 +159,7 @@
 
 	firemodes = list(
 		list(mode_name="lethal", power_cost = 500, projectile_type = /obj/item/projectile/bullet/magnetic/heated, burst=1, fire_delay=10, move_delay=null, one_handed_penalty=0),
-		list(mode_name="stun", power_cost = 350, projectile_type = /obj/item/projectile/energy/electrode/stunshot, burst=1, fire_delay=7, move_delay=null, one_handed_penalty=0),
+		list(mode_name="stun", power_cost = 350, projectile_type = /obj/item/projectile/energy/electrode/strong, burst=1, fire_delay=7, move_delay=null, one_handed_penalty=0),
 		)
 
 /obj/item/weapon/gun/magnetic/railgun/heater/pistol/hos
@@ -171,7 +171,7 @@
 
 	firemodes = list(
 		list(mode_name="lethal", power_cost = 400, projectile_type = /obj/item/projectile/bullet/magnetic/heated, burst=1, fire_delay=8, move_delay=null, one_handed_penalty=0),
-		list(mode_name="stun", power_cost = 300, projectile_type = /obj/item/projectile/energy/electrode/stunshot, burst=1, fire_delay=5, move_delay=null, one_handed_penalty=0),
+		list(mode_name="stun", power_cost = 300, projectile_type = /obj/item/projectile/energy/electrode/strong, burst=1, fire_delay=5, move_delay=null, one_handed_penalty=0),
 		)
 
 /obj/item/weapon/gun/magnetic/railgun/flechette/sif
