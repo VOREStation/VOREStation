@@ -1,6 +1,7 @@
 #define RECOMMENDED_VERSION 501
 /world/New()
 	to_world_log("Map Loading Complete")
+<<<<<<< HEAD
 	//logs
 	//VOREStation Edit Start
 	log_path += time2text(world.realtime, "YYYY/MM-Month/DD-Day/round-hh-mm-ss")
@@ -10,6 +11,8 @@
 	debug_log = start_log("[log_path]-debug.log")
 	//VOREStation Edit End
 
+=======
+>>>>>>> a5e17e4... Merge pull request #6819 from Meghan-Rossi/languagetests
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)

@@ -3437,6 +3437,7 @@
 #include "code\modules\xenobio\machinery\processor.dm"
 #include "code\modules\xgm\xgm_gas_data.dm"
 #include "code\modules\xgm\xgm_gas_mixture.dm"
+#include "code\unit_tests\language_tests.dm"
 #include "code\unit_tests\loadout_tests.dm"
 #include "code\unit_tests\map_tests.dm"
 #include "code\unit_tests\mob_tests.dm"
