@@ -30522,27 +30522,6 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/excursion/cargo)
-"Zc" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/danger{
-	dir = 8
-	},
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	cycle_to_external_air = 1;
-	frequency = 1380;
-	id_tag = "expshuttle_docker";
-	pixel_y = 26;
-	req_one_access = list(19,43,67);
-	tag_airpump = "expshuttle_vent";
-	tag_chamber_sensor = "expshuttle_sensor";
-	tag_exterior_door = "expshuttle_door_Ro";
-	tag_exterior_sensor = "expshuttle_exterior_sensor";
-	tag_interior_door = "expshuttle_door_Ri"
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/tether/exploration)
 "Zd" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -43590,7 +43569,7 @@ dk
 dF
 dF
 dF
-Zc
+dF
 dF
 dk
 db

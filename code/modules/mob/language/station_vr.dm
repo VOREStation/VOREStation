@@ -14,7 +14,7 @@
 	desc = "A language primarily spoken by Narvians"
 	speech_verb = "chirps"
 	colour = "birdsongc"
-	key = "7"
+	key = "G"
 	syllables = list ("cheep", "peep", "tweet")
 
 /datum/language/sergal
@@ -32,7 +32,7 @@
 	ask_verb = "rurs"
 	exclaim_verb = "barks"
 	colour = "vulpkanin"
-	key = "8"
+	key = "V"
 	syllables = list("rur","ya","cen","rawr","bar","kuk","tek","qat","uk","wu","vuh","tah","tch","schz","auch", \
 	"ist","ein","entch","zwichs","tut","mir","wo","bis","es","vor","nic","gro","lll","enem","zandt","tzch","noch", \
 	"hel","ischt","far","wa","baram","iereng","tech","lach","sam","mak","lich","gen","or","ag","eck","gec","stag","onn", \
@@ -44,7 +44,7 @@
 	speech_verb = "squeaks"
 	whisper_verb = "whispers"
 	exclaim_verb = "chitters"
-	key = "9"
+	key = "S"
 	syllables = list("sque","sqah","boo","beh","nweh","boopa","nah","wah","een","sweh")
 
 /datum/language/demon
@@ -54,7 +54,7 @@
 	ask_verb = "croons"
 	exclaim_verb = "incants"
 	colour = "daemon" //So fancy
-	key = "n"
+	key = "D"
 	syllables = list("viepn","e","bag","docu","kar","xlaqf","raa","qwos","nen","ty","von","kytaf","xin","ty","ka","baak","hlafaifpyk","znu","agrith","na'ar","uah","plhu","six","fhler","bjel","scee","lleri",
 	"dttm","aggr","uujl","hjjifr","wwuthaav",)
 	machine_understands = FALSE
@@ -66,7 +66,7 @@
 	ask_verb = "hums"
 	exclaim_verb = "loudly sings"
 	colour = "enochian" //So fancy
-	key = "i"
+	key = "I"
 	syllables = list("salve","sum","loqui","operatur","iusta","et","permittit","facere","effercio","pluribus","enim","hoc",
 	"mihi","wan","six","tartu")
 	machine_understands = FALSE
@@ -78,7 +78,7 @@
 	ask_verb = "chitters"
 	exclaim_verb = "rasps"
 	colour = "bug"
-	key = "x"
+	key = "X"
 	syllables = list("vaur","uyek","uyit","avek","sc'theth","k'ztak","teth","wre'ge","lii","dra'","zo'","ra'","kax'","zz","vh","ik","ak",
     "uhk","zir","sc'orth","sc'er","thc'yek","th'zirk","th'esk","k'ayek","ka'mil","sc'","ik'yir","yol","kig","k'zit","'","'","zrk","krg","isk'yet","na'k",
     "sc'azz","th'sc","nil","n'ahk","sc'yeth","aur'sk","iy'it","azzg","a'","i'","o'","u'","a","i","o","u","zz","kr","ak","nrk","tzzk","bz","xic'","k'lax'","histh")
@@ -90,7 +90,7 @@
 	ask_verb = "mars"
 	exclaim_verb = "MARS"
 	colour = "changeling"
-	key = "m"
+	key = "M"
 	machine_understands = FALSE
 	flags = WHITELISTED | HIVEMIND
 
@@ -102,7 +102,7 @@
 	exclaim_verb = "krichit"
 	whisper_verb = "shepchet"
 	colour = "attack" // Red for slav!
-	key = "s"
+	key = "P"
 	syllables = list(
 		"rus", "zem", "ave", "blyat", "cyk", "groz", "ski", "ska", "ven", "konst", "pol", "lin", "svy",
 		"danya", "da", "mied", "kuz,", "zan", "das", "krem", "myka", "to", "st", "no", "na", "ni",
