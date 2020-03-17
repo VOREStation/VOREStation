@@ -14,7 +14,7 @@
 	desc = "A language primarily spoken by Narvians"
 	speech_verb = "chirps"
 	colour = "birdsongc"
-	key = "B"
+	key = "G"
 	syllables = list ("cheep", "peep", "tweet")
 
 /datum/language/sergal
@@ -102,7 +102,7 @@
 	exclaim_verb = "krichit"
 	whisper_verb = "shepchet"
 	colour = "attack" // Red for slav!
-	key = "S"
+	key = "P"
 	syllables = list(
 		"rus", "zem", "ave", "blyat", "cyk", "groz", "ski", "ska", "ven", "konst", "pol", "lin", "svy",
 		"danya", "da", "mied", "kuz,", "zan", "das", "krem", "myka", "to", "st", "no", "na", "ni",
