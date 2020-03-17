@@ -8,6 +8,8 @@
 	check_armour = "bullet"
 	embed_chance = 20	//Modified in the actual embed process, but this should keep embed chance about the same
 	sharp = 1
+	hitsound_wall = "ricochet"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect
 	var/mob_passthrough_check = 0
 
 	muzzle_type = /obj/effect/projectile/muzzle/bullet
