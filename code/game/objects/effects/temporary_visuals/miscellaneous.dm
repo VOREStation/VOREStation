@@ -45,6 +45,7 @@
 	duration = 4
 // VOREStation Add End
 
+<<<<<<< HEAD
 //VOREStation edit: medigun
 /obj/effect/temp_visual/heal
 	name = "healing glow"
@@ -55,3 +56,51 @@
 	pixel_x = rand(-12, 12)
 	pixel_y = rand(-9, 0)
 //VOREStation edit ends
+=======
+/obj/effect/temp_visual/impact_effect
+	icon_state = "impact_bullet"
+	plane = PLANE_LIGHTING_ABOVE // So they're visible even in a shootout in maint.
+	duration = 5
+
+/obj/effect/temp_visual/impact_effect/Initialize(mapload, obj/item/projectile/P, x, y)
+	pixel_x = x
+	pixel_y = y
+	return ..()
+
+/obj/effect/temp_visual/impact_effect/red_laser
+	icon_state = "impact_laser"
+	duration = 4
+
+/obj/effect/temp_visual/impact_effect/red_laser/wall
+	icon_state = "impact_laser_wall"
+	duration = 10
+
+/obj/effect/temp_visual/impact_effect/blue_laser
+	icon_state = "impact_laser_blue"
+	duration = 4
+
+/obj/effect/temp_visual/impact_effect/green_laser
+	icon_state = "impact_laser_green"
+	duration = 4
+
+/obj/effect/temp_visual/impact_effect/purple_laser
+	icon_state = "impact_laser_purple"
+	duration = 4
+
+// Colors itself based on the projectile.
+// Checks light_color and color.
+/obj/effect/temp_visual/impact_effect/monochrome_laser
+	icon_state = "impact_laser_monochrome"
+	duration = 4
+
+/obj/effect/temp_visual/impact_effect/monochrome_laser/Initialize(mapload, obj/item/projectile/P, x, y)
+	if(P.light_color)
+		color = P.light_color
+	else if(P.color)
+		color = P.color
+	return ..()
+
+/obj/effect/temp_visual/impact_effect/ion
+	icon_state = "shieldsparkles"
+	duration = 6
+>>>>>>> e691704... Merge pull request #6829 from Neerti/projectile_hit_sounds
