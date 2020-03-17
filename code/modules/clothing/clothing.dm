@@ -124,6 +124,12 @@
 	switch(target_species)
 		if(SPECIES_SKRELL)
 			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN) //skrell helmets fit humans too
+		//VOREStation Add Start
+		if(SPECIES_UNATHI)
+			species_restricted = list(SPECIES_UNATHI, SPECIES_XENOHYBRID)
+		if(SPECIES_ZORREN_HIGH)
+			species_restricted = list(SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
+		//VOREStation Add End
 
 		else
 			species_restricted = list(target_species)

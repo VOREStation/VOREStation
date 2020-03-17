@@ -39,3 +39,6 @@
 //event species
 #define SPECIES_WEREBEAST			"Werebeast"
 #define SPECIES_SHADEKIN			"Shadekin"
+//custom species base sprites
+#define SPECIES_FENNEC				"Fennec"
+#define SPECIES_XENOHYBRID			"Xenohybrid"

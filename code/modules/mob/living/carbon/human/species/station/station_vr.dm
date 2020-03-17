@@ -488,3 +488,75 @@ datum/species/harpy
 
 /datum/species/shadekin/can_breathe_water()
 	return TRUE	//they dont quite breathe
+
+//These species are not really species but are just there for custom species selection
+
+/datum/species/fl_zorren
+	name = SPECIES_FENNEC
+	name_plural = "Fennec"
+	icobase = 'icons/mob/human_races/r_fennec_vr.dmi'
+	deform = 'icons/mob/human_races/r_def_fennec.dmi'
+	tail = "tail"
+	icobase_tail = 1
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_TERMINUS)
+	name_language = LANGUAGE_TERMINUS
+	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds)
+
+	min_age = 18
+	max_age = 80
+
+	//primitive_form = "" //We don't have fennec-monkey sprites.
+	spawn_flags = SPECIES_IS_RESTRICTED
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	flesh_color = "#AFA59E"
+	base_color = "#333333"
+	blood_color = "#240bc4"
+	color_mult = 1
+	inherent_verbs = list(/mob/living/proc/shred_limb)
+
+	heat_discomfort_strings = list(
+		"Your fur prickles in the heat.",
+		"You feel uncomfortably warm.",
+		"Your overheated skin itches."
+		)
+
+/datum/species/xenohybrid
+	name = SPECIES_XENOHYBRID
+	name_plural = "Xenomorphs"
+	icobase = 'icons/mob/human_races/r_xenomorph.dmi'
+	deform = 'icons/mob/human_races/r_def_xenomorph.dmi'
+	tail = "tail"
+	icobase_tail = 1
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	darksight = 4 //Better hunters in the dark.
+	hunger_factor = 0.1 //In exchange, they get hungry a tad faster.
+	num_alternate_languages = 2
+
+	min_age = 18
+	max_age = 80
+
+	blurb = "Xenomorphs hybrids are a mixture of xenomorph DNA and some other humanoid species. \
+	Xenomorph hyrids mostly have had had their natural aggression removed due to the gene modification process \
+	although there are some exceptions, such as when they are harmed. Most xenomorph hybrids are female, due to their natural xenomorph genes, \
+	but there are multiple exceptions. All xenomorph hybrids have had their ability to lay eggs containing facehuggers \
+	removed if they had the ability to, although hybrids that previously contained this ability is extremely rare."
+	// No wiki page for xenohybrids at present
+
+	//primitive_form = "" //None for these guys
+
+	spawn_flags = SPECIES_IS_RESTRICTED
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	blood_color = "#12ff12"
+	flesh_color = "#201730"
+	base_color = "#201730"
+
+	heat_discomfort_strings = list(
+		"Your chitin feels extremely warm.",
+		"You feel uncomfortably warm.",
+		"Your chitin feels hot."
+		)
+	inherent_verbs = list(/mob/living/proc/shred_limb)

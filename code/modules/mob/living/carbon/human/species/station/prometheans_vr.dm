@@ -8,8 +8,8 @@
 	valid_transform_species = list(
 		"Human", "Unathi", "Tajara", "Skrell",
 		"Diona", "Teshari", "Monkey","Sergal",
-		"Akula","Nevrean","Highlander Zorren",
-		"Flatland Zorren", "Vulpkanin", "Vasilissan",
+		"Akula","Nevrean","Zorren",
+		"Fennec", "Vulpkanin", "Vasilissan",
 		"Rapala", "Neaera", "Stok", "Farwa", "Sobaka",
 		"Wolpin", "Saru", "Sparra")
 
