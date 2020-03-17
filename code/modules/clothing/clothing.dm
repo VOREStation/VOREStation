@@ -102,16 +102,14 @@
 
 	//Set species_restricted list
 	switch(target_species)
+		//VOREStation Edit Start
 		if(SPECIES_HUMAN, SPECIES_SKRELL)	//humanoid bodytypes
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA) //VOREStation Edit
-		//VOREStation Add Start
-		if(SPECIES_HUMAN)
 			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
 		if(SPECIES_UNATHI)
 			species_restricted = list(SPECIES_UNATHI, SPECIES_XENOHYBRID)
 		if(SPECIES_ZORREN_HIGH)
 			species_restricted = list(SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
-		//VOREStation Add End
+		//VOREStation Edit End
 		else
 			species_restricted = list(target_species)
 
@@ -130,16 +128,14 @@
 
 	//Set species_restricted list
 	switch(target_species)
-		if(SPECIES_SKRELL)
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA) //VOREStation Edit
-		//VOREStation Add Start
-		if(SPECIES_HUMAN)
+		//VOREStation Edit Start
+		if(SPECIES_HUMAN, SPECIES_SKRELL)
 			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
 		if(SPECIES_UNATHI)
 			species_restricted = list(SPECIES_UNATHI, SPECIES_XENOHYBRID)
 		if(SPECIES_ZORREN_HIGH)
 			species_restricted = list(SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
-		//VOREStation Add End
+		//VOREStation Edit End
 
 		else
 			species_restricted = list(target_species)
