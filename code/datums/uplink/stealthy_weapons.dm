@@ -33,3 +33,51 @@
 	name = "Random Toxin - Beaker"
 	item_cost = 10
 	path = /obj/item/weapon/storage/box/syndie_kit/toxin
+
+/datum/uplink_item/item/stealthy_weapons/penblade
+	name = "Energy Penblade, Black"
+	desc = "A concealed energy dagger with the functional casing of a pen. Makes an impressive throwing weapon."
+	item_cost = 20
+	path = /obj/item/weapon/pen/blade
+
+/datum/uplink_item/item/stealthy_weapons/penblade_red
+	name = "Energy Penblade, Red"
+	desc = "A concealed energy dagger with the functional casing of a pen. Makes an impressive throwing weapon."
+	item_cost = 20
+	path = /obj/item/weapon/pen/blade/red
+
+/datum/uplink_item/item/stealthy_weapons/penblade_blue
+	name = "Energy Penblade, Blue"
+	desc = "A concealed energy dagger with the functional casing of a pen. Makes an impressive throwing weapon."
+	item_cost = 20
+	path = /obj/item/weapon/pen/blade/blue
+
+/datum/uplink_item/item/stealthy_weapons/penblade_fancy
+	name = "Energy Penblade, Fountain"
+	desc = "A concealed energy dagger with the functional casing of a pen. Makes an impressive throwing weapon."
+	item_cost = 20
+	path = /obj/item/weapon/pen/blade/fountain
+
+/datum/uplink_item/item/stealthy_weapons/angrybuzzer
+	name = "Morphium Shock Ring"
+	desc = "An enigmatic ring used to create powerful electric shocks when punching. Can be used as a brute-force method of defibrillation."
+	item_cost = 40
+	path = /obj/item/clothing/gloves/ring/buzzer
+
+/datum/uplink_item/item/stealthy_weapons/huntingtrap
+	name = "Camonetted Beartraps"
+	desc = "A box of unique beartraps which will partially cloak when deployed, allowing for more effective hunting."
+	item_cost = 30
+	path = /obj/item/weapon/storage/box/syndie_kit/deadliest_game
+
+/datum/uplink_item/item/stealthy_weapons/virus
+	name = "Virus Cultures"
+	desc = "A box of three unique virus cultures. As dangerous to you as anyone else if handled improperly."
+	item_cost = 40
+	path = /obj/item/weapon/storage/box/syndie_kit/viral
+
+/datum/uplink_item/item/stealthy_weapons/syringe_case
+	name = "Quickdraw Syringe Case"
+	desc = "A small box capable of holding six syringes for rapid deployment. Fits in your pocket."
+	item_cost = 20
+	path = /obj/item/weapon/storage/quickdraw/syringe_case
