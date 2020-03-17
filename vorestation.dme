@@ -424,11 +424,8 @@
 #include "code\datums\uplink\hardsuit_modules.dm"
 #include "code\datums\uplink\implants.dm"
 #include "code\datums\uplink\medical.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\datums\uplink\medical_vr.dm"
-=======
 #include "code\datums\uplink\resources.dm"
->>>>>>> c7ba2a8... Antag Uplink Expansion (#6788):polaris.dme
 #include "code\datums\uplink\stealth_items.dm"
 #include "code\datums\uplink\stealthy_weapons.dm"
 #include "code\datums\uplink\telecrystals.dm"
@@ -1725,11 +1722,8 @@
 #include "code\modules\clothing\glasses\glasses.dm"
 #include "code\modules\clothing\glasses\glasses_vr.dm"
 #include "code\modules\clothing\glasses\hud.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\clothing\glasses\hud_vr.dm"
-=======
 #include "code\modules\clothing\gloves\antagonist.dm"
->>>>>>> c7ba2a8... Antag Uplink Expansion (#6788):polaris.dme
 #include "code\modules\clothing\gloves\arm_guards.dm"
 #include "code\modules\clothing\gloves\arm_guards_vr.dm"
 #include "code\modules\clothing\gloves\boxing.dm"
