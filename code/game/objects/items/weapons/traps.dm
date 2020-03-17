@@ -105,6 +105,7 @@
 	L.Stun(stun_length)
 	to_chat(L, "<span class='danger'>The steel jaws of \the [src] bite into you, trapping you in place!</span>")
 	deployed = 0
+	anchored = FALSE
 	can_buckle = initial(can_buckle)
 
 /obj/item/weapon/beartrap/Crossed(atom/movable/AM as mob|obj)

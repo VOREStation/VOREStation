@@ -13,3 +13,18 @@
 	name = "Heavy Armor Vest"
 	item_cost = 40
 	path = /obj/item/clothing/suit/storage/vest/heavy/merc
+
+/datum/uplink_item/item/armor/gorlexsuit
+	name = "Mercenary Voidsuit"
+	item_cost = 40
+	path = /obj/item/weapon/storage/box/syndie_kit/voidsuit
+
+/datum/uplink_item/item/armor/gorlexsuit_fire
+	name = "Mercenary Voidsuit (Fire)"
+	item_cost = 40
+	path = /obj/item/weapon/storage/box/syndie_kit/voidsuit/fire
+
+/datum/uplink_item/item/armor/combat
+	name = "Combat Platecarrier Set"
+	item_cost = 60
+	path = /obj/item/clothing/suit/armor/pcarrier/merc
