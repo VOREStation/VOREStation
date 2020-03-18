@@ -14,7 +14,7 @@
 /datum/job/scientist
 	spawn_positions = 5
 	pto_earning = PTO_SCIENCE
-	alt_titles = list("Scientist" = /datum/alt_title/scientist, "Xenoarchaeologist" = /datum/alt_title/xenoarch, "Anomalist" = /datum/alt_title/anomalist, \
+	alt_titles = list("Xenoarchaeologist" = /datum/alt_title/xenoarch, "Anomalist" = /datum/alt_title/anomalist, \
 						"Phoron Researcher" = /datum/alt_title/phoron_research, "Circuit Designer" = /datum/alt_title/circuit_designer)
 
 /datum/alt_title/circuit_designer
