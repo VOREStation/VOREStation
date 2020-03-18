@@ -118,13 +118,13 @@
 	name = "Warship - Telecommunications Relay"
 
 /datum/map_template/om_ships/cruiser
-	name = "OM Ship - NT Cruiser (New Z)"
+	name = "OM Ship - NDV Von Braun (New Z)"
 	desc = "A large NT cruiser."
 	mappath = 'cruiser.dmm'
 
 /obj/effect/overmap/visitable/ship/cruiser
-	name = "NT Cruiser"
-	desc = "A large military cruiser pinging NT IFF."
+	name = "NDV Von Braun"
+	desc = "A large military cruiser pinging NT IFF. An automated message warns unauthorized vessels from getting close."
 	color = "#00aaff" //Bluey
 	vessel_mass = 15000
 	vessel_size = SHIP_SIZE_LARGE
