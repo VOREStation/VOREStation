@@ -25,14 +25,26 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced,
+/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/breakroom)
 "ad" = (
-/turf/unsimulated/wall{
-	icon = 'icons/obj/doors/Doorext.dmi';
-	icon_state = "door_locked";
-	name = "Sealed Door"
+/obj/machinery/door/airlock/alien/blue/locked{
+	frequency = 1380;
+	id_tag = "ws_dock_8_outer";
+	req_one_access = list(101)
 	},
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "ws_dock_8";
+	name = "exterior access button";
+	pixel_x = -26;
+	pixel_y = 5;
+	req_one_access = list(101)
+	},
+/obj/structure/fans/hardlight,
+/turf/simulated/floor/tiled/techmaint,
 /area/mothership/breakroom)
 "ae" = (
 /turf/simulated/shuttle/wall/voidcraft/blue{
@@ -66,12 +78,28 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/breakroom)
 "ai" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	pixel_x = -32
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	frequency = 1380;
+	id_tag = "ws_dock_8_pump"
 	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume,
 /obj/machinery/light/small{
 	dir = 4;
+	pixel_y = 0
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "ws_dock_8";
+	pixel_x = -32;
+	req_one_access = list(101);
+	tag_airpump = "ws_dock_8_pump";
+	tag_chamber_sensor = "ws_dock_8_sensor";
+	tag_exterior_door = "ws_dock_8_outer";
+	tag_interior_door = "ws_dock_8_inner"
+	},
+/obj/machinery/airlock_sensor{
+	frequency = 1380;
+	id_tag = "ws_dock_8_sensor";
+	pixel_x = 25;
 	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -99,18 +127,39 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/breakroom)
 "am" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	pixel_x = 32
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	frequency = 1380;
+	id_tag = "ws_dock_1_pump"
 	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume,
 /obj/machinery/light/small{
 	dir = 8;
 	pixel_x = 0
 	},
+/obj/machinery/airlock_sensor{
+	frequency = 1380;
+	id_tag = "ws_dock_1_sensor";
+	pixel_x = -25;
+	pixel_y = 0
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "ws_dock_1";
+	pixel_x = 32;
+	req_one_access = list(101);
+	tag_airpump = "ws_dock_1_pump";
+	tag_chamber_sensor = "ws_dock_1_sensor";
+	tag_exterior_door = "ws_dock_1_outer";
+	tag_interior_door = "ws_dock_1_inner"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/breakroom)
 "an" = (
-/obj/machinery/door/airlock/external,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/door/airlock/alien/blue/locked{
+	frequency = 1380;
+	id_tag = "ws_dock_8_inner";
+	req_one_access = list(101)
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/breakroom)
 "ao" = (
@@ -163,6 +212,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/breakroom)
 "av" = (
@@ -232,6 +282,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/breakroom)
 "aD" = (
@@ -239,6 +290,10 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10;
+	icon_state = "intact"
+	},
 /turf/simulated/floor/carpet/blue,
 /area/mothership/breakroom)
 "aE" = (
@@ -252,6 +307,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
 /turf/simulated/floor/carpet/blue,
 /area/mothership/breakroom)
 "aG" = (
@@ -275,6 +333,7 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/carpet/blue,
 /area/mothership/breakroom)
 "aJ" = (
@@ -286,6 +345,7 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/carpet/blue,
 /area/mothership/breakroom)
 "aK" = (
@@ -358,6 +418,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/carpet/blue,
 /area/mothership/breakroom)
 "aT" = (
@@ -379,6 +440,7 @@
 "aV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/carpet/blue,
 /area/mothership/breakroom)
 "aW" = (
@@ -409,7 +471,7 @@
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
 "bc" = (
-/obj/machinery/porta_turret,
+/obj/machinery/porta_turret/industrial/military,
 /turf/simulated/floor/reinforced/airless{
 	name = "outer hull"
 	},
@@ -441,6 +503,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/airlock/voidcraft,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
 "bg" = (
@@ -451,6 +514,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/airlock/voidcraft,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
 "bh" = (
@@ -552,6 +616,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5;
+	icon_state = "intact"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
 "bs" = (
@@ -561,6 +629,10 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1;
+	icon_state = "map"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
 "bt" = (
@@ -568,6 +640,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -579,6 +654,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 9;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
@@ -669,6 +748,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/hydroponics)
 "bD" = (
@@ -739,6 +819,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
 "bK" = (
@@ -800,6 +881,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/kitchen)
 "bR" = (
@@ -831,6 +913,7 @@
 "bV" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
 "bW" = (
@@ -941,6 +1024,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hydroponics)
 "ch" = (
@@ -1045,6 +1129,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "cu" = (
@@ -1133,6 +1218,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "cE" = (
@@ -1167,35 +1253,85 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "cH" = (
-/turf/unsimulated/wall{
-	icon = 'icons/obj/doors/Doorext.dmi';
-	icon_state = "door_locked";
-	name = "Sealed Door"
+/obj/machinery/door/airlock/alien/blue/locked{
+	frequency = 1380;
+	id_tag = "ws_dock_7_outer";
+	req_one_access = list(101)
 	},
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "ws_dock_7";
+	name = "exterior access button";
+	pixel_x = -5;
+	pixel_y = 26;
+	req_one_access = list(101)
+	},
+/obj/structure/fans/hardlight,
+/turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "cI" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	pixel_x = 0;
-	pixel_y = 32
-	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4
+	dir = 4;
+	frequency = 1380;
+	id_tag = "ws_dock_7_pump"
 	},
 /obj/machinery/light/small,
+/obj/machinery/airlock_sensor{
+	frequency = 1380;
+	id_tag = "ws_dock_7_sensor";
+	pixel_x = 0;
+	pixel_y = -25
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "ws_dock_7";
+	pixel_y = 32;
+	req_one_access = list(101);
+	tag_airpump = "ws_dock_7_pump";
+	tag_chamber_sensor = "ws_dock_7_sensor";
+	tag_exterior_door = "ws_dock_7_outer";
+	tag_interior_door = "ws_dock_7_inner"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "cJ" = (
-/obj/machinery/door/airlock/external,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/alien/blue/locked{
+	frequency = 1380;
+	id_tag = "ws_dock_7_inner";
+	req_one_access = list(101)
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "cK" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "ws_dock_7";
+	name = "interior access button";
+	pixel_x = -28;
+	pixel_y = -26;
+	req_one_access = list(101)
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "cL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -1205,6 +1341,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -1218,6 +1357,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "cO" = (
@@ -1227,11 +1369,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "cP" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold4w/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "cQ" = (
@@ -1246,6 +1392,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "cR" = (
@@ -1255,23 +1404,55 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "cS" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "ws_dock_2";
+	name = "interior access button";
+	pixel_x = 28;
+	pixel_y = -26;
+	req_one_access = list(101)
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "cT" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	pixel_x = 0;
-	pixel_y = 32
-	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 8
+	dir = 8;
+	frequency = 1380;
+	id_tag = "ws_dock_2_pump"
 	},
 /obj/machinery/light/small,
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "ws_dock_2";
+	pixel_y = 32;
+	req_one_access = list(101);
+	tag_airpump = "ws_dock_2_pump";
+	tag_chamber_sensor = "ws_dock_2_sensor";
+	tag_exterior_door = "ws_dock_2_outer";
+	tag_interior_door = "ws_dock_2_inner"
+	},
+/obj/machinery/airlock_sensor{
+	frequency = 1380;
+	id_tag = "ws_dock_2_sensor";
+	pixel_x = 0;
+	pixel_y = -25
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "cU" = (
@@ -1335,6 +1516,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/eva)
 "dc" = (
@@ -1458,6 +1640,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "dl" = (
@@ -1471,6 +1656,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -1488,6 +1676,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "dn" = (
@@ -1506,6 +1695,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
@@ -1626,6 +1818,14 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/porta_turret/industrial/teleport_defense{
+	auto_repair = 1;
+	check_access = 0;
+	check_weapons = 1;
+	name = "anti-boarding turret";
+	req_one_access = list(101)
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "dy" = (
@@ -1742,6 +1942,7 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced,
+/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/surgery)
 "dL" = (
@@ -1804,6 +2005,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "dT" = (
@@ -2110,6 +2312,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "ew" = (
@@ -2167,6 +2370,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "eC" = (
@@ -2329,6 +2533,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "eN" = (
@@ -2452,6 +2657,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "fd" = (
@@ -2472,6 +2678,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "ff" = (
@@ -2731,17 +2938,17 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/vault)
 "fy" = (
-/obj/machinery/power/smes/buildable{
-	charge = 2e+007;
-	cur_coils = 4;
-	input_attempt = 1;
-	input_level = 1e+006;
-	output_level = 1e+006;
-	RCon = 0
-	},
 /obj/structure/cable/cyan{
 	d2 = 2;
 	icon_state = "0-2"
+	},
+/obj/machinery/power/smes/buildable/hybrid{
+	charge = 1e+007;
+	cur_coils = 4;
+	input_attempt = 1;
+	input_level = 1e+006;
+	output_level = 2e+006;
+	RCon = 0
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/vault)
@@ -2791,6 +2998,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "fC" = (
@@ -2918,6 +3126,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "fR" = (
@@ -2994,6 +3203,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "fW" = (
@@ -3275,6 +3485,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/security)
 "gq" = (
@@ -3525,16 +3736,20 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/porta_turret/industrial/teleport_defense{
+	auto_repair = 1;
+	check_access = 0;
+	check_weapons = 1;
+	name = "anti-boarding turret";
+	req_one_access = list(101)
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "gR" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/hallway)
-"gS" = (
-/obj/structure/ladder,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "gT" = (
@@ -3560,6 +3775,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/treatment)
 "gV" = (
@@ -3632,6 +3848,10 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5;
+	icon_state = "intact"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "hd" = (
@@ -3655,6 +3875,10 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1;
+	icon_state = "map"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
@@ -4041,6 +4265,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "hM" = (
@@ -5354,6 +5579,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/warden)
 "kl" = (
@@ -5646,6 +5872,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/medical)
 "kP" = (
@@ -5774,6 +6001,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "kZ" = (
@@ -6051,6 +6279,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "lA" = (
@@ -6069,6 +6300,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
@@ -6262,6 +6497,14 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/porta_turret/industrial/teleport_defense{
+	auto_repair = 1;
+	check_access = 0;
+	check_weapons = 1;
+	name = "anti-boarding turret";
+	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
@@ -6516,20 +6759,17 @@
 /obj/machinery/status_display{
 	pixel_y = 29
 	},
-/obj/item/modular_computer/console/preset/mercenary,
+/obj/machinery/computer/shuttle_control/explore/aroboat,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
 "mr" = (
-/obj/structure/prop/alien/computer{
-	icon_state = "console-c";
+/obj/structure/prop/alien/computer/hybrid{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
 "ms" = (
-/obj/item/modular_computer/telescreen/preset/generic{
-	pixel_y = 28
-	},
+/obj/machinery/computer/ship/helm,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
 "mt" = (
@@ -6821,6 +7061,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "mV" = (
@@ -7044,6 +7285,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "nm" = (
@@ -7063,7 +7305,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
 "no" = (
-/obj/structure/bed/chair/shuttle{
+/obj/structure/bed/chair/bay/shuttle{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_grid,
@@ -7081,7 +7323,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
 "nr" = (
-/obj/structure/bed/chair/shuttle{
+/obj/structure/bed/chair/bay/shuttle{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_grid,
@@ -7124,6 +7366,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "nv" = (
@@ -7240,6 +7483,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "nF" = (
@@ -7421,6 +7665,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "nW" = (
@@ -7567,26 +7812,34 @@
 /obj/structure/fireaxecabinet{
 	pixel_y = -32
 	},
+/obj/machinery/turretid/stun{
+	check_access = 0;
+	check_weapons = 1;
+	control_area = /area/mothership/hallway;
+	name = "anti-boarding turret controls";
+	pixel_x = -32;
+	req_access = list(101)
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
 "oi" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 4
-	},
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_x = 0;
 	pixel_y = -25
 	},
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
 "oj" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 8
-	},
 /obj/machinery/alarm{
 	dir = 1;
 	pixel_y = -22
+	},
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
@@ -7598,6 +7851,13 @@
 	pixel_y = -26;
 	req_one_access = list(108);
 	specialfunctions = 4
+	},
+/obj/machinery/turretid/lethal{
+	ailock = 1;
+	check_synth = 0;
+	control_area = /area/mothership/bridge;
+	name = "defense turret controls";
+	pixel_x = 32
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
@@ -7735,6 +7995,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/holodeck)
 "oB" = (
@@ -7787,6 +8048,17 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 8;
+	icon_state = "map"
+	},
+/obj/machinery/porta_turret/industrial/teleport_defense{
+	auto_repair = 1;
+	check_access = 0;
+	check_weapons = 1;
+	name = "anti-boarding turret";
+	req_one_access = list(101)
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "oI" = (
@@ -7805,6 +8077,17 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 4;
+	icon_state = "map"
+	},
+/obj/machinery/porta_turret/industrial/teleport_defense{
+	auto_repair = 1;
+	check_access = 0;
+	check_weapons = 1;
+	name = "anti-boarding turret";
+	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
@@ -7928,6 +8211,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "oV" = (
@@ -7971,6 +8255,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "pb" = (
@@ -8035,65 +8320,7 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/telecomms1)
-"pf" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 6
-	},
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/telecomms1)
-"pg" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/telecomms1)
-"ph" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 1;
-	icon_state = "map"
-	},
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/telecomms1)
-"pi" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/hallway)
-"pj" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 1;
-	icon_state = "map"
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/hallway)
 "pk" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
 /turf/simulated/shuttle/wall/voidcraft/blue{
 	hard_corner = 1;
 	icon_state = "void-hc";
@@ -8101,65 +8328,6 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/cryotube)
-"pl" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/cryotube)
-"pm" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/hallway)
-"pn" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 1;
-	icon_state = "map"
-	},
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/telecomms2)
-"po" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/telecomms2)
-"pp" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 10;
-	icon_state = "intact"
-	},
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/telecomms2)
 "pq" = (
 /turf/simulated/shuttle/wall/voidcraft/blue{
 	name = "small craft wall";
@@ -8167,28 +8335,63 @@
 	},
 /area/mothership/telecomms2)
 "pr" = (
-/turf/unsimulated/wall{
-	icon = 'icons/obj/doors/Doorext.dmi';
-	icon_state = "door_locked";
-	name = "Sealed Door"
+/obj/machinery/door/airlock/alien/blue/locked{
+	frequency = 1380;
+	id_tag = "ws_dock_6_outer";
+	req_one_access = list(101)
 	},
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "ws_dock_6";
+	name = "exterior access button";
+	pixel_x = -5;
+	pixel_y = -26;
+	req_one_access = list(101)
+	},
+/obj/structure/fans/hardlight,
+/turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
 "ps" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	pixel_x = 0;
-	pixel_y = 32
-	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4
+	dir = 4;
+	frequency = 1380;
+	id_tag = "ws_dock_6_pump"
 	},
-/obj/machinery/light/small,
+/obj/machinery/light/small{
+	icon_state = "bulb1";
+	dir = 1
+	},
+/obj/machinery/airlock_sensor{
+	frequency = 1380;
+	id_tag = "ws_dock_6_sensor";
+	pixel_x = 0;
+	pixel_y = 25
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "ws_dock_6";
+	pixel_y = -32;
+	req_one_access = list(101);
+	tag_airpump = "ws_dock_6_pump";
+	tag_chamber_sensor = "ws_dock_6_sensor";
+	tag_exterior_door = "ws_dock_6_outer";
+	tag_interior_door = "ws_dock_6_inner"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
 "pt" = (
-/obj/machinery/door/airlock/external,
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9;
 	icon_state = "intact"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/alien/blue/locked{
+	frequency = 1380;
+	id_tag = "ws_dock_6_inner";
+	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
@@ -8198,6 +8401,22 @@
 	layer = 3.3;
 	pixel_x = 4;
 	pixel_y = 26
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10;
+	icon_state = "intact"
+	},
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "ws_dock_6";
+	name = "interior access button";
+	pixel_x = -28;
+	pixel_y = 26;
+	req_one_access = list(101)
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
@@ -8229,6 +8448,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
 "pz" = (
@@ -8246,6 +8468,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
 "pA" = (
@@ -8258,6 +8483,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -8278,7 +8506,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
 "pC" = (
@@ -8298,6 +8528,10 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 4;
+	icon_state = "map"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
@@ -8347,7 +8581,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "pL" = (
@@ -8360,6 +8596,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -8379,6 +8618,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "pN" = (
@@ -8395,6 +8637,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
@@ -8419,33 +8665,79 @@
 	pixel_x = 4;
 	pixel_y = 26
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "ws_dock_3";
+	name = "interior access button";
+	pixel_x = 28;
+	pixel_y = 26;
+	req_one_access = list(101)
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "pS" = (
-/obj/machinery/door/airlock/external,
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 5;
-	icon_state = "intact"
+	dir = 4
+	},
+/obj/machinery/door/airlock/alien/blue/locked{
+	frequency = 1380;
+	id_tag = "ws_dock_3_inner";
+	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "pT" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	pixel_x = 0;
-	pixel_y = 32
-	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 8
+	dir = 8;
+	frequency = 1380;
+	id_tag = "ws_dock_3_pump"
 	},
-/obj/machinery/light/small,
+/obj/machinery/light/small{
+	icon_state = "bulb1";
+	dir = 1
+	},
+/obj/machinery/airlock_sensor{
+	frequency = 1380;
+	id_tag = "ws_dock_3_sensor";
+	pixel_x = 0;
+	pixel_y = 25
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "ws_dock_3";
+	pixel_y = -32;
+	req_one_access = list(101);
+	tag_airpump = "ws_dock_3_pump";
+	tag_chamber_sensor = "ws_dock_3_sensor";
+	tag_exterior_door = "ws_dock_3_outer";
+	tag_interior_door = "ws_dock_3_inner"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "pU" = (
-/turf/unsimulated/wall{
-	icon = 'icons/obj/doors/Doorext.dmi';
-	icon_state = "door_locked";
-	name = "Sealed Door"
+/obj/machinery/door/airlock/alien/blue/locked{
+	frequency = 1380;
+	id_tag = "ws_dock_3_outer";
+	req_one_access = list(101)
 	},
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "ws_dock_3";
+	name = "exterior access button";
+	pixel_x = 5;
+	pixel_y = -26;
+	req_one_access = list(101)
+	},
+/obj/structure/fans/hardlight,
+/turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "pV" = (
 /turf/simulated/shuttle/wall/voidcraft/blue{
@@ -8466,14 +8758,25 @@
 	icon_state = "tube1";
 	pixel_y = 0
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5;
+	icon_state = "intact"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
 "pX" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
 "pY" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 9;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
@@ -8490,7 +8793,6 @@
 /turf/simulated/floor/bluegrid,
 /area/mothership/telecomms1)
 "qb" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/structure/sign/department/telecoms,
 /turf/simulated/shuttle/wall/voidcraft/blue{
 	name = "small craft wall";
@@ -8581,10 +8883,10 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "qm" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/structure/sign/department/telecoms,
 /turf/simulated/shuttle/wall/voidcraft/blue{
 	name = "small craft wall";
@@ -8603,9 +8905,16 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5;
+	icon_state = "intact"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "qq" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "qr" = (
@@ -8621,6 +8930,10 @@
 /obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 9;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
@@ -8652,34 +8965,6 @@
 /obj/machinery/telecomms/relay/preset/centcom,
 /turf/simulated/floor/bluegrid,
 /area/mothership/telecomms1)
-"qy" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 6
-	},
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/engineering)
-"qz" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/engineering)
-"qA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 9;
-	icon_state = "intact"
-	},
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/engineering)
 "qB" = (
 /obj/structure/sign/department/eng,
 /turf/simulated/shuttle/wall/voidcraft/blue{
@@ -8745,29 +9030,10 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "qJ" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/engineering)
-"qK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 5;
-	icon_state = "intact"
-	},
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/engineering)
-"qL" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 10;
-	icon_state = "intact"
-	},
 /turf/simulated/shuttle/wall/voidcraft/blue{
 	name = "small craft wall";
 	stripe_color = "#45b3d8"
@@ -8799,13 +9065,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms1)
-"qS" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/engineering)
 "qT" = (
 /obj/machinery/atmospherics/pipe/tank/air{
 	dir = 4
@@ -8907,6 +9166,7 @@
 	dir = 8;
 	icon_state = "tube1"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "re" = (
@@ -8989,6 +9249,7 @@
 "rn" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "ro" = (
@@ -9109,6 +9370,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 9
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "rF" = (
@@ -9138,7 +9400,7 @@
 /area/mothership/telecomms2)
 "rJ" = (
 /obj/structure/shuttle/engine/heater,
-/obj/structure/window/reinforced{
+/obj/structure/window/phoronreinforced{
 	dir = 1
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -9236,6 +9498,10 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5;
+	icon_state = "intact"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "rX" = (
@@ -9253,11 +9519,15 @@
 /obj/item/weapon/rcd_ammo,
 /obj/item/weapon/rcd_ammo,
 /obj/item/weapon/rig/ce/equipped,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10;
+	icon_state = "intact"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "rZ" = (
 /obj/structure/shuttle/engine/heater,
-/obj/structure/window/reinforced{
+/obj/structure/window/phoronreinforced{
 	dir = 1
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -9378,6 +9648,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "sq" = (
@@ -9397,15 +9668,24 @@
 /obj/item/weapon/extinguisher,
 /obj/item/clothing/head/hardhat/red,
 /obj/item/weapon/storage/toolbox/emergency,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "ss" = (
 /obj/machinery/vending/assist,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "st" = (
 /obj/structure/particle_accelerator/end_cap{
 	anchored = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
@@ -9486,14 +9766,23 @@
 /obj/item/stack/material/glass/phoronglass,
 /obj/item/stack/rods,
 /obj/item/stack/rods,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "sv" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "sw" = (
 /obj/machinery/vending/engivend,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "sx" = (
@@ -9509,6 +9798,10 @@
 /obj/item/weapon/extinguisher,
 /obj/item/clothing/head/hardhat/red,
 /obj/item/weapon/storage/toolbox/emergency,
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 4;
+	icon_state = "map"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "sy" = (
@@ -9540,10 +9833,11 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "sD" = (
-/obj/machinery/door/airlock/external,
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 10;
-	icon_state = "intact"
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/door/airlock/alien/blue/locked{
+	frequency = 1380;
+	id_tag = "ws_dock_5_inner";
+	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
@@ -9561,28 +9855,45 @@
 	},
 /area/mothership/engineering)
 "sG" = (
-/obj/machinery/door/airlock/external,
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 6
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/door/airlock/alien/blue/locked{
+	frequency = 1380;
+	id_tag = "ws_dock_4_inner";
+	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "sH" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	pixel_x = -32
-	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 1
+	dir = 1;
+	frequency = 1380;
+	id_tag = "ws_dock_5_pump"
 	},
 /obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 0
 	},
+/obj/machinery/airlock_sensor{
+	frequency = 1380;
+	id_tag = "ws_dock_5_sensor";
+	pixel_x = 25;
+	pixel_y = 0
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "ws_dock_5";
+	pixel_x = -32;
+	req_one_access = list(101);
+	tag_airpump = "ws_dock_5_pump";
+	tag_chamber_sensor = "ws_dock_5_sensor";
+	tag_exterior_door = "ws_dock_5_outer";
+	tag_interior_door = "ws_dock_5_inner"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "sI" = (
 /obj/structure/shuttle/engine/heater,
-/obj/structure/window/reinforced{
+/obj/structure/window/phoronreinforced{
 	dir = 1
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -9598,24 +9909,50 @@
 /turf/simulated/shuttle/plating/airless/carry,
 /area/mothership/armory)
 "sK" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	pixel_x = 32
-	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 1
+	dir = 1;
+	frequency = 1380;
+	id_tag = "ws_dock_4_pump"
 	},
 /obj/machinery/light/small{
 	dir = 8;
 	pixel_x = 0
 	},
+/obj/machinery/airlock_sensor{
+	frequency = 1380;
+	id_tag = "ws_dock_4_sensor";
+	pixel_x = -25;
+	pixel_y = 0
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "ws_dock_4";
+	pixel_x = 32;
+	req_one_access = list(101);
+	tag_airpump = "ws_dock_4_pump";
+	tag_chamber_sensor = "ws_dock_4_sensor";
+	tag_exterior_door = "ws_dock_4_outer";
+	tag_interior_door = "ws_dock_4_inner"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "sL" = (
-/turf/unsimulated/wall{
-	icon = 'icons/obj/doors/Doorext.dmi';
-	icon_state = "door_locked";
-	name = "Sealed Door"
+/obj/machinery/door/airlock/alien/blue/locked{
+	frequency = 1380;
+	id_tag = "ws_dock_5_outer";
+	req_one_access = list(101)
 	},
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "ws_dock_5";
+	name = "exterior access button";
+	pixel_x = -26;
+	pixel_y = -5;
+	req_one_access = list(101)
+	},
+/obj/structure/fans/hardlight,
+/turf/simulated/floor/tiled/techmaint,
 /area/mothership/engineering)
 "sM" = (
 /obj/structure/shuttle/engine/propulsion,
@@ -9625,8 +9962,8 @@
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
 	base_turf = /turf/space;
-	landmark_tag = "cruiser_port_dock";
-	name = "Vessel port dock"
+	landmark_tag = "ws_port_dock_2";
+	name = "Cruiser Dock P2"
 	},
 /turf/space,
 /area/space)
@@ -9634,8 +9971,8 @@
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
 	base_turf = /turf/space;
-	landmark_tag = "cruiser_dock_starboard";
-	name = "Vessel starboard dock"
+	landmark_tag = "ws_starboard_dock_2";
+	name = "Cruiser Dock S2"
 	},
 /turf/space,
 /area/space)
@@ -9677,10 +10014,347 @@
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/mothership/telecomms2)
+"tK" = (
+/obj/item/modular_computer/console/preset/mercenary{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/mothership/bridge)
+"tZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5;
+	icon_state = "intact"
+	},
+/turf/simulated/floor/wood,
+/area/mothership/breakroom)
+"uI" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/mothership/bridge)
+"uS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/alien/blue/locked{
+	frequency = 1380;
+	id_tag = "ws_dock_2_inner";
+	req_one_access = list(101)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/eva)
+"wT" = (
+/obj/machinery/computer/ship/sensors,
+/turf/simulated/floor/tiled/steel_grid,
+/area/mothership/bridge)
+"xn" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
+"yi" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/door/airlock/alien/blue/locked{
+	frequency = 1380;
+	id_tag = "ws_dock_1_inner";
+	req_one_access = list(101)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/breakroom)
+"zE" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "ws_dock_4";
+	name = "interior access button";
+	pixel_x = -28;
+	pixel_y = -26;
+	req_one_access = list(101)
+	},
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
+"Am" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "ws_dock_5";
+	name = "interior access button";
+	pixel_x = 28;
+	pixel_y = -26;
+	req_one_access = list(101)
+	},
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
+"Do" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/mothership/breakroom)
+"DA" = (
+/turf/space,
+/area/ship/aro/bridge)
+"EG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 9;
+	icon_state = "intact"
+	},
+/turf/simulated/floor/wood,
+/area/mothership/breakroom)
+"EK" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "EP" = (
 /obj/effect/overmap/visitable/ship/cruiser,
 /turf/space,
 /area/space)
+"FC" = (
+/obj/machinery/ion_engine,
+/turf/space,
+/area/mothership/engineering)
+"FW" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/blue,
+/area/mothership/breakroom)
+"Gi" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "ws_dock_8";
+	name = "interior access button";
+	pixel_x = 28;
+	pixel_y = 26;
+	req_one_access = list(101)
+	},
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/mothership/breakroom)
+"Kr" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 9;
+	icon_state = "intact"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"LI" = (
+/turf/space,
+/area/tether/station/dock_two)
+"PC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "ws_dock_1";
+	name = "interior access button";
+	pixel_x = -28;
+	pixel_y = 26;
+	req_one_access = list(101)
+	},
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/mothership/breakroom)
+"PT" = (
+/obj/machinery/door/airlock/alien/blue/locked{
+	frequency = 1380;
+	id_tag = "ws_dock_4_outer";
+	req_one_access = list(101)
+	},
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "ws_dock_4";
+	name = "exterior access button";
+	pixel_x = 26;
+	pixel_y = -5;
+	req_one_access = list(101)
+	},
+/obj/structure/fans/hardlight,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/engineering)
+"QI" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/space;
+	base_turf = /turf/space;
+	landmark_tag = "ws_starboard_dock_1";
+	name = "Cruiser Dock S1"
+	},
+/turf/space,
+/area/space)
+"QU" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/space;
+	base_turf = /turf/space;
+	landmark_tag = "ws_port_dock_1";
+	name = "Cruiser Dock P1"
+	},
+/turf/space,
+/area/space)
+"Su" = (
+/obj/machinery/shipsensors{
+	health = 1000;
+	heat_reduction = 4.5;
+	max_health = 1000;
+	name = "military sensors suite"
+	},
+/turf/simulated/floor/reinforced/airless{
+	name = "outer hull"
+	},
+/area/mothership/hydroponics)
+"SE" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 8;
+	icon_state = "map"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"SM" = (
+/obj/machinery/door/airlock/alien/blue/locked{
+	frequency = 1380;
+	id_tag = "ws_dock_1_outer";
+	req_one_access = list(101)
+	},
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "ws_dock_1";
+	name = "exterior access button";
+	pixel_x = 26;
+	pixel_y = 5;
+	req_one_access = list(101)
+	},
+/obj/structure/fans/hardlight,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/breakroom)
+"TZ" = (
+/obj/machinery/ion_engine,
+/turf/space,
+/area/mothership/telecomms2)
+"Wi" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"WE" = (
+/obj/machinery/ion_engine,
+/turf/space,
+/area/mothership/telecomms1)
+"Xh" = (
+/obj/item/modular_computer/console/preset/mercenary{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/mothership/bridge)
+"Xy" = (
+/obj/machinery/status_display{
+	pixel_y = 29
+	},
+/obj/machinery/computer/ship/engines,
+/turf/simulated/floor/tiled/steel_grid,
+/area/mothership/bridge)
+"ZS" = (
+/obj/machinery/door/airlock/alien/blue/locked{
+	frequency = 1380;
+	id_tag = "ws_dock_2_outer";
+	req_one_access = list(101)
+	},
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "ws_dock_2";
+	name = "exterior access button";
+	pixel_x = 5;
+	pixel_y = 26;
+	req_one_access = list(101)
+	},
+/obj/structure/fans/hardlight,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/eva)
+"ZZ" = (
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10;
+	icon_state = "intact"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 
 (1,1,1) = {"
 aa
@@ -17580,7 +18254,7 @@ mi
 on
 oB
 oL
-pf
+pV
 pt
 pV
 pe
@@ -17680,7 +18354,7 @@ aa
 aa
 aa
 aa
-aa
+QU
 aa
 aa
 aa
@@ -17722,7 +18396,7 @@ mi
 oo
 oC
 oM
-pg
+pe
 pu
 pW
 qt
@@ -17864,7 +18538,7 @@ mi
 oo
 oC
 oM
-pg
+pe
 pv
 pX
 qu
@@ -17872,7 +18546,7 @@ qR
 rj
 rt
 rJ
-sa
+WE
 aa
 aa
 aa
@@ -18006,7 +18680,7 @@ oe
 op
 oD
 oN
-pg
+pe
 pw
 pX
 qv
@@ -18099,7 +18773,7 @@ aa
 aa
 aa
 bc
-cq
+Su
 be
 bC
 bC
@@ -18148,7 +18822,7 @@ of
 oq
 oE
 oO
-pg
+pe
 px
 pX
 qw
@@ -18156,7 +18830,7 @@ qR
 rj
 rt
 rJ
-sa
+WE
 aa
 aa
 aa
@@ -18242,7 +18916,7 @@ au
 au
 ae
 bd
-bk
+be
 bD
 bR
 bk
@@ -18290,7 +18964,7 @@ og
 or
 oE
 oP
-pg
+pe
 py
 pY
 qx
@@ -18432,18 +19106,18 @@ mi
 os
 oE
 oQ
-pg
+pe
 pz
 pZ
-qy
-qS
-qS
-qS
-qS
-qS
-qS
-qS
-qK
+qJ
+qJ
+qJ
+qJ
+qJ
+qJ
+qJ
+qJ
+qJ
 qJ
 qJ
 aa
@@ -18521,8 +19195,8 @@ aa
 ad
 ai
 an
-ao
-ao
+Gi
+tZ
 ao
 aM
 bd
@@ -18574,17 +19248,17 @@ mi
 ot
 oF
 oR
-pg
+pe
 pA
 qa
-qz
+qJ
 qT
 qT
 qT
 rK
 sb
 sr
-rX
+Am
 sD
 sH
 sL
@@ -18664,7 +19338,7 @@ ae
 ab
 ae
 av
-ao
+Do
 ao
 aN
 bd
@@ -18716,10 +19390,10 @@ nk
 ou
 oG
 oS
-ph
+pV
 pB
 qb
-qA
+qJ
 qU
 rk
 ru
@@ -18806,7 +19480,7 @@ ag
 ab
 ao
 ao
-ao
+Do
 ao
 aO
 bd
@@ -18858,8 +19532,8 @@ dz
 ov
 ov
 oT
-pi
-dj
+dz
+EK
 qc
 qB
 qV
@@ -18948,7 +19622,7 @@ ae
 ae
 ap
 ao
-ao
+Do
 ao
 aP
 bd
@@ -18963,14 +19637,14 @@ cX
 cr
 dk
 dx
-dx
-dx
+Wi
+Wi
 ev
 eM
 fc
-dx
+Wi
 fQ
-dx
+Wi
 dS
 gQ
 hc
@@ -18990,17 +19664,17 @@ kG
 lz
 dx
 dS
-dx
-dx
+Wi
+Wi
 mU
 nl
 nE
-dx
-dx
-dx
+Wi
+Wi
+Wi
 oH
 oU
-pj
+fc
 pC
 qd
 qC
@@ -19013,7 +19687,7 @@ st
 sz
 sE
 sI
-sM
+FC
 aa
 aa
 aa
@@ -19090,7 +19764,7 @@ bc
 ac
 ao
 aw
-ao
+Do
 aG
 aQ
 bd
@@ -19115,7 +19789,7 @@ fR
 fd
 gx
 dz
-dj
+EK
 hu
 hI
 if
@@ -19129,7 +19803,7 @@ iv
 kE
 kV
 kG
-dj
+EK
 dz
 mb
 mc
@@ -19232,7 +19906,7 @@ ab
 ae
 aq
 ax
-ar
+FW
 aH
 aR
 be
@@ -19245,7 +19919,7 @@ cB
 cO
 cZ
 cr
-dj
+EK
 dz
 dP
 ec
@@ -19257,7 +19931,7 @@ fS
 gh
 fd
 dz
-dj
+EK
 hu
 hJ
 ig
@@ -19271,7 +19945,7 @@ iv
 kF
 kW
 kG
-dj
+EK
 dz
 mc
 mq
@@ -19282,9 +19956,9 @@ mG
 mE
 oh
 mc
-dj
+EK
 oV
-pl
+pD
 pE
 qf
 qD
@@ -19297,7 +19971,7 @@ st
 sz
 sE
 sI
-sM
+FC
 aa
 aa
 aa
@@ -19387,7 +20061,7 @@ cC
 cO
 da
 de
-dj
+EK
 dA
 dP
 ed
@@ -19399,7 +20073,7 @@ fS
 gi
 fd
 gR
-dj
+EK
 hv
 hK
 hu
@@ -19413,20 +20087,20 @@ iv
 kG
 kX
 lm
-dj
+EK
 dA
 mc
 mr
-mF
+uI
 mW
 no
 no
 no
 oi
 mc
-dj
+EK
 oW
-pl
+pD
 pF
 qg
 qE
@@ -19540,23 +20214,23 @@ fx
 fS
 gj
 fd
-gS
+dz
 hd
 dS
 hL
-dx
-dx
-dx
-dx
+Wi
+Wi
+Wi
+Wi
 fe
-dx
-dx
-dx
-dx
+Wi
+Wi
+Wi
+Wi
 kY
 dS
 he
-gS
+dz
 mc
 ms
 mG
@@ -19564,11 +20238,11 @@ mF
 np
 nG
 nT
-np
+Xh
 mc
-dj
+EK
 oX
-pl
+pD
 pG
 qh
 qF
@@ -19682,8 +20356,8 @@ fy
 fT
 gk
 fd
-gS
-dj
+dz
+EK
 dy
 dj
 gy
@@ -19697,20 +20371,20 @@ ff
 gy
 dj
 dy
-dj
-gS
+EK
+dz
 mc
-ms
+wT
 mG
 mF
 nq
 nH
 nU
-nq
+tK
 mc
-dj
+EK
 oY
-pl
+pD
 pH
 qh
 qF
@@ -19813,7 +20487,7 @@ cF
 cO
 dd
 cs
-dj
+EK
 dA
 dP
 eg
@@ -19825,7 +20499,7 @@ fS
 gl
 fd
 gR
-dj
+EK
 hw
 hM
 hx
@@ -19839,20 +20513,20 @@ hy
 kH
 kZ
 ln
-dj
+EK
 dA
 mc
 mr
-mF
+uI
 mX
 nr
 nr
 nr
 oj
 mc
-dj
+EK
 oZ
-pl
+pD
 pI
 qi
 qG
@@ -19942,7 +20616,7 @@ ab
 ae
 aq
 ax
-ar
+FW
 aH
 aW
 bh
@@ -19955,7 +20629,7 @@ cG
 cO
 cZ
 cr
-dj
+EK
 dD
 dP
 eh
@@ -19967,7 +20641,7 @@ fU
 gm
 fd
 dz
-dj
+EK
 hx
 hN
 ih
@@ -19981,10 +20655,10 @@ hy
 kI
 la
 kH
-dj
+EK
 dz
 mc
-mq
+Xy
 mH
 mY
 ns
@@ -19992,9 +20666,9 @@ mG
 mH
 ok
 mc
-dj
+EK
 oV
-pl
+pD
 pJ
 qj
 qH
@@ -20007,7 +20681,7 @@ st
 sz
 sE
 sI
-sM
+FC
 aa
 aa
 aa
@@ -20084,7 +20758,7 @@ bc
 ac
 ao
 aB
-ao
+Do
 aK
 aX
 bi
@@ -20097,7 +20771,7 @@ cA
 cO
 cY
 cr
-dj
+EK
 dz
 dO
 dP
@@ -20134,7 +20808,7 @@ nF
 mc
 mc
 mb
-dj
+EK
 oW
 pk
 pD
@@ -20226,7 +20900,7 @@ ae
 ae
 as
 ao
-ao
+Do
 ao
 aY
 bi
@@ -20239,19 +20913,19 @@ cz
 cO
 cX
 cr
-dk
+ZZ
 dx
 dS
-dx
+Wi
 eB
-dx
+Wi
 fe
 fB
 fV
+Wi
+Wi
 dx
-dx
-dx
-he
+Kr
 hx
 hP
 ij
@@ -20267,19 +20941,19 @@ lc
 kH
 lA
 lQ
-dx
-dx
-dx
-dx
+Wi
+Wi
+Wi
+Wi
 nu
-dx
+Wi
 nV
-dx
+Wi
 dS
 oI
 pa
-pm
-nV
+fe
+SE
 ql
 qI
 rd
@@ -20291,7 +20965,7 @@ st
 sz
 sE
 sI
-sM
+FC
 aa
 aa
 aa
@@ -20368,7 +21042,7 @@ ag
 ab
 at
 ao
-ao
+Do
 ao
 ao
 bj
@@ -20420,14 +21094,14 @@ dz
 dy
 dz
 dj
-pi
-dj
+dz
+EK
 qc
 qJ
 re
 ro
 rF
-rX
+xn
 so
 st
 sz
@@ -20510,7 +21184,7 @@ ae
 ab
 ae
 av
-ao
+Do
 ao
 aZ
 bi
@@ -20562,14 +21236,14 @@ ol
 ow
 ol
 pb
-pn
+qs
 pK
 qm
-qK
+qJ
 rf
 rp
 rG
-rX
+xn
 rX
 sw
 sC
@@ -20648,11 +21322,11 @@ aa
 aa
 aa
 aa
-ad
+SM
 am
-an
-ao
-ao
+yi
+PC
+EG
 ao
 ba
 bi
@@ -20704,20 +21378,20 @@ lr
 ox
 oJ
 pc
-po
+pq
 pL
 qn
-qz
+qJ
 rg
 rq
 rH
 rY
 sp
 sx
-rX
+zE
 sG
 sK
-sL
+PT
 aa
 aa
 aa
@@ -20846,18 +21520,18 @@ lr
 oy
 oK
 pd
-po
+pq
 pM
 qo
-qL
-qS
-qS
-qS
-qS
-qS
-qS
-qS
-qA
+qJ
+qJ
+qJ
+qJ
+qJ
+qJ
+qJ
+qJ
+qJ
 qJ
 qJ
 aa
@@ -20946,7 +21620,7 @@ cc
 bk
 cr
 cs
-cJ
+uS
 cs
 cr
 dr
@@ -20988,7 +21662,7 @@ lr
 oz
 oz
 oz
-po
+pq
 pN
 qp
 qM
@@ -21130,7 +21804,7 @@ lr
 oz
 oz
 oz
-po
+pq
 pO
 qq
 qN
@@ -21138,7 +21812,7 @@ rh
 rr
 rI
 rZ
-sq
+TZ
 aa
 aa
 aa
@@ -21230,7 +21904,7 @@ aa
 aa
 aa
 cr
-cH
+ZS
 cr
 aa
 aa
@@ -21272,7 +21946,7 @@ lr
 oz
 oz
 oz
-po
+pq
 pP
 qq
 qO
@@ -21414,7 +22088,7 @@ lr
 oz
 oz
 oz
-po
+pq
 pQ
 qq
 qP
@@ -21422,7 +22096,7 @@ rh
 rr
 rI
 rZ
-sq
+TZ
 aa
 aa
 aa
@@ -21514,7 +22188,7 @@ aa
 aa
 aa
 aa
-aa
+QI
 aa
 aa
 aa
@@ -21556,7 +22230,7 @@ lr
 oz
 oz
 oz
-po
+pq
 pR
 qr
 qQ
@@ -21698,7 +22372,7 @@ lr
 oz
 oz
 oz
-pp
+qs
 pS
 qs
 pq
@@ -22545,11 +23219,11 @@ aa
 aa
 aa
 aa
+DA
 aa
-aa
-aa
-aa
-aa
+LI
+LI
+LI
 aa
 aa
 aa
@@ -22687,11 +23361,11 @@ aa
 aa
 aa
 aa
+DA
 aa
-aa
-aa
-aa
-aa
+LI
+LI
+LI
 aa
 aa
 aa
@@ -22829,11 +23503,11 @@ aa
 aa
 aa
 aa
+DA
 aa
-aa
-aa
-aa
-aa
+LI
+LI
+LI
 aa
 aa
 aa
@@ -22971,7 +23645,7 @@ aa
 aa
 aa
 aa
-aa
+DA
 aa
 aa
 aa
