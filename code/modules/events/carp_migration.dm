@@ -23,15 +23,32 @@
 	command_announcement.Announce(announcement, "Lifesign Alert")
 
 /datum/event/carp_migration/tick()
-	if(activeFor % 4 != 0)
-		return // Only process every 8 seconds.
-	if(count_spawned_carps() < carp_cap && living_observers_present(affecting_z))
+	if(activeFor % 5 != 0)
+		return // Only process every 10 seconds.
+	if(count_spawned_carps() < carp_cap)
 		spawn_fish(rand(1, severity * 2) - 1, severity, severity * 2)
 
 /datum/event/carp_migration/proc/spawn_fish(var/num_groups, var/group_size_min, var/group_size_max, var/dir)
 	if(isnull(dir))
 		dir = (victim && prob(80)) ? victim.fore_dir : pick(GLOB.cardinal)
 
+	// Check if any landmarks exist!
+	var/list/spawn_locations = list()
+	for(var/obj/effect/landmark/C in landmarks_list)
+		if(C.name == "carpspawn" && (C.z in affecting_z))
+			spawn_locations.Add(C.loc)
+	if(spawn_locations.len) // Okay we've got landmarks, lets use those!
+		shuffle_inplace(spawn_locations)
+		num_groups = min(num_groups, spawn_locations.len)
+		var/i = 1
+		while (i <= num_groups)
+			var/group_size = rand(group_size_min, group_size_max)
+			for (var/j = 0, j < group_size, j++)
+				spawn_one_carp(spawn_locations[i])
+		i++
+		return
+
+	// Okay we did *not* have any landmarks, so lets do our best!
 	var/i = 1
 	while (i <= num_groups)
 		var/Z = pick(affecting_z)
@@ -40,12 +57,23 @@
 		var/turf/group_center = pick_random_edge_turf(dir, Z, TRANSITIONEDGE + 2)
 		var/list/turfs = getcircle(group_center, 2)
 		for (var/j = 0, j < group_size, j++)
-			var/mob/living/simple_mob/animal/M = new /mob/living/simple_mob/animal/space/carp/event(turfs[(i % turfs.len) + 1])
-			GLOB.destroyed_event.register(M, src, .proc/on_carp_destruction)
-			spawned_carp.Add(M)
-			M.ai_holder?.give_destination(map_center) // Ask carp to swim towards the middle of the map
-			// TODO - Our throwing systems don't support callbacks. If it ever does, we can throw first to simulate ship speed.
+			var/mob/living/simple_mob/animal/M = spawn_one_carp(turfs[(i % turfs.len) + 1])
+			// Ray trace towards middle of the map to find where they can stop just outside of structure/ship.
+			var/turf/target
+			for(var/turf/T in getline(get_turf(M), map_center))
+				if(!T.is_space())
+					break;
+				target = T
+			if(target)
+				M.ai_holder?.give_destination(target) // Ask carp to swim towards the middle of the map
 		i++
+
+// Spawn a single carp at given location.
+/datum/event/carp_migration/proc/spawn_one_carp(var/loc)
+	var/mob/living/simple_mob/animal/M = new /mob/living/simple_mob/animal/space/carp/event(loc)
+	GLOB.destroyed_event.register(M, src, .proc/on_carp_destruction)
+	spawned_carp.Add(M)
+	return M
 
 // Counts living carp spawned by this event.
 /datum/event/carp_migration/proc/count_spawned_carps()
