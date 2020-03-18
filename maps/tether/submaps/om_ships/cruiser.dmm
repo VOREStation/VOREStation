@@ -9677,6 +9677,10 @@
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/mothership/telecomms2)
+"EP" = (
+/obj/effect/overmap/visitable/ship/cruiser,
+/turf/space,
+/area/space)
 
 (1,1,1) = {"
 aa
@@ -9959,7 +9963,7 @@ aa
 aa
 aa
 aa
-aa
+EP
 aa
 "}
 (3,1,1) = {"
