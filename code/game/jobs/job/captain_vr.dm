@@ -6,8 +6,7 @@
 	disallow_jobhop = TRUE
 	pto_earning = PTO_CIVILIAN
 
-	alt_titles = list("Head of Personnel" = /datum/alt_title/hop,
-					  "Crew Resources Officer" = /datum/alt_title/cro,
+	alt_titles = list("Crew Resources Officer" = /datum/alt_title/cro,
 					  "Deputy Director" = /datum/alt_title/deputy_director)
 
 	access = list(access_security, access_sec_doors, access_brig, access_forensics_lockers,

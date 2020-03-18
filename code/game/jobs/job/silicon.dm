@@ -23,10 +23,6 @@
 						The AI is required to follow its Laws, and Lawbound Synthetics that are linked to it are expected to follow \
 						the AI's commands, and their own Laws."
 
-//AI Alt Titles
-/datum/alt_title/ai
-	title = "AI"
-
 // AI procs
 /datum/job/ai/equip(var/mob/living/carbon/human/H)
 	if(!H)	return 0
@@ -61,12 +57,9 @@
 	outfit_type = /decl/hierarchy/outfit/job/silicon/cyborg
 	job_description = "A Cyborg is a mobile station synthetic, piloted by a cybernetically preserved brain. It is considered a person, but is still required \
 						to follow its Laws."
-	alt_titles = list("Cyborg" = /datum/alt_title/cyborg, "Robot" = /datum/alt_title/robot, "Drone" = /datum/alt_title/drone)
+	alt_titles = list("Robot" = /datum/alt_title/robot, "Drone" = /datum/alt_title/drone)
 
 // Cyborg Alt Titles
-/datum/alt_title/cyborg
-	title = "Cyborg"
-
 /datum/alt_title/robot
 	title = "Robot"
 	title_blurb = "A Robot is a mobile station synthetic, piloted by an advanced piece of technology called a Positronic Brain. It is considered a person, \

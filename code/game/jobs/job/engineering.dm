@@ -35,10 +35,6 @@
 						of manpower as much as they handle hands-on operations and repairs. They are also expected to keep the rest of the station informed of \
 						any structural threats to the station that may be hazardous to health or disruptive to work."
 
-// Chief Engineer Alt Titles
-/datum/alt_title/chief_engineer
-	title = "Chief Engineer"
-
 //////////////////////////////////
 //			Engineer
 //////////////////////////////////
@@ -55,7 +51,7 @@
 	economic_modifier = 5
 	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics)
 	minimal_access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction)
-	alt_titles = list("Station Engineer" = /datum/alt_title/engineer, "Maintenance Technician" = /datum/alt_title/maint_tech,
+	alt_titles = list("Maintenance Technician" = /datum/alt_title/maint_tech,
 						"Engine Technician" = /datum/alt_title/engine_tech, "Electrician" = /datum/alt_title/electrician)
 
 	minimal_player_age = 3
@@ -65,9 +61,6 @@
 						generated and distributed. On quiet shifts, they may be called upon to make cosmetic alterations to the station."
 
 // Engineer Alt Titles
-/datum/alt_title/engineer
-	title = "Station Engineer"
-
 /datum/alt_title/maint_tech
 	title = "Maintenance Technician"
 	title_blurb = "A Maintenance Technician is generally a junior Engineer, and can be expected to run the mildly unpleasant or boring tasks that other \
@@ -105,7 +98,3 @@
 	outfit_type = /decl/hierarchy/outfit/job/engineering/atmos
 	job_description = "An Atmospheric Technician is primarily concerned with keeping the station's atmosphere breathable. They are expected to have a good \
 						understanding of the pipes, vents, and scrubbers that move gasses around the station, and to be familiar with proper firefighting procedure."
-
-// Atmos Tech Alt Titles
-/datum/alt_title/atmos_tech
-	title = "Atmospheric Technician"

@@ -26,10 +26,7 @@
 /datum/job/janitor //Lots of janitor substations on station.
 	total_positions = 3
 	spawn_positions = 3
-	alt_titles = list("Janitor" = /datum/alt_title/janitor,
-					  "Custodian" = /datum/alt_title/custodian,
-					  "Sanitation Technician" = /datum/alt_title/sanitation_tech,
-					  "Maid" = /datum/alt_title/maid)
+	alt_titles = list("Custodian" = /datum/alt_title/custodian, "Sanitation Technician" = /datum/alt_title/sanitation_tech, "Maid" = /datum/alt_title/maid)
 	pto_earning = PTO_CIVILIAN
 
 /datum/alt_title/sanitation_tech
@@ -38,11 +35,10 @@
 /datum/alt_title/maid
 	title = "Maid"
 
-//TFF 5/9/19 - restore librarian job slot to 2
 /datum/job/librarian
 	total_positions = 2
 	spawn_positions = 2
-	alt_titles = list("Librarian" = /datum/alt_title/librarian, "Journalist" = /datum/alt_title/journalist, "Writer" = /datum/alt_title/writer, "Historian" = /datum/alt_title/historian)
+	alt_titles = list("Journalist" = /datum/alt_title/journalist, "Writer" = /datum/alt_title/writer, "Historian" = /datum/alt_title/historian)
 	pto_earning = PTO_CIVILIAN
 
 /datum/alt_title/historian
