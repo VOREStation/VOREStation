@@ -2,6 +2,10 @@
 	startWhen	= 10
 	endWhen		= 30
 
+/datum/event/carp_migration/start()
+	affecting_z -= global.using_map.sealed_levels // Space levels only please!
+	..()
+
 /datum/event/dust/announce()
 	if(victim)
 		command_announcement.Announce("The [location_name()] is now passing through a belt of space dust.", "[location_name()] Sensor Array")

@@ -162,7 +162,7 @@
 	startedAt = world.time
 
 	if(!affecting_z)
-		affecting_z = using_map.station_levels
+		affecting_z = using_map.station_levels.Copy()
 
 	setup()
 	..()
