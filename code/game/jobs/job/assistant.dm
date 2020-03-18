@@ -18,11 +18,7 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/assistant
 	job_description = "An Assistant does whatever is requested of them. Though they are part of the crew, they have no real authority."
-<<<<<<< HEAD
-/*	alt_titles = list("Assistant" = /datum/alt_title/assistant, "Technical Assistant" = /datum/alt_title/tech_assist,
-=======
-	alt_titles = list("Technical Assistant" = /datum/alt_title/tech_assist,
->>>>>>> 4c090b5... Merge pull request #6839 from VOREStation/vplk-alt-job-titles
+/*	alt_titles = list("Technical Assistant" = /datum/alt_title/tech_assist,
 						"Medical Intern"= /datum/alt_title/med_intern, "Research Assistant" = /datum/alt_title/research_assist,
 						"Visitor" = /datum/alt_title/visitor)
 	)	*/	//VOREStation Removal: no alt-titles for visitors
