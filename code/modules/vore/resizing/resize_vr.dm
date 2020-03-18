@@ -180,7 +180,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 				tmob_message = tail.msg_prey_help_run
 
 		//Smaller person stepping under larger person
-		else if(tmob.get_effective_size() > get_effective_size() && ishuman(tmob))
+		else if(get_effective_size() < tmob.get_effective_size() && ishuman(tmob))
 			src_message = "You run between [tmob]'s legs."
 			tmob_message = "[src] runs between your legs."
 			var/mob/living/carbon/human/H = tmob
@@ -189,8 +189,10 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 				src_message = tail.msg_prey_stepunder
 				tmob_message = tail.msg_owner_stepunder
 
-		to_chat(src, STEP_TEXT_OWNER(src_message))
-		to_chat(tmob, STEP_TEXT_PREY(tmob_message))
+		if(src_message)
+			to_chat(src, STEP_TEXT_OWNER(src_message))
+		if(tmob_message)
+			to_chat(tmob, STEP_TEXT_PREY(tmob_message))
 		return TRUE
 	return FALSE
 
