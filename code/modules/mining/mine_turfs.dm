@@ -212,6 +212,9 @@ turf/simulated/mineral/floor/light_corner
 				if(istype(get_step(src, direction), /turf/simulated/mineral))
 					var/turf/simulated/mineral/M = get_step(src, direction)
 					M.update_icon()
+				if(istype(get_step(src, direction), /turf/simulated/wall/solidrock))
+					var/turf/simulated/wall/solidrock/M = get_step(src, direction)
+					M.update_icon()
 
 /turf/simulated/mineral/ex_act(severity)
 
