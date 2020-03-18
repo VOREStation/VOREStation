@@ -1683,8 +1683,20 @@
 	temperature = 243.15
 	},
 /area/awaymission/snowfield/base)
+"tn" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/awaymission/snowfield/outside;
+	base_turf = /turf/simulated/floor/outdoors/snow;
+	landmark_tag = "tether_excursion_snowfield"
+	},
+/turf/simulated/floor/outdoors/snow{
+	nitrogen = 93.7835;
+	oxygen = 20.7263;
+	temperature = 243.15
+	},
+/area/awaymission/snowfield/outside)
 "Bw" = (
-/obj/effect/overmap/visitable/sector/tether_gateway/snowfield,
+/obj/effect/overmap/visitable/sector/snowfield,
 /turf/simulated/floor/outdoors/snow{
 	nitrogen = 93.7835;
 	oxygen = 20.7263;
@@ -7319,7 +7331,7 @@ ad
 ad
 ad
 ad
-ad
+tn
 ad
 ad
 ad
