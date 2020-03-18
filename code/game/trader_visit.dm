@@ -64,6 +64,7 @@ proc/trigger_trader_visit()
 
 	can_call_traders = 0 // Only one call per round.
 	send_beruang = 1
+	consider_trader_load() //VOREStation Add
 
 	sleep(600 * 5)
 	send_beruang = 0 // Can no longer join the traders.

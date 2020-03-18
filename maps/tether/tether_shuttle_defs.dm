@@ -50,6 +50,7 @@
 		"beach_c",
 		"beach_nw"
 	)
+	defer_initialisation = TRUE
 
 //////////////////////////////////////////////////////////////
 // Tether Shuttle
@@ -90,7 +91,7 @@
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention. An unregistered vessel is approaching Virgo-3B."
 	departure_message = "Attention. A unregistered vessel is now leaving Virgo-3B."
-
+	defer_initialisation = TRUE
 
 //////////////////////////////////////////////////////////////
 // Ninja Shuttle
@@ -120,6 +121,7 @@
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention. An unregistered vessel is approaching Virgo-3B."
 	departure_message = "Attention. A unregistered vessel is now leaving Virgo-3B."
+	defer_initialisation = TRUE
 
 //////////////////////////////////////////////////////////////
 // Skipjack
@@ -149,6 +151,7 @@
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention. An unregistered vessel is approaching Virgo-3B."
 	departure_message = "Attention. A unregistered vessel is now leaving Virgo-3B."
+	defer_initialisation = TRUE
 
 //////////////////////////////////////////////////////////////
 // ERT Shuttle
@@ -178,6 +181,7 @@
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention. An NT support vessel is approaching Virgo-3B."
 	departure_message = "Attention. A NT support vessel is now leaving Virgo-3B."
+	defer_initialisation = TRUE
 
 //////////////////////////////////////////////////////////////
 // RogueMiner "Belter: Shuttle
