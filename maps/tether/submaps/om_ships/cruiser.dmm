@@ -7855,9 +7855,11 @@
 /obj/machinery/turretid/lethal{
 	ailock = 1;
 	check_synth = 0;
+	check_weapons = 1;
 	control_area = /area/mothership/bridge;
 	name = "defense turret controls";
-	pixel_x = 32
+	pixel_x = 32;
+	req_access = list(101)
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
