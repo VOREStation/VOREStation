@@ -64,6 +64,43 @@
 	seed_submaps(list(Z_LEVEL_PLAINS), 120, /area/tether/outpost/exploration_plains, /datum/map_template/surface/plains)
 
 //////////////////////////////////////////////////////////////////////////////
+//Antag/Event/ERT Areas
+/datum/map_template/admin_use/ert
+	name = "Special Area - ERT"
+	desc = "It's the ERT ship! Lorge."
+	mappath = 'admin_use/ert.dmm'
+
+/datum/map_template/admin_use/trader
+	name = "Special Area - Trader"
+	desc = "Big trader ship."
+	mappath = 'admin_use/tradeship.dmm'
+
+/datum/map_template/admin_use/mercenary
+	name = "Special Area - Merc Base"
+	desc = "So much red!"
+	mappath = 'admin_use/mercbase.dmm'
+
+/datum/map_template/admin_use/skipjack
+	name = "Special Area - Skipjack Base"
+	desc = "Stinky!"
+	mappath = 'admin_use/skipjack.dmm'
+
+/datum/map_template/admin_use/thunderdome
+	name = "Special Area - Thunderdome"
+	desc = "Thunderrrrdomeee"
+	mappath = 'admin_use/thunderdome.dmm'
+
+/datum/map_template/admin_use/wizardbase
+	name = "Special Area - Wizard Base"
+	desc = "Wingardium Levosia"
+	mappath = 'admin_use/wizard.dmm'
+
+/datum/map_template/admin_use/dojo
+	name = "Special Area - Ninja Dojo"
+	desc = "Sneaky"
+	mappath = 'admin_use/dojo.dmm'
+
+//////////////////////////////////////////////////////////////////////////////
 //Rogue Mines Stuff
 
 /datum/map_template/tether_lateload/tether_roguemines1
@@ -447,3 +484,4 @@
 #include "om_ships/hybridshuttle.dm"
 #include "om_ships/screebarge.dm"
 #include "om_ships/aro.dm"
+#include "om_ships/cruiser.dm"
