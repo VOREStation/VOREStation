@@ -40,7 +40,7 @@
 	if(!floortype && initial_flooring)
 		floortype = initial_flooring
 	if(floortype)
-		set_flooring(get_flooring_data(floortype))
+		set_flooring(get_flooring_data(floortype), TRUE)
 	else
 		footstep_sounds = base_footstep_sounds
 	if(can_dirty && can_start_dirty)
@@ -48,13 +48,17 @@
 			dirt += rand(50,100)
 			update_dirt() //5% chance to start with dirt on a floor tile- give the janitor something to do
 
-/turf/simulated/floor/proc/set_flooring(var/decl/flooring/newflooring)
+/turf/simulated/floor/proc/swap_decals()
+	var/current_decals = decals
+	decals = old_decals
+	old_decals = current_decals
+
+/turf/simulated/floor/proc/set_flooring(var/decl/flooring/newflooring, var/initializing)
 	make_plating(defer_icon_update = 1)
+	if(!flooring && !initializing) // Plating -> Flooring
+		swap_decals()
 	flooring = newflooring
 	footstep_sounds = newflooring.footstep_sounds
-	if(old_decals) // Flooring -> Plating -> Flooring
-		decals = old_decals
-		old_decals = null
 	update_icon(1)
 	levelupdate()
 
@@ -70,8 +74,7 @@
 	footstep_sounds = base_footstep_sounds
 
 	if(flooring) // Flooring -> Plating
-		old_decals = decals
-		decals = null
+		swap_decals()
 		if(flooring.build_type && place_product)
 			new flooring.build_type(src)
 		flooring = null
