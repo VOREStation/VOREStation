@@ -46,7 +46,7 @@
 				if(SPECIES_SERGAL)
 					new /obj/item/weapon/digestion_remains/skull/sergal(src,owner)
 					skull_amount--
-				if(SPECIES_ZORREN_FLAT || SPECIES_ZORREN_HIGH)
+				if(SPECIES_ZORREN_HIGH)
 					new /obj/item/weapon/digestion_remains/skull/zorren(src,owner)
 					skull_amount--
 				if(SPECIES_NEVREAN)
@@ -57,9 +57,6 @@
 					skull_amount--
 				if(SPECIES_VOX)
 					new /obj/item/weapon/digestion_remains/skull/vox(src,owner)
-					skull_amount--
-				if(SPECIES_XENOHYBRID)
-					new /obj/item/weapon/digestion_remains/skull/xenohybrid(src,owner)
 					skull_amount--
 			if(skull_amount && H.species.selects_bodytype)	//We still haven't found correct skull...
 				if(H.species.base_species == SPECIES_HUMAN)
@@ -157,7 +154,3 @@
 
 /obj/item/weapon/digestion_remains/skull/unknown/anthro
 	icon_state = "skull_taj"
-
-/obj/item/weapon/digestion_remains/skull/xenohybrid
-	desc = "A bleached skull. It looks very weakened. Seems like it belonged to something with an elongated head."
-	icon_state = "skull_xenohybrid"

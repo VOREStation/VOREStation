@@ -102,8 +102,14 @@
 
 	//Set species_restricted list
 	switch(target_species)
+		//VOREStation Edit Start
 		if(SPECIES_HUMAN, SPECIES_SKRELL)	//humanoid bodytypes
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN) //skrell/humans can wear each other's suits
+			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
+		if(SPECIES_UNATHI)
+			species_restricted = list(SPECIES_UNATHI, SPECIES_XENOHYBRID)
+		if(SPECIES_ZORREN_HIGH)
+			species_restricted = list(SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
+		//VOREStation Edit End
 		else
 			species_restricted = list(target_species)
 
@@ -122,8 +128,16 @@
 
 	//Set species_restricted list
 	switch(target_species)
+		//VOREStation Edit Start
+		if(SPECIES_HUMAN)
+			species_restricted = list(SPECIES_HUMAN, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
 		if(SPECIES_SKRELL)
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN) //skrell helmets fit humans too
+			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
+		if(SPECIES_UNATHI)
+			species_restricted = list(SPECIES_UNATHI, SPECIES_XENOHYBRID)
+		if(SPECIES_ZORREN_HIGH)
+			species_restricted = list(SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
+		//VOREStation Edit End
 
 		else
 			species_restricted = list(target_species)
