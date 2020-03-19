@@ -35,8 +35,8 @@
 /turf/simulated/flesh/attackby()
 	return
 
-/turf/simulated/flesh/New()
-	..()
+/turf/simulated/flesh/Initialize(mapload)
+	. = ..()
 	update_icon(1)
 
 var/list/flesh_overlay_cache = list()
