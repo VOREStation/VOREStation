@@ -718,6 +718,7 @@
 #include "code\game\jobs\job\civilian_chaplain.dm"
 #include "code\game\jobs\job\civilian_vr.dm"
 #include "code\game\jobs\job\department.dm"
+#include "code\game\jobs\job\department_vr.dm"
 #include "code\game\jobs\job\engineering.dm"
 #include "code\game\jobs\job\engineering_vr.dm"
 #include "code\game\jobs\job\job.dm"
