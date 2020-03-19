@@ -1124,23 +1124,6 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/eva)
-"ct" = (
-/obj/machinery/door/airlock/multi_tile/metal,
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/eva)
-"cu" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/eva)
 "cv" = (
 /obj/machinery/power/emitter/gyrotron/anchored{
 	desc = "It is a heavy duty pulse laser emitter.";
@@ -9964,6 +9947,7 @@
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
 	base_turf = /turf/space;
+	docking_controller = "ws_dock_6";
 	landmark_tag = "ws_port_dock_2";
 	name = "Cruiser Dock P2"
 	},
@@ -9973,6 +9957,7 @@
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
 	base_turf = /turf/space;
+	docking_controller = "ws_dock_3";
 	landmark_tag = "ws_starboard_dock_2";
 	name = "Cruiser Dock S2"
 	},
@@ -10229,6 +10214,7 @@
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
 	base_turf = /turf/space;
+	docking_controller = "ws_dock_2";
 	landmark_tag = "ws_starboard_dock_1";
 	name = "Cruiser Dock S1"
 	},
@@ -10238,6 +10224,7 @@
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
 	base_turf = /turf/space;
+	docking_controller = "ws_dock_7";
 	landmark_tag = "ws_port_dock_1";
 	name = "Cruiser Dock P1"
 	},
@@ -20215,7 +20202,7 @@ FY
 cD
 cP
 db
-ct
+FY
 dm
 dB
 dQ
@@ -20357,7 +20344,7 @@ Ct
 cE
 cQ
 dc
-cu
+Ct
 dn
 dC
 dR
