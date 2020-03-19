@@ -1,6 +1,6 @@
 //Generic Ring
 
-/obj/item/clothing/ring
+/obj/item/clothing/gloves/ring
 	name = "generic ring"
 	desc = "Torus shaped finger decoration."
 	icon_state = "material"
