@@ -14,6 +14,7 @@
 /turf/unsimulated/beach/water
 	name = "Water"
 	icon_state = "water"
+	initialized = FALSE
 
 /turf/unsimulated/beach/water/Initialize()
 	. = ..()

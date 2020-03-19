@@ -9,6 +9,7 @@
 	density = 1
 	alpha = 0
 	blocks_air = 0
+	initialized = FALSE
 
 	// Set these to get your desired planetary atmosphere.
 	oxygen = 0
