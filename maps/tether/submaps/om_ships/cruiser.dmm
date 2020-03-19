@@ -3080,6 +3080,8 @@
 	icon_state = "tube1"
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/structure/table/steel_reinforced,
+/obj/machinery/chemical_dispenser/biochemistry/full,
 /turf/simulated/floor/tiled/white,
 /area/mothership/chemistry)
 "fN" = (
@@ -9744,7 +9746,6 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/structure/table/steel_reinforced,
 /obj/item/stack/rods,
 /obj/item/stack/rods,
 /obj/item/stack/material/glass/phoronglass,
@@ -9753,6 +9754,9 @@
 /obj/item/stack/rods,
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
+	},
+/obj/structure/closet{
+	name = "materials"
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/engineering)
