@@ -229,6 +229,7 @@
 		SPECIES_TESHARI = 'icons/mob/species/seromi/gloves.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/gloves.dmi'
 		)
+	drop_sound = 'sound/items/drop/gloves.ogg'
 
 /obj/item/clothing/proc/set_clothing_index()
 	return
@@ -362,6 +363,7 @@
 		SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/head.dmi'
 		)
+	drop_sound = 'sound/items/drop/hat.ogg'
 
 /obj/item/clothing/head/attack_self(mob/user)
 	if(brightness_on)
@@ -517,6 +519,7 @@
 		SPECIES_TESHARI = 'icons/mob/species/seromi/shoes.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/shoes.dmi'
 		)
+	drop_sound = 'sound/items/drop/shoes.ogg'
 
 /obj/item/clothing/shoes/proc/draw_knife()
 	set name = "Draw Boot Knife"
