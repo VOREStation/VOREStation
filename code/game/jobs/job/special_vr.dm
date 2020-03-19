@@ -1,6 +1,6 @@
 /datum/job/centcom_officer //For Business
 	title = "CentCom Officer"
-	departments = list(DEPARTMENT_COMMAND)
+	departments = list("Central Command")
 	department_accounts = list(DEPARTMENT_COMMAND, DEPARTMENT_ENGINEERING, DEPARTMENT_MEDICAL, DEPARTMENT_RESEARCH, DEPARTMENT_SECURITY, DEPARTMENT_CARGO, DEPARTMENT_PLANET, DEPARTMENT_CIVILIAN)
 	faction = "Station"
 	total_positions = 2
@@ -19,7 +19,7 @@
 	minimum_character_age = 25
 	ideal_character_age = 40
 
-	pto_earning = PTO_CIVILIAN
+	pto_type = PTO_CIVILIAN
 
 	get_access()
 		return get_all_accesses().Copy()
@@ -84,7 +84,7 @@
 	whitelist_only = 1
 	latejoin_only = 1
 	outfit_type = /decl/hierarchy/outfit/job/clown
-	pto_earning = PTO_CIVILIAN
+	pto_type = PTO_CIVILIAN
 
 /datum/alt_title/clown
 	title = "Clown"
@@ -119,7 +119,7 @@
 	whitelist_only = 1
 	latejoin_only = 1
 	outfit_type = /decl/hierarchy/outfit/job/mime
-	pto_earning = PTO_CIVILIAN
+	pto_type = PTO_CIVILIAN
 
 /datum/alt_title/mime
 	title = "Mime"
