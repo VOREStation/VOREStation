@@ -6,6 +6,38 @@ SUBSYSTEM_DEF(skybox)
 	flags = SS_NO_FIRE
 	var/list/skybox_cache = list()
 
+	var/list/dust_cache = list()
+	var/list/speedspace_cache = list()
+	var/list/phase_shift_by_x = list()
+	var/list/phase_shift_by_y = list()
+
+/datum/controller/subsystem/skybox/PreInit()
+	//Static
+	for (var/i in 0 to 25)
+		var/image/im = image('icons/turf/space_dust.dmi', "[i]")
+		im.plane = DUST_PLANE
+		im.alpha = 128 //80
+		im.blend_mode = BLEND_ADD
+		dust_cache["[i]"] = im
+	//Moving
+	for (var/i in 0 to 14)
+		// NORTH/SOUTH
+		var/image/im = image('icons/turf/space_dust_transit.dmi', "speedspace_ns_[i]")
+		im.plane = DUST_PLANE
+		im.blend_mode = BLEND_ADD
+		speedspace_cache["NS_[i]"] = im
+		// EAST/WEST
+		im = image('icons/turf/space_dust_transit.dmi', "speedspace_ew_[i]")
+		im.plane = DUST_PLANE
+		im.blend_mode = BLEND_ADD
+		speedspace_cache["EW_[i]"] = im
+
+	//Shuffle some lists
+	phase_shift_by_x = get_cross_shift_list(15)
+	phase_shift_by_y = get_cross_shift_list(15)
+
+	. = ..()
+
 /datum/controller/subsystem/skybox/Initialize()
 	. = ..()
 

@@ -15,8 +15,8 @@
 	name = "Water"
 	icon_state = "water"
 
-/turf/unsimulated/beach/water/New()
-	..()
+/turf/unsimulated/beach/water/Initialize()
+	. = ..()
 	add_overlay(image("icon"='icons/misc/beach.dmi',"icon_state"="water2","layer"=MOB_LAYER+0.1))
 
 /turf/simulated/floor/beach
@@ -54,6 +54,6 @@
 /turf/simulated/floor/beach/water/ocean
 	icon_state = "seadeep"
 
-/turf/simulated/floor/beach/water/New()
-	..()
+/turf/simulated/floor/beach/water/Initialize()
+	. = ..()
 	add_overlay(image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1))

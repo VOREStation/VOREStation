@@ -85,7 +85,7 @@
 	var/join_group = "shuttle" //A tag for what other walls to join with. Null if you don't want them to.
 	var/static/list/antilight_cache
 
-/turf/simulated/shuttle/New()
+/turf/simulated/shuttle/Initialize(mapload)
 	..()
 	if(!antilight_cache)
 		antilight_cache = list()

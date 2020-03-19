@@ -17,8 +17,8 @@
 	phoron = 0
 	temperature = T20C
 
-/turf/unsimulated/wall/planetary/New()
-	..()
+/turf/unsimulated/wall/planetary/Initialize()
+	. = ..()
 	SSplanets.addTurf(src)
 
 /turf/unsimulated/wall/planetary/Destroy()

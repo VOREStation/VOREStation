@@ -35,8 +35,8 @@
 /turf/simulated/floor/is_plating()
 	return !flooring
 
-/turf/simulated/floor/New(var/newloc, var/floortype)
-	..(newloc)
+/turf/simulated/floor/Initialize(mapload, floortype)
+	. = ..()
 	if(!floortype && initial_flooring)
 		floortype = initial_flooring
 	if(floortype)
@@ -52,25 +52,16 @@
 	make_plating(defer_icon_update = 1)
 	flooring = newflooring
 	footstep_sounds = newflooring.footstep_sounds
-	// VOREStation Edit - We are plating switching to flooring, swap out old_decals for decals
-	var/tmp/list/overfloor_decals = old_decals
-	old_decals = decals
-	decals = overfloor_decals
-	// VOREStation Edit End
+	if(old_decals) // Flooring -> Plating -> Flooring
+		decals = old_decals
+		old_decals = null
 	update_icon(1)
 	levelupdate()
 
 //This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf
 //This proc auto corrects the grass tiles' siding.
 /turf/simulated/floor/proc/make_plating(var/place_product, var/defer_icon_update)
-
 	cut_overlays()
-	// VOREStation Edit - We are flooring switching to plating, swap out old_decals for decals.
-	if(flooring)
-		var/tmp/list/underfloor_decals = old_decals
-		old_decals = decals
-		decals = underfloor_decals
-	// VOREStation Edit End
 
 	name = base_name
 	desc = base_desc
@@ -78,7 +69,9 @@
 	icon_state = base_icon_state
 	footstep_sounds = base_footstep_sounds
 
-	if(flooring)
+	if(flooring) // Flooring -> Plating
+		old_decals = decals
+		decals = null
 		if(flooring.build_type && place_product)
 			new flooring.build_type(src)
 		flooring = null

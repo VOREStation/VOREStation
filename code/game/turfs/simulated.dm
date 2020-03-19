@@ -55,8 +55,8 @@
 		B.clean_blood()
 	..()
 
-/turf/simulated/New()
-	..()
+/turf/simulated/Initialize(mapload)
+	. = ..()
 	if(istype(loc, /area/chapel))
 		holy = 1
 	levelupdate()
