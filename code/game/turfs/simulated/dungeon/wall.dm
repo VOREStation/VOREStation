@@ -24,7 +24,7 @@
 	..(newloc,"bedrock")
 
 /turf/simulated/wall/solidrock/Initialize()
-	..()
+	. = ..()
 	update_icon(1)
 
 /turf/simulated/wall/solidrock/update_material()
