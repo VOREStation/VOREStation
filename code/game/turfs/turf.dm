@@ -34,26 +34,22 @@
 	var/can_build_into_floor = FALSE // Used for things like RCDs (and maybe lattices/floor tiles in the future), to see if a floor should replace it.
 	var/list/dangerous_objects // List of 'dangerous' objs that the turf holds that can cause something bad to happen when stepped on, used for AI mobs.
 
-/turf/New()
-	..()
-	for(var/atom/movable/AM as mob|obj in src)
-		spawn( 0 )
-			src.Entered(AM)
-			return
-	turfs |= src
+/turf/Initialize(mapload)
+	. = ..()
+	for(var/atom/movable/AM in src)
+		Entered(AM)
 
-	if(dynamic_lighting)
-		luminosity = 0
-	else
-		luminosity = 1
-
+	//Lighting related
+	luminosity = !(dynamic_lighting)
+	has_opaque_atom |= (opacity)
+	
+	//Pathfinding related
 	if(movement_cost && pathweight == 1) // This updates pathweight automatically.
 		pathweight = movement_cost
 
 /turf/Destroy()
-	turfs -= src
+	. = QDEL_HINT_IWILLGC
 	..()
-	return QDEL_HINT_IWILLGC
 
 /turf/ex_act(severity)
 	return 0

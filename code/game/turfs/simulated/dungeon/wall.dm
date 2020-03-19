@@ -3,8 +3,8 @@
 /turf/simulated/wall/dungeon
 	block_tele = TRUE // Anti-cheese.
 
-/turf/simulated/wall/dungeon/New(var/newloc)
-	..(newloc,"dungeonium")
+/turf/simulated/wall/dungeon/Initialize(mapload)
+	. = ..(mapload, "dungeonium")
 
 /turf/simulated/wall/dungeon/attackby()
 	return
@@ -20,8 +20,8 @@
 	var/rock_side = "rock_side"
 	block_tele = TRUE
 
-/turf/simulated/wall/solidrock/New(var/newloc)
-	..(newloc,"bedrock")
+/turf/simulated/wall/solidrock/Initialize(mapload)
+	. = ..(mapload, "bedrock")
 
 /turf/simulated/wall/solidrock/Initialize()
 	. = ..()
@@ -81,8 +81,8 @@
 	desc = "An old, yet impressively durably rock wall."
 	var/mossyrock_side = "mossyrock_side"
 
-/turf/simulated/wall/solidrock/New(var/newloc)
-	..(newloc,"mossyrock")
+/turf/simulated/wall/solidrock/Initialize(mapload)
+	. = ..(mapload, "mossyrock")
 
 /turf/simulated/wall/solidrock/mossyrockpoi/update_icon(var/update_neighbors)
 	if(density)
