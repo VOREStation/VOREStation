@@ -114,7 +114,7 @@
 
 
 // The ship's boat
-/area/shuttle/HPVLand
+// /area/shuttle/HPVLand
 	name = "\improper Vespa's Ship's Boat"
 	icon_state = "shuttle"
 
@@ -129,25 +129,24 @@
 
 
 // The shuttle's 'shuttle' computer
-/obj/machinery/computer/shuttle_control/explore/HPV
-	name = "boat control console"
-	shuttle_tag = "Vespa's Ship's Boat"
-
+//  /obj/machinery/computer/shuttle_control/explore/HPV
+//	name = "boat control console"
+//	shuttle_tag = "Vespa's Ship's Boat"
 
 // A shuttle lateloader landmark
-/obj/effect/shuttle_landmark/shuttle_initializer/HPV
-	name = "Vespa's Boat Bay"
-	base_area = /area/ship/expe/hangar
-	base_turf = /turf/simulated/floor/tiled/techfloor
-	landmark_tag = "omship_spawn_aroboat"
-	docking_controller = "aroship_boatbay"
-	shuttle_type = /datum/shuttle/autodock/overmap/HPV
+// /obj/effect/shuttle_landmark/shuttle_initializer/HPV
+//	name = "Vespa's Boat Bay"
+//	base_area = /area/ship/expe/hangar
+//	base_turf = /turf/simulated/floor/tiled/techfloor
+//	landmark_tag = "omship_spawn_aroboat"
+//	docking_controller = "aroship_boatbay"
+//	shuttle_type = /datum/shuttle/autodock/overmap/HPV
 
 // The 'shuttle'
-/datum/shuttle/autodock/overmap/HPV
-	name = "Vespa's Ship's Boat"
-	current_location = "omship_spawn_aroboat"
-	docking_controller_tag = "aroboat_docker"
-	shuttle_area = /area/shuttle/HPVLand
-	fuel_consumption = 0
-	defer_initialisation = TRUE
+// /datum/shuttle/autodock/overmap/HPV
+//	name = "Vespa's Ship's Boat"
+//	current_location = "omship_spawn_aroboat"
+//	docking_controller_tag = "aroboat_docker"
+//	shuttle_area = /area/shuttle/HPVLand
+//	fuel_consumption = 0
+//	defer_initialisation = TRUE
