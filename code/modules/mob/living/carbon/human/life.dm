@@ -1523,7 +1523,6 @@
 	else
 		shock_stage = min(shock_stage, 160)
 		shock_stage = max(shock_stage-1, 0)
-		return
 
 	if(stat)
 		return 0

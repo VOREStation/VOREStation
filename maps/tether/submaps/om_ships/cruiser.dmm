@@ -2068,7 +2068,7 @@
 	pixel_y = 28;
 	req_one_access = list(108)
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "ed" = (
 /obj/structure/cable/cyan{
@@ -2083,7 +2083,7 @@
 	pixel_x = 0;
 	pixel_y = 28
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "ee" = (
 /obj/structure/cable/cyan{
@@ -2092,11 +2092,21 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/techmaint,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "ef" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/techmaint,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "eg" = (
 /obj/machinery/firealarm{
@@ -2105,10 +2115,31 @@
 	pixel_x = 4;
 	pixel_y = 26
 	},
-/turf/simulated/floor/tiled/techmaint,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "eh" = (
-/turf/simulated/floor/tiled/techmaint,
+/obj/structure/cable/cyan{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/shield_capacitor/advanced{
+	anchored = 1
+	},
+/obj/structure/cable/cyan{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "ei" = (
 /obj/structure/closet/wardrobe/ert,
@@ -2299,42 +2330,46 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "ew" = (
-/obj/effect/floor_decal/industrial/warning/corner,
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/techmaint,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "ex" = (
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "ey" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "ez" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "eA" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 8
+/obj/structure/cable/cyan,
+/obj/structure/cable/cyan{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/shield_gen/external/advanced{
+	anchored = 1
 	},
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
-/turf/simulated/floor/tiled/techmaint,
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "eB" = (
 /obj/structure/cable/cyan{
@@ -2520,31 +2555,32 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "eN" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/teleporter)
-"eO" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/teleport/hub,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/mothership/teleporter)
+"eO" = (
+/obj/machinery/teleport/station,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "eP" = (
-/obj/machinery/teleport/station,
-/turf/simulated/floor/tiled/techmaint,
-/area/mothership/teleporter)
-"eQ" = (
 /obj/machinery/computer/teleporter{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
-"eR" = (
+"eQ" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/item/device/perfect_tele_beacon/stationary{
 	tele_name = "Warship";
 	tele_network = "centcom"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/mothership/teleporter)
+"eR" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
 	},
 /obj/machinery/alarm{
 	alarm_id = "pen_nine";
@@ -2553,13 +2589,20 @@
 	icon_state = "alarm0";
 	pixel_y = -22
 	},
-/turf/simulated/floor/tiled/techmaint,
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "eS" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
+/obj/structure/cable/cyan,
+/obj/machinery/shield_capacitor/advanced{
+	anchored = 1;
+	dir = 1
 	},
-/turf/simulated/floor/tiled/techmaint,
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "eT" = (
 /turf/simulated/shuttle/wall/voidcraft/blue{
@@ -10160,6 +10203,16 @@
 	},
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
+"Hl" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/mothership/teleporter)
 "Kr" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -20495,7 +20548,7 @@ EK
 dA
 dP
 eg
-ex
+Hl
 eR
 fd
 fz
