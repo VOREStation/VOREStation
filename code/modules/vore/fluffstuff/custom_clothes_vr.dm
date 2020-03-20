@@ -1900,7 +1900,7 @@ Departamental Swimsuits, for general use
 	return FALSE	//Indigestible
 
 //Bacon12366:Elly Brown
-/obj/item/clothing/suit/storage/toggle/hoodie
+/obj/item/clothing/suit/storage/toggle/hoodie/star
 	name = "Star hoodie"
 	desc = "It's a black long hoodie with a big blue star at the chest area. It's made of pretty soft material."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
@@ -1913,7 +1913,6 @@ Departamental Swimsuits, for general use
 	slot_flags = SLOT_OCLOTHING | SLOT_TIE
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	w_class = ITEMSIZE_NORMAL
-	slot = ACCESSORY_SLOT_OVER
 
 //KillerDragn:Excess
 /obj/item/clothing/accessory/collar/pink/fluff/warning
