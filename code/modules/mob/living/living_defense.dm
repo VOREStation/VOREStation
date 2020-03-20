@@ -363,6 +363,9 @@
 		handle_light()
 		update_fire()
 
+	if(has_modifier_of_type(/datum/modifier/fire))
+		remove_modifiers_of_type(/datum/modifier/fire)
+
 /mob/living/proc/update_fire()
 	return
 

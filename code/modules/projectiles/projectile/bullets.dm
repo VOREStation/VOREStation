@@ -271,10 +271,11 @@
 /obj/item/projectile/bullet/incendiary/flamethrower/tiny
 	damage = 2
 	incendiary = 0
-	modifier_type_to_apply = /datum/modifier/fire/weak
+	flammability = 2
+	modifier_type_to_apply = /datum/modifier/fire/stack_managed/weak
 	modifier_duration = 20 SECONDS
-	range = 7
-	agony = 3
+	range = 6
+	agony = 0
 
 /* Practice rounds and blanks */
 
