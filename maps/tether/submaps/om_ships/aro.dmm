@@ -2978,6 +2978,9 @@
 /obj/effect/floor_decal/corner_techfloor_grid{
 	dir = 9
 	},
+/obj/machinery/mech_recharger{
+	icon = 'icons/turf/shuttle_alien_blue.dmi'
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "gf" = (
@@ -3001,6 +3004,10 @@
 	icon_state = "corner_techfloor_grid";
 	dir = 6
 	},
+/obj/machinery/mech_recharger{
+	icon = 'icons/turf/shuttle_alien_blue.dmi'
+	},
+/obj/mecha/working/hoverpod/gunpod/agile,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "gh" = (
@@ -3349,6 +3356,88 @@
 /obj/effect/overmap/visitable/ship/aro,
 /turf/space,
 /area/space)
+"iU" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 1
+	},
+/obj/structure/table/rack/shelf/steel,
+/obj/item/mecha_parts/mecha_equipment/crisis_drone,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"lD" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/phoron,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"tu" = (
+/obj/machinery/atmospherics/binary/pump/on,
+/turf/simulated/floor/reinforced,
+/area/ship/aro/midshipshangars)
+"uO" = (
+/obj/effect/floor_decal/techfloor/orange,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"uZ" = (
+/obj/effect/floor_decal/techfloor/orange,
+/obj/structure/table/rack/shelf/steel,
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"xu" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 1
+	},
+/obj/structure/table/rack/shelf/steel,
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"CW" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"HK" = (
+/obj/effect/floor_decal/techfloor/orange,
+/obj/structure/table/rack/shelf/steel,
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"Lp" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/purple,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"Md" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/reinforced,
+/area/ship/aro/midshipshangars)
+"PJ" = (
+/obj/mecha/working/hoverpod/gunpod/agile,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"TU" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/phoron,
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
 
 (1,1,1) = {"
 aa
@@ -11105,9 +11194,9 @@ ek
 ek
 ek
 fy
-fy
-gd
-fy
+iU
+lD
+uZ
 fy
 fy
 fy
@@ -11245,11 +11334,11 @@ ek
 ek
 ek
 ek
-fy
-fy
-fy
-fy
-fy
+Md
+tu
+Lp
+PJ
+uO
 fy
 fy
 fy
@@ -12239,11 +12328,11 @@ ek
 ek
 ek
 ek
-fy
-fy
-fy
-fy
-fy
+Md
+tu
+Lp
+CW
+uO
 fy
 fy
 fy
@@ -12383,9 +12472,9 @@ ek
 ek
 ek
 fy
-fy
-gh
-fy
+xu
+TU
+HK
 fy
 gI
 fy
