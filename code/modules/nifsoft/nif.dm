@@ -570,7 +570,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	name = "bioadaptive NIF"
 	desc = "A NIF that goes out of it's way to accomidate strange body types. \
 	Will function in species where it normally wouldn't."
-	durability = 100
+	durability = 75
 	bioadap = TRUE
 
 ////////////////////////////////
