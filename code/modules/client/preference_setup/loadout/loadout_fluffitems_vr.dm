@@ -1007,7 +1007,7 @@
 	character_name = list("Nehi Maximus")
 
 /datum/gear/fluff/star_hoodie
-	path = /obj/item/clothing/suit/storage/toggle/hoodie/star
+	path = /obj/item/clothing/suit/storage/star
 	display_name = "Star hoodie"
 	ckeywhitelist = list("bacon12366")
 	character_name = list("Elly Brown")
