@@ -169,7 +169,7 @@
 	body_parts_covered = HEAD|FACE|EYES
 	w_class = ITEMSIZE_SMALL
 	siemens_coefficient = 0.9
-	
+
 /obj/item/clothing/mask/nock_scarab
 	name = "nock mask (blue, scarab)"
 	desc = "To Nock followers, masks symbolize rebirth and a new persona. Damaging the wearer's mask is generally considered an attack on their person itself."

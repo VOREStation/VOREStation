@@ -17,6 +17,7 @@
 	attack_verb = list("pinched", "nipped")
 	hitsound = 'sound/items/wirecutter.ogg'
 	usesound = 'sound/items/wirecutter.ogg'
+	drop_sound = 'sound/items/drop/knife.ogg'
 	sharp = 1
 	edge = 1
 	toolspeed = 1

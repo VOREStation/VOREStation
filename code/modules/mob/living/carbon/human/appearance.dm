@@ -147,7 +147,7 @@
 	for(var/current_species_name in GLOB.all_species)
 		var/datum/species/current_species = GLOB.all_species[current_species_name]
 
-		if(check_whitelist && config.usealienwhitelist && !check_rights(R_ADMIN, 0, src)) //If we're using the whitelist, make sure to check it!
+		if(check_whitelist && config.usealienwhitelist && !check_rights(R_ADMIN|R_EVENT, 0, src)) //If we're using the whitelist, make sure to check it!
 			if(!(current_species.spawn_flags & SPECIES_CAN_JOIN))
 				continue
 			if(whitelist.len && !(current_species_name in whitelist))
@@ -179,6 +179,10 @@
 
 		if(!(use_species in S.species_allowed))
 			continue
+
+		if(S.ckeys_allowed && !(ckey in S.ckeys_allowed)) //VOREStation add - ckey whitelist check
+			continue //VOREStation add - ckey whitelist check
+
 		valid_hairstyles += hairstyle
 
 	return valid_hairstyles
@@ -201,6 +205,9 @@
 
 		if(!(use_species in S.species_allowed))
 			continue
+
+		if(S.ckeys_allowed && !(ckey in S.ckeys_allowed)) //VOREStation add - ckey whitelist check
+			continue //VOREStation add - ckey whitelist check
 
 		valid_facial_hairstyles += facialhairstyle
 

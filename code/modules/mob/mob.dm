@@ -419,7 +419,7 @@
 	set category = "OOC"
 	var/is_admin = 0
 
-	if(client.holder && (client.holder.rights & R_ADMIN))
+	if(client.holder && (client.holder.rights & R_ADMIN|R_EVENT))
 		is_admin = 1
 	else if(stat != DEAD || istype(src, /mob/new_player))
 		to_chat(usr, "<font color='blue'>You must be observing to use this!</font>")
@@ -1062,6 +1062,13 @@ mob/proc/yank_out_object()
 
 /mob/proc/setEarDamage()
 	return
+
+// Set client view distance (size of client's screen). Returns TRUE if anything changed.
+/mob/proc/set_viewsize(var/new_view = world.view)
+	if (client && new_view != client.view)
+		client.view = new_view
+		return TRUE
+	return FALSE
 
 //Throwing stuff
 

@@ -68,7 +68,7 @@
 		href_list["datumrefresh"] = href_list["mob_player_panel"]
 
 	else if(href_list["give_spell"])
-		if(!check_rights(R_ADMIN|R_FUN))	return
+		if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
 
 		var/mob/M = locate(href_list["give_spell"])
 		if(!istype(M))
@@ -79,7 +79,7 @@
 		href_list["datumrefresh"] = href_list["give_spell"]
 
 	else if(href_list["give_modifier"])
-		if(!check_rights(R_ADMIN|R_FUN|R_DEBUG))
+		if(!check_rights(R_ADMIN|R_FUN|R_DEBUG|R_EVENT))
 			return
 
 		var/mob/living/M = locate(href_list["give_modifier"])
@@ -91,7 +91,7 @@
 		href_list["datumrefresh"] = href_list["give_modifier"]
 
 	else if(href_list["give_disease2"])
-		if(!check_rights(R_ADMIN|R_FUN))	return
+		if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
 
 		var/mob/M = locate(href_list["give_disease2"])
 		if(!istype(M))
@@ -134,7 +134,7 @@
 		href_list["datumrefresh"] = href_list["build_mode"]
 
 	else if(href_list["drop_everything"])
-		if(!check_rights(R_DEBUG|R_ADMIN))	return
+		if(!check_rights(R_DEBUG|R_ADMIN|R_EVENT))	return
 
 		var/mob/M = locate(href_list["drop_everything"])
 		if(!istype(M))
@@ -466,7 +466,7 @@
 		M.regenerate_icons()
 
 	else if(href_list["adjustDamage"] && href_list["mobToDamage"])
-		if(!check_rights(R_DEBUG|R_ADMIN|R_FUN))	return
+		if(!check_rights(R_DEBUG|R_ADMIN|R_FUN|R_EVENT))	return
 
 		var/mob/living/L = locate(href_list["mobToDamage"])
 		if(!istype(L)) return

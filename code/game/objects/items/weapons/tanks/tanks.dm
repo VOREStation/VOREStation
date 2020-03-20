@@ -10,6 +10,7 @@ var/list/global/tank_gauge_cache = list()
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/mob/species/seromi/back.dmi'
 		)
+	drop_sound = 'sound/items/drop/gascan.ogg'
 
 	var/gauge_icon = "indicator_tank"
 	var/last_gauge_pressure

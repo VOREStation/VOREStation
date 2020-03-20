@@ -5,11 +5,13 @@
 	force = 3
 	can_hold_knife = 1
 	step_volume_mod = 1.2
+	drop_sound = 'sound/items/drop/boots.ogg'
 
 /obj/item/clothing/shoes/boots/cowboy
 	name = "cowboy boots"
 	desc = "Lacking a durasteel horse to ride."
 	icon_state = "cowboy"
+	drop_sound = 'sound/items/drop/leather.ogg'
 
 /obj/item/clothing/shoes/boots/cowboy/classic
 	name = "classic cowboy boots"

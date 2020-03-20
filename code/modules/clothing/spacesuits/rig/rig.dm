@@ -235,19 +235,10 @@
 /obj/item/weapon/rig/proc/cut_suit()
 	offline = 2
 	canremove = 1
-	for(var/obj/item/piece in list(helmet,boots,gloves,chest))
-		if(!piece) continue
-		piece.icon_state = "[suit_state]"
-		if(airtight)
-			update_airtight(piece, 0) // Unseal
-		piece.canremove = 1
-		if(istype(loc, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = loc
-			H.drop_from_inventory(piece)
-		piece.forceMove(get_turf(src))
-		piece.dropped()
-		piece.canremove = 0
-		piece.forceMove(src)
+	toggle_piece("helmet", loc, ONLY_RETRACT, TRUE)
+	toggle_piece("gauntlets", loc, ONLY_RETRACT, TRUE)
+	toggle_piece("boots", loc, ONLY_RETRACT, TRUE)
+	toggle_piece("chest", loc, ONLY_RETRACT, TRUE)
 	update_icon(1)
 
 /obj/item/weapon/rig/proc/toggle_seals(var/mob/living/carbon/human/M,var/instant)
@@ -758,15 +749,15 @@
 		wearer.wearing_rig = src
 		update_icon()
 
-/obj/item/weapon/rig/proc/toggle_piece(var/piece, var/mob/living/carbon/human/H, var/deploy_mode)
+/obj/item/weapon/rig/proc/toggle_piece(var/piece, var/mob/living/carbon/human/H, var/deploy_mode, var/forced = FALSE)
 
-	if(sealing || !cell || !cell.charge)
+	if((sealing || !cell || !cell.charge) && !forced)
 		return
 
-	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
+	if((!istype(wearer) || (!wearer.back == src && !wearer.belt == src)) && !forced)
 		return
 
-	if(usr == wearer && (usr.stat||usr.paralysis||usr.stunned)) // If the usr isn't wearing the suit it's probably an AI.
+	if((usr == wearer && (usr.stat||usr.paralysis||usr.stunned)) && !forced) // If the usr isn't wearing the suit it's probably an AI.
 		return
 
 	var/obj/item/check_slot

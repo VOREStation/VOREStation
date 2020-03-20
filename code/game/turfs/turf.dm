@@ -34,26 +34,22 @@
 	var/can_build_into_floor = FALSE // Used for things like RCDs (and maybe lattices/floor tiles in the future), to see if a floor should replace it.
 	var/list/dangerous_objects // List of 'dangerous' objs that the turf holds that can cause something bad to happen when stepped on, used for AI mobs.
 
-/turf/New()
-	..()
-	for(var/atom/movable/AM as mob|obj in src)
-		spawn( 0 )
-			src.Entered(AM)
-			return
-	turfs |= src
+/turf/Initialize(mapload)
+	. = ..()
+	for(var/atom/movable/AM in src)
+		Entered(AM)
 
-	if(dynamic_lighting)
-		luminosity = 0
-	else
-		luminosity = 1
-
+	//Lighting related
+	luminosity = !(dynamic_lighting)
+	has_opaque_atom |= (opacity)
+	
+	//Pathfinding related
 	if(movement_cost && pathweight == 1) // This updates pathweight automatically.
 		pathweight = movement_cost
 
 /turf/Destroy()
-	turfs -= src
+	. = QDEL_HINT_IWILLGC
 	..()
-	return QDEL_HINT_IWILLGC
 
 /turf/ex_act(severity)
 	return 0
@@ -273,20 +269,23 @@ var/const/enterloopsanity = 100
 	for(var/obj/O in src)
 		O.hide(O.hides_under_flooring() && !is_plating())
 
-/turf/proc/AdjacentTurfs()
-	var/L[] = new()
-	for(var/turf/simulated/t in oview(src,1))
-		if(!t.density)
-			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
-				L.Add(t)
-	return L
+/turf/proc/AdjacentTurfs(var/check_blockage = TRUE)
+	. = list()
+	for(var/t in (trange(1,src) - src))
+		var/turf/T = t
+		if(check_blockage)
+			if(!T.density)
+				if(!LinkBlocked(src, T) && !TurfBlockedNonWindow(T))
+					. += t
+		else
+			. += t
 
-/turf/proc/CardinalTurfs()
-	var/L[] = new()
-	for(var/turf/simulated/T in AdjacentTurfs())
+/turf/proc/CardinalTurfs(var/check_blockage = TRUE)
+	. = list()
+	for(var/ad in AdjacentTurfs(check_blockage))
+		var/turf/T = ad
 		if(T.x == src.x || T.y == src.y)
-			L.Add(T)
-	return L
+			. += T
 
 /turf/proc/Distance(turf/t)
 	if(get_dist(src,t) == 1)

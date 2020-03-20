@@ -1,6 +1,7 @@
 /obj/item/clothing
 	name = "clothing"
 	siemens_coefficient = 0.9
+	drop_sound = 'sound/items/drop/clothing.ogg'
 	var/list/species_restricted = null //Only these species can wear this kit.
 	var/gunshot_residue //Used by forensics.
 
@@ -101,8 +102,14 @@
 
 	//Set species_restricted list
 	switch(target_species)
+		//VOREStation Edit Start
 		if(SPECIES_HUMAN, SPECIES_SKRELL)	//humanoid bodytypes
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN) //skrell/humans can wear each other's suits
+			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
+		if(SPECIES_UNATHI)
+			species_restricted = list(SPECIES_UNATHI, SPECIES_XENOHYBRID)
+		if(SPECIES_ZORREN_HIGH)
+			species_restricted = list(SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
+		//VOREStation Edit End
 		else
 			species_restricted = list(target_species)
 
@@ -121,8 +128,16 @@
 
 	//Set species_restricted list
 	switch(target_species)
+		//VOREStation Edit Start
+		if(SPECIES_HUMAN)
+			species_restricted = list(SPECIES_HUMAN, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
 		if(SPECIES_SKRELL)
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN) //skrell helmets fit humans too
+			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
+		if(SPECIES_UNATHI)
+			species_restricted = list(SPECIES_UNATHI, SPECIES_XENOHYBRID)
+		if(SPECIES_ZORREN_HIGH)
+			species_restricted = list(SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
+		//VOREStation Edit End
 
 		else
 			species_restricted = list(target_species)
@@ -228,6 +243,7 @@
 		SPECIES_TESHARI = 'icons/mob/species/seromi/gloves.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/gloves.dmi'
 		)
+	drop_sound = 'sound/items/drop/gloves.ogg'
 
 /obj/item/clothing/proc/set_clothing_index()
 	return
@@ -361,6 +377,7 @@
 		SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/head.dmi'
 		)
+	drop_sound = 'sound/items/drop/hat.ogg'
 
 /obj/item/clothing/head/attack_self(mob/user)
 	if(brightness_on)
@@ -516,6 +533,7 @@
 		SPECIES_TESHARI = 'icons/mob/species/seromi/shoes.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/shoes.dmi'
 		)
+	drop_sound = 'sound/items/drop/shoes.ogg'
 
 /obj/item/clothing/shoes/proc/draw_knife()
 	set name = "Draw Boot Knife"
@@ -530,6 +548,7 @@
 
 	if(usr.put_in_hands(holding))
 		usr.visible_message("<span class='danger'>\The [usr] pulls a knife out of their boot!</span>")
+		playsound(get_turf(src), 'sound/weapons/holster/sheathout.ogg', 25)
 		holding = null
 		overlays -= image(icon, "[icon_state]_knife")
 	else

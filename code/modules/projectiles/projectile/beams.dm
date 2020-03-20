@@ -14,6 +14,8 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#FF0D00"
+	hitsound = 'sound/weapons/sear.ogg'
+	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 
 	muzzle_type = /obj/effect/projectile/muzzle/laser
 	tracer_type = /obj/effect/projectile/tracer/laser
@@ -211,6 +213,7 @@
 	agony = 40
 	damage_type = HALLOSS
 	light_color = "#FFFFFF"
+	hitsound = 'sound/weapons/zapbang.ogg'
 
 	combustion = FALSE
 
@@ -257,3 +260,4 @@
 	damage = 30
 	agony = 15
 	eyeblur = 2
+	hitsound = 'sound/weapons/zapbang.ogg'

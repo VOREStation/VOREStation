@@ -4,6 +4,14 @@
 		{{:data.sync}}
 	</div>
 	<hr style="width: 90%;">
+	{{if data.species_types}}
+		<div class="item">
+			{{for data.species_types}}
+				{{:helper.link(value, null, {'species' : value}, value == data.species ? 'selected' : null)}}
+			{{/for}}
+		</div>
+		<hr style="width: 90%;">
+	{{/if}}
 	{{if data.manufacturers}}
 		<div class="item">
 			{{for data.manufacturers}}

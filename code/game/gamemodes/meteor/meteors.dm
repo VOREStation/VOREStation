@@ -18,21 +18,18 @@
 //Meteor spawning global procs
 ///////////////////////////////
 
-/proc/pick_meteor_start(var/startSide = pick(cardinal))
-	var/startLevel = pick(using_map.station_levels - using_map.sealed_levels)
-	var/pickedstart = spaceDebrisStartLoc(startSide, startLevel)
-
-	return list(startLevel, pickedstart)
-
-/proc/spawn_meteors(var/number = 10, var/list/meteortypes, var/startSide)
+/proc/spawn_meteors(var/number = 10, var/list/meteortypes, var/startSide, var/zlevel)
+	log_debug("Spawning [number] meteors on the [dir2text(startSide)] of [zlevel]")
 	for(var/i = 0; i < number; i++)
-		spawn_meteor(meteortypes, startSide)
+		spawn_meteor(meteortypes, startSide, zlevel)
 
-/proc/spawn_meteor(var/list/meteortypes, var/startSide)
-	var/start = pick_meteor_start(startSide)
+/proc/spawn_meteor(var/list/meteortypes, var/startSide, var/startLevel)
+	if(isnull(startSide))
+		startSide = pick(cardinal)
+	if(isnull(startLevel))
+		startLevel = pick(using_map.station_levels - using_map.sealed_levels)
 
-	var/startLevel = start[1]
-	var/turf/pickedstart = start[2]
+	var/turf/pickedstart = spaceDebrisStartLoc(startSide, startLevel)
 	var/turf/pickedgoal = spaceDebrisFinishLoc(startSide, startLevel)
 
 	var/Me = pickweight(meteortypes)

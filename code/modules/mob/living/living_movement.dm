@@ -10,3 +10,12 @@
 
 /mob/CanZASPass(turf/T, is_zone)
 	return ATMOS_PASS_YES
+
+/mob/living/SelfMove(turf/n, direct)
+	// If on walk intent, don't willingly step into hazardous tiles.
+	// Unless the walker is confused.
+	if(m_intent == "walk" && confused <= 0)
+		if(!n.is_safe_to_enter(src))
+			to_chat(src, span("warning", "\The [n] is dangerous to move into."))
+			return FALSE // In case any code wants to know if movement happened.
+	return ..() // Parent call should make the mob move.

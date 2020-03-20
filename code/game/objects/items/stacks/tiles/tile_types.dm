@@ -17,6 +17,7 @@
 	randpixel = 7
 	w_class = ITEMSIZE_NORMAL
 	max_amount = 60
+	drop_sound = 'sound/items/drop/axe.ogg'
 
 /obj/item/stack/tile/New()
 	..()
@@ -37,6 +38,7 @@
 	flags = 0
 	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
+	drop_sound = 'sound/items/drop/herb.ogg'
 /*
  * Wood
  */
@@ -51,6 +53,7 @@
 	throw_range = 20
 	flags = 0
 	no_variants = FALSE
+	drop_sound = 'sound/items/drop/wooden.ogg'
 
 /obj/item/stack/tile/wood/sif
 	name = "alien wood tile"
@@ -80,6 +83,7 @@
 	throw_range = 20
 	flags = 0
 	no_variants = FALSE
+	drop_sound = 'sound/items/drop/clothing.ogg'
 
 /obj/item/stack/tile/carpet/teal
 	name = "teal carpet"

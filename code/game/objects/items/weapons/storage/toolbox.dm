@@ -14,6 +14,8 @@
 	max_storage_space = ITEMSIZE_COST_SMALL * 7 //enough to hold all starting contents
 	origin_tech = list(TECH_COMBAT = 1)
 	attack_verb = list("robusted")
+	use_sound = 'sound/items/storage/toolbox.ogg'
+	drop_sound = 'sound/items/drop/metalboots.ogg'
 
 /obj/item/weapon/storage/toolbox/emergency
 	name = "emergency toolbox"

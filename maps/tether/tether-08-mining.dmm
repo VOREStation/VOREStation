@@ -11,6 +11,13 @@
 "ad" = (
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/shuttle/tether/crash2)
+"ae" = (
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
+	frequency = 1379;
+	scrub_id = "mining_outpost_airlock_scrubber"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/outpost/mining_main/airlock)
 "af" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -630,14 +637,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
-"bt" = (
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
-	frequency = 1379;
-	scrub_id = "mining_outpost_airlock_scrubber";
-	scrubbing_gas = list("phoron")
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/outpost/mining_main/airlock)
 "bu" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -5517,9 +5516,9 @@ ab
 ab
 ab
 Px
-bt
+ae
 VG
-bt
+ae
 Px
 ab
 aF
@@ -5659,9 +5658,9 @@ ab
 ab
 ab
 Px
-bt
+ae
 DX
-bt
+ae
 Px
 ab
 aF

@@ -37,7 +37,9 @@
 		user.drop_item()
 		P.loc = src
 		icon_state = "[initial(icon_state)]-open"
-		sleep(5)
+		flick("[initial(icon_state)]-open",src)
+		playsound(loc, 'sound/bureaucracy/filingcabinet.ogg', 50, 1)
+		sleep(40)
 		icon_state = initial(icon_state)
 		updateUsrDialog()
 	else if(P.is_wrench())
@@ -98,9 +100,10 @@
 		if(istype(P) && (P.loc == src) && src.Adjacent(usr))
 			usr.put_in_hands(P)
 			updateUsrDialog()
-			icon_state = "[initial(icon_state)]-open"
+			flick("[initial(icon_state)]-open",src)
+			playsound(loc, 'sound/bureaucracy/filingcabinet.ogg', 50, 1)
 			spawn(0)
-				sleep(5)
+				sleep(20)
 				icon_state = initial(icon_state)
 
 /*

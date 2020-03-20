@@ -17,8 +17,8 @@
 	updateVisibility(src)
 	return ..()
 
-/turf/simulated/New()
-	..()
+/turf/simulated/Initialize()
+	. = ..()
 	updateVisibility(src)
 
 

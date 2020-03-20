@@ -449,7 +449,7 @@ default behaviour is:
 			if(!isnull(M.incoming_hal_damage_percent))
 				amount *= M.incoming_hal_damage_percent
 			if(!isnull(M.disable_duration_percent))
-				amount *= M.incoming_hal_damage_percent
+				amount *= M.disable_duration_percent
 	else if(amount < 0)
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.incoming_healing_percent))

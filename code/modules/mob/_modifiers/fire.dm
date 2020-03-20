@@ -17,6 +17,9 @@
 /datum/modifier/fire/tick()
 	holder.inflict_heat_damage(damage_per_tick)
 
+/datum/modifier/fire/weak
+	damage_per_tick = 1
+
 /*
  * Modifier used by projectiles, like the flamethrower, that rely heavily on fire_stacks to persist.
  */

@@ -29,6 +29,11 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define MAINT    0x8  // Under maintenance.
 #define EMPED    0x10 // Temporary broken by EMP pulse.
 
+// Remote control states
+#define RCON_NO		1
+#define RCON_AUTO	2
+#define RCON_YES	3
+
 // Used by firelocks
 #define FIREDOOR_OPEN 1
 #define FIREDOOR_CLOSED 2

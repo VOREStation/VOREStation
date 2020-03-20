@@ -34,12 +34,9 @@
 						at least with regards to anything occuring in the Research department, and to inform the crew of any disruptions that \
 						might originate from Research. The Research Director often has at least passing knowledge of most of the Research department, but \
 						are encouraged to allow their staff to perform their own duties."
-	alt_titles = list("Research Director" = /datum/alt_title/research_director, "Research Supervisor" = /datum/alt_title/research_supervisor)
+	alt_titles = list("Research Supervisor" = /datum/alt_title/research_supervisor)
 
 // Research Director Alt Titles
-/datum/alt_title/research_director
-	title = "Research Director"
-	
 /datum/alt_title/research_supervisor
 	title = "Research Supervisor"
 	
@@ -66,13 +63,10 @@
 	job_description = "A Scientist is a generalist working in the Research department, with general knowledge of the scientific process, as well as \
 						the principles and requirements of Research and Development. They may also formulate experiments of their own devising, if \
 						they find an appropriate topic."
-	alt_titles = list("Scientist" = /datum/alt_title/scientist, "Xenoarchaeologist" = /datum/alt_title/xenoarch, "Anomalist" = /datum/alt_title/anomalist, \
+	alt_titles = list("Xenoarchaeologist" = /datum/alt_title/xenoarch, "Anomalist" = /datum/alt_title/anomalist, \
 						"Phoron Researcher" = /datum/alt_title/phoron_research)
 
 // Scientist Alt Titles
-/datum/alt_title/scientist
-	title = "Scientist"
-
 /datum/alt_title/xenoarch
 	title = "Xenoarchaeologist"
 	title_blurb = "A Xenoarchaeologist enters digsites in search of artifacts of alien origin. These digsites are frequently in vacuum or other inhospitable \
@@ -111,12 +105,9 @@
 	outfit_type = /decl/hierarchy/outfit/job/science/xenobiologist
 	job_description = "A Xenobiologist studies esoteric lifeforms, usually in the relative safety of their lab. They attempt to find ways to benefit \
 						from the byproducts of these lifeforms, and their main subject at present is the Giant Slime."
-	alt_titles = list("Xenobiologist" = /datum/alt_title/xenobio, "Xenobotanist" = /datum/alt_title/xenobot)
+	alt_titles = list("Xenobotanist" = /datum/alt_title/xenobot)
 
 // Xenibiologist Alt Titles
-/datum/alt_title/xenobio
-	title = "Xenobiologist"
-
 /datum/alt_title/xenobot
 	title = "Xenobotanist"
 	title_blurb = "A Xenobotanist grows and cares for a variety of abnormal, custom made, and frequently dangerous plant life. When the products of these plants \
@@ -143,12 +134,9 @@
 	outfit_type = /decl/hierarchy/outfit/job/science/roboticist
 	job_description = "A Roboticist maintains and repairs the station's synthetics, including crew with prosthetic limbs. \
 						They can also assist the station by producing simple robots and even pilotable exosuits."
-	alt_titles = list("Roboticist" = /datum/alt_title/roboticist, "Biomechanical Engineer" = /datum/alt_title/biomech, "Mechatronic Engineer" = /datum/alt_title/mech_tech)
+	alt_titles = list("Biomechanical Engineer" = /datum/alt_title/biomech, "Mechatronic Engineer" = /datum/alt_title/mech_tech)
 
 // Roboticist Alt Titles
-/datum/alt_title/roboticist
-	title = "Roboticist"
-
 /datum/alt_title/biomech
 	title = "Biomechanical Engineer"
 	title_blurb = "A Biomechanical Engineer primarily works on prosthetics, and the organic parts attached to them. They may have some \

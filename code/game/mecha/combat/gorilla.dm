@@ -178,10 +178,10 @@
 		src.log_message("Toggled zoom mode.")
 		src.occupant_message("<font color='[src.zoom?"blue":"red"]'>Zoom mode [zoom?"en":"dis"]abled.</font>")
 		if(zoom)
-			src.occupant.client.view = 12
+			src.occupant.set_viewsize(12)
 			playsound(src.occupant, 'sound/mecha/imag_enh.ogg',50)
 		else
-			src.occupant.client.view = world.view//world.view - default mob view size
+			src.occupant.set_viewsize() // Reset to default
 	return
 
 

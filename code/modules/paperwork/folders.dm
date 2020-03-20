@@ -5,6 +5,7 @@
 	icon_state = "folder"
 	w_class = ITEMSIZE_SMALL
 	pressure_resistance = 2
+	drop_sound = 'sound/items/drop/paper.ogg'
 
 /obj/item/weapon/folder/blue
 	desc = "A blue folder."

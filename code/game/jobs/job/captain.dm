@@ -15,7 +15,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "company officials and Corporate Regulations"
-	selection_color = "#1D1D4F"
+	selection_color = "#2F2F7F"
 	req_admin_notify = 1
 	access = list() 			//See get_access()
 	minimal_access = list() 	//See get_access()
@@ -29,7 +29,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	job_description = "The Colony Director manages the other Command Staff, and through them the rest of the station. Though they have access to everything, \
 						they do not understand everything, and are expected to delegate tasks to the appropriate crew member. The Colony Director is expected to \
 						have an understanding of Standard Operating Procedure, and is subject to it, and legal action, in the same way as every other crew member."
-	alt_titles = list("Colony Director" = /datum/alt_title/captain, "Site Manager" = /datum/alt_title/site_manager,
+	alt_titles = list("Site Manager" = /datum/alt_title/site_manager,
 						"Overseer" = /datum/alt_title/overseer)
 
 /*
@@ -44,9 +44,6 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 
 // Captain Alt Titles
-/datum/alt_title/captain	// Screw it, this is the default, it has the default path
-	title = "Colony Director"
-
 /datum/alt_title/site_manager
 	title = "Site Manager"
 
@@ -59,7 +56,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 /datum/job/hop
 	title = "Head of Personnel"
 	flag = HOP
-	departments = list(DEPARTMENT_CIVILIAN, DEPARTMENT_CARGO, DEPARTMENT_COMMAND)
+	departments = list(DEPARTMENT_COMMAND, DEPARTMENT_CIVILIAN, DEPARTMENT_CARGO)
 	sorting_order = 2 // Above the QM, below captain.
 	departments_managed = list(DEPARTMENT_CIVILIAN, DEPARTMENT_CARGO)
 	department_flag = CIVILIAN
@@ -67,7 +64,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the Colony Director"
-	selection_color = "#2F2F7F"
+	selection_color = "#1D1D4F"
 	req_admin_notify = 1
 	minimal_player_age = 10
 	economic_modifier = 10
@@ -79,7 +76,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	job_description = "The Head of Personnel manages the Service department, the Exploration team, and most other civilians. They also \
 						manage the Supply department, through the Quartermaster. In addition, the Head of Personnel oversees the personal accounts \
 						of the crew, including their money and access. If necessary, the Head of Personnel is first in line to assume Acting Command."
-	alt_titles = list("Head of Personnel" = /datum/alt_title/hop, "Crew Resources Officer" = /datum/alt_title/cro)
+	alt_titles = list("Crew Resources Officer" = /datum/alt_title/cro)
 
 	access = list(access_security, access_sec_doors, access_brig, access_forensics_lockers,
 			            access_medical, access_engine, access_change_ids, access_ai_upload, access_eva, access_heads,
@@ -95,9 +92,6 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 			            access_hop, access_RC_announce, access_keycard_auth, access_gateway)
 
 // HOP Alt Titles
-/datum/alt_title/hop
-	title = "Head of Personnel"
-
 /datum/alt_title/cro
 	title = "Crew Resources Officer"
 
@@ -115,7 +109,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	total_positions = 2
 	spawn_positions = 2
 	supervisors = "command staff"
-	selection_color = "#2F2F7F"
+	selection_color = "#1D1D4F"
 	minimal_player_age = 5
 	economic_modifier = 7
 
@@ -126,6 +120,3 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	job_description = "A Command Secretary handles paperwork duty for the Heads of Staff, so they can better focus on managing their departments. \
 						They are not Heads of Staff, and have no real authority."
 
-// Command Secretary Alt Title
-/datum/alt_title/command_secretary
-	title = "Command Secretary"
