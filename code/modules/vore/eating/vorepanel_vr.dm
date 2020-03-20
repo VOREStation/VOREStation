@@ -2,7 +2,7 @@
 // Vore management panel for players
 //
 
-#define BELLIES_MAX 30
+#define BELLIES_MAX 40
 #define BELLIES_NAME_MIN 2
 #define BELLIES_NAME_MAX 20
 #define BELLIES_DESC_MAX 2048
