@@ -8,7 +8,7 @@
 
 /mob/living/simple_mob/IAttack(atom/A)
 	if(!canClick()) // Still on cooldown from a "click".
-		return FALSE
+		return ATTACK_ON_COOLDOWN
 	return attack_target(A) // This will set click cooldown.
 
 /mob/living/proc/IRangedAttack(atom/A)
@@ -16,7 +16,7 @@
 
 /mob/living/simple_mob/IRangedAttack(atom/A)
 	if(!canClick()) // Still on cooldown from a "click".
-		return FALSE
+		return ATTACK_ON_COOLDOWN
 	return shoot_target(A)
 
 // Test if the AI is allowed to attempt a ranged attack.

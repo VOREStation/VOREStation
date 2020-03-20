@@ -1,6 +1,6 @@
 /mob/living/carbon/human/process_resist()
 	//drop && roll
-	if(on_fire && !buckled)
+	if((on_fire || has_modifier_of_type(/datum/modifier/fire)) && !buckled)
 		adjust_fire_stacks(-1.2)
 		Weaken(3)
 		spin(32,2)
@@ -9,7 +9,7 @@
 			"<span class='notice'>You stop, drop, and roll!</span>"
 			)
 		sleep(30)
-		if(fire_stacks <= 0)
+		if(fire_stacks <= 0 && !(has_modifier_of_type(/datum/modifier/fire)))
 			visible_message(
 				"<span class='danger'>[src] has successfully extinguished themselves!</span>",
 				"<span class='notice'>You extinguish yourself.</span>"

@@ -70,21 +70,21 @@
 /datum/ai_holder/proc/melee_attack(atom/A)
 	pre_melee_attack(A)
 	. = holder.IAttack(A)
-	if(.)
+	if(. == ATTACK_SUCCESSFUL)
 		post_melee_attack(A)
 
 // Ditto.
 /datum/ai_holder/proc/ranged_attack(atom/A)
 	pre_ranged_attack(A)
 	. = holder.IRangedAttack(A)
-	if(.)
+	if(. == ATTACK_SUCCESSFUL)
 		post_ranged_attack(A)
 
 // Most mobs probably won't have this defined but we don't care.
 /datum/ai_holder/proc/special_attack(atom/movable/AM)
 	pre_special_attack(AM)
 	. = holder.ISpecialAttack(AM)
-	if(.)
+	if(. == ATTACK_SUCCESSFUL)
 		post_special_attack(AM)
 
 // Called when within striking/shooting distance, however cooldown is not considered.
@@ -218,7 +218,6 @@
 
 	var/dir_to_target = get_dir(holder, target_atom)
 	holder.face_atom(target_atom)
-	ai_log("breakthrough() : Exiting", AI_LOG_DEBUG)
 
 	// Sometimes the mob will try to hit something diagonally, and generally this fails.
 	// So instead we will try two more times with some adjustments if the attack fails.
@@ -274,31 +273,31 @@
 		for(var/obj/structure/window/W in problem_turf)
 			if(W.dir == reverse_dir[holder.dir]) // So that windows get smashed in the right order
 				ai_log("destroy_surroundings() : Attacking side window.", AI_LOG_INFO)
-				return holder.IAttack(W)
+				return melee_attack(W)
 
 			else if(W.is_fulltile())
 				ai_log("destroy_surroundings() : Attacking full tile window.", AI_LOG_INFO)
-				return holder.IAttack(W)
+				return melee_attack(W)
 
 		// Kill hull shields in the way.
 		for(var/obj/effect/energy_field/shield in problem_turf)
 			if(shield.density) // Don't attack shields that are already down.
 				ai_log("destroy_surroundings() : Attacking hull shield.", AI_LOG_INFO)
-				return holder.IAttack(shield)
+				return melee_attack(shield)
 
 		// Kill common obstacle in the way like tables.
 		var/obj/structure/obstacle = locate(/obj/structure, problem_turf)
 		if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille))
 			ai_log("destroy_surroundings() : Attacking generic structure.", AI_LOG_INFO)
-			return holder.IAttack(obstacle)
+			return melee_attack(obstacle)
 
 		for(var/obj/machinery/door/D in problem_turf) // Required since firelocks take up the same turf.
 			if(D.density)
 				ai_log("destroy_surroundings() : Attacking closed door.", AI_LOG_INFO)
-				return holder.IAttack(D)
+				return melee_attack(D)
 
 	ai_log("destroy_surroundings() : Exiting due to nothing to attack.", AI_LOG_INFO)
-	return FALSE // Nothing to attack.
+	return ATTACK_FAILED // Nothing to attack.
 
 // Override for special behaviour.
 /datum/ai_holder/proc/can_violently_breakthrough()

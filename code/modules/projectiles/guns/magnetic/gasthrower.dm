@@ -9,6 +9,7 @@
 	one_handed_penalty = 20
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4, TECH_ILLEGAL = 2, TECH_PHORON = 4)
 	w_class = ITEMSIZE_LARGE
+	slowdown = 1
 
 	burst = 3
 	burst_delay = 1
