@@ -966,6 +966,7 @@
 #include "code\game\mecha\micro\micro_equipment.dm"
 #include "code\game\mecha\micro\security.dm"
 #include "code\game\mecha\micro\utility.dm"
+#include "code\game\mecha\space\gunpod_vr.dm"
 #include "code\game\mecha\space\hoverpod.dm"
 #include "code\game\mecha\space\shuttle.dm"
 #include "code\game\mecha\working\ripley.dm"
