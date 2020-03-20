@@ -124,7 +124,7 @@ var/global/list/PDA_Manifest = list()
 			if(depthead && car.len != 1)
 				car.Swap(1,car.len)
 
-		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_CARGO))
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_CIVILIAN))
 			civ[++civ.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && civ.len != 1)
