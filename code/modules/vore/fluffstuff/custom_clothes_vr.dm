@@ -1900,7 +1900,7 @@ Departamental Swimsuits, for general use
 	return FALSE	//Indigestible
 
 //Bacon12366:Elly Brown
-/obj/item/clothing/suit/storage/toggle/hoodie/star
+/obj/item/clothing/suit/storage/star
 	name = "Star hoodie"
 	desc = "It's a black long hoodie with a big blue star at the chest area. It's made of pretty soft material."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
