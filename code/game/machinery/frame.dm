@@ -156,6 +156,7 @@
 
 /datum/frame/frame_types/air_alarm
 	name = "Air Alarm"
+	icon_override = 'icons/obj/monitors_vr.dmi' //VOREStation Edit - Matching frame.
 	frame_class = FRAME_CLASS_ALARM
 	frame_size = 2
 	frame_style = FRAME_STYLE_WALL
