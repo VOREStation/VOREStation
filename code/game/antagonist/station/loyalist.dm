@@ -9,6 +9,7 @@ var/datum/antagonist/loyalists/loyalists
 	feedback_tag = "loyalist_objective"
 	antag_indicator = "loyal_head"
 	welcome_text = "You belong to the Company, body and soul. Preserve its interests against the conspirators amongst the crew."
+	antag_sound = 'sound/effects/antag_notice/general_goodie_alert.ogg'
 	victory_text = "The heads of staff remained at their posts! The loyalists win!"
 	loss_text = "The heads of staff did not stop the revolution!"
 	victory_feedback_tag = "win - rev heads killed"
