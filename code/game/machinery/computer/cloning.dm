@@ -310,9 +310,6 @@
 	if (subject.suiciding)
 		scantemp = "Error: Subject's brain is not responding to scanning stimuli."
 		return
-	if ((!subject.ckey) || (!subject.client))
-		scantemp = "Error: Mental interface failure."
-		return
 	if (NOCLONE in subject.mutations)
 		scantemp = "Error: Mental interface failure."
 		return
@@ -323,6 +320,14 @@
 		if(istype(modifier_type, /datum/modifier/no_clone))
 			scantemp = "Error: Mental interface failure."
 			return
+	if ((!subject.ckey) || (!subject.client))
+		scantemp = "Error: Mental interface failure."
+		if(subject.stat == DEAD && subject.mind && subject.mind.key) // If they're dead and not in their body, tell them to get in it.
+			for(var/mob/observer/dead/ghost in player_list)
+				if(ghost.ckey == ckey(subject.mind.key))
+					ghost.notify_revive("Someone is trying to scan your body in the cloner. Re-enter your body if you want to be revived!", 'sound/effects/genetics.ogg')
+					break
+		return
 	if (!isnull(find_record(subject.ckey)))
 		scantemp = "Subject already in database."
 		return

@@ -7,6 +7,7 @@ var/datum/antagonist/ert/ert
 	role_text = "Emergency Responder"
 	role_text_plural = "Emergency Responders"
 	welcome_text = "As member of the Emergency Response Team, you answer only to your leader and company officials."
+	antag_sound = 'sound/effects/antag_notice/general_goodie_alert.ogg'
 	antag_text = "You are an <b>anti</b> antagonist! Within the rules, \
 		try to save the station and its inhabitants from the ongoing crisis. \
 		Try to make sure other players have <i>fun</i>! If you are confused or at a loss, always adminhelp, \
