@@ -64,6 +64,43 @@
 	seed_submaps(list(Z_LEVEL_PLAINS), 120, /area/tether/outpost/exploration_plains, /datum/map_template/surface/plains)
 
 //////////////////////////////////////////////////////////////////////////////
+//Antag/Event/ERT Areas
+/datum/map_template/admin_use/ert
+	name = "Special Area - ERT"
+	desc = "It's the ERT ship! Lorge."
+	mappath = 'admin_use/ert.dmm'
+
+/datum/map_template/admin_use/trader
+	name = "Special Area - Trader"
+	desc = "Big trader ship."
+	mappath = 'admin_use/tradeship.dmm'
+
+/datum/map_template/admin_use/mercenary
+	name = "Special Area - Merc Base"
+	desc = "So much red!"
+	mappath = 'admin_use/mercbase.dmm'
+
+/datum/map_template/admin_use/skipjack
+	name = "Special Area - Skipjack Base"
+	desc = "Stinky!"
+	mappath = 'admin_use/skipjack.dmm'
+
+/datum/map_template/admin_use/thunderdome
+	name = "Special Area - Thunderdome"
+	desc = "Thunderrrrdomeee"
+	mappath = 'admin_use/thunderdome.dmm'
+
+/datum/map_template/admin_use/wizardbase
+	name = "Special Area - Wizard Base"
+	desc = "Wingardium Levosia"
+	mappath = 'admin_use/wizard.dmm'
+
+/datum/map_template/admin_use/dojo
+	name = "Special Area - Ninja Dojo"
+	desc = "Sneaky"
+	mappath = 'admin_use/dojo.dmm'
+
+//////////////////////////////////////////////////////////////////////////////
 //Rogue Mines Stuff
 
 /datum/map_template/tether_lateload/tether_roguemines1
@@ -219,6 +256,21 @@
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Gateway submaps go here
+
+/obj/effect/overmap/visitable/sector/tether_gateway
+	name = "Unknown"
+	desc = "Approach and perform a scan to obtain further information."
+	icon_state = "object" //or "globe" for planetary stuff
+	known = FALSE
+	//initial_generic_waypoints = list("don't forget waypoints!")
+	var/true_name = "The scanned name goes here"
+	var/true_desc = "The scanned desc goes here"
+
+/obj/effect/overmap/visitable/sector/tether_gateway/get_scan_data(mob/user)
+	name = true_name
+	desc = true_desc
+	return ..()	
+
 /datum/map_template/tether_lateload/gateway
 	name = "Gateway Submap"
 	desc = "Please do not use this."
@@ -263,6 +315,7 @@
 	desc = "Asteroid-bound mercenary listening post"
 	mappath = 'gateway/listeningpost.dmm'
 	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
 #if AWAY_MISSION_TEST
@@ -447,3 +500,4 @@
 #include "om_ships/hybridshuttle.dm"
 #include "om_ships/screebarge.dm"
 #include "om_ships/aro.dm"
+#include "om_ships/cruiser.dm"

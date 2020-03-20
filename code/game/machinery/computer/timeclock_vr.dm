@@ -88,12 +88,12 @@
 				"selection_color" = job.selection_color,
 				"economic_modifier" = job.economic_modifier,
 				"timeoff_factor" = job.timeoff_factor,
-				"pto_department" = job.pto_earning
+				"pto_department" = job.pto_type
 			)
 		if(config.time_off && config.pto_job_change)
 			data["allow_change_job"] = TRUE
 			if(job && job.timeoff_factor < 0) // Currently are Off Duty, so gotta lookup what on-duty jobs are open
-				data["job_choices"] = getOpenOnDutyJobs(user, job.pto_earning)
+				data["job_choices"] = getOpenOnDutyJobs(user, job.pto_type)
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -142,7 +142,7 @@
 	var/list/available_jobs = list()
 	for(var/datum/job/job in job_master.occupations)
 		if(job && job.is_position_available() && !job.whitelist_only && !jobban_isbanned(user,job.title) && job.player_old_enough(user.client))
-			if(job.pto_earning == department && !job.disallow_jobhop && job.timeoff_factor > 0)
+			if(job.pto_type == department && !job.disallow_jobhop && job.timeoff_factor > 0)
 				available_jobs += job.title
 				if(job.alt_titles)
 					for(var/alt_job in job.alt_titles)
@@ -152,7 +152,7 @@
 
 /obj/machinery/computer/timeclock/proc/makeOnDuty(var/newjob)
 	var/datum/job/foundjob = job_master.GetJob(card.rank)
-	if(!newjob in getOpenOnDutyJobs(usr, foundjob.pto_earning))
+	if(!newjob in getOpenOnDutyJobs(usr, foundjob.pto_type))
 		return
 	if(foundjob && card)
 		card.access = foundjob.get_access()
@@ -173,10 +173,10 @@
 	var/datum/job/foundjob = job_master.GetJob(card.rank)
 	if(!foundjob)
 		return
-	var/new_dept = foundjob.pto_earning || PTO_CIVILIAN
+	var/new_dept = foundjob.pto_type || PTO_CIVILIAN
 	var/datum/job/ptojob = null
 	for(var/datum/job/job in job_master.occupations)
-		if(job.pto_earning == new_dept && job.timeoff_factor < 0)
+		if(job.pto_type == new_dept && job.timeoff_factor < 0)
 			ptojob = job
 			break
 	if(ptojob && card)

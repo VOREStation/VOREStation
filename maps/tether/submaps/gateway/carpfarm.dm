@@ -1,9 +1,7 @@
-/obj/effect/overmap/visitable/sector/carpfarm
-	name = "Unknown Facility"
-	desc = "Seems to be a carp farm of some sort."
-	icon_state = "object"
-	known = FALSE
+/obj/effect/overmap/visitable/sector/tether_gateway/carpfarm
 	initial_generic_waypoints = list("tether_excursion_carpfarm")
+	true_name = "Carp-Infested Outpost"
+	true_desc = "Scans indicate this outpost has many instances of 'space carp' moving around, along with an assortment of equipment that appears human in origin."
 
 /area/awaymission/carpfarm
 	icon_state = "blank"

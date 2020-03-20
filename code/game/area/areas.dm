@@ -43,24 +43,17 @@
 	var/uid
 
 /area/New()
-	icon_state = ""
 	uid = ++global_uid
-	all_areas += src
-
-	if(!requires_power)
-		power_light = 0
-		power_equip = 0
-		power_environ = 0
-
-	if(dynamic_lighting)
-		luminosity = 0
-	else
-		luminosity = 1
-
+	all_areas += src //Replace with /area in world? Byond optimizes X in world loops.
+	
 	..()
 
 /area/Initialize()
 	. = ..()
+
+	luminosity = !(dynamic_lighting)
+	icon_state = ""
+	
 	return INITIALIZE_HINT_LATELOAD // Areas tradiationally are initialized AFTER other atoms.
 
 /area/LateInitialize()

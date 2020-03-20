@@ -1,0 +1,3660 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/turf/unsimulated/wall,
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"ac" = (
+/obj/structure/table/standard,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"ad" = (
+/obj/structure/closet/wardrobe/pink,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"ae" = (
+/obj/structure/closet/wardrobe/white,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"af" = (
+/obj/structure/closet/wardrobe/green,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"ag" = (
+/obj/structure/closet/wardrobe/grey,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"ah" = (
+/obj/structure/closet/wardrobe/black,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"ai" = (
+/obj/structure/closet/wardrobe/pjs,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"aj" = (
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"ak" = (
+/obj/structure/closet/crate,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 1
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"al" = (
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"am" = (
+/obj/structure/closet/wardrobe/yellow,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"an" = (
+/obj/structure/closet/wardrobe/suit,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"ao" = (
+/obj/item/weapon/stool/padded,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"ap" = (
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 1
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"aq" = (
+/obj/item/weapon/stool/padded,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"ar" = (
+/obj/structure/closet/wardrobe/mixed,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"as" = (
+/obj/structure/closet/wardrobe/xenos,
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"at" = (
+/obj/effect/landmark/late_antag/trader,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"au" = (
+/obj/machinery/door/blast/shutters{
+	dir = 8;
+	id = "qm_warehouse";
+	name = "Warehouse Shutters"
+	},
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 1
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"av" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/red,
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"aw" = (
+/obj/machinery/door/airlock/silver{
+	name = "Toilet"
+	},
+/turf/simulated/shuttle/floor/white,
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"ax" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 4;
+	req_access = list(160)
+	},
+/turf/simulated/shuttle/floor/white,
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"ay" = (
+/turf/simulated/shuttle/floor,
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"az" = (
+/obj/structure/sink{
+	icon_state = "sink";
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/structure/mirror{
+	pixel_x = -28
+	},
+/turf/simulated/shuttle/floor/white,
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"aA" = (
+/obj/structure/curtain/open/shower,
+/obj/machinery/shower{
+	pixel_y = 3
+	},
+/turf/simulated/shuttle/floor,
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"aB" = (
+/obj/structure/table/standard,
+/obj/item/weapon/soap/deluxe,
+/turf/simulated/shuttle/floor,
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"aC" = (
+/obj/structure/undies_wardrobe,
+/turf/simulated/shuttle/floor,
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"aD" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	frequency = 1380;
+	id_tag = "trade_shuttle_bay";
+	name = "shuttle bay controller";
+	pixel_x = 25;
+	pixel_y = 0;
+	tag_door = "trade_shuttle_bay_door"
+	},
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"aE" = (
+/obj/machinery/door/airlock/glass_external{
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "trade_shuttle_bay_door";
+	locked = 1
+	},
+/turf/unsimulated/floor{
+	icon_state = "steel"
+	},
+/area/syndicate_mothership{
+	name = "\improper Trader Base"
+	})
+"aF" = (
+/turf/simulated/shuttle/wall/dark/hard_corner,
+/area/shuttle/trade)
+"aG" = (
+/obj/machinery/door/airlock/glass_external{
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "trade_shuttle_hatch";
+	locked = 1;
+	name = "Shuttle Hatch"
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"aH" = (
+/turf/simulated/shuttle/wall/dark,
+/area/shuttle/trade)
+"aI" = (
+/obj/structure/window/reinforced,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	icon_state = "shutter0";
+	id = "tradestarshutters";
+	name = "Blast Shutters";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"aJ" = (
+/obj/structure/window/reinforced,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	icon_state = "shutter0";
+	id = "tradestarshutters";
+	name = "Blast Shutters";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"aK" = (
+/obj/structure/window/reinforced,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	icon_state = "shutter0";
+	id = "tradestarshutters";
+	name = "Blast Shutters";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"aL" = (
+/obj/effect/shuttle_landmark/shuttle_initializer{
+	base_area = /area/space;
+	base_turf = /turf/space;
+	docking_controller = "trade_shuttle_bay";
+	landmark_tag = "trade_dock";
+	name = "Trader Station";
+	shuttle_type = /datum/shuttle/autodock/multi/trade
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"aM" = (
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"aN" = (
+/obj/structure/shuttle/engine/heater{
+	icon_state = "heater";
+	dir = 4
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/shuttle/trade)
+"aO" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_r";
+	dir = 4
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/trade)
+"aP" = (
+/obj/structure/closet{
+	icon_closed = "cabinet_closed";
+	icon_opened = "cabinet_open";
+	icon_state = "cabinet_closed"
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"aQ" = (
+/obj/structure/bed/padded,
+/obj/item/weapon/bedsheet/rd,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"aR" = (
+/obj/structure/table/standard,
+/obj/machinery/chemical_dispenser/bar_alc/full,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"aS" = (
+/obj/structure/table/standard,
+/obj/machinery/microwave,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"aT" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/carpet,
+/area/shuttle/trade)
+"aU" = (
+/obj/structure/bed/chair,
+/turf/simulated/floor/carpet,
+/area/shuttle/trade)
+"aV" = (
+/obj/structure/flora/pottedplant{
+	icon_state = "plant-22"
+	},
+/turf/simulated/floor/carpet,
+/area/shuttle/trade)
+"aW" = (
+/obj/machinery/door/airlock/glass_external{
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "trade_shuttle_hatch";
+	locked = 1;
+	name = "Shuttle Hatch"
+	},
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	frequency = 1380;
+	id_tag = "trade_shuttle";
+	pixel_x = -25;
+	pixel_y = 0;
+	req_one_access = list(101);
+	tag_door = "trade_shuttle_hatch"
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"aX" = (
+/obj/machinery/sleep_console{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"aY" = (
+/obj/machinery/sleeper{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"aZ" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/trade)
+"ba" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	id = "tradestarshutters";
+	name = "Blast Shutters";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"bb" = (
+/obj/machinery/newscaster{
+	pixel_y = 32
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bc" = (
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bd" = (
+/obj/machinery/door/airlock/silver{
+	name = "Sleeping"
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"be" = (
+/turf/simulated/floor/carpet,
+/area/shuttle/trade)
+"bf" = (
+/obj/structure/table/standard,
+/obj/item/weapon/storage/box/donkpockets,
+/turf/simulated/floor/carpet,
+/area/shuttle/trade)
+"bg" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/simulated/floor/carpet,
+/area/shuttle/trade)
+"bh" = (
+/obj/machinery/atm{
+	pixel_x = -32
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bi" = (
+/obj/machinery/suit_cycler/syndicate,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bj" = (
+/obj/machinery/bodyscanner{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bk" = (
+/obj/machinery/body_scanconsole,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bl" = (
+/obj/item/weapon/storage/firstaid/regular{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/weapon/storage/firstaid/regular{
+	pixel_x = -2;
+	pixel_y = 4
+	},
+/obj/item/bodybag/cryobag{
+	pixel_x = 5
+	},
+/obj/item/bodybag/cryobag{
+	pixel_x = 5
+	},
+/obj/item/weapon/storage/firstaid/o2{
+	layer = 2.8;
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/weapon/storage/box/masks{
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/obj/item/weapon/storage/box/gloves{
+	pixel_x = 3;
+	pixel_y = 4
+	},
+/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/weapon/storage/firstaid/fire{
+	layer = 2.9;
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/weapon/storage/firstaid/adv{
+	pixel_x = -2
+	},
+/obj/item/weapon/reagent_containers/blood/empty,
+/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/structure/closet/medical_wall{
+	pixel_y = 32
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bm" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bn" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	id = "tradestarshutters";
+	name = "Blast Shutters";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"bo" = (
+/obj/structure/closet/wardrobe/pjs,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bp" = (
+/obj/item/weapon/paper_bin{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/weapon/pen{
+	pixel_y = 4
+	},
+/obj/machinery/light,
+/obj/structure/table/glass,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bq" = (
+/obj/structure/bed/padded,
+/obj/item/weapon/bedsheet/hos,
+/obj/structure/sign/poster{
+	pixel_y = -32
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"br" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/simulated/floor/carpet,
+/area/shuttle/trade)
+"bs" = (
+/obj/structure/table/standard,
+/obj/item/weapon/storage/box/glasses/square,
+/turf/simulated/floor/carpet,
+/area/shuttle/trade)
+"bt" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/inflatable_duck,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bu" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/stack/material/mhydrogen,
+/obj/item/stack/material/diamond,
+/obj/item/stack/material/sandstone,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bv" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/rig/internalaffairs,
+/obj/item/clothing/head/helmet/space/void/wizard,
+/obj/item/clothing/suit/space/void/wizard,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bw" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/tool,
+/obj/random/tool,
+/obj/random/tool,
+/obj/random/tool,
+/obj/random/tool,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bx" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/toolbox,
+/obj/random/toolbox,
+/obj/random/toolbox,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"by" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"bz" = (
+/obj/vehicle/train/engine,
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bA" = (
+/turf/simulated/shuttle/floor/darkred,
+/area/shuttle/trade)
+"bB" = (
+/obj/machinery/door/airlock/glass_medical{
+	name = "Medical Bay";
+	req_access = list(160);
+	req_one_access = newlist()
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bC" = (
+/obj/machinery/optable,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bD" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_l";
+	dir = 4
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/trade)
+"bE" = (
+/obj/structure/closet/walllocker/emerglocker{
+	pixel_y = -32
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bF" = (
+/obj/machinery/button/remote/blast_door{
+	id = "tradestarshutters";
+	name = "remote shutter control";
+	pixel_x = 30;
+	req_access = list(160)
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bG" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/firstaid,
+/obj/random/firstaid,
+/obj/random/firstaid,
+/obj/random/firstaid,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bH" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 9
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bI" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bJ" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 5
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bK" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/tech_supply,
+/obj/random/tech_supply,
+/obj/random/tech_supply,
+/obj/random/tech_supply,
+/obj/random/tech_supply,
+/obj/random/tech_supply,
+/obj/item/weapon/weldpack,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bL" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"bM" = (
+/obj/vehicle/train/trolley,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bN" = (
+/obj/machinery/light,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bO" = (
+/obj/machinery/vending/medical{
+	density = 0;
+	pixel_y = -32;
+	req_access = null
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bP" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 4;
+	req_access = list(160)
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bQ" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/medical,
+/obj/structure/window/reinforced,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bR" = (
+/obj/machinery/door/window/southleft{
+	name = "Cargo Hold";
+	req_access = list(160)
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bS" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/coin/uranium,
+/obj/item/weapon/coin/silver,
+/obj/item/weapon/coin/platinum,
+/obj/item/weapon/coin/phoron,
+/obj/item/weapon/coin/iron,
+/obj/item/weapon/coin/gold,
+/obj/item/weapon/coin/diamond,
+/obj/structure/window/reinforced,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bT" = (
+/obj/machinery/door/window/southright{
+	name = "Cargo Hold";
+	req_access = list(160)
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bU" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/cell/high,
+/obj/item/weapon/cell/high,
+/obj/item/weapon/cell/hyper,
+/obj/item/weapon/cell/potato,
+/obj/structure/window/reinforced,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bV" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"bW" = (
+/obj/structure/table/standard,
+/obj/item/clothing/gloves/sterile/latex,
+/obj/item/clothing/mask/surgical,
+/obj/item/weapon/surgical/retractor{
+	pixel_x = 0;
+	pixel_y = 6
+	},
+/obj/item/weapon/surgical/scalpel,
+/obj/item/weapon/surgical/surgicaldrill,
+/obj/item/weapon/surgical/circular_saw,
+/obj/item/stack/nanopaste,
+/obj/item/weapon/surgical/hemostat{
+	pixel_y = 4
+	},
+/obj/item/weapon/surgical/cautery{
+	pixel_y = 4
+	},
+/obj/item/weapon/surgical/FixOVein{
+	pixel_x = -6;
+	pixel_y = 1
+	},
+/obj/item/stack/medical/advanced/bruise_pack,
+/obj/item/weapon/surgical/bonesetter,
+/obj/item/weapon/surgical/bonegel{
+	pixel_x = 4;
+	pixel_y = 3
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bX" = (
+/obj/structure/medical_stand,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"bY" = (
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	icon_state = "shutter0";
+	id = "tradebridgeshutters";
+	name = "Blast Shutters";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"bZ" = (
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	icon_state = "shutter0";
+	id = "tradebridgeshutters";
+	name = "Blast Shutters";
+	opacity = 0
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"ca" = (
+/obj/machinery/vending/coffee,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cb" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cc" = (
+/obj/machinery/door/airlock/multi_tile/glass,
+/turf/simulated/shuttle/floor/darkred,
+/area/shuttle/trade)
+"cd" = (
+/obj/structure/closet/crate/secure/weapon,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"ce" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/paper_bin{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/weapon/pen{
+	pixel_y = 4
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cf" = (
+/obj/machinery/newscaster{
+	pixel_x = 32
+	},
+/obj/machinery/computer/arcade/battle{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cg" = (
+/obj/structure/toilet,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/white,
+/area/shuttle/trade)
+"ch" = (
+/obj/structure/sink{
+	icon_state = "sink";
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor/white,
+/area/shuttle/trade)
+"ci" = (
+/obj/structure/mirror{
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/turf/simulated/shuttle/floor/white,
+/area/shuttle/trade)
+"cj" = (
+/obj/structure/curtain/open/shower,
+/obj/machinery/shower{
+	pixel_y = 3
+	},
+/turf/simulated/shuttle/floor/white,
+/area/shuttle/trade)
+"ck" = (
+/obj/machinery/vending/snack{
+	name = "hacked Getmore Chocolate Corp";
+	prices = list()
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cl" = (
+/obj/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"cm" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cn" = (
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	id = "tradebridgeshutters";
+	name = "Blast Shutters";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"co" = (
+/obj/structure/frame/computer,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cp" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/sign/kiddieplaque{
+	desc = "A plaque commemorating the construction of the cargo ship Beruang.";
+	name = "Beruang";
+	pixel_x = 32
+	},
+/mob/living/simple_mob/animal/passive/dog/tamaskan/Spice,
+/turf/simulated/shuttle/floor/darkred,
+/area/shuttle/trade)
+"cq" = (
+/obj/machinery/door/airlock/silver{
+	name = "Toilet"
+	},
+/turf/simulated/shuttle/floor/white,
+/area/shuttle/trade)
+"cr" = (
+/obj/machinery/door/airlock/silver{
+	name = "Restroom"
+	},
+/turf/simulated/shuttle/floor/white,
+/area/shuttle/trade)
+"cs" = (
+/obj/structure/undies_wardrobe,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"ct" = (
+/obj/machinery/vending/cigarette{
+	name = "Cigarette machine";
+	prices = list();
+	products = list(/obj/item/weapon/storage/fancy/cigarettes = 10, /obj/item/weapon/storage/box/matches = 10, /obj/item/weapon/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cu" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 9
+	},
+/obj/structure/largecrate/animal/cat,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cv" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
+/obj/structure/largecrate/animal/cow,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cw" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
+/obj/structure/closet/crate/freezer/rations,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cx" = (
+/obj/structure/table/rack,
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
+/obj/item/device/kit/paint/ripley/death,
+/obj/item/device/kit/paint/ripley/flames_blue,
+/obj/item/device/kit/paint/ripley/flames_red,
+/obj/item/device/kit/paint/ripley,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cy" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
+/obj/structure/closet/crate/secure,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cz" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
+/obj/structure/largecrate/hoverpod,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cA" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 5
+	},
+/obj/mecha/working/ripley/mining,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cB" = (
+/obj/machinery/door/window/westright{
+	name = "Storefront";
+	req_access = list(160)
+	},
+/obj/structure/table/marble,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	id = "trade";
+	name = "Shop Shutters";
+	opacity = 0
+	},
+/turf/simulated/shuttle/floor/darkred,
+/area/shuttle/trade)
+"cC" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/darkred,
+/area/shuttle/trade)
+"cD" = (
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	id = "tradebridgeshutters";
+	name = "Blast Shutters";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"cE" = (
+/obj/machinery/computer/shuttle_control/multi/trade{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cF" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/darkred,
+/area/shuttle/trade)
+"cG" = (
+/obj/machinery/door/airlock/command{
+	name = "Bridge";
+	req_access = list(160);
+	req_one_access = newlist()
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cH" = (
+/obj/structure/noticeboard{
+	pixel_y = 32
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cI" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/obj/structure/largecrate/animal/corgi,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cJ" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/largecrate/animal/corgi,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cK" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/closet/crate/internals,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cL" = (
+/obj/structure/table/rack,
+/obj/effect/floor_decal/industrial/warning,
+/obj/item/device/kit/paint/gygax/darkgygax,
+/obj/item/device/kit/paint/gygax/recitence,
+/obj/item/device/kit/paint/durand,
+/obj/item/device/kit/paint/durand/phazon,
+/obj/item/device/kit/paint/durand/seraph,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cM" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/closet/crate/secure,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cN" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/largecrate/hoverpod,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cO" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
+/obj/mecha/working/ripley/firefighter,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cP" = (
+/obj/machinery/door/window/westleft{
+	name = "Storefront";
+	req_access = list(160)
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	id = "trade";
+	name = "Shop Shutters";
+	opacity = 0
+	},
+/obj/structure/table/marble,
+/turf/simulated/shuttle/floor/darkred,
+/area/shuttle/trade)
+"cQ" = (
+/obj/structure/table/steel_reinforced,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cR" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/button/remote/blast_door{
+	id = "tradebridgeshutters";
+	name = "remote shutter control";
+	pixel_x = 30;
+	req_access = list(150)
+	},
+/obj/structure/flora/pottedplant{
+	icon_state = "plant-09";
+	name = "Esteban";
+	pixel_y = 8
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cS" = (
+/obj/machinery/vending/assist{
+	contraband = null;
+	name = "Old Vending Machine";
+	products = list(/obj/item/device/assembly/prox_sensor = 5, /obj/item/device/assembly/signaler = 4, /obj/item/device/assembly/infra = 4, /obj/item/device/assembly/prox_sensor = 4, /obj/item/weapon/handcuffs = 8, /obj/item/device/flash = 4, /obj/item/weapon/cartridge/signal = 4, /obj/item/clothing/glasses/sunglasses = 4)
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cT" = (
+/obj/structure/closet{
+	name = "custodial"
+	},
+/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/weapon/mop,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cU" = (
+/obj/machinery/vending/sovietsoda,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cV" = (
+/obj/machinery/light,
+/obj/structure/table/standard,
+/obj/item/weapon/soap,
+/obj/item/weapon/towel{
+	color = "#0000FF"
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cW" = (
+/obj/structure/sign/poster{
+	pixel_y = -32
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cX" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 2;
+	req_access = list(160)
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cY" = (
+/obj/machinery/door/window/westleft{
+	name = "Storefront";
+	req_access = list(160)
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"cZ" = (
+/obj/machinery/button/remote/blast_door{
+	id = "trade";
+	name = "Shop Shutters";
+	pixel_x = 0;
+	pixel_y = -26
+	},
+/turf/simulated/shuttle/floor/darkred,
+/area/shuttle/trade)
+"da" = (
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "tradebridgeshutters";
+	name = "Blast Shutters";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"db" = (
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "tradebridgeshutters";
+	name = "Blast Shutters";
+	opacity = 0
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"dc" = (
+/obj/machinery/vending/boozeomat{
+	req_access = null
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dd" = (
+/obj/structure/table/standard,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"de" = (
+/obj/structure/table/standard,
+/obj/item/weapon/storage/toolbox/mechanical,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"df" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/contraband/poster,
+/obj/item/weapon/contraband/poster,
+/obj/item/weapon/contraband/poster,
+/obj/item/weapon/contraband/poster,
+/obj/item/weapon/contraband/poster,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dg" = (
+/obj/machinery/door/window/northleft{
+	name = "Cargo Hold";
+	req_access = list(160)
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dh" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/plushie,
+/obj/random/plushie,
+/obj/random/plushie,
+/obj/random/plushie,
+/obj/random/plushie,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"di" = (
+/obj/machinery/door/window/northright{
+	name = "Cargo Hold";
+	req_access = list(160)
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dj" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/clothing/gloves/black,
+/obj/item/clothing/gloves/blue,
+/obj/item/clothing/gloves/brown,
+/obj/item/clothing/gloves/captain,
+/obj/item/clothing/gloves/combat,
+/obj/item/clothing/gloves/green,
+/obj/item/clothing/gloves/grey,
+/obj/item/clothing/gloves/light_brown,
+/obj/item/clothing/gloves/purple,
+/obj/item/clothing/gloves/rainbow,
+/obj/item/clothing/gloves/swat,
+/obj/item/clothing/gloves/white,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dk" = (
+/obj/machinery/atmospherics/pipe/tank/air{
+	dir = 2;
+	start_pressure = 740.5
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dl" = (
+/obj/structure/closet/walllocker/emerglocker{
+	pixel_y = 32
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dm" = (
+/obj/machinery/autolathe{
+	desc = "Your typical Autolathe. It appears to have much more options than your regular one, however...";
+	hacked = 1;
+	name = "Unlocked Autolathe"
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dn" = (
+/obj/machinery/button/remote/blast_door{
+	id = "tradeportshutters";
+	name = "remote shutter control";
+	pixel_x = 30;
+	req_access = list(160)
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"do" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/contraband,
+/obj/random/contraband,
+/obj/random/contraband,
+/obj/random/contraband,
+/obj/random/contraband,
+/obj/random/contraband,
+/obj/item/weapon/bikehorn,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dp" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dq" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dr" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"ds" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/clothing/head/bearpelt,
+/obj/item/clothing/head/bowler,
+/obj/item/clothing/head/caphat/cap,
+/obj/item/clothing/head/beaverhat,
+/obj/item/clothing/head/beret/centcom,
+/obj/item/clothing/head/beret/sec,
+/obj/item/clothing/head/collectable/kitty,
+/obj/item/clothing/head/collectable/kitty,
+/obj/item/clothing/head/collectable/kitty,
+/obj/item/clothing/head/collectable/rabbitears,
+/obj/item/clothing/head/collectable/rabbitears,
+/obj/item/clothing/head/collectable/rabbitears,
+/obj/item/clothing/head/collectable/petehat,
+/obj/item/clothing/head/collectable/pirate,
+/obj/item/clothing/head/collectable/wizard,
+/obj/item/clothing/head/collectable/xenom,
+/obj/item/clothing/head/cowboy_hat,
+/obj/item/clothing/head/pin/flower/violet,
+/obj/item/clothing/head/pin/flower/blue,
+/obj/item/clothing/head/pin/flower/orange,
+/obj/item/clothing/head/pin/flower/pink,
+/obj/item/clothing/head/justice,
+/obj/item/clothing/head/justice/blue,
+/obj/item/clothing/head/justice/green,
+/obj/item/clothing/head/justice/pink,
+/obj/item/clothing/head/justice/yellow,
+/obj/item/clothing/head/philosopher_wig,
+/obj/item/clothing/head/plaguedoctorhat,
+/obj/item/clothing/head/xenos,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dt" = (
+/obj/machinery/atmospherics/pipe/simple/visible,
+/obj/machinery/meter,
+/obj/structure/largecrate/animal/cat,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"du" = (
+/obj/machinery/door/airlock/glass_engineering{
+	name = "Engineering";
+	req_access = list(160);
+	req_one_access = newlist()
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dv" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	id = "tradeportshutters";
+	name = "Blast Shutters";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"dw" = (
+/obj/structure/closet/wardrobe/captain,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dx" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/bookcase,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dy" = (
+/obj/structure/bed/chair/comfy/black,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dz" = (
+/obj/structure/bed/chair/office/dark,
+/turf/simulated/floor/carpet,
+/area/shuttle/trade)
+"dA" = (
+/obj/machinery/photocopier,
+/turf/simulated/floor/carpet,
+/area/shuttle/trade)
+"dB" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/action_figure,
+/obj/random/action_figure,
+/obj/random/action_figure,
+/obj/random/action_figure,
+/obj/random/action_figure,
+/obj/random/action_figure,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dC" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/lipstick/black,
+/obj/item/weapon/lipstick/jade,
+/obj/item/weapon/lipstick/purple,
+/obj/item/weapon/lipstick,
+/obj/item/weapon/lipstick/random,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dD" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/clothing/accessory/holster/hip,
+/obj/item/clothing/accessory/holster/armpit,
+/obj/item/clothing/accessory/holster/armpit,
+/obj/item/clothing/accessory/holster/hip,
+/obj/item/clothing/accessory/storage/white_vest,
+/obj/item/clothing/accessory/storage/white_vest,
+/obj/item/clothing/accessory/storage/webbing,
+/obj/item/clothing/accessory/storage/webbing,
+/obj/item/clothing/accessory/storage/black_vest,
+/obj/item/clothing/accessory/storage/black_vest,
+/obj/item/clothing/accessory/storage/brown_vest,
+/obj/item/clothing/accessory/storage/brown_vest,
+/obj/item/clothing/accessory/scarf/white,
+/obj/item/clothing/accessory/scarf/lightblue,
+/obj/item/clothing/accessory/scarf/red,
+/obj/item/clothing/accessory/scarf/purple,
+/obj/item/clothing/accessory/armband/science,
+/obj/item/clothing/accessory/armband/med,
+/obj/item/clothing/accessory/armband/engine,
+/obj/item/clothing/accessory/armband/cargo,
+/obj/item/clothing/accessory/armband,
+/obj/item/clothing/accessory/medal/nobel_science,
+/obj/item/clothing/accessory/medal/silver,
+/obj/item/clothing/accessory/medal/gold,
+/obj/item/clothing/accessory/medal/bronze_heart,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dE" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/clothing/under/cheongsam,
+/obj/item/clothing/under/hosformalmale,
+/obj/item/clothing/under/hosformalfem,
+/obj/item/clothing/under/harness,
+/obj/item/clothing/under/gladiator,
+/obj/item/clothing/under/ert,
+/obj/item/clothing/under/schoolgirl,
+/obj/item/clothing/under/redcoat,
+/obj/item/clothing/under/sexymime,
+/obj/item/clothing/under/sexyclown,
+/obj/item/clothing/under/soviet,
+/obj/item/clothing/under/space,
+/obj/item/clothing/under/swimsuit/stripper/mankini,
+/obj/item/clothing/under/suit_jacket/female,
+/obj/item/clothing/under/rank/psych/turtleneck,
+/obj/item/clothing/under/syndicate/combat,
+/obj/item/clothing/under/syndicate/combat,
+/obj/item/clothing/under/syndicate/tacticool,
+/obj/item/clothing/under/syndicate/tacticool,
+/obj/item/clothing/under/dress/sailordress,
+/obj/item/clothing/under/dress/redeveninggown,
+/obj/item/clothing/under/dress/dress_saloon,
+/obj/item/clothing/under/dress/blacktango,
+/obj/item/clothing/under/dress/blacktango/alt,
+/obj/item/clothing/under/dress/dress_orange,
+/obj/item/clothing/under/dress/maid/janitor,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dF" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/clothing/suit/hgpirate,
+/obj/item/clothing/suit/imperium_monk,
+/obj/item/clothing/suit/leathercoat,
+/obj/item/clothing/suit/justice,
+/obj/item/clothing/suit/justice,
+/obj/item/clothing/suit/justice,
+/obj/item/clothing/suit/justice,
+/obj/item/clothing/suit/justice,
+/obj/item/clothing/suit/pirate,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dG" = (
+/obj/machinery/atmospherics/pipe/simple/visible,
+/obj/structure/closet/crate/solar,
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dH" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	id = "tradeportshutters";
+	name = "Blast Shutters";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"dI" = (
+/obj/machinery/door/airlock/command{
+	name = "Captain's Quarters";
+	req_access = list(160);
+	req_one_access = newlist()
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dJ" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/paper_bin{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/weapon/pen{
+	pixel_y = 4
+	},
+/turf/simulated/floor/carpet,
+/area/shuttle/trade)
+"dK" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/carpet,
+/area/shuttle/trade)
+"dL" = (
+/obj/structure/table/woodentable,
+/obj/item/modular_computer/laptop/preset/custom_loadout/standard,
+/turf/simulated/floor/carpet,
+/area/shuttle/trade)
+"dM" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "tradeportshutters";
+	name = "Blast Shutters";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"dN" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "tradeportshutters";
+	name = "Blast Shutters";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"dO" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "tradeportshutters";
+	name = "Blast Shutters";
+	opacity = 0
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/shuttle/plating,
+/area/shuttle/trade)
+"dP" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 5
+	},
+/obj/machinery/atm{
+	pixel_x = -32
+	},
+/obj/machinery/meter,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dQ" = (
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1331;
+	master_tag = "trade2_control";
+	pixel_x = -22;
+	pixel_y = -32;
+	req_one_access = list(150)
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dR" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 10
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dS" = (
+/obj/structure/table/standard,
+/obj/item/clothing/suit/space/void/merc,
+/obj/item/clothing/suit/space/void/merc,
+/obj/item/clothing/suit/space/void/merc,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/head/helmet/space/void/merc,
+/obj/item/clothing/head/helmet/space/void/merc,
+/obj/item/clothing/head/helmet/space/void/merc,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dT" = (
+/obj/structure/table/standard,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/yellow,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dU" = (
+/obj/structure/table/standard,
+/obj/item/stack/material/steel{
+	amount = 2
+	},
+/obj/item/stack/material/steel{
+	amount = 2
+	},
+/obj/item/stack/material/glass{
+	amount = 15
+	},
+/obj/item/stack/material/glass{
+	amount = 15
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dV" = (
+/obj/structure/bed/padded,
+/obj/item/weapon/bedsheet/captain,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dW" = (
+/obj/structure/table/glass,
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = -35
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dX" = (
+/obj/structure/filingcabinet/filingcabinet,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"dY" = (
+/obj/machinery/light,
+/turf/simulated/floor/carpet,
+/area/shuttle/trade)
+"dZ" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 1
+	},
+/turf/simulated/floor/carpet,
+/area/shuttle/trade)
+"ea" = (
+/obj/structure/flora/pottedplant{
+	icon_state = "plant-10"
+	},
+/turf/simulated/floor/carpet,
+/area/shuttle/trade)
+"eb" = (
+/obj/machinery/atmospherics/pipe/simple/visible,
+/obj/machinery/door/airlock/glass_external{
+	frequency = 1331;
+	icon_state = "door_locked";
+	id_tag = "trade2_shuttle_inner";
+	locked = 1;
+	name = "Ship Hatch"
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"ec" = (
+/obj/machinery/door/airlock/glass_external{
+	frequency = 1331;
+	icon_state = "door_locked";
+	id_tag = "trade2_shuttle_inner";
+	locked = 1;
+	name = "Ship Hatch"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"ed" = (
+/obj/machinery/vending/engivend,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"ee" = (
+/obj/machinery/vending/tool,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"ef" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	frequency = 1331;
+	id_tag = "trade2_vent"
+	},
+/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
+	frequency = 1331;
+	id_tag = "trade2_control";
+	pixel_x = -24;
+	req_access = list(150);
+	tag_airpump = "trade2_vent";
+	tag_chamber_sensor = "trade2_sensor";
+	tag_exterior_door = "trade2_shuttle_outer";
+	tag_interior_door = "trade2_shuttle_inner"
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"eg" = (
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/obj/machinery/airlock_sensor{
+	frequency = 1331;
+	id_tag = "trade2_sensor";
+	pixel_x = 25
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	frequency = 1331;
+	id_tag = "trade2_vent"
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"eh" = (
+/obj/machinery/door/airlock/glass_external{
+	frequency = 1331;
+	icon_state = "door_locked";
+	id_tag = "trade2_shuttle_outer";
+	locked = 1;
+	name = "Ship Hatch"
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"ei" = (
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1331;
+	master_tag = "trade2_control";
+	pixel_x = 24;
+	req_one_access = list(150)
+	},
+/obj/machinery/door/airlock/glass_external{
+	frequency = 1331;
+	icon_state = "door_locked";
+	id_tag = "trade2_shuttle_outer";
+	locked = 1;
+	name = "Ship Hatch"
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aH
+cn
+cD
+aH
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(4,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aH
+aH
+co
+cE
+aH
+aH
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(5,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+bY
+ce
+bA
+cF
+cQ
+da
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(6,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+bZ
+cf
+cp
+bA
+cR
+db
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(7,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aH
+aH
+aH
+cG
+aH
+aH
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(8,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aH
+cg
+cq
+bc
+cS
+aH
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(9,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aH
+ba
+bn
+aH
+aa
+aH
+aH
+aF
+bc
+cT
+aH
+aa
+aH
+dv
+dH
+aH
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(10,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aH
+aF
+bb
+bo
+aH
+aa
+aH
+ch
+aH
+bc
+cU
+aH
+aa
+aH
+dw
+bc
+aF
+aH
+aa
+aa
+aa
+aa
+aa
+"}
+(11,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aH
+aP
+bc
+bp
+aH
+aa
+aH
+ci
+cr
+bc
+cV
+aH
+aa
+aH
+dx
+bc
+dV
+aH
+aa
+aa
+aa
+aa
+aa
+"}
+(12,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aH
+aQ
+bc
+bq
+aH
+aa
+aH
+cj
+aH
+cH
+cW
+aH
+aa
+aH
+dy
+bc
+dW
+aH
+aa
+aa
+aa
+aa
+aa
+"}
+(13,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aH
+aH
+bd
+aH
+aH
+aH
+aH
+aF
+cs
+bc
+bc
+aH
+aH
+aH
+aH
+dI
+aH
+aH
+aa
+aa
+aa
+aa
+aa
+"}
+(14,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aH
+aR
+bc
+bc
+aH
+aH
+aH
+aH
+aH
+bc
+cX
+aF
+aH
+bc
+bc
+bc
+dX
+aH
+aa
+aa
+aa
+aa
+aa
+"}
+(15,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aH
+aS
+bc
+bc
+bE
+aH
+ca
+ck
+ct
+bc
+bc
+dc
+aH
+dl
+bc
+bc
+bc
+aH
+aa
+aa
+aa
+aa
+aa
+"}
+(16,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aI
+aT
+be
+br
+bc
+bP
+bc
+bc
+bA
+bA
+bc
+bc
+bP
+bc
+be
+dJ
+dY
+dM
+aa
+aa
+aa
+aa
+aa
+"}
+(17,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aJ
+aU
+bf
+bs
+bc
+bc
+bc
+bA
+bA
+bA
+bA
+bc
+bc
+bc
+dz
+dK
+dZ
+dN
+aa
+aa
+aa
+aa
+aa
+"}
+(18,1,1) = {"
+aa
+aa
+aa
+ab
+ac
+ac
+ac
+ab
+av
+ab
+az
+az
+ab
+aa
+aa
+aa
+aa
+aK
+aV
+bg
+bg
+bF
+aH
+bc
+bA
+cu
+cI
+bA
+bc
+aH
+dn
+dA
+dL
+ea
+dO
+aa
+aa
+aa
+aa
+aa
+"}
+(19,1,1) = {"
+aa
+aa
+aa
+ab
+ad
+aj
+aj
+ab
+aw
+ab
+ay
+ay
+ab
+aa
+aa
+aa
+aa
+aH
+aH
+aH
+aH
+aH
+aF
+bc
+bA
+cv
+cJ
+bA
+bc
+aF
+aH
+aH
+aH
+aH
+aH
+aa
+aa
+aa
+aa
+aa
+"}
+(20,1,1) = {"
+aa
+aa
+aa
+ab
+ae
+aj
+aj
+aj
+aj
+ax
+ay
+aB
+ab
+aa
+aa
+aa
+aa
+aa
+aH
+aH
+bt
+bG
+bQ
+cb
+bA
+cw
+cK
+bA
+bN
+df
+do
+dB
+aH
+aH
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(21,1,1) = {"
+aa
+aa
+aa
+ab
+af
+aj
+aq
+aq
+aj
+ay
+ay
+aC
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aI
+bu
+bH
+bR
+bc
+bA
+cx
+cL
+bA
+bc
+dg
+dp
+dC
+dM
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(22,1,1) = {"
+aa
+aa
+aa
+ab
+ag
+aj
+aj
+aj
+aj
+ab
+ay
+ay
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aJ
+bv
+bI
+bS
+bc
+bA
+cy
+cM
+bA
+bc
+dh
+dq
+dD
+dN
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(23,1,1) = {"
+aa
+aa
+aa
+ab
+ah
+am
+ar
+aj
+aj
+ab
+aA
+aA
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aK
+bw
+bJ
+bT
+bc
+bA
+cz
+cN
+bA
+bc
+di
+dr
+dE
+dO
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(24,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+aj
+aj
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aH
+aH
+bx
+bK
+bU
+bc
+bA
+cA
+cO
+bA
+bc
+dj
+ds
+dF
+aH
+aH
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(25,1,1) = {"
+aa
+aa
+aa
+ab
+ai
+an
+as
+aj
+aj
+aj
+aj
+aj
+ab
+aa
+aa
+aa
+aa
+aH
+aH
+aH
+by
+bL
+bV
+aH
+bA
+bA
+bA
+bA
+aH
+by
+bL
+bV
+aH
+aH
+aH
+aa
+aa
+aa
+aa
+aa
+"}
+(26,1,1) = {"
+aa
+aa
+aa
+ab
+aj
+al
+al
+al
+al
+al
+al
+aj
+ab
+ab
+ab
+ab
+aF
+aH
+aF
+bh
+bz
+bM
+bM
+aH
+bc
+bA
+bA
+bc
+aH
+dk
+dt
+dG
+dP
+aF
+aH
+aF
+aa
+aa
+aa
+aa
+"}
+(27,1,1) = {"
+aa
+aa
+aa
+ab
+aj
+al
+at
+at
+at
+at
+al
+aj
+aj
+aj
+aj
+aE
+aG
+aL
+aW
+bc
+bA
+bA
+bA
+cc
+bA
+bA
+bA
+bA
+cc
+bA
+bA
+bA
+dQ
+eb
+ef
+eh
+aa
+aa
+aa
+aa
+"}
+(28,1,1) = {"
+aa
+aa
+aa
+ab
+aj
+al
+at
+at
+at
+at
+al
+aj
+aj
+aD
+aj
+aE
+aG
+aM
+aG
+bc
+bA
+bA
+bc
+bc
+bc
+bA
+bA
+bc
+bc
+bc
+bA
+bA
+dR
+ec
+eg
+ei
+aa
+aa
+aa
+aa
+"}
+(29,1,1) = {"
+aa
+aa
+aa
+ab
+aj
+ao
+ao
+al
+al
+ao
+ao
+aj
+ab
+ab
+ab
+ab
+aF
+aH
+aF
+bi
+bc
+bc
+bE
+aF
+cl
+cB
+cP
+cY
+aF
+dl
+bc
+bc
+bc
+aF
+aH
+aF
+aa
+aa
+aa
+aa
+"}
+(30,1,1) = {"
+aa
+aa
+aa
+ab
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+ab
+aa
+aa
+aa
+aa
+aH
+aH
+aH
+bB
+bB
+aF
+aH
+cm
+cC
+bA
+bc
+aH
+aF
+du
+du
+aH
+aH
+aH
+aa
+aa
+aa
+aa
+aa
+"}
+(31,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+au
+au
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aI
+bj
+bc
+bc
+aH
+cd
+bA
+bA
+bA
+cZ
+dd
+aH
+bc
+bc
+dS
+dM
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(32,1,1) = {"
+aa
+aa
+aa
+ab
+ak
+ap
+al
+al
+al
+al
+ap
+ak
+ab
+aa
+aa
+aa
+aa
+aa
+aK
+bk
+bc
+bN
+aH
+cd
+bA
+bA
+bA
+bA
+de
+aH
+cb
+bc
+dT
+dO
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(33,1,1) = {"
+aa
+aa
+aa
+ab
+al
+al
+al
+al
+al
+al
+al
+al
+ab
+aa
+aa
+aa
+aa
+aH
+aF
+bl
+bc
+bO
+aF
+aH
+bc
+bc
+bc
+bm
+aH
+aH
+bc
+bc
+dU
+aH
+aH
+aa
+aa
+aa
+aa
+aa
+"}
+(34,1,1) = {"
+aa
+aa
+aa
+ab
+ak
+ap
+al
+al
+al
+al
+ak
+ak
+ab
+aa
+aa
+aa
+aH
+aH
+aX
+bc
+bc
+bc
+bW
+aH
+aH
+aH
+aH
+aH
+aH
+bc
+bc
+bc
+bc
+ed
+aH
+aH
+aa
+aa
+aa
+aa
+"}
+(35,1,1) = {"
+aa
+aa
+aa
+ab
+al
+al
+al
+al
+al
+al
+al
+al
+ab
+aa
+aa
+aa
+aH
+aH
+aY
+bm
+bC
+bc
+bX
+aH
+aN
+aN
+aN
+aN
+aH
+dm
+bc
+bc
+bm
+ee
+aH
+aH
+aa
+aa
+aa
+aa
+"}
+(36,1,1) = {"
+aa
+aa
+aa
+ab
+ak
+ap
+al
+al
+al
+al
+ap
+ak
+ab
+aa
+aa
+aa
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aO
+aZ
+aZ
+bD
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aH
+aa
+aa
+aa
+aa
+"}
+(37,1,1) = {"
+aa
+aa
+aa
+ab
+al
+al
+al
+al
+al
+al
+al
+al
+ab
+aa
+aa
+aa
+aH
+aN
+aN
+aN
+aN
+aH
+aH
+aa
+aa
+aa
+aa
+aa
+aa
+aH
+aH
+aN
+aN
+aN
+aN
+aH
+aa
+aa
+aa
+aa
+"}
+(38,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aH
+aO
+aZ
+aZ
+bD
+aH
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aH
+aO
+aZ
+aZ
+bD
+aH
+aa
+aa
+aa
+aa
+"}
+(39,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(40,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}

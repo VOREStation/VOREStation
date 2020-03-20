@@ -162,6 +162,36 @@ datum/uplink_item/dd_SortValue()
 
 	return "[bicon(default_abstract_uplink_icon)]"
 
+/*
+ * Crated goods.
+ */
+
+/datum/uplink_item/crated
+	var/crate_path = /obj/structure/largecrate
+	var/list/paths = list()	// List of paths to be spawned into the crate.
+
+/datum/uplink_item/crated/get_goods(var/obj/item/device/uplink/U, var/loc)
+	var/obj/L = new crate_path(get_turf(loc))
+
+	L.adjust_scale(rand(9, 12) / 10, rand(9, 12) / 10)	// Some variation in the crate / locker size.
+
+	for(var/path in paths)
+		var/obj/O = new path(L)
+		O.forceMove(L)
+
+	return L
+
+/datum/uplink_item/crated/description()
+	if(!desc)
+		// Fallback description
+		var/obj/temp = crate_path
+		desc = initial(temp.desc)
+	return ..()
+
+/datum/uplink_item/crated/log_icon()
+	var/obj/I = crate_path
+	return "\icon[I]"
+
 /****************
 * Support procs *
 ****************/

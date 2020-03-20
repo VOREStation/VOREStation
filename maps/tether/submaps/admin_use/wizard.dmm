@@ -1,0 +1,2116 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/turf/simulated/shuttle/wall/dark/hard_corner,
+/area/wizard_station)
+"ac" = (
+/obj/effect/wingrille_spawn/reinforced/crescent,
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"ad" = (
+/obj/machinery/chemical_dispenser/bar_soft/full,
+/obj/structure/table/marble,
+/turf/unsimulated/floor{
+	icon_state = "white"
+	},
+/area/wizard_station)
+"ae" = (
+/obj/item/weapon/reagent_containers/food/drinks/bottle/pwine{
+	pixel_x = -4;
+	pixel_y = 10
+	},
+/obj/structure/table/marble,
+/turf/unsimulated/floor{
+	icon_state = "white"
+	},
+/area/wizard_station)
+"af" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 28
+	},
+/turf/unsimulated/floor{
+	icon_state = "white"
+	},
+/area/wizard_station)
+"ag" = (
+/obj/machinery/computer/arcade/battle,
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"ah" = (
+/obj/machinery/computer/arcade/orion_trail,
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"ai" = (
+/obj/machinery/microwave{
+	pixel_x = -1;
+	pixel_y = 8
+	},
+/obj/structure/table/marble,
+/turf/unsimulated/floor{
+	icon_state = "white"
+	},
+/area/wizard_station)
+"aj" = (
+/turf/unsimulated/floor{
+	icon_state = "white"
+	},
+/area/wizard_station)
+"ak" = (
+/obj/structure/table/woodentable,
+/obj/item/device/flashlight/lamp/green{
+	on = 0;
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/toy/figure/ninja,
+/turf/unsimulated/floor{
+	icon_state = "lino"
+	},
+/area/wizard_station)
+"al" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet/rd,
+/turf/unsimulated/floor{
+	icon_state = "lino"
+	},
+/area/wizard_station)
+"am" = (
+/obj/structure/bed/chair/wood/wings,
+/obj/machinery/newscaster{
+	layer = 3.3;
+	pixel_x = 0;
+	pixel_y = 30
+	},
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"an" = (
+/obj/machinery/status_display{
+	layer = 4;
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"ao" = (
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"ap" = (
+/obj/item/weapon/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/structure/table/marble,
+/turf/unsimulated/floor{
+	icon_state = "white"
+	},
+/area/wizard_station)
+"aq" = (
+/obj/structure/mirror{
+	pixel_x = -28
+	},
+/turf/unsimulated/floor{
+	icon_state = "lino"
+	},
+/area/wizard_station)
+"ar" = (
+/turf/unsimulated/floor{
+	icon_state = "lino"
+	},
+/area/wizard_station)
+"as" = (
+/obj/structure/table/woodentable,
+/obj/machinery/status_display{
+	layer = 4;
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/obj/item/weapon/ore/slag{
+	desc = "Well at least Arthur doesn't have to share now...";
+	name = "pet rock"
+	},
+/turf/unsimulated/floor{
+	icon_state = "lino"
+	},
+/area/wizard_station)
+"at" = (
+/obj/machinery/newscaster{
+	layer = 3.3;
+	pixel_x = 0;
+	pixel_y = 30
+	},
+/obj/structure/bedsheetbin,
+/obj/structure/table/woodentable,
+/turf/unsimulated/floor{
+	icon_state = "lino"
+	},
+/area/wizard_station)
+"au" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/paper_bin,
+/obj/item/weapon/pen,
+/obj/item/device/radio/intercom{
+	desc = "Talk through this. Evilly";
+	frequency = 1213;
+	name = "Subversive Intercom";
+	pixel_x = -32;
+	subspace_transmission = 1;
+	syndie = 1
+	},
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"av" = (
+/obj/structure/table/woodentable,
+/obj/item/device/radio/headset,
+/obj/item/weapon/spacecash/c500,
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"aw" = (
+/obj/structure/bed/chair/wood/wings{
+	icon_state = "wooden_chair_wings";
+	dir = 8
+	},
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"ax" = (
+/obj/item/weapon/reagent_containers/food/snacks/spellburger{
+	pixel_y = 8
+	},
+/obj/structure/table/marble,
+/turf/unsimulated/floor{
+	icon_state = "white"
+	},
+/area/wizard_station)
+"ay" = (
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"az" = (
+/obj/structure/undies_wardrobe,
+/obj/item/device/radio/intercom{
+	desc = "Talk through this. Evilly";
+	frequency = 1213;
+	name = "Subversive Intercom";
+	pixel_x = 32;
+	subspace_transmission = 1;
+	syndie = 1
+	},
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"aA" = (
+/obj/structure/bed/chair/wood/wings{
+	icon_state = "wooden_chair_wings";
+	dir = 4
+	},
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"aB" = (
+/obj/structure/table/woodentable,
+/obj/item/device/paicard,
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"aC" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/book/manual/security_space_law,
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"aD" = (
+/obj/machinery/door/airlock/hatch,
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"aE" = (
+/obj/machinery/door/airlock/hatch,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"aF" = (
+/obj/item/weapon/antag_spawner/technomancer_apprentice,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"aG" = (
+/obj/structure/table/woodentable,
+/obj/item/clothing/shoes/boots/workboots,
+/obj/item/clothing/under/technomancer,
+/obj/item/clothing/head/technomancer,
+/obj/item/weapon/storage/box/syndie_kit/chameleon,
+/obj/item/weapon/storage/box/syndie_kit/chameleon,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"aH" = (
+/turf/template_noop,
+/area/wizard_station)
+"aI" = (
+/obj/structure/bed/chair/wood/wings{
+	icon_state = "wooden_chair_wings";
+	dir = 1
+	},
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"aJ" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/unsimulated/floor{
+	icon_state = "grass0";
+	name = "grass"
+	},
+/area/wizard_station)
+"aK" = (
+/obj/machinery/vending/hydroseeds,
+/turf/unsimulated/floor{
+	icon_state = "grass0";
+	name = "grass"
+	},
+/area/wizard_station)
+"aL" = (
+/obj/structure/closet{
+	icon_closed = "cabinet_closed";
+	icon_opened = "cabinet_open";
+	icon_state = "cabinet_closed"
+	},
+/obj/item/clothing/suit/wizrobe/magusblue,
+/obj/item/clothing/head/wizard/magus,
+/obj/item/weapon/staff,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"aM" = (
+/obj/effect/landmark/late_antag/wizard,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"aN" = (
+/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"aO" = (
+/obj/effect/wingrille_spawn/reinforced/crescent,
+/turf/template_noop,
+/area/wizard_station)
+"aP" = (
+/obj/structure/table/woodentable,
+/obj/machinery/librarycomp{
+	pixel_y = 6
+	},
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"aQ" = (
+/obj/machinery/media/jukebox,
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"aR" = (
+/obj/machinery/vending/hydronutrients,
+/turf/unsimulated/floor{
+	icon_state = "grass0";
+	name = "grass"
+	},
+/area/wizard_station)
+"aS" = (
+/obj/structure/closet{
+	icon_closed = "cabinet_closed";
+	icon_opened = "cabinet_open";
+	icon_state = "cabinet_closed"
+	},
+/obj/item/clothing/under/psysuit,
+/obj/item/clothing/suit/wizrobe/psypurple,
+/obj/item/clothing/head/wizard/amp,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"aT" = (
+/mob/living/simple_mob/animal/passive/mouse/gray{
+	desc = "He looks kingly.";
+	name = "Arthur"
+	},
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"aU" = (
+/obj/structure/flora/pottedplant{
+	icon_state = "plant-24"
+	},
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"aV" = (
+/obj/machinery/photocopier,
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"aW" = (
+/obj/structure/bookcase,
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"aX" = (
+/obj/structure/flora/pottedplant{
+	icon_state = "plant-08"
+	},
+/turf/unsimulated/floor{
+	dir = 8;
+	icon_state = "wood"
+	},
+/area/wizard_station)
+"aY" = (
+/obj/structure/closet{
+	icon_closed = "cabinet_closed";
+	icon_opened = "cabinet_open";
+	icon_state = "cabinet_closed"
+	},
+/obj/item/clothing/shoes/sandal/marisa{
+	desc = "A set of fancy shoes that are as functional as they are comfortable.";
+	name = "Gentlemans Shoes"
+	},
+/obj/item/clothing/under/gentlesuit,
+/obj/item/clothing/suit/wizrobe/gentlecoat,
+/obj/item/clothing/head/wizard/cap,
+/obj/item/weapon/staff/gentcane,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"aZ" = (
+/obj/structure/closet{
+	icon_closed = "cabinet_closed";
+	icon_opened = "cabinet_open";
+	icon_state = "cabinet_closed"
+	},
+/obj/item/clothing/suit/wizrobe/magusred,
+/obj/item/clothing/head/wizard/magus,
+/obj/item/weapon/staff,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"ba" = (
+/obj/structure/closet{
+	icon_closed = "cabinet_closed";
+	icon_opened = "cabinet_open";
+	icon_state = "cabinet_closed"
+	},
+/obj/item/clothing/suit/wizrobe/marisa,
+/obj/item/clothing/shoes/sandal/marisa,
+/obj/item/clothing/head/wizard/marisa,
+/obj/item/weapon/staff/broom,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bb" = (
+/obj/structure/closet{
+	icon_closed = "cabinet_closed";
+	icon_opened = "cabinet_open";
+	icon_state = "cabinet_closed"
+	},
+/obj/item/clothing/suit/wizrobe/red,
+/obj/item/clothing/shoes/sandal,
+/obj/item/clothing/head/wizard/red,
+/obj/item/weapon/staff,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bc" = (
+/obj/machinery/the_singularitygen,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bd" = (
+/obj/machinery/crystal,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"be" = (
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bf" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/arrow/quill,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"bg" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/stock_parts/matter_bin/super,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bh" = (
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"bi" = (
+/obj/machinery/computer/communications,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"bj" = (
+/obj/structure/sign/double/map/left{
+	pixel_y = 32
+	},
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bk" = (
+/obj/structure/sign/double/map/right{
+	pixel_y = 32
+	},
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bl" = (
+/obj/machinery/computer/message_monitor,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bm" = (
+/obj/machinery/computer/security,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bn" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/stack/telecrystal,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"bo" = (
+/obj/item/device/radio/intercom{
+	desc = "Talk through this. Evilly";
+	frequency = 1213;
+	name = "Syndicate Intercom";
+	pixel_x = 32;
+	subspace_transmission = 1;
+	syndie = 1
+	},
+/obj/item/device/radio/intercom{
+	desc = "Talk through this. Evilly";
+	frequency = 1213;
+	name = "Syndicate Intercom";
+	pixel_x = 32;
+	subspace_transmission = 1;
+	syndie = 1
+	},
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bp" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/clothing/head/philosopher_wig,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"bq" = (
+/obj/structure/flora/pottedplant{
+	icon_state = "plant-04"
+	},
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"br" = (
+/obj/structure/sign/electricshock,
+/turf/simulated/shuttle/wall/dark/hard_corner,
+/area/wizard_station)
+"bs" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"bt" = (
+/obj/machinery/computer/shuttle,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"bu" = (
+/obj/structure/bed/chair/comfy/brown{
+	dir = 8
+	},
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"bv" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"bw" = (
+/obj/machinery/computer/crew,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"bx" = (
+/obj/machinery/computer/power_monitor,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"by" = (
+/obj/item/device/radio/intercom{
+	desc = "Talk through this. Evilly";
+	frequency = 1213;
+	name = "Subversive Intercom";
+	pixel_x = 32;
+	subspace_transmission = 1;
+	syndie = 1
+	},
+/obj/machinery/computer/station_alert/all,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bz" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/device/mmi/radio_enabled,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"bA" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/material/knife/ritual,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"bB" = (
+/obj/structure/flora/pottedplant{
+	icon_state = "plant-03"
+	},
+/obj/item/device/radio/intercom{
+	desc = "Talk through this. Evilly";
+	frequency = 1213;
+	name = "Subversive Intercom";
+	pixel_x = -32;
+	subspace_transmission = 1;
+	syndie = 1
+	},
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bC" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"bD" = (
+/obj/machinery/power/port_gen/pacman,
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"bE" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/xenos_claw,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bF" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/coin/diamond,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"bG" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/broken_device,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"bH" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/organ/internal/stack,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bI" = (
+/obj/machinery/floodlight,
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"bJ" = (
+/obj/machinery/mecha_part_fabricator,
+/obj/machinery/status_display{
+	layer = 4;
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bK" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/cell_charger,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bL" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/book/manual/ripley_build_and_repair,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bM" = (
+/obj/item/device/suit_cooling_unit,
+/obj/structure/table/steel_reinforced,
+/obj/machinery/newscaster{
+	layer = 3.3;
+	pixel_x = 0;
+	pixel_y = 30
+	},
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bN" = (
+/obj/machinery/newscaster{
+	layer = 3.3;
+	pixel_x = 0;
+	pixel_y = 30
+	},
+/obj/item/target,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bO" = (
+/obj/item/target/syndicate,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bP" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/toy/sword,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bQ" = (
+/obj/machinery/status_display{
+	layer = 4;
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/gun/energy/laser/practice,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bR" = (
+/obj/machinery/recharge_station,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"bS" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/book/manual/engineering_hacking,
+/obj/item/device/radio/intercom{
+	desc = "Talk through this. Evilly";
+	frequency = 1213;
+	name = "Subversive Intercom";
+	pixel_x = 32;
+	subspace_transmission = 1;
+	syndie = 1
+	},
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bT" = (
+/obj/effect/floor_decal/industrial/warning/corner,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bU" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"bV" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
+	dir = 8
+	},
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bW" = (
+/obj/item/device/radio/intercom{
+	desc = "Talk through this. Evilly";
+	frequency = 1213;
+	name = "Subversive Intercom";
+	pixel_x = -32;
+	subspace_transmission = 1;
+	syndie = 1
+	},
+/obj/item/target,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"bX" = (
+/obj/item/robot_parts/r_arm,
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"bY" = (
+/obj/item/robot_parts/l_leg,
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"bZ" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/book/manual/robotics_cyborgs,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"ca" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"cb" = (
+/obj/machinery/power/emitter{
+	anchored = 1;
+	desc = "It is a heavy duty industrial laser used in a very non-industrial way.";
+	name = "teleport defender"
+	},
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"cc" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"cd" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 9
+	},
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"ce" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"cf" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 5
+	},
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"cg" = (
+/obj/item/weapon/stool/padded,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"ch" = (
+/obj/item/robot_parts/r_leg,
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"ci" = (
+/obj/item/robot_parts/chest,
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"cj" = (
+/obj/item/robot_parts/l_arm,
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"ck" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"cl" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"cm" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"cn" = (
+/obj/structure/target_stake,
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"co" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"cp" = (
+/obj/structure/AIcore,
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"cq" = (
+/obj/structure/flora/pottedplant{
+	icon_state = "plant-20"
+	},
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"cr" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"cs" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"ct" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"cu" = (
+/obj/effect/decal/mecha_wreckage/phazon,
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"cv" = (
+/obj/item/robot_parts/head,
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/wizard_station)
+"cw" = (
+/obj/item/weapon/firstaid_arm_assembly,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"cx" = (
+/obj/item/weapon/bucket_sensor,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"cy" = (
+/obj/item/weapon/farmbot_arm_assembly,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"cz" = (
+/obj/structure/table/steel_reinforced,
+/turf/unsimulated/floor{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/wizard_station)
+"cA" = (
+/obj/structure/table/steel_reinforced,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"cB" = (
+/obj/machinery/computer/teleporter,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"cC" = (
+/obj/machinery/teleport/station,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"cD" = (
+/obj/machinery/teleport/hub,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+"cE" = (
+/obj/effect/landmark/late_antag/technomancer,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(4,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(5,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ac
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(6,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aH
+aO
+ab
+ay
+bi
+bt
+bw
+ay
+ab
+ac
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(7,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+aP
+ab
+ab
+ay
+ay
+ay
+ab
+ab
+bR
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(8,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aA
+ao
+ao
+aV
+ab
+bj
+bu
+be
+ab
+bJ
+ay
+bh
+bh
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(9,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+au
+aB
+aI
+ao
+aW
+ab
+bk
+ay
+be
+ab
+bK
+ay
+bX
+ch
+cp
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(10,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ab
+am
+av
+aC
+aI
+ao
+ao
+aD
+ay
+ay
+ay
+aE
+ay
+ay
+bh
+ci
+bh
+cu
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(11,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ab
+an
+aw
+aw
+ao
+ao
+aX
+ab
+bl
+ay
+bx
+ab
+bL
+ay
+bY
+cj
+bh
+cv
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+"}
+(12,1,1) = {"
+aa
+aa
+aa
+aa
+ac
+ag
+ao
+ao
+ao
+ao
+ao
+aW
+ab
+bm
+ay
+by
+ab
+bM
+ay
+ay
+ay
+ay
+ay
+cx
+ac
+aa
+aa
+aa
+aa
+aa
+"}
+(13,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+ah
+ao
+ao
+ao
+ao
+aQ
+ab
+ab
+ab
+aE
+ab
+ab
+ab
+bS
+bZ
+ay
+cq
+cw
+cy
+ab
+ab
+aa
+aa
+aa
+aa
+"}
+(14,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+aD
+ab
+ab
+ab
+bc
+bn
+be
+bz
+bE
+ab
+ab
+ab
+aE
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+"}
+(15,1,1) = {"
+aa
+aa
+aa
+ab
+ad
+ai
+ap
+ax
+ay
+aJ
+aJ
+ab
+bd
+be
+ay
+be
+bF
+ab
+bT
+ca
+ck
+ca
+ab
+ay
+cB
+ab
+aa
+aa
+aa
+aa
+"}
+(16,1,1) = {"
+aa
+aa
+aa
+ac
+ae
+aj
+aj
+aj
+ay
+ay
+ay
+aE
+be
+ay
+ab
+ay
+be
+aE
+bU
+cb
+ay
+ay
+aE
+ay
+cC
+ac
+aa
+aa
+aa
+aa
+"}
+(17,1,1) = {"
+aa
+aa
+aa
+ab
+af
+aj
+aj
+aj
+ay
+aK
+aR
+ab
+bf
+bo
+ay
+be
+bG
+ab
+bV
+cc
+cl
+cc
+ab
+ay
+cD
+ab
+aa
+aa
+aa
+aa
+"}
+(18,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+aE
+ab
+ab
+ab
+bg
+bp
+be
+bA
+bH
+ab
+ab
+ab
+aE
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+"}
+(19,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+ak
+aq
+ay
+ay
+aL
+aS
+ab
+ab
+ab
+aE
+ab
+ab
+ab
+bW
+bO
+ay
+be
+be
+cz
+ab
+ab
+aa
+aa
+aa
+aa
+"}
+(20,1,1) = {"
+aa
+aa
+aa
+aa
+ac
+al
+ar
+aM
+ay
+ay
+ay
+aY
+ab
+bq
+ay
+bB
+ab
+bN
+ay
+ay
+ay
+ay
+ay
+cA
+ac
+aa
+aa
+aa
+aa
+aa
+"}
+(21,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ab
+as
+ay
+ay
+ay
+ay
+aZ
+ab
+be
+ay
+be
+ab
+bO
+ay
+cd
+cm
+cr
+cg
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+"}
+(22,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ab
+at
+ay
+aF
+cE
+aT
+ay
+aE
+ay
+ay
+ay
+aE
+ay
+ay
+ce
+cn
+cs
+cg
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(23,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+az
+ay
+ay
+ay
+ba
+ab
+be
+ay
+be
+ab
+bP
+ay
+cf
+co
+ct
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(24,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aG
+aN
+ay
+bb
+ab
+br
+bv
+ab
+ab
+bQ
+ay
+cg
+cg
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(25,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+aU
+ab
+ab
+bs
+bh
+bC
+ab
+ab
+ay
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(26,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ac
+ab
+bh
+bh
+bh
+bD
+bI
+ab
+ac
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(27,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ac
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(28,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(29,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(30,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}

@@ -19,8 +19,6 @@ var/global/list/side_effects = list()				//list of all medical sideeffects types
 var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
 var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
-var/global/list/turfs = list()						//list of all turfs
-
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM) //VOREStaton Edit
 #define all_genders_text_list list("Male","Female","Plural","Neuter","Herm") //VOREStation Edit
 
@@ -153,17 +151,30 @@ var/global/list/string_slot_flags = list(
 		var/datum/job/J = new T
 		joblist[J.title] = J
 
-	//Languages and species.
+	//Languages
 	paths = typesof(/datum/language)-/datum/language
 	for(var/T in paths)
 		var/datum/language/L = new T
-		GLOB.all_languages[L.name] = L
+		if (isnull(GLOB.all_languages[L.name]))
+			GLOB.all_languages[L.name] = L
+		else
+			log_debug("Language name conflict! [T] is named [L.name], but that is taken by [GLOB.all_languages[L.name].type]")
+			if(isnull(GLOB.language_name_conflicts[L.name]))
+				GLOB.language_name_conflicts[L.name] = list(GLOB.all_languages[L.name])
+			GLOB.language_name_conflicts[L.name] += L
 
 	for (var/language_name in GLOB.all_languages)
 		var/datum/language/L = GLOB.all_languages[language_name]
 		if(!(L.flags & NONGLOBAL))
-			GLOB.language_keys[lowertext(L.key)] = L
+			if(isnull(GLOB.language_keys[L.key]))
+				GLOB.language_keys[L.key] = L
+			else
+				log_debug("Language key conflict! [L] has key [L.key], but that is taken by [(GLOB.language_keys[L.key])]")
+				if(isnull(GLOB.language_key_conflicts[L.key]))
+					GLOB.language_key_conflicts[L.key] = list(GLOB.language_keys[L.key])
+				GLOB.language_key_conflicts[L.key] += L
 
+	//Species
 	var/rkey = 0
 	paths = typesof(/datum/species)
 	for(var/T in paths)

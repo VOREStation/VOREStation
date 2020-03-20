@@ -14,12 +14,9 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/chaplain
 	job_description = "The Chaplain ministers to the spiritual needs of the crew."
-	alt_titles = list("Chaplain" = /datum/alt_title/chaplain, "Counselor" = /datum/alt_title/counselor)
+	alt_titles = list("Counselor" = /datum/alt_title/counselor)
 
 // Chaplain Alt Titles
-/datum/alt_title/chaplain
-	title = "Chaplain"
-
 /datum/alt_title/counselor
 	title = "Counselor"
 	title_blurb = "The Counselor attends to the emotional needs of the crew, without a specific medicinal or spiritual focus."

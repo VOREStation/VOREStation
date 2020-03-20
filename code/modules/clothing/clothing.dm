@@ -102,8 +102,14 @@
 
 	//Set species_restricted list
 	switch(target_species)
+		//VOREStation Edit Start
 		if(SPECIES_HUMAN, SPECIES_SKRELL)	//humanoid bodytypes
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN) //skrell/humans can wear each other's suits
+			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
+		if(SPECIES_UNATHI)
+			species_restricted = list(SPECIES_UNATHI, SPECIES_XENOHYBRID)
+		if(SPECIES_ZORREN_HIGH)
+			species_restricted = list(SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
+		//VOREStation Edit End
 		else
 			species_restricted = list(target_species)
 
@@ -122,8 +128,16 @@
 
 	//Set species_restricted list
 	switch(target_species)
+		//VOREStation Edit Start
+		if(SPECIES_HUMAN)
+			species_restricted = list(SPECIES_HUMAN, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
 		if(SPECIES_SKRELL)
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN) //skrell helmets fit humans too
+			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
+		if(SPECIES_UNATHI)
+			species_restricted = list(SPECIES_UNATHI, SPECIES_XENOHYBRID)
+		if(SPECIES_ZORREN_HIGH)
+			species_restricted = list(SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
+		//VOREStation Edit End
 
 		else
 			species_restricted = list(target_species)
@@ -229,6 +243,7 @@
 		SPECIES_TESHARI = 'icons/mob/species/seromi/gloves.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/gloves.dmi'
 		)
+	drop_sound = 'sound/items/drop/gloves.ogg'
 
 /obj/item/clothing/proc/set_clothing_index()
 	return
@@ -362,6 +377,7 @@
 		SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/head.dmi'
 		)
+	drop_sound = 'sound/items/drop/hat.ogg'
 
 /obj/item/clothing/head/attack_self(mob/user)
 	if(brightness_on)
@@ -517,6 +533,7 @@
 		SPECIES_TESHARI = 'icons/mob/species/seromi/shoes.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/shoes.dmi'
 		)
+	drop_sound = 'sound/items/drop/shoes.ogg'
 
 /obj/item/clothing/shoes/proc/draw_knife()
 	set name = "Draw Boot Knife"

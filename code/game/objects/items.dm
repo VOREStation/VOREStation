@@ -634,6 +634,8 @@ modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
 //Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
+/obj/item/var/ignore_visor_zoom_restriction = FALSE
+
 /obj/item/proc/zoom(var/tileoffset = 14,var/viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 
 	var/devicename
@@ -682,7 +684,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				H.client.pixel_y = 0
 
 		H.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [src.name]" : "[src.name]"].")
-		H.looking_elsewhere = TRUE
+		if(!ignore_visor_zoom_restriction)
+			H.looking_elsewhere = TRUE
 		H.handle_vision()
 
 	else

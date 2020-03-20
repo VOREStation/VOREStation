@@ -16,8 +16,6 @@
 	skull_type = /obj/item/weapon/digestion_remains/skull/vulpkanin
 /datum/species/sergal
 	skull_type = /obj/item/weapon/digestion_remains/skull/sergal
-/datum/species/fl_zorren
-	skull_type = /obj/item/weapon/digestion_remains/skull/zorren
 /datum/species/hi_zorren
 	skull_type = /obj/item/weapon/digestion_remains/skull/zorren
 /datum/species/nevrean
@@ -148,7 +146,3 @@
 
 /obj/item/weapon/digestion_remains/skull/unknown/anthro
 	icon_state = "skull_taj"
-
-/obj/item/weapon/digestion_remains/skull/xenohybrid
-	desc = "A bleached skull. It looks very weakened. Seems like it belonged to something with an elongated head."
-	icon_state = "skull_xenohybrid"

@@ -1,3 +1,4 @@
+// Event Meta instances represent choices for the event manager to choose for random events.
 /datum/event_meta
 	var/name 		= ""
 	var/enabled 	= 1	// Whether or not the event is available for random selection at all
@@ -39,6 +40,10 @@
 
 	return total_weight
 
+/datum/event_meta/no_overmap/get_weight() //these events have overmap equivalents, and shouldn't fire randomly if overmap is used
+	return global.using_map.use_overmap ? 0 : ..()
+
+// Event datums define and execute the actual events themselves.
 /datum/event	//NOTE: Times are measured in master controller ticks!
 	var/startWhen			= 0	//When in the lifetime to call start().
 	var/announceWhen		= 0	//When in the lifetime to call announce().
@@ -51,6 +56,9 @@
 	var/endedAt				= 0 //When this event ended.
 	var/processing_active 	= TRUE
 	var/datum/event_meta/event_meta = null
+	var/list/affecting_z	= null // List of z-levels to affect, null lets the event choose (usally station_levels)
+	var/has_skybox_image	= FALSE // True if SSskybox should query this event for an image to put in the skybox.
+	var/obj/effect/overmap/visitable/ship/victim = null // Ship that triggered this event on itself.  Some messages might be different etc.
 
 /datum/event/nothing
 
@@ -65,6 +73,8 @@
 //Allows you to start before announcing or vice versa.
 //Only called once.
 /datum/event/proc/start()
+	if(has_skybox_image)
+		SSskybox.rebuild_skyboxes(affecting_z)
 	return
 
 //Called when the tick is equal to the announceWhen variable.
@@ -87,6 +97,8 @@
 //For example: if(activeFor == myOwnVariable + 30) doStuff()
 //Only called once.
 /datum/event/proc/end()
+	if(has_skybox_image)
+		SSskybox.rebuild_skyboxes(affecting_z)
 	return
 
 //Returns the latest point of event processing.
@@ -132,8 +144,11 @@
 		end()
 
 	endedAt = world.time
-	SSevents.active_events -= src
 	SSevents.event_complete(src)
+
+//Called during building of skybox to get overlays
+/datum/event/proc/get_skybox_image()
+	return
 
 /datum/event/New(var/datum/event_meta/EM)
 	// event needs to be responsible for this, as stuff like APLUs currently make their own events for curious reasons
@@ -146,5 +161,17 @@
 
 	startedAt = world.time
 
+	if(!affecting_z)
+		affecting_z = using_map.station_levels.Copy()
+
 	setup()
 	..()
+
+/datum/event/Destroy()
+	victim = null
+	. = ..()
+
+/datum/event/proc/location_name()
+	if(victim)
+		return victim.name
+	return station_name()

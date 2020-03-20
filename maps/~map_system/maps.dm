@@ -141,17 +141,6 @@ var/list/all_maps = list()
 /datum/map/proc/perform_map_generation()
 	return
 
-// Used to apply various post-compile procedural effects to the map.
-/datum/map/proc/refresh_mining_turfs()
-
-	set background = 1
-	set waitfor = 0
-
-	// Update all turfs to ensure everything looks good post-generation. Yes,
-	// it's brute-forcey, but frankly the alternative is a mine turf rewrite.
-	for(var/turf/simulated/mineral/M in turfs) // Ugh.
-		M.update_icon()
-
 /datum/map/proc/get_network_access(var/network)
 	return 0
 
