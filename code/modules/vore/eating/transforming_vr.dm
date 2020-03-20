@@ -241,7 +241,6 @@
 			BI.forceMove(torso)
 			torso.implants += BI
 
-
 	if(message)
 		to_chat(M, "<span class='notice'>You lose sensation of your body, feeling only the warmth of everything around you... </span>")
 		to_chat(O, "<span class='notice'>Your body shifts as you make dramatic changes to your captive's body.</span>")
