@@ -32,8 +32,11 @@
 			expire()
 
 	else if(holder.fire_stacks > 0)
-		holder.fire_stacks -= 1
+		holder.fire_stacks -= 0.5
 
 /datum/modifier/fire/stack_managed/intense
 	mob_overlay_state = "on_fire_intense"
 	damage_per_tick = 10
+
+/datum/modifier/fire/stack_managed/weak
+	damage_per_tick = 1

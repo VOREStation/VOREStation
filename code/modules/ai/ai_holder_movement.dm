@@ -16,6 +16,8 @@
 	var/base_wander_delay = 2			// What the above var gets set to when it wanders. Note that a tick happens every half a second.
 	var/wander_when_pulled = FALSE		// If the mob will refrain from wandering if someone is pulling it.
 
+	// Breakthrough
+	var/failed_breakthroughs = 0		// How many times we've failed to breakthrough something lately
 
 /datum/ai_holder/proc/walk_to_destination()
 	ai_log("walk_to_destination() : Entering.",AI_LOG_TRACE)
@@ -90,7 +92,9 @@
 		//	step_to(holder, A)
 			if(holder.IMove(get_step_to(holder, A)) == MOVEMENT_FAILED)
 				ai_log("walk_path() : Failed to move, attempting breakthrough.", AI_LOG_INFO)
-				breakthrough(A) // We failed to move, time to smash things.
+				if(!breakthrough(A) && failed_breakthroughs++ >= 5) // We failed to move, time to smash things.
+					give_up_movement()
+					failed_breakthroughs = 0
 			return
 
 		if(move_once() == FALSE) // Start walking the path.
@@ -106,7 +110,9 @@
 		ai_log("walk_path() : Going to IMove().", AI_LOG_TRACE)
 		if(holder.IMove(get_step_to(holder, A)) == MOVEMENT_FAILED )
 			ai_log("walk_path() : Failed to move, attempting breakthrough.", AI_LOG_INFO)
-			breakthrough(A) // We failed to move, time to smash things.
+			if(!breakthrough(A) && failed_breakthroughs++ >= 5) // We failed to move, time to smash things.
+				give_up_movement()
+				failed_breakthroughs = 0
 
 	ai_log("walk_path() : Exited.", AI_LOG_TRACE)
 
