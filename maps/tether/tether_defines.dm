@@ -38,7 +38,9 @@
 
 	use_overmap = TRUE
 	overmap_z = Z_LEVEL_MISC
-	overmap_size = 20
+	overmap_size = 35
+	overmap_event_areas = 34
+	usable_email_tlds = list("virgo.nt")
 
 	zlevel_datum_type = /datum/map_z_level/tether
 

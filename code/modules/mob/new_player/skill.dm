@@ -3,6 +3,7 @@ var/global/const
 	SKILL_BASIC = 1
 	SKILL_ADEPT = 2
 	SKILL_EXPERT = 3
+	SKILL_PROF = 4
 
 /datum/skill/var
 	ID = "none" // ID of the skill, used in code
