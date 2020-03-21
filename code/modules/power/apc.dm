@@ -105,6 +105,7 @@
 	var/beenhit = 0 // used for counting how many times it has been hit, used for Aliens at the moment
 	var/longtermpower = 10
 	var/datum/wires/apc/wires = null
+	var/emergency_lights = FALSE
 	var/update_state = -1
 	var/update_overlay = -1
 	var/is_critical = 0
@@ -795,6 +796,7 @@
 		"gridCheck" = grid_check,
 		"coverLocked" = coverlocked,
 		"siliconUser" = issilicon(user) || isobserver(user), //I add observer here so admins can have more control, even if it makes 'siliconUser' seem inaccurate.
+		"emergencyLights" = !emergency_lights,
 
 		"powerChannels" = list(
 			list(
@@ -835,7 +837,7 @@
 	if (!ui)
 		// the ui does not exist, so we'll create a new() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "apc.tmpl", "[area.name] - APC", 520, data["siliconUser"] ? 465 : 440)
+		ui = new(user, src, ui_key, "apc.tmpl", "[area.name] - APC", 520, data["siliconUser"] ? 490 : 465)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
@@ -931,6 +933,14 @@
 		failure_timer = 0
 		update_icon()
 		update()
+
+	else if (href_list["emergency_lighting"])
+		emergency_lights = !emergency_lights
+		for(var/obj/machinery/light/L in area)
+			if(!initial(L.no_emergency)) //If there was an override set on creation, keep that override
+				L.no_emergency = emergency_lights
+				INVOKE_ASYNC(L, /obj/machinery/light/.proc/update, FALSE)
+			CHECK_TICK
 
 	else if (href_list["breaker"])
 		toggle_breaker()

@@ -9,7 +9,12 @@
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
 #define LIGHT_BULB_TEMPERATURE 400 //K - used value for a 60W bulb
+<<<<<<< HEAD
 #define LIGHTING_POWER_FACTOR 2		//5W per luminosity * range		//VOREStation Edit: why the fuck are lights eating so much power, 2W per thing
+=======
+#define LIGHTING_POWER_FACTOR 5		//5W per luminosity * range
+#define LIGHT_EMERGENCY_POWER_USE 0.2 //How much power emergency lights will consume per tick
+>>>>>>> 28f34f1... Merge pull request #6820 from Meghan-Rossi/Emergency-Lighting
 
 var/global/list/light_type_cache = list()
 /proc/get_light_type_instance(var/light_type)
@@ -29,6 +34,10 @@ var/global/list/light_type_cache = list()
 	var/stage = 1
 	var/fixture_type = /obj/machinery/light
 	var/sheets_refunded = 2
+	var/obj/machinery/light/newlight = null
+	var/obj/item/weapon/cell/cell = null
+
+	var/cell_connectors = TRUE
 
 /obj/machinery/light_construct/New(var/atom/newloc, var/newdir, var/building = 0, var/datum/frame/frame_types/frame_type, var/obj/machinery/light/fixture = null)
 	..(newloc)
@@ -61,9 +70,44 @@ var/global/list/light_type_cache = list()
 			to_chat(user, "It's wired.")
 		if(3)
 			to_chat(user, "The casing is closed.")
+	if(cell_connectors)
+		if(cell)
+			to_chat(user, "You see [cell] inside the casing.")
+		else
+			to_chat(user, "The casing has no power cell for backup power.")
+	else
+		to_chat(user, "<span class='danger'>This casing doesn't support power cells for backup power.</span>")
+
+/obj/machinery/light_construct/attack_hand(mob/user)
+	. = ..()
+	if(.) 
+		return . // obj/machinery/attack_hand returns 1 if user can't use the machine
+	if(cell)
+		user.visible_message("[user] removes [cell] from [src]!","<span class='notice'>You remove [cell].</span>")
+		user.put_in_hands(cell)
+		cell.update_icon()
+		cell = null
 
 /obj/machinery/light_construct/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
+	if(istype(W, /obj/item/weapon/cell/emergency_light))
+		if(!cell_connectors)
+			to_chat(user, "<span class='warning'>This [name] can't support a power cell!</span>")
+			return
+		if(!user.unEquip(W))
+			to_chat(user, "<span class='warning'>[W] is stuck to your hand!</span>")
+			return
+		if(cell)
+			to_chat(user, "<span class='warning'>There is a power cell already installed!</span>")
+		else if(user.drop_from_inventory(W))
+			user.visible_message("<span class='notice'>[user] hooks up [W] to [src].</span>", \
+			"<span class='notice'>You add [W] to [src].</span>")
+			playsound(src, 'sound/machines/click.ogg', 50, TRUE)
+			W.forceMove(src)
+			cell = W
+			add_fingerprint(user)
+		return
+
 	if (W.is_wrench())
 		if (src.stage == 1)
 			playsound(src, W.usesound, 75, 1)
@@ -114,6 +158,10 @@ var/global/list/light_type_cache = list()
 			var/obj/machinery/light/newlight = new fixture_type(src.loc, src)
 			newlight.set_dir(src.dir)
 			src.transfer_fingerprints_to(newlight)
+			if(cell)
+				newlight.cell = cell
+				cell.forceMove(newlight)
+				cell = null
 			qdel(src)
 			return
 	..()
@@ -192,6 +240,16 @@ var/global/list/light_type_cache = list()
 
 	var/auto_flicker = FALSE // If true, will constantly flicker, so long as someone is around to see it (otherwise its a waste of CPU).
 
+	var/obj/item/weapon/cell/emergency_light/cell
+	var/start_with_cell = TRUE	// if true, this fixture generates a very weak cell at roundstart
+
+	var/emergency_mode = FALSE	// if true, the light is in emergency mode
+	var/no_emergency = FALSE	// if true, this light cannot ever have an emergency mode
+	var/bulb_emergency_brightness_mul = 0.25	// multiplier for this light's base brightness in emergency power mode
+	var/bulb_emergency_colour = "#FF3232"	// determines the colour of the light while it's in emergency mode
+	var/bulb_emergency_pow_mul = 0.75	// the multiplier for determining the light's power in emergency mode
+	var/bulb_emergency_pow_min = 0.5	// the minimum value for the light's power in emergency mode
+
 /obj/machinery/light/flicker
 	auto_flicker = TRUE
 
@@ -208,6 +266,12 @@ var/global/list/light_type_cache = list()
 /obj/machinery/light/small/flicker
 	auto_flicker = TRUE
 
+/obj/machinery/light/poi
+	start_with_cell = FALSE
+
+/obj/machinery/light/small/poi
+	start_with_cell = FALSE
+
 /obj/machinery/light/flamp
 	icon = 'icons/obj/lighting.dmi' //VOREStation Edit
 	icon_state = "flamp1"
@@ -222,10 +286,14 @@ var/global/list/light_type_cache = list()
 
 /obj/machinery/light/flamp/New(atom/newloc, obj/machinery/light_construct/construct = null)
 	..(newloc, construct)
-
 	if(construct)
+		start_with_cell = FALSE
 		lamp_shade = 0
 		update_icon()
+	else	
+		if(start_with_cell && !no_emergency)
+			cell = new/obj/item/weapon/cell/emergency_light(src)
+	
 
 /obj/machinery/light/flamp/flicker
 	auto_flicker = TRUE
@@ -256,11 +324,14 @@ var/global/list/light_type_cache = list()
 	..(newloc)
 
 	if(construct)
+		start_with_cell = FALSE
 		status = LIGHT_EMPTY
 		construct_type = construct.type
 		construct.transfer_fingerprints_to(src)
 		set_dir(construct.dir)
 	else
+		if(start_with_cell && !no_emergency)
+			cell = new/obj/item/weapon/cell/emergency_light(src)
 		var/obj/item/weapon/light/L = get_light_type_instance(light_type)
 		update_from_bulb(L)
 		if(prob(L.broken_chance))
@@ -274,6 +345,7 @@ var/global/list/light_type_cache = list()
 	if(A)
 		on = 0
 //		A.update_lights()
+	QDEL_NULL(cell)
 	return ..()
 
 /obj/machinery/light/update_icon()
@@ -369,6 +441,10 @@ var/global/list/light_type_cache = list()
 			else
 				use_power = 2
 				set_light(brightness_range, brightness_power, brightness_color)
+	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
+		use_power = 1
+		emergency_mode = TRUE
+		START_PROCESSING(SSobj, src)
 	else
 		use_power = 1
 		set_light(0)
@@ -408,6 +484,9 @@ var/global/list/light_type_cache = list()
 	on = (s && status == LIGHT_OK)
 	update()
 
+/obj/machinery/light/get_cell()
+	return cell
+
 // examine verb
 /obj/machinery/light/examine(mob/user)
 	var/fitting = get_fitting_name()
@@ -420,6 +499,8 @@ var/global/list/light_type_cache = list()
 			to_chat(user, "[desc] The [fitting] is burnt out.")
 		if(LIGHT_BROKEN)
 			to_chat(user, "[desc] The [fitting] has been smashed.")
+	if(cell)
+		to_chat(user, "Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%.")
 
 /obj/machinery/light/proc/get_fitting_name()
 	var/obj/item/weapon/light/L = light_type
@@ -545,6 +626,12 @@ var/global/list/light_type_cache = list()
 
 	..()
 
+// returns if the light has power /but/ is manually turned off
+// if a light is turned off, it won't activate emergency power
+/obj/machinery/light/proc/turned_off()
+	var/area/A = get_area(src)
+	return !A.lightswitch && A.power_light || flickering
+
 // returns whether this light has power
 // true if area has power and lightswitch is on
 /obj/machinery/light/proc/has_power()
@@ -557,6 +644,28 @@ var/global/list/light_type_cache = list()
 		return A && (!A.requires_power || A.power_light)
 	else
 		return A && A.lightswitch && (!A.requires_power || A.power_light)
+
+// returns whether this light has emergency power
+// can also return if it has access to a certain amount of that power
+/obj/machinery/light/proc/has_emergency_power(pwr)
+	if(no_emergency || !cell)
+		return FALSE
+	if(pwr ? cell.charge >= pwr : cell.charge)
+		return status == LIGHT_OK
+
+// attempts to use power from the installed emergency cell, returns true if it does and false if it doesn't
+/obj/machinery/light/proc/use_emergency_power(pwr = LIGHT_EMERGENCY_POWER_USE)
+	if(turned_off())
+		return FALSE
+	if(!has_emergency_power(pwr))
+		return FALSE
+	if(cell.charge > 300) //it's meant to handle 120 W, ya doofus
+		visible_message("<span class='warning'>[src] short-circuits from too powerful of a power cell!</span>")
+		status = LIGHT_BURNED
+		return FALSE
+	cell.use(pwr)
+	set_light(brightness_range * bulb_emergency_brightness_mul, max(bulb_emergency_pow_min, bulb_emergency_pow_mul * (cell.charge / cell.maxcharge)), bulb_emergency_colour)
+	return TRUE
 
 /obj/machinery/light/proc/flicker(var/amount = rand(10, 20))
 	if(flickering) return
@@ -572,11 +681,16 @@ var/global/list/light_type_cache = list()
 			update(0)
 		flickering = 0
 
-// ai attack - make lights flicker, because why not
-
+// ai attack - turn on/off emergency lighting for a specific fixture
 /obj/machinery/light/attack_ai(mob/user)
-	src.flicker(1)
+	no_emergency = !no_emergency
+	to_chat(user, "<span class='notice'>Emergency lights for this fixture have been [no_emergency ? "disabled" : "enabled"].</span>")
+	update(FALSE)
 	return
+
+// ai alt click - Make light flicker.  Very important for atmosphere.  
+/obj/machinery/light/AIAltClick(mob/user)
+	flicker(1)
 
 /obj/machinery/light/flamp/attack_ai(mob/user)
 	attack_hand()
@@ -700,6 +814,17 @@ var/global/list/light_type_cache = list()
 // use power
 
 /obj/machinery/light/process()
+	if(!cell)
+		return PROCESS_KILL
+	if(has_power())
+		emergency_mode = FALSE
+		update(FALSE)
+		if(cell.charge == cell.maxcharge)
+			return PROCESS_KILL
+		cell.charge = min(cell.maxcharge, cell.charge + LIGHT_EMERGENCY_POWER_USE*2) //Recharge emergency power automatically while not using it
+	if(emergency_mode && !use_emergency_power(LIGHT_EMERGENCY_POWER_USE))
+		update(FALSE) //Disables emergency mode and sets the color to normal
+
 	if(auto_flicker && !flickering)
 		if(check_for_player_proximity(src, radius = 12, ignore_ghosts = FALSE, ignore_afk = TRUE))
 			seton(TRUE) // Lights must be on to flicker.

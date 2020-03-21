@@ -188,6 +188,19 @@
 		</div>
 	</div>
 
+	<div class="item">
+		<div class="itemLabel">
+			Emergency Lighting:
+		</div>
+		<div class="itemContent">
+			{{if data.locked && !data.siliconUser}}
+				{{:data.emergencyLights ? "<span class='good'>Enabled</span>" : "<span class='bad'>Disabled</span>"}}
+			{{else}}
+				{{:helper.link(data.emergencyLights ? 'Enabled' : 'Disabled', data.emergencyLights ? 'power' : 'close', {'emergency_lighting' : 1}, null)}}
+			{{/if}}
+		</div>
+	</div>
+
 	{{if data.siliconUser}}
 		<h3>System Overrides</h3>
 
