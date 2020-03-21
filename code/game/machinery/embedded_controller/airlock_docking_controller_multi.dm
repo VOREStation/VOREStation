@@ -53,7 +53,7 @@
 
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/data[0]
-	var/datum/computer/file/embedded_program/airlock/multi_docking/airlock_program  // Cast to proper type
+	var/datum/computer/file/embedded_program/airlock/multi_docking/airlock_program = program // Cast to proper type
 
 	data = list(
 		"chamber_pressure" = round(airlock_program.memory["chamber_sensor_pressure"]),

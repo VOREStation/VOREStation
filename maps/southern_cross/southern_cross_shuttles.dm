@@ -1,13 +1,24 @@
 // Cargo shuttle.
-/datum/shuttle/ferry/supply/cargo
+/datum/shuttle/autodock/ferry/supply/cargo
 	name = "Supply"
-	location = 1
+	location = FERRY_LOCATION_OFFSITE
 	warmup_time = 10
-	area_offsite = /area/supply/dock
-	area_station = /area/supply/station
+	shuttle_area = /area/shuttle/supply
+	landmark_offsite = "supply_offsite"
+	landmark_station = "supply_station"
 	docking_controller_tag = "supply_shuttle"
-	dock_target_station = "cargo_bay"
 	flags = SHUTTLE_FLAGS_PROCESS|SHUTTLE_FLAGS_SUPPLY
+
+/obj/effect/shuttle_landmark/southern_cross/supply_offsite
+	name = "Centcom Supply Depot"
+	landmark_tag = "supply_offsite"
+	base_area = /area/centcom/command
+	base_turf = /turf/simulated/floor/plating
+
+/obj/effect/shuttle_landmark/southern_cross/supply_station
+	name = "Station"
+	landmark_tag = "supply_station"
+	docking_controller = "cargo_bay"
 
 //Admin
 /obj/machinery/computer/shuttle_control/administration
@@ -15,15 +26,26 @@
 	req_access = list(access_cent_general)
 	shuttle_tag = "Administration"
 
-/datum/shuttle/ferry/administration
+/datum/shuttle/autodock/ferry/administration
 	name = "Administration"
-	location = 1
+	location = FERRY_LOCATION_OFFSITE
 	warmup_time = 0
-	area_offsite = /area/shuttle/administration/centcom
-	area_station = /area/shuttle/administration/station
+	shuttle_area = /area/shuttle/administration/centcom
+	landmark_offsite = "admin_offsite"
+	landmark_station = "admin_station"
 	docking_controller_tag = "admin_shuttle"
-	dock_target_station = "admin_shuttle_dock_airlock"
-	dock_target_offsite = "admin_shuttle_bay"
+
+/obj/effect/shuttle_landmark/southern_cross/admin_offsite
+	name = "Centcom"
+	landmark_tag = "admin_offsite"
+	docking_controller = "admin_shuttle_bay"
+	base_area = /area/centcom/command
+	base_turf = /turf/simulated/floor/plating
+
+/obj/effect/shuttle_landmark/southern_cross/admin_station
+	name = "SC Dock 2-E"
+	landmark_tag = "admin_station"
+	docking_controller = "admin_shuttle_dock_airlock"
 
 //Transport
 
@@ -32,15 +54,27 @@
 	req_access = list(access_cent_general)
 	shuttle_tag = "Centcom"
 
-/datum/shuttle/ferry/centcom
+/datum/shuttle/autodock/ferry/centcom
 	name = "Centcom"
-	location = 1
+	location = FERRY_LOCATION_OFFSITE
 	warmup_time = 0
-	area_offsite = /area/shuttle/transport1/centcom
-	area_station = /area/shuttle/transport1/station
+	shuttle_area = /area/shuttle/transport1/centcom
+	landmark_offsite = "transport1_offsite"
+	landmark_station = "transport1_station"
 	docking_controller_tag = "centcom_shuttle"
-	dock_target_station = "centcom_shuttle_dock_airlock"
-	dock_target_offsite = "centcom_shuttle_bay"
+
+/obj/effect/shuttle_landmark/southern_cross/transport1_offsite
+	name = "Centcom"
+	landmark_tag = "transport1_offsite"
+	docking_controller = "centcom_shuttle_bay"
+	base_area = /area/centcom/command
+	base_turf = /turf/simulated/floor/plating
+
+/obj/effect/shuttle_landmark/southern_cross/transport1_station
+	name = "SC Dock 3-A"
+	landmark_tag = "transport1_station"
+	docking_controller = "centcom_shuttle_dock_airlock"
+
 
 //Merc
 
@@ -104,171 +138,196 @@
 	icon_screen = "shuttle"
 	shuttle_tag = "Merchant"
 
-/datum/shuttle/ferry/merchant
+/datum/shuttle/autodock/ferry/merchant
 	name = "Merchant"
+	location = FERRY_LOCATION_OFFSITE
 	warmup_time = 0
+	shuttle_area = /area/shuttle/merchant/home
+	landmark_station = "merchant_station"
+	landmark_offsite = "merchant_offsite"
 	docking_controller_tag = "trade_shuttle"
-	dock_target_station = "trade_shuttle_bay"
-	dock_target_offsite = "trade_shuttle_dock_airlock"
-	area_station = /area/shuttle/merchant/home
-	area_offsite = /area/shuttle/merchant/away
+
+/obj/effect/shuttle_landmark/southern_cross/merchant_offsite
+	name = "Trade Station"
+	landmark_tag = "merchant_offsite"
+	docking_controller = "trade_shuttle_bay"
+	base_area = /area/space
+	base_turf = /turf/space
+
+/obj/effect/shuttle_landmark/southern_cross/merchant_station
+	name = "SC Dock 1-E"
+	landmark_tag = "merchant_station"
+	docking_controller = "trade_shuttle_dock_airlock"
+
+// Arrivals Shuttle
+/datum/shuttle/autodock/ferry/arrivals/southern_cross
+	name = "Arrivals"
+	location = FERRY_LOCATION_OFFSITE
+	shuttle_area = /area/shuttle/arrival/pre_game
+	landmark_offsite = "arrivals_offsite"
+	landmark_station = "arrivals_station"
+	docking_controller_tag = "arrivals_shuttle"
+
+/obj/effect/shuttle_landmark/southern_cross/arrivals_offsite
+	name = "Transit to Station"
+	landmark_tag = "arrivals_offsite"
+	base_area = /area/space
+	base_turf = /turf/space
+
+/obj/effect/shuttle_landmark/southern_cross/arrivals_station
+	name = "SC Dock 2-C/D"
+	landmark_tag = "arrivals_station"
+	docking_controller = "arrivals_dock"
 
 //Escape Pods
 
-/datum/shuttle/ferry/emergency/centcom
+/datum/shuttle/autodock/ferry/emergency/centcom
 	name = "Escape"
-	location = 1
+	location = FERRY_LOCATION_OFFSITE
 	warmup_time = 10
-	area_offsite = /area/shuttle/escape/centcom
-	area_station = /area/shuttle/escape/station
-	area_transition = /area/shuttle/escape/transit
+	shuttle_area = /area/shuttle/escape/centcom
+	landmark_offsite = "escape_offsite"
+	landmark_station = "escape_station"
+	landmark_transition = "escape_transit";
 	docking_controller_tag = "escape_shuttle"
-	dock_target_station = "escape_dock"
-	dock_target_offsite = "centcom_dock"
-	transit_direction = NORTH
 	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
 
-/datum/shuttle/ferry/escape_pod/escape_pod_one
-	name = "Escape Pod 1"
-	location = 0
-	warmup_time = 0
-	area_station = /area/shuttle/escape_pod1/station
-	area_offsite = /area/shuttle/escape_pod1/centcom
-	area_transition = /area/shuttle/escape_pod1/transit
-	docking_controller_tag = "escape_pod_1"
-	dock_target_station = "escape_pod_1_berth"
-	dock_target_offsite = "escape_pod_1_recovery"
-	transit_direction = NORTH
-	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
+/obj/effect/shuttle_landmark/southern_cross/escape/offsite
+	name = "Centcom"
+	landmark_tag = "escape_offsite"
+	docking_controller = "centcom_dock"
+	base_area = /area/space
+	base_turf = /turf/space
 
-/datum/shuttle/ferry/escape_pod/escape_pod_two
-	name = "Escape Pod 2"
-	location = 0
-	warmup_time = 0
-	area_station = /area/shuttle/escape_pod2/station
-	area_offsite = /area/shuttle/escape_pod2/centcom
-	area_transition = /area/shuttle/escape_pod2/transit
-	docking_controller_tag = "escape_pod_2"
-	dock_target_station = "escape_pod_2_berth"
-	dock_target_offsite = "escape_pod_2_recovery"
-	transit_direction = NORTH
-	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
+/obj/effect/shuttle_landmark/southern_cross/escape/station
+	name = "Station Escape Dock"
+	landmark_tag = "escape_station"
+	docking_controller = "escape_dock"
 
-/datum/shuttle/ferry/escape_pod/escape_pod_three
-	name = "Escape Pod 3"
-	location = 0
-	warmup_time = 0
-	area_station = /area/shuttle/escape_pod3/station
-	area_offsite = /area/shuttle/escape_pod3/centcom
-	area_transition = /area/shuttle/escape_pod3/transit
-	docking_controller_tag = "escape_pod_3"
-	dock_target_station = "escape_pod_3_berth"
-	dock_target_offsite = "escape_pod_3_recovery"
-	transit_direction = NORTH
-	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
+/obj/effect/shuttle_landmark/southern_cross/escape/transit
+	landmark_tag = "escape_transit"
 
-/datum/shuttle/ferry/escape_pod/escape_pod_four
-	name = "Escape Pod 4"
-	location = 0
-	warmup_time = 0
-	area_station = /area/shuttle/escape_pod4/station
-	area_offsite = /area/shuttle/escape_pod4/centcom
-	area_transition = /area/shuttle/escape_pod4/transit
-	docking_controller_tag = "escape_pod_4"
-	dock_target_station = "escape_pod_4_berth"
-	dock_target_offsite = "escape_pod_4_recovery"
-	transit_direction = NORTH //should this be SOUTH? I have no idea.
-	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
+// Escape Pods - Save me from typing this eight billion times
+#define ESCAPE_POD(NUMBER) \
+/datum/shuttle/autodock/ferry/escape_pod/escape_pod##NUMBER { \
+	name = "Escape Pod " + #NUMBER; \
+	location = FERRY_LOCATION_STATION; \
+	warmup_time = 0; \
+	shuttle_area = /area/shuttle/escape_pod##NUMBER/station; \
+	docking_controller_tag = "escape_pod_" + #NUMBER; \
+	landmark_station = "escape_pod_"+ #NUMBER +"_station"; \
+	landmark_offsite = "escape_pod_"+ #NUMBER +"_offsite"; \
+	landmark_transition = "escape_pod_"+ #NUMBER +"_transit"; \
+	move_time = SHUTTLE_TRANSIT_DURATION_RETURN; \
+} \
+/obj/effect/shuttle_landmark/southern_cross/escape_pod##NUMBER/station { \
+	name = "Station"; \
+	landmark_tag = "escape_pod_"+ #NUMBER +"_station"; \
+	docking_controller = "escape_pod_"+ #NUMBER +"_berth"; \
+	base_area = /area/space; \
+	base_turf = /turf/simulated/floor/airless; \
+} \
+/obj/effect/shuttle_landmark/southern_cross/escape_pod##NUMBER/offsite { \
+	name = "Recovery"; \
+	landmark_tag = "escape_pod_"+ #NUMBER +"_offsite"; \
+	docking_controller = "escape_pod_"+ #NUMBER +"_recovery"; \
+} \
+/obj/effect/shuttle_landmark/southern_cross/escape_pod##NUMBER/transit { \
+	landmark_tag = "escape_pod_"+ #NUMBER +"_transit"; \
+	flags = SLANDMARK_FLAG_AUTOSET; \
+}
 
-/datum/shuttle/ferry/escape_pod/escape_pod_five
-	name = "Escape Pod 5"
-	location = 0
-	warmup_time = 0
-	area_station = /area/shuttle/escape_pod5/station
-	area_offsite = /area/shuttle/escape_pod5/centcom
-	area_transition = /area/shuttle/escape_pod5/transit
-	docking_controller_tag = "escape_pod_5"
-	dock_target_station = "escape_pod_5_berth"
-	dock_target_offsite = "escape_pod_5_recovery"
-	transit_direction = NORTH //should this be WEST? I have no idea.
-	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
+ESCAPE_POD(1)
+ESCAPE_POD(2)
+ESCAPE_POD(3)
+ESCAPE_POD(4)
+ESCAPE_POD(5)
+ESCAPE_POD(6)
+ESCAPE_POD(7)
+ESCAPE_POD(8)
 
-/datum/shuttle/ferry/escape_pod/escape_pod_six
-	name = "Escape Pod 6"
-	location = 0
-	warmup_time = 0
-	area_station = /area/shuttle/escape_pod6/station
-	area_offsite = /area/shuttle/escape_pod6/centcom
-	area_transition = /area/shuttle/escape_pod6/transit
-	docking_controller_tag = "escape_pod_6"
-	dock_target_station = "escape_pod_6_berth"
-	dock_target_offsite = "escape_pod_6_recovery"
-	transit_direction = NORTH //should this be WEST? I have no idea.
-	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
+#undef ESCAPE_POD
 
-/datum/shuttle/ferry/escape_pod/escape_pod_seven
-	name = "Escape Pod 7"
-	location = 0
-	warmup_time = 0
-	area_station = /area/shuttle/escape_pod7/station
-	area_offsite = /area/shuttle/escape_pod7/centcom
-	area_transition = /area/shuttle/escape_pod7/transit
-	docking_controller_tag = "escape_pod_7"
-	dock_target_station = "escape_pod_7_berth"
-	dock_target_offsite = "escape_pod_7_recovery"
-	transit_direction = WEST
-
-/datum/shuttle/ferry/escape_pod/escape_pod_eight
-	name = "Escape Pod 8"
-	location = 0
-	warmup_time = 0
-	area_station = /area/shuttle/escape_pod8/station
-	area_offsite = /area/shuttle/escape_pod8/centcom
-	area_transition = /area/shuttle/escape_pod8/transit
-	docking_controller_tag = "escape_pod_8"
-	dock_target_station = "escape_pod_8_berth"
-	dock_target_offsite = "escape_pod_8_recovery"
-	transit_direction = EAST
-
-/datum/shuttle/ferry/escape_pod/escape_pod_cryo
+// Cryostorage Escape Pod
+/datum/shuttle/autodock/ferry/escape_pod/escape_pod_cryo
 	name = "Cryostorage Shuttle"
-	location = 0
+	location = FERRY_LOCATION_STATION
 	warmup_time = 0
-	area_station = /area/shuttle/cryo/station
-	area_offsite = /area/shuttle/cryo/centcom
-	area_transition = /area/shuttle/cryo/transit
+	shuttle_area = /area/shuttle/cryo/station
+	landmark_station = "cryostorage_station"
+	landmark_offsite = "cryostorage_offsite"
+	landmark_transition = "cryostorage_transit"
 	docking_controller_tag = "cryostorage_shuttle"
-	dock_target_station = "cryostorage_shuttle_berth"
-	dock_target_offsite = "cryostorage_shuttle_recovery"
-	transit_direction = NORTH
 	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
 
-/datum/shuttle/ferry/escape_pod/large_escape_pod1
+/obj/effect/shuttle_landmark/southern_cross/cryostorage_station
+	name = "Station Cryostorage Dock"
+	landmark_tag = "cryostorage_station"
+	docking_controller = "cryostorage_shuttle_berth"
+	base_area = /area/space
+	base_turf = /turf/simulated/floor/airless
+
+/obj/effect/shuttle_landmark/southern_cross/cryostorage_offsite
+	name = "Recovery"
+	landmark_tag = "cryostorage_offsite"
+	docking_controller = "cryostorage_shuttle_recovery"
+
+/obj/effect/shuttle_landmark/southern_cross/cryostorage_transit
+	landmark_tag = "cryostorage_transit"
+
+// Large Escape Pod 1
+/datum/shuttle/autodock/ferry/escape_pod/large_escape_pod1
 	name = "Large Escape Pod 1"
-	location = 0
+	location = FERRY_LOCATION_STATION
 	warmup_time = 0
-	area_station = /area/shuttle/large_escape_pod1/station
-	area_offsite = /area/shuttle/large_escape_pod1/centcom
-	area_transition = /area/shuttle/large_escape_pod1/transit
+	shuttle_area = /area/shuttle/large_escape_pod1/station
+	landmark_station = "large_escape_pod1_station"
+	landmark_offsite = "large_escape_pod1_offsite"
+	landmark_transition = "large_escape_pod1_transit"
 	docking_controller_tag = "large_escape_pod_1"
-	dock_target_station = "large_escape_pod_1_berth"
-	dock_target_offsite = "large_escape_pod_1_recovery"
-	transit_direction = EAST
 	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
 
-/datum/shuttle/ferry/escape_pod/large_escape_pod2
+/obj/effect/shuttle_landmark/southern_cross/large_escape_pod1/station
+	name = "Station"
+	landmark_tag = "large_escape_pod1_station"
+	docking_controller = "large_escape_pod_1_berth"
+	base_area = /area/maintenance/firstdeck/centralstarboard
+	base_turf = /turf/simulated/floor/airless
+
+/obj/effect/shuttle_landmark/southern_cross/large_escape_pod1/offsite
+	name = "Recovery"
+	landmark_tag = "large_escape_pod1_offsite"
+	docking_controller = "large_escape_pod_1_recovery"
+
+/obj/effect/shuttle_landmark/southern_cross/large_escape_pod1/transit
+	landmark_tag = "large_escape_pod1_transit"
+
+// Large Escape Pod 2
+/datum/shuttle/autodock/ferry/escape_pod/large_escape_pod2
 	name = "Large Escape Pod 2"
-	location = 0
+	location = FERRY_LOCATION_STATION
 	warmup_time = 0
-	area_station = /area/shuttle/large_escape_pod2/station
-	area_offsite = /area/shuttle/large_escape_pod2/centcom
-	area_transition = /area/shuttle/large_escape_pod2/transit
+	shuttle_area = /area/shuttle/large_escape_pod2/station
+	landmark_station = "large_escape_pod2_station"
+	landmark_offsite = "large_escape_pod2_offsite"
+	landmark_transition = "large_escape_pod2_transit"
 	docking_controller_tag = "large_escape_pod_2"
-	dock_target_station = "large_escape_pod_2_berth"
-	dock_target_offsite = "large_escape_pod_2_recovery"
-	transit_direction = EAST
 	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
 
+/obj/effect/shuttle_landmark/southern_cross/large_escape_pod2/station
+	name = "Station"
+	landmark_tag = "large_escape_pod2_station"
+	docking_controller = "large_escape_pod_2_berth"
+	base_area = /area/maintenance/firstdeck/centralport
+	base_turf = /turf/simulated/floor/airless
+
+/obj/effect/shuttle_landmark/southern_cross/large_escape_pod2/offsite
+	name = "Recovery"
+	landmark_tag = "large_escape_pod2_offsite"
+	docking_controller = "large_escape_pod_2_recovery"
+
+/obj/effect/shuttle_landmark/southern_cross/large_escape_pod2/transit
+	landmark_tag = "large_escape_pod2_transit"
 
 
 // Destination datums

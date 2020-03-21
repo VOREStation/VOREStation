@@ -1125,9 +1125,8 @@ area/crew_quarters/heads/sc/hop/quarters
 	flags = RAD_SHIELDED
 
 /area/shuttle/shuttle1/start
-	name = "\improper Hangar One"
+	name = "Shuttle One"
 	icon_state = "shuttlered"
-	base_turf = /turf/simulated/floor/reinforced
 
 /area/shuttle/shuttle1/arrivals_dock
 	name = "\improper docked with Southern Cross"
@@ -1176,9 +1175,8 @@ area/crew_quarters/heads/sc/hop/quarters
 	flags = RAD_SHIELDED
 
 /area/shuttle/shuttle2/start
-	name = "\improper Hangar Two"
+	name = "Shuttle Two"
 	icon_state = "shuttlered"
-	base_turf = /turf/simulated/floor/reinforced
 
 /area/shuttle/shuttle2/arrivals_dock
 	name = "\improper docked with Southern Cross"
@@ -1220,20 +1218,20 @@ area/crew_quarters/heads/sc/hop/quarters
 // Centcom Transport Shuttle
 /area/shuttle/transport1/centcom
 	icon_state = "shuttle"
-	name = "\improper Transport Shuttle Centcom"
+	name = "\improper Transport Shuttle"
 
 /area/shuttle/transport1/station
 	icon_state = "shuttle"
-	name = "\improper Transport Shuttle"
+	name = "\improper Transport Shuttle Station"
 
 // Centcom Admin Shuttle
 
 /area/shuttle/administration/centcom
-	name = "\improper Administration Shuttle CentCom"
+	name = "\improper Administration Shuttle"
 	icon_state = "shuttlered"
 
 /area/shuttle/administration/station
-	name = "\improper Administration Shuttle"
+	name = "\improper Administration Shuttle Station"
 	icon_state = "shuttlered2"
 
 //Merc
@@ -1434,6 +1432,15 @@ area/crew_quarters/heads/sc/hop/quarters
 
 /area/shuttle/merchant/away
 	name = "\improper Merchant Vessel - Away"
+
+
+// Main escape shuttle
+
+// Note: Keeping this "legacy" area path becuase of its use in lots of legacy code.
+/area/shuttle/escape/centcom
+	name = "\improper Emergency Shuttle"
+	icon_state = "shuttle"
+	dynamic_lighting = 0
 
 //Small Escape Pods
 
