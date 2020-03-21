@@ -15,9 +15,7 @@
 	var/content = ""
 	var/title_buttons = ""
 
-
 /datum/browser/New(nuser, nwindow_id, ntitle = 0, nwidth = 0, nheight = 0, var/atom/nref = null)
-
 	user = nuser
 	window_id = nwindow_id
 	if (ntitle)
@@ -32,6 +30,14 @@
 	if(user && user.client && !user.client.is_preference_enabled(/datum/client_preference/browser_style))
 		return
 	add_stylesheet("common", 'html/browser/common.css') // this CSS sheet is common to all UIs
+
+//VOREStation Edit - Allow browser datums to be garbage collected
+/datum/browser/Destroy()
+	close()
+	ref = null
+	user = null
+	. = ..()
+//VOREStation Edit End - Allow browser datums to be garbage collected
 
 /datum/browser/proc/set_title(ntitle)
 	title = format_text(ntitle)

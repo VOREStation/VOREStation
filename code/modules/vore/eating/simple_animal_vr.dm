@@ -6,21 +6,22 @@
 //
 // Simple nom proc for if you get ckey'd into a simple_mob mob! Avoids grabs.
 //
-/mob/living/simple_mob/proc/animal_nom(var/mob/living/T in living_mobs(1))
+/mob/living/simple_mob/proc/animal_nom(mob/living/T in living_mobs(1))
 	set name = "Animal Nom"
 	set category = "IC"
 	set desc = "Since you can't grab, you get a verb!"
 
-	if (stat != CONSCIOUS)
+	if(stat != CONSCIOUS)
 		return
-	if (istype(src,/mob/living/simple_mob/animal/passive/mouse) && T.ckey == null)
+	// Verbs are horrifying. They don't call overrides. So we're stuck with this.
+	if(istype(src, /mob/living/simple_mob/animal/passive/mouse) && !T.ckey)
+		// Mice can't eat logged out players!
 		return
-	if (client && IsAdvancedToolUser())
+	if(client && IsAdvancedToolUser())
 		to_chat(src, "<span class='warning'>Put your hands to good use instead!</span>")
 		return
 	feed_grabbed_to_self(src,T)
 	update_icon()
-	return
 
 //
 // Simple proc for animals to have their digestion toggled on/off externally
@@ -45,8 +46,7 @@
 		var/confirm = alert(user, "Enabling digestion on [name] will cause it to digest all stomach contents. Using this to break OOC prefs is against the rules. Digestion will reset after 20 minutes.", "Enabling [name]'s Digestion", "Enable", "Cancel")
 		if(confirm == "Enable")
 			vore_selected.digest_mode = DM_DIGEST
-			spawn(20 MINUTES)
-				if(src)	vore_selected.digest_mode = vore_default_mode
+			addtimer(VARSET_CALLBACK(vore_selected, digest_mode, vore_default_mode), 20 MINUTES)
 	else
 		var/confirm = alert(user, "This mob is currently set to process all stomach contents. Do you want to disable this?", "Disabling [name]'s Digestion", "Disable", "Cancel")
 		if(confirm == "Disable")
@@ -69,28 +69,31 @@
 	to_chat(user, "[src] is now using [vore_selected.fancy_vore ? "Fancy" : "Classic"] vore sounds.")
 
 /mob/living/simple_mob/attackby(var/obj/item/O, var/mob/user)
-	if (istype(O, /obj/item/weapon/newspaper) && !(ckey || (ai_holder.hostile && faction != user.faction)) && isturf(user.loc))
-		if (ai_holder.retaliate && prob(vore_pounce_chance/2)) // This is a gamble!
+	if(istype(O, /obj/item/weapon/newspaper) && !(ckey || (ai_holder.hostile && faction != user.faction)) && isturf(user.loc))
+		if(ai_holder.retaliate && prob(vore_pounce_chance/2)) // This is a gamble!
 			user.Weaken(5) //They get tackled anyway whether they're edible or not.
-			user.visible_message("<span class='danger'>\the [user] swats \the [src] with \the [O] and promptly gets tackled!</span>!")
-			if (will_eat(user))
+			user.visible_message("<span class='danger'>[user] swats [src] with [O] and promptly gets tackled!</span>!")
+			if(will_eat(user))
 				set_AI_busy(TRUE)
 				animal_nom(user)
 				update_icon()
 				set_AI_busy(FALSE)
-			else if (!ai_holder.target) // no using this to clear a retaliate mob's target
+			else if(!ai_holder.target) // no using this to clear a retaliate mob's target
 				ai_holder.target = user //just because you're not tasty doesn't mean you get off the hook. A swat for a swat.
 				//AttackTarget() //VOREStation AI Temporary Removal
 				//LoseTarget() // only make one attempt at an attack rather than going into full rage mode
 		else
-			user.visible_message("<span class='info'>\the [user] swats \the [src] with \the [O]!</span>!")
+			user.visible_message("<span class='info'>[user] swats [src] with [O]!</span>")
 			release_vore_contents()
 			for(var/mob/living/L in living_mobs(0)) //add everyone on the tile to the do-not-eat list for a while
 				if(!(L in prey_excludes)) // Unless they're already on it, just to avoid fuckery.
 					prey_excludes += L
-					spawn(5 MINUTES)
-						if(src && L)
-							prey_excludes -= L
+					addtimer(CALLBACK(src, .proc/removeMobFromPreyExcludes, weakref(L)), 5 MINUTES)
 	else
 		..()
 
+/mob/living/simple_mob/proc/removeMobFromPreyExcludes(weakref/target)
+	if(isweakref(target))
+		var/mob/living/L = target.resolve()
+		if(L)
+			LAZYREMOVE(prey_excludes, L)
