@@ -100,8 +100,6 @@
 						qdel(SM)
 			CHECK_TICK
 
-//
-// Overmap version of the event!
-//
-/datum/event/carp_migration/overmap
-	announceWhen = 1 // Announce much faster!
+// Overmap version
+/datum/event/carp_migration/overmap/announce()
+	return
