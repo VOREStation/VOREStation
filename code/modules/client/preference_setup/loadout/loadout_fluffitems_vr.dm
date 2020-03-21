@@ -1006,8 +1006,8 @@
 	ckeywhitelist = list("zodiacshadow")
 	character_name = list("Nehi Maximus")
 
-/datum/gear/fluff/star_sweater
-	path = /obj/item/clothing/accessory/sweater/fluff/star
-	display_name = "Star Sweater"
+/datum/gear/fluff/star_hoodie
+	path = /obj/item/clothing/suit/storage/star
+	display_name = "Star hoodie"
 	ckeywhitelist = list("bacon12366")
 	character_name = list("Elly Brown")
