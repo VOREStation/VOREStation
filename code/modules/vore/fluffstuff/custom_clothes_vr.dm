@@ -1910,10 +1910,6 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "star_hoodie"
 
-	slot_flags = SLOT_OCLOTHING | SLOT_TIE
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	w_class = ITEMSIZE_NORMAL
-
 //KillerDragn:Excess
 /obj/item/clothing/accessory/collar/pink/fluff/warning
 	name = "Warning Collar (AGGRESSIVE)"
