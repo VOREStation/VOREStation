@@ -259,7 +259,9 @@
 
 
 /obj/mecha/proc/check_for_support()
-	if(locate(/obj/structure/grille, orange(1, src)) || locate(/obj/structure/lattice, orange(1, src)) || locate(/turf/simulated, orange(1, src)) || locate(/turf/unsimulated, orange(1, src)))
+	var/list/things = orange(1, src)
+
+	if(locate(/obj/structure/grille in things) || locate(/obj/structure/lattice in things) || locate(/turf/simulated in things) || locate(/turf/unsimulated in things))
 		return 1
 	else
 		return 0
@@ -397,20 +399,25 @@
 /obj/mecha/relaymove(mob/user,direction)
 	if(user != src.occupant) //While not "realistic", this piece is player friendly.
 		if(istype(user,/mob/living/carbon/brain))
-			to_chat(user, "You try to move, but you are not the pilot! The exosuit doesn't respond.")
+			to_chat(user, "<span class='warning'>You try to move, but you are not the pilot! The exosuit doesn't respond.</span>")
 			return 0
 		user.forceMove(get_turf(src))
 		to_chat(user, "You climb out from [src]")
 		return 0
 	if(connected_port)
 		if(world.time - last_message > 20)
-			src.occupant_message("Unable to move while connected to the air system port")
+			src.occupant_message("<span class='warning'>Unable to move while connected to the air system port</span>")
 			last_message = world.time
 		return 0
 	if(state)
-		occupant_message("<font color='red'>Maintenance protocols in effect</font>")
+		occupant_message("<span class='warning'>Maintenance protocols in effect</span>")
 		return
 	return domove(direction)
+
+/obj/mecha/proc/can_ztravel()
+	for(var/obj/item/mecha_parts/mecha_equipment/tool/jetpack/jp in equipment)
+		return jp.equip_ready
+	return FALSE
 
 /obj/mecha/proc/domove(direction)
 
@@ -423,20 +430,51 @@
 		return 0
 	if(!has_charge(step_energy_drain))
 		return 0
+
 	var/move_result = 0
+
 	if(hasInternalDamage(MECHA_INT_CONTROL_LOST))
 		move_result = mechsteprand()
-	else if(src.dir!=direction)
+	//Up/down zmove
+	else if(direction & UP || direction & DOWN)
+		if(!can_ztravel())
+			occupant_message("<span class='warning'>Your vehicle lacks the capacity to move in that direction!</span>")
+			return FALSE
+
+		//We're using locs because some mecha are 2x2 turfs. So thicc!
+		var/result = TRUE
+
+		for(var/turf/T in locs)
+			if(!T.CanZPass(src,direction))
+				occupant_message("<span class='warning'>You can't move that direction from here!</span>")
+				result = FALSE
+				break
+			var/turf/dest = direction & UP ? GetAbove(T) : GetBelow(T)
+			if(!dest)
+				occupant_message("<span class='notice'>There is nothing of interest in this direction.</span>")
+				result = FALSE
+				break
+			if(!dest.CanZPass(src,direction))
+				occupant_message("<span class='warning'>There's something blocking your movement in that direction!</span>")
+				result = FALSE
+				break
+		if(result)
+			move_result = mechstep(direction)
+	//Turning
+	else if(src.dir != direction)
 		move_result = mechturn(direction)
+	//Stepping
 	else
 		move_result	= mechstep(direction)
+
+
 	if(move_result)
 		can_move = 0
 		use_power(step_energy_drain)
 		if(istype(src.loc, /turf/space))
 			if(!src.check_for_support())
 				src.pr_inertial_movement.start(list(src,direction))
-				src.log_message("Movement control lost. Inertial movement started.")
+				src.log_message("<span class='warning'>Movement control lost. Inertial movement started.</span>")
 		if(do_after(step_in))
 			can_move = 1
 		return 1

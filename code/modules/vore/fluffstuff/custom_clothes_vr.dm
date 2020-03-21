@@ -1900,20 +1900,15 @@ Departamental Swimsuits, for general use
 	return FALSE	//Indigestible
 
 //Bacon12366:Elly Brown
-/obj/item/clothing/accessory/sweater/fluff/star
-	name = "Star Sweater"
-	desc = "It's a black long sweater with a big blue star at the chest area. It was made to show person's left shoulder."
+/obj/item/clothing/suit/storage/star
+	name = "Star hoodie"
+	desc = "It's a black long hoodie with a big blue star at the chest area. It's made of pretty soft material."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "star_sweater"
+	icon_state = "star_hoodie"
 
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "star_sweater"
-
-	slot_flags = SLOT_OCLOTHING | SLOT_TIE
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	w_class = ITEMSIZE_NORMAL
-	slot = ACCESSORY_SLOT_OVER
+	item_state = "star_hoodie"
 
 //KillerDragn:Excess
 /obj/item/clothing/accessory/collar/pink/fluff/warning

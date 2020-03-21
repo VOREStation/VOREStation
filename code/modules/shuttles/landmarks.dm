@@ -7,6 +7,7 @@
 	unacidable = 1
 	simulated = 0
 	invisibility = 101
+	flags = SLANDMARK_FLAG_AUTOSET // We generally want to use current area/turf as base.
 
 	//ID of the landmark
 	var/landmark_tag
@@ -22,17 +23,23 @@
 	var/turf/base_turf
 	//Name of the shuttle, null for generic waypoint
 	var/shuttle_restricted
-	// var/flags = 0 - Already defined on /atom ? Is it being used for anything? Can we reuse it safely?
 
 /obj/effect/shuttle_landmark/Initialize()
 	. = ..()
 	if(docking_controller)
 		. = INITIALIZE_HINT_LATELOAD
 
+	// Even if this flag is set, hardcoded values take precedence.
 	if(flags & SLANDMARK_FLAG_AUTOSET)
-		base_area = get_area(src)
+		if(ispath(base_area))
+			var/area/A = locate(base_area)
+			if(!istype(A))
+				CRASH("Shuttle landmark \"[landmark_tag]\" couldn't locate area [base_area].")
+			base_area = A
+		else
+			base_area = get_area(src)
 		var/turf/T = get_turf(src)
-		if(T)
+		if(T && !base_turf)
 			base_turf = T.type
 	else
 		base_area = locate(base_area || world.area)

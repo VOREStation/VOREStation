@@ -10,36 +10,34 @@
 	item_icons = list() // No in-hand sprites (for now, anyway, we could totally add some)
 	pixel_y = 0			// Override value from parent.
 
-/obj/item/weapon/holder/micro/examine(var/mob/user)
+/obj/item/weapon/holder/micro/examine(mob/user)
 	for(var/mob/living/M in contents)
 		M.examine(user)
 
-/obj/item/weapon/holder/MouseDrop(mob/M as mob)
+/obj/item/weapon/holder/MouseDrop(mob/M)
 	..()
 	if(M != usr) return
 	if(usr == src) return
 	if(!Adjacent(usr)) return
-	if(istype(M,/mob/living/silicon/ai)) return
+	if(isAI(M)) return
 	for(var/mob/living/carbon/human/O in contents)
 		O.show_inv(usr)
 
 /obj/item/weapon/holder/micro/attack_self(mob/living/carbon/user) //reworked so it works w/ nonhumans
 	for(var/L in contents)
-		if(!isliving(L))
-			continue
-		if(ishuman(L) && user.canClick())
+		if(ishuman(L) && user.canClick()) // These canClicks() are repeated here to make sure users can't avoid the click delay
 			var/mob/living/carbon/human/H = L
 			H.help_shake_act(user)
 			user.setClickCooldown(user.get_attack_speed()) //uses the same cooldown as regular attack_hand
 			return
-		if(istype(L, /mob/living/simple_mob) && user.canClick())
+		if(isanimal(L) && user.canClick())
 			var/mob/living/simple_mob/S = L
 			user.visible_message("<span class='notice'>[user] [S.response_help] \the [S].</span>")
 			user.setClickCooldown(user.get_attack_speed())
 			
 
 /obj/item/weapon/holder/micro/update_state()
-	if(istype(loc,/turf) || !(held_mob) || !(held_mob.loc == src))
+	if(isturf(loc) || !held_mob || held_mob.loc != src)
 		qdel(src)
 
 /obj/item/weapon/holder/micro/Destroy()

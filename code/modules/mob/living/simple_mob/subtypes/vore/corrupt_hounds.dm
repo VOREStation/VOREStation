@@ -121,7 +121,7 @@
 /mob/living/simple_mob/vore/aggressive/corrupthound/space/Process_Spacemove(var/check_drift = 0)
 	return TRUE
 
-/mob/living/simple_mob/vore/hostile/corrupthound/init_vore()
+/mob/living/simple_mob/vore/aggressive/corrupthound/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "fuel processor"
@@ -143,7 +143,7 @@
 		"The longer you spend stewing away in the pool of hot, clingy juices surrounding you, the weaker and weaker you seem to feel!",
 		"'FU3L mE A1RE@Dy, S0 sO SORrY!?', your corrupted captor growls as its synthetic innards begin oozing more potent juices, grinding down into your body with increasing fervor!")
 
-/mob/living/simple_mob/vore/hostile/corrupthound/prettyboi/init_vore()
+/mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
 	B.name = "fuel processor"
