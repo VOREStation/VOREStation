@@ -3374,7 +3374,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "tu" = (
-/obj/machinery/atmospherics/binary/pump/on,
+/obj/machinery/atmospherics/binary/pump,
 /turf/simulated/floor/reinforced,
 /area/ship/aro/midshipshangars)
 "uO" = (
