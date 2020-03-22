@@ -1,7 +1,7 @@
 /datum/gm_action/camera_damage
 	name = "random camera damage"
 	reusable = TRUE
-	departments = list(ROLE_SYNTHETIC, ROLE_ENGINEERING)
+	departments = list(DEPARTMENT_SYNTHETIC, DEPARTMENT_ENGINEERING)
 
 /datum/gm_action/camera_damage/start()
 	var/obj/machinery/camera/C = acquire_random_camera()
@@ -49,4 +49,4 @@
 	return T && C.can_use() && istype(C.loc, /turf) && (T.z in using_map.player_levels)
 
 /datum/gm_action/camera_damage/get_weight()
-	return 40 + (metric.count_people_in_department(ROLE_ENGINEERING) * 20) + (metric.count_people_in_department(ROLE_SYNTHETIC) * 40)
+	return 40 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 20) + (metric.count_people_in_department(DEPARTMENT_SYNTHETIC) * 40)

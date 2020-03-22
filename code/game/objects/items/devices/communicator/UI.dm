@@ -121,7 +121,9 @@
 	data["flashlight"] = fon
 	data["manifest"] = PDA_Manifest
 	data["feeds"] = compile_news()
-	//data["latest_news"] = get_recent_news()	//VOREStation Edit, bandaid for catastrophic runtime lag in helper.dm
+	data["latest_news"] = get_recent_news()
+	if(newsfeed_channel)
+		data["target_feed"] = data["feeds"][newsfeed_channel]
 	if(cartridge) // If there's a cartridge, we need to grab the information from it
 		data["cart_devices"] = cartridge.get_device_status()
 		data["cart_templates"] = cartridge.ui_templates
@@ -279,6 +281,9 @@
 	if(href_list["toggle_device"])
 		var/obj/O = cartridge.internal_devices[text2num(href_list["toggle_device"])]
 		cartridge.active_devices ^= list(O) // Exclusive or, will toggle its presence
+
+	if(href_list["newsfeed"])
+		newsfeed_channel = text2num(href_list["newsfeed"])
 
 	if(href_list["cartridge_topic"] && cartridge) // Has to have a cartridge to perform these functions
 		cartridge.Topic(href, href_list)

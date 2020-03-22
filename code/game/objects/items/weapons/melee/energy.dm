@@ -168,7 +168,7 @@
 	. = ..()
 	var/mutable_appearance/blade_overlay = mutable_appearance(icon, "[icon_state]_blade")
 	blade_overlay.color = lcolor
-	color = lcolor	
+	color = lcolor
 	if(rainbow)
 		blade_overlay = mutable_appearance(icon, "[icon_state]_blade_rainbow")
 		blade_overlay.color = "FFFFFF"
@@ -211,6 +211,8 @@
 	desc = "An energised battle axe."
 	icon_state = "eaxe"
 	item_state = "eaxe"
+	colorable = FALSE
+	lcolor = null
 	//active_force = 150 //holy...
 	active_force = 60
 	active_throwforce = 35

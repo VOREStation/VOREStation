@@ -6,7 +6,7 @@
 
 /obj/machinery/computer/rcon
 	name = "\improper RCON console"
-	desc = "Console used to remotely control machinery on the station."
+	desc = "Console used to remotely control electrical machinery on the station."
 	icon_keyboard = "power_key"
 	icon_screen = "ai_fixer" //VOREStation Edit
 	light_color = "#a97faa"

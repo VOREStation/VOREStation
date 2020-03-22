@@ -20,7 +20,7 @@
 	if(src.mind.changeling.recursive_enhancement)
 		duration = duration + 100
 		to_chat(src, "<span class='notice'>They will be unable to hear for a little longer.</span>")
-	T << "<span class='danger'>Your ears pop and begin ringing loudly!</span>"
+	to_chat(T, "<span class='danger'>Your ears pop and begin ringing loudly!</span>")
 	T.sdisabilities |= DEAF
 	spawn(duration)	T.sdisabilities &= ~DEAF
 	feedback_add_details("changeling_powers","DS")

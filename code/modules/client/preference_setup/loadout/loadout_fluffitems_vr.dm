@@ -51,14 +51,14 @@
 	display_name  = "centcom medical uniform"
 	description = "A medical uniform straight from Central Command."
 	ckeywhitelist = list("arokha")
-	character_name = list("Aronai Kadigan")
+	character_name = list("Aronai Sieyes")
 
 /datum/gear/fluff/aronai_ccmedjacket
 	path = /obj/item/clothing/suit/storage/service/sifguard/medical/command
 	display_name  = "centcom medical jacket"
 	description = "A medical jacket straight from Central Command."
 	ckeywhitelist = list("arokha")
-	character_name = list("Aronai Kadigan")
+	character_name = list("Aronai Sieyes")
 
 //  B CKEYS
 /datum/gear/fluff/yuuko_kimono
@@ -141,6 +141,12 @@
 	character_name = list("Jayda Wilson")
 
 //  C CKEYS
+/datum/gear/fluff/cappy_watch
+	path = /obj/item/clothing/accessory/watch
+	display_name = "Cappy's Pocket Watch"
+	ckeywhitelist = list("cappycat")
+	character_name = list("Cappy Fuzzlyfeathers")
+
 /datum/gear/fluff/james_disk
 	path = /obj/item/weapon/disk/data
 	display_name = "James' Disk"
@@ -247,6 +253,12 @@
 	character_name = list("Erik Ramadwood")
 
 //  F CKEYS
+/datum/gear/fluff/yikatihaki_armor
+	path = /obj/item/clothing/suit/armor/vox_scrap
+	display_name = "Yikatihaki's Armor"
+	ckeywhitelist = list("flaktual")
+	character_name = list("Yikatihaki")
+	allowed_roles = list("Explorer")
 
 //  G CKEYS
 /datum/gear/fluff/eldi_implant
@@ -461,6 +473,18 @@
 	ckeywhitelist = list("kisukegema")
 	character_name = list("Kisuke Gema")
 
+/datum/gear/fluff/excess_collar
+	path = /obj/item/clothing/accessory/collar/pink/fluff/warning
+	display_name = "Excess's Collar"
+	ckeywhitelist = list("killerdragn")
+	character_name = list("Excess")
+
+/datum/gear/fluff/excess_uniform
+	path = /obj/item/clothing/under/fluff/excess
+	display_name = "Excess's Uniform"
+	ckeywhitelist = list("killerdragn")
+	character_name = list("Excess")
+
 /datum/gear/fluff/lassara_sheath
 	path = /obj/item/clothing/accessory/storage/knifeharness
 	display_name = "Lassara's Knife Harness"
@@ -581,11 +605,23 @@
 	character_name = list("Richard D'angelo")
 
 //  P CKEYS
+/datum/gear/fluff/zaku_sweatervest
+	path = /obj/item/clothing/suit/varsity/green/sweater_vest
+	display_name = "Zaku's Sweater Vest"
+	ckeywhitelist = list("pimientopyro")
+	character_name = list("Zaku Fyodorovna")
+
 /datum/gear/fluff/lily_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
 	display_name = "Lily's Unity Medal"
 	ckeywhitelist = list("phoaly")
 	character_name = list("Lily Maximus")
+
+/datum/gear/fluff/pip_cloak
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/hop/fluff/pip
+	display_name = "Pip's Cloak"
+	ckeywhitelist = list("phoaly")
+	character_name = list("Pip Shyner")
 
 /datum/gear/fluff/lucuis_battery
 	path = /obj/item/weapon/fluff/dragor_dot
@@ -610,6 +646,12 @@
 	allowed_roles = list("Roboticist")
 
 //  S CKEYS
+/datum/gear/fluff/brynhild_medal
+	path = /obj/item/clothing/accessory/medal/silver/valor
+	display_name = "Brynhild's Valor Medal"
+	ckeywhitelist = list("sageofaether12")
+	character_name = list("Brynhild Vandradottir")
+
 /datum/gear/fluff/kateryna_voidsuit
 	path = /obj/item/clothing/suit/space/void/engineering/kate
 	display_name = "Kateryna's Voidsuit"
@@ -710,6 +752,12 @@
 	ckeywhitelist = list("spoopylizz")
 	character_name = list("Roiz Lizden")
 
+/datum/gear/fluff/lilith_medal
+	path = /obj/item/clothing/accessory/medal/silver/valor
+	display_name = "Lilith's Valor Medal"
+	ckeywhitelist = list("stiphs")
+	character_name = list("Lilith Vespers")
+
 /datum/gear/fluff/silent_mimemask
 	path = /obj/item/clothing/mask/gas/sexymime
 	display_name = "Silent Stripe's Mime Mask"
@@ -752,6 +800,18 @@
 	display_name = "Nick's Conduct Medal"
 	ckeywhitelist = list("thedavestdave")
 	character_name = list("Nick Sloan")
+
+/datum/gear/fluff/roy_medal
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Roy's Unity Medal"
+	ckeywhitelist = list("thedavestdave")
+	character_name = list("Roy Tilton")
+
+/datum/gear/fluff/monty_balaclava
+	path = /obj/item/clothing/mask/balaclava
+	display_name = "Monty's Balaclava"
+	ckeywhitelist = list("theskringdinger")
+	character_name = list("Monty Kopic")
 
 /datum/gear/fluff/konor_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
@@ -888,7 +948,7 @@
 	display_name = "Tempest's Medical Hud"
 	ckeywhitelist = list("wickedtemp")
 	character_name = list("Chakat Tempest Venosare")
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Field Medic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Field Medic", "Off-duty Medic")
 	slot = slot_glasses
 
 /datum/gear/fluff/tempest_hypospray
@@ -896,7 +956,7 @@
 	display_name = "Tempest's Hypospray"
 	ckeywhitelist = list("wickedtemp")
 	character_name = list("Chakat Tempest Venosare")
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Field Medic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Field Medic", "Off-duty Medic")
 	slot = slot_belt
 
 /datum/gear/fluff/tempest_backpack
@@ -946,8 +1006,8 @@
 	ckeywhitelist = list("zodiacshadow")
 	character_name = list("Nehi Maximus")
 
-/datum/gear/fluff/star_sweater
-	path = /obj/item/clothing/accessory/sweater/fluff/star
-	display_name = "Star Sweater"
+/datum/gear/fluff/star_hoodie
+	path = /obj/item/clothing/suit/storage/star
+	display_name = "Star hoodie"
 	ckeywhitelist = list("bacon12366")
 	character_name = list("Elly Brown")

@@ -1,6 +1,6 @@
 /datum/gm_action/security_screening
 	name = "security screening"
-	departments = list(ROLE_SECURITY, ROLE_EVERYONE)
+	departments = list(DEPARTMENT_SECURITY, DEPARTMENT_EVERYONE)
 
 	var/list/species_weights = list(
 	SPECIES_SKRELL = 9,
@@ -46,4 +46,4 @@
 		command_announcement.Announce("[pick("A nearby Navy vessel", "A Solar official", "A Vir-Gov official", "A NanoTrasen board director")] has requested the screening of [pick("every other", "every", "suspicious", "willing")] [pickweight(end_weights)] personnel onboard \the [station_name()].", "Security Advisement")
 
 /datum/gm_action/security_screening/get_weight()
-	return max(-20, 10 + round(gm.staleness * 1.5) - (gm.danger * 2)) + (metric.count_people_in_department(ROLE_SECURITY) * 10) + (metric.count_people_in_department(ROLE_EVERYONE) * 1.5)
+	return max(-20, 10 + round(gm.staleness * 1.5) - (gm.danger * 2)) + (metric.count_people_in_department(DEPARTMENT_SECURITY) * 10) + (metric.count_people_in_department(DEPARTMENT_EVERYONE) * 1.5)

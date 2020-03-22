@@ -20,7 +20,7 @@
 			machine.console = src
 		else
 			//Silently failing and causing mappers to scratch their heads while runtiming isn't ideal.
-			world << "<span class='danger'>Warning: Stacking machine console at [src.x], [src.y], [src.z] could not find its machine!</span>"
+			to_world("<span class='danger'>Warning: Stacking machine console at [src.x], [src.y], [src.z] could not find its machine!</span>")
 			qdel(src)
 
 /obj/machinery/mineral/stacking_unit_console/attack_hand(mob/user)
@@ -130,7 +130,8 @@
 			S.amount = stack_amt
 			stack_storage[sheet] -= stack_amt
 			S.update_icon()
-
-	console.updateUsrDialog()
+	
+	if(console)
+		console.updateUsrDialog()
 	return
 

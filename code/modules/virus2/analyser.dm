@@ -1,5 +1,6 @@
 /obj/machinery/disease2/diseaseanalyser
 	name = "disease analyser"
+	desc = "Analyzes diseases to find out information about them!"
 	icon = 'icons/obj/virology.dmi'
 	icon_state = "analyser"
 	anchored = 1
@@ -17,7 +18,7 @@
 	else if(!istype(O,/obj/item/weapon/virusdish)) return
 
 	if(dish)
-		user << "\The [src] is already loaded."
+		to_chat(user, "\The [src] is already loaded.")
 		return
 
 	dish = O

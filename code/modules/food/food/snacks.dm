@@ -526,6 +526,25 @@
 		src.name = "Frosted Jelly Donut"
 		reagents.add_reagent("sprinkles", 2)
 
+/obj/item/weapon/reagent_containers/food/snacks/donut/poisonberry
+	name = "Jelly Donut"
+	desc = "You jelly?"
+	icon_state = "jdonut1"
+	filling_color = "#ED1169"
+	center_of_mass = list("x"=16, "y"=11)
+	nutriment_amt = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/poisonberry/Initialize()
+	. = ..()
+	reagents.add_reagent("sprinkles", 1)
+	reagents.add_reagent("poisonberryjuice", 5)
+	bitesize = 5
+	if(prob(30))
+		src.icon_state = "jdonut2"
+		src.overlay_state = "box-donut2"
+		src.name = "Frosted Jelly Donut"
+		reagents.add_reagent("sprinkles", 2)
+
 /obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly
 	name = "Jelly Donut"
 	desc = "You jelly?"
@@ -581,7 +600,7 @@
 		return ..()
 	if(!(proximity && O.is_open_container()))
 		return
-	user << "You crack \the [src] into \the [O]."
+	to_chat(user, "You crack \the [src] into \the [O].")
 	reagents.trans_to(O, reagents.total_volume)
 	user.drop_from_inventory(src)
 	qdel(src)
@@ -599,10 +618,10 @@
 		var/clr = C.colourName
 
 		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
-			usr << "<font color='blue'>The egg refuses to take on this color!</font>"
+			to_chat(usr, "<font color='blue'>The egg refuses to take on this color!</font>")
 			return
 
-		usr << "<font color='blue'>You color \the [src] [clr]</font>"
+		to_chat(usr, "<font color='blue'>You color \the [src] [clr]</font>")
 		icon_state = "egg-[clr]"
 	else
 		..()
@@ -897,12 +916,12 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket/attack_self(mob/user)
 	if(has_been_heated)
-		user << "<span class='notice'>The heating chemicals have already been spent.</span>"
+		to_chat(user, "<span class='notice'>The heating chemicals have already been spent.</span>")
 		return
 	has_been_heated = 1
 	user.visible_message("<span class='notice'>[user] crushes \the [src] package.</span>", "You crush \the [src] package and feel a comfortable heat build up.")
 	spawn(200)
-		user << "You think \the [src] is ready to eat about now."
+		to_chat(user, "You think \the [src] is ready to eat about now.")
 		heat()
 
 /obj/item/weapon/reagent_containers/food/snacks/brainburger
@@ -1121,8 +1140,15 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/berryclafoutis/Initialize()
 	. = ..()
-	reagents.add_reagent("berryjuice", 5)
 	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/berryclafoutis/berry/Initialize()
+	. = ..()
+	reagents.add_reagent("berryjuice", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/berryclafoutis/poison/Initialize()
+	. = ..()
+	reagents.add_reagent("poisonberryjuice", 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/waffles
 	name = "waffles"
@@ -1343,7 +1369,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/popcorn/On_Consume()
 	if(prob(unpopped))	//lol ...what's the point?
-		usr << "<font color='red'>You bite down on an un-popped kernel!</font>"
+		to_chat(usr, "<font color='red'>You bite down on an un-popped kernel!</font>")
 		unpopped = max(0, unpopped-1)
 	..()
 
@@ -1645,7 +1671,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/slimesoup
 	name = "slime soup"
 	desc = "If no water is available, you may substitute tears."
-	icon_state = "slimesoup" //nonexistant?
+	icon_state = "rorosoup" //nonexistant? - 3/1/2020 FIXED. roro's live on.
 	filling_color = "#C4DBA0"
 
 /obj/item/weapon/reagent_containers/food/snacks/slimesoup/Initialize()
@@ -3265,6 +3291,7 @@
 	desc = "A box suited for pizzas."
 	icon = 'icons/obj/food.dmi'
 	icon_state = "pizzabox1"
+	center_of_mass = list("x" = 16,"y" = 6)
 
 	var/open = 0 // Is the box open?
 	var/ismessy = 0 // Fancy mess on the lid
@@ -3436,6 +3463,10 @@
 	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza(src)
 	boxtag = "Meatlover's Supreme"
 
+/obj/item/pizzabox/pineapple/Initialize()
+	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/pineapple(src)
+	boxtag = "Hawaiian Sunrise"
+
 /obj/item/pizzabox/old/Initialize()
 	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/oldpizza(src)
 	boxtag = "Deluxe Gourmet"
@@ -3476,7 +3507,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/dough/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/material/kitchen/rollingpin))
 		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough(src)
-		user << "You flatten the dough."
+		to_chat(user, "You flatten the dough.")
 		qdel(src)
 
 // slicable into 3xdoughslices
@@ -3526,21 +3557,21 @@
 	// Bun + meatball = burger
 	if(istype(W,/obj/item/weapon/reagent_containers/food/snacks/meatball))
 		new /obj/item/weapon/reagent_containers/food/snacks/monkeyburger(src)
-		user << "You make a burger."
+		to_chat(user, "You make a burger.")
 		qdel(W)
 		qdel(src)
 
 	// Bun + cutlet = hamburger
 	else if(istype(W,/obj/item/weapon/reagent_containers/food/snacks/cutlet))
 		new /obj/item/weapon/reagent_containers/food/snacks/monkeyburger(src)
-		user << "You make a burger."
+		to_chat(user, "You make a burger.")
 		qdel(W)
 		qdel(src)
 
 	// Bun + sausage = hotdog
 	else if(istype(W,/obj/item/weapon/reagent_containers/food/snacks/sausage))
 		new /obj/item/weapon/reagent_containers/food/snacks/hotdog(src)
-		user << "You make a hotdog."
+		to_chat(user, "You make a hotdog.")
 		qdel(W)
 		qdel(src)
 
@@ -3548,7 +3579,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/monkeyburger/attackby(obj/item/weapon/reagent_containers/food/snacks/cheesewedge/W as obj, mob/user as mob)
 	if(istype(W))// && !istype(src,/obj/item/weapon/reagent_containers/food/snacks/cheesewedge))
 		new /obj/item/weapon/reagent_containers/food/snacks/cheeseburger(src)
-		user << "You make a cheeseburger."
+		to_chat(user, "You make a cheeseburger.")
 		qdel(W)
 		qdel(src)
 		return
@@ -3559,7 +3590,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/human/burger/attackby(obj/item/weapon/reagent_containers/food/snacks/cheesewedge/W as obj, mob/user as mob)
 	if(istype(W))
 		new /obj/item/weapon/reagent_containers/food/snacks/cheeseburger(src)
-		user << "You make a cheeseburger."
+		to_chat(user, "You make a cheeseburger.")
 		qdel(W)
 		qdel(src)
 		return
@@ -3899,12 +3930,20 @@
 	filling_color = "#E0CF9B"
 	center_of_mass = list("x"=17, "y"=4)
 	nutriment_amt = 6
-	nutriment_desc = list("sweetness" = 2, "muffin" = 2, "berries" = 2)
+	nutriment_desc = list("sweetness" = 2, "muffin" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/berrymuffin/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 6)
 	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/berrymuffin/berry/Initialize()
+	. = ..()
+	reagents.add_reagent("berryjuice", 3)
+
+/obj/item/weapon/reagent_containers/food/snacks/berrymuffin/poison/Initialize()
+	. = ..()
+	reagents.add_reagent("poisonberryjuice", 3)
 
 /obj/item/weapon/reagent_containers/food/snacks/ghostmuffin
 	name = "booberry muffin"
@@ -3918,6 +3957,16 @@
 /obj/item/weapon/reagent_containers/food/snacks/ghostmuffin/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 6)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/ghostmuffin/berry/Initialize()
+	. = ..()
+	reagents.add_reagent("berryjuice", 3)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/ghostmuffin/poison/Initialize()
+	. = ..()
+	reagents.add_reagent("poisonberryjuice", 3)
 	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/eggroll

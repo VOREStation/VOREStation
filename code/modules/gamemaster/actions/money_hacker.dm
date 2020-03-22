@@ -2,7 +2,7 @@
 
 /datum/gm_action/money_hacker
 	name = "bank account hacker"
-	departments = list(ROLE_EVERYONE)
+	departments = list(DEPARTMENT_EVERYONE)
 	reusable = TRUE
 	var/datum/money_account/affected_account
 	var/active

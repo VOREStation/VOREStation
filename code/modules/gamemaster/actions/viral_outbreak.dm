@@ -1,6 +1,6 @@
 /datum/gm_action/viral_outbreak
 	name = "viral outbreak"
-	departments = list(ROLE_MEDICAL, ROLE_EVERYONE)
+	departments = list(DEPARTMENT_MEDICAL, DEPARTMENT_EVERYONE)
 	chaotic = 30
 	severity = 1
 	var/list/candidates = list()
@@ -29,9 +29,9 @@
 		severity--
 
 /datum/gm_action/viral_outbreak/get_weight()
-	var/medical = metric.count_people_in_department(ROLE_MEDICAL)
-	var/security = metric.count_people_in_department(ROLE_SECURITY)
-	var/everyone = metric.count_people_in_department(ROLE_EVERYONE)
+	var/medical = metric.count_people_in_department(DEPARTMENT_MEDICAL)
+	var/security = metric.count_people_in_department(DEPARTMENT_SECURITY)
+	var/everyone = metric.count_people_in_department(DEPARTMENT_EVERYONE)
 
 	var/assigned_staff = medical + round(security / 2)
 

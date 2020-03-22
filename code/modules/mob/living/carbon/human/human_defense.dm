@@ -236,7 +236,7 @@ emp_act
 
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if (!affecting || affecting.is_stump())
-		user << "<span class='danger'>They are missing that limb!</span>"
+		to_chat(user, "<span class='danger'>They are missing that limb!</span>")
 		return null
 
 	return hit_zone
@@ -349,12 +349,12 @@ emp_act
 /mob/living/carbon/human/emag_act(var/remaining_charges, mob/user, var/emag_source)
 	var/obj/item/organ/external/affecting = get_organ(user.zone_sel.selecting)
 	if(!affecting || !(affecting.robotic >= ORGAN_ROBOT))
-		user << "<span class='warning'>That limb isn't robotic.</span>"
+		to_chat(user, "<span class='warning'>That limb isn't robotic.</span>")
 		return -1
 	if(affecting.sabotaged)
-		user << "<span class='warning'>[src]'s [affecting.name] is already sabotaged!</span>"
+		to_chat(user, "<span class='warning'>[src]'s [affecting.name] is already sabotaged!</span>")
 		return -1
-	user << "<span class='notice'>You sneakily slide [emag_source] into the dataport on [src]'s [affecting.name] and short out the safeties.</span>"
+	to_chat(user, "<span class='notice'>You sneakily slide [emag_source] into the dataport on [src]'s [affecting.name] and short out the safeties.</span>")
 	affecting.sabotaged = 1
 	return 1
 
@@ -527,8 +527,8 @@ emp_act
 	if(damtype != BURN && damtype != BRUTE) return
 
 	// The rig might soak this hit, if we're wearing one.
-	if(back && istype(back,/obj/item/weapon/rig))
-		var/obj/item/weapon/rig/rig = back
+	if(istype(get_rig(),/obj/item/weapon/rig))
+		var/obj/item/weapon/rig/rig = get_rig()
 		rig.take_hit(damage)
 
 	// We may also be taking a suit breach.
@@ -575,9 +575,8 @@ emp_act
 	return perm
 
 // This is for preventing harm by being covered in water, which only prometheans need to deal with.
-// This is not actually used for now since the code for prometheans gets changed a lot.
 /mob/living/carbon/human/get_water_protection()
-	var/protection = ..() // Todo: Replace with species var later.
+	var/protection = species.water_resistance
 	if(protection == 1) // No point doing permeability checks if it won't matter.
 		return protection
 	// Wearing clothing with a low permeability_coefficient can protect from water.
@@ -585,8 +584,15 @@ emp_act
 	var/converted_protection = 1 - protection
 	var/perm = reagent_permeability()
 	converted_protection *= perm
-	return 1-converted_protection
+	return CLAMP(1-converted_protection, 0, 1)
 
+/mob/living/carbon/human/water_act(amount)
+	adjust_fire_stacks(-amount * 5)
+	for(var/atom/movable/AM in contents)
+		AM.water_act(amount)
+	remove_modifiers_of_type(/datum/modifier/fire)
+
+	species.handle_water_damage(src, amount)
 
 /mob/living/carbon/human/shank_attack(obj/item/W, obj/item/weapon/grab/G, mob/user, hit_zone)
 

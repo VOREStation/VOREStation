@@ -17,10 +17,10 @@
 /datum/wires/seedstorage/GetInteractWindow()
 	var/obj/machinery/seed_storage/V = holder
 	. += ..()
-	. += "<BR>The orange light is [V.seconds_electrified ? "off" : "on"].<BR>"
-	. += "The red light is [V.smart ? "off" : "blinking"].<BR>"
-	. += "The green light is [(V.hacked || V.emagged) ? "on" : "off"].<BR>"
-	. += "The keypad lock is [V.lockdown ? "deployed" : "retracted"].<BR>"
+	. += show_hint(0x1, V.seconds_electrified,	"The orange light is off.",		"The orange light is on.")
+	. += show_hint(0x2, V.smart,				"The red light is off.",		"The red light is blinking.")
+	. += show_hint(0x4, V.hacked || V.emagged,	"The green light is on.",		"The green light is off.")
+	. += show_hint(0x8, V.lockdown,				"The keypad lock is deployed.",	"The keypad lock is retracted.")
 
 /datum/wires/seedstorage/UpdatePulsed(var/index)
 	var/obj/machinery/seed_storage/V = holder

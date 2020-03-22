@@ -16,7 +16,7 @@
 	dsma.blend_mode = BLEND_ADD
 	dsoverlay.appearance = dsma
 
-	selected_image = image(icon = 'icons/mob/screen1.dmi', loc = src, icon_state = "centermarker")
+	selected_image = image(icon = buildmode_hud, loc = src, icon_state = "ai_sel")
 
 /mob/living/Destroy()
 	dsoverlay.loc = null //I'll take my coat with me
@@ -32,6 +32,8 @@
 	if(buckled)
 		buckled.unbuckle_mob(src, TRUE)
 	qdel(selected_image)
+	QDEL_NULL(vorePanel) //VOREStation Add
+	QDEL_LIST_NULL(vore_organs) //VOREStation Add
 	return ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
@@ -259,7 +261,7 @@ default behaviour is:
 //sort of a legacy burn method for /electrocute, /shock, and the e_chair
 /mob/living/proc/burn_skin(burn_amount)
 	if(istype(src, /mob/living/carbon/human))
-		//world << "DEBUG: burn_skin(), mutations=[mutations]"
+		//to_world("DEBUG: burn_skin(), mutations=[mutations]")
 		if(mShock in src.mutations) //shockproof
 			return 0
 		if (COLD_RESISTANCE in src.mutations) //fireproof
@@ -293,7 +295,7 @@ default behaviour is:
 		if(actual < desired)
 			temperature = desired
 //	if(istype(src, /mob/living/carbon/human))
-//		world << "[src] ~ [src.bodytemperature] ~ [temperature]"
+//		to_world("[src] ~ [src.bodytemperature] ~ [temperature]")
 	return temperature
 
 
@@ -449,7 +451,7 @@ default behaviour is:
 			if(!isnull(M.incoming_hal_damage_percent))
 				amount *= M.incoming_hal_damage_percent
 			if(!isnull(M.disable_duration_percent))
-				amount *= M.incoming_hal_damage_percent
+				amount *= M.disable_duration_percent
 	else if(amount < 0)
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.incoming_healing_percent))
@@ -773,9 +775,8 @@ default behaviour is:
 		else
 			to_chat(usr, "[src] does not have any stored infomation!")
 	else
-		usr << "OOC Metadata is not supported by this server!"
+		to_chat(usr, "OOC Metadata is not supported by this server!")
 	//VOREStation Edit End - Making it so SSD people have prefs with fallback to original style.
-	return
 
 /mob/living/Move(a, b, flag)
 	if (buckled && buckled.loc != a) //not updating position
@@ -1305,6 +1306,9 @@ default behaviour is:
 		src.inertia_dir = get_dir(target, src)
 		step(src, inertia_dir)
 
+	if(istype(item,/obj/item))
+		var/obj/item/W = item
+		W.randpixel_xy()
 
 /*
 	if(istype(src.loc, /turf/space) || (src.flags & NOGRAV)) //they're in space, move em one space in the opposite direction

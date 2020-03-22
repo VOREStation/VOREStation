@@ -43,7 +43,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	var/matrix/M = matrix()
 	M.Scale(size_multiplier)
 	M.Translate(0, 16*(size_multiplier-1))
-	src.transform = M
+	transform = M
 
 /**
  * Get the effective size of a mob.
@@ -55,7 +55,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	return 100000 //Whatever it is, it's too big to pick up, or it's a ghost, or something.
 
 /mob/living/get_effective_size()
-	return src.size_multiplier
+	return size_multiplier
 
 /**
  * Resizes the mob immediately to the desired mod, animating it growing/shrinking.
@@ -111,10 +111,11 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 
 	var/nagmessage = "Adjust your mass to be a size between 25 to 200% (DO NOT ABUSE)"
 	var/new_size = input(nagmessage, "Pick a Size") as num|null
-	if(new_size && ISINRANGE(new_size,25,200))
-		src.resize(new_size/100)
-		message_admins("[key_name(src)] used the resize command in-game to be [new_size]% size. \
-			([src ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>" : "null"])")
+	if(new_size && ISINRANGE(new_size, 25, 200))
+		resize(new_size/100)
+		// I'm not entirely convinced that `src ? ADMIN_JMP(src) : "null"` here does anything
+		// but just in case it does, I'm leaving the null-src checking
+		message_admins("[key_name(src)] used the resize command in-game to be [new_size]% size. [src ? ADMIN_JMP(src) : "null"]")
 
 /*
 //Add the set_size() proc to usable verbs. By commenting this out, we can leave the proc and hand it to species that need it.
@@ -127,7 +128,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  * Attempt to scoop up this mob up into H's hands, if the size difference is large enough.
  * @return false if normal code should continue, 1 to prevent normal code.
  */
-/mob/living/proc/attempt_to_scoop(var/mob/living/M, var/mob/living/G) //second one is for the Grabber, only exists for animals to self-grab
+/mob/living/proc/attempt_to_scoop(mob/living/M, mob/living/G) //second one is for the Grabber, only exists for animals to self-grab
 	var/size_diff = M.get_effective_size() - get_effective_size()
 	if(!holder_default && holder_type)
 		holder_default = holder_type
@@ -156,37 +157,42 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  * Called from /mob/living/Bump() in the 'brohugs all around' section.
  * @return false if normal code should continue, true to prevent normal code.
  */
-/mob/living/proc/handle_micro_bump_helping(var/mob/living/tmob)
+/mob/living/proc/handle_micro_bump_helping(mob/living/tmob)
 	//Both small! Go ahead and go.
-	if(src.get_effective_size() <= RESIZE_A_SMALLTINY && tmob.get_effective_size() <= RESIZE_A_SMALLTINY)
+	if(get_effective_size() <= RESIZE_A_SMALLTINY && tmob.get_effective_size() <= RESIZE_A_SMALLTINY)
 		return TRUE
 
 	//Worthy of doing messages at all
 	if(abs(get_effective_size() - tmob.get_effective_size()) >= 0.50)
+		var/src_message = null
+		var/tmob_message = null
 
 		//Smaller person being stepped onto
 		if(get_effective_size() > tmob.get_effective_size() && ishuman(src))
+			src_message = "You carefully step over [tmob]."
+			tmob_message = "[src] steps over you carefully!"
 			var/mob/living/carbon/human/H = src
 			if(H.flying)
 				return TRUE //Silently pass without a message.
 			if(isTaurTail(H.tail_style))
 				var/datum/sprite_accessory/tail/taur/tail = H.tail_style
-				to_chat(src,STEP_TEXT_OWNER(tail.msg_owner_help_run))
-				to_chat(tmob,STEP_TEXT_PREY(tail.msg_prey_help_run))
-			else
-				to_chat(src,"You carefully step over [tmob].")
-				to_chat(tmob,"[src] steps over you carefully!")
+				src_message = tail.msg_owner_help_run
+				tmob_message = tail.msg_prey_help_run
 
 		//Smaller person stepping under larger person
-		else if(tmob.get_effective_size() > get_effective_size() && ishuman(tmob))
+		else if(get_effective_size() < tmob.get_effective_size() && ishuman(tmob))
+			src_message = "You run between [tmob]'s legs."
+			tmob_message = "[src] runs between your legs."
 			var/mob/living/carbon/human/H = tmob
 			if(isTaurTail(H.tail_style))
 				var/datum/sprite_accessory/tail/taur/tail = H.tail_style
-				to_chat(src,STEP_TEXT_OWNER(tail.msg_prey_stepunder))
-				to_chat(tmob,STEP_TEXT_PREY(tail.msg_owner_stepunder))
-			else
-				to_chat(src,"You run between [tmob]'s legs.")
-				to_chat(tmob,"[src] runs between your legs.")
+				src_message = tail.msg_prey_stepunder
+				tmob_message = tail.msg_owner_stepunder
+
+		if(src_message)
+			to_chat(src, STEP_TEXT_OWNER(src_message))
+		if(tmob_message)
+			to_chat(tmob, STEP_TEXT_PREY(tmob_message))
 		return TRUE
 	return FALSE
 
@@ -196,202 +202,124 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  *
  * @return false if normal code should continue, 1 to prevent normal code.
  */
-/mob/living/proc/handle_micro_bump_other(var/mob/living/tmob)
+/mob/living/proc/handle_micro_bump_other(mob/living/tmob)
 	ASSERT(istype(tmob))
-
-	//If they're flying, don't do any special interactions.
-	if(ishuman(src))
-		var/mob/living/carbon/human/P = src
-		if(P.flying)
-			return
-
+	//If we're flying, don't do any special interactions.
+	if(flying)
+		return
 	//If the prey is flying, don't smush them.
-	if(ishuman(tmob))
-		var/mob/living/carbon/human/D = tmob
-		if(D.flying)
-			return
-
-	//They can't be stepping on anyone
+	if(tmob.flying)
+		return
+	//We can't be stepping on anyone
 	if(!canmove || buckled)
 		return
 
 	//Test/set if human
-	var/mob/living/carbon/human/H
-	if(ishuman(src))
-		H = src
-	else
+	var/mob/living/carbon/human/pred = src
+	if(!istype(pred))
 		//If we're not human, can't do the steppy
 		return FALSE
 
-	var/mob/living/carbon/human/Ht
-	if(ishuman(tmob))
-		Ht = tmob
-	else
+	var/mob/living/carbon/human/prey = tmob
+	if(!istype(prey))
 		//If they're not human, steppy shouldn't happen
 		return FALSE
 
-	//Depending on intent...
-	switch(a_intent)
+	// We need to be above a certain size ratio in order to do anything to the prey.
+	// For DISARM and HURT intent, this is >=0.75, for GRAB it is >=0.5
+	var/size_ratio = get_effective_size() - tmob.get_effective_size()
+	if(a_intent == I_GRAB && size_ratio < 0.5)
+		return FALSE
+	if((a_intent == I_DISARM || a_intent == I_HURT) && size_ratio < 0.75)
+		return FALSE
+	if(a_intent == I_HELP) // Theoretically not possible, but just in case.
+		return FALSE
 
-		//src stepped on someone with disarm intent
-		if(I_DISARM)
-			// If bigger than them by at least 0.75, move onto them and print message.
-			if((get_effective_size() - tmob.get_effective_size()) >= 0.75)
-				now_pushing = 0
-				forceMove(tmob.loc)
+	now_pushing = 0
+	forceMove(tmob.loc)
+	if(a_intent == I_GRAB || a_intent == I_DISARM)
+		tmob.resting = 1
 
-				//Running on I_DISARM
-				if(m_intent == "run")
-					tmob.resting = 1 //Force them down to the ground.
+	var/size_damage_multiplier = size_multiplier - tmob.size_multiplier
+	// This technically means that I_GRAB will set this value to the same as I_HARM, but
+	// I_GRAB won't ever trigger the damage-giving code, so it doesn't matter.
+	// I_HARM: Rand 1-3 multiplied by 1 min or 1.75 max. 1 min 5.25 max damage to each limb.
+	// I_DISARM: Perform some HALLOSS damage to the smaller.
+	//           Since stunned is broken, let's do this. Rand 15-30 multiplied by 1 min or 1.75 max. 15 holo to 52.5 holo, depending on RNG and size differnece.
+	var/damage = (a_intent == I_DISARM) ? (rand(15, 30) * size_damage_multiplier) : (rand(1, 3) * size_damage_multiplier)
+	// I_HARM only
+	var/calculated_damage = damage / 2 //This will sting, but not kill. Does .5 to 2.625 damage, randomly, to each limb.
 
-					//Log it for admins (as opposed to walk which logs damage)
-					add_attack_logs(src,tmob,"Pinned underfoot (run, no halloss)")
+	var/message_pred = null
+	var/message_prey = null
+	var/datum/sprite_accessory/tail/taur/tail = null
+	if(isTaurTail(pred.tail_style))
+		tail = pred.tail_style
 
-					//Not a human, or not a taur, generic message only
-					if(!H || !isTaurTail(H.tail_style))
-						to_chat(src,"<span class='danger'>You quickly push [tmob] to the ground with your foot!</span>")
-						to_chat(tmob,"<span class='danger'>[src] pushes you down to the ground with their foot!</span>")
+	if(a_intent == I_GRAB)
+		// You can only grab prey if you have no shoes on.
+		if(pred.shoes)
+			message_pred = "You step down onto [prey], squishing them and forcing them down to the ground!"
+			message_prey = "[pred] steps down and squishes you with their foot, forcing you down to the ground!"
+			if(tail)
+				message_pred = STEP_TEXT_OWNER(tail.msg_owner_grab_fail)
+				message_prey = STEP_TEXT_PREY(tail.msg_prey_grab_fail)
+			add_attack_logs(pred, prey,"Grabbed underfoot ([tail ? "taur" : "nontaur"], shoes)")
+		else
+			message_pred = "You pin [prey] down onto the floor with your foot and curl your toes up around their body, trapping them inbetween them!"
+			message_prey = "[pred] pins you down to the floor with their foot and curls their toes up around your body, trapping you inbetween them!"
+			if(tail)
+				message_pred = STEP_TEXT_OWNER(tail.msg_owner_grab_success)
+				message_prey = STEP_TEXT_PREY(tail.msg_prey_grab_success)
+			equip_to_slot_if_possible(prey.get_scooped(pred), slot_shoes, 0, 1)
+			add_attack_logs(pred, prey, "Grabbed underfoot ([tail ? "taur" : "nontaur"], no shoes)")
 
-					//Human with taur tail, special messages are sent
-					else
-						var/datum/sprite_accessory/tail/taur/tail = H.tail_style
-						to_chat(src,STEP_TEXT_OWNER("<span class='danger'>[tail.msg_owner_disarm_run]</span>"))
-						to_chat(tmob,STEP_TEXT_PREY("<span class='danger'>[tail.msg_prey_disarm_run]</span>"))
+	if(m_intent == "run")
+		switch(a_intent)
+			if(I_DISARM)
+				message_pred = "You quickly push [prey] to the ground with your foot!"
+				message_prey = "[pred] pushes you down to the ground with their foot!"
+				if(tail)
+					message_pred = STEP_TEXT_OWNER(tail.msg_owner_disarm_run)
+					message_prey = STEP_TEXT_PREY(tail.msg_prey_disarm_run)
+				add_attack_logs(pred, prey, "Pinned underfoot (run, no halloss)")
+			if(I_HURT)
+				message_pred = "You carelessly step down onto [prey], crushing them!"
+				message_prey = "[pred] steps carelessly on your body, crushing you!"
+				if(tail)
+					message_pred = STEP_TEXT_OWNER(tail.msg_owner_harm_run)
+					message_prey = STEP_TEXT_PREY(tail.msg_prey_harm_run)
 
-				//Walking on I_DISARM
-				else
-					//Perform some HALLOSS damage to the smaller.
-					var/size_damage_multiplier = (src.size_multiplier - tmob.size_multiplier)
-					var/damage = (rand(15,30)* size_damage_multiplier) //Since stunned is broken, let's do this. Rand 15-30 multiplied by 1 min or 1.75 max. 15 holo to 52.5 holo, depending on RNG and size differnece.
-					tmob.apply_damage(damage, HALLOSS)
-					tmob.resting = 1
+				for(var/obj/item/organ/external/I in prey.organs)
+					I.take_damage(calculated_damage, 0) // 5 damage min, 26.25 damage max, depending on size & RNG. If they're only stepped on once, the damage will (probably not...) heal over time.
+				prey.drip(0.1)
+				add_attack_logs(pred, prey, "Crushed underfoot (run, about [calculated_damage] damage)")
+	else
+		switch(a_intent)
+			if(I_DISARM)
+				message_pred = "You firmly push your foot down on [prey], painfully but harmlessly pinning them to the ground!"
+				message_prey = "[pred] firmly pushes their foot down on you, quite painfully but harmlessly pinning you to the ground!"
+				if(tail)
+					message_pred = STEP_TEXT_OWNER(tail.msg_owner_disarm_walk)
+					message_prey = STEP_TEXT_PREY(tail.msg_prey_disarm_walk)
+				add_attack_logs(pred, prey, "Pinned underfoot (walk, about [damage] halloss)")
+				tmob.apply_damage(damage, HALLOSS)
+			if(I_HURT)
+				message_pred = "You methodically place your foot down upon [prey]'s body, slowly applying pressure, crushing them against the floor below!"
+				message_prey = "[pred] methodically places their foot upon your body, slowly applying pressure, crushing you against the floor below!"
+				if(tail)
+					message_pred = STEP_TEXT_OWNER(tail.msg_owner_harm_walk)
+					message_prey = STEP_TEXT_PREY(tail.msg_prey_harm_walk)
+				// Multiplies the above damage by 3.5. This means a min of 1.75 damage, or a max of 9.1875. damage to each limb, depending on size and RNG.
+				calculated_damage *= 3.5
+				for(var/obj/item/organ/I in prey.organs)
+					I.take_damage(calculated_damage, 0)
+				prey.drip(3)
+				add_attack_logs(pred, prey, "Crushed underfoot (walk, about [calculated_damage] damage)")
 
-					//Log it for admins (as opposed to run which logs no damage)
-					add_attack_logs(src,tmob,"Pinned underfoot (walk, about [damage] halloss)")
-
-					//Not a human, or not a taur, generic message only
-					if(!H || !isTaurTail(H.tail_style))
-						to_chat(src,"<span class='danger'>You firmly push your foot down on [tmob], painfully but harmlessly pinning them to the ground!</span>")
-						to_chat(tmob,"<span class='danger'>[src] firmly pushes their foot down on you, quite painfully but harmlessly pinning you to the ground!</span>")
-
-					//Human with taur tail, special messages are sent
-					else
-						var/datum/sprite_accessory/tail/taur/tail = H.tail_style
-						to_chat(src,STEP_TEXT_OWNER("<span class='danger'>[tail.msg_owner_disarm_walk]</span>"))
-						to_chat(tmob,STEP_TEXT_PREY("<span class='danger'>[tail.msg_prey_disarm_walk]</span>"))
-
-				//Return true, the sizediff was enough that we handled it.
-				return TRUE
-
-			//Not enough sizediff for I_DISARM to do anything.
-			else
-				return FALSE
-
-		//src stepped on someone with harm intent
-		if(I_HURT)
-			// If bigger than them by at least 0.75, move onto them and print message.
-			if((get_effective_size() - tmob.get_effective_size()) >= 0.75)
-				now_pushing = 0
-				forceMove(tmob.loc)
-
-				//Precalculate base damage
-				var/size_damage_multiplier = (src.size_multiplier - tmob.size_multiplier)
-				var/damage = (rand(1,3)* size_damage_multiplier) //Rand 1-3 multiplied by 1 min or 1.75 max. 1 min 5.25 max damage to each limb.
-				var/calculated_damage = damage/2 //This will sting, but not kill. Does .5 to 2.625 damage, randomly, to each limb.
-
-				//Running on I_HURT
-				if(m_intent == "run")
-
-					//Not a human, or not a taur, generic message only
-					if(!H || !isTaurTail(H.tail_style))
-						to_chat(src,"<span class='danger'>You carelessly step down onto [tmob], crushing them!</span>")
-						to_chat(tmob,"<span class='danger'>[src] steps carelessly on your body, crushing you!</span>")
-
-					//Human with taur tail, special messages are sent
-					else
-						var/datum/sprite_accessory/tail/taur/tail = H.tail_style
-						to_chat(src,STEP_TEXT_OWNER("<span class='danger'>[tail.msg_owner_harm_run]</span>"))
-						to_chat(tmob,STEP_TEXT_PREY("<span class='danger'>[tail.msg_prey_harm_run]</span>"))
-
-					//If they are a human, do damage (doesn't hurt other mobs...?)
-					if(Ht)
-						for(var/obj/item/organ/external/I in Ht.organs)
-							I.take_damage(calculated_damage, 0) // 5 damage min, 26.25 damage max, depending on size & RNG. If they're only stepped on once, the damage will (probably not...) heal over time.
-						Ht.drip(0.1)
-						add_attack_logs(src,tmob,"Crushed underfoot (run, about [calculated_damage] damage)")
-
-				//Walking on I_HURT
-				else
-					//Multiplies the above damage by 3.5. This means a min of 1.75 damage, or a max of 9.1875. damage to each limb, depending on size and RNG.
-					calculated_damage *= 3.5
-
-					//If they are a human, do damage (doesn't hurt other mobs...?)
-					if(Ht)
-						for(var/obj/item/organ/I in Ht.organs)
-							I.take_damage(calculated_damage, 0)
-						Ht.drip(3)
-						add_attack_logs(src,tmob,"Crushed underfoot (walk, about [calculated_damage] damage)")
-
-					//Not a human, or not a taur, generic message only
-					if(!H || !isTaurTail(H.tail_style))
-						to_chat(src,"<span class='danger'>You methodically place your foot down upon [tmob]'s body, slowly applying pressure, crushing them against the floor below!</span>")
-						to_chat(tmob,"<span class='danger'>[src] methodically places their foot upon your body, slowly applying pressure, crushing you against the floor below!</span>")
-
-					//Human with taur tail, special messages are sent
-					else
-						var/datum/sprite_accessory/tail/taur/tail = H.tail_style
-						to_chat(src,STEP_TEXT_OWNER("<span class='danger'>[tail.msg_owner_harm_walk]</span>"))
-						to_chat(tmob,STEP_TEXT_PREY("<span class='danger'>[tail.msg_prey_harm_walk]</span>"))
-
-				//Return true, the sizediff was enough that we handled it.
-				return TRUE
-
-			//Not enough sizediff for I_HURT to do anything.
-			else
-				return FALSE
-
-		//src stepped on someone with grab intent
-		if(I_GRAB)
-			// If bigger than them by at least 0.50, move onto them and print message.
-			if((get_effective_size() - tmob.get_effective_size()) >= 0.50)
-				now_pushing = 0
-				tmob.resting = 1
-				forceMove(tmob.loc)
-
-				//Not a human, or not a taur while wearing shoes = no grab
-				if(!H || (!isTaurTail(H.tail_style) && H.shoes))
-					to_chat(src,"<span class='danger'>You step down onto [tmob], squishing them and forcing them down to the ground!</span>")
-					to_chat(tmob,"<span class='danger'>[src] steps down and squishes you with their foot, forcing you down to the ground!</span>")
-					add_attack_logs(src,tmob,"Grabbed underfoot (nontaur, shoes)")
-
-				//Human, not a taur, but not wearing shoes = yes grab
-				else if(H && (!isTaurTail(H.tail_style) && !H.shoes))
-					to_chat(src,"<span class='danger'>You pin [tmob] down onto the floor with your foot and curl your toes up around their body, trapping them inbetween them!</span>")
-					to_chat(tmob,"<span class='danger'>[src] pins you down to the floor with their foot and curls their toes up around your body, trapping you inbetween them!</span>")
-					equip_to_slot_if_possible(tmob.get_scooped(H), slot_shoes, 0, 1)
-					add_attack_logs(src,tmob,"Grabbed underfoot (nontaur, no shoes)")
-
-				//Human, taur, shoes = no grab, special message
-				else if(H.shoes)
-					var/datum/sprite_accessory/tail/taur/tail = H.tail_style
-					to_chat(src,STEP_TEXT_OWNER("<span class='danger'>[tail.msg_owner_grab_fail]</span>"))
-					to_chat(tmob,STEP_TEXT_PREY("<span class='danger'>[tail.msg_prey_grab_fail]</span>"))
-					add_attack_logs(src,tmob,"Grabbed underfoot (taur, shoes)")
-
-				//Human, taur, no shoes = yes grab, special message
-				else
-					var/datum/sprite_accessory/tail/taur/tail = H.tail_style
-					to_chat(src,STEP_TEXT_OWNER("<span class='danger'>[tail.msg_owner_grab_success]</span>"))
-					to_chat(tmob,STEP_TEXT_PREY("<span class='danger'>[tail.msg_prey_grab_success]</span>"))
-					equip_to_slot_if_possible(tmob.get_scooped(H), slot_shoes, 0, 1)
-					add_attack_logs(src,tmob,"Grabbed underfoot (taur, no shoes)")
-
-				//Return true, the sizediff was enough that we handled it.
-				return TRUE
-
-			//Not enough sizediff for I_GRAB to do anything.
-			else
-				return FALSE
+	to_chat(pred, "<span class='danger'>[message_pred]</span>")
+	to_chat(prey, "<span class='danger'>[message_prey]</span>")
+	return TRUE
 
 #undef STEP_TEXT_OWNER
 #undef STEP_TEXT_PREY

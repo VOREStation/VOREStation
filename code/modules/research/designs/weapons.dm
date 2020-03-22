@@ -206,6 +206,13 @@
 	build_path = /obj/item/ammo_casing/chemdart
 	sort_string = "MADBD"
 
+/datum/design/item/weapon/ammo/flechette
+	id = "magnetic_ammo"
+	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4, TECH_MAGNET = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 500, "gold" = 300, "glass" = 150, MAT_PHORON = 100)
+	build_path = /obj/item/weapon/magnetic_ammo
+	sort_string = "MADBE"
+
 // Melee weapons
 
 /datum/design/item/weapon/melee/AssembleDesignName()

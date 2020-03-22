@@ -54,23 +54,57 @@
 		if(alt_title && !(alt_title in job.alt_titles))
 			pref.player_alt_titles -= job.title
 
-/datum/category_item/player_setup_item/occupation/content(mob/user, limit = 20, list/splitJobs = list("Pathfinder"))  //VOREStation Edit
+/datum/category_item/player_setup_item/occupation/content(mob/user, limit = 20, list/splitJobs = list())
 	if(!job_master)
 		return
 
 	. = list()
 	. += "<tt><center>"
 	. += "<b>Choose occupation chances</b><br>Unavailable occupations are crossed out.<br>"
-	. += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more columns.
+	. += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%' valign='top'>" // Table within a table for alignment, also allows you to easily add more columns.
 	. += "<table width='100%' cellpadding='1' cellspacing='0'>"
 	var/index = -1
 
 	//The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
 	var/datum/job/lastJob
-	if (!job_master)		return
-	for(var/datum/job/job in job_master.occupations)
+	var/datum/department/last_department = null // Used to avoid repeating the look-ahead check for if a whole department can fit.
+
+	var/list/all_valid_jobs = list()
+	// If the occupation window gets opened before SSJob initializes, then it'll just be blank, with no runtimes.
+	// It will work once init is finished.
+
+	for(var/D in SSjob.department_datums)
+		var/datum/department/department = SSjob.department_datums[D]
+		if(department.centcom_only) // No joining as a centcom role, if any are ever added.
+			continue
+
+		for(var/J in department.primary_jobs)
+			all_valid_jobs += department.jobs[J]
+
+	for(var/datum/job/job in all_valid_jobs)
 		if(job.latejoin_only) continue //VOREStation Code
-		if((++index >= limit) || (job.title in splitJobs))
+		var/datum/department/current_department = SSjob.get_primary_department_of_job(job)
+
+		// Should we add a new column?
+		var/make_new_column = FALSE
+		if(++index > limit)
+			// Ran out of rows, make a new column.
+			make_new_column = TRUE
+
+		else if(job.title in splitJobs)
+			// Is hardcoded to split at this job title.
+			make_new_column = TRUE
+
+		else if(current_department != last_department)
+			// If the department is bigger than the limit then we have to split.
+			if(limit >= current_department.primary_jobs.len)
+				// Look ahead to see if we would need to split, and if so, avoid it.
+				if(index + current_department.primary_jobs.len > limit)
+					// Looked ahead, and determined that a new column is needed to avoid splitting the department into two.
+					make_new_column = TRUE
+
+
+		if(make_new_column)
 /*******
 			if((index < limit) && (lastJob != null))
 				//If the cells were broken up by a job in the splitJob list then it will fill in the rest of the cells with
@@ -78,29 +112,32 @@
 				for(var/i = 0, i < (limit - index), i++)
 					. += "<tr bgcolor='[lastJob.selection_color]'><td width='60%' align='right'>//>&nbsp</a></td><td><a>&nbsp</a></td></tr>"
 *******/
-			. += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0'>"
+			. += "</table></td><td width='20%' valign='top'><table width='100%' cellpadding='1' cellspacing='0'>"
 			index = 0
+		last_department = current_department
 
 		. += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
+
 		var/rank = job.title
 		lastJob = job
+		. += "<a href='?src=\ref[src];job_info=[rank]'>"
 		if(jobban_isbanned(user, rank))
-			. += "<del>[rank]</del></td><td><b> \[BANNED]</b></td></tr>"
+			. += "<del>[rank]</del></td></a><td><b> \[BANNED]</b></td></tr>"
 			continue
 		if(!job.player_old_enough(user.client))
 			var/available_in_days = job.available_in_days(user.client)
-			. += "<del>[rank]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
+			. += "<del>[rank]</del></td></a><td> \[IN [(available_in_days)] DAYS]</td></tr>"
 			continue
 		if(job.minimum_character_age && user.client && (user.client.prefs.age < job.minimum_character_age))
-			. += "<del>[rank]</del></td><td> \[MINIMUM CHARACTER AGE: [job.minimum_character_age]]</td></tr>"
+			. += "<del>[rank]</del></td></a><td> \[MINIMUM CHARACTER AGE: [job.minimum_character_age]]</td></tr>"
 			continue
 		if((pref.job_civilian_low & ASSISTANT) && job.type != /datum/job/assistant)
-			. += "<font color=grey>[rank]</font></td><td></td></tr>"
+			. += "<font color=grey>[rank]</font></a></td><td></td></tr>"
 			continue
-		if((rank in command_positions) || (rank == "AI"))//Bold head jobs
-			. += "<b>[rank]</b>"
+		if((rank in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND) ) || (rank == "AI"))//Bold head jobs
+			. += "<b>[rank]</b></a>"
 		else
-			. += "[rank]"
+			. += "[rank]</a>"
 
 		. += "</td><td width='40%'>"
 
@@ -111,7 +148,7 @@
 				. += " <font color=55cc55>\[Yes]</font>"
 			else
 				. += " <font color=black>\[No]</font>"
-			if(job.alt_titles) //Blatantly cloned from a few lines down.
+			if(LAZYLEN(job.alt_titles)) //Blatantly cloned from a few lines down.
 				. += "</a></td></tr><tr bgcolor='[lastJob.selection_color]'><td width='60%' align='center'>&nbsp</td><td><a href='?src=\ref[src];select_alt_title=\ref[job]'>\[[pref.GetPlayerAltTitle(job)]\]</a></td></tr>"
 			. += "</a></td></tr>"
 			continue
@@ -124,7 +161,7 @@
 			. += " <font color=cc5555>\[Low]</font>"
 		else
 			. += " <font color=black>\[NEVER]</font>"
-		if(job.alt_titles)
+		if(LAZYLEN(job.alt_titles))
 			. += "</a></td></tr><tr bgcolor='[lastJob.selection_color]'><td width='60%' align='center'>&nbsp</td><td><a href='?src=\ref[src];select_alt_title=\ref[job]'>\[[pref.GetPlayerAltTitle(job)]\]</a></td></tr>"
 		. += "</a></td></tr>"
 	. += "</td'></tr></table>"
@@ -165,6 +202,45 @@
 
 	else if(href_list["set_job"])
 		if(SetJob(user, href_list["set_job"])) return (pref.equip_preview_mob ? TOPIC_REFRESH_UPDATE_PREVIEW : TOPIC_REFRESH)
+
+
+	else if(href_list["job_info"])
+		var/rank = href_list["job_info"]
+		var/datum/job/job = job_master.GetJob(rank)
+		var/dat = list()
+
+		dat += "<p style='background-color: [job.selection_color]'><br><br><p>"
+		if(job.alt_titles)
+			dat += "<i><b>Alternate titles:</b> [english_list(job.alt_titles)].</i>"
+		send_rsc(user, job.get_job_icon(), "job[ckey(rank)].png")
+		dat += "<img src=job[ckey(rank)].png width=96 height=96 style='float:left;'>"
+		if(job.departments)
+			dat += "<b>Departments:</b> [english_list(job.departments)]."
+			if(LAZYLEN(job.departments_managed))
+				dat += "You manage these departments: [english_list(job.departments_managed)]"
+
+		dat += "You answer to <b>[job.supervisors]</b> normally."
+
+		dat += "<hr style='clear:left;'>"
+		if(config.wikiurl)
+			dat += "<a href='?src=\ref[src];job_wiki=[rank]'>Open wiki page in browser</a>"
+
+		var/alt_title = pref.GetPlayerAltTitle(job)
+		var/list/description = job.get_description_blurb(alt_title)
+		if(LAZYLEN(description))
+			dat += html_encode(description[1])
+			if(description.len > 1)
+				if(!isnull(description[2]))
+					dat += "<br>"
+					dat += html_encode(description[2])
+
+		var/datum/browser/popup = new(user, "Job Info", "[capitalize(rank)]", 430, 520, src)
+		popup.set_content(jointext(dat,"<br>"))
+		popup.open()
+
+	else if(href_list["job_wiki"])
+		var/rank = href_list["job_wiki"]
+		open_link(user,"[config.wikiurl][rank]")
 
 	return ..()
 

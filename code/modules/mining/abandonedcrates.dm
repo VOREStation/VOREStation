@@ -147,7 +147,7 @@
 	if(!locked)
 		return
 
-	user << "<span class='notice'>The crate is locked with a Deca-code lock.</span>"
+	to_chat(user, "<span class='notice'>The crate is locked with a Deca-code lock.</span>")
 	var/input = input(usr, "Enter [codelen] digits. All digits must be unique.", "Deca-Code Lock", "") as text
 	if(!Adjacent(user))
 		return
@@ -161,23 +161,23 @@
 				sanitycheck = null //if a digit is repeated, reject the input
 
 	if(input == null || sanitycheck == null || length(input) != codelen)
-		user << "<span class='notice'>You leave the crate alone.</span>"
+		to_chat(user, "<span class='notice'>You leave the crate alone.</span>")
 	else if(check_input(input))
-		user << "<span class='notice'>The crate unlocks!</span>"
+		to_chat(user, "<span class='notice'>The crate unlocks!</span>")
 		playsound(user, 'sound/machines/lockreset.ogg', 50, 1)
 		set_locked(0)
 	else
 		visible_message("<span class='warning'>A red light on \the [src]'s control panel flashes briefly.</span>")
 		attempts--
 		if (attempts == 0)
-			user << "<span class='danger'>The crate's anti-tamper system activates!</span>"
+			to_chat(user, "<span class='danger'>The crate's anti-tamper system activates!</span>")
 			var/turf/T = get_turf(src.loc)
 			explosion(T, 0, 0, 1, 2)
 			qdel(src)
 
 /obj/structure/closet/crate/secure/loot/emag_act(var/remaining_charges, var/mob/user)
 	if (locked)
-		user << "<span class='notice'>The crate unlocks!</span>"
+		to_chat(user, "<span class='notice'>The crate unlocks!</span>")
 		locked = 0
 
 /obj/structure/closet/crate/secure/loot/proc/check_input(var/input)
@@ -195,11 +195,11 @@
 /obj/structure/closet/crate/secure/loot/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(locked)
 		if (istype(W, /obj/item/device/multitool)) // Greetings Urist McProfessor, how about a nice game of cows and bulls?
-			user << "<span class='notice'>DECA-CODE LOCK ANALYSIS:</span>"
+			to_chat(user, "<span class='notice'>DECA-CODE LOCK ANALYSIS:</span>")
 			if (attempts == 1)
-				user << "<span class='warning'>* Anti-Tamper system will activate on the next failed access attempt.</span>"
+				to_chat(user, "<span class='warning'>* Anti-Tamper system will activate on the next failed access attempt.</span>")
 			else
-				user << "<span class='notice'>* Anti-Tamper system will activate after [src.attempts] failed access attempts.</span>"
+				to_chat(user, "<span class='notice'>* Anti-Tamper system will activate after [src.attempts] failed access attempts.</span>")
 			if(lastattempt.len)
 				var/bulls = 0
 				var/cows = 0
@@ -214,6 +214,6 @@
 				var/previousattempt = null //convert back to string for readback
 				for(var/i in 1 to codelen)
 					previousattempt = addtext(previousattempt, lastattempt[i])
-				user << "<span class='notice'>Last code attempt, [previousattempt], had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions.</span>"
+				to_chat(user, "<span class='notice'>Last code attempt, [previousattempt], had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions.</span>")
 			return
 	..()

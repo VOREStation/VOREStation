@@ -25,6 +25,7 @@
 	can_be_placed_into = null
 	flags = OPENCONTAINER | NOBLUDGEON
 	unacidable = 0
+	drop_sound = 'sound/items/drop/clothing.ogg'
 
 	var/on_fire = 0
 	var/burn_time = 20 //if the rag burns for too long it turns to ashes
@@ -53,7 +54,7 @@
 			if(on_fire)
 				visible_message("<span class='warning'>\The [user] lights [src] with [W].</span>")
 			else
-				user << "<span class='warning'>You manage to singe [src], but fail to light it.</span>"
+				to_chat(user, "<span class='warning'>You manage to singe [src], but fail to light it.</span>")
 
 	. = ..()
 	update_name()
@@ -94,7 +95,7 @@
 
 /obj/item/weapon/reagent_containers/glass/rag/proc/wipe_down(atom/A, mob/user)
 	if(!reagents.total_volume)
-		user << "<span class='warning'>The [initial(name)] is dry!</span>"
+		to_chat(user, "<span class='warning'>The [initial(name)] is dry!</span>")
 	else
 		user.visible_message("\The [user] starts to wipe down [A] with [src]!")
 		//reagents.splash(A, 1) //get a small amount of liquid on the thing we're wiping.
@@ -138,7 +139,7 @@
 
 	if(istype(A, /obj/structure/reagent_dispensers) || istype(A, /obj/item/weapon/reagent_containers/glass/bucket) || istype(A, /obj/structure/mopbucket))  //VOREStation Edit - "Allows rags to be used on buckets and mopbuckets"
 		if(!reagents.get_free_space())
-			user << "<span class='warning'>\The [src] is already soaked.</span>"
+			to_chat(user, "<span class='warning'>\The [src] is already soaked.</span>")
 			return
 
 		if(A.reagents && A.reagents.trans_to_obj(src, reagents.maximum_volume))

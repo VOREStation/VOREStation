@@ -13,7 +13,7 @@
 /datum/uplink_item/abstract/announcements/fake_centcom
 	name = "Command Update Announcement"
 	desc = "Causes a falsified Command Update. Triggers immediately after supplying additional data."
-	item_cost = 40
+	item_cost = 20
 
 /datum/uplink_item/abstract/announcements/fake_centcom/extra_args(var/mob/user)
 	var/title = sanitize(input("Enter your announcement title.", "Announcement Title") as null|text)
@@ -41,7 +41,7 @@
 /datum/uplink_item/abstract/announcements/fake_crew_arrival
 	name = "Crew Arrival Announcement/Records"
 	desc = "Creates a fake crew arrival announcement as well as fake crew records, using your current appearance (including held items!) and worn id card. Trigger with care!"
-	item_cost = 30
+	item_cost = 15
 
 /datum/uplink_item/abstract/announcements/fake_crew_arrival/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/user, var/list/args)
 	if(!user)

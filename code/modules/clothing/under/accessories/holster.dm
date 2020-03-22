@@ -2,14 +2,16 @@
 	name = "shoulder holster"
 	desc = "A handgun holster."
 	icon_state = "holster"
-	slot = ACCESSORY_SLOT_TORSO //Legacy/balance purposes
+	slot = ACCESSORY_SLOT_WEAPON
 	concealed_holster = 1
 	var/obj/item/holstered = null
 	var/list/can_hold //VOREStation Add
+	var/holster_in = 'sound/items/holsterin.ogg'
+	var/holster_out = 'sound/items/holsterout.ogg'
 
 /obj/item/clothing/accessory/holster/proc/holster(var/obj/item/I, var/mob/living/user)
 	if(holstered && istype(user))
-		user << "<span class='warning'>There is already \a [holstered] holstered here!</span>"
+		to_chat(user, "<span class='warning'>There is already \a [holstered] holstered here!</span>")
 		return
 	//VOREStation Edit - Machete sheath support
 	if (LAZYLEN(can_hold))
@@ -19,8 +21,11 @@
 
 	else if (!(I.slot_flags & SLOT_HOLSTER))
 	//VOREStation Edit End
-		user << "<span class='warning'>[I] won't fit in [src]!</span>"
+		to_chat(user, "<span class='warning'>[I] won't fit in [src]!</span>")
 		return
+
+	if(holster_in)
+		playsound(get_turf(src), holster_in, 50)
 
 	if(istype(user))
 		user.stop_aiming(no_message=1)
@@ -41,9 +46,11 @@
 		return
 
 	if(istype(user.get_active_hand(),/obj) && istype(user.get_inactive_hand(),/obj))
-		user << "<span class='warning'>You need an empty hand to draw \the [holstered]!</span>"
+		to_chat(user, "<span class='warning'>You need an empty hand to draw \the [holstered]!</span>")
 	else
+		var/sound_vol = 25
 		if(user.a_intent == I_HURT)
+			sound_vol = 50
 			usr.visible_message(
 				"<span class='danger'>[user] draws \the [holstered], ready to go!</span>", //VOREStation Edit
 				"<span class='warning'>You draw \the [holstered], ready to go!</span>" //VOREStation Edit
@@ -53,6 +60,10 @@
 				"<span class='notice'>[user] draws \the [holstered], pointing it at the ground.</span>",
 				"<span class='notice'>You draw \the [holstered], pointing it at the ground.</span>"
 				)
+
+		if(holster_out)
+			playsound(get_turf(src), holster_out, sound_vol)
+
 		user.put_in_hands(holstered)
 		holstered.add_fingerprint(user)
 		w_class = initial(w_class)
@@ -77,9 +88,9 @@
 /obj/item/clothing/accessory/holster/examine(mob/user)
 	..(user)
 	if (holstered)
-		user << "A [holstered] is holstered here."
+		to_chat(user, "A [holstered] is holstered here.")
 	else
-		user << "It is empty."
+		to_chat(user, "It is empty.")
 
 /obj/item/clothing/accessory/holster/on_attached(obj/item/clothing/under/S, mob/user as mob)
 	..()
@@ -109,12 +120,12 @@
 			H = locate() in S.accessories
 
 	if (!H)
-		usr << "<span class='warning'>Something is very wrong.</span>"
+		to_chat(usr, "<span class='warning'>Something is very wrong.</span>")
 
 	if(!H.holstered)
 		var/obj/item/W = usr.get_active_hand()
 		if(!istype(W, /obj/item))
-			usr << "<span class='warning'>You need your gun equipped to holster it.</span>"
+			to_chat(usr, "<span class='warning'>You need your gun equipped to holster it.</span>")
 			return
 		H.holster(W, usr)
 	else

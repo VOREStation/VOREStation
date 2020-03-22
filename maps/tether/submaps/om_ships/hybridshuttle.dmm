@@ -1,0 +1,1173 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/turf/simulated/shuttle/wall/alien/blue,
+/area/shuttle/blue_fo)
+"ac" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 1
+	},
+/turf/simulated/shuttle/wall/alien/blue/hard_corner,
+/area/shuttle/blue_fo)
+"ad" = (
+/obj/machinery/ion_engine,
+/turf/simulated/shuttle/floor/alienplating/blue/half{
+	dir = 8
+	},
+/area/shuttle/blue_fo)
+"ae" = (
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"af" = (
+/obj/machinery/ion_engine,
+/turf/simulated/shuttle/floor/alienplating/blue/half{
+	dir = 4
+	},
+/area/shuttle/blue_fo)
+"ag" = (
+/obj/structure/table/alien/blue,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"ah" = (
+/obj/structure/prop/alien/pod/hybrid,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"ai" = (
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/structure/closet/emcloset/legacy,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"aj" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"ak" = (
+/obj/machinery/power/smes/buildable/hybrid,
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"al" = (
+/obj/effect/map_effect/perma_light/brighter,
+/obj/structure/bed/chair/bay/shuttle{
+	icon_state = "shuttle_chair_preview";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"am" = (
+/obj/structure/bed/alien{
+	icon = 'icons/obj/abductor_vr.dmi'
+	},
+/obj/item/weapon/bedsheet/blue,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"an" = (
+/obj/effect/map_effect/perma_light/brighter,
+/obj/structure/handrail{
+	icon_state = "handrail";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"ao" = (
+/obj/machinery/power/terminal{
+	icon_state = "term";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"ap" = (
+/turf/simulated/shuttle/wall/alien/blue/hard_corner,
+/area/shuttle/blue_fo)
+"aq" = (
+/obj/machinery/door/airlock/alien/blue,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"ar" = (
+/obj/structure/fans/hardlight,
+/obj/structure/window/reinforced/full,
+/turf/simulated/shuttle/floor/alienplating/blue/half{
+	dir = 8
+	},
+/area/shuttle/blue_fo)
+"as" = (
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"at" = (
+/obj/machinery/sleep_console,
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"au" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"av" = (
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 1
+	},
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aw" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 8
+	},
+/obj/structure/railing,
+/turf/simulated/shuttle/floor/alien,
+/area/shuttle/blue_fo)
+"ax" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 4
+	},
+/obj/structure/railing,
+/turf/simulated/shuttle/floor/alien,
+/area/shuttle/blue_fo)
+"ay" = (
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"az" = (
+/obj/structure/bed/chair/sofa/right{
+	sofa_material = "black"
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aA" = (
+/obj/structure/bed/chair/sofa/left{
+	sofa_material = "black"
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aB" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 5
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aC" = (
+/obj/structure/fans/hardlight,
+/obj/structure/window/reinforced/full,
+/turf/simulated/shuttle/floor/alienplating/blue/half{
+	dir = 4
+	},
+/area/shuttle/blue_fo)
+"aD" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aE" = (
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aF" = (
+/obj/effect/map_effect/perma_light/brighter,
+/obj/item/device/perfect_tele_beacon/stationary{
+	icon_state = "beacon";
+	tele_name = "Hybrid Shuttle";
+	tele_network = "hybridshuttle"
+	},
+/obj/effect/floor_decal/industrial/outline/grey,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aG" = (
+/obj/machinery/door/airlock/alien/blue,
+/turf/simulated/shuttle/floor/alien,
+/area/shuttle/blue_fo)
+"aH" = (
+/obj/effect/map_effect/perma_light/brighter,
+/obj/structure/table/alien/blue,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aI" = (
+/obj/structure/table/alien/blue,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aJ" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 4
+	},
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aK" = (
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aL" = (
+/obj/machinery/sleep_console,
+/obj/effect/floor_decal/techfloor/orange,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aM" = (
+/obj/effect/floor_decal/techfloor/orange,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aN" = (
+/obj/effect/floor_decal/techfloor/orange/corner,
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aO" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 8
+	},
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/shuttle/blue_fo)
+"aP" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 4
+	},
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/shuttle/blue_fo)
+"aQ" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 1;
+	icon_state = "sofaend_left";
+	sofa_material = "black"
+	},
+/obj/effect/floor_decal/techfloor/orange,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aR" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 1;
+	icon_state = "sofaend_right";
+	sofa_material = "black"
+	},
+/obj/effect/floor_decal/techfloor/orange,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aS" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aT" = (
+/obj/machinery/door/airlock/alien/blue,
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aU" = (
+/obj/machinery/door/airlock/alien/blue,
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aV" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 9
+	},
+/obj/structure/closet/secure_closet/guncabinet/excursion,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aW" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/obj/structure/table/alien/blue,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aX" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 30
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 20
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aY" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/obj/structure/bed/chair/bay/shuttle{
+	icon_state = "shuttle_chair_preview";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"aZ" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/obj/structure/table/alien/blue,
+/obj/item/device/perfect_tele/alien/bluefo{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/device/perfect_tele/alien/bluefo{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"ba" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/obj/structure/bed/chair/bay/shuttle{
+	icon_state = "shuttle_chair_preview";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"bb" = (
+/obj/structure/prop/alien/computer/hybrid,
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"bc" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 5
+	},
+/obj/structure/bed/chair/bay/shuttle,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"bd" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 8
+	},
+/obj/structure/bed/chair/bay/shuttle{
+	icon_state = "shuttle_chair_preview";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"be" = (
+/obj/effect/map_effect/perma_light/brighter,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"bf" = (
+/obj/structure/bed/chair/bay/shuttle{
+	icon_state = "shuttle_chair_preview";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"bg" = (
+/obj/structure/table/alien/blue,
+/obj/item/device/perfect_tele/alien/bluefo{
+	pixel_x = -6;
+	pixel_y = 3
+	},
+/obj/item/device/perfect_tele/alien/bluefo{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"bh" = (
+/obj/structure/bed/chair/bay/shuttle{
+	icon_state = "shuttle_chair_preview";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"bi" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 4
+	},
+/obj/structure/table/alien/blue,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"bj" = (
+/obj/machinery/door/airlock/alien/blue{
+	frequency = 1380;
+	id_tag = "hybrid_shuttle_afts";
+	req_one_access = list(19,43,67)
+	},
+/obj/structure/fans/hardlight,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"bk" = (
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"bl" = (
+/obj/structure/table/alien/blue,
+/obj/machinery/button/remote/airlock{
+	id = "hybrid_shuttle_afts";
+	name = "Aft Door Bolts";
+	pixel_x = 6;
+	pixel_y = 2;
+	req_one_access = list(19,43,67);
+	specialfunctions = 4
+	},
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	frequency = 1380;
+	id_tag = "hybrid_shuttle_docker";
+	pixel_x = -6;
+	pixel_y = 0;
+	req_one_access = list(19,43,67);
+	tag_door = "hybrid_shuttle_afts"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"bm" = (
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor/orange/corner,
+/obj/effect/shuttle_landmark/shuttle_initializer/hybridshuttle,
+/obj/effect/overmap/visitable/ship/landable/hybridshuttle,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"bn" = (
+/obj/machinery/mech_recharger{
+	icon = 'icons/turf/shuttle_alien_blue.dmi'
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"bo" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"bp" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"bq" = (
+/obj/machinery/shipsensors,
+/turf/simulated/shuttle/floor/alienplating/blue/half{
+	dir = 8
+	},
+/area/shuttle/blue_fo)
+"br" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/shuttle/blue_fo)
+"bs" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 1
+	},
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/shuttle/blue_fo)
+"bt" = (
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor/orange/corner,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"bu" = (
+/obj/effect/floor_decal/techfloor/orange,
+/obj/structure/table/alien/blue,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/blue_fo)
+"bv" = (
+/obj/effect/floor_decal/techfloor/orange/corner,
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"bw" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 1
+	},
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/shuttle/blue_fo)
+"bx" = (
+/obj/structure/fans/hardlight,
+/obj/structure/window/reinforced/full,
+/turf/simulated/shuttle/floor/alienplating/blue/half,
+/area/shuttle/blue_fo)
+"by" = (
+/obj/machinery/computer/shuttle_control/explore/hybridshuttle,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"bz" = (
+/obj/machinery/computer/ship/helm,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"bA" = (
+/obj/machinery/computer/ship/sensors,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"bB" = (
+/obj/machinery/computer/ship/engines{
+	icon_state = "computer";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/blue_fo)
+"bC" = (
+/turf/simulated/shuttle/floor/alienplating/blue/half{
+	dir = 4
+	},
+/area/shuttle/blue_fo)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(4,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(5,1,1) = {"
+aa
+aa
+aa
+aa
+bq
+ap
+ab
+ap
+ar
+ar
+ar
+ap
+ab
+ab
+bj
+ab
+ap
+ad
+aa
+aa
+aa
+aa
+"}
+(6,1,1) = {"
+aa
+aa
+aa
+aa
+ap
+ap
+bB
+ab
+as
+aD
+aK
+ab
+aV
+bd
+bk
+aD
+ac
+ap
+aa
+aa
+aa
+aa
+"}
+(7,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+by
+ae
+ab
+at
+aE
+aL
+ab
+aW
+aI
+aE
+bn
+br
+ab
+aa
+aa
+aa
+aa
+"}
+(8,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+bz
+al
+ab
+au
+aF
+aM
+ab
+aX
+be
+aE
+bn
+bs
+ab
+aa
+aa
+aa
+aa
+"}
+(9,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+bA
+ae
+aq
+av
+aE
+aN
+aT
+av
+aE
+aE
+aE
+bt
+bj
+aa
+aa
+aa
+aa
+"}
+(10,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ag
+ag
+ab
+aw
+aE
+aO
+ab
+aY
+bf
+bf
+aE
+bu
+bx
+aa
+aa
+aa
+aa
+"}
+(11,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+aG
+ab
+ab
+aZ
+bg
+bl
+be
+bu
+bx
+aa
+aa
+aa
+aa
+"}
+(12,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ah
+am
+ab
+ax
+aE
+aP
+ab
+ba
+bh
+bh
+aE
+bu
+bx
+aa
+aa
+aa
+aa
+"}
+(13,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ai
+ae
+aq
+ay
+aE
+aN
+aU
+ay
+aE
+aE
+aE
+bv
+bj
+aa
+aa
+aa
+aa
+"}
+(14,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+aj
+an
+ab
+az
+aH
+aQ
+ab
+bb
+be
+aE
+bo
+bw
+ab
+aa
+aa
+aa
+aa
+"}
+(15,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ak
+ao
+ab
+aA
+aI
+aR
+ab
+au
+aE
+aE
+bo
+br
+ab
+aa
+aa
+aa
+aa
+"}
+(16,1,1) = {"
+aa
+aa
+aa
+aa
+ap
+ap
+ag
+ab
+aB
+aJ
+aS
+ab
+bc
+bi
+bm
+bp
+ac
+ap
+aa
+aa
+aa
+aa
+"}
+(17,1,1) = {"
+aa
+aa
+aa
+aa
+bC
+ap
+ab
+ap
+aC
+aC
+aC
+ap
+ab
+ab
+bj
+ab
+ap
+af
+aa
+aa
+aa
+aa
+"}
+(18,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(19,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(20,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(21,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(22,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}

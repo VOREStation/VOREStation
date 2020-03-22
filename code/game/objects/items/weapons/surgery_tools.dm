@@ -30,6 +30,7 @@
 	icon_state = "retractor"
 	matter = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 5000)
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
+	drop_sound = 'sound/items/drop/scrap.ogg'
 
 /*
  * Hemostat
@@ -41,6 +42,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 2500)
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("attacked", "pinched")
+	drop_sound = 'sound/items/drop/scrap.ogg'
 
 /*
  * Cautery
@@ -52,6 +54,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 2500)
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("burnt")
+	drop_sound = 'sound/items/drop/scrap.ogg'
 
 /*
  * Surgical Drill
@@ -66,11 +69,12 @@
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("drilled")
+	drop_sound = 'sound/items/drop/accessory.ogg'
 
 	suicide_act(mob/user)
 		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-		viewers(user) << pick("<span class='danger'>\The [user] is pressing \the [src] to [TU.his] temple and activating it! It looks like [TU.hes] trying to commit suicide.</span>",
-		                       "<span class='danger'>\The [user] is pressing \the [src] to [TU.his] chest and activating it! It looks like [TU.hes] trying to commit suicide.</span>")
+		to_chat(viewers(user),pick("<span class='danger'>\The [user] is pressing \the [src] to [TU.his] temple and activating it! It looks like [TU.hes] trying to commit suicide.</span>",
+		                       "<span class='danger'>\The [user] is pressing \the [src] to [TU.his] chest and activating it! It looks like [TU.hes] trying to commit suicide.</span>"))
 		return (BRUTELOSS)
 
 /*
@@ -91,12 +95,13 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 5000)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	drop_sound = 'sound/items/drop/knife.ogg'
 
 	suicide_act(mob/user)
 		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-		viewers(user) << pick("<span class='danger'>\The [user] is slitting [TU.his] wrists with the [src.name]! It looks like [TU.hes] trying to commit suicide.</span>", \
+		to_chat(viewers(user),pick("<span class='danger'>\The [user] is slitting [TU.his] wrists with the [src.name]! It looks like [TU.hes] trying to commit suicide.</span>", \
 		                      "<span class='danger'>\The [user] is slitting [TU.his] throat with the [src.name]! It looks like [TU.hes] trying to commit suicide.</span>", \
-		                      "<span class='danger'>\The [user] is slitting [TU.his] stomach open with the [src.name]! It looks like [TU.hes] trying to commit seppuku.</span>")
+		                      "<span class='danger'>\The [user] is slitting [TU.his] stomach open with the [src.name]! It looks like [TU.hes] trying to commit seppuku.</span>"))
 		return (BRUTELOSS)
 
 /*
@@ -145,6 +150,7 @@
 	desc = "For heavy duty cutting."
 	icon_state = "saw3"
 	hitsound = 'sound/weapons/circsawhit.ogg'
+	drop_sound = 'sound/items/drop/accessory.ogg'
 	force = 15.0
 	w_class = ITEMSIZE_NORMAL
 	throwforce = 9.0
@@ -176,6 +182,7 @@
 	icon_state = "bone-gel"
 	force = 0
 	throwforce = 1.0
+	drop_sound = 'sound/items/drop/bottle.ogg'
 
 /obj/item/weapon/surgical/FixOVein
 	name = "FixOVein"
@@ -185,6 +192,7 @@
 	throwforce = 1.0
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 3)
 	var/usage_amount = 10
+	drop_sound = 'sound/items/drop/accessory.ogg'
 
 /obj/item/weapon/surgical/bonesetter
 	name = "bone setter"
@@ -195,6 +203,7 @@
 	throw_speed = 3
 	throw_range = 5
 	attack_verb = list("attacked", "hit", "bludgeoned")
+	drop_sound = 'sound/items/drop/scrap.ogg'
 
 /obj/item/weapon/surgical/bone_clamp
 	name = "bone clamp"

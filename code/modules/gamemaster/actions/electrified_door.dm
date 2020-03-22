@@ -1,6 +1,6 @@
 /datum/gm_action/electrified_door
 	name = "airlock short-circuit"
-	departments = list(ROLE_ENGINEERING, ROLE_MEDICAL)
+	departments = list(DEPARTMENT_ENGINEERING, DEPARTMENT_MEDICAL)
 	chaotic = 10
 	var/obj/machinery/door/airlock/chosen_door
 	var/area/target_area
@@ -72,4 +72,4 @@
 	chosen_door.update_icon()
 
 /datum/gm_action/electrified_door/get_weight()
-	return 10 + (metric.count_people_in_department(ROLE_ENGINEERING) * 5 + metric.count_people_in_department(ROLE_MEDICAL) * 10)
+	return 10 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 5 + metric.count_people_in_department(DEPARTMENT_MEDICAL) * 10)

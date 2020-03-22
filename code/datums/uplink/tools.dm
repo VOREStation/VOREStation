@@ -91,6 +91,12 @@
 	item_cost = 30
 	path = /obj/item/weapon/card/emag
 
+/datum/uplink_item/item/tools/graviton
+	name = "Graviton Goggles"
+	desc = "An obvious, if useful pair of advanced imaging goggles that allow you to see objects and turfs through walls."
+	item_cost = 15
+	path = /obj/item/clothing/glasses/graviton
+
 /datum/uplink_item/item/tools/thermal
 	name = "Thermal Imaging Glasses"
 	item_cost = 30
@@ -110,6 +116,11 @@
 	name = "Package Bomb (Large)"
 	item_cost = 60
 	path = /obj/item/weapon/storage/box/syndie_kit/demolitions_heavy
+
+/datum/uplink_item/item/tools/integratedcircuitprinter
+	name = "Integrated Circuit Printer (Upgraded)"
+	item_cost = 10
+	path = /obj/item/device/integrated_circuit_printer/upgraded
 
 /*
 /datum/uplink_item/item/tools/packagebomb/huge

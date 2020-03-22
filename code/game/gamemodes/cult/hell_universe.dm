@@ -16,7 +16,7 @@ In short:
 	return 1
 	/*
 	if(user)
-		user << "<span class='sinister'>All you hear on the frequency is static and panicked screaming. There will be no shuttle call today.</span>"
+		to_chat(user, "<span class='sinister'>All you hear on the frequency is static and panicked screaming. There will be no shuttle call today.</span>")
 	return 0
 	*/
 
@@ -65,11 +65,11 @@ In short:
 		for(var/datum/lighting_corner/L in world)
 			L.update_lumcount(1, 0, 0)
 
-		for(var/turf/space/T in turfs)
+		for(var/turf/space/T in world)
 			OnTurfChange(T)
 
 /datum/universal_state/hell/proc/MiscSet()
-	for(var/turf/simulated/floor/T in turfs)
+	for(var/turf/simulated/floor/T in world)
 		if(!T.holy && prob(1))
 			new /obj/effect/gateway/active/cult(T)
 

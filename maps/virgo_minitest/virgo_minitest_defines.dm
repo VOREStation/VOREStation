@@ -7,7 +7,7 @@
 	path = "virgo_minitest"
 
 	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("title")
+	lobby_screens = list("tether2_night")
 
 	admin_levels = list()
 	sealed_levels = list()
@@ -18,6 +18,12 @@
 
 	accessible_z_levels = list("1" = 100) // The defines can't be used here sadly.
 	base_turf_by_z = list("1" = /turf/space)
+
+	use_overmap = TRUE
+	//var/overmap_size = 20		 // Dimensions of overmap zlevel if overmap is used.
+	//var/overmap_z = 0		     // If 0 will generate overmap zlevel on init. Otherwise will populate the zlevel provided.
+	//var/overmap_event_areas = 0  // How many event "clouds" will be generated
+
 
 	station_name  = "NSS Ade-testing"
 	station_short = "VORE-testing"

@@ -4,7 +4,7 @@
 	desc = "A portable computer."
 	hardware_flag = PROGRAM_LAPTOP
 	icon_state_unpowered = "laptop-open"
-	icon = 'icons/obj/modular_laptop.dmi'
+	icon = 'icons/obj/modular_laptop_vr.dmi' //VOREStation Edit
 	icon_state = "laptop-open"
 	icon_state_screensaver = "standby"
 	base_idle_power_usage = 25

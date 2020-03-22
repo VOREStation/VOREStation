@@ -13,11 +13,14 @@
 	var/current_positions = 0             // How many players have this job
 	var/supervisors = null                // Supervisors, who this person answers to directly
 	var/selection_color = "#ffffff"       // Selection screen color
-	var/list/alt_titles                   // List of alternate titles, if any
+	var/list/alt_titles = null            // List of alternate titles; There is no need for an alt-title datum for the base job title.
 	var/req_admin_notify                  // If this is set to 1, a text is printed to the player when jobs are assigned, telling him that he should let admins know that he has to disconnect.
 	var/minimal_player_age = 0            // If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
-	var/department = null                 // Does this position have a department tag?
-	var/head_position = 0                 // Is this position Command?
+	var/list/departments = list()         // List of departments this job belongs to, if any. The first one on the list will be the 'primary' department.
+	var/sorting_order = 0                 // Used for sorting jobs so boss jobs go above regular ones, and their boss's boss is above that. Higher numbers = higher in sorting.
+	var/departments_managed = null        // Is this a management position?  If yes, list of departments managed.  Otherwise null.
+	var/department_accounts = null        // Which department accounts should people with this position be given the pin for?
+	var/assignable = TRUE                 // Should it show up on things like the ID computer?
 	var/minimum_character_age = 0
 	var/ideal_character_age = 30
 	var/has_headset = TRUE                //Do people with this job need to be given headsets and told how to use them?  E.g. Cyborgs don't.
@@ -25,7 +28,14 @@
 	var/account_allowed = 1				  // Does this job type come with a station account?
 	var/economic_modifier = 2			  // With how much does this job modify the initial account amount?
 
-	var/outfit_type
+	var/outfit_type						  // What outfit datum does this job use in its default title?
+
+	// Description of the job's role and minimum responsibilities.
+	var/job_description = "This Job doesn't have a description! Please report it!"
+
+/datum/job/New()
+	. = ..()
+	department_accounts = department_accounts || departments_managed
 
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
 	var/decl/hierarchy/outfit/outfit = get_outfit(H, alt_title)
@@ -36,7 +46,9 @@
 
 /datum/job/proc/get_outfit(var/mob/living/carbon/human/H, var/alt_title)
 	if(alt_title && alt_titles)
-		. = alt_titles[alt_title]
+		var/datum/alt_title/A = alt_titles[alt_title]
+		if(A && initial(A.title_outfit))
+			. = initial(A.title_outfit)
 	. = . || outfit_type
 	. = outfit_by_type(.)
 
@@ -69,7 +81,7 @@
 
 		H.mind.initial_account = M
 
-	H << "<span class='notice'><b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b></span>"
+	to_chat(H, "<span class='notice'><b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b></span>")
 
 // overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/qdel()
 /datum/job/proc/equip_preview(mob/living/carbon/human/H, var/alt_title)
@@ -111,3 +123,36 @@
 
 /datum/job/proc/has_alt_title(var/mob/H, var/supplied_title, var/desired_title)
 	return (supplied_title == desired_title) || (H.mind && H.mind.role_alt_title == desired_title)
+
+/datum/job/proc/get_description_blurb(var/alt_title)
+	var/list/message = list()
+	message |= job_description
+
+	if(alt_title && alt_titles)
+		var/typepath = alt_titles[alt_title]
+		if(typepath)
+			var/datum/alt_title/A = new typepath()
+			if(A.title_blurb)
+				message |= A.title_blurb
+	return message
+
+/datum/job/proc/get_job_icon()
+	if(!job_master.job_icons[title])
+		var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin("#job_icon")
+		dress_mannequin(mannequin)
+		mannequin.dir = SOUTH
+		COMPILE_OVERLAYS(mannequin)
+		var/icon/preview_icon = getFlatIcon(mannequin)
+
+		preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) // Scaling here to prevent blurring in the browser.
+		job_master.job_icons[title] = preview_icon
+
+	return job_master.job_icons[title]
+
+/datum/job/proc/dress_mannequin(var/mob/living/carbon/human/dummy/mannequin/mannequin)
+	mannequin.delete_inventory(TRUE)
+	equip_preview(mannequin)
+	if(mannequin.back)
+		var/obj/O = mannequin.back
+		mannequin.drop_from_inventory(O)
+		qdel(O)

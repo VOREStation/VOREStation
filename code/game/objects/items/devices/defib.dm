@@ -19,6 +19,9 @@
 	var/obj/item/weapon/shockpaddles/linked/paddles
 	var/obj/item/weapon/cell/bcell = null
 
+/obj/item/device/defib_kit/get_cell()
+	return bcell
+
 /obj/item/device/defib_kit/New() //starts without a cell for rnd
 	..()
 	if(ispath(paddles))
@@ -142,6 +145,12 @@
 		return 1
 	if((slot_flags & SLOT_BELT) && M.get_equipped_item(slot_belt) == src)
 		return 1
+	//VOREStation Add Start - RIGSuit compatability
+	if((slot_flags & SLOT_BACK) && M.get_equipped_item(slot_s_store) == src)
+		return 1
+	if((slot_flags & SLOT_BELT) && M.get_equipped_item(slot_s_store) == src)
+		return 1
+	//VOREStation Add End
 
 	return 0
 
@@ -381,7 +390,7 @@
 	if(!H.client && !H.teleop)
 		for(var/mob/observer/dead/ghost in player_list)
 			if(ghost.mind == H.mind)
-				to_chat(ghost, "<b><font color = #330033><font size = 3>Someone is attempting to resuscitate you. Re-enter your body if you want to be revived!</b> (Verbs -> Ghost -> Re-enter corpse)</font></font>")
+				ghost.notify_revive("Someone is trying to resuscitate you. Re-enter your body if you want to be revived!", 'sound/effects/genetics.ogg')
 				break
 
 	//beginning to place the paddles on patient's chest to allow some time for people to move away to stop the process

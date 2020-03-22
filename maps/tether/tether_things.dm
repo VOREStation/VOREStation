@@ -321,50 +321,6 @@ var/global/list/latejoin_tram   = list()
 	name = "warship holodeck control"
 	projection_area = /area/mothership/holodeck/holo
 
-// Small Ship Holodeck
-/obj/machinery/computer/HolodeckControl/houseboat
-	projection_area = /area/houseboat/holodeck_area
-	powerdown_program = "Turn Off"
-	default_program = "Empty Court"
-
-	supported_programs = list(
-	"Basketball" 		= new/datum/holodeck_program(/area/houseboat/holodeck/basketball, list('sound/music/THUNDERDOME.ogg')),
-	"Thunderdome"		= new/datum/holodeck_program(/area/houseboat/holodeck/thunderdome, list('sound/music/THUNDERDOME.ogg')),
-	"Beach" 			= new/datum/holodeck_program(/area/houseboat/holodeck/beach),
-	"Desert" 			= new/datum/holodeck_program(/area/houseboat/holodeck/desert,
-													list(
-														'sound/effects/weather/wind/wind_2_1.ogg',
-											 			'sound/effects/weather/wind/wind_2_2.ogg',
-											 			'sound/effects/weather/wind/wind_3_1.ogg',
-											 			'sound/effects/weather/wind/wind_4_1.ogg',
-											 			'sound/effects/weather/wind/wind_4_2.ogg',
-											 			'sound/effects/weather/wind/wind_5_1.ogg'
-												 		)
-		 											),
-	"Snowfield" 		= new/datum/holodeck_program(/area/houseboat/holodeck/snow,
-													list(
-														'sound/effects/weather/wind/wind_2_1.ogg',
-											 			'sound/effects/weather/wind/wind_2_2.ogg',
-											 			'sound/effects/weather/wind/wind_3_1.ogg',
-											 			'sound/effects/weather/wind/wind_4_1.ogg',
-											 			'sound/effects/weather/wind/wind_4_2.ogg',
-											 			'sound/effects/weather/wind/wind_5_1.ogg'
-												 		)
-		 											),
-	"Space" 			= new/datum/holodeck_program(/area/houseboat/holodeck/space,
-													list(
-														'sound/ambience/ambispace.ogg',
-														'sound/music/main.ogg',
-														'sound/music/space.ogg',
-														'sound/music/traitor.ogg',
-														)
-													),
-	"Picnic Area" 		= new/datum/holodeck_program(/area/houseboat/holodeck/picnic, list('sound/music/title2.ogg')),
-	"Gaming" 			= new/datum/holodeck_program(/area/houseboat/holodeck/gaming, list('sound/music/traitor.ogg')),
-	"Bunking"			= new/datum/holodeck_program(/area/houseboat/holodeck/bunking, list()),
-	"Turn Off" 			= new/datum/holodeck_program(/area/houseboat/holodeck/off, list())
-	)
-
 // Our map is small, if the supermatter is ejected lets not have it just blow up somewhere else
 /obj/machinery/power/supermatter/touch_map_edge()
 	qdel(src)
@@ -380,6 +336,9 @@ var/global/list/latejoin_tram   = list()
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 2)
 	req_log_access = access_cmo
 	has_logs = 1
+
+/obj/machinery/vending/wallmed1/public
+	products = list(/obj/item/stack/medical/bruise_pack = 8,/obj/item/stack/medical/ointment = 8,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 16,/obj/item/device/healthanalyzer = 4)
 
 /obj/item/weapon/reagent_containers/pill/airlock
 	name = "\'Airlock\' Pill"

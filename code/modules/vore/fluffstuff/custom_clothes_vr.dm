@@ -1750,7 +1750,7 @@ Departamental Swimsuits, for general use
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(..())
 			if(H.ckey != "silencedmp5a5")
-				H << "<span class='warning'>...The faceplate is clearly not made for your anatomy, thus, does not fit.</span>"
+				to_chat(H, "<span class='warning'>...The faceplate is clearly not made for your anatomy, thus, does not fit.</span>")
 				return 0
 			else
 				return 1
@@ -1769,7 +1769,7 @@ Departamental Swimsuits, for general use
 		if(..() && istype(H) && H.ckey == "silencedmp5a5")
 			return 1
 		else
-			to_chat(H,"<span class='warning'>This suit is not designed for you.</span>")
+			to_chat(H, "<span class='warning'>This suit is not designed for you.</span>")
 			return 0
 
 //Zigfe:Zaoozaoo Xrimxuqmqixzix
@@ -1900,17 +1900,56 @@ Departamental Swimsuits, for general use
 	return FALSE	//Indigestible
 
 //Bacon12366:Elly Brown
-/obj/item/clothing/accessory/sweater/fluff/star
-	name = "Star Sweater"
-	desc = "It's a black long sweater with a big blue star at the chest area. It was made to show person's left shoulder."
+/obj/item/clothing/suit/storage/star
+	name = "Star hoodie"
+	desc = "It's a black long hoodie with a big blue star at the chest area. It's made of pretty soft material."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "star_sweater"
+	icon_state = "star_hoodie"
 
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "star_sweater"
+	item_state = "star_hoodie"
 
-	slot_flags = SLOT_OCLOTHING | SLOT_TIE
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	w_class = ITEMSIZE_NORMAL
-	slot = ACCESSORY_SLOT_OVER
+//KillerDragn:Excess
+/obj/item/clothing/accessory/collar/pink/fluff/warning
+	name = "Warning Collar (AGGRESSIVE)"
+	desc = "A bright red warning collar with white text - \"AGGRESSIVE\"."
+
+//KillerDragn:Excess
+/obj/item/clothing/under/fluff/excess
+	name = "XS-21E Labeled Latex Clothing"
+	desc = "A latex navy blue tube-top and matching compression shorts, with a bright yellow stripe down the side. \"XS-21E\" is written on the thigh. \"Warning\" is written in yellow by the stripe on the top."
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "latex_clothes"
+	item_icons = list()
+	default_worn_icon = 'icons/vore/custom_clothes_vr.dmi'
+	color = COLOR_NAVY
+	sprite_sheets = null
+
+//SweetBlueSylveon:Pip Shyner
+/obj/item/clothing/accessory/poncho/roles/cloak/hop/fluff/pip
+	name = "Pip's Cloak"
+	desc = "A brightly colored cloak, similar in pattern to the CRO's cloak. It's colored White, Pink, and Blue, with Gold buttons."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "pipcloak"
+	item_state = "pipcloak_mob"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+
+/obj/item/clothing/accessory/poncho/roles/cloak/hop/fluff/pip/equipped()		//Because otherwise it gets reset every time
+	..()
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	
+//CappyCat:Cappy Fuzzlyfeathers
+/obj/item/clothing/accessory/watch
+	name = "silver pocket watch"
+	desc = "A fancy silver-plated digital pocket watch. Looks expensive."
+	icon = 'icons/obj/deadringer.dmi'
+	icon_state = "deadringer"
+	w_class = ITEMSIZE_SMALL
+	slot_flags = SLOT_ID | SLOT_BELT | SLOT_TIE
+	
+//Pimientopyro:Zaku Fyodorovna
+/obj/item/clothing/suit/varsity/green/sweater_vest
+	name = "green sweater vest"
+	desc = "A green argyle sweater vest with a white undershirt, a must for long winter nights and looking like a dork."

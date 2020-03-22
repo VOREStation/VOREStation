@@ -763,6 +763,10 @@
 	},
 /turf/simulated/floor/airless,
 /area/space)
+"Fi" = (
+/obj/effect/overmap/visitable/sector/tether_gateway/carpfarm,
+/turf/space,
+/area/space)
 
 (1,1,1) = {"
 aa
@@ -1045,7 +1049,7 @@ aa
 aa
 aa
 aa
-aa
+Fi
 aa
 "}
 (3,1,1) = {"

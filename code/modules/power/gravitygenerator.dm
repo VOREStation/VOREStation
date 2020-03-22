@@ -55,10 +55,10 @@
 /obj/machinery/computer/gravity_control_computer/proc/findgenerator()
 	var/obj/machinery/gravity_generator/foundgenerator = null
 	for(dir in list(NORTH,EAST,SOUTH,WEST))
-		//world << "SEARCHING IN [dir]"
+		//to_world("SEARCHING IN [dir]")
 		foundgenerator = locate(/obj/machinery/gravity_generator/, get_step(src, dir))
 		if (!isnull(foundgenerator))
-			//world << "FOUND"
+			//to_world("FOUND")
 			break
 	return foundgenerator
 
@@ -127,13 +127,13 @@
 					if((A in G.localareas) && (G.on))
 						break
 				if(!G)
-					A.gravitychange(0,A)
+					A.gravitychange(0)
 
 
 		else
 			for(var/area/A in gravity_generator:localareas)
 				gravity_generator:on = 1
-				A.gravitychange(1,A)
+				A.gravitychange(1)
 
 		src.updateUsrDialog()
 		return

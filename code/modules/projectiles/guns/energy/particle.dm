@@ -134,9 +134,9 @@
 /obj/item/weapon/gun/energy/particle/attackby(var/obj/item/A as obj, mob/user as mob)
 	if(istype(A, /obj/item/pressurelock))
 		if(safetycatch)
-			user << "<span class='notice'>\The [src] already has a [attached_safety].</span>"
+			to_chat(user, "<span class='notice'>\The [src] already has a [attached_safety].</span>")
 			return
-		user << "<span class='notice'>You insert \the [A] into \the [src].</span>"
+		to_chat(user, "<span class='notice'>You insert \the [A] into \the [src].</span>")
 		user.drop_item()
 		A.loc = src
 		attached_safety = A
@@ -145,9 +145,9 @@
 
 	if(istype(A, /obj/item/weapon/tool/screwdriver))
 		if(safetycatch && attached_safety)
-			user << "<span class='notice'>You begin removing \the [attached_safety] from \the [src].</span>"
+			to_chat(user, "<span class='notice'>You begin removing \the [attached_safety] from \the [src].</span>")
 			if(do_after(user, 25))
-				user << "<span class='notice'>You remove \the [attached_safety] from \the [src].</span>"
+				to_chat(user, "<span class='notice'>You remove \the [attached_safety] from \the [src].</span>")
 				user.put_in_hands(attached_safety)
 				safetycatch = 0
 				attached_safety = null

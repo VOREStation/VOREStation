@@ -5,6 +5,7 @@
 	name = "drink"
 	desc = "yummy"
 	icon = 'icons/obj/drinks.dmi'
+	drop_sound = 'sound/items/drop/bottle.ogg'
 	icon_state = null
 	flags = OPENCONTAINER
 	amount_per_transfer_from_this = 5
@@ -25,7 +26,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/proc/open(mob/user)
 	playsound(loc,"canopen", rand(10,50), 1)
-	user << "<span class='notice'>You open [src] with an audible pop!</span>"
+	to_chat(user, "<span class='notice'>You open [src] with an audible pop!</span>")
 	flags |= OPENCONTAINER
 
 /obj/item/weapon/reagent_containers/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
@@ -48,24 +49,24 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/standard_feed_mob(var/mob/user, var/mob/target)
 	if(!is_open_container())
-		user << "<span class='notice'>You need to open [src]!</span>"
+		to_chat(user, "<span class='notice'>You need to open [src]!</span>")
 		return 1
 	return ..()
 
 /obj/item/weapon/reagent_containers/food/drinks/standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target)
 	if(!is_open_container())
-		user << "<span class='notice'>You need to open [src]!</span>"
+		to_chat(user, "<span class='notice'>You need to open [src]!</span>")
 		return 1
 	return ..()
 
 /obj/item/weapon/reagent_containers/food/drinks/standard_pour_into(var/mob/user, var/atom/target)
 	if(!is_open_container())
-		user << "<span class='notice'>You need to open [src]!</span>"
+		to_chat(user, "<span class='notice'>You need to open [src]!</span>")
 		return 1
 	return ..()
 
 /obj/item/weapon/reagent_containers/food/drinks/self_feed_message(var/mob/user)
-	user << "<span class='notice'>You swallow a gulp from \the [src].</span>"
+	to_chat(user, "<span class='notice'>You swallow a gulp from \the [src].</span>")
 
 /obj/item/weapon/reagent_containers/food/drinks/feed_sound(var/mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
@@ -74,15 +75,15 @@
 	if(!..(user, 1))
 		return
 	if(!reagents || reagents.total_volume == 0)
-		user << "<span class='notice'>\The [src] is empty!</span>"
+		to_chat(user, "<span class='notice'>\The [src] is empty!</span>")
 	else if (reagents.total_volume <= volume * 0.25)
-		user << "<span class='notice'>\The [src] is almost empty!</span>"
+		to_chat(user, "<span class='notice'>\The [src] is almost empty!</span>")
 	else if (reagents.total_volume <= volume * 0.66)
-		user << "<span class='notice'>\The [src] is half full!</span>"
+		to_chat(user, "<span class='notice'>\The [src] is half full!</span>")
 	else if (reagents.total_volume <= volume * 0.90)
-		user << "<span class='notice'>\The [src] is almost full!</span>"
+		to_chat(user, "<span class='notice'>\The [src] is almost full!</span>")
 	else
-		user << "<span class='notice'>\The [src] is full!</span>"
+		to_chat(user, "<span class='notice'>\The [src] is full!</span>")
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -116,6 +117,7 @@
 	icon_state = "milk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
+	drop_sound = 'sound/items/drop/box.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/milk/Initialize()
 	. = ..()
@@ -127,6 +129,8 @@
 	icon_state = "soymilk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
+	drop_sound = 'sound/items/drop/box.ogg'
+
 /obj/item/weapon/reagent_containers/food/drinks/soymilk/Initialize()
 	. = ..()
 	reagents.add_reagent("soymilk", 50)
@@ -138,6 +142,8 @@
 	icon_state = "mini-milk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
+	drop_sound = 'sound/items/drop/box.ogg'
+
 /obj/item/weapon/reagent_containers/food/drinks/smallmilk/Initialize()
 	. = ..()
 	reagents.add_reagent("milk", 30)
@@ -149,6 +155,8 @@
 	icon_state = "mini-milk_choco"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
+	drop_sound = 'sound/items/drop/box.ogg'
+
 /obj/item/weapon/reagent_containers/food/drinks/smallchocmilk/Initialize()
 	. = ..()
 	reagents.add_reagent("chocolate_milk", 30)
@@ -158,6 +166,8 @@
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
 	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
+	drop_sound = 'sound/items/drop/box.ogg'
+
 /obj/item/weapon/reagent_containers/food/drinks/coffee/Initialize()
 	. = ..()
 	reagents.add_reagent("coffee", 30)
@@ -209,6 +219,7 @@
 	possible_transfer_amounts = null
 	volume = 10
 	center_of_mass = list("x"=16, "y"=12)
+	drop_sound = 'sound/items/drop/paper.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/sillycup/Initialize()
 	. = ..()
@@ -226,7 +237,7 @@
 			var/obj/structure/reagent_dispensers/water_cooler/W = over_object
 			if(W.cupholder && W.cups < 10)
 				W.cups++
-				usr << "<span class='notice'>You put the [src] in the cup dispenser.</span>"
+				to_chat(usr, "<span class='notice'>You put the [src] in the cup dispenser.</span>")
 				qdel(src)
 				W.update_icon()
 	else

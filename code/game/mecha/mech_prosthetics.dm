@@ -13,8 +13,8 @@
 
 	var/speed = 1
 	var/mat_efficiency = 1
-	var/list/materials = list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0, "plastic" = 0, MAT_PLASTEEL = 0, "gold" = 0, "silver" = 0, MAT_LEAD = 0, "osmium" = 0, "diamond" = 0, MAT_DURASTEEL = 0, "phoron" = 0, "uranium" = 0, MAT_VERDANTIUM = 0, MAT_MORPHIUM = 0)
-	var/list/hidden_materials = list(MAT_DURASTEEL, MAT_VERDANTIUM, MAT_MORPHIUM)
+	var/list/materials = list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0, "plastic" = 0, MAT_GRAPHITE = 0, MAT_PLASTEEL = 0, "gold" = 0, "silver" = 0, MAT_LEAD = 0, "osmium" = 0, "diamond" = 0, MAT_DURASTEEL = 0, "phoron" = 0, "uranium" = 0, MAT_VERDANTIUM = 0, MAT_MORPHIUM = 0)
+	var/list/hidden_materials = list(MAT_DURASTEEL, MAT_GRAPHITE, MAT_VERDANTIUM, MAT_MORPHIUM)
 	var/res_max_amount = 200000
 
 	var/datum/research/files
@@ -25,6 +25,8 @@
 	var/list/categories = list()
 	var/category = null
 	var/manufacturer = null
+	var/species_types = list("Human")
+	var/species = "Human"
 	var/sync_message = ""
 
 /obj/machinery/pros_fabricator/New()
@@ -100,11 +102,14 @@
 	data["buildable"] = get_build_options()
 	data["category"] = category
 	data["categories"] = categories
+	data["species_types"] = species_types
+	data["species"] = species
 	if(all_robolimbs)
 		var/list/T = list()
 		for(var/A in all_robolimbs)
 			var/datum/robolimb/R = all_robolimbs[A]
 			if(R.unavailable_to_build) continue
+			if(species in R.species_cannot_use) continue
 			T += list(list("id" = A, "company" = R.company))
 		data["manufacturers"] = T
 		data["manufacturer"] = manufacturer
@@ -134,6 +139,10 @@
 	if(href_list["category"])
 		if(href_list["category"] in categories)
 			category = href_list["category"]
+
+	if(href_list["species"])
+		if(href_list["species"] in species_types)
+			species = href_list["species"]
 
 	if(href_list["manufacturer"])
 		if(href_list["manufacturer"] in all_robolimbs)
@@ -173,6 +182,18 @@
 				qdel(I)
 		return
 
+	if(istype(I,/obj/item/weapon/disk/species))
+		var/obj/item/weapon/disk/species/D = I
+		if(!D.species || !(D.species in GLOB.all_species))
+			to_chat(user, "<span class='warning'>This disk seems to be corrupted!</span>")
+		else
+			to_chat(user, "<span class='notice'>Uploading modification files for [D.species]...</span>")
+			if(do_after(user,50,src))
+				species_types |= D.species
+				to_chat(user, "<span class='notice'>Uploaded [D.species] files!</span>")
+				qdel(I)
+		return
+
 	if(istype(I,/obj/item/stack/material))
 		var/obj/item/stack/material/S = I
 		if(!(S.material.name in materials))
@@ -204,20 +225,20 @@
 	switch(emagged)
 		if(0)
 			emagged = 0.5
-			visible_message("\icon[src] <b>[src]</b> beeps: \"DB error \[Code 0x00F1\]\"")
+			visible_message("[bicon(src)] <b>[src]</b> beeps: \"DB error \[Code 0x00F1\]\"")
 			sleep(10)
-			visible_message("\icon[src] <b>[src]</b> beeps: \"Attempting auto-repair\"")
+			visible_message("[bicon(src)] <b>[src]</b> beeps: \"Attempting auto-repair\"")
 			sleep(15)
-			visible_message("\icon[src] <b>[src]</b> beeps: \"User DB corrupted \[Code 0x00FA\]. Truncating data structure...\"")
+			visible_message("[bicon(src)] <b>[src]</b> beeps: \"User DB corrupted \[Code 0x00FA\]. Truncating data structure...\"")
 			sleep(30)
-			visible_message("\icon[src] <b>[src]</b> beeps: \"User DB truncated. Please contact your [using_map.company_name] system operator for future assistance.\"")
+			visible_message("[bicon(src)] <b>[src]</b> beeps: \"User DB truncated. Please contact your [using_map.company_name] system operator for future assistance.\"")
 			req_access = null
 			emagged = 1
 			return 1
 		if(0.5)
-			visible_message("\icon[src] <b>[src]</b> beeps: \"DB not responding \[Code 0x0003\]...\"")
+			visible_message("[bicon(src)] <b>[src]</b> beeps: \"DB not responding \[Code 0x0003\]...\"")
 		if(1)
-			visible_message("\icon[src] <b>[src]</b> beeps: \"No records in User DB\"")
+			visible_message("[bicon(src)] <b>[src]</b> beeps: \"No records in User DB\"")
 
 /obj/machinery/pros_fabricator/proc/update_busy()
 	if(queue.len)

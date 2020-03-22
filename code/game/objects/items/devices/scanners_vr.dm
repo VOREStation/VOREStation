@@ -17,6 +17,32 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 	var/datum/mind/stored_mind
 
+	var/ooc_notes = null //For holding prefs
+
+
+
+//These don't perform any checks and need to be wrapped by checks
+/obj/item/device/sleevemate/proc/clear_mind()
+	stored_mind = null
+	ooc_notes = null
+	update_icon()
+
+/obj/item/device/sleevemate/proc/get_mind(mob/living/M)
+	ASSERT(M.mind)
+	ooc_notes = M.ooc_notes
+	stored_mind = M.mind
+	M.ghostize()
+	stored_mind.current = null
+	update_icon()
+
+/obj/item/device/sleevemate/proc/put_mind(mob/living/M)
+	stored_mind.active = TRUE
+	stored_mind.transfer_to(M)
+	M.ooc_notes = ooc_notes
+	clear_mind()
+
+
+
 /obj/item/device/sleevemate/attack(mob/living/M, mob/living/user)
 	if(ishuman(M))
 		scan_mob(M, user)
@@ -34,8 +60,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	switch(choice)
 		if("Delete")
 			to_chat(user,"<span class='notice'>Internal copy of [stored_mind.name] deleted.</span>")
-			stored_mind = null
-			update_icon()
+			clear_mind()
 		if("Backup")
 			to_chat(user,"<span class='notice'>Internal copy of [stored_mind.name] backed up to database.</span>")
 			SStranscore.m_backup(stored_mind,null,one_time = TRUE)
@@ -177,16 +202,13 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			to_chat(usr,"<span class='warning'>There is already someone's mind stored inside</span>")
 			return
 
-		var/choice = alert(usr,"This will remove the target's mind from their body. The only way to put it back is via a resleeving pod. Continue?","Confirmation","Continue","Cancel")
+		var/choice = alert(usr,"This will remove the target's mind from their body (and from the game as long as they're in the sleevemate). You can put them into a (mindless) body, a NIF, or back them up for normal resleeving, but you should probably have a plan in advance so you don't leave them unable to interact for too long. Continue?","Confirmation","Continue","Cancel")
 		if(choice == "Continue" && usr.get_active_hand() == src && usr.Adjacent(target))
 
 			usr.visible_message("<span class='warning'>[usr] begins downloading [target]'s mind!</span>","<span class='notice'>You begin downloading [target]'s mind!</span>")
 			if(do_after(usr,35 SECONDS,target)) //This is powerful, yo.
 				if(!stored_mind && target.mind)
-					stored_mind = target.mind
-					target.ghostize()
-					stored_mind.current = null
-					update_icon()
+					get_mind(target)
 					to_chat(usr,"<span class='notice'>Mind downloaded!</span>")
 
 		return
@@ -212,12 +234,9 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		if(!sleevemate_mob)
 			sleevemate_mob = new()
 
-		stored_mind.active = TRUE //Setting this causes transfer_to, to key them into the mob
-		stored_mind.transfer_to(sleevemate_mob)
+		put_mind(sleevemate_mob)
 		SC.catch_mob(sleevemate_mob)
-		stored_mind = null
 		to_chat(usr,"<span class='notice'>Mind transferred into Soulcatcher!</span>")
-		update_icon()
 
 	if(href_list["mindupload"])
 		if(!stored_mind)
@@ -229,7 +248,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 		if(istype(target, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = target
-			if(H.resleeve_lock && stored_mind.loaded_from_ckey  != H.resleeve_lock)
+			if(H.resleeve_lock && stored_mind.loaded_from_ckey != H.resleeve_lock)
 				to_chat(usr,"<span class='warning'>\[H] is protected from impersonation!</span>")
 				return
 
@@ -238,11 +257,8 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			if(!stored_mind)
 				to_chat(usr,"<span class='warning'>\The [src] no longer has a stored mind.</span>")
 				return
-			stored_mind.active = TRUE
-			stored_mind.transfer_to(target)
-			stored_mind = null
+			put_mind(target)
 			to_chat(usr,"<span class='notice'>Mind transferred into [target]!</span>")
-			update_icon()
 
 	if(href_list["mindrelease"])
 		if(stored_mind)
@@ -254,15 +270,11 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			return
 		for(var/mob/living/carbon/brain/caught_soul/soul in SC.brainmobs)
 			if(soul.name == href_list["mindrelease"])
-				stored_mind = soul.mind
-				stored_mind.current = null
-				soul.Destroy()
-				update_icon()
+				get_mind(soul)
+				qdel(soul)
 				to_chat(usr,"<span class='notice'>Mind downloaded!</span>")
 				return
 		to_chat(usr,"<span class='notice'>Unable to find that mind in Soulcatcher!</span>")
-
-
 
 /obj/item/device/sleevemate/update_icon()
 	if(stored_mind)

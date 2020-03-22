@@ -27,13 +27,13 @@
 
 /obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
 	if(state != 1)
-		user << "<font color='red'>The shield generator needs to be firmly secured to the floor first.</font>"
+		to_chat(user, "<font color='red'>The shield generator needs to be firmly secured to the floor first.</font>")
 		return 1
 	if(src.locked && !istype(user, /mob/living/silicon))
-		user << "<font color='red'>The controls are locked!</font>"
+		to_chat(user, "<font color='red'>The controls are locked!</font>")
 		return 1
 	if(power != 1)
-		user << "<font color='red'>The shield generator needs to be powered by wire underneath.</font>"
+		to_chat(user, "<font color='red'>The shield generator needs to be powered by wire underneath.</font>")
 		return 1
 
 	if(src.active >= 1)
@@ -159,29 +159,29 @@
 /obj/machinery/shieldwallgen/attackby(obj/item/W, mob/user)
 	if(W.is_wrench())
 		if(active)
-			user << "Turn off the field generator first."
+			to_chat(user, "Turn off the field generator first.")
 			return
 
 		else if(state == 0)
 			state = 1
 			playsound(src, W.usesound, 75, 1)
-			user << "You secure the external reinforcing bolts to the floor."
+			to_chat(user, "You secure the external reinforcing bolts to the floor.")
 			src.anchored = 1
 			return
 
 		else if(state == 1)
 			state = 0
 			playsound(src, W.usesound, 75, 1)
-			user << "You undo the external reinforcing bolts."
+			to_chat(user, "You undo the external reinforcing bolts.")
 			src.anchored = 0
 			return
 
 	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
 		if (src.allowed(user))
 			src.locked = !src.locked
-			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
+			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 		else
-			user << "<font color='red'>Access denied.</font>"
+			to_chat(user, "<font color='red'>Access denied.</font>")
 
 	else
 		src.add_fingerprint(user)

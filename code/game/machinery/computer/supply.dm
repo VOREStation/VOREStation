@@ -5,6 +5,7 @@
 // Supply requests console
 /obj/machinery/computer/supplycomp
 	name = "supply ordering console"
+	desc = "Request crates from here! Delivery not guaranteed."
 	icon_screen = "request"
 	circuit = /obj/item/weapon/circuitboard/supplycomp
 	var/authorization = 0
@@ -18,6 +19,7 @@
 // Supply control console
 /obj/machinery/computer/supplycomp/control
 	name = "supply control console"
+	desc = "Control the cargo shuttle's functions remotely."
 	icon_keyboard = "tech_key"
 	icon_screen = "supply"
 	light_color = "#b88b2e"
@@ -54,7 +56,7 @@
 	var/orders[0]
 	var/receipts[0]
 
-	var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
+	var/datum/shuttle/autodock/ferry/supply/shuttle = supply_controller.shuttle
 	if(shuttle)
 		if(shuttle.has_arrive_time())
 			shuttle_status["location"] = "In transit"
@@ -64,8 +66,8 @@
 		else
 			shuttle_status["time"] = 0
 			if(shuttle.at_station())
-				if(shuttle.docking_controller)
-					switch(shuttle.docking_controller.get_docking_status())
+				if(shuttle.shuttle_docking_controller)
+					switch(shuttle.shuttle_docking_controller.get_docking_status())
 						if("docked")
 							shuttle_status["location"] = "Docked"
 							shuttle_status["mode"] = SUP_SHUTTLE_DOCKED
@@ -188,11 +190,11 @@
 
 /obj/machinery/computer/supplycomp/Topic(href, href_list)
 	if(!supply_controller)
-		world.log << "## ERROR: The supply_controller datum is missing."
+		to_world_log("## ERROR: The supply_controller datum is missing.")
 		return
-	var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
+	var/datum/shuttle/autodock/ferry/supply/shuttle = supply_controller.shuttle
 	if (!shuttle)
-		world.log << "## ERROR: The supply shuttle datum is missing."
+		to_world_log("## ERROR: The supply shuttle datum is missing.")
 		return
 	if(..())
 		return 1

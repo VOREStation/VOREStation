@@ -4,7 +4,7 @@
 	desc = "This ability constructs a standard swarmer shell that may activate at some point."
 
 	school = "conjuration"
-	charge_max = 120 SECONDS
+	charge_max = 5 MINUTES
 	spell_flags = 0
 	invocation = "none"
 	invocation_type = SpI_NONE

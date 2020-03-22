@@ -255,7 +255,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			install_done = world.time + 1 MINUTE
 			notify("Welcome back, [owner]! Performing quick-calibration...")
 		else if(!owner)
-			install_done = world.time + 30 MINUTES
+			install_done = world.time + 35 MINUTES
 			notify("Adapting to new user...")
 			sleep(5 SECONDS)
 			notify("Adjoining optic [human.isSynthetic() ? "interface" : "nerve"], please be patient.",TRUE)
@@ -265,7 +265,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			stat = NIF_TEMPFAIL
 			return FALSE
 
-	var/percent_done = (world.time - (install_done - (30 MINUTES))) / (30 MINUTES)
+	var/percent_done = (world.time - (install_done - (35 MINUTES))) / (35 MINUTES)
 
 	if(human.client)
 		human.client.screen.Add(global_hud.whitense) //This is the camera static
@@ -294,9 +294,9 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 				if(2)
 					human.Weaken(5)
 					to_chat(human,"<span class='danger'>A wave of weakness rolls over you.</span>")
-				if(3)
-					human.Sleeping(5)
-					to_chat(human,"<span class='danger'>You suddenly black out!</span>")
+				/*if(3)
+					human.Sleeping(5) //Disabled for being boring
+					to_chat(human,"<span class='danger'>You suddenly black out!</span>")*/
 
 		//Finishing up
 		if(1.0 to INFINITY)
@@ -354,7 +354,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 /obj/item/device/nif/proc/notify(var/message,var/alert = 0)
 	if(!human || stat == NIF_TEMPFAIL) return
 
-	to_chat(human,"<b>\[\icon[src.big_icon]NIF\]</b> displays, \"<span class='[alert ? "danger" : "notice"]'>[message]</span>\"")
+	to_chat(human,"<b>\[[bicon(src.big_icon)]NIF\]</b> displays, \"<span class='[alert ? "danger" : "notice"]'>[message]</span>\"")
 	if(prob(1)) human.visible_message("<span class='notice'>\The [human] [pick(look_messages)].</span>")
 	if(alert)
 		human << bad_sound
@@ -570,7 +570,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	name = "bioadaptive NIF"
 	desc = "A NIF that goes out of it's way to accomidate strange body types. \
 	Will function in species where it normally wouldn't."
-	durability = 25
+	durability = 75
 	bioadap = TRUE
 
 ////////////////////////////////

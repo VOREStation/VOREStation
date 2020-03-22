@@ -27,14 +27,14 @@
 
 	//Too difficult
 	if(target == user)
-		user << "<span class='warning'>You can't use this on yourself. Get someone to help you.</span>"
+		to_chat(user, "<span class='warning'>You can't use this on yourself. Get someone to help you.</span>")
 		return
 
 	//We're applying a prescription
 	if(istype(target,/obj/item/clothing/glasses))
 		var/obj/item/clothing/glasses/G = target
 		if(!scrip_loaded)
-			user << "<span class='warning'>You need to build a prescription from someone first! Use the kit on someone.</span>"
+			to_chat(user, "<span class='warning'>You need to build a prescription from someone first! Use the kit on someone.</span>")
 			return
 
 		if(do_after(user,5 SECONDS))
@@ -45,7 +45,7 @@
 	else if(ishuman(target))
 		var/mob/living/carbon/human/T = target
 		if(T.glasses || (T.head && T.head.flags_inv & HIDEEYES))
-			user << "<span class='warning'>The person's eyes can't be covered!</span>"
+			to_chat(user, "<span class='warning'>The person's eyes can't be covered!</span>")
 			return
 
 		T.visible_message("[user] begins making measurements for prescription lenses for [target].","[user] begins measuring your eyes. Hold still!")

@@ -83,54 +83,54 @@ var/global/list/PDA_Manifest = list()
 		var/isactive = t.fields["p_stat"]
 		var/department = 0
 		var/depthead = 0 			// Department Heads will be placed at the top of their lists.
-		if(real_rank in command_positions)
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_COMMAND))
 			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			depthead = 1
 			if(rank=="Colony Director" && heads.len != 1)
 				heads.Swap(1,heads.len)
 
-		if(real_rank in security_positions)
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_SECURITY))
 			sec[++sec.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && sec.len != 1)
 				sec.Swap(1,sec.len)
 
-		if(real_rank in engineering_positions)
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_ENGINEERING))
 			eng[++eng.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && eng.len != 1)
 				eng.Swap(1,eng.len)
 
-		if(real_rank in medical_positions)
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_MEDICAL))
 			med[++med.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && med.len != 1)
 				med.Swap(1,med.len)
 
-		if(real_rank in science_positions)
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_RESEARCH))
 			sci[++sci.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && sci.len != 1)
 				sci.Swap(1,sci.len)
 
-		if(real_rank in planet_positions)
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_PLANET))
 			pla[++pla.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 
-		if(real_rank in cargo_positions)
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_CARGO))
 			car[++car.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && car.len != 1)
 				car.Swap(1,car.len)
 
-		if(real_rank in civilian_positions)
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_CIVILIAN))
 			civ[++civ.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && civ.len != 1)
 				civ.Swap(1,civ.len)
 
-		if(real_rank in nonhuman_positions)
+		if(SSjob.is_job_in_department(real_rank, DEPARTMENT_SYNTHETIC))
 			bot[++bot.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 
@@ -222,6 +222,7 @@ var/global/list/PDA_Manifest = list()
 	throwforce = 0.0
 	throw_speed = 1
 	throw_range = 20
+	drop_sound = 'sound/items/drop/rubber.ogg'
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
 		user.drop_item()

@@ -31,17 +31,17 @@
 				var/mob/living/carbon/C = usr
 				C.toggle_throw_mode()
 			else
-				usr << "<font color='red'>This mob type cannot throw items.</font>"
+				to_chat(usr, "<font color='red'>This mob type cannot throw items.</font>")
 			return
 		if(NORTHWEST)
 			if(isliving(usr))
 				var/mob/living/carbon/C = usr
 				if(!C.get_active_hand())
-					usr << "<font color='red'>You have nothing to drop in your hand.</font>"
+					to_chat(usr, "<font color='red'>You have nothing to drop in your hand.</font>")
 					return
 				drop_item()
 			else
-				usr << "<font color='red'>This mob type cannot drop items.</font>"
+				to_chat(usr, "<font color='red'>This mob type cannot drop items.</font>")
 			return
 
 //This gets called when you press the delete button.
@@ -49,7 +49,7 @@
 	set hidden = 1
 
 	if(!usr.pulling)
-		usr << "<font color='blue'>You are not pulling anything.</font>"
+		to_chat(usr, "<font color='blue'>You are not pulling anything.</font>")
 		return
 	usr.stop_pulling()
 
@@ -212,6 +212,10 @@
 			//drunk driving
 			if(mob.confused && prob(20)) //vehicles tend to keep moving in the same direction
 				direct = turn(direct, pick(90, -90))
+			if(istype(mob.buckled, /mob)) //VOREStation Edit to prevent mob riding speed exploit.
+				var/mob/M = mob.buckled
+				if(M.move_delay > mob.move_delay - 10)
+					return
 			return mob.buckled.relaymove(mob,direct)
 
 		if(istype(mob.machine, /obj/machinery))
@@ -385,10 +389,8 @@
 ///Return 1 for movement 0 for none
 /mob/proc/Process_Spacemove(var/check_drift = 0)
 
-	//VOREStation Edit begin: SHADEKIN
-	if(shadekin_phasing_check())
+	if(is_incorporeal())
 		return
-	//VOREStation Edit end: SHADEKIN
 
 	if(!Check_Dense_Object()) //Nothing to push off of so end here
 		update_floating(0)

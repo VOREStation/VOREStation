@@ -57,39 +57,8 @@
 			</div>
 		</div>
 		<hr>
-
+        
 		{{if data.authenticated}}
-			<script type="text/javascript">
-				function markRed(){
-					var nameField = document.getElementById('namefield');
-					nameField.style.backgroundColor = "#FFDDDD";
-				}
-				function markGreen(){
-					var nameField = document.getElementById('namefield');
-					nameField.style.backgroundColor = "#DDFFDD";
-				}
-				function markAccountGreen(){
-					var nameField = document.getElementById('accountfield');
-					nameField.style.backgroundColor = "#DDFFDD";
-				}
-				function markAccountRed(){
-					var nameField = document.getElementById('accountfield');
-					nameField.style.backgroundColor = "#FFDDDD";
-				}
-				function showAll(){
-					var allJobsSlot = document.getElementById('allvalue.jobsslot');
-					allJobsSlot.innerHTML = "<a href='#' onclick='hideAll()'>Hide</a><br>";
-					var allJobs = document.getElementById('all-value.jobs');
-					allJobs.style.display = 'block';
-				}
-				function hideAll(){
-					var allJobsSlot = document.getElementById('allvalue.jobsslot');
-					allJobsSlot.innerHTML = "<a href='#' onclick='showAll()'>{{:data.target_rank}}</a>";
-					var allJobs = document.getElementById('all-value.jobs');
-					allJobs.style.display = 'none';
-				}
-			</script>
-
 			{{if data.has_modify}}
 				<div class='item'>
 					<h2>Details</h2>
@@ -124,8 +93,8 @@
 				</form>
 
 				<div class='item'>
-					<div class='itemLabel'>
 					<!-- VOREStation Edit Start -->
+					<div class='itemLabel'>
 						Dismissals:
 					</div>
 					<div class='itemContent'>
@@ -137,38 +106,30 @@
 				<div class='item'>
 					<h2>Assignment</h2>
 				</div>
-
+				
 				<div class='item'>
-					<span id='allvalue.jobsslot'><a href='#' onclick='showAll()'>{{:data.target_rank}}</a></span>
-				</div>
-				<div class='item'>
-					<div id="all-value.jobs" style='display: none;'>
+					<div id="all-value.jobs">
 						<table>
+							{{for data.departments}}
+								<tr>
+									<th>{{:value.department_name}}</th>
+									<td>
+										{{for value.jobs :jobValue:jobIndex}}
+											{{:helper.link(jobValue.display_name, '', {'choice' : 'assign', 'assign_target' : jobValue.job}, data.id_rank == jobValue.job ? 'disabled' : null)}}
+										{{/for}}
+									</td>
+								</tr>
+							{{/for}}
 							<tr>
 								<th>Special</th>
 								<td>
-									{{:helper.link("Colony Director", '', {'choice' : 'assign', 'assign_target' : 'Colony Director'}, data.target_rank == 'Colony Director' ? 'disabled' : null)}}
-									{{:helper.link("Command Secretary", '', {'choice' : 'assign', 'assign_target' : 'Command Secretary'}, data.target_rank == 'Command Secretary' ? 'disabled' : null)}}
-									{{:helper.link("Internal Affairs Agent", '', {'choice' : 'assign', 'assign_target' : 'Internal Affairs Agent'}, data.target_rank == 'Internal Affairs Agent' ? 'disabled' : null)}}
 									{{:helper.link("Custom", '', {'choice' : 'assign', 'assign_target' : 'Custom'})}}
 								</td>
 							</tr>
-							{{for data.jobs}}
-								{{if data.centcom_access || value.cat != "CentCom"}}
-									<tr>
-										<th>{{:value.cat}}</th>
-										<td>
-											{{for value.jobs :itemValue:itemIndex}}
-												{{:helper.link(itemValue.display_name, '', {'choice' : 'assign', 'assign_target' : itemValue.job}, data.target_rank == itemValue.job ? 'disabled' : null)}}
-											{{/for}}
-										</td>
-									</tr>
-								{{/if}}
-							{{/for}}
 						</table>
 					</div>
 				</div>
-
+				
 				{{if data.centcom_access}}
 				<div class='item'>
 					<h2>Central Command</h2>

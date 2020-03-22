@@ -41,17 +41,17 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/size_select = input("Put the desired size (25-200%)", "Set Size", size_set_to*100) as num
-	if(size_select>200 || size_select<25)
-		usr << "<span class='notice'>Invalid size.</span>"
+	var/size_select = input("Put the desired size (25-200%)", "Set Size", size_set_to * 100) as num
+	if(size_select > 200 || size_select < 25)
+		to_chat(usr, "<span class='notice'>Invalid size.</span>")
 		return
 	size_set_to = (size_select/100)
-	usr << "<span class='notice'>You set the size to [size_select]%</span>"
+	to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
 
 /obj/item/weapon/gun/energy/sizegun/examine(mob/user)
 	..()
 	var/size_examine = (size_set_to*100)
-	user << "<span class='info'>It is currently set at [size_examine]%</span>"
+	to_chat(user, "<span class='info'>It is currently set at [size_examine]%</span>")
 
 //
 // Beams for size gun
@@ -69,24 +69,17 @@
 	tracer_type = /obj/effect/projectile/tracer/xray
 	impact_type = /obj/effect/projectile/impact/xray
 
-	on_hit(var/atom/target)
-		var/mob/living/M = target
-		if(ishuman(target))
-			var/mob/living/carbon/human/H = M
-			H.resize(set_size)
-			H.show_message("<font color='blue'> The beam fires into your body, changing your size!</font>")
-			H.updateicon()
-		else if (istype(target, /mob/living/))
-			var/mob/living/H = M
-			H.resize(set_size)
-			H.updateicon()
-		else
-			return 1
-
+/obj/item/projectile/beam/sizelaser/on_hit(var/atom/target)
+	var/mob/living/M = target
+	if(istype(M))
+		M.resize(set_size)
+		to_chat(M, "<font color='blue'> The beam fires into your body, changing your size!</font>")
+		M.updateicon()
+		return
+	return 1
 
 /obj/item/projectile/beam/sizelaser/shrink
 	set_size = 0.5 //50% of current size
-
 
 /obj/item/projectile/beam/sizelaser/grow
 	set_size = 2.0 //200% of current size

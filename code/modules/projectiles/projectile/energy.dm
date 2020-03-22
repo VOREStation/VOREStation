@@ -4,6 +4,11 @@
 	damage = 0
 	damage_type = BURN
 	check_armour = "energy"
+
+	impact_effect_type = /obj/effect/temp_visual/impact_effect
+	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
+	hitsound = 'sound/weapons/zapbang.ogg'
+
 	var/flash_strength = 10
 
 //releases a burst of light on impact or after travelling a distance
@@ -11,6 +16,7 @@
 	name = "chemical shell"
 	icon_state = "bullet"
 	fire_sound = 'sound/weapons/gunshot_pathetic.ogg'
+	hitsound_wall = null
 	damage = 5
 	range = 15 //if the shell hasn't hit anything after travelling this far it just explodes.
 	var/flash_range = 0
@@ -91,6 +97,7 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#33CC00"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
 
 	combustion = FALSE
 
@@ -157,6 +164,7 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#33CC00"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
 
 	combustion = FALSE
 
@@ -209,10 +217,11 @@
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage_type = BURN
 	check_armour = "energy"
-	light_color = "#0000FF"
+	light_color = "#00AAFF"
 
 	embed_chance = 0
 	muzzle_type = /obj/effect/projectile/muzzle/pulse
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
 
 /obj/item/projectile/energy/phase
 	name = "phase wave"

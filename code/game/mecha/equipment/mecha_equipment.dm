@@ -145,9 +145,6 @@
 		return 0
 	return 1
 
-/obj/item/mecha_parts/mecha_equipment/proc/handle_movement_action() //Any modules that have special effects or needs when taking a step or floating through space.
-	return
-
 /obj/item/mecha_parts/mecha_equipment/proc/action(atom/target)
 	return
 
@@ -239,9 +236,9 @@
 				if(EQUIP_SPECIAL)
 					chassis.special_equipment -= src
 				//VOREStation Addition begin: MICROMECHS
-				if(EQUIP_UTILITY)
+				if(EQUIP_MICRO_UTILITY)
 					chassis.micro_utility_equipment -= src
-				if(EQUIP_SPECIAL)
+				if(EQUIP_MICRO_WEAPON)
 					chassis.micro_weapon_equipment -= src
 				//VOREStation Addition end: MICROMECHS
 		if(chassis.selected == src)
@@ -266,7 +263,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/proc/occupant_message(message)
 	if(chassis)
-		chassis.occupant_message("\icon[src] [message]")
+		chassis.occupant_message("[bicon(src)] [message]")
 	return
 
 /obj/item/mecha_parts/mecha_equipment/proc/log_message(message)

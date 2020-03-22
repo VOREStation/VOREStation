@@ -21,7 +21,8 @@ var/list/gamemode_cache = list()
 	var/log_pda = 0						// log pda messages
 	var/log_hrefs = 0					// logs all links clicked in-game. Could be used for debugging and tracking down exploits
 	var/log_runtime = 0					// logs world.log to a file
-	var/log_world_output = 0			// log world.log << messages
+	var/log_world_output = 0			// log to_world_log(messages)
+	var/log_graffiti = 0					// logs graffiti
 	var/sql_enabled = 0					// for sql switching
 	var/allow_admin_ooccolor = 0		// Allows admins with relevant permissions to have their own ooc colour
 	var/allow_vote_restart = 0 			// allow votes to restart
@@ -30,6 +31,7 @@ var/list/gamemode_cache = list()
 	var/allow_admin_jump = 1			// allows admin jumping
 	var/allow_admin_spawning = 1		// allows admin item spawning
 	var/allow_admin_rev = 1				// allows admin revives
+	var/pregame_time = 180				// pregame time in seconds
 	var/vote_delay = 6000				// minimum time between voting sessions (deciseconds, 10 minute default)
 	var/vote_period = 600				// length of voting period (deciseconds, default 1 minute)
 	var/vote_autotransfer_initial = 108000 // Length of time before the first autotransfer vote is called
@@ -103,6 +105,13 @@ var/list/gamemode_cache = list()
 	var/debugparanoid = 0
 	var/panic_bunker = 0
 	var/paranoia_logging = 0
+
+	var/ip_reputation = FALSE		//Should we query IPs to get scores? Generates HTTP traffic to an API service.
+	var/ipr_email					//Left null because you MUST specify one otherwise you're making the internet worse.
+	var/ipr_block_bad_ips = FALSE	//Should we block anyone who meets the minimum score below? Otherwise we just log it (If paranoia logging is on, visibly in chat).
+	var/ipr_bad_score = 1			//The API returns a value between 0 and 1 (inclusive), with 1 being 'definitely VPN/Tor/Proxy'. Values equal/above this var are considered bad.
+	var/ipr_allow_existing = FALSE 	//Should we allow known players to use VPNs/Proxies? If the player is already banned then obviously they still can't connect.
+	var/ipr_minimum_age = 5			//How many days before a player is considered 'fine' for the purposes of allowing them to use VPNs.
 
 	var/serverurl
 	var/server
@@ -244,6 +253,17 @@ var/list/gamemode_cache = list()
 	var/random_submap_orientation = FALSE // If true, submaps loaded automatically can be rotated.
 	var/autostart_solars = FALSE // If true, specifically mapped in solar control computers will set themselves up when the round starts.
 
+	// New shiny SQLite stuff.
+	// The basics.
+	var/sqlite_enabled = FALSE // If it should even be active. SQLite can be ran alongside other databases but you should not have them do the same functions.
+
+	// In-Game Feedback.
+	var/sqlite_feedback = FALSE // Feedback cannot be submitted if this is false.
+	var/list/sqlite_feedback_topics = list("General") // A list of 'topics' that feedback can be catagorized under by the submitter.
+	var/sqlite_feedback_privacy = FALSE // If true, feedback submitted can have its author name be obfuscated. This is not 100% foolproof (it's md5 ffs) but can stop casual snooping.
+	var/sqlite_feedback_cooldown = 0 // How long one must wait, in days, to submit another feedback form. Used to help prevent spam, especially with privacy active. 0 = No limit.
+	var/sqlite_feedback_min_age = 0 // Used to block new people from giving feedback. This metric is very bad but it can help slow down spammers.
+
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
 	for (var/T in L)
@@ -368,6 +388,9 @@ var/list/gamemode_cache = list()
 				if ("log_runtime")
 					config.log_runtime = 1
 
+				if ("log_graffiti")
+					config.log_graffiti = 1
+
 				if ("generate_map")
 					config.generate_map = 1
 
@@ -397,6 +420,9 @@ var/list/gamemode_cache = list()
 
 				if ("default_no_vote")
 					config.vote_no_default = 1
+
+				if ("pregame_time")
+					config.pregame_time = text2num(value)
 
 				if ("vote_delay")
 					config.vote_delay = text2num(value)
@@ -806,11 +832,46 @@ var/list/gamemode_cache = list()
 				if ("paranoia_logging")
 					config.paranoia_logging = 1
 
+				if("ip_reputation")
+					config.ip_reputation = 1
+
+				if("ipr_email")
+					config.ipr_email = value
+
+				if("ipr_block_bad_ips")
+					config.ipr_block_bad_ips = 1
+
+				if("ipr_bad_score")
+					config.ipr_bad_score = text2num(value)
+
+				if("ipr_allow_existing")
+					config.ipr_allow_existing = 1
+
+				if("ipr_minimum_age")
+					config.ipr_minimum_age = text2num(value)
+
 				if("random_submap_orientation")
 					config.random_submap_orientation = 1
 
 				if("autostart_solars")
 					config.autostart_solars = TRUE
+
+				if("sqlite_enabled")
+					config.sqlite_enabled = TRUE
+
+				if("sqlite_feedback")
+					config.sqlite_feedback = TRUE
+
+				if("sqlite_feedback_topics")
+					config.sqlite_feedback_topics = splittext(value, ";")
+					if(!config.sqlite_feedback_topics.len)
+						config.sqlite_feedback_topics += "General"
+
+				if("sqlite_feedback_privacy")
+					config.sqlite_feedback_privacy = TRUE
+
+				if("sqlite_feedback_cooldown")
+					config.sqlite_feedback_cooldown = text2num(value)
 
 
 

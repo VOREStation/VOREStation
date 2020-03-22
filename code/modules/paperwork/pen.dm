@@ -12,7 +12,7 @@
 /obj/item/weapon/pen
 	desc = "It's a normal black ink pen."
 	name = "pen"
-	icon = 'icons/obj/bureaucracy.dmi'
+	icon = 'icons/obj/bureaucracy_vr.dmi' //VOREStation Edit
 	icon_state = "pen"
 	item_state = "pen"
 	slot_flags = SLOT_BELT | SLOT_EARS
@@ -23,7 +23,11 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 10)
 	var/colour = "black"	//what colour the ink is!
 	pressure_resistance = 2
+	drop_sound = 'sound/items/drop/accessory.ogg'
 
+/obj/item/weapon/pen/attack_self(var/mob/user)
+	to_chat(user, "<span class='notice'>Click.</span>")
+	playsound(loc, 'sound/items/penclick.ogg', 50, 1)
 
 /obj/item/weapon/pen/blue
 	desc = "It's a normal blue ink pen."
@@ -44,6 +48,11 @@
 	var/selectedColor = 1
 	var/colors = list("black","blue","red")
 
+/obj/item/weapon/pen/AltClick(mob/user)
+	to_chat(user, "<span class='notice'>Click.</span>")
+	playsound(loc, 'sound/items/penclick.ogg', 50, 1)
+	return
+
 /obj/item/weapon/pen/multi/attack_self(mob/user)
 	if(++selectedColor > 3)
 		selectedColor = 1
@@ -55,7 +64,7 @@
 	else
 		icon_state = "pen_[colour]"
 
-	user << "<span class='notice'>Changed color to '[colour].'</span>"
+	to_chat(user, "<span class='notice'>Changed color to '[colour].'</span>")
 
 /obj/item/weapon/pen/invisible
 	desc = "It's an invisble pen marker."
@@ -87,6 +96,98 @@
 				var/contained = reagents.get_reagents()
 				var/trans = reagents.trans_to_mob(M, 30, CHEM_BLOOD)
 				add_attack_logs(user,M,"Injected with [src.name] containing [contained], trasferred [trans] units")
+
+/*
+ * Blade pens.
+ */
+
+/obj/item/weapon/pen/blade
+	desc = "It's a normal black ink pen."
+	description_antag = "This pen can be transformed into a dangerous melee and thrown assassination weapon with an Alt-Click.\
+	When active, it cannot be caught safely."
+	name = "pen"
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "pen"
+	item_state = "pen"
+	slot_flags = SLOT_BELT | SLOT_EARS
+	throwforce = 3
+	w_class = ITEMSIZE_TINY
+	throw_speed = 7
+	throw_range = 15
+	armor_penetration = 20
+
+	var/active = 0
+	var/active_embed_chance = 0
+	var/active_force = 15
+	var/active_throwforce = 30
+	var/active_w_class = ITEMSIZE_NORMAL
+	var/active_icon_state
+	var/default_icon_state
+
+/obj/item/weapon/pen/blade/Initialize()
+	..()
+	active_icon_state = "[icon_state]-x"
+	default_icon_state = icon_state
+
+/obj/item/weapon/pen/blade/AltClick(mob/user)
+	..()
+	if(active)
+		deactivate(user)
+	else
+		activate(user)
+
+	to_chat(user, "<span class='notice'>You [active ? "de" : ""]activate \the [src]'s blade.</span>")
+
+/obj/item/weapon/pen/blade/proc/activate(mob/living/user)
+	if(active)
+		return
+	active = 1
+	icon_state = active_icon_state
+	embed_chance = active_embed_chance
+	force = active_force
+	throwforce = active_throwforce
+	sharp = 1
+	edge = 1
+	w_class = active_w_class
+	playsound(user, 'sound/weapons/saberon.ogg', 15, 1)
+	damtype = SEARING
+	catchable = FALSE
+
+	attack_verb |= list(\
+		"slashed",\
+		"cut",\
+		"shredded",\
+		"stabbed"\
+		)
+
+/obj/item/weapon/pen/blade/proc/deactivate(mob/living/user)
+	if(!active)
+		return
+	playsound(user, 'sound/weapons/saberoff.ogg', 15, 1)
+	active = 0
+	icon_state = default_icon_state
+	embed_chance = initial(embed_chance)
+	force = initial(force)
+	throwforce = initial(throwforce)
+	sharp = initial(sharp)
+	edge = initial(edge)
+	w_class = initial(w_class)
+	damtype = BRUTE
+	catchable = TRUE
+
+/obj/item/weapon/pen/blade/blue
+	desc = "It's a normal blue ink pen."
+	icon_state = "pen_blue"
+	colour = "blue"
+
+/obj/item/weapon/pen/blade/red
+	desc = "It's a normal red ink pen."
+	icon_state = "pen_red"
+	colour = "red"
+
+/obj/item/weapon/pen/blade/fountain
+	desc = "A well made fountain pen."
+	icon_state = "pen_fountain"
 
 /*
  * Sleepy Pens
@@ -164,7 +265,7 @@
 				colour = COLOR_WHITE
 			else
 				colour = COLOR_BLACK
-		usr << "<span class='info'>You select the [lowertext(selected_type)] ink container.</span>"
+		to_chat(usr, "<span class='info'>You select the [lowertext(selected_type)] ink container.</span>")
 
 
 /*
@@ -186,7 +287,7 @@
 
 /obj/item/weapon/pen/crayon/suicide_act(mob/user)
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	viewers(user) << "<font color='red'><b>[user] is jamming the [src.name] up [TU.his] nose and into [TU.his] brain. It looks like [TU.he] [TU.is] trying to commit suicide.</b></font>"
+	to_chat(viewers(user),"<font color='red'><b>[user] is jamming the [src.name] up [TU.his] nose and into [TU.his] brain. It looks like [TU.he] [TU.is] trying to commit suicide.</b></font>")
 	return (BRUTELOSS|OXYLOSS)
 
 /obj/item/weapon/pen/crayon/New()

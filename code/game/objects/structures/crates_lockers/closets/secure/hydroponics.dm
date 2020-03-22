@@ -28,3 +28,23 @@
 	else
 		starts_with += /obj/item/clothing/suit/storage/apron/overalls
 	return ..()
+
+/obj/structure/closet/secure_closet/hydroponics/sci
+	name = "xenoflorist's locker"
+	req_access = list(access_xenobiology)
+	icon_state = "scihydrosecure1"
+	icon_closed = "scihydrosecure"
+	icon_locked = "scihydrosecure1"
+	icon_opened = "scihydrosecureopen"
+	icon_broken = "scihydrosecurebroken"
+	icon_off = "scihydrosecureoff"
+
+/obj/structure/closet/secure_closet/hydroponics/sci/Initialize()
+	starts_with += /obj/item/clothing/head/bio_hood/scientist
+	starts_with += /obj/item/clothing/suit/bio_suit/scientist
+	starts_with += /obj/item/clothing/mask/gas					// VOREStation Edit: Gasmasks we use are different
+
+	if(prob(1))
+		starts_with += /obj/item/weapon/chainsaw
+
+	return ..()

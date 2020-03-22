@@ -3,8 +3,9 @@
 	id = "adranol"
 	description = "A mild sedative that calms the nerves and relaxes the patient."
 	taste_description = "milk"
-	reagent_state = SOLID
+	reagent_state = LIQUID
 	color = "#d5e2e5"
+	scannable = 1
 
 /datum/reagent/adranol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -65,7 +66,7 @@
 	description = "A potent chemical that treats physical damage at an exceptional rate."
 	taste_description = "sparkles"
 	taste_mult = 3
-	reagent_state = SOLID
+	reagent_state = LIQUID
 	color = "#964e06"
 	overdose = REAGENTS_OVERDOSE * 0.5
 	scannable = 1
@@ -76,3 +77,18 @@
 		chem_effective = 0.75
 	if(alien != IS_DIONA)
 		M.heal_organ_damage(8 * removed * chem_effective, 0)
+
+/datum/reagent/sleevingcure
+	name = "Kitsuhanan Cure"
+	id = "sleevingcure"
+	description = "A rare cure provided by KHI that helps counteract negative side effects of using imperfect resleeving machinery."
+	taste_description = "chocolate peanut butter"
+	taste_mult = 2
+	reagent_state = LIQUID
+	color = "#b4dcdc"
+	overdose = 5
+	scannable = 0
+
+/datum/reagent/sleevingcure/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.remove_a_modifier_of_type(/datum/modifier/resleeving_sickness)
+	M.remove_a_modifier_of_type(/datum/modifier/faux_resleeving_sickness)

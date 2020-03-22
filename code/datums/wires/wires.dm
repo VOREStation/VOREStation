@@ -17,6 +17,9 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 	var/wire_count = 0 // Max is 16
 	var/wires_status = 0 // BITFLAG OF WIRES
 
+	var/hint_states = 0 // BITFLAG OF HINT STATES (For tracking if they changed for bolding in UI)
+	var/hint_states_initialized = FALSE // False until first time window is rendered.
+
 	var/list/wires = list()
 	var/list/signallers = list()
 
@@ -25,6 +28,19 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 	var/row_options2 = " width='260px'"
 	var/window_x = 370
 	var/window_y = 470
+
+// Note: Its assumed states are boolean.  If you ever have a multi-state hint, you must implement that yourself.
+/datum/wires/proc/show_hint(flag, current_state, true_text, false_text)
+	var/state_changed = FALSE
+	if(hint_states_initialized)
+		if(!(hint_states & flag) != !current_state) // NOT-ing to convert to boolean
+			state_changed = TRUE
+	if(current_state)
+		hint_states |= flag
+		return state_changed ? "<br><b>[true_text]</b>" : "<br>[true_text]"
+	else
+		hint_states &= ~flag
+		return state_changed ? "<br><b>[false_text]</b>" : "<br>[false_text]"
 
 /datum/wires/New(var/atom/holder)
 	..()
@@ -75,6 +91,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 	var/html = null
 	if(holder && CanUse(user))
 		html = GetInteractWindow()
+		hint_states_initialized = TRUE
 	if(html)
 		user.set_machine(holder)
 	else
@@ -114,23 +131,32 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 
 		var/mob/living/L = usr
 		if(CanUse(L) && href_list["action"])
-			var/obj/item/I = L.get_active_hand()
 			holder.add_hiddenprint(L)
+
+			var/list/items = L.get_all_held_items()
+			var/success = FALSE
+
 			if(href_list["cut"]) // Toggles the cut/mend status
-				if(I.is_wirecutter())
-					var/colour = href_list["cut"]
-					CutWireColour(colour)
-					playsound(holder, I.usesound, 20, 1)
-				else
-					L << "<span class='error'>You need wirecutters!</span>"
+				for(var/obj/item/I in items) // Paranoid about someone somehow grabbing a non-/obj/item, lets play it safe.
+					if(I.is_wirecutter())
+						var/colour = href_list["cut"]
+						CutWireColour(colour)
+						playsound(holder, I.usesound, 20, 1)
+						success = TRUE
+						break
+				if(!success)
+					to_chat(L, span("warning", "You need wirecutters!"))
 
 			else if(href_list["pulse"])
-				if(istype(I, /obj/item/device/multitool))
-					var/colour = href_list["pulse"]
-					PulseColour(colour)
-					playsound(holder, 'sound/weapons/empty.ogg', 20, 1)
-				else
-					L << "<span class='error'>You need a multitool!</span>"
+				for(var/obj/item/I in items)
+					if(I.is_multitool())
+						var/colour = href_list["pulse"]
+						PulseColour(colour)
+						playsound(holder, 'sound/weapons/empty.ogg', 20, 1)
+						success = TRUE
+						break
+				if(!success)
+					to_chat(L, span("warning", "You need a multitool!"))
 
 			else if(href_list["attach"])
 				var/colour = href_list["attach"]
@@ -142,11 +168,12 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 
 				// Attach
 				else
-					if(istype(I, /obj/item/device/assembly/signaler))
-						L.drop_item()
-						Attach(colour, I)
+					var/obj/item/device/assembly/signaler/S = L.is_holding_item_of_type(/obj/item/device/assembly/signaler)
+					if(istype(S))
+						L.drop_from_inventory(S)
+						Attach(colour, S)
 					else
-						L << "<span class='error'>You need a remote signaller!</span>"
+						to_chat(L, span("warning", "You need a remote signaller!"))
 
 
 

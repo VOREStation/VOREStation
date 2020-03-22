@@ -19,10 +19,9 @@ var/const/SMES_WIRE_FAILSAFES = 16	// Cut to disable failsafes, mend to reenable
 /datum/wires/smes/GetInteractWindow()
 	var/obj/machinery/power/smes/buildable/S = holder
 	. += ..()
-	. += "The green light is [(S.input_cut || S.input_pulsed || S.output_cut || S.output_pulsed) ? "off" : "on"]<br>"
-	. += "The red light is [(S.safeties_enabled || S.grounding) ? "off" : "blinking"]<br>"
-	. += "The blue light is [S.RCon ? "on" : "off"]"
-
+	. += show_hint(0x1, S.input_cut || S.input_pulsed || S.output_cut || S.output_pulsed, "The green light is off.", "The green light is on.")
+	. += show_hint(0x2, S.safeties_enabled || S.grounding, "The red light is off.", "The red light is blinking.")
+	. += show_hint(0x4, S.RCon, "The blue light is on.", "The blue light is off.")
 
 /datum/wires/smes/UpdateCut(var/index, var/mended)
 	var/obj/machinery/power/smes/buildable/S = holder

@@ -14,8 +14,8 @@
 	var/next_check=0
 	var/list/avail_dirs = list(NORTH,SOUTH,EAST,WEST)
 
-/turf/unsimulated/wall/supermatter/New()
-	..()
+/turf/unsimulated/wall/supermatter/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSturfs, src)
 	next_check = world.time+5 SECONDS
 
@@ -67,7 +67,7 @@
 	if(Adjacent(user))
 		return attack_hand(user)
 	else
-		user << "<span class = \"warning\">What the fuck are you doing?</span>"
+		to_chat(user, "<span class='warning'>What the fuck are you doing?</span>")
 	return
 
 // /vg/: Don't let ghosts fuck with this.

@@ -62,18 +62,33 @@
 	var/turf/FromTurf = mode ? get_turf(user) : get_turf(A)
 	var/turf/ToTurf = mode ? get_turf(A) : get_turf(user)
 
-	for(var/obj/O in FromTurf)
-		if(O.anchored) continue
-		if(prob(5))
-			O.forceMove(pick(trange(24,user)))
-		else
-			O.forceMove(ToTurf)
+	var/recievefailchance = 5
+	var/sendfailchance = 5
+	if(istype(user, /mob/living))
+		var/mob/living/L = user
+		if(LAZYLEN(L.buckled_mobs))
+			for(var/rider in L.buckled_mobs)
+				sendfailchance += 15
 
-	for(var/mob/living/M in FromTurf)
-		if(prob(5))
-			M.forceMove(pick(trange(24,user)))
-		else
-			M.forceMove(ToTurf)
+	if(mode)
+		if(user in FromTurf)
+			if(prob(sendfailchance))
+				user.forceMove(pick(trange(24,user)))
+			else
+				user.forceMove(ToTurf)
+	else
+		for(var/obj/O in FromTurf)
+			if(O.anchored) continue
+			if(prob(recievefailchance))
+				O.forceMove(pick(trange(24,user)))
+			else
+				O.forceMove(ToTurf)
+
+		for(var/mob/living/M in FromTurf)
+			if(prob(recievefailchance))
+				M.forceMove(pick(trange(24,user)))
+			else
+				M.forceMove(ToTurf)
 
 /obj/item/weapon/bluespace_harpoon/attack_self(mob/living/user as mob)
 	return chande_fire_mode(user)

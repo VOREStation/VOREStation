@@ -20,6 +20,11 @@
 #define MOVEMENT_FAILED			0	// Move() returned false for whatever reason and the mob didn't move.
 #define MOVEMENT_SUCCESSFUL		1	// Move() returned true and the mob hopefully moved.
 
+// Results of pre-attack checks
+#define ATTACK_ON_COOLDOWN		-1	// Recently attacked and needs to try again soon.
+#define ATTACK_FAILED			0	// Something else went wrong! Maybe they moved away!
+#define ATTACK_SUCCESSFUL		1	// We attacked (or tried to, misses count too)
+
 // Reasons for targets to not be valid. Based on why, the AI responds differently.
 #define AI_TARGET_VALID			0 // We can fight them.
 #define AI_TARGET_INVIS			1 // They were in field of view but became invisible. Switch to STANCE_BLINDFIGHT if no other viable targets exist.

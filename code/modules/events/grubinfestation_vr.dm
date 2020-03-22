@@ -3,7 +3,6 @@
 	endWhen			= 200
 	var/spawncount = 1
 	var/list/vents = list()
-	var/list/grubs = list()
 	var/give_positions = 0
 
 /datum/event/grub_infestation/setup()
@@ -31,7 +30,7 @@
 
 /datum/event/grub_infestation/end()
 	var/list/area_names = list()
-	for(var/grub in grubs)
+	for(var/grub in existing_solargrubs)
 		var/mob/living/G = grub
 		if(!G || G.stat == DEAD)
 			continue
@@ -44,4 +43,3 @@
 	if(area_names.len)
 		var/english_list = english_list(area_names)
 		command_announcement.Announce("Sensors have narrowed down remaining active solargrubs to the followng areas: [english_list]", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')
-	grubs.Cut()

@@ -9,12 +9,6 @@
 	var/tmp/list/datum/lighting_corner/corners
 	var/tmp/has_opaque_atom = FALSE // Not to be confused with opacity, this will be TRUE if there's any opaque atom on the tile.
 
-/turf/New()
-	. = ..()
-
-	if(opacity)
-		has_opaque_atom = TRUE
-
 // Causes any affecting light sources to be queued for a visibility update, for example a door got opened.
 /turf/proc/reconsider_lights()
 	for(var/datum/light_source/L in affecting_lights)
@@ -22,7 +16,7 @@
 
 /turf/proc/lighting_clear_overlay()
 	if(lighting_overlay)
-		qdel(lighting_overlay)
+		qdel(lighting_overlay, force = TRUE)
 
 	for(var/datum/lighting_corner/C in corners)
 		C.update_active()

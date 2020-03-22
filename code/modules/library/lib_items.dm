@@ -13,6 +13,7 @@
 
 /obj/structure/bookcase
 	name = "bookcase"
+	desc = "A set of wooden shelves, perfect for placing books on."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "book-0"
 	anchored = 1
@@ -95,7 +96,34 @@
 	else
 		icon_state = "book-5"
 
+/*
+Book Cart
+*/
 
+/obj/structure/bookcase/bookcart
+	name = "book cart"
+	icon = 'icons/obj/library.dmi'
+	icon_state = "bookcart-0"
+	anchored = 0
+	opacity = 0
+
+/obj/structure/bookcase/bookcart/attackby(obj/item/O as obj, mob/user as mob)
+	if(istype(O, /obj/item/weapon/book))
+		user.drop_item()
+		O.loc = src
+		update_icon()
+	else
+		return
+
+/obj/structure/bookcase/bookcart/update_icon()
+	if(contents.len < 5)
+		icon_state = "bookcart-[contents.len]"
+	else
+		icon_state = "bookcart-5"
+
+/*
+Book Cart End
+*/
 
 /obj/structure/bookcase/manuals/medical
 	name = "Medical Manuals bookcase"
@@ -152,6 +180,7 @@
 	var/title		 // The real name of the book.
 	var/carved = 0	 // Has the book been hollowed out for use as a secret storage item?
 	var/obj/item/store	//What's in the book?
+	drop_sound = 'sound/bureaucracy/bookclose.ogg'
 
 /obj/item/weapon/book/attack_self(var/mob/user as mob)
 	if(carved)
@@ -166,7 +195,9 @@
 	if(src.dat)
 		user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
 		user.visible_message("[user] opens a book titled \"[src.title]\" and begins reading intently.")
+		playsound(loc, 'sound/bureaucracy/bookopen.ogg', 50, 1)
 		onclose(user, "book")
+		playsound(loc, 'sound/bureaucracy/bookclose.ogg', 50, 1)
 	else
 		to_chat(user, "This book is completely blank!")
 
@@ -249,6 +280,8 @@
 		to_chat(user, "<span class='notice'>You begin to carve out [title].</span>")
 		if(do_after(user, 30))
 			to_chat(user, "<span class='notice'>You carve out the pages from [title]! You didn't want to read it anyway.</span>")
+			playsound(loc, 'sound/bureaucracy/papercrumple.ogg', 50, 1)
+			new /obj/item/weapon/shreddedp(get_turf(src))
 			carved = 1
 			return
 	else
@@ -297,7 +330,7 @@
 		user << browse(dat + "<html><head><title>[P.name]</title></head>" \
 		+ "<body style='overflow:hidden'>" \
 		+ "<div> <img src='tmp_photo.png' width = '180'" \
-		+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : ]"\
+		+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : null]"\
 		+ "</body></html>", "window=[name]")
 	else if(!isnull(pages[page]))
 		if(!(istype(usr, /mob/living/carbon/human) || isobserver(usr) || istype(usr, /mob/living/silicon)))

@@ -3,6 +3,7 @@
 	desc = "A folded membrane which rapidly expands into a large cubical shape on activation."
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "folded_wall"
+	drop_sound = 'sound/items/drop/rubber.ogg'
 	w_class = ITEMSIZE_NORMAL
 	var/deploy_path = /obj/structure/inflatable
 
@@ -14,7 +15,7 @@
 	if(!user)
 		return
 	if(!user.Adjacent(A))
-		to_chat(user,"You can't reach!")
+		to_chat(user, "You can't reach!")
 		return
 	if(istype(A, /turf))
 		inflate(user,A)
@@ -94,7 +95,7 @@
 
 /obj/item/inflatable/proc/inflate(var/mob/user,var/location)
 	playsound(location, 'sound/items/zip.ogg', 75, 1)
-	to_chat(user,"<span class='notice'>You inflate [src].</span>")
+	to_chat(user, "<span class='notice'>You inflate [src].</span>")
 	var/obj/structure/inflatable/R = new deploy_path(location)
 	src.transfer_fingerprints_to(R)
 	R.add_fingerprint(user)
@@ -102,7 +103,7 @@
 
 /obj/structure/inflatable/proc/deflate()
 	playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
-	//user << "<span class='notice'>You slowly deflate the inflatable wall.</span>"
+	//to_chat(user, "<span class='notice'>You slowly deflate the inflatable wall.</span>")
 	visible_message("[src] slowly deflates.")
 	spawn(50)
 		var/obj/item/inflatable/R = new /obj/item/inflatable(loc)
@@ -247,7 +248,7 @@
 	icon_state = "folded_wall_torn"
 
 	attack_self(mob/user)
-		user << "<span class='notice'>The inflatable wall is too torn to be inflated!</span>"
+		to_chat(user, "<span class='notice'>The inflatable wall is too torn to be inflated!</span>")
 		add_fingerprint(user)
 
 /obj/item/inflatable/door/torn
@@ -257,7 +258,7 @@
 	icon_state = "folded_door_torn"
 
 	attack_self(mob/user)
-		user << "<span class='notice'>The inflatable door is too torn to be inflated!</span>"
+		to_chat(user, "<span class='notice'>The inflatable door is too torn to be inflated!</span>")
 		add_fingerprint(user)
 
 /obj/item/weapon/storage/briefcase/inflatable

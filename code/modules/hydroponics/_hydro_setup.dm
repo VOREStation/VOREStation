@@ -58,3 +58,57 @@
 #define TRAIT_BIOLUM_COLOUR        37
 #define TRAIT_IMMUTABLE            38
 #define TRAIT_FLESH_COLOUR         39
+#define TRAIT_SPORING              40
+#define TRAIT_BENEFICIAL_REAG      41
+#define TRAIT_MUTAGENIC_REAG       42
+#define TRAIT_TOXIC_REAG           43
+
+// Global list initialization for plants.
+
+GLOBAL_LIST_INIT(plant_mob_products, list(
+	/mob/living/simple_mob/creature = 10,
+	/mob/living/simple_mob/blob/spore = 20,
+	/mob/living/simple_mob/tomato = 30,
+	/mob/living/simple_mob/animal/passive/dog = 5,
+	/mob/living/simple_mob/animal/passive/chicken = 5,
+	/mob/living/simple_mob/animal/passive/crab = 5,
+	/mob/living/simple_mob/animal/passive/lizard = 4,
+	/mob/living/simple_mob/animal/passive/lizard/large = 1,
+	/mob/living/simple_mob/animal/giant_spider/pepper = 1,
+	/mob/living/simple_mob/animal/giant_spider/frost = 1,
+	/mob/living/simple_mob/animal/giant_spider/webslinger = 1,
+	/mob/living/simple_mob/animal/passive/mouse = 1,
+	/mob/living/simple_mob/animal/space/carp = 1,
+	/mob/living/carbon/human/monkey = 1,
+	/mob/living/carbon/alien/diona = 1
+	))
+
+GLOBAL_LIST_INIT(plant_item_products, list(
+	/obj/item/stack/material/cloth = 30,
+	/obj/item/stack/material/wax = 20,
+	/obj/item/stack/material/log = 30,
+	/obj/item/stack/material/resin = 10,
+	/obj/item/weapon/material/shard/shrapnel = 2,
+	/obj/item/weapon/ore = 5,
+	/obj/item/weapon/ore/iron = 2,
+	/obj/item/weapon/ore/coal = 2,
+	/obj/item/weapon/reagent_containers/food/snacks/meat = 3,
+	/obj/random/meat = 1,
+	/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 2,
+	/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 2,
+	/obj/item/ammo_casing/a145 = 1,
+	/obj/item/ammo_casing/chemdart/small = 1,
+	/obj/item/ammo_casing/chemdart = 1,
+	/obj/item/organ/internal/brain/grey = 1,
+	/obj/item/organ/internal/heart/grey = 1,
+	/obj/item/weapon/spacecash/c1 = 3,
+	/obj/item/weapon/spacecash/c10 = 1
+	))
+
+GLOBAL_LIST_INIT(forbidden_plant_growth_sprites, list(
+	"gnomes"
+	))
+
+GLOBAL_LIST_INIT(forbidden_plant_product_sprites, list(
+	"gnomes"
+	))

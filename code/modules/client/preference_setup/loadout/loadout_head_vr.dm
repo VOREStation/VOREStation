@@ -9,3 +9,9 @@
 /datum/gear/head/headbando/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
+
+//Detective alternative
+/datum/gear/head/detective_alt
+	display_name = "cyberscope headgear, detective"
+	path = /obj/item/clothing/head/helmet/detective_alt
+	allowed_roles = list("Head of Security", "Detective")

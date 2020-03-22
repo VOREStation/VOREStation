@@ -141,20 +141,20 @@
 		var/turf_move_cost = T.movement_cost
 		if(istype(T, /turf/simulated/floor/water))
 			if(species.water_movement)
-				turf_move_cost = CLAMP(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + species.water_movement, 15)
+				turf_move_cost = CLAMP(turf_move_cost + species.water_movement, HUMAN_LOWEST_SLOWDOWN, 15)
 			if(shoes)
 				var/obj/item/clothing/shoes/feet = shoes
 				if(feet.water_speed)
-					turf_move_cost = CLAMP(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + feet.water_speed, 15)
+					turf_move_cost = CLAMP(turf_move_cost + feet.water_speed, HUMAN_LOWEST_SLOWDOWN, 15)
 			. += turf_move_cost
 
 		if(istype(T, /turf/simulated/floor/outdoors/snow))
 			if(species.snow_movement)
-				turf_move_cost = CLAMP(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + species.snow_movement, 15)
+				turf_move_cost = CLAMP(turf_move_cost + species.snow_movement, HUMAN_LOWEST_SLOWDOWN, 15)
 			if(shoes)
 				var/obj/item/clothing/shoes/feet = shoes
 				if(feet.water_speed)
-					turf_move_cost = CLAMP(HUMAN_LOWEST_SLOWDOWN, turf_move_cost + feet.snow_speed, 15)
+					turf_move_cost = CLAMP(turf_move_cost + feet.snow_speed, HUMAN_LOWEST_SLOWDOWN, 15)
 			. += turf_move_cost
 
 	// Wind makes it easier or harder to move, depending on if you're with or against the wind.
@@ -181,8 +181,8 @@
 	if(back)
 		if(istype(back,/obj/item/weapon/tank/jetpack))
 			thrust = back
-		else if(istype(back,/obj/item/weapon/rig))
-			var/obj/item/weapon/rig/rig = back
+		else if(istype(get_rig(),/obj/item/weapon/rig))
+			var/obj/item/weapon/rig/rig = get_rig()
 			for(var/obj/item/rig_module/maneuvering_jets/module in rig.installed_modules)
 				thrust = module.jets
 				break
@@ -224,10 +224,8 @@
 
 // Handle footstep sounds
 /mob/living/carbon/human/handle_footstep(var/turf/T)
-	//VOREStation Edit begin: SHADEKIN
-	if(shadekin_phasing_check())
+	if(is_incorporeal())
 		return
-	//VOREStation Edit end: SHADEKIN
 	if(!config.footstep_volume || !T.footstep_sounds || !T.footstep_sounds.len)
 		return
 	// Future Upgrades - Multi species support

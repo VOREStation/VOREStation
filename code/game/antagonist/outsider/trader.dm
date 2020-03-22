@@ -6,6 +6,7 @@ var/datum/antagonist/trader/traders
 	role_text = "Trader"
 	role_text_plural = "Traders"
 	welcome_text = "As a crewmember of the Beruang, you answer to your captain and international laws of space."
+	antag_sound = 'sound/effects/antag_notice/general_goodie_alert.ogg'
 	antag_text = "You are an <b>non-antagonist</b> visitor! Within the rules, \
 		try to provide interesting interaction for the crew. \
 		Try to make sure other players have <i>fun</i>! If you are confused or at a loss, always adminhelp, \
@@ -37,8 +38,8 @@ var/datum/antagonist/trader/traders
 /datum/antagonist/trader/greet(var/datum/mind/player)
 	if(!..())
 		return
-	player.current << "The Beruang is an independent cargo hauler, unless you decide otherwise. You're on your way to [station_name()]."
-	player.current << "You may want to discuss a collective story with the rest of your crew. More members may be joining, so don't move out straight away!"
+	to_chat(player.current, "The Beruang is an independent cargo hauler, unless you decide otherwise. You're on your way to [station_name()].")
+	to_chat(player.current, "You may want to discuss a collective story with the rest of your crew. More members may be joining, so don't move out straight away!")
 
 /datum/antagonist/trader/equip(var/mob/living/carbon/human/player)
 	player.equip_to_slot_or_del(new /obj/item/clothing/under/rank/cargotech(src), slot_w_uniform)

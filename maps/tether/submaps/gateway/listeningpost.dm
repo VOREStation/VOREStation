@@ -1,3 +1,8 @@
+/obj/effect/overmap/visitable/sector/tether_gateway/listeningpost
+	initial_generic_waypoints = list("tether_excursion_listeningpost")
+	true_name = "Strange Asteroid"
+	true_desc = "Scans indicate this asteroid is emitting large amounts of radio-frequency energy, and has indications of life being present."
+
 /obj/item/weapon/paper/listneningpost/mission
 	name = "\improper Operation: Watchtower"
 	info = {"<b>Mission Details</b>: You have been assigned to a newly constructed listening post

@@ -7,12 +7,13 @@
 	w_class = ITEMSIZE_NORMAL
 	step_volume_mod = 1.3
 	can_hold_knife = TRUE
+	drop_sound = 'sound/items/drop/boots.ogg'
 
 /obj/item/clothing/shoes/leg_guard/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(..()) //This will only run if no other problems occured when equiping.
 		if(H.wear_suit)
 			if(H.wear_suit.body_parts_covered & LEGS)
-				H << "<span class='warning'>You can't wear \the [src] with \the [H.wear_suit], it's in the way.</span>"
+				to_chat(H, "<span class='warning'>You can't wear \the [src] with \the [H.wear_suit], it's in the way.</span>")
 				return 0
 			for(var/obj/item/clothing/accessory/A in H.wear_suit)
 				if(A.body_parts_covered & LEGS)

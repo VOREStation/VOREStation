@@ -10,6 +10,7 @@
 
 /obj/machinery/media/jukebox/
 	name = "space jukebox"
+	desc = "Filled with songs both past and present!"
 	icon = 'icons/obj/jukebox.dmi'
 	icon_state = "jukebox2-nopower"
 	var/state_base = "jukebox2"
@@ -20,6 +21,7 @@
 	idle_power_usage = 10
 	active_power_usage = 100
 	circuit = /obj/item/weapon/circuitboard/jukebox
+	clicksound = 'sound/machines/buttonbeep.ogg'
 
 	// Vars for hacking
 	var/datum/wires/jukebox/wires = null

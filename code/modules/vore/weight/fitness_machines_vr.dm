@@ -11,22 +11,22 @@
 	var/cooldown = 10
 	var/weightloss_power = 1
 
-/obj/machinery/fitness/attack_hand(var/mob/living/user)
+/obj/machinery/fitness/attack_hand(mob/living/user)
 	if(user.nutrition < 70)
-		user << "<span class='notice'>You need more energy to workout with the [src]!</span>"
+		to_chat(user, "<span class='notice'>You need more energy to workout with the [src]!</span>")
 
 	else if(user.weight < 70)
-		user << "<span class='notice'>You're too skinny to risk losing any more weight!</span>"
+		to_chat(user, "<span class='notice'>You're too skinny to risk losing any more weight!</span>")
 
 	else //If they have enough nutrition and body weight, they can exercise.
 		user.setClickCooldown(cooldown)
 		user.nutrition -= 10 * weightloss_power
-		user.weight -= 0.025 * weightloss_power * (0.01*user.weight_loss)
-		flick("[icon_state]2",src)
+		user.weight -= 0.025 * weightloss_power * (0.01 * user.weight_loss)
+		flick("[icon_state]2", src)
 		var/message = pick(messages)
-		user << "<span class='notice'>[message].</span>"
+		to_chat(user, "<span class='notice'>[message].</span>")
 		for(var/s in workout_sounds)
-			playsound(src.loc, s, 50, 1)
+			playsound(loc, s, 50, 1)
 
 /obj/machinery/fitness/punching_bag
 	name = "punching bag"
@@ -54,21 +54,21 @@
 			"You hammer the clown right in it's face with your fist",
 			"A honk emits from the punching bag as you hit it")
 
-/obj/machinery/fitness/heavy/attackby(obj/item/W, var/mob/living/user)
+/obj/machinery/fitness/heavy/attackby(obj/item/W, mob/living/user)
 	if(W.is_wrench())
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 		user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
 		anchored = !anchored
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		return
 
-/obj/machinery/fitness/heavy/attack_hand(var/mob/living/user)
+/obj/machinery/fitness/heavy/attack_hand(mob/living/user)
 	if(!anchored)
-		user << "<span class='notice'>For safety reasons, you are required to have this equipment wrenched down before using it!</span>"
+		to_chat(user, "<span class='notice'>For safety reasons, you are required to have this equipment wrenched down before using it!</span>")
 		return
 
-	else if(user.loc != src.loc)
-		user << "<span class='notice'>For safety reasons, you need to be sitting in the [src] for it to work!</span>"
+	else if(user.loc != loc)
+		to_chat(user, "<span class='notice'>For safety reasons, you need to be sitting in the [src] for it to work!</span>")
 		return
 
 	else
@@ -94,7 +94,7 @@
 
 /obj/machinery/scale/attack_hand(var/mob/living/user)
 	if(user.loc != loc)
-		user << "<span class='notice'>You need to be standing on top of the scale for it to work!</span>"
+		to_chat(user, "<span class='notice'>You need to be standing on top of the scale for it to work!</span>")
 		return
 	if(user.weight) //Just in case.
 		var/kilograms = round(text2num(user.weight),4) / 2.20463

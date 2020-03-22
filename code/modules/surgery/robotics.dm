@@ -20,6 +20,8 @@
 		return 0
 	if (!(affected.robotic == ORGAN_ROBOT || affected.robotic == ORGAN_LIFELIKE)) //VOREStation Edit - No good on ORGAN_NANOFORM
 		return 0
+	if(coverage_check(user, target, affected, tool))
+		return 0
 	return 1
 
 ///////////////////////////////////////////////////////////////
@@ -423,20 +425,20 @@
 
 	/* VOREStation Edit - Don't worry about it. We can put these in regardless, because resleeving might make it useful after.
 	if(!M.brainmob || !M.brainmob.client || !M.brainmob.ckey || M.brainmob.stat >= DEAD)
-		user << "<span class='danger'>That brain is not usable.</span>"
+		to_chat(user, "<span class='danger'>That brain is not usable.</span>")
 		return SURGERY_FAILURE
 	*/
 
 	if(!(affected.robotic >= ORGAN_ROBOT))
-		user << "<span class='danger'>You cannot install a computer brain into a meat skull.</span>"
+		to_chat(user, "<span class='danger'>You cannot install a computer brain into a meat skull.</span>")
 		return SURGERY_FAILURE
 
 	if(!target.should_have_organ("brain"))
-		user << "<span class='danger'>You're pretty sure [target.species.name_plural] don't normally have a brain.</span>"
+		to_chat(user, "<span class='danger'>You're pretty sure [target.species.name_plural] don't normally have a brain.</span>")
 		return SURGERY_FAILURE
 
 	if(!isnull(target.internal_organs["brain"]))
-		user << "<span class='danger'>Your subject already has a brain.</span>"
+		to_chat(user, "<span class='danger'>Your subject already has a brain.</span>")
 		return SURGERY_FAILURE
 
 	return 1
@@ -479,5 +481,98 @@
 		target.real_name = target.name
 
 /datum/surgery_step/robotics/install_mmi/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	user.visible_message("<span class='warning'>[user]'s hand slips.</span>", \
+	"<span class='warning'>Your hand slips.</span>")
+
+/*
+ * Install a Diona Nymph into a Nymph Mech
+ */
+
+/datum/surgery_step/robotics/install_nymph
+	allowed_tools = list(
+	/obj/item/weapon/holder/diona = 100
+	)
+
+	min_duration = 60
+	max_duration = 80
+
+/datum/surgery_step/robotics/install_nymph/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if(target_zone != BP_TORSO)
+		return
+
+	var/obj/item/weapon/holder/diona/N = tool
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+
+	if(!(affected && affected.open == 3))
+		return 0
+
+	if(!istype(N))
+		return 0
+
+	if(!N.held_mob.client || N.held_mob.stat >= DEAD)
+		to_chat(user, "<span class='danger'>That nymph is not viable.</span>")
+		return SURGERY_FAILURE
+
+	if(!(affected.robotic >= ORGAN_ROBOT))
+		to_chat(user, "<span class='danger'>You cannot install a nymph into a meat puppet.</span>")
+		return SURGERY_FAILURE
+
+	if(!(affected.model != "Skrellian Exoskeleton"))
+		to_chat(user, "<span class='dangerou'>You're fairly certain a nymph can't pilot a normal robot.</span>")
+		return SURGERY_FAILURE
+
+	if(!target.should_have_organ("brain"))
+		to_chat(user, "<span class='danger'>You're pretty sure [target.species.name_plural] don't normally have a brain.</span>")
+		return SURGERY_FAILURE
+
+	if(!isnull(target.internal_organs["brain"]))
+		to_chat(user, "<span class='danger'>Your subject already has a cephalon.</span>")
+		return SURGERY_FAILURE
+
+	return 1
+
+/datum/surgery_step/robotics/install_nymph/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message("[user] starts setting \the [tool] into [target]'s [affected.name].", \
+	"You start setting \the [tool] into [target]'s [affected.name].")
+	..()
+
+/datum/surgery_step/robotics/install_nymph/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message("<span class='notice'>[user] has installed \the [tool] into [target]'s [affected.name].</span>", \
+	"<span class='notice'>You have installed \the [tool] into [target]'s [affected.name].</span>")
+
+	var/obj/item/weapon/holder/diona/N = tool
+	var/obj/item/organ/internal/brain/cephalon/cephalon = new(target, 1)
+	target.internal_organs_by_name["brain"] = cephalon
+	var/mob/living/carbon/alien/diona/D = N.held_mob
+	user.drop_from_inventory(tool)
+
+	if(D && D.mind)
+		D.mind.transfer_to(target)
+		target.languages |= D.languages
+
+	qdel(D)
+
+	target.species = GLOB.all_species[SPECIES_DIONA]
+
+	target.verbs |= /mob/living/carbon/human/proc/diona_split_nymph
+	target.verbs |= /mob/living/carbon/human/proc/regenerate
+
+	spawn(0) //Name yourself on your own damn time
+		var/new_name = ""
+		while(!new_name)
+			if(!target) return
+			var/try_name = input(target,"Pick a name for your new form!", "New Name", target.name)
+			var/clean_name = sanitizeName(try_name, allow_numbers = TRUE)
+			if(clean_name)
+				var/okay = alert(target,"New name will be '[clean_name]', ok?", "Confirmation","Cancel","Ok")
+				if(okay == "Ok")
+					new_name = clean_name
+
+		target.name = new_name
+		target.real_name = target.name
+
+/datum/surgery_step/robotics/install_nymph/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='warning'>[user]'s hand slips.</span>", \
 	"<span class='warning'>Your hand slips.</span>")

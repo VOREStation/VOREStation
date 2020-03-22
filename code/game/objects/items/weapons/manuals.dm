@@ -976,6 +976,7 @@
 
 /obj/item/weapon/book/manual/barman_recipes
 	name = "Barman Recipes"
+	desc = "For the enterprising drink server."
 	icon_state = "barbook"
 	author = "Sir John Rose"
 	title = "Barman Recipes"

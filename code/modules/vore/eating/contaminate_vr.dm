@@ -22,7 +22,7 @@ var/list/gurgled_overlays = list(
 	var/cleandesc
 	var/gurgled_color
 
-/obj/item/proc/gurgle_contaminate(var/atom/movable/item_storage = null, var/contamination_flavor = "Generic", var/contamination_color = "green")
+/obj/item/proc/gurgle_contaminate(atom/movable/item_storage = null, contamination_flavor = "Generic", contamination_color = "green")
 	if(!can_gurgle())
 		return FALSE
 
@@ -65,28 +65,16 @@ var/list/gurgled_overlays = list(
 	if(gurgled)
 		decontaminate()
 
-/obj/structure/sink/attackby(obj/item/O as obj, mob/user as mob) //Wash the soggy item before it can interact with the sink.
-	if(O.gurgled)
-		var/turf/location = user.loc
-		if(!isturf(location)) return
-
-		var/obj/item/I = O
-		if(!I || !istype(I,/obj/item)) return
-
-		to_chat(usr, "<span class='notice'>You start washing \the [I].</span>")
+/obj/structure/sink/attackby(obj/item/I, mob/user) //Wash the soggy item before it can interact with the sink.
+	if(istype(I) && I.gurgled)
+		to_chat(user, "<span class='notice'>You start washing [I].</span>")
 
 		busy = TRUE
-		sleep(40)
+		if(do_after(user, 40, src))
+			I.clean_blood()
+			user.visible_message("<span class='notice'>[user] washes [I] using [src].</span>",
+				"<span class='notice'>You wash [I] using [src].</span>")
 		busy = FALSE
-
-		if(user.loc != location) return				//User has moved
-		if(!I) return 								//Item's been destroyed while washing
-		if(user.get_active_hand() != I) return		//Person has switched hands or the item in their hands
-
-		O.clean_blood()
-		user.visible_message( \
-			"<span class='notice'>[user] washes \a [I] using \the [src].</span>", \
-			"<span class='notice'>You wash \a [I] using \the [src].</span>")
 	else
 		..()
 
@@ -95,7 +83,7 @@ var/list/gurgled_overlays = list(
 //////////////
 /obj/item/weapon/storage/box/open(mob/user as mob)
 	if(gurgled)
-		usr << "The soggy box falls apart in your hands."
+		to_chat(usr, "The soggy box falls apart in your hands.")
 		var/turf/T = get_turf(src)
 		for(var/obj/item/I in contents)
 			remove_from_storage(I, T)

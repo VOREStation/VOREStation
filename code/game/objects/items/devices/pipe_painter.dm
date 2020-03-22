@@ -1,5 +1,6 @@
 /obj/item/device/pipe_painter
 	name = "pipe painter"
+	desc = "Used to apply a even coat of paint to pipes. Atmospheric usage reccomended."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler1"
 	var/list/modes
@@ -27,4 +28,4 @@
 
 /obj/item/device/pipe_painter/examine(mob/user)
 	..(user)
-	user << "It is in [mode] mode."
+	to_chat(user, "It is in [mode] mode.")

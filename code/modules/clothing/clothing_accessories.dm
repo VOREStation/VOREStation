@@ -70,7 +70,7 @@
 	..(user)
 	if(LAZYLEN(accessories))
 		for(var/obj/item/clothing/accessory/A in accessories)
-			user << "\A [A] is attached to it."
+			to_chat(user, "\A [A] is attached to it.")
 
 /**
  *  Attach accessory A to src
@@ -121,13 +121,24 @@
 	set name = "Remove Accessory"
 	set category = "Object"
 	set src in usr
-	if(!istype(usr, /mob/living)) return
-	if(usr.stat) return
+
+	if(!istype(usr, /mob/living))
+		return
+
+	if(usr.stat)
+		return
+
 	var/obj/item/clothing/accessory/A
-	if(LAZYLEN(accessories))
-		A = input("Select an accessory to remove from [src]") as null|anything in accessories
+	var/accessory_amount = LAZYLEN(accessories)
+	if(accessory_amount)
+		if(accessory_amount == 1)
+			A = accessories[1] // If there's only one accessory, just remove it without any additional prompts.
+		else
+			A = input("Select an accessory to remove from \the [src]") as null|anything in accessories
+
 	if(A)
 		remove_accessory(usr,A)
+
 	if(!LAZYLEN(accessories))
 		src.verbs -= /obj/item/clothing/proc/removetie_verb
 		accessories = null

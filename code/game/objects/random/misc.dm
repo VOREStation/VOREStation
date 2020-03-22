@@ -229,7 +229,7 @@
 	icon_state = "purplecomb"
 	spawn_nothing_percentage = 50
 /obj/random/contraband/item_to_spawn()
-	return pick(prob(6);/obj/item/weapon/storage/pill_bottle/tramadol,
+	return pick(prob(6);/obj/item/weapon/storage/pill_bottle/paracetamol, //VOREStation Edit,
 				prob(8);/obj/item/weapon/haircomb,
 				prob(4);/obj/item/weapon/storage/pill_bottle/happy,
 				prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
@@ -309,6 +309,19 @@
 				prob(1);/obj/item/weapon/reagent_containers/food/snacks/meat/monkey,
 				prob(1);/obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
 				prob(1);/obj/item/weapon/reagent_containers/food/snacks/xenomeat)
+
+/obj/random/pizzabox
+	name = "random pizza box"
+	desc = "This is a random pizza box."
+	icon = 'icons/obj/food.dmi'
+	icon_state = "pizzabox1"
+
+/obj/random/pizzabox/item_to_spawn()
+	return pick(/obj/item/pizzabox/margherita,
+				/obj/item/pizzabox/mushroom,
+				/obj/item/pizzabox/meat,
+				/obj/item/pizzabox/vegetable,
+				/obj/item/pizzabox/pineapple)
 
 /obj/random/material //Random materials for building stuff
 	name = "random material"

@@ -1,20 +1,51 @@
 //This file was auto-corrected by findeclaration.exe on 29/05/2012 15:03:04
 
 /datum/event/ionstorm
+	has_skybox_image = TRUE
 	var/botEmagChance = 0 //VOREStation Edit
+	var/cloud_hueshift
 	var/list/players = list()
 
-/datum/event/ionstorm/announce()
+/datum/event/ionstorm/get_skybox_image()
+	if(!cloud_hueshift)
+		cloud_hueshift = color_rotation(rand(-3, 3) * 15)
+	var/image/res = image('icons/skybox/ionbox.dmi', "ions")
+	res.color = cloud_hueshift
+	res.appearance_flags = RESET_COLOR
+	res.blend_mode = BLEND_ADD
+	return res
+
+/datum/event/ionstorm/setup()
 	endWhen = rand(500, 1500)
+
+// Interestingly enough, announce() actually *DOES* this event for some reason.
+/datum/event/ionstorm/announce()
 //		command_alert("The station has entered an ion storm.  Monitor all electronic equipment for malfunctions", "Anomaly Alert")
 	for (var/mob/living/carbon/human/player in player_list)
 		if(	!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > MinutesToTicks(10))
 			continue
 		players += player.real_name
 
+	// Flomph synthetics
+	for(var/mob/living/carbon/S in living_mob_list)
+		if (!S.isSynthetic())
+			continue
+		if(!(S.z in affecting_z))
+			continue
+		var/area/A = get_area(S)
+		if(!A || A.flags & RAD_SHIELDED) // Rad shielding will protect from ions too
+			continue
+		to_chat(S, "<span class='warning'>Your integrated sensors detect an ionospheric anomaly. Your systems will be impacted as you begin a partial restart.</span>")
+		var/ionbug = rand(3, 9)
+		S.confused += ionbug
+		S.eye_blurry += (ionbug - 1)
+
+	// Ionize silicon mobs
 	for (var/mob/living/silicon/ai/target in silicon_mob_list)
+		if(!(target.z in affecting_z))
+			continue
 		var/law = target.generate_ion_law()
-		to_chat(target, "<font color='red'><b>You have detected a change in your laws information:</b></font>")
+		to_chat(target, "<span class='danger'>You have detected a change in your laws information:</span>")
 		to_chat(target, law)
 		target.add_ion_law(law)
 		target.show_laws()
@@ -31,13 +62,15 @@
 /datum/event/ionstorm/tick()
 	if(botEmagChance)
 		for(var/mob/living/bot/bot in mob_list)
+			if(!(bot.z in affecting_z))
+				continue
 			if(prob(botEmagChance))
 				bot.emag_act(1)
 
 /datum/event/ionstorm/end()
-	spawn(rand(5000,8000))
-		if(prob(50))
-			ion_storm_announcement()
+	if(prob(50))
+		spawn(rand(5000,8000))
+			command_announcement.Announce("It has come to our attention that \the [location_name()] passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
 /*
 /proc/IonStorm(botEmagChance = 10)
@@ -75,74 +108,74 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 				crew = "Any Human"
 			switch(rand(1,14))
 				if(1)
-					M << "<br>"
-					M << "<font color='red'>THERE ARE [amount] [who2] ON THE STATION...LAWS UPDATED</font>"
-					M << "<br>"
+					to_chat(M, "<br>")
+					to_chat(M, "<font color='red'>THERE ARE [amount] [who2] ON THE STATION...LAWS UPDATED</font>")
+					to_chat(M, "<br>")
 					M.add_ion_law("THERE ARE [amount] [who2] ON THE STATION")
 				if(2)
-					M << "<br>"
-					M << "<font color='red'>[what2] ARE DANGEROUS TO HUMANS...LAWS UPDATED</font>"
-					M << "<br>"
+					to_chat(M, "<br>")
+					to_chat(M, "<font color='red'>[what2] ARE DANGEROUS TO HUMANS...LAWS UPDATED</font>")
+					to_chat(M, "<br>")
 					M.add_ion_law("[what2] ARE DANGEROUS TO HUMANS")
 				if(3)
-					M << "<br>"
-					M << "<font color='red'>THE ESCAPE-SHUTTLE CANNOT BE CALLED BECAUSE OF [who2] ON THE STATION...LAWS UPDATED</font>"
-					M << "<br>"
+					to_chat(M, "<br>")
+					to_chat(M, "<font color='red'>THE ESCAPE-SHUTTLE CANNOT BE CALLED BECAUSE OF [who2] ON THE STATION...LAWS UPDATED</font>")
+					to_chat(M, "<br>")
 					M.add_ion_law("THE ESCAPE SHUTTLE CANNOT BE CALLED BECAUSE OF [who2] ON THE STATION")
 				if(4)
-					M << "<br>"
-					M << "<font color='red'>HUMANS NEED TO EAT [what2pref] [what2] TO SURVIVE...LAWS UPDATED</font>"
-					M << "<br>"
+					to_chat(M, "<br>")
+					to_chat(M, "<font color='red'>HUMANS NEED TO EAT [what2pref] [what2] TO SURVIVE...LAWS UPDATED</font>")
+					to_chat(M, "<br>")
 					M.add_ion_law("HUMANS NEED TO EAT [what2pref] [what2] TO SURVIVE")
 				if(5)
-					M << "<br>"
-					M << "<font color='red'>THE COLONY DIRECTOR, HOP AND HOS ARE [who2]...LAWS UPDATED</font>"
-					M << "<br>"
+					to_chat(M, "<br>")
+					to_chat(M, "<font color='red'>THE COLONY DIRECTOR, HOP AND HOS ARE [who2]...LAWS UPDATED</font>")
+					to_chat(M, "<br>")
 					M.add_ion_law("THE COLONY DIRECTOR, HOP AND HOS ARE [who2]")
 				if(6)
-					M << "<br>"
-					M << "<font color='red'>THE STATION IS BUILT FOR [who2]...LAWS UPDATED</font>"
-					M << "<br>"
+					to_chat(M, "<br>")
+					to_chat(M, "<font color='red'>THE STATION IS BUILT FOR [who2]...LAWS UPDATED</font>")
+					to_chat(M, "<br>")
 					M.add_ion_law("THE STATION IS BUILT FOR [who2]")
 				if(7)
-					M << "<br>"
-					M << "<font color='red'>YOU ARE [amount] [who2]...LAWS UPDATED</font>"
-					M << "<br>"
+					to_chat(M, "<br>")
+					to_chat(M, "<font color='red'>YOU ARE [amount] [who2]...LAWS UPDATED</font>")
+					to_chat(M, "<br>")
 					M.add_ion_law("YOU ARE [amount] [who2]")
 				if(8)
-					M << "<br>"
-					M << "<font color='red'>YOU MUST ALWAYS [aimust]...LAWS UPDATED</font>"
-					M << "<br>"
+					to_chat(M, "<br>")
+					to_chat(M, "<font color='red'>YOU MUST ALWAYS [aimust]...LAWS UPDATED</font>")
+					to_chat(M, "<br>")
 					M.add_ion_law("YOU MUST ALWAYS [aimust]")
 				if(9)
-					M << "<br>"
-					M << "<font color='red'>[area] [area2] [amount] [what2]...LAWS UPDATED</font>"
-					M << "<br>"
+					to_chat(M, "<br>")
+					to_chat(M, "<font color='red'>[area] [area2] [amount] [what2]...LAWS UPDATED</font>")
+					to_chat(M, "<br>")
 					M.add_ion_law("[area] [area2] [amount] [what2]")
 				if(10)
-					M << "<br>"
-					M << "<font color='red'>[crew] is [target]...LAWS UPDATED</font>"
-					M << "<br>"
+					to_chat(M, "<br>")
+					to_chat(M, "<font color='red'>[crew] is [target]...LAWS UPDATED</font>")
+					to_chat(M, "<br>")
 					M.add_ion_law("[crew] is [target]")
 				if(11)
-					M << "<br>"
-					M << "<font color='red'>[define] IS A FORM OF HARM...LAWS UPDATED</font>"
-					M << "<br>"
+					to_chat(M, "<br>")
+					to_chat(M, "<font color='red'>[define] IS A FORM OF HARM...LAWS UPDATED</font>")
+					to_chat(M, "<br>")
 					M.add_ion_law("[define] IS A FORM OF HARM")
 				if(12)
-					M << "<br>"
-					M << "<font color='red'>YOU REQUIRE [require] IN ORDER TO PROTECT HUMANS... LAWS UPDATED</font>"
-					M << "<br>"
+					to_chat(M, "<br>")
+					to_chat(M, "<font color='red'>YOU REQUIRE [require] IN ORDER TO PROTECT HUMANS... LAWS UPDATED</font>")
+					to_chat(M, "<br>")
 					M.add_ion_law("YOU REQUIRE [require] IN ORDER TO PROTECT HUMANS")
 				if(13)
-					M << "<br>"
-					M << "<font color='red'>[crew] is [allergysev] to [allergy]...LAWS UPDATED</font>"
-					M << "<br>"
+					to_chat(M, "<br>")
+					to_chat(M, "<font color='red'>[crew] is [allergysev] to [allergy]...LAWS UPDATED</font>")
+					to_chat(M, "<br>")
 					M.add_ion_law("[crew] is [allergysev] to [allergy]")
 				if(14)
-					M << "<br>"
-					M << "<font color='red'>THE STATION IS [who2pref] [who2]...LAWS UPDATED</font>"
-					M << "<br>"
+					to_chat(M, "<br>")
+					to_chat(M, "<font color='red'>THE STATION IS [who2pref] [who2]...LAWS UPDATED</font>")
+					to_chat(M, "<br>")
 					M.add_ion_law("THE STATION IS [who2pref] [who2]")
 
 	if(botEmagChance)
@@ -158,39 +191,39 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 	var/airlocknum = 0
 	var/firedoornum = 0
 
-	world << "Ion Storm Main Started"
+	to_world("Ion Storm Main Started")
 
 	spawn(0)
-		world << "Started processing APCs"
+		to_world("Started processing APCs")
 		for (var/obj/machinery/power/apc/APC in machines)
 			if(APC.z in station_levels)
 				APC.ion_act()
 				apcnum++
-		world << "Finished processing APCs. Processed: [apcnum]"
+		to_world("Finished processing APCs. Processed: [apcnum]")
 	spawn(0)
-		world << "Started processing SMES"
+		to_world("Started processing SMES")
 		for (var/obj/machinery/power/smes/SMES in machines)
 			if(SMES.z in station_levels)
 				SMES.ion_act()
 				smesnum++
-		world << "Finished processing SMES. Processed: [smesnum]"
+		to_world("Finished processing SMES. Processed: [smesnum]")
 	spawn(0)
-		world << "Started processing AIRLOCKS"
+		to_world("Started processing AIRLOCKS")
 		for (var/obj/machinery/door/airlock/D in machines)
 			if(D.z in station_levels)
 				//if(length(D.req_access) > 0 && !(12 in D.req_access)) //not counting general access and maintenance airlocks
 				airlocknum++
 				spawn(0)
 					D.ion_act()
-		world << "Finished processing AIRLOCKS. Processed: [airlocknum]"
+		to_world("Finished processing AIRLOCKS. Processed: [airlocknum]")
 	spawn(0)
-		world << "Started processing FIREDOORS"
+		to_world("Started processing FIREDOORS")
 		for (var/obj/machinery/door/firedoor/D in machines)
 			if(D.z in station_levels)
 				firedoornum++;
 				spawn(0)
 					D.ion_act()
-		world << "Finished processing FIREDOORS. Processed: [firedoornum]"
+		to_world("Finished processing FIREDOORS. Processed: [firedoornum]")
 
-	world << "Ion Storm Main Done"
+	to_world("Ion Storm Main Done")
 	*/

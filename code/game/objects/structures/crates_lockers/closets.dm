@@ -58,7 +58,7 @@
 	update_icon()
 
 /obj/structure/closet/examine(mob/user)
-	if(..(user, 1) && !opened)
+	if(!src.opened && (..(user, 1) || isobserver(user)))
 		var/content_size = 0
 		for(var/obj/item/I in src.contents)
 			if(!I.anchored)
@@ -73,6 +73,9 @@
 			to_chat(user, "There is still some free space.")
 		else
 			to_chat(user, "It is full.")
+
+	if(!src.opened && isobserver(user))
+		to_chat(user, "It contains: [counting_english_list(contents)]")
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target)
 	if(wall_mounted)
@@ -359,12 +362,6 @@
 	src.add_fingerprint(user)
 	if(!src.toggle())
 		to_chat(usr, "<span class='notice'>It won't budge!</span>")
-
-/obj/structure/closet/attack_ghost(mob/ghost)
-	if(ghost.client && ghost.client.inquisitive_ghost)
-		ghost.examinate(src)
-		if (!src.opened)
-			to_chat(ghost, "It contains: [english_list(contents)].")
 
 /obj/structure/closet/verb/verb_toggleopen()
 	set src in oview(1)

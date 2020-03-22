@@ -210,7 +210,7 @@
 	medicalActive2 = null
 	medical_cannotfind = 0
 	SSnanoui.update_uis(src)
-	usr << "<span class='notice'>You reset your record-viewing software.</span>"
+	to_chat(usr, "<span class='notice'>You reset your record-viewing software.</span>")
 
 /mob/living/silicon/pai/cancel_camera()
 	set category = "pAI Commands"
@@ -230,7 +230,7 @@
 	var/cameralist[0]
 
 	if(usr.stat == 2)
-		usr << "You can't change your camera network because you are dead!"
+		to_chat(usr, "You can't change your camera network because you are dead!")
 		return
 
 	for (var/obj/machinery/camera/C in Cameras)
@@ -458,16 +458,16 @@
 			switch(alert(user, "Do you wish to add access to [src] or remove access from [src]?",,"Add Access","Remove Access", "Cancel"))
 				if("Add Access")
 					idcard.access |= ID.access
-					user << "<span class='notice'>You add the access from the [W] to [src].</span>"
+					to_chat(user, "<span class='notice'>You add the access from the [W] to [src].</span>")
 					return
 				if("Remove Access")
 					idcard.access = list()
-					user << "<span class='notice'>You remove the access from [src].</span>"
+					to_chat(user, "<span class='notice'>You remove the access from [src].</span>")
 					return
 				if("Cancel")
 					return
 		else if (istype(W, /obj/item/weapon/card/id) && idaccessible == 0)
-			user << "<span class='notice'>[src] is not accepting access modifcations at this time.</span>"
+			to_chat(user, "<span class='notice'>[src] is not accepting access modifcations at this time.</span>")
 			return
 
 /mob/living/silicon/pai/verb/allowmodification()

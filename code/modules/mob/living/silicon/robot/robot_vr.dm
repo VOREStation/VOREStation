@@ -140,7 +140,7 @@
 								cleaned_human.shoes.clean_blood()
 								cleaned_human.update_inv_shoes(0)
 							cleaned_human.clean_blood(1)
-							cleaned_human << "<span class='warning'>[src] cleans your face!</span>"
+							to_chat(cleaned_human, "<span class='warning'>[src] cleans your face!</span>")
 	return
 
 /mob/living/silicon/robot/proc/vr_sprite_check()
@@ -226,13 +226,13 @@
 	if(M in buckled_mobs)
 		return FALSE
 	if(M.size_multiplier > size_multiplier * 1.2)
-		to_chat(src,"<span class='warning'>This isn't a pony show! You need to be bigger for them to ride.</span>")
+		to_chat(src, "<span class='warning'>This isn't a pony show! You need to be bigger for them to ride.</span>")
 		return FALSE
 
 	var/mob/living/carbon/human/H = M
 
 	if(isTaurTail(H.tail_style))
-		to_chat(src,"<span class='warning'>Too many legs. TOO MANY LEGS!!</span>")
+		to_chat(src, "<span class='warning'>Too many legs. TOO MANY LEGS!!</span>")
 		return FALSE
 	if(M.loc != src.loc)
 		if(M.Adjacent(src))
@@ -276,6 +276,6 @@
 /mob/living/silicon/robot/onTransitZ(old_z, new_z)
 	if(shell)
 		if(deployed && using_map.ai_shell_restricted && !(new_z in using_map.ai_shell_allowed_levels))
-			to_chat(src,"<span class='warning'>Your connection with the shell is suddenly interrupted!</span>")
+			to_chat(src, "<span class='warning'>Your connection with the shell is suddenly interrupted!</span>")
 			undeploy()
 	..()

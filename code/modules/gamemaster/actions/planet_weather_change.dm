@@ -1,7 +1,7 @@
 /datum/gm_action/planet_weather_shift
 	name = "sudden weather shift"
 	enabled = TRUE
-	departments = list(ROLE_EVERYONE)
+	departments = list(DEPARTMENT_EVERYONE)
 	reusable = TRUE
 	var/datum/planet/target_planet
 

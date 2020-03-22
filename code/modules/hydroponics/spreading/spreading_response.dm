@@ -20,12 +20,8 @@
 	manual_unbuckle(user)
 
 /obj/effect/plant/Crossed(atom/movable/O)
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = O
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
+	if(O.is_incorporeal())
+		return
 	if(isliving(O))
 		trodden_on(O)
 
@@ -39,6 +35,9 @@
 		return
 	seed.do_thorns(victim,src)
 	seed.do_sting(victim,src,pick("r_foot","l_foot","r_leg","l_leg"))
+
+	if(seed.get_trait(TRAIT_SPORING) && prob(round(seed.get_trait(TRAIT_POTENCY)/2)))
+		seed.create_spores(get_turf(victim))
 
 /obj/effect/plant/proc/unbuckle()
 	if(has_buckled_mobs())
@@ -101,6 +100,6 @@
 			victim.forceMove(src.loc)
 			buckle_mob(victim)
 			victim.set_dir(pick(cardinal))
-			victim << "<span class='danger'>Tendrils [pick("wind", "tangle", "tighten")] around you!</span>"
+			to_chat(victim, "<span class='danger'>Tendrils [pick("wind", "tangle", "tighten")] around you!</span>")
 			victim.Weaken(0.5)
 			seed.do_thorns(victim,src)

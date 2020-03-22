@@ -34,6 +34,9 @@
 	desc = "An automated combat drone armed with state of the art weaponry and shielding."
 	catalogue_data = list(/datum/category_item/catalogue/technology/drone/combat_drone)
 
+	icon = 'icons/mob/animal_vr64x64.dmi' //VOREStation Add
+	pixel_x = -16 //VOREStation Add
+	pixel_y = -16 //VOREStation Add
 	icon_state = "drone"
 	icon_living = "drone"
 	icon_dead = "drone_dead"

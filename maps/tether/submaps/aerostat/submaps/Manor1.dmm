@@ -280,6 +280,7 @@
 /area/submap/virgo2/Manor1)
 "bj" = (
 /obj/effect/decal/cleanable/cobweb,
+/obj/structure/salvageable/personal,
 /turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 "bk" = (
@@ -724,6 +725,10 @@
 "VR" = (
 /obj/tether_away_spawner/aerostat_surface,
 /turf/simulated/floor/carpet/purcarpet,
+/area/submap/virgo2/Manor1)
+"Yk" = (
+/obj/structure/salvageable/personal,
+/turf/simulated/floor/holofloor/wood,
 /area/submap/virgo2/Manor1)
 
 (1,1,1) = {"
@@ -2802,7 +2807,7 @@ ab
 ab
 ab
 ab
-ag
+Yk
 br
 bx
 bC
@@ -2812,7 +2817,7 @@ ab
 ab
 ab
 ab
-ag
+Yk
 bx
 cm
 cp

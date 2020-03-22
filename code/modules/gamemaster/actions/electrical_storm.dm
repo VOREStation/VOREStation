@@ -1,6 +1,6 @@
 /datum/gm_action/electrical_storm
 	name = "electrical storm"
-	departments = list(ROLE_EVERYONE)
+	departments = list(DEPARTMENT_EVERYONE)
 	reusable = TRUE
 	var/lightsoutAmount	= 1
 	var/lightsoutRange	= 25
@@ -30,4 +30,4 @@
 			apc.overload_lighting()
 
 /datum/gm_action/electrical_storm/get_weight()
-	return 30 + (metric.count_people_in_department(ROLE_ENGINEERING) * 15) + (metric.count_people_in_department(ROLE_EVERYONE) * 5)
+	return 30 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 15) + (metric.count_people_in_department(DEPARTMENT_EVERYONE) * 5)

@@ -1,6 +1,31 @@
+/obj/effect/step_trigger/teleporter/roguemine_loop/north/New()
+	..()
+	teleport_x = x
+	teleport_y = 16
+	teleport_z = z
+
+/obj/effect/step_trigger/teleporter/roguemine_loop/south/New()
+	..()
+	teleport_x = x
+	teleport_y = world.maxy - 16
+	teleport_z = z
+
+/obj/effect/step_trigger/teleporter/roguemine_loop/west/New()
+	..()
+	teleport_x = world.maxx - 16
+	teleport_y = y
+	teleport_z = z
+
+/obj/effect/step_trigger/teleporter/roguemine_loop/east/New()
+	..()
+	teleport_x = 16
+	teleport_y = y
+	teleport_z = z
+
+/*
 /obj/effect/step_trigger/teleporter/random/rogue
-	teleport_z = 7
-	teleport_z_offset = 7
+	teleport_z = 15
+	teleport_z_offset = 0
 
 /obj/effect/step_trigger/teleporter/random/rogue/fourbyfour
 	var/margin = 15 //How far from the side should we teleport? Make sure to place the opposite
@@ -8,7 +33,7 @@
 					//else people will get stuck in the margins
 					//Important for auto-determining the size, as well.
 
-	var/mapsize = 300 //I don't know of a way to obtain map size sorry.
+	var/mapsize = 140 //I don't know of a way to obtain map size sorry.
 
 	//Important infos!
 	var/quad_L
@@ -84,7 +109,7 @@
 	teleport_x_offset = quad_R - margin
 	teleport_y = quad_U - margin
 	teleport_y_offset = quad_U - margin
-
+*/
 //Sure, I could probably do this with math. But I'm tired.
 /*
          S1      300

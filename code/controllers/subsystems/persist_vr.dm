@@ -36,15 +36,13 @@ SUBSYSTEM_DEF(persist)
 
 		// Try and detect job and department of mob
 		var/datum/job/J = detect_job(M)
-		if(!istype(J) || !J.department || !J.timeoff_factor)
+		if(!istype(J) || !J.pto_type || !J.timeoff_factor)
 			if (MC_TICK_CHECK)
 				return
 			continue
 
 		// Do not collect useless PTO
-		var/department_earning = J.department
-		if(J.department == "Command")
-			department_earning = "Civilian"
+		var/department_earning = J.pto_type
 		clear_unused_pto(M)
 
 		// Update client whatever
@@ -90,6 +88,6 @@ SUBSYSTEM_DEF(persist)
 /datum/controller/subsystem/persist/proc/clear_unused_pto(var/mob/M)
 	var/client/C = M.client
 	LAZYINITLIST(C.department_hours)
-	if(C.department_hours["Command"])
-		C.department_hours["Command"] = null
-		C.department_hours.Remove("Command")
+	if(C.department_hours[DEPARTMENT_COMMAND])
+		C.department_hours[DEPARTMENT_COMMAND] = null
+		C.department_hours.Remove(DEPARTMENT_COMMAND)

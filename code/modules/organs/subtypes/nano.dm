@@ -14,55 +14,55 @@
 /obj/item/organ/external/head/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
-	max_damage = 10
+	max_damage = 30
 	min_broken_damage = 1000 //Inheritance
 	vital = FALSE
 /obj/item/organ/external/arm/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
-	max_damage = 10
+	max_damage = 20
 	min_broken_damage = 1000 //Please
 	vital = FALSE
 /obj/item/organ/external/arm/right/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
-	max_damage = 10
+	max_damage = 20
 	min_broken_damage = 1000
 	vital = FALSE
 /obj/item/organ/external/leg/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
-	max_damage = 10
+	max_damage = 20
 	min_broken_damage = 1000
 	vital = FALSE
 /obj/item/organ/external/leg/right/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
-	max_damage = 10
+	max_damage = 20
 	min_broken_damage = 1000
 	vital = FALSE
 /obj/item/organ/external/hand/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
-	max_damage = 10
+	max_damage = 20
 	min_broken_damage = 1000
 	vital = FALSE
 /obj/item/organ/external/hand/right/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
-	max_damage = 10
+	max_damage = 20
 	min_broken_damage = 1000
 	vital = FALSE
 /obj/item/organ/external/foot/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
-	max_damage = 10
+	max_damage = 20
 	min_broken_damage = 1000
 	vital = FALSE
 /obj/item/organ/external/foot/right/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
-	max_damage = 10
+	max_damage = 20
 	min_broken_damage = 1000
 	vital = FALSE
 

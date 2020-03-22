@@ -22,9 +22,9 @@ var/const/GRID_CHECKER_WIRE_NOTHING_2 = 128		// Does nothing, but makes it a bit
 /datum/wires/grid_checker/GetInteractWindow()
 	var/obj/machinery/power/grid_checker/G = holder
 	. += ..()
-	. += "The green light is [G.power_failing ? "off" : "on"].<br>"
-	. += "The red light is [G.wire_locked_out ? "on" : "off"].<br>"
-	. += "The blue light is [G.wire_allow_manual_1 && G.wire_allow_manual_2 && G.wire_allow_manual_3 ? "on" : "off"]."
+	. += show_hint(0x1, G.power_failing, "The green light is off.", "The green light is on.")
+	. += show_hint(0x2, G.wire_locked_out, "The red light is on.", "The red light is off.")
+	. += show_hint(0x4, G.wire_allow_manual_1 && G.wire_allow_manual_2 && G.wire_allow_manual_3, "The blue light is on.", "The blue light is off.")
 
 
 /datum/wires/grid_checker/UpdateCut(var/index, var/mended)

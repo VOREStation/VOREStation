@@ -7,6 +7,7 @@
 
 	// Strings.
 	var/welcome_text = "Cry havoc and let slip the dogs of war!"
+	var/antag_sound = 'sound/effects/antag_notice/general_baddie_alert.ogg' // The sound file to play when someone gets this role. Only they can hear it.
 	var/leader_welcome_text                 // Text shown to the leader, if any.
 	var/victory_text                        // World output at roundend for victory.
 	var/loss_text                           // As above for loss.
@@ -143,7 +144,7 @@
 	if(!istype(player))
 		message_admins("[uppertext(ticker.mode.name)]: Failed to find a candidate for [role_text].")
 		return 0
-	player.current << "<span class='danger'><i>You have been selected this round as an antagonist!</i></span>"
+	to_chat(player.current, "<span class='danger'><i>You have been selected this round as an antagonist!</i></span>")
 	message_admins("[uppertext(ticker.mode.name)]: Selected [player] as a [role_text].")
 	if(istype(player.current, /mob/observer/dead))
 		create_default(player.current)

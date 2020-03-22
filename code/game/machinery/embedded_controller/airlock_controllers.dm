@@ -2,6 +2,7 @@
 /obj/machinery/embedded_controller/radio/airlock
 	// Setup parameters only
 	radio_filter = RADIO_AIRLOCK
+	program = /datum/computer/file/embedded_program/airlock
 	var/tag_exterior_door
 	var/tag_interior_door
 	var/tag_airpump
@@ -11,11 +12,22 @@
 	var/tag_airlock_mech_sensor
 	var/tag_shuttle_mech_sensor
 	var/tag_secure = 0
+	var/list/dummy_terminals = list()
 	var/cycle_to_external_air = 0
 
-/obj/machinery/embedded_controller/radio/airlock/Initialize()
-	. = ..()
-	program = new/datum/computer/file/embedded_program/airlock(src)
+/obj/machinery/embedded_controller/radio/airlock/Destroy()
+	// TODO - Leshana - Implement dummy terminals
+	//for(var/thing in dummy_terminals)
+	//	var/obj/machinery/dummy_airlock_controller/dummy = thing
+	//	dummy.master_controller = null
+	//dummy_terminals.Cut()
+	return ..()
+
+/obj/machinery/embedded_controller/radio/airlock/CanUseTopic(var/mob/user)
+	if(!allowed(user))
+		return min(STATUS_UPDATE, ..())
+	else
+		return ..()
 
 //Advanced airlock controller for when you want a more versatile airlock controller - useful for turning simple access control rooms into airlocks
 /obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller
@@ -37,42 +49,19 @@
 
 	if (!ui)
 		ui = new(user, src, ui_key, "advanced_airlock_console.tmpl", name, 470, 290)
-
 		ui.set_initial_data(data)
-
 		ui.open()
-
 		ui.set_auto_update(1)
 
 /obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller/Topic(href, href_list)
-	if(..())
+	if((. = ..()))
 		return
 
-	usr.set_machine(src)
-	src.add_fingerprint(usr)
-
-	var/clean = 0
 	switch(href_list["command"])	//anti-HTML-hacking checks
-		if("cycle_ext")
-			clean = 1
-		if("cycle_int")
-			clean = 1
-		if("force_ext")
-			clean = 1
-		if("force_int")
-			clean = 1
-		if("abort")
-			clean = 1
-		if("purge")
-			clean = 1
-		if("secure")
-			clean = 1
-
-	if(clean)
-		program.receive_user_command(href_list["command"])
+		if("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "purge", "secure")
+			program.receive_user_command(href_list["command"])
 
 	return 1
-
 
 //Airlock controller for airlock control - most airlocks on the station use this
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller
@@ -90,22 +79,15 @@
 	)
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-
 	if (!ui)
 		ui = new(user, src, ui_key, "simple_airlock_console.tmpl", name, 470, 290)
-
 		ui.set_initial_data(data)
-
 		ui.open()
-
 		ui.set_auto_update(1)
 
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller/Topic(href, href_list)
-	if(..())
+	if((. = ..()))
 		return
-
-	usr.set_machine(src)
-	src.add_fingerprint(usr)
 
 	var/clean = 0
 	switch(href_list["command"])	//anti-HTML-hacking checks
@@ -124,7 +106,6 @@
 		program.receive_user_command(href_list["command"])
 
 	return 1
-
 
 //Access controller for door control - used in virology and the like
 /obj/machinery/embedded_controller/radio/airlock/access_controller
@@ -154,22 +135,15 @@
 	)
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-
 	if (!ui)
 		ui = new(user, src, ui_key, "door_access_console.tmpl", name, 330, 220)
-
 		ui.set_initial_data(data)
-
 		ui.open()
-
 		ui.set_auto_update(1)
 
 /obj/machinery/embedded_controller/radio/airlock/access_controller/Topic(href, href_list)
-	if(..())
+	if((. = ..()))
 		return
-
-	usr.set_machine(src)
-	src.add_fingerprint(usr)
 
 	var/clean = 0
 	switch(href_list["command"])	//anti-HTML-hacking checks

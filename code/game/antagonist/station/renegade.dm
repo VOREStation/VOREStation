@@ -8,6 +8,7 @@ var/datum/antagonist/renegade/renegades
 	bantype = "renegade"
 	restricted_jobs = list("AI", "Cyborg")
 	welcome_text = "Something's going to go wrong today, you can just feel it. You're paranoid, you've got a gun, and you're going to survive."
+	antag_sound = 'sound/effects/antag_notice/general_goodie_alert.ogg'
 	antag_text = "You are a <b>minor</b> antagonist! Within the rules, \
 		try to protect yourself and what's important to you. You aren't here to cause trouble, \
 		you're just more willing (and equipped) to go to extremes to stop it than others are. \
@@ -97,7 +98,7 @@ var/datum/antagonist/renegade/renegades
 
 
 /proc/rightandwrong()
-	usr << "<B>You summoned guns!</B>"
+	to_chat(usr, "<B>You summoned guns!</B>")
 	message_admins("[key_name_admin(usr, 1)] summoned guns!")
 	for(var/mob/living/carbon/human/H in player_list)
 		if(H.stat == 2 || !(H.client)) continue

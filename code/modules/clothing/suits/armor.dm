@@ -13,10 +13,10 @@
 	if(..()) //This will only run if no other problems occured when equiping.
 		for(var/obj/item/clothing/I in list(H.gloves, H.shoes))
 			if(I && (src.body_parts_covered & ARMS && I.body_parts_covered & ARMS) )
-				H << "<span class='warning'>You can't wear \the [src] with \the [I], it's in the way.</span>"
+				to_chat(H, "<span class='warning'>You can't wear \the [src] with \the [I], it's in the way.</span>")
 				return 0
 			if(I && (src.body_parts_covered & LEGS && I.body_parts_covered & LEGS) )
-				H << "<span class='warning'>You can't wear \the [src] with \the [I], it's in the way.</span>"
+				to_chat(H, "<span class='warning'>You can't wear \the [src] with \the [I], it's in the way.</span>")
 				return 0
 		return 1
 
@@ -198,10 +198,10 @@
 /obj/item/clothing/suit/armor/reactive/attack_self(mob/user as mob)
 	active = !( active )
 	if (active)
-		user << "<font color='blue'>The reactive armor is now active.</font>"
+		to_chat(user, "<font color='blue'>The reactive armor is now active.</font>")
 		icon_state = "reactive"
 	else
-		user << "<font color='blue'>The reactive armor is now inactive.</font>"
+		to_chat(user, "<font color='blue'>The reactive armor is now inactive.</font>")
 		icon_state = "reactiveoff"
 		add_fingerprint(user)
 	return

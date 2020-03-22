@@ -1,16 +1,12 @@
 #pretending we're C because otherwise ruby will initialize, even with "language: dm".
 language: c
-sudo: false
 
 env:
   global:
+    - BASENAME="vorestation" # $BASENAME.dmb, $BASENAME.dme, etc.
     - BYOND_MAJOR="513"
-    - BYOND_MINOR="1502"
+    - BYOND_MINOR="1513"
     - MACRO_COUNT=4
-  matrix:
-    - TEST_DEFINE="MAP_TEST" TEST_FILE="code/_map_tests.dm" RUN="0"
-    - TEST_DEFINE="AWAY_MISSION_TEST" TEST_FILE="code/_away_mission_tests.dm" RUN="0"
-    - TEST_DEFINE="UNIT_TEST" TEST_FILE="code/_unit_tests.dm" RUN="1"
 
 cache:
   directories:
@@ -24,29 +20,36 @@ addons:
       - libstdc++6:i386
       - libssl-dev:i386
 
-before_script:
-  - chmod +x ./install-byond.sh
-  - ./install-byond.sh
+before_install:
+  - chmod -R +x ./tools/travis
 
 install:
-  - pip install --user PyYaml -q
-  - pip install --user beautifulsoup4 -q
+  - ./tools/travis/install_byond.sh
+
+before_script:
+  - shopt -s globstar
 
 script:
-  - shopt -s globstar
-  - (! grep 'step_[xy]' maps/**/*.dmm)
-  - (! grep -Pn '( |\t|;|{)tag( ?)=' maps/**/*.dmm)
-  - (! find nano/templates/ -type f -exec md5sum {} + | sort | uniq -D -w 32 | grep nano)
-  - (! grep -En "<\s*span\s+class\s*=\s*('[^'>]+|[^'>]+')\s*>" **/*.dm)
-  - (! grep 'maps\\.*test.*' *.dme)
-  - awk -f tools/indentation.awk **/*.dm
-  - md5sum -c - <<< "88490b460c26947f5ec1ab1bb9fa9f17 *html/changelogs/example.yml"
-  - (num=`grep -E '\\\\(red|blue|green|black|b|i[^mc])' **/*.dm | wc -l`; echo "$num escapes (expecting ${MACRO_COUNT} or less)"; [ $num -le ${MACRO_COUNT} ])
-  - source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
-  - python tools/TagMatcher/tag-matcher.py ../..
-  # Run our test
-  - cp config/example/* config/
-  - echo "#define ${TEST_DEFINE} 1" > ${TEST_FILE}
-  - DreamMaker vorestation.dme
-  - if [ $RUN -eq 1 ]; then DreamDaemon vorestation.dmb -invisible -trusted -core 2>&1 | tee log.txt; fi
-  - if [ $RUN -eq 1 ]; then grep "All Unit Tests Passed" log.txt; fi
+  - ./tools/travis/compile_and_run.sh
+
+# Build-specific settings
+jobs:
+  include:
+    - stage: "File Tests" #This is the odd man out, with specific installs and stuff.
+      name: "Validate Files"
+      install: #Need python for some of the tag matching stuff
+        - pip install --user PyYaml -q
+        - pip install --user beautifulsoup4 -q
+      script: ./tools/travis/validate_files.sh
+      addons:
+        apt: 
+          packages: ~ # Don't need any packages for this
+    - stage: "Unit Tests"
+      env: TEST_DEFINE="UNIT_TEST" TEST_FILE="code/_unit_tests.dm" RUN="1"
+      name: "Compile normally (unit tests)"
+    - stage: "Isolation Tests"
+      env: TEST_DEFINE="MAP_TEST" TEST_FILE="code/_map_tests.dm" RUN="0"
+      name: "Compile POIs (no run)"
+    - env: TEST_DEFINE="AWAY_MISSION_TEST" TEST_FILE="code/_away_mission_tests.dm" RUN="0"
+      name: "Compile away missions (no run)"  
+    

@@ -11,15 +11,18 @@
 	light_color = "#55AAFF"
 
 	combustion = FALSE
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/ion
+	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
+	hitsound = 'sound/weapons/ionrifle.ogg'
 
 	var/sev1_range = 0
 	var/sev2_range = 1
 	var/sev3_range = 1
 	var/sev4_range = 1
 
-/obj/item/projectile/ion/on_hit(var/atom/target, var/blocked = 0)
-		empulse(target, sev1_range, sev2_range, sev3_range, sev4_range)
-		return 1
+/obj/item/projectile/ion/on_impact(var/atom/target)
+	empulse(target, sev1_range, sev2_range, sev3_range, sev4_range)
+	..()
 
 /obj/item/projectile/ion/small
 	sev1_range = -1
@@ -58,6 +61,7 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#55AAFF"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
 
 	combustion = FALSE
 
@@ -133,6 +137,7 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#33CC00"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
 
 	combustion = FALSE
 
@@ -189,6 +194,7 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#FFFFFF"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
 
 /obj/item/projectile/energy/florayield/on_hit(var/atom/target, var/blocked = 0)
 	var/mob/M = target
@@ -211,6 +217,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		M.Confuse(rand(5,8))
+	..()
 
 /obj/item/projectile/chameleon
 	name = "bullet"

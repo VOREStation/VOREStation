@@ -2,74 +2,78 @@
 // Vore management panel for players
 //
 
-#define BELLIES_MAX 30
+#define BELLIES_MAX 40
 #define BELLIES_NAME_MIN 2
 #define BELLIES_NAME_MAX 20
 #define BELLIES_DESC_MAX 2048
 #define FLAVOR_MAX 40
 
+/mob/living
+	var/datum/vore_look/vorePanel
+
 /mob/living/proc/insidePanel()
 	set name = "Vore Panel"
 	set category = "IC"
 
-	var/datum/vore_look/picker_holder = new()
-	picker_holder.loop = picker_holder
-	picker_holder.selected = vore_selected
+	if(!vorePanel)
+		log_debug("[src] ([type], \ref[src]) didn't have a vorePanel and tried to use the verb.")
+		vorePanel = new
 
-	var/dat = picker_holder.gen_ui(src)
-
-	picker_holder.popup = new(src, "insidePanel","Inside!", 450, 700, picker_holder)
-	picker_holder.popup.set_content(dat)
-	picker_holder.popup.open()
-	src.openpanel = 1
+	vorePanel.selected = vore_selected
+	vorePanel.show(src)
 
 /mob/living/proc/updateVRPanel() //Panel popup update call from belly events.
-	if(src.openpanel == 1)
-		var/datum/vore_look/picker_holder = new()
-		picker_holder.loop = picker_holder
-		picker_holder.selected = vore_selected
+	if(!vorePanel)
+		log_debug("[src] ([type], \ref[src]) didn't have a vorePanel and something tried to update it.")
+		vorePanel = new
 
-		var/dat = picker_holder.gen_ui(src)
-
-		picker_holder.popup = new(src, "insidePanel","Inside!", 450, 700, picker_holder)
-		picker_holder.popup.set_content(dat)
-		picker_holder.popup.open()
+	if(vorePanel.open)
+		vorePanel.selected = vore_selected
+		vorePanel.show(src)
 
 //
 // Callback Handler for the Inside form
 //
 /datum/vore_look
+	var/datum/browser/popup
 	var/obj/belly/selected
 	var/show_interacts = 0
-	var/datum/browser/popup
-	var/loop = null;  // Magic self-reference to stop the handler from being GC'd before user takes action.
+	var/open = FALSE
 
 /datum/vore_look/Destroy()
-	loop = null
 	selected = null
-	return QDEL_HINT_HARDDEL // TODO - Until I can better analyze how this weird thing works, lets be safe
+	QDEL_NULL(popup)
+	. = ..()
 
 /datum/vore_look/Topic(href,href_list[])
-	if (vp_interact(href, href_list))
+	if(vp_interact(href, href_list))
 		popup.set_content(gen_ui(usr))
 		usr << output(popup.get_content(), "insidePanel.browser")
+
+/datum/vore_look/proc/show(mob/living/user)
+	if(popup)
+		QDEL_NULL(popup)
+	popup = new(user, "insidePanel", "Inside!", 450, 700, src)
+	popup.set_content(gen_ui(user))
+	popup.open()
+	open = TRUE
 
 /datum/vore_look/proc/gen_ui(var/mob/living/user)
 	var/dat
 
 	var/atom/userloc = user.loc
-	if (isbelly(userloc))
+	if(isbelly(userloc))
 		var/obj/belly/inside_belly = userloc
 		var/mob/living/eater = inside_belly.owner
 
 		//Don't display this part if we couldn't find the belly since could be held in hand.
 		if(inside_belly)
-			dat += "<font color = 'green'>You are currently [user.absorbed ? "absorbed into " : "inside "]</font> <font color = 'yellow'>[eater]'s</font> <font color = 'red'>[inside_belly]</font>!<br><br>"
+			dat += "<font color='green'>You are currently [user.absorbed ? "absorbed into " : "inside "]</font> <font color = 'yellow'>[eater]'s</font> <font color = 'red'>[inside_belly]</font>!<br><br>"
 
 			if(inside_belly.desc)
 				dat += "[inside_belly.desc]<br><br>"
 
-			if (inside_belly.contents.len > 1)
+			if(inside_belly.contents.len > 1)
 				dat += "You can see the following around you:<br>"
 				for (var/atom/movable/O in inside_belly)
 					if(istype(O,/mob/living))
@@ -326,6 +330,11 @@
 			dat += "<br><a style='background:#173d15;' href='?src=\ref[src];toggledfeed=1'>Toggle Feeding (Currently: ON)</a>"
 		if(FALSE)
 			dat += "<br><a style='background:#990000;' href='?src=\ref[src];toggledfeed=1'>Toggle Feeding (Currently: OFF)</a>"
+	switch(user.absorbable)
+		if(TRUE)
+			dat += "<a style='background:#173d15;' href='?src=\ref[src];toggleabsorbable=1'>Toggle Absorbtion Permission (Currently: ON)</a>"
+		if(FALSE)
+			dat += "<a style='background:#990000;' href='?src=\ref[src];toggleabsorbable=1'>Toggle Absorbtion Permission (Currently: OFF)</a>"
 	switch(user.digest_leave_remains)
 		if(TRUE)
 			dat += "<a style='background:#173d15;' href='?src=\ref[src];toggledlm=1'>Toggle Leaving Remains (Currently: ON)</a>"
@@ -369,11 +378,9 @@
 
 /datum/vore_look/proc/vp_interact(href, href_list)
 	var/mob/living/user = usr
-	for(var/H in href_list)
-
 	if(href_list["close"])
-		qdel(src)  // Cleanup
-		user.openpanel = 0
+		open = FALSE
+		QDEL_NULL(popup)
 		return
 
 	if(href_list["show_int"])
@@ -960,6 +967,19 @@
 
 		if(user.client.prefs_vr)
 			user.client.prefs_vr.feeding = user.feeding
+
+	if(href_list["toggleabsorbable"])
+		var/choice = alert(user, "This button allows preds to know whether you prefer or don't prefer to be absorbed. Currently you are [user.absorbable? "" : "not"] giving permission.", "", "Allow absorption", "Cancel", "Disallow absorption")
+		switch(choice)
+			if("Cancel")
+				return FALSE
+			if("Allow absorption")
+				user.absorbable = TRUE
+			if("Disallow absorption")
+				user.absorbable = FALSE
+
+		if(user.client.prefs_vr)
+			user.client.prefs_vr.absorbable = user.absorbable
 
 	if(href_list["toggledlm"])
 		var/choice = alert(user, "This button allows preds to have your remains be left in their belly after you are digested. This will only happen if pred sets their belly to do so. Remains consist of skeletal parts. Currently you are [user.digest_leave_remains? "" : "not"] leaving remains.", "", "Allow Post-digestion Remains", "Cancel", "Disallow Post-digestion Remains")

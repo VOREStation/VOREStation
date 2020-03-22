@@ -10,7 +10,7 @@
 */
 /mob/living/proc/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/soaked = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
 	if(Debug2)
-		world.log << "## DEBUG: apply_damage() was called on [src], with [damage] damage, and an armor value of [blocked]."
+		to_world_log("## DEBUG: apply_damage() was called on [src], with [damage] damage, and an armor value of [blocked].")
 	if(!damage || (blocked >= 100))
 		return 0
 	if(soaked)
@@ -64,7 +64,7 @@
 
 /mob/living/proc/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0, var/check_protection = 1)
 	if(Debug2)
-		world.log << "## DEBUG: apply_effect() was called.  The type of effect is [effecttype].  Blocked by [blocked]."
+		to_world_log("## DEBUG: apply_effect() was called.  The type of effect is [effecttype].  Blocked by [blocked].")
 	if(!effect || (blocked >= 100))
 		return 0
 	blocked = (100-blocked)/100
@@ -109,5 +109,9 @@
 	if(drowsy)		apply_effect(drowsy, DROWSY, blocked)
 	if(agony)		apply_effect(agony, AGONY, blocked)
 	if(flammable)	adjust_fire_stacks(flammable)
-	if(ignite)		IgniteMob()
+	if(ignite)
+		if(ignite >= 3)
+			add_modifier(/datum/modifier/fire/stack_managed/intense, 60 SECONDS)
+		else
+			add_modifier(/datum/modifier/fire/stack_managed, 45 * ignite SECONDS)
 	return 1

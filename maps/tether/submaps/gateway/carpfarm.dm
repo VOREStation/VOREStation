@@ -1,3 +1,8 @@
+/obj/effect/overmap/visitable/sector/tether_gateway/carpfarm
+	initial_generic_waypoints = list("tether_excursion_carpfarm")
+	true_name = "Carp-Infested Outpost"
+	true_desc = "Scans indicate this outpost has many instances of 'space carp' moving around, along with an assortment of equipment that appears human in origin."
+
 /area/awaymission/carpfarm
 	icon_state = "blank"
 	requires_power = 0

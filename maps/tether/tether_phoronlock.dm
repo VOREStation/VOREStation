@@ -146,11 +146,8 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 		ui.set_auto_update(1)
 
 /obj/machinery/embedded_controller/radio/airlock/phoron/Topic(href, href_list)
-	if(..())
+	if((. = ..()))
 		return
-
-	usr.set_machine(src)
-	src.add_fingerprint(usr)
 
 	var/clean = 0
 	switch(href_list["command"])	//anti-HTML-hacking checks
