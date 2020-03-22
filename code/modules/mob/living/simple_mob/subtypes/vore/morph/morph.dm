@@ -34,7 +34,7 @@
 	response_help = "touches"
 	response_disarm = "pushes"
 	response_harm = "hits"
-	attacktext = "glomps"
+	attacktext = "glomped"
 	attack_sound = 'sound/effects/blobattack.ogg'
 
 	meat_amount = 2
