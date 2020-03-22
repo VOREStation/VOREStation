@@ -120,6 +120,8 @@
 	flags = 0
 /datum/language/zaddat
 	flags = 0
+/datum/language/human
+	flags = 0
 /datum/language/gutter
 	flags = WHITELISTED
 	machine_understands = FALSE
