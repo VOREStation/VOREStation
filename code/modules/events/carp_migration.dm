@@ -66,7 +66,7 @@
 				target = T
 			if(target)
 				M.ai_holder?.give_destination(target) // Ask carp to swim towards the middle of the map
-		i++
+			i++
 
 // Spawn a single carp at given location.
 /datum/event/carp_migration/proc/spawn_one_carp(var/loc)
