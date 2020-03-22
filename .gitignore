@@ -16,3 +16,9 @@ code/game/gamemodes/technomancer/spells/projectile/overload.dm
 code/game/gamemodes/technomancer/spells/projectile/overload.dm
 code/modules/client/preference_setup/loadout/loadout_xeno.dm
 temp.dmi
+
+vorestation.dme
+
+maps/tether/submaps/om_ships/backup/Vespa.dmm
+
+maps/tether/submaps/om_ships/Vespa.dmm.before
