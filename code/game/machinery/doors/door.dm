@@ -42,7 +42,7 @@
 	if(isanimal(user))
 		var/mob/living/simple_mob/S = user
 		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
-			visible_message("<span class='danger'>\The [user] smashes into the [src]!</span>")
+			visible_message("<span class='danger'>\The [user] smashes into [src]!</span>")
 			playsound(src, S.attack_sound, 75, 1)
 			take_damage(damage)
 		else

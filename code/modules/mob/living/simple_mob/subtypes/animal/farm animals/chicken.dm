@@ -18,7 +18,7 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
-	attacktext = list("kicked")
+	attacktext = list("pecked")
 
 	has_langs = list("Bird")
 
