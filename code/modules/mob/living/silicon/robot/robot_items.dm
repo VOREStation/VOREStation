@@ -214,7 +214,7 @@
 				overlays += image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer)
 				addedSomething = 1
 		if ( addedSomething )
-			user.visible_message("<font color='blue'>[user] load some items onto their service tray.</font>")
+			user.visible_message("<font color='blue'>[user] loads some items onto their service tray.</font>")
 
 		return
 
