@@ -79,9 +79,3 @@
 /datum/shuttle/autodock/ferry/supply/proc/eta_minutes()
 	var/ticksleft = arrive_time - world.time
 	return round(ticksleft/600,1)
-
-// Read the docking codes off of the target to make sure we can always dock.
-/datum/shuttle/autodock/ferry/supply/update_docking_target(var/obj/effect/shuttle_landmark/location)
-	..()
-	if(active_docking_controller && active_docking_controller.docking_codes)
-		set_docking_codes(active_docking_controller.docking_codes)
