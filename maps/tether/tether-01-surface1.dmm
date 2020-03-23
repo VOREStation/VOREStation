@@ -5708,17 +5708,28 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence)
 "ajN" = (
-/obj/structure/catwalk,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/public_garden_maintenence)
-"ajO" = (
-/obj/structure/catwalk,
-/obj/machinery/light/small{
-	dir = 1
+/obj/structure/grille,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "holodeck";
+	name = "Holodeck Privacy Shutters";
+	opacity = 0
+	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "holodeck"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 1;
+	id = "holodeck"
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/lower/public_garden_maintenence)
+/area/holodeck_control)
+"ajO" = (
+/turf/simulated/wall,
+/area/holodeck_control)
 "ajP" = (
 /obj/structure/railing{
 	dir = 8
@@ -5764,14 +5775,25 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/public_garden_maintenence)
 "ajV" = (
-/obj/structure/catwalk,
-/obj/machinery/alarm{
+/obj/structure/grille,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	density = 0;
 	dir = 8;
-	pixel_x = 25;
-	pixel_y = 0
+	icon_state = "shutter0";
+	id = "holodeck";
+	name = "Holodeck Privacy Shutters";
+	opacity = 0
+	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "holodeck"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = "holodeck"
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/lower/public_garden_maintenence)
+/area/holodeck_control)
 "ajW" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/wall,
@@ -6070,20 +6092,12 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/public_garden_maintenence)
 "akH" = (
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
+/obj/machinery/camera/network/outside{
+	icon_state = "camera";
+	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/public_garden_maintenence)
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/holodeck_control)
 "akI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/firecloset,
@@ -6101,20 +6115,10 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence)
 "akL" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 9
+/turf/simulated/floor/reinforced{
+	name = "Holodeck Projector Floor"
 	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 9
-	},
-/obj/machinery/firealarm{
-	dir = 2;
-	layer = 3.3;
-	pixel_x = 0;
-	pixel_y = 26
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/public_garden_one)
+/area/holodeck/alphadeck)
 "akM" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 1
@@ -6128,9 +6132,18 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
 "akO" = (
-/obj/structure/window/reinforced,
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/public_garden_one)
+/obj/machinery/firealarm{
+	dir = 4;
+	layer = 3.3;
+	pixel_x = 26
+	},
+/obj/machinery/camera/network/civilian,
+/obj/structure/table/standard,
+/obj/random/soap,
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
 "akP" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/effect/floor_decal/borderfloor/corner{
@@ -6186,9 +6199,14 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
 "akV" = (
-/obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/public_garden_one)
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence)
 "akW" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -6200,15 +6218,24 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
 "akY" = (
-/obj/structure/window/reinforced{
-	dir = 8
+/obj/structure/catwalk,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/public_garden_one)
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence)
 "akZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/public_garden_one)
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence)
 "ala" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 4
@@ -22840,6 +22867,18 @@
 	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/visitor_dining)
+"aLm" = (
+/obj/structure/catwalk,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence)
 "aLn" = (
 /obj/structure/grille,
 /obj/structure/railing{
@@ -32290,6 +32329,454 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
+"bcY" = (
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence)
+"bcZ" = (
+/obj/machinery/computer/HolodeckControl{
+	icon_state = "computer";
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bda" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 24
+	},
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 8
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdb" = (
+/obj/machinery/door/airlock/maintenance/common,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/plating,
+/area/holodeck_control)
+"bdc" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence)
+"bdd" = (
+/obj/machinery/door/airlock/maintenance/common,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence)
+"bde" = (
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence)
+"bdf" = (
+/obj/structure/catwalk,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence)
+"bdg" = (
+/obj/machinery/door/airlock{
+	name = "Holodeck"
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdh" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 9
+	},
+/obj/effect/floor_decal/techfloor/hole{
+	icon_state = "techfloor_hole_left";
+	dir = 4
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdi" = (
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 1
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdj" = (
+/obj/structure/catwalk,
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 25;
+	pixel_y = 0
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence)
+"bdk" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/polarized/full{
+	id = "holodeck"
+	},
+/turf/simulated/floor,
+/area/holodeck_control)
+"bdl" = (
+/obj/machinery/hologram/holopad,
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdm" = (
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdn" = (
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence)
+"bdo" = (
+/obj/machinery/camera/network/civilian{
+	dir = 9
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdp" = (
+/obj/machinery/button/windowtint{
+	id = "holodeck";
+	pixel_x = 35;
+	pixel_y = 0;
+	range = 14;
+	req_access = newlist()
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/alarm{
+	alarm_id = "anomaly_testing";
+	breach_detection = 0;
+	dir = 8;
+	frequency = 1439;
+	pixel_x = 22;
+	pixel_y = 0;
+	report_danger_level = 0
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdq" = (
+/obj/structure/table/standard,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
+	},
+/obj/item/weapon/paper{
+	info = "Brusies sustained in the holodeck can be healed simply by sleeping.";
+	name = "Holodeck Disclaimer"
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bds" = (
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence)
+"bdt" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdu" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdv" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock{
+	name = "Holodeck"
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdw" = (
+/obj/machinery/light/small,
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 10
+	},
+/obj/effect/floor_decal/techfloor/hole/right{
+	icon_state = "techfloor_hole_right";
+	dir = 4
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdx" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 8
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdy" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 28
+	},
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 1
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdz" = (
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 22;
+	pixel_y = 0
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 1
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdA" = (
+/obj/machinery/door/airlock/glass{
+	name = "Holodeck"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/holodeck_control)
+"bdB" = (
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/public_garden_maintenence)
+"bdC" = (
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_one)
+"bdD" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 9
+	},
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 0;
+	pixel_y = 26
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_one)
+"bdE" = (
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/bordercorner{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_one)
+"bdF" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_one)
+"bdG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_one)
+"bdH" = (
+/obj/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_one)
+"bdI" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_one)
+"bdJ" = (
+/obj/machinery/hologram/holopad,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_one)
+"bdK" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 5
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_one)
+"bdL" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_one)
+"bdM" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_one)
+"bdN" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_one)
 "cGJ" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
@@ -35053,6 +35540,7 @@ aad
 aad
 aad
 aad
+akH
 aad
 aad
 aad
@@ -35061,8 +35549,7 @@ aad
 aad
 aad
 aad
-aad
-aad
+akH
 aad
 aad
 aad
@@ -35194,18 +35681,18 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aah
-aah
-aad
-aad
-aad
+ajO
+ajO
+ajV
+ajV
+ajV
+ajV
+ajV
+ajV
+ajV
+ajV
+ajO
+ajO
 aad
 aad
 aad
@@ -35336,18 +35823,18 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aah
-aah
-aah
-aah
-aah
+ajO
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+ajO
 adK
 aeo
 aeo
@@ -35478,18 +35965,18 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+ajN
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+ajO
 adK
 aep
 adK
@@ -35620,18 +36107,18 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+ajN
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+ajO
 adK
 aep
 aep
@@ -35762,18 +36249,18 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+ajN
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+ajO
 adK
 adK
 adK
@@ -35904,18 +36391,18 @@ aad
 aad
 aad
 aad
-aad
-aad
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+ajN
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+ajO
 aah
 aah
 aah
@@ -36046,18 +36533,18 @@ aad
 aad
 aad
 aad
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+ajN
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+ajO
 aah
 aah
 aah
@@ -36188,18 +36675,18 @@ aad
 aad
 aad
 aad
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+ajN
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+ajO
 aah
 aah
 aah
@@ -36330,18 +36817,18 @@ aad
 aad
 aad
 aad
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+ajN
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+ajO
 aah
 aah
 aah
@@ -36472,18 +36959,18 @@ aad
 aad
 aad
 aad
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+ajN
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+ajO
 aah
 aah
 aah
@@ -36614,18 +37101,18 @@ aad
 aad
 aad
 aad
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+ajO
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+akL
+ajO
 aah
 aah
 aah
@@ -36756,18 +37243,18 @@ aad
 aad
 aad
 aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+ajO
+akO
+ajO
+bdg
+bdk
+bdk
+bdk
+bdk
+bdv
+ajO
+bdz
+ajO
 aah
 aah
 aah
@@ -36898,17 +37385,17 @@ aad
 aad
 aad
 aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+ajO
+ajO
+ajO
+bdh
+bdl
+bcZ
+bdq
+bdt
+bdw
+ajO
+ajO
 ajS
 ajS
 ajS
@@ -37041,17 +37528,17 @@ aad
 aad
 aah
 aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-ajS
-ajS
+ajO
+bda
+bdi
+bdm
+bdo
+bdp
+bdu
+bdx
+bdy
+bdA
+bdC
 akU
 ali
 ajS
@@ -37183,17 +37670,17 @@ aad
 aad
 aah
 aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-ajS
-ajS
-akL
+ajO
+bdb
+ajO
+ajO
+ajO
+ajO
+ajO
+ajO
+ajO
+ajO
+bdD
 akM
 alj
 alw
@@ -37325,9 +37812,9 @@ aad
 aah
 aah
 aah
-aah
-aah
-aah
+ajL
+bdc
+ajL
 aah
 aah
 aah
@@ -37335,7 +37822,7 @@ aah
 ajS
 ajS
 akD
-akM
+bdE
 akN
 akN
 alx
@@ -37468,7 +37955,7 @@ aad
 aah
 ajL
 ajL
-ajL
+bdd
 ajS
 ajS
 ajS
@@ -37477,10 +37964,10 @@ ajS
 ajS
 akv
 akE
-akN
-akV
-akN
-aly
+bdF
+bdJ
+bdM
+bdN
 alN
 ame
 ajS
@@ -37609,8 +38096,8 @@ aad
 aah
 aah
 ajL
-ajM
-ajM
+akV
+bde
 ajT
 ajY
 akb
@@ -37619,7 +38106,7 @@ akk
 akq
 akw
 akE
-akN
+bdG
 akW
 akN
 aly
@@ -37751,7 +38238,7 @@ aad
 aah
 aah
 ajL
-ajN
+akY
 ajM
 ajT
 ajY
@@ -37761,7 +38248,7 @@ akk
 akr
 akx
 akE
-akO
+bdH
 akX
 akN
 aly
@@ -37893,7 +38380,7 @@ aad
 aah
 aah
 ajL
-ajM
+akZ
 ajP
 ajS
 ajS
@@ -37903,8 +38390,8 @@ ajS
 ajS
 aky
 akE
-akN
-akY
+bdI
+bdK
 akN
 aly
 alN
@@ -38035,7 +38522,7 @@ aad
 aad
 aah
 ajL
-ajO
+aLm
 ajQ
 aah
 aah
@@ -38046,7 +38533,7 @@ ajS
 ajS
 akF
 akP
-akZ
+bdL
 alk
 alz
 alO
@@ -38177,7 +38664,7 @@ aad
 aad
 aah
 ajL
-ajM
+akZ
 ajR
 ajU
 ajZ
@@ -38319,12 +38806,12 @@ aad
 aad
 aah
 ajL
-ajM
-ajN
-ajV
-ajM
-ajM
-ajM
+bcY
+bdf
+bdj
+bdn
+bdn
+bds
 akm
 aah
 aah
@@ -38466,7 +38953,7 @@ ajL
 ajL
 akA
 ajL
-ajM
+akZ
 akm
 akn
 akn
@@ -38608,7 +39095,7 @@ aah
 aah
 aah
 ajL
-ajM
+akZ
 ajR
 aki
 akz
@@ -38750,11 +39237,11 @@ aah
 aah
 aah
 ajL
-ajM
-ajM
-ajM
-ajM
-akH
+bcY
+bdn
+bdn
+bdn
+bdB
 akS
 ald
 alo
