@@ -45,7 +45,7 @@
 	melee_damage_upper = 25
 	attack_armor_pen = 40
 	base_attack_cooldown = 2 SECONDS
-	attacktext = list("gouged", "bitten", "cut", "clawed", "whipped")
+	attacktext = list("gouged", "bit", "cut", "clawed", "whipped")
 
 	armor = list(
 		"melee" = 30,

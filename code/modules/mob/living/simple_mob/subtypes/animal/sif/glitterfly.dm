@@ -50,7 +50,7 @@
 
 	pass_flags = PASSTABLE
 
-	attacktext = list("bitten", "buffeted", "slashed")
+	attacktext = list("bit", "buffeted", "slashed")
 
 	say_list_type = /datum/say_list/glitterfly
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/glitterfly

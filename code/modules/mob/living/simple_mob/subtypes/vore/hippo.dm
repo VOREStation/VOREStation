@@ -26,7 +26,7 @@
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
-	attacktext = list("bitten")
+	attacktext = list("bit")
 
 	melee_damage_upper = 12
 	melee_damage_lower = 7

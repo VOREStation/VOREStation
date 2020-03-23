@@ -36,7 +36,7 @@
 	melee_damage_upper = 10
 	base_attack_cooldown = 1 SECOND
 	attack_edge = 1		// Razor-edged wings, and 'claws' made for digging through ice.
-	attacktext = list("nipped", "bitten", "cut", "clawed")
+	attacktext = list("nipped", "bit", "cut", "clawed")
 
 	say_list_type = /datum/say_list/duck
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative

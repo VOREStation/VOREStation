@@ -43,7 +43,7 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 10
 	base_attack_cooldown = 1.5 SECONDS
-	attacktext = list("nipped", "bitten", "pinched")
+	attacktext = list("nipped", "bit", "pinched")
 
 	projectiletype = /obj/item/projectile/energy/blob/freezing
 
