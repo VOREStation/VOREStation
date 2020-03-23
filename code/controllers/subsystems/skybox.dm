@@ -61,7 +61,7 @@ SUBSYSTEM_DEF(skybox)
 	res.appearance_flags = KEEP_TOGETHER
 
 	var/image/base = image(settings.icon, settings.icon_state)
-	//base.color = background_color
+	base.color = settings.color
 
 	if(settings.use_stars)
 		var/image/stars = image(settings.icon, settings.star_state)
@@ -73,7 +73,7 @@ SUBSYSTEM_DEF(skybox)
 	if(global.using_map.use_overmap && settings.use_overmap_details)
 		var/obj/effect/overmap/visitable/O = map_sectors["[z]"]
 		if(istype(O))
-			var/image/overmap = image(settings.icon_state)
+			var/image/overmap = image(settings.icon)
 			overmap.overlays += O.generate_skybox()
 			for(var/obj/effect/overmap/visitable/other in O.loc)
 				if(other != O)
