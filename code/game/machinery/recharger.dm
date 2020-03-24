@@ -140,11 +140,11 @@
 			var/obj/item/ammo_casing/microbattery/batt = charging
 			if(batt.shots_left >= initial(batt.shots_left))
 				icon_state = icon_state_charged
-				update_use_power(1)
+				update_use_power(USE_POWER_IDLE)
 			else
 				icon_state = icon_state_charging
 				batt.shots_left++
-				update_use_power(2)
+				update_use_power(USE_POWER_ACTIVE)
 			return
 		//VOREStation Add End
 

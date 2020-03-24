@@ -5,7 +5,7 @@
 	anchored = 1
 	volume = 500000
 
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 50		//internal circuitry, friction losses and stuff
 	active_power_usage = 1000	// Blowers running
 	power_rating = 100000	//100 kW ~ 135 HP
