@@ -72,13 +72,8 @@ var/list/floor_light_cache = list()
 			return
 
 		on = !on
-<<<<<<< HEAD
-		if(on) use_power = 2
-		//visible_message("<span class='notice'>\The [user] turns \the [src] [on ? "on" : "off"].</span>") //VOREStation Edit - No thankouuuu. Too spammy.
-=======
 		if(on) update_use_power(USE_POWER_ACTIVE)
-		visible_message("<span class='notice'>\The [user] turns \the [src] [on ? "on" : "off"].</span>")
->>>>>>> 95ac99c... Merge pull request #6882 from VOREStation/vplk-machinery-use-power
+		//visible_message("<span class='notice'>\The [user] turns \the [src] [on ? "on" : "off"].</span>") //VOREStation Edit - No thankouuuu. Too spammy.
 		update_brightness()
 		return
 
