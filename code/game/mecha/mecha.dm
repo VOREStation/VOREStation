@@ -1260,6 +1260,8 @@
 		src.icon_state = src.reset_icon()
 		set_dir(dir_in)
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
+		if(occupant.client && cloaked_selfimage)
+			occupant.client.images += cloaked_selfimage
 		if(!hasInternalDamage()) //Otherwise it's not nominal!
 			switch(mech_faction)
 				if(MECH_FACTION_NT)//The good guys category
@@ -2069,6 +2071,17 @@
 
 
 /////////////
+
+/obj/mecha/cloak()
+	. = ..()
+	if(occupant && occupant.client && cloaked_selfimage)
+		occupant.client.images += cloaked_selfimage
+
+/obj/mecha/uncloak()
+	if(occupant && occupant.client && cloaked_selfimage)
+		occupant.client.images -= cloaked_selfimage
+	return ..()
+
 
 //debug
 /*
