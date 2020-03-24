@@ -28,3 +28,7 @@
 		if(EVENT_LEVEL_MAJOR)
 			return "super"
 	return "weak"
+
+// Overmap version
+/datum/event/dust/overmap/announce()
+	return
