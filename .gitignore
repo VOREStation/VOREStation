@@ -17,11 +17,19 @@ code/game/gamemodes/technomancer/spells/projectile/overload.dm
 code/modules/client/preference_setup/loadout/loadout_xeno.dm
 temp.dmi
 
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/master
 vorestation.dme
 
 =======
 >>>>>>> a
+=======
+<<<<<<< HEAD
+vorestation.dme
+
+=======
+>>>>>>> master
+>>>>>>> Vespa
 maps/tether/submaps/om_ships/backup/Vespa.dmm
 
 maps/tether/submaps/om_ships/Vespa.dmm.before
