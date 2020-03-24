@@ -152,16 +152,10 @@
 	volume = 500000
 	volume_rate = 7000
 
-<<<<<<< HEAD
-	use_power = 1
-	idle_power_usage = 50		//internal circuitry, friction losses and stuff
-	active_power_usage = 1000	// Blowers running
-	power_rating = 100000	//100 kW ~ 135 HP
-=======
 	use_power = USE_POWER_IDLE
-	idle_power_usage = 500		//internal circuitry, friction losses and stuff
-	active_power_usage = 100000	//100 kW ~ 135 HP
->>>>>>> 95ac99c... Merge pull request #6882 from VOREStation/vplk-machinery-use-power
+	idle_power_usage = 50		//VOREStation Edit //internal circuitry, friction losses and stuff
+	active_power_usage = 1000	//VOREStation Edit // Blowers running
+	power_rating = 100000	//VOREStation Add //100 kW ~ 135 HP
 
 	var/global/gid = 1
 	var/id = 0
