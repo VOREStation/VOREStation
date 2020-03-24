@@ -53,7 +53,7 @@
 				newspecies = prosfab.species
 
 		var/mob/living/carbon/human/H = new(newloc,newspecies)
-		H.stat = DEAD
+		H.set_stat(DEAD)
 		H.gender = gender
 		for(var/obj/item/organ/external/EO in H.organs)
 			if(EO.organ_tag == BP_TORSO || EO.organ_tag == BP_GROIN)
