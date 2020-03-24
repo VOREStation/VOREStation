@@ -6,7 +6,7 @@ var/list/gyrotrons = list()
 	desc = "It is a heavy duty industrial gyrotron suited for powering fusion reactors."
 	icon_state = "emitter-off"
 	req_access = list(access_engine)
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	active_power_usage = 50000
 
 	circuit = /obj/item/weapon/circuitboard/gyrotron

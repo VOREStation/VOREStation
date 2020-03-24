@@ -14,7 +14,7 @@
 	var/icon_deny //Icon_state when denying access
 
 	// Power
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	var/vend_power_usage = 150 //actuators and stuff
 

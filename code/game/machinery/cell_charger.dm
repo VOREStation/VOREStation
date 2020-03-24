@@ -4,7 +4,7 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "ccharger0"
 	anchored = 1
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 5
 	active_power_usage = 60000	//60 kW. (this the power drawn when charging)
 	var/efficiency = 60000 //will provide the modified power rate when upgraded
@@ -118,16 +118,16 @@
 /obj/machinery/cell_charger/process()
 	//to_world("ccpt [charging] [stat]")
 	if((stat & (BROKEN|NOPOWER)) || !anchored)
-		update_use_power(0)
+		update_use_power(USE_POWER_OFF)
 		return
 
 	if(charging && !charging.fully_charged())
 		charging.give(efficiency*CELLRATE)
-		update_use_power(2)
+		update_use_power(USE_POWER_ACTIVE)
 
 		update_icon()
 	else
-		update_use_power(1)
+		update_use_power(USE_POWER_IDLE)
 
 /obj/machinery/cell_charger/RefreshParts()
 	var/E = 0

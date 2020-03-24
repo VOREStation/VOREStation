@@ -15,7 +15,7 @@
 	var/accept_drinking = 0
 	var/amount = 30
 
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 100
 	anchored = 1
 

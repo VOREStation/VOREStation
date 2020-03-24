@@ -126,7 +126,7 @@ GLOBAL_LIST_BOILERPLATE(all_engine_setup_markers, /obj/effect/engine_setup)
 		log_and_message_admins("## WARNING: Unable to locate pump at [x] [y] [z]!")
 		return SETUP_WARNING
 	P.target_pressure = P.max_pressure_setting
-	P.use_power = 1
+	P.update_use_power(USE_POWER_IDLE)
 	P.update_icon()
 	return SETUP_OK
 
@@ -259,7 +259,7 @@ GLOBAL_LIST_BOILERPLATE(all_engine_setup_markers, /obj/effect/engine_setup)
 				return SETUP_WARNING
 		F.rebuild_filtering_list()
 
-	F.use_power = 1
+	F.update_use_power(USE_POWER_IDLE)
 	F.update_icon()
 	return SETUP_OK
 

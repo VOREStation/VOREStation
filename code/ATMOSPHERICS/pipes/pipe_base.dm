@@ -9,7 +9,7 @@
 	var/leaking = FALSE // Do not set directly, use set_leaking(TRUE/FALSE)
 
 	layer = PIPES_LAYER
-	use_power = 0
+	use_power = USE_POWER_OFF
 
 	pipe_flags = 0 // Does not have PIPING_DEFAULT_LAYER_ONLY flag.
 
