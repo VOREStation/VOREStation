@@ -6,7 +6,7 @@
 	density = 1
 	anchored = 1
 	circuit = /obj/item/weapon/circuitboard/recharge_station
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 50
 	var/mob/occupant = null
 	var/obj/item/weapon/cell/cell = null
@@ -78,9 +78,9 @@
 
 	if(!has_cell_power())
 		return 0
-	if(use_power == 1)
+	if(use_power == USE_POWER_IDLE)
 		cell.use(idle_power_usage * CELLRATE)
-	else if(use_power >= 2)
+	else if(use_power >= USE_POWER_ACTIVE)
 		cell.use(active_power_usage * CELLRATE)
 	return 1
 

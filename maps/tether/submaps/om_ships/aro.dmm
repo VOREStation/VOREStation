@@ -2872,20 +2872,20 @@
 /area/shuttle/aroboat)
 "fS" = (
 /obj/effect/floor_decal/techfloor/orange{
-	icon_state = "techfloororange_edges";
-	dir = 5
+	dir = 1
 	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/purple{
+	icon_state = "intact";
+	dir = 10
 	},
+/obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "fT" = (
 /obj/effect/floor_decal/techfloor/orange{
-	icon_state = "techfloororange_edges";
-	dir = 9
+	dir = 1
 	},
-/obj/effect/floor_decal/corner_techfloor_grid,
+/obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "fU" = (
@@ -2970,44 +2970,24 @@
 /turf/simulated/floor/reinforced,
 /area/ship/aro/midshipshangars)
 "ge" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/purple,
+/obj/effect/floor_decal/steeldecal/steel_decals_central7{
+	icon_state = "steel_decals_central7";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monofloor{
+	dir = 4
+	},
+/area/ship/aro/midshipshangars)
+"gf" = (
 /obj/effect/floor_decal/techfloor/orange/corner{
 	icon_state = "techfloororange_corners";
 	dir = 4
 	},
-/obj/effect/floor_decal/techfloor/orange/corner,
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 9
-	},
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/aro/midshipshangars)
-"gf" = (
-/obj/effect/floor_decal/techfloor/orange,
-/obj/effect/floor_decal/techfloor/orange{
-	icon_state = "techfloororange_edges";
-	dir = 1
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/aro/midshipshangars)
-"gg" = (
-/obj/effect/floor_decal/techfloor/orange/corner{
-	icon_state = "techfloororange_corners";
-	dir = 1
-	},
-/obj/effect/floor_decal/techfloor/orange/corner{
-	icon_state = "techfloororange_corners";
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
 	dir = 8
 	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	icon_state = "corner_techfloor_grid";
-	dir = 6
-	},
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
-/obj/mecha/working/hoverpod/gunpod/agile,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "gh" = (
@@ -3091,23 +3071,17 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/aroboat)
 "gs" = (
-/obj/effect/floor_decal/techfloor/orange{
-	icon_state = "techfloororange_edges";
-	dir = 6
-	},
-/obj/effect/floor_decal/corner_techfloor_grid{
+/obj/machinery/atmospherics/portables_connector{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor,
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/tiled/monotile,
 /area/ship/aro/midshipshangars)
 "gt" = (
-/obj/effect/floor_decal/techfloor/orange{
-	icon_state = "techfloororange_edges";
-	dir = 10
+/obj/machinery/mech_recharger{
+	icon = 'icons/turf/shuttle_alien_blue.dmi'
 	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 4
-	},
+/obj/mecha/combat/fighter/pinnace,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "gu" = (
@@ -3362,6 +3336,7 @@
 	},
 /obj/structure/table/rack/shelf/steel,
 /obj/item/mecha_parts/mecha_equipment/crisis_drone,
+/obj/effect/floor_decal/industrial/warning/corner,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "lD" = (
@@ -3369,8 +3344,18 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/canister/phoron,
-/obj/effect/floor_decal/industrial/danger/full,
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"mU" = (
+/obj/effect/floor_decal/techfloor/orange,
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "tu" = (
@@ -3382,9 +3367,18 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "uZ" = (
-/obj/effect/floor_decal/techfloor/orange,
-/obj/structure/table/rack/shelf/steel,
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"wC" = (
+/obj/effect/floor_decal/industrial/outline,
+/obj/machinery/mech_recharger{
+	icon = 'icons/turf/shuttle_alien_blue.dmi'
+	},
+/obj/mecha/combat/fighter/pinnace,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "xu" = (
@@ -3392,27 +3386,64 @@
 	dir = 1
 	},
 /obj/structure/table/rack/shelf/steel,
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon,
+/obj/item/mecha_parts/mecha_equipment/cloak,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
-"CW" = (
-/obj/machinery/atmospherics/portables_connector{
+"Bj" = (
+/obj/effect/floor_decal/sign/dock/two,
+/obj/effect/floor_decal/industrial/outline/blue,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"Gc" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/mecha_parts/mecha_equipment/repair_droid,
+/turf/simulated/floor/reinforced,
+/area/ship/aro/midshipshangars)
+"GH" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
 	dir = 1
 	},
-/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"GI" = (
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "HK" = (
-/obj/effect/floor_decal/techfloor/orange,
-/obj/structure/table/rack/shelf/steel,
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive,
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"KH" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/purple,
+/obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "Lp" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/purple,
+/obj/machinery/atmospherics/pipe/simple/hidden/purple{
+	icon_state = "intact";
+	dir = 5
+	},
+/obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "Md" = (
@@ -3421,12 +3452,63 @@
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/reinforced,
 /area/ship/aro/midshipshangars)
+"Nb" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/mecha_parts/mecha_equipment/tool/sleeper,
+/turf/simulated/floor/reinforced,
+/area/ship/aro/midshipshangars)
+"Oo" = (
+/obj/effect/floor_decal/techfloor/orange/corner,
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"OZ" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 10
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
 "PJ" = (
-/obj/mecha/working/hoverpod/gunpod/agile,
-/obj/machinery/atmospherics/portables_connector{
+/obj/effect/floor_decal/steeldecal/steel_decals_central6,
+/turf/simulated/floor/tiled/monofloor{
+	dir = 8
+	},
+/area/ship/aro/midshipshangars)
+"QK" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 9
+	},
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/structure/table/rack/shelf/steel,
+/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"QM" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 6
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
 	dir = 1
 	},
-/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"TR" = (
+/obj/effect/floor_decal/techfloor/orange,
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "TU" = (
@@ -3434,8 +3516,49 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/canister/phoron,
-/obj/effect/floor_decal/industrial/danger/full,
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"Vc" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 5
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/structure/table/rack/shelf/steel,
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"Wi" = (
+/obj/effect/floor_decal/industrial/loading,
+/turf/simulated/floor/reinforced,
+/area/ship/aro/midshipshangars)
+"Xd" = (
+/obj/effect/floor_decal/techfloor/orange,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"Xy" = (
+/obj/effect/floor_decal/techfloor/orange/corner{
+	icon_state = "techfloororange_corners";
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"Yy" = (
+/obj/effect/floor_decal/sign/dock/one,
+/obj/effect/floor_decal/industrial/outline/blue,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 
@@ -11193,11 +11316,11 @@ ek
 ek
 ek
 ek
-fy
+Gc
 iU
 lD
 uZ
-fy
+mU
 fy
 fy
 ek
@@ -11338,9 +11461,9 @@ Md
 tu
 Lp
 PJ
-uO
-fy
-fy
+wC
+Xd
+Wi
 fy
 fP
 gW
@@ -11481,10 +11604,10 @@ fy
 fS
 ge
 gs
+Xd
+Wi
 fy
-fy
-fy
-fP
+Yy
 gW
 aa
 aa
@@ -11620,10 +11743,10 @@ fn
 fy
 fy
 fy
-fy
+Vc
 gf
-fy
-fy
+Oo
+QM
 fy
 fy
 fP
@@ -11763,8 +11886,8 @@ fy
 fy
 fy
 fy
-gf
-fy
+GH
+uO
 fy
 fy
 fy
@@ -11905,8 +12028,8 @@ fy
 fy
 fy
 fy
-gf
-fy
+GH
+uO
 fy
 fy
 fy
@@ -12046,10 +12169,10 @@ fq
 fy
 fy
 fy
-fy
-gf
-fy
-fy
+QK
+Xy
+GI
+OZ
 fy
 fy
 fP
@@ -12189,12 +12312,12 @@ fy
 fy
 fy
 fT
-gg
+PJ
 gt
+Xd
+Wi
 fy
-fy
-fy
-fP
+Bj
 gW
 aa
 aa
@@ -12330,11 +12453,11 @@ ek
 ek
 Md
 tu
-Lp
-CW
-uO
-fy
-fy
+KH
+ge
+gs
+Xd
+Wi
 fy
 fP
 gW
@@ -12471,11 +12594,11 @@ ek
 ek
 ek
 ek
-fy
+Nb
 xu
 TU
 HK
-fy
+TR
 gI
 fy
 ek

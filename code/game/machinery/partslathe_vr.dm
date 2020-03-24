@@ -23,7 +23,7 @@
 	circuit = /obj/item/weapon/circuitboard/partslathe
 	anchored = 1
 	density = 1
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 30
 	active_power_usage = 5000
 
@@ -155,7 +155,7 @@
 	var/datum/category_item/partslathe/D = queue[1]
 	if(canBuild(D))
 		busy = 1
-		update_use_power(2)
+		update_use_power(USE_POWER_ACTIVE)
 		progress += speed
 		if(progress >= D.time)
 			build(D)
@@ -165,7 +165,7 @@
 	else if(busy)
 		visible_message("<span class='notice'>\icon [src] flashes: insufficient materials: [getLackingMaterials(D)].</span>")
 		busy = 0
-		update_use_power(1)
+		update_use_power(USE_POWER_IDLE)
 		update_icon()
 		playsound(src.loc, 'sound/machines/chime.ogg', 50, 0)
 

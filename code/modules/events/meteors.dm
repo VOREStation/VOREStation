@@ -64,11 +64,14 @@
 	else
 		return meteors_normal
 
-
+// Overmap version
 /datum/event/meteor_wave/overmap
 	next_meteor_lower = 5
 	next_meteor_upper = 10
 	next_meteor = 0
+
+/datum/event/meteor_wave/overmap/announce()
+	return
 
 /datum/event/meteor_wave/overmap/tick()
 	if(victim && !victim.is_still()) // Meteors mostly fly in your face

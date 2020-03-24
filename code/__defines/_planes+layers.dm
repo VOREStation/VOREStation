@@ -88,6 +88,9 @@ What is the naming convention for planes or layers?
 	#define BELOW_MOB_LAYER			3.9 // Should be converted to plane swaps
 	#define ABOVE_MOB_LAYER			4.1	// Should be converted to plane swaps
 
+// Invisible things plane
+#define CLOAKED_PLANE			-15
+
 // Top plane (in the sense that it's the highest in 'the world' and not a UI element)
 #define ABOVE_PLANE				-10
 

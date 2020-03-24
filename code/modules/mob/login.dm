@@ -75,3 +75,6 @@
 	var/turf/T = get_turf(src)
 	if(isturf(T))
 		update_client_z(T.z)
+
+	if(cloaked && cloaked_selfimage)
+		client.images += cloaked_selfimage

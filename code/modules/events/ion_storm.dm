@@ -72,6 +72,10 @@
 		spawn(rand(5000,8000))
 			command_announcement.Announce("It has come to our attention that \the [location_name()] passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
+// Overmap version
+/datum/event/ionstorm/overmap/announce()
+	return
+
 /*
 /proc/IonStorm(botEmagChance = 10)
 

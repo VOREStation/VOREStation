@@ -100,7 +100,7 @@
 	O.adjustBruteLoss(C.getBruteLoss())
 	O.setOxyLoss(C.getOxyLoss())
 	O.adjustFireLoss(C.getFireLoss())
-	O.stat = C.stat
+	O.set_stat(C.stat)
 	for (var/obj/item/weapon/implant/I in implants)
 		I.loc = O
 		I.implanted = O

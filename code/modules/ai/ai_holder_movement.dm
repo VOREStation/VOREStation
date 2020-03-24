@@ -9,7 +9,6 @@
 	var/home_low_priority = FALSE		// If true, the mob will not go home unless it has nothing better to do, e.g. its following someone.
 	var/max_home_distance = 3			// How far the mob can go away from its home before being told to go_home().
 										// Note that there is a 'BYOND cap' of 14 due to limitations of get_/step_to().
-
 	// Wandering.
 	var/wander = FALSE					// If true, the mob will randomly move in the four cardinal directions when idle.
 	var/wander_delay = 0				// How many ticks until the mob can move a tile in handle_wander_movement().
