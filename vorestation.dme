@@ -3513,10 +3513,15 @@
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
 #include "maps\tether\submaps\admin_use\fun.dm"
 <<<<<<< refs/remotes/origin/master
+<<<<<<< refs/remotes/origin/master
 #include "maps\tether\submaps\om_ships\Vespa.dm"
 #include "maps\tether\submaps\om_ships\Vespa.dmm"
 =======
 >>>>>>> a
+=======
+#include "maps\tether\submaps\om_ships\Vespa.dm"
+#include "maps\tether\submaps\om_ships\Vespa.dmm"
+>>>>>>> Test
 #include "maps\virgo_minitest\virgo_minitest.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE
