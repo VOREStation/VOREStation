@@ -167,8 +167,8 @@
 	if (building)
 		set_dir(ndir)
 
-	pixel_x = (src.dir & 3)? 0 : (src.dir == 4 ? 24 : -24)
-	pixel_y = (src.dir & 3)? (src.dir ==1 ? 24 : -24) : 0
+	pixel_x = (src.dir & 3)? 0 : (src.dir == 4 ? 26 : -26) //VOREStation Edit -> 24 to 26
+	pixel_y = (src.dir & 3)? (src.dir ==1 ? 26 : -26) : 0 //VOREStation Edit -> 24 to 26
 	if (building==0)
 		init()
 	else

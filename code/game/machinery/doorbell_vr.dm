@@ -4,7 +4,7 @@
 	desc = "Small wall-mounted chime triggered by a doorbell"
 	icon = 'icons/obj/machines/doorbell_vr.dmi'
 	icon_state = "dbchime-standby"
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 200
 	anchored = 1
@@ -89,7 +89,7 @@
 	desc = "A doorbell, press to chime."
 	icon = 'icons/obj/machines/doorbell_vr.dmi'
 	icon_state = "doorbell-standby"
-	use_power = 0
+	use_power = USE_POWER_OFF
 
 /obj/machinery/button/doorbell/New(var/loc, var/dir, var/building = 0)
 	..()
