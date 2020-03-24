@@ -3,7 +3,7 @@
 	desc = "It's used to monitor rooms."
 	icon = 'icons/obj/monitors_vr.dmi' //VOREStation Edit - New Icons
 	icon_state = "camera"
-	use_power = USE_POWER_ACTIVE
+	use_power = 2
 	idle_power_usage = 5
 	active_power_usage = 10
 	plane = MOB_PLANE

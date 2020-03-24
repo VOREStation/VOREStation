@@ -212,7 +212,7 @@ var/global/list/light_type_cache = list()
 	anchored = 1
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
-	use_power = USE_POWER_ACTIVE
+	use_power = 2
 	idle_power_usage = 2
 	active_power_usage = 10
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
@@ -435,14 +435,14 @@ var/global/list/light_type_cache = list()
 					on = 0
 					set_light(0)
 			else
-				update_use_power(USE_POWER_ACTIVE)
+				use_power = 2
 				set_light(brightness_range, brightness_power, brightness_color)
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
 		use_power = 1
 		emergency_mode = TRUE
 		START_PROCESSING(SSobj, src)
 	else
-		update_use_power(USE_POWER_IDLE)
+		use_power = 1
 		set_light(0)
 
 	active_power_usage = ((light_range * light_power) * LIGHTING_POWER_FACTOR)

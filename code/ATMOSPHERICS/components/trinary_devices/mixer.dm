@@ -8,7 +8,7 @@
 
 	name = "Gas mixer"
 
-	use_power = USE_POWER_IDLE
+	use_power = 1
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 3700	//This also doubles as a measure of how powerful the mixer is, in Watts. 3700 W ~ 5 HP
 
@@ -35,7 +35,7 @@
 		icon_state += use_power ? "on" : "off"
 	else
 		icon_state += "off"
-		update_use_power(USE_POWER_OFF)
+		use_power = 0
 
 /obj/machinery/atmospherics/trinary/mixer/New()
 	..()
@@ -114,7 +114,7 @@
 /obj/machinery/atmospherics/trinary/mixer/Topic(href,href_list)
 	if(..()) return 1
 	if(href_list["power"])
-		update_use_power(!use_power)
+		use_power = !use_power
 	if(href_list["set_press"])
 		var/max_flow_rate = min(air1.volume, air2.volume)
 		var/new_flow_rate = input(usr,"Enter new flow rate limit (0-[max_flow_rate]L/s)","Flow Rate Control",src.set_flow_rate) as num

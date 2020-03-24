@@ -7,7 +7,7 @@
 	icon_state = "box_0"
 	density = 1
 	anchored = 1
-	use_power = USE_POWER_OFF
+	use_power = 0
 	var/obj/item/weapon/circuitboard/circuit = null
 	var/list/components = null
 	var/list/req_components = null

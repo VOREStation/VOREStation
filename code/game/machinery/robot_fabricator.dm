@@ -7,7 +7,7 @@
 	var/metal_amount = 0
 	var/operating = 0
 	var/obj/item/robot_parts/being_built = null
-	use_power = USE_POWER_IDLE
+	use_power = 1
 	idle_power_usage = 40
 	active_power_usage = 10000
 
@@ -115,7 +115,7 @@ Please wait until completion...</TT><BR>
 			if(!isnull(building))
 				if(metal_amount >= build_cost)
 					operating = 1
-					update_use_power(USE_POWER_ACTIVE)
+					update_use_power(2)
 
 					metal_amount = max(0, metal_amount - build_cost)
 
@@ -128,7 +128,7 @@ Please wait until completion...</TT><BR>
 						if(!isnull(being_built))
 							being_built.loc = get_turf(src)
 							being_built = null
-						update_use_power(USE_POWER_IDLE)
+						update_use_power(1)
 						operating = 0
 						overlays -= "fab-active"
 		return

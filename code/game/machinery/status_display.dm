@@ -17,7 +17,7 @@
 	name = "status display"
 	anchored = 1
 	density = 0
-	use_power = USE_POWER_IDLE
+	use_power = 1
 	idle_power_usage = 10
 	circuit =  /obj/item/weapon/circuitboard/status_display
 	var/mode = 1	// 0 = Blank

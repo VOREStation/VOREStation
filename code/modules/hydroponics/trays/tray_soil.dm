@@ -2,7 +2,7 @@
 	name = "soil"
 	icon_state = "soil"
 	density = 0
-	use_power = USE_POWER_OFF
+	use_power = 0
 	mechanical = 0
 	tray_light = 0
 	frozen = -1

@@ -8,7 +8,7 @@
 	icon_state = "station_map"
 	anchored = 1
 	density = 0
-	use_power = USE_POWER_IDLE
+	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 500
 	circuit = /obj/item/weapon/circuitboard/station_map
@@ -126,7 +126,7 @@
 			GLOB.moved_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
 			GLOB.dir_set_event.register(watching_mob, src, /obj/machinery/station_map/proc/checkPosition)
 			GLOB.destroyed_event.register(watching_mob, src, /obj/machinery/station_map/proc/stopWatching)
-			update_use_power(USE_POWER_ACTIVE)
+			update_use_power(2)
 
 			if(bogus)
 				to_chat(user, "<span class='warning'>The holomap failed to initialize. This area of space cannot be mapped.</span>")
@@ -156,7 +156,7 @@
 		GLOB.dir_set_event.unregister(watching_mob, src)
 		GLOB.destroyed_event.unregister(watching_mob, src)
 	watching_mob = null
-	update_use_power(USE_POWER_IDLE)
+	update_use_power(1)
 
 /obj/machinery/station_map/power_change()
 	. = ..()

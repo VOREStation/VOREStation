@@ -46,7 +46,7 @@
 	icon_state = "scanner_0"
 	density = 1
 	anchored = 1.0
-	use_power = USE_POWER_IDLE
+	use_power = 1
 	idle_power_usage = 50
 	active_power_usage = 300
 	interact_offline = 1
@@ -260,7 +260,7 @@
 	var/obj/item/weapon/disk/data/disk = null
 	var/selected_menu_key = null
 	anchored = 1
-	use_power = USE_POWER_IDLE
+	use_power = 1
 	idle_power_usage = 10
 	active_power_usage = 400
 	var/waiting_for_user_input=0 // Fix for #274 (Mash create block injector without answering dialog to make unlimited injectors) - N3X

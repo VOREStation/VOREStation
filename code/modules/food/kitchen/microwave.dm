@@ -5,7 +5,7 @@
 	icon_state = "mw"
 	density = 1
 	anchored = 1
-	use_power = USE_POWER_IDLE
+	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100
 	clicksound = "button"

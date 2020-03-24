@@ -5,7 +5,7 @@
 	desc = "A machine used for construction of prosthetics."
 	density = 1
 	anchored = 1
-	use_power = USE_POWER_IDLE
+	use_power = 1
 	idle_power_usage = 20
 	active_power_usage = 5000
 	req_access = list(access_robotics)
@@ -52,11 +52,11 @@
 	if(stat)
 		return
 	if(busy)
-		update_use_power(USE_POWER_ACTIVE)
+		use_power = 2
 		progress += speed
 		check_build()
 	else
-		update_use_power(USE_POWER_IDLE)
+		use_power = 1
 	update_icon()
 
 /obj/machinery/pros_fabricator/update_icon()

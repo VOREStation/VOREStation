@@ -12,7 +12,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	insert_anim = "faxsend"
 	req_one_access = list(access_lawyer, access_heads, access_armory, access_qm)
 
-	use_power = USE_POWER_IDLE
+	use_power = 1
 	idle_power_usage = 30
 	active_power_usage = 200
 	circuit = /obj/item/weapon/circuitboard/fax

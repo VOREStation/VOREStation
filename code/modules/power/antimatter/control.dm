@@ -5,7 +5,7 @@
 	icon_state = "control"
 	anchored = 1
 	density = 1
-	use_power = USE_POWER_IDLE
+	use_power = 1
 	idle_power_usage = 100
 	active_power_usage = 1000
 
@@ -211,10 +211,10 @@
 /obj/machinery/power/am_control_unit/proc/toggle_power()
 	active = !active
 	if(active)
-		update_use_power(USE_POWER_ACTIVE)
+		use_power = 2
 		visible_message("The [src.name] starts up.")
 	else
-		update_use_power(USE_POWER_IDLE)
+		use_power = 1
 		visible_message("The [src.name] shuts down.")
 	update_icon()
 	return

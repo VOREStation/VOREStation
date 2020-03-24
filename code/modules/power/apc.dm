@@ -67,7 +67,7 @@
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 	anchored = 1
-	use_power = USE_POWER_OFF
+	use_power = 0
 	clicksound = "switch"
 	req_access = list(access_engine_equip)
 	var/area/area

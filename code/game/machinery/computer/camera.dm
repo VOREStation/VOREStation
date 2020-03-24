@@ -170,7 +170,7 @@
 	src.current_camera = C
 	if(current_camera)
 		current_camera.camera_computers_using_this.Add(src)
-		update_use_power(USE_POWER_ACTIVE)
+		use_power = 2
 		var/mob/living/L = current_camera.loc
 		if(istype(L))
 			L.tracking_initiated()
@@ -182,7 +182,7 @@
 		if(istype(L))
 			L.tracking_cancelled()
 	current_camera = null
-	use_power = USE_POWER_IDLE
+	use_power = 1
 
 //Camera control: mouse.
 /atom/DblClick()

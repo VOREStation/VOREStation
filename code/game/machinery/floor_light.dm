@@ -7,7 +7,7 @@ var/list/floor_light_cache = list()
 	desc = "A backlit floor panel."
 	layer = TURF_LAYER+0.001
 	anchored = 0
-	use_power = USE_POWER_ACTIVE
+	use_power = 2
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT
@@ -72,7 +72,7 @@ var/list/floor_light_cache = list()
 			return
 
 		on = !on
-		if(on) update_use_power(USE_POWER_ACTIVE)
+		if(on) use_power = 2
 		//visible_message("<span class='notice'>\The [user] turns \the [src] [on ? "on" : "off"].</span>") //VOREStation Edit - No thankouuuu. Too spammy.
 		update_brightness()
 		return
@@ -81,21 +81,21 @@ var/list/floor_light_cache = list()
 	..()
 	var/need_update
 	if((!anchored || broken()) && on)
-		update_use_power(USE_POWER_OFF)
+		use_power = 0
 		on = 0
 		need_update = 1
 	else if(use_power && !on)
-		update_use_power(USE_POWER_OFF)
+		use_power = 0
 		need_update = 1
 	if(need_update)
 		update_brightness()
 
 /obj/machinery/floor_light/proc/update_brightness()
-	if(on && use_power == USE_POWER_ACTIVE)
+	if(on && use_power == 2)
 		if(light_range != default_light_range || light_power != default_light_power || light_color != default_light_colour)
 			set_light(default_light_range, default_light_power, default_light_colour)
 	else
-		update_use_power(USE_POWER_OFF)
+		use_power = 0
 		if(light_range || light_power)
 			set_light(0)
 

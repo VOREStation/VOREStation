@@ -18,7 +18,7 @@
 	var/datum/pipe_network/network
 
 	var/on = 0
-	use_power = USE_POWER_OFF
+	use_power = 0
 	level = 1
 
 /obj/machinery/atmospherics/portables_connector/init_dir()

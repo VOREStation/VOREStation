@@ -5,7 +5,7 @@
 	icon = 'icons/obj/neonsigns.dmi'
 	icon_state = "sign_off"
 	plane = MOB_PLANE
-	use_power = USE_POWER_IDLE
+	use_power = 1
 	idle_power_usage = 2
 	active_power_usage = 4
 	anchored = 1
@@ -19,7 +19,7 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 	lit = !lit
-	update_use_power(lit ? USE_POWER_ACTIVE : USE_POWER_IDLE)
+	use_power = lit ? 2 : 1
 	update_icon()
 
 /obj/machinery/neonsign/update_icon()
@@ -34,7 +34,7 @@
 	..()
 	if(stat & NOPOWER)
 		lit = 0
-		update_use_power(USE_POWER_OFF)
+		use_power = 0
 
 	update_icon()
 
