@@ -24,7 +24,7 @@
 	music = list('sound/music/elevator.ogg')  // Woo elevator music!
 
 /obj/machinery/atmospherics/unary/vent_pump/positive
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	icon_state = "map_vent_out"
 	external_pressure_bound = ONE_ATMOSPHERE * 1.1
 
