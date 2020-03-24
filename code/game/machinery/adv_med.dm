@@ -9,7 +9,7 @@
 	density = 1
 	anchored = 1
 	circuit = /obj/item/weapon/circuitboard/body_scanner
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 60
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
 	light_color = "#00FF00"

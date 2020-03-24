@@ -26,7 +26,7 @@
 /obj/machinery/gateway/centerstation
 	density = 1
 	icon_state = "offcenter"
-	use_power = 1
+	use_power = USE_POWER_IDLE
 
 	//warping vars
 	var/list/linked = list()
@@ -165,7 +165,7 @@ obj/machinery/gateway/centerstation/process()
 /obj/machinery/gateway/centeraway
 	density = 1
 	icon_state = "offcenter"
-	use_power = 0
+	use_power = USE_POWER_OFF
 	var/calibrated = 1
 	var/list/linked = list()	//a list of the connected gateway chunks
 	var/ready = 0

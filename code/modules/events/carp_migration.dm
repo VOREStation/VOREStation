@@ -45,7 +45,7 @@
 			var/group_size = rand(group_size_min, group_size_max)
 			for (var/j = 0, j < group_size, j++)
 				spawn_one_carp(spawn_locations[i])
-		i++
+			i++
 		return
 
 	// Okay we did *not* have any landmarks, so lets do our best!
@@ -100,8 +100,6 @@
 						qdel(SM)
 			CHECK_TICK
 
-//
-// Overmap version of the event!
-//
-/datum/event/carp_migration/overmap
-	announceWhen = 1 // Announce much faster!
+// Overmap version
+/datum/event/carp_migration/overmap/announce()
+	return

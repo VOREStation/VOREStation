@@ -1304,6 +1304,11 @@
 		icon_state = "teshari_mushroom"
 		species_allowed = list(SPECIES_TESHARI)
 
+	teshari_bald
+		name = "Bald (use with FBP)"
+		icon_state = "bald"
+		species_allowed = list(SPECIES_TESHARI)
+
 // Vox things
 	vox_braid_long
 		name = "Long Vox braid"
