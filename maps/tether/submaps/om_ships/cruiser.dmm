@@ -1144,6 +1144,7 @@
 	pixel_y = 22
 	},
 /obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/tank/jetpack/oxygen,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/eva)
 "cx" = (
@@ -1153,6 +1154,7 @@
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/tank/jetpack/oxygen,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/eva)
 "cy" = (
@@ -1162,6 +1164,7 @@
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/tank/jetpack/oxygen,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/eva)
 "cz" = (
@@ -1445,6 +1448,7 @@
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/tank/jetpack/oxygen,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/eva)
 "cV" = (
@@ -1455,6 +1459,7 @@
 /obj/item/clothing/mask/breath,
 /obj/machinery/light,
 /obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/tank/jetpack/oxygen,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/eva)
 "cW" = (
@@ -1469,6 +1474,7 @@
 	pixel_y = -25
 	},
 /obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/tank/jetpack/oxygen,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/eva)
 "cX" = (
@@ -1946,6 +1952,9 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
@@ -4900,6 +4909,9 @@
 "iX" = (
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/machinery/computer/id_restorer{
+	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/white,
 /area/mothership/resleeving)
@@ -8260,6 +8272,13 @@
 /obj/structure/bed/chair/comfy/black{
 	dir = 4
 	},
+/obj/machinery/alarm{
+	alarm_id = "pen_nine";
+	breach_detection = 0;
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "pa" = (
@@ -8446,10 +8465,6 @@
 /area/mothership/telecomms1)
 "pv" = (
 /obj/machinery/telecomms/receiver/preset_cent,
-/turf/simulated/floor/greengrid,
-/area/mothership/telecomms1)
-"pw" = (
-/obj/machinery/ntnet_relay,
 /turf/simulated/floor/greengrid,
 /area/mothership/telecomms1)
 "px" = (
@@ -8669,7 +8684,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "pO" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/sci_outpost,
+/obj/machinery/telecomms/server/presets/centcomm,
 /turf/simulated/floor/greengrid,
 /area/mothership/telecomms2)
 "pP" = (
@@ -8679,7 +8694,7 @@
 /turf/simulated/floor/greengrid,
 /area/mothership/telecomms2)
 "pQ" = (
-/obj/machinery/telecomms/relay/preset/centcom/underdark,
+/obj/machinery/ntnet_relay,
 /turf/simulated/floor/greengrid,
 /area/mothership/telecomms2)
 "pR" = (
@@ -8808,14 +8823,6 @@
 /obj/machinery/telecomms/hub/preset_cent,
 /turf/simulated/floor/greengrid,
 /area/mothership/telecomms1)
-"qa" = (
-/obj/machinery/computer/rdservercontrol{
-	badmin = 1;
-	dir = 1;
-	name = "Master RnD Server Controller"
-	},
-/turf/simulated/floor/greengrid,
-/area/mothership/telecomms1)
 "qb" = (
 /obj/structure/sign/department/telecoms,
 /turf/simulated/shuttle/wall/voidcraft/blue{
@@ -8918,11 +8925,15 @@
 	},
 /area/mothership/telecomms2)
 "qn" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/station_low,
+/obj/machinery/computer/rdservercontrol{
+	badmin = 1;
+	dir = 1;
+	name = "Master RnD Server Controller"
+	},
 /turf/simulated/floor/greengrid,
 /area/mothership/telecomms2)
 "qo" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/base_low,
+/obj/machinery/r_n_d/server/centcom,
 /turf/simulated/floor/greengrid,
 /area/mothership/telecomms2)
 "qp" = (
@@ -8974,20 +8985,44 @@
 /turf/simulated/floor/greengrid,
 /area/mothership/telecomms1)
 "qu" = (
-/obj/machinery/r_n_d/server/centcom,
-/turf/simulated/floor/greengrid,
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	icon_state = "corner_techfloor_grid";
+	dir = 6
+	},
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive,
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive,
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
+/obj/structure/closet/walllocker{
+	name = "Equipment Locker";
+	pixel_x = -32
+	},
+/obj/item/mecha_parts/mecha_equipment/crisis_drone/rad,
+/obj/item/mecha_parts/mecha_equipment/crisis_drone/rad,
+/obj/item/mecha_parts/mecha_equipment/repair_droid,
+/obj/item/mecha_parts/mecha_equipment/repair_droid,
+/turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms1)
 "qv" = (
 /obj/machinery/telecomms/processor/preset_cent,
 /turf/simulated/floor/greengrid,
 /area/mothership/telecomms1)
 "qw" = (
-/obj/machinery/telecomms/server/presets/centcomm,
-/turf/simulated/floor/greengrid,
-/area/mothership/telecomms1)
-"qx" = (
-/obj/machinery/telecomms/relay/preset/centcom,
-/turf/simulated/floor/greengrid,
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 10
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 4
+	},
+/obj/machinery/mech_recharger{
+	icon = 'icons/turf/shuttle_alien_blue.dmi'
+	},
+/obj/mecha/combat/fighter/gunpod/loaded,
+/turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms1)
 "qB" = (
 /obj/structure/sign/department/eng,
@@ -9063,38 +9098,32 @@
 	stripe_color = "#45b3d8"
 	},
 /area/mothership/engineering)
-"qM" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/station_mid,
-/turf/simulated/floor/greengrid,
-/area/mothership/telecomms2)
 "qN" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/station_high,
-/turf/simulated/floor/greengrid,
-/area/mothership/telecomms2)
-"qO" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/midpoint,
-/turf/simulated/floor/greengrid,
-/area/mothership/telecomms2)
-"qP" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/base_high,
-/turf/simulated/floor/greengrid,
-/area/mothership/telecomms2)
-"qQ" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/base_mid,
-/turf/simulated/floor/greengrid,
-/area/mothership/telecomms2)
-"qR" = (
 /obj/effect/floor_decal/techfloor/orange{
-	dir = 8
+	dir = 4
 	},
 /obj/effect/floor_decal/corner_techfloor_grid{
-	icon_state = "corner_techfloor_grid";
-	dir = 6
+	dir = 9
 	},
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon,
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon,
+/obj/item/mecha_parts/mecha_equipment/crisis_drone,
+/obj/item/mecha_parts/mecha_equipment/crisis_drone,
+/obj/structure/closet/walllocker{
+	name = "Equipment Locker";
+	pixel_x = 32
 	},
-/obj/mecha/working/hoverpod/gunpod/agile,
+/obj/item/mecha_parts/mecha_equipment/crisis_drone/rad,
+/obj/item/mecha_parts/mecha_equipment/crisis_drone/rad,
+/obj/item/mecha_parts/mecha_equipment/repair_droid,
+/obj/item/mecha_parts/mecha_equipment/repair_droid,
+/turf/simulated/floor/tiled/techfloor,
+/area/mothership/telecomms2)
+"qR" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms1)
 "qT" = (
@@ -9227,8 +9256,18 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/engineering)
 "rh" = (
-/obj/machinery/atmospherics/binary/pump,
-/turf/simulated/floor/reinforced,
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	icon_state = "corner_techfloor_grid";
+	dir = 6
+	},
+/obj/machinery/mech_recharger{
+	icon = 'icons/turf/shuttle_alien_blue.dmi'
+	},
+/obj/mecha/combat/fighter/gunpod/loaded,
+/turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms2)
 "ri" = (
 /obj/effect/shuttle_landmark{
@@ -9304,13 +9343,26 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/engineering)
 "rr" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/mecha_parts/mecha_equipment/crisis_drone,
-/obj/machinery/atmospherics/pipe/simple/hidden/purple{
-	dir = 5
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
 	},
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon,
-/turf/simulated/floor/reinforced,
+/obj/effect/floor_decal/corner_techfloor_grid{
+	icon_state = "corner_techfloor_grid";
+	dir = 6
+	},
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive,
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive,
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
+/obj/structure/closet/walllocker{
+	name = "Equipment Locker";
+	pixel_x = -32
+	},
+/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
+/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
+/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
+/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
+/turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms2)
 "rs" = (
 /obj/machinery/power/emitter/gyrotron/anchored{
@@ -9436,29 +9488,6 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/engineering)
-"rI" = (
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/canister/phoron,
-/obj/effect/floor_decal/industrial/danger/full,
-/turf/simulated/floor/reinforced,
-/area/mothership/telecomms2)
-"rJ" = (
-/obj/effect/floor_decal/techfloor/orange{
-	icon_state = "techfloororange_edges";
-	dir = 10
-	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 4
-	},
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
-/obj/mecha/working/hoverpod/gunpod/agile,
-/turf/simulated/floor/tiled/techfloor,
-/area/mothership/telecomms1)
 "rK" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
@@ -9580,10 +9609,18 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/engineering)
 "rZ" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive,
-/turf/simulated/floor/reinforced,
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 10
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 4
+	},
+/obj/machinery/mech_recharger{
+	icon = 'icons/turf/shuttle_alien_blue.dmi'
+	},
+/obj/mecha/combat/fighter/gunpod/loaded,
+/turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms2)
 "sb" = (
 /obj/machinery/light{
@@ -10080,12 +10117,40 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms2)
+"tl" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"ts" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"tA" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "tK" = (
 /obj/item/modular_computer/console/preset/mercenary{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/bridge)
+"tW" = (
+/obj/mecha/combat/fighter/gunpod/loaded,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/tiled/techfloor,
+/area/mothership/telecomms2)
 "tZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5;
@@ -10093,35 +10158,25 @@
 	},
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
-"uC" = (
-/obj/machinery/door/blast/regular{
-	destroy_hits = 1000;
-	dir = 4;
-	id = "ship-dronehangar2";
-	name = "Drone Hangar"
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/button/remote/blast_door{
-	id = "ship-dronehangar2";
-	name = "Drone Hangar Controls";
-	pixel_x = 28;
-	req_one_access = list(101)
-	},
-/obj/structure/fans/hardlight,
-/turf/simulated/floor/tiled/steel_ridged,
-/area/mothership/telecomms1)
 "uI" = (
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
-"uO" = (
-/obj/machinery/atmospherics/portables_connector,
-/obj/machinery/portable_atmospherics/canister/air,
-/obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/reinforced,
-/area/mothership/telecomms1)
+"uN" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "uS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -10134,23 +10189,25 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/eva)
 "uV" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/purple{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/computer/gravity_control_computer{
+	density = 0;
+	icon_keyboard = "laptop_key";
+	icon_screen = "atmoslaptop";
+	icon_state = "laptop"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/reinforced,
 /area/mothership/telecomms1)
 "vi" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/purple,
-/turf/simulated/floor/tiled/techfloor,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/reinforced,
 /area/mothership/telecomms2)
 "vD" = (
-/obj/effect/floor_decal/techfloor/orange{
-	icon_state = "techfloororange_edges";
-	dir = 6
+/obj/mecha/combat/fighter/gunpod/loaded,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
 	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 1
-	},
+/obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms1)
 "wm" = (
@@ -10166,20 +10223,87 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms2)
+"wA" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "wO" = (
-/obj/machinery/atmospherics/portables_connector,
-/turf/simulated/floor/tiled/techfloor,
+/obj/machinery/atmospherics/pipe/manifold4w/hidden,
+/obj/machinery/gravity_generator{
+	density = 0;
+	effectiverange = 1;
+	icon_state = "beacon1"
+	},
+/turf/simulated/floor/reinforced,
 /area/mothership/telecomms1)
 "wT" = (
 /obj/machinery/computer/ship/sensors,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/bridge)
+"xm" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "xn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/engineering)
+"xE" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 4;
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"xS" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/alarm{
+	alarm_id = "anomaly_testing";
+	breach_detection = 0;
+	dir = 8;
+	frequency = 1439;
+	pixel_x = 22;
+	pixel_y = 0;
+	report_danger_level = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "yi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/door/airlock/alien/blue/locked{
@@ -10189,6 +10313,65 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/breakroom)
+"yr" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"yG" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"yW" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"zd" = (
+/obj/machinery/computer/timeclock{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"zv" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "zE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/access_button{
@@ -10218,38 +10401,51 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/engineering)
 "AL" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 1
+/obj/machinery/atmospherics/pipe/manifold/hidden,
+/obj/machinery/button/remote/blast_door{
+	id = "ship-dronehangar2";
+	name = "Drone Hangar Controls";
+	pixel_x = 0;
+	pixel_y = -28;
+	req_one_access = list(101)
 	},
-/obj/effect/floor_decal/industrial/outline,
-/obj/effect/floor_decal/techfloor/orange/corner{
-	icon_state = "techfloororange_corners";
-	dir = 8
-	},
-/obj/effect/floor_decal/techfloor/orange/corner,
-/turf/simulated/floor/tiled/techfloor,
-/area/mothership/telecomms1)
-"Bd" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/mothership/telecomms2)
-"Ch" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive,
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
 /turf/simulated/floor/reinforced,
 /area/mothership/telecomms1)
-"Cp" = (
-/obj/effect/floor_decal/techfloor/orange{
+"AP" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"Bd" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/meter,
+/turf/simulated/floor/reinforced,
+/area/mothership/telecomms2)
+"BQ" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
 	},
 /obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 9
+	icon_state = "corner_techfloor_grid";
+	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/purple{
-	dir = 4
+/obj/machinery/mech_recharger{
+	icon = 'icons/turf/shuttle_alien_blue.dmi'
+	},
+/obj/mecha/combat/fighter/gunpod/loaded,
+/turf/simulated/floor/tiled/techfloor,
+/area/mothership/telecomms1)
+"Ch" = (
+/obj/effect/floor_decal/techfloor/orange{
+	icon_state = "techfloororange_edges";
+	dir = 6
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 1
+	},
+/obj/machinery/mech_recharger{
+	icon = 'icons/turf/shuttle_alien_blue.dmi'
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms1)
@@ -10268,14 +10464,36 @@
 	},
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
+"DG" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "DU" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon,
-/obj/machinery/atmospherics/pipe/simple/hidden/purple{
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
 	dir = 9
 	},
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon,
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon,
 /obj/item/mecha_parts/mecha_equipment/crisis_drone,
-/turf/simulated/floor/reinforced,
+/obj/item/mecha_parts/mecha_equipment/crisis_drone,
+/obj/structure/closet/walllocker{
+	name = "Equipment Locker";
+	pixel_x = 32
+	},
+/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
+/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
+/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
+/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
+/turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms1)
 "DX" = (
 /obj/effect/floor_decal/techfloor/orange{
@@ -10333,6 +10551,14 @@
 /obj/effect/overmap/visitable/ship/cruiser,
 /turf/space,
 /area/space)
+"EQ" = (
+/obj/effect/floor_decal/industrial/outline,
+/obj/mecha/combat/fighter/gunpod/loaded,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/mothership/telecomms1)
 "EV" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 8
@@ -10347,6 +10573,12 @@
 /obj/machinery/ion_engine,
 /turf/space,
 /area/mothership/engineering)
+"FQ" = (
+/obj/machinery/computer/timeclock{
+	pixel_y = -28
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "FW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -10361,6 +10593,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/eva)
+"Ge" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1;
+	icon_state = "map"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/telecomms1)
 "Gi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/access_button{
@@ -10392,10 +10631,14 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms2)
 "GW" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/purple{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/computer/gravity_control_computer{
+	density = 0;
+	icon_keyboard = "laptop_key";
+	icon_screen = "atmoslaptop";
+	icon_state = "laptop"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/reinforced,
 /area/mothership/telecomms2)
 "Hl" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -10419,19 +10662,42 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms2)
-"HF" = (
-/obj/effect/floor_decal/corner_techfloor_grid{
-	icon_state = "corner_techfloor_grid";
-	dir = 6
+"HG" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/effect/floor_decal/techfloor/orange{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/mothership/telecomms2)
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"JJ" = (
+/obj/machinery/alarm{
+	alarm_id = "pen_nine";
+	breach_detection = 0;
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"Kc" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "Kd" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/purple,
-/turf/simulated/floor/tiled/techfloor,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/reinforced,
 /area/mothership/telecomms1)
 "Kr" = (
 /obj/structure/cable/cyan{
@@ -10453,18 +10719,48 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "KA" = (
-/obj/mecha/working/hoverpod/gunpod/agile,
-/obj/machinery/atmospherics/portables_connector{
-	dir = 1
+/obj/machinery/atmospherics/pipe/manifold/hidden,
+/obj/machinery/button/remote/blast_door{
+	id = "ship-dronehangar1";
+	name = "Drone Hangar Controls";
+	pixel_x = 0;
+	pixel_y = -28;
+	req_one_access = list(101)
 	},
+/turf/simulated/floor/reinforced,
+/area/mothership/telecomms2)
+"KO" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/alarm{
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"MI" = (
 /obj/effect/floor_decal/industrial/outline,
-/obj/effect/floor_decal/techfloor/orange/corner,
-/obj/effect/floor_decal/techfloor/orange/corner{
-	icon_state = "techfloororange_corners";
+/obj/mecha/combat/fighter/gunpod/loaded,
+/obj/machinery/atmospherics/portables_connector{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms2)
+"On" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "Ox" = (
 /obj/effect/floor_decal/techfloor/orange{
 	icon_state = "techfloororange_edges";
@@ -10473,6 +10769,24 @@
 /obj/effect/floor_decal/corner_techfloor_grid,
 /turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms1)
+"OC" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/tiled/techfloor,
+/area/mothership/telecomms2)
+"OM" = (
+/obj/machinery/telecomms/relay/preset/centcom,
+/turf/simulated/floor/wood,
+/area/mothership/breakroom)
+"Pi" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "PC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/access_button{
@@ -10508,15 +10822,29 @@
 /obj/structure/fans/hardlight,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/engineering)
-"QF" = (
-/obj/machinery/light{
-	icon_state = "tube1";
+"QH" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/canister/phoron,
-/obj/effect/floor_decal/industrial/danger/full,
-/turf/simulated/floor/reinforced,
-/area/mothership/telecomms1)
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 4;
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "QI" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
@@ -10527,16 +10855,6 @@
 	},
 /turf/space,
 /area/space)
-"QO" = (
-/obj/effect/floor_decal/techfloor/orange{
-	icon_state = "techfloororange_edges";
-	dir = 10
-	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/mothership/telecomms2)
 "QU" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
@@ -10548,14 +10866,42 @@
 /turf/space,
 /area/space)
 "RE" = (
-/obj/machinery/atmospherics/binary/pump,
-/turf/simulated/floor/reinforced,
-/area/mothership/telecomms1)
-"Sj" = (
-/obj/machinery/atmospherics/portables_connector,
-/obj/effect/floor_decal/industrial/outline,
-/obj/mecha/working/hoverpod/gunpod/agile,
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 9
+	},
+/obj/machinery/mech_recharger{
+	icon = 'icons/turf/shuttle_alien_blue.dmi'
+	},
 /turf/simulated/floor/tiled/techfloor,
+/area/mothership/telecomms1)
+"RP" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"RS" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"Sj" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden,
+/obj/machinery/gravity_generator{
+	density = 0;
+	effectiverange = 1;
+	icon_state = "beacon1"
+	},
+/turf/simulated/floor/reinforced,
 /area/mothership/telecomms2)
 "Su" = (
 /obj/machinery/shipsensors{
@@ -10568,6 +10914,31 @@
 	name = "outer hull"
 	},
 /area/mothership/hydroponics)
+"Sx" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"Sz" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1;
+	icon_state = "map"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/telecomms2)
 "SE" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -10609,6 +10980,46 @@
 /obj/structure/fans/hardlight,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/breakroom)
+"SV" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"Td" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"Tg" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "TK" = (
 /obj/effect/floor_decal/techfloor/orange{
 	icon_state = "techfloororange_edges";
@@ -10617,28 +11028,10 @@
 /obj/effect/floor_decal/corner_techfloor_grid,
 /turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms2)
-"TZ" = (
-/obj/machinery/door/blast/regular{
-	destroy_hits = 1000;
-	dir = 4;
-	id = "ship-dronehangar1";
-	name = "Drone Hangar"
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/button/remote/blast_door{
-	id = "ship-dronehangar1";
-	name = "Drone Hangar Controls";
-	pixel_x = -28;
-	req_one_access = list(101)
-	},
-/obj/structure/fans/hardlight,
-/turf/simulated/floor/tiled/steel_ridged,
-/area/mothership/telecomms2)
 "UD" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/techfloor,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/meter,
+/turf/simulated/floor/reinforced,
 /area/mothership/telecomms1)
 "Wi" = (
 /obj/structure/cable/cyan{
@@ -10662,12 +11055,6 @@
 /obj/structure/fans/hardlight,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/telecomms1)
-"WW" = (
-/obj/machinery/atmospherics/portables_connector,
-/obj/machinery/portable_atmospherics/canister/air,
-/obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/reinforced,
-/area/mothership/telecomms2)
 "Xh" = (
 /obj/item/modular_computer/console/preset/mercenary{
 	dir = 8
@@ -10690,6 +11077,62 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms1)
+"Yt" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"Yv" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"YP" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
+"ZL" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 4;
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/mothership/hallway)
 "ZS" = (
 /obj/machinery/door/airlock/alien/blue/locked{
 	frequency = 1380;
@@ -18638,8 +19081,8 @@ pe
 pe
 pe
 pe
-pe
-aa
+pV
+bc
 aa
 aa
 aa
@@ -18775,13 +19218,13 @@ oM
 pe
 pu
 pW
-qx
-qt
+Ox
+BQ
 qu
-qv
+rt
 qw
-pe
-bc
+WE
+Ex
 aa
 aa
 aa
@@ -18917,11 +19360,11 @@ oM
 pe
 pv
 pX
-Ox
+DX
 qR
-rj
-rt
-rJ
+XQ
+XQ
+qR
 WE
 Ex
 aa
@@ -19057,15 +19500,15 @@ op
 oD
 oN
 pe
-pw
-pX
+qt
+Ge
 UD
 wO
 uV
 Kd
 AL
-WE
-Ex
+pV
+bc
 aa
 aa
 aa
@@ -19201,12 +19644,12 @@ oO
 pe
 px
 pX
-DX
-XQ
-Cp
-XQ
+Ox
+EQ
+rj
+rj
 vD
-uC
+WE
 Ex
 aa
 aa
@@ -19343,13 +19786,13 @@ oP
 pe
 py
 pY
-uO
+DX
 RE
 DU
-QF
+XQ
 Ch
-pe
-bc
+WE
+Ex
 aa
 aa
 aa
@@ -19626,7 +20069,7 @@ oF
 oR
 pe
 pA
-qa
+qv
 qJ
 qT
 qT
@@ -19854,7 +20297,7 @@ aa
 aa
 ag
 ab
-ao
+OM
 ao
 Do
 ao
@@ -19872,9 +20315,9 @@ cr
 dj
 dw
 dN
-dz
+AP
 dj
-dz
+tA
 fb
 dz
 dz
@@ -19903,9 +20346,9 @@ dz
 dz
 fb
 lR
-dN
-dz
-ov
+RP
+AP
+DG
 ov
 oT
 dz
@@ -20013,8 +20456,8 @@ cX
 cr
 dk
 dx
-Wi
-Wi
+uN
+xm
 ev
 eM
 fc
@@ -20045,9 +20488,9 @@ Wi
 mU
 nl
 nE
-Wi
-Wi
-Wi
+xS
+xm
+uN
 oH
 oU
 fc
@@ -20306,8 +20749,8 @@ fv
 fS
 gh
 fd
-dz
-EK
+On
+zv
 hu
 hJ
 ig
@@ -20321,8 +20764,8 @@ iv
 kF
 kW
 kG
-EK
-dz
+YP
+ts
 mc
 mq
 mE
@@ -20448,8 +20891,8 @@ fw
 fS
 gi
 fd
-gR
-EK
+Pi
+KO
 hv
 hK
 hu
@@ -20463,8 +20906,8 @@ iv
 kG
 kX
 lm
-EK
-dA
+xE
+Yt
 mc
 mr
 uI
@@ -20590,23 +21033,23 @@ fx
 fS
 gj
 fd
-dz
+zd
 hd
 dS
 hL
 Wi
 Wi
 Wi
-Wi
+Td
 fe
-Wi
+Sx
 Wi
 Wi
 Wi
 kY
 dS
 he
-dz
+dD
 mc
 ms
 mG
@@ -20739,16 +21182,16 @@ dj
 gy
 ff
 dz
-dz
+RS
 jz
-dz
+Tg
 dz
 ff
 gy
 dj
 dy
 EK
-dz
+FQ
 mc
 wT
 mG
@@ -20900,7 +21343,7 @@ nr
 nr
 oj
 mc
-EK
+ZL
 oZ
 pD
 pI
@@ -21005,8 +21448,8 @@ cG
 cO
 cZ
 cr
-EK
-dD
+QH
+JJ
 dP
 eh
 eA
@@ -21042,8 +21485,8 @@ mG
 mH
 ok
 mc
-EK
-oV
+YP
+Kc
 pD
 pJ
 qj
@@ -21147,8 +21590,8 @@ cA
 cO
 cY
 cr
-EK
-dz
+SV
+wA
 dO
 dP
 dP
@@ -21184,8 +21627,8 @@ nF
 mc
 mc
 mb
-EK
-oW
+SV
+Yv
 pk
 pD
 qk
@@ -21298,8 +21741,8 @@ Wi
 fe
 fB
 fV
-Wi
-Wi
+HG
+yW
 dx
 Kr
 hx
@@ -21317,9 +21760,9 @@ lc
 kH
 lA
 lQ
-Wi
-Wi
-Wi
+yW
+HG
+yG
 Wi
 nu
 Wi
@@ -21438,10 +21881,10 @@ dz
 dj
 dz
 ff
+tl
 dz
-dz
-dz
-gy
+Tg
+yr
 dz
 hf
 hy
@@ -21459,9 +21902,9 @@ hy
 hy
 gP
 lR
-gy
-dz
-dz
+yr
+Tg
+tl
 dz
 ff
 gy
@@ -22041,13 +22484,13 @@ oz
 pq
 pN
 qp
-WW
+TK
 rh
 rr
-rI
+GT
 rZ
-pq
-bc
+sq
+Ex
 aa
 aa
 aa
@@ -22183,12 +22626,12 @@ oz
 pq
 pO
 qq
-TK
-EV
-GT
-HF
-QO
-TZ
+tb
+OC
+Ez
+Ez
+OC
+sq
 Ex
 aa
 aa
@@ -22324,14 +22767,14 @@ oz
 oz
 pq
 pP
-qq
+Sz
 Bd
 Sj
 GW
 vi
 KA
-sq
-Ex
+qs
+bc
 aa
 aa
 aa
@@ -22467,11 +22910,11 @@ oz
 pq
 pQ
 qq
-tb
-Hs
-Ez
-Ez
-wm
+TK
+MI
+EV
+EV
+tW
 sq
 Ex
 aa
@@ -22609,13 +23052,13 @@ oz
 pq
 pR
 qr
-qM
-qQ
+tb
+Hs
 qN
-qP
-qO
-pq
-bc
+Ez
+wm
+sq
+Ex
 aa
 aa
 aa
@@ -22756,8 +23199,8 @@ pq
 pq
 pq
 pq
-pq
-aa
+qs
+bc
 aa
 aa
 aa

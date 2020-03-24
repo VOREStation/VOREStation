@@ -3007,7 +3007,7 @@
 /obj/machinery/mech_recharger{
 	icon = 'icons/turf/shuttle_alien_blue.dmi'
 	},
-/obj/mecha/working/hoverpod/gunpod/agile,
+/obj/mecha/combat/fighter/pinnace/loaded,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "gh" = (
@@ -3422,11 +3422,11 @@
 /turf/simulated/floor/reinforced,
 /area/ship/aro/midshipshangars)
 "PJ" = (
-/obj/mecha/working/hoverpod/gunpod/agile,
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
 	},
 /obj/effect/floor_decal/industrial/outline,
+/obj/mecha/combat/fighter/pinnace/loaded,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "TU" = (
