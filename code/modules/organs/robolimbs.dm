@@ -98,6 +98,14 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon = 'icons/mob/human_races/cyberlimbs/unbranded/unbranded_unathi.dmi'
 	unavailable_to_build = 1
 
+/datum/robolimb/unbranded_teshari
+	company = "Unbranded - Teshari"
+	species_cannot_use = list(SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_HUMAN, SPECIES_VOX, SPECIES_HUMAN_VATBORN, SPECIES_TAJ, SPECIES_SKRELL, SPECIES_ZADDAT)
+	suggested_species = SPECIES_TESHARI
+	desc = "A simple robotic limb with a small, raptor-like design. Seems rather stiff."
+	icon = 'icons/mob/human_races/cyberlimbs/unbranded/unbranded_teshari.dmi'
+	unavailable_to_build = 0
+
 /datum/robolimb/nanotrasen
 	company = "NanoTrasen"
 	desc = "A simple but efficient robotic limb, created by NanoTrasen."
@@ -120,6 +128,15 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	suggested_species = SPECIES_UNATHI
 	desc = "A simple but efficient robotic limb, created by NanoTrasen."
 	icon = 'icons/mob/human_races/cyberlimbs/nanotrasen/nanotrasen_unathi.dmi'
+	unavailable_to_build = 1
+
+/datum/robolimb/cenilimicybernetics_teshari
+	company = "Cenilimi Cybernetics"
+	species_cannot_use = list(SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_HUMAN, SPECIES_VOX, SPECIES_HUMAN_VATBORN, SPECIES_TAJ, SPECIES_SKRELL, SPECIES_ZADDAT)
+	species_alternates = list(SPECIES_HUMAN = "NanoTrasen")
+	suggested_species = SPECIES_TESHARI
+	desc = "Made by a Teshari-owned company, for Teshari."
+	icon = 'icons/mob/human_races/cyberlimbs/cenilimicybernetics/cenilimicybernetics_teshari.dmi'
 	unavailable_to_build = 1
 
 /datum/robolimb/bishop
@@ -465,3 +482,6 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 
 /obj/item/weapon/disk/species/zaddat
 	species = SPECIES_ZADDAT
+
+/obj/item/weapon/disk/limb/cenilimicybernetics
+	company = "Cenilimi Cybernetics"
