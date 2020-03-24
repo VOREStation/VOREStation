@@ -55,13 +55,8 @@
 		//if we've finished growing...
 		if(time_spent_spawning >= time_per_spawn)
 			time_spent_spawning = 0
-<<<<<<< HEAD
-			use_power = 1
-			src.visible_message("<span class='notice'>[bicon(src)] [src] pings!</span>")
-=======
 			update_use_power(USE_POWER_IDLE)
-			src.visible_message("<span class='notice'>\icon[src] [src] pings!</span>")
->>>>>>> 95ac99c... Merge pull request #6882 from VOREStation/vplk-machinery-use-power
+			src.visible_message("<span class='notice'>[bicon(src)] [src] pings!</span>")
 			icon_state = "cellold1"
 			desc = "It's full of a bubbling viscous liquid, and is lit by a mysterious glow."
 			if(spawn_type)
