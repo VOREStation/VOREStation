@@ -146,7 +146,7 @@
 	living_mob_list += H
 
 	H.timeofdeath = 0
-	H.stat = UNCONSCIOUS
+	H.set_stat(UNCONSCIOUS)
 	H.failed_last_breath = 0
 	H.reload_fullscreen()
 

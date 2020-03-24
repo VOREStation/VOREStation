@@ -256,7 +256,7 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/updatehealth()
 	if(status_flags & GODMODE)
 		health = maxHealth
-		stat = CONSCIOUS
+		set_stat(CONSCIOUS)
 		return
 	health = maxHealth - (getBruteLoss() + getFireLoss())
 	return
