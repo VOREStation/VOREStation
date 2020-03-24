@@ -11,7 +11,7 @@
 	icon_state = "smes"
 	density = 1
 	anchored = 1
-	use_power = 0
+	use_power = USE_POWER_OFF
 	circuit = /obj/item/weapon/circuitboard/smes
 	clicksound = "switch"
 

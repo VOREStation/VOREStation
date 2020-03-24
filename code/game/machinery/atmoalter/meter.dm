@@ -9,7 +9,7 @@
 	power_channel = ENVIRON
 	var/frequency = 0
 	var/id
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 15
 
 /obj/machinery/meter/Initialize()

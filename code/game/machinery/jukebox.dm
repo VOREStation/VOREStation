@@ -17,7 +17,7 @@
 	anchored = 1
 	density = 1
 	power_channel = EQUIP
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 100
 	circuit = /obj/item/weapon/circuitboard/jukebox
@@ -321,7 +321,7 @@
 
 /obj/machinery/media/jukebox/proc/StopPlaying()
 	playing = 0
-	update_use_power(1)
+	update_use_power(USE_POWER_IDLE)
 	update_icon()
 	start_stop_song()
 
@@ -329,7 +329,7 @@
 	if(!current_track)
 		return
 	playing = 1
-	update_use_power(2)
+	update_use_power(USE_POWER_ACTIVE)
 	update_icon()
 	start_stop_song()
 	updateDialog()

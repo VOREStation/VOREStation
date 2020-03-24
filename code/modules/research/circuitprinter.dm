@@ -20,7 +20,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 
 	hidden_materials = list(MAT_PLASTEEL, MAT_DURASTEEL, MAT_GRAPHITE, MAT_VERDANTIUM, MAT_MORPHIUM, MAT_METALHYDROGEN, MAT_SUPERMATTER)
 
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 30
 	active_power_usage = 2500
 

@@ -22,7 +22,7 @@
 	var/time_since_fail = 100
 	var/energy_conversion_rate = 0.0006	//how many renwicks per watt?  Higher numbers equals more effiency.
 	var/z_range = 0 // How far 'up and or down' to extend the shield to, in z-levels.  Only works on MultiZ supported z-levels.
-	use_power = 0	//doesn't use APC power
+	use_power = USE_POWER_OFF	//doesn't use APC power
 
 /obj/machinery/shield_gen/advanced
 	name = "advanced bubble shield generator"

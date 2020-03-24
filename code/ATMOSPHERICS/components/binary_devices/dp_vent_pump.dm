@@ -20,7 +20,7 @@
 
 	level = 1
 
-	use_power = 0
+	use_power = USE_POWER_OFF
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
 
@@ -214,10 +214,10 @@
 	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
 		return 0
 	if(signal.data["power"])
-		use_power = text2num(signal.data["power"])
+		update_use_power(text2num(signal.data["power"]))
 
 	if(signal.data["power_toggle"])
-		use_power = !use_power
+		update_use_power(!use_power)
 
 	if(signal.data["direction"])
 		pump_direction = text2num(signal.data["direction"])

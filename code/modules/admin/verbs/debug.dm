@@ -539,7 +539,7 @@
 					Pump.air2.gas["nitrogen"] = 3750	//The contents of 2 canisters.
 					Pump.air2.temperature = 50
 					Pump.air2.update_values()
-				Pump.use_power=1
+				Pump.update_use_power(USE_POWER_IDLE)
 				Pump.target_pressure = 4500
 				Pump.update_icon()
 
