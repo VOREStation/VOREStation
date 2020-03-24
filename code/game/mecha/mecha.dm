@@ -1260,25 +1260,31 @@
 		src.icon_state = src.reset_icon()
 		set_dir(dir_in)
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
-		if(!hasInternalDamage()) //Otherwise it's not nominal!
-			switch(mech_faction)
-				if(MECH_FACTION_NT)//The good guys category
-					if(firstactivation)//First time = long activation sound
-						firstactivation = 1
-						src.occupant << sound('sound/mecha/LongNanoActivation.ogg',volume=50)
-					else
-						src.occupant << sound('sound/mecha/nominalnano.ogg',volume=50)
-				if(MECH_FACTION_SYNDI)//Bad guys
-					if(firstactivation)
-						firstactivation = 1
-						src.occupant << sound('sound/mecha/LongSyndiActivation.ogg',volume=50)
-					else
-						src.occupant << sound('sound/mecha/nominalsyndi.ogg',volume=50)
-				else//Everyone else gets the normal noise
-					src.occupant << sound('sound/mecha/nominal.ogg',volume=50)
+		if(occupant.client && cloaked_selfimage)
+			occupant.client.images += cloaked_selfimage
+		play_entered_noise(occupant)
 		return 1
 	else
 		return 0
+
+/obj/mecha/proc/play_entered_noise(var/mob/who)
+	if(!hasInternalDamage()) //Otherwise it's not nominal!
+		switch(mech_faction)
+			if(MECH_FACTION_NT)//The good guys category
+				if(firstactivation)//First time = long activation sound
+					firstactivation = 1
+					who << sound('sound/mecha/LongNanoActivation.ogg',volume=50)
+				else
+					who << sound('sound/mecha/nominalnano.ogg',volume=50)
+			if(MECH_FACTION_SYNDI)//Bad guys
+				if(firstactivation)
+					firstactivation = 1
+					who << sound('sound/mecha/LongSyndiActivation.ogg',volume=50)
+				else
+					who << sound('sound/mecha/nominalsyndi.ogg',volume=50)
+			else//Everyone else gets the normal noise
+				who << sound('sound/mecha/nominal.ogg',volume=50)
+
 
 /obj/mecha/verb/view_stats()
 	set name = "View Stats"
@@ -1323,45 +1329,21 @@
 	else
 		return
 	if(mob_container.forceMove(src.loc))//ejecting mob container
-	/*
-		if(ishuman(occupant) && (return_pressure() > HAZARD_HIGH_PRESSURE))
-			use_internal_tank = 0
-			var/datum/gas_mixture/environment = get_turf_air()
-			if(environment)
-				var/env_pressure = environment.return_pressure()
-				var/pressure_delta = (cabin.return_pressure() - env_pressure)
-		//Can not have a pressure delta that would cause environment pressure > tank pressure
-
-				var/transfer_moles = 0
-				if(pressure_delta > 0)
-					transfer_moles = pressure_delta*environment.volume/(cabin.return_temperature() * R_IDEAL_GAS_EQUATION)
-
-			//Actually transfer the gas
-					var/datum/gas_mixture/removed = cabin.air_contents.remove(transfer_moles)
-					loc.assume_air(removed)
-
-			occupant.SetStunned(5)
-			occupant.SetWeakened(5)
-			to_chat(occupant, "You were blown out of the mech!")
-	*/
-		src.log_message("[mob_container] moved out.")
+		log_message("[mob_container] moved out.")
 		occupant.reset_view()
-		/*
-		if(src.occupant.client)
-			src.occupant.client.eye = src.occupant.client.mob
-			src.occupant.client.perspective = MOB_PERSPECTIVE
-		*/
-		src.occupant << browse(null, "window=exosuit")
+		occupant << browse(null, "window=exosuit")
+		if(occupant.client && cloaked_selfimage)
+			occupant.client.images -= cloaked_selfimage
 		if(istype(mob_container, /obj/item/device/mmi))
 			var/obj/item/device/mmi/mmi = mob_container
 			if(mmi.brainmob)
 				occupant.loc = mmi
 			mmi.mecha = null
-			src.occupant.canmove = 0
-		src.occupant = null
-		src.icon_state = src.reset_icon()+"-open"
-		src.set_dir(dir_in)
-		src.verbs -= /obj/mecha/verb/eject
+			occupant.canmove = 0
+		occupant = null
+		icon_state = src.reset_icon()+"-open"
+		set_dir(dir_in)
+		verbs -= /obj/mecha/verb/eject
 	return
 
 /////////////////////////
@@ -2069,6 +2051,17 @@
 
 
 /////////////
+
+/obj/mecha/cloak()
+	. = ..()
+	if(occupant && occupant.client && cloaked_selfimage)
+		occupant.client.images += cloaked_selfimage
+
+/obj/mecha/uncloak()
+	if(occupant && occupant.client && cloaked_selfimage)
+		occupant.client.images -= cloaked_selfimage
+	return ..()
+
 
 //debug
 /*

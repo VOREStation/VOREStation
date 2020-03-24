@@ -24,6 +24,9 @@
 	var/datum/riding/riding_datum //VOREStation Add - Moved from /obj/vehicle
 	var/does_spin = TRUE // Does the atom spin when thrown (of course it does :P)
 	var/movement_type = NONE
+	
+	var/cloaked = FALSE //If we're cloaked or not
+	var/image/cloaked_selfimage //The image we use for our client to let them see where we are
 
 /atom/movable/Destroy()
 	. = ..()
@@ -516,3 +519,93 @@
 // Called when touching a lava tile.
 /atom/movable/proc/lava_act()
 	fire_act(null, 10000, 1000)
+
+
+// Procs to cloak/uncloak
+/atom/movable/proc/cloak()
+	if(cloaked)
+		return FALSE
+	cloaked = TRUE
+	. = TRUE // We did work
+
+	var/static/animation_time = 1 SECOND
+	cloaked_selfimage = get_cloaked_selfimage()
+
+	//Wheeee
+	cloak_animation(animation_time)
+
+	//Needs to be last so people can actually see the effect before we become invisible
+	plane = CLOAKED_PLANE
+
+/atom/movable/proc/uncloak()
+	if(!cloaked)
+		return FALSE
+	cloaked = FALSE
+	. = TRUE // We did work
+
+	var/static/animation_time = 1 SECOND
+	QDEL_NULL(cloaked_selfimage)
+
+	//Needs to be first so people can actually see the effect, so become uninvisible first
+	plane = initial(plane)
+
+	//Oooooo
+	uncloak_animation(animation_time)
+
+
+// Animations for cloaking/uncloaking
+/atom/movable/proc/cloak_animation(var/length = 1 SECOND)
+	//Save these
+	var/initial_alpha = alpha
+	
+	//Animate alpha fade
+	animate(src, alpha = 0, time = length)
+
+	//Animate a cloaking effect
+	var/our_filter = filters.len+1 //Filters don't appear to have a type that can be stored in a var and accessed. This is how the DM reference does it.
+	filters += filter(type="wave", x = 0, y = 16, size = 0, offset = 0, flags = WAVE_SIDEWAYS)
+	animate(filters[our_filter], offset = 1, size = 8, time = length, flags = ANIMATION_PARALLEL)
+
+	//Wait for animations to finish
+	sleep(length+5)
+
+	//Remove those
+	filters -= filters[our_filter]
+
+	//Back to original alpha
+	alpha = initial_alpha
+
+/atom/movable/proc/uncloak_animation(var/length = 1 SECOND)
+	//Save these
+	var/initial_alpha = alpha
+
+	//Put us back to normal, but no alpha
+	alpha = 0
+
+	//Animate alpha fade up
+	animate(src, alpha = initial_alpha, time = length)
+
+	//Animate a cloaking effect
+	var/our_filter = filters.len+1 //Filters don't appear to have a type that can be stored in a var and accessed. This is how the DM reference does it.
+	filters += filter(type="wave", x=0, y = 16, size = 8, offset = 1, flags = WAVE_SIDEWAYS)
+	animate(filters[our_filter], offset = 0, size = 0, time = length, flags = ANIMATION_PARALLEL)
+
+	//Wait for animations to finish
+	sleep(length+5)
+
+	//Remove those
+	filters -= filters[our_filter]
+
+
+// So cloaked things can see themselves, if necessary
+/atom/movable/proc/get_cloaked_selfimage()
+	var/icon/selficon = icon(icon, icon_state)
+	selficon.MapColors(0,0,0, 0,0,0, 0,0,0, 1,1,1) //White
+	var/image/selfimage = image(selficon)
+	selfimage.color = "#0000FF"
+	selfimage.alpha = 100
+	selfimage.layer = initial(layer)
+	selfimage.plane = initial(plane)
+	selfimage.loc = src
+
+	return selfimage
