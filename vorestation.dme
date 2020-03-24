@@ -3527,4 +3527,6 @@
 #include "maps\tether\submaps\admin_use\fun.dm"
 #include "maps\virgo_minitest\virgo_minitest.dm"
 #include "maps\~map_system\maps.dm"
+#include "D:\Games\BYOND\backups\maps\Vespa.dm"
+#include "D:\Games\BYOND\backups\maps\Vespa.dmm"
 // END_INCLUDE
