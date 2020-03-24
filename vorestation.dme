@@ -3511,10 +3511,9 @@
 #include "maps\submaps\surface_submaps\plains\plains_areas.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
+#include "maps\tether\tether.dm"
 #include "maps\tether\submaps\admin_use\fun.dm"
 #include "maps\tether\submaps\om_ships\Vespa.dm"
 #include "maps\tether\submaps\om_ships\Vespa.dmm"
 #include "maps\~map_system\maps.dm"
-#include "D:\Games\BYOND\backups\maps\Vespa.dm"
-#include "D:\Games\BYOND\backups\maps\Vespa.dmm"
 // END_INCLUDE
