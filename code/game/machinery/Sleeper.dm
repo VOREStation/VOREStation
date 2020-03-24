@@ -7,7 +7,7 @@
 	anchored = 1 //About time someone fixed this.
 	density = 1 //VOREStation Edit - Big console
 	dir = 8
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 40
 	interact_offline = 1
 	circuit = /obj/item/weapon/circuitboard/sleeper_console
@@ -179,7 +179,7 @@
 	var/stasis_level = 0 //Every 'this' life ticks are applied to the mob (when life_ticks%stasis_level == 1)
 	var/stasis_choices = list("Complete (1%)" = 100, "Deep (10%)" = 10, "Moderate (20%)" = 5, "Light (50%)" = 2, "None (100%)" = 0)
 
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 15
 	active_power_usage = 200 //builtin health analyzer, dialysis machine, injectors.
 
@@ -388,7 +388,7 @@
 			M.client.perspective = EYE_PERSPECTIVE
 			M.client.eye = src
 		M.loc = src
-		update_use_power(2)
+		update_use_power(USE_POWER_ACTIVE)
 		occupant = M
 		update_icon()
 
@@ -408,7 +408,7 @@
 		if(A in component_parts)
 			continue
 		A.loc = src.loc
-	update_use_power(1)
+	update_use_power(USE_POWER_IDLE)
 	update_icon()
 	toggle_filter()
 	toggle_pump()

@@ -8,7 +8,7 @@
 	reference = "control_box"
 	anchored = 0
 	density = 1
-	use_power = 0
+	use_power = USE_POWER_OFF
 	idle_power_usage = 500
 	active_power_usage = 70000 //70 kW per unit of strength
 	construction_state = 0
@@ -42,7 +42,7 @@
 
 /obj/machinery/particle_accelerator/control_box/update_state()
 	if(construction_state < 3)
-		update_use_power(0)
+		update_use_power(USE_POWER_OFF)
 		assembled = 0
 		active = 0
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
@@ -52,7 +52,7 @@
 		connected_parts = list()
 		return
 	if(!part_scan())
-		update_use_power(1)
+		update_use_power(USE_POWER_IDLE)
 		active = 0
 		connected_parts = list()
 
@@ -138,9 +138,9 @@
 	..()
 	if(stat & NOPOWER)
 		active = 0
-		update_use_power(0)
+		update_use_power(USE_POWER_OFF)
 	else if(!stat && construction_state == 3)
-		update_use_power(1)
+		update_use_power(USE_POWER_IDLE)
 
 
 /obj/machinery/particle_accelerator/control_box/process()
@@ -212,13 +212,13 @@
 	message_admins("PA Control Computer turned [active ?"ON":"OFF"] by [key_name(usr, usr.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) in ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 	log_game("PACCEL([x],[y],[z]) [key_name(usr)] turned [active?"ON":"OFF"].")
 	if(active)
-		update_use_power(2)
+		update_use_power(USE_POWER_ACTIVE)
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
 			part.strength = src.strength
 			part.powered = 1
 			part.update_icon()
 	else
-		update_use_power(1)
+		update_use_power(USE_POWER_IDLE)
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
 			part.strength = null
 			part.powered = 0
