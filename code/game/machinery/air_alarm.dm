@@ -131,6 +131,10 @@
 	TLV["pressure"] =		list(ONE_ATMOSPHERE * 0.80, ONE_ATMOSPHERE * 0.90, ONE_ATMOSPHERE * 1.10, ONE_ATMOSPHERE * 1.20) /* kpa */
 	TLV["temperature"] =	list(T0C - 26, T0C, T0C + 40, T0C + 66) // K
 
+	//VOREStation Add
+	pixel_x = (src.dir & 3)? 0 : (src.dir == 4 ? -28 : 28)
+	pixel_y = (src.dir & 3)? (src.dir ==1 ? -28 : 28) : 0
+	//VOREStation Add End
 
 /obj/machinery/alarm/Initialize()
 	. = ..()
