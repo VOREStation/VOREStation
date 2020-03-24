@@ -62,14 +62,10 @@
 	name = "\improper Exp Ship - Supermatter"
 /area/ship/expe/smstorage
 	name = "\improper Exp Ship - Supermatter Storage"
-/area/ship/expe/secarmoury
-	name = "\improper Exp Ship - Security - Armoury"
-/area/ship/expe/secequipment
-	name = "\improper Exp Ship - Security - Equipment Room"
 /area/ship/expe/medical
 	name = "\improper Exp Ship - Medical"
 /area/ship/expe/medical1
-	name = "\improper Exp Ship - Medical"
+	name = "\improper Exp Ship - Medical Pacient Room"
 /area/ship/expe/medicalchem
 	name = "\improper Exp Ship - Chemistry"
 /area/ship/expe/medicalmain
@@ -78,6 +74,8 @@
 	name = "\improper Exp Ship - Medical Equipment Room"
 /area/ship/expe/medicalsur
 	name = "\improper Exp Ship - Medical Surgery"
+/area/ship/expe/armoury
+	name = "\improper Exp Ship - Lightweight Armoury"
 /area/ship/expe/science
 	name = "\improper Exp Ship - Science"
 /area/ship/expe/sciencestorage
