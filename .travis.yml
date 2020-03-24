@@ -28,25 +28,6 @@ install:
 
 before_script:
   - shopt -s globstar
-<<<<<<< HEAD
-=======
-  - (! grep 'step_[xy]' maps/**/*.dmm)
-  - (! grep -Pn '( |\t|;|{)tag( ?)=' maps/**/*.dmm)
-  - (! find nano/templates/ -type f -exec md5sum {} + | sort | uniq -D -w 32 | grep nano)
-  - (! grep -En "<\s*span\s+class\s*=\s*('[^'>]+|[^'>]+')\s*>" **/*.dm)
-  - awk -f tools/indentation.awk **/*.dm
-  - md5sum -c - <<< "88490b460c26947f5ec1ab1bb9fa9f17 *html/changelogs/example.yml"
-  - (num=`grep -E '\\\\(red|blue|green|black|b|i[^mc])' **/*.dm | wc -l`; echo "$num escapes (expecting ${MACRO_COUNT} or less)"; [ $num -le ${MACRO_COUNT} ])
-  - source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
-  - python tools/TagMatcher/tag-matcher.py ../..
-  # Run our test
-  - cp config/example/* config/
-  - echo "#define ${TEST_DEFINE} 1" > ${TEST_FILE}
-  - DreamMaker polaris.dme
-  - if [ $RUN -eq 1 ]; then DreamDaemon polaris.dmb -invisible -trusted -core 2>&1 | tee log.txt; fi
-  - if [ $RUN -eq 1 ]; then grep "All Unit Tests Passed" log.txt; fi
-  - if [ $RUN -eq 1 ]; then grep "Caught 0 Runtimes" log.txt; fi
->>>>>>> 40d5484... Merge pull request #6808 from Neerti/travis_runtime_checker
 
 script:
   - ./tools/travis/compile_and_run.sh
