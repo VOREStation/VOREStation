@@ -92,7 +92,7 @@
 				to_chat(user, "You feel as if you just narrowly avoided a terrible fate...")
 				for(var/mob/living/simple_mob/faithless/F in living_mob_list)
 					F.health = -10
-					F.stat = 2
+					F.set_stat(DEAD)
 					F.icon_state = "faithless_dead"
 
 
@@ -121,7 +121,7 @@
 
 	if(istype(M, /mob/living/carbon/human) || istype(M, /mob/living/carbon/monkey))
 		for(var/mob/O in viewers(world.view, src.loc))
-			to_chat(O, "<font color='red'>[M] triggered the [bicon(src)] [src]</font>")
+			to_chat(O, "<font color='red'>[M] triggered the \icon[src] [src]</font>")
 		triggered = 1
 		call(src,triggerproc)(M)
 
@@ -156,7 +156,7 @@
 		if(C.stat == DEAD)
 			dead_mob_list -= C
 			living_mob_list += C
-		C.stat = CONSCIOUS
+		C.set_stat(CONSCIOUS)
 		C.tod = null
 		C.setToxLoss(0)
 		C.setOxyLoss(0)

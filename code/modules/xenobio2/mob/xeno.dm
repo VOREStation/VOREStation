@@ -93,7 +93,7 @@ Also includes Life and New
 	traitdat.source = name
 
 	if(!health)
-		stat = DEAD
+		set_stat(DEAD)
 
 /mob/living/simple_mob/xeno/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj, /obj/item/projectile/beam/stun/xeno))
