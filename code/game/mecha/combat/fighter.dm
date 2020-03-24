@@ -8,7 +8,7 @@
 	var/stabilization_enabled = TRUE //If our anti-space-drift is on
 	var/ground_capable = FALSE //If we can fly over normal turfs and not just space
 
-	icon = 'icons/mecha/mecha64x64.dmi'
+	icon = 'icons/mecha/fighters64x64.dmi'
 	
 	icon_state = ""
 	initial_icon = ""
@@ -152,7 +152,7 @@
 /obj/mecha/combat/fighter/gunpod
 	name = "Gunpod"
 	desc = "Small mounted weapons platform capable of space and surface combat. More like a flying tank than a dedicated fightercraft."
-	icon = 'icons/mecha/fighters64x64_vr.dmi'
+	icon = 'icons/mecha/fighters64x64.dmi'
 	icon_state = "gunpod"
 	initial_icon = "gunpod"
 
@@ -214,7 +214,7 @@
 /obj/effect/decal/mecha_wreckage/gunpod
 	name = "Gunpod wreckage"
 	desc = "Remains of some unfortunate gunpod. Completely unrepairable."
-	icon = 'icons/mecha/fighters64x64_vr.dmi'
+	icon = 'icons/mecha/fighters64x64.dmi'
 	icon_state = "gunpod-broken"
 	bound_width = 64
 	bound_height = 64
@@ -232,7 +232,7 @@
 /obj/mecha/combat/fighter/baron
 	name = "Baron"
 	desc = "A conventional space superiority fighter, one-seater. Not capable of ground operations."
-	icon = 'icons/mecha/fighters64x64_vr.dmi'
+	icon = 'icons/mecha/fighters64x64.dmi'
 	icon_state = "baron"
 	initial_icon = "baron"
 
@@ -251,7 +251,7 @@
 /obj/effect/decal/mecha_wreckage/baron
 	name = "Baron wreckage"
 	desc = "Remains of some unfortunate fighter. Completely unrepairable."
-	icon = 'icons/mecha/fighters64x64_vr.dmi'
+	icon = 'icons/mecha/fighters64x64.dmi'
 	icon_state = "baron-broken"
 	bound_width = 64
 	bound_height = 64
@@ -269,7 +269,7 @@
 /obj/mecha/combat/fighter/scoralis
 	name = "scoralis"
 	desc = "An imported space fighter with integral cloaking device. Beware the power consumption, though. Not capable of ground operations."
-	icon = 'icons/mecha/fighters64x64_vr.dmi'
+	icon = 'icons/mecha/fighters64x64.dmi'
 	icon_state = "scoralis"
 	initial_icon = "scoralis"
 
@@ -288,7 +288,7 @@
 /obj/effect/decal/mecha_wreckage/scoralis
 	name = "scoralis wreckage"
 	desc = "Remains of some unfortunate fighter. Completely unrepairable."
-	icon = 'icons/mecha/fighters64x64_vr.dmi'
+	icon = 'icons/mecha/fighters64x64.dmi'
 	icon_state = "scoralis-broken"
 	bound_width = 64
 	bound_height = 64
@@ -305,7 +305,7 @@
 /obj/mecha/combat/fighter/allure
 	name = "allure"
 	desc = "A fighter of Zorren design, it's blocky appearance is made up for by it's stout armor and finely decorated hull paint."
-	icon = 'icons/mecha/fighters64x64_vr.dmi'
+	icon = 'icons/mecha/fighters64x64.dmi'
 	icon_state = "allure"
 	initial_icon = "allure"
 
@@ -325,7 +325,7 @@
 /obj/effect/decal/mecha_wreckage/allure
 	name = "allure wreckage"
 	desc = "Remains of some unfortunate fighter. Completely unrepairable."
-	icon = 'icons/mecha/fighters64x64_vr.dmi'
+	icon = 'icons/mecha/fighters64x64.dmi'
 	icon_state = "allure-broken"
 	bound_width = 64
 	bound_height = 64
@@ -342,7 +342,7 @@
 /obj/mecha/combat/fighter/pinnace
 	name = "pinnace"
 	desc = "A cramped ship's boat, capable of atmospheric and space flight. Not capable of mounting weapons. Capable of fitting one pilot and one passenger."
-	icon = 'icons/mecha/fighters64x64_vr.dmi'
+	icon = 'icons/mecha/fighters64x64.dmi'
 	icon_state = "pinnace"
 	initial_icon = "pinnace"
 
@@ -365,7 +365,7 @@
 /obj/effect/decal/mecha_wreckage/pinnace
 	name = "pinnace wreckage"
 	desc = "Remains of some unfortunate ship's boat. Completely unrepairable."
-	icon = 'icons/mecha/fighters64x64_vr.dmi'
+	icon = 'icons/mecha/fighters64x64.dmi'
 	icon_state = "pinnace-broken"
 	bound_width = 64
 	bound_height = 64
