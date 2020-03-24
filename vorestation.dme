@@ -918,6 +918,7 @@
 #include "code\game\mecha\equipment\tools\cable_layer.dm"
 #include "code\game\mecha\equipment\tools\catapult.dm"
 #include "code\game\mecha\equipment\tools\clamp.dm"
+#include "code\game\mecha\equipment\tools\cloak.dm"
 #include "code\game\mecha\equipment\tools\drill.dm"
 #include "code\game\mecha\equipment\tools\energy_relay.dm"
 #include "code\game\mecha\equipment\tools\extinguisher.dm"
