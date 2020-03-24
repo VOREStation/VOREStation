@@ -191,7 +191,7 @@
 		stripe1_overlay = image("gunpod_stripes1")
 		stripe1_overlay.color = stripe1_color
 		add_overlay(stripe1_overlay)
-	if(stripe2_overlay)
+	if(stripe2_color)
 		stripe2_overlay = image("gunpod_stripes2")
 		stripe2_overlay.color = stripe2_color
 		add_overlay(stripe2_overlay)
