@@ -53,6 +53,20 @@
 	var/cloak_cooldown = 10 SECONDS	// Amount of time needed to re-cloak after losing it.
 	var/last_uncloak = 0			// world.time
 
+/mob/living/simple_mob/animal/giant_spider/lurker/cloak()
+	if(cloaked)
+		return
+	animate(src, alpha = cloaked_alpha, time = 1 SECOND)
+	cloaked = TRUE
+
+
+/mob/living/simple_mob/animal/giant_spider/lurker/uncloak()
+	last_uncloak = world.time // This is assigned even if it isn't cloaked already, to 'reset' the timer if the spider is continously getting attacked.
+	if(!cloaked)
+		return
+	animate(src, alpha = initial(alpha), time = 1 SECOND)
+	cloaked = FALSE
+
 // Check if cloaking if possible.
 /mob/living/simple_mob/animal/giant_spider/lurker/proc/can_cloak()
 	if(stat)
