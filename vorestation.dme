@@ -1653,10 +1653,7 @@
 #include "code\modules\catalogue\catalogue_data_vr.dm"
 #include "code\modules\catalogue\cataloguer.dm"
 #include "code\modules\catalogue\cataloguer_visuals.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\catalogue\cataloguer_vr.dm"
-=======
->>>>>>> f35a427... Merge pull request #6903 from VOREStation/vchat:polaris.dme
 #include "code\modules\client\asset_cache.dm"
 #include "code\modules\client\client defines.dm"
 #include "code\modules\client\client procs.dm"
