@@ -310,6 +310,13 @@ GLOBAL_PROTECT(VVpixelmovement)
 		if(!variable)
 			return
 
+	if(variable in GLOB.VVpixelmovement)
+		if(!check_rights(R_DEBUG))
+			return
+		var/prompt = alert(src, "Editing this var may irreparably break tile gliding for the rest of the round. THIS CAN'T BE UNDONE", "DANGER", "ABORT ", "Continue", " ABORT")
+		if (prompt != "Continue")
+			return
+
 	if(!O.can_vv_get(variable))
 		return
 

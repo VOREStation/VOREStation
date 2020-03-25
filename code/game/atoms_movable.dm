@@ -49,7 +49,7 @@
 	QDEL_NULL(riding_datum) //VOREStation Add
 
 /atom/movable/vv_edit_var(var_name, var_value)
-	if(GLOB.VVpixelmovement[var_name])			//Pixel movement is not yet implemented, changing this will break everything irreversibly.
+	if(var_name in GLOB.VVpixelmovement)			//Pixel movement is not yet implemented, changing this will break everything irreversibly.
 		return FALSE
 	return ..()
 
