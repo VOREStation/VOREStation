@@ -474,12 +474,9 @@ macro "hotkeymode"
 	elem 
 		name = "5"
 		command = ".me"
-<<<<<<< HEAD
 	elem 
 		name = "6"
 		command = "subtle"
-=======
->>>>>>> f35a427... Merge pull request #6903 from VOREStation/vchat
 	elem 
 		name = "A+REP"
 		command = ".moveleft"
