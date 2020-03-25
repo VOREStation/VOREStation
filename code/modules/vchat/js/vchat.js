@@ -183,6 +183,7 @@ function start_vue() {
 					required: false,
 					admin: false
 				},
+<<<<<<< HEAD
 				//VOREStation Add Start
 				{
 					matches: ".nif",
@@ -193,6 +194,8 @@ function start_vue() {
 					admin: false
 				},
 				//VOREStation Add End
+=======
+>>>>>>> f35a427... Merge pull request #6903 from VOREStation/vchat
 				{
 					matches: ".pm",
 					becomes: "vc_adminpm",
@@ -674,7 +677,11 @@ function start_vue() {
 					hiddenElement.target = '_blank';
 					hiddenElement.download = filename;
 					hiddenElement.click();
+<<<<<<< HEAD
 				//Probably what will end up getting used
+=======
+        		//Probably what will end up getting used
+>>>>>>> f35a427... Merge pull request #6903 from VOREStation/vchat
 				} else {
 					var blob = new Blob([textToSave], {type: 'text/html;charset=utf8;'});
 					saved = window.navigator.msSaveOrOpenBlob(blob, filename);
