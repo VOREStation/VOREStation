@@ -3,7 +3,11 @@ language: c
 
 env:
   global:
+<<<<<<< HEAD
     - BASENAME="vorestation" # $BASENAME.dmb, $BASENAME.dme, etc.
+=======
+    - BASENAME="polaris" # $BASENAME.dmb, $BASENAME.dme, etc.
+>>>>>>> 27a395e... Merge pull request #6899 from VOREStation/pol-vstravis
     - BYOND_MAJOR="513"
     - BYOND_MINOR="1513"
     - MACRO_COUNT=4
