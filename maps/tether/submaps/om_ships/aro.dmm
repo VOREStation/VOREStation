@@ -2878,14 +2878,16 @@
 	icon_state = "intact";
 	dir = 10
 	},
-/obj/effect/floor_decal/industrial/warning,
+/obj/structure/table/rack/shelf/steel,
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "fT" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 1
 	},
-/obj/effect/floor_decal/industrial/warning,
+/obj/structure/table/rack/shelf/steel,
+/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "fU" = (
@@ -3334,9 +3336,9 @@
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 1
 	},
-/obj/structure/table/rack/shelf/steel,
-/obj/item/mecha_parts/mecha_equipment/crisis_drone,
 /obj/effect/floor_decal/industrial/warning/corner,
+/obj/structure/table/rack/shelf/steel,
+/obj/item/mecha_parts/mecha_equipment/repair_droid,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "lD" = (
@@ -3385,22 +3387,17 @@
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 1
 	},
-/obj/structure/table/rack/shelf/steel,
-/obj/item/mecha_parts/mecha_equipment/cloak,
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
+/obj/structure/table/rack/shelf/steel,
+/obj/item/mecha_parts/mecha_equipment/tool/sleeper,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "Bj" = (
 /obj/effect/floor_decal/sign/dock/two,
 /obj/effect/floor_decal/industrial/outline/blue,
 /turf/simulated/floor/tiled/techfloor,
-/area/ship/aro/midshipshangars)
-"Gc" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/mecha_parts/mecha_equipment/repair_droid,
-/turf/simulated/floor/reinforced,
 /area/ship/aro/midshipshangars)
 "GH" = (
 /obj/effect/floor_decal/techfloor/orange{
@@ -3432,7 +3429,8 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/purple,
-/obj/effect/floor_decal/industrial/warning,
+/obj/structure/table/rack/shelf/steel,
+/obj/item/mecha_parts/mecha_equipment/cloak,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "Lp" = (
@@ -3443,18 +3441,14 @@
 	icon_state = "intact";
 	dir = 5
 	},
-/obj/effect/floor_decal/industrial/warning,
+/obj/structure/table/rack/shelf/steel,
+/obj/item/mecha_parts/mecha_equipment/crisis_drone,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "Md" = (
 /obj/machinery/atmospherics/portables_connector,
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/reinforced,
-/area/ship/aro/midshipshangars)
-"Nb" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/mecha_parts/mecha_equipment/tool/sleeper,
 /turf/simulated/floor/reinforced,
 /area/ship/aro/midshipshangars)
 "Oo" = (
@@ -3488,8 +3482,6 @@
 	dir = 9
 	},
 /obj/effect/floor_decal/industrial/warning/corner,
-/obj/structure/table/rack/shelf/steel,
-/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "QM" = (
@@ -3530,8 +3522,6 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
-/obj/structure/table/rack/shelf/steel,
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "Wi" = (
@@ -11316,7 +11306,7 @@ ek
 ek
 ek
 ek
-Gc
+fy
 iU
 lD
 uZ
@@ -12594,7 +12584,7 @@ ek
 ek
 ek
 ek
-Nb
+fy
 xu
 TU
 HK
