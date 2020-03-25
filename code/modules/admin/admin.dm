@@ -873,12 +873,15 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set category = "Server"
 	set desc="Start the round RIGHT NOW"
 	set name="Start Now"
-	if(!ticker)
+	if(!ticker || !Master || Master.current_runlevel < RUNLEVEL_LOBBY)
 		alert("Unable to start the game as it is not set up.")
 		return
-	if(ticker.current_state == GAME_STATE_PREGAME)
-		ticker.current_state = GAME_STATE_SETTING_UP
+
+	if(Master.current_runlevel == RUNLEVEL_LOBBY)
+		SSticker.current_state = GAME_STATE_SETTING_UP
 		Master.SetRunLevel(RUNLEVEL_SETUP)
+		if(SSvote.mode == VOTE_GAMEMODE)
+			SSvote.reset() // Cancel the vote if there is one.
 		log_admin("[usr.key] has started the game.")
 		message_admins("<font color='blue'>[usr.key] has started the game.</font>")
 		feedback_add_details("admin_verb","SN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -952,10 +955,10 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name="Delay"
 
 	if(!check_rights(R_SERVER|R_EVENT))	return
-	if (!ticker || ticker.current_state != GAME_STATE_PREGAME)
-		ticker.delay_end = !ticker.delay_end
-		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-		message_admins("<font color='blue'>[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].</font>", 1)
+	if (SSticker.current_state >= GAME_STATE_PLAYING)
+		SSticker.delay_end = !SSticker.delay_end
+		log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
+		message_admins("<font color='blue'>[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].</font>", 1)
 		return //alert("Round end delayed", null, null, null, null, null)
 	round_progressing = !round_progressing
 	if (!round_progressing)

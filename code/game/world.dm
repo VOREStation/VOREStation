@@ -63,7 +63,7 @@
 	processScheduler = new
 	master_controller = new /datum/controller/game_controller()
 
-	processScheduler.deferSetupFor(/datum/controller/process/ticker)
+	// processScheduler.deferSetupFor(/datum/controller/process/ticker) // Ticker is now a real subsystem!
 	processScheduler.setup()
 	Master.Initialize(10, FALSE)
 
@@ -658,6 +658,6 @@ proc/establish_old_db_connection()
 
 // Called whenver world.tick_lag or world.fps are changed.
 /world/proc/on_tickrate_change()
-	SStimer?.reset_buckets() 
+	SStimer?.reset_buckets()
 
 #undef FAILED_DB_CONNECTION_CUTOFF

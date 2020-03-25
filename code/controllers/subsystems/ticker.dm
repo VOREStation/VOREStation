@@ -1,83 +1,119 @@
-var/global/datum/controller/gameticker/ticker
+//
+// Ticker controls the state of the game, being responsible for round start, game mode, and round end.
+//
+SUBSYSTEM_DEF(ticker)
+	name = "Gameticker"
+	wait = 2 SECONDS
+	init_order = INIT_ORDER_TICKER
+	priority = FIRE_PRIORITY_TICKER
+	flags = SS_NO_TICK_CHECK | SS_KEEP_TIMING
+	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME // Every runlevel!
 
-/datum/controller/gameticker
-	var/const/restart_timeout = 3 MINUTES //One minute is 600.
-	var/current_state = GAME_STATE_PREGAME
+	var/const/restart_timeout = 3 MINUTES	// Default time to wait before rebooting in desiseconds.
+	var/current_state = GAME_STATE_INIT	// We aren't even at pregame yet // TODO replace with CURRENT_GAME_STATE
 
-	var/hide_mode = 0
-	var/datum/game_mode/mode = null
-	var/post_game = 0
-	var/event_time = null
-	var/event = 0
+	/* Relies upon the following globals (TODO move those in here) */
+	// var/master_mode = "extended"		//The underlying game mode (so "secret" or the voted mode).
+										// Set by SSvote when VOTE_GAMEMODE finishes.
+	// var/round_progressing = 1		//Whether the lobby clock is ticking down.
 
-	// var/login_music			// music played in pregame lobby // VOREStation Edit - We do music differently
+	var/pregame_timeleft = 0			// Time remaining until game starts in seconds. Set by config
 
-	var/list/datum/mind/minds = list()//The people in the game. Used for objective tracking.
+	var/hide_mode = FALSE 				// If the true game mode should be hidden (because we chose "secret")
+	var/datum/game_mode/mode = null		// The actual gamemode, if selected.
 
+	var/end_game_state = END_GAME_NOT_OVER	// Track where we are ending game/round
+	var/restart_timeleft				// Time remaining until restart in desiseconds
+	var/last_restart_notify				// world.time of last restart warning.
+	var/delay_end = FALSE               // If set, the round will not restart on its own.
+
+	// var/login_music					// music played in pregame lobby // VOREStation Edit - We do music differently
+
+	var/list/datum/mind/minds = list()	// The people in the game. Used for objective tracking.
+
+	// TODO - I am sure there is a better place these can go.
 	var/Bible_icon_state	// icon_state the chaplain has chosen for his bible
 	var/Bible_item_state	// item_state the chaplain has chosen for his bible
 	var/Bible_name			// name of the bible
 	var/Bible_deity_name
 
-	var/random_players = 0 	// if set to nonzero, ALL players who latejoin or declare-ready join will have random appearances/genders
+	var/random_players = FALSE	// If set to nonzero, ALL players who latejoin or declare-ready join will have random appearances/genders
 
-	var/list/syndicate_coalition = list() // list of traitor-compatible factions
-	var/list/factions = list()			  // list of all factions
-	var/list/availablefactions = list()	  // list of factions with openings
+	// TODO - Should this go here or in the job subsystem?
+	var/triai = FALSE // Global flag for Triumvirate AI being enabled
 
-	var/pregame_timeleft = 0
+	//station_explosion used to be a variable for every mob's hud. Which was a waste!
+	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
+	var/obj/screen/cinematic = null
 
-	var/delay_end = 0	//if set to nonzero, the round will not restart on it's own
+// This global variable exists for legacy support so we don't have to rename every 'ticker' to 'SSticker' yet.
+var/global/datum/controller/subsystem/ticker/ticker
+/datum/controller/subsystem/ticker/PreInit()
+	global.ticker = src // TODO - Remove this! Change everything to point at SSticker intead
 
-	var/triai = 0//Global holder for Triumvirate
-
-	var/round_end_announced = 0 // Spam Prevention. Announce round end only once.
-
-/datum/controller/gameticker/proc/pregame()
-	/* VOREStation Edit - We do music differently
-	login_music = pick(\
-	'sound/music/halloween/skeletons.ogg',\
-	'sound/music/halloween/halloween.ogg',\
-	'sound/music/halloween/ghosts.ogg'
-	'sound/music/space.ogg',\
-	'sound/music/traitor.ogg',\
-	'sound/music/title2.ogg',\
-	'sound/music/clouds.s3m',\
-	'sound/music/space_oddity.ogg') //Ground Control to Major Tom, this song is cool, what's going on?
-	*/ //VOREStation Edit End
-
+/datum/controller/subsystem/ticker/Initialize()
+	pregame_timeleft = config.pregame_time
 	send2mainirc("Server lobby is loaded and open at byond://[config.serverurl ? config.serverurl : (config.server ? config.server : "[world.address]:[world.port]")]")
+	return ..()
 
+/datum/controller/subsystem/ticker/fire(resumed = FALSE)
+	switch(current_state)
+		if(GAME_STATE_INIT)
+			pregame_welcome()
+			current_state = GAME_STATE_PREGAME
+		if(GAME_STATE_PREGAME)
+			pregame_tick()
+		if(GAME_STATE_SETTING_UP)
+			setup_tick()
+		if(GAME_STATE_PLAYING)
+			playing_tick()
+		if(GAME_STATE_FINISHED)
+			post_game_tick()
 
-	do
+/datum/controller/subsystem/ticker/proc/pregame_welcome()
+	to_chat(world, "<B><FONT color='blue'>Welcome to the pregame lobby!</FONT></B>")
+	to_chat(world, "Please set up your character and select ready. The round will start in [pregame_timeleft] seconds.")
+
+// Called during GAME_STATE_PREGAME (RUNLEVEL_LOBBY)
+/datum/controller/subsystem/ticker/proc/pregame_tick()
+	if(round_progressing && last_fire)
+		pregame_timeleft -= (world.time - last_fire) / (1 SECOND)
+
+	if(SSvote.time_remaining)
+		return // vote still going, wait for it.
+
+	// Time to start the game!
+	if(pregame_timeleft <= 0)
+		current_state = GAME_STATE_SETTING_UP
+		Master.SetRunLevel(RUNLEVEL_SETUP)
+		return
+
+	if(pregame_timeleft <= config.vote_autogamemode_timeleft)
+		SSvote.autogamemode() // Start the game mode vote
+
+// Called during GAME_STATE_SETTING_UP (RUNLEVEL_SETUP)
+/datum/controller/subsystem/ticker/proc/setup_tick(resumed = FALSE)
+	if(!setup_choose_gamemode())
+		// It failed, go back to lobby state and re-send the welcome message
 		pregame_timeleft = config.pregame_time
-		to_chat(world, "<B><FONT color='blue'>Welcome to the pregame lobby!</FONT></B>")
-		to_chat(world, "Please set up your character and select ready. The round will start in [pregame_timeleft] seconds.")
-		while(current_state == GAME_STATE_PREGAME)
-			if(round_progressing)
-				pregame_timeleft--
-			if(pregame_timeleft == config.vote_autogamemode_timeleft)
-				if(!SSvote.time_remaining)
-					SSvote.autogamemode()	//Quit calling this over and over and over and over.
-					while(SSvote.time_remaining)
-						sleep(1)
-			if(pregame_timeleft <= 0)
-				current_state = GAME_STATE_SETTING_UP
-				Master.SetRunLevel(RUNLEVEL_SETUP)
-			sleep(10)
-	while (!setup())
+		current_state = GAME_STATE_PREGAME
+		Master.SetRunLevel(RUNLEVEL_LOBBY)
+		pregame_welcome()
+		return
+	// If we got this far we succeeded in picking a game mode.  Punch it!
+	setup_startgame()
+	return
 
-
-/datum/controller/gameticker/proc/setup()
+// Formerly the first half of setup() - The part that chooses the game mode.
+// Returns 0 if failed to pick a mode, otherwise 1
+/datum/controller/subsystem/ticker/proc/setup_choose_gamemode()
 	//Create and announce mode
-	if(master_mode=="secret")
-		src.hide_mode = 1
+	if(master_mode == "secret")
+		src.hide_mode = TRUE
 
 	var/list/runnable_modes = config.get_runnable_modes()
-	if((master_mode=="random") || (master_mode=="secret"))
+	if((master_mode == "random") || (master_mode == "secret"))
 		if(!runnable_modes.len)
-			current_state = GAME_STATE_PREGAME
-			Master.SetRunLevel(RUNLEVEL_LOBBY)
 			to_chat(world, "<B>Unable to choose playable game mode.</B> Reverting to pregame lobby.")
 			return 0
 		if(secret_force_mode != "secret")
@@ -91,8 +127,6 @@ var/global/datum/controller/gameticker/ticker
 		src.mode = config.pick_mode(master_mode)
 
 	if(!src.mode)
-		current_state = GAME_STATE_PREGAME
-		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		to_chat(world, "<span class='danger'>Serious error in mode setup!</span> Reverting to pregame lobby.") //Uses setup instead of set up due to computational context.
 		return 0
 
@@ -103,8 +137,6 @@ var/global/datum/controller/gameticker/ticker
 
 	if(!src.mode.can_start())
 		to_world("<B>Unable to start [mode.name].</B> Not enough players readied, [config.player_requirements[mode.config_tag]] players needed. Reverting to pregame lobby.")
-		current_state = GAME_STATE_PREGAME
-		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		mode.fail_setup()
 		mode = null
 		job_master.ResetOccupations()
@@ -121,9 +153,11 @@ var/global/datum/controller/gameticker/ticker
 				to_chat(world, "<B>Possibilities:</B> [english_list(tmpmodes, and_text= "; ", comma_text = "; ")]")
 	else
 		src.mode.announce()
+	return 1
 
+// Formerly the second half of setup() - The part that actually initializes everything and starts the game.
+/datum/controller/subsystem/ticker/proc/setup_startgame()
 	setup_economy()
-	current_state = GAME_STATE_PLAYING
 	create_characters() //Create player characters and transfer them.
 	collect_minds()
 	equip_characters()
@@ -131,7 +165,6 @@ var/global/datum/controller/gameticker/ticker
 
 	callHook("roundstart")
 
-	// TODO - Leshana - Dear God Fix This.  Fix all of this. Not just this line, this entire proc. This entire file!
 	spawn(0)//Forking here so we dont have to wait for this to finish
 		mode.post_setup()
 		//Cleanup some stuff
@@ -144,14 +177,8 @@ var/global/datum/controller/gameticker/ticker
 		//Holiday Round-start stuff	~Carn
 		Holiday_Game_Start()
 
-	//start_events() //handles random events and space dust.
-	//new random event system is handled from the MC.
-
-	var/admins_number = 0
-	for(var/client/C)
-		if(C.holder)
-			admins_number++
-	if(admins_number == 0)
+	var/list/adm = get_admin_counts()
+	if(adm["total"] == 0)
 		send2adminirc("A round has started with no admins online.")
 
 /*	supply_controller.process() 		//Start the supply shuttle regenerating points -- TLE // handled in scheduler
@@ -160,6 +187,7 @@ var/global/datum/controller/gameticker/ticker
 	*/
 
 	processScheduler.start()
+	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
 
 	if(config.sql_enabled)
@@ -167,223 +195,240 @@ var/global/datum/controller/gameticker/ticker
 
 	return 1
 
-/datum/controller/gameticker
-	//station_explosion used to be a variable for every mob's hud. Which was a waste!
-	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
-	var/obj/screen/cinematic = null
 
-	//Plus it provides an easy way to make cinematics for other events. Just use this as a template :)
-	proc/station_explosion_cinematic(var/station_missed=0, var/override = null)
-		if( cinematic )	return	//already a cinematic in progress!
+// Called during GAME_STATE_PLAYING (RUNLEVEL_GAME)
+/datum/controller/subsystem/ticker/proc/playing_tick(resumed = FALSE)
+	mode.process() // So THIS is where we run mode.process() huh? Okay
 
-		//initialise our cinematic screen object
-		cinematic = new(src)
-		cinematic.icon = 'icons/effects/station_explosion.dmi'
-		cinematic.icon_state = "station_intact"
-		cinematic.layer = 100
-		cinematic.plane = PLANE_PLAYER_HUD
-		cinematic.mouse_opacity = 0
-		cinematic.screen_loc = "1,0"
+	if(mode.explosion_in_progress)
+		return // wait until explosion is done.
 
-		var/obj/structure/bed/temp_buckle = new(src)
-		//Incredibly hackish. It creates a bed within the gameticker (lol) to stop mobs running around
-		if(station_missed)
-			for(var/mob/living/M in living_mob_list)
-				M.buckled = temp_buckle				//buckles the mob so it can't do anything
-				if(M.client)
-					M.client.screen += cinematic	//show every client the cinematic
-		else	//nuke kills everyone on z-level 1 to prevent "hurr-durr I survived"
-			for(var/mob/living/M in living_mob_list)
-				M.buckled = temp_buckle
-				if(M.client)
-					M.client.screen += cinematic
+	// Calculate if game and/or mode are finished (Complicated by the continuous_rounds config option)
+	var/game_finished = FALSE
+	var/mode_finished = FALSE
+	if (config.continous_rounds) // Game keeps going after mode ends.
+		game_finished = (emergency_shuttle.returned() || mode.station_was_nuked)
+		mode_finished = ((end_game_state >= END_GAME_MODE_FINISHED) || mode.check_finished()) // Short circuit if already finished.
+	else // Game ends when mode does
+		game_finished = (mode.check_finished() || (emergency_shuttle.returned() && emergency_shuttle.evac == 1)) || universe_has_ended
+		mode_finished = game_finished
 
-				switch(M.z)
-					if(0)	//inside a crate or something
-						var/turf/T = get_turf(M)
-						if(T && T.z in using_map.station_levels)				//we don't use M.death(0) because it calls a for(/mob) loop and
-							M.health = 0
-							M.set_stat(DEAD)
-					if(1)	//on a z-level 1 turf.
+	if(game_finished && mode_finished)
+		end_game_state = END_GAME_READY_TO_END
+		current_state = GAME_STATE_FINISHED
+		Master.SetRunLevel(RUNLEVEL_POSTGAME)
+		INVOKE_ASYNC(src, .proc/declare_completion)
+	else if (mode_finished && (end_game_state < END_GAME_MODE_FINISHED))
+		end_game_state = END_GAME_MODE_FINISHED // Only do this cleanup once!
+		mode.cleanup()
+		//call a transfer shuttle vote
+		to_chat(world, "<span class='danger'>The round has ended!</span>")
+		SSvote.autotransfer()
+
+// Called during GAME_STATE_FINISHED (RUNLEVEL_POSTGAME)
+/datum/controller/subsystem/ticker/proc/post_game_tick()
+	switch(end_game_state)
+		if(END_GAME_READY_TO_END)
+			callHook("roundend")
+
+			if (mode.station_was_nuked)
+				feedback_set_details("end_proper", "nuke")
+				restart_timeleft = 1 MINUTE // No point waiting five minutes if everyone's dead.
+				if(!delay_end)
+					to_chat(world, "<span class='notice'><b>Rebooting due to destruction of [station_name()] in [round(restart_timeleft/600)] minute\s.</b></span>")
+					last_restart_notify = world.time
+			else
+				feedback_set_details("end_proper", "proper completion")
+				restart_timeleft = restart_timeout
+
+			if(blackbox)
+				blackbox.save_all_data_to_sql()	// TODO - Blackbox or statistics subsystem
+
+			end_game_state = END_GAME_ENDING
+			return
+		if(END_GAME_ENDING)
+			restart_timeleft -= (world.time - last_fire)
+			if(delay_end)
+				to_chat(world, "<span class='notice'><b>An admin has delayed the round end.</b></span>")
+				end_game_state = END_GAME_DELAYED
+			else if(restart_timeleft <= 0)
+				world.Reboot()
+			else if (world.time - last_restart_notify >= 1 MINUTE)
+				to_chat(world, "<span class='notice'><b>Restarting in [round(restart_timeleft/600, 1)] minute\s.</b></span>")
+				last_restart_notify = world.time
+			return
+		if(END_GAME_DELAYED)
+			restart_timeleft -= (world.time - last_fire)
+			if(!delay_end)
+				end_game_state = END_GAME_ENDING
+		else
+			log_error("Ticker arrived at round end in an unexpected endgame state '[end_game_state]'.")
+			end_game_state = END_GAME_READY_TO_END
+
+
+// ----------------------------------------------------------------------
+// These two below are not used! But they could be
+
+// Use these preferentially to directly examining ticker.current_state to help prepare for transition to ticker as subsystem!
+
+/datum/controller/subsystem/ticker/proc/PreRoundStart()
+	return (current_state < GAME_STATE_PLAYING)
+
+/datum/controller/subsystem/ticker/proc/IsSettingUp()
+	return (current_state == GAME_STATE_SETTING_UP)
+
+/datum/controller/subsystem/ticker/proc/IsRoundInProgress()
+	return (current_state == GAME_STATE_PLAYING)
+
+/datum/controller/subsystem/ticker/proc/HasRoundStarted()
+	return (current_state >= GAME_STATE_PLAYING)
+
+// ------------------------------------------------------------------------
+// HELPER PROCS!
+// ------------------------------------------------------------------------
+
+//Plus it provides an easy way to make cinematics for other events. Just use this as a template :)
+/datum/controller/subsystem/ticker/proc/station_explosion_cinematic(var/station_missed=0, var/override = null)
+	if( cinematic )	return	//already a cinematic in progress!
+
+	//initialise our cinematic screen object
+	cinematic = new(src)
+	cinematic.icon = 'icons/effects/station_explosion.dmi'
+	cinematic.icon_state = "station_intact"
+	cinematic.layer = 100
+	cinematic.plane = PLANE_PLAYER_HUD
+	cinematic.mouse_opacity = 0
+	cinematic.screen_loc = "1,0"
+
+	var/obj/structure/bed/temp_buckle = new(src)
+	//Incredibly hackish. It creates a bed within the gameticker (lol) to stop mobs running around
+	if(station_missed)
+		for(var/mob/living/M in living_mob_list)
+			M.buckled = temp_buckle				//buckles the mob so it can't do anything
+			if(M.client)
+				M.client.screen += cinematic	//show every client the cinematic
+	else	//nuke kills everyone on z-level 1 to prevent "hurr-durr I survived"
+		for(var/mob/living/M in living_mob_list)
+			M.buckled = temp_buckle
+			if(M.client)
+				M.client.screen += cinematic
+
+			switch(M.z)
+				if(0)	//inside a crate or something
+					var/turf/T = get_turf(M)
+					if(T && T.z in using_map.station_levels)				//we don't use M.death(0) because it calls a for(/mob) loop and
 						M.health = 0
 						M.set_stat(DEAD)
+				if(1)	//on a z-level 1 turf.
+					M.health = 0
+					M.set_stat(DEAD)
 
-		//Now animate the cinematic
-		switch(station_missed)
-			if(1)	//nuke was nearby but (mostly) missed
-				if( mode && !override )
-					override = mode.name
-				switch( override )
-					if("mercenary") //Nuke wasn't on station when it blew up
-						flick("intro_nuke",cinematic)
-						sleep(35)
-						world << sound('sound/effects/explosionfar.ogg')
-						flick("station_intact_fade_red",cinematic)
-						cinematic.icon_state = "summary_nukefail"
-					else
-						flick("intro_nuke",cinematic)
-						sleep(35)
-						world << sound('sound/effects/explosionfar.ogg')
-						//flick("end",cinematic)
-
-
-			if(2)	//nuke was nowhere nearby	//TODO: a really distant explosion animation
-				sleep(50)
-				world << sound('sound/effects/explosionfar.ogg')
-
-
-			else	//station was destroyed
-				if( mode && !override )
-					override = mode.name
-				switch( override )
-					if("mercenary") //Nuke Ops successfully bombed the station
-						flick("intro_nuke",cinematic)
-						sleep(35)
-						flick("station_explode_fade_red",cinematic)
-						world << sound('sound/effects/explosionfar.ogg')
-						cinematic.icon_state = "summary_nukewin"
-					if("AI malfunction") //Malf (screen,explosion,summary)
-						flick("intro_malf",cinematic)
-						sleep(76)
-						flick("station_explode_fade_red",cinematic)
-						world << sound('sound/effects/explosionfar.ogg')
-						cinematic.icon_state = "summary_malf"
-					if("blob") //Station nuked (nuke,explosion,summary)
-						flick("intro_nuke",cinematic)
-						sleep(35)
-						flick("station_explode_fade_red",cinematic)
-						world << sound('sound/effects/explosionfar.ogg')
-						cinematic.icon_state = "summary_selfdes"
-					else //Station nuked (nuke,explosion,summary)
-						flick("intro_nuke",cinematic)
-						sleep(35)
-						flick("station_explode_fade_red", cinematic)
-						world << sound('sound/effects/explosionfar.ogg')
-						cinematic.icon_state = "summary_selfdes"
-				for(var/mob/living/M in living_mob_list)
-					if(M.loc.z in using_map.station_levels)
-						M.death()//No mercy
-		//If its actually the end of the round, wait for it to end.
-		//Otherwise if its a verb it will continue on afterwards.
-		sleep(300)
-
-		if(cinematic)	qdel(cinematic)		//end the cinematic
-		if(temp_buckle)	qdel(temp_buckle)	//release everybody
-		return
-
-
-	proc/create_characters()
-		for(var/mob/new_player/player in player_list)
-			if(player && player.ready && player.mind)
-				if(player.mind.assigned_role=="AI")
-					player.close_spawn_windows()
-					player.AIize()
-				else if(!player.mind.assigned_role)
-					continue
+	//Now animate the cinematic
+	switch(station_missed)
+		if(1)	//nuke was nearby but (mostly) missed
+			if( mode && !override )
+				override = mode.name
+			switch( override )
+				if("mercenary") //Nuke wasn't on station when it blew up
+					flick("intro_nuke",cinematic)
+					sleep(35)
+					world << sound('sound/effects/explosionfar.ogg')
+					flick("station_intact_fade_red",cinematic)
+					cinematic.icon_state = "summary_nukefail"
 				else
-					//VOREStation Edit Start
-					var/mob/living/carbon/human/new_char = player.create_character()
-					if(new_char)
-						qdel(player)
-					if(istype(new_char) && !(new_char.mind.assigned_role=="Cyborg"))
-						data_core.manifest_inject(new_char)
-					//VOREStation Edit End
+					flick("intro_nuke",cinematic)
+					sleep(35)
+					world << sound('sound/effects/explosionfar.ogg')
+					//flick("end",cinematic)
 
 
-	proc/collect_minds()
-		for(var/mob/living/player in player_list)
-			if(player.mind)
-				ticker.minds += player.mind
+		if(2)	//nuke was nowhere nearby	//TODO: a really distant explosion animation
+			sleep(50)
+			world << sound('sound/effects/explosionfar.ogg')
 
 
-	proc/equip_characters()
-		var/captainless=1
-		for(var/mob/living/carbon/human/player in player_list)
-			if(player && player.mind && player.mind.assigned_role)
-				if(player.mind.assigned_role == "Colony Director")
-					captainless=0
-				if(!player_is_antag(player.mind, only_offstation_roles = 1))
-					job_master.EquipRank(player, player.mind.assigned_role, 0)
-					UpdateFactionList(player)
-					//equip_custom_items(player)	//VOREStation Removal
-					//player.apply_traits() //VOREStation Removal
-		if(captainless)
-			for(var/mob/M in player_list)
-				if(!istype(M,/mob/new_player))
-					to_chat(M, "Colony Directorship not forced on anyone.")
+		else	//station was destroyed
+			if( mode && !override )
+				override = mode.name
+			switch( override )
+				if("mercenary") //Nuke Ops successfully bombed the station
+					flick("intro_nuke",cinematic)
+					sleep(35)
+					flick("station_explode_fade_red",cinematic)
+					world << sound('sound/effects/explosionfar.ogg')
+					cinematic.icon_state = "summary_nukewin"
+				if("AI malfunction") //Malf (screen,explosion,summary)
+					flick("intro_malf",cinematic)
+					sleep(76)
+					flick("station_explode_fade_red",cinematic)
+					world << sound('sound/effects/explosionfar.ogg')
+					cinematic.icon_state = "summary_malf"
+				if("blob") //Station nuked (nuke,explosion,summary)
+					flick("intro_nuke",cinematic)
+					sleep(35)
+					flick("station_explode_fade_red",cinematic)
+					world << sound('sound/effects/explosionfar.ogg')
+					cinematic.icon_state = "summary_selfdes"
+				else //Station nuked (nuke,explosion,summary)
+					flick("intro_nuke",cinematic)
+					sleep(35)
+					flick("station_explode_fade_red", cinematic)
+					world << sound('sound/effects/explosionfar.ogg')
+					cinematic.icon_state = "summary_selfdes"
+			for(var/mob/living/M in living_mob_list)
+				if(M.loc.z in using_map.station_levels)
+					M.death()//No mercy
+	//If its actually the end of the round, wait for it to end.
+	//Otherwise if its a verb it will continue on afterwards.
+	sleep(300)
+
+	if(cinematic)	qdel(cinematic)		//end the cinematic
+	if(temp_buckle)	qdel(temp_buckle)	//release everybody
+	return
 
 
-	process()
-		if(current_state != GAME_STATE_PLAYING)
-			return 0
-
-		mode.process()
-
-//		emergency_shuttle.process() //handled in scheduler
-
-		var/game_finished = 0
-		var/mode_finished = 0
-		if (config.continous_rounds)
-			game_finished = (emergency_shuttle.returned() || mode.station_was_nuked)
-			mode_finished = (!post_game && mode.check_finished())
-		else
-			game_finished = (mode.check_finished() || (emergency_shuttle.returned() && emergency_shuttle.evac == 1)) || universe_has_ended
-			mode_finished = game_finished
-
-		if(!mode.explosion_in_progress && game_finished && (mode_finished || post_game))
-			current_state = GAME_STATE_FINISHED
-			Master.SetRunLevel(RUNLEVEL_POSTGAME)
-
-			spawn
-				declare_completion()
-
-			spawn(50)
-				callHook("roundend")
-
-				var/time_left
-
-				if (mode.station_was_nuked)
-					feedback_set_details("end_proper","nuke")
-					time_left = 1 MINUTE //No point waiting five minutes if everyone's dead.
-					if(!delay_end)
-						to_chat(world, "<span class='notice'><b>Rebooting due to destruction of station in [round(time_left/600)] minutes.</b></span>")
-				else
-					feedback_set_details("end_proper","proper completion")
-					time_left = round(restart_timeout)
+/datum/controller/subsystem/ticker/proc/create_characters()
+	for(var/mob/new_player/player in player_list)
+		if(player && player.ready && player.mind)
+			if(player.mind.assigned_role=="AI")
+				player.close_spawn_windows()
+				player.AIize()
+			else if(!player.mind.assigned_role)
+				continue
+			else
+				//VOREStation Edit Start
+				var/mob/living/carbon/human/new_char = player.create_character()
+				if(new_char)
+					qdel(player)
+				if(istype(new_char) && !(new_char.mind.assigned_role=="Cyborg"))
+					data_core.manifest_inject(new_char)
+				//VOREStation Edit End
 
 
-				if(blackbox)
-					blackbox.save_all_data_to_sql()
+/datum/controller/subsystem/ticker/proc/collect_minds()
+	for(var/mob/living/player in player_list)
+		if(player.mind)
+			minds += player.mind
 
-				if(!delay_end)
-					while(time_left > 0)
-						if(delay_end)
-							break
-						to_chat(world, "<span class='notice'><b>Restarting in [round(time_left/600)] minute\s.</b></span>")
-						time_left -= 1 MINUTES
-						sleep(600)
-					if(!delay_end)
-						world.Reboot()
-					else
-						to_chat(world, "<span class='notice'><b>An admin has delayed the round end.</b></span>")
-				else
-					to_chat(world, "<span class='notice'><b>An admin has delayed the round end.</b></span>")
 
-		else if (mode_finished)
-			post_game = 1
+/datum/controller/subsystem/ticker/proc/equip_characters()
+	var/captainless=1
+	for(var/mob/living/carbon/human/player in player_list)
+		if(player && player.mind && player.mind.assigned_role)
+			if(player.mind.assigned_role == "Colony Director")
+				captainless=0
+			if(!player_is_antag(player.mind, only_offstation_roles = 1))
+				job_master.EquipRank(player, player.mind.assigned_role, 0)
+				UpdateFactionList(player)
+				//equip_custom_items(player)	//VOREStation Removal
+				//player.apply_traits() //VOREStation Removal
+	if(captainless)
+		for(var/mob/M in player_list)
+			if(!istype(M,/mob/new_player))
+				to_chat(M, "Colony Directorship not forced on anyone.")
 
-			mode.cleanup()
 
-			//call a transfer shuttle vote
-			spawn(50)
-				if(!round_end_announced) // Spam Prevention. Now it should announce only once.
-					to_chat(world, "<span class='danger'>The round has ended!</span>")
-					round_end_announced = 1
-				SSvote.autotransfer()
-
-		return 1
-
-/datum/controller/gameticker/proc/declare_completion()
+/datum/controller/subsystem/ticker/proc/declare_completion()
 	to_world("<br><br><br><H1>A round of [mode.name] has ended!</H1>")
 	for(var/mob/Player in player_list)
 		if(Player.mind && !isnewplayer(Player))
@@ -465,3 +510,45 @@ var/global/datum/controller/gameticker/ticker
 		log_game("[i]s[total_antagonists[i]].")
 
 	return 1
+
+/datum/controller/subsystem/ticker/stat_entry()
+	switch(current_state)
+		if(GAME_STATE_INIT)
+			..()
+		if(GAME_STATE_PREGAME) // RUNLEVEL_LOBBY
+			..("START [round_progressing ? "[round(pregame_timeleft)]s" : "(PAUSED)"]")
+		if(GAME_STATE_SETTING_UP) // RUNLEVEL_SETUP
+			..("SETUP")
+		if(GAME_STATE_PLAYING) // RUNLEVEL_GAME
+			..("GAME")
+		if(GAME_STATE_FINISHED) // RUNLEVEL_POSTGAME
+			switch(end_game_state)
+				if(END_GAME_MODE_FINISHED)
+					..("MODE OVER, WAITING")
+				if(END_GAME_READY_TO_END)
+					..("ENDGAME PROCESSING")
+				if(END_GAME_ENDING)
+					..("END IN [round(restart_timeleft/10)]s")
+				if(END_GAME_DELAYED)
+					..("END PAUSED")
+				else
+					..("ENDGAME ERROR:[end_game_state]")
+
+/datum/controller/subsystem/ticker/Recover()
+	flags |= SS_NO_INIT // Don't initialize again
+
+	current_state = SSticker.current_state
+	mode = SSticker.mode
+	pregame_timeleft = SSticker.pregame_timeleft
+
+	end_game_state = SSticker.end_game_state
+	delay_end = SSticker.delay_end
+	restart_timeleft = SSticker.restart_timeleft
+
+	minds = SSticker.minds
+
+	Bible_icon_state = SSticker.Bible_icon_state
+	Bible_item_state = SSticker.Bible_item_state
+	Bible_name = SSticker.Bible_name
+	Bible_deity_name = SSticker.Bible_deity_name
+	random_players = SSticker.random_players
