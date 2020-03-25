@@ -271,7 +271,36 @@
 			warn = 1
 
 		if(warn)
-			to_chat(M, "<b>You accidentally touch [src].</b>")
+			to_chat(M, "<b>You accidentally touch \the [src].</b>")
+	..()
+
+/obj/machinery/artifact/Bump(var/atom/bumped)
+	if(istype(bumped,/obj))
+		if(bumped:throwforce >= 10)
+			if(my_effect.trigger == TRIGGER_FORCE)
+				my_effect.ToggleActivate()
+			if(secondary_effect && secondary_effect.trigger == TRIGGER_FORCE && prob(25))
+				secondary_effect.ToggleActivate(0)
+	else if(ishuman(bumped) && GetAnomalySusceptibility(bumped) >= 0.5)
+		var/warn = 0
+
+		if (my_effect.trigger == TRIGGER_TOUCH && prob(50))
+			my_effect.ToggleActivate()
+			warn = 1
+		if(secondary_effect && secondary_effect.trigger == TRIGGER_TOUCH && prob(25))
+			secondary_effect.ToggleActivate(0)
+			warn = 1
+
+		if (my_effect.effect == EFFECT_TOUCH && prob(50))
+			my_effect.DoEffectTouch(bumped)
+			warn = 1
+		if(secondary_effect && secondary_effect.effect == EFFECT_TOUCH && secondary_effect.activated && prob(50))
+			secondary_effect.DoEffectTouch(bumped)
+			warn = 1
+
+		if(warn)
+			to_chat(bumped, "<b>You accidentally touch \the [src] as it hits you.</b>")
+
 	..()
 
 /obj/machinery/artifact/bullet_act(var/obj/item/projectile/P)
