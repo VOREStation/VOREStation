@@ -110,12 +110,7 @@
 						if(holder)
 							to_chat(holder, "the [bicon(src)] [src] held by [holder] shudders in your grasp.")
 						else
-<<<<<<< HEAD
-							src.loc.visible_message("the [bicon(src)] [src] shudders.")
-						inserted_battery.battery_effect.DoEffectTouch(holder)
-=======
 							src.loc.visible_message("the \icon[src] [src] shudders.")
->>>>>>> 2e623e5... Merge pull request #6854 from Mechoid/XenoarchExpansion
 
 						//consume power
 						inserted_battery.use_power(energy_consumed_on_touch)
