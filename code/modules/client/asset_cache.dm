@@ -79,23 +79,9 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 //This proc blocks(sleeps) unless verify is set to false
 /proc/send_asset_list(var/client/client, var/list/asset_list, var/verify = TRUE)
-<<<<<<< HEAD
-	if(!istype(client))
-		if(ismob(client))
-			var/mob/M = client
-			if(M.client)
-				client = M.client
-
-			else
-				return 0
-
-		else
-			return 0
-=======
 	client = CLIENT_FROM_VAR(client) // Will get client from a mob, or accept a client, or return null
 	if(!istype(client))
 		return 0
->>>>>>> f35a427... Merge pull request #6903 from VOREStation/vchat
 
 	var/list/unreceived = asset_list - (client.cache + client.sending)
 	if(!unreceived || !unreceived.len)
