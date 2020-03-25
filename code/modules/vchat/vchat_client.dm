@@ -103,11 +103,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	owner << browse(file2text("code/modules/vchat/html/vchat.html"), "window=htmloutput")
 	
 	//Check back later
-<<<<<<< HEAD
-	spawn(15 SECONDS)
-=======
 	spawn(60 SECONDS)
->>>>>>> f35a427... Merge pull request #6903 from VOREStation/vchat
 		if(!src)
 			return
 		if(!src.loaded)
