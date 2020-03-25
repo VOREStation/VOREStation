@@ -29,23 +29,9 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 //This proc sends the asset to the client, but only if it needs it.
 //This proc blocks(sleeps) unless verify is set to false
 /proc/send_asset(var/client/client, var/asset_name, var/verify = TRUE)
-<<<<<<< HEAD
-	if(!istype(client))
-		if(ismob(client))
-			var/mob/M = client
-			if(M.client)
-				client = M.client
-
-			else
-				return 0
-
-		else
-			return 0
-=======
 	client = CLIENT_FROM_VAR(client) // Will get client from a mob, or accept a client, or return null
 	if(!istype(client))
 		return 0
->>>>>>> f35a427... Merge pull request #6903 from VOREStation/vchat
 
 	if(client.cache.Find(asset_name) || client.sending.Find(asset_name))
 		return 0
@@ -255,10 +241,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	var/list/common_dirs = list(
 		"nano/css/",
 		"nano/images/",
-<<<<<<< HEAD
 		"nano/images/modular_computers/",
-=======
->>>>>>> f35a427... Merge pull request #6903 from VOREStation/vchat
 		"nano/js/"
 	)
 	var/list/uncommon_dirs = list(
