@@ -1682,6 +1682,10 @@
 	},
 /turf/simulated/floor/holofloor/grass,
 /area/holodeck/holodorm/source_garden)
+"hn" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/base_high,
+/turf/unsimulated/floor/steel,
+/area/centcom/control)
 "hx" = (
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/holodorm/source_seating)
@@ -1796,8 +1800,16 @@
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/holodorm/source_boxing)
+"kh" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/base_mid,
+/turf/unsimulated/floor/steel,
+/area/centcom/control)
 "kr" = (
 /obj/machinery/telecomms/server/presets/centcomm,
+/turf/unsimulated/floor/steel,
+/area/centcom/control)
+"kF" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/midpoint,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "pb" = (
@@ -1836,6 +1848,10 @@
 	icon_state = "dark"
 	},
 /area/centcom/suppy)
+"vt" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/station_high,
+/turf/unsimulated/floor/steel,
+/area/centcom/control)
 "wd" = (
 /obj/structure/sign/warning/nosmoking_2,
 /turf/unsimulated/wall,
@@ -1889,8 +1905,20 @@
 /obj/effect/overlay/palmtree_r,
 /turf/unsimulated/beach/sand,
 /area/beach)
+"Ct" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/station_low,
+/turf/unsimulated/floor/steel,
+/area/centcom/control)
 "Cw" = (
 /obj/machinery/r_n_d/server/centcom,
+/turf/unsimulated/floor/steel,
+/area/centcom/control)
+"Dc" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/station_mid,
+/turf/unsimulated/floor/steel,
+/area/centcom/control)
+"Dn" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/sci_outpost,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "Dw" = (
@@ -1919,6 +1947,10 @@
 	},
 /turf/unsimulated/beach/sand,
 /area/beach)
+"FW" = (
+/obj/machinery/telecomms/relay/preset/centcom/underdark,
+/turf/unsimulated/floor/steel,
+/area/centcom/control)
 "Ga" = (
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
@@ -2015,12 +2047,6 @@
 "OR" = (
 /turf/simulated/shuttle/wall,
 /area/shuttle/escape)
-"OU" = (
-/obj/machinery/camera/network/crescent{
-	dir = 4
-	},
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "OY" = (
 /turf/unsimulated/map,
 /area/overmap)
@@ -4233,6 +4259,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/simulated/medical)
+"ZA" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether/base_low,
+/turf/unsimulated/floor/steel,
+/area/centcom/control)
 "ZC" = (
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -16365,7 +16395,7 @@ ae
 ae
 wy
 yA
-OU
+Ga
 xe
 wl
 TZ
@@ -16648,7 +16678,7 @@ ae
 ae
 ae
 wy
-Ga
+kF
 Ga
 Iq
 wl
@@ -17074,9 +17104,9 @@ ae
 ae
 ae
 wy
-wy
-wy
-wy
+Ct
+Ga
+kh
 wl
 Ur
 Vm
@@ -17215,10 +17245,10 @@ ae
 ae
 ae
 ae
-ae
-ae
-ae
-ae
+wy
+Dc
+Ga
+hn
 wl
 Up
 Vj
@@ -17357,10 +17387,10 @@ ae
 ae
 ae
 ae
-ae
-ae
-ae
-ae
+wy
+vt
+Ga
+FW
 wl
 Up
 Vj
@@ -17499,10 +17529,10 @@ ae
 ae
 ae
 ae
-ae
-ae
-ae
-ae
+wy
+Dn
+Ga
+ZA
 wl
 Up
 Vj
@@ -17641,10 +17671,10 @@ ae
 ae
 ae
 ae
-ae
-ae
-ae
-ae
+wy
+wy
+wy
+wy
 wl
 Up
 Vj

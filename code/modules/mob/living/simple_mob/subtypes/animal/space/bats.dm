@@ -50,3 +50,8 @@
 
 /mob/living/simple_mob/animal/space/bats/cult/cultify()
 	return
+
+/mob/living/simple_mob/animal/space/bats/cult/strong
+	maxHealth = 60
+	health = 60
+	melee_damage_upper = 10

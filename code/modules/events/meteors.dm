@@ -49,6 +49,7 @@
 	return activeFor + ((30 / severity) * waves) + 10
 
 /datum/event/meteor_wave/end()
+	..()
 	switch(severity)
 		if(EVENT_LEVEL_MAJOR)
 			command_announcement.Announce("\The [location_name()] has cleared the meteor storm.", "Meteor Alert")

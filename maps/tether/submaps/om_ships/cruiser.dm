@@ -112,10 +112,12 @@
 	name = "Warship - Main Hallway"
 
 /area/mothership/telecomms1
-	name = "Warship - Telecommunications Main"
+	name = "Warship - Hangar 1"
+	has_gravity = 0
 
 /area/mothership/telecomms2
-	name = "Warship - Telecommunications Relay"
+	name = "Warship - Hangar 2"
+	has_gravity = 0
 
 /datum/map_template/om_ships/cruiser
 	name = "OM Ship - NDV Tabiranth (New Z)"

@@ -2,7 +2,7 @@
 	startWhen	= 10
 	endWhen		= 30
 
-/datum/event/carp_migration/start()
+/datum/event/dust/start()
 	affecting_z -= global.using_map.sealed_levels // Space levels only please!
 	..()
 
@@ -17,6 +17,7 @@
 		dust_swarm(severity, affecting_z)
 
 /datum/event/dust/end()
+	..()
 	command_announcement.Announce("\The [location_name()] is no longer in danger of impact from space debris.", "Dust Notice")
 
 /datum/event/dust/proc/get_severity()
