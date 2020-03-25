@@ -56,7 +56,8 @@
 	below.update_icon() // So the 'ceiling-less' overlay gets added.
 	for(var/atom/movable/A in src)
 		A.fall()
-	OS_controller.add_turf(src, 1)
+	if(GLOB.open_space_initialised)
+		SSopen_space.add_turf(src, TRUE)
 
 // override to make sure nothing is hidden
 /turf/simulated/open/levelupdate()
@@ -103,7 +104,7 @@
 		add_overlay(o_img)
 
 		if(!below_is_open)
-			add_overlay(over_OS_darkness)
+			add_overlay(SSopen_space.over_OS_darkness)
 
 		return 0
 	return PROCESS_KILL

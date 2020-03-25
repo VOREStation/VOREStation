@@ -2,88 +2,106 @@
 // Controller handling icon updates of open space turfs
 //
 
-/var/global/open_space_initialised = FALSE
-/var/global/datum/controller/process/open_space/OS_controller = null
-/var/global/image/over_OS_darkness = image('icons/turf/open_space.dmi', "black_open")
+GLOBAL_VAR_INIT(open_space_initialised, FALSE)
 
-/datum/controller/process/open_space
+SUBSYSTEM_DEF(open_space)
+	name = "Open Space"
+	wait = 2 // 5 times per second.
+	init_order = INIT_ORDER_OPENSPACE
 	var/list/turfs_to_process = list()		// List of turfs queued for update.
 	var/list/turfs_to_process_old = null	// List of turfs currently being updated.
+	var/counter = 1 // Can't use .len because we need to iterate in order
+	var/static/image/over_OS_darkness		// Image overlayed over the bottom turf with stuff in it.
 
-/datum/controller/process/open_space/setup()
-	. = ..()
-	name = "openspace"
-	schedule_interval = world.tick_lag // every second
-	start_delay = 30 SECONDS
-	OS_controller = src
+/datum/controller/subsystem/open_space/Initialize(timeofday)
+	over_OS_darkness = image('icons/turf/open_space.dmi', "black_open")
 	over_OS_darkness.plane = OVER_OPENSPACE_PLANE
 	over_OS_darkness.layer = MOB_LAYER
 	initialize_open_space()
+	// Pre-process open space turfs once before the round starts.
+	fire(FALSE, TRUE)
+	return ..()
 
-	// Pre-process open space once once before the round starts. Wait 20 seconds so other stuff has time to finish.
-	spawn(200)
-		doWork(1)
-
-/datum/controller/process/open_space/copyStateFrom(var/datum/controller/process/open_space/other)
+/datum/controller/subsystem/open_space/Recover()
+	flags |= SS_NO_INIT // Make extra sure we don't initialize twice.
 	. = ..()
-	OS_controller = src
 
-/datum/controller/process/open_space/doWork()
-	// We use a different list so any additions to the update lists during a delay from scheck()
+/datum/controller/subsystem/open_space/fire(resumed = 0, init_tick_checks = FALSE)
+	// We use a different list so any additions to the update lists during a delay from MC_TICK_CHECK
 	// don't cause things to be cut from the list without being updated.
-	turfs_to_process_old = turfs_to_process
-	turfs_to_process = list()
 
-	for(last_object in turfs_to_process_old)
-		var/turf/T = last_object
+	//If we're not resuming, this must mean it's a new iteration so we have to grab the turfs
+	if (!resumed)
+		src.counter = 1
+		src.turfs_to_process_old = turfs_to_process
+		turfs_to_process = list()
+
+	//cache for sanic speed (lists are references anyways)
+	var/list/turfs_to_process_old = src.turfs_to_process_old
+	var/counter = src.counter
+	while(counter <= turfs_to_process_old.len)
+		var/turf/T = turfs_to_process_old[counter]
+		counter += 1
 		if(!QDELETED(T))
 			update_turf(T)
-		SCHECK
+		if (init_tick_checks)
+			CHECK_TICK // Used during initialization processing
+		else if (MC_TICK_CHECK)
+			src.counter = counter // Save for when we're resumed
+			return // Used during normal MC processing.
 
-/datum/controller/process/open_space/proc/update_turf(var/turf/T)
+/datum/controller/subsystem/open_space/proc/update_turf(var/turf/T)
 	for(var/atom/movable/A in T)
 		A.fall()
 	T.update_icon()
 
-/datum/controller/process/open_space/proc/add_turf(var/turf/T, var/recursive = 0)
+/datum/controller/subsystem/open_space/proc/add_turf(var/turf/T, var/recursive = 0)
 	ASSERT(isturf(T))
+	// Check for multiple additions
+	// Pointless to process the same turf twice. But we need to push it to the end of the list
+	// because any turfs below it need to process first.
+	turfs_to_process -= T
 	turfs_to_process += T
 	if(recursive > 0)
 		var/turf/above = GetAbove(T)
 		if(above && isopenspace(above))
 			add_turf(above, recursive)
 
-// Do the initial updates of open space turfs when the game starts. This will lag!
-/datum/controller/process/open_space/proc/initialize_open_space()
+// Queue the initial updates of open space turfs when the game starts. This will lag!
+/datum/controller/subsystem/open_space/proc/initialize_open_space()
 	// Do initial setup from bottom to top.
 	for(var/zlevel = 1 to world.maxz)
 		for(var/turf/simulated/open/T in block(locate(1, 1, zlevel), locate(world.maxx, world.maxy, zlevel)))
 			add_turf(T)
-	open_space_initialised = TRUE
+		CHECK_TICK
+	GLOB.open_space_initialised = TRUE
+
+/datum/controller/subsystem/open_space/stat_entry(msg_prefix)
+	return ..("T [turfs_to_process.len]")
 
 /turf/Entered(atom/movable/AM)
 	. = ..()
-	if(open_space_initialised && !AM.invisibility && isobj(AM))
+	if(GLOB.open_space_initialised && !AM.invisibility && isobj(AM))
 		var/turf/T = GetAbove(src)
 		if(isopenspace(T))
 			// log_debug("[T] ([T.x],[T.y],[T.z]) queued for update for [src].Entered([AM])")
-			OS_controller.add_turf(T, 1)
+			SSopen_space.add_turf(T, 1)
 
 /turf/Exited(atom/movable/AM)
 	. = ..()
-	if(open_space_initialised && !AM.invisibility && isobj(AM))
+	if(GLOB.open_space_initialised && !AM.invisibility && isobj(AM))
 		var/turf/T = GetAbove(src)
 		if(isopenspace(T))
 			// log_debug("[T] ([T.x],[T.y],[T.z]) queued for update for [src].Exited([AM])")
-			OS_controller.add_turf(T, 1)
+			SSopen_space.add_turf(T, 1)
 
 /obj/update_icon()
 	. = ..()
-	if(open_space_initialised && !invisibility && isturf(loc))
+	if(GLOB.open_space_initialised && !invisibility && isturf(loc))
 		var/turf/T = GetAbove(src)
 		if(isopenspace(T))
 			// log_debug("[T] ([T.x],[T.y],[T.z]) queued for update for [src].update_icon()")
-			OS_controller.add_turf(T, 1)
+			SSopen_space.add_turf(T, 1)
 
 // Ouch... this is painful. But is there any other way?
 /* - No for now
@@ -96,10 +114,10 @@
 			OS_controller.add_turf(T, 1)
 */
 
-// Just as New() we probably should hook Destroy() If we can think of something more efficient, lets hear it.
+// We probably should hook Destroy() If we can think of something more efficient, lets hear it.
 /obj/Destroy()
-	if(open_space_initialised && !invisibility && isturf(loc))
+	if(GLOB.open_space_initialised && !invisibility && isturf(loc))
 		var/turf/T = GetAbove(src)
 		if(isopenspace(T))
-			OS_controller.add_turf(T, 1)
+			SSopen_space.add_turf(T, 1)
 	. = ..() // Important that this be at the bottom, or we will have been moved to nullspace.
