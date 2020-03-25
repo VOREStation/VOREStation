@@ -3412,11 +3412,8 @@
 #include "code\modules\xenoarcheaology\effects\cellcharge.dm"
 #include "code\modules\xenoarcheaology\effects\celldrain.dm"
 #include "code\modules\xenoarcheaology\effects\cold.dm"
-<<<<<<< HEAD:vorestation.dme
-=======
 #include "code\modules\xenoarcheaology\effects\dnaswitch.dm"
 #include "code\modules\xenoarcheaology\effects\electric_field.dm"
->>>>>>> 2e623e5... Merge pull request #6854 from Mechoid/XenoarchExpansion:polaris.dme
 #include "code\modules\xenoarcheaology\effects\emp.dm"
 #include "code\modules\xenoarcheaology\effects\feysight.dm"
 #include "code\modules\xenoarcheaology\effects\forcefield.dm"
