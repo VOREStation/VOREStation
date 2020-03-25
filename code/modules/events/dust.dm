@@ -17,6 +17,7 @@
 		dust_swarm(severity, affecting_z)
 
 /datum/event/dust/end()
+	..()
 	command_announcement.Announce("\The [location_name()] is no longer in danger of impact from space debris.", "Dust Notice")
 
 /datum/event/dust/proc/get_severity()
