@@ -339,11 +339,11 @@
 /datum/map_z_level/tether/mine
 	z = Z_LEVEL_SURFACE_MINE
 	name = "Mining Outpost"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
 	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
 
 /datum/map_z_level/tether/solars
 	z = Z_LEVEL_SOLARS
 	name = "Solar Field"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
 	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
