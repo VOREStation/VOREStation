@@ -112,16 +112,18 @@ the artifact triggers the rage.
 			var/mob/living/carbon/human/H = holder
 			H.shock_stage = last_shock_stage
 
-/datum/modifier/berserk/can_apply(var/mob/living/L)
+/datum/modifier/berserk/can_apply(var/mob/living/L, var/suppress_failure = FALSE)
 	if(L.stat)
-		to_chat(L, "<span class='warning'>You can't be unconscious or dead to berserk.</span>")
+		if(!suppress_failure)
+			to_chat(L, "<span class='warning'>You can't be unconscious or dead to berserk.</span>")
 		return FALSE // It would be weird to see a dead body get angry all of a sudden.
 
 	if(!L.is_sentient())
 		return FALSE // Drones don't feel anything.
 
 	if(L.has_modifier_of_type(/datum/modifier/berserk_exhaustion))
-		to_chat(L, "<span class='warning'>You recently berserked, and cannot do so again while exhausted.</span>")
+		if(!suppress_failure)
+			to_chat(L, "<span class='warning'>You recently berserked, and cannot do so again while exhausted.</span>")
 		return FALSE // On cooldown.
 
 	if(L.isSynthetic())
@@ -135,7 +137,8 @@ the artifact triggers the rage.
 			return FALSE // Happy trees aren't affected by blood rages.
 
 	if(L.nutrition < nutrition_cost)
-		to_chat(L, "<span class='warning'>You are too hungry to berserk.</span>")
+		if(!suppress_failure)
+			to_chat(L, "<span class='warning'>You are too hungry to berserk.</span>")
 		return FALSE // Too hungry to enrage.
 
 	return ..()
