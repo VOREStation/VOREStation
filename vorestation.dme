@@ -1145,7 +1145,11 @@
 #include "code\game\objects\items\weapons\autopsy.dm"
 #include "code\game\objects\items\weapons\bones.dm"
 #include "code\game\objects\items\weapons\candle.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\game\objects\items\weapons\cards_ids_vr.dm"
+=======
+#include "code\game\objects\items\weapons\canes.dm"
+>>>>>>> 728bb26... Repaths collapsible white canes to not anger beepsky (#6896):polaris.dme
 #include "code\game\objects\items\weapons\cigs_lighters.dm"
 #include "code\game\objects\items\weapons\clown_items.dm"
 #include "code\game\objects\items\weapons\cosmetics.dm"
