@@ -117,7 +117,7 @@
 	color = "#4cad73" //Green
 	vessel_mass = 10000
 	vessel_size = SHIP_SIZE_LARGE
-	initial_generic_waypoints = list("HPV_port", "HPV_starboard", "omship_spawn_vespaboat")
+	initial_generic_waypoints = list("hpv_port", "hpv_starboard", "omship_spawn_vespaboat")
 
 // The ship's boat
 /area/shuttle/vespaboat
