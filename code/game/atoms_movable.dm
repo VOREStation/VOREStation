@@ -538,7 +538,8 @@
 	cloak_animation(animation_time)
 
 	//Needs to be last so people can actually see the effect before we become invisible
-	plane = CLOAKED_PLANE
+	if(cloaked) // Ensure we are still cloaked after the animation delay
+		plane = CLOAKED_PLANE
 
 /atom/movable/proc/uncloak()
 	if(!cloaked)
@@ -573,7 +574,7 @@
 	sleep(length+5)
 
 	//Remove those
-	filters -= filters[our_filter]
+	filters -= filter(type="wave", x = 0, y = 16, size = 8, offset = 1, flags = WAVE_SIDEWAYS)
 
 	//Back to original alpha
 	alpha = initial_alpha
@@ -597,7 +598,7 @@
 	sleep(length+5)
 
 	//Remove those
-	filters -= filters[our_filter]
+	filters -= filter(type="wave", x=0, y = 16, size = 0, offset = 0, flags = WAVE_SIDEWAYS)
 
 
 // So cloaked things can see themselves, if necessary
