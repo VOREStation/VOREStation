@@ -1,13 +1,13 @@
 // Compile in the map for CI testing if we're testing compileability of all the maps
 #if MAP_TEST
-#include "Vespa.dmm"
+#include "vespa.dmm"
 #endif
 
 // Map template for spawning the shuttle
 /datum/map_template/om_ships/Vespa
 	name = "OM Ship - Vespa (New Z)"
 	desc = "The Vespa, a Hephaestus Industries vessel."
-	mappath = 'Vespa.dmm'
+	mappath = 'vespa.dmm'
 
 // The shuttle's area(s)
 /area/ship/expe
