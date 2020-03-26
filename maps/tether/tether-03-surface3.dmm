@@ -5053,15 +5053,10 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/surface_three_hall)
 "aiq" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 9
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_three_hall)
+/obj/machinery/portable_atmospherics/hydroponics/soil,
+/obj/machinery/camera/network/civilian,
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "air" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -5762,30 +5757,20 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/panic_shelter)
 "ajt" = (
-/obj/machinery/alarm{
-	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 1
 	},
-/obj/effect/floor_decal/corner/lightgrey{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/lightgrey{
-	dir = 5
-	},
-/obj/structure/flora/pottedplant/stoutbush,
-/turf/simulated/floor/tiled/monotile,
-/area/tether/surfacebase/surface_three_hall)
-"aju" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 8
+/obj/effect/floor_decal/corner/lime/bordercorner{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_three_hall)
+/area/tether/surfacebase/public_garden_three)
+"aju" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
 "ajv" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -6268,18 +6253,18 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/surface_three_hall)
 "akm" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 10
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 10
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 4
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 8
+/obj/effect/floor_decal/corner/lime/bordercorner{
+	icon_state = "bordercolorcorner";
+	dir = 4
 	},
-/obj/machinery/light,
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_three_hall)
+/area/tether/surfacebase/public_garden_three)
 "akn" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -18004,13 +17989,6 @@
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "aDg" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/effect/floor_decal/borderfloor{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/lime/border{
-	dir = 9
-	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDh" = (
@@ -18023,13 +18001,14 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDi" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
+/obj/structure/window/reinforced,
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 6
 	},
-/obj/machinery/portable_atmospherics/hydroponics/soil,
-/obj/machinery/camera/network/civilian,
-/turf/simulated/floor/grass,
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 5
+	},
+/turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDj" = (
 /obj/effect/floor_decal/borderfloor{
@@ -18041,42 +18020,17 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDk" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/obj/effect/floor_decal/borderfloor/corner{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/lime/bordercorner{
-	dir = 1
-	},
+/obj/structure/window/reinforced,
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 5
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 6
 	},
-/obj/structure/window/reinforced,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDl" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloor/corner{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/lime/bordercorner{
-	icon_state = "bordercolorcorner";
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 6
-	},
-/obj/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDm" = (
@@ -18139,20 +18093,11 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/public_garden_three)
 "aDr" = (
-/obj/structure/table/woodentable,
-/obj/random/maintenance/clean,
-/obj/effect/floor_decal/borderfloor/corner{
-	dir = 1
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
 	},
-/obj/effect/floor_decal/corner/lime/bordercorner{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals6,
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
@@ -18273,20 +18218,15 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDB" = (
-/obj/structure/table/woodentable,
-/obj/effect/floor_decal/borderfloor/corner{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/lime/bordercorner{
-	dir = 8
+/obj/structure/window/reinforced{
+	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals6,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
+/obj/structure/table/woodentable,
+/obj/random/maintenance/clean,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDC" = (
@@ -18320,42 +18260,36 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDE" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/obj/effect/floor_decal/corner/lime/border{
 	dir = 4
 	},
-/obj/effect/floor_decal/borderfloor/corner,
-/obj/effect/floor_decal/corner/lime/bordercorner,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDF" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/machinery/seed_storage/garden,
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/lime/border,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/public_garden_three)
 "aDG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
+/obj/structure/window/reinforced{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 4
 	},
-/obj/machinery/vending/hydronutrients,
-/obj/effect/floor_decal/borderfloor{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/lime/border{
-	dir = 6
-	},
+/obj/effect/floor_decal/steeldecal/steel_decals6,
+/obj/structure/table/woodentable,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDH" = (
@@ -18383,46 +18317,33 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/medsec_maintenance)
 "aDJ" = (
-/obj/machinery/hologram/holopad,
-/obj/effect/floor_decal/borderfloor{
-	dir = 10
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
-/obj/effect/floor_decal/corner/lime/border{
-	dir = 10
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDK" = (
-/obj/effect/floor_decal/borderfloor/corner{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/lime/bordercorner{
-	dir = 8
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 10
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals6{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDL" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/obj/effect/floor_decal/borderfloor/corner,
-/obj/effect/floor_decal/corner/lime/bordercorner,
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 9
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 10
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
+/obj/machinery/portable_atmospherics/hydroponics/soil,
+/obj/machinery/light,
+/turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "aDM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -18472,14 +18393,11 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/public_garden_three)
 "aDR" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 8
 	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/lime/border{
-	dir = 6
+/obj/effect/floor_decal/corner/lime/bordercorner{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
@@ -27969,10 +27887,14 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
 "aUw" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
 "aUx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -28023,6 +27945,18 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/security/lobby)
+"aUz" = (
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 10
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
 "aUA" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
@@ -28031,6 +27965,15 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
+"aUB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
+"aUC" = (
+/obj/effect/floor_decal/borderfloor/corner,
+/obj/effect/floor_decal/corner/lime/bordercorner,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
 "aUD" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
@@ -28053,6 +27996,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
+"aUF" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lime/border,
+/obj/machinery/seed_storage/garden,
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
 "aUG" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
@@ -28112,6 +28062,16 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
+"aUM" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 6
+	},
+/obj/machinery/vending/hydronutrients,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
 "aUN" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -28119,6 +28079,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
+"aUO" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/public_garden_three)
 "aUP" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -28267,6 +28233,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
+"aVb" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
 "aVc" = (
 /obj/machinery/alarm{
 	dir = 8;
@@ -28275,6 +28247,14 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
+"aVd" = (
+/obj/effect/floor_decal/borderfloor/corner,
+/obj/effect/floor_decal/corner/lime/bordercorner,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
 "aVe" = (
 /obj/structure/table/glass,
 /obj/item/weapon/storage/box/cups,
@@ -28424,6 +28404,22 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"aVr" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 10
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/lime/bordercorner2{
+	icon_state = "bordercolorcorner2";
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
 "aVs" = (
 /obj/structure/lattice,
 /turf/simulated/open,
@@ -28473,6 +28469,49 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
+"aVw" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 6
+	},
+/obj/effect/floor_decal/borderfloor/corner2,
+/obj/effect/floor_decal/corner/lime/bordercorner2,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
+"aVx" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
+"aVy" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/glass{
+	name = "Public Garden"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
+"aVz" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/surface_three_hall)
+"aVA" = (
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/bordercorner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "aVB" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2;
@@ -28525,6 +28564,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lobby)
+"aVE" = (
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "aVF" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -28538,6 +28589,20 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
+"aVG" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/machinery/camera/network/tether,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "aVH" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
@@ -28571,6 +28636,16 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/common)
+"aVK" = (
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 5
+	},
+/obj/structure/flora/pottedplant/stoutbush,
+/turf/simulated/floor/tiled/monotile,
+/area/tether/surfacebase/surface_three_hall)
 "aVL" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
@@ -28662,6 +28737,33 @@
 /obj/structure/flora/pottedplant/stoutbush,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lobby)
+"aVP" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/lightgrey/bordercorner2{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
+"aVQ" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "aVR" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
@@ -28687,6 +28789,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lobby)
+"aVS" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether)
 "aVT" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/steeldecal/steel_decals6,
@@ -28695,6 +28802,13 @@
 "aVU" = (
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lobby)
+"aVV" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/engines)
 "aVW" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -32279,13 +32393,6 @@
 	pixel_x = -28
 	},
 /turf/simulated/floor/tiled/steel_dirty,
-/area/shuttle/tourbus/engines)
-"suC" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
-	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
 /area/shuttle/tourbus/engines)
 "sEq" = (
 /obj/machinery/light/small,
@@ -37019,12 +37126,12 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
+arW
+aDq
+aDq
+aDq
+aDq
+arW
 aac
 aac
 aac
@@ -37160,14 +37267,14 @@ aac
 aac
 aac
 aac
-aac
-aac
+aCZ
 arW
-aDq
-aDq
+aDa
+aDa
+aDa
+aDL
 arW
-aac
-aac
+aDQ
 aac
 aac
 aac
@@ -37301,16 +37408,16 @@ aac
 aac
 aac
 aac
-aac
-aac
 aCZ
-arW
-aDa
-aDa
-arW
+aDc
+aiq
+aDe
+aDe
+aDe
+aDe
+aiF
+aDc
 aDQ
-aac
-aac
 aac
 aac
 aac
@@ -37442,18 +37549,18 @@ aac
 aac
 aac
 aac
-aac
-aac
 aCZ
 aDc
-aDi
+aDf
 aDe
+aDj
+aDr
+aDr
+aDA
 aDe
-aiF
+aDf
 aDc
 aDQ
-aac
-aac
 aac
 aac
 aac
@@ -37583,24 +37690,24 @@ aac
 aac
 aac
 aac
-aac
-aac
-aCZ
-aDc
+arW
+arW
+aDd
 aDf
-aDe
 aDj
+ajt
+aDu
+aDu
+aDR
 aDA
-aDe
 aDf
-aDc
-aDQ
-aac
-aac
-aac
-aac
-aac
-aac
+aDT
+arW
+arW
+aVz
+aVz
+aVz
+agw
 aac
 aac
 aac
@@ -37725,24 +37832,24 @@ aac
 aac
 aac
 aac
-aac
-arW
-arW
-aDd
-aDf
+aCY
+aDa
+aDe
 aDj
-aDr
+ajt
+aDg
 aDB
-aDJ
-aDf
-aDT
-arW
-arW
-aac
-aac
-aac
-aac
-aac
+aDG
+aDg
+aDR
+aVr
+aDe
+aVx
+aDc
+aip
+aVK
+akl
+alP
 aac
 aac
 aac
@@ -37867,24 +37974,24 @@ aac
 aac
 aac
 aac
-aac
 aCY
-aDa
 aDe
+aDe
+aDn
+aju
+aDi
+aDs
+aDs
+aUw
+aVb
 aDg
-aDk
-aDs
-aDs
-aDK
-aDA
-aDe
-aDa
-aDP
-aac
-aac
-aac
-aac
-aac
+aDg
+aDg
+aVy
+apS
+aVP
+aVQ
+alP
 aac
 aac
 aac
@@ -38009,24 +38116,24 @@ aac
 aac
 aac
 aac
-aac
 aCY
 aDa
 aDe
 aDh
-aDl
+akm
+aDk
 aDs
 aDs
-aDL
-aDR
+aUz
+aVd
+aVw
 aDe
-aDa
-aDP
-aac
-aac
-aac
-aac
-aac
+aDe
+aDc
+aVA
+apS
+akn
+alP
 aac
 aac
 aac
@@ -38151,24 +38258,24 @@ aac
 aac
 aac
 aac
-aac
 arW
 arW
 aDd
 aDf
 aDm
+aDl
 aDt
 aDC
+aUB
 aDM
 aDf
 aDT
 arW
 arW
-aac
-aac
-aac
-aac
-aac
+aVE
+apS
+akn
+alP
 aac
 aac
 aac
@@ -38294,23 +38401,23 @@ aac
 aac
 aac
 aac
-aac
 aDb
 aDc
 aDf
 aDn
+aDg
 aDu
 aDD
+aDg
 aDN
 aDf
 aDc
-aDS
-aac
-aac
-aac
-aac
-aQU
-aac
+aDz
+agw
+air
+apS
+akn
+alP
 aac
 aac
 aac
@@ -38437,21 +38544,21 @@ aac
 aac
 aac
 aac
-aac
 aDb
 aDc
 acm
 aDv
-aDE
+aDg
+aDJ
+aUC
 aDO
 aDc
 aDS
 aac
-aac
 agw
-agw
-agw
-agw
+air
+apS
+akn
 akS
 alw
 alw
@@ -38580,20 +38687,20 @@ aac
 aac
 aac
 aac
-aac
 aDb
 arW
 aDw
-aDF
+aDg
+aDJ
+aUF
 arW
 aDS
 aac
 aac
-aac
 agw
-aip
-ajt
-akl
+air
+apS
+akn
 akS
 alx
 amm
@@ -38723,19 +38830,19 @@ aac
 aac
 aac
 aac
-aac
 aCY
 aDx
-aDG
+aDE
+aDK
+aUM
 aDP
 aac
 aac
 aac
-aac
 agw
-aiq
-aju
-akm
+aVG
+apS
+akn
 akS
 aly
 amn
@@ -38865,12 +38972,12 @@ aac
 aac
 aac
 aac
-aac
 aCY
 aDy
+aDF
 aDH
+aUO
 aDP
-aac
 aac
 agw
 agw
@@ -39007,12 +39114,12 @@ aac
 aac
 aac
 aac
-aac
 arW
 aDz
 aDz
+aDz
+aDz
 arW
-aac
 aac
 agw
 ahd
@@ -43618,7 +43725,7 @@ mfi
 jHw
 jpB
 qWU
-suC
+aVV
 aKU
 aOI
 aPb
@@ -44470,7 +44577,7 @@ isR
 jHw
 gHh
 qWU
-suC
+aVV
 aKU
 aOI
 aPb
@@ -46455,7 +46562,7 @@ aNk
 uSA
 aNJ
 aNP
-aUw
+aVS
 aKU
 abg
 aOk
@@ -46597,7 +46704,7 @@ aNl
 aNl
 aNK
 aNP
-aUw
+aVS
 aKU
 abg
 aOk
@@ -46739,7 +46846,7 @@ aNm
 aNl
 aNK
 aNP
-aUw
+aVS
 aKU
 abg
 aOk
