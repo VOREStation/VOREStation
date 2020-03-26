@@ -4,7 +4,7 @@
 #endif
 
 // Map template for spawning the shuttle
-/datum/map_template/om_ships/Vespa
+/datum/map_template/om_ships/vespa
 	name = "OM Ship - Vespa (New Z)"
 	desc = "The Vespa, a Hephaestus Industries vessel."
 	mappath = 'vespa.dmm'
@@ -111,7 +111,7 @@
 
 
 // The 'ship'
-/obj/effect/overmap/visitable/ship/Vespa
+/obj/effect/overmap/visitable/ship/vespa
 	name = "HPV Vespa"
 	desc = "A Hephaestus Industries vessel."
 	color = "#4cad73" //Green
