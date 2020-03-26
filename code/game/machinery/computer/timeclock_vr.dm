@@ -118,11 +118,11 @@
 				card = I
 		update_icon()
 		return 1
-	if(href_list["switch-to-onduty"])
+	if(href_list["switch-to-onduty-rank"])
 		if(card)
 			if(checkFace())
 				if(checkCardCooldown())
-					makeOnDuty(href_list["switch-to-onduty"])
+					makeOnDuty(href_list["switch-to-onduty-rank"], href_list["switch-to-onduty-assignment"])
 					usr.put_in_hands(card)
 					card = null
 		update_icon()
@@ -143,16 +143,16 @@
 	for(var/datum/job/job in job_master.occupations)
 		if(job && job.is_position_available() && !job.whitelist_only && !jobban_isbanned(user,job.title) && job.player_old_enough(user.client))
 			if(job.pto_type == department && !job.disallow_jobhop && job.timeoff_factor > 0)
-				available_jobs += job.title
+				available_jobs[job.title] = list(job.title)
 				if(job.alt_titles)
 					for(var/alt_job in job.alt_titles)
 						if(alt_job != job.title)
-							available_jobs += alt_job
+							available_jobs[job.title] += alt_job
 	return available_jobs
 
-/obj/machinery/computer/timeclock/proc/makeOnDuty(var/newassignment)
+/obj/machinery/computer/timeclock/proc/makeOnDuty(var/newrank, var/newassignment)
 	var/datum/job/oldjob = job_master.GetJob(card.rank)
-	var/datum/job/newjob = job_master.GetJob(newassignment)
+	var/datum/job/newjob = job_master.GetJob(newrank)
 	if(!newassignment in getOpenOnDutyJobs(usr, oldjob.pto_type))
 		return
 	if(newjob && card)
