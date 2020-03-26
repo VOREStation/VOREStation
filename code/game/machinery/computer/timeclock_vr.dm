@@ -119,21 +119,19 @@
 		update_icon()
 		return 1
 	if(href_list["switch-to-onduty-rank"])
-		if(card)
-			if(checkFace())
-				if(checkCardCooldown())
-					makeOnDuty(href_list["switch-to-onduty-rank"], href_list["switch-to-onduty-assignment"])
-					usr.put_in_hands(card)
-					card = null
+		if(checkFace())
+			if(checkCardCooldown())
+				makeOnDuty(href_list["switch-to-onduty-rank"], href_list["switch-to-onduty-assignment"])
+				usr.put_in_hands(card)
+				card = null
 		update_icon()
 		return 1
 	if(href_list["switch-to-offduty"])
-		if(card)
-			if(checkFace())
-				if(checkCardCooldown())
-					makeOffDuty()
-					usr.put_in_hands(card)
-					card = null
+		if(checkFace())
+			if(checkCardCooldown())
+				makeOffDuty()
+				usr.put_in_hands(card)
+				card = null
 		update_icon()
 		return 1
 	return 1 // Return 1 to update UI
@@ -155,7 +153,7 @@
 	var/datum/job/newjob = job_master.GetJob(newrank)
 	if(!newassignment in getOpenOnDutyJobs(usr, oldjob.pto_type))
 		return
-	if(newjob && card)
+	if(newjob)
 		card.access = newjob.get_access()
 		card.rank = newjob.title
 		card.assignment = newassignment
@@ -180,7 +178,7 @@
 		if(job.pto_type == new_dept && job.timeoff_factor < 0)
 			ptojob = job
 			break
-	if(ptojob && card)
+	if(ptojob)
 		var/oldtitle = card.assignment
 		card.access = ptojob.get_access()
 		card.rank = ptojob.title
