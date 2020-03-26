@@ -58,18 +58,19 @@
 
 /turf/simulated/floor/holofloor/space
 	icon = 'icons/turf/space.dmi'
+	plane = SPACE_PLANE
 	name = "\proper space"
-	icon_state = "0"
+	icon_state = "white"
+
+/turf/simulated/floor/holofloor/space/update_icon()
+	. = ..()
+	add_overlay(SSskybox.dust_cache["[((x + y) ^ ~(x * y) + z) % 25]"])
 
 /turf/simulated/floor/holofloor/reinforced
 	icon = 'icons/turf/flooring/tiles.dmi'
 	initial_flooring = /decl/flooring/reinforced
 	name = "reinforced holofloor"
 	icon_state = "reinforced"
-
-/turf/simulated/floor/holofloor/space/Initialize()
-	. = ..()
-	icon_state = "[((x + y) ^ ~(x * y) + z) % 25]"
 
 /turf/simulated/floor/holofloor/beach
 	desc = "Uncomfortably gritty for a hologram."
