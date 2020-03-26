@@ -1004,7 +1004,7 @@
 "tp" = (/obj/machinery/access_button/airlock_exterior{pixel_x = -1; pixel_y = 25},/turf/space,/area/space)
 "tq" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/effect/floor_decal/borderfloorwhite{icon_state = "borderfloor_white"; dir = 5},/obj/effect/floor_decal/corner/paleblue/border{icon_state = "bordercolor"; dir = 5},/obj/structure/closet/crate,/obj/item/weapon/storage/box/bloodpacks,/obj/item/weapon/storage/box/backup_kit,/obj/item/weapon/storage/box/gloves,/turf/simulated/floor/tiled/white,/area/ship/expe/medicaleq)
 "tr" = (/obj/structure/table/reinforced,/obj/machinery/chemical_dispenser/biochemistry,/turf/simulated/floor/tiled/white,/area/ship/expe/medicalchem)
-"ts" = (/obj/effect/overmap/visitable/ship/Vespa{fore_dir = 4},/turf/space,/area/space)
+"ts" = (/obj/effect/overmap/visitable/ship/vespa{fore_dir = 4},/turf/space,/area/space)
 "tt" = (/obj/effect/floor_decal/techfloor{icon_state = "techfloor_edges"; dir = 8},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 6},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 6},/obj/machinery/door/firedoor/glass/hidden{icon_state = "door_open"; dir = 8},/turf/simulated/floor/tiled/techfloor,/area/ship/expe/corridor4)
 "tu" = (/obj/machinery/alarm{frequency = 1441; pixel_y = 22},/obj/structure/table/woodentable,/obj/item/weapon/soap/nanotrasen,/turf/simulated/floor/tiled/techfloor,/area/ship/expe/cabin6)
 "tv" = (/obj/structure/closet/firecloset/full,/turf/simulated/floor/tiled/techfloor,/area/ship/expe/maintenance1)
