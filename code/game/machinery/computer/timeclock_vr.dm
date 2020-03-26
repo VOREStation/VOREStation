@@ -139,19 +139,30 @@
 /obj/machinery/computer/timeclock/proc/getOpenOnDutyJobs(var/mob/user, var/department)
 	var/list/available_jobs = list()
 	for(var/datum/job/job in job_master.occupations)
-		if(job && job.is_position_available() && !job.whitelist_only && !jobban_isbanned(user,job.title) && job.player_old_enough(user.client))
-			if(job.pto_type == department && !job.disallow_jobhop && job.timeoff_factor > 0)
-				available_jobs[job.title] = list(job.title)
-				if(job.alt_titles)
-					for(var/alt_job in job.alt_titles)
-						if(alt_job != job.title)
-							available_jobs[job.title] += alt_job
+		if(isOpenOnDutyJob(user, department, job))
+			available_jobs[job.title] = list(job.title)
+			if(job.alt_titles)
+				for(var/alt_job in job.alt_titles)
+					if(alt_job != job.title)
+						available_jobs[job.title] += alt_job
 	return available_jobs
+
+/obj/machinery/computer/timeclock/proc/isOpenOnDutyJob(var/mob/user, var/department, var/datum/job/job)
+	return job \
+		   && job.is_position_available() \
+		   && !job.whitelist_only \
+		   && !jobban_isbanned(user,job.title) \
+		   && job.player_old_enough(user.client) \
+		   && job.pto_type == department \
+		   && !job.disallow_jobhop \
+		   && job.timeoff_factor > 0
 
 /obj/machinery/computer/timeclock/proc/makeOnDuty(var/newrank, var/newassignment)
 	var/datum/job/oldjob = job_master.GetJob(card.rank)
 	var/datum/job/newjob = job_master.GetJob(newrank)
-	if(!newassignment in getOpenOnDutyJobs(usr, oldjob.pto_type))
+	if(!oldjob || !isOpenOnDutyJob(usr, oldjob.pto_type, newjob))
+		return
+	if(newassignment != newjob.title && !(newassignment in newjob.alt_titles))
 		return
 	if(newjob)
 		card.access = newjob.get_access()
