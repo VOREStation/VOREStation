@@ -1209,7 +1209,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/obj/structure/bed/double,
+/obj/structure/bed/double/padded,
 /obj/item/weapon/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin1)
@@ -1233,7 +1233,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/obj/structure/bed/double,
+/obj/structure/bed/double/padded,
 /obj/item/weapon/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin2)
@@ -6604,7 +6604,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/obj/structure/bed/double,
+/obj/structure/bed/double/padded,
 /obj/item/weapon/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin3)
@@ -6612,7 +6612,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/obj/structure/bed/double,
+/obj/structure/bed/double/padded,
 /obj/item/weapon/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin4)
@@ -6620,7 +6620,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/obj/structure/bed/double,
+/obj/structure/bed/double/padded,
 /obj/item/weapon/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin5)
@@ -6628,7 +6628,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/obj/structure/bed/double,
+/obj/structure/bed/double/padded,
 /obj/item/weapon/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin6)
@@ -6636,7 +6636,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/obj/structure/bed/double,
+/obj/structure/bed/double/padded,
 /obj/item/weapon/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin7)
@@ -8489,17 +8489,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 6
 	},
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1500;
-	id_tag = "vespaboat_docker";
-	pixel_x = 0;
-	pixel_y = 19
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/vespaboat)
 "oP" = (
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
 	frequency = 1500;
+	id_tag = "vespalock";
 	pixel_x = 0;
 	pixel_y = 18;
 	tag_airpump = "vespavent";
@@ -9691,12 +9686,13 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/vespaboat)
 "qT" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
-/area/shuttle/vespaboat)
+/area/ship/expe/cabin8)
 "qU" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -9747,14 +9743,13 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/captqua)
 "ra" = (
-/obj/structure/bed/double,
-/obj/item/weapon/bedsheet/captaindouble,
-/obj/effect/floor_decal/corner/blue/border{
-	icon_state = "bordercolor";
-	dir = 6
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
 	},
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
-/area/ship/expe/captqua)
+/area/ship/expe/cabin9)
 "rb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/bed/chair{
@@ -9888,21 +9883,24 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/hangar)
 "rp" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
 	},
-/obj/structure/bed/double,
-/obj/item/weapon/bedsheet/double,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/bed/chair{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor,
-/area/ship/expe/cabin8)
+/area/shuttle/vespaboat)
 "rq" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/structure/bed/double,
-/obj/item/weapon/bedsheet/double,
+/obj/structure/bed/chair{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
-/area/ship/expe/cabin9)
+/area/shuttle/vespaboat)
 "rr" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -10682,19 +10680,20 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/engines)
 "sX" = (
-/obj/machinery/atmospherics/portables_connector{
-	icon_state = "map_connector";
-	dir = 1
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/captaindouble,
+/obj/effect/floor_decal/corner/blue/border{
+	icon_state = "bordercolor";
+	dir = 6
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/ship/expe/engines)
+/area/ship/expe/captqua)
 "sY" = (
-/obj/machinery/atmospherics/portables_connector{
-	icon_state = "map_connector";
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/expe/engines)
+/obj/machinery/power/port_gen/pacman,
+/obj/structure/cable,
+/obj/machinery/door/window/northleft,
+/turf/simulated/floor,
+/area/shuttle/vespaboat)
 "sZ" = (
 /obj/item/inflatable/torn,
 /turf/simulated/floor/tiled/techfloor,
@@ -11834,8 +11833,10 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicaleq)
 "vb" = (
-/obj/machinery/power/port_gen/pacman,
-/obj/structure/cable,
+/obj/structure/window/reinforced{
+	icon_state = "rwindow";
+	dir = 1
+	},
 /turf/simulated/floor,
 /area/shuttle/vespaboat)
 "vc" = (
@@ -11981,6 +11982,9 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalmain)
 "vs" = (
+/obj/machinery/power/port_gen/pacman,
+/obj/structure/cable,
+/obj/machinery/door/window/northright,
 /turf/simulated/floor,
 /area/shuttle/vespaboat)
 "vt" = (
@@ -15295,7 +15299,7 @@ hu
 bB
 lE
 pv
-qS
+ja
 hh
 sc
 si
@@ -15308,7 +15312,7 @@ uJ
 uR
 si
 qP
-vb
+sY
 hh
 hh
 hu
@@ -15437,7 +15441,7 @@ hu
 bB
 lE
 qN
-qT
+rp
 re
 sd
 sj
@@ -15450,7 +15454,7 @@ uK
 uS
 sj
 uY
-vs
+vb
 hh
 rl
 hu
@@ -15579,7 +15583,7 @@ hu
 bB
 lE
 pv
-fr
+rq
 hh
 gu
 hk
@@ -15592,7 +15596,7 @@ mL
 nQ
 oJ
 ps
-vb
+vs
 hh
 rl
 hu
@@ -15734,7 +15738,7 @@ hh
 hh
 oL
 pt
-vs
+vb
 hh
 rm
 hu
@@ -15876,7 +15880,7 @@ mN
 hh
 oM
 py
-vs
+vb
 hh
 rm
 rL
@@ -16457,7 +16461,7 @@ sK
 sQ
 sS
 hi
-sX
+hi
 be
 be
 aV
@@ -16599,9 +16603,9 @@ sK
 sR
 sT
 hi
-sX
-sY
-sY
+hi
+hi
+hi
 be
 be
 aV
@@ -22676,7 +22680,7 @@ cA
 dd
 as
 dX
-rp
+qT
 dq
 as
 eD
@@ -23244,7 +23248,7 @@ cA
 dd
 at
 ea
-rq
+ra
 dy
 at
 eH
@@ -31212,7 +31216,7 @@ nO
 oI
 pq
 qj
-ra
+sX
 fy
 aa
 aa
