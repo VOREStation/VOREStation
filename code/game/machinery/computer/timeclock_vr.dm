@@ -150,22 +150,23 @@
 							available_jobs += alt_job
 	return available_jobs
 
-/obj/machinery/computer/timeclock/proc/makeOnDuty(var/newjob)
-	var/datum/job/foundjob = job_master.GetJob(card.rank)
-	if(!newjob in getOpenOnDutyJobs(usr, foundjob.pto_type))
+/obj/machinery/computer/timeclock/proc/makeOnDuty(var/newassignment)
+	var/datum/job/oldjob = job_master.GetJob(card.rank)
+	var/datum/job/newjob = job_master.GetJob(newassignment)
+	if(!newassignment in getOpenOnDutyJobs(usr, oldjob.pto_type))
 		return
-	if(foundjob && card)
-		card.access = foundjob.get_access()
-		card.rank = foundjob.title
-		card.assignment = newjob
+	if(newjob && card)
+		card.access = newjob.get_access()
+		card.rank = newjob.title
+		card.assignment = newassignment
 		card.name = text("[card.registered_name]'s ID Card ([card.assignment])")
 		data_core.manifest_modify(card.registered_name, card.assignment)
 		card.last_job_switch = world.time
 		callHook("reassign_employee", list(card))
-		foundjob.current_positions++
+		newjob.current_positions++
 		var/mob/living/carbon/human/H = usr
-		H.mind.assigned_role = foundjob.title
-		H.mind.role_alt_title = newjob
+		H.mind.assigned_role = card.rank
+		H.mind.role_alt_title = card.assignment
 		announce.autosay("[card.registered_name] has moved On-Duty as [card.assignment].", "Employee Oversight")
 	return
 
