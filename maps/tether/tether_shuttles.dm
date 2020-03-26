@@ -226,3 +226,28 @@
 	name = "short jump console"
 	shuttle_tag = "Tour Bus"
 	req_one_access = list(access_pilot)
+
+////////////////////////////////////////
+////////      Medivac      /////////////
+////////////////////////////////////////
+/datum/shuttle/autodock/overmap/medivac
+	name = "Medivac Shuttle"
+	warmup_time = 0
+	current_location = "tether_medivac_dock"
+	docking_controller_tag = "medivac_docker"
+	shuttle_area = list(/area/shuttle/medivac/cockpit, /area/shuttle/medivac/general, /area/shuttle/medivac/engines)
+	fuel_consumption = 1
+
+// The 'ship' of the excursion shuttle
+/obj/effect/overmap/visitable/ship/landable/medivac
+	name = "Medivac Shuttle"
+	desc = "A medical evacuation shuttle."
+	vessel_mass = 3000
+	vessel_size = SHIP_SIZE_SMALL
+	shuttle = "Medivac Shuttle"
+	fore_dir = EAST
+
+/obj/machinery/computer/shuttle_control/explore/medivac
+	name = "short jump console"
+	shuttle_tag = "Medivac Shuttle"
+	req_one_access = list(access_pilot)

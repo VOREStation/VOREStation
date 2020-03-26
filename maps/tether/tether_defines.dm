@@ -247,8 +247,16 @@
 		"tether_space_NE", //station1, top right of space,
 		"tether_space_SW", //station3, bottom left of space,
 		"tether_excursion_hangar", //Excursion shuttle hangar,
+		"tether_medivac_dock", //Medical shuttle dock,
 		"tourbus_dock" //Surface large hangar
 		)
+	//Despite not being in the multi-z complex, these levels are part of the overmap sector
+	extra_z_levels = list(
+		Z_LEVEL_SURFACE_MINE,
+		Z_LEVEL_SOLARS,
+		Z_LEVEL_PLAINS,
+		Z_LEVEL_UNDERDARK
+	)
 
 /obj/effect/overmap/visitable/sector/virgo3b/Crossed(var/atom/movable/AM)
 	. = ..()
