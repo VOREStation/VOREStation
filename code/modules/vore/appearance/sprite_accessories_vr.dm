@@ -1602,3 +1602,21 @@
 	ani_state = "tail_smooth_w"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	
+/datum/sprite_accessory/tail/triplekitsune_colorable
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	name = "Kitsune 3 tails - colorable"
+	desc = ""
+	icon_state = "triplekitsune"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "triplekitsune_tips"
+	
+/datum/sprite_accessory/tail/ninekitsune_colorable
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	name = "Kitsune 9 tails - colorable"
+	desc = ""
+	icon_state = "ninekitsune"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "ninekitsune-tips"
