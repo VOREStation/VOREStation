@@ -152,7 +152,11 @@ function start_vue() {
 					admin: false
 				},
 				{
+<<<<<<< HEAD
 					matches: ".notice, .adminnotice, .info, .sinister, .cult",
+=======
+					matches: ".notice:not(.pm), .adminnotice, .info, .sinister, .cult",
+>>>>>>> 715de43... VChat: Redone chat output done in Vue.js (#6761)
 					becomes: "vc_info",
 					pretty: "Notices",
 					tooltip: "Non-urgent messages from the game and items",
@@ -160,7 +164,11 @@ function start_vue() {
 					admin: false
 				},
 				{
+<<<<<<< HEAD
 					matches: ".critical, .danger, .userdanger, .warning, .italics",
+=======
+					matches: ".critical, .danger, .userdanger, .warning:not(.pm), .italics",
+>>>>>>> 715de43... VChat: Redone chat output done in Vue.js (#6761)
 					becomes: "vc_warnings",
 					pretty: "Warnings",
 					tooltip: "Urgent messages from the game and items",
@@ -183,6 +191,7 @@ function start_vue() {
 					required: false,
 					admin: false
 				},
+<<<<<<< HEAD
 				//VOREStation Add Start
 				{
 					matches: ".nif",
@@ -193,6 +202,8 @@ function start_vue() {
 					admin: false
 				},
 				//VOREStation Add End
+=======
+>>>>>>> 715de43... VChat: Redone chat output done in Vue.js (#6761)
 				{
 					matches: ".pm",
 					becomes: "vc_adminpm",
@@ -674,7 +685,11 @@ function start_vue() {
 					hiddenElement.target = '_blank';
 					hiddenElement.download = filename;
 					hiddenElement.click();
+<<<<<<< HEAD
 				//Probably what will end up getting used
+=======
+        		//Probably what will end up getting used
+>>>>>>> 715de43... VChat: Redone chat output done in Vue.js (#6761)
 				} else {
 					var blob = new Blob([textToSave], {type: 'text/html;charset=utf8;'});
 					saved = window.navigator.msSaveOrOpenBlob(blob, filename);

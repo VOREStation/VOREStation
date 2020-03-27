@@ -1654,7 +1654,10 @@
 #include "code\modules\catalogue\catalogue_data_vr.dm"
 #include "code\modules\catalogue\cataloguer.dm"
 #include "code\modules\catalogue\cataloguer_visuals.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\catalogue\cataloguer_vr.dm"
+=======
+>>>>>>> 715de43... VChat: Redone chat output done in Vue.js (#6761):polaris.dme
 #include "code\modules\client\asset_cache.dm"
 #include "code\modules\client\client defines.dm"
 #include "code\modules\client\client procs.dm"

@@ -49,6 +49,7 @@
 	Log(message, message_title)
 
 datum/announcement/proc/Message(message as text, message_title as text)
+<<<<<<< HEAD
 	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME)
 
 datum/announcement/minor/Message(message as text, message_title as text)
@@ -62,6 +63,40 @@ datum/announcement/priority/command/Message(message as text, message_title as te
 
 datum/announcement/priority/security/Message(message as text, message_title as text)
 	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", ANNOUNCER_NAME)
+=======
+	for(var/mob/M in player_list)
+		if(!istype(M,/mob/new_player) && !isdeaf(M))
+			to_chat(M, "<h2 class='alert'>[title]</h2>")
+			to_chat(M, "<span class='alert'>[message]</span>")
+			if (announcer)
+				to_chat(M, "<span class='alert'> -[html_encode(announcer)]</span>")
+
+datum/announcement/minor/Message(message as text, message_title as text)
+	to_world("<b>[message]</b>")
+
+datum/announcement/priority/Message(message as text, message_title as text)
+	to_world("<h1 class='alert'>[message_title]</h1>")
+	to_world("<span class='alert'>[message]</span>")
+	if(announcer)
+		to_world("<span class='alert'> -[html_encode(announcer)]</span>")
+	to_world("<br>")
+
+datum/announcement/priority/command/Message(message as text, message_title as text)
+	var/command
+	command += "<h1 class='alert'>[command_name()] Update</h1>"
+	if (message_title)
+		command += "<br><h2 class='alert'>[message_title]</h2>"
+
+	command += "<br><span class='alert'>[message]</span><br>"
+	command += "<br>"
+	for(var/mob/M in player_list)
+		if(!istype(M,/mob/new_player) && !isdeaf(M))
+			to_chat(M, command)
+
+datum/announcement/priority/security/Message(message as text, message_title as text)
+	to_world("<font size=4 color='red'>[message_title]</font>")
+	to_world("<font color='red'>[message]</font>")
+>>>>>>> 715de43... VChat: Redone chat output done in Vue.js (#6761)
 
 datum/announcement/proc/NewsCast(message as text, message_title as text)
 	if(!newscast)

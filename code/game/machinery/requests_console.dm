@@ -177,6 +177,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 			message_log += "<B>Message sent to [recipient]</B><BR>[message]"
 		else
 			audible_message(text("[bicon(src)] *The Requests Console beeps: 'NOTICE: No server detected!'"),,4)
+<<<<<<< HEAD
 
 	//Handle printing
 	if (href_list["print"])
@@ -187,6 +188,8 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 			var/obj/item/weapon/paper/R = new(src.loc)
 			R.name = "[department] Message"
 			R.info = "<H3>[department] Requests Console</H3><div>[msg]</div>"
+=======
+>>>>>>> 715de43... VChat: Redone chat output done in Vue.js (#6761)
 
 	//Handle screen switching
 	if(href_list["setScreen"])

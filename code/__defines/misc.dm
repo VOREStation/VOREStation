@@ -78,8 +78,12 @@
 #define COLOR_RED_LIGHT         "#FF3333"
 #define COLOR_DEEP_SKY_BLUE     "#00e1ff"
 
+<<<<<<< HEAD
 
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : null))
+=======
+#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (isclient(I) ? I : null))
+>>>>>>> 715de43... VChat: Redone chat output done in Vue.js (#6761)
 
 //	Shuttles.
 
