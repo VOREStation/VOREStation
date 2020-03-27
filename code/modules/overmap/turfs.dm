@@ -15,6 +15,36 @@ var/global/list/map_sectors = list()
 /turf/unsimulated/map/edge
 	opacity = 1
 	density = 1
+	var/map_is_to_my
+	var/turf/unsimulated/map/edge/wrap_buddy
+
+/turf/unsimulated/map/edge/Initialize()
+	. = ..()
+	//This could be done by using the using_map.overmap_size much faster, HOWEVER, doing it programatically to 'find'
+	//  the edges this way allows for 'sub overmaps' elsewhere and whatnot.
+	for(var/side in alldirs) //The order of this list is relevant: It should definitely break on finding a cardinal FIRST.
+		var/turf/T = get_step(src, side)
+		if(T?.type == /turf/unsimulated/map) //Not a wall, not something else, EXACTLY a flat map turf.
+			map_is_to_my = side
+			break
+
+	if(map_is_to_my)
+		var/turf/T = get_step(src, map_is_to_my) //Should be a normal map turf
+		while(istype(T, /turf/unsimulated/map))
+			T = get_step(T, map_is_to_my) //Could be a wall if the map is only 1 turf big
+			if(istype(T, /turf/unsimulated/map/edge))
+				wrap_buddy = T
+				break
+
+/turf/unsimulated/map/edge/Destroy()
+	wrap_buddy = null
+	return ..()
+
+/turf/unsimulated/map/edge/Bumped(var/atom/movable/AM)
+	if(wrap_buddy?.map_is_to_my)
+		AM.forceMove(get_step(wrap_buddy, wrap_buddy.map_is_to_my))
+	else
+		. = ..()
 
 /turf/unsimulated/map/Initialize()
 	. = ..()
