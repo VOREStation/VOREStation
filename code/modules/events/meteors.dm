@@ -59,13 +59,46 @@
 				command_announcement.Announce("\The [location_name()] has cleared the meteor shower", "Meteor Alert")
 
 /datum/event/meteor_wave/proc/get_meteors()
-	if(EVENT_LEVEL_MAJOR)
-		if(prob(10))
-			return meteors_catastrophic
+	switch(severity)
+		if(EVENT_LEVEL_MAJOR)
+			return meteors_major
+		if(EVENT_LEVEL_MODERATE)
+			return meteors_moderate
 		else
-			return meteors_threatening
-	else
-		return meteors_normal
+			return meteors_minor
+
+/var/list/meteors_minor = list(
+	/obj/effect/meteor/medium     = 80,
+	/obj/effect/meteor/dust       = 30,
+	/obj/effect/meteor/irradiated = 30,
+	/obj/effect/meteor/big        = 30,
+	/obj/effect/meteor/flaming    = 10,
+	///obj/effect/meteor/golden     = 10,
+	///obj/effect/meteor/silver     = 10,
+)
+
+/var/list/meteors_moderate = list(
+	/obj/effect/meteor/medium     = 80,
+	/obj/effect/meteor/big        = 30,
+	/obj/effect/meteor/dust       = 30,
+	/obj/effect/meteor/irradiated = 30,
+	/obj/effect/meteor/flaming    = 10,
+	///obj/effect/meteor/golden     = 10,
+	///obj/effect/meteor/silver     = 10,
+	/obj/effect/meteor/emp        = 10,
+)
+
+/var/list/meteors_major = list(
+	/obj/effect/meteor/medium     = 80,
+	/obj/effect/meteor/big        = 30,
+	/obj/effect/meteor/dust       = 30,
+	/obj/effect/meteor/irradiated = 30,
+	/obj/effect/meteor/emp        = 30,
+	/obj/effect/meteor/flaming    = 10,
+	///obj/effect/meteor/golden     = 10,
+	///obj/effect/meteor/silver     = 10,
+	/obj/effect/meteor/tunguska   = 1,
+)
 
 // Overmap version
 /datum/event/meteor_wave/overmap
