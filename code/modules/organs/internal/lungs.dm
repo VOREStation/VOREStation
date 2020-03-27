@@ -15,31 +15,17 @@
 
 	if(is_bruised())
 		if(prob(4))
-<<<<<<< HEAD
-			spawn()
-				owner?.emote("me", 1, "coughs up blood!")
-			owner.drip(10)
-		if(prob(8))
-			spawn()
-				owner?.emote("me", 1, "gasps for air!")
-=======
 			spawn owner?.emote("me", 1, "coughs up blood!")
 			owner.drip(10)
 		if(prob(8))
 			spawn owner?.emote("me", 1, "gasps for air!")
->>>>>>> 6f2aec5... Merge pull request #6906 from Meghan-Rossi/lungfix
 			owner.AdjustLosebreath(15)
 
 	if(owner.internal_organs_by_name[O_BRAIN]) // As the brain starts having Trouble, the lungs start malfunctioning.
 		var/obj/item/organ/internal/brain/Brain = owner.internal_organs_by_name[O_BRAIN]
 		if(Brain.get_control_efficiency() <= 0.8)
 			if(prob(4 / max(0.1,Brain.get_control_efficiency())))
-<<<<<<< HEAD
-				spawn()
-					owner?.emote("me", 1, "gasps for air!")
-=======
 				spawn owner?.emote("me", 1, "gasps for air!")
->>>>>>> 6f2aec5... Merge pull request #6906 from Meghan-Rossi/lungfix
 				owner.AdjustLosebreath(round(3 / max(0.1,Brain.get_control_efficiency())))
 
 /obj/item/organ/internal/lungs/proc/rupture()
