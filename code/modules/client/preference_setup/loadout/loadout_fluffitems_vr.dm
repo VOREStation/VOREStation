@@ -349,30 +349,6 @@
 	ckeywhitelist = list("jemli")
 	character_name = list("Jemli")
 
-//TFF 28/11/19 - Expired permit removal
-/*
-/datum/gear/fluff/jeremiah_permit
-	path = /obj/item/clothing/accessory/permit/gun/fluff/ace
-	display_name = "Ace's Gun Permit"
-	ckeywhitelist = list("jertheace")
-	character_name = list("Jeremiah Acacius")
-	allowed_roles = list("Colony Director", "Warden", "Head of Security")
-
-/datum/gear/fluff/jeremiah_gun
-	path = /obj/item/weapon/gun/projectile/p92x/large/preban/hp
-	display_name = "Ace's Gun"
-	ckeywhitelist = list("jertheace")
-	character_name = list("Jeremiah Acacius")
-	allowed_roles = list("Colony Director", "Warden", "Head of Security")
-
-/datum/gear/fluff/jeremiah_ammo
-	path = /obj/item/ammo_magazine/m9mm/large/preban/hp //Spare ammo
-	display_name = "Ace's Spare Ammo"
-	ckeywhitelist = list("jertheace")
-	character_name = list("Jeremiah Acacius")
-	allowed_roles = list("Colony Director", "Warden", "Head of Security")
-*/
-
 /datum/gear/fluff/jeremiah_holster
 	path = /obj/item/clothing/accessory/holster/armpit
 	display_name = "Ace's Holster"
@@ -822,18 +798,6 @@
 //  U CKEYS
 
 //  V CKEYS
-/datum/gear/fluff/vakashi_permit
-	path = /obj/item/clothing/accessory/permit/gun/fluff/Vakashi
-	display_name = "Vakashi's Pepperspray Permit"
-	ckeywhitelist = list("vailthewolf")
-	character_name = list("Vakashi")
-
-/datum/gear/fluff/vakashi_pepperspray
-	path = /obj/item/weapon/reagent_containers/spray/pepper
-	display_name = "Vakashi's Pepperspray"
-	ckeywhitelist = list("vailthewolf")
-	character_name = list("Vakashi")
-
 /datum/gear/fluff/cameron_glasses
 	path = /obj/item/clothing/glasses/fluff/science_proper
 	display_name = "Cameron's Science Glasses"
