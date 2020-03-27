@@ -3320,7 +3320,6 @@
 #include "code\modules\turbolift\turbolift_door_vr.dm"
 #include "code\modules\turbolift\turbolift_floor.dm"
 #include "code\modules\turbolift\turbolift_map.dm"
-#include "code\modules\turbolift\turbolift_process.dm"
 #include "code\modules\turbolift\turbolift_turfs.dm"
 #include "code\modules\vchat\vchat_client.dm"
 #include "code\modules\vchat\vchat_db.dm"
