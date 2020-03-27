@@ -6037,7 +6037,10 @@
 /area/shuttle/vespaboat)
 "la" = (
 /obj/machinery/portable_atmospherics/canister/empty,
-/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/atmospherics/portables_connector{
+	icon_state = "map_connector";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/vespaboat)
 "lb" = (
@@ -6760,22 +6763,21 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/vespaboat)
 "ml" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/universal{
-	icon_state = "map_universal";
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/green{
+	icon_state = "intact";
+	dir = 10
 	},
+/turf/simulated/wall/rpshull,
+/area/shuttle/vespaboat)
+"mm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	icon_state = "intact-supply";
 	dir = 9
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/shuttle/vespaboat)
-"mm" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/green{
-	icon_state = "intact";
-	dir = 9
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
 	},
-/obj/structure/closet/crate/freezer/rations,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/vespaboat)
 "mn" = (
@@ -8129,6 +8131,9 @@
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	icon_state = "bordercolor";
+	dir = 1
+	},
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
@@ -10009,19 +10014,19 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalmain)
 "rE" = (
-/obj/structure/table/reinforced,
 /obj/effect/floor_decal/borderfloorwhite{
 	icon_state = "borderfloor_white";
-	dir = 9
+	dir = 1
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	icon_state = "bordercolor";
-	dir = 9
+	dir = 1
 	},
-/obj/item/weapon/storage/firstaid/o2,
-/obj/item/weapon/storage/firstaid/o2,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
-/area/ship/expe/medicaleq)
+/area/ship/expe/medicalmain)
 "rF" = (
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalchem)
@@ -10977,16 +10982,22 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/corridor1)
 "tD" = (
+/obj/structure/table/reinforced,
 /obj/effect/floor_decal/borderfloorwhite{
 	icon_state = "borderfloor_white";
-	dir = 8
+	dir = 9
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	icon_state = "bordercolor";
-	dir = 8
+	dir = 9
+	},
+/obj/item/weapon/storage/firstaid/o2,
+/obj/item/weapon/storage/firstaid/o2,
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/ship/expe/medicalchem)
+/area/ship/expe/medicaleq)
 "tE" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -11296,19 +11307,19 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalchem)
 "uh" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/effect/floor_decal/borderfloorwhite{
+	icon_state = "borderfloor_white";
+	dir = 8
 	},
-/obj/effect/floor_decal/corner/blue/border{
+/obj/effect/floor_decal/corner/paleblue/border{
 	icon_state = "bordercolor";
 	dir = 8
 	},
-/obj/structure/closet/walllocker/emerglocker/west,
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/expe/captqua)
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/ship/expe/medicalchem)
 "ui" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	icon_state = "intact-supply";
@@ -11711,20 +11722,29 @@
 /turf/simulated/floor/tiled/steel,
 /area/shuttle/vespaboat)
 "uT" = (
-/obj/machinery/firealarm{
-	pixel_x = -31;
-	pixel_y = -1
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	icon_state = "intact-supply";
+	dir = 9
 	},
 /obj/effect/floor_decal/borderfloorwhite{
 	icon_state = "borderfloor_white";
-	dir = 8
+	dir = 4
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	icon_state = "bordercolor";
-	dir = 8
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/white,
-/area/ship/expe/medicalmain)
+/area/ship/expe/medicaleq)
 "uU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -11774,14 +11794,18 @@
 /area/ship/expe/medicaleq)
 "uX" = (
 /obj/structure/table/reinforced,
-/obj/machinery/reagentgrinder,
 /obj/effect/floor_decal/borderfloorwhite{
 	icon_state = "borderfloor_white";
-	dir = 8
+	dir = 4
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	icon_state = "bordercolor";
-	dir = 8
+	dir = 4
+	},
+/obj/item/weapon/storage/box/syringes,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalchem)
@@ -11820,7 +11844,8 @@
 /area/ship/expe/medicalmain)
 "va" = (
 /obj/machinery/firealarm{
-	pixel_x = -28
+	pixel_x = -31;
+	pixel_y = -1
 	},
 /obj/effect/floor_decal/borderfloorwhite{
 	icon_state = "borderfloor_white";
@@ -11830,8 +11855,11 @@
 	icon_state = "bordercolor";
 	dir = 8
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
-/area/ship/expe/medicaleq)
+/area/ship/expe/medicalmain)
 "vb" = (
 /obj/structure/window/reinforced{
 	icon_state = "rwindow";
@@ -12452,14 +12480,8 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/sm)
 "wq" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 9
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/borderfloorwhite{
 	icon_state = "borderfloor_white";
 	dir = 4
@@ -12468,9 +12490,12 @@
 	icon_state = "bordercolor";
 	dir = 4
 	},
-/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/white,
-/area/ship/expe/medicaleq)
+/area/ship/expe/medicalmain)
 "wr" = (
 /obj/structure/closet/walllocker/emerglocker/north,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -12627,11 +12652,8 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medical1)
 "wB" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/table/reinforced,
+/obj/machinery/reagentgrinder,
 /obj/effect/floor_decal/borderfloorwhite{
 	icon_state = "borderfloor_white";
 	dir = 8
@@ -12640,22 +12662,28 @@
 	icon_state = "bordercolor";
 	dir = 8
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
-/area/ship/expe/medical)
+/area/ship/expe/medicalchem)
 "wC" = (
-/obj/structure/cable{
-	icon_state = "1-8"
+/obj/machinery/firealarm{
+	pixel_x = -28
 	},
 /obj/effect/floor_decal/borderfloorwhite{
 	icon_state = "borderfloor_white";
-	dir = 4
+	dir = 8
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	icon_state = "bordercolor";
-	dir = 4
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
-/area/ship/expe/medical)
+/area/ship/expe/medicaleq)
 "wD" = (
 /obj/structure/table/reinforced,
 /obj/effect/floor_decal/borderfloorwhite{
@@ -12712,16 +12740,13 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medical1)
 "wG" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	icon_state = "borderfloor_white";
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	icon_state = "bordercolor";
-	dir = 4
-	},
+/obj/structure/table/reinforced,
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/item/weapon/storage/quickdraw/syringe_case,
+/obj/machinery/light,
 /turf/simulated/floor/tiled/white,
-/area/ship/expe/medical1)
+/area/ship/expe/medicalmain)
 "wH" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -12834,19 +12859,22 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalsur)
 "wR" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/effect/floor_decal/borderfloorwhite{
-	icon_state = "borderfloor_white";
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
+/obj/effect/floor_decal/corner/blue/border{
 	icon_state = "bordercolor";
-	dir = 10
+	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/ship/expe/medical1)
+/obj/structure/closet/walllocker/emerglocker/west,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/expe/captqua)
 "wS" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
@@ -12911,6 +12939,52 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalsur)
 "wX" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	icon_state = "borderfloor_white";
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	icon_state = "bordercolor";
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/ship/expe/medical)
+"wY" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	icon_state = "borderfloor_white";
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	icon_state = "bordercolor";
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/white,
+/area/ship/expe/medical)
+"wZ" = (
+/obj/structure/table/reinforced,
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/item/weapon/storage/box/gloves,
+/obj/item/weapon/storage/box/masks,
+/obj/item/weapon/reagent_containers/spray/cleaner,
+/turf/simulated/floor/tiled/white,
+/area/ship/expe/medicalmain)
+"xa" = (
 /obj/machinery/firealarm{
 	pixel_x = -31;
 	pixel_y = 0
@@ -12925,9 +12999,34 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/weapon/storage/firstaid/surgery,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalsur)
-"wY" = (
+"xb" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/reagent_containers/spray/sterilizine,
+/turf/simulated/floor/tiled/white,
+/area/ship/expe/medicalsur)
+"xc" = (
+/obj/structure/closet/crate/freezer/rations,
+/obj/machinery/atmospherics/pipe/simple/hidden/universal{
+	icon_state = "map_universal";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/vespaboat)
+"xd" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/atmospherics/pipe/simple/hidden/green{
+	icon_state = "intact";
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/vespaboat)
+"xe" = (
 /obj/structure/table/reinforced,
 /obj/effect/floor_decal/borderfloorwhite{
 	icon_state = "borderfloor_white";
@@ -12938,29 +13037,44 @@
 	dir = 4
 	},
 /obj/item/weapon/storage/firstaid/surgery,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalsur)
-"wZ" = (
-/obj/structure/table/reinforced,
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/item/weapon/storage/box/gloves,
-/obj/item/weapon/storage/box/masks,
-/obj/item/weapon/reagent_containers/spray/cleaner,
+"xf" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	icon_state = "borderfloor_white";
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	icon_state = "bordercolor";
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/white,
-/area/ship/expe/medicalmain)
-"xa" = (
-/obj/structure/table/reinforced,
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/item/weapon/storage/quickdraw/syringe_case,
+/area/ship/expe/medical1)
+"xg" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	icon_state = "borderfloor_white";
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	icon_state = "bordercolor";
+	dir = 10
+	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
-/area/ship/expe/medicalmain)
-"xb" = (
-/obj/structure/table/reinforced,
-/obj/item/weapon/reagent_containers/spray/sterilizine,
-/turf/simulated/floor/tiled/white,
-/area/ship/expe/medicalsur)
+/area/ship/expe/medical1)
 
 (1,1,1) = {"
 aa
@@ -16301,7 +16415,7 @@ qS
 ja
 hh
 kZ
-ml
+mm
 mR
 hh
 oP
@@ -16443,7 +16557,7 @@ qS
 jb
 hh
 la
-mm
+xc
 mS
 hh
 oR
@@ -16584,8 +16698,8 @@ lE
 lE
 hh
 hh
-hh
-lE
+ml
+xd
 hh
 hh
 lE
@@ -20841,15 +20955,15 @@ eD
 lh
 bL
 aw
-tD
+uh
 tZ
 uu
 uB
-uX
+wB
 wD
 uD
 vL
-wB
+wX
 wH
 uH
 uI
@@ -21270,7 +21384,7 @@ jr
 tL
 ue
 vc
-vh
+uX
 vh
 wE
 mB
@@ -21554,7 +21668,7 @@ mV
 tP
 uo
 uo
-uT
+va
 uZ
 vj
 gd
@@ -21701,7 +21815,7 @@ up
 vl
 uF
 vT
-wC
+wY
 wL
 gO
 tG
@@ -21985,7 +22099,7 @@ mC
 vm
 uG
 wV
-wX
+xa
 wM
 gO
 gw
@@ -22408,7 +22522,7 @@ tn
 rZ
 mC
 ta
-xa
+wG
 uG
 wt
 vB
@@ -22553,7 +22667,7 @@ mC
 vn
 uG
 wW
-wY
+xe
 wQ
 gO
 ol
@@ -22686,7 +22800,7 @@ as
 eD
 lh
 bL
-qE
+rE
 mC
 mC
 rZ
@@ -22832,13 +22946,13 @@ rD
 tQ
 tQ
 uy
-uU
+wq
 uU
 vr
 uO
 wv
 wF
-wR
+xg
 gO
 gw
 on
@@ -23112,12 +23226,12 @@ as
 eD
 lh
 bL
-rE
+tD
 tU
 uA
 uz
 uV
-va
+wC
 vv
 qF
 wx
@@ -23541,13 +23655,13 @@ bG
 tq
 tY
 uw
-wq
+uT
 wu
 uW
 vC
 qF
 wA
-wG
+xf
 wU
 gO
 qO
@@ -30646,7 +30760,7 @@ mc
 aK
 nI
 oB
-uh
+wR
 pm
 qW
 rk
