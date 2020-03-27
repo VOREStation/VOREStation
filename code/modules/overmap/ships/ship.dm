@@ -146,7 +146,6 @@
 		var/turf/newloc = locate(x + deltas[1], y + deltas[2], z)
 		if(newloc)
 			Move(newloc)
-			handle_wraparound()
 		update_icon()
 
 /obj/effect/overmap/visitable/ship/update_icon()
@@ -181,27 +180,6 @@
 			. = min(last_movement[i] - world.time + 1/abs(speed[i]), .)
 	. = max(.,0)
 
-/obj/effect/overmap/visitable/ship/proc/handle_wraparound()
-	var/nx = x
-	var/ny = y
-	var/low_edge = 1
-	var/high_edge = global.using_map.overmap_size - 1
-
-	if((dir & WEST) && x == low_edge)
-		nx = high_edge
-	else if((dir & EAST) && x == high_edge)
-		nx = low_edge
-	if((dir & SOUTH)  && y == low_edge)
-		ny = high_edge
-	else if((dir & NORTH) && y == high_edge)
-		ny = low_edge
-	if((x == nx) && (y == ny))
-		return //we're not flying off anywhere
-
-	var/turf/T = locate(nx,ny,z)
-	if(T)
-		forceMove(T)
-
 /obj/effect/overmap/visitable/ship/proc/halt()
 	adjust_speed(-speed[1], -speed[2])
 	halted = 1
@@ -209,11 +187,6 @@
 /obj/effect/overmap/visitable/ship/proc/unhalt()
 	if(!SSshuttles.overmap_halted)
 		halted = 0
-
-/obj/effect/overmap/visitable/ship/Bump(var/atom/A)
-	if(istype(A,/turf/unsimulated/map/edge))
-		handle_wraparound()
-	..()
 
 /obj/effect/overmap/visitable/ship/proc/get_helm_skill()//delete this mover operator skill to overmap obj
 	return operator_skill
