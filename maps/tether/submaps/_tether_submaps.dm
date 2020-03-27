@@ -1,4 +1,4 @@
-// This causes tether submap maps to get 'checked' and compiled, when undergoing a unit test.
+ // This causes tether submap maps to get 'checked' and compiled, when undergoing a unit test.
 // This is so Travis can validate PoIs, and ensure future changes don't break PoIs, as PoIs are loaded at runtime and the compiler can't catch errors.
 
 //////////////////////////////////////////////////////////////////////////////
@@ -269,7 +269,7 @@
 /obj/effect/overmap/visitable/sector/tether_gateway/get_scan_data(mob/user)
 	name = true_name
 	desc = true_desc
-	return ..()	
+	return ..()
 
 /datum/map_template/tether_lateload/gateway
 	name = "Gateway Submap"
@@ -501,3 +501,4 @@
 #include "om_ships/screebarge.dm"
 #include "om_ships/aro.dm"
 #include "om_ships/cruiser.dm"
+#include "om_ships/vespa.dm"
