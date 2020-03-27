@@ -29930,7 +29930,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
 	frequency = 1380;
-	id_tag = "medivac_pump_out_external"
+	id_tag = "medivac_docker_pump_out_external"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
 /turf/simulated/floor/airless,
@@ -29945,7 +29945,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 2;
 	frequency = 1380;
-	id_tag = "medivac_pump_out_internal"
+	id_tag = "medivac_docker_pump_out_internal"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/general)
