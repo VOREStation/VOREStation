@@ -2,16 +2,35 @@
 //set to at least 100 unless you want evarr ruining every round
 
 //Meteors probability of spawning during a given wave
-/var/list/meteors_normal = list(/obj/effect/meteor/dust=3, /obj/effect/meteor/medium=8, /obj/effect/meteor/big=3, \
-						  /obj/effect/meteor/flaming=1, /obj/effect/meteor/irradiated=3) //for normal meteor event
 
-/var/list/meteors_threatening = list(/obj/effect/meteor/medium=5, /obj/effect/meteor/big=10, \
-						  /obj/effect/meteor/flaming=3, /obj/effect/meteor/irradiated=3, /obj/effect/meteor/emp=3) //for threatening meteor event
+//for space dust event
+/var/list/meteors_dust = list(/obj/effect/meteor/dust)
 
-/var/list/meteors_catastrophic = list(/obj/effect/meteor/medium=5, /obj/effect/meteor/big=75, \
-						  /obj/effect/meteor/flaming=10, /obj/effect/meteor/irradiated=10, /obj/effect/meteor/emp=10) //, /obj/effect/meteor/tunguska = 1) //for catastrophic meteor event
+//for normal meteor event
+/var/list/meteors_normal = list(
+	/obj/effect/meteor/dust=3,
+	/obj/effect/meteor/medium=8,
+	/obj/effect/meteor/big=3,
+	/obj/effect/meteor/flaming=1,
+	/obj/effect/meteor/irradiated=3
+	) 
 
-/var/list/meteors_dust = list(/obj/effect/meteor/dust) //for space dust event
+//for threatening meteor event
+/var/list/meteors_threatening = list(
+	/obj/effect/meteor/medium=5,
+	/obj/effect/meteor/big=10,
+	/obj/effect/meteor/flaming=3,
+	/obj/effect/meteor/irradiated=3,
+	/obj/effect/meteor/emp=3)
+
+//for catastrophic meteor event
+/var/list/meteors_catastrophic = list(
+	/obj/effect/meteor/medium=5,
+	/obj/effect/meteor/big=75,
+	/obj/effect/meteor/flaming=10,
+	/obj/effect/meteor/irradiated=10,
+	/obj/effect/meteor/emp=10)
+
 
 
 ///////////////////////////////
@@ -240,7 +259,7 @@
 /obj/effect/meteor/big/meteor_effect(var/explode)
 	..()
 	if(explode)
-		explosion(src.loc, devastation_range = 2, heavy_impact_range = 4, light_impact_range = 6, flash_range = 12, adminlog = 0)
+		explosion(src.loc, 1, 2, 3, 4, 0)
 
 // 'Flaming' meteors do less overall damage but are spread out more due to a larger but weaker explosion at the end.
 /obj/effect/meteor/flaming
@@ -254,7 +273,7 @@
 /obj/effect/meteor/flaming/meteor_effect(var/explode)
 	..()
 	if(explode)
-		explosion(src.loc, devastation_range = 1, heavy_impact_range = 2, light_impact_range = 8, flash_range = 16, adminlog = 0)
+		explosion(src.loc, 1, 2, 3, 4, 0, 0, 5)
 
 // Irradiated meteors do less physical damage but project a ten-tile ranged pulse of radiation upon exploding.
 /obj/effect/meteor/irradiated
@@ -268,7 +287,7 @@
 /obj/effect/meteor/irradiated/meteor_effect(var/explode)
 	..()
 	if(explode)
-		explosion(src.loc, devastation_range = 0, heavy_impact_range = 0, light_impact_range = 4, flash_range = 6, adminlog = 0)
+		explosion(src.loc, 0, 0, 4, 3, 0)
 	new /obj/effect/decal/cleanable/greenglow(get_turf(src))
 	SSradiation.radiate(src, 50)
 
@@ -301,7 +320,7 @@
 /obj/effect/meteor/tunguska/meteor_effect(var/explode)
 	..()
 	if(explode)
-		explosion(src.loc, 5, 10, 15, 20, 0)
+		explosion(src.loc, 3, 6, 9, 20, 0)
 
 /obj/effect/meteor/tunguska/Bump()
 	..()

@@ -1258,7 +1258,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/aro/centralarea)
 "cJ" = (
-/obj/machinery/shipsensors,
+/obj/machinery/shipsensors{
+	dir = 1
+	},
 /turf/space,
 /area/ship/aro/centralarea)
 "cK" = (

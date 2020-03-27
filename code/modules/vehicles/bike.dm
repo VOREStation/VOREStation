@@ -71,7 +71,7 @@
 		turn_off()
 		src.visible_message("\The [src] putters before turning off.", "You hear something putter slowly.")
 
-/obj/vehicle/bike/verb/kickstand()
+/obj/vehicle/bike/verb/kickstand(var/mob/user as mob)	//TFF 22/3/20 - Tweaking the visible_message output so it's not "You put kickstand down" to everyone.
 	set name = "Toggle Kickstand"
 	set category = "Vehicle"
 	set src in view(0)
@@ -82,12 +82,12 @@
 	if(usr.incapacitated()) return
 
 	if(kickstand)
-		src.visible_message("You put up \the [src]'s kickstand.")
+		visible_message("[user] puts up \the [src]'s kickstand.")
 	else
 		if(istype(src.loc,/turf/space) || istype(src.loc, /turf/simulated/floor/water))
 			to_chat(usr, "<span class='warning'> You don't think kickstands work here...</span>")
 			return
-		src.visible_message("You put down \the [src]'s kickstand.")
+		visible_message("[user] puts down \the [src]'s kickstand.")
 		if(pulledby)
 			pulledby.stop_pulling()
 

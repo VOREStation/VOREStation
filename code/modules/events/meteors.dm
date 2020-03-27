@@ -24,11 +24,12 @@
 	..()
 
 /datum/event/meteor_wave/announce()
-	switch(severity)
-		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("Meteors have been detected on collision course with \the [location_name()].", "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
-		else
-			command_announcement.Announce("\The [location_name()] is now in a meteor shower.", "Meteor Alert")
+	if(!victim)
+		switch(severity)
+			if(EVENT_LEVEL_MAJOR)
+				command_announcement.Announce("Meteors have been detected on collision course with \the [location_name()].", "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
+			else
+				command_announcement.Announce("\The [location_name()] is now in a meteor shower.", "Meteor Alert")
 
 /datum/event/meteor_wave/tick()
 	if(waves && activeFor >= next_meteor)
@@ -50,29 +51,60 @@
 
 /datum/event/meteor_wave/end()
 	..()
-	switch(severity)
-		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("\The [location_name()] has cleared the meteor storm.", "Meteor Alert")
-		else
-			command_announcement.Announce("\The [location_name()] has cleared the meteor shower", "Meteor Alert")
+	if(!victim)
+		switch(severity)
+			if(EVENT_LEVEL_MAJOR)
+				command_announcement.Announce("\The [location_name()] has cleared the meteor storm.", "Meteor Alert")
+			else
+				command_announcement.Announce("\The [location_name()] has cleared the meteor shower", "Meteor Alert")
 
 /datum/event/meteor_wave/proc/get_meteors()
-	if(EVENT_LEVEL_MAJOR)
-		if(prob(10))
-			return meteors_catastrophic
+	switch(severity)
+		if(EVENT_LEVEL_MAJOR)
+			return meteors_major
+		if(EVENT_LEVEL_MODERATE)
+			return meteors_moderate
 		else
-			return meteors_threatening
-	else
-		return meteors_normal
+			return meteors_minor
+
+/var/list/meteors_minor = list(
+	/obj/effect/meteor/medium     = 80,
+	/obj/effect/meteor/dust       = 30,
+	/obj/effect/meteor/irradiated = 30,
+	/obj/effect/meteor/big        = 30,
+	/obj/effect/meteor/flaming    = 10,
+	///obj/effect/meteor/golden     = 10,
+	///obj/effect/meteor/silver     = 10,
+)
+
+/var/list/meteors_moderate = list(
+	/obj/effect/meteor/medium     = 80,
+	/obj/effect/meteor/big        = 30,
+	/obj/effect/meteor/dust       = 30,
+	/obj/effect/meteor/irradiated = 30,
+	/obj/effect/meteor/flaming    = 10,
+	///obj/effect/meteor/golden     = 10,
+	///obj/effect/meteor/silver     = 10,
+	/obj/effect/meteor/emp        = 10,
+)
+
+/var/list/meteors_major = list(
+	/obj/effect/meteor/medium     = 80,
+	/obj/effect/meteor/big        = 30,
+	/obj/effect/meteor/dust       = 30,
+	/obj/effect/meteor/irradiated = 30,
+	/obj/effect/meteor/emp        = 30,
+	/obj/effect/meteor/flaming    = 10,
+	///obj/effect/meteor/golden     = 10,
+	///obj/effect/meteor/silver     = 10,
+	/obj/effect/meteor/tunguska   = 1,
+)
 
 // Overmap version
 /datum/event/meteor_wave/overmap
 	next_meteor_lower = 5
 	next_meteor_upper = 10
 	next_meteor = 0
-
-/datum/event/meteor_wave/overmap/announce()
-	return
 
 /datum/event/meteor_wave/overmap/tick()
 	if(victim && !victim.is_still()) // Meteors mostly fly in your face

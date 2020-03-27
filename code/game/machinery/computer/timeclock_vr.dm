@@ -118,22 +118,20 @@
 				card = I
 		update_icon()
 		return 1
-	if(href_list["switch-to-onduty"])
-		if(card)
-			if(checkFace())
-				if(checkCardCooldown())
-					makeOnDuty(href_list["switch-to-onduty"])
-					usr.put_in_hands(card)
-					card = null
+	if(href_list["switch-to-onduty-rank"])
+		if(checkFace())
+			if(checkCardCooldown())
+				makeOnDuty(href_list["switch-to-onduty-rank"], href_list["switch-to-onduty-assignment"])
+				usr.put_in_hands(card)
+				card = null
 		update_icon()
 		return 1
 	if(href_list["switch-to-offduty"])
-		if(card)
-			if(checkFace())
-				if(checkCardCooldown())
-					makeOffDuty()
-					usr.put_in_hands(card)
-					card = null
+		if(checkFace())
+			if(checkCardCooldown())
+				makeOffDuty()
+				usr.put_in_hands(card)
+				card = null
 		update_icon()
 		return 1
 	return 1 // Return 1 to update UI
@@ -141,31 +139,43 @@
 /obj/machinery/computer/timeclock/proc/getOpenOnDutyJobs(var/mob/user, var/department)
 	var/list/available_jobs = list()
 	for(var/datum/job/job in job_master.occupations)
-		if(job && job.is_position_available() && !job.whitelist_only && !jobban_isbanned(user,job.title) && job.player_old_enough(user.client))
-			if(job.pto_type == department && !job.disallow_jobhop && job.timeoff_factor > 0)
-				available_jobs += job.title
-				if(job.alt_titles)
-					for(var/alt_job in job.alt_titles)
-						if(alt_job != job.title)
-							available_jobs += alt_job
+		if(isOpenOnDutyJob(user, department, job))
+			available_jobs[job.title] = list(job.title)
+			if(job.alt_titles)
+				for(var/alt_job in job.alt_titles)
+					if(alt_job != job.title)
+						available_jobs[job.title] += alt_job
 	return available_jobs
 
-/obj/machinery/computer/timeclock/proc/makeOnDuty(var/newjob)
-	var/datum/job/foundjob = job_master.GetJob(card.rank)
-	if(!newjob in getOpenOnDutyJobs(usr, foundjob.pto_type))
+/obj/machinery/computer/timeclock/proc/isOpenOnDutyJob(var/mob/user, var/department, var/datum/job/job)
+	return job \
+		   && job.is_position_available() \
+		   && !job.whitelist_only \
+		   && !jobban_isbanned(user,job.title) \
+		   && job.player_old_enough(user.client) \
+		   && job.pto_type == department \
+		   && !job.disallow_jobhop \
+		   && job.timeoff_factor > 0
+
+/obj/machinery/computer/timeclock/proc/makeOnDuty(var/newrank, var/newassignment)
+	var/datum/job/oldjob = job_master.GetJob(card.rank)
+	var/datum/job/newjob = job_master.GetJob(newrank)
+	if(!oldjob || !isOpenOnDutyJob(usr, oldjob.pto_type, newjob))
 		return
-	if(foundjob && card)
-		card.access = foundjob.get_access()
-		card.rank = foundjob.title
-		card.assignment = newjob
+	if(newassignment != newjob.title && !(newassignment in newjob.alt_titles))
+		return
+	if(newjob)
+		card.access = newjob.get_access()
+		card.rank = newjob.title
+		card.assignment = newassignment
 		card.name = text("[card.registered_name]'s ID Card ([card.assignment])")
 		data_core.manifest_modify(card.registered_name, card.assignment)
 		card.last_job_switch = world.time
 		callHook("reassign_employee", list(card))
-		foundjob.current_positions++
+		newjob.current_positions++
 		var/mob/living/carbon/human/H = usr
-		H.mind.assigned_role = foundjob.title
-		H.mind.role_alt_title = newjob
+		H.mind.assigned_role = card.rank
+		H.mind.role_alt_title = card.assignment
 		announce.autosay("[card.registered_name] has moved On-Duty as [card.assignment].", "Employee Oversight")
 	return
 
@@ -179,7 +189,7 @@
 		if(job.pto_type == new_dept && job.timeoff_factor < 0)
 			ptojob = job
 			break
-	if(ptojob && card)
+	if(ptojob)
 		var/oldtitle = card.assignment
 		card.access = ptojob.get_access()
 		card.rank = ptojob.title

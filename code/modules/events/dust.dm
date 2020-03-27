@@ -7,9 +7,7 @@
 	..()
 
 /datum/event/dust/announce()
-	if(victim)
-		command_announcement.Announce("The [location_name()] is now passing through a belt of space dust.", "[location_name()] Sensor Array")
-	else
+	if(!victim)
 		command_announcement.Announce("Debris resulting from activity on another nearby asteroid is approaching \the [location_name()]", "Dust Alert")
 
 /datum/event/dust/tick()
@@ -18,7 +16,8 @@
 
 /datum/event/dust/end()
 	..()
-	command_announcement.Announce("\The [location_name()] is no longer in danger of impact from space debris.", "Dust Notice")
+	if(!victim)
+		command_announcement.Announce("\The [location_name()] is no longer in danger of impact from space debris.", "Dust Notice")
 
 /datum/event/dust/proc/get_severity()
 	switch(severity)

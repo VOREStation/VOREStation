@@ -26,39 +26,39 @@
 		if ("awoo")
 			m_type = 2
 			message = "lets out an awoo."
-			playsound(loc, 'sound/voice/awoo.ogg', 50, 1, -1)
+			playsound(loc, 'sound/voice/awoo.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if ("nya")
 			message = "lets out a nya."
 			m_type = 2
-			playsound(loc, 'sound/voice/nya.ogg', 50, 1, -1)
+			playsound(loc, 'sound/voice/nya.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if ("peep")
 			message = "peeps like a bird."
 			m_type = 2
-			playsound(loc, 'sound/voice/peep.ogg', 50, 1, -1)
+			playsound(loc, 'sound/voice/peep.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if ("chirp")
 			message = "chirps!"
-			playsound(src.loc, 'sound/misc/nymphchirp.ogg', 50, 0)
+			playsound(src.loc, 'sound/misc/nymphchirp.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
 			m_type = 2
 		if ("weh")
 			message = "lets out a weh."
 			m_type = 2
-			playsound(loc, 'sound/voice/weh.ogg', 50, 1, -1)
+			playsound(loc, 'sound/voice/weh.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if ("merp")
 			message = "lets out a merp."
 			m_type = 2
-			playsound(loc, 'sound/voice/merp.ogg', 50, 1, -1)
+			playsound(loc, 'sound/voice/merp.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if ("bark")
 			message = "lets out a bark."
 			m_type = 2
-			playsound(loc, 'sound/voice/bark2.ogg', 50, 1, -1)
+			playsound(loc, 'sound/voice/bark2.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if ("his")
 			message = "lets out a hiss."
 			m_type = 2
-			playsound(loc, 'sound/voice/hiss.ogg', 50, 1, -1)
+			playsound(loc, 'sound/voice/hiss.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if ("squeak")
 			message = "lets out a squeak."
 			m_type = 2
-			playsound(loc, 'sound/effects/mouse_squeak.ogg', 50, 1, -1)
+			playsound(loc, 'sound/effects/mouse_squeak.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if ("nsay")
 			nsay()
 			return TRUE
