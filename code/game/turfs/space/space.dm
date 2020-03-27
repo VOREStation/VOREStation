@@ -40,6 +40,8 @@
 	for(var/atom/movable/AM in src)
 		if (AM.simulated && !AM.anchored)
 			AM.throw_at(get_step(src,reverse_direction(direction)), 5, 1)
+		else if (istype(AM, /obj/effect))
+			qdel(AM) //No more space blood coming with the shuttle
 
 /turf/space/is_space()
 	return 1
