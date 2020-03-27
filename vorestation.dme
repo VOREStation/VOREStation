@@ -225,11 +225,6 @@
 #include "code\controllers\Processes\alarm.dm"
 #include "code\controllers\Processes\emergencyShuttle.dm"
 #include "code\controllers\Processes\game_master.dm"
-<<<<<<< HEAD:vorestation.dme
-#include "code\controllers\Processes\supply.dm"
-=======
-#include "code\controllers\Processes\mob.dm"
->>>>>>> dfda8ea... Merge pull request #6900 from VOREStation/vplk-sssupply:polaris.dme
 #include "code\controllers\Processes\ticker.dm"
 #include "code\controllers\ProcessScheduler\core\process.dm"
 #include "code\controllers\ProcessScheduler\core\processScheduler.dm"
