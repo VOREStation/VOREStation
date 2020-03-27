@@ -17045,6 +17045,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/chemistry)
+"An" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/shuttle/medivac/general)
 "Ao" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -25796,6 +25802,7 @@
 	dir = 5;
 	frequency = 1380;
 	id_tag = "medivac_out_sensor";
+	master_tag = "medivac_docker";
 	pixel_x = -28
 	},
 /obj/structure/cable/green{
@@ -25883,6 +25890,7 @@
 	id_tag = "medivac_pump"
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
+	cycle_to_external_air = 1;
 	frequency = 1380;
 	id_tag = "medivac_docker";
 	pixel_x = -28;
@@ -29918,16 +29926,26 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
+"VY" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	frequency = 1380;
+	id_tag = "medivac_pump_out_external"
+	},
+/obj/effect/floor_decal/industrial/warning/full,
+/turf/simulated/floor/airless,
+/area/shuttle/medivac/cockpit)
 "Wa" = (
 /obj/machinery/airlock_sensor{
 	frequency = 1380;
 	id_tag = "medivac_c_sensor";
+	master_tag = "medivac_docker";
 	pixel_x = 28
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 2;
 	frequency = 1380;
-	id_tag = "medivac_pump"
+	id_tag = "medivac_pump_out_internal"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/general)
@@ -30070,6 +30088,9 @@
 	icon_state = "1-2";
 	pixel_y = 0
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/cockpit)
 "WA" = (
@@ -30084,6 +30105,9 @@
 	},
 /obj/effect/floor_decal/corner/blue/bordercorner2{
 	icon_state = "bordercolorcorner2";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -30107,6 +30131,10 @@
 /obj/structure/bed/chair/bay/chair/padded/blue{
 	icon_state = "bay_chair_preview";
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/cockpit)
@@ -30266,6 +30294,7 @@
 	icon_state = "computer";
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/cockpit)
 "Xe" = (
@@ -30391,9 +30420,12 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/excursion/general)
 "Xv" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden,
 /obj/structure/cable/green{
 	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 9;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/white,
 /area/shuttle/medivac/general)
@@ -30403,6 +30435,9 @@
 	},
 /obj/effect/floor_decal/corner/blue/bordercorner{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/shuttle/medivac/general)
@@ -30423,6 +30458,17 @@
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/excursion/cargo)
+"XB" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/corner/blue{
+	icon_state = "corner_white";
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/blue,
+/turf/simulated/floor/tiled/white,
+/area/shuttle/medivac/general)
 "XC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 5
@@ -30464,6 +30510,10 @@
 /obj/effect/floor_decal/industrial/warning/full,
 /turf/simulated/floor/airless,
 /area/shuttle/medivac/cockpit)
+"XL" = (
+/obj/structure/sign/nosmoking_1,
+/turf/simulated/wall/rshull,
+/area/shuttle/medivac/general)
 "XM" = (
 /obj/structure/table/glass,
 /turf/simulated/floor/wood,
@@ -30524,6 +30574,20 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
+"XU" = (
+/obj/effect/floor_decal/corner/blue{
+	icon_state = "corner_white";
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/blue{
+	icon_state = "corner_white";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/shuttle/medivac/general)
 "XW" = (
 /obj/machinery/door/window/brigdoor/westleft{
 	req_access = newlist();
@@ -30661,16 +30725,17 @@
 /turf/simulated/floor/tiled/white,
 /area/shuttle/medivac/general)
 "Yr" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 9;
-	icon_state = "intact"
-	},
 /obj/machinery/airlock_sensor{
 	command = "cycle_interior";
 	frequency = 1380;
 	id_tag = "medivac_in_sensor";
+	master_tag = "medivac_docker";
 	pixel_x = 28;
 	pixel_y = 28
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/white,
 /area/shuttle/medivac/general)
@@ -30916,10 +30981,16 @@
 /turf/simulated/floor/plating,
 /area/shuttle/excursion/cargo)
 "Ze" = (
-/obj/structure/sign/redcross{
-	pixel_x = 16;
-	pixel_y = -16;
-	plane = -45
+/obj/effect/floor_decal/corner/blue{
+	icon_state = "corner_white";
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/blue{
+	icon_state = "corner_white";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/shuttle/medivac/general)
@@ -30948,6 +31019,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/cargo)
+"Zl" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/wall/rshull,
+/area/shuttle/medivac/cockpit)
 "Zm" = (
 /obj/machinery/computer/ship/sensors{
 	icon_state = "computer";
@@ -31135,6 +31210,7 @@
 	pixel_y = -28;
 	req_access = list(67)
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/cockpit)
 "ZL" = (
@@ -31156,6 +31232,20 @@
 /obj/item/device/radio/off,
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
+"ZN" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/corner/blue{
+	icon_state = "corner_white";
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/blue{
+	icon_state = "corner_white";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/shuttle/medivac/general)
 "ZO" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
@@ -41855,7 +41945,7 @@ Ya
 Ya
 WA
 OM
-Ya
+XL
 Ya
 Ya
 Yk
@@ -42138,7 +42228,7 @@ ZR
 YO
 Oh
 Ze
-OK
+XB
 Oh
 Wj
 Xg
@@ -42279,8 +42369,8 @@ vs
 ZR
 VV
 Oh
-Oh
-OK
+XU
+ZN
 Oh
 Yq
 Xg
@@ -42421,7 +42511,7 @@ vs
 Wl
 NV
 Xj
-Oh
+An
 OK
 Yl
 YM
@@ -42708,8 +42798,8 @@ Xx
 WC
 ZK
 Xd
-Xy
-vs
+Zl
+VY
 Yk
 aa
 aa
