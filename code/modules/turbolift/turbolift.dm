@@ -220,10 +220,7 @@
 // TODO: dummy machine ('lift mechanism') in powered area for functionality/blackout checks.
 /datum/turbolift/proc/is_functional()
 	return 1
-<<<<<<< HEAD
-=======
 
 #undef LIFT_MOVING
 #undef LIFT_WAITING_A
 #undef LIFT_WAITING_B
->>>>>>> d22368c... Merge pull request #6901 from VOREStation/vplk-turbolift-selfprocess
