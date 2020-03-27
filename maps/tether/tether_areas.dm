@@ -1053,6 +1053,18 @@
 /area/shuttle/tourbus/engines
 	name = "\improper Tour Bus Engines"
 
+/area/shuttle/medivac
+	requires_power = 1
+	icon_state = "shuttle2"
+
+/area/shuttle/medivac/general
+	name = "\improper Medivac"
+
+/area/shuttle/medivac/cockpit
+	name = "\improper Medivac Cockpit"
+
+/area/shuttle/medivac/engines
+	name = "\improper Medivac Engines"
 
 // Belter Dock
 

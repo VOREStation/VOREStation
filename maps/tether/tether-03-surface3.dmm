@@ -32519,7 +32519,9 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
 "uyk" = (
-/obj/machinery/shipsensors,
+/obj/machinery/shipsensors{
+	dir = 1
+	},
 /obj/effect/floor_decal/industrial/warning/full,
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/steel_dirty,

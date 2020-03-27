@@ -10938,6 +10938,7 @@
 /area/mothership/telecomms2)
 "Su" = (
 /obj/machinery/shipsensors{
+	dir = 1;
 	health = 1000;
 	heat_reduction = 4.5;
 	max_health = 1000;
