@@ -38,7 +38,10 @@
 		add_overlay(SSskybox.speedspace_cache["EW_[transit_state]"])
 	
 	for(var/atom/movable/AM in src)
-		if (AM.simulated && !AM.anchored)
+		if (!AM.simulated)
+			continue
+
+		if(!AM.anchored)
 			AM.throw_at(get_step(src,reverse_direction(direction)), 5, 1)
 		else if (istype(AM, /obj/effect))
 			qdel(AM) //No more space blood coming with the shuttle
