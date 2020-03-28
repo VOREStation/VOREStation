@@ -25876,11 +25876,11 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "NS" = (
+/obj/machinery/portable_atmospherics/canister/air,
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/canister/phoron,
-/obj/effect/floor_decal/industrial/outline/red,
+/obj/effect/floor_decal/industrial/outline/grey,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/engines)
 "NT" = (
@@ -25978,20 +25978,28 @@
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
 "NZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/hidden/yellow{
+	dir = 1
 	},
 /turf/simulated/wall/rshull,
 /area/shuttle/medivac/engines)
 "Oa" = (
-/obj/machinery/atmospherics/binary/pump,
-/obj/structure/fuel_port{
-	pixel_x = -32
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/engines)
 "Ob" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/power/terminal{
+	icon_state = "term";
+	dir = 1
+	},
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/engines)
 "Od" = (
@@ -26150,22 +26158,35 @@
 	name = "west bump";
 	pixel_x = -30
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 9
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/shuttle/medivac/engines)
-"Ot" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5;
 	icon_state = "intact"
 	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 10
+	},
+/obj/item/weapon/tank/phoron,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/medivac/engines)
+"Ot" = (
 /obj/structure/cable/green{
-	icon_state = "2-4"
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/engines)
@@ -26281,30 +26302,14 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "OH" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 10
+/obj/machinery/atmospherics/binary/pump{
+	dir = 1
 	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
-	},
-/obj/structure/table/standard,
-/obj/item/weapon/tank/phoron,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/engines)
 "OI" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/structure/cable{
-	icon_state = "4-8"
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/engines)
@@ -29885,12 +29890,6 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/general)
-"VT" = (
-/obj/machinery/atmospherics/portables_connector,
-/obj/machinery/portable_atmospherics/canister/air,
-/obj/effect/floor_decal/industrial/outline/grey,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/shuttle/medivac/engines)
 "VU" = (
 /obj/machinery/firealarm{
 	dir = 2;
@@ -30303,6 +30302,14 @@
 	},
 /turf/simulated/floor/wood,
 /area/security/breakroom)
+"Xf" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/phoron,
+/obj/effect/floor_decal/industrial/outline/red,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/medivac/engines)
 "Xg" = (
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
@@ -30600,6 +30607,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/cockpit)
+"XX" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 9
+	},
+/turf/simulated/wall/rshull,
+/area/shuttle/medivac/engines)
 "XZ" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled,
@@ -30615,15 +30628,12 @@
 /turf/simulated/wall/rshull,
 /area/shuttle/medivac/engines)
 "Ye" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 9
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /obj/machinery/light/small,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/phoron,
+/obj/effect/floor_decal/industrial/outline/red,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/engines)
 "Yf" = (
@@ -30756,14 +30766,12 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
 "Yv" = (
-/obj/machinery/atmospherics/binary/pump{
-	dir = 1
+/obj/structure/fuel_port{
+	pixel_x = -32
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+/obj/machinery/atmospherics/pipe/manifold/hidden/yellow{
+	icon_state = "map";
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/engines)
@@ -30858,11 +30866,15 @@
 /turf/simulated/floor/tiled/white,
 /area/shuttle/medivac/general)
 "YN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 10
-	},
 /obj/machinery/light/small{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10;
+	icon_state = "intact"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/engines)
@@ -30889,8 +30901,9 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "YS" = (
-/obj/machinery/power/terminal,
-/obj/structure/cable/green,
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 10
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/engines)
 "YT" = (
@@ -30932,6 +30945,11 @@
 	},
 /turf/space,
 /area/space)
+"YX" = (
+/obj/structure/table/standard,
+/obj/random/medical,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/medivac/engines)
 "YY" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden{
@@ -41092,9 +41110,9 @@ NL
 NS
 NL
 NZ
-NZ
+XX
 NL
-NS
+YX
 NL
 Yk
 vs
@@ -41373,12 +41391,12 @@ MK
 Iy
 vs
 NL
-VT
+XF
 Ob
 Ot
 OI
 YS
-XF
+Xf
 NL
 Yk
 vs
