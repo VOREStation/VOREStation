@@ -1,33 +1,15 @@
-
-// TODO - Refactor to use the Supply Subsystem (SSsupply)
-
 //Supply packs are in /code/datums/supplypacks
 //Computers are in /code/game/machinery/computer/supply.dm
+SUBSYSTEM_DEF(supply)
+	name = "Supply"
+	wait = 20 SECONDS
+	priority = FIRE_PRIORITY_SUPPLY
+	//Initializes at default time
+	flags = SS_NO_TICK_CHECK
 
-/datum/supply_order
-	var/ordernum							// Unfabricatable index
-	var/index								// Fabricatable index
-	var/datum/supply_pack/object = null
-	var/cost								// Cost of the supply pack (Fabricatable) (Changes not reflected when purchasing supply packs, this is cosmetic only)
-	var/name								// Name of the supply pack datum (Fabricatable)
-	var/ordered_by = null					// Who requested the order
-	var/comment = null						// What reason was given for the order
-	var/approved_by = null					// Who approved the order
-	var/ordered_at							// Date and time the order was requested at
-	var/approved_at							// Date and time the order was approved at
-	var/status								// [Requested, Accepted, Denied, Shipped]
-
-/datum/exported_crate
-	var/name
-	var/value
-	var/list/contents
-
-var/datum/controller/supply/supply_controller = new()
-
-/datum/controller/supply
 	//supply points
 	var/points = 50
-	var/points_per_process = 1.5
+	var/points_per_process = 1.0	// Processes every 20 seconds, so this is 3 per minute
 	var/points_per_slip = 2
 	var/points_per_money = 0.02 // 1 point for $50
 	//control
@@ -46,9 +28,10 @@ var/datum/controller/supply/supply_controller = new()
 			"platinum" = 5
 		)
 
-/datum/controller/supply/New()
+/datum/controller/subsystem/supply/Initialize()
 	ordernum = rand(1,9000)
 
+	// build master supply list
 	for(var/typepath in subtypesof(/datum/supply_pack))
 		var/datum/supply_pack/P = new typepath()
 		if(P.name)
@@ -56,20 +39,18 @@ var/datum/controller/supply/supply_controller = new()
 		else
 			qdel(P)
 
-/datum/controller/process/supply/setup()
-	name = "supply controller"
-	schedule_interval = 300 // every 30 seconds
+	// TODO - Auto-build material_points_conversion from material datums
+	. = ..()
 
-/datum/controller/process/supply/doWork()
-	supply_controller.process()
-
-// Supply shuttle ticker - handles supply point regeneration
-// This is called by the process scheduler every thirty seconds
-/datum/controller/supply/process()
+// Supply shuttle ticker - handles supply point regeneration. Just add points over time.
+/datum/controller/subsystem/supply/fire()
 	points += points_per_process
 
+/datum/controller/subsystem/supply/stat_entry()
+	..("Points: [points]")
+
 //To stop things being sent to CentCom which should not be sent to centcomm. Recursively checks for these types.
-/datum/controller/supply/proc/forbidden_atoms_check(atom/A)
+/datum/controller/subsystem/supply/proc/forbidden_atoms_check(atom/A)
 	if(isliving(A))
 		return 1
 	if(istype(A,/obj/item/weapon/disk/nuclear))
@@ -86,7 +67,7 @@ var/datum/controller/supply/supply_controller = new()
 			return 1
 
 //Selling
-/datum/controller/supply/proc/sell()
+/datum/controller/subsystem/supply/proc/sell()
 	// Loop over each area in the supply shuttle
 	for(var/area/subarea in shuttle.shuttle_area)
 		callHook("sell_shuttle", list(subarea));
@@ -162,7 +143,7 @@ var/datum/controller/supply/supply_controller = new()
 
 			qdel(MA)
 
-/datum/controller/supply/proc/get_clear_turfs()
+/datum/controller/subsystem/supply/proc/get_clear_turfs()
 	var/list/clear_turfs = list()
 
 	for(var/area/subarea in shuttle.shuttle_area)
@@ -181,7 +162,7 @@ var/datum/controller/supply/supply_controller = new()
 	return clear_turfs
 
 //Buying
-/datum/controller/supply/proc/buy()
+/datum/controller/subsystem/supply/proc/buy()
 	var/list/shoppinglist = list()
 	for(var/datum/supply_order/SO in order_history)
 		if(SO.status == SUP_ORDER_APPROVED)
@@ -260,9 +241,9 @@ var/datum/controller/supply/supply_controller = new()
 	return
 
 // Will attempt to purchase the specified order, returning TRUE on success, FALSE on failure
-/datum/controller/supply/proc/approve_order(var/datum/supply_order/O, var/mob/user)
+/datum/controller/subsystem/supply/proc/approve_order(var/datum/supply_order/O, var/mob/user)
 	// Not enough points to purchase the crate
-	if(supply_controller.points <= O.object.cost)
+	if(points <= O.object.cost)
 		return FALSE
 
 	// Based on the current model, there shouldn't be any entries in order_history, requestlist, or shoppinglist, that aren't matched in adm_order_history
@@ -289,11 +270,11 @@ var/datum/controller/supply/supply_controller = new()
 	adm_order.approved_at = stationdate2text() + " - " + stationtime2text()
 
 	// Deduct cost
-	supply_controller.points -= O.object.cost
+	points -= O.object.cost
 	return TRUE
 
 // Will deny the specified order. Only useful if the order is currently requested, but available at any status
-/datum/controller/supply/proc/deny_order(var/datum/supply_order/O, var/mob/user)
+/datum/controller/subsystem/supply/proc/deny_order(var/datum/supply_order/O, var/mob/user)
 	// Based on the current model, there shouldn't be any entries in order_history, requestlist, or shoppinglist, that aren't matched in adm_order_history
 	var/datum/supply_order/adm_order
 	for(var/datum/supply_order/temp in adm_order_history)
@@ -319,22 +300,22 @@ var/datum/controller/supply/supply_controller = new()
 	return
 
 // Will deny all requested orders
-/datum/controller/supply/proc/deny_all_pending(var/mob/user)
+/datum/controller/subsystem/supply/proc/deny_all_pending(var/mob/user)
 	for(var/datum/supply_order/O in order_history)
 		if(O.status == SUP_ORDER_REQUESTED)
 			deny_order(O, user)
 
 // Will delete the specified order from the user-side list
-/datum/controller/supply/proc/delete_order(var/datum/supply_order/O, var/mob/user)
+/datum/controller/subsystem/supply/proc/delete_order(var/datum/supply_order/O, var/mob/user)
 	// Making sure they know what they're doing
 	if(alert(user, "Are you sure you want to delete this record? If it has been approved, cargo points will NOT be refunded!", "Delete Record","No","Yes") == "Yes")
 		if(alert(user, "Are you really sure? There is no way to recover the order once deleted.", "Delete Record", "No", "Yes") == "Yes")
 			log_admin("[key_name(user)] has deleted supply order \ref[O] [O] from the user-side order history.")
-			supply_controller.order_history -= O
+			order_history -= O
 	return
 
 // Will generate a new, requested order, for the given supply pack type
-/datum/controller/supply/proc/create_order(var/datum/supply_pack/S, var/mob/user, var/reason)
+/datum/controller/subsystem/supply/proc/create_order(var/datum/supply_pack/S, var/mob/user, var/reason)
 	var/datum/supply_order/new_order = new()
 	var/datum/supply_order/adm_order = new() // Admin-recorded order must be a separate copy in memory, or user-made edits will corrupt it
 
@@ -369,16 +350,16 @@ var/datum/controller/supply/supply_controller = new()
 	adm_order_history += adm_order
 
 // Will delete the specified export receipt from the user-side list
-/datum/controller/supply/proc/delete_export(var/datum/exported_crate/E, var/mob/user)
+/datum/controller/subsystem/supply/proc/delete_export(var/datum/exported_crate/E, var/mob/user)
 	// Making sure they know what they're doing
 	if(alert(user, "Are you sure you want to delete this record?", "Delete Record","No","Yes") == "Yes")
 		if(alert(user, "Are you really sure? There is no way to recover the receipt once deleted.", "Delete Record", "No", "Yes") == "Yes")
 			log_admin("[key_name(user)] has deleted export receipt \ref[E] [E] from the user-side export history.")
-			supply_controller.exported_crates -= E
+			exported_crates -= E
 	return
 
 // Will add an item entry to the specified export receipt on the user-side list
-/datum/controller/supply/proc/add_export_item(var/datum/exported_crate/E, var/mob/user)
+/datum/controller/subsystem/supply/proc/add_export_item(var/datum/exported_crate/E, var/mob/user)
 	var/new_name = input(user, "Name", "Please enter the name of the item.") as null|text
 	if(!new_name)
 		return
@@ -396,3 +377,21 @@ var/datum/controller/supply/supply_controller = new()
 			"quantity" = new_quantity,
 			"value" = new_value
 		)
+
+/datum/exported_crate
+	var/name
+	var/value
+	var/list/contents
+
+/datum/supply_order
+	var/ordernum							// Unfabricatable index
+	var/index								// Fabricatable index
+	var/datum/supply_pack/object = null
+	var/cost								// Cost of the supply pack (Fabricatable) (Changes not reflected when purchasing supply packs, this is cosmetic only)
+	var/name								// Name of the supply pack datum (Fabricatable)
+	var/ordered_by = null					// Who requested the order
+	var/comment = null						// What reason was given for the order
+	var/approved_by = null					// Who approved the order
+	var/ordered_at							// Date and time the order was requested at
+	var/approved_at							// Date and time the order was approved at
+	var/status								// [Requested, Accepted, Denied, Shipped]

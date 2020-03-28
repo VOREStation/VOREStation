@@ -94,7 +94,6 @@
 	options["LEGACY: air_master"] = air_master
 	options["LEGACY: job_master"] = job_master
 	options["LEGACY: radio_controller"] = radio_controller
-	options["LEGACY: supply_controller"] = supply_controller
 	options["LEGACY: emergency_shuttle"] = emergency_shuttle
 	options["LEGACY: paiController"] = paiController
 	options["LEGACY: cameranet"] = cameranet
