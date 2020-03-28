@@ -369,12 +369,18 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!holder)
 		return
 
-	//I frontload all the questions so we don't have a half-done process while you're reading.
 	var/client/picked_client = input(src, "Please specify which client's character to spawn.", "Client", "") as null|anything in GLOB.clients
 	if(!picked_client)
 		return
 
-	var/location = alert(src,"Please specify where to spawn them.", "Location", "Right Here", "Arrivals", "Cancel")
+	respawn_character_proper(picked_client)
+
+/client/proc/respawn_character_proper(client/picked_client)
+	if(!istype(picked_client))
+		return
+
+	//I frontload all the questions so we don't have a half-done process while you're reading.
+	var/location = alert(src, "Please specify where to spawn them.", "Location", "Right Here", "Arrivals", "Cancel")
 	if(location == "Cancel" || !location)
 		return
 

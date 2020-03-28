@@ -526,3 +526,6 @@ SQLITE_FEEDBACK_COOLDOWN 0
 ## Set this to how many days you want someone to have to wait when they first join.
 ## Setting to zero will disable this restriction.
 SQLITE_FEEDBACK_MIN_AGE 7
+
+## Uncomment this if you want to disable the popup alert for people on the same CID (Don't do this on a live server if you ban multikeying)
+#DISABLE_CID_WARN_POPUP
