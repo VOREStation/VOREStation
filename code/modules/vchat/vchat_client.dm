@@ -140,6 +140,10 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 /datum/chatOutput/proc/become_broken()
 	broken = TRUE
 	loaded = FALSE
+
+	if(!owner)
+		qdel(src)
+		return
 	
 	update_vis()
 	

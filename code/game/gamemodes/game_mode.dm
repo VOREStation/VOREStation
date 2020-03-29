@@ -538,15 +538,15 @@ proc/get_nt_opposed()
 	set category = "OOC"
 
 	if(!ticker || !ticker.mode)
-		to_chat(usr, "Something is terribly wrong; there is no gametype.")
+		to_chat(usr, "<span class='warning'>Something is terribly wrong; there is no gametype.</span>")
 		return
 
 	if(master_mode != "secret")
-		to_chat(usr, "<b>The roundtype is [capitalize(ticker.mode.name)]</b>")
+		to_chat(usr, "<span class='notice'><b>The roundtype is [capitalize(ticker.mode.name)]</b></span>")
 		if(ticker.mode.round_description)
-			to_chat(usr, "<i>[ticker.mode.round_description]</i>")
+			to_chat(usr, "<span class='notice'><i>[ticker.mode.round_description]</i></span>")
 		if(ticker.mode.extended_round_description)
-			to_chat(usr, "[ticker.mode.extended_round_description]")
+			to_chat(usr, "<span class='notice'>[ticker.mode.extended_round_description]</span>")
 	else
-		to_chat(usr, "<i>Shhhh</i>. It's a secret.")
+		to_chat(usr, "<span class='notice'><i>Shhhh</i>. It's a secret.</span>")
 	return

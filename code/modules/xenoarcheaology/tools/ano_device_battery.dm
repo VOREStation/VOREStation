@@ -110,7 +110,7 @@
 						if(holder)
 							to_chat(holder, "the [bicon(src)] [src] held by [holder] shudders in your grasp.")
 						else
-							src.loc.visible_message("the \icon[src] [src] shudders.")
+							src.loc.visible_message("the [bicon(src)] [src] shudders.")
 
 						//consume power
 						inserted_battery.use_power(energy_consumed_on_touch)
