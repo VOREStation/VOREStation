@@ -60,6 +60,15 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			burn_out()
 	return ..()
 
+/obj/item/weapon/flame/match/proc/light(var/mob/user)
+	playsound(src, 'sound/items/cigs_lighters/matchstick_lit.ogg', 25, 0, -1)
+	lit = 1
+	damtype = "burn"
+	icon_state = "match_lit"
+	name = "burning match"
+	desc = "A match. This one is presently on fire."
+	START_PROCESSING(SSobj, src)
+
 /obj/item/weapon/flame/match/proc/burn_out()
 	lit = 0
 	burnt = 1
