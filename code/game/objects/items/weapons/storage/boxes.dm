@@ -408,17 +408,13 @@
 	can_hold = list(/obj/item/weapon/flame/match)
 	starts_with = list(/obj/item/weapon/flame/match = 10)
 
-/obj/item/weapon/storage/box/matches/attackby(obj/item/weapon/flame/match/W as obj, mob/user as mob)
+/obj/item/weapon/storage/box/matches/attackby(var/obj/item/weapon/flame/match/W, var/mob/user)
 	if(istype(W) && !W.lit && !W.burnt)
 		if(prob(25))
-			playsound(src.loc, 'sound/items/cigs_lighters/matchstick_lit.ogg', 25, 0, -1)
+			W.light(user)
 			user.visible_message("<span class='notice'>[user] manages to light the match on the matchbox.</span>")
-			W.lit = 1
-			W.damtype = "burn"
-			W.icon_state = "match_lit"
-			START_PROCESSING(SSprocessing, W)
 		else
-			playsound(src.loc, 'sound/items/cigs_lighters/matchstick_hit.ogg', 25, 0, -1)
+			playsound(src, 'sound/items/cigs_lighters/matchstick_hit.ogg', 25, 0, -1)
 	W.update_icon()
 	return
 
