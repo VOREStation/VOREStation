@@ -474,12 +474,9 @@ macro "hotkeymode"
 	elem 
 		name = "5"
 		command = ".me"
-<<<<<<< HEAD
 	elem 
 		name = "6"
 		command = "subtle"
-=======
->>>>>>> 715de43... VChat: Redone chat output done in Vue.js (#6761)
 	elem 
 		name = "A+REP"
 		command = ".moveleft"
@@ -1254,10 +1251,7 @@ window "outputwindow"
 		style = ".system {color:#FF0000;}"
 		max-lines = 0
 		saved-params = ""
-<<<<<<< HEAD
-=======
 		enable-http-images = true
->>>>>>> 715de43... VChat: Redone chat output done in Vue.js (#6761)
 
 window "rpane"
 	elem "rpane"
@@ -1424,10 +1418,6 @@ window "infowindow"
 		is-default = true
 		saved-params = ""
 		highlight-color = #00aa00
-<<<<<<< HEAD
-=======
-		allow-html = true
->>>>>>> 715de43... VChat: Redone chat output done in Vue.js (#6761)
 		on-show = ".winset\"rpane.infob.is-visible=true;rpane.browseb.is-visible=true?rpane.infob.pos=130,0:rpane.infob.pos=65,0 rpane.textb.is-visible=true rpane.infob.is-checked=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=infowindow\""
 		on-hide = ".winset\"rpane.infob.is-visible=false;rpane.browseb.is-visible=true?rpane.browseb.is-checked=true rpane.rpanewindow.left=browserwindow:rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=\""
 

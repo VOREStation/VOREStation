@@ -103,11 +103,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	owner << browse(file2text("code/modules/vchat/html/vchat.html"), "window=htmloutput")
 	
 	//Check back later
-<<<<<<< HEAD
 	spawn(15 SECONDS)
-=======
-	spawn(60 SECONDS)
->>>>>>> 715de43... VChat: Redone chat output done in Vue.js (#6761)
 		if(!src)
 			return
 		if(!src.loaded)
@@ -144,13 +140,10 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 /datum/chatOutput/proc/become_broken()
 	broken = TRUE
 	loaded = FALSE
-<<<<<<< HEAD
-=======
 
 	if(!owner)
 		qdel(src)
 		return
->>>>>>> 715de43... VChat: Redone chat output done in Vue.js (#6761)
 	
 	update_vis()
 	
