@@ -11,7 +11,7 @@
 	on_rolled = list("down" = "none")
 	var/hide_on_roll = FALSE
 
-/obj/item/clothing/accessory/storage/New()
+/obj/item/clothing/accessory/storage/Initialize()
 	..()
 	hold = new/obj/item/weapon/storage/internal(src)
 	hold.max_storage_space = slots * 2
