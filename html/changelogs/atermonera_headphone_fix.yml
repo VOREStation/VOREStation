@@ -1,0 +1,4 @@
+author: Atermonera
+delete-after: True
+changes: 
+  - bugfix: "Headphones (and other two-ear clothing items) don't break the off-ear slot when click-dragged to unequip."
