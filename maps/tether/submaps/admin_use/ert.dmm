@@ -654,6 +654,8 @@
 /obj/item/weapon/storage/firstaid/o2,
 /obj/item/weapon/storage/firstaid/toxin,
 /obj/item/weapon/storage/firstaid/toxin,
+/obj/item/weapon/storage/firstaid/combat,
+/obj/item/weapon/storage/firstaid/combat,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "bt" = (
