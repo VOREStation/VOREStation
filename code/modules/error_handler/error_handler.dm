@@ -51,12 +51,12 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 	// First, try to make better src/usr info lines
 	if(istype(e_src))
 		srcinfo = list("  src: [log_info_line(e_src)]")
-		locinfo = log_info_line(e_src)
-		if(locinfo)
-			srcinfo += "  src.loc: [locinfo]"
+		var/atom/atom_e_src = e_src
+		if(istype(atom_e_src))
+			srcinfo += "  src.loc: [log_info_line(atom_e_src.loc)]"
 	if(istype(usr))
 		usrinfo = list("  usr: [log_info_line(usr)]")
-		locinfo = log_info_line(usr)
+		locinfo = log_info_line(usr.loc)
 		if(locinfo)
 			usrinfo += "  usr.loc: [locinfo]"
 	// The proceeding mess will almost definitely break if error messages are ever changed

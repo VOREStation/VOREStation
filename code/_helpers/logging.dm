@@ -259,20 +259,28 @@
 	return key_name(whom, 1, include_name)
 
 // Helper procs for building detailed log lines
+//
+// These procs must not fail under ANY CIRCUMSTANCES!
+//
+
 /datum/proc/log_info_line()
 	return "[src] ([type])"
 
 /atom/log_info_line()
+	. = ..()
 	var/turf/t = get_turf(src)
 	if(istype(t))
-		return "([t]) ([t.x],[t.y],[t.z]) ([t.type])"
+		return "[.] @ [t.log_info_line()]"
 	else if(loc)
-		return "([loc]) (0,0,0) ([loc.type])"
+		return "[.] @ ([loc]) (0,0,0) ([loc.type])"
 	else
-		return "(NULL) (0,0,0) (NULL)"
+		return "[.] @ (NULL) (0,0,0) (NULL)"
+
+/turf/log_info_line()
+	return "([src]) ([x],[y],[z]) ([type])"
 
 /mob/log_info_line()
-	return "[..()] ([ckey])"
+	return "[..()] (ckey=[ckey])"
 
 /proc/log_info_line(var/datum/d)
 	if(!d)
