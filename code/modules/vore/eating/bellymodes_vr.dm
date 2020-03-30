@@ -1,17 +1,13 @@
 // Process the predator's effects upon the contents of its belly (i.e digestion/transformation etc)
-/obj/belly/proc/process_belly(times_fired, wait) //Passed by controller
-	if((times_fired < next_process) || !contents.len)
-		recent_sound = FALSE
-		return SSBELLIES_IGNORED
+/obj/belly/process(wait) //Passed by controller
+	recent_sound = FALSE
 
 	if(loc != owner)
 		if(istype(owner))
 			loc = owner
 		else
 			qdel(src)
-			return SSBELLIES_PROCESSED
-
-	next_process = times_fired + (6 SECONDS / wait) //Set up our next process time.
+			return
 
 	var/play_sound //Potential sound to play at the end to avoid code duplication.
 	var/to_update = FALSE //Did anything update worthy happen?
@@ -38,13 +34,13 @@
 /////////////////////////// Exit Early ////////////////////////////
 	var/list/touchable_atoms = contents - items_preserved
 	if(!length(touchable_atoms))
-		return SSBELLIES_PROCESSED
+		return
 
 	var/list/touchable_mobs = list()
 
 ///////////////////// Early Non-Mode Handling /////////////////////
-	if(contents.len && next_emote <= times_fired)
-		next_emote = times_fired + round(emote_time/wait,1)
+	if(contents.len && next_emote <= world.time)
+		next_emote = world.time + emote_time
 		var/list/EL = emote_lists[digest_mode]
 		if(LAZYLEN(EL))
 			for(var/mob/living/M in contents)
@@ -107,7 +103,7 @@
 		//We deliberately do not want any gurgly noises if the belly is in DM_HOLD
 		if(to_update)
 			updateVRPanels()
-		return SSBELLIES_PROCESSED 
+		return
 
 	if(digest_mode == DM_TRANSFORM)
 		process_tf(tf_mode, touchable_mobs)
@@ -221,7 +217,7 @@
 	if(to_update)
 		updateVRPanels()
 
-	return SSBELLIES_PROCESSED
+	return
 
 /obj/belly/proc/prey_loop()
 	for(var/mob/living/M in contents)
