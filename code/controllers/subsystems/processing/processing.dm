@@ -13,6 +13,16 @@ SUBSYSTEM_DEF(processing)
 
 	var/debug_last_thing
 	var/debug_original_process_proc // initial() does not work with procs
+	var/datum/current_thing
+
+/datum/controller/subsystem/processing/Recover()
+	log_debug("[name] subsystem Recover().")
+	if(SSprocessing.current_thing)
+		log_debug("current_thing was: (\ref[SSprocessing.current_thing])[SSprocessing.current_thing]([SSprocessing.current_thing.type]) - currentrun: [SSprocessing.currentrun.len] vs total: [SSprocessing.processing.len]")
+	var/list/old_processing = SSprocessing.processing.Copy()
+	for(var/datum/D in old_processing)
+		if(CHECK_BITFIELD(D.datum_flags, DF_ISPROCESSING))
+			processing |= D
 
 /datum/controller/subsystem/processing/stat_entry()
 	..("[stat_tag]:[processing.len]")
@@ -24,15 +34,18 @@ SUBSYSTEM_DEF(processing)
 	var/list/current_run = currentrun
 
 	while(current_run.len)
-		var/datum/thing = current_run[current_run.len]
+		current_thing = current_run[current_run.len]
 		current_run.len--
-		if(QDELETED(thing))
-			processing -= thing
-		else if(thing.process(wait) == PROCESS_KILL)
+		if(QDELETED(current_thing))
+			processing -= current_thing
+		else if(current_thing.process(wait) == PROCESS_KILL)
 			// fully stop so that a future START_PROCESSING will work
-			STOP_PROCESSING(src, thing)
+			STOP_PROCESSING(src, current_thing)
 		if (MC_TICK_CHECK)
+			current_thing = null
 			return
+
+	current_thing = null
 
 /datum/controller/subsystem/processing/proc/toggle_debug()
 	if(!check_rights(R_DEBUG))
