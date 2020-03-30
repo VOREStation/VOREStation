@@ -16,7 +16,9 @@ SUBSYSTEM_DEF(processing)
 	var/datum/current_thing
 
 /datum/controller/subsystem/processing/Recover()
-	log_debug("[name] subsystem Recover(). current_thing was: (\ref[SSprocessing.current_thing])[SSprocessing.current_thing]([SSprocessing.current_thing.type]) - currentrun: [SSprocessing.currentrun.len] vs total: [SSprocessing.processing.len]")
+	log_debug("[name] subsystem Recover().")
+	if(SSprocessing.current_thing)
+		log_debug("current_thing was: (\ref[SSprocessing.current_thing])[SSprocessing.current_thing]([SSprocessing.current_thing.type]) - currentrun: [SSprocessing.currentrun.len] vs total: [SSprocessing.processing.len]")
 	var/list/old_processing = SSprocessing.processing.Copy()
 	for(var/datum/D in old_processing)
 		if(CHECK_BITFIELD(D.datum_flags, DF_ISPROCESSING))
