@@ -29,11 +29,10 @@
 	show_log = 0
 	var/datum/seed/seed
 
-/datum/effect/effect/system/smoke_spread/chem/spores/New(seed_name)
-	if(seed_name && plant_controller)
-		seed = plant_controller.seeds[seed_name]
-	if(!seed)
-		qdel(src)
+/datum/effect/effect/system/smoke_spread/chem/spores/New(_seed)
+	seed = _seed
+	if(!istype(seed))
+		CRASH("Invalid seed datum passed! [seed] ([seed?.type])")
 	..()
 
 /datum/effect/effect/system/smoke_spread/chem/New()
