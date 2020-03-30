@@ -166,6 +166,7 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
 	projectile_type = /obj/item/projectile/beam/sniper
 	slot_flags = SLOT_BACK
+	action_button_name = "Use Scope"
 	battery_lock = 1
 	charge_cost = 600
 	fire_delay = 35
@@ -175,6 +176,9 @@
 	scoped_accuracy = 0
 //	requires_two_hands = 1
 //	one_handed_penalty = 60 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
+
+/obj/item/weapon/gun/energy/sniperrifle/ui_action_click()
+	scope()
 
 /obj/item/weapon/gun/energy/sniperrifle/verb/scope()
 	set category = "Object"
@@ -192,6 +196,7 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_POWER = 3)
 	projectile_type = /obj/item/projectile/beam/sniper
 	slot_flags = SLOT_BACK
+	action_button_name = "Aim Down Sights"
 	charge_cost = 1300
 	fire_delay = 20
 	force = 8
@@ -199,6 +204,9 @@
 	accuracy = 10
 	scoped_accuracy = 15
 	var/scope_multiplier = 1.5
+
+/obj/item/weapon/gun/energy/monorifle/ui_action_click()
+	sights()
 
 /obj/item/weapon/gun/energy/monorifle/verb/sights()
 	set category = "Object"
