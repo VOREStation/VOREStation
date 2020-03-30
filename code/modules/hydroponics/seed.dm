@@ -229,6 +229,7 @@
 		open_turfs |= origin_turf
 
 		// Flood fill to get affected turfs.
+		// NOTE: Halfass bugfix implemented using air_blocked() but this really should be redone completely ~Leshana
 		while(open_turfs.len)
 			var/turf/T = pick(open_turfs)
 			open_turfs -= T
@@ -246,11 +247,11 @@
 				var/no_los
 				var/turf/last_turf = origin_turf
 				for(var/turf/target_turf in getline(origin_turf,neighbor))
-					if(!last_turf.Enter(target_turf) || target_turf.density)
+					if(air_master.air_blocked(last_turf, target_turf))
 						no_los = 1
 						break
 					last_turf = target_turf
-				if(!no_los && !origin_turf.Enter(neighbor))
+				if(!no_los && air_master.air_blocked(origin_turf, neighbor))
 					no_los = 1
 				if(no_los)
 					closed_turfs |= neighbor
