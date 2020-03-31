@@ -6,8 +6,6 @@
 
 	icon = 'icons/obj/machines/ar_elements.dmi'
 	icon_state = "proj"
-	icon_vend = "beacon_yes"
-	icon_deny = "beacon_no"
 
 	products = list()
 	contraband = list()
@@ -98,7 +96,7 @@
 	var/mob/living/carbon/human/H = user
 	if(!H.nif || !H.nif.stat == NIF_WORKING)
 		to_chat(H, "<span class='warning'>[src] seems unable to connect to your NIF...</span>")
-		flick(icon_deny,entopic.my_image)
+		flick("[icon_state]-deny",entopic.my_image)
 		return FALSE
 
 	return ..()
@@ -126,7 +124,7 @@
 		if((href_list["vend"]) && (vend_ready) && (!currently_vending))
 			if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
 				to_chat(usr, "<span class='warning'>Access denied.</span>")	//Unless emagged of course
-				flick(icon_deny,entopic.my_image)
+				flick("[icon_state]-deny",entopic.my_image)
 				return
 
 			var/key = text2num(href_list["vend"])
@@ -143,7 +141,7 @@
 				var/list/usr_access = usr.GetAccess()
 				if(!has_access(soft_access, list(), usr_access) && !emagged)
 					to_chat(usr, "<span class='warning'>You aren't authorized to buy [initial(path.name)].</span>")
-					flick(icon_deny,entopic.my_image)
+					flick("[icon_state]-deny",entopic.my_image)
 					return
 
 			if(R.price <= 0)
@@ -174,7 +172,7 @@
 	var/mob/living/carbon/human/H = user
 	if((!allowed(usr)) && !emagged && scan_id && istype(H))	//For SECURE VENDING MACHINES YEAH
 		to_chat(usr, "<span class='warning'>Purchase not allowed.</span>")	//Unless emagged of course
-		flick(icon_deny,entopic.my_image)
+		flick("[icon_state]-deny",entopic.my_image)
 		return
 	vend_ready = 0 //One thing at a time!!
 	status_message = "Installing..."
@@ -207,7 +205,7 @@
 	spawn(vend_delay)
 		R.amount--
 		new R.item_path(H.nif)
-		flick(icon_vend,entopic.my_image)
+		flick("[icon_state]-vend",entopic.my_image)
 		if(has_logs)
 			do_logging(R, user, 1)
 

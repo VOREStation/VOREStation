@@ -13,15 +13,8 @@
 	idle_power_usage = 5
 	active_power_usage = 100
 	flags = NOREACT
-<<<<<<< HEAD
 	var/max_n_of_items = 999 // Sorry but the BYOND infinite loop detector doesn't look things over 1000. //VOREStation Edit - Non-global
 	//var/global/max_n_of_items = 999 // Sorry but the BYOND infinite loop detector doesn't look things over 1000.
-	var/icon_on = "smartfridge"
-	var/icon_off = "smartfridge-off"
-	var/icon_panel = "smartfridge-panel"
-=======
-	var/global/max_n_of_items = 999 // Sorry but the BYOND infinite loop detector doesn't look things over 1000.
->>>>>>> 636062b... Merge pull request #6858 from VOREStation/pol-bayvend
 	var/list/item_records = list()
 	var/datum/stored_item/currently_vending = null	//What we're putting out of the machine.
 	var/seconds_electrified = 0;
@@ -221,17 +214,18 @@
 		is_off = "-off"
 
 	// Fridge contents
-	switch(contents.len)
-		if(0)
-			add_overlay("empty[is_off]")
-		if(1 to 2)
-			add_overlay("[icon_contents]-1[is_off]")
-		if(3 to 5)
-			add_overlay("[icon_contents]-2[is_off]")
-		if(6 to 8)
-			add_overlay("[icon_contents]-3[is_off]")
-		else
-			add_overlay("[icon_contents]-4[is_off]")
+	if(contents) //VOREStation Edit - Some fridges do not have visible contents
+		switch(contents.len)
+			if(0)
+				add_overlay("empty[is_off]")
+			if(1 to 2)
+				add_overlay("[icon_contents]-1[is_off]")
+			if(3 to 5)
+				add_overlay("[icon_contents]-2[is_off]")
+			if(6 to 8)
+				add_overlay("[icon_contents]-3[is_off]")
+			else
+				add_overlay("[icon_contents]-4[is_off]")
 
 	// Fridge top
 	var/image/top = image(icon, "[icon_base]-top")
