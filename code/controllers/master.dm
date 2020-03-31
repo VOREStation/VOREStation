@@ -50,6 +50,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	var/current_runlevel	//for scheduling different subsystems for different stages of the round
 
+	var/dbg_is_running_subsystem = FALSE  // TEMPORARY DEBUGGING - true only while we are actually waiting on a subsystem
+
 	var/static/restart_clear = 0
 	var/static/restart_timeout = 0
 	var/static/restart_count = 0
@@ -221,10 +223,12 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	//loop ended, restart the mc
 	log_game("MC crashed or runtimed, restarting")
 	message_admins("MC crashed or runtimed, restarting")
+	log_world("MC crashed or runtimed, restarting")
 	var/rtn2 = Recreate_MC()
 	if (rtn2 <= 0)
 		log_game("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
 		message_admins("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
+		log_world("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
 		Failsafe.defcon = 2
 
 // Main loop.
@@ -336,6 +340,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			subsystems_to_check = tickersubsystems
 
 		if (CheckQueue(subsystems_to_check) <= 0)
+			log_world("MC: CheckQueue(subsystems_to_check) exited uncleanly, SoftReset (error_level=[error_level]")
 			if (!SoftReset(tickersubsystems, runlevel_sorted_subsystems))
 				log_world("MC: SoftReset() failed, crashing")
 				return
@@ -348,6 +353,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 		if (queue_head)
 			if (RunQueue() <= 0)
+				log_world("MC: RunQueue() exited uncleanly, running SoftReset (error_level=[error_level]")
 				if (!SoftReset(tickersubsystems, runlevel_sorted_subsystems))
 					log_world("MC: SoftReset() failed, crashing")
 					return
@@ -470,9 +476,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 			queue_node.state = SS_RUNNING
 
+			dbg_is_running_subsystem = TRUE // TEMPORARY DEBUGGING
 			tick_usage = TICK_USAGE
 			var/state = queue_node.ignite(queue_node_paused)
 			tick_usage = TICK_USAGE - tick_usage
+			dbg_is_running_subsystem = FALSE // TEMPORARY DEBUGGING
 
 			if (state == SS_RUNNING)
 				state = SS_IDLE
