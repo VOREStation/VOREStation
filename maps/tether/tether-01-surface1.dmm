@@ -3634,9 +3634,12 @@
 	icon_state = "bordercolor";
 	dir = 4
 	},
-/obj/machinery/vending/coffee,
 /obj/machinery/camera/network/civilian{
 	dir = 9
+	},
+/obj/machinery/vending/coffee{
+	icon_state = "coffee";
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
@@ -4375,7 +4378,9 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
 "ahH" = (
-/obj/machinery/chemical_analyzer,
+/obj/machinery/chemical_analyzer{
+	dir = 4
+	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
@@ -4803,7 +4808,9 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/lobby)
 "ain" = (
-/obj/machinery/chem_master,
+/obj/machinery/chem_master{
+	dir = 8
+	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
@@ -5008,7 +5015,9 @@
 /area/rnd/chemistry_lab)
 "aiI" = (
 /obj/structure/table/glass,
-/obj/machinery/chemical_dispenser/full,
+/obj/machinery/chemical_dispenser/full{
+	dir = 8
+	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
@@ -7063,7 +7072,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
 	},
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/coffee{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/public_garden)
 "amj" = (
@@ -7305,7 +7316,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
 	},
-/obj/machinery/vending/snack,
+/obj/machinery/vending/snack{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/public_garden)
 "amD" = (
@@ -13319,7 +13332,9 @@
 /turf/simulated/wall,
 /area/rnd/hallway)
 "awo" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending/snack{
+	dir = 1
+	},
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 9
 	},
@@ -13355,7 +13370,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
 	},
-/obj/machinery/vending/cola,
+/obj/machinery/vending/cola{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway/lower/first_west)
 "awq" = (
@@ -13375,7 +13392,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
 	},
-/obj/machinery/vending/fitness,
+/obj/machinery/vending/fitness{
+	dir = 1
+	},
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 4
@@ -13715,7 +13734,10 @@
 /turf/simulated/floor/tiled,
 /area/security/checkpoint)
 "awR" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending/snack{
+	icon_state = "snack";
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
 "awS" = (
@@ -14122,7 +14144,10 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
 "axz" = (
-/obj/machinery/vending/cola,
+/obj/machinery/vending/cola{
+	icon_state = "Soda_Machine";
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
 "axA" = (
@@ -15052,28 +15077,28 @@
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 6
 	},
-/obj/machinery/vending/nifsoft_shop,
+/obj/machinery/vending/snack,
 /turf/simulated/floor/tiled/monotile,
 /area/crew_quarters/locker/laundry_arrival)
 "ayS" = (
-/obj/machinery/vending/snack,
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 9
 	},
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 6
 	},
+/obj/machinery/vending/coffee,
 /turf/simulated/floor/tiled/monotile,
 /area/crew_quarters/locker/laundry_arrival)
 "ayT" = (
 /obj/machinery/camera/network/civilian,
-/obj/machinery/vending/coffee,
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 9
 	},
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 6
 	},
+/obj/machinery/vending/nifsoft_shop,
 /turf/simulated/floor/tiled/monotile,
 /area/crew_quarters/locker/laundry_arrival)
 "ayU" = (
@@ -17723,7 +17748,10 @@
 /turf/simulated/floor/lino,
 /area/crew_quarters/visitor_dining)
 "aCT" = (
-/obj/machinery/vending/fitness,
+/obj/machinery/vending/fitness{
+	icon_state = "fitness";
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
 "aCU" = (
@@ -18043,7 +18071,10 @@
 /turf/simulated/floor/lino,
 /area/crew_quarters/visitor_dining)
 "aDw" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/coffee{
+	icon_state = "coffee";
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
 "aDx" = (
@@ -18165,7 +18196,9 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
-/obj/machinery/vending/cola,
+/obj/machinery/vending/cola{
+	dir = 8
+	},
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
 	},
@@ -18517,7 +18550,9 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/coffee{
+	dir = 8
+	},
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
 	},
@@ -18829,7 +18864,9 @@
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "aEU" = (
-/obj/machinery/seed_storage/xenobotany,
+/obj/machinery/seed_storage/xenobotany{
+	dir = 1
+	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
@@ -18840,7 +18877,8 @@
 /area/rnd/xenobiology/xenoflora)
 "aEV" = (
 /obj/machinery/vending/hydronutrients{
-	categories = 3
+	categories = 3;
+	dir = 1
 	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/mauve/border,
@@ -20116,7 +20154,9 @@
 /area/crew_quarters/visitor_dining)
 "aGy" = (
 /obj/structure/table/marble,
-/obj/machinery/chemical_dispenser/bar_coffee/full,
+/obj/machinery/chemical_dispenser/bar_coffee/full{
+	dir = 8
+	},
 /obj/machinery/floor_light/prebuilt{
 	on = 1
 	},
@@ -27831,7 +27871,7 @@
 	icon_state = "tube1";
 	pixel_x = 0
 	},
-/obj/machinery/vending/loadout/costume,
+/obj/machinery/gear_painter,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "aUp" = (
@@ -28943,7 +28983,10 @@
 	icon_state = "bordercolor";
 	dir = 8
 	},
-/obj/machinery/gear_painter,
+/obj/machinery/vending/loadout/costume{
+	icon_state = "theater";
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "aWp" = (
@@ -29119,7 +29162,10 @@
 	icon_state = "bordercolor";
 	dir = 8
 	},
-/obj/machinery/vending/fitness,
+/obj/machinery/vending/fitness{
+	icon_state = "fitness";
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "aWN" = (
@@ -29130,7 +29176,10 @@
 	icon_state = "bordercolor";
 	dir = 4
 	},
-/obj/machinery/vending/cola,
+/obj/machinery/vending/cola{
+	icon_state = "Soda_Machine";
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "aWO" = (
@@ -29187,11 +29236,14 @@
 	icon_state = "bordercolor";
 	dir = 10
 	},
-/obj/machinery/vending/cigarette,
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
 	pixel_y = 0
+	},
+/obj/machinery/vending/cigarette{
+	icon_state = "cigs";
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
@@ -29880,7 +29932,9 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/cigarette{
+	dir = 8
+	},
 /obj/machinery/light_construct{
 	icon_state = "tube-construct-stage1";
 	dir = 4

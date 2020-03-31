@@ -151,11 +151,9 @@
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
 "o" = (
-/obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -25
+/obj/machinery/vending/coffee{
+	dir = 1
 	},
-/obj/machinery/vending/coffee,
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
 "p" = (
@@ -399,7 +397,9 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/machinery/vending/snack,
+/obj/machinery/vending/snack{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
 "Q" = (
