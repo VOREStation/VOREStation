@@ -27,7 +27,6 @@
 	name = "Dinnerware"
 	desc = "A kitchen and restaurant equipment vendor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
-	icon = 'icons/obj/vending_vr.dmi'
 	icon_state = "dinnerware"
 	products = list(
 	/obj/item/weapon/tray = 8,
@@ -1140,7 +1139,8 @@
 	name = "Thespian's Delight"
 	desc = "Sometimes nerds need costumes!"
 	product_ads = "Don't let your art be stifled!;Remember, practice makes perfect!;Break a leg!;Don't make me get the cane!;Thespian's Delight entering stage right!;Costumes for your acting needs!"
-	icon_state = "Theater_b"
+	icon = 'icons/obj/vending.dmi'
+	icon_state = "theater"
 	products = list(/obj/item/clothing/suit/storage/hooded/carp_costume = 3,
 					/obj/item/clothing/suit/storage/hooded/carp_costume = 3,
 					/obj/item/clothing/suit/chickensuit = 3,
@@ -1324,6 +1324,9 @@
 /obj/machinery/vending/emergencyfood/filled
 	products = list(/obj/item/weapon/storage/box/wings/tray = 40)
 	contraband = list(/obj/item/weapon/storage/box/wings/tray = 20)
+
+/obj/machinery/vending/cola
+	icon_state = "Soda_Machine"
 
 /obj/machinery/vending/cola/soft
 	icon = 'icons/obj/vending_vr.dmi'

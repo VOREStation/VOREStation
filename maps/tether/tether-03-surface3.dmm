@@ -776,7 +776,9 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/surface_three_hall)
 "abC" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending/snack{
+	dir = 1
+	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
@@ -1702,7 +1704,9 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/medsec_maintenance)
 "adc" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical{
+	dir = 4
+	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
 	},
@@ -1770,7 +1774,9 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/processing)
 "adh" = (
-/obj/machinery/vending/cola,
+/obj/machinery/vending/cola{
+	dir = 1
+	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
 /obj/machinery/camera/network/security{
@@ -1780,7 +1786,9 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/breakroom)
 "adi" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/coffee{
+	dir = 1
+	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
 /obj/machinery/light,
@@ -5033,7 +5041,9 @@
 /turf/simulated/wall/r_wall,
 /area/crew_quarters/panic_shelter)
 "aip" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending/snack{
+	dir = 4
+	},
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 10
 	},
@@ -5169,7 +5179,9 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
-/obj/machinery/vending/assist,
+/obj/machinery/vending/assist{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/rnd/research_storage)
 "aiA" = (
@@ -6233,7 +6245,9 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "akl" = (
-/obj/machinery/vending/cola,
+/obj/machinery/vending/cola{
+	dir = 4
+	},
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 10
 	},
@@ -6896,7 +6910,9 @@
 /turf/simulated/wall/r_wall,
 /area/tether/surfacebase/surface_three_hall)
 "alp" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/coffee{
+	dir = 4
+	},
 /obj/machinery/alarm{
 	dir = 4;
 	icon_state = "alarm0";
@@ -7255,7 +7271,9 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/surface_three_hall)
 "amc" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/cigarette{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/surface_three_hall)
 "amd" = (
@@ -10456,7 +10474,9 @@
 /area/crew_quarters/pool)
 "arx" = (
 /obj/structure/table/marble,
-/obj/machinery/chemical_dispenser/bar_soft/full,
+/obj/machinery/chemical_dispenser/bar_soft/full{
+	dir = 1
+	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
 "ary" = (
@@ -11450,7 +11470,9 @@
 /area/crew_quarters/bar)
 "atj" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
-/obj/machinery/vending/dinnerware,
+/obj/machinery/vending/dinnerware{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "atk" = (
@@ -13707,13 +13729,17 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "awY" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/r_n_d/circuit_imprinter{
+	dir = 1
+	},
 /obj/item/weapon/reagent_containers/glass/beaker/sulphuric,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/research)
 "awZ" = (
 /obj/machinery/hologram/holopad,
-/obj/machinery/r_n_d/protolathe,
+/obj/machinery/r_n_d/protolathe{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/research)
 "axa" = (
@@ -17541,7 +17567,9 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "aCu" = (
-/obj/machinery/r_n_d/circuit_imprinter,
+/obj/machinery/r_n_d/circuit_imprinter{
+	dir = 8
+	},
 /obj/item/weapon/reagent_containers/glass/beaker/sulphuric,
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
@@ -17560,6 +17588,7 @@
 /area/assembly/robotics)
 "aCw" = (
 /obj/machinery/autolathe{
+	dir = 1;
 	hacked = 1
 	},
 /obj/item/device/radio/intercom{
@@ -19772,7 +19801,9 @@
 /turf/simulated/floor/tiled,
 /area/hydroponics)
 "aGd" = (
-/obj/machinery/seed_storage/garden,
+/obj/machinery/seed_storage/garden{
+	dir = 1
+	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
 	},
@@ -21972,7 +22003,10 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
 	},
-/obj/machinery/chemical_dispenser/full,
+/obj/machinery/chemical_dispenser/full{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
 "aJm" = (
@@ -22380,7 +22414,9 @@
 /area/assembly/chargebay)
 "aJV" = (
 /obj/structure/table/marble,
-/obj/machinery/chemical_dispenser/bar_alc/full,
+/obj/machinery/chemical_dispenser/bar_alc/full{
+	dir = 1
+	},
 /obj/machinery/camera/network/civilian{
 	dir = 1
 	},
@@ -25133,7 +25169,9 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_autopsy)
 "aPB" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending/snack{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_breakroom)
 "aPC" = (
@@ -25266,7 +25304,9 @@
 /turf/simulated/wall,
 /area/rnd/outpost/xenobiology/outpost_breakroom)
 "aPU" = (
-/obj/machinery/vending/fitness,
+/obj/machinery/vending/fitness{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_breakroom)
 "aPV" = (
@@ -25351,7 +25391,9 @@
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/tether/surfacebase/outside/outside3)
 "aQg" = (
-/obj/machinery/vending/cola,
+/obj/machinery/vending/cola{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_breakroom)
 "aQh" = (
@@ -25657,7 +25699,9 @@
 /turf/simulated/floor/wood,
 /area/rnd/outpost/xenobiology/outpost_office)
 "aQL" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/coffee{
+	dir = 8
+	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
@@ -27883,7 +27927,9 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 8
 	},
-/obj/machinery/chemical_dispenser/biochemistry/full,
+/obj/machinery/chemical_dispenser/biochemistry/full{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
 "aUw" = (
@@ -27999,7 +28045,9 @@
 "aUF" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lime/border,
-/obj/machinery/seed_storage/garden,
+/obj/machinery/seed_storage/garden{
+	dir = 1
+	},
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
@@ -28034,7 +28082,9 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 8
 	},
-/obj/machinery/chem_master,
+/obj/machinery/chem_master{
+	dir = 4
+	},
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
@@ -28069,7 +28119,9 @@
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 6
 	},
-/obj/machinery/vending/hydronutrients,
+/obj/machinery/vending/hydronutrients{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aUN" = (
@@ -28092,7 +28144,10 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 8
 	},
-/obj/machinery/chemical_dispenser/full,
+/obj/machinery/chemical_dispenser/full{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
 "aUQ" = (
@@ -28330,7 +28385,9 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 6
 	},
-/obj/machinery/chem_master,
+/obj/machinery/chem_master{
+	dir = 8
+	},
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
@@ -28382,7 +28439,9 @@
 /obj/machinery/newscaster{
 	pixel_x = 25
 	},
-/obj/structure/reagent_dispensers/water_cooler/full,
+/obj/structure/reagent_dispensers/water_cooler/full{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "aVp" = (
