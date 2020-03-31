@@ -1678,6 +1678,11 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/centralarea)
 "dw" = (
@@ -1694,6 +1699,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	icon_state = "intact-scrubbers";
 	dir = 4
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/centralarea)
@@ -1713,6 +1723,11 @@
 	icon_state = "intact-scrubbers";
 	dir = 10
 	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ship/aro/centralarea)
 "dy" = (
@@ -1724,6 +1739,11 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ship/aro/centralarea)
@@ -1776,6 +1796,11 @@
 	icon_state = "map_vent_out";
 	dir = 4
 	},
+/obj/item/stack/material/plasteel,
+/obj/item/stack/material/plasteel,
+/obj/item/stack/material/silver,
+/obj/item/stack/material/gold,
+/obj/item/stack/material/diamond,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/centralarea)
 "dF" = (
@@ -1793,14 +1818,18 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/centralarea)
-"dH" = (
-/obj/item/weapon/rig/robotics,
-/obj/structure/table/rack/shelf/steel,
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/aro/centralarea)
 "dI" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/centralarea)
 "dJ" = (
@@ -1854,6 +1883,8 @@
 	icon_state = "map_scrubber_on";
 	dir = 4
 	},
+/obj/item/stack/material/uranium,
+/obj/item/stack/material/uranium,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/centralarea)
 "dO" = (
@@ -1871,13 +1902,27 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/centralarea)
 "dQ" = (
-/obj/item/weapon/cell/high,
-/obj/structure/table/rack/shelf/steel,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	icon_state = "intact-supply";
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/railing{
+	icon_state = "railing0";
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/obj/machinery/shield_capacitor/advanced{
+	active = 1;
+	anchored = 1;
+	stored_charge = 1.2e+007
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-4"
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/simulated/floor/bluegrid,
 /area/ship/aro/centralarea)
 "dR" = (
 /obj/machinery/light{
@@ -1920,13 +1965,36 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/aro/centralarea)
 "dU" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/stack/material/plasteel,
-/obj/item/stack/material/plasteel,
-/turf/simulated/floor/tiled/techfloor,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 4
+	},
+/obj/machinery/shield_gen/external/advanced{
+	anchored = 1;
+	field_radius = 35;
+	id = "aroship_shields";
+	target_field_strength = 7
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/bluegrid,
 /area/ship/aro/centralarea)
 "dV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/centralarea)
 "dW" = (
@@ -1965,15 +2033,24 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/aro/centralarea)
 "ea" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/stack/material/diamond,
-/obj/item/stack/material/gold,
-/obj/item/stack/material/silver,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/structure/railing{
+	icon_state = "railing0";
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/obj/machinery/shield_capacitor/advanced{
+	active = 1;
+	anchored = 1;
+	dir = 1;
+	stored_charge = 1.2e+007
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-4"
+	},
+/obj/structure/railing,
+/turf/simulated/floor/bluegrid,
 /area/ship/aro/centralarea)
 "eb" = (
 /obj/effect/floor_decal/techfloor/corner,
@@ -2007,12 +2084,6 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/white,
-/area/ship/aro/centralarea)
-"ee" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/stack/material/uranium,
-/obj/item/stack/material/uranium,
-/turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/centralarea)
 "ef" = (
 /obj/machinery/light{
@@ -3195,7 +3266,9 @@
 /turf/simulated/shuttle/floor/alienplating/blue,
 /area/ship/aro/engineering)
 "gG" = (
-/obj/machinery/power/smes/buildable/hybrid,
+/obj/machinery/power/smes/buildable/hybrid{
+	output_level = 250000
+	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
 	},
@@ -3334,6 +3407,10 @@
 /obj/effect/overmap/visitable/ship/aro,
 /turf/space,
 /area/space)
+"hN" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/centralarea)
 "iU" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 1
@@ -3362,6 +3439,38 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
+"po" = (
+/obj/machinery/door/airlock/alien/blue,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/centralarea)
+"qJ" = (
+/obj/machinery/ntnet_relay,
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 4
+	},
+/turf/simulated/floor/greengrid,
+/area/ship/aro/centralarea)
+"si" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/rig/robotics,
+/obj/item/weapon/cell/high,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/centralarea)
+"sl" = (
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 4
+	},
+/turf/simulated/floor/greengrid,
+/area/ship/aro/centralarea)
 "tu" = (
 /obj/machinery/atmospherics/binary/pump,
 /turf/simulated/floor/reinforced,
@@ -3377,6 +3486,14 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
+"vQ" = (
+/obj/machinery/telecomms/relay/preset/houseboat,
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 4
+	},
+/turf/simulated/floor/greengrid,
+/area/ship/aro/centralarea)
 "wC" = (
 /obj/effect/floor_decal/industrial/outline,
 /obj/machinery/mech_recharger{
@@ -3396,6 +3513,17 @@
 /obj/item/mecha_parts/mecha_equipment/tool/sleeper,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
+"ya" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/centralarea)
 "Bj" = (
 /obj/effect/floor_decal/sign/dock/two,
 /obj/effect/floor_decal/industrial/outline/blue,
@@ -3419,12 +3547,36 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
+"Hj" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/centralarea)
 "HK" = (
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/midshipshangars)
+"Kd" = (
+/obj/machinery/button/remote/shields{
+	dir = 8;
+	id = "aroship_shields";
+	pixel_x = 28
+	},
+/turf/simulated/floor/reinforced,
 /area/ship/aro/midshipshangars)
 "KH" = (
 /obj/effect/floor_decal/techfloor/orange{
@@ -3497,6 +3649,20 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
+"Rs" = (
+/obj/structure/table/rack/shelf/steel,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/centralarea)
+"Sk" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/obj/structure/table/alien/blue,
+/obj/machinery/button/remote/shields{
+	id = "aroship_shields"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/ship/aro/bridge)
 "TR" = (
 /obj/effect/floor_decal/techfloor/orange,
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -12145,10 +12311,10 @@ bN
 bt
 bt
 bt
-bt
-cH
-cH
-cH
+bu
+qJ
+sl
+vQ
 ek
 eo
 ew
@@ -12288,9 +12454,9 @@ cQ
 bt
 dE
 dN
+Rs
 cH
-cH
-cH
+Rs
 ek
 eo
 ew
@@ -12432,7 +12598,7 @@ dF
 dO
 cH
 cH
-cH
+hN
 ek
 ep
 ew
@@ -12572,9 +12738,9 @@ ds
 bv
 dG
 dP
-di
+Rs
 cH
-cH
+si
 ek
 eq
 ex
@@ -12592,7 +12758,7 @@ TU
 HK
 TR
 gI
-fy
+Kd
 ek
 eV
 aa
@@ -12854,11 +13020,11 @@ cH
 dk
 du
 bt
-dH
+ds
 dQ
 dU
 ea
-ee
+cH
 ek
 eo
 ey
@@ -12995,11 +13161,11 @@ cS
 dc
 dl
 dv
-bv
+po
 dI
-dG
+Hj
 dV
-dP
+ya
 cH
 ek
 eo
@@ -13251,7 +13417,7 @@ aa
 ac
 ac
 af
-al
+Sk
 ar
 ax
 aC

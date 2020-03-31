@@ -52,6 +52,7 @@ var/datum/controller/failsafe/Failsafe
 			if(Master.processing && Master.iteration)
 				// Check if processing is done yet.
 				if(Master.iteration == master_iteration)
+					log_debug("DEFCON [defcon]: Master.iteration=[Master.iteration] Master.last_run=[Master.last_run] world.time=[world.time]")
 					switch(defcon)
 						if(4,5)
 							--defcon
@@ -71,7 +72,7 @@ var/datum/controller/failsafe/Failsafe
 								master_iteration = 0
 								to_chat(admins, "<span class='adminnotice'>MC restarted successfully</span>")
 							else if(rtn < 0)
-								log_game("FailSafe: Could not restart MC, runtime encountered. Entering defcon 0")
+								log_world("FailSafe: Could not restart MC, runtime encountered. Entering defcon 0")
 								to_chat(admins, "<span class='boldannounce'>ERROR: DEFCON [defcon_pretty()]. Could not restart MC, runtime encountered. I will silently keep retrying.</span>")
 							//if the return number was 0, it just means the mc was restarted too recently, and it just needs some time before we try again
 							//no need to handle that specially when defcon 0 can handle it
