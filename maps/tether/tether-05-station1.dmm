@@ -13380,10 +13380,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/break_room)
-"awU" = (
-/obj/machinery/lapvend,
-/turf/simulated/floor/tiled,
-/area/storage/tools)
 "awV" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /turf/simulated/floor/tiled/dark,
@@ -23097,6 +23093,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/station/dock_one)
+"dRy" = (
+/obj/machinery/lapvend{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/storage/tools)
 "ezX" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -30931,8 +30933,8 @@ agU
 acp
 bdF
 awt
-awU
 axz
+dRy
 bkp
 auS
 azh

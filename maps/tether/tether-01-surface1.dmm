@@ -3284,6 +3284,7 @@
 /obj/machinery/camera/network/civilian{
 	dir = 2
 	},
+/obj/machinery/lapvend,
 /turf/simulated/floor/tiled,
 /area/storage/primary)
 "afu" = (
@@ -3600,7 +3601,7 @@
 /turf/simulated/floor/tiled,
 /area/storage/primary)
 "afW" = (
-/obj/machinery/lapvend,
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled,
 /area/storage/primary)
 "afX" = (
@@ -3823,7 +3824,9 @@
 /turf/simulated/floor/tiled,
 /area/storage/primary)
 "agB" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/tool{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/storage/primary)
 "agC" = (
@@ -7544,7 +7547,9 @@
 /turf/simulated/floor/tiled,
 /area/storage/primary)
 "amV" = (
-/obj/machinery/vending/assist,
+/obj/machinery/vending/assist{
+	dir = 8
+	},
 /obj/machinery/status_display{
 	layer = 4;
 	pixel_x = 32;
@@ -22588,7 +22593,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/coffee{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "aKE" = (
@@ -22601,7 +22608,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/machinery/lapvend,
+/obj/machinery/lapvend{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "aKF" = (
@@ -22611,7 +22620,9 @@
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 5
 	},
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/cigarette{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "aKG" = (
