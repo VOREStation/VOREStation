@@ -55,9 +55,8 @@
 	var/tmp/mob/living/owner					// The mob whose belly this is.
 	var/tmp/digest_mode = DM_HOLD				// Current mode the belly is set to from digest_modes (+transform_modes if human)
 	var/tmp/tf_mode = DM_TRANSFORM_REPLICA		// Current transformation mode.
-	var/tmp/next_process = 0					// Waiting for this SSbellies times_fired to process again.
 	var/tmp/list/items_preserved = list()		// Stuff that wont digest so we shouldn't process it again.
-	var/tmp/next_emote = 0						// When we're supposed to print our next emote, as a belly controller tick #
+	var/tmp/next_emote = 0						// When we're supposed to print our next emote, as a world.time
 	var/tmp/recent_sound = FALSE				// Prevent audio spam
 
 	// Don't forget to watch your commas at the end of each line if you change these.
@@ -160,20 +159,20 @@
 		"wet_loop"
 		)
 
-/obj/belly/New(var/newloc)
-	..(newloc)
+/obj/belly/Initialize()
+	. = ..()
 	//If not, we're probably just in a prefs list or something.
-	if(isliving(newloc))
+	if(isliving(loc))
 		owner = loc
 		owner.vore_organs |= src
-		SSbellies.belly_list += src
+		START_PROCESSING(SSbellies, src)
 
 /obj/belly/Destroy()
-	SSbellies.belly_list -= src
+	STOP_PROCESSING(SSbellies, src)
 	if(owner)
 		owner.vore_organs -= src
 		owner = null
-	. = ..()
+	return ..()
 
 // Called whenever an atom enters this belly
 /obj/belly/Entered(atom/movable/thing, atom/OldLoc)
