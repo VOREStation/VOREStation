@@ -24,7 +24,7 @@ GLOBAL_DATUM(vchatdb, /database)
 //For INSERT/CREATE/DELETE, etc that return a RowsAffected.
 /proc/vchat_exec_update(var/query)
 	if(!check_vchat())
-		log_debug("There's no vchat database open but you tried to query it with: [query]")
+		log_world("There's no vchat database open but you tried to query it with: [query]")
 		return FALSE
 
 	//Solidify our query
@@ -35,7 +35,7 @@ GLOBAL_DATUM(vchatdb, /database)
 
 	//Handle errors
 	if(q.Error())
-		log_debug("Query \"[islist(query)?query[1]:query]\" ended in error [q.ErrorMsg()]")
+		log_world("Query \"[islist(query)?query[1]:query]\" ended in error [q.ErrorMsg()]")
 		return FALSE
 
 	return q.RowsAffected()
