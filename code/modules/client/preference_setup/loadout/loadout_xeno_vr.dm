@@ -1,3 +1,7 @@
+/datum/gear/shoes/footwraps/New()					//Give color pick option for footwraps
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
 /datum/gear/uniform/voxcasual
 	display_name = "casual wear (Vox)"
 	path = /obj/item/clothing/under/vox/vox_casual
