@@ -224,15 +224,15 @@
 	if(H.shadekin_energy_display)
 		H.shadekin_energy_display.invisibility = 0
 		switch(get_energy(H))
-			if(80 to INFINITY)
+			if(100 to INFINITY)
 				H.shadekin_energy_display.icon_state = "energy0"
-			if(60 to 80)
+			if(75 to 100)
 				H.shadekin_energy_display.icon_state = "energy1"
-			if(40 to 60)
+			if(50 to 75)
 				H.shadekin_energy_display.icon_state = "energy2"
-			if(20 to 40)
+			if(25 to 50)
 				H.shadekin_energy_display.icon_state = "energy3"
-			if(0 to 20)
+			if(0 to 25)
 				H.shadekin_energy_display.icon_state = "energy4"
 	if(H.shadekin_dark_display)
 		H.shadekin_dark_display.invisibility = 0
