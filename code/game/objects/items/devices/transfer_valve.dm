@@ -11,11 +11,6 @@
 	var/toggle = 1
 	flags = PROXMOVE
 
-/obj/item/device/transfer_valve/proc/process_activation(var/obj/item/device/D)
-
-/obj/item/device/transfer_valve/IsAssemblyHolder()
-	return 1
-
 /obj/item/device/transfer_valve/attackby(obj/item/item, mob/user)
 	var/turf/location = get_turf(src) // For admin logs
 	if(istype(item, /obj/item/weapon/tank))
@@ -116,12 +111,11 @@
 	src.add_fingerprint(usr)
 	return 1 // Returning 1 sends an update to attached UIs
 
-/obj/item/device/transfer_valve/process_activation(var/obj/item/device/D)
+/obj/item/device/transfer_valve/proc/process_activation(var/obj/item/device/D)
 	if(toggle)
-		toggle = 0
+		toggle = FALSE
 		toggle_valve()
-		spawn(50) // To stop a signal being spammed from a proxy sensor constantly going off or whatever
-			toggle = 1
+		VARSET_IN(src, toggle, TRUE, 5 SECONDS)
 
 /obj/item/device/transfer_valve/update_icon()
 	overlays.Cut()
