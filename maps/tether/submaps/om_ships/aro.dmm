@@ -3025,11 +3025,10 @@
 /area/shuttle/aroboat)
 "gc" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
+	dir = 8;
 	frequency = 1380;
 	id_tag = "aroboat_docker";
-	pixel_x = 25;
-	pixel_y = 0;
-	tag_door = "aroboat_doors"
+	pixel_x = 28
 	},
 /obj/effect/floor_decal/techfloor{
 	icon_state = "techfloor_edges";
@@ -3123,6 +3122,7 @@
 	id_tag = "aroboat_doors"
 	},
 /obj/structure/fans/hardlight,
+/obj/effect/map_helper/airlock/door/simple,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/aroboat)
 "gq" = (

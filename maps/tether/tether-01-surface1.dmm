@@ -91,6 +91,7 @@
 	id_tag = "mining_airlock_outer";
 	locked = 1
 	},
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/mining_main/airlock)
 "aaq" = (
@@ -105,6 +106,7 @@
 	pixel_x = 25;
 	pixel_y = 8
 	},
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/mining_main/airlock)
 "aar" = (
@@ -141,6 +143,7 @@
 	frequency = 1379;
 	id_tag = "mining_airlock_pump"
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/mining_main/airlock)
 "aaw" = (
@@ -450,6 +453,7 @@
 /area/tether/surfacebase/mining_main/refinery)
 "aaY" = (
 /obj/machinery/embedded_controller/radio/airlock/phoron{
+	dir = 8;
 	id_tag = "mining_airlock";
 	pixel_x = 25
 	},
@@ -473,6 +477,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 9
 	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/mining_main/airlock)
 "aaZ" = (
@@ -489,6 +494,7 @@
 	locked = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan,
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/mining_main/airlock)
 "aba" = (
@@ -506,6 +512,7 @@
 	id_tag = "mining_airlock_inner";
 	locked = 1
 	},
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/mining_main/airlock)
 "abc" = (
@@ -8525,6 +8532,7 @@
 	frequency = 1379;
 	id_tag = "civ_airlock_pump"
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled,
 /area/storage/surface_eva/external)
 "aot" = (
@@ -8540,6 +8548,7 @@
 	frequency = 1379;
 	id_tag = "civ_airlock_pump"
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled,
 /area/storage/surface_eva/external)
 "aou" = (
@@ -8876,6 +8885,7 @@
 	id_tag = "civ_airlock_outer";
 	locked = 1
 	},
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/steel_grid,
 /area/storage/surface_eva/external)
 "aoX" = (
@@ -8924,6 +8934,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/steel_grid,
 /area/storage/surface_eva/external)
 "apa" = (
@@ -9314,6 +9325,7 @@
 	id_tag = "civ_airlock_outer";
 	locked = 1
 	},
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/steel_grid,
 /area/storage/surface_eva/external)
 "apI" = (
@@ -9325,6 +9337,7 @@
 /area/storage/surface_eva/external)
 "apJ" = (
 /obj/machinery/embedded_controller/radio/airlock/phoron{
+	dir = 8;
 	id_tag = "civ_airlock";
 	pixel_x = 25;
 	pixel_y = -30
@@ -9335,6 +9348,7 @@
 	pixel_x = 25;
 	pixel_y = -40
 	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor/tiled,
 /area/storage/surface_eva/external)
 "apK" = (
@@ -9345,6 +9359,7 @@
 	id_tag = "civ_airlock_inner";
 	locked = 1
 	},
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/steel_grid,
 /area/storage/surface_eva/external)
 "apL" = (
@@ -22720,6 +22735,7 @@
 	id_tag = "rnd_s_airlock_inner";
 	locked = 1
 	},
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/external)
 "aKN" = (
@@ -22736,6 +22752,7 @@
 	locked = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/external)
 "aKO" = (
@@ -22959,6 +22976,7 @@
 	pixel_x = 11;
 	pixel_y = 30
 	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor/tiled,
 /area/rnd/external)
 "aLp" = (
@@ -23019,6 +23037,7 @@
 	frequency = 1379;
 	id_tag = "rnd_s_airlock_pump"
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled,
 /area/rnd/external)
 "aLs" = (
@@ -23728,6 +23747,7 @@
 	id_tag = "rnd_s_airlock_outer";
 	locked = 1
 	},
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/external)
 "aMK" = (
@@ -23743,6 +23763,7 @@
 	id_tag = "rnd_s_airlock_outer";
 	locked = 1
 	},
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/external)
 "aML" = (
@@ -32372,6 +32393,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals3{
 	dir = 5
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled,
 /area/rnd/external)
 "bcV" = (

@@ -32162,6 +32162,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 4
 	},
+/obj/effect/map_helper/airlock/door/simple,
 /turf/simulated/floor/tiled/monotile,
 /area/shuttle/tourbus/general)
 "jpB" = (
@@ -32543,11 +32544,10 @@
 	dir = 6
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
+	dir = 8;
 	frequency = 1380;
 	id_tag = "tourbus_docker";
-	pixel_x = 24;
-	pixel_y = 0;
-	tag_door = "tourbus_right"
+	pixel_x = 28
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 4

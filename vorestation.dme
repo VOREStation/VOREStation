@@ -880,6 +880,7 @@
 #include "code\game\machinery\embedded_controller\docking_program_multi.dm"
 #include "code\game\machinery\embedded_controller\embedded_controller_base.dm"
 #include "code\game\machinery\embedded_controller\embedded_program_base.dm"
+#include "code\game\machinery\embedded_controller\mapping_helpers.dm"
 #include "code\game\machinery\embedded_controller\simple_docking_controller.dm"
 #include "code\game\machinery\pipe\construction.dm"
 #include "code\game\machinery\pipe\pipe_dispenser.dm"

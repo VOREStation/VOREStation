@@ -7,15 +7,8 @@
 /area/mine/explored/upper_level)
 "ac" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "sec_fore_outer";
-	locked = 1;
-	name = "Security Starboard External Access";
-	req_access = newlist();
-	req_one_access = list(1,2,18)
-	},
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor,
 /area/security/eva)
 "ad" = (
@@ -81,22 +74,17 @@
 	id_tag = "sec_fore_pump"
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1379;
-	id_tag = "sec_fore_sensor";
-	pixel_x = 24;
-	pixel_y = 10
+	pixel_x = 28;
+	pixel_y = -8
 	},
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	frequency = 1379;
+	dir = 8;
 	id_tag = "sec_fore_airlock";
-	pixel_x = 24;
-	pixel_y = 0;
-	req_one_access = list(13);
-	tag_airpump = "sec_fore_pump";
-	tag_chamber_sensor = "sec_fore_sensor";
-	tag_exterior_door = "sec_fore_outer";
-	tag_interior_door = "sec_fore_inner"
+	pixel_x = 28;
+	pixel_y = 4
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "al" = (
@@ -110,15 +98,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/red)
 "am" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "sec_fore_inner";
-	locked = 1;
-	name = "Security Fore Internal Access";
-	req_access = newlist();
-	req_one_access = list(1,2,18)
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
@@ -132,6 +112,7 @@
 	dir = 5;
 	icon_state = "intact"
 	},
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor,
 /area/security/eva)
 "an" = (
@@ -261,19 +242,12 @@
 /area/security/eva)
 "ax" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "sec_fore_inner";
-	locked = 1;
-	name = "Security Fore Internal Access";
-	req_access = newlist();
-	req_one_access = list(1,2,18)
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10;
 	icon_state = "intact"
 	},
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor,
 /area/security/eva)
 "ay" = (
@@ -3939,16 +3913,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/range)
 "gl" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "sec_fore_outer";
-	locked = 1;
-	name = "Security Starboard External Access";
-	req_access = newlist();
-	req_one_access = list(1,2,18)
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor,
 /area/security/eva)
 "gm" = (
@@ -4072,6 +4039,7 @@
 	frequency = 1379;
 	id_tag = "sec_fore_pump"
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "gy" = (
@@ -6533,16 +6501,9 @@
 /area/hallway/station/upper)
 "kj" = (
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	cycle_to_external_air = 1;
 	frequency = 1380;
 	id_tag = "expshuttle_docker";
-	pixel_y = 26;
-	req_one_access = list(19,43,67);
-	tag_airpump = "expshuttle_vent";
-	tag_chamber_sensor = "expshuttle_sensor";
-	tag_exterior_door = "expshuttle_door_Ro";
-	tag_exterior_sensor = "expshuttle_exterior_sensor";
-	tag_interior_door = "expshuttle_door_Ri"
+	pixel_y = 28
 	},
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
@@ -6554,6 +6515,7 @@
 	id_tag = "expshuttle_vent"
 	},
 /obj/structure/handrail,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/cargo)
 "kk" = (
@@ -6561,9 +6523,6 @@
 	dir = 5
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
-	id_tag = "expshuttle_sensor";
-	master_tag = "expshuttle_docker";
 	pixel_y = 28
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
@@ -6576,6 +6535,8 @@
 	dir = 4;
 	pixel_y = 0
 	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/cargo)
 "kl" = (
@@ -6750,12 +6711,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "kx" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "expshuttle_door_Ri";
-	locked = 1
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/machinery/access_button{
 	command = "cycle_interior";
 	frequency = 1380;
@@ -6768,6 +6724,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/cargo)
 "ky" = (
@@ -18636,12 +18593,7 @@
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	frequency = 1380;
 	id_tag = "cargo_bay";
-	layer = 3.3;
-	name = "cargo bay hatch controller";
-	pixel_x = 30;
-	pixel_y = 0;
-	req_one_access = list(13,31);
-	tag_door = "cargo_bay_door"
+	pixel_x = 28
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	icon_state = "warningcorner";
@@ -19205,17 +19157,12 @@
 /area/quartermaster/storage)
 "DD" = (
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "cargo_bay_door";
-	locked = 1;
-	name = "Cargo Docking Hatch"
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/machinery/conveyor{
 	dir = 4;
 	id = "QMLoad2"
 	},
+/obj/effect/map_helper/airlock/door/simple,
 /turf/simulated/floor/plating,
 /area/quartermaster/storage)
 "DE" = (
@@ -19842,13 +19789,8 @@
 /area/quartermaster/storage)
 "Ez" = (
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "cargo_bay_door";
-	locked = 1;
-	name = "Cargo Docking Hatch"
-	},
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/simple,
 /turf/simulated/floor/tiled,
 /area/quartermaster/storage)
 "EA" = (
@@ -21339,17 +21281,12 @@
 /area/quartermaster/storage)
 "GQ" = (
 /obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "cargo_bay_door";
-	locked = 1;
-	name = "Cargo Docking Hatch"
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/machinery/conveyor{
 	dir = 4;
 	id = "QMLoad"
 	},
+/obj/effect/map_helper/airlock/door/simple,
 /turf/simulated/floor/plating,
 /area/quartermaster/storage)
 "GR" = (
@@ -25607,10 +25544,10 @@
 	dir = 10
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
+	dir = 4;
 	frequency = 1380;
 	id_tag = "medivac_bay";
-	pixel_x = -28;
-	tag_door = "medivac_bay_door"
+	pixel_x = -28
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -25763,24 +25700,20 @@
 /turf/simulated/floor/tiled,
 /area/security/hallway)
 "NF" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	id_tag = "medivac_bay_door"
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/effect/map_helper/airlock/door/simple,
 /turf/simulated/floor/tiled/white,
 /area/hallway/secondary/escape/medical_escape_pod_hallway)
 "NG" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	id_tag = "medivac_bay_door"
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/effect/map_helper/airlock/door/simple,
 /turf/simulated/floor/tiled/white,
 /area/hallway/secondary/escape/medical_escape_pod_hallway)
 "NH" = (
@@ -25822,15 +25755,9 @@
 /turf/simulated/wall/rshull,
 /area/shuttle/medivac/engines)
 "NM" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	id_tag = "medivac_out_door"
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/machinery/airlock_sensor/airlock_exterior/shuttle{
 	dir = 5;
-	frequency = 1380;
-	id_tag = "medivac_out_sensor";
-	master_tag = "medivac_docker";
 	pixel_x = -28
 	},
 /obj/structure/cable/green{
@@ -25838,6 +25765,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/general)
 "NN" = (
@@ -25912,22 +25841,12 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/engines)
 "NT" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 2;
-	frequency = 1380;
-	id_tag = "medivac_pump"
-	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	cycle_to_external_air = 1;
+	dir = 4;
 	frequency = 1380;
 	id_tag = "medivac_docker";
-	pixel_x = -28;
-	tag_airpump = "medivac_pump";
-	tag_chamber_sensor = "medivac_c_sensor";
-	tag_exterior_door = "medivac_out_door";
-	tag_exterior_sensor = "medivac_out_sensor";
-	tag_interior_door = "medivac_in_door";
-	tag_interior_sensor = "medivac_in_sensor"
+	pixel_x = -28
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -25942,6 +25861,7 @@
 	name = "Medivac Bay"
 	},
 /obj/effect/overmap/visitable/ship/landable/medivac,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/general)
 "NV" = (
@@ -26037,18 +25957,14 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	id_tag = "medivac_in_door"
-	},
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/general)
 "Oe" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	id_tag = "medivac_in_door"
-	},
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/general)
 "Og" = (
@@ -28411,6 +28327,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
+	dir = 8;
 	frequency = 1380;
 	id_tag = "expshuttle_dock";
 	pixel_x = 32;
@@ -28685,35 +28602,28 @@
 /area/shuttle/excursion/general)
 "Tm" = (
 /obj/machinery/airlock_sensor{
-	frequency = 1379;
-	id_tag = "belter_access_sensor";
-	pixel_x = 4;
-	pixel_y = 24
+	pixel_y = 28
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 2;
 	frequency = 1379;
 	id_tag = "belter_access_pump"
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor/plating,
 /area/quartermaster/belterdock)
 "Tn" = (
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	frequency = 1379;
 	id_tag = "belter_access_airlock";
-	pixel_x = 2;
-	pixel_y = 24;
-	req_one_access = list(48,65,66);
-	tag_airpump = "belter_access_pump";
-	tag_chamber_sensor = "belter_access_sensor";
-	tag_exterior_door = "belter_access_outer";
-	tag_interior_door = "belter_access_inner"
+	pixel_y = 28
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 2;
 	frequency = 1379;
 	id_tag = "belter_access_pump"
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/plating,
 /area/quartermaster/belterdock)
 "To" = (
@@ -28790,17 +28700,11 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock)
 "Tw" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "belter_access_inner";
-	locked = 1;
-	name = "Belter Pad Internal Access";
-	req_one_access = list(1,2,18)
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/plating,
 /area/quartermaster/belterdock)
 "Tx" = (
@@ -28815,14 +28719,8 @@
 /turf/simulated/floor/plating,
 /area/quartermaster/belterdock)
 "Tz" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "belter_access_outer";
-	locked = 1;
-	name = "Belter Pad External Access";
-	req_one_access = list(1,2,18)
-	},
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/plating,
 /area/quartermaster/belterdock)
 "TA" = (
@@ -28887,6 +28785,7 @@
 /obj/structure/handrail{
 	dir = 1
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/cargo)
 "TH" = (
@@ -28927,6 +28826,7 @@
 	frequency = 1379;
 	id_tag = "belter_access_pump"
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/plating,
 /area/quartermaster/belterdock)
 "TL" = (
@@ -28938,6 +28838,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/plating,
 /area/quartermaster/belterdock)
 "TM" = (
@@ -29126,6 +29027,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning/full,
+/obj/effect/map_helper/airlock/atmos/pump_out_external,
 /turf/simulated/floor/plating,
 /area/shuttle/excursion/cargo)
 "Ug" = (
@@ -29527,6 +29429,7 @@
 	req_access = list()
 	},
 /obj/structure/handrail,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/cargo)
 "UV" = (
@@ -29602,6 +29505,7 @@
 	dir = 4;
 	pixel_y = 0
 	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/cargo)
 "Ve" = (
@@ -29964,13 +29868,11 @@
 	id_tag = "medivac_docker_pump_out_external"
 	},
 /obj/effect/floor_decal/industrial/warning/full,
+/obj/effect/map_helper/airlock/atmos/pump_out_external,
 /turf/simulated/floor/airless,
-/area/shuttle/medivac/cockpit)
+/area/shuttle/medivac/general)
 "Wa" = (
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
-	id_tag = "medivac_c_sensor";
-	master_tag = "medivac_docker";
 	pixel_x = 28
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
@@ -29978,6 +29880,8 @@
 	frequency = 1380;
 	id_tag = "medivac_docker_pump_out_internal"
 	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/general)
 "Wb" = (
@@ -30073,10 +29977,8 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/cargo)
 "Wu" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	id_tag = "medivac_out_door"
-	},
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/general)
 "Wv" = (
@@ -30711,6 +30613,7 @@
 /obj/structure/handrail{
 	dir = 1
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/cargo)
 "Yk" = (
@@ -30768,10 +30671,6 @@
 /area/shuttle/medivac/general)
 "Yr" = (
 /obj/machinery/airlock_sensor{
-	command = "cycle_interior";
-	frequency = 1380;
-	id_tag = "medivac_in_sensor";
-	master_tag = "medivac_docker";
 	pixel_x = 28;
 	pixel_y = 28
 	},
@@ -30779,6 +30678,7 @@
 	dir = 5;
 	icon_state = "intact"
 	},
+/obj/effect/map_helper/airlock/sensor/int_sensor,
 /turf/simulated/floor/tiled/white,
 /area/shuttle/medivac/general)
 "Ys" = (
@@ -31199,13 +31099,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/shuttle/medivac/general)
-"ZB" = (
-/obj/machinery/shuttle_sensor{
-	dir = 5;
-	id_tag = "shuttlesens_exp"
-	},
-/turf/simulated/wall/rshull,
-/area/shuttle/excursion/cargo)
 "ZD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 9
@@ -31213,12 +31106,7 @@
 /turf/simulated/wall/rshull,
 /area/shuttle/excursion/cargo)
 "ZE" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "expshuttle_door_Ro";
-	locked = 1
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/machinery/airlock_sensor/airlock_exterior/shuttle{
 	dir = 6;
 	frequency = 1380;
@@ -31235,6 +31123,8 @@
 	icon_state = "warning";
 	dir = 8
 	},
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/cargo)
 "ZF" = (
@@ -42707,7 +42597,7 @@ Wy
 XW
 Zr
 Xy
-Xy
+Ya
 Yk
 aa
 aa
@@ -43925,7 +43815,7 @@ UR
 VQ
 Ws
 ZE
-ZB
+Wp
 Wp
 Wp
 cK
