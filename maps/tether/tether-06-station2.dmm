@@ -13849,14 +13849,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "eva_port_inner";
-	locked = 1;
-	name = "EVA Internal Access";
-	req_access = list(18)
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
@@ -13865,19 +13858,13 @@
 	pixel_x = 0;
 	pixel_y = -32
 	},
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
 "uM" = (
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	frequency = 1379;
 	id_tag = "eva_port_airlock";
-	name = "Airlock Console";
-	pixel_y = 30;
-	req_access = list(18);
-	tag_airpump = "eva_port_pump";
-	tag_chamber_sensor = "eva_port_sensor";
-	tag_exterior_door = "eva_port_outer";
-	tag_interior_door = "eva_port_inner"
+	pixel_y = 28
 	},
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/pipe/simple/hidden{
@@ -13892,22 +13879,15 @@
 	id_tag = "eva_port_pump"
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1379;
-	id_tag = "eva_port_sensor";
-	pixel_x = 0;
-	pixel_y = -25
+	pixel_y = -28
 	},
 /obj/machinery/camera/network/command,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor/tiled,
 /area/ai_monitored/storage/eva)
 "uO" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "eva_port_outer";
-	locked = 1;
-	name = "EVA External Access"
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -13918,6 +13898,7 @@
 	pixel_y = -26;
 	req_access = list(18)
 	},
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
 "uP" = (
@@ -20761,19 +20742,17 @@
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
 	frequency = 1380;
 	id_tag = "large_escape_pod_1";
-	pixel_x = -26;
-	pixel_y = 26;
-	tag_door = "large_escape_pod_1_hatch"
+	pixel_x = -28;
+	pixel_y = 28
 	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/large_escape_pod1)
 "Is" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth{
+	dir = 1;
 	frequency = 1380;
 	id_tag = "large_escape_pod_1_berth";
-	pixel_x = 0;
-	pixel_y = -28;
-	tag_door = "escape_bay_1_door"
+	pixel_y = -28
 	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -22209,11 +22188,9 @@
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
 "Un" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	frequency = 1380;
-	id_tag = "escape_bay_1_door"
-	},
+/obj/machinery/door/airlock/multi_tile/glass,
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/effect/map_helper/airlock/door/simple,
 /turf/simulated/floor/tiled/monofloor{
 	dir = 8
 	},
@@ -22763,13 +22740,8 @@
 /turf/simulated/shuttle/floor,
 /area/shuttle/large_escape_pod1)
 "YI" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "large_escape_pod_1_hatch";
-	locked = 1;
-	name = "Emergency Airlock"
-	},
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/simple,
 /turf/simulated/shuttle/floor,
 /area/shuttle/large_escape_pod1)
 "YK" = (

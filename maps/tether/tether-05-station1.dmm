@@ -16313,6 +16313,7 @@
 	frequency = 1380;
 	id_tag = "dock_d1l_pump"
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
 "aBR" = (
@@ -16714,6 +16715,7 @@
 	name = "Engineering Starboard External Access"
 	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor,
 /area/engineering/engineering_airlock)
 "aCC" = (
@@ -17583,6 +17585,7 @@
 	frequency = 1379;
 	id_tag = "eng_starboard_pump"
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled/dark,
 /area/engineering/engineering_airlock)
 "aEb" = (
@@ -18191,17 +18194,12 @@
 	pixel_y = 10
 	},
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	frequency = 1379;
+	dir = 8;
 	id_tag = "eng_starboard_airlock";
-	pixel_x = 24;
-	pixel_y = 0;
-	req_access = newlist();
-	req_one_access = list(11,24);
-	tag_airpump = "eng_starboard_pump";
-	tag_chamber_sensor = "eng_starboard_sensor";
-	tag_exterior_door = "eng_starboard_outer";
-	tag_interior_door = "eng_starboard_inner"
+	pixel_x = 28
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor/tiled/dark,
 /area/engineering/engineering_airlock)
 "aFL" = (
@@ -18468,6 +18466,7 @@
 	name = "Engineering Starboard Internal Access"
 	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/dark,
 /area/engineering/engineering_airlock)
 "aHT" = (
@@ -18480,6 +18479,7 @@
 	name = "Engineering Starboard Internal Access"
 	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/dark,
 /area/engineering/engineering_airlock)
 "aHY" = (
@@ -22090,26 +22090,16 @@
 	pixel_y = -26;
 	req_one_access = list(13)
 	},
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d1a2_outer";
-	locked = 1;
-	name = "Docking Port Airlock"
-	},
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
 "bHu" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d1a2_inner";
-	locked = 1;
-	name = "Docking Port Airlock"
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
 "bHw" = (
@@ -22128,14 +22118,10 @@
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	frequency = 1380;
 	id_tag = "dock_d1a2";
-	pixel_x = 0;
-	pixel_y = 30;
-	req_one_access = list(13);
-	tag_airpump = "dock_d1a2_pump";
-	tag_chamber_sensor = "dock_d1a2_sensor";
-	tag_exterior_door = "dock_d1a2_outer";
-	tag_interior_door = "dock_d1a2_inner"
+	pixel_y = 28
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
 "bHy" = (
@@ -22168,13 +22154,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_one)
 "bHG" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d2a2_outer";
-	locked = 1;
-	name = "Docking Port Airlock"
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/machinery/access_button{
 	command = "cycle_exterior";
 	frequency = 1380;
@@ -22184,19 +22164,15 @@
 	pixel_y = -26;
 	req_one_access = list(13)
 	},
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
 "bHN" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d2a2_inner";
-	locked = 1;
-	name = "Docking Port Airlock"
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
 "bHO" = (
@@ -22209,13 +22185,7 @@
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	frequency = 1380;
 	id_tag = "dock_d2a2";
-	pixel_x = 0;
-	pixel_y = 30;
-	req_one_access = list(13);
-	tag_airpump = "dock_d2a2_pump";
-	tag_chamber_sensor = "dock_d2a2_sensor";
-	tag_exterior_door = "dock_d2a2_outer";
-	tag_interior_door = "dock_d2a2_inner"
+	pixel_y = 28
 	},
 /obj/machinery/airlock_sensor{
 	frequency = 1380;
@@ -22223,7 +22193,9 @@
 	pixel_x = 0;
 	pixel_y = -25
 	},
-/turf/simulated/floor/tiled,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_two)
 "bHV" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -22335,26 +22307,16 @@
 	pixel_y = -26;
 	req_one_access = list(13)
 	},
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d1a1_outer";
-	locked = 1;
-	name = "Docking Port Airlock"
-	},
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
 "bPq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d1a1_inner";
-	locked = 1;
-	name = "Docking Port Airlock"
-	},
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
 "bPr" = (
@@ -22362,13 +22324,7 @@
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	frequency = 1380;
 	id_tag = "dock_d1a1";
-	pixel_x = 0;
-	pixel_y = 30;
-	req_one_access = list(13);
-	tag_airpump = "dock_d1a1_pump";
-	tag_chamber_sensor = "dock_d1a1_sensor";
-	tag_exterior_door = "dock_d1a1_outer";
-	tag_interior_door = "dock_d1a1_inner"
+	pixel_y = 28
 	},
 /obj/machinery/airlock_sensor{
 	frequency = 1380;
@@ -22381,6 +22337,8 @@
 	frequency = 1380;
 	id_tag = "dock_d1a1_pump"
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
 "bPs" = (
@@ -22409,26 +22367,16 @@
 	pixel_y = -26;
 	req_one_access = list(13)
 	},
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d2a1_outer";
-	locked = 1;
-	name = "Docking Port Airlock"
-	},
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_two)
 "bPx" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d2a1_inner";
-	locked = 1;
-	name = "Docking Port Airlock"
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_two)
 "bPz" = (
@@ -22447,14 +22395,10 @@
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	frequency = 1380;
 	id_tag = "dock_d2a1";
-	pixel_x = 0;
-	pixel_y = 30;
-	req_one_access = list(13);
-	tag_airpump = "dock_d2a1_pump";
-	tag_chamber_sensor = "dock_d2a1_sensor";
-	tag_exterior_door = "dock_d2a1_outer";
-	tag_interior_door = "dock_d2a1_inner"
+	pixel_y = 28
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_two)
 "bPD" = (
@@ -22515,48 +22459,28 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
 "bPX" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d1l_inner";
-	locked = 1;
-	name = "Dock One Internal Access"
-	},
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
 "bPY" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d1l_inner";
-	locked = 1;
-	name = "Dock One Internal Access"
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
 "bQa" = (
 /turf/simulated/floor,
 /area/tether/station/stairs_one)
 "bQc" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d2l_inner";
-	locked = 1;
-	name = "Docking Port Airlock"
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
 "bQd" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d2l_inner";
-	locked = 1;
-	name = "Docking Port Airlock"
-	},
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
 "bQe" = (
@@ -22568,15 +22492,10 @@
 	icon_state = "intact"
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
+	dir = 8;
 	frequency = 1380;
 	id_tag = "dock_d1l";
-	pixel_x = 28;
-	pixel_y = 0;
-	req_one_access = list(13);
-	tag_airpump = "dock_d1l_pump";
-	tag_chamber_sensor = "dock_d1l_sensor";
-	tag_exterior_door = "dock_d1l_outer";
-	tag_interior_door = "dock_d1l_inner"
+	pixel_x = 28
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
@@ -22595,15 +22514,10 @@
 /area/tether/station/dock_one)
 "bQk" = (
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
+	dir = 4;
 	frequency = 1380;
 	id_tag = "dock_d2l";
-	pixel_x = -28;
-	pixel_y = 0;
-	req_one_access = list(13);
-	tag_airpump = "dock_d2l_pump";
-	tag_chamber_sensor = "dock_d2l_sensor";
-	tag_exterior_door = "dock_d2l_outer";
-	tag_interior_door = "dock_d2l_inner"
+	pixel_x = -28
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
@@ -22612,7 +22526,7 @@
 	dir = 8;
 	icon_state = "map"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_two)
 "bQl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
@@ -22625,7 +22539,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 5
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_two)
 "bQm" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -22642,6 +22556,8 @@
 	pixel_x = 30;
 	pixel_y = 8
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
 "bQt" = (
@@ -22659,7 +22575,9 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
 	},
-/turf/simulated/floor/tiled,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_two)
 "bQu" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
@@ -22670,7 +22588,8 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
 	},
-/turf/simulated/floor/tiled,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_two)
 "bQv" = (
 /obj/structure/grille,
@@ -22699,33 +22618,17 @@
 	pixel_y = -6;
 	req_access = list(13)
 	},
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d1l_outer";
-	locked = 1;
-	name = "Dock One External Access"
-	},
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
 "bQz" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d1l_outer";
-	locked = 1;
-	name = "Dock One External Access"
-	},
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
 "bQC" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d2l_outer";
-	locked = 1;
-	name = "Docking Port Airlock"
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/machinery/access_button{
 	command = "cycle_exterior";
 	frequency = 1380;
@@ -22735,6 +22638,7 @@
 	pixel_y = -6;
 	req_one_access = list(13)
 	},
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
 "bQD" = (
@@ -22755,13 +22659,8 @@
 /turf/simulated/floor/plating,
 /area/tether/station/dock_two)
 "bQF" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d2l_outer";
-	locked = 1;
-	name = "Docking Port Airlock"
-	},
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
 "bXl" = (
@@ -23101,19 +23000,6 @@
 /obj/machinery/light/small,
 /turf/simulated/floor,
 /area/engineering/shaft)
-"jys" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d1a3_inner";
-	locked = 1;
-	name = "Docking Port Airlock"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark,
-/area/tether/station/dock_one)
 "jRS" = (
 /obj/random/junk,
 /turf/simulated/floor,
@@ -23148,14 +23034,10 @@
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	frequency = 1380;
 	id_tag = "dock_d1a3";
-	pixel_x = 0;
-	pixel_y = 30;
-	req_one_access = list(13);
-	tag_airpump = "dock_d1a3_pump";
-	tag_chamber_sensor = "dock_d1a3_sensor";
-	tag_exterior_door = "dock_d1a3_outer";
-	tag_interior_door = "dock_d1a3_inner"
+	pixel_y = 28
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
 "lGA" = (
@@ -23250,13 +23132,8 @@
 	pixel_y = -26;
 	req_one_access = list(13)
 	},
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "dock_d1a3_outer";
-	locked = 1;
-	name = "Docking Port Airlock"
-	},
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
 "vbm" = (
@@ -29092,7 +28969,7 @@ aDH
 aFU
 scB
 wlD
-jys
+bHu
 wlD
 aCF
 aCF
