@@ -558,7 +558,9 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/blue_fo)
 "bq" = (
-/obj/machinery/shipsensors,
+/obj/machinery/shipsensors{
+	dir = 1
+	},
 /turf/simulated/shuttle/floor/alienplating/blue/half{
 	dir = 8
 	},

@@ -266,6 +266,37 @@
 		/obj/item/weapon/tool/screwdriver
 	)
 
+/obj/item/weapon/storage/box/syndie_kit/voidsuit
+	starts_with = list(
+		/obj/item/clothing/suit/space/void/merc,
+		/obj/item/clothing/head/helmet/space/void/merc,
+		/obj/item/clothing/shoes/magboots,
+		/obj/item/weapon/tank/jetpack/oxygen
+	)
+
+/obj/item/weapon/storage/box/syndie_kit/voidsuit/fire
+	starts_with = list(
+		/obj/item/clothing/suit/space/void/merc/fire,
+		/obj/item/clothing/head/helmet/space/void/merc/fire,
+		/obj/item/clothing/shoes/magboots,
+		/obj/item/weapon/tank/jetpack/oxygen
+	)
+
+/obj/item/weapon/storage/box/syndie_kit/concussion_grenade
+	starts_with = list(
+		/obj/item/weapon/grenade/concussion = 8
+		)
+
+/obj/item/weapon/storage/box/syndie_kit/deadliest_game
+	starts_with = list(
+		/obj/item/weapon/beartrap/hunting = 4
+		)
+
+/obj/item/weapon/storage/box/syndie_kit/viral
+	starts_with = list(
+		/obj/item/weapon/virusdish/random = 3
+		)
+
 /obj/item/weapon/storage/secure/briefcase/rifle
 	name = "secure briefcase"
 	starts_with = list(
@@ -273,6 +304,15 @@
 		/obj/item/sniper_rifle_part/stock,
 		/obj/item/sniper_rifle_part/trigger_group,
 		/obj/item/ammo_casing/a145 = 4
+	)
+
+/obj/item/weapon/storage/secure/briefcase/flamer
+	name = "secure briefcase"
+	starts_with = list(
+		/obj/item/weapon/gun/magnetic/gasthrower,
+		/obj/item/weapon/cell/super,
+		/obj/item/weapon/stock_parts/capacitor/adv,
+		/obj/item/weapon/tank/phoron/pressurized = 2
 	)
 
 /obj/item/weapon/storage/secure/briefcase/fuelrod

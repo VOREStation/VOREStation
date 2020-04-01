@@ -406,6 +406,12 @@
 	color_blend_mode = ICON_MULTIPLY
 	do_colouration = 1
 
+/datum/sprite_accessory/ears/large_dragon
+	name = "Large dragon horns"
+	desc = ""
+	icon_state = "big_liz"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 // Special snowflake ears go below here.
 
@@ -666,6 +672,31 @@
 	icon_state = "nevrean_s"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/sepulchre_c_yw
+	name = "demon wings (colorable)"
+	desc = ""
+	icon_state = "sepulchre_wingsc"
+	do_colouration = 1
+
+/datum/sprite_accessory/wing/cyberdragon
+	name = "Cyber dragon wing (colorable)"
+	desc = ""
+	icon_state = "cyberdragon_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/cyberdragon_red
+	name = "Cyber dragon wing (red)"
+	desc = ""
+	icon_state = "cyberdragon_red_s"
+	do_colouration = 0
+
+/datum/sprite_accessory/wing/cyberdoe
+	name = "Cyber doe wing"
+	desc = ""
+	icon_state = "cyberdoe_s"
+	do_colouration = 0
 
 /*
 ////////////////////////////
@@ -1602,3 +1633,21 @@
 	ani_state = "tail_smooth_w"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	
+/datum/sprite_accessory/tail/triplekitsune_colorable
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	name = "Kitsune 3 tails - colorable"
+	desc = ""
+	icon_state = "triplekitsune"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "triplekitsune_tips"
+	
+/datum/sprite_accessory/tail/ninekitsune_colorable
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	name = "Kitsune 9 tails - colorable"
+	desc = ""
+	icon_state = "ninekitsune"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "ninekitsune-tips"

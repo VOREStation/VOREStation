@@ -141,7 +141,7 @@
 	illegal = TRUE
 	access = 999
 	tick_flags = NIF_ACTIVETICK
-	planes_enabled = list(VIS_FULLBRIGHT)
+	planes_enabled = list(VIS_FULLBRIGHT, VIS_CLOAKED)
 	vision_flags = (NIF_V_THERMALS)
 	incompatible_with = list(NIF_MESONS,NIF_MATERIAL,NIF_NIGHTVIS)
 

@@ -51,6 +51,12 @@
 	initial_generic_waypoints = list("aronai_fore", "aronai_aft", "aronai_port", "aronai_starboard")
 	initial_restricted_waypoints = list("Aro's Ship's Boat" = list("omship_spawn_aroboat"))
 
+/obj/effect/overmap/visitable/ship/aro/get_skybox_representation()
+	var/image/I = image('aro.dmi', "skybox")
+	I.pixel_x = 200
+	I.pixel_y = 200
+	return I
+
 // The shuttle's 'shuttle' computer
 /obj/machinery/computer/shuttle_control/explore/aroboat
 	name = "boat control console"

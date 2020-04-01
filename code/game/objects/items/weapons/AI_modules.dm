@@ -106,6 +106,7 @@ AI MODULES
 
 	if(laws)
 		laws.sync(target, 0)
+		target.notify_of_law_change()
 	addAdditionalLaws(target, sender)
 
 	to_chat(target, "\The [sender] has uploaded a change to the laws you must follow, using \an [src]. From now on: ")

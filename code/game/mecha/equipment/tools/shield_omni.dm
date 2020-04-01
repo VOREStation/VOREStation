@@ -1,0 +1,97 @@
+#define OMNI_SHIELD_DRAIN 30
+
+/obj/item/mecha_parts/mecha_equipment/omni_shield
+	name = "omni shield"
+	desc = "A shield generator that forms an ennlosing, omnidirectional shield around the exosuit."
+	icon_state = "shield"
+	origin_tech = list(TECH_PHORON = 3, TECH_MAGNET = 6, TECH_ILLEGAL = 4)
+	equip_cooldown = 5
+	energy_drain = OMNI_SHIELD_DRAIN
+	range = 0
+
+	var/obj/item/shield_projector/shields = null
+	var/shield_type = /obj/item/shield_projector/rectangle/mecha
+
+	equip_type = EQUIP_HULL
+
+/obj/item/mecha_parts/mecha_equipment/omni_shield/critfail()
+	..()
+	shields.adjust_health(-200)
+
+/obj/item/mecha_parts/mecha_equipment/omni_shield/Destroy()
+	QDEL_NULL(shields)
+	..()
+
+/obj/item/mecha_parts/mecha_equipment/omni_shield/attach(obj/mecha/M as obj)
+	. = ..()
+	if(chassis)
+		shields = new shield_type(chassis)
+
+/obj/item/mecha_parts/mecha_equipment/omni_shield/detach()
+	if(chassis)
+		QDEL_NULL(shields)
+	. = ..()
+
+/obj/item/mecha_parts/mecha_equipment/omni_shield/handle_movement_action()
+	if(chassis && shields)
+		shields.update_shield_positions()
+
+/obj/item/mecha_parts/mecha_equipment/omni_shield/proc/toggle_shield()
+	..()
+	if(shields)
+		shields.set_on(!shields.active)
+		if(shields.active)
+			set_ready_state(0)
+			log_message("Activated.")
+		else
+			set_ready_state(1)
+			log_message("Deactivated.")
+
+/obj/item/mecha_parts/mecha_equipment/omni_shield/Topic(href, href_list)
+	..()
+	if(href_list["toggle_omnishield"])
+		toggle_shield()
+
+/obj/item/mecha_parts/mecha_equipment/omni_shield/get_equip_info()
+	if(!chassis) return
+	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] - <a href='?src=\ref[src];toggle_omnishield=1'>[shields?.active?"Dea":"A"]ctivate</a>"
+
+
+////// The shield projector object
+/obj/item/shield_projector/rectangle/mecha
+	shield_health = 200
+	max_shield_health = 200
+	shield_regen_delay = 10 SECONDS
+	shield_regen_amount = 10
+	size_x = 1
+	size_y = 1
+
+	var/shift_x = 0
+	var/shift_y = 0
+
+	var/obj/mecha/my_mech = null
+
+/obj/item/shield_projector/rectangle/mecha/Initialize()
+	. = ..()
+	my_mech = loc
+	GLOB.moved_event.register(my_mech, src, /obj/item/shield_projector/proc/update_shield_positions)
+
+/obj/item/shield_projector/rectangle/mecha/Destroy()
+	GLOB.moved_event.unregister(my_mech, src, /obj/item/shield_projector/proc/update_shield_positions)
+	my_mech = null
+	..()
+
+/obj/item/shield_projector/rectangle/mecha/create_shield()
+	. = ..()
+	if(shift_x || shift_y)
+		var/obj/effect/directional_shield/newshield = active_shields[active_shields.len]
+		newshield.pixel_x = shift_x
+		newshield.pixel_y = shift_y
+
+/obj/item/shield_projector/rectangle/mecha/adjust_health(amount)
+	. = ..()
+	my_mech.use_power(OMNI_SHIELD_DRAIN)
+	if(!active && shield_health < shield_regen_amount)
+		my_mech.use_power(OMNI_SHIELD_DRAIN * 4)
+
+#undef OMNI_SHIELD_DRAIN

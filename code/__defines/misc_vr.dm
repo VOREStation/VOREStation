@@ -14,6 +14,8 @@
 #define VANTAG_KIDNAP  "vantag_kidnap"
 #define VANTAG_KILL    "vantag_kill"
 
+#define DEPARTMENT_OFFDUTY			"Off-Duty"
+
 #define ANNOUNCER_NAME "Facility PA"
 
 //For custom species

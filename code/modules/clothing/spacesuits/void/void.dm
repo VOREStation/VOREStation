@@ -13,7 +13,7 @@
 //	flags_inv = HIDEEARS|BLOCKHAIR
 
 	//Species-specific stuff.
-	species_restricted = list("Human", "Promethean")
+	species_restricted = list(SPECIES_HUMAN, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA) //VOREStation Edit
 	sprite_sheets_refit = list(
 		SPECIES_UNATHI = 'icons/mob/species/unathi/helmet.dmi',
 		SPECIES_TAJ = 'icons/mob/species/tajaran/helmet.dmi',
@@ -42,7 +42,7 @@
 	min_pressure_protection = 0 * ONE_ATMOSPHERE
 	max_pressure_protection = 10 * ONE_ATMOSPHERE
 
-	species_restricted = list("Human", SPECIES_SKRELL, "Promethean")
+	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_NEVREAN, SPECIES_RAPALA, SPECIES_VASILISSAN, SPECIES_ALRAUNE, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA) //VOREStation Edit
 	sprite_sheets_refit = list(
 		SPECIES_UNATHI = 'icons/mob/species/unathi/suit.dmi',
 		SPECIES_TAJ = 'icons/mob/species/tajaran/suit.dmi',

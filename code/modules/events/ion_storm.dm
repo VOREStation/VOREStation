@@ -1,20 +1,51 @@
 //This file was auto-corrected by findeclaration.exe on 29/05/2012 15:03:04
 
 /datum/event/ionstorm
+	has_skybox_image = TRUE
 	var/botEmagChance = 0 //VOREStation Edit
+	var/cloud_hueshift
 	var/list/players = list()
 
-/datum/event/ionstorm/announce()
+/datum/event/ionstorm/get_skybox_image()
+	if(!cloud_hueshift)
+		cloud_hueshift = color_rotation(rand(-3, 3) * 15)
+	var/image/res = image('icons/skybox/ionbox.dmi', "ions")
+	res.color = cloud_hueshift
+	res.appearance_flags = RESET_COLOR
+	res.blend_mode = BLEND_ADD
+	return res
+
+/datum/event/ionstorm/setup()
 	endWhen = rand(500, 1500)
+
+// Interestingly enough, announce() actually *DOES* this event for some reason.
+/datum/event/ionstorm/announce()
 //		command_alert("The station has entered an ion storm.  Monitor all electronic equipment for malfunctions", "Anomaly Alert")
 	for (var/mob/living/carbon/human/player in player_list)
 		if(	!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > MinutesToTicks(10))
 			continue
 		players += player.real_name
 
+	// Flomph synthetics
+	for(var/mob/living/carbon/S in living_mob_list)
+		if (!S.isSynthetic())
+			continue
+		if(!(S.z in affecting_z))
+			continue
+		var/area/A = get_area(S)
+		if(!A || A.flags & RAD_SHIELDED) // Rad shielding will protect from ions too
+			continue
+		to_chat(S, "<span class='warning'>Your integrated sensors detect an ionospheric anomaly. Your systems will be impacted as you begin a partial restart.</span>")
+		var/ionbug = rand(3, 9)
+		S.confused += ionbug
+		S.eye_blurry += (ionbug - 1)
+
+	// Ionize silicon mobs
 	for (var/mob/living/silicon/ai/target in silicon_mob_list)
+		if(!(target.z in affecting_z))
+			continue
 		var/law = target.generate_ion_law()
-		to_chat(target, "<font color='red'><b>You have detected a change in your laws information:</b></font>")
+		to_chat(target, "<span class='danger'>You have detected a change in your laws information:</span>")
 		to_chat(target, law)
 		target.add_ion_law(law)
 		target.show_laws()
@@ -31,13 +62,20 @@
 /datum/event/ionstorm/tick()
 	if(botEmagChance)
 		for(var/mob/living/bot/bot in mob_list)
+			if(!(bot.z in affecting_z))
+				continue
 			if(prob(botEmagChance))
 				bot.emag_act(1)
 
 /datum/event/ionstorm/end()
-	spawn(rand(5000,8000))
-		if(prob(50))
-			ion_storm_announcement()
+	..()
+	if(prob(50))
+		spawn(rand(5000,8000))
+			command_announcement.Announce("It has come to our attention that \the [location_name()] passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
+
+// Overmap version
+/datum/event/ionstorm/overmap/announce()
+	return
 
 /*
 /proc/IonStorm(botEmagChance = 10)

@@ -8,6 +8,8 @@
 	check_armour = "bullet"
 	embed_chance = 20	//Modified in the actual embed process, but this should keep embed chance about the same
 	sharp = 1
+	hitsound_wall = "ricochet"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect
 	var/mob_passthrough_check = 0
 
 	muzzle_type = /obj/effect/projectile/muzzle/bullet
@@ -265,6 +267,15 @@
 	incendiary = 3
 	flammability = 2
 	range = 6
+
+/obj/item/projectile/bullet/incendiary/flamethrower/tiny
+	damage = 2
+	incendiary = 0
+	flammability = 2
+	modifier_type_to_apply = /datum/modifier/fire/stack_managed/weak
+	modifier_duration = 20 SECONDS
+	range = 6
+	agony = 0
 
 /* Practice rounds and blanks */
 

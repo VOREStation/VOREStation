@@ -20,7 +20,7 @@ log transactions
 	icon = 'icons/obj/terminals_vr.dmi' //VOREStation Edit
 	icon_state = "atm"
 	anchored = 1
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	circuit =  /obj/item/weapon/circuitboard/atm
 	var/datum/money_account/authenticated_account

@@ -37,7 +37,7 @@
 	playsound('sound/effects/stealthoff.ogg',50,0)
 	bellied.forceMove(get_turf(src))
 	bellied.Weaken(2)
-	bellied.visible_message("[bellied] flops out of \the [src].","You flop out of \the [src].","You hear a thud.")
+	bellied.visible_message("[bellied] flops out of [src].","You flop out of [src].","You hear a thud.")
 	bellied = null
 
 	desc = "[initial(desc)]"
@@ -64,7 +64,7 @@
 
 	//Already full
 	if (hologram.bellied)
-		var/choice = alert("You can only contain one person. [hologram.bellied] is in you.","Already Full","Drop Mob","Cancel")
+		var/choice = alert("You can only contain one person. [hologram.bellied] is in you.", "Already Full", "Drop Mob", "Cancel")
 		if(choice == "Drop Mob")
 			hologram.drop_prey()
 		return
@@ -93,7 +93,7 @@
 
 /mob/living/AIShiftClick(var/mob/user) //Shift-click as AI overridden on mobs to examine.
 	if(user.client)
-		src.examine(user)
+		examine(user)
 	return
 
 //This can go here with all the references.

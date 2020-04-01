@@ -71,4 +71,5 @@
 		msg += "[line]\n"
 
 	msg += "<b>Total Players: [length(Lines)]</b>"
+	msg = "<span class='info'>" + msg + "</span>"
 	to_chat(src, msg)

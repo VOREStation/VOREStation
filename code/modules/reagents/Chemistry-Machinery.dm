@@ -16,7 +16,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
 	circuit = /obj/item/weapon/circuitboard/chem_master
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 20
 	var/beaker = null
 	var/obj/item/weapon/storage/pill_bottle/loaded_pill_bottle = null
@@ -333,7 +333,7 @@
 	icon_state = "juicer1"
 	density = 0
 	anchored = 0
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 5
 	active_power_usage = 100
 	circuit = /obj/item/weapon/circuitboard/grinder

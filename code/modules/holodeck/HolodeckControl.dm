@@ -4,7 +4,7 @@
 	icon_keyboard = "tech_key"
 	icon_screen = "holocontrol"
 
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	active_power_usage = 8000 //8kW for the scenery + 500W per holoitem
 	var/item_power_usage = 500
 
@@ -224,7 +224,7 @@
 			damaged = 1
 			loadProgram(powerdown_program, 0)
 			active = 0
-			use_power = 1
+			update_use_power(USE_POWER_IDLE)
 			for(var/mob/M in range(10,src))
 				M.show_message("The holodeck overloads!")
 
@@ -268,10 +268,10 @@
 		loadProgram(powerdown_program, 0)
 
 		if(!linkedholodeck.has_gravity)
-			linkedholodeck.gravitychange(1,linkedholodeck)
+			linkedholodeck.gravitychange(1)
 
 		active = 0
-		use_power = 1
+		update_use_power(USE_POWER_IDLE)
 
 
 /obj/machinery/computer/HolodeckControl/proc/loadProgram(var/prog, var/check_delay = 1)
@@ -301,7 +301,7 @@
 
 	last_change = world.time
 	active = 1
-	use_power = 2
+	use_power = USE_POWER_ACTIVE
 
 	for(var/item in holographic_objs)
 		derez(item)
@@ -362,19 +362,19 @@
 
 	last_gravity_change = world.time
 	active = 1
-	use_power = 1
+	use_power = USE_POWER_IDLE
 
 	if(A.has_gravity)
-		A.gravitychange(0,A)
+		A.gravitychange(0)
 	else
-		A.gravitychange(1,A)
+		A.gravitychange(1)
 
 /obj/machinery/computer/HolodeckControl/proc/emergencyShutdown()
 	//Turn it back to the regular non-holographic room
 	loadProgram(powerdown_program, 0)
 
 	if(!linkedholodeck.has_gravity)
-		linkedholodeck.gravitychange(1,linkedholodeck)
+		linkedholodeck.gravitychange(1)
 
 	active = 0
-	use_power = 1
+	use_power = USE_POWER_IDLE

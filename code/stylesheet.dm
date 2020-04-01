@@ -16,10 +16,10 @@ em						{font-style: normal;font-weight: bold;}
 
 /* OOC */
 .ooc					{font-weight: bold;}
+.looc					{color: #3A9696;}
 .ooc img.text_tag		{width: 32px; height: 10px;}
 
 .ooc .everyone			{color: #002eb8;}
-.ooc .looc				{color: #3A9696;}
 .ooc .elevated			{color: #2e78d9;}
 .ooc .moderator			{color: #184880;}
 .ooc .developer			{color: #1b521f;}
@@ -65,6 +65,7 @@ em						{font-style: normal;font-weight: bold;}
 .say					{}
 .alert					{color: #ff0000;}
 h1.alert, h2.alert		{color: #000000;}
+.ghostalert				{color: #5c00e6;	font-style: italic; font-weight: bold;}
 
 .emote					{font-style: italic;}
 

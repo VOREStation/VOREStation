@@ -6,7 +6,7 @@
 	density = 1
 	anchored = 1
 	circuit = /obj/item/weapon/circuitboard/biogenerator
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 40
 	var/processing = 0
 	var/obj/item/weapon/reagent_containers/glass/beaker = null
@@ -107,7 +107,7 @@
 					dat += "Food:<BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=milk;cost=20'>10 milk</A> <FONT COLOR=blue>([round(20/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=milk5;cost=95'>x5</A><BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=cream;cost=30'>10 cream</A> <FONT COLOR=blue>([round(20/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=cream5;cost=120'>x5</A><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=meat;cost=50'>Slab of meat</A> <FONT COLOR=blue>([round(50/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=meat5;cost=24s0'>x5</A><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=meat;cost=50'>Slab of meat</A> <FONT COLOR=blue>([round(50/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=meat5;cost=250'>x5</A><BR>"
 					dat += "Nutrient:<BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=ez;cost=60'>E-Z-Nutrient</A> <FONT COLOR=blue>([round(60/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=ez5;cost=300'>x5</A><BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=l4z;cost=120'>Left 4 Zed</A> <FONT COLOR=blue>([round(120/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=l4z5;cost=600'>x5</A><BR>"

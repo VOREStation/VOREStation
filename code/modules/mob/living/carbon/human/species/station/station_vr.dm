@@ -179,8 +179,7 @@
 	have adjusted better to their new lives. Though similar fox-like beings have been seen they are different than the Zorren."
 	wikilink="https://wiki.vore-station.net/Zorren"
 
-	catalogue_data = list(/datum/category_item/catalogue/fauna/zorren,
-						/datum/category_item/catalogue/fauna/highzorren)
+	catalogue_data = list(/datum/category_item/catalogue/fauna/zorren)
 
 	//primitive_form = "" //We don't have fox-monkey sprites.
 
@@ -197,51 +196,6 @@
 		"Your overheated skin itches."
 		)
 	inherent_verbs = list(/mob/living/proc/shred_limb)
-
-/datum/species/fl_zorren
-	name = SPECIES_ZORREN_FLAT
-	name_plural = "Zorren"
-	icobase = 'icons/mob/human_races/r_fennec_vr.dmi'
-	deform = 'icons/mob/human_races/r_def_fennec.dmi'
-	tail = "tail"
-	icobase_tail = 1
-	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
-	num_alternate_languages = 3
-	secondary_langs = list(LANGUAGE_TERMINUS)
-	name_language = LANGUAGE_TERMINUS
-	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds)
-
-	min_age = 18
-	max_age = 80
-
-	blurb = "The fox-like Zorren are native to Virgo-Prime, however there are two distinct varieties of Zorren one with large ears and shorter fur, \
-	and the other with longer fur that is a bit more vibrant. The long-eared, short-furred Zorren have come to be known as Flatland Zorren as that is \
-	where most of their settlements are located. The Flatland Zorren are somewhat tribal and shamanistic as they have only recently started to be \
-	hired by the Trans-Stellar Corporations. The other variety of Zorren are known as Highland Zorren as they frequently settle in hilly and/or \
-	mountainous areas, they have a differing societal structure than the Flatland Zorren having a more feudal social structure, like the Flatland Zorren, \
-	the Highland Zorren have also only recently been hired by the Trans-Stellar Corporations, but thanks to the different social structure they \
-	seem to have adjusted better to their new lives. Though similar fox-like beings have been seen they are different than the Zorren."
-	wikilink="https://wiki.vore-station.net/Zorren"
-
-	catalogue_data = list(/datum/category_item/catalogue/fauna/zorren,
-						/datum/category_item/catalogue/fauna/flatzorren)
-
-	//primitive_form = "" //We don't have fennec-monkey sprites.
-	spawn_flags = SPECIES_CAN_JOIN
-	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
-
-	flesh_color = "#AFA59E"
-	base_color = "#333333"
-	blood_color = "#240bc4"
-	color_mult = 1
-	inherent_verbs = list(/mob/living/proc/shred_limb)
-
-	heat_discomfort_strings = list(
-		"Your fur prickles in the heat.",
-		"You feel uncomfortably warm.",
-		"Your overheated skin itches."
-		)
-
 
 /datum/species/vulpkanin
 	name = SPECIES_VULPKANIN
@@ -282,45 +236,6 @@
 
 	min_age = 18
 	max_age = 80
-
-/datum/species/xenohybrid
-	name = SPECIES_XENOHYBRID
-	name_plural = "Xenomorphs"
-	icobase = 'icons/mob/human_races/r_xenomorph.dmi'
-	deform = 'icons/mob/human_races/r_def_xenomorph.dmi'
-	tail = "tail"
-	icobase_tail = 1
-	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
-	darksight = 4 //Better hunters in the dark.
-	hunger_factor = 0.1 //In exchange, they get hungry a tad faster.
-	num_alternate_languages = 2
-
-	min_age = 18
-	max_age = 80
-
-	blurb = "Xenomorphs hybrids are a mixture of xenomorph DNA and some other humanoid species. \
-	Xenomorph hyrids mostly have had had their natural aggression removed due to the gene modification process \
-	although there are some exceptions, such as when they are harmed. Most xenomorph hybrids are female, due to their natural xenomorph genes, \
-	but there are multiple exceptions. All xenomorph hybrids have had their ability to lay eggs containing facehuggers \
-	removed if they had the ability to, although hybrids that previously contained this ability is extremely rare."
-	catalogue_data = list(/datum/category_item/catalogue/fauna/xenohybrid)
-	// No wiki page for xenohybrids at present
-
-	//primitive_form = "" //None for these guys
-
-	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
-	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
-
-	blood_color = "#12ff12"
-	flesh_color = "#201730"
-	base_color = "#201730"
-
-	heat_discomfort_strings = list(
-		"Your chitin feels extremely warm.",
-		"You feel uncomfortably warm.",
-		"Your chitin feels hot."
-		)
-	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 /datum/species/unathi
 	spawn_flags = SPECIES_CAN_JOIN //Species_can_join is the only spawn flag all the races get, so that none of them will be whitelist only if whitelist is enabled.
@@ -573,3 +488,75 @@ datum/species/harpy
 
 /datum/species/shadekin/can_breathe_water()
 	return TRUE	//they dont quite breathe
+
+//These species are not really species but are just there for custom species selection
+
+/datum/species/fl_zorren
+	name = SPECIES_FENNEC
+	name_plural = "Fennec"
+	icobase = 'icons/mob/human_races/r_fennec_vr.dmi'
+	deform = 'icons/mob/human_races/r_def_fennec.dmi'
+	tail = "tail"
+	icobase_tail = 1
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_TERMINUS)
+	name_language = LANGUAGE_TERMINUS
+	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds)
+
+	min_age = 18
+	max_age = 80
+
+	//primitive_form = "" //We don't have fennec-monkey sprites.
+	spawn_flags = SPECIES_IS_RESTRICTED
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	flesh_color = "#AFA59E"
+	base_color = "#333333"
+	blood_color = "#240bc4"
+	color_mult = 1
+	inherent_verbs = list(/mob/living/proc/shred_limb)
+
+	heat_discomfort_strings = list(
+		"Your fur prickles in the heat.",
+		"You feel uncomfortably warm.",
+		"Your overheated skin itches."
+		)
+
+/datum/species/xenohybrid
+	name = SPECIES_XENOHYBRID
+	name_plural = "Xenomorphs"
+	icobase = 'icons/mob/human_races/r_xenomorph.dmi'
+	deform = 'icons/mob/human_races/r_def_xenomorph.dmi'
+	tail = "tail"
+	icobase_tail = 1
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	darksight = 4 //Better hunters in the dark.
+	hunger_factor = 0.1 //In exchange, they get hungry a tad faster.
+	num_alternate_languages = 2
+
+	min_age = 18
+	max_age = 80
+
+	blurb = "Xenomorphs hybrids are a mixture of xenomorph DNA and some other humanoid species. \
+	Xenomorph hyrids mostly have had had their natural aggression removed due to the gene modification process \
+	although there are some exceptions, such as when they are harmed. Most xenomorph hybrids are female, due to their natural xenomorph genes, \
+	but there are multiple exceptions. All xenomorph hybrids have had their ability to lay eggs containing facehuggers \
+	removed if they had the ability to, although hybrids that previously contained this ability is extremely rare."
+	// No wiki page for xenohybrids at present
+
+	//primitive_form = "" //None for these guys
+
+	spawn_flags = SPECIES_IS_RESTRICTED
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	blood_color = "#12ff12"
+	flesh_color = "#201730"
+	base_color = "#201730"
+
+	heat_discomfort_strings = list(
+		"Your chitin feels extremely warm.",
+		"You feel uncomfortably warm.",
+		"Your chitin feels hot."
+		)
+	inherent_verbs = list(/mob/living/proc/shred_limb)

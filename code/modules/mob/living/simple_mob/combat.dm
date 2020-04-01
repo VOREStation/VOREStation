@@ -3,26 +3,24 @@
 	set waitfor = FALSE // For attack animations. Don't want the AI processor to get held up.
 
 	if(!A.Adjacent(src))
-		return FALSE
+		return ATTACK_FAILED
 	var/turf/their_T = get_turf(A)
 
 	face_atom(A)
 
 	if(melee_attack_delay)
-	//	their_T.color = "#FF0000"
 		melee_pre_animation(A)
+		. = ATTACK_SUCCESSFUL //Shoving this in here as a 'best guess' since this proc is about to sleep and return and we won't be able to know the real value
 		handle_attack_delay(A, melee_attack_delay) // This will sleep this proc for a bit, which is why waitfor is false.
 
 	// Cooldown testing is done at click code (for players) and interface code (for AI).
 	setClickCooldown(get_attack_speed())
 
+	// Returns a value, but will be lost if 
 	. = do_attack(A, their_T)
 
 	if(melee_attack_delay)
 		melee_post_animation(A)
-	//	their_T.color = "#FFFFFF"
-
-
 
 // This does the actual attack.
 // This is a seperate proc for the purposes of attack animations.

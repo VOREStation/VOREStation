@@ -296,7 +296,10 @@
 
 			var/randn = rand(1, 100)
 			last_push_time = world.time
-			if(!(species.flags & NO_SLIP) && randn <= 25)
+			// We ARE wearing shoes OR
+			// We as a species CAN be slipped when barefoot
+			// And also 1 in 4 because rngesus
+			if((shoes || !(species.flags & NO_SLIP)) && randn <= 25)
 				var/armor_check = run_armor_check(affecting, "melee")
 				apply_effect(3, WEAKEN, armor_check)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)

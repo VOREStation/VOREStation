@@ -85,6 +85,7 @@
 		"ED-209" = "ed209",
 		"Beepsky" = "secbot"
 		)
+	var/last_revive_notification = null // world.time of last notification, used to avoid spamming players from defibs or cloners.
 
 /mob/observer/dead/New(mob/body)
 	sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
@@ -92,8 +93,6 @@
 	see_in_dark = world.view //I mean. I don't even know if byond has occlusion culling... but...
 	plane = PLANE_GHOSTS //Why doesn't the var above work...???
 	verbs += /mob/observer/dead/proc/dead_tele
-
-	stat = DEAD
 
 	var/turf/T
 	if(ismob(body))
@@ -137,6 +136,9 @@
 		var/mob/target = locate(href_list["track"]) in mob_list
 		if(target)
 			ManualFollow(target)
+	if(href_list["reenter"])
+		reenter_corpse()
+		return
 
 /mob/observer/dead/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/weapon/book/tome))
@@ -145,6 +147,11 @@
 
 /mob/observer/dead/CanPass(atom/movable/mover, turf/target)
 	return TRUE
+
+/mob/observer/dead/set_stat(var/new_stat)
+	if(new_stat != DEAD)
+		CRASH("It is best if observers stay dead, thank you.")
+
 /*
 Transfer_mind is there to check if mob is being deleted/not going to have a body.
 Works together with spawning an observer, noted above.
@@ -811,3 +818,18 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 
 /mob/observer/dead/speech_bubble_appearance()
 	return "ghost"
+
+// Lets a ghost know someone's trying to bring them back, and for them to get into their body.
+// Mostly the same as TG's sans the hud element, since we don't have TG huds.
+/mob/observer/dead/proc/notify_revive(var/message, var/sound, flashwindow = TRUE)
+	if((last_revive_notification + 2 MINUTES) > world.time)
+		return
+	last_revive_notification = world.time
+
+	if(flashwindow)
+		window_flash(client)
+	if(message)
+		to_chat(src, "<span class='ghostalert'><font size=4>[message]</font></span>")
+	to_chat(src, "<span class='ghostalert'><a href=?src=[REF(src)];reenter=1>(Click to re-enter)</a></span>")
+	if(sound)
+		SEND_SOUND(src, sound(sound))

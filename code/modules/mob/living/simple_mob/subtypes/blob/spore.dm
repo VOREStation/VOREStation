@@ -20,7 +20,7 @@
 	movement_cooldown = 0
 	hovering = TRUE
 
-	attacktext = list("slams into")
+	attacktext = list("slammed into")
 	attack_sound = 'sound/effects/slime_squish.ogg'
 	say_list_type = /datum/say_list/spore
 
@@ -118,7 +118,7 @@
 	desc = "A parasitic organism attached to a deceased body, controlling it directly as if it were a puppet."
 	melee_damage_lower += 8  // 10 total.
 	melee_damage_upper += 11 // 15 total.
-	attacktext = list("claws")
+	attacktext = list("clawed")
 
 	H.forceMove(src)
 	infested = H

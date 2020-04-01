@@ -6,6 +6,7 @@ var/datum/antagonist/trader/traders
 	role_text = "Trader"
 	role_text_plural = "Traders"
 	welcome_text = "As a crewmember of the Beruang, you answer to your captain and international laws of space."
+	antag_sound = 'sound/effects/antag_notice/general_goodie_alert.ogg'
 	antag_text = "You are an <b>non-antagonist</b> visitor! Within the rules, \
 		try to provide interesting interaction for the crew. \
 		Try to make sure other players have <i>fun</i>! If you are confused or at a loss, always adminhelp, \

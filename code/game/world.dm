@@ -646,4 +646,18 @@ proc/establish_old_db_connection()
 	maxz++
 	max_z_changed()
 
+// Call this to change world.fps, don't modify it directly.
+/world/proc/change_fps(new_value = 20)
+	if(new_value <= 0)
+		CRASH("change_fps() called with [new_value] new_value.")
+	if(fps == new_value)
+		return //No change required.
+
+	fps = new_value
+	on_tickrate_change()
+
+// Called whenver world.tick_lag or world.fps are changed.
+/world/proc/on_tickrate_change()
+	SStimer?.reset_buckets() 
+
 #undef FAILED_DB_CONNECTION_CUTOFF

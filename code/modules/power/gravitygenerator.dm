@@ -16,7 +16,7 @@
 	icon_state = "TheSingGen"
 	anchored = 1
 	density = 1
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 200
 	active_power_usage = 1000
 	var/on = 1
@@ -127,13 +127,13 @@
 					if((A in G.localareas) && (G.on))
 						break
 				if(!G)
-					A.gravitychange(0,A)
+					A.gravitychange(0)
 
 
 		else
 			for(var/area/A in gravity_generator:localareas)
 				gravity_generator:on = 1
-				A.gravitychange(1,A)
+				A.gravitychange(1)
 
 		src.updateUsrDialog()
 		return

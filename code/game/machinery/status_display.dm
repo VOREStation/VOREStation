@@ -17,7 +17,7 @@
 	name = "status display"
 	anchored = 1
 	density = 0
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	circuit =  /obj/item/weapon/circuitboard/status_display
 	var/mode = 1	// 0 = Blank
@@ -222,7 +222,7 @@
 	return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"
 
 /obj/machinery/status_display/proc/get_supply_shuttle_timer()
-	var/datum/shuttle/autodock/ferry/supply/shuttle = supply_controller.shuttle
+	var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
 	if(!shuttle)
 		return "Error"
 

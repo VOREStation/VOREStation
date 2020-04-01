@@ -50,6 +50,7 @@
 		"beach_c",
 		"beach_nw"
 	)
+	defer_initialisation = TRUE
 
 //////////////////////////////////////////////////////////////
 // Tether Shuttle
@@ -90,7 +91,7 @@
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention. An unregistered vessel is approaching Virgo-3B."
 	departure_message = "Attention. A unregistered vessel is now leaving Virgo-3B."
-
+	defer_initialisation = TRUE
 
 //////////////////////////////////////////////////////////////
 // Ninja Shuttle
@@ -120,6 +121,7 @@
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention. An unregistered vessel is approaching Virgo-3B."
 	departure_message = "Attention. A unregistered vessel is now leaving Virgo-3B."
+	defer_initialisation = TRUE
 
 //////////////////////////////////////////////////////////////
 // Skipjack
@@ -149,6 +151,7 @@
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention. An unregistered vessel is approaching Virgo-3B."
 	departure_message = "Attention. A unregistered vessel is now leaving Virgo-3B."
+	defer_initialisation = TRUE
 
 //////////////////////////////////////////////////////////////
 // ERT Shuttle
@@ -160,10 +163,10 @@
 	move_time = 60
 	current_location = "specops_base"
 	landmark_transition = "specops_transit"
-	shuttle_area = /area/shuttle/specialops
+	shuttle_area = /area/shuttle/specops/centcom
 	destination_tags = list(
 		"specops_base",
-		"aerostat_northwest",
+		"aerostat_south",
 		"beach_e",
 		"beach_nw",
 		"tether_solars_ne",
@@ -172,12 +175,13 @@
 		"tether_space_NE",
 		"tether_space_SE",
 		"tether_space_SW",
-		"tether_dockarm_d2a2" //Top of right docking arm
+		"tether_dockarm_d1l" //End of left dockarm
 		)
-	docking_controller_tag = "specops_shuttle_hatch"
+	docking_controller_tag = "ert1_control"
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention. An NT support vessel is approaching Virgo-3B."
 	departure_message = "Attention. A NT support vessel is now leaving Virgo-3B."
+	defer_initialisation = TRUE
 
 //////////////////////////////////////////////////////////////
 // RogueMiner "Belter: Shuttle

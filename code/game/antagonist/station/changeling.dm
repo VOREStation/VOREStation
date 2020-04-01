@@ -8,6 +8,7 @@
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Colony Director")
 	welcome_text = "Use say \"#g message\" to communicate with your fellow changelings. Remember: you get all of their absorbed DNA if you absorb them."
+	antag_sound = 'sound/effects/antag_notice/ling_alert.ogg'
 	flags = ANTAG_SUSPICIOUS | ANTAG_RANDSPAWN | ANTAG_VOTABLE
 	antaghud_indicator = "hudchangeling"
 

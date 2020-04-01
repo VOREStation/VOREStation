@@ -36,7 +36,7 @@
 	icon_state = "flash"
 	interface_name = "mounted flash"
 	interface_desc = "Stuns your target by blinding them with a bright light."
-	device_type = /obj/item/device/flash
+	device_type = /obj/item/device/flash/robot
 
 /obj/item/rig_module/device/plasmacutter
 	name = "hardsuit plasma cutter"

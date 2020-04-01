@@ -32,6 +32,8 @@
 	if(buckled)
 		buckled.unbuckle_mob(src, TRUE)
 	qdel(selected_image)
+	QDEL_NULL(vorePanel) //VOREStation Add
+	QDEL_LIST_NULL(vore_organs) //VOREStation Add
 	return ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
@@ -245,10 +247,9 @@ default behaviour is:
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
 		health = 100
-		stat = CONSCIOUS
+		set_stat(CONSCIOUS)
 	else
 		health = getMaxHealth() - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
-
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
@@ -449,7 +450,7 @@ default behaviour is:
 			if(!isnull(M.incoming_hal_damage_percent))
 				amount *= M.incoming_hal_damage_percent
 			if(!isnull(M.disable_duration_percent))
-				amount *= M.incoming_hal_damage_percent
+				amount *= M.disable_duration_percent
 	else if(amount < 0)
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.incoming_healing_percent))
@@ -742,7 +743,7 @@ default behaviour is:
 		timeofdeath = 0
 
 	// restore us to conciousness
-	stat = CONSCIOUS
+	set_stat(CONSCIOUS)
 
 	// make the icons look correct
 	regenerate_icons()

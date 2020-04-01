@@ -12,7 +12,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	var/obj/item/weapon/loaded_item = null
 	var/decon_mod = 0
 	circuit = /obj/item/weapon/circuitboard/destructive_analyzer
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 30
 	active_power_usage = 2500
 

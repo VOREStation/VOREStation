@@ -20,7 +20,7 @@ Shuttle destinations are represented by `/obj/effect/shuttle_landmark` objects o
 * `base_area` - Type path of the `/area` that should be here when a shuttle is *not* present.
 * `base_turf` - Type path of the `/turf` that should be here when a shuttle is *not* present.
 * `shuttle_restricted` - If not null, only the named shuttle is allowed to use this landmark. (TODO: Overmap functionality)
-* `flags` - Bitfield - defaults to zero, can be any combination of:
+* `flags` - Bitfield - defaults to `SLANDMARK_FLAG_AUTOSET`, can be any combination of:
   * `SLANDMARK_FLAG_AUTOSET` (1) - If set, will initialize base_area and base_turf to same as where it was spawned at.
   * `SLANDMARK_FLAG_ZERO_G`  (2) - If set, Zero-G shuttles moved here will lose gravity unless the area has ambient gravity.
 * `special_dock_targets` - Used to configure shuttles with multiple docking controllers on the shuttle.  Map of shuttle `name` -> `id_tag` of the docking controller it should use for this landmark. (Think of a shuttle with airlocks on both sides, each with their own controller.   This would tell it which side to use.)

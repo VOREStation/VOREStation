@@ -10,7 +10,7 @@
 	desc = "Injects biological organisms that are inserted with the contents of an inserted beaker at the command of a remote computer."
 	density = 1
 	anchored = 1
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	icon = 'icons/obj/biogenerator.dmi'
 	icon_state = "biogen-work"
 	var/mob/living/occupant

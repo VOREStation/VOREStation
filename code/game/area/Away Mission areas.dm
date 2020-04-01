@@ -9,24 +9,27 @@
 
 /area/awaymission/proc/EvalValidSpawnTurfs()
 	//Adds turfs to the valid)turfs list, used for spawning.
-	for(var/turf/simulated/floor/F in src)
-		valid_spawn_turfs |= F
-	for(var/turf/unsimulated/floor/F in src)
-		valid_spawn_turfs |= F	
+	if(mobcountmax || floracountmax)
+		for(var/turf/simulated/floor/F in src)
+			valid_spawn_turfs += F
+		for(var/turf/unsimulated/floor/F in src)
+			valid_spawn_turfs += F
 
 /area/awaymission/LateInitialize()
 	..()
 	EvalValidSpawnTurfs()
 		
-	if(!valid_spawn_turfs.len)
+	if(!valid_spawn_turfs.len && (mobcountmax || floracountmax))
 		to_world_log("Error! [src] does not have any turfs!")
 		return TRUE
 
 	//Handles random mob placement for mobcountmax, as defined/randomized in initialize of each individual area.
-	spawn_mob_on_turf()
+	if(mobcountmax)
+		spawn_mob_on_turf()
 
 	//Handles random flora placement for floracountmax, as defined/randomized in initialize of each individual area.
-	spawn_flora_on_turf()
+	if(floracountmax)
+		spawn_flora_on_turf()
 	
 	to_world("Away mission spawning done.")
 

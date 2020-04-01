@@ -58,17 +58,19 @@
 
 /turf/simulated/floor/holofloor/space
 	icon = 'icons/turf/space.dmi'
+	plane = SPACE_PLANE
 	name = "\proper space"
-	icon_state = "0"
+	icon_state = "white"
+
+/turf/simulated/floor/holofloor/space/update_icon()
+	. = ..()
+	add_overlay(SSskybox.dust_cache["[((x + y) ^ ~(x * y) + z) % 25]"])
 
 /turf/simulated/floor/holofloor/reinforced
 	icon = 'icons/turf/flooring/tiles.dmi'
 	initial_flooring = /decl/flooring/reinforced
 	name = "reinforced holofloor"
 	icon_state = "reinforced"
-
-/turf/simulated/floor/holofloor/space/New()
-	icon_state = "[((x + y) ^ ~(x * y) + z) % 25]"
 
 /turf/simulated/floor/holofloor/beach
 	desc = "Uncomfortably gritty for a hologram."
@@ -396,7 +398,7 @@ datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/u
 	var/eventstarted = 0
 
 	anchored = 1.0
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 2
 	active_power_usage = 6
 	power_channel = ENVIRON

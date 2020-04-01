@@ -9,7 +9,7 @@
 	icon_state = "smasher"
 	anchored = 0
 	density = 1
-	use_power = 0
+	use_power = USE_POWER_OFF
 
 	var/successful_craft = FALSE	// Are we waiting to be emptied?
 	var/image/material_layer	// Holds the image used for the filled overlay.

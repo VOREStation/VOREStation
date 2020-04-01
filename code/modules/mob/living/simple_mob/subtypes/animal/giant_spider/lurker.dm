@@ -47,28 +47,25 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/hit_and_run
 
-	var/cloaked = FALSE
 	var/cloaked_alpha = 45			// Lower = Harder to see.
 	var/cloaked_bonus_damage = 30	// This is added on top of the normal melee damage.
 	var/cloaked_weaken_amount = 3	// How long to stun for.
 	var/cloak_cooldown = 10 SECONDS	// Amount of time needed to re-cloak after losing it.
 	var/last_uncloak = 0			// world.time
 
-
-/mob/living/simple_mob/animal/giant_spider/lurker/proc/cloak()
+/mob/living/simple_mob/animal/giant_spider/lurker/cloak()
 	if(cloaked)
 		return
 	animate(src, alpha = cloaked_alpha, time = 1 SECOND)
 	cloaked = TRUE
 
 
-/mob/living/simple_mob/animal/giant_spider/lurker/proc/uncloak()
+/mob/living/simple_mob/animal/giant_spider/lurker/uncloak()
 	last_uncloak = world.time // This is assigned even if it isn't cloaked already, to 'reset' the timer if the spider is continously getting attacked.
 	if(!cloaked)
 		return
 	animate(src, alpha = initial(alpha), time = 1 SECOND)
 	cloaked = FALSE
-
 
 // Check if cloaking if possible.
 /mob/living/simple_mob/animal/giant_spider/lurker/proc/can_cloak()
@@ -78,7 +75,6 @@
 		return FALSE
 
 	return TRUE
-
 
 // Called by things that break cloaks, like Technomancer wards.
 /mob/living/simple_mob/animal/giant_spider/lurker/break_cloak()

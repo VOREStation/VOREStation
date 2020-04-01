@@ -186,14 +186,21 @@
 	var/mutable_appearance/blade_overlay = mutable_appearance(icon, "[icon_state]_blade")
 	if(lcolor)
 		blade_overlay.color = lcolor
+		color = lcolor
 	cut_overlays()		//So that it doesn't keep stacking overlays non-stop on top of each other
 	if(active)
 		add_overlay(blade_overlay)
 		item_state = "[icon_state]_blade"
 		set_light(lrange, lpower, lcolor)
 	else
+		color = "FFFFFF"
 		set_light(0)
 		item_state = "[icon_state]"
+
+	if(istype(usr,/mob/living/carbon/human))
+		var/mob/living/carbon/human/H = usr
+		H.update_inv_l_hand()
+		H.update_inv_r_hand()
 
 /obj/item/weapon/shield/energy/AltClick(mob/living/user)
 	if(!in_range(src, user))	//Basic checks to prevent abuse
@@ -204,7 +211,7 @@
 	if(alert("Are you sure you want to recolor your shield?", "Confirm Recolor", "Yes", "No") == "Yes")
 		var/energy_color_input = input(usr,"","Choose Energy Color",lcolor) as color|null
 		if(energy_color_input)
-			lcolor = sanitize_hexcolor(energy_color_input, desired_format=6, include_crunch=1)
+			lcolor = sanitize_hexcolor(energy_color_input)
 		update_icon()
 
 /obj/item/weapon/shield/energy/examine(mob/user)

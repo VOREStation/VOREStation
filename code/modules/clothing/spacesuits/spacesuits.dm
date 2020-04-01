@@ -32,7 +32,12 @@
 	brightness_on = 4
 	on = 0
 
-/obj/item/clothing/head/helmet/space/verb/toggle_camera()
+/obj/item/clothing/head/helmet/space/Initialize()
+	. = ..()
+	if(camera_networks)
+		verbs |= /obj/item/clothing/head/helmet/space/proc/toggle_camera
+
+/obj/item/clothing/head/helmet/space/proc/toggle_camera()
 	set name = "Toggle Helmet Camera"
 	set desc = "Turn your helmet's camera on or off."
 	set category = "Hardsuit"
@@ -40,23 +45,18 @@
 	if(usr.stat || usr.restrained() || usr.incapacitated())
 		return
 
-	if(camera_networks)
-		if(!camera)
-			camera = new /obj/machinery/camera(src)
-			camera.replace_networks(camera_networks)
-			camera.set_status(FALSE) //So the camera will activate in the following check.
+	if(!camera)
+		camera = new /obj/machinery/camera(src)
+		camera.replace_networks(camera_networks)
+		camera.set_status(FALSE) //So the camera will activate in the following check.
 
-		if(camera.status == TRUE)
-			camera.set_status(FALSE)
-			to_chat(usr, "<font color='blue'>Camera deactivated.</font>")
-		else
-			camera.set_status(TRUE)
-			camera.c_tag = usr.name
-			to_chat(usr, "<font color='blue'>User scanned as [camera.c_tag]. Camera activated.</font>")
-
+	if(camera.status == TRUE)
+		camera.set_status(FALSE)
+		to_chat(usr, "<font color='blue'>Camera deactivated.</font>")
 	else
-		to_chat(usr, "This helmet does not have a built-in camera.")
-		return
+		camera.set_status(TRUE)
+		camera.c_tag = usr.name
+		to_chat(usr, "<font color='blue'>User scanned as [camera.c_tag]. Camera activated.</font>")
 
 /obj/item/clothing/head/helmet/space/examine()
 	..()

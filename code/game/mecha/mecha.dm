@@ -259,7 +259,9 @@
 
 
 /obj/mecha/proc/check_for_support()
-	if(locate(/obj/structure/grille, orange(1, src)) || locate(/obj/structure/lattice, orange(1, src)) || locate(/turf/simulated, orange(1, src)) || locate(/turf/unsimulated, orange(1, src)))
+	var/list/things = orange(1, src)
+
+	if(locate(/obj/structure/grille in things) || locate(/obj/structure/lattice in things) || locate(/turf/simulated in things) || locate(/turf/unsimulated in things))
 		return 1
 	else
 		return 0
@@ -397,20 +399,25 @@
 /obj/mecha/relaymove(mob/user,direction)
 	if(user != src.occupant) //While not "realistic", this piece is player friendly.
 		if(istype(user,/mob/living/carbon/brain))
-			to_chat(user, "You try to move, but you are not the pilot! The exosuit doesn't respond.")
+			to_chat(user, "<span class='warning'>You try to move, but you are not the pilot! The exosuit doesn't respond.</span>")
 			return 0
 		user.forceMove(get_turf(src))
 		to_chat(user, "You climb out from [src]")
 		return 0
 	if(connected_port)
 		if(world.time - last_message > 20)
-			src.occupant_message("Unable to move while connected to the air system port")
+			src.occupant_message("<span class='warning'>Unable to move while connected to the air system port</span>")
 			last_message = world.time
 		return 0
 	if(state)
-		occupant_message("<font color='red'>Maintenance protocols in effect</font>")
+		occupant_message("<span class='warning'>Maintenance protocols in effect</span>")
 		return
 	return domove(direction)
+
+/obj/mecha/proc/can_ztravel()
+	for(var/obj/item/mecha_parts/mecha_equipment/tool/jetpack/jp in equipment)
+		return jp.equip_ready
+	return FALSE
 
 /obj/mecha/proc/domove(direction)
 
@@ -423,20 +430,51 @@
 		return 0
 	if(!has_charge(step_energy_drain))
 		return 0
+
 	var/move_result = 0
+
 	if(hasInternalDamage(MECHA_INT_CONTROL_LOST))
 		move_result = mechsteprand()
-	else if(src.dir!=direction)
+	//Up/down zmove
+	else if(direction & UP || direction & DOWN)
+		if(!can_ztravel())
+			occupant_message("<span class='warning'>Your vehicle lacks the capacity to move in that direction!</span>")
+			return FALSE
+
+		//We're using locs because some mecha are 2x2 turfs. So thicc!
+		var/result = TRUE
+
+		for(var/turf/T in locs)
+			if(!T.CanZPass(src,direction))
+				occupant_message("<span class='warning'>You can't move that direction from here!</span>")
+				result = FALSE
+				break
+			var/turf/dest = direction & UP ? GetAbove(T) : GetBelow(T)
+			if(!dest)
+				occupant_message("<span class='notice'>There is nothing of interest in this direction.</span>")
+				result = FALSE
+				break
+			if(!dest.CanZPass(src,direction))
+				occupant_message("<span class='warning'>There's something blocking your movement in that direction!</span>")
+				result = FALSE
+				break
+		if(result)
+			move_result = mechstep(direction)
+	//Turning
+	else if(src.dir != direction)
 		move_result = mechturn(direction)
+	//Stepping
 	else
 		move_result	= mechstep(direction)
+
+
 	if(move_result)
 		can_move = 0
 		use_power(step_energy_drain)
 		if(istype(src.loc, /turf/space))
 			if(!src.check_for_support())
 				src.pr_inertial_movement.start(list(src,direction))
-				src.log_message("Movement control lost. Inertial movement started.")
+				src.log_message("<span class='warning'>Movement control lost. Inertial movement started.</span>")
 		if(do_after(step_in))
 			can_move = 1
 		return 1
@@ -1222,25 +1260,31 @@
 		src.icon_state = src.reset_icon()
 		set_dir(dir_in)
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
-		if(!hasInternalDamage()) //Otherwise it's not nominal!
-			switch(mech_faction)
-				if(MECH_FACTION_NT)//The good guys category
-					if(firstactivation)//First time = long activation sound
-						firstactivation = 1
-						src.occupant << sound('sound/mecha/LongNanoActivation.ogg',volume=50)
-					else
-						src.occupant << sound('sound/mecha/nominalnano.ogg',volume=50)
-				if(MECH_FACTION_SYNDI)//Bad guys
-					if(firstactivation)
-						firstactivation = 1
-						src.occupant << sound('sound/mecha/LongSyndiActivation.ogg',volume=50)
-					else
-						src.occupant << sound('sound/mecha/nominalsyndi.ogg',volume=50)
-				else//Everyone else gets the normal noise
-					src.occupant << sound('sound/mecha/nominal.ogg',volume=50)
+		if(occupant.client && cloaked_selfimage)
+			occupant.client.images += cloaked_selfimage
+		play_entered_noise(occupant)
 		return 1
 	else
 		return 0
+
+/obj/mecha/proc/play_entered_noise(var/mob/who)
+	if(!hasInternalDamage()) //Otherwise it's not nominal!
+		switch(mech_faction)
+			if(MECH_FACTION_NT)//The good guys category
+				if(firstactivation)//First time = long activation sound
+					firstactivation = 1
+					who << sound('sound/mecha/LongNanoActivation.ogg',volume=50)
+				else
+					who << sound('sound/mecha/nominalnano.ogg',volume=50)
+			if(MECH_FACTION_SYNDI)//Bad guys
+				if(firstactivation)
+					firstactivation = 1
+					who << sound('sound/mecha/LongSyndiActivation.ogg',volume=50)
+				else
+					who << sound('sound/mecha/nominalsyndi.ogg',volume=50)
+			else//Everyone else gets the normal noise
+				who << sound('sound/mecha/nominal.ogg',volume=50)
+
 
 /obj/mecha/verb/view_stats()
 	set name = "View Stats"
@@ -1285,45 +1329,21 @@
 	else
 		return
 	if(mob_container.forceMove(src.loc))//ejecting mob container
-	/*
-		if(ishuman(occupant) && (return_pressure() > HAZARD_HIGH_PRESSURE))
-			use_internal_tank = 0
-			var/datum/gas_mixture/environment = get_turf_air()
-			if(environment)
-				var/env_pressure = environment.return_pressure()
-				var/pressure_delta = (cabin.return_pressure() - env_pressure)
-		//Can not have a pressure delta that would cause environment pressure > tank pressure
-
-				var/transfer_moles = 0
-				if(pressure_delta > 0)
-					transfer_moles = pressure_delta*environment.volume/(cabin.return_temperature() * R_IDEAL_GAS_EQUATION)
-
-			//Actually transfer the gas
-					var/datum/gas_mixture/removed = cabin.air_contents.remove(transfer_moles)
-					loc.assume_air(removed)
-
-			occupant.SetStunned(5)
-			occupant.SetWeakened(5)
-			to_chat(occupant, "You were blown out of the mech!")
-	*/
-		src.log_message("[mob_container] moved out.")
+		log_message("[mob_container] moved out.")
 		occupant.reset_view()
-		/*
-		if(src.occupant.client)
-			src.occupant.client.eye = src.occupant.client.mob
-			src.occupant.client.perspective = MOB_PERSPECTIVE
-		*/
-		src.occupant << browse(null, "window=exosuit")
+		occupant << browse(null, "window=exosuit")
+		if(occupant.client && cloaked_selfimage)
+			occupant.client.images -= cloaked_selfimage
 		if(istype(mob_container, /obj/item/device/mmi))
 			var/obj/item/device/mmi/mmi = mob_container
 			if(mmi.brainmob)
 				occupant.loc = mmi
 			mmi.mecha = null
-			src.occupant.canmove = 0
-		src.occupant = null
-		src.icon_state = src.reset_icon()+"-open"
-		src.set_dir(dir_in)
-		src.verbs -= /obj/mecha/verb/eject
+			occupant.canmove = 0
+		occupant = null
+		icon_state = src.reset_icon()+"-open"
+		set_dir(dir_in)
+		verbs -= /obj/mecha/verb/eject
 	return
 
 /////////////////////////
@@ -1843,7 +1863,7 @@
 		O.aiRestorePowerRoutine = 0
 		O.control_disabled = 1 // Can't control things remotely if you're stuck in a card!
 		O.laws = AI.laws
-		O.stat = AI.stat
+		O.set_stat(AI.stat)
 		O.oxyloss = AI.getOxyLoss()
 		O.fireloss = AI.getFireLoss()
 		O.bruteloss = AI.getBruteLoss()
@@ -2031,6 +2051,17 @@
 
 
 /////////////
+
+/obj/mecha/cloak()
+	. = ..()
+	if(occupant && occupant.client && cloaked_selfimage)
+		occupant.client.images += cloaked_selfimage
+
+/obj/mecha/uncloak()
+	if(occupant && occupant.client && cloaked_selfimage)
+		occupant.client.images -= cloaked_selfimage
+	return ..()
+
 
 //debug
 /*

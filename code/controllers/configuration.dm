@@ -264,6 +264,10 @@ var/list/gamemode_cache = list()
 	var/sqlite_feedback_cooldown = 0 // How long one must wait, in days, to submit another feedback form. Used to help prevent spam, especially with privacy active. 0 = No limit.
 	var/sqlite_feedback_min_age = 0 // Used to block new people from giving feedback. This metric is very bad but it can help slow down spammers.
 
+	// disables the annoying "You have already logged in this round, disconnect or be banned" popup for multikeying, because it annoys the shit out of me when testing.
+	var/disable_cid_warn_popup = FALSE
+
+
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
 	for (var/T in L)
@@ -873,7 +877,8 @@ var/list/gamemode_cache = list()
 				if("sqlite_feedback_cooldown")
 					config.sqlite_feedback_cooldown = text2num(value)
 
-
+				if("disable_cid_warn_popup")
+					config.disable_cid_warn_popup = TRUE
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

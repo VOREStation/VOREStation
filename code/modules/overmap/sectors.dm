@@ -6,6 +6,7 @@
 	scannable = TRUE
 
 	var/list/map_z = list()
+	var/list/extra_z_levels //if you need to manually insist that these z-levels are part of this sector, for things like edge-of-map step trigger transitions rather than multi-z complexes
 
 	var/list/initial_generic_waypoints //store landmark_tag of landmarks that should be added to the actual lists below on init.
 	var/list/initial_restricted_waypoints //For use with non-automatic landmarks (automatic ones add themselves).
@@ -58,6 +59,8 @@
 
 /obj/effect/overmap/visitable/proc/find_z_levels()
 	map_z = GetConnectedZlevels(z)
+	if(LAZYLEN(extra_z_levels))
+		map_z |= extra_z_levels
 
 /obj/effect/overmap/visitable/proc/register_z_levels()
 	for(var/zlevel in map_z)
@@ -103,6 +106,21 @@
 
 /obj/effect/overmap/visitable/proc/generate_skybox()
 	return
+
+/obj/effect/overmap/visitable/MouseEntered(location, control, params)
+	openToolTip(user = usr, tip_src = src, params = params, title = name)
+
+	..()
+
+/obj/effect/overmap/visitable/MouseDown()
+	closeToolTip(usr) //No reason not to, really
+
+	..()
+
+/obj/effect/overmap/visitable/MouseExited()
+	closeToolTip(usr) //No reason not to, really
+
+	..()
 
 /obj/effect/overmap/visitable/sector
 	name = "generic sector"

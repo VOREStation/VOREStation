@@ -5,7 +5,7 @@
 	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Edit
 	icon_state = "recharger0"
 	anchored = 1
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 4
 	active_power_usage = 40000	//40 kW
 	var/efficiency = 40000 //will provide the modified power rate when upgraded
@@ -117,12 +117,12 @@
 
 /obj/machinery/recharger/process()
 	if(stat & (NOPOWER|BROKEN) || !anchored)
-		update_use_power(0)
+		update_use_power(USE_POWER_OFF)
 		icon_state = icon_state_idle
 		return
 
 	if(!charging)
-		update_use_power(1)
+		update_use_power(USE_POWER_IDLE)
 		icon_state = icon_state_idle
 	else
 		var/obj/item/weapon/cell/C = charging.get_cell()
@@ -130,21 +130,21 @@
 			if(!C.fully_charged())
 				icon_state = icon_state_charging
 				C.give(CELLRATE*efficiency)
-				update_use_power(2)
+				update_use_power(USE_POWER_ACTIVE)
 			else
 				icon_state = icon_state_charged
-				update_use_power(1)
+				update_use_power(USE_POWER_IDLE)
 
 		//VOREStation Add - NSFW Batteries
 		else if(istype(charging, /obj/item/ammo_casing/microbattery))
 			var/obj/item/ammo_casing/microbattery/batt = charging
 			if(batt.shots_left >= initial(batt.shots_left))
 				icon_state = icon_state_charged
-				update_use_power(1)
+				update_use_power(USE_POWER_IDLE)
 			else
 				icon_state = icon_state_charging
 				batt.shots_left++
-				update_use_power(2)
+				update_use_power(USE_POWER_ACTIVE)
 			return
 		//VOREStation Add End
 

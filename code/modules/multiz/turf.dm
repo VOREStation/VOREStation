@@ -155,6 +155,9 @@
 
 /turf/simulated/open/is_safe_to_enter(mob/living/L)
 	if(L.can_fall())
+		for(var/obj/O in contents)
+			if(!O.CanFallThru(L, GetBelow(src)))
+				return TRUE // Can't fall through this, like lattice or catwalk.
 		if(!locate(/obj/structure/stairs) in GetBelow(src))
-			return FALSE
+			return FALSE // Falling on stairs is safe.
 	return ..()

@@ -8,22 +8,21 @@
 #define Z_LEVEL_SPACE_HIGH					7
 #define Z_LEVEL_SURFACE_MINE				8
 #define Z_LEVEL_SOLARS						9
-#define Z_LEVEL_CENTCOM						10
-#define Z_LEVEL_MISC						11
-#define Z_LEVEL_SHIPS						12
-#define Z_LEVEL_UNDERDARK					13
-#define Z_LEVEL_PLAINS						14
-#define Z_LEVEL_ROGUEMINE_1					15
-#define Z_LEVEL_ROGUEMINE_2					16
-#define Z_LEVEL_ROGUEMINE_3					17
-#define Z_LEVEL_ROGUEMINE_4					18
-#define Z_LEVEL_ALIENSHIP					19
-#define Z_LEVEL_BEACH						20
-#define Z_LEVEL_BEACH_CAVE					21
-#define Z_LEVEL_AEROSTAT					22
-#define Z_LEVEL_AEROSTAT_SURFACE			23
-#define Z_LEVEL_DEBRISFIELD					24
-#define Z_LEVEL_GATEWAY						25
+#define Z_LEVEL_MISC						10
+#define Z_LEVEL_SHIPS						11
+#define Z_LEVEL_UNDERDARK					12
+#define Z_LEVEL_PLAINS						13
+#define Z_LEVEL_ROGUEMINE_1					14
+#define Z_LEVEL_ROGUEMINE_2					15
+#define Z_LEVEL_ROGUEMINE_3					16
+#define Z_LEVEL_ROGUEMINE_4					17
+#define Z_LEVEL_ALIENSHIP					18
+#define Z_LEVEL_BEACH						19
+#define Z_LEVEL_BEACH_CAVE					20
+#define Z_LEVEL_AEROSTAT					21
+#define Z_LEVEL_AEROSTAT_SURFACE			22
+#define Z_LEVEL_DEBRISFIELD					23
+#define Z_LEVEL_GATEWAY						24
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -39,7 +38,9 @@
 
 	use_overmap = TRUE
 	overmap_z = Z_LEVEL_MISC
-	overmap_size = 20
+	overmap_size = 35
+	overmap_event_areas = 34
+	usable_email_tlds = list("virgo.nt")
 
 	zlevel_datum_type = /datum/map_z_level/tether
 
@@ -142,7 +143,7 @@
 		)
 
 	lateload_single_pick = list(
-		//list("Snow Outpost"),		// Unplayable mapgen,
+		list("Snow Outpost"),
 		//list("Zoo"),				// Too big. way, way too big
 		list("Carp Farm"),
 		list("Snow Field"),
@@ -160,7 +161,6 @@
 		Z_LEVEL_SPACE_HIGH,
 		Z_LEVEL_SURFACE_MINE,
 		Z_LEVEL_SOLARS,
-		Z_LEVEL_CENTCOM,
 		Z_LEVEL_MISC,
 		Z_LEVEL_SHIPS,
 		Z_LEVEL_BEACH
@@ -247,8 +247,16 @@
 		"tether_space_NE", //station1, top right of space,
 		"tether_space_SW", //station3, bottom left of space,
 		"tether_excursion_hangar", //Excursion shuttle hangar,
+		"tether_medivac_dock", //Medical shuttle dock,
 		"tourbus_dock" //Surface large hangar
 		)
+	//Despite not being in the multi-z complex, these levels are part of the overmap sector
+	extra_z_levels = list(
+		Z_LEVEL_SURFACE_MINE,
+		Z_LEVEL_SOLARS,
+		Z_LEVEL_PLAINS,
+		Z_LEVEL_UNDERDARK
+	)
 
 /obj/effect/overmap/visitable/sector/virgo3b/Crossed(var/atom/movable/AM)
 	. = ..()
@@ -339,21 +347,11 @@
 /datum/map_z_level/tether/mine
 	z = Z_LEVEL_SURFACE_MINE
 	name = "Mining Outpost"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
 	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
 
 /datum/map_z_level/tether/solars
 	z = Z_LEVEL_SOLARS
 	name = "Solar Field"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
 	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
-
-/datum/map_z_level/tether/colony
-	z = Z_LEVEL_CENTCOM
-	name = "Colony"
-	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
-
-/datum/map_z_level/tether/misc
-	z = Z_LEVEL_MISC
-	name = "Misc"
-	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_XENOARCH_EXEMPT

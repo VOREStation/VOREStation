@@ -42,7 +42,7 @@
 /obj/machinery/xenobio
 	density = 1
 	anchored = 1
-	use_power = 1
+	use_power = USE_POWER_IDLE
 
 	var/obj/item/weapon/disk/xenobio/loaded_disk //Currently loaded data disk.
 

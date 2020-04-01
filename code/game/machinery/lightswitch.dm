@@ -7,7 +7,7 @@
 	icon = 'icons/obj/power_vr.dmi' // VOREStation Edit
 	icon_state = "light1"
 	anchored = 1.0
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	power_channel = LIGHT
 	var/on = 1

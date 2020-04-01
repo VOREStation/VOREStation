@@ -1,6 +1,6 @@
 /datum/job/hos
 	disallow_jobhop = TRUE
-	pto_earning = PTO_SECURITY
+	pto_type = PTO_SECURITY
 
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory,
 						access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
@@ -12,12 +12,12 @@
 						access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
 
 /datum/job/warden
-	pto_earning = PTO_SECURITY
+	pto_type = PTO_SECURITY
 
 /datum/job/detective
-	pto_earning = PTO_SECURITY
+	pto_type = PTO_SECURITY
 
 /datum/job/officer
 	total_positions = 5
 	spawn_positions = 5
-	pto_earning = PTO_SECURITY
+	pto_type = PTO_SECURITY

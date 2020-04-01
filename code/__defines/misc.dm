@@ -78,8 +78,7 @@
 #define COLOR_RED_LIGHT         "#FF3333"
 #define COLOR_DEEP_SKY_BLUE     "#00e1ff"
 
-
-#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (istype(I, /client) ? I : null))
+#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (isclient(I) ? I : null))
 
 //	Shuttles.
 
@@ -105,6 +104,7 @@
 #define FORCE_LAUNCH 2
 #define WAIT_ARRIVE  3
 #define WAIT_FINISH  4
+#define DO_AUTOPILOT 5
 
 // Setting this much higher than 1024 could allow spammers to DOS the server easily.
 #define MAX_MESSAGE_LEN       2048 //VOREStation Edit - I'm not sure about "easily". It can be a little longer.
@@ -268,6 +268,7 @@
 
 #define WORLD_ICON_SIZE 32 //Needed for the R-UST port
 #define PIXEL_MULTIPLIER WORLD_ICON_SIZE/32 //Needed for the R-UST port
+#define MAX_CLIENT_VIEW	34  // Maximum effective value of client.view (According to DM references)
 
 // Maploader bounds indices
 #define MAP_MINX 1

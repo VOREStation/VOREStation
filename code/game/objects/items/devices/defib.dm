@@ -390,7 +390,7 @@
 	if(!H.client && !H.teleop)
 		for(var/mob/observer/dead/ghost in player_list)
 			if(ghost.mind == H.mind)
-				to_chat(ghost, "<b><font color = #330033><font size = 3>Someone is attempting to resuscitate you. Re-enter your body if you want to be revived!</b> (Verbs -> Ghost -> Re-enter corpse)</font></font>")
+				ghost.notify_revive("Someone is trying to resuscitate you. Re-enter your body if you want to be revived!", 'sound/effects/genetics.ogg')
 				break
 
 	//beginning to place the paddles on patient's chest to allow some time for people to move away to stop the process
@@ -495,7 +495,7 @@
 	living_mob_list += M
 
 	M.timeofdeath = 0
-	M.stat = UNCONSCIOUS //Life() can bring them back to consciousness if it needs to.
+	M.set_stat(UNCONSCIOUS) //Life() can bring them back to consciousness if it needs to.
 	M.failed_last_breath = 0 //So mobs that died of oxyloss don't revive and have perpetual out of breath.
 	M.reload_fullscreen()
 

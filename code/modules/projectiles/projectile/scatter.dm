@@ -60,3 +60,13 @@
 	submunitions = list(
 		/obj/item/projectile/bullet/shotgun/ion = 3
 		)
+
+/obj/item/projectile/scatter/flamethrower
+	damage = 5
+	submunition_spread_max = 100
+	submunition_spread_min = 30
+	force_max_submunition_spread = TRUE
+
+	submunitions = list(
+		/obj/item/projectile/bullet/incendiary/flamethrower/tiny = 7
+		)
