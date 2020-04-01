@@ -99,3 +99,13 @@
 	storage_slots = 7
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette/cigar/havana)
 	icon_type = "cigar"
+
+/obj/item/weapon/miscdisc
+	name = "wah thing"
+	desc = "wahwahwah wahwahwa"
+	icon_state = "wahdisc"
+	icon = 'icons/obj/contraband_vr.dmi'
+	w_class = ITEMSIZE_NORMAL
+
+/obj/item/weapon/miscdisc/attack_self(mob/living/user as mob)
+	to_chat(user, "LORE.")
