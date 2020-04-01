@@ -72,7 +72,8 @@
 				to_chat(src, "<span class='warning'>You can't *flip in your current state!</span>")
 				return 1
 			else
-				src.SpinAnimation(7,1)
+				nextemote += 12 //Double delay
+				handle_flip_vr()
 				message = "does a flip!"
 				m_type = 1
 		if ("vhelp") //Help for Virgo-specific emotes.
@@ -83,6 +84,32 @@
 		return 1
 
 	return 0
+
+
+/mob/living/carbon/human/proc/handle_flip_vr()
+	var/original_density = density
+	var/original_passflags = pass_flags
+	
+	//Briefly un-dense to dodge projectiles
+	density = FALSE
+	
+	//Parkour!
+	var/parkour_chance = 20 //Default
+	if(species)
+		parkour_chance = species.agility
+	if(prob(parkour_chance))
+		pass_flags |= PASSTABLE
+	else
+		Confuse(1) //Thud
+
+	if(dir & WEST)
+		SpinAnimation(7,1,0)
+	else
+		SpinAnimation(7,1,1)
+
+	spawn(7)
+		density = original_density
+		pass_flags = original_passflags
 
 /mob/living/carbon/human/proc/toggle_tail_vr(var/setting,var/message = 0)
 	if(!tail_style || !tail_style.ani_state)
