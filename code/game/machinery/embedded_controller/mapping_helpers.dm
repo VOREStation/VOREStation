@@ -10,12 +10,11 @@ Any frequency works, it's self-setting, but it seems like people have decided 13
 	name = "use a subtype!"
 	icon = 'icons/misc/map_helpers.dmi'
 	plane = 20 //I dunno just high.
-	alpha = 200
+	alpha = 170
 
-	var/area/my_area
 	//The controller we're wanting our device to use
 	var/obj/machinery/embedded_controller/radio/my_controller
-	var/my_controller_type = /obj/machinery/embedded_controller/radio/airlock/
+	var/my_controller_type = /obj/machinery/embedded_controller/radio/airlock
 	//The device we're setting up
 	var/my_device
 	var/my_device_type
@@ -24,8 +23,7 @@ Any frequency works, it's self-setting, but it seems like people have decided 13
 
 /obj/effect/map_helper/airlock/Initialize()
 	..()
-	my_area = get_area(src)
-	my_controller = locate() in my_area
+	my_controller = get_controller(get_area(src))
 	my_device = locate(my_device_type) in get_turf(src)
 	if(!my_device)
 		to_world("<b><font color='red'>WARNING:</font><font color='black'>Airlock helper '[name]' couldn't find what it wanted at: X:[x] Y:[y] Z:[z]</font></b>")
@@ -39,9 +37,39 @@ Any frequency works, it's self-setting, but it seems like people have decided 13
 
 /obj/effect/map_helper/airlock/Destroy()
 	my_controller = null
-	my_area = null
 	my_device = null
 	return ..()
+
+/obj/effect/map_helper/airlock/proc/get_controller(var/area/A)
+	if(!A)
+		return null
+
+	var/list/potentials = list()
+	for(var/obj/O in A)
+		if(istype(O, my_controller_type))
+			potentials += O
+	
+	//Couldn't find one
+	if(!potentials.len)
+		return null
+	
+	//Only found one
+	if(potentials.len == 1)
+		return potentials[1]
+	
+	//Gotta find closest
+	var/closest = potentials[potentials.len]
+	var/closest_dist = get_dist(src, closest)
+	potentials.len--
+	while(potentials.len)
+		var/C = potentials[potentials.len]
+		potentials.len--
+		var/dist = get_dist(src, C)
+		if(dist < closest_dist)
+			closest_dist = dist
+			closest = C
+
+	return closest
 
 /obj/effect/map_helper/airlock/proc/setup()
 	return //Stub for subtypes
@@ -57,10 +85,9 @@ Any frequency works, it's self-setting, but it seems like people have decided 13
 /obj/effect/map_helper/airlock/door/setup()
 	var/obj/machinery/door/airlock/my_airlock = my_device
 	my_airlock.lock()
-	my_airlock.frequency = my_controller.frequency
 	my_airlock.id_tag = my_controller.id_tag + tag_addon
-	if(my_airlock.radio_connection) //Initialized before us
-		my_airlock.set_frequency(my_controller.frequency)
+	my_airlock.frequency = my_controller.frequency
+	my_airlock.set_frequency(my_controller.frequency)
 
 /obj/effect/map_helper/airlock/door/ext_door
 	name = "exterior airlock door"
@@ -96,6 +123,16 @@ Any frequency works, it's self-setting, but it seems like people have decided 13
 	icon_state = "pump"
 	tag_addon = "_pump"
 
+/obj/effect/map_helper/airlock/atmos/pump_out_internal
+	name = "air dump intake"
+	icon_state = "pumpdin"
+	tag_addon = "_pump_out_internal"
+
+/obj/effect/map_helper/airlock/atmos/pump_out_external
+	name = "air dump output"
+	icon_state = "pumpdout"
+	tag_addon = "_pump_out_external"
+
 
 /*
 	Sensors - did you know they function as buttons? You don't also need a button.
@@ -109,8 +146,7 @@ Any frequency works, it's self-setting, but it seems like people have decided 13
 	var/obj/machinery/airlock_sensor/my_sensor = my_device
 	my_sensor.id_tag = my_controller.id_tag + tag_addon
 	my_sensor.frequency = my_controller.frequency
-	if(my_sensor.radio_connection) //Initialized before us
-		my_sensor.set_frequency(my_controller.frequency)
+	my_sensor.set_frequency(my_controller.frequency)
 	if(command)
 		my_sensor.command = command
 
