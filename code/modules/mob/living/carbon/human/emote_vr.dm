@@ -72,7 +72,15 @@
 				to_chat(src, "<span class='warning'>You can't *flip in your current state!</span>")
 				return 1
 			else
-				src.SpinAnimation(7,1)
+				var/original_density = density
+				var/original_passflags = pass_flags
+				density = FALSE
+				if(prob(20))
+					pass_flags |= PASSTABLE
+				SpinAnimation(7,1)
+				spawn(7)
+					density = original_density
+					pass_flags = original_passflags
 				message = "does a flip!"
 				m_type = 1
 		if ("vhelp") //Help for Virgo-specific emotes.
