@@ -121,6 +121,6 @@
 
 /datum/trait/traceur
 	name = "Traceur"
-	desc = "You're capable of parkour and can *flip over low objects."
+	desc = "You're capable of parkour and can *flip over low objects (most of the time)."
 	cost = 2
-	var_changes = list("agility" = 100)
+	var_changes = list("agility" = 90)
