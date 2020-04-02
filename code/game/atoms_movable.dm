@@ -462,30 +462,33 @@
 
 	var/move_to_z = src.get_transit_zlevel()
 	if(move_to_z)
-		z = move_to_z
+		var/new_z = move_to_z
+		var/new_x
+		var/new_y
 
 		if(x <= TRANSITIONEDGE)
-			x = world.maxx - TRANSITIONEDGE - 2
-			y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
+			new_x = world.maxx - TRANSITIONEDGE - 2
+			new_y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
 
 		else if (x >= (world.maxx - TRANSITIONEDGE + 1))
-			x = TRANSITIONEDGE + 1
-			y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
+			new_x = TRANSITIONEDGE + 1
+			new_y = rand(TRANSITIONEDGE + 2, world.maxy - TRANSITIONEDGE - 2)
 
 		else if (y <= TRANSITIONEDGE)
-			y = world.maxy - TRANSITIONEDGE -2
-			x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
+			new_y = world.maxy - TRANSITIONEDGE -2
+			new_x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
 		else if (y >= (world.maxy - TRANSITIONEDGE + 1))
-			y = TRANSITIONEDGE + 1
-			x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
+			new_y = TRANSITIONEDGE + 1
+			new_x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
 		if(ticker && istype(ticker.mode, /datum/game_mode/nuclear)) //only really care if the game mode is nuclear
 			var/datum/game_mode/nuclear/G = ticker.mode
 			G.check_nuke_disks()
 
-		spawn(0)
-			if(loc) loc.Entered(src)
+		var/turf/T = locate(new_x, new_y, new_z)
+		if(istype(T))
+			forceMove(T)
 
 //by default, transition randomly to another zlevel
 /atom/movable/proc/get_transit_zlevel()

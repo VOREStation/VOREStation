@@ -51,10 +51,13 @@
 #define DNA_UI_WING_STYLE  32
 #define DNA_UI_WING_R      33
 #define DNA_UI_WING_G      34
-#define DNA_UI_WING_B      35 // VOREStation snippet end.
-#define DNA_UI_LENGTH      35 // VOREStation Edit to 35
+#define DNA_UI_WING_B      35
+#define DNA_UI_WING2_R     36
+#define DNA_UI_WING2_G     37
+#define DNA_UI_WING2_B     38 // VOREStation snippet end.
+#define DNA_UI_LENGTH      38 // VOREStation Edit - Needs to match the highest number above.
 
-#define DNA_SE_LENGTH 46 // VOREStation Edit (original was UI+11)
+#define DNA_SE_LENGTH 49 // VOREStation Edit (original was UI+11)
 // For later:
 //#define DNA_SE_LENGTH 50 // Was STRUCDNASIZE, size 27. 15 new blocks added = 42, plus room to grow.
 
@@ -224,6 +227,10 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	SetUIValueRange(DNA_UI_WING_R,    character.r_wing,    255,    1)
 	SetUIValueRange(DNA_UI_WING_G,    character.g_wing,    255,    1)
 	SetUIValueRange(DNA_UI_WING_B,    character.b_wing,    255,    1)
+
+	SetUIValueRange(DNA_UI_WING2_R,    character.r_wing2,  255,    1)
+	SetUIValueRange(DNA_UI_WING2_G,    character.g_wing2,  255,    1)
+	SetUIValueRange(DNA_UI_WING2_B,    character.b_wing2,  255,    1)
 
 	SetUIValueRange(DNA_UI_EARS_R,    character.r_ears,    255,    1)
 	SetUIValueRange(DNA_UI_EARS_G,    character.g_ears,    255,    1)

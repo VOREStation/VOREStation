@@ -695,11 +695,11 @@
 				for(var/gas in exude_gasses)
 					exude_gasses[gas] = max(1,round(exude_gasses[gas]*0.8))
 
-			set_trait(TRAIT_BENEFICIAL_REAG, gene.values["[TRAIT_BENEFICIAL_REAG]"].Copy())
+			set_trait(TRAIT_BENEFICIAL_REAG, gene.values["[TRAIT_BENEFICIAL_REAG]"]?.Copy() || list())
 
-			set_trait(TRAIT_MUTAGENIC_REAG, gene.values["[TRAIT_MUTAGENIC_REAG]"].Copy())
+			set_trait(TRAIT_MUTAGENIC_REAG, gene.values["[TRAIT_MUTAGENIC_REAG]"]?.Copy() || list())
 
-			set_trait(TRAIT_TOXIC_REAG, gene.values["[TRAIT_TOXIC_REAG]"].Copy())
+			set_trait(TRAIT_TOXIC_REAG, gene.values["[TRAIT_TOXIC_REAG]"]?.Copy() || list())
 
 			gene.values["[TRAIT_EXUDE_GASSES]"] = null
 			gene.values["[TRAIT_CHEMS]"] = null

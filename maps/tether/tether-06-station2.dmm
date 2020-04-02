@@ -9901,6 +9901,21 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor,
 /area/maintenance/station/exploration)
+"ot" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1)
+"ou" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1)
 "ov" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/lattice,
@@ -10791,7 +10806,7 @@
 "pS" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
-	icon_state = "propulsion_l"
+	icon_state = "propulsion_r"
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -16143,6 +16158,18 @@
 /obj/structure/cable/green,
 /turf/simulated/floor,
 /area/maintenance/station/micro)
+"yo" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 5
+	},
+/obj/machinery/vending/medical{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/ward)
 "ys" = (
 /obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/spray/cleaner{
@@ -18345,16 +18372,6 @@
 	},
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/ward)
-"Cc" = (
-/obj/machinery/vending/medical,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 5
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/ward)
@@ -21842,14 +21859,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
-"Rv" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1)
 "RB" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -22420,13 +22429,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/public_meeting_room)
-"VO" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1)
 "VU" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -33248,7 +33250,7 @@ AM
 Bf
 Bq
 BI
-Cc
+yo
 Cw
 Fi
 CW
@@ -37478,11 +37480,11 @@ hl
 DI
 RX
 DL
+ot
+ou
+ou
+ou
 pS
-VO
-VO
-VO
-Rv
 oY
 sW
 ef

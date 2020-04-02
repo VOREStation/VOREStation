@@ -135,8 +135,8 @@
 
 	if(occupant)
 		if(occupant.stat)
-			overlays += image(icon, "ai-fixer-404", overlay_layer)
+			add_overlay("ai-fixer-404")
 		else
-			overlays += image(icon, "ai-fixer-full", overlay_layer)
+			add_overlay("ai-fixer-full")
 	else
-		overlays += image(icon, "ai-fixer-empty", overlay_layer)
+		add_overlay("ai-fixer-empty")

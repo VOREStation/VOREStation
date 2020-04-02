@@ -67,4 +67,4 @@
 /obj/machinery/computer/shutoff_monitor/update_icon()
 	..()
 	if(!(stat & (NOPOWER|BROKEN)))
-		overlays += image('icons/obj/computer.dmi', "ai-fixer-empty", overlay_layer)
+		add_overlay("ai-fixer-empty")

@@ -12042,19 +12042,17 @@
 /turf/simulated/floor/tiled,
 /area/bridge/secondary/hallway)
 "auO" = (
-/obj/machinery/vending/fitness,
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 10
-	},
-/turf/simulated/floor/tiled,
-/area/tether/station/visitorhallway/office)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/maintenance/common,
+/turf/simulated/floor,
+/area/crew_quarters/sleep/cryo)
 "auP" = (
 /obj/machinery/alarm{
 	dir = 8;
@@ -13380,6 +13378,23 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/break_room)
+"awU" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 10
+	},
+/obj/machinery/vending/fitness{
+	icon_state = "fitness";
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/visitorhallway/office)
 "awV" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /turf/simulated/floor/tiled/dark,
@@ -14428,7 +14443,9 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/visitorhallway)
 "ayN" = (
-/obj/structure/reagent_dispensers/water_cooler/full,
+/obj/structure/reagent_dispensers/water_cooler/full{
+	dir = 8
+	},
 /turf/simulated/floor/wood,
 /area/bridge/meeting_room)
 "ayO" = (
@@ -18033,18 +18050,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
-"aEP" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/door_assembly,
-/turf/simulated/floor,
-/area/maintenance/station/abandonedholodeck)
 "aER" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
@@ -32378,7 +32383,7 @@ aCk
 ahU
 ahU
 atw
-auO
+awU
 afI
 avK
 awq
@@ -37337,7 +37342,7 @@ alo
 aCu
 aEG
 aEJ
-aEP
+auO
 baT
 bcO
 baT
@@ -37479,7 +37484,7 @@ alo
 aCy
 aEH
 aEK
-amK
+aus
 aur
 bcK
 bfk
@@ -37621,7 +37626,7 @@ alo
 aCu
 aEI
 aEL
-amK
+aus
 aus
 aus
 aus

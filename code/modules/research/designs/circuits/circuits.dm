@@ -621,6 +621,19 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/microwave/advanced
 	sort_string = "MAAAC"
 
+/datum/design/circuit/pointdefense
+	name = "point defense battery"
+	id = "pointdefense"
+	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 3, TECH_COMBAT = 4)
+	build_path = /obj/item/weapon/circuitboard/pointdefense
+	sort_string = "OAABA"
+
+/datum/design/circuit/pointdefense_control
+	name = "deluxe microwave"
+	id = "pointdefense_control"
+	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3, TECH_COMBAT = 2)
+	build_path = /obj/item/weapon/circuitboard/pointdefense_control
+	sort_string = "OAABB"
 
 /* I have no idea how this was even running before, but it doesn't seem to be necessary.
 ///////////////////////////////////

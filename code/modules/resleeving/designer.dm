@@ -5,7 +5,7 @@
 	name = "body design console"
 	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi,
 						/datum/category_item/catalogue/technology/resleeving)
-	icon = 'icons/obj/computer_vr.dmi'
+	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "med_key"
 	icon_screen = "explosive"
 	light_color = "#315ab4"

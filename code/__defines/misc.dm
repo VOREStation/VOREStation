@@ -2,7 +2,7 @@
 // Turf-only flags.
 #define NOJAUNT 1 // This is used in literally one place, turf.dm, to block ethereal jaunt.
 
-#define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
+#define TRANSITIONEDGE 1 // Distance from edge to move to another z-level.
 
 // Invisibility constants. These should only be used for TRUE invisibility, AKA nothing living players touch
 #define INVISIBILITY_LIGHTING             20
@@ -128,6 +128,13 @@
 
 //Area flags, possibly more to come
 #define RAD_SHIELDED 1 //shielded from radiation, clearly
+
+// OnTopic return values
+#define TOPIC_NOACTION 0
+#define TOPIC_HANDLED 1
+#define TOPIC_REFRESH 2
+#define TOPIC_UPDATE_PREVIEW 4
+#define TOPIC_REFRESH_UPDATE_PREVIEW (TOPIC_REFRESH|TOPIC_UPDATE_PREVIEW)
 
 // Convoluted setup so defines can be supplied by Bay12 main server compile script.
 // Should still work fine for people jamming the icons into their repo.
