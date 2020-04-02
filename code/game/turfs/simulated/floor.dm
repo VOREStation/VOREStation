@@ -20,7 +20,7 @@
 		'sound/effects/footstep/plating4.ogg',
 		'sound/effects/footstep/plating5.ogg'))
 
-	var/list/old_decals = null // VOREStation Edit - Remember what decals we had between being pried up and replaced.
+	var/list/old_decals = null
 
 	// Flooring data.
 	var/flooring_override
