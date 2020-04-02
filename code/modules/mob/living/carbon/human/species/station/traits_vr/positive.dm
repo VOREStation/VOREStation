@@ -118,3 +118,9 @@
 /datum/trait/antiseptic_saliva/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	H.verbs |= /mob/living/carbon/human/proc/lick_wounds 
+
+/datum/trait/traceur
+	name = "Traceur"
+	desc = "You're capable of parkour and can *flip over low objects (most of the time)."
+	cost = 2
+	var_changes = list("agility" = 90)
