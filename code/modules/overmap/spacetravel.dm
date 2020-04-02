@@ -96,10 +96,10 @@ proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
 			break
 	if(!TM)
 		TM = get_deepspace(M.x,M.y)
-	nz = pick(TM.map_z)
+	nz = pick(TM.get_space_zlevels())
 
 	var/turf/dest = locate(nx,ny,nz)
-	if(dest)
+	if(istype(dest))
 		A.forceMove(dest)
 		if(ismob(A))
 			var/mob/D = A
@@ -110,5 +110,5 @@ proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
 		var/obj/effect/overmap/visitable/sector/temporary/source = M
 		if (source.can_die())
 			testing("Caching [M] for future use")
-			source.forceMove(null)
+			source.loc = null
 			cached_space += source

@@ -52,7 +52,6 @@ What is the naming convention for planes or layers?
 #define OVER_OPENSPACE_PLANE	-57
 
 // Turf Planes
-#define SPACE_PLANE				-82 // Space turfs themselves
 #define PLATING_PLANE			-44 // Plating
 	#define DISPOSAL_LAYER		2.1 // Under objects, even when planeswapped
 	#define PIPES_LAYER			2.2	// Under objects, even when planeswapped
