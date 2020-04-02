@@ -16,8 +16,16 @@
 	req_access = list(access_captain)
 	departments = list("Director")
 
+/obj/machinery/suit_cycler/captain/Initialize() //No Teshari Sprites
+	species -= SPECIES_TESHARI
+	return ..()
+
 /obj/machinery/suit_cycler/prototype
 	name = "Prototype suit cycler"
 	model_text = "Prototype"
 	req_access = list(access_cent_specops)
 	departments = list("Prototype")
+
+/obj/machinery/suit_cycler/prototype/Initialize() //No Teshari Sprites
+	species -= SPECIES_TESHARI
+	return ..()
