@@ -99,6 +99,16 @@
 	..(S,H)
 	H.verbs |= /mob/living/proc/eat_trash
 
+/datum/trait/gem_eater
+	name = "Expensive Taste"
+	desc = "There's nothing that sates the appetite better than precious gems, exotic or rare minerals and you have damn fine taste. Anything else is beneath you."
+	cost = 0
+	var_changes = list("gets_food_nutrition" = 0, "eat_ore" = 1) //The verb is given in human.dm
+
+/datum/trait/gem_eater/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/proc/eat_ore
+
 /datum/trait/glowing_eyes
 	name = "Glowing Eyes"
 	desc = "Your eyes show up above darkness. SPOOKY! And kinda edgey too."
