@@ -695,7 +695,7 @@
 	set desc = "Consume held ore and gems. Snack time!"
 
 	if(!vore_selected)
-		to_chat(src,"<span class='warning'>You either don't have a belly selected, or don't have a belly!</span>")
+		to_chat(src, "<span class='warning'>You either don't have a belly selected, or don't have a belly!</span>")
 		return
 
 	var/obj/item/I = (snack ? snack : get_active_hand())
@@ -725,8 +725,8 @@
 			"gold"			= list("nutrition" = 40, "remark" = "You taste supreme richness that exceeds expectations and satisfies your hunger."),
 			"diamond"		= list("nutrition" = 50, "remark" = "The heavenly taste of [O] almost brings a tear to your eye. Its glimmering gloriousness is even better on the tongue than you imagined, so you savour it fondly."),
 			"platinum"		= list("nutrition" = 40, "remark" = "A bit tangy but elegantly balanced with a long faintly sour finish. Delectible."),
-			"mhydrogen"		= list("nutrition" = 30, "remark" = "Quite sweet on the tongue, you savour the light easy to chew [O] and finish it quickly."),
-			MAT_VERDANTIUM	= list("nutrition" = 50, "remark" = "You taste the scientific mystery and a rare delicacy. Your tastebuds tingle pleasantly as you eat [O] and the feeling warmly blossoms in your chest for a moment."),
+			"mhydrogen"		= list("nutrition" = 30, "remark" = "Quite sweet on the tongue, you savour the light and easy to chew [O], finishing it quickly."),
+			MAT_VERDANTIUM	= list("nutrition" = 50, "remark" = "You taste scientific mystery and a rare delicacy. Your tastebuds tingle pleasantly as you eat [O] and the feeling warmly blossoms in your chest for a moment."),
 			MAT_LEAD		= list("nutrition" = 40, "remark" = "It takes some work to break down [O] but you manage it, unlocking lasting tangy goodness in the process. Yum."),
 		)
 		if(O.material in rock_munch)
