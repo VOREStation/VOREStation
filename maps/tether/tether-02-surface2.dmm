@@ -12490,7 +12490,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
 	},
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/cigarette{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/rnd/breakroom)
 "axO" = (
@@ -12523,7 +12525,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
 	},
-/obj/machinery/vending/snack,
+/obj/machinery/vending/coffee{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/rnd/breakroom)
 "axQ" = (
@@ -15094,7 +15098,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
 	},
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/snack{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/rnd/breakroom)
 "aBG" = (
@@ -38578,7 +38584,7 @@ aut
 aut
 aut
 atJ
-aBF
+axP
 auv
 azl
 aCY
@@ -38720,7 +38726,7 @@ auZ
 auu
 auu
 axb
-axP
+aBF
 auv
 azm
 aAf

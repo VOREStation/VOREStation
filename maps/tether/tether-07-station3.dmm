@@ -4359,6 +4359,13 @@
 /obj/machinery/portable_atmospherics/canister/air/airlock,
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"hc" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/cargo)
 "hd" = (
 /obj/structure/table/woodentable,
 /obj/machinery/photocopier/faxmachine{
@@ -15808,7 +15815,9 @@
 /obj/effect/floor_decal/corner/red/bordercorner2{
 	dir = 9
 	},
-/obj/structure/reagent_dispensers/water_cooler/full,
+/obj/structure/reagent_dispensers/water_cooler/full{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/security/lobby)
 "yw" = (
@@ -16586,7 +16595,6 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "zG" = (
-/obj/machinery/vending/snack,
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 9
 	},
@@ -16602,11 +16610,13 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
+	},
+/obj/machinery/vending/snack{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "zH" = (
-/obj/machinery/vending/cola,
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 9
 	},
@@ -16622,11 +16632,13 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
+	},
+/obj/machinery/vending/cola{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "zI" = (
-/obj/machinery/vending/cigarette,
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 9
 	},
@@ -16642,6 +16654,9 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
+	},
+/obj/machinery/vending/cigarette{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
@@ -25864,6 +25879,14 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/general)
+"NU" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/belter)
 "NV" = (
 /obj/machinery/sleeper{
 	dir = 4
@@ -25950,6 +25973,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/engines)
+"Oc" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/belter)
 "Od" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/structure/cable/green{
@@ -25967,6 +25997,14 @@
 /obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/medivac/general)
+"Of" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/belter)
 "Og" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -29679,21 +29717,6 @@
 /obj/machinery/light,
 /turf/simulated/shuttle/floor/yellow/airless,
 /area/shuttle/belter)
-"Vy" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
-	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/belter)
-"Vz" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/belter)
 "VA" = (
 /obj/effect/landmark/start{
 	name = "Medical Doctor"
@@ -29799,14 +29822,6 @@
 "VM" = (
 /turf/simulated/open,
 /area/ai_core_foyer)
-"VN" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
-	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/belter)
 "VP" = (
 /obj/machinery/atmospherics/unary/engine{
 	icon_state = "nozzle";
@@ -30392,13 +30407,6 @@
 "Xy" = (
 /turf/simulated/wall/rshull,
 /area/shuttle/medivac/cockpit)
-"Xz" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
-	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/cargo)
 "XB" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -42256,7 +42264,7 @@ UJ
 Xb
 Wp
 WV
-Xz
+hc
 ms
 Xq
 be
@@ -42398,7 +42406,7 @@ Wt
 WS
 Wp
 XN
-Xz
+hc
 ms
 Xq
 be
@@ -43534,7 +43542,7 @@ kQ
 TG
 Wp
 XN
-Xz
+hc
 ms
 mq
 be
@@ -43676,7 +43684,7 @@ kR
 Vd
 Wp
 XD
-Xz
+hc
 ms
 QL
 be
@@ -45000,11 +45008,11 @@ Ty
 TL
 QG
 Ue
-Vy
-Vz
-Vz
-Vz
-VN
+NU
+Oc
+Oc
+Oc
+Of
 VH
 vt
 vt
