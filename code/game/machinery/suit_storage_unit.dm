@@ -1166,13 +1166,13 @@
 				suit.item_state_slots[slot_r_hand_str] = "sec_voidsuitTG"
 				suit.item_state_slots[slot_l_hand_str] = "sec_voidsuitTG"
 		//VOREStation Addition Start
-		if("Captain")
+		if("Director")
 			if(helmet)
-				helmet.name = "captain voidsuit helmet"
+				helmet.name = "director voidsuit helmet"
 				helmet.icon_state = "capvoid"
 				helmet.item_state = "capvoid"
 			if(suit)
-				suit.name = "captain voidsuit"
+				suit.name = "director voidsuit"
 				suit.icon_state = "capsuit_void"
 				suit.item_state = "capsuit_void"
 				suit.item_state_slots[slot_r_hand_str] = "wiz_voidsuit"
