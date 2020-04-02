@@ -1165,6 +1165,31 @@
 				suit.item_state = "rig-pilot2"
 				suit.item_state_slots[slot_r_hand_str] = "sec_voidsuitTG"
 				suit.item_state_slots[slot_l_hand_str] = "sec_voidsuitTG"
+		//VOREStation Addition Start
+		if("Captain")
+			if(helmet)
+				helmet.name = "captain voidsuit helmet"
+				helmet.icon_state = "capvoid"
+				helmet.item_state = "capvoid"
+			if(suit)
+				suit.name = "captain voidsuit"
+				suit.icon_state = "capsuit_void"
+				suit.item_state = "capsuit_void"
+				suit.item_state_slots[slot_r_hand_str] = "wiz_voidsuit"
+				suit.item_state_slots[slot_l_hand_str] = "wiz_voidsuit"
+		if("Prototype")
+			if(helmet)
+				helmet.name = "prototype voidsuit helmet"
+				helmet.icon_state = "hosproto"
+				helmet.item_state = "hosproto"
+			if(suit)
+				suit.name = "prototype voidsuit"
+				suit.icon_state = "hosproto_void"
+				suit.item_state = "hosproto_void"
+				suit.item_state_slots[slot_r_hand_str] = "sec_voidsuitTG"
+				suit.item_state_slots[slot_l_hand_str] = "sec_voidsuitTG"
+		//VOREStation Addition End
+		
 
 
 	if(helmet) helmet.name = "refitted [helmet.name]"
