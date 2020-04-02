@@ -6019,7 +6019,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/vending/security,
+/obj/machinery/vending/security{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/common)
 "ajQ" = (
@@ -8629,18 +8631,17 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/pool)
 "aou" = (
-/obj/structure/reagent_dispensers/water_cooler/full,
-/obj/item/device/radio/intercom{
-	dir = 2;
-	pixel_y = -24
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 9
 	},
-/obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1";
-	pixel_x = 0
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 6
 	},
-/turf/simulated/floor/wood,
-/area/crew_quarters/recreation_area)
+/obj/machinery/vending/snack{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "aov" = (
 /obj/machinery/scale,
 /obj/structure/disposalpipe/segment{
@@ -15964,7 +15965,9 @@
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 6
 	},
-/obj/machinery/vending/cola,
+/obj/machinery/vending/cola{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "aAo" = (
@@ -28849,10 +28852,20 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lobby)
 "aVS" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/obj/item/device/radio/intercom{
+	dir = 2;
+	pixel_y = -24
+	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	pixel_x = 0
+	},
+/obj/structure/reagent_dispensers/water_cooler/full{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/recreation_area)
 "aVT" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/steeldecal/steel_decals6,
@@ -28862,12 +28875,10 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lobby)
 "aVV" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
-	},
+/obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
-/area/shuttle/tourbus/engines)
+/area/shuttle/tether)
 "aVW" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -29021,6 +29032,13 @@
 /obj/structure/sign/directions/evac,
 /turf/simulated/wall/r_wall,
 /area/tether/surfacebase/security/lobby)
+"aWf" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/engines)
 "aWg" = (
 /obj/structure/sign/directions/evac{
 	dir = 8
@@ -31746,16 +31764,6 @@
 /obj/structure/bed/chair/wood{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_three_hall)
-"bbv" = (
-/obj/effect/floor_decal/corner/lightgrey{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/lightgrey{
-	dir = 6
-	},
-/obj/machinery/vending/snack,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "bbw" = (
@@ -41892,7 +41900,7 @@ amx
 ana
 anF
 aiI
-aou
+aVS
 akY
 aix
 apQ
@@ -43786,7 +43794,7 @@ mfi
 jHw
 jpB
 qWU
-aVV
+aWf
 aKU
 aOI
 aPb
@@ -44638,7 +44646,7 @@ isR
 jHw
 gHh
 qWU
-aVV
+aWf
 aKU
 aOI
 aPb
@@ -46291,7 +46299,7 @@ akn
 bbq
 aZu
 bbu
-bbv
+aou
 ayx
 aZE
 aZR
@@ -46623,7 +46631,7 @@ aNk
 uSA
 aNJ
 aNP
-aVS
+aVV
 aKU
 abg
 aOk
@@ -46765,7 +46773,7 @@ aNl
 aNl
 aNK
 aNP
-aVS
+aVV
 aKU
 abg
 aOk
@@ -46907,7 +46915,7 @@ aNm
 aNl
 aNK
 aNP
-aVS
+aVV
 aKU
 abg
 aOk
@@ -49437,8 +49445,8 @@ aac
 aac
 aac
 aab
-aab
-aab
+aac
+aac
 aac
 aac
 aac

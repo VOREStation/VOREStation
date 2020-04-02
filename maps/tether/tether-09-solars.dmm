@@ -1428,6 +1428,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/eva)
+"cZ" = (
+/obj/machinery/vending/phoronresearch{
+	dir = 8;
+	name = "Toximate 2556";
+	products = list(/obj/item/device/transfer_valve = 3, /obj/item/device/assembly/timer = 6, /obj/item/device/assembly/signaler = 6, /obj/item/device/assembly/prox_sensor = 6, /obj/item/device/assembly/igniter = 12)
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/testing)
 "da" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 2;
@@ -1630,6 +1638,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/eva)
+"dA" = (
+/obj/machinery/vending/coffee{
+	icon_state = "coffee";
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/breakroom)
 "dB" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 4;
@@ -1655,6 +1670,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/airlock)
+"dD" = (
+/obj/machinery/vending/snack{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/breakroom)
 "dE" = (
 /turf/simulated/wall,
 /area/maintenance/substation/outpost)
@@ -1793,12 +1814,12 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
 "dV" = (
-/obj/machinery/vending/phoronresearch{
-	name = "Toximate 2556";
-	products = list(/obj/item/device/transfer_valve = 3, /obj/item/device/assembly/timer = 6, /obj/item/device/assembly/signaler = 6, /obj/item/device/assembly/prox_sensor = 6, /obj/item/device/assembly/igniter = 12)
+/obj/machinery/vending/cola{
+	icon_state = "Soda_Machine";
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/testing)
+/area/rnd/outpost/breakroom)
 "dW" = (
 /obj/machinery/requests_console/preset/research{
 	pixel_y = -30
@@ -7953,23 +7974,16 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
 "oC" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/fitness{
+	dir = 8;
+	icon_state = "fitness"
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
 "oD" = (
-/obj/machinery/vending/snack,
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/breakroom)
-"oE" = (
-/obj/machinery/vending/cola,
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/breakroom)
-"oF" = (
-/obj/machinery/vending/fitness,
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/breakroom)
-"oG" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/cigarette{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
 "oH" = (
@@ -23349,7 +23363,7 @@ cf
 cx
 cU
 dv
-dV
+cZ
 cf
 eU
 ft
@@ -24649,7 +24663,7 @@ oI
 mm
 nf
 ni
-oG
+oD
 oP
 oX
 eE
@@ -25071,10 +25085,10 @@ kB
 lh
 lx
 ks
+dA
+dD
+dV
 oC
-oD
-oE
-oF
 oM
 pb
 pc
