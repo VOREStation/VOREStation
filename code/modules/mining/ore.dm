@@ -123,6 +123,7 @@
 	else
 		return ..()
 
+//VOREStation Add
 /obj/item/weapon/ore/attack(mob/living/M as mob, mob/living/user as mob)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -130,3 +131,4 @@
 			H.eat_ore(src)
 			return
 	..()
+//VOREStation Add End
