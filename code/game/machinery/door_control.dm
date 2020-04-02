@@ -213,7 +213,10 @@
 /obj/machinery/button/remote/shields
 	name = "remote shield control"
 	desc = "It controls shields, remotely."
+<<<<<<< HEAD
 	icon = 'icons/obj/stationobjs_vr.dmi' // VOREStation Edit
+=======
+>>>>>>> 48c813e... Merge pull request #6929 from VOREStation/aro-shieldremote
 
 /obj/machinery/button/remote/shields/trigger(var/mob/user)
 	for(var/obj/machinery/shield_gen/SG in machines)
