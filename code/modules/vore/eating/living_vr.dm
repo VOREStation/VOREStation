@@ -147,7 +147,7 @@
 
 		if(!isliving(user))
 			return FALSE // return FALSE to continue upper procs
-		
+
 		var/mob/living/attacker = user  // Typecast to living
 		if(is_vore_predator(src))
 			for(var/mob/living/M in H.contents)
@@ -687,6 +687,60 @@
 			to_chat(src, "<span class='notice'>You can taste the flavor of garbage. Delicious.</span>")
 		return
 	to_chat(src, "<span class='notice'>This item is not appropriate for ethical consumption.</span>")
+	return
+
+/mob/living/proc/eat_ore(var/obj/item/snack)
+	set name = "Eat Ore"
+	set category = "Abilities"
+	set desc = "Consume held ore and gems. Snack time!"
+
+	if(!vore_selected)
+		to_chat(src,"<span class='warning'>You either don't have a belly selected, or don't have a belly!</span>")
+		return
+
+	var/obj/item/I = (snack ? snack : get_active_hand())
+	if(!I)
+		to_chat(src, "<span class='notice'>You are not holding anything.</span>")
+		return
+
+	var/obj/item/weapon/ore/O = I
+	if(istype(O))
+		//Eat the ore using the vorebelly for the sound then get rid of the ore to prevent infinite nutrition.
+		drop_item()
+		O.forceMove(vore_selected)
+		qdel(O)
+
+		log_admin("VORE: [src] used Eat Ore to swallow [O].")
+
+		//List in list, define by material property of ore in code/mining/modules/ore.dm.
+		//50 nutrition = 5 ore to get 250 nutrition. 250 is the beginning of the 'well fed' range.
+		var/list/rock_munch = list(
+			"uranium"		= list("nutrition" = 30, "remark" = "Crunching [O] in your jaws almost makes you wince, a horridly tangy and sour flavour radiating through your mouth. It goes down all the same."),
+			"hematite"		= list("nutrition" = 15, "remark" = "The familiar texture and taste of [O] does the job but leaves little to the imagination and hardly sates your appetite."),
+			"carbon"		= list("nutrition" = 15, "remark" = "Utterly bitter, crunching down on [O] only makes you long for better things. But a snack's a snack..."),
+			"marble"		= list("nutrition" = 40, "remark" = "A fitting dessert, the sweet and savoury [O] lingers on the palate and satisfies your hunger."),
+			"sand"			= list("nutrition" = 0,  "remark" = "You crunch on [O] but its texture is almost gag-inducing. Stifling a cough, you somehow manage to swallow both [O] and your regrets."),
+			"phoron"		= list("nutrition" = 30, "remark" = "Crunching [O] to dust between your jaws, a warmth fills your mouth that briefly spreads down the throat to your chest as you swallow."),
+			"silver"		= list("nutrition" = 40, "remark" = "[O] tastes quite nice indeed as you munch on it. A little tarnished, but that's just fine aging."),
+			"gold"			= list("nutrition" = 40, "remark" = "You taste supreme richness that exceeds expectations and satisfies your hunger."),
+			"diamond"		= list("nutrition" = 50, "remark" = "The heavenly taste of [O] almost brings a tear to your eye. Its glimmering gloriousness is even better on the tongue than you imagined, so you savour it fondly."),
+			"platinum"		= list("nutrition" = 40, "remark" = "A bit tangy but elegantly balanced with a long faintly sour finish. Delectible."),
+			"mhydrogen"		= list("nutrition" = 30, "remark" = "Quite sweet on the tongue, you savour the light easy to chew [O] and finish it quickly."),
+			MAT_VERDANTIUM	= list("nutrition" = 50, "remark" = "You taste the scientific mystery and a rare delicacy. Your tastebuds tingle pleasantly as you eat [O] and the feeling warmly blossoms in your chest for a moment."),
+			MAT_LEAD		= list("nutrition" = 40, "remark" = "It takes some work to break down [O] but you manage it, unlocking lasting tangy goodness in the process. Yum."),
+		)
+		if(O.material in rock_munch)
+			var/S = rock_munch[O.material]
+			to_chat(src, "<span class='notice'>[S["remark"]]</span>")
+			nutrition += S["nutrition"]
+		else //Handle everything else.
+			if(istype(O, /obj/item/weapon/ore/slag/))
+				to_chat(src, "<span class='notice'>You taste dusty, crunchy mistakes. This is a travesty... but at least it is an edible one.</span>")
+				nutrition += 15
+			else //Random rock.
+				to_chat(src, "<span class='notice'>You taste stony, gravelly goodness - but you crave something with actual nutritional value.</span>")
+		return
+	to_chat(src, "<span class='notice'>You pause for a moment to examine [I] and realize it's not even worth the energy to chew.</span>")
 	return
 
 /mob/living/proc/switch_scaling()
