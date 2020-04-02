@@ -2,7 +2,7 @@
 // Turf-only flags.
 #define NOJAUNT 1 // This is used in literally one place, turf.dm, to block ethereal jaunt.
 
-#define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
+#define TRANSITIONEDGE 1 // Distance from edge to move to another z-level.
 
 // Invisibility constants. These should only be used for TRUE invisibility, AKA nothing living players touch
 #define INVISIBILITY_LIGHTING             20

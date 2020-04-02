@@ -74,6 +74,12 @@
 		global.using_map.contact_levels |= map_z
 		global.using_map.map_levels |= map_z
 
+/obj/effect/overmap/visitable/proc/get_space_zlevels()
+	if(in_space)
+		return map_z
+	else
+		return list()
+
 //Helper for init.
 /obj/effect/overmap/visitable/proc/check_ownership(obj/object)
 	if((object.z in map_z) && !(get_area(object) in SSshuttles.shuttle_areas))

@@ -3515,6 +3515,7 @@
 #include "maps\southern_cross\loadout\loadout_uniform.dm"
 #include "maps\southern_cross\structures\closets\misc.dm"
 #include "maps\southern_cross\structures\closets\misc_vr.dm"
+#include "maps\submaps\_helpers.dm"
 #include "maps\submaps\_readme.dm"
 #include "maps\submaps\engine_submaps\engine.dm"
 #include "maps\submaps\engine_submaps\engine_areas.dm"
