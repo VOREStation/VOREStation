@@ -65,14 +65,10 @@
 /turf/space,
 /area/space)
 "ag" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 1;
-	icon_state = "emitter-off";
-	name = "pulse laser"
+/obj/machinery/porta_turret/industrial/military,
+/turf/simulated/floor/reinforced/airless{
+	name = "outer hull"
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
 /area/mothership/breakroom)
 "ah" = (
 /turf/simulated/floor/tiled/steel_grid,
@@ -355,23 +351,33 @@
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
 "aL" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/coffee{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
 "aM" = (
-/obj/machinery/vending/fitness,
+/obj/machinery/vending/fitness{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
 "aN" = (
-/obj/machinery/vending/cola,
+/obj/machinery/vending/cola{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
 "aO" = (
-/obj/machinery/vending/snack,
+/obj/machinery/vending/snack{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
 "aP" = (
-/obj/machinery/vending/sovietsoda,
+/obj/machinery/vending/sovietsoda{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
 "aQ" = (
@@ -448,7 +454,9 @@
 /turf/simulated/floor/carpet/blue,
 /area/mothership/breakroom)
 "aX" = (
-/obj/machinery/vending/dinnerware,
+/obj/machinery/vending/dinnerware{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
 "aY" = (
@@ -752,7 +760,9 @@
 /turf/simulated/floor/plating,
 /area/mothership/hydroponics)
 "bD" = (
-/obj/machinery/seed_storage/xenobotany,
+/obj/machinery/seed_storage/xenobotany{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/hydroponics)
 "bE" = (
@@ -885,7 +895,9 @@
 /turf/simulated/floor/plating,
 /area/mothership/kitchen)
 "bR" = (
-/obj/machinery/vending/hydronutrients,
+/obj/machinery/vending/hydronutrients{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/hydroponics)
 "bS" = (
@@ -1123,16 +1135,6 @@
 	name = "small craft wall hc";
 	stripe_color = "#45b3d8"
 	},
-/area/mothership/eva)
-"cv" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 8;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
 /area/mothership/eva)
 "cw" = (
 /obj/item/clothing/suit/space/void/security/alt,
@@ -2808,16 +2810,6 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/security)
-"fn" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 4;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/eva)
 "fo" = (
 /obj/machinery/optable,
 /turf/simulated/floor/tiled/white,
@@ -2988,7 +2980,9 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "fz" = (
-/obj/structure/prop/blackbox,
+/obj/structure/prop/alien/computer/hybrid{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "fA" = (
@@ -3091,16 +3085,6 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/security)
-"fI" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 8;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/surgery)
 "fJ" = (
 /obj/machinery/computer/operating{
 	dir = 4
@@ -5054,16 +5038,6 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/processing)
-"jo" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 4;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/security)
 "jp" = (
 /obj/machinery/computer/transhuman/designer{
 	dir = 4
@@ -6803,8 +6777,8 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/bridge)
 "mr" = (
-/obj/structure/prop/alien/computer/hybrid{
-	dir = 1
+/obj/machinery/pointdefense_control{
+	id_tag = "warship_pd"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/bridge)
@@ -7020,16 +6994,6 @@
 /obj/item/weapon/rig/ert/security,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
-"mN" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 8;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/resleeving)
 "mO" = (
 /obj/machinery/r_n_d/circuit_imprinter,
 /obj/item/weapon/reagent_containers/glass/beaker/sulphuric,
@@ -7203,16 +7167,6 @@
 /obj/item/weapon/rig/ert/engineer,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
-"ne" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 4;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/warden)
 "nf" = (
 /obj/machinery/vending/robotics,
 /turf/simulated/floor/tiled/steel_grid,
@@ -8261,11 +8215,15 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "oX" = (
-/obj/machinery/vending/fitness,
+/obj/machinery/vending/fitness{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "oY" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/coffee{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "oZ" = (
@@ -9364,16 +9322,6 @@
 /obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
 /turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms2)
-"rs" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 8;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/rnd)
 "rt" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 8
@@ -9767,7 +9715,9 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/engineering)
 "ss" = (
-/obj/machinery/vending/assist,
+/obj/machinery/vending/assist{
+	dir = 8
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
@@ -9874,7 +9824,9 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/engineering)
 "sw" = (
-/obj/machinery/vending/engivend,
+/obj/machinery/vending/engivend{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
@@ -9900,7 +9852,9 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/engineering)
 "sy" = (
-/obj/machinery/vending/engineering,
+/obj/machinery/vending/engineering{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/engineering)
 "sz" = (
@@ -9924,7 +9878,9 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/engineering)
 "sC" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/tool{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/engineering)
 "sD" = (
@@ -9993,16 +9949,6 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/mothership/engineering)
-"sJ" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 4;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/armory)
 "sK" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
@@ -10087,26 +10033,6 @@
 	},
 /turf/space,
 /area/space)
-"sR" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 8;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/telecomms1)
-"sS" = (
-/obj/machinery/power/emitter/gyrotron/anchored{
-	desc = "It is a heavy duty pulse laser emitter.";
-	dir = 4;
-	icon_state = "emitter-off";
-	name = "pulse laser"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/mothership/telecomms2)
 "tb" = (
 /obj/effect/floor_decal/techfloor/orange{
 	icon_state = "techfloororange_edges";
@@ -10158,6 +10084,14 @@
 	},
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
+"uh" = (
+/obj/machinery/pointdefense{
+	id_tag = "warship_pd"
+	},
+/turf/simulated/floor/reinforced/airless{
+	name = "outer hull"
+	},
+/area/mothership/bridge)
 "uI" = (
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 1
@@ -10197,6 +10131,11 @@
 	icon_state = "laptop"
 	},
 /turf/simulated/floor/reinforced,
+/area/mothership/telecomms1)
+"vb" = (
+/turf/simulated/floor/reinforced/airless{
+	name = "outer hull"
+	},
 /area/mothership/telecomms1)
 "vi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
@@ -10798,10 +10737,6 @@
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms2)
-"OM" = (
-/obj/machinery/telecomms/relay/preset/centcom,
-/turf/simulated/floor/wood,
-/area/mothership/breakroom)
 "Pi" = (
 /obj/machinery/light{
 	dir = 1
@@ -10925,6 +10860,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
+"Sa" = (
+/obj/machinery/telecomms/relay/preset/centcom,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/mothership/bridge)
 "Sj" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden,
 /obj/machinery/gravity_generator{
@@ -10947,7 +10886,12 @@
 /turf/simulated/floor/reinforced/airless{
 	name = "outer hull"
 	},
-/area/mothership/hydroponics)
+/area/mothership/bridge)
+"Sv" = (
+/turf/simulated/floor/reinforced/airless{
+	name = "outer hull"
+	},
+/area/mothership/breakroom)
 "Sx" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -18942,33 +18886,33 @@ aa
 aa
 bc
 cq
-dJ
-fI
-dJ
 cq
-bc
-cq
-cq
-cq
+uh
 cq
 cq
 bc
 cq
-iV
-mN
-iV
 cq
-bc
-cq
-cq
-cq
+uh
 cq
 cq
 bc
 cq
-mi
-rs
-mi
+cq
+uh
+cq
+cq
+bc
+cq
+cq
+uh
+cq
+cq
+bc
+cq
+cq
+uh
+cq
 cq
 bc
 nk
@@ -18979,9 +18923,9 @@ pe
 ps
 pe
 bc
-pe
-sR
-pe
+vb
+vb
+uh
 aa
 aa
 aa
@@ -19552,7 +19496,7 @@ uV
 Kd
 AL
 pV
-bc
+uh
 aa
 aa
 aa
@@ -19641,7 +19585,7 @@ be
 bC
 bC
 bd
-cv
+uh
 cr
 cI
 cr
@@ -19772,7 +19716,7 @@ aa
 aa
 aa
 aa
-bc
+uh
 ae
 au
 au
@@ -20341,7 +20285,7 @@ aa
 aa
 ag
 ab
-OM
+ao
 ao
 Do
 ao
@@ -20481,7 +20425,7 @@ aa
 aa
 aa
 aa
-ae
+Sv
 ae
 ap
 ao
@@ -20623,7 +20567,7 @@ aa
 aa
 aa
 aa
-bc
+uh
 ac
 ao
 aw
@@ -21379,7 +21323,7 @@ ln
 EK
 dA
 mc
-mr
+Sa
 uI
 mX
 nr
@@ -21617,7 +21561,7 @@ aa
 aa
 aa
 aa
-bc
+uh
 ac
 ao
 aB
@@ -21759,7 +21703,7 @@ aa
 aa
 aa
 aa
-ae
+Sv
 ae
 as
 ao
@@ -22470,7 +22414,7 @@ aa
 aa
 aa
 aa
-bc
+uh
 ae
 aC
 aC
@@ -22623,7 +22567,7 @@ bk
 bQ
 bQ
 bi
-fn
+uh
 cr
 cT
 cr
@@ -22818,7 +22762,7 @@ GW
 vi
 KA
 qs
-bc
+uh
 aa
 aa
 aa
@@ -23344,33 +23288,33 @@ aa
 aa
 bc
 cq
-dV
-jo
-dV
 cq
-bc
-cq
-cq
-cq
+uh
 cq
 cq
 bc
 cq
-hC
-ne
-jD
 cq
-bc
-cq
-cq
-cq
+uh
 cq
 cq
 bc
 cq
-lr
-sJ
-lr
+cq
+uh
+cq
+cq
+bc
+cq
+cq
+uh
+cq
+cq
+bc
+cq
+cq
+uh
+cq
 cq
 bc
 lq
@@ -23381,9 +23325,9 @@ pq
 pT
 pq
 bc
-pq
-sS
-pq
+cq
+cq
+uh
 aa
 aa
 aa
