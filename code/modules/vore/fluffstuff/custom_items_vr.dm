@@ -36,34 +36,100 @@
 	var/from_suit = /obj/item/clothing/suit/space/void
 	var/to_helmet = /obj/item/clothing/head/cardborg
 	var/to_suit = /obj/item/clothing/suit/cardborg
-
+	
+	//conversion costs. refunds all parts by default, but can be tweaked per-kit
+	var/from_helmet_cost = 1
+	var/from_suit_cost = 2
+	var/to_helmet_cost = -1
+	var/to_suit_cost = -2
+	
+	var/owner_ckey = null		//ckey of the kit owner as a string
+	var/skip_contents = FALSE	//can we skip the contents check? we generally shouldn't, but this is necessary for rigs/coats with hoods/etc.
+	var/transfer_contents = FALSE	//should we transfer the contents across before deleting? we generally shouldn't, esp. in the case of rigs/coats with hoods/etc.
+	var/can_repair = FALSE		//can we be used to repair damaged voidsuits when converting them?
+	var/can_revert = TRUE		//can we revert items, or is it a one-way trip?
+	var/delete_on_empty = FALSE	//do we self-delete when emptied?
+	
 	//Conversion proc
 /obj/item/device/modkit_conversion/afterattack(obj/O, mob/user as mob)
-	var/flag
+	var/cost
 	var/to_type
-	if(istype(O,from_helmet))
-		flag = 1
+	var/keycheck
+	if(istype(O,/obj/item/clothing/suit/space/void/) && !can_repair) //check if we're a voidsuit and if we're allowed to repair
+		if(O:breaches.len)	//this has to be underneath the istype or it'll spit a runtime if used on non-voidsuits
+			to_chat(user, "<span class='warning'>You should probably repair that before you start tinkering with it.</span>")
+			return
+	if(isturf(O)) //silently fail if you click on a turf. shouldn't work anyway because turfs aren't objects but if I don't do this it spits runtimes. 
+		return
+	if(O.blood_DNA || O.contaminated) //check if we're bloody or gooey or whatever, so modkits can't be used to hide crimes easily.
+		to_chat(user, "<span class='warning'>You should probably clean that up before you start tinkering with it.</span>")
+		return
+	//we have to check that it's not the original type first, because otherwise it might convert wrong based on pathing; the subtype can still count as the basetype
+	if(istype(O,to_helmet) && can_revert)
+		cost = to_helmet_cost
+		to_type = from_helmet
+	else if(istype(O,to_suit) && can_revert)
+		cost = to_suit_cost
+		to_type = from_suit
+	else if(!can_revert && (istype(O,to_helmet) || istype (O,to_suit)))
+		to_chat(user, "<span class='warning'>This kit doesn't seem to have the tools necessary to revert changes to modified items.</span>")
+		return
+	else if(istype(O,from_helmet))
+		cost = from_helmet_cost
 		to_type = to_helmet
+		keycheck = TRUE
 	else if(istype(O,from_suit))
-		flag = 2
+		cost = from_suit_cost
 		to_type = to_suit
+		keycheck = TRUE
 	else
 		return
-	if(!(parts & flag))
-		to_chat(user, "<span class='warning'>This kit has no parts for this modification left.</span>")
-		return
-	if(istype(O,to_type))
-		to_chat(user, "<span class='notice'>[O] is already modified.</span>")
-		return
 	if(!isturf(O.loc))
-		to_chat(user, "<span class='warning'>[O] must be safely placed on the ground for modification.</span>")
+		to_chat(user, "<span class='warning'>You need to put \the [O] on the ground, a table, or other worksurface before modifying it.</span>")
 		return
+	if(!skip_contents && O.contents.len) //check if we're loaded/modified, in the event of gun/suit kits, to avoid purging stuff like ammo, badges, armbands, or suit helmets
+		to_chat(user, "<span class='warning'>You should probably remove any attached items or loaded ammunition before trying to modify that!</span>")
+		return
+	if(cost > parts)
+		to_chat(user, "<span class='warning'>The kit doesn't have enough parts left to modify that.</span>")
+		if(can_revert && ((to_helmet_cost || to_suit_cost) < 0))
+			to_chat(user, "<span class='notice'> You can recover parts by using the kit on an already-modified item.</span>")
+		return
+	if(keycheck && owner_ckey) //check if we're supposed to care
+		if(user.ckey != owner_ckey) //ERROR: UNAUTHORIZED USER
+			to_chat(user, "<span class='warning'>You probably shouldn't mess with all these strange tools and parts...</span>") //give them a slightly fluffy explanation as to why it didn't work
+			return
 	playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
-	var/N = new to_type(O.loc)
-	user.visible_message("<span class='warning'>[user] opens \the [src] and modifies \the [O] into \the [N].</span>","<span class='warning'>You open \the [src] and modify \the [O] into \the [N].</span>")
+	var/obj/N = new to_type(O.loc)
+	user.visible_message("<span class='notice'>[user] opens \the [src] and modifies \the [O] into \the [N].</span>","<span class='notice'>You open \the [src] and modify \the [O] into \the [N].</span>")
+	
+	//crude, but transfer prints and fibers to avoid forensics abuse, same as the bloody/gooey check above
+	N.fingerprints = O.fingerprints
+	N.fingerprintshidden = O.fingerprintshidden
+	N.fingerprintslast = O.fingerprintslast
+	N.suit_fibers = O.suit_fibers
+	
+	//I don't like using the lookdown checks here but fuck it, it works. the istypes are essential though, or else it runtimes and won't get to the qdel for the source item, allowing item duping
+	//transfer logic could technically be made more thorough and handle stuff like helmet/boots/tank vars for suits, but in those cases you should be removing the items first anyway
+	if(skip_contents && transfer_contents)
+		N.contents = O.contents
+		if(istype(N,/obj/item/weapon/gun/projectile/))
+			N:magazine_type = O:magazine_type
+			N:ammo_magazine = O:ammo_magazine
+		if(istype(N,/obj/item/weapon/gun/energy/))
+			N:cell_type = O:cell_type
+	else	//nuke any ammo it'd normally spawn with, if it's a gun, to prevent ammo duplication. we have to do this just for guns, not immediately under the else, or it breaks default attachments like hoods and suit storage
+		if(istype(N,/obj/item/weapon/gun/projectile/))
+			N:contents = list()
+			N:magazine_type = null
+			N:ammo_magazine = null
+		if(istype(N,/obj/item/weapon/gun/energy/))
+			N:contents = list()
+			N:cell_type = null
+	
 	qdel(O)
-	parts &= ~flag
-	if(!parts)
+	parts -= cost
+	if(!parts && delete_on_empty)
 		qdel(src)
 
 //JoanRisu:Joan Risu
