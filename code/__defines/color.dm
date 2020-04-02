@@ -17,3 +17,4 @@
 #define COLOR_ASSEMBLY_HOT_PINK "#FF69B4"
 
 #define COLOR_ASTEROID_ROCK    "#735555"
+#define COLOR_GOLD             "#ffcc33"
