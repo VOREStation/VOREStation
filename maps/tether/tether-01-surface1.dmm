@@ -32964,7 +32964,7 @@
 "mdP" = (
 /obj/machinery/door/airlock{
 	id_tag = "lg_1";
-	name = "Room 7 (Holo)"
+	name = "Looking Glass"
 	},
 /obj/structure/cable/green{
 	d1 = 4;
