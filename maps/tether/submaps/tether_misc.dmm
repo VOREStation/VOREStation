@@ -2323,8 +2323,8 @@
 /area/beach)
 "FT" = (
 /obj/effect/shuttle_landmark{
-	base_area = /area/centcom/ferry;
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid;
+	base_area = null;
+	base_turf = null;
 	docking_controller = null;
 	landmark_tag = "escape_transit";
 	name = "Escape Transit"
@@ -2783,7 +2783,7 @@
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid;
 	docking_controller = null;
 	landmark_tag = "escape_cc";
-	name = "Escape Transit"
+	name = "Escape Centcom"
 	},
 /turf/simulated/shuttle/wall,
 /area/shuttle/escape)
