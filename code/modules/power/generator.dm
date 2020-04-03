@@ -27,9 +27,11 @@
 /obj/machinery/power/generator/Initialize()
 	soundloop = new(list(src), FALSE)
 	desc = initial(desc) + " Rated for [round(max_power/1000)] kW."
-	spawn(1)
-		reconnect()
-	return ..()
+	..() //Not returned, because...
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/power/generator/LateInitialize()
+	reconnect()
 
 /obj/machinery/power/generator/Destroy()
 	QDEL_NULL(soundloop)

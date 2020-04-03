@@ -6398,6 +6398,11 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
 "all" = (
@@ -6416,6 +6421,11 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
@@ -6612,6 +6622,11 @@
 /obj/effect/floor_decal/corner/lightgrey/border{
 	dir = 10
 	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
 "alx" = (
@@ -6624,11 +6639,21 @@
 /obj/effect/floor_decal/corner/lightgrey/bordercorner{
 	dir = 8
 	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
 "aly" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
@@ -6639,6 +6664,9 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/borderfloor/corner,
 /obj/effect/floor_decal/corner/lightgrey/bordercorner,
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
 "alA" = (
@@ -32433,9 +32461,7 @@
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 8
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
-	},
+/turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bda" = (
 /obj/machinery/power/apc{
@@ -32452,9 +32478,7 @@
 	icon_state = "techfloororange_corners";
 	dir = 8
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
-	},
+/turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdb" = (
 /obj/machinery/door/airlock/maintenance/common,
@@ -32523,18 +32547,14 @@
 	icon_state = "techfloor_hole_left";
 	dir = 4
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
-	},
+/turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdi" = (
 /obj/effect/floor_decal/techfloor/orange/corner{
 	icon_state = "techfloororange_corners";
 	dir = 1
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
-	},
+/turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdj" = (
 /obj/structure/catwalk,
@@ -32563,14 +32583,10 @@
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 8
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
-	},
+/turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdm" = (
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
-	},
+/turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdn" = (
 /obj/structure/catwalk,
@@ -32586,9 +32602,7 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
-	},
+/turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdp" = (
 /obj/machinery/button/windowtint{
@@ -32611,9 +32625,7 @@
 	pixel_y = 0;
 	report_danger_level = 0
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
-	},
+/turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdq" = (
 /obj/structure/table/standard,
@@ -32627,9 +32639,7 @@
 	info = "Brusies sustained in the holodeck can be healed simply by sleeping.";
 	name = "Holodeck Disclaimer"
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
-	},
+/turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bds" = (
 /obj/structure/catwalk,
@@ -32644,16 +32654,12 @@
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 8
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
-	},
+/turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
-	},
+/turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdv" = (
 /obj/machinery/door/firedoor,
@@ -32673,9 +32679,7 @@
 	icon_state = "techfloor_hole_right";
 	dir = 4
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
-	},
+/turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -32684,9 +32688,7 @@
 	icon_state = "techfloororange_corners";
 	dir = 8
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
-	},
+/turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -32699,9 +32701,7 @@
 	icon_state = "techfloororange_corners";
 	dir = 1
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
-	},
+/turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdz" = (
 /obj/machinery/alarm{
@@ -32726,9 +32726,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
-	},
+/turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdB" = (
 /obj/structure/catwalk,
@@ -32862,17 +32860,92 @@
 /area/tether/surfacebase/public_garden_one)
 "bdN" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
+"bZC" = (
+/turf/simulated/floor/looking_glass,
+/area/looking_glass/lg_1)
+"cAR" = (
+/turf/simulated/floor/looking_glass/center,
+/area/looking_glass/lg_1)
 "cGJ" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
+"cPs" = (
+/obj/machinery/computer/looking_glass{
+	lg_id = "one"
+	},
+/obj/effect/floor_decal/spline/plain{
+	icon_state = "spline_plain";
+	dir = 9
+	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/looking_glass/lg_1)
+"fcT" = (
+/turf/simulated/floor/looking_glass{
+	icon_state = "origin_arrow";
+	dir = 8
+	},
+/area/looking_glass/lg_1)
+"ffD" = (
+/turf/simulated/floor/looking_glass{
+	icon_state = "origin_arrow";
+	dir = 10
+	},
+/area/looking_glass/lg_1)
+"gaK" = (
+/obj/machinery/door/airlock/glass{
+	name = "Looking Glass"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/public_garden_one)
 "guV" = (
 /obj/structure/closet,
 /obj/random/drinkbottle,
 /obj/random/maintenance/cargo,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/vacant_site)
+"gZN" = (
+/turf/simulated/floor/looking_glass{
+	icon_state = "origin_arrow";
+	dir = 9
+	},
+/area/looking_glass/lg_1)
+"hAe" = (
+/turf/simulated/floor/looking_glass{
+	icon_state = "origin_arrow";
+	dir = 5
+	},
+/area/looking_glass/lg_1)
+"hFG" = (
+/obj/effect/landmark/looking_glass,
+/turf/simulated/floor/looking_glass/center,
+/area/looking_glass/lg_1)
+"iue" = (
+/turf/simulated/floor/looking_glass{
+	icon_state = "origin_arrow";
+	dir = 1
+	},
+/area/looking_glass/lg_1)
 "lry" = (
 /obj/structure/catwalk,
 /obj/structure/closet,
@@ -32882,6 +32955,24 @@
 /obj/random/drinkbottle,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
+"lNp" = (
+/turf/simulated/floor/looking_glass/optional{
+	icon_state = "origin_optional_arrow";
+	dir = 4
+	},
+/area/looking_glass/lg_1)
+"mdP" = (
+/obj/machinery/door/airlock{
+	id_tag = "lg_1";
+	name = "Looking Glass"
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/public_garden_one)
 "nlo" = (
 /obj/structure/railing{
 	dir = 1
@@ -32898,9 +32989,87 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/substation/mining)
+"orF" = (
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/public_garden_one)
+"oRz" = (
+/turf/simulated/floor/looking_glass{
+	icon_state = "origin_arrow";
+	dir = 4
+	},
+/area/looking_glass/lg_1)
+"rIU" = (
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_one)
+"sIO" = (
+/turf/simulated/floor/looking_glass{
+	icon_state = "origin_arrow";
+	dir = 6
+	},
+/area/looking_glass/lg_1)
+"tRJ" = (
+/obj/effect/floor_decal/spline/plain{
+	icon_state = "spline_plain";
+	dir = 10
+	},
+/obj/machinery/button/remote/airlock{
+	dir = 8;
+	id = "lg_1";
+	name = "Looking Glass Lock";
+	pixel_x = 28;
+	pixel_y = 28;
+	specialfunctions = 4
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/looking_glass/lg_1)
 "vNx" = (
 /turf/simulated/floor/plating,
 /area/maintenance/substation/mining)
+"xOH" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/looking_glass/lg_1)
 "yiv" = (
 /obj/structure/closet/crate,
 /obj/random/maintenance/cargo,
@@ -36355,7 +36524,7 @@ adK
 adK
 adK
 adK
-aah
+ajS
 aah
 aah
 aah
@@ -36490,14 +36659,14 @@ akL
 akL
 akL
 ajO
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+gZN
+fcT
+fcT
+fcT
+fcT
+fcT
+ffD
+ajS
 aah
 aah
 aah
@@ -36632,14 +36801,14 @@ akL
 akL
 akL
 ajO
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+iue
+cAR
+cAR
+cAR
+cAR
+cAR
+bZC
+ajS
 aah
 aah
 aah
@@ -36774,14 +36943,14 @@ akL
 akL
 akL
 ajO
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+iue
+cAR
+cAR
+cAR
+cAR
+cAR
+bZC
+ajS
 aah
 aah
 aah
@@ -36916,14 +37085,14 @@ akL
 akL
 akL
 ajO
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+iue
+cAR
+cAR
+hFG
+cAR
+cAR
+bZC
+ajS
 aah
 aah
 aah
@@ -37058,14 +37227,14 @@ akL
 akL
 akL
 ajO
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+iue
+cAR
+cAR
+cAR
+cAR
+cAR
+bZC
+ajS
 aah
 aah
 aah
@@ -37200,14 +37369,14 @@ akL
 akL
 akL
 ajO
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+iue
+cAR
+lNp
+lNp
+lNp
+cAR
+bZC
+ajS
 aah
 agU
 agU
@@ -37342,14 +37511,14 @@ bdv
 ajO
 bdz
 ajO
-aah
-aah
-aah
-aah
-aah
-aah
-aah
-aah
+hAe
+oRz
+cPs
+xOH
+tRJ
+oRz
+sIO
+ajS
 aah
 agU
 ahi
@@ -37487,11 +37656,11 @@ ajS
 ajS
 ajS
 ajS
-aah
-aah
-aah
-aah
-aah
+ajS
+mdP
+ajS
+ajS
+ajS
 aah
 agU
 ahj
@@ -37628,10 +37797,10 @@ bdA
 bdC
 akU
 ali
+rIU
+gaK
+orF
 ajS
-ajS
-aah
-aah
 aah
 aah
 aah
@@ -37773,7 +37942,7 @@ alj
 alw
 ajS
 ajS
-aah
+ajS
 aah
 aah
 aah

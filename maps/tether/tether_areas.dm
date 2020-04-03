@@ -216,6 +216,10 @@
 	icon_state = "red"
 	sound_env = SMALL_SOFTFLOOR
 
+/area/tether/surfacebase/public_garden_lg
+	name = "\improper Public Garden Looking Glass"
+	icon_state = "green"
+
 // /area/tether/surfacebase/east_stairs_one //This is just part of a lower hallway
 
 /area/tether/surfacebase/east_stairs_two

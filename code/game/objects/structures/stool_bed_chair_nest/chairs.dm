@@ -9,11 +9,9 @@
 	buckle_lying = 0 //force people to sit up in chairs when buckled
 	var/propelled = 0 // Check for fire-extinguisher-driven chairs
 
-/obj/structure/bed/chair/New()
-	..() //Todo make metal/stone chairs display as thrones
-	spawn(3)	//sorry. i don't think there's a better way to do this.
-		update_layer()
-	return
+/obj/structure/bed/chair/Initialize()
+	. = ..()
+	update_layer()
 
 /obj/structure/bed/chair/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()

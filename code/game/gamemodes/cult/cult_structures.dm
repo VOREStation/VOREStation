@@ -153,11 +153,14 @@
 /obj/effect/gateway/active/cult/cultify()
 	return
 
-/obj/effect/gateway/active/New()
-	spawn(rand(30,60) SECONDS)
+/obj/effect/gateway/active/Initialize()
+	addtimer(CALLBACK(src, .proc/spawn_and_qdel), rand(30, 60) SECONDS)
+
+/obj/effect/gateway/active/proc/spawn_and_qdel()
+	if(LAZYLEN(spawnable))
 		var/t = pick(spawnable)
-		new t(src.loc)
-		qdel(src)
+		new t(get_turf(src))
+	qdel(src)
 
 /obj/effect/gateway/active/Crossed(var/atom/A)
 	if(A.is_incorporeal())

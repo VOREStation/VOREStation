@@ -1,6 +1,4 @@
 /**********************Mint**************************/
-
-
 /obj/machinery/mineral/mint
 	name = "Coin press"
 	icon = 'icons/obj/stationobjs.dmi'
@@ -21,43 +19,43 @@
 	var/coinsToProduce = 10
 
 
-/obj/machinery/mineral/mint/New()
-	..()
-	spawn( 5 )
-		for (var/dir in cardinal)
-			src.input = locate(/obj/machinery/mineral/input, get_step(src, dir))
-			if(src.input) break
-		for (var/dir in cardinal)
-			src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
-			if(src.output) break
-		START_PROCESSING(SSobj, src)
-		return
-	return
-
+/obj/machinery/mineral/mint/Initialize()
+	. = ..()
+	for (var/dir in cardinal)
+		input = locate(/obj/machinery/mineral/input, get_step(src, dir))
+		if(input)
+			break
+	for (var/dir in cardinal)
+		output = locate(/obj/machinery/mineral/output, get_step(src, dir))
+		if(output)
+			break
 
 /obj/machinery/mineral/mint/process()
-	if ( src.input)
-		var/obj/item/stack/O
-		O = locate(/obj/item/stack, input.loc)
-		if(O)
-			var/processed = 1
-			switch(O.get_material_name())
-				if("gold")
-					amt_gold += 100 * O.get_amount()
-				if("silver")
-					amt_silver += 100 * O.get_amount()
-				if("diamond")
-					amt_diamond += 100 * O.get_amount()
-				if("phoron")
-					amt_phoron += 100 * O.get_amount()
-				if("uranium")
-					amt_uranium += 100 * O.get_amount()
-				if(DEFAULT_WALL_MATERIAL)
-					amt_iron += 100 * O.get_amount()
-				else
-					processed = 0
-			if(processed)
-				qdel(O)
+	if(!input)
+		return
+
+	var/obj/item/stack/O = locate(/obj/item/stack, input.loc)
+	if(!O)
+		return
+
+	var/processed = 1
+	switch(O.get_material_name())
+		if("gold")
+			amt_gold += 100 * O.get_amount()
+		if("silver")
+			amt_silver += 100 * O.get_amount()
+		if("diamond")
+			amt_diamond += 100 * O.get_amount()
+		if("phoron")
+			amt_phoron += 100 * O.get_amount()
+		if("uranium")
+			amt_uranium += 100 * O.get_amount()
+		if(DEFAULT_WALL_MATERIAL)
+			amt_iron += 100 * O.get_amount()
+		else
+			processed = 0
+	if(processed)
+		qdel(O)
 
 /obj/machinery/mineral/mint/attack_hand(user as mob)
 

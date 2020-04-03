@@ -33,16 +33,15 @@
 
 /obj/machinery/station_map/New()
 	..()
-	holomap_datum = new()
-	original_zLevel = loc.z
-	SSholomaps.station_holomaps += src
 	flags |= ON_BORDER // Why? It doesn't help if its not density
 
 /obj/machinery/station_map/Initialize()
 	. = ..()
+	holomap_datum = new()
+	original_zLevel = loc.z
+	SSholomaps.station_holomaps += src
 	if(SSholomaps.holomaps_initialized)
-		spawn(1) // Tragically we need to spawn this in order to give the frame construcing us time to set pixel_x/y
-			setup_holomap()
+		setup_holomap()
 
 /obj/machinery/station_map/Destroy()
 	SSholomaps.station_holomaps -= src
@@ -64,14 +63,12 @@
 	holomap_datum.initialize_holomap(T, reinit = TRUE)
 
 	small_station_map = image(SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"], dir = dir)
-	// small_station_map.plane = LIGHTING_PLANE // Not until we do planes ~Leshana
-	// small_station_map.layer = LIGHTING_LAYER+1 // Weird things will happen!
 
 	floor_markings = image('icons/obj/machines/stationmap.dmi', "decal_station_map")
 	floor_markings.dir = src.dir
-	// floor_markings.plane = ABOVE_TURF_PLANE // Not until we do planes ~Leshana
-	// floor_markings.layer = DECAL_LAYER
-	update_icon()
+
+	spawn(1) //When built from frames, need to allow time for it to set pixel_x and pixel_y
+		update_icon()
 
 /obj/machinery/station_map/attack_hand(var/mob/user)
 	if(watching_mob && (watching_mob != user))
@@ -172,6 +169,9 @@
 	update_icon()
 
 /obj/machinery/station_map/update_icon()
+	if(!holomap_datum)
+		return //Not yet.
+		
 	overlays.Cut()
 	if(stat & BROKEN)
 		icon_state = "station_mapb"

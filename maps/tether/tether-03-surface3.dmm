@@ -6880,6 +6880,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/machinery/suit_cycler/captain,
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "aln" = (
@@ -31217,8 +31218,6 @@
 /obj/structure/table/rack,
 /obj/item/weapon/tank/jetpack/oxygen,
 /obj/item/clothing/mask/gas,
-/obj/item/clothing/suit/armor/captain,
-/obj/item/clothing/head/helmet/space/capspace,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -31233,6 +31232,8 @@
 	dir = 8;
 	health = 1e+006
 	},
+/obj/item/clothing/head/helmet/space/void/captain,
+/obj/item/clothing/suit/space/void/captain,
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "bag" = (

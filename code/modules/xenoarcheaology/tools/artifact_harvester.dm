@@ -13,12 +13,11 @@
 	var/obj/machinery/artifact_scanpad/owned_scanner = null
 	var/last_process = 0
 
-/obj/machinery/artifact_harvester/New()
-	..()
-	spawn(50) //Delay so the scan pad has time to actually spawn in
-		owned_scanner = locate(/obj/machinery/artifact_scanpad) in get_step(src, dir) //connect to a nearby scanner pad
-		if(!owned_scanner)
-			owned_scanner = locate(/obj/machinery/artifact_scanpad) in orange(1, src)
+/obj/machinery/artifact_harvester/Initialize()
+	. = ..()
+	owned_scanner = locate(/obj/machinery/artifact_scanpad) in get_step(src, dir)
+	if(!owned_scanner)
+		owned_scanner = locate(/obj/machinery/artifact_scanpad) in orange(1, src)
 
 /obj/machinery/artifact_harvester/attackby(var/obj/I as obj, var/mob/user as mob)
 	if(istype(I,/obj/item/weapon/anobattery))
