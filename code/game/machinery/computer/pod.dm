@@ -12,17 +12,15 @@
 	var/time = 30.0
 	var/title = "Mass Driver Controls"
 
+/obj/machinery/computer/pod/Initialize()
+	..() //Not returning parent because lateload
+	return INITIALIZE_HINT_LATELOAD
 
-/obj/machinery/computer/pod/New()
-	..()
-	spawn( 5 )
-		for(var/obj/machinery/mass_driver/M in machines)
-			if(M.id == id)
-				connected = M
-			else
-		return
-	return
-
+/obj/machinery/computer/pod/LateInitialize()
+	for(var/obj/machinery/mass_driver/M in machines)
+		if(M.id == id)
+			connected = M
+			break
 
 /obj/machinery/computer/pod/proc/alarm()
 	if(stat & (NOPOWER|BROKEN))

@@ -120,8 +120,7 @@
 
 var/datum/feed_network/news_network = new /datum/feed_network     //The global news-network, which is coincidentally a global list.
 
-var/list/obj/machinery/newscaster/allCasters = list() //Global list that will contain reference to all newscasters in existence.
-
+GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 /obj/machinery/newscaster
 	name = "newscaster"
 	desc = "A standard newsfeed handler for use on commercial space stations. All the news you absolutely have no use for, in one place!"
@@ -151,7 +150,8 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	var/securityCaster = 0
 		// 0 = Caster cannot be used to issue wanted posters
 		// 1 = the opposite
-	var/unit_no = 0 //Each newscaster has a unit number
+	var/static/unit_no_cur = 0 //Each newscaster has a unit number
+	var/unit_no
 	//var/datum/feed_message/wanted //We're gonna use a feed_message to store data of the wanted person because fields are similar
 	//var/wanted_issue = 0          //OBSOLETE
 		// 0 = there's no WANTED issued, we don't need a special icon_state
@@ -176,19 +176,21 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 	name = "Security Newscaster"
 	securityCaster = 1
 
-/obj/machinery/newscaster/New()         //Constructor, ho~
+/obj/machinery/newscaster/Initialize()
+	..() //Not returning . because lateload below
 	allCasters += src
-	paper_remaining = 15            // Will probably change this to something better
-	for(var/obj/machinery/newscaster/NEWSCASTER in allCasters) // Let's give it an appropriate unit number
-		unit_no++
-	update_icon() //for any custom ones on the map...
-	spawn(10) //Should be enough time for the node to spawn at tcomms.
-		node = get_exonet_node()
-	..()                                //I just realised the newscasters weren't in the global machines list. The superconstructor call will tend to that
+	unit_no = ++unit_no_cur
+	paper_remaining = 15
+	update_icon()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/newscaster/LateInitialize()
+	node = get_exonet_node()
 
 /obj/machinery/newscaster/Destroy()
 	allCasters -= src
-	..()
+	node = null
+	return ..()
 
 /obj/machinery/newscaster/update_icon()
 	if(!ispowered || isbroken)
@@ -325,11 +327,11 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			if(6)
 				dat+="<B><FONT COLOR='maroon'>ERROR: Could not submit Feed story to Network.</B></FONT><HR><BR>"
 				if(channel_name=="")
-					dat+="<FONT COLOR='maroon'>•Invalid receiving channel name.</FONT><BR>"
+					dat+="<FONT COLOR='maroon'>Â•Invalid receiving channel name.</FONT><BR>"
 				if(scanned_user=="Unknown")
-					dat+="<FONT COLOR='maroon'>•Channel author unverified.</FONT><BR>"
+					dat+="<FONT COLOR='maroon'>Â•Channel author unverified.</FONT><BR>"
 				if(msg == "" || msg == "\[REDACTED\]")
-					dat+="<FONT COLOR='maroon'>•Invalid message body.</FONT><BR>"
+					dat+="<FONT COLOR='maroon'>Â•Invalid message body.</FONT><BR>"
 
 				dat+="<BR><A href='?src=\ref[src];setScreen=[3]'>Return</A><BR>"
 			if(7)
@@ -341,18 +343,18 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 					else
 						existing_authors += FC.author
 				if(scanned_user in existing_authors)
-					dat+="<FONT COLOR='maroon'>•There already exists a Feed channel under your name.</FONT><BR>"
+					dat+="<FONT COLOR='maroon'>Â•There already exists a Feed channel under your name.</FONT><BR>"
 				if(channel_name=="" || channel_name == "\[REDACTED\]")
-					dat+="<FONT COLOR='maroon'>•Invalid channel name.</FONT><BR>"
+					dat+="<FONT COLOR='maroon'>Â•Invalid channel name.</FONT><BR>"
 				var/check = 0
 				for(var/datum/feed_channel/FC in news_network.network_channels)
 					if(FC.channel_name == channel_name)
 						check = 1
 						break
 				if(check)
-					dat+="<FONT COLOR='maroon'>•Channel name already in use.</FONT><BR>"
+					dat+="<FONT COLOR='maroon'>Â•Channel name already in use.</FONT><BR>"
 				if(scanned_user=="Unknown")
-					dat+="<FONT COLOR='maroon'>•Channel author unverified.</FONT><BR>"
+					dat+="<FONT COLOR='maroon'>Â•Channel author unverified.</FONT><BR>"
 				dat+="<BR><A href='?src=\ref[src];setScreen=[2]'>Return</A><BR>"
 			if(8)
 				var/total_num=length(news_network.network_channels)
@@ -466,11 +468,11 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			if(16)
 				dat+="<B><FONT COLOR='maroon'>ERROR: Wanted Issue rejected by Network.</B></FONT><HR><BR>"
 				if(channel_name=="" || channel_name == "\[REDACTED\]")
-					dat+="<FONT COLOR='maroon'>•Invalid name for person wanted.</FONT><BR>"
+					dat+="<FONT COLOR='maroon'>Â•Invalid name for person wanted.</FONT><BR>"
 				if(scanned_user=="Unknown")
-					dat+="<FONT COLOR='maroon'>•Issue author unverified.</FONT><BR>"
+					dat+="<FONT COLOR='maroon'>Â•Issue author unverified.</FONT><BR>"
 				if(msg == "" || msg == "\[REDACTED\]")
-					dat+="<FONT COLOR='maroon'>•Invalid description.</FONT><BR>"
+					dat+="<FONT COLOR='maroon'>Â•Invalid description.</FONT><BR>"
 				dat+="<BR><A href='?src=\ref[src];setScreen=[0]'>Return</A><BR>"
 			if(17)
 				dat+="<B>Wanted Issue successfully deleted from Circulation</B><BR>"
@@ -817,7 +819,7 @@ obj/item/weapon/newspaper/attack_self(mob/user as mob)
 		switch(screen)
 			if(0) //Cover
 				dat+="<DIV ALIGN='center'><B><FONT SIZE=6>The Griffon</FONT></B></div>"
-				dat+="<DIV ALIGN='center'><FONT SIZE=2>[using_map.company_name]-standard newspaper, for use on [using_map.company_name]© Space Facilities</FONT></div><HR>"
+				dat+="<DIV ALIGN='center'><FONT SIZE=2>[using_map.company_name]-standard newspaper, for use on [using_map.company_name]Â© Space Facilities</FONT></div><HR>"
 				if(isemptylist(news_content))
 					if(important_message)
 						dat+="Contents:<BR><ul><B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [pages+2]\]</FONT><BR></ul>"

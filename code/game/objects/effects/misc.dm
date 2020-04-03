@@ -14,11 +14,10 @@
 	invisibility = 0
 	var/time_to_die = 10 SECONDS // Afer which, it will delete itself.
 
-/obj/effect/temporary_effect/New()
-	..()
+/obj/effect/temporary_effect/Initialize()
+	. = ..()
 	if(time_to_die)
-		spawn(time_to_die)
-			qdel(src)
+		QDEL_IN(src, time_to_die)
 
 // Shown really briefly when attacking with axes.
 /obj/effect/temporary_effect/cleave_attack

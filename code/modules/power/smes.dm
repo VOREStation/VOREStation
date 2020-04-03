@@ -56,36 +56,32 @@
 	charge -= smes_amt
 	return smes_amt / SMESRATE
 
+/obj/machinery/power/smes/Initialize()
+	. = ..()
+	if(!powernet)
+		connect_to_network()
 
-/obj/machinery/power/smes/New()
-	..()
-	spawn(5)
-		if(!powernet)
-			connect_to_network()
+	dir_loop:
+		for(var/d in cardinal)
+			var/turf/T = get_step(src, d)
+			for(var/obj/machinery/power/terminal/term in T)
+				if(term && term.dir == turn(d, 180))
+					terminal = term
+					break dir_loop
+	if(!terminal)
+		stat |= BROKEN
+		return
+	terminal.master = src
+	if(!terminal.powernet)
+		terminal.connect_to_network()
+	update_icon()
 
-		dir_loop:
-			for(var/d in cardinal)
-				var/turf/T = get_step(src, d)
-				for(var/obj/machinery/power/terminal/term in T)
-					if(term && term.dir == turn(d, 180))
-						terminal = term
-						break dir_loop
-		if(!terminal)
-			stat |= BROKEN
-			return
-		terminal.master = src
-		if(!terminal.powernet)
-			terminal.connect_to_network()
-		update_icon()
+	if(!should_be_mapped)
+		warning("Non-buildable or Non-magical SMES at [src.x]X [src.y]Y [src.z]Z")
 
-
-
-
-		if(!should_be_mapped)
-			warning("Non-buildable or Non-magical SMES at [src.x]X [src.y]Y [src.z]Z")
-
-	return
-
+/obj/machinery/power/smes/Destroy()
+	terminal = null
+	return ..()
 
 /obj/machinery/power/smes/disconnect_terminal()
 	if(terminal)

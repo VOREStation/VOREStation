@@ -4338,11 +4338,10 @@
 	icon_state = "bagelplain"
 
 /obj/item/weapon/reagent_containers/food/snacks/bageltwo/Initialize()
-	. = ..()
+	..() //Not returning . because asking to be qdel'd below.
 	spawn_bagels()
 	spawn_bagels()
-	sleep(30)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/item/weapon/reagent_containers/food/snacks/bageltwo/proc/spawn_bagels()
 	var/build_path = /obj/item/weapon/reagent_containers/food/snacks/bagelplain

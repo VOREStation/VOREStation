@@ -293,19 +293,15 @@
 		else
 	return
 
-/obj/machinery/computer/scan_consolenew/New()
-	..()
+/obj/machinery/computer/scan_consolenew/Initialize()
+	. = ..()
 	for(var/i=0;i<3;i++)
 		buffers[i+1]=new /datum/dna2/record
-	spawn(5)
-		for(dir in list(NORTH,EAST,SOUTH,WEST))
-			connected = locate(/obj/machinery/dna_scannernew, get_step(src, dir))
-			if(!isnull(connected))
-				break
-		spawn(250)
-			src.injector_ready = 1
-		return
-	return
+	for(dir in list(NORTH,EAST,SOUTH,WEST))
+		connected = locate(/obj/machinery/dna_scannernew, get_step(src, dir))
+		if(connected)
+			break
+		VARSET_IN(src, injector_ready, TRUE, 25 SECONDS)
 
 /obj/machinery/computer/scan_consolenew/proc/all_dna_blocks(var/list/buffer)
 	var/list/arr = list()

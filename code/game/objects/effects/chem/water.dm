@@ -5,11 +5,9 @@
 	mouse_opacity = 0
 	pass_flags = PASSTABLE | PASSGRILLE | PASSBLOB
 
-/obj/effect/effect/water/New(loc)
-	..()
-	spawn(150) // In case whatever made it forgets to delete it
-		if(src)
-			qdel(src)
+/obj/effect/effect/water/Initialize()
+	. = ..()
+	QDEL_IN(src, 15 SECONDS)
 
 /obj/effect/effect/water/proc/set_color() // Call it after you move reagents to it
 	icon += reagents.get_color()
