@@ -207,12 +207,18 @@
 
 		var/blocked = list(
 							/obj/item/stack/material,					//Technical stacks
-							/obj/item/stack/material/animalhide,
+							/obj/item/stack/material/hairlesshide,		//Useless leather production steps
+							/obj/item/stack/material/wetleather,
+							/obj/item/stack/material/algae/ten)			//Why is this one even a separate thing
+		blocked += typesof(/obj/item/stack/material/cyborg)				//Borg matter synths, should only exist in borgs
+		blocked += typesof(/obj/item/stack/material/animalhide)			//Hides which are only used for leather production anyway
+
+		var/rare_types = list(
 							/obj/item/stack/material/morphium,			//Complex materials requiring Particle Smasher to create
 							/obj/item/stack/material/morphium/hull,
 							/obj/item/stack/material/valhollide,
 							/obj/item/stack/material/supermatter)
-		blocked += typesof(/obj/item/stack/material/cyborg)				//Borg matter synths, should only exist in borgs
+
 		var/list/material = typesof(/obj/item/stack/material) - blocked
 
 		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
@@ -223,6 +229,8 @@
 */
 		var/spawn_amount = rand(1,50)
 		var/chosen = pick(material)
+		if(chosen in rare_types)
+			spawn_amount = rand(1,15)
 		var/obj/item/stack/material/C = new chosen
 		C.amount = spawn_amount
 		C.loc = get_turf(holder.my_atom)
