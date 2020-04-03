@@ -173,7 +173,7 @@ var/list/flooring_types
 
 /decl/flooring/tiling/tech
 	desc = "Scuffed from the passage of countless greyshirts."
-	icon = 'icons/turf/flooring/techfloor_vr.dmi'
+	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_base = "techfloor_gray"
 	build_type = /obj/item/stack/tile/floor/techgrey
 	can_paint = null

@@ -16,6 +16,10 @@
 	icon_state = "uglyminearmed"
 	wires = new(src)
 
+/obj/effect/mine/Destroy()
+	qdel_null(wires)
+	return ..()
+
 /obj/effect/mine/proc/explode(var/mob/living/M)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 	triggered = 1
