@@ -705,11 +705,7 @@
 	for(var/turf/T in oview(world.view, src))
 		seenturfs += T
 
-<<<<<<< HEAD
-	for(var/mob in player_list)
-=======
 	for(var/mob in living_mob_list)
->>>>>>> 8b2569e... Merge pull request #6927 from VOREStation/pol-turrets
 		var/mob/M = mob
 		if(M.z != z) //Skip
 			continue
