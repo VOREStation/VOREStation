@@ -705,7 +705,7 @@
 	for(var/turf/T in oview(world.view, src))
 		seenturfs += T
 
-	for(var/mob in player_list)
+	for(var/mob in living_mob_list)
 		var/mob/M = mob
 		if(M.z != z) //Skip
 			continue
