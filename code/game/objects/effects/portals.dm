@@ -38,12 +38,9 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 		return
 	return
 
-/obj/effect/portal/New()
-	..() // Necessary for the list boilerplate to work
-	spawn(300)
-		qdel(src)
-		return
-	return
+/obj/effect/portal/Initialize()
+	. = ..()
+	QDEL_IN(src, 30 SECONDS)
 
 /obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
 	if(istype(M, /obj/effect)) //sparks don't teleport

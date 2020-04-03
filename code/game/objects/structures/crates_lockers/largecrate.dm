@@ -64,10 +64,9 @@
 	icon_state = "vehiclecrate"
 
 /obj/structure/largecrate/vehicle/Initialize()
-	..()
-	spawn(1)
-		for(var/obj/O in contents)
-			O.update_icon()
+	. = ..()
+	for(var/obj/O in contents)
+		O.update_icon()
 
 /obj/structure/largecrate/vehicle/bike
 	name = "spacebike crate"

@@ -21,13 +21,12 @@
 	set_light(3, 2, l_color = "#006AFF")
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
-	to_chat(owner, "<span class='notice'>Your shield will expire in 3 seconds!</span>")
-	spawn(5 SECONDS)
-		if(src)
-			to_chat(owner, "<span class='danger'>Your shield expires!</span>")
-			qdel(src)
+	to_chat(owner, "<span class='notice'>Your shield will expire in 5 seconds!</span>")
+	QDEL_IN(src, 5 SECONDS)
 
 /obj/item/weapon/spell/reflect/Destroy()
+	if(owner)
+		to_chat(owner, "<span class='danger'>Your shield expires!</span>")
 	spark_system = null
 	return ..()
 

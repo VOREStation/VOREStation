@@ -31,11 +31,15 @@
 	var/pulse_delay = 2 SECONDS
 
 /obj/effect/temporary_effect/pulse/Initialize()
-	spawn(0)
-		pulse_loop()
-	return ..()
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/effect/temporary_effect/pulse/LateInitialize()
+	pulse_loop()
 
 /obj/effect/temporary_effect/pulse/proc/pulse_loop()
+	set waitfor = FALSE
+	
 	while(pulses_remaining)
 		sleep(pulse_delay)
 		on_pulse()
