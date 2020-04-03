@@ -326,7 +326,7 @@
 /datum/gear/fluff/ivy_backpack
 	path = /obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo
 	display_name = "Ivy's Backpack"
-    slot = slot_back
+	slot = slot_back
 	ckeywhitelist = list("ivymoomoo")
 	character_name = list("Ivy Baladeva")
 
@@ -340,7 +340,7 @@
 /datum/gear/fluff/areax_staff
 	path = /obj/item/weapon/storage/backpack/fluff/stunstaff
 	display_name = "Areax's Stun Staff"
-    slot = slot_back
+	slot = slot_back
 	ckeywhitelist = list("jacknoir413")
 	character_name = list("Areax Third")
 	allowed_roles = list("Security Officer, Warden, Head of Security")
@@ -533,7 +533,7 @@
 /datum/gear/fluff/brianna_backpack
 	path = /obj/item/weapon/storage/backpack/messenger/black/fluff/briana
 	display_name = "Briana's Backpack"
-    slot = slot_back
+	slot = slot_back
 	ckeywhitelist = list("luminescentring")
 	character_name = list("Briana Moore")
 
@@ -752,7 +752,7 @@
 /datum/gear/fluff/fortune_backpack
 	path = /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
 	display_name = "Fortune's Backpack"
-    slot = slot_back
+	slot = slot_back
 	ckeywhitelist = list("swat43")
 	character_name = list("Fortune Bloise")
 
@@ -987,7 +987,7 @@
 /datum/gear/fluff/tempest_backpack
 	path = /obj/item/weapon/storage/backpack/saddlebag/tempest
 	display_name = "Tempest's Saddlebag"
-    slot = slot_back
+	slot = slot_back
 	ckeywhitelist = list("wickedtemp")
 	character_name = list("Chakat Tempest Venosare")
 
