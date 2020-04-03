@@ -24,6 +24,7 @@
 	var/input_cap = 1 MEGAWATTS         // Currently set input limit. Set to 0 to disable limits altogether. The shield will try to input this value per tick at most
 	var/upkeep_power_usage = 0          // Upkeep power usage last tick.
 	var/upkeep_multiplier = 1           // Multiplier of upkeep values.
+	var/power_coefficient = 1			// Multiplier of overall power usage (for mappers, subtypes, etc)
 	var/power_usage = 0                 // Total power usage last tick.
 	var/overloaded = 0                  // Whether the field has overloaded and shut down to regenerate.
 	var/hacked = 0                      // Whether the generator has been hacked by cutting the safety wire.
@@ -133,7 +134,7 @@
 		if(check_flag(SM.mode_flag))
 			new_upkeep *= SM.multiplier
 
-	upkeep_multiplier = new_upkeep
+	upkeep_multiplier = new_upkeep * power_coefficient
 
 
 /obj/machinery/power/shield_generator/process()
@@ -531,3 +532,31 @@
 			turfs.Add(T)
 
 	return turfs
+
+
+// Starts fully charged
+/obj/machinery/power/shield_generator/charged/Initialize()
+	. = ..()
+	current_energy = max_energy
+
+// Starts with the best SMES coil and capacitor (and fully charged)
+/obj/machinery/power/shield_generator/upgraded/Initialize()
+	. = ..()
+	for(var/obj/item/weapon/smes_coil/sc in component_parts)
+		component_parts -= sc
+		qdel(sc)
+
+	for(var/obj/item/weapon/stock_parts/capacitor/cap in component_parts)
+		component_parts -= cap
+		qdel(cap)
+
+	component_parts += new /obj/item/weapon/stock_parts/capacitor/omni(src)
+	component_parts += new /obj/item/weapon/smes_coil/super_capacity(src)
+	RefreshParts()
+	current_energy = max_energy
+
+// Only uses 20% as much power (and starts upgraded and charged and hacked)
+/obj/machinery/power/shield_generator/upgraded/admin
+	name = "experimental shield generator"
+	power_coefficient = 0.2
+	hacked = TRUE
