@@ -13,15 +13,10 @@
 	var/datum/seed/seed
 	var/potency = -1
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/snacks/grown/Initialize(newloc,planttype)
 
-	..()
-=======
 /obj/item/weapon/reagent_containers/food/snacks/grown/Initialize(var/mapload, var/planttype)
 	. = ..()
 	
->>>>>>> 3473522... Merge pull request #6904 from VOREStation/pol-cleanup
 	if(!dried_type)
 		dried_type = type
 	
