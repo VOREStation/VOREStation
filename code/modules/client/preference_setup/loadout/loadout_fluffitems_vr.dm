@@ -930,7 +930,7 @@
 /datum/gear/fluff/keturah_maiddress
 	path = /obj/item/clothing/under/dress/maid
 	display_name = "Keturah's Maid Dress"
-	slot = slot_w_uniformv
+	slot = slot_w_uniform
 	ckeywhitelist = list("viveret")
 	character_name = list("Keturah")
 
