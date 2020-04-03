@@ -141,7 +141,7 @@
 	if(world.time < (last_gravity_change + 3 SECONDS))
 		if(world.time < (last_gravity_change + 1 SECOND))
 			return
-		visible_message("<span class='warning'>ERROR. Recalibrating gravity field.</b>")
+		visible_message("<span class='warning'>ERROR. Recalibrating gravity field.</span>")
 		return
 
 	last_gravity_change = world.time
