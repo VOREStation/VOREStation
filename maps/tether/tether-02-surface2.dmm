@@ -17584,6 +17584,7 @@
 	dir = 1
 	},
 /obj/machinery/computer/general_air_control/large_tank_control{
+	dir = 4;
 	frequency = 1441;
 	input_tag = "atmos_out";
 	name = "Atmos Intake Control";
