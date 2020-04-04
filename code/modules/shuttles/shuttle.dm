@@ -348,6 +348,15 @@
 		qdel(P)
 	SSmachines.setup_powernets_for_cables(cables)
 
+	// Adjust areas of mothershuttle so it doesn't try and bring us with it if it jumps while we aren't on it.
+	if(mothershuttle)
+		var/datum/shuttle/MS = SSshuttles.shuttles[mothershuttle]
+		if(MS)
+			if(current_location.landmark_tag == motherdock)
+				MS.shuttle_area |= shuttle_area // We are now on mothershuttle! Bring us along!
+			else
+				MS.shuttle_area -= shuttle_area // We have left mothershuttle! Don't bring us along!
+
 	return
 
 //returns 1 if the shuttle has a valid arrive time
