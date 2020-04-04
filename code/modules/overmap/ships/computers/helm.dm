@@ -19,6 +19,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	icon_keyboard = "teleport_key"
 	icon_screen = "helm"
 	light_color = "#7faaff"
+	circuit = /obj/item/weapon/circuitboard/helm
 	core_skill = /datum/skill/pilot
 	var/autopilot = 0
 	var/list/known_sectors = list()
@@ -226,6 +227,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	name = "navigation console"
 	icon_keyboard = "generic_key"
 	icon_screen = "helm"
+	circuit = /obj/item/weapon/circuitboard/nav
 
 /obj/machinery/computer/ship/navigation/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	if(!linked)
@@ -274,6 +276,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	icon_state = "tele_nav"
 	icon_keyboard = null
 	icon_screen = null
+	circuit = /obj/item/weapon/circuitboard/nav/tele
 	density = 0
 
 /obj/machinery/computer/ship/navigation/telescreen/update_icon()
