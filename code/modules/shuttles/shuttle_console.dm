@@ -126,6 +126,13 @@
 		ui.open()
 		ui.set_auto_update(1)
 
+// Call to set the linked shuttle tag; override to add behaviour to shuttle tag changes
+/obj/machinery/computer/shuttle_control/proc/set_shuttle_tag(var/new_shuttle_tag)
+	if(shuttle_tag == new_shuttle_tag)
+		return FALSE
+	shuttle_tag = new_shuttle_tag
+	return TRUE
+
 /obj/machinery/computer/shuttle_control/emag_act(var/remaining_charges, var/mob/user)
 	if (!hacked)
 		req_access = list()
