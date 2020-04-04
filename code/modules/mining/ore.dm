@@ -128,7 +128,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.eat_ore == 1)
-			H.eat_ore(src)
+			H.handle_eat_ore(src)
 			return
 	..()
 //VOREStation Add End

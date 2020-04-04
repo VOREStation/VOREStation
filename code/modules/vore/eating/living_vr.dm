@@ -689,11 +689,14 @@
 	to_chat(src, "<span class='notice'>This item is not appropriate for ethical consumption.</span>")
 	return
 
-/mob/living/proc/eat_ore(var/obj/item/snack)
+/mob/living/proc/eat_ore() //Actual eating abstracted so the user isn't given a prompt due to an argument in this verb.
 	set name = "Eat Ore"
 	set category = "Abilities"
 	set desc = "Consume held ore and gems. Snack time!"
 
+	handle_eat_ore()
+
+/mob/living/proc/handle_eat_ore(obj/item/snack)
 	if(!vore_selected)
 		to_chat(src, "<span class='warning'>You either don't have a belly selected, or don't have a belly!</span>")
 		return
