@@ -76,14 +76,14 @@
 	name = "\improper Exp Ship - Medical Surgery"
 /area/ship/expe/armoury
 	name = "\improper Exp Ship - Lightweight Armoury"
-/area/ship/expe/science
-	name = "\improper Exp Ship - Science"
-/area/ship/expe/sciencestorage
-	name = "\improper Exp Ship - Science Storage Room"
-/area/ship/expe/scienceequip
-	name = "\improper Exp Ship - Science Equipment Room"
-/area/ship/expe/sciencemain
-	name = "\improper Exp Ship - Science Main"
+/area/ship/expe/sec
+	name = "\improper Exp Ship - Security"
+/area/ship/expe/seclobby
+	name = "\improper Exp Ship - Security Lobby"
+/area/ship/expe/seceq
+	name = "\improper Exp Ship - Security Equipment Room"
+/area/ship/expe/secmain
+	name = "\improper Exp Ship - Security Main"
 /area/ship/expe/cafet
 	name = "\improper Exp Ship - Cafeteria"
 /area/ship/expe/cargo
@@ -125,7 +125,7 @@
 	icon_state = "shuttle"
 
 // The shuttle's 'shuttle' computer
-/obj/machinery/computer/shuttle_control/explore/vespaboat
+/obj/machinery/computer/shuttle_control/multi/vespaboat
     name = "Vespa's Shuttle control console"
     shuttle_tag = "Vespa's Ship's Boat"
     req_one_access = list(access_pilot)
