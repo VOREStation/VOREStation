@@ -485,3 +485,4 @@
 #include "om_ships/aro.dm"
 #include "om_ships/cruiser.dm"
 #include "om_ships/vespa.dm"
+#include "om_ships/generic_shuttle.dm"
