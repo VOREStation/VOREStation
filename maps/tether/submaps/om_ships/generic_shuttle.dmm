@@ -238,7 +238,9 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/generic_shuttle/gen)
 "aB" = (
-/obj/machinery/computer/ship/helm,
+/obj/machinery/computer/ship/helm{
+	req_one_access = newlist()
+	},
 /obj/effect/floor_decal/techfloor/orange{
 	icon_state = "techfloororange_edges";
 	dir = 1
@@ -872,7 +874,9 @@
 	},
 /area/shuttle/generic_shuttle/gen)
 "bX" = (
-/obj/machinery/computer/shuttle_control/explore/generic_shuttle,
+/obj/machinery/computer/shuttle_control/explore/generic_shuttle{
+	req_one_access = newlist()
+	},
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 4
 	},
