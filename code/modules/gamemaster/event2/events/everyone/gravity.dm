@@ -22,12 +22,12 @@
 	Please stand by while the gravity system reinitializes.", "Gravity Failure")
 
 /datum/event2/event/gravity/start()
-	for(var/area/A in all_areas)
+	for(var/area/A in world)
 		if(A.z in get_location_z_levels())
 			A.gravitychange(FALSE)
 
 /datum/event2/event/gravity/end()
-	for(var/area/A in all_areas)
+	for(var/area/A in world)
 		if(A.z in get_location_z_levels())
 			A.gravitychange(TRUE)
 
