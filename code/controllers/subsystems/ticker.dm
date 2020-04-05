@@ -18,6 +18,7 @@ SUBSYSTEM_DEF(ticker)
 	// var/round_progressing = 1		//Whether the lobby clock is ticking down.
 
 	var/pregame_timeleft = 0			// Time remaining until game starts in seconds. Set by config
+	var/start_immediately = FALSE		// If true there is no lobby phase, the game starts immediately.
 
 	var/hide_mode = FALSE 				// If the true game mode should be hidden (because we chose "secret")
 	var/datum/game_mode/mode = null		// The actual gamemode, if selected.
@@ -79,13 +80,17 @@ var/global/datum/controller/subsystem/ticker/ticker
 	if(round_progressing && last_fire)
 		pregame_timeleft -= (world.time - last_fire) / (1 SECOND)
 
-	if(SSvote.time_remaining)
+	if(start_immediately)
+		pregame_timeleft = 0
+	else if(SSvote.time_remaining)
 		return // vote still going, wait for it.
 
 	// Time to start the game!
 	if(pregame_timeleft <= 0)
 		current_state = GAME_STATE_SETTING_UP
 		Master.SetRunLevel(RUNLEVEL_SETUP)
+		if(start_immediately)
+			fire() // Don't wait for next tick, do it now!
 		return
 
 	if(pregame_timeleft <= config.vote_autogamemode_timeleft && !SSvote.gamemode_vote_called)

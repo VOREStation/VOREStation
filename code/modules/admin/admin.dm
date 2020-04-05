@@ -871,24 +871,26 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 /datum/admins/proc/startnow()
 	set category = "Server"
-	set desc="Start the round RIGHT NOW"
+	set desc="Start the round ASAP"
 	set name="Start Now"
-	if(!ticker || !Master || Master.current_runlevel < RUNLEVEL_LOBBY)
-		alert("Unable to start the game as it is not set up.")
-		return
 
-	if(Master.current_runlevel == RUNLEVEL_LOBBY)
-		SSticker.current_state = GAME_STATE_SETTING_UP
-		Master.SetRunLevel(RUNLEVEL_SETUP)
-		if(SSvote.mode == VOTE_GAMEMODE)
-			SSvote.reset() // Cancel the vote if there is one.
-		log_admin("[usr.key] has started the game.")
-		message_admins("<font color='blue'>[usr.key] has started the game.</font>")
-		feedback_add_details("admin_verb","SN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		return 1
-	else
+	if(!check_rights(R_SERVER|R_EVENT))
+		return
+	if(SSticker.current_state > GAME_STATE_PREGAME)
 		to_chat(usr, "<font color='red'>Error: Start Now: Game has already started.</font>")
-		return 0
+		return
+	if(!SSticker.start_immediately)
+		SSticker.start_immediately = TRUE
+		var/msg = ""
+		if(SSticker.current_state == GAME_STATE_INIT)
+			msg = " (The server is still setting up, but the round will be started as soon as possible.)"
+		log_admin("[key_name(usr)] has started the game.[msg]")
+		message_admins("<font color='blue'>[key_name_admin(usr)] has started the game.[msg]</font>")
+		feedback_add_details("admin_verb","SN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	else
+		SSticker.start_immediately = FALSE
+		to_chat(world, "<b>Immediate game start canceled.  Normal startup resumed.</b>")
+		log_and_message_admins("cancelled immediate game start.")
 
 /datum/admins/proc/toggleenter()
 	set category = "Server"
