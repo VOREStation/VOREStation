@@ -797,8 +797,14 @@
 
 //  T CKEYS
 /datum/gear/fluff/ascian_medal
-	path = /obj/item/clothing/accessory/medal/silver/unity
+	path = /obj/item/clothing/accessory/medal/silver/unity/tabiranth
 	display_name = "Ascian's Unity Medal"
+	ckeywhitelist = list("tabiranth")
+	character_name = list("Ascian")
+
+/datum/gear/fluff/ascian_medal_2
+	path = /obj/item/clothing/accessory/medal/silver/valor
+	display_name = "Ascian's Valor Medal"
 	ckeywhitelist = list("tabiranth")
 	character_name = list("Ascian")
 
