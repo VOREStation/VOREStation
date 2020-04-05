@@ -99,9 +99,7 @@ var/list/GPS_list = list()
 		gps_data["gps_tag"] = G.gps_tag
 
 		var/area/A = get_area(G)
-		gps_data["area_name"] = A.name
-		if(istype(A, /area/submap))
-			gps_data["area_name"] = "Unknown Area" // Avoid spoilers.
+		gps_data["area_name"] = A.get_name()
 
 		gps_data["z_name"] = using_map.get_zlevel_name(T.z)
 		gps_data["direction"] = get_adir(curr, T)
