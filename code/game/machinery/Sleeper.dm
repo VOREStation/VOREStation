@@ -14,9 +14,9 @@
 	clicksound = 'sound/machines/buttonbeep.ogg'
 	clickvol = 30
 
-/obj/machinery/sleep_console/New()
-	..()
+/obj/machinery/sleep_console/Initialize()
 	findsleeper()
+	return ..()
 
 /obj/machinery/sleep_console/Destroy()
 	if(sleeper)
@@ -24,6 +24,7 @@
 	return ..()
 
 /obj/machinery/sleep_console/proc/findsleeper()
+<<<<<<< HEAD
 	spawn(5)
 		var/obj/machinery/sleeper/sleepernew = null
 		for(dir in list(NORTH, EAST, SOUTH, WEST)) // Loop through every direction
@@ -34,6 +35,15 @@
 				sleepernew.console = src
 				break
 				// VOREStation Edit End
+=======
+	var/obj/machinery/sleeper/sleepernew = null
+	for(var/direction in GLOB.cardinal) // Loop through every direction
+		sleepernew = locate(/obj/machinery/sleeper, get_step(src, direction)) // Try to find a scanner in that direction
+		if(sleepernew)
+			sleeper = sleepernew
+			sleepernew.console = src
+			set_dir(get_dir(src, sleepernew))
+>>>>>>> 70534c3... Merge pull request #6920 from Neerti/medical_qol
 
 
 /obj/machinery/sleep_console/attack_ai(var/mob/user)
