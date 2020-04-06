@@ -195,6 +195,26 @@
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
+/obj/machinery/atmospherics/pipe/manifold/visible/fuel
+	name="Fuel pipe manifold"
+	desc = "A manifold composed of fuel pipes"
+	icon_state = "map-fuel"
+	connect_types = CONNECT_TYPE_FUEL
+	piping_layer = PIPING_LAYER_FUEL
+	layer = PIPES_FUEL_LAYER
+	icon_connect_type = "-fuel"
+	color = PIPE_COLOR_YELLOW
+
+/obj/machinery/atmospherics/pipe/manifold/visible/aux
+	name="Aux pipe manifold"
+	desc = "A manifold composed of aux pipes"
+	icon_state = "map-aux"
+	connect_types = CONNECT_TYPE_AUX
+	piping_layer = PIPING_LAYER_AUX
+	layer = PIPES_AUX_LAYER
+	icon_connect_type = "-aux"
+	color = PIPE_COLOR_CYAN
+
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow
 	color = PIPE_COLOR_YELLOW
 
@@ -240,6 +260,26 @@
 	layer = PIPES_SUPPLY_LAYER
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
+
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel
+	name="Fuel pipe manifold"
+	desc = "A manifold composed of fuel pipes"
+	icon_state = "map-fuel"
+	connect_types = CONNECT_TYPE_FUEL
+	piping_layer = PIPING_LAYER_FUEL
+	layer = PIPES_FUEL_LAYER
+	icon_connect_type = "-fuel"
+	color = PIPE_COLOR_YELLOW
+
+/obj/machinery/atmospherics/pipe/manifold/hidden/aux
+	name="Aux pipe manifold"
+	desc = "A manifold composed of aux pipes"
+	icon_state = "map-aux"
+	connect_types = CONNECT_TYPE_AUX
+	piping_layer = PIPING_LAYER_AUX
+	layer = PIPES_AUX_LAYER
+	icon_connect_type = "-aux"
+	color = PIPE_COLOR_CYAN
 
 /obj/machinery/atmospherics/pipe/manifold/hidden/yellow
 	color = PIPE_COLOR_YELLOW
