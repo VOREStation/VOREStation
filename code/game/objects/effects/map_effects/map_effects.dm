@@ -10,7 +10,7 @@
 	var/proximity_needed = 12			// How many tiles a mob with a client must be for this to run.
 	var/ignore_ghosts = FALSE			// If true, ghosts won't satisfy the above requirement.
 	var/ignore_afk = TRUE				// If true, AFK people (5 minutes) won't satisfy it as well.
-	var/retry_delay = 3 SECONDS			// How long until we check for players again.
+	var/retry_delay = 5 SECONDS			// How long until we check for players again.
 
 /obj/effect/map_effect/ex_act()
 	return
@@ -46,15 +46,11 @@
 		return // Do not pass .(), do not recursively collect 200 thaler.
 
 	if(!always_run && !check_for_player_proximity(src, proximity_needed, ignore_ghosts, ignore_afk))
-		spawn(retry_delay) // Maybe someday we'll have fancy TG timers/schedulers.
-			if(!QDELETED(src))
-				.()
-		return
-
-	var/next_interval = rand(interval_lower_bound, interval_upper_bound)
-	spawn(next_interval)
-		if(!QDELETED(src))
-			trigger()
+		//Nobody home, try again after retry_delay
+		addtimer(CALLBACK(src, .proc/handle_interval_delay), retry_delay)
+	else
+		//Someone was here!
+		addtimer(CALLBACK(src, .proc/trigger), rand(interval_lower_bound, interval_upper_bound))
 
 // Helper proc to optimize the use of effects by making sure they do not run if nobody is around to perceive it.
 /proc/check_for_player_proximity(var/atom/proximity_to, var/radius = 12, var/ignore_ghosts = FALSE, var/ignore_afk = TRUE)
