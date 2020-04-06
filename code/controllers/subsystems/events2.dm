@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(event_ticker)
 // Starts an event, independent of the GM system.
 // This means it will always run, and won't affect the GM system in any way, e.g. not putting the event off limits after one use.
 /datum/controller/subsystem/event_ticker/proc/start_event(event_type)
-	var/datum/event2/event/E = new event_type(src)
+	var/datum/event2/event/E = new event_type()
 	E.execute()
 	event_started(E)
 

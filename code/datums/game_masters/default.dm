@@ -71,12 +71,12 @@
 // If no list is passed, all the events will be returned.
 /datum/game_master/default/proc/filter_events_by_departments(list/departments)
 	. = list()
-	for(var/E in ticker.available_events)
+	for(var/E in SSgame_master.available_events)
 		var/datum/event2/meta/event = E
 		if(!event.enabled)
 			continue
 		if(event.chaotic_threshold && !ignore_round_chaos)
-			if(ticker.danger > event.chaotic_threshold)
+			if(SSgame_master.danger > event.chaotic_threshold)
 				continue
 		// An event has to involve all of these departments to pass.
 		var/viable = TRUE

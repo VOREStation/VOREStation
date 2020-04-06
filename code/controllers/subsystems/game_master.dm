@@ -26,12 +26,12 @@ SUBSYSTEM_DEF(game_master)
 /datum/controller/subsystem/game_master/Initialize()
 	var/list/subtypes = subtypesof(/datum/event2/meta)
 	for(var/T in subtypes)
-		var/datum/event2/meta/M = new T(src)
+		var/datum/event2/meta/M = new T()
 		if(!M.name)
 			continue
 		available_events += M
 
-	GM = new game_master_type(src)
+	GM = new game_master_type()
 
 	if(config && !config.enable_game_master)
 		can_fire = FALSE
@@ -137,7 +137,6 @@ SUBSYSTEM_DEF(game_master)
 
 // This object makes the actual decisions.
 /datum/game_master
-	var/datum/controller/subsystem/game_master/ticker = null
 	// Multiplier for how much 'danger' is accumulated. Higer generally makes it possible for more dangerous events to be picked.
 	var/danger_modifier = 1.0
 
@@ -149,9 +148,6 @@ SUBSYSTEM_DEF(game_master)
 
 	var/ignore_time_restrictions = FALSE 	// Useful for debugging without needing to wait 20 minutes each time.
 	var/ignore_round_chaos = FALSE			// If true, the system will happily choose back to back intense events like meteors and blobs, Dwarf Fortress style.
-
-/datum/game_master/New(datum/controller/subsystem/game_master/new_ticker)
-	ticker = new_ticker
 
 /client/proc/show_gm_status()
 	set category = "Debug"

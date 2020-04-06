@@ -35,25 +35,15 @@
 	// Can be used to make event repeats discouraged but not forbidden by adjusting the weight based on it.
 	var/times_ran = 0
 
-	// A reference to the system that initialized us.
-	var/datum/controller/subsystem/game_master/GM = null
-
 	// The type path to the event associated with this meta object.
 	// When the GM chooses this event, a new instance is made.
 	// Seperate instances allow for multiple concurrent events without sharing state, e.g. two blobs.
 	var/event_type = null
 
-/datum/event2/meta/New(datum/controller/subsystem/game_master/new_gm)
-	GM = new_gm
-
-/datum/event2/meta/Destroy()
-	GM = null
-	return ..()
-
 
 // Called by the GM system to actually start an event.
 /datum/event2/meta/proc/make_event()
-	var/datum/event2/event/E = new event_type(GM)
+	var/datum/event2/event/E = new event_type()
 	E.execute()
 	return E
 

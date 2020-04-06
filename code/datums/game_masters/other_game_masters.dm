@@ -3,7 +3,7 @@
 // * Does not react to danger at all.
 /datum/game_master/classic/choose_event()
 	var/list/weighted_events = list()
-	for(var/E in ticker.available_events)
+	for(var/E in SSgame_master.available_events)
 		var/datum/event2/meta/event = E
 		if(!event.enabled)
 			continue
@@ -20,7 +20,7 @@
 // * Has no goals, and instead chooses randomly, ignoring weights.
 // * Does not react to danger at all.
 /datum/game_master/super_random/choose_event()
-	return pick(ticker.available_events)
+	return pick(SSgame_master.available_events)
 
 
 // The `brutal` game master tries to run dangerous events frequently.
@@ -31,7 +31,7 @@
 
 /datum/game_master/brutal/choose_event()
 	var/list/weighted_events = list()
-	for(var/E in ticker.available_events)
+	for(var/E in SSgame_master.available_events)
 		var/datum/event2/meta/event = E
 		if(!event.enabled)
 			continue
