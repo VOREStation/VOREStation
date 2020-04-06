@@ -194,10 +194,9 @@ var/list/all_maps = list()
 	)
 
 /datum/map/proc/get_skybox_datum(z)
-	if(map_levels["[z]"])
-		var/datum/map_z_level/picked = map_levels["[z]"]
-		if(picked.custom_skybox)
-			return picked.custom_skybox
+	var/datum/map_z_level/picked = zlevels["[z]"]
+	if(picked?.custom_skybox)
+		return picked.custom_skybox
 
 	return default_skybox
 
