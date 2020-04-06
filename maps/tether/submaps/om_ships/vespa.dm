@@ -76,14 +76,18 @@
 	name = "\improper Exp Ship - Medical Surgery"
 /area/ship/expe/armoury
 	name = "\improper Exp Ship - Lightweight Armoury"
-/area/ship/expe/sec
+/area/ship/expe/secmain
 	name = "\improper Exp Ship - Security"
 /area/ship/expe/seclobby
 	name = "\improper Exp Ship - Security Lobby"
+/area/ship/expe/seclobby2
+	name = "\improper Exp Ship - Security Lobby"
 /area/ship/expe/seceq
 	name = "\improper Exp Ship - Security Equipment Room"
-/area/ship/expe/secmain
-	name = "\improper Exp Ship - Security Main"
+/area/ship/expe/sechall
+	name = "\improper Exp Ship - Security Hall"
+/area/ship/expe/seccells
+	name = "\improper Exp Ship - Security Holding Cells"
 /area/ship/expe/cafet
 	name = "\improper Exp Ship - Cafeteria"
 /area/ship/expe/cargo
