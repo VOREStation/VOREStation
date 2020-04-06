@@ -44,6 +44,7 @@
 /obj/item/weapon/stamp/denied
 	name = "\improper DENIED rubber stamp"
 	icon_state = "stamp-deny"
+	attack_verb = list("DENIED")
 
 /obj/item/weapon/stamp/clown
 	name = "clown's rubber stamp"
