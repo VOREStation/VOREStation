@@ -96,6 +96,8 @@
 			if(O.invisibility) continue // Ignore objects that have any form of invisibility
 			if(O.loc != below) continue // Ignore multi-turf objects not directly below
 			var/image/temp2 = image(O, dir = O.dir, layer = O.layer)
+			if(temp2.icon == null)
+				temp2.icon_state = null
 			temp2.plane = src.plane
 			temp2.color = O.color
 			temp2.overlays += O.overlays
