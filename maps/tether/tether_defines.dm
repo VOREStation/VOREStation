@@ -20,7 +20,8 @@
 #define Z_LEVEL_AEROSTAT					19
 #define Z_LEVEL_AEROSTAT_SURFACE			20
 #define Z_LEVEL_DEBRISFIELD					21
-#define Z_LEVEL_GATEWAY						22
+#define Z_LEVEL_FUELDEPOT					22
+#define Z_LEVEL_GATEWAY						23
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -136,7 +137,8 @@
 		list("Asteroid Belt 1","Asteroid Belt 2","Asteroid Belt 3","Asteroid Belt 4"),
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
 		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
-		list("Debris Field - Z1 Space")
+		list("Debris Field - Z1 Space"),
+		list("Fuel Depot - Z1 Space")
 		)
 
 	lateload_single_pick = list(
