@@ -11,6 +11,7 @@
 	var/ignore_ghosts = FALSE			// If true, ghosts won't satisfy the above requirement.
 	var/ignore_afk = TRUE				// If true, AFK people (5 minutes) won't satisfy it as well.
 	var/retry_delay = 5 SECONDS			// How long until we check for players again.
+	var/next_attempt = 0				// Next time we're going to do ACTUAL WORK
 
 /obj/effect/map_effect/ex_act()
 	return
@@ -25,32 +26,32 @@
 /obj/effect/map_effect/interval
 	var/interval_lower_bound = 5 SECONDS // Lower number for how often the map_effect will trigger.
 	var/interval_upper_bound = 5 SECONDS // Higher number for above.
-	var/halt = FALSE // Set to true to stop the loop when it reaches the next iteration.
 
 /obj/effect/map_effect/interval/Initialize()
-	handle_interval_delay()
-	return ..()
-
+	. = ..()
+	START_PROCESSING(SSobj, src)
+	
 /obj/effect/map_effect/interval/Destroy()
-	halt = TRUE // Shouldn't need it to GC but just in case.
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-// Override this for the specific thing to do. Be sure to call parent to keep looping.
+// Override this for the specific thing to do.
 /obj/effect/map_effect/interval/proc/trigger()
-	handle_interval_delay()
+	return
 
 // Handles the delay and making sure it doesn't run when it would be bad.
-/obj/effect/map_effect/interval/proc/handle_interval_delay()
+/obj/effect/map_effect/interval/process()
+	//Not yet!
+	if(world.time < next_attempt)
+		return
+	
 	// Check to see if we're useful first.
-	if(halt)
-		return // Do not pass .(), do not recursively collect 200 thaler.
-
 	if(!always_run && !check_for_player_proximity(src, proximity_needed, ignore_ghosts, ignore_afk))
-		//Nobody home, try again after retry_delay
-		addtimer(CALLBACK(src, .proc/handle_interval_delay), retry_delay)
+		next_attempt = world.time + retry_delay
+	// Hey there's someone nearby.
 	else
-		//Someone was here!
-		addtimer(CALLBACK(src, .proc/trigger), rand(interval_lower_bound, interval_upper_bound))
+		next_attempt = world.time + rand(interval_lower_bound, interval_upper_bound)
+		trigger()
 
 // Helper proc to optimize the use of effects by making sure they do not run if nobody is around to perceive it.
 /proc/check_for_player_proximity(var/atom/proximity_to, var/radius = 12, var/ignore_ghosts = FALSE, var/ignore_afk = TRUE)
