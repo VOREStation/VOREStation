@@ -203,6 +203,26 @@
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
+/obj/machinery/atmospherics/pipe/simple/visible/fuel
+	name = "Fuel pipe"
+	desc = "A one meter section of fuel pipe"
+	icon_state = "intact-fuel"
+	connect_types = CONNECT_TYPE_FUEL
+	piping_layer = PIPING_LAYER_FUEL
+	layer = PIPES_FUEL_LAYER
+	icon_connect_type = "-fuel"
+	color = PIPE_COLOR_YELLOW
+
+/obj/machinery/atmospherics/pipe/simple/visible/aux
+	name = "Aux pipe"
+	desc = "A one meter section of aux pipe"
+	icon_state = "intact-aux"
+	connect_types = CONNECT_TYPE_AUX
+	piping_layer = PIPING_LAYER_AUX
+	layer = PIPES_AUX_LAYER
+	icon_connect_type = "-aux"
+	color = PIPE_COLOR_CYAN
+
 /obj/machinery/atmospherics/pipe/simple/visible/yellow
 	color = PIPE_COLOR_YELLOW
 
@@ -248,6 +268,26 @@
 	layer = PIPES_SUPPLY_LAYER
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
+
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel
+	name = "Fuel pipe"
+	desc = "A one meter section of fuel pipe"
+	icon_state = "intact-fuel"
+	connect_types = CONNECT_TYPE_FUEL
+	piping_layer = PIPING_LAYER_FUEL
+	layer = PIPES_FUEL_LAYER
+	icon_connect_type = "-fuel"
+	color = PIPE_COLOR_YELLOW
+
+/obj/machinery/atmospherics/pipe/simple/hidden/aux
+	name = "Aux pipe"
+	desc = "A one meter section of aux pipe"
+	icon_state = "intact-aux"
+	connect_types = CONNECT_TYPE_AUX
+	piping_layer = PIPING_LAYER_AUX
+	layer = PIPES_AUX_LAYER
+	icon_connect_type = "-aux"
+	color = PIPE_COLOR_CYAN
 
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow
 	color = PIPE_COLOR_YELLOW
