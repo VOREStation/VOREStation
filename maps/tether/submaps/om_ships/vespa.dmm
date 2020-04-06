@@ -443,7 +443,7 @@
 "iA" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 4},/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,/obj/structure/cable{icon_state = "4-8"},/obj/effect/floor_decal/techfloor,/turf/simulated/floor/tiled/techfloor,/area/ship/expe/corridor4)
 "iB" = (/obj/machinery/power/terminal{icon_state = "term"; dir = 4},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor,/area/ship/expe/sm)
 "iC" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor/tiled/techfloor,/area/ship/expe/seceq)
-"iD" = (/obj/structure/closet/secure_closet/guncabinet/sidearm,/turf/simulated/floor/tiled/techfloor,/area/ship/expe/seceq)
+"iD" = (/obj/structure/closet/secure_closet/guncabinet,/obj/item/weapon/gun/energy/laser,/turf/simulated/floor/tiled/techfloor,/area/ship/expe/seceq)
 "iE" = (/turf/simulated/wall/rpshull,/area/ship/expe/seclobby2)
 "iF" = (/obj/machinery/door/airlock/glass_security{req_one_access = newlist()},/obj/machinery/door/firedoor,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled/techfloor,/area/ship/expe/seclobby2)
 "iG" = (/obj/machinery/power/rad_collector,/obj/machinery/atmospherics/pipe/simple/hidden/blue,/obj/structure/cable,/turf/simulated/floor,/area/ship/expe/sm)
@@ -1080,7 +1080,7 @@
 "uN" = (/obj/item/weapon/caution/cone,/turf/simulated/floor/tiled/techfloor,/area/ship/expe/maintenancerim)
 "uO" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/effect/floor_decal/borderfloorwhite{icon_state = "borderfloor_white"; dir = 4},/obj/effect/floor_decal/corner/paleblue/border{icon_state = "bordercolor"; dir = 4},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled/white,/area/ship/expe/medicalmain)
 "uP" = (/obj/structure/table/rack/shelf,/turf/simulated/floor/tiled/techfloor,/area/ship/expe/seceq)
-"uQ" = (/obj/machinery/alarm{frequency = 1441; pixel_y = 22},/obj/structure/table/rack/shelf,/turf/simulated/floor/tiled/techfloor,/area/ship/expe/seceq)
+"uQ" = (/obj/structure/table/rack/shelf,/obj/item/weapon/gun/energy/stunrevolver,/obj/item/weapon/gun/energy/stunrevolver,/turf/simulated/floor/tiled/techfloor,/area/ship/expe/seceq)
 "uR" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 4},/obj/effect/floor_decal/borderfloorblack{icon_state = "borderfloor_black"; dir = 8},/obj/effect/floor_decal/corner/mauve/border{icon_state = "bordercolor"; dir = 8},/turf/simulated/floor/tiled/steel,/area/shuttle/vespaboat)
 "uS" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/turf/simulated/floor/tiled/steel,/area/shuttle/vespaboat)
 "uT" = (/obj/machinery/firealarm{pixel_x = -31; pixel_y = -1},/obj/effect/floor_decal/borderfloorwhite{icon_state = "borderfloor_white"; dir = 8},/obj/effect/floor_decal/corner/paleblue/border{icon_state = "bordercolor"; dir = 8},/turf/simulated/floor/tiled/white,/area/ship/expe/medicalmain)
@@ -1121,7 +1121,7 @@
 "vC" = (/obj/structure/closet/secure_closet/medical3,/obj/effect/floor_decal/borderfloorwhite{icon_state = "borderfloor_white"; dir = 6},/obj/effect/floor_decal/corner/paleblue/border{icon_state = "bordercolor"; dir = 6},/turf/simulated/floor/tiled/white,/area/ship/expe/medicaleq)
 "vD" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/effect/floor_decal/borderfloorwhite{icon_state = "borderfloor_white"; dir = 9},/obj/effect/floor_decal/corner/paleblue/border{icon_state = "bordercolor"; dir = 9},/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor/tiled/white,/area/ship/expe/medical1)
 "vE" = (/turf/simulated/floor/tiled/white,/area/ship/expe/medical1)
-"vF" = (/obj/structure/closet/secure_closet/security,/turf/simulated/floor/tiled/techfloor,/area/ship/expe/secmain)
+"vF" = (/obj/machinery/alarm{frequency = 1441; pixel_y = 22},/obj/structure/table/rack/shelf,/obj/item/weapon/gun/energy/stunrevolver,/obj/item/weapon/gun/energy/stunrevolver,/turf/simulated/floor/tiled/techfloor,/area/ship/expe/seceq)
 "vG" = (/obj/machinery/atmospherics/pipe/manifold/hidden/green,/turf/simulated/floor,/area/ship/expe/engines)
 "vH" = (/obj/structure/sign/department/medbay,/turf/simulated/wall/rpshull,/area/ship/expe/corridor2)
 "vI" = (/obj/machinery/atmospherics/pipe/simple/hidden/green,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor,/area/ship/expe/maintenancerim)
@@ -1252,6 +1252,7 @@
 "yd" = (/obj/structure/sign/poster,/turf/simulated/wall/rpshull,/area/ship/expe/maintenance1)
 "ye" = (/obj/structure/sign/poster,/turf/simulated/wall/rpshull,/area/ship/expe/maintenancerim)
 "yf" = (/obj/structure/sign/securearea,/turf/simulated/wall/rpshull,/area/ship/expe/corridor2)
+"yg" = (/obj/structure/closet/secure_closet,/obj/item/weapon/handcuffs,/obj/item/weapon/handcuffs,/turf/simulated/floor/tiled/techfloor,/area/ship/expe/secmain)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaxCaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -1321,7 +1322,7 @@ aaaaaaaaaaaaaaaaalalxyduaphucihhpvqNpveghheheppveglEciaqbqbqeqbqcHdpdpdrimcNcOas
 aaaaaaaaaaaaaaaaalalbNduapfpcihhjaqTxpfshhftfvfrfwlEfxaqfAfCcJefcKaqaqaqimcthvareLcYeDfUeDeGeHeQeDeGeDeFeDeGeDeDeDeGeDfUeDeGeHeQeDeGeDeFeDeGeDeDeHfJhQfebKeKeMeNfffBgEiziAizizizizizizizfBgEiAizizizizaxiziziziAgEizizizizizizizizizfMfNfOfOfOfOfLfQfRbLiNfVfWfXfYbLbLaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaalalbNduaphucihhhhrehhhhhhtAfZhhhhhhcixJaqaqaqvrdgerbqbqimeEfzeIfqeSlhhHlhlhlAnJlhlhlhlhlhlhlhlhlhlhlhlhlhlhlAnJlhlhlhlhlhlhlhlhlAnJghfPgjgkcFcFcFcFcFcFcFdbdbdbdbdbdbdbdbdbdbdbdbdbdbgikckckckckckckckckckctykckckckckckckckckckcgmgnbLgogqgrgsgtbLbLaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaalalbNduaphucihhoLsdguhhjmqSsfgvgxhhciaqjdtIbqbqdhcJgbgcimctfDhChChChChChChFhFhFhFxKhFhFhFhFdvdvdvdvdvdvdvdvdvpVdvdvdvdvdvdvdvdvdvdvfydvbUjBcFgCgDgIgJgKbmhZjuiYkbkbkbkbkbkbkbkRgMkbbDgQcAaGgLbwbybAbTcIcIcIdecIcIcIgRcIgSoxoygWkcgYhaxLgohcxscVhghjeeaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaalalbNduaphucihhsisjhkhhhlhmhnhoholEciaqbqbqbqbqdhxJaqaqxHctdmhCiDhGiCuPuQhFjejgvqvqvqvFvFwnkjawcnfSjrxVmVqEoiseqMqErDtQxkxfgOrErItdtqgOgFgGcFgHgXhMhNhVcFhWhXhbhbhbhbhbhbhbhbhbhbhbhehYvZiRjTibiliBjUhsovkdkDkInpoWjSjJjWicgVjKkcgYhabLieifhfcVigiheeaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaalalbNduaphucihhsisjhkhhhlhmhnhoholEciaqbqbqbqbqdhxJaqaqxHctdmhCiDhGiCuQvFhFjejgvqvqvqygygwnkjawcnfSjrxVmVqEoiseqMqErDtQxkxfgOrErItdtqgOgFgGcFgHgXhMhNhVcFhWhXhbhbhbhbhbhbhbhbhbhbhbhehYvZiRjTibiliBjUhsovkdkDkInpoWjSjJjWicgVjKkcgYhabLieifhfcVigiheeaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaalalbNduaphucihhsisjhkhhsfujiiqSqSlEfxaqqJqIinxBhpeCveeuimctdmhCiDhGjjhGhGhFjhkkwmwmwmjhjhjhkjnxtrrHtLfFtPrZqGrZsNtaxgxhxiwLgOtUtbtctYgOgjhOhDhDhDhDhDhDcFiLiMhbkpkuwbwciOiOiOkzkWiPhbiQkcjIjQjRiukYjGkXjYiGjYjYjYkYlxqtgTiclSgWkciSiTbLgohchfcViUiVeeaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaalalbNduaphucilEsisjiWiXiZjajajajbhhciaqaqaqqKxWjcxWaqaqimglfEhCuPhGjjuPuPxXjhkkjhjhjhjhjhjhkjtDrFteuehKuomCxvxwtgmCmCmCmCvggOogtbtouwgOgjhOhDhPtBhRhSjshDiLiMhbmqdckijtdcdcdcdcknjvhbiQkcjIkFjRixmejwjwkcirjZjZkcjYjYqtmejDgVjKkcgmjLbLiNjMjNcVjObLbLaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaalalbNduaphucilEsisjjPhhhhhhhhhhhhhhjVipeXeZfbfdjXfdfdfdfIfdkfhCuPhGklkmkmlmlqlrlqlqlqlqlqlukjuutrtevckjvytwsgsgtztmrZrZrZuyfGuztMtOwqrigjhThDhUiKjnjokwgZkykAhbmMmJmKkndcdcdcdcknkChbiQkclClRqnkYmojGlcjZiviyjHkapcibjwmeiclSgWkcgYkEjCkHkJkKigjOpXbLaaaaaaaaaaaaaaaaaa
