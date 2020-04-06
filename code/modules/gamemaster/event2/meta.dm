@@ -71,11 +71,11 @@
 		return
 
 	if(href_list["force"])
-		SSevent_ticker.start_event(event_type)
+		// SSevent_ticker.start_event(event_type)  // VOREStation Edit - We don't use SSgame_master yet.
 		message_admins("Event '[name]' was forced by [usr.key].")
 
 	if(href_list["toggle"])
 		enabled = !enabled
 		message_admins("Event '[name]' was toggled [enabled ? "on" : "off"] by [usr.key].")
 
-	SSgame_master.interact(usr) // To refresh the UI.
+	// SSgame_master.interact(usr) // To refresh the UI.  // VOREStation Edit - We don't use SSgame_master yet.
