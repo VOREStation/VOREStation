@@ -499,12 +499,8 @@
 	M.emote("gasp")
 	M.Weaken(rand(10,25))
 	M.updatehealth()
-<<<<<<< HEAD
-	apply_brain_damage(M, deadtime)
-=======
 	apply_brain_damage(M)
 	SSgame_master.adjust_danger(-20)
->>>>>>> 8a03168... Stasis QoL (#6923)
 
 /obj/item/weapon/shockpaddles/proc/apply_brain_damage(mob/living/carbon/human/H)
 	if(!H.should_have_organ(O_BRAIN))
