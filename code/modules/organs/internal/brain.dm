@@ -18,6 +18,22 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	var/clone_source = FALSE
 	var/mob/living/carbon/brain/brainmob = null
 	var/can_assist = TRUE
+	var/defib_timer = -1
+
+/obj/item/organ/internal/brain/process()
+	..()
+	if(owner && owner.stat != DEAD) // So there's a lower risk of ticking twice.
+		tick_defib_timer()
+
+// This is called by `process()` when the owner is alive, or brain is not in a body, and by `Life()` directly when dead.
+/obj/item/organ/internal/brain/proc/tick_defib_timer()
+	if(preserved) // In an MMI/ice box/etc.
+		return
+
+	if(!owner || owner.stat == DEAD)
+		defib_timer = max(--defib_timer, 0)
+	else
+		defib_timer = min(++defib_timer, (config.defib_timer MINUTES) / 2)
 
 /obj/item/organ/internal/brain/proc/can_assist()
 	return can_assist
@@ -65,6 +81,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 /obj/item/organ/internal/brain/New()
 	..()
 	health = config.default_brain_health
+	defib_timer = (config.defib_timer MINUTES) / 2
 	spawn(5)
 		if(brainmob && brainmob.client)
 			brainmob.client.screen.len = null //clear the hud
