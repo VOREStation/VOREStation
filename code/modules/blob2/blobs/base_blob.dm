@@ -1,4 +1,4 @@
-var/list/blobs = list()
+GLOBAL_LIST_EMPTY(all_blobs)
 
 /obj/structure/blob
 	name = "blob"
@@ -18,21 +18,21 @@ var/list/blobs = list()
 	var/mob/observer/blob/overmind = null
 	var/base_name = "blob" // The name that gets appended along with the blob_type's name.
 
-/obj/structure/blob/New(var/newloc, var/new_overmind)
-	..(newloc)
+/obj/structure/blob/Initialize(newloc, new_overmind)
 	if(new_overmind)
 		overmind = new_overmind
 	update_icon()
 	if(!integrity)
 		integrity = max_integrity
 	set_dir(pick(cardinal))
-	blobs += src
+	GLOB.all_blobs += src
 	consume_tile()
+	return ..()
 
 
 /obj/structure/blob/Destroy()
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1) //Expand() is no longer broken, no check necessary.
-	blobs -= src
+	GLOB.all_blobs -= src
 	overmind = null
 	return ..()
 
@@ -112,7 +112,7 @@ var/list/blobs = list()
 		if(overmind)
 			expand_probablity *= overmind.blob_type.spread_modifier
 			if(overmind.blob_type.slow_spread_with_size)
-				expand_probablity /= (blobs.len / 10)
+				expand_probablity /= (GLOB.all_blobs.len / 10)
 
 		if(distance <= expand_range)
 			var/can_expand = TRUE

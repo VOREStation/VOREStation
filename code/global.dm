@@ -107,7 +107,6 @@ var/gravity_is_on = 1
 
 var/join_motd = null
 
-var/datum/game_master/game_master = new() // Game Master, an AI for choosing events.
 var/datum/metric/metric = new() // Metric datum, used to keep track of the round.
 
 var/list/awaydestinations = list() // Away missions. A list of landmarks that the warpgate can take you to.

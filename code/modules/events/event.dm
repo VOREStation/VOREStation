@@ -137,27 +137,29 @@
 	activeFor++
 
 //Called when start(), announce() and end() has all been called.
-/datum/event/proc/kill()
+/datum/event/proc/kill(external_use = FALSE)
 	// If this event was forcefully killed run end() for individual cleanup
 	if(isRunning)
 		isRunning = 0
 		end()
 
 	endedAt = world.time
-	SSevents.event_complete(src)
+	if(!external_use)
+		SSevents.event_complete(src)
 
 //Called during building of skybox to get overlays
 /datum/event/proc/get_skybox_image()
 	return
 
-/datum/event/New(var/datum/event_meta/EM)
+/datum/event/New(var/datum/event_meta/EM, external_use = FALSE)
 	// event needs to be responsible for this, as stuff like APLUs currently make their own events for curious reasons
-	SSevents.active_events += src
+	if(!external_use)
+		SSevents.active_events += src
 
-	event_meta = EM
-	severity = event_meta.severity
-	if(severity < EVENT_LEVEL_MUNDANE) severity = EVENT_LEVEL_MUNDANE
-	if(severity > EVENT_LEVEL_MAJOR) severity = EVENT_LEVEL_MAJOR
+		event_meta = EM
+		severity = event_meta.severity
+		if(severity < EVENT_LEVEL_MUNDANE) severity = EVENT_LEVEL_MUNDANE
+		if(severity > EVENT_LEVEL_MAJOR) severity = EVENT_LEVEL_MAJOR
 
 	startedAt = world.time
 

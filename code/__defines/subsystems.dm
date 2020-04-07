@@ -73,6 +73,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_CIRCUIT		-21
 #define INIT_ORDER_AI			-22
 #define INIT_ORDER_JOB			-23
+#define INIT_ORDER_GAME_MASTER		-24
 #define INIT_ORDER_CHAT			-100 //Should be last to ensure chat remains smooth during init.
 
 
