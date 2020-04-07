@@ -58,7 +58,7 @@
 	var/datum/event_meta/event_meta = null
 	var/list/affecting_z	= null // List of z-levels to affect, null lets the event choose (usally station_levels)
 	var/has_skybox_image	= FALSE // True if SSskybox should query this event for an image to put in the skybox.
-	var/obj/effect/overmap/visitable/ship/victim = null // Ship that triggered this event on itself.  Some messages might be different etc.
+	var/obj/effect/overmap/visitable/ship/victim = null // Ship this event is acting upon (If this is event is due to overmap travel).nt etc.
 
 /datum/event/nothing
 

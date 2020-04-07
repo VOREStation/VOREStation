@@ -2,6 +2,7 @@
 
 /datum/event/ionstorm
 	has_skybox_image = TRUE
+	announceWhen = -1 // Never (setup may override)
 	var/botEmagChance = 0 //VOREStation Edit
 	var/cloud_hueshift
 	var/list/players = list()
@@ -17,10 +18,13 @@
 
 /datum/event/ionstorm/setup()
 	endWhen = rand(500, 1500)
+	if(prob(50))
+		announceWhen = endWhen + rand(250, 400)
 
-// Interestingly enough, announce() actually *DOES* this event for some reason.
 /datum/event/ionstorm/announce()
-//		command_alert("The station has entered an ion storm.  Monitor all electronic equipment for malfunctions", "Anomaly Alert")
+	command_announcement.Announce("It has come to our attention that \the [location_name()] passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
+
+/datum/event/ionstorm/start()
 	for (var/mob/living/carbon/human/player in player_list)
 		if(	!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > MinutesToTicks(10))
 			continue
@@ -67,11 +71,6 @@
 			if(prob(botEmagChance))
 				bot.emag_act(1)
 
-/datum/event/ionstorm/end()
-	..()
-	if(prob(50))
-		spawn(rand(5000,8000))
-			command_announcement.Announce("It has come to our attention that \the [location_name()] passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
 // Overmap version
 /datum/event/ionstorm/overmap/announce()
