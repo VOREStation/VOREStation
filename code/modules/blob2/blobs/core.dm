@@ -12,6 +12,7 @@ var/list/blob_cores = list()
 	health_regen = 0 //we regen in Life() instead of when pulsed
 	var/datum/blob_type/desired_blob_type = null // If this is set, the core always creates an overmind possessing this blob type.
 	var/difficulty_threshold = null // Otherwise if this is set, it picks a random blob_type that is equal or lower in difficulty.
+	var/difficulty_floor = null // Related to the above var, acts as a floor value to the above, inclusive.
 	var/core_regen = 2
 	var/overmind_get_delay = 0 //we don't want to constantly try to find an overmind, this var tracks when we'll try to get an overmind again
 	var/resource_delay = 0
@@ -23,14 +24,18 @@ var/list/blob_cores = list()
 	ai_controlled = FALSE
 
 // Spawn these if you want a semi-random blob.
+// Can give a random easy blob.
 /obj/structure/blob/core/random_easy
 	difficulty_threshold = BLOB_DIFFICULTY_EASY
 
+// Can give a random easy or medium blob.
 /obj/structure/blob/core/random_medium
 	difficulty_threshold = BLOB_DIFFICULTY_MEDIUM
 
+// Can give a random medium or hard blob.
 /obj/structure/blob/core/random_hard
 	difficulty_threshold = BLOB_DIFFICULTY_HARD
+	difficulty_floor = BLOB_DIFFICULTY_MEDIUM
 
 // Spawn these if you want a specific blob.
 /obj/structure/blob/core/blazing_oil
@@ -81,8 +86,8 @@ var/list/blob_cores = list()
 /obj/structure/blob/core/classic
 	desired_blob_type = /datum/blob_type/classic
 
-/obj/structure/blob/core/New(var/newloc, var/client/new_overmind = null, new_rate = 2, placed = 0)
-	..(newloc)
+/obj/structure/blob/core/Initialize(newloc, client/new_overmind = null, new_rate = 2, placed = 0)
+	. = ..(newloc)
 	blob_cores += src
 	START_PROCESSING(SSobj, src)
 	update_icon() //so it atleast appears
@@ -180,7 +185,9 @@ var/list/blob_cores = list()
 	var/list/valid_types = list()
 	for(var/thing in subtypesof(/datum/blob_type))
 		var/datum/blob_type/BT = thing
-		if(initial(BT.difficulty) > difficulty_threshold)
+		if(initial(BT.difficulty) > difficulty_threshold) // Too hard.
+			continue
+		if(initial(BT.difficulty) < difficulty_floor) // Too easy.
 			continue
 		valid_types += BT
 	return pick(valid_types)
