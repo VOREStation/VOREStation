@@ -13,7 +13,6 @@
 	var/list/event_icon_states				// Randomly picked from
 	var/difficulty = EVENT_LEVEL_MODERATE
 	var/weaknesses //if the BSA can destroy them and with what
-	var/list/victims //basically cached events on which Z level
 
 /obj/effect/overmap/event/Initialize()
 	. = ..()
