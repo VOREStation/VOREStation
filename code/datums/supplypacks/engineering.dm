@@ -35,48 +35,6 @@
 	containertype = /obj/structure/closet/crate/engineering
 	containername = "Superconducting Transmission Coil crate"
 
-/datum/supply_pack/eng/shield_capacitor
-	name = "Shield Capacitor"
-	contains = list(/obj/machinery/shield_capacitor)
-	cost = 20
-	containertype = /obj/structure/closet/crate/engineering
-	containername = "shield capacitor crate"
-
-/datum/supply_pack/eng/shield_capacitor/advanced
-	name = "Advanced Shield Capacitor"
-	contains = list(/obj/machinery/shield_capacitor/advanced)
-	cost = 30
-	containertype = /obj/structure/closet/crate/engineering
-	containername = "advanced shield capacitor crate"
-
-/datum/supply_pack/eng/bubble_shield
-	name = "Bubble Shield Generator"
-	contains = list(/obj/machinery/shield_gen)
-	cost = 40
-	containertype = /obj/structure/closet/crate/engineering
-	containername = "shield bubble generator crate"
-
-/datum/supply_pack/eng/bubble_shield/advanced
-	name = "Advanced Bubble Shield Generator"
-	contains = list(/obj/machinery/shield_gen/advanced)
-	cost = 60
-	containertype = /obj/structure/closet/crate/engineering
-	containername = "advanced bubble shield generator crate"
-
-/datum/supply_pack/eng/hull_shield
-	name = "Hull Shield Generator"
-	contains = list(/obj/machinery/shield_gen/external)
-	cost = 80
-	containertype = /obj/structure/closet/crate/engineering
-	containername = "shield hull generator crate"
-
-/datum/supply_pack/eng/hull_shield/advanced
-	name = "Advanced Hull Shield Generator"
-	contains = list(/obj/machinery/shield_gen/external/advanced)
-	cost = 120
-	containertype = /obj/structure/closet/crate/engineering
-	containername = "advanced hull shield generator crate"
-
 /datum/supply_pack/eng/electrical
 	name = "Electrical maintenance crate"
 	contains = list(
@@ -173,29 +131,19 @@
 	containername = "Particle Accelerator crate"
 	access = access_ce
 
-/datum/supply_pack/eng/shield_gen
-	contains = list(/obj/item/weapon/circuitboard/shield_gen)
-	name = "Bubble shield generator circuitry"
-	cost = 30
-	containertype = /obj/structure/closet/crate/secure/engineering
-	containername = "bubble shield generator circuitry crate"
-	access = access_ce
-
-/datum/supply_pack/eng/shield_gen_ex
-	contains = list(/obj/item/weapon/circuitboard/shield_gen_ex)
-	name = "Hull shield generator circuitry"
-	cost = 30
-	containertype = /obj/structure/closet/crate/secure/engineering
-	containername = "hull shield generator circuitry crate"
-	access = access_ce
-
-/datum/supply_pack/eng/shield_cap
-	contains = list(/obj/item/weapon/circuitboard/shield_cap)
-	name = "Bubble shield capacitor circuitry"
-	cost = 30
-	containertype = /obj/structure/closet/crate/secure/engineering
-	containername = "shield capacitor circuitry crate"
-	access = access_ce
+/datum/supply_pack/eng/shield_generator
+	name = "Shield Generator Construction Kit"
+	contains = list(
+		/obj/item/weapon/circuitboard/shield_generator,
+		/obj/item/weapon/stock_parts/capacitor,
+		/obj/item/weapon/stock_parts/micro_laser,
+		/obj/item/weapon/smes_coil,
+		/obj/item/weapon/stock_parts/console_screen,
+		/obj/item/weapon/stock_parts/subspace/amplifier
+		)
+	cost = 80
+	containertype = /obj/structure/closet/crate/engineering
+	containername = "shield generator construction kit crate"
 
 /datum/supply_pack/eng/smbig
 	name = "Supermatter Core"
