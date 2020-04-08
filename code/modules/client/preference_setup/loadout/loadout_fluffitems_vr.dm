@@ -63,6 +63,13 @@
 	ckeywhitelist = list("arokha")
 	character_name = list("Aronai Sieyes")
 
+/datum/gear/fluff/xander_unity_medal
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Xander's Unity Medal"
+	ckeywhitelist = list("aegisoa")
+	character_name = list("Xander Bevin")
+
+
 //  B CKEYS
 /datum/gear/fluff/yuuko_kimono
 	path = /obj/item/clothing/under/fluff/sakura_hokkaido_kimono
@@ -203,6 +210,18 @@
 	ckeywhitelist = list("crossexonar")
 	character_name = list("Sari-E")
 
+/datum/gear/fluff/alexandria_medal
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Alex's Unity Medal"
+	ckeywhitelist = list('cgr')
+	character_name = list('Alexandria Kozetto')
+
+/datum/gear/fluff/hisako_medal
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Hisako's Unity Medal"
+	ckeywhitelist = list('chaleur')
+	character_name = list('Hisako Arato')
+
 //  D CKEYS
 /datum/gear/fluff/dhaeleena_medal
 	path = /obj/item/clothing/accessory/medal/silver/security/fluff/dhael
@@ -329,6 +348,18 @@
 	slot = slot_back
 	ckeywhitelist = list("ivymoomoo")
 	character_name = list("Ivy Baladeva")
+
+/datum/gear/fluff/farren_medal
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Farren's Unity Medal"
+	ckeywhitelist = list('itsaket')
+	character_name = list('Farren Fruit')
+
+/datum/gear/fluff/myse_monk
+	path = /obj/item/clothing/suit/imperium_monk
+	display_name = "Imperium monk"
+	ckeywhitelist = list('itsaket')
+	character_name = list('Myse Topazian IV')
 
 //  J CKEYS
 /datum/gear/fluff/mor_box
@@ -612,12 +643,25 @@
 	ckeywhitelist = list("nepox")
 	character_name = list("Annie Rose")
 
+/datum/gear/fluff/damon_medal
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Damon's Unity Medal"
+	ckeywhitelist = list('nickcrazy')
+	character_name = list('Damon Bones Xrim')
+
 //  O CKEYS
 /datum/gear/fluff/richard_chain
 	path = /obj/item/weapon/melee/fluff/holochain
 	display_name = "Richard's Holochain"
 	ckeywhitelist = list("orbisa")
 	character_name = list("Richard D'angelo")
+
+/datum/gear/fluff/bogen_medal
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Bogen's Unity Medal"
+	ckeywhitelist = list("oscarholmes")
+	character_name = list("Bogen Kellogg")
+
 
 //  P CKEYS
 /datum/gear/fluff/zaku_sweatervest
@@ -626,6 +670,12 @@
 	slot = slot_wear_suit
 	ckeywhitelist = list("pimientopyro")
 	character_name = list("Zaku Fyodorovna")
+
+/datum/gear/fluff/jamie_medal
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Jamie's Unity Medal"
+	ckeywhitelist = list("phoenixgamma7")
+	character_name = list("Jamie Findlay")
 
 /datum/gear/fluff/lily_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
@@ -795,6 +845,12 @@
 	ckeywhitelist = list("suicidalpickles")
 	character_name = list("Silent Stripes")
 
+/datum/gear/fluff/brynhild_medal
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Brynhild's Unity Medal"
+	ckeywhitelist = list('sageofaether12')
+	character_name = list('Brynhild Vandradottir')
+
 //  T CKEYS
 /datum/gear/fluff/ascian_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
@@ -947,6 +1003,12 @@
 	slot = slot_wear_mask
 	ckeywhitelist = list("Viveret")
 	character_name = list("Silentio")
+
+/datum/gear/fluff/roanna_medal
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Roanna's Unity Medal"
+	ckeywhitelist = list('vitoras')
+	character_name = list("Roanna Ti'Rox")
 
 //  W CKEYS
 /datum/gear/fluff/sthasha_bracer
