@@ -157,6 +157,13 @@
 	ckeywhitelist = list("burritojustice")
 	character_name = list("Jayda Wilson")
 
+/datum/gear/fluff/star_hoodie
+	path = /obj/item/clothing/suit/storage/star
+	display_name = "Star hoodie"
+	slot = slot_wear_suit
+	ckeywhitelist = list("bacon12366")
+	character_name = list("Elly Brown")
+
 //  C CKEYS
 /datum/gear/fluff/cappy_watch
 	path = /obj/item/clothing/accessory/watch
@@ -1082,7 +1089,7 @@
 /datum/gear/fluff/tachika_medal
 	path = /obj/item/clothing/accessory/medal/conduct
 	display_name = "Tachika's Conduct Medal"
-	ckeywhitelist = list("zammyman")
+	ckeywhitelist = list("zammyman215")
 	character_name = list("Tachika")
 
 /datum/gear/fluff/zaoozaoo_hat
@@ -1098,9 +1105,4 @@
 	ckeywhitelist = list("zodiacshadow")
 	character_name = list("Nehi Maximus")
 
-/datum/gear/fluff/star_hoodie
-	path = /obj/item/clothing/suit/storage/star
-	display_name = "Star hoodie"
-	slot = slot_wear_suit
-	ckeywhitelist = list("bacon12366")
-	character_name = list("Elly Brown")
+
