@@ -168,11 +168,12 @@
 		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
 
 
-
-	if(can_fire && !(SS_NO_FIRE & flags))
-		msg = "[round(cost,1)]ms|[round(tick_usage,1)]%([round(tick_overrun,1)]%)|[round(ticks,0.1)]\t[msg]"
-	else
+	if(SS_NO_FIRE & flags)
+		msg = "NO FIRE\t[msg]"
+	else if(can_fire <= 0)
 		msg = "OFFLINE\t[msg]"
+	else
+		msg = "[round(cost,1)]ms|[round(tick_usage,1)]%([round(tick_overrun,1)]%)|[round(ticks,0.1)]\t[msg]"
 
 	var/title = name
 	if (can_fire)
