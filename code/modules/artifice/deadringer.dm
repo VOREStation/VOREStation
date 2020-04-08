@@ -19,13 +19,13 @@
 	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/deadringer/Destroy() //just in case some smartass tries to stay invisible by destroying the watch
-	uncloak()
+	reveal()
 	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/weapon/deadringer/dropped()
 	if(timer > 20)
-		uncloak()
+		reveal()
 		watchowner = null
 	return
 
