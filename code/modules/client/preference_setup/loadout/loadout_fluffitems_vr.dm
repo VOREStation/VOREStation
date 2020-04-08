@@ -354,6 +354,12 @@
 	ckeywhitelist = list("itsaket")
 	character_name = list("Farren Fruit")
 
+/datum/gear/fluff/myse_monk
+	path = /obj/item/clothing/suit/imperium_monk
+	display_name = "Imperium monk"
+	ckeywhitelist = list("itsaket")
+	character_name = list("Myse Topazian IV")
+
 //  J CKEYS
 /datum/gear/fluff/mor_box
 	path = /obj/item/weapon/storage/box/fluff/morxaina
@@ -635,6 +641,12 @@
 	display_name = "Annie's Sweater"
 	ckeywhitelist = list("nepox")
 	character_name = list("Annie Rose")
+
+/datum/gear/fluff/damon_medal
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Damon's Unity Medal"
+	ckeywhitelist = list("nickcrazy")
+	character_name = list("Damon Bones Xrim")
 
 //  O CKEYS
 /datum/gear/fluff/richard_chain
