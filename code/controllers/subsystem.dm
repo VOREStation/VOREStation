@@ -203,3 +203,15 @@
 //usually called via datum/controller/subsystem/New() when replacing a subsystem (i.e. due to a recurring crash)
 //should attempt to salvage what it can from the old instance of subsystem
 /datum/controller/subsystem/Recover()
+
+// Suspends this subsystem from being queued for running.  If already in the queue, sleeps until idle. Returns FALSE if the subsystem was already suspended.
+/datum/controller/subsystem/proc/suspend()
+	. = (can_fire > 0) // Return true if we were previously runnable, false if previously suspended.
+	can_fire = FALSE
+	// Safely sleep in a loop until the subsystem is idle, (or its been un-suspended somehow)
+	while(can_fire <= 0 && state != SS_IDLE)
+		stoplag() // Safely sleep in a loop until 
+
+// Wakes a suspended subsystem.
+/datum/controller/subsystem/proc/wake()
+	can_fire = TRUE
