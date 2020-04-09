@@ -110,7 +110,7 @@ GLOBAL_LIST_BOILERPLATE(world_uplinks, /obj/item/device/uplink)
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)	// No auto-refresh
-		ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state = inventory_state)
+		ui = new(user, src, ui_key, "uplink.tmpl", title, 630, 700, state = inventory_state)
 		data["menu"] = 0
 		ui.set_initial_data(data)
 		ui.open()
@@ -144,8 +144,8 @@ GLOBAL_LIST_BOILERPLATE(world_uplinks, /obj/item/device/uplink)
 		nanoui_menu = text2num(href_list["menu"])
 		if(href_list["id"])
 			exploit_id = href_list["id"]
-		if(href_list["category"])
-			category = locate(href_list["category"]) in uplink.categories
+	else if(href_list["category"])
+		category = locate(href_list["category"]) in uplink.categories
 
 	update_nano_data()
 	return 1
@@ -160,14 +160,17 @@ GLOBAL_LIST_BOILERPLATE(world_uplinks, /obj/item/device/uplink)
 		nanoui_data["discount_name"] = discount_item ? discount_item.name : ""
 		nanoui_data["discount_amount"] = (1-discount_amount)*100
 		nanoui_data["offer_expiry"] = worldtime2stationtime(next_offer_time)
-	else if(nanoui_menu == 1)
-		var/items[0]
-		for(var/datum/uplink_item/item in category.items)
-			if(item.can_view(src))
-				var/cost = item.cost(uses, src)
-				if(!cost) cost = "???"
-				items[++items.len] = list("name" = item.name, "description" = replacetext(item.description(), "\n", "<br>"), "can_buy" = item.can_buy(src), "cost" = cost, "ref" = "\ref[item]")
-		nanoui_data["items"] = items
+
+		if(category)
+			nanoui_data["current_category"] = category.name
+			var/items[0]
+			for(var/datum/uplink_item/item in category.items)
+				if(item.can_view(src))
+					var/cost = item.cost(uses, src)
+					if(!cost) cost = "???"
+					items[++items.len] = list("name" = item.name, "description" = replacetext(item.description(), "\n", "<br>"), "can_buy" = item.can_buy(src), "cost" = cost, "ref" = "\ref[item]")
+			nanoui_data["items"] = items
+
 	else if(nanoui_menu == 2)
 		var/permanentData[0]
 		for(var/datum/data/record/L in sortRecord(data_core.locked))
