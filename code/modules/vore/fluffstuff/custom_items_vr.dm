@@ -45,7 +45,7 @@
 	
 	var/owner_ckey = null		//ckey of the kit owner as a string
 	var/skip_contents = FALSE	//can we skip the contents check? we generally shouldn't, but this is necessary for rigs/coats with hoods/etc.
-	var/transfer_contents = FALSE	//should we transfer the contents across before deleting? we generally shouldn't, esp. in the case of rigs/coats with hoods/etc.
+	var/transfer_contents = FALSE	//should we transfer the contents across before deleting? we generally shouldn't, esp. in the case of rigs/coats with hoods/etc. note this does nothing if skip is FALSE.
 	var/can_repair = FALSE		//can we be used to repair damaged voidsuits when converting them?
 	var/can_revert = TRUE		//can we revert items, or is it a one-way trip?
 	var/delete_on_empty = FALSE	//do we self-delete when emptied?
@@ -56,7 +56,8 @@
 	var/to_type
 	var/keycheck
 	if(istype(O,/obj/item/clothing/suit/space/void/) && !can_repair) //check if we're a voidsuit and if we're allowed to repair
-		if(O:breaches.len)	//this has to be underneath the istype or it'll spit a runtime if used on non-voidsuits
+		var/obj/item/clothing/suit/space/void/SS = O
+		if(LAZYLEN(SS.breaches))
 			to_chat(user, "<span class='warning'>You should probably repair that before you start tinkering with it.</span>")
 			return
 	if(isturf(O)) //silently fail if you click on a turf. shouldn't work anyway because turfs aren't objects but if I don't do this it spits runtimes. 
@@ -114,23 +115,43 @@
 	if(skip_contents && transfer_contents)
 		N.contents = O.contents
 		if(istype(N,/obj/item/weapon/gun/projectile/))
-			N:magazine_type = O:magazine_type
-			N:ammo_magazine = O:ammo_magazine
+			var/obj/item/weapon/gun/projectile/NN = N
+			var/obj/item/weapon/gun/projectile/OO = O
+			NN.magazine_type = OO.magazine_type
+			NN.ammo_magazine = OO.ammo_magazine
 		if(istype(N,/obj/item/weapon/gun/energy/))
-			N:cell_type = O:cell_type
+			var/obj/item/weapon/gun/energy/NE = N
+			var/obj/item/weapon/gun/energy/OE = O
+			NE.cell_type = OE.cell_type
 	else	//nuke any ammo it'd normally spawn with, if it's a gun, to prevent ammo duplication. we have to do this just for guns, not immediately under the else, or it breaks default attachments like hoods and suit storage
 		if(istype(N,/obj/item/weapon/gun/projectile/))
-			N:contents = list()
-			N:magazine_type = null
-			N:ammo_magazine = null
+			var/obj/item/weapon/gun/projectile/NM = N
+			NM.contents = list()
+			NM.magazine_type = null
+			NM.ammo_magazine = null
 		if(istype(N,/obj/item/weapon/gun/energy/))
-			N:contents = list()
-			N:cell_type = null
+			var/obj/item/weapon/gun/energy/NO = N
+			NO.contents = list()
+			NO.cell_type = null
 	
 	qdel(O)
 	parts -= cost
 	if(!parts && delete_on_empty)
 		qdel(src)
+
+//DEBUG ITEM
+/obj/item/device/modkit_conversion/fluff/debug_gunkit
+	name = "Gun Transformation Kit"
+	desc = "A kit containing all the needed tools and fabric to modify one sidearm to another."
+	skip_contents = FALSE
+	transfer_contents = FALSE
+
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "harmony_kit"
+
+	from_helmet = /obj/item/weapon/gun/energy/laser
+	to_helmet = /obj/item/weapon/gun/energy/retro
+//DEBUG ITEM ENDS
 
 //JoanRisu:Joan Risu
 /obj/item/weapon/flame/lighter/zippo/fluff/joan
