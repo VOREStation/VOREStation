@@ -1,8 +1,3 @@
-/var/const/access_talon = 301
-/datum/access/talon
-	id = access_talon
-	access_type = ACCESS_TYPE_PRIVATE
-
 ///////////////////////////
 //// Spawning and despawning
 var/global/list/latejoin_talon = list()
