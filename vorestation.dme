@@ -64,6 +64,7 @@
 #include "code\__defines\objects.dm"
 #include "code\__defines\overmap.dm"
 #include "code\__defines\planets.dm"
+#include "code\__defines\preferences.dm"
 #include "code\__defines\process_scheduler.dm"
 #include "code\__defines\qdel.dm"
 #include "code\__defines\research.dm"

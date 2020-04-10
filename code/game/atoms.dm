@@ -185,6 +185,12 @@
 	to_chat(user, "[bicon(src)] That's [f_name] [suffix]")
 	to_chat(user,desc)
 
+	if(user.client?.examine_text_mode == EXAMINE_MODE_INCLUDE_USAGE)
+		to_chat(user, description_info)
+
+	if(user.client?.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL)
+		user.client.statpanel = "Examine" // Switch to stat panel
+
 	return distance == -1 || (get_dist(src, user) <= distance)
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
