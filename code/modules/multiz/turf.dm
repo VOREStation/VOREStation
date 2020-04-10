@@ -30,6 +30,11 @@
 
 	var/turf/below
 
+/turf/simulated/open/vacuum
+	oxygen = 0
+	nitrogen = 0
+	temperature = TCMB
+
 /turf/simulated/open/post_change()
 	..()
 	update()
