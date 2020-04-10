@@ -143,7 +143,7 @@
 /obj/item/device/modkit_conversion/fluff/debug_gunkit
 	name = "Gun Transformation Kit"
 	desc = "A kit containing all the needed tools and fabric to modify one sidearm to another."
-	skip_contents = FALSE
+	skip_content_check = FALSE
 	transfer_contents = FALSE
 
 	icon = 'icons/vore/custom_items_vr.dmi'
