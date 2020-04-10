@@ -9,7 +9,7 @@
 	anchored = 1
 	density = 1
 	power_channel = EQUIP
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 100		// Minimal lights to keep algae alive
 	active_power_usage = 5000	// Powerful grow lights to stimulate oxygen production
 	//power_rating = 7500			//7500 W ~ 10 HP
@@ -57,10 +57,10 @@
 	..()
 	recent_moles_transferred = 0
 
-	if(inoperable() || use_power < 2)
+	if(inoperable() || use_power < USE_POWER_ACTIVE)
 		ui_error = null
 		update_icon()
-		if(use_power == 1)
+		if(use_power == USE_POWER_IDLE)
 			last_power_draw = idle_power_usage
 		else
 			last_power_draw = 0
@@ -113,7 +113,7 @@
 	update_icon()
 
 /obj/machinery/atmospherics/binary/algae_farm/update_icon()
-	if(inoperable() || !anchored || use_power < 2)
+	if(inoperable() || !anchored || use_power < USE_POWER_ACTIVE)
 		icon_state = "algae-off"
 	else if(recent_moles_transferred >= moles_per_tick)
 		icon_state = "algae-full"
@@ -214,13 +214,13 @@
 
 	// Queue management can be done even while busy
 	if(href_list["activate"])
-		update_use_power(2)
+		update_use_power(USE_POWER_ACTIVE)
 		update_icon()
 		updateUsrDialog()
 		return
 
 	if(href_list["deactivate"])
-		update_use_power(1)
+		update_use_power(USE_POWER_IDLE)
 		update_icon()
 		updateUsrDialog()
 		return

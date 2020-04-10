@@ -20,7 +20,6 @@ var/global/list/image/splatter_cache=list()
 	var/synthblood = 0
 	var/list/datum/disease2/disease/virus2 = list()
 	var/amount = 5
-	var/drytime
 
 /obj/effect/decal/cleanable/blood/reveal_blood()
 	if(!fluorescent)
@@ -33,12 +32,7 @@ var/global/list/image/splatter_cache=list()
 	if(invisibility != 100)
 		invisibility = 100
 		amount = 0
-		STOP_PROCESSING(SSobj, src)
 	..(ignore=1)
-
-/obj/effect/decal/cleanable/blood/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
 
 /obj/effect/decal/cleanable/blood/New()
 	..()
@@ -52,12 +46,7 @@ var/global/list/image/splatter_cache=list()
 					if (B.blood_DNA)
 						blood_DNA |= B.blood_DNA.Copy()
 					qdel(B)
-	drytime = world.time + DRYING_TIME * (amount+1)
-	START_PROCESSING(SSobj, src)
-
-/obj/effect/decal/cleanable/blood/process()
-	if(world.time > drytime)
-		dry()
+	addtimer(CALLBACK(src, .proc/dry), DRYING_TIME * (amount+1))
 
 /obj/effect/decal/cleanable/blood/update_icon()
 	if(basecolor == "rainbow") basecolor = "#[get_random_colour(1)]"
@@ -116,7 +105,6 @@ var/global/list/image/splatter_cache=list()
 	desc = drydesc
 	color = adjust_brightness(color, -50)
 	amount = 0
-	STOP_PROCESSING(SSobj, src)
 
 /obj/effect/decal/cleanable/blood/attack_hand(mob/living/carbon/human/user)
 	..()
@@ -241,14 +229,18 @@ var/global/list/image/splatter_cache=list()
 	random_icon_states = list("mucus")
 
 	var/list/datum/disease2/disease/virus2 = list()
-	var/dry=0 // Keeps the lag down
+	var/dry = 0 // Keeps the lag down
 
-/obj/effect/decal/cleanable/mucus/New()
-	spawn(DRYING_TIME * 2)
-		dry=1
+/obj/effect/decal/cleanable/mucus/Initialize()
+	. = ..()
+	VARSET_IN(src, dry, TRUE, DRYING_TIME * 2)
 
 //This version should be used for admin spawns and pre-mapped virus vectors (e.g. in PoIs), this version does not dry
-/obj/effect/decal/cleanable/mucus/mapped/New()
-	..()
+/obj/effect/decal/cleanable/mucus/mapped/Initialize()
+	. = ..()
 	virus2 |= new /datum/disease2/disease
 	virus2[1].makerandom()
+
+/obj/effect/decal/cleanable/mucus/mapped/Destroy()
+	virus2.Cut()
+	return ..()

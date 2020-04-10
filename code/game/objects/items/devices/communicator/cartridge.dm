@@ -140,7 +140,7 @@
 			if(!reason)
 				return
 
-			supply_controller.create_order(S, user, reason)
+			SSsupply.create_order(S, user, reason)
 			internal_data["supply_reqtime"] = (world.time + 5) % 1e5
 
 	if(href_list["order_ref"])
@@ -189,20 +189,20 @@
 					O.approved_at = new_val
 
 		if(href_list["approve"])
-			supply_controller.approve_order(O, user)
+			SSsupply.approve_order(O, user)
 
 		if(href_list["deny"])
-			supply_controller.deny_order(O, user)
+			SSsupply.deny_order(O, user)
 
 		if(href_list["delete"])
-			supply_controller.delete_order(O, user)
+			SSsupply.delete_order(O, user)
 
 	if(href_list["clear_all_requests"])
 		var/mob/user = locate(href_list["user"])
 		if(!istype(user)) // Invalid ref
 			return
 
-		supply_controller.deny_all_pending(user)
+		SSsupply.deny_all_pending(user)
 
 	if(href_list["export_ref"])
 		var/datum/exported_crate/E = locate(href_list["export_ref"])
@@ -258,29 +258,29 @@
 						E.value = num
 
 		else if(href_list["delete"])
-			supply_controller.delete_export(E, user)
+			SSsupply.delete_export(E, user)
 
 		else if(href_list["add_item"])
-			supply_controller.add_export_item(E, user)
+			SSsupply.add_export_item(E, user)
 
-	if(supply_controller && supply_controller.shuttle)
+	if(SSsupply && SSsupply.shuttle)
 		switch(href_list["send_shuttle"])
 			if("send_away")
-				if(supply_controller.shuttle.forbidden_atoms_check())
+				if(SSsupply.shuttle.forbidden_atoms_check())
 					to_chat(usr, "<span class='warning'>For safety reasons the automated supply shuttle cannot transport live organisms, classified nuclear weaponry or homing beacons.</span>")
 				else
-					supply_controller.shuttle.launch(src)
+					SSsupply.shuttle.launch(src)
 					to_chat(usr, "<span class='notice'>Initiating launch sequence.</span>")
 
 			if("send_to_station")
-				supply_controller.shuttle.launch(src)
-				to_chat(usr, "<span class='notice'>The supply shuttle has been called and will arrive in approximately [round(supply_controller.movetime/600,1)] minutes.</span>")
+				SSsupply.shuttle.launch(src)
+				to_chat(usr, "<span class='notice'>The supply shuttle has been called and will arrive in approximately [round(SSsupply.movetime/600,1)] minutes.</span>")
 
 			if("cancel_shuttle")
-				supply_controller.shuttle.cancel_launch(src)
+				SSsupply.shuttle.cancel_launch(src)
 
 			if("force_shuttle")
-				supply_controller.shuttle.force_launch(src)
+				SSsupply.shuttle.force_launch(src)
 
 	// Status display
 	switch(href_list["stat_display"])

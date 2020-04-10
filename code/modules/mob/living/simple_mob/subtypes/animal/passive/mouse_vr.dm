@@ -9,7 +9,6 @@
 
 	desc = "A small rodent, often seen hiding in maintenance areas and making a nuisance of itself. And stealing cheese, or annoying the chef. SQUEAK! <3"
 
-	size_multiplier = 0.25
 	movement_cooldown = 1.5 //roughly half the speed of a person
 	universal_understand = 1
 
@@ -51,8 +50,3 @@
 			return 0
 	else
 		..()
-
-/mob/living/simple_mob/animal/passive/mouse/resize(var/new_size, var/animate = TRUE)
-	size_multiplier = max(size_multiplier + 0.75, 1) //keeps sprite sizes consistent, keeps multiplier values low
-	..()
-	size_multiplier = max(size_multiplier - 0.75, 0.25) //the limits here ensure no negative values or infinite shrinkage

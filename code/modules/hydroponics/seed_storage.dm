@@ -20,11 +20,11 @@
 /obj/machinery/seed_storage
 	name = "Seed storage"
 	desc = "It stores, sorts, and dispenses seeds."
-	icon = 'icons/obj/vending_vr.dmi' //VOREStation Edit - Dunno why this isn't a vending subtype
+	icon = 'icons/obj/vending.dmi'
 	icon_state = "seeds"
 	density = 1
 	anchored = 1
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 100
 
 	var/seeds_initialized = 0 // Map-placed ones break if seeds are loaded right at the start of the round, so we do it on the first interaction

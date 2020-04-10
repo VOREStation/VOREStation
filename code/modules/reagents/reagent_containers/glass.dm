@@ -243,6 +243,7 @@
 	flags = OPENCONTAINER
 
 /obj/item/weapon/reagent_containers/glass/beaker/cryoxadone
+	name = "beaker (cryoxadone)"
 	prefill = list("cryoxadone" = 30)
 
 /obj/item/weapon/reagent_containers/glass/beaker/sulphuric

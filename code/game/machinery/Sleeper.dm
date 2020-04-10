@@ -7,16 +7,16 @@
 	anchored = 1 //About time someone fixed this.
 	density = 1 //VOREStation Edit - Big console
 	dir = 8
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 40
 	interact_offline = 1
 	circuit = /obj/item/weapon/circuitboard/sleeper_console
 	clicksound = 'sound/machines/buttonbeep.ogg'
 	clickvol = 30
 
-/obj/machinery/sleep_console/New()
-	..()
+/obj/machinery/sleep_console/Initialize()
 	findsleeper()
+	return ..()
 
 /obj/machinery/sleep_console/Destroy()
 	if(sleeper)
@@ -24,16 +24,13 @@
 	return ..()
 
 /obj/machinery/sleep_console/proc/findsleeper()
-	spawn(5)
-		var/obj/machinery/sleeper/sleepernew = null
-		for(dir in list(NORTH, EAST, SOUTH, WEST)) // Loop through every direction
-			sleepernew = locate(/obj/machinery/sleeper, get_step(src, dir)) // Try to find a scanner in that direction
-			if(sleepernew)
-				// VOREStation Edit Start
-				sleeper = sleepernew
-				sleepernew.console = src
-				break
-				// VOREStation Edit End
+	var/obj/machinery/sleeper/sleepernew = null
+	for(var/direction in GLOB.cardinal) // Loop through every direction
+		sleepernew = locate(/obj/machinery/sleeper, get_step(src, direction)) // Try to find a scanner in that direction
+		if(sleepernew)
+			sleeper = sleepernew
+			sleepernew.console = src
+			break //VOREStation Edit
 
 
 /obj/machinery/sleep_console/attack_ai(var/mob/user)
@@ -179,7 +176,7 @@
 	var/stasis_level = 0 //Every 'this' life ticks are applied to the mob (when life_ticks%stasis_level == 1)
 	var/stasis_choices = list("Complete (1%)" = 100, "Deep (10%)" = 10, "Moderate (20%)" = 5, "Light (50%)" = 2, "None (100%)" = 0)
 
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 15
 	active_power_usage = 200 //builtin health analyzer, dialysis machine, injectors.
 
@@ -257,8 +254,6 @@
 		return
 	if(occupant)
 		occupant.Stasis(stasis_level)
-		if(stasis_level >= 100 && occupant.timeofdeath)
-			occupant.timeofdeath += 1 SECOND
 
 		if(filtering > 0)
 			if(beaker)
@@ -388,7 +383,7 @@
 			M.client.perspective = EYE_PERSPECTIVE
 			M.client.eye = src
 		M.loc = src
-		update_use_power(2)
+		update_use_power(USE_POWER_ACTIVE)
 		occupant = M
 		update_icon()
 
@@ -408,7 +403,7 @@
 		if(A in component_parts)
 			continue
 		A.loc = src.loc
-	update_use_power(1)
+	update_use_power(USE_POWER_IDLE)
 	update_icon()
 	toggle_filter()
 	toggle_pump()

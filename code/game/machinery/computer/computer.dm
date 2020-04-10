@@ -1,10 +1,10 @@
 /obj/machinery/computer
 	name = "computer"
-	icon = 'icons/obj/computer_vr.dmi'
+	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer"
 	density = 1
 	anchored = 1.0
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 300
 	active_power_usage = 300
 	var/processing = 0
@@ -13,12 +13,10 @@
 	var/icon_screen = "generic"
 	var/light_range_on = 2
 	var/light_power_on = 1
-	var/overlay_layer
 
 	clicksound = "keyboard"
 
 /obj/machinery/computer/New()
-	overlay_layer = layer
 	..()
 
 /obj/machinery/computer/Initialize()
@@ -66,31 +64,28 @@
 	ex_act(2)
 
 /obj/machinery/computer/update_icon()
-	overlays.Cut()
+	cut_overlays()
+	// No power
 	if(stat & NOPOWER)
 		set_light(0)
 		if(icon_keyboard)
-			overlays += image(icon,"[icon_keyboard]_off", overlay_layer)
-		return
+			add_overlay("[icon_keyboard]_off")
+	// Yes power
 	else
+		if(icon_keyboard)
+			add_overlay(icon_keyboard)
 		set_light(light_range_on, light_power_on)
 
-	if(stat & BROKEN)
-		overlays += image(icon,"[icon_state]_broken", overlay_layer)
-	else
-		overlays += image(icon,icon_screen, overlay_layer)
-
-	if(icon_keyboard)
-		overlays += image(icon, icon_keyboard, overlay_layer)
+		// Broken
+		if(stat & BROKEN)
+			add_overlay("[icon_state]_broken")
+		// Not broken
+		else
+			add_overlay(icon_screen)	
 
 /obj/machinery/computer/power_change()
 	..()
 	update_icon()
-	if(stat & NOPOWER)
-		set_light(0)
-	else
-		set_light(light_range_on, light_power_on)
-
 
 /obj/machinery/computer/proc/set_broken()
 	stat |= BROKEN

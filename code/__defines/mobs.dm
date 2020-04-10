@@ -396,7 +396,9 @@
 
 #define VIS_BUILDMODE		22
 
-#define VIS_COUNT			22 //Must be highest number from above.
+#define VIS_CLOAKED			23
+
+#define VIS_COUNT			23 //Must be highest number from above.
 
 //Some mob icon layering defines
 #define BODY_LAYER		-100

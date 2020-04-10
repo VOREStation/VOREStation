@@ -586,9 +586,9 @@
 	var/electrified = 0
 
 	//Departments that the cycler can paint suits to look like.
-	var/list/departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control","Exploration","Pilot Blue","Pilot") //VORESTATION EDIT
+	var/list/departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control")
 	//Species that the suits can be configured to fit.
-	var/list/species = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_AKULA, SPECIES_ALRAUNE, SPECIES_NEVREAN, SPECIES_RAPALA, SPECIES_SERGAL, SPECIES_VASILISSAN, SPECIES_VULPKANIN, SPECIES_ZORREN_HIGH) //VORESTATION EDIT
+	var/list/species = list(SPECIES_HUMAN,SPECIES_SKRELL,SPECIES_UNATHI,SPECIES_TAJ, SPECIES_TESHARI)
 
 	var/target_department
 	var/target_species
@@ -767,7 +767,7 @@
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	to_chat(user, "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>")
 	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Crowd Control","Emergency Medical Response","^%###^%$", "Charring")
-	species = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_AKULA, SPECIES_ALRAUNE, SPECIES_NEVREAN, SPECIES_RAPALA, SPECIES_SERGAL, SPECIES_VASILISSAN, SPECIES_VULPKANIN, SPECIES_ZORREN_HIGH) //VORESTATION EDIT
+	species = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_VULPKANIN) //VORESTATION EDIT
 
 	emagged = 1
 	safeties = 0
@@ -1165,6 +1165,31 @@
 				suit.item_state = "rig-pilot2"
 				suit.item_state_slots[slot_r_hand_str] = "sec_voidsuitTG"
 				suit.item_state_slots[slot_l_hand_str] = "sec_voidsuitTG"
+		//VOREStation Addition Start
+		if("Director")
+			if(helmet)
+				helmet.name = "director voidsuit helmet"
+				helmet.icon_state = "capvoid"
+				helmet.item_state = "capvoid"
+			if(suit)
+				suit.name = "director voidsuit"
+				suit.icon_state = "capsuit_void"
+				suit.item_state = "capsuit_void"
+				suit.item_state_slots[slot_r_hand_str] = "wiz_voidsuit"
+				suit.item_state_slots[slot_l_hand_str] = "wiz_voidsuit"
+		if("Prototype")
+			if(helmet)
+				helmet.name = "prototype voidsuit helmet"
+				helmet.icon_state = "hosproto"
+				helmet.item_state = "hosproto"
+			if(suit)
+				suit.name = "prototype voidsuit"
+				suit.icon_state = "hosproto_void"
+				suit.item_state = "hosproto_void"
+				suit.item_state_slots[slot_r_hand_str] = "sec_voidsuitTG"
+				suit.item_state_slots[slot_l_hand_str] = "sec_voidsuitTG"
+		//VOREStation Addition End
+		
 
 
 	if(helmet) helmet.name = "refitted [helmet.name]"

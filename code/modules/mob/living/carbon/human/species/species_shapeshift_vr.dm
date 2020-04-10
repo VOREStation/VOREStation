@@ -121,4 +121,14 @@
 		g_wing = new_color_rgb_list[2]
 		b_wing = new_color_rgb_list[3]
 
+		//Indented inside positive primary color choice, don't bother if they clicked cancel
+		var/current_sec_color = rgb(r_wing2,g_wing2,b_wing2)
+	
+		var/new_sec_color = input("Pick secondary wing color (only applies to some wings):","Wing Color (sec)", current_sec_color) as null|color
+		if(new_sec_color)
+			new_color_rgb_list = hex2rgb(new_sec_color)
+			r_wing2 = new_color_rgb_list[1]
+			g_wing2 = new_color_rgb_list[2]
+			b_wing2 = new_color_rgb_list[3]
+
 	update_wing_showing()

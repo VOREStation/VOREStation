@@ -181,7 +181,7 @@ var/list/shoreline_icon_cache = list()
 
 /turf/simulated/floor/water/contaminated
 	desc = "This water smells pretty acrid."
-	var poisonlevel = 10
+	var/poisonlevel = 10
 
 turf/simulated/floor/water/contaminated/Entered(atom/movable/AM, atom/oldloc)
 	..()

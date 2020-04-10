@@ -38,7 +38,7 @@
 	var/hatch_open = 0
 
 	power_channel = ENVIRON
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 5
 
 	var/list/tile_info[4]
@@ -50,13 +50,14 @@
 		"cold"
 	)
 
-/obj/machinery/door/firedoor/New()
+/obj/machinery/door/firedoor/Initialize()
 	. = ..()
+	//Delete ourselves if we find extra mapped in firedoors
 	for(var/obj/machinery/door/firedoor/F in loc)
 		if(F != src)
-			spawn(1)
-				qdel(src)
-			return .
+			log_debug("Duplicate firedoors at [x],[y],[z]")
+			return INITIALIZE_HINT_QDEL
+	
 	var/area/A = get_area(src)
 	ASSERT(istype(A))
 

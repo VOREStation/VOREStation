@@ -3,12 +3,13 @@
 /obj/machinery/mineral/equipment_vendor
 	name = "mining equipment vendor"
 	desc = "An equipment vendor for miners, points collected at an ore redemption machine can be spent here."
-	icon = 'icons/obj/machines/mining_machines.dmi'
-	icon_state = "mining"
+	icon = 'icons/obj/vending.dmi'
+	icon_state = "adh-tool"
 	density = TRUE
 	anchored = TRUE
+	var/icon_deny = "adh-tool-deny"
+	var/icon_vend = "adh-tool-vend"
 	circuit = /obj/item/weapon/circuitboard/mining_equipment_vendor
-	var/icon_deny = "mining-deny"
 	var/obj/item/weapon/card/id/inserted_id
 	//VOREStation Edit Start - Heavily modified list
 	var/list/prize_list = list(
@@ -107,7 +108,12 @@
 
 /obj/machinery/mineral/equipment_vendor/update_icon()
 	if(panel_open)
-		icon_state = "[initial(icon_state)]-open"
+		add_overlay("[initial(icon_state)]-panel")
+	else
+		cut_overlay("[initial(icon_state)]-panel")
+
+	if(stat & BROKEN)
+		icon_state = "[initial(icon_state)]-broken"
 	else if(powered())
 		icon_state = initial(icon_state)
 	else
@@ -174,6 +180,7 @@
 				inserted_id.mining_points -= prize.cost
 				to_chat(usr, "<span class='notice'>[src] clanks to life briefly before vending [prize.equipment_name]!</span>")
 				new prize.equipment_path(drop_location())
+				flick(icon_vend, src)
 		else
 			to_chat(usr, "<span class='warning'>Error: Please insert a valid ID!</span>")
 			flick(icon_deny, src)

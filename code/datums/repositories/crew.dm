@@ -48,10 +48,10 @@ var/global/datum/repository/crew/crew_repository = new()
 
 				if(C.sensor_mode >= SUIT_SENSOR_TRACKING)
 					var/area/A = get_area(H)
-					crewmemberData["area"] = sanitize(A.name)
+					crewmemberData["area"] = sanitize(A.get_name())
 					crewmemberData["x"] = pos.x
 					crewmemberData["y"] = pos.y
-					crewmemberData["z"] = pos.z
+					crewmemberData["z"] = using_map.get_zlevel_name(pos.z)
 
 				crewmembers[++crewmembers.len] = crewmemberData
 

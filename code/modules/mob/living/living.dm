@@ -247,10 +247,9 @@ default behaviour is:
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
 		health = 100
-		stat = CONSCIOUS
+		set_stat(CONSCIOUS)
 	else
 		health = getMaxHealth() - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
-
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
@@ -744,7 +743,7 @@ default behaviour is:
 		timeofdeath = 0
 
 	// restore us to conciousness
-	stat = CONSCIOUS
+	set_stat(CONSCIOUS)
 
 	// make the icons look correct
 	regenerate_icons()
@@ -1196,7 +1195,7 @@ default behaviour is:
 	var/matrix/M = matrix()
 	M.Scale(desired_scale_x, desired_scale_y)
 	M.Translate(0, 16*(desired_scale_y-1))
-	//animate(src, transform = M, time = 10) //VOREStation edit
+	src.transform = M //VOREStation edit
 
 // This handles setting the client's color variable, which makes everything look a specific color.
 // This proc is here so it can be called without needing to check if the client exists, or if the client relogs.

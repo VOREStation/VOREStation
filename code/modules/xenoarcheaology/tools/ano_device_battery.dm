@@ -3,12 +3,18 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "anobattery0"
 	var/datum/artifact_effect/battery_effect
-	var/capacity = 300
+	var/capacity = 500
 	var/stored_charge = 0
 	var/effect_id = ""
 
+/obj/item/weapon/anobattery/advanced
+	name = "advanced anomaly battery"
+	capacity = 3000
+
+/*
 /obj/item/weapon/anobattery/New()
 	battery_effect = new()
+*/
 
 /obj/item/weapon/anobattery/proc/UpdateSprite()
 	var/p = (stored_charge/capacity)*100
@@ -105,7 +111,6 @@
 							to_chat(holder, "the [bicon(src)] [src] held by [holder] shudders in your grasp.")
 						else
 							src.loc.visible_message("the [bicon(src)] [src] shudders.")
-						inserted_battery.battery_effect.DoEffectTouch(holder)
 
 						//consume power
 						inserted_battery.use_power(energy_consumed_on_touch)
@@ -113,11 +118,13 @@
 						//consume power equal to time passed
 						inserted_battery.use_power(world.time - last_process)
 
+					inserted_battery.battery_effect.DoEffectTouch(holder)
+
 				else if(inserted_battery.battery_effect.effect == EFFECT_PULSE)
 					inserted_battery.battery_effect.chargelevel = inserted_battery.battery_effect.chargelevelmax
 
 					//consume power relative to the time the artifact takes to charge and the effect range
-					inserted_battery.use_power(inserted_battery.battery_effect.effectrange * inserted_battery.battery_effect.effectrange * inserted_battery.battery_effect.chargelevelmax)
+					inserted_battery.use_power((inserted_battery.battery_effect.effectrange * inserted_battery.battery_effect.chargelevelmax) / 2)
 
 				else
 					//consume power equal to time passed
@@ -167,6 +174,7 @@
 			if(!inserted_battery.battery_effect.activated)
 				inserted_battery.battery_effect.ToggleActivate(1)
 			time_end = world.time + duration
+			last_process = world.time
 	if(href_list["shutdown"])
 		activated = 0
 	if(href_list["ejectbattery"])

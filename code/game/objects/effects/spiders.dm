@@ -286,6 +286,9 @@
 
 	grow_as = list(/mob/living/simple_mob/animal/giant_spider, /mob/living/simple_mob/animal/giant_spider/hunter)
 
+/obj/effect/spider/spiderling/non_growing
+	amount_grown = -1
+
 /obj/effect/decal/cleanable/spiderling_remains
 	name = "spiderling remains"
 	desc = "Green squishy mess."

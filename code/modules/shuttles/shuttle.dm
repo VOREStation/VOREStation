@@ -61,17 +61,17 @@
 	if(flags & SHUTTLE_FLAGS_PROCESS)
 		SSshuttles.process_shuttles += src
 	if(flags & SHUTTLE_FLAGS_SUPPLY)
-		if(supply_controller.shuttle)
+		if(SSsupply.shuttle)
 			CRASH("A supply shuttle is already defined.")
-		supply_controller.shuttle = src
+		SSsupply.shuttle = src
 
 /datum/shuttle/Destroy()
 	current_location = null
 	SSshuttles.shuttles -= src.name
 	SSshuttles.process_shuttles -= src
 	SSshuttles.shuttle_logs -= src
-	if(supply_controller.shuttle == src)
-		supply_controller.shuttle = null
+	if(SSsupply.shuttle == src)
+		SSsupply.shuttle = null
 	. = ..()
 
 // This creates a graphical warning to where the shuttle is about to land, in approximately five seconds.

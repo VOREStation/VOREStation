@@ -13,7 +13,6 @@
 	var/list/event_icon_states				// Randomly picked from
 	var/difficulty = EVENT_LEVEL_MODERATE
 	var/weaknesses //if the BSA can destroy them and with what
-	var/list/victims //basically cached events on which Z level
 
 /obj/effect/overmap/event/Initialize()
 	. = ..()
@@ -52,7 +51,7 @@
 
 /obj/effect/overmap/event/electric
 	name = "electrical storm"
-	events = list(/datum/event/electrical_storm)
+	events = list(/datum/event/electrical_storm/overmap)
 	opacity = 0
 	event_icon_states = list("electrical1", "electrical2", "electrical3", "electrical4")
 	difficulty = EVENT_LEVEL_MAJOR
@@ -60,13 +59,13 @@
 
 /obj/effect/overmap/event/dust
 	name = "dust cloud"
-	events = list(/datum/event/dust)
+	events = list(/datum/event/dust/overmap)
 	event_icon_states = list("dust1", "dust2", "dust3", "dust4")
 	weaknesses = OVERMAP_WEAKNESS_MINING | OVERMAP_WEAKNESS_EXPLOSIVE | OVERMAP_WEAKNESS_FIRE
 
 /obj/effect/overmap/event/ion
 	name = "ion cloud"
-	events = list(/datum/event/ionstorm)
+	events = list(/datum/event/ionstorm/overmap)
 	opacity = 0
 	event_icon_states = list("ion1", "ion2", "ion3", "ion4")
 	difficulty = EVENT_LEVEL_MAJOR

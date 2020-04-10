@@ -18,23 +18,20 @@
 	..()
 	set_light(6, 5, l_color = color_to_use)
 
-/obj/effect/chroma
+/obj/effect/temporary_effect/chroma
 	name = "chroma"
 	desc = "How are you examining what which cannot be seen?"
 	invisibility = 101
-	var/time_to_die = 2 MINUTES //Despawn after this time, if set.
+	time_to_die = 2 MINUTES //Despawn after this time, if set.
 
-/obj/effect/chroma/New(var/newloc, var/new_color = "#FFFFFF")
-	..()
+/obj/effect/temporary_effect/chroma/Initialize(var/mapload, var/new_color = "#FFFFFF")
+	. = ..()
 	set_light(6, 5, l_color = new_color)
-	if(time_to_die)
-		spawn(time_to_die)
-			qdel(src)
 
 /obj/item/weapon/spell/chroma/on_ranged_cast(atom/hit_atom, mob/user)
 	var/turf/T = get_turf(hit_atom)
 	if(T)
-		new /obj/effect/chroma(T, color_to_use)
+		new /obj/effect/temporary_effect/chroma(T, color_to_use)
 		to_chat(user, "<span class='notice'>You shift the light onto \the [T].</span>")
 		qdel(src)
 

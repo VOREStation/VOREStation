@@ -285,6 +285,12 @@
 				ai_log("destroy_surroundings() : Attacking hull shield.", AI_LOG_INFO)
 				return melee_attack(shield)
 
+		// Kill energy shields in the way.
+		for(var/obj/effect/shield/S in problem_turf)
+			if(S.density) // Don't attack shields that are already down.
+				ai_log("destroy_surroundings() : Attacking energy shield.", AI_LOG_INFO)
+				return melee_attack(S)
+
 		// Kill common obstacle in the way like tables.
 		var/obj/structure/obstacle = locate(/obj/structure, problem_turf)
 		if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille))

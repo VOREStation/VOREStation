@@ -1251,6 +1251,7 @@ window "outputwindow"
 		style = ".system {color:#FF0000;}"
 		max-lines = 0
 		saved-params = ""
+		enable-http-images = true
 
 window "rpane"
 	elem "rpane"

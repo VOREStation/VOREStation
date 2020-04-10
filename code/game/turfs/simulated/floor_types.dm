@@ -123,12 +123,19 @@
 
 	//Well if this isn't our first rodeo, we know EXACTLY what we landed on, and it looks like this.
 	if(landed_holder && !interior_corner)
-		var/mutable_appearance/landed_on = new(landed_holder)
-		landed_on.layer = FLOAT_LAYER //Not turf
-		landed_on.plane = FLOAT_PLANE //Not turf
-		us.underlays = list(landed_on)
-		appearance = us
-		update_breaklights()
+		//Space gets special treatment
+		if(ispath(landed_holder.turf_type, /turf/space))
+			var/image/spaceimage = image(landed_holder.icon, landed_holder.icon_state)
+			spaceimage.plane = SPACE_PLANE
+			underlays = list(spaceimage)
+		else
+			var/mutable_appearance/landed_on = new(landed_holder)
+			landed_on.layer = FLOAT_LAYER //Not turf
+			landed_on.plane = FLOAT_PLANE //Not turf
+			us.underlays = list(landed_on)
+			appearance = us
+
+		spawn update_breaklights() //So that we update the breaklight overlays only after turfs are connected
 		return
 
 	if(!under)
@@ -171,7 +178,7 @@
 
 	appearance = us
 
-	update_breaklights()
+	spawn update_breaklights() //So that we update the breaklight overlays only after turfs are connected
 
 	return under
 

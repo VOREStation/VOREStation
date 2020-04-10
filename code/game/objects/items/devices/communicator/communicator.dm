@@ -78,8 +78,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Parameters: None
 // Description: Adds the new communicator to the global list of all communicators, sorts the list, obtains a reference to the Exonet node, then tries to
 //				assign the device to the holder's name automatically in a spectacularly shitty way.
-/obj/item/device/communicator/New()
-	..()
+/obj/item/device/communicator/Initialize()
+	. = ..()
 	all_communicators += src
 	all_communicators = sortAtom(all_communicators)
 	node = get_exonet_node()
@@ -87,16 +87,22 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	camera = new(src)
 	camera.name = "[src] #[rand(100,999)]"
 	camera.c_tag = camera.name
+
 	//This is a pretty terrible way of doing this.
-	spawn(5 SECONDS) //Wait for our mob to finish spawning.
-		if(ismob(loc))
-			register_device(loc.name)
-			initialize_exonet(loc)
-		else if(istype(loc, /obj/item/weapon/storage))
-			var/obj/item/weapon/storage/S = loc
-			if(ismob(S.loc))
-				register_device(S.loc.name)
-				initialize_exonet(S.loc)
+	addtimer(CALLBACK(src, .proc/register_to_holder), 5 SECONDS)
+
+// Proc: register_to_holder()
+// Parameters: None
+// Description: Tries to register ourselves to the mob that we've presumably spawned in. Not the most amazing way of doing this.
+/obj/item/device/communicator/proc/register_to_holder()
+	if(ismob(loc))
+		register_device(loc.name)
+		initialize_exonet(loc)
+	else if(istype(loc, /obj/item/weapon/storage))
+		var/obj/item/weapon/storage/S = loc
+		if(ismob(S.loc))
+			register_device(S.loc.name)
+			initialize_exonet(S.loc)
 
 // Proc: examine()
 // Parameters: user - the user doing the examining
@@ -275,14 +281,13 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: New()
 // Parameters: None
 // Description: Gives ghosts an exonet address based on their key and ghost name.
-/mob/observer/dead/New()
+/mob/observer/dead/Initialize()
 	. = ..()
-	spawn(20)
-		exonet = new(src)
-		if(client)
-			exonet.make_address("communicator-[src.client]-[src.client.prefs.real_name]")
-		else
-			exonet.make_address("communicator-[key]-[src.real_name]")
+	exonet = new(src)
+	if(client)
+		exonet.make_address("communicator-[src.client]-[src.client.prefs.real_name]")
+	else
+		exonet.make_address("communicator-[key]-[src.real_name]")
 
 // Proc: Destroy()
 // Parameters: None

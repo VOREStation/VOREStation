@@ -728,7 +728,7 @@
 /area/template_noop)
 "bB" = (
 /obj/machinery/computer/general_air_control/supermatter_core{
-	dir = 1;
+	dir = 2;
 	frequency = 1438;
 	input_tag = "cooling_in";
 	name = "Engine Cooling Control";

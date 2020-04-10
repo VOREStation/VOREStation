@@ -114,7 +114,7 @@
 
 /turf/simulated/floor/tiled/techfloor
 	name = "floor"
-	icon = 'icons/turf/flooring/techfloor_vr.dmi'
+	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_state = "techfloor_gray"
 	initial_flooring = /decl/flooring/tiling/tech
 

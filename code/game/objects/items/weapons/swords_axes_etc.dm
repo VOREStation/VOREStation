@@ -46,11 +46,11 @@
 	desc = "A compact yet rebalanced personal defense weapon. Can be concealed when folded."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "telebaton0"
+	item_state = "telebaton0"
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_SMALL
 	force = 3
 	var/on = 0
-
 
 /obj/item/weapon/melee/telebaton/attack_self(mob/user as mob)
 	on = !on
@@ -59,6 +59,7 @@
 		"<span class='warning'>You extend the baton.</span>",\
 		"You hear an ominous click.")
 		icon_state = "telebaton1"
+		item_state = icon_state
 		w_class = ITEMSIZE_NORMAL
 		force = 15//quite robust
 		attack_verb = list("smacked", "struck", "slapped")
@@ -67,6 +68,7 @@
 		"<span class='notice'>You collapse the baton.</span>",\
 		"You hear a click.")
 		icon_state = "telebaton0"
+		item_state = icon_state
 		w_class = ITEMSIZE_SMALL
 		force = 3//not so robust now
 		attack_verb = list("hit", "punched")

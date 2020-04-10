@@ -2,7 +2,7 @@
 
 // Controls the emergency shuttle
 
-var/global/datum/emergency_shuttle_controller/emergency_shuttle
+var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 
 /datum/emergency_shuttle_controller
 	var/datum/shuttle/autodock/ferry/emergency/shuttle // Set in shuttle_emergency.dm TODO - is it really?
@@ -75,8 +75,10 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 /datum/emergency_shuttle_controller/proc/set_launch_countdown(var/seconds)
 	wait_for_launch = 1
 	launch_time = world.time + seconds*10
+	START_PROCESSING(SSprocessing, src)
 
 /datum/emergency_shuttle_controller/proc/stop_launch_countdown()
+	STOP_PROCESSING(SSprocessing, src)
 	wait_for_launch = 0
 
 //calls the shuttle for an emergency evacuation
@@ -120,7 +122,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 /datum/emergency_shuttle_controller/proc/recall()
 	if (!can_recall()) return
 
-	wait_for_launch = 0
+	stop_launch_countdown()
 	shuttle.cancel_launch(src)
 
 	if (evac)

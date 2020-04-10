@@ -30,6 +30,7 @@
 	var/used_environ = 0
 
 	var/has_gravity = 1
+	var/secret_name = FALSE // This tells certain things that display areas' names that they shouldn't display this area's name.
 	var/obj/machinery/power/apc/apc = null
 	var/no_air = null
 //	var/list/lights				// list of all lights on this area
@@ -41,6 +42,7 @@
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
 	var/global/global_uid = 0
 	var/uid
+	var/forbid_events = FALSE // If true, random events will not start inside this area.
 
 /area/New()
 	uid = ++global_uid
@@ -76,7 +78,7 @@
 	// NOTE: There probably won't be any atoms in these turfs, but just in case we should call these procs.
 	A.contents.Add(T)
 	if(old_area)
-		// Handle dynamic lighting update if 
+		// Handle dynamic lighting update if
 		if(T.dynamic_lighting && old_area.dynamic_lighting != A.dynamic_lighting)
 			if(A.dynamic_lighting)
 				T.lighting_build_overlay()
@@ -365,6 +367,8 @@ var/list/mob/living/forced_ambiance_list = new
 			temp_airlock.prison_open()
 		for(var/obj/machinery/door/window/temp_windoor in src)
 			temp_windoor.open()
+		for(var/obj/machinery/door/blast/temp_blast in src)
+			temp_blast.open()
 
 /area/has_gravity()
 	return has_gravity
@@ -425,3 +429,8 @@ var/list/ghostteleportlocs = list()
 	ghostteleportlocs = sortAssoc(ghostteleportlocs)
 
 	return 1
+
+/area/proc/get_name()
+	if(secret_name)
+		return "Unknown Area"
+	return name

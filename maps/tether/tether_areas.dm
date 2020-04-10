@@ -216,6 +216,10 @@
 	icon_state = "red"
 	sound_env = SMALL_SOFTFLOOR
 
+/area/tether/surfacebase/public_garden_lg
+	name = "\improper Public Garden Looking Glass"
+	icon_state = "green"
+
 // /area/tether/surfacebase/east_stairs_one //This is just part of a lower hallway
 
 /area/tether/surfacebase/east_stairs_two
@@ -692,6 +696,11 @@
 	name = "\improper Dock Two"
 	icon_state = "dk_yellow"
 
+/area/maintenance/station/abandonedholodeck
+	name = "\improper Old Holodeck"
+	icon_state = "dk_yellow"
+	flags = RAD_SHIELDED
+
 /area/tether/station/burial
 	name = "\improper Burial"
 	icon_state = "chapel_morgue"
@@ -1041,13 +1050,25 @@
 
 /area/shuttle/tourbus/general
 	name = "\improper Tour Bus"
-	
+
 /area/shuttle/tourbus/cockpit
 	name = "\improper Tour Bus Cockpit"
 
 /area/shuttle/tourbus/engines
 	name = "\improper Tour Bus Engines"
 
+/area/shuttle/medivac
+	requires_power = 1
+	icon_state = "shuttle2"
+
+/area/shuttle/medivac/general
+	name = "\improper Medivac"
+
+/area/shuttle/medivac/cockpit
+	name = "\improper Medivac Cockpit"
+
+/area/shuttle/medivac/engines
+	name = "\improper Medivac Engines"
 
 // Belter Dock
 

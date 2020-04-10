@@ -98,6 +98,12 @@ var/list/_client_preferences_by_type
 	key = "DIGEST_NOISES"
 	enabled_description = "Noisy"
 	disabled_description = "Silent"
+
+/datum/client_preference/emote_noises
+	description = "Emote Noises" //MERP
+	key = "EMOTE_NOISES"
+	enabled_description = "Noisy"
+	disabled_description = "Silent"
 //VOREStation Add End
 /datum/client_preference/weather_sounds
 	description ="Weather sounds"

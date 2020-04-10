@@ -24,7 +24,7 @@
 	music = list('sound/music/elevator.ogg')  // Woo elevator music!
 
 /obj/machinery/atmospherics/unary/vent_pump/positive
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	icon_state = "map_vent_out"
 	external_pressure_bound = ONE_ATMOSPHERE * 1.1
 
@@ -330,7 +330,6 @@ var/global/list/latejoin_tram   = list()
 	name = "Airlock NanoMed"
 	desc = "Wall-mounted Medical Equipment dispenser. This limited-use version dispenses antitoxins with mild painkillers for surface EVAs."
 	icon_state = "wallmed"
-	icon_deny = "wallmed-deny"
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/weapon/reagent_containers/pill/airlock = 10,/obj/item/device/healthanalyzer = 1)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 2)

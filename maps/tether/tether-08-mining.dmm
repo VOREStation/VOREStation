@@ -637,6 +637,24 @@
 	},
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
+"bt" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 10
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/brown/bordercorner2{
+	dir = 8
+	},
+/obj/machinery/vending/cola{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/break_room)
 "bu" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -818,6 +836,32 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
+"bM" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/brown/border,
+/obj/machinery/vending/coffee{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/break_room)
+"bN" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 6
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/brown/bordercorner2{
+	dir = 6
+	},
+/obj/machinery/vending/snack{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/break_room)
 "bW" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
@@ -933,22 +977,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/turf/simulated/floor/tiled,
-/area/outpost/mining_main/break_room)
-"kB" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 10
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/brown/bordercorner2{
-	dir = 8
-	},
-/obj/machinery/vending/cola,
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
 "qx" = (
@@ -1087,12 +1115,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/maintenance)
-"DV" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/brown/border,
-/obj/machinery/vending/coffee,
-/turf/simulated/floor/tiled,
-/area/outpost/mining_main/break_room)
 "DX" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -1302,22 +1324,6 @@
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/machinery/recharger,
-/turf/simulated/floor/tiled,
-/area/outpost/mining_main/break_room)
-"US" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 6
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/brown/bordercorner2{
-	dir = 6
-	},
-/obj/machinery/vending/snack,
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
 "VG" = (
@@ -4950,7 +4956,7 @@ bv
 ZV
 ty
 Fn
-kB
+bt
 az
 ab
 aF
@@ -5092,7 +5098,7 @@ bg
 Uk
 Uk
 by
-DV
+bM
 az
 ab
 aF
@@ -5234,7 +5240,7 @@ hW
 bK
 bL
 by
-US
+bN
 az
 ab
 aF

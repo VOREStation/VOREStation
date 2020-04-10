@@ -197,6 +197,20 @@
 	. = new_dir != dir
 	dir = new_dir
 
+// Called to set the atom's density and used to add behavior to density changes.
+/atom/proc/set_density(var/new_density)
+	if(density == new_density)
+		return FALSE
+	density = !!new_density // Sanitize to be strictly 0 or 1
+	return TRUE
+
+// Called to set the atom's invisibility and usd to add behavior to invisibility changes.
+/atom/proc/set_invisibility(var/new_invisibility)
+	if(invisibility == new_invisibility)
+		return FALSE
+	invisibility = new_invisibility
+	return TRUE
+
 /atom/proc/ex_act()
 	return
 

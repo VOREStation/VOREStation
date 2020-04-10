@@ -122,3 +122,15 @@
 		C.sample_item(src, user)
 	else
 		return ..()
+
+//VOREStation Add
+/obj/item/weapon/ore/attack(mob/living/M as mob, mob/living/user as mob)
+	if(M.handle_eat_ore(src, user))
+		return
+	..()
+
+/obj/item/weapon/ore/attack_generic(var/mob/living/user) //Allow adminbussed mobs to eat ore if they click it while NOT on help intent.
+	if(user.handle_eat_ore(src))
+		return
+	..()
+//VOREStation Add End

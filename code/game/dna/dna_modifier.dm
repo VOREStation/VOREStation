@@ -46,7 +46,7 @@
 	icon_state = "scanner_0"
 	density = 1
 	anchored = 1.0
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 50
 	active_power_usage = 300
 	interact_offline = 1
@@ -260,7 +260,7 @@
 	var/obj/item/weapon/disk/data/disk = null
 	var/selected_menu_key = null
 	anchored = 1
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 400
 	var/waiting_for_user_input=0 // Fix for #274 (Mash create block injector without answering dialog to make unlimited injectors) - N3X
@@ -293,19 +293,15 @@
 		else
 	return
 
-/obj/machinery/computer/scan_consolenew/New()
-	..()
+/obj/machinery/computer/scan_consolenew/Initialize()
+	. = ..()
 	for(var/i=0;i<3;i++)
 		buffers[i+1]=new /datum/dna2/record
-	spawn(5)
-		for(dir in list(NORTH,EAST,SOUTH,WEST))
-			connected = locate(/obj/machinery/dna_scannernew, get_step(src, dir))
-			if(!isnull(connected))
-				break
-		spawn(250)
-			src.injector_ready = 1
-		return
-	return
+	for(dir in list(NORTH,EAST,SOUTH,WEST))
+		connected = locate(/obj/machinery/dna_scannernew, get_step(src, dir))
+		if(connected)
+			break
+		VARSET_IN(src, injector_ready, TRUE, 25 SECONDS)
 
 /obj/machinery/computer/scan_consolenew/proc/all_dna_blocks(var/list/buffer)
 	var/list/arr = list()

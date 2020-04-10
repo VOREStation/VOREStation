@@ -15,7 +15,7 @@
 	var/accept_drinking = 0
 	var/amount = 30
 
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 100
 	anchored = 1
 
@@ -165,8 +165,11 @@
 
 	else if(href_list["ejectBeaker"])
 		if(container)
-			var/obj/item/weapon/reagent_containers/B = container
-			B.loc = loc
+			container.forceMove(get_turf(src))
+
+			if(Adjacent(usr)) // So the AI doesn't get a beaker somehow.
+				usr.put_in_hands(container)
+
 			container = null
 
 	add_fingerprint(usr)

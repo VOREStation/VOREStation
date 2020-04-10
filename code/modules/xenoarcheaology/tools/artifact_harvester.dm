@@ -6,19 +6,18 @@
 	density = 1
 	idle_power_usage = 50
 	active_power_usage = 750
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	var/harvesting = 0
 	var/obj/item/weapon/anobattery/inserted_battery
 	var/obj/machinery/artifact/cur_artifact
 	var/obj/machinery/artifact_scanpad/owned_scanner = null
 	var/last_process = 0
 
-/obj/machinery/artifact_harvester/New()
-	..()
-	spawn(50) //Delay so the scan pad has time to actually spawn in
-		owned_scanner = locate(/obj/machinery/artifact_scanpad) in get_step(src, dir) //connect to a nearby scanner pad
-		if(!owned_scanner)
-			owned_scanner = locate(/obj/machinery/artifact_scanpad) in orange(1, src)
+/obj/machinery/artifact_harvester/Initialize()
+	. = ..()
+	owned_scanner = locate(/obj/machinery/artifact_scanpad) in get_step(src, dir)
+	if(!owned_scanner)
+		owned_scanner = locate(/obj/machinery/artifact_scanpad) in orange(1, src)
 
 /obj/machinery/artifact_harvester/attackby(var/obj/I as obj, var/mob/user as mob)
 	if(istype(I,/obj/item/weapon/anobattery))
@@ -80,7 +79,7 @@
 
 		//check if we've finished
 		if(inserted_battery.stored_charge >= inserted_battery.capacity)
-			use_power = 1
+			update_use_power(USE_POWER_IDLE)
 			harvesting = 0
 			cur_artifact.anchored = 0
 			cur_artifact.being_used = 0
@@ -105,7 +104,7 @@
 
 		//if there's no charge left, finish
 		if(inserted_battery.stored_charge <= 0)
-			use_power = 1
+			update_use_power(USE_POWER_IDLE)
 			inserted_battery.stored_charge = 0
 			harvesting = 0
 			if(inserted_battery.battery_effect && inserted_battery.battery_effect.activated)
@@ -156,6 +155,7 @@
 						//delete it when the ids match to account for duplicate ids having different effects
 						if(inserted_battery.battery_effect && inserted_battery.stored_charge <= 0)
 							qdel(inserted_battery.battery_effect)
+							inserted_battery.battery_effect = null
 
 						//
 						var/datum/artifact_effect/source_effect
@@ -191,7 +191,7 @@
 
 						if(source_effect)
 							harvesting = 1
-							use_power = 2
+							update_use_power(USE_POWER_ACTIVE)
 							cur_artifact.anchored = 1
 							cur_artifact.being_used = 1
 							icon_state = "incubator_on"
@@ -235,7 +235,7 @@
 						inserted_battery.battery_effect.ToggleActivate(1)
 					last_process = world.time
 					harvesting = -1
-					use_power = 2
+					update_use_power(USE_POWER_ACTIVE)
 					icon_state = "incubator_on"
 					var/message = "<b>[src]</b> states, \"Warning, battery charge dump commencing.\""
 					src.visible_message(message)

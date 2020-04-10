@@ -9,7 +9,8 @@
 	wires = WIRE_RECEIVE
 
 /obj/item/device/assembly/igniter/activate()
-	if(!..())	return 0//Cooldown check
+	if(!..())
+		return FALSE
 
 	if(holder && istype(holder.loc,/obj/item/weapon/grenade/chem_grenade))
 		var/obj/item/weapon/grenade/chem_grenade/grenade = holder.loc
@@ -28,13 +29,12 @@
 		s.set_up(3, 1, src)
 		s.start()
 
-	return 1
+	return TRUE
 
 
-/obj/item/device/assembly/igniter/attack_self(mob/user as mob)
+/obj/item/device/assembly/igniter/attack_self(var/mob/user)
 	activate()
 	add_fingerprint(user)
-	return
 
 /obj/item/device/assembly/igniter/is_hot()
 	return TRUE

@@ -104,11 +104,11 @@
 	switch(target_species)
 		//VOREStation Edit Start
 		if(SPECIES_HUMAN, SPECIES_SKRELL)	//humanoid bodytypes
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
+			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_NEVREAN, SPECIES_RAPALA, SPECIES_VASILISSAN, SPECIES_ALRAUNE, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
 		if(SPECIES_UNATHI)
 			species_restricted = list(SPECIES_UNATHI, SPECIES_XENOHYBRID)
-		if(SPECIES_ZORREN_HIGH)
-			species_restricted = list(SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
+		if(SPECIES_VULPKANIN)
+			species_restricted = list(SPECIES_VULPKANIN, SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
 		//VOREStation Edit End
 		else
 			species_restricted = list(target_species)
@@ -130,13 +130,13 @@
 	switch(target_species)
 		//VOREStation Edit Start
 		if(SPECIES_HUMAN)
-			species_restricted = list(SPECIES_HUMAN, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
+			species_restricted = list(SPECIES_HUMAN, SPECIES_NEVREAN, SPECIES_RAPALA, SPECIES_VASILISSAN, SPECIES_ALRAUNE, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
 		if(SPECIES_SKRELL)
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
+			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_NEVREAN, SPECIES_RAPALA, SPECIES_VASILISSAN, SPECIES_ALRAUNE, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
 		if(SPECIES_UNATHI)
 			species_restricted = list(SPECIES_UNATHI, SPECIES_XENOHYBRID)
-		if(SPECIES_ZORREN_HIGH)
-			species_restricted = list(SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
+		if(SPECIES_VULPKANIN)
+			species_restricted = list(SPECIES_VULPKANIN, SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
 		//VOREStation Edit End
 
 		else
@@ -186,7 +186,7 @@
 	else
 		O = src
 
-	user.u_equip(src)
+	user.unEquip(src)
 
 	if (O)
 		user.put_in_hands(O)
@@ -200,6 +200,24 @@
 		var/mob/M = src.loc
 		M.update_inv_ears()
 
+/obj/item/clothing/ears/MouseDrop(var/obj/over_object)
+	if(ishuman(usr))
+		var/mob/living/carbon/human/H = usr
+		// If this covers both ears, we want to return the result of unequipping the primary object, and kill the off-ear one
+		if(slot_flags & SLOT_TWOEARS)
+			var/obj/item/clothing/ears/O = (H.l_ear == src ? H.r_ear : H.l_ear)
+			if(istype(src, /obj/item/clothing/ears/offear))
+				. = O.MouseDrop(over_object)
+				H.drop_from_inventory(src)
+				qdel(src)
+			else
+				. = ..()
+				H.drop_from_inventory(O)
+				qdel(O)
+		else
+			. = ..()
+
+
 /obj/item/clothing/ears/offear
 	name = "Other ear"
 	w_class = ITEMSIZE_HUGE
@@ -207,7 +225,7 @@
 	icon_state = "block"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
 
-	New(var/obj/O)
+/obj/item/clothing/ears/offear/New(var/obj/O)
 		name = O.name
 		desc = O.desc
 		icon = O.icon

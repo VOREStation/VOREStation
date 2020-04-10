@@ -32,7 +32,7 @@
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 	anchored = 1
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 80
 	active_power_usage = 1000 //For heating/cooling rooms. 1000 joules equates to about 1 degree every 2 seconds for a single tile of air.
 	power_channel = ENVIRON
@@ -131,6 +131,10 @@
 	TLV["pressure"] =		list(ONE_ATMOSPHERE * 0.80, ONE_ATMOSPHERE * 0.90, ONE_ATMOSPHERE * 1.10, ONE_ATMOSPHERE * 1.20) /* kpa */
 	TLV["temperature"] =	list(T0C - 26, T0C, T0C + 40, T0C + 66) // K
 
+	//VOREStation Add
+	pixel_x = (src.dir & 3)? 0 : (src.dir == 4 ? -28 : 28)
+	pixel_y = (src.dir & 3)? (src.dir ==1 ? -28 : 28) : 0
+	//VOREStation Add End
 
 /obj/machinery/alarm/Initialize()
 	. = ..()
@@ -184,7 +188,7 @@
 	if(!regulating_temperature)
 		//check for when we should start adjusting temperature
 		if(!get_danger_level(target_temperature, TLV["temperature"]) && abs(environment.temperature - target_temperature) > 2.0)
-			update_use_power(2)
+			update_use_power(USE_POWER_ACTIVE)
 			regulating_temperature = 1
 			audible_message("\The [src] clicks as it starts [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
 			"You hear a click and a faint electronic hum.")
@@ -192,7 +196,7 @@
 	else
 		//check for when we should stop adjusting temperature
 		if(get_danger_level(target_temperature, TLV["temperature"]) || abs(environment.temperature - target_temperature) <= 0.5)
-			update_use_power(1)
+			update_use_power(USE_POWER_IDLE)
 			regulating_temperature = 0
 			audible_message("\The [src] clicks quietly as it stops [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
 			"You hear a click as a faint electronic humming stops.")
@@ -270,7 +274,6 @@
 
 	if(environment_pressure <= pressure_levels[1])		//low pressures
 		if(!(mode == AALARM_MODE_PANIC || mode == AALARM_MODE_CYCLE))
-			playsound(src.loc, 'sound/machines/airalarm.ogg', 25, 0, 4)
 			return 1
 
 	return 0

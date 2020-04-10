@@ -18,7 +18,7 @@
 
 	var/mirror_first_occupant = TRUE	// Do we force the newly produced body to look like the occupant?
 
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 15
 	active_power_usage = 200
 	light_color = "#FF0000"
@@ -174,7 +174,7 @@
 			M.client.perspective = EYE_PERSPECTIVE
 			M.client.eye = src
 		M.loc = src
-		update_use_power(2)
+		update_use_power(USE_POWER_ACTIVE)
 		occupant = M
 
 		update_icon()
@@ -203,7 +203,7 @@
 		if(A in component_parts)
 			continue
 		A.loc = src.loc
-	update_use_power(1)
+	update_use_power(USE_POWER_IDLE)
 	update_icon()
 
 /obj/machinery/vr_sleeper/proc/enter_vr()

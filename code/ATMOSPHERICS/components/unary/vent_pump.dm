@@ -14,7 +14,7 @@
 
 	name = "Air Vent"
 	desc = "Has a valve and pump attached to it"
-	use_power = 0
+	use_power = USE_POWER_OFF
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 30000			//7500 W ~ 10 HP //VOREStation Edit - 30000 W
 
@@ -50,18 +50,18 @@
 	//var/datum/looping_sound/air_pump/soundloop //VOREStation Removal
 
 /obj/machinery/atmospherics/unary/vent_pump/on
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	icon_state = "map_vent_out"
 
 /obj/machinery/atmospherics/unary/vent_pump/siphon
 	pump_direction = 0
 
 /obj/machinery/atmospherics/unary/vent_pump/siphon/on
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	icon_state = "map_vent_in"
 
 /obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	icon_state = "map_vent_in"
 	external_pressure_bound = 0
 	external_pressure_bound_default = 0
@@ -189,7 +189,7 @@
 		return 1
 
 	if (!node)
-		use_power = 0
+		update_use_power(USE_POWER_OFF)
 	if(!can_pump())
 		return 0
 
@@ -311,10 +311,10 @@
 		pump_direction = 1
 
 	if(signal.data["power"] != null)
-		use_power = text2num(signal.data["power"])
+		update_use_power(text2num(signal.data["power"]))
 
 	if(signal.data["power_toggle"] != null)
-		use_power = !use_power
+		update_use_power(!use_power)
 
 	if(signal.data["checks"] != null)
 		if (signal.data["checks"] == "default")

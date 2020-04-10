@@ -538,6 +538,13 @@
 	req_tech = list(TECH_BLUESPACE = 10, TECH_MAGNET = 5)
 	build_path = /obj/item/mecha_parts/mecha_equipment/teleporter
 
+/datum/design/item/mecha/teleporter
+	name = "Cloaking Device"
+	desc = "A device that renders the exosuit invisible to the naked eye, though not to thermal detection. Uses large amounts of energy."
+	id = "mech_cloaking"
+	req_tech = list(TECH_BLUESPACE = 10, TECH_MAGNET = 5)
+	build_path = /obj/item/mecha_parts/mecha_equipment/cloak
+
 /datum/design/item/mecha/rcd
 	name = "RCD"
 	desc = "An exosuit-mounted rapid construction device."
@@ -569,6 +576,14 @@
 	req_tech = list(TECH_PHORON = 3, TECH_MAGNET = 6, TECH_ILLEGAL = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 8000, "gold" = 2000, "silver" = 3000, "phoron" = 5000, "glass" = 3750)
 	build_path = /obj/item/mecha_parts/mecha_equipment/combat_shield
+
+/datum/design/item/mecha/omni_shield
+	name = "Omni Shield"
+	desc = "Integral shield projector. Can only protect the exosuit, but has no weak angles."
+	id = "mech_shield_omni"
+	req_tech = list(TECH_PHORON = 3, TECH_MAGNET = 6, TECH_ILLEGAL = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 8000, "gold" = 2000, "silver" = 3000, "phoron" = 5000, "glass" = 3750)
+	build_path = /obj/item/mecha_parts/mecha_equipment/omni_shield
 
 /datum/design/item/mecha/crisis_drone
 	name = "Crisis Drone"

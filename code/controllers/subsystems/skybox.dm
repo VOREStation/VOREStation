@@ -4,12 +4,13 @@ SUBSYSTEM_DEF(skybox)
 	name = "Space skybox"
 	init_order = INIT_ORDER_SKYBOX
 	flags = SS_NO_FIRE
-	var/list/skybox_cache = list()
+	var/static/list/skybox_cache = list()
 
-	var/list/dust_cache = list()
-	var/list/speedspace_cache = list()
-	var/list/phase_shift_by_x = list()
-	var/list/phase_shift_by_y = list()
+	var/static/list/dust_cache = list()
+	var/static/list/speedspace_cache = list()
+	var/static/list/mapedge_cache = list()
+	var/static/list/phase_shift_by_x = list()
+	var/static/list/phase_shift_by_y = list()
 
 /datum/controller/subsystem/skybox/PreInit()
 	//Static
@@ -31,6 +32,29 @@ SUBSYSTEM_DEF(skybox)
 		im.plane = DUST_PLANE
 		im.blend_mode = BLEND_ADD
 		speedspace_cache["EW_[i]"] = im
+	//Over-the-edge images
+	for (var/dir in alldirs)
+		var/image/I = image('icons/turf/space.dmi', "white")
+		var/matrix/M = matrix()
+		var/horizontal = (dir & (WEST|EAST))
+		var/vertical = (dir & (NORTH|SOUTH))
+		M.Scale(horizontal ? 8 : 1, vertical ? 8 : 1)
+		I.transform = M
+		I.appearance_flags = KEEP_APART | TILE_BOUND
+		I.plane = SPACE_PLANE
+		I.layer = 0
+
+		if(dir & NORTH)
+			I.pixel_y = 112
+		else if(dir & SOUTH)
+			I.pixel_y = -112
+
+		if(dir & EAST)
+			I.pixel_x = 112
+		else if(dir & WEST)
+			I.pixel_x = -112
+
+		mapedge_cache["[dir]"] = I
 
 	//Shuffle some lists
 	phase_shift_by_x = get_cross_shift_list(15)
@@ -41,17 +65,9 @@ SUBSYSTEM_DEF(skybox)
 /datum/controller/subsystem/skybox/Initialize()
 	. = ..()
 
-/datum/controller/subsystem/skybox/Recover()
-	skybox_cache = SSskybox.skybox_cache
-
 /datum/controller/subsystem/skybox/proc/get_skybox(z)
 	if(!skybox_cache["[z]"])
 		skybox_cache["[z]"] = generate_skybox(z)
-		if(global.using_map.use_overmap)
-			var/obj/effect/overmap/visitable/O = map_sectors["[z]"]
-			if(istype(O))
-				for(var/zlevel in O.map_z)
-					skybox_cache["[zlevel]"] = skybox_cache["[z]"]
 	return skybox_cache["[z]"]
 
 /datum/controller/subsystem/skybox/proc/generate_skybox(z)
@@ -61,7 +77,7 @@ SUBSYSTEM_DEF(skybox)
 	res.appearance_flags = KEEP_TOGETHER
 
 	var/image/base = image(settings.icon, settings.icon_state)
-	//base.color = background_color
+	base.color = settings.color
 
 	if(settings.use_stars)
 		var/image/stars = image(settings.icon, settings.star_state)
@@ -73,7 +89,7 @@ SUBSYSTEM_DEF(skybox)
 	if(global.using_map.use_overmap && settings.use_overmap_details)
 		var/obj/effect/overmap/visitable/O = map_sectors["[z]"]
 		if(istype(O))
-			var/image/overmap = image(settings.icon_state)
+			var/image/overmap = image(settings.icon)
 			overmap.overlays += O.generate_skybox()
 			for(var/obj/effect/overmap/visitable/other in O.loc)
 				if(other != O)

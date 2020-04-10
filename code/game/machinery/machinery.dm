@@ -101,7 +101,7 @@ Class Procs:
 
 	var/stat = 0
 	var/emagged = 0
-	var/use_power = 1
+	var/use_power = USE_POWER_IDLE
 		//0 = dont run the auto
 		//1 = run auto, use idle
 		//2 = run auto, use active
@@ -123,7 +123,7 @@ Class Procs:
 	..(l)
 	if(d)
 		set_dir(d)
-	if(circuit)
+	if(ispath(circuit))
 		circuit = new circuit(src)
 
 /obj/machinery/Initialize()
@@ -199,9 +199,9 @@ Class Procs:
 /obj/machinery/proc/auto_use_power()
 	if(!powered(power_channel))
 		return 0
-	if(use_power == 1)
+	if(use_power == USE_POWER_IDLE)
 		use_power(idle_power_usage, power_channel, 1)
-	else if(use_power >= 2)
+	else if(use_power >= USE_POWER_ACTIVE)
 		use_power(active_power_usage, power_channel, 1)
 	return 1
 

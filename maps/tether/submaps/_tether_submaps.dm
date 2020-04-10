@@ -1,4 +1,4 @@
-// This causes tether submap maps to get 'checked' and compiled, when undergoing a unit test.
+ // This causes tether submap maps to get 'checked' and compiled, when undergoing a unit test.
 // This is so Travis can validate PoIs, and ensure future changes don't break PoIs, as PoIs are loaded at runtime and the compiler can't catch errors.
 
 //////////////////////////////////////////////////////////////////////////////
@@ -8,22 +8,11 @@
 	desc = "Misc areas, like some transit areas, holodecks, merc area."
 	mappath = 'tether_misc.dmm'
 
-	associated_map_datum = /datum/map_z_level/tether_lateload/ships
+	associated_map_datum = /datum/map_z_level/tether_lateload/misc
 
 /datum/map_z_level/tether_lateload/misc
 	name = "Misc"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
-
-/datum/map_template/tether_lateload/tether_ships
-	name = "Tether - Ships"
-	desc = "Ship transit map and whatnot."
-	mappath = 'tether_ships.dmm'
-
-	associated_map_datum = /datum/map_z_level/tether_lateload/ships
-
-/datum/map_z_level/tether_lateload/ships
-	name = "Ships"
-	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED
 
 #include "underdark_pois/_templates.dm"
 #include "underdark_pois/underdark_things.dm"
@@ -205,7 +194,6 @@
 
 /datum/map_z_level/tether_lateload/away_alienship
 	name = "Away Mission - Alien Ship"
-	z = Z_LEVEL_ALIENSHIP
 
 
 #include "aerostat/_aerostat.dm"
@@ -269,7 +257,7 @@
 /obj/effect/overmap/visitable/sector/tether_gateway/get_scan_data(mob/user)
 	name = true_name
 	desc = true_desc
-	return ..()	
+	return ..()
 
 /datum/map_template/tether_lateload/gateway
 	name = "Gateway Submap"
@@ -355,11 +343,6 @@
 	if(mapZ && !z)
 		z = mapZ
 	return ..(map)
-
-/turf/unsimulated/wall/seperator //to block vision between transit zones
-	name = ""
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "1"
 
 /obj/effect/step_trigger/zlevel_fall //Don't ever use this, only use subtypes.Define a new var/static/target_z on each
 	affect_ghosts = 1
@@ -501,3 +484,5 @@
 #include "om_ships/screebarge.dm"
 #include "om_ships/aro.dm"
 #include "om_ships/cruiser.dm"
+#include "om_ships/vespa.dm"
+#include "om_ships/generic_shuttle.dm"

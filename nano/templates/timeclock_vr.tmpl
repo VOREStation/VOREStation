@@ -69,12 +69,14 @@
 				<span class='bad'>Insufficent Time Off Accrued</span>
 			{{/if}}
 		{{else (data.job_datum.timeoff_factor < 0) }}
-			{{props data.job_choices }}
-				<div class='itemLabelWide'>{{:value}}</div>
-				<div class='itemContentMedium'>{{:helper.link("Go On-Duty", 'suitcase', {'switch-to-onduty' : value})}}</div>
+			{{props data.job_choices :alt_titles:job }}
+				{{props alt_titles :alt_title:alt_title_index }}
+					<div class='itemLabelWide'>{{:alt_title}}</div>
+					<div class='itemContentMedium'>{{:helper.link("Go On-Duty", 'suitcase', {'switch-to-onduty-rank' : job,'switch-to-onduty-assignment' : alt_title})}}</div>
+				{{/props}}
 			{{empty}}
 				<div class='notice'>No Open Positions - See Head of Personnel</div>
-			{{/for}}
+			{{/props}}
 		{{/if}}
 	</div>
 </div>

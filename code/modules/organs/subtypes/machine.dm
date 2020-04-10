@@ -14,7 +14,7 @@
 	..()
 	// This is very ghetto way of rebooting an IPC. TODO better way.
 	if(owner && owner.stat == DEAD)
-		owner.stat = 0
+		owner.set_stat(CONSCIOUS)
 		owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
 
 /obj/item/organ/internal/cell/emp_act(severity)
@@ -68,7 +68,7 @@
 	stored_mmi.brainmob.languages = owner.languages
 
 	if(owner && owner.stat == DEAD)
-		owner.stat = 0
+		owner.set_stat(CONSCIOUS)
 		dead_mob_list -= owner
 		living_mob_list |= owner
 		owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")

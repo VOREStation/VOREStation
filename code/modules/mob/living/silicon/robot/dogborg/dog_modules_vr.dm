@@ -167,7 +167,7 @@
 //Tongue stuff
 /obj/item/device/dogborg/tongue
 	name = "synthetic tongue"
-	desc = "Useful for slurping mess off the floor before affectionally licking the crew members in the face."
+	desc = "Useful for slurping mess off the floor before affectionately licking the crew members in the face."
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "synthtongue"
 	hitsound = 'sound/effects/attackblob.ogg'
@@ -197,7 +197,7 @@
 			icon_state = "syndietongue"
 		else
 			name = "synthetic tongue"
-			desc = "Useful for slurping mess off the floor before affectionally licking the crew members in the face."
+			desc = "Useful for slurping mess off the floor before affectionately licking the crew members in the face."
 			icon = 'icons/mob/dogborg_vr.dmi'
 			icon_state = "synthtongue"
 		update_icon()
@@ -267,7 +267,7 @@
 			playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 			R.cell.charge -= 666
 		else
-			user.visible_message("<span class='notice'>\the [user] affectionally licks all over \the [target]'s face!</span>", "<span class='notice'>You affectionally lick all over \the [target]'s face!</span>")
+			user.visible_message("<span class='notice'>\the [user] affectionately licks all over \the [target]'s face!</span>", "<span class='notice'>You affectionately lick all over \the [target]'s face!</span>")
 			playsound(src.loc, 'sound/effects/attackblob.ogg', 50, 1)
 			water.use_charge(5)
 			var/mob/living/carbon/human/H = target

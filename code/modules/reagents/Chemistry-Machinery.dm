@@ -16,9 +16,9 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
 	circuit = /obj/item/weapon/circuitboard/chem_master
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 20
-	var/beaker = null
+	var/obj/item/weapon/reagent_containers/beaker = null
 	var/obj/item/weapon/storage/pill_bottle/loaded_pill_bottle = null
 	var/mode = 0
 	var/condi = 0
@@ -105,7 +105,7 @@
 		data["pillBottle"] = null
 
 	if(beaker)
-		var/datum/reagents/R = beaker:reagents
+		var/datum/reagents/R = beaker.reagents
 		var/ui_reagent_beaker_list[0]
 		for(var/datum/reagent/G in R.reagent_list)
 			ui_reagent_beaker_list[++ui_reagent_beaker_list.len] = list("name" = G.name, "volume" = G.volume, "description" = G.description, "id" = G.id)
@@ -160,11 +160,15 @@
 
 	if (href_list["ejectp"])
 		if(loaded_pill_bottle)
-			loaded_pill_bottle.loc = src.loc
+			loaded_pill_bottle.forceMove(get_turf(src))
+
+			if(Adjacent(usr))
+				usr.put_in_hands(loaded_pill_bottle)
+
 			loaded_pill_bottle = null
 
 	if(beaker)
-		var/datum/reagents/R = beaker:reagents
+		var/datum/reagents/R = beaker.reagents
 		if (tab == "analyze")
 			analyze_data["name"] = href_list["name"]
 			analyze_data["desc"] = href_list["desc"]
@@ -216,7 +220,11 @@
 
 		else if (href_list["eject"])
 			if(beaker)
-				beaker:loc = src.loc
+				beaker.forceMove(get_turf(src))
+
+				if(Adjacent(usr)) // So the AI doesn't get a beaker somehow.
+					usr.put_in_hands(beaker)
+
 				beaker = null
 				reagents.clear_reagents()
 				icon_state = "mixer0"
@@ -333,7 +341,7 @@
 	icon_state = "juicer1"
 	density = 0
 	anchored = 0
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 5
 	active_power_usage = 100
 	circuit = /obj/item/weapon/circuitboard/grinder

@@ -14,7 +14,8 @@
 				if( (client.connection != "web") && (M.computer_id == client.computer_id) )
 					if(matches)	matches += " and "
 					matches += "ID ([client.computer_id])"
-					spawn() alert("You have logged in already with another key this round, please log out of this one NOW or risk being banned!")
+					if(!config.disable_cid_warn_popup)
+						spawn() alert("You have logged in already with another key this round, please log out of this one NOW or risk being banned!")
 				if(matches)
 					if(M.client)
 						message_admins("<font color='red'><B>Notice: </B></font><font color='blue'>[key_name_admin(src)] has the same [matches] as [key_name_admin(M)].</font>", 1)
@@ -75,3 +76,6 @@
 	var/turf/T = get_turf(src)
 	if(isturf(T))
 		update_client_z(T.z)
+
+	if(cloaked && cloaked_selfimage)
+		client.images += cloaked_selfimage

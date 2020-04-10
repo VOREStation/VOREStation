@@ -110,7 +110,7 @@
 			src.occupant.adjustBruteLoss(-1)
 			src.occupant.updatehealth()
 			if (src.occupant.health >= 0 && src.occupant.stat == DEAD)
-				src.occupant.stat = CONSCIOUS
+				src.occupant.set_stat(CONSCIOUS)
 				src.occupant.lying = 0
 				dead_mob_list -= src.occupant
 				living_mob_list += src.occupant
@@ -135,8 +135,8 @@
 
 	if(occupant)
 		if(occupant.stat)
-			overlays += image(icon, "ai-fixer-404", overlay_layer)
+			add_overlay("ai-fixer-404")
 		else
-			overlays += image(icon, "ai-fixer-full", overlay_layer)
+			add_overlay("ai-fixer-full")
 	else
-		overlays += image(icon, "ai-fixer-empty", overlay_layer)
+		add_overlay("ai-fixer-empty")

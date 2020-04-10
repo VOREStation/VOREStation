@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	icon_state = "sp_base"
 	anchored = 1
 	density = 1
-	use_power = 0
+	use_power = USE_POWER_OFF
 	idle_power_usage = 0
 	active_power_usage = 0
 	var/id = 0
@@ -285,7 +285,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	icon_state = "solar"
 	anchored = 1
 	density = 1
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 250
 	var/id = 0
 	var/cdir = 0

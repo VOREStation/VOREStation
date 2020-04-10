@@ -7,7 +7,7 @@
 	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/exploration_equipment_vendor
 	icon_deny = "exploration-deny" //VOREStation Edit
-	var/icon_vend = "exploration-vend" //VOREStation Add
+	icon_vend = "exploration-vend" //VOREStation Add
 	//VOREStation Edit Start - Heavily modified list
 	prize_list = list(
 		new /datum/data/mining_equipment("1 Marker Beacon",			/obj/item/stack/marker_beacon,										1),

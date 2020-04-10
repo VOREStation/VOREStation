@@ -5,7 +5,7 @@
 	name = "omni device"
 	icon = 'icons/atmos/omni_devices_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "base"
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	initialize_directions = 0
 	construction_type = /obj/item/pipe/quaternary
 	level = 1
@@ -67,7 +67,7 @@
 	last_flow_rate = 0
 
 	if(error_check())
-		use_power = 0
+		update_use_power(USE_POWER_OFF)
 
 	if((stat & (NOPOWER|BROKEN)) || !use_power)
 		return 0

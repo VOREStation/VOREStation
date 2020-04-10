@@ -19,13 +19,13 @@
 	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/deadringer/Destroy() //just in case some smartass tries to stay invisible by destroying the watch
-	uncloak()
+	reveal()
 	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/weapon/deadringer/dropped()
 	if(timer > 20)
-		uncloak()
+		reveal()
 		watchowner = null
 	return
 
@@ -67,7 +67,7 @@
 	if(timer > 0)
 		timer--
 	if(timer == 20)
-		uncloak()
+		reveal()
 		if(corpse)
 			new /obj/effect/effect/smoke/chem(corpse.loc)
 			qdel(corpse)
@@ -86,7 +86,7 @@
 	makeacorpse(watchowner)
 	return
 
-/obj/item/weapon/deadringer/proc/uncloak()
+/obj/item/weapon/deadringer/proc/reveal()
 	if(watchowner)
 		watchowner.alpha = 255
 		playsound(get_turf(src), 'sound/effects/uncloak.ogg', 35, 1, -1)

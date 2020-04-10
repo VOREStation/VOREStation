@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	var/dy		//coordinates
 	var/speedlimit = 1/(20 SECONDS) //top speed for autopilot, 5
 	var/accellimit = 0.001 //manual limiter for acceleration
-	req_one_access = list(access_pilot)
+	req_one_access = list(access_pilot) //VOREStation Edit
 
 /obj/machinery/computer/ship/helm/Initialize()
 	. = ..()

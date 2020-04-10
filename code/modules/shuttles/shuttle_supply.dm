@@ -13,6 +13,13 @@
 	if(isnull(location))
 		return
 
+	// Set the supply shuttle displays to read out the ETA
+	var/datum/signal/S = new()
+	S.source = src
+	S.data = list("command" = "supply")
+	var/datum/radio_frequency/F = radio_controller.return_frequency(1435)
+	F.post_signal(src, S)
+
 	//it would be cool to play a sound here
 	moving_status = SHUTTLE_WARMUP
 	spawn(warmup_time*10)
@@ -31,7 +38,7 @@
 			return
 
 		if (!at_station())	//at centcom
-			supply_controller.buy()
+			SSsupply.buy()
 
 		//We pretend it's a long_jump by making the shuttle stay at centcom for the "in-transit" period.
 		var/obj/effect/shuttle_landmark/away_waypoint = get_location_waypoint(away_location)
@@ -42,7 +49,7 @@
 			attempt_move(away_waypoint)
 
 		//wait ETA here.
-		arrive_time = world.time + supply_controller.movetime
+		arrive_time = world.time + SSsupply.movetime
 		while (world.time <= arrive_time)
 			sleep(5)
 
@@ -57,7 +64,7 @@
 		make_sounds(HYPERSPACE_END)
 
 		if (!at_station())	//at centcom
-			supply_controller.sell()
+			SSsupply.sell()
 
 // returns 1 if the supply shuttle should be prevented from moving because it contains forbidden atoms
 /datum/shuttle/autodock/ferry/supply/proc/forbidden_atoms_check()
@@ -65,7 +72,7 @@
 		return 0	//if badmins want to send mobs or a nuke on the supply shuttle from centcom we don't care
 
 	for(var/area/A in shuttle_area)
-		if(supply_controller.forbidden_atoms_check(A))
+		if(SSsupply.forbidden_atoms_check(A))
 			return 1
 
 /datum/shuttle/autodock/ferry/supply/proc/at_station()
@@ -77,11 +84,8 @@
 
 //returns the ETA in minutes
 /datum/shuttle/autodock/ferry/supply/proc/eta_minutes()
-	var/ticksleft = arrive_time - world.time
-	return round(ticksleft/600,1)
+	return round((arrive_time - world.time) / (1 MINUTE), 1) // Floor, so it's an actual timer
 
-// Read the docking codes off of the target to make sure we can always dock.
-/datum/shuttle/autodock/ferry/supply/update_docking_target(var/obj/effect/shuttle_landmark/location)
-	..()
-	if(active_docking_controller && active_docking_controller.docking_codes)
-		set_docking_codes(active_docking_controller.docking_codes)
+// returns the ETA in seconds
+/datum/shuttle/autodock/ferry/supply/proc/eta_seconds()
+	return round((arrive_time - world.time) / (1 SECOND)) // Floor, so it's an actual timer

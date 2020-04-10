@@ -28,6 +28,7 @@
 	var/powerCoefficient = 12.5
 	var/list/crystals = list()
 	var/obj/item/device/gps/inserted_gps
+	var/overmap_range = 3
 
 /obj/machinery/computer/telescience/Destroy()
 	eject()
@@ -106,8 +107,17 @@
 			data["tempMsg"] = "Telepad undergoing physical maintenance operations."
 
 		data["sectorOptions"] = list()
-		for(var/z in using_map.player_levels)
-			data["sectorOptions"] += z
+		//We'll base our options on overmap range
+		if(using_map.use_overmap)
+			data["sectorOptions"] += z //Definitely at least our own even if we're not in an overmap sector.
+			var/obj/effect/overmap/visitable/my_sector = map_sectors["[z]"]
+			if(my_sector)
+				for(var/obj/effect/overmap/visitable/S in range(get_turf(my_sector), overmap_range))
+					data["sectorOptions"] |= S.map_z
+		//We'll base our options on player_levels
+		else
+			for(var/z in using_map.player_levels)
+				data["sectorOptions"] += z
 
 		if(last_tele_data)
 			data["lastTeleData"] = list()

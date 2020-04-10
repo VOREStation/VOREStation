@@ -331,6 +331,7 @@
 		return
 
 /obj/structure/reagent_dispensers/water_cooler/update_icon()
+	/* VOREStation Lazy Fix for Right Now
 	icon_state = "water_cooler"
 	overlays.Cut()
 	var/image/I
@@ -343,6 +344,7 @@
 	if(cups)
 		I = image(icon, "water_cooler_cups")
 		overlays += I
+	*/
 	return
 
 /obj/structure/reagent_dispensers/beerkeg

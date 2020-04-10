@@ -79,8 +79,10 @@
 							)
 	usable_email_tlds = list("freemail.nt")
 	allowed_spawns = list("Arrivals Shuttle","Gateway", "Cryogenic Storage", "Cyborg Storage")
-	unit_test_exempt_areas = list(/area/ninja_dojo, /area/ninja_dojo/firstdeck, /area/ninja_dojo/arrivals_dock)
 
+	default_skybox = /datum/skybox_settings/southern_cross
+
+	unit_test_exempt_areas = list(/area/ninja_dojo, /area/ninja_dojo/firstdeck, /area/ninja_dojo/arrivals_dock)
 	unit_test_exempt_from_atmos = list(/area/tcomm/chamber)
 
 	planet_datums_to_make = list(/datum/planet/sif)
@@ -126,6 +128,11 @@
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SURFACE_MINE, 64, 64)         // Create the mining ore distribution map.
 	// Todo: Forest generation.
 	return 1
+
+// Skybox Settings
+/datum/skybox_settings/southern_cross
+	icon_state = "dyable"
+	random_color = TRUE
 
 // For making the 6-in-1 holomap, we calculate some offsets
 #define SOUTHERN_CROSS_MAP_SIZE 160 // Width and height of compiled in Southern Cross z levels.
