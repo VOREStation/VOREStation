@@ -33,6 +33,7 @@
 	var/busy = 0
 
 	var/on_open_network = 0
+	var/always_visible = FALSE //Visable from any map, good for entertainment network cameras
 
 	var/affected_by_emp_until = 0
 
@@ -472,6 +473,7 @@
 	cam["name"] = sanitize(c_tag)
 	cam["deact"] = !can_use()
 	cam["camera"] = "\ref[src]"
+	cam["omni"] = always_visible
 	cam["x"] = x
 	cam["y"] = y
 	cam["z"] = z
