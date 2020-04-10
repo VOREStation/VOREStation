@@ -457,11 +457,25 @@
 "aW" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/gun/energy/netgun,
-/obj/item/weapon/gun/energy/sniperrifle,
-/obj/item/weapon/gun/energy/gun/martin,
-/obj/item/weapon/gun/energy/gun/martin,
-/obj/item/weapon/gun/energy/gun/martin,
-/obj/item/weapon/gun/energy/gun/martin,
+/obj/item/weapon/gun/energy/sniperrifle{
+	battery_lock = 0
+	},
+/obj/item/weapon/gun/energy/gun/martin{
+	battery_lock = 0
+	},
+/obj/item/weapon/gun/energy/gun/martin{
+	battery_lock = 0
+	},
+/obj/item/weapon/gun/energy/gun/martin{
+	battery_lock = 0
+	},
+/obj/item/weapon/gun/energy/gun/martin{
+	battery_lock = 0
+	},
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "aX" = (
@@ -479,6 +493,18 @@
 /obj/item/weapon/gun/energy/gun,
 /obj/item/weapon/gun/energy/gun,
 /obj/item/weapon/gun/energy/gun,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "aZ" = (
@@ -578,6 +604,18 @@
 /obj/item/weapon/gun/energy/laser,
 /obj/item/weapon/gun/energy/laser,
 /obj/item/weapon/gun/energy/laser,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "bk" = (
@@ -672,6 +710,10 @@
 /obj/item/weapon/gun/energy/ionrifle,
 /obj/item/weapon/gun/energy/ionrifle/pistol,
 /obj/item/weapon/gun/energy/ionrifle/pistol,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "bv" = (
