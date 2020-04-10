@@ -44,7 +44,7 @@
 	var/to_suit_cost = -2
 	
 	var/owner_ckey = null		//ckey of the kit owner as a string
-	var/skip_contents = FALSE	//can we skip the contents check? we generally shouldn't, but this is necessary for rigs/coats with hoods/etc.
+	var/skip_content_check = FALSE	//can we skip the contents check? we generally shouldn't, but this is necessary for rigs/coats with hoods/etc.
 	var/transfer_contents = FALSE	//should we transfer the contents across before deleting? we generally shouldn't, esp. in the case of rigs/coats with hoods/etc. note this does nothing if skip is FALSE.
 	var/can_repair = FALSE		//can we be used to repair damaged voidsuits when converting them?
 	var/can_revert = TRUE		//can we revert items, or is it a one-way trip?
@@ -55,13 +55,14 @@
 	var/cost
 	var/to_type
 	var/keycheck
+	
+	if(isturf(O)) //silently fail if you click on a turf. shouldn't work anyway because turfs aren't objects but if I don't do this it spits runtimes. 
+		return
 	if(istype(O,/obj/item/clothing/suit/space/void/) && !can_repair) //check if we're a voidsuit and if we're allowed to repair
 		var/obj/item/clothing/suit/space/void/SS = O
 		if(LAZYLEN(SS.breaches))
 			to_chat(user, "<span class='warning'>You should probably repair that before you start tinkering with it.</span>")
 			return
-	if(isturf(O)) //silently fail if you click on a turf. shouldn't work anyway because turfs aren't objects but if I don't do this it spits runtimes. 
-		return
 	if(O.blood_DNA || O.contaminated) //check if we're bloody or gooey or whatever, so modkits can't be used to hide crimes easily.
 		to_chat(user, "<span class='warning'>You should probably clean that up before you start tinkering with it.</span>")
 		return
@@ -88,7 +89,7 @@
 	if(!isturf(O.loc))
 		to_chat(user, "<span class='warning'>You need to put \the [O] on the ground, a table, or other worksurface before modifying it.</span>")
 		return
-	if(!skip_contents && O.contents.len) //check if we're loaded/modified, in the event of gun/suit kits, to avoid purging stuff like ammo, badges, armbands, or suit helmets
+	if(!skip_content_check && O.contents.len) //check if we're loaded/modified, in the event of gun/suit kits, to avoid purging stuff like ammo, badges, armbands, or suit helmets
 		to_chat(user, "<span class='warning'>You should probably remove any attached items or loaded ammunition before trying to modify that!</span>")
 		return
 	if(cost > parts)
@@ -110,9 +111,8 @@
 	N.fingerprintslast = O.fingerprintslast
 	N.suit_fibers = O.suit_fibers
 	
-	//I don't like using the lookdown checks here but fuck it, it works. the istypes are essential though, or else it runtimes and won't get to the qdel for the source item, allowing item duping
 	//transfer logic could technically be made more thorough and handle stuff like helmet/boots/tank vars for suits, but in those cases you should be removing the items first anyway
-	if(skip_contents && transfer_contents)
+	if(skip_content_check && transfer_contents)
 		N.contents = O.contents
 		if(istype(N,/obj/item/weapon/gun/projectile/))
 			var/obj/item/weapon/gun/projectile/NN = N
@@ -123,7 +123,7 @@
 			var/obj/item/weapon/gun/energy/NE = N
 			var/obj/item/weapon/gun/energy/OE = O
 			NE.cell_type = OE.cell_type
-	else	//nuke any ammo it'd normally spawn with, if it's a gun, to prevent ammo duplication. we have to do this just for guns, not immediately under the else, or it breaks default attachments like hoods and suit storage
+	else
 		if(istype(N,/obj/item/weapon/gun/projectile/))
 			var/obj/item/weapon/gun/projectile/NM = N
 			NM.contents = list()
