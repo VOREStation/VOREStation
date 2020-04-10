@@ -47,11 +47,16 @@
 /datum/nano_module/atmos_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/master_ui = null, var/datum/topic_state/state = default_state)
 	var/list/data = host.initial_data()
 	var/alarms[0]
-	var/turf/T = get_turf(nano_host())
+	
+	var/z = get_z(nano_host())
+	var/list/map_levels = using_map.get_map_levels(z) 
+	data["map_levels"] = map_levels
 
 	// TODO: Move these to a cache, similar to cameras
 	for(var/obj/machinery/alarm/alarm in (monitored_alarms.len ? monitored_alarms : machines))
 		if(!monitored_alarms.len && alarm.alarms_hidden)
+			continue
+		if(!(alarm.z in map_levels))
 			continue
 		alarms[++alarms.len] = list(
 			"name" = sanitize(alarm.name),
@@ -61,7 +66,6 @@
 			"y" = alarm.y,
 			"z" = alarm.z)
 	data["alarms"] = alarms
-	data["map_levels"] = using_map.get_map_levels(T.z)
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)

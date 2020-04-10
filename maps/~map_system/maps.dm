@@ -162,17 +162,36 @@ var/list/all_maps = list()
 // Get the list of zlevels that a computer on srcz can see maps of (for power/crew monitor, cameras, etc)
 // The long_range parameter expands the coverage.  Default is to return map_levels for long range otherwise just srcz.
 // zLevels outside station_levels will return an empty list.
-/datum/map/proc/get_map_levels(var/srcz, var/long_range = TRUE)
-	if (long_range && (srcz in map_levels))
-		return map_levels
-	else if (srcz in station_levels)
-		return list(srcz)
+/datum/map/proc/get_map_levels(var/srcz, var/long_range = TRUE, var/om_range = 0)
+	//Overmap behavior
+	if(use_overmap)
+		var/obj/effect/overmap/visitable/O = get_overmap_sector(srcz)
+		if(!istype(O))
+			return list(srcz)
+
+		//Just the sector we're in
+		if(om_range == -1)
+			return O.map_z.Copy()
+
+		//Otherwise every sector we're on top of
+		var/list/connections = list()
+		var/turf/T = get_turf(O)
+		for(var/obj/effect/overmap/visitable/V in range(long_range ? om_range : -1, T))
+			connections += V.map_z // Adding list to list adds contents
+		return connections
+
+	//Traditional behavior
 	else
-		return list()
+		if (long_range && (srcz in map_levels))
+			return map_levels
+		else if (srcz in station_levels)
+			return list(srcz)
+		else
+			return list()
 
 /datum/map/proc/get_zlevel_name(var/index)
 	var/datum/map_z_level/Z = zlevels["[index]"]
-	return Z.name
+	return Z?.name
 
 // Access check is of the type requires one. These have been carefully selected to avoid allowing the janitor to see channels he shouldn't
 // This list needs to be purged but people insist on adding more cruft to the radio.

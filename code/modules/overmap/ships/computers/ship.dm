@@ -17,7 +17,7 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 		return 1
 
 /obj/machinery/computer/ship/proc/sync_linked()
-	var/obj/effect/overmap/visitable/ship/sector = map_sectors["[z]"]
+	var/obj/effect/overmap/visitable/ship/sector = get_overmap_sector(z)
 	if(!sector)
 		return
 	return attempt_hook_up_recursive(sector)

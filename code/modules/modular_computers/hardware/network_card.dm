@@ -79,18 +79,32 @@ var/global/ntnet_card_uid = 1
 		return 0
 
 	if(holder2)
-		var/turf/T = get_turf(holder2)
-		if(!istype(T)) //no reception in nullspace
+		var/z = get_z(holder2)
+		if(!z) //no reception in nullspace
 			return 0
-		if(T.z in using_map.station_levels)
-			// Computer is on station. Low/High signal depending on what type of network card you have
-			if(long_range)
-				return 2
-			else
-				return 1
-		if(T.z in using_map.contact_levels) //not on station, but close enough for radio signal to travel
-			if(long_range) // Computer is not on station, but it has upgraded network card. Low signal.
-				return 1
+		if(using_map.use_overmap)
+			var/list/zlevels_in_range = using_map.get_map_levels(z, long_range)
+			var/best = 0
+			for(var/relay in ntnet_global.relays)
+				var/obj/machinery/ntnet_relay/R = relay
+				if(!R.operable())
+					continue
+				if(R.z == z)
+					best = 2 //Same Z as us
+					break // No point in going further
+				if(R.z in zlevels_in_range)
+					best = 1 //Different Z but still in range
+			return best
+		else
+			if(z in using_map.station_levels)
+				// Computer is on station. Low/High signal depending on what type of network card you have
+				if(long_range)
+					return 2
+				else
+					return 1
+			if(z in using_map.contact_levels) //not on station, but close enough for radio signal to travel
+				if(long_range) // Computer is not on station, but it has upgraded network card. Low signal.
+					return 1
 
 	return 0 // Computer is not on station and does not have upgraded network card. No signal.
 
