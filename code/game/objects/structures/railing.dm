@@ -6,7 +6,8 @@
 	density = 1
 	throwpass = 1
 	climbable = 1
-	layer = WINDOW_LAYER
+	plane = MOB_PLANE
+	layer = ABOVE_MOB_LAYER
 	anchored = 1
 	flags = ON_BORDER
 	icon_state = "railing0"
