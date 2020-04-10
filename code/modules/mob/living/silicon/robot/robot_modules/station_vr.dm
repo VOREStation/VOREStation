@@ -43,6 +43,7 @@
 	robot_modules["Janihound"] = /obj/item/weapon/robot_module/robot/scrubpup
 	robot_modules["Sci-borg"] = /obj/item/weapon/robot_module/robot/science
 	robot_modules["Pupdozer"] = /obj/item/weapon/robot_module/robot/engiedog
+	robot_modules["KMine"] = /obj/item/weapon/robot_module/robot/kmine
 	return 1
 
 //Just add a new proc with the robot_module type if you wish to run some other vore code
