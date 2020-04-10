@@ -265,9 +265,11 @@
 	else if(istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger) || I.is_screwdriver())
 		if(opened)
 			interact(user)
+			return TRUE
 		else
 			to_chat(user, "<span class='warning'>\The [src] isn't opened, so you can't fiddle with the internal components.  \
 			Try using a crowbar.</span>")
+			return FALSE
 
 	else if(istype(I, /obj/item/device/integrated_electronics/detailer))
 		var/obj/item/device/integrated_electronics/detailer/D = I
@@ -365,3 +367,7 @@
 /obj/item/device/electronic_assembly/proc/on_unanchored()
 	for(var/obj/item/integrated_circuit/IC in contents)
 		IC.on_unanchored()
+
+// Returns TRUE if I is something that could/should have a valid interaction. Used to tell circuitclothes to hit the circuit with something instead of the clothes
+/obj/item/device/electronic_assembly/proc/is_valid_tool(var/obj/item/I)
+	return I.is_crowbar() || I.is_screwdriver() || istype(I, /obj/item/integrated_circuit) || istype(I, /obj/item/weapon/cell/device) || istype(I, /obj/item/device/integrated_electronics)
