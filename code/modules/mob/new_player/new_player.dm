@@ -368,8 +368,13 @@
 
 	//Find our spawning point.
 	var/list/join_props = job_master.LateSpawn(client, rank)
+	
+	if(!join_props)
+		return
+
 	var/turf/T = join_props["turf"]
 	var/join_message = join_props["msg"]
+	var/announce_channel = join_props["channel"] || "Common"
 
 	if(!T || !join_message)
 		return 0
@@ -451,6 +456,8 @@
 
 	dat += "Choose from the following open/valid positions:<br>"
 	dat += "<a href='byond://?src=\ref[src];hidden_jobs=1'>[show_hidden_jobs ? "Hide":"Show"] Hidden Jobs.</a><br>"
+	
+	var/deferred = ""
 	for(var/datum/job/job in job_master.occupations)
 		if(job && IsJobAvailable(job.title))
 			// Checks for jobs with minimum age requirements
@@ -464,9 +471,17 @@
 							continue
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
-			for(var/mob/M in player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
+			for(var/mob/M in player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 MINUTES)
 				active++
-			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
+			
+			var/string = "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
+			
+			if(job.offmap_spawn) //At the bottom
+				deferred += string
+			else
+				dat += string
+
+	dat += deferred
 
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=300x640;can_close=1")

@@ -357,7 +357,11 @@ var/global/datum/controller/occupations/job_master
 			else
 				var/list/spawn_props = LateSpawn(H.client, rank)
 				var/turf/T = spawn_props["turf"]
-				H.forceMove(T)
+				if(!T)
+					to_chat(H, "<span class='critical'>You were unable to be spawned at your chosen late-join spawnpoint. Please verify your job/spawn point combination makes sense, and try another one.</span>")
+					return
+				else
+					H.forceMove(T)
 
 			// Moving wheelchair if they have one
 			if(H.buckled && istype(H.buckled, /obj/structure/bed/chair/wheelchair))
@@ -458,8 +462,8 @@ var/global/datum/controller/occupations/job_master
 				if("AI")
 					return H
 				if("Colony Director")
-					var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
-					captain_announcement.Announce("All hands, [alt_title ? alt_title : "Colony Director"] [H.real_name] on deck!", new_sound=announce_sound)
+					var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP) ? null : sound('sound/misc/boatswain.ogg', volume=20)
+					captain_announcement.Announce("All hands, [alt_title ? alt_title : "Colony Director"] [H.real_name] on deck!", new_sound = announce_sound, zlevel = H.z)
 
 			//Deferred item spawning.
 			if(spawn_in_storage && spawn_in_storage.len)
@@ -608,12 +612,20 @@ var/global/datum/controller/occupations/job_master
 /datum/controller/occupations/proc/LateSpawn(var/client/C, var/rank)
 
 	var/datum/spawnpoint/spawnpos
+	var/fail_deadly = FALSE
+
+	var/datum/job/J = SSjob.get_job(rank)
+	fail_deadly = J?.offmap_spawn
 
 	//Spawn them at their preferred one
 	if(C && C.prefs.spawnpoint)
 		if(!(C.prefs.spawnpoint in using_map.allowed_spawns))
-			to_chat(C, "<span class='warning'>Your chosen spawnpoint ([C.prefs.spawnpoint]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead.</span>")
-			spawnpos = null
+			if(fail_deadly)
+				to_chat(C, "<span class='warning'>Your chosen spawnpoint is unavailable for this map and your job requires a specific spawnpoint. Please correct your spawn point choice.</span>")
+				return
+			else
+				to_chat(C, "<span class='warning'>Your chosen spawnpoint ([C.prefs.spawnpoint]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead.</span>")
+				spawnpos = null
 		else
 			spawnpos = spawntypes[C.prefs.spawnpoint]
 
@@ -623,12 +635,16 @@ var/global/datum/controller/occupations/job_master
 		if(spawnpos.check_job_spawning(rank))
 			.["turf"] = spawnpos.get_spawn_position()
 			.["msg"] = spawnpos.msg
+			.["channel"] = spawnpos.announce_channel
 		else
+			if(fail_deadly)
+				to_chat(C, "<span class='warning'>Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Please correct your spawn point choice.</span>")
+				return
 			to_chat(C, "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead.")
 			var/spawning = pick(latejoin)
 			.["turf"] = get_turf(spawning)
 			.["msg"] = "will arrive at the station shortly"  //VOREStation Edit - Grammar but mostly 'shuttle' reference removal, and this also applies to notified spawn-character verb use
-	else
+	else if(!fail_deadly)
 		var/spawning = pick(latejoin)
 		.["turf"] = get_turf(spawning)
 		.["msg"] = "has arrived on the station"
