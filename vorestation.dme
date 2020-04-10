@@ -2883,6 +2883,7 @@
 #include "code\modules\organs\subtypes\vox_vr.dm"
 #include "code\modules\organs\subtypes\xenos.dm"
 #include "code\modules\overmap\bluespace_rift_vr.dm"
+#include "code\modules\overmap\helpers.dm"
 #include "code\modules\overmap\overmap_object.dm"
 #include "code\modules\overmap\overmap_shuttle.dm"
 #include "code\modules\overmap\sectors.dm"
