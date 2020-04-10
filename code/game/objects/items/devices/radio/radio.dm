@@ -240,11 +240,10 @@ var/global/list/default_medbay_channels = list(
 	if(.)
 		SSnanoui.update_uis(src)
 
-/obj/item/device/radio/proc/autosay(var/message, var/from, var/channel) //BS12 EDIT
+/obj/item/device/radio/proc/autosay(var/message, var/from, var/channel, var/list/zlevels) //BS12 EDIT
 	var/datum/radio_frequency/connection = null
 	if(channel && channels && channels.len > 0)
 		if (channel == "department")
-			//to_world("DEBUG: channel=\"[channel]\" switching to \"[channels[1]]\"")
 			channel = channels[1]
 		connection = secure_radio_connections[channel]
 	else
@@ -252,13 +251,16 @@ var/global/list/default_medbay_channels = list(
 		channel = null
 	if (!istype(connection))
 		return
+	
+	if(!LAZYLEN(zlevels))
+		zlevels = list(0)
 
 	var/static/mob/living/silicon/ai/announcer/A = new /mob/living/silicon/ai/announcer(src, null, null, 1)
 	A.SetName(from)
 	Broadcast_Message(connection, A,
 						0, "*garbled automated announcement*", src,
 						message, from, "Automated Announcement", from, "synthesized voice",
-						4, 0, list(0), connection.frequency, "states")
+						4, 0, zlevels, connection.frequency, "states")
 
 // Interprets the message mode when talking into a radio, possibly returning a connection datum
 /obj/item/device/radio/proc/handle_message_mode(mob/living/M as mob, message, message_mode)
@@ -310,7 +312,7 @@ var/global/list/default_medbay_channels = list(
 	if (!istype(connection))
 		return FALSE
 
-	var/turf/position = get_turf(src)
+	var/pos_z = get_z(src)
 
 	//#### Tagging the signal with all appropriate identity values ####//
 
@@ -400,7 +402,7 @@ var/global/list/default_medbay_channels = list(
 			"type" = 0, // determines what type of radio input it is: normal broadcast
 			"server" = null, // the last server to log this signal
 			"reject" = 0,	// if nonzero, the signal will not be accepted by any broadcasting machinery
-			"level" = position.z, // The source's z level
+			"level" = pos_z, // The source's z level
 			"language" = speaking,
 			"verb" = verb
 		)
@@ -416,7 +418,7 @@ var/global/list/default_medbay_channels = list(
 			R.receive_signal(signal)
 
 		// Receiving code can be located in Telecommunications.dm
-		if(signal.data["done"] && position.z in signal.data["level"])
+		if(signal.data["done"] && pos_z in signal.data["level"])
 			return TRUE //Huzzah, sent via subspace
 
 		else if(adhoc_fallback) //Less huzzah, we have to fallback
@@ -424,7 +426,7 @@ var/global/list/default_medbay_channels = list(
 			subspace_transmission = FALSE
 			return Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
 					  src, message, displayname, jobname, real_name, M.voice_name,
-					  signal.transmission_method, signal.data["compression"], GetConnectedZlevels(position.z), connection.frequency,verb,speaking)
+					  signal.transmission_method, signal.data["compression"], using_map.get_map_levels(pos_z), connection.frequency,verb,speaking)
 
   /* ###### Intercoms and station-bounced radios ###### */
 
@@ -462,7 +464,7 @@ var/global/list/default_medbay_channels = list(
 		"type" = 0,
 		"server" = null,
 		"reject" = 0,
-		"level" = position.z,
+		"level" = pos_z,
 		"language" = speaking,
 		"verb" = verb
 	)
@@ -471,7 +473,7 @@ var/global/list/default_medbay_channels = list(
 	for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
 		R.receive_signal(signal)
 
-	if(signal.data["done"] && position.z in signal.data["level"])
+	if(signal.data["done"] && pos_z in signal.data["level"])
 		if(adhoc_fallback)
 			to_chat(loc, "<span class='notice'>\The [src] pings as it reestablishes subspace communications.</span>")
 			subspace_transmission = TRUE
@@ -490,10 +492,10 @@ var/global/list/default_medbay_channels = list(
 					  src, message, displayname, jobname, real_name, M.voice_name,
 					  0, signal.data["compression"], list(0), connection.frequency,verb,speaking)
 //VOREStation Add End
-
+		
 	return Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
 					  src, message, displayname, jobname, real_name, M.voice_name,
-					  filter_type, signal.data["compression"], GetConnectedZlevels(position.z), connection.frequency,verb,speaking)
+					  filter_type, signal.data["compression"], using_map.get_map_levels(pos_z), connection.frequency,verb,speaking)
 
 
 /obj/item/device/radio/hear_talk(mob/M as mob, msg, var/verb = "says", var/datum/language/speaking = null)
@@ -527,8 +529,8 @@ var/global/list/default_medbay_channels = list(
 	if(is_jammed(src))
 		return -1
 	if(!(0 in level))
-		var/turf/position = get_turf(src)
-		if((!position || !(position.z in level)) && !bluespace_radio) //VOREStation Edit
+		var/pos_z = get_z(src)
+		if(!(pos_z in level) && !bluespace_radio) //VOREStation Edit
 			return -1
 	if(freq in ANTAG_FREQS)
 		if(!(src.syndie))//Checks to see if it's allowed on that frequency, based on the encryption keys

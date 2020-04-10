@@ -23,6 +23,10 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	produces_heat = 0
 	delay = 7
 	circuit = /obj/item/weapon/circuitboard/telecomms/broadcaster
+	//Vars only used if you're using the overmap
+	var/overmap_range = 0
+	var/overmap_range_min = 0
+	var/overmap_range_max = 5
 
 /obj/machinery/telecomms/processor/Initialize()
 	. = ..()
@@ -58,7 +62,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(signal.data["slow"] > 0)
 			sleep(signal.data["slow"]) // simulate the network lag if necessary
 
-		signal.data["level"] |= listening_level
+		signal.data["level"] |= using_map.get_map_levels(listening_level, TRUE, overmap_range)
 
 	   /** #### - Normal Broadcast - #### **/
 
@@ -175,6 +179,60 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 							  signal.data["realname"], signal.data["vname"], 3, signal.data["compression"], list(0), connection.frequency,
 							  signal.data["verb"], signal.data["language"])
 
+// AIO Overmap edition for general use in small telecomms setups
+// NOT antag only
+/obj/machinery/telecomms/allinone/overmap
+	var/overmap_range = 0 //Same turf
+	use_power = USE_POWER_IDLE
+	idle_power_usage = 15 //Decent
+/obj/machinery/telecomms/allinone/overmap/receive_signal(datum/signal/signal)
+
+	// Has to be on to receive messages
+	if(!on)
+		return
+
+	// Why did you use this subtype?
+	if(!using_map.use_overmap)
+		return
+	
+	if(is_freq_listening(signal)) // detect subspace signals
+
+		signal.data["done"] = 1 // mark the signal as being broadcasted
+		signal.data["compression"] = 0
+
+		// Search for the original signal and mark it as done as well
+		var/datum/signal/original = signal.data["original"]
+		if(original)
+			original.data["done"] = 1
+
+		// For some reason level is both used as a list and not a list, and now it needs to be a list.
+		signal.data["level"] = using_map.get_map_levels(z, TRUE, overmap_range)
+
+		if(signal.data["slow"] > 0)
+			sleep(signal.data["slow"]) // simulate the network lag if necessary
+
+		/* ###### Broadcast a message using signal.data ###### */
+
+		var/datum/radio_frequency/connection = signal.data["connection"]
+
+		Broadcast_Message(
+			signal.data["connection"],
+			signal.data["mob"],
+			signal.data["vmask"],
+			signal.data["vmessage"],
+			signal.data["radio"],
+			signal.data["message"],
+			signal.data["name"],
+			signal.data["job"],
+			signal.data["realname"],
+			signal.data["vname"],
+			null, //Connection type,
+			signal.data["compression"],
+			signal.data["level"],
+			connection.frequency,
+			signal.data["verb"],
+			signal.data["language"]
+		)
 
 
 /**
