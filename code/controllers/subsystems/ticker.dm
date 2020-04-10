@@ -192,7 +192,6 @@ var/global/datum/controller/subsystem/ticker/ticker
 	lighting_controller.process()	//Start processing DynamicAreaLighting updates
 	*/
 
-	processScheduler.start()
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
 
