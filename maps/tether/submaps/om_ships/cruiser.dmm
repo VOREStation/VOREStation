@@ -8642,7 +8642,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "pO" = (
-/obj/machinery/telecomms/server/presets/centcomm,
+/obj/machinery/telecomms/allinone/overmap,
 /turf/simulated/floor/greengrid,
 /area/mothership/telecomms2)
 "pP" = (
