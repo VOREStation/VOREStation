@@ -183,6 +183,8 @@
 			var/turf/simulated/wall/W = T
 			W.take_damage(wall_power) // Stronger walls can halt asteroids.
 
+/obj/effect/meteor/proc/get_shield_damage()
+	return max(((max(hits, 2)) * (heavy + 1) * rand(6, 12)) / hitpwr , 0)
 
 //process getting 'hit' by colliding with a dense object
 //or randomly when ramming turfs
@@ -306,6 +308,9 @@
 	// Best case scenario: Comparable to a low-yield EMP grenade.
 	// Worst case scenario: Comparable to a standard yield EMP grenade.
 	empulse(src, rand(1, 3), rand(2, 4), rand(3, 7), rand(5, 10))
+
+/obj/effect/meteor/emp/get_shield_damage()
+	return ..() * rand(2,4)
 
 //Station buster Tunguska
 /obj/effect/meteor/tunguska

@@ -70,12 +70,13 @@
 	var/pred_ckey
 	var/pred_name
 
-/obj/item/weapon/digestion_remains/New(newloc, mob/living/pred)
-	..(newloc)
-	pred_ckey = pred.ckey
-	pred_name = pred.name
+/obj/item/weapon/digestion_remains/Initialize(var/mapload, var/mob/living/pred)
+	. = ..()
+	if(!mapload)
+		pred_ckey = pred?.ckey
+		pred_name = pred?.name
 
-/obj/item/weapon/digestion_remains/attack_self(mob/user)
+/obj/item/weapon/digestion_remains/attack_self(var/mob/user)
 	if(user.a_intent == I_HURT)
 		to_chat(user,"<span class='warning'>As you squeeze the [name], it crumbles into dust and falls apart into nothing!</span>")
 		qdel(src)

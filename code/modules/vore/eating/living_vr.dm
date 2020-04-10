@@ -29,6 +29,7 @@
 	var/can_be_drop_pred = TRUE			// Mobs are pred by default.
 	var/next_preyloop					// For Fancy sound internal loop
 	var/adminbus_trash = FALSE			// For abusing trash eater for event shenanigans.
+	var/adminbus_eat_ore = FALSE		// This creature subsists on a diet of pure adminium.
 	var/vis_height = 32					// Sprite height used for resize features.
 
 //
@@ -689,28 +690,42 @@
 	to_chat(src, "<span class='notice'>This item is not appropriate for ethical consumption.</span>")
 	return
 
-/mob/living/proc/eat_ore(var/obj/item/snack)
+/mob/living/proc/eat_ore() //Actual eating abstracted so the user isn't given a prompt due to an argument in this verb.
 	set name = "Eat Ore"
 	set category = "Abilities"
 	set desc = "Consume held ore and gems. Snack time!"
+
+	handle_eat_ore()
+
+/mob/living/proc/handle_eat_ore(obj/item/snack, mob/living/user)
+	var/mob/living/feeder = user ? user : src //Whoever's doing the feeding - us or someone else.
+	var/mob/living/carbon/human/H = src
+	if(!(adminbus_eat_ore || (istype(H) && H.species.eat_ore))) //Am I awesome enough to eat a shiny rock?
+		return
 
 	if(!vore_selected)
 		to_chat(src, "<span class='warning'>You either don't have a belly selected, or don't have a belly!</span>")
 		return
 
-	var/obj/item/I = (snack ? snack : get_active_hand())
+	var/obj/item/I = (snack ? snack : feeder.get_active_hand())
 	if(!I)
-		to_chat(src, "<span class='notice'>You are not holding anything.</span>")
+		to_chat(feeder, "<span class='notice'>Why is the ore gone?</span>")
 		return
 
 	var/obj/item/weapon/ore/O = I
-	if(istype(O))
+	if(!istype(O))
+		to_chat(src, "<span class='notice'>You pause for a moment to examine [I] and realize it's not even worth the energy to chew.</span>")
+		return
+	else
 		//Eat the ore using the vorebelly for the sound then get rid of the ore to prevent infinite nutrition.
-		drop_item()
+		feeder.drop_item()
 		O.forceMove(vore_selected)
 		qdel(O)
-
-		log_admin("VORE: [src] used Eat Ore to swallow [O].")
+		if(feeder != src)
+			to_chat(feeder, "<span class='notice'>You feed [O] to [src].</span>")
+			log_admin("VORE: [feeder] fed [src] [O].")
+		else
+			log_admin("VORE: [src] used Eat Ore to swallow [O].")
 
 		//List in list, define by material property of ore in code/mining/modules/ore.dm.
 		//50 nutrition = 5 ore to get 250 nutrition. 250 is the beginning of the 'well fed' range.
@@ -739,9 +754,8 @@
 				nutrition += 15
 			else //Random rock.
 				to_chat(src, "<span class='notice'>You taste stony, gravelly goodness - but you crave something with actual nutritional value.</span>")
-		return
-	to_chat(src, "<span class='notice'>You pause for a moment to examine [I] and realize it's not even worth the energy to chew.</span>")
-	return
+
+		return TRUE //Good eats, cheers mate.
 
 /mob/living/proc/switch_scaling()
 	set name = "Switch scaling mode"

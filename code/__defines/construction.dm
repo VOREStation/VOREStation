@@ -34,19 +34,25 @@
 #define PIPE_TRIN_T				7 //8 directions: N->S+E, S->N+E, N->S+W, S->N+W, E->W+S, W->E+S, E->W+N, W->E+N
 
 // Pipe connectivity bit flags
-#define CONNECT_TYPE_REGULAR	1
-#define CONNECT_TYPE_SUPPLY		2
-#define CONNECT_TYPE_SCRUBBER	4
-#define CONNECT_TYPE_HE			8
-#define CONNECT_TYPE_FUEL		16 // TODO - Implement this! Its piping so better ask Leshana
+#define CONNECT_TYPE_REGULAR	1 //Center of tile, 'normal'
+#define CONNECT_TYPE_SUPPLY		2 //Atmos air supply pipes
+#define CONNECT_TYPE_SCRUBBER	4 //Atmos air scrubber pipes
+#define CONNECT_TYPE_HE			8 //Heat exchanger pipes
+#define CONNECT_TYPE_FUEL		16 //Fuel pipes for overmap ships
+#define CONNECT_TYPE_AUX		32 //Aux pipes for 'other' things (airlocks, etc)
 
 // We are based on the three named layers of supply, regular, and scrubber.
 #define PIPING_LAYER_SUPPLY		1
 #define PIPING_LAYER_REGULAR	2
 #define PIPING_LAYER_SCRUBBER	3
+#define PIPING_LAYER_FUEL		4
+#define PIPING_LAYER_AUX		5
 #define PIPING_LAYER_DEFAULT	PIPING_LAYER_REGULAR
 
 // We offset the layer values of the different pipe types to ensure they look nice
+#define PIPES_SCRUBBER_LAYER	(PIPES_LAYER - 0.05)
+#define PIPES_AUX_LAYER			(PIPES_LAYER - 0.04)
+#define PIPES_FUEL_LAYER		(PIPES_LAYER - 0.03)
 #define PIPES_SCRUBBER_LAYER	(PIPES_LAYER - 0.02)
 #define PIPES_SUPPLY_LAYER		(PIPES_LAYER - 0.01)
 #define PIPES_HE_LAYER			(PIPES_LAYER + 0.01)

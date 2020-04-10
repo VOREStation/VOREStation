@@ -1,0 +1,4 @@
+author: Atermonera
+delete-after: True
+changes: 
+  - rscadd: "Added a preference to switch between a few extra modes of examining things. Verb in the preferences tab."

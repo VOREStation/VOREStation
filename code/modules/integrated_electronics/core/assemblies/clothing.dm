@@ -51,13 +51,12 @@
 		IC.examine(user)
 	..()
 
-/obj/item/clothing/attackby(obj/item/I, mob/user)
-	if(IC)
-		// This needs to be done in a better way...
-		if(I.is_crowbar() || I.is_screwdriver() || istype(I, /obj/item/integrated_circuit) || istype(I, /obj/item/weapon/cell/device) || istype(I, /obj/item/device/integrated_electronics) )
-			IC.attackby(I, user)
-	else
-		..()
+/obj/item/clothing/CtrlShiftClick(mob/user)
+	var/turf/T = get_turf(src)
+	if(!T.AdjacentQuick(user)) // So people aren't messing with these from across the room
+		return FALSE
+	var/obj/item/I = user.get_active_hand() // ctrl-shift-click doesn't give us the item, we have to fetch it
+	return IC.attackby(I, user)
 
 /obj/item/clothing/attack_self(mob/user)
 	if(IC)
@@ -105,6 +104,7 @@
 /obj/item/clothing/under/circuitry
 	name = "electronic jumpsuit"
 	desc = "It's a wearable case for electronics. This on is a black jumpsuit with wiring weaved into the fabric."
+	description_info = "Control-shift-click on this with an item in hand to use it on the integrated circuit."
 	icon_state = "circuitry"
 	worn_state = "circuitry"
 
@@ -118,6 +118,7 @@
 	name = "electronic gloves"
 	desc = "It's a wearable case for electronics. This one is a pair of black gloves, with wires woven into them. A small \
 	device with a screen is attached to the left glove."
+	description_info = "Control-shift-click on this with an item in hand to use it on the integrated circuit."
 	icon_state = "circuitry"
 	item_state = "circuitry"
 
@@ -131,6 +132,7 @@
 	name = "electronic goggles"
 	desc = "It's a wearable case for electronics. This one is a pair of goggles, with wiring sticking out. \
 	Could this augment your vision?" // Sadly it won't, or at least not yet.
+	description_info = "Control-shift-click on this with an item in hand to use it on the integrated circuit."
 	icon_state = "circuitry"
 	item_state = "night" // The on-mob sprite would be identical anyways.
 
@@ -143,6 +145,7 @@
 	name = "electronic boots"
 	desc = "It's a wearable case for electronics. This one is a pair of boots, with wires attached to a small \
 	cover."
+	description_info = "Control-shift-click on this with an item in hand to use it on the integrated circuit."
 	icon_state = "circuitry"
 	item_state = "circuitry"
 
@@ -155,6 +158,7 @@
 	name = "electronic headwear"
 	desc = "It's a wearable case for electronics. This one appears to be a very technical-looking piece that \
 	goes around the collar, with a heads-up-display attached on the right."
+	description_info = "Control-shift-click on this with an item in hand to use it on the integrated circuit."
 	icon_state = "circuitry"
 	item_state = "circuitry"
 
@@ -166,6 +170,7 @@
 /obj/item/clothing/ears/circuitry
 	name = "electronic earwear"
 	desc = "It's a wearable case for electronics. This one appears to be a technical-looking headset."
+	description_info = "Control-shift-click on this with an item in hand to use it on the integrated circuit."
 	icon = 'icons/obj/clothing/ears.dmi'
 	icon_state = "circuitry"
 	item_state = "circuitry"
@@ -179,6 +184,7 @@
 	name = "electronic chestpiece"
 	desc = "It's a wearable case for electronics. This one appears to be a very technical-looking vest, that \
 	almost looks professionally made, however the wiring popping out betrays that idea."
+	description_info = "Control-shift-click on this with an item in hand to use it on the integrated circuit."
 	icon_state = "circuitry"
 	item_state = "circuitry"
 

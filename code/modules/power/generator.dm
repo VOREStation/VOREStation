@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(all_turbines)
+
 /obj/machinery/power/generator
 	name = "thermoelectric generator"
 	desc = "It's a high efficiency thermoelectric generator."
@@ -27,6 +29,7 @@
 /obj/machinery/power/generator/Initialize()
 	soundloop = new(list(src), FALSE)
 	desc = initial(desc) + " Rated for [round(max_power/1000)] kW."
+	GLOB.all_turbines += src
 	..() //Not returned, because...
 	return INITIALIZE_HINT_LATELOAD
 
@@ -35,6 +38,7 @@
 
 /obj/machinery/power/generator/Destroy()
 	QDEL_NULL(soundloop)
+	GLOB.all_turbines -= src
 	return ..()
 
 //generators connect in dir and reverse_dir(dir) directions

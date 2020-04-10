@@ -41,6 +41,7 @@
 
 	var/prev_shuttle_queue_state = SSshuttles.block_init_queue
 	SSshuttles.block_init_queue = TRUE
+	var/machinery_was_awake = SSmachines.suspend() // Suspend machinery (if it was not already suspended)
 
 	var/list/atom/atoms = list()
 	var/list/area/areas = list()
@@ -74,6 +75,8 @@
 		var/area/A = I
 		A.power_change()
 
+	if(machinery_was_awake)
+		SSmachines.wake() // Wake only if it was awake before we tried to suspended it. 
 	SSshuttles.block_init_queue = prev_shuttle_queue_state
 	SSshuttles.process_init_queues() // We will flush the queue unless there were other blockers, in which case they will do it.
 

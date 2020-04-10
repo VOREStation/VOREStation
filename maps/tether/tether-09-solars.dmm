@@ -431,12 +431,14 @@
 /area/rnd/outpost)
 "aR" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/solar_control,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
 	},
 /obj/structure/cable/yellow,
+/obj/machinery/power/solar_control{
+	dir = 1
+	},
 /turf/simulated/floor/virgo3b_indoors,
 /area/tether/outpost/solars_shed)
 "aS" = (

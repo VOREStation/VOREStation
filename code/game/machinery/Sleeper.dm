@@ -14,9 +14,9 @@
 	clicksound = 'sound/machines/buttonbeep.ogg'
 	clickvol = 30
 
-/obj/machinery/sleep_console/New()
-	..()
+/obj/machinery/sleep_console/Initialize()
 	findsleeper()
+	return ..()
 
 /obj/machinery/sleep_console/Destroy()
 	if(sleeper)
@@ -24,16 +24,13 @@
 	return ..()
 
 /obj/machinery/sleep_console/proc/findsleeper()
-	spawn(5)
-		var/obj/machinery/sleeper/sleepernew = null
-		for(dir in list(NORTH, EAST, SOUTH, WEST)) // Loop through every direction
-			sleepernew = locate(/obj/machinery/sleeper, get_step(src, dir)) // Try to find a scanner in that direction
-			if(sleepernew)
-				// VOREStation Edit Start
-				sleeper = sleepernew
-				sleepernew.console = src
-				break
-				// VOREStation Edit End
+	var/obj/machinery/sleeper/sleepernew = null
+	for(var/direction in GLOB.cardinal) // Loop through every direction
+		sleepernew = locate(/obj/machinery/sleeper, get_step(src, direction)) // Try to find a scanner in that direction
+		if(sleepernew)
+			sleeper = sleepernew
+			sleepernew.console = src
+			break //VOREStation Edit
 
 
 /obj/machinery/sleep_console/attack_ai(var/mob/user)
@@ -257,8 +254,6 @@
 		return
 	if(occupant)
 		occupant.Stasis(stasis_level)
-		if(stasis_level >= 100 && occupant.timeofdeath)
-			occupant.timeofdeath += 1 SECOND
 
 		if(filtering > 0)
 			if(beaker)

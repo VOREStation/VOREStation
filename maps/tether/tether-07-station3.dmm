@@ -28889,7 +28889,7 @@
 /obj/machinery/door/airlock/glass_mining{
 	name = "Belter Control Room";
 	req_access = list();
-	req_one_access = list(48,65,66)
+	req_one_access = list(48,66)
 	},
 /obj/structure/cable/green{
 	d1 = 1;

@@ -1195,7 +1195,7 @@ default behaviour is:
 	var/matrix/M = matrix()
 	M.Scale(desired_scale_x, desired_scale_y)
 	M.Translate(0, 16*(desired_scale_y-1))
-	//animate(src, transform = M, time = 10) //VOREStation edit
+	src.transform = M //VOREStation edit
 
 // This handles setting the client's color variable, which makes everything look a specific color.
 // This proc is here so it can be called without needing to check if the client exists, or if the client relogs.

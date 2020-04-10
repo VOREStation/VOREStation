@@ -672,6 +672,8 @@ var/global/list/light_type_cache = list()
 				if(status != LIGHT_OK) break
 				on = !on
 				update(0)
+				if(!on) // Only play when the light turns off.
+					playsound(src, 'sound/effects/light_flicker.ogg', 50, 1)
 				sleep(rand(5, 15))
 			on = (status == LIGHT_OK)
 			update(0)

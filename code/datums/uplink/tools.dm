@@ -53,6 +53,12 @@
 	name = "Black Ammunition Duffle Bag"
 	path = /obj/item/weapon/storage/backpack/dufflebag/syndie/ammo
 
+/datum/uplink_item/item/tools/shield_diffuser
+	name = "Handheld Shield Diffuser"
+	desc = "A small device used to disrupt energy barriers, and allow passage through them."
+	item_cost = 16
+	path = /obj/item/weapon/shield_diffuser
+
 /datum/uplink_item/item/tools/space_suit
 	name = "Space Suit"
 	item_cost = 15

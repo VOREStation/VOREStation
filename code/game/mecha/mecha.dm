@@ -261,7 +261,7 @@
 /obj/mecha/proc/check_for_support()
 	var/list/things = orange(1, src)
 
-	if(locate(/obj/structure/grille in things) || locate(/obj/structure/lattice in things) || locate(/turf/simulated in things) || locate(/turf/unsimulated in things))
+	if(locate(/obj/structure/grille) in things || locate(/obj/structure/lattice) in things || locate(/turf/simulated) in things || locate(/turf/unsimulated) in things)
 		return 1
 	else
 		return 0

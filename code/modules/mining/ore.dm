@@ -125,10 +125,12 @@
 
 //VOREStation Add
 /obj/item/weapon/ore/attack(mob/living/M as mob, mob/living/user as mob)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.species.eat_ore == 1)
-			H.eat_ore(src)
-			return
+	if(M.handle_eat_ore(src, user))
+		return
+	..()
+
+/obj/item/weapon/ore/attack_generic(var/mob/living/user) //Allow adminbussed mobs to eat ore if they click it while NOT on help intent.
+	if(user.handle_eat_ore(src))
+		return
 	..()
 //VOREStation Add End

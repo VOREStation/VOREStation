@@ -136,6 +136,7 @@
 /obj/machinery/atmospherics/pipe/tank/phoron
 	name = "Pressure Tank (Phoron)"
 	icon_state = "phoron_map"
+	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL
 
 /obj/machinery/atmospherics/pipe/tank/phoron/New()
 	air_temporary = new
