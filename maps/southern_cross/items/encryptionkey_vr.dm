@@ -4,3 +4,6 @@
 
 /obj/item/device/encryptionkey/explorer
 	channels = list("Science" = 1, "Explorer" = 1)
+
+/obj/item/device/encryptionkey/talon
+	channels = list("Talon" = 1)

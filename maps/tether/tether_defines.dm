@@ -11,17 +11,19 @@
 #define Z_LEVEL_MISC						10
 #define Z_LEVEL_UNDERDARK					11
 #define Z_LEVEL_PLAINS						12
-#define Z_LEVEL_ROGUEMINE_1					13
-#define Z_LEVEL_ROGUEMINE_2					14
-#define Z_LEVEL_ROGUEMINE_3					15
-#define Z_LEVEL_ROGUEMINE_4					16
-#define Z_LEVEL_BEACH						17
-#define Z_LEVEL_BEACH_CAVE					18
-#define Z_LEVEL_AEROSTAT					19
-#define Z_LEVEL_AEROSTAT_SURFACE			20
-#define Z_LEVEL_DEBRISFIELD					21
-#define Z_LEVEL_FUELDEPOT					22
-#define Z_LEVEL_GATEWAY						23
+#define Z_LEVEL_OFFMAP1						13
+#define Z_LEVEL_OFFMAP2						14
+#define Z_LEVEL_ROGUEMINE_1					15
+#define Z_LEVEL_ROGUEMINE_2					16
+#define Z_LEVEL_ROGUEMINE_3					17
+#define Z_LEVEL_ROGUEMINE_4					18
+#define Z_LEVEL_BEACH						19
+#define Z_LEVEL_BEACH_CAVE					20
+#define Z_LEVEL_AEROSTAT					21
+#define Z_LEVEL_AEROSTAT_SURFACE			22
+#define Z_LEVEL_DEBRISFIELD					23
+#define Z_LEVEL_FUELDEPOT					24
+#define Z_LEVEL_GATEWAY						25
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -99,12 +101,14 @@
 							NETWORK_COMMUNICATORS,
 							NETWORK_ALARM_ATMOS,
 							NETWORK_ALARM_POWER,
-							NETWORK_ALARM_FIRE
+							NETWORK_ALARM_FIRE,
+							NETWORK_TALON_HELMETS,
+							NETWORK_TALON_SHIP
 							)
 
 	bot_patrolling = FALSE
 
-	allowed_spawns = list("Tram Station","Gateway","Cryogenic Storage","Cyborg Storage")
+	allowed_spawns = list("Tram Station","Gateway","Cryogenic Storage","Cyborg Storage","ITV Talon Cryo")
 	spawnpoint_died = /datum/spawnpoint/tram
 	spawnpoint_left = /datum/spawnpoint/tram
 	spawnpoint_stayed = /datum/spawnpoint/cryo
@@ -134,6 +138,7 @@
 
 	lateload_z_levels = list(
 		list("Tether - Misc","Tether - Underdark","Tether - Plains"), //Stock Tether lateload maps
+		list("Offmap Ship - Talon Z1","Offmap Ship - Talon Z2"),
 		list("Asteroid Belt 1","Asteroid Belt 2","Asteroid Belt 3","Asteroid Belt 4"),
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
 		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),

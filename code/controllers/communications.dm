@@ -125,6 +125,8 @@ var/const/EXP_FREQ = 1361
 var/const/MED_I_FREQ = 1485
 var/const/SEC_I_FREQ = 1475
 
+var/const/TALON_FREQ = 1481 //VOREStation Add
+
 var/list/radiochannels = list(
 	"Common"		= PUB_FREQ,
 	"Science"		= SCI_FREQ,
@@ -142,7 +144,8 @@ var/list/radiochannels = list(
 	"AI Private"	= AI_FREQ,
 	"Entertainment" = ENT_FREQ,
 	"Medical(I)"	= MED_I_FREQ,
-	"Security(I)"	= SEC_I_FREQ
+	"Security(I)"	= SEC_I_FREQ,
+	"Talon"			= TALON_FREQ //VOREStation Add
 )
 
 // central command channels, i.e deathsquid & response teams
@@ -153,6 +156,8 @@ var/list/ANTAG_FREQS = list(SYND_FREQ, RAID_FREQ)
 
 //Department channels, arranged lexically
 var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, ENT_FREQ, MED_FREQ, SEC_FREQ, SCI_FREQ, SRV_FREQ, SUP_FREQ)
+
+var/list/OFFMAP_FREQS = list(TALON_FREQ) //VOREStation Add
 
 #define TRANSMISSION_WIRE	0
 #define TRANSMISSION_RADIO	1
@@ -189,7 +194,10 @@ var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, ENT_FREQ, MED_FREQ, SEC
 		return "entradio"
 	if(frequency in DEPT_FREQS)
 		return "deptradio"
-
+	//VOREStation Add
+	if(frequency in OFFMAP_FREQS)
+		return "expradio"
+	//VOREStation Add End
 	return "radio"
 
 /* filters */
