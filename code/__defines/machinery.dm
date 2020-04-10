@@ -74,6 +74,21 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 // Those networks can only be accessed by pre-existing terminals. AIs and new terminals can't use them.
 var/list/restricted_camera_networks = list(NETWORK_ERT,NETWORK_MERCENARY,"Secret", NETWORK_COMMUNICATORS)
 
+#define TRANSMISSION_WIRE		0 //Is this ever used? I don't think it is.
+#define TRANSMISSION_RADIO		1 //Radio transmissions (like airlock controller to pump)
+#define TRANSMISSION_SUBSPACE	2 //Like headsets
+#define TRANSMISSION_BLUESPACE	3 //Point-to-point links
+
+#define SIGNAL_NORMAL	0 //Normal subspace signals
+#define SIGNAL_SIMPLE	1 //Normal inter-machinery(?) signals
+#define SIGNAL_FAKE		2 //Untrackable signals
+#define SIGNAL_TEST		4 //Unlogged signals
+
+#define DATA_NORMAL		0 //Normal data
+#define DATA_INTERCOM	1 //Intercoms only
+#define DATA_LOCAL		2 //Intercoms and SBRs
+#define DATA_ANTAG		3 //Antag interception
+#define DATA_FAKE		4 //Not from a real mob
 
 //singularity defines
 #define STAGE_ONE 	1
