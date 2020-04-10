@@ -694,5 +694,5 @@
 	name = "Supply Satchel"
 	desc = "A mounted survival unit with fuel processor."
 	icon_state = "sleeperc"
-	injection_chems = list("nutriment","protein","inaprovaline","tricordrazine")
+	injection_chems = list("glucose","inaprovaline","tricordrazine")
 	max_item_count = 1
