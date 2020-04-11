@@ -1,12 +1,10 @@
 // -------------- Protector -------------
-/obj/item/weapon/gun/energy/protector
-	name = "small energy gun"
-	desc = "The KHI-98a 'Protector' is the first firearm custom-designed for Nanotrasen by KHI. It features a powerful stun mode, and \
-	an alert-level-locked lethal mode, only usable on code blue and higher. It also features an integrated flashlight!"
-	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi)
+/obj/item/weapon/gun/energy/gun/protector
+	name = "secure small energy gun"
+	desc = "The LAEP95 'Protector' is another firearm from Lawson Arms and "+TSC_HEPH+", unlike the Perun this is designed for issue to non-security staff. It contains a detachable cell, and an alert-level-locked lethal mode, only usable on code blue and higher. It also features an integrated flashlight!"
 
 	description_info = "This gun can only be fired in lethal mode while on higher security alert levels. It is legal for sec to carry for this reason, since it cannot be used for lethal force until SOP allows it, in essence."
-	description_fluff = "The first 'commission' from a Kitsuhana citizen for NanoTrasen, this gun has a wireless connection to the computer's datacore to ensure it can't be used without authorization from heads of staff who have raised the alert level. Until then, *click*!"
+	description_fluff = "A lighter weapon designed for non-security staff, this gun has a wireless connection to the computer's datacore to ensure it can't be used without authorization from heads of staff who have raised the alert level. Until then, *click*!"
 	description_antag = "The gun can be emagged to remove the lethal security level restriction, allowing it to be fired on lethal mode at all times."
 
 	icon = 'icons/vore/custom_guns_vr.dmi'
@@ -30,14 +28,16 @@
 	flight_x_offset = 0
 	flight_y_offset = 0
 
+	w_class = ITEMSIZE_SMALL
+
 	firemodes = list(
-	list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun/protector, modifystate="stun", fire_sound='sound/weapons/Taser.ogg'),
-	list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, modifystate="kill", fire_sound='sound/weapons/gauss_shoot.ogg'),
-	)
+		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun/med, modifystate="stun", charge_cost = 400),
+		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, modifystate="kill", charge_cost = 800),
+		)
 
 	var/emagged = FALSE
 
-/obj/item/weapon/gun/energy/protector/special_check(mob/user)
+/obj/item/weapon/gun/energy/gun/protector/special_check(mob/user)
 	if(!emagged && mode_name == "lethal" && get_security_level() == "green")
 		to_chat(user,"<span class='warning'>The trigger refuses to depress while on the lethal setting under security level green!</span>")
 		return FALSE
@@ -45,7 +45,7 @@
 	return ..()
 
 
-/obj/item/weapon/gun/energy/protector/emag_act(var/remaining_charges,var/mob/user)
+/obj/item/weapon/gun/energy/gun/protector/emag_act(var/remaining_charges,var/mob/user)
 	..()
 	if(!emagged)
 		emagged = TRUE
@@ -54,7 +54,7 @@
 	return TRUE
 
 //Update icons from /tg/, so fancy! Use this more!
-/obj/item/weapon/gun/energy/protector/update_icon()
+/obj/item/weapon/gun/energy/gun/protector/update_icon()
 	overlays.Cut()
 	var/ratio = 0
 
@@ -98,13 +98,7 @@
 		item_state = itemState
 	*/
 
-
-// Protector beams
-/obj/item/projectile/beam/stun/protector
-	name = "protector stun beam"
-	icon_state = "omnilaser" //A little more cyan
-	light_color = "#00C6FF"
-	agony = 50 //Normal is 40 when this was set
-	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
-	tracer_type = /obj/effect/projectile/tracer/laser_omni
-	impact_type = /obj/effect/projectile/impact/laser_omni
+/obj/item/weapon/gun/energy/gun/protector/unlocked
+	emagged = TRUE
+	name = "small energy gun"
+	desc = "The LAEP95 'Protector' is another firearm from Lawson Arms and "+TSC_HEPH+", unlike the Perun this is designed for issue to non-security staff. It contains a detachable cell. It also features an integrated flashlight!"
