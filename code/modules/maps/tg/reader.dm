@@ -297,6 +297,7 @@ var/global/use_preloader = FALSE
 			old_position = dpos + 1
 
 			if(!atom_def) // Skip the item if the path does not exist.  Fix your crap, mappers!
+				error("Maploader skipping undefined type: '[trim_text(copytext(full_def, 1, variables_start))]' (key=[model_key])")
 				continue
 			members.Add(atom_def)
 
