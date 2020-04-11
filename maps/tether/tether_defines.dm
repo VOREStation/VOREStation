@@ -123,11 +123,12 @@
 		/area/crew_quarters/sleep/Dorm_7/holo,
 		/area/rnd/miscellaneous_lab)
 
+//TFF 5/4/20 - Mining Ops move, airlock path change
 	unit_test_exempt_from_atmos = list(
 		/area/engineering/atmos_intake, // Outside,
 		/area/rnd/external, //  Outside,
 		/area/tether/surfacebase/mining_main/external, // Outside,
-		/area/tether/surfacebase/mining_main/airlock, //  Its an airlock,
+		/area/tether/surfacebase/cargo/mining/airlock, //  It's an airlock,
 		/area/tether/surfacebase/emergency_storage/rnd,
 		/area/tether/surfacebase/emergency_storage/atrium)
 

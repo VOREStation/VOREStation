@@ -238,6 +238,9 @@
 	name = "\improper Vacant Prep Area"
 /area/vacant/vacant_site/gateway/lower
 	name = "\improper Lower Vacant Prep Area"
+//TFF 5/4/20 - Mining Ops move
+/area/vacant/vacant_site/vacant_mining_ops
+	name = "\improper Vacant Mining Operations"
 
 // /area/tether/surfacebase/east_stairs_three //This is just part of an upper hallway
 
@@ -252,32 +255,32 @@
 /area/tether/surfacebase/emergency_storage/atrium
 	name = "\improper Atrium Emergency Storage"
 
-// Main mining area
-/area/tether/surfacebase/mining_main
+//TFF 7/4/20 - New areas for Surface Cargo bits. Some former ones deleted.
+// Surface Cargo/Mining EVA/Warehouse
+/area/tether/surfacebase/cargo
+	name = "Surface Cargo Foyer"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "quartstorage"
+/area/tether/surfacebase/cargo/mining
+	name = "\improper Mining Equipment Storage"
 	icon_state = "outpost_mine_main"
-/area/tether/surfacebase/mining_main/airlock
+/area/tether/surfacebase/cargo/mining/airlock
 	name = "\improper Mining Airlock"
-/area/tether/surfacebase/mining_main/storage
-	name = "\improper Mining Gear Storage"
-/area/tether/surfacebase/mining_main/uxstorage
-	name = "\improper Mining Secondary Storage"
-/area/tether/surfacebase/mining_main/ore
-	name = "\improper Mining Ore Storage"
-/area/tether/surfacebase/mining_main/eva
-	name = "\improper Mining EVA"
-/area/tether/surfacebase/mining_main/break_room
-	name = "\improper Mining Crew Area"
-/area/tether/surfacebase/mining_main/refinery
-	name = "\improper Mining Refinery"
-/area/tether/surfacebase/mining_main/external
-	name = "\improper Mining Refinery"
-/area/tether/surfacebase/mining_main/bathroom
-	name = "\improper Mining Bathroom"
-/area/tether/surfacebase/mining_main/lobby
-	name = "\improper Mining Lobby"
-/area/tether/surfacebase/mining_main/surfacecargo
+/area/tether/surfacebase/cargo/warehouse
+	name = "\improper Surface Cargo Warehouse"
+/area/tether/surfacebase/cargo/office
 	name = "\improper Surface Cargo Office"
 	lightswitch = 0
+/area/tether/surfacebase/mining_main
+	icon_state = "outpost_mine_main"
+/area/tether/surfacebase/mining_main/eva
+	name = "\improper Mining EVA"
+/area/tether/surfacebase/mining_main/external
+	name = "\improper Mining External"
+/area/tether/surfacebase/mining_main/break_room
+	name = "\improper Mining Crew Area"
+/area/tether/surfacebase/mining_main/bathroom
+	name = "\improper Mining Bathroom"
 
 // Mining Underdark
 /area/mine/unexplored/underdark
@@ -1070,11 +1073,15 @@
 /area/shuttle/medivac/engines
 	name = "\improper Medivac Engines"
 
-// Belter Dock
-
+//TFF 5/4/20 - Mining Ops move
+// Asteroid Mining belter shuttle and refinery/gear areas
 /area/quartermaster/belterdock
 	name = "\improper Cargo Belter Access"
 	icon_state = "mining"
+/area/quartermaster/belterdock/gear
+	name = "\improper Mining Gear Storage"
+/area/quartermaster/belterdock/refinery
+	name = "\improper Mining Refinery"
 
 // Elevator area //
 
