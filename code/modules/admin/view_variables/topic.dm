@@ -4,8 +4,10 @@
 	if((usr.client != src) || !src.holder)
 		return
 	var/datum/target = locate(href_list["target"])
-	if(target)
+	if(istype(target))
 		target.vv_do_topic(href_list)
+	else if(islist(target))
+		vv_do_list(target, href_list)
 
 	if(href_list["Vars"])
 		debug_variables(locate(href_list["Vars"]))
@@ -519,6 +521,6 @@
 
 	if(href_list["datumrefresh"])
 		var/datum/DAT = locate(href_list["datumrefresh"])
-		if(istype(DAT, /datum) || istype(DAT, /client))
+		if(istype(DAT, /datum) || istype(DAT, /client) || islist(DAT))
 			debug_variables(DAT)
 
