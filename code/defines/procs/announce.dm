@@ -79,12 +79,9 @@ datum/announcement/proc/NewsCast(var/message as text, var/message_title as text)
 	news.can_be_redacted = 0
 	announce_newscaster_news(news)
 
-datum/announcement/proc/PlaySound(var/message_sound, var/zlevel = 0)
+datum/announcement/proc/PlaySound(var/message_sound, var/list/zlevels)
 	if(!message_sound)
 		return
-	var/list/zlevels
-	if(zlevel)
-		zlevels = using_map.get_map_levels(zlevel)
 
 	for(var/mob/M in player_list)
 		if(zlevels && !(M.z in zlevels))
@@ -92,8 +89,8 @@ datum/announcement/proc/PlaySound(var/message_sound, var/zlevel = 0)
 		if(!istype(M,/mob/new_player) && !isdeaf(M))
 			M << message_sound
 
-datum/announcement/proc/Sound(var/message_sound)
-	PlaySound(message_sound)
+datum/announcement/proc/Sound(var/message_sound, var/list/zlevels)
+	PlaySound(message_sound, zlevels)
 
 datum/announcement/priority/Sound(var/message_sound)
 	if(message_sound)
