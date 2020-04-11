@@ -79,15 +79,17 @@
 /mob/new_player/Stat()
 	..()
 
-	if(statpanel("Lobby") && ticker)
-		if(ticker.hide_mode)
-			stat("Game Mode:", "Secret")
-		else
-			if(ticker.hide_mode == 0)
-				stat("Game Mode:", "[config.mode_names[master_mode]]") // Old setting for showing the game mode
+	if(statpanel("Lobby") && SSticker)
+		stat("Game Mode:", SSticker.hide_mode ? "Secret" : "[config.mode_names[master_mode]]")
 
-		if(ticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[ticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
+		if(SSvote.mode)
+			stat("Vote: [capitalize(SSvote.mode)]", "Time Left: [SSvote.time_remaining] s")
+
+		if(SSticker.current_state == GAME_STATE_INIT)
+			stat("Time To Start:", "Server Initializing")
+
+		else if(SSticker.current_state == GAME_STATE_PREGAME)
+			stat("Time To Start:", "[round(SSticker.pregame_timeleft,1)][round_progressing ? "" : " (DELAYED)"]")
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
