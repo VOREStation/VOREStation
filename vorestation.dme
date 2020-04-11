@@ -1197,6 +1197,7 @@
 #include "code\game\objects\items\weapons\circuitboards\computer\camera_monitor.dm"
 #include "code\game\objects\items\weapons\circuitboards\computer\computer.dm"
 #include "code\game\objects\items\weapons\circuitboards\computer\research.dm"
+#include "code\game\objects\items\weapons\circuitboards\computer\shuttle.dm"
 #include "code\game\objects\items\weapons\circuitboards\computer\supply.dm"
 #include "code\game\objects\items\weapons\circuitboards\computer\telecomms.dm"
 #include "code\game\objects\items\weapons\circuitboards\machinery\biogenerator.dm"
