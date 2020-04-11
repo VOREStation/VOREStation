@@ -149,6 +149,7 @@
 #include "aerostat/aerostat.dmm"
 #include "aerostat/surface.dmm"
 #include "space/debrisfield.dmm"
+#include "space/fueldepot.dmm"
 #endif
 
 #include "beach/_beach.dm"
@@ -225,6 +226,7 @@
 
 
 #include "space/_debrisfield.dm"
+#include "space/_fueldepot.dm"
 #include "space/pois/_templates.dm"
 #include "space/pois/debrisfield_things.dm"
 /datum/map_template/tether_lateload/away_debrisfield
@@ -241,6 +243,17 @@
 /datum/map_z_level/tether_lateload/away_debrisfield
 	name = "Away Mission - Debris Field"
 	z = Z_LEVEL_DEBRISFIELD
+
+/datum/map_template/tether_lateload/away_fueldepot
+	name = "Fuel Depot - Z1 Space"
+	desc = "An unmanned fuel depot floating in space."
+	mappath = 'space/fueldepot.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/away_fueldepot
+
+/datum/map_z_level/tether_lateload/away_fueldepot
+	name = "Away Mission - Fuel Depot"
+	z = Z_LEVEL_FUELDEPOT
+
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Gateway submaps go here
