@@ -70,7 +70,7 @@
 "br" = (/obj/machinery/door/window/holowindoor{base_state = "right"; dir = 8; icon_state = "right"; name = "Green Team"},/turf/simulated/floor/holofloor/tiled/dark,/area/holodeck/source_thunderdomecourt)
 "bs" = (/obj/structure/fitness/boxing_ropes{dir = 1},/obj/structure/fitness/boxing_turnbuckle{dir = 8; layer = 3.4},/turf/simulated/fitness,/area/holodeck/source_boxingcourt)
 "bt" = (/obj/structure/bed/chair/holochair,/turf/simulated/floor/holofloor/wood,/area/holodeck/source_courtroom)
-"bu" = (/obj/structure/fitness/boxing_ropes_bottom,/obj/structure/fitness/boxing_turnbuckle{dir = 8; step_x = 0},/turf/simulated/fitness,/area/holodeck/source_boxingcourt)
+"bu" = (/obj/structure/fitness/boxing_ropes_bottom,/obj/structure/fitness/boxing_turnbuckle{dir = 8; pixel_x = 0},/turf/simulated/fitness,/area/holodeck/source_boxingcourt)
 "bv" = (/obj/structure/window/reinforced/holowindow{dir = 1},/obj/structure/table/woodentable/holotable,/turf/simulated/floor/holofloor/wood,/area/holodeck/source_courtroom)
 "bw" = (/obj/structure/fitness/boxing_ropes_bottom,/turf/simulated/fitness,/area/holodeck/source_boxingcourt)
 "bx" = (/obj/structure/fitness/boxing_ropes{dir = 8},/turf/simulated/fitness,/area/holodeck/source_boxingcourt)
