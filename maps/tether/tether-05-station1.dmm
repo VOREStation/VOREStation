@@ -10499,7 +10499,6 @@
 	icon_state = "alarm0";
 	pixel_y = -22
 	},
-/obj/machinery/telecomms/relay/preset/tether/station_mid,
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/heads/chief)
 "asp" = (
@@ -22814,14 +22813,12 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},
-/obj/machinery/telecomms/relay/preset/tether/station_high,
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/heads/chief)
 "bYK" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 6
 	},
-/obj/machinery/telecomms/relay/preset/tether/station_low,
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/heads/chief)
 "bYN" = (

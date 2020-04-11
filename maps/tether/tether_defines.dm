@@ -198,34 +198,6 @@
 		Z_LEVEL_PLAINS
 	)
 
-// Short range computers see only the six main levels, others can see the surrounding surface levels.
-/datum/map/tether/get_map_levels(var/srcz, var/long_range = TRUE)
-	if (long_range && (srcz in map_levels))
-		return map_levels
-	else if (srcz == Z_LEVEL_MISC) //technical levels
-		return list() // Nothing on these z-levels- sensors won't show, and GPSes won't see each other.
-	else if (srcz >= Z_LEVEL_SURFACE_LOW && srcz <= Z_LEVEL_SOLARS) //Zs 1-3, 5-9, Z4 will return same list, but is not included into it
-		return list(
-			Z_LEVEL_SURFACE_LOW,
-			Z_LEVEL_SURFACE_MID,
-			Z_LEVEL_SURFACE_HIGH,
-			Z_LEVEL_SPACE_LOW,
-			Z_LEVEL_SPACE_MID,
-			Z_LEVEL_SPACE_HIGH,
-			Z_LEVEL_SURFACE_MINE,
-			Z_LEVEL_SOLARS,
-			Z_LEVEL_PLAINS)
-	else if(srcz >= Z_LEVEL_BEACH && srcz <= Z_LEVEL_BEACH_CAVE)
-		return list(
-			Z_LEVEL_BEACH,
-			Z_LEVEL_BEACH_CAVE)
-	else if(srcz >= Z_LEVEL_AEROSTAT && srcz <= Z_LEVEL_AEROSTAT_SURFACE)
-		return list(
-			Z_LEVEL_AEROSTAT,
-			Z_LEVEL_AEROSTAT_SURFACE)
-	else
-		return list(srcz) //prevents runtimes when using CMC. any Z-level not defined above will be 'isolated' and only show to GPSes/CMCs on that same Z (e.g. CentCom).
-
 // Overmap represetation of tether
 /obj/effect/overmap/visitable/sector/virgo3b
 	name = "Virgo 3B"

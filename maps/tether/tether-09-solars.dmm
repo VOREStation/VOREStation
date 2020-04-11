@@ -1909,7 +1909,6 @@
 /turf/simulated/floor/virgo3b,
 /area/mine/explored)
 "ed" = (
-/obj/machinery/telecomms/relay/preset/tether/sci_outpost,
 /turf/simulated/floor,
 /area/maintenance/substation/outpost)
 "ee" = (
