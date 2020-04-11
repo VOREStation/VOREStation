@@ -25,7 +25,7 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 /obj/item/weapon/technomancer_catalog
 	name = "catalog"
 	desc = "A \"book\" featuring a holographic display, metal cover, and miniaturized teleportation device, allowing the user to \
-	requisition various things from.. where ever they came from."
+	requisition various things from... wherever they came from."
 	icon = 'icons/obj/storage.dmi'
 	icon_state ="scientology" //placeholder
 	w_class = ITEMSIZE_SMALL
