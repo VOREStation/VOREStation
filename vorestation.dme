@@ -1588,6 +1588,7 @@
 #include "code\modules\admin\view_variables\mass_edit_variables.dm"
 #include "code\modules\admin\view_variables\modify_variables.dm"
 #include "code\modules\admin\view_variables\topic.dm"
+#include "code\modules\admin\view_variables\topic_list.dm"
 #include "code\modules\admin\view_variables\view_variables.dm"
 #include "code\modules\ai\_defines.dm"
 #include "code\modules\ai\ai_holder.dm"
