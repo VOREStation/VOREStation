@@ -9,6 +9,62 @@
 	desc = "Syndicate Carrier."
 	mappath = 'syndcarrier.dmm'
 
+//The syndicate base's areas
+/area/syndbase/
+	name = "\improper Asteroid Base"
+	lightswitch = 0
+	icon_state = "red"
+/area/syndbase/roid
+	name = "\improper Asteroid Base Exterior"
+/area/syndbase/hall
+	name = "\improper Asteroid Base Hallway"
+/area/syndbase/eqroom
+	name = "\improper Asteroid Base Equipment Room"
+/area/syndbase/barracks
+	name = "\improper Asteroid Base Barracks"
+/area/syndbase/solar
+	name = "\improper Asteroid Base Solar Control"
+/area/syndbase/medical
+	name = "\improper Asteroid Base Medical"
+/area/syndbase/medicalOR
+	name = "\improper Asteroid Base Medical - Operating Room"
+/area/syndbase/medicalstorage
+	name = "\improper Asteroid Base Medical Storage"
+/area/syndbase/airlock1
+	name = "\improper Asteroid Base Airlock"
+/area/syndbase/airlock
+	name = "\improper Asteroid Base Airlock"
+/area/syndbase/atmos
+	name = "\improper Asteroid Base Atmospherics"
+/area/syndbase/command
+	name = "\improper Asteroid Base Command Center"
+/area/syndbase/panels
+	name = "\improper Asteroid Base Solar Panels"
+/area/syndbase/power
+	name = "\improper Asteroid Base SMES Room"
+/area/syndbase/engineering
+	name = "\improper Asteroid Base Engineering"
+/area/syndbase/fuel
+	name = "\improper Asteroid Base Fuel Storage"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // The shuttle's area(s)
 /area/ship/syndicate
 	name = "\improper Syndc Ship (Use a Subtype!)"
@@ -47,6 +103,8 @@
 	name = "\improper Syndie Ship - Corridor"
 /area/ship/syndicate/hall2
 	name = "\improper Syndie Ship - Corridor"
+/area/ship/syndicate/rim
+	name = "\improper Syndie Ship - Rim"
 
 
 
@@ -61,12 +119,12 @@
 // The 'ship'
 /obj/effect/overmap/visitable/ship/syndicatecarrier
 	name = "Unknown Vessel"
-	desc = "An unknown vessel, clearly combatitive in design."
+	desc = "An unknown vessel, of unknown design."
 	color = "#f23000" //Red
 	vessel_mass = 8000
 	vessel_size = SHIP_SIZE_SMALL
-	initial_generic_waypoints = list("aronai_fore", "aronai_aft", "aronai_port", "aronai_starboard")
-	initial_restricted_waypoints = list("Aro's Ship's Boat" = list("omship_spawn_aroboat"))
+	initial_generic_waypoints = list("carrier_fore", "carrier_aft", "carrier_port", "carrier_starboard")
+	initial_restricted_waypoints = list("Carrier's Ship's Boat" = list("omship_spawn_syndboat"))
 
 
 // The shuttle's 'shuttle' computer
