@@ -177,6 +177,10 @@
 
 			midsections -= SE
 
+		//Some unhandled error state
+		for(var/obj/effect/shield/SE in midsections)
+			SE.icon_state = "arrow" //Error state/unhandled
+
 		//Corners
 		for(var/obj/effect/shield/S in corners)
 			var/adjacent = corners[S]
@@ -214,8 +218,15 @@
 					// Not actually a corner... It has MULTIPLE!
 					S.icon_state = "arrow" //Error state/unhandled
 
-		for(var/obj/effect/shield/SE in midsections)
-			SE.icon_state = "arrow" //Error state/unhandled
+		for(var/obj/effect/shield/S in startends)
+			var/adjacent = startends[S]
+			var/turf/T = get_step(S, adjacent)
+			var/obj/effect/shield/SO = locate() in T
+			S.set_dir(SO.dir)
+			if(S.dir == adjacent) //Flowing into them
+				S.icon_state = "shield_start"
+			else
+				S.icon_state = "shield_end"
 
 	for(var/obj/effect/shield/SE in field_segments)
 		SE.update_visuals()
