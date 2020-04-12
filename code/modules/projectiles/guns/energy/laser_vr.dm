@@ -165,9 +165,7 @@
 
 /obj/item/weapon/gun/energy/locked/attackby(obj/item/I, mob/user)
 	var/obj/item/weapon/card/id/id = I.GetID()
-	if(!lockable)
-		return ..()
-	if(istype(id))
+	if(istype(id) && lockable)
 		if(check_access(id))
 			locked = !locked
 			to_chat(user, "<span class='warning'>You [locked ? "enable" : "disable"] the safety lock on \the [src].</span>")
@@ -179,7 +177,7 @@
 
 /obj/item/weapon/gun/energy/locked/emag_act(var/remaining_charges,var/mob/user)
 	..()
-	if(locked)
+	if(lockable)
 		locked = !locked
 		to_chat(user, "<span class='warning'>You [locked ? "enable" : "disable"] the safety lock on \the [src]!</span>")
 
