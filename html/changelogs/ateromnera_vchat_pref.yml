@@ -1,0 +1,4 @@
+author: Atermonera
+delete-after: True
+changes: 
+  - rscadd:"Adds a preference to forcibly disable (or enable) VChat. Useful mostly for people on linux, to skip the 60s waiting period where it tries to work and keeps you from seeing chat. Reloading VChat or reconnecting to the server are required for any changes to the preference to take effect. Support for issues that arise as a result of this preference is not guaranteed."
