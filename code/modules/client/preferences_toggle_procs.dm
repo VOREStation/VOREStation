@@ -308,6 +308,19 @@
 
 	feedback_add_details("admin_verb","THInstm") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/verb/toggle_vchat()
+	set name = "Toggle VChat"
+	set category = "Preferences"
+	set desc = "Enable/Disable VChat. Reloading VChat and/or reconnecting required to affect changes."
+
+	var/pref_path = /datum/client_preference/vchat_enable
+	toggle_preference(pref_path)
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, "You have toggled VChat [is_preference_enabled(pref_path) ? "on" : "off"]. \
+		You will have to reload VChat and/or reconnect to the server for these changes to take place. \
+		VChat message persistence is not guaranteed if you change this again before the start of the next round.")
+
 
 // Not attached to a pref datum because those are strict binary toggles
 /client/verb/toggle_examine_mode()
