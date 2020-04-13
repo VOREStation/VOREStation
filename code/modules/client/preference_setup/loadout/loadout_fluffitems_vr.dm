@@ -1,3 +1,7 @@
+// Note for newly added fluff items: Ckeys should not contain any spaces, underscores or capitalizations,
+// or else the item will not be usable.
+// Example: Someone whose username is "Master Pred_Man" should be written as "masterpredman" instead
+
 /datum/gear/fluff
 	path = /obj/item
 	sort_category = "Fluff Items"
