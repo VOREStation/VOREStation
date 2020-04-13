@@ -2781,6 +2781,8 @@
 #include "code\modules\modular_computers\file_system\programs\research\ntmonitor.dm"
 #include "code\modules\modular_computers\file_system\programs\security\alarm_monitor.dm"
 #include "code\modules\modular_computers\file_system\programs\security\digitalwarrant.dm"
+#include "code\modules\modular_computers\file_system\programs\ships\navigation.dm"
+#include "code\modules\modular_computers\file_system\programs\ships\ship.dm"
 #include "code\modules\modular_computers\hardware\_hardware.dm"
 #include "code\modules\modular_computers\hardware\battery_module.dm"
 #include "code\modules\modular_computers\hardware\card_slot.dm"

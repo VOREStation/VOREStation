@@ -1,7 +1,7 @@
 /datum/computer_file/program/suit_sensors
 	filename = "sensormonitor"
 	filedesc = "Suit Sensors Monitoring"
-	nanomodule_path = /datum/nano_module/crew_monitor
+	nanomodule_path = /datum/nano_module/program/crew_monitor
 	program_icon_state = "crew"
 	program_key_state = "med_key"
 	program_menu_icon = "heart"
@@ -12,13 +12,10 @@
 	size = 11
 
 
-
-
-
-/datum/nano_module/crew_monitor
+/datum/nano_module/program/crew_monitor
 	name = "Crew monitor"
 
-/datum/nano_module/crew_monitor/Topic(href, href_list)
+/datum/nano_module/program/crew_monitor/Topic(href, href_list)
 	if(..()) return 1
 	var/turf/T = get_turf(nano_host())	// TODO: Allow setting any using_map.contact_levels from the interface.
 	if (!T || !(T.z in using_map.player_levels))
@@ -32,7 +29,7 @@
 				AI.ai_actual_track(H)
 		return 1
 
-/datum/nano_module/crew_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+/datum/nano_module/program/crew_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
 	var/list/data = host.initial_data()
 
 	data["isAI"] = isAI(user)
@@ -47,7 +44,9 @@
 
 	if(!data["map_levels"].len)
 		to_chat(user, "<span class='warning'>The crew monitor doesn't seem like it'll work here.</span>")
-		if(ui)
+		if(program)
+			program.kill_program()
+		else if(ui)
 			ui.close()
 		return
 
@@ -68,7 +67,7 @@
 		// should make the UI auto-update; doesn't seem to?
 		ui.set_auto_update(1)
 
-/*/datum/nano_module/crew_monitor/proc/scan()
+/*/datum/nano_module/program/crew_monitor/proc/scan()
 	for(var/mob/living/carbon/human/H in mob_list)
 		if(istype(H.w_uniform, /obj/item/clothing/under))
 			var/obj/item/clothing/under/C = H.w_uniform

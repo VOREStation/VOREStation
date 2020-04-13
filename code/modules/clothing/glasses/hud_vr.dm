@@ -71,7 +71,7 @@
 	These have been upgraded with medical records access and virus database integration."
 	mode = "med"
 	action_button_name = "AR Console (Crew Monitor)"
-	arscreen_path = /datum/nano_module/crew_monitor
+	arscreen_path = /datum/nano_module/program/crew_monitor
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_AUGMENTED)
 
 	ar_interact(var/mob/living/carbon/human/user)
