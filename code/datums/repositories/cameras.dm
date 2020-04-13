@@ -14,10 +14,25 @@ var/global/datum/repository/cameras/camera_repository = new()
 	networks = list()
 	..()
 
-/datum/repository/cameras/proc/cameras_in_network(var/network)
+/datum/repository/cameras/proc/cameras_in_network(var/network, var/list/zlevels)
 	setup_cache()
 	var/list/network_list = networks[network]
-	return network_list
+	if(LAZYLEN(zlevels))
+		var/list/filtered_cameras = list()
+		for(var/list/C in network_list)
+			//Camera is marked as always-visible
+			if(C["omni"])
+				filtered_cameras[++filtered_cameras.len] = C
+				continue
+			//Camera might be in an adjacent zlevel
+			var/camz = C["z"]
+			if(!camz) //It's inside something (helmet, communicator, etc) or nullspace or who knows
+				camz = get_z(locate(C["camera"]) in cameranet.cameras)
+			if(camz in zlevels)
+				filtered_cameras[++filtered_cameras.len] = C //Can't add lists to lists with +=
+		return filtered_cameras
+	else
+		return network_list
 
 /datum/repository/cameras/proc/setup_cache()
 	if(!invalidated)

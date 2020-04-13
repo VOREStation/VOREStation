@@ -12,12 +12,17 @@ var/list/spawntypes = list()
 	var/display_name //Name used in preference setup.
 	var/list/restrict_job = null
 	var/list/disallow_job = null
+	var/announce_channel = "Common"
 
 	proc/check_job_spawning(job)
 		if(restrict_job && !(job in restrict_job))
 			return 0
 
 		if(disallow_job && (job in disallow_job))
+			return 0
+
+		var/datum/job/J = SSjob.get_job(job)
+		if(J?.offmap_spawn && !(job in restrict_job))
 			return 0
 
 		return 1

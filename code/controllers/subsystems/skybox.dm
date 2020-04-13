@@ -87,7 +87,7 @@ SUBSYSTEM_DEF(skybox)
 	res.overlays += base
 
 	if(global.using_map.use_overmap && settings.use_overmap_details)
-		var/obj/effect/overmap/visitable/O = map_sectors["[z]"]
+		var/obj/effect/overmap/visitable/O = get_overmap_sector(z)
 		if(istype(O))
 			var/image/overmap = image(settings.icon)
 			overmap.overlays += O.generate_skybox()

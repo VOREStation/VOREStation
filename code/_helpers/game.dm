@@ -246,7 +246,7 @@
 			var/turf/speaker = get_turf(R)
 			if(speaker)
 				for(var/turf/T in hear(R.canhear_range,speaker))
-					speaker_coverage[T] = T
+					speaker_coverage[T] = R
 
 
 	// Try to find all the players who can hear the message

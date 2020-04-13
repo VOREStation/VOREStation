@@ -106,18 +106,8 @@
 		if(telepad.panel_open)
 			data["tempMsg"] = "Telepad undergoing physical maintenance operations."
 
-		data["sectorOptions"] = list()
-		//We'll base our options on overmap range
-		if(using_map.use_overmap)
-			data["sectorOptions"] += z //Definitely at least our own even if we're not in an overmap sector.
-			var/obj/effect/overmap/visitable/my_sector = map_sectors["[z]"]
-			if(my_sector)
-				for(var/obj/effect/overmap/visitable/S in range(get_turf(my_sector), overmap_range))
-					data["sectorOptions"] |= S.map_z
-		//We'll base our options on player_levels
-		else
-			for(var/z in using_map.player_levels)
-				data["sectorOptions"] += z
+		//We'll base our options on connected z's or overmap
+		data["sectorOptions"] = using_map.get_map_levels(z, TRUE, overmap_range)
 
 		if(last_tele_data)
 			data["lastTeleData"] = list()

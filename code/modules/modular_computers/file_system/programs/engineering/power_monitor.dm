@@ -53,10 +53,15 @@
 	var/list/sensors = list()
 	// Focus: If it remains null if no sensor is selected and UI will display sensor list, otherwise it will display sensor reading.
 	var/obj/machinery/power/sensor/focus = null
-	var/turf/T = get_turf(nano_host())
+
+	var/z = get_z(nano_host())
+	var/list/map_levels = using_map.get_map_levels(z)
+	data["map_levels"] = map_levels
 
 	// Build list of data from sensor readings.
 	for(var/obj/machinery/power/sensor/S in grid_sensors)
+		if(!(S.z in map_levels))
+			continue
 		sensors.Add(list(list(
 		"name" = S.name_tag,
 		"alarm" = S.check_grid_warning()
@@ -67,7 +72,6 @@
 	data["all_sensors"] = sensors
 	if(focus)
 		data["focus"] = focus.return_reading_data()
-	data["map_levels"] = using_map.get_map_levels(T.z)
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
