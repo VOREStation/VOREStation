@@ -224,7 +224,9 @@
 "aJ" = (
 /obj/machinery/vending/boozeomat{
 	density = 0;
-	pixel_y = 32
+	pixel_y = 32;
+	req_access = list(301);
+	req_log_access = 301
 	},
 /turf/simulated/floor/lino,
 /area/talon/decktwo/bar)
@@ -3277,7 +3279,8 @@
 	frequency = 1380;
 	id_tag = "talonlifeboat_docker";
 	pixel_x = -28;
-	pixel_y = -28
+	pixel_y = -28;
+	req_one_access = list(301)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon/decktwo/lifeboat)
@@ -4320,7 +4323,8 @@
 "id" = (
 /obj/machinery/airlock_sensor{
 	dir = 4;
-	pixel_x = -28
+	pixel_x = -28;
+	req_one_access = list(301)
 	},
 /obj/machinery/atmospherics/unary/vent_pump/aux{
 	icon_state = "map_vent_aux";
@@ -4329,7 +4333,8 @@
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
 	dir = 8;
 	id_tag = "talon_aft_solar";
-	pixel_x = 28
+	pixel_x = 28;
+	req_one_access = list(301)
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
@@ -4343,7 +4348,8 @@
 "if" = (
 /obj/machinery/airlock_sensor{
 	pixel_x = -28;
-	pixel_y = 28
+	pixel_y = 28;
+	req_one_access = list(301)
 	},
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/reinforced/airless,
@@ -4401,7 +4407,8 @@
 /obj/machinery/airlock_sensor{
 	dir = 1;
 	pixel_x = -28;
-	pixel_y = -28
+	pixel_y = -28;
+	req_one_access = list(301)
 	},
 /obj/effect/map_helper/airlock/sensor/int_sensor,
 /obj/machinery/atmospherics/pipe/simple/visible/aux{
@@ -4687,7 +4694,8 @@
 	frequency = 1380;
 	id_tag = "talon_lifeboatbay";
 	pixel_x = 8;
-	pixel_y = 28
+	pixel_y = 28;
+	req_one_access = list(301)
 	},
 /turf/simulated/floor/plating,
 /area/talon/maintenance/decktwo_aft)

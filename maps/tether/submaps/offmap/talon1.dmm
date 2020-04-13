@@ -2931,7 +2931,8 @@
 /obj/machinery/airlock_sensor{
 	dir = 8;
 	pixel_x = 28;
-	pixel_y = 28
+	pixel_y = 28;
+	req_one_access = list(301)
 	},
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /obj/structure/catwalk,
@@ -2944,12 +2945,14 @@
 /area/talon/maintenance/deckone_port)
 "fB" = (
 /obj/machinery/airlock_sensor{
-	pixel_y = 28
+	pixel_y = 28;
+	req_one_access = list(301)
 	},
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
 	dir = 1;
 	id_tag = "talon_port";
-	pixel_y = -30
+	pixel_y = -30;
+	req_one_access = list(301)
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
@@ -2976,7 +2979,8 @@
 /obj/machinery/airlock_sensor{
 	dir = 4;
 	pixel_x = -28;
-	pixel_y = 28
+	pixel_y = 28;
+	req_one_access = list(301)
 	},
 /obj/effect/map_helper/airlock/sensor/int_sensor,
 /obj/structure/catwalk,
@@ -3127,7 +3131,8 @@
 /obj/machinery/airlock_sensor{
 	dir = 8;
 	pixel_x = 28;
-	pixel_y = 28
+	pixel_y = 28;
+	req_one_access = list(301)
 	},
 /obj/effect/map_helper/airlock/sensor/int_sensor,
 /obj/structure/catwalk,
@@ -3144,12 +3149,14 @@
 /area/talon/maintenance/deckone_starboard)
 "fU" = (
 /obj/machinery/airlock_sensor{
-	pixel_y = 28
+	pixel_y = 28;
+	req_one_access = list(301)
 	},
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
 	dir = 1;
 	id_tag = "talon_starboard";
-	pixel_y = -30
+	pixel_y = -30;
+	req_one_access = list(301)
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
@@ -3168,7 +3175,8 @@
 /obj/machinery/airlock_sensor{
 	dir = 4;
 	pixel_x = -28;
-	pixel_y = 28
+	pixel_y = 28;
+	req_one_access = list(301)
 	},
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /obj/structure/catwalk,
