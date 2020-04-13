@@ -3,20 +3,36 @@
 /turf/simulated/wall/r_wall/Initialize(mapload)
 	. = ..(mapload, "plasteel","plasteel") //3strong
 
+/turf/simulated/wall/shull
+	icon_state = "hull-steel"
 /turf/simulated/wall/shull/Initialize(mapload) //Spaaaace ship.
 	. = ..(mapload,  MAT_STEELHULL, null, MAT_STEELHULL)
+/turf/simulated/wall/rshull
+	icon_state = "hull-r_steel"
 /turf/simulated/wall/rshull/Initialize(mapload)
 	. = ..(mapload,  MAT_STEELHULL, MAT_STEELHULL, MAT_STEELHULL)
+/turf/simulated/wall/pshull
+	icon_state = "hull-plasteel"
 /turf/simulated/wall/pshull/Initialize(mapload) //Spaaaace-er ship.
 	. = ..(mapload,  MAT_PLASTEELHULL, null, MAT_PLASTEELHULL)
+/turf/simulated/wall/rpshull
+	icon_state = "hull-r_plasteel"
 /turf/simulated/wall/rpshull/Initialize(mapload)
 	. = ..(mapload,  MAT_PLASTEELHULL, MAT_PLASTEELHULL, MAT_PLASTEELHULL)
+/turf/simulated/wall/dshull
+	icon_state = "hull-durasteel"
 /turf/simulated/wall/dshull/Initialize(mapload) //Spaaaace-est ship.
 	. = ..(mapload,  MAT_DURASTEELHULL, null, MAT_DURASTEELHULL)
+/turf/simulated/wall/rdshull
+	icon_state = "hull-r_durasteel"
 /turf/simulated/wall/rdshull/Initialize(mapload)
 	. = ..(mapload,  MAT_DURASTEELHULL, MAT_DURASTEELHULL, MAT_DURASTEELHULL)
+/turf/simulated/wall/thull
+	icon_state = "hull-titanium"
 /turf/simulated/wall/thull/Initialize(mapload)
 	. = ..(mapload,  MAT_TITANIUMHULL, null, MAT_TITANIUMHULL)
+/turf/simulated/wall/rthull
+	icon_state = "hull-r_titanium"
 /turf/simulated/wall/rthull/Initialize(mapload)
 	. = ..(mapload,  MAT_TITANIUMHULL, MAT_TITANIUMHULL, MAT_TITANIUMHULL)
 
