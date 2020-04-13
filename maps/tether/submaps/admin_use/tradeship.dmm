@@ -236,6 +236,7 @@
 	name = "shuttle bay controller";
 	pixel_x = 25;
 	pixel_y = 0;
+	req_one_access = list(160);
 	tag_door = "trade_shuttle_bay_door"
 	},
 /turf/unsimulated/floor{
@@ -409,7 +410,7 @@
 	id_tag = "trade_shuttle";
 	pixel_x = -25;
 	pixel_y = 0;
-	req_one_access = list(101);
+	req_one_access = list(160);
 	tag_door = "trade_shuttle_hatch"
 	},
 /turf/simulated/shuttle/floor/black,
@@ -490,7 +491,9 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "bi" = (
-/obj/machinery/suit_cycler/syndicate,
+/obj/machinery/suit_cycler/syndicate{
+	req_access = list(160)
+	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "bj" = (
@@ -765,8 +768,10 @@
 "bO" = (
 /obj/machinery/vending/medical{
 	density = 0;
+	dir = 1;
 	pixel_y = -32;
-	req_access = null
+	req_access = list(160);
+	req_log_access = 160
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
@@ -903,7 +908,9 @@
 /turf/simulated/shuttle/plating,
 /area/shuttle/trade)
 "ca" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/coffee{
+	dir = 4
+	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "cb" = (
@@ -973,6 +980,7 @@
 /area/shuttle/trade)
 "ck" = (
 /obj/machinery/vending/snack{
+	dir = 4;
 	name = "hacked Getmore Chocolate Corp";
 	prices = list()
 	},
@@ -1055,6 +1063,7 @@
 /area/shuttle/trade)
 "ct" = (
 /obj/machinery/vending/cigarette{
+	dir = 4;
 	name = "Cigarette machine";
 	prices = list();
 	products = list(/obj/item/weapon/storage/fancy/cigarettes = 10, /obj/item/weapon/storage/box/matches = 10, /obj/item/weapon/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
@@ -1257,7 +1266,7 @@
 	id = "tradebridgeshutters";
 	name = "remote shutter control";
 	pixel_x = 30;
-	req_access = list(150)
+	req_access = list(160)
 	},
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-09";
@@ -1305,7 +1314,7 @@
 "cX" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2;
-	req_access = list(160)
+	req_access = newlist()
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
@@ -1321,7 +1330,8 @@
 	id = "trade";
 	name = "Shop Shutters";
 	pixel_x = 0;
-	pixel_y = -26
+	pixel_y = -26;
+	req_access = list(160)
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/trade)
@@ -1866,7 +1876,9 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "dX" = (
-/obj/structure/filingcabinet/filingcabinet,
+/obj/structure/filingcabinet/filingcabinet{
+	dir = 4
+	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "dY" = (
@@ -1908,11 +1920,19 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "ed" = (
-/obj/machinery/vending/engivend,
+/obj/machinery/vending/engivend{
+	dir = 1;
+	req_access = list(160);
+	req_log_access = 160
+	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "ee" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/tool{
+	dir = 1;
+	req_access = list(160);
+	req_log_access = 160
+	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "ef" = (
@@ -1925,7 +1945,7 @@
 	frequency = 1331;
 	id_tag = "trade2_control";
 	pixel_x = -24;
-	req_access = list(150);
+	req_access = list(160);
 	tag_airpump = "trade2_vent";
 	tag_chamber_sensor = "trade2_sensor";
 	tag_exterior_door = "trade2_shuttle_outer";
@@ -1941,7 +1961,8 @@
 /obj/machinery/airlock_sensor{
 	frequency = 1331;
 	id_tag = "trade2_sensor";
-	pixel_x = 25
+	pixel_x = 25;
+	req_access = list(160)
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
@@ -1966,7 +1987,7 @@
 	frequency = 1331;
 	master_tag = "trade2_control";
 	pixel_x = 24;
-	req_one_access = list(150)
+	req_one_access = list(160)
 	},
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1331;
@@ -1974,6 +1995,13 @@
 	id_tag = "trade2_shuttle_outer";
 	locked = 1;
 	name = "Ship Hatch"
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/trade)
+"jo" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 4;
+	req_access = newlist()
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
@@ -2638,7 +2666,7 @@ bA
 bA
 bc
 bc
-bP
+jo
 bc
 be
 dJ
