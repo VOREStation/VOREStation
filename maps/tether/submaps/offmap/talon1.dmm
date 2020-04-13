@@ -2947,7 +2947,9 @@
 /area/talon/maintenance/deckone_port)
 "fA" = (
 /obj/effect/map_helper/airlock/door/ext_door,
-/obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/airlock/glass_external{
+	req_one_access = list(301)
+	},
 /turf/simulated/floor/plating,
 /area/talon/maintenance/deckone_port)
 "fB" = (
@@ -2975,7 +2977,9 @@
 	dir = 4
 	},
 /obj/effect/map_helper/airlock/door/int_door,
-/obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/airlock/glass_external{
+	req_one_access = list(301)
+	},
 /turf/simulated/floor/plating,
 /area/talon/maintenance/deckone_port)
 "fD" = (
@@ -3151,7 +3155,9 @@
 	dir = 4
 	},
 /obj/effect/map_helper/airlock/door/int_door,
-/obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/airlock/glass_external{
+	req_one_access = list(301)
+	},
 /turf/simulated/floor/plating,
 /area/talon/maintenance/deckone_starboard)
 "fU" = (
@@ -3175,7 +3181,9 @@
 /area/talon/maintenance/deckone_starboard)
 "fV" = (
 /obj/effect/map_helper/airlock/door/ext_door,
-/obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/airlock/glass_external{
+	req_one_access = list(301)
+	},
 /turf/simulated/floor/plating,
 /area/talon/maintenance/deckone_starboard)
 "fW" = (
@@ -5831,7 +5839,9 @@
 "ln" = (
 /obj/effect/map_helper/airlock/door/int_door,
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
-/obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/airlock/glass_external{
+	req_one_access = list(301)
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/talonboat)
 "lo" = (
@@ -5865,7 +5875,9 @@
 /area/shuttle/talonboat)
 "ls" = (
 /obj/effect/map_helper/airlock/door/ext_door,
-/obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/airlock/glass_external{
+	req_one_access = list(301)
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/talonboat)
 "lt" = (
@@ -5874,7 +5886,9 @@
 	icon_state = "4-8";
 	dir = 1
 	},
-/obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/airlock/glass_external{
+	req_one_access = list(301)
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/talonboat)
 "lu" = (
