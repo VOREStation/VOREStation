@@ -428,6 +428,10 @@
 	icon_state = "light1";
 	pixel_x = -24
 	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 5;
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/talon/deckone/armory)
 "ba" = (
@@ -1151,9 +1155,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/talon/deckone/starboard_solar)
-"cq" = (
-/turf/simulated/wall/shull,
-/area/talon/deckone/port_solar)
 "cr" = (
 /obj/structure/cable/yellow{
 	icon_state = "16-0"
@@ -1960,6 +1961,10 @@
 /obj/effect/floor_decal/borderfloor/corner2{
 	dir = 1
 	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 5;
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/deckone/brig)
 "dY" = (
@@ -2037,8 +2042,6 @@
 /turf/simulated/floor/tiled/steel,
 /area/talon/deckone/central_hallway)
 "ee" = (
-/obj/structure/table/standard,
-/obj/machinery/recharger,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
 	},
@@ -2052,6 +2055,9 @@
 	dir = 4;
 	icon_state = "light1";
 	pixel_x = -24
+	},
+/obj/structure/sink{
+	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
@@ -2621,7 +2627,9 @@
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
 	},
-/obj/structure/table/standard,
+/obj/structure/closet/crate/medical{
+	name = "medicine cooler"
+	},
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
 "fc" = (
@@ -2759,6 +2767,7 @@
 	pixel_x = 0;
 	pixel_y = -25
 	},
+/obj/machinery/recharger,
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
 "fk" = (
@@ -2929,7 +2938,8 @@
 /obj/machinery/airlock_sensor{
 	dir = 8;
 	pixel_x = 28;
-	pixel_y = 28
+	pixel_y = 28;
+	req_one_access = list(301)
 	},
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /obj/structure/catwalk,
@@ -2942,12 +2952,14 @@
 /area/talon/maintenance/deckone_port)
 "fB" = (
 /obj/machinery/airlock_sensor{
-	pixel_y = 28
+	pixel_y = 28;
+	req_one_access = list(301)
 	},
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
 	dir = 1;
 	id_tag = "talon_port";
-	pixel_y = -30
+	pixel_y = -30;
+	req_one_access = list(301)
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
@@ -2974,7 +2986,8 @@
 /obj/machinery/airlock_sensor{
 	dir = 4;
 	pixel_x = -28;
-	pixel_y = 28
+	pixel_y = 28;
+	req_one_access = list(301)
 	},
 /obj/effect/map_helper/airlock/sensor/int_sensor,
 /obj/structure/catwalk,
@@ -3125,7 +3138,8 @@
 /obj/machinery/airlock_sensor{
 	dir = 8;
 	pixel_x = 28;
-	pixel_y = 28
+	pixel_y = 28;
+	req_one_access = list(301)
 	},
 /obj/effect/map_helper/airlock/sensor/int_sensor,
 /obj/structure/catwalk,
@@ -3142,12 +3156,14 @@
 /area/talon/maintenance/deckone_starboard)
 "fU" = (
 /obj/machinery/airlock_sensor{
-	pixel_y = 28
+	pixel_y = 28;
+	req_one_access = list(301)
 	},
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
 	dir = 1;
 	id_tag = "talon_starboard";
-	pixel_y = -30
+	pixel_y = -30;
+	req_one_access = list(301)
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
@@ -3166,7 +3182,8 @@
 /obj/machinery/airlock_sensor{
 	dir = 4;
 	pixel_x = -28;
-	pixel_y = 28
+	pixel_y = 28;
+	req_one_access = list(301)
 	},
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /obj/structure/catwalk,
@@ -3380,6 +3397,9 @@
 /area/talon/deckone/brig)
 "gt" = (
 /obj/effect/floor_decal/borderfloor,
+/obj/machinery/suit_cycler/security{
+	req_access = list(301)
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/deckone/brig)
 "gu" = (
@@ -3694,7 +3714,9 @@
 /area/talon/deckone/port_eng_store)
 "ha" = (
 /obj/machinery/vending/engineering{
-	req_log_access = 301
+	req_access = newlist();
+	req_log_access = 301;
+	req_one_access = list(301)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon/deckone/port_eng_store)
@@ -4868,7 +4890,9 @@
 /area/talon/deckone/starboard_eng)
 "iV" = (
 /obj/machinery/door/firedoor/glass/talon,
-/obj/machinery/door/airlock/maintenance/engi,
+/obj/machinery/door/airlock/maintenance/engi{
+	req_one_access = list(301)
+	},
 /turf/simulated/floor/plating,
 /area/talon/deckone/port_eng)
 "iW" = (
@@ -4939,13 +4963,16 @@
 /area/talon/deckone/starboard_eng)
 "jf" = (
 /obj/machinery/door/firedoor/glass/talon,
-/obj/machinery/door/airlock/maintenance/engi,
+/obj/machinery/door/airlock/maintenance/engi{
+	req_one_access = list(301)
+	},
 /turf/simulated/floor/plating,
 /area/talon/deckone/starboard_eng)
 "jg" = (
 /obj/machinery/airlock_sensor{
 	dir = 4;
-	pixel_x = -28
+	pixel_x = -28;
+	req_one_access = list(301)
 	},
 /obj/machinery/atmospherics/unary/vent_pump/aux{
 	icon_state = "map_vent_aux";
@@ -5062,6 +5089,10 @@
 "jy" = (
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/machinery/suit_cycler/engineering{
+	name = "Atmospherics suit cycler";
+	req_access = list(301)
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon/deckone/starboard_eng)
@@ -5347,7 +5378,7 @@
 	id = "very_fake";
 	name = "Shuttle Bay Doors"
 	},
-/turf/simulated/wall/rshull,
+/turf/simulated/floor/plating,
 /area/talon/deckone/central_hallway)
 "kj" = (
 /obj/machinery/atmospherics/unary/engine{
@@ -5690,16 +5721,9 @@
 /obj/effect/floor_decal/borderfloorwhite/corner2{
 	dir = 5
 	},
-/obj/structure/closet/crate/medical{
-	name = "medicine cooler"
-	},
+/obj/machinery/chem_master,
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
-"kW" = (
-/obj/structure/catwalk,
-/obj/structure/loot_pile/maint,
-/turf/simulated/floor/plating,
-/area/talon/maintenance/deckone_starboard)
 "kX" = (
 /obj/machinery/door/airlock/maintenance/sec{
 	req_one_access = list(301)
@@ -5995,6 +6019,7 @@
 /obj/structure/sign/warning/airlock{
 	pixel_x = 32
 	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/plating,
 /area/talon/maintenance/deckone_starboard)
 "su" = (
@@ -6002,6 +6027,7 @@
 /obj/structure/sign/warning/airlock{
 	pixel_x = -31
 	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/plating,
 /area/talon/maintenance/deckone_port)
 "sK" = (
@@ -6349,7 +6375,7 @@
 	icon_state = "borderfloorcorner2";
 	pixel_x = 0
 	},
-/obj/machinery/suit_cycler,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/steel,
 /area/talon/deckone/central_hallway)
 "Xi" = (
@@ -6405,6 +6431,12 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/talon/deckone/bridge_hallway)
+"ZU" = (
+/obj/machinery/suit_cycler/medical{
+	req_access = list(301)
+	},
+/turf/simulated/floor/tiled/white,
+/area/talon/deckone/medical)
 
 (1,1,1) = {"
 aa
@@ -14295,7 +14327,7 @@ aL
 fD
 su
 kZ
-aM
+aC
 aL
 aL
 aL
@@ -14564,9 +14596,9 @@ aC
 aL
 aL
 cl
-cq
-cq
-cq
+cl
+cl
+cl
 cl
 bS
 dH
@@ -17535,7 +17567,7 @@ aa
 aa
 aa
 aK
-kW
+jp
 bd
 aP
 aP
@@ -17696,7 +17728,7 @@ aP
 dO
 ej
 ef
-ef
+ZU
 jV
 fm
 dO
@@ -17999,8 +18031,8 @@ ij
 iF
 iF
 jf
-iF
-iF
+jY
+jY
 gT
 gT
 jY
@@ -18271,7 +18303,7 @@ aP
 fS
 sk
 la
-aO
+aK
 aP
 aP
 aP
