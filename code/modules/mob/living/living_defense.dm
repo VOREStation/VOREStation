@@ -167,6 +167,15 @@
 
 /mob/living/emp_act(severity)
 	var/list/L = src.get_contents()
+
+	if(LAZYLEN(modifiers))
+		for(var/datum/modifier/M in modifiers)
+			if(!isnull(M.emp_modifier))
+				severity = CLAMP(severity + M.emp_modifier, 1, 5)
+
+	if(severity == 5)	// Effectively nullified.
+		return
+
 	for(var/obj/O in L)
 		O.emp_act(severity)
 	..()
@@ -205,6 +214,9 @@
 	//Armor
 	var/soaked = get_armor_soak(def_zone, armor_check, armor_pen)
 	var/absorb = run_armor_check(def_zone, armor_check, armor_pen)
+
+	if(ai_holder)
+		ai_holder.react_to_attack(B)
 
 	apply_damage(damage, damage_type, def_zone, absorb, soaked)
 
