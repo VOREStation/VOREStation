@@ -4,6 +4,7 @@
 #endif
 
 <<<<<<< refs/remotes/VOREStation/master
+<<<<<<< refs/remotes/VOREStation/master
 =======
 
 // Map template for spawning the shuttle
@@ -15,6 +16,8 @@
 
 
 >>>>>>> PROGRESS
+=======
+>>>>>>> progress + pain
 //The mercenary base's areas
 /area/mercbase/
 	name = "\improper Asteroid Base"
@@ -56,6 +59,7 @@
 /area/mercbase/dock
 	name = "\improper Mercenary Base Boat Dock"
 /area/mercbase/cafeteria
+<<<<<<< refs/remotes/VOREStation/master
 <<<<<<< refs/remotes/VOREStation/master
 	name = "\improper Mercenary Base Boat Cafeteria"
 =======
@@ -157,3 +161,6 @@
 	fuel_consumption = 0
 	defer_initialisation = TRUE
 >>>>>>> PROGRESS
+=======
+	name = "\improper Mercenary Base Boat Cafeteria"
+>>>>>>> progress + pain
