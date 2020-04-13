@@ -14,7 +14,7 @@
 	id = "protector"
 	req_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 2000, "silver" = 1000)
-	build_path = /obj/item/weapon/gun/energy/protector
+	build_path = /obj/item/weapon/gun/energy/gun/protector
 	sort_string = "MAAVA"
 
 /datum/design/item/weapon/energy/sickshot

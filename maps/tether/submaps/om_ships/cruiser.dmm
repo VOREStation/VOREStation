@@ -7145,8 +7145,8 @@
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/gun/energy/protector,
-/obj/item/weapon/gun/energy/protector,
+/obj/item/weapon/gun/energy/gun/protector,
+/obj/item/weapon/gun/energy/gun/protector,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
 "nc" = (
