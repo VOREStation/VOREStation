@@ -28,7 +28,7 @@
 	. = hearers(vision_range, holder) - holder // Remove ourselves to prevent suicidal decisions. ~ SRC is the ai_holder.
 	. -= dview_mob // Not the dview mob either, nerd.
 
-	var/static/hostile_machines = typecacheof(list(/obj/machinery/porta_turret, /obj/mecha))
+	var/static/hostile_machines = typecacheof(list(/obj/machinery/porta_turret, /obj/mecha, /obj/structure/blob))
 
 	for(var/HM in typecache_filter_list(range(vision_range, holder), hostile_machines))
 		if(can_see(holder, HM, vision_range))
@@ -75,7 +75,7 @@
 /datum/ai_holder/proc/give_target(new_target, urgent = FALSE)
 	ai_log("give_target() : Given '[new_target]', urgent=[urgent].", AI_LOG_TRACE)
 	target = new_target
-	
+
 	if(target != null)
 		lose_target_time = 0
 		track_target_position()
@@ -155,6 +155,11 @@
 			return FALSE // Turrets won't get hurt if they're still in their cover.
 		return TRUE
 
+	if(istype(the_target, /obj/structure/blob)) // Blob mobs are always blob faction, but the blob can anger other things.
+		var/obj/structure/blob/Blob = the_target
+		if(holder.faction == Blob.faction)
+			return FALSE
+
 	return TRUE
 //	return FALSE
 
@@ -189,12 +194,12 @@
 	ai_log("remove_target() : Entering.", AI_LOG_TRACE)
 	if(target)
 		target = null
-	
+
 	lose_target_time = 0
 	give_up_movement()
 	lose_target_position()
 	set_stance(STANCE_IDLE)
-	
+
 // Check if target is visible to us.
 /datum/ai_holder/proc/can_see_target(atom/movable/the_target, view_range = vision_range)
 	ai_log("can_see_target() : Entering.", AI_LOG_TRACE)
@@ -274,7 +279,7 @@
 // Sets a few vars so mobs that threaten will react faster to an attacker or someone who attacked them before.
 /datum/ai_holder/proc/on_attacked(atom/movable/AM)
 	last_conflict_time = world.time
-	add_attacker(AM)		
+	add_attacker(AM)
 
 // Checks to see if an atom attacked us lately
 /datum/ai_holder/proc/check_attacker(var/atom/movable/A)
@@ -287,7 +292,7 @@
 // Forgive this attacker
 /datum/ai_holder/proc/remove_attacker(var/atom/movable/A)
 	attackers -= A.name
-			
+
 // Causes targeting to prefer targeting the taunter if possible.
 // This generally occurs if more than one option is within striking distance, including the taunter.
 // Otherwise the default filter will prefer the closest target.

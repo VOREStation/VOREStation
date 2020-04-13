@@ -324,3 +324,67 @@ the artifact triggers the rage.
 /datum/modifier/homeothermic/tick()
 	..()
 	holder.bodytemperature = round((holder.bodytemperature + T20C) / 2)
+
+/datum/modifier/exothermic
+	name = "heat resistance"
+	desc = "Your body lowers to room temperature."
+
+	on_created_text = "<span class='notice'>You feel comfortable.</span>"
+	on_expired_text = "<span class='notice'>You feel.. still probably comfortable.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+/datum/modifier/exothermic/tick()
+	..()
+	if(holder.bodytemperature > T20C)
+		holder.bodytemperature = round((holder.bodytemperature + T20C) / 2)
+
+/datum/modifier/endothermic
+	name = "cold resistance"
+	desc = "Your body rises to room temperature."
+
+	on_created_text = "<span class='notice'>You feel comfortable.</span>"
+	on_expired_text = "<span class='notice'>You feel.. still probably comfortable.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+/datum/modifier/endothermic/tick()
+	..()
+	if(holder.bodytemperature < T20C)
+		holder.bodytemperature = round((holder.bodytemperature + T20C) / 2)
+
+// Nullifies EMP.
+/datum/modifier/faraday
+	name = "EMP shielding"
+	desc = "You are covered in some form of faraday shielding. EMPs have no effect."
+	mob_overlay_state = "electricity"
+
+	on_created_text = "<span class='notice'>You feel a surge of energy, that fades to a calm tide.</span>"
+	on_expired_text = "<span class='warning'>You feel a longing for the flow of energy.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+	emp_modifier = 5
+
+// Nullifies explosions.
+/datum/modifier/blastshield
+	name = "Blast Shielding"
+	desc = "You are protected from explosions somehow."
+	mob_overlay_state = "electricity"
+
+	on_created_text = "<span class='notice'>You feel a surge of energy, that fades to a stalwart hum.</span>"
+	on_expired_text = "<span class='warning'>You feel a longing for the flow of energy.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+	explosion_modifier = 3
+
+// Kills on expiration.
+/datum/modifier/doomed
+	name = "Doomed"
+	desc = "You are doomed."
+
+	on_created_text = "<span class='notice'>You feel an overwhelming sense of dread.</span>"
+	on_expired_text = "<span class='warning'>You feel the life drain from your body.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+/datum/modifier/doomed/on_expire()
+	if(holder.stat != DEAD)
+		holder.visible_message("<span class='alien'>\The [holder] collapses, the life draining from their body.</span>")
+		holder.death()
