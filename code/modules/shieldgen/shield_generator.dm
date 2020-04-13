@@ -104,14 +104,8 @@
 
 // Generates the field objects. Deletes existing field, if applicable.
 /obj/machinery/power/shield_generator/proc/regenerate_field()
-	if(field_segments.len)
-		for(var/obj/effect/shield/S in field_segments)
-			qdel(S)
-
-	// The generator is not turned on, so don't generate any new tiles.
-	if(!running)
-		return
-
+	for(var/obj/effect/shield/S in field_segments)
+		qdel(S)	
 	var/list/shielded_turfs
 
 	if(check_flag(MODEFLAG_HULL))
@@ -124,7 +118,172 @@
 		S.gen = src
 		S.flags_updated()
 		field_segments |= S
+
+	//Hull shield chaos icon generation
+	if(check_flag(MODEFLAG_HULL))
+		var/list/midsections = list()
+		var/list/startends = list()
+		var/list/corners = list()
+		var/list/horror = list()
+
+		for(var/obj/effect/shield/SE in field_segments)
+			var/adjacent_fields = 0
+			for(var/direction in cardinal)
+				var/turf/T = get_step(SE, direction)
+				var/obj/effect/shield/S = locate() in T
+				if(S)
+					adjacent_fields |= direction
+
+			//What?
+			if(!adjacent_fields)
+				horror += SE
+				testing("Solo shield turf at [SE.x], [SE.y], [SE.z]")
+				continue
+
+			//Middle section or corner (multiple bits set)
+			if((adjacent_fields & (adjacent_fields - 1)) != 0)
+				//'Impossible' directions
+				if(adjacent_fields == (NORTH|SOUTH) || adjacent_fields == (EAST|WEST))
+					midsections[SE] = adjacent_fields
+				//It's a simple corner
+				else //if (adjacent_fields in cornerdirs)
+					corners[SE] = adjacent_fields
+
+			//Not 0, not multiple bits, it's a start or an end
+			else
+				startends[SE] = adjacent_fields
+
+		//Midsections go first
+		for(var/obj/effect/shield/SE in midsections)
+			var/adjacent = midsections[SE]
+			var/turf/L = get_step(SE, ~adjacent & (SOUTH|WEST))
+			var/turf/R = get_step(SE, ~adjacent & (NORTH|EAST))
+			if(!isspace(L) && !isspace(R))	// Squished in a single tile gap of space!
+				switch(adjacent)
+					if(NORTH|SOUTH) //Middle vertical section
+						if(SE.x < src.x) //Left of generator goes north
+							SE.set_dir(NORTH)
+						else
+							SE.set_dir(SOUTH)
+					if(EAST|WEST) //Middle horizontal section
+						if(SE.y < src.y) //South of generator goes left
+							SE.set_dir(WEST)
+						else
+							SE.set_dir(EAST)
+			else if(isspace(L))
+				SE.set_dir(turn(~adjacent & (SOUTH|WEST), -90))
+			else
+				SE.set_dir(turn(~adjacent & (NORTH|EAST), -90))
+
+			midsections -= SE
+
+		//Some unhandled error state
+		for(var/obj/effect/shield/SE in midsections)
+			SE.enabled_icon_state = "arrow" //Error state/unhandled
+
+		//Corners
+		for(var/obj/effect/shield/S in corners)
+			var/adjacent = corners[S]
+			if(adjacent in cornerdirs)
+				do_corner_shield(S, adjacent) //Dir is adjacent fields direction
+			else
+				// Okay first a quick hack. If only one nonshield...
+				var/nonshield = adjacent ^ (NORTH|SOUTH|EAST|WEST)
+				if((nonshield & (nonshield - 1)) == 0)
+					if(!isspace(get_step(S, nonshield)))
+						S.set_dir(turn(nonshield, 90)) // We're basically a normal midsection just with another touching. Ignore it.
+						//What's this mysterious 3rd shield touching us?
+						var/dir_to_them = turn(nonshield, 180)
+						var/turf/T = get_step(S, dir_to_them)
+						var/obj/effect/shield/SO = locate() in T
+						//They are a corner
+						if((SO.dir & (SO.dir - 1)) != 0)
+							continue
+						else if(dir_to_them & SO.dir) //They're facing away from us, so we're their start
+							S.add_overlay(image(icon, icon_state = "shield_start" , dir = SO.dir))
+						else if(SO.dir & nonshield) //They're facing us (and the wall)
+							S.add_overlay(image(icon, icon_state = "shield_end" , dir = SO.dir))
+
+					else
+						var/list/touchnonshield = list()
+						for(var/direction in cornerdirs)
+							var/turf/T = get_step(S, direction)
+							if(!isspace(T))
+								touchnonshield += T
+						if(touchnonshield.len == 1)
+							do_corner_shield(S, get_dir(S, touchnonshield[1]))
+						else
+							S.enabled_icon_state = "capacitor"
+				else
+					// Not actually a corner... It has MULTIPLE!
+					S.enabled_icon_state = "arrow" //Error state/unhandled
+
+		for(var/obj/effect/shield/S in startends)
+			var/adjacent = startends[S]
+			log_debug("Processing startend [S] at [S?.x],[S?.y] adjacent=[adjacent]")
+			var/turf/T = get_step(S, adjacent)
+			var/obj/effect/shield/SO = locate() in T
+			S.set_dir(SO.dir)
+			if(S.dir == adjacent) //Flowing into them
+				S.enabled_icon_state = "shield_start"
+			else
+				S.enabled_icon_state = "shield_end"
+	else
+		var/turf/gen_turf = get_turf(src)
+		for(var/obj/effect/shield/SE in field_segments)
+			var/new_dir = 0
+			if(SE.x == gen_turf.x - field_radius)
+				new_dir |= NORTH
+			else if(SE.x == gen_turf.x + field_radius)
+				new_dir |= SOUTH
+			if(SE.y == gen_turf.y + field_radius)
+				new_dir |= EAST
+			else if(SE.y == gen_turf.y - field_radius)
+				new_dir |= WEST
+			if((new_dir & (new_dir - 1)) == 0)
+				SE.set_dir(new_dir) // Only one bit set means we are an edge not corner.
+			else
+				do_corner_shield(SE, turn(new_dir, -90), TRUE) // All our corners are outside, don't check turf type.
+
+	for(var/obj/effect/shield/SE in field_segments)
+		SE.update_visuals()
+
+	//Phew, update our own icon
 	update_icon()
+
+/obj/machinery/power/shield_generator/proc/do_corner_shield(var/obj/effect/shield/S, var/new_dir, var/force_outside)
+	S.enabled_icon_state = "blank"
+	S.set_dir(new_dir)
+	var/inside = force_outside ? FALSE : isspace(get_step(S, new_dir))
+	// TODO - Obviously this can be more elegant
+	if(inside)
+		switch(new_dir)
+			if(NORTHEAST)
+				S.add_overlay(image(S.icon, icon_state = "shield_end", dir = SOUTH))
+				S.add_overlay(image(S.icon, icon_state = "shield_start", dir = EAST))
+			if(NORTHWEST)
+				S.add_overlay(image(S.icon, icon_state = "shield_end", dir = EAST))
+				S.add_overlay(image(S.icon, icon_state = "shield_start", dir = NORTH))
+			if(SOUTHEAST)
+				S.add_overlay(image(S.icon, icon_state = "shield_end", dir = WEST))
+				S.add_overlay(image(S.icon, icon_state = "shield_start", dir = SOUTH))
+			if(SOUTHWEST)
+				S.add_overlay(image(S.icon, icon_state = "shield_end", dir = NORTH))
+				S.add_overlay(image(S.icon, icon_state = "shield_start", dir = WEST))
+	else
+		switch(new_dir)
+			if(NORTHEAST)
+				S.add_overlay(image(S.icon, icon_state = "shield_end", dir = WEST))
+				S.add_overlay(image(S.icon, icon_state = "shield_start", dir = NORTH))
+			if(NORTHWEST)
+				S.add_overlay(image(S.icon, icon_state = "shield_end", dir = SOUTH))
+				S.add_overlay(image(S.icon, icon_state = "shield_start", dir = WEST))
+			if(SOUTHEAST)
+				S.add_overlay(image(S.icon, icon_state = "shield_end", dir = NORTH))
+				S.add_overlay(image(S.icon, icon_state = "shield_start", dir = EAST))
+			if(SOUTHWEST)
+				S.add_overlay(image(S.icon, icon_state = "shield_end", dir = EAST))
+				S.add_overlay(image(S.icon, icon_state = "shield_start", dir = SOUTH))
 
 
 // Recalculates and updates the upkeep multiplier

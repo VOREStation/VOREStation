@@ -2126,29 +2126,18 @@
 	pixel_x = 4;
 	pixel_y = 26
 	},
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 4
 	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "eh" = (
-/obj/structure/cable/cyan{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/shield_capacitor/advanced{
-	anchored = 1
-	},
-/obj/structure/cable/cyan{
-	d2 = 8;
-	icon_state = "0-8"
-	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
@@ -2368,18 +2357,19 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "eA" = (
-/obj/structure/cable/cyan,
-/obj/structure/cable/cyan{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/shield_gen/external/advanced{
-	anchored = 1
-	},
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/cable/cyan{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/shield_generator/charged{
+	field_radius = 49;
+	initial_shield_modes = 2113;
+	target_radius = 49
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "eB" = (
@@ -2604,15 +2594,6 @@
 	icon_state = "warning";
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/mothership/teleporter)
-"eS" = (
-/obj/structure/cable/cyan,
-/obj/machinery/shield_capacitor/advanced{
-	anchored = 1;
-	dir = 1
-	},
-/obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "eT" = (
@@ -8642,7 +8623,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "pO" = (
-/obj/machinery/telecomms/server/presets/centcomm,
+/obj/machinery/telecomms/allinone,
 /turf/simulated/floor/greengrid,
 /area/mothership/telecomms2)
 "pP" = (
@@ -10608,6 +10589,11 @@
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 4
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
@@ -21441,7 +21427,7 @@ JJ
 dP
 eh
 eA
-eS
+eh
 fd
 fA
 fU
