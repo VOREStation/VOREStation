@@ -428,6 +428,10 @@
 	icon_state = "light1";
 	pixel_x = -24
 	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 5;
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/talon/deckone/armory)
 "ba" = (
@@ -1956,6 +1960,10 @@
 	},
 /obj/effect/floor_decal/borderfloor/corner2{
 	dir = 1
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 5;
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/deckone/brig)
