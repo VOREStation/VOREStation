@@ -1,3 +1,4 @@
+<<<<<<< refs/remotes/VOREStation/master
 "aa" = (/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{frequency = 1200; id_tag = "westpump"},/turf/simulated/floor,/area/mercbase/airlock)
 "ab" = (/turf/simulated/wall/rshull,/area/space)
 "ac" = (/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{frequency = 1201; id_tag = "eastpump"},/turf/simulated/floor/plating,/area/mercbase/airlock)
@@ -22,17 +23,265 @@
 "av" = (/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{frequency = 1200; id_tag = "westpump"},/obj/machinery/airlock_sensor/airlock_interior{frequency = 1200; id_tag = "westairlock"; master_tag = "westchambersensor"; pixel_z = 23},/turf/simulated/floor,/area/mercbase/airlock)
 "aw" = (/obj/machinery/airlock_sensor/airlock_interior{frequency = 1200; id_tag = "westairlock"; master_tag = "westinteriorsensor"; pixel_z = 23},/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
 "aH" = (/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/space,/area/space)
+=======
+"aa" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/obj/machinery/door/blast/regular{id = "mercboatshutters"; name = "Shuttle Blast Door"},/obj/structure/fans/hardlight,/turf/simulated/floor/tiled/dark,/area/shuttle/mercboat)
+"ab" = (/turf/simulated/wall/rshull,/area/space)
+"ac" = (/turf/simulated/wall/rshull,/area/ship/mercenary/bridge)
+"ad" = (/turf/simulated/wall/rshull,/area/ship/mercenary/fighter)
+"ae" = (/turf/simulated/wall/rshull,/area/ship/mercenary/med1)
+"af" = (/turf/simulated/wall/rshull,/area/ship/mercenary/armoury)
+"ag" = (/turf/simulated/wall/rshull,/area/ship/mercenary/engine1)
+"ah" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"ai" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 9; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"aj" = (/obj/machinery/atmospherics/pipe/simple/hidden/fuel{icon_state = "intact-fuel"; dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 6},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 6},/turf/simulated/floor/plating,/area/ship/mercenary/engine1)
+"ak" = (/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{icon_state = "map-fuel"; dir = 1},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/machinery/atmospherics/unary/vent_pump/on{dir = 8},/turf/simulated/floor/plating,/area/ship/mercenary/engine1)
+"al" = (/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{icon_state = "map-fuel"; dir = 1},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/plating,/area/ship/mercenary/engine1)
+"am" = (/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,/obj/machinery/atmospherics/pipe/manifold/hidden/supply,/obj/structure/cable{icon_state = "4-8"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineering)
+"an" = (/obj/machinery/atmospherics/pipe/simple/hidden/fuel{icon_state = "intact-fuel"; dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 5},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 5},/turf/simulated/floor/plating,/area/ship/mercenary/engine)
+"ao" = (/obj/machinery/shipsensors{dir = 1},/turf/simulated/floor/plating/external,/area/ship/mercenary/bridge)
+"ap" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/turf/simulated/floor,/area/ship/mercenary/bridge)
+"aq" = (/obj/structure/cable,/turf/space,/area/space)
+"ar" = (/obj/machinery/door/airlock/hatch{name = "Secure Airtight Hatch"; req_one_access = list(150)},/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hangar)
+"as" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/air)
+"at" = (/obj/machinery/door/airlock/hatch{name = "Secure Airtight Hatch"; req_one_access = list(150)},/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"au" = (/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"av" = (/obj/machinery/atmospherics/unary/engine{icon_state = "nozzle"; dir = 4},/turf/simulated/floor/plating,/area/ship/mercenary/engine1)
+"aw" = (/obj/machinery/atmospherics/pipe/simple/hidden/fuel{icon_state = "intact-fuel"; dir = 4},/turf/simulated/floor/plating,/area/ship/mercenary/engine1)
+"ax" = (/obj/machinery/atmospherics/pipe/simple/hidden/fuel{icon_state = "intact-fuel"; dir = 4},/turf/simulated/wall/rshull,/area/ship/mercenary/engine1)
+"ay" = (/obj/machinery/atmospherics/pipe/simple/hidden/fuel{icon_state = "intact-fuel"; dir = 10},/obj/machinery/atmospherics/unary/vent_scrubber/on{icon_state = "map_scrubber_on"; dir = 8},/turf/simulated/floor/plating,/area/ship/mercenary/engine1)
+"az" = (/obj/machinery/atmospherics/pipe/manifold/hidden/fuel,/obj/machinery/atmospherics/unary/vent_pump/on{dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/plating,/area/ship/mercenary/engine)
+"aA" = (/obj/machinery/atmospherics/pipe/manifold/hidden/fuel,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/plating,/area/ship/mercenary/engine)
+"aB" = (/obj/machinery/atmospherics/pipe/simple/hidden/fuel{icon_state = "intact-fuel"; dir = 9},/obj/machinery/atmospherics/unary/vent_scrubber/on{icon_state = "map_scrubber_on"; dir = 8},/turf/simulated/floor/plating,/area/ship/mercenary/engine)
+"aC" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"aD" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/fuel{icon_state = "intact-fuel"; dir = 4},/turf/simulated/floor/plating,/area/ship/mercenary/engine1)
+"aE" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"aF" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"aG" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"aH" = (/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/space,/area/space)
+"aI" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/air)
+"aJ" = (/obj/structure/cable{icon_state = "1-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 9; pixel_y = 0},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 9},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+>>>>>>> PROGRESS
 "aK" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/space,/area/space)
 "aL" = (/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/space,/area/space)
 "aM" = (/obj/structure/cable{icon_state = "0-8"},/turf/space,/area/space)
 "aN" = (/obj/structure/cable{icon_state = "1-4"},/obj/structure/cable{icon_state = "1-8"},/turf/space,/area/space)
 "aO" = (/obj/structure/cable{icon_state = "4-8"},/turf/space,/area/space)
 "aP" = (/obj/structure/cable{icon_state = "1-2"},/turf/space,/area/space)
+<<<<<<< refs/remotes/VOREStation/master
 "bx" = (/obj/machinery/power/tracker{id = "syndsol"},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor/plating,/area/mercbase/panels)
 "cQ" = (/obj/machinery/power/solar,/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/simulated/floor/plating,/area/mercbase/panels)
 "de" = (/obj/machinery/firealarm{dir = 2; layer = 3.3; pixel_x = 0; pixel_y = 32},/turf/simulated/floor/tiled/dark,/area/mercbase/dock)
 "dD" = (/obj/structure/cable{icon_state = "4-8"},/turf/simulated/floor/tiled/dark,/area/mercbase/command)
 "fq" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/tiled/dark,/area/mercbase/barracks)
+=======
+"aQ" = (/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"aR" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 10},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"aS" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/structure/table/standard,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"aT" = (/obj/machinery/atmospherics/pipe/tank/air,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/atmos)
+"aU" = (/obj/machinery/atmospherics/binary/pump,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/atmos)
+"aV" = (/turf/simulated/floor/tiled/dark,/area/ship/mercenary/fighter)
+"aW" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/fighter)
+"aX" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 6},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 6},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/fighter)
+"aY" = (/obj/machinery/atmospherics/pipe/simple/hidden/black,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/atmos)
+"aZ" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/fighter)
+"ba" = (/obj/structure/cable{icon_state = "1-4"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 6},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 6},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/atmos)
+"bb" = (/obj/structure/closet/firecloset,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"bc" = (/obj/machinery/door/airlock/glass{name = "Secure Glass Airlock"; req_one_access = list(150)},/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"bd" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/atmos)
+"be" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 5},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/atmos)
+"bf" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 9},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 5},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/atmos)
+"bg" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{icon_state = "map-fuel"; dir = 4},/turf/simulated/floor/plating,/area/ship/mercenary/engine1)
+"bh" = (/obj/structure/cable{icon_state = "4-8"},/obj/structure/cable{icon_state = "1-4"},/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,/obj/machinery/atmospherics/pipe/manifold/hidden/supply{dir = 1},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"bi" = (/obj/machinery/meter,/obj/machinery/atmospherics/pipe/simple/hidden/fuel,/turf/simulated/floor/plating,/area/ship/mercenary/engine1)
+"bj" = (/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"bk" = (/obj/structure/closet/emcloset,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"bl" = (/turf/simulated/wall/rshull,/area/ship/mercenary/med)
+"bm" = (/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med)
+"bn" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 9; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/atmos)
+"bo" = (/turf/simulated/wall/rshull,/area/ship/mercenary/air)
+"bp" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"bq" = (/obj/machinery/power/apc{dir = 4; name = "east bump"; pixel_x = 32},/obj/machinery/power/terminal{icon_state = "term"; dir = 4},/obj/structure/cable{icon_state = "0-8"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/air)
+"br" = (/obj/structure/cable{icon_state = "1-4"},/obj/structure/cable{icon_state = "1-8"},/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,/obj/machinery/atmospherics/pipe/manifold/hidden/supply,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/armoury)
+"bs" = (/obj/structure/reagent_dispensers/watertank,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"bt" = (/obj/structure/reagent_dispensers/fueltank,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"bu" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"bv" = (/obj/machinery/door/airlock/glass{name = "Secure Glass Airlock"; req_one_access = list(150)},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"bw" = (/obj/effect/overmap/visitable/ship/mercship{fore_dir = 4},/turf/space,/area/space)
+"bx" = (/obj/machinery/power/tracker{id = "syndsol"},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor/plating,/area/mercbase/panels)
+"by" = (/obj/machinery/meter,/obj/machinery/atmospherics/pipe/simple/hidden/fuel,/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/plating,/area/ship/mercenary/engine1)
+"bz" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/armoury)
+"bA" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"bB" = (/obj/structure/table/reinforced,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"bC" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/structure/bed/chair/comfy/red{icon_state = "comfychair"; dir = 4},/obj/structure/window/reinforced{icon_state = "rwindow"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"bD" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/fuel{icon_state = "intact-fuel"; dir = 4},/turf/simulated/floor/plating,/area/ship/mercenary/engine1)
+"bE" = (/obj/machinery/power/apc{dir = 2; name = "south bump"; pixel_y = -32},/obj/machinery/power/terminal,/obj/structure/cable,/obj/machinery/atmospherics/pipe/simple/hidden/fuel{icon_state = "intact-fuel"; dir = 9},/turf/simulated/floor/plating,/area/ship/mercenary/engine1)
+"bF" = (/obj/machinery/atmospherics/binary/pump/fuel{icon_state = "map_off-fuel"; dir = 1},/turf/simulated/floor/plating,/area/ship/mercenary/engine1)
+"bG" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{icon_state = "map_scrubber_on"; dir = 8},/obj/structure/bed/chair/comfy/red{icon_state = "comfychair"; dir = 8},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"bH" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 10},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 10},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/armoury)
+"bI" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/armoury)
+"bJ" = (/turf/simulated/floor/tiled/dark,/area/ship/mercenary/armoury)
+"bK" = (/obj/structure/bed/chair/comfy/red{icon_state = "comfychair"; dir = 4},/obj/structure/window/reinforced{icon_state = "rwindow"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"bL" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/fighter)
+"bM" = (/obj/structure/cable{icon_state = "1-4"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/fighter)
+"bN" = (/obj/structure/cable{icon_state = "1-4"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"bO" = (/obj/structure/cable{icon_state = "1-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/fighter)
+"bP" = (/obj/structure/bed/chair/comfy/red{icon_state = "comfychair"; dir = 8},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"bQ" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"bR" = (/obj/structure/window/reinforced{icon_state = "rwindow"; dir = 8},/obj/structure/bed/chair/comfy/red{icon_state = "comfychair"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"bS" = (/obj/structure/bed/chair/comfy/red{icon_state = "comfychair"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"bT" = (/obj/machinery/light,/obj/structure/window/reinforced{icon_state = "rwindow"; dir = 8},/obj/structure/bed/chair/comfy/red{icon_state = "comfychair"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"bU" = (/turf/simulated/wall/rshull,/area/ship/mercenary/engineering)
+"bV" = (/obj/structure/cable{icon_state = "1-4"},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/armoury)
+"bW" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"bX" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{icon_state = "map-scrubbers"; dir = 4},/obj/machinery/atmospherics/pipe/manifold/hidden/supply{icon_state = "map-supply"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"bY" = (/obj/structure/bed/chair/bay/comfy/brown{icon_state = "bay_comfychair_preview"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"bZ" = (/obj/machinery/computer/ship/engines{dir = 8; throwpass = 1},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"ca" = (/obj/machinery/atmospherics/unary/vent_pump/on{icon_state = "map_vent_out"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"cb" = (/obj/machinery/light{icon_state = "tube1"; dir = 1},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"cc" = (/obj/machinery/atmospherics/unary/vent_pump/on{icon_state = "map_vent_out"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"cd" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 10},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 6},/obj/structure/bed/chair/bay/comfy/captain{icon_state = "capchair_preview"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"ce" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{icon_state = "map_scrubber_on"; dir = 8},/obj/structure/table/reinforced,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"cf" = (/obj/machinery/computer/ship/helm{icon_state = "computer"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"cg" = (/turf/simulated/wall/rshull,/area/ship/mercenary/hangar)
+"ch" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/door/airlock/hatch{name = "Secure Airtight Hatch"; req_one_access = list(150)},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med1)
+"ci" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{icon_state = "map_scrubber_on"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"cj" = (/turf/simulated/wall/rshull,/area/ship/mercenary/engineeringcntrl)
+"ck" = (/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineering)
+"cl" = (/obj/structure/closet/crate,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineeringcntrl)
+"cm" = (/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineeringcntrl)
+"cn" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med)
+"co" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"cp" = (/obj/structure/cable{icon_state = "1-8"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/armoury)
+"cq" = (/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med1)
+"cr" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"cs" = (/obj/structure/cable{icon_state = "1-4"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"ct" = (/turf/simulated/wall/rshull,/area/ship/mercenary/barracks)
+"cu" = (/obj/machinery/door/airlock/hatch{name = "Secure Airtight Hatch"; req_one_access = list(150)},/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med)
+"cv" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"cw" = (/obj/structure/cable{icon_state = "4-8"},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/structure/cable{icon_state = "1-4"},/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"cx" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/manifold/hidden/supply{icon_state = "map-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/air)
+"cy" = (/obj/machinery/computer/ship/navigation{icon_state = "computer"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"cz" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineeringcntrl)
+"cA" = (/obj/structure/cable{icon_state = "4-8"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"cB" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med)
+"cC" = (/obj/machinery/atmospherics/unary/vent_pump/on{icon_state = "map_vent_out"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/fighter)
+"cD" = (/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hangar)
+"cE" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 5},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 9; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/fighter)
+"cF" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 6},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 10},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med)
+"cG" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med)
+"cH" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{icon_state = "map_scrubber_on"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med)
+"cI" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{icon_state = "map_scrubber_on"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/fighter)
+"cJ" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/armoury)
+"cK" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{icon_state = "map-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/air)
+"cL" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{icon_state = "map_scrubber_on"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/air)
+"cM" = (/obj/machinery/door/airlock/hatch{name = "Secure Airtight Hatch"; req_one_access = list(150)},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hangar)
+"cN" = (/turf/simulated/wall/rshull,/area/ship/mercenary/atmos)
+"cO" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hangar)
+"cP" = (/obj/structure/cable{icon_state = "4-8"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineeringcntrl)
+"cQ" = (/obj/machinery/power/solar,/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/simulated/floor/plating,/area/mercbase/panels)
+"cR" = (/obj/machinery/power/apc{dir = 8; name = "west bump"; pixel_x = -32},/obj/machinery/power/terminal{dir = 8},/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineering)
+"cS" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"cT" = (/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"cU" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineering)
+"cV" = (/obj/machinery/atmospherics/unary/vent_pump/on{icon_state = "map_vent_out"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"cW" = (/obj/machinery/atmospherics/unary/vent_pump/on{icon_state = "map_vent_out"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineering)
+"cX" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 10},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 6},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineering)
+"cY" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{icon_state = "map_scrubber_on"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineering)
+"cZ" = (/obj/structure/table/steel_reinforced,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineering)
+"da" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/turf/simulated/floor,/area/ship/mercenary/engineeringcntrl)
+"db" = (/obj/structure/cable{icon_state = "1-4"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineeringcntrl)
+"dc" = (/obj/machinery/computer/ship/sensors{icon_state = "computer"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"dd" = (/obj/machinery/door/airlock/hatch{name = "Secure Airtight Hatch"; req_one_access = list(150)},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall2)
+"de" = (/obj/machinery/firealarm{dir = 2; layer = 3.3; pixel_x = 0; pixel_y = 32},/turf/simulated/floor/tiled/dark,/area/mercbase/dock)
+"df" = (/obj/structure/table/standard,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"dg" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"dh" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 10},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 6},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"di" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hangar)
+"dj" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/air)
+"dk" = (/obj/machinery/light,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"dl" = (/obj/machinery/door/airlock/hatch{name = "Secure Airtight Hatch"; req_one_access = list(150)},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"dm" = (/obj/structure/closet/secure_closet{req_one_access = list(150)},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{icon_state = "rwindow"; dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/machinery/door/window/brigdoor/southleft{req_access = newlist(); req_one_access = list(150)},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"dp" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"dr" = (/obj/machinery/power/apc{dir = 8; name = "west bump"; pixel_x = -32},/obj/machinery/power/terminal{dir = 8},/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"dt" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+"du" = (/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall2)
+"dv" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall2)
+"dw" = (/obj/machinery/door/airlock/glass{name = "Secure Glass Airlock"; req_one_access = list(150)},/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/air)
+"dx" = (/obj/machinery/door/airlock/glass{name = "Secure Glass Airlock"; req_one_access = list(150)},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/air)
+"dz" = (/obj/structure/cable{icon_state = "1-4"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hangar)
+"dA" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hangar)
+"dB" = (/turf/simulated/wall/rshull,/area/shuttle/mercboat)
+"dC" = (/turf/simulated/floor/tiled/dark,/area/shuttle/mercboat)
+"dD" = (/obj/structure/cable{icon_state = "4-8"},/turf/simulated/floor/tiled/dark,/area/mercbase/command)
+"dE" = (/obj/machinery/atmospherics/unary/vent_pump/on,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall2)
+"dF" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall2)
+"dG" = (/obj/structure/table/reinforced,/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/bridge)
+"dI" = (/obj/machinery/door/airlock/hatch{name = "Secure Airtight Hatch"; req_one_access = list(150)},/obj/structure/fans/hardlight,/turf/simulated/floor/tiled/dark,/area/shuttle/mercboat)
+"dJ" = (/obj/structure/bed/chair/backed_red{icon_state = "onestar_chair_red"; dir = 1},/turf/simulated/floor/tiled/dark,/area/shuttle/mercboat)
+"dK" = (/obj/structure/bed/chair/backed_red{icon_state = "onestar_chair_red"; dir = 4},/turf/simulated/floor/tiled/dark,/area/shuttle/mercboat)
+"dL" = (/obj/structure/bed/chair/backed_red{icon_state = "onestar_chair_red"; dir = 8},/turf/simulated/floor/tiled/dark,/area/shuttle/mercboat)
+"dM" = (/obj/structure/closet/crate/freezer/rations,/turf/simulated/floor/tiled/dark,/area/shuttle/mercboat)
+"dN" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall1)
+"dP" = (/obj/machinery/door/airlock/hatch{name = "Secure Airtight Hatch"; req_one_access = list(150)},/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hangar)
+"dQ" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall2)
+"dR" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/structure/cable{icon_state = "1-4"},/obj/structure/cable{icon_state = "1-8"},/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall2)
+"dS" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/manifold/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall2)
+"dT" = (/obj/structure/cable{icon_state = "4-8"},/obj/structure/cable{icon_state = "1-4"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall2)
+"dU" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall2)
+"dY" = (/turf/simulated/wall/rshull,/area/ship/mercenary/engine)
+"dZ" = (/obj/machinery/atmospherics/portables_connector/fuel{icon_state = "map_connector-fuel"; dir = 1},/turf/simulated/floor/plating,/area/ship/mercenary/engine1)
+"eb" = (/obj/machinery/atmospherics/unary/engine{icon_state = "nozzle"; dir = 4},/turf/simulated/floor/plating,/area/ship/mercenary/engine)
+"ec" = (/obj/machinery/atmospherics/pipe/simple/hidden/fuel{icon_state = "intact-fuel"; dir = 4},/turf/simulated/floor/plating,/area/ship/mercenary/engine)
+"ed" = (/obj/machinery/atmospherics/pipe/simple/hidden/fuel{icon_state = "intact-fuel"; dir = 4},/turf/simulated/wall/rshull,/area/ship/mercenary/engine)
+"ee" = (/obj/machinery/atmospherics/portables_connector/fuel,/turf/simulated/floor/plating,/area/ship/mercenary/engine)
+"ef" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/fuel{icon_state = "intact-fuel"; dir = 4},/turf/simulated/floor/plating,/area/ship/mercenary/engine)
+"eg" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/obj/machinery/atmospherics/pipe/simple/hidden/fuel{icon_state = "intact-fuel"; dir = 10},/turf/simulated/floor/plating,/area/ship/mercenary/engine)
+"eh" = (/obj/machinery/atmospherics/binary/pump/fuel,/turf/simulated/floor/plating,/area/ship/mercenary/engine)
+"ei" = (/obj/structure/cable{icon_state = "1-4"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/fuel{icon_state = "intact-fuel"; dir = 4},/turf/simulated/floor/plating,/area/ship/mercenary/engine)
+"ej" = (/obj/structure/cable{icon_state = "1-8"},/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{icon_state = "map-fuel"; dir = 4},/turf/simulated/floor/plating,/area/ship/mercenary/engine)
+"ek" = (/obj/machinery/meter,/obj/machinery/atmospherics/pipe/simple/hidden/fuel,/turf/simulated/floor/plating,/area/ship/mercenary/engine)
+"el" = (/obj/machinery/meter,/obj/machinery/atmospherics/pipe/simple/hidden/fuel,/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/plating,/area/ship/mercenary/engine)
+"et" = (/obj/machinery/door/airlock/hatch{name = "Secure Airtight Hatch"; req_one_access = list(150)},/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall2)
+"ey" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/atmos)
+"eA" = (/obj/machinery/atmospherics/binary/pump{icon_state = "map_off"; dir = 1},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/atmos)
+"eB" = (/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/atmos)
+"eI" = (/obj/machinery/atmospherics/pipe/simple/hidden/universal,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/atmos)
+"eO" = (/turf/simulated/wall/rshull,/area/ship/mercenary/hall1)
+"eP" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med)
+"eQ" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med1)
+"eR" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{icon_state = "map_scrubber_on"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med1)
+"eS" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 6},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 10},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med1)
+"eT" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med1)
+"eU" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med)
+"eV" = (/obj/machinery/door/airlock/hatch{name = "Secure Airtight Hatch"; req_one_access = list(150)},/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/armoury)
+"eW" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{dir = 1},/obj/machinery/atmospherics/pipe/manifold/hidden/supply{dir = 1},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med)
+"eX" = (/obj/structure/cable{icon_state = "1-8"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 9},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 9; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med)
+"eY" = (/obj/machinery/door/airlock/hatch{name = "Secure Airtight Hatch"; req_one_access = list(150)},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/fighter)
+"eZ" = (/obj/structure/cable{icon_state = "1-2"},/obj/structure/cable{icon_state = "1-8"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineeringcntrl)
+"fa" = (/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineeringcntrl)
+"fb" = (/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{icon_state = "0-8"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineeringcntrl)
+"fc" = (/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineering)
+"fd" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineering)
+"fe" = (/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineeringcntrl)
+"fg" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/door/airlock/hatch{name = "Secure Airtight Hatch"; req_one_access = list(150)},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/armoury)
+"fh" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineering)
+"fi" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/structure/cable{icon_state = "4-8"},/obj/structure/cable{icon_state = "1-4"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineering)
+"fj" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/structure/cable{icon_state = "4-8"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineering)
+"fl" = (/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineeringcntrl)
+"fn" = (/obj/machinery/atmospherics/unary/vent_scrubber/on,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineeringcntrl)
+"fq" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/tiled/dark,/area/mercbase/barracks)
+"fr" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineeringcntrl)
+"fs" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 9},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineeringcntrl)
+"ft" = (/obj/structure/cable{icon_state = "1-8"},/obj/machinery/atmospherics/unary/vent_pump/on{dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineeringcntrl)
+"fu" = (/obj/machinery/portable_atmospherics/canister/phoron,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineering)
+"fw" = (/obj/machinery/atmospherics/unary/vent_pump/on{icon_state = "map_vent_out"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/armoury)
+"fx" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 9; pixel_y = 0},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 5},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/armoury)
+"fy" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/armoury)
+"fz" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{icon_state = "map_scrubber_on"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/armoury)
+"fB" = (/obj/structure/cable{icon_state = "1-4"},/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,/obj/machinery/atmospherics/pipe/manifold/hidden/supply,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/air)
+"fI" = (/obj/structure/cable{icon_state = "1-4"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 5},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 5},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med1)
+"fJ" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med1)
+>>>>>>> PROGRESS
 "fK" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/simulated/floor/tiled/dark,/area/mercbase/power)
 "fM" = (/turf/simulated/mineral/floor,/area/mercbase/roid)
 "fN" = (/turf/simulated/mineral,/area/mercbase/roid)
@@ -43,6 +292,10 @@
 "fS" = (/turf/simulated/floor/tiled/dark,/area/mercbase/command)
 "fT" = (/turf/simulated/wall/r_wall,/area/mercbase/barracks)
 "fU" = (/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
+<<<<<<< refs/remotes/VOREStation/master
+=======
+"fV" = (/obj/structure/closet/crate,/turf/simulated/floor/tiled/dark,/area/shuttle/mercboat)
+>>>>>>> PROGRESS
 "fW" = (/turf/simulated/floor/tiled/dark,/area/mercbase/barracks)
 "fX" = (/obj/machinery/atmospherics/pipe/tank/air,/turf/simulated/floor,/area/mercbase/atmos)
 "fY" = (/obj/machinery/alarm{dir = 4; icon_state = "alarm0"; pixel_x = -22; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/mercbase/command)
@@ -117,11 +370,22 @@
 "hq" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/dark,/area/mercbase/command)
 "hr" = (/obj/structure/cable{icon_state = "4-8"},/obj/structure/dispenser/oxygen,/turf/simulated/floor/tiled/dark,/area/mercbase/eqroom)
 "hs" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/suit_cycler/syndicate,/turf/simulated/floor/tiled/dark,/area/mercbase/eqroom)
+<<<<<<< refs/remotes/VOREStation/master
 "hu" = (/obj/machinery/atmospherics/portables_connector/aux,/obj/machinery/portable_atmospherics/canister/air/airlock,/turf/simulated/floor/plating,/area/mercbase/airlock)
 "hv" = (/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{icon_state = "map-scrubbers"; dir = 4},/obj/machinery/atmospherics/pipe/manifold/hidden/supply{icon_state = "map-supply"; dir = 4},/obj/structure/cable{icon_state = "1-2"},/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
 "hw" = (/obj/machinery/atmospherics/pipe/simple/hidden/aux{icon_state = "intact-aux"; dir = 8},/turf/simulated/floor,/area/mercbase/airlock)
 "hy" = (/obj/machinery/atmospherics/pipe/manifold/hidden/supply{icon_state = "map-supply"; dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/aux,/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
 "hz" = (/obj/machinery/atmospherics/pipe/simple/hidden/aux,/turf/simulated/floor,/area/mercbase/airlock)
+=======
+"ht" = (/obj/machinery/atmospherics/portables_connector/aux,/obj/machinery/portable_atmospherics/canister/air/airlock,/turf/simulated/floor,/area/mercbase/airlock)
+"hu" = (/obj/machinery/atmospherics/portables_connector/aux,/obj/machinery/portable_atmospherics/canister/air/airlock,/turf/simulated/floor/plating,/area/mercbase/airlock)
+"hv" = (/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{icon_state = "map-scrubbers"; dir = 4},/obj/machinery/atmospherics/pipe/manifold/hidden/supply{icon_state = "map-supply"; dir = 4},/obj/structure/cable{icon_state = "1-2"},/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
+"hw" = (/obj/machinery/atmospherics/pipe/simple/hidden/aux{icon_state = "intact-aux"; dir = 8},/turf/simulated/floor,/area/mercbase/airlock)
+"hx" = (/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor,/area/mercbase/airlock)
+"hy" = (/obj/machinery/atmospherics/pipe/manifold/hidden/supply{icon_state = "map-supply"; dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/aux,/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
+"hz" = (/obj/machinery/atmospherics/pipe/simple/hidden/aux,/turf/simulated/floor,/area/mercbase/airlock)
+"hA" = (/obj/machinery/atmospherics/unary/vent_scrubber/on,/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor,/area/mercbase/airlock)
+>>>>>>> PROGRESS
 "hB" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 6},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 6},/obj/machinery/atmospherics/pipe/simple/hidden/aux{icon_state = "intact-aux"; dir = 10},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
 "hC" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 5},/turf/simulated/floor/tiled/dark,/area/mercbase/command)
 "hD" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/turf/simulated/floor/tiled/dark,/area/mercbase/command)
@@ -149,6 +413,10 @@
 "hZ" = (/obj/machinery/atmospherics/pipe/simple/hidden/aux{icon_state = "intact-aux"; dir = 9},/turf/simulated/floor/plating,/area/mercbase/airlock)
 "ia" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{icon_state = "map-scrubbers"; dir = 4},/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor/tiled/dark,/area/mercbase/medical)
 "ib" = (/obj/machinery/atmospherics/pipe/manifold/hidden/supply{icon_state = "map-supply"; dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
+<<<<<<< refs/remotes/VOREStation/master
+=======
+"ic" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 5},/obj/structure/cable{icon_state = "1-4"},/turf/simulated/floor,/area/mercbase/airlock)
+>>>>>>> PROGRESS
 "id" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/structure/closet/hydrant{pixel_w = -32},/turf/simulated/floor,/area/mercbase/airlock)
 "ie" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/aux{icon_state = "intact-aux"; dir = 5},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/structure/cable{icon_state = "4-8"},/turf/simulated/floor,/area/mercbase/airlock)
 "if" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/aux,/obj/structure/cable{icon_state = "1-2"},/obj/machinery/door/airlock/atmos{name = "Modified Atmospherics Airlock"; req_one_access = list(150)},/turf/simulated/floor/tiled/dark,/area/mercbase/airlock)
@@ -163,10 +431,23 @@
 "io" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/tiled/dark,/area/mercbase/power)
 "ip" = (/obj/structure/cable{icon_state = "1-8"},/turf/simulated/floor/tiled/dark,/area/mercbase/power)
 "iq" = (/obj/structure/cable{icon_state = "4-8"},/turf/simulated/floor/tiled/dark,/area/mercbase/medicalstorage)
+<<<<<<< refs/remotes/VOREStation/master
 "is" = (/obj/machinery/power/apc{dir = 2; name = "south bump"; pixel_y = -32},/obj/machinery/power/terminal,/obj/structure/cable,/turf/simulated/floor/tiled/dark,/area/mercbase/barracks)
 "iw" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor/tiled/dark,/area/mercbase/solar)
 "ix" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 6},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 10},/turf/simulated/floor/tiled/dark,/area/mercbase/power)
 "iy" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/machinery/door/airlock/glass_security{name = "Modified Security Airlock"; req_one_access = list(150)},/obj/structure/cable{icon_state = "4-8"},/obj/machinery/door/firedoor,/turf/simulated/floor/tiled/dark,/area/mercbase/command)
+=======
+"ir" = (/obj/machinery/atmospherics/pipe/simple/hidden/aux,/turf/simulated/floor/plating,/area/mercbase/airlock)
+"is" = (/obj/machinery/power/apc{dir = 2; name = "south bump"; pixel_y = -32},/obj/machinery/power/terminal,/obj/structure/cable,/turf/simulated/floor/tiled/dark,/area/mercbase/barracks)
+"it" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 9; pixel_y = 0},/obj/machinery/atmospherics/pipe/simple/hidden/aux{icon_state = "intact-aux"; dir = 8},/turf/simulated/floor/tiled/dark,/area/mercbase/airlock)
+"iu" = (/obj/machinery/door/airlock/hatch{name = "Secure Airtight Hatch"; req_one_access = list(150)},/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/atmos)
+"iv" = (/obj/machinery/door/airlock/hatch{name = "Secure Airtight Hatch"; req_one_access = list(150)},/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineering)
+"iw" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor/tiled/dark,/area/mercbase/solar)
+"ix" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 6},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 10},/turf/simulated/floor/tiled/dark,/area/mercbase/power)
+"iy" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/machinery/door/airlock/glass_security{name = "Modified Security Airlock"; req_one_access = list(150)},/obj/structure/cable{icon_state = "4-8"},/obj/machinery/door/firedoor,/turf/simulated/floor/tiled/dark,/area/mercbase/command)
+"iz" = (/obj/machinery/atmospherics/unary/vent_pump/aux,/turf/simulated/floor,/area/mercbase/airlock)
+"iA" = (/obj/machinery/atmospherics/unary/vent_pump/aux,/turf/simulated/floor/plating,/area/mercbase/airlock)
+>>>>>>> PROGRESS
 "iB" = (/obj/machinery/atmospherics/unary/vent_pump/on{icon_state = "map_vent_out"; dir = 1},/turf/simulated/floor/tiled/dark,/area/mercbase/command)
 "iC" = (/obj/machinery/atmospherics/unary/vent_pump/on,/turf/simulated/floor/tiled/dark,/area/mercbase/barracks)
 "iD" = (/obj/machinery/atmospherics/unary/vent_scrubber/on,/turf/simulated/floor/tiled/dark,/area/mercbase/barracks)
@@ -185,6 +466,10 @@
 "iQ" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 8},/turf/simulated/floor/tiled/dark,/area/mercbase/medicalstorage)
 "iR" = (/obj/machinery/atmospherics/unary/vent_pump/on,/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
 "iS" = (/obj/machinery/atmospherics/unary/vent_scrubber/on,/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
+<<<<<<< refs/remotes/VOREStation/master
+=======
+"iT" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{icon_state = "map_scrubber_on"; dir = 8},/obj/machinery/light{icon_state = "tube1"; dir = 1},/turf/simulated/floor/tiled/dark,/area/mercbase/airlock)
+>>>>>>> PROGRESS
 "iU" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/structure/cable{icon_state = "1-4"},/obj/structure/closet/hydrant{pixel_w = -32},/turf/simulated/floor,/area/mercbase/atmos)
 "iV" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/dark,/area/mercbase/command)
 "iW" = (/obj/machinery/atmospherics/unary/vent_pump/on,/turf/simulated/floor,/area/mercbase/airlock)
@@ -210,6 +495,10 @@
 "jq" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,/obj/structure/cable{icon_state = "4-8"},/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
 "jr" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 9; pixel_y = 0},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 9},/obj/structure/cable{icon_state = "1-8"},/turf/simulated/floor/tiled/dark,/area/mercbase/medical)
 "js" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/structure/cable{icon_state = "4-8"},/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
+<<<<<<< refs/remotes/VOREStation/master
+=======
+"jt" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor,/area/mercbase/airlock)
+>>>>>>> PROGRESS
 "ju" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{icon_state = "map_scrubber_on"; dir = 1},/turf/simulated/floor,/area/mercbase/fuel)
 "jw" = (/obj/machinery/power/solar,/obj/structure/cable{icon_state = "0-8"},/turf/simulated/floor/plating,/area/mercbase/panels)
 "jx" = (/obj/machinery/power/solar,/obj/structure/cable{icon_state = "0-4"; d2 = 4},/obj/structure/cable{icon_state = "4-8"},/turf/simulated/floor/plating,/area/mercbase/panels)
@@ -218,6 +507,10 @@
 "jA" = (/obj/machinery/power/solar_control/config_start{dir = 8; icon_state = "solar"; id = "syndsol"},/turf/simulated/floor/tiled/dark,/area/mercbase/solar)
 "jB" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor/tiled/dark,/area/mercbase/engineering)
 "jC" = (/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor/tiled/dark,/area/mercbase/engineering)
+<<<<<<< refs/remotes/VOREStation/master
+=======
+"jD" = (/obj/structure/cable{icon_state = "0-8"},/obj/machinery/power/smes,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineeringcntrl)
+>>>>>>> PROGRESS
 "jE" = (/obj/structure/cable{icon_state = "4-8"},/turf/simulated/floor/plating,/area/mercbase/roid)
 "jF" = (/obj/structure/cable{icon_state = "4-8"},/turf/simulated/floor/plating,/area/mercbase/panels)
 "jG" = (/obj/structure/cable{icon_state = "1-4"},/obj/structure/cable{icon_state = "1-8"},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/plating,/area/mercbase/panels)
@@ -228,6 +521,10 @@
 "jL" = (/obj/structure/cable{icon_state = "1-4"},/obj/structure/cable{icon_state = "1-8"},/turf/simulated/floor/plating,/area/mercbase/panels)
 "jM" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/turf/simulated/floor,/area/mercbase/atmos)
 "jN" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 6},/obj/structure/cable{icon_state = "4-8"},/obj/machinery/recharger/wallcharger{pixel_x = 1; pixel_y = 25},/turf/simulated/floor/tiled/dark,/area/mercbase/eqroom)
+<<<<<<< refs/remotes/VOREStation/master
+=======
+"jO" = (/obj/machinery/door/airlock/hatch{name = "Secure Airtight Hatch"; req_one_access = list(150)},/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineeringcntrl)
+>>>>>>> PROGRESS
 "jP" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/door/airlock/security{name = "Modified Security Airlock"; req_one_access = list(150)},/obj/structure/cable{icon_state = "1-2"},/obj/machinery/door/firedoor,/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
 "jQ" = (/obj/machinery/sleeper{dir = 8},/turf/simulated/floor/tiled/dark,/area/mercbase/medical)
 "jS" = (/obj/machinery/atmospherics/unary/vent_pump/on{icon_state = "map_vent_out"; dir = 4},/obj/structure/cable{icon_state = "1-4"},/turf/simulated/floor,/area/mercbase/fuel)
@@ -257,6 +554,13 @@
 "kq" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/structure/cable{icon_state = "4-8"},/obj/structure/cable{icon_state = "1-4"},/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
 "kr" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 10},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 10},/obj/machinery/atmospherics/pipe/simple/hidden/aux{icon_state = "intact-aux"; dir = 6},/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
 "ks" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/door/airlock/security{name = "Modified Security Airlock"; req_one_access = list(150)},/obj/structure/cable{icon_state = "4-8"},/obj/machinery/door/firedoor,/turf/simulated/floor/tiled/dark,/area/mercbase/barracks)
+<<<<<<< refs/remotes/VOREStation/master
+=======
+"kt" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 5},/obj/machinery/atmospherics/pipe/simple/hidden/aux,/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor/tiled/dark,/area/mercbase/airlock)
+"ku" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/aux,/obj/structure/cable{icon_state = "1-4"},/turf/simulated/floor/tiled/dark,/area/mercbase/airlock)
+"kv" = (/obj/machinery/atmospherics/unary/vent_pump/on,/obj/structure/cable{icon_state = "4-8"},/turf/simulated/floor/tiled/dark,/area/mercbase/airlock)
+"kw" = (/obj/structure/cable{icon_state = "1-8"},/turf/simulated/floor/plating,/area/mercbase/airlock)
+>>>>>>> PROGRESS
 "kx" = (/obj/structure/cable{icon_state = "4-8"},/turf/simulated/floor,/area/mercbase/atmos)
 "ky" = (/obj/machinery/atmospherics/unary/vent_pump/on,/obj/structure/cable{icon_state = "4-8"},/turf/simulated/floor,/area/mercbase/atmos)
 "kz" = (/obj/structure/cable{icon_state = "1-8"},/turf/simulated/floor,/area/mercbase/atmos)
@@ -286,6 +590,23 @@
 "kX" = (/obj/machinery/atmospherics/portables_connector/fuel,/obj/machinery/light{icon_state = "tube1"; dir = 1},/obj/machinery/firealarm{dir = 2; layer = 3.3; pixel_x = 0; pixel_y = 32},/turf/simulated/floor,/area/mercbase/fuel)
 "kY" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/machinery/light,/turf/simulated/floor,/area/mercbase/atmos)
 "kZ" = (/obj/machinery/atmospherics/pipe/simple/hidden/black{icon_state = "intact"; dir = 8},/obj/machinery/meter,/obj/machinery/light,/turf/simulated/floor,/area/mercbase/atmos)
+<<<<<<< refs/remotes/VOREStation/master
+=======
+"lb" = (/obj/machinery/atmospherics/unary/vent_pump/on{icon_state = "map_vent_out"; dir = 4},/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med)
+"lc" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med)
+"ld" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/embedded_controller/radio/simple_docking_controller{pixel_x = 27; pixel_y = -4; id_tag = "merc_boatbay"},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hangar)
+"le" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/med1)
+"lg" = (/obj/structure/cable{icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hangar)
+"li" = (/obj/machinery/light{icon_state = "tube1"; dir = 1},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall2)
+"lj" = (/obj/machinery/atmospherics/unary/vent_scrubber/on,/obj/machinery/light{icon_state = "tube1"; dir = 1},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall2)
+"ll" = (/obj/structure/cable{icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/machinery/light,/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hall2)
+"lm" = (/obj/machinery/atmospherics/portables_connector,/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/atmos)
+"lo" = (/obj/machinery/light{icon_state = "tube1"; dir = 1},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineering)
+"lp" = (/obj/structure/closet/crate,/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/engineeringcntrl)
+"lq" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/fighter)
+"lr" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/armoury)
+"ls" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/armoury)
+>>>>>>> PROGRESS
 "lB" = (/obj/machinery/alarm{dir = 8; pixel_x = 22; pixel_y = 0},/obj/machinery/firealarm{dir = 2; layer = 3.3; pixel_x = 0; pixel_y = 32},/obj/structure/closet/secure_closet/chemical{req_access = list(150)},/turf/simulated/floor/tiled/dark,/area/mercbase/medicalstorage)
 "lC" = (/obj/machinery/power/apc{dir = 2; name = "south bump"; pixel_y = -32},/obj/machinery/power/terminal,/obj/structure/cable,/obj/structure/table/reinforced,/obj/item/device/healthanalyzer/advanced,/turf/simulated/floor/tiled/dark,/area/mercbase/medical)
 "lD" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/structure/cable{icon_state = "4-8"},/obj/machinery/alarm{dir = 1; pixel_y = -25},/turf/simulated/floor/tiled/dark,/area/mercbase/medical)
@@ -293,6 +614,10 @@
 "lF" = (/obj/machinery/alarm{dir = 4; icon_state = "alarm0"; pixel_x = -22; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
 "lG" = (/obj/machinery/alarm{dir = 4; icon_state = "alarm0"; pixel_x = -22; pixel_y = 0},/turf/simulated/floor,/area/mercbase/airlock)
 "lH" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 5},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/alarm{dir = 4; icon_state = "alarm0"; pixel_x = -22; pixel_y = 0},/turf/simulated/floor,/area/mercbase/atmos)
+<<<<<<< refs/remotes/VOREStation/master
+=======
+"lI" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 5},/obj/machinery/atmospherics/pipe/simple/hidden/aux{icon_state = "intact-aux"; dir = 5},/obj/machinery/alarm{dir = 4; icon_state = "alarm0"; pixel_x = -22; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/mercbase/airlock)
+>>>>>>> PROGRESS
 "lJ" = (/obj/machinery/atmospherics/pipe/simple/hidden/fuel{icon_state = "intact-fuel"; dir = 5},/obj/machinery/alarm{dir = 4; icon_state = "alarm0"; pixel_x = -22; pixel_y = 0},/turf/simulated/floor,/area/mercbase/fuel)
 "lK" = (/obj/structure/bed/padded,/turf/simulated/floor/tiled/dark,/area/mercbase/barracks)
 "lL" = (/obj/machinery/light{icon_state = "tube1"; dir = 1},/obj/structure/bed/padded,/turf/simulated/floor/tiled/dark,/area/mercbase/barracks)
@@ -316,7 +641,18 @@
 "md" = (/obj/structure/table/reinforced,/turf/simulated/floor/tiled/dark,/area/mercbase/solar)
 "me" = (/obj/structure/table/reinforced,/turf/simulated/floor/tiled/dark,/area/mercbase/engineering)
 "mf" = (/obj/machinery/light{icon_state = "tube1"; dir = 1},/obj/structure/table/reinforced,/turf/simulated/floor/tiled/dark,/area/mercbase/engineering)
+<<<<<<< refs/remotes/VOREStation/master
 "mm" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{icon_state = "map_scrubber_on"; dir = 8},/turf/simulated/floor/tiled/dark,/area/mercbase/dock)
+=======
+"mg" = (/obj/structure/shuttle/engine/propulsion/burst/left,/turf/simulated/floor/plating,/area/shuttle/mercboat)
+"mh" = (/obj/structure/shuttle/engine/propulsion/burst/right,/turf/simulated/floor/plating,/area/shuttle/mercboat)
+"mi" = (/obj/machinery/computer/shuttle_control/explore/mercboat,/turf/simulated/floor/tiled/dark,/area/shuttle/mercboat)
+"mk" = (/obj/structure/table/reinforced,/obj/machinery/button/remote/blast_door{id = "mercboatshutters"},/turf/simulated/floor/tiled/dark,/area/shuttle/mercboat)
+"ml" = (/obj/effect/shuttle_landmark/shuttle_initializer/mercboat,/turf/simulated/floor/tiled/dark,/area/shuttle/mercboat)
+"mm" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{icon_state = "map_scrubber_on"; dir = 8},/turf/simulated/floor/tiled/dark,/area/mercbase/dock)
+"mn" = (/obj/effect/shuttle_landmark{base_area = /area/space; base_turf = /turf/space; landmark_tag = "carrier_fore"; name = "fore of the base"},/turf/space,/area/space)
+"mo" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/structure/cable{icon_state = "1-4"},/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{icon_state = "map-scrubbers"; dir = 8},/obj/machinery/atmospherics/pipe/manifold/hidden/supply{icon_state = "map-supply"; dir = 8},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/hangar)
+>>>>>>> PROGRESS
 "mp" = (/turf/simulated/wall/r_wall,/area/mercbase/dock)
 "mq" = (/turf/simulated/floor/tiled/dark,/area/mercbase/dock)
 "mr" = (/turf/simulated/floor/plating,/area/mercbase/dock)
@@ -324,6 +660,10 @@
 "mt" = (/obj/machinery/power/apc{dir = 8; name = "west bump"; pixel_x = -32},/obj/machinery/power/terminal{dir = 8},/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/simulated/floor/tiled/dark,/area/mercbase/dock)
 "mu" = (/turf/simulated/floor/tiled/dark,/area/mercbase/roid)
 "mv" = (/turf/simulated/wall/r_wall,/area/mercbase/roid)
+<<<<<<< refs/remotes/VOREStation/master
+=======
+"mw" = (/turf/simulated/mineral/floor,/area/space)
+>>>>>>> PROGRESS
 "mx" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/turf/simulated/floor/plating,/area/mercbase/roid)
 "my" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor/tiled/dark,/area/mercbase/dock)
 "mz" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/structure/cable{icon_state = "4-8"},/turf/simulated/floor/tiled/dark,/area/mercbase/command)
@@ -402,6 +742,11 @@
 "nU" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/door/airlock/glass{name = "Secure Glass Airlock"; req_one_access = list(150)},/obj/structure/cable{icon_state = "1-2"},/obj/machinery/door/firedoor,/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
 "nV" = (/obj/machinery/light{dir = 8; icon_state = "tube1"; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/mercbase/dock)
 "nW" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/dark,/area/mercbase/dock)
+<<<<<<< refs/remotes/VOREStation/master
+=======
+"nX" = (/obj/machinery/light{dir = 8; icon_state = "tube1"; pixel_y = 0},/turf/simulated/floor/tiled/dark,/area/shuttle/mercboat)
+"nY" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/dark,/area/shuttle/mercboat)
+>>>>>>> PROGRESS
 "nZ" = (/obj/structure/closet/secure_closet/medical1{req_access = list(150)},/turf/simulated/floor/tiled/dark,/area/mercbase/medical)
 "oa" = (/obj/structure/table/reinforced,/turf/simulated/floor/tiled/dark,/area/mercbase/medicalstorage)
 "ob" = (/obj/machinery/chem_master,/turf/simulated/floor/tiled/dark,/area/mercbase/medicalstorage)
@@ -430,6 +775,10 @@
 "oy" = (/obj/structure/table/standard,/obj/item/pizzabox/meat,/turf/simulated/floor/tiled/dark,/area/mercbase/roid)
 "oz" = (/obj/structure/table/standard,/obj/item/pizzabox/vegetable,/turf/simulated/floor/tiled/dark,/area/mercbase/roid)
 "oA" = (/obj/structure/table/standard,/obj/item/pizzabox/mushroom,/turf/simulated/floor/tiled/dark,/area/mercbase/roid)
+<<<<<<< refs/remotes/VOREStation/master
+=======
+"oB" = (/obj/machinery/light{icon_state = "tube1"; dir = 1},/obj/structure/closet/secure_closet{req_one_access = list(150)},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{icon_state = "rwindow"; dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/machinery/door/window/brigdoor/southleft{req_access = newlist(); req_one_access = list(150)},/turf/simulated/floor/tiled/dark,/area/ship/mercenary/barracks)
+>>>>>>> PROGRESS
 "oJ" = (/obj/machinery/firealarm{dir = 2; layer = 3.3; pixel_x = 0; pixel_y = 32},/turf/simulated/floor/tiled/dark,/area/mercbase/command)
 "oK" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{icon_state = "intact-scrubbers"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/aux{icon_state = "intact-aux"; dir = 8},/obj/structure/cable{icon_state = "4-8"},/obj/machinery/door/airlock/atmos{name = "Modified Atmospherics Airlock"; req_one_access = list(150)},/obj/machinery/door/firedoor,/turf/simulated/floor/tiled/dark,/area/mercbase/hall)
 
@@ -474,6 +823,7 @@ mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+<<<<<<< refs/remotes/VOREStation/master
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcababababababmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcabaqaHaKmcabmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcabaLaMaNmcabmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
@@ -527,6 +877,58 @@ mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+=======
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcababababababmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcabaqaHaKmcabmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcabaLaMaNmcabmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcabaOaPmcmcabmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcabmcmcmcmcabmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfMfNmpmpmpmpmpmpmpmpmpmpmpmpmpmpfNfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcababababababmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfMfNmpmqdemqmqmqmqmqmqmqmqmqmqmpfNfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfMfNmpmqmqmqmqmqmqmqmqmqmqmqmqmpfNfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfNfNmpnVmqmrmrmrmrmrmrmrmrmqnWmpfNfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfNfNmpmqmqmrmrmrmrmrmrmrmrmqmqmpfNfMfMfMfMmcmcfPfPfPfPbxfPfPfPfPmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcagagagagagagagagagagagmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfNfNmpmqmqmrmrmrmrmrmrmrmrmqmqmpfNfMfMfMfMmcmccQjxjxjxjyjzjzjzjwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcagagagagagagagagagagagagagmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfMfMfNfNfNfNfNfNfNfRfRgOgOgOgOfRfRfNfNfNfNmpmqmqmrmrmrmrmrmrmrmrmqmqmpfNfMfMfMfMmcmccQjxjxjxjyjzjzjzjwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcavawaxajakalayagagmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfMfMfNfNfNfNfNfNfNfRfSfSfSfSfSfSfRfNfNfNfNmpmQmqmrmrmrmrmrmSmrmrmqmqmpfNfMfMfMfMmcmccQjxjxjxjyjzjzjzjwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcavawaxaDbgbibyagagmcmcblblblmcmcblblblmcmcctctctctctmcmcctctctctctctctctctaomcmcmcmcmcmcmcmcmcmcfMfMfNfNfNfNfNfNfNfRfRhqfSfSfSfSiVfRfRfNfNfNmpmsmFmrmrmrmrmrmrmrmrmGmHmpfNfNfMfMfMmcmccQjxjxjxjyjzjzjzjwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcavawaxbDbEbFbFagagmcblblblblblblblblbleOeOctctctctctctctctctctctctctctctctacacapapacacacmcmcmcmcfMfMfNfNfNfNfNfNfNfRgSdDdDdDgRfSfSfSfRfNfNfNmpmImJmrmrmrmrmrmrmrmrmKmmmpfNfNfMfMfMmcmccQjxjxjxjyjzjzjzjwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmccgcgcgcgcgcgcgcgaragdZdZagagblblblblblblblblblbleOeOctctctctctctctctctctctctctctctctacacapapacacacmcmcmcmcfMfMfNfNfNfNfNfNfRfRfYfSfSfSgXfSfSfSfRfRfNfNmpmtmLmrmrmrmrmrmrmrmrmMmqmpfNfNfMfMfMmcmccQjxjxjxjyjzjzjzjwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmccgcgcDcDcDcDcDcOdiaeaeaeaeaeaeaebmbmcnbmbmbmbmblbbaGctcTcbcrcTcTcTcTcTcTdmdmdmoBdmdmacbAbjbjdGacacmcmcmcmcfMfMfNfNfNfNfNfNfRogfSfSfSfSgXfSfSfSfSfRfNfNmpolmymrmrmrmrmrmrmrmrmMmqmpfNfNfNfMfMmcmccQjxjxjxjyjzjzjzjwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmccgcgcgdBaaaadBcDdzdAaecqcqeQcqcqaelbcBcFcGcHbmlcblbkauctcTcTcscAcScTcTcTcTcTcTcTcTcTcTdlbNbQbjbYbZapmcmcmcmcfMfMfNfNfNfNfNfRfRhqgkfSfSfSgXfSfSgkiVfRfRfNmpnVmymrmrmrmrmrmrmrmrmMnWmpfNfNfNfMfMmcmccQjxjxjxjyjzjzjzjwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmccgcgdBdBmimkdBdBcDdiaecqeReSeTleaebmbmePbmbmbmbmblbsauctcTcTcVdgdhdpbCaSbGbRdfbPbRdfbSaccccdcebjcfapmcmcmcfMfMfMfNfNfNfNfNfRoJfShChEhDhDhbhDhFhGfSfSkdmpnBmqmymrmrmrmrmrmrmrmrmMmqmpfNfNfNfMfMmcmccQjxjxjxjyjzjzjzjwmcmcmcmcmcmcmcmnmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmccgcgdBdKdJdJdLdBcDldaecqcqfIfJfJcheWeUeXbmbmbmbmbldraFctcTcTcTdkdtcTbKdfbPbTdfbPbRdfbSacbjcvbBbjcyapmcmcfMfMfMfNfNfNfNfNfNfRfSfSfSiBfSfShcfSiBfSfSfShdmqhpmqmymqmqmqmqmqmqmqmqmMmqmpfNfNfNfMfMmcmccQjxjxjxjyjzjzjzjwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmccgcgdBdKdCdCdLdBcDlgaeaeaeaeaeaeaecublblblblblblblauaQctctctctctbcbvctctctctctctctctctacbjcvbjbYdcapmcmcfMfMfNfNfNfNfNfNfNfRfSfSfSfSfSfSmNmzmzmzmzmziynciKncnTmOmOmOmOmOmOmOmOmPmqmpfNfNfNfMfMmcmccQjxjxjxjyjzjzjzjwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmccgcgdIdCdCdCmldIcDdicMaubpaucibWbWbXbuaCcoauauaubpciaRddlidudududvdududEdudFduduljdududlbjcvbjdGacacmcmcfMfNfNfTnNfTnNfTnNfTfTfTnNfTnCjijPnDgdgdgdgdgdgdgdgdgdgdgdgdgdgegegegegegegegegegegefMmcmccQjxjxjxjyjzjzjzjwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmccgcgdBnXdKdLnYdBcDmodPdNdNdNdNdNdNcwdNdNdNdNdNdNdNdNbhetdQdQdQdQdRdQlldSdQdTdQdQdUdQdQataEaJacacacacmcmcfMfNfNfTlKhPlKiilKiilZiilLiifTfUhggcjcohnqgflXlYjbkTjdgdgqnrmagegDnsfKgBgVgehLntjAgUfMmcmccQjxjxjxjyjzjzjzjwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmccgcgdBdMdKdLfVdBcDlgadadadadadadafeVafafafafafafafauahcNcNcNcNcNdwdxbUbUbUbUbUbUbUbUcjcjcjcjcjcjcjcjmcmcfMfNfNfToifWfWfWiCiDfWfWfWfWfTfUkFgcjQlWgfgfgfgfjejfjggdilhHovgekPgYgYgYimgekQiEmdgUfMmcmccQjxjxjxjyjzjzjzjwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmccgcgdBfVdKdLfVdBcDdieYaVaWaXaZaZfgbrbzbHbIbJbJbJafcaaicNlmeyaTcNasbqbUcklockckcklockcjlpcmczcPjDcjcjmcmcfMfNfNfTfqgWgWgWhkhlhmhmhmhoksjshvgcoooogfgfgfgfgfgfgfgdgZhahHgeomiGixiHimgeiniImdgUkijEjEjFjFjFjFjGjFjFjFjHmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmccgcgdBdBdBdBdBdBcDdibLaVbMbOaVlqafbJbJbVcpbJbJbJafbtaucNeAeBaUcNcxdjbUcRcUcWcXcYckcZdacldbeZfafbcjcjmcmcfMfNfNfTiskElKiilKiilKkGlMiinEfUhggcjQlWgfgfhMhNgThNhNkBhWhRiJgegYgYiogBipgeiwgjmdgUkjfOfOfPfPfPfPjIfPfPfPfPmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmccgcgcgmgdBdBmhcDcDdibLaVcCcEcIaVafbJbJcJbJbJbJbJafbbaucNaYeBeIcNcKcLbUckfcckfdfufucZdafefnflcPjDcjcjmcmcfMfNfNfTfTfTfTfTfTfTfTfTfTfTfTofhggcgfgfgfgfhnhImBhIhIhIgegegegegegemZgegegenagegegekjmcmccQjxjxjxjJjzjzjzjwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmccgcgcDcDcDcDcDcDdidYdYdYdYdYafaflrfwfxfyfyfzlsafbkaGcNeIbabdiufBaIivfhfifjamfhfhfhjOfrfsftfafbcjcjmcmcfMfNfNghhUkHhrhsjNkAkIkIlRlVnbjshvgcgfhVhQhShThIhOhJjjlBgemenujnkRhKjomememfjBhKhKgekjmcmccQjxjxjxjJjzjzjzjwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmccgcgcgcgcgcgcgcgardYeeeedYdYafafafafafafafafafafeOeOcNbebfbncNbobobUbUbUbUbUbUbUbUcjcjcjcjcjcjcjcjmcmcfMfNfNghkCkDgigiiLiMgigigiginFiNibgcnZlClOiOiahIiFiqjhowgemehKjChKhKjohKhKhKjBkkklheknmcmccQjxjxjxjJjzjzjzjwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcebecedefegehehdYdYmcafafafafafafafafafeOeOcNcNcNcNcNbobobUbUbUbUbUbUbUbUcjcjcjcjcjcjcjcjmcmcfMfNfNghlNgimbmbgilPlQgigilSnKiYkJnGgdgdgdkVhnhIijiPodoegelUhKjChKhKjohKhKhKjBjChKgUfOmcmccQjxjxjxjLjzjzjzjwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcebecedeiejekeldYdYmcmcafafafmcmcafafafmcmccNcNcNcNcNmcmcbUbUbUbUbUbUbUbUmcmcmcmcmcmcmcmcmcmcfMfNfNghlNgigigigilPongigiorghfUhgfUfUfUnygfhnhIikiQopobgelUhKjChKhKjoosososkokphKgUfOmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcebecedanazaAaBdYdYmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfNfNghlNkKoqotgilPonlTkKorghfUihjljljlkBlDjrhIkUkUoaocgeouhKjKkSkakbkakakSkchKlEgefOfOfOfOmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcdYdYdYdYdYdYdYdYdYdYdYdYdYmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfNfNghghghghghghghghghghghghlFkFgckLfUnGgcgcgcgcgcgcgcgcgcgcnznHgcgcgcgcgcgcgcgcgagagagafOmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcdYdYdYdYdYdYdYdYdYdYdYmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfQfQfQjTizkMizjTfUfUkNfUfUnviSfUhgjkfUfUfUfUfUkNfUfUfUfUfUfUfUkekNfUiRiSfUfUfUnMjUiAkOiAjVfOmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfQfQfQjTgQhwhfjWhhhBjljmjljpjqjljYkqjljljljljljljljljlmAjljljlkfjsjsjpjqjsjsjskrjXhYhXhZjVfOmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfNfNgagagaganLfUhigcnAnIgcgcgcgcgcgcgcgcgcgcgcgcgcgcnUnJgcgcgcgcgcgcgcgcgcgaifgagagagagafOmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfNfNgakMjthtgciYhjgcgCkWgbgbnwjMgbgbkWgbfXfXglnxmCnpmRnOnenhnhnindnjnPninfgaktiTkgfZhugafOfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfNfNgalGhxhzgciNhygciUkxkxkxkykzgbgbgbgbgxgxglmumTmVmWmXmXmXmXmXmXmYmUmumugakukvkwfZirgafNfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfNfNgaiWhxhzgcfUhigclHgEgEgEgFgEgEgEgEgygNgAglokmDmEmumumumumumumunknlmunmgalIithXhXhZgafNfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfNfNgaidhAhzgcfUhigcgGgbgbgbiZgbgbgbgbgHgIgJglmumungngmumungngmumunSmumunngagagagagagagafNfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfNfNgakmicieoKigiXgcgKkYgLgLgMgLgLgykZgzgIgJglmumuoxoynQmuozoAmunQnRmumunomvfNfNfNfNfNfNfNfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfNfNgagagagagcgcnzgcglglglglglglglglglglglglglmvmvmxmxmvmvmxmxmvmvmxmxmvmvmvfMfMfMfMfMfMfMfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfNfNgggngngokXkhjagvgwggfNfNfNfNfNfNfNfNfNfNfNfNfMmwmwmwmwmwmwmwmwmwmwmwmwmwmwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfNfNgggtgtgugujSjZgvgwggfNfNfNfNfNfNfNfNfNfNfMfMfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfNfNggojgpgpgpgmjugvgwggfNfNfMfMfMfMfMfMfMfMfMfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfNfNgglJgrgrgsgmgmgmgmggfNfNfMfMfMfMfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfNfNggggggggggggggggggggfNfNfMfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfNfNfNfNfNfNfNfNfNfNfNfNfNfNfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMfMmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+>>>>>>> PROGRESS
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
@@ -560,6 +962,12 @@ mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+<<<<<<< refs/remotes/VOREStation/master
+=======
+mcmcmcmcmcmcmcmcmcmcmcbwmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
+>>>>>>> PROGRESS
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
 mcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmcmc
