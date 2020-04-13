@@ -179,7 +179,7 @@
 
 		//Some unhandled error state
 		for(var/obj/effect/shield/SE in midsections)
-			SE.icon_state = "arrow" //Error state/unhandled
+			SE.enabled_icon_state = "arrow" //Error state/unhandled
 
 		//Corners
 		for(var/obj/effect/shield/S in corners)
@@ -200,10 +200,10 @@
 						if((SO.dir & (SO.dir - 1)) != 0)
 							continue
 						else if(dir_to_them & SO.dir) //They're facing away from us, so we're their start
-							add_overlay(image(icon, icon_state = "shield_start" , dir = SO.dir))
+							S.add_overlay(image(icon, icon_state = "shield_start" , dir = SO.dir))
 						else if(SO.dir & nonshield) //They're facing us (and the wall)
-							add_overlay(image(icon, icon_state = "shield_end" , dir = SO.dir))
-						
+							S.add_overlay(image(icon, icon_state = "shield_end" , dir = SO.dir))
+
 					else
 						var/list/touchnonshield = list()
 						for(var/direction in cornerdirs)
@@ -213,20 +213,37 @@
 						if(touchnonshield.len == 1)
 							do_corner_shield(S, get_dir(S, touchnonshield[1]))
 						else
-							S.icon_state = "capacitor"
+							S.enabled_icon_state = "capacitor"
 				else
 					// Not actually a corner... It has MULTIPLE!
-					S.icon_state = "arrow" //Error state/unhandled
+					S.enabled_icon_state = "arrow" //Error state/unhandled
 
 		for(var/obj/effect/shield/S in startends)
 			var/adjacent = startends[S]
+			log_debug("Processing startend [S] at [S?.x],[S?.y] adjacent=[adjacent]")
 			var/turf/T = get_step(S, adjacent)
 			var/obj/effect/shield/SO = locate() in T
 			S.set_dir(SO.dir)
 			if(S.dir == adjacent) //Flowing into them
-				S.icon_state = "shield_start"
+				S.enabled_icon_state = "shield_start"
 			else
-				S.icon_state = "shield_end"
+				S.enabled_icon_state = "shield_end"
+	else
+		var/turf/gen_turf = get_turf(src)
+		for(var/obj/effect/shield/SE in field_segments)
+			var/new_dir = 0
+			if(SE.x == gen_turf.x - field_radius)
+				new_dir |= NORTH
+			else if(SE.x == gen_turf.x + field_radius)
+				new_dir |= SOUTH
+			if(SE.y == gen_turf.y + field_radius)
+				new_dir |= EAST
+			else if(SE.y == gen_turf.y - field_radius)
+				new_dir |= WEST
+			if((new_dir & (new_dir - 1)) == 0)
+				SE.set_dir(new_dir) // Only one bit set means we are an edge not corner.
+			else
+				do_corner_shield(SE, turn(new_dir, -90), TRUE) // All our corners are outside, don't check turf type.
 
 	for(var/obj/effect/shield/SE in field_segments)
 		SE.update_visuals()
@@ -234,10 +251,10 @@
 	//Phew, update our own icon
 	update_icon()
 
-/obj/machinery/power/shield_generator/proc/do_corner_shield(var/obj/effect/shield/S, var/new_dir)
-	S.icon_state = "blank"
+/obj/machinery/power/shield_generator/proc/do_corner_shield(var/obj/effect/shield/S, var/new_dir, var/force_outside)
+	S.enabled_icon_state = "blank"
 	S.set_dir(new_dir)
-	var/inside = isspace(get_step(S, new_dir))
+	var/inside = force_outside ? FALSE : isspace(get_step(S, new_dir))
 	// TODO - Obviously this can be more elegant
 	if(inside)
 		switch(new_dir)

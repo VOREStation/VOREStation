@@ -5,7 +5,7 @@
 	name = "energy shield"
 	desc = "An impenetrable field of energy, capable of blocking anything as long as it's active."
 	icon = 'icons/obj/machines/shielding.dmi'
-	icon_state = "shield_normal"
+	icon_state = "shield"
 	anchored = 1
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
@@ -285,7 +285,7 @@
 
 	// Update airflow - If atmospheric we block air as long as we're enabled (density works for this)
 	set_can_atmos_pass(gen.check_flag(MODEFLAG_ATMOSPHERIC) ? ATMOS_PASS_DENSITY : ATMOS_PASS_YES)
-	update_icon()
+	update_visuals()
 	update_explosion_resistance()
 
 /obj/effect/shield/proc/update_explosion_resistance()
