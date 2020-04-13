@@ -17,6 +17,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	var/heal_timestamp = 0 //we got healed when?
 	var/mob/observer/blob/overmind = null
 	var/base_name = "blob" // The name that gets appended along with the blob_type's name.
+	var/faction = "blob"
 
 /obj/structure/blob/Initialize(newloc, new_overmind)
 	if(new_overmind)
@@ -56,6 +57,8 @@ GLOBAL_LIST_EMPTY(all_blobs)
 			return TRUE
 	else if(istype(mover, /obj/item/projectile))
 		var/obj/item/projectile/P = mover
+		if(istype(P.firer, /obj/structure/blob))
+			return TRUE
 		if(istype(P.firer) && P.firer.faction == "blob")
 			return TRUE
 	return FALSE
@@ -218,13 +221,97 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	qdel(src)
 	return B
 
+/obj/structure/blob/attack_generic(var/mob/user, var/damage, var/attack_verb)
+	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
+	user.do_attack_animation(src)
+	if(overmind)
+		damage *= overmind.blob_type.brute_multiplier
+	else
+		damage *= 2
+
+	if(overmind)
+		damage = overmind.blob_type.on_received_damage(src, damage, BRUTE, user)
+
+	adjust_integrity(-damage)
+
+	return
+
+/obj/structure/blob/attack_hand(mob/living/M as mob)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.setClickCooldown(H.get_attack_speed())
+		var/datum/unarmed_attack/attack = H.get_unarmed_attack(src, BP_TORSO)
+		if(!attack)
+			return FALSE
+
+		if(attack.unarmed_override(H, src, BP_TORSO))
+			return FALSE
+
+		H.do_attack_animation(src)
+		H.visible_message("<span class='danger'>[H] strikes \the [src]!</span>")
+
+		var/real_damage = rand(3,6)
+		var/hit_dam_type = attack.damage_type
+		real_damage += attack.get_unarmed_damage(H)
+		if(H.gloves)
+			if(istype(H.gloves, /obj/item/clothing/gloves))
+				var/obj/item/clothing/gloves/G = H.gloves
+				real_damage += G.punch_force
+				hit_dam_type = G.punch_damtype
+		if(HULK in H.mutations)
+			real_damage *= 2 // Hulks do twice the damage
+
+		real_damage = max(1, real_damage)
+
+		var/damage_mult_burn = 1
+		var/damage_mult_brute = 1
+
+		if(hit_dam_type == SEARING)
+			damage_mult_burn *= 0.3
+			damage_mult_brute *= 0.6
+
+		else if(hit_dam_type == BIOACID)
+			damage_mult_burn *= 0.6
+			damage_mult_brute = 0
+
+		else if(hit_dam_type in list(ELECTROCUTE, BURN))
+			damage_mult_brute = 0
+
+		else if(hit_dam_type in list(BRUTE, CLONE))
+			damage_mult_burn = 0
+
+		else if(hit_dam_type != HALLOSS) // Tox, Oxy, or something new. Half damage split to the organism.
+			damage_mult_burn = 0.25
+			damage_mult_brute = 0.25
+
+		else
+			damage_mult_brute = 0.25
+			damage_mult_burn = 0
+
+		var/burn_dam = real_damage * damage_mult_burn
+		var/brute_dam = real_damage * damage_mult_brute
+
+		if(overmind)
+			if(brute_dam)
+				brute_dam = overmind.blob_type.on_received_damage(src, brute_dam, BRUTE, M)
+			if(burn_dam)
+				burn_dam = overmind.blob_type.on_received_damage(src, burn_dam, BURN, M)
+
+		real_damage = burn_dam + brute_dam
+
+		adjust_integrity(-real_damage)
+
+	else
+		attack_generic(M, rand(1,10), "bashed")
+
 /obj/structure/blob/attackby(var/obj/item/weapon/W, var/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
 	visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
 	var/damage = W.force
 	switch(W.damtype)
-		if(BURN)
+		if(BURN, BIOACID, ELECTROCUTE, OXY)
 			if(overmind)
 				damage *= overmind.blob_type.burn_multiplier
 			else
@@ -234,7 +321,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 				playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
 			else
 				playsound(src, 'sound/weapons/tap.ogg', 50, 1)
-		if(BRUTE)
+		if(BRUTE, SEARING, TOX, CLONE)
 			if(overmind)
 				damage *= overmind.blob_type.brute_multiplier
 			else

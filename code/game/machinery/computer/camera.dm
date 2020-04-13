@@ -43,11 +43,14 @@
 	data["current_camera"] = current_camera ? current_camera.nano_structure() : null
 	data["current_network"] = current_network
 	data["networks"] = network ? network : list()
+	
+	var/map_levels = using_map.get_map_levels(src.z, TRUE)
+	data["map_levels"] = map_levels
+	
 	if(current_network)
-		data["cameras"] = camera_repository.cameras_in_network(current_network)
+		data["cameras"] = camera_repository.cameras_in_network(current_network, map_levels)
 	if(current_camera)
 		switch_to_camera(user, current_camera)
-	data["map_levels"] = using_map.get_map_levels(src.z)
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -91,9 +94,6 @@
 		. = ..()
 
 /obj/machinery/computer/security/attack_hand(var/mob/user as mob)
-	if (using_map && !(src.z in using_map.contact_levels))
-		to_chat(user, "<span class='danger'>Unable to establish a connection:</span> You're too far away from the station!")
-		return
 	if(stat & (NOPOWER|BROKEN))	return
 
 	if(!isAI(user))

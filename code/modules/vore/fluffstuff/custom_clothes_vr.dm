@@ -1939,7 +1939,7 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/accessory/poncho/roles/cloak/hop/fluff/pip/equipped()		//Because otherwise it gets reset every time
 	..()
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	
+
 //CappyCat:Cappy Fuzzlyfeathers
 /obj/item/clothing/accessory/watch
 	name = "silver pocket watch"
@@ -1948,8 +1948,18 @@ Departamental Swimsuits, for general use
 	icon_state = "deadringer"
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_ID | SLOT_BELT | SLOT_TIE
-	
+
 //Pimientopyro:Zaku Fyodorovna
 /obj/item/clothing/suit/varsity/green/sweater_vest
 	name = "green sweater vest"
 	desc = "A green argyle sweater vest with a white undershirt, a must for long winter nights and looking like a dork."
+
+//Azura Chitin: Azura Chitin
+/obj/item/clothing/accessory/collar/azura
+	name = "Azura's collar"
+	desc = "A black collar with green patterns, reminiscent of tribal tattoos. Regardless of what the front of the tag says, the back of it reads \"Azura Chitin\"."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "azuracollar"
+
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	icon_state = "azuracollar"

@@ -82,7 +82,7 @@
 
 //Helper for init.
 /obj/effect/overmap/visitable/proc/check_ownership(obj/object)
-	if((object.z in map_z) && !(get_area(object) in SSshuttles.shuttle_areas))
+	if((get_z(object) in map_z) && !(get_area(object) in SSshuttles.shuttle_areas))
 		return 1
 
 //If shuttle_name is false, will add to generic waypoints; otherwise will add to restricted. Does not do checks.

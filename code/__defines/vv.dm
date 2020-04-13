@@ -27,13 +27,23 @@
 #define VV_NORMAL_LIST_NO_EXPAND_THRESHOLD 50
 #define VV_SPECIAL_LIST_NO_EXPAND_THRESHOLD 150
 
-#define IS_VALID_ASSOC_KEY(V) (istext(V) || isdatum(V) || islist(V))
+#define IS_VALID_ASSOC_KEY(V) (!isnum(V))
 
 //Helpers for vv_get_dropdown()
 #define VV_DROPDOWN_OPTION(href_key, name) . += "<option value='?_src_=vars;[href_key]=TRUE;target=\ref[src]'>[name]</option>"
 
 //Helpers for vv_do_topic(list/href_list)
 #define IF_VV_OPTION(href_key) if(href_list[href_key])
+
+// vv_do_list() keys
+#define VV_HK_LIST_ADD "listadd"
+#define VV_HK_LIST_EDIT "listedit"
+#define VV_HK_LIST_CHANGE "listchange"
+#define VV_HK_LIST_REMOVE "listremove"
+#define VV_HK_LIST_ERASE_NULLS "listnulls"
+#define VV_HK_LIST_ERASE_DUPES "listdupes"
+#define VV_HK_LIST_SHUFFLE "listshuffle"
+#define VV_HK_LIST_SET_LENGTH "listlen"
 
 // /datum
 #define VV_HK_DELETE "delete"

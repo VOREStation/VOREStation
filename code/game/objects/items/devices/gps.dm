@@ -83,7 +83,7 @@ var/list/GPS_list = list()
 	dat["curr_z_name"] = using_map.get_zlevel_name(curr.z)
 	dat["gps_list"] = list()
 	dat["z_level_detection"] = using_map.get_map_levels(curr.z, long_range)
-
+	
 	for(var/obj/item/device/gps/G in GPS_list - src)
 		if(!G.tracking || G.emped || G.hide_signal)
 			continue

@@ -297,6 +297,7 @@ var/global/use_preloader = FALSE
 			old_position = dpos + 1
 
 			if(!atom_def) // Skip the item if the path does not exist.  Fix your crap, mappers!
+				error("Maploader skipping undefined type: '[trim_text(copytext(full_def, 1, variables_start))]' (key=[model_key])")
 				continue
 			members.Add(atom_def)
 
@@ -351,7 +352,7 @@ var/global/use_preloader = FALSE
 		var/atom/instance
 		_preloader.setup(members_attributes[index])//preloader for assigning  set variables on atom creation
 		var/atype = members[index]
-		for(var/area/A in all_areas)
+		for(var/area/A in world)
 			if(A.type == atype)
 				instance = A
 				break

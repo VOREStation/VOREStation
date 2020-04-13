@@ -84,6 +84,7 @@ SUBSYSTEM_DEF(shuttles)
 		if(shuttle)
 			shuttles_made += shuttle
 	hook_up_motherships(shuttles_made)
+	hook_up_shuttle_objects(shuttles_made)
 	shuttles_to_initialize = null
 
 /datum/controller/subsystem/shuttles/proc/initialize_sectors()
@@ -103,7 +104,7 @@ SUBSYSTEM_DEF(shuttles)
 			try_add_landmark_tag(shuttle_landmark_tag, O)
 			landmarks_still_needed -= shuttle_landmark_tag
 		else if(istype(shuttle_landmark, /obj/effect/shuttle_landmark/automatic)) //These find their sector automatically
-			O = map_sectors["[shuttle_landmark.z]"]
+			O = get_overmap_sector(get_z(shuttle_landmark))
 			O ? O.add_landmark(shuttle_landmark, shuttle_landmark.shuttle_restricted) : (landmarks_awaiting_sector += shuttle_landmark)
 
 /datum/controller/subsystem/shuttles/proc/get_landmark(var/shuttle_landmark_tag)
@@ -164,6 +165,11 @@ SUBSYSTEM_DEF(shuttles)
 				mothership.shuttle_area |= S.shuttle_area
 			else
 				error("Shuttle [S] was unable to find mothership [mothership]!")
+
+// Let shuttles scan their owned areas for objects they want to configure (Called after mothership hookup)
+/datum/controller/subsystem/shuttles/proc/hook_up_shuttle_objects(shuttles_list)
+	for(var/datum/shuttle/S in shuttles_list)
+		S.populate_shuttle_objects()
 
 // Admin command to halt/resume overmap
 /datum/controller/subsystem/shuttles/proc/toggle_overmap(new_setting)

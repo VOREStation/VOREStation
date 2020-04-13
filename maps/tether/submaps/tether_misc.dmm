@@ -436,25 +436,22 @@
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source_thunderdomecourt)
 "bs" = (
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "burst_l"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry{
-	dir = 1
-	},
-/area/shuttle/supply)
+/turf/simulated/fitness,
+/area/holodeck/source_boxingcourt)
 "bt" = (
 /obj/structure/bed/chair/holochair,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_courtroom)
 "bu" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry{
+/obj/structure/fitness/boxing_ropes{
 	dir = 1
 	},
-/area/shuttle/supply)
+/obj/structure/fitness/boxing_turnbuckle{
+	dir = 8;
+	layer = 3.4
+	},
+/turf/simulated/fitness,
+/area/holodeck/source_boxingcourt)
 "bv" = (
 /obj/structure/window/reinforced/holowindow{
 	dir = 1
@@ -463,27 +460,21 @@
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_courtroom)
 "bw" = (
-/obj/structure/shuttle/engine/propulsion,
-/obj/effect/shuttle_landmark{
-	base_area = /area/space;
-	base_turf = /turf/space;
-	landmark_tag = "supply_cc";
-	name = "Centcom Supply Depot"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry{
+/obj/structure/fitness/boxing_ropes{
 	dir = 1
 	},
-/area/shuttle/supply)
+/turf/simulated/fitness,
+/area/holodeck/source_boxingcourt)
 "bx" = (
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "burst_r"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry{
+/obj/structure/fitness/boxing_ropes{
 	dir = 1
 	},
-/area/shuttle/supply)
+/obj/structure/fitness/boxing_turnbuckle{
+	dir = 4;
+	layer = 3.4
+	},
+/turf/simulated/fitness,
+/area/holodeck/source_boxingcourt)
 "by" = (
 /obj/machinery/light{
 	dir = 8;
@@ -498,9 +489,39 @@
 	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/supply)
+"bA" = (
+/obj/structure/fitness/boxing_ropes{
+	dir = 8
+	},
+/turf/simulated/fitness,
+/area/holodeck/source_boxingcourt)
 "bB" = (
 /turf/simulated/floor/holofloor/desert,
 /area/holodeck/source_picnicarea)
+"bC" = (
+/obj/structure/fitness/boxing_ropes{
+	dir = 4
+	},
+/turf/simulated/fitness,
+/area/holodeck/source_boxingcourt)
+"bD" = (
+/obj/structure/fitness/boxing_turnbuckle{
+	dir = 8
+	},
+/obj/structure/fitness/boxing_ropes_bottom,
+/turf/simulated/fitness,
+/area/holodeck/source_boxingcourt)
+"bE" = (
+/obj/structure/fitness/boxing_ropes_bottom,
+/turf/simulated/fitness,
+/area/holodeck/source_boxingcourt)
+"bF" = (
+/obj/structure/fitness/boxing_turnbuckle{
+	dir = 4
+	},
+/obj/structure/fitness/boxing_ropes_bottom,
+/turf/simulated/fitness,
+/area/holodeck/source_boxingcourt)
 "bG" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
@@ -566,6 +587,35 @@
 /obj/structure/bed/chair/holochair,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_courtroom)
+"bN" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "burst_l"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry{
+	dir = 1
+	},
+/area/shuttle/supply)
+"bO" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry{
+	dir = 1
+	},
+/area/shuttle/supply)
+"bP" = (
+/obj/structure/shuttle/engine/propulsion,
+/obj/effect/shuttle_landmark{
+	base_area = /area/space;
+	base_turf = /turf/space;
+	landmark_tag = "supply_cc";
+	name = "Centcom Supply Depot"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry{
+	dir = 1
+	},
+/area/shuttle/supply)
 "bQ" = (
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
@@ -591,6 +641,15 @@
 /obj/structure/table/woodentable/holotable,
 /turf/simulated/floor/holofloor/desert,
 /area/holodeck/source_picnicarea)
+"bT" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "burst_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry{
+	dir = 1
+	},
+/area/shuttle/supply)
 "bU" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/effect/floor_decal/spline/fancy/wood{
@@ -670,6 +729,20 @@
 	},
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source_courtroom)
+"cd" = (
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "escapeshuttle_leave";
+	teleport_x = 25;
+	teleport_x_offset = 245;
+	teleport_y = 25;
+	teleport_y_offset = 245;
+	teleport_z = 4;
+	teleport_z_offset = 4
+	},
+/turf/space,
+/turf/space/transit/north,
+/area/space)
 "cj" = (
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
@@ -1195,19 +1268,6 @@
 /obj/effect/overlay/coconut,
 /turf/simulated/floor/holofloor/beach/sand,
 /area/holodeck/source_beach)
-"ev" = (
-/obj/machinery/door/window/holowindoor{
-	base_state = "right";
-	dir = 2;
-	icon_state = "right";
-	name = "Red Corner"
-	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_boxingcourt)
-"ew" = (
-/obj/structure/window/reinforced/holowindow,
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_boxingcourt)
 "eJ" = (
 /obj/structure/flora/tree/dead,
 /turf/simulated/floor/holofloor/snow,
@@ -1222,33 +1282,6 @@
 /obj/item/weapon/beach_ball,
 /turf/simulated/floor/holofloor/beach/sand,
 /area/holodeck/source_beach)
-"eN" = (
-/obj/structure/window/reinforced/holowindow{
-	dir = 4
-	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_boxingcourt)
-"eO" = (
-/obj/effect/floor_decal/corner/red/full{
-	dir = 8
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_boxingcourt)
-"eP" = (
-/obj/effect/floor_decal/corner/red{
-	dir = 5
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_boxingcourt)
-"eQ" = (
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_boxingcourt)
-"eR" = (
-/obj/structure/window/reinforced/holowindow{
-	dir = 8
-	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_boxingcourt)
 "eS" = (
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/tiled/steel,
@@ -1351,30 +1384,6 @@
 	},
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_thunderdomecourt)
-"fg" = (
-/obj/effect/floor_decal/corner/red{
-	dir = 9
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_boxingcourt)
-"fh" = (
-/obj/effect/floor_decal/corner/blue/full{
-	dir = 8
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_boxingcourt)
-"fi" = (
-/obj/effect/floor_decal/corner/blue/full{
-	dir = 1
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_boxingcourt)
-"fj" = (
-/obj/effect/floor_decal/corner/green{
-	dir = 6
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_boxingcourt)
 "fn" = (
 /obj/structure/holostool,
 /obj/effect/floor_decal/carpet{
@@ -1438,16 +1447,6 @@
 	},
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_thunderdomecourt)
-"fw" = (
-/obj/effect/floor_decal/corner/blue/full,
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_boxingcourt)
-"fx" = (
-/obj/effect/floor_decal/corner/blue/full{
-	dir = 4
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_boxingcourt)
 "fz" = (
 /obj/effect/floor_decal/corner/green{
 	dir = 9
@@ -1472,18 +1471,6 @@
 	},
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_thunderdomecourt)
-"fD" = (
-/obj/effect/floor_decal/corner/green{
-	dir = 10
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_boxingcourt)
-"fE" = (
-/obj/effect/floor_decal/corner/green/full{
-	dir = 4
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_boxingcourt)
 "fG" = (
 /obj/structure/flora/grass/brown,
 /turf/simulated/floor/holofloor/snow,
@@ -1508,19 +1495,6 @@
 	icon_state = "beach"
 	},
 /area/holodeck/source_beach)
-"fM" = (
-/obj/structure/window/reinforced/holowindow{
-	dir = 1
-	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_boxingcourt)
-"fN" = (
-/obj/machinery/door/window/holowindoor{
-	dir = 1;
-	name = "Green Corner"
-	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_boxingcourt)
 "fO" = (
 /obj/structure/holostool,
 /obj/effect/floor_decal/carpet{
@@ -1725,10 +1699,6 @@
 	},
 /turf/simulated/floor/holofloor/grass,
 /area/holodeck/holodorm/source_garden)
-"hn" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/base_high,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "hx" = (
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/holodorm/source_seating)
@@ -1876,7 +1846,7 @@
 /turf/space/transit/west,
 /area/space)
 "kh" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/base_mid,
+/obj/machinery/telecomms/relay/preset/centcom/tether,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "kn" = (
@@ -1887,10 +1857,6 @@
 /area/centcom/simulated/main_hall)
 "kr" = (
 /obj/machinery/telecomms/server/presets/centcomm,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
-"kF" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/midpoint,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "le" = (
@@ -2054,10 +2020,6 @@
 	icon = 'icons/turf/transit_vr.dmi'
 	},
 /area/space)
-"vt" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/station_high,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "vG" = (
 /obj/effect/step_trigger/lost_in_space/tram,
 /turf/simulated/floor/maglev{
@@ -2127,6 +2089,7 @@
 /area/space)
 "xe" = (
 /obj/machinery/account_database{
+	dir = 1;
 	name = "CentComm Accounts database"
 	},
 /turf/unsimulated/floor/steel,
@@ -2243,7 +2206,7 @@
 /turf/simulated/sky/virgo3b/south,
 /area/space)
 "Ct" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/station_low,
+/obj/machinery/ntnet_relay,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "Cw" = (
@@ -2256,20 +2219,12 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/centcom/simulated/main_hall)
-"Dc" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/station_mid,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "Dk" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel,
 /area/space)
-"Dn" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/sci_outpost,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "Dw" = (
 /obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/food/snacks/chips,
@@ -2335,10 +2290,6 @@
 	icon_state = "techfloor_grid"
 	},
 /area/space)
-"FW" = (
-/obj/machinery/telecomms/relay/preset/centcom/underdark,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "Ga" = (
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
@@ -2496,20 +2447,6 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/steel,
-/area/space)
-"Lw" = (
-/obj/effect/step_trigger/teleporter/random{
-	affect_ghosts = 1;
-	name = "escapeshuttle_leave";
-	teleport_x = 25;
-	teleport_x_offset = 245;
-	teleport_y = 25;
-	teleport_y_offset = 245;
-	teleport_z = 4;
-	teleport_z_offset = 4
-	},
-/turf/space,
-/turf/space/transit/north,
 /area/space)
 "Lz" = (
 /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b,
@@ -4851,10 +4788,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/simulated/medical)
-"ZA" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/base_low,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "ZC" = (
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -9378,10 +9311,10 @@ Jz
 Jz
 Jz
 Jz
-Lw
-Lw
-Lw
-Lw
+cd
+cd
+cd
+cd
 ap
 Xl
 OY
@@ -9523,7 +9456,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 Xl
 OY
@@ -9665,7 +9598,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 Xl
 OY
@@ -9807,7 +9740,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 Xl
 Xl
@@ -9949,7 +9882,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 ap
 ap
@@ -10091,7 +10024,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 ap
 ap
@@ -10233,7 +10166,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 ap
 ap
@@ -10375,7 +10308,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 ap
 ap
@@ -10517,7 +10450,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 ap
 ap
@@ -10659,7 +10592,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 ap
 ap
@@ -10801,7 +10734,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 ap
 ap
@@ -10943,7 +10876,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 ap
 ap
@@ -11085,7 +11018,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 ap
 ap
@@ -11227,7 +11160,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 ap
 ap
@@ -11369,7 +11302,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 ap
 ap
@@ -11511,7 +11444,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 ap
 ap
@@ -11653,7 +11586,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 ap
 ap
@@ -11795,7 +11728,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 ap
 ap
@@ -11937,7 +11870,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 ap
 ap
@@ -12079,7 +12012,7 @@ jf
 Gs
 Gs
 Gs
-Lw
+cd
 ap
 ap
 ap
@@ -12198,30 +12131,30 @@ ap
 ap
 ap
 ap
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
-Lw
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+cd
+cd
 ap
 ap
 ap
@@ -17130,7 +17063,7 @@ ae
 wy
 rE
 Ga
-HQ
+Iq
 wl
 Up
 Vj
@@ -17270,9 +17203,9 @@ ae
 ae
 ae
 wy
-kF
+HQ
 Ga
-Iq
+Ga
 wl
 Up
 Vj
@@ -17838,9 +17771,9 @@ ae
 ae
 ae
 wy
-Dc
-Ga
-hn
+wy
+wy
+wy
 wl
 Up
 Vj
@@ -17979,10 +17912,10 @@ ae
 ae
 ae
 ae
-wy
-vt
-Ga
-FW
+ae
+ae
+ae
+ae
 wl
 Up
 Vj
@@ -18121,10 +18054,10 @@ ae
 ae
 ae
 ae
-wy
-Dn
-Ga
-ZA
+ae
+ae
+ae
+ae
 wl
 Up
 Vj
@@ -18263,10 +18196,10 @@ ae
 ae
 ae
 ae
-wy
-wy
-wy
-wy
+ae
+ae
+ae
+ae
 wl
 Up
 Vj
@@ -20673,7 +20606,7 @@ di
 by
 bc
 bc
-bs
+bN
 aq
 ae
 ae
@@ -20815,7 +20748,7 @@ di
 bn
 bn
 dE
-bu
+bO
 aq
 ae
 ae
@@ -20957,7 +20890,7 @@ di
 bn
 bn
 dE
-bw
+bP
 aq
 ae
 ae
@@ -21099,7 +21032,7 @@ bn
 bn
 bn
 dE
-bu
+bO
 aq
 ae
 ae
@@ -21241,7 +21174,7 @@ bn
 bz
 bc
 bc
-bx
+bT
 aq
 ae
 ae
@@ -23493,10 +23426,10 @@ dB
 dY
 dY
 dY
-eN
-eN
-eN
-eN
+dY
+dY
+dY
+dY
 dY
 dY
 dY
@@ -23634,12 +23567,12 @@ dw
 dB
 dY
 dY
-ev
-eO
-fg
-fg
-eQ
-fM
+dY
+bu
+bA
+bA
+bD
+dY
 eo
 dY
 fZ
@@ -23776,12 +23709,12 @@ dw
 dB
 dY
 eo
-ew
-eP
-fh
-fw
-fD
-fM
+dY
+bw
+bs
+bs
+bE
+dY
 eo
 dY
 dB
@@ -23918,12 +23851,12 @@ dw
 dB
 dY
 eo
-ew
-eP
-fi
-fx
-fD
-fM
+dY
+bw
+bs
+bs
+bE
+dY
 eo
 dY
 dB
@@ -24060,12 +23993,12 @@ dx
 dB
 dY
 eo
-ew
-eQ
-fj
-fj
-fE
-fN
+dY
+bx
+bC
+bC
+bF
+dY
 dY
 dY
 dB
@@ -24203,10 +24136,10 @@ dB
 dY
 dY
 dY
-eR
-eR
-eR
-eR
+dY
+dY
+dY
+dY
 dY
 dY
 dY

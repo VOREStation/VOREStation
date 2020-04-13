@@ -108,16 +108,23 @@
 	underlays.Cut()
 
 	var/turf/T = get_turf(src)
-	var/list/directions = list(NORTH, SOUTH, EAST, WEST)
-	var/node1_direction = get_dir(src, node1)
-	var/node2_direction = get_dir(src, node2)
-	var/node3_direction = get_dir(src, node3)
 
+	// Unfortunately our nodes are not in consistent directions (see atmos_init()) so do the dance...
+	var/list/directions = list(NORTH, SOUTH, EAST, WEST) // UN-connected directions
 	directions -= dir
+	if(node1)
+		var/node1_direction = get_dir(src, node1)
+		add_underlay(T, node1, node1_direction, icon_connect_type)
+		directions -= node1_direction
+	if(node2)
+		var/node2_direction = get_dir(src, node2)
+		add_underlay(T, node2, node2_direction, icon_connect_type)
+		directions -= node2_direction
+	if(node3)
+		var/node3_direction = get_dir(src, node3)
+		add_underlay(T, node3, node3_direction, icon_connect_type)
+		directions -= node3_direction
 
-	directions -= add_underlay(T,node1,node1_direction,icon_connect_type)
-	directions -= add_underlay(T,node2,node2_direction,icon_connect_type)
-	directions -= add_underlay(T,node3,node3_direction,icon_connect_type)
 
 	for(var/D in directions)
 		add_underlay(T,,D,icon_connect_type)

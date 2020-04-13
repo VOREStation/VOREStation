@@ -75,6 +75,10 @@
 		color = overmind.blob_type.complementary_color
 		glow_color = color
 		glow_toggle = TRUE
+	else if(blob_type)
+		color = blob_type.complementary_color
+		glow_color = color
+		glow_toggle = TRUE
 	else
 		color = null
 		glow_color = null
@@ -101,6 +105,9 @@
 				continue
 			infest(H)
 			break
+
+	if(overmind)
+		overmind.blob_type.on_spore_lifetick(src)
 
 	if(factory && z != factory.z) // This is to prevent spores getting lost in space and making the factory useless.
 		qdel(src)

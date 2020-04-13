@@ -96,7 +96,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 
 	evac = 1
 	emergency_shuttle_called.Announce(replacetext(using_map.emergency_shuttle_called_message, "%ETA%", "[estimated_time] minute\s"))
-	for(var/area/A in all_areas)
+	for(var/area/A in world)
 		if(istype(A, /area/hallway))
 			A.readyalert()
 
@@ -128,7 +128,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 	if (evac)
 		emergency_shuttle_recalled.Announce(using_map.emergency_shuttle_recall_message)
 
-		for(var/area/A in all_areas)
+		for(var/area/A in world)
 			if(istype(A, /area/hallway))
 				A.readyreset()
 		evac = 0

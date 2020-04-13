@@ -145,6 +145,7 @@ Any frequency works, it's self-setting, but it seems like people have decided 13
 /obj/effect/map_helper/airlock/sensor/setup()
 	var/obj/machinery/airlock_sensor/my_sensor = my_device
 	my_sensor.id_tag = my_controller.id_tag + tag_addon
+	my_sensor.master_tag = my_controller.id_tag
 	my_sensor.frequency = my_controller.frequency
 	my_sensor.set_frequency(my_controller.frequency)
 	if(command)

@@ -40,15 +40,7 @@
 	var/list/forced_ambience = null
 	var/sound_env = STANDARD_STATION
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
-	var/global/global_uid = 0
-	var/uid
 	var/forbid_events = FALSE // If true, random events will not start inside this area.
-
-/area/New()
-	uid = ++global_uid
-	all_areas += src //Replace with /area in world? Byond optimizes X in world loops.
-	
-	..()
 
 /area/Initialize()
 	. = ..()
@@ -401,7 +393,7 @@ var/list/mob/living/forced_ambiance_list = new
 var/list/teleportlocs = list()
 
 /hook/startup/proc/setupTeleportLocs()
-	for(var/area/AR in all_areas)
+	for(var/area/AR in world)
 		if(istype(AR, /area/shuttle) || istype(AR, /area/syndicate_station) || istype(AR, /area/wizard_station)) continue
 		if(teleportlocs.Find(AR.name)) continue
 		var/turf/picked = pick(get_area_turfs(AR.type))
@@ -416,7 +408,7 @@ var/list/teleportlocs = list()
 var/list/ghostteleportlocs = list()
 
 /hook/startup/proc/setupGhostTeleportLocs()
-	for(var/area/AR in all_areas)
+	for(var/area/AR in world)
 		if(ghostteleportlocs.Find(AR.name)) continue
 		if(istype(AR, /area/aisat) || istype(AR, /area/derelict) || istype(AR, /area/tdome) || istype(AR, /area/shuttle/specops/centcom))
 			ghostteleportlocs += AR.name

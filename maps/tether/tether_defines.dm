@@ -11,16 +11,19 @@
 #define Z_LEVEL_MISC						10
 #define Z_LEVEL_UNDERDARK					11
 #define Z_LEVEL_PLAINS						12
-#define Z_LEVEL_ROGUEMINE_1					13
-#define Z_LEVEL_ROGUEMINE_2					14
-#define Z_LEVEL_ROGUEMINE_3					15
-#define Z_LEVEL_ROGUEMINE_4					16
-#define Z_LEVEL_BEACH						17
-#define Z_LEVEL_BEACH_CAVE					18
-#define Z_LEVEL_AEROSTAT					19
-#define Z_LEVEL_AEROSTAT_SURFACE			20
-#define Z_LEVEL_DEBRISFIELD					21
-#define Z_LEVEL_GATEWAY						22
+#define Z_LEVEL_OFFMAP1						13
+#define Z_LEVEL_OFFMAP2						14
+#define Z_LEVEL_ROGUEMINE_1					15
+#define Z_LEVEL_ROGUEMINE_2					16
+#define Z_LEVEL_ROGUEMINE_3					17
+#define Z_LEVEL_ROGUEMINE_4					18
+#define Z_LEVEL_BEACH						19
+#define Z_LEVEL_BEACH_CAVE					20
+#define Z_LEVEL_AEROSTAT					21
+#define Z_LEVEL_AEROSTAT_SURFACE			22
+#define Z_LEVEL_DEBRISFIELD					23
+#define Z_LEVEL_FUELDEPOT					24
+#define Z_LEVEL_GATEWAY						25
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -98,12 +101,14 @@
 							NETWORK_COMMUNICATORS,
 							NETWORK_ALARM_ATMOS,
 							NETWORK_ALARM_POWER,
-							NETWORK_ALARM_FIRE
+							NETWORK_ALARM_FIRE,
+							NETWORK_TALON_HELMETS,
+							NETWORK_TALON_SHIP
 							)
 
 	bot_patrolling = FALSE
 
-	allowed_spawns = list("Tram Station","Gateway","Cryogenic Storage","Cyborg Storage")
+	allowed_spawns = list("Tram Station","Gateway","Cryogenic Storage","Cyborg Storage","ITV Talon Cryo")
 	spawnpoint_died = /datum/spawnpoint/tram
 	spawnpoint_left = /datum/spawnpoint/tram
 	spawnpoint_stayed = /datum/spawnpoint/cryo
@@ -121,7 +126,9 @@
 		/area/crew_quarters/sleep/Dorm_3/holo,
 		/area/crew_quarters/sleep/Dorm_5/holo,
 		/area/crew_quarters/sleep/Dorm_7/holo,
-		/area/rnd/miscellaneous_lab)
+		/area/looking_glass/lg_1,
+		/area/rnd/miscellaneous_lab
+		)
 
 	unit_test_exempt_from_atmos = list(
 		/area/engineering/atmos_intake, // Outside,
@@ -133,10 +140,12 @@
 
 	lateload_z_levels = list(
 		list("Tether - Misc","Tether - Underdark","Tether - Plains"), //Stock Tether lateload maps
+		list("Offmap Ship - Talon Z1","Offmap Ship - Talon Z2"),
 		list("Asteroid Belt 1","Asteroid Belt 2","Asteroid Belt 3","Asteroid Belt 4"),
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
 		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
-		list("Debris Field - Z1 Space")
+		list("Debris Field - Z1 Space"),
+		list("Fuel Depot - Z1 Space")
 		)
 
 	lateload_single_pick = list(
@@ -195,34 +204,6 @@
 		Z_LEVEL_SOLARS,
 		Z_LEVEL_PLAINS
 	)
-
-// Short range computers see only the six main levels, others can see the surrounding surface levels.
-/datum/map/tether/get_map_levels(var/srcz, var/long_range = TRUE)
-	if (long_range && (srcz in map_levels))
-		return map_levels
-	else if (srcz == Z_LEVEL_MISC) //technical levels
-		return list() // Nothing on these z-levels- sensors won't show, and GPSes won't see each other.
-	else if (srcz >= Z_LEVEL_SURFACE_LOW && srcz <= Z_LEVEL_SOLARS) //Zs 1-3, 5-9, Z4 will return same list, but is not included into it
-		return list(
-			Z_LEVEL_SURFACE_LOW,
-			Z_LEVEL_SURFACE_MID,
-			Z_LEVEL_SURFACE_HIGH,
-			Z_LEVEL_SPACE_LOW,
-			Z_LEVEL_SPACE_MID,
-			Z_LEVEL_SPACE_HIGH,
-			Z_LEVEL_SURFACE_MINE,
-			Z_LEVEL_SOLARS,
-			Z_LEVEL_PLAINS)
-	else if(srcz >= Z_LEVEL_BEACH && srcz <= Z_LEVEL_BEACH_CAVE)
-		return list(
-			Z_LEVEL_BEACH,
-			Z_LEVEL_BEACH_CAVE)
-	else if(srcz >= Z_LEVEL_AEROSTAT && srcz <= Z_LEVEL_AEROSTAT_SURFACE)
-		return list(
-			Z_LEVEL_AEROSTAT,
-			Z_LEVEL_AEROSTAT_SURFACE)
-	else
-		return list(srcz) //prevents runtimes when using CMC. any Z-level not defined above will be 'isolated' and only show to GPSes/CMCs on that same Z (e.g. CentCom).
 
 // Overmap represetation of tether
 /obj/effect/overmap/visitable/sector/virgo3b

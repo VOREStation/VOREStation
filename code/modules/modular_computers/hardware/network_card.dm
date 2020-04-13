@@ -79,20 +79,25 @@ var/global/ntnet_card_uid = 1
 		return 0
 
 	if(holder2)
-		var/turf/T = get_turf(holder2)
-		if(!istype(T)) //no reception in nullspace
+		var/holderz = get_z(holder2)
+		if(!holderz) //no reception in nullspace
 			return 0
-		if(T.z in using_map.station_levels)
-			// Computer is on station. Low/High signal depending on what type of network card you have
-			if(long_range)
-				return 2
-			else
-				return 1
-		if(T.z in using_map.contact_levels) //not on station, but close enough for radio signal to travel
-			if(long_range) // Computer is not on station, but it has upgraded network card. Low signal.
-				return 1
-
-	return 0 // Computer is not on station and does not have upgraded network card. No signal.
+		var/list/zlevels_in_range = using_map.get_map_levels(holderz, long_range)
+		var/best = 0
+		for(var/relay in ntnet_global.relays)
+			var/obj/machinery/ntnet_relay/R = relay
+			//Relay is down
+			if(!R.operable())
+				continue
+			//We're on the same z
+			if(R.z == holderz)
+				best = 2
+				break // No point in going further
+			//Not on the same z but within range anyway
+			if(R.z in zlevels_in_range)
+				best = 1
+		return best
+	return 0 // No computer!
 
 /obj/item/weapon/computer_hardware/network_card/Destroy()
 	if(holder2 && (holder2.network_card == src))

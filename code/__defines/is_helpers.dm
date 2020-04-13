@@ -52,3 +52,4 @@
 //---------------
 //#define isturf(D)		istype(D, /turf)	//Built in
 #define isopenspace(A)	istype(A, /turf/simulated/open)
+#define isspace(A)	istype(A, /turf/space)

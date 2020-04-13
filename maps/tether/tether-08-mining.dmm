@@ -773,10 +773,6 @@
 /obj/structure/cable/green,
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
-"bG" = (
-/obj/machinery/telecomms/relay/preset/underdark,
-/turf/simulated/floor/plating,
-/area/outpost/mining_main/maintenance)
 "bH" = (
 /obj/machinery/telecomms/relay/preset/mining,
 /turf/simulated/floor/plating,
@@ -4104,7 +4100,7 @@ bd
 bl
 bq
 bz
-bG
+bp
 SF
 ab
 aF

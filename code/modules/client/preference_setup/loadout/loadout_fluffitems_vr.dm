@@ -14,6 +14,14 @@
 	allowed_roles = list("Station Engineer")
 */
 
+
+/datum/gear/fluff/collar //Use this as a base path for collars if you'd like to set tags in loadout. Make sure you don't use apostrophes in the display name or this breaks!
+	slot = slot_tie
+
+/datum/gear/fluff/collar/New()
+	..()
+	gear_tweaks = list(gear_tweak_collar_tag)
+
 //  0-9 CKEYS
 /datum/gear/fluff/malady_crop
 	path = /obj/item/weapon/material/twohanded/fluff/riding_crop/malady
@@ -68,6 +76,13 @@
 	slot = slot_wear_suit
 	ckeywhitelist = list("arokha")
 	character_name = list("Aronai Sieyes")
+
+/datum/gear/fluff/collar/azura
+	path = /obj/item/clothing/accessory/collar/azura
+	display_name = "collar, Azura"
+	description = "For the kobold's pet."
+	ckeywhitelist = list("azura chitin")
+	character_name = list("Azura Chitin")
 
 //  B CKEYS
 /datum/gear/fluff/yuuko_kimono
@@ -515,9 +530,9 @@
 	ckeywhitelist = list("kisukegema")
 	character_name = list("Kisuke Gema")
 
-/datum/gear/fluff/excess_collar
+/datum/gear/fluff/collar/excess
 	path = /obj/item/clothing/accessory/collar/pink/fluff/warning
-	display_name = "Excess's Collar"
+	display_name = "collar, Excess"
 	ckeywhitelist = list("killerdragn")
 	character_name = list("Excess")
 
@@ -654,6 +669,12 @@
 	display_name = "Damon's Unity Medal"
 	ckeywhitelist = list("nickcrazy")
 	character_name = list("Damon Bones Xrim")
+
+/datum/gear/fluff/kt_fishing_rod
+	path = /obj/item/weapon/material/fishing_rod/modern/strong
+	display_name = "K't's fishing rod"
+	ckeywhitelist = list("nerdass")
+	character_name = list("K't")
 
 //  O CKEYS
 /datum/gear/fluff/richard_chain
@@ -1104,5 +1125,3 @@
 	display_name = "Nehi's Radio"
 	ckeywhitelist = list("zodiacshadow")
 	character_name = list("Nehi Maximus")
-
-

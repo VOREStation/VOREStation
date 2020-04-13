@@ -1,4 +1,5 @@
 /obj/machinery/computer/shuttle_control/multi
+	circuit = /obj/item/weapon/circuitboard/shuttle_console/multi
 	ui_template = "shuttle_control_console_multi.tmpl"
 
 /obj/machinery/computer/shuttle_control/multi/get_ui_data(var/datum/shuttle/autodock/multi/shuttle)

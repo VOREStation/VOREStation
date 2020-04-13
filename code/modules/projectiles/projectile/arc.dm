@@ -49,7 +49,6 @@
 		on_impact(loc)
 	return ..()
 
-
 /obj/item/projectile/arc/launch_projectile(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
 	fired_dir = get_dir(user, target) // Used to determine if the projectile should turn in the air.
 	distance_to_fly = calculate_initial_pixel_distance(user, target) // Calculates how many pixels to travel before hitting the ground.
@@ -168,3 +167,34 @@
 
 /obj/item/projectile/arc/radioactive/on_impact(turf/T)
 	SSradiation.radiate(T, rad_power)
+
+// Blob mortar
+/obj/item/projectile/arc/spore
+	name = "spore"
+	icon_state = "declone"
+	damage = 20
+	damage_type = BIOACID
+	armor_penetration = 30
+	fire_sound = 'sound/effects/slime_squish.ogg'
+
+/obj/item/projectile/arc/spore/on_impact(turf/T)
+	for(var/mob/living/L in T)
+		attack_mob(L)
+
+	spawn()
+		T.visible_message("<span class='warning'>\The [src] covers \the [T] in a corrosive paste!</span>")
+		for(var/turf/simulated/floor/F in view(2, T))
+			spawn()
+				var/obj/effect/effect/water/splash = new(T)
+				splash.create_reagents(15)
+				splash.reagents.add_reagent("stomacid", 5)
+				splash.reagents.add_reagent("blood", 10,list("blood_colour" = "#ec4940"))
+				splash.set_color()
+
+				splash.set_up(F, 2, 3)
+
+			var/obj/effect/decal/cleanable/chemcoating/acid = locate() in T
+			if(!istype(acid))
+				acid = new(T)
+				acid.reagents.add_reagent("stomacid", 5)
+				acid.update_icon()

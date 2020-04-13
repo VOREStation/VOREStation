@@ -251,7 +251,7 @@ var/const/enterloopsanity = 100
 
 /turf/proc/inertial_drift(atom/movable/A as mob|obj)
 	if(!(A.last_move))	return
-	if((istype(A, /mob/) && src.x > 2 && src.x < (world.maxx - 1) && src.y > 2 && src.y < (world.maxy-1)))
+	if((istype(A, /mob/) && src.x > 1 && src.x < (world.maxx) && src.y > 1 && src.y < (world.maxy)))
 		var/mob/M = A
 		if(M.Process_Spacemove(1))
 			M.inertia_dir  = 0
