@@ -6377,14 +6377,14 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
 "lF" = (
-/obj/item/weapon/gun/energy/frontier/locked/carbine,
-/obj/item/weapon/gun/energy/frontier/locked/carbine,
-/obj/item/weapon/gun/energy/frontier/locked/carbine,
-/obj/item/weapon/gun/energy/frontier/locked/carbine,
-/obj/item/weapon/gun/energy/frontier/locked/holdout,
-/obj/item/weapon/gun/energy/frontier/locked/holdout,
-/obj/item/weapon/gun/energy/frontier/locked/holdout,
-/obj/item/weapon/gun/energy/frontier/locked/holdout,
+/obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
 /obj/structure/closet/secure_closet/guncabinet{
 	req_one_access = list(103)
 	},

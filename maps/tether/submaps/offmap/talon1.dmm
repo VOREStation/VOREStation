@@ -5675,7 +5675,7 @@
 /area/talon/deckone/armory)
 "kT" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/gun/energy/frontier/locked/holdout,
+/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
 /turf/simulated/floor/tiled/dark,
 /area/talon/deckone/armory)
 "kU" = (
