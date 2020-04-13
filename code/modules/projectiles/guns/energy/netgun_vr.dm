@@ -4,6 +4,7 @@
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "netgun"
 	item_state = "gun" // Placeholder
+	charge_meter = 0
 
 	fire_sound = 'sound/weapons/eluger.ogg'
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_MAGNET = 3)
