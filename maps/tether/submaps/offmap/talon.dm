@@ -194,6 +194,165 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/machinery/camera/network/talon
 	network = list(NETWORK_TALON_SHIP)
 
+
+/obj/item/clothing/head/helmet/space/void/captain/talon
+	name = "talon captain's voidsuit helmet"
+	camera_networks = list(NETWORK_TALON_HELMETS)
+/obj/item/clothing/suit/space/void/captain/talon
+	name = "talon captain's voidsuit"
+
+/obj/item/clothing/head/helmet/space/void/security/talon
+	name = "talon guard's voidsuit helmet"
+	camera_networks = list(NETWORK_TALON_HELMETS)
+/obj/item/clothing/suit/space/void/security/talon
+	name = "talon guard's voidsuit"
+
+/obj/item/clothing/head/helmet/space/void/medical/talon
+	name = "talon doctor's voidsuit helmet"
+	camera_networks = list(NETWORK_TALON_HELMETS)
+/obj/item/clothing/suit/space/void/medical/talon
+	name = "talon doctor's voidsuit"
+
+/obj/item/clothing/head/helmet/space/void/atmos/talon
+	name = "talon engineer's voidsuit helmet"
+	camera_networks = list(NETWORK_TALON_HELMETS)
+/obj/item/clothing/suit/space/void/atmos/talon
+	name = "talon engineer's voidsuit"
+
+/obj/item/clothing/head/helmet/space/void/pilot/talon
+	name = "talon pilot's voidsuit helmet"
+	camera_networks = list(NETWORK_TALON_HELMETS)
+/obj/item/clothing/suit/space/void/pilot/talon
+	name = "talon pilot's voidsuit"
+
+/obj/structure/closet/secure_closet/talon_captain
+	name = "talon captain's locker"
+	icon_state = "capsecure1"
+	icon_closed = "capsecure"
+	icon_locked = "capsecure1"
+	icon_opened = "capsecureopen"
+	icon_broken = "capsecurebroken"
+	icon_off = "capsecureoff"
+	req_access = list(access_talon)
+
+	starts_with = list(
+		/obj/item/weapon/storage/backpack/dufflebag/captain,
+		/obj/item/clothing/suit/storage/vest,
+		/obj/item/weapon/melee/telebaton,
+		/obj/item/device/flash,
+		/obj/item/device/radio/headset/talon,
+		/obj/item/clothing/head/helmet/space/void/captain/talon,
+		/obj/item/clothing/suit/space/void/captain/talon,
+		/obj/item/weapon/tank/oxygen,
+		/obj/item/device/suit_cooling_unit
+	)
+
+/obj/structure/closet/secure_closet/talon_guard
+	name = "talon guard's locker"
+	req_access = list(access_hos)
+	icon_state = "hossecure1"
+	icon_closed = "hossecure"
+	icon_locked = "hossecure1"
+	icon_opened = "hossecureopen"
+	icon_broken = "hossecurebroken"
+	icon_off = "hossecureoff"
+	req_access = list(access_talon)
+
+	starts_with = list(
+		/obj/item/clothing/suit/armor/pcarrier/light,
+		/obj/item/clothing/under/utility,
+		/obj/item/clothing/shoes/boots/jackboots,
+		/obj/item/clothing/shoes/boots/jackboots/toeless,
+		/obj/item/weapon/handcuffs = 2,
+		/obj/item/weapon/gun/energy/stunrevolver,
+		/obj/item/clothing/accessory/armor/tag/sec,
+		/obj/item/device/flash,
+		/obj/item/device/flashlight/maglight,
+		/obj/item/clothing/glasses/sunglasses,
+		/obj/item/weapon/storage/belt/security,
+		/obj/item/device/radio/headset/talon,
+		/obj/item/clothing/accessory/solgov/department/security/marine,
+		/obj/item/clothing/head/helmet/space/void/security/talon,
+		/obj/item/clothing/suit/space/void/security/talon,
+		/obj/item/weapon/tank/oxygen,
+		/obj/item/device/suit_cooling_unit
+	)
+
+/obj/structure/closet/secure_closet/talon_doctor
+	name = "talon doctor's locker"
+	icon_state = "cmosecure1"
+	icon_closed = "cmosecure"
+	icon_locked = "cmosecure1"
+	icon_opened = "cmosecureopen"
+	icon_broken = "cmosecurebroken"
+	icon_off = "cmosecureoff"
+	req_access = list(access_talon)
+
+	starts_with = list(
+		/obj/item/clothing/under/rank/medical,
+		/obj/item/clothing/under/rank/nurse,
+		/obj/item/clothing/under/rank/orderly,
+		/obj/item/clothing/suit/storage/toggle/labcoat,
+		/obj/item/clothing/suit/storage/toggle/fr_jacket,
+		/obj/item/clothing/shoes/white,
+		/obj/item/device/radio/headset/talon,
+		/obj/item/clothing/head/helmet/space/void/medical/talon,
+		/obj/item/clothing/suit/space/void/medical/talon,
+		/obj/item/weapon/tank/oxygen,
+		/obj/item/device/suit_cooling_unit
+	)
+
+/obj/structure/closet/secure_closet/talon_engineer
+	name = "talon engineer's locker"
+	icon_state = "securece1"
+	icon_closed = "securece"
+	icon_locked = "securece1"
+	icon_opened = "secureceopen"
+	icon_broken = "securecebroken"
+	icon_off = "secureceoff"
+	req_access = list(access_talon)
+
+	starts_with = list(
+		/obj/item/clothing/accessory/storage/brown_vest,
+		/obj/item/device/flashlight,
+		/obj/item/weapon/extinguisher,
+		/obj/item/clamp,
+		/obj/item/device/radio/headset/talon,
+		/obj/item/clothing/suit/storage/hazardvest,
+		/obj/item/clothing/mask/gas,
+		/obj/item/taperoll/atmos,
+		/obj/item/weapon/tank/emergency/oxygen/engi,
+		/obj/item/clothing/head/helmet/space/void/atmos/talon,
+		/obj/item/clothing/suit/space/void/atmos/talon,
+		/obj/item/weapon/tank/oxygen,
+		/obj/item/device/suit_cooling_unit
+	)
+
+/obj/structure/closet/secure_closet/talon_pilot
+	name = "talon pilot's locker"
+	req_access = list(access_talon)
+
+	starts_with = list(
+		/obj/item/weapon/material/knife/tacknife/survival,
+		/obj/item/clothing/head/pilot,
+		/obj/item/clothing/under/rank/pilot1,
+		/obj/item/clothing/suit/storage/toggle/bomber/pilot,
+		/obj/item/clothing/gloves/fingerless,
+		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+		/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+		/obj/item/device/radio,
+		/obj/item/clothing/under/utility/blue,
+		/obj/item/clothing/accessory/solgov/specialty/pilot,
+		/obj/item/clothing/shoes/boots/jackboots,
+		/obj/item/clothing/shoes/boots/jackboots/toeless,
+		/obj/item/device/radio/headset/talon,
+		/obj/item/device/flashlight/color/orange,
+		/obj/item/clothing/head/helmet/space/void/pilot/talon,
+		/obj/item/clothing/suit/space/void/pilot/talon,
+		/obj/item/weapon/tank/oxygen,
+		/obj/item/device/suit_cooling_unit
+	)
+
 ///////////////////////////
 //// Computers
 // Talon helmet cameras
