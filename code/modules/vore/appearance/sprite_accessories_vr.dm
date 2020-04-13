@@ -504,8 +504,46 @@
     desc = ""
     icon_state = "pipears"
     ckeys_allowed = list("phoaly")
-
-
+    
+/datum/sprite_accessory/ears/elf_caprine_colorable
+	name = "Caprine horns with pointy ears, colorable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "caprahorns"
+	
+/datum/sprite_accessory/ears/elf_oni_colorable
+	name = "oni horns with pointy ears, colorable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "oni-h1_c"
+	
+/datum/sprite_accessory/ears/elf_demon_colorable
+	name = "Demon horns with pointy ears, colorable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "demon-horns1_c"
+	
+/datum/sprite_accessory/ears/elf_demon_outwards_colorable
+	name = "Demon horns with pointy ears, outwards, colourable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "demon-horns2"
+	
+/datum/sprite_accessory/ears/elf_dragon_colorable
+	name = "Dragon horns with pointy ears, colourable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "dragon-horns"
 /*
 ////////////////////////////
 /  =--------------------=  /
