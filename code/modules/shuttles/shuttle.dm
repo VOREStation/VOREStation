@@ -74,6 +74,16 @@
 		SSsupply.shuttle = null
 	. = ..()
 
+// This is called after all shuttles have been initialized by SSshuttles, but before sectors have been initialized.
+// Importantly for subtypes, all shuttles will have been initialized and mothershuttles hooked up by the time this is called.
+/datum/shuttle/proc/populate_shuttle_objects()
+	// Scan for shuttle consoles on them needing auto-config.
+	for(var/area/A in find_childfree_areas()) // Let sub-shuttles handle their areas, only do our own.
+		for(var/obj/machinery/computer/shuttle_control/SC in A)
+			if(!SC.shuttle_tag)
+				SC.set_shuttle_tag(src.name)
+	return
+
 // This creates a graphical warning to where the shuttle is about to land, in approximately five seconds.
 /datum/shuttle/proc/create_warning_effect(var/obj/effect/shuttle_landmark/destination)
 	destination.create_warning_effect(src)
@@ -347,6 +357,15 @@
 		cables |= P.cables
 		qdel(P)
 	SSmachines.setup_powernets_for_cables(cables)
+
+	// Adjust areas of mothershuttle so it doesn't try and bring us with it if it jumps while we aren't on it.
+	if(mothershuttle)
+		var/datum/shuttle/MS = SSshuttles.shuttles[mothershuttle]
+		if(MS)
+			if(current_location.landmark_tag == motherdock)
+				MS.shuttle_area |= shuttle_area // We are now on mothershuttle! Bring us along!
+			else
+				MS.shuttle_area -= shuttle_area // We have left mothershuttle! Don't bring us along!
 
 	return
 

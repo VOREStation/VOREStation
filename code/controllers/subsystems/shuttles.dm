@@ -84,6 +84,7 @@ SUBSYSTEM_DEF(shuttles)
 		if(shuttle)
 			shuttles_made += shuttle
 	hook_up_motherships(shuttles_made)
+	hook_up_shuttle_objects(shuttles_made)
 	shuttles_to_initialize = null
 
 /datum/controller/subsystem/shuttles/proc/initialize_sectors()
@@ -164,6 +165,11 @@ SUBSYSTEM_DEF(shuttles)
 				mothership.shuttle_area |= S.shuttle_area
 			else
 				error("Shuttle [S] was unable to find mothership [mothership]!")
+
+// Let shuttles scan their owned areas for objects they want to configure (Called after mothership hookup)
+/datum/controller/subsystem/shuttles/proc/hook_up_shuttle_objects(shuttles_list)
+	for(var/datum/shuttle/S in shuttles_list)
+		S.populate_shuttle_objects()
 
 // Admin command to halt/resume overmap
 /datum/controller/subsystem/shuttles/proc/toggle_overmap(new_setting)
