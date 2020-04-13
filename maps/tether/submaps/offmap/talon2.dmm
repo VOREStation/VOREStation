@@ -64,6 +64,7 @@
 /area/talon/decktwo/bridge_upper)
 "al" = (
 /obj/structure/table/steel,
+/obj/item/weapon/paper/dockingcodes,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon/decktwo/bridge_upper)
 "am" = (
@@ -2685,7 +2686,7 @@
 /turf/simulated/floor/plating,
 /area/talon/maintenance/decktwo_starboard)
 "eN" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/rpshull,
 /area/talon/decktwo/lifeboat)
 "eO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -2982,6 +2983,7 @@
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 4
 	},
+/obj/item/device/survivalcapsule/luxury,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon/decktwo/lifeboat)
 "fp" = (
@@ -4305,7 +4307,9 @@
 /area/talon/maintenance/decktwo_aft)
 "ie" = (
 /obj/effect/map_helper/airlock/door/ext_door,
-/obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/airlock/glass_external{
+	req_one_access = list(301)
+	},
 /turf/simulated/floor/plating,
 /area/talon/maintenance/decktwo_aft)
 "if" = (
@@ -4391,7 +4395,9 @@
 "in" = (
 /obj/effect/map_helper/airlock/door/int_door,
 /obj/machinery/atmospherics/pipe/simple/visible/aux,
-/obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/airlock/glass_external{
+	req_one_access = list(301)
+	},
 /turf/simulated/floor/plating,
 /area/talon/maintenance/decktwo_aft)
 "ip" = (
