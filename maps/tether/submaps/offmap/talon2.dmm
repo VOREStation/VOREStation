@@ -2685,7 +2685,7 @@
 /turf/simulated/floor/plating,
 /area/talon/maintenance/decktwo_starboard)
 "eN" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/rpshull,
 /area/talon/decktwo/lifeboat)
 "eO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
