@@ -64,6 +64,7 @@
 /area/talon/decktwo/bridge_upper)
 "al" = (
 /obj/structure/table/steel,
+/obj/item/weapon/paper/dockingcodes,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon/decktwo/bridge_upper)
 "am" = (
