@@ -94,6 +94,7 @@ proc/sql_report_cyborg_death(var/mob/living/silicon/robot/H)
 
 
 proc/statistic_cycle()
+	set waitfor = 0
 	if(!sqllogging)
 		return
 	while(1)
