@@ -3694,7 +3694,9 @@
 /area/talon/deckone/port_eng_store)
 "ha" = (
 /obj/machinery/vending/engineering{
-	req_log_access = 301
+	req_access = newlist();
+	req_log_access = 301;
+	req_one_access = list(301)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon/deckone/port_eng_store)
@@ -4868,7 +4870,9 @@
 /area/talon/deckone/starboard_eng)
 "iV" = (
 /obj/machinery/door/firedoor/glass/talon,
-/obj/machinery/door/airlock/maintenance/engi,
+/obj/machinery/door/airlock/maintenance/engi{
+	req_one_access = list(301)
+	},
 /turf/simulated/floor/plating,
 /area/talon/deckone/port_eng)
 "iW" = (
@@ -4939,7 +4943,9 @@
 /area/talon/deckone/starboard_eng)
 "jf" = (
 /obj/machinery/door/firedoor/glass/talon,
-/obj/machinery/door/airlock/maintenance/engi,
+/obj/machinery/door/airlock/maintenance/engi{
+	req_one_access = list(301)
+	},
 /turf/simulated/floor/plating,
 /area/talon/deckone/starboard_eng)
 "jg" = (
@@ -5695,11 +5701,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
-"kW" = (
-/obj/structure/catwalk,
-/obj/structure/loot_pile/maint,
-/turf/simulated/floor/plating,
-/area/talon/maintenance/deckone_starboard)
 "kX" = (
 /obj/machinery/door/airlock/maintenance/sec{
 	req_one_access = list(301)
@@ -5983,6 +5984,15 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/deckone_port_fore_wing)
+"pm" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8;
+	icon_state = "borderfloor";
+	pixel_x = 0
+	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/simulated/floor/tiled/steel,
+/area/talon/deckone/central_hallway)
 "qN" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	icon_state = "intact";
@@ -5995,6 +6005,7 @@
 /obj/structure/sign/warning/airlock{
 	pixel_x = 32
 	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/plating,
 /area/talon/maintenance/deckone_starboard)
 "su" = (
@@ -6002,6 +6013,7 @@
 /obj/structure/sign/warning/airlock{
 	pixel_x = -31
 	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/plating,
 /area/talon/maintenance/deckone_port)
 "sK" = (
@@ -15583,7 +15595,7 @@ hG
 hW
 ip
 lz
-kP
+pm
 WB
 dL
 wk
@@ -17535,7 +17547,7 @@ aa
 aa
 aa
 aK
-kW
+jp
 bd
 aP
 aP
