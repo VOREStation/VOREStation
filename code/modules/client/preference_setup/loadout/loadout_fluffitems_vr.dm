@@ -81,7 +81,7 @@
 	path = /obj/item/clothing/accessory/collar/azura
 	display_name = "collar, Azura"
 	description = "For the kobold's pet."
-	ckeywhitelist = list("azura chitin")
+	ckeywhitelist = list("azurachitin")
 	character_name = list("Azura Chitin")
 
 //  B CKEYS
