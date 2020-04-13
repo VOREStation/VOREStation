@@ -18,6 +18,11 @@
 	S["job_engsec_high"]	>> pref.job_engsec_high
 	S["job_engsec_med"]		>> pref.job_engsec_med
 	S["job_engsec_low"]		>> pref.job_engsec_low
+	//VOREStation Add
+	S["job_talon_low"]		>> pref.job_talon_low
+	S["job_talon_med"]		>> pref.job_talon_med
+	S["job_talon_high"]		>> pref.job_talon_high
+	//VOREStation Add End
 	S["player_alt_titles"]	>> pref.player_alt_titles
 
 /datum/category_item/player_setup_item/occupation/save_character(var/savefile/S)
@@ -31,6 +36,11 @@
 	S["job_engsec_high"]	<< pref.job_engsec_high
 	S["job_engsec_med"]		<< pref.job_engsec_med
 	S["job_engsec_low"]		<< pref.job_engsec_low
+	//VOREStation Add
+	S["job_talon_low"]		<< pref.job_talon_low
+	S["job_talon_med"]		<< pref.job_talon_med
+	S["job_talon_high"]		<< pref.job_talon_high
+	//VOREStation Add End
 	S["player_alt_titles"]	<< pref.player_alt_titles
 
 /datum/category_item/player_setup_item/occupation/sanitize_character()
@@ -44,6 +54,11 @@
 	pref.job_engsec_high	= sanitize_integer(pref.job_engsec_high, 0, 65535, initial(pref.job_engsec_high))
 	pref.job_engsec_med 	= sanitize_integer(pref.job_engsec_med, 0, 65535, initial(pref.job_engsec_med))
 	pref.job_engsec_low 	= sanitize_integer(pref.job_engsec_low, 0, 65535, initial(pref.job_engsec_low))
+	//VOREStation Add
+	pref.job_talon_high		= sanitize_integer(pref.job_talon_high, 0, 65535, initial(pref.job_talon_high))
+	pref.job_talon_med 		= sanitize_integer(pref.job_talon_med, 0, 65535, initial(pref.job_talon_med))
+	pref.job_talon_low 		= sanitize_integer(pref.job_talon_low, 0, 65535, initial(pref.job_talon_low))
+	//VOREStation Add End
 	if(!(pref.player_alt_titles)) pref.player_alt_titles = new()
 
 	if(!job_master)
@@ -54,7 +69,7 @@
 		if(alt_title && !(alt_title in job.alt_titles))
 			pref.player_alt_titles -= job.title
 
-/datum/category_item/player_setup_item/occupation/content(mob/user, limit = 20, list/splitJobs = list())
+/datum/category_item/player_setup_item/occupation/content(mob/user, limit = 25, list/splitJobs = list())
 	if(!job_master)
 		return
 
@@ -281,14 +296,17 @@
 			pref.job_civilian_high = 0
 			pref.job_medsci_high = 0
 			pref.job_engsec_high = 0
+			pref.job_talon_high = 0 //VOREStation Add
 			return 1
 		if(2)//Set current highs to med, then reset them
 			pref.job_civilian_med |= pref.job_civilian_high
 			pref.job_medsci_med |= pref.job_medsci_high
 			pref.job_engsec_med |= pref.job_engsec_high
+			pref.job_talon_med |= pref.job_talon_high //VOREStation Add
 			pref.job_civilian_high = 0
 			pref.job_medsci_high = 0
 			pref.job_engsec_high = 0
+			pref.job_talon_high = 0 //VOREStation Add
 
 	switch(job.department_flag)
 		if(CIVILIAN)
@@ -321,6 +339,19 @@
 					pref.job_engsec_low &= ~job.flag
 				else
 					pref.job_engsec_low |= job.flag
+		//VOREStation Add
+		if(TALON)
+			switch(level)
+				if(2)
+					pref.job_talon_high = job.flag
+					pref.job_talon_med &= ~job.flag
+				if(3)
+					pref.job_talon_med |= job.flag
+					pref.job_talon_low &= ~job.flag
+				else
+					pref.job_talon_low |= job.flag
+		//VOREStation Add End
+
 	return 1
 
 /datum/category_item/player_setup_item/occupation/proc/ResetJobs()
@@ -335,6 +366,12 @@
 	pref.job_engsec_high = 0
 	pref.job_engsec_med = 0
 	pref.job_engsec_low = 0
+
+	//VOREStation Add
+	pref.job_talon_high = 0
+	pref.job_talon_med = 0
+	pref.job_talon_low = 0
+	//VOREStation Add End
 
 	pref.player_alt_titles.Cut()
 
@@ -368,4 +405,14 @@
 					return job_engsec_med
 				if(3)
 					return job_engsec_low
+		//VOREStation Add
+		if(TALON)
+			switch(level)
+				if(1)
+					return job_talon_high
+				if(2)
+					return job_talon_med
+				if(3)
+					return job_talon_low
+		//VOREStation Add End
 	return 0

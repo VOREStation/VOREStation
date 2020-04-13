@@ -10,6 +10,8 @@
 
 /datum/job/talon/captain
 	title = "Talon Captain"
+	flag = TALCAP
+	department_flag = TALON
 	departments_managed = list(DEPARTMENT_TALON)
 	job_description = "The captain's job is to generate profit through trade or other means such as salvage or even privateering."
 	supervisors = "yourself"
@@ -29,6 +31,8 @@
 
 /datum/job/talon/doctor
 	title = "Talon Doctor"
+	flag = TALDOC
+	department_flag = TALON
 	job_description = "The doctor's job is to make sure the crew of the ITV Talon remain in good health and to monitor them when away from the ship."
 	supervisors = "the ITV Talon's captain"
 	outfit_type = /decl/hierarchy/outfit/job/talon_doctor
@@ -47,6 +51,8 @@
 
 /datum/job/talon/engineer
 	title = "Talon Engineer"
+	flag = TALENG
+	department_flag = TALON
 	job_description = "The engineer's job is to ensure the ITV Talon remains in tip-top shape and to repair any damage as well as manage the shields."
 	supervisors = "the ITV Talon's captain"
 	outfit_type = /decl/hierarchy/outfit/job/talon_engineer
@@ -65,6 +71,8 @@
 
 /datum/job/talon/pilot
 	title = "Talon Pilot"
+	flag = TALPIL
+	department_flag = TALON
 	job_description = "The pilot's job is to fly the ITV Talon in the most efficient and profitable way possible."
 	supervisors = "the ITV Talon's captain"
 	outfit_type = /decl/hierarchy/outfit/job/talon_pilot
@@ -83,6 +91,8 @@
 
 /datum/job/talon/guard
 	title = "Talon Guard"
+	flag = TALSEC
+	department_flag = TALON
 	job_description = "The guard's job is to keep the crew of the ITV Talon safe and ensure the captain's wishes are carried out."
 	supervisors = "the ITV Talon's captain"
 	outfit_type = /decl/hierarchy/outfit/job/talon_security
