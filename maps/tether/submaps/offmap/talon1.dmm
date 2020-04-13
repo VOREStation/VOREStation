@@ -1151,9 +1151,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/talon/deckone/starboard_solar)
-"cq" = (
-/turf/simulated/wall/shull,
-/area/talon/deckone/port_solar)
 "cr" = (
 /obj/structure/cable/yellow{
 	icon_state = "16-0"
@@ -5373,7 +5370,7 @@
 	id = "very_fake";
 	name = "Shuttle Bay Doors"
 	},
-/turf/simulated/wall/rshull,
+/turf/simulated/floor/plating,
 /area/talon/deckone/central_hallway)
 "kj" = (
 /obj/machinery/atmospherics/unary/engine{
@@ -14322,7 +14319,7 @@ aL
 fD
 su
 kZ
-aM
+aC
 aL
 aL
 aL
@@ -14591,9 +14588,9 @@ aC
 aL
 aL
 cl
-cq
-cq
-cq
+cl
+cl
+cl
 cl
 bS
 dH
@@ -18026,8 +18023,8 @@ ij
 iF
 iF
 jf
-iF
-iF
+jY
+jY
 gT
 gT
 jY
@@ -18298,7 +18295,7 @@ aP
 fS
 sk
 la
-aO
+aK
 aP
 aP
 aP
