@@ -116,7 +116,7 @@
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
-	area_uid = alarm_area.uid
+	area_uid = "\ref[alarm_area]"
 	if(name == "alarm")
 		name = "[alarm_area.name] Air Alarm"
 

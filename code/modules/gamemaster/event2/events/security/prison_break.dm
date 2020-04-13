@@ -177,7 +177,7 @@
 
 
 /datum/event2/event/prison_break/set_up()
-	for(var/area/A in all_areas)
+	for(var/area/A in world)
 		if(is_type_in_list(A, area_types_to_break) && !is_type_in_list(A, area_types_to_ignore))
 			areas_to_break += A
 
