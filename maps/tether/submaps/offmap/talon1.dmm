@@ -2621,7 +2621,9 @@
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
 	},
-/obj/structure/table/standard,
+/obj/structure/closet/crate/medical{
+	name = "medicine cooler"
+	},
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
 "fc" = (
@@ -5696,9 +5698,7 @@
 /obj/effect/floor_decal/borderfloorwhite/corner2{
 	dir = 5
 	},
-/obj/structure/closet/crate/medical{
-	name = "medicine cooler"
-	},
+/obj/machinery/chem_master,
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
 "kX" = (
