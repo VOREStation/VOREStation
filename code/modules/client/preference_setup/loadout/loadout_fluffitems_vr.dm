@@ -670,6 +670,12 @@
 	ckeywhitelist = list("nickcrazy")
 	character_name = list("Damon Bones Xrim")
 
+/datum/gear/fluff/kt_fishing_rod
+	path = /obj/item/weapon/material/fishing_rod/modern/strong
+	display_name = "K't's fishing rod"
+	ckeywhitelist = list("nerdass")
+	character_name = list("K't")
+
 //  O CKEYS
 /datum/gear/fluff/richard_chain
 	path = /obj/item/weapon/melee/fluff/holochain
