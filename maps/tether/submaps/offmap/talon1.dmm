@@ -3382,6 +3382,9 @@
 /area/talon/deckone/brig)
 "gt" = (
 /obj/effect/floor_decal/borderfloor,
+/obj/machinery/suit_cycler/security{
+	req_access = list(301)
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/deckone/brig)
 "gu" = (
@@ -5071,6 +5074,10 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/suit_cycler/engineering{
+	name = "Atmospherics suit cycler";
+	req_access = list(301)
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon/deckone/starboard_eng)
 "jz" = (
@@ -5984,15 +5991,6 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/deckone_port_fore_wing)
-"pm" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8;
-	icon_state = "borderfloor";
-	pixel_x = 0
-	},
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/simulated/floor/tiled/steel,
-/area/talon/deckone/central_hallway)
 "qN" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	icon_state = "intact";
@@ -6361,7 +6359,7 @@
 	icon_state = "borderfloorcorner2";
 	pixel_x = 0
 	},
-/obj/machinery/suit_cycler,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/steel,
 /area/talon/deckone/central_hallway)
 "Xi" = (
@@ -6417,6 +6415,12 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/talon/deckone/bridge_hallway)
+"ZU" = (
+/obj/machinery/suit_cycler/medical{
+	req_access = list(301)
+	},
+/turf/simulated/floor/tiled/white,
+/area/talon/deckone/medical)
 
 (1,1,1) = {"
 aa
@@ -15595,7 +15599,7 @@ hG
 hW
 ip
 lz
-pm
+kP
 WB
 dL
 wk
@@ -17708,7 +17712,7 @@ aP
 dO
 ej
 ef
-ef
+ZU
 jV
 fm
 dO
