@@ -100,6 +100,15 @@
 	if(!blinded)
 		flash_eyes()
 
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.explosion_modifier))
+			severity = CLAMP(severity + M.explosion_modifier, 1, 4)
+
+	severity = round(severity)
+
+	if(severity > 3)
+		return
+
 	var/shielded = 0
 	var/b_loss = null
 	var/f_loss = null

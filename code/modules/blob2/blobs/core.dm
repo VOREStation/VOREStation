@@ -83,6 +83,15 @@ var/list/blob_cores = list()
 /obj/structure/blob/core/volatile_alluvium
 	desired_blob_type = /datum/blob_type/volatile_alluvium
 
+/obj/structure/blob/core/ravenous_macrophage
+	desired_blob_type = /datum/blob_type/ravenous_macrophage
+
+/obj/structure/blob/core/roiling_mold
+	desired_blob_type = /datum/blob_type/roiling_mold
+
+/obj/structure/blob/core/ectoplasmic_horror
+	desired_blob_type = /datum/blob_type/ectoplasmic_horror
+
 /obj/structure/blob/core/classic
 	desired_blob_type = /datum/blob_type/classic
 
@@ -98,6 +107,9 @@ var/list/blob_cores = list()
 	point_rate = new_rate
 
 /obj/structure/blob/core/Destroy()
+	var/turf/T = get_turf(src)
+	new /obj/item/weapon/blobcore_chunk(T, overmind.blob_type)
+
 	blob_cores -= src
 	if(overmind)
 		overmind.blob_core = null
@@ -134,6 +146,8 @@ var/list/blob_cores = list()
 	for(var/obj/structure/blob/normal/B in range(1, src))
 		if(prob(5))
 			B.change_to(/obj/structure/blob/shield/core, overmind)
+
+	overmind.blob_type.on_core_process(src)
 
 /obj/structure/blob/core/proc/create_overmind(client/new_overmind, override_delay)
 	if(overmind_get_delay > world.time && !override_delay)

@@ -15,6 +15,12 @@
 			return access_research
 		if(NETWORK_ERT)
 			return access_cent_specops
+		//VOREStation Add Start
+		if(NETWORK_TALON_SHIP)
+			return access_talon
+		if(NETWORK_TALON_HELMETS)
+			return access_talon
+		//VOREStation Add End
 
 	if(network in using_map.station_networks)
 		return access_security // Default for all other station networks
@@ -62,8 +68,10 @@
 
 	data["networks"] = all_networks
 
+	var/list/map_levels = using_map.get_map_levels(get_z(nano_host()), TRUE)
+
 	if(current_network)
-		data["cameras"] = camera_repository.cameras_in_network(current_network)
+		data["cameras"] = camera_repository.cameras_in_network(current_network, map_levels)
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)

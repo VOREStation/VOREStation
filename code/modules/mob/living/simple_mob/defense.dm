@@ -96,6 +96,16 @@
 /mob/living/simple_mob/ex_act(severity)
 	if(!blinded)
 		flash_eyes()
+
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.explosion_modifier))
+			severity = CLAMP(severity + M.explosion_modifier, 1, 4)
+
+	severity = round(severity)
+
+	if(severity > 3)
+		return
+
 	var/armor = run_armor_check(def_zone = null, attack_flag = "bomb")
 	var/bombdam = 500
 	switch (severity)

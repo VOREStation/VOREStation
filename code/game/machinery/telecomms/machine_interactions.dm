@@ -219,6 +219,38 @@
 				temp = "<font color = #666633>-% Frequency changing deactivated %-</font>"
 
 
+// BROADCASTER
+/obj/machinery/telecomms/broadcaster/Options_Menu()
+	// Note the machine 'displays' 1 higher than overmap_range to save users from the abstraction that range '0' is valid and everything on the same turf.
+	var/dat = "<br>Broadcast Range (affects power usage)<br><a href='?src=\ref[src];range_down=1'>-</a> [overmap_range+1] gigameter\s <a href='?src=\ref[src];range_up=1'>+</a>"
+	return dat
+
+/obj/machinery/telecomms/broadcaster/Options_Topic(href, href_list)
+	if(href_list["range_down"])
+		if(overmap_range > overmap_range_min)
+			overmap_range--
+			idle_power_usage = initial(idle_power_usage)**(overmap_range+1)
+	if(href_list["range_up"])
+		if(overmap_range < overmap_range_max)
+			overmap_range++
+			idle_power_usage = initial(idle_power_usage)**(overmap_range+1)
+
+// RECEIVER
+/obj/machinery/telecomms/receiver/Options_Menu()
+	// Note the machine 'displays' 1 higher than overmap_range to save users from the abstraction that range '0' is valid and everything on the same turf.
+	var/dat = "<br>Receive Range (affects power usage)<br><a href='?src=\ref[src];range_down=1'>-</a> [overmap_range+1] gigameter\s <a href='?src=\ref[src];range_up=1'>+</a>"
+	return dat
+
+/obj/machinery/telecomms/receiver/Options_Topic(href, href_list)
+	if(href_list["range_down"])
+		if(overmap_range > overmap_range_min)
+			overmap_range--
+			idle_power_usage = initial(idle_power_usage)**(overmap_range+1)
+	if(href_list["range_up"])
+		if(overmap_range < overmap_range_max)
+			overmap_range++
+			idle_power_usage = initial(idle_power_usage)**(overmap_range+1)
+
 /obj/machinery/telecomms/Topic(href, href_list)
 
 	if(!issilicon(usr))

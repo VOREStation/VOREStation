@@ -1725,10 +1725,6 @@
 	},
 /turf/simulated/floor/holofloor/grass,
 /area/holodeck/holodorm/source_garden)
-"hn" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/base_high,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "hx" = (
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/holodorm/source_seating)
@@ -1876,7 +1872,7 @@
 /turf/space/transit/west,
 /area/space)
 "kh" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/base_mid,
+/obj/machinery/telecomms/relay/preset/centcom/tether,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "kn" = (
@@ -1887,10 +1883,6 @@
 /area/centcom/simulated/main_hall)
 "kr" = (
 /obj/machinery/telecomms/server/presets/centcomm,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
-"kF" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/midpoint,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "le" = (
@@ -2054,10 +2046,6 @@
 	icon = 'icons/turf/transit_vr.dmi'
 	},
 /area/space)
-"vt" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/station_high,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "vG" = (
 /obj/effect/step_trigger/lost_in_space/tram,
 /turf/simulated/floor/maglev{
@@ -2127,6 +2115,7 @@
 /area/space)
 "xe" = (
 /obj/machinery/account_database{
+	dir = 1;
 	name = "CentComm Accounts database"
 	},
 /turf/unsimulated/floor/steel,
@@ -2243,7 +2232,7 @@
 /turf/simulated/sky/virgo3b/south,
 /area/space)
 "Ct" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/station_low,
+/obj/machinery/ntnet_relay,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "Cw" = (
@@ -2256,20 +2245,12 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/centcom/simulated/main_hall)
-"Dc" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/station_mid,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "Dk" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel,
 /area/space)
-"Dn" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/sci_outpost,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "Dw" = (
 /obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/food/snacks/chips,
@@ -2335,10 +2316,6 @@
 	icon_state = "techfloor_grid"
 	},
 /area/space)
-"FW" = (
-/obj/machinery/telecomms/relay/preset/centcom/underdark,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "Ga" = (
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
@@ -4851,10 +4828,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/simulated/medical)
-"ZA" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether/base_low,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "ZC" = (
 /obj/machinery/light{
 	icon_state = "tube1";
@@ -17130,7 +17103,7 @@ ae
 wy
 rE
 Ga
-HQ
+Iq
 wl
 Up
 Vj
@@ -17270,9 +17243,9 @@ ae
 ae
 ae
 wy
-kF
+HQ
 Ga
-Iq
+Ga
 wl
 Up
 Vj
@@ -17838,9 +17811,9 @@ ae
 ae
 ae
 wy
-Dc
-Ga
-hn
+wy
+wy
+wy
 wl
 Up
 Vj
@@ -17979,10 +17952,10 @@ ae
 ae
 ae
 ae
-wy
-vt
-Ga
-FW
+ae
+ae
+ae
+ae
 wl
 Up
 Vj
@@ -18121,10 +18094,10 @@ ae
 ae
 ae
 ae
-wy
-Dn
-Ga
-ZA
+ae
+ae
+ae
+ae
 wl
 Up
 Vj
@@ -18263,10 +18236,10 @@ ae
 ae
 ae
 ae
-wy
-wy
-wy
-wy
+ae
+ae
+ae
+ae
 wl
 Up
 Vj

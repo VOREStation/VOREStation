@@ -102,6 +102,7 @@ var/global/list/engineering_networks = list(
 /obj/machinery/camera/network/thunder
 	network = list(NETWORK_THUNDER)
 	invuln = 1
+	always_visible = TRUE
 
 // EMP
 

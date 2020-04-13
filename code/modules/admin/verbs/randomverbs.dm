@@ -525,7 +525,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	//If we're announcing their arrival
 	if(announce)
-		AnnounceArrival(new_character, new_character.mind.assigned_role)
+		AnnounceArrival(new_character, new_character.mind.assigned_role, "Common", new_character.z)
 
 	log_admin("[admin] has spawned [player_key]'s character [new_character.real_name].")
 	message_admins("[admin] has spawned [player_key]'s character [new_character.real_name].", 1)
