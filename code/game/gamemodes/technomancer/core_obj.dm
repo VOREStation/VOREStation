@@ -35,6 +35,7 @@
 	var/list/summoned_mobs = list()	// Maintained horribly with maintain_summon_list().
 	var/list/wards_in_use = list()	// Wards don't count against the cap for other summons.
 	var/max_summons = 10			// Maximum allowed summoned entities.  Some cores will have different caps.
+	var/universal = FALSE			// Allows non-technomancers to use the core - VOREStation Add
 
 /obj/item/weapon/technomancer_core/New()
 	..()
@@ -88,7 +89,7 @@
 	if(world.time % 5 == 0) // Maintaining fat lists is expensive, I imagine.
 		maintain_summon_list()
 	if(wearer && wearer.mind)
-		if(!(technomancers.is_antagonist(wearer.mind))) // In case someone tries to wear a stolen core.
+		if(!(technomancers.is_antagonist(wearer.mind)) && !universal) // In case someone tries to wear a stolen core. //VOREStation Edit - Add universal cores
 			wearer.adjust_instability(20)
 	if(!wearer || wearer.stat == DEAD) // Unlock if we're dead or not worn.
 		canremove = TRUE
@@ -350,3 +351,18 @@
 
 	canremove = !canremove
 	to_chat(usr, "<span class='notice'>You [canremove ? "de" : ""]activate the locking mechanism on \the [src].</span>")
+
+//For the adminbuse! VOREStation Add
+/obj/item/weapon/technomancer_core/universal
+	name = "universal core"
+	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats. \
+	This one is a copy of a 'technomancer' core, shamelessly ripped off by a Kitsuhana pattern designer \
+	for fun, so that he could perform impressive 'magic'. The pack sloshes slightly if you shake it.<br>\
+	Under the straps, <i>'Export Edition'</i> is printed."
+	energy = 7000
+	max_energy = 7000
+	regen_rate = 30 //233 seconds to full
+	instability_modifier = 0.3
+	spell_power_modifier = 0.7
+	universal = TRUE
+//VOREStation Add End
