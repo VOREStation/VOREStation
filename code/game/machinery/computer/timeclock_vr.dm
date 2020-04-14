@@ -208,8 +208,8 @@
 /obj/machinery/computer/timeclock/proc/checkCardCooldown()
 	if(!card)
 		return FALSE
-	if((world.time - card.last_job_switch) < 15 MINUTES)
-		to_chat(usr, "You need to wait at least 15 minutes after last duty switch.")
+	if((world.time - card.last_job_switch) < 10 MINUTES)
+		to_chat(usr, "You need to wait at least 10 minutes after last duty switch.")
 		return FALSE
 	return TRUE
 
