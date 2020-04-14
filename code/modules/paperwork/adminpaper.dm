@@ -43,12 +43,12 @@
 	var/logo = alert(usr, "Do you want the header of your fax to have a NanoTrasen, SolGov, or Trader logo?","Fax Logo","NanoTrasen","SolGov","Trader") //VOREStation Add - Trader
 	if(logo == "SolGov")
 		logo = "sglogo.png"
+	//VOREStation Edit/Add
 	else if(logo == "NanoTrasen")
 		logo = "ntlogo.png"
-	//VOREStation Add
 	else
 		logo = "trader.png"
-	//VOREStation Add End
+	//VOREStation Edit/Add End
 	//TODO change logo based on who you're contacting.
 	text = "<center><img src = [logo]></br>"
 	text += "<b>[origin] Quantum Uplink Signed Message</b><br>"
