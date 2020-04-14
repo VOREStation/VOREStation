@@ -1971,7 +1971,10 @@
 /turf/simulated/floor/tiled/steel,
 /area/talon/deckone/brig)
 "dZ" = (
-/obj/machinery/vending/security,
+/obj/machinery/vending/security{
+	req_access = list(301);
+	req_log_access = 301
+	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/talon/deckone/brig)
 "ea" = (
