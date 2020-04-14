@@ -3,6 +3,7 @@
 #include "mercenarybase.dmm"
 #endif
 
+<<<<<<< HEAD
 <<<<<<< refs/remotes/VOREStation/master
 <<<<<<< refs/remotes/VOREStation/master
 =======
@@ -18,6 +19,8 @@
 >>>>>>> PROGRESS
 =======
 >>>>>>> progress + pain
+=======
+>>>>>>> cindykatesbase
 //The mercenary base's areas
 /area/mercbase/
 	name = "\improper Asteroid Base"
@@ -59,6 +62,7 @@
 /area/mercbase/dock
 	name = "\improper Mercenary Base Boat Dock"
 /area/mercbase/cafeteria
+<<<<<<< HEAD
 <<<<<<< refs/remotes/VOREStation/master
 <<<<<<< refs/remotes/VOREStation/master
 	name = "\improper Mercenary Base Boat Cafeteria"
@@ -164,3 +168,6 @@
 =======
 	name = "\improper Mercenary Base Boat Cafeteria"
 >>>>>>> progress + pain
+=======
+	name = "\improper Mercenary Base Boat Cafeteria"
+>>>>>>> cindykatesbase
