@@ -193,6 +193,9 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/machinery/camera/network/talon
 	network = list(NETWORK_TALON_SHIP)
 
+/obj/machinery/photocopier/faxmachine/talon
+	department = "ITV Talon"
+	desc = "The ship's fax machine! It's a safe assumption that most of the departments listed aren't on your ship, since the ship only has one."
 
 /obj/item/clothing/head/helmet/space/void/captain/talon
 	name = "talon captain's voidsuit helmet"

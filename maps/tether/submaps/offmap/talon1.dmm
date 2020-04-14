@@ -3522,6 +3522,7 @@
 	},
 /obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloor,
+/obj/machinery/photocopier/faxmachine/talon,
 /turf/simulated/floor/tiled/steel,
 /area/talon/deckone/workroom)
 "gA" = (
@@ -3541,6 +3542,8 @@
 	},
 /obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloor,
+/obj/item/weapon/paper_bin,
+/obj/item/weapon/pen,
 /turf/simulated/floor/tiled/steel,
 /area/talon/deckone/workroom)
 "gC" = (
