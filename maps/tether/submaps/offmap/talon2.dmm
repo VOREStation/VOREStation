@@ -772,6 +772,8 @@
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_x = 32
 	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/wood,
 /area/talon/decktwo/bar)
 "bK" = (
@@ -803,6 +805,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "bO" = (
@@ -810,6 +816,10 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/glass/talon,
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/talon/decktwo/bar)
 "bP" = (
@@ -817,6 +827,10 @@
 	dir = 8;
 	icon_state = "extinguisher_closed";
 	pixel_x = 30
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/wood,
 /area/talon/decktwo/bar)
@@ -839,6 +853,11 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 5
 	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	icon_state = "pipe-t";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "bT" = (
@@ -857,6 +876,7 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central4,
+/obj/structure/disposalpipe/junction,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "bU" = (
@@ -969,6 +989,7 @@
 	},
 /obj/machinery/door/airlock/glass,
 /obj/machinery/door/firedoor/glass/talon,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel_grid,
 /area/talon/decktwo/central_hallway)
 "ce" = (
@@ -1062,6 +1083,8 @@
 	icon_state = "steel_decals_central4";
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "cp" = (
@@ -1178,6 +1201,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/glass/talon,
+/obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/talon/maintenance/decktwo_port)
 "cy" = (
@@ -1224,6 +1248,7 @@
 	dir = 6
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals3,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "cD" = (
@@ -1255,6 +1280,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/glass/talon,
+/obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/talon/maintenance/decktwo_starboard)
 "cH" = (
@@ -1421,6 +1447,7 @@
 /obj/structure/cable/green{
 	icon_state = "2-8"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "cR" = (
@@ -1551,6 +1578,10 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 6
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "da" = (
@@ -1566,6 +1597,10 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
 	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
@@ -1586,6 +1621,10 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	icon_state = "steel_decals5";
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel,
@@ -1611,6 +1650,10 @@
 	dir = 1;
 	pixel_y = -30
 	},
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "dd" = (
@@ -1624,6 +1667,10 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
 	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
@@ -1641,6 +1688,10 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
 	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
@@ -1665,6 +1716,10 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "dg" = (
@@ -1688,6 +1743,10 @@
 /obj/structure/sign/directions/evac{
 	pixel_y = -38
 	},
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "dh" = (
@@ -1699,6 +1758,10 @@
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central4,
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j2";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "di" = (
@@ -1720,6 +1783,10 @@
 /obj/structure/sign/department/shield{
 	pixel_y = -31
 	},
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "dj" = (
@@ -1734,6 +1801,10 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
 	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
@@ -1760,6 +1831,10 @@
 	dir = 1;
 	pixel_y = -30
 	},
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "dl" = (
@@ -1781,6 +1856,10 @@
 	icon_state = "steel_decals5";
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "dm" = (
@@ -1795,6 +1874,10 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
@@ -1836,6 +1919,7 @@
 	icon_state = "extinguisher_closed";
 	pixel_x = -30
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "dq" = (
@@ -1881,6 +1965,7 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "dw" = (
@@ -1912,6 +1997,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 5
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "dy" = (
@@ -2069,6 +2155,7 @@
 	icon_state = "tube1";
 	pixel_y = 0
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "dL" = (
@@ -2355,6 +2442,7 @@
 	pixel_x = -31;
 	pixel_y = -9
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "ek" = (
@@ -2375,6 +2463,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 5
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "el" = (
@@ -2582,6 +2671,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central4{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "eA" = (
@@ -2697,6 +2787,7 @@
 /obj/effect/floor_decal/borderfloor/corner2{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "eM" = (
@@ -2784,6 +2875,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 5
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "eT" = (
@@ -2962,6 +3054,7 @@
 	icon_state = "tube1";
 	pixel_y = 0
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "fl" = (
@@ -3118,6 +3211,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 5
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "fz" = (
@@ -3227,6 +3321,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 5
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "fL" = (
@@ -3389,6 +3484,7 @@
 	icon_state = "extinguisher_closed";
 	pixel_x = -30
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "fZ" = (
@@ -3452,6 +3548,7 @@
 	dir = 5
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals5,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "gg" = (
@@ -3488,6 +3585,7 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals5,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "gj" = (
@@ -3612,6 +3710,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "gx" = (
@@ -3624,6 +3723,7 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "gy" = (
@@ -3718,6 +3818,11 @@
 	icon_state = "tube1";
 	pixel_y = 0
 	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	icon_state = "pipe-t";
+	dir = 1
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "gI" = (
@@ -3763,6 +3868,10 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "gO" = (
@@ -3794,6 +3903,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "gR" = (
@@ -3839,6 +3949,7 @@
 	},
 /obj/machinery/door/airlock/glass,
 /obj/machinery/door/firedoor/glass/talon,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "gX" = (
@@ -3930,6 +4041,10 @@
 	icon_state = "1-4"
 	},
 /obj/effect/landmark/talon,
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/talon/decktwo/central_hallway)
 "hj" = (
@@ -3937,6 +4052,10 @@
 	icon_state = "2-8"
 	},
 /obj/structure/catwalk,
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/plating,
 /area/talon/maintenance/decktwo_starboard)
 "hk" = (
@@ -4006,6 +4125,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/talon/maintenance/decktwo_starboard)
 "hs" = (
@@ -4035,6 +4155,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/glass/talon,
+/obj/structure/disposalpipe/segment,
+/obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/talon/maintenance/decktwo_aft)
 "hx" = (
@@ -4087,19 +4209,25 @@
 	icon_state = "4-8"
 	},
 /obj/structure/catwalk,
+/obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/talon/maintenance/decktwo_aft)
 "hD" = (
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 10
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/catwalk,
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j2";
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/talon/maintenance/decktwo_aft)
 "hE" = (
@@ -4118,6 +4246,12 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor/glass/talon,
+/obj/structure/disposalpipe/down{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/zpipe/down/scrubbers{
+	dir = 1
+	},
 /turf/simulated/open,
 /area/talon/maintenance/decktwo_aft)
 "hG" = (
@@ -4236,6 +4370,10 @@
 /obj/effect/floor_decal/steeldecal/steel_decals3{
 	dir = 5
 	},
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j2";
+	dir = 2
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "hT" = (
@@ -4310,6 +4448,7 @@
 	icon_state = "camera";
 	dir = 6
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/decktwo_aft)
 "ic" = (
@@ -4668,6 +4807,10 @@
 	dir = 1;
 	pixel_y = -24
 	},
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "kh" = (
@@ -4676,6 +4819,10 @@
 	},
 /turf/simulated/floor/wood,
 /area/talon/decktwo/bar)
+"kv" = (
+/obj/structure/disposalpipe/segment,
+/turf/simulated/wall/rshull,
+/area/talon/maintenance/decktwo_aft)
 "mN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -4721,6 +4868,40 @@
 /obj/structure/sign/poster,
 /turf/simulated/wall,
 /area/talon/decktwo/bar)
+"pY" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/talon/decktwo/bar)
+"qG" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/wall/rshull,
+/area/talon/maintenance/decktwo_aft)
+"rb" = (
+/obj/structure/disposalpipe/trunk,
+/obj/machinery/disposal/deliveryChute{
+	icon_state = "intake";
+	dir = 4
+	},
+/obj/effect/floor_decal/rust/steel_decals_rusted1{
+	dir = 8
+	},
+/obj/effect/floor_decal/rust/steel_decals_rusted1{
+	icon_state = "steel_decals_rusted1";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/talon/maintenance/decktwo_aft)
 "rE" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 6
@@ -4760,6 +4941,11 @@
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/decktwo_solars)
+"tx" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled/steel,
+/area/talon/decktwo/central_hallway)
 "tC" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 4
@@ -4802,6 +4988,32 @@
 	},
 /turf/simulated/floor/plating,
 /area/talon/decktwo/bar)
+"vj" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	icon_state = "conveyor0";
+	id = "talontrash"
+	},
+/obj/machinery/door/blast/regular{
+	dir = 4;
+	id = "talontrashblast"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/talon/maintenance/decktwo_aft)
+"vB" = (
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/talon/decktwo/bar)
+"vM" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/talon/maintenance/decktwo_solars)
 "vO" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -4824,6 +5036,13 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/decktwo_solars)
+"wW" = (
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
+	},
+/turf/simulated/wall/rshull,
+/area/talon/maintenance/decktwo_aft)
 "xm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	icon_state = "intact-scrubbers";
@@ -4841,6 +5060,10 @@
 	},
 /obj/structure/sign/department/telecoms{
 	pixel_y = -31
+	},
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
 	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
@@ -4863,6 +5086,41 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/decktwo_solars)
+"yF" = (
+/obj/structure/disposalpipe/trunk{
+	icon_state = "pipe-t";
+	dir = 1
+	},
+/obj/structure/disposaloutlet{
+	icon_state = "outlet";
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/floor_decal/rust/steel_decals_rusted1{
+	dir = 8
+	},
+/obj/effect/floor_decal/rust/steel_decals_rusted1{
+	icon_state = "steel_decals_rusted1";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/talon/maintenance/decktwo_aft)
+"zm" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass/talon,
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/talon/maintenance/decktwo_starboard)
 "AC" = (
 /obj/structure/cable/green{
 	icon_state = "1-8"
@@ -4890,6 +5148,7 @@
 	icon_state = "camera";
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "Dk" = (
@@ -4915,6 +5174,22 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/decktwo_solars)
+"Em" = (
+/obj/structure/disposalpipe/trunk{
+	icon_state = "pipe-t";
+	dir = 4
+	},
+/obj/structure/disposaloutlet,
+/turf/simulated/floor/reinforced/airless,
+/area/talon/maintenance/decktwo_solars)
+"EA" = (
+/obj/machinery/conveyor{
+	dir = 8;
+	icon_state = "conveyor0";
+	id = "talontrash"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/talon/maintenance/decktwo_aft)
 "FD" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -4961,6 +5236,7 @@
 	pixel_x = -31;
 	pixel_y = -9
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "Ib" = (
@@ -4989,6 +5265,7 @@
 	dir = 8;
 	pixel_x = -30
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
 "Jf" = (
@@ -5047,6 +5324,21 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
+"Nc" = (
+/obj/machinery/conveyor_switch/oneway{
+	id = "talontrash"
+	},
+/obj/structure/catwalk,
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 10
+	},
+/turf/simulated/floor/plating,
+/area/talon/maintenance/decktwo_aft)
 "Nx" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
@@ -5124,6 +5416,24 @@
 /obj/machinery/door/firedoor/glass/talon,
 /turf/simulated/floor/plating,
 /area/talon/maintenance/decktwo_aft)
+"QF" = (
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/catwalk,
+/obj/machinery/button/remote/blast_door{
+	id = "talontrashblast";
+	pixel_y = 28
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/talon/maintenance/decktwo_aft)
 "RK" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
@@ -5143,6 +5453,15 @@
 	},
 /turf/simulated/floor/carpet/blucarpet,
 /area/talon/decktwo/cap_room)
+"Uf" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/talon/decktwo/bar)
 "UI" = (
 /obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
@@ -5158,6 +5477,13 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/decktwo_solars)
+"VV" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/wall/rshull,
+/area/talon/maintenance/decktwo_aft)
 "WZ" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -5207,6 +5533,17 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/decktwo_solars)
+"YQ" = (
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/reinforced/airless,
+/area/talon/maintenance/decktwo_solars)
+"Zc" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/reinforced/airless,
+/area/talon/maintenance/decktwo_solars)
 "Zd" = (
 /obj/structure/cable/green{
 	icon_state = "4-8";
@@ -5228,6 +5565,33 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
+/turf/simulated/floor/reinforced/airless,
+/area/talon/maintenance/decktwo_solars)
+"ZF" = (
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/catwalk,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/door/window/brigdoor/eastleft{
+	dir = 2;
+	req_access = list(301)
+	},
+/turf/simulated/floor/plating,
+/area/talon/maintenance/decktwo_aft)
+"ZP" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "1-4"
+	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/decktwo_solars)
 
@@ -15126,7 +15490,7 @@ if
 ao
 ao
 ao
-ao
+Em
 aa
 aa
 aa
@@ -15262,13 +15626,13 @@ gC
 gT
 im
 ht
-ht
-ht
+VV
+kv
 ib
-iu
-iA
-ao
-ao
+Zc
+ZP
+YQ
+vM
 aa
 aa
 aa
@@ -15374,7 +15738,7 @@ aF
 bq
 bx
 Dk
-bH
+pY
 bV
 aw
 cl
@@ -15404,7 +15768,7 @@ hn
 ic
 he
 he
-ht
+wW
 ce
 eP
 fw
@@ -15516,7 +15880,7 @@ kh
 bH
 bH
 AC
-aQ
+vB
 bW
 aw
 cm
@@ -15546,7 +15910,7 @@ gC
 gn
 gV
 he
-ht
+wW
 ce
 eP
 fw
@@ -15658,7 +16022,7 @@ bh
 br
 by
 bI
-bI
+Uf
 bX
 aw
 cl
@@ -15688,7 +16052,7 @@ ho
 go
 hz
 he
-ht
+wW
 ce
 eP
 fw
@@ -15800,7 +16164,7 @@ bi
 aI
 bz
 aQ
-aQ
+vB
 bY
 aw
 cl
@@ -15830,7 +16194,7 @@ ia
 ig
 ir
 hR
-ht
+wW
 ce
 eP
 fw
@@ -15972,7 +16336,7 @@ cc
 hu
 hB
 hu
-ht
+wW
 ce
 eP
 fw
@@ -16113,8 +16477,8 @@ hh
 hh
 hu
 hC
-he
-ht
+rb
+qG
 ce
 eP
 fw
@@ -16247,15 +16611,15 @@ ez
 eL
 gi
 gw
-gy
+tx
 hS
 gQ
 gW
 hi
 hq
 hu
-hC
-he
+QF
+vj
 ht
 ce
 eP
@@ -16393,11 +16757,11 @@ gG
 gN
 gR
 cF
-fe
+zm
 cF
 hu
-hC
-he
+ZF
+EA
 ht
 ce
 eP
@@ -16539,7 +16903,7 @@ hj
 hr
 hw
 hD
-hf
+yF
 ht
 ce
 eP
@@ -16680,7 +17044,7 @@ fI
 hk
 hs
 hu
-he
+Nc
 hF
 ht
 ao
