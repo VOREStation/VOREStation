@@ -44,17 +44,10 @@
 	. = ..()
 	client.update_skybox(TRUE)
 
-/mob/Move()
-	var/old_z = get_z(src)
-	. = ..()
-	if(. && client)
-		client.update_skybox(old_z != get_z(src))
-
-/mob/forceMove()
-	var/old_z = get_z(src)
-	. = ..()
-	if(. && client)
-		client.update_skybox(old_z != get_z(src))
+/mob/onTransitZ(old_z, new_z)
+	..()
+	if(old_z != new_z)
+		client?.update_skybox(TRUE)
 
 /mob/set_viewsize()
 	. = ..()
