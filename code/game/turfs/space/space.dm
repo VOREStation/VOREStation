@@ -13,14 +13,12 @@
 	var/forced_dirs = 0 //Force this one to pretend it's an overedge turf
 
 /turf/space/Initialize()
-	. = ..()
-
 	if(config.starlight)
 		update_starlight()
 
 	//Sprite stuff only beyond here
 	if(keep_sprite)
-		return .
+		return ..()
 
 	//We might be an edge
 	if(y == world.maxy || forced_dirs & NORTH)
@@ -37,6 +35,8 @@
 		appearance = SSskybox.mapedge_cache["[edge]"]
 	else //Dust
 		appearance = SSskybox.dust_cache["[((x + y) ^ ~(x * y) + z) % 25]"]
+
+	return ..()
 
 /turf/space/proc/toggle_transit(var/direction)
 	if(edge) //Not a great way to do this yet. Maybe we'll come up with one. We could pre-make sprites... or tile the overlay over it?
