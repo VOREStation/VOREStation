@@ -499,6 +499,8 @@
 #include "om_ships/cruiser.dm"
 #include "om_ships/vespa.dm"
 #include "om_ships/generic_shuttle.dm"
+#include "om_ships/mercenarybase.dm"
+#include "om_ships/mercship.dm"
 
 //////////////////////////////////////////////////////////////////////////////
 //Offmap Spawn Locations
