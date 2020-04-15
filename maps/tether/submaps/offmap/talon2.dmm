@@ -298,7 +298,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/item/weapon/storage/dicecup,
+/obj/item/weapon/storage/dicecup/loaded,
 /turf/simulated/floor/lino,
 /area/talon/decktwo/bar)
 "aT" = (
@@ -4864,10 +4864,6 @@
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/decktwo_solars)
-"oo" = (
-/obj/structure/sign/poster,
-/turf/simulated/wall,
-/area/talon/decktwo/bar)
 "pY" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -4902,6 +4898,21 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon/maintenance/decktwo_aft)
+"rw" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/structure/sign/poster{
+	icon_state = "";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel,
+/area/talon/decktwo/central_hallway)
 "rE" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 6
@@ -5254,6 +5265,26 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/decktwo_solars)
+"Iq" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/sign/poster{
+	icon_state = "";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel,
+/area/talon/decktwo/central_hallway)
 "IL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -5301,6 +5332,14 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/central_hallway)
+"Kx" = (
+/obj/structure/table/standard,
+/obj/structure/sign/poster{
+	icon_state = "";
+	dir = 1
+	},
+/turf/simulated/floor/lino,
+/area/talon/decktwo/bar)
 "MS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -14189,7 +14228,7 @@ dK
 dx
 ek
 dx
-dx
+Iq
 eS
 fk
 fy
@@ -16156,8 +16195,8 @@ ab
 ab
 ab
 ax
-oo
-aI
+aw
+Kx
 aS
 aI
 bi
@@ -16745,7 +16784,7 @@ dW
 dn
 eA
 JL
-dn
+rw
 fd
 dW
 dn
