@@ -70,7 +70,7 @@
 /turf/simulated/floor/carpet,
 /area/aro2/couchroom)
 "an" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/rpshull,
 /area/shuttle/aroboat2)
 "ao" = (
 /obj/structure/bed/chair/sofa/black/left,
@@ -80,13 +80,19 @@
 /turf/simulated/floor/carpet,
 /area/aro2/couchroom)
 "ap" = (
+/obj/structure/grille,
+/obj/structure/window/phoronreinforced/full,
+/obj/structure/window/phoronreinforced{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
 	dir = 1;
 	icon_state = "pdoor1";
 	id = "arobackleft"
 	},
-/turf/space,
-/area/space)
+/turf/simulated/floor/reinforced,
+/area/aro2/holodeckroom)
 "aq" = (
 /obj/machinery/media/jukebox,
 /turf/simulated/floor/wood,
@@ -138,6 +144,19 @@
 "aw" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/table/steel,
+/obj/item/weapon/grenade/chem_grenade/metalfoam{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/obj/item/weapon/grenade/chem_grenade/metalfoam{
+	pixel_x = -2;
+	pixel_y = 7
+	},
+/obj/item/weapon/grenade/chem_grenade/metalfoam,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/cockpit)
 "ax" = (
@@ -255,13 +274,8 @@
 /turf/simulated/floor/wood,
 /area/aro2/couchroom)
 "aK" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/structure/window/phoronreinforced{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/shuttle/plating,
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/holodeckroom)
 "aL" = (
 /obj/effect/floor_decal/spline/plain{
@@ -332,18 +346,14 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
 	},
-/obj/structure/table/woodentable,
-/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/wood,
-/area/space)
+/area/aro2/room1)
 "aU" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/structure/window/phoronreinforced{
-	dir = 1
+/obj/structure/bed/chair/comfy/teal{
+	icon_state = "comfychair";
+	dir = 4
 	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/shuttle/plating,
+/turf/simulated/floor/tiled/techfloor,
 /area/aro2/room0)
 "aV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -367,12 +377,6 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/cockpit)
 "aX" = (
-/obj/machinery/button/remote/blast_door{
-	dir = 8;
-	id = "arobackleft";
-	name = "exterior shutters";
-	pixel_x = 28
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
@@ -527,7 +531,7 @@
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
 	},
-/turf/simulated/shuttle/plating,
+/turf/simulated/floor/reinforced/airless,
 /area/aro2/powerroom)
 "bp" = (
 /obj/machinery/power/smes/buildable/hybrid,
@@ -554,7 +558,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_medical{
 	name = "Fox Printing";
-	req_one_access = newlist()
+	req_access = list()
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/aro2/resleeving)
@@ -628,6 +632,10 @@
 	pixel_y = -28
 	},
 /obj/structure/closet/crate/bin,
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/cockpit)
 "bB" = (
@@ -645,18 +653,20 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/cockpit)
 "bC" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/structure/window/phoronreinforced{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/shuttle/plating,
-/area/space)
+/obj/structure/bed/chair/comfy/yellow,
+/turf/simulated/floor/tiled/techfloor,
+/area/aro2/room1)
 "bD" = (
 /obj/structure/bed/chair/bay/comfy/blue{
 	icon_state = "bay_comfychair_preview";
 	dir = 4
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 1;
+	id = "arosensorshut";
+	name = "sensor shutter";
+	pixel_x = 0;
+	pixel_y = -28
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/cockpit)
@@ -671,13 +681,8 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/cockpit)
 "bG" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/structure/window/phoronreinforced{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/shuttle/plating,
+/obj/structure/bed/chair/comfy/lime,
+/turf/simulated/floor/tiled/techfloor,
 /area/aro2/room2)
 "bH" = (
 /obj/structure/cable/cyan{
@@ -719,6 +724,10 @@
 /obj/item/modular_computer/tablet/preset/custom_loadout/hybrid,
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_y = 28
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
 	},
 /turf/simulated/floor/wood,
 /area/aro2/room0)
@@ -813,8 +822,9 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
 	},
-/obj/structure/table/woodentable,
-/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
 /turf/simulated/floor/wood,
 /area/aro2/room0)
 "bT" = (
@@ -910,15 +920,14 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 8
-	},
 /obj/effect/floor_decal/techfloor/orange{
 	icon_state = "techfloororange_edges";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -1088,7 +1097,12 @@
 	pixel_x = -22;
 	pixel_y = 0
 	},
-/obj/structure/closet/crate/bin,
+/obj/structure/table/steel,
+/obj/item/weapon/storage/briefcase/inflatable{
+	pixel_x = 1;
+	pixel_y = 8
+	},
+/obj/item/weapon/storage/box/metalfoam,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/powerroom)
 "cj" = (
@@ -1114,6 +1128,11 @@
 	icon_state = "tube1";
 	dir = 4
 	},
+/obj/structure/table/steel,
+/obj/item/weapon/storage/toolbox/mechanical{
+	pixel_y = 8
+	},
+/obj/item/weapon/storage/toolbox,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/powerroom)
 "cl" = (
@@ -1206,6 +1225,8 @@
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/techfloor/orange/corner,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/bighallway)
 "cv" = (
@@ -1214,6 +1235,11 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/techfloor/orange,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/bighallway)
 "cw" = (
@@ -1370,9 +1396,6 @@
 	},
 /turf/simulated/wall/rpshull,
 /area/aro2/powerroom)
-"cR" = (
-/turf/simulated/wall/rdshull,
-/area/aro2/bighallway)
 "cS" = (
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced/full,
@@ -1385,7 +1408,7 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/glass,
-/turf/simulated/shuttle/plating,
+/turf/simulated/floor/reinforced,
 /area/aro2/bighallway)
 "cT" = (
 /obj/structure/cable/cyan{
@@ -1439,6 +1462,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techfloor,
 /area/aro2/boatbay)
 "da" = (
@@ -1586,13 +1611,14 @@
 	icon_state = "pdoor1";
 	id = "arobackleft"
 	},
-/turf/simulated/shuttle/plating,
+/turf/simulated/floor/reinforced,
 /area/aro2/bighallway)
 "dq" = (
 /obj/effect/floor_decal/techfloor/orange{
 	icon_state = "techfloororange_edges";
 	dir = 9
 	},
+/obj/machinery/recharge_station,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/bighallway)
 "dr" = (
@@ -1692,7 +1718,6 @@
 /area/aro2/bighallway)
 "dz" = (
 /obj/effect/floor_decal/industrial/warning/corner,
-/obj/structure/flora/pottedplant/stoutbush,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/boatbay)
 "dA" = (
@@ -1746,6 +1771,8 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/boatbay)
 "dE" = (
@@ -1754,6 +1781,10 @@
 /obj/item/modular_computer/tablet/preset/custom_loadout/advanced,
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_y = 28
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
 	},
 /turf/simulated/floor/wood,
 /area/aro2/room1)
@@ -1780,9 +1811,11 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
 /turf/simulated/floor/carpet/bcarpet,
-/area/space)
+/area/aro2/room1)
 "dI" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/cable/cyan{
@@ -1817,18 +1850,21 @@
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_y = 28
 	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/wood,
 /area/aro2/room2)
 "dM" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
 /turf/simulated/floor/wood,
-/area/space)
+/area/aro2/room1)
 "dN" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/light{
@@ -1855,13 +1891,6 @@
 	icon_state = "warningcorner";
 	dir = 8
 	},
-/obj/machinery/button/remote/blast_door{
-	dir = 8;
-	id = "arobackleft";
-	name = "exterior shutters";
-	pixel_x = 28
-	},
-/obj/structure/flora/pottedplant/stoutbush,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/boatbay)
 "dR" = (
@@ -2054,6 +2083,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/powerroom)
 "ei" = (
@@ -2085,8 +2115,6 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
 	},
-/obj/structure/table/woodentable,
-/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/wood,
 /area/aro2/room2)
 "el" = (
@@ -2169,6 +2197,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/reinforced,
 /area/aro2/boatbay)
 "es" = (
@@ -2179,6 +2209,10 @@
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	icon_state = "intact-aux";
+	dir = 10
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/boatbay)
@@ -2242,47 +2276,40 @@
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
 "eB" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	icon_state = "map_scrubber_on";
 	dir = 4
 	},
-/obj/effect/floor_decal/spline/plain{
-	dir = 1
-	},
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
 "eC" = (
-/obj/structure/table/woodentable,
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	icon_state = "map-supply";
-	dir = 8
-	},
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
-/area/aro2/cafe)
-"eD" = (
-/obj/structure/table/woodentable,
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/structure/bed/chair/wood{
 	dir = 8
 	},
-/obj/effect/floor_decal/spline/plain{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
 	},
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
 "eE" = (
-/obj/structure/bed/chair/wood{
-	dir = 8
-	},
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
 	},
+/obj/structure/bed/chair/wood{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
 "eF" = (
@@ -2294,13 +2321,15 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
 	},
+/obj/structure/bed/chair/wood{
+	dir = 8
+	},
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
 "eG" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
 	},
-/obj/structure/table/woodentable,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 4
@@ -2321,8 +2350,6 @@
 	},
 /obj/structure/table/steel,
 /obj/item/weapon/storage/box/lights/tubes,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/storage)
 "eJ" = (
@@ -2335,7 +2362,7 @@
 	id = "arobackleft"
 	},
 /obj/machinery/door/firedoor/glass,
-/turf/simulated/shuttle/plating,
+/turf/simulated/floor/reinforced,
 /area/aro2/bighallway)
 "eK" = (
 /turf/simulated/wall/r_wall,
@@ -2419,6 +2446,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/aux,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/boatbay)
 "eR" = (
@@ -2502,12 +2530,16 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
 "eZ" = (
-/obj/structure/table/woodentable,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
+/obj/structure/bed/chair/wood{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9;
@@ -2526,14 +2558,16 @@
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_y = 28
 	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/wood,
 /area/aro2/room3)
 "fc" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
 	},
-/obj/structure/table/woodentable,
-/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/wood,
 /area/aro2/room3)
 "fd" = (
@@ -2570,7 +2604,10 @@
 /area/aro2/holodeckroom)
 "fi" = (
 /obj/structure/bed/chair/wood{
-	dir = 8
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
 	},
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
@@ -2581,10 +2618,18 @@
 	name = "south bump";
 	pixel_y = -28
 	},
+/obj/structure/bed/chair/wood{
+	dir = 8
+	},
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
 "fk" = (
-/obj/structure/table/woodentable,
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "arobackleft";
+	name = "exterior shutters";
+	pixel_x = 28
+	},
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
 "fl" = (
@@ -2692,6 +2737,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/aux{
+	icon_state = "map-aux";
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/boatbay)
 "ft" = (
@@ -2739,15 +2788,12 @@
 /obj/structure/table/bench/steel,
 /turf/simulated/floor/tiled/techfloor,
 /area/aro2/bighallway)
-"fy" = (
-/obj/machinery/light,
-/turf/simulated/floor/wood,
-/area/aro2/cafe)
 "fz" = (
 /obj/machinery/alarm{
 	dir = 1;
 	pixel_y = -25
 	},
+/obj/structure/table/bench/wooden,
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
 "fA" = (
@@ -2789,16 +2835,10 @@
 /area/aro2/atmosroom)
 "fE" = (
 /obj/machinery/door/airlock/multi_tile/glass,
-/obj/machinery/button/remote/blast_door{
-	dir = 4;
-	id = "arobackleft";
-	name = "exterior shutters";
-	pixel_x = -28
-	},
 /obj/machinery/door/blast/regular{
 	dir = 8;
 	icon_state = "pdoor1";
-	id = "aroboatshutter"
+	id = "aroboatshut"
 	},
 /obj/effect/map_helper/airlock/door/simple,
 /obj/structure/fans/hardlight,
@@ -2807,6 +2847,14 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "aroboatshut";
+	name = "boat shutters";
+	pixel_x = -28
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/aroboat2)
 "fF" = (
@@ -2820,31 +2868,17 @@
 /turf/simulated/floor/wood,
 /area/aro2/room0)
 "fG" = (
+/obj/structure/fans/hardlight,
 /obj/machinery/door/blast/regular{
 	dir = 8;
 	icon_state = "pdoor1";
-	id = "aroboatshutter"
+	id = "aroboatshut"
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/aroboat2)
 "fH" = (
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced/full,
-/obj/machinery/door/blast/regular{
-	dir = 8;
-	icon_state = "pdoor1";
-	id = "aroboatshutter"
-	},
-/obj/structure/window/phoronreinforced{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/shuttle/plating,
-/area/shuttle/aroboat2)
-"fI" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
 /obj/structure/window/phoronreinforced{
 	dir = 1
 	},
@@ -2852,7 +2886,7 @@
 /obj/machinery/door/blast/regular{
 	dir = 8;
 	icon_state = "pdoor1";
-	id = "aroboatshutter"
+	id = "aroboatshut"
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/aroboat2)
@@ -2867,19 +2901,35 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/atmosroom)
 "fK" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/atmospherics/portables_connector/aux,
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/aroboat2)
 "fL" = (
+/obj/effect/shuttle_landmark/shuttle_initializer/aroboat2,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/spline/plain{
+	icon_state = "spline_plain";
+	dir = 8
+	},
 /obj/structure/cable/cyan{
 	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	d2 = 4;
+	icon_state = "1-4"
 	},
-/obj/effect/shuttle_landmark/shuttle_initializer/aroboat2,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/aroboat2)
 "fM" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 4
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/aroboat2)
 "fN" = (
@@ -2891,6 +2941,11 @@
 	frequency = 1380;
 	id_tag = "aroboat2_docker";
 	pixel_y = 28
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/aroboat2)
@@ -2910,37 +2965,50 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/aroboat2)
 "fR" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/obj/structure/cable/cyan{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/closet/crate/freezer/rations,
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/aroboat2)
 "fS" = (
-/obj/effect/floor_decal/industrial/outline/blue,
 /obj/machinery/power/apc{
 	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
 	name = "west bump";
 	pixel_x = -24
 	},
-/obj/structure/cable/cyan{
-	icon_state = "0-4"
-	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/aroboat2)
 "fT" = (
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/atmospherics/binary/pump/aux,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/aroboat2)
 "fU" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/spline/plain{
+	icon_state = "spline_plain";
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/aroboat2)
@@ -2982,20 +3050,27 @@
 /obj/machinery/door/blast/regular{
 	dir = 1;
 	icon_state = "pdoor1";
-	id = "aroboatshutter"
+	id = "aroboatshut"
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/aroboat2)
 "fZ" = (
-/obj/effect/floor_decal/industrial/outline/blue,
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
 	pixel_y = 0
 	},
+/obj/machinery/mech_recharger{
+	icon = 'icons/turf/shuttle_alien_blue.dmi'
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/aroboat2)
 "ga" = (
+/obj/effect/floor_decal/industrial/outline,
+/obj/machinery/atmospherics/portables_connector/aux{
+	icon_state = "map_connector-aux";
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/aroboat2)
 "gb" = (
@@ -3032,6 +3107,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/aux,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/boatbay)
 "gg" = (
@@ -3049,19 +3125,19 @@
 /area/shuttle/aroboat2)
 "gi" = (
 /obj/machinery/door/airlock/multi_tile/glass,
-/obj/machinery/button/remote/blast_door{
-	dir = 4;
-	id = "arobackleft";
-	name = "exterior shutters";
-	pixel_x = -28
-	},
+/obj/effect/map_helper/airlock/door/simple,
+/obj/structure/fans/hardlight,
 /obj/machinery/door/blast/regular{
 	dir = 8;
 	icon_state = "pdoor1";
-	id = "aroboatshutter"
+	id = "aroboatshut"
 	},
-/obj/effect/map_helper/airlock/door/simple,
-/obj/structure/fans/hardlight,
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "aroboatshut";
+	name = "boat shutters";
+	pixel_x = -28
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/aroboat2)
 "gj" = (
@@ -3072,7 +3148,7 @@
 /obj/machinery/door/blast/regular{
 	dir = 8;
 	icon_state = "pdoor1";
-	id = "aroboatshutter"
+	id = "aroboatshut"
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/aroboat2)
@@ -3089,6 +3165,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/aro2/room0)
@@ -3133,7 +3212,6 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
@@ -3164,7 +3242,6 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
@@ -3172,7 +3249,7 @@
 /area/aro2/room3)
 "gt" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/purpledouble,
+/obj/item/weapon/bedsheet/browndouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/aro2/room3)
 "gu" = (
@@ -3302,6 +3379,10 @@
 	pixel_y = -28;
 	on = 0
 	},
+/obj/structure/table/woodentable,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/aro2/room1)
 "gD" = (
@@ -3320,7 +3401,9 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/aro2/room2)
 "gF" = (
@@ -3335,7 +3418,7 @@
 	},
 /obj/machinery/button/remote/airlock{
 	dir = 1;
-	id = "aroship_b2";
+	id = "aroship_b1";
 	name = "door lock";
 	pixel_x = 5;
 	pixel_y = -28;
@@ -3346,6 +3429,10 @@
 	pixel_x = -6;
 	pixel_y = -28;
 	on = 0
+	},
+/obj/structure/table/woodentable,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/aro2/room2)
@@ -3365,7 +3452,9 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/aro2/room3)
 "gI" = (
@@ -3380,7 +3469,7 @@
 	},
 /obj/machinery/button/remote/airlock{
 	dir = 1;
-	id = "aroship_b3";
+	id = "aroship_b1";
 	name = "door lock";
 	pixel_x = 5;
 	pixel_y = -28;
@@ -3391,6 +3480,10 @@
 	pixel_x = -6;
 	pixel_y = -28;
 	on = 0
+	},
+/obj/structure/table/woodentable,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/aro2/room3)
@@ -3502,7 +3595,8 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/centcom{
 	id_tag = "aroship_b0";
-	name = "Aro's Bedroom"
+	name = "Aro's Bedroom";
+	req_one_access = list()
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/aro2/room0)
@@ -3531,8 +3625,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock{
-	id_tag = "aroship_b2";
-	name = "Bedroom Two"
+	id_tag = "aroship_b1";
+	name = "Bedroom One"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/aro2/room2)
@@ -3546,8 +3640,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock{
-	id_tag = "aroship_b3";
-	name = "Bedroom Three"
+	id_tag = "aroship_b1";
+	name = "Bedroom One"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/aro2/room3)
@@ -3592,13 +3686,42 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/aro2/bighallway)
 "ha" = (
-/obj/structure/table/woodentable,
-/obj/structure/flora/pottedplant/large,
-/turf/simulated/floor/wood,
+/obj/effect/floor_decal/borderfloorwhite/cee{
+	icon_state = "borderfloorcee_white";
+	dir = 8
+	},
+/obj/machinery/shower{
+	icon_state = "shower";
+	dir = 4;
+	pixel_x = 0;
+	pixel_y = -6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/white,
 /area/aro2/cafe)
 "hb" = (
-/obj/structure/table/bench/steel,
-/turf/simulated/floor/wood,
+/obj/structure/sink{
+	pixel_y = 25
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/structure/mirror{
+	pixel_y = 34
+	},
+/turf/simulated/floor/tiled/white,
 /area/aro2/cafe)
 "hc" = (
 /obj/machinery/power/pointdefense{
@@ -3645,13 +3768,8 @@
 /turf/simulated/floor/water/indoors,
 /area/aro2/bighallway)
 "hi" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/structure/window/phoronreinforced{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/shuttle/plating,
+/obj/structure/bed/chair/comfy/beige,
+/turf/simulated/floor/tiled/techfloor,
 /area/aro2/room3)
 "hj" = (
 /obj/machinery/atmospherics/pipe/tank/air{
@@ -3803,33 +3921,31 @@
 /obj/mecha/combat/fighter/pinnace,
 /turf/simulated/floor/reinforced,
 /area/aro2/boatbay)
-"hz" = (
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
-/turf/simulated/floor/reinforced,
-/area/aro2/boatbay)
 "hA" = (
-/obj/effect/shuttle_landmark/automatic{
-	name = "Aronai - Port"
+/obj/effect/shuttle_landmark{
+	landmark_tag = "aronai2_port";
+	name = "Port (North)"
 	},
 /turf/space,
 /area/space)
 "hB" = (
-/obj/effect/shuttle_landmark/automatic{
-	name = "Aronai - Fore"
+/obj/effect/shuttle_landmark{
+	landmark_tag = "aronai2_fore";
+	name = "Fore (East)"
 	},
 /turf/space,
 /area/space)
 "hC" = (
-/obj/effect/shuttle_landmark/automatic{
-	name = "Aronai - Aft"
+/obj/effect/shuttle_landmark{
+	landmark_tag = "aronai2_aft";
+	name = "Aft (West)"
 	},
 /turf/space,
 /area/space)
 "hD" = (
-/obj/effect/shuttle_landmark/automatic{
-	name = "Aronai - Starboard"
+/obj/effect/shuttle_landmark{
+	landmark_tag = "aronai2_starboard";
+	name = "Starboard (South)"
 	},
 /turf/space,
 /area/space)
@@ -3844,7 +3960,7 @@
 /obj/machinery/door/blast/regular{
 	dir = 8;
 	icon_state = "pdoor1";
-	id = "arobackleft"
+	id = "arosensorshut"
 	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/reinforced/airless,
@@ -3991,6 +4107,11 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/holodeckroom)
 "hT" = (
@@ -4038,13 +4159,17 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
 	},
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 2;
+	id = "arobackleft";
+	name = "exterior shutters";
+	pixel_x = 0;
+	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/cockpit)
@@ -4186,6 +4311,10 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	icon_state = "intact-aux";
+	dir = 10
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/bighallway)
 "im" = (
@@ -4205,20 +4334,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/aro2/bighallway)
-"io" = (
-/obj/effect/floor_decal/techfloor/orange,
-/obj/machinery/light,
-/obj/effect/floor_decal/techfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/techfloor/hole/right{
-	dir = 1
-	},
-/obj/effect/floor_decal/techfloor/hole{
-	dir = 1
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/aux,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/bighallway)
 "ip" = (
@@ -4235,6 +4351,7 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/aux,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/bighallway)
 "iq" = (
@@ -4257,13 +4374,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/bighallway)
-"is" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/structure/window/phoronreinforced,
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/shuttle/plating,
-/area/aro2/cafe)
 "it" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 8
@@ -4294,29 +4404,392 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/bighallway)
 "iw" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/structure/window/phoronreinforced,
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/shuttle/plating,
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/techfloor,
 /area/aro2/bighallway)
 "ix" = (
-/obj/machinery/door/blast/regular{
-	dir = 1;
-	icon_state = "pdoor1";
-	id = "arobackleft"
-	},
-/turf/space,
-/area/aro2/couchroom)
-"iy" = (
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced/full,
 /obj/structure/window/phoronreinforced{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/glass,
-/turf/simulated/shuttle/plating,
+/obj/machinery/door/blast/regular{
+	dir = 1;
+	icon_state = "pdoor1";
+	id = "arobackleft"
+	},
+/turf/simulated/floor/reinforced,
 /area/aro2/couchroom)
+"iy" = (
+/obj/structure/table/woodentable,
+/obj/structure/flora/pottedplant/crystal,
+/turf/simulated/floor/wood,
+/area/aro2/couchroom)
+"li" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/aro2/bighallway)
+"mY" = (
+/obj/machinery/door/airlock{
+	name = "Bathroom"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/aro2/cafe)
+"nM" = (
+/obj/structure/table/woodentable,
+/obj/structure/flora/pottedplant/aquatic,
+/turf/simulated/floor/wood,
+/area/aro2/couchroom)
+"op" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	icon_state = "intact-supply";
+	dir = 8
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/aro2/room0)
+"oQ" = (
+/obj/structure/table/steel,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/shuttle/aroboat2)
+"qK" = (
+/obj/structure/grille,
+/obj/structure/window/phoronreinforced/full,
+/obj/structure/window/phoronreinforced{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	dir = 1;
+	icon_state = "pdoor1";
+	id = "arobackleft"
+	},
+/turf/simulated/floor/reinforced,
+/area/aro2/room2)
+"qW" = (
+/obj/structure/table/bench/wooden,
+/turf/simulated/floor/wood,
+/area/aro2/cafe)
+"sO" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
+/obj/structure/table/woodentable,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/aro2/cafe)
+"tR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	icon_state = "intact-aux";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/aro2/boatbay)
+"uh" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/atmospherics/binary/pump/aux,
+/turf/simulated/floor/reinforced,
+/area/aro2/boatbay)
+"um" = (
+/obj/structure/grille,
+/obj/structure/window/phoronreinforced/full,
+/obj/structure/window/phoronreinforced,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	dir = 1;
+	icon_state = "pdoor1";
+	id = "arobackleft"
+	},
+/turf/simulated/floor/reinforced,
+/area/aro2/bighallway)
+"vA" = (
+/obj/structure/flora/pottedplant/unusual,
+/turf/simulated/floor/tiled/techfloor,
+/area/aro2/cafe)
+"xP" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/aroboat2)
+"yk" = (
+/obj/structure/grille,
+/obj/structure/window/phoronreinforced/full,
+/obj/structure/window/phoronreinforced{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	dir = 1;
+	icon_state = "pdoor1";
+	id = "arobackleft"
+	},
+/turf/simulated/floor/reinforced,
+/area/aro2/room3)
+"yG" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/effect/floor_decal/spline/plain{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/aroboat2)
+"zt" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	icon_state = "intact-aux";
+	dir = 6
+	},
+/turf/simulated/floor/reinforced,
+/area/aro2/boatbay)
+"zT" = (
+/obj/effect/floor_decal/spline/plain{
+	icon_state = "spline_plain";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/aroboat2)
+"zZ" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/obj/machinery/atmospherics/portables_connector/aux{
+	icon_state = "map_connector-aux";
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/tiled/techfloor,
+/area/aro2/bighallway)
+"Cl" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/effect/floor_decal/spline/plain{
+	icon_state = "spline_plain";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/aroboat2)
+"Ct" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloorwhite/cee{
+	icon_state = "borderfloorcee_white";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/aro2/cafe)
+"Fe" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	icon_state = "intact-aux";
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/aro2/boatbay)
+"Fh" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/aroboat2)
+"Fu" = (
+/obj/structure/grille,
+/obj/structure/window/phoronreinforced/full,
+/obj/structure/window/phoronreinforced{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	dir = 1;
+	icon_state = "pdoor1";
+	id = "arobackleft"
+	},
+/turf/simulated/floor/reinforced,
+/area/aro2/room0)
+"FR" = (
+/obj/machinery/atmospherics/portables_connector/aux{
+	icon_state = "map_connector-aux";
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/reinforced,
+/area/aro2/boatbay)
+"Gw" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/aro2/boatbay)
+"GO" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "arobackleft";
+	name = "exterior shutters";
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/aro2/boatbay)
+"Lb" = (
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -25
+	},
+/obj/structure/closet/crate/secure/gear{
+	req_one_access = list(101)
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/shuttle/aroboat2)
+"Mq" = (
+/obj/machinery/power/terminal,
+/obj/structure/railing,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
+/turf/simulated/floor/greengrid,
+/area/aro2/powerroom)
+"PB" = (
+/obj/effect/floor_decal/spline/plain,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
+/turf/simulated/floor/wood,
+/area/aro2/couchroom)
+"PL" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/tiled/techfloor,
+/area/aro2/room0)
+"PT" = (
+/obj/structure/grille,
+/obj/structure/window/phoronreinforced/full,
+/obj/structure/window/phoronreinforced{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	dir = 1;
+	icon_state = "pdoor1";
+	id = "arobackleft"
+	},
+/turf/simulated/floor/reinforced,
+/area/aro2/room1)
+"QV" = (
+/obj/effect/shuttle_landmark{
+	landmark_tag = "aronai2_alongside";
+	name = "Alongside (Boat Bay)"
+	},
+/turf/space,
+/area/space)
+"So" = (
+/obj/structure/bed/chair/bay/comfy/teal{
+	icon_state = "bay_comfychair_preview";
+	dir = 4
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/shuttle/aroboat2)
+"Sq" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/reinforced,
+/area/aro2/boatbay)
+"SK" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/effect/floor_decal/spline/plain{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/aroboat2)
+"VH" = (
+/obj/structure/grille,
+/obj/structure/window/phoronreinforced/full,
+/obj/structure/window/phoronreinforced,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	dir = 1;
+	icon_state = "pdoor1";
+	id = "arobackleft"
+	},
+/turf/simulated/floor/reinforced,
+/area/aro2/cafe)
+"VO" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/wood,
+/area/aro2/cafe)
+"XY" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/aux,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/aro2/bighallway)
+"Zh" = (
+/obj/machinery/washing_machine,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/aro2/couchroom)
+"Zx" = (
+/obj/machinery/atmospherics/binary/pump,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/aro2/atmosroom)
 
 (1,1,1) = {"
 aa
@@ -10640,10 +11113,10 @@ aa
 aa
 aa
 aa
-cR
+ib
 dp
 dp
-cR
+ib
 aa
 aa
 aa
@@ -11630,7 +12103,7 @@ aa
 bm
 bm
 bE
-aY
+Mq
 bp
 bN
 ck
@@ -11640,7 +12113,7 @@ ej
 eK
 fn
 fJ
-he
+Zx
 hk
 eK
 ic
@@ -12351,7 +12824,7 @@ fp
 fV
 ig
 ik
-im
+li
 iv
 hp
 hp
@@ -12620,7 +13093,7 @@ aa
 aa
 aa
 aa
-ap
+Fu
 aU
 bS
 fF
@@ -12636,7 +13109,7 @@ fr
 ge
 ge
 hl
-ge
+Gw
 hs
 cX
 id
@@ -12762,9 +13235,9 @@ aa
 aa
 aa
 aa
-ap
-aU
-cm
+Fu
+PL
+op
 cm
 gK
 gQ
@@ -13061,7 +13534,7 @@ an
 fK
 fT
 ga
-fK
+Fh
 an
 eq
 ht
@@ -13202,8 +13675,8 @@ er
 fE
 fL
 fU
-fM
-fM
+Cl
+zT
 gi
 eq
 ht
@@ -13330,7 +13803,7 @@ aa
 aa
 aa
 aa
-ap
+PT
 bC
 aT
 dM
@@ -13343,9 +13816,9 @@ dG
 eq
 fG
 fM
-fM
-fM
-fM
+SK
+yG
+xP
 fG
 eq
 ht
@@ -13494,7 +13967,7 @@ ht
 hv
 hQ
 aa
-aa
+QV
 aa
 aa
 aa
@@ -13626,7 +14099,7 @@ cX
 dJ
 eq
 fH
-fO
+oQ
 fW
 gb
 fO
@@ -13767,8 +14240,8 @@ cw
 cX
 dK
 eq
-fI
-fP
+fH
+So
 fW
 gb
 fP
@@ -13898,7 +14371,7 @@ aa
 aa
 aa
 aa
-ap
+qK
 bG
 ek
 gp
@@ -14055,7 +14528,7 @@ an
 fR
 fW
 gc
-fR
+Lb
 an
 eq
 ht
@@ -14466,7 +14939,7 @@ aa
 aa
 aa
 aa
-ap
+yk
 hi
 fc
 gs
@@ -14477,12 +14950,12 @@ cr
 cX
 dB
 eq
+Sq
 hy
 eq
 eq
-eq
-eq
-hz
+Sq
+hy
 eq
 ht
 hv
@@ -14618,13 +15091,13 @@ bV
 cr
 cX
 dP
+zt
+uh
+FR
 eq
-eq
-eq
-eq
-eq
-eq
-eq
+zt
+uh
+FR
 eq
 cX
 id
@@ -14764,9 +15237,9 @@ es
 eQ
 fs
 gf
-gf
+Fe
 hm
-gf
+GO
 hG
 cX
 id
@@ -14904,7 +15377,7 @@ cX
 cX
 cX
 cX
-fq
+tR
 gd
 cX
 cX
@@ -15048,9 +15521,9 @@ et
 eR
 il
 in
-it
+XY
 ip
-fx
+zZ
 hp
 ib
 ib
@@ -15194,7 +15667,7 @@ hf
 iq
 fx
 iw
-ap
+um
 aa
 aa
 aa
@@ -15475,7 +15948,7 @@ hn
 fu
 gX
 hg
-io
+ir
 hp
 ib
 ib
@@ -16174,15 +16647,15 @@ ag
 aS
 aj
 aD
-aj
+Zh
 bt
 cf
 cE
 dj
 dW
-ez
+VO
 eW
-eW
+mY
 ha
 cf
 hI
@@ -16324,10 +16797,10 @@ dj
 dX
 eA
 eX
-eW
+cf
 hb
-is
-ap
+cf
+hI
 aa
 aa
 aa
@@ -16463,13 +16936,13 @@ bv
 cf
 cG
 dj
-dW
+dX
 eB
 eY
-eW
-hb
-is
-ap
+cf
+Ct
+cf
+hI
 aa
 aa
 aa
@@ -16608,7 +17081,7 @@ dj
 dY
 eC
 eZ
-fy
+cf
 cf
 cf
 hI
@@ -16739,17 +17212,17 @@ aa
 aa
 aa
 ix
-iy
+nM
 am
 aI
 be
-bw
+PB
 cf
 cI
 dj
-dW
-eD
-fg
+dX
+ez
+eW
 fz
 cf
 hI
@@ -16889,12 +17362,12 @@ bw
 cf
 cJ
 dj
-dW
+dY
 eE
 fi
-eW
-cf
-hI
+qW
+vA
+VH
 aa
 aa
 aa
@@ -17032,8 +17505,8 @@ cg
 cK
 dk
 dZ
-ez
-eW
+sO
+fg
 cf
 cf
 hI
