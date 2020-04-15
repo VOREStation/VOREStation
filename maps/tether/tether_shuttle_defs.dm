@@ -200,3 +200,14 @@
 /datum/shuttle/autodock/ferry/belter/New()
 	move_time = move_time + rand(-5 SECONDS, 5 SECONDS)
 	..()
+
+//////////////////////////////////////////////////////////////
+//TFF 12/4/20 Surface Mining Outpost Shuttle
+
+/datum/shuttle/autodock/ferry/surface_mining_outpost
+	name = "Mining Outpost"
+	location = FERRY_LOCATION_STATION
+	warmup_time = 5
+	landmark_station = "mining_station"
+	landmark_offsite = "mining_outpost"
+	docking_controller_tag = "mining_docking"

@@ -255,8 +255,8 @@
 /area/tether/surfacebase/emergency_storage/atrium
 	name = "\improper Atrium Emergency Storage"
 
-//TFF 7/4/20 - New areas for Surface Cargo bits. Some former ones deleted.
-// Surface Cargo/Mining EVA/Warehouse
+//TFF 7/4/20 - New areas for Surface Cargo bits as well as the Mining Outpost. Some former ones deleted. Others renamed.
+// Surface Cargo/Mining EVA/Warehouse/Mining Outpost adadditions
 /area/tether/surfacebase/cargo
 	name = "Surface Cargo Foyer"
 	icon = 'icons/turf/areas.dmi'
@@ -281,6 +281,12 @@
 	name = "\improper Mining Crew Area"
 /area/tether/surfacebase/mining_main/bathroom
 	name = "\improper Mining Bathroom"
+/area/outpost/mining_main/hangar
+	name = "\improper Mining Outpost Shuttle Hangar"
+/area/outpost/mining_main/secondary_gear_storage
+	name = "\improper Mining Outpost Gear Storage"
+/area/outpost/mining_main/drill_equipment
+	name = "\improper Mining Equipment Storage"
 
 // Mining Underdark
 /area/mine/unexplored/underdark
@@ -1082,7 +1088,8 @@
 	name = "\improper Mining Gear Storage"
 /area/quartermaster/belterdock/refinery
 	name = "\improper Mining Refinery"
-
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar
+	name = "\improper Mining Outpost Shuttle - Station"
 // Elevator area //
 
 /area/tether/elevator
