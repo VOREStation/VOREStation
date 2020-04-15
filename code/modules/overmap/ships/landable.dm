@@ -11,6 +11,7 @@
 	moving_state = "shuttle_moving"
 
 /obj/effect/overmap/visitable/ship/landable/Destroy()
+	GLOB.shuttle_pre_move_event.unregister(SSshuttles.shuttles[shuttle], src)
 	GLOB.shuttle_moved_event.unregister(SSshuttles.shuttles[shuttle], src)
 	return ..()
 
@@ -34,13 +35,18 @@
 
 // We autobuild our z levels.
 /obj/effect/overmap/visitable/ship/landable/find_z_levels()
+	src.landmark = new(null, shuttle) // Create in nullspace since we lazy-create overmap z
+	add_landmark(landmark, shuttle)
+
+/obj/effect/overmap/visitable/ship/landable/proc/setup_overmap_location()
+	if(LAZYLEN(map_z))
+		return // We're already set up!
 	for(var/i = 0 to multiz)
 		world.increment_max_z()
 		map_z += world.maxz
 
 	var/turf/center_loc = locate(round(world.maxx/2), round(world.maxy/2), world.maxz)
-	landmark = new (center_loc, shuttle)
-	add_landmark(landmark, shuttle)
+	landmark.forceMove(center_loc)
 
 	var/visitor_dir = fore_dir
 	for(var/landmark_name in list("FORE", "PORT", "AFT", "STARBOARD"))
@@ -51,6 +57,8 @@
 
 	if(multiz)
 		new /obj/effect/landmark/map_data(center_loc, (multiz + 1))
+	register_z_levels()
+	testing("Setup overmap location for \"[name]\" containing Z [english_list(map_z)]")
 
 /obj/effect/overmap/visitable/ship/landable/get_areas()
 	var/datum/shuttle/shuttle_datum = SSshuttles.shuttles[shuttle]
@@ -64,13 +72,19 @@
 	if(istype(shuttle_datum,/datum/shuttle/autodock/overmap))
 		var/datum/shuttle/autodock/overmap/oms = shuttle_datum
 		oms.myship = src
+	GLOB.shuttle_pre_move_event.register(shuttle_datum, src, .proc/pre_shuttle_jump)
 	GLOB.shuttle_moved_event.register(shuttle_datum, src, .proc/on_shuttle_jump)
 	on_landing(landmark, shuttle_datum.current_location) // We "land" at round start to properly place ourselves on the overmap.
+
+
+//
+// Center Landmark
+//
 
 /obj/effect/shuttle_landmark/ship
 	name = "Open Space"
 	landmark_tag = "ship"
-	flags = SLANDMARK_FLAG_AUTOSET | SLANDMARK_FLAG_ZERO_G
+	flags = SLANDMARK_FLAG_ZERO_G // *Not* AUTOSET, these must be world.turf and world.area for lazy loading to work.
 	var/shuttle_name
 	var/list/visitors // landmark -> visiting shuttle stationed there
 
@@ -78,6 +92,7 @@
 	landmark_tag += "_[shuttle_name]"
 	src.shuttle_name = shuttle_name
 	. = ..()
+	base_turf = world.turf
 
 /obj/effect/shuttle_landmark/ship/Destroy()
 	var/obj/effect/overmap/visitable/ship/landable/ship = get_overmap_sector(z)
@@ -85,9 +100,21 @@
 		ship.landmark = null
 	. = ..()
 
+/obj/effect/shuttle_landmark/ship/is_valid(datum/shuttle/shuttle)
+	return (isnull(loc) || ..()) // If it doesn't exist yet, its clear
+
+/obj/effect/shuttle_landmark/ship/create_warning_effect(var/datum/shuttle/shuttle)
+	if(isnull(loc))
+		return
+	..()
+
 /obj/effect/shuttle_landmark/ship/cannot_depart(datum/shuttle/shuttle)
 	if(LAZYLEN(visitors))
 		return "Grappled by other shuttle; cannot manouver."
+
+//
+// Visitor Landmark
+//
 
 /obj/effect/shuttle_landmark/visiting_shuttle
 	flags = SLANDMARK_FLAG_AUTOSET | SLANDMARK_FLAG_ZERO_G
@@ -124,6 +151,17 @@
 	if(old_landmark == src)
 		GLOB.shuttle_moved_event.unregister(shuttle, src)
 		LAZYREMOVE(core_landmark.visitors, src)
+
+//
+// More ship procs
+//
+
+/obj/effect/overmap/visitable/ship/landable/proc/pre_shuttle_jump(datum/shuttle/given_shuttle, obj/effect/shuttle_landmark/from, obj/effect/shuttle_landmark/into)
+	if(given_shuttle != SSshuttles.shuttles[shuttle])
+		return
+	if(into == landmark)
+		setup_overmap_location() // They're coming boys, better actually exist!
+		GLOB.shuttle_pre_move_event.unregister(SSshuttles.shuttles[shuttle], src)
 
 /obj/effect/overmap/visitable/ship/landable/proc/on_shuttle_jump(datum/shuttle/given_shuttle, obj/effect/shuttle_landmark/from, obj/effect/shuttle_landmark/into)
 	if(given_shuttle != SSshuttles.shuttles[shuttle])
