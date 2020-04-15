@@ -1075,7 +1075,7 @@
 		return 0
 
 	//Make sure are close enough for a valid connection
-	if(new_port.loc != src.loc)
+	if(!(new_port.loc in locs))
 		return 0
 
 	//Perform the connection
@@ -1116,21 +1116,26 @@
 	set category = "Exosuit Interface"
 	set src = usr.loc
 	set popup_menu = 0
-	if(!src.occupant) return
-	if(usr!=src.occupant)
+	
+	if(!occupant)
 		return
-	var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
-	if(possible_port)
-		if(connect(possible_port))
-			src.occupant_message("<span class='notice'>\The [name] connects to the port.</span>")
-			src.verbs += /obj/mecha/verb/disconnect_from_port
-			src.verbs -= /obj/mecha/verb/connect_to_port
-			return
+	
+	if(usr != occupant)
+		return
+	
+	for(var/turf/T in locs)
+		var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector) in T
+		if(possible_port)
+			if(connect(possible_port))
+				occupant_message("<span class='notice'>\The [name] connects to the port.</span>")
+				verbs += /obj/mecha/verb/disconnect_from_port
+				verbs -= /obj/mecha/verb/connect_to_port
+				return
+			else
+				occupant_message("<span class='danger'>\The [name] failed to connect to the port.</span>")
+				return
 		else
-			src.occupant_message("<span class='danger'>\The [name] failed to connect to the port.</span>")
-			return
-	else
-		src.occupant_message("Nothing happens")
+			occupant_message("Nothing happens")
 
 
 /obj/mecha/verb/disconnect_from_port()
@@ -1138,15 +1143,19 @@
 	set category = "Exosuit Interface"
 	set src = usr.loc
 	set popup_menu = 0
-	if(!src.occupant) return
-	if(usr!=src.occupant)
+	
+	if(!occupant)
 		return
+	
+	if(usr != occupant)
+		return
+	
 	if(disconnect())
-		src.occupant_message("<span class='notice'>[name] disconnects from the port.</span>")
-		src.verbs -= /obj/mecha/verb/disconnect_from_port
-		src.verbs += /obj/mecha/verb/connect_to_port
+		occupant_message("<span class='notice'>[name] disconnects from the port.</span>")
+		verbs -= /obj/mecha/verb/disconnect_from_port
+		verbs += /obj/mecha/verb/connect_to_port
 	else
-		src.occupant_message("<span class='danger'>[name] is not connected to the port at the moment.</span>")
+		occupant_message("<span class='danger'>[name] is not connected to the port at the moment.</span>")
 
 /obj/mecha/verb/toggle_lights()
 	set name = "Toggle Lights"
