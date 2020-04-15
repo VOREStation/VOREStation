@@ -786,7 +786,6 @@
 #include "code\game\machinery\partslathe_vr.dm"
 #include "code\game\machinery\pda_multicaster.dm"
 #include "code\game\machinery\pointdefense.dm"
-#include "code\game\machinery\pointdefense_vr.dm"
 #include "code\game\machinery\portable_turret.dm"
 #include "code\game\machinery\portable_turret_vr.dm"
 #include "code\game\machinery\recharger.dm"
