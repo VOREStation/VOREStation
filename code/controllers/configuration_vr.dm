@@ -3,14 +3,14 @@
 //
 
 /datum/configuration
-	var/list/engine_map	// Comma separated list of engines to choose from.  Blank means fully random.
-	var/time_off = FALSE
-	var/pto_job_change = FALSE
-	var/limit_interns = -1 //Unlimited by default
-	var/limit_visitors = -1 //Unlimited by default
-	var/pto_cap = 100 //Hours
-	var/require_flavor = FALSE
-	var/ipqualityscore_apikey //API key for ipqualityscore.com
+	var/static/list/engine_map	// Comma separated list of engines to choose from.  Blank means fully random.
+	var/static/time_off = FALSE
+	var/static/pto_job_change = FALSE
+	var/static/limit_interns = -1 //Unlimited by default
+	var/static/limit_visitors = -1 //Unlimited by default
+	var/static/pto_cap = 100 //Hours
+	var/static/require_flavor = FALSE
+	var/static/ipqualityscore_apikey //API key for ipqualityscore.com
 
 /hook/startup/proc/read_vs_config()
 	var/list/Lines = file2list("config/config.txt")
