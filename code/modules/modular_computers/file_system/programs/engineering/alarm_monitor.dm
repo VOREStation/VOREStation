@@ -111,7 +111,7 @@
 	var/z = get_z(nano_host())
 	for(var/datum/alarm_handler/AH in alarm_handlers)
 		categories[++categories.len] = list("category" = AH.category, "alarms" = list())
-		for(var/datum/alarm/A in AH.major_alarms(z))
+		for(var/datum/alarm/A in AH.visible_alarms(z))
 			var/cameras[0]
 			var/lost_sources[0]
 
@@ -123,7 +123,7 @@
 					lost_sources[++lost_sources.len] = AS.source_name
 
 			categories[categories.len]["alarms"] += list(list(
-					"name" = sanitize(A.alarm_name()),
+					"name" = sanitize("[A.alarm_name()]" + "[A.max_severity() > 1 ? "(MAJOR)" : ""]"),
 					"origin_lost" = A.origin == null,
 					"has_cameras" = cameras.len,
 					"cameras" = cameras,
