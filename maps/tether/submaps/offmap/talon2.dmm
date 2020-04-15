@@ -298,7 +298,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/item/weapon/storage/dicecup,
+/obj/item/weapon/storage/dicecup/loaded,
 /turf/simulated/floor/lino,
 /area/talon/decktwo/bar)
 "aT" = (
@@ -4860,14 +4860,17 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/decktwo_solars)
+"ol" = (
+/obj/structure/sign/poster{
+	icon_state = "";
+	dir = 1
+	},
+/turf/simulated/wall,
+/area/talon/decktwo/bar)
 "om" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/decktwo_solars)
-"oo" = (
-/obj/structure/sign/poster,
-/turf/simulated/wall,
-/area/talon/decktwo/bar)
 "pY" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -5120,6 +5123,13 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating,
+/area/talon/maintenance/decktwo_starboard)
+"AA" = (
+/obj/structure/sign/poster{
+	icon_state = "";
+	dir = 4
+	},
+/turf/simulated/wall,
 /area/talon/maintenance/decktwo_starboard)
 "AC" = (
 /obj/structure/cable/green{
@@ -5453,6 +5463,13 @@
 	},
 /turf/simulated/floor/carpet/blucarpet,
 /area/talon/decktwo/cap_room)
+"TC" = (
+/obj/structure/sign/poster{
+	icon_state = "";
+	dir = 8
+	},
+/turf/simulated/wall,
+/area/talon/decktwo/central_hallway)
 "Uf" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -14047,7 +14064,7 @@ cc
 cc
 cc
 cc
-cc
+TC
 eR
 cc
 cc
@@ -16156,7 +16173,7 @@ ab
 ab
 ab
 ax
-oo
+ol
 aI
 aS
 aI
@@ -16887,7 +16904,7 @@ cF
 cF
 cF
 cF
-cF
+AA
 fe
 cF
 cF
