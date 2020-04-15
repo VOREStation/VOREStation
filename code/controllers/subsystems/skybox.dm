@@ -6,6 +6,7 @@ SUBSYSTEM_DEF(skybox)
 	flags = SS_NO_FIRE
 	var/static/list/skybox_cache = list()
 
+	var/static/mutable_appearance/normal_space
 	var/static/list/dust_cache = list()
 	var/static/list/speedspace_cache = list()
 	var/static/list/mapedge_cache = list()
@@ -13,52 +14,75 @@ SUBSYSTEM_DEF(skybox)
 	var/static/list/phase_shift_by_y = list()
 
 /datum/controller/subsystem/skybox/PreInit()
+	//Shuffle some lists
+	phase_shift_by_x = get_cross_shift_list(15)
+	phase_shift_by_y = get_cross_shift_list(15)
+
+	//Create our 'normal' space appearance
+	normal_space = new()
+	normal_space.name = "\proper space"
+	normal_space.desc = "Space!"
+	normal_space.mouse_opacity = 2 //Always fully opaque. It's SPACE there can't be things BEHIND IT.
+	normal_space.appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
+	normal_space.plane = SPACE_PLANE
+	normal_space.layer = TURF_LAYER
+	normal_space.icon = 'icons/turf/space.dmi'
+	normal_space.icon_state = "white"
+	
 	//Static
 	for (var/i in 0 to 25)
+		var/mutable_appearance/MA = new(normal_space)
 		var/image/im = image('icons/turf/space_dust.dmi', "[i]")
 		im.plane = DUST_PLANE
 		im.alpha = 128 //80
 		im.blend_mode = BLEND_ADD
-		dust_cache["[i]"] = im
+		
+		MA.overlays = list(im)
+
+		dust_cache["[i]"] = MA
+	
 	//Moving
 	for (var/i in 0 to 14)
 		// NORTH/SOUTH
+		var/mutable_appearance/MA = new(normal_space)
 		var/image/im = image('icons/turf/space_dust_transit.dmi', "speedspace_ns_[i]")
 		im.plane = DUST_PLANE
 		im.blend_mode = BLEND_ADD
-		speedspace_cache["NS_[i]"] = im
+		MA.overlays = list(im)
+		speedspace_cache["NS_[i]"] = MA
 		// EAST/WEST
+		MA = new(normal_space)
 		im = image('icons/turf/space_dust_transit.dmi', "speedspace_ew_[i]")
 		im.plane = DUST_PLANE
 		im.blend_mode = BLEND_ADD
-		speedspace_cache["EW_[i]"] = im
+		
+		MA.overlays = list(im)
+		
+		speedspace_cache["EW_[i]"] = MA
+	
 	//Over-the-edge images
 	for (var/dir in alldirs)
-		var/image/I = image('icons/turf/space.dmi', "white")
+		var/mutable_appearance/MA = new(normal_space)
 		var/matrix/M = matrix()
 		var/horizontal = (dir & (WEST|EAST))
 		var/vertical = (dir & (NORTH|SOUTH))
 		M.Scale(horizontal ? 8 : 1, vertical ? 8 : 1)
-		I.transform = M
-		I.appearance_flags = KEEP_APART | TILE_BOUND
-		I.plane = SPACE_PLANE
-		I.layer = 0
+		MA.transform = M
+		MA.appearance_flags = KEEP_APART | TILE_BOUND
+		MA.plane = SPACE_PLANE
+		MA.layer = 0
 
 		if(dir & NORTH)
-			I.pixel_y = 112
+			MA.pixel_y = 112
 		else if(dir & SOUTH)
-			I.pixel_y = -112
+			MA.pixel_y = -112
 
 		if(dir & EAST)
-			I.pixel_x = 112
+			MA.pixel_x = 112
 		else if(dir & WEST)
-			I.pixel_x = -112
+			MA.pixel_x = -112
 
-		mapedge_cache["[dir]"] = I
-
-	//Shuffle some lists
-	phase_shift_by_x = get_cross_shift_list(15)
-	phase_shift_by_y = get_cross_shift_list(15)
+		mapedge_cache["[dir]"] = MA
 
 	. = ..()
 
