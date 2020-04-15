@@ -670,10 +670,6 @@
 				stat("Instances:","[world.contents.len]")
 				stat(null, "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
 
-			if(statpanel("Processes"))
-				if(processScheduler)
-					processScheduler.statProcesses()
-
 			if(statpanel("MC"))
 				stat("Location:", "([x], [y], [z]) [loc]")
 				stat("CPU:","[world.cpu]")
