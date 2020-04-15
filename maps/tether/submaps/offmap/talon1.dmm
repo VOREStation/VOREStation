@@ -2182,12 +2182,6 @@
 /obj/item/weapon/cell/device/weapon,
 /turf/simulated/floor/tiled/dark,
 /area/talon/deckone/armory)
-"ej" = (
-/obj/structure/closet/crate/medical/blood,
-/obj/item/weapon/reagent_containers/blood/prelabeled/OMinus,
-/obj/item/weapon/reagent_containers/blood/prelabeled/OMinus,
-/turf/simulated/floor/tiled/white,
-/area/talon/deckone/medical)
 "ek" = (
 /obj/structure/closet/crate/medical{
 	name = "first-aid kits"
@@ -2457,13 +2451,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/white,
-/area/talon/deckone/medical)
-"eD" = (
-/obj/machinery/door/firedoor/glass/talon,
-/obj/machinery/door/airlock/medical{
-	req_one_access = list(301)
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
 	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 5
+	},
+/obj/structure/table/standard,
+/obj/machinery/reagentgrinder,
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
 "eE" = (
@@ -2631,15 +2626,6 @@
 	pixel_y = 0;
 	report_danger_level = 0
 	},
-/obj/structure/table/standard,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/item/clothing/mask/surgical,
-/obj/item/clothing/suit/surgicalapron,
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 6
-	},
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
 "eR" = (
@@ -2771,11 +2757,15 @@
 /area/talon/deckone/medical)
 "fc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 4
 	},
-/obj/item/weapon/storage/firstaid/surgery,
+/obj/structure/table/standard,
+/obj/item/clothing/mask/surgical,
+/obj/item/clothing/suit/surgicalapron,
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 6
+	},
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
 "fd" = (
@@ -2913,17 +2903,26 @@
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/item/weapon/storage/firstaid/regular,
 /obj/effect/floor_decal/borderfloorwhite/corner2,
+/obj/item/weapon/storage/firstaid/adv{
+	pixel_x = 2;
+	pixel_y = 5
+	},
+/obj/machinery/alarm/talon{
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
 "fl" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 6
 	},
-/obj/item/weapon/storage/firstaid/adv,
+/obj/structure/table/standard,
+/obj/item/weapon/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
 "fm" = (
@@ -5691,6 +5690,9 @@
 	dir = 4;
 	pixel_y = 0
 	},
+/obj/structure/closet/crate/medical/blood,
+/obj/item/weapon/reagent_containers/blood/prelabeled/OMinus,
+/obj/item/weapon/reagent_containers/blood/prelabeled/OMinus,
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
 "ks" = (
@@ -5983,9 +5985,6 @@
 /area/talon/deckone/armory)
 "kV" = (
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 5
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
 	dir = 5
 	},
 /obj/machinery/chem_master,
@@ -6767,10 +6766,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/talon/deckone/bridge)
-"Ct" = (
-/obj/structure/sign/poster,
-/turf/simulated/wall,
-/area/talon/deckone/central_hallway)
 "CN" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -7332,6 +7327,13 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/steel,
 /area/talon/deckone/central_hallway)
+"WE" = (
+/obj/structure/sign/poster{
+	icon_state = "";
+	dir = 1
+	},
+/turf/simulated/wall,
+/area/talon/deckone/central_hallway)
 "WI" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -7361,6 +7363,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/talon/maintenance/deckone_port)
+"WS" = (
+/obj/machinery/door/airlock/medical{
+	req_one_access = list(301)
+	},
+/obj/machinery/door/firedoor/glass/talon,
+/turf/simulated/wall,
+/area/talon/deckone/medical)
 "Xh" = (
 /obj/structure/catwalk,
 /obj/structure/cable/green{
@@ -17347,7 +17356,7 @@ gj
 ky
 kF
 dL
-Ct
+WE
 kG
 kz
 kH
@@ -18621,8 +18630,8 @@ co
 dG
 dO
 dO
-eD
 dO
+WS
 dO
 dO
 dO
@@ -18762,9 +18771,9 @@ dn
 co
 aP
 dO
-ej
-ef
 ZU
+ef
+ef
 jV
 fm
 dO

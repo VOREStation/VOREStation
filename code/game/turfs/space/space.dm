@@ -9,46 +9,18 @@
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
 	can_build_into_floor = TRUE
 	var/keep_sprite = FALSE
-	var/edge = 0
+	var/edge = 0 //If we're an edge
+	var/forced_dirs = 0 //Force this one to pretend it's an overedge turf
 
 /turf/space/Initialize()
-	. = ..()
-
-	if(!keep_sprite)
-		icon_state = "white"
-
 	if(config.starlight)
 		update_starlight()
 
-	build_overedge() //Spread out over the edge of the map if we're an edge
-	toggle_transit() //Add static dust (not passing a dir)
+	//Sprite stuff only beyond here
+	if(keep_sprite)
+		return ..()
 
-/turf/space/proc/toggle_transit(var/direction)
-	cut_overlays()
-
-	if(!direction)
-		add_overlay(SSskybox.dust_cache["[((x + y) ^ ~(x * y) + z) % 25]"])
-		return
-
-	if(direction & (NORTH|SOUTH))
-		var/x_shift = SSskybox.phase_shift_by_x[src.x % (SSskybox.phase_shift_by_x.len - 1) + 1]
-		var/transit_state = ((direction & SOUTH ? world.maxy - src.y : src.y) + x_shift)%15
-		add_overlay(SSskybox.speedspace_cache["NS_[transit_state]"])
-	else if(direction & (EAST|WEST))
-		var/y_shift = SSskybox.phase_shift_by_y[src.y % (SSskybox.phase_shift_by_y.len - 1) + 1]
-		var/transit_state = ((direction & WEST ? world.maxx - src.x : src.x) + y_shift)%15
-		add_overlay(SSskybox.speedspace_cache["EW_[transit_state]"])
-
-	for(var/atom/movable/AM in src)
-		if (!AM.simulated)
-			continue
-
-		if(!AM.anchored)
-			AM.throw_at(get_step(src,reverse_direction(direction)), 5, 1)
-		else if (istype(AM, /obj/effect/decal))
-			qdel(AM) //No more space blood coming with the shuttle
-
-/turf/space/proc/build_overedge(var/forced_dirs)
+	//We might be an edge
 	if(y == world.maxy || forced_dirs & NORTH)
 		edge |= NORTH
 	else if(y == 1 || forced_dirs & SOUTH)
@@ -59,10 +31,36 @@
 	else if(x == world.maxx || forced_dirs & EAST)
 		edge |= EAST
 
-	if(!edge)
-		return
+	if(edge) //Magic edges
+		appearance = SSskybox.mapedge_cache["[edge]"]
+	else //Dust
+		appearance = SSskybox.dust_cache["[((x + y) ^ ~(x * y) + z) % 25]"]
 
-	add_overlay(SSskybox.mapedge_cache["[edge]"], TRUE)
+	return ..()
+
+/turf/space/proc/toggle_transit(var/direction)
+	if(edge) //Not a great way to do this yet. Maybe we'll come up with one. We could pre-make sprites... or tile the overlay over it?
+		return
+	
+	if(!direction) //Stopping our transit
+		appearance = SSskybox.dust_cache["[((x + y) ^ ~(x * y) + z) % 25]"]
+	else if(direction & (NORTH|SOUTH)) //Starting transit vertically
+		var/x_shift = SSskybox.phase_shift_by_x[src.x % (SSskybox.phase_shift_by_x.len - 1) + 1]
+		var/transit_state = ((direction & SOUTH ? world.maxy - src.y : src.y) + x_shift)%15
+		appearance = SSskybox.speedspace_cache["NS_[transit_state]"]
+	else if(direction & (EAST|WEST)) //Starting transit horizontally
+		var/y_shift = SSskybox.phase_shift_by_y[src.y % (SSskybox.phase_shift_by_y.len - 1) + 1]
+		var/transit_state = ((direction & WEST ? world.maxx - src.x : src.x) + y_shift)%15
+		appearance = SSskybox.speedspace_cache["EW_[transit_state]"]
+
+	for(var/atom/movable/AM in src)
+		if (!AM.simulated)
+			continue
+
+		if(!AM.anchored)
+			AM.throw_at(get_step(src,reverse_direction(direction)), 5, 1)
+		else if (istype(AM, /obj/effect/decal))
+			qdel(AM) //No more space blood coming with the shuttle
 
 /turf/space/is_space()
 	return 1
