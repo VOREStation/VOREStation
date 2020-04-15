@@ -29555,14 +29555,8 @@
 /turf/simulated/floor/airless,
 /area/quartermaster/belterdock)
 "aVc" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 4
-	},
-/obj/machinery/camera/network/mining,
-/turf/simulated/floor/airless,
-/area/quartermaster/belterdock)
+/turf/simulated/wall,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "aVd" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
@@ -29645,12 +29639,22 @@
 /turf/simulated/wall/rshull,
 /area/shuttle/excursion/general)
 "aVj" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 4
+/obj/structure/cable/green{
+	icon_state = "4-8"
 	},
-/turf/simulated/floor/airless,
-/area/quartermaster/belterdock)
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/refinery)
 "aVk" = (
 /obj/effect/landmark/start{
 	name = "Shaft Miner"
@@ -29712,11 +29716,8 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/gear)
 "aVs" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/turf/simulated/floor/airless,
-/area/quartermaster/belterdock)
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "aVt" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_mining{
@@ -29750,28 +29751,25 @@
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/general)
 "aVx" = (
-/obj/structure/shuttle/engine/heater{
+/obj/machinery/camera/network/cargo,
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"aVy" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/refinery)
+"aVz" = (
+/obj/machinery/computer/shuttle_control/surface_mining_outpost{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/simulated/floor/airless,
-/area/shuttle/belter)
-"aVy" = (
-/obj/structure/closet/crate,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/shuttle/floor/yellow/airless,
-/area/shuttle/belter)
-"aVz" = (
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	id_tag = "belter_docking";
-	pixel_y = 26
-	},
-/turf/simulated/shuttle/floor/yellow/airless,
-/area/shuttle/belter)
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "aVA" = (
 /obj/effect/landmark/start{
 	name = "Medical Doctor"
@@ -29843,12 +29841,8 @@
 /area/tether/exploration)
 "aVJ" = (
 /obj/structure/closet/emcloset,
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
-	},
-/turf/simulated/shuttle/floor/yellow/airless,
-/area/shuttle/belter)
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "aVK" = (
 /obj/structure/table/woodentable,
 /obj/machinery/light{
@@ -29871,8 +29865,16 @@
 /turf/simulated/open,
 /area/ai_core_foyer)
 "aVN" = (
-/turf/simulated/shuttle/wall/hard_corner,
-/area/shuttle/belter)
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/refinery)
 "aVO" = (
 /obj/structure/ore_box,
 /turf/simulated/shuttle/floor/yellow/airless,
@@ -29903,11 +29905,18 @@
 /turf/simulated/shuttle/floor/yellow/airless,
 /area/shuttle/belter)
 "aVT" = (
-/obj/machinery/computer/shuttle_control/belter{
-	dir = 8
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
 	},
-/turf/simulated/shuttle/floor/yellow/airless,
-/area/shuttle/belter)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/refinery)
 "aVU" = (
 /obj/machinery/firealarm{
 	dir = 2;
@@ -29964,10 +29973,19 @@
 /turf/simulated/floor/airless,
 /area/shuttle/medivac/general)
 "aVZ" = (
-/obj/structure/closet/crate,
-/obj/machinery/light,
-/turf/simulated/shuttle/floor/yellow/airless,
-/area/shuttle/belter)
+/obj/machinery/door/airlock/glass_mining{
+	name = "Mining Outpost Shuttle";
+	req_access = list(48)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "aWa" = (
 /obj/machinery/airlock_sensor{
 	pixel_x = 28
@@ -29991,11 +30009,9 @@
 /turf/simulated/wall,
 /area/maintenance/substation/cargo)
 "aWc" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 1
-	},
-/turf/simulated/shuttle/floor/yellow/airless,
-/area/shuttle/belter)
+/obj/machinery/door/blast/regular,
+/turf/simulated/wall,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "aWd" = (
 /obj/effect/floor_decal/industrial/outline,
 /obj/machinery/atmospherics/portables_connector,
@@ -30009,12 +30025,13 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/refinery)
 "aWf" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 4
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -28;
+	pixel_y = 0
 	},
-/turf/simulated/floor/airless,
-/area/quartermaster/belterdock)
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "aWg" = (
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/general)
@@ -30645,17 +30662,15 @@
 /turf/simulated/wall/rshull,
 /area/shuttle/excursion/cargo)
 "aXs" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
-/area/quartermaster/belterdock/refinery)
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "aXt" = (
 /obj/machinery/door/airlock/hatch{
 	req_one_access = list(67)
@@ -31292,9 +31307,22 @@
 /turf/simulated/floor/plating,
 /area/shuttle/excursion/general)
 "aYL" = (
-/obj/effect/floor_decal/industrial/warning/corner,
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 24
+	},
+/obj/machinery/light_switch{
+	pixel_x = 11;
+	pixel_y = 24
+	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/simulated/floor/tiled,
-/area/quartermaster/belterdock/refinery)
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "aYM" = (
 /obj/machinery/bodyscanner{
 	dir = 4
@@ -31441,11 +31469,14 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/excursion/cargo)
 "aZb" = (
-/obj/effect/floor_decal/industrial/warning{
+/obj/structure/bed/chair/office/light{
 	dir = 4
 	},
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
 /turf/simulated/floor/tiled,
-/area/quartermaster/belterdock/refinery)
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "aZc" = (
 /obj/machinery/computer/ship/helm{
 	icon_state = "computer";
@@ -31772,13 +31803,12 @@
 /turf/simulated/floor/plating,
 /area/quartermaster/belterdock/refinery)
 "aZJ" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/belter)
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "aZK" = (
 /obj/structure/bed/chair/bay/chair/padded/blue{
 	icon_state = "bay_chair_preview";
@@ -31863,12 +31893,12 @@
 /turf/simulated/floor/airless,
 /area/shuttle/medivac/general)
 "aZS" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/belter)
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "aZT" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/alarm{
@@ -31924,39 +31954,359 @@
 /turf/simulated/wall/r_wall,
 /area/security/security_lockerroom)
 "aZZ" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 5
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"baa" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/firealarm{
+	pixel_y = 25
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"bab" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"bac" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock)
+"bad" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9;
+	pixel_y = 0
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"bae" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"baf" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"bag" = (
+/obj/structure/ore_box,
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/area/quartermaster/belterdock)
+"bah" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 2
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"bai" = (
+/turf/simulated/shuttle/wall,
+/area/shuttle/mining_outpost/shuttle)
+"baj" = (
+/obj/machinery/door/unpowered/shuttle,
+/turf/simulated/shuttle/floor/yellow/airless,
+/area/shuttle/mining_outpost/shuttle)
+"bak" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/camera/network/mining,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/turf/simulated/floor/airless,
+/area/quartermaster/belterdock)
+"bal" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/quartermaster/belterdock)
+"bam" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"ban" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"bao" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/mining_outpost/shuttle)
+"bap" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/simulated/floor/airless,
+/area/quartermaster/belterdock)
+"baq" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 1;
+	icon_state = "propulsion_l"
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/belter)
+"bar" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/quartermaster/belterdock)
+"bas" = (
+/turf/simulated/floor/airless,
+/area/quartermaster/belterdock)
+"bat" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/shuttle/mining_outpost/shuttle)
+"bau" = (
+/turf/simulated/shuttle/floor/yellow,
+/area/shuttle/mining_outpost/shuttle)
+"bav" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/shuttle/floor/yellow/airless,
+/area/shuttle/belter)
+"baw" = (
+/obj/structure/bed/chair/shuttle,
+/obj/structure/shuttle/engine/heater{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/shuttle/floor/yellow/airless,
+/area/shuttle/belter)
+"bax" = (
+/obj/structure/bed/chair/shuttle,
+/turf/simulated/shuttle/floor/yellow,
+/area/shuttle/mining_outpost/shuttle)
+"bay" = (
+/obj/structure/closet/crate,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/yellow/airless,
+/area/shuttle/belter)
+"baz" = (
+/obj/structure/closet/crate,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/yellow/airless,
+/area/shuttle/belter)
+"baA" = (
+/obj/structure/closet/emcloset,
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/shuttle/mining_outpost/shuttle)
+"baB" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"baC" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/machinery/camera/network/cargo{
+	dir = 1;
+	name = "security camera"
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"baD" = (
+/turf/simulated/shuttle/wall/hard_corner,
+/area/shuttle/mining_outpost/shuttle)
+"baE" = (
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	dir = 8;
+	id_tag = "belter_docking";
+	pixel_x = 26;
+	pixel_y = 0
+	},
+/turf/simulated/shuttle/floor/yellow/airless,
+/area/shuttle/belter)
+"baF" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/yellow/airless,
+/area/shuttle/belter)
+"baG" = (
+/obj/structure/closet/emcloset,
+/turf/simulated/shuttle/floor/yellow/airless,
+/area/shuttle/belter)
+"baH" = (
+/obj/machinery/computer/shuttle_control/belter{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/yellow/airless,
+/area/shuttle/belter)
+"baI" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/turf/simulated/floor/airless,
+/area/quartermaster/belterdock)
+"baJ" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/shuttle/mining_outpost/shuttle)
+"baK" = (
+/obj/machinery/computer/shuttle_control/surface_mining_outpost{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/shuttle/mining_outpost/shuttle)
+"baL" = (
+/obj/structure/shuttle/window,
+/obj/effect/shuttle_landmark{
+	base_area = /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar;
+	base_turf = /turf/simulated/floor/tiled;
+	landmark_tag = "mining_outpost";
+	name = "Mining Outpost Shuttle - Station"
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/mining_outpost/shuttle)
+"baM" = (
+/obj/machinery/light,
+/turf/simulated/shuttle/floor/yellow,
+/area/shuttle/mining_outpost/shuttle)
+"baN" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/shuttle/mining_outpost/shuttle)
+"baO" = (
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	dir = 8;
+	id_tag = "mining_docking";
+	pixel_x = 0;
+	pixel_y = 26
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/shuttle/mining_outpost/shuttle)
+"baP" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"baQ" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"baR" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"baS" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
+"baT" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
+"baU" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_r"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/belter)
-"bac" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/simulated/floor/tiled,
-/area/quartermaster/belterdock)
-"bag" = (
-/obj/structure/ore_box,
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/area/quartermaster/belterdock)
-"bak" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
-/turf/simulated/floor/airless,
-/area/quartermaster/belterdock)
-"bal" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 1
-	},
-/turf/simulated/floor/airless,
-/area/quartermaster/belterdock)
+/area/shuttle/mining_outpost/shuttle)
 
 (1,1,1) = {"
 aaa
@@ -44410,13 +44760,13 @@ aab
 avt
 avt
 avt
-aVa
-aVj
-aVj
-aVj
-aVj
-aVj
-aWf
+avt
+avt
+avt
+avt
+avt
+avt
+avt
 avt
 aaa
 aaa
@@ -44552,13 +44902,13 @@ aab
 avt
 avt
 avt
-aVb
-aZJ
-aZS
-aZS
-aZS
-aZZ
-aWi
+avt
+avt
+avt
+avt
+avt
+avt
+avt
 avt
 avt
 aaa
@@ -44694,18 +45044,18 @@ aQG
 aQG
 aQG
 aQG
-aVb
-aVo
-aVx
-aVx
-aVx
-aVo
-aWi
-avt
-avt
-aaa
-aaa
-aaa
+aVa
+bap
+bap
+bap
+bap
+bap
+bap
+bap
+bap
+bap
+bap
+baI
 aaa
 aaa
 aaa
@@ -44837,17 +45187,17 @@ aTZ
 aUg
 aQG
 aVb
+baq
 aVo
-aVy
-aVO
-aVZ
 aVo
+aVo
+aVo
+aVo
+aVo
+aVo
+aVo
+aUI
 aWi
-avt
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -44979,17 +45329,17 @@ aOL
 aUv
 aUZ
 aVb
+baq
+bav
+bay
+aVG
+aVS
+aVS
+aVS
+baG
 aVo
-aVz
-aVG
-aVG
 aVo
 aWi
-avt
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -45121,17 +45471,17 @@ aUP
 aUA
 aUZ
 aVb
-aVq
+baq
+bav
+aVO
 aVG
 aVG
-aWc
-aVo
+aVG
+aVG
+aVH
+baH
+aVW
 aWi
-avt
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -45263,17 +45613,17 @@ aOL
 bac
 aQG
 aVb
-aVo
-aVH
+baq
+baw
+baz
+baE
 aVG
-aWc
+baF
+baF
+baG
+aVo
 aVo
 aWi
-avt
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -45404,18 +45754,18 @@ aQG
 aQG
 aQG
 aQG
-aVc
+bak
+baq
 aVo
-aVH
-aVG
-aWc
 aVo
+aVo
+aVq
+aVo
+aVo
+aVo
+aVo
+aUI
 aWi
-avt
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -45546,18 +45896,18 @@ aTK
 aQG
 aVh
 bag
-bak
-aVo
-aVJ
-aVS
-aVJ
-aVo
-aWi
-avt
-aaa
-aaa
-aaa
-aaa
+bal
+bar
+bar
+bar
+bar
+bar
+bar
+bar
+bar
+bar
+bar
+aWq
 aaa
 aaa
 aaa
@@ -45688,13 +46038,13 @@ aTA
 aUd
 aUH
 aUI
-bak
-aVo
-aVN
-aVT
-aVN
-aVo
 aWi
+bas
+avt
+avt
+avt
+avt
+avt
 avt
 avt
 aaa
@@ -45830,13 +46180,13 @@ aQG
 aQG
 aUI
 aUI
-bak
-aUI
-aVo
-aVW
-aVo
-aUI
 aWi
+bas
+avt
+avt
+avt
+avt
+avt
 avt
 avt
 aaa
@@ -45972,13 +46322,13 @@ avt
 avt
 avt
 avt
-bal
-aVs
-aVs
-aVs
-aVs
-aVs
 aWq
+bas
+avt
+avt
+avt
+avt
+avt
 avt
 aaa
 aaa
@@ -46110,15 +46460,15 @@ aZw
 aMN
 avt
 avt
-avt
-avt
-avt
-avt
-avt
-avt
-avt
-avt
-avt
+aVc
+aVc
+aWc
+aWc
+aWc
+aWc
+aWc
+aVc
+aVc
 avt
 avt
 avt
@@ -46252,15 +46602,15 @@ aZA
 aMN
 avt
 avt
-avt
-avt
-avt
-avt
-avt
-avt
-avt
-avt
-avt
+aVc
+aZJ
+baf
+baf
+baf
+baf
+baf
+baP
+aVc
 avt
 avt
 aaa
@@ -46394,15 +46744,15 @@ aZB
 aMN
 avt
 avt
-avt
-avt
-avt
-avt
-avt
-avt
-avt
-avt
-avt
+aVc
+aZS
+baS
+baT
+baT
+baT
+baU
+baB
+aVc
 avt
 avt
 aaa
@@ -46536,15 +46886,15 @@ aVr
 aMN
 avt
 avt
-avt
-avt
-avt
-avt
-aaa
-aaa
-aaa
-aaa
-aaa
+aVc
+aZS
+bai
+bao
+bao
+bao
+bai
+baB
+aVc
 aaa
 aaa
 aaa
@@ -46677,16 +47027,16 @@ aXm
 aVt
 aMD
 aMD
-aMD
-aaa
-avt
-avt
-avt
-aaa
-aaa
-aaa
-aaa
-aaa
+aVc
+aVc
+aZS
+bai
+bat
+bau
+baM
+bai
+baB
+aVc
 aaa
 aaa
 aaa
@@ -46819,16 +47169,16 @@ aXn
 aWI
 aYJ
 aYZ
-aMD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aVc
+aWf
+aZZ
+bai
+baO
+bau
+bau
+bai
+baB
+aVc
 aaa
 aaa
 aaa
@@ -46957,20 +47307,20 @@ aMD
 aQh
 aUN
 aWe
+aVj
+aVy
+aVN
+aVT
+aVZ
 aXs
-aWI
-aYL
-aZb
-aMD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bah
+baj
+bau
+bau
+baN
+bai
+baB
+aVc
 aaa
 aaa
 aaa
@@ -47103,16 +47453,16 @@ aXu
 aWI
 aYP
 aZf
-aMD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aVc
+aVx
+ban
+bai
+bax
+bau
+baN
+bai
+baC
+aVc
 aaa
 aaa
 aaa
@@ -47245,16 +47595,16 @@ aXz
 aYE
 aUe
 aZq
-aMD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aVc
+aYL
+baR
+bai
+bax
+bau
+baN
+bai
+baB
+aVc
 aaa
 aaa
 aaa
@@ -47387,16 +47737,16 @@ aXA
 aYF
 aUe
 aZH
-aMD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aVc
+aZb
+bab
+bai
+baA
+baJ
+baA
+bai
+baB
+aVc
 aaa
 aaa
 aaa
@@ -47529,16 +47879,16 @@ aXI
 aYI
 aYR
 aZI
-aMD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aVc
+aVz
+bab
+bai
+baD
+baK
+baD
+bai
+baB
+aVc
 aaa
 aaa
 aaa
@@ -47671,16 +48021,16 @@ aXJ
 aUe
 aUe
 aZj
-aMD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aVc
+baa
+bad
+aVs
+bai
+baL
+bai
+aVs
+baB
+aVc
 aaa
 aaa
 aaa
@@ -47813,16 +48163,16 @@ aXV
 aZh
 aWO
 aZC
-aMD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aVc
+aVJ
+bae
+bam
+bam
+bam
+bam
+bam
+baQ
+aVc
 aaa
 aaa
 aaa
@@ -47955,16 +48305,16 @@ aMD
 aMD
 aMD
 aMD
-aMD
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aVc
+aVc
+aVc
+aWc
+aWc
+aWc
+aWc
+aWc
+aVc
+aVc
 aaa
 aaa
 aaa

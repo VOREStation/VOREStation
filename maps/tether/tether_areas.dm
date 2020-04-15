@@ -238,8 +238,8 @@
 	name = "\improper Vacant Prep Area"
 /area/vacant/vacant_site/gateway/lower
 	name = "\improper Lower Vacant Prep Area"
-//TFF 5/4/20 - Mining Ops move
-/area/vacant/vacant_site/vacant_mining_ops
+//TFF 5/4/20 - Mining Ops move	TODO Change all Vacant areas to construction_site per vermin event location announcement.
+/area/construction/vacant_mining_ops
 	name = "\improper Vacant Mining Operations"
 
 // /area/tether/surfacebase/east_stairs_three //This is just part of an upper hallway
@@ -261,10 +261,10 @@
 	name = "Surface Cargo Foyer"
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "quartstorage"
-/area/tether/surfacebase/cargo/mining
+/area/tether/surfacebase/cargo/mining	//TODO: Change to medical airlock access
 	name = "\improper Mining Equipment Storage"
 	icon_state = "outpost_mine_main"
-/area/tether/surfacebase/cargo/mining/airlock
+/area/tether/surfacebase/cargo/mining/airlock	//TODO: Change to medical airlock
 	name = "\improper Mining Airlock"
 /area/tether/surfacebase/cargo/warehouse
 	name = "\improper Surface Cargo Warehouse"
@@ -275,7 +275,7 @@
 	icon_state = "outpost_mine_main"
 /area/tether/surfacebase/mining_main/eva
 	name = "\improper Mining EVA"
-/area/tether/surfacebase/mining_main/external
+/area/tether/surfacebase/mining_main/external	//TODO: repath for medical move
 	name = "\improper Mining External"
 /area/tether/surfacebase/mining_main/break_room
 	name = "\improper Mining Crew Area"
@@ -1080,7 +1080,7 @@
 	name = "\improper Medivac Engines"
 
 //TFF 5/4/20 - Mining Ops move
-// Asteroid Mining belter shuttle and refinery/gear areas
+// Asteroid Mining belter and Mining Outpost shuttles and refinery/gear areas
 /area/quartermaster/belterdock
 	name = "\improper Cargo Belter Access"
 	icon_state = "mining"
@@ -1090,6 +1090,9 @@
 	name = "\improper Mining Refinery"
 /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar
 	name = "\improper Mining Outpost Shuttle - Station"
+area/shuttle/mining_outpost/shuttle
+	name = "\improper Mining Outpost Shuttle"
+	icon_state = "shuttle2"
 // Elevator area //
 
 /area/tether/elevator
