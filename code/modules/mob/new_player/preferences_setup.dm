@@ -194,6 +194,8 @@
 	b_skin = blue
 
 /datum/preferences/proc/dress_preview_mob(var/mob/living/carbon/human/mannequin)
+	if(!mannequin.dna) // Special handling for preview icons before SSAtoms has initailized.
+		mannequin.dna = new /datum/dna(null)
 	copy_to(mannequin, TRUE)
 
 	if(!equip_preview_mob)
