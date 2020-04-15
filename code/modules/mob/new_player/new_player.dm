@@ -19,6 +19,7 @@
 
 /mob/new_player/New()
 	mob_list += src
+	initialized = TRUE // Explicitly don't use Initialize().  New players join super early and use New()
 
 /mob/new_player/verb/new_player_panel()
 	set src = usr
