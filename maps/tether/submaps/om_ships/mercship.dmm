@@ -2049,6 +2049,9 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 5
 	},
+/obj/structure/sign/department/bridge{
+	pixel_z = 31
+	},
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/hall2)
 "dE" = (
@@ -2107,6 +2110,9 @@
 	},
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 6
+	},
+/obj/structure/sign/department/bridge{
+	pixel_z = -32
 	},
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/hall2)
@@ -2193,8 +2199,12 @@
 /area/ship/mercenary/engineeringcntrl)
 "dQ" = (
 /obj/structure/cable{
-	icon_state = "4-8"
+	icon_state = "0-8"
 	},
+/obj/effect/floor_decal/borderfloorblack{
+	dir = 5
+	},
+/obj/machinery/power/smes/buildable,
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/engineeringcntrl)
 "dR" = (
@@ -2358,18 +2368,10 @@
 /turf/simulated/floor,
 /area/ship/mercenary/barracks)
 "ej" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/turf/simulated/floor,
+/obj/structure/sign/warning/radioactive,
+/turf/simulated/wall/rshull,
 /area/ship/mercenary/engineeringcntrl)
 "ek" = (
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/smes/buildable/hybrid,
-/obj/effect/floor_decal/borderfloorblack{
-	dir = 5
-	},
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/engineeringcntrl)
 "el" = (
@@ -2388,17 +2390,37 @@
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/engineeringcntrl)
 "en" = (
+/obj/machinery/power/terminal{
+	icon_state = "term";
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloorblack{
+	dir = 4
+	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 2;
+	icon_state = "0-2";
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/engineeringcntrl)
 "eo" = (
 /obj/structure/closet/crate,
-/obj/effect/floor_decal/borderfloorblack{
+/obj/machinery/light{
+	icon_state = "tube1";
 	dir = 8
 	},
+/obj/effect/floor_decal/borderfloorblack{
+	dir = 9
+	},
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 0;
+	pixel_y = 26
+	},
+/obj/fiftyspawner/uranium,
+/obj/fiftyspawner/uranium,
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/engineeringcntrl)
 "ep" = (
@@ -2500,16 +2522,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/engineering)
 "eC" = (
-/obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 1
-	},
 /obj/structure/cable{
-	icon_state = "0-8"
+	icon_state = "1-2"
 	},
-/obj/effect/floor_decal/borderfloorblack{
-	dir = 4
-	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/engineeringcntrl)
 "eD" = (
@@ -2517,13 +2533,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/engineeringcntrl)
 "eE" = (
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/machinery/door/airlock/engineering{
+	name = "Modified Engineering Airlock";
+	req_one_access = list(150)
 	},
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/engineeringcntrl)
@@ -2781,11 +2796,12 @@
 /area/ship/mercenary/engineeringcntrl)
 "eY" = (
 /obj/structure/cable{
-	icon_state = "0-8"
+	icon_state = "1-8"
 	},
-/obj/machinery/power/smes/buildable/hybrid,
-/obj/effect/floor_decal/borderfloorblack{
-	dir = 4
+/obj/effect/floor_decal/borderfloorblack,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/engineeringcntrl)
@@ -3016,11 +3032,17 @@
 /turf/simulated/floor,
 /area/ship/mercenary/southairlock)
 "fu" = (
-/turf/simulated/wall/rshull,
-/area/space)
-"fv" = (
 /turf/simulated/floor/plating/external,
-/area/space)
+/area/ship/mercenary/engineeringcntrl)
+"fv" = (
+/obj/structure/closet/crate,
+/obj/effect/floor_decal/borderfloorblack{
+	dir = 8
+	},
+/obj/fiftyspawner/uranium,
+/obj/fiftyspawner/uranium,
+/turf/simulated/floor/tiled/dark,
+/area/ship/mercenary/engineeringcntrl)
 "fw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	icon_state = "intact-fuel";
@@ -4058,22 +4080,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/engineering)
 "hg" = (
-/obj/structure/closet/crate,
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloorblack{
-	dir = 9
-	},
-/obj/machinery/firealarm{
-	dir = 2;
-	layer = 3.3;
-	pixel_x = 0;
-	pixel_y = 26
-	},
-/turf/simulated/floor/tiled/dark,
-/area/ship/mercenary/engineeringcntrl)
+/obj/structure/sign/department/armory,
+/turf/simulated/wall/rshull,
+/area/ship/mercenary/barracks)
 "hh" = (
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1414;
@@ -4135,6 +4144,7 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 5
 	},
+/obj/structure/closet/toolcloset,
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/med)
 "hn" = (
@@ -4174,6 +4184,7 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
 	},
+/obj/structure/closet/radiation,
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/engineering)
 "hs" = (
@@ -4222,36 +4233,20 @@
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/engineeringcntrl)
 "hv" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloorblack,
-/turf/simulated/floor/tiled/dark,
-/area/ship/mercenary/engineeringcntrl)
-"hw" = (
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/obj/effect/floor_decal/borderfloorblack,
-/turf/simulated/floor/tiled/dark,
-/area/ship/mercenary/engineeringcntrl)
-"hx" = (
-/obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 1
-	},
+/obj/machinery/power/port_gen/pacman/super/potato,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/effect/floor_decal/borderfloorblack{
-	dir = 6
-	},
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/engineeringcntrl)
+"hw" = (
+/obj/structure/sign/department/atmos,
+/turf/simulated/wall/rshull,
+/area/ship/mercenary/atmos)
+"hx" = (
+/obj/structure/sign/warning/vacuum,
+/turf/simulated/wall/rshull,
+/area/ship/mercenary/med)
 "hy" = (
 /obj/machinery/computer/ship/sensors{
 	icon_state = "computer";
@@ -4361,6 +4356,26 @@
 	},
 /turf/space,
 /area/space)
+"hK" = (
+/obj/structure/sign/department/shield,
+/turf/simulated/wall/rshull,
+/area/ship/mercenary/med)
+"hL" = (
+/obj/structure/sign/department/medbay,
+/turf/simulated/wall/rshull,
+/area/ship/mercenary/armoury)
+"hM" = (
+/obj/structure/sign/department/operational,
+/turf/simulated/wall/rshull,
+/area/ship/mercenary/armoury)
+"hN" = (
+/obj/structure/sign/department/eng,
+/turf/simulated/wall/rshull,
+/area/ship/mercenary/engineering)
+"hO" = (
+/obj/structure/sign/warning/vacuum,
+/turf/simulated/wall/rshull,
+/area/ship/mercenary/armoury)
 
 (1,1,1) = {"
 aa
@@ -12957,7 +12972,7 @@ dG
 eR
 di
 dv
-di
+hM
 di
 di
 di
@@ -13236,10 +13251,10 @@ dq
 be
 aI
 cP
-ap
+hK
 dS
 eR
-di
+hL
 ge
 dA
 dA
@@ -14081,7 +14096,7 @@ aa
 aa
 aa
 aj
-ap
+hx
 ap
 ap
 ap
@@ -14098,7 +14113,7 @@ di
 di
 di
 di
-di
+hO
 fA
 ga
 aa
@@ -15082,13 +15097,13 @@ as
 as
 as
 ci
-as
+hg
 et
 eU
 dl
 dl
 dl
-dl
+hw
 fO
 dl
 dl
@@ -15508,13 +15523,13 @@ bS
 bn
 bH
 cZ
-as
+hg
 ev
 eW
 do
 do
 do
-do
+hN
 fP
 do
 do
@@ -16649,12 +16664,12 @@ dD
 dI
 dp
 dp
-ej
+dp
 ej
 fQ
 dp
 dp
-fu
+dp
 aa
 aa
 aa
@@ -16790,13 +16805,13 @@ ay
 cs
 dn
 dp
-hg
 eo
+fv
 eX
 eZ
 dp
 dp
-fv
+fu
 aa
 aa
 aa
@@ -17076,8 +17091,8 @@ eS
 dp
 dO
 em
-eE
-hv
+eC
+eY
 dp
 dp
 aa
@@ -17217,9 +17232,9 @@ hA
 ay
 dp
 dP
-en
-dQ
-hw
+ek
+ej
+dp
 dp
 dp
 aa
@@ -17358,10 +17373,10 @@ bt
 hB
 ay
 dp
-ek
-eC
-eY
-hx
+dQ
+en
+eE
+el
 dp
 dp
 aa
@@ -17503,7 +17518,7 @@ dp
 dp
 dp
 dp
-dp
+hv
 dp
 dp
 aa
@@ -17776,18 +17791,18 @@ aa
 aa
 gk
 ay
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ay
+az
+az
+az
+az
+ay
+ay
+dp
+dp
+dp
+dp
+dp
 dp
 gl
 aa
