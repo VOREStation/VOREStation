@@ -5831,10 +5831,6 @@
 	icon_state = "borderfloor";
 	pixel_y = 0
 	},
-/obj/structure/sign/poster{
-	icon_state = "";
-	dir = 1
-	},
 /turf/simulated/floor/tiled/monotile,
 /area/talon/deckone/central_hallway)
 "kH" = (
@@ -7330,6 +7326,13 @@
 	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/steel,
+/area/talon/deckone/central_hallway)
+"WE" = (
+/obj/structure/sign/poster{
+	icon_state = "";
+	dir = 1
+	},
+/turf/simulated/wall,
 /area/talon/deckone/central_hallway)
 "WI" = (
 /obj/structure/cable/green{
@@ -17353,7 +17356,7 @@ gj
 ky
 kF
 dL
-dL
+WE
 kG
 kz
 kH

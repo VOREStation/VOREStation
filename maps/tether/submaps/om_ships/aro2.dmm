@@ -63,10 +63,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/sign/poster{
-	icon_state = "";
-	dir = 1
-	},
 /turf/simulated/floor/carpet,
 /area/aro2/couchroom)
 "am" = (
@@ -79,10 +75,6 @@
 "ao" = (
 /obj/structure/bed/chair/sofa/black/left,
 /obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/sign/poster{
-	icon_state = "";
 	dir = 1
 	},
 /turf/simulated/floor/carpet,
@@ -1155,10 +1147,6 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
-/obj/structure/sign/poster{
-	icon_state = "";
-	dir = 8
-	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/bighallway)
 "cm" = (
@@ -1594,10 +1582,6 @@
 	dir = 10
 	},
 /obj/structure/closet/crate/bin,
-/obj/structure/sign/poster{
-	icon_state = "";
-	dir = 4
-	},
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
 "dn" = (
@@ -4442,30 +4426,6 @@
 /obj/structure/flora/pottedplant/crystal,
 /turf/simulated/floor/wood,
 /area/aro2/couchroom)
-"ju" = (
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 8
-	},
-/obj/effect/floor_decal/techfloor/orange{
-	icon_state = "techfloororange_edges";
-	dir = 1
-	},
-/obj/structure/sign/poster{
-	dir = 1;
-	icon_state = "";
-	poster_type = "/datum/poster/vore_2"
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/aro2/bighallway)
 "li" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 4
@@ -4506,29 +4466,6 @@
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/aroboat2)
-"pN" = (
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 8
-	},
-/obj/effect/floor_decal/techfloor/orange{
-	icon_state = "techfloororange_edges";
-	dir = 1
-	},
-/obj/structure/sign/poster{
-	icon_state = "";
-	dir = 1
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/aro2/bighallway)
 "qK" = (
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced/full,
@@ -4589,6 +4526,10 @@
 /obj/structure/flora/pottedplant/unusual,
 /turf/simulated/floor/tiled/techfloor,
 /area/aro2/cafe)
+"vF" = (
+/obj/structure/sign/poster,
+/turf/simulated/wall/r_wall,
+/area/aro2/boatbay)
 "xP" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
@@ -4618,14 +4559,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/aroboat2)
-"zq" = (
-/obj/structure/table/bench/steel,
-/obj/structure/sign/poster{
-	icon_state = "";
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/aro2/bighallway)
 "zt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	icon_state = "intact-aux";
@@ -4712,6 +4645,13 @@
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/reinforced,
 /area/aro2/boatbay)
+"Gn" = (
+/obj/structure/sign/poster{
+	icon_state = "";
+	dir = 8
+	},
+/turf/simulated/wall/r_wall,
+/area/aro2/powerroom)
 "Gw" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -4739,6 +4679,13 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/boatbay)
+"IM" = (
+/obj/structure/sign/poster{
+	icon_state = "";
+	dir = 1
+	},
+/turf/simulated/wall/r_wall,
+/area/aro2/couchroom)
 "Lb" = (
 /obj/machinery/alarm{
 	dir = 1;
@@ -4758,6 +4705,14 @@
 	},
 /turf/simulated/floor/greengrid,
 /area/aro2/powerroom)
+"Or" = (
+/obj/structure/sign/poster{
+	dir = 1;
+	icon_state = "";
+	poster_type = "/datum/poster/vore_2"
+	},
+/turf/simulated/wall/r_wall,
+/area/aro2/room0)
 "PB" = (
 /obj/effect/floor_decal/spline/plain,
 /obj/machinery/firealarm{
@@ -4838,6 +4793,13 @@
 	icon_state = "tube1"
 	},
 /turf/simulated/floor/wood,
+/area/aro2/cafe)
+"XW" = (
+/obj/structure/sign/poster{
+	icon_state = "";
+	dir = 4
+	},
+/turf/simulated/wall/r_wall,
 /area/aro2/cafe)
 "XY" = (
 /obj/effect/floor_decal/techfloor/orange{
@@ -12319,7 +12281,7 @@ bs
 bs
 bs
 bE
-bE
+Gn
 bE
 dx
 el
@@ -13453,8 +13415,8 @@ eH
 gl
 gy
 gL
-aG
-ju
+Or
+bV
 cr
 cX
 dA
@@ -14732,7 +14694,7 @@ aP
 aP
 aP
 aP
-pN
+bV
 cx
 da
 dJ
@@ -15160,7 +15122,7 @@ gI
 aP
 bV
 cr
-cX
+vF
 dP
 zt
 uh
@@ -16442,7 +16404,7 @@ dh
 dU
 cD
 eV
-zq
+fx
 gZ
 fx
 hp
@@ -16584,7 +16546,7 @@ di
 dV
 cf
 cf
-cf
+XW
 cf
 cf
 cf
@@ -16999,7 +16961,7 @@ aa
 aa
 aa
 ag
-aS
+IM
 al
 aH
 be
@@ -17425,7 +17387,7 @@ aa
 aa
 aa
 ag
-aS
+IM
 ao
 aH
 be
@@ -18000,7 +17962,7 @@ bj
 bf
 cf
 cf
-cf
+XW
 ec
 cf
 cf
