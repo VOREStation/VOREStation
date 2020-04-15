@@ -582,11 +582,8 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	else if(amount == 2)
 		icon_state = "coil2"
 		name = "cable piece"
-	else if(amount > 2 && amount != max_amount)
-		icon_state = "coil"
-		name = initial(name)
 	else
-		icon_state = "coil-max"
+		icon_state = "coil"
 		name = initial(name)
 
 /obj/item/stack/cable_coil/proc/set_cable_color(var/selected_color, var/user)
