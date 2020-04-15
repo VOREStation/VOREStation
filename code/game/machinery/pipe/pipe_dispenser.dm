@@ -8,6 +8,13 @@
 	var/unwrenched = 0
 	var/wait = 0
 	var/p_layer = PIPING_LAYER_REGULAR
+	var/static/list/pipe_layers = list(
+		"Regular" = PIPING_LAYER_REGULAR,
+		"Supply" = PIPING_LAYER_SUPPLY,
+		"Scrubber" = PIPING_LAYER_SCRUBBER,
+		"Fuel" = PIPING_LAYER_FUEL,
+		"Aux" = PIPING_LAYER_AUX
+	)
 
 // TODO - Its about time to make this NanoUI don't we think?
 /obj/machinery/pipedispenser/attack_hand(var/mob/user as mob)
@@ -22,11 +29,10 @@
 	for(var/category in atmos_pipe_recipes)
 		lines += "<b>[category]:</b><BR>"
 		if(category == "Pipes")
-			// Stupid hack. Fix someday. So tired right now.
-			lines += "<a class='[p_layer == PIPING_LAYER_REGULAR ? "linkOn" : "linkOff"]' href='?src=\ref[src];setlayer=[PIPING_LAYER_REGULAR]'>Regular</a> "
-			lines += "<a class='[p_layer == PIPING_LAYER_SUPPLY ? "linkOn" : "linkOff"]' href='?src=\ref[src];setlayer=[PIPING_LAYER_SUPPLY]'>Supply</a> "
-			lines += "<a class='[p_layer == PIPING_LAYER_SCRUBBER ? "linkOn" : "linkOff"]' href='?src=\ref[src];setlayer=[PIPING_LAYER_SCRUBBER]'>Scrubber</a> "
-			lines += "<br>"
+			for(var/pipename in pipe_layers)
+				var/pipelayer = pipe_layers[pipename]
+				lines += "<a class='[p_layer == pipelayer ? "linkOn" : "linkOff"]' href='?src=\ref[src];setlayer=[pipelayer]'>[pipename]</a> "
+				lines += "<br>"
 		for(var/datum/pipe_recipe/PI in atmos_pipe_recipes[category])
 			lines += PI.Render(src)
 	var/dat = lines.Join()

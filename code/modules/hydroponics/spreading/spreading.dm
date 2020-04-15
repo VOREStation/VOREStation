@@ -7,7 +7,7 @@
 		for(var/areapath in typesof(/area/hallway))
 			var/area/A = locate(areapath)
 			for(var/turf/simulated/floor/F in A.contents)
-				if(turf_clear(F))
+				if(!F.check_density())
 					turfs += F
 
 		if(turfs.len) //Pick a turf to spawn at if we can

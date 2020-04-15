@@ -45,6 +45,16 @@ var/const/BRIDGE			=(1<<12)
 var/const/CLOWN				=(1<<13) //VOREStation Add
 var/const/MIME				=(1<<14) //VOREStation Add
 
+//VOREStation Add
+var/const/TALON				=(1<<3)
+
+var/const/TALCAP			=(1<<0)
+var/const/TALPIL			=(1<<1)
+var/const/TALDOC			=(1<<2)
+var/const/TALSEC			=(1<<3)
+var/const/TALENG			=(1<<4)
+//VOREStation Add End
+
 /proc/guest_jobbans(var/job)
 	return ( (job in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND)) || (job in SSjob.get_job_titles_in_department(DEPARTMENT_SYNTHETIC)) || (job in SSjob.get_job_titles_in_department(DEPARTMENT_SECURITY)) )
 

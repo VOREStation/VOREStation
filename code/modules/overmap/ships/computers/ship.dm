@@ -16,11 +16,14 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 		linked = sector
 		return 1
 
-/obj/machinery/computer/ship/proc/sync_linked()
-	var/obj/effect/overmap/visitable/ship/sector = map_sectors["[z]"]
+/obj/machinery/computer/ship/proc/sync_linked(var/user = null)
+	var/obj/effect/overmap/visitable/ship/sector = get_overmap_sector(z)
 	if(!sector)
 		return
-	return attempt_hook_up_recursive(sector)
+	. = attempt_hook_up_recursive(sector)
+	if(. && linked && user)
+		to_chat(user, "<span class='notice'>[src] reconnected to [linked]</span>")
+		user << browse(null, "window=[src]") // close reconnect dialog
 
 /obj/machinery/computer/ship/proc/attempt_hook_up_recursive(obj/effect/overmap/visitable/ship/sector)
 	if(attempt_hook_up(sector))
@@ -43,7 +46,7 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 	if(..())
 		return TOPIC_HANDLED
 	if(href_list["sync"])
-		sync_linked()
+		sync_linked(user)
 		return TOPIC_REFRESH
 	if(href_list["close"])
 		unlook(user)

@@ -126,6 +126,13 @@
 		ui.open()
 		ui.set_auto_update(1)
 
+// Call to set the linked shuttle tag; override to add behaviour to shuttle tag changes
+/obj/machinery/computer/shuttle_control/proc/set_shuttle_tag(var/new_shuttle_tag)
+	if(shuttle_tag == new_shuttle_tag)
+		return FALSE
+	shuttle_tag = new_shuttle_tag
+	return TRUE
+
 /obj/machinery/computer/shuttle_control/emag_act(var/remaining_charges, var/mob/user)
 	if (!hacked)
 		req_access = list()
@@ -159,7 +166,7 @@ GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/weapon/paper/dockingcodes)
 	var/dockingcodes = null
 	var/z_to_check = codes_from_z ? codes_from_z : z
 	if(using_map.use_overmap)
-		var/obj/effect/overmap/visitable/location = map_sectors["[z_to_check]"]
+		var/obj/effect/overmap/visitable/location = get_overmap_sector(z_to_check)
 		if(location && location.docking_codes)
 			dockingcodes = location.docking_codes
 

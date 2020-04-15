@@ -99,6 +99,9 @@ SUBSYSTEM_DEF(xenoarch)
 			if(isnull(M.artifact_find) && digsite != DIGSITE_GARDEN && digsite != DIGSITE_ANIMAL)
 				artifact_spawning_turfs.Add(archeo_turf)
 
+		//Larger maps will convince byond this is an infinite loop, so let go for a second
+		CHECK_TICK
+
 	//create artifact machinery
 	var/num_artifacts_spawn = rand(ARTIFACTSPAWNNUM_LOWER, ARTIFACTSPAWNNUM_UPPER)
 	while(artifact_spawning_turfs.len > num_artifacts_spawn)

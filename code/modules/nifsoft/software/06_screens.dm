@@ -5,7 +5,7 @@
 	access = access_medical
 	cost = 625
 	p_drain = 0.025
-	var/datum/nano_module/crew_monitor/arscreen
+	var/datum/nano_module/program/crew_monitor/arscreen
 
 	New()
 		..()

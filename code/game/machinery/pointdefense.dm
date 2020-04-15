@@ -4,7 +4,7 @@
 //
 
 GLOBAL_LIST_BOILERPLATE(pointdefense_controllers, /obj/machinery/pointdefense_control)
-GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
+GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 
 /obj/machinery/pointdefense_control
 	name = "fire assist mainframe"
@@ -59,7 +59,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 		return
 
 	if(href_list["toggle_active"])
-		var/obj/machinery/pointdefense/PD = locate(href_list["toggle_active"])
+		var/obj/machinery/power/pointdefense/PD = locate(href_list["toggle_active"])
 		if(!istype(PD))
 			return TOPIC_NOACTION
 
@@ -83,7 +83,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 	if(id_tag)
 		var/list/connected_z_levels = GetConnectedZlevels(get_z(src))
 		for(var/i = 1 to LAZYLEN(pointdefense_turrets))
-			var/obj/machinery/pointdefense/PD = pointdefense_turrets[i]
+			var/obj/machinery/power/pointdefense/PD = pointdefense_turrets[i]
 			if(!(PD.id_tag == id_tag && get_z(PD) in connected_z_levels))
 				continue
 			var/list/turret = list()
@@ -124,16 +124,17 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 // The acutal point defense battery
 //
 
-/obj/machinery/pointdefense
+/obj/machinery/power/pointdefense
 	name = "\improper point defense battery"
 	icon = 'icons/obj/pointdefense.dmi'
-	icon_state = "pointdefense"
+	icon_state = "pointdefense2"
 	desc = "A Kuiper pattern anti-meteor battery. Capable of destroying most threats in a single salvo."
 	description_info = "Must have the same ident tag as a fire assist mainframe on the same facility."
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/pointdefense
 	idle_power_usage = 0.1 KILOWATTS
+	active_power_usage = 1 KILOWATTS
 	appearance_flags = PIXEL_SCALE
 	var/active = TRUE
 	var/charge_cooldown = 1 SECOND  //time between it can fire at different targets
@@ -143,33 +144,69 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 	var/engaging = FALSE
 	var/id_tag = null
 
-/obj/machinery/pointdefense/Initialize()
+/obj/machinery/power/pointdefense/Initialize()
 	. = ..()
 	// TODO - Remove this bit once machines are converted to Initialize
 	if(ispath(circuit))
 		circuit = new circuit(src)
 	default_apply_parts()
+	if(anchored)
+		connect_to_network()
 	update_icon()
+	var/image/I = image(icon, icon_state = "[icon_state]_under")
+	I.appearance_flags |= RESET_TRANSFORM
+	underlays += I
 
-/obj/machinery/pointdefense/get_description_interaction()
+/obj/machinery/power/pointdefense/examine(mob/user)
+	..()
+	if(powernet)
+		to_chat(user, "It is connected to a power cable below.")
+
+/obj/machinery/power/pointdefense/get_description_interaction()
 	. = ..()
 	if(!id_tag)
 		. += "[desc_panel_image("multitool")]to set ident tag and connect to a mainframe."
 
-/obj/machinery/pointdefense/update_icon()
+/obj/machinery/power/pointdefense/update_icon()
 	if(!active || !id_tag || inoperable())
 		icon_state = "[initial(icon_state)]_off"
 	else
 		icon_state = initial(icon_state)
 
-/obj/machinery/pointdefense/power_change()
+/obj/machinery/power/pointdefense/default_unfasten_wrench(var/mob/user, var/obj/item/weapon/W, var/time)
+	if((. = ..()))
+		src.transform = null // Reset rotation if we're anchored/unanchored
+
+////////// This machine is willing to take power from cables OR APCs.  Handle NOPOWER stat specially here! ////////
+
+/obj/machinery/power/pointdefense/connect_to_network()
+	if((. = ..()))
+		stat &= ~NOPOWER // We now ignore APC power
+		update_icon()
+
+/obj/machinery/power/pointdefense/disconnect_from_network()
+	if((. = ..()))
+		power_change() // We're back on APC power.
+
+/obj/machinery/power/pointdefense/power_change()
+	if(powernet)
+		return // We don't care, we are cable powered anyway
 	var/old_stat = stat
 	..()
 	if(old_stat != stat)
 		update_icon()
 
+// Decide where to get the power to fire from
+/obj/machinery/power/pointdefense/use_power_oneoff(var/amount, var/chan = -1)
+	if(powernet)
+		return draw_power(amount)
+	else if(powered(chan))
+		use_power(amount, chan)
+		return amount
+	return 0
+
 // Find controller with the same tag on connected z levels (if any)
-/obj/machinery/pointdefense/proc/get_controller()
+/obj/machinery/power/pointdefense/proc/get_controller()
 	if(!id_tag)
 		return null
 	var/list/connected_z_levels = GetConnectedZlevels(get_z(src))
@@ -178,7 +215,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 		if(PDC.id_tag == id_tag && (get_z(PDC) in connected_z_levels))
 			return PDC
 
-/obj/machinery/pointdefense/attackby(var/obj/item/W, var/mob/user)
+/obj/machinery/power/pointdefense/attackby(var/obj/item/W, var/mob/user)
 	if(W?.is_multitool())
 		var/new_ident = input(user, "Enter a new ident tag.", "[src]", id_tag) as null|text
 		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, physical_state))
@@ -191,16 +228,18 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 		return
 	if(default_part_replacement(user, W))
 		return
+	if(default_unfasten_wrench(user, W, 40))
+		return
 	return ..()
 
 //Guns cannot shoot through hull or generally dense turfs.
-/obj/machinery/pointdefense/proc/space_los(meteor)
+/obj/machinery/power/pointdefense/proc/space_los(meteor)
 	for(var/turf/T in getline(src,meteor))
 		if(T.density)
 			return FALSE
 	return TRUE
 
-/obj/machinery/pointdefense/proc/Shoot(var/weakref/target)
+/obj/machinery/power/pointdefense/proc/Shoot(var/weakref/target)
 	var/obj/effect/meteor/M = target.resolve()
 	if(!istype(M))
 		return
@@ -213,7 +252,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 
 	set_dir(ATAN2(transform.b, transform.a) > 0 ? NORTH : SOUTH)
 
-/obj/machinery/pointdefense/proc/finish_shot(var/weakref/target)
+/obj/machinery/power/pointdefense/proc/finish_shot(var/weakref/target)
 	//Cleanup from list
 	var/obj/machinery/pointdefense_control/PC = get_controller()
 	if(istype(PC))
@@ -224,28 +263,34 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 	var/obj/effect/meteor/M = target.resolve()
 	if(!istype(M))
 		return
+	if(use_power_oneoff(active_power_usage) < active_power_usage)
+		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		s.set_up(5, 1, src)
+		s.start()
+		visible_message("[src] sputters as browns out while attempting to fire.")
+		return
 	//We throw a laser but it doesnt have to hit for meteor to explode
 	var/obj/item/projectile/beam/pointdefense/beam = new(get_turf(src))
 	playsound(src, 'sound/weapons/mandalorian.ogg', 75, 1)
-	use_power_oneoff(idle_power_usage * 10)
 	beam.launch_projectile(target = M.loc, user = src)
-
 	M.make_debris()
 	qdel(M)
 
-/obj/machinery/pointdefense/process()
+/obj/machinery/power/pointdefense/process()
 	..()
-	if(stat & (NOPOWER|BROKEN))
+	if(!anchored || stat & (NOPOWER|BROKEN))
 		return
 	if(!active)
 		return
+	/*
 	var/desiredir = ATAN2(transform.b, transform.a) > 0 ? NORTH : SOUTH
 	if(dir != desiredir)
 		set_dir(desiredir)
+	*/
 	if(LAZYLEN(GLOB.meteor_list) > 0)
 		find_and_shoot()
 
-/obj/machinery/pointdefense/proc/find_and_shoot()
+/obj/machinery/power/pointdefense/proc/find_and_shoot()
 	if(LAZYLEN(GLOB.meteor_list) == 0)
 		return
 	if(engaging || ((world.time - last_shot) < charge_cooldown))
@@ -279,7 +324,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 			Shoot(target)
 			return
 
-/obj/machinery/pointdefense/RefreshParts()
+/obj/machinery/power/pointdefense/RefreshParts()
 	. = ..()
 	// Calculates an average rating of components that affect shooting rate
 	var/shootrate_divisor = total_component_rating_of_type(/obj/item/weapon/stock_parts/capacitor)
@@ -295,7 +340,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 	var/rotation_divisor = total_component_rating_of_type(/obj/item/weapon/stock_parts/manipulator)
 	rotation_speed = 0.5 SECONDS / (rotation_divisor ? rotation_divisor : 1)
 
-/obj/machinery/pointdefense/proc/Activate()
+/obj/machinery/power/pointdefense/proc/Activate()
 	if(active)
 		return FALSE
 
@@ -305,7 +350,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/pointdefense)
 	update_icon()
 	return TRUE
 
-/obj/machinery/pointdefense/proc/Deactivate()
+/obj/machinery/power/pointdefense/proc/Deactivate()
 	if(!active)
 		return FALSE
 	playsound(src, 'sound/machines/apc_nopower.ogg', 50, 0)

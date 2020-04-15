@@ -231,10 +231,25 @@
 // Wall-rot effect, a nasty fungus that destroys walls.
 /turf/simulated/wall/proc/rot()
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		return
+		return FALSE
+
+	// Wall-rot can't go onto walls that are surrounded in all four cardinal directions.
+	// Because of spores, or something. It's actually to avoid the pain that is removing wallrot surrounded by
+	// four r-walls.
+	var/at_least_one_open_turf = FALSE
+	for(var/direction in GLOB.cardinal)
+		var/turf/T = get_step(src, direction)
+		if(!T.check_density())
+			at_least_one_open_turf = TRUE
+			break
+
+	if(!at_least_one_open_turf)
+		return FALSE
+
 	var/number_rots = rand(2,3)
 	for(var/i=0, i<number_rots, i++)
 		new/obj/effect/overlay/wallrot(src)
+	return TRUE
 
 /turf/simulated/wall/proc/can_melt()
 	if(material.flags & MATERIAL_UNMELTABLE)

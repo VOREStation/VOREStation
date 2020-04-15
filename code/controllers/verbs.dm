@@ -89,8 +89,6 @@
 
 	//Goon PS stuff, and other yet-to-be-subsystem things.
 	options["LEGACY: master_controller"] = master_controller
-	options["LEGACY: ticker"] = ticker
-	options["LEGACY: tickerProcess"] = tickerProcess
 	options["LEGACY: air_master"] = air_master
 	options["LEGACY: job_master"] = job_master
 	options["LEGACY: radio_controller"] = radio_controller

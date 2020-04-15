@@ -26,6 +26,8 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 	shell = TRUE
 	braintype = "AI Shell"
 	SetName("[modtype] AI Shell [num2text(ident)]")
+	rbPDA = new /obj/item/device/pda/ai/shell(src)
+	setup_PDA()
 	GLOB.available_ai_shells |= src
 	if(!QDELETED(camera))
 		camera.c_tag = real_name	//update the camera name too

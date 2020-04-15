@@ -1911,14 +1911,6 @@
 	icon_state = "railing0";
 	dir = 4
 	},
-/obj/machinery/shield_capacitor/advanced{
-	active = 1;
-	anchored = 1;
-	stored_charge = 1.2e+007
-	},
-/obj/structure/cable/cyan{
-	icon_state = "0-4"
-	},
 /obj/structure/railing{
 	dir = 1
 	},
@@ -1970,25 +1962,19 @@
 	icon_state = "railing0";
 	dir = 4
 	},
-/obj/machinery/shield_gen/external/advanced{
-	anchored = 1;
-	field_radius = 35;
-	id = "aroship_shields";
-	target_field_strength = 7
-	},
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
+	},
+/obj/machinery/power/shield_generator/charged{
+	field_radius = 35;
+	initial_shield_modes = 2113;
+	target_radius = 35
 	},
 /turf/simulated/floor/bluegrid,
 /area/ship/aro/centralarea)
 "dV" = (
 /obj/machinery/light{
 	dir = 4
-	},
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
 	},
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -2039,15 +2025,6 @@
 /obj/structure/railing{
 	icon_state = "railing0";
 	dir = 4
-	},
-/obj/machinery/shield_capacitor/advanced{
-	active = 1;
-	anchored = 1;
-	dir = 1;
-	stored_charge = 1.2e+007
-	},
-/obj/structure/cable/cyan{
-	icon_state = "0-4"
 	},
 /obj/structure/railing,
 /turf/simulated/floor/bluegrid,
@@ -3487,11 +3464,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
 "vQ" = (
-/obj/machinery/telecomms/relay/preset/houseboat,
 /obj/structure/railing{
 	icon_state = "railing0";
 	dir = 4
 	},
+/obj/machinery/telecomms/allinone,
 /turf/simulated/floor/greengrid,
 /area/ship/aro/centralarea)
 "wC" = (
@@ -3517,11 +3494,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/centralarea)
 "Bj" = (
@@ -3529,6 +3501,12 @@
 /obj/effect/floor_decal/industrial/outline/blue,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/midshipshangars)
+"CT" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/technomancer_core/universal,
+/obj/item/weapon/technomancer_catalog/universal,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/aro/centralarea)
 "GH" = (
 /obj/effect/floor_decal/techfloor/orange{
 	icon_state = "techfloororange_edges";
@@ -3555,11 +3533,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
-	},
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/aro/centralarea)
@@ -12738,7 +12711,7 @@ ds
 bv
 dG
 dP
-Rs
+CT
 cH
 si
 ek

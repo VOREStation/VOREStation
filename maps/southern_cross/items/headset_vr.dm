@@ -24,3 +24,10 @@
 	icon_state = "pilot_headset"
 	adhoc_fallback = TRUE
 	ks2type = /obj/item/device/encryptionkey/pilot
+
+/obj/item/device/radio/headset/talon
+	name = "talon headset"
+	desc = "A headset for communication between the crew of the ITV Talon."
+	adhoc_fallback = TRUE
+	icon_state = "pilot_headset"
+	ks2type = /obj/item/device/encryptionkey/talon

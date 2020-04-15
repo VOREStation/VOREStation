@@ -41,7 +41,7 @@
 
 	var/list/zs_to_test = using_map.unit_test_z_levels || list(1) //Either you set it, or you just get z1
 
-	for(var/area/A in all_areas)
+	for(var/area/A in world)
 		if((A.z in zs_to_test) && !(A.type in exempt_areas))
 			area_test_count++
 			var/area_good = 1

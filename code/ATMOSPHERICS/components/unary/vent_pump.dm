@@ -53,6 +53,11 @@
 	use_power = USE_POWER_IDLE
 	icon_state = "map_vent_out"
 
+/obj/machinery/atmospherics/unary/vent_pump/aux
+	icon_state = "map_vent_aux"
+	icon_connect_type = "-aux"
+	connect_types = CONNECT_TYPE_AUX //connects to aux pipes
+
 /obj/machinery/atmospherics/unary/vent_pump/siphon
 	pump_direction = 0
 
@@ -80,7 +85,7 @@
 
 	icon = null
 	initial_loc = get_area(loc)
-	area_uid = initial_loc.uid
+	area_uid = "\ref[initial_loc]"
 	if (!id_tag)
 		assign_uid()
 		id_tag = num2text(uid)
@@ -97,6 +102,11 @@
 	name = "Large Air Vent"
 	power_channel = EQUIP
 	power_rating = 45000	//15 kW ~ 20 HP //VOREStation Edit - 45000
+
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux
+	icon_state = "map_vent_aux"
+	icon_connect_type = "-aux"
+	connect_types = CONNECT_TYPE_AUX //connects to aux pipes
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/New()
 	..()
@@ -253,7 +263,7 @@
 		return 0
 
 	var/datum/signal/signal = new
-	signal.transmission_method = 1 //radio signal
+	signal.transmission_method = TRANSMISSION_RADIO //radio signal
 	signal.source = src
 
 	signal.data = list(

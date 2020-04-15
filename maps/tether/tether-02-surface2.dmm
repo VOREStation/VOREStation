@@ -20553,15 +20553,6 @@
 	temperature = 80
 	},
 /area/tcommsat/chamber)
-"aMA" = (
-/obj/machinery/telecomms/relay/preset/tether/midpoint,
-/turf/simulated/floor/bluegrid{
-	name = "Mainframe Base";
-	nitrogen = 100;
-	oxygen = 0;
-	temperature = 80
-	},
-/area/tcommsat/chamber)
 "aMB" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/simulated/floor/tiled/dark{
@@ -20835,16 +20826,8 @@
 	temperature = 80
 	},
 /area/tcommsat/chamber)
-"aNc" = (
-/obj/machinery/telecomms/relay/preset/tether/base_high,
-/turf/simulated/floor/tiled/dark{
-	nitrogen = 100;
-	oxygen = 0;
-	temperature = 80
-	},
-/area/tcommsat/chamber)
 "aNd" = (
-/obj/machinery/telecomms/broadcaster/preset_right,
+/obj/machinery/telecomms/broadcaster/preset_right/tether,
 /turf/simulated/floor/bluegrid{
 	name = "Mainframe Base";
 	nitrogen = 100;
@@ -20865,14 +20848,6 @@
 /obj/machinery/telecomms/receiver/preset_right/tether,
 /turf/simulated/floor/bluegrid{
 	name = "Mainframe Base";
-	nitrogen = 100;
-	oxygen = 0;
-	temperature = 80
-	},
-/area/tcommsat/chamber)
-"aNg" = (
-/obj/machinery/telecomms/relay/preset/tether/base_low,
-/turf/simulated/floor/tiled/dark{
 	nitrogen = 100;
 	oxygen = 0;
 	temperature = 80
@@ -21097,15 +21072,6 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/turf/simulated/floor/bluegrid{
-	name = "Mainframe Base";
-	nitrogen = 100;
-	oxygen = 0;
-	temperature = 80
-	},
-/area/tcommsat/chamber)
-"aNC" = (
-/obj/machinery/telecomms/relay/preset/tether/base_mid,
 /turf/simulated/floor/bluegrid{
 	name = "Mainframe Base";
 	nitrogen = 100;
@@ -32280,18 +32246,18 @@ aab
 aab
 aab
 aab
-acK
-acK
-acK
-acK
-acK
-acK
-acK
+ajM
+ajM
+ajM
+ajM
+ajM
+ajM
+ajM
 aac
 aac
-acK
-acK
-acK
+ajM
+ajM
+ajM
 aab
 acI
 acI
@@ -32422,13 +32388,13 @@ aab
 aab
 aab
 aab
-acK
-acK
-acK
-acK
-acK
-acK
-acK
+ajM
+ajM
+ajM
+ajM
+ajM
+ajM
+ajM
 aac
 aac
 aac
@@ -32564,10 +32530,10 @@ aab
 aab
 aab
 aab
-acK
-acK
-acK
-acK
+ajM
+ajM
+ajM
+ajM
 aac
 aac
 aac
@@ -32625,10 +32591,10 @@ aab
 aac
 aac
 aac
-aab
-aab
-aab
-aab
+aac
+aac
+aac
+aac
 aab
 aab
 aab
@@ -32706,10 +32672,10 @@ aab
 aab
 aab
 aab
-acK
-acK
-acK
-acK
+ajM
+ajM
+ajM
+ajM
 aac
 aac
 aac
@@ -32771,7 +32737,7 @@ aac
 aac
 aac
 aac
-aab
+aac
 aab
 aab
 aab
@@ -32848,10 +32814,10 @@ aab
 aab
 aab
 aab
-acK
-acK
-acK
-acK
+ajM
+ajM
+ajM
+ajM
 aac
 aac
 aac
@@ -32990,8 +32956,8 @@ aab
 aab
 aab
 aab
-acK
-acK
+ajM
+ajM
 aac
 aac
 aac
@@ -33483,9 +33449,9 @@ aac
 aac
 aac
 aac
-ajM
-ajM
-ajM
+aac
+aac
+aac
 aab
 aab
 aab
@@ -33625,9 +33591,9 @@ aac
 aac
 aac
 aac
-ajM
-ajM
-ajM
+aac
+aac
+aac
 aab
 aab
 aab
@@ -33766,10 +33732,10 @@ aac
 aac
 aac
 aac
-ajM
-ajM
-ajM
-ajM
+aac
+aac
+aac
+aac
 aab
 aab
 aab
@@ -33908,10 +33874,10 @@ aac
 aac
 aac
 aac
-ajM
-ajM
-ajM
-ajM
+aac
+aac
+aac
+aac
 aab
 aab
 aab
@@ -34050,10 +34016,10 @@ aac
 aac
 aac
 aac
-ajM
-ajM
-ajM
-ajM
+aac
+aac
+aac
+aac
 aab
 aab
 aab
@@ -34192,10 +34158,10 @@ aac
 aac
 aac
 aac
-ajM
-ajM
-ajM
-ajM
+aac
+aac
+aac
+aac
 aab
 aab
 aab
@@ -34337,7 +34303,7 @@ aac
 aac
 aac
 aac
-ajM
+aac
 aab
 aab
 aab
@@ -34479,7 +34445,7 @@ aac
 aac
 aac
 aac
-ajM
+aac
 aab
 aab
 aab
@@ -34620,8 +34586,8 @@ aac
 aac
 aac
 aac
-ajM
-ajM
+aac
+aac
 aab
 aab
 aab
@@ -34761,9 +34727,9 @@ aac
 aac
 aac
 aac
-ajM
-ajM
-ajM
+aac
+aac
+aac
 aab
 aab
 aab
@@ -34903,8 +34869,8 @@ aac
 aac
 aac
 aac
-ajM
-aab
+aac
+aac
 aab
 aab
 aab
@@ -35045,7 +35011,7 @@ aka
 aac
 aac
 aac
-ajM
+aac
 aab
 aab
 aab
@@ -35187,7 +35153,7 @@ aka
 aac
 aac
 aac
-ajM
+aac
 aab
 aab
 aab
@@ -35329,7 +35295,7 @@ aka
 aac
 aac
 aac
-ajM
+aac
 aab
 aab
 aab
@@ -35471,7 +35437,7 @@ aka
 aac
 aac
 aac
-ajM
+aac
 aab
 aab
 aab
@@ -37185,8 +37151,8 @@ aEi
 aka
 aac
 aac
-ajM
-ajM
+aac
+aac
 aab
 aab
 aab
@@ -37249,7 +37215,7 @@ aab
 aab
 aab
 aab
-aab
+aac
 aac
 aac
 aac
@@ -37327,8 +37293,8 @@ aFl
 aka
 aac
 aac
-ajM
-ajM
+aac
+aac
 aab
 aab
 aab
@@ -37675,7 +37641,7 @@ aab
 aab
 aab
 aab
-aab
+aac
 aac
 aac
 aac
@@ -43448,7 +43414,7 @@ aLE
 aLM
 aMz
 aLM
-aNc
+aLM
 aLM
 aLM
 aNL
@@ -43872,11 +43838,11 @@ aXa
 aLo
 aLH
 aMe
-aMA
+aLD
 aMN
 aNe
 aNr
-aNC
+aLD
 aNN
 aOg
 aKh
@@ -44300,7 +44266,7 @@ aLK
 aLM
 aLM
 aLM
-aNg
+aLM
 aLM
 aLM
 aNP

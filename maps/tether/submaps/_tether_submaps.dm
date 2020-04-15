@@ -149,6 +149,7 @@
 #include "aerostat/aerostat.dmm"
 #include "aerostat/surface.dmm"
 #include "space/debrisfield.dmm"
+#include "space/fueldepot.dmm"
 #endif
 
 #include "beach/_beach.dm"
@@ -225,6 +226,7 @@
 
 
 #include "space/_debrisfield.dm"
+#include "space/_fueldepot.dm"
 #include "space/pois/_templates.dm"
 #include "space/pois/debrisfield_things.dm"
 /datum/map_template/tether_lateload/away_debrisfield
@@ -241,6 +243,17 @@
 /datum/map_z_level/tether_lateload/away_debrisfield
 	name = "Away Mission - Debris Field"
 	z = Z_LEVEL_DEBRISFIELD
+
+/datum/map_template/tether_lateload/away_fueldepot
+	name = "Fuel Depot - Z1 Space"
+	desc = "An unmanned fuel depot floating in space."
+	mappath = 'space/fueldepot.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/away_fueldepot
+
+/datum/map_z_level/tether_lateload/away_fueldepot
+	name = "Away Mission - Fuel Depot"
+	z = Z_LEVEL_FUELDEPOT
+
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Gateway submaps go here
@@ -485,3 +498,41 @@
 #include "om_ships/aro.dm"
 #include "om_ships/cruiser.dm"
 #include "om_ships/vespa.dm"
+#include "om_ships/generic_shuttle.dm"
+#include "om_ships/mercenarybase.dm"
+#include "om_ships/mercship.dm"
+
+//////////////////////////////////////////////////////////////////////////////
+//Offmap Spawn Locations
+#include "offmap/talon.dm"
+#include "offmap/talon_areas.dm"
+
+#if MAP_TEST
+#include "offmap/talon1.dmm"
+#include "offmap/talon2.dmm"
+#endif
+
+// Talon offmap spawn
+/datum/map_template/tether_lateload/offmap/talon1
+	name = "Offmap Ship - Talon Z1"
+	desc = "Offmap spawn ship, the Talon."
+	mappath = 'offmap/talon1.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/talon1
+
+/datum/map_template/tether_lateload/offmap/talon2
+	name = "Offmap Ship - Talon Z2"
+	desc = "Offmap spawn ship, the Talon."
+	mappath = 'offmap/talon2.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/talon2
+
+/datum/map_z_level/tether_lateload/talon1
+	name = "Talon Deck One"
+	flags = MAP_LEVEL_PLAYER
+	base_turf = /turf/space
+	z = Z_LEVEL_OFFMAP1
+
+/datum/map_z_level/tether_lateload/talon2
+	name = "Talon Deck Two"
+	flags = MAP_LEVEL_PLAYER
+	base_turf = /turf/simulated/open
+	z = Z_LEVEL_OFFMAP2

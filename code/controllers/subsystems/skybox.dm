@@ -68,11 +68,6 @@ SUBSYSTEM_DEF(skybox)
 /datum/controller/subsystem/skybox/proc/get_skybox(z)
 	if(!skybox_cache["[z]"])
 		skybox_cache["[z]"] = generate_skybox(z)
-		if(global.using_map.use_overmap)
-			var/obj/effect/overmap/visitable/O = map_sectors["[z]"]
-			if(istype(O))
-				for(var/zlevel in O.map_z)
-					skybox_cache["[zlevel]"] = skybox_cache["[z]"]
 	return skybox_cache["[z]"]
 
 /datum/controller/subsystem/skybox/proc/generate_skybox(z)
@@ -92,7 +87,7 @@ SUBSYSTEM_DEF(skybox)
 	res.overlays += base
 
 	if(global.using_map.use_overmap && settings.use_overmap_details)
-		var/obj/effect/overmap/visitable/O = map_sectors["[z]"]
+		var/obj/effect/overmap/visitable/O = get_overmap_sector(z)
 		if(istype(O))
 			var/image/overmap = image(settings.icon)
 			overmap.overlays += O.generate_skybox()
@@ -114,7 +109,11 @@ SUBSYSTEM_DEF(skybox)
 		skybox_cache["[z]"] = generate_skybox(z)
 
 	for(var/client/C)
-		C.update_skybox(1)
+		var/their_z = get_z(C.mob)
+		if(!their_z) //Nullspace
+			continue
+		if(their_z in zlevels)
+			C.update_skybox(1)
 
 // Settings datum that maps can override to play with their skyboxes
 /datum/skybox_settings

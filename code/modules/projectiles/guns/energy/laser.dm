@@ -12,7 +12,7 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 2000)
 	projectile_type = /obj/item/projectile/beam/midlaser
-//	one_handed_penalty = 30
+	one_handed_penalty = 30
 
 	firemodes = list(
 		list(mode_name="normal", fire_delay=8, projectile_type=/obj/item/projectile/beam/midlaser, charge_cost = 240),
@@ -125,13 +125,14 @@
 	flux in a nuclear reactor core. This incredible technology may help YOU achieve high excitation rates with small laser volumes!"
 	icon_state = "lasercannon"
 	item_state = null
+	wielded_item_state = "mhdhowitzer-wielded" //Placeholder
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
 	slot_flags = SLOT_BELT|SLOT_BACK
 	projectile_type = /obj/item/projectile/beam/heavylaser/cannon
 	battery_lock = 1
 	fire_delay = 20
 	w_class = ITEMSIZE_LARGE
-//	one_handed_penalty = 90 // The thing's heavy and huge.
+	one_handed_penalty = 90 // The thing's heavy and huge.
 	accuracy = 45
 	charge_cost = 600
 
@@ -162,7 +163,8 @@
 	ionized beams, this is a weapon to kill from a distance."
 	icon_state = "sniper"
 	item_state = "sniper"
-	item_state_slots = list(slot_r_hand_str = "z8carbine", slot_l_hand_str = "z8carbine") //placeholder
+	item_state_slots = list(slot_r_hand_str = "lsniper", slot_l_hand_str = "lsniper")
+	wielded_item_state = "lsniper-wielded"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
 	projectile_type = /obj/item/projectile/beam/sniper
 	slot_flags = SLOT_BACK
@@ -174,8 +176,7 @@
 	w_class = ITEMSIZE_HUGE // So it can't fit in a backpack.
 	accuracy = -45 //shooting at the hip
 	scoped_accuracy = 0
-//	requires_two_hands = 1
-//	one_handed_penalty = 60 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
+	one_handed_penalty = 60 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
 
 /obj/item/weapon/gun/energy/sniperrifle/ui_action_click()
 	scope()

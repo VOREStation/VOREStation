@@ -46,7 +46,7 @@
 	. = ..()
 
 /datum/vore_look/Topic(href,href_list[])
-	if(vp_interact(href, href_list))
+	if(vp_interact(href, href_list) && popup)
 		popup.set_content(gen_ui(usr))
 		usr << output(popup.get_content(), "insidePanel.browser")
 

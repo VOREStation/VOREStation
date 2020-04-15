@@ -2127,29 +2127,18 @@
 	pixel_y = 26
 	},
 /obj/structure/cable/cyan{
-	d1 = 4;
+	d1 = 2;
 	d2 = 8;
-	icon_state = "4-8"
+	icon_state = "2-8"
 	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 4
-	},
+/obj/effect/floor_decal/industrial/warning/corner,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "eh" = (
-/obj/structure/cable/cyan{
-	d2 = 2;
-	icon_state = "0-2"
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
 	},
-/obj/machinery/shield_capacitor/advanced{
-	anchored = 1
-	},
-/obj/structure/cable/cyan{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "ei" = (
@@ -2368,18 +2357,19 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "eA" = (
-/obj/structure/cable/cyan,
-/obj/structure/cable/cyan{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/shield_gen/external/advanced{
-	anchored = 1
-	},
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/cable/cyan{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/shield_generator/charged{
+	field_radius = 49;
+	initial_shield_modes = 2113;
+	target_radius = 49
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "eB" = (
@@ -2600,19 +2590,9 @@
 	icon_state = "alarm0";
 	pixel_y = -22
 	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/mothership/teleporter)
-"eS" = (
-/obj/structure/cable/cyan,
-/obj/machinery/shield_capacitor/advanced{
-	anchored = 1;
-	dir = 1
-	},
-/obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "eT" = (
@@ -3409,7 +3389,10 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "gk" = (
-/obj/machinery/power/fractal_reactor/fluff/converter,
+/obj/machinery/power/fractal_reactor/fluff/converter{
+	mapped_in = 1;
+	power_generation_rate = 2e+006
+	},
 /obj/structure/cable,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
@@ -3436,7 +3419,7 @@
 /obj/structure/closet/crate/secure/gear{
 	req_one_access = list(108)
 	},
-/obj/item/device/subspaceradio,
+/obj/item/device/bluespaceradio,
 /obj/item/weapon/storage/firstaid/insiderepair,
 /obj/item/weapon/storage/firstaid/combat,
 /obj/item/weapon/storage/toolbox/syndicate/powertools,
@@ -6396,14 +6379,14 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
 "lF" = (
-/obj/item/weapon/gun/energy/frontier/locked/carbine,
-/obj/item/weapon/gun/energy/frontier/locked/carbine,
-/obj/item/weapon/gun/energy/frontier/locked/carbine,
-/obj/item/weapon/gun/energy/frontier/locked/carbine,
-/obj/item/weapon/gun/energy/frontier/locked/holdout,
-/obj/item/weapon/gun/energy/frontier/locked/holdout,
-/obj/item/weapon/gun/energy/frontier/locked/holdout,
-/obj/item/weapon/gun/energy/frontier/locked/holdout,
+/obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
 /obj/structure/closet/secure_closet/guncabinet{
 	req_one_access = list(103)
 	},
@@ -7145,8 +7128,8 @@
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/gun/energy/protector,
-/obj/item/weapon/gun/energy/protector,
+/obj/item/weapon/gun/energy/gun/protector,
+/obj/item/weapon/gun/energy/gun/protector,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
 "nc" = (
@@ -8642,7 +8625,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "pO" = (
-/obj/machinery/telecomms/server/presets/centcomm,
+/obj/machinery/telecomms/allinone,
 /turf/simulated/floor/greengrid,
 /area/mothership/telecomms2)
 "pP" = (
@@ -10085,7 +10068,7 @@
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
 "uh" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "warship_pd"
 	},
 /turf/simulated/floor/reinforced/airless{
@@ -10608,6 +10591,11 @@
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 4
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
@@ -21439,9 +21427,9 @@ cr
 QH
 JJ
 dP
-eh
+ex
 eA
-eS
+eh
 fd
 fA
 fU

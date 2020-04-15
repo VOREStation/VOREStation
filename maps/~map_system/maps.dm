@@ -159,20 +159,44 @@ var/list/all_maps = list()
 		empty_levels = list(world.maxz)
 	return pick(empty_levels)
 
-// Get the list of zlevels that a computer on srcz can see maps of (for power/crew monitor, cameras, etc)
-// The long_range parameter expands the coverage.  Default is to return map_levels for long range otherwise just srcz.
-// zLevels outside station_levels will return an empty list.
-/datum/map/proc/get_map_levels(var/srcz, var/long_range = TRUE)
-	if (long_range && (srcz in map_levels))
-		return map_levels
-	else if (srcz in station_levels)
-		return list(srcz)
+// Get a list of 'nearby' or 'connected' zlevels.
+// You should at least return a list with the given z if nothing else.
+/datum/map/proc/get_map_levels(var/srcz, var/long_range = FALSE, var/om_range = -1)
+	//Overmap behavior
+	if(use_overmap)
+		//Get what sector we're in
+		var/obj/effect/overmap/visitable/O = get_overmap_sector(srcz)
+		if(!istype(O))
+			//Anything in multiz then (or just themselves)
+			return GetConnectedZlevels(srcz)
+
+		//Just the sector we're in
+		if(om_range == -1)
+			return O.map_z.Copy()
+
+		//Otherwise every sector we're on top of
+		var/list/connections = list()
+		var/turf/T = get_turf(O)
+		var/turfrange = long_range ? max(0, om_range) : om_range
+		for(var/obj/effect/overmap/visitable/V in range(turfrange, T))
+			connections += V.map_z // Adding list to list adds contents
+		return connections
+
+	//Traditional behavior
 	else
-		return list()
+		//If long range, and they're at least in contact levels, return contact levels.
+		if (long_range && (srcz in contact_levels))
+			return contact_levels.Copy()
+		//If in station levels, return station levels
+		else if (srcz in station_levels)
+			return station_levels.Copy()
+		//Anything in multiz then (or just themselves)
+		else
+			return GetConnectedZlevels(srcz)
 
 /datum/map/proc/get_zlevel_name(var/index)
 	var/datum/map_z_level/Z = zlevels["[index]"]
-	return Z.name
+	return Z?.name
 
 // Access check is of the type requires one. These have been carefully selected to avoid allowing the janitor to see channels he shouldn't
 // This list needs to be purged but people insist on adding more cruft to the radio.
@@ -194,10 +218,9 @@ var/list/all_maps = list()
 	)
 
 /datum/map/proc/get_skybox_datum(z)
-	if(map_levels["[z]"])
-		var/datum/map_z_level/picked = map_levels["[z]"]
-		if(picked.custom_skybox)
-			return picked.custom_skybox
+	var/datum/map_z_level/picked = zlevels["[z]"]
+	if(picked?.custom_skybox)
+		return picked.custom_skybox
 
 	return default_skybox
 

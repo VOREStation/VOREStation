@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(events)
-	name = "Events"
+	name = "Events"	// VOREStation Edit - This is still the main events subsystem for us.
 	wait = 2 SECONDS
 
 	var/tmp/list/currentrun = null

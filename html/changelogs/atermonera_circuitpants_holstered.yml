@@ -1,0 +1,5 @@
+author: Atermonera
+delete-after: True
+changes: 
+  - bugfix: "Circuit clothes can have accessories attached."
+  - tweak: "Control-shift-click on circuit clothes to use items on the circuit."

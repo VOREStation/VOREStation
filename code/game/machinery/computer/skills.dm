@@ -91,19 +91,28 @@
 						var/icon/side = active1.fields["photo_side"]
 						user << browse_rsc(front, "front.png")
 						user << browse_rsc(side, "side.png")
-						dat += text("<table><tr><td>	\
-						Name: <A href='?src=\ref[src];choice=Edit Field;field=name'>[active1.fields["name"]]</A><BR> \
-						ID: <A href='?src=\ref[src];choice=Edit Field;field=id'>[active1.fields["id"]]</A><BR>\n	\
-						Entity Classification: <A href='?src=\ref[src];field=brain_type'>[active1.fields["brain_type"]]</A><BR>\n	\
-						Sex: <A href='?src=\ref[src];choice=Edit Field;field=sex'>[active1.fields["sex"]]</A><BR>\n	\
-						Age: <A href='?src=\ref[src];choice=Edit Field;field=age'>[active1.fields["age"]]</A><BR>\n	\
-						Rank: <A href='?src=\ref[src];choice=Edit Field;field=rank'>[active1.fields["rank"]]</A><BR>\n	\
-						Fingerprint: <A href='?src=\ref[src];choice=Edit Field;field=fingerprint'>[active1.fields["fingerprint"]]</A><BR>\n	\
-						Physical Status: [active1.fields["p_stat"]]<BR>\n	\
-						Mental Status: [active1.fields["m_stat"]]<BR><BR>\n	\
-						Employment/skills summary:<BR> [decode(active1.fields["notes"])]<BR></td>	\
-						<td align = center valign = top>Photo:<br><img src=front.png height=80 width=80 border=4>	\
-						<img src=side.png height=80 width=80 border=4></td></tr></table>")
+						dat += "<table><tr><td>"
+						dat += "Name: <A href='?src=\ref[src];choice=Edit Field;field=name'>[active1.fields["name"]]</A><BR>"
+						dat += "ID: <A href='?src=\ref[src];choice=Edit Field;field=id'>[active1.fields["id"]]</A><BR>\n"
+						dat += "Entity Classification: <A href='?src=\ref[src];field=brain_type'>[active1.fields["brain_type"]]</A><BR>\n"
+						dat += "Sex: <A href='?src=\ref[src];choice=Edit Field;field=sex'>[active1.fields["sex"]]</A><BR>\n"
+						dat += "Age: <A href='?src=\ref[src];choice=Edit Field;field=age'>[active1.fields["age"]]</A><BR>\n"
+						dat += "Rank: <A href='?src=\ref[src];choice=Edit Field;field=rank'>[active1.fields["rank"]]</A><BR>\n"
+						dat += "Fingerprint: <A href='?src=\ref[src];choice=Edit Field;field=fingerprint'>[active1.fields["fingerprint"]]</A><BR>\n"
+						dat += "Physical Status: [active1.fields["p_stat"]]<BR>\n"
+						dat += "Mental Status: [active1.fields["m_stat"]]<BR><BR>\n"
+
+						dat += "Employment/skills summary:<BR>"
+						dat += decode(active1.fields["notes"])
+						dat += "<BR><BR><BR>"
+						var/counter = 1
+						while(src.active1.fields[text("com_[]", counter)])
+							dat += text("[]<BR><A href='?src=\ref[];choice=del_c;del_c=[]'>Delete Entry</A><BR><BR>", src.active1.fields[text("com_[]", counter)], src, counter)
+							counter++
+						dat += "<A href='?src=\ref[src];choice=add_c'>Add Entry</A><BR><BR></td>"
+
+						dat += "<td align = center valign = top>Photo:<br><img src=front.png height=80 width=80 border=4>"
+						dat += "<img src=side.png height=80 width=80 border=4></td></tr></table>"
 					else
 						dat += "<B>General Record Lost!</B><BR>"
 					dat += text("\n<A href='?src=\ref[];choice=Delete Record (ALL)'>Delete Record (ALL)</A><BR><BR>\n<A href='?src=\ref[];choice=Print Record'>Print Record</A><BR>\n<A href='?src=\ref[];choice=Return'>Back</A><BR>", src, src, src)
@@ -285,6 +294,25 @@ What a mess.*/
 						P.name = "Employment Record (Unknown/Invald Entry)"
 						log_debug("[usr] ([usr.ckey]) attempted to print a null employee record, this should be investigated.")
 					printing = null
+// Add comment
+			if ("add_c")
+				if (!( istype(src.active1, /datum/data/record) ))
+					return
+				var/a1 = src.active1
+				var/t1 = sanitize(input("Add Comment:", "Emp. records", null, null)  as message)
+				if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!istype(usr, /mob/living/silicon))) || src.active1 != a1))
+					return
+				var/counter = 1
+				while(src.active1.fields[text("com_[]", counter)])
+					counter++
+				src.active1.fields[text("com_[counter]")] = text("Made by [authenticated] ([rank]) on [time2text(world.realtime, "DDD MMM DD")] [stationtime2text()], [game_year]<BR>[t1]")
+// Delete comment
+			if ("del_c")
+				var/target = href_list["del_c"]
+				if (istype(src.active1, /datum/data/record) && src.active1.fields["com_[target]"])
+					src.active1.fields["com_[target]"] = "<B>Deleted</B>"
+
+
 //RECORD DELETE
 			if ("Delete All Records")
 				temp = ""

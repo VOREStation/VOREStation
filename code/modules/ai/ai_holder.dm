@@ -9,6 +9,10 @@
 /mob/living/Initialize()
 	if(ai_holder_type)
 		ai_holder = new ai_holder_type(src)
+		if(istype(src, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = src
+			H.hud_used = new /datum/hud(H)
+			H.instantiate_hud(H.hud_used)
 	return ..()
 
 /mob/living/Destroy()
@@ -220,7 +224,7 @@
 /datum/ai_holder/proc/handle_stance_strategical()
 	ai_log("++++++++++ Slow Process Beginning ++++++++++", AI_LOG_TRACE)
 	ai_log("handle_stance_strategical() : Called.", AI_LOG_TRACE)
-	
+
 	//We got left around for some reason. Goodbye cruel world.
 	if(!holder)
 		qdel(src)

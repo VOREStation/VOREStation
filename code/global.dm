@@ -5,7 +5,6 @@
 
 // Items that ask to be called every cycle.
 var/global/datum/datacore/data_core = null
-var/global/list/all_areas                = list()
 var/global/list/machines                 = list()	// ALL Machines, wether processing or not.
 var/global/list/processing_machines      = list()	// TODO - Move into SSmachines
 var/global/list/processing_power_items   = list()	// TODO - Move into SSmachines
@@ -107,7 +106,6 @@ var/gravity_is_on = 1
 
 var/join_motd = null
 
-var/datum/game_master/game_master = new() // Game Master, an AI for choosing events.
 var/datum/metric/metric = new() // Metric datum, used to keep track of the round.
 
 var/list/awaydestinations = list() // Away missions. A list of landmarks that the warpgate can take you to.

@@ -254,8 +254,6 @@
 		return
 	if(occupant)
 		occupant.Stasis(stasis_level)
-		if(stasis_level >= 100 && occupant.timeofdeath)
-			occupant.timeofdeath += 1 SECOND
 
 		if(filtering > 0)
 			if(beaker)

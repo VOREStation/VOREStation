@@ -30,6 +30,8 @@
 
 	var/outfit_type						  // What outfit datum does this job use in its default title?
 
+	var/offmap_spawn = FALSE			  // Do we require weird and special spawning and datacore handling?
+
 	// Description of the job's role and minimum responsibilities.
 	var/job_description = "This Job doesn't have a description! Please report it!"
 
@@ -67,7 +69,7 @@
 
 	//give them an account in the station database
 	var/money_amount = (rand(15,40) + rand(15,40)) * income * economic_modifier * ECO_MODIFIER //VOREStation Edit - Smoothed peaks, ECO_MODIFIER rather than per-species ones.
-	var/datum/money_account/M = create_account(H.real_name, money_amount, null)
+	var/datum/money_account/M = create_account(H.real_name, money_amount, null, offmap_spawn)
 	if(H.mind)
 		var/remembered_info = ""
 		remembered_info += "<b>Your account number is:</b> #[M.account_number]<br>"

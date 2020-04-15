@@ -32,7 +32,7 @@
 	title = "Security Announcement"
 	announcement_type = "Security Announcement"
 
-/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast, var/msg_sanitized = 0)
+/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast, var/msg_sanitized = 0, zlevel)
 	if(!message)
 		return
 	var/message_title = new_title ? new_title : title
@@ -42,28 +42,32 @@
 		message = sanitize(message, extra = 0)
 	message_title = sanitizeSafe(message_title)
 
-	Message(message, message_title)
+	var/list/zlevels
+	if(zlevel)
+		zlevels = using_map.get_map_levels(zlevel, TRUE)
+
+	Message(message, message_title, zlevels)
 	if(do_newscast)
 		NewsCast(message, message_title)
-	Sound(message_sound)
+	Sound(message_sound, zlevels)
 	Log(message, message_title)
 
-datum/announcement/proc/Message(message as text, message_title as text)
-	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME)
+datum/announcement/proc/Message(var/message as text, var/message_title as text, var/list/zlevels)
+	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME, zlevels)
 
-datum/announcement/minor/Message(message as text, message_title as text)
-	global_announcer.autosay(message, announcer ? announcer : ANNOUNCER_NAME)
+datum/announcement/minor/Message(var/message as text, var/message_title as text, var/list/zlevels)
+	global_announcer.autosay(message, announcer ? announcer : ANNOUNCER_NAME, zlevels)
 
-datum/announcement/priority/Message(message as text, message_title as text)
-	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME)
+datum/announcement/priority/Message(var/message as text, var/message_title as text, var/list/zlevels)
+	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME, zlevels)
 
-datum/announcement/priority/command/Message(message as text, message_title as text)
-	global_announcer.autosay("<span class='alert'>[command_name()] - [message_title]:</span> [message]", ANNOUNCER_NAME)
+datum/announcement/priority/command/Message(var/message as text, var/message_title as text, var/list/zlevels)
+	global_announcer.autosay("<span class='alert'>[command_name()] - [message_title]:</span> [message]", ANNOUNCER_NAME, zlevels)
 
-datum/announcement/priority/security/Message(message as text, message_title as text)
-	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", ANNOUNCER_NAME)
+datum/announcement/priority/security/Message(var/message as text, var/message_title as text, var/list/zlevels)
+	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", ANNOUNCER_NAME, zlevels)
 
-datum/announcement/proc/NewsCast(message as text, message_title as text)
+datum/announcement/proc/NewsCast(var/message as text, var/message_title as text)
 	if(!newscast)
 		return
 
@@ -75,15 +79,18 @@ datum/announcement/proc/NewsCast(message as text, message_title as text)
 	news.can_be_redacted = 0
 	announce_newscaster_news(news)
 
-datum/announcement/proc/PlaySound(var/message_sound)
+datum/announcement/proc/PlaySound(var/message_sound, var/list/zlevels)
 	if(!message_sound)
 		return
+
 	for(var/mob/M in player_list)
+		if(zlevels && !(M.z in zlevels))
+			continue
 		if(!istype(M,/mob/new_player) && !isdeaf(M))
 			M << message_sound
 
-datum/announcement/proc/Sound(var/message_sound)
-	PlaySound(message_sound)
+datum/announcement/proc/Sound(var/message_sound, var/list/zlevels)
+	PlaySound(message_sound, zlevels)
 
 datum/announcement/priority/Sound(var/message_sound)
 	if(message_sound)
@@ -107,11 +114,12 @@ datum/announcement/proc/Log(message as text, message_title as text)
 /proc/ion_storm_announcement()
 	command_announcement.Announce("It has come to our attention that \the [station_name()] passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
-/proc/AnnounceArrival(var/mob/living/carbon/human/character, var/rank, var/join_message)
+/proc/AnnounceArrival(var/mob/living/carbon/human/character, var/rank, var/join_message, var/channel = "Common", var/zlevel)
 	if (ticker.current_state == GAME_STATE_PLAYING)
+		var/list/zlevels = zlevel ? using_map.get_map_levels(zlevel, TRUE) : null
 		if(character.mind.role_alt_title)
 			rank = character.mind.role_alt_title
-		AnnounceArrivalSimple(character.real_name, rank, join_message)
+		AnnounceArrivalSimple(character.real_name, rank, join_message, channel, zlevels)
 
-/proc/AnnounceArrivalSimple(var/name, var/rank = "visitor", var/join_message = "will arrive at the station shortly", new_sound = 'sound/misc/notice3.ogg') //VOREStation Edit - Remove shuttle reference
-	global_announcer.autosay("[name], [rank], [join_message].", "Arrivals Announcement Computer")
+/proc/AnnounceArrivalSimple(var/name, var/rank = "visitor", var/join_message = "will arrive at the station shortly", var/channel = "Common", var/list/zlevels)
+	global_announcer.autosay("[name], [rank], [join_message].", "Arrivals Announcement Computer", channel, zlevels)
