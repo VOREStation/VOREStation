@@ -232,7 +232,7 @@ var/list/gamemode_cache = list()
 	var/dooc_allowed = 1
 	var/dsay_allowed = 1
 
-	var/starlight = 0	// Whether space turfs have ambient light or not
+	var/static/starlight = 0	// Whether space turfs have ambient light or not
 
 	var/list/ert_species = list(SPECIES_HUMAN)
 
