@@ -139,7 +139,7 @@
 			if(initial(path.access))
 				var/list/soft_access = list(initial(path.access))
 				var/list/usr_access = usr.GetAccess()
-				if(!has_access(soft_access, list(), usr_access) && !emagged)
+				if(scan_id && !has_access(soft_access, list(), usr_access) && !emagged)
 					to_chat(usr, "<span class='warning'>You aren't authorized to buy [initial(path.name)].</span>")
 					flick("[icon_state]-deny",entopic.my_image)
 					return
