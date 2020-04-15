@@ -2126,19 +2126,19 @@
 	pixel_x = 4;
 	pixel_y = 26
 	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 4
-	},
 /obj/structure/cable/cyan{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/effect/floor_decal/industrial/warning/corner,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "eh" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "ei" = (
@@ -2590,8 +2590,7 @@
 	icon_state = "alarm0";
 	pixel_y = -22
 	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -3390,7 +3389,10 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "gk" = (
-/obj/machinery/power/fractal_reactor/fluff/converter,
+/obj/machinery/power/fractal_reactor/fluff/converter{
+	mapped_in = 1;
+	power_generation_rate = 2e+006
+	},
 /obj/structure/cable,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
@@ -3417,7 +3419,7 @@
 /obj/structure/closet/crate/secure/gear{
 	req_one_access = list(108)
 	},
-/obj/item/device/subspaceradio,
+/obj/item/device/bluespaceradio,
 /obj/item/weapon/storage/firstaid/insiderepair,
 /obj/item/weapon/storage/firstaid/combat,
 /obj/item/weapon/storage/toolbox/syndicate/powertools,
@@ -10066,7 +10068,7 @@
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
 "uh" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense/old{
 	id_tag = "warship_pd"
 	},
 /turf/simulated/floor/reinforced/airless{
@@ -21425,7 +21427,7 @@ cr
 QH
 JJ
 dP
-eh
+ex
 eA
 eh
 fd
