@@ -227,6 +227,17 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/item/clothing/suit/space/void/pilot/talon
 	name = "talon pilot's voidsuit"
 
+/obj/item/device/gps/command/taloncap
+	gps_tag = "TALC"
+/obj/item/device/gps/security/talonguard
+	gps_tag = "TALG"
+/obj/item/device/gps/medical/talonmed
+	gps_tag = "TALM"
+/obj/item/device/gps/engineering/taloneng
+	gps_tag = "TALE"
+/obj/item/device/gps/explorer/talonpilot
+	gps_tag = "TALP"
+
 /obj/structure/closet/secure_closet/talon_captain
 	name = "talon captain's locker"
 	icon_state = "capsecure1"
@@ -246,7 +257,8 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 		/obj/item/clothing/head/helmet/space/void/captain/talon,
 		/obj/item/clothing/suit/space/void/captain/talon,
 		/obj/item/weapon/tank/oxygen,
-		/obj/item/device/suit_cooling_unit
+		/obj/item/device/suit_cooling_unit,
+		/obj/item/device/gps/command/taloncap
 	)
 
 /obj/structure/closet/secure_closet/talon_guard
@@ -277,7 +289,8 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 		/obj/item/clothing/head/helmet/space/void/security/talon,
 		/obj/item/clothing/suit/space/void/security/talon,
 		/obj/item/weapon/tank/oxygen,
-		/obj/item/device/suit_cooling_unit
+		/obj/item/device/suit_cooling_unit,
+		/obj/item/device/gps/security/talonguard
 	)
 
 /obj/structure/closet/secure_closet/talon_doctor
@@ -301,7 +314,8 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 		/obj/item/clothing/head/helmet/space/void/medical/talon,
 		/obj/item/clothing/suit/space/void/medical/talon,
 		/obj/item/weapon/tank/oxygen,
-		/obj/item/device/suit_cooling_unit
+		/obj/item/device/suit_cooling_unit,
+		/obj/item/device/gps/medical/talonmed
 	)
 
 /obj/structure/closet/secure_closet/talon_engineer
@@ -327,7 +341,8 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 		/obj/item/clothing/head/helmet/space/void/atmos/talon,
 		/obj/item/clothing/suit/space/void/atmos/talon,
 		/obj/item/weapon/tank/oxygen,
-		/obj/item/device/suit_cooling_unit
+		/obj/item/device/suit_cooling_unit,
+		/obj/item/device/gps/engineering/taloneng
 	)
 
 /obj/structure/closet/secure_closet/talon_pilot
@@ -352,7 +367,8 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 		/obj/item/clothing/head/helmet/space/void/pilot/talon,
 		/obj/item/clothing/suit/space/void/pilot/talon,
 		/obj/item/weapon/tank/oxygen,
-		/obj/item/device/suit_cooling_unit
+		/obj/item/device/suit_cooling_unit,
+		/obj/item/device/gps/explorer/talonpilot
 	)
 
 ///////////////////////////
