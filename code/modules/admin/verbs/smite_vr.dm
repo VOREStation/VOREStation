@@ -8,7 +8,7 @@
 	if(!istype(target))
 		return
 
-	var/list/smite_types = list(SMITE_SHADEKIN_ATTACK,SMITE_SHADEKIN_NOMF,SMITE_REDSPACE_ABDUCT,SMITE_AUTOSAVE)
+	var/list/smite_types = list(SMITE_SHADEKIN_ATTACK,SMITE_SHADEKIN_NOMF,SMITE_REDSPACE_ABDUCT,SMITE_AUTOSAVE,SMITE_AUTOSAVE_WIDE)
 
 	var/smite_choice = input("Select the type of SMITE for [target]","SMITE Type Choice") as null|anything in smite_types
 	if(!smite_choice)
@@ -125,6 +125,9 @@
 		if(SMITE_AUTOSAVE)
 			fake_autosave(target, src)
 
+		if(SMITE_AUTOSAVE_WIDE)
+			fake_autosave(target, src, TRUE)
+
 		else
 			return //Injection? Don't print any messages.
 
@@ -215,9 +218,14 @@ var/redspace_abduction_z
 
 	target.transforming = FALSE
 
-/proc/fake_autosave(mob/living/target, user)
+/proc/fake_autosave(var/mob/living/target, var/client/user, var/wide)
 	if(!istype(target) || !target.client)
-		to_chat(user, "<span class='warning'>Not a living mob or no client, so no point!</span>")
+		to_chat(user, "<span class='warning'>Skipping [target] because they are not a /mob/living or have no client.</span>")
+		return
+
+	if(wide)
+		for(var/mob/living/L in orange(user.view, user.mob))
+			fake_autosave(L, user)
 		return
 
 	target.move_delay = 99999999
