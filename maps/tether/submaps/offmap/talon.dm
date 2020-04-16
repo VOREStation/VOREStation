@@ -41,12 +41,10 @@ var/global/list/latejoin_talon = list()
 	initial_generic_waypoints = list("talon_fore", "talon_aft", "talon_port", "talon_starboard")
 	initial_restricted_waypoints = list("Talon's boat" = list("offmap_spawn_talonboat"), "Talon lifeboat" = list("offmap_spawn_talon_lifeboat"))
 
-
-/obj/effect/overmap/visitable/ship/talon/get_skybox_representation()
-	var/image/I = image('talon.dmi', "skybox")
-	I.pixel_x = 270
-	I.pixel_y = 60
-	return I
+	skybox_icon = 'talon.dmi'
+	skybox_icon_state = "skybox"
+	skybox_pixel_x = 270
+	skybox_pixel_y = 60
 
 // The shuttle's 'shuttle' computer
 /obj/machinery/computer/shuttle_control/explore/talonboat
