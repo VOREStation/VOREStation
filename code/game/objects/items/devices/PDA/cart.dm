@@ -309,8 +309,12 @@ var/list/civilian_cartridges = list(
 	if(mode==43 || mode==433)
 		var/list/sensors = list()
 		var/obj/machinery/power/sensor/MS = null
+		var/my_z = get_z(user)
+		var/list/levels = using_map.get_map_levels(my_z)
 
 		for(var/obj/machinery/power/sensor/S in machines)
+			if(!(get_z(S) in levels))
+				continue
 			sensors.Add(list(list("name_tag" = S.name_tag)))
 			if(S.name_tag == selected_sensor)
 				MS = S
