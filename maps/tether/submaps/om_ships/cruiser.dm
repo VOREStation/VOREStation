@@ -132,8 +132,7 @@
 	vessel_size = SHIP_SIZE_LARGE
 	initial_generic_waypoints = list("cruiser_fore", "cruiser_aft", "cruiser_port", "cruiser_starboard", "ws_port_dock_1", "ws_port_dock_2", "ws_starboard_dock_1", "ws_starboard_dock_2")
 
-/obj/effect/overmap/visitable/ship/cruiser/get_skybox_representation()
-	var/image/I = image('cruiser.dmi', "skybox")
-	I.pixel_x = 370
-	I.pixel_y = 370
-	return I
+	skybox_icon = 'cruiser.dmi'
+	skybox_icon_state = "skybox"
+	skybox_pixel_x = 370
+	skybox_pixel_y = 370
