@@ -6948,10 +6948,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/talon/deckone/central_hallway)
-"Jd" = (
-/obj/effect/floor_decal/emblem/talon,
-/turf/simulated/wall/rshull,
-/area/talon/maintenance/deckone_port)
 "Ji" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /turf/simulated/floor/reinforced/airless,
@@ -7073,6 +7069,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/talon/deckone/brig)
+"LX" = (
+/obj/effect/floor_decal/emblem/talon,
+/turf/simulated/floor/reinforced/airless,
+/area/talon/maintenance/deckone_starboard_fore_wing)
 "Ml" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -7403,10 +7403,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/talon/maintenance/deckone_starboard)
-"XO" = (
-/obj/effect/floor_decal/emblem/talon,
-/turf/simulated/wall/rshull,
-/area/talon/maintenance/deckone_starboard)
 "XQ" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
@@ -7436,6 +7432,10 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/deckone/workroom)
+"Yv" = (
+/obj/effect/floor_decal/emblem/talon,
+/turf/simulated/floor/reinforced/airless,
+/area/talon/maintenance/deckone_port_fore_wing)
 "YG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	icon_state = "intact-scrubbers";
@@ -14920,7 +14920,7 @@ aa
 aa
 aa
 cc
-cc
+Yv
 cc
 aa
 aa
@@ -15916,7 +15916,7 @@ aC
 aC
 La
 br
-Jd
+aC
 aC
 aC
 aL
@@ -18756,7 +18756,7 @@ aK
 aK
 xk
 bB
-XO
+aK
 aK
 aK
 aP
@@ -19748,7 +19748,7 @@ aa
 aa
 aa
 dt
-dt
+LX
 dt
 aa
 aa
