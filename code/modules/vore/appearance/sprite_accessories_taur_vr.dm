@@ -160,24 +160,6 @@
 
 // Species-unique long tails/taurhalves
 
-/datum/sprite_accessory/tail/taur/shadekin_tail
-	name = "Shadekin Tail (Shadekin)"
-	icon_state = "shadekin_s"
-	can_ride = 0
-	hide_body_parts = null
-	clip_mask_icon = null
-	clip_mask_state = null
-	apply_restrictions = TRUE
-	species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
-
-/datum/sprite_accessory/tail/taur/shadekin_tail/shadekin_tail_2c
-	name = "Shadekin Tail dual-color (Shadekin)"
-	extra_overlay = "shadekin_markings"
-
-/datum/sprite_accessory/tail/taur/shadekin_tail/shadekin_tail_long
-	name = "Shadekin Long Tail (Shadekin)"
-	icon_state = "shadekin_long_s"
-
 // Tails/taurhalves for everyone
 
 /datum/sprite_accessory/tail/taur/wolf
@@ -478,6 +460,24 @@
 
 	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
 	msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
+
+/datum/sprite_accessory/tail/taur/shadekin_tail
+	name = "Shadekin Tail"
+	icon_state = "shadekin_s"
+	can_ride = 0
+	hide_body_parts = null
+	clip_mask_icon = null
+	clip_mask_state = null
+	//apply_restrictions = TRUE
+	//species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
+
+/datum/sprite_accessory/tail/taur/shadekin_tail/shadekin_tail_2c
+	name = "Shadekin Tail (dual color)"
+	extra_overlay = "shadekin_markings"
+
+/datum/sprite_accessory/tail/taur/shadekin_tail/shadekin_tail_long
+	name = "Shadekin Long Tail"
+	icon_state = "shadekin_long_s"
 
 // Special snowflake tails/taurhalves
 

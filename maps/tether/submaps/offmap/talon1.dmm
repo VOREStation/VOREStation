@@ -2180,6 +2180,7 @@
 	pixel_y = 2
 	},
 /obj/item/weapon/cell/device/weapon,
+/obj/item/clothing/accessory/holster/waist,
 /turf/simulated/floor/tiled/dark,
 /area/talon/deckone/armory)
 "ek" = (
@@ -2617,15 +2618,6 @@
 /area/talon/deckone/medical)
 "eQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/alarm/talon{
-	alarm_id = "anomaly_testing";
-	breach_detection = 0;
-	dir = 8;
-	frequency = 1439;
-	pixel_x = 22;
-	pixel_y = 0;
-	report_danger_level = 0
-	},
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
 "eR" = (
@@ -2933,6 +2925,7 @@
 "fn" = (
 /obj/structure/table/standard,
 /obj/item/device/defib_kit/loaded,
+/obj/item/weapon/storage/belt/medical/emt,
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
 "fo" = (
@@ -5971,6 +5964,7 @@
 	pixel_y = 2
 	},
 /obj/item/weapon/cell/device/weapon,
+/obj/item/clothing/accessory/holster/waist,
 /turf/simulated/floor/tiled/dark,
 /area/talon/deckone/armory)
 "kT" = (
@@ -5981,6 +5975,8 @@
 "kU" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/weapon/gun/energy/gun,
+/obj/item/clothing/accessory/holster/machete,
+/obj/item/weapon/material/knife/machete,
 /turf/simulated/floor/tiled/dark,
 /area/talon/deckone/armory)
 "kV" = (
@@ -6623,6 +6619,7 @@
 	pixel_y = 2
 	},
 /obj/item/weapon/cell/device/weapon,
+/obj/item/clothing/accessory/holster/waist,
 /turf/simulated/floor/tiled/dark,
 /area/talon/deckone/armory)
 "ym" = (
@@ -6951,10 +6948,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/talon/deckone/central_hallway)
-"Jd" = (
-/obj/effect/floor_decal/emblem/talon,
-/turf/simulated/wall/rshull,
-/area/talon/maintenance/deckone_port)
 "Ji" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /turf/simulated/floor/reinforced/airless,
@@ -7076,6 +7069,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/talon/deckone/brig)
+"LX" = (
+/obj/effect/floor_decal/emblem/talon,
+/turf/simulated/floor/reinforced/airless,
+/area/talon/maintenance/deckone_starboard_fore_wing)
 "Ml" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -7368,7 +7365,7 @@
 	req_one_access = list(301)
 	},
 /obj/machinery/door/firedoor/glass/talon,
-/turf/simulated/wall,
+/turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
 "Xh" = (
 /obj/structure/catwalk,
@@ -7406,10 +7403,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/talon/maintenance/deckone_starboard)
-"XO" = (
-/obj/effect/floor_decal/emblem/talon,
-/turf/simulated/wall/rshull,
-/area/talon/maintenance/deckone_starboard)
 "XQ" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
@@ -7439,6 +7432,10 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/deckone/workroom)
+"Yv" = (
+/obj/effect/floor_decal/emblem/talon,
+/turf/simulated/floor/reinforced/airless,
+/area/talon/maintenance/deckone_port_fore_wing)
 "YG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	icon_state = "intact-scrubbers";
@@ -14923,7 +14920,7 @@ aa
 aa
 aa
 cc
-cc
+Yv
 cc
 aa
 aa
@@ -15919,7 +15916,7 @@ aC
 aC
 La
 br
-Jd
+aC
 aC
 aC
 aL
@@ -18759,7 +18756,7 @@ aK
 aK
 xk
 bB
-XO
+aK
 aK
 aK
 aP
@@ -19751,7 +19748,7 @@ aa
 aa
 aa
 dt
-dt
+LX
 dt
 aa
 aa
