@@ -799,7 +799,7 @@
 
 		var/pass_damage = W.force
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
-			pass_damage = ME.handle_projectile_contact(W, user, pass_damage)
+			pass_damage = ME.handle_projectile_contact(W, pass_damage)
 		src.take_damage(pass_damage,W.damtype)
 		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	return
