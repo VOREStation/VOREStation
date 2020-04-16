@@ -134,6 +134,6 @@
 
 /obj/effect/overmap/visitable/ship/cruiser/get_skybox_representation()
 	var/image/I = image('cruiser.dmi', "skybox")
-	I.pixel_x = 350
-	I.pixel_y = 350
+	I.pixel_x = 370
+	I.pixel_y = 370
 	return I
