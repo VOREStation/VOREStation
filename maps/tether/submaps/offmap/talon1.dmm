@@ -2152,16 +2152,13 @@
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
 "eg" = (
-/obj/machinery/vending/medical{
-	req_access = list(301);
-	req_log_access = 301
-	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
 	},
 /obj/effect/floor_decal/borderfloorwhite/corner2{
 	dir = 4
 	},
+/obj/machinery/vending/medical_talon,
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/medical)
 "eh" = (
