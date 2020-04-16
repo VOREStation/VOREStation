@@ -42,3 +42,7 @@
 	icon_state = "sbsposter11"
 	name = "Fear"
 	desc = "Depicted on this poster is a monster crackling with crimson energy that seems to drip off its body. The word 'RUN' is printed across the bottom."
+/datum/poster/vore_12
+	icon_state = "sbsposter12"
+	name = "Baa"
+	desc = "A lewd exclusive poster of a certain security commander, taken from a old 'New Ewe' magazine! "
