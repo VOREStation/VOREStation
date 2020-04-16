@@ -65,8 +65,8 @@
 
 /obj/effect/overmap/visitable/ship/aro2/get_skybox_representation()
 	var/image/I = image('aro2.dmi', "skybox")
-	I.pixel_x = 150
-	I.pixel_y = 150
+	I.pixel_x = 80
+	I.pixel_y = 100
 	return I
 
 // The shuttle's 'shuttle' computer

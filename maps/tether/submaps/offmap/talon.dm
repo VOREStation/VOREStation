@@ -44,8 +44,8 @@ var/global/list/latejoin_talon = list()
 
 /obj/effect/overmap/visitable/ship/talon/get_skybox_representation()
 	var/image/I = image('talon.dmi', "skybox")
-	I.pixel_x = 220
-	I.pixel_y = 220
+	I.pixel_x = 270
+	I.pixel_y = 60
 	return I
 
 // The shuttle's 'shuttle' computer
