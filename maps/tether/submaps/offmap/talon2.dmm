@@ -5463,6 +5463,10 @@
 	},
 /turf/simulated/floor/carpet/blucarpet,
 /area/talon/decktwo/cap_room)
+"Tw" = (
+/obj/effect/floor_decal/emblem/talon,
+/turf/simulated/floor/reinforced/airless,
+/area/talon/maintenance/decktwo_solars)
 "TC" = (
 /obj/structure/sign/poster{
 	icon_state = "";
@@ -15505,7 +15509,7 @@ id
 ie
 if
 ao
-ao
+Tw
 ao
 Em
 aa
