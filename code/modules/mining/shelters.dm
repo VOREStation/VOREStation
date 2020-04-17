@@ -86,6 +86,13 @@
 		possible."
 	mappath = "maps/submaps/shelters/shelter_4.dmm"
 
+/datum/map_template/shelter/epsilon
+	name = "Shelter Epsilon"
+	shelter_id = "shelter_epsilon"
+	description = "An escape pod, with a mediocre amount of supplies \
+		for escaping a dying ship as soon as possible."
+	mappath = "maps/tether/submaps/om_ships/shelter_5.dmm"
+
 /datum/map_template/shelter/phi
 	name = "Shelter Phi"
 	shelter_id = "shelter_phi"
