@@ -766,13 +766,8 @@
 
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	to_chat(user, "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>")
-<<<<<<< HEAD
-	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Crowd Control","Emergency Medical Response","^%###^%$", "Charring")
-	species = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_VULPKANIN) //VORESTATION EDIT
-=======
 	departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Crowd Control","Security EVA","Emergency Medical Response","^%###^%$", "Charring")
-	species = list(SPECIES_HUMAN,SPECIES_TAJ,SPECIES_SKRELL,SPECIES_UNATHI, SPECIES_TESHARI)
->>>>>>> 08d463a... Merge pull request #6971 from KillianKirilenko/kk-cyclers
+	species = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_VULPKANIN) //VORESTATION EDIT
 
 	emagged = 1
 	safeties = 0
@@ -1061,47 +1056,6 @@
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/pilot
 			parent_suit = /obj/item/clothing/suit/space/void/pilot
 		if("Pilot Blue")
-<<<<<<< HEAD
-			if(helmet)
-				helmet.name = "pilot voidsuit helmet"
-				helmet.icon_state = "rig0_pilot2"
-				helmet.item_state = "pilot_helm2"
-			if(suit)
-				suit.name = "pilot voidsuit"
-				suit.icon_state = "rig-pilot2"
-				suit.item_state = "rig-pilot2"
-				suit.item_state_slots[slot_r_hand_str] = "sec_voidsuitTG"
-				suit.item_state_slots[slot_l_hand_str] = "sec_voidsuitTG"
-		//VOREStation Addition Start
-		if("Director")
-			if(helmet)
-				helmet.name = "director voidsuit helmet"
-				helmet.icon_state = "capvoid"
-				helmet.item_state = "capvoid"
-			if(suit)
-				suit.name = "director voidsuit"
-				suit.icon_state = "capsuit_void"
-				suit.item_state = "capsuit_void"
-				suit.item_state_slots[slot_r_hand_str] = "wiz_voidsuit"
-				suit.item_state_slots[slot_l_hand_str] = "wiz_voidsuit"
-		if("Prototype")
-			if(helmet)
-				helmet.name = "prototype voidsuit helmet"
-				helmet.icon_state = "hosproto"
-				helmet.item_state = "hosproto"
-			if(suit)
-				suit.name = "prototype voidsuit"
-				suit.icon_state = "hosproto_void"
-				suit.item_state = "hosproto_void"
-				suit.item_state_slots[slot_r_hand_str] = "sec_voidsuitTG"
-				suit.item_state_slots[slot_l_hand_str] = "sec_voidsuitTG"
-		//VOREStation Addition End
-		
-
-
-	if(helmet) helmet.name = "refitted [helmet.name]"
-	if(suit) suit.name = "refitted [suit.name]"
-=======
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/pilot/alt
 			parent_suit = /obj/item/clothing/suit/space/void/pilot/alt
 		//Antag Suits
@@ -1115,7 +1069,14 @@
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/wizard
 			parent_suit = /obj/item/clothing/suit/space/void/wizard
 		//BEGIN: Space for additional downstream variants
-		
+		//VOREStation Addition Start
+		if("Director")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/captain
+			parent_suit = /obj/item/clothing/suit/space/void/captain
+		if("Prototype")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/merc/prototype
+			parent_suit = /obj/item/clothing/suit/space/void/merc/prototype
+		//VOREStation Addition End
 		//END: downstream variant space
 	
 	//look at this! isn't it beautiful? -KK (well ok not beautiful but it's a lot cleaner)
@@ -1137,4 +1098,3 @@
 		suit.item_state = initial(parent_suit.item_state)
 		suit.item_state_slots = S.item_state_slots
 		qdel(S)
->>>>>>> 08d463a... Merge pull request #6971 from KillianKirilenko/kk-cyclers
