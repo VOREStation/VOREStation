@@ -586,7 +586,7 @@
 	var/electrified = 0
 
 	//Departments that the cycler can paint suits to look like.
-	var/list/departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control")
+	var/list/departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control","Security EVA")
 	//Species that the suits can be configured to fit.
 	var/list/species = list(SPECIES_HUMAN,SPECIES_SKRELL,SPECIES_UNATHI,SPECIES_TAJ, SPECIES_TESHARI)
 
@@ -616,7 +616,7 @@
 	name = "Engineering suit cycler"
 	model_text = "Engineering"
 	req_access = list(access_construction)
-	departments = list("Engineering","Atmos","HAZMAT","Construction")
+	departments = list("Engineering","Atmospherics","HAZMAT","Construction")
 
 /obj/machinery/suit_cycler/mining
 	name = "Mining suit cycler"
@@ -628,7 +628,7 @@
 	name = "Security suit cycler"
 	model_text = "Security"
 	req_access = list(access_security)
-	departments = list("Security","Crowd Control")
+	departments = list("Security","Crowd Control","Security EVA")
 
 /obj/machinery/suit_cycler/medical
 	name = "Medical suit cycler"
@@ -766,7 +766,7 @@
 
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	to_chat(user, "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>")
-	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Crowd Control","Emergency Medical Response","^%###^%$", "Charring")
+	departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Crowd Control","Security EVA","Emergency Medical Response","^%###^%$", "Charring")
 	species = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_VULPKANIN) //VORESTATION EDIT
 
 	emagged = 1
@@ -979,7 +979,10 @@
 	return
 
 //There HAS to be a less bloated way to do this. TODO: some kind of table/icon name coding? ~Z
+//hold onto your hat, this sumbitch just got streamlined -KK
 /obj/machinery/suit_cycler/proc/apply_paintjob()
+	var/obj/item/clothing/head/helmet/parent_helmet
+	var/obj/item/clothing/suit/space/parent_suit
 
 	if(!target_species || !target_department)
 		return
@@ -988,209 +991,110 @@
 		if(helmet) helmet.refit_for_species(target_species)
 		if(suit) suit.refit_for_species(target_species)
 
+	//Now "Complete" with most departmental and variant suits, and sorted by department. These aren't available in the standard or emagged cycler lists because they're incomplete for most species.
 	switch(target_department)
+		//Engineering and Engineering Variants
 		if("Engineering")
-			if(helmet)
-				helmet.name = "engineering voidsuit helmet"
-				helmet.icon_state = "rig0-engineering"
-				helmet.item_state = "rig0-engineering"
-			if(suit)
-				suit.name = "engineering voidsuit"
-				suit.icon_state = "rig-engineering"
-				suit.item_state = "rig-engineering"
-				suit.item_state_slots[slot_r_hand_str] = "eng_voidsuit"
-				suit.item_state_slots[slot_l_hand_str] = "eng_voidsuit"
-		if("Mining")
-			if(helmet)
-				helmet.name = "mining voidsuit helmet"
-				helmet.icon_state = "rig0-mining"
-				helmet.item_state = "rig0-mining"
-			if(suit)
-				suit.name = "mining voidsuit"
-				suit.icon_state = "rig-mining"
-				suit.item_state = "rig-mining"
-				suit.item_state_slots[slot_r_hand_str] = "mining_voidsuit"
-				suit.item_state_slots[slot_l_hand_str] = "mining_voidsuit"
-		if("Medical")
-			if(helmet)
-				helmet.name = "medical voidsuit helmet"
-				helmet.icon_state = "rig0-medical"
-				helmet.item_state = "rig0-medical"
-			if(suit)
-				suit.name = "medical voidsuit"
-				suit.icon_state = "rig-medical"
-				suit.item_state = "rig-medical"
-				suit.item_state_slots[slot_r_hand_str] = "medical_voidsuit"
-				suit.item_state_slots[slot_l_hand_str] = "medical_voidsuit"
-		if("Security")
-			if(helmet)
-				helmet.name = "security voidsuit helmet"
-				helmet.icon_state = "rig0-sec"
-				helmet.item_state = "rig0-sec"
-			if(suit)
-				suit.name = "security voidsuit"
-				suit.icon_state = "rig-sec"
-				suit.item_state = "rig-sec"
-				suit.item_state_slots[slot_r_hand_str] = "sec_voidsuit"
-				suit.item_state_slots[slot_l_hand_str] = "sec_voidsuit"
-		if("Crowd Control")
-			if(helmet)
-				helmet.name = "crowd control voidsuit helmet"
-				helmet.icon_state = "rig0-sec_riot"
-				helmet.item_state = "rig0-sec_riot"
-			if(suit)
-				suit.name = "crowd control voidsuit"
-				suit.icon_state = "rig-sec_riot"
-				suit.item_state = "rig-sec_riot"
-				suit.item_state_slots[slot_r_hand_str] = "sec_voidsuit_riot"
-				suit.item_state_slots[slot_l_hand_str] = "sec_voidsuit_riot"
-		if("Atmos")
-			if(helmet)
-				helmet.name = "atmospherics voidsuit helmet"
-				helmet.icon_state = "rig0-atmos"
-				helmet.item_state = "rig0-atmos"
-			if(suit)
-				suit.name = "atmospherics voidsuit"
-				suit.icon_state = "rig-atmos"
-				suit.item_state = "rig-atmos"
-				suit.item_state_slots[slot_r_hand_str] = "atmos_voidsuit"
-				suit.item_state_slots[slot_l_hand_str] = "atmos_voidsuit"
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering
+			parent_suit = /obj/item/clothing/suit/space/void/engineering
 		if("HAZMAT")
-			if(helmet)
-				helmet.name = "HAZMAT voidsuit helmet"
-				helmet.icon_state = "rig0-engineering_rad"
-				helmet.item_state = "rig0-engineering_rad"
-			if(suit)
-				suit.name = "HAZMAT voidsuit"
-				suit.icon_state = "rig-engineering_rad"
-				suit.item_state = "rig-engineering_rad"
-				suit.item_state_slots[slot_r_hand_str] = "eng_voidsuit_rad"
-				suit.item_state_slots[slot_l_hand_str] = "eng_voidsuit_rad"
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering/hazmat
+			parent_suit = /obj/item/clothing/suit/space/void/engineering/hazmat
 		if("Construction")
-			if(helmet)
-				helmet.name = "Construction voidsuit helmet"
-				helmet.icon_state = "rig0-engineering_con"
-				helmet.item_state = "rig0-engineering_con"
-			if(suit)
-				suit.name = "Construction voidsuit"
-				suit.icon_state = "rig-engineering_con"
-				suit.item_state = "rig-engineering_con"
-				suit.item_state_slots[slot_r_hand_str] = "eng_voidsuit_con"
-				suit.item_state_slots[slot_l_hand_str] = "eng_voidsuit_con"
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering/construction
+			parent_suit = /obj/item/clothing/suit/space/void/engineering/construction
+		if("Reinforced")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering/alt
+			parent_suit = /obj/item/clothing/suit/space/void/engineering/alt
+		if("Salvager")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering/salvage
+			parent_suit = /obj/item/clothing/suit/space/void/engineering/salvage
+		if("Atmospherics")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/atmos
+			parent_suit = /obj/item/clothing/suit/space/void/atmos
+		if("Heavy Duty Atmospherics")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/atmos/alt
+			parent_suit = /obj/item/clothing/suit/space/void/atmos/alt
+		//Mining and Mining Variants
+		if("Mining")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/mining
+			parent_suit = /obj/item/clothing/suit/space/void/mining
+		if("Frontier Miner")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/mining/alt
+			parent_suit = /obj/item/clothing/suit/space/void/mining/alt
+		//Medical and Medical Variants
+		if("Medical")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/medical
+			parent_suit = /obj/item/clothing/suit/space/void/medical
 		if("Biohazard")
-			if(helmet)
-				helmet.name = "Biohazard voidsuit helmet"
-				helmet.icon_state = "rig0-medical_bio"
-				helmet.item_state = "rig0-medical_bio"
-			if(suit)
-				suit.name = "Biohazard voidsuit"
-				suit.icon_state = "rig-medical_bio"
-				suit.item_state = "rig-medical_bio"
-				suit.item_state_slots[slot_r_hand_str] = "medical_voidsuit_bio"
-				suit.item_state_slots[slot_l_hand_str] = "medical_voidsuit_bio"
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/medical/bio
+			parent_suit = /obj/item/clothing/suit/space/void/medical/bio
 		if("Emergency Medical Response")
-			if(helmet)
-				helmet.name = "emergency medical response voidsuit helmet"
-				helmet.icon_state = "rig0-medical_emt"
-				helmet.item_state = "rig0-medical_emt"
-			if(suit)
-				suit.name = "emergency medical response voidsuit"
-				suit.icon_state = "rig-medical_emt"
-				suit.item_state = "rig-medical_emt"
-				suit.item_state_slots[slot_r_hand_str] = "medical_voidsuit_emt"
-				suit.item_state_slots[slot_l_hand_str] = "medical_voidsuit_emt"
-		if("^%###^%$" || "Mercenary")
-			if(helmet)
-				helmet.name = "blood-red voidsuit helmet"
-				helmet.icon_state = "rig0-syndie"
-				helmet.item_state = "rig0-syndie"
-			if(suit)
-				suit.name = "blood-red voidsuit"
-				suit.item_state = "rig-syndie"
-				suit.icon_state = "rig-syndie"
-				suit.item_state_slots[slot_r_hand_str] = "syndie_voidsuit"
-				suit.item_state_slots[slot_l_hand_str] = "syndie_voidsuit"
-		if("Charring")
-			if(helmet)
-				helmet.name = "soot-covered voidsuit helmet"
-				helmet.icon_state = "rig0-firebug"
-				helmet.item_state = "rig0-firebug"
-			if(suit)
-				suit.name = "soot-covered voidsuit"
-				suit.item_state = "rig-firebug"
-				suit.icon_state = "rig-firebug"
-				suit.item_state_slots[slot_r_hand_str] = "rig-firebug"
-				suit.item_state_slots[slot_l_hand_str] = "rig-firebug"
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/medical/emt
+			parent_suit = /obj/item/clothing/suit/space/void/medical/emt
+		if("Vey-Medical Streamlined")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/medical/alt
+			parent_suit = /obj/item/clothing/suit/space/void/medical/alt
+		//Security and Security Variants
+		if("Security")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/security
+			parent_suit = /obj/item/clothing/suit/space/void/security
+		if("Crowd Control")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/security/riot
+			parent_suit = /obj/item/clothing/suit/space/void/security/riot
+		if("Security EVA")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/security/alt
+			parent_suit = /obj/item/clothing/suit/space/void/security/alt
+		//Exploration Department
 		if("Exploration")
-			if(helmet)
-				helmet.name = "exploration voidsuit helmet"
-				helmet.icon_state = "helm_explorer"
-				helmet.item_state = "helm_explorer"
-			if(suit)
-				suit.name = "exploration voidsuit"
-				suit.icon_state = "void_explorer"
-				suit.item_state = "void_explorer"
-				suit.item_state_slots[slot_r_hand_str] = "wiz_voidsuit"
-				suit.item_state_slots[slot_l_hand_str] = "wiz_voidsuit"
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/exploration
+			parent_suit = /obj/item/clothing/suit/space/void/exploration
 		if("Old Exploration")
-			if(helmet)
-				helmet.name = "exploration voidsuit helmet"
-				helmet.icon_state = "helm_explorer2"
-				helmet.item_state = "helm_explorer2"
-			if(suit)
-				suit.name = "exploration voidsuit"
-				suit.icon_state = "void_explorer2"
-				suit.item_state = "void_explorer2"
-				suit.item_state_slots[slot_r_hand_str] = "wiz_voidsuit"
-				suit.item_state_slots[slot_l_hand_str] = "wiz_voidsuit"
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/exploration/alt
+			parent_suit = /obj/item/clothing/suit/space/void/exploration/alt
 		if("Pilot")
-			if(helmet)
-				helmet.name = "pilot voidsuit helmet"
-				helmet.icon_state = "rig0_pilot"
-				helmet.item_state = "pilot_helm"
-			if(suit)
-				suit.name = "pilot voidsuit"
-				suit.icon_state = "rig-pilot"
-				suit.item_state = "rig-pilot"
-				suit.item_state_slots[slot_r_hand_str] = "sec_voidsuitTG"
-				suit.item_state_slots[slot_l_hand_str] = "sec_voidsuitTG"
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/pilot
+			parent_suit = /obj/item/clothing/suit/space/void/pilot
 		if("Pilot Blue")
-			if(helmet)
-				helmet.name = "pilot voidsuit helmet"
-				helmet.icon_state = "rig0_pilot2"
-				helmet.item_state = "pilot_helm2"
-			if(suit)
-				suit.name = "pilot voidsuit"
-				suit.icon_state = "rig-pilot2"
-				suit.item_state = "rig-pilot2"
-				suit.item_state_slots[slot_r_hand_str] = "sec_voidsuitTG"
-				suit.item_state_slots[slot_l_hand_str] = "sec_voidsuitTG"
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/pilot/alt
+			parent_suit = /obj/item/clothing/suit/space/void/pilot/alt
+		//Antag Suits
+		if("^%###^%$" || "Mercenary")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/merc
+			parent_suit = /obj/item/clothing/suit/space/void/merc
+		if("Charring")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/merc/fire
+			parent_suit = /obj/item/clothing/suit/space/void/merc/fire
+		if("Gem-Encrusted" || "Wizard")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/wizard
+			parent_suit = /obj/item/clothing/suit/space/void/wizard
+		//BEGIN: Space for additional downstream variants
 		//VOREStation Addition Start
 		if("Director")
-			if(helmet)
-				helmet.name = "director voidsuit helmet"
-				helmet.icon_state = "capvoid"
-				helmet.item_state = "capvoid"
-			if(suit)
-				suit.name = "director voidsuit"
-				suit.icon_state = "capsuit_void"
-				suit.item_state = "capsuit_void"
-				suit.item_state_slots[slot_r_hand_str] = "wiz_voidsuit"
-				suit.item_state_slots[slot_l_hand_str] = "wiz_voidsuit"
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/captain
+			parent_suit = /obj/item/clothing/suit/space/void/captain
 		if("Prototype")
-			if(helmet)
-				helmet.name = "prototype voidsuit helmet"
-				helmet.icon_state = "hosproto"
-				helmet.item_state = "hosproto"
-			if(suit)
-				suit.name = "prototype voidsuit"
-				suit.icon_state = "hosproto_void"
-				suit.item_state = "hosproto_void"
-				suit.item_state_slots[slot_r_hand_str] = "sec_voidsuitTG"
-				suit.item_state_slots[slot_l_hand_str] = "sec_voidsuitTG"
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/merc/prototype
+			parent_suit = /obj/item/clothing/suit/space/void/merc/prototype
 		//VOREStation Addition End
-		
+		//END: downstream variant space
+	
+	//look at this! isn't it beautiful? -KK (well ok not beautiful but it's a lot cleaner)
+	if(helmet)
+		var/obj/item/clothing/H = new parent_helmet
+		helmet.name = "refitted [initial(parent_helmet.name)]"
+		helmet.desc = initial(parent_helmet.desc)
+		helmet.icon_state = initial(parent_helmet.icon_state)
+		helmet.item_state = initial(parent_helmet.item_state)
+		helmet.light_overlay = initial(parent_helmet.light_overlay)
+		helmet.item_state_slots = H.item_state_slots
+		qdel(H)
 
-
-	if(helmet) helmet.name = "refitted [helmet.name]"
-	if(suit) suit.name = "refitted [suit.name]"
+	if(suit)
+		var/obj/item/clothing/S = new parent_suit
+		suit.name = "refitted [initial(parent_suit.name)]"
+		suit.desc = initial(parent_suit.desc)
+		suit.icon_state = initial(parent_suit.icon_state)
+		suit.item_state = initial(parent_suit.item_state)
+		suit.item_state_slots = S.item_state_slots
+		qdel(S)
