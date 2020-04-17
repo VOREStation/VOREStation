@@ -586,7 +586,7 @@
 	var/electrified = 0
 
 	//Departments that the cycler can paint suits to look like.
-	var/list/departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control","Sec EVA")
+	var/list/departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control","Security EVA")
 	//Species that the suits can be configured to fit.
 	var/list/species = list(SPECIES_HUMAN,SPECIES_SKRELL,SPECIES_UNATHI,SPECIES_TAJ, SPECIES_TESHARI)
 
@@ -616,7 +616,7 @@
 	name = "Engineering suit cycler"
 	model_text = "Engineering"
 	req_access = list(access_construction)
-	departments = list("Engineering","Atmos","HAZMAT","Construction")
+	departments = list("Engineering","Atmospherics","HAZMAT","Construction")
 
 /obj/machinery/suit_cycler/mining
 	name = "Mining suit cycler"
@@ -628,7 +628,7 @@
 	name = "Security suit cycler"
 	model_text = "Security"
 	req_access = list(access_security)
-	departments = list("Security","Crowd Control","Sec EVA")
+	departments = list("Security","Crowd Control","Security EVA")
 
 /obj/machinery/suit_cycler/medical
 	name = "Medical suit cycler"
@@ -766,7 +766,7 @@
 
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	to_chat(user, "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>")
-	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Crowd Control","Sec EVA","Emergency Medical Response","^%###^%$", "Charring")
+	departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Crowd Control","Security EVA","Emergency Medical Response","^%###^%$", "Charring")
 	species = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_VULPKANIN) //VORESTATION EDIT
 
 	emagged = 1
@@ -980,7 +980,9 @@
 
 //There HAS to be a less bloated way to do this. TODO: some kind of table/icon name coding? ~Z
 //hold onto your hat, this sumbitch just got streamlined -KK
-/obj/machinery/suit_cycler/proc/apply_paintjob(var/obj/item/clothing/head/helmet/parent_helmet as obj,var/obj/item/clothing/suit/space/parent_suit as obj)
+/obj/machinery/suit_cycler/proc/apply_paintjob()
+	var/obj/item/clothing/head/helmet/parent_helmet
+	var/obj/item/clothing/suit/space/parent_suit
 	
 	if(!target_species || !target_department)
 		return
@@ -990,45 +992,59 @@
 		if(suit) suit.refit_for_species(target_species)
 
 	switch(target_department)
+		//Engineering and Engineering Variants
 		if("Engineering")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering
 			parent_suit = /obj/item/clothing/suit/space/void/engineering
-		if("Mining")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/mining
-			parent_suit = /obj/item/clothing/suit/space/void/mining
-		if("Medical")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/medical
-			parent_suit = /obj/item/clothing/suit/space/void/medical
-		if("Security")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/security
-			parent_suit = /obj/item/clothing/suit/space/void/security
-		if("Crowd Control")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/security/riot
-			parent_suit = /obj/item/clothing/suit/space/void/security/riot
-		if("Sec EVA")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/security/alt
-			parent_suit = /obj/item/clothing/suit/space/void/security/alt
-		if("Atmos")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/atmos
-			parent_suit = /obj/item/clothing/suit/space/void/atmos
 		if("HAZMAT")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering/hazmat
 			parent_suit = /obj/item/clothing/suit/space/void/engineering/hazmat
 		if("Construction")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering/construction
 			parent_suit = /obj/item/clothing/suit/space/void/engineering/construction
+		if("Reinforced")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering/alt
+			parent_suit = /obj/item/clothing/suit/space/void/engineering/alt
+		if("Salvager")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering/salvage
+			parent_suit = /obj/item/clothing/suit/space/void/engineering/salvage
+		if("Atmospherics")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/atmos
+			parent_suit = /obj/item/clothing/suit/space/void/atmos
+		if("Heavy Duty Atmospherics")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/atmos/alt
+			parent_suit = /obj/item/clothing/suit/space/void/atmos/alt
+		//Mining and Mining Variants
+		if("Mining")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/mining
+			parent_suit = /obj/item/clothing/suit/space/void/mining
+		if("Frontier Miner")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/mining/alt
+			parent_suit = /obj/item/clothing/suit/space/void/mining/alt
+		//Medical and Medical Variants
+		if("Medical")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/medical
+			parent_suit = /obj/item/clothing/suit/space/void/medical
 		if("Biohazard")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/medical/bio
 			parent_suit = /obj/item/clothing/suit/space/void/medical/bio
 		if("Emergency Medical Response")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/medical/emt
 			parent_suit = /obj/item/clothing/suit/space/void/medical/emt
-		if("^%###^%$" || "Mercenary")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/merc
-			parent_suit = /obj/item/clothing/suit/space/void/merc
-		if("Charring")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/merc/fire
-			parent_suit = /obj/item/clothing/suit/space/void/merc/fire
+		if("Vey-Medical Streamlined")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/medical/alt
+			parent_suit = /obj/item/clothing/suit/space/void/medical/alt
+		//Security and Security Variants
+		if("Security")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/security
+			parent_suit = /obj/item/clothing/suit/space/void/security
+		if("Crowd Control")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/security/riot
+			parent_suit = /obj/item/clothing/suit/space/void/security/riot
+		if("Security EVA")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/security/alt
+			parent_suit = /obj/item/clothing/suit/space/void/security/alt
+		//Exploration Department
 		if("Exploration")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/exploration
 			parent_suit = /obj/item/clothing/suit/space/void/exploration
@@ -1041,6 +1057,17 @@
 		if("Pilot Blue")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/pilot/alt
 			parent_suit = /obj/item/clothing/suit/space/void/pilot/alt
+		//Antag Suits
+		if("^%###^%$" || "Mercenary")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/merc
+			parent_suit = /obj/item/clothing/suit/space/void/merc
+		if("Charring")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/merc/fire
+			parent_suit = /obj/item/clothing/suit/space/void/merc/fire
+		if("Gem-Encrusted" || "Wizard")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/wizard
+			parent_suit = /obj/item/clothing/suit/space/void/wizard
+		//BEGIN: Space for additional downstream variants
 		//VOREStation Addition Start
 		if("Director")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/captain
@@ -1049,6 +1076,7 @@
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/merc/prototype
 			parent_suit = /obj/item/clothing/suit/space/void/merc/prototype
 		//VOREStation Addition End
+		//END: downstream variant space
 	
 	//look at this! isn't it beautiful? -KK
 	if(helmet)
