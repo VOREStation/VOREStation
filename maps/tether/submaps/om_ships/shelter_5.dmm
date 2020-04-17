@@ -162,6 +162,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/effect/shuttle_landmark/shuttle_initializer/escapepod,
+/obj/effect/overmap/visitable/ship/landable/escapepod,
 /turf/simulated/floor/tiled/steel_grid,
 /area/shuttle/deployable/escapepod)
 "p" = (
