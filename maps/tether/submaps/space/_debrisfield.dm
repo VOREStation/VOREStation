@@ -3,7 +3,7 @@
 /obj/effect/overmap/visitable/sector/debrisfield
 	name = "Debris Field"
 	desc = "Space junk galore."
-scanner_desc = @{"[i]Transponder[/i]: Various faint signals
+	scanner_desc = @{"[i]Transponder[/i]: Various faint signals
 [b]Notice[/b]: Warning! Significant field of space debris detected. May be salvagable."}
 	icon_state = "dust1"
 	known = FALSE
