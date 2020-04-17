@@ -135,7 +135,7 @@
 		/area/engineering/atmos_intake, // Outside,
 		/area/rnd/external, //  Outside,
 		/area/tether/surfacebase/mining_main/external, // Outside,
-		/area/tether/surfacebase/cargo/mining/airlock, //  It's an airlock,
+		/area/tether/surfacebase/cargo/mining/airlock, //  It's an airlock,	TODO: repath for later Med EVA on Surface
 		/area/tether/surfacebase/emergency_storage/rnd,
 		/area/tether/surfacebase/emergency_storage/atrium)
 
@@ -177,6 +177,10 @@
 						 		 Z_LEVEL_ROGUEMINE_2,
 						 	 	 Z_LEVEL_ROGUEMINE_3,
 								 Z_LEVEL_ROGUEMINE_4)
+
+//TFF 16/4/20 - mining outpost shuttle defines
+	mining_station_z =		list(Z_LEVEL_SPACE_HIGH)
+	mining_outpost_z =		list(Z_LEVEL_SURFACE_MINE)
 
 	lateload_single_pick = null //Nothing right now.
 

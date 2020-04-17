@@ -59,10 +59,10 @@
 /area/outpost/mining_main/hangar)
 "ao" = (
 /obj/effect/shuttle_landmark{
-	base_area = /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar;
+	base_area = /area/outpost/mining_main/hangar;
 	base_turf = /turf/simulated/floor/tiled;
 	landmark_tag = "mining_outpost";
-	name = "Mining Outpost Shuttle - Station"
+	name = "Mining Outpost Shuttle - Outpost"
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
@@ -80,6 +80,13 @@
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/hangar)
+"as" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
@@ -810,15 +817,11 @@
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/secondary_gear_storage)
 "bP" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1;
-	pixel_y = 0
-	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 1
-	},
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/brown/border,
+/obj/machinery/light,
 /turf/simulated/floor/tiled,
-/area/outpost/mining_main/secondary_gear_storage)
+/area/outpost/mining_main/hangar)
 "bQ" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -1095,11 +1098,15 @@
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/secondary_gear_storage)
 "cw" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/vehicle/train/trolley{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
+/obj/machinery/light,
 /turf/simulated/floor/tiled,
-/area/outpost/mining_main/secondary_gear_storage)
+/area/outpost/mining_main/hangar)
 "cx" = (
 /obj/machinery/alarm{
 	alarm_id = null;
@@ -1388,6 +1395,26 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
+"cS" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/secondary_gear_storage)
+"cT" = (
+/obj/structure/reagent_dispensers/watertank,
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/brown/border,
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/secondary_gear_storage)
 "di" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -3258,14 +3285,14 @@ ab
 ab
 ab
 ag
-ai
+as
 aq
 aq
 aq
 aq
 aq
 au
-aK
+bP
 ag
 ab
 ab
@@ -3968,14 +3995,14 @@ ab
 ab
 ab
 ag
-ai
+as
 aq
 aq
 aq
 aq
 aq
 au
-aY
+cw
 ag
 bO
 bT
@@ -4119,11 +4146,11 @@ aq
 aw
 aZ
 ag
-bP
+cS
 bU
 bU
 bU
-cw
+cT
 cA
 aI
 aW

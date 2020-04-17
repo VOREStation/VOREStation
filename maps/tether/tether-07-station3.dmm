@@ -29768,6 +29768,9 @@
 /obj/machinery/computer/shuttle_control/surface_mining_outpost{
 	dir = 8
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "aVA" = (
@@ -32221,15 +32224,15 @@
 /turf/simulated/shuttle/floor/yellow,
 /area/shuttle/mining_outpost/shuttle)
 "baL" = (
-/obj/structure/shuttle/window,
-/obj/effect/shuttle_landmark{
-	base_area = /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar;
-	base_turf = /turf/simulated/floor/tiled;
-	landmark_tag = "mining_outpost";
-	name = "Mining Outpost Shuttle - Station"
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/turf/simulated/floor/airless,
-/area/shuttle/mining_outpost/shuttle)
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "baM" = (
 /obj/machinery/light,
 /turf/simulated/shuttle/floor/yellow,
@@ -32293,13 +32296,23 @@
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/mining_outpost/shuttle)
 "baT" = (
+/obj/structure/shuttle/window,
+/obj/effect/shuttle_landmark{
+	base_area = /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar;
+	base_turf = /turf/simulated/floor/tiled;
+	landmark_tag = "mining_station";
+	name = "Mining Outpost Shuttle - Station"
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/mining_outpost/shuttle)
+"baU" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/mining_outpost/shuttle)
-"baU" = (
+"baV" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_r"
@@ -32307,6 +32320,13 @@
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/mining_outpost/shuttle)
+"baW" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 
 (1,1,1) = {"
 aaa
@@ -46747,10 +46767,10 @@ avt
 aVc
 aZS
 baS
-baT
-baT
-baT
 baU
+baU
+baU
+baV
 baB
 aVc
 avt
@@ -47029,13 +47049,13 @@ aMD
 aMD
 aVc
 aVc
-aZS
+baL
 bai
 bat
 bau
 baM
 bai
-baB
+baW
 aVc
 aaa
 aaa
@@ -47887,7 +47907,7 @@ baD
 baK
 baD
 bai
-baB
+baW
 aVc
 aaa
 aaa
@@ -48026,7 +48046,7 @@ baa
 bad
 aVs
 bai
-baL
+baT
 bai
 aVs
 baB
