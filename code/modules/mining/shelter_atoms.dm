@@ -67,7 +67,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 
 		if(unique_id)
 			if(unique_id in GLOB.unique_deployable)
-				loc.visible_message("<span class='warning'>\There can only be one [src] deployed at a time.</span>")
+				loc.visible_message("<span class='warning'>There can only be one [src] deployed at a time.</span>")
 				used = FALSE
 				return
 			GLOB.unique_deployable += unique_id
