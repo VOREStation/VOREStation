@@ -7,7 +7,7 @@
 	obj_path = /obj/item/weapon/spell/mark
 	ability_icon_state = "tech_mark"
 	category = UTILITY_SPELLS
-
+//VOREStation Add - Multiple technomancer support
 /datum/technomancer_marker
 	var/weakref/U
 	var/image/I
@@ -32,7 +32,7 @@
 
 //This is global, to avoid looping through a list of all objects, or god forbid, looping through world.
 GLOBAL_LIST_INIT(mark_spells, list())
-
+//VOREStation Add End
 /obj/item/weapon/spell/mark
 	name = "mark"
 	icon_state = "mark"
@@ -45,6 +45,7 @@ GLOBAL_LIST_INIT(mark_spells, list())
 		to_chat(user, "<span class='warning'>You can't teleport here!</span>")
 		return 0
 	if(pay_energy(1000))
+		//VOREStation Add - Multiple technomancer support
 		var/datum/technomancer_marker/marker = GLOB.mark_spells[weakref(user)]
 		//They have one in the list
 		if(istype(marker))
@@ -54,6 +55,7 @@ GLOBAL_LIST_INIT(mark_spells, list())
 		else
 			to_chat(user, "<span class='notice'>You mark \the [get_turf(user)] under you.</span>")
 		GLOB.mark_spells[weakref(user)] = new /datum/technomancer_marker(user)
+		//VOREStation Add End
 		adjust_instability(5)
 		return 1
 	else
@@ -81,7 +83,7 @@ GLOBAL_LIST_INIT(mark_spells, list())
 
 /obj/item/weapon/spell/recall/on_use_cast(var/mob/living/user)
 	if(pay_energy(3000))
-		var/datum/technomancer_marker/marker = GLOB.mark_spells[weakref(user)]
+		var/datum/technomancer_marker/marker = GLOB.mark_spells[weakref(user)] //VOREStation Add - Multiple technomancer support
 		if(!istype(marker))
 			to_chat(user, "<span class='danger'>There's no Mark!</span>")
 			return 0
@@ -104,7 +106,7 @@ GLOBAL_LIST_INIT(mark_spells, list())
 				time_left--
 				sleep(1 SECOND)
 
-			var/turf/target_turf = marker.T
+			var/turf/target_turf = marker.T //VOREStation Edit - Multiple technomancer support
 			var/turf/old_turf = get_turf(user)
 
 			for(var/obj/item/weapon/grab/G in user.contents) // People the Technomancer is grabbing come along for the ride.
