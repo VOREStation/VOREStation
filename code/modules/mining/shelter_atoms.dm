@@ -1,3 +1,4 @@
+GLOBAL_LIST_EMPTY(unique_deployable)
 /*****************************Survival Pod********************************/
 /area/survivalpod
 	name = "\improper Emergency Shelter"
@@ -16,6 +17,7 @@
 	var/template_id = "shelter_alpha"
 	var/datum/map_template/shelter/template
 	var/used = FALSE
+	var/unique_id = null
 
 /obj/item/device/survivalcapsule/proc/get_template()
 	if(template)
@@ -63,6 +65,13 @@
 			used = FALSE
 			return
 
+		if(unique_id)
+			if(unique_id in GLOB.unique_deployable)
+				loc.visible_message("<span class='warning'>\There can only be one [src] deployed at a time.</span>")
+				used = FALSE
+				return
+			GLOB.unique_deployable += unique_id
+
 		var/turf/T = deploy_location
 		var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
 		smoke.attach(T)
@@ -95,11 +104,18 @@
 	desc = "A prefabricated firebase in a capsule. Contains basic weapons, building materials, and combat suits. There's a license for use printed on the bottom."
 	template_id = "shelter_delta"
 
+/obj/item/device/survivalcapsule/escapepod
+	name = "escape surfluid shelter capsule"
+	desc = "A prefabricated escape pod in a capsule. Contains a basic escape pod for survival purposes. There's a license for use printed on the bottom."
+	template_id = "shelter_epsilon"
+	unique_id = "shelter_5"
+
 //Custom Shelter Capsules
 /obj/item/device/survivalcapsule/tabiranth
 	name = "silver-trimmed surfluid shelter capsule"
 	desc = "An exorbitantly expensive luxury suite programmed into construction nanomachines. This one is a particularly rare and expensive model. There's a license for use printed on the bottom."
 	template_id = "shelter_phi"
+	unique_id = "shelter_a"
 
 //Pod objects
 //Walls

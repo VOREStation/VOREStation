@@ -2932,6 +2932,7 @@
 	icon_state = "tube1";
 	pixel_y = 0
 	},
+/obj/item/device/survivalcapsule/escapepod,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "fw" = (
@@ -2992,6 +2993,12 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/item/clothing/head/helmet/space/void/merc/prototype,
+/obj/item/clothing/head/helmet/space/void/merc/prototype,
+/obj/item/clothing/head/helmet/space/void/captain,
+/obj/item/clothing/suit/space/void/merc/prototype,
+/obj/item/clothing/suit/space/void/merc/prototype,
+/obj/item/clothing/suit/space/void/captain,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "fB" = (
@@ -3382,6 +3389,8 @@
 	pixel_x = 0;
 	pixel_y = -25
 	},
+/obj/item/weapon/technomancer_catalog/universal,
+/obj/item/weapon/technomancer_core/universal,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "gj" = (
