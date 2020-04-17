@@ -44,7 +44,6 @@
 	else
 		base_area = locate(base_area || world.area)
 
-	name = (name + " ([x],[y])")
 	SSshuttles.register_landmark(landmark_tag, src)
 
 /obj/effect/shuttle_landmark/LateInitialize()
@@ -124,14 +123,16 @@
 	name = "Navpoint"
 	landmark_tag = "navpoint"
 	flags = SLANDMARK_FLAG_AUTOSET
+	var/original_name = null // Save our mapped-in name so we can rebuild our name when moving sectors.
 
 /obj/effect/shuttle_landmark/automatic/Initialize()
+	original_name = name
 	landmark_tag += "-[x]-[y]-[z]-[random_id("landmarks",1,9999)]"
 	return ..()
 
 /obj/effect/shuttle_landmark/automatic/sector_set(var/obj/effect/overmap/visitable/O)
 	..()
-	name = ("[O.name] - [initial(name)] ([x],[y])")
+	name = ("[O.name] - [original_name] ([x],[y])")
 
 //Subtype that calls explosion on init to clear space for shuttles
 /obj/effect/shuttle_landmark/automatic/clearing

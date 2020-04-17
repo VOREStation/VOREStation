@@ -116,8 +116,12 @@
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/vespa
-	name = "HPV Vespa"
-	desc = "A Hephaestus Industries vessel."
+	desc = "A spacefaring vessel, of Hephaestus design."
+	scanner_name = "HPV Vespa"
+	scanner_desc = @{"[i]Registration[/i]: HPV Vespa
+[i]Class[/i]: Cruiser
+[i]Transponder[/i]: Transmitting (CIV), Hephaestus Industries
+[b]Notice[/b]: Corporate vessel"}
 	color = "#4cad73" //Green
 	vessel_mass = 10000
 	vessel_size = SHIP_SIZE_LARGE

@@ -45,8 +45,11 @@
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/landable/generic_shuttle
-	name = "Private Vessel"
-	desc = "A small privately-owned vessel."
+	scanner_name = "Private Vessel"
+	scanner_desc = @{"[i]Registration[/i]: PRIVATE
+[i]Class[/i]: Small Shuttle
+[i]Transponder[/i]: Transmitting (CIV), non-hostile
+[b]Notice[/b]: Small private vessel"}
 	vessel_mass = 1000
 	vessel_size = SHIP_SIZE_TINY
 	shuttle = "Private Vessel"

@@ -1,7 +1,10 @@
 /obj/effect/overmap/visitable/sector/tether_gateway/snowoutpost
 	initial_generic_waypoints = list("tether_excursion_snow_outpost")
-	true_name = "Snowy Outpost"
-	true_desc = "Scans indicate this planetoid has a very cold atmosphere and almost perpetual snow. There are signs of habitation on the surface."
+	scanner_name = "Snowy Outpost"
+	scanner_desc = @{"[i]Stellar Body[/i]>: UNKNOWN
+[i]Class[/i]>: M-Class Planetoid
+[i]Habitability[/i]>: Moderate (Low Temperature)
+[b]Notice[/b]>: Various small outposts and extensive cave network detected on surface"}
 
 // -- Areas -- //
 

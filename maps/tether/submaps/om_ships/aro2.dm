@@ -54,8 +54,13 @@
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/aro2
-	name = "Aronai Sieyes"
-	desc = "It's Aronai. Did you know he's actually a spaceship? Yeah it's weird."
+	name = "spacecraft"
+	desc = "Spacefaring vessel. Friendly IFF detected."
+	scanner_name = "Aronai Sieyes"
+	scanner_desc = @{"[i]Registration[/i]: Aronai Sieyes
+[i]Class[/i]: Small Frigate (Low Displacement)
+[i]Transponder[/i]: Transmitting (CIV), non-hostile
+[b]Notice[/b]: Automated vessel"}
 	color = "#00aaff" //Bluey
 	vessel_mass = 8000
 	vessel_size = SHIP_SIZE_SMALL
@@ -63,11 +68,10 @@
 	initial_restricted_waypoints = list("Aro's Boat" = list("omship_spawn_aroboat2"))
 	fore_dir = EAST
 
-/obj/effect/overmap/visitable/ship/aro2/get_skybox_representation()
-	var/image/I = image('aro2.dmi', "skybox")
-	I.pixel_x = 80
-	I.pixel_y = 100
-	return I
+	skybox_icon = 'aro2.dmi'
+	skybox_icon_state = "skybox"
+	skybox_pixel_x = 80
+	skybox_pixel_y = 100
 
 // The shuttle's 'shuttle' computer
 /obj/machinery/computer/shuttle_control/explore/aroboat2
