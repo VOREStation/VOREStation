@@ -5,6 +5,8 @@
 
 	var/known = 1		//shows up on nav computers automatically
 	var/scannable       //if set to TRUE will show up on ship sensors for detailed scans
+	var/scanner_name	//name for scans, replaces name once scanned
+	var/scanner_desc	//description for scans
 
 	var/skybox_icon 		//Icon file to use for skybox
 	var/skybox_icon_state	//Icon state to use for skybox
@@ -40,7 +42,12 @@
 		SSskybox.rebuild_skyboxes(O.map_z)
 
 /obj/effect/overmap/proc/get_scan_data(mob/user)
-	return desc
+	if(scanner_name && (name != scanner_name)) //A silly check, but 'name' is part of appearance, so more expensive than you might think
+		name = scanner_name
+
+	var/dat = {"\[b\]Scan conducted at\[/b\]: [stationtime2text()] [stationdate2text()]\n\[b\]Grid coordinates\[/b\]: [x],[y]\n\n[scanner_desc]"}
+
+	return dat
 
 /obj/effect/overmap/Initialize()
 	. = ..()
