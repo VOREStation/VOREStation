@@ -51,7 +51,7 @@
 
 		for(var/vismob in vis_mobs)
 			var/mob/M = vismob
-			if(isobserver(M) && !M.client?.holder)
+			if(isobserver(M) && !is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder)
 				spawn(0)
 					M.show_message(undisplayed_message, 2)
 			else
