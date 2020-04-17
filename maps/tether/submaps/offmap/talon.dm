@@ -39,6 +39,7 @@ var/global/list/latejoin_talon = list()
 [i]Class[/i]: Frigate
 [i]Transponder[/i]: Transmitting (CIV)
 [b]Notice[/b]: Independent trader vessel"}
+	color = "#aacccc"
 	vessel_mass = 10000
 	vessel_size = SHIP_SIZE_LARGE
 	initial_generic_waypoints = list("talon_fore", "talon_aft", "talon_port", "talon_starboard")
