@@ -219,6 +219,8 @@
 	state = 0
 	update_icon()
 	isSwitchingStates = 0
+	for(var/mob/living/L in get_turf(src))
+		L.gib()
 
 /obj/structure/inflatable/door/update_icon()
 	if(state)
