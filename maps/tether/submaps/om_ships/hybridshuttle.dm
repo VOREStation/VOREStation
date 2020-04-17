@@ -41,8 +41,11 @@
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/landable/hybridshuttle
-	name = "XN-29 Prototype Shuttle"
-	desc = "A hybrid excursion shuttle, sporting different features. Less space for equipment, but no fuel or power requirements."
+	scanner_name = "XN-29 Prototype Shuttle"
+	scanner_desc = @{"[i]Registration[/i]: UNKNOWN
+[i]Class[/i]: Shuttle
+[i]Transponder[/i]: Transmitting (MIL), NanoTrasen
+[b]Notice[/b]: Experimental vessel"}
 	color = "#00aaff" //Bluey
 	vessel_mass = 3000
 	vessel_size = SHIP_SIZE_SMALL

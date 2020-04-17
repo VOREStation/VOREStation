@@ -10,8 +10,9 @@
 // Uses Lorentzian dynamics to avoid going too fast.
 
 /obj/effect/overmap/visitable/ship
-	name = "generic ship"
-	desc = "Space faring vessel."
+	name = "spacecraft"
+	desc = "This marker represents a spaceship. Scan it for more information."
+	scanner_desc = "Unknown spacefaring vessel."
 	icon_state = "ship"
 	var/moving_state = "ship_moving"
 
@@ -54,8 +55,19 @@
 
 /obj/effect/overmap/visitable/ship/get_scan_data(mob/user)
 	. = ..()
+	
 	if(!is_still())
-		. += "<br>Heading: [get_heading_degrees()], speed [get_speed() * 1000]"
+		. += {"\n\[i\]Heading\[/i\]: [get_heading_degrees()]\n\[i\]Velocity\[/i\]: [get_speed() * 1000]"}
+	else
+		. += {"\n\[i\]Vessel was stationary at time of scan.\[/i\]\n"}
+	
+	var/life = 0
+	
+	for(var/mob/living/L in living_mob_list)
+		if(L.z in map_z) //Things inside things we'll consider shielded, otherwise we'd want to use get_z(L)
+			life++
+	
+	. += {"\[i\]Life Signs\[/i\]: [life ? life : "None"]"}
 
 //Projected acceleration based on information from engines
 /obj/effect/overmap/visitable/ship/proc/get_acceleration()

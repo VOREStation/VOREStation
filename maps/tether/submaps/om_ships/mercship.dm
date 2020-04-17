@@ -64,7 +64,11 @@
 // The 'ship'
 /obj/effect/overmap/visitable/ship/mercship
 	name = "Unknown Vessel"
-	desc = "An unknown vessel, of unknown design."
+	desc = "Spacefaring vessel. No IFF detected."
+	scanner_desc = @{"[i]Registration[/i]: UNKNOWN
+[i]Class[/i]: UNKNOWN
+[i]Transponder[/i]: None Detected
+[b]Notice[/b]: Unregistered vessel"}
 	color = "#f23000" //Red
 	vessel_mass = 8000
 	vessel_size = SHIP_SIZE_SMALL

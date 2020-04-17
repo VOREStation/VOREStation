@@ -3,6 +3,10 @@
 /obj/effect/overmap/visitable/sector/virgo4
 	name = "Virgo 4"
 	desc = "Home to sand, and things with big fluffy ears."
+	scanner_desc = @{"[i]Stellar Body[/i]: Virgo 4
+[i]Class[/i]: M-Class Planet
+[i]Habitability[/i]: Moderate (High Temperature)
+[b]Notice[/b]: Request authorization from planetary authorities before attempting to construct settlements"}
 	icon_state = "globe"
 	color = "#ffd300" //Sandy
 	initial_generic_waypoints = list("beach_e", "beach_c", "beach_nw")

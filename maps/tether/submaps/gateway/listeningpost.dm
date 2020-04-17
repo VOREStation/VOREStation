@@ -1,7 +1,10 @@
 /obj/effect/overmap/visitable/sector/tether_gateway/listeningpost
 	initial_generic_waypoints = list("tether_excursion_listeningpost")
-	true_name = "Strange Asteroid"
-	true_desc = "Scans indicate this asteroid is emitting large amounts of radio-frequency energy, and has indications of life being present."
+	scanner_name = "Strange Asteroid"
+	scanner_desc = @{"[i]Registration[/i]: UNKNOWN
+[i]Class[/i]: Installation
+[i]Transponder[/i]: None Detected
+[b]Notice[/b]: Emitting encrypted radio-frequency traffic"}
 
 /obj/item/weapon/paper/listneningpost/mission
 	name = "\improper Operation: Watchtower"

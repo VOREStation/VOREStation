@@ -34,8 +34,12 @@ var/global/list/latejoin_talon = list()
 ///////////////////////////
 //// The Talon
 /obj/effect/overmap/visitable/ship/talon
-	name = "ITV Talon"
-	desc = "A semi-modern make of ship from Haephestus, registered as the ITV Talon."
+	scanner_name = "ITV Talon"
+	scanner_desc = @{"[i]Registration[/i]: ITV Talon
+[i]Class[/i]: Frigate
+[i]Transponder[/i]: Transmitting (CIV)
+[b]Notice[/b]: Independent trader vessel"}
+	color = "#aacccc"
 	vessel_mass = 10000
 	vessel_size = SHIP_SIZE_LARGE
 	initial_generic_waypoints = list("talon_fore", "talon_aft", "talon_port", "talon_starboard")
