@@ -263,14 +263,6 @@
 	desc = "Approach and perform a scan to obtain further information."
 	icon_state = "object" //or "globe" for planetary stuff
 	known = FALSE
-	//initial_generic_waypoints = list("don't forget waypoints!")
-	var/true_name = "The scanned name goes here"
-	var/true_desc = "The scanned desc goes here"
-
-/obj/effect/overmap/visitable/sector/tether_gateway/get_scan_data(mob/user)
-	name = true_name
-	desc = true_desc
-	return ..()
 
 /datum/map_template/tether_lateload/gateway
 	name = "Gateway Submap"
