@@ -1,8 +1,8 @@
 /obj/machinery/exonet_node
 	name = "exonet node"
 	desc = null // Gets written in New()
-	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "exonet_node"
+	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Edit
+	icon_state = "exonet" //VOREStation Edit
 	idle_power_usage = 2500
 	density = 1
 	var/on = 1
@@ -44,10 +44,12 @@
 // Description: Self explanatory.
 /obj/machinery/exonet_node/update_icon()
 	if(on)
+		/* VOREStation Removal
 		if(!allow_external_PDAs && !allow_external_communicators && !allow_external_newscasters)
 			icon_state = "[initial(icon_state)]_idle"
 		else
-			icon_state = initial(icon_state)
+		*/
+		icon_state = initial(icon_state)
 	else
 		icon_state = "[initial(icon_state)]_off"
 
