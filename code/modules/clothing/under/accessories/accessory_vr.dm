@@ -2,6 +2,15 @@
 // Collars and such like that
 //
 
+/obj/item/clothing/accessory/choker //A colorable, tagless choker
+	name = "plain choker"
+	desc = "A simple, plain choker. Or maybe it's a collar? It doesn't have a tag."
+	icon = 'icons/obj/clothing/ties_vr.dmi'
+	icon_override = 'icons/mob/ties_vr.dmi'
+	icon_state = "choker_cst"
+	item_state = "choker_cst"
+	overlay_state = "choker_cst"
+
 /obj/item/clothing/accessory/collar
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
 	icon = 'icons/obj/clothing/ties_vr.dmi'
