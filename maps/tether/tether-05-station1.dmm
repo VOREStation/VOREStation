@@ -19697,6 +19697,7 @@
 	},
 /obj/item/clothing/mask/breath,
 /obj/item/weapon/rig/ce/equipped,
+/obj/item/clothing/shoes/magboots/adv,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "aQh" = (
