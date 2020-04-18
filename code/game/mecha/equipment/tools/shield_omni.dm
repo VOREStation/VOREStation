@@ -75,6 +75,14 @@
 	. = ..()
 	my_mech = loc
 	GLOB.moved_event.register(my_mech, src, /obj/item/shield_projector/proc/update_shield_positions)
+	update_shift(my_mech)
+
+/obj/item/shield_projector/rectangle/mecha/proc/update_shift(atom/movable/mech)
+	var/icon/my_icon = icon(mech.icon) //holy heck
+	var/x_dif = (my_icon.Width() - world.icon_size) / 2
+	shift_x = round(x_dif, 1)
+	var/y_dif = (my_icon.Height() - world.icon_size) / 2
+	shift_y = round(y_dif, 1)
 
 /obj/item/shield_projector/rectangle/mecha/Destroy()
 	GLOB.moved_event.unregister(my_mech, src, /obj/item/shield_projector/proc/update_shield_positions)

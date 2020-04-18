@@ -208,16 +208,6 @@
 	else
 		who << sound('sound/mecha/fighter_entered.ogg',volume=50)
 
-////////////// Equipment //////////////
-
-// For 64x64 fighters
-/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64
-	shield_type = /obj/item/shield_projector/rectangle/mecha/fighter64
-/obj/item/shield_projector/rectangle/mecha/fighter64
-	shift_x = 16
-	shift_y = 16
-
-
 ////////////// Gunpod //////////////
 
 /obj/mecha/combat/fighter/gunpod
@@ -316,7 +306,7 @@
 	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
 	ME.attach(src)
-	ME = new /obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64
+	ME = new /obj/item/mecha_parts/mecha_equipment/omni_shield
 	ME.attach(src)
 
 /obj/effect/decal/mecha_wreckage/baron
