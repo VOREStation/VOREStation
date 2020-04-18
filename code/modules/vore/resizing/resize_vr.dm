@@ -42,7 +42,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	ASSERT(!ishuman(src))
 	var/matrix/M = matrix()
 	M.Scale(size_multiplier)
-	M.Translate(0, 16*(size_multiplier-1))
+	M.Translate(0, (vis_height/2)*(size_multiplier-1))
 	transform = M
 
 /**
