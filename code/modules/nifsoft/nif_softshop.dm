@@ -234,7 +234,7 @@
 		return
 
 /obj/machinery/vending/nifsoft_shop/emag_act(remaining_charges, mob/user) //Yeees, YEEES! Give me that black market tech.
-	if(!emagged)
+	if(!emagged || !(categories & CAT_HIDDEN))
 		emagged = 1
 		categories |= CAT_HIDDEN
 		to_chat(user, "You short out [src]'s access lock & stock restrictions.")
