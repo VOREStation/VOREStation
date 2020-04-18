@@ -22,6 +22,7 @@
 #define COLD_GAS_DAMAGE_LEVEL_3 3 //Amount of damage applied when the current breath's temperature passes the 120K point
 
 #define RADIATION_SPEED_COEFFICIENT 0.1
+#define HUMAN_COMBUSTION_TEMP 524 //524k is the sustained combustion temperature of human fat
 
 /mob/living/carbon/human
 	var/oxygen_alert = 0
@@ -1821,7 +1822,15 @@
 	if(thermal_protection == 1) // Immune.
 		return
 	else
-		bodytemperature += (BODYTEMP_HEATING_MAX + (fire_stacks * 15)) * (1-thermal_protection)
+		var/fire_temp_add = (BODYTEMP_HEATING_MAX + (fire_stacks * 15)) * (1-thermal_protection)
+		//This is to prevent humans from heating up indefinitely. A human being on fire (fat burns at 250C) can't magically
+		//   increase your body temperature beyond 250C, but it's possible something else (atmos) has heated us up beyond it,
+		//   so don't worry about the firestacks at that point. Really, we should be cooling the room down, because it has
+		//   to expend energy to heat our body up! But let's not worry about that.
+		if((bodytemperature + fire_temp_add) > HUMAN_COMBUSTION_TEMP)
+			return
+
+		bodytemperature += fire_temp_add
 
 /mob/living/carbon/human/rejuvenate()
 	restore_blood()
