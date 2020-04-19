@@ -27480,17 +27480,17 @@
 /turf/simulated/floor/carpet/sblucarpet,
 /area/bridge/meeting_room)
 "aXf" = (
-/obj/structure/table/woodentable,
 /obj/item/weapon/book/manual/security_space_law,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
+/obj/structure/table/fancyblack,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/bridge/meeting_room)
 "aXg" = (
-/obj/structure/table/woodentable,
 /obj/item/weapon/folder/red,
 /obj/structure/disposalpipe/segment,
+/obj/structure/table/fancyblack,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/bridge/meeting_room)
 "aXh" = (
@@ -27539,7 +27539,6 @@
 /turf/simulated/floor/carpet/sblucarpet,
 /area/bridge/meeting_room)
 "aXn" = (
-/obj/structure/table/woodentable,
 /obj/item/weapon/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
@@ -27548,6 +27547,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/structure/table/fancyblack,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/bridge/meeting_room)
 "aXo" = (
@@ -27626,9 +27626,9 @@
 /turf/simulated/floor/plating,
 /area/maintenance/commandmaint)
 "aXx" = (
-/obj/structure/table/woodentable,
 /obj/item/weapon/folder/blue,
 /obj/structure/disposalpipe/segment,
+/obj/structure/table/fancyblack,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/bridge/meeting_room)
 "aXy" = (
