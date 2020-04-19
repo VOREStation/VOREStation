@@ -1060,6 +1060,7 @@
 #include "code\game\objects\items\shooting_range.dm"
 #include "code\game\objects\items\tailoring.dm"
 #include "code\game\objects\items\toys.dm"
+#include "code\game\objects\items\toys_vr.dm"
 #include "code\game\objects\items\trash.dm"
 #include "code\game\objects\items\trash_material.dm"
 #include "code\game\objects\items\trash_vr.dm"
