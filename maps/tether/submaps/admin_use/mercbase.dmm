@@ -488,10 +488,10 @@
 /area/antag/antag_base)
 "aN" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/hos,
 /obj/effect/landmark{
 	name = "Syndicate-Spawn"
 	},
+/obj/item/weapon/bedsheet/pirate,
 /turf/unsimulated/floor{
 	icon_state = "lino"
 	},
@@ -647,7 +647,6 @@
 /area/antag/antag_base)
 "aZ" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/hos,
 /obj/machinery/computer/security/telescreen/entertainment{
 	icon_state = "frame";
 	pixel_w = 0;
@@ -657,6 +656,7 @@
 /obj/effect/landmark{
 	name = "Syndicate-Spawn"
 	},
+/obj/item/weapon/bedsheet/pirate,
 /turf/unsimulated/floor{
 	icon_state = "lino"
 	},
