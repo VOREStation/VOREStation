@@ -348,7 +348,8 @@
 "ah" = (
 /obj/structure/fans/hardlight,
 /obj/machinery/door/blast/regular{
-	destroy_hits = 1000
+	destroy_hits = 1000;
+	id = "tabi-hangar1"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/tabiranth)
@@ -374,6 +375,11 @@
 	icon_state = "warning";
 	dir = 8
 	},
+/obj/machinery/button/remote/blast_door{
+	id = "tabi-hangar1";
+	pixel_x = -26;
+	pixel_y = 26
+	},
 /turf/simulated/floor/reinforced,
 /area/shuttle/tabiranth)
 "al" = (
@@ -394,6 +400,11 @@
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
 	dir = 4
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "tabi-hangar2";
+	pixel_x = 26;
+	pixel_y = 26
 	},
 /turf/simulated/floor/reinforced,
 /area/shuttle/tabiranth)
@@ -470,10 +481,11 @@
 /turf/simulated/floor/bluegrid,
 /area/shuttle/tabiranth)
 "av" = (
-/obj/effect/floor_decal/industrial/warning{
+/obj/machinery/mech_recharger,
+/obj/effect/floor_decal/techfloor,
+/obj/effect/floor_decal/techfloor{
 	dir = 1
 	},
-/obj/machinery/mech_recharger,
 /turf/simulated/floor/reinforced,
 /area/shuttle/tabiranth)
 "aw" = (
@@ -485,26 +497,6 @@
 "ax" = (
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 8
-	},
-/turf/simulated/floor/reinforced,
-/area/shuttle/tabiranth)
-"ay" = (
-/obj/structure/bed/chair/bay/shuttle{
-	dir = 4
-	},
-/obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 1
-	},
-/turf/simulated/floor/reinforced,
-/area/shuttle/tabiranth)
-"az" = (
-/obj/structure/bed/chair/bay/shuttle{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 4
 	},
 /turf/simulated/floor/reinforced,
 /area/shuttle/tabiranth)
@@ -624,11 +616,12 @@
 /turf/simulated/floor/reinforced,
 /area/shuttle/tabiranth)
 "aH" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/mech_recharger,
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/techfloor,
 /turf/simulated/floor/reinforced,
 /area/shuttle/tabiranth)
 "aI" = (
@@ -1734,7 +1727,7 @@
 	volume = 10000
 	},
 /obj/machinery/button/remote/blast_door{
-	id = "ship-vault";
+	id = "tabi-vault";
 	name = "Vault Blast Door Controls";
 	pixel_x = 26;
 	pixel_y = -26;
@@ -1776,7 +1769,7 @@
 /obj/machinery/door/blast/regular{
 	destroy_hits = 100;
 	dir = 4;
-	id = "ship-vault";
+	id = "tabi-vault";
 	name = "Vault"
 	},
 /obj/effect/floor_decal/industrial/warning{
@@ -1805,6 +1798,14 @@
 	name = "Panther"
 	},
 /turf/simulated/floor/reinforced,
+/area/shuttle/tabiranth)
+"wz" = (
+/obj/structure/fans/hardlight,
+/obj/machinery/door/blast/regular{
+	destroy_hits = 1000;
+	id = "tabi-hangar2"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/tabiranth)
 
 (1,1,1) = {"
@@ -1888,7 +1889,7 @@ ad
 ae
 ak
 ar
-ay
+aw
 aw
 aG
 ad
@@ -1926,7 +1927,7 @@ ad
 ag
 am
 at
-az
+ax
 ax
 aI
 ad
@@ -1981,8 +1982,8 @@ ab
 (10,1,1) = {"
 aa
 ac
-ah
-ah
+wz
+wz
 ad
 ad
 bt
