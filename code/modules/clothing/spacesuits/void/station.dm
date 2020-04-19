@@ -193,27 +193,32 @@
 
 /obj/item/clothing/head/helmet/space/void/security/riot
 	name = "crowd control voidsuit helmet"
+	desc = "A heavy-set and ominous looking crowd control suit helmet. Fitted with state of the art shock absorbing materials, to disperse blunt force trauma."
 	icon_state = "rig0-sec_riot"
+	armor = list(melee = 70, bullet = 15, laser = 15, energy = 5, bomb = 40, bio = 100, rad = 10)
 	item_state_slots = list(slot_r_hand_str = "sec_helm_riot", slot_l_hand_str = "sec_helm_riot")
 
 /obj/item/clothing/suit/space/void/security/riot
 	name = "crowd control voidsuit"
+	desc = "A heavy-set and ominous looking crowd control suit. Fitted with state of the art shock absorbing materials, to disperse blunt force trauma."
 	icon_state = "rig-sec_riot"
+	armor = list(melee = 70, bullet = 15, laser = 15, energy = 5, bomb = 40, bio = 100, rad = 10)
 	item_state_slots = list(slot_r_hand_str = "sec_voidsuit_riot", slot_l_hand_str = "sec_voidsuit_riot")
 
 //Security Surplus Voidsuit
 /obj/item/clothing/head/helmet/space/void/security/alt
-	name = "riot security voidsuit helmet"
-	desc = "A somewhat tacky voidsuit helmet, a fact mitigated by heavy armor plating."
+	name = "security EVA voidsuit helmet"
+	desc = "A grey-black voidsuit helmet with red highlights. A little tacky, but it offers better protection against modern firearms and radiation than standard-issue security voidsuit helmets."
+	armor = list(melee = 30, bullet = 40, laser = 40, energy = 25, bomb = 60, bio = 100, rad = 50)
 	icon_state = "rig0-secalt"
-	armor = list(melee = 70, bullet = 20, laser = 30, energy = 5, bomb = 35, bio = 100, rad = 10)
+	item_state_slots = list(slot_r_hand_str = "syndicate-helm-black", slot_l_hand_str = "syndicate-helm-black")
 
 /obj/item/clothing/suit/space/void/security/alt
+	name = "security EVA voidsuit"
+	desc = "A grey-black voidsuit with red highlights. A little tacky, but it offers better protection against modern firearms and radiation than standard-issue security voidsuits."
+	armor = list(melee = 30, bullet = 40, laser = 40, energy = 25, bomb = 60, bio = 100, rad = 50)
 	icon_state = "rig-secalt"
-	name = "riot security voidsuit"
-	desc = "A heavily armored voidsuit, designed to intimidate people who find black intimidating. Surprisingly slimming."
-	armor = list(melee = 70, bullet = 20, laser = 30, energy = 5, bomb = 35, bio = 100, rad = 10)
-	allowed = list(/obj/item/weapon/gun,/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton)
+	item_state_slots = list(slot_r_hand_str = "sec_voidsuitTG", slot_l_hand_str = "sec_voidsuitTG")
 
 //Atmospherics
 /obj/item/clothing/head/helmet/space/void/atmos
