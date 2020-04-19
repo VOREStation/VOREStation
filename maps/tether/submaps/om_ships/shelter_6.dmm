@@ -87,8 +87,6 @@
 /obj/item/weapon/shield/energy,
 /obj/item/weapon/shield/energy,
 /obj/item/weapon/shield/energy,
-/obj/item/weapon/shield/energy,
-/obj/item/weapon/shield/energy,
 /obj/item/weapon/melee/baton/loaded,
 /obj/item/weapon/melee/baton/loaded,
 /obj/item/weapon/melee/baton/loaded,
@@ -656,6 +654,7 @@
 /obj/fiftyspawner/glass,
 /obj/fiftyspawner/glass,
 /obj/fiftyspawner/glass,
+/obj/item/weapon/storage/belt/utility/full,
 /turf/simulated/floor/reinforced,
 /area/shuttle/tabiranth)
 "aJ" = (
@@ -781,7 +780,6 @@
 /obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
 /obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
 /obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
-/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
 /obj/item/weapon/gun/projectile/pistol,
 /obj/item/weapon/gun/projectile/pistol,
 /obj/item/weapon/gun/projectile/pistol,
@@ -872,6 +870,10 @@
 /obj/item/weapon/tank/emergency/oxygen/double,
 /obj/item/weapon/tank/emergency/oxygen/double,
 /obj/item/weapon/tank/emergency/oxygen/double,
+/obj/item/device/binoculars,
+/obj/item/device/binoculars,
+/obj/item/device/binoculars,
+/obj/item/device/perfect_tele,
 /turf/simulated/floor/tiled/white,
 /area/shuttle/tabiranth)
 "aP" = (
@@ -1427,6 +1429,8 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 9
 	},
+/obj/item/device/perfect_tele/alien,
+/obj/item/device/perfect_tele/frontier/staff,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/tabiranth)
 "bk" = (
