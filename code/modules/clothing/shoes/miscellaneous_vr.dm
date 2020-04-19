@@ -57,3 +57,5 @@
 		slowdown = shoes ? max(SHOES_SLOWDOWN, shoes.slowdown) : SHOES_SLOWDOWN	//So you can't put on magboots to make you walk faster.
 	else if(shoes)
 		slowdown = shoes.slowdown
+	else
+		slowdown = SHOES_SLOWDOWN

@@ -2242,6 +2242,7 @@
 "aei" = (
 /obj/structure/table/reinforced,
 /obj/machinery/camera/network/engineering,
+/obj/item/clothing/shoes/magboots/adv,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "aej" = (
@@ -19697,7 +19698,6 @@
 	},
 /obj/item/clothing/mask/breath,
 /obj/item/weapon/rig/ce/equipped,
-/obj/item/clothing/shoes/magboots/adv,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "aQh" = (
