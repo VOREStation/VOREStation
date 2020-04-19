@@ -2824,7 +2824,10 @@
 #include "code\modules\multiz\hoist.dm"
 #include "code\modules\multiz\ladder_assembly_vr.dm"
 #include "code\modules\multiz\movement.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\multiz\movement_vr.dm"
+=======
+>>>>>>> 0b03209... Merge pull request #6996 from VOREStation/vplk-ssopenspace:polaris.dme
 #include "code\modules\multiz\pipes.dm"
 #include "code\modules\multiz\structures.dm"
 #include "code\modules\multiz\structures_vr.dm"
