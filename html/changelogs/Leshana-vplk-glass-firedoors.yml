@@ -1,0 +1,4 @@
+author: Leshana
+delete-after: True
+changes: 
+  - rscadd: "Glass Emergency Shutters are now constructable and deconstructing them will give you the glass back."
