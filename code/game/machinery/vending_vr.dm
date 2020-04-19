@@ -136,6 +136,7 @@
 	product_ads = "The true life juice!;Vampire's choice!;Home-grown blood only!;Donate today, be saved tomorrow!;Approved by Zeng-Hu Pharmaceuticals Incorporated!; Curse you, Vey-Med artificial blood!"
 	icon = 'icons/obj/vending_vr.dmi'
 	icon_state = "blood"
+	vend_delay = 7
 	idle_power_usage = 211
 	req_access = list(access_medical)
 	products = list(/obj/item/weapon/reagent_containers/blood/prelabeled/APlus = 3,/obj/item/weapon/reagent_containers/blood/prelabeled/AMinus = 3,
