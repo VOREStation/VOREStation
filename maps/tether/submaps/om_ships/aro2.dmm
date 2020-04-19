@@ -1016,6 +1016,11 @@
 	icon_state = "techfloororange_corners";
 	dir = 1
 	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/bighallway)
 "cc" = (
@@ -1490,6 +1495,11 @@
 /obj/structure/railing{
 	dir = 4
 	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/bluegrid,
 /area/aro2/bighallway)
 "de" = (
@@ -1897,6 +1907,11 @@
 /turf/simulated/wall/rpshull,
 /area/aro2/storage)
 "dS" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/simulated/floor/bluegrid,
 /area/aro2/bighallway)
 "dT" = (
@@ -2044,6 +2059,9 @@
 	field_radius = 31;
 	initial_shield_modes = 2113;
 	target_radius = 31
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/bluegrid,
 /area/aro2/bighallway)
@@ -4772,6 +4790,15 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/aroboat2)
+"TY" = (
+/obj/effect/floor_decal/techfloor/orange,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/aro2/bighallway)
 "VH" = (
 /obj/structure/grille,
 /obj/structure/window/phoronreinforced/full,
@@ -15689,7 +15716,7 @@ bI
 hT
 gU
 cb
-cr
+TY
 dd
 dS
 eu
