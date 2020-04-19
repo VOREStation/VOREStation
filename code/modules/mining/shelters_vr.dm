@@ -93,6 +93,16 @@
 		for escaping a dying ship as soon as possible."
 	mappath = "maps/tether/submaps/om_ships/shelter_5.dmm"
 
+/datum/map_template/shelter/zeta
+	name = "Shelter Zeta"
+	shelter_id = "shelter_zeta"
+	description = "An small dropship with a massive number of equipment, \
+		weapons, and supplies. Contains exterior weapons, point defense, \
+		a shield generator, and extremely advanced technology. It is \
+		unknown who manufactued a vessel like this, as it is beyond the \
+		technology level of most contemporary powers."
+	mappath = "maps/tether/submaps/om_ships/shelter_6.dmm"
+
 /datum/map_template/shelter/phi
 	name = "Shelter Phi"
 	shelter_id = "shelter_phi"

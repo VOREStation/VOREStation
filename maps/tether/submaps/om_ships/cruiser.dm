@@ -8,128 +8,128 @@
 	requires_power = 1
 	flags = RAD_SHIELDED
 	base_turf = /turf/space
-	icon_state = "blue-red2"
+	icon_state = "blue2"
 
 /area/mothership/breakroom
-	name = "Warship - Breakroom"
+	name = "Daedalus - Breakroom"
 
 /area/mothership/hydroponics
-	name = "Warship - Hydroponics"
+	name = "Daedalus - Hydroponics"
 
 /area/mothership/kitchen
-	name = "Warship - Kitchen"
+	name = "Daedalus - Kitchen"
 
 /area/mothership/eva
-	name = "Warship - EVA"
+	name = "Daedalus - EVA"
 
 /area/mothership/bathroom1
-	name = "Warship - Bathroom 1"
+	name = "Daedalus - Bathroom 1"
 
 /area/mothership/bathroom2
-	name = "Warship - Bathroom 2"
+	name = "Daedalus - Bathroom 2"
 
 /area/mothership/dorm1
-	name = "Warship - Dorm 1"
+	name = "Daedalus - Dorm 1"
 
 /area/mothership/dorm2
-	name = "Warship - Dorm 2"
+	name = "Daedalus - Dorm 2"
 
 /area/mothership/dorm3
-	name = "Warship - Dorm 3"
+	name = "Daedalus - Dorm 3"
 
 /area/mothership/dorm4
-	name = "Warship - Dorm 4"
+	name = "Daedalus - Dorm 4"
 
 /area/mothership/dorm5
-	name = "Warship - Dorm 5"
+	name = "Daedalus - Dorm 5"
 
 /area/mothership/dorm6
-	name = "Warship - Dorm 6"
+	name = "Daedalus - Dorm 6"
 
 /area/mothership/chemistry
-	name = "Warship - Chemistry"
+	name = "Daedalus - Chemistry"
 
 /area/mothership/surgery
-	name = "Warship - Surgery"
+	name = "Daedalus - Surgery"
 
 /area/mothership/vault
-	name = "Warship - Vault"
+	name = "Daedalus - Vault"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/mothership/teleporter
-	name = "Warship - Teleporter Room"
+	name = "Daedalus - Teleporter Room"
 
 /area/mothership/security
-	name = "Warship - Security Equipment"
+	name = "Daedalus - Security Equipment"
 
 /area/mothership/treatment
-	name = "Warship - Treatment Center"
+	name = "Daedalus - Treatment Center"
 
 /area/mothership/medical
-	name = "Warship - Medical Equipment"
+	name = "Daedalus - Medical Equipment"
 
 /area/mothership/resleeving
-	name = "Warship - Resleeving"
+	name = "Daedalus - Resleeving"
 
 /area/mothership/morgue
-	name = "Warship - Morgue"
+	name = "Daedalus - Morgue"
 
 /area/mothership/rnd
-	name = "Warship - Research"
+	name = "Daedalus - Research"
 
 /area/mothership/robotics
-	name = "Warship - Robotics"
+	name = "Daedalus - Robotics"
 
 /area/mothership/sechallway
-	name = "Warship - Security Hallway"
+	name = "Daedalus - Security Hallway"
 
 /area/mothership/processing
-	name = "Warship - Processing"
+	name = "Daedalus - Processing"
 
 /area/mothership/warden
-	name = "Warship - Warden"
+	name = "Daedalus - Warden"
 
 /area/mothership/armory
-	name = "Warship - Armory"
+	name = "Daedalus - Armory"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 
 /area/mothership/bridge
-	name = "Warship - Bridge"
+	name = "Daedalus - Bridge"
 
 /area/mothership/holodeck
-	name = "Warship - Holodeck Controls"
+	name = "Daedalus - Holodeck Controls"
 /area/mothership/holodeck/holo
-	name = "Warship - Holodeck"
+	name = "Daedalus - Holodeck"
 	icon_state = "dk_yellow"
 
 /area/mothership/cryotube
-	name = "Warship - Cryo chamber"
+	name = "Daedalus - Cryo chamber"
 
 /area/mothership/engineering
-	name = "Warship - Engineering"
+	name = "Daedalus - Engineering"
 
 /area/mothership/hallway
-	name = "Warship - Main Hallway"
+	name = "Daedalus - Main Hallway"
 
 /area/mothership/telecomms1
-	name = "Warship - Hangar 1"
+	name = "Daedalus - Hangar 1"
 	has_gravity = 0
 
 /area/mothership/telecomms2
-	name = "Warship - Hangar 2"
+	name = "Daedalus - Hangar 2"
 	has_gravity = 0
 
 /datum/map_template/om_ships/cruiser
-	name = "OM Ship - NDV Tabiranth (New Z)"
+	name = "OM Ship - Daedalus (New Z)"
 	desc = "A large NT cruiser."
 	mappath = 'cruiser.dmm'
 
 /obj/effect/overmap/visitable/ship/cruiser
 	name = "spacecraft"
 	desc = "Spacefaring vessel. NanoTrasen IFF detected."
-	scanner_name = "NDV Tabiranth"
-	scanner_desc = @{"[i]Registration[/i]: NDV Tabiranth
-[i]Class[/i]: Cruiser
+	scanner_name = "NDV Daedalus"
+	scanner_desc = @{"[i]Registration[/i]: NDV Daedalus
+[i]Class[/i]: Light Cruiser
 [i]Transponder[/i]: Transmitting (MIL), NanoTrasen IFF
 [b]Notice[/b]: Military vessel, do not approach"}
 	color = "#0033ff" //Bluey

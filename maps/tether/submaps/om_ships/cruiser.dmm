@@ -2,18 +2,9 @@
 "aa" = (
 /turf/space,
 /area/space)
-"ab" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/breakroom)
 "ac" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /obj/machinery/door/blast/regular{
 	density = 0;
 	destroy_hits = 1000;
@@ -29,7 +20,7 @@
 /turf/simulated/floor/plating,
 /area/mothership/breakroom)
 "ad" = (
-/obj/machinery/door/airlock/alien/blue/locked{
+/obj/machinery/door/airlock/external{
 	frequency = 1380;
 	id_tag = "ws_dock_8_outer";
 	req_one_access = list(101)
@@ -151,7 +142,7 @@
 /area/mothership/breakroom)
 "an" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/machinery/door/airlock/alien/blue/locked{
+/obj/machinery/door/airlock/external{
 	frequency = 1380;
 	id_tag = "ws_dock_8_inner";
 	req_one_access = list(101)
@@ -485,18 +476,7 @@
 	},
 /area/mothership/bridge)
 "bd" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/hydroponics)
-"be" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/hydroponics)
 "bf" = (
 /obj/effect/floor_decal/spline/fancy/wood{
@@ -527,18 +507,10 @@
 /area/mothership/hydroponics)
 "bh" = (
 /obj/structure/sign/department/bar,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/kitchen)
 "bi" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/kitchen)
 "bj" = (
 /obj/machinery/door/window/northleft,
@@ -548,14 +520,6 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/mothership/kitchen)
-"bk" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
 /area/mothership/kitchen)
 "bl" = (
 /obj/machinery/biogenerator,
@@ -605,12 +569,7 @@
 /area/mothership/hydroponics)
 "bq" = (
 /obj/structure/sink/kitchen,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/hydroponics)
 "br" = (
 /obj/structure/cable/cyan{
@@ -671,12 +630,7 @@
 /area/mothership/hydroponics)
 "bv" = (
 /obj/structure/sink/kitchen,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/kitchen)
 "bw" = (
 /obj/machinery/chem_master/condimaster,
@@ -1123,18 +1077,7 @@
 	},
 /area/mothership/bridge)
 "cr" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/eva)
-"cs" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/eva)
 "cw" = (
 /obj/item/clothing/suit/space/void/security/alt,
@@ -1241,7 +1184,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/eva)
 "cH" = (
-/obj/machinery/door/airlock/alien/blue/locked{
+/obj/machinery/door/airlock/external{
 	frequency = 1380;
 	id_tag = "ws_dock_7_outer";
 	req_one_access = list(101)
@@ -1287,7 +1230,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/alien/blue/locked{
+/obj/machinery/door/airlock/external{
 	frequency = 1380;
 	id_tag = "ws_dock_7_inner";
 	req_one_access = list(101)
@@ -1539,20 +1482,10 @@
 /area/mothership/eva)
 "de" = (
 /obj/structure/sign/department/eva,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/eva)
 "df" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/bathroom1)
 "dg" = (
 /obj/machinery/recharge_station,
@@ -1739,12 +1672,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/bathroom2)
 "dr" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/bathroom2)
 "ds" = (
 /turf/simulated/shuttle/wall/voidcraft/blue{
@@ -1860,12 +1788,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
-"dF" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/bathroom2)
 "dG" = (
 /obj/structure/toilet{
 	dir = 1
@@ -1911,10 +1833,7 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/bathroom2)
 "dJ" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/surgery)
 "dK" = (
 /obj/structure/grille,
@@ -1937,18 +1856,7 @@
 /turf/simulated/floor/plating,
 /area/mothership/surgery)
 "dL" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/dorm1)
-"dM" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/dorm1)
 "dN" = (
 /obj/machinery/light{
@@ -1961,18 +1869,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "dO" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/teleporter)
-"dP" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/teleporter)
 "dQ" = (
 /obj/machinery/door/airlock/multi_tile/metal,
@@ -2010,16 +1907,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "dU" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/dorm2)
 "dV" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/security)
 "dW" = (
 /obj/structure/closet/crate/medical,
@@ -2073,12 +1964,6 @@
 /turf/simulated/floor/wood,
 /area/mothership/dorm1)
 "ec" = (
-/obj/machinery/button/remote/blast_door{
-	id = "ship-vault";
-	name = "Vault Blast Door Controls";
-	pixel_y = 28;
-	req_one_access = list(108)
-	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
 "ed" = (
@@ -2522,18 +2407,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/surgery)
 "eK" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/chemistry)
-"eL" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/chemistry)
 "eM" = (
 /obj/structure/cable/cyan{
@@ -2573,7 +2447,7 @@
 "eQ" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/item/device/perfect_tele_beacon/stationary{
-	tele_name = "Warship";
+	tele_name = "Daedalus";
 	tele_network = "centcom"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -2595,14 +2469,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/teleporter)
-"eT" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/security)
 "eU" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/security,
@@ -2612,12 +2478,7 @@
 /area/mothership/security)
 "eV" = (
 /obj/machinery/oxygen_pump/anesthetic,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/surgery)
 "eW" = (
 /obj/structure/medical_stand,
@@ -2678,10 +2539,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "fd" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/vault)
 "fe" = (
 /obj/structure/cable/cyan{
@@ -2826,162 +2684,52 @@
 /area/mothership/chemistry)
 "fu" = (
 /obj/structure/sign/department/chem,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/chemistry)
 "fv" = (
-/obj/structure/closet/crate/secure/gear{
-	req_one_access = list(108)
+/obj/machinery/light/small{
+	icon_state = "bulb1";
+	dir = 1
 	},
-/obj/item/stack/telecrystal{
-	amount = 240
-	},
-/obj/item/stack/telecrystal{
-	amount = 240
-	},
-/obj/item/stack/telecrystal{
-	amount = 240
-	},
-/obj/item/stack/telecrystal{
-	amount = 240
-	},
-/obj/item/stack/telecrystal{
-	amount = 240
-	},
-/obj/item/stack/telecrystal{
-	amount = 240
-	},
-/obj/item/stack/telecrystal{
-	amount = 240
-	},
-/obj/item/stack/telecrystal{
-	amount = 240
-	},
-/obj/item/weapon/card/mining_point_card{
-	mine_points = 50000
-	},
-/obj/item/weapon/card/mining_point_card{
-	mine_points = 50000
-	},
-/obj/item/weapon/card/mining_point_card{
-	mine_points = 50000
-	},
-/obj/item/weapon/card/mining_point_card{
-	mine_points = 50000
-	},
-/obj/item/weapon/card/mining_point_card{
-	mine_points = 50000
-	},
-/obj/item/weapon/card/mining_point_card{
-	mine_points = 50000
-	},
-/obj/item/weapon/card/mining_point_card/survey{
-	name = "survey point card";
-	survey_points = 5000
-	},
-/obj/item/weapon/card/mining_point_card/survey{
-	name = "survey point card";
-	survey_points = 5000
-	},
-/obj/item/weapon/card/mining_point_card/survey{
-	name = "survey point card";
-	survey_points = 5000
-	},
-/obj/item/weapon/card/mining_point_card/survey{
-	name = "survey point card";
-	survey_points = 5000
-	},
-/obj/item/weapon/card/mining_point_card/survey{
-	name = "survey point card";
-	survey_points = 5000
-	},
-/obj/item/weapon/card/mining_point_card/survey{
-	name = "survey point card";
-	survey_points = 5000
-	},
-/obj/item/device/survivalcapsule/military,
-/obj/item/device/survivalcapsule/military,
-/obj/item/weapon/storage/secure/briefcase/money{
-	desc = "An sleek tidy briefcase.";
-	name = "secure briefcase"
-	},
-/obj/item/weapon/storage/secure/briefcase/money{
-	desc = "An sleek tidy briefcase.";
-	name = "secure briefcase"
-	},
-/obj/item/weapon/storage/secure/briefcase/money{
-	desc = "An sleek tidy briefcase.";
-	name = "secure briefcase"
-	},
-/obj/item/weapon/storage/secure/briefcase/money{
-	desc = "An sleek tidy briefcase.";
-	name = "secure briefcase"
-	},
-/obj/item/weapon/storage/secure/briefcase/money{
-	desc = "An sleek tidy briefcase.";
-	name = "secure briefcase"
-	},
-/obj/item/weapon/storage/secure/briefcase/money{
-	desc = "An sleek tidy briefcase.";
-	name = "secure briefcase"
-	},
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
-	},
-/obj/item/device/survivalcapsule/escapepod,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/mothership/vault)
-"fw" = (
-/obj/machinery/syndicate_beacon/virgo{
-	charges = 10
-	},
+/obj/structure/closet/radiation,
+/obj/fiftyspawner/uranium,
+/obj/fiftyspawner/uranium,
+/obj/fiftyspawner/uranium,
+/obj/fiftyspawner/uranium,
+/obj/fiftyspawner/uranium,
+/obj/fiftyspawner/uranium,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "fx" = (
-/obj/machinery/mineral/equipment_vendor,
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/obj/machinery/power/port_gen/pacman/super/potato{
+	sheets = 100
+	},
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2";
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "fy" = (
-/obj/structure/cable/cyan{
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2"
+	icon_state = "0-2";
+	pixel_y = 0
 	},
-/obj/machinery/power/smes/buildable/hybrid{
-	charge = 1e+007;
-	cur_coils = 4;
-	input_attempt = 1;
-	input_level = 1e+006;
-	output_level = 2e+006;
-	RCon = 0
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/mothership/vault)
-"fz" = (
-/obj/structure/prop/alien/computer/hybrid{
-	dir = 1
+/obj/machinery/power/port_gen/pacman/super/potato{
+	sheets = 100
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "fA" = (
-/obj/structure/closet/crate/secure/weapon{
-	req_one_access = list(108)
-	},
-/obj/item/clothing/suit/space/void/merc/fire,
-/obj/item/clothing/head/helmet/space/void/merc/fire,
-/obj/item/clothing/suit/space/void/merc,
-/obj/item/clothing/head/helmet/space/void/merc,
-/obj/item/clothing/suit/space/void/merc,
-/obj/item/clothing/head/helmet/space/void/merc,
-/obj/item/clothing/suit/space/void/merc/odst,
-/obj/item/clothing/head/helmet/space/void/merc/odst,
-/obj/item/clothing/suit/space/void/security/fluff/hos,
-/obj/item/clothing/head/helmet/space/void/security/fluff/hos,
-/obj/item/weapon/tank/oxygen/yellow,
-/obj/item/weapon/tank/vox,
 /obj/machinery/power/apc{
 	alarms_hidden = 1;
 	dir = 1;
@@ -2993,12 +2741,17 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/item/clothing/head/helmet/space/void/merc/prototype,
-/obj/item/clothing/head/helmet/space/void/merc/prototype,
-/obj/item/clothing/head/helmet/space/void/captain,
-/obj/item/clothing/suit/space/void/merc/prototype,
-/obj/item/clothing/suit/space/void/merc/prototype,
-/obj/item/clothing/suit/space/void/captain,
+/obj/machinery/light/small{
+	icon_state = "bulb1";
+	dir = 1
+	},
+/obj/structure/closet/radiation,
+/obj/fiftyspawner/uranium,
+/obj/fiftyspawner/uranium,
+/obj/fiftyspawner/uranium,
+/obj/fiftyspawner/uranium,
+/obj/fiftyspawner/uranium,
+/obj/fiftyspawner/uranium,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "fB" = (
@@ -3143,59 +2896,54 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/vault/bolted{
-	id_tag = "ship-vault-door";
-	req_one_access = list(109)
-	},
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	destroy_hits = 100;
-	id = "ship-vault";
-	name = "Vault"
+/obj/machinery/door/airlock/vault{
+	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/vault)
 "fS" = (
 /obj/structure/cable/cyan{
-	d1 = 4;
+	d1 = 2;
 	d2 = 8;
-	icon_state = "4-8"
+	icon_state = "2-8"
 	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/power/terminal,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "fT" = (
-/obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 1
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
 /obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/mothership/vault)
+"fU" = (
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
 /obj/structure/cable/cyan{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/structure/cable/cyan{
-	d1 = 1;
+/obj/structure/cable{
 	d2 = 8;
-	icon_state = "1-8"
+	icon_state = "0-8"
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/mothership/vault)
-"fU" = (
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/machinery/power/terminal,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "fV" = (
@@ -3328,145 +3076,37 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/chemistry)
 "gh" = (
-/obj/structure/closet/crate/secure/weapon{
-	req_one_access = list(108)
+/obj/machinery/power/smes/buildable{
+	charge = 2e+007;
+	cur_coils = 4;
+	input_attempt = 1;
+	input_level = 500000;
+	output_level = 1e+006;
+	RCon_tag = "Power - Main"
 	},
-/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat,
-/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid,
-/obj/item/ammo_casing/microbattery/medical/corpse_mend,
-/obj/item/ammo_casing/microbattery/medical/corpse_mend,
-/obj/item/slime_extract/pink,
-/obj/item/slime_extract/pink,
-/obj/item/slime_extract/pink,
-/obj/item/slime_extract/pink,
-/obj/item/slime_extract/pink,
-/obj/item/slime_extract/pink,
-/obj/item/weapon/cell/slime{
-	description_info = "This 'cell' holds a max charge of 20k and self recharges over time.";
-	icon = 'icons/obj/power.dmi';
-	icon_state = "icell";
-	maxcharge = 20000;
-	name = "slime core cell"
-	},
-/obj/item/weapon/cell/slime{
-	description_info = "This 'cell' holds a max charge of 20k and self recharges over time.";
-	icon = 'icons/obj/power.dmi';
-	icon_state = "icell";
-	maxcharge = 20000;
-	name = "slime core cell"
-	},
-/obj/item/weapon/cell/slime{
-	description_info = "This 'cell' holds a max charge of 20k and self recharges over time.";
-	icon = 'icons/obj/power.dmi';
-	icon_state = "icell";
-	maxcharge = 20000;
-	name = "slime core cell"
-	},
-/obj/item/weapon/cell/slime{
-	description_info = "This 'cell' holds a max charge of 20k and self recharges over time.";
-	icon = 'icons/obj/power.dmi';
-	icon_state = "icell";
-	maxcharge = 20000;
-	name = "slime core cell"
-	},
-/obj/item/slime_extract/pink,
-/obj/item/slime_extract/pink,
-/obj/item/weapon/deadringer,
-/obj/item/weapon/deadringer,
+/obj/structure/cable/cyan,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
-"gi" = (
-/obj/structure/closet/crate/secure/weapon{
-	req_one_access = list(108)
+"gj" = (
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = 0
 	},
-/obj/item/weapon/gun/energy/modular/cannon,
-/obj/item/weapon/gun/energy/modular/carbine,
-/obj/item/weapon/gun/energy/modular/pistol,
-/obj/item/weapon/gun/energy/medigun,
-/obj/item/weapon/gun/energy/captain,
+/obj/structure/cable,
+/obj/machinery/power/port_gen/pacman/super/potato{
+	sheets = 100
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/mothership/vault)
+"gk" = (
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_x = 0;
 	pixel_y = -25
 	},
-/obj/item/weapon/technomancer_catalog/universal,
-/obj/item/weapon/technomancer_core/universal,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/mothership/vault)
-"gj" = (
-/obj/machinery/mineral/equipment_vendor/survey,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/mothership/vault)
-"gk" = (
-/obj/machinery/power/fractal_reactor/fluff/converter{
-	mapped_in = 1;
-	power_generation_rate = 2e+006
-	},
 /obj/structure/cable,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/mothership/vault)
-"gl" = (
-/obj/structure/closet/crate/secure/gear{
-	req_one_access = list(108)
-	},
-/obj/item/rig_module/chem_dispenser/injector/advanced,
-/obj/item/rig_module/vision/multi,
-/obj/item/weapon/rig/military/equipped,
-/obj/item/weapon/rig/pmc/commander,
-/obj/item/weapon/rig/pmc/medical,
-/obj/item/weapon/rig/pmc/engineer,
-/obj/item/weapon/rig/pmc/security,
-/obj/item/weapon/rig/pmc/security,
-/obj/item/weapon/rig/light/ninja,
-/obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -22
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/mothership/vault)
-"gm" = (
-/obj/structure/closet/crate/secure/gear{
-	req_one_access = list(108)
-	},
-/obj/item/device/bluespaceradio,
-/obj/item/weapon/storage/firstaid/insiderepair,
-/obj/item/weapon/storage/firstaid/combat,
-/obj/item/weapon/storage/toolbox/syndicate/powertools,
-/obj/item/weapon/storage/box/syndie_kit/demolitions_super_heavy{
-	name = "Super Heavy Demolitions kit"
-	},
-/obj/item/weapon/storage/box/syndie_kit/demolitions_heavy{
-	name = "Heavy Demolitions kit"
-	},
-/obj/item/weapon/storage/box/syndie_kit/demolitions_heavy{
-	name = "Heavy Demolitions kit"
-	},
-/obj/item/weapon/storage/box/syndie_kit/demolitions_heavy{
-	name = "Heavy Demolitions kit"
-	},
-/obj/item/weapon/plastique,
-/obj/item/weapon/plastique,
-/obj/item/weapon/plastique,
-/obj/item/weapon/plastique,
-/obj/item/weapon/plastique,
-/obj/item/weapon/plastique,
-/obj/item/weapon/storage/box/emps{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/weapon/cell/device/weapon/recharge/alien,
-/obj/item/weapon/cell/device/weapon/recharge/alien,
-/obj/item/weapon/cell/device/weapon/recharge/alien,
-/obj/item/weapon/cell/device/weapon/recharge/alien,
-/obj/item/weapon/cell/device/weapon/recharge/alien,
-/obj/item/weapon/cell/device/weapon/recharge/alien,
-/obj/item/weapon/material/knife/machete/deluxe{
-	default_material = "durasteel"
-	},
-/obj/item/clothing/accessory/holster/machete,
-/obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+/obj/machinery/power/port_gen/pacman/super/potato{
+	sheets = 100
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
@@ -3503,18 +3143,7 @@
 /area/mothership/security)
 "gq" = (
 /obj/structure/sign/department/operational,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/surgery)
-"gr" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/surgery)
 "gs" = (
 /obj/structure/cable/cyan{
@@ -3546,12 +3175,7 @@
 /area/mothership/chemistry)
 "gv" = (
 /obj/structure/sign/department/medbay,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/chemistry)
 "gw" = (
 /obj/machinery/light{
@@ -3561,14 +3185,6 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
-"gx" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/vault)
 "gy" = (
 /obj/machinery/light{
 	dir = 4
@@ -3628,10 +3244,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/security)
 "gG" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/treatment)
 "gH" = (
 /obj/machinery/vending/blood,
@@ -4097,46 +3710,13 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/treatment)
 "hu" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/dorm3)
-"hv" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/dorm3)
 "hw" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/dorm4)
-"hx" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/dorm4)
 "hy" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/sechallway)
-"hz" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/sechallway)
 "hA" = (
 /obj/machinery/door/airlock/security,
@@ -4512,10 +4092,7 @@
 /area/mothership/sechallway)
 "il" = (
 /obj/structure/sign/department/interrogation,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/processing)
 "im" = (
 /obj/structure/table/steel_reinforced,
@@ -4572,18 +4149,10 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/treatment)
 "iv" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/morgue)
 "iw" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/engineering)
 "ix" = (
 /obj/machinery/door_timer/cell_1{
@@ -4676,14 +4245,6 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/processing)
-"iF" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/treatment)
 "iG" = (
 /obj/machinery/door/airlock/medical,
 /obj/machinery/door/firedoor/glass,
@@ -4871,10 +4432,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/processing)
 "iV" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/resleeving)
 "iW" = (
 /obj/machinery/computer/transhuman/resleeving{
@@ -4935,14 +4493,6 @@
 /obj/machinery/vending/medical,
 /turf/simulated/floor/tiled/white,
 /area/mothership/resleeving)
-"je" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/morgue)
 "jf" = (
 /obj/machinery/power/apc{
 	alarms_hidden = 1;
@@ -5201,18 +4751,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/sechallway)
 "jC" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/warden)
-"jD" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/warden)
 "jE" = (
 /obj/machinery/door/airlock/security,
@@ -5522,10 +5061,7 @@
 /area/mothership/resleeving)
 "kd" = (
 /obj/structure/sign/department/morgue,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/morgue)
 "ke" = (
 /obj/structure/table/steel_reinforced,
@@ -5589,10 +5125,7 @@
 /turf/simulated/floor/plating,
 /area/mothership/warden)
 "kl" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/medical)
 "km" = (
 /obj/machinery/door/airlock/medical,
@@ -5783,16 +5316,10 @@
 /turf/simulated/floor/wood,
 /area/mothership/dorm5)
 "kG" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/dorm5)
 "kH" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/dorm6)
 "kI" = (
 /obj/structure/closet/wardrobe/ert,
@@ -6148,30 +5675,9 @@
 /obj/structure/cable/cyan,
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
-"lm" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/dorm5)
-"ln" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/dorm6)
 "lo" = (
 /obj/structure/sign/department/armory,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/armory)
 "lp" = (
 /obj/machinery/door/airlock/highsecurity{
@@ -6188,18 +5694,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/armory)
 "lq" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/armory)
-"lr" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/armory)
 "ls" = (
 /obj/machinery/door/airlock/highsecurity{
@@ -6609,24 +6104,10 @@
 /area/mothership/medical)
 "ma" = (
 /obj/structure/sign/department/medbay,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/medical)
 "mb" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/bridge)
-"mc" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/bridge)
 "md" = (
 /obj/item/weapon/storage/box/flashshells,
@@ -6717,10 +6198,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
 "mi" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/rnd)
 "mj" = (
 /obj/machinery/r_n_d/destructive_analyzer,
@@ -6778,13 +6256,6 @@
 /obj/machinery/computer/ship/helm,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/bridge)
-"mt" = (
-/obj/structure/sign/department/armory,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/armory)
 "mu" = (
 /obj/item/ammo_magazine/m545/ap,
 /obj/item/ammo_magazine/m545/ap,
@@ -7032,10 +6503,7 @@
 /area/mothership/rnd)
 "mT" = (
 /obj/structure/sign/department/rnd,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/rnd)
 "mU" = (
 /obj/machinery/power/apc{
@@ -7246,14 +6714,6 @@
 	pixel_y = -5
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/mothership/rnd)
-"nk" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
 /area/mothership/rnd)
 "nl" = (
 /obj/structure/cable/cyan{
@@ -7468,12 +6928,7 @@
 /area/mothership/hallway)
 "nF" = (
 /obj/structure/sign/department/bridge,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/bridge)
 "nG" = (
 /obj/machinery/computer/communications{
@@ -7794,6 +7249,7 @@
 	},
 /obj/machinery/turretid/stun{
 	check_access = 0;
+	check_records = 0;
 	check_weapons = 1;
 	control_area = /area/mothership/hallway;
 	name = "anti-boarding turret controls";
@@ -7824,14 +7280,6 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
 "ok" = (
-/obj/machinery/button/remote/airlock{
-	id = "ship-vault-door";
-	name = "Vault Lock";
-	pixel_x = -6;
-	pixel_y = -26;
-	req_one_access = list(108);
-	specialfunctions = 4
-	},
 /obj/machinery/turretid/lethal{
 	ailock = 1;
 	check_synth = 0;
@@ -7844,18 +7292,10 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
 "ol" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/holodeck)
 "om" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/robotics)
 "on" = (
 /obj/structure/closet/toolcloset,
@@ -7925,12 +7365,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
-"ow" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/holodeck)
 "ox" = (
 /obj/machinery/alarm{
 	dir = 4;
@@ -7981,7 +7415,6 @@
 /turf/simulated/floor/plating,
 /area/mothership/holodeck)
 "oB" = (
-/obj/structure/closet/excavation,
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1"
@@ -8308,27 +7741,13 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/mothership/holodeck)
 "pe" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/telecomms1)
 "pk" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/cryotube)
-"pq" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/telecomms2)
 "pr" = (
-/obj/machinery/door/airlock/alien/blue/locked{
+/obj/machinery/door/airlock/external{
 	frequency = 1380;
 	id_tag = "ws_dock_6_outer";
 	req_one_access = list(101)
@@ -8381,7 +7800,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/alien/blue/locked{
+/obj/machinery/door/airlock/external{
 	frequency = 1380;
 	id_tag = "ws_dock_6_inner";
 	req_one_access = list(101)
@@ -8524,12 +7943,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
-"pD" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/cryotube)
 "pE" = (
 /obj/machinery/vending/loadout/accessory,
 /turf/simulated/floor/tiled/steel_grid,
@@ -8675,7 +8088,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/alien/blue/locked{
+/obj/machinery/door/airlock/external{
 	frequency = 1380;
 	id_tag = "ws_dock_3_inner";
 	req_one_access = list(101)
@@ -8711,7 +8124,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/telecomms2)
 "pU" = (
-/obj/machinery/door/airlock/alien/blue/locked{
+/obj/machinery/door/airlock/external{
 	frequency = 1380;
 	id_tag = "ws_dock_3_outer";
 	req_one_access = list(101)
@@ -8728,14 +8141,6 @@
 /obj/structure/fans/hardlight,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/telecomms2)
-"pV" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/telecomms1)
 "pW" = (
 /obj/machinery/alarm{
 	dir = 4;
@@ -8775,10 +8180,7 @@
 /area/mothership/telecomms1)
 "qb" = (
 /obj/structure/sign/department/telecoms,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/telecomms1)
 "qc" = (
 /obj/structure/closet/crate/bin,
@@ -8869,10 +8271,7 @@
 /area/mothership/hallway)
 "qm" = (
 /obj/structure/sign/department/telecoms,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/telecomms2)
 "qn" = (
 /obj/machinery/computer/rdservercontrol{
@@ -8923,38 +8322,11 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/telecomms2)
 "qs" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/telecomms2)
 "qt" = (
 /obj/machinery/telecomms/bus/preset_cent,
 /turf/simulated/floor/greengrid,
-/area/mothership/telecomms1)
-"qu" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	icon_state = "corner_techfloor_grid";
-	dir = 6
-	},
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive,
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive,
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
-/obj/structure/closet/walllocker{
-	name = "Equipment Locker";
-	pixel_x = -32
-	},
-/obj/item/mecha_parts/mecha_equipment/crisis_drone/rad,
-/obj/item/mecha_parts/mecha_equipment/crisis_drone/rad,
-/obj/item/mecha_parts/mecha_equipment/repair_droid,
-/obj/item/mecha_parts/mecha_equipment/repair_droid,
-/turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms1)
 "qv" = (
 /obj/machinery/telecomms/processor/preset_cent,
@@ -8976,10 +8348,7 @@
 /area/mothership/telecomms1)
 "qB" = (
 /obj/structure/sign/department/eng,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/engineering)
 "qC" = (
 /obj/machinery/door/airlock/engineeringatmos,
@@ -9042,33 +8411,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/engineering)
-"qJ" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/engineering)
-"qN" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 9
-	},
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon,
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon,
-/obj/item/mecha_parts/mecha_equipment/crisis_drone,
-/obj/item/mecha_parts/mecha_equipment/crisis_drone,
-/obj/structure/closet/walllocker{
-	name = "Equipment Locker";
-	pixel_x = 32
-	},
-/obj/item/mecha_parts/mecha_equipment/crisis_drone/rad,
-/obj/item/mecha_parts/mecha_equipment/crisis_drone/rad,
-/obj/item/mecha_parts/mecha_equipment/repair_droid,
-/obj/item/mecha_parts/mecha_equipment/repair_droid,
-/turf/simulated/floor/tiled/techfloor,
-/area/mothership/telecomms2)
 "qR" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
@@ -9292,28 +8634,6 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/engineering)
-"rr" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	icon_state = "corner_techfloor_grid";
-	dir = 6
-	},
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive,
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive,
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
-/obj/structure/closet/walllocker{
-	name = "Equipment Locker";
-	pixel_x = -32
-	},
-/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
-/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
-/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
-/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
-/turf/simulated/floor/tiled/techfloor,
-/area/mothership/telecomms2)
 "rt" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 8
@@ -9877,7 +9197,7 @@
 /area/mothership/engineering)
 "sD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/machinery/door/airlock/alien/blue/locked{
+/obj/machinery/door/airlock/external{
 	frequency = 1380;
 	id_tag = "ws_dock_5_inner";
 	req_one_access = list(101)
@@ -9892,14 +9212,11 @@
 /area/mothership/engineering)
 "sF" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black,
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
+/turf/simulated/wall/rpshull,
 /area/mothership/engineering)
 "sG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/machinery/door/airlock/alien/blue/locked{
+/obj/machinery/door/airlock/external{
 	frequency = 1380;
 	id_tag = "ws_dock_4_inner";
 	req_one_access = list(101)
@@ -9970,7 +9287,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/engineering)
 "sL" = (
-/obj/machinery/door/airlock/alien/blue/locked{
+/obj/machinery/door/airlock/external{
 	frequency = 1380;
 	id_tag = "ws_dock_5_outer";
 	req_one_access = list(101)
@@ -10055,6 +9372,9 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
+"tG" = (
+/turf/simulated/wall/rpshull,
+/area/mothership/breakroom)
 "tK" = (
 /obj/item/modular_computer/console/preset/mercenary{
 	dir = 4
@@ -10107,7 +9427,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/alien/blue/locked{
+/obj/machinery/door/airlock/external{
 	frequency = 1380;
 	id_tag = "ws_dock_2_inner";
 	req_one_access = list(101)
@@ -10239,7 +9559,7 @@
 /area/mothership/hallway)
 "yi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/machinery/door/airlock/alien/blue/locked{
+/obj/machinery/door/airlock/external{
 	frequency = 1380;
 	id_tag = "ws_dock_1_inner";
 	req_one_access = list(101)
@@ -10391,6 +9711,19 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/eva)
+"Df" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/mothership/vault)
 "Do" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -10407,27 +9740,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
-"DU" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 9
-	},
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon,
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon,
-/obj/item/mecha_parts/mecha_equipment/crisis_drone,
-/obj/item/mecha_parts/mecha_equipment/crisis_drone,
-/obj/structure/closet/walllocker{
-	name = "Equipment Locker";
-	pixel_x = 32
-	},
-/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
-/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
-/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
-/obj/item/mecha_parts/mecha_equipment/omni_shield/fighter64,
-/turf/simulated/floor/tiled/techfloor,
-/area/mothership/telecomms1)
 "DX" = (
 /obj/effect/floor_decal/techfloor/orange{
 	icon_state = "techfloororange_edges";
@@ -10759,7 +10071,7 @@
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
 "PT" = (
-/obj/machinery/door/airlock/alien/blue/locked{
+/obj/machinery/door/airlock/external{
 	frequency = 1380;
 	id_tag = "ws_dock_4_outer";
 	req_one_access = list(101)
@@ -10938,7 +10250,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "SM" = (
-/obj/machinery/door/airlock/alien/blue/locked{
+/obj/machinery/door/airlock/external{
 	frequency = 1380;
 	id_tag = "ws_dock_1_outer";
 	req_one_access = list(101)
@@ -10995,6 +10307,20 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
+"Tr" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/vault{
+	req_one_access = list(101)
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/mothership/vault)
+"TE" = (
+/turf/simulated/wall/rpshull,
+/area/mothership/processing)
 "TK" = (
 /obj/effect/floor_decal/techfloor/orange{
 	icon_state = "techfloororange_edges";
@@ -11040,6 +10366,25 @@
 /obj/structure/fans/hardlight,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/telecomms1)
+"WN" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	destroy_hits = 1000;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "ship-lounge";
+	name = "Shuttle Blast Doors";
+	opacity = 0
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/fans/hardlight,
+/turf/simulated/floor/plating,
+/area/mothership/breakroom)
 "Xh" = (
 /obj/item/modular_computer/console/preset/mercenary{
 	dir = 8
@@ -11119,7 +10464,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "ZS" = (
-/obj/machinery/door/airlock/alien/blue/locked{
+/obj/machinery/door/airlock/external{
 	frequency = 1380;
 	id_tag = "ws_dock_2_outer";
 	req_one_access = list(101)
@@ -18912,7 +18257,7 @@ uh
 cq
 cq
 bc
-nk
+mi
 om
 om
 om
@@ -19058,15 +18403,15 @@ mi
 on
 oB
 oL
-pV
+pe
 pt
-pV
 pe
 pe
 pe
 pe
 pe
-pV
+pe
+pe
 bc
 aa
 aa
@@ -19205,7 +18550,7 @@ pu
 pW
 Ox
 BQ
-qu
+rj
 rt
 qw
 WE
@@ -19313,14 +18658,14 @@ eW
 fp
 fK
 gc
-gr
+dJ
 gI
 gW
 hp
 hp
 hY
 ir
-iF
+gG
 iX
 jq
 jH
@@ -19492,7 +18837,7 @@ wO
 uV
 Kd
 AL
-pV
+pe
 uh
 aa
 aa
@@ -19578,7 +18923,7 @@ aa
 aa
 bc
 Su
-be
+bd
 bC
 bC
 bd
@@ -19588,7 +18933,7 @@ cI
 cr
 bc
 df
-ds
+df
 dJ
 dJ
 dJ
@@ -19597,14 +18942,14 @@ eK
 eK
 eK
 eK
-eL
+eK
 gK
 gY
 hr
 hp
 ia
 hp
-iF
+gG
 iZ
 js
 jJ
@@ -19714,20 +19059,20 @@ aa
 aa
 aa
 uh
-ae
+tG
 au
 au
 au
-ae
+tG
 bd
-be
+bd
 bD
 bR
-bk
+bi
 cr
-cs
+cr
 cJ
-cs
+cr
 cr
 df
 dt
@@ -19773,7 +19118,7 @@ py
 pY
 DX
 RE
-DU
+XQ
 XQ
 Ch
 WE
@@ -19854,9 +19199,9 @@ aa
 aa
 aa
 aa
-ab
-ab
-ae
+tG
+tG
+tG
 ao
 ao
 ao
@@ -19888,7 +19233,7 @@ hp
 hp
 hp
 is
-iF
+gG
 jb
 ju
 jJ
@@ -19913,17 +19258,17 @@ oQ
 pe
 pz
 pZ
-qJ
-qJ
-qJ
-qJ
-qJ
-qJ
-qJ
-qJ
-qJ
-qJ
-qJ
+iw
+iw
+iw
+iw
+iw
+iw
+iw
+iw
+iw
+iw
+iw
 aa
 aa
 aa
@@ -20055,7 +19400,7 @@ oR
 pe
 pA
 qv
-qJ
+iw
 qT
 qT
 qT
@@ -20138,9 +19483,9 @@ aa
 aa
 aa
 aa
-ae
-ab
-ae
+tG
+tG
+tG
 av
 Do
 ao
@@ -20157,10 +19502,10 @@ cW
 cr
 di
 ds
-dM
+dL
 dL
 eu
-eL
+eK
 eK
 fu
 fP
@@ -20172,7 +19517,7 @@ gG
 hG
 id
 iu
-iF
+gG
 jd
 jw
 jL
@@ -20187,17 +19532,17 @@ ma
 mi
 mD
 mT
-nk
+mi
 nD
-nk
-nk
+mi
+mi
 ou
 oG
 oS
-pV
+pe
 pB
 qb
-qJ
+iw
 qU
 rk
 ru
@@ -20206,7 +19551,7 @@ sc
 ss
 sy
 iw
-qJ
+iw
 iw
 aa
 aa
@@ -20279,9 +19624,9 @@ aa
 aa
 aa
 aa
-aa
 ag
-ab
+tG
+tG
 ao
 ao
 Do
@@ -20293,9 +19638,9 @@ bG
 bT
 bo
 cr
-cs
+cr
 cN
-cs
+cr
 cr
 dj
 dw
@@ -20315,9 +19660,9 @@ gG
 gG
 gG
 gG
-je
+iv
 jx
-je
+iv
 kd
 iv
 kl
@@ -20421,9 +19766,9 @@ aa
 aa
 aa
 aa
-aa
 Sv
-ae
+tG
+tG
 ap
 ao
 Do
@@ -20563,8 +19908,8 @@ aa
 aa
 aa
 aa
-aa
 uh
+WN
 ac
 ao
 aw
@@ -20584,14 +19929,14 @@ cr
 dl
 dy
 dO
-dP
-dP
-dP
+dO
+dO
+dO
 fd
 fd
 fR
 fd
-gx
+fd
 dz
 EK
 hu
@@ -20610,22 +19955,22 @@ kG
 EK
 dz
 mb
-mc
-mc
+mb
+mb
 mb
 nm
 nF
-mc
-mc
+mb
+mb
 mb
 dl
 dy
 pk
-pD
+pk
 qe
-pD
-pD
-pD
+pk
+pk
+pk
 rx
 rO
 sf
@@ -20704,28 +20049,28 @@ aa
 aa
 aa
 aa
-aa
-ab
-ab
+tG
+tG
+tG
 ae
 aq
 ax
 FW
 aH
 aR
-be
+bd
 bq
 bH
 bU
-be
-cs
+bd
+cr
 cB
 cO
 cZ
 cr
 Ep
 dz
-dP
+dO
 ec
 ew
 eN
@@ -20751,7 +20096,7 @@ kW
 kG
 YP
 ts
-mc
+mb
 mq
 Ux
 mV
@@ -20759,15 +20104,15 @@ nn
 mG
 mE
 oh
-mc
+mb
 EK
 oV
-pD
+pk
 pE
 qf
 qD
 qX
-pD
+pk
 ry
 rP
 sg
@@ -20846,7 +20191,7 @@ aa
 aa
 aa
 aa
-aa
+WN
 ac
 ah
 aj
@@ -20860,25 +20205,25 @@ br
 bI
 bT
 cf
-cs
+cr
 cC
 cO
 da
 de
 EK
 dA
-dP
+dO
 ed
 ex
 eO
 fd
-fw
-fS
-gi
+fd
+Tr
+fd
 fd
 Pi
 KO
-hv
+hu
 hK
 hu
 iv
@@ -20890,10 +20235,10 @@ iv
 iv
 kG
 kX
-lm
+kG
 xE
 Yt
-mc
+mb
 mr
 uI
 mW
@@ -20901,15 +20246,15 @@ no
 no
 no
 oi
-mc
+mb
 EK
 oW
-pD
+pk
 pF
 qg
 qE
 qY
-pD
+pk
 rz
 rQ
 sh
@@ -20988,7 +20333,7 @@ aa
 aa
 aa
 aa
-aa
+WN
 ac
 ah
 ak
@@ -20997,7 +20342,7 @@ az
 aE
 az
 aT
-be
+bd
 bs
 bJ
 bV
@@ -21015,7 +20360,7 @@ ey
 eP
 fd
 fx
-fS
+Df
 gj
 fd
 zd
@@ -21035,7 +20380,7 @@ kY
 dS
 he
 dD
-mc
+mb
 ms
 mG
 uI
@@ -21043,21 +20388,21 @@ np
 nG
 nT
 Xh
-mc
+mb
 Ep
 oX
-pD
+pk
 pG
 qh
 qF
 qZ
-pD
+pk
 rA
 rR
 si
 su
 sA
-qJ
+iw
 cq
 cq
 bc
@@ -21130,7 +20475,7 @@ aa
 aa
 aa
 aa
-aa
+WN
 ac
 ah
 ak
@@ -21139,7 +20484,7 @@ az
 az
 az
 aU
-be
+bd
 bt
 bK
 bW
@@ -21177,7 +20522,7 @@ dj
 dy
 EK
 FQ
-mc
+mb
 wT
 mG
 uI
@@ -21185,15 +20530,15 @@ nq
 nH
 nU
 tK
-mc
+mb
 EK
 oY
-pD
+pk
 pH
 qh
 qF
 ra
-pD
+pk
 rB
 rS
 sj
@@ -21272,7 +20617,7 @@ aa
 aa
 aa
 aa
-aa
+WN
 ac
 ah
 al
@@ -21286,27 +20631,27 @@ bu
 bL
 bX
 ci
-cs
+cr
 cF
 cO
 dd
-cs
+cr
 EK
 dA
-dP
+dO
 eg
 Hl
 eR
 fd
-fz
-fS
-gl
+fd
+Tr
+fd
 fd
 gR
 EK
 hw
 hM
-hx
+hw
 hy
 hy
 hy
@@ -21316,10 +20661,10 @@ hy
 hy
 kH
 kZ
-ln
+kH
 EK
 dA
-mc
+mb
 Sa
 uI
 mX
@@ -21327,15 +20672,15 @@ nr
 nr
 nr
 oj
-mc
+mb
 ZL
 oZ
-pD
+pk
 pI
 qi
 qG
 rb
-pD
+pk
 rB
 rT
 sk
@@ -21414,9 +20759,9 @@ aa
 aa
 aa
 aa
-aa
-ab
-ab
+tG
+tG
+tG
 ae
 aq
 ax
@@ -21428,25 +20773,25 @@ bv
 bM
 bY
 cj
-cs
+cr
 cG
 cO
 cZ
 cr
 QH
 JJ
-dP
+dO
 ex
 eA
 eh
 fd
 fA
 fU
-gm
+gh
 fd
 dz
 EK
-hx
+hw
 hN
 ih
 hy
@@ -21461,7 +20806,7 @@ la
 kH
 EK
 dz
-mc
+mb
 Xy
 QF
 mY
@@ -21469,15 +20814,15 @@ ns
 mG
 mH
 ok
-mc
+mb
 YP
 Kc
-pD
+pk
 pJ
 qj
 qH
 rc
-pD
+pk
 rC
 rU
 sl
@@ -21557,8 +20902,8 @@ aa
 aa
 aa
 aa
-aa
 uh
+WN
 ac
 ao
 aB
@@ -21578,17 +20923,17 @@ cr
 SV
 wA
 dO
-dP
-dP
-dP
+dO
+dO
+dO
 fd
 fd
 fR
 fd
-gx
+fd
 dy
 dl
-hx
+hw
 hO
 ii
 hy
@@ -21604,22 +20949,22 @@ kH
 dl
 dy
 mb
-mc
-mc
+mb
+mb
 mb
 nt
 nF
-mc
-mc
+mb
+mb
 mb
 SV
 Yv
 pk
-pD
+pk
 qk
-pD
-pD
-pD
+pk
+pk
+pk
 rD
 rV
 sm
@@ -21699,9 +21044,9 @@ aa
 aa
 aa
 aa
-aa
 Sv
-ae
+tG
+tG
 as
 ao
 Do
@@ -21730,7 +21075,7 @@ HG
 yW
 dx
 Kr
-hx
+hw
 hP
 ij
 hy
@@ -21841,9 +21186,9 @@ aa
 aa
 aa
 aa
-aa
 ag
-ab
+tG
+tG
 at
 ao
 Do
@@ -21855,9 +21200,9 @@ bN
 ca
 cm
 cr
-cs
+cr
 cN
-cs
+cr
 cr
 dj
 dE
@@ -21901,7 +21246,7 @@ dj
 dz
 EK
 qc
-qJ
+iw
 re
 ro
 rF
@@ -21984,9 +21329,9 @@ aa
 aa
 aa
 aa
-ae
-ab
-ae
+tG
+tG
+tG
 av
 Do
 ao
@@ -22002,11 +21347,11 @@ cR
 cW
 cr
 do
-dF
+dr
 dU
 dU
 eC
-eT
+dV
 dV
 dV
 dV
@@ -22014,7 +21359,7 @@ dV
 dV
 gT
 hg
-hz
+hy
 hQ
 hQ
 ix
@@ -22030,20 +21375,20 @@ lo
 lB
 lS
 lq
-mt
-lr
-lr
-lr
+lo
+lq
+lq
+lq
 lo
 nW
 ol
-ow
+ol
 ol
 pb
 qs
 pK
 qm
-qJ
+iw
 rf
 rp
 rG
@@ -22052,7 +21397,7 @@ rX
 sw
 sC
 iw
-qJ
+iw
 iw
 aa
 aa
@@ -22178,14 +21523,14 @@ mZ
 nv
 nI
 nX
-lr
+lq
 ox
 oJ
 pc
-pq
+qs
 pL
 qn
-qJ
+iw
 rg
 rq
 rH
@@ -22268,9 +21613,9 @@ aa
 aa
 aa
 aa
-ab
-ab
-ae
+tG
+tG
+tG
 ao
 ao
 ao
@@ -22298,18 +21643,18 @@ gn
 gA
 fY
 hi
-hB
-hC
+TE
+TE
 il
 iz
-hC
-hC
+TE
+TE
 jC
-jD
-jD
+jC
+jC
 kp
-jD
-jD
+jC
+jC
 lq
 lD
 lU
@@ -22320,24 +21665,24 @@ lG
 lG
 lG
 nY
-lr
+lq
 oy
 oK
 pd
-pq
+qs
 pM
 qo
-qJ
-qJ
-qJ
-qJ
-qJ
-qJ
-qJ
-qJ
-qJ
-qJ
-qJ
+iw
+iw
+iw
+iw
+iw
+iw
+iw
+iw
+iw
+iw
+iw
 aa
 aa
 aa
@@ -22412,20 +21757,20 @@ aa
 aa
 aa
 uh
-ae
+tG
 aC
 aC
 aC
-ae
+tG
 bi
-bk
+bi
 bP
 cc
-bk
+bi
 cr
-cs
+cr
 uS
-cs
+cr
 cr
 dr
 dI
@@ -22440,19 +21785,19 @@ fY
 gB
 fY
 hj
-hC
+TE
 hS
 im
 iA
 iR
 jk
-jD
+jC
 jS
 kh
 kq
 kL
 ld
-lr
+lq
 lE
 lV
 me
@@ -22462,16 +21807,16 @@ na
 nw
 nJ
 nZ
-lr
+lq
 oz
 oz
 oz
-pq
+qs
 pN
 qp
 TK
 rh
-rr
+EV
 GT
 rZ
 sq
@@ -22560,7 +21905,7 @@ aa
 aa
 bc
 cq
-bk
+bi
 bQ
 bQ
 bi
@@ -22570,7 +21915,7 @@ cT
 cr
 bc
 dr
-dF
+dr
 dV
 dV
 dV
@@ -22582,7 +21927,7 @@ fY
 gC
 fY
 hk
-hB
+TE
 hT
 in
 iB
@@ -22604,11 +21949,11 @@ nb
 nx
 nK
 oa
-lr
+lq
 oz
 oz
 oz
-pq
+qs
 pO
 qq
 tb
@@ -22746,11 +22091,11 @@ nc
 ny
 nL
 ob
-lr
+lq
 oz
 oz
 oz
-pq
+qs
 pP
 Sz
 Bd
@@ -22888,11 +22233,11 @@ lG
 lG
 lG
 oc
-lr
+lq
 oz
 oz
 oz
-pq
+qs
 pQ
 qq
 TK
@@ -23014,13 +22359,13 @@ ip
 iE
 iU
 jn
-jD
+jC
 jW
 ki
 ku
 ki
 lg
-lr
+lq
 lI
 lX
 mh
@@ -23030,16 +22375,16 @@ nd
 nz
 nM
 od
-lr
+lq
 oz
 oz
 oz
-pq
+qs
 pR
 qr
 tb
 Hs
-qN
+Ez
 Ez
 wm
 sq
@@ -23145,45 +22490,45 @@ dV
 dV
 dV
 dV
-eT
+dV
 gp
 gp
 gp
 dV
-hC
-hC
-hC
-hC
-hC
-hC
-jD
+TE
+TE
+TE
+TE
+TE
+TE
+jC
 jC
 kk
 kk
 kk
-jD
-lr
-lr
-lr
-lr
-lr
-lr
-lr
-lr
-lr
-lr
-lr
+jC
+lq
+lq
+lq
+lq
+lq
+lq
+lq
+lq
+lq
+lq
+lq
 oz
 oz
 oz
 qs
 pS
 qs
-pq
-pq
-pq
-pq
-pq
+qs
+qs
+qs
+qs
+qs
 qs
 bc
 aa
@@ -23318,9 +22663,9 @@ lq
 oA
 oA
 oA
-pq
+qs
 pT
-pq
+qs
 bc
 cq
 cq
@@ -23460,9 +22805,9 @@ aa
 aa
 aa
 aa
-pq
+qs
 pU
-pq
+qs
 aa
 aa
 aa
