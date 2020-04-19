@@ -192,6 +192,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},
+/obj/machinery/recharger,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/deployable/escapepod)
 "r" = (

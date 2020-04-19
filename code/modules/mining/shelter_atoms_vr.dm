@@ -17,6 +17,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	var/template_id = "shelter_alpha"
 	var/datum/map_template/shelter/template
 	var/used = FALSE
+	var/is_ship = FALSE
 	var/unique_id = null
 
 /obj/item/device/survivalcapsule/proc/get_template()
@@ -47,7 +48,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 		sleep(5 SECONDS)
 
 		var/turf/deploy_location = get_turf(src)
-		var/status = template.check_deploy(deploy_location)
+		var/status = template.check_deploy(deploy_location, is_ship)
 		var/turf/above_location = GetAbove(deploy_location)
 
 		switch(status)
@@ -60,6 +61,9 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 				var/width = template.width
 				var/height = template.height
 				src.loc.visible_message("<span class='warning'>\The [src] doesn't have room to deploy! You need to clear a [width]x[height] area!</span>")
+
+			if(SHELTER_DEPLOY_SHIP_SPACE)
+				src.loc.visible_message("<span class='warning'>\The [src] can only be deployed in space.</span>")
 
 		if(status != SHELTER_DEPLOY_ALLOWED)
 			used = FALSE
@@ -109,12 +113,14 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	desc = "A prefabricated escape pod in a capsule. Contains a basic escape pod for survival purposes. There's a license for use printed on the bottom."
 	template_id = "shelter_epsilon"
 	unique_id = "shelter_5"
+	is_ship = TRUE
 
 /obj/item/device/survivalcapsule/dropship
 	name = "dropship surfluid shelter capsule"
 	desc = "A military dropship in a capsule. Contains everything an assault squad would need, minus the squad itself. This capsule is significantly larger than most. There's a license for use printed on the bottom."
 	template_id = "shelter_zeta"
 	unique_id = "shelter_6"
+	is_ship = TRUE
 	w_class = ITEMSIZE_SMALL
 
 //Custom Shelter Capsules

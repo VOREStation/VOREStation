@@ -11,7 +11,7 @@
 	banned_areas = typecacheof(/area/shuttle)
 	banned_objects = list()
 
-/datum/map_template/shelter/proc/check_deploy(turf/deploy_location)
+/datum/map_template/shelter/proc/check_deploy(turf/deploy_location, var/is_ship)
 	var/affected = get_affected_turfs(deploy_location, centered=TRUE)
 	for(var/turf/T in affected)
 		var/area/A = get_area(T)
@@ -21,6 +21,9 @@
 		var/banned = is_type_in_typecache(T, blacklisted_turfs)
 		if(banned || T.density)
 			return SHELTER_DEPLOY_BAD_TURFS
+		//Ships can only deploy in space (bacause their base turf is always turf/space)
+		if(is_ship && !is_type_in_typecache(T, typecacheof(/turf/space)))
+			return SHELTER_DEPLOY_SHIP_SPACE
 
 		for(var/obj/O in T)
 			if((O.density && O.anchored) || is_type_in_typecache(O, banned_objects))
