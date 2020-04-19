@@ -68,7 +68,11 @@
 			if(CLASS_LOWER)		income = 0.50
 
 	//give them an account in the station database
+<<<<<<< HEAD
 	var/money_amount = (rand(15,40) + rand(15,40)) * income * economic_modifier * ECO_MODIFIER //VOREStation Edit - Smoothed peaks, ECO_MODIFIER rather than per-species ones.
+=======
+	var/money_amount = (rand(5,50) + rand(5, 50)) * income * economic_modifier * (H.species.economic_modifier)
+>>>>>>> a92650b... Merge pull request #6991 from VOREStation/pol-jobsplit
 	var/datum/money_account/M = create_account(H.real_name, money_amount, null, offmap_spawn)
 	if(H.mind)
 		var/remembered_info = ""
