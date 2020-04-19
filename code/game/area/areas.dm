@@ -21,14 +21,22 @@
 	var/requires_power = 1
 	var/always_unpowered = 0	//this gets overriden to 1 for space in area/New()
 
-	var/power_equip = 1
-	var/power_light = 1
-	var/power_environ = 1
-	var/music = null
-	var/used_equip = 0
-	var/used_light = 0
-	var/used_environ = 0
+	// Power channel status - Is it currently energized?
+	var/power_equip = TRUE
+	var/power_light = TRUE
+	var/power_environ = TRUE
 
+	// Oneoff power usage - Used once and cleared each power cycle
+	var/oneoff_equip = 0
+	var/oneoff_light = 0
+	var/oneoff_environ = 0
+
+	// Continuous "static" power usage - Do not update these directly!
+	var/static_equip = 0
+	var/static_light = 0
+	var/static_environ = 0
+
+	var/music = null
 	var/has_gravity = 1
 	var/secret_name = FALSE // This tells certain things that display areas' names that they shouldn't display this area's name.
 	var/obj/machinery/power/apc/apc = null
@@ -81,7 +89,7 @@
 	for(var/atom/movable/AM in T)
 		A.Entered(AM, old_area)
 	for(var/obj/machinery/M in T)
-		M.power_change()
+		M.area_changed(old_area, A)
 
 /area/proc/get_contents()
 	return contents
@@ -251,32 +259,66 @@
 	if (fire || eject || party)
 		updateicon()
 
-/area/proc/usage(var/chan)
+/area/proc/usage(var/chan, var/include_static = TRUE)
 	var/used = 0
 	switch(chan)
 		if(LIGHT)
-			used += used_light
+			used += oneoff_light + (include_static * static_light)
 		if(EQUIP)
-			used += used_equip
+			used += oneoff_equip + (include_static * static_equip)
 		if(ENVIRON)
-			used += used_environ
+			used += oneoff_environ + (include_static * static_environ)
 		if(TOTAL)
-			used += used_light + used_equip + used_environ
+			used += oneoff_light + (include_static * static_light)
+			used += oneoff_equip + (include_static * static_equip)
+			used += oneoff_environ + (include_static * static_environ)
 	return used
 
+// Helper for APCs; will generally be called every tick.
 /area/proc/clear_usage()
-	used_equip = 0
-	used_light = 0
-	used_environ = 0
+	oneoff_equip = 0
+	oneoff_light = 0
+	oneoff_environ = 0
 
-/area/proc/use_power(var/amount, var/chan)
+// Use this for a one-time power draw from the area, typically for non-machines.
+/area/proc/use_power_oneoff(var/amount, var/chan)
 	switch(chan)
 		if(EQUIP)
-			used_equip += amount
+			oneoff_equip += amount
 		if(LIGHT)
-			used_light += amount
+			oneoff_light += amount
 		if(ENVIRON)
-			used_environ += amount
+			oneoff_environ += amount
+
+// This is used by machines to properly update the area of power changes.
+/area/proc/power_use_change(old_amount, new_amount, chan)
+	use_power_static(new_amount - old_amount, chan) // Simultaneously subtract old_amount and add new_amount.
+
+// Not a proc you want to use directly unless you know what you are doing; see use_power_oneoff below instead.
+/area/proc/use_power_static(var/amount, var/chan)
+	switch(chan)
+		if(EQUIP)
+			static_equip += amount
+		if(LIGHT)
+			static_light += amount
+		if(ENVIRON)
+			static_environ += amount
+
+// This recomputes the continued power usage; can be used for testing or error recovery, but is not called every tick.
+/area/proc/retally_power()
+	static_equip = 0
+	static_light = 0
+	static_environ = 0
+	for(var/obj/machinery/M in src)
+		switch(M.power_channel)
+			if(EQUIP)
+				static_equip += M.get_power_usage()
+			if(LIGHT)
+				static_light += M.get_power_usage()
+			if(ENVIRON)
+				static_environ += M.get_power_usage()
+
+//////////////////////////////////////////////////////////////////
 
 
 var/list/mob/living/forced_ambiance_list = new

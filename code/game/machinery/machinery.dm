@@ -5,12 +5,16 @@ Overview:
    of 'Del' removes reference to src machine in global 'machines list'.
 
 Class Variables:
+
+   power_init_complete (boolean)
+      Indicates that we have have registered our static power usage with the area.
+
    use_power (num)
       current state of auto power use.
       Possible Values:
-         0 -- no auto power use
-         1 -- machine is using power at its idle power level
-         2 -- machine is using power at its active power level
+         USE_POWER_OFF:0 -- no auto power use
+         USE_POWER_IDLE:1 -- machine is using power at its idle power level
+         USE_POWER_ACTIVE:2 -- machine is using power at its active power level
 
    active_power_usage (num)
       Value for the amount of power to use when in active power mode
@@ -51,28 +55,20 @@ Class Procs:
 
    Destroy()                     'game/machinery/machine.dm'
 
-   auto_use_power()            'game/machinery/machine.dm'
-      This proc determines how power mode power is deducted by the machine.
-      'auto_use_power()' is called by the 'master_controller' game_controller every
-      tick.
+   get_power_usage()            'game/machinery/machinery_power.dm'
+      Returns the amount of power this machine uses every SSmachines cycle.
+      Default definition uses 'use_power', 'active_power_usage', 'idle_power_usage'
 
-      Return Value:
-         return:1 -- if object is powered
-         return:0 -- if object is not powered.
-
-      Default definition uses 'use_power', 'power_channel', 'active_power_usage',
-      'idle_power_usage', 'powered()', and 'use_power()' implement behavior.
-
-   powered(chan = EQUIP)         'modules/power/power.dm'
+   powered(chan = CURRENT_CHANNEL)         'game/machinery/machinery_power.dm'
       Checks to see if area that contains the object has power available for power
       channel given in 'chan'.
 
-   use_power(amount, chan=EQUIP, autocalled)   'modules/power/power.dm'
+   use_power_oneoff(amount, chan=CURRENT_CHANNEL)   'game/machinery/machinery_power.dm'
       Deducts 'amount' from the power channel 'chan' of the area that contains the object.
       If it's autocalled then everything is normal, if something else calls use_power we are going to
       need to recalculate the power two ticks in a row.
 
-   power_change()               'modules/power/power.dm'
+   power_change()               'game/machinery/machinery_power.dm'
       Called by the area that contains the object when ever that area under goes a
       power state change (area runs out of power, or area channel is turned off).
 
@@ -108,6 +104,7 @@ Class Procs:
 	var/idle_power_usage = 0
 	var/active_power_usage = 0
 	var/power_channel = EQUIP //EQUIP, ENVIRON or LIGHT
+	var/power_init_complete = FALSE
 	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
 	var/uid
 	var/panel_open = 0
@@ -145,7 +142,9 @@ Class Procs:
 			if(A.loc == src) // If the components are inside the machine, delete them.
 				qdel(A)
 			else // Otherwise we assume they were dropped to the ground during deconstruction, and were not removed from the component_parts list by deconstruction code.
-				component_parts -= A
+				warning("[A] was still in [src]'s component_parts when it was Destroy()'d")
+		component_parts.Cut()
+		component_parts = null
 	if(contents) // The same for contents.
 		for(var/atom/A in contents)
 			if(ishuman(A))
@@ -157,9 +156,8 @@ Class Procs:
 				qdel(A)
 	return ..()
 
-/obj/machinery/process()//If you dont use process or power why are you here
-	if(!(use_power || idle_power_usage || active_power_usage))
-		return PROCESS_KILL
+/obj/machinery/process() // Steady power usage is handled separately. If you dont use process why are you here?
+	return PROCESS_KILL
 
 /obj/machinery/emp_act(severity)
 	if(use_power && stat == 0)
@@ -191,31 +189,6 @@ Class Procs:
 				return
 		else
 	return
-
-//sets the use_power var and then forces an area power update
-/obj/machinery/proc/update_use_power(var/new_use_power)
-	use_power = new_use_power
-
-// Sets the power_channel var
-/obj/machinery/proc/update_power_channel(var/new_channel)
-	power_channel = new_channel
-
-// Sets the idle_power_usage var
-/obj/machinery/proc/update_idle_power_usage(var/new_power_usage)
-	idle_power_usage = new_power_usage
-
-// Sets the active_power_usage var
-/obj/machinery/proc/update_active_power_usage(var/new_power_usage)
-	active_power_usage = new_power_usage
-
-/obj/machinery/proc/auto_use_power()
-	if(!powered(power_channel))
-		return 0
-	if(use_power == USE_POWER_IDLE)
-		use_power(idle_power_usage, power_channel, 1)
-	else if(use_power >= USE_POWER_ACTIVE)
-		use_power(active_power_usage, power_channel, 1)
-	return 1
 
 /obj/machinery/proc/operable(var/additional_flags = 0)
 	return !inoperable(additional_flags)
