@@ -74,8 +74,17 @@
 			/obj/item/toy/plushie/squid/blue,
 			/obj/item/toy/plushie/squid/orange,
 			/obj/item/toy/plushie/squid/yellow,
-			/obj/item/toy/plushie/squid/pink
-			)
+			/obj/item/toy/plushie/squid/pink,
+			//VOREStation Add Start
+			/obj/item/toy/plushie/lizardplushie/kobold,
+			/obj/item/toy/plushie/slimeplushie,
+			/obj/item/toy/plushie/box,
+			/obj/item/toy/plushie/borgplushie,
+			/obj/item/toy/plushie/borgplushie/medihound,
+			/obj/item/toy/plushie/borgplushie/scrubpuppy,
+			/obj/item/toy/plushie/foxbear,
+			/obj/item/toy/plushie/nukeplushie)
+			//VOREStation Add End
 	name = "Plushies Crate"
 	cost = 15
 	containertype = /obj/structure/closet/crate
