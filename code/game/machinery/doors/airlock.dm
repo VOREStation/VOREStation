@@ -390,7 +390,8 @@
 	else if(electrified_until > 0 && world.time >= electrified_until)
 		electrify(0)
 
-	..()
+	if (..() == PROCESS_KILL && !(main_power_lost_until > 0 || backup_power_lost_until > 0 || electrified_until > 0))
+		. = PROCESS_KILL
 
 /obj/machinery/door/airlock/uranium/process()
 	if(world.time > last_event+20)
@@ -580,6 +581,9 @@ About the new airlock wires panel:
 	if(backup_power_lost_until == -1 && !backupPowerCablesCut())
 		backup_power_lost_until = world.time + SecondsToTicks(10)
 
+	if(main_power_lost_until > 0 || backup_power_lost_until > 0)
+		START_MACHINE_PROCESSING(src)
+
 	// Disable electricity if required
 	if(electrified_until && isAllPowerLoss())
 		electrify(0)
@@ -588,6 +592,9 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/proc/loseBackupPower()
 	backup_power_lost_until = backupPowerCablesCut() ? -1 : world.time + SecondsToTicks(60)
+
+	if(backup_power_lost_until > 0)
+		START_MACHINE_PROCESSING(src)
 
 	// Disable electricity if required
 	if(electrified_until && isAllPowerLoss())
@@ -630,6 +637,9 @@ About the new airlock wires panel:
 			shockedby += text("\[[time_stamp()]\] - EMP)")
 		message = "The door is now electrified [duration == -1 ? "permanently" : "for [duration] second\s"]."
 		src.electrified_until = duration == -1 ? -1 : world.time + SecondsToTicks(duration)
+
+	if(electrified_until > 0)
+		START_MACHINE_PROCESSING(src)
 
 	if(feedback && message)
 		to_chat(usr,message)
