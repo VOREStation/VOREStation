@@ -515,7 +515,7 @@
 				/obj/item/toy/balloon,
 				/obj/item/toy/crossbow,
 				/obj/item/toy/blink,
-				/obj/item/toy/waterflower,
+				/obj/item/weapon/reagent_containers/spray/waterflower,
 				/obj/item/toy/eight_ball,
 				/obj/item/toy/eight_ball/conch,
 				/obj/item/toy/prize/ripley,
