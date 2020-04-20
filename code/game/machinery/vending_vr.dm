@@ -136,6 +136,7 @@
 	product_ads = "The true life juice!;Vampire's choice!;Home-grown blood only!;Donate today, be saved tomorrow!;Approved by Zeng-Hu Pharmaceuticals Incorporated!; Curse you, Vey-Med artificial blood!"
 	icon = 'icons/obj/vending_vr.dmi'
 	icon_state = "blood"
+	vend_delay = 7
 	idle_power_usage = 211
 	req_access = list(access_medical)
 	products = list(/obj/item/weapon/reagent_containers/blood/prelabeled/APlus = 3,/obj/item/weapon/reagent_containers/blood/prelabeled/AMinus = 3,
@@ -634,6 +635,9 @@
 					/obj/item/clothing/under/dress/sailordress = 5,
 					/obj/item/clothing/under/dress/sari = 5,
 					/obj/item/clothing/under/dress/sari/green = 5,
+					/obj/item/clothing/under/dress/qipao = 5,
+					/obj/item/clothing/under/dress/qipao/red = 5,
+					/obj/item/clothing/under/dress/qipao/white = 5,
 					/obj/item/clothing/under/shorts/red = 5,
 					/obj/item/clothing/under/shorts/green = 5,
 					/obj/item/clothing/under/shorts/blue = 5,
@@ -801,6 +805,9 @@
 					/obj/item/clothing/under/dress/sailordress = 100,
 					/obj/item/clothing/under/dress/sari = 100,
 					/obj/item/clothing/under/dress/sari/green = 100,
+					/obj/item/clothing/under/dress/qipao = 100,
+					/obj/item/clothing/under/dress/qipao/red = 100,
+					/obj/item/clothing/under/dress/qipao/white = 100,
 					/obj/item/clothing/under/shorts/red = 100,
 					/obj/item/clothing/under/shorts/green = 100,
 					/obj/item/clothing/under/shorts/blue = 100,

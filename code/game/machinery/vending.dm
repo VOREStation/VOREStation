@@ -949,7 +949,7 @@
 					/obj/item/seeds/cabbageseed = 3,/obj/item/seeds/grapeseed = 3,/obj/item/seeds/pumpkinseed = 3,/obj/item/seeds/cherryseed = 3,/obj/item/seeds/plastiseed = 3,/obj/item/seeds/riceseed = 3)
 	contraband = list(/obj/item/seeds/amanitamycelium = 2,/obj/item/seeds/glowshroom = 2,/obj/item/seeds/libertymycelium = 2,/obj/item/seeds/mtearseed = 2,
 					  /obj/item/seeds/nettleseed = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/shandseed = 2,)
-	premium = list(/obj/item/toy/waterflower = 1)
+	premium = list(/obj/item/weapon/reagent_containers/spray/waterflower = 1)
 
 /**
  *  Populate hydroseeds product_records
@@ -1124,7 +1124,17 @@
 					/obj/item/toy/plushie/carp = 1,
 					/obj/item/toy/plushie/deer = 1,
 					/obj/item/toy/plushie/tabby_cat = 1,
-					/obj/item/device/threadneedle = 3)
+					/obj/item/device/threadneedle = 3,
+					//VOREStation Add Start
+					/obj/item/toy/plushie/lizardplushie/kobold = 1,
+					/obj/item/toy/plushie/slimeplushie = 1,
+					/obj/item/toy/plushie/box = 1,
+					/obj/item/toy/plushie/borgplushie = 1,
+					/obj/item/toy/plushie/borgplushie/medihound = 1,
+					/obj/item/toy/plushie/borgplushie/scrubpuppy = 1,
+					/obj/item/toy/plushie/foxbear = 1,
+					/obj/item/toy/plushie/nukeplushie = 1)
+					//VOREStation Add End
 	premium = list(/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne = 1,
 					/obj/item/weapon/storage/trinketbox = 2)
 	prices = list(/obj/item/weapon/storage/fancy/heartbox = 15,
@@ -1153,7 +1163,17 @@
 					/obj/item/toy/plushie/carp = 50,
 					/obj/item/toy/plushie/deer = 50,
 					/obj/item/toy/plushie/tabby_cat = 50,
-					/obj/item/device/threadneedle = 2)
+					/obj/item/device/threadneedle = 2,
+					//VOREStation Add Start
+					/obj/item/toy/plushie/lizardplushie/kobold = 50,
+					/obj/item/toy/plushie/slimeplushie = 50,
+					/obj/item/toy/plushie/box = 50,
+					/obj/item/toy/plushie/borgplushie = 50,
+					/obj/item/toy/plushie/borgplushie/medihound = 50,
+					/obj/item/toy/plushie/borgplushie/scrubpuppy = 50,
+					/obj/item/toy/plushie/foxbear = 50,
+					/obj/item/toy/plushie/nukeplushie = 50)
+					//VOREStation Add End
 
 /obj/machinery/vending/fishing
 	name = "Loot Trawler"

@@ -1194,7 +1194,7 @@ default behaviour is:
 	// Now for the regular stuff.
 	var/matrix/M = matrix()
 	M.Scale(desired_scale_x, desired_scale_y)
-	M.Translate(0, 16*(desired_scale_y-1))
+	M.Translate(0, (vis_height/2)*(desired_scale_y-1)) //VOREStation edit
 	src.transform = M //VOREStation edit
 
 // This handles setting the client's color variable, which makes everything look a specific color.

@@ -1,8 +1,8 @@
 /obj/machinery/washing_machine
 	name = "Washing Machine"
 	desc = "Not a hiding place."
-	icon = 'icons/obj/machines/washing_machine.dmi'
-	icon_state = "wm_10"
+	icon = 'icons/obj/machines/washing_machine_vr.dmi' //VOREStation Edit
+	icon_state = "wm_1" //VOREStation Edit
 	density = 1
 	anchored = 1.0
 	clicksound = "button"
@@ -85,7 +85,12 @@
 		usr.loc = src.loc
 
 /obj/machinery/washing_machine/update_icon()
-	icon_state = "wm_[state][panel_open]"
+	//VOREStation Edit
+	cut_overlays()
+	icon_state = "wm_[state]"
+	if(panel_open)
+		add_overlay("panel")
+	//VOREStation Edit End
 
 /obj/machinery/washing_machine/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(state == 2 && washing.len < 1)

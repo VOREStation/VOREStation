@@ -469,7 +469,18 @@
 				/obj/item/toy/plushie/spider,
 				/obj/item/toy/plushie/tabby_cat,
 				/obj/item/toy/plushie/tuxedo_cat,
-				/obj/item/toy/plushie/white_cat)
+				/obj/item/toy/plushie/white_cat,
+				//VOREStation Add Start
+				/obj/item/toy/plushie/lizardplushie,
+				/obj/item/toy/plushie/lizardplushie/kobold,
+				/obj/item/toy/plushie/slimeplushie,
+				/obj/item/toy/plushie/box,
+				/obj/item/toy/plushie/borgplushie,
+				/obj/item/toy/plushie/borgplushie/medihound,
+				/obj/item/toy/plushie/borgplushie/scrubpuppy,
+				/obj/item/toy/plushie/foxbear,
+				/obj/item/toy/plushie/nukeplushie)
+				//VOREStation Add End
 
 /obj/random/plushielarge
 	name = "random large plushie"
@@ -504,7 +515,7 @@
 				/obj/item/toy/balloon,
 				/obj/item/toy/crossbow,
 				/obj/item/toy/blink,
-				/obj/item/toy/waterflower,
+				/obj/item/weapon/reagent_containers/spray/waterflower,
 				/obj/item/toy/eight_ball,
 				/obj/item/toy/eight_ball/conch,
 				/obj/item/toy/prize/ripley,

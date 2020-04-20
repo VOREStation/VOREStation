@@ -48,6 +48,7 @@
 #define SHELTER_DEPLOY_BAD_TURFS "bad turfs"
 #define SHELTER_DEPLOY_BAD_AREA "bad area"
 #define SHELTER_DEPLOY_ANCHORED_OBJECTS "anchored objects"
+#define SHELTER_DEPLOY_SHIP_SPACE "ship not in space"
 
 #define PTO_SECURITY		"Security"
 #define PTO_MEDICAL			"Medical"
@@ -58,3 +59,7 @@
 #define PTO_CIVILIAN		"Civilian"
 
 #define DEPARTMENT_TALON	"ITV Talon"
+
+#define MAT_TITANIUMGLASS	"ti-glass"
+#define MAT_PLASTITANIUM	"plastitanium"
+#define MAT_PLASTANIUMGLASS	"plastitanium glass"

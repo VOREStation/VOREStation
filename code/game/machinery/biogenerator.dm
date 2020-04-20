@@ -1,7 +1,7 @@
 /obj/machinery/biogenerator
 	name = "biogenerator"
 	desc = "Converts plants into biomass, which can be used for fertilizer and sort-of-synthetic products."
-	icon = 'icons/obj/biogenerator.dmi'
+	icon = 'icons/obj/biogenerator_vr.dmi' //VOREStation Edit
 	icon_state = "biogen-stand"
 	density = 1
 	anchored = 1

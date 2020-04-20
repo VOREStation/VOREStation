@@ -168,6 +168,7 @@
 /obj/machinery/teleport/hub
 	name = "teleporter hub"
 	desc = "It's the hub of a teleporting machine."
+	icon = 'icons/obj/teleporter_vr.dmi' //VOREStation Add
 	icon_state = "tele0"
 	dir = 4
 	var/accurate = 0
@@ -323,6 +324,7 @@
 /obj/machinery/teleport/station
 	name = "station"
 	desc = "It's the station thingy of a teleport thingy." //seriously, wtf.
+	icon = 'icons/obj/teleporter_vr.dmi' //VOREStation Add
 	icon_state = "controller"
 	dir = 4
 	var/active = 0
@@ -401,6 +403,7 @@
 			O.show_message("<span class='notice'>Test firing!</span>", 2)
 		com.teleport()
 		use_power(5000)
+		flick(src, "controller-c") //VOREStation Add
 
 		spawn(30)
 			active=0

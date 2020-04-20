@@ -64,3 +64,72 @@
 	// This variable is normally used to set the icon_override when the suit is refitted,
 	// however the species spritesheet now means we no longer need that anyway!
 	sprite_sheets_refit = list()
+
+/obj/item/clothing/head/helmet/space/void/heck
+	name = "\improper H.E.C.K. helmet"
+	desc = "Hostile Environiment Cross-Kinetic Helmet: A helmet designed to withstand the wide variety of hazards from \[REDACTED\]. It wasn't enough for its last owner."
+	icon_state = "hostile_env"
+	item_state = "hostile_env"
+	icon = 'icons/obj/clothing/hats_vr.dmi'
+	icon_override = 'icons/mob/head_vr.dmi'
+	armor = list(melee = 60, bullet = 35, laser = 35, energy = 15, bomb = 55, bio = 100, rad = 20)
+
+/obj/item/clothing/head/helmet/space/void/heck/Initialize()
+	. = ..()
+	var/mutable_appearance/glass_overlay = mutable_appearance(icon, "hostile_env_glass")
+	glass_overlay.appearance_flags = RESET_COLOR
+	add_overlay(glass_overlay)
+
+/obj/item/clothing/head/helmet/space/void/heck/apply_accessories(var/image/standing)
+	. = ..()
+	var/mutable_appearance/glass_overlay = mutable_appearance(icon_override, "hostile_env_glass")
+	glass_overlay.appearance_flags = KEEP_APART|RESET_COLOR
+	standing.add_overlay(glass_overlay)
+	return standing
+
+/obj/item/clothing/suit/space/void/heck
+	name = "\improper H.E.C.K. suit"
+	desc = "Hostile Environment Cross-Kinetic Suit: A suit designed to withstand the wide variety of hazards from \[REDACTED\]. It wasn't enough for its last owner."
+	icon_state = "hostile_env"
+	item_state = "hostile_env"
+	icon = 'icons/obj/clothing/suits_vr.dmi'
+	icon_override = 'icons/mob/suit_vr.dmi'
+	slowdown = 1.5
+	armor = list(melee = 60, bullet = 35, laser = 35, energy = 15, bomb = 55, bio = 100, rad = 20)
+
+/obj/item/clothing/head/helmet/space/void/syndicate_contract
+	name = "syndicate contract helmet"
+	desc = "A free helmet, gifted you by your new not-quite-corporate master!"
+	icon_state = "syndicate-contract"
+	item_state = "syndicate-contract"
+	icon = 'icons/obj/clothing/hats_vr.dmi'
+	icon_override = 'icons/mob/head_vr.dmi'
+	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 60)
+	siemens_coefficient = 0.6
+	camera_networks = list(NETWORK_MERCENARY)
+
+/obj/item/clothing/suit/space/void/syndicate_contract
+	name = "syndicate contract suit"
+	desc = "A free suit, gifted you by your new not-quite-corporate master!"
+	icon_state = "syndicate-contract"
+	item_state = "syndicate-contract"
+	icon = 'icons/obj/clothing/suits_vr.dmi'
+	icon_override = 'icons/mob/suit_vr.dmi'
+	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 35, bio = 100, rad = 60)
+	siemens_coefficient = 0.6
+
+/obj/item/clothing/head/helmet/space/void/chrono
+	name = "chrono-helmet"
+	desc = "From out of space and time, this helmet will protect you while you perform your duties."
+	icon_state = "chronohelmet"
+	item_state = "chronohelmet"
+	icon = 'icons/obj/clothing/hats_vr.dmi'
+	icon_override = 'icons/mob/head_vr.dmi'
+
+/obj/item/clothing/suit/space/void/chrono
+	name = "chrono-suit"
+	desc = "From out of space and time, this helmet will protect you while you perform your duties."
+	icon_state = "chronosuit"
+	item_state = "chronosuit"
+	icon = 'icons/obj/clothing/suits_vr.dmi'
+	icon_override = 'icons/mob/suit_vr.dmi'

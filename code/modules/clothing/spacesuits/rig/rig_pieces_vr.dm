@@ -43,3 +43,13 @@
 
 /obj/item/clothing/suit/space/rig
 	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJ, SPECIES_UNATHI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_PROMETHEAN, SPECIES_VOX, SPECIES_TESHARI, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_ALRAUNE, SPECIES_FENNEC, SPECIES_XENOHYBRID)
+
+/obj/item/clothing/shoes/magboots/rig/ce
+	name = "advanced boots"
+/obj/item/clothing/shoes/magboots/rig/ce/set_slowdown()
+	if(magpulse)
+		slowdown = shoes ? max(SHOES_SLOWDOWN, shoes.slowdown) : SHOES_SLOWDOWN	//So you can't put on magboots to make you walk faster.
+	else if(shoes)
+		slowdown = shoes.slowdown
+	else
+		slowdown = SHOES_SLOWDOWN
