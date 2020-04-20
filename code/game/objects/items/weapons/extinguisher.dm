@@ -1,7 +1,7 @@
 /obj/item/weapon/extinguisher
 	name = "fire extinguisher"
 	desc = "A traditional red fire extinguisher."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/items_vr.dmi' //VOREStation Edit
 	icon_state = "fire_extinguisher0"
 	item_state = "fire_extinguisher"
 	hitsound = 'sound/weapons/smash.ogg'
@@ -36,12 +36,12 @@
 
 /obj/item/weapon/extinguisher/Initialize()
 	create_reagents(max_water)
-	reagents.add_reagent("water", max_water)
+	reagents.add_reagent("firefoam", max_water) //VOREStation Edit
 	. = ..()
 
 /obj/item/weapon/extinguisher/examine(mob/user)
 	if(..(user, 0))
-		to_chat(user, "[bicon(src)] [src.name] contains [src.reagents.total_volume] units of water left!")
+		to_chat(user, "[bicon(src)] [src.name] contains [src.reagents.total_volume] units of foam left!") //VOREStation Edit
 
 /obj/item/weapon/extinguisher/attack_self(mob/user as mob)
 	safety = !safety
@@ -70,7 +70,7 @@
 /obj/item/weapon/extinguisher/afterattack(var/atom/target, var/mob/user, var/flag)
 	//TODO; Add support for reagents in water.
 
-	if( istype(target, /obj/structure/reagent_dispensers/watertank) && flag)
+	if( istype(target, /obj/structure/reagent_dispensers) && flag) //VOREStation Edit
 		var/obj/o = target
 		var/amount = o.reagents.trans_to_obj(src, 50)
 		to_chat(user, "<span class='notice'>You fill [src] with [amount] units of the contents of [target].</span>")

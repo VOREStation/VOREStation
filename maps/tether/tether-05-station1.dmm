@@ -13705,7 +13705,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "axz" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/structure/reagent_dispensers/foam,
 /turf/simulated/floor/tiled,
 /area/storage/tools)
 "axA" = (
