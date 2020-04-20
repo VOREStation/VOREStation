@@ -1008,6 +1008,7 @@
 #include "code\game\objects\effects\chem\chemsmoke.dm"
 #include "code\game\objects\effects\chem\coating.dm"
 #include "code\game\objects\effects\chem\foam.dm"
+#include "code\game\objects\effects\chem\foam_vr.dm"
 #include "code\game\objects\effects\chem\water.dm"
 #include "code\game\objects\effects\decals\cleanable.dm"
 #include "code\game\objects\effects\decals\contraband.dm"

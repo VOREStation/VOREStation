@@ -3878,14 +3878,10 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "agI" = (
-/obj/structure/table/standard,
-/obj/random/tech_supply,
-/obj/random/tech_supply,
-/obj/random/tech_supply,
-/obj/random/tech_supply,
 /obj/machinery/newscaster{
 	pixel_x = -30
 	},
+/obj/structure/reagent_dispensers/foam,
 /turf/simulated/floor/tiled,
 /area/storage/primary)
 "agJ" = (

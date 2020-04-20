@@ -21,7 +21,7 @@
 		step_towards(src, target)
 		var/turf/T = get_turf(src)
 		if(T && reagents)
-			reagents.touch_turf(T)
+			reagents.touch_turf(T, reagents.total_volume) //VOREStation Add
 			var/mob/M
 			for(var/atom/A in T)
 				if(!ismob(A) && A.simulated) // Mobs are handled differently
