@@ -8,10 +8,6 @@
 		return !P.can_hit_target(src, P.permutated, src == P.original, TRUE)
 	return (!mover.density || !density || lying)
 
-// There is no need to override this if you're just going to unconditionally return TRUE.  Set can_atmos_pass instead.
-///mob/CanZASPass(turf/T, is_zone)
-//	return TRUE
-
 /mob/living/SelfMove(turf/n, direct)
 	// If on walk intent, don't willingly step into hazardous tiles.
 	// Unless the walker is confused.

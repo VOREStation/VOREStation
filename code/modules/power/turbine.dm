@@ -28,6 +28,7 @@
 	icon_state = "compressor"
 	anchored = TRUE
 	density = TRUE
+	can_atmos_pass = ATMOS_PASS_PROC
 	circuit = /obj/item/weapon/circuitboard/machine/power_compressor
 	var/obj/machinery/power/turbine/turbine
 	var/datum/gas_mixture/gas_contained

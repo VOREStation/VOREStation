@@ -7,6 +7,7 @@
 	anchored = 1
 	density = 0
 	opacity = 0
+	can_atmos_pass = ATMOS_PASS_PROC
 
 /obj/effect/zone_divider/CanZASPass(turf/T, is_zone)
  	// Special case to prevent us from being part of a zone during the first air master tick.
