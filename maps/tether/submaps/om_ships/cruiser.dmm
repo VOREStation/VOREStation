@@ -3080,9 +3080,8 @@
 	charge = 2e+007;
 	cur_coils = 4;
 	input_attempt = 1;
-	input_level = 500000;
-	output_level = 1e+006;
-	RCon_tag = "Power - Main"
+	input_level = 1e+006;
+	output_level = 1e+006
 	},
 /obj/structure/cable/cyan,
 /turf/simulated/floor/tiled/techfloor/grid,
