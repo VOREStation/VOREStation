@@ -95,6 +95,12 @@
 	name = "\improper Engineering Electrical Shaft"
 	icon_state = "substation"
 
+/area/engineering/gravity_lobby
+	name = "\improper Engineering GravGen Lobby"
+
+/area/engineering/gravity_gen
+	name = "\improper Engineering GravGen"
+
 /area/vacant/vacant_office
 	name = "\improper Vacant Office"
 	icon_state = "vacant_site"
