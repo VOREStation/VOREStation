@@ -383,7 +383,6 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/cockpit)
 "aY" = (
-/obj/machinery/power/terminal,
 /obj/structure/railing,
 /turf/simulated/floor/greengrid,
 /area/aro2/powerroom)
@@ -534,12 +533,12 @@
 /turf/simulated/floor/reinforced/airless,
 /area/aro2/powerroom)
 "bp" = (
-/obj/machinery/power/smes/buildable/hybrid,
 /obj/structure/cable/cyan{
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/tiled/techmaint,
+/obj/machinery/power/rtg/abductor/hybrid/built,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/powerroom)
 "bq" = (
 /obj/structure/cable/cyan{
@@ -2102,6 +2101,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/table/steel,
+/obj/item/weapon/cell/void/hybrid,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/powerroom)
 "ei" = (
@@ -4715,7 +4715,6 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/aroboat2)
 "Mq" = (
-/obj/machinery/power/terminal,
 /obj/structure/railing,
 /obj/machinery/firealarm{
 	dir = 4;
