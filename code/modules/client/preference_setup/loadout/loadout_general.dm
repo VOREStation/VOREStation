@@ -81,7 +81,7 @@
 	var/toytype = list()
 	toytype["Blink toy"] = /obj/item/toy/blink
 	toytype["Gravitational singularity"] = /obj/item/toy/spinningtoy
-	toytype["Water flower"] = /obj/item/toy/waterflower
+	toytype["Water flower"] = /obj/item/weapon/reagent_containers/spray/waterflower
 	toytype["Bosun's whistle"] = /obj/item/toy/bosunwhistle
 	toytype["Magic 8 Ball"] = /obj/item/toy/eight_ball
 	toytype["Magic Conch shell"] = /obj/item/toy/eight_ball/conch

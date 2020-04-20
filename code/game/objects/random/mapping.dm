@@ -389,7 +389,7 @@
 				/obj/item/device/pda/clown,
 				/obj/item/clothing/mask/gas/clown_hat,
 				/obj/item/weapon/bikehorn,
-				/obj/item/toy/waterflower,
+				/obj/item/weapon/reagent_containers/spray/waterflower,
 				/obj/item/weapon/pen/crayon/rainbow,
 				/obj/structure/closet/crate
 			),
