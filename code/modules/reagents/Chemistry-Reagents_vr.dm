@@ -91,5 +91,10 @@
 	O.water_act(reac_volume / 5)
 
 /datum/reagent/firefighting_foam/touch_mob(var/mob/living/M, reac_volume)
+	if(istype(M, /mob/living/simple_mob/slime)) //I'm sure foam is water-based!
+		var/mob/living/simple_mob/slime/S = M
+		S.adjustToxLoss(15 * reac_volume)
+		S.visible_message("<span class='warning'>[S]'s flesh sizzles where the foam touches it!</span>", "<span class='danger'>Your flesh burns in the foam!</span>")
+
 	M.adjust_fire_stacks(-reac_volume)
 	M.ExtinguishMob()
