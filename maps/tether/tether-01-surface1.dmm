@@ -497,6 +497,19 @@
 /obj/random/junk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
+"aaP" = (
+/obj/machinery/door/airlock/glass_mining{
+	name = "Warehouse"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/tether/surfacebase/cargo/warehouse)
 "aaQ" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -1169,14 +1182,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargo/mining)
-"abW" = (
-/obj/machinery/door/airlock/glass_mining{
-	name = "Warehouse"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/steel_grid,
-/area/tether/surfacebase/cargo/warehouse)
 "abX" = (
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
@@ -43867,7 +43872,7 @@ aar
 aaX
 agm
 abU
-abW
+aaP
 acd
 ach
 acl
