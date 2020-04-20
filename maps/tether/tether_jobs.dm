@@ -8,7 +8,7 @@
 	assignable = FALSE
 	visible = FALSE
 
-/datum/job/talon/captain
+/datum/job/talon_captain
 	title = "Talon Captain"
 	flag = TALCAP
 	department_flag = TALON
@@ -29,7 +29,7 @@
 	access = list(access_talon)
 	minimal_access = list(access_talon)
 
-/datum/job/talon/doctor
+/datum/job/talon_doctor
 	title = "Talon Doctor"
 	flag = TALDOC
 	department_flag = TALON
@@ -49,7 +49,7 @@
 	access = list(access_talon)
 	minimal_access = list(access_talon)
 
-/datum/job/talon/engineer
+/datum/job/talon_engineer
 	title = "Talon Engineer"
 	flag = TALENG
 	department_flag = TALON
@@ -69,7 +69,7 @@
 	access = list(access_talon)
 	minimal_access = list(access_talon)
 
-/datum/job/talon/pilot
+/datum/job/talon_pilot
 	title = "Talon Pilot"
 	flag = TALPIL
 	department_flag = TALON
@@ -89,7 +89,7 @@
 	access = list(access_talon)
 	minimal_access = list(access_talon)
 
-/datum/job/talon/guard
+/datum/job/talon_guard
 	title = "Talon Guard"
 	flag = TALSEC
 	department_flag = TALON

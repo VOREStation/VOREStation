@@ -5559,13 +5559,6 @@
 	},
 /turf/simulated/wall/rshull,
 /area/talon/deckone/port_eng)
-"ka" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
-	icon_state = "map-fuel";
-	dir = 1
-	},
-/turf/simulated/wall/rshull,
-/area/talon/deckone/port_eng)
 "kb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	icon_state = "intact-fuel";
@@ -5602,17 +5595,17 @@
 /turf/simulated/wall/rshull,
 /area/talon/deckone/starboard_eng)
 "kg" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
-	icon_state = "map-fuel";
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	icon_state = "intact-fuel";
+	dir = 9
 	},
 /turf/simulated/wall/rshull,
 /area/talon/deckone/starboard_eng)
 "kh" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 9
 	},
-/turf/space,
+/turf/simulated/floor/reinforced/airless,
 /area/talon/deckone/port_eng)
 "ki" = (
 /obj/machinery/door/blast/regular{
@@ -5623,10 +5616,10 @@
 /turf/simulated/floor/plating,
 /area/talon/deckone/central_hallway)
 "kj" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 9
 	},
-/turf/space,
+/turf/simulated/floor/reinforced/airless,
 /area/talon/deckone/starboard_eng)
 "kk" = (
 /obj/structure/catwalk,
@@ -6619,6 +6612,9 @@
 /obj/item/clothing/accessory/holster/waist,
 /turf/simulated/floor/tiled/dark,
 /area/talon/deckone/armory)
+"yg" = (
+/turf/space,
+/area/talon/deckone/starboard_eng)
 "ym" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -6910,6 +6906,12 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/deckone/secure_storage)
+"GP" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 5
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/talon/deckone/starboard_eng)
 "Hb" = (
 /obj/structure/catwalk,
 /turf/space,
@@ -6955,6 +6957,12 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/deckone_starboard_aft_wing)
+"JI" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 5
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/talon/deckone/port_eng)
 "JJ" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner{
 	dir = 8
@@ -7200,6 +7208,12 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/deckone_starboard_fore_wing)
+"OS" = (
+/obj/machinery/atmospherics/unary/engine/bigger{
+	dir = 1
+	},
+/turf/space,
+/area/talon/deckone/port_eng)
 "Pi" = (
 /obj/structure/catwalk,
 /turf/space,
@@ -7216,6 +7230,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon/deckone/workroom)
+"QJ" = (
+/obj/machinery/atmospherics/unary/engine/bigger{
+	dir = 1
+	},
+/turf/space,
+/area/talon/deckone/starboard_eng)
 "Rc" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
@@ -7249,6 +7269,9 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/deckone_starboard_aft_wing)
+"SX" = (
+/turf/space,
+/area/talon/deckone/port_eng)
 "TP" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -15811,7 +15834,7 @@ jL
 jS
 jZ
 kh
-aa
+OS
 aa
 aa
 aa
@@ -15951,9 +15974,9 @@ js
 jB
 jM
 jT
-ka
-kh
-aa
+kb
+JI
+SX
 aa
 aa
 aa
@@ -16235,9 +16258,9 @@ ju
 jC
 jM
 jT
-ka
+kc
 kh
-aa
+OS
 aa
 aa
 aa
@@ -16377,9 +16400,9 @@ iL
 jD
 jN
 Xi
-kc
-kh
-aa
+ji
+JI
+SX
 aa
 aa
 aa
@@ -18367,7 +18390,7 @@ jO
 Im
 kd
 kj
-aa
+QJ
 aa
 aa
 aa
@@ -18507,9 +18530,9 @@ jv
 jG
 jP
 jW
-ke
-kj
-aa
+kf
+GP
+yg
 aa
 aa
 aa
@@ -18793,7 +18816,7 @@ jP
 jW
 ke
 kj
-aa
+QJ
 aa
 aa
 aa
@@ -18934,8 +18957,8 @@ jI
 jQ
 jX
 kg
-kj
-aa
+GP
+yg
 aa
 aa
 aa
