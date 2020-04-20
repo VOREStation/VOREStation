@@ -31,3 +31,37 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/protein,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/milk
 		)
+
+/obj/machinery/chemical_dispenser/ert/specialops
+	spawn_cartridges = list(
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/inaprov,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/dylovene,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ryetalyn,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tramadol,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/oxycodone,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sterilizine,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/leporazine,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/kelotane,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/dermaline,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/dexalin,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/dexalin_p,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/synaptizine,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hyronalin,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/arithrazine,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/alkysine,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/imidazoline,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/peridaxon,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/bicaridine,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hyperzine,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/rezadone,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/spaceacillin,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ethylredox,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/carthatoline,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/corophizine,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/myelamine,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/osteodaxon,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/biomass,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/iron,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/nutriment,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/protein
+		)

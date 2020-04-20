@@ -40,9 +40,11 @@
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/landable/escapepod
-	name = "Escape Pod"
-	desc = "An Escape Pod for escaping exploding ships."
-	color = "#00aaff" //Bluey
+	scanner_name = "Escape Pod"
+	scanner_desc = @{"[i]Registration[/i]: NOT AVAILABLE
+[i]Class[/i]: Escape Pod
+[i]Transponder[/i]: Transmitting (CIV), non-hostile
+[b]Notice[/b]: Emergency Transponder Active"}
 	vessel_mass = 1000
-	vessel_size = SHIP_SIZE_SMALL
+	vessel_size = SHIP_SIZE_TINY
 	shuttle = "Escape Pod"
