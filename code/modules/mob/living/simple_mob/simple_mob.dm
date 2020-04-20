@@ -194,12 +194,6 @@
 	. = ..()
 	to_chat(src,"<b>You are \the [src].</b> [player_msg]")
 
-
-/mob/living/simple_mob/emote(var/act, var/type, var/desc)
-	if(act)
-		..(act, type, desc)
-
-
 /mob/living/simple_mob/SelfMove(turf/n, direct)
 	var/turf/old_turf = get_turf(src)
 	var/old_dir = dir
@@ -264,14 +258,11 @@
 	update_icon()
 
 
-/mob/living/simple_mob/say(var/message,var/datum/language/language)
-	var/verb = "says"
+/mob/living/simple_mob/say_quote(var/message, var/datum/language/speaking = null)
 	if(speak_emote.len)
-		verb = pick(speak_emote)
-
-	message = sanitize(message)
-
-	..(message, null, verb)
+		. = pick(speak_emote)
+	else if(speaking)
+		. = ..()
 
 /mob/living/simple_mob/get_speech_ending(verb, var/ending)
 	return verb

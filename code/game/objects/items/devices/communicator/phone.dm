@@ -227,12 +227,12 @@
 	..()
 
 // Proc: hear_talk()
-// Parameters: 4 (M - the mob the speech originated from, text - what is being said, verb - the word used to describe how text is being said, speaking - language
-//				being used)
+// Parameters: 3 (M - the mob the speech originated from,
+//                list/message_pieces - what is being said w/ baked languages,
+//                verb - the word used to describe how text is being said)
 // Description: Relays the speech to all linked communicators.
-/obj/item/device/communicator/hear_talk(mob/living/M, text, verb, datum/language/speaking)
+/obj/item/device/communicator/hear_talk(mob/M, list/message_pieces, verb)
 	for(var/obj/item/device/communicator/comm in communicating)
-
 		var/turf/T = get_turf(comm)
 		if(!T) return
 		//VOREStation Edit Start for commlinks
@@ -246,18 +246,10 @@
 		//VOREStation Edit End
 
 		for(var/mob/mob in mobs_to_relay)
-			//Can whoever is hearing us understand?
-			if(!mob.say_understands(M, speaking))
-				if(speaking)
-					text = speaking.scramble(text)
-				else
-					text = stars(text)
+			var/message = mob.combine_message(message_pieces, verb, M)
 			var/name_used = M.GetVoice()
 			var/rendered = null
-			if(speaking) //Language being used
-				rendered = "<span class='game say'>[bicon(src)] <span class='name'>[name_used]</span> [speaking.format_message(text, verb)]</span>"
-			else
-				rendered = "<span class='game say'>[bicon(src)] <span class='name'>[name_used]</span> [verb], <span class='message'>\"[text]\"</span></span>"
+			rendered = "<span class='game say'>[bicon(src)] <span class='name'>[name_used]</span> [message]</span>"
 			mob.show_message(rendered, 2)
 
 // Proc: show_message()

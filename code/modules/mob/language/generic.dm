@@ -5,12 +5,6 @@
 	key = ""
 	flags = RESTRICTED|NONGLOBAL|INNATE|NO_TALK_MSG|NO_STUTTER
 
-/datum/language/noise/format_message(message, verb)
-	return "<span class='message'><span class='[colour]'>[message]</span></span>"
-
-/datum/language/noise/format_message_plain(message, verb)
-	return message
-
 /datum/language/noise/format_message_radio(message, verb)
 	return "<span class='[colour]'>[message]</span>"
 
@@ -142,6 +136,17 @@
 /datum/language/sign/can_speak_special(var/mob/speaker)	// TODO: If ever we make external organs assist languages, convert this over to the new format
 	var/obj/item/organ/external/hand/hands = locate() in speaker //you can't sign without hands
 	return (hands || !iscarbon(speaker))
+
+/datum/language/sign/scramble(var/input, var/list/known_languages)
+	return stars(input)
+
+// This is a little weird because broadcast is traditionally for hivemind languages
+// But in practice, it's just a way for a language to override all other languages and bypass hear_say
+// which is exactly what sign language does.
+/datum/language/sign/broadcast(var/mob/living/speaker, var/message, var/speaker_mask)
+	log_say("(SIGN) [message]", speaker)
+	speaker.say_signlang(message, pick(signlang_verb), src)
+	
 
 // Silly language for those times when you try to talk a languague you normally can't
 /datum/language/gibberish

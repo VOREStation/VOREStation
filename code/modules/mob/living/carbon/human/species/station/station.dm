@@ -532,10 +532,9 @@
 	genders = list(PLURAL)
 
 /datum/species/diona/can_understand(var/mob/other)
-	var/mob/living/carbon/alien/diona/D = other
-	if(istype(D))
-		return 1
-	return 0
+	if(istype(other, /mob/living/carbon/alien/diona))
+		return TRUE
+	return FALSE
 
 /datum/species/diona/equip_survival_gear(var/mob/living/carbon/human/H)
 	if(H.backbag == 1)

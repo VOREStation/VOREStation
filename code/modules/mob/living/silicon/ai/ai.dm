@@ -837,6 +837,69 @@ var/list/ai_verbs_default = list(
 	// If that is ever fixed please update this proc.
 	return TRUE
 
+
+/mob/living/silicon/ai/handle_track(message, verb = "says", mob/speaker = null, speaker_name, hard_to_hear)
+	if(hard_to_hear)
+		return
+
+	var/jobname // the mob's "job"
+	var/mob/living/carbon/human/impersonating //The crew member being impersonated, if any.
+	var/changed_voice
+
+	if(ishuman(speaker))
+		var/mob/living/carbon/human/H = speaker
+
+		if(H.wear_mask && istype(H.wear_mask,/obj/item/clothing/mask/gas/voice))
+			changed_voice = 1
+			var/list/impersonated = new()
+			var/mob/living/carbon/human/I = impersonated[speaker_name]
+
+			if(!I)
+				for(var/mob/living/carbon/human/M in mob_list)
+					if(M.real_name == speaker_name)
+						I = M
+						impersonated[speaker_name] = I
+						break
+
+			// If I's display name is currently different from the voice name and using an agent ID then don't impersonate
+			// as this would allow the AI to track I and realize the mismatch.
+			if(I && !(I.name != speaker_name && I.wear_id && istype(I.wear_id,/obj/item/weapon/card/id/syndicate)))
+				impersonating = I
+				jobname = impersonating.get_assignment()
+			else
+				jobname = "Unknown"
+		else
+			jobname = H.get_assignment()
+
+	else if(iscarbon(speaker)) // Nonhuman carbon mob
+		jobname = "No id"
+	else if(isAI(speaker))
+		jobname = "AI"
+	else if(isrobot(speaker))
+		jobname = "Cyborg"
+	else if(istype(speaker, /mob/living/silicon/pai))
+		jobname = "Personal AI"
+	else
+		jobname = "Unknown"
+
+	var/track = ""
+	if(changed_voice)
+		if(impersonating)
+			track = "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker_name)];track=\ref[impersonating]'>[speaker_name] ([jobname])</a>"
+		else
+			track = "[speaker_name] ([jobname])"
+	else
+		track = "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker_name)];track=\ref[speaker]'>[speaker_name] ([jobname])</a>"
+
+	return track
+
+/mob/living/silicon/ai/proc/relay_speech(mob/living/M, list/message_pieces, verb)
+	var/message = combine_message(message_pieces, verb, M)
+	var/name_used = M.GetVoice()
+	//This communication is imperfect because the holopad "filters" voices and is only designed to connect to the master only.
+	var/rendered = "<i><span class='game say'>Relayed Speech: <span class='name'>[name_used]</span> [message]</span></i>"
+	show_message(rendered, 2)
+
 //Special subtype kept around for global announcements
 /mob/living/silicon/ai/announcer/
 	is_dummy = 1

@@ -13,6 +13,8 @@
 
 #define isitem(D)		istype(D, /obj/item)
 
+#define isradio(A) istype(A, /obj/item/device/radio)
+
 #define isairlock(A)	istype(A, /obj/machinery/door/airlock)
 
 #define isorgan(A)		istype(A, /obj/item/organ/external)
@@ -51,5 +53,9 @@
 
 //---------------
 //#define isturf(D)		istype(D, /turf)	//Built in
+<<<<<<< HEAD
 #define isopenspace(A)	istype(A, /turf/simulated/open)
 #define isspace(A)	istype(A, /turf/space)
+=======
+#define isopenspace(A)	istype(A, /turf/simulated/open)
+>>>>>>> 54a8a58... Saycode Overhaul -- Multilingualism (#6956)
