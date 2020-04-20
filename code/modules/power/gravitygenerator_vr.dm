@@ -93,7 +93,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	. = ..()
 	setup_parts()
 	middle.add_overlay("activated")
-	overlay_state = "activated"
+	current_overlay = "activated"
 	use_power = USE_POWER_ACTIVE
 
 //
