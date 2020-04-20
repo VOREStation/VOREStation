@@ -268,6 +268,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 		s.set_up(5, 1, src)
 		s.start()
 		visible_message("[src] sputters as browns out while attempting to fire.")
+		flick(src, "[initial(icon_state)]_off")
 		return
 	//We throw a laser but it doesnt have to hit for meteor to explode
 	var/obj/item/projectile/beam/pointdefense/beam = new(get_turf(src))
