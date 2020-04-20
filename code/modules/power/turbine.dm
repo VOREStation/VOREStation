@@ -96,7 +96,7 @@
 
 // When anchored, don't let air past us.
 /obj/machinery/compressor/CanZASPass(turf/T, is_zone)
-	return anchored ? ATMOS_PASS_NO : ATMOS_PASS_YES
+	return !anchored
 
 /obj/machinery/compressor/proc/locate_machinery()
 	if(turbine)

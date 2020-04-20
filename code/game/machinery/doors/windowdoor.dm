@@ -94,9 +94,9 @@
 /obj/machinery/door/window/CanZASPass(turf/T, is_zone)
 	if(get_dir(T, loc) == turn(dir, 180))
 		if(is_zone) // No merging allowed.
-			return ATMOS_PASS_NO
+			return FALSE
 		return ..() // Air can flow if open (density == FALSE).
-	return ATMOS_PASS_YES // Windoors don't block if not facing the right way.
+	return TRUE // Windoors don't block if not facing the right way.
 
 /obj/machinery/door/window/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
 	if(istype(mover) && mover.checkpass(PASSGLASS))

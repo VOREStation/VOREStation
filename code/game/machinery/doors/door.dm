@@ -157,7 +157,7 @@
 
 /obj/machinery/door/CanZASPass(turf/T, is_zone)
 	if(is_zone)
-		return block_air_zones ? ATMOS_PASS_NO : ATMOS_PASS_YES
+		return !block_air_zones
 	return ..()
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
