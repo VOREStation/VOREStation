@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //admin verb groups - They can overlap if you so wish. Only one of each verb will exist in the verbs list regardless
 var/list/admin_verbs_default = list(
 	/datum/admins/proc/show_player_panel,	//shows an interface for individual players, with various links (links require additional flags,
@@ -531,6 +532,8 @@ var/list/admin_verbs_event_manager = list(
 		debug_verbs
 		)
 
+=======
+>>>>>>> 1ed5556... Adds empty filter classes to send messages to particular vchat filters. (#6998)
 /client/proc/hide_most_verbs()//Allows you to keep some functionality while hiding some verbs
 	set name = "Adminverbs - Hide Most"
 	set category = "Admin"
@@ -538,7 +541,7 @@ var/list/admin_verbs_event_manager = list(
 	verbs.Remove(/client/proc/hide_most_verbs, admin_verbs_hideable)
 	verbs += /client/proc/show_verbs
 
-	to_chat(src, "<span class='interface'>Most of your adminverbs have been hidden.</span>")
+	to_chat(src, "<span class='filter_system interface'>Most of your adminverbs have been hidden.</span>")
 	feedback_add_details("admin_verb","HMV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
@@ -549,7 +552,7 @@ var/list/admin_verbs_event_manager = list(
 	remove_admin_verbs()
 	verbs += /client/proc/show_verbs
 
-	to_chat(src, "<span class='interface'>Almost all of your adminverbs have been hidden.</span>")
+	to_chat(src, "<span class='filter_system interface'>Almost all of your adminverbs have been hidden.</span>")
 	feedback_add_details("admin_verb","TAVVH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
@@ -560,7 +563,7 @@ var/list/admin_verbs_event_manager = list(
 	verbs -= /client/proc/show_verbs
 	add_admin_verbs()
 
-	to_chat(src, "<span class='interface'>All of your adminverbs are now visible.</span>")
+	to_chat(src, "<span class='filter_adminlog interface'>All of your adminverbs are now visible.</span>")
 	feedback_add_details("admin_verb","TAVVS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -574,13 +577,13 @@ var/list/admin_verbs_event_manager = list(
 		if(ghost.can_reenter_corpse)
 			ghost.reenter_corpse()
 		else
-			to_chat(ghost, "<font color='red'>Error:  Aghost:  Can't reenter corpse.</font>")
+			to_chat(ghost, "<span class='filter_system warning'>Error:  Aghost:  Can't reenter corpse.</span>")
 			return
 
 		feedback_add_details("admin_verb","P") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	else if(istype(mob,/mob/new_player))
-		to_chat(src, "<font color='red'>Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.</font>")
+		to_chat(src, "<span class='filter_system warning'>Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.</span>")
 	else
 		//ghostize
 		var/mob/body = mob
@@ -599,11 +602,11 @@ var/list/admin_verbs_event_manager = list(
 	if(holder && mob)
 		if(mob.invisibility == INVISIBILITY_OBSERVER)
 			mob.invisibility = initial(mob.invisibility)
-			to_chat(mob, "<font color='red'><b>Invisimin off. Invisibility reset.</b></font>")
+			to_chat(mob, "<span class='filter_system danger'>Invisimin off. Invisibility reset.</span>")
 			mob.alpha = max(mob.alpha + 100, 255)
 		else
 			mob.invisibility = INVISIBILITY_OBSERVER
-			to_chat(mob, "<font color='blue'><b>Invisimin on. You are now as invisible as a ghost.</b></font>")
+			to_chat(mob, "<span class='filter_system notice'><b>Invisimin on. You are now as invisible as a ghost.</b></span>")
 			mob.alpha = max(mob.alpha - 100, 0)
 
 
@@ -721,8 +724,7 @@ var/list/admin_verbs_event_manager = list(
 			createStealthKey()
 			if(istype(mob, /mob/new_player))
 				mob.name = new_key
-		log_admin("[key_name(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]")
-		message_admins("[key_name_admin(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]", 1)
+		log_and_message_admins("[key_name(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]")
 	feedback_add_details("admin_verb","SM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 #define MAX_WARNS 3
@@ -733,7 +735,7 @@ var/list/admin_verbs_event_manager = list(
 
 	if(!warned_ckey || !istext(warned_ckey))	return
 	if(warned_ckey in admin_datums)
-		to_chat(usr, "<font color='red'>Error: warn(): You can't warn admins.</font>")
+		to_chat(usr, "<span class='warning'>Error: warn(): You can't warn admins.</span>")
 		return
 
 	var/datum/preferences/D
@@ -742,14 +744,14 @@ var/list/admin_verbs_event_manager = list(
 	else	D = preferences_datums[warned_ckey]
 
 	if(!D)
-		to_chat(src, "<font color='red'>Error: warn(): No such ckey found.</font>")
+		to_chat(src, "<span class='warning'>Error: warn(): No such ckey found.</span>")
 		return
 
 	if(++D.warns >= MAX_WARNS)					//uh ohhhh...you'reee iiiiin trouuuubble O:)
 		ban_unban_log_save("[ckey] warned [warned_ckey], resulting in a [AUTOBANTIME] minute autoban.")
 		if(C)
 			message_admins("[key_name_admin(src)] has warned [key_name_admin(C)] resulting in a [AUTOBANTIME] minute ban.")
-			to_chat(C, "<font color='red'><BIG><B>You have been autobanned due to a warning by [ckey].</B></BIG><br>This is a temporary ban, it will be removed in [AUTOBANTIME] minutes.</font>")
+			to_chat(C, "<span class='filter_system danger'><BIG>You have been autobanned due to a warning by [ckey].</BIG><br>This is a temporary ban, it will be removed in [AUTOBANTIME] minutes.</span>")
 			del(C)
 		else
 			message_admins("[key_name_admin(src)] has warned [warned_ckey] resulting in a [AUTOBANTIME] minute ban.")
@@ -757,7 +759,7 @@ var/list/admin_verbs_event_manager = list(
 		feedback_inc("ban_warn",1)
 	else
 		if(C)
-			to_chat(C, "<font color='red'><BIG><B>You have been formally warned by an administrator.</B></BIG><br>Further warnings will result in an autoban.</font>")
+			to_chat(C, "<span class='filter_system danger'><BIG>You have been formally warned by an administrator.</BIG><br>Further warnings will result in an autoban.</span>")
 			message_admins("[key_name_admin(src)] has warned [key_name_admin(C)]. They have [MAX_WARNS-D.warns] strikes remaining.")
 		else
 			message_admins("[key_name_admin(src)] has warned [warned_ckey] (DC). They have [MAX_WARNS-D.warns] strikes remaining.")
@@ -880,19 +882,15 @@ var/list/admin_verbs_event_manager = list(
 		if(!msg)
 			return
 		for (var/mob/V in hearers(mob.control_object))
-			V.show_message("<b>[mob.control_object.name]</b> says: \"" + msg + "\"", 2)
+			V.show_message("<span class='filter_say'><b>[mob.control_object.name]</b> says: \"[msg]\"</span>", 2)
 	feedback_add_details("admin_verb","OT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/kill_air() // -- TLE
 	set category = "Debug"
 	set name = "Kill Air"
 	set desc = "Toggle Air Processing"
-	if(!SSair.can_fire)
-		SSair.can_fire = TRUE
-		to_chat(usr, "<b>Enabled air processing.</b>")
-	else
-		SSair.can_fire = FALSE
-		to_chat(usr, "<b>Disabled air processing.</b>")
+	SSair.can_fire = !SSair.can_fire
+	to_chat(usr, "<span class='filter_system'><b>[SSair.can_fire ? "En" : "Dis"]abled air processing.</b></span>")
 	feedback_add_details("admin_verb","KA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] used 'kill air'.")
 	message_admins("<font color='blue'>[key_name_admin(usr)] used 'kill air'.</font>", 1)
@@ -905,7 +903,7 @@ var/list/admin_verbs_event_manager = list(
 		deadmin_holder.reassociate()
 		log_admin("[src] re-admined themself.")
 		message_admins("[src] re-admined themself.", 1)
-		to_chat(src, "<span class='interface'>You now have the keys to control the planet, or atleast a small space station</span>")
+		to_chat(src, "<span class='filter_system interface'>You now have the keys to control the planet, or at least a small space station</span>")
 		verbs -= /client/proc/readmin_self
 
 /client/proc/deadmin_self()
@@ -917,7 +915,7 @@ var/list/admin_verbs_event_manager = list(
 			log_admin("[src] deadmined themself.")
 			message_admins("[src] deadmined themself.", 1)
 			deadmin()
-			to_chat(src, "<span class='interface'>You are now a normal player.</span>")
+			to_chat(src, "<span class='filter_system interface'>You are now a normal player.</span>")
 			verbs |= /client/proc/readmin_self
 	feedback_add_details("admin_verb","DAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -926,12 +924,8 @@ var/list/admin_verbs_event_manager = list(
 	set category = "Server"
 	if(!holder)	return
 	if(config)
-		if(config.log_hrefs)
-			config.log_hrefs = 0
-			to_chat(src, "<b>Stopped logging hrefs</b>")
-		else
-			config.log_hrefs = 1
-			to_chat(src, "<b>Started logging hrefs</b>")
+		config.log_hrefs = !config.log_hrefs
+		message_admins("<b>[key_name_admin(usr)] [config.log_hrefs ? "started" : "stopped"] logging hrefs</b>")
 
 /client/proc/check_ai_laws()
 	set name = "Check AI Laws"
@@ -993,7 +987,7 @@ var/list/admin_verbs_event_manager = list(
 	if(!H) return
 
 	if(!H.client)
-		to_chat(usr, "Only mobs with clients can alter their own appearance.")
+		to_chat(usr, "<span class='filter_arning'> Only mobs with clients can alter their own appearance.</span>")
 		return
 	var/datum/gender/T = gender_datums[H.get_visible_gender()]
 	switch(alert("Do you wish for [H] to be allowed to select non-whitelisted races?","Alter Mob Appearance","Yes","No","Cancel"))
@@ -1036,7 +1030,7 @@ var/list/admin_verbs_event_manager = list(
 	var/mob/living/carbon/human/M = input("Select mob.", "Edit Appearance") as null|anything in human_mob_list
 
 	if(!istype(M, /mob/living/carbon/human))
-		to_chat(usr, "<font color='red'>You can only do this to humans!</font>")
+		to_chat(usr, "<span class='warning'>You can only do this to humans!</span>")
 		return
 	switch(alert("Are you sure you wish to edit this mob's appearance? Skrell, Unathi, Tajaran can result in unintended consequences.",,"Yes","No"))
 		if("No")
@@ -1124,28 +1118,16 @@ var/list/admin_verbs_event_manager = list(
 	set category = "Server"
 	if(!holder)	return
 	if(config)
-		if(config.cult_ghostwriter)
-			config.cult_ghostwriter = 0
-			to_chat(src, "<b>Disallowed ghost writers.</b>")
-			message_admins("Admin [key_name_admin(usr)] has disabled ghost writers.", 1)
-		else
-			config.cult_ghostwriter = 1
-			to_chat(src, "<b>Enabled ghost writers.</b>")
-			message_admins("Admin [key_name_admin(usr)] has enabled ghost writers.", 1)
+		config.cult_ghostwriter = !config.cult_ghostwriter
+		message_admins("Admin [key_name_admin(usr)] has [config.cult_ghostwriter ? "en" : "dis"]abled ghost writers.", 1)
 
 /client/proc/toggledrones()
 	set name = "Toggle maintenance drones"
 	set category = "Server"
 	if(!holder)	return
 	if(config)
-		if(config.allow_drone_spawn)
-			config.allow_drone_spawn = 0
-			to_chat(src, "<b>Disallowed maint drones.</b>")
-			message_admins("Admin [key_name_admin(usr)] has disabled maint drones.", 1)
-		else
-			config.allow_drone_spawn = 1
-			to_chat(src, "<b>Enabled maint drones.</b>")
-			message_admins("Admin [key_name_admin(usr)] has enabled maint drones.", 1)
+		config.allow_drone_spawn = !config.allow_drone_spawn
+		message_admins("Admin [key_name_admin(usr)] has [config.allow_drone_spawn ? "en" : "dis"]abled maintenance drones.", 1)
 
 /client/proc/man_up(mob/T as mob in mob_list)
 	set category = "Fun"
@@ -1155,8 +1137,8 @@ var/list/admin_verbs_event_manager = list(
 
 	if(alert("Are you sure you want to tell them to man up?","Confirmation","Deal with it","No")=="No") return
 
-	to_chat(T, "<span class='notice'><b><font size=3>Man up and deal with it.</font></b></span>")
-	to_chat(T, "<span class='notice'>Move along.</span>")
+	to_chat(T, "<span class='filter_system notice'><b><font size=3>Man up and deal with it.</font></b></span>")
+	to_chat(T, "<span class='filter_system notice'>Move along.</span>")
 
 	log_admin("[key_name(usr)] told [key_name(T)] to man up and deal with it.")
 	message_admins("<font color='blue'>[key_name_admin(usr)] told [key_name(T)] to man up and deal with it.</font>", 1)
@@ -1169,7 +1151,7 @@ var/list/admin_verbs_event_manager = list(
 	if(alert("Are you sure you want to tell the whole server up?","Confirmation","Deal with it","No")=="No") return
 
 	for (var/mob/T as mob in mob_list)
-		to_chat(T, "<br><center><span class='notice'><b><font size=4>Man up.<br> Deal with it.</font></b><br>Move along.</span></center><br>")
+		to_chat(T, "<br><center><span class='filter_system notice'><b><font size=4>Man up.<br> Deal with it.</font></b><br>Move along.</span></center><br>")
 		T << 'sound/voice/ManUp1.ogg'
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
