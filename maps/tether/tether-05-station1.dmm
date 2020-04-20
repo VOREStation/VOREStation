@@ -8051,9 +8051,8 @@
 	opacity = 0
 	},
 /obj/machinery/door/airlock/engineering{
-	name = "Engineering Hard Storage";
-	req_access = list(11);
-	req_one_access = newlist()
+	name = "Gravity Generator";
+	req_access = list(11)
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/engineering/hallway)
@@ -24041,11 +24040,6 @@
 	},
 /area/engineering/gravity_lobby)
 "sjw" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Engineering Hard Storage";
-	req_access = list(11);
-	req_one_access = newlist()
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -24057,6 +24051,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/machinery/door/airlock/engineering{
+	name = "Gravity Generator";
+	req_access = list(11)
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/engineering/gravity_lobby)
