@@ -22,8 +22,6 @@
 		else
 			return can_atmos_pass
 
-/turf/can_atmos_pass = ATMOS_PASS_NO
-
 /turf/CanPass(atom/movable/mover, turf/target)
 	if(!target) return FALSE
 
