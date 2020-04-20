@@ -4,6 +4,7 @@
 /mob/living
 	var/ooc_notes = null
 	var/obj/structure/mob_spawner/source_spawner = null
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 
 //custom say verbs
 	var/custom_say = null
