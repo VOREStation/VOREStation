@@ -363,6 +363,12 @@ proc/get_radio_key_from_channel(var/channel)
 		spawn(0) //Using spawns to queue all the messages for AFTER this proc is done, and stop runtimes
 
 			if(M && src) //If we still exist, when the spawn processes
+				//VOREStation Add - Ghosts don't hear whispers
+				if(whispering && !is_preference_enabled(/datum/client_preference/whisubtle_vis) && isobserver(M) && !M.client?.holder)
+					M.show_message("<span class='game say'><span class='name'>[src.name]</span> [w_not_heard].</span>", 2)
+					return
+				//VOREStation Add End
+
 				var/dst = get_dist(get_turf(M),get_turf(src))
 
 				if(dst <= message_range || (M.stat == DEAD && !forbid_seeing_deadchat)) //Inside normal message range, or dead with ears (handled in the view proc)
