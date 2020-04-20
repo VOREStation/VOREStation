@@ -32,6 +32,11 @@
 	shuttle_tag = "Trade"
 	req_one_access = list(access_trader)
 
+//TFF 12/4/20 - Add console for Mining Outpost Shuttle
+/obj/machinery/computer/shuttle_control/surface_mining_outpost
+	name = "surface mining outpost shuttle control console"
+	shuttle_tag = "Mining Outpost"
+	req_one_access = list(access_mining)
 //
 // "Tram" Emergency Shuttler
 // Becuase the tram only has its own doors and no corresponding station doors, a docking controller is overkill.
