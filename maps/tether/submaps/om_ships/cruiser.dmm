@@ -16,7 +16,6 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced,
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/breakroom)
 "ad" = (
@@ -36,7 +35,6 @@
 	pixel_y = 5;
 	req_one_access = list(101)
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/breakroom)
 "ae" = (
@@ -203,7 +201,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/breakroom)
 "av" = (
@@ -273,7 +270,6 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/breakroom)
 "aD" = (
@@ -494,8 +490,8 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/airlock/voidcraft,
 /obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/door/airlock,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/hydroponics)
 "bg" = (
@@ -505,8 +501,8 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/airlock/voidcraft,
 /obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/door/airlock,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/hydroponics)
 "bh" = (
@@ -714,7 +710,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/hydroponics)
 "bD" = (
@@ -1204,7 +1199,6 @@
 	pixel_y = 26;
 	req_one_access = list(101)
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/eva)
 "cI" = (
@@ -1289,7 +1283,6 @@
 /area/mothership/eva)
 "cN" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/voidcraft/vertical,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -1299,6 +1292,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
+/obj/machinery/door/airlock/maintenance,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/eva)
 "cO" = (
@@ -1523,10 +1517,6 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/bathroom1)
 "di" = (
-/obj/machinery/door/airlock/voidcraft/vertical{
-	glass = 0;
-	opacity = 1
-	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -1539,6 +1529,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/door/airlock,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/bathroom1)
 "dj" = (
@@ -1634,10 +1625,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "do" = (
-/obj/machinery/door/airlock/voidcraft/vertical{
-	glass = 0;
-	opacity = 1
-	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -1650,6 +1637,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/door/airlock,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/bathroom2)
 "dp" = (
@@ -1854,7 +1842,6 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced,
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/surgery)
 "dL" = (
@@ -2177,11 +2164,6 @@
 /turf/simulated/floor/wood,
 /area/mothership/dorm1)
 "eu" = (
-/obj/machinery/door/airlock/voidcraft/vertical{
-	glass = 0;
-	id_tag = "ship-dorm1-door";
-	opacity = 1
-	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -2193,6 +2175,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/machinery/door/airlock{
+	id_tag = "ship-dorm1-door"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/dorm1)
@@ -2280,11 +2265,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "eC" = (
-/obj/machinery/door/airlock/voidcraft/vertical{
-	glass = 0;
-	id_tag = "ship-dorm2-door";
-	opacity = 1
-	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -2296,6 +2276,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/machinery/door/airlock{
+	id_tag = "ship-dorm2-door"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/dorm2)
@@ -2714,6 +2697,7 @@
 	icon_state = "0-2";
 	pixel_y = 0
 	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "fy" = (
@@ -2729,6 +2713,7 @@
 /obj/machinery/power/port_gen/pacman/super/potato{
 	sheets = 100
 	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "fA" = (
@@ -2899,9 +2884,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/vault{
-	req_one_access = list(101)
-	},
+/obj/machinery/door/airlock/engineering,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/vault)
 "fS" = (
@@ -2915,6 +2898,10 @@
 	d2 = 4
 	},
 /obj/machinery/power/terminal,
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "fT" = (
@@ -2927,6 +2914,10 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
@@ -2946,6 +2937,9 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/terminal,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "fV" = (
@@ -3098,6 +3092,7 @@
 /obj/machinery/power/port_gen/pacman/super/potato{
 	sheets = 100
 	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "gk" = (
@@ -3110,6 +3105,7 @@
 /obj/machinery/power/port_gen/pacman/super/potato{
 	sheets = 100
 	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "gn" = (
@@ -3140,7 +3136,6 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/security)
 "gq" = (
@@ -3403,7 +3398,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/treatment)
 "gV" = (
@@ -3823,11 +3817,6 @@
 /turf/simulated/floor/wood,
 /area/mothership/dorm3)
 "hK" = (
-/obj/machinery/door/airlock/voidcraft/vertical{
-	glass = 0;
-	id_tag = "ship-dorm3-door";
-	opacity = 1
-	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -3839,6 +3828,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/machinery/door/airlock{
+	id_tag = "ship-dorm3-door"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/dorm3)
@@ -3864,11 +3856,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "hM" = (
-/obj/machinery/door/airlock/voidcraft/vertical{
-	glass = 0;
-	id_tag = "ship-dorm4-door";
-	opacity = 1
-	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -3880,6 +3867,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/machinery/door/airlock{
+	id_tag = "ship-dorm4-door"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/dorm4)
@@ -5123,7 +5113,6 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/warden)
 "kl" = (
@@ -5407,7 +5396,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/medical)
 "kP" = (
@@ -5499,11 +5487,6 @@
 /turf/simulated/floor/wood,
 /area/mothership/dorm5)
 "kX" = (
-/obj/machinery/door/airlock/voidcraft/vertical{
-	glass = 0;
-	id_tag = "ship-dorm5-door";
-	opacity = 1
-	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -5515,6 +5498,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/machinery/door/airlock{
+	id_tag = "ship-dorm5-door"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/dorm5)
@@ -5540,11 +5526,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "kZ" = (
-/obj/machinery/door/airlock/voidcraft/vertical{
-	glass = 0;
-	id_tag = "ship-dorm6-door";
-	opacity = 1
-	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -5556,6 +5537,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/machinery/door/airlock{
+	id_tag = "ship-dorm6-door"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/dorm6)
@@ -7413,7 +7397,6 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/holodeck)
 "oB" = (
@@ -7693,16 +7676,13 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/voidcraft/vertical{
-	id_tag = "ship-holodeck-door";
-	opacity = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/door/airlock,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/holodeck)
 "pc" = (
@@ -7765,7 +7745,6 @@
 	pixel_y = -26;
 	req_one_access = list(101)
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/telecomms1)
 "ps" = (
@@ -8148,7 +8127,6 @@
 	pixel_y = -26;
 	req_one_access = list(101)
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/telecomms2)
 "pW" = (
@@ -8209,7 +8187,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "qe" = (
-/obj/machinery/door/airlock/voidcraft/vertical,
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -8219,6 +8196,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/door/airlock,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/cryotube)
 "qf" = (
@@ -8259,11 +8237,11 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/cryotube)
 "qk" = (
-/obj/machinery/door/airlock/voidcraft/vertical,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/machinery/door/airlock,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/cryotube)
 "ql" = (
@@ -9317,7 +9295,6 @@
 	pixel_y = -5;
 	req_one_access = list(101)
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/engineering)
 "sN" = (
@@ -9725,6 +9702,9 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "Do" = (
@@ -10080,7 +10060,6 @@
 	pixel_y = -5;
 	req_one_access = list(101)
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/engineering)
 "QF" = (
@@ -10254,7 +10233,6 @@
 	pixel_y = 5;
 	req_one_access = list(101)
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/breakroom)
 "SV" = (
@@ -10372,7 +10350,6 @@
 	opacity = 0
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/breakroom)
 "Xh" = (
@@ -10470,7 +10447,6 @@
 	pixel_y = 26;
 	req_one_access = list(101)
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/eva)
 "ZZ" = (
