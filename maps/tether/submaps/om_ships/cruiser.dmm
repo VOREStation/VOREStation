@@ -22,7 +22,9 @@
 "ad" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
+	icon_state = "door_locked";
 	id_tag = "ws_dock_8_outer";
+	locked = 1;
 	req_one_access = list(101)
 	},
 /obj/machinery/access_button{
@@ -144,7 +146,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
+	icon_state = "door_locked";
 	id_tag = "ws_dock_8_inner";
+	locked = 1;
 	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -1186,7 +1190,9 @@
 "cH" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
+	icon_state = "door_locked";
 	id_tag = "ws_dock_7_outer";
+	locked = 1;
 	req_one_access = list(101)
 	},
 /obj/machinery/access_button{
@@ -1232,7 +1238,9 @@
 	},
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
+	icon_state = "door_locked";
 	id_tag = "ws_dock_7_inner";
+	locked = 1;
 	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -1674,12 +1682,6 @@
 "dr" = (
 /turf/simulated/wall/rpshull,
 /area/mothership/bathroom2)
-"ds" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/bathroom1)
 "dt" = (
 /obj/machinery/shower{
 	dir = 4;
@@ -3077,6 +3079,7 @@
 /area/mothership/chemistry)
 "gh" = (
 /obj/machinery/power/smes/buildable{
+	capacity = 2e+007;
 	charge = 2e+007;
 	cur_coils = 4;
 	input_attempt = 1;
@@ -7748,7 +7751,9 @@
 "pr" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
+	icon_state = "door_locked";
 	id_tag = "ws_dock_6_outer";
+	locked = 1;
 	req_one_access = list(101)
 	},
 /obj/machinery/access_button{
@@ -7801,7 +7806,9 @@
 	},
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
+	icon_state = "door_locked";
 	id_tag = "ws_dock_6_inner";
+	locked = 1;
 	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -8089,7 +8096,9 @@
 	},
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
+	icon_state = "door_locked";
 	id_tag = "ws_dock_3_inner";
+	locked = 1;
 	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -8125,7 +8134,9 @@
 "pU" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
+	icon_state = "door_locked";
 	id_tag = "ws_dock_3_outer";
+	locked = 1;
 	req_one_access = list(101)
 	},
 /obj/machinery/access_button{
@@ -9198,7 +9209,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
+	icon_state = "door_locked";
 	id_tag = "ws_dock_5_inner";
+	locked = 1;
 	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -9217,7 +9230,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
+	icon_state = "door_locked";
 	id_tag = "ws_dock_4_inner";
+	locked = 1;
 	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -9288,7 +9303,9 @@
 "sL" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
+	icon_state = "door_locked";
 	id_tag = "ws_dock_5_outer";
+	locked = 1;
 	req_one_access = list(101)
 	},
 /obj/machinery/access_button{
@@ -9428,21 +9445,13 @@
 	},
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
+	icon_state = "door_locked";
 	id_tag = "ws_dock_2_inner";
+	locked = 1;
 	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/eva)
-"uV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/machinery/computer/gravity_control_computer{
-	density = 0;
-	icon_keyboard = "laptop_key";
-	icon_screen = "atmoslaptop";
-	icon_state = "laptop"
-	},
-/turf/simulated/floor/reinforced,
-/area/mothership/telecomms1)
 "vb" = (
 /turf/simulated/floor/reinforced/airless{
 	name = "outer hull"
@@ -9481,13 +9490,6 @@
 /area/mothership/hallway)
 "wO" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden,
-/obj/machinery/gravity_generator{
-	active_power_usage = 10;
-	density = 0;
-	effectiverange = 1;
-	icon_state = "beacon1";
-	idle_power_usage = 2
-	},
 /turf/simulated/floor/reinforced,
 /area/mothership/telecomms1)
 "wT" = (
@@ -9560,7 +9562,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
+	icon_state = "door_locked";
 	id_tag = "ws_dock_1_inner";
+	locked = 1;
 	req_one_access = list(101)
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -9894,16 +9898,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/mothership/telecomms2)
-"GW" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/machinery/computer/gravity_control_computer{
-	density = 0;
-	icon_keyboard = "laptop_key";
-	icon_screen = "atmoslaptop";
-	icon_state = "laptop"
-	},
-/turf/simulated/floor/reinforced,
-/area/mothership/telecomms2)
 "Hl" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
@@ -10072,7 +10066,9 @@
 "PT" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
+	icon_state = "door_locked";
 	id_tag = "ws_dock_4_outer";
+	locked = 1;
 	req_one_access = list(101)
 	},
 /obj/machinery/access_button{
@@ -10174,13 +10170,6 @@
 /area/mothership/bridge)
 "Sj" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden,
-/obj/machinery/gravity_generator{
-	active_power_usage = 10;
-	density = 0;
-	effectiverange = 1;
-	icon_state = "beacon1";
-	idle_power_usage = 2
-	},
 /turf/simulated/floor/reinforced,
 /area/mothership/telecomms2)
 "Su" = (
@@ -10251,7 +10240,9 @@
 "SM" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
+	icon_state = "door_locked";
 	id_tag = "ws_dock_1_outer";
+	locked = 1;
 	req_one_access = list(101)
 	},
 /obj/machinery/access_button{
@@ -10465,7 +10456,9 @@
 "ZS" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
+	icon_state = "door_locked";
 	id_tag = "ws_dock_2_outer";
+	locked = 1;
 	req_one_access = list(101)
 	},
 /obj/machinery/access_button{
@@ -18833,7 +18826,7 @@ qt
 Ge
 UD
 wO
-uV
+Kd
 Kd
 AL
 pe
@@ -19500,7 +19493,7 @@ cM
 cW
 cr
 di
-ds
+df
 dL
 dL
 eu
@@ -22099,7 +22092,7 @@ pP
 Sz
 Bd
 Sj
-GW
+vi
 vi
 KA
 qs
