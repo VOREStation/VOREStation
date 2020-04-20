@@ -1,6 +1,7 @@
 /obj/machinery/power/port_gen/pacman/super/potato
 	name = "nuclear reactor"
 	desc = "PTTO-3, an industrial all-in-one nuclear power plant by Neo-Chernobyl GmbH. It uses uranium as a fuel source. Rated for 200 kW max safe output."
+	icon = 'icons/obj/power.dmi'
 	icon_state = "potato"
 	time_per_sheet = 1152 //same power output, but a 50 sheet stack will last 4 hours at max safe power
 	power_gen = 40000 //watts

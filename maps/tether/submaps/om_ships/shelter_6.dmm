@@ -893,6 +893,7 @@
 /area/shuttle/tabiranth)
 "aR" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden,
+/obj/machinery/meter,
 /turf/simulated/floor/reinforced,
 /area/shuttle/tabiranth)
 "aS" = (
@@ -1667,6 +1668,11 @@
 /area/shuttle/tabiranth)
 "bC" = (
 /obj/machinery/organ_printer/flesh/full,
+/obj/structure/sink/kitchen{
+	icon_state = "sink_alt";
+	dir = 4;
+	pixel_x = -13
+	},
 /turf/simulated/floor/tiled/white,
 /area/shuttle/tabiranth)
 "bD" = (
@@ -1676,11 +1682,6 @@
 	name = "Surgery Cleaner";
 	pixel_x = 2;
 	pixel_y = 2
-	},
-/obj/structure/sink/kitchen{
-	icon_state = "sink_alt";
-	dir = 4;
-	pixel_x = -13
 	},
 /obj/structure/table/survival_pod,
 /turf/simulated/floor/tiled/white,
