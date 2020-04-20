@@ -131,7 +131,7 @@ VIRGO2_TURF_CREATE(/turf/simulated/mineral)
 	if(mineral)
 		return
 
-	var/mineral_name = pickweight(list("marble" = 5, "uranium" = 5, "platinum" = 10, "hematite" = 5, "carbon" = 5, "diamond" = 10, "gold" = 20, "silver" = 20, "lead" = 10, "verdantium" = 5))
+	var/mineral_name = pickweight(list("marble" = 5, "uranium" = 5, "platinum" = 5, "hematite" = 5, "carbon" = 5, "diamond" = 5, "gold" = 5, "silver" = 5, "lead" = 5, "verdantium" = 5, "rutile" = 20))
 
 	if(mineral_name && (mineral_name in ore_data))
 		mineral = ore_data[mineral_name]

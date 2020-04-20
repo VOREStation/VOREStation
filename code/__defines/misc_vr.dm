@@ -59,3 +59,7 @@
 #define PTO_CIVILIAN		"Civilian"
 
 #define DEPARTMENT_TALON	"ITV Talon"
+
+#define MAT_TITANIUMGLASS	"ti-glass"
+#define MAT_PLASTITANIUM	"plastitanium"
+#define MAT_PLASTANIUMGLASS	"plastitanium glass"

@@ -80,18 +80,18 @@
 /turf/simulated/floor/carpet,
 /area/aro2/couchroom)
 "ap" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/structure/window/phoronreinforced{
-	dir = 1
-	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
 	dir = 1;
 	icon_state = "pdoor1";
 	id = "arobackleft"
 	},
-/turf/simulated/floor/reinforced,
+/obj/structure/window/plastitanium/full,
+/obj/structure/window/plastitanium{
+	icon_state = "window";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
 /area/aro2/holodeckroom)
 "aq" = (
 /obj/machinery/media/jukebox,
@@ -1376,9 +1376,6 @@
 /obj/structure/table/rack/shelf/steel,
 /obj/item/weapon/technomancer_catalog/universal,
 /obj/item/weapon/technomancer_core/universal,
-/obj/item/mecha_parts/mecha_equipment/cloak,
-/obj/item/mecha_parts/mecha_equipment/crisis_drone,
-/obj/item/mecha_parts/mecha_equipment/omni_shield,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/storage)
 "cO" = (
@@ -1401,18 +1398,18 @@
 /turf/simulated/wall/rpshull,
 /area/aro2/powerroom)
 "cS" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
+/obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
-	dir = 8;
+	dir = 1;
 	icon_state = "pdoor1";
 	id = "arobackleft"
 	},
-/obj/structure/window/phoronreinforced{
+/obj/structure/window/plastitanium/full,
+/obj/structure/window/plastitanium{
+	icon_state = "window";
 	dir = 1
 	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/reinforced,
+/turf/simulated/floor/tiled/techmaint,
 /area/aro2/bighallway)
 "cT" = (
 /obj/structure/cable/cyan{
@@ -1609,18 +1606,18 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/storage)
 "dp" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/structure/window/phoronreinforced{
-	dir = 8
-	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
-	dir = 1;
+	dir = 4;
 	icon_state = "pdoor1";
 	id = "arobackleft"
 	},
-/turf/simulated/floor/reinforced,
+/obj/structure/window/plastitanium/full,
+/obj/structure/window/plastitanium{
+	dir = 8;
+	icon_state = "window"
+	},
+/turf/simulated/floor/tiled/techmaint,
 /area/aro2/bighallway)
 "dq" = (
 /obj/effect/floor_decal/techfloor/orange{
@@ -1900,6 +1897,10 @@
 	icon_state = "warningcorner";
 	dir = 8
 	},
+/obj/structure/table/rack/shelf/steel,
+/obj/item/mecha_parts/mecha_equipment/omni_shield,
+/obj/item/mecha_parts/mecha_equipment/crisis_drone,
+/obj/item/mecha_parts/mecha_equipment/cloak,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/boatbay)
 "dR" = (
@@ -2367,20 +2368,23 @@
 	dir = 1
 	},
 /obj/structure/table/steel,
-/obj/item/weapon/storage/box/lights/tubes,
+/obj/fiftyspawner/plastitanium,
+/obj/fiftyspawner/plastitanium_glass,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/storage)
 "eJ" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/structure/window/phoronreinforced,
+/obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
-	dir = 8;
+	dir = 1;
 	icon_state = "pdoor1";
 	id = "arobackleft"
 	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/reinforced,
+/obj/structure/window/plastitanium/full,
+/obj/structure/window/plastitanium{
+	dir = 2;
+	icon_state = "window"
+	},
+/turf/simulated/floor/tiled/techmaint,
 /area/aro2/bighallway)
 "eK" = (
 /turf/simulated/wall/r_wall,
@@ -4239,6 +4243,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light,
+/obj/item/weapon/storage/box/lights/tubes,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/storage)
 "ia" = (
@@ -4426,18 +4431,18 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/aro2/bighallway)
 "ix" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/structure/window/phoronreinforced{
-	dir = 1
-	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
 	dir = 1;
 	icon_state = "pdoor1";
 	id = "arobackleft"
 	},
-/turf/simulated/floor/reinforced,
+/obj/structure/window/plastitanium/full,
+/obj/structure/window/plastitanium{
+	icon_state = "window";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
 /area/aro2/couchroom)
 "iy" = (
 /obj/structure/table/woodentable,
@@ -4485,18 +4490,18 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/aroboat2)
 "qK" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/structure/window/phoronreinforced{
-	dir = 1
-	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
 	dir = 1;
 	icon_state = "pdoor1";
 	id = "arobackleft"
 	},
-/turf/simulated/floor/reinforced,
+/obj/structure/window/plastitanium/full,
+/obj/structure/window/plastitanium{
+	icon_state = "window";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
 /area/aro2/room2)
 "qW" = (
 /obj/structure/table/bench/wooden,
@@ -4528,18 +4533,6 @@
 /obj/machinery/atmospherics/binary/pump/aux,
 /turf/simulated/floor/reinforced,
 /area/aro2/boatbay)
-"um" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/structure/window/phoronreinforced,
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	dir = 1;
-	icon_state = "pdoor1";
-	id = "arobackleft"
-	},
-/turf/simulated/floor/reinforced,
-/area/aro2/bighallway)
 "vA" = (
 /obj/structure/flora/pottedplant/unusual,
 /turf/simulated/floor/tiled/techfloor,
@@ -4555,18 +4548,18 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/aroboat2)
 "yk" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/structure/window/phoronreinforced{
-	dir = 1
-	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
 	dir = 1;
 	icon_state = "pdoor1";
 	id = "arobackleft"
 	},
-/turf/simulated/floor/reinforced,
+/obj/structure/window/plastitanium/full,
+/obj/structure/window/plastitanium{
+	icon_state = "window";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
 /area/aro2/room3)
 "yG" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -4642,18 +4635,18 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/aroboat2)
 "Fu" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/structure/window/phoronreinforced{
-	dir = 1
-	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
 	dir = 1;
 	icon_state = "pdoor1";
 	id = "arobackleft"
 	},
-/turf/simulated/floor/reinforced,
+/obj/structure/window/plastitanium/full,
+/obj/structure/window/plastitanium{
+	icon_state = "window";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
 /area/aro2/room0)
 "FR" = (
 /obj/machinery/atmospherics/portables_connector/aux{
@@ -4744,18 +4737,18 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/aro2/room0)
 "PT" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/structure/window/phoronreinforced{
-	dir = 1
-	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
 	dir = 1;
 	icon_state = "pdoor1";
 	id = "arobackleft"
 	},
-/turf/simulated/floor/reinforced,
+/obj/structure/window/plastitanium/full,
+/obj/structure/window/plastitanium{
+	icon_state = "window";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
 /area/aro2/room1)
 "QV" = (
 /obj/effect/shuttle_landmark{
@@ -4799,16 +4792,18 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/bighallway)
 "VH" = (
-/obj/structure/grille,
-/obj/structure/window/phoronreinforced/full,
-/obj/structure/window/phoronreinforced,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
 	dir = 1;
 	icon_state = "pdoor1";
 	id = "arobackleft"
 	},
-/turf/simulated/floor/reinforced,
+/obj/structure/window/plastitanium/full,
+/obj/structure/window/plastitanium{
+	dir = 2;
+	icon_state = "window"
+	},
+/turf/simulated/floor/tiled/techmaint,
 /area/aro2/cafe)
 "VO" = (
 /obj/effect/floor_decal/spline/plain{
@@ -15726,7 +15721,7 @@ hf
 iq
 fx
 iw
-um
+eJ
 aa
 aa
 aa
