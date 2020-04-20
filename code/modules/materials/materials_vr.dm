@@ -24,3 +24,9 @@
 	display_name = "darkglass"
 	icon_base = "darkglass"
 	icon_colour = "#FFFFFF"
+
+/material/fancyblack
+	name = "fancyblack"
+	display_name = "fancyblack"
+	icon_base = "fancyblack"
+	icon_colour = "#FFFFFF"

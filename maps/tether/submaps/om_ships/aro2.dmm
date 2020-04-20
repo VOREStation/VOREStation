@@ -2297,11 +2297,11 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
 	},
-/obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	icon_state = "map_scrubber_on";
 	dir = 4
 	},
+/obj/structure/table/fancyblack,
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
 "eC" = (
@@ -2544,7 +2544,6 @@
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
 "eY" = (
-/obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
@@ -2553,6 +2552,7 @@
 	pixel_x = 0;
 	pixel_y = -25
 	},
+/obj/structure/table/fancyblack,
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
 "eZ" = (
@@ -2610,10 +2610,10 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/holodeckroom)
 "fg" = (
-/obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/structure/table/fancyblack,
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
 "fh" = (
@@ -4506,10 +4506,10 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
 	},
-/obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
+/obj/structure/table/fancyblack,
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
 "tR" = (
