@@ -55,12 +55,6 @@
 	},
 /turf/space,
 /area/space)
-"ag" = (
-/obj/machinery/porta_turret/industrial/military,
-/turf/simulated/floor/reinforced/airless{
-	name = "outer hull"
-	},
-/area/mothership/breakroom)
 "ah" = (
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/breakroom)
@@ -844,7 +838,6 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/fans/hardlight,
 /turf/simulated/floor/plating,
 /area/mothership/kitchen)
 "bR" = (
@@ -10163,11 +10156,6 @@
 	name = "outer hull"
 	},
 /area/mothership/bridge)
-"Sv" = (
-/turf/simulated/floor/reinforced/airless{
-	name = "outer hull"
-	},
-/area/mothership/breakroom)
 "Sx" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -19592,7 +19580,7 @@ aa
 aa
 aa
 aa
-ag
+bc
 tG
 tG
 ao
@@ -19734,7 +19722,7 @@ aa
 aa
 aa
 aa
-Sv
+cq
 tG
 tG
 ap
@@ -21012,7 +21000,7 @@ aa
 aa
 aa
 aa
-Sv
+cq
 tG
 tG
 as
@@ -21154,7 +21142,7 @@ aa
 aa
 aa
 aa
-ag
+bc
 tG
 tG
 at
