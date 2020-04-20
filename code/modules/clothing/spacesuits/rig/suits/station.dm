@@ -162,6 +162,7 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/ce
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/ce
+	boot_type = /obj/item/clothing/shoes/magboots/rig/ce //VOREStation Add
 
 	allowed = list(
 		/obj/item/device/flashlight,

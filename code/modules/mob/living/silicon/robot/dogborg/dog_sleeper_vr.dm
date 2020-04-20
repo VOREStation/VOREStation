@@ -689,3 +689,10 @@
 	icon_state = "decompiler"
 	max_item_count = 20
 	delivery = TRUE
+	
+/obj/item/device/dogborg/sleeper/compactor/supply //Miner borg belly
+	name = "Supply Satchel"
+	desc = "A mounted survival unit with fuel processor."
+	icon_state = "sleeperc"
+	injection_chems = list("glucose","inaprovaline","tricordrazine")
+	max_item_count = 1
