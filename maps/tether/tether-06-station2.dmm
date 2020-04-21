@@ -21999,6 +21999,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/public_meeting_room)
+"Sr" = (
+/obj/random/cutout,
+/turf/simulated/floor,
+/area/maintenance/station/micro)
 "Sy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -22450,6 +22454,11 @@
 	dir = 1
 	},
 /area/hallway/station/starboard)
+"Wc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/random/cutout,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
 "Wi" = (
 /obj/machinery/alarm{
 	pixel_y = 22
@@ -32768,7 +32777,7 @@ FA
 QG
 at
 aO
-bf
+Wc
 bx
 bS
 ci
@@ -34656,7 +34665,7 @@ tu
 ur
 vz
 yJ
-eT
+Sr
 eT
 yJ
 yj

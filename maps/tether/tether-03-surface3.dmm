@@ -32633,6 +32633,10 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/shuttle/tourbus/general)
+"xHg" = (
+/obj/random/cutout,
+/turf/simulated/floor/plating,
+/area/vacant/vacant_site/gateway)
 "xHL" = (
 /obj/effect/floor_decal/rust/part_rusted1,
 /obj/machinery/atmospherics/binary/pump,
@@ -39796,7 +39800,7 @@ aTV
 aTZ
 aTZ
 aTZ
-aTW
+xHg
 aTW
 aTW
 aTW

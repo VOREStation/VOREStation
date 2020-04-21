@@ -17539,6 +17539,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
+/obj/structure/barricade/cutout/ntsec,
 /turf/simulated/floor/tiled/dark,
 /area/security/nuke_storage)
 "aBc" = (
@@ -32327,6 +32328,16 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"gUi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/random/cutout,
+/turf/simulated/floor,
+/area/maintenance/station/ai)
+"vFD" = (
+/obj/structure/catwalk,
+/obj/random/cutout,
+/turf/simulated/floor,
+/area/maintenance/station/sec_upper)
 
 (1,1,1) = {"
 aaa
@@ -42181,7 +42192,7 @@ aaI
 aaI
 aQY
 aRa
-afc
+vFD
 aRb
 afc
 aRc
@@ -46138,7 +46149,7 @@ aaa
 aaa
 aaa
 adV
-aeI
+gUi
 aeI
 apZ
 afy
