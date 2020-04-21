@@ -320,6 +320,34 @@
 
 //////////////////////////////////////////////////////////////////
 
+/area/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("check_static_power", "Check Static Power")
+
+/area/vv_do_topic(list/href_list)
+	. = ..()
+	IF_VV_OPTION("check_static_power")
+		if(!check_rights(R_DEBUG))
+			return
+		src.check_static_power(usr)
+		href_list["datumrefresh"] = "\ref[src]"
+
+// Debugging proc to report if static power is correct or not.
+/area/proc/check_static_power(var/user)
+	set name = "Check Static Power"
+	var/actual_static_equip = static_equip
+	var/actual_static_light = static_light
+	var/actual_static_environ = static_environ
+	retally_power()
+	if(user)
+		var/list/report = list("[src] ([type]) static power tally:")
+		report += "EQUIP:   Actual: [actual_static_equip] Correct: [static_equip] Difference: [actual_static_equip - static_equip]"
+		report += "LIGHT:   Actual: [actual_static_light] Correct: [static_light] Difference: [actual_static_light - static_light]"
+		report += "ENVIRON: Actual: [actual_static_environ] Correct: [static_environ] Difference: [actual_static_environ - static_environ]"
+		to_chat(user, report.Join("\n"))
+	return (actual_static_equip == static_equip && actual_static_light == static_light && actual_static_environ == static_environ)
+
+//////////////////////////////////////////////////////////////////
 
 var/list/mob/living/forced_ambiance_list = new
 
