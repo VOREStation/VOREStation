@@ -207,8 +207,6 @@
 
 	available_chemicals.Cut()
 	available_chemicals = base_chemicals.Copy()
-	idle_power_usage = initial(idle_power_usage)
-	active_power_usage = initial(active_power_usage)
 
 	for(var/obj/item/weapon/stock_parts/P in component_parts)
 		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
@@ -216,8 +214,8 @@
 
 	cap_rating = max(1, round(cap_rating / 2))
 
-	idle_power_usage /= cap_rating
-	active_power_usage /= cap_rating
+	update_idle_power_usage(initial(idle_power_usage) / cap_rating)
+	update_active_power_usage(initial(active_power_usage) / cap_rating)
 
 	if(!limited)
 		for(var/obj/item/weapon/stock_parts/P in component_parts)

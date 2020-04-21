@@ -196,6 +196,18 @@ Class Procs:
 /obj/machinery/proc/update_use_power(var/new_use_power)
 	use_power = new_use_power
 
+// Sets the power_channel var
+/obj/machinery/proc/update_power_channel(var/new_channel)
+	power_channel = new_channel
+
+// Sets the idle_power_usage var
+/obj/machinery/proc/update_idle_power_usage(var/new_power_usage)
+	idle_power_usage = new_power_usage
+
+// Sets the active_power_usage var
+/obj/machinery/proc/update_active_power_usage(var/new_power_usage)
+	active_power_usage = new_power_usage
+
 /obj/machinery/proc/auto_use_power()
 	if(!powered(power_channel))
 		return 0
