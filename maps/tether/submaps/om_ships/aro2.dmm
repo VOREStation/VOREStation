@@ -1298,11 +1298,6 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/bighallway)
 "cD" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 4
 	},
@@ -1318,7 +1313,7 @@
 /area/aro2/cafe)
 "cF" = (
 /obj/effect/floor_decal/spline/plain,
-/obj/machinery/vending/food,
+/obj/machinery/vending/food/arojoan,
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
 "cG" = (
@@ -1519,11 +1514,6 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
-	},
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/techfloor/orange/corner{
 	icon_state = "techfloororange_corners";
@@ -1925,11 +1915,6 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/bighallway)
 "dU" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	icon_state = "intact-supply";
 	dir = 8
@@ -2526,12 +2511,6 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/bighallway)
 "eV" = (
-/obj/structure/cable/cyan,
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 24
-	},
 /obj/effect/floor_decal/techfloor/orange{
 	icon_state = "techfloororange_edges";
 	dir = 6
