@@ -53,9 +53,5 @@
 
 //---------------
 //#define isturf(D)		istype(D, /turf)	//Built in
-<<<<<<< HEAD
 #define isopenspace(A)	istype(A, /turf/simulated/open)
 #define isspace(A)	istype(A, /turf/space)
-=======
-#define isopenspace(A)	istype(A, /turf/simulated/open)
->>>>>>> 54a8a58... Saycode Overhaul -- Multilingualism (#6956)
