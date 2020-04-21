@@ -137,7 +137,7 @@
 	vessel_size = SHIP_SIZE_LARGE
 	initial_generic_waypoints = list("cruiser_fore", "cruiser_aft", "cruiser_port", "cruiser_starboard", "ws_port_dock_1", "ws_port_dock_2", "ws_starboard_dock_1", "ws_starboard_dock_2")
 
-	skybox_icon = 'cruiser.dmi'
+	skybox_icon = 'cruiser.dmi' //Art by Gwyvern, distributed under Creative Commons license
 	skybox_icon_state = "skybox"
 	skybox_pixel_x = 370
 	skybox_pixel_y = 370

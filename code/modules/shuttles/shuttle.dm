@@ -331,6 +331,10 @@
 						//M.throw_at_random(FALSE, 4, 1)
 						if(istype(M, /mob/living/carbon))
 							M.Weaken(3)
+							//VOREStation Add
+							if(move_direction)
+								throw_a_mob(M,move_direction)
+							//VOREStation Add End
 		// We only need to rebuild powernets for our cables.  No need to check machines because they are on top of cables.
 		for(var/obj/structure/cable/C in A)
 			powernets |= C.powernet

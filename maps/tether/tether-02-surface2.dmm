@@ -575,6 +575,7 @@
 /obj/machinery/status_display{
 	pixel_y = 30
 	},
+/obj/random/cutout,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining)
 "abd" = (
@@ -3216,6 +3217,7 @@
 	},
 /obj/structure/railing,
 /obj/effect/decal/cleanable/dirt,
+/obj/random/cutout,
 /turf/simulated/floor/tiled/techmaint,
 /area/maintenance/lower/bar)
 "agJ" = (
@@ -7624,6 +7626,7 @@
 /obj/structure/railing,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
+/obj/random/cutout,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/asmaint2)
 "aps" = (
@@ -11952,6 +11955,7 @@
 	},
 /obj/effect/floor_decal/techfloor/corner,
 /obj/effect/floor_decal/rust,
+/obj/random/cutout,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/asmaint2)
 "awS" = (
@@ -29384,6 +29388,20 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
+"boO" = (
+/obj/random/cutout,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
+"cne" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/obj/random/cutout,
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/north)
+"kaa" = (
+/obj/random/cutout,
+/turf/simulated/floor,
+/area/maintenance/lower/south)
 
 (1,1,1) = {"
 aaa
@@ -39645,7 +39663,7 @@ aUQ
 aUQ
 aUQ
 acW
-adl
+cne
 adz
 adV
 acc
@@ -40419,7 +40437,7 @@ aFK
 aGa
 aGo
 aDS
-aEn
+boO
 aHk
 aHm
 aEn
@@ -45643,7 +45661,7 @@ aac
 aac
 aac
 arZ
-bar
+kaa
 avW
 bay
 bay
