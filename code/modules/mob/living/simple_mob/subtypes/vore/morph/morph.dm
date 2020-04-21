@@ -94,6 +94,7 @@
 
 	visible_message("<span class='warning'>[src] suddenly twists and changes shape, becoming a copy of [target]!</span>")
 	var/mutable_appearance/ma = new(target)
+	ma.verbs = verbs
 	ma.alpha = max(ma.alpha, 150) //fucking chameleons
 	ma.transform = initial(target.transform) //will this ever be non-null?
 
