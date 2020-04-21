@@ -1313,7 +1313,7 @@
 /area/aro2/cafe)
 "cF" = (
 /obj/effect/floor_decal/spline/plain,
-/obj/machinery/vending/food,
+/obj/machinery/vending/food/arojoan,
 /turf/simulated/floor/wood,
 /area/aro2/cafe)
 "cG" = (
