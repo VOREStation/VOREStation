@@ -17539,6 +17539,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
+/obj/structure/barricade/cutout/ntsec,
 /turf/simulated/floor/tiled/dark,
 /area/security/nuke_storage)
 "aBc" = (
