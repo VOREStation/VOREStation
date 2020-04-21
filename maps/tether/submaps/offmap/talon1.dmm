@@ -5227,6 +5227,10 @@
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/machinery/light/small{
+	icon_state = "bulb1";
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/talonboat)
 "jh" = (
@@ -6166,6 +6170,7 @@
 	pixel_x = 24
 	},
 /obj/structure/cable/green,
+/obj/machinery/light/small,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/talonboat)
 "lz" = (
