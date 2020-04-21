@@ -55,7 +55,7 @@
 	var/obj/effect/meteor/M = new Me(pickedstart)
 	M.dest = pickedgoal
 	spawn(0)
-		walk_towards(M, M.dest, 1)
+		walk_towards(M, M.dest, 3) //VOREStation Edit - Slower Meteors
 	return
 
 /proc/spaceDebrisStartLoc(startSide, Z)

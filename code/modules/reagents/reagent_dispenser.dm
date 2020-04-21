@@ -69,7 +69,7 @@
 /obj/structure/reagent_dispensers/watertank
 	name = "watertank"
 	desc = "A watertank."
-	icon = 'icons/obj/objects.dmi'
+	icon = 'icons/obj/objects_vr.dmi' //VOREStation Edit
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 10
 
@@ -89,7 +89,7 @@
 /obj/structure/reagent_dispensers/fueltank
 	name = "fueltank"
 	desc = "A fueltank."
-	icon = 'icons/obj/objects.dmi'
+	icon = 'icons/obj/objects_vr.dmi' //VOREStation Edit
 	icon_state = "weldtank"
 	amount_per_transfer_from_this = 10
 	var/modded = 0
@@ -98,6 +98,29 @@
 /obj/structure/reagent_dispensers/fueltank/Initialize()
 	. = ..()
 	reagents.add_reagent("fuel",1000)
+
+//VOREStation Add
+/obj/structure/reagent_dispensers/fueltank/high
+	name = "high-capacity fuel tank"
+	desc = "A highly-pressurized fuel tank made to hold vast amounts of fuel."
+	icon_state = "weldtank_high"
+
+/obj/structure/reagent_dispensers/fueltank/high/Initialize()
+	. = ..()
+	reagents.add_reagent("fuel",4000)
+
+/obj/structure/reagent_dispensers/foam
+	name = "foamtank"
+	desc = "A foam tank."
+	icon = 'icons/obj/objects_vr.dmi' //VOREStation Edit
+	icon_state = "foamtank"
+	amount_per_transfer_from_this = 10
+
+/obj/structure/reagent_dispensers/foam/Initialize()
+	. = ..()
+	reagents.add_reagent("firefoam",1000)
+//VOREStation Add End
+
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	if(!..(user, 2))
