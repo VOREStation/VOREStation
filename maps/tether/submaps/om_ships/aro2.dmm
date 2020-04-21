@@ -1377,8 +1377,8 @@
 /obj/structure/table/rack/shelf/steel,
 /obj/item/device/sleevemate,
 /obj/item/device/universal_translator,
-/obj/item/device/perfect_tele/one_beacon,
 /obj/item/weapon/cell/device/weapon/recharge/alien,
+/obj/item/device/perfect_tele/alien,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/storage)
 "cP" = (
