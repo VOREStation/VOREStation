@@ -23165,6 +23165,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/gravity_lobby)
+"dop" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/random/cutout,
+/turf/simulated/floor,
+/area/vacant/vacant_restaurant_lower)
 "dsY" = (
 /obj/effect/floor_decal/corner_techfloor_grid,
 /obj/effect/floor_decal/techfloor/corner,
@@ -23444,6 +23449,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/gravity_lobby)
+"juI" = (
+/obj/random/cutout,
+/turf/simulated/floor,
+/area/maintenance/station/abandonedholodeck)
 "jIo" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 8
@@ -30279,7 +30288,7 @@ and
 aTX
 aVN
 alv
-bYl
+dop
 bYl
 bYj
 bYj
@@ -37933,7 +37942,7 @@ adP
 aac
 aac
 aaf
-alo
+juI
 alo
 alo
 alo

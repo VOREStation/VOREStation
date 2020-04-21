@@ -5599,6 +5599,7 @@
 "akB" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
+/obj/random/cutout,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence)
 "akC" = (
@@ -11488,6 +11489,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/railing,
+/obj/random/cutout,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/xenoflora)
 "auM" = (
@@ -31708,6 +31710,10 @@
 "cGJ" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
+"cOq" = (
+/obj/random/cutout,
+/turf/simulated/floor/plating,
+/area/vacant/vacant_site/east)
 "cPs" = (
 /obj/machinery/computer/looking_glass{
 	lg_id = "one"
@@ -31739,6 +31745,10 @@
 	dir = 10
 	},
 /area/looking_glass/lg_1)
+"fYi" = (
+/obj/random/cutout,
+/turf/simulated/floor/plating,
+/area/construction/vacant_mining_ops)
 "gaK" = (
 /obj/machinery/door/airlock/glass{
 	name = "Looking Glass"
@@ -45853,7 +45863,7 @@ aah
 aaE
 aaL
 aaE
-aaL
+fYi
 aaL
 aaL
 aaL
@@ -45894,7 +45904,7 @@ azb
 aAj
 aBf
 agM
-aCJ
+cOq
 aCK
 aCK
 aCK
