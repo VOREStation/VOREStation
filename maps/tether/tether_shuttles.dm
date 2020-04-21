@@ -46,6 +46,7 @@
 	var/tag_door_offsite = "escape_shuttle_hatch_offsite"
 	var/frequency = 1380 // Why this frequency? BECAUSE! Thats what someone decided once.
 	var/datum/radio_frequency/radio_connection
+	move_direction = NORTH
 
 /datum/shuttle/autodock/ferry/emergency/New()
 	radio_connection = radio_controller.add_object(src, frequency, null)
@@ -194,6 +195,7 @@
 	docking_controller_tag = "expshuttle_docker"
 	shuttle_area = list(/area/shuttle/excursion/cockpit, /area/shuttle/excursion/general, /area/shuttle/excursion/cargo)
 	fuel_consumption = 3
+	move_direction = NORTH
 
 // The 'ship' of the excursion shuttle
 /obj/effect/overmap/visitable/ship/landable/excursion
@@ -218,6 +220,7 @@
 	docking_controller_tag = "tourbus_docker"
 	shuttle_area = list(/area/shuttle/tourbus/cockpit, /area/shuttle/tourbus/general, /area/shuttle/tourbus/engines)
 	fuel_consumption = 1
+	move_direction = NORTH
 
 // The 'ship' of the excursion shuttle
 /obj/effect/overmap/visitable/ship/landable/tourbus
@@ -242,6 +245,7 @@
 	docking_controller_tag = "medivac_docker"
 	shuttle_area = list(/area/shuttle/medivac/cockpit, /area/shuttle/medivac/general, /area/shuttle/medivac/engines)
 	fuel_consumption = 1
+	move_direction = EAST
 
 // The 'ship' of the excursion shuttle
 /obj/effect/overmap/visitable/ship/landable/medivac
