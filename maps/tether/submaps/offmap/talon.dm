@@ -45,7 +45,7 @@ var/global/list/latejoin_talon = list()
 	initial_generic_waypoints = list("talon_fore", "talon_aft", "talon_port", "talon_starboard")
 	initial_restricted_waypoints = list("Talon's boat" = list("offmap_spawn_talonboat"), "Talon lifeboat" = list("offmap_spawn_talon_lifeboat"))
 
-	skybox_icon = 'talon.dmi'
+	skybox_icon = 'talon.dmi' //Art by Gwyvern, distributed under Creative Commons license
 	skybox_icon_state = "skybox"
 	skybox_pixel_x = 270
 	skybox_pixel_y = 60
