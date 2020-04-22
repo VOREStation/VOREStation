@@ -884,11 +884,8 @@
 /turf/simulated/floor/bluegrid,
 /area/shuttle/tabiranth)
 "aQ" = (
-/obj/item/device/perfect_tele_beacon/stationary{
-	tele_name = "Tabiranth";
-	tele_network = "centcom"
-	},
-/obj/effect/floor_decal/industrial/hatch,
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/rd,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/tabiranth)
 "aR" = (
@@ -1132,6 +1129,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/item/device/perfect_tele_beacon/stationary{
+	tele_name = "Tabiranth";
+	tele_network = "centcom"
+	},
+/obj/effect/floor_decal/industrial/hatch,
 /turf/simulated/floor/tiled/white,
 /area/shuttle/tabiranth)
 "be" = (
@@ -1539,8 +1541,6 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/tabiranth)
 "br" = (
-/obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/rd,
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
@@ -1548,6 +1548,7 @@
 	dir = 4;
 	pixel_y = 0
 	},
+/obj/machinery/atm,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/tabiranth)
 "bs" = (
@@ -1726,20 +1727,6 @@
 /area/shuttle/tabiranth)
 "bI" = (
 /obj/structure/bed/chair/bay/shuttle,
-/obj/machinery/portable_atmospherics/canister/oxygen{
-	anchored = 1;
-	density = 0;
-	health = 1000;
-	layer = 2.2;
-	volume = 10000
-	},
-/obj/machinery/portable_atmospherics/canister/oxygen{
-	anchored = 1;
-	density = 0;
-	health = 1000;
-	layer = 2.2;
-	volume = 10000
-	},
 /obj/machinery/button/remote/blast_door{
 	id = "tabi-vault";
 	name = "Vault Blast Door Controls";
