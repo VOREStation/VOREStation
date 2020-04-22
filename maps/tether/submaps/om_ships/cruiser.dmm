@@ -37,14 +37,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/breakroom)
-"ae" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/breakroom)
 "af" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
@@ -2681,7 +2673,7 @@
 "fx" = (
 /obj/machinery/alarm{
 	pixel_y = 22;
-	target_temperature = 273.15
+	target_temperature = 274.15
 	},
 /obj/machinery/power/port_gen/pacman/super/potato{
 	sheets = 100
@@ -2923,6 +2915,11 @@
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
@@ -9731,6 +9728,11 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
@@ -20058,7 +20060,7 @@ aa
 tG
 tG
 tG
-ae
+tG
 aq
 ax
 FW
@@ -20768,7 +20770,7 @@ aa
 tG
 tG
 tG
-ae
+tG
 aq
 ax
 FW
