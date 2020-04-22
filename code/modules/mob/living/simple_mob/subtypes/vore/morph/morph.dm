@@ -60,6 +60,10 @@
 	verbs += /mob/living/proc/ventcrawl
 	return ..()
 
+/mob/living/simple_mob/vore/hostile/morph/Destroy()
+	form = null
+	return ..()
+
 /mob/living/simple_mob/vore/hostile/morph/proc/allowed(atom/movable/A)
 	return !is_type_in_typecache(A, blacklist_typecache) && (isobj(A) || ismob(A))
 
@@ -93,20 +97,16 @@
 	form = target
 
 	visible_message("<span class='warning'>[src] suddenly twists and changes shape, becoming a copy of [target]!</span>")
-	var/mutable_appearance/ma = new(target)
-	ma.verbs = verbs
-	ma.alpha = max(ma.alpha, 150) //fucking chameleons
-	ma.transform = initial(target.transform) //will this ever be non-null?
-
-	//copy_overlays(target, TRUE) //Overlays should be a part of ma, no?
+	name = target.name
+	desc = target.desc
+	icon = target.icon
+	icon_state = target.icon_state
+	alpha = max(target.alpha, 150)
+	copy_overlays(target, TRUE)
 	our_size_multiplier = size_multiplier
 	
-	ma.pixel_x = initial(target.pixel_x)
-	ma.pixel_y = initial(target.pixel_y)
-
-	//MA changes end
-	appearance = ma
-	//Non-MA changes
+	pixel_x = initial(target.pixel_x)
+	pixel_y = initial(target.pixel_y)
 
 	density = target.density
 
@@ -158,7 +158,6 @@
 	density = initial(density)
 
 	cut_overlays(TRUE) //ALL of zem
-	overlays.Cut() //Annoying. ANNOYING.
 	
 	maptext = null
 
