@@ -5,10 +5,10 @@
 	icon_state = "potato"
 	time_per_sheet = 1152 //same power output, but a 50 sheet stack will last 4 hours at max safe power
 	power_gen = 40000 //watts
-	max_power_output = 5
-	max_safe_output = 6
-	temperature_gain = 80	//how much the temperature increases per power output level, in degrees per level
-	max_temperature = 450
+	max_power_output = 7
+	max_safe_output = 5
+	temperature_gain = 40	//how much the temperature increases per power output level, in degrees per level
+	max_temperature = 500
 	anchored = 1
 
 // Circuits for the RTGs below
