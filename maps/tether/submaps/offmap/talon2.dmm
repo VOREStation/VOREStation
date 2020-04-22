@@ -5362,8 +5362,7 @@
 /area/talon/maintenance/decktwo_solars)
 "Ou" = (
 /obj/structure/cable/green{
-	icon_state = "0-1";
-	dir = 1
+	icon_state = "0-2"
 	},
 /obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
@@ -5377,14 +5376,6 @@
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/decktwo_solars)
 "Ow" = (
-/obj/structure/cable/green{
-	icon_state = "0-1";
-	dir = 1
-	},
-/obj/structure/cable/green{
-	icon_state = "0-1";
-	dir = 1
-	},
 /obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
 	},
@@ -5393,6 +5384,9 @@
 	},
 /obj/effect/floor_decal/techfloor{
 	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/talon/maintenance/decktwo_solars)
@@ -5577,7 +5571,6 @@
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /obj/effect/floor_decal/techfloor{
