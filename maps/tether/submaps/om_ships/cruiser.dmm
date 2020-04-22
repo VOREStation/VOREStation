@@ -2680,7 +2680,8 @@
 /area/mothership/vault)
 "fx" = (
 /obj/machinery/alarm{
-	pixel_y = 22
+	pixel_y = 22;
+	target_temperature = 273.15
 	},
 /obj/machinery/power/port_gen/pacman/super/potato{
 	sheets = 100
@@ -2865,9 +2866,11 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "fR" = (
@@ -2878,6 +2881,9 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/engineering,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/vault)
 "fS" = (
@@ -2895,6 +2901,9 @@
 	icon_state = "warning";
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "fT" = (
@@ -2910,6 +2919,9 @@
 	},
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -2933,6 +2945,9 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "fV" = (
@@ -2947,8 +2962,10 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "fW" = (
@@ -9548,6 +9565,20 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
+"yE" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/vault{
+	req_one_access = list(101)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/mothership/vault)
 "yG" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -9696,6 +9727,9 @@
 	icon_state = "1-8"
 	},
 /obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -10272,6 +10306,9 @@
 /obj/machinery/door/airlock/vault{
 	req_one_access = list(101)
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/mothership/vault)
 "TE" = (
@@ -10300,6 +10337,19 @@
 /obj/machinery/meter,
 /turf/simulated/floor/reinforced,
 /area/mothership/telecomms1)
+"Vb" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/engineering,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/mothership/vault)
 "Wi" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -20600,7 +20650,7 @@ Hl
 eR
 fd
 fd
-Tr
+yE
 fd
 fd
 gR
@@ -20884,7 +20934,7 @@ dO
 dO
 fd
 fd
-fR
+Vb
 fd
 fd
 dy
