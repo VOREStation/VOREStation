@@ -18127,6 +18127,7 @@
 	name = "Legitimate Prosthetics Fabricator";
 	res_max_amount = 150000;
 	speed = 0.2
+	req_access = list()
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
