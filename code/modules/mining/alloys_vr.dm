@@ -1,3 +1,13 @@
+/datum/alloy/plastitanium
+	metaltag = MAT_PLASTITANIUM
+	requires = list(
+		"rutile" = 1,
+		"platinum" = 1,
+		"carbon" = 2,
+		)
+	product_mod = 0.3
+	product = /obj/item/stack/material/plastitanium
+
 /datum/alloy/tiglass
 	metaltag = MAT_TITANIUMGLASS
 	requires = list(
