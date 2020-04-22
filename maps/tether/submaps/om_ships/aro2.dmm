@@ -1314,32 +1314,35 @@
 "cF" = (
 /obj/effect/floor_decal/spline/plain,
 /obj/machinery/vending/food/arojoan,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/tiled/techmaint,
 /area/aro2/cafe)
 "cG" = (
 /obj/effect/floor_decal/spline/plain,
-/obj/machinery/vending/boozeomat,
-/turf/simulated/floor/wood,
+/obj/machinery/vending/dinnerware,
+/turf/simulated/floor/tiled/techmaint,
 /area/aro2/cafe)
 "cH" = (
 /obj/effect/floor_decal/spline/plain,
-/obj/machinery/vending/dinnerware,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
+/obj/machinery/vending/boozeomat,
+/turf/simulated/floor/tiled/techmaint,
 /area/aro2/cafe)
 "cI" = (
 /obj/effect/floor_decal/spline/plain,
-/obj/machinery/vending/snack,
-/turf/simulated/floor/wood,
+/obj/structure/table/woodentable,
+/obj/machinery/chemical_dispenser/bar_soft{
+	pixel_y = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
 /area/aro2/cafe)
 "cJ" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 6
 	},
-/obj/machinery/vending/cola,
-/turf/simulated/floor/wood,
+/obj/machinery/vending/snack,
+/turf/simulated/floor/tiled/techmaint,
 /area/aro2/cafe)
 "cK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -2920,6 +2923,11 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/aroboat2)
 "fM" = (
@@ -2927,9 +2935,10 @@
 	dir = 4
 	},
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	icon_state = "0-8"
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/aroboat2)
@@ -2988,12 +2997,6 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/aroboat2)
 "fS" = (
-/obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/super;
-	dir = 8;
-	name = "west bump";
-	pixel_x = -24
-	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/aroboat2)
@@ -3010,6 +3013,11 @@
 /obj/effect/floor_decal/spline/plain{
 	icon_state = "spline_plain";
 	dir = 8
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/aroboat2)
@@ -4561,6 +4569,9 @@
 	icon_state = "spline_plain";
 	dir = 8
 	},
+/obj/structure/cable/cyan{
+	icon_state = "1-8"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/aroboat2)
 "zZ" = (
@@ -4583,6 +4594,11 @@
 /obj/effect/floor_decal/spline/plain{
 	icon_state = "spline_plain";
 	dir = 8
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/aroboat2)
@@ -4611,6 +4627,10 @@
 /area/aro2/boatbay)
 "Fh" = (
 /obj/effect/floor_decal/industrial/outline/blue,
+/obj/machinery/power/rtg/abductor/hybrid/built,
+/obj/structure/cable/cyan{
+	icon_state = "0-4"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/aroboat2)
 "Fu" = (

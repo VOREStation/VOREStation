@@ -25,6 +25,7 @@
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/weapon/stock_parts/capacitor = 1,
+		/obj/item/weapon/stock_parts/micro_laser = 1,
 		/obj/item/stack/material/uranium = 10,
 		/obj/item/stack/material/phoron = 5)
 
@@ -44,7 +45,8 @@
 	origin_tech = list(TECH_DATA = 8, TECH_POWER = 8, TECH_PHORON = 8, TECH_ENGINEERING = 8)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
-		/obj/item/weapon/stock_parts/capacitor/omni = 1)
+		/obj/item/weapon/stock_parts/capacitor/omni = 1,
+		/obj/item/weapon/stock_parts/micro_laser/omni = 1)
 
 // Radioisotope Thermoelectric Generator (RTG)
 // Simple power generator that would replace "magic SMES" on various derelicts.
@@ -79,8 +81,8 @@
 
 /obj/machinery/power/rtg/RefreshParts()
 	var/part_level = 0
-	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
-		part_level += C.rating
+	for(var/obj/item/weapon/stock_parts/SP in component_parts)
+		part_level += SP.rating
 
 	power_gen = initial(power_gen) * part_level
 
@@ -105,7 +107,7 @@
 
 /obj/machinery/power/rtg/advanced
 	desc = "An advanced RTG capable of moderating isotope decay, increasing power output but reducing lifetime. It uses plasma-fueled radiation collectors to increase output even further."
-	power_gen = 2000 // 2000 on T1, 8000 on T4.
+	power_gen = 1250 // 2500 on T1, 10000 on T4.
 	circuit = /obj/item/weapon/circuitboard/machine/rtg/advanced
 
 /obj/machinery/power/rtg/fake_gen
