@@ -372,7 +372,7 @@
 		if(href_list["action"] == "enable")
 			if(!active && HasFuel() && !IsBroken())
 				active = 1
-				icon_state = "[initial(icon_state)]_1" //VOREStation Edit
+				icon_state = "[initial(icon_state)]on" //VOREStation Edit
 		if(href_list["action"] == "disable")
 			if (active)
 				active = 0
