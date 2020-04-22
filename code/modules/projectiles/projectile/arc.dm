@@ -16,6 +16,7 @@
 	var/visual_y_offset = -16 // Adjusts how high the projectile and its shadow start, visually. This is so the projectile and shadow align with the center of the tile.
 	var/projectile_speed_modifier = 0.5 // Slows it down to make the arcing more noticable, and improve pixel calculation accuracy.
 	var/obj/effect/projectile_shadow/shadow = null // Visual indicator for the projectile's 'true' position. Needed due to being bound to two dimensions in reality.
+	var/arc_height_multiplier = 1 // Modifies how 'high' the projectile flies.
 
 /obj/item/projectile/arc/Bump()
 	return
@@ -88,7 +89,7 @@
 		// Now for the fake height.
 		var/arc_max_pixel_height = distance_to_fly / 2
 		var/sine_position = arc_progress * 180
-		var/pixel_z_position = (arc_max_pixel_height * sin(sine_position)) + visual_y_offset
+		var/pixel_z_position = (arc_max_pixel_height * sin(sine_position) * arc_height_multiplier) + visual_y_offset
 		animate(src, pixel_z = pixel_z_position, time = 1, flags = ANIMATION_END_NOW)
 
 		// Update our shadow.
@@ -176,6 +177,7 @@
 	damage_type = BIOACID
 	armor_penetration = 30
 	fire_sound = 'sound/effects/slime_squish.ogg'
+	arc_height_multiplier = 0.5
 
 /obj/item/projectile/arc/spore/on_impact(turf/T)
 	for(var/mob/living/L in T)

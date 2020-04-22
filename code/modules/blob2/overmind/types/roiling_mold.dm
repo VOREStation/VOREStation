@@ -21,6 +21,7 @@
 	attack_message_synth = ", and your shell buckles"
 	attack_verb = "lashes"
 	spore_projectile = /obj/item/projectile/arc/spore
+	factory_type = /obj/structure/blob/factory/turret
 
 /datum/blob_type/roiling_mold/proc/find_target(var/obj/structure/blob/B, var/tries = 0, var/list/previous_targets = null)
 	if(tries > 3)
@@ -33,7 +34,7 @@
 
 		previous_targets |= L
 
-		L = find_target(B, tries + 1, previous_targets)
+		return find_target(B, tries + 1, previous_targets)
 
 	return L
 
