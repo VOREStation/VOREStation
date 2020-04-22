@@ -82,11 +82,17 @@
 /obj/machinery/door/process()
 	if(close_door_at && world.time >= close_door_at)
 		if(autoclose)
-			close_door_at = next_close_time()
+			close_door_at = world.time + next_close_wait()
 			spawn(0)
 				close()
 		else
 			close_door_at = 0
+	if (..() == PROCESS_KILL && !close_door_at)
+		return PROCESS_KILL
+
+/obj/machinery/door/proc/autoclose_in(wait)
+	close_door_at = world.time + wait
+	START_MACHINE_PROCESSING(src)
 
 /obj/machinery/door/proc/can_open()
 	if(!density || operating || !ticker)
@@ -427,12 +433,12 @@
 	operating = 0
 
 	if(autoclose)
-		close_door_at = next_close_time()
+		autoclose_in(next_close_wait())
 
 	return 1
 
-/obj/machinery/door/proc/next_close_time()
-	return world.time + (normalspeed ? 150 : 5)
+/obj/machinery/door/proc/next_close_wait()
+	return (normalspeed ? 150 : 5)
 
 /obj/machinery/door/proc/close(var/forced = 0)
 	if(!can_close(forced))
