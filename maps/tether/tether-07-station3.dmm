@@ -32289,13 +32289,8 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "baS" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
-	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/turf/simulated/wall/r_wall,
+/area/quartermaster/belterdock/refinery)
 "baT" = (
 /obj/structure/shuttle/window,
 /obj/effect/shuttle_landmark{
@@ -32308,15 +32303,15 @@
 /area/shuttle/mining_outpost/shuttle)
 "baU" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/mining_outpost/shuttle)
 "baV" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -32328,6 +32323,14 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"baX" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "gUi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/random/cutout,
@@ -46777,11 +46780,11 @@ avt
 avt
 aVc
 aZS
-baS
-baU
-baU
 baU
 baV
+baV
+baV
+baX
 baB
 aVc
 avt
@@ -47050,7 +47053,7 @@ agg
 agg
 aae
 aae
-aMD
+baS
 aMD
 aMD
 aVt
@@ -47192,7 +47195,7 @@ agg
 agg
 agg
 aae
-aMD
+baS
 aNn
 aTB
 aVC
@@ -47334,7 +47337,7 @@ agg
 agg
 agg
 aae
-aMD
+baS
 aQh
 aUN
 aWe
@@ -47476,7 +47479,7 @@ agg
 agg
 aCS
 aae
-aMD
+baS
 aQr
 aTR
 aWz
@@ -47618,7 +47621,7 @@ agg
 agg
 agg
 aae
-aMD
+baS
 aQA
 aUe
 aWI
@@ -47760,7 +47763,7 @@ agg
 agg
 agg
 aae
-aMD
+baS
 aRL
 aUe
 aWJ
@@ -47902,7 +47905,7 @@ agg
 agg
 aae
 aae
-aMD
+baS
 aSR
 aMD
 aWK
@@ -48044,7 +48047,7 @@ aae
 aae
 aae
 aae
-aMD
+baS
 aSS
 aUe
 aUe
@@ -48186,7 +48189,7 @@ aaa
 aaa
 aaa
 aaa
-aMD
+baS
 aTH
 aWO
 aYG
@@ -48328,7 +48331,7 @@ aaa
 aaa
 aaa
 aaa
-aMD
+baS
 aMD
 aMD
 aMD
