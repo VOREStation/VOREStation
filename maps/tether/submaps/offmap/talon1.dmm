@@ -936,7 +936,7 @@
 /obj/structure/toilet,
 /obj/machinery/door/window/brigdoor/eastleft{
 	dir = 8;
-	req_one_access = list(301)
+	req_access = list(301)
 	},
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/bridge_hallway)
