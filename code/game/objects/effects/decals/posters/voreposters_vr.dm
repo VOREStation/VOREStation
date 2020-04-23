@@ -45,4 +45,8 @@
 /datum/poster/vore_12
 	icon_state = "sbsposter12"
 	name = "Baa"
-	desc = "A lewd exclusive poster of a certain security commander, taken from a old 'New Ewe' magazine! "
+	desc = "A lewd exclusive poster of a certain security commander, taken from a old 'New Ewe' magazine!"
+/datum/poster/vore_13
+	icon_state = "sbsposter13"
+	name = "Ammer"
+	desc = "You see a blue panda on the poster. She's awfully smug about her size."
