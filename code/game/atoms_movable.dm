@@ -48,6 +48,17 @@
 		pulledby = null
 	QDEL_NULL(riding_datum) //VOREStation Add
 
+
+/atom/movable/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("move_atom", "Move To Coordinate")
+
+/atom/vv_do_topic(list/href_list)
+	. = ..()
+	IF_VV_OPTION("move_atom")
+		usr.client.cmd_admin_move_atom(src)
+		href_list["datumrefresh"] = "\ref[src]"
+
 /atom/movable/vv_edit_var(var_name, var_value)
 	if(var_name in GLOB.VVpixelmovement)			//Pixel movement is not yet implemented, changing this will break everything irreversibly.
 		return FALSE

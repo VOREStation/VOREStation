@@ -99,7 +99,7 @@ var/list/floor_light_cache = list()
 		if(light_range || light_power)
 			set_light(0)
 
-	active_power_usage = ((light_range + light_power) * 10)
+	update_active_power_usage((light_range + light_power) * 10)
 	update_icon()
 
 /obj/machinery/floor_light/update_icon()

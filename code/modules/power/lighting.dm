@@ -438,14 +438,14 @@ var/global/list/light_type_cache = list()
 				update_use_power(USE_POWER_ACTIVE)
 				set_light(brightness_range, brightness_power, brightness_color)
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
-		use_power = 1
+		update_use_power(USE_POWER_IDLE)
 		emergency_mode = TRUE
 		START_PROCESSING(SSobj, src)
 	else
 		update_use_power(USE_POWER_IDLE)
 		set_light(0)
 
-	active_power_usage = ((light_range * light_power) * LIGHTING_POWER_FACTOR)
+	update_active_power_usage((light_range * light_power) * LIGHTING_POWER_FACTOR)
 
 
 /obj/machinery/light/attack_generic(var/mob/user, var/damage)

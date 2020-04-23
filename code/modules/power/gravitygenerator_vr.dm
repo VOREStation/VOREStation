@@ -94,7 +94,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	setup_parts()
 	middle.add_overlay("activated")
 	current_overlay = "activated"
-	use_power = USE_POWER_ACTIVE
+	update_use_power(USE_POWER_ACTIVE)
 
 //
 // Generator an admin can spawn
@@ -298,7 +298,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 /obj/machinery/gravity_generator/main/proc/set_state(new_state)
 	charging_state = POWER_IDLE
 	on = new_state
-	use_power = on ? USE_POWER_ACTIVE : USE_POWER_IDLE
+	update_use_power(on ? USE_POWER_ACTIVE : USE_POWER_IDLE)
 	// Sound the alert if gravity was just enabled or disabled.
 	var/alert = FALSE
 	if(SSticker.IsRoundInProgress())

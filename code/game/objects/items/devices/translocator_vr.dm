@@ -25,9 +25,15 @@
 	var/list/warned_users = list()
 	var/list/logged_events = list()
 
+	var/list/radial_images = list()
+
+	var/static/radial_plus = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "tl_plus")
+	var/static/radial_set = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "tl_set")
+	var/static/radial_seton = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "tl_seton")
 
 /obj/item/device/perfect_tele/Initialize()
 	. = ..()
+
 	flags |= NOBLUDGEON
 	if(cell_type)
 		power_source = new cell_type(src)
@@ -36,6 +42,8 @@
 	spk = new(src)
 	spk.set_up(5, 0, src)
 	spk.attach(src)
+
+	rebuild_radial_images()
 
 /obj/item/device/perfect_tele/Destroy()
 	// Must clear the beacon's backpointer or we won't GC. Someday maybe do something nicer even.
@@ -56,6 +64,28 @@
 
 	..()
 
+/obj/item/device/perfect_tele/proc/rebuild_radial_images()
+	radial_images.Cut()
+	
+	var/index = 1
+	for(var/bcn in beacons) //Grumble
+		var/image/I = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "tl_[index]")
+		
+		var/obj/item/device/perfect_tele_beacon/beacon = beacons[bcn]
+		if(destination == beacon)
+			I.overlays += radial_seton
+		else
+			I.overlays += radial_set
+		
+		radial_images[bcn] = I
+		
+		index++
+	
+	if(beacons_left)
+		var/image/I = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "tl_[index]")
+		I.overlays += radial_plus
+		radial_images["New Beacon"] = I
+
 /obj/item/device/perfect_tele/attack_hand(mob/user)
 	if(user.get_inactive_hand() == src)
 		unload_ammo(user)
@@ -74,6 +104,13 @@
 	else
 		to_chat(user,"<span class='notice'>[src] does not have a power cell.</span>")
 
+/obj/item/device/perfect_tele/proc/check_menu(var/mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(src))
+		return FALSE
+	return TRUE
+
 /obj/item/device/perfect_tele/attack_self(mob/user)
 	if(loc_network)
 		for(var/obj/item/device/perfect_tele_beacon/stationary/nb in premade_tele_beacons)
@@ -87,7 +124,45 @@
 		and tele-vore. Make sure you carefully examine someone's OOC prefs before teleporting them if you are \
 		going to use this device for ERP purposes. This device records all warnings given and teleport events for \
 		admin review in case of pref-breaking, so just don't do it.","OOC WARNING")
+	
+	var/choice = show_radial_menu(user, src, radial_images, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	
+	if(!choice)
+		return
+	
+	else if(choice == "New Beacon")
+		if(beacons_left <= 0)
+			to_chat(user, "<span class='warning'>The translocator can't support any more beacons!</span>")
+			return
 
+		var/new_name = html_encode(input(user,"New beacon's name (2-20 char):","[src]") as text|null)
+		if(!check_menu(user))
+			return
+
+		if(length(new_name) > 20 || length(new_name) < 2)
+			to_chat(user, "<span class='warning'>Entered name length invalid (must be longer than 2, no more than than 20).</span>")
+			return
+
+		if(new_name in beacons)
+			to_chat(user, "<span class='warning'>No duplicate names, please. '[new_name]' exists already.</span>")
+			return
+
+		var/obj/item/device/perfect_tele_beacon/nb = new(get_turf(src))
+		nb.tele_name = new_name
+		nb.tele_hand = src
+		nb.creator = user.ckey
+		beacons[new_name] = nb
+		beacons_left--
+		if(isliving(user))
+			var/mob/living/L = user
+			L.put_in_any_hand_if_possible(nb)
+		rebuild_radial_images()
+
+	else
+		destination = beacons[choice]
+		rebuild_radial_images()
+
+	/* Ye olde text-based way
 	var/choice = alert(user,"What do you want to do?","[src]","Create Beacon","Cancel","Target Beacon")
 	switch(choice)
 		if("Create Beacon")
@@ -124,6 +199,7 @@
 					to_chat(user,"<span class='notice'>Destination set to '[target]'.</span>")
 		else
 			return
+	*/
 
 /obj/item/device/perfect_tele/attackby(obj/W, mob/user)
 	if(istype(W,cell_type) && !power_source)

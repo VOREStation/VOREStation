@@ -161,7 +161,7 @@
 
 	container.reagents.remove_reagent("biomass", possible_list[choice][2])
 
-	use_power = USE_POWER_ACTIVE
+	update_use_power(USE_POWER_ACTIVE)
 	printing = 1
 	update_icon()
 
@@ -169,7 +169,7 @@
 
 	sleep(print_delay)
 
-	use_power = USE_POWER_IDLE
+	update_use_power(USE_POWER_IDLE)
 	printing = 0
 	update_icon()
 

@@ -80,7 +80,7 @@
 		return
 	set_light(3, 3, "#00CCAA")
 	icon_state = "beacon_active"
-	use_power = USE_POWER_IDLE
+	update_use_power(USE_POWER_IDLE)
 	if(user) to_chat(user, "<span class='notice'>You activate the beacon. The supply drop will be dispatched soon.</span>")
 
 /obj/machinery/power/supply_beacon/proc/deactivate(var/mob/user, var/permanent)
@@ -90,7 +90,7 @@
 	else
 		icon_state = "beacon"
 	set_light(0)
-	use_power = USE_POWER_OFF
+	update_use_power(USE_POWER_OFF)
 	target_drop_time = null
 	if(user) to_chat(user, "<span class='notice'>You deactivate the beacon.</span>")
 

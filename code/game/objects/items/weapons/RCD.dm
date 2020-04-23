@@ -27,13 +27,14 @@
 	var/window_type = /obj/structure/window/reinforced/full
 	var/material_to_use = DEFAULT_WALL_MATERIAL // So badmins can make RCDs that print diamond walls.
 	var/make_rwalls = FALSE // If true, when building walls, they will be reinforced.
-
+/* VOREStation Removal - Unused
 /obj/item/weapon/rcd/Initialize()
+	
 	src.spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	return ..()
-
+*/
 /obj/item/weapon/rcd/Destroy()
 	QDEL_NULL(spark_system)
 	spark_system = null
@@ -48,6 +49,7 @@
 	return "It currently holds [stored_matter]/[max_stored_matter] matter-units."
 
 // Used to add new cartridges.
+/* VOREStation Tweak - Wow this is annoying, moved to _vr file for overhaul
 /obj/item/weapon/rcd/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/rcd_ammo))
 		var/obj/item/weapon/rcd_ammo/cartridge = W
@@ -61,9 +63,10 @@
 		to_chat(user, span("notice", "The RCD now holds [stored_matter]/[max_stored_matter] matter-units."))
 		return TRUE
 	return ..()
-
+*/
 // Changes which mode it is on.
 /obj/item/weapon/rcd/attack_self(mob/living/user)
+/* VOREStation Removal - Moved to VR
 	if(mode_index >= modes.len) // Shouldn't overflow unless someone messes with it in VV poorly but better safe than sorry.
 		mode_index = 1
 	else
@@ -74,7 +77,7 @@
 
 	if(prob(20))
 		src.spark_system.start()
-
+*/
 // Removes resources if the RCD can afford it.
 /obj/item/weapon/rcd/proc/consume_resources(amount)
 	if(!can_afford(amount))
@@ -118,6 +121,7 @@
 		rcd_beam = beam_origin.Beam(A, icon_state = "rped_upgrade", time = max(true_delay, 5))
 	busy = TRUE
 
+	perform_effect(A, true_delay) //VOREStation Add
 	if(do_after(user, true_delay, target = A))
 		busy = FALSE
 		// Doing another check in case we lost matter during the delay for whatever reason.

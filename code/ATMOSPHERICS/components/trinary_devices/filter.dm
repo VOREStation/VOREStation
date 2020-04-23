@@ -185,7 +185,7 @@
 		var/new_flow_rate = input(usr,"Enter new flow rate (0-[air1.volume]L/s)","Flow Rate Control",src.set_flow_rate) as num
 		src.set_flow_rate = max(0, min(air1.volume, new_flow_rate))
 	if(href_list["power"])
-		use_power=!use_power
+		update_use_power(!use_power)
 	src.update_icon()
 	src.updateUsrDialog()
 /*

@@ -31,7 +31,7 @@
 	var/tot_rating = 0
 	for(var/obj/item/weapon/stock_parts/SP in src)
 		tot_rating += SP.rating
-	idle_power_usage /= max(1, tot_rating)
+	update_idle_power_usage(initial(idle_power_usage) / max(1, tot_rating))
 
 /obj/machinery/r_n_d/server/Initialize()
 	. = ..()

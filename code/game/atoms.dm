@@ -587,3 +587,5 @@
 		<a href='?_src_=vars;rotatedatum=\ref[src];rotatedir=right'>>></a>
 		</font>
 		"}
+	var/turf/T = get_turf(src)
+	. += "<br><font size='1'>[ADMIN_COORDJMP(T)]</font>"

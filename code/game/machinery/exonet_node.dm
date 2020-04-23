@@ -60,13 +60,13 @@
 	if(toggle)
 		if(stat & (BROKEN|NOPOWER|EMPED))
 			on = 0
-			idle_power_usage = 0
+			update_idle_power_usage(0)
 		else
 			on = 1
-			idle_power_usage = 2500
+			update_idle_power_usage(2500)
 	else
 		on = 0
-		idle_power_usage = 0
+		update_idle_power_usage(0)
 	update_icon()
 
 // Proc: emp_act()

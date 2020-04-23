@@ -182,7 +182,7 @@
 		if(istype(L))
 			L.tracking_cancelled()
 	current_camera = null
-	use_power = USE_POWER_IDLE
+	update_use_power(USE_POWER_IDLE)
 
 //Camera control: mouse.
 /atom/DblClick()

@@ -77,15 +77,15 @@
 		if(stat & (BROKEN|NOPOWER|EMPED))
 			on = 0
 			update_PDAs(1) // 1 being to turn off.
-			idle_power_usage = 0
+			update_idle_power_usage(0)
 		else
 			on = 1
 			update_PDAs(0)
-			idle_power_usage = 750
+			update_idle_power_usage(750)
 	else
 		on = 0
 		update_PDAs(1)
-		idle_power_usage = 0
+		update_idle_power_usage(0)
 	update_icon()
 
 /obj/machinery/pda_multicaster/process()

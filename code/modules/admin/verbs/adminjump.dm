@@ -170,3 +170,33 @@
 			admin_ticket_log(M, msg)
 		else
 			alert("Admin jumping disabled")
+
+/client/proc/cmd_admin_move_atom(var/atom/movable/AM, tx as num, ty as num, tz as num)
+	set category = "Admin"
+	set name = "Move Atom to Coordinate"
+
+	if(!check_rights(R_ADMIN|R_DEBUG|R_EVENT))
+		return
+
+	if(config.allow_admin_jump)
+		if(isnull(tx))
+			tx = input("Select X coordinate", "Move Atom", null, null) as null|num
+			if(!tx) return
+		if(isnull(ty))
+			ty = input("Select Y coordinate", "Move Atom", null, null) as null|num
+			if(!ty) return
+		if(isnull(tz))
+			tz = input("Select Z coordinate", "Move Atom", null, null) as null|num
+			if(!tz) return
+		var/turf/T = locate(tx, ty, tz)
+		if(!T)
+			to_chat(usr, "<span class='warning'>Those coordinates are outside the boundaries of the map.</span>")
+			return
+		if(ismob(AM))
+			var/mob/M = AM
+			M.on_mob_jump()
+		AM.forceMove(T)
+		feedback_add_details("admin_verb", "MA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		message_admins("[key_name_admin(usr)] jumped [AM] to coordinates [tx], [ty], [tz]")
+	else
+		alert("Admin jumping disabled")
