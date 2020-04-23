@@ -825,6 +825,7 @@
 	},
 /area/shuttle/generic_shuttle/eng)
 "bJ" = (
+/obj/machinery/portable_atmospherics/canister/phoron,
 /turf/simulated/floor/plating,
 /area/shuttle/generic_shuttle/eng)
 "bK" = (
@@ -923,6 +924,10 @@
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/generic_shuttle/eng)
+"dV" = (
+/obj/structure/fuel_port,
+/turf/simulated/wall/shull,
 /area/shuttle/generic_shuttle/eng)
 "gZ" = (
 /obj/machinery/door/blast/regular{
@@ -1103,7 +1108,7 @@ bi
 bn
 bs
 by
-bs
+dV
 bs
 bM
 bV
