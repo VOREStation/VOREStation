@@ -1378,10 +1378,7 @@
 /area/aro2/storage)
 "cO" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/device/sleevemate,
 /obj/item/device/universal_translator,
-/obj/item/weapon/cell/device/weapon/recharge/alien,
-/obj/item/device/perfect_tele/alien,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/storage)
 "cP" = (
@@ -1596,6 +1593,8 @@
 	pixel_y = 0;
 	report_danger_level = 0
 	},
+/obj/structure/table/rack/shelf/steel,
+/obj/item/device/sleevemate,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/storage)
 "dp" = (
@@ -2065,6 +2064,9 @@
 	name = "east bump";
 	pixel_x = 24
 	},
+/obj/structure/table/rack/shelf/steel,
+/obj/item/device/perfect_tele/alien,
+/obj/item/weapon/inducer/hybrid,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/storage)
 "ef" = (
