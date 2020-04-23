@@ -686,12 +686,12 @@
 /area/shuttle/generic_shuttle/eng)
 "bt" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/voidcraft,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/airlock,
 /turf/simulated/floor/tiled{
 	icon_state = "monotile"
 	},
