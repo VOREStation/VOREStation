@@ -178,13 +178,13 @@ obj/machinery/computer/ship/disperser/proc/is_valid_setup()
 		var/input = input("1-5", "disperser strength", 1) as num|null
 		if(input && CanInteract(user, state))
 			strength = sanitize_integer(input, 1, 5, 1)
-			middle.idle_power_usage = strength * range * 100
+			middle.update_idle_power_usage(strength * range * 100)
 
 	if(href_list["range"])
 		var/input = input("1-5", "disperser radius", 1) as num|null
 		if(input && CanInteract(user, state))
 			range = sanitize_integer(input, 1, 5, 1)
-			middle.idle_power_usage = strength * range * 100
+			middle.update_idle_power_usage(strength * range * 100)
 
 	if(href_list["fire"])
 		fire(user)
