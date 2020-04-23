@@ -16,10 +16,6 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/glass/talon,
-/obj/machinery/door/blast/regular/open{
-	dir = 4;
-	id = "talon_windows"
-	},
 /turf/simulated/floor/plating,
 /area/talon/deckone/bridge)
 "ae" = (
@@ -150,6 +146,11 @@
 	dir = 8;
 	icon_state = "tube1";
 	pixel_y = 0
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "talon_sensor";
+	name = "sensor blast shields"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon/deckone/bridge)
@@ -928,12 +929,14 @@
 /turf/simulated/floor/plating,
 /area/talon/maintenance/deckone_port)
 "bT" = (
-/obj/structure/toilet{
-	dir = 4
-	},
 /obj/machinery/light/small{
 	icon_state = "bulb1";
 	dir = 1
+	},
+/obj/structure/toilet,
+/obj/machinery/door/window/brigdoor/eastleft{
+	dir = 8;
+	req_access = list(301)
 	},
 /turf/simulated/floor/tiled/white,
 /area/talon/deckone/bridge_hallway)
@@ -6330,7 +6333,7 @@
 "nv" = (
 /obj/machinery/door/blast/regular/open{
 	dir = 4;
-	id = "talon_windows"
+	id = "talon_sensor"
 	},
 /turf/space,
 /area/talon/maintenance/deckone_port)
@@ -7125,6 +7128,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/talon/deckone/brig)
+"LJ" = (
+/obj/machinery/shower,
+/obj/item/weapon/soap/deluxe,
+/obj/structure/curtain,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/talon/deckone/bridge_hallway)
 "LX" = (
 /obj/effect/floor_decal/emblem/talon,
 /turf/simulated/floor/reinforced/airless,
@@ -7280,6 +7289,13 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon/deckone/workroom)
+"Qi" = (
+/obj/machinery/door/blast/regular/open{
+	dir = 4;
+	id = "talon_windows"
+	},
+/turf/space,
+/area/talon/deckone/bridge)
 "QJ" = (
 /obj/machinery/atmospherics/unary/engine/bigger{
 	dir = 1
@@ -15426,7 +15442,7 @@ MJ
 RD
 aa
 aC
-aL
+jh
 nL
 mv
 WL
@@ -16704,7 +16720,7 @@ bq
 bK
 aR
 aM
-jh
+aM
 cf
 aM
 cw
@@ -16845,7 +16861,7 @@ bo
 bq
 GF
 bQ
-bQ
+LJ
 aM
 cf
 aM
@@ -17256,7 +17272,7 @@ aa
 aa
 aa
 aa
-aa
+Qi
 ad
 ag
 an
@@ -17398,7 +17414,7 @@ aa
 aa
 aa
 aa
-aa
+Qi
 ad
 ah
 ao
@@ -17540,7 +17556,7 @@ aa
 aa
 aa
 aa
-aa
+Qi
 ad
 ai
 ap
