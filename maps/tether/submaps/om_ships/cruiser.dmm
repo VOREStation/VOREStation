@@ -3733,20 +3733,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/sechallway)
-"hB" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc";
-	name = "small craft wall hc";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/processing)
-"hC" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	name = "small craft wall";
-	stripe_color = "#45b3d8"
-	},
-/area/mothership/processing)
 "hD" = (
 /obj/machinery/door/airlock/security,
 /obj/machinery/door/firedoor/glass,
@@ -22219,7 +22205,7 @@ fl
 gE
 fl
 hm
-hB
+TE
 hV
 in
 iD
@@ -22361,7 +22347,7 @@ go
 gF
 fY
 hn
-hC
+TE
 hW
 ip
 iE
