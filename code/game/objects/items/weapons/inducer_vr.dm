@@ -257,7 +257,7 @@
 	charge = H.nutrition
 	maxcharge = initial(H.nutrition)
 
-	QDEL_IN(src, 10 SECONDS)
+	QDEL_IN(src, 20 SECONDS)
 
 /obj/item/weapon/cell/standin/give(var/amount)
 	amount *= 0.05 // So 1000 becomes 50
