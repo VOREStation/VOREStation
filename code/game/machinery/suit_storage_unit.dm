@@ -789,7 +789,7 @@
 		if(shock(user, 100))
 			return
 
-	usr.set_machine(src)
+	user.set_machine(src)
 
 	var/dat = "<HEAD><TITLE>Suit Cycler Interface</TITLE></HEAD>"
 
@@ -798,7 +798,7 @@
 
 	else if(locked)
 		dat += "<br><font color='red'><B>The [model_text ? "[model_text] " : ""]suit cycler is currently locked. Please contact your system administrator.</b></font>"
-		if(allowed(usr))
+		if(allowed(user))
 			dat += "<br><a href='?src=\ref[src];toggle_lock=1'>\[unlock unit\]</a>"
 	else
 		dat += "<h1>Suit cycler</h1>"
@@ -972,7 +972,7 @@
 	occupant.loc = get_turf(occupant)
 	occupant = null
 
-	add_fingerprint(usr)
+	add_fingerprint(user)
 	updateUsrDialog()
 	update_icon()
 
