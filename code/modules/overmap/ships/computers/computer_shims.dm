@@ -20,9 +20,9 @@
 /obj/machinery/proc/change_power_consumption(new_power_consumption, use_power_mode = USE_POWER_IDLE)
 	switch(use_power_mode)
 		if(USE_POWER_IDLE)
-			idle_power_usage = new_power_consumption
+			update_idle_power_usage(new_power_consumption)
 		if(USE_POWER_ACTIVE)
-			active_power_usage = new_power_consumption
+			update_active_power_usage(new_power_consumption)
 	// No need to do anything else in our power scheme.
 
 // Defining directly here to avoid conflicts with existing set_broken procs in our codebase that behave differently.

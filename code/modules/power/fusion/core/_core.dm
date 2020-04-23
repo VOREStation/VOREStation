@@ -60,7 +60,7 @@ var/list/fusion_cores = list()
 	if(href_list["str"])
 		var/dif = text2num(href_list["str"])
 		field_strength = min(max(field_strength + dif, MIN_FIELD_STR), MAX_FIELD_STR)
-		active_power_usage = 500 * field_strength
+		update_active_power_usage(500 * field_strength)
 		if(owned_field)
 			owned_field.ChangeFieldStrength(field_strength)
 
@@ -96,7 +96,7 @@ var/list/fusion_cores = list()
 /obj/machinery/power/fusion_core/proc/set_strength(var/value)
 	value = CLAMP(value, MIN_FIELD_STR, MAX_FIELD_STR)
 	field_strength = value
-	active_power_usage = 5 * value
+	update_active_power_usage(5 * value)
 	if(owned_field)
 		owned_field.ChangeFieldStrength(value)
 

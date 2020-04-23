@@ -143,7 +143,7 @@
 	// Update power usage:
 	if(on)
 		update_use_power(USE_POWER_ACTIVE)
-		active_power_usage = electricity_level*15
+		update_active_power_usage(electricity_level * 15)
 	else
 		update_use_power(USE_POWER_OFF)
 

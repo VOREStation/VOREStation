@@ -301,7 +301,7 @@
 
 	last_change = world.time
 	active = 1
-	use_power = USE_POWER_ACTIVE
+	update_use_power(USE_POWER_ACTIVE)
 
 	for(var/item in holographic_objs)
 		derez(item)
@@ -362,7 +362,7 @@
 
 	last_gravity_change = world.time
 	active = 1
-	use_power = USE_POWER_IDLE
+	update_use_power(USE_POWER_IDLE)
 
 	if(A.has_gravity)
 		A.gravitychange(0)
@@ -377,4 +377,4 @@
 		linkedholodeck.gravitychange(1)
 
 	active = 0
-	use_power = USE_POWER_IDLE
+	update_use_power(USE_POWER_IDLE)
