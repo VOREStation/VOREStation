@@ -120,13 +120,8 @@
 			m_type = 1
 
 		if("law")
-<<<<<<< HEAD
-			if (istype(module,/obj/item/weapon/robot_module/robot/security) || istype(module,/obj/item/weapon/robot_module/robot/knine)) //VOREStation Add - K9
-				message = "shows its legal authorization barcode."
-=======
-			if(istype(module,/obj/item/weapon/robot_module/robot/security))
+			if(istype(module,/obj/item/weapon/robot_module/robot/security) || istype(module,/obj/item/weapon/robot_module/robot/knine)) //VOREStation Add - K9
 				message = "<b>[src]</b> shows its legal authorization barcode."
->>>>>>> 54a8a58... Saycode Overhaul -- Multilingualism (#6956)
 
 				playsound(src.loc, 'sound/voice/biamthelaw.ogg', 50, 0)
 				m_type = 2
@@ -134,13 +129,8 @@
 				to_chat(src, "You are not THE LAW, pal.")
 
 		if("halt")
-<<<<<<< HEAD
-			if (istype(module,/obj/item/weapon/robot_module/robot/security) || istype(module,/obj/item/weapon/robot_module/robot/knine)) //VOREStation Add - K9
-				message = "<B>'s</B> speakers skreech, \"Halt! Security!\"."
-=======
-			if(istype(module,/obj/item/weapon/robot_module/robot/security))
+			if(istype(module,/obj/item/weapon/robot_module/robot/security) || istype(module,/obj/item/weapon/robot_module/robot/knine)) //VOREStation Add - K9
 				message = "<b>[src]</b> <B>'s</B> speakers skreech, \"Halt! Security!\"."
->>>>>>> 54a8a58... Saycode Overhaul -- Multilingualism (#6956)
 
 				playsound(src.loc, 'sound/voice/halt.ogg', 50, 0)
 				m_type = 2

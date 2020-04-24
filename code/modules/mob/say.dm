@@ -12,6 +12,7 @@
 	set category = "IC"
 
 	set_typing_indicator(FALSE)
+	message = sanitize_or_reflect(message, src) //VOREStation Edit - Reflect too-long messages, within reason
 	usr.say(message)
 
 /mob/verb/me_verb(message as text)

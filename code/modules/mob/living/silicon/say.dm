@@ -61,23 +61,6 @@
 
 	var/obj/machinery/hologram/holopad/T = src.holo
 	if(T && T.masters[src])//If there is a hologram and its master is the user.
-<<<<<<< HEAD
-		//Human-like, sorta, heard by those who understand humans.
-		var/rendered_a
-		//Speech distorted, heard by those who do not understand AIs.
-		var/message_stars = stars(message)
-		var/rendered_b
-
-		if(speaking)
-			rendered_a = "<span class='game say'><span class='name'>[name]</span> [speaking.format_message(message, verb)]</span>"
-			rendered_b = "<span class='game say'><span class='name'>[voice_name]</span> [speaking.format_message(message_stars, verb)]</span>"
-			to_chat(src, "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [speaking.format_message(message, verb)]</span></i>") //The AI can "hear" its own message.
-		else
-			rendered_a = "<span class='game say'><span class='name'>[name]</span> [verb], <span class='message'>\"[message]\"</span></span>"
-			rendered_b = "<span class='game say'><span class='name'>[voice_name]</span> [verb], <span class='message'>\"[message_stars]\"</span></span>"
-			to_chat(src, "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [verb], <span class='message'><span class='body'>\"[message]\"</span></span></span></i>") //The AI can "hear" its own message.
-=======
->>>>>>> 54a8a58... Saycode Overhaul -- Multilingualism (#6956)
 		var/list/listeners = get_mobs_and_objs_in_view_fast(get_turf(T), world.view)
 		var/list/listening = listeners["mobs"]
 		var/list/listening_obj = listeners["objs"]
