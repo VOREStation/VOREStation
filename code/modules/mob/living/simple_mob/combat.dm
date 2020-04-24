@@ -2,7 +2,7 @@
 /mob/living/simple_mob/proc/attack_target(atom/A)
 	set waitfor = FALSE // For attack animations. Don't want the AI processor to get held up.
 
-	if(!A.Adjacent(src))
+	if(!A.Adjacent(src) || isbelly(src.loc)) //VOREStation Edit
 		return ATTACK_FAILED
 	var/turf/their_T = get_turf(A)
 
