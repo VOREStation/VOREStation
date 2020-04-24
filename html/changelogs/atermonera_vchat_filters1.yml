@@ -1,0 +1,5 @@
+author: Atermonera
+delete-after: True
+changes: 
+  - rscadd: "Added Combat Logs filter category, to filter messages from things hitting you. This category will also eat up most other messages that are red and bold, please report any such messages that aren't specifically related to punching things."
+  - rscadd: "Added categories for sorting various types of admin logs."
