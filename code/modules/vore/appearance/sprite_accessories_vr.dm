@@ -1200,6 +1200,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/tail/nightstalker
+	name = "Nightstalker, colorable"
+	desc = ""
+	icon_state = "nightstalker"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special
 	name = "Blank tail. Do not select."
