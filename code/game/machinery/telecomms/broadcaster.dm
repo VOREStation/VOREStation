@@ -86,11 +86,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 							  signal.data["name"], signal.data["job"],
 							  signal.data["realname"], signal.data["vname"], DATA_NORMAL,
 							  signal.data["compression"], signal.data["level"], signal.frequency,
-<<<<<<< HEAD
-							  signal.data["verb"], signal.data["language"], forced_radios)
-=======
-							  signal.data["verb"])
->>>>>>> 54a8a58... Saycode Overhaul -- Multilingualism (#6956)
+							  signal.data["verb"], forced_radios)
 
 
 	   /** #### - Simple Broadcast - #### **/
@@ -115,14 +111,9 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 							  signal.data["vmask"], signal.data["vmessage"],
 							  signal.data["radio"], signal.data["message"],
 							  signal.data["name"], signal.data["job"],
-<<<<<<< HEAD
 							  signal.data["realname"], signal.data["vname"], DATA_FAKE,
 							  signal.data["compression"], signal.data["level"], signal.frequency,
-							  signal.data["verb"], signal.data["language"], forced_radios)
-=======
-							  signal.data["realname"], signal.data["vname"], 4, signal.data["compression"], signal.data["level"], signal.frequency,
-							  signal.data["verb"])
->>>>>>> 54a8a58... Saycode Overhaul -- Multilingualism (#6956)
+							  signal.data["verb"], forced_radios)
 
 		if(!message_delay)
 			message_delay = 1
@@ -279,30 +270,18 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 							  signal.data["vmask"], signal.data["vmessage"],
 							  signal.data["radio"], signal.data["message"],
 							  signal.data["name"], signal.data["job"],
-<<<<<<< HEAD
 							  signal.data["realname"], signal.data["vname"], DATA_NORMAL,
 							  signal.data["compression"], list(0), connection.frequency,
-							  signal.data["verb"], signal.data["language"], forced_radios)
-=======
-							  signal.data["realname"], signal.data["vname"],, signal.data["compression"], list(0), connection.frequency,
-							  signal.data["verb"])
->>>>>>> 54a8a58... Saycode Overhaul -- Multilingualism (#6956)
+							  signal.data["verb"], forced_radios)
 		else
 			if(intercept)
 				Broadcast_Message(signal.data["connection"], signal.data["mob"],
 							  signal.data["vmask"], signal.data["vmessage"],
 							  signal.data["radio"], signal.data["message"],
 							  signal.data["name"], signal.data["job"],
-<<<<<<< HEAD
 							  signal.data["realname"], signal.data["vname"], DATA_ANTAG,
 							  signal.data["compression"], list(0), connection.frequency,
-							  signal.data["verb"], signal.data["language"], forced_radios)
-=======
-							  signal.data["realname"], signal.data["vname"], 3, signal.data["compression"], list(0), connection.frequency,
-							  signal.data["verb"])
-
-
->>>>>>> 54a8a58... Saycode Overhaul -- Multilingualism (#6956)
+							  signal.data["verb"], forced_radios)
 
 /**
 
@@ -362,16 +341,10 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 **/
 
 /proc/Broadcast_Message(var/datum/radio_frequency/connection, var/mob/M,
-<<<<<<< HEAD
-						var/vmask, var/vmessage, var/obj/item/device/radio/radio,
-						var/message, var/name, var/job, var/realname, var/vname,
-						var/data, var/compression, var/list/level, var/freq, var/verbage = "says",
-						var/datum/language/speaking = null, var/list/forced_radios)
-=======
 						var/vmask, var/list/vmessage_pieces, var/obj/item/device/radio/radio,
 						var/list/message_pieces, var/name, var/job, var/realname, var/vname,
-						var/data, var/compression, var/list/level, var/freq, var/verbage = "says")
->>>>>>> 54a8a58... Saycode Overhaul -- Multilingualism (#6956)
+						var/data, var/compression, var/list/level, var/freq, var/verbage = "says",
+						var/list/forced_radios)
 
 
   /* ###### Prepare the radio connection ###### */
@@ -568,13 +541,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	return 1
 
-<<<<<<< HEAD
-/proc/Broadcast_SimpleMessage(var/source, var/frequency, var/text, var/data, var/mob/M, var/compression, var/level, var/list/forced_radios)
-
-=======
-/proc/Broadcast_SimpleMessage(var/source, var/frequency, list/message_pieces, var/data, var/mob/M, var/compression, var/level)
+/proc/Broadcast_SimpleMessage(var/source, var/frequency, list/message_pieces, var/data, var/mob/M, var/compression, var/level, var/list/forced_radios)
 	var/text = multilingual_to_message(message_pieces)
->>>>>>> 54a8a58... Saycode Overhaul -- Multilingualism (#6956)
   /* ###### Prepare the radio connection ###### */
 
 	if(!M)

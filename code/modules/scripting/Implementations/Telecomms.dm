@@ -253,7 +253,7 @@ datum/signal
 		newsign.data["realname"] = newsign.data["name"]
 		newsign.data["job"] = job
 		newsign.data["compression"] = 0
-		newsign.data["message"] = message
+		newsign.data["message"] = message_to_multilingual(message)
 		newsign.data["type"] = 2 // artificial broadcast
 		if(!isnum(freq))
 			freq = text2num(freq)
@@ -264,7 +264,7 @@ datum/signal
 
 
 		newsign.data["radio"] = hradio
-		newsign.data["vmessage"] = message
+		newsign.data["vmessage"] = message_to_multilingual(message)
 		newsign.data["vname"] = source
 		newsign.data["vmask"] = 0
 		newsign.data["level"] = list()

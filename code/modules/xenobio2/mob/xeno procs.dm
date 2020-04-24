@@ -112,27 +112,11 @@ Divergence proc, used in mutation to make unique datums.
 /mob/living/simple_mob/xeno/proc/RandomizeTraits()
 	return
 
-<<<<<<< HEAD
-/mob/living/simple_mob/xeno/hear_say(var/message, var/verb = "says", var/datum/language/language, var/alt_name = "",var/italics = 0, var/mob/speaker = null)
-=======
-/mob/living/simple_animal/xeno/hear_say(var/message, var/verb = "says", var/datum/language/language, var/italics = 0, var/mob/speaker = null)
->>>>>>> 54a8a58... Saycode Overhaul -- Multilingualism (#6956)
+/mob/living/simple_mob/xeno/hear_say(var/list/message_pieces, var/verb = "says", var/italics = 0, var/mob/speaker = null)
 	if(traitdat.traits[TRAIT_XENO_CANLEARN])
-		/*
-		Until this gets sorted out to a functioning point, or waiting on Psi's saycode update.
-		var/learned_message = say_understands(speaker, language)
-		if(!message || isxeno(speaker))
-			return
-		if(learned_message)	//Is it understood?
-			var/complete_message = ",[language.key] [message]"
-			if(!(complete_message in speak))
-				speech_buffer.Add(complete_message)
-				log_debug("Added '[complete_message]'.")
-		else
-		*/
 		if(!(message in speak))
-			speech_buffer.Add(message)
-	..(message,verb,language,italics,speaker)
+			speech_buffer.Add(multilingual_to_message(message_pieces))
+	. = ..()
 
 /mob/living/simple_mob/xeno/proc/ProcessSpeechBuffer()
 	if(speech_buffer.len)

@@ -2,12 +2,7 @@
 	if(name != GetVoice())
 		return " (as [get_id_name("Unknown")])"
 
-<<<<<<< HEAD
-	message = sanitize_or_reflect(message,src) //VOREStation Edit - Reflect too-long messages, within reason
-	..(message, alt_name = alt_name, whispering = whispering)
-=======
 	return ..()
->>>>>>> 54a8a58... Saycode Overhaul -- Multilingualism (#6956)
 
 /mob/living/carbon/human/proc/forcesay(list/append)
 	if(stat == CONSCIOUS)
@@ -61,21 +56,6 @@
 	if(!speaking)
 		if(istype(other, /mob/living/carbon/alien/diona))
 			if(other.languages.len >= 2) //They've sucked down some blood and can speak common now.
-<<<<<<< HEAD
-				return 1
-		if (istype(other, /mob/living/silicon))
-			return 1
-		if (istype(other, /mob/living/carbon/brain))
-			return 1
-		if (istype(other, /mob/living/simple_mob/slime))
-			return 1
-
-	//This is already covered by mob/say_understands()
-	//if (istype(other, /mob/living/simple_mob))
-	//	if((other.universal_speak && !speaking) || src.universal_speak || src.universal_understand)
-	//		return 1
-	//	return 0
-=======
 				return TRUE
 		if(issilicon(other))
 			return TRUE
@@ -83,7 +63,6 @@
 			return TRUE
 		if(isslime(other))
 			return TRUE
->>>>>>> 54a8a58... Saycode Overhaul -- Multilingualism (#6956)
 
 	return ..()
 

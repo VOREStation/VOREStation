@@ -86,29 +86,6 @@ proc/get_radio_key_from_channel(var/channel)
 	var/whispering = message_data[3]
 	. = 0
 
-<<<<<<< HEAD
-	if((HULK in mutations) && health >= 25 && length(message))
-		message = "[uppertext(message)]!!!"
-		verb = pick("yells","roars","hollers")
-		whispering = 0
-		. = 1
-	if(slurring)
-		message = slur(message)
-		verb = pick("slobbers","slurs")
-		. = 1
-	if(stuttering)
-		message = stutter(message)
-		verb = pick("stammers","stutters")
-		. = 1
-	//VOREStation Edit Start
-	if(muffled)
-		verb = pick("muffles")
-		whispering = 1
-		. = 1
-	//VOREStation Edit End
-
-	message_data[1] = message
-=======
 	// Technically this rerolls the verb for as many say pieces as there are. _shrug_
 	for(var/datum/multilingual_say_piece/S in message_pieces)
 		if(S.speaking && (S.speaking.flags & NO_STUTTER || S.speaking.flags & SIGNLANG))
@@ -127,9 +104,14 @@ proc/get_radio_key_from_channel(var/channel)
 			S.message = stutter(S.message)
 			verb = pick("stammers","stutters")
 			. = 1
+		//VOREStation Edit Start
+		if(muffled)
+			verb = pick("muffles")
+			whispering = 1
+			. = 1
+		//VOREStation Edit End
 
 	message_data[1] = message_pieces
->>>>>>> 54a8a58... Saycode Overhaul -- Multilingualism (#6956)
 	message_data[2] = verb
 	message_data[3] = whispering
 
@@ -282,7 +264,6 @@ proc/get_radio_key_from_channel(var/channel)
 		message_range = 1
 		sound_vol *= 0.5
 
-<<<<<<< HEAD
 	//VOREStation edit - allows for custom say verbs, overriding all other say-verb types- e.g. "says loudly" instead of "shouts"
 	//You'll still stammer if injured or slur if drunk, but it won't have those specific words
 	var/ending = copytext(message, length(message))
@@ -297,22 +278,11 @@ proc/get_radio_key_from_channel(var/channel)
 		verb = "[custom_say]"
 	//VOREStation edit ends
 
-	//Handle nonverbal and sign languages here
-	if (speaking)
-		if (speaking.flags & SIGNLANG)
-			log_say("(SIGN) [message]", src)
-			return say_signlang(message, pick(speaking.signlang_verb), speaking)
-
-		if (speaking.flags & NONVERBAL)
-			if (prob(30))
-				src.custom_emote(1, "[pick(speaking.signlang_verb)].")
-=======
 	//Handle nonverbal languages here
 	for(var/datum/multilingual_say_piece/S in message_pieces)
 		if(S.speaking.flags & NONVERBAL)
 			if(prob(30))
 				custom_emote(1, "[pick(S.speaking.signlang_verb)].")
->>>>>>> 54a8a58... Saycode Overhaul -- Multilingualism (#6956)
 
 	//These will contain the main receivers of the message
 	var/list/listening = list()

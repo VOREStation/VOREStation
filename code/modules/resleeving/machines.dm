@@ -472,10 +472,6 @@
 		var/obj/item/weapon/grab/G = W
 		if(!ismob(G.affecting))
 			return
-		for(var/mob/living/carbon/slime/M in range(1, G.affecting))
-			if(M.Victim == G.affecting)
-				to_chat(usr, "[G.affecting:name] will not fit into the [src.name] because they have a slime latched onto their head.")
-				return
 		var/mob/M = G.affecting
 		if(put_mob(M))
 			qdel(G)

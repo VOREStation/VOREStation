@@ -741,11 +741,7 @@
 					twitch_v, vomit, whimper, wink, yawn. Prometheans: squish Synthetics: beep, buzz, dwoop, yes, no, rcough, rsneeze, ping. Skrell: warble</span>")
 
 		else
-<<<<<<< HEAD
-			to_chat(src, "<font color='blue'>Unusable emote '[act]'. Say *help or *vhelp for a list.</font>") //VOREStation Edit, mention *vhelp for Virgo-specific emotes located in emote_vr.dm.
-=======
-			to_chat(src, "<span class='filter_say'><font color='blue'>Unusable emote '[act]'. Say *help for a list.</font></span>")
->>>>>>> 54a8a58... Saycode Overhaul -- Multilingualism (#6956)
+			to_chat(src, "<span class='filter_say'><font color='blue'>Unusable emote '[act]'. Say *help or *vhelp for a list.</font></span>") //VOREStation Edit, mention *vhelp for Virgo-specific emotes located in emote_vr.dm.
 
 	if(message)
 		custom_emote(m_type,message)
