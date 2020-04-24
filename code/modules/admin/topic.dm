@@ -1303,8 +1303,7 @@
 			for(var/client/X in admins)
 				if((R_ADMIN|R_MOD|R_SERVER) & X.holder.rights) //VOREStation Edit
 					to_chat(X, take_msg)
-<<<<<<< HEAD
-			to_chat(M, "<span class='notice'><b>Your adminhelp is being attended to by [usr.client]. Thanks for your patience!</b></span>")
+			to_chat(M, "<span class='filter_pm notice'><b>Your adminhelp is being attended to by [usr.client]. Thanks for your patience!</b></span>")
 			// VoreStation Edit Start
 			if (config.chat_webhook_url)
 				spawn(0)
@@ -1314,9 +1313,6 @@
 					query_string += "&user=[url_encode(key_name(M))]"
 					world.Export("[config.chat_webhook_url]?[query_string]")
 			// VoreStation Edit End
-=======
-			to_chat(M, "<span class='filter_pm notice'><b>Your adminhelp is being attended to by [usr.client]. Thanks for your patience!</b></span>")
->>>>>>> 1ed5556... Adds empty filter classes to send messages to particular vchat filters. (#6998)
 		else
 			to_chat(usr, "<span class='warning'>Unable to locate mob.</span>")
 
