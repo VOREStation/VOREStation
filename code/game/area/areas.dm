@@ -289,12 +289,13 @@
 			oneoff_light += amount
 		if(ENVIRON)
 			oneoff_environ += amount
+	return amount
 
 // This is used by machines to properly update the area of power changes.
 /area/proc/power_use_change(old_amount, new_amount, chan)
 	use_power_static(new_amount - old_amount, chan) // Simultaneously subtract old_amount and add new_amount.
 
-// Not a proc you want to use directly unless you know what you are doing; see use_power_oneoff below instead.
+// Not a proc you want to use directly unless you know what you are doing; see use_power_oneoff above instead.
 /area/proc/use_power_static(var/amount, var/chan)
 	switch(chan)
 		if(EQUIP)

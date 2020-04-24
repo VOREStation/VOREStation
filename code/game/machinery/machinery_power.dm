@@ -1,6 +1,6 @@
 //
 // /obj/machinery POWER USAGE CODE HERE! GO GO GADGET STATIC POWER!
-// Note: You can dinf /obj/machinery/power power usage code in power.dm
+// Note: You can find /obj/machinery/power power usage code in power.dm
 //
 // The following four machinery variables determine the "static" amount of power used every power cycle:
 // - use_power, idle_power_usage, active_power_usage, power_channel
@@ -20,17 +20,13 @@
 // returns true if the area has power on given channel (or doesn't require power).
 // defaults to power_channel
 /obj/machinery/proc/powered(var/chan = CURRENT_CHANNEL) // defaults to power_channel
-
-	if(!src.loc)
-		return 0
-
 	//Don't do this. It allows machines that set use_power to 0 when off (many machines) to
 	//be turned on again and used after a power failure because they never gain the NOPOWER flag.
 	//if(!use_power)
 	//	return 1
 
-	var/area/A = src.loc.loc		// make sure it's in an area
-	if(!A || !isarea(A))
+	var/area/A = get_area(src)		// make sure it's in an area
+	if(!A)
 		return 0					// if not, then not powered
 	if(chan == CURRENT_CHANNEL)
 		chan = power_channel
@@ -61,12 +57,11 @@
 // Returns actual amount drawn (In theory this could be less than the amount asked for. In pratice it won't be FOR NOW)
 /obj/machinery/proc/use_power_oneoff(var/amount, var/chan = CURRENT_CHANNEL)
 	var/area/A = get_area(src)		// make sure it's in an area
-	if(!A || !isarea(A))
+	if(!A)
 		return
 	if(chan == CURRENT_CHANNEL)
 		chan = power_channel
-	A.use_power_oneoff(amount, chan)
-	return amount // TODO - Return A.use_power_oneoff()'s retval once it returns something.
+	return A.use_power_oneoff(amount, chan)
 
 // Check if we CAN use a given amount of extra power as a one off. Returns amount we could use without actually using it.
 // For backwards compatibilty this returns true if the channel is powered. This is consistant with pre-static-power

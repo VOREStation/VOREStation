@@ -65,8 +65,6 @@ Class Procs:
 
    use_power_oneoff(amount, chan=CURRENT_CHANNEL)   'game/machinery/machinery_power.dm'
       Deducts 'amount' from the power channel 'chan' of the area that contains the object.
-      If it's autocalled then everything is normal, if something else calls use_power we are going to
-      need to recalculate the power two ticks in a row.
 
    power_change()               'game/machinery/machinery_power.dm'
       Called by the area that contains the object when ever that area under goes a
