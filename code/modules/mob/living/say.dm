@@ -172,6 +172,11 @@ proc/get_radio_key_from_channel(var/channel)
 	//Clean up any remaining space on the left
 	message = trim_left(message)
 
+	// VOREStation Edit - Reflect messages as needed, no sanitizing because parse_languages will handle it for us
+	if(reflect_if_needed(message, src))
+		return
+	// VOREStation Edit End
+
 	//Parse the language code and consume it
 	var/list/message_pieces = parse_languages(message)
 	if(istype(message_pieces, /datum/multilingual_say_piece)) // Little quark for dealing with hivemind/signlang languages.

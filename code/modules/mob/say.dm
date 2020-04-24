@@ -12,7 +12,6 @@
 	set category = "IC"
 
 	set_typing_indicator(FALSE)
-	message = sanitize_or_reflect(message, src) //VOREStation Edit - Reflect too-long messages, within reason
 	usr.say(message)
 
 /mob/verb/me_verb(message as text)
@@ -216,14 +215,14 @@
 		// There are a few things that will make us want to ignore all other languages in - namely, HIVEMIND languages.
 		var/datum/language/L = current[1]
 		if(L && (L.flags & HIVEMIND || L.flags & SIGNLANG))
-			return new /datum/multilingual_say_piece(L, trim(strip_prefixes(message)))
+			return new /datum/multilingual_say_piece(L, trim(sanitize(strip_prefixes(message))))
 
 		if(i + 1 > length(prefix_locations)) // We are out of lookaheads, that means the rest of the message is in cur lang
-			var/spoke_message = handle_autohiss(trim(copytext(message, current[3])), L)
+			var/spoke_message = sanitize(handle_autohiss(trim(copytext(message, current[3])), L))
 			. += new /datum/multilingual_say_piece(current[1], spoke_message)
 		else
 			var/next = prefix_locations[i + 1] // We look ahead at the next message to see where we need to stop.
-			var/spoke_message = handle_autohiss(trim(copytext(message, current[3], next[2])), L)
+			var/spoke_message = sanitize(handle_autohiss(trim(copytext(message, current[3], next[2])), L))
 			. += new /datum/multilingual_say_piece(current[1], spoke_message)
 
 /* These are here purely because it would be hell to try to convert everything over to using the multi-lingual system at once */
