@@ -71,3 +71,51 @@
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
+
+/area/submap/admin_upload/AU7
+	name = "\improper Unknown Area F"
+	requires_power = 1
+	dynamic_lighting = 1
+	power_equip = FALSE
+	power_environ = FALSE
+	power_light = FALSE
+
+/area/submap/admin_upload/AU8
+	name = "\improper Unknown Area G"
+	requires_power = 1
+	dynamic_lighting = 1
+	power_equip = FALSE
+	power_environ = FALSE
+	power_light = FALSE
+
+/area/submap/admin_upload/AU9
+	name = "\improper Unknown Area H"
+	requires_power = 1
+	dynamic_lighting = 1
+	power_equip = FALSE
+	power_environ = FALSE
+	power_light = FALSE
+
+/area/submap/admin_upload/AU10
+	name = "\improper Unknown Area I"
+	requires_power = 1
+	dynamic_lighting = 1
+	power_equip = FALSE
+	power_environ = FALSE
+	power_light = FALSE
+
+/area/submap/admin_upload/AU11
+	name = "\improper Unknown Area J"
+	requires_power = 1
+	dynamic_lighting = 1
+	power_equip = FALSE
+	power_environ = FALSE
+	power_light = FALSE
+
+/area/submap/admin_upload/AU12
+	name = "\improper Unknown Area K"
+	requires_power = 1
+	dynamic_lighting = 1
+	power_equip = FALSE
+	power_environ = FALSE
+	power_light = FALSE
