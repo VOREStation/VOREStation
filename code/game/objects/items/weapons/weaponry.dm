@@ -140,6 +140,7 @@
 			return
 		visible_message("<span class='danger'>[user] manages to tear \the [src] apart!</span>")
 		unbuckle_mob(buckled_mob)
+	escape_time -= 1 SECOND //VOREStation Edit - Escape time decreases with each failed attempt. Can't be dragged to prevent escape forever.
 
 /obj/effect/energy_net/post_buckle_mob(mob/living/M)
 	if(M.buckled == src) //Just buckled someone
