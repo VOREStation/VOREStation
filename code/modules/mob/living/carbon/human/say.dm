@@ -1,10 +1,8 @@
-/mob/living/carbon/human/say(var/message,var/whispering=0)
-	var/alt_name = ""
+/mob/living/carbon/human/GetAltName()
 	if(name != GetVoice())
-		alt_name = "(as [get_id_name("Unknown")])"
+		return " (as [get_id_name("Unknown")])"
 
-	message = sanitize_or_reflect(message,src) //VOREStation Edit - Reflect too-long messages, within reason
-	..(message, alt_name = alt_name, whispering = whispering)
+	return ..()
 
 /mob/living/carbon/human/proc/forcesay(list/append)
 	if(stat == CONSCIOUS)
@@ -47,36 +45,28 @@
 			return species.speech_bubble_appearance
 	return "normal"
 
-/mob/living/carbon/human/say_understands(var/mob/other,var/datum/language/speaking = null)
-
+/mob/living/carbon/human/say_understands(var/mob/other, var/datum/language/speaking = null)
 	if(has_brain_worms()) //Brain worms translate everything. Even mice and alien speak.
-		return 1
+		return TRUE
 
 	if(species.can_understand(other))
-		return 1
+		return TRUE
 
 	//These only pertain to common. Languages are handled by mob/say_understands()
-	if (!speaking)
-		if (istype(other, /mob/living/carbon/alien/diona))
+	if(!speaking)
+		if(istype(other, /mob/living/carbon/alien/diona))
 			if(other.languages.len >= 2) //They've sucked down some blood and can speak common now.
-				return 1
-		if (istype(other, /mob/living/silicon))
-			return 1
-		if (istype(other, /mob/living/carbon/brain))
-			return 1
-		if (istype(other, /mob/living/simple_mob/slime))
-			return 1
-
-	//This is already covered by mob/say_understands()
-	//if (istype(other, /mob/living/simple_mob))
-	//	if((other.universal_speak && !speaking) || src.universal_speak || src.universal_understand)
-	//		return 1
-	//	return 0
+				return TRUE
+		if(issilicon(other))
+			return TRUE
+		if(isbrain(other))
+			return TRUE
+		if(isslime(other))
+			return TRUE
 
 	return ..()
 
 /mob/living/carbon/human/GetVoice()
-
 	var/voice_sub
 	if(istype(get_rig(),/obj/item/weapon/rig))
 		var/obj/item/weapon/rig/rig = get_rig()
@@ -113,30 +103,6 @@
 /mob/living/carbon/human/proc/GetSpecialVoice()
 	return special_voice
 
-
-/*
-   ***Deprecated***
-   let this be handled at the hear_say or hear_radio proc
-   This is left in for robot speaking when humans gain binary channel access until I get around to rewriting
-   robot_talk() proc.
-   There is no language handling build into it however there is at the /mob level so we accept the call
-   for it but just ignore it.
-*/
-
-/mob/living/carbon/human/say_quote(var/message, var/datum/language/speaking = null)
-	var/verb = "says"
-	var/ending = copytext(message, length(message))
-
-	if(speaking)
-		verb = speaking.get_spoken_verb(ending)
-	else
-		if(ending == "!")
-			verb=pick("exclaims","shouts","yells")
-		else if(ending == "?")
-			verb="asks"
-
-	return verb
-
 /mob/living/carbon/human/handle_speech_problems(var/list/message_data)
 	if(silent || (sdisabilities & MUTE))
 		message_data[1] = ""
@@ -152,59 +118,72 @@
 	else
 		. = ..(message_data)
 
-/mob/living/carbon/human/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
+/mob/living/carbon/human/handle_message_mode(message_mode, list/message_pieces, verb, used_radios)
 	switch(message_mode)
 		if("intercom")
-			if(!src.restrained())
+			if(!restrained())
 				for(var/obj/item/device/radio/intercom/I in view(1))
-					I.talk_into(src, message, null, verb, speaking)
+					I.talk_into(src, message_pieces, null, verb)
 					I.add_fingerprint(src)
 					used_radios += I
 		if("headset")
-			if(l_ear && istype(l_ear,/obj/item/device/radio))
-				var/obj/item/device/radio/R = l_ear
-				R.talk_into(src,message,null,verb,speaking)
-				used_radios += l_ear
-			else if(r_ear && istype(r_ear,/obj/item/device/radio))
-				var/obj/item/device/radio/R = r_ear
-				R.talk_into(src,message,null,verb,speaking)
-				used_radios += r_ear
-		if("right ear")
-			var/obj/item/device/radio/R
-			var/has_radio = 0
-			if(r_ear && istype(r_ear,/obj/item/device/radio))
-				R = r_ear
-				has_radio = 1
-			if(r_hand && istype(r_hand, /obj/item/device/radio))
-				R = r_hand
-				has_radio = 1
-			if(has_radio)
-				R.talk_into(src,message,null,verb,speaking)
-				used_radios += R
-		if("left ear")
-			var/obj/item/device/radio/R
-			var/has_radio = 0
-			if(l_ear && istype(l_ear,/obj/item/device/radio))
+			var/obj/item/device/radio/R = null
+			if(isradio(l_ear))
 				R = l_ear
-				has_radio = 1
-			if(l_hand && istype(l_hand,/obj/item/device/radio))
+				if(R.talk_into(src, message_pieces, null, verb))
+					used_radios += R
+					return
+
+			if(isradio(r_ear))
+				R = r_ear
+				if(R.talk_into(src, message_pieces, null, verb))
+					used_radios += R
+					return
+		if("right ear")
+			var/obj/item/device/radio/R = null
+			if(isradio(r_ear))
+				R = r_ear
+			if(isradio(r_hand))
+				R = r_hand
+			if(istype(R))
+				if(R.talk_into(src, message_pieces, null, verb))
+					used_radios += R
+		if("left ear")
+			var/obj/item/device/radio/R = null
+			if(isradio(l_ear))
+				R = l_ear
+			if(isradio(l_hand))
 				R = l_hand
-				has_radio = 1
-			if(has_radio)
-				R.talk_into(src,message,null,verb,speaking)
-				used_radios += R
+			if(istype(R))
+				if(R.talk_into(src, message_pieces, null, verb))
+					used_radios += R
 		else
 			if(message_mode)
-				if(l_ear && istype(l_ear,/obj/item/device/radio))
-					l_ear.talk_into(src,message, message_mode, verb, speaking)
-					used_radios += l_ear
-				else if(r_ear && istype(r_ear,/obj/item/device/radio))
-					r_ear.talk_into(src,message, message_mode, verb, speaking)
-					used_radios += r_ear
+				if(isradio(l_ear))
+					if(l_ear.talk_into(src, message_pieces, message_mode, verb))
+						used_radios += l_ear
+						return
+
+				if(isradio(r_ear))
+					if(r_ear.talk_into(src, message_pieces, message_mode, verb))
+						used_radios += r_ear
 
 /mob/living/carbon/human/handle_speech_sound()
+	var/list/returns[2]
 	if(species.speech_sounds && prob(species.speech_chance))
-		var/list/returns[2]
 		returns[1] = sound(pick(species.speech_sounds))
 		returns[2] = 50
-	return ..()
+	return returns
+
+/mob/living/carbon/human/binarycheck()
+	. = FALSE
+	var/obj/item/device/radio/headset/R = null
+	if(istype(l_ear, /obj/item/device/radio/headset))
+		R = l_ear
+		if(R.translate_binary)
+			. = TRUE
+
+	if(istype(r_ear, /obj/item/device/radio/headset))
+		R = r_ear
+		if(R.translate_binary)
+			. = TRUE

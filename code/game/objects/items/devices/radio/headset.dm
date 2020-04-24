@@ -43,15 +43,17 @@
 	to_chat(user, "The following channels are available:")
 	to_chat(user, radio_desc)
 
-/obj/item/device/radio/headset/handle_message_mode(mob/living/M as mob, message, channel)
-	if (channel == "special")
-		if (translate_binary)
+/obj/item/device/radio/headset/handle_message_mode(mob/living/M as mob, list/message_pieces, channel)
+	if(channel == "special")
+		if(translate_binary)
 			var/datum/language/binary = GLOB.all_languages["Robot Talk"]
-			binary.broadcast(M, message)
-		if (translate_hive)
+			binary.broadcast(M, M.strip_prefixes(multilingual_to_message(message_pieces)))
+			return RADIO_CONNECTION_NON_SUBSPACE
+		if(translate_hive)
 			var/datum/language/hivemind = GLOB.all_languages["Hivemind"]
-			hivemind.broadcast(M, message)
-		return null
+			hivemind.broadcast(M, M.strip_prefixes(multilingual_to_message(message_pieces)))
+			return RADIO_CONNECTION_NON_SUBSPACE
+		return RADIO_CONNECTION_FAIL
 
 	return ..()
 

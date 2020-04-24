@@ -144,12 +144,8 @@
 /mob/living/bot/attack_ai(var/mob/user)
 	return attack_hand(user)
 
-/mob/living/bot/say(var/message)
-	var/verb = "beeps"
-
-	message = sanitize(message)
-
-	..(message, null, verb)
+/mob/living/bot/say_quote(var/message, var/datum/language/speaking = null)
+	return "beeps"
 
 /mob/living/bot/speech_bubble_appearance()
 	return "machine"

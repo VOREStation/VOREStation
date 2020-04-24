@@ -38,9 +38,9 @@
 	radio.icon_state = src.icon_state
 	update_icon()
 
-/obj/item/device/tvcamera/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
-	radio.hear_talk(M,msg,verb,speaking)
-	..()
+/obj/item/device/tvcamera/hear_talk(mob/M, list/message_pieces, verb)
+	radio.hear_talk(M, message_pieces, verb)
+	. = ..()
 
 /obj/item/device/tvcamera/attack_self(mob/user)
 	add_fingerprint(user)

@@ -303,11 +303,11 @@ var/global/list/default_medbay_channels = list(
 	A.SetName(from)
 	Broadcast_Message(connection, A,
 						0, "*garbled automated announcement*", src,
-						message, from, "Automated Announcement", from, "synthesized voice",
+						message_to_multilingual(message), from, "Automated Announcement", from, "synthesized voice",
 						4, 0, zlevels, connection.frequency, "states")
 
 // Interprets the message mode when talking into a radio, possibly returning a connection datum
-/obj/item/device/radio/proc/handle_message_mode(mob/living/M as mob, message, message_mode)
+/obj/item/device/radio/proc/handle_message_mode(mob/living/M as mob, list/message_pieces, message_mode)
 	// If a channel isn't specified, send to common.
 	if(!message_mode || message_mode == "headset")
 		return radio_connection
@@ -321,16 +321,17 @@ var/global/list/default_medbay_channels = list(
 			return secure_radio_connections[message_mode]
 
 	// If we were to send to a channel we don't have, drop it.
-	return null
+	return RADIO_CONNECTION_FAIL
 
-/obj/item/device/radio/talk_into(mob/living/M as mob, message, channel, var/verb = "says", var/datum/language/speaking = null)
-	if(!on) return FALSE // the device has to be on
+/obj/item/device/radio/talk_into(mob/living/M as mob, list/message_pieces, channel, var/verb = "says")
+	if(!on)
+		return FALSE // the device has to be on
 	//  Fix for permacell radios, but kinda eh about actually fixing them.
-	if(!M || !message) return FALSE
+	if(!M || !message_pieces)
+		return FALSE
 
-	if(speaking && (speaking.flags & (SIGNLANG|NONVERBAL))) return FALSE
-
-	if(istype(M)) M.trigger_aiming(TARGET_CAN_RADIO)
+	if(istype(M))
+		M.trigger_aiming(TARGET_CAN_RADIO)
 
 	//  Uncommenting this. To the above comment:
 	// 	The permacell radios aren't suppose to be able to transmit, this isn't a bug and this "fix" is just making radio wires useless. -Giacom
@@ -352,10 +353,17 @@ var/global/list/default_medbay_channels = list(
 	*/
 
 	//#### Grab the connection datum ####//
-	var/datum/radio_frequency/connection = handle_message_mode(M, message, channel)
-	if (!istype(connection))
+	var/message_mode = handle_message_mode(M, message_pieces, channel)
+	switch(message_mode)
+		if(RADIO_CONNECTION_FAIL)
+			return FALSE
+		if(RADIO_CONNECTION_NON_SUBSPACE)
+			return TRUE
+
+	if(!istype(message_mode, /datum/radio_frequency))
 		return FALSE
 
+	var/datum/radio_frequency/connection = message_mode
 	var/pos_z = get_z(src)
 
 	//#### Tagging the signal with all appropriate identity values ####//
@@ -417,7 +425,7 @@ var/global/list/default_medbay_channels = list(
 		"name" = displayname,	// the mob's display name
 		"job" = jobname,		// the mob's job
 		"key" = mobkey,			// the mob's key
-		"vmessage" = pick(M.speak_emote), // the message to display if the voice wasn't understood
+		"vmessage" = message_to_multilingual(pick(M.speak_emote)), // the message to display if the voice wasn't understood
 		"vname" = M.voice_name, // the name to display if the voice wasn't understood
 		"vmask" = voicemask,	// 1 if the mob is using a voice gas mask
 
@@ -426,7 +434,7 @@ var/global/list/default_medbay_channels = list(
 
 		// Other tags:
 		"compression" = rand(45,50), // compressed radio signal
-		"message" = message, // the actual sent message
+		"message" = message_pieces, // the actual sent message
 		"connection" = connection, // the radio connection to use
 		"radio" = src, // stores the radio used for transmission
 		"slow" = 0, // how much to sleep() before broadcasting - simulates net lag
@@ -435,7 +443,6 @@ var/global/list/default_medbay_channels = list(
 		"server" = null, // the last server to log this signal
 		"reject" = 0,	// if nonzero, the signal will not be accepted by any broadcasting machinery
 		"level" = pos_z, // The source's z level
-		"language" = speaking,
 		"verb" = verb
 	)
 	signal.frequency = connection.frequency // Quick frequency set
@@ -520,14 +527,14 @@ var/global/list/default_medbay_channels = list(
 
 	//Nothing handled any sort of remote radio-ing and returned before now, just squawk on this zlevel.
 	return Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
-		src, message, displayname, jobname, real_name, M.voice_name,
-		filter_type, signal.data["compression"], using_map.get_map_levels(pos_z), connection.frequency, verb, speaking)
+		src, message_pieces, displayname, jobname, real_name, M.voice_name,
+		filter_type, signal.data["compression"], using_map.get_map_levels(pos_z), connection.frequency, verb)
 
 
-/obj/item/device/radio/hear_talk(mob/M as mob, msg, var/verb = "says", var/datum/language/speaking = null)
-	if (broadcasting)
+/obj/item/device/radio/hear_talk(mob/M as mob, list/message_pieces, var/verb = "says")
+	if(broadcasting)
 		if(get_dist(src, M) <= canhear_range)
-			talk_into(M, msg,null,verb,speaking)
+			talk_into(M, message_pieces, null, verb)
 
 
 

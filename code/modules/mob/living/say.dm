@@ -70,62 +70,55 @@ proc/get_radio_key_from_channel(var/channel)
 	return key
 
 /mob/living/proc/binarycheck()
+	return FALSE
 
-	if (istype(src, /mob/living/silicon/pai))
-		return
+/mob/proc/get_default_language()
+	return null
 
-	if (!ishuman(src))
-		return
-
-	var/mob/living/carbon/human/H = src
-	if (H.l_ear || H.r_ear)
-		var/obj/item/device/radio/headset/dongle
-		if(istype(H.l_ear,/obj/item/device/radio/headset))
-			dongle = H.l_ear
-		else
-			dongle = H.r_ear
-		if(!istype(dongle)) return
-		if(dongle.translate_binary) return 1
-
-/mob/living/proc/get_default_language()
+/mob/living/get_default_language()
 	return default_language
 
 //Takes a list of the form list(message, verb, whispering) and modifies it as needed
 //Returns 1 if a speech problem was applied, 0 otherwise
 /mob/living/proc/handle_speech_problems(var/list/message_data)
-	var/message = message_data[1]
+	var/list/message_pieces = message_data[1]
 	var/verb = message_data[2]
 	var/whispering = message_data[3]
 	. = 0
 
-	if((HULK in mutations) && health >= 25 && length(message))
-		message = "[uppertext(message)]!!!"
-		verb = pick("yells","roars","hollers")
-		whispering = 0
-		. = 1
-	if(slurring)
-		message = slur(message)
-		verb = pick("slobbers","slurs")
-		. = 1
-	if(stuttering)
-		message = stutter(message)
-		verb = pick("stammers","stutters")
-		. = 1
-	//VOREStation Edit Start
-	if(muffled)
-		verb = pick("muffles")
-		whispering = 1
-		. = 1
-	//VOREStation Edit End
+	// Technically this rerolls the verb for as many say pieces as there are. _shrug_
+	for(var/datum/multilingual_say_piece/S in message_pieces)
+		if(S.speaking && (S.speaking.flags & NO_STUTTER || S.speaking.flags & SIGNLANG))
+			continue
 
-	message_data[1] = message
+		if((HULK in mutations) && health >= 25 && length(S.message))
+			S.message = "[uppertext(S.message)]!!!"
+			verb = pick("yells","roars","hollers")
+			whispering = 0
+			. = 1
+		if(slurring)
+			S.message = slur(S.message)
+			verb = pick("slobbers","slurs")
+			. = 1
+		if(stuttering)
+			S.message = stutter(S.message)
+			verb = pick("stammers","stutters")
+			. = 1
+		//VOREStation Edit Start
+		if(muffled)
+			verb = pick("muffles")
+			whispering = 1
+			. = 1
+		//VOREStation Edit End
+
+	message_data[1] = message_pieces
 	message_data[2] = verb
 	message_data[3] = whispering
 
-/mob/living/proc/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
+/mob/living/proc/handle_message_mode(message_mode, list/message_pieces, verb, used_radios)
 	if(message_mode == "intercom")
 		for(var/obj/item/device/radio/intercom/I in view(1, null))
-			I.talk_into(src, message, verb, speaking)
+			I.talk_into(src, message_pieces, verb)
 			used_radios += I
 	return 0
 
@@ -136,13 +129,13 @@ proc/get_radio_key_from_channel(var/channel)
 	return returns
 
 /mob/living/proc/get_speech_ending(verb, var/ending)
-	if(ending=="!")
+	if(ending == "!")
 		return pick("exclaims","shouts","yells")
-	if(ending=="?")
+	if(ending == "?")
 		return "asks"
 	return verb
 
-/mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/whispering = 0)
+/mob/living/say(var/message, var/whispering = 0)
 	//If you're muted for IC chat
 	if(client)
 		if(message)
@@ -161,98 +154,81 @@ proc/get_radio_key_from_channel(var/channel)
 	var/message_mode = parse_message_mode(message, "headset")
 
 	//Maybe they are using say/whisper to do a quick emote, so do those
-	switch(copytext(message,1,2))
-		if("*") return emote(copytext(message,2))
-		if("^") return custom_emote(1, copytext(message,2))
+	switch(copytext(message, 1, 2))
+		if("*") return emote(copytext(message, 2))
+		if("^") return custom_emote(1, copytext(message, 2))
 
 	//Parse the radio code and consume it
-	if (message_mode)
-		if (message_mode == "headset")
-			message = copytext(message,2)	//it would be really nice if the parse procs could do this for us.
-		else if (message_mode == "whisper")
+	if(message_mode)
+		if(message_mode == "headset")
+			message = copytext(message, 2)	//it would be really nice if the parse procs could do this for us.
+		else if(message_mode == "whisper")
 			whispering = 1
 			message_mode = null
-			message = copytext(message,3)
+			message = copytext(message, 3)
 		else
-			message = copytext(message,3)
+			message = copytext(message, 3)
 
 	//Clean up any remaining space on the left
 	message = trim_left(message)
 
 	//Parse the language code and consume it
-	if(!speaking)
-		speaking = parse_language(message)
-
-	if(!speaking)
-		speaking = get_default_language()
-
-	if(!can_speak(speaking))
-		speaking = GLOB.all_languages[LANGUAGE_GIBBERISH]
-		var/babble_key = ",r"
-		message = babble_key + message
-
-	if(speaking == get_default_language())
-		var/new_message = ",[speaking.key]"
-		new_message += message
-		message = new_message
-
-	if(speaking)
-		message = copytext(message,2+length(speaking.key))
-
-	//HIVEMIND languages always send to all people with that language
-	if(speaking && (speaking.flags & HIVEMIND))
-		speaking.broadcast(src,trim(message))
+	var/list/message_pieces = parse_languages(message)
+	if(istype(message_pieces, /datum/multilingual_say_piece)) // Little quark for dealing with hivemind/signlang languages.
+		var/datum/multilingual_say_piece/S = message_pieces // Yay for BYOND's hilariously broken typecasting for allowing us to do this.
+		S.speaking.broadcast(src, S.message)
 		return 1
 
-	//Self explanatory.
-	if(is_muzzled() && !(speaking && (speaking.flags & SIGNLANG)))
+	if(!LAZYLEN(message_pieces))
+		log_runtime(EXCEPTION("Message failed to generate pieces. [message] - [json_encode(message_pieces)]"))
+		return 0
+
+	// If you're muzzled, you can only speak sign language
+	// However, sign language is handled above.
+	if(is_muzzled())
 		to_chat(src, "<span class='danger'>You're muzzled and cannot speak!</span>")
 		return
-
-	//Clean up any remaining junk on the left like spaces.
-	message = trim_left(message)
-
-	//Autohiss handles auto-rolling tajaran R's and unathi S's/Z's
-	message = handle_autohiss(message, speaking)
 
 	//Whisper vars
 	var/w_scramble_range = 5	//The range at which you get ***as*th**wi****
 	var/w_adverb				//An adverb prepended to the verb in whispers
 	var/w_not_heard				//The message for people in watching range
 
+	var/datum/multilingual_say_piece/first_piece = message_pieces[1]
+	var/verb = ""
 	//Handle language-specific verbs and adverb setup if necessary
 	if(!whispering) //Just doing normal 'say' (for now, may change below)
-		verb = say_quote(message, speaking)
-	else if(whispering && speaking.whisper_verb) //Language has defined whisper verb
-		verb = speaking.whisper_verb
+		verb = say_quote(message, first_piece.speaking)
+	else if(whispering && first_piece.speaking.whisper_verb) //Language has defined whisper verb
+		verb = first_piece.speaking.whisper_verb
 		w_not_heard = "[verb] something"
 	else //Whispering but language has no whisper verb, use say verb
 		w_adverb = pick("quietly", "softly")
-		verb = speaking.speech_verb
-		w_not_heard = "[speaking.speech_verb] something [w_adverb]"
+		verb = first_piece.speaking.speech_verb
+		w_not_heard = "[first_piece.speaking.speech_verb] something [w_adverb]"
 
 	//For speech disorders (hulk, slurring, stuttering)
-	if(!(speaking && (speaking.flags & NO_STUTTER || speaking.flags & SIGNLANG)))
-		var/list/message_data = list(message, verb, whispering)
-		if(handle_speech_problems(message_data))
-			message = message_data[1]
-			whispering = message_data[3]
+	var/list/message_data = list(message_pieces, verb, whispering)
+	if(handle_speech_problems(message_data))
+		message_pieces = message_data[1]
+		whispering = message_data[3]
 
-			if(verb != message_data[2]) //They changed our verb
-				if(whispering)
-					w_adverb = pick("quietly", "softly")
-				verb = message_data[2]
+		if(verb != message_data[2]) //They changed our verb
+			if(whispering)
+				w_adverb = pick("quietly", "softly")
+			verb = message_data[2]
 
 	//Whisper may have adverbs, add those if one was set
-	if(w_adverb) verb = "[verb] [w_adverb]"
+	if(w_adverb)
+		verb = "[verb] [w_adverb]"
 
 	//If something nulled or emptied the message, forget it
-	if(!message || message == "")
+	if(!LAZYLEN(message_pieces))
 		return 0
 
 	//Radio message handling
-	var/list/obj/item/used_radios = new
-	if(handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name, whispering))
+	var/list/used_radios = list()
+	if(handle_message_mode(message_mode, message_pieces, verb, used_radios, whispering))
 		return 1
 
 	//For languages with actual speech sounds
@@ -268,16 +244,19 @@ proc/get_radio_key_from_channel(var/channel)
 	if(used_radios.len)
 		italics = 1
 		message_range = 1
-		if(speaking)
-			message_range = speaking.get_talkinto_msg_range(message)
+
+		if(first_piece.speaking)
+			message_range = first_piece.speaking.get_talkinto_msg_range(message)
 		var/msg
-		if(!speaking || !(speaking.flags & NO_TALK_MSG))
-			msg = "<span class='notice'>\The [src] talks into \the [used_radios[1]]</span>"
-		for(var/mob/living/M in hearers(5, src))
-			if((M != src) && msg)
+		if(!first_piece.speaking || !(first_piece.speaking.flags & NO_TALK_MSG))
+			msg = "<span class='notice'>[src] talks into [used_radios[1]]</span>"
+
+		if(msg)
+			for(var/mob/living/M in hearers(5, src) - src)
 				M.show_message(msg)
-			if (speech_sound)
-				sound_vol *= 0.5
+
+		if(speech_sound)
+			sound_vol *= 0.5
 
 	//Set vars if we're still whispering by this point
 	if(whispering)
@@ -299,15 +278,11 @@ proc/get_radio_key_from_channel(var/channel)
 		verb = "[custom_say]"
 	//VOREStation edit ends
 
-	//Handle nonverbal and sign languages here
-	if (speaking)
-		if (speaking.flags & SIGNLANG)
-			log_say("(SIGN) [message]", src)
-			return say_signlang(message, pick(speaking.signlang_verb), speaking)
-
-		if (speaking.flags & NONVERBAL)
-			if (prob(30))
-				src.custom_emote(1, "[pick(speaking.signlang_verb)].")
+	//Handle nonverbal languages here
+	for(var/datum/multilingual_say_piece/S in message_pieces)
+		if(S.speaking.flags & NONVERBAL)
+			if(prob(30))
+				custom_emote(1, "[pick(S.speaking.signlang_verb)].")
 
 	//These will contain the main receivers of the message
 	var/list/listening = list()
@@ -318,12 +293,12 @@ proc/get_radio_key_from_channel(var/channel)
 	if(T)
 		//Air is too thin to carry sound at all, contact speech only
 		var/datum/gas_mixture/environment = T.return_air()
-		var/pressure = (environment)? environment.return_pressure() : 0
+		var/pressure = environment ? environment.return_pressure() : 0
 		if(pressure < SOUND_MINIMUM_PRESSURE)
 			message_range = 1
 
 		//Air is nearing minimum levels, make text italics as a hint, and muffle sound
-		if (pressure < ONE_ATMOSPHERE*0.4)
+		if(pressure < ONE_ATMOSPHERE * 0.4)
 			italics = 1
 			sound_vol *= 0.5
 
@@ -376,16 +351,16 @@ proc/get_radio_key_from_channel(var/channel)
 						var/image/I1 = listening[M] || speech_bubble
 						images_to_clients[I1] |= M.client
 						M << I1
-					M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
+					M.hear_say(message_pieces, verb, italics, src, speech_sound, sound_vol)
 				if(whispering) //Don't even bother with these unless whispering
 					if(dst > message_range && dst <= w_scramble_range) //Inside whisper scramble range
 						if(M.client)
 							var/image/I2 = listening[M] || speech_bubble
 							images_to_clients[I2] |= M.client
 							M << I2
-						M.hear_say(stars(message), verb, speaking, alt_name, italics, src, speech_sound, sound_vol*0.2)
+						M.hear_say(stars_all(message_pieces), verb, italics, src, speech_sound, sound_vol*0.2)
 					if(dst > w_scramble_range && dst <= world.view) //Inside whisper 'visible' range
-						M.show_message("<span class='game say'><span class='name'>[src.name]</span> [w_not_heard].</span>", 2)
+						M.show_message("<span class='game say'><span class='name'>[name]</span> [w_not_heard].</span>", 2)
 
 	//Object message delivery
 	for(var/obj/O in listening_obj)
@@ -393,7 +368,7 @@ proc/get_radio_key_from_channel(var/channel)
 			if(O && src) //If we still exist, when the spawn processes
 				var/dst = get_dist(get_turf(O),get_turf(src))
 				if(dst <= message_range)
-					O.hear_talk(src, message, verb, speaking)
+					O.hear_talk(src, message_pieces, verb)
 
 	//Remove all those images. At least it's just ONE spawn this time.
 	spawn(30)
@@ -410,7 +385,7 @@ proc/get_radio_key_from_channel(var/channel)
 	if(message_mode)
 		message = "([message_mode == "headset" ? "Common" : capitalize(message_mode)]) [message]" //Adds radio keys used if available
 	if(whispering)
-		log_whisper(message,src)
+		log_whisper(message, src)
 	else
 		log_say(message, src)
 	return 1
@@ -438,8 +413,41 @@ proc/get_radio_key_from_channel(var/channel)
 /obj/effect/speech_bubble
 	var/mob/parent
 
-/mob/living/proc/GetVoice()
+/mob/proc/GetVoice()
 	return name
+
+/mob/living/emote(var/act, var/type, var/message) //emote code is terrible, this is so that anything that isn't
+	if(stat)			                          //already snowflaked to shit can call the parent and handle emoting sanely
+		return FALSE
+
+	if(..(act, type, message))
+		return TRUE
+
+	if(act && type && message)
+		log_emote(message, src)
+
+		for(var/mob/M in dead_mob_list)
+			if(!M.client)
+				continue
+
+			if(isnewplayer(M))
+				continue
+
+			if(isobserver(M) && M.is_preference_enabled(/datum/client_preference/ghost_sight))
+				M.show_message(message)
+
+		switch(type)
+			if(1) // Visible
+				visible_message(message)
+				return TRUE
+			if(2) // Audible
+				audible_message(message)
+				return TRUE
+	else
+		if(act == "help")
+			return // Mobs handle this individually
+		to_chat(src, "<span class='warning'>Unusable emote '[act]'. Say *help for a list.</span>")
+
 
 /mob/proc/speech_bubble_appearance()
 	return "normal"

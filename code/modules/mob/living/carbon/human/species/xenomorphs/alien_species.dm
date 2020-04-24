@@ -86,11 +86,9 @@
 	return "alien [caste_name] ([alien_number])"
 
 /datum/species/xenos/can_understand(var/mob/other)
-
-	if(istype(other,/mob/living/carbon/alien/larva))
-		return 1
-
-	return 0
+	if(istype(other, /mob/living/carbon/alien/larva))
+		return TRUE
+	return FALSE
 
 /datum/species/xenos/hug(var/mob/living/carbon/human/H,var/mob/living/target)
 	H.visible_message("<span class='notice'>[H] caresses [target] with its scythe-like arm.</span>", \
