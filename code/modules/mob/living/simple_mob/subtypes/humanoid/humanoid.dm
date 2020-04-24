@@ -21,6 +21,11 @@
 /mob/living/simple_mob/humanoid/death()
 	..()
 	if(corpse)
-		new corpse (src.loc)
+		//VOREStation Edit - Add attack log transfer
+		var/new_corpse = new corpse (src.loc)
+		if(ismob(new_corpse))
+			var/mob/corpsemob = new_corpse
+			corpsemob.attack_log = attack_log //Hard list reference but I don't see the harm?
+		//VOREStation Edit End
 	qdel(src)
 	return
