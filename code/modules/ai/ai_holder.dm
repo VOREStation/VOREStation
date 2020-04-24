@@ -150,7 +150,12 @@
 		// Should resist?  We check this before fleeing so that we can actually flee and not be trapped in a chair.
 		if(holder.incapacitated(INCAPACITATION_BUCKLED_PARTIALLY))
 			ai_log("handle_stance_tactical() : Going to handle_resist().", AI_LOG_TRACE)
-			handle_resist()
+			//VOREStation Edit - Stop fighting when 'fully' buckled
+			var/buckle_level = holder.buckled() //Returns 'how buckled' we are, we won't surrender if you just put us on a chair
+			handle_resist(buckle_level)
+			if(buckle_level >= FULLY_BUCKLED)
+				return
+			//VOREStation Edit End
 
 		else if(istype(holder.loc, /obj/structure/closet))
 			var/obj/structure/closet/C = holder.loc

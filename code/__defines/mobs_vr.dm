@@ -42,3 +42,7 @@
 //custom species base sprites
 #define SPECIES_FENNEC				"Fennec"
 #define SPECIES_XENOHYBRID			"Xenohybrid"
+
+#define UNBUCKLED 0
+#define PARTIALLY_BUCKLED 1
+#define FULLY_BUCKLED 2

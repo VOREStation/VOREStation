@@ -64,8 +64,7 @@
 	var/net_type = /obj/effect/energy_net
 
 /obj/item/weapon/energy_net/dropped()
-	spawn(10)
-		if(src) qdel(src)
+	QDEL_IN(src, 1 SECOND) //VOREStation Edit
 
 /obj/item/weapon/energy_net/throw_impact(atom/hit_atom)
 	..()
@@ -84,8 +83,7 @@
 		qdel(src)
 
 	// If we miss or hit an obstacle, we still want to delete the net.
-	spawn(10)
-		if(src) qdel(src)
+	QDEL_IN(src, 1 SECOND) //VOREStation Edit
 
 /obj/effect/energy_net
 	name = "energy net"
@@ -151,3 +149,11 @@
 	else //Just unbuckled someone
 		M.can_pull_size = initial(M.can_pull_size)
 		qdel(src)
+
+//VOREStation Add
+/obj/effect/energy_net/buckle_level(var/mob/victim)
+	if(!buckled_mobs)
+		return UNBUCKLED
+	if(victim in buckled_mobs)
+		return FULLY_BUCKLED //You're SUPER BUCKLED here!
+//VOREStation Add End

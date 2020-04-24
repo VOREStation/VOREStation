@@ -153,16 +153,21 @@
 //	if(organStructure)
 //		organStructure.ProcessOrgans()
 	return
-
+/* VOREStation Edit - Moved
 #define UNBUCKLED 0
 #define PARTIALLY_BUCKLED 1
 #define FULLY_BUCKLED 2
+*/
 /mob/proc/buckled()
 	// Preliminary work for a future buckle rewrite,
 	// where one might be fully restrained (like an elecrical chair), or merely secured (shuttle chair, keeping you safe but not otherwise restrained from acting)
 	if(!buckled)
 		return UNBUCKLED
-	return restrained() ? FULLY_BUCKLED : PARTIALLY_BUCKLED
+	//VOREStation Edit
+	var/buckle_level = buckled.buckle_level()
+	if(buckle_level)
+		return restrained() ? FULLY_BUCKLED : buckle_level
+	//VOREStation Edit End
 
 /mob/proc/is_blind()
 	return ((sdisabilities & BLIND) || blinded || incapacitated(INCAPACITATION_KNOCKOUT))
