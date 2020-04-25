@@ -13,6 +13,9 @@
 	newcell.charge = newcell.maxcharge * percentage
 	qdel(src)
 
+/obj/item/weapon/cell/device/weapon/recharge/alien/update_icon()
+	return
+
 
 //The machine cell
 /obj/item/weapon/cell/void
@@ -37,6 +40,8 @@
 	newcell.charge = newcell.maxcharge * percentage
 	qdel(src)
 	
+/obj/item/weapon/cell/void/update_icon()
+	return
 
 // Bloo friendlier hybrid tech
 /obj/item/weapon/cell/device/weapon/recharge/alien/hybrid
