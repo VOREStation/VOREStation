@@ -350,3 +350,13 @@
 	display_name = "internal affairs cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/seromi/cloak/jobs/iaa
 	allowed_roles = list("Internal Affairs Agent")
+
+/datum/gear/suit/labcoat_tesh
+	display_name = "labcoat, colorable (Teshari)"
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/teshari
+	whitelisted = SPECIES_TESHARI
+	sort_category = "Xenowear"
+
+/datum/gear/suit/labcoat_tesh/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
