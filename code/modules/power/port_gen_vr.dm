@@ -100,7 +100,6 @@
 
 /obj/machinery/power/rtg/update_icon()
 	if(panel_open)
-
 		icon_state = "[initial(icon_state)]-open"
 	else
 		icon_state = initial(icon_state)
@@ -127,7 +126,6 @@
 
 // Void Core, power source for Abductor ships and bases.
 // Provides a lot of power, but tends to explode when mistreated.
-
 /obj/machinery/power/rtg/abductor
 	name = "Void Core"
 	icon_state = "core-nocell"
@@ -141,6 +139,7 @@
 	var/obj/item/weapon/cell/void/cell
 
 	var/icon_base = "core"
+	var/state_change = TRUE
 
 /obj/machinery/power/rtg/abductor/RefreshParts()
 	..()
@@ -171,12 +170,14 @@
 		cell.forceMove(get_turf(src))
 		user.put_in_active_hand(cell)
 		cell = null
+		state_change = TRUE
 		RefreshParts()
 		update_icon()
 		playsound(src, 'sound/effects/metal_close.ogg', 50, 1)
 		return TRUE
 
 /obj/machinery/power/rtg/abductor/attackby(obj/item/I, mob/user, params)
+	state_change = TRUE //Can't tell if parent did something
 	if(istype(I, /obj/item/weapon/cell/void) && !cell)
 		user.remove_from_mob(I)
 		I.forceMove(src)
@@ -188,10 +189,18 @@
 	return ..()
 
 /obj/machinery/power/rtg/abductor/update_icon()
+	if(!state_change)
+		return //Stupid cells constantly update our icon so trying to be efficient
+	
 	if(cell)
-		..()
+		if(panel_open)
+			icon_state = "[icon_base]-open"
+		else
+			icon_state = "[icon_base]"
 	else
 		icon_state = "[icon_base]-nocell"
+
+	state_change = FALSE
 
 /obj/machinery/power/rtg/abductor/blob_act(obj/structure/blob/B)
 	asplod()

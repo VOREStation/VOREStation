@@ -153,7 +153,7 @@
 	var/list/prefixes = list() // [["Common", start, end], ["Gutter", start, end]]
 	for(var/i in 1 to length(message))
 		// This grabs trimmed 3 character substrings, to allow for up to 1 prefix and 1 letter language keys
-		var/selection = trim_right(lowertext(copytext(message, i, i + 2)))
+		var/selection = trim_right(copytext(message, i, i + 2)) // VOREStation Edit: We use uppercase keys to avoid Polaris key duplication, but this had lowertext() in it
 		// The first character in the selection will always be the prefix (if this is a valid language invocation)
 		var/prefix = copytext(selection, 1, 2)
 		var/language_key = copytext(selection, 2, 3)

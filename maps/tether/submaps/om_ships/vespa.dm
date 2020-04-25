@@ -95,7 +95,9 @@
 /area/ship/expe/bridge
 	name = "\improper Exp Ship - Bridge"
 /area/ship/expe/engines
-	name = "\improper Exp Ship - Engines"
+	name = "\improper Exp Ship - Engines Port"
+/area/ship/expe/engines2
+	name = "\improper Exp Ship - Engines Starboard"
 /area/ship/expe/captqua
 	name = "\improper Exp Ship - Captain's Quarters"
 /area/ship/expe/expedition
@@ -112,7 +114,8 @@
 	name = "\improper Exp Ship - Maintenance"
 /area/ship/expe/maintenance2
 	name = "\improper Exp Ship - Maintenance"
-
+/area/ship/expe/shieldgen
+	name = "\improper Exp Ship - Shield Generator"
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/vespa
@@ -125,33 +128,36 @@
 	color = "#4cad73" //Green
 	vessel_mass = 10000
 	vessel_size = SHIP_SIZE_LARGE
-	initial_generic_waypoints = list("hpv_port", "hpv_starboard", "omship_spawn_vespaboat")
+	initial_generic_waypoints = list("hpv_port", "hpv_starboard", "hpv_hangar")
+	fore_dir = 4
+
+// Boat deprecated because hangar was converted into one for the expedition shuttle
 
 // The ship's boat
-/area/shuttle/vespaboat
-	name = "\improper Vespa's Ship's Boat"
-	icon_state = "shuttle"
+// /area/shuttle/vespaboat
+	//name = "\improper Vespa's Ship's Boat"
+	//icon_state = "shuttle"
 
 // The shuttle's 'shuttle' computer
-/obj/machinery/computer/shuttle_control/multi/vespaboat
-    name = "Vespa's Shuttle control console"
-    shuttle_tag = "Vespa's Ship's Boat"
-    req_one_access = list(access_pilot)
+// /obj/machinery/computer/shuttle_control/explore/vespaboat
+    //name = "Vespa's Shuttle control console"
+    //shuttle_tag = "Vespa's Ship's Boat"
+    //req_one_access = list(access_pilot)
 
 // A shuttle lateloader landmark
-/obj/effect/shuttle_landmark/shuttle_initializer/vespaboat
-    name = "Vespa's Boat Bay"
-    base_area = /area/ship/expe/hangar
-    base_turf = /turf/simulated/floor/tiled/techfloor
-    landmark_tag = "omship_spawn_vespaboat"
-    docking_controller = "vespa_boatbay"
-    shuttle_type = /datum/shuttle/autodock/overmap/vespaboat
+// /obj/effect/shuttle_landmark/shuttle_initializer/vespaboat
+    //name = "Vespa's Boat Bay"
+    //base_area = /area/ship/expe/hangar
+    //base_turf = /turf/simulated/floor/tiled/techfloor
+    //landmark_tag = "omship_spawn_vespaboat"
+    //docking_controller = "vespa_boatbay"
+    //shuttle_type = /datum/shuttle/autodock/overmap/vespaboat
 
 // The 'shuttle'
-/datum/shuttle/autodock/overmap/vespaboat
-    name = "Vespa's Ship's Boat"
-    current_location = "omship_spawn_vespaboat"
-    docking_controller_tag = "vespaboat_docker"
-    shuttle_area = /area/shuttle/vespaboat
-    fuel_consumption = 0
-    defer_initialisation = TRUE
+// /datum/shuttle/autodock/overmap/vespaboat
+    //name = "Vespa's Ship's Boat"
+    //current_location = "omship_spawn_vespaboat"
+    //docking_controller_tag = "vespaboat_docker"
+    //shuttle_area = /area/shuttle/vespaboat
+    //fuel_consumption = 0
+    //defer_initialisation = TRUE

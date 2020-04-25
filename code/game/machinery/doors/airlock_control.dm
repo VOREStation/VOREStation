@@ -9,7 +9,8 @@ obj/machinery/door/airlock
 	var/cur_command = null	//the command the door is currently attempting to complete
 
 obj/machinery/door/airlock/process()
-	..()
+	if (..() == PROCESS_KILL && !cur_command)
+		. = PROCESS_KILL
 	if (arePowerSystemsOn())
 		execute_current_command()
 
@@ -22,6 +23,9 @@ obj/machinery/door/airlock/receive_signal(datum/signal/signal)
 
 	cur_command = signal.data["command"]
 	execute_current_command()
+	if(cur_command)
+		START_MACHINE_PROCESSING(src)
+
 
 obj/machinery/door/airlock/proc/execute_current_command()
 	if(operating)

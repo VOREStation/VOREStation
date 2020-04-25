@@ -350,7 +350,9 @@
 /obj/machinery/door/firedoor/process()
 	..()
 
-	if(density && next_process_time <= world.time)
+	if(!density)
+		return PROCESS_KILL
+	if(next_process_time <= world.time)
 		next_process_time = world.time + 100		// 10 second delays between process updates
 		var/changed = 0
 		lockdown=0
@@ -406,7 +408,10 @@
 
 /obj/machinery/door/firedoor/close()
 	latetoggle()
-	return ..()
+	. = ..()
+	// Queue us for processing when we are closed!
+	if(density)
+		START_MACHINE_PROCESSING(src)
 
 /obj/machinery/door/firedoor/open(var/forced = 0)
 	if(hatch_open)

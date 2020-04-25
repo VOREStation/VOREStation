@@ -43,6 +43,12 @@
 	if(cell)
 		cell.emp_act(severity)
 
+/obj/item/device/sleevemate/attack(mob/living/M, mob/living/user)
+	if(user.a_intent == I_HURT)
+		return ..()
+	else
+		return 0 //No accidental bludgeons!
+
 /obj/item/weapon/inducer/afterattack(atom/A, mob/living/carbon/user, proximity)
 	if(user.a_intent == I_HURT)
 		return ..()
