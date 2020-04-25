@@ -184,6 +184,12 @@ proc/getsensorlevel(A)
 		p++
 	return t
 
+/proc/stars_all(list/message_pieces, pr)
+	// eugh, we have to clone the list to avoid collateral damage due to the nature of these messages
+	. = list()
+	for(var/datum/multilingual_say_piece/S in message_pieces)
+		. += new /datum/multilingual_say_piece(S.speaking, stars(S.message))
+
 proc/slur(phrase)
 	phrase = html_decode(phrase)
 	var/leng=length(phrase)

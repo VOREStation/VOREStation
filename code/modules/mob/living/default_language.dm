@@ -10,7 +10,7 @@
 		return 0
 
 	if(language == GLOB.all_languages[src.species_language])
-		to_chat(src, "<span class='notice'>You will now speak your standard default language, [language], if you do not specify a language when speaking.</span>")
+		to_chat(src, "<span class='notice'>You will now speak your standard default language, [language ? language : "common"], if you do not specify a language when speaking.</span>")
 	else if (language)
 
 		if(language && !can_speak(language))

@@ -20,6 +20,15 @@
 
 	icon_state = "ml3m_cmo"
 
+/obj/item/weapon/gun/projectile/cell_loaded/medical/staff
+    name = "cell-loaded staff"
+    desc = "A modified version of the ML-3 Medigun that takes advantage of internal micro-reactor technology to recharge its cells on the field, allowing for prolonged use without needing to stop and charge or replace the cells."
+    description_fluff = "The 'healrod' allows one to customize their loadout in the field, or before deploying, to allow emergency response personnel to deliver a variety of ranged healing options over an extended period of time, thanks to its internal minireactor."
+    description_antag = ""
+    origin_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 2, TECH_BIO = 5)
+    allowed_magazines = list(/obj/item/ammo_magazine/cell_mag/medical)
+    icon_state = "healrod"
+
 
 // The Magazine //
 /obj/item/ammo_magazine/cell_mag/medical //medical

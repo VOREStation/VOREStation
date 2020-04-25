@@ -602,7 +602,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	var/encryption = "null" // encryption key: ie "password"
 	var/salt = "null"		// encryption salt: ie "123comsat"
 							// would add up to md5("password123comsat")
-	var/language = "human"
 	var/obj/item/device/radio/headset/server_radio = null
 
 /obj/machinery/telecomms/server/New()
@@ -643,12 +642,11 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 				log.parameters["mobtype"] = signal.data["mobtype"]
 				log.parameters["job"] = signal.data["job"]
 				log.parameters["key"] = signal.data["key"]
-				log.parameters["vmessage"] = signal.data["message"]
+				log.parameters["vmessage"] = multilingual_to_message(signal.data["message"])
 				log.parameters["vname"] = signal.data["vname"]
-				log.parameters["message"] = signal.data["message"]
+				log.parameters["message"] = multilingual_to_message(signal.data["message"])
 				log.parameters["name"] = signal.data["name"]
 				log.parameters["realname"] = signal.data["realname"]
-				log.parameters["language"] = signal.data["language"]
 
 				var/race = "unknown"
 				if(ishuman(M))
@@ -677,7 +675,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 				// If the signal is still compressed, make the log entry gibberish
 				if(signal.data["compression"] > 0)
-					log.parameters["message"] = Gibberish(signal.data["message"], signal.data["compression"] + 50)
+					log.parameters["message"] = Gibberish(multilingual_to_message(signal.data["message"]), signal.data["compression"] + 50)
 					log.parameters["job"] = Gibberish(signal.data["job"], signal.data["compression"] + 50)
 					log.parameters["name"] = Gibberish(signal.data["name"], signal.data["compression"] + 50)
 					log.parameters["realname"] = Gibberish(signal.data["realname"], signal.data["compression"] + 50)
