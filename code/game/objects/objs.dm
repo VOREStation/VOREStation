@@ -162,9 +162,9 @@
 /obj/proc/hides_under_flooring()
 	return 0
 
-/obj/proc/hear_talk(mob/M as mob, text, verb, datum/language/speaking)
+/obj/proc/hear_talk(mob/M, list/message_pieces, verb)
 	if(talking_atom)
-		talking_atom.catchMessage(text, M)
+		talking_atom.catchMessage(multilingual_to_message(message_pieces), M)
 /*
 	var/mob/mo = locate(/mob) in src
 	if(mo)

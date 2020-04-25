@@ -22841,7 +22841,7 @@
 /area/quartermaster/storage)
 "aIY" = (
 /obj/machinery/conveyor{
-	dir = 5;
+	dir = 1;
 	id = "QMLoad"
 	},
 /obj/machinery/light,

@@ -39,12 +39,12 @@
 		testname = replacetext(testname, "()", "")
 
 	if(targetselected && !hascall(target,testname))
-		to_chat(usr, "<font color='red'>Error: callproc(): type [target.type] has no proc named [procname].</font>")
+		to_chat(usr, "<span class='filter_adminlog'><font color='red'>Error: callproc(): type [target.type] has no proc named [procname].</font></span>")
 		return
 	else
 		var/procpath = text2path(procname)
 		if (!procpath)
-			to_chat(usr, "<font color='red'>Error: callproc(): proc [procname] does not exist. (Did you forget the /proc/ part?)</font>")
+			to_chat(usr, "<span class='filter_adminlog'><font color='red'>Error: callproc(): proc [procname] does not exist. (Did you forget the /proc/ part?)</font></span>")
 			return
 	var/list/lst = get_callproc_args()
 	if(!lst)
@@ -52,7 +52,7 @@
 
 	if(targetselected)
 		if(!target)
-			to_chat(usr, "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>")
+			to_chat(usr, "<span class='filter_adminlog'><font color='red'>Error: callproc(): owner of proc no longer exists.</font></span>")
 			return
 		var/msg = "[key_name(src)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"]."
 		log_admin(msg)
@@ -84,11 +84,11 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 /proc/WrapAdminProcCall(datum/target, procname, list/arguments)
 	if(target && procname == "Del")
-		to_chat(usr, "Calling Del() is not allowed")
+		to_chat(usr, "<span class='filter_adminlog'>Calling Del() is not allowed</span>")
 		return
 
 	if(target != GLOBAL_PROC && !target.CanProcCall(procname))
-		to_chat(usr, "Proccall on [target.type]/proc/[procname] is disallowed!")
+		to_chat(usr, "<span class='filter_adminlog'>Proccall on [target.type]/proc/[procname] is disallowed!</span>")
 		return
 	var/current_caller = GLOB.AdminProcCaller
 	var/ckey = usr ? usr.client.ckey : GLOB.AdminProcCaller
@@ -140,7 +140,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!procname)
 		return
 	if(!hascall(A,procname))
-		to_chat(usr, "<font color='red'>Error: callproc_datum(): type [A.type] has no proc named [procname].</font>")
+		to_chat(usr, "<span class='filter_adminlog'><font color='red'>Error: callproc_datum(): type [A.type] has no proc named [procname].</font></span>")
 		return
 	var/list/lst = get_callproc_args()
 	if(!lst)

@@ -126,10 +126,7 @@
 		linkedmonitor.unpair(src)
 	linkedmonitor = null
 	..()
-/*
-/obj/item/device/camerabug/hear_talk(mob/M, var/msg, verb, datum/language/speaking)
-	radio.hear_talk(M, msg, speaking)
-*/
+
 /obj/item/device/bug_monitor
 	name = "mobile camera pod monitor"
 	desc = "A portable camera console designed to work with mobile camera pods."
@@ -208,10 +205,7 @@
 		return
 
 	return 1
-/*
-/obj/item/device/bug_monitor/hear_talk(mob/M, var/msg, verb, datum/language/speaking)
-	return radio.hear_talk(M, msg, speaking)
-*/
+
 /obj/item/device/bug_monitor/spy
 	name = "\improper PDA"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."

@@ -170,7 +170,7 @@ var/const/enterloopsanity = 100
 		if(isliving(M))
 			var/mob/living/L = M
 			L.handle_footstep(src)
-	..()
+
 	var/objects = 0
 	if(A && (A.flags & PROXMOVE))
 		for(var/atom/movable/thing in range(1))

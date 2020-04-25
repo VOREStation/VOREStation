@@ -242,6 +242,10 @@
 
 // Helpers - Unsafe, WILL perform change.
 /mob/living/carbon/human/proc/nano_intoblob()
+	var/panel_was_up = FALSE
+	if(client?.statpanel == "Protean")
+		panel_was_up = TRUE
+
 	handle_grasp() //It's possible to blob out before some key parts of the life loop. This results in things getting dropped at null. TODO: Fix the code so this can be done better.
 	remove_micros(src, src) //Living things don't fare well in roblobs.
 	if(buckled)
@@ -312,6 +316,10 @@
 		B.forceMove(blob)
 		B.owner = blob
 
+	//Flip them to the protean panel
+	if(panel_was_up)
+		client?.statpanel = "Protean"
+
 	//Return our blob in case someone wants it
 	return blob
 
@@ -325,6 +333,11 @@
 /mob/living/carbon/human/proc/nano_outofblob(var/mob/living/simple_mob/protean_blob/blob)
 	if(!istype(blob))
 		return
+
+	var/panel_was_up = FALSE
+	if(client?.statpanel == "Protean")
+		panel_was_up = TRUE
+	
 	if(buckled)
 		buckled.unbuckle_mob()
 	if(LAZYLEN(buckled_mobs))
@@ -374,6 +387,10 @@
 
 	//Get rid of friend blob
 	qdel(blob)
+
+	//Flip them to the protean panel
+	if(panel_was_up)
+		client?.statpanel = "Protean"
 
 	//Return ourselves in case someone wants it
 	return src
