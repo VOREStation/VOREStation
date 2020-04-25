@@ -18,6 +18,7 @@
 	internal_damage_threshold = 25
 	force = 15
 	var/phasing = 0
+	var/can_phase = TRUE
 	var/phasing_energy_drain = 200
 	max_equip = 4
 
@@ -38,13 +39,13 @@
 /obj/mecha/combat/phazon/Bump(var/atom/obstacle)
 	if(phasing && get_charge()>=phasing_energy_drain)
 		spawn()
-			if(can_move)
-				can_move = 0
+			if(can_phase)
+				can_phase = FALSE
 				flick("[initial_icon]-phase", src)
 				src.loc = get_step(src,src.dir)
 				src.use_power(phasing_energy_drain)
 				sleep(step_in*3)
-				can_move = 1
+				can_phase = TRUE
 	else
 		. = ..()
 	return
