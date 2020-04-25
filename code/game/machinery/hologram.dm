@@ -127,6 +127,8 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	set_light(2)			//pad lighting
 	icon_state = "holopad1"
 	A.holo = src
+	if(LAZYLEN(masters))
+		START_MACHINE_PROCESSING(src)
 	return 1
 
 /obj/machinery/hologram/holopad/proc/clear_holo(mob/living/silicon/ai/user)
@@ -147,7 +149,8 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 			continue
 
 		use_power(power_per_hologram)
-	return 1
+	if(..() == PROCESS_KILL && !LAZYLEN(masters))
+		return PROCESS_KILL
 
 /obj/machinery/hologram/holopad/proc/move_hologram(mob/living/silicon/ai/user)
 	if(masters[user])

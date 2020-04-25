@@ -33,11 +33,6 @@
 /obj/machinery/power/terminal/hides_under_flooring()
 	return 1
 
-// Needed so terminals are not removed from machines list.
-// Powernet rebuilds need this to work properly.
-/obj/machinery/power/terminal/process()
-	return 1
-
 /obj/machinery/power/terminal/overload(var/obj/machinery/power/source)
 	if(master)
 		master.overload(source)
