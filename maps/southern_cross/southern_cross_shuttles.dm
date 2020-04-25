@@ -274,6 +274,7 @@ ESCAPE_POD(8)
 
 /obj/effect/shuttle_landmark/southern_cross/cryostorage_transit
 	landmark_tag = "cryostorage_transit"
+	flags = SLANDMARK_FLAG_AUTOSET
 
 // Large Escape Pod 1
 /datum/shuttle/autodock/ferry/escape_pod/large_escape_pod1
@@ -301,6 +302,7 @@ ESCAPE_POD(8)
 
 /obj/effect/shuttle_landmark/southern_cross/large_escape_pod1/transit
 	landmark_tag = "large_escape_pod1_transit"
+	flags = SLANDMARK_FLAG_AUTOSET
 
 // Large Escape Pod 2
 /datum/shuttle/autodock/ferry/escape_pod/large_escape_pod2
@@ -328,6 +330,7 @@ ESCAPE_POD(8)
 
 /obj/effect/shuttle_landmark/southern_cross/large_escape_pod2/transit
 	landmark_tag = "large_escape_pod2_transit"
+	flags = SLANDMARK_FLAG_AUTOSET
 
 
 // Destination datums
