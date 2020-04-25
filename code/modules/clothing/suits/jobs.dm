@@ -13,6 +13,12 @@
 	allowed = list (/obj/item/weapon/reagent_containers/spray/plantbgone, /obj/item/device/analyzer/plant_analyzer, /obj/item/seeds,
 	/obj/item/weapon/reagent_containers/glass/bottle, /obj/item/weapon/material/minihoe)
 
+/obj/item/clothing/suit/storage/apron/white
+	name = "white apron"
+	desc = "A basic white apron."
+	icon_state = "apron_white"
+	item_state_slots = list(slot_r_hand_str = "apronchef", slot_l_hand_str = "apronchef")
+
 //Captain
 /obj/item/clothing/suit/captunic
 	name = "colony director's parade tunic"
