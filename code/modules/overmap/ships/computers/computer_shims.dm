@@ -12,10 +12,6 @@
 // Power
 //
 
-// This will have this machine have its area eat this much power next tick, and not afterwards. Do not use for continued power draw.
-/obj/machinery/proc/use_power_oneoff(var/amount, var/chan = -1)
-	return use_power(amount, chan)
-
 // Change one of the power consumption vars
 /obj/machinery/proc/change_power_consumption(new_power_consumption, use_power_mode = USE_POWER_IDLE)
 	switch(use_power_mode)
@@ -95,7 +91,7 @@
 /obj/machinery/computer/ship/attack_ghost(mob/user)
 	interface_interact(user)
 
-// If you don't call parent in this proc, you must make all appropriate checks yourself. 
+// If you don't call parent in this proc, you must make all appropriate checks yourself.
 // If you do, you must respect the return value.
 /obj/machinery/computer/ship/attack_hand(mob/user)
 	if((. = ..()))

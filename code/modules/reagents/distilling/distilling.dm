@@ -267,7 +267,7 @@
 		return
 	if(chan == -1)
 		chan = power_channel
-	A.use_power(amount, chan)
+	A.use_power_oneoff(amount, chan)
 
 /obj/machinery/portable_atmospherics/powered/reagent_distillery/process()
 	..()

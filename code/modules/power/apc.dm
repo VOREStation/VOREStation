@@ -34,10 +34,10 @@
 // controls power to devices in that area
 // may be opened to change power cell
 // three different channels (lighting/equipment/environ) - may each be set to on, off, or auto
-#define POWERCHAN_OFF      0
-#define POWERCHAN_OFF_AUTO 1
-#define POWERCHAN_ON       2
-#define POWERCHAN_ON_AUTO  3
+#define POWERCHAN_OFF      0	// Power channel is off and will stay that way dammit
+#define POWERCHAN_OFF_AUTO 1	// Power channel is off until power rises above a threshold
+#define POWERCHAN_ON       2	// Power channel is on until there is no power
+#define POWERCHAN_ON_AUTO  3	// Power channel is on until power drops below a threshold
 
 //NOTE: STUFF STOLEN FROM AIRLOCK.DM thx
 
@@ -1037,10 +1037,9 @@
 		return 0
 
 /obj/machinery/power/apc/process()
-
-	if(stat & (BROKEN|MAINT))
-		return
 	if(!area.requires_power)
+		return PROCESS_KILL
+	if(stat & (BROKEN|MAINT))
 		return
 	if(failure_timer)
 		update()
@@ -1049,9 +1048,9 @@
 		force_update = 1
 		return
 
-	lastused_light = area.usage(LIGHT)
-	lastused_equip = area.usage(EQUIP)
-	lastused_environ = area.usage(ENVIRON)
+	lastused_light = area.usage(LIGHT, lighting >= POWERCHAN_ON)
+	lastused_equip = area.usage(EQUIP, equipment >= POWERCHAN_ON)
+	lastused_environ = area.usage(ENVIRON, environ >= POWERCHAN_ON)
 	area.clear_usage()
 
 	lastused_total = lastused_light + lastused_equip + lastused_environ

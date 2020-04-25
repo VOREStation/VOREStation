@@ -17,6 +17,7 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define USE_POWER_ACTIVE 2	// Machine is using power at its active power level
 
 // Channel numbers for power.
+#define CURRENT_CHANNEL -1 // Passed as an argument this means "use whatever current channel is"
 #define EQUIP   1
 #define LIGHT   2
 #define ENVIRON 3
