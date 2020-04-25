@@ -267,7 +267,7 @@
 			playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
 			if(do_after(user, 2, target = A))
 				activate()
-				qdel(A)
+				animate_deletion(A)
 
 		if(ATMOS_MODE) //Making pipes
 			if(!can_make_pipe)
@@ -299,6 +299,8 @@
 						P.do_a_flip()
 					if(wrench_mode)
 						do_wrench(P, user)
+					else
+						build_effect(P)
 
 		if(DISPOSALS_MODE) //Making disposals pipes
 			var/datum/pipe_recipe/disposal/R = recipe
@@ -324,11 +326,30 @@
 				C.update_icon()
 				if(wrench_mode)
 					do_wrench(C, user)
-				return
+				else
+					build_effect(C)
 
 		else
 			return ..()
 
+/obj/item/weapon/pipe_dispenser/proc/build_effect(var/obj/P, var/time = 1.5)
+	set waitfor = FALSE
+	P.filters += filter(type = "angular_blur", size = 30)
+	animate(P.filters[P.filters.len], size = 0, time = time)
+	var/outline = filter(type = "outline", size = 1, color = "#22AAFF")
+	P.filters += outline
+	sleep(time)
+	P.filters -= outline
+	P.filters -= filter(type = "angular_blur", size = 0)
+
+/obj/item/weapon/pipe_dispenser/proc/animate_deletion(var/obj/P, var/time = 1.5)
+	set waitfor = FALSE
+	P.filters += filter(type = "angular_blur", size = 0)
+	animate(P.filters[P.filters.len], size = 30, time = time)
+	sleep(time)
+	if(!QDELETED(P))
+		P.filters -= filter(type = "angular_blur", size = 30)
+		qdel(P)
 
 /obj/item/weapon/pipe_dispenser/proc/activate()
 	playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
