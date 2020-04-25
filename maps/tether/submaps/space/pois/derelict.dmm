@@ -143,7 +143,6 @@
 /turf/simulated/floor/bluegrid,
 /area/tether_away/debrisfield/derelict/interior)
 "ay" = (
-/obj/structure/prop/alien/power,
 /obj/structure/cable,
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -158,6 +157,7 @@
 	alpha = 0;
 	invisibility = 101
 	},
+/obj/machinery/power/rtg/abductor/built,
 /turf/simulated/floor/bluegrid,
 /area/tether_away/debrisfield/derelict/interior)
 "az" = (
@@ -234,6 +234,30 @@
 "aK" = (
 /turf/space,
 /area/tether_away/debrisfield/derelict)
+"aL" = (
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2";
+	pixel_y = 0
+	},
+/obj/machinery/power/fractal_reactor{
+	alpha = 0;
+	invisibility = 101
+	},
+/obj/machinery/power/rtg/abductor/built,
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict/interior)
+"aM" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/fractal_reactor{
+	alpha = 0;
+	invisibility = 101
+	},
+/obj/machinery/power/rtg/abductor/built,
+/turf/simulated/floor/reinforced,
+/area/tether_away/debrisfield/derelict/interior)
 "aN" = (
 /obj/random/humanoidremains,
 /obj/structure/cable{
@@ -326,30 +350,6 @@
 /area/tether_away/debrisfield/derelict/interior)
 "be" = (
 /obj/structure/prop/alien/computer/camera,
-/turf/simulated/floor/reinforced,
-/area/tether_away/debrisfield/derelict/interior)
-"bf" = (
-/obj/structure/prop/alien/power,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
-	},
-/obj/machinery/power/fractal_reactor{
-	alpha = 0;
-	invisibility = 101
-	},
-/turf/simulated/floor/reinforced,
-/area/tether_away/debrisfield/derelict/interior)
-"bg" = (
-/obj/structure/prop/alien/power,
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/fractal_reactor{
-	alpha = 0;
-	invisibility = 101
-	},
 /turf/simulated/floor/reinforced,
 /area/tether_away/debrisfield/derelict/interior)
 "bh" = (
@@ -1484,7 +1484,7 @@ aa
 ao
 ao
 ao
-bf
+aL
 bj
 bj
 bs
@@ -4222,7 +4222,7 @@ aa
 ao
 ao
 ao
-bg
+aM
 bi
 bp
 bi
