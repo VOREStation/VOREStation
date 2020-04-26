@@ -286,15 +286,10 @@
 	held = null
 
 
-/obj/structure/bed/roller/Move()
-	..()
+/obj/structure/bed/roller/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	
 	playsound(src, 'sound/effects/roll.ogg', 100, 1)
-	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/L = A
-
-			if(L.buckled == src)
-				L.loc = src.loc
 
 /obj/structure/bed/roller/post_buckle_mob(mob/living/M as mob)
 	if(M.buckled == src)

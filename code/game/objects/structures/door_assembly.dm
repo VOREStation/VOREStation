@@ -145,7 +145,7 @@
 			bound_height = width * world.icon_size
 		update_state()
 
-	Move()
+	Moved(atom/old_loc, direction, forced = FALSE)
 		. = ..()
 		if(dir in list(EAST, WEST))
 			bound_width = width * world.icon_size

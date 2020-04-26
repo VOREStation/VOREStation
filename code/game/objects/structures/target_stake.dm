@@ -8,11 +8,11 @@
 	w_class = ITEMSIZE_HUGE
 	var/obj/item/target/pinned_target // the current pinned target
 
-	Move()
-		..()
+	Moved(atom/old_loc, direction, forced = FALSE)
+		. = ..()
 		// Move the pinned target along with the stake
 		if(pinned_target in view(3, src))
-			pinned_target.loc = loc
+			pinned_target.forceMove(loc)
 
 		else // Sanity check: if the pinned target can't be found in immediate view
 			pinned_target = null

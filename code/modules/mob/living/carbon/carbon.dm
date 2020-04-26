@@ -33,15 +33,14 @@
 	touching.clear_reagents()
 	..()
 
-/mob/living/carbon/Move(NewLoc, direct)
+/mob/living/carbon/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	if(.)
-		if(src.nutrition && src.stat != 2)
+	if(src.nutrition && src.stat != 2)
+		src.nutrition -= DEFAULT_HUNGER_FACTOR/10
+		if(src.m_intent == "run")
 			src.nutrition -= DEFAULT_HUNGER_FACTOR/10
-			if(src.m_intent == "run")
-				src.nutrition -= DEFAULT_HUNGER_FACTOR/10
-		if((FAT in src.mutations) && src.m_intent == "run" && src.bodytemperature <= 360)
-			src.bodytemperature += 2
+	if((FAT in src.mutations) && src.m_intent == "run" && src.bodytemperature <= 360)
+		src.bodytemperature += 2
 
 		// Moving around increases germ_level faster
 		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
