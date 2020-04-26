@@ -43,7 +43,7 @@
 	if(cell)
 		cell.emp_act(severity)
 
-/obj/item/device/sleevemate/attack(mob/living/M, mob/living/user)
+/obj/item/weapon/inducer/attack(mob/living/M, mob/living/user)
 	if(user.a_intent == I_HURT)
 		return ..()
 	else
