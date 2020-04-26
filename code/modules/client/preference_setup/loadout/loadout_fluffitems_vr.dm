@@ -1,6 +1,7 @@
 // Note for newly added fluff items: Ckeys should not contain any spaces, underscores or capitalizations,
 // or else the item will not be usable.
 // Example: Someone whose username is "Master Pred_Man" should be written as "masterpredman" instead
+// Note: Do not use characters such as # in the display_name. It will cause the item to be unable to be selected.
 
 /datum/gear/fluff
 	path = /obj/item
@@ -804,7 +805,7 @@
 
 /datum/gear/fluff/nthasd_modkit //Converts a Security suit's sprite
 	path = /obj/item/device/modkit_conversion/hasd
-	display_name = "NT-HASD #556's Modkit"
+	display_name = "NT-HASD 556's Modkit"
 	ckeywhitelist = list("silencedmp5a5")
 	character_name = list("NT-HASD #556")
 	allowed_roles = list("Colony Director", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")

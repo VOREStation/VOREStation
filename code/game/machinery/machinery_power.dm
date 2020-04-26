@@ -88,23 +88,13 @@
 
 // Registering moved_event observers for all machines is too expensive.  Instead we do it ourselves.
 // 99% of machines are always on a turf anyway, very few need recursive move handling.
-/obj/machinery/Move()
-	var/old_loc = loc
-	if((. = ..()))
-		update_power_on_move(src, old_loc, loc)
-		if(ismovable(loc)) // Register for recursive movement (if the thing we're inside moves)
-			GLOB.moved_event.register(loc, src, .proc/update_power_on_move)
-		if(ismovable(old_loc)) // Unregister recursive movement.
-			GLOB.moved_event.unregister(old_loc, src, .proc/update_power_on_move)
-
-/obj/machinery/forceMove(atom/destination)
-	var/old_loc = loc
-	if((. = ..()))
-		update_power_on_move(src, old_loc, loc)
-		if(ismovable(loc)) // Register for recursive movement (if the thing we're inside moves)
-			GLOB.moved_event.register(loc, src, .proc/update_power_on_move)
-		if(ismovable(old_loc)) // Unregister recursive movement.
-			GLOB.moved_event.unregister(old_loc, src, .proc/update_power_on_move)
+/obj/machinery/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	update_power_on_move(src, old_loc, loc)
+	if(ismovable(loc)) // Register for recursive movement (if the thing we're inside moves)
+		GLOB.moved_event.register(loc, src, .proc/update_power_on_move)
+	if(ismovable(old_loc)) // Unregister recursive movement.
+		GLOB.moved_event.unregister(old_loc, src, .proc/update_power_on_move)
 
 /obj/machinery/proc/update_power_on_move(atom/movable/mover, atom/old_loc, atom/new_loc)
 	var/area/old_area = get_area(old_loc)

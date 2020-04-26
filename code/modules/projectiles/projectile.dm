@@ -338,14 +338,13 @@
 	START_PROCESSING(SSprojectiles, src)
 	pixel_move(1, FALSE)	//move it now!
 
-/obj/item/projectile/Move(atom/newloc, dir = NONE)
+/obj/item/projectile/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	if(.)
-		if(temporary_unstoppable_movement)
-			temporary_unstoppable_movement = FALSE
-			DISABLE_BITFIELD(movement_type, UNSTOPPABLE)
-		if(fired && can_hit_target(original, permutated, TRUE))
-			Bump(original)
+	if(temporary_unstoppable_movement)
+		temporary_unstoppable_movement = FALSE
+		DISABLE_BITFIELD(movement_type, UNSTOPPABLE)
+	if(fired && can_hit_target(original, permutated, TRUE))
+		Bump(original)
 
 /obj/item/projectile/proc/after_z_change(atom/olcloc, atom/newloc)
 

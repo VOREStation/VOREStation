@@ -33,20 +33,20 @@
 	touching.clear_reagents()
 	..()
 
-/mob/living/carbon/Move(NewLoc, direct)
+/* VOREStation Edit - Duplicated in our code
+/mob/living/carbon/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	if(.)
-		if(src.nutrition && src.stat != 2)
+	if(src.nutrition && src.stat != 2)
+		src.nutrition -= DEFAULT_HUNGER_FACTOR/10
+		if(src.m_intent == "run")
 			src.nutrition -= DEFAULT_HUNGER_FACTOR/10
-			if(src.m_intent == "run")
-				src.nutrition -= DEFAULT_HUNGER_FACTOR/10
-		if((FAT in src.mutations) && src.m_intent == "run" && src.bodytemperature <= 360)
-			src.bodytemperature += 2
+	if((FAT in src.mutations) && src.m_intent == "run" && src.bodytemperature <= 360)
+		src.bodytemperature += 2
 
-		// Moving around increases germ_level faster
-		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
-			germ_level++
-/* VOREStation Removal - Needless duplicate feature
+	// Moving around increases germ_level faster
+	if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
+		germ_level++
+
 /mob/living/carbon/relaymove(var/mob/living/user, direction)
 	if((user in src.stomach_contents) && istype(user))
 		if(user.last_special <= world.time)

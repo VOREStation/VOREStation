@@ -15,12 +15,12 @@
 	)
 
 // make a screeching noise to drive people mad
-/obj/structure/ship_munition/disperser_charge/Move(atom/newloc, direct = 0)
-	if((. = ..()) && prob(50))
+/obj/structure/ship_munition/disperser_charge/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	if(prob(50))
 		var/turf/T = get_turf(src)
 		if(!isspace(T) && !istype(T, /turf/simulated/floor/carpet))
 			playsound(T, pick(move_sounds), 50, 1)
-
 
 /obj/structure/ship_munition/disperser_charge/fire
 	name = "FR1-ENFER charge"

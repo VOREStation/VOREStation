@@ -366,17 +366,7 @@
 					anim(mobloc,mob,'icons/mob/mob.dmi',,"shadow",,mob.dir)
 				mob.forceMove(get_step(mob, direct))
 			mob.dir = direct
-	// Crossed is always a bit iffy
-	for(var/obj/S in mob.loc)
-		if(istype(S,/obj/effect/step_trigger) || istype(S,/obj/effect/beam))
-			S.Crossed(mob)
 
-	var/area/A = get_area_master(mob)
-	if(A)
-		A.Entered(mob)
-	if(isturf(mob.loc))
-		var/turf/T = mob.loc
-		T.Entered(mob)
 	mob.Post_Incorpmove()
 	return 1
 
@@ -468,13 +458,7 @@
 
 /mob/proc/update_gravity()
 	return
-/*
-// The real Move() proc is above, but touching that massive block just to put this in isn't worth it.
-/mob/Move(var/newloc, var/direct)
-	. = ..(newloc, direct)
-	if(.)
-		post_move(newloc, direct)
-*/
+
 // Called when a mob successfully moves.
 // Would've been an /atom/movable proc but it caused issues.
 /mob/Moved(atom/oldloc)

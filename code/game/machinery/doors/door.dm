@@ -490,8 +490,7 @@
 		else
 			source.thermal_conductivity = initial(source.thermal_conductivity)
 
-/obj/machinery/door/Move(new_loc, new_dir)
-	//update_nearby_tiles()
+/obj/machinery/door/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
 	if(width > 1)
 		if(dir in list(EAST, WEST))

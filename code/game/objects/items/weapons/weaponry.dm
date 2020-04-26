@@ -122,18 +122,6 @@
 	if(!has_buckled_mobs())
 		qdel(src)
 
-/obj/effect/energy_net/Move()
-	..()
-	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/occupant = A
-			occupant.buckled = null
-			occupant.forceMove(src.loc)
-			occupant.buckled = src
-			if (occupant && (src.loc != occupant.loc))
-				unbuckle_mob(occupant)
-				qdel(src)
-
 /obj/effect/energy_net/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
 	user.setClickCooldown(user.get_attack_speed())
 	visible_message("<span class='danger'>[user] begins to tear at \the [src]!</span>")

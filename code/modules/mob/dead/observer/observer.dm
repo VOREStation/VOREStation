@@ -377,10 +377,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	following = null
 	return ..()
 
-/mob/Move()
+/mob/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	if(.)
-		update_following()
+	update_following()
 
 /mob/Life()
 	// to catch teleports etc which directly set loc

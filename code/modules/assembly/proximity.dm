@@ -88,8 +88,8 @@
 		var/obj/item/weapon/grenade/chem_grenade/grenade = holder.loc
 		grenade.primed(scanning)
 
-/obj/item/device/assembly/prox_sensor/Move()
-	..()
+/obj/item/device/assembly/prox_sensor/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
 	sense()
 
 /obj/item/device/assembly/prox_sensor/interact(mob/user as mob)//TODO: Change this to the wires thingy
