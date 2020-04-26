@@ -44,6 +44,7 @@
 		if ("both")
 			starts_with = list(
 				/obj/item/weapon/storage/toolbox/emergency,
+				/obj/item/weapon/storage/firstaid/o2,
 				/obj/item/weapon/tank/emergency/oxygen/engi = 2,
 				/obj/item/clothing/mask/breath = 2,
 				/obj/item/clothing/suit/space/emergency = 2,

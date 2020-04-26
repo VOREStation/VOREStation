@@ -4,7 +4,7 @@
 /obj/item/weapon/storage/firstaid/fire
 	starts_with = list(
 		/obj/item/weapon/storage/pill_bottle/kelotane,
-		/obj/item/weapon/reagent_containers/hypospray/autoinjector/burn,
+		/obj/item/stack/medical/ointment,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/burn,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/burn,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/burn,
@@ -29,8 +29,8 @@
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/detox,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/detox,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/detox,
-		/obj/item/weapon/reagent_containers/hypospray/autoinjector/detox,
-		/obj/item/weapon/reagent_containers/hypospray/autoinjector/detox,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/rad,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/rad,
 		/obj/item/weapon/storage/pill_bottle/antitox
 	)
 
