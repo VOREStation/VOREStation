@@ -96,5 +96,8 @@
 /obj/machinery/computer/ship/attack_hand(mob/user)
 	if((. = ..()))
 		return
+	if(!allowed(user))
+		to_chat(user, "<span class='warning'>Access Denied.</span>")
+		return 1
 	if(CanUseTopic(user, DefaultTopicState()) > STATUS_CLOSE)
 		return interface_interact(user)
