@@ -132,22 +132,13 @@
 		return -1
 	if(!listening)
 		return -1
-	if(is_jammed(src))
+	if(!on)
 		return -1
-	if (!on)
+	if(!freq)
 		return -1
-	if (!freq) //recieved on main frequency
-		if (!listening)
-			return -1
-	else
-		var/accept = (freq==frequency && listening)
-		if (!accept)
-			for (var/ch_name in channels)
-				var/datum/radio_frequency/RF = secure_radio_connections[ch_name]
-				if (RF && RF.frequency==freq && (channels[ch_name]&FREQ_LISTENING))
-					accept = 1
-					break
-		if (!accept)
-			return -1
 	
-	return canhear_range
+	//Only listen on main freq
+	if(freq == frequency)
+		return canhear_range
+	else
+		return -1
