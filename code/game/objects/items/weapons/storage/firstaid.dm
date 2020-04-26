@@ -10,26 +10,26 @@
 /obj/item/weapon/storage/firstaid
 	name = "first aid kit"
 	desc = "It's an emergency medical kit for those serious boo-boos."
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "firstaid"
 	throw_speed = 2
 	throw_range = 8
 	max_storage_space = ITEMSIZE_COST_SMALL * 7 // 14
-//	var/list/icon_variety // VOREStation edit
+	var/list/icon_variety
 	drop_sound = 'sound/items/drop/box.ogg'
 
 /obj/item/weapon/storage/firstaid/Initialize()
 	. = ..()
-//	if(icon_variety) // VOREStation edit
-//		icon_state = pick(icon_variety)
-//		icon_variety = null
+	if(icon_variety)
+		icon_state = pick(icon_variety)
+		icon_variety = null
 
 /obj/item/weapon/storage/firstaid/fire
 	name = "fire first aid kit"
 	desc = "It's an emergency medical kit for when the toxins lab <i>spontaneously</i> burns down."
 	icon_state = "ointment"
 	item_state_slots = list(slot_r_hand_str = "firstaid-ointment", slot_l_hand_str = "firstaid-ointment")
-//	icon_variety = list("ointment","firefirstaid") // VOREStation edit
+	//icon_variety = list("ointment","firefirstaid") //VOREStation Removal
 	starts_with = list(
 		/obj/item/device/healthanalyzer,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector,
@@ -57,7 +57,7 @@
 	desc = "Used to treat when one has a high amount of toxins in their body."
 	icon_state = "antitoxin"
 	item_state_slots = list(slot_r_hand_str = "firstaid-toxin", slot_l_hand_str = "firstaid-toxin")
-//	icon_variety = list("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3") // VOREStation edit
+	//icon_variety = list("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3") //VOREStation Removal
 	starts_with = list(
 		/obj/item/weapon/reagent_containers/syringe/antitoxin,
 		/obj/item/weapon/reagent_containers/syringe/antitoxin,
@@ -135,7 +135,7 @@
 		/obj/item/weapon/surgical/FixOVein,
 		/obj/item/stack/medical/advanced/bruise_pack,
 		/obj/item/stack/nanopaste,
-		///obj/item/device/healthanalyzer/advanced, //VOREStation Removal,
+		/obj/item/device/healthanalyzer/advanced,
 		/obj/item/weapon/autopsy_scanner
 		)
 
@@ -150,7 +150,7 @@
 		/obj/item/weapon/surgical/bonegel,
 		/obj/item/weapon/surgical/FixOVein,
 		/obj/item/stack/medical/advanced/bruise_pack,
-		///obj/item/device/healthanalyzer/advanced, //VOREStation Removal,
+		/obj/item/device/healthanalyzer/advanced,
 		/obj/item/weapon/autopsy_scanner
 		)
 

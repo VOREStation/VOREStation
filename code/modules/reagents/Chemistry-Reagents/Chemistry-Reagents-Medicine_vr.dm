@@ -67,7 +67,7 @@
 	taste_description = "sparkles"
 	taste_mult = 3
 	reagent_state = LIQUID
-	color = "#964e06"
+	color = "#750404"
 	overdose = REAGENTS_OVERDOSE * 0.5
 	scannable = 1
 
