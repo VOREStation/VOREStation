@@ -261,7 +261,7 @@
 	desc = "Commonly found on paramedics, these assorted pill bottles contain basic treatments for nonstandard injuries."
 	starts_with = list(
 			/obj/item/weapon/reagent_containers/pill/inaprovaline = 3,
-			/obj/item/weapon/reagent_containers/pill/dylovene = 3,
+			/obj/item/weapon/reagent_containers/pill/antitox = 3,
 			/obj/item/weapon/reagent_containers/pill/iron = 2,
 			/obj/item/weapon/reagent_containers/pill/tramadol = 2,
 			/obj/item/weapon/reagent_containers/pill/hyronalin = 3,
