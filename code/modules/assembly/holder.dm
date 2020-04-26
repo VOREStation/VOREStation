@@ -84,8 +84,8 @@
 	if(a_right)
 		a_right.on_found(finder)
 
-/obj/item/device/assembly_holder/Move()
-	..()
+/obj/item/device/assembly_holder/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
 	if(a_left && a_right)
 		a_left.holder_movement()
 		a_right.holder_movement()

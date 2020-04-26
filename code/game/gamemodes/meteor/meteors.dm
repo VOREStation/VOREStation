@@ -138,14 +138,13 @@
 
 	. = ..() //process movement...
 
-	if(.)//.. if did move, ram the turf we get in
-		var/turf/T = get_turf(loc)
-		ram_turf(T)
+/obj/effect/meteor/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	var/turf/T = get_turf(loc)
+	ram_turf(T)
 
-		if(prob(10) && !istype(T, /turf/space))//randomly takes a 'hit' from ramming
-			get_hit()
-
-	return .
+	if(prob(10) && !istype(T, /turf/space)) //randomly takes a 'hit' from ramming
+		get_hit()
 
 /obj/effect/meteor/Destroy()
 	walk(src,0) //this cancels the walk_towards() proc

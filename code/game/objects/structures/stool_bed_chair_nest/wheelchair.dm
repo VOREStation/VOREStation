@@ -91,8 +91,9 @@
 		create_track()
 	driving = 0
 
-/obj/structure/bed/chair/wheelchair/Move()
-	..()
+/obj/structure/bed/chair/wheelchair/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	
 	cut_overlays()
 	playsound(src, 'sound/effects/roll.ogg', 75, 1)
 	if(has_buckled_mobs())
