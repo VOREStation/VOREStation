@@ -196,13 +196,13 @@
 	color = reagents.get_color()
 
 /obj/item/weapon/reagent_containers/pill/dexalin
-	name = "Dexalin (10u)" //VOREstation Edit
+	name = "Dexalin (7.5u)" //VOREstation Edit
 	desc = "Used to treat oxygen deprivation."
 	icon_state = "pill1"
 
 /obj/item/weapon/reagent_containers/pill/dexalin/Initialize()
 	. = ..()
-	reagents.add_reagent("dexalin", 10) //VOREStation Edit
+	reagents.add_reagent("dexalin", 7.5) //VOREStation Edit
 	color = reagents.get_color()
 
 /obj/item/weapon/reagent_containers/pill/dexalin_plus

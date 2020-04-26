@@ -36,13 +36,13 @@
 	reagents.add_reagent("peridaxon", 10)
 
 /obj/item/weapon/reagent_containers/pill/carthatoline
-	name = "Carthatoline (10u)"
+	name = "Carthatoline (15u)"
 	desc = "Carthatoline is strong evacuant used to treat severe poisoning."
 	icon_state = "pill4"
 
 /obj/item/weapon/reagent_containers/pill/carthatoline/Initialize()
 	..()
-	reagents.add_reagent("carthatoline", 10)
+	reagents.add_reagent("carthatoline", 15)
 	color = reagents.get_color()
 
 /obj/item/weapon/reagent_containers/pill/alkysine
