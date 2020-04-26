@@ -6,6 +6,14 @@
 	sort_category = "Suits and Overwear"
 	cost = 2
 
+/datum/gear/suit/apron_white
+	display_name = "apron, colorable"
+	path = /obj/item/clothing/suit/storage/apron/white
+
+/datum/gear/suit/apron_white/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
 /datum/gear/suit/greatcoat
 	display_name = "greatcoat"
 	path = /obj/item/clothing/suit/greatcoat

@@ -355,7 +355,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	for(var/obj/item/device/radio/R in forced_radios)
 		//Cursory check to ensure they are 'on' and stuff
-		if(R.receive_range(display_freq, list(0)))
+		if(R.receive_range(display_freq, list(0)) > -1)
 			radios |= R
 
 	// --- Broadcast only to intercom devices ---

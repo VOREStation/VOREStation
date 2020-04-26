@@ -115,6 +115,9 @@
 	show_message(span("critical", "\The [user] is transferring you into \the [src]!"))
 
 	if(do_after(user, 100))
+		if(carded_ai)
+			to_chat(user, "<span class='danger'>Transfer failed:</span> Existing AI found on remote device. Remove existing AI to install a new one.")
+			return 0
 		if(istype(ai.loc, /turf/))
 			new /obj/structure/AIcore/deactivated(get_turf(ai))
 

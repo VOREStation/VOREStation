@@ -125,7 +125,7 @@ var/const/EXP_FREQ = 1361
 var/const/MED_I_FREQ = 1485
 var/const/SEC_I_FREQ = 1475
 
-var/const/TALON_FREQ = 1481 //VOREStation Add
+var/const/TALON_FREQ = 1363 //VOREStation Add
 
 var/list/radiochannels = list(
 	"Common"		= PUB_FREQ,

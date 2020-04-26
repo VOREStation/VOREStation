@@ -31,7 +31,7 @@
 	// Let's just make this one loop.
 	for(var/X in orange(pull_radius, location))
 		// Movable atoms only
-		if(!ismovableatom(X) || istype(X, /obj/effect/overlay))
+		if(!ismovable(X) || istype(X, /obj/effect/overlay))
 			continue
 
 		if(ishuman(X))

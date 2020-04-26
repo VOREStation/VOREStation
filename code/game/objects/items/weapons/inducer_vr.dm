@@ -43,7 +43,7 @@
 	if(cell)
 		cell.emp_act(severity)
 
-/obj/item/device/sleevemate/attack(mob/living/M, mob/living/user)
+/obj/item/weapon/inducer/attack(mob/living/M, mob/living/user)
 	if(user.a_intent == I_HURT)
 		return ..()
 	else
@@ -272,8 +272,11 @@
 	hume.nutrition += . //Add the amount we really stored
 	. /= NUTRITION_COEFF //Inflate amount to take from the giver
 
+#undef NUTRITION_COEFF
+
 // Various sideways-defined get_cells
 /obj/mecha/get_cell()
 	return cell
 
-#undef NUTRITION_COEFF
+/obj/vehicle/get_cell()
+	return cell

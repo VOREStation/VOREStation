@@ -70,6 +70,11 @@
 	if(!department)
 		return
 	for(var/mob/M in player_list)
+		// Do not count AI's shells
+		if(isrobot(M))
+			var/mob/living/silicon/robot/R = M
+			if(R.shell)
+				continue
 		if(department != DEPARTMENT_EVERYONE && guess_department(M) != department) // Ignore people outside the department we're counting.
 			continue
 		if(assess_player_activity(M) < cutoff)
