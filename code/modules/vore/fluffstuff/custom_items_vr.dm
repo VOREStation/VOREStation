@@ -36,27 +36,27 @@
 	var/from_suit = /obj/item/clothing/suit/space/void
 	var/to_helmet = /obj/item/clothing/head/cardborg
 	var/to_suit = /obj/item/clothing/suit/cardborg
-	
+
 	//conversion costs. refunds all parts by default, but can be tweaked per-kit
 	var/from_helmet_cost = 1
 	var/from_suit_cost = 2
 	var/to_helmet_cost = -1
 	var/to_suit_cost = -2
-	
+
 	var/owner_ckey = null		//ckey of the kit owner as a string
 	var/skip_content_check = FALSE	//can we skip the contents check? we generally shouldn't, but this is necessary for rigs/coats with hoods/etc.
 	var/transfer_contents = FALSE	//should we transfer the contents across before deleting? we generally shouldn't, esp. in the case of rigs/coats with hoods/etc. note this does nothing if skip is FALSE.
 	var/can_repair = FALSE		//can we be used to repair damaged voidsuits when converting them?
 	var/can_revert = TRUE		//can we revert items, or is it a one-way trip?
 	var/delete_on_empty = FALSE	//do we self-delete when emptied?
-	
+
 	//Conversion proc
 /obj/item/device/modkit_conversion/afterattack(obj/O, mob/user as mob)
 	var/cost
 	var/to_type
 	var/keycheck
-	
-	if(isturf(O)) //silently fail if you click on a turf. shouldn't work anyway because turfs aren't objects but if I don't do this it spits runtimes. 
+
+	if(isturf(O)) //silently fail if you click on a turf. shouldn't work anyway because turfs aren't objects but if I don't do this it spits runtimes.
 		return
 	if(istype(O,/obj/item/clothing/suit/space/void/) && !can_repair) //check if we're a voidsuit and if we're allowed to repair
 		var/obj/item/clothing/suit/space/void/SS = O
@@ -104,13 +104,13 @@
 	playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 	var/obj/N = new to_type(O.loc)
 	user.visible_message("<span class='notice'>[user] opens \the [src] and modifies \the [O] into \the [N].</span>","<span class='notice'>You open \the [src] and modify \the [O] into \the [N].</span>")
-	
+
 	//crude, but transfer prints and fibers to avoid forensics abuse, same as the bloody/gooey check above
 	N.fingerprints = O.fingerprints
 	N.fingerprintshidden = O.fingerprintshidden
 	N.fingerprintslast = O.fingerprintslast
 	N.suit_fibers = O.suit_fibers
-	
+
 	//transfer logic could technically be made more thorough and handle stuff like helmet/boots/tank vars for suits, but in those cases you should be removing the items first anyway
 	if(skip_content_check && transfer_contents)
 		N.contents = O.contents
@@ -133,7 +133,7 @@
 			var/obj/item/weapon/gun/energy/NO = N
 			NO.contents = list()
 			NO.cell_type = null
-	
+
 	qdel(O)
 	parts -= cost
 	if(!parts && delete_on_empty)
@@ -439,8 +439,8 @@
 
 //SilencedMP5A5:Serdykov Antoz
 /obj/item/clothing/suit/armor/vest/wolftaur/serdy //SilencedMP5A5's specialty armor suit.
-	name = "KSS-8 security armor"
-	desc = "A set of armor made from pieces of many other armors. There are two orange holobadges on it, one on the chestplate, one on the steel flank plates. The holobadges appear to be russian in origin. 'Kosmicheskaya Stantsiya-8' is printed in faded white letters on one side, along the spine. It smells strongly of dog."
+	name = "custom security cuirass"
+	desc = "An armored vest that protects against some damage. It appears to be created for a wolfhound. The name 'Serdykov L. Antoz' is written on a tag inside one of the haunchplates."
 	species_restricted = null //Species restricted since all it cares about is a taur half
 	icon = 'icons/mob/taursuits_wolf_vr.dmi'
 	icon_state = "serdy_armor"
@@ -454,16 +454,27 @@
 		to_chat(H, "<span class='warning'>You need to have a wolf-taur half to wear this.</span>")
 		return 0
 
-/obj/item/clothing/head/helmet/serdy //SilencedMP5A5's specialty helmet. Uncomment if/when they make their custom item app and are accepted.
-	name = "KSS-8 security helmet"
-	desc = "desc = An old production model steel-ceramic lined helmet with a white stripe and a custom orange holographic visor. It has ear holes, and smells of dog. It's been heavily modified, and fitted with a metal mask to protect the jaw."
+/obj/item/clothing/head/serdyhelmet //SilencedMP5A5's specialty helmet.
+	name = "custom security helmet"
+	desc = "desc = An old production model steel-ceramic lined helmet with a white stripe and a custom orange holographic visor. It has ear holes, and smells of dog."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "serdyhelm"
-
+	valid_accessory_slots = (ACCESSORY_SLOT_HELM_C)
+	restricted_accessory_slots = (ACCESSORY_SLOT_HELM_C)
+	flags = THICKMATERIAL
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "serdyhelm_mob"
+	cold_protection = HEAD
+	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = HEAD
+	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.7
+	w_class = ITEMSIZE_NORMAL
+	ear_protection = 1
+	drop_sound = 'sound/items/drop/helm.ogg'
 
-/*
+
 //SilencedMP5A5:Serdykov Antoz
 /obj/item/device/modkit_conversion/fluff/serdykit
 	name = "Serdykov's armor modification kit"
@@ -474,9 +485,9 @@
 
 	from_helmet = /obj/item/clothing/head/helmet
 	from_suit = /obj/item/clothing/suit/armor/vest/wolftaur
-	to_helmet = /obj/item/clothing/head/helmet/serdy
+	to_helmet = /obj/item/clothing/head/serdyhelmet
 	to_suit = /obj/item/clothing/suit/armor/vest/wolftaur/serdy
-*/
+
 
 //Cameron653: Diana Kuznetsova
 /obj/item/clothing/suit/fluff/purp_robes
