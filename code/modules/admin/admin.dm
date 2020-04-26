@@ -877,7 +877,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if(!check_rights(R_SERVER|R_EVENT))
 		return
 	if(SSticker.current_state > GAME_STATE_PREGAME)
-		to_chat(usr, "<font color='red'>Error: Start Now: Game has already started.</font>")
+		to_chat(usr, "<span class='warning'>Error: Start Now: Game has already started.</span>")
 		return
 	if(!SSticker.start_immediately)
 		SSticker.start_immediately = TRUE
@@ -885,11 +885,11 @@ var/datum/announcement/minor/admin_min_announcer = new
 		if(SSticker.current_state == GAME_STATE_INIT)
 			msg = " (The server is still setting up, but the round will be started as soon as possible.)"
 		log_admin("[key_name(usr)] has started the game.[msg]")
-		message_admins("<font color='blue'>[key_name_admin(usr)] has started the game.[msg]</font>")
+		message_admins("<span class='notice'>[key_name_admin(usr)] has started the game.[msg]</span>")
 		feedback_add_details("admin_verb","SN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
 		SSticker.start_immediately = FALSE
-		to_chat(world, "<b>Immediate game start canceled.  Normal startup resumed.</b>")
+		to_world("<span class='notice'>Immediate game start canceled.  Normal startup resumed.</span>")
 		log_and_message_admins("cancelled immediate game start.")
 
 /datum/admins/proc/toggleenter()
