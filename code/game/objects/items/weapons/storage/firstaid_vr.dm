@@ -14,12 +14,12 @@
 
 /obj/item/weapon/storage/firstaid/regular
 	starts_with = list(
+		/obj/item/device/healthanalyzer
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/stack/medical/ointment,
 		/obj/item/stack/medical/ointment,
-		/obj/item/weapon/storage/pill_bottle/inaprovaline,
 		/obj/item/weapon/storage/pill_bottle/paracetamol
 	)
 
@@ -40,7 +40,7 @@
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/oxy,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/oxy,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/oxy,
-		/obj/item/weapon/reagent_containers/hypospray/autoinjector/oxy,
+		/obj/item/weapon/storage/pill_bottle/inaprovaline,
 		/obj/item/weapon/storage/pill_bottle/iron,
 		/obj/item/weapon/storage/pill_bottle/dexalin
 	)
