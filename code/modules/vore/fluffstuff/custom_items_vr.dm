@@ -456,7 +456,7 @@
 
 /obj/item/clothing/head/serdyhelmet //SilencedMP5A5's specialty helmet.
 	name = "custom security helmet"
-	desc = "desc = An old production model steel-ceramic lined helmet with a white stripe and a custom orange holographic visor. It has ear holes, and smells of dog."
+	desc = "An old production model steel-ceramic lined helmet with a white stripe and a custom orange holographic visor. It has ear holes, and smells of dog."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "serdyhelm"
 	valid_accessory_slots = (ACCESSORY_SLOT_HELM_C)
