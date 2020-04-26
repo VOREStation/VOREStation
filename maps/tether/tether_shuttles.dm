@@ -259,4 +259,4 @@
 /obj/machinery/computer/shuttle_control/explore/medivac
 	name = "short jump console"
 	shuttle_tag = "Medivac Shuttle"
-	req_one_access = list(access_pilot)
+	req_one_access = list(access_cmo, access_pilot)
