@@ -5,7 +5,7 @@
 	starts_with = list(
 		/obj/item/weapon/storage/pill_bottle/kelotane,
 		/obj/item/stack/medical/ointment,
-		/obj/item/weapon/reagent_containers/hypospray/autoinjector/burn,
+		/obj/item/stack/medical/ointment,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/burn,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/burn,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/burn,

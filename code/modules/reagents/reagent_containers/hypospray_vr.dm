@@ -11,7 +11,7 @@
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/oxy
 	name = "autoinjector (oxy)"
 	icon_state = "blue"
-	filled_reagents = list("dexalin" = 5)
+	filled_reagents = list("dexalinp" = 5)
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/rad
 	name = "autoinjector (rad)"
