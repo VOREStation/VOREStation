@@ -209,7 +209,7 @@
 	if(!card)
 		return FALSE
 	var/time_left = 10 MINUTES - (world.time - card.last_job_switch)
-	if((time_left > 0)
+	if(time_left > 0)
 		to_chat(usr, "You need to wait another [round((time_left/10)/60, 1)] minute\s before you can switch.")
 		return FALSE
 	return TRUE
