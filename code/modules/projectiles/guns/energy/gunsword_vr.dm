@@ -9,12 +9,11 @@
 	item_state = null
 	item_icons = list(slot_r_hand_str = 'icons/vore/custom_guns_vr.dmi', slot_l_hand_str = 'icons/vore/custom_guns_vr.dmi')
 	item_state_slots = list(slot_r_hand_str = "gbuster_r", slot_l_hand_str = "gbuster_l")
-	fire_sound = 'sound/weapons/mandalorian.ogg'
 
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 4)
 	projectile_type = /obj/item/projectile/beam/stun
-	fire_sound = 'sound/weapons/gauss_shoot.ogg'
+	fire_sound = 'sound/weapons/mandalorian.ogg'
 	charge_meter = 1
 
 	cell_type = /obj/item/weapon/cell/device/weapon/gunsword
