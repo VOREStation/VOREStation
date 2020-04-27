@@ -30122,6 +30122,7 @@
 /turf/simulated/wall/rshull,
 /area/shuttle/excursion/cargo)
 "aWt" = (
+/obj/machinery/mineral/equipment_vendor/survey,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/excursion/cargo)
 "aWu" = (

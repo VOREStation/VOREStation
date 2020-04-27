@@ -68,6 +68,11 @@
 		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
 			return ..()
 
+		//VOREStation Add - No welding nanoform limbs
+		if(S.robotic > ORGAN_LIFELIKE)
+			return ..()
+		//VOREStation Add End
+
 		if(S.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
 				to_chat(user, "<span class='warning'>You can't apply [src] through [H.head]!</span>")
