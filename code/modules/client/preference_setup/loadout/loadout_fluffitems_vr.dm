@@ -810,6 +810,13 @@
 	character_name = list("NT-HASD #556")
 	allowed_roles = list("Colony Director", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
 
+/datum/gear/fluff/serdykov_modkit //Also converts a Security suit's sprite
+	path = /obj/item/device/modkit_conversion/fluff/serdykit
+	display_name = "Serdykov Antoz's Modkit"
+	ckeywhitelist = list("silencedmp5a5")
+	character_name = list("Serdykov Antoz")
+	allowed_roles = list("Colony Director", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
+
 /datum/gear/fluff/tasy_clownuniform
 	path = /obj/item/clothing/under/sexyclown
 	display_name = "Tasy's Clown Uniform"
