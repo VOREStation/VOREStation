@@ -1616,6 +1616,7 @@
 #include "code\modules\ai\ai_holder_movement.dm"
 #include "code\modules\ai\ai_holder_pathfinding.dm"
 #include "code\modules\ai\ai_holder_targeting.dm"
+#include "code\modules\ai\ai_holder_targeting_vr.dm"
 #include "code\modules\ai\interfaces.dm"
 #include "code\modules\ai\say_list.dm"
 #include "code\modules\ai\ai_holder_subtypes\simple_mob_ai.dm"
