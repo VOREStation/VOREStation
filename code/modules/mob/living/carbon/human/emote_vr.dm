@@ -51,7 +51,7 @@
 			message = "lets out a bark."
 			m_type = 2
 			playsound(loc, 'sound/voice/bark2.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
-		if ("his")
+		if ("hiss")
 			message = "lets out a hiss."
 			m_type = 2
 			playsound(loc, 'sound/voice/hiss.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)

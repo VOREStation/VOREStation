@@ -1085,6 +1085,19 @@
 /area/shuttle/medivac/engines
 	name = "\improper Medivac Engines"
 
+/area/shuttle/securiship
+	requires_power = 1
+	icon_state = "shuttle2"
+
+/area/shuttle/securiship/general
+	name = "\improper Securiship"
+
+/area/shuttle/securiship/cockpit
+	name = "\improper Securiship Cockpit"
+
+/area/shuttle/securiship/engines
+	name = "\improper Securiship Engines"
+
 //TFF 5/4/20 - Mining Ops move
 // Asteroid Mining belter and Mining Outpost shuttles and refinery/gear areas
 /area/quartermaster/belterdock

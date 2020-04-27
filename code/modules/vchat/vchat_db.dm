@@ -103,7 +103,7 @@ GLOBAL_DATUM(vchatdb, /database)
 	var/list/messagedef = list(
 		"INSERT INTO messages (ckey,worldtime,message) VALUES (?, ?, ?)",
 		ckey,
-		world.time,
+		world.time || 0,
 		message)
 
 	return vchat_exec_update(messagedef)

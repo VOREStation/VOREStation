@@ -243,7 +243,7 @@
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "aaC" = (
 /obj/machinery/oxygen_pump/anesthetic,
@@ -416,7 +416,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "aaQ" = (
 /obj/effect/floor_decal/borderfloorwhite{
@@ -844,7 +844,7 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "abH" = (
 /obj/effect/decal/cleanable/dirt,
@@ -996,7 +996,7 @@
 /area/maintenance/lower/north)
 "acc" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "acd" = (
 /obj/machinery/computer/prisoner{
@@ -1164,7 +1164,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "act" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1210,16 +1210,16 @@
 "acx" = (
 /obj/structure/catwalk,
 /obj/random/junk,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "acy" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "acz" = (
 /obj/structure/catwalk,
 /obj/machinery/light/small,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "acA" = (
 /obj/machinery/door/airlock/maintenance/common,
@@ -1261,7 +1261,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "acH" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1335,7 +1335,7 @@
 /obj/machinery/status_display{
 	pixel_y = 30
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "acT" = (
 /obj/machinery/camera/network/medbay,
@@ -1390,7 +1390,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "ada" = (
 /obj/structure/catwalk,
@@ -1403,7 +1403,7 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "adb" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1472,7 +1472,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "adg" = (
 /obj/structure/catwalk,
@@ -1488,7 +1488,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "adh" = (
 /obj/structure/catwalk,
@@ -1501,7 +1501,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "adi" = (
 /obj/structure/catwalk,
@@ -1580,7 +1580,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "adr" = (
 /obj/structure/railing{
@@ -1607,7 +1607,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "adu" = (
 /turf/simulated/wall,
@@ -1697,7 +1697,7 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "adF" = (
 /obj/structure/catwalk,
@@ -1715,7 +1715,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "adG" = (
 /obj/structure/railing{
@@ -1730,7 +1730,7 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "adI" = (
 /obj/structure/catwalk,
@@ -1743,14 +1743,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "adJ" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "adK" = (
 /obj/structure/catwalk,
@@ -1760,14 +1760,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "adL" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "adM" = (
 /obj/structure/catwalk,
@@ -1775,7 +1775,7 @@
 	dir = 4
 	},
 /obj/random/junk,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "adN" = (
 /obj/structure/catwalk,
@@ -1788,7 +1788,7 @@
 /obj/random/maintenance/clean,
 /obj/random/maintenance/cargo,
 /obj/random/drinkbottle,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "adO" = (
 /obj/structure/catwalk,
@@ -1832,19 +1832,19 @@
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
 /obj/random/junk,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "adV" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "adW" = (
 /obj/structure/catwalk,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "adX" = (
 /obj/structure/catwalk,
@@ -1862,7 +1862,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "adY" = (
 /turf/simulated/wall,
@@ -1878,7 +1878,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "aea" = (
 /obj/structure/catwalk,
@@ -1891,7 +1891,7 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "aeb" = (
 /obj/structure/catwalk,
@@ -1905,7 +1905,7 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "aec" = (
 /obj/structure/catwalk,
@@ -1918,7 +1918,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "aed" = (
 /obj/structure/catwalk,
@@ -1931,16 +1931,16 @@
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "aee" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "aef" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "aeg" = (
 /obj/structure/disposalpipe/segment{
@@ -1991,7 +1991,7 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "aek" = (
 /obj/structure/catwalk,
@@ -1999,14 +1999,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "ael" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "aem" = (
 /obj/structure/catwalk,
@@ -2014,7 +2014,7 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "aen" = (
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
@@ -2051,12 +2051,12 @@
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "aes" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "aet" = (
 /obj/structure/railing{
@@ -2092,7 +2092,7 @@
 "aew" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/catwalk,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "aex" = (
 /obj/structure/catwalk,
@@ -2102,12 +2102,12 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "aey" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "aez" = (
 /obj/structure/railing{
@@ -2244,7 +2244,7 @@
 	dir = 1
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "aeQ" = (
 /obj/structure/catwalk,
@@ -2256,14 +2256,14 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "aeR" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "aeS" = (
 /obj/structure/railing{
@@ -2649,10 +2649,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
-"afw" = (
-/obj/structure/catwalk,
-/turf/simulated/open,
-/area/maintenance/lower/bar)
 "afx" = (
 /obj/structure/catwalk,
 /obj/structure/cable{
@@ -2660,7 +2656,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/turf/simulated/open,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "afy" = (
 /obj/structure/railing{
@@ -2785,7 +2781,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/structure/disposalpipe/down,
-/turf/simulated/open,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "afO" = (
 /obj/structure/railing{
@@ -2961,7 +2957,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/structure/disposalpipe/segment,
-/turf/simulated/open,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "agd" = (
 /obj/effect/floor_decal/techfloor{
@@ -3056,7 +3052,7 @@
 "ago" = (
 /obj/effect/floor_decal/techfloor/orange,
 /obj/structure/catwalk,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "agp" = (
 /obj/structure/catwalk,
@@ -3067,12 +3063,12 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "agq" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/techfloor/orange,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "agr" = (
 /obj/structure/railing{
@@ -3156,17 +3152,7 @@
 /obj/structure/catwalk,
 /obj/structure/ladder/up,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled/techmaint,
-/area/maintenance/lower/bar)
-"agD" = (
-/obj/structure/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/supply,
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "agE" = (
 /obj/structure/railing{
@@ -3312,10 +3298,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/bar)
-"agX" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/tiled/techmaint,
-/area/maintenance/lower/bar)
 "agY" = (
 /obj/structure/sign/department/chapel,
 /turf/simulated/wall,
@@ -3394,15 +3376,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
-"ahj" = (
-/obj/structure/catwalk,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/supply,
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/bar)
 "ahk" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment{
@@ -3410,7 +3383,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "ahl" = (
 /obj/structure/catwalk,
@@ -3424,7 +3397,7 @@
 /obj/random/maintenance/clean,
 /obj/random/maintenance/clean,
 /obj/random/tool,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "ahm" = (
 /obj/effect/floor_decal/rust,
@@ -5718,7 +5691,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "alM" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -5953,7 +5926,7 @@
 "amc" = (
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
 "amd" = (
 /obj/machinery/door/firedoor/glass,
@@ -10706,14 +10679,14 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "auQ" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/corner_techfloor_grid{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "auR" = (
 /obj/structure/railing{
@@ -10943,7 +10916,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "avj" = (
 /obj/machinery/light_switch{
@@ -11015,11 +10988,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/south)
-"avp" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "avq" = (
 /obj/structure/disposalpipe/segment,
@@ -11446,7 +11415,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "avZ" = (
 /obj/structure/railing{
@@ -11533,7 +11502,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "awg" = (
 /obj/effect/decal/cleanable/dirt,
@@ -11550,7 +11519,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "awh" = (
 /obj/effect/decal/cleanable/dirt,
@@ -11566,7 +11535,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "awi" = (
 /obj/machinery/door/firedoor/glass,
@@ -11911,12 +11880,12 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "awO" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "awP" = (
 /obj/structure/railing{
@@ -11943,7 +11912,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "awR" = (
 /obj/effect/decal/cleanable/dirt,
@@ -12387,11 +12356,6 @@
 "axB" = (
 /turf/simulated/wall,
 /area/janitor)
-"axC" = (
-/obj/structure/catwalk,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/south)
 "axD" = (
 /obj/structure/railing{
 	dir = 8
@@ -12445,7 +12409,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "axJ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -12892,7 +12856,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "ayp" = (
 /obj/structure/catwalk,
@@ -12903,7 +12867,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "ayq" = (
 /obj/structure/catwalk,
@@ -12919,7 +12883,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "ayr" = (
 /obj/structure/railing{
@@ -13265,7 +13229,7 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "ayY" = (
 /obj/structure/catwalk,
@@ -13275,7 +13239,7 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "ayZ" = (
 /obj/structure/catwalk,
@@ -13286,14 +13250,14 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aza" = (
 /obj/structure/catwalk,
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "azb" = (
 /obj/effect/floor_decal/techfloor/corner{
@@ -14049,7 +14013,7 @@
 	icon_state = "1-2";
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "azR" = (
 /obj/structure/railing{
@@ -15699,7 +15663,7 @@
 	},
 /obj/random/junk,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "aCQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -15710,7 +15674,7 @@
 	},
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "aCR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -15723,7 +15687,7 @@
 /obj/effect/floor_decal/techfloor,
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "aCS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -15735,7 +15699,7 @@
 /obj/structure/catwalk,
 /obj/effect/floor_decal/techfloor,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "aCT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -15756,17 +15720,7 @@
 	},
 /obj/structure/catwalk,
 /obj/effect/floor_decal/techfloor,
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/asmaint2)
-"aCV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "aCW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -15969,7 +15923,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance/common,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "aDo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -15984,7 +15938,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "aDp" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -16003,7 +15957,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "aDq" = (
 /obj/structure/railing{
@@ -16208,7 +16162,7 @@
 	pixel_x = 0;
 	pixel_y = 26
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aDR" = (
 /obj/machinery/door/airlock/maintenance/common,
@@ -16345,11 +16299,11 @@
 	pixel_y = 0
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aEh" = (
 /obj/random/trash_pile,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aEi" = (
 /obj/machinery/door/firedoor/glass,
@@ -16568,7 +16522,7 @@
 	pixel_y = 0
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aEL" = (
 /obj/structure/cable/green{
@@ -16771,7 +16725,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aFk" = (
 /obj/structure/catwalk,
@@ -16786,7 +16740,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aFl" = (
 /obj/effect/floor_decal/rust,
@@ -17023,14 +16977,14 @@
 "aFQ" = (
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/cobweb,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aFR" = (
 /obj/structure/catwalk,
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aFS" = (
 /obj/effect/floor_decal/rust,
@@ -17071,32 +17025,23 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
-"aFY" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/atmos)
 "aFZ" = (
 /obj/effect/floor_decal/techfloor,
 /obj/structure/catwalk,
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/atmos)
-"aGa" = (
-/obj/structure/catwalk,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "aGb" = (
 /obj/effect/floor_decal/techfloor,
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "aGc" = (
 /obj/effect/floor_decal/techfloor,
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "aGd" = (
 /obj/effect/floor_decal/techfloor{
@@ -17104,7 +17049,7 @@
 	},
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "aGe" = (
 /obj/structure/railing{
@@ -17212,7 +17157,7 @@
 /obj/structure/catwalk,
 /obj/random/junk,
 /obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "aGr" = (
 /obj/effect/floor_decal/techfloor{
@@ -17234,7 +17179,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aGt" = (
 /obj/structure/railing{
@@ -17279,7 +17224,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aGx" = (
 /obj/machinery/light/small{
@@ -17324,7 +17269,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aGC" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
@@ -17337,7 +17282,7 @@
 	dir = 1
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aGD" = (
 /obj/structure/railing,
@@ -17353,7 +17298,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aGE" = (
 /obj/structure/railing,
@@ -17366,7 +17311,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aGF" = (
 /obj/structure/railing,
@@ -17382,7 +17327,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aGG" = (
 /obj/structure/railing,
@@ -17401,7 +17346,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aGH" = (
 /obj/structure/railing,
@@ -17417,7 +17362,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aGI" = (
 /obj/structure/railing,
@@ -17436,7 +17381,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aGJ" = (
 /obj/structure/railing{
@@ -17457,7 +17402,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aGK" = (
 /obj/structure/catwalk,
@@ -17475,7 +17420,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aGL" = (
 /obj/structure/catwalk,
@@ -17490,7 +17435,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aGM" = (
 /obj/structure/catwalk,
@@ -17506,7 +17451,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aGN" = (
 /obj/machinery/door/morgue{
@@ -17555,7 +17500,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aGR" = (
 /obj/structure/catwalk,
@@ -17570,7 +17515,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aGS" = (
 /obj/machinery/light_switch{
@@ -17662,14 +17607,14 @@
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aHb" = (
 /obj/structure/catwalk,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aHc" = (
 /turf/simulated/wall/r_wall,
@@ -17760,7 +17705,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aHo" = (
 /obj/structure/sign/department/telecoms,
@@ -17966,7 +17911,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aHL" = (
 /obj/structure/cable{
@@ -18126,7 +18071,7 @@
 	mat_efficiency = 0.9;
 	name = "Legitimate Prosthetics Fabricator";
 	res_max_amount = 150000;
-	speed = 0.2
+	speed = 0.2;
 	req_access = list()
 	},
 /turf/simulated/floor/plating,
@@ -18174,7 +18119,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/random/junk,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aIm" = (
 /obj/machinery/power/breakerbox/activated{
@@ -18419,7 +18364,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aIM" = (
 /turf/simulated/wall,
@@ -18636,7 +18581,7 @@
 /obj/random/maintenance/clean,
 /obj/random/maintenance/clean,
 /obj/random/maintenance/clean,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aJj" = (
 /obj/structure/sign/department/telecoms,
@@ -18919,7 +18864,7 @@
 "aJM" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/techfloor/corner,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aJN" = (
 /obj/structure/catwalk,
@@ -18932,7 +18877,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aJO" = (
 /obj/machinery/door/airlock/highsecurity{
@@ -19442,7 +19387,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aKE" = (
 /obj/structure/railing{
@@ -19451,7 +19396,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aKF" = (
 /obj/structure/sign/securearea,
@@ -21754,7 +21699,7 @@
 	dir = 8;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aOV" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -23368,7 +23313,7 @@
 /obj/structure/sign/warning/high_voltage{
 	pixel_y = 32
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "aRn" = (
 /obj/structure/catwalk,
@@ -23380,7 +23325,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "aRo" = (
 /obj/structure/cable/green{
@@ -23410,7 +23355,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "aRq" = (
 /obj/machinery/light/small,
@@ -23420,7 +23365,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "aRr" = (
 /obj/structure/cable/green{
@@ -23890,7 +23835,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "aRX" = (
 /obj/structure/cable{
@@ -23902,7 +23847,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "aRY" = (
 /obj/structure/railing{
@@ -24590,9 +24535,9 @@
 /area/tether/surfacebase/medical/lowerhall)
 "aTd" = (
 /obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/techfloor,
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "aTe" = (
 /obj/structure/catwalk,
@@ -24600,16 +24545,16 @@
 	icon_state = "bulb1";
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "aTf" = (
 /obj/structure/catwalk,
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/turf/simulated/floor/tiled/techfloor,
+/obj/machinery/atmospherics/pipe/manifold/visible/supply,
+/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "aTg" = (
 /obj/structure/catwalk,
@@ -24619,7 +24564,7 @@
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "aTh" = (
 /obj/effect/floor_decal/rust,
@@ -26264,7 +26209,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "aVu" = (
 /obj/machinery/power/sensor{
@@ -26350,7 +26295,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "aVB" = (
 /obj/structure/catwalk,
@@ -26366,7 +26311,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "aVC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -28918,7 +28863,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "baa" = (
 /obj/structure/catwalk,
@@ -28937,7 +28882,7 @@
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "bac" = (
 /obj/structure/catwalk,
@@ -28956,7 +28901,7 @@
 /obj/machinery/status_display{
 	pixel_y = 30
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "bad" = (
 /obj/structure/catwalk,
@@ -28972,7 +28917,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "bae" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
@@ -29010,7 +28955,7 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "bag" = (
 /obj/item/device/radio/intercom{
@@ -29054,7 +28999,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "baj" = (
 /obj/effect/floor_decal/corner_techfloor_grid{
@@ -29084,7 +29029,7 @@
 /obj/random/maintenance/clean,
 /obj/random/maintenance/clean,
 /obj/random/maintenance/cargo,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "bam" = (
 /obj/effect/floor_decal/corner_techfloor_grid{
@@ -29097,7 +29042,7 @@
 "ban" = (
 /obj/structure/catwalk,
 /obj/random/junk,
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "bao" = (
 /obj/machinery/door/airlock/maintenance/common,
@@ -29399,6 +29344,20 @@
 /obj/random/cutout,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
+"fYA" = (
+/obj/structure/catwalk,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4;
+	pixel_y = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining)
 "kaa" = (
 /obj/random/cutout,
 /turf/simulated/floor,
@@ -38010,7 +37969,7 @@ axK
 axK
 axK
 aCv
-aCV
+aCT
 aBV
 aDH
 aDS
@@ -40009,7 +39968,7 @@ aES
 aFb
 azl
 aEn
-aFY
+aEp
 aEQ
 aEQ
 aGX
@@ -40435,7 +40394,7 @@ aES
 aFb
 azl
 aFK
-aGa
+aEQ
 aGo
 aDS
 boO
@@ -40719,7 +40678,7 @@ aES
 aFb
 azl
 aFM
-aGa
+aEQ
 aGq
 aDS
 aGY
@@ -40861,7 +40820,7 @@ aES
 aFb
 azl
 aFM
-aGa
+aEQ
 aFZ
 aGj
 aEo
@@ -41003,7 +40962,7 @@ aES
 aFb
 azl
 aFN
-aGa
+aEQ
 aGr
 aDS
 aGZ
@@ -41290,12 +41249,12 @@ aFO
 aGc
 aDS
 aGB
-avp
-avp
-avp
-avp
-avp
-avp
+aDN
+aDN
+aDN
+aDN
+aDN
+aDN
 aJM
 aKD
 arZ
@@ -41574,7 +41533,7 @@ aDS
 aDS
 aDS
 aGD
-avp
+aDN
 arZ
 arZ
 arZ
@@ -41716,7 +41675,7 @@ aac
 aac
 arZ
 aGE
-avp
+aDN
 arZ
 aac
 aac
@@ -41858,7 +41817,7 @@ aac
 aac
 arZ
 aGE
-avp
+aDN
 arZ
 aac
 aac
@@ -42000,7 +41959,7 @@ aac
 aac
 arZ
 aGF
-avp
+aDN
 arZ
 aac
 aac
@@ -42142,7 +42101,7 @@ aac
 aac
 arZ
 aGG
-avp
+aDN
 aHo
 aHr
 aHr
@@ -42426,7 +42385,7 @@ aac
 aac
 arZ
 aGI
-avp
+aDN
 aHq
 aHM
 aIn
@@ -42503,7 +42462,7 @@ aSR
 aSr
 aSr
 acy
-adf
+fYA
 adr
 aaG
 aaG
@@ -42568,7 +42527,7 @@ aac
 aac
 arZ
 aGJ
-avp
+aDN
 aHr
 aHN
 aIo
@@ -42710,7 +42669,7 @@ aac
 aac
 arZ
 aGK
-avp
+aDN
 aHr
 aHV
 aIp
@@ -43133,7 +43092,7 @@ arZ
 arZ
 arZ
 aFQ
-avp
+aDN
 aGs
 aGM
 arZ
@@ -43274,7 +43233,7 @@ aDM
 aDM
 aDN
 aEs
-avp
+aDN
 aGe
 aGt
 aZC
@@ -43558,7 +43517,7 @@ arZ
 arZ
 arZ
 arZ
-avp
+aDN
 aGf
 aGu
 aGO
@@ -43700,7 +43659,7 @@ aac
 aac
 aac
 arZ
-avp
+aDN
 aGg
 aGv
 aGP
@@ -43842,8 +43801,8 @@ aac
 aac
 aac
 arZ
-avp
-avp
+aDN
+aDN
 aGw
 aGQ
 arZ
@@ -44099,10 +44058,10 @@ aYd
 avi
 arZ
 aFR
-avp
-avp
-axC
-axC
+aDN
+aDN
+aDM
+aDM
 arZ
 avk
 avW
@@ -44240,16 +44199,16 @@ aRa
 aYd
 bac
 arZ
-avp
+aDN
 ban
-avp
-avp
-axC
+aDN
+aDN
+aDM
 arZ
 avl
 avW
 avW
-axC
+aDM
 ayo
 ayX
 aOT
@@ -44383,9 +44342,9 @@ aYd
 bad
 arZ
 bal
-avp
-avp
-avp
+aDN
+aDN
+aDN
 arZ
 arZ
 avm
@@ -44394,19 +44353,19 @@ awM
 axD
 ayp
 ayY
-avp
-avp
+aDN
+aDN
 aug
-avp
+aDN
 arZ
 arZ
 arZ
 arZ
 aDQ
 aEh
-axC
+aDM
 aEK
-avp
+aDN
 aFk
 azQ
 azQ
@@ -44497,9 +44456,9 @@ adL
 aec
 aew
 aeP
-afw
-afw
-afw
+aee
+aee
+aee
 ago
 agC
 adu
@@ -44643,10 +44602,10 @@ afx
 afN
 agc
 agp
-agD
-agD
+agc
+agc
 alL
-ahj
+afx
 ahA
 ahS
 aic
@@ -44781,12 +44740,12 @@ adL
 aee
 aey
 aeR
-afw
-afw
-afw
+aee
+aee
+aee
 agq
-agX
-agX
+aee
+aee
 amc
 ahk
 ahB
@@ -44806,20 +44765,20 @@ aZG
 aro
 aro
 aYd
-avp
-avp
-avp
-avp
-avp
-avp
+aDN
+aDN
+aDN
+aDN
+aDN
+aDN
 aug
 auQ
-avp
-avp
+aDN
+aDN
 awO
-avp
-avp
-avp
+aDN
+aDN
+aDN
 azT
 aAJ
 arZ
