@@ -20,7 +20,7 @@
 // The shuttle's 'shuttle' computer
 /obj/machinery/computer/shuttle_control/explore/tabiranth
 	name = "short jump console"
-	shuttle_tag = "XN-29 Prototype Shuttle"
+	shuttle_tag = "NDV Tabiranth"
 	req_one_access = list(access_cent_general)
 
 // A shuttle lateloader landmark
