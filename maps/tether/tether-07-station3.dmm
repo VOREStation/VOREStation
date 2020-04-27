@@ -28813,6 +28813,11 @@
 	dir = 1
 	},
 /obj/machinery/mineral/equipment_vendor,
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -22;
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/refinery)
 "aTC" = (
@@ -29752,9 +29757,12 @@
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/general)
 "aVx" = (
-/obj/machinery/camera/network/cargo,
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 0;
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled,
-/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+/area/quartermaster/belterdock/gear)
 "aVy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -30029,13 +30037,14 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/refinery)
 "aWf" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -28;
+/obj/structure/closet/emcloset,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24;
 	pixel_y = 0
 	},
 /turf/simulated/floor/tiled,
-/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+/area/quartermaster/belterdock/refinery)
 "aWg" = (
 /turf/simulated/floor/tiled,
 /area/shuttle/excursion/general)
@@ -31290,11 +31299,7 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/refinery)
 "aYJ" = (
-/obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -22;
-	pixel_y = 0
-	},
+/obj/machinery/recharge_station,
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/refinery)
 "aYK" = (
@@ -31449,14 +31454,9 @@
 	pixel_x = -28;
 	pixel_y = 0
 	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -25
-	},
-/obj/structure/closet/emcloset,
+/obj/machinery/recharge_station,
 /turf/simulated/floor/tiled,
-/area/quartermaster/belterdock/refinery)
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "aZa" = (
 /obj/machinery/door/airlock/hatch{
 	req_one_access = newlist()
@@ -31958,14 +31958,8 @@
 /turf/simulated/wall/r_wall,
 /area/security/security_lockerroom)
 "aZZ" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 5
-	},
+/obj/machinery/camera/network/cargo,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "baa" = (
@@ -32025,13 +32019,14 @@
 "bah" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 2
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 5
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
@@ -32072,11 +32067,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 2
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
@@ -46916,7 +46911,7 @@ aMN
 aTv
 aVr
 aWQ
-aVr
+aVx
 aMN
 avt
 avt
@@ -47201,11 +47196,11 @@ aTB
 aVC
 aXn
 aWI
-aYJ
-aYZ
-aVc
 aWf
-aZZ
+aYJ
+aVc
+aYZ
+aZS
 bai
 baO
 bau
@@ -47488,7 +47483,7 @@ aWI
 aYP
 aZf
 aVc
-aVx
+aZZ
 ban
 bai
 bax
