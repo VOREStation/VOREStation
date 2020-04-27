@@ -256,14 +256,10 @@
 
 	for(var/possible_target in possible_targets)
 		var/atom/A = possible_target
-		if(found(A))
-			. = list(A)
-			break
 		if(istype(A, /mob/living) && !can_pick_mobs)
 			continue
 		if(can_attack(A)) // Can we attack it?
 			. += A
-			continue
 
 	for(var/obj/item/I in .)
 		last_search = world.time
