@@ -1,20 +1,20 @@
-SUBSYSTEM_DEF(ai)
-	name = "AI"
-	init_order = INIT_ORDER_AI
+SUBSYSTEM_DEF(aifast)
+	name = "AI (Fast)"
+	init_order = INIT_ORDER_AI_FAST
 	priority = FIRE_PRIORITY_AI
-	wait = 2 SECONDS
+	wait = 5 // This gets run twice a second, but shouldn't do much unless mobs are in combat
 	flags = SS_NO_INIT|SS_TICKER
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
 	var/list/processing = list()
 	var/list/currentrun = list()
 
-/datum/controller/subsystem/ai/stat_entry(msg_prefix)
+/datum/controller/subsystem/aifast/stat_entry(msg_prefix)
 	var/list/msg = list(msg_prefix)
 	msg += "P:[processing.len]"
 	..(msg.Join())
 
-/datum/controller/subsystem/ai/fire(resumed = 0)
+/datum/controller/subsystem/aifast/fire(resumed = 0)
 	if (!resumed)
 		src.currentrun = processing.Copy()
 
@@ -26,7 +26,7 @@ SUBSYSTEM_DEF(ai)
 		--currentrun.len
 		if(!A || QDELETED(A) || A.busy) // Doesn't exist or won't exist soon or not doing it this tick
 			continue
-		A.handle_strategicals()
+		A.handle_tactics()
 
 		if(MC_TICK_CHECK)
 			return
