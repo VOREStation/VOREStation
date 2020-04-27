@@ -50,6 +50,23 @@
 			return
 	..()
 
+/obj/item/device/radio/headset/headset_cargo
+	desc = "A headset used by the QM's slaves."
+
+/obj/item/device/radio/headset/headset_cargo/alt
+	desc = "A bowman headset used by the QM's slaves."
+
+/obj/item/device/radio/headset/headset_qm
+	name = "qm radio headset"
+	desc = "A headset used by the QM."
+	icon_state = "cargo_headset"
+	ks2type = /obj/item/device/encryptionkey/qm
+
+/obj/item/device/radio/headset/headset_qm/alt
+	name = "qm bowman headset"
+	desc = "A bowman headset used by the QM."
+	icon_state = "cargo_headset_alt"
+
 /obj/item/device/radio/headset/pathfinder
 	name = "pathfinder's headset"
 	desc = "Headset used by pathfinders for exploring. Access to the explorer and command channels."

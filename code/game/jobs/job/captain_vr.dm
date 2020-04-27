@@ -5,6 +5,8 @@
 /datum/job/hop
 	disallow_jobhop = TRUE
 	pto_type = PTO_CIVILIAN
+	departments = list(DEPARTMENT_COMMAND, DEPARTMENT_CIVILIAN)
+	departments_managed = list(DEPARTMENT_CIVILIAN, DEPARTMENT_CARGO, DEPARTMENT_PLANET)
 
 	alt_titles = list("Crew Resources Officer" = /datum/alt_title/cro,
 					  "Deputy Director" = /datum/alt_title/deputy_director)
