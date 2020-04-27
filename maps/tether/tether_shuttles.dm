@@ -260,3 +260,29 @@
 	name = "short jump console"
 	shuttle_tag = "Medivac Shuttle"
 	req_one_access = list(access_pilot)
+
+////////////////////////////////////////
+////////      Securiship   /////////////
+////////////////////////////////////////
+/datum/shuttle/autodock/overmap/securiship
+	name = "Securiship Shuttle"
+	warmup_time = 0
+	current_location = "tether_securiship_dock"
+	docking_controller_tag = "securiship_docker"
+	shuttle_area = list(/area/shuttle/securiship/cockpit, /area/shuttle/securiship/general, /area/shuttle/securiship/engines)
+	fuel_consumption = 1
+	move_direction = NORTH
+
+// The 'ship' of the excursion shuttle
+/obj/effect/overmap/visitable/ship/landable/securiship
+	name = "Securiship Shuttle"
+	desc = "A security transport ship."
+	vessel_mass = 3000
+	vessel_size = SHIP_SIZE_SMALL
+	shuttle = "Securiship Shuttle"
+	fore_dir = EAST
+
+/obj/machinery/computer/shuttle_control/explore/securiship
+	name = "short jump console"
+	shuttle_tag = "Securiship Shuttle"
+	req_one_access = list(access_pilot, access_hos)
