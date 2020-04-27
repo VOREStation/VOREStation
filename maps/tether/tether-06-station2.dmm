@@ -19644,7 +19644,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 5
 	},
-/obj/machinery/mineral/equipment_vendor/survey,
+/obj/machinery/chemical_analyzer,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
 "Ei" = (
