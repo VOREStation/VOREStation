@@ -1,5 +1,5 @@
 /datum/category_item/catalogue/information/organization/solgov
-	name = "Government - Solar Commonwealth Government"
+	name = "Government - Commonwealth of Sol-Procyon"
 
 //TODO: VIRGO_LORE_WRITING_WIP - this whole file
 

@@ -7,7 +7,7 @@
 
 /obj/item/clothing/head/soft/sol/expedition
 	name = "\improper Explorer corps cap"
-	desc = "It's a black ballcap bearing a Solcom Explorer Corps crest."
+	desc = "It's a black ballcap bearing a Terran Commonwealth Explorer Corps crest."
 
 /obj/item/clothing/head/soft/sol/fleet
 	name = "fleet cap"
@@ -71,11 +71,11 @@
 
 /obj/item/clothing/head/dress/expedition
 	name = "explorer's dress cap"
-	desc = "A peaked grey dress uniform cap belonging to the Society of Universal Cartographers."
+	desc = "A peaked grey dress uniform cap belonging to the Terran Commonwealth Explorer Corps."
 
 /obj/item/clothing/head/dress/expedition/command
 	name = "explorer's command dress cap"
-	desc = "A peaked grey dress uniform cap belonging to the Society of Universal Cartographers. This one is trimmed in gold."
+	desc = "A peaked grey dress uniform cap belonging to the Terran Commonwealth Explorer Corps. This one is trimmed in gold."
 
 /obj/item/clothing/head/dress/fleet
 	name = "fleet dress wheel cover"
@@ -125,27 +125,27 @@
 
 /obj/item/clothing/head/beret/sol/expedition
 	name = "explorer's beret"
-	desc = "A black beret belonging to the commonwealth explorer corps. For personnel that are more inclined towards style than safety."
+	desc = "A black beret belonging to the Terran Commonwealth explorer corps. For personnel that are more inclined towards style than safety."
 
 /obj/item/clothing/head/beret/sol/expedition/security
 	name = "explorer's security beret"
-	desc = "A Commonwealth explorer corp beret with a security crest. For personnel that are more inclined towards style than safety."
+	desc = "A Terran Commonwealth Explorer Corps beret with a security crest. For personnel that are more inclined towards style than safety."
 
 /obj/item/clothing/head/beret/sol/expedition/medical
 	name = "explorer's medical beret"
-	desc = "A Commonwealth explorer corp beret with a medical crest. For personnel that are more inclined towards style than safety."
+	desc = "A Terran Commonwealth Explorer Corps beret with a medical crest. For personnel that are more inclined towards style than safety."
 
 /obj/item/clothing/head/beret/sol/expedition/engineering
 	name = "explorer's engineering beret"
-	desc = "A Commonwealth explorer corp beret with an engineering crest. For personnel that are more inclined towards style than safety."
+	desc = "A Terran Commonwealth Explorer Corps beret with an engineering crest. For personnel that are more inclined towards style than safety."
 
 /obj/item/clothing/head/beret/sol/expedition/supply
 	name = "explorer's supply beret"
-	desc = "A Commonwealth explorer corp beret with a supply crest. For personnel that are more inclined towards style than safety."
+	desc = "A Terran Commonwealth Explorer Corps beret with a supply crest. For personnel that are more inclined towards style than safety."
 
 /obj/item/clothing/head/beret/sol/expedition/command
 	name = "explorer's command beret"
-	desc = "A Commonwealth explorer corp beret with a command crest. For personnel that are more inclined towards style than safety."
+	desc = "A Terran Commonwealth Explorer Corps beret with a command crest. For personnel that are more inclined towards style than safety."
 
 /obj/item/clothing/head/beret/sol/fleet
 	name = "fleet beret"
