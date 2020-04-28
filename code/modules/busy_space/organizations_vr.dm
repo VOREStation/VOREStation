@@ -699,7 +699,7 @@
 					"Rebel Yell",
 					"We Will Return To Mars",
 					"According To Our Abilities",
-					"Podadism Gang",
+					"Posadism Gang",
 					"Accelerationism Doesn't Work In A Vaccuum",
 					"Don't Shoot, We're Unarmed I Think",
 					"The Big Stick For Speaking Softly",
