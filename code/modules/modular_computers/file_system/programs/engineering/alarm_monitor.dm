@@ -111,7 +111,11 @@
 	var/z = get_z(nano_host())
 	for(var/datum/alarm_handler/AH in alarm_handlers)
 		categories[++categories.len] = list("category" = AH.category, "alarms" = list())
+<<<<<<< HEAD
 		for(var/datum/alarm/A in AH.visible_alarms(z))
+=======
+		for(var/datum/alarm/A in AH.major_alarms(z))
+>>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate
 			var/cameras[0]
 			var/lost_sources[0]
 
