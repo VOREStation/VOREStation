@@ -741,22 +741,22 @@
 						"Forward Base Sigma-Alpha in ArCon space")
 						
 /datum/lore/organization/gov/elysian
-	var/name = "The Elysian Colonies"				
-	var/short_name = "Demi-Monde"
-	var/acronym = "ECS"			
-	var/desc = "The Elysian Colonies, located spinwards from the Commonwealth, are a disunited bunch of \
+	name = "The Elysian Colonies"				
+	short_name = "Demi-Monde"
+	acronym = "ECS"			
+	desc = "The Elysian Colonies, located spinwards from the Commonwealth, are a disunited bunch of \
 				vanity states, utopia projects and personal autocracies, whose only unifying characteristic is \
 				a general disregard of "normal" social conventions of Humanity as well as their inherent desire \
 				to keep to their ways, in which cases they do sometimes unite to fight off an outside threat. \
 				The Elysian Colonies are one of the few places where true slavery is not only accepted, but sadly also \
 				rather commonplace if you go to the wrong worlds. Not that they don't internally have at least a dozen would-be liberators."			
-	var/history = ""			
-	var/work = "fracturous vanity colonies"				
-	var/headquarters = ""		
-	var/motto = ""				
+	history = ""			
+	work = "fracturous vanity colonies"				
+	headquarters = ""		
+	motto = ""				
 
-	var/list/ship_prefixes = list("ECS" = "military" "ECS" = "Transport" "ECS" = "Special Transport" "ECS" = "Diplomat")	//The Special Transport is SLAAAAVES.
-	var/list/ship_names = list("Bring Me Wine!",
+	ship_prefixes = list("ECS" = "military" "ECS" = "Transport" "ECS" = "Special Transport" "ECS" = "Diplomat")	//The Special Transport is SLAAAAVES.
+	ship_names = list("Bring Me Wine!",
 					"I Can't Believe You",
 					"More Wives Your Grace?",
 					"Daddy Bought Me This",
@@ -781,7 +781,7 @@
 					"The Unconquered CCXXII"
 		
 		)
-	var/list/destination_names = list("Cygnus",
+	destination_names = list("Cygnus",
 									"The Ultra Dome of Brutal Kill Death",
 									"Sanctum",
 									"Infernum",
@@ -797,21 +797,21 @@
 				
 				
 /datum/lore/organization/gov/fyrds
-	var/name = "Unitary Alliance of Salthan Fyrds"				
-	var/short_name = "Fyrds"			
-	var/acronym = "SMS"			
-	var/desc = "Born out of neglect, the Salthan Fyrds are cast-off colonies of the Commonwealth after giving up on \
+	name = "Unitary Alliance of Salthan Fyrds"				
+	short_name = "Fyrds"			
+	acronym = "SMS"			
+	desc = "Born out of neglect, the Salthan Fyrds are cast-off colonies of the Commonwealth after giving up on \
 				pacifying the wartorn region and fighting off the stray Unathi Raiders after the Hegemony War. \
 				In the end they self-organized into military pacts and have formed a militaristic society, in which \
 				every person, be it organic or robot, is a soldier for the continued cause in serving as aegis against \
 				another Unathi Incursion. They are very no-nonsense."				
-	var/history = ""			
-	var/work = "human stratocracy"				
-	var/headquarters = "The Pact,Myria"		
-	var/motto = ""				
+	history = ""			
+	work = "human stratocracy"				
+	headquarters = "The Pact,Myria"		
+	motto = ""				
 
-	var/list/ship_prefixes = list("SMS" = "Military")	 // The Salthans don't do anything else.
-	var/list/ship_names = list("Yi Sun-sin",
+	ship_prefixes = list("SMS" = "Military")	 // The Salthans don't do anything else.
+	ship_names = list("Yi Sun-sin",
 							"Horatio Nelson",
 							"Scipio Africanus",
 							"Hannibal Barca",
@@ -831,7 +831,7 @@
 							"Patton",
 							"MacArthur",
 							"Rommel",)
-	var/list/destination_names = list("Base Alpha-Romero",
+	destination_names = list("Base Alpha-Romero",
 									"Base Zeta-Xray",
 									"Base Epsilon-Epsilon",
 									"Base Xray-Beta",
