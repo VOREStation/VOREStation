@@ -755,7 +755,7 @@
 	headquarters = ""		
 	motto = ""				
 
-	ship_prefixes = list("ECS" = "military" "ECS" = "Transport" "ECS" = "Special Transport" "ECS" = "Diplomat")	//The Special Transport is SLAAAAVES.
+	ship_prefixes = list("ECS" = "military", "ECS" = "Transport", "ECS" = "Special Transport", "ECS" = "Diplomat")	//The Special Transport is SLAAAAVES.
 	ship_names = list("Bring Me Wine!",
 					"I Can't Believe You",
 					"More Wives Your Grace?",
