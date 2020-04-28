@@ -746,7 +746,7 @@
 	acronym = "ECS"			
 	desc = "The Elysian Colonies, located spinwards from the Commonwealth, are a disunited bunch of \
 				vanity states, utopia projects and personal autocracies, whose only unifying characteristic is \
-				a general disregard of "normal" social conventions of Humanity as well as their inherent desire \
+				a general disregard of 'normal' social conventions of Humanity as well as their inherent desire \
 				to keep to their ways, in which cases they do sometimes unite to fight off an outside threat. \
 				The Elysian Colonies are one of the few places where true slavery is not only accepted, but sadly also \
 				rather commonplace if you go to the wrong worlds. Not that they don't internally have at least a dozen would-be liberators."			
