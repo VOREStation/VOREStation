@@ -827,10 +827,10 @@
 							"Ivan Sirko",
 							"Frederick the Great",
 							"William of Normandy",
-							"Shaka Zulu"
+							"Shaka Zulu",
 							"Patton",
 							"MacArthur",
-							"Rommel",)
+							"Rommel")
 	destination_names = list("Base Alpha-Romero",
 									"Base Zeta-Xray",
 									"Base Epsilon-Epsilon",
