@@ -1,3 +1,6 @@
+/datum/category_item/catalogue/information/organization/solgov
+	name = "Government - Solar Commonwealth Government"
+
 //TODO: VIRGO_LORE_WRITING_WIP - this whole file
 
 /datum/category_item/catalogue/fauna/akula
