@@ -32,6 +32,8 @@
 	name = "\improper Exp Ship - Engineering Corridor"
 /area/ship/expe/engineeringlobby
 	name = "\improper Exp Ship - Engineering Lobby"
+/area/ship/expe/engineeringpublichall
+	name = "\improper Exp Ship - Engineering Public Hallway"
 /area/ship/expe/powerengine
 	name = "\improper Exp Ship - Engine"
 /area/ship/expe/enginestorage
