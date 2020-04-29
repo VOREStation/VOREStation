@@ -1801,3 +1801,14 @@
          return 0
       else
          return 1
+
+//Nickcrazy - Damon Bones Xrim
+/obj/item/clothing/suit/storage/toggle/bomber/bombersec
+    name = "Security Bomber Jacket"
+     desc = "A black bomber jacket with the security emblem sewn onto it."
+
+    icon = 'icons/vore/custom_items_vr.dmi'
+    icon_state = "bombersec"
+
+    icon_override = 'icons/vore/custom_items_vr.dmi'
+    item_state = "bombersec"
