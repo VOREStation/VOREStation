@@ -535,7 +535,7 @@
 	brute_mod =             1.5 // Incredibly fragile.
 	burn_mod =              0.5 // Yet reflective.
 	darksight = 7
-	
+
 	min_age =                18
 	max_age =                140 //
 	slowdown =               -0.2
@@ -546,8 +546,8 @@
 
 	appearance_flags =        0
 	flags =         NO_SLIP | NO_MINOR_CUT //Most shoes don't fit so they get hard feet.
-	spawn_flags =     SPECIES_CAN_JOIN //Debating Whitelist
-	
+	spawn_flags =     SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE //Debating Whitelist
+
 	//Debating whether to give them unique atmos to live
 	/*breath_type = "phoron"
 	poison_type = "oxygen"
@@ -564,8 +564,8 @@
 		"Your movements become sluggish under the weight of the chilly conditions."
 		)
 	unarmed_types = list(
-		/datum/unarmed_attack/claws
-		/datum/unarmed_attack/bite/sharp
+		/datum/unarmed_attack/claws,
+		/datum/unarmed_attack/bite/sharp,
 		/datum/unarmed_attack/bite/sharp/numbing
 	)
 
@@ -596,7 +596,7 @@
 		O_STOMACH =		/obj/item/organ/internal/stomach,
 		O_INTESTINE =	/obj/item/organ/internal/intestine
 	)
-	
+
 /datum/species/alate/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/ascent(H), slot_wear_mask)
@@ -620,7 +620,7 @@
 		"storage2" =     list("loc" = ui_storage2,  "name" = "Right Pocket", "slot" = slot_r_store,   "state" = "pocket"),
 		"belt" =         list("loc" = ui_belt,      "name" = "Belt",         "slot" = slot_belt,      "state" = "belt")
 		)
-		
+
 /* BIG MANTIDS. Commented out for now, can't be bothered to finish porting these yet. Baby steps.
 
 /datum/species/mantid/gyne
