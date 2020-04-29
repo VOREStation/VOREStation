@@ -27,3 +27,14 @@
 	icon_state = "ge_helmcent"
 	icon = 'icons/obj/clothing/hats_vr.dmi'
 	icon_override = 'icons/mob/head_vr.dmi'
+
+/obj/item/clothing/head/helmet/space/void/ascent
+	name = "\improper Ascent voidsuit helmet"
+	desc = "An articulated spacesuit helmet of mantid manufacture."
+	icon = 'icons/obj/clothing/hats_vr.dmi'
+	icon_state = "ascent_general"
+	armor = list(melee = 40, bullet = 40, laser = 15, energy = 15, bomb = 50, bio = 100, rad = 100)
+	min_pressure_protection = 0  * ONE_ATMOSPHERE
+	max_pressure_protection = 15 * ONE_ATMOSPHERE
+	species_restricted = list(SPECIES_MANTID_ALATE)
+	sprite_sheets = list(SPECIES_MANTID_ALATE = 'icons/mob/species/mantid/onmob_head_alate.dmi')
