@@ -126,3 +126,12 @@
 	name = "red qipao"
 	icon_state = "qipao_red"
 	item_state = "qipao_red"
+
+/obj/item/clothing/under/ascent
+	name = "mantid undersuit"
+	desc = "A ribbed, spongy undersuit of some sort. It has a big sleeve for a tail, so it probably isn't for humans."
+	species_restricted = list(SPECIES_MANTID_ALATE)
+	icon = 'icons/obj/clothing/uniforms_vr.dmi'
+	icon_state = "ascent"
+	worn_state = "ascent"
+	color = COLOR_DARK
