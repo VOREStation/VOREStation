@@ -485,3 +485,168 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
 
+///////////////////////////
+/////////KHARMAANI/////////
+///////////////////////////
+/datum/species/mantid //Only Alates for now
+//Features from bay not ported (yet???): Gynes (Big Mantids), Crystalline Limb mechanics, Razorweb Weaving, and assorted Mantid gear that probably isn't needed here.
+
+	name =                   SPECIES_MANTID_ALATE
+	name_plural =            "Kharmaan Alates"
+	show_ssd =               "quiescent"
+	language =         LANGUAGE_MANTID_NONVOCAL
+	default_language = LANGUAGE_MANTID_VOCAL
+	secondary_langs =  list(LANGUAGE_GALCOM)
+	num_alternate_languages = 2
+
+	blurb = "Relatively new to the Periphary, the Kharmaani are a race of reclusive crystalline mantids. \
+	Kharmaan Alates are the most common and currently only face of the Ascent in Virgo-Erigone. With a \
+	culture of uncompromising servitude beaten into them with bladed forelimbs and a biology prone to \
+	eusociality, many Alates have found the relative isolation from the domineering larger castes and the \
+	drive to follow orders to be freeing, and have proven themselves remarkably sociable and varied in \
+	personality and drive, if a bit eccentric."
+
+	icobase =                 'icons/mob/human_races/species/ascent/alate/body.dmi'
+	deform =                  'icons/mob/human_races/species/ascent/alate/body.dmi'
+	damage_overlays =         'icons/mob/human_races/species/ascent/alate/damage_mask.dmi'
+	blood_mask =              'icons/mob/human_races/species/ascent/alate/blood_mask.dmi'
+	//organs_icon =             'icons/mob/human_races/species/ascent/organs.dmi'
+	//I couldn't get the custom organ names and sprites to work here, someone else is free to give it a shot.
+
+	blood_color =             "#660066"
+	flesh_color =             "#009999"
+	hud_type =                /datum/hud_data/mantid
+
+	speech_chance = 100
+	speech_sounds = list(
+		'sound/voice/ascent1.ogg',
+		'sound/voice/ascent2.ogg',
+		'sound/voice/ascent3.ogg',
+		'sound/voice/ascent4.ogg',
+		'sound/voice/ascent5.ogg',
+		'sound/voice/ascent6.ogg'
+	)
+
+	siemens_coefficient =   0.2 // Crystalline body.
+	oxy_mod =               0.8 // Don't need as much breathable gas as humans.
+	toxins_mod =            0.4 // Not as biologically fragile as meatboys.
+	radiation_mod =         0.4 // Not as biologically fragile as meatboys.
+	flash_mod =               2 // Highly photosensitive.
+	brute_mod =             1.5 // Incredibly fragile.
+	burn_mod =              0.5 // Yet reflective.
+	darksight = 7
+	
+	min_age =                18
+	max_age =                140 //
+	slowdown =               -0.2
+	rarity_value =            3
+	gluttonous =              2
+	siemens_coefficient =     0
+	body_temperature =        null
+
+	appearance_flags =        0
+	flags =         NO_SLIP | NO_MINOR_CUT //Most shoes don't fit so they get hard feet.
+	spawn_flags =     SPECIES_CAN_JOIN //Debating Whitelist
+	
+	//Debating whether to give them unique atmos to live
+	/*breath_type = "phoron"
+	poison_type = "oxygen"
+	*/
+
+	heat_discomfort_strings = list(
+		"You feel brittle and overheated.",
+		"Your overheated carapace flexes uneasily.",
+		"Overheated ichor trickles from your eyes."
+		)
+	cold_discomfort_strings = list(
+		"Frost forms along your carapace.",
+		"You hear a faint crackle of ice as you shift your freezing body.",
+		"Your movements become sluggish under the weight of the chilly conditions."
+		)
+	unarmed_types = list(
+		/datum/unarmed_attack/claws
+		/datum/unarmed_attack/bite/sharp
+		/datum/unarmed_attack/bite/sharp/numbing
+	)
+
+	has_limbs = list(
+		BP_CHEST =  list("path" = /obj/item/organ/external/chest/insectoid),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin/insectoid),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/insectoid),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm/insectoid),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand/insectoid),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right/insectoid),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right/insectoid),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right/insectoid),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg/insectoid),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot/insectoid),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/insectoid)
+	)
+
+	has_organ = list(
+		O_HEART =		/obj/item/organ/internal/heart,
+		O_LUNGS =		/obj/item/organ/internal/lungs,
+		O_VOICE = 		/obj/item/organ/internal/voicebox,
+		O_LIVER =		/obj/item/organ/internal/liver,
+		O_KIDNEYS =		/obj/item/organ/internal/kidneys,
+		O_BRAIN =		/obj/item/organ/internal/brain,
+		O_APPENDIX = 	/obj/item/organ/internal/appendix,
+		O_SPLEEN = 		/obj/item/organ/internal/spleen,
+		O_EYES =		/obj/item/organ/internal/eyes,
+		O_STOMACH =		/obj/item/organ/internal/stomach,
+		O_INTESTINE =	/obj/item/organ/internal/intestine
+	)
+	
+/datum/species/alate/equip_survival_gear(var/mob/living/carbon/human/H)
+	..()
+	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/ascent(H), slot_wear_mask)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/ascent(H), slot_w_uniform)
+
+/datum/hud_data/mantid
+	gear = list(
+		"i_clothing" =   list("loc" = ui_iclothing, "name" = "Uniform",      "slot" = slot_w_uniform, "state" = "center", "toggle" = 1),
+		"o_clothing" =   list("loc" = ui_oclothing, "name" = "Suit",         "slot" = slot_wear_suit, "state" = "suit",   "toggle" = 1),
+		"mask" =         list("loc" = ui_mask,      "name" = "Mask",         "slot" = slot_wear_mask, "state" = "mask",   "toggle" = 1),
+		"gloves" =       list("loc" = ui_gloves,    "name" = "Gloves",       "slot" = slot_gloves,    "state" = "gloves", "toggle" = 1),
+		"eyes" =         list("loc" = ui_glasses,   "name" = "Glasses",      "slot" = slot_glasses,   "state" = "glasses","toggle" = 1),
+		"l_ear" =        list("loc" = ui_l_ear,     "name" = "Left Ear",     "slot" = slot_l_ear,     "state" = "ears",   "toggle" = 1),
+		"r_ear" =        list("loc" = ui_r_ear,     "name" = "Right Ear",    "slot" = slot_r_ear,     "state" = "ears",   "toggle" = 1),
+		"head" =         list("loc" = ui_head,      "name" = "Hat",          "slot" = slot_head,      "state" = "hair",   "toggle" = 1),
+		"shoes" =        list("loc" = ui_shoes,     "name" = "Shoes",        "slot" = slot_shoes,     "state" = "shoes",  "toggle" = 1),
+		"suit storage" = list("loc" = ui_sstore1,   "name" = "Suit Storage", "slot" = slot_s_store,   "state" = "suitstore"),
+		"back" =         list("loc" = ui_back,      "name" = "Back",         "slot" = slot_back,      "state" = "back"),
+		"id" =           list("loc" = ui_id,        "name" = "ID",           "slot" = slot_wear_id,   "state" = "id"),
+		"storage1" =     list("loc" = ui_storage1,  "name" = "Left Pocket",  "slot" = slot_l_store,   "state" = "pocket"),
+		"storage2" =     list("loc" = ui_storage2,  "name" = "Right Pocket", "slot" = slot_r_store,   "state" = "pocket"),
+		"belt" =         list("loc" = ui_belt,      "name" = "Belt",         "slot" = slot_belt,      "state" = "belt")
+		)
+		
+/* BIG MANTIDS. Commented out for now, can't be bothered to finish porting these yet. Baby steps.
+
+/datum/species/mantid/gyne
+
+	name =                    SPECIES_MANTID_GYNE
+	name_plural =             "Kharmaan Gynes"
+
+	icobase =                 'icons/mob/human_races/species/ascent/gyne/body.dmi'
+	deform =                  'icons/mob/human_races/species/ascent/gyne/body.dmi'
+	icon_template =           'icons/mob/human_races/species/ascent/gyne/template.dmi'
+	damage_overlays =         'icons/mob/human_races/species/ascent/gyne/damage_mask.dmi'
+	blood_mask =              'icons/mob/human_races/species/ascent/gyne/blood_mask.dmi'
+
+	gluttonous =              3
+	slowdown =                2
+	rarity_value =           10
+	min_age =                 5
+	max_age =               500
+	blood_volume =         1200
+	spawns_with_stack =       0
+
+	pixel_offset_x =        -4
+	antaghud_offset_y =      18
+	antaghud_offset_x =      4
+
+	bump_flag =               HEAVY
+	push_flags =              ALLMOBS
+	swap_flags =              ALLMOBS
+	*/
