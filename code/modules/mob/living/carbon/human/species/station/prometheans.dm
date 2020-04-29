@@ -194,51 +194,29 @@ var/datum/species/shapeshifter/promethean/prometheans
 				var/turf/simulated/S = T
 				T.clean_blood()
 				S.dirt = 0
-<<<<<<< HEAD
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+		//VOREStation Edit Start
+				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
 		if(H.clean_blood(1))
-			H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+			H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
 		if(H.r_hand)
 			if(H.r_hand.clean_blood())
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
 		if(H.l_hand)
 			if(H.l_hand.clean_blood())
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
 		if(H.head)
 			if(H.head.clean_blood())
 				H.update_inv_head(0)
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
 		if(H.wear_suit)
 			if(H.wear_suit.clean_blood())
 				H.update_inv_wear_suit(0)
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
 		if(H.w_uniform)
 			if(H.w_uniform.clean_blood())
 				H.update_inv_w_uniform(0)
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
-=======
-				H.adjust_nutrition(rand(10, 20))
-		if(H.clean_blood(1))
-			H.adjust_nutrition(rand(5, 15))
-		if(H.r_hand)
-			if(H.r_hand.clean_blood())
-				H.adjust_nutrition(rand(5, 15))
-		if(H.l_hand)
-			if(H.l_hand.clean_blood())
-				H.adjust_nutrition(rand(5, 15))
-		if(H.head)
-			if(H.head.clean_blood())
-				H.update_inv_head(0)
-				H.adjust_nutrition(rand(5, 15))
-		if(H.wear_suit)
-			if(H.wear_suit.clean_blood())
-				H.update_inv_wear_suit(0)
-				H.adjust_nutrition(rand(5, 15))
-		if(H.w_uniform)
-			if(H.w_uniform.clean_blood())
-				H.update_inv_w_uniform(0)
-				H.adjust_nutrition(rand(5, 15))
->>>>>>> 61c4929... Merge pull request #7045 from Neerti/let_them_eat_all_the_cake
+				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
+		//VOREStation Edit End
 		//End cleaning code.
 
 		var/datum/gas_mixture/environment = T.return_air()

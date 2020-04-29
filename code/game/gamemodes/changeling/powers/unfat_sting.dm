@@ -13,7 +13,6 @@
 	if(!T)	return 0
 	add_attack_logs(src,T,"Unfat sting (changeling)")
 	to_chat(T, "<span class='danger'>you feel a small prick as stomach churns violently and you become to feel skinnier.</span>")
-	T.overeatduration = 0
-	T.nutrition -= 100
+	T.adjust_nutrition(-100)
 	feedback_add_details("changeling_powers","US")
 	return 1

@@ -46,12 +46,8 @@
 		if(IS_CHIMERA) removed *= 0.25 //VOREStation Edit
 	if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
 	M.heal_organ_damage(0.5 * removed, 0)
-<<<<<<< HEAD
 	if(M.species.gets_food_nutrition) //VOREStation edit. If this is set to 0, they don't get nutrition from food.
-		M.nutrition += nutriment_factor * removed // For hunger and fatness
-=======
-	M.adjust_nutrition(nutriment_factor * removed)
->>>>>>> 61c4929... Merge pull request #7045 from Neerti/let_them_eat_all_the_cake
+		M.adjust_nutrition(nutriment_factor * removed) // For hunger and fatness
 	M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
 
 /datum/reagent/nutriment/glucose

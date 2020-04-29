@@ -269,7 +269,7 @@
 
 /obj/item/weapon/cell/standin/give(var/amount)
 	. = ..(amount * NUTRITION_COEFF) //Shrink amount to store
-	hume.nutrition += . //Add the amount we really stored
+	hume.adjust_nutrition(.) //Add the amount we really stored
 	. /= NUTRITION_COEFF //Inflate amount to take from the giver
 
 #undef NUTRITION_COEFF

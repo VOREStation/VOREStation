@@ -79,7 +79,6 @@
 				to_chat(M, "<span class='notice'>You take a bite of [src].</span>")
 			if (fullness > 350 && fullness <= 550)
 				to_chat(M, "<span class='notice'>You unwillingly chew a bit of [src].</span>")
-<<<<<<< HEAD
 			if (fullness > 550 && fullness <= 650)
 				to_chat(M, "<span class='notice'>You swallow some more of the [src], causing your belly to swell out a little.</span>")
 			if (fullness > 650 && fullness <= 1000)
@@ -93,12 +92,7 @@
 			if (fullness > 6000) // There has to be a limit eventually.
 				to_chat(M, "<span class='danger'>Your stomach blorts and aches, prompting you to stop. You literally cannot force any more of [src] to go down your throat.</span>")
 				return 0
-			/*if (fullness > (550 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
-				to_chat(M, "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>")
-				return 0*/
 			//VOREStation Edit End
-=======
->>>>>>> 61c4929... Merge pull request #7045 from Neerti/let_them_eat_all_the_cake
 
 		else if(user.a_intent == I_HURT)
 			return ..()
@@ -126,16 +120,7 @@
 					to_chat(user, "<span class='warning'>\The [blocked] is in the way!</span>")
 					return
 
-<<<<<<< HEAD
-				/*if (fullness <= (550 * (1 + M.overeatduration / 1000))) // Vorestation edit
-					user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
-				else
-					user.visible_message("<span class='danger'>[user] cannot force anymore of [src] down [M]'s throat.</span>")
-					return 0*/
-				user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>") // Vorestation edit
-=======
 				user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
->>>>>>> 61c4929... Merge pull request #7045 from Neerti/let_them_eat_all_the_cake
 
 				user.setClickCooldown(user.get_attack_speed(src))
 				if(!do_mob(user, M)) return

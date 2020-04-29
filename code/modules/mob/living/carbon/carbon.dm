@@ -36,14 +36,6 @@
 /* VOREStation Edit - Duplicated in our code
 /mob/living/carbon/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-<<<<<<< HEAD
-	if(src.nutrition && src.stat != 2)
-		src.nutrition -= DEFAULT_HUNGER_FACTOR/10
-		if(src.m_intent == "run")
-			src.nutrition -= DEFAULT_HUNGER_FACTOR/10
-	if((FAT in src.mutations) && src.m_intent == "run" && src.bodytemperature <= 360)
-		src.bodytemperature += 2
-=======
 	if(.)
 		if(src.nutrition && src.stat != 2)
 			adjust_nutrition(-DEFAULT_HUNGER_FACTOR / 10)
@@ -52,7 +44,6 @@
 
 		if((FAT in src.mutations) && src.m_intent == "run" && src.bodytemperature <= 360)
 			src.bodytemperature += 2
->>>>>>> 61c4929... Merge pull request #7045 from Neerti/let_them_eat_all_the_cake
 
 	// Moving around increases germ_level faster
 	if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))

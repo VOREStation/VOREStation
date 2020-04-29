@@ -748,11 +748,11 @@
 		if(O.material in rock_munch)
 			var/S = rock_munch[O.material]
 			to_chat(src, "<span class='notice'>[S["remark"]]</span>")
-			nutrition += S["nutrition"]
+			adjust_nutrition(S["nutrition"])
 		else //Handle everything else.
 			if(istype(O, /obj/item/weapon/ore/slag/))
 				to_chat(src, "<span class='notice'>You taste dusty, crunchy mistakes. This is a travesty... but at least it is an edible one.</span>")
-				nutrition += 15
+				adjust_nutrition(15)
 			else //Random rock.
 				to_chat(src, "<span class='notice'>You taste stony, gravelly goodness - but you crave something with actual nutritional value.</span>")
 

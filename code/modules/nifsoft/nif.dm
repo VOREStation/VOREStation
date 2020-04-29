@@ -376,7 +376,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		return FALSE
 
 	//Was enough, reduce and return.
-	human.nutrition -= use_charge
+	human.adjust_nutrition(-use_charge)
 	return TRUE
 
 //Install a piece of software
