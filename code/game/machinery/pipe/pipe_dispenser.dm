@@ -140,92 +140,39 @@ Nah
 
 	qdel(pipe)
 
-/obj/machinery/pipedispenser/disposal/attack_hand(user as mob)
-	if(..())
-		return
+/obj/machinery/pipedispenser/disposal/interact(mob/user)
+	user.set_machine(src)
 
-///// Z-Level stuff
-	var/dat = {"<b>Disposal Pipes</b><br><br>
-<A href='?src=\ref[src];dmake=0'>Pipe</A><BR>
-<A href='?src=\ref[src];dmake=1'>Bent Pipe</A><BR>
-<A href='?src=\ref[src];dmake=2'>Junction</A><BR>
-<A href='?src=\ref[src];dmake=3'>Y-Junction</A><BR>
-<A href='?src=\ref[src];dmake=4'>Trunk</A><BR>
-<A href='?src=\ref[src];dmake=5'>Bin</A><BR>
-<A href='?src=\ref[src];dmake=6'>Outlet</A><BR>
-<A href='?src=\ref[src];dmake=7'>Chute</A><BR>
-<A href='?src=\ref[src];dmake=21'>Upwards</A><BR>
-<A href='?src=\ref[src];dmake=22'>Downwards</A><BR>
-<A href='?src=\ref[src];dmake=8'>Sorting</A><BR>
-<A href='?src=\ref[src];dmake=9'>Sorting (Wildcard)</A><BR>
-<A href='?src=\ref[src];dmake=10'>Sorting (Untagged)</A><BR>
-<A href='?src=\ref[src];dmake=11'>Tagger</A><BR>
-<A href='?src=\ref[src];dmake=12'>Tagger (Partial)</A><BR>
-"}
-///// Z-Level stuff
-
-	user << browse("<HEAD><TITLE>[src]</TITLE></HEAD><TT>[dat]</TT>", "window=pipedispenser")
+	var/list/lines = list()
+	for(var/category in disposal_pipe_recipes)
+		lines += "<b>[category]:</b><BR>"
+		for(var/datum/pipe_recipe/PI in disposal_pipe_recipes[category])
+			lines += PI.Render(src)
+	var/dat = lines.Join()
+	var/datum/browser/popup = new(user, "pipedispenser", name, 300, 500, src)
+	popup.set_content("<TT>[dat]</TT>")
+	popup.open()
 	return
 
-// 0=straight, 1=bent, 2=junction-j1, 3=junction-j2, 4=junction-y, 5=trunk
-
-
 /obj/machinery/pipedispenser/disposal/Topic(href, href_list)
-	if(..())
+	if(href_list["makepipe"] || href_list["setlayer"] || href_list["makemeter"])	// Asking the disposal machine to do atmos stuff?
+		return 																		// That's a no no.
+	if((. = ..()))
 		return
-	usr.set_machine(src)
-	src.add_fingerprint(usr)
 	if(href_list["dmake"])
 		if(unwrenched || !usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 			usr << browse(null, "window=pipedispenser")
 			return
 		if(!wait)
-			var/p_type = text2num(href_list["dmake"])
-			var/obj/structure/disposalconstruct/C = new (src.loc)
-			switch(p_type)
-				if(0)
-					C.ptype = 0
-				if(1)
-					C.ptype = 1
-				if(2)
-					C.ptype = 2
-				if(3)
-					C.ptype = 4
-				if(4)
-					C.ptype = 5
-				if(5)
-					C.ptype = 6
-					C.density = 1
-				if(6)
-					C.ptype = 7
-					C.density = 1
-				if(7)
-					C.ptype = 8
-					C.density = 1
-				if(8)
-					C.ptype = 9
-					C.subtype = 0
-				if(9)
-					C.ptype = 9
-					C.subtype = 1
-				if(10)
-					C.ptype = 9
-					C.subtype = 2
-				if(11)
-					C.ptype = 13
-				if(12)
-					C.ptype = 14
-///// Z-Level stuff
-				if(21)
-					C.ptype = 11
-				if(22)
-					C.ptype = 12
-///// Z-Level stuff
+			var/ptype = text2num(href_list["dmake"])
+			var/pdir = (href_list["dir"] ? text2num(href_list["dir"]) : NORTH)
+			var/psub = (href_list["sort"] ? text2num(href_list["sort"]) : 0)
+			var/obj/structure/disposalconstruct/C = new (src.loc, ptype, pdir, 0, psub)
+
 			C.add_fingerprint(usr)
 			C.update()
 			wait = 1
-			spawn(15)
-				wait = 0
+			VARSET_IN(src, wait, FALSE, 15)
 	return
 
 // adding a pipe dispensers that spawn unhooked from the ground
