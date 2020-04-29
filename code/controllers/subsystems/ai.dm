@@ -3,7 +3,7 @@ SUBSYSTEM_DEF(ai)
 	init_order = INIT_ORDER_AI
 	priority = FIRE_PRIORITY_AI
 	wait = 2 SECONDS
-	flags = SS_NO_INIT|SS_TICKER
+	flags = SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
 	var/list/processing = list()

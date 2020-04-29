@@ -2,8 +2,8 @@ SUBSYSTEM_DEF(aifast)
 	name = "AI (Fast)"
 	init_order = INIT_ORDER_AI_FAST
 	priority = FIRE_PRIORITY_AI
-	wait = 5 // This gets run twice a second, but shouldn't do much unless mobs are in combat
-	flags = SS_NO_INIT|SS_TICKER
+	wait = 0.25 SECONDS // Every quarter second
+	flags = SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
 	var/list/processing = list()
