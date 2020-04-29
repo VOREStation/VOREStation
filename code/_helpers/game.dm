@@ -272,17 +272,17 @@
 	var/list/hearturfs = list()
 
 	for(var/thing in hear)
-		if(istype(thing,/obj))
+		if(istype(thing, /obj)) //Can't use isobj() because /atom/movable returns true in that, and so lighting overlays would be included
 			objs += thing
 			hearturfs |= get_turf(thing)
-		else if(istype(thing,/mob))
+		if(ismob(thing))
 			mobs += thing
 			hearturfs |= get_turf(thing)
 
 	//A list of every mob with a client
 	for(var/mob in player_list)
 		//VOREStation Edit - Trying to fix some vorestation bug.
-		if(!istype(mob, /mob))
+		if(!ismob(mob))
 			player_list -= mob
 			crash_with("There is a null or non-mob reference inside player_list ([mob]).")
 			continue

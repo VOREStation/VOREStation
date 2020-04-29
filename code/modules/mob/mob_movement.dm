@@ -110,8 +110,8 @@
 
 
 /client/Move(n, direct)
-	if(!mob)
-		return // Moved here to avoid nullrefs below
+	//if(!mob) // Clients cannot have a null mob, as enforced by byond
+	//	return // Moved here to avoid nullrefs below
 
 	if(mob.control_object)	Move_object(direct)
 
@@ -166,8 +166,11 @@
 	if(!mob.canmove)
 		return
 
-	//if(istype(mob.loc, /turf/space) || (mob.flags & NOGRAV))
-	//	if(!mob.Process_Spacemove(0))	return 0
+	//Relaymove could handle it
+	if(mob.machine)
+		var/result = mob.machine.relaymove(mob, direct)
+		if(result)
+			return result
 
 	if(!mob.lastarea)
 		mob.lastarea = get_area(mob.loc)
@@ -217,10 +220,6 @@
 				if(M.move_delay > mob.move_delay - 10)
 					return
 			return mob.buckled.relaymove(mob,direct)
-
-		if(istype(mob.machine, /obj/machinery))
-			if(mob.machine.relaymove(mob,direct))
-				return
 
 		if(mob.pulledby || mob.buckled) // Wheelchair driving!
 			if(istype(mob.loc, /turf/space))
