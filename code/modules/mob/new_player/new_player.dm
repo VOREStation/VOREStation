@@ -377,11 +377,7 @@
 
 	var/turf/T = join_props["turf"]
 	var/join_message = join_props["msg"]
-<<<<<<< HEAD
-	var/announce_channel = join_props["channel"] || "Common" // VOREStation Add
-=======
 	var/announce_channel = join_props["channel"] || "Common"
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate
 
 	if(!T || !join_message)
 		return 0

@@ -44,13 +44,9 @@
 
 	if(!data["map_levels"].len)
 		to_chat(user, "<span class='warning'>The crew monitor doesn't seem like it'll work here.</span>")
-<<<<<<< HEAD
 		if(program)
 			program.kill_program()
-		else if(ui)
-=======
 		if(ui)
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate
 			ui.close()
 		return
 

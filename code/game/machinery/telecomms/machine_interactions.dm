@@ -229,19 +229,11 @@
 	if(href_list["range_down"])
 		if(overmap_range > overmap_range_min)
 			overmap_range--
-<<<<<<< HEAD
 			update_idle_power_usage(initial(idle_power_usage)**(overmap_range+1))
 	if(href_list["range_up"])
 		if(overmap_range < overmap_range_max)
 			overmap_range++
 			update_idle_power_usage(initial(idle_power_usage)**(overmap_range+1))
-=======
-			idle_power_usage = initial(idle_power_usage)**(overmap_range+1)
-	if(href_list["range_up"])
-		if(overmap_range < overmap_range_max)
-			overmap_range++
-			idle_power_usage = initial(idle_power_usage)**(overmap_range+1)
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate
 
 // RECEIVER
 /obj/machinery/telecomms/receiver/Options_Menu()
@@ -253,19 +245,11 @@
 	if(href_list["range_down"])
 		if(overmap_range > overmap_range_min)
 			overmap_range--
-<<<<<<< HEAD
 			update_idle_power_usage(initial(idle_power_usage)**(overmap_range+1))
 	if(href_list["range_up"])
 		if(overmap_range < overmap_range_max)
 			overmap_range++
 			update_idle_power_usage(initial(idle_power_usage)**(overmap_range+1))
-=======
-			idle_power_usage = initial(idle_power_usage)**(overmap_range+1)
-	if(href_list["range_up"])
-		if(overmap_range < overmap_range_max)
-			overmap_range++
-			idle_power_usage = initial(idle_power_usage)**(overmap_range+1)
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate
 
 /obj/machinery/telecomms/Topic(href, href_list)
 

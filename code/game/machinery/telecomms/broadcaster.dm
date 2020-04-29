@@ -87,10 +87,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 							  signal.data["realname"], signal.data["vname"], DATA_NORMAL,
 							  signal.data["compression"], signal.data["level"], signal.frequency,
 							  signal.data["verb"], forced_radios)
-<<<<<<< HEAD
-
-=======
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate
 
 	   /** #### - Simple Broadcast - #### **/
 
@@ -348,10 +344,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 						var/list/message_pieces, var/name, var/job, var/realname, var/vname,
 						var/data, var/compression, var/list/level, var/freq, var/verbage = "says",
 						var/list/forced_radios)
-<<<<<<< HEAD
-
-=======
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate
 
   /* ###### Prepare the radio connection ###### */
 
@@ -361,11 +353,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	for(var/obj/item/device/radio/R in forced_radios)
 		//Cursory check to ensure they are 'on' and stuff
-<<<<<<< HEAD
 		if(R.receive_range(display_freq, list(0)) > -1)
-=======
-		if(R.receive_range(display_freq, list(0)))
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate
 			radios |= R
 
 	// --- Broadcast only to intercom devices ---

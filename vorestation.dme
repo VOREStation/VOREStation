@@ -1132,10 +1132,7 @@
 #include "code\game\objects\items\devices\radio\jammer.dm"
 #include "code\game\objects\items\devices\radio\jammer_vr.dm"
 #include "code\game\objects\items\devices\radio\radio.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\game\objects\items\devices\radio\radio_vr.dm"
-=======
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate:polaris.dme
 #include "code\game\objects\items\devices\radio\radiopack.dm"
 #include "code\game\objects\items\robot\robot_items.dm"
 #include "code\game\objects\items\robot\robot_parts.dm"
@@ -2915,11 +2912,8 @@
 #include "code\modules\organs\subtypes\vox.dm"
 #include "code\modules\organs\subtypes\vox_vr.dm"
 #include "code\modules\organs\subtypes\xenos.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\overmap\bluespace_rift_vr.dm"
 #include "code\modules\overmap\champagne.dm"
-=======
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate:polaris.dme
 #include "code\modules\overmap\helpers.dm"
 #include "code\modules\overmap\overmap_object.dm"
 #include "code\modules\overmap\overmap_shuttle.dm"

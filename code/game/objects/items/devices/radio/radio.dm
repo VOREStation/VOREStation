@@ -287,11 +287,7 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/proc/autosay(var/message, var/from, var/channel, var/list/zlevels) //BS12 EDIT
 	var/datum/radio_frequency/connection = null
 	if(channel && channels && channels.len > 0)
-<<<<<<< HEAD
-		if (channel == "department")
-=======
 		if(channel == "department")
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate
 			channel = channels[1]
 		connection = secure_radio_connections[channel]
 	else
@@ -308,11 +304,7 @@ var/global/list/default_medbay_channels = list(
 	Broadcast_Message(connection, A,
 						0, "*garbled automated announcement*", src,
 						message_to_multilingual(message), from, "Automated Announcement", from, "synthesized voice",
-<<<<<<< HEAD
-						4, 0, zlevels, connection.frequency, "states")
-=======
 						DATA_FAKE, 0, zlevels, connection.frequency, "states")
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate
 
 // Interprets the message mode when talking into a radio, possibly returning a connection datum
 /obj/item/device/radio/proc/handle_message_mode(mob/living/M as mob, list/message_pieces, message_mode)
@@ -373,10 +365,6 @@ var/global/list/default_medbay_channels = list(
 
 	var/pos_z = get_z(src)
 	var/datum/radio_frequency/connection = message_mode
-<<<<<<< HEAD
-	var/pos_z = get_z(src)
-=======
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate
 
 	//#### Tagging the signal with all appropriate identity values ####//
 
@@ -437,11 +425,7 @@ var/global/list/default_medbay_channels = list(
 		"name" = displayname,	// the mob's display name
 		"job" = jobname,		// the mob's job
 		"key" = mobkey,			// the mob's key
-<<<<<<< HEAD
 		"vmessage" = message_to_multilingual(pick(M.speak_emote)), // the message to display if the voice wasn't understood
-=======
-		"vmessage" = pick(M.speak_emote), // the message to display if the voice wasn't understood
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate
 		"vname" = M.voice_name, // the name to display if the voice wasn't understood
 		"vmask" = voicemask,	// 1 if the mob is using a voice gas mask
 
@@ -493,11 +477,6 @@ var/global/list/default_medbay_channels = list(
 
 		// First, we want to generate a new radio signal
 		signal.transmission_method = TRANSMISSION_SUBSPACE
-<<<<<<< HEAD
-
-		//#### Sending the signal to all subspace receivers ####//
-=======
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate
 
 		//#### Sending the signal to all subspace receivers ####//
 		for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
@@ -514,22 +493,6 @@ var/global/list/default_medbay_channels = list(
 		else if(adhoc_fallback) //Less huzzah, we have to fallback
 			to_chat(loc, "<span class='warning'>\The [src] pings as it falls back to local radio transmission.</span>")
 			subspace_transmission = FALSE
-<<<<<<< HEAD
-
-		else //Oh well
-			return FALSE
-
-	/* ###### Intercoms and station-bounced radios ###### */
-	else
-		/* --- Intercoms can only broadcast to other intercoms, but bounced radios can broadcast to bounced radios and intercoms --- */
-		if(istype(src, /obj/item/device/radio/intercom))
-			filter_type = DATA_INTERCOM
-
-		/* --- Try to send a normal subspace broadcast first */
-		signal.transmission_method = TRANSMISSION_SUBSPACE
-		signal.data["compression"] = 0
-
-=======
 		
 		else //Oh well
 			return FALSE
@@ -544,7 +507,6 @@ var/global/list/default_medbay_channels = list(
 		signal.transmission_method = TRANSMISSION_SUBSPACE
 		signal.data["compression"] = 0
 
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate
 		for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
 			R.receive_signal(signal)
 
@@ -573,11 +535,6 @@ var/global/list/default_medbay_channels = list(
 		if(get_dist(src, M) <= canhear_range)
 			talk_into(M, message_pieces, null, verb)
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate
 /obj/item/device/radio/proc/receive_range(freq, level)
 	// check if this radio can receive on the given frequency, and if so,
 	// what the range is in which mobs will hear the radio

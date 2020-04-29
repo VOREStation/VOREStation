@@ -169,13 +169,8 @@ var/list/all_maps = list()
 		//Get what sector we're in
 		var/obj/effect/overmap/visitable/O = get_overmap_sector(srcz)
 		if(!istype(O))
-<<<<<<< HEAD
 			//Anything in multiz then (or just themselves)
 			return GetConnectedZlevels(srcz)
-=======
-			//Not in a sector, just the passed zlevel
-			return list(srcz)
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate
 
 		//Just the sector we're in
 		if(om_range == -1)
@@ -197,15 +192,9 @@ var/list/all_maps = list()
 		//If in station levels, return station levels
 		else if (srcz in station_levels)
 			return station_levels.Copy()
-<<<<<<< HEAD
 		//Anything in multiz then (or just themselves)
 		else
 			return GetConnectedZlevels(srcz)
-=======
-		//Just give them back their zlevel
-		else
-			return list(srcz)
->>>>>>> e92ed43... Merge pull request #6990 from VOREStation/pol-tcomupdate
 
 /datum/map/proc/get_zlevel_name(var/index)
 	var/datum/map_z_level/Z = zlevels["[index]"]
