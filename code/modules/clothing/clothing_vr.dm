@@ -124,7 +124,8 @@
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/mob/species/seromi/suit.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi',
-		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/suit.dmi')
+		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/suit.dmi',
+		SPECIES_MANTID_ALATE = 'icons/mob/species/mantid/onmob_suit_alate.dmi')
 
 /obj/item/clothing/suit/equipped(var/mob/user, var/slot)
 	var/normalize = TRUE
@@ -160,7 +161,8 @@
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/mob/species/seromi/uniform.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/uniform.dmi',
-		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/uniform.dmi')
+		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/uniform.dmi',
+		SPECIES_MANTID_ALATE = 'icons/mob/species/mantid/onmob_under_alate.dmi')
 
 //TFF 5/8/19 - define numbers and specifics for suit sensor settings
 /obj/item/clothing/under/New(var/mob/living/carbon/human/H)
