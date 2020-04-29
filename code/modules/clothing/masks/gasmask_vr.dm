@@ -18,3 +18,14 @@
 	icon_override = 'icons/mob/mask_vr.dmi'
 	body_parts_covered = FACE|EYES
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
+
+/obj/item/clothing/mask/gas/ascent
+	name = "mantid facemask"
+	desc = "An alien facemask with chunky gas filters and a breathing valve."
+	icon_state = "ascent_mask"
+	item_state = "ascent_mask"
+	sprite_sheets = list(
+		SPECIES_MANTID_ALATE = 'icons/mob/species/mantid/onmob_mask_alate.dmi'
+	)
+	species_restricted = list(SPECIES_MANTID_ALATE)
+	flags_inv = 0
