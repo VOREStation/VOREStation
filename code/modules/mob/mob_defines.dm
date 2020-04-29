@@ -112,9 +112,7 @@
 	var/bodytemperature = 310.055	//98.7 F
 	var/drowsyness = 0.0//Carbon
 	var/charges = 0.0
-	var/nutrition = 400.0//Carbon
 
-	var/overeatduration = 0		// How long this guy is overeating //Carbon
 	var/paralysis = 0.0
 	var/stunned = 0.0
 	var/weakened = 0.0

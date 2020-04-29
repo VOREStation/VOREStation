@@ -492,7 +492,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	for(var/potential_color in S.slime_mutation)
 		var/mob/living/simple_mob/slime/xenobio/slime = potential_color
 		mutations.Add(initial(slime.slime_color))
-	user.show_message("Potental to mutate into [english_list(mutations)] colors.<br>Extract potential: [S.cores]<br>Nutrition: [S.nutrition]/[S.get_max_nutrition()]")
+	user.show_message("Potental to mutate into [english_list(mutations)] colors.<br>Extract potential: [S.cores]<br>Nutrition: [S.nutrition]/[S.max_nutrition]")
 
 	if (S.nutrition < S.get_starve_nutrition())
 		user.show_message("<span class='alert'>Warning: Subject is starving!</span>")

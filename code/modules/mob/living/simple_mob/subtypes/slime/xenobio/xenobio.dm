@@ -4,6 +4,7 @@
 	desc = "The most basic of slimes.  The grey slime has no remarkable qualities, however it remains one of the most useful colors for scientists."
 	layer = MOB_LAYER + 1 // Need them on top of other mobs or it looks weird when consuming something.
 	ai_holder_type = /datum/ai_holder/simple_mob/xenobio_slime // This should never be changed for xenobio slimes.
+	max_nutrition = 1000
 	var/is_adult = FALSE // Slimes turn into adults when fed enough. Adult slimes are somewhat stronger, and can reproduce if fed enough.
 	var/maxHealth_adult = 200
 	var/power_charge = 0 // Disarm attacks can shock someone if high/lucky enough.
@@ -101,6 +102,7 @@
 	melee_damage_lower = round(melee_damage_lower * 2) // 20
 	melee_damage_upper = round(melee_damage_upper * 2) // 30
 	maxHealth = maxHealth_adult
+	max_nutrition = 1200
 	amount_grown = 0
 	update_icon()
 	update_name()

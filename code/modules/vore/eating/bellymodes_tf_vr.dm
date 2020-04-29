@@ -59,8 +59,8 @@
 			continue
 		if(stabilize_nutrition)
 			if(O.nutrition > 400 && H.nutrition < 400)
-				O.nutrition -= 2
-				H.nutrition += 1.5
+				O.adjust_nutrition(-2)
+				H.adjust_nutrition(1.5)
 		if(changes_eyes && check_eyes(H))
 			change_eyes(H, 1)
 			continue

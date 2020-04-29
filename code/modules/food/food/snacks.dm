@@ -43,7 +43,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/attack_self(mob/user as mob)
 	return
 
-/obj/item/weapon/reagent_containers/food/snacks/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/weapon/reagent_containers/food/snacks/attack(mob/living/M as mob, mob/user as mob, def_zone)
 	if(reagents && !reagents.total_volume)
 		to_chat(user, "<span class='danger'>None of [src] left!</span>")
 		user.drop_from_inventory(src)
@@ -92,9 +92,6 @@
 			if (fullness > 6000) // There has to be a limit eventually.
 				to_chat(M, "<span class='danger'>Your stomach blorts and aches, prompting you to stop. You literally cannot force any more of [src] to go down your throat.</span>")
 				return 0
-			/*if (fullness > (550 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
-				to_chat(M, "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>")
-				return 0*/
 			//VOREStation Edit End
 
 		else if(user.a_intent == I_HURT)
@@ -123,12 +120,7 @@
 					to_chat(user, "<span class='warning'>\The [blocked] is in the way!</span>")
 					return
 
-				/*if (fullness <= (550 * (1 + M.overeatduration / 1000))) // Vorestation edit
-					user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
-				else
-					user.visible_message("<span class='danger'>[user] cannot force anymore of [src] down [M]'s throat.</span>")
-					return 0*/
-				user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>") // Vorestation edit
+				user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
 
 				user.setClickCooldown(user.get_attack_speed(src))
 				if(!do_mob(user, M)) return

@@ -76,7 +76,7 @@
 					var/start_nutrition = H.nutrition
 					var/end_nutrition = 0
 
-					H.nutrition -= rechargeamt / 15
+					H.adjust_nutrition(-rechargeamt / 15)
 
 					end_nutrition = H.nutrition
 
