@@ -27,7 +27,7 @@
 	if(can_feel_pain())
 		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
 
-	var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
+	var/hungry = (MAX_NUTRITION - nutrition) / 5
 	if (hungry >= 70) tally += hungry/50
 
 	//VOREstation start

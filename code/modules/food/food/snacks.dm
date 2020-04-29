@@ -43,7 +43,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/attack_self(mob/user as mob)
 	return
 
-/obj/item/weapon/reagent_containers/food/snacks/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/weapon/reagent_containers/food/snacks/attack(mob/living/M as mob, mob/user as mob, def_zone)
 	if(reagents && !reagents.total_volume)
 		to_chat(user, "<span class='danger'>None of [src] left!</span>")
 		user.drop_from_inventory(src)
@@ -79,6 +79,7 @@
 				to_chat(M, "<span class='notice'>You take a bite of [src].</span>")
 			if (fullness > 350 && fullness <= 550)
 				to_chat(M, "<span class='notice'>You unwillingly chew a bit of [src].</span>")
+<<<<<<< HEAD
 			if (fullness > 550 && fullness <= 650)
 				to_chat(M, "<span class='notice'>You swallow some more of the [src], causing your belly to swell out a little.</span>")
 			if (fullness > 650 && fullness <= 1000)
@@ -96,6 +97,8 @@
 				to_chat(M, "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>")
 				return 0*/
 			//VOREStation Edit End
+=======
+>>>>>>> 61c4929... Merge pull request #7045 from Neerti/let_them_eat_all_the_cake
 
 		else if(user.a_intent == I_HURT)
 			return ..()
@@ -123,12 +126,16 @@
 					to_chat(user, "<span class='warning'>\The [blocked] is in the way!</span>")
 					return
 
+<<<<<<< HEAD
 				/*if (fullness <= (550 * (1 + M.overeatduration / 1000))) // Vorestation edit
 					user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
 				else
 					user.visible_message("<span class='danger'>[user] cannot force anymore of [src] down [M]'s throat.</span>")
 					return 0*/
 				user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>") // Vorestation edit
+=======
+				user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
+>>>>>>> 61c4929... Merge pull request #7045 from Neerti/let_them_eat_all_the_cake
 
 				user.setClickCooldown(user.get_attack_speed(src))
 				if(!do_mob(user, M)) return

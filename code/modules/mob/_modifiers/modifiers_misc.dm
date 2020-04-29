@@ -83,7 +83,7 @@ the artifact triggers the rage.
 
 /datum/modifier/berserk/on_applied()
 	if(ishuman(holder)) // Most other mobs don't really use nutrition and can't get it back.
-		holder.nutrition = max(0, holder.nutrition - nutrition_cost)
+		holder.adjust_nutrition(-nutrition_cost)
 	holder.visible_message("<span class='critical'>\The [holder] descends into an all consuming rage!</span>")
 
 	// End all stuns.

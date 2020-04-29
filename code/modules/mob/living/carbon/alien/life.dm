@@ -28,7 +28,7 @@
 
 	var/rads = radiation/25
 	radiation -= rads
-	nutrition += rads
+	adjust_nutrition(rads)
 	heal_overall_damage(rads,rads)
 	adjustOxyLoss(-(rads))
 	adjustToxLoss(-(rads))

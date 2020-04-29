@@ -275,7 +275,7 @@
 		if(rad_organ && !rad_organ.is_broken())
 			var/rads = radiation/25
 			radiation -= rads
-			nutrition += rads
+			adjust_nutrition(rads)
 			adjustBruteLoss(-(rads))
 			adjustFireLoss(-(rads))
 			adjustOxyLoss(-(rads))
@@ -794,7 +794,7 @@
 
 	if(bodytemperature < species.cold_level_1) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
 		if(nutrition >= 2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
-			nutrition -= 2
+			adjust_nutrition(-2)
 		var/recovery_amt = max((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), BODYTEMP_AUTORECOVERY_MINIMUM)
 		//to_world("Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
 //				log_debug("Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
@@ -925,15 +925,7 @@
 		for(var/datum/modifier/mod in modifiers)
 			if(!isnull(mod.metabolism_percent))
 				nutrition_reduction *= mod.metabolism_percent
-
-		nutrition = max (0, nutrition - nutrition_reduction)
-
-	if (nutrition > 450)
-		if(overeatduration < 600) //capped so people don't take forever to unfat
-			overeatduration++
-	else
-		if(overeatduration > 1)
-			overeatduration -= 2 //doubled the unfat rate
+		adjust_nutrition(-nutrition_reduction)
 
 	if(noisy == TRUE && nutrition < 250 && prob(10)) //VOREStation edit for hunger noises.
 		var/sound/growlsound = sound(get_sfx("hunger_sounds"))
@@ -1469,7 +1461,7 @@
 				if(air_master.current_cycle%3==1)
 					if(!(M.status_flags & GODMODE))
 						M.adjustBruteLoss(5)
-					nutrition += 10
+					adjust_nutrition(10)
 
 /mob/living/carbon/human/proc/handle_changeling()
 	if(mind && mind.changeling)

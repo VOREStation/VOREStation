@@ -384,7 +384,7 @@
 	spaceport_freebie = 0
 	last_spaceport_action = ""
 
-/obj/machinery/computer/arcade/orion_trail/attack_hand(mob/user)
+/obj/machinery/computer/arcade/orion_trail/attack_hand(mob/living/user)
 	if(..())
 		return
 	if(fuel <= 0 || food <=0 || settlers.len == 0)

@@ -83,7 +83,7 @@
 #define SIPHON_CORE_TO_ENERGY	0.5
 
 // This is called every tick, so long as a link exists between the target and the Technomancer.
-/obj/item/weapon/spell/energy_siphon/proc/siphon(atom/movable/siphoning, mob/user)
+/obj/item/weapon/spell/energy_siphon/proc/siphon(atom/movable/siphoning, mob/living/user)
 	var/list/things_to_drain = things_to_siphon // Temporary list copy of what we're gonna steal from.
 	var/charge_to_give = 0 // How much energy to give to the Technomancer at the end.
 	var/flow_remaining = calculate_spell_power(flow_rate)
@@ -141,7 +141,7 @@
 		if( (core.max_energy - core.energy) < charge_to_give ) // We have some overflow, if this is true.
 			if(user.isSynthetic()) // Let's do something with it, if we're a robot.
 				charge_to_give = charge_to_give - (core.max_energy - core.energy)
-				user.nutrition =  min(user.nutrition + (charge_to_give / SIPHON_FBP_TO_ENERGY), 400)
+				user.adjust_nutrition(charge_to_give / SIPHON_FBP_TO_ENERGY)
 				to_chat(user, "<span class='notice'>Redirected energy to internal microcell.</span>")
 	else
 		to_chat(user, "<span class='notice'>Stolen [charge_to_give * CELLRATE] kJ.</span>")
