@@ -61,7 +61,7 @@
 	if(shadow)
 		shadow.sync_icon(src)
 
-/mob/living/Move()
+/mob/living/Moved()
 	. = ..()
 	check_shadow()
 

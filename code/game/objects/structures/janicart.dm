@@ -230,15 +230,6 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		to_chat(user, "<span class='notice'>You'll need the keys in one of your hands to drive this [callme].</span>")
 
 
-/obj/structure/bed/chair/janicart/Move()
-	..()
-	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/L = A
-			if(L.buckled == src)
-				L.loc = loc
-
-
 /obj/structure/bed/chair/janicart/post_buckle_mob(mob/living/M)
 	update_mob()
 	return ..()

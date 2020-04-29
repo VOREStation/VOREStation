@@ -58,8 +58,8 @@
 
 	..()
 
-	if(life_tick%30==15)
-		hud_updateflag = 1022
+	if(life_tick % 30)
+		hud_updateflag = (1 << TOTAL_HUDS) - 1
 
 	voice = GetVoice()
 
@@ -91,7 +91,7 @@
 	else if(stat == DEAD && !stasis)
 		handle_defib_timer()
 
-	if(!handle_some_updates())
+	if(skip_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
 
 	//Update our name based on whether our face is obscured/disfigured
@@ -99,10 +99,10 @@
 
 	pulse = handle_pulse()
 
-/mob/living/carbon/human/proc/handle_some_updates()
+/mob/living/carbon/human/proc/skip_some_updates()
 	if(life_tick > 5 && timeofdeath && (timeofdeath < 5 || world.time - timeofdeath > 6000))	//We are long dead, or we're junk mobs spawned like the clowns on the clown shuttle
-		return 0
-	return 1
+		return 1
+	return 0
 
 /mob/living/carbon/human/breathe()
 	if(!inStasisNow())
@@ -951,7 +951,7 @@
 
 //DO NOT CALL handle_statuses() from this proc, it's called from living/Life() as long as this returns a true value.
 /mob/living/carbon/human/handle_regular_status_updates()
-	if(!handle_some_updates())
+	if(skip_some_updates())
 		return 0
 
 	if(status_flags & GODMODE)	return 0
@@ -1292,8 +1292,11 @@
 					else
 						bodytemp.icon_state = "temp0"
 
-		if(blinded)		overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
-		else			clear_fullscreens()
+		if(blinded)
+			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+		
+		else if(!machine)
+			clear_fullscreens()
 
 		if(disabilities & NEARSIGHTED)	//this looks meh but saves a lot of memory by not requiring to add var/prescription
 			if(glasses)					//to every /obj/item
@@ -1395,11 +1398,12 @@
 
 		if(machine)
 			var/viewflags = machine.check_eye(src)
-			machine.apply_visual(src)
 			if(viewflags < 0)
 				reset_view(null, 0)
 			else if(viewflags && !looking_elsewhere)
 				sight |= viewflags
+			else
+				machine.apply_visual(src)
 		else if(eyeobj)
 			if(eyeobj.owner != src)
 

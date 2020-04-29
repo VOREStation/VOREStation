@@ -46,7 +46,7 @@
 		to_chat(user, "<span class='warning'>The crew monitor doesn't seem like it'll work here.</span>")
 		if(program)
 			program.kill_program()
-		else if(ui)
+		if(ui)
 			ui.close()
 		return
 

@@ -7,7 +7,6 @@
 	var/moving_diagonally
 	var/move_speed = 10
 	var/l_move_time = 1
-	var/m_flag = 1
 	var/throwing = 0
 	var/thrower
 	var/turf/throw_source = null
@@ -65,71 +64,80 @@
 	return ..()
 
 ////////////////////////////////////////
-// Here's where we rewrite how byond handles movement except slightly different
-// To be removed on step_ conversion
-// All this work to prevent a second bump
-/atom/movable/Move(atom/newloc, direct=0)
-	. = FALSE
-	if(!newloc || newloc == loc)
-		return
-
-	if(!direct)
-		direct = get_dir(src, newloc)
-	set_dir(direct)
-
-	if(!loc.Exit(src, newloc))
-		return
-
-	if(!newloc.Enter(src, src.loc))
-		return
-
-	if(!check_multi_tile_move_density_dir(direct, locs))	// We're big, and we can't move that way.
-		return
-
-	// Past this is the point of no return
-	if(!locs || locs.len <= 1)	// We're not a multi-tile object.
-		var/atom/oldloc = loc
-		var/area/oldarea = get_area(oldloc)
-		var/area/newarea = get_area(newloc)
-		loc = newloc
-		. = TRUE
-		oldloc.Exited(src, newloc)
-		if(oldarea != newarea)
-			oldarea.Exited(src, newloc)
-
-		for(var/i in oldloc)
-			if(i == src) // Multi tile objects
-				continue
-			var/atom/movable/thing = i
-			thing.Uncrossed(src)
-
-		newloc.Entered(src, oldloc)
-		if(oldarea != newarea)
-			newarea.Entered(src, oldloc)
-
-		for(var/i in loc)
-			if(i == src) // Multi tile objects
-				continue
-			var/atom/movable/thing = i
-			thing.Crossed(src)
-
-	else if(newloc)	// We're a multi-tile object.
-		. = doMove(newloc)
-
-//
-////////////////////////////////////////
-
 /atom/movable/Move(atom/newloc, direct = 0)
+	// Didn't pass enough info
 	if(!loc || !newloc)
 		return FALSE
+
+	// Store this early before we might move, it's used several places
 	var/atom/oldloc = loc
 
+	// If we're not moving to the same spot (why? does that even happen?)
 	if(loc != newloc)
 		if(!direct)
 			direct = get_dir(oldloc, newloc)
-		if (!(direct & (direct - 1))) //Cardinal move
-			. = ..()
-		else //Diagonal move, split it into cardinal moves
+		if (IS_CARDINAL(direct)) //Cardinal move
+			// Track our failure if any in this value
+			. = TRUE
+
+			// Face the direction of movement
+			set_dir(direct)
+
+			// Check to make sure we can leave
+			if(!loc.Exit(src, newloc))
+				. = FALSE
+
+			// Check to make sure we can enter, if we haven't already failed
+			if(. && !newloc.Enter(src, src.loc))
+				. = FALSE
+
+			// Check to make sure if we're multi-tile we can move, if we haven't already failed
+			if(. && !check_multi_tile_move_density_dir(direct, locs))
+				. = FALSE
+
+			// Definitely moving if you enter this, no failures so far
+			if(. && locs.len <= 1)	// We're not a multi-tile object.
+				var/area/oldarea = get_area(oldloc)
+				var/area/newarea = get_area(newloc)
+				var/old_z = get_z(oldloc)
+				var/dest_z = get_z(newloc)
+
+				// Do The Move
+				loc = newloc
+				. = TRUE
+				
+				// So objects can be informed of z-level changes
+				if (old_z != dest_z)
+					onTransitZ(old_z, dest_z)
+
+				// We don't call parent so we are calling this for byond
+				oldloc.Exited(src, newloc)
+				if(oldarea != newarea)
+					oldarea.Exited(src, newloc)
+
+				// Multi-tile objects can't reach here, otherwise you'd need to avoid uncrossing yourself
+				for(var/i in oldloc)
+					var/atom/movable/thing = i
+					// We don't call parent so we are calling this for byond
+					thing.Uncrossed(src)
+
+				// We don't call parent so we are calling this for byond
+				newloc.Entered(src, oldloc)
+				if(oldarea != newarea)
+					newarea.Entered(src, oldloc)
+
+				// Multi-tile objects can't reach here, otherwise you'd need to avoid uncrossing yourself
+				for(var/i in loc)
+					var/atom/movable/thing = i
+					// We don't call parent so we are calling this for byond
+					thing.Crossed(src)
+			
+			// We're a multi-tile object (multiple locs)
+			else if(. && newloc)
+				. = doMove(newloc)
+
+		//Diagonal move, split it into cardinal moves
+		else
 			moving_diagonally = FIRST_DIAG_STEP
 			var/first_step_dir
 			// The `&& moving_diagonally` checks are so that a forceMove taking
@@ -174,32 +182,32 @@
 						first_step_dir = WEST
 						moving_diagonally = SECOND_DIAG_STEP
 						. = step(src, SOUTH)
-			if(moving_diagonally == SECOND_DIAG_STEP)
-				if(!.)
-					set_dir(first_step_dir)
-				//else if (!inertia_moving)
-				//	inertia_next_move = world.time + inertia_move_delay
-				//	newtonian_move(direct)
+			// If we failed, turn to face the direction of the first step at least
+			if(!. && moving_diagonally == SECOND_DIAG_STEP)
+				set_dir(first_step_dir)
+			// Done, regardless!
 			moving_diagonally = 0
+			// We return because step above will call Move() and we don't want to do shenanigans back in here again
 			return
 
-	if(!loc || (loc == oldloc && oldloc != newloc))
+	else if(!loc || (loc == oldloc))
 		last_move = 0
 		return
 
+	// If we moved, call Moved() on ourselves
 	if(.)
-		Moved(oldloc, direct)
+		Moved(oldloc, direct, FALSE)
 
-	//Polaris stuff
+	// Update timers/cooldown stuff
 	move_speed = world.time - l_move_time
 	l_move_time = world.time
-	m_flag = 1
-	//End
+	last_move = direct // The direction you last moved
+	// set_dir(direct) //Don't think this is necessary
 
-	last_move = direct
-	set_dir(direct)
-	if(. && has_buckled_mobs() && !handle_buckled_mob_movement(loc,direct)) //movement failed due to buckled mob(s)
-		return FALSE
+	// Handle any buckled mobs on this movable
+	if(has_buckled_mobs())
+		handle_buckled_mob_movement(oldloc,direct)
+	
 	//VOREStation Add
 	else if(. && riding_datum)
 		riding_datum.handle_vehicle_layer()
@@ -207,19 +215,12 @@
 	//VOREStation Add End
 
 //Called after a successful Move(). By this point, we've already moved
-/atom/movable/proc/Moved(atom/OldLoc, Dir, Forced = FALSE)
-	//if (!inertia_moving)
-	//	inertia_next_move = world.time + inertia_move_delay
-	//	newtonian_move(Dir)
-	//if (length(client_mobs_in_contents))
-	//	update_parallax_contents()
-
+/atom/movable/proc/Moved(atom/old_loc, direction, forced = FALSE)
 	return TRUE
 
 // Make sure you know what you're doing if you call this, this is intended to only be called by byond directly.
 // You probably want CanPass()
 /atom/movable/Cross(atom/movable/AM)
-	. = TRUE
 	return CanPass(AM, loc)
 
 /atom/movable/CanPass(atom/movable/mover, turf/target)
@@ -261,55 +262,86 @@
 	return doMove(null)
 
 /atom/movable/proc/doMove(atom/destination)
-	. = FALSE
+	var/atom/oldloc = loc
+	var/area/old_area = get_area(oldloc)
+	var/same_loc = oldloc == destination
+
 	if(destination)
-		var/atom/oldloc = loc
-		var/same_loc = oldloc == destination
-		var/area/old_area = get_area(oldloc)
 		var/area/destarea = get_area(destination)
 
+		// Do The Move
+		last_move = 0
 		loc = destination
+		
+		// Unset this in case it was set in some other proc. We're no longer moving diagonally for sure.
 		moving_diagonally = 0
 
+		// We are moving to a different loc
 		if(!same_loc)
+			// Not moving out of nullspace
 			if(oldloc)
 				oldloc.Exited(src, destination)
+				// If it's not the same area, Exited() it
 				if(old_area && old_area != destarea)
 					old_area.Exited(src, destination)
-			for(var/atom/movable/AM in oldloc)
+			
+			// Uncross everything where we left
+			for(var/i in oldloc)
+				var/atom/movable/AM = i
+				if(AM == src)
+					continue
 				AM.Uncrossed(src)
+			
+			// Information about turf and z-levels for source and dest collected
 			var/turf/oldturf = get_turf(oldloc)
 			var/turf/destturf = get_turf(destination)
 			var/old_z = (oldturf ? oldturf.z : null)
 			var/dest_z = (destturf ? destturf.z : null)
+			
+			// So objects can be informed of z-level changes
 			if (old_z != dest_z)
 				onTransitZ(old_z, dest_z)
+			
+			// Destination atom Entered
 			destination.Entered(src, oldloc)
+			
+			// Entered() the new area if it's not the same area
 			if(destarea && old_area != destarea)
 				destarea.Entered(src, oldloc)
 
-			for(var/atom/movable/AM in destination)
+			// We ignore ourselves because if we're multi-tile we might be in both old and new locs
+			for(var/i in destination)
+				var/atom/movable/AM = i
 				if(AM == src)
 					continue
 				AM.Crossed(src, oldloc)
+
+			// Call our thingy to inform everyone we moved
+			Moved(oldloc, NONE, TRUE)
 
 		// Break pulling if we are too far to pull now.
 		if(pulledby && (pulledby.z != src.z || get_dist(pulledby, src) > 1))
 			pulledby.stop_pulling()
 
-		Moved(oldloc, NONE, TRUE)
-		. = TRUE
+		// We moved
+		return TRUE
 
 	//If no destination, move the atom into nullspace (don't do this unless you know what you're doing)
-	else
-		. = TRUE
-		if (loc)
-			var/atom/oldloc = loc
-			var/area/old_area = get_area(oldloc)
-			oldloc.Exited(src, null)
-			if(old_area)
-				old_area.Exited(src, null)
+	else if(oldloc)
 		loc = null
+
+		// Uncross everything where we left (no multitile safety like above because we are definitely not still there)
+		for(var/i in oldloc)
+			var/atom/movable/AM = i
+			AM.Uncrossed(src)
+
+		// Exited() our loc and area
+		oldloc.Exited(src, null)
+		if(old_area)
+			old_area.Exited(src, null)
+
+		// We moved
+		return TRUE
 
 /atom/movable/proc/onTransitZ(old_z,new_z)
 	GLOB.z_moved_event.raise_event(src, old_z, new_z)

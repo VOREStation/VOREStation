@@ -196,29 +196,15 @@
 		next = null
 	..()
 
-/mob/living/simple_mob/animal/space/space_worm/Move()
-	var/attachementNextPosition = loc
+/mob/living/simple_mob/animal/space/space_worm/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	if(.)
-		if(previous)
-			if(previous.z != z)
-				previous.z_transitioning = TRUE
-			else
-				previous.z_transitioning = FALSE
-			previous.forceMove(attachementNextPosition)	// None of this 'ripped in half by an airlock' business.
-		update_icon()
-
-/mob/living/simple_mob/animal/space/space_worm/forceMove()
-	var/attachementNextPosition = loc
-	. = ..()
-	if(.)
-		if(previous)
-			if(previous.z != z)
-				previous.z_transitioning = TRUE
-			else
-				previous.z_transitioning = FALSE
-			previous.forceMove(attachementNextPosition)	// None of this 'ripped in half by an airlock' business. x 2
-		update_icon()
+	if(previous)
+		if(previous.z != z)
+			previous.z_transitioning = TRUE
+		else
+			previous.z_transitioning = FALSE
+		previous.forceMove(old_loc)	// None of this 'ripped in half by an airlock' business.
+	update_icon()
 
 /mob/living/simple_mob/animal/space/space_worm/head/Bump(atom/obstacle)
 	if(open_maw && !stat && obstacle != previous)

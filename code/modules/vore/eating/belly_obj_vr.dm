@@ -201,6 +201,17 @@
 		var/taste
 		if(can_taste && (taste = M.get_taste_message(FALSE)))
 			to_chat(owner, "<span class='notice'>[M] tastes of [taste].</span>")
+		//Stop AI processing in bellies
+		if(M.ai_holder)
+			M.ai_holder.go_sleep()
+
+// Called whenever an atom leaves this belly
+/obj/belly/Exited(atom/movable/thing, atom/OldLoc)
+	. = ..()
+	if(isliving(thing) && !isbelly(thing.loc))
+		var/mob/living/L = thing
+		if((L.stat != DEAD) && L.ai_holder)
+			L.ai_holder.go_wake()
 
 // Release all contents of this belly into the owning mob's location.
 // If that location is another mob, contents are transferred into whichever of its bellies the owning mob is in.

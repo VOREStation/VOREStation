@@ -132,12 +132,6 @@ Buildable meters
 	src.set_dir(turn(src.dir, 270))
 	fixdir()
 
-// If you want to disable pipe dir changing when pulled, uncomment this
-// /obj/item/pipe/Move()
-// 	var/old_dir = dir
-// 	. = ..()
-// 	set_dir(old_dir) //pipes changing direction when moved is just annoying and buggy
-
 // Don't let pulling a pipe straighten it out.
 /obj/item/pipe/binary/bendable/Move()
 	var/old_bent = !IS_CARDINAL(dir)

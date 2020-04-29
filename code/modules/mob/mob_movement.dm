@@ -110,8 +110,8 @@
 
 
 /client/Move(n, direct)
-	if(!mob)
-		return // Moved here to avoid nullrefs below
+	//if(!mob) // Clients cannot have a null mob, as enforced by byond
+	//	return // Moved here to avoid nullrefs below
 
 	if(mob.control_object)	Move_object(direct)
 
@@ -166,8 +166,11 @@
 	if(!mob.canmove)
 		return
 
-	//if(istype(mob.loc, /turf/space) || (mob.flags & NOGRAV))
-	//	if(!mob.Process_Spacemove(0))	return 0
+	//Relaymove could handle it
+	if(mob.machine)
+		var/result = mob.machine.relaymove(mob, direct)
+		if(result)
+			return result
 
 	if(!mob.lastarea)
 		mob.lastarea = get_area(mob.loc)
@@ -217,10 +220,6 @@
 				if(M.move_delay > mob.move_delay - 10)
 					return
 			return mob.buckled.relaymove(mob,direct)
-
-		if(istype(mob.machine, /obj/machinery))
-			if(mob.machine.relaymove(mob,direct))
-				return
 
 		if(mob.pulledby || mob.buckled) // Wheelchair driving!
 			if(istype(mob.loc, /turf/space))
@@ -366,17 +365,7 @@
 					anim(mobloc,mob,'icons/mob/mob.dmi',,"shadow",,mob.dir)
 				mob.forceMove(get_step(mob, direct))
 			mob.dir = direct
-	// Crossed is always a bit iffy
-	for(var/obj/S in mob.loc)
-		if(istype(S,/obj/effect/step_trigger) || istype(S,/obj/effect/beam))
-			S.Crossed(mob)
 
-	var/area/A = get_area_master(mob)
-	if(A)
-		A.Entered(mob)
-	if(isturf(mob.loc))
-		var/turf/T = mob.loc
-		T.Entered(mob)
 	mob.Post_Incorpmove()
 	return 1
 
@@ -468,16 +457,11 @@
 
 /mob/proc/update_gravity()
 	return
-/*
-// The real Move() proc is above, but touching that massive block just to put this in isn't worth it.
-/mob/Move(var/newloc, var/direct)
-	. = ..(newloc, direct)
-	if(.)
-		post_move(newloc, direct)
-*/
+
 // Called when a mob successfully moves.
 // Would've been an /atom/movable proc but it caused issues.
 /mob/Moved(atom/oldloc)
+	. = ..()
 	for(var/obj/O in contents)
 		O.on_loc_moved(oldloc)
 

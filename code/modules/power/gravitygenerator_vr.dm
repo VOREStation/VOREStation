@@ -48,7 +48,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	return "off"
 
 // You aren't allowed to move.
-/obj/machinery/gravity_generator/Move()
+/obj/machinery/gravity_generator/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
 	qdel(src)
 
@@ -88,13 +88,14 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 //
 // Generator which spawns with the station.
 //
+/obj/machinery/gravity_generator/main/station
+	use_power = USE_POWER_ACTIVE
+	current_overlay = "activated"
 
 /obj/machinery/gravity_generator/main/station/Initialize()
 	. = ..()
 	setup_parts()
-	middle.add_overlay("activated")
-	current_overlay = "activated"
-	update_use_power(USE_POWER_ACTIVE)
+	middle.add_overlay("activated")	
 
 //
 // Generator an admin can spawn
@@ -122,7 +123,6 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	var/charge_count = 100
 	var/current_overlay = null
 	var/broken_state = 0
-	var/setting = 1	//Gravity value when on
 	var/list/levels = list()
 	var/list/areas = list()
 
@@ -290,19 +290,32 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	else if(breaker)
 		new_state = TRUE
 
-	charging_state = new_state ? POWER_UP : POWER_DOWN // Startup sequence animation.
+	// Charging state FSM
+	switch(charging_state)
+		if(POWER_UP)
+			if(!new_state) // Can start spin down during spin up
+				charging_state = POWER_DOWN
+		if(POWER_DOWN)
+			if(new_state) // Can start spin up during spin down
+				charging_state = POWER_UP
+		if(POWER_IDLE)
+			if(!new_state && use_power == USE_POWER_ACTIVE) // Can start spin down during running
+				charging_state = POWER_DOWN
+			else if(new_state && use_power == USE_POWER_IDLE) // Can start spin up during stopped
+				charging_state = POWER_UP
+
 	investigate_log("is now [charging_state == POWER_UP ? "charging" : "discharging"].", "gravity")
 	update_icon()
 
 // Set the state of the gravity.
 /obj/machinery/gravity_generator/main/proc/set_state(new_state)
 	charging_state = POWER_IDLE
-	on = new_state
-	update_use_power(on ? USE_POWER_ACTIVE : USE_POWER_IDLE)
+	update_use_power(new_state ? USE_POWER_ACTIVE : USE_POWER_IDLE)
+
 	// Sound the alert if gravity was just enabled or disabled.
 	var/alert = FALSE
 	if(SSticker.IsRoundInProgress())
-		if(on) // If we turned on and the game is live.
+		if(new_state) // If we turned on and the game is live.
 			if(gravity_in_level() == FALSE)
 				alert = TRUE
 				investigate_log("was brought online and is now producing gravity for this level.", "gravity")
@@ -314,9 +327,10 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 				message_admins("The gravity generator was brought offline with no backup generator. [ADMIN_JMP(src)]")
 
 	update_list()
-	update_gravity(on)
+	update_gravity(new_state)
 	update_icon()
 	src.updateUsrDialog()
+
 	if(alert)
 		shake_everyone()
 
@@ -408,7 +422,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	for(var/z in levels)
 		if(!GLOB.gravity_generators["[z]"])
 			GLOB.gravity_generators["[z]"] = list()
-		if(on)
+		if(use_power == USE_POWER_ACTIVE)
 			GLOB.gravity_generators["[z]"] |= src
 		else
 			GLOB.gravity_generators["[z]"] -= src
@@ -416,6 +430,8 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 /obj/machinery/gravity_generator/main/proc/update_areas()
 	areas.Cut()
 	for(var/area/A)
+		if(istype(A, /area/shuttle))
+			continue //Skip shuttle areas
 		if(A.z in levels)
 			areas += A
 

@@ -43,6 +43,8 @@
 	ai_log("walk_to_destination() : Exiting.",AI_LOG_TRACE)
 
 /datum/ai_holder/proc/should_go_home()
+	if(stance != STANCE_IDLE)
+		return FALSE
 	if(!returns_home || !home_turf)
 		return FALSE
 	if(get_dist(holder, home_turf) > max_home_distance)
@@ -139,7 +141,7 @@
 	return MOVEMENT_ON_COOLDOWN
 
 /datum/ai_holder/proc/should_wander()
-	return wander && !leader
+	return (stance == STANCE_IDLE) && wander && !leader
 
 // Wanders randomly in cardinal directions.
 /datum/ai_holder/proc/handle_wander_movement()

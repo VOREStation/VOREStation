@@ -1450,6 +1450,8 @@
 	dir = 5
 	},
 /obj/structure/closet/secure_closet/wall{
+	anchored = 1;
+	density = 0;
 	pixel_x = 32;
 	req_access = list(101)
 	},

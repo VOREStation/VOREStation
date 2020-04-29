@@ -8,7 +8,7 @@
 	desc = "Used to isolate and identify diseases, allowing for comparison with a remote database."
 	density = 1
 	anchored = 1
-	icon = 'icons/obj/virology.dmi'
+	icon = 'icons/obj/virology_vr.dmi' //VOREStation Edit
 	icon_state = "isolator"
 	var/isolating = 0
 	var/state = HOME

@@ -11,10 +11,10 @@ var/global/list/default_internal_channels = list(
 	num2text(MED_I_FREQ)=list(access_medical_equip),
 	num2text(SEC_FREQ) = list(access_security),
 	num2text(SEC_I_FREQ)=list(access_security),
-	num2text(SCI_FREQ) = list(access_tox, access_robotics, access_xenobiology, access_explorer),
+	num2text(SCI_FREQ) = list(access_tox, access_robotics, access_xenobiology),
 	num2text(SUP_FREQ) = list(access_cargo, access_mining_station),
 	num2text(SRV_FREQ) = list(access_janitor, access_library, access_hydroponics, access_bar, access_kitchen),
-	num2text(EXP_FREQ) = list(access_explorer, access_pilot, access_rd)
+	num2text(EXP_FREQ) = list(access_explorer, access_pilot)
 )
 
 var/global/list/default_medbay_channels = list(
@@ -287,7 +287,7 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/proc/autosay(var/message, var/from, var/channel, var/list/zlevels) //BS12 EDIT
 	var/datum/radio_frequency/connection = null
 	if(channel && channels && channels.len > 0)
-		if (channel == "department")
+		if(channel == "department")
 			channel = channels[1]
 		connection = secure_radio_connections[channel]
 	else
@@ -304,7 +304,7 @@ var/global/list/default_medbay_channels = list(
 	Broadcast_Message(connection, A,
 						0, "*garbled automated announcement*", src,
 						message_to_multilingual(message), from, "Automated Announcement", from, "synthesized voice",
-						4, 0, zlevels, connection.frequency, "states")
+						DATA_FAKE, 0, zlevels, connection.frequency, "states")
 
 // Interprets the message mode when talking into a radio, possibly returning a connection datum
 /obj/item/device/radio/proc/handle_message_mode(mob/living/M as mob, list/message_pieces, message_mode)
@@ -363,8 +363,8 @@ var/global/list/default_medbay_channels = list(
 	if(!istype(message_mode, /datum/radio_frequency))
 		return FALSE
 
-	var/datum/radio_frequency/connection = message_mode
 	var/pos_z = get_z(src)
+	var/datum/radio_frequency/connection = message_mode
 
 	//#### Tagging the signal with all appropriate identity values ####//
 
@@ -479,7 +479,6 @@ var/global/list/default_medbay_channels = list(
 		signal.transmission_method = TRANSMISSION_SUBSPACE
 
 		//#### Sending the signal to all subspace receivers ####//
-
 		for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
 			R.receive_signal(signal)
 
@@ -494,7 +493,7 @@ var/global/list/default_medbay_channels = list(
 		else if(adhoc_fallback) //Less huzzah, we have to fallback
 			to_chat(loc, "<span class='warning'>\The [src] pings as it falls back to local radio transmission.</span>")
 			subspace_transmission = FALSE
-
+		
 		else //Oh well
 			return FALSE
 
@@ -535,8 +534,6 @@ var/global/list/default_medbay_channels = list(
 	if(broadcasting)
 		if(get_dist(src, M) <= canhear_range)
 			talk_into(M, message_pieces, null, verb)
-
-
 
 /obj/item/device/radio/proc/receive_range(freq, level)
 	// check if this radio can receive on the given frequency, and if so,

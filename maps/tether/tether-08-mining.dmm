@@ -27,6 +27,9 @@
 /area/outpost/mining_main/hangar)
 "ah" = (
 /obj/effect/floor_decal/industrial/warning/corner,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
 "ai" = (
@@ -39,8 +42,9 @@
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
 "ak" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	dir = 8
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
@@ -52,7 +56,11 @@
 /turf/simulated/wall/r_wall,
 /area/outpost/mining_main/hangar)
 "an" = (
-/obj/effect/floor_decal/industrial/warning{
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
@@ -77,8 +85,8 @@
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
 "ar" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
 /turf/simulated/floor/tiled,
@@ -91,14 +99,18 @@
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
 "at" = (
-/obj/effect/floor_decal/industrial/warning/corner{
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
 "au" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
@@ -115,24 +127,17 @@
 /area/outpost/mining_main/maintenance)
 "aw" = (
 /obj/effect/floor_decal/industrial/warning{
-	dir = 1
+	dir = 4
 	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
 "ax" = (
 /obj/effect/floor_decal/industrial/warning{
-	dir = 1
+	icon_state = "warning";
+	dir = 8
 	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
 "ay" = (
@@ -159,15 +164,11 @@
 /area/mine/explored)
 "aC" = (
 /obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 1
+	dir = 4
 	},
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 26
-	},
-/obj/structure/cable/green{
-	icon_state = "2-8"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 5
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
@@ -251,8 +252,12 @@
 /turf/simulated/floor/virgo3b,
 /area/mine/explored)
 "aK" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/brown/border,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
 "aL" = (
@@ -473,29 +478,25 @@
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "bg" = (
-/obj/machinery/alarm{
-	alarm_id = null;
-	breach_detection = 0;
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -22
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
 	},
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/brown/border,
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/brown/bordercorner2{
-	dir = 9
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
 "bh" = (
-/obj/machinery/status_display{
-	pixel_x = 32
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
 	},
 /obj/structure/cable/green{
-	icon_state = "1-2"
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
@@ -626,11 +627,21 @@
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "bv" = (
-/obj/machinery/door/airlock/glass_mining,
-/obj/structure/cable/green{
-	icon_state = "1-2"
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/steel_grid,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
 "bw" = (
 /obj/structure/cable{
@@ -817,53 +828,38 @@
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/secondary_gear_storage)
 "bP" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/brown/border,
-/obj/machinery/light,
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
+	dir = 1
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
+/obj/structure/cable/green{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
 "bQ" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 24
-	},
-/obj/machinery/light_switch{
-	dir = 1;
-	pixel_x = 12;
-	pixel_y = 24
-	},
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 1;
-	pixel_y = 0
-	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/brown/bordercorner2{
-	dir = 1
-	},
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/brown/border,
+/obj/machinery/recharge_station,
 /turf/simulated/floor/tiled,
-/area/outpost/mining_main/secondary_gear_storage)
+/area/outpost/mining_main/hangar)
 "bR" = (
-/obj/structure/cable/green{
-	icon_state = "1-8"
-	},
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/brown/border,
+/obj/machinery/light,
+/obj/machinery/recharge_station,
 /turf/simulated/floor/tiled,
-/area/outpost/mining_main/secondary_gear_storage)
+/area/outpost/mining_main/hangar)
 "bS" = (
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
@@ -893,11 +889,13 @@
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/secondary_gear_storage)
 "bV" = (
-/obj/structure/cable/green{
-	icon_state = "1-2"
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/brown/border,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
-/area/outpost/mining_main/secondary_gear_storage)
+/area/outpost/mining_main/hangar)
 "bW" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
@@ -1115,9 +1113,6 @@
 	icon_state = "alarm0";
 	pixel_y = -22
 	},
-/obj/structure/cable/green{
-	icon_state = "1-4"
-	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
 /obj/effect/floor_decal/borderfloor/corner2{
@@ -1126,14 +1121,22 @@
 /obj/effect/floor_decal/corner/brown/bordercorner2{
 	dir = 9
 	},
-/turf/simulated/floor/tiled,
-/area/outpost/mining_main/secondary_gear_storage)
-"cy" = (
-/obj/structure/cable/green{
-	icon_state = "2-8"
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
-/area/outpost/mining_main/secondary_gear_storage)
+/area/outpost/mining_main/hangar)
+"cy" = (
+/obj/machinery/status_display{
+	pixel_x = 32
+	},
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/hangar)
 "cz" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
@@ -1150,8 +1153,10 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel_grid,
-/area/outpost/mining_main/secondary_gear_storage)
+/area/outpost/mining_main/hangar)
 "cC" = (
 /obj/structure/table/steel,
 /obj/item/weapon/tool/screwdriver,
@@ -1187,11 +1192,47 @@
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
 "cE" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 24
+	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = 12;
+	pixel_y = 24
+	},
 /obj/structure/cable/green{
-	icon_state = "1-2"
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/brown/bordercorner2{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
 	},
 /turf/simulated/floor/tiled,
-/area/outpost/mining_main/break_room)
+/area/outpost/mining_main/secondary_gear_storage)
 "cF" = (
 /obj/effect/floor_decal/steeldecal/steel_decals7,
 /obj/effect/floor_decal/steeldecal/steel_decals7{
@@ -1242,21 +1283,17 @@
 /area/outpost/mining_main/drill_equipment)
 "cI" = (
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/cable/green{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/outpost/mining_main/break_room)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9;
+	pixel_y = 0
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/secondary_gear_storage)
 "cJ" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -1415,6 +1452,116 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/secondary_gear_storage)
+"cU" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/secondary_gear_storage)
+"cV" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/secondary_gear_storage)
+"cW" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/secondary_gear_storage)
+"cX" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/secondary_gear_storage)
+"cY" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/secondary_gear_storage)
+"cZ" = (
+/obj/machinery/alarm{
+	alarm_id = null;
+	breach_detection = 0;
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/obj/structure/cable/green{
+	icon_state = "1-4"
+	},
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/brown/border,
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/brown/bordercorner2{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	icon_state = "intact-scrubbers";
+	dir = 5
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/secondary_gear_storage)
+"da" = (
+/obj/structure/cable/green{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/secondary_gear_storage)
+"db" = (
+/obj/machinery/door/airlock/glass_mining,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/secondary_gear_storage)
+"dc" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/break_room)
+"dd" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/break_room)
 "di" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -2860,12 +3007,12 @@ ab
 ab
 ag
 ah
-an
-an
-an
-an
-an
-at
+aw
+aw
+aw
+aw
+aw
+aC
 aD
 ag
 ab
@@ -3001,13 +3148,13 @@ ab
 ab
 ab
 ag
-ai
+ak
 aq
 aq
 aq
 aq
 aq
-au
+aK
 aE
 ag
 ab
@@ -3143,14 +3290,14 @@ ab
 ab
 ab
 ag
-ai
+ak
 aq
 aq
 aq
 aq
 aq
-au
 aK
+bQ
 ag
 ab
 ab
@@ -3285,14 +3432,14 @@ ab
 ab
 ab
 ag
-as
+an
 aq
 aq
 aq
 aq
 aq
-au
-bP
+aK
+bR
 ag
 ab
 ab
@@ -3427,14 +3574,14 @@ ab
 ab
 ab
 ag
-ai
+ar
 aq
 aq
 aq
 aq
 aq
-au
-aK
+bg
+bV
 ag
 ab
 cu
@@ -3575,7 +3722,7 @@ aq
 aq
 aq
 aq
-au
+aK
 aX
 ag
 ab
@@ -3717,7 +3864,7 @@ aq
 aq
 aq
 aq
-au
+aK
 aY
 ag
 ab
@@ -3859,7 +4006,7 @@ aq
 aq
 aq
 aq
-au
+aK
 aY
 ag
 bG
@@ -4001,7 +4148,7 @@ aq
 aq
 aq
 aq
-au
+aK
 cw
 ag
 bO
@@ -4143,13 +4290,13 @@ aq
 aq
 aq
 aq
-aw
+bh
 aZ
 ag
 cS
+cU
 bU
-bU
-bU
+cX
 cT
 cA
 aI
@@ -4279,20 +4426,20 @@ ab
 ab
 ab
 ag
-ai
+at
 aq
 aq
 ao
 aq
 aq
-ax
-bg
-ag
-bQ
-bV
-bV
-bV
+bv
 cx
+ag
+cE
+cV
+cW
+cY
+cZ
 bG
 cD
 aW
@@ -4421,23 +4568,23 @@ ab
 ab
 ab
 ag
-ak
-ar
-ar
-ar
-ar
-ar
-aC
-bh
-bv
-bR
+au
+ax
+ax
+ax
+ax
+ax
+bP
+cy
+cB
+cI
 bX
 ce
 co
-cy
-cB
-cE
-cI
+da
+db
+dc
+dd
 bW
 hK
 Ma

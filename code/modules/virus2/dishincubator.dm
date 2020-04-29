@@ -3,7 +3,7 @@
 	desc = "Encourages the growth of diseases. This model comes with a dispenser system and a small radiation generator."
 	density = 1
 	anchored = 1
-	icon = 'icons/obj/virology.dmi'
+	icon = 'icons/obj/virology_vr.dmi' //VOREStation Edit
 	icon_state = "incubator"
 	var/obj/item/weapon/virusdish/dish
 	var/obj/item/weapon/reagent_containers/glass/beaker = null

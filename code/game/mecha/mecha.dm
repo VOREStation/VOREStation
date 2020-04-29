@@ -382,11 +382,9 @@
 ////////  Movement procs  ////////
 //////////////////////////////////
 
-/obj/mecha/Move()
+/obj/mecha/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	if(.)
-		MoveAction()
-	return
+	MoveAction()
 
 /obj/mecha/proc/MoveAction() //Allows mech equipment to do an action once the mech moves
 	if(!equipment.len)
