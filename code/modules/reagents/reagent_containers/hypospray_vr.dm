@@ -1,7 +1,7 @@
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/burn
 	name = "autoinjector (burn)"
 	icon_state = "purple"
-	filled_reagents = list("dermaline" = 4, "tramadol" = 1)
+	filled_reagents = list("dermaline" = 3.5, "leporazine" = 1.5)
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/trauma
 	name = "autoinjector (trauma)"
