@@ -675,6 +675,12 @@
 	ckeywhitelist = list("nickcrazy")
 	character_name = list("Damon Bones Xrim")
 
+/datum/gear/fluff/damon_jacket
+	path = /obj/item/clothing/suit/storage/toggle/bomber/bombersec
+	display_name = "Damon's Bomber Jacket"
+	ckeywhitelist = list("nickcrazy")
+	character_name = list("Damon Bones Xrim")
+
 /datum/gear/fluff/kt_fishing_rod
 	path = /obj/item/weapon/material/fishing_rod/modern/strong
 	display_name = "K't's fishing rod"
