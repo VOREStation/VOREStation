@@ -15,3 +15,6 @@
 #define LANGUAGE_FARWA "Farwa"
 
 #define LANGUAGE_SHADEKIN "Shadekin Empathy"
+
+#define LANGUAGE_MANTID_NONVOCAL "Ascent-Glow"
+#define LANGUAGE_MANTID_VOCAL "Ascent-Voc"
