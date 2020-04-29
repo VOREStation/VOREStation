@@ -609,20 +609,13 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		w_class = ITEMSIZE_SMALL
 
 /obj/item/stack/cable_coil/examine(mob/user)
-	var/msg = ""
-
+	. = ..()
 	if(get_amount() == 1)
-		msg += "A short piece of power cable."
+		. += "Just a short piece remains."
 	else if(get_amount() == 2)
-		msg += "A piece of power cable."
-	else
-		msg += "A coil of power cable."
-
-		if(get_dist(src, user) <= 1)
-			msg += " There are [get_amount()] lengths of cable in the coil."
-
-	to_chat(user, msg)
-
+		. += "Just a couple of short pieces remain."
+	else if(Adjacent(user))
+		. += "There are [get_amount()] lengths of cable in the coil."
 
 /obj/item/stack/cable_coil/verb/make_restraint()
 	set name = "Make Cable Restraints"
@@ -992,12 +985,10 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	return 0
 
 /obj/item/stack/cable_coil/alien/examine(mob/user)
-	var/msg = "A spool of cable."
+	. = ..()
 
-	if(get_dist(src, user) <= 1)
-		msg += " It doesn't seem to have a beginning, or an end."
-
-	to_chat(user, msg)
+	if(Adjacent(user))
+		. += "It doesn't seem to have a beginning, or an end."
 
 /obj/item/stack/cable_coil/alien/attack_hand(mob/user as mob)
 	if (user.get_inactive_hand() == src)

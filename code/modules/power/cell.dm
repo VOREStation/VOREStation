@@ -145,10 +145,10 @@
 
 
 /obj/item/weapon/cell/examine(mob/user)
-	..()
-	if(get_dist(src, user) <= 1)
-		to_chat(user, " It has a power rating of [maxcharge].\nThe charge meter reads [round(src.percent() )]%.")
-	return
+	. = ..()
+	if(Adjacent(user))
+		. += "It has a power rating of [maxcharge]."
+		. += "The charge meter reads [round(src.percent() )]%."
 
 /obj/item/weapon/cell/attackby(obj/item/W, mob/user)
 	..()

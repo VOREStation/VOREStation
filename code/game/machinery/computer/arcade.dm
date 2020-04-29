@@ -1020,13 +1020,12 @@
 	var/active = 0 //if the ship is on
 
 /obj/item/weapon/orion_ship/examine(mob/user)
-	..()
-	if(!(in_range(user, src)))
-		return
-	if(!active)
-		to_chat(user, span("notice", "There's a little switch on the bottom. It's flipped down."))
-	else
-		to_chat(user, span("notice", "There's a little switch on the bottom. It's flipped up."))
+	. = ..()
+	if(in_range(user, src))
+		if(!active)
+			. += span("notice", "There's a little switch on the bottom. It's flipped down.")
+		else
+			. += span("notice", "There's a little switch on the bottom. It's flipped up.")
 
 /obj/item/weapon/orion_ship/attack_self(mob/user)
 	if(active)

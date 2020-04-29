@@ -156,16 +156,16 @@
 	return 0
 
 /obj/item/weapon/reagent_containers/food/snacks/examine(mob/user)
-	if(!..(user, 1))
-		return
-	if (bitecount==0)
-		return
-	else if (bitecount==1)
-		to_chat(user, "<font color='blue'>\The [src] was bitten by someone!</font>")
-	else if (bitecount<=3)
-		to_chat(user, "<font color='blue'>\The [src] was bitten [bitecount] times!</font>")
-	else
-		to_chat(user, "<font color='blue'>\The [src] was bitten multiple times!</font>")
+	. = ..()
+	if(Adjacent(user))
+		if(bitecount==0)
+			return .
+		else if (bitecount==1)
+			. += "<span class='notice'>It was bitten by someone!</span>"
+		else if (bitecount<=3)
+			. += "<span class='notice'>It was bitten [bitecount] times!</span>"
+		else
+			. += "<span class='notice'>It was bitten multiple times!</span>"
 
 /obj/item/weapon/reagent_containers/food/snacks/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/storage))

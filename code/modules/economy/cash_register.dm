@@ -32,14 +32,14 @@
 
 
 /obj/machinery/cash_register/examine(mob/user as mob)
-	..(user)
+	. = ..(user)
 	if(transaction_amount)
-		to_chat(user, "It has a purchase of [transaction_amount] pending[transaction_purpose ? " for [transaction_purpose]" : ""].")
+		. += "It has a purchase of [transaction_amount] pending[transaction_purpose ? " for [transaction_purpose]" : ""]."
 	if(cash_open)
 		if(cash_stored)
-			to_chat(user, "It holds [cash_stored] Thaler\s of money.")
+			. += "It holds [cash_stored] Thaler\s."
 		else
-			to_chat(user, "It's completely empty.")
+			. += "It's completely empty."
 
 
 /obj/machinery/cash_register/attack_hand(mob/user as mob)

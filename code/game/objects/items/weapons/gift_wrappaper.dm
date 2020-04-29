@@ -164,8 +164,9 @@
 
 
 /obj/item/weapon/wrapping_paper/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "There is about [src.amount] square units of paper left!")
+	. = ..()
+	if(Adjacent(user))
+		. += "There is about [src.amount] square units of paper left!"
 
 /obj/item/weapon/wrapping_paper/attack(mob/target as mob, mob/user as mob)
 	if (!istype(target, /mob/living/carbon/human)) return

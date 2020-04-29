@@ -215,8 +215,8 @@
 		update_icon()
 
 /obj/item/weapon/shield/energy/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Alt-click to recolor it.</span>")
+	. = ..()
+	. += "<span class='notice'>Alt-click to recolor it.</span>"
 
 /obj/item/weapon/shield/riot/tele
 	name = "telescopic shield"

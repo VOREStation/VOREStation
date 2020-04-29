@@ -33,8 +33,9 @@ RSF
 	w_class = ITEMSIZE_NORMAL
 
 /obj/item/weapon/rsf/examine(mob/user)
-	if(..(user, 0))
-		to_chat(user,"<span class='notice'>It currently holds [stored_matter]/30 fabrication-units.</span>")
+	. = ..()
+	if(get_dist(user, src) == 0)
+		. += "<span class='notice'>It currently holds [stored_matter]/30 fabrication-units.</span>"
 
 /obj/item/weapon/rsf/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()

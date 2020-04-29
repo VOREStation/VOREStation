@@ -14,7 +14,7 @@ var/global/list/total_extraction_beacons = list()
 
 /obj/item/extraction_pack/examine()
 	. = ..()
-	usr.show_message("It has [uses_left] use\s remaining.", 1)
+	. += "It has [uses_left] use\s remaining."
 
 /obj/item/extraction_pack/attack_self(mob/user)
 	var/list/possible_beacons = list()

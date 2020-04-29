@@ -68,8 +68,9 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	var/spam_proof = FALSE // If true, it can't be spammed by random events.
 
 /obj/item/device/pda/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "The time [stationtime2text()] is displayed in the corner of the screen.")
+	. = ..()
+	if(Adjacent(user))
+		. += "The time [stationtime2text()] is displayed in the corner of the screen."
 
 /obj/item/device/pda/CtrlClick()
 	if(issilicon(usr))
