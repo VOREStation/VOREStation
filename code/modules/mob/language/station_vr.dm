@@ -110,6 +110,60 @@
 		"ver", "stv", "pro", "ski"
 	)
 
+/datum/language/mantid
+	name = LANGUAGE_MANTID_VOCAL
+	desc = "A curt, sharp language developed by the insectoid Ascent for use over comms."
+	speech_verb = "clicks"
+	ask_verb = "chirps"
+	exclaim_verb = "rasps"
+	colour = "alien"
+	syllables = list("-","=","+","_","|","/")
+	space_chance = 0
+	key = "|"
+	flags = RESTRICTED
+	var/list/can_speak_properly = list(
+		SPECIES_MANTID_ALATE
+	)
+
+/datum/language/mantid/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
+	. = ..(speaker, message, speaker.real_name)
+
+/datum/language/mantid/nonvocal
+	key = "]"
+	name = LANGUAGE_MANTID_NONVOCAL
+	desc = "A complex visual language of bright bio-luminescent flashes, 'spoken' natively by the Kharmaani of the Ascent."
+	colour = "alien"
+	speech_verb = "flashes"
+	ask_verb = "gleams"
+	exclaim_verb = "flares"
+	flags = RESTRICTED | NO_STUTTER | NONVERBAL
+
+#define MANTID_SCRAMBLE_CACHE_LEN 20
+/datum/language/mantid/nonvocal/scramble(var/input)
+	if(input in scramble_cache)
+		var/n = scramble_cache[input]
+		scramble_cache -= input
+		scramble_cache[input] = n
+		return n
+	var/i = length(input)
+	var/scrambled_text = ""
+	while(i)
+		i--
+		scrambled_text += "<font color='[get_random_colour(1)]'>*</font>"
+	scramble_cache[input] = scrambled_text
+	if(scramble_cache.len > MANTID_SCRAMBLE_CACHE_LEN)
+		scramble_cache.Cut(1, scramble_cache.len-MANTID_SCRAMBLE_CACHE_LEN-1)
+	return scrambled_text
+#undef MANTID_SCRAMBLE_CACHE_LEN
+
+/datum/language/mantid/nonvocal/can_speak_special(var/mob/living/speaker)
+	if(istype(speaker) && speaker.isSynthetic())
+		return TRUE
+	else if(ishuman(speaker))
+		var/mob/living/carbon/human/H = speaker
+		return (H.species.name == SPECIES_MANTID_ALATE)
+	return FALSE
+
 /datum/language/unathi
 	flags = 0
 /datum/language/tajaran
