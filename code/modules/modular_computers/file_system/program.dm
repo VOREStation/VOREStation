@@ -203,8 +203,12 @@
 
 /datum/computer_file/program/apply_visual(mob/M)
 	if(NM)
-		NM.apply_visual(M)
+		return NM.apply_visual(M)
 
 /datum/computer_file/program/remove_visual(mob/M)
 	if(NM)
-		NM.remove_visual(M)
+		return NM.remove_visual(M)
+
+/datum/computer_file/program/proc/relaymove(var/mob/M, direction)
+	if(NM)
+		return NM.relaymove(M, direction)

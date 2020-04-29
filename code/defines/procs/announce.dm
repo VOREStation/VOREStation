@@ -32,7 +32,7 @@
 	title = "Security Announcement"
 	announcement_type = "Security Announcement"
 
-/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast, var/msg_sanitized = 0, zlevel)
+/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast, var/msg_sanitized = 0, var/zlevel)
 	if(!message)
 		return
 	var/message_title = new_title ? new_title : title
@@ -52,11 +52,38 @@
 	Sound(message_sound, zlevels)
 	Log(message, message_title)
 
-datum/announcement/proc/Message(var/message as text, var/message_title as text, var/list/zlevels)
-	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME, zlevels)
+datum/announcement/proc/Message(message as text, message_title as text, var/list/zlevels)
+	for(var/mob/M in player_list)
+		if(!istype(M,/mob/new_player) && !isdeaf(M))
+			to_chat(M, "<h2 class='alert'>[title]</h2>")
+			to_chat(M, "<span class='alert'>[message]</span>")
+			if (announcer)
+				to_chat(M, "<span class='alert'> -[html_encode(announcer)]</span>")
 
-datum/announcement/minor/Message(var/message as text, var/message_title as text, var/list/zlevels)
-	global_announcer.autosay(message, announcer ? announcer : ANNOUNCER_NAME, zlevels)
+// You'll need to update these to_world usages if you want to make these z-level specific ~Aro
+datum/announcement/minor/Message(message as text, message_title as text)
+	to_world("<b>[message]</b>")
+
+datum/announcement/priority/Message(message as text, message_title as text)
+	to_world("<h1 class='alert'>[message_title]</h1>")
+	to_world("<span class='alert'>[message]</span>")
+	if(announcer)
+		to_world("<span class='alert'> -[html_encode(announcer)]</span>")
+	to_world("<br>")
+
+datum/announcement/priority/command/Message(message as text, message_title as text, var/list/zlevels)
+	var/command
+	command += "<h1 class='alert'>[command_name()] Update</h1>"
+	if (message_title)
+		command += "<br><h2 class='alert'>[message_title]</h2>"
+
+	command += "<br><span class='alert'>[message]</span><br>"
+	command += "<br>"
+	for(var/mob/M in player_list)
+		if(zlevels && !(get_z(M) in zlevels))
+			continue
+		if(!istype(M,/mob/new_player) && !isdeaf(M))
+			to_chat(M, command)
 
 datum/announcement/priority/Message(var/message as text, var/message_title as text, var/list/zlevels)
 	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME, zlevels)
