@@ -43,7 +43,7 @@
 // Override Polaris's "confederate" naming convention. I hate it.
 /obj/item/clothing/suit/storage/vest/solgov
 	name = "peacekeeper armored vest"
-	desc = "A synthetic armor vest. This one is marked with the crest of the Solar Commonwealth Government."
+	desc = "A synthetic armor vest. This one is marked with the crest of the Terran Commonwealth Government."
 
 /obj/item/clothing/suit/storage/vest/solgov/heavy
 	name = "peacekeeper heavy armored vest"

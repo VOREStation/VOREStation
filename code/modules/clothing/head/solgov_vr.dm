@@ -3,7 +3,7 @@
 //Utility
 /obj/item/clothing/head/soft/sol
 	name = "\improper SolCom cap"
-	desc = "It's a blue ballcap in Solar Commonwealth Government colors."
+	desc = "It's a blue ballcap in Terran Commonwealth Government colors."
 
 /obj/item/clothing/head/soft/sol/expedition
 	name = "\improper Explorer corps cap"
