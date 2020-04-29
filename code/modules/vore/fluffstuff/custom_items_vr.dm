@@ -439,8 +439,8 @@
 
 //SilencedMP5A5:Serdykov Antoz
 /obj/item/clothing/suit/armor/vest/wolftaur/serdy //SilencedMP5A5's specialty armor suit.
-	name = "custom security cuirass"
-	desc = "An armored vest that protects against some damage. It appears to be created for a wolfhound. The name 'Serdykov L. Antoz' is written on a tag inside one of the haunchplates."
+	name = "KSS-8 security armor"
+	desc = "A set of armor made from pieces of many other armors. There are two orange holobadges on it, one on the chestplate, one on the steel flank plates. The holobadges appear to be russian in origin. 'Kosmicheskaya Stantsiya-8' is printed in faded white letters on one side, along the spine. It smells strongly of dog."
 	species_restricted = null //Species restricted since all it cares about is a taur half
 	icon = 'icons/mob/taursuits_wolf_vr.dmi'
 	icon_state = "serdy_armor"
@@ -454,27 +454,16 @@
 		to_chat(H, "<span class='warning'>You need to have a wolf-taur half to wear this.</span>")
 		return 0
 
-/obj/item/clothing/head/serdyhelmet //SilencedMP5A5's specialty helmet.
-	name = "custom security helmet"
-	desc = "An old production model steel-ceramic lined helmet with a white stripe and a custom orange holographic visor. It has ear holes, and smells of dog."
+/obj/item/clothing/head/helmet/serdy //SilencedMP5A5's specialty helmet. Uncomment if/when they make their custom item app and are accepted.
+	name = "KSS-8 security helmet"
+	desc = "desc = An old production model steel-ceramic lined helmet with a white stripe and a custom orange holographic visor. It has ear holes, and smells of dog. It's been heavily modified, and fitted with a metal mask to protect the jaw."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "serdyhelm"
-	valid_accessory_slots = (ACCESSORY_SLOT_HELM_C)
-	restricted_accessory_slots = (ACCESSORY_SLOT_HELM_C)
-	flags = THICKMATERIAL
-	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
+
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "serdyhelm_mob"
-	cold_protection = HEAD
-	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = HEAD
-	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
-	siemens_coefficient = 0.7
-	w_class = ITEMSIZE_NORMAL
-	ear_protection = 1
-	drop_sound = 'sound/items/drop/helm.ogg'
 
-
+/*
 //SilencedMP5A5:Serdykov Antoz
 /obj/item/device/modkit_conversion/fluff/serdykit
 	name = "Serdykov's armor modification kit"
@@ -485,9 +474,9 @@
 
 	from_helmet = /obj/item/clothing/head/helmet
 	from_suit = /obj/item/clothing/suit/armor/vest/wolftaur
-	to_helmet = /obj/item/clothing/head/serdyhelmet
+	to_helmet = /obj/item/clothing/head/helmet/serdy
 	to_suit = /obj/item/clothing/suit/armor/vest/wolftaur/serdy
-
+*/
 
 //Cameron653: Diana Kuznetsova
 /obj/item/clothing/suit/fluff/purp_robes
@@ -1801,3 +1790,14 @@
          return 0
       else
          return 1
+
+//Nickcrazy - Damon Bones Xrim
+/obj/item/clothing/suit/storage/toggle/bomber/bombersec
+	name = "Security Bomber Jacket"
+	desc = "A black bomber jacket with the security emblem sewn onto it."
+
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "bombersec"
+
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+	item_state = "bombersec"
