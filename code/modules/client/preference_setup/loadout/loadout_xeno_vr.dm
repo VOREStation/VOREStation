@@ -89,3 +89,41 @@
 	display_name = "white wedding dress (Wolf/Horse-taur)"
 	path = /obj/item/clothing/suit/taur_dress/white
 	sort_category = "Xenowear"
+
+//Kharmaani Stuff
+/datum/gear/shoes/mantid
+	display_name = "Ascent Magboots (Alate)"
+	path = /obj/item/clothing/shoes/magboots/ascent
+	sort_category = "Xenowear"
+	whitelisted = SPECIES_MANTID_ALATE
+
+/datum/gear/suit/mantid_harness
+	display_name = "Ascent Harness (Alate)"
+	path = /obj/item/clothing/suit/storage/ascent
+	sort_category = "Xenowear"
+	whitelisted = SPECIES_MANTID_ALATE
+
+/datum/gear/uniform/mantid
+	display_name = "Ascent Undersuit (Alate)"
+	path = /obj/item/clothing/under/ascent
+	sort_category = "Xenowear"
+	whitelisted = SPECIES_MANTID_ALATE
+
+/datum/gear/mask/mantid
+	display_name = "Ascent Mask (Alate)"
+	path = /obj/item/clothing/mask/gas/ascent
+	sort_category = "Xenowear"
+	whitelisted = SPECIES_MANTID_ALATE
+
+//May comment out the spacesuit?
+/datum/gear/suit/mantid_space
+	display_name = "Ascent Voidsuit (Alate)"
+	path = /obj/item/clothing/suit/space/void/ascent
+	sort_category = "Xenowear"
+	whitelisted = SPECIES_MANTID_ALATE
+
+/datum/gear/head/mantid_space
+	display_name = "Ascent Helmet (Alate)"
+	path = /obj/item/clothing/head/helmet/space/void/ascent
+	sort_category = "Xenowear"
+	whitelisted = SPECIES_MANTID_ALATE
