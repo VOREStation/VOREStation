@@ -26,24 +26,17 @@
 			if(shell)
 				. += "It appears to be an [deployed ? "active" : "empty"] AI shell."
 			else if(!src.client)
-<<<<<<< HEAD
-				msg += "It appears to be in stand-by mode.\n" //afk
-		if(UNCONSCIOUS)		msg += "<span class='warning'>It doesn't seem to be responding.</span>\n"
-		if(DEAD)			msg += "<span class='deadsay'>It looks completely unsalvageable.</span>\n"
-	msg += attempt_vr(src,"examine_bellies_borg",args) //VOREStation Edit
-
-	// VOREStation Edit: Start
-	if(ooc_notes)
-		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a>\n"
-	// VOREStation Edit: End
-
-	msg += "*---------*"
-=======
 				. += "It appears to be in stand-by mode." //afk
 		if(UNCONSCIOUS)		. += "<span class='warning'>It doesn't seem to be responding.</span>"
 		if(DEAD)			. += "<span class='deadsay'>It looks completely unsalvageable.</span>"
+	
+	// VOREStation Edit: Start
+	. += attempt_vr(src,"examine_bellies_borg",args) //VOREStation Edit
+	if(ooc_notes)
+		. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a>"
+	// VOREStation Edit: End
+
 	. += "*---------*"
->>>>>>> 6c6644f... Rewrite examine() to pass a list around (#7038)
 
 	if(print_flavor_text()) . += "<br>[print_flavor_text()]"
 

@@ -40,14 +40,9 @@
 	. = ..()
 
 /obj/item/weapon/extinguisher/examine(mob/user)
-<<<<<<< HEAD
-	if(..(user, 0))
-		to_chat(user, "[bicon(src)] [src.name] contains [src.reagents.total_volume] units of foam left!") //VOREStation Edit
-=======
 	. = ..()
 	if(get_dist(user, src) == 0)
-		. += "[src] has [src.reagents.total_volume] units of water left!"
->>>>>>> 6c6644f... Rewrite examine() to pass a list around (#7038)
+		. += "[src] has [src.reagents.total_volume] units of foam left!" //VOREStation Edit - Foam not water
 
 /obj/item/weapon/extinguisher/attack_self(mob/user as mob)
 	safety = !safety

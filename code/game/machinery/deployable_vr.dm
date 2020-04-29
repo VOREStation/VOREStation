@@ -66,8 +66,8 @@
 /obj/structure/barricade/cutout/examine(var/mob/user)
 	. = ..()
 
-	if(Adjacent(user, src))
-		to_chat(user, "<br><span class='notice'>... from this distance, they seem to be made of [material.name] ...</span>")
+	if(Adjacent(user))
+		. += "<span class='notice'>... from this distance, they seem to be made of [material.name] ...</span>"
 
 /obj/structure/barricade/cutout/attackby(var/obj/I, var/mob/user)
 	if(is_type_in_list(I, painters))

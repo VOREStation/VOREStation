@@ -91,8 +91,4 @@
 	. = ..()
 	. += "It is [enabled ? "enabled" : "disabled"]."
 	if(alarm)
-<<<<<<< HEAD
-		to_chat(user, "A red LED labeled \"Proximity Alarm\" is blinking on the control panel.")
-=======
 		. += "A red LED labeled \"Proximity Alarm\" is blinking on the control panel."
->>>>>>> 6c6644f... Rewrite examine() to pass a list around (#7038)

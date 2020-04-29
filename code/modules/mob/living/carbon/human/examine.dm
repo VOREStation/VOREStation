@@ -97,7 +97,7 @@
 	if(!((skip_gear & EXAMINE_SKIPJUMPSUIT) && (skip_body & EXAMINE_SKIPFACE)))
 		//VOREStation Add Start
 		if(custom_species)
-			msg += ", a <b>[src.custom_species]</b>"
+			name_ender = ", a <b>[src.custom_species]</b>"
 		else if(looks_synth)
 		//VOREStation Add End
 			var/use_gender = "a synthetic"
@@ -280,13 +280,20 @@
 	if(suiciding)
 		msg += "<span class='warning'>[T.He] appears to have commited suicide... there is no hope of recovery.</span>"
 
-	msg += attempt_vr(src,"examine_weight",args) //VOREStation Code
-	msg += attempt_vr(src,"examine_nutrition",args) //VOREStation Code
-	msg += attempt_vr(src,"examine_bellies",args) //VOREStation Code
-	msg += attempt_vr(src,"examine_pickup_size",args) //VOREStation Code
-	msg += attempt_vr(src,"examine_step_size",args) //VOREStation Code
-	msg += attempt_vr(src,"examine_nif",args) //VOREStation Code
-	msg += attempt_vr(src,"examine_chimera",args) //VOREStation Code
+	//VOREStation Add
+	var/list/vorestrings = list()
+	vorestrings += examine_weight()
+	vorestrings += examine_nutrition()
+	vorestrings += examine_bellies()
+	vorestrings += examine_pickup_size()
+	vorestrings += examine_step_size()
+	vorestrings += examine_nif()
+	vorestrings += examine_chimera()
+	for(var/entry in vorestrings)
+		if(entry == "" || entry == null)
+			vorestrings -= entry
+	msg += vorestrings
+	//VOREStation Add End
 
 	if(mSmallsize in mutations)
 		msg += "[T.He] [T.is] very short!"
@@ -314,17 +321,13 @@
 		if(!key)
 			msg += "<span class='deadsay'>[T.He] [T.is] [ssd_msg]. It doesn't look like [T.he] [T.is] waking up anytime soon.</span>"
 		else if(!client)
-<<<<<<< HEAD
-			msg += "<span class='deadsay'>[T.He] [T.is] [ssd_msg].</span><br>"
+			msg += "<span class='deadsay'>[T.He] [T.is] [ssd_msg].</span>"
 		//VOREStation Add Start
 		if(client && ((client.inactivity / 10) / 60 > 10)) //10 Minutes
-			msg += "\[Inactive for [round((client.inactivity/10)/60)] minutes\]\n"
+			msg += "\[Inactive for [round((client.inactivity/10)/60)] minutes\]"
 		else if(disconnect_time)
-			msg += "\[Disconnected/ghosted [round(((world.realtime - disconnect_time)/10)/60)] minutes ago\]\n"
+			msg += "\[Disconnected/ghosted [round(((world.realtime - disconnect_time)/10)/60)] minutes ago\]"
 		//VOREStation Add End
-=======
-			msg += "<span class='deadsay'>[T.He] [T.is] [ssd_msg].</span>"
->>>>>>> 6c6644f... Rewrite examine() to pass a list around (#7038)
 
 	var/list/wound_flavor_text = list()
 	var/list/is_bleeding = list()
@@ -437,21 +440,14 @@
 	if(flavor_text)
 		msg += "[flavor_text]"
 
-<<<<<<< HEAD
 	// VOREStation Start
 	if(ooc_notes)
-		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a>\n"
-
-	msg += "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>\n"
-
+		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a>"
+	msg += "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>"
 	// VOREStation End
-	msg += "*---------*</span><br>"
-	msg += applying_pressure
-=======
 	msg += "*---------*</span>"
 	if(applying_pressure)
 		msg += applying_pressure
->>>>>>> 6c6644f... Rewrite examine() to pass a list around (#7038)
 
 	var/show_descs = show_descriptors_to(user)
 	if(show_descs)

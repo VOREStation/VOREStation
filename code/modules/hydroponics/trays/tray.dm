@@ -1,11 +1,7 @@
 /obj/machinery/portable_atmospherics/hydroponics
 	name = "hydroponics tray"
-<<<<<<< HEAD
-	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
-=======
 	desc = "A tray usually full of fluid for growing plants."
-	icon = 'icons/obj/hydroponics_machines.dmi'
->>>>>>> 6c6644f... Rewrite examine() to pass a list around (#7038)
+	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
 	icon_state = "hydrotray3"
 	density = 1
 	anchored = 1

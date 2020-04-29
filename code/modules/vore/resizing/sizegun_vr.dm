@@ -49,9 +49,8 @@
 	to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
 
 /obj/item/weapon/gun/energy/sizegun/examine(mob/user)
-	..()
-	var/size_examine = (size_set_to*100)
-	to_chat(user, "<span class='info'>It is currently set at [size_examine]%</span>")
+	. = ..()
+	. += "<span class='info'>It is currently set at [size_set_to*100]%</span>"
 
 //
 // Beams for size gun

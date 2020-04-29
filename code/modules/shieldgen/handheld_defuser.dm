@@ -54,10 +54,5 @@
 
 /obj/item/weapon/shield_diffuser/examine(mob/user)
 	. = ..()
-<<<<<<< HEAD
-	to_chat(user, "The charge meter reads [cell ? cell.percent() : 0]%")
-	to_chat(user, "It is [enabled ? "enabled" : "disabled"].")
-=======
 	. += "The charge meter reads [cell ? cell.percent() : 0]%"
 	. += "It is [enabled ? "enabled" : "disabled"]."
->>>>>>> 6c6644f... Rewrite examine() to pass a list around (#7038)
