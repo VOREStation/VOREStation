@@ -416,6 +416,8 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 /obj/machinery/gravity_generator/main/proc/update_areas()
 	areas.Cut()
 	for(var/area/A)
+		if(istype(A, /area/shuttle))
+			continue //Skip shuttle areas
 		if(A.z in levels)
 			areas += A
 
