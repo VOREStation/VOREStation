@@ -101,13 +101,13 @@
 		set_light(0)
 
 /obj/item/weapon/melee/baton/examine(mob/user)
-	if(!..(user, 1))
-		return
+	. = ..()
 
-	if(bcell)
-		to_chat(user, "<span class='notice'>The baton is [round(bcell.percent())]% charged.</span>")
-	if(!bcell)
-		to_chat(user, "<span class='warning'>The baton does not have a power source installed.</span>")
+	if(Adjacent(user, src))
+		if(bcell)
+			. += "<span class='notice'>The baton is [round(bcell.percent())]% charged.</span>"
+		if(!bcell)
+			. += "<span class='warning'>The baton does not have a power source installed.</span>"
 
 /obj/item/weapon/melee/baton/attackby(obj/item/weapon/W, mob/user)
 	if(use_external_power)

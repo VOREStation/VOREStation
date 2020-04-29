@@ -34,9 +34,13 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 
 /obj/item/device/survivalcapsule/examine(mob/user)
 	. = ..()
-	get_template()
-	to_chat(user, "This capsule has the [template.name] stored.")
-	to_chat(user, template.description)
+	if(!template)
+		get_template()
+	if(template)
+		. += "This capsule has the [template.name] stored:"
+		. += template.description
+	else
+		. += "This capsule has an unknown template stored."
 
 /obj/item/device/survivalcapsule/attack_self()
 	//Can't grab when capsule is New() because templates aren't loaded then

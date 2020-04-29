@@ -41,9 +41,9 @@
 // this is to prevent easy checks from the opposing force.
 /mob/living/simple_mob/illusion/examine(mob/user)
 	if(copying)
-		copying.examine(user)
-		return
-	..()
+		return copying.examine(user)
+	else
+		return list("???")
 
 /mob/living/simple_mob/illusion/bullet_act(obj/item/projectile/P)
 	if(!P)

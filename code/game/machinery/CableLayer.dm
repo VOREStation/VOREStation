@@ -49,8 +49,8 @@
 			to_chat(usr, "<span class='warning'>There's no more cable on the reel.</span>")
 
 /obj/machinery/cablelayer/examine(mob/user)
-	..()
-	to_chat(user, "\The [src]'s cable reel has [cable.amount] length\s left.")
+	. = ..()
+	. += "[src]'s cable reel has [cable.amount] length\s left."
 
 /obj/machinery/cablelayer/proc/load_cable(var/obj/item/stack/cable_coil/CC)
 	if(istype(CC) && CC.amount)

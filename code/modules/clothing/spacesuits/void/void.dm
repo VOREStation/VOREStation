@@ -68,13 +68,11 @@
 	var/obj/item/device/suit_cooling_unit/cooler = null// Cooling unit, for FBPs.  Cannot be installed alongside a tank.
 
 /obj/item/clothing/suit/space/void/examine(user)
-	..(user)
-	var/list/part_list = new
+	. = ..()
 	for(var/obj/item/I in list(helmet,boots,tank,cooler))
-		part_list += "\a [I]"
-	to_chat(user, "\The [src] has [english_list(part_list)] installed.")
+		. += "It has \a [I] installed."
 	if(tank && in_range(src,user))
-		to_chat(user, "<span class='notice'>The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].</span>")
+		. += "<span class='notice'>The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].</span>"
 
 /obj/item/clothing/suit/space/void/refit_for_species(var/target_species)
 	..()

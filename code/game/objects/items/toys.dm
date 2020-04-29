@@ -154,8 +154,9 @@
 	drop_sound = 'sound/items/drop/gun.ogg'
 
 	examine(mob/user)
-		if(..(user, 2) && bullets)
-			to_chat(user, "<span class='notice'>It is loaded with [bullets] foam darts!</span>")
+		. = ..()
+		if(bullets && get_dist(user, src) <= 2)
+			. += "<span class='notice'>It is loaded with [bullets] foam darts!</span>"
 
 	attackby(obj/item/I as obj, mob/user as mob)
 		if(istype(I, /obj/item/toy/ammo/crossbow))
@@ -315,8 +316,8 @@
 		update_icon()
 
 /obj/item/toy/sword/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Alt-click to recolor it.</span>")
+	. = ..()
+	. += "<span class='notice'>Alt-click to recolor it.</span>"
 
 /obj/item/toy/sword/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/device/multitool) && !active)
@@ -824,11 +825,11 @@
 	var/obj/item/stored_item	// Note: Stored items can't be bigger than the plushie itself.
 
 /obj/structure/plushie/examine(mob/user)
-	..()
+	. = ..()
 	if(opened)
-		to_chat(user, "<i>You notice an incision has been made on [src].</i>")
+		. += "<i>You notice an incision has been made on [src].</i>"
 		if(in_range(user, src) && stored_item)
-			to_chat(user, "<i>You can see something in there...</i>")
+			. += "<i>You can see something in there...</i>"
 
 /obj/structure/plushie/attack_hand(mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -923,11 +924,11 @@
 
 
 /obj/item/toy/plushie/examine(mob/user)
-	..()
+	. = ..()
 	if(opened)
-		to_chat(user, "<i>You notice an incision has been made on [src].</i>")
+		. += "<i>You notice an incision has been made on [src].</i>"
 		if(in_range(user, src) && stored_item)
-			to_chat(user, "<i>You can see something in there...</i>")
+			. += "<i>You can see something in there...</i>"
 
 /obj/item/toy/plushie/attack_self(mob/user as mob)
 	if(stored_item && opened && !searching)

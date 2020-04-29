@@ -86,11 +86,11 @@
 	..()
 
 /obj/item/clothing/accessory/holster/examine(mob/user)
-	..(user)
-	if (holstered)
-		to_chat(user, "A [holstered] is holstered here.")
+	. = ..(user)
+	if(holstered)
+		. += "A [holstered] is holstered here."
 	else
-		to_chat(user, "It is empty.")
+		. += "It is empty."
 
 /obj/item/clothing/accessory/holster/on_attached(obj/item/clothing/under/S, mob/user as mob)
 	..()

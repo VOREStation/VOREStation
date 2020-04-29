@@ -31,12 +31,12 @@
 
 // Not going to check type repeatedly, if you code or varedit
 // load_type and get runtime errors, don't come crying to me.
-/obj/item/weapon/gun/magnetic/railgun/show_ammo(var/mob/user)
+/obj/item/weapon/gun/magnetic/railgun/show_ammo()
 	var/obj/item/weapon/rcd_ammo/ammo = loaded
 	if (ammo)
-		to_chat(user, "<span class='notice'>There are [ammo.remaining] shot\s remaining in \the [loaded].</span>")
+		return list("<span class='notice'>There are [ammo.remaining] shot\s remaining in \the [loaded].</span>")
 	else
-		to_chat(user, "<span class='notice'>There is nothing loaded.</span>")
+		return list("<span class='notice'>There is nothing loaded.</span>")
 
 /obj/item/weapon/gun/magnetic/railgun/check_ammo()
 	var/obj/item/weapon/rcd_ammo/ammo = loaded
@@ -77,9 +77,9 @@
 		)
 
 /obj/item/weapon/gun/magnetic/railgun/automatic/examine(var/mob/user)
-	. = ..(user,1)
-	if(.)
-		to_chat(user, "<span class='notice'>Someone has scratched <i>Ultima Ratio Regum</i> onto the side of the barrel.</span>")
+	. = ..()
+	if(Adjacent(user))
+		. += "<span class='notice'>Someone has scratched <i>Ultima Ratio Regum</i> onto the side of the barrel.</span>"
 
 /obj/item/weapon/gun/magnetic/railgun/flechette
 	name = "flechette gun"

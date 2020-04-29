@@ -169,7 +169,7 @@
 	return found
 
 //All atoms
-/atom/proc/examine(mob/user, var/distance = -1, var/infix = "", var/suffix = "")
+/atom/proc/examine(mob/user, var/infix = "", var/suffix = "")
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
 	var/f_name = "\a [src][infix]."
 	if(src.blood_DNA && !istype(src, /obj/effect/decal))
@@ -182,16 +182,15 @@
 		else
 			f_name += "oil-stained [name][infix]."
 
-	to_chat(user, "[bicon(src)] That's [f_name] [suffix]")
-	to_chat(user,desc)
+	var/list/output = list("[bicon(src)] That's [f_name] [suffix]", desc)
 
 	if(user.client?.examine_text_mode == EXAMINE_MODE_INCLUDE_USAGE)
-		to_chat(user, description_info)
+		output += description_info
 
 	if(user.client?.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL)
 		user.client.statpanel = "Examine" // Switch to stat panel
 
-	return distance == -1 || (get_dist(src, user) <= distance)
+	return output
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.

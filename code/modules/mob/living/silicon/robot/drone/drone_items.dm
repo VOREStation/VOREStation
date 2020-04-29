@@ -29,10 +29,10 @@
 	var/force_holder = null //
 
 /obj/item/weapon/gripper/examine(mob/user)
-	..()
+	. = ..()
 	if(wrapped)
-		to_chat(user, "<span class='notice'>\The [src] is holding \the [wrapped].</span>")
-		wrapped.examine(user)
+		. += "<span class='notice'>\The [src] is holding \the [wrapped].</span>"
+		. += wrapped.examine(user)
 
 /obj/item/weapon/gripper/CtrlClick(mob/user)
 	drop_item()

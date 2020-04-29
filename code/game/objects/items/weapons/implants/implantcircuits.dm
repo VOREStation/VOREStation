@@ -36,7 +36,7 @@
 	IC.emp_act(severity)
 
 /obj/item/weapon/implant/integrated_circuit/examine(mob/user)
-	IC.examine(user)
+	return IC.examine(user)
 
 /obj/item/weapon/implant/integrated_circuit/attackby(var/obj/item/O, var/mob/user)
 	if(O.is_crowbar() || istype(O, /obj/item/device/integrated_electronics) || istype(O, /obj/item/integrated_circuit) || O.is_screwdriver() || istype(O, /obj/item/weapon/cell/device) )

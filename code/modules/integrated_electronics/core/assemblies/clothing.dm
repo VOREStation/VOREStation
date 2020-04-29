@@ -47,9 +47,9 @@
 	..()
 
 /obj/item/clothing/examine(mob/user)
+	. = ..()
 	if(IC)
-		IC.examine(user)
-	..()
+		. += IC.examine(user)
 
 /obj/item/clothing/CtrlShiftClick(mob/user)
 	var/turf/T = get_turf(src)

@@ -100,16 +100,13 @@
 		fill_dart(dart)
 
 /obj/item/weapon/gun/projectile/dartgun/examine(mob/user)
-	//update_icon()
-	//if (!..(user, 2))
-	//	return
-	..()
-	if (beakers.len)
-		to_chat(user, "<font color='blue'>[src] contains:</font>")
+	. = ..()
+	if(beakers.len)
+		. += "<span class='notice'>[src] contains:</span>"
 		for(var/obj/item/weapon/reagent_containers/glass/beaker/B in beakers)
 			if(B.reagents && B.reagents.reagent_list.len)
 				for(var/datum/reagent/R in B.reagents.reagent_list)
-					to_chat(user, "<font color='blue'>[R.volume] units of [R.name]</font>")
+					. += "<span class='notice'>[R.volume] units of [R.name]</span>"
 
 /obj/item/weapon/gun/projectile/dartgun/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/reagent_containers/glass))

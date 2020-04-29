@@ -102,12 +102,12 @@
 			overlays += I
 
 	examine(mob/user)
-		if(..(user, 4))
+		. = ..()
+		if(get_dist(user, src) <= 4)
 			if(sortTag)
-				to_chat(user, "<span class='notice'>It is labeled \"[sortTag]\"</span>")
+				. += "<span class='notice'>It is labeled \"[sortTag]\"</span>"
 			if(examtext)
-				to_chat(user, "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>")
-		return
+				. += "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>"
 
 /obj/item/smallDelivery
 	desc = "A small wrapped package."
@@ -209,12 +209,11 @@
 			overlays += I
 
 	examine(mob/user)
-		if(..(user, 4))
+		if(get_dist(user, src) <= 4)
 			if(sortTag)
-				to_chat(user, "<span class='notice'>It is labeled \"[sortTag]\"</span>")
+				. += "<span class='notice'>It is labeled \"[sortTag]\"</span>"
 			if(examtext)
-				to_chat(user, "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>")
-		return
+				. += "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>"
 
 /obj/item/weapon/packageWrap
 	name = "package wrapper"
@@ -312,10 +311,9 @@
 		return
 
 	examine(mob/user)
-		if(..(user, 0))
-			to_chat(user, "<font color='blue'>There are [amount] units of package wrap left!</font>")
-
-		return
+		. = ..()
+		if(get_dist(user, src) <= 0)
+			. += "<font color='blue'>There are [amount] units of package wrap left!</font>"
 
 /obj/structure/bigDelivery/Destroy()
 	if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0

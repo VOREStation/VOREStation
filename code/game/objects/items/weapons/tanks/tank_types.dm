@@ -22,9 +22,9 @@
 	return
 
 /obj/item/weapon/tank/oxygen/examine(mob/user)
-	if(..(user, 0) && air_contents.gas["oxygen"] < 10)
-		to_chat(user, text("<span class='warning'>The meter on \the [src] indicates you are almost out of oxygen!</span>"))
-		//playsound(usr, 'sound/effects/alert.ogg', 50, 1)
+	. = ..()
+	if(loc == user && (air_contents.gas["oxygen"] < 10))
+		. += "<span class='warning'>The meter on \the [src] indicates you are almost out of oxygen!</span>"
 
 /obj/item/weapon/tank/oxygen/yellow
 	desc = "A tank of oxygen, this one is yellow."
@@ -60,8 +60,9 @@
 	icon_state = "oxygen"
 
 /obj/item/weapon/tank/air/examine(mob/user)
-	if(..(user, 0) && air_contents.gas["oxygen"] < 1 && loc==user)
-		to_chat(user, "<span class='danger'>The meter on the [src.name] indicates you are almost out of air!</span>")
+	. = ..()
+	if(loc == user && (air_contents.gas["oxygen"] < 1))
+		. += "<span class='warning'>The meter on \the [src] indicates you are almost out of air!</span>"
 		user << sound('sound/effects/alert.ogg')
 
 /obj/item/weapon/tank/air/Initialize()
@@ -153,8 +154,9 @@
 	return
 
 /obj/item/weapon/tank/emergency/oxygen/examine(mob/user)
-	if(..(user, 0) && air_contents.gas["oxygen"] < 0.2 && loc==user)
-		to_chat(user, text("<span class='danger'>The meter on the [src.name] indicates you are almost out of air!</span>"))
+	. = ..()
+	if(loc == user && (air_contents.gas["oxygen"] < 0.2))
+		. += "<span class='danger'>The meter on the [src.name] indicates you are almost out of air!</span>"
 		user << sound('sound/effects/alert.ogg')
 
 /obj/item/weapon/tank/emergency/oxygen/engi
@@ -228,8 +230,9 @@
 	return
 
 /obj/item/weapon/tank/nitrogen/examine(mob/user)
-	if(..(user, 0) && air_contents.gas["nitrogen"] < 10)
-		to_chat(user, text("<span class='danger'>The meter on \the [src] indicates you are almost out of nitrogen!</span>"))
+	. = ..()
+	if(loc == user && (air_contents.gas["nitrogen"] < 10))
+		. += "<span class='danger'>The meter on \the [src] indicates you are almost out of nitrogen!</span>"
 		//playsound(user, 'sound/effects/alert.ogg', 50, 1)
 
 /obj/item/weapon/tank/stasis/nitro_cryo // Synthmorph bags need to have initial pressure within safe bounds for human atmospheric pressure, but low temperature to stop unwanted degredation.

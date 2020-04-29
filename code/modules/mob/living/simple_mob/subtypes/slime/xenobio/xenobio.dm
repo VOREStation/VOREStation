@@ -73,25 +73,25 @@
 	..()
 
 /mob/living/simple_mob/slime/xenobio/examine(mob/user)
-	..()
+	. = ..()
 	if(hat)
-		to_chat(user, "It is wearing \a [hat].")
+		. += "It is wearing \a [hat]."
 
 	if(stat == DEAD)
-		to_chat(user, "It appears to be dead.")
+		. += "It appears to be dead."
 	else if(incapacitated(INCAPACITATION_DISABLED))
-		to_chat(user, "It appears to be incapacitated.")
+		. += "It appears to be incapacitated."
 	else if(harmless)
-		to_chat(user, "It appears to have been pacified.")
+		. += "It appears to have been pacified."
 	else
 		if(has_AI())
 			var/datum/ai_holder/simple_mob/xenobio_slime/AI = ai_holder
 			if(AI.rabid)
-				to_chat(user, "It seems very, very angry and upset.")
+				. += "It seems very, very angry and upset."
 			else if(AI.obedience >= 5)
-				to_chat(user, "It looks rather obedient.")
+				. += "It looks rather obedient."
 			else if(AI.discipline)
-				to_chat(user, "It has been subjugated by force, at least for now.")
+				. += "It has been subjugated by force, at least for now."
 
 /mob/living/simple_mob/slime/xenobio/proc/make_adult()
 	if(is_adult)

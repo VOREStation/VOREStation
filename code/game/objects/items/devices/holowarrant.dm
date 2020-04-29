@@ -13,11 +13,11 @@
 /obj/item/device/holowarrant/examine(mob/user)
 	. = ..()
 	if(active)
-		to_chat(user, "It's a holographic warrant for '[active.fields["namewarrant"]]'.")
+		. += "It's a holographic warrant for '[active.fields["namewarrant"]]'."
 	if(in_range(user, src) || istype(user, /mob/observer/dead))
-		show_content(user)
+		show_content(user) //Opens a browse window, not chatbox related
 	else
-		to_chat(user, "<span class='notice'>You have to go closer if you want to read it.</span>")
+		. += "<span class='notice'>You have to go closer if you want to read it.</span>"
 
 //hit yourself with it
 /obj/item/device/holowarrant/attack_self(mob/living/user as mob)
