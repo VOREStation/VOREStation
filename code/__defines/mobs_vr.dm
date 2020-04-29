@@ -30,6 +30,7 @@
 #define SPECIES_VULPKANIN		"Vulpkanin"
 #define SPECIES_XENOCHIMERA		"Xenochimera"
 #define SPECIES_ZORREN_HIGH		"Zorren"
+#define SPECIES_MANTID_ALATE    "Kharmaan Alate"
 #define SPECIES_CUSTOM			"Custom Species"
 //monkey species
 #define SPECIES_MONKEY_AKULA		"Sobaka"
