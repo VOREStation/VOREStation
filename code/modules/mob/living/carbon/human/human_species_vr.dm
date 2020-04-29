@@ -26,5 +26,8 @@
 /mob/living/carbon/human/alraune/New(var/new_loc)
 	..(new_loc, "Alraune")
 
+/mob/living/carbon/human/alate/New(var/new_loc)
+	..(new_loc, "Kharmaan Alate")
+
 /mob/living/carbon/human/shadekin/New(var/new_loc)
 	..(new_loc, SPECIES_SHADEKIN)
