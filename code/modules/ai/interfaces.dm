@@ -7,12 +7,12 @@
 	return FALSE
 
 /mob/living/simple_mob/IAttack(atom/A)
-	if(!canClick()) // Still on cooldown from a "click".
+	if(!checkClickCooldown()) // Still on cooldown from a "click".
 		return ATTACK_ON_COOLDOWN
 	return attack_target(A) // This will set click cooldown.
 
 /mob/living/carbon/human/IAttack(atom/A)
-	if(!canClick()) // Still on cooldown from a "click".
+	if(!checkClickCooldown()) // Still on cooldown from a "click".
 		return FALSE
 	return ClickOn(A) // Except this is an actual fake "click".
 
@@ -20,7 +20,7 @@
 	return FALSE
 
 /mob/living/simple_mob/IRangedAttack(atom/A)
-	if(!canClick()) // Still on cooldown from a "click".
+	if(!checkClickCooldown()) // Still on cooldown from a "click".
 		return ATTACK_ON_COOLDOWN
 	return shoot_target(A)
 

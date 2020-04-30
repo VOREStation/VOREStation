@@ -51,7 +51,7 @@
 		CtrlClickOn(A)
 		return
 
-	if(control_disabled || !canClick())
+	if(control_disabled || !checkClickCooldown())
 		return
 
 	if(aiCamera.in_camera_mode)

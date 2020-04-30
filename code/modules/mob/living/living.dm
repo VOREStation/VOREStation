@@ -895,7 +895,7 @@ default behaviour is:
 	set name = "Resist"
 	set category = "IC"
 
-	if(!incapacitated(INCAPACITATION_KNOCKOUT) && canClick())
+	if(!incapacitated(INCAPACITATION_KNOCKOUT) && checkClickCooldown())
 		setClickCooldown(20)
 		resist_grab()
 		if(!weakened)
