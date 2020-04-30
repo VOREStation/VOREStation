@@ -228,7 +228,7 @@ var/redspace_abduction_z
 			fake_autosave(L, user)
 		return
 
-	target.move_delay = 99999999
+	target.setMoveCooldown(10 SECONDS)
 
 	to_chat(target, "<span class='notice' style='font: small-caps bold large monospace!important'>Autosaving your progress, please wait...</span>")
 	target << 'sound/effects/ding.ogg'
@@ -257,7 +257,6 @@ var/redspace_abduction_z
 
 	spawn(10 SECONDS)
 		if(target)
-			target.move_delay = 0
 			to_chat(target, "<span class='notice' style='font: small-caps bold large monospace!important'>Autosave complete!</span>")
-		if(target.client)
-			target.client.screen -= loader
+			if(target.client)
+				target.client.screen -= loader
