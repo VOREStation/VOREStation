@@ -18,4 +18,3 @@
 
 #define COLOR_ASTEROID_ROCK    "#735555"
 #define COLOR_GOLD             "#ffcc33"
-#define COLOR_DARK             "#4c535b"
