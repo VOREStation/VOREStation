@@ -511,8 +511,6 @@
 	if(!new_character)
 		new_character = new(T)
 
-	new_character.lastarea = get_area(T)
-
 	if(ticker.random_players)
 		new_character.gender = pick(MALE, FEMALE)
 		client.prefs.real_name = random_name(new_character.gender)
