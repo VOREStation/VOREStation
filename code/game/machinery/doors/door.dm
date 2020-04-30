@@ -9,7 +9,7 @@
 	anchored = 1
 	opacity = 1
 	density = 1
-	can_atmos_pass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_PROC
 	layer = DOOR_OPEN_LAYER
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
@@ -157,8 +157,8 @@
 
 /obj/machinery/door/CanZASPass(turf/T, is_zone)
 	if(is_zone)
-		return block_air_zones ? ATMOS_PASS_NO : ATMOS_PASS_YES
-	return ..()
+		return !block_air_zones // Block merging unless block_air_zones = 0
+	return !density // Block airflow unless density = 0
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)	return
