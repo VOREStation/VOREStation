@@ -239,7 +239,7 @@
 		return
 	if(state == GRAB_UPGRADING)
 		return
-	if(!assailant.canClick())
+	if(!assailant.checkClickCooldown())
 		return
 	if(world.time < (last_action + UPGRADE_COOLDOWN))
 		return

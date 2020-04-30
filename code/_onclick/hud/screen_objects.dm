@@ -54,7 +54,7 @@
 /obj/screen/item_action/Click()
 	if(!usr || !owner)
 		return 1
-	if(!usr.canClick())
+	if(!usr.checkClickCooldown())
 		return
 
 	if(usr.stat || usr.restrained() || usr.stunned || usr.lying)
@@ -85,7 +85,7 @@
 	name = "storage"
 
 /obj/screen/storage/Click()
-	if(!usr.canClick())
+	if(!usr.checkClickCooldown())
 		return 1
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
 		return 1
@@ -494,7 +494,7 @@
 /obj/screen/inventory/Click()
 	// At this point in client Click() code we have passed the 1/10 sec check and little else
 	// We don't even know if it's a middle click
-	if(!usr.canClick())
+	if(!usr.checkClickCooldown())
 		return 1
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
 		return 1

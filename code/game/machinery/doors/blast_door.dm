@@ -269,7 +269,7 @@
 // If for some reason this is actually needed for something important, uncomment this.
 /obj/machinery/door/blast/CanZASPass(turf/T, is_zone)
 	if(is_zone)
-		return ATMOS_PASS_YES
+		return TRUE
 	return ..()
 */
 

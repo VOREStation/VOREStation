@@ -79,6 +79,9 @@
 		healing.expire()
 	return ..()
 
+/mob/living/simple_mob/protean_blob/speech_bubble_appearance()
+	return "synthetic"
+
 /mob/living/simple_mob/protean_blob/init_vore()
 	return //Don't make a random belly, don't waste your time
 

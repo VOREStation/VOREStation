@@ -2961,12 +2961,12 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm4)
 "SD" = (
-/obj/item/weapon/bedsheet/rddouble,
 /obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/hopdouble,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm4)
 "SE" = (
-/obj/structure/prop/alien/computer{
+/obj/structure/prop/alien/computer/hybrid{
 	dir = 8
 	},
 /turf/simulated/shuttle/floor/alien,
@@ -3002,7 +3002,7 @@
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm4)
 "SP" = (
-/obj/structure/table/alien,
+/obj/structure/table/alien/blue,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm4)
 "SQ" = (
@@ -3162,12 +3162,12 @@
 /turf/unsimulated/beach/sand,
 /area/beach)
 "Tt" = (
-/obj/item/weapon/bedsheet/rddouble,
 /obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/hopdouble,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm3)
 "Tu" = (
-/obj/structure/prop/alien/computer{
+/obj/structure/prop/alien/computer/hybrid{
 	dir = 8
 	},
 /turf/simulated/shuttle/floor/alien,
@@ -3191,7 +3191,7 @@
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm3)
 "TB" = (
-/obj/structure/table/alien,
+/obj/structure/table/alien/blue,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm3)
 "TC" = (
@@ -5874,9 +5874,9 @@ ae
 Ux
 Uz
 Uw
-UG
 UK
 UM
+UG
 UQ
 US
 US
@@ -5892,9 +5892,9 @@ ae
 SY
 SZ
 SX
-Tk
 Tp
 Tq
+Tk
 Tu
 Ty
 Ty
@@ -7578,9 +7578,9 @@ ae
 TM
 TN
 TK
-TT
 TX
 Ua
+TT
 Ud
 Ug
 Ug
@@ -7596,9 +7596,9 @@ ae
 Sn
 So
 Sm
-Su
 SA
 SB
+Su
 SE
 SK
 SK

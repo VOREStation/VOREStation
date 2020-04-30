@@ -40,7 +40,7 @@
 	if(!istype(M))
 		return ..()
 	// Optimization, no need to call update_music() if both are null (or same instance, strange as that would be)
-	if(M.lastarea && M.lastarea.media_source == src.media_source)
+	if(M.lastarea?.media_source == src.media_source)
 		return ..()
 	if(M.client && M.client.media && !M.client.media.forced)
 		M.update_music()
