@@ -27,7 +27,7 @@
 	if(can_feel_pain())
 		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
 
-	var/hungry = (MAX_NUTRITION - nutrition) / 5
+	var/hungry = (500 - nutrition) / 5 //VOREStation Edit - Fixed 500 here instead of our huge MAX_NUTRITION
 	if (hungry >= 70) tally += hungry/50
 
 	//VOREstation start
