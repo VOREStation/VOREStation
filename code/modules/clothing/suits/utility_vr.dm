@@ -24,9 +24,6 @@
 	icon = 'icons/obj/clothing/suits_vr.dmi'
 	icon_state = "ascent_harness"
 	storage_slots = 7
-	max_storage_space = ITEMSIZE_COST_NORMAL * 7 //This should ensure belts always have enough room to store whatever.
-	max_w_class = ITEMSIZE_NORMAL
-	body_parts_covered = 0
 	slot_flags = SLOT_OCLOTHING | SLOT_BELT
 	allowed = list(
 		/obj/item/weapon/tool/crowbar,
