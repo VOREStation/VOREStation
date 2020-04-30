@@ -58,10 +58,10 @@
 		camera.c_tag = usr.name
 		to_chat(usr, "<font color='blue'>User scanned as [camera.c_tag]. Camera activated.</font>")
 
-/obj/item/clothing/head/helmet/space/examine()
-	..()
-	if(camera_networks && get_dist(usr,src) <= 1)
-		to_chat(usr, "This helmet has a built-in camera. It's [camera ? "" : "in"]active.")
+/obj/item/clothing/head/helmet/space/examine(mob/user)
+	. = ..()
+	if(camera_networks && Adjacent(user))
+		. += "This helmet has a built-in camera. It's [camera ? "" : "in"]active."
 
 /obj/item/clothing/suit/space
 	name = "Space suit"

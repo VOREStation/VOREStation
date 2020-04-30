@@ -58,6 +58,18 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
+/obj/item/device/uav/examine(mob/user)
+	. = ..()
+	if(Adjacent(user))
+		. += "It has <i>'[nickname]'</i> scribbled on the side."
+	if(!cell)
+		. += "<span class='warning'>It appears to be missing a power cell.</span>"
+	
+	if(health <= (initial(health)/4))
+		. += "<span class='warning'>It looks like it might break at any second!</span>"
+	else if(health <= (initial(health)/2))
+		. += "<span class='warning'>It looks pretty beaten up...</span>"
+
 /obj/item/device/uav/attack_hand(var/mob/user)
 	//Has to be on the ground to work with it properly
 	if(!isturf(loc))

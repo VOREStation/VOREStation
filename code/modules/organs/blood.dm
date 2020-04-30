@@ -133,9 +133,9 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		// Without enough blood you slowly go hungry.
 		if(blood_volume < BLOOD_VOLUME_SAFE)
 			if(nutrition >= 300)
-				nutrition -= 10
+				adjust_nutrition(-10)
 			else if(nutrition >= 200)
-				nutrition -= 3
+				adjust_nutrition(-3)
 
 		//Bleeding out
 		var/blood_max = 0

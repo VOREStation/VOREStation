@@ -342,24 +342,24 @@
 		return
 
 	if(beaker)
-		to_chat(user, "The IV drip is [mode ? "injecting" : "taking blood"].")
-		to_chat(user, "It is set to transfer [transfer_amount]u of chemicals per cycle.")
+		. += "The IV drip is [mode ? "injecting" : "taking blood"]."
+		. += "It is set to transfer [transfer_amount]u of chemicals per cycle."
 		if(beaker.reagents && beaker.reagents.total_volume)
-			to_chat(user, "<span class='notice'>Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid.</span>")
+			. += "<span class='notice'>Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid.</span>"
 		else
-			to_chat(user, "<span class='notice'>Attached is an empty [beaker].</span>")
-		to_chat(user, "<span class='notice'>[attached ? attached : "No one"] is hooked up to it.</span>")
+			. += "<span class='notice'>Attached is an empty [beaker].</span>"
+		. += "<span class='notice'>[attached ? attached : "No one"] is hooked up to it.</span>"
 	else
-		to_chat(user, "<span class='notice'>There is no vessel.</span>")
+		. += "<span class='notice'>There is no vessel.</span>"
 
 	if(tank)
 		if (!is_loosen)
-			to_chat(user, "\The [tank] connected.")
-		to_chat(user, "The meter shows [round(tank.air_contents.return_pressure())]. The valve is [valve_opened == TRUE ? "open" : "closed"].")
+			. += "\The [tank] connected."
+		. += "The meter shows [round(tank.air_contents.return_pressure())]. The valve is [valve_opened == TRUE ? "open" : "closed"]."
 		if (tank.distribute_pressure == 0)
-			to_chat(user, "Use wrench to replace tank.")
+			. += "Use wrench to replace tank."
 	else
-		to_chat(user, "<span class='notice'>There is no tank.</span>")
+		. += "<span class='notice'>There is no tank.</span>"
 
 /obj/structure/medical_stand/process()
 	//Gas Stuff

@@ -331,7 +331,7 @@ var/global/list/latejoin_tram   = list()
 	desc = "Wall-mounted Medical Equipment dispenser. This limited-use version dispenses antitoxins with mild painkillers for surface EVAs."
 	icon_state = "wallmed"
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
-	products = list(/obj/item/weapon/reagent_containers/pill/airlock = 10,/obj/item/device/healthanalyzer = 1)
+	products = list(/obj/item/weapon/reagent_containers/pill/airlock = 20)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 2)
 	req_log_access = access_cmo
 	has_logs = 1

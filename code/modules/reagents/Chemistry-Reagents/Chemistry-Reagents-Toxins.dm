@@ -19,7 +19,7 @@
 		if(alien == IS_SLIME)
 			removed *= 0.25 // Results in half the standard tox as normal. Prometheans are 'Small' for flaps.
 			if(dose >= 10)
-				M.nutrition += strength * removed //Body has to deal with the massive influx of toxins, rather than try using them to repair.
+				M.adjust_nutrition(strength * removed) // Body has to deal with the massive influx of toxins, rather than try using them to repair.
 			else
 				M.heal_organ_damage((10/strength) * removed, (10/strength) * removed) //Doses of toxins below 10 units, and 10 strength, are capable of providing useful compounds for repair.
 		M.adjustToxLoss(strength * removed)
@@ -396,7 +396,7 @@
 
 /datum/reagent/toxin/sifslurry/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA) // Symbiotic bacteria.
-		M.nutrition += strength * removed
+		M.adjust_nutrition(strength * removed)
 		return
 	else
 		M.add_modifier(/datum/modifier/slow_pulse, 30 SECONDS)

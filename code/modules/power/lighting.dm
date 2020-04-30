@@ -56,23 +56,22 @@ var/global/list/light_type_cache = list()
 			icon_state = "tube-empty"
 
 /obj/machinery/light_construct/examine(mob/user)
-	if(!..(user, 2))
-		return
-
-	switch(src.stage)
-		if(1)
-			to_chat(user, "It's an empty frame.")
-		if(2)
-			to_chat(user, "It's wired.")
-		if(3)
-			to_chat(user, "The casing is closed.")
-	if(cell_connectors)
-		if(cell)
-			to_chat(user, "You see [cell] inside the casing.")
+	. = ..()
+	if(get_dist(user, src) <= 2)
+		switch(stage)
+			if(1)
+				. += "It's an empty frame."
+			if(2)
+				. += "It's wired."
+			if(3)
+				. += "The casing is closed."
+		if(cell_connectors)
+			if(cell)
+				. += "You see [cell] inside the casing."
+			else
+				. += "The casing has no power cell for backup power."
 		else
-			to_chat(user, "The casing has no power cell for backup power.")
-	else
-		to_chat(user, "<span class='danger'>This casing doesn't support power cells for backup power.</span>")
+			. += "<span class='danger'>This casing doesn't support power cells for backup power.</span>"
 
 /obj/machinery/light_construct/attack_hand(mob/user)
 	. = ..()
@@ -485,18 +484,19 @@ var/global/list/light_type_cache = list()
 
 // examine verb
 /obj/machinery/light/examine(mob/user)
+	. = ..()
 	var/fitting = get_fitting_name()
 	switch(status)
 		if(LIGHT_OK)
-			to_chat(user, "[desc] It is turned [on? "on" : "off"].")
+			. += "It is turned [on? "on" : "off"]."
 		if(LIGHT_EMPTY)
-			to_chat(user, "[desc] The [fitting] has been removed.")
+			. += "The [fitting] has been removed."
 		if(LIGHT_BURNED)
-			to_chat(user, "[desc] The [fitting] is burnt out.")
+			. += "The [fitting] is burnt out."
 		if(LIGHT_BROKEN)
-			to_chat(user, "[desc] The [fitting] has been smashed.")
+			. += "The [fitting] has been smashed."
 	if(cell)
-		to_chat(user, "Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%.")
+		. += "Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%."
 
 /obj/machinery/light/proc/get_fitting_name()
 	var/obj/item/weapon/light/L = light_type

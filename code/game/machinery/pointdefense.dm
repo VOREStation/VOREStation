@@ -158,9 +158,9 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	underlays += I
 
 /obj/machinery/power/pointdefense/examine(mob/user)
-	..()
+	. = ..()
 	if(powernet)
-		to_chat(user, "It is connected to a power cable below.")
+		. += "It is connected to a power cable below."
 
 /obj/machinery/power/pointdefense/get_description_interaction()
 	. = ..()

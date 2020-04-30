@@ -84,9 +84,9 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		..()
 
 	examine(mob/user)
-		..()
+		. = ..()
 		if(iscultist(user))
-			to_chat(user, "This spell circle reads: <i>[word1] [word2] [word3]</i>.")
+			. += "This spell circle reads: <i>[word1] [word2] [word3]</i>."
 
 
 	attackby(I as obj, user as mob)
@@ -422,10 +422,11 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 			return
 
 	examine(mob/user)
+		. = ..()
 		if(!iscultist(user))
-			to_chat(user, "An old, dusty tome with frayed edges and a sinister looking cover.")
+			. += "An old, dusty tome with frayed edges and a sinister looking cover."
 		else
-			to_chat(user, "The scriptures of Nar-Sie, The One Who Sees, The Geometer of Blood. Contains the details of every ritual his followers could think of. Most of these are useless, though.")
+			. += "The scriptures of Nar-Sie, The One Who Sees, The Geometer of Blood. Contains the details of every ritual his followers could think of. Most of these are useless, though."
 
 /obj/item/weapon/book/tome/cultify()
 	return

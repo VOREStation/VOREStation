@@ -249,14 +249,14 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 			chamber_offset = rand(0,max_shells - loaded.len)
 
 /obj/item/weapon/gun/projectile/revolver/lemat/examine(mob/user)
-	..()
+	. = ..()
 	if(secondary_loaded)
 		var/to_print
 		for(var/round in secondary_loaded)
 			to_print += round
-		to_chat(user, "\The [src] has a secondary barrel loaded with \a [to_print]")
+		. += "It has a secondary barrel loaded with \a [to_print]"
 	else
-		to_chat(user, "\The [src] has a secondary barrel that is empty.")
+		. += "It has a secondary barrel that is empty."
 
 
 //Ported from Bay

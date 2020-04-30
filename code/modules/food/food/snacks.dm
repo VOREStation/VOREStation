@@ -43,7 +43,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/attack_self(mob/user as mob)
 	return
 
-/obj/item/weapon/reagent_containers/food/snacks/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/weapon/reagent_containers/food/snacks/attack(mob/living/M as mob, mob/user as mob, def_zone)
 	if(reagents && !reagents.total_volume)
 		to_chat(user, "<span class='danger'>None of [src] left!</span>")
 		user.drop_from_inventory(src)
@@ -92,9 +92,6 @@
 			if (fullness > 6000) // There has to be a limit eventually.
 				to_chat(M, "<span class='danger'>Your stomach blorts and aches, prompting you to stop. You literally cannot force any more of [src] to go down your throat.</span>")
 				return 0
-			/*if (fullness > (550 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
-				to_chat(M, "<span class='danger'>You cannot force any more of [src] to go down your throat.</span>")
-				return 0*/
 			//VOREStation Edit End
 
 		else if(user.a_intent == I_HURT)
@@ -123,12 +120,7 @@
 					to_chat(user, "<span class='warning'>\The [blocked] is in the way!</span>")
 					return
 
-				/*if (fullness <= (550 * (1 + M.overeatduration / 1000))) // Vorestation edit
-					user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
-				else
-					user.visible_message("<span class='danger'>[user] cannot force anymore of [src] down [M]'s throat.</span>")
-					return 0*/
-				user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>") // Vorestation edit
+				user.visible_message("<span class='danger'>[user] attempts to feed [M] [src].</span>")
 
 				user.setClickCooldown(user.get_attack_speed(src))
 				if(!do_mob(user, M)) return
@@ -156,16 +148,16 @@
 	return 0
 
 /obj/item/weapon/reagent_containers/food/snacks/examine(mob/user)
-	if(!..(user, 1))
-		return
-	if (bitecount==0)
-		return
-	else if (bitecount==1)
-		to_chat(user, "<font color='blue'>\The [src] was bitten by someone!</font>")
-	else if (bitecount<=3)
-		to_chat(user, "<font color='blue'>\The [src] was bitten [bitecount] times!</font>")
-	else
-		to_chat(user, "<font color='blue'>\The [src] was bitten multiple times!</font>")
+	. = ..()
+	if(Adjacent(user))
+		if(bitecount==0)
+			return .
+		else if (bitecount==1)
+			. += "<span class='notice'>It was bitten by someone!</span>"
+		else if (bitecount<=3)
+			. += "<span class='notice'>It was bitten [bitecount] times!</span>"
+		else
+			. += "<span class='notice'>It was bitten multiple times!</span>"
 
 /obj/item/weapon/reagent_containers/food/snacks/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/storage))

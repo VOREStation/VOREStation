@@ -55,7 +55,7 @@
 
 	luminosity = !(dynamic_lighting)
 	icon_state = ""
-	
+
 	return INITIALIZE_HINT_LATELOAD // Areas tradiationally are initialized AFTER other atoms.
 
 /area/LateInitialize()
@@ -421,17 +421,20 @@ var/list/mob/living/forced_ambiance_list = new
 		to_chat(mob, "<span class='notice'>The sudden appearance of gravity makes you fall to the floor!</span>")
 		playsound(get_turf(src), "bodyfall", 50, 1)
 
-/area/proc/prison_break()
+/area/proc/prison_break(break_lights = TRUE, open_doors = TRUE, open_blast_doors = TRUE)
 	var/obj/machinery/power/apc/theAPC = get_apc()
 	if(theAPC.operating)
-		for(var/obj/machinery/power/apc/temp_apc in src)
-			temp_apc.overload_lighting(70)
-		for(var/obj/machinery/door/airlock/temp_airlock in src)
-			temp_airlock.prison_open()
-		for(var/obj/machinery/door/window/temp_windoor in src)
-			temp_windoor.open()
-		for(var/obj/machinery/door/blast/temp_blast in src)
-			temp_blast.open()
+		if(break_lights)
+			for(var/obj/machinery/power/apc/temp_apc in src)
+				temp_apc.overload_lighting(70)
+		if(open_doors)
+			for(var/obj/machinery/door/airlock/temp_airlock in src)
+				temp_airlock.prison_open()
+			for(var/obj/machinery/door/window/temp_windoor in src)
+				temp_windoor.open()
+		if(open_blast_doors)
+			for(var/obj/machinery/door/blast/temp_blast in src)
+				temp_blast.open()
 
 /area/has_gravity()
 	return has_gravity

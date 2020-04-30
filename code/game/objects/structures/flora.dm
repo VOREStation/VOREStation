@@ -36,9 +36,9 @@
 		max_harvests = max(0, rand(min_harvests, max_harvests)) // Incase you want to weight it more toward 'not harvestable', set min_harvests to a negative value.
 
 /obj/structure/flora/examine(mob/user)
-	. = ..(user)
+	. = ..()
 	if(harvest_count < max_harvests)
-		to_chat(user, "<span class='notice'>\The [src] seems to have something hanging from it.</span>")
+		. += "<span class='notice'>It seems to have something hanging from it.</span>"
 
 /obj/structure/flora/attackby(var/obj/item/weapon/W, var/mob/living/user)
 	if(can_harvest(W))
@@ -225,9 +225,9 @@
 	var/obj/item/stored_item
 	
 /obj/structure/flora/pottedplant/examine(mob/user)
-	..()
+	. = ..()
 	if(in_range(user, src) && stored_item)
-		to_chat(user, "<i>You can see something in there...</i>")
+		. += "<i>You can see something in there...</i>"
 
 /obj/structure/flora/pottedplant/attackby(obj/item/I, mob/user)
 	if(stored_item)

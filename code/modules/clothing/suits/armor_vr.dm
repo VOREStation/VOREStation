@@ -42,20 +42,20 @@
 
 // Override Polaris's "confederate" naming convention. I hate it.
 /obj/item/clothing/suit/storage/vest/solgov
-	name = "\improper Solar Central Government armored vest"
-	desc = "A synthetic armor vest. This one is marked with the crest of the Solar Central Government."
+	name = "peacekeeper armored vest"
+	desc = "A synthetic armor vest. This one is marked with the crest of the Terran Commonwealth Government."
 
 /obj/item/clothing/suit/storage/vest/solgov/heavy
-	name = "\improper Solar Central Government heavy armored vest"
-	desc = "A synthetic armor vest with SECURITY printed in distinctive blue lettering on the chest. This one has added webbing and ballistic plates." // USDF does peacekeeping, not these guys.
+	name = "peacekeeper heavy armored vest"
+	desc = "A synthetic armor vest with PEACEKEEPER printed in distinctive blue lettering on the chest. This one has added webbing and ballistic plates."
 
 /obj/item/clothing/suit/storage/vest/solgov/security
 	name = "master at arms heavy armored vest"
 	desc = "A synthetic armor vest with MASTER AT ARMS printed in silver lettering on the chest. This one has added webbing and ballistic plates."
 
 /obj/item/clothing/suit/storage/vest/solgov/command
-	name = "command heavy armored vest"
-	desc = "A synthetic armor vest with Solar Central Government printed in detailed gold lettering on the chest. This one has added webbing and ballistic plates."
+	name = "commander heavy armored vest"
+	desc = "A synthetic armor vest with COMMANDER printed in detailed gold lettering on the chest. This one has added webbing and ballistic plates."
 
 /obj/item/clothing/suit/armor/combat/USDF
 	name = "marine body armor"

@@ -51,10 +51,10 @@
 			icon_state = "pinonfar"
 
 /obj/item/weapon/pinpointer/examine(mob/user)
-	..(user)
+	. = ..()
 	for(var/obj/machinery/nuclearbomb/bomb in machines)
 		if(bomb.timing)
-			to_chat(user, "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]")
+			. += "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]"
 
 
 

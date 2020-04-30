@@ -11,8 +11,9 @@
 	pixel_y = 0			// Override value from parent.
 
 /obj/item/weapon/holder/micro/examine(mob/user)
+	. = list()
 	for(var/mob/living/M in contents)
-		M.examine(user)
+		. += M.examine(user)
 
 /obj/item/weapon/holder/MouseDrop(mob/M)
 	..()

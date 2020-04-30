@@ -1,3 +1,6 @@
+/obj/item/clothing/under/customs
+	desc = "A standard SolCom customs uniform. Complete with epaulettes."
+
 /obj/item/clothing/var/hides_bulges = FALSE // OwO wats this?
 
 /obj/item/clothing/under/permit

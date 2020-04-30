@@ -118,9 +118,9 @@
 				to_chat(user, "<span class='warning'>\The [W] is empty.</span>")
 
 /obj/item/weapon/grenade/chem_grenade/examine(mob/user)
-	..(user)
+	. = ..()
 	if(detonator)
-		to_chat(user, "With attached [detonator.name]")
+		. += "It has [detonator.name] attached to it."
 
 /obj/item/weapon/grenade/chem_grenade/activate(mob/user as mob)
 	if(active) return

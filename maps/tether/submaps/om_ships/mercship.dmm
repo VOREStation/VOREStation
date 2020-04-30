@@ -3824,9 +3824,6 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
 	},
-/obj/item/weapon/storage/firstaid/insiderepair,
-/obj/item/weapon/storage/firstaid/insiderepair,
-/obj/item/weapon/storage/firstaid/insiderepair,
 /turf/simulated/floor/tiled/white,
 /area/ship/mercenary/armoury)
 "gK" = (

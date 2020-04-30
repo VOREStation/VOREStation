@@ -48,8 +48,8 @@
 	C.registered_name = H.real_name
 	return C
 
-/decl/hierarchy/outfit/solgov/representative
-	name = "SolGov Representative"
+/decl/hierarchy/outfit/solcom/representative
+	name = "SolCom Representative"
 	shoes = /obj/item/clothing/shoes/laceup
 	l_ear = /obj/item/device/radio/headset/centcom
 	uniform = /obj/item/clothing/under/suit_jacket/navy
@@ -59,13 +59,13 @@
 	r_hand = /obj/item/device/pda/centcom
 	l_hand = /obj/item/weapon/clipboard
 
-/decl/hierarchy/outfit/solgov/representative/equip_id(mob/living/carbon/human/H)
+/decl/hierarchy/outfit/solcom/representative/equip_id(mob/living/carbon/human/H)
 	var/obj/item/weapon/card/id/C = ..()
-	C.name = "[H.real_name]'s SolGov ID Card"
+	C.name = "[H.real_name]'s SolCom ID Card"
 	C.icon_state = "lifetime"
 	C.access = get_all_station_access()
 	C.access += get_all_centcom_access()
-	C.assignment = "SolGov Representative"
+	C.assignment = "SolCom Representative"
 	C.registered_name = H.real_name
 	return C
 

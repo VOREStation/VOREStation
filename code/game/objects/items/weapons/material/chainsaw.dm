@@ -113,9 +113,9 @@ obj/item/weapon/chainsaw/proc/get_fuel()
 	return reagents.get_reagent_amount("fuel")
 
 obj/item/weapon/chainsaw/examine(mob/user)
-	if(..(user,0))
-		if(max_fuel)
-			to_chat(usr, "<span class = 'notice'>The [src] feels like it contains roughtly [get_fuel()] units of fuel left.</span>")
+	. = ..()
+	if(max_fuel && get_dist(user, src) == 0)
+		. += "<span class = 'notice'>The [src] feels like it contains roughtly [get_fuel()] units of fuel left.</span>"
 
 obj/item/weapon/chainsaw/suicide_act(mob/user)
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]

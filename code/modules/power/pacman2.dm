@@ -51,8 +51,8 @@
 		power_gen = round(initial(power_gen) * (max(2, temp_rating) / 2))
 
 	examine(mob/user)
-		..(user)
-		to_chat(user, "<font color='blue'>The generator has [P.air_contents.phoron] units of fuel left, producing [power_gen] per cycle.</font>")
+		. = ..()
+		. += "<span class='notice'>The generator has [P.air_contents.phoron] units of fuel left, producing [power_gen] per cycle.</span>"
 
 	handleInactive()
 		heat -= 2

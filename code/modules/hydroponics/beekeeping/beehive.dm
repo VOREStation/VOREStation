@@ -31,9 +31,9 @@
 				overlays += "bees3"
 
 /obj/machinery/beehive/examine(var/mob/user)
-	..()
+	. = ..()
 	if(!closed)
-		to_chat(user, "The lid is open.")
+		. += "The lid is open."
 
 /obj/machinery/beehive/attackby(var/obj/item/I, var/mob/user)
 	if(I.is_crowbar())

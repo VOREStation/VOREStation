@@ -5018,7 +5018,6 @@
 	pixel_y = -32
 	},
 /obj/item/weapon/storage/box/body_record_disk,
-/obj/item/weapon/storage/firstaid/insiderepair,
 /obj/item/weapon/storage/firstaid/clotting,
 /obj/item/weapon/storage/firstaid/bonemed,
 /obj/item/weapon/storage/firstaid/adv{

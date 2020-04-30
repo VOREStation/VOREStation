@@ -1214,7 +1214,7 @@
 	default_material = "durasteel"
 	},
 /obj/item/clothing/accessory/holster/machete,
-/obj/item/weapon/storage/firstaid/insiderepair,
+/obj/item/weapon/storage/firstaid/combat,
 /obj/item/weapon/storage/firstaid/combat,
 /obj/item/weapon/storage/toolbox/syndicate/powertools,
 /obj/item/weapon/storage/box/syndie_kit/demolitions_super_heavy{

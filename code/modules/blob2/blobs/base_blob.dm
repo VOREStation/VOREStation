@@ -64,11 +64,11 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	return FALSE
 
 /obj/structure/blob/examine(mob/user)
-	..()
+	. = ..()
 	if(!overmind)
-		to_chat(user, "It seems inert.") // Dead blob.
+		. += "It seems inert." // Dead blob.
 	else
-		to_chat(user, overmind.blob_type.desc)
+		. += overmind.blob_type.desc
 
 /obj/structure/blob/get_description_info()
 	if(overmind)

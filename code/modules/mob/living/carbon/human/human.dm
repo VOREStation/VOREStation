@@ -1141,6 +1141,7 @@
 		// Clear out their species abilities.
 		species.remove_inherent_verbs(src)
 		holder_type = null
+		hunger_rate = initial(hunger_rate) //VOREStation Add
 
 	species = GLOB.all_species[new_species]
 
@@ -1184,6 +1185,7 @@
 
 
 	maxHealth = species.total_health
+	hunger_rate = species.hunger_factor //VOREStation Add
 
 	if(LAZYLEN(descriptors))
 		descriptors = null

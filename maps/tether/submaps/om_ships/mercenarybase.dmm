@@ -3686,7 +3686,6 @@
 /area/mercbase/engineering)
 "ov" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/firstaid/insiderepair,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medicalOR)
 "ow" = (

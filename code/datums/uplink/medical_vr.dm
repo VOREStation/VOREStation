@@ -50,8 +50,3 @@
 	name = "Healing Nanite pill bottle"
 	item_cost = 30
 	path = /obj/item/weapon/storage/pill_bottle/healing_nanites
-
-/datum/uplink_item/item/medical/insiderepair
-	name = "Combat organ kit"
-	item_cost = 120
-	path = /obj/item/weapon/storage/firstaid/insiderepair
