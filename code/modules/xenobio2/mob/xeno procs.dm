@@ -75,7 +75,7 @@ Divergence proc, used in mutation to make unique datums.
 				heal_overall_damage(reagent_response["heal"] * reagent_total)
 
 			if(reagent_response["nutr"])
-				nutrition += reagent_response["nutr"] * reagent_total
+				adjust_nutrition(reagent_response["nutr"] * reagent_total)
 
 			if(reagent_response["mut"])
 				mut_level += reagent_response["mut"] * reagent_total

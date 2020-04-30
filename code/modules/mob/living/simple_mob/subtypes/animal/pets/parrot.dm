@@ -41,11 +41,11 @@
 	return say(message)
 
 // Ugly saycode so parrots can use their headsets.
-/mob/living/simple_mob/animal/passive/bird/parrot/handle_message_mode(message_mode, message, verb, used_radios)
+/mob/living/simple_mob/animal/passive/bird/parrot/handle_message_mode(message_mode, message, verb, speaking, used_radios)
 	..()
 	if(message_mode)
 		if(my_headset && istype(my_headset, /obj/item/device/radio))
-			my_headset.talk_into(src, message, message_mode, verb)
+			my_headset.talk_into(src, message, message_mode, verb, speaking)
 			used_radios += my_headset
 
 // Clicked on while holding an object.
@@ -90,9 +90,9 @@
 		my_headset = null
 
 /mob/living/simple_mob/animal/passive/bird/parrot/examine(mob/user)
-	..()
+	. = ..()
 	if(my_headset)
-		to_chat(user, "It is wearing \a [my_headset].")
+		. += "It is wearing \a [my_headset]."
 
 /mob/living/simple_mob/animal/passive/bird/parrot/Initialize()
 	if(my_headset)
@@ -109,7 +109,7 @@
 	icon_rest = "poly-held"
 	icon_dead = "poly-dead"
 	tt_desc = "E Ara macao"
-	//my_headset = /obj/item/device/radio/headset/headset_eng	//VOREStation Removal: shut up
+	//my_headset = /obj/item/device/radio/headset/headset_eng //VOREStation Removal
 	say_list_type = /datum/say_list/bird/poly
 
 // Best Bird with best headset.

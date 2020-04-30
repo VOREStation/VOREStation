@@ -21,32 +21,35 @@
 
 /obj/structure/closet/emcloset/Initialize()
 	switch (pickweight(list("small" = 55, "aid" = 25, "tank" = 10, "both" = 10)))
+	//VOREStation Block Edit Start - Modified List
 		if ("small")
 			starts_with = list(
 				/obj/item/weapon/tank/emergency/oxygen = 2,
 				/obj/item/clothing/mask/breath = 2,
-				/obj/item/clothing/suit/space/emergency,
-				/obj/item/clothing/head/helmet/space/emergency)
+				/obj/item/clothing/suit/space/emergency = 2,
+				/obj/item/clothing/head/helmet/space/emergency = 2)
 		if ("aid")
 			starts_with = list(
 				/obj/item/weapon/tank/emergency/oxygen,
 				/obj/item/weapon/storage/toolbox/emergency,
 				/obj/item/clothing/mask/breath,
-				/obj/item/weapon/storage/firstaid/o2,
 				/obj/item/clothing/suit/space/emergency,
 				/obj/item/clothing/head/helmet/space/emergency)
 		if ("tank")
 			starts_with = list(
 				/obj/item/weapon/tank/emergency/oxygen/engi = 2,
-				/obj/item/clothing/mask/breath = 2)
+				/obj/item/clothing/mask/breath = 2,
+				/obj/item/clothing/suit/space/emergency = 2,
+				/obj/item/clothing/head/helmet/space/emergency = 2)
 		if ("both")
 			starts_with = list(
 				/obj/item/weapon/storage/toolbox/emergency,
-				/obj/item/weapon/tank/emergency/oxygen/engi,
-				/obj/item/clothing/mask/breath,
 				/obj/item/weapon/storage/firstaid/o2,
+				/obj/item/weapon/tank/emergency/oxygen/engi = 2,
+				/obj/item/clothing/mask/breath = 2,
 				/obj/item/clothing/suit/space/emergency = 2,
 				/obj/item/clothing/head/helmet/space/emergency = 2)
+	//VOREStation Block Edit End
 
 	return ..()
 

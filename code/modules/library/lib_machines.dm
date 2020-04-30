@@ -471,6 +471,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
  */
 /obj/machinery/libraryscanner
 	name = "scanner"
+	desc = "A scanner for scanning in books and papers."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "bigscanner"
 	anchored = 1

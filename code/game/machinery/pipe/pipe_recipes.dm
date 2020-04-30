@@ -3,6 +3,7 @@
 //
 
 var/global/list/atmos_pipe_recipes = null
+var/global/list/disposal_pipe_recipes = null
 
 /hook/startup/proc/init_pipe_recipes()
 	global.atmos_pipe_recipes = list(
@@ -48,16 +49,38 @@ var/global/list/atmos_pipe_recipes = null
 			new /datum/pipe_recipe/pipe("Pipe",					/obj/machinery/atmospherics/pipe/simple/insulated),
 		)
 	)
+	global.disposal_pipe_recipes = list(
+		"Disposal Pipes" = list(
+			new /datum/pipe_recipe/disposal("Pipe",						DISPOSAL_PIPE_STRAIGHT, "conpipe-s", PIPE_STRAIGHT),
+			new /datum/pipe_recipe/disposal("Bent Pipe",				DISPOSAL_PIPE_CORNER, "conpipe-c"),
+			new /datum/pipe_recipe/disposal("Junction",					DISPOSAL_PIPE_JUNCTION, "conpipe-j1", PIPE_TRIN_M),
+			new /datum/pipe_recipe/disposal("Y-Junction",				DISPOSAL_PIPE_JUNCTION_Y, "conpipe-y"),
+			new /datum/pipe_recipe/disposal("Sort Junction",			DISPOSAL_PIPE_SORTER, "conpipe-j1s", PIPE_TRIN_M, DISPOSAL_SORT_NORMAL),
+			new /datum/pipe_recipe/disposal("Sort Junction (Wildcard)",	DISPOSAL_PIPE_SORTER, "conpipe-j1s", PIPE_TRIN_M, DISPOSAL_SORT_WILDCARD),
+			new /datum/pipe_recipe/disposal("Sort Junction (Untagged)",	DISPOSAL_PIPE_SORTER, "conpipe-j1s", PIPE_TRIN_M, DISPOSAL_SORT_UNTAGGED),
+			new /datum/pipe_recipe/disposal("Tagger",					DISPOSAL_PIPE_TAGGER, "pipe-tagger", PIPE_STRAIGHT),
+			new /datum/pipe_recipe/disposal("Tagger (Partial)",			DISPOSAL_PIPE_TAGGER_PARTIAL, "pipe-tagger-partial", PIPE_STRAIGHT),
+			new /datum/pipe_recipe/disposal("Trunk",					DISPOSAL_PIPE_TRUNK, "conpipe-t"),
+			new /datum/pipe_recipe/disposal("Upwards",					DISPOSAL_PIPE_UPWARD, "pipe-u"),
+			new /datum/pipe_recipe/disposal("Downwards",				DISPOSAL_PIPE_DOWNWARD, "pipe-d"),
+			new /datum/pipe_recipe/disposal("Bin",						DISPOSAL_PIPE_BIN, "disposal", PIPE_ONEDIR),
+			new /datum/pipe_recipe/disposal("Outlet",					DISPOSAL_PIPE_OUTLET, "outlet"),
+			new /datum/pipe_recipe/disposal("Chute",					DISPOSAL_PIPE_CHUTE, "intake"),
+		)
+	)
 	return TRUE
 
 //
 // New method of handling pipe construction.  Instead of numeric constants and a giant switch statement of doom
 // 	every pipe type has a datum instance which describes its name, placement rules and construction method, dispensing etc.
 // The advantages are obvious, mostly in simplifying the code of the dispenser, and the ability to add new pipes without hassle.
+// icon_state and icon_state_m must be from among those available from the dmi files included in /datum/asset/iconsheet/pipes
 //
 /datum/pipe_recipe
 	var/name = "Abstract Pipe (fixme)"	// Recipe name
-	var/dirtype					// If using an RPD, this tells more about what previews to show.
+	var/icon_state = null				// This tells the RPD what kind of pipe icon to render for the preview.
+	var/icon_state_m = null				// This stores the mirrored version of the regular state (if available).
+	var/dirtype							// If using an RPD, this tells more about what previews to show.
 
 // Render an HTML link to select this pipe type. Returns text.
 /datum/pipe_recipe/proc/Render(dispenser)
@@ -78,7 +101,10 @@ var/global/list/atmos_pipe_recipes = null
 	name = label
 	pipe_type = path
 	construction_type = initial(path.construction_type)
+	icon_state = initial(path.pipe_state)
 	dirtype = initial(construction_type.dispenser_class)
+	if (dirtype == PIPE_TRIN_M)
+		icon_state_m = "[icon_state]m"
 
 // Render an HTML link to select this pipe type
 /datum/pipe_recipe/pipe/Render(dispenser)
@@ -98,9 +124,32 @@ var/global/list/atmos_pipe_recipes = null
 //
 /datum/pipe_recipe/meter
 	dirtype = PIPE_ONEDIR
+	icon_state = "meter"
 
 /datum/pipe_recipe/meter/New(label)
 	name = label
 
 /datum/pipe_recipe/meter/Params()
 	return "makemeter=1"
+
+//
+// Subtype for disposal pipes
+//
+/datum/pipe_recipe/disposal
+	var/pipe_type		// pipe_type is one of the DISPOSAL_PIPE_ ptype constants.
+	var/subtype			// subtype is one of the DISPOSAL_SORT_ constants.
+
+/datum/pipe_recipe/disposal/New(var/label, var/ptype, var/state, dt=PIPE_DIRECTIONAL, var/sort=0)
+	name = label
+	icon_state = state
+	pipe_type = ptype
+	dirtype = dt
+	subtype = sort
+	if (dirtype == PIPE_TRIN_M)
+		icon_state_m = replacetext(state, "j1", "j2")
+
+/datum/pipe_recipe/disposal/Params()
+	var/param = "dmake=[pipe_type]"
+	if (subtype)
+		param += "&sort=[subtype]"
+	return param

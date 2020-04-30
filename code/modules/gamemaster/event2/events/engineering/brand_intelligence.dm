@@ -1,6 +1,6 @@
 /datum/event2/meta/brand_intelligence
 	name = "vending machine malware"
-	departments = list(DEPARTMENT_EVERYONE, DEPARTMENT_EVERYONE)
+	departments = list(DEPARTMENT_ENGINEERING, DEPARTMENT_EVERYONE)
 	chaos = 10
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_LOW_IMPACT
 	event_type = /datum/event2/event/brand_intelligence

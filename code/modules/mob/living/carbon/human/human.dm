@@ -418,7 +418,7 @@
 											BITSET(hud_updateflag, WANTED_HUD)
 											if(istype(usr,/mob/living/carbon/human))
 												var/mob/living/carbon/human/U = usr
-												U.handle_regular_hud_updates()
+												U.handle_hud_list()
 											if(istype(usr,/mob/living/silicon/robot))
 												var/mob/living/silicon/robot/U = usr
 												U.handle_regular_hud_updates()
@@ -1141,6 +1141,7 @@
 		// Clear out their species abilities.
 		species.remove_inherent_verbs(src)
 		holder_type = null
+		hunger_rate = initial(hunger_rate) //VOREStation Add
 
 	species = GLOB.all_species[new_species]
 
@@ -1184,6 +1185,7 @@
 
 
 	maxHealth = species.total_health
+	hunger_rate = species.hunger_factor //VOREStation Add
 
 	if(LAZYLEN(descriptors))
 		descriptors = null

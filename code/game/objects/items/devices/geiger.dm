@@ -33,9 +33,9 @@
 	update_sound()
 
 /obj/item/device/geiger/examine(mob/user)
-	..(user)
+	. = ..()
 	get_radiation()
-	to_chat(user, "<span class='warning'>[scanning ? "Ambient" : "Stored"] radiation level: [radiation_count ? radiation_count : "0"]Bq.</span>")
+	. += "<span class='warning'>[scanning ? "Ambient" : "Stored"] radiation level: [radiation_count ? radiation_count : "0"]Bq.</span>"
 
 /obj/item/device/geiger/rad_act(amount)
 	if(!amount || !scanning)

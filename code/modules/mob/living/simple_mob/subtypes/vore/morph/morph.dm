@@ -69,12 +69,11 @@
 
 /mob/living/simple_mob/vore/hostile/morph/examine(mob/user)
 	if(morphed)
-		form.examine(user)
-		if(get_dist(user,src)<=3)
-			to_chat(user, "<span class='warning'>It doesn't look quite right...</span>")
+		. = form.examine(user)
+		if(get_dist(user, src) <= 3)
+			. += "<span class='warning'>[form] doesn't look quite right...</span>"
 	else
-		..()
-	return
+		. = ..()
 
 /mob/living/simple_mob/vore/hostile/morph/ShiftClickOn(atom/movable/A)
 	if(Adjacent(A))

@@ -6,6 +6,7 @@
 
 /obj/machinery/power/breakerbox
 	name = "Breaker Box"
+	desc = "Large machine with heavy duty switching circuits used for advanced grid control."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "bbox_off"
 	//directwired = 0
@@ -40,11 +41,11 @@
 	set_state(1)
 
 /obj/machinery/power/breakerbox/examine(mob/user)
-	to_chat(user, "Large machine with heavy duty switching circuits used for advanced grid control")
+	. = ..()
 	if(on)
-		to_chat(user, "<font color='green'>It seems to be online.</font>")
+		. += "<span class='notice'>It seems to be online.</span>"
 	else
-		to_chat(user, "<font color='red'>It seems to be offline.</font>")
+		. += "<span class='warning'>It seems to be offline.</span>"
 
 /obj/machinery/power/breakerbox/attack_ai(mob/user)
 	if(update_locked)

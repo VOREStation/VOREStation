@@ -181,6 +181,9 @@ GLOBAL_LIST_EMPTY(all_turbines)
 		else
 			disconnect_from_network()
 		reconnect()
+		lastgenlev = 0
+		effective_gen = 0
+		updateicon()
 	else
 		..()
 

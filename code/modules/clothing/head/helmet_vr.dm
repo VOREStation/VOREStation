@@ -1,10 +1,10 @@
 /obj/item/clothing/head/helmet/solgov
-	name = "\improper Solar Central Government helmet"
+	name = "peacekeeper helmet"
 	desc = "A helmet painted in Peacekeeper blue. Stands out like a sore thumb."
 
 /obj/item/clothing/head/helmet/solgov/command
-	name = "\improper Solar Central commander helmet"
-	desc = "A helmet with 'Solar Central Government' printed on the back in gold lettering."
+	name = "peacekeeper commander helmet"
+	desc = "A more sophisticated helmet painted in Peacekeeper blue. Stands out like a sore thumb."
 
 /obj/item/clothing/head/helmet/combat/USDF
 	name = "marine helmet"

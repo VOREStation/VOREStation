@@ -251,29 +251,30 @@
 		src.update()
 
 /obj/machinery/power/apc/examine(mob/user)
-	if(..(user, 1))
+	. = ..()
+	if(Adjacent(user))
 		if(stat & BROKEN)
-			to_chat(user, "This APC is broken.")
-			return
-		if(opened)
+			. += "This APC is broken."
+
+		else if(opened)
 			if(has_electronics && terminal)
-				to_chat(user, "The cover is [opened==2?"removed":"open"] and [ cell ? "a power cell is installed" : "the power cell is missing"].")
+				. += "The cover is [opened == 2 ? "removed" : "open"] and [ cell ? "a power cell is installed" : "the power cell is missing"]."
 			else if (!has_electronics && terminal)
-				to_chat(user, "The frame is wired, but the electronics are missing.")
+				. += "The frame is wired, but the electronics are missing."
 			else if (has_electronics && !terminal)
-				to_chat(user, "The electronics are installed, but not wired.")
+				. += "The electronics are installed, but not wired."
 			else /* if (!has_electronics && !terminal) */
-				to_chat(user, "It's just an empty metal frame.")
+				. += "It's just an empty metal frame."
 
 		else
 			if (wiresexposed)
-				to_chat(user, "The cover is closed and the wires are exposed.")
+				. += "The cover is closed and the wires are exposed."
 			else if ((locked && emagged) || hacker) //Some things can cause locked && emagged. Malf AI causes hacker.
-				to_chat(user, "The cover is closed, but the panel is unresponsive.")
+				. += "The cover is closed, but the panel is unresponsive."
 			else if(!locked && emagged) //Normal emag does this.
-				to_chat(user, "The cover is closed, but the panel is flashing an error.")
+				. += "The cover is closed, but the panel is flashing an error."
 			else
-				to_chat(user, "The cover is closed.")
+				. += "The cover is closed."
 
 
 // update the APC icon to show the three base states

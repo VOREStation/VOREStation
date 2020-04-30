@@ -39,6 +39,27 @@ var/global/ntnet_card_uid = 1
 	icon_state = "netcard_advanced"
 	hardware_size = 1
 
+/obj/item/weapon/computer_hardware/network_card/quantum
+	name = "quantum NTNet network card"
+	desc = "A network card that can connect to NTnet from anywhere, using quantum entanglement."
+	long_range = 1
+	origin_tech = list(TECH_DATA = 6, TECH_ENGINEERING = 7)
+	power_usage = 200 // Infinite range but higher power usage.
+	icon_state = "netcard_advanced"
+	hardware_size = 1
+
+/obj/item/weapon/computer_hardware/network_card/quantum/get_signal(var/specific_action = 0)
+	if(!holder2)
+		return 0
+
+	if(!enabled)
+		return 0
+
+	if(!check_functionality() || !ntnet_global || is_banned())
+		return 0
+
+	return 2
+
 /obj/item/weapon/computer_hardware/network_card/wired
 	name = "wired NTNet network card"
 	desc = "An advanced network card for usage with standard NTNet frequencies. This one also supports wired connection."
@@ -82,7 +103,8 @@ var/global/ntnet_card_uid = 1
 		var/holderz = get_z(holder2)
 		if(!holderz) //no reception in nullspace
 			return 0
-		var/list/zlevels_in_range = using_map.get_map_levels(holderz, long_range)
+		var/list/zlevels_in_range = using_map.get_map_levels(holderz, FALSE)
+		var/list/zlevels_in_long_range = using_map.get_map_levels(holderz, TRUE) - zlevels_in_range
 		var/best = 0
 		for(var/relay in ntnet_global.relays)
 			var/obj/machinery/ntnet_relay/R = relay
@@ -91,11 +113,16 @@ var/global/ntnet_card_uid = 1
 				continue
 			//We're on the same z
 			if(R.z == holderz)
-				best = 2
+				best = 2 //Every network card gets high signal on the same z as the relay
 				break // No point in going further
 			//Not on the same z but within range anyway
 			if(R.z in zlevels_in_range)
-				best = 1
+				best = long_range ? 2 : 1 //High-power network cards get good signal further away
+				break
+			//Only in long range
+			if(long_range && (R.z in zlevels_in_long_range))
+				best = 1 //High-power network cards can get low signal even at long range
+				break
 		return best
 	return 0 // No computer!
 

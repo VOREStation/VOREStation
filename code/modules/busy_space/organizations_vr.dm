@@ -61,12 +61,12 @@
 	name = "NanoTrasen Incorporated"
 	short_name = "NanoTrasen"
 	acronym = "NT"
-	desc = "NanoTrasen is one of the foremost research and development companies in SolGov space. \
+	desc = "NanoTrasen is one of the foremost research and development companies in Commonwealth space. \
 	Originally focused on consumer products, their swift move into the field of Phoron has lead to \
 	them being the foremost experts on the substance and its uses. In the modern day, NanoTrasen prides \
 	itself on being an early adopter to as many new technologies as possible, often offering the newest \
 	products to their employees. In an effort to combat complaints about being 'guinea pigs', Nanotrasen \
-	also offers one of the most comprehensive medical plans in SolGov space, up to and including cloning \
+	also offers one of the most comprehensive medical plans in Commonwealth space, up to and including cloning \
 	and therapy.\
 	<br><br>\
 	NT's most well known products are its phoron based creations, especially those used in Cryotherapy. \
@@ -113,9 +113,9 @@
 		"NAB Smythside Central Headquarters in Sol",
 		"NAS Zeus orbiting Virgo-Prime",
 		"NIB Posideon in Alpha Centauri",
-		"NTB An-Nur on Virgo-Prime",
+		"NTB Anur on Virgo-Prime",
 		"the colony at Virgo-3B",
-		"the NanoTrasen phoron refinery in Vilous",
+		"the phoron refinery in Vilous",
 		"a dockyard orbiting Virgo-Prime",
 		"an asteroid orbiting Virgo 3",
 		)
@@ -137,7 +137,7 @@
 	desc = "Hephaestus Industries is the largest supplier of arms, ammunition, and small millitary vehicles in Sol space. \
 	Hephaestus products have a reputation for reliability, and the corporation itself has a noted tendency to stay removed \
 	from corporate politics. They enforce their neutrality with the help of a fairly large asset-protection contingent which \
-	prevents any contracting polities from using their own materiel against them. SolGov itself is one of Hephastus’ largest \
+	prevents any contracting polities from using their own materiel against them. The Terran Commonwealth and the Salthan Fyrds are of Hephastusâ€™ largest \
 	bulk contractors owing to the above factors."
 	history = ""
 	work = "arms manufacturer"
@@ -164,7 +164,7 @@
 		"Tyr"
 		)
 	destination_names = list(
-		"a SolGov dockyard on Luna",
+		"a SolCom dockyard on Luna",
 		"a Fleet outpost in the Almach Rim",
 		"a Fleet outpost on the Moghes border"
 		)
@@ -173,13 +173,13 @@
 	name = "Vey-Medical"
 	short_name = "Vey-Med"
 	acronym = "VM"
-	desc = "Vey-Med is one of the newer TSCs on the block and is notable for being largely owned and opperated by Skrell. \
-	Despite the suspicion and prejudice leveled at them for their alien origin, Vey-Med has obtained market dominance in \
+	desc = "Vey-Med is one of the newer TSCs on the block and is notable for being largely owned and opperated by Skrell and Elysians. \
+	Despite the suspicion and prejudice leveled at them for their origin, Vey-Med has obtained market dominance in \
 	the sale of medical equipment-- from surgical tools to large medical devices to the Oddyseus trauma response mecha \
 	and everything in between. Their equipment tends to be top-of-the-line, most obviously shown by their incredibly \
-	human-like FBP designs. Vey’s rise to stardom came from their introduction of ressurective cloning, although in \
-	recent years they’ve been forced to diversify as their patents expired and NanoTrasen-made medications became \
-	essential to modern cloning."
+	human-like FBP designs. Veyâ€™s rise to stardom came from their introduction of ressurective cloning, although in \
+	recent years theyâ€™ve been forced to diversify as their patents expired and NanoTrasen-made medications became \
+	essential in bulk cloning."
 	history = ""
 	work = "medical equipment supplier"
 	headquarters = ""
@@ -214,8 +214,8 @@
 	acronym = "ZH"
 	desc = "Zeng-Hu is an old TSC, based in the Sol system. Until the discovery of Phoron, Zeng-Hu maintained a stranglehold \
 	on the market for medications, and many household names are patentted by Zeng-Hu-- Bicaridyne, Dylovene, Tricordrizine, \
-	and Dexalin all came from a Zeng-Hu medical laboratory. Zeng-Hu’s fortunes have been in decline as Nanotrasen’s near monopoly \
-	on phoron research cuts into their R&D and Vey-Med’s superior medical equipment effectively decimated their own equipment \
+	and Dexalin all came from a Zeng-Hu medical laboratory. Zeng-Huâ€™s fortunes have been in decline as Nanotrasenâ€™s development of \
+	mass cloning medication cuts into their R&D and Vey-Medâ€™s superior medical equipment effectively decimated their own equipment \
 	interests. The three-way rivalry between these companies for dominance in the medical field is well-known and a matter of \
 	constant economic speculation."
 	history = ""
@@ -233,8 +233,8 @@
 	desc = "Ward-Takahashi focuses on the sale of small consumer electronics, with its computers, communicators, \
 	and even mid-class automobiles a fixture of many households. Less famously, Ward-Takahashi also supplies most \
 	of the AI cores on which vital control systems are mounted, and it is this branch of their industry that has \
-	led to their tertiary interest in the development and sale of high-grade AI systems. Ward-Takahashi’s economies \
-	of scale frequently steal market share from Nanotrasen’s high-price products, leading to a bitter rivalry in the \
+	led to their tertiary interest in the development and sale of high-grade AI systems. Ward-Takahashiâ€™s economies \
+	of scale frequently steal market share from Nanotrasenâ€™s high-price products, leading to a bitter rivalry in the \
 	consumer electronics market."
 	history = ""
 	work = "electronics manufacturer"
@@ -261,10 +261,10 @@
 	name = "Bishop Cybernetics"
 	short_name = "Bishop"
 	acronym = "BC"
-	desc = "Bishop’s focus is on high-class, stylish cybernetics. A favorite among transhumanists (and a bête noire for \
+	desc = "Bishop's focus is on high-class, stylish cybernetics. A favorite among transhumanists (and a byte noire for \
 	bioconservatives), Bishop manufactures not only prostheses but also brain augmentation, synthetic organ replacements, \
 	and odds and ends like implanted wrist-watches. Their business model tends towards smaller, boutique operations, giving \
-	it a reputation for high price and luxury, with Bishop cyberware often rivalling Vey-Med’s for cost. Bishop’s reputation \
+	it a reputation for high price and luxury, with Bishop cyberware often rivalling Vey-Medâ€™s for cost. Bishopâ€™s reputation \
 	for catering towards the interests of human augmentation enthusiasts instead of positronics have earned it ire from the \
 	Positronic Rights Group and puts it in ideological (but not economic) comptetition with Morpheus Cyberkinetics."
 	history = ""
@@ -389,10 +389,10 @@
 /datum/lore/organization/tsc/xion
 	name = "Xion Manufacturing Group"
 	short_name = "Xion"
-	desc = "Xion, quietly, controls most of the market for industrial equipment. Their portfolio includes mining exosuits, \
+	desc = "Xion, quietly, controls most of the market for industrial equipment on the frontier. Their portfolio includes mining exosuits, \
 	factory equipment, rugged positronic chassis, and other pieces of equipment vital to the function of the economy. Xion \
 	keeps its control of the market by leasing, not selling, their equipment, and through infamous and bloody patent protection \
-	lawsuits. Xion are noted to be a favorite contractor for SolGov engineers, owing to their low cost and rugged design."
+	lawsuits. Xion are noted to be a favorite contractor for Rim engineers, owing to their low cost and rugged design."
 	history = ""
 	work = "industrial equipment manufacturer"
 	headquarters = ""
@@ -429,29 +429,21 @@
 	destination_names = list()
 
 /datum/lore/organization/gov/solgov
-	name = "Solar Central Government"
-	short_name = "SolGov"
-	acronym = "SCG"
-	desc = "SolGov is a federation of human governmental entities based on Earth, Sol, which defines top-level law for their member systems.  \
-	Member systems receive various benefits such as defensive pacts, trade agreements, social support and funding, and being able to participate \
-	in the Colonial Assembly. The majority, but not all human territories are members of SolGov. As such, SolGov is a major power and \
-	generally represents humanity on the galactic stage."
-	history = "A Unified Earth Government was formed in the wake of the Sol Interplanetary War and other conflicts of the 2160s. \
-			With numerous Earth governments fighting independent battles against factions of both Facist and Communist forces, the UN became \
-			involved, eventually using the war to absorb most, if not all Earth governments into itself, forming a global government to combat \
-			the terrorists and stabilize the planet and its other world colonies. The UN won the war and the Unified Earth Government was formed, \
-			with its' primary defense, scientific and exploratory force being the newly formed USDF. Although the UEG seemed to have complete \
-			control over Earth and Sol's colonies, the UN still existed as an organization and a political entity to continue mediating between \
-			countries and colonies. In 2291, Tobias Shaw and Wallace Fujikawa invented a device that could transition normal matter into slipspace \
-			(bluespace), and FTL travel became possible. As humanity expanded beyond the Solar System, the UEG reorganized its self to become the \
-			centralized government of humanity known today; Sol Central. Organizations like the USDF would continue to exist as a peacekeeping \
-			force to protect most of humanity's interests across the galaxy."
-	work = "governing body of humanity's colonies"
+	name = "Commonwealth of Sol-Procyon"
+	short_name = "SolCom"
+	acronym = "CWS"
+	desc = "The Commonwealth of Sol-Procyon is the evolution of the many nation states of Earth and the outlying colonies \
+			having spread amongst the stars. While not quite the hegemon of all Humanity, a narrow majority of them follow \
+			the flag of the Commonwealth. The constant tug and pull of government versus corporation, democracy and power \
+			troubles this federation of deeply entrenched human colonies much like it did in the 21st century. Some things \
+			never change. However, they are economically and culturally quite dominant, although not everyone likes that fact."
+	history = ""
+	work = "rump state of humanity's colonies"
 	headquarters = "Paris, Earth"
 	motto = ""
 	autogenerate_destination_names = TRUE
 
-	ship_prefixes = list("SCG-T" = "transportation", "SCG-D" = "diplomatic", "SCG-F" = "freight")
+	ship_prefixes = list("CWS-T" = "transportation", "CWS-D" = "diplomatic", "CWS-F" = "freight")
 	destination_names = list(
 						"Mercury",
 						"Venus",
@@ -460,43 +452,10 @@
 						"Mars",
 						"Titan",
 						"Europa",
-						"the SolGov embassy in Virgo-Erigone",
-						"the SolGov embassy in Vilous"
+						"the SolCom embassy in Virgo-Erigone",
+						"the SolCom embassy in Vilous"
 						)// autogen will add a lot of other places as well.
-
-/datum/lore/organization/gov/virgov // Overrides Polaris stuff
-	name = "Virgo-Erigone Governmental Authority"
-	short_name = ""
-	desc = "Existing far outside the reach of SolGov space, the only governing body of the Virgo-Erigone system is the Virgo-Prime Governmental \
-			Authority, also known as VEGA. It is a Technocracy founded and operated by NanoTrasen, using company appointed experts hired to see \
-			to the comfort and well being of Virgo's citizens; most of whom are also NanoTrasen employees. VEGA provides basic social services \
-			such as law enforcement, emergency services, medical care, education, and infrastructure. VEGA's operations are based on the world \
-			of Virgo-Prime, within the spaceport city of Anur. Although the government is an entity of NanoTrasen, some elements of democracy \
-			are still practiced, such as voting on changes to local law, policy, or public works."
-	history = "VEGA was founded in 2556, shortly after the Virgo-Erigone system was colonized by a population of 1000. That population has \
-			multiplied many times since then as wealth and commerce come and go from this frontier star system."
-	work = "governing body of Virgo-Erigone"
-	headquarters = "Anur, Virgo-Prime"
-	motto = "Reach for the Stars."
-	autogenerate_destination_names = FALSE
-
-	ship_prefixes = list("VEFD" = "fire rescue", "VEPD" = "patrol", "VEGA" = "administrative", "SAR" = "medivac")
-	destination_names = list(
-						"the colony at Virgo-3B",
-						"the VORE-1 debris field",
-						"a mining colony on Virgo-2",
-						"the Anur Spaceport",
-						"to a local distress beacon",
-						"NAS Zeus orbiting Virgo-Prime",
-						"NTB An-Nur on Virgo-Prime",
-						"the colony at Virgo-3B",
-						"a dockyard orbiting Virgo-Prime",
-						"an asteroid orbiting Virgo 3",
-						"a telecommunications satellite near Virgo-3B",
-						"a telecommunications satellite near Virgo-Prime"
-						)
-
-/* // Waiting for lore to be updated.
+/* // Waiting for Joan to do their thing.
 /datum/lore/organization/gov/federation
 	name = "United Federation of Planets"
 	short_name = "Federation"
@@ -516,7 +475,6 @@
 	work = "governing body"
 	headquarters = ""
 	motto = ""
-
 	//Star Trek ship names!
 	ship_prefixes = list("SCV" = "military", "STV" = "trading", "SDV" = "diplomatic")
 	ship_names = list("Kestrel",
@@ -569,28 +527,13 @@
 /datum/lore/organization/mil/usdf
 	name = "United Sol Defense Force"
 	short_name = "" // This is blank on purpose. Otherwise they call the ships "USDF USDF Name"
-	desc = "The USDF is the dedicated military force of SolGov, originally formed by the United Nations. It is the \
-			dominant superpower of the Orion Spur, and is able to project its influence well into parts of the Perseus and \
-			Sagittarius arms of the galaxy. However, regions beyond that are too far for the USDF to be a major player."
-	history = "Earth's clashes with dissident political movements, the most important of which were the \"Red Faction\" and \"Storm Front,\" \
-			began the crisis that led to the formation of the USDF. The Storm Front movement was a fascist organization based on the Jovian \
-			Moons, a group that received backing from some corporations operating in the Federal Republic of Germany on Earth. Their \
-			ideological opponents, the Red Faction, formed a Marxist-Leninist group on Mars centered around the leadership of Vladimir Koslov \
-			around the same time. The USDF was commissioned in 2163 as a military force primarily composed of Naval and Marine \
-			forces. In July 2164, the USDF partook in its first battle. From this point, the USDF was used by the UN in conflicts, \
-			including the Interplanetary War. When the conflicts of Sol ended, a newly powerful Unified Earth Government (later SolGov) \
-			and USDF began to expand into the stars. The apex of human expansion would come in 2490, when more than 600 worlds were \
-			considered part of SolGov's territory, many developing into full-fledged colonies. By this time, a ring of Outer colonies \
-			was providing SolGov with the raw materials that made the macro-economy function; with the political power remaining with \
-			the Inner colonies. The massive difference in wealth distribution and political power, which became a hallmark of humanity \
-			by this period, led to new threats of secession from the outer ring. In 2492, the colony of Far Isle was razed by nuclear \
-			weapons after a massive uprising, creating a new found reason to rebel. SolGov began to wage a bloody struggle against \
-			groups of terrorists (or freedom fighters) called the Insurrectionists, who wanted independence. The USDF continues to battle \
-			sepratists to this day. The USDF's operations meanwhile focus on curbing piracy operations, as well as providing a deterrent \
-			against other major military powers such as the Moghes Hegemony."
+	desc = "The USDF is the dedicated military force of the Commonwealth of Sol-Procyon, originally formed by a council of the Supranations. It is a \
+			considerable tool of military power projection, and is able to effectively police a vast amount of space within the Orion Spur. \
+			However, regions beyond that are too far for the USDF to be a major player."
+	history = ""
 	work = "peacekeeping and piracy suppression"
 	headquarters = "Paris, Earth"
-	motto = "Per Mare, Per Terras, Per Constellatum." // Stolen from Halo because fuck you that's why. -Ace
+	motto = "pax in terra et astra" // Peace on Earth and Stars
 	ship_prefixes = list("USDF" = "military", "USDF" = "anti-piracy", "USDF" = "escort", "USDF" = "humanitarian", "USDF" = "peacekeeping", "USDF" = "search-and-rescue", "USDF" = "war game") // It's all USDF but let's mix up what missions they do.
 	ship_names = list("Aegis Fate",
 					"Ain't No Sunshine",
@@ -650,7 +593,7 @@
 					"Two for Flinching")
 	destination_names = list("San Francisco on Earth",
 						"Gateway One above Luna",
-						"SolGov Headquarters on Earth",
+						"SolCom Headquarters on Earth",
 						"Olympus City on Mars",
 						"Hermes Naval Shipyard above Mars",
 						"Cairo Station above Earth",
@@ -662,47 +605,11 @@
 						"a settlement on Ceti IV-B",
 						"a colony ship around Ceti IV-B",
 						"a naval station above Ceti IV-B",
-						"a classified location in SolGov territory",
+						"a classified location in SolCom territory",
 						"a classified location in uncharted space",
 						"an emergency nav bouy",
 						"the USDF Naval Academy on Earth",
 						"Fort Rain on Tal")
-
-/datum/lore/organization/mil/oni
-	name = "SolGov Office of Naval Intelligence"
-	short_name = "" // This is blank on purpose. Otherwise they call the ships "ONI ONI Name"
-	desc = "The Office of Naval Intelligence is SolGov's eyes and ears in the galaxy's affairs. Despite its name, and despite its \
-			usual association with the USDF, the Office of Naval Intelligence does not fall under the command of the military. From espionage \
-			to archeological research, ONI's work provides SolGov with the knowledge and technology it requires to advance both military and \
-			civilian interests across the galaxy."
-	history = "ONI was originally created by the consolidation of several military intelligence agencies from Sol during the Sol-Hegemony war. \
-			The USDF's victory in that war was largely accredited to intelligence and technology advancements provided by ONI during that time, \
-			most notably of which was the reverse-engineering of Unathi vessels, allowing the production of countermeasures that played a crucial \
-			role during in the late stages of the conflict. After the war, ONI's resources were pooled into numerous top secret projects; much of \
-			which remains unknown or outright denied to the public even today. Among their suspected activities include exploration, weapons \
-			development, xenoarcheology, xenobiology, corporate espionage, and manipulation of political affairs."
-	work = "espionage, piracy suppression, xeno research, and various other black projects"
-	headquarters = "Paris, Earth"
-	motto = "The truth will set you free."
-	ship_prefixes = list("ONI" = "classified", "ONI" = "archeological", "ONI" = "exploration", "ONI" = "logistic") // It's all ONI but let's mix up what missions they do.
-	ship_names = list("Bastille",
-					"Fant�me",
-					"Harpocrates",
-					"Hoenir",
-					"Mata Hari",
-					"Midsummer Night",
-					"Mirage",
-					"Persephone", // Director Ixchel Kisoda's personal research ship
-					"Versailles")
-	destination_names = list("parts unknown",
-							"none of your business",
-							"uncharted space",
-							"an undisclosed location",
-							"facility 8492",
-							"you don't want to know",
-							"if told you I'd have to kill you",
-							"... wait, why am I even telling you this? Just let me pass",
-							"stop asking questions")
 
 /datum/lore/organization/gov/kitsuhana
 	name = "Kitsuhana Heavy Industries"
@@ -761,14 +668,14 @@
 /datum/lore/organization/gov/ares
 	name = "Ares Confederation"
 	short_name = "ArCon"
-	desc = "A rebel faction in the Cygnus Arm that renounced the government of both SolGov and their corporate overlords. \
-			The Confederation has two fleets; a regular United Fleet Host comprised of professional crewmen and officers, and the Free Host \
-			of the Confederation which uses privateers, volunteers and former pirates. The Ares Confederation only holds a few dozen star \
-			systems, but they will fiercely defend against any incursion upon their territory, especially by the USDF."
-	history = "Originally only a strike of miners on the dusty, arid planet of Ares in the year 2540, the Ares Confederation was quickly \
-    		established under the leadership of retired USDF Colonel Rodrick Gellaume, who is now Prime Minister."
-	work = "rebel fringe government"
-	headquarters = "Paraiso a Àstrea"
+	desc = "A loose coalition of socialist and communist movements on the fringes of the human diaspora \
+			the Ares Confederation is a government-in-exile from the original uprisings of Mars to stop \
+			the government of corporations and capitalist interests over Humanity. While they failed twice \
+			they have made their own home far beyond the reach of an effective military response by the \
+			Commonwealth. They have become renowned engineers and terraforming experts, mostly due to necessity."
+	history = ""
+	work = "idealist socialist government"
+	headquarters = "Paraiso a Ã€strea"
 	motto = "Liberty to the Stars!"
 
 	ship_prefixes = list("UFHV" = "military", "FFHV" = "shady")
@@ -780,7 +687,25 @@
 					"Fiery Justice",
 					"Fist of Ares",
 					"Freedom",
-					"Fuck The Captain",
+					"Marx Was Right",
+					"Endstage Capitalism",
+					"Neoluddism Is The Answer Guys",
+					"Anarchocapitalism Is A Joke",
+					"One Of Ours, Captain!",
+					"Is This Thing On?",
+					"Front Toward Enemy",
+					"Path of Prosperity",
+					"Freedom Cry",
+					"Rebel Yell",
+					"We Will Return To Mars",
+					"According To Our Abilities",
+					"Posadism Gang",
+					"Accelerationism Doesn't Work In A Vaccuum",
+					"Don't Shoot, We're Unarmed I Think",
+					"The Big Stick For Speaking Softly",
+					"Bull Moose",
+					"Engels Needs Some Love Too",
+					"The Icepick",
 					"Gauntlet",
 					"Gellaume",
 					"Hero of the Revolution",
@@ -804,110 +729,111 @@
 					"Torch")
 	destination_names = list("Drydocks of the Ares Confederation",
 						"a classified location",
-						"a Homestead on Paraiso a Àstrea",
+						"a Homestead on Paraiso a Ã€strea",
 						"a contested sector of ArCon space",
 						"one of our free colonies",
-						"the Gateway 98-C at Arest",
+						"the Gateway 98-C at Ares",
 						"Sars Mara on Ares",
 						"Listening Post Maryland-Sigma",
 						"an emergency nav bouy",
 						"New Berlin on Nov-Ferrum",
 						"a settlement needing our help",
 						"Forward Base Sigma-Alpha in ArCon space")
+						
+/datum/lore/organization/gov/elysian
+	name = "The Elysian Colonies"				
+	short_name = "Demi-Monde"
+	acronym = "ECS"			
+	desc = "The Elysian Colonies, located spinwards from the Commonwealth, are a disunited bunch of \
+				vanity states, utopia projects and personal autocracies, whose only unifying characteristic is \
+				a general disregard of 'normal' social conventions of Humanity as well as their inherent desire \
+				to keep to their ways, in which cases they do sometimes unite to fight off an outside threat. \
+				The Elysian Colonies are one of the few places where true slavery is not only accepted, but sadly also \
+				rather commonplace if you go to the wrong worlds. Not that they don't internally have at least a dozen would-be liberators."			
+	history = ""			
+	work = "fracturous vanity colonies"				
+	headquarters = ""		
+	motto = ""				
 
-/datum/lore/organization/gov/imperial
-	name = "Auream Imperium"
-	short_name = "Imperial"
-	desc = "Also known as the \"Golden Empire\", Auream Imperium is a superpower of elf-like humanoid beings who thrive in the southern \
-    		galaxy, presumably somewhere in the mid Centaurus Arm. Having existed in the observation shadow of the galactic core, this \
-    		galactic superpower had remained undiscovered by humanity despite its size until only recently. First contact was made on \
-    		June 15th 2561, when Imperial Navy cartographers stumbled upon the Virgo-Erigone system, far from the influence of the USDF. \
-    		Though little is currently known about the Golden Empire, their scholars have been willing to share some information. They \
-    		are currently ruled by a woman referred to as Empress Gutamir who is allegedly hundreds of years old. Images and portraits \
-    		of the empress depict a tall woman with an idealized figure of beauty as might have been seen in ancient Roman or Greek \
-    		works of art. She has white hair, silvery eyes, and a fair complexion. Whether or not these images are an authentic or \
-    		even an accurate depiction remains unknown. Vessels of the Golden Empire utilize technology unlike anything humans have ever \
-    		seen. Although they use bluespace for FTL travel, the methods in which they tap into bluespace has yet to be studied in any \
-    		detail by human scientists. Their kind hails from a binary system of Earth-like worlds called Sanctum and Venio, though the \
-    		exact location of these worlds is not known due to a culture of secrecy toward outsiders."
-	history = "According to Imperial scholars, the Golden Empire is a civilization that has existed for at least 10,000 Earth years. \
-    		Their home system is said to host not one but two Earth-like worlds, both of which have been home to elves as far as their \
-    		records go back. How the elves were able to travel between these worlds is currently unknown, but apparently they have been \
-    		doing so for at least the last 2000 years. However, from what is understood, until only 300 years ago, these accomplishments \
-    		were only made possible by a very limited number of ships apparently using borrowed technology from an undiscovered \
-    		civilization they call \"Architectus.\" Curiously, the Golden Empire's primary language is strikingly similar to ancient \
-    		Latin on Earth, indicating that they may have somehow come into contact with Earth at some point in their history. However, \
-    		this contradicts what historical records they have been willing to share with us, as it would predate the timeline of space \
-    		travel they have given us so far."
-	work = "rule over the southern galaxy in an uncharted region they call Segmentum Obscurum"
-	headquarters = "Sanctum and Venio"
-	motto = "Aut inveniam viam aut faciam"
+	ship_prefixes = list("ECS" = "military", "ECS" = "Transport", "ECS" = "Special Transport", "ECS" = "Diplomat")	//The Special Transport is SLAAAAVES.
+	ship_names = list("Bring Me Wine!",
+					"I Can't Believe You",
+					"More Wives Your Grace?",
+					"Daddy Bought Me This",
+					"What Do You Mean It's Unethical",
+					"Libertine Ideals",
+					"The True Free",
+					"Unbound",
+					"No Man Shackled",
+					"All Men Shackled",
+					"All Women Shackled",
+					"All Hermaphrodites Shackled",
+					"You Know We Just Shackle Anyone",
+					"Nobody Deserves Shackles",
+					"Debt Slavery Is Ethical",
+					"Fashioned After Tradition",
+					"Sic Vic Pacem",
+					"Cultivate This",
+					"We Demand Self-Governance",
+					"A Thousand Cultures",
+					"There Is a Character Limit?",
+					"Slave Galley I",
+					"The Unconquered CCXXII"
+		
+		)
+	destination_names = list("Cygnus",
+									"The Ultra Dome of Brutal Kill Death",
+									"Sanctum",
+									"Infernum",
+									"The Most Esteemed Estates of Fred Fredson, Heir of the Fred Throne and All its illustrious Fredpendencies",
+									"Priory Melana",
+									"The Clone Pits of Meridiem Five",
+									"Forward Base Mara Alpha",
+									"a very tasty looking distress call",
+									"a liberation intervention",
+									"a nav bouy within Cygnus Space",
+									"a Elysian only refuel outpost",
+									"to a killer party the Fredperor is holding right now")	
+				
+				
+/datum/lore/organization/gov/fyrds
+	name = "Unitary Alliance of Salthan Fyrds"				
+	short_name = "Fyrds"			
+	acronym = "SMS"			
+	desc = "Born out of neglect, the Salthan Fyrds are cast-off colonies of the Commonwealth after giving up on \
+				pacifying the wartorn region and fighting off the stray Unathi Raiders after the Hegemony War. \
+				In the end they self-organized into military pacts and have formed a militaristic society, in which \
+				every person, be it organic or robot, is a soldier for the continued cause in serving as aegis against \
+				another Unathi Incursion. They are very no-nonsense."				
+	history = ""			
+	work = "human stratocracy"				
+	headquarters = "The Pact,Myria"		
+	motto = ""				
 
-	ship_prefixes = list("Bellator" = "naval", "Mercator" = "trade", "Benefactori" = "mercy", "Salvator" = "search-and-rescue", "Rimor" = "exploration", "Legatus" = "diplomatic") // It's all HMS but let's mix up what they do.
-	ship_names = list("Ambition",
-					"Aurora",
-					"Argo",
-					"Behemoth",
-					"Beholder",
-					"Boreas",
-					"Bulwark",
-					"Calypso",
-					"Cerberus",
-					"Chimera",
-					"Chronos",
-					"Civitas",
-					"Colossus",
-					"Covenant",
-					"Cyrus",
-					"Destiny",
-					"Epimetheus",
-					"Eternal",
-					"Excalibur",
-					"Forerunner",
-					"Fortitude",
-					"Hellion",
-					"Hussar",
-					"Hyperion",
-					"Illustria",
-					"Immortal",
-					"Infinitum",
-					"Inquisitor",
-					"Invictus",
-					"Judgment",
-					"Juggernaut",
-					"Knossos",
-					"Legacy",
-					"Leviathan",
-					"Marathon",
-					"Megalith",
-					"Mobius",
-					"Nemesis",
-					"Nightingale",
-					"Oblivion",
-					"Octavius",
-					"Orthrus",
-					"Pandora",
-					"Phalanx",
-					"Revenant",
-					"Rhapsody",
-					"Scylla",
-					"Seraphim",
-					"Starfall",
-					"Stargazer",
-					"Starhammer",
-					"Templar",
-					"Thundrus",
-					"Titan",
-					"Triarius",
-					"Trident",
-					"Tyrannus",
-					"Ulysses",
-					"Valkyrie",
-					"Victoria",
-					"Vindicator",
-					"Wreath")
-	destination_names = list("uncharted space",
-							"Cor Galaxia",
-							"near Cor Galaxia",
-							"Segmentum Obscurum", // Basically their home territory, where our telescopes can't see. They prefer to keep it that way. They call it something else internally.
-							)
+	ship_prefixes = list("SMS" = "Military")	 // The Salthans don't do anything else.
+	ship_names = list("Yi Sun-sin",
+							"Horatio Nelson",
+							"Scipio Africanus",
+							"Hannibal Barca",
+							"Hamilcar Barca",
+							"Caesar",
+							"Belisarius",
+							"Aggripa",
+							"Pericles",
+							"Alexander",
+							"Napoleon Bonaparte",
+							"Charles XI",
+							"Blas de Lezo",
+							"Ivan Sirko",
+							"Frederick the Great",
+							"William of Normandy",
+							"Shaka Zulu",
+							"Patton",
+							"MacArthur",
+							"Rommel")
+	destination_names = list("Base Alpha-Romero",
+									"Base Zeta-Xray",
+									"Base Epsilon-Epsilon",
+									"Base Xray-Beta",
+									"Base Gamma-Delta",
+									"Base Yotta-Epsilon")	

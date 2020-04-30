@@ -1,3 +1,6 @@
+/obj/item/clothing/head/centhat/customs
+	desc = "A formal hat for SolCom Customs Officers."
+
 /obj/item/clothing/head/fish
 	name = "fish skull"
 	desc = "You... you're not actually going to wear that, right?"

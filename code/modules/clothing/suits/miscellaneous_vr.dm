@@ -1,3 +1,6 @@
+/obj/item/clothing/suit/customs
+	desc = "A standard SolCom Customs formal jacket."
+
 //HERE BE TAUR RELATED CLOTHES
 
 /*

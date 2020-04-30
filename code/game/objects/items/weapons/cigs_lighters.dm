@@ -149,22 +149,21 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	..()
 
 /obj/item/clothing/mask/smokable/examine(mob/user)
-	..()
-	if(is_pipe)
-		return
-	var/smoke_percent = round((smoketime / max_smoketime) * 100)
-	switch(smoke_percent)
-		if(90 to INFINITY)
-			to_chat(user, "[src] is still fresh.")
-		if(60 to 90)
-			to_chat(user, "[src] has a good amount of burn time remaining.")
-		if(30 to 60)
-			to_chat(user, "[src] is about half finished.")
-		if(10 to 30)
-			to_chat(user, "[src] is starting to burn low.")
-		else
-			to_chat(user, "[src] is nearly burnt out!")
-
+	. = ..()
+	
+	if(!is_pipe)
+		var/smoke_percent = round((smoketime / max_smoketime) * 100)
+		switch(smoke_percent)
+			if(90 to INFINITY)
+				. += "[src] is still fresh."
+			if(60 to 90)
+				. += "[src] has a good amount of burn time remaining."
+			if(30 to 60)
+				. += "[src] is about half finished."
+			if(10 to 30)
+				. += "[src] is starting to burn low."
+			else
+				. += "[src] is nearly burnt out!"
 
 /obj/item/clothing/mask/smokable/proc/light(var/flavor_text = "[usr] lights the [name].")
 	if(!src.lit)

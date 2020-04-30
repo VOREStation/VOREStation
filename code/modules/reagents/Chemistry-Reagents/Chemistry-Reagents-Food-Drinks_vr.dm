@@ -29,10 +29,7 @@
 	color = "#fff200"
 
 /datum/reagent/lipozine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.nutrition = max(M.nutrition - 20 * removed, 0)
-	M.overeatduration = 0
-	if(M.nutrition < 0)
-		M.nutrition = 0
+	M.adjust_nutrition(-20 * removed)
 
 /datum/reagent/ethanol/deathbell
 	name = "Deathbell"
@@ -79,13 +76,13 @@
 			if(IS_SKRELL)
 				M.adjustToxLoss(0.25 * removed)  //Equivalent to half as much protein, since it's half protein.
 			if(IS_TESHARI)
-				M.nutrition += (alt_nutriment_factor * 1.2 * removed) //Give them the same nutrition they would get from protein.
+				M.adjust_nutrition(alt_nutriment_factor * 1.2 * removed) //Give them the same nutrition they would get from protein.
 			if(IS_UNATHI)
-				M.nutrition += (alt_nutriment_factor * 1.125 * removed) //Give them the same nutrition they would get from protein.
+				M.adjust_nutrition(alt_nutriment_factor * 1.125 * removed) //Give them the same nutrition they would get from protein.
 				//Takes into account the 0.5 factor for all nutriment which is applied on top of the 2.25 factor for protein.
 			//Chimera don't need their own case here since their factors for nutriment and protein cancel out.
 			else
-				M.nutrition += (alt_nutriment_factor * removed)
+				M.adjust_nutrition(alt_nutriment_factor * removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.feral > 0 && H.nutrition > 100 && H.traumatic_shock < min(60, H.nutrition/10) && H.jitteriness < 100) // same check as feral triggers to stop them immediately re-feralling
@@ -101,7 +98,7 @@
 		M.adjustToxLoss(removed)  //Equivalent to half as much protein, since it's half protein.
 	if(M.species.gets_food_nutrition)
 		if(alien == IS_SLIME || alien == IS_CHIMERA) //slimes and chimera can get nutrition from injected nutriment and protein
-			M.nutrition += (alt_nutriment_factor * removed)
+			M.adjust_nutrition(alt_nutriment_factor * removed)
 
 
 

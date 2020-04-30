@@ -58,24 +58,25 @@
 	update_icon()
 
 /obj/structure/closet/examine(mob/user)
-	if(!src.opened && (..(user, 1) || isobserver(user)))
+	. = ..()
+	if(Adjacent(user) || isobserver(user))
 		var/content_size = 0
 		for(var/obj/item/I in src.contents)
 			if(!I.anchored)
 				content_size += CEILING(I.w_class/2, 1)
 		if(!content_size)
-			to_chat(user, "It is empty.")
+			. += "It is empty."
 		else if(storage_capacity > content_size*4)
-			to_chat(user, "It is barely filled.")
+			. += "It is barely filled."
 		else if(storage_capacity > content_size*2)
-			to_chat(user, "It is less than half full.")
+			. += "It is less than half full."
 		else if(storage_capacity > content_size)
-			to_chat(user, "There is still some free space.")
+			. += "There is still some free space."
 		else
-			to_chat(user, "It is full.")
+			. += "It is full."
 
 	if(!src.opened && isobserver(user))
-		to_chat(user, "It contains: [counting_english_list(contents)]")
+		. += "It contains: [counting_english_list(contents)]"
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target)
 	if(wall_mounted)

@@ -45,13 +45,12 @@
 
 
 /obj/item/weapon/grenade/examine(mob/user)
-	if(..(user, 0))
+	. = ..()
+	if(get_dist(user, src) == 0)
 		if(det_time > 1)
-			to_chat(user, "The timer is set to [det_time/10] seconds.")
-			return
-		if(det_time == null)
-			return
-		to_chat(user, "\The [src] is set for instant detonation.")
+			. += "The timer is set to [det_time/10] seconds."
+		else if(det_time == null)
+			. += "\The [src] is set for instant detonation."
 
 
 /obj/item/weapon/grenade/attack_self(mob/user as mob)

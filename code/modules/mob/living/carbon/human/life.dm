@@ -58,8 +58,8 @@
 
 	..()
 
-	if(life_tick%30==15)
-		hud_updateflag = 1022
+	if(life_tick % 30)
+		hud_updateflag = (1 << TOTAL_HUDS) - 1
 
 	voice = GetVoice()
 
@@ -91,7 +91,7 @@
 	else if(stat == DEAD && !stasis)
 		handle_defib_timer()
 
-	if(!handle_some_updates())
+	if(skip_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
 
 	//Update our name based on whether our face is obscured/disfigured
@@ -99,10 +99,10 @@
 
 	pulse = handle_pulse()
 
-/mob/living/carbon/human/proc/handle_some_updates()
+/mob/living/carbon/human/proc/skip_some_updates()
 	if(life_tick > 5 && timeofdeath && (timeofdeath < 5 || world.time - timeofdeath > 6000))	//We are long dead, or we're junk mobs spawned like the clowns on the clown shuttle
-		return 0
-	return 1
+		return 1
+	return 0
 
 /mob/living/carbon/human/breathe()
 	if(!inStasisNow())
@@ -275,7 +275,7 @@
 		if(rad_organ && !rad_organ.is_broken())
 			var/rads = radiation/25
 			radiation -= rads
-			nutrition += rads
+			adjust_nutrition(rads)
 			adjustBruteLoss(-(rads))
 			adjustFireLoss(-(rads))
 			adjustOxyLoss(-(rads))
@@ -794,7 +794,7 @@
 
 	if(bodytemperature < species.cold_level_1) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
 		if(nutrition >= 2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
-			nutrition -= 2
+			adjust_nutrition(-2)
 		var/recovery_amt = max((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), BODYTEMP_AUTORECOVERY_MINIMUM)
 		//to_world("Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
 //				log_debug("Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
@@ -925,15 +925,7 @@
 		for(var/datum/modifier/mod in modifiers)
 			if(!isnull(mod.metabolism_percent))
 				nutrition_reduction *= mod.metabolism_percent
-
-		nutrition = max (0, nutrition - nutrition_reduction)
-
-	if (nutrition > 450)
-		if(overeatduration < 600) //capped so people don't take forever to unfat
-			overeatduration++
-	else
-		if(overeatduration > 1)
-			overeatduration -= 2 //doubled the unfat rate
+		adjust_nutrition(-nutrition_reduction)
 
 	if(noisy == TRUE && nutrition < 250 && prob(10)) //VOREStation edit for hunger noises.
 		var/sound/growlsound = sound(get_sfx("hunger_sounds"))
@@ -951,7 +943,7 @@
 
 //DO NOT CALL handle_statuses() from this proc, it's called from living/Life() as long as this returns a true value.
 /mob/living/carbon/human/handle_regular_status_updates()
-	if(!handle_some_updates())
+	if(skip_some_updates())
 		return 0
 
 	if(status_flags & GODMODE)	return 0
@@ -1292,8 +1284,11 @@
 					else
 						bodytemp.icon_state = "temp0"
 
-		if(blinded)		overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
-		else			clear_fullscreens()
+		if(blinded)
+			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+		
+		else if(!machine)
+			clear_fullscreens()
 
 		if(disabilities & NEARSIGHTED)	//this looks meh but saves a lot of memory by not requiring to add var/prescription
 			if(glasses)					//to every /obj/item
@@ -1395,11 +1390,12 @@
 
 		if(machine)
 			var/viewflags = machine.check_eye(src)
-			machine.apply_visual(src)
 			if(viewflags < 0)
 				reset_view(null, 0)
 			else if(viewflags && !looking_elsewhere)
 				sight |= viewflags
+			else
+				machine.apply_visual(src)
 		else if(eyeobj)
 			if(eyeobj.owner != src)
 
@@ -1465,7 +1461,7 @@
 				if(air_master.current_cycle%3==1)
 					if(!(M.status_flags & GODMODE))
 						M.adjustBruteLoss(5)
-					nutrition += 10
+					adjust_nutrition(10)
 
 /mob/living/carbon/human/proc/handle_changeling()
 	if(mind && mind.changeling)

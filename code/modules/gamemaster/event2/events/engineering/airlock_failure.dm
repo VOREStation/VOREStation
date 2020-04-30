@@ -4,6 +4,7 @@
 	chaos = 15
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_MEDIUM_IMPACT
 	event_type = /datum/event2/event/airlock_failure
+	var/needs_medical = FALSE
 
 /datum/event2/meta/airlock_failure/emag
 	name = "airlock failure - emag"
@@ -12,11 +13,13 @@
 /datum/event2/meta/airlock_failure/door_crush
 	name = "airlock failure - crushing"
 	event_type = /datum/event2/event/airlock_failure/door_crush
+	needs_medical = TRUE
 
 /datum/event2/meta/airlock_failure/shock
 	name = "airlock failure - shock"
 	chaos = 30
 	event_type = /datum/event2/event/airlock_failure/shock
+	needs_medical = TRUE
 
 
 /datum/event2/meta/airlock_failure/get_weight()
@@ -29,6 +32,8 @@
 
 	// Medical might be needed for some of the more violent airlock failures.
 	var/medical = metric.count_people_in_department(DEPARTMENT_MEDICAL)
+	if(!medical && needs_medical)
+		return 0
 
 	return (engineering * 20) + (medical * 20) + (synths * 20)
 

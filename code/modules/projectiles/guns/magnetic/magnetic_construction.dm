@@ -88,22 +88,22 @@
 	icon_state = "coilgun_construction_[construction_stage]"
 
 /obj/item/weapon/coilgun_assembly/examine(var/mob/user)
-	. = ..(user,2)
-	if(.)
+	. = ..()
+	if(get_dist(user, src) <= 2)
 		switch(construction_stage)
 			if(2)
-				to_chat(user, "<span class='notice'>It has a metal frame loosely shaped around the stock.</span>")
+				. += "<span class='notice'>It has a metal frame loosely shaped around the stock.</span>"
 			if(3)
-				to_chat(user, "<span class='notice'>It has a metal frame duct-taped to the stock.</span>")
+				. += "<span class='notice'>It has a metal frame duct-taped to the stock.</span>"
 			if(4)
-				to_chat(user, "<span class='notice'>It has a length of pipe attached to the body.</span>")
+				. += "<span class='notice'>It has a length of pipe attached to the body.</span>"
 			if(4)
-				to_chat(user, "<span class='notice'>It has a length of pipe welded to the body.</span>")
+				. += "<span class='notice'>It has a length of pipe welded to the body.</span>"
 			if(6)
-				to_chat(user, "<span class='notice'>It has a cable mount and capacitor jack wired to the frame.</span>")
+				. += "<span class='notice'>It has a cable mount and capacitor jack wired to the frame.</span>"
 			if(7)
-				to_chat(user, "<span class='notice'>It has a single superconducting coil threaded onto the barrel.</span>")
+				. += "<span class='notice'>It has a single superconducting coil threaded onto the barrel.</span>"
 			if(8)
-				to_chat(user, "<span class='notice'>It has a pair of superconducting coils threaded onto the barrel.</span>")
+				. += "<span class='notice'>It has a pair of superconducting coils threaded onto the barrel.</span>"
 			if(9)
-				to_chat(user, "<span class='notice'>It has three superconducting coils attached to the body, waiting to be secured.</span>")
+				. += "<span class='notice'>It has three superconducting coils attached to the body, waiting to be secured.</span>"

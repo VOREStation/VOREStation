@@ -158,9 +158,9 @@ var/list/organ_cache = list()
 		handle_germ_effects()
 
 /obj/item/organ/examine(mob/user)
-	..(user)
+	. = ..()
 	if(status & ORGAN_DEAD)
-		to_chat(user, "<span class='notice'>The decay has set in.</span>")
+		. += "<span class='notice'>Decay appears to have set in.</span>"
 
 //A little wonky: internal organs stop calling this (they return early in process) when dead, but external ones cause further damage when dead
 /obj/item/organ/proc/handle_germ_effects()

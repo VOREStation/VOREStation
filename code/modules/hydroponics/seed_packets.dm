@@ -60,9 +60,9 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 		src.desc = "It's labelled as coming from [seed.display_name]."
 
 /obj/item/seeds/examine(mob/user)
-	..(user)
+	. = ..()
 	if(seed && !seed.roundstart)
-		to_chat(user, "It's tagged as variety #[seed.uid].")
+		. += "It's tagged as variety #[seed.uid]."
 
 /obj/item/seeds/cutting
 	name = "cuttings"

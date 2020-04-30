@@ -51,11 +51,12 @@ var/global/photo_count = 0
 	..()
 
 /obj/item/weapon/photo/examine(mob/user)
+	//This is one time we're not going to call parent, because photos are 'secret' unless you're close enough.
 	if(in_range(user, src))
 		show(user)
-		to_chat(user,desc)
+		return list(desc)
 	else
-		to_chat(user, "<span class='notice'>It is too far away.</span>")
+		return list("<span class='notice'>It is too far away to examine.</span>")
 
 /obj/item/weapon/photo/proc/show(mob/user as mob)
 	user << browse_rsc(img, "tmp_photo_[id].png")
