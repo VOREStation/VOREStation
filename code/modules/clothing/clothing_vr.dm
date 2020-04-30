@@ -1,6 +1,6 @@
 /obj/item/clothing
 	var/recent_struggle = 0
-	var/list/species_restricted = list(
+	species_restricted = list(
         "exclude",
         SPECIES_MANTID_ALATE,
     ) //everyone except for these species can wear this kit.
