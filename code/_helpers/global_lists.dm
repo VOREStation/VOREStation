@@ -203,6 +203,13 @@ var/global/list/string_slot_flags = list(
 		var/datum/poster/P = new T
 		NT_poster_designs += P
 
+	// VOREStation Add - Vore Modes!
+	paths = typesof(/datum/digest_mode) - /datum/digest_mode/transform
+	for(var/T in paths)
+		var/datum/digest_mode/DM = new T
+		GLOB.digest_modes[DM.id] = DM
+	// VOREStation Add End
+
 	return 1
 
 /* // Uncomment to debug chemical reaction list.
