@@ -582,17 +582,16 @@
 	)
 
 	has_organ = list(
-		O_HEART =		/obj/item/organ/internal/heart,
-		O_LUNGS =		/obj/item/organ/internal/lungs,
-		O_VOICE = 		/obj/item/organ/internal/voicebox,
-		O_LIVER =		/obj/item/organ/internal/liver,
-		O_KIDNEYS =		/obj/item/organ/internal/kidneys,
-		O_BRAIN =		/obj/item/organ/internal/brain,
-		O_APPENDIX = 	/obj/item/organ/internal/appendix,
-		O_SPLEEN = 		/obj/item/organ/internal/spleen,
-		O_EYES =		/obj/item/organ/internal/eyes,
-		O_STOMACH =		/obj/item/organ/internal/stomach,
-		O_INTESTINE =	/obj/item/organ/internal/intestine
+		O_HEART =		/obj/item/organ/internal/heart/insectoid,
+		O_LUNGS =		/obj/item/organ/internal/lungs/insectoid,
+		O_VOICE = 		/obj/item/organ/internal/voicebox/insectoid,
+		O_LIVER =		/obj/item/organ/internal/liver/insectoid,
+		O_KIDNEYS =		/obj/item/organ/internal/kidneys/insectoid,
+		O_BRAIN =		/obj/item/organ/internal/brain/insectoid,
+		O_SPLEEN = 		/obj/item/organ/internal/spleen/insectoid,
+		O_EYES =		/obj/item/organ/internal/eyes/insectoid,
+		O_STOMACH =		/obj/item/organ/internal/stomach/insectoid,
+		O_INTESTINE =	/obj/item/organ/internal/intestine/insectoid
 	)
 
 /datum/species/alate/equip_survival_gear(var/mob/living/carbon/human/H)
