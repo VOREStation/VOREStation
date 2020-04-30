@@ -37,4 +37,4 @@
 	min_pressure_protection = 0  * ONE_ATMOSPHERE
 	max_pressure_protection = 15 * ONE_ATMOSPHERE
 	species_restricted = list(SPECIES_MANTID_ALATE)
-	sprite_sheets = list(SPECIES_MANTID_ALATE = 'icons/mob/species/mantid/onmob_head_alate.dmi')
+	sprite_sheets = list(SPECIES_MANTID_ALATE = 'icons/mob/species/mantid/head_alate.dmi')
