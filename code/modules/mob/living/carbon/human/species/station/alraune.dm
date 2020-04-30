@@ -417,7 +417,7 @@
 	set src in view(1)
 
 	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.canClick())
+	if(!isliving(usr) || !usr.checkClickCooldown())
 		return
 
 	if(usr.incapacitated() || usr.stat > CONSCIOUS)
