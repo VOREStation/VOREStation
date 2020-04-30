@@ -4341,3 +4341,14 @@
 	if(pixel_x || pixel_y)
 		A.pixel_x = pixel_x
 		A.pixel_y = pixel_y
+
+/obj/item/weapon/reagent_containers/food/snacks/honeybun
+	name = "Honeybun"
+	desc = "A delicious and sweet treat made with honey instead of sugar. On the sticky side."
+	icon_state = "honeybun"
+	bitesize = 2
+	nutriment_amt = 4
+	nutriment_desc = list("honey" = 2, "pastry" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/bun/Initialize()
+	. = ..()

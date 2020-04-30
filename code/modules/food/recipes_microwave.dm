@@ -1347,3 +1347,10 @@ I said no!
 		/obj/item/device/soulstone
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/bageltwo
+
+/datum/recipe/microwave/honeybun
+	reagents = list("milk" = 5, "egg" = 3,"honey" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/dough
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/honeybun
