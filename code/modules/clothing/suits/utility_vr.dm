@@ -17,7 +17,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
 	index = 1
 	
-/obj/item/clothing/suit/storage/ascent
+/obj/item/clothing/suit/storage/ascent //This thing is supposed to also act as a toolbelt but I can't get it to hold more than two items inside of it.
 	name = "mantid gear harness"
 	desc = "A complex tangle of articulated cables and straps."
 	species_restricted = list(SPECIES_MANTID_ALATE)
