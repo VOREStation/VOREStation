@@ -527,7 +527,7 @@
 		'sound/voice/ascent6.ogg'
 	)
 
-	siemens_coefficient =   0.2 // Crystalline body.
+	siemens_coefficient =   0 // Crystalline body. Also I don't think any gloves fit them for now so.
 	oxy_mod =               0.8 // Don't need as much breathable gas as humans.
 	toxins_mod =            0.4 // Not as biologically fragile as meatboys.
 	radiation_mod =         0.4 // Not as biologically fragile as meatboys.
@@ -538,10 +538,8 @@
 
 	min_age =                18
 	max_age =                140 //
-	slowdown =               -0.2
+	slowdown =               -0.5 // Was originally -1 on baycode, so I guess a middle ground?
 	rarity_value =            3
-	gluttonous =              2
-	siemens_coefficient =     0
 	body_temperature =        null
 
 	appearance_flags =        0
