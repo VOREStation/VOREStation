@@ -154,10 +154,10 @@
 	set category = "Object"
 	set src = usr
 
-	if(world.time <= next_click) // This isn't really a 'click' but it'll work for our purposes.
+	if(!checkClickCooldown())
 		return
-
-	next_click = world.time + 1
+	
+	setClickCooldown(1)
 
 	if(istype(loc,/obj/mecha)) return
 
