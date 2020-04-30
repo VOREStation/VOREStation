@@ -37,13 +37,27 @@
 				winset(client, "input", "text=[null]")
 
 /mob/living/carbon/human/speech_bubble_appearance()
-	if(isSynthetic())
-		var/datum/robolimb/robo = isSynthetic()
-		return robo.speech_bubble_appearance
-	else
-		if(species)
-			return species.speech_bubble_appearance
-	return "normal"
+	var/sounds_synth = FALSE
+	var/datum/robolimb/robo = isSynthetic() //Will get torso manufacturer
+	if(robo)
+		sounds_synth = looksSynthetic() //Based on lifelike robolimb vars
+
+	// Not lifelike and got manufacturer
+	if(sounds_synth)
+		return robo.speech_bubble_appearance || "synthetic"
+
+	// Not lifelike synth, might have synth voice box
+	if(!robo)
+		var/obj/item/organ/internal/V = internal_organs_by_name[O_VOICE]
+		if(V?.robotic >= ORGAN_ROBOT)
+			return "synthetic"
+
+	// Species might have custom one
+	if(species.speech_bubble_appearance)
+		return species.speech_bubble_appearance
+
+	// NORMIE
+	return ..()
 
 /mob/living/carbon/human/say_understands(var/mob/other, var/datum/language/speaking = null)
 	if(has_brain_worms()) //Brain worms translate everything. Even mice and alien speak.
