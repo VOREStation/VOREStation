@@ -1,7 +1,8 @@
 /atom/movable
 	layer = OBJ_LAYER
 	appearance_flags = TILE_BOUND|PIXEL_SCALE
-	var/last_move = null
+	glide_size = 8
+	var/last_move = null //The direction the atom last moved
 	var/anchored = 0
 	// var/elevation = 2    - not used anywhere
 	var/moving_diagonally

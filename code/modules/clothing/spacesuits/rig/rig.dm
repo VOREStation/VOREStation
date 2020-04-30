@@ -996,14 +996,6 @@
 	if(wearer.transforming || !wearer.canmove)
 		return
 
-	if(locate(/obj/effect/stop/, wearer.loc))
-		for(var/obj/effect/stop/S in wearer.loc)
-			if(S.victim == wearer)
-				return
-
-	if(!wearer.lastarea)
-		wearer.lastarea = get_area(wearer.loc)
-
 	if((istype(wearer.loc, /turf/space)) || (wearer.lastarea.has_gravity == 0))
 		if(!wearer.Process_Spacemove(0))
 			return 0

@@ -895,7 +895,7 @@ default behaviour is:
 	set name = "Resist"
 	set category = "IC"
 
-	if(!incapacitated(INCAPACITATION_KNOCKOUT) && canClick())
+	if(!incapacitated(INCAPACITATION_KNOCKOUT) && checkClickCooldown())
 		setClickCooldown(20)
 		resist_grab()
 		if(!weakened)
@@ -1299,9 +1299,7 @@ default behaviour is:
 	//actually throw it!
 	src.visible_message("<span class='warning'>[src] has thrown [item].</span>")
 
-	if(!src.lastarea)
-		src.lastarea = get_area(src.loc)
-	if((istype(src.loc, /turf/space)) || (src.lastarea.has_gravity == 0))
+	if((istype(src.loc, /turf/space)) || (src.lastarea?.has_gravity == 0))
 		src.inertia_dir = get_dir(target, src)
 		step(src, inertia_dir)
 

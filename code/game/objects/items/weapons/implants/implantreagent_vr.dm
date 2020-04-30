@@ -70,7 +70,7 @@
 	do_reagent_implant(usr)
 
 /mob/living/carbon/human/proc/do_reagent_implant(var/mob/living/carbon/human/user = usr)
-	if(!isliving(user) || !user.canClick())
+	if(!isliving(user) || !user.checkClickCooldown())
 		return
 
 	if(user.incapacitated() || user.stat > CONSCIOUS)
