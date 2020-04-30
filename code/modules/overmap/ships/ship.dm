@@ -13,7 +13,9 @@
 	name = "spacecraft"
 	desc = "This marker represents a spaceship. Scan it for more information."
 	scanner_desc = "Unknown spacefaring vessel."
+	dir = NORTH
 	icon_state = "ship"
+	appearance_flags = TILE_BOUND|KEEP_TOGETHER //VOREStation Edit
 	var/moving_state = "ship_moving"
 
 	var/vessel_mass = 10000             //tonnes, arbitrary number, affects acceleration provided by engines
@@ -163,10 +165,14 @@
 /obj/effect/overmap/visitable/ship/update_icon()
 	if(!is_still())
 		icon_state = moving_state
-		dir = get_heading()
+		transform = matrix().Turn(get_heading_degrees())
 	else
 		icon_state = initial(icon_state)
+		transform = null
 	..()
+
+/obj/effect/overmap/visitable/ship/set_dir(new_dir)
+	return ..(NORTH) // NO! We always face north.
 
 /obj/effect/overmap/visitable/ship/proc/burn()
 	for(var/datum/ship_engine/E in engines)
