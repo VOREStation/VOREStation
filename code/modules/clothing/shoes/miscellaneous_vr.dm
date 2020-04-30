@@ -68,5 +68,5 @@
 	icon_base = "ascent_boots"
 	species_restricted = list(SPECIES_MANTID_ALATE)
 	sprite_sheets = list(
-		SPECIES_MANTID_ALATE = 'icons/mob/species/mantid/onmob_shoes_alate.dmi'
+		SPECIES_MANTID_ALATE = 'icons/mob/species/mantid/shoes_alate.dmi'
 	)
