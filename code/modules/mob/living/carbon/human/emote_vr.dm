@@ -3,72 +3,72 @@
 
 /mob/living/carbon/human/proc/handle_emote_vr(var/act,var/m_type=1,var/message = null)
 	//Reduces emote spamming
-	if(src.nextemote >= world.time)// || user.stat != CONSCIOUS
+	if(nextemote >= world.time)// || user.stat != CONSCIOUS
 		return 1
-	src.nextemote = world.time + 12
+	nextemote = world.time + 12
 
 	switch(act)
-		if ("vwag")
+		if("vwag")
 			if(toggle_tail_vr(message = 1))
 				m_type = 1
 				message = "[wagging ? "starts" : "stops"] wagging their tail."
 			else
 				return 1
-		if ("vflap")
+		if("vflap")
 			if(toggle_wing_vr(message = 1))
 				m_type = 1
 				message = "[flapping ? "starts" : "stops"] flapping their wings."
 			else
 				return 1
-		if ("mlem")
+		if("mlem")
 			message = "mlems [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] tongue up over [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] nose. Mlem."
 			m_type = 1
-		if ("awoo")
+		if("awoo")
 			m_type = 2
 			message = "lets out an awoo."
 			playsound(loc, 'sound/voice/awoo.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
-		if ("nya")
+		if("nya")
 			message = "lets out a nya."
 			m_type = 2
 			playsound(loc, 'sound/voice/nya.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
-		if ("peep")
+		if("peep")
 			message = "peeps like a bird."
 			m_type = 2
 			playsound(loc, 'sound/voice/peep.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
-		if ("chirp")
+		if("chirp")
 			message = "chirps!"
-			playsound(src.loc, 'sound/misc/nymphchirp.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
+			playsound(loc, 'sound/misc/nymphchirp.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
 			m_type = 2
-		if ("weh")
+		if("weh")
 			message = "lets out a weh."
 			m_type = 2
 			playsound(loc, 'sound/voice/weh.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
-		if ("merp")
+		if("merp")
 			message = "lets out a merp."
 			m_type = 2
 			playsound(loc, 'sound/voice/merp.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
-		if ("bark")
+		if("bark")
 			message = "lets out a bark."
 			m_type = 2
 			playsound(loc, 'sound/voice/bark2.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
-		if ("hiss")
+		if("hiss")
 			message = "lets out a hiss."
 			m_type = 2
 			playsound(loc, 'sound/voice/hiss.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
-		if ("squeak")
+		if("squeak")
 			message = "lets out a squeak."
 			m_type = 2
 			playsound(loc, 'sound/effects/mouse_squeak.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
-		if ("nsay")
+		if("nsay")
 			nsay()
 			return TRUE
-		if ("nme")
+		if("nme")
 			nme()
 			return TRUE
-		if ("flip")
+		if("flip")
 			var/list/involved_parts = list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)
 			//Check if they are physically capable
-			if(src.sleeping || src.resting || src.buckled || src.weakened || src.restrained() || involved_parts.len < 2)
+			if(sleeping || resting || buckled || weakened || restrained() || involved_parts.len < 2)
 				to_chat(src, "<span class='warning'>You can't *flip in your current state!</span>")
 				return 1
 			else
@@ -76,14 +76,15 @@
 				handle_flip_vr()
 				message = "does a flip!"
 				m_type = 1
-		if ("vhelp") //Help for Virgo-specific emotes.
+		if("vhelp") //Help for Virgo-specific emotes.
 			to_chat(src, "vwag, vflap, mlem, awoo, nya, peep, chirp, weh, merp, bark, hiss, squeak, nsay, nme, flip")
+			return TRUE
 
-	if (message)
+	if(message)
 		custom_emote(m_type,message)
-		return 1
+		return TRUE
 
-	return 0
+	return FALSE
 
 
 /mob/living/carbon/human/proc/handle_flip_vr()
