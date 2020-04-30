@@ -3,8 +3,8 @@
 #include "curashuttle.dmm"
 #endif
 
-// Map template for spawning the shuttle!
-/datum/map_template/om_ships/hybrid
+// Map template for spawning the shuttle
+/datum/map_template/om_ships/curabiturmedical
 	name = "OM Ship - Curabitur Rescue Shuttle (new Z)"
 	desc = "A small corporate rescue shuttle."
 	mappath = 'curashuttle.dmm'
@@ -34,12 +34,12 @@
 // The shuttle's 'shuttle' computer
 /obj/machinery/computer/shuttle_control/explore/curashuttle
 	name = "short jump console"
-	shuttle_tag = "Private Vessel"
+	shuttle_tag = "Cura"
 	req_one_access = list()
 
 // The 'shuttle'
 /datum/shuttle/autodock/overmap/curashuttle
-	name = "Private Vessel"
+	name = "Cura"
 	current_location = "omship_spawn_curashuttle"
 	docking_controller_tag = "curadocking"
 	shuttle_area = list(/area/shuttle/curabitur/curashuttle/eng, /area/shuttle/curabitur/curashuttle/med, /area/shuttle/curabitur/curashuttle/hangar, /area/shuttle/curabitur/curashuttle/cockpit)
@@ -64,4 +64,4 @@
 	color = "#01A9DB"
 	vessel_mass = 2000
 	vessel_size = SHIP_SIZE_TINY
-	shuttle = "Private Vessel"
+	shuttle = "Cura"
