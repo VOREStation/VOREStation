@@ -23,7 +23,7 @@
 	species_restricted = list(SPECIES_MANTID_ALATE)
 	icon = 'icons/obj/clothing/suits_vr.dmi'
 	icon_state = "ascent_harness"
-	storage_slots = 7
+	var/storage_slots = 7
 	slot_flags = SLOT_OCLOTHING | SLOT_BELT
 	allowed = list(
 		/obj/item/weapon/tool/crowbar,
