@@ -143,4 +143,4 @@
 	max_pressure_protection = 15 * ONE_ATMOSPHERE
 	armor = list(melee = 40, bullet = 40, laser = 15, energy = 15, bomb = 50, bio = 100, rad = 100)
 	species_restricted = list(SPECIES_MANTID_ALATE)
-	sprite_sheets = list(SPECIES_MANTID_ALATE = 'icons/mob/species/mantid/onmob_suit_alate.dmi')
+	sprite_sheets = list(SPECIES_MANTID_ALATE = 'icons/mob/species/mantid/suit_alate.dmi')
