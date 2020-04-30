@@ -157,7 +157,7 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	name = OUTFIT_JOB_NAME("Pathfinder")
 	shoes = /obj/item/clothing/shoes/boots/winter/explorer
 	uniform = /obj/item/clothing/under/explorer //TODO: Uniforms.
-	l_ear = /obj/item/device/radio/headset/explorer
+	l_ear = /obj/item/device/radio/headset/pathfinder
 	id_slot = slot_wear_id
 	pda_slot = slot_l_store
 	pda_type = /obj/item/device/pda/pathfinder
