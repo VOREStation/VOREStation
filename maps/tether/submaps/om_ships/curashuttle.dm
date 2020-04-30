@@ -3,7 +3,7 @@
 #include "curashuttle.dmm"
 #endif
 
-// Map template for spawning the shuttle
+// Map template for spawning the shuttle!
 /datum/map_template/om_ships/hybrid
 	name = "OM Ship - Curabitur Rescue Shuttle (new Z)"
 	desc = "A small corporate rescue shuttle."
