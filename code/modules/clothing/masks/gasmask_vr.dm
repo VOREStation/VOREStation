@@ -25,7 +25,7 @@
 	icon_state = "ascent_mask"
 	item_state = "ascent_mask"
 	sprite_sheets = list(
-		SPECIES_MANTID_ALATE = 'icons/mob/species/mantid/onmob_mask_alate.dmi'
+		SPECIES_MANTID_ALATE = 'icons/mob/species/mantid/mask_alate.dmi'
 	)
 	species_restricted = list(SPECIES_MANTID_ALATE)
 	flags_inv = 0
