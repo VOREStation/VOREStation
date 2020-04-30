@@ -124,8 +124,9 @@
 			to_chat(user, "<span class='notice'>You insert [I] into [nickname].</span>")
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 			power_down()
-			cell.forceMove(get_turf(src))
-			cell = null
+			user.remove_from_mob(I)
+			I.forceMove(src)
+			cell = I
 
 	else if(istype(I, /obj/item/weapon/pen) || istype(I, /obj/item/device/flashlight/pen))
 		var/tmp_label = sanitizeSafe(input(user, "Enter a nickname for [src]", "Nickname", nickname), MAX_NAME_LEN)
