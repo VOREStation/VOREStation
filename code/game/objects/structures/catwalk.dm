@@ -134,8 +134,7 @@
 
 /obj/effect/catwalk_plated/Initialize(mapload)
 	. = ..()
-	if(SSticker?.current_state < GAME_STATE_PLAYING)
-		activate()
+	activate()
 
 /obj/effect/catwalk_plated/CanPass()
 	return 0
