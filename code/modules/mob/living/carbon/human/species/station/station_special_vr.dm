@@ -544,7 +544,7 @@
 
 	appearance_flags =        0
 	flags =         NO_SLIP | NO_MINOR_CUT //Most shoes don't fit so they get hard feet.
-	spawn_flags =     SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE //Debating Whitelist
+	spawn_flags =     SPECIES_CAN_JOIN
 
 	//Debating whether to give them unique atmos to live
 	/*breath_type = "phoron"
