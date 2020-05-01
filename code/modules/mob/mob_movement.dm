@@ -223,6 +223,7 @@
 		if(isspace(loc))
 			return // No wheelchair driving in space
 		if(istype(my_mob.pulledby, /obj/structure/bed/chair/wheelchair))
+			my_mob.setMoveCooldown(3)
 			return my_mob.pulledby.relaymove(my_mob, direct)
 		else if(istype(my_mob.buckled, /obj/structure/bed/chair/wheelchair))
 			if(ishuman(my_mob))
@@ -240,7 +241,7 @@
 					if("walk")
 						if(prob(25))
 							direct = turn(direct, pick(90, -90))
-			my_mob.setMoveCooldown(2)
+			my_mob.setMoveCooldown(3)
 			return my_mob.buckled.relaymove(my_mob,direct)
 
 	// We are now going to move
