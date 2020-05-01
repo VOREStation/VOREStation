@@ -944,10 +944,10 @@
 	set category = "IC"
 	set src = usr
 
-	if(world.time <= next_click) // Hard check, before anything else, to avoid crashing
+	if(!checkClickCooldown())
 		return
 
-	next_click = world.time + 1
+	setClickCooldown(1)
 
 	var/obj/item/W = get_active_hand()
 	if (W)
