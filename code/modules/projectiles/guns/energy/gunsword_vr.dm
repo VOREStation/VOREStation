@@ -6,10 +6,8 @@
 	icon_state = "gbuster100"
 
 	icon_override = 'icons/vore/custom_guns_vr.dmi'
-	item_state = null
-	item_icons = list(slot_r_hand_str = 'icons/vore/custom_guns_vr.dmi', slot_l_hand_str = 'icons/vore/custom_guns_vr.dmi')
-	item_state_slots = list(slot_r_hand_str = "gbuster_r", slot_l_hand_str = "gbuster_l")
-	slot_flags = null
+	item_state = "gbuster"
+	item_icons = list(slot_r_hand_str = 'icons/vore/custom_guns_vr.dmi', slot_l_hand_str = 'icons/vore/custom_guns_vr.dmi', "slot_belt" = 'icons/mob/belt_vr.dmi')
 
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 4)
