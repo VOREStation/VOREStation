@@ -16,14 +16,14 @@
 	var/list/harvest_results
 
 /mob/living/simple_mob/examine(mob/user)
-	..(user)
-	if(user && harvest_tool && (get_dist(user, src) <= 3))
-		to_chat(user, "<span class='notice'>\The [src] can be [harvest_verb] with a [initial(harvest_tool.name)] every [round(harvest_cooldown, 0.1)] minutes.</span>")
+	. = ..()
+	if(harvest_tool && (get_dist(user, src) <= 3))
+		. += "<span class='notice'>\The [src] can be [harvest_verb] with a [initial(harvest_tool.name)] every [round(harvest_cooldown, 0.1)] minutes.</span>"
 		var/time_to_harvest = (harvest_recent + harvest_cooldown) - world.time
 		if(time_to_harvest > 0)
-			to_chat(user, "<span class='notice'>It can be [harvest_verb] in [time_to_harvest / (1 MINUTE)] second(s).</span>")
+			. += "<span class='notice'>It can be [harvest_verb] in [time_to_harvest / (1 MINUTE)] second(s).</span>"
 		else
-			to_chat(user, "<span class='notice'>It can be [harvest_verb] now.</span>")
+			. += "<span class='notice'>It can be [harvest_verb] now.</span>"
 
 /mob/living/simple_mob/proc/livestock_harvest(var/obj/item/tool, var/mob/living/user)
 	if(!LAZYLEN(harvest_results))	// Might be a unique interaction of an object using the proc to do something weird, or just someone's a donk.
@@ -39,4 +39,3 @@
 			var/new_path = pickweight(harvest_results)
 			new new_path(get_turf(user))
 
-	return
