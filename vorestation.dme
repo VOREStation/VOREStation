@@ -1341,12 +1341,7 @@
 #include "code\game\objects\structures\fence.dm"
 #include "code\game\objects\structures\fireaxe.dm"
 #include "code\game\objects\structures\fitness.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\game\objects\structures\fitness_vr.dm"
-#include "code\game\objects\structures\flora.dm"
-#include "code\game\objects\structures\flora_vr.dm"
-=======
->>>>>>> aafd4b4... Explorer Expansion: New Horizons (#6960):polaris.dme
 #include "code\game\objects\structures\girders.dm"
 #include "code\game\objects\structures\gravemarker.dm"
 #include "code\game\objects\structures\grille.dm"
@@ -1421,11 +1416,9 @@
 #include "code\game\objects\structures\crates_lockers\closets\secure\scientist.dm"
 #include "code\game\objects\structures\crates_lockers\closets\secure\secure_closets.dm"
 #include "code\game\objects\structures\crates_lockers\closets\secure\security.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\game\objects\structures\crates_lockers\closets\secure\security_vr.dm"
-=======
 #include "code\game\objects\structures\flora\flora.dm"
->>>>>>> aafd4b4... Explorer Expansion: New Horizons (#6960):polaris.dme
+#include "code\game\objects\structures\flora\flora_vr.dm"
 #include "code\game\objects\structures\flora\grass.dm"
 #include "code\game\objects\structures\flora\trees.dm"
 #include "code\game\objects\structures\ghost_pods\ghost_pods.dm"
@@ -1923,11 +1916,8 @@
 #include "code\modules\clothing\under\accessories\permits_vr.dm"
 #include "code\modules\clothing\under\accessories\storage.dm"
 #include "code\modules\clothing\under\accessories\torch.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\clothing\under\accessories\torch_vr.dm"
-=======
 #include "code\modules\clothing\under\accessories\temperature\poncho.dm"
->>>>>>> aafd4b4... Explorer Expansion: New Horizons (#6960):polaris.dme
 #include "code\modules\clothing\under\jobs\civilian.dm"
 #include "code\modules\clothing\under\jobs\engineering.dm"
 #include "code\modules\clothing\under\jobs\medsci.dm"
@@ -2598,11 +2588,8 @@
 #include "code\modules\mob\living\simple_mob\on_click.dm"
 #include "code\modules\mob\living\simple_mob\simple_hud.dm"
 #include "code\modules\mob\living\simple_mob\simple_mob.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\mob\living\simple_mob\simple_mob_vr.dm"
-=======
 #include "code\modules\mob\living\simple_mob\taming.dm"
->>>>>>> aafd4b4... Explorer Expansion: New Horizons (#6960):polaris.dme
 #include "code\modules\mob\living\simple_mob\subtypes\animal\animal.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\animal\borer\borer.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\animal\borer\borer_captive.dm"
@@ -2684,23 +2671,16 @@
 #include "code\modules\mob\living\simple_mob\subtypes\humanoid\mercs\mercs.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\humanoid\mercs\mercs_vr.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\illusion\illusion.dm"
-<<<<<<< HEAD:vorestation.dme
-#include "code\modules\mob\living\simple_mob\subtypes\mechanical\combat_drone.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\mechanical\corrupt_maint_drone_vr.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\mechanical\disbot_vr.dm"
-=======
->>>>>>> aafd4b4... Explorer Expansion: New Horizons (#6960):polaris.dme
 #include "code\modules\mob\living\simple_mob\subtypes\mechanical\golem.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\mechanical\golem_vr.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\mechanical\mechanical.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\mechanical\mechanical_vr.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\mechanical\viscerator.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\mob\living\simple_mob\subtypes\mechanical\wahlem_vr.dm"
-=======
 #include "code\modules\mob\living\simple_mob\subtypes\mechanical\drones\combat_drone.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\mechanical\drones\mining_drone.dm"
->>>>>>> aafd4b4... Explorer Expansion: New Horizons (#6960):polaris.dme
 #include "code\modules\mob\living\simple_mob\subtypes\mechanical\hivebot\hivebot.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\mechanical\hivebot\hivebot_vr.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\mechanical\hivebot\ranged_damage.dm"
