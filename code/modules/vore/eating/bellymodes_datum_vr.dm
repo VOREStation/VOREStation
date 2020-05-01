@@ -4,8 +4,8 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	var/id = DM_HOLD
 	var/noise_chance = 0
 
-/datum/digest_mode/process_mob(obj/belly/B, mob/living/L)
-	return
+/datum/digest_mode/proc/process_mob(obj/belly/B, mob/living/L)
+	return null
 
 /datum/digest_mode/digest
 	id = DM_DIGEST
@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 /datum/digest_mode/digest/process_mob(obj/belly/B, mob/living/L)
 	//Pref protection!
 	if(!L.digestable || L.absorbed)
-		return
+		return null
 
 	//Person just died in guts!
 	if(L.stat == DEAD)
@@ -24,16 +24,15 @@ GLOBAL_LIST_INIT(digest_modes, list())
 			else
 				SEND_SOUND(L, sound(get_sfx("fancy_death_prey")))
 		B.handle_digestion_death(L)
-		to_update = TRUE
 		if(!B.fancy_vore)
-			return sound(get_sfx("classic_death_sounds"))
-		return sound(get_sfx("fancy_death_pred"))
+			return list("to_update" = TRUE, "soundToPlay" = sound(get_sfx("classic_death_sounds")))
+		return list("to_update" = TRUE, "soundToPlay" = sound(get_sfx("fancy_death_pred")))
 
 	// Deal digestion damage (and feed the pred)
 	var/old_brute = L.getBruteLoss()
 	var/old_burn = L.getFireLoss()
-	L.adjustBruteLoss(digest_brute)
-	L.adjustFireLoss(digest_burn)
+	L.adjustBruteLoss(B.digest_brute)
+	L.adjustFireLoss(B.digest_burn)
 	var/actual_brute = L.getBruteLoss() - old_brute
 	var/actual_burn = L.getFireLoss() - old_burn
 	var/damage_gain = actual_brute + actual_burn
@@ -44,9 +43,9 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		var/mob/living/silicon/robot/R = B.owner
 		R.cell.charge += 25 * damage_gain
 	if(offset) // If any different than default weight, multiply the % of offset.
-		B.owner.adjust_nutrition(offset*((nutrition_percent / 100) * 4.5 * (damage_gain) / difference)) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
+		B.owner.adjust_nutrition(offset*((B.nutrition_percent / 100) * 4.5 * (damage_gain) / difference)) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
 	else
-		B.owner.adjust_nutrition((nutrition_percent / 100) * 4.5 * (damage_gain) / difference)
+		B.owner.adjust_nutrition((B.nutrition_percent / 100) * 4.5 * (damage_gain) / difference)
 
 /datum/digest_mode/absorb
 	id = DM_ABSORB
@@ -54,12 +53,11 @@ GLOBAL_LIST_INIT(digest_modes, list())
 
 /datum/digest_mode/absorb/process_mob(obj/belly/B, mob/living/L)
 	if(!L.absorbable || L.absorbed)
-		continue
-	digestion_noise_chance = 10
-	steal_nutrition(L)
+		return null
+	B.steal_nutrition(L)
 	if(L.nutrition < 100)
-		absorb_living(L)
-		to_update = TRUE
+		B.absorb_living(L)
+		return list("to_update" = TRUE)
 
 /datum/digest_mode/unabsorb
 	id = DM_UNABSORB
@@ -70,14 +68,14 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		to_chat(L, "<span class='notice'>You suddenly feel solid again.</span>")
 		to_chat(B.owner,"<span class='notice'>You feel like a part of you is missing.</span>")
 		B.owner.adjust_nutrition(-100)
-		to_update = TRUE
+		return list("to_update" = TRUE)
 
 /datum/digest_mode/drain
 	id = DM_DRAIN
 	noise_chance = 10
 
 /datum/digest_mode/drain/process_mob(obj/belly/B, mob/living/L)
-	steal_nutrition(L)
+	B.steal_nutrition(L)
 
 /datum/digest_mode/drain/shrink
 	id = DM_SHRINK
@@ -110,7 +108,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 
 /datum/digest_mode/heal/process_mob(obj/belly/B, mob/living/L)
 	if(L.stat == DEAD)
-		continue // Can't heal the dead with healbelly
+		return null // Can't heal the dead with healbelly
 	if(B.owner.nutrition > 90 && (L.health < L.maxHealth))
 		L.adjustBruteLoss(-2.5)
 		L.adjustFireLoss(-2.5)
@@ -139,40 +137,40 @@ GLOBAL_LIST_INIT(digest_modes, list())
 
 /datum/digest_mode/transform/process_mob(obj/belly/B, mob/living/carbon/human/H)
 	if(!istype(H) || H.stat == DEAD)
-		return
+		return null
 	if(stabilize_nutrition)
 		if(B.owner.nutrition > 400 && H.nutrition < 400)
 			B.owner.adjust_nutrition(-2)
 			H.adjust_nutrition(1.5)
 	if(changes_eyes && B.check_eyes(H))
 		B.change_eyes(H, 1)
-		return
+		return null
 	if(changes_hair_solo && B.check_hair(H))
 		B.change_hair(H)
-		return
+		return null
 	if(changes_hairandskin && (B.check_hair(H) || B.check_skin(H)))
 		B.change_hair(H)
 		B.change_skin(H, 1)
-		return
+		return null
 	if(changes_species)
 		if(changes_ears_tail_wing_nocolor && (B.check_ears(H) || B.check_tail_nocolor(H) || B.check_wing_nocolor(H) || B.check_species(H)))
 			B.change_ears(H)
 			B.change_tail_nocolor(H)
 			B.change_wing_nocolor(H)
 			B.change_species(H, 1, 1) // ,1) preserves coloring
-			return
+			return null
 		if(changes_ears_tail_wing_color && (B.check_ears(H) || B.check_tail(H) || B.check_wing(H) || B.check_species(H)))
 			B.change_ears(H)
 			B.change_tail(H)
 			B.change_wing(H)
 			B.change_species(H, 1, 2) // ,2) does not preserve coloring.
-			return
+			return null
 	if(changes_gender && B.check_gender(H, changes_gender_to))
 		B.change_gender(H, changes_gender_to, 1)
-		return
+		return null
 	if(eggs && (!H.absorbed))
 		B.put_in_egg(H, 1)
-		return
+		return null
 
 // Regular TF Modes
 /datum/digest_mode/transform/hairandeyes

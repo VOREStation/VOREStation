@@ -125,32 +125,30 @@
 				spanstyle = "color:purple;"
 			if(DM_SIZE_STEAL)
 				spanstyle = "color:purple;"
-			if(DM_TRANSFORM)
-				switch(B.tf_mode)
-					if(DM_TRANSFORM_MALE)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_HAIR_AND_EYES)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_FEMALE)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_KEEP_GENDER)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_REPLICA)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_REPLICA_EGG)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_KEEP_GENDER_EGG)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_MALE_EGG)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_FEMALE_EGG)
-						spanstyle = "color:purple;"
-					if(DM_EGG)
-						spanstyle = "color:purple;"
+			if(DM_TRANSFORM_MALE)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_HAIR_AND_EYES)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_FEMALE)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_KEEP_GENDER)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_REPLICA)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_REPLICA_EGG)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_KEEP_GENDER_EGG)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_MALE_EGG)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_FEMALE_EGG)
+				spanstyle = "color:purple;"
+			if(DM_EGG)
+				spanstyle = "color:purple;"
 
 		belly_list += "<span style='[spanstyle]'> ([B.contents.len])</span></a></li>"
 
@@ -203,7 +201,7 @@
 
 		//Digest Mode Button
 		var/mode = selected.digest_mode
-		dat += "<br><a href='?src=\ref[src];b_mode=\ref[selected]'>Belly Mode:</a> [mode == DM_TRANSFORM ? selected.tf_mode : mode]"
+		dat += "<br><a href='?src=\ref[src];b_mode=\ref[selected]'>Belly Mode:</a> [mode]"
 
 		//Mode addons button
 		var/list/flag_list = list()
@@ -581,10 +579,11 @@
 
 		if(new_mode == DM_TRANSFORM) //Snowflek submenu
 			var/list/tf_list = selected.transform_modes
-			var/new_tf_mode = input("Choose TF Mode (currently [selected.tf_mode])") as null|anything in tf_list
+			var/new_tf_mode = input("Choose TF Mode (currently [selected.digest_mode])") as null|anything in tf_list
 			if(!new_tf_mode)
 				return FALSE
-			selected.tf_mode = new_tf_mode
+			selected.digest_mode = new_tf_mode
+			return
 
 		selected.digest_mode = new_mode
 		//selected.items_preserved.Cut() //Re-evaltuate all items in belly on belly-mode change	//Handled with item modes now
