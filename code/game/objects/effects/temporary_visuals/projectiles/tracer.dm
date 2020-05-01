@@ -115,7 +115,12 @@
 	light_power = 3
 	light_color = "#3300ff"
 
-<<<<<<< HEAD
+/obj/effect/projectile/tracer/cannon
+	icon_state = "cannon"
+	light_range = 1
+	light_power = 0.5
+	light_color = "#f6f2b6"
+
 //VOREStation edit: medigun
 /obj/effect/projectile/tracer/medigun
 	icon = 'icons/obj/projectiles_vr.dmi'
@@ -124,10 +129,3 @@
 	light_power = 0.5
 	light_color = "#80F5FF"
 //VOREStation edit ends
-=======
-/obj/effect/projectile/tracer/cannon
-	icon_state = "cannon"
-	light_range = 1
-	light_power = 0.5
-	light_color = "#f6f2b6"
->>>>>>> aafd4b4... Explorer Expansion: New Horizons (#6960)
