@@ -96,6 +96,42 @@
 				. = check
 				break
 
+// For now, these two temp procs only return TRUE or FALSE if they can provide resistance to a given temperature.
+/obj/item/clothing/proc/handle_low_temperature(var/tempcheck = T20C)
+	. = FALSE
+	if(LAZYLEN(accessories))
+		for(var/obj/item/clothing/C in accessories)
+			if(C.handle_low_temperature(tempcheck))
+				. = TRUE
+
+	if(min_cold_protection_temperature && min_cold_protection_temperature <= tempcheck)
+		. = TRUE
+
+/obj/item/clothing/proc/handle_high_temperature(var/tempcheck = T20C)
+	. = FALSE
+	if(LAZYLEN(accessories))
+		for(var/obj/item/clothing/C in accessories)
+			if(C.handle_low_temperature(tempcheck))
+				. = TRUE
+
+	if(max_heat_protection_temperature && max_heat_protection_temperature >= tempcheck)
+		. = TRUE
+
+// Returns the relative flag-vars for covered protection.
+/obj/item/clothing/proc/get_cold_protection_flags()
+	. = cold_protection
+
+	if(LAZYLEN(accessories))
+		for(var/obj/item/clothing/C in accessories)
+			. |= C.get_cold_protection_flags()
+
+/obj/item/clothing/proc/get_heat_protection_flags()
+	. = heat_protection
+
+	if(LAZYLEN(accessories))
+		for(var/obj/item/clothing/C in accessories)
+			. |= C.get_heat_protection_flags()
+
 /obj/item/clothing/proc/refit_for_species(var/target_species)
 	if(!species_restricted)
 		return //this item doesn't use the species_restricted system

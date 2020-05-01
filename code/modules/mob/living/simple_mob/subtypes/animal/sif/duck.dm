@@ -10,7 +10,7 @@
 	Family units have been observed to form gangs and scavenge from Sivian domeciles and \
 	various food transports during stressful months. \
 	It is advised to seal and hide any form of food near even lone individuals, as they will become \
-	increasingly aggressive."
+	increasingly aggressive in order to acquire it."
 	value = CATALOGUER_REWARD_EASY
 
 /mob/living/simple_mob/animal/sif/duck
@@ -37,6 +37,11 @@
 	base_attack_cooldown = 1 SECOND
 	attack_edge = 1		// Razor-edged wings, and 'claws' made for digging through ice.
 	attacktext = list("nipped", "bit", "cut", "clawed")
+
+	tame_items = list(
+	/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread = 90,
+	/obj/item/weapon/reagent_containers/food/snacks/slice/bread = 25
+	)
 
 	say_list_type = /datum/say_list/duck
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative

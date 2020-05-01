@@ -160,8 +160,8 @@
 #define WEED_NODE_BASE "nodebase"
 
 /obj/effect/alien/weeds
-	name = "weeds"
-	desc = "Weird purple weeds."
+	name = "growth"
+	desc = "Weird organic growth."
 	icon_state = "weeds"
 
 	anchored = 1
@@ -185,24 +185,27 @@
 
 /obj/effect/alien/weeds/node
 	icon_state = "weednode"
-	name = "purple sac"
-	desc = "Weird purple octopus-like thing."
+	name = "glowing growth"
+	desc = "Weird glowing organic growth."
 	layer = ABOVE_TURF_LAYER+0.01
 	light_range = NODERANGE
 	var/node_range = NODERANGE
 
 	var/set_color = null
 
-/obj/effect/alien/weeds/node/New()
-	..(src.loc, src)
+/obj/effect/alien/weeds/node/New(var/newloc, var/newcolor = "#321D37")
+	var/obj/effect/alien/weeds/existing = locate() in get_turf(newloc)
+	if(existing)
+		qdel(existing)
+
+	if(newcolor)
+		set_color = newcolor
+
+	..(newloc, src)
 
 /obj/effect/alien/weeds/node/Initialize()
 	..()
 	START_PROCESSING(SSobj, src)
-
-	spawn(1 SECOND)
-		if(color)
-			set_color = color
 
 /obj/effect/alien/weeds/node/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -272,11 +275,14 @@ Alien plants should do something if theres a lot of poison
 		qdel(src)
 		return
 
-	if(!linked_node || (get_dist(linked_node, src) > linked_node.node_range) )
+	if(!linked_node)
 		return
 
 	if(linked_node != src)
 		color = linked_node.set_color
+
+	if(get_dist(linked_node, src) > linked_node.node_range)
+		return
 
 	direction_loop:
 		for(var/dirn in cardinal)

@@ -67,4 +67,16 @@
 // Variant that starts in defense mode, perhaps for PoIs.
 /mob/living/simple_mob/mechanical/mecha/combat/durand/defensive/Initialize()
 	set_defense_mode(TRUE)
+<<<<<<< HEAD
 	return ..()
+=======
+	return ..()
+
+/mob/living/simple_mob/mechanical/mecha/combat/durand/defensive/mercenary
+	desc = "An aging combat exosuit utilized by many corporations. It was originally developed to fight in the First Contact War.\
+	This one has been retrofitted into a turret."
+
+	projectiletype = /obj/item/projectile/beam/heavylaser/fakeemitter
+
+	pilot_type = /mob/living/simple_mob/humanoid/merc/ranged
+>>>>>>> aafd4b4... Explorer Expansion: New Horizons (#6960)

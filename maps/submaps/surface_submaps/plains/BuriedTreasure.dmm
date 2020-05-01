@@ -1,0 +1,10 @@
+"a" = (/turf/template_noop,/area/submap/BuriedTreasure)
+"b" = (/obj/structure/closet/grave,/obj/random/gun/random,/obj/random/contraband,/obj/random/cash,/obj/random/cigarettes,/obj/random/trash,/obj/random/junk,/obj/random/drinkbottle,/turf/template_noop,/area/submap/BuriedTreasure)
+
+(1,1,1) = {"
+aaaaa
+aaaaa
+aabaa
+aaaaa
+aaaaa
+"}

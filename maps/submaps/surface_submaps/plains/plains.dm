@@ -28,6 +28,10 @@
 #include "SupplyDrop2.dmm"
 #include "RationCache.dmm"
 #include "Oldhouse.dmm"
+#include "PlainsKururak.dmm"
+#include "BuriedTreasure.dmm"
+#include "BuriedTreasure2.dmm"
+#include "BuriedTreasure3.dmm"
 #endif
 
 
@@ -213,5 +217,37 @@
 /datum/map_template/surface/plains/ChemSpill1
 	name = "Ruptured Canister"
 	desc = "A dumped chemical canister. Looks dangerous."
+<<<<<<< HEAD
 	mappath = 'maps/submaps/surface_submaps/plains/chemspill1_vr.dmm' //VOREStation Edit
 	cost = 10
+=======
+	mappath = 'maps/submaps/surface_submaps/plains/chemspill1.dmm'
+	cost = 10
+
+/datum/map_template/surface/plains/PlainsKururak
+	name = "Lone Kururak"
+	desc = "A lone Kururak's den."
+	mappath = 'maps/submaps/surface_submaps/plains/PlainsKururak.dmm'
+	cost = 10
+
+/datum/map_template/surface/plains/BuriedTreasure1
+	name = "Buried Treasure 1"
+	desc = "A hole in the ground, who knows what might be inside!"
+	mappath = 'maps/submaps/surface_submaps/plains/BuriedTreasure.dmm'
+	cost = 10
+	template_group = "Shallow Grave"
+
+/datum/map_template/surface/plains/BuriedTreasure2
+	name = "Buried Treasure 2"
+	desc = "A hole in the ground, who knows what might be inside!"
+	mappath = 'maps/submaps/surface_submaps/plains/BuriedTreasure2.dmm'
+	cost = 10
+	template_group = "Shallow Grave"
+
+/datum/map_template/surface/plains/BuriedTreasure3
+	name = "Buried Treasure 3"
+	desc = "A hole in the ground, who knows what might be inside!"
+	mappath = 'maps/submaps/surface_submaps/plains/BuriedTreasure3.dmm'
+	cost = 10
+	template_group = "Shallow Grave"
+>>>>>>> aafd4b4... Explorer Expansion: New Horizons (#6960)
