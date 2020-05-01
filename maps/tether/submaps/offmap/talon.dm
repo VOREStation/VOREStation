@@ -1,12 +1,21 @@
 ///////////////////////////
 //// Spawning and despawning
 var/global/list/latejoin_talon = list()
+var/global/list/latejoin_talon_cyborg = list()
 /obj/effect/landmark/talon
 	name = "JoinLateTalon"
 	delete_me = 1
 
 /obj/effect/landmark/talon/New()
 	latejoin_talon += loc // Register this turf as tram latejoin.
+	..()
+
+/obj/effect/landmark/talon/cyborg
+	name = "JoinLateTalonCyborg"
+	delete_me = 1
+
+/obj/effect/landmark/talon/cyborg/New()
+	latejoin_talon_cyborg += loc // Register this turf as tram latejoin
 	..()
 
 /datum/spawnpoint/talon
@@ -18,6 +27,16 @@ var/global/list/latejoin_talon = list()
 /datum/spawnpoint/talon/New()
 	..()
 	turfs = latejoin_talon
+
+/datum/spawnpoint/taloncyborg
+	display_name = "ITV Talon Robot Storage"
+	restrict_job = list("Talon Cyborg")
+	msg = "has exited robot storage"
+	announce_channel = "Talon"
+
+/datum/spawnpoint/taloncyborg/New()
+	..()
+	turfs = latejoin_talon_cyborg
 
 /obj/machinery/cryopod/talon
 	announce_channel = "Talon"

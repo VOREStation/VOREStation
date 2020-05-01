@@ -225,6 +225,12 @@
 "az" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon/deckone/bridge)
+"aA" = (
+/obj/effect/landmark/start{
+	name = "Talon Cyborg"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/talon/deckone/workroom)
 "aB" = (
 /obj/effect/floor_decal/techfloor{
 	icon_state = "techfloororange_edges";
@@ -372,6 +378,15 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/talon/maintenance/deckone_starboard)
+"aQ" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/techmaint,
+/area/talon/deckone/workroom)
 "aR" = (
 /turf/simulated/wall,
 /area/talon/deckone/secure_storage)
@@ -1187,6 +1202,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/talon/deckone/starboard_solar)
+"cq" = (
+/obj/machinery/cryopod/robot{
+	announce_channel = "Talon"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/talon/deckone/workroom)
 "cr" = (
 /obj/structure/cable/yellow{
 	icon_state = "16-0"
@@ -2230,6 +2251,10 @@
 /obj/item/clothing/accessory/holster/waist,
 /turf/simulated/floor/tiled/dark,
 /area/talon/deckone/armory)
+"ej" = (
+/obj/effect/landmark/talon/cyborg,
+/turf/simulated/floor/tiled/techmaint,
+/area/talon/deckone/workroom)
 "ek" = (
 /obj/structure/closet/crate/medical{
 	name = "first-aid kits"
@@ -5724,10 +5749,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon/deckone/workroom)
-"kq" = (
-/obj/machinery/fitness/punching_bag,
-/turf/simulated/floor/tiled/techmaint,
-/area/talon/deckone/workroom)
 "kr" = (
 /obj/machinery/light/small{
 	dir = 4;
@@ -7292,14 +7313,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel,
 /area/talon/deckone/central_hallway)
-"PY" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -25
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/talon/deckone/workroom)
 "Qi" = (
 /obj/machinery/door/blast/regular/open{
 	dir = 4;
@@ -18879,8 +18892,8 @@ fm
 dO
 fQ
 kp
-fP
-PY
+ej
+aQ
 fJ
 aP
 gY
@@ -19021,8 +19034,8 @@ fn
 dO
 OF
 fP
-fP
-kq
+aA
+cq
 fJ
 aP
 gY
