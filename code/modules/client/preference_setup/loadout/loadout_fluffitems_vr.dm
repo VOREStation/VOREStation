@@ -738,6 +738,13 @@
 	ckeywhitelist = list("phoenixgamma7")
 	character_name = list("Jamie Findlay")
 
+/datum/gear/fluff/scylla_shades
+	path = /obj/item/clothing/glasses/fluff/scylla
+	display_name = "Scylla's Shades"
+	description = "These cherry-red cat-eye shades give you an inclination to eat chalk."
+	ckeywhitelist = list("pimientopyro")
+	character_name = list("Scylla Casmus")
+
 //  Q CKEYS
 
 //  R CKEYS
