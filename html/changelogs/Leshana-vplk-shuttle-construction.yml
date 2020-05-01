@@ -1,6 +1,0 @@
-author: Leshana
-delete-after: True
-changes: 
-  - rscadd: "Added circuitboards for ship Helm, Sensors, Navigation, and Engine Control consoles."
-  - rscadd: "Added circuitboards for Exploration (Overmap) Shuttle Console."
-  - tweak: "Mappers no longer need to varedit shuttle_tag on shuttle consoles."
