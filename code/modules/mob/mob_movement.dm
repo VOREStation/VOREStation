@@ -278,8 +278,8 @@
 					n = get_step(my_mob, direct)
 	
 	total_delay = TICKS2DS(-round(-(DS2TICKS(total_delay)))) //Rounded to the next tick in equivalent ds
-	var/glide_size = WORLD_ICON_SIZE/DS2TICKS(total_delay) //Down to whatever decimal
-	my_mob.setMoveCooldown(max(total_delay, 1))
+	var/glide_size = WORLD_ICON_SIZE/max(DS2TICKS(total_delay), 1) //Down to whatever decimal
+	my_mob.setMoveCooldown(total_delay)
 	. = my_mob.SelfMove(n, direct, glide_size)
 
 	// If we have a grab
