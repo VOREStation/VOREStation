@@ -154,15 +154,22 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/machinery/drone_fabricator/talon
 	name = "somewhat glitchy drone fabricator"
 	desc = "Obtained from a derelict, it seems to work sometimes, not work sometimes, and work TOO good sometimes. Didn't come with a control console either..."
+	drone_type = /mob/living/silicon/robot/drone/talon
 
-/obj/machinery/drone_fabricator/talon/create_drone(var/client/player)
-	var/mob/living/silicon/robot/drone/new_drone = ..()
-	if(!istype(new_drone))
-		return
+/mob/living/silicon/robot/drone/talon
+	foreign_droid = TRUE
+	idcard_type = /obj/item/weapon/card/id/synthetic/talon
 
-	new_drone.foreign_droid = TRUE
+/obj/item/weapon/card/id/synthetic/talon
+	name = "\improper Talon synthetic ID"
+	desc = "Access module for Talon synthetics"
+	icon_state = "id-robot"
+	item_state = "tdgreen"
+	assignment = "Talon synthetic"
 
-	return new_drone
+/obj/item/weapon/card/id/synthetic/talon/Initialize()
+	. = ..()
+	access = list(access_talon, access_synth)
 
 /obj/machinery/power/smes/buildable/offmap_spawn/New()
 	..(1)
