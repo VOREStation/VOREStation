@@ -561,14 +561,14 @@
 		"You hear a faint crackle of ice as you shift your freezing body.",
 		"Your movements become sluggish under the weight of the chilly conditions."
 		)
-	/*inherent_verbs = list(
+	inherent_verbs = list(
 		/mob/living/carbon/human/proc/succubus_drain,
 		/mob/living/carbon/human/proc/succubus_drain_finalize,
 		/mob/living/carbon/human/proc/succubus_drain_lethal,
 		/mob/living/carbon/human/proc/bloodsuck,
 		/mob/living/proc/shred_limb,
 		/mob/living/proc/eat_trash
-		) Why does this break travis??? Aaaaaa */
+		)
 		
 	unarmed_types = list(
 		/datum/unarmed_attack/claws,
