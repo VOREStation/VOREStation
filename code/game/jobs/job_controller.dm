@@ -457,7 +457,7 @@ var/global/datum/controller/occupations/job_master
 			alt_title = H.mind.role_alt_title
 
 			switch(rank)
-				if("Cyborg")
+				if("Cyborg", "Talon Cyborg")
 					return H.Robotize()
 				if("AI")
 					return H
