@@ -891,7 +891,7 @@
 	set src in view(1)
 
 	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.checkClickCooldown())
+	if(!isliving(usr) || !usr.canClick())
 		return
 
 	if(usr.incapacitated() || usr.stat > CONSCIOUS)
@@ -960,7 +960,7 @@
 	set src in view(1)
 
 	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.checkClickCooldown())
+	if(!isliving(usr) || !usr.canClick())
 		return
 
 	if(usr.incapacitated() || usr.stat > CONSCIOUS)
@@ -1029,7 +1029,7 @@
 	set src in view(1)
 
 	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.checkClickCooldown())
+	if(!isliving(usr) || !usr.canClick())
 		return
 
 	if(usr.incapacitated() || usr.stat > CONSCIOUS)
@@ -1114,7 +1114,7 @@
 	set src in view(1)
 
 	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.checkClickCooldown())
+	if(!isliving(usr) || !usr.canClick())
 		return
 
 	if(usr.incapacitated() || usr.stat > CONSCIOUS)
@@ -1474,7 +1474,7 @@
 	set src in view(1)
 
 	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.checkClickCooldown())
+	if(!isliving(usr) || !usr.canClick())
 		return
 
 	if(usr.incapacitated() || usr.stat > CONSCIOUS)
@@ -1809,3 +1809,15 @@
     icon = 'icons/vore/custom_items_vr.dmi'
     icon_override = 'icons/vore/custom_items_vr.dmi'
     icon_state = "bombersec"
+
+
+//pimientopyro - Scylla Casmus
+/obj/item/clothing/glasses/fluff/scylla
+	name = "Cherry-Red Shades"
+	desc = "These cheap, cherry-red cat-eye glasses seem to give you the inclination to eat chalk when you wear them."
+
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "blindshades"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "blindshades_mob"
