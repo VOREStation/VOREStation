@@ -23,9 +23,10 @@
 
 
 /mob/living/silicon/ai/ClickOn(var/atom/A, params)
-	if(world.time <= next_click)
+	if(!checkClickCooldown())
 		return
-	next_click = world.time + 1
+	
+	setClickCooldown(1)
 
 	if(client.buildmode) // comes after object.Click to allow buildmode gui objects to be clicked
 		build_click(src, client.buildmode, params, A)
