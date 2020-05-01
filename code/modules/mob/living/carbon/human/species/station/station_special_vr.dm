@@ -567,7 +567,8 @@
 		/mob/living/carbon/human/proc/succubus_drain_lethal,
 		/mob/living/carbon/human/proc/bloodsuck,
 		/mob/living/proc/shred_limb,
-		/mob/living/proc/eat_trash)
+		/mob/living/proc/eat_trash
+	)
 		//Won't be able to select the traits so here they are.
 	unarmed_types = list(
 		/datum/unarmed_attack/claws,
