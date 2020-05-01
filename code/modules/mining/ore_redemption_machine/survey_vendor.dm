@@ -21,7 +21,6 @@
 		new /datum/data/mining_equipment("Laser Pointer",				/obj/item/device/laser_pointer,										90),
 		new /datum/data/mining_equipment("Geiger Counter",				/obj/item/device/geiger,											75),
 		new /datum/data/mining_equipment("Plush Toy",					/obj/random/plushie,												30),
-<<<<<<< HEAD
 		new /datum/data/mining_equipment("Extraction Equipment - Fulton Beacon",/obj/item/fulton_core,										300),
 		new /datum/data/mining_equipment("Extraction Equipment - Fulton Pack",/obj/item/extraction_pack,									125),
 		new /datum/data/mining_equipment("Umbrella",					/obj/item/weapon/melee/umbrella/random,								20),
@@ -39,7 +38,7 @@
 		new /datum/data/mining_equipment("Nanopaste Tube",				/obj/item/stack/nanopaste,											100),
 		new /datum/data/mining_equipment("Mini-Translocator",			/obj/item/device/perfect_tele/one_beacon,							120),
 		new /datum/data/mining_equipment("UAV - Recon Skimmer",			/obj/item/device/uav,												400),
-		new /datum/data/mining_equipment("Space Cash",					/obj/item/weapon/spacecash/c100,									100),
+		new /datum/data/mining_equipment("Direct Payment - 100",			/obj/item/weapon/spacecash/c100,									100),
 		new /datum/data/mining_equipment("Jump Boots",					/obj/item/clothing/shoes/bhop,										250),
 		new /datum/data/mining_equipment("Luxury Shelter Capsule",		/obj/item/device/survivalcapsule/luxury,							310),
 		new /datum/data/mining_equipment("Industrial Equipment - Phoron Bore",/obj/item/weapon/gun/magnetic/matfed,							300),
@@ -52,31 +51,8 @@
 		new /datum/data/mining_equipment("Fishing Net",					/obj/item/weapon/material/fishing_net,								50),
 		new /datum/data/mining_equipment("Titanium Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern,						100),
 		new /datum/data/mining_equipment("Durasteel Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern/strong,				750),
-		new /datum/data/mining_equipment("Bar Shelter Capsule",			/obj/item/device/survivalcapsule/luxurybar,							1000)
-=======
-		new /datum/data/mining_equipment("Umbrella",					/obj/item/weapon/melee/umbrella/random,								10),
-		new /datum/data/mining_equipment("Extraction Equipment - Fulton Beacon",	/obj/item/fulton_core,									100),
-		new /datum/data/mining_equipment("Extraction Equipment - Fulton Pack",		/obj/item/extraction_pack,								50),
-		new /datum/data/mining_equipment("Point Transfer Card",			/obj/item/weapon/card/mining_point_card/survey,						50),
-		new /datum/data/mining_equipment("Fishing Net",					/obj/item/weapon/material/fishing_net,								50),
-		new /datum/data/mining_equipment("Titanium Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern,						50),
-		new /datum/data/mining_equipment("Direct Payment - 1000",		/obj/item/weapon/spacecash/c1000,									500),
-		new /datum/data/mining_equipment("Industrial Equipment - Phoron Bore",	/obj/item/weapon/gun/magnetic/matfed,						500),
-		new /datum/data/mining_equipment("Survey Tools - Shovel",		/obj/item/weapon/shovel,											20),
-		new /datum/data/mining_equipment("Survey Tools - Mechanical Trap",	/obj/item/weapon/beartrap,										30),
-		new /datum/data/mining_equipment("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,	100),
-		new /datum/data/mining_equipment("Digital Tablet - Advanced",	/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,	300),
-		new /datum/data/mining_equipment("Injector (L) - Glucose",/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose,	30),
-		new /datum/data/mining_equipment("Injector (L) - Panacea",/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/purity,	30),
-		new /datum/data/mining_equipment("Injector (L) - Trauma",/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/brute,	50),
-		new /datum/data/mining_equipment("Nanopaste Tube",				/obj/item/stack/nanopaste,											50),
-		new /datum/data/mining_equipment("Defense Equipment - Phase Pistol",/obj/item/weapon/gun/energy/phasegun/pistol,					15),
-		new /datum/data/mining_equipment("Defense Equipment - Smoke Bomb",/obj/item/weapon/grenade/smokebomb,								50),
-		new /datum/data/mining_equipment("Defense Equipment - Razor Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/manhacks/station,	50),
-		new /datum/data/mining_equipment("Defense Equipment - Sentry Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/ward,			100),
-		new /datum/data/mining_equipment("Defense Equipment - Steel Machete",	/obj/item/weapon/material/knife/machete,					50),
+		new /datum/data/mining_equipment("Bar Shelter Capsule",			/obj/item/device/survivalcapsule/luxurybar,							1000),
 		new /datum/data/mining_equipment("Survival Equipment - Insulated Poncho",	/obj/random/thermalponcho,								75)
->>>>>>> aafd4b4... Explorer Expansion: New Horizons (#6960)
 		)
 		//VOREStation Edit End
 
