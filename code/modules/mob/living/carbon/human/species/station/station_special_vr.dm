@@ -568,13 +568,13 @@
 		/mob/living/carbon/human/proc/bloodsuck,
 		/mob/living/proc/shred_limb,
 		/mob/living/proc/eat_trash
-	)
+		)
 		//Won't be able to select the traits so here they are.
 	unarmed_types = list(
 		/datum/unarmed_attack/claws,
 		/datum/unarmed_attack/bite/sharp,
 		/datum/unarmed_attack/bite/sharp/numbing
-	)
+		)
 
 	has_limbs = list(
 		BP_CHEST =  list("path" = /obj/item/organ/external/chest/insectoid),
