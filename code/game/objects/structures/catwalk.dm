@@ -28,7 +28,14 @@
 
 /obj/structure/catwalk/Destroy()
 	redraw_nearby_catwalks()
+	update_falling()
 	return ..()
+
+/obj/structure/catwalk/proc/update_falling()
+	spawn(1) //We get called in Destroy() and things. We might not be gone yet, so let's just put this off.
+		if(istype(loc, /turf/simulated/open))
+			var/turf/simulated/open/O = loc
+			O.update() //Will cause anything on the open turf to fall if it should
 
 /obj/structure/catwalk/proc/redraw_nearby_catwalks()
 	for(var/direction in alldirs)
@@ -83,6 +90,7 @@
 		if(hatch_open)
 			playsound(src, 'sound/items/Crowbar.ogg', 100, 2)
 			to_chat(user, "<span class='notice'>You pry open \the [src]'s maintenance hatch.</span>")
+			update_falling()
 		else
 			playsound(src, 'sound/items/Deconstruct.ogg', 100, 2)
 			to_chat(user, "<span class='notice'>You shut \the [src]'s maintenance hatch.</span>")
