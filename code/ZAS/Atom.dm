@@ -101,7 +101,7 @@ turf/c_airblock(turf/other)
 			if(ATMOS_PASS_NO)
 				return BLOCKED
 			if(ATMOS_PASS_DENSITY)
-				if(density)
+				if(M.density)
 					return BLOCKED
 			if(ATMOS_PASS_PROC)
 				result |= M.c_airblock(other)

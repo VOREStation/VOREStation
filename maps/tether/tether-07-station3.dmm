@@ -27415,13 +27415,25 @@
 /turf/simulated/wall,
 /area/quartermaster/belterdock)
 "aQH" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/structure/cable/green,
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -32
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/obj/structure/table/rack,
+/obj/item/weapon/pickaxe,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/shovel,
+/obj/machinery/camera/network/mining{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/brown/border,
+/obj/item/device/suit_cooling_unit,
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/gear)
 "aQI" = (
 /obj/structure/cable/cyan{
 	icon_state = "32-1"
@@ -28975,12 +28987,20 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock)
 "aTM" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/structure/table/rack,
+/obj/item/weapon/pickaxe,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/tool/crowbar,
+/obj/item/weapon/shovel,
+/obj/machinery/light_switch{
+	pixel_x = -11;
+	pixel_y = -24
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/brown/border,
+/obj/item/device/suit_cooling_unit,
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/gear)
 "aTN" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -30892,13 +30912,11 @@
 /turf/simulated/wall,
 /area/quartermaster/belterdock/refinery)
 "aXK" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
-	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/obj/structure/table/rack,
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock)
 "aXL" = (
 /obj/structure/sign/nosmoking_1,
 /turf/simulated/wall/rshull,
@@ -31160,6 +31178,14 @@
 /obj/effect/floor_decal/corner/brown/border,
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/gear)
+"aYo" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "aYp" = (
 /turf/simulated/wall{
 	can_open = 0
@@ -31232,24 +31258,12 @@
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hos)
 "aYy" = (
-/obj/structure/cable/green,
-/obj/machinery/power/apc{
-	dir = 2;
-	name = "south bump";
-	pixel_y = -32
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
 	},
-/obj/structure/table/rack,
-/obj/item/weapon/pickaxe,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/shovel,
-/obj/machinery/camera/network/mining{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/brown/border,
-/turf/simulated/floor/tiled,
-/area/quartermaster/belterdock/gear)
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "aYz" = (
 /obj/structure/window/reinforced,
 /obj/structure/grille,
@@ -31709,19 +31723,13 @@
 /turf/simulated/floor/airless,
 /area/shuttle/medivac/cockpit)
 "aZw" = (
-/obj/structure/table/rack,
-/obj/item/weapon/pickaxe,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/shovel,
-/obj/machinery/light_switch{
-	pixel_x = -11;
-	pixel_y = -24
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
 	},
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/brown/border,
-/turf/simulated/floor/tiled,
-/area/quartermaster/belterdock/gear)
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "aZx" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -46060,7 +46068,7 @@ aTe
 aTs
 aTF
 aQG
-aUc
+aXK
 aUh
 aUr
 aTZ
@@ -46486,7 +46494,7 @@ aOL
 aXP
 aTz
 aQG
-aOL
+aUc
 aTV
 aUF
 aOL
@@ -47194,7 +47202,7 @@ aMN
 aWZ
 aUX
 aWX
-aYy
+aQH
 aMN
 avt
 avt
@@ -47336,7 +47344,7 @@ aMN
 aTj
 aVr
 aWQ
-aZw
+aTM
 aMN
 avt
 avt
@@ -47626,11 +47634,11 @@ avt
 avt
 aVc
 aZS
-aQH
-aTM
-aTM
-aTM
-aXK
+aYo
+aYy
+aYy
+aYy
+aZw
 baB
 aVc
 avt
