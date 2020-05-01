@@ -17,6 +17,10 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	var/next_page = FALSE
 	var/tooltips = FALSE
 
+/obj/screen/radial/Destroy()
+	parent = null
+	return ..()
+
 /obj/screen/radial/slice/MouseEntered(location, control, params)
 	. = ..()
 	icon_state = "radial_slice_focus"
@@ -279,6 +283,8 @@ GLOBAL_LIST_EMPTY(radial_menus)
 /datum/radial_menu/Destroy()
 	Reset()
 	hide()
+	QDEL_LIST_NULL(elements)
+	QDEL_NULL(close_button)
 	QDEL_NULL(custom_check_callback)
 	. = ..()
 
