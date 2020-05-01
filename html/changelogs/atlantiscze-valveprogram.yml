@@ -1,5 +1,0 @@
-author: atlantiscze
-delete-after: True
-
-changes: 
-  - rscadd: "Shutoff valve monitoring is now also available as a modular computer program. Its UI has also been cleaned up a little."
