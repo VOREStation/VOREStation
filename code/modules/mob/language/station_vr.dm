@@ -129,7 +129,7 @@
 	. = ..(speaker, message, speaker.real_name)
 
 /datum/language/mantid/nonvocal
-	key = "]"
+	key = "["
 	name = LANGUAGE_MANTID_NONVOCAL
 	desc = "A complex visual language of bright bio-luminescent flashes, 'spoken' natively by the Kharmaani of the Ascent."
 	colour = "alien"
