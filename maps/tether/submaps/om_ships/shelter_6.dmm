@@ -1430,6 +1430,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 9
 	},
+/obj/item/weapon/inducer/hybrid,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/tabiranth)
 "bk" = (
