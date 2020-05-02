@@ -1115,9 +1115,6 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/curabitur/curashuttle/eng)
 "bZ" = (
-/obj/machinery/alarm{
-	pixel_y = 25
-	},
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 4;
@@ -1371,6 +1368,11 @@
 /area/shuttle/curabitur/curashuttle/hangar)
 "cB" = (
 /obj/machinery/light,
+/obj/machinery/alarm{
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/curabitur/curashuttle/hangar)
 "cC" = (
