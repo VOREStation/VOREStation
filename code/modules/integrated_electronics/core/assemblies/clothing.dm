@@ -191,3 +191,50 @@
 /obj/item/clothing/suit/circuitry/Initialize()
 	setup_integrated_circuit(/obj/item/device/electronic_assembly/clothing/large)
 	return ..()
+
+/obj/item/clothing/attackby(var/obj/item/I, var/mob/user)
+	if(IC != null)
+		if(istype(I, /obj/item/integrated_circuit))
+			if(!user.unEquip(I) && !istype(user, /mob/living/silicon/robot)) //Robots cannot de-equip items in grippers.
+				return FALSE
+			if(IC.add_circuit(I, user))
+				to_chat(user, "<span class='notice'>You slide \the [I] inside \the [src].</span>")
+				playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
+				interact(user)
+				return TRUE
+
+		else if(I.is_crowbar())
+			playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
+			IC.opened = !IC.opened
+			to_chat(user, "<span class='notice'>You [IC.opened ? "opened" : "closed"] \the [src].</span>")
+			update_icon()
+			return TRUE
+
+		else if(istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger) || I.is_screwdriver())
+			if(IC.opened)
+				interact(user)
+				return TRUE
+			else
+				to_chat(user, "<span class='warning'>\The [src] isn't opened, so you can't fiddle with the internal components.  \
+				Try using a crowbar.</span>")
+				return FALSE
+		else if(istype(I, /obj/item/weapon/cell/device))
+			if(!IC.opened)
+				to_chat(user, "<span class='warning'>\The [src] isn't opened, so you can't put anything inside.  Try using a crowbar.</span>")
+				return FALSE
+			if(IC.battery)
+				to_chat(user, "<span class='warning'>\The [src] already has \a [IC.battery] inside.  Remove it first if you want to replace it.</span>")
+				return FALSE
+			var/obj/item/weapon/cell/device/cell = I
+			user.drop_item(cell)
+			cell.forceMove(src)
+			IC.battery = cell
+			playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
+			to_chat(user, "<span class='notice'>You slot \the [cell] inside \the [src]'s power supplier.</span>")
+			interact(user)
+			return TRUE
+
+		else
+			return ..()
+	else
+		return ..()
