@@ -93,14 +93,12 @@
 				lines += "<br />"
 				lines += render_dir_img(recipe.icon_state,user,NORTHWEST,"West to North","&#9565;")
 				lines += render_dir_img(recipe.icon_state,user,NORTHEAST,"North to East","&#9562;")
-				lines += "<br />"
 				lines += render_dir_img(recipe.icon_state,user,SOUTHWEST,"South to West","&#9559;")
 				lines += render_dir_img(recipe.icon_state,user,SOUTHEAST,"East to South","&#9556;")
 
 			if(PIPE_TRINARY) // Manifold
 				lines += render_dir_img(recipe.icon_state,user,NORTH,"West South East","&#9574;")
 				lines += render_dir_img(recipe.icon_state,user,EAST,"North West South","&#9571;")
-				lines += "<br />"
 				lines += render_dir_img(recipe.icon_state,user,SOUTH,"East North West","&#9577;")
 				lines += render_dir_img(recipe.icon_state,user,WEST,"South East North","&#9568;")
 
@@ -108,15 +106,13 @@
 				//each mirror icon is 45 anticlockwise from it's real direction
 				lines += render_dir_img(recipe.icon_state,user,NORTH,"West South East","&#9574;")
 				lines += render_dir_img(recipe.icon_state,user,EAST,"North West South","&#9571;")
-				lines += "<br />"
 				lines += render_dir_img(recipe.icon_state,user,SOUTH,"East North West","&#9577;")
 				lines += render_dir_img(recipe.icon_state,user,WEST,"South East North","&#9568;")
 				lines += "<br />"
 				lines += render_dir_img(recipe.icon_state_m,user,SOUTH,"West South East","&#9574;", 1)
-				lines += render_dir_img(recipe.icon_state_m,user,EAST,"North West South","&#9571;", 1)
-				lines += "<br />"
-				lines += render_dir_img(recipe.icon_state_m,user,NORTH,"East North West","&#9577;", 1)
 				lines += render_dir_img(recipe.icon_state_m,user,WEST,"South East North","&#9568;", 1)
+				lines += render_dir_img(recipe.icon_state_m,user,NORTH,"East North West","&#9577;", 1)
+				lines += render_dir_img(recipe.icon_state_m,user,EAST,"North West South","&#9571;", 1)
 
 			if(PIPE_DIRECTIONAL) // Stuff with four directions - includes pumps etc.
 				lines += render_dir_img(recipe.icon_state,user,NORTH,"North","&uarr;")
