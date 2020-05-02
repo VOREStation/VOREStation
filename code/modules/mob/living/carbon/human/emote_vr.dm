@@ -47,6 +47,10 @@
 			message = "lets out a merp."
 			m_type = 2
 			playsound(loc, 'sound/voice/merp.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+		if("myarp")
+			message = "lets out a myarp."
+			m_type = 2
+			playsound(loc, 'sound/voice/myarp.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("bark")
 			message = "lets out a bark."
 			m_type = 2
@@ -77,7 +81,7 @@
 				message = "does a flip!"
 				m_type = 1
 		if("vhelp") //Help for Virgo-specific emotes.
-			to_chat(src, "vwag, vflap, mlem, awoo, nya, peep, chirp, weh, merp, bark, hiss, squeak, nsay, nme, flip")
+			to_chat(src, "vwag, vflap, mlem, awoo, nya, peep, chirp, weh, merp, myarp, bark, hiss, squeak, nsay, nme, flip")
 			return TRUE
 
 	if(message)
@@ -90,10 +94,10 @@
 /mob/living/carbon/human/proc/handle_flip_vr()
 	var/original_density = density
 	var/original_passflags = pass_flags
-	
+
 	//Briefly un-dense to dodge projectiles
 	density = FALSE
-	
+
 	//Parkour!
 	var/parkour_chance = 20 //Default
 	if(species)

@@ -35,6 +35,9 @@
 	if(stat)
 		return
 
+	if(control_disabled)
+		return
+
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
@@ -45,14 +48,11 @@
 	if(modifiers["shift"])
 		ShiftClickOn(A)
 		return
-	if(modifiers["alt"]) // alt and alt-gr (rightalt)
+	if(modifiers["alt"])
 		AltClickOn(A)
 		return
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
-		return
-
-	if(control_disabled || !checkClickCooldown())
 		return
 
 	if(aiCamera.in_camera_mode)
@@ -60,12 +60,6 @@
 		aiCamera.captureimage(A, usr)
 		return
 
-	/*
-		AI restrained() currently does nothing
-	if(restrained())
-		RestrainedClickOn(A)
-	else
-	*/
 	A.add_hiddenprint(src)
 	A.attack_ai(src)
 
