@@ -4,6 +4,13 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	var/id = DM_HOLD
 	var/noise_chance = 0
 
+/**
+ * This proc has all the behavior for the given digestion mode.
+ * It returns either null, or an associative list in the following format:
+ * list("to_update" = TRUE/FALSE, "soundToPlay" = sound())
+ * where to_update is whether or not a updateVorePanel() call is necessary,
+ * and soundToPlay will play the given sound at the end of the process tick.
+ */
 /datum/digest_mode/proc/process_mob(obj/belly/B, mob/living/L)
 	return null
 
