@@ -191,7 +191,7 @@
 /obj/machinery/computer/ship/helm{
 	dir = 4;
 	icon_state = "computer";
-	req_one_access = newlist(/obj/item/weapon/nullrod)
+	req_one_access = newlist()
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/curabitur/curashuttle/cockpit)
