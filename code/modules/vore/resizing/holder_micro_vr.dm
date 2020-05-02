@@ -26,16 +26,12 @@
 
 /obj/item/weapon/holder/micro/attack_self(mob/living/carbon/user) //reworked so it works w/ nonhumans
 	for(var/L in contents)
-		if(ishuman(L) && user.checkClickCooldown()) // These canClicks() are repeated here to make sure users can't avoid the click delay
+		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			H.help_shake_act(user)
-			user.setClickCooldown(user.get_attack_speed()) //uses the same cooldown as regular attack_hand
-			return
-		if(isanimal(L) && user.checkClickCooldown())
+		if(isanimal(L))
 			var/mob/living/simple_mob/S = L
 			user.visible_message("<span class='notice'>[user] [S.response_help] \the [S].</span>")
-			user.setClickCooldown(user.get_attack_speed())
-			
 
 /obj/item/weapon/holder/micro/update_state()
 	if(isturf(loc) || !held_mob || held_mob.loc != src)
