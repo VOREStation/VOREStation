@@ -65,7 +65,7 @@
 	return ..()
 
 ////////////////////////////////////////
-/atom/movable/Move(atom/newloc, direct = 0)
+/atom/movable/Move(atom/newloc, direct = 0, movetime)
 	// Didn't pass enough info
 	if(!loc || !newloc)
 		return FALSE
@@ -104,6 +104,7 @@
 				var/dest_z = get_z(newloc)
 
 				// Do The Move
+				glide_for(movetime)
 				loc = newloc
 				. = TRUE
 				
@@ -145,6 +146,7 @@
 			// place due to a Crossed, Bumped, etc. call will interrupt
 			// the second half of the diagonal movement, or the second attempt
 			// at a first half if step() fails because we hit something.
+			glide_for(movetime)
 			if (direct & NORTH)
 				if (direct & EAST)
 					if (step(src, NORTH) && moving_diagonally)
@@ -197,7 +199,7 @@
 
 	// If we moved, call Moved() on ourselves
 	if(.)
-		Moved(oldloc, direct, FALSE)
+		Moved(oldloc, direct, FALSE, movetime)
 
 	// Update timers/cooldown stuff
 	move_speed = world.time - l_move_time
@@ -205,19 +207,25 @@
 	last_move = direct // The direction you last moved
 	// set_dir(direct) //Don't think this is necessary
 
+//Called after a successful Move(). By this point, we've already moved
+/atom/movable/proc/Moved(atom/old_loc, direction, forced = FALSE, movetime)
 	// Handle any buckled mobs on this movable
 	if(has_buckled_mobs())
-		handle_buckled_mob_movement(oldloc,direct)
-	
-	//VOREStation Add
-	else if(. && riding_datum)
+		handle_buckled_mob_movement(old_loc, direction, movetime)
+	if(riding_datum)
 		riding_datum.handle_vehicle_layer()
 		riding_datum.handle_vehicle_offsets()
-	//VOREStation Add End
-
-//Called after a successful Move(). By this point, we've already moved
-/atom/movable/proc/Moved(atom/old_loc, direction, forced = FALSE)
 	return TRUE
+
+/atom/movable/set_dir(newdir)
+	. = ..(newdir)
+	if(riding_datum)
+		riding_datum.handle_vehicle_offsets()
+
+/atom/movable/relaymove(mob/user, direction)
+	. = ..()
+	if(riding_datum)
+		riding_datum.handle_ride(user, direction)
 
 // Make sure you know what you're doing if you call this, this is intended to only be called by byond directly.
 // You probably want CanPass()
@@ -252,17 +260,17 @@
 	A.Bumped(src)
 	A.last_bumped = world.time
 
-/atom/movable/proc/forceMove(atom/destination)
+/atom/movable/proc/forceMove(atom/destination, direction, movetime)
 	. = FALSE
 	if(destination)
-		. = doMove(destination)
+		. = doMove(destination, direction, movetime)
 	else
 		CRASH("No valid destination passed into forceMove")
 
 /atom/movable/proc/moveToNullspace()
 	return doMove(null)
 
-/atom/movable/proc/doMove(atom/destination)
+/atom/movable/proc/doMove(atom/destination, direction, movetime)
 	var/atom/oldloc = loc
 	var/area/old_area = get_area(oldloc)
 	var/same_loc = oldloc == destination
@@ -271,7 +279,8 @@
 		var/area/destarea = get_area(destination)
 
 		// Do The Move
-		last_move = 0
+		glide_for(movetime)
+		last_move = isnull(direction) ? 0 : direction
 		loc = destination
 		
 		// Unset this in case it was set in some other proc. We're no longer moving diagonally for sure.
@@ -349,6 +358,15 @@
 	for(var/item in src) // Notify contents of Z-transition. This can be overridden IF we know the items contents do not care.
 		var/atom/movable/AM = item
 		AM.onTransitZ(old_z,new_z)
+
+/atom/movable/proc/glide_for(movetime)
+	if(movetime)
+		glide_size = WORLD_ICON_SIZE/max(DS2TICKS(movetime), 1)
+		spawn(movetime)
+			glide_size = initial(glide_size)
+	else
+		glide_size = initial(glide_size)
+		
 /////////////////////////////////////////////////////////////////
 
 //called when src is thrown into hit_atom
