@@ -172,12 +172,14 @@
 	var/obj/effect/alien/weeds/node/linked_node = null
 	var/static/list/weedImageCache
 
-/obj/effect/alien/weeds/Initialize(var/mapload, node)
+/obj/effect/alien/weeds/Initialize(var/mapload, var/node, var/newcolor)
 	. = ..()
 	if(isspace(loc))
 		return INITIALIZE_HINT_QDEL
 	
 	linked_node = node
+	if(newcolor)
+		color = newcolor
 	
 	if(icon_state == "weeds")
 		icon_state = pick("weeds", "weeds1", "weeds2")
@@ -203,9 +205,9 @@
 	light_range = NODERANGE
 	
 	var/node_range = NODERANGE
-	var/set_color = null
+	var/set_color = "#321D37"
 
-/obj/effect/alien/weeds/node/Initialize(var/mapload, var/newcolor = "#321D37")
+/obj/effect/alien/weeds/node/Initialize(var/mapload, var/node, var/newcolor)
 	. = ..()
 
 	for(var/obj/effect/alien/weeds/existing in loc)
@@ -216,6 +218,8 @@
 
 	if(newcolor)
 		set_color = newcolor
+	if(set_color)
+		color = set_color
 
 	START_PROCESSING(SSobj, src) // Only the node processes in a subsystem, the rest are process()'d by the node
 
@@ -278,8 +282,7 @@
 		if(T1.c_airblock(T2) == BLOCKED)
 			continue
 
-		var/obj/effect/E = new /obj/effect/alien/weeds(T2, linked_node)
-		E.color = color
+		new /obj/effect/alien/weeds(T2, linked_node, color)
 
 /obj/effect/alien/weeds/node/process()
 	set background = 1
