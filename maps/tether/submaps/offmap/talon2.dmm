@@ -1448,7 +1448,8 @@
 	icon_state = "2-8"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/steel,
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/plating,
 /area/talon/decktwo/central_hallway)
 "cR" = (
 /obj/structure/cable/green{
@@ -4374,7 +4375,8 @@
 	icon_state = "pipe-j2";
 	dir = 2
 	},
-/turf/simulated/floor/tiled/steel,
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/plating,
 /area/talon/decktwo/central_hallway)
 "hT" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10{
