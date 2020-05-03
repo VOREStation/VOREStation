@@ -217,11 +217,7 @@
 /datum/map_template/surface/plains/ChemSpill1
 	name = "Ruptured Canister"
 	desc = "A dumped chemical canister. Looks dangerous."
-<<<<<<< HEAD
 	mappath = 'maps/submaps/surface_submaps/plains/chemspill1_vr.dmm' //VOREStation Edit
-	cost = 10
-=======
-	mappath = 'maps/submaps/surface_submaps/plains/chemspill1.dmm'
 	cost = 10
 
 /datum/map_template/surface/plains/PlainsKururak
@@ -250,4 +246,3 @@
 	mappath = 'maps/submaps/surface_submaps/plains/BuriedTreasure3.dmm'
 	cost = 10
 	template_group = "Shallow Grave"
->>>>>>> aafd4b4... Explorer Expansion: New Horizons (#6960)
