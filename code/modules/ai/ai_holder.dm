@@ -44,7 +44,8 @@
 		STANCE_REPOSITION,
 		STANCE_MOVE,
 		STANCE_FOLLOW,
-		STANCE_FLEE
+		STANCE_FLEE,
+		STANCE_DISABLED
 	)
 	var/list/static/noprocess_stances = list(
 		STANCE_SLEEP
