@@ -286,8 +286,7 @@ proc/get_radio_key_from_channel(var/channel)
 	//Handle nonverbal languages here
 	for(var/datum/multilingual_say_piece/S in message_pieces)
 		if(S.speaking.flags & NONVERBAL)
-			if(prob(30))
-				custom_emote(1, "[pick(S.speaking.signlang_verb)].")
+			custom_emote(1, "[pick(S.speaking.signlang_verb)].")
 
 	//These will contain the main receivers of the message
 	var/list/listening = list()
