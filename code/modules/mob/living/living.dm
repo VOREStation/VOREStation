@@ -812,17 +812,22 @@ default behaviour is:
 		adjustBruteLoss(2)
 		visible_message("<span class='danger'>\The [src]'s [isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
 
-/mob/living/Moved(var/oldloc, direct, forced, movetime)
+/mob/living/Moved(var/atom/oldloc, direct, forced, movetime)
 	. = ..()
 	handle_footstep(loc)
 
-	var/atom/movable/pullee = pulling
-	if(pulling && pulling == pullee) // we were pulling a thing and didn't lose it during our move.
-		if(pulling.anchored)
+	if(pulling) // we were pulling a thing and didn't lose it during our move.
+		if(pulling.anchored || !isturf(pulling.loc))
 			stop_pulling()
+			return
 
 		var/pull_dir = get_dir(src, pulling)
 		if(get_dist(src, pulling) > 1 || (moving_diagonally != SECOND_DIAG_STEP && ((pull_dir - 1) & pull_dir))) // puller and pullee more than one tile away or in diagonal position
+			// If it is too far away or across z-levels from old location, stop pulling.
+			if(get_dist(pulling.loc, oldloc) > 1 || pulling.loc.z != oldloc?.z)
+				stop_pulling()
+				return
+
 			// living might take damage from drags
 			if(isliving(pulling))
 				var/mob/living/M = pulling

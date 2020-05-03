@@ -159,7 +159,7 @@
 		A.forceMove(target)
 		if(isliving(A))
 			var/mob/living/L = A
-			if(L.pulling)
+			if(L.pulling && !L.pulling.anchored)
 				L.pulling.forceMove(target)
 
 /obj/structure/stairs/proc/upperStep(var/turf/T)
