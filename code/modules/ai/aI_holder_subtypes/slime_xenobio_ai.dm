@@ -142,6 +142,7 @@
 	hostile = FALSE
 	retaliate = FALSE
 	cooperative = FALSE
+	holder.a_intent = I_HELP
 
 // The holder's attack changes based on intent. This lets the AI choose what effect is desired.
 /datum/ai_holder/simple_mob/xenobio_slime/pre_melee_attack(atom/A)
@@ -178,6 +179,7 @@
 				if(!(H in grudges)) // Unless they're an ass.
 					return FALSE
 		if(discipline && !rabid)
+			holder.a_intent = I_HELP
 			return FALSE // We're a good slime.
 
 /datum/ai_holder/simple_mob/xenobio_slime/react_to_attack(atom/movable/attacker)
