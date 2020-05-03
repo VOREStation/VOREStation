@@ -4,6 +4,7 @@
 
 var/global/list/atmos_pipe_recipes = null
 var/global/list/disposal_pipe_recipes = null
+var/global/list/all_pipe_recipes = null	// VOREStation Add
 
 /hook/startup/proc/init_pipe_recipes()
 	global.atmos_pipe_recipes = list(
@@ -68,6 +69,7 @@ var/global/list/disposal_pipe_recipes = null
 			new /datum/pipe_recipe/disposal("Chute",					DISPOSAL_PIPE_CHUTE, "intake"),
 		)
 	)
+	global.all_pipe_recipes = disposal_pipe_recipes + atmos_pipe_recipes	// VOREStation Add
 	return TRUE
 
 //
@@ -96,6 +98,7 @@ var/global/list/disposal_pipe_recipes = null
 /datum/pipe_recipe/pipe
 	var/obj/item/pipe/construction_type 		// The type PATH to the type of pipe fitting object the recipe makes.
 	var/obj/machinery/atmospherics/pipe_type	// The type PATH of what actual pipe the fitting becomes.
+	var/paintable = FALSE						// If TRUE, allow the RPD to paint this pipe.	// VOREStation Add
 
 /datum/pipe_recipe/pipe/New(var/label, var/obj/machinery/atmospherics/path)
 	name = label
@@ -105,6 +108,7 @@ var/global/list/disposal_pipe_recipes = null
 	dirtype = initial(construction_type.dispenser_class)
 	if (dirtype == PIPE_TRIN_M)
 		icon_state_m = "[icon_state]m"
+	paintable = ispath(path, /obj/machinery/atmospherics/pipe) && !(ispath(path, /obj/machinery/atmospherics/pipe/vent))	// VOREStation Add
 
 // Render an HTML link to select this pipe type
 /datum/pipe_recipe/pipe/Render(dispenser)
